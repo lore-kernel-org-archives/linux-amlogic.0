@@ -4,72 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75096C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 01:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F8BEC433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 01:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9uW5Tp0tGltKSMGx4t2Yw/i4/i68qMs9DaBrsLtHeAs=; b=xVDlvz5rxepjWA
-	Ql4GUFa8hR9Ab3TN2VXDhLZ1Wv/cXU7s0gVuN3aoCPx/RccnWWrd979B1Nd/I1gn4PrsO1IPDpo6o
-	GcQyIn+TOYvavNoVMXXGqIw8OFVMwx7ytAK9mYt71sgqXPy4Rj6IuU3xkgjgiXIKm8y1QaOgZ1mP9
-	YvEqedQ2aoCH+P0d6pZzKpXjFAYvECtFTZd67M21hdwjb5Y1Dp75OZRruPi2AKdcLZAjGUANecRrw
-	m84+KCvUah6FX4VsU0mkmt4DB9ea57+uDAm0dlW8HYLluUnoT03E1hX/UaI+kWd10xZmnGC3d5lzg
-	uO/+WDb1iHpKXJp5yfnA==;
+	List-Owner; bh=XXiNuPRHpVZiM3xn0fJeMdOpX1k/anT8QWDJx8bt0Kw=; b=3saKChXZCunTh/
+	OvTVRx0YC+4IZTU+MJ7C31mXHGKRDDN39hyELWVIkgfj8bA7Betpo1/GEEgkqoO/8vGMx6mdbTOUd
+	gx6fGpoHVnuoXANwFyJ11NNEp/2bpPEahyrrltNLwe8qFBUMXC3EHiS2awslpm0rLPXATVIpCsCMa
+	s6122aWEiHdKIfUJ5IQKLAU2v5GCCgq/HWdpQF78PPbuHK2HSL0vihEnSlY9BS6PmHDOstnAkcaYa
+	sSsk57UtBO4pI/7t0FXiLu4PQ3Sr/kEKbeLzyd8AZQsKENA4WRLtXjRiW9vo7FZOyYFMf8RqdZtsc
+	ocX9tFVNdn4O2spdg/dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7SkK-000gdO-VY; Wed, 12 Jan 2022 01:48:16 +0000
-Received: from mail-ot1-f45.google.com ([209.85.210.45])
+	id 1n7SqK-000jhI-Mo; Wed, 12 Jan 2022 01:54:28 +0000
+Received: from mail-oi1-f180.google.com ([209.85.167.180])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7SkI-000gbj-C4; Wed, 12 Jan 2022 01:48:15 +0000
-Received: by mail-ot1-f45.google.com with SMTP id
- c3-20020a9d6c83000000b00590b9c8819aso903710otr.6; 
- Tue, 11 Jan 2022 17:48:13 -0800 (PST)
+ id 1n7SqI-000jg4-Cy; Wed, 12 Jan 2022 01:54:28 +0000
+Received: by mail-oi1-f180.google.com with SMTP id s127so1566418oig.2;
+ Tue, 11 Jan 2022 17:54:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=Ik98dbcozYmPN6lZff3Ua7PUGw9hdVOCzctxvy/Tu10=;
- b=B9wTEOQUC0b45M78Dfgig5uggFBI6rQpxft5rzMDN+b8DE3XhdciPRVK8Vik7/7XiI
- DEX/vo5qvu0PMve9hz7bjtF3p+6pyiqYeEYoIc5lBu2Ly34aUZhDunIQa/LD4SZwWajQ
- D2R/zweu8QAp3UhN0Q01/Clh1Qa8zibD9IcBhVLnEGoocxlUZDW9Dju3pgzkkRipmLw0
- oHDKQyBfPUlgnfgn1Yn/Vd6gRhvRokLfjw+hTPwDDmJo0eNeF+cXpo4wi7VQ6ixoxurY
- SICFTf9Z7QT12jqebwtYxPwSmwsx5zt/s3MnusAoem3dt+8QiELtOo1IQ5oQBzrbyHPz
- xbfQ==
-X-Gm-Message-State: AOAM533VsYYa/ziBXiGXHzDu64rW1UP9EM6kvejQ3ih8T6iLBmfIZ4IC
- Kz8QUJ5HozUSqjcqXmyCRg==
-X-Google-Smtp-Source: ABdhPJz42u2no1OUu7eszZ7PMR3hrkXlHdBWiL2Rf3E54ziC8XPMBGWquYR+2+gzMoyGthdl9nYGGw==
-X-Received: by 2002:a05:6830:4393:: with SMTP id
- s19mr5148173otv.272.1641952092777; 
- Tue, 11 Jan 2022 17:48:12 -0800 (PST)
+ bh=jyyKKvrn92emBwTYl6ojD1y8WmP58/pIYIpRrruJx/w=;
+ b=nwrkS/A4l/68rvrMEyeCo4lHs3kCw9kwHSwrZ7+eAJzkGgZjTtP1jPMExq7owOugcB
+ KhSdxkNC+9XP8yh7cdRnpEJTd+1hDsCWcLFQUM2C50SPCXAZoJDAybBtxcLlcgoUYytW
+ azs8f3NZCWPUIZTiBo1BKKQAXFKO/9H2FMVC7j1nfLoK/izlGSOoToKgsykvWo49jsr9
+ d01oAokx7UTp9ASvBL24mihXuIOw8WwXfKVtLLGdBxgg2bneN3C2FkmObIcL0teUm3wQ
+ EnoykIu4WR2ZZ3tCGskf2pJmODZjYHuK0locYpShaRe7YLqjGWOHWs0BSuwQwwx9vV81
+ kZoQ==
+X-Gm-Message-State: AOAM533Dmm8RJ3+bz1exQMbeFRaqVSoL2ZpckK+OTrXmiNtBi3ONbw1x
+ LLNyDzwfLiBbCD+wzqydcA==
+X-Google-Smtp-Source: ABdhPJyai3eviqa56Rw1cwTXbmGC71Vr+kY41i8iUDYQQFe2H8+v8hh3AGbUdGoLrzSfIGQXsyaa3Q==
+X-Received: by 2002:a05:6808:254:: with SMTP id
+ m20mr2737989oie.55.1641952465766; 
+ Tue, 11 Jan 2022 17:54:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
  [66.90.148.213])
- by smtp.gmail.com with ESMTPSA id t26sm1991074oic.51.2022.01.11.17.48.11
+ by smtp.gmail.com with ESMTPSA id v4sm2255328oot.36.2022.01.11.17.54.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Jan 2022 17:48:11 -0800 (PST)
-Received: (nullmailer pid 3894790 invoked by uid 1000);
- Wed, 12 Jan 2022 01:48:10 -0000
-Date: Tue, 11 Jan 2022 19:48:10 -0600
+ Tue, 11 Jan 2022 17:54:25 -0800 (PST)
+Received: (nullmailer pid 3904441 invoked by uid 1000);
+ Wed, 12 Jan 2022 01:54:24 -0000
+Date: Tue, 11 Jan 2022 19:54:24 -0600
 From: Rob Herring <robh@kernel.org>
-To: Zelong Dong <zelong.dong@amlogic.com>
-Cc: devicetree@vger.kernel.org, jbrunet@baylibre.com, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- narmstrong@baylibre.com, linux-arm-kernel@lists.infradead.org,
- p.zabel@pengutronix.de, robh+dt@kernel.org, martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible for Meson-S4
- Reset Controller
-Message-ID: <Yd4zWnQxB1ZK8IPo@robh.at.kernel.org>
-References: <20220107023931.13251-1-zelong.dong@amlogic.com>
- <20220107023931.13251-2-zelong.dong@amlogic.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: display: add Amlogic MIPI DSI Host
+ Controller bindings
+Message-ID: <Yd400IApAqHeSW4B@robh.at.kernel.org>
+References: <20220107145515.613009-1-narmstrong@baylibre.com>
+ <20220107145515.613009-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220107023931.13251-2-zelong.dong@amlogic.com>
+In-Reply-To: <20220107145515.613009-2-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_174814_436838_85A30D84 
-X-CRM114-Status: UNSURE (   9.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220111_175426_466281_BE84153D 
+X-CRM114-Status: GOOD (  19.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,16 +83,158 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 07 Jan 2022 10:39:29 +0800, Zelong Dong wrote:
-> Add new compatible for Amlogic's Meson-S4 Reset Controller
+On Fri, Jan 07, 2022 at 03:55:10PM +0100, Neil Armstrong wrote:
+> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
+> on the same Amlogic SoCs.
 > 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../display/amlogic,meson-dw-mipi-dsi.yaml    | 118 ++++++++++++++++++
+>  1 file changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+> new file mode 100644
+> index 000000000000..f3070783d606
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+> @@ -0,0 +1,118 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2020 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +description: |
+> +  The Amlogic Meson Synopsys Designware Integration is composed of
+> +  - A Synopsys DesignWare MIPI DSI Host Controller IP
+> +  - A TOP control block controlling the Clocks & Resets of the IP
+> +
+> +allOf:
+> +  - $ref: dsi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-g12a-dw-mipi-dsi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    items:
+> +      - const: pclk
+> +      - const: px_clk
+> +      - const: meas_clk
+> +
+> +  resets:
+> +    minItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: top
+> +
+> +  phys:
+> +    minItems: 1
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
 
-Acked-by: Rob Herring <robh@kernel.org>
+/schemas/graph.yaml#/properties/port
+
+> +        unevaluatedProperties: false
+
+And this can be dropped.
+
+> +        description: Input node to receive pixel data.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+
+Same here.
+
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +        description: DSI output node to panel.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - phys
+> +  - phy-names
+> +  - ports
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    dsi@7000 {
+> +          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
+> +          reg = <0x6000 0x400>;
+> +          resets = <&reset_top>;
+> +          reset-names = "top";
+> +          clocks = <&clk_pclk>, <&clk_px>;
+> +          clock-names = "pclk", "px_clk";
+> +          phys = <&mipi_dphy>;
+> +          phy-names = "dphy";
+> +
+> +          ports {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              /* VPU VENC Input */
+> +              mipi_dsi_venc_port: port@0 {
+> +                  reg = <0>;
+> +
+> +                  mipi_dsi_in: endpoint {
+> +                       remote-endpoint = <&dpi_out>;
+> +                  };
+> +              };
+> +
+> +              /* DSI Output */
+> +              mipi_dsi_panel_port: port@1 {
+> +                  reg = <1>;
+> +
+> +                  mipi_out_panel: endpoint {
+> +                      remote-endpoint = <&mipi_in_panel>;
+> +                  };
+> +              };
+> +          };
+> +    };
+> -- 
+> 2.25.1
+> 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
