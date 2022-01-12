@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D9A0C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 02:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5AE3C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jan 2022 02:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Wp9y99zfTPrpTM4u5Y4B5Lep4VuyWcwAvkEyQhL8Z3g=; b=xqheG0m8QTeikM
-	/hr6cUC+n80npv/AytGZFaPOwl+eBVIQvl0CniPDRqDDudNflLYt6hZjUqFzbuQ9kWMOJLKncHunW
-	2TJK2x61VKO4UxDWNp8aAeWTiXLFs1AhijymS8fnxNoVe5jtY/Rw9WPh7Bfx9nil9+ZdKc0GPkiJZ
-	mE6BldOlIgn4J5nPC0rRXJJswFiGFoyDVLxwaEBT8ju6XuDZabpsqg526V5gSG+qNLaJaQpO500Mg
-	OocwZMFGuO2p7Qd8rGBr+0gfmnMUpXQBtg88qyn3YzG8Kol/wyhGyHZ0OLhvmZW8/4TkWmuluvS/4
-	c2sNdvXVOkR38ncrr4rg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vqU/18gdFIGPeCFuho3UL828fooC2LDJbRGXCb335Ys=; b=BHeDmsVBrOQ8xG
+	xG74o4WJIn6DBtp2B22RBguXIkaOiTn5wgBaRhFG0EAqnBEi7bfmlNjK1hQmtTqG8GjzD9iWcNMoa
+	3PgvbiFCDSlg56DuIw9hEoKtZyKQ4BoI7ZtymM33xqkAJPdQG4FWxdlprCwvnLCAFg5vUhPyO4uUw
+	YsPoP9GpwN80PesnzWp60zNOK7Bs14/qxtYTRQs0/CFUjV5AZGq/TOzFsVKkgfhN1I/zrrnG4WOxR
+	0ufmZwX5j/9YVgDPIqz67rIWw7/J+KZUR5nHvFO/+H3DlPcwHq1BkwyWoQeXm1IaK0+t5l8OYaOk0
+	zifiQDy08w/x+RaFfBaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7TMQ-000qan-LD; Wed, 12 Jan 2022 02:27:38 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1n7TMl-000qmH-An; Wed, 12 Jan 2022 02:27:59 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7TM8-000qOv-VQ; Wed, 12 Jan 2022 02:27:22 +0000
-Received: by mail-ed1-x530.google.com with SMTP id a18so3926173edj.7;
- Tue, 11 Jan 2022 18:27:19 -0800 (PST)
+ id 1n7TMA-000qQ6-HI; Wed, 12 Jan 2022 02:27:24 +0000
+Received: by mail-ed1-x531.google.com with SMTP id 30so3993307edv.3;
+ Tue, 11 Jan 2022 18:27:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rbtzR3WiRHG8ekOj52mljErX2OG2pvaLPM1gvyJX52k=;
- b=CJF6ONFWOYv/zH1kM5T444rE2ksvFiXVTcRZqRVP6VgL5swvdwNcpOl4HJ652A3KAT
- JcEGdgyOyz8JdXTe9e6sA3ipBqDcgOz4UkXiegSjnBpvY5/rLHcsHssCElJVWCiP28r5
- HNfgxyWr/Fc+CSrD8OJt4/uVqvTn1AgSTGHyp7GieFlf6IKlmhM1BlAXjYmr34seqFJb
- zxBkK7JzFw7aMUAWqCkXlr1YCxF4cOZDhR6M/WlU1V2++ss04pVFLlgkoEsEFJfuW9vI
- yrVgpNv0iiEIxxaWdvm8GNsJo7F5kFSEGuOuL+ylYKq6IzL/yi7CuHVsOfW2tgUp/3aB
- fogQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=0cYfG++brVRBSY9g4lM7V5XDfrvhSdDX/ZNtL5caAOU=;
+ b=V1Hqx40vTljjHoXSIomaOA4hF211Ca/2jsjmMhK9A/nf4+PkkLq/WrFJPokz4EgzCn
+ TqRSzsMDrgngrSCVIQY4mC65XdrBdGOUwza3NaSjWY3zIBi0TPxsuEDxHKZRbOPTklQF
+ t/w72ZECncRrdoM6256nSCGgar2uAvsKrU0wwk3D8KynXroBacckCCKm/nRdIo4zTVD4
+ Hnegf/L5WyZkll6F2Ochh3/hflsdfk0ziwm9qtWdqFho5VjfIW2NVSFEZA7/wKyuGUXE
+ oyVh+pvv+7niMmrBIdQXreD6TN6aDoPRFtk+WciOpnzfYyBpye+fCbY0BBZmXtl6L81T
+ l32A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rbtzR3WiRHG8ekOj52mljErX2OG2pvaLPM1gvyJX52k=;
- b=5GSwkGYfOLzlA+BK6r1PQ49iPli94rN29kOeUka7ntgnQMqeXZIJofgu1UyDt85dps
- pYpgbifw0DtwmFDTHk5BZIoLt/vxTzDAYzjuR6hWbEdvVQOj4Ak7uyXpEuJH29AennMs
- b0/Yt/O9QRr1FXD1fpe3vkQOSVfqxosOi/E6NvxDOaXqYZmZe8oBlLSnerV98tR4G3ba
- 7I5uXA2cEVgm/5droh7d8b4kIwAEuvypXxFrNGhLvQGzT/t5AvZ7ANpN7l9BtESmAYna
- YkwMz0RCKGffjQWBEH2WcpbAOSeme+f4R0AD6kke5YpC2gALL4wIf5bMw1CTqKAkEi4+
- xPog==
-X-Gm-Message-State: AOAM532BOV5MXqV1o2NtjthbOpGGCMFQCtc1tJKabzgqL7y+ENmO5ACK
- KB/vApsYz8NH0vP4YnE1tJQ=
-X-Google-Smtp-Source: ABdhPJzi33yUQF/RXGa49SWv5GOhZhApFEWg/UD9i7/dT4xSvX89Ep+P+0yauxP+fqYH7wZ/FT/MYw==
-X-Received: by 2002:a17:906:140e:: with SMTP id
- p14mr5748656ejc.440.1641954438461; 
- Tue, 11 Jan 2022 18:27:18 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=0cYfG++brVRBSY9g4lM7V5XDfrvhSdDX/ZNtL5caAOU=;
+ b=rP1isBYxne3GdjzmKUgg7TlmF6bvjC/N2+GEbIVRTrSqWCMtpV2c0slquUy2KASEUa
+ DapoNcBsm1VmrNRwshnbU8UxH6AXrf1r2WAVW/a+Oi7FnTjc2GgqHNgZb84oVGAtSpxd
+ ysXkqCFP2VG9vdGT5rjJ0BYH7eI+7ZcomAwjWNnJCHMNBEUZ59mZWgSwdhf1ZT2Y/1dX
+ 59NVtLyY3/9NjUh1J+fZK1RufJZuIZWg39EGKwK4HI1yQb5Uk8jJF/etdpSNFVNxKuQ5
+ 21N4Cw+ZFbY7fjHdFTSemclEKO9d0a467VLybUnVbjyxAuBLGE7J9QPrsBAmWtODaUnM
+ fsPQ==
+X-Gm-Message-State: AOAM533J/y7hM8IHWDoX9/YrLYOcSxCn861YOCNaT9h0r//WgBqIiMuj
+ 99Goq+U0v49R3YZ5azSKnfc=
+X-Google-Smtp-Source: ABdhPJx6lfAA8EfsqwBkxJfEH484cvQisz0ERe8kbnc/0Jn9OnBbWQHV4tw2OwjDL9rkCKAXi7OstQ==
+X-Received: by 2002:a17:907:3d8e:: with SMTP id
+ he14mr5728104ejc.167.1641954440679; 
+ Tue, 11 Jan 2022 18:27:20 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id ky10sm4041772ejc.151.2022.01.11.18.27.16
+ by smtp.gmail.com with ESMTPSA id ky10sm4041772ejc.151.2022.01.11.18.27.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Jan 2022 18:27:18 -0800 (PST)
+ Tue, 11 Jan 2022 18:27:20 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -65,14 +64,15 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>,
  Benoit Masson <yahoo@perenite.com>
-Subject: [PATCH v3 0/9] arm64: dts: meson: add support for ac2xx devices
-Date: Wed, 12 Jan 2022 02:27:04 +0000
-Message-Id: <20220112022713.25962-1-christianshewitt@gmail.com>
+Subject: [PATCH v3 1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
+Date: Wed, 12 Jan 2022 02:27:05 +0000
+Message-Id: <20220112022713.25962-2-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
+In-Reply-To: <20220112022713.25962-1-christianshewitt@gmail.com>
+References: <20220112022713.25962-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_182721_049606_66A2F4AC 
-X-CRM114-Status: GOOD (  16.52  )
+X-CRM114-CacheID: sfid-20220111_182722_612758_BDE8727D 
+X-CRM114-Status: GOOD (  15.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,73 +84,329 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds support for several popular Amlogic S905X3 (SM1) Android
-Set-Top Box devices. Like most Android box devices, they ship in variants
-with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
-something we need to consider to get a working boot, but we do need to get
-the correct connectivity spec. Broadly speaking we see boxes with Higher
-and Lower spec connectivity; High spec is Gigabit Ethernet and Faster dual
-antennna WiFi, and Lower spec is Megabit Ethernet and a single antenna. In
-some low-end boxes BT is omitted.
+Add a common dtsi for Android STB devices based on the Amlogic S905X3
+(AC213/AC214) and S905D3 (AC201/AC202) reference designs. The dtsi is
+loosely based on the existing SEI610 device-tree.
 
-As initial distro setup is frequently performed over SSH or an HDMI GUI
-app it is important for users to pick a device-tree with the correct
-Ethernet PHY spec else connectivity is impossible. To aid this we append
-a -gbit suffix to X96-AIR and A95XF3-AIR models using an external Gigabit
-PHY, while 10/00 models with internal PHY have no suffix.
-
-NB: At the current time the Realtek 8822CS and MT7668 WiFi/BT modules we
-have seen on 'AIR' devices are not supported in the kernel so these are
-deliberately omitted. The H96-Max uses a conventional Broadcom module
-so has more complete support. For now the boxes have simple HDMI audio
-support; wiring up the Headphone socket will be done at a later date.
-
-Changes since v2 series:
-- Add Robs binding acks (patches 2/5)
-- Add Martin/Piotir's Tested-By's (patches 1/3)
-- Reorder Tested-By on patch 9
-- Correct 'distinguished' typo in patch 5
-- Correct typo in series name/subject
-
-Changes since RFC(v1) series:
-- Add Robs binding acks on patches 4/7/8 (patches 2/5 still need acks)
-- Rename and rework patches around -gbit (as requested by Neil)
-- Correct 'manufacturer' typo on patch 8
-- Rebase against v5.18/dt64 branch
-
-Christian Hewitt (9):
-  arm64: dts: meson: add common SM1 ac2xx dtsi
-  dt-bindings: arm: amlogic: add X96-AIR bindings
-  arm64: dts: meson: add initial device-trees for X96-AIR
-  dt-bindings: vendor-prefixes: add cyx prefix
-  dt-bindings: arm: amlogic: add A95XF3-AIR bindings
-  arm64: dts: meson: add initial device-trees for A95XF3-AIR
-  dt-bindings: vendor-prefixes: add haochuangyi prefix
-  dt-bindings: arm: amlogic: add H96-Max bindings
-  arm64: dts: meson: add initial device-tree for H96-Max
-
- .../devicetree/bindings/arm/amlogic.yaml      |   5 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
- arch/arm64/boot/dts/amlogic/Makefile          |   5 +
- .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 129 ++++++++
- .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 108 +++++++
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # X96-Air with Gbit PHY
+---
  .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 300 ++++++++++++++++++
- .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 145 +++++++++
- .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 133 ++++++++
- .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 112 +++++++
- 9 files changed, 941 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
+ 1 file changed, 300 insertions(+)
  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+new file mode 100644
+index 000000000000..46a34731f7e2
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+@@ -0,0 +1,300 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
++ * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
++ *
++ * AC200/AC202 = S905D3
++ * AC213/AC214 = S905X3
++ *
++ */
++
++#include "meson-sm1.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-g12a-gpio.h>
++#include <dt-bindings/input/input.h>
++
++/ {
++	aliases {
++		serial0 = &uart_AO;
++		ethernet0 = &ethmac;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
++	};
++
++	cvbs-connector {
++		compatible = "composite-video-connector";
++
++		port {
++			cvbs_connector_in: endpoint {
++				remote-endpoint = <&cvbs_vdac_out>;
++			};
++		};
++	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	ao_5v: regulator-ao_5v {
++		compatible = "regulator-fixed";
++		regulator-name = "AO_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_in>;
++		regulator-always-on;
++	};
++
++	dc_in: regulator-dc_in {
++		compatible = "regulator-fixed";
++		regulator-name = "DC_IN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
++	emmc_1v8: regulator-emmc_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "EMMC_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	vddao_3v3: regulator-vddao_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&dc_in>;
++		regulator-always-on;
++	};
++
++	vddcpu: regulator-vddcpu {
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <690000>;
++		regulator-max-microvolt = <1050000>;
++
++		vin-supply = <&dc_in>;
++
++		pwms = <&pwm_AO_cd 1 1500 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vddio_ao1v8: regulator-vddio_ao1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi32k>;
++		clock-names = "ext_clock";
++	};
++
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++};
++
++&cec_AO {
++	pinctrl-0 = <&cec_ao_a_h_pins>;
++	pinctrl-names = "default";
++	status = "disabled";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&cecb_AO {
++	pinctrl-0 = <&cec_ao_b_h_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&cpu0 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu1 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU1_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu2 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU2_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu3 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU3_CLK>;
++	clock-latency = <50000>;
++};
++
++&cvbs_vdac_port {
++	cvbs_vdac_out: endpoint {
++		remote-endpoint = <&cvbs_connector_in>;
++	};
++};
++
++&hdmi_tx {
++	status = "okay";
++	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
++	pinctrl-names = "default";
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_input_ao_pins>;
++	pinctrl-names = "default";
++};
++
++&pwm_AO_ab {
++	status = "okay";
++	pinctrl-0 = <&pwm_ao_a_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin0";
++};
++
++&pwm_AO_cd {
++	pinctrl-0 = <&pwm_ao_d_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin1";
++	status = "okay";
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin0";
++};
++
++&saradc {
++	status = "okay";
++	vref-supply = <&vddio_ao1v8>;
++};
++
++/* SDIO */
++&sd_emmc_a {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++
++	non-removable;
++	disable-wp;
++
++	/* WiFi firmware requires power to be kept while in suspend */
++	keep-power-in-suspend;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_ao1v8>;
++};
++
++/* SD Card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_c_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	/* CRC errors are observed at 50MHz */
++	max-frequency = <35000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddao_3v3>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&emmc_1v8>;
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&usb {
++	status = "okay";
++	dr_mode = "otg";
++};
 -- 
 2.17.1
 
