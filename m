@@ -4,80 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EA61C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 15:52:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B142CC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 16:02:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=SG/keU4jCai4Bm3Fz9XBnxEeE9q4JxyDLZxankd9ltQ=; b=bZYfUiSvMcOC3Vt9AVdV0zDs6m
-	brqX9p/D/5Og4XqRDxFoGNvJdM5EXo+gZkGzERIsG/Ugfv5Eu5+tNTQ/yKwUx6KZqwc4XKBeUYDeG
-	zsxvlrzjdrval3Tjuayx15uOS2g7KJe0qDDHAx9KTlutkeGTRiTR+YHl8h8E5vUVI+kO5on91u/jz
-	50RWShNwhlDOlhioksCdj67xSMm2m+AUIBQGsoHwXMwl0f3VkcjEaYKVd/hhfCvMhs2eZ9fxUxmQ5
-	fU9mKKq2Llo0uNewE1Y1Y+/bh+th96a4mCSHGaJo5zmyO1D8a3jYJNK5tEOF3HtY4rZx7CqFicAsi
-	2gY23m1g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=m9K4UyxHB2LI6v/Bzbm6CQ5IWYpLNJoJmC9PAmaoe5A=; b=Ua3LUQsO0ErMbD
+	LXs/XSJcGuTYif3cuHgJLaN/Y2ujjO26Yb/Nt7jHMv9aQYo9rY40vcGa1vJwOg1EArhcsIKAoJZcL
+	cNexXxdnsMlD3YnNQxKhzhryjWaKY4hfB4qhhfgwqOnQBm5vKnMN67Q7oI+mLqj2FoKgDTwS0x9Zj
+	hkX3WLeBdHtYPQz2uczgyCVDJMOPUaht8T0iWnVvJyMvJC7WyPD7lw7OTIdznEu5AAf7phT45rysh
+	qca8mZkKUHr9d1iJKP01pneDnPR5ZXGTkH7U3euaapUfilcUsoPGj+t5KiZ1cI4XOZRYMvQ7Urkt9
+	Gs0wJUW98Nc/KM8RcFyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n82Ou-006RP3-2A; Thu, 13 Jan 2022 15:52:32 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n82Oo-006ROU-5o
- for linux-amlogic@lists.infradead.org; Thu, 13 Jan 2022 15:52:30 +0000
-Received: by mail-wm1-x329.google.com with SMTP id
- s6-20020a7bc386000000b0034a89445406so1790675wmj.2
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Jan 2022 07:52:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:references:from:organization:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=SgcOpXh1pxlgSzIp3XmGJm83Ks9LbrZSIgOjQSvINJQ=;
- b=Fp9xvKquNaJTX3rici5+6iSTVYL3Hs7wNSK2RAegVEBpZybov9/HTaRj0/uOLSRF5j
- m4sV9lRXCRXNQtVXf5pcgA2dBgVTXKRBfsu7plcUMDq2APkoJ54otJ5ukd2c0SpbDoZq
- R4NGRcwXnZyeKyo1lNEhfoQcE+56Z49XUy/GuwZTBQQophNDaESUQdXhhxS8BtlPzAZ0
- Ugp0sBcdCQs/ragzy9tPmE4gzgjPaEWcOnJ+L/fEIeYeFhblhR4UcWVy/A8no4V1oz39
- YoHLTK/xwBi4mg+opWnyifzxAUxmmasDx1vWf2kvuMTKrudBoTtxntb7QxQYYMAPsh11
- XchA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=SgcOpXh1pxlgSzIp3XmGJm83Ks9LbrZSIgOjQSvINJQ=;
- b=fS1PLcueKY5aXGLpUERnzm/DPA58ZdvV0mmSoItRGethC6Xm6Ew48QF2Scf5AFc7/V
- Tr7MCZQ2iJE1wjGaFFaFIXwc87CHEK3mn9VfDOXisOegSPQknH/AFbqBL/d/dRh1pxA1
- 2c2ogXWu1/dfN0BB1pglG4bYiNalPx1t+mVAjU3wORQ+Ish9zXSRkFrft8/sIV4GdLkt
- EB+iYDRLl4ovvBiuv47vV3ikd5dDggCY1GGQukbAbCJLqA37AlYZrlve34A4XC+JeI/Q
- +Ucb/Va/bEDA8gBxehaBNxJRKHqi8BUuD20P2MBCHXH1ngPN5U55RqQ6Q1/i61/PiaX4
- 8DIg==
-X-Gm-Message-State: AOAM532leJ9JLNdjqpJ2SIwNJ+UYcovL9w7f/4faOl8TmpgKtvK3g4BX
- WufMmO0hROYFeRruxWSES1rlCVdPEKDgaQ==
-X-Google-Smtp-Source: ABdhPJxIJlhMMRkRBs4lCyJQrSjKQdyEa7ANS0wTvwh090E2AO2Wghq3FXxFQlLu93nX5hYpEhEeSQ==
-X-Received: by 2002:a7b:c310:: with SMTP id k16mr11687718wmj.169.1642089143464; 
- Thu, 13 Jan 2022 07:52:23 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:bece:ab45:7469:4195?
- ([2001:861:44c0:66c0:bece:ab45:7469:4195])
- by smtp.gmail.com with ESMTPSA id j11sm4009125wmq.23.2022.01.13.07.52.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 13 Jan 2022 07:52:22 -0800 (PST)
-Subject: Re: HDMI CEC on ODROID-N2+
-To: Stefan Agner <stefan@agner.ch>, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org
-References: <d2ef8936c54567c9c2652b3c53a82f68@agner.ch>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <a072cbe4-f922-a98f-14d9-270fc4c72d8e@baylibre.com>
-Date: Thu, 13 Jan 2022 16:52:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+	id 1n82YL-006SNc-8G; Thu, 13 Jan 2022 16:02:17 +0000
+Received: from smtp23.cstnet.cn ([159.226.251.23] helo=cstnet.cn)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1n7uC3-004w98-6W; Thu, 13 Jan 2022 07:06:47 +0000
+Received: from localhost.localdomain (unknown [124.16.138.126])
+ by APP-03 (Coremail) with SMTP id rQCowAAXH1t+z99hqZR7BQ--.10684S2;
+ Thu, 13 Jan 2022 15:06:38 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: hverkuil-cisco@xs4all.nl, narmstrong@baylibre.com, mchehab@kernel.org,
+ gregkh@linuxfoundation.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
+Subject: Re: Re: [PATCH v3] media: meson: vdec: Fix a NULL pointer dereference
+ in amvdec_add_ts()
+Date: Thu, 13 Jan 2022 15:06:37 +0800
+Message-Id: <20220113070637.1198179-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <d2ef8936c54567c9c2652b3c53a82f68@agner.ch>
-Content-Language: en-US
+X-CM-TRANSID: rQCowAAXH1t+z99hqZR7BQ--.10684S2
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+ VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYq7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E
+ 6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
+ kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8I
+ cVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87
+ Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
+ zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx
+ 8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIF
+ xwACI402YVCY1x02628vn2kIc2xKxwCY02Avz4vE14v_GF4l42xK82IYc2Ij64vIr41l4I
+ 8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+ xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+ AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+ cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
+ v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOPEfUUUUU
+X-Originating-IP: [124.16.138.126]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220113_075228_651291_F0062E80 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20220112_230643_642746_CA70419B 
+X-CRM114-Status: UNSURE (   7.37  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Thu, 13 Jan 2022 08:02:16 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,46 +79,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Wed, Jan 12, 2022 at 05:04:41PM +0800, Hans Verkuil wrote:
+> I changed the status of this patch to 'Changes Requested'. Jiasheng,
+> can you post a v3 with
+> the requested changes?
 
+Thanks, I have sent the v3 with the correct indentation.
+And I am sorry that I sent two patches, and the first one is
+lack of 'v3' tag.
+So please ignore it.
+And the later one is right.
 
-On 13/01/2022 15:36, Stefan Agner wrote:
-> Hi Neil,
-> 
-> I am trying to use HDMI CEC on ODROID-N2+ using Linux 5.10.91. However,
-> I was unsuccessful: As far as I can tell cec-client uses the right
-> device (I disabled CONFIG_DRM_DW_HDMI_CEC since my kernel is still
-> missing your patch "drm/meson: dw-hdmi: disable DW-HDMI CEC
-> sub-driver"). But communication won't work, and dmesg prints timeout
-> messages:
-> 
-> [   68.831253] cec-meson_g12a_ao_cec: message ff 84 20 00 06 timed out
-> [   71.134987] cec-meson_g12a_ao_cec: message ff 87 00 15 82 timed out
-> [   73.438826] cec-meson_g12a_ao_cec: message f0 timed out
-> [   75.742677] cec-meson_g12a_ao_cec: message f0 timed out
-> [   78.046555] cec-meson_g12a_ao_cec: message f0 timed out
-> [   80.350446] cec-meson_g12a_ao_cec: message f0 timed out
-> [   82.654358] cec-meson_g12a_ao_cec: message 11 timed out
-> [   84.958285] cec-meson_g12a_ao_cec: message 11 timed out
-> [   87.262194] cec-meson_g12a_ao_cec: message 11 timed out
-> [   89.566130] cec-meson_g12a_ao_cec: message 11 timed out
-> 
-> I did a quick test with CoreELEC which uses the 4.9 downstream kernel,
-> CEC seems to work there. So it does not seem to be my hardware setup.
-> 
-> A quick test with the latest Linux 5.16 shows the same errors.
-> 
-> Do you happen to have an idea? Do you know if HDMI CEC using upstream
-> kernels worked at one point on that particular platform?
-
-I was reported it works on Yukawa 5.10 kernel, I'll have a check it still works.
-
-Neil
-
-> 
-> --
-> Stefan
-> 
+Sincerely thanks,
+Jiang
 
 
 _______________________________________________
