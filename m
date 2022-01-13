@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50709C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 04:26:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5C45C433FE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 04:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w54fy05qSop1RjdQ56ojHEYDVjdjp1wAkS8/l3DKVms=; b=tTtF3qzRbcpK84
-	MAzxpBJvbDUKEViXcWGpmXK5Mv6Dmj9QA576aSFIDsMjb/jaL3dw5qax4kyyjxLkDOz7LCWDsQ2vK
-	fEmhgWzFf9A76DBRmBJpA6ipit57rlc6K6vkDuNjJZF/KqA8/zI83kFC9ZZvm57vkhtg64iQsf2ST
-	LSb8ctthI7YQkL0rFFcHBaUsH3guxEVawE+ezVzq9z/04SI04aF9u1//3yu1H5giCJxowyo66HGQn
-	uZGfLaX04FBVX8FuKPLMFlkiFxflnBfhu9V7OlHDhdltgDPUC9i2CH+Pb22dfqIOjhqRXXTHFMo5J
-	uAsT9KRedtXoV71ziV9Q==;
+	List-Owner; bh=nzOtC6iOApe2VSEJVMN9FsuqLS1RNBRIwNtk1BSMIV0=; b=OFjNnaGaURPHff
+	quESJTYOmtAwzwuCaoTPigGYwTCvOG+PF/aIlbO+wTLcw+vajd2oBUU/lBGXHk+NlLoLRYXrZKXTX
+	pQBb3HGm2c6ZIvtg1tPn8neepX8oWgjtLh1P7xoJ113z3cTV6WniBbJQmDlDXv1J5R6Qhvwpmg5XV
+	Bto8LMDleuSL4DVFzlraK2JtpAoKl8p54G00kEu0JZR7SX/7XqdBiO0vb69y9GRC8g9a9p9lFfd2s
+	euBkw5TkDuafpp3UaSwdm3c++os7tEHuV8FWUa+bykDXgx+fQUvShRcpKsjBFoKcWN0+f+TPePuXM
+	kAi9B76K2kjPZQqBtZPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7rga-004a3U-8y; Thu, 13 Jan 2022 04:26:04 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+	id 1n7rhK-004aLn-Je; Thu, 13 Jan 2022 04:26:50 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7rYh-004Wo5-2W; Thu, 13 Jan 2022 04:17:56 +0000
-Received: by mail-ed1-x531.google.com with SMTP id c71so18277835edf.6;
- Wed, 12 Jan 2022 20:17:53 -0800 (PST)
+ id 1n7rYi-004Wp1-DT; Thu, 13 Jan 2022 04:17:57 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id o6so18322774edc.4;
+ Wed, 12 Jan 2022 20:17:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=4UM72dZzLG8h7HX4iWc1dAAmQjii4BapFiL5lJRjgwk=;
- b=nyJmLfTv83X0o1n/RQ+fuehHwKeanFXB5hh9Q36aLn5ic0ACfADCC1WXgYw62E8NCQ
- yVQpScT7jQLuswl0zGga90YQqHgIf9/OOFISdspX7khKSETVEUGuxOXpVEZyP+0UCVwj
- 8MerJ7rCrYJre2k+9RVeeXDl4Eo3uIiGHihl+3nZi9tXwiy24upJAiLz6Cb/fm5sJqLB
- tKECS3o4Tz8+f11WbvvmNd305UfXg51IghnRpVoA/GgSKwpJQrZp0NM3X1HdNJDZkGBd
- HKdWeWnIZEV4DtZ8VSdd5gN3MowKIuz+kXX3qqrU3YWA/7wFPW9C6KlPmWE0ha9EV5a9
- Mpsw==
+ bh=HzmvZxRpnsxgqGIy8YYN4OsfjU68b3aJ8+UIStoBfA0=;
+ b=Q4bJawOd+ZZkXv8DYD1cyGYc//O4+8Xv3qrX0kFxaS3KqdjqvRko4txY9AxFKmhTi9
+ bQCGzdLhejzpi7defB3twuJjK5WsZhWFD3soyz2BBdx/9bnZpbzb6YdFdmkCCC9IkUAm
+ ILL0FSwuIdsdNTt5qFWxuWJM7/1Cb4Jl0ooWHAHP1CW39KB8goeDhZ4FSP8rKz6ZwAsY
+ J+Obew/8rmtQbBAXvxkMbx/l7V+7L2rAoe2lZKBqCcODi/QYKtfTYFR8WtdikZ5whLqU
+ vja9VoRFM5NRp/FStTVJukn0GFcrSAPjr+H5RqIOfYuSQ9Kkfmb/TuHgYT1QqwCjp5ME
+ SjAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=4UM72dZzLG8h7HX4iWc1dAAmQjii4BapFiL5lJRjgwk=;
- b=T/8pSIrWavCghsICDpP7qQhFsqNARtK2kEPf4lJheVMLSCuxGsenj8n5bfm4GO86A1
- laf8KKr86GL8Fs6RfIMquhE6tEyospaZEhhjg/Kf3sVFqGwAA7+T9Fa5kSNPjlSEhsky
- F6gUqwRRLqJxxiQNsB1dp7gnKnalavoKyKyqAZkqfVFYSAAZHGIUawapTQWBWoAJuGoR
- Bs1XO7rnH44w/EI5KG2xfjgI412PP5rT0+11jcQ/bj4Z2n02YxyB67F0WhH3OO/UtILf
- dvu1Kb2ZCuWfk3QrAvMTGgdr6zN55qPbsRxSVijMFznvBMqZ42yoiZ8Qxd7m01meBZsm
- Gt8Q==
-X-Gm-Message-State: AOAM531LNcZydhCOP0OcYlGBxn9tp4njB8Jx13PCL8GQgkg8uIDmcs5u
- MVt4aHYEYMKIS0bSACSQjqA=
-X-Google-Smtp-Source: ABdhPJzUJ+bzVbwLG7tXK2UqutsDV//vAnNkw1izayWTa5ShXzy0T7/In/4n96RgDfq8EkuFksy8Vw==
-X-Received: by 2002:a05:6402:3596:: with SMTP id
- y22mr2510394edc.340.1642047472442; 
- Wed, 12 Jan 2022 20:17:52 -0800 (PST)
+ bh=HzmvZxRpnsxgqGIy8YYN4OsfjU68b3aJ8+UIStoBfA0=;
+ b=OcUsDLXlU8YPknENluMAIj40LhVEq2TTWfipAFtI2W7EzRP2Vx2kzOvxv/yViBa7FS
+ C7JAillA+VALs4mlziSzd5kfF/JoehBdXZJ4jJKwEfQdHSEjvT4b/tsugcNatEIXk/ju
+ UUqxKe5MFyoF4GWqKaAcbwXgFVLYZtD57L13m1YW3yd4N+F2kvBYhbugij3OKhbX2P60
+ 8S4jn1PpYOKWF9vilbGbWH+bxugFsOypRVk3CZ++kf3qdyZm6vZt85x0JIn6cfkB5fdq
+ ZeMAyo2sWjuA3pqn5/ARGpTrr7dDlMbRXh1/fQSkF/I//hWLJWIBoDGsb5OOy4SGTYMb
+ QK/w==
+X-Gm-Message-State: AOAM531ppj5olCq8qHNPK7hBWoKT87HjfppcG+yS0O8VRuYqOh9cffRW
+ j+0yYiKT7l2qRIa71I5Z4xQ=
+X-Google-Smtp-Source: ABdhPJxo4ki9X78vZDozmtI4hYQi3ocBBT2r1MmiDeO62vyGXqHwpXjySadKKu6tkkT+yyagVAxixw==
+X-Received: by 2002:aa7:d507:: with SMTP id y7mr229177edq.298.1642047474644;
+ Wed, 12 Jan 2022 20:17:54 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id eb14sm651822edb.16.2022.01.12.20.17.50
+ by smtp.gmail.com with ESMTPSA id eb14sm651822edb.16.2022.01.12.20.17.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Jan 2022 20:17:52 -0800 (PST)
+ Wed, 12 Jan 2022 20:17:54 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -63,15 +62,15 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
-Date: Thu, 13 Jan 2022 04:17:44 +0000
-Message-Id: <20220113041746.16040-2-christianshewitt@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
+Date: Thu, 13 Jan 2022 04:17:45 +0000
+Message-Id: <20220113041746.16040-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220113041746.16040-1-christianshewitt@gmail.com>
 References: <20220113041746.16040-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220112_201755_167119_A9B556A7 
-X-CRM114-Status: GOOD (  11.80  )
+X-CRM114-CacheID: sfid-20220112_201756_507790_5661D020 
+X-CRM114-Status: GOOD (  12.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,40 +88,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The P212 has a combined WiFi/BT module. The BT side is already enabled
-in the dtsi but the WiFi side is not. Let's tweak SDIO speed (in-line
-with other GXL/GXM devices) and enable the WiFi module.
+Cosmetic-only change to move/alpha-sort the node.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi   | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-index 05cb2f5e5c36..c635e5858929 100644
+index c635e5858929..b3d7b8613d6d 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -113,7 +113,7 @@
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
--	max-frequency = <50000000>;
-+	max-frequency = <100000000>;
- 
- 	non-removable;
- 	disable-wp;
-@@ -125,6 +125,11 @@
- 
- 	vmmc-supply = <&vddao_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
+@@ -97,6 +97,14 @@
+ 	pinctrl-names = "default";
  };
  
- /* SD card */
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&clkc CLKID_FCLK_DIV4>;
++	clock-names = "clkin0";
++};
++
+ &saradc {
+ 	status = "okay";
+ 	vref-supply = <&vddio_ao18>;
+@@ -170,14 +178,6 @@
+ 	vqmmc-supply = <&vddio_boot>;
+ };
+ 
+-&pwm_ef {
+-	status = "okay";
+-	pinctrl-0 = <&pwm_e_pins>;
+-	pinctrl-names = "default";
+-	clocks = <&clkc CLKID_FCLK_DIV4>;
+-	clock-names = "clkin0";
+-};
+-
+ /* This is connected to the Bluetooth module: */
+ &uart_A {
+ 	status = "okay";
 -- 
 2.17.1
 
