@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 904D4C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 06:59:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6A76C4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 07:26:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FGbm/8hCx8Wkj+stG5uc/wFWPK3/rPOWbYCvhfeyzD8=; b=ezuZO0RL+eb0F7
-	wnd99QjCDPHok9OmnUToQbEV4zl24fIC8jBgyObTLow8MZkPUznlRYpUPJLdQJieu3lGRy5zfRSe9
-	lqALI7Z6B17VljXecLJY7W+XD0DaMetIaSv5s9dy3J2dsZhM8OV9wNLHx+Hi1gHLKucM3gf/6IORz
-	lUxPr7YCM6cPClPzdYAcM9ZHu/mJrOSJKlCCo3+idVFpMnosfd+/RAAZaObkcStqOeDKNajaivQDa
-	u4ukOytnxUeEGZ23iYDIocfliyEn6Yp1zINNDlnsRamfc8HoJpwAh4bDug9E6jZjI7X3zvfJFTA1Q
-	lQCfa/n/H3LPxFoAU+UA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Osdj1kBMMMWJ08fJeXYhS61bKxiUjCd/YQfr5Jm+ybg=; b=BD5PDacO9umaKh
+	fWjzfarnu0ubb5g03nLKhhrC7YTuQ164+5Spb/G3AFycPkMCrluxca8bTND/qKuHy+vzWSr1bb+IZ
+	E3xWYbnGo9pIkMofCbebWukMoSTPSSzcu0xg4qsBWZAA5m2xQXyUCsxgRL8oGfqBftxQI4BDsIbEi
+	qwm7zVPMc23rrVX4XNevwthjGjJhR2hlyDdyXUIq+vJrTIgoLqqEt2K5E5WWmtiyF/WHvzyXjNpra
+	lojzHIBWwroaGktBLjH2rEcSUWhKe5xiEGhmBu4d68mwhqUgOQxFCV9EEyZzIO4AcGvnkWGpHaO21
+	K02Hxolca8spo7pYr4BA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7u5G-004tfS-Ni; Thu, 13 Jan 2022 06:59:42 +0000
-Received: from smtp23.cstnet.cn ([159.226.251.23] helo=cstnet.cn)
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7u5E-004tdg-0H; Thu, 13 Jan 2022 06:59:41 +0000
-Received: from localhost.localdomain (unknown [124.16.138.126])
- by APP-03 (Coremail) with SMTP id rQCowAAXHlrRzd9hz4d7BQ--.64571S2;
- Thu, 13 Jan 2022 14:59:29 +0800 (CST)
-From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-To: hverkuil-cisco@xs4all.nl, narmstrong@baylibre.com, mchehab@kernel.org,
- gregkh@linuxfoundation.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
-Subject: [PATCH v3] media: meson: vdec: potential dereference of null pointer
-Date: Thu, 13 Jan 2022 14:59:28 +0800
-Message-Id: <20220113065928.1198125-1-jiasheng@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	id 1n7uUm-004yrZ-BX; Thu, 13 Jan 2022 07:26:04 +0000
+Received: from mail-ed1-f47.google.com ([209.85.208.47])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1n7uUa-004ypu-Gy; Thu, 13 Jan 2022 07:25:53 +0000
+Received: by mail-ed1-f47.google.com with SMTP id q25so19742936edb.2;
+ Wed, 12 Jan 2022 23:25:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=str16FI/F5xFD0n2C9n5hc+OZX67vqcPfd5sJFbgdGI=;
+ b=R9F6GPrNznfD/MBg/1cUwON29ydM2l7bsAoNtEGbK6AmBO3xGaGEZp+V9+1CjBVtiX
+ g3zFGI3lBagTwaWtxqKCEJJL3F6bu6/zAQLvArDWmpGfj5KvthlkhBoKOaKeteu+bbBC
+ +ruVFPcq2UKdFELCrgMzMC4gmSagBSNYTWrXoTEppwynDyErNWYaujdUMzFW8ZeNfNVk
+ elt7poajcDRa1y/bQJbKO+Nl9R1o5Xk8MQtucDcUM7OOcc5VRRB96sjfZoTAKwbCYvAB
+ nGJZKNEnF9GOoLF+k7FBdz92PswALTELdtPJlZA55PDhAke/o+j4h3/xBaetpeW1smxS
+ G6Dg==
+X-Gm-Message-State: AOAM533ovdrwIWifqLCt4jhD9sF7Kk3FVMYIu4HRzzjuHbiokeUhqh/C
+ VwxsWtCuu1p6woB5Hbs2cFo=
+X-Google-Smtp-Source: ABdhPJxKV6lDv8a8uMbMek/SWb8lQRWHNN5x+2X9xP0AmxTdpAmdqC2KIsyXwzOuWYYYr1gfrpB/MQ==
+X-Received: by 2002:aa7:dbc2:: with SMTP id v2mr3053045edt.59.1642058750696;
+ Wed, 12 Jan 2022 23:25:50 -0800 (PST)
+Received: from ?IPV6:2a0b:e7c0:0:107::49? ([2a0b:e7c0:0:107::49])
+ by smtp.gmail.com with ESMTPSA id g2sm587549ejt.43.2022.01.12.23.25.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 12 Jan 2022 23:25:50 -0800 (PST)
+Message-ID: <efce614d-c8e6-bb06-e3c1-cb67b26bbc6a@kernel.org>
+Date: Thu, 13 Jan 2022 08:25:49 +0100
 MIME-Version: 1.0
-X-CM-TRANSID: rQCowAAXHlrRzd9hz4d7BQ--.64571S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxWr43tFW5uF4DWF4rZryDGFg_yoWrJFW3pF
- 10q3sFgFyUtFyUCr48Jr1kXFWaq348JFyI9a97Xw1fZryakF17XFnayFWjgr98Jr1S9a1r
- AFyFg3y7uw1jqrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr
- 1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
- 6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
- 0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
- 8cxan2IY04v7MxkIecxEwVAFwVW8AwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
- WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
- 67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42
- IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6Fyj6rWUJwCI
- 42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
- evJa73UjIFyTuYvjfUYeHqDUUUU
-X-Originating-IP: [124.16.138.126]
-X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH V5 2/5] tty: serial: meson: Move request the register
+ region.
+Content-Language: en-US
+To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220110104214.25321-1-yu.tu@amlogic.com>
+ <20220110104214.25321-3-yu.tu@amlogic.com>
+ <01066e66-5d97-ab40-b4a6-99e962b47073@kernel.org>
+ <cad33ab0-26d3-5b78-3bcf-62217aa70871@amlogic.com>
+From: Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <cad33ab0-26d3-5b78-3bcf-62217aa70871@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220112_225940_448339_5D335C04 
-X-CRM114-Status: GOOD (  10.81  )
+X-CRM114-CacheID: sfid-20220112_232552_601409_1F81E457 
+X-CRM114-Status: UNSURE (   9.03  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,105 +83,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-As the possible failure of the kzalloc(), the 'new_ts' could be NULL
-pointer.
-Therefore, it should be better to check it in order to avoid the
-dereference of the NULL pointer.
-Also, the caller esparser_queue() needs to deal with the return value of
-the amvdec_add_ts().
+On 11. 01. 22, 3:48, Yu Tu wrote:
+>> And no, do not resend a new version in the next few days. Having v5 in 
+>> 20 days is a bit too much. Give maintainers and reviewers some more 
+>> space to express themselves.
+> I am so sorry if PATCH is sent too frequently, which has disturbed you.
+> How often should I send it? Or under what circumstances can I send the 
+> next version?
 
-Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
-Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
----
-Changelog
+~ one week after the last reply to your previous patchset is about fine. 
+You could see that people were still responding to v4 while v5 was 
+already on the list.
 
-v1 -> v2
-
-* Change 1. Change the return type of amvdec_add_ts from void to int.
-* Change 2. Return -ENOMEN if alloc fail and return 0 if not.
-* Change 3. Modify the caller to deal with the error.
-
-v2 -> v3
-
-* Change 1. Fix the indentation and refine the commit message.
----
- drivers/staging/media/meson/vdec/esparser.c     | 7 ++++++-
- drivers/staging/media/meson/vdec/vdec_helpers.c | 8 ++++++--
- drivers/staging/media/meson/vdec/vdec_helpers.h | 4 ++--
- 3 files changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
-index db7022707ff8..86ccc8937afc 100644
---- a/drivers/staging/media/meson/vdec/esparser.c
-+++ b/drivers/staging/media/meson/vdec/esparser.c
-@@ -328,7 +328,12 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
- 
- 	offset = esparser_get_offset(sess);
- 
--	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
-+	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
-+	if (ret) {
-+		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
-+		return ret;
-+	}
-+
- 	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
- 		vb->timestamp, payload_size, offset, vbuf->flags);
- 
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-index 203d7afa085d..7d2a75653250 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-@@ -227,13 +227,16 @@ int amvdec_set_canvases(struct amvdec_session *sess,
- }
- EXPORT_SYMBOL_GPL(amvdec_set_canvases);
- 
--void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
--		   struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
-+int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
- {
- 	struct amvdec_timestamp *new_ts;
- 	unsigned long flags;
- 
- 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
-+	if (!new_ts)
-+		return -ENOMEM;
-+
- 	new_ts->ts = ts;
- 	new_ts->tc = tc;
- 	new_ts->offset = offset;
-@@ -242,6 +245,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
- 	spin_lock_irqsave(&sess->ts_spinlock, flags);
- 	list_add_tail(&new_ts->list, &sess->timestamps);
- 	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(amvdec_add_ts);
- 
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
-index 88137d15aa3a..4bf3e61d081b 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.h
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
-@@ -56,8 +56,8 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
-  * @offset: offset in the VIFIFO where the associated packet was written
-  * @flags: the vb2_v4l2_buffer flags
-  */
--void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
--		   struct v4l2_timecode tc, u32 offset, u32 flags);
-+int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
-+		  struct v4l2_timecode tc, u32 offset, u32 flags);
- void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
- 
- /**
+thanks,
 -- 
-2.25.1
-
+js
 
 _______________________________________________
 linux-amlogic mailing list
