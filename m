@@ -4,71 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45BEBC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 04:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF42C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 06:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NK0iM4vFxVPAFRCbt4W1Nlw7R5Cr9RhzQs2mz34uLoY=; b=aOtsQdMyuzJ6V0
-	PITn/B0Zr+kgyXX7Q9XU1hc0zrjsdgyb8UJ6rOl7x/4bJwFC6oZ2/U/005MzyUS+7Gpx3zbh589W9
-	lO070e5cGo2TTOTtFhBcHv3RUG56cawIIrfriKT5drnGEaYCMShK89O1ZB9WbdSw5lB9556xXDsjO
-	fQh9JoN8z+cOC8jldGSjo+jbhUO20GQsLmMq52yK6YsvbSgUng10yYH3WYkdZyo9Up8FwK/4TwwyD
-	0ILMq+TvQ+eWW+0lY6dq7MFnbJJh4ZGgacVSZCxsQTpRYSbMdeHC6fxrK3JEBQkfI1mF8ujwkEIk1
-	cw+sLt0wA49Myazk7Whw==;
+	List-Owner; bh=asJl5f+L7lYrIG3HJeZijpH1Rt21gKuTQL32rbOcaek=; b=TH8g9CGfPGSZ+I
+	iIwxHejF8XmdA+ShYTMz26+sCe7mHSOxXL2WzPxYw6VOxJAXBYwmfEKfioUdngzizmXVE/SOEvG2K
+	caaa7pcKIaNw2L1VfVN1mIiu3gUcptii8zBFeSyi83YUUorvFqpokDfdsCY7WE1DNH7DihuTztx88
+	BbuJMaGqwhbjTVMeK2hfyodGs/nNtSCfJW6RpkId7XMmF37bW4uJ6Fcy4E0TBrwEln8w9XPBcB2dI
+	tcxpQJweDsE7sT/QlnV+9ubxQ+L/Ws9TPwzmh028xZkNY7LOT3rR9TxC0dNqoE3vwkqFwOyFk3QaG
+	jZxWqojr0lIYTCIaQMiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7rzv-004dou-GG; Thu, 13 Jan 2022 04:46:03 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7rzj-004dnj-Nw; Thu, 13 Jan 2022 04:45:53 +0000
-Received: by mail-ed1-x531.google.com with SMTP id u25so18507472edf.1;
- Wed, 12 Jan 2022 20:45:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=ZBLBMo0FMbEtIJpoOidyGwsdZCYDTmf8Kl5LcIDvQzg=;
- b=RduABD0/Iy2DuiYfR/f2rVzAtFGwY2XDX1UtIZZtkk1JVeYMdN2Ah0IGWPGGZNKoyy
- C8GaXxboP0MiQh/9HO6f+oZKxczLfOPKhKPK1wzLqCZKDn0Cpro6KskIGHn3zb3IR+PS
- kFnEEtUEAqYfULdUcLXRXV1Q0Ra5UyFpH3LASCntUep/sA+2/P+H9rQ8wyV/VI3DAqpc
- StuKKfY9pmYuIV0jOZPKdw6qg8J3F/xYIbVZROj7HSO9VbSomz3G9+E9yDj8aDvJLlmq
- iqXsK9U+xMdhRy6KjO95gZn9Pf/vOK2pkTUQNjzz52Z7+AWIjX6lo+f1ajtCqZUmDwsg
- uKew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=ZBLBMo0FMbEtIJpoOidyGwsdZCYDTmf8Kl5LcIDvQzg=;
- b=zG6b+HI82Prt5stel+kQ1vUrXH/+rHDpGsZzk+HU89uifhtOOpYUO2jmG9gO4x+ggU
- gw2WlY2ncm+ixvqiM6WOSqJYdw1Try9ur/axECO1RP0Ctd5eZCHs9z6TzuIZUbTcZ15B
- jBnlSEu4A9kGQJlTuR3HLVvRZ1kgvXJgFEmPnVdblfFu3p/Vdtim2LXscxR+5GA/+zfw
- CAoYwxsgxKhfBMCMt2zSzKWqpPlVG6gbSsU+rAl+1nhNZ5bWVwnhty8MOa57LzVXWrsB
- y8xiwSIfuGjcFC6li/nhX5YIhSZ2XHI0R1XNasvs6wqpES0JkNUpDQH7FmOj/zlFlmXI
- hPyw==
-X-Gm-Message-State: AOAM5310DecxN4M5M6+h4CL+PbzoGES/ER/txBbyp3x9dhcut/mjdB0J
- uafgsJXsPx1DMzqLU7b1LB0=
-X-Google-Smtp-Source: ABdhPJyOzQGKHC2fdVcOPLUDg94J6QU/Pp0BHs60Q5SYgrungCHape3obDdCrxo88bKM2W5MCfkzQA==
-X-Received: by 2002:a17:906:2f97:: with SMTP id
- w23mr2132611eji.739.1642049150538; 
- Wed, 12 Jan 2022 20:45:50 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id e16sm667983edu.15.2022.01.12.20.45.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Jan 2022 20:45:50 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add audio playback to P212
-Date: Thu, 13 Jan 2022 04:45:46 +0000
-Message-Id: <20220113044546.16856-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+	id 1n7u2j-004szM-Lk; Thu, 13 Jan 2022 06:57:05 +0000
+Received: from smtp23.cstnet.cn ([159.226.251.23] helo=cstnet.cn)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1n7u2g-004syZ-7u; Thu, 13 Jan 2022 06:57:04 +0000
+Received: from localhost.localdomain (unknown [124.16.138.126])
+ by APP-03 (Coremail) with SMTP id rQCowABnby8lzd9hYoF7BQ--.64251S2;
+ Thu, 13 Jan 2022 14:56:37 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: hverkuil-cisco@xs4all.nl, narmstrong@baylibre.com, mchehab@kernel.org,
+ gregkh@linuxfoundation.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>
+Subject: [PATCH] media: meson: vdec: potential dereference of null pointer
+Date: Thu, 13 Jan 2022 14:56:36 +0800
+Message-Id: <20220113065636.1198072-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-CM-TRANSID: rQCowABnby8lzd9hYoF7BQ--.64251S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxWr43tFW5uF4DXrWxJF1DKFg_yoW5tF48pF
+ 10v342gFyUtFyUAr4UJw1kXayaq348GFyI9a9rWw1fZryakF17XFsayFWjgr98Jr1S9a1r
+ CFyFg3y7uw4jqrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
+ 0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+ Y2ka0xkIwI1lc2xSY4AK67AK6r47MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
+ 1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
+ b7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
+ vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI
+ 42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
+ evJa73UjIFyTuYvjfUndb1UUUUU
+X-Originating-IP: [124.16.138.126]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220112_204551_836936_7BF34AD1 
-X-CRM114-Status: GOOD (  10.30  )
+X-CRM114-CacheID: sfid-20220112_225702_709273_533CD221 
+X-CRM114-Status: UNSURE (   9.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,84 +73,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial audio support limited to HDMI i2s.
+As the possible failure of the kzalloc(), the 'new_ts' could be NULL
+pointer.
+Therefore, it should be better to check it in order to avoid the
+dereference of the NULL pointer.
+Also, the caller esparser_queue() needs to deal with the return value of
+the amvdec_add_ts().
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Fixes: 876f123b8956 ("media: meson: vdec: bring up to compliance")
+Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
 ---
-The P212 dts is widely used with Android box devices that follow the
-reference design. The real P212 development board probably has many
-more audio capabilities, but as a minimum we can enable HDMI output
-and help box users too.
+ drivers/staging/media/meson/vdec/esparser.c     | 7 ++++++-
+ drivers/staging/media/meson/vdec/vdec_helpers.c | 8 ++++++--
+ drivers/staging/media/meson/vdec/vdec_helpers.h | 4 ++--
+ 3 files changed, 14 insertions(+), 5 deletions(-)
 
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-index 2602940c2077..a39830379c74 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index db7022707ff8..86ccc8937afc 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -328,7 +328,12 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
  
- #include "meson-gxl-s905x-p212.dtsi"
-+#include <dt-bindings/sound/meson-aiu.h>
+ 	offset = esparser_get_offset(sess);
  
- / {
- 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
-@@ -32,6 +33,45 @@
- 			};
- 		};
- 	};
+-	amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++	ret = amvdec_add_ts(sess, vb->timestamp, vbuf->timecode, offset, vbuf->flags);
++	if (ret) {
++		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
++		return ret;
++	}
 +
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "S905X-P212";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&aiu {
-+	status = "okay";
- };
+ 	dev_dbg(core->dev, "esparser: ts = %llu pld_size = %u offset = %08X flags = %08X\n",
+ 		vb->timestamp, payload_size, offset, vbuf->flags);
  
- &cec_AO {
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index 203d7afa085d..7d2a75653250 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -227,13 +227,16 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+ }
+ EXPORT_SYMBOL_GPL(amvdec_set_canvases);
+ 
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-		   struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 vbuf_flags)
+ {
+ 	struct amvdec_timestamp *new_ts;
+ 	unsigned long flags;
+ 
+ 	new_ts = kzalloc(sizeof(*new_ts), GFP_KERNEL);
++	if (!new_ts)
++		return -ENOMEM;
++
+ 	new_ts->ts = ts;
+ 	new_ts->tc = tc;
+ 	new_ts->offset = offset;
+@@ -242,6 +245,7 @@ void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+ 	spin_lock_irqsave(&sess->ts_spinlock, flags);
+ 	list_add_tail(&new_ts->list, &sess->timestamps);
+ 	spin_unlock_irqrestore(&sess->ts_spinlock, flags);
++	return 0;
+ }
+ EXPORT_SYMBOL_GPL(amvdec_add_ts);
+ 
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
+index 88137d15aa3a..4bf3e61d081b 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.h
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
+@@ -56,8 +56,8 @@ void amvdec_dst_buf_done_offset(struct amvdec_session *sess,
+  * @offset: offset in the VIFIFO where the associated packet was written
+  * @flags: the vb2_v4l2_buffer flags
+  */
+-void amvdec_add_ts(struct amvdec_session *sess, u64 ts,
+-		   struct v4l2_timecode tc, u32 offset, u32 flags);
++int amvdec_add_ts(struct amvdec_session *sess, u64 ts,
++		  struct v4l2_timecode tc, u32 offset, u32 flags);
+ void amvdec_remove_ts(struct amvdec_session *sess, u64 ts);
+ 
+ /**
 -- 
-2.17.1
+2.25.1
 
 
 _______________________________________________
