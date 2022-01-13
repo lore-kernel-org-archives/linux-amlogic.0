@@ -4,77 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2F0AC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 10:28:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16E85C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jan 2022 10:40:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5y3ldJsmW96KoE/8tqOVJW1yOT7ccY48g4mWLkqBNII=; b=me692plib+7L5i
-	lH0ZKeLHqUwsZN8OkD2SvYYaA+mpBng9nPUUSGHBKMg80xg38k3Uj2oL5j6t5oQAheCFUaUpLlVjT
-	O3LiUYT/Do6Pi7w3C5BGoIfgSPCS+1+6IeFPPyOvULcD8fmqNVKDE0kWkMwE/3rOeTdSF7MMbWMyJ
-	XX+Pp7zAfKNqpNEzmOwz339FAWxQHbVtLKXY8XH8jUGdIdzwSqyl/qpkPT5F3DFmH2rj7D4dTCWBW
-	aNWjDqMqW+RmyOubL9zjXutYg+0aKS7xPgrxOQy+2ZK9dd9c9Pa5QHA++LzGaPb1WZUkJ/1h2TKbq
-	nnJwaaGuRWrKGiEktNrA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=G+HBP6NzAhutPx60o6gCYwopBcyEwc2qsOa+zznoa1o=; b=QMwCKPnpHUXfw8NKxTZtSpYM5n
+	ZXQQVvGTWA8VYRSq1jrkUCRU8fSNl9x4BzjmM2Rke7PN1zYhKzqSqJRek0g0f6bc0rMXfgAbmBVsQ
+	IWqrDyjqt8ywlD92dgqH1T0aF7yC+rz4JENv+o3GQAPs+PXObT9MusgrlRGkWGpGCzS3hn3XoHtNh
+	JCyDaxOCdWJBIEKE0SvnMiuyQ6B6gJkpIkhvbTbeI4n134wzRam/JoaxYs5S7ST121ei4R2rt8sAq
+	a6yt06jme4nlG5rXfvHRgNVp44GCUeO2Y0Ko5xv3mU+26xhU8U/55/MndWTuYB74XRurYy5+1ru34
+	7Zmh1kmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7xKz-005Rqa-Pg; Thu, 13 Jan 2022 10:28:09 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1n7xWV-005VOh-PF; Thu, 13 Jan 2022 10:40:03 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7xKn-005Rnu-43
- for linux-amlogic@lists.infradead.org; Thu, 13 Jan 2022 10:27:59 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id c71so21302983edf.6
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Jan 2022 02:27:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
+ id 1n7xWI-005VM8-Ow
+ for linux-amlogic@lists.infradead.org; Thu, 13 Jan 2022 10:39:52 +0000
+Received: by mail-wr1-x431.google.com with SMTP id d19so9374758wrb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Jan 2022 02:39:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Ew4uKUNam8kJO5439QWHJkc6LyiFyd+nrUpEzZPoFAU=;
- b=YMVg152aDvsUA5jMW9ANbVaRYdw9xsgt4shC2uDV2+B0kRcooMDvq+P4AmdjurudAv
- YBFZPL1XfVxd2THmP1uFUA0+wROIe+gq7gviKWRkKtcG13mAM3FBNvNnAF4xS74MWG96
- LLe338A4aFxeUPYY6isr+ggMZPYdAXFF1/GglXVFrBxr2I+I2MA5Q4lCigRUhkxUIqvQ
- 8M083oLrQkI97tKDrK0xI0E/v8IIaMrCoiZP15jDBvZbOj5X6H7d1adG/KvNMwlBDBhw
- PL5IVR2xZs5t7eORUhnDYyT6cw2FjqG2amwUhuPYyErJRYgZNGL8mQ0K7Atn4i+MzO95
- Aafg==
+ bh=D6v29IF5ynl4LtatwkL+aWAs6JBK13MEYBvlVFMZquU=;
+ b=5E/rRDm8VAePAEyXX2CiCjdULP1GlaSRlCL6rP1OFm9NtTcT/ZfHPSri7GAsFYooGM
+ e2qNDpxVfENa2JMngQsDUOjXgZ3o5XLR0qX0fgev0eMWSDe0Suu4v5WNdQE4UDR0mXXa
+ kkKHuxoejXna0MEXcK4iXXEpfcEqg9UG7JdiILDdWWIZ8ceKfXzhOmHLN3imRfvKC8VD
+ SnACzgmeN3L1Z+W4gevDeBd0yj4MAmFBfDu+qM/w3B5Xjs1hskbyi+RkG7h/JE69UMIU
+ 9TUgJD73bM3CaCNrP1KwcjKvQwl39rjNWnQVm8osulfvAcS4cazQgb75PcZOrpgSAKoj
+ B+uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Ew4uKUNam8kJO5439QWHJkc6LyiFyd+nrUpEzZPoFAU=;
- b=Bzsk215uFJmE88PMKROAc4ocijJXctkbDDVefeiYqJmWkrHEYJAeOnIivF8M36Wq4m
- pJD9LdRyjtu7yrjuPZtLeG4qZd5PZpKH99xdY32tVk0KzUOMA4RpFbQnJny1u7mlCsJo
- o/fLRRGv9DlokkLh8fzQcuSPBd5vlQiT5KzmH6baMzMo4It72dTNhK96yYn/huJzXz1P
- zR2xOjZUFwL4eayKUKh1Osy3JIqD94/24G0zQEKL+rVLgLqBK4mstT8NDtvC8aWLYJF9
- 44j40OsR0ZbNDQ6zcPwZ+RWh03cPhbd4sV1IXSW5jozLty3phVMR4o+FRu4WWseND/Sy
- VDNQ==
-X-Gm-Message-State: AOAM532IgA8QllA71eIdGGyUhBQ1aBTJ0024b+Id9gYzv2UtqE9ADhqB
- h3HnIcxhM8p7JTCKcn+ZqBG16w==
-X-Google-Smtp-Source: ABdhPJyPWTZtV91PFW9Cdo+2mJExh4qrBWd9u1cf4eCMhGrOMHYRaDJhZ4hq9tQAqeerG5TmZKKfXA==
-X-Received: by 2002:a05:6402:68b:: with SMTP id
- f11mr3590479edy.121.1642069674677; 
- Thu, 13 Jan 2022 02:27:54 -0800 (PST)
-Received: from localhost (c-9b28e555.07-21-73746f28.bbcust.telenor.se.
- [85.229.40.155])
- by smtp.gmail.com with ESMTPSA id f13sm728072ejf.53.2022.01.13.02.27.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Jan 2022 02:27:54 -0800 (PST)
-From: Anders Roxell <anders.roxell@linaro.org>
-To: robh+dt@kernel.org,
-	narmstrong@baylibre.com,
-	khilman@baylibre.com
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=D6v29IF5ynl4LtatwkL+aWAs6JBK13MEYBvlVFMZquU=;
+ b=g7yHyVhOV3znN3WCqCNGiQuK9rIZtT1p29BdZYC0w+MTmIDpvvbrh6BiZH7FBXZNBb
+ JgGS156TF4699l1yUhVpR+DYPAl7sSSvDuQ3wpEDPKd7UtUpCDrykFpd4CyPzDEC+viT
+ B4jKBK6Zne/PdBUAT/kewA7BiNQBs5ZYasBHpIRHwUG9bX628oIgzCLcqZZgd1QXhySx
+ 6h+UL1ZLBRrJ8xhf/IGisx8DQdk+rxBdrIrPj2k3kiTkvWxS5NeyIoQskD0mZk7b/UwU
+ QUaCCV1RHugByfFq+Jty89r6kaJBb3WKsFPFiokY5GmmgUkL9fTxnepQEhbS0uoqVixr
+ cV9g==
+X-Gm-Message-State: AOAM530bU/rlH/vqAJ4ooOPfvXkclgcst7nw0WFtW6Jg0fMqqzfMEQ0Q
+ cOypY++Hjwz8/x+CZ7vKCeosVw==
+X-Google-Smtp-Source: ABdhPJz6q0lW1Um0SBfgQk6QTnCEXbTZmY8UEIgCUZe0rFIhVUDt/FUZhC1I/awTcNLmGS51ZbyFQw==
+X-Received: by 2002:a05:6000:1d91:: with SMTP id
+ bk17mr3370944wrb.684.1642070388799; 
+ Thu, 13 Jan 2022 02:39:48 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:bece:ab45:7469:4195?
+ ([2001:861:44c0:66c0:bece:ab45:7469:4195])
+ by smtp.gmail.com with ESMTPSA id y4sm2667120wrd.50.2022.01.13.02.39.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 13 Jan 2022 02:39:48 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-s4-aq222: fix waring for
+ leading 0s
+To: Anders Roxell <anders.roxell@linaro.org>, robh+dt@kernel.org,
+ khilman@baylibre.com
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Anders Roxell <anders.roxell@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: meson-s4-aq222: fix waring for leading 0s
-Date: Thu, 13 Jan 2022 11:27:46 +0100
-Message-Id: <20220113102746.598763-1-anders.roxell@linaro.org>
-X-Mailer: git-send-email 2.34.1
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220113102746.598763-1-anders.roxell@linaro.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <e0a8be1b-025f-a599-0298-3521066860b0@baylibre.com>
+Date: Thu, 13 Jan 2022 11:39:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20220113102746.598763-1-anders.roxell@linaro.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220113_022757_187715_1E027524 
-X-CRM114-Status: UNSURE (   9.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220113_023950_903722_BF857B74 
+X-CRM114-Status: GOOD (  17.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,34 +98,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When building allmodconfig the following waring shows up:
+Hi,
 
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts:21.18-24.4: Warning (unit_address_format): /memory@00000000: unit name should not have leading 0s
 
-Fixing the waring by dropping all the '0' except one.
+On 13/01/2022 11:27, Anders Roxell wrote:
+> When building allmodconfig the following waring shows up:
+> 
+> arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts:21.18-24.4: Warning (unit_address_format): /memory@00000000: unit name should not have leading 0s
+> 
+> Fixing the waring by dropping all the '0' except one.
+> 
+> Fixes: 1c1475389af0 ("arm64: dts: add support for S4 based Amlogic AQ222")
+> Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> index a942d7e06d6e..8ffbcb2b1ac5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> @@ -18,7 +18,7 @@ aliases {
+>  		serial0 = &uart_B;
+>  	};
+>  
+> -	memory@00000000 {
+> +	memory@0 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x0 0x0 0x40000000>;
+>  	};
+> 
 
-Fixes: 1c1475389af0 ("arm64: dts: add support for S4 based Amlogic AQ222")
-Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-index a942d7e06d6e..8ffbcb2b1ac5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -18,7 +18,7 @@ aliases {
- 		serial0 = &uart_B;
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
--- 
-2.34.1
+Thanks, I also noticed and fixed in the commit directly, it should be fixed on next -next
 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
