@@ -4,151 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B789DC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 08:29:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AED0AC433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 08:40:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ofG53wTEfKbluwPLSJ/8NpgA/LA5lVBJSuqRdOZr6/0=; b=QpSaVEb+3mFX4R
-	ii/2uTjmz7Ifj/l+2ktcLYec5mKE/C1DwLFkcq6W/PHIb3wS4vUnQYmIw0+A1XT+SHbv0nt1gOoGe
-	55MWy8zsE+kI906kozu4rHKGLQU7Z3dfJKRl2eQQDOeG1YPbE8sgHwKRtcArvacjEcF5zHy5JW4da
-	R+GG7fZejwwQ4FetCcf+e03rADf7sj74YCFMRRnL+RGiTZ/KzIcpSPHyb4CNJl1ASpisn5D6N7fLu
-	hRW52cku7GLNL3K//hCL8M86LRGd7akhhV1oqkfqKsc9lRecjHhli11K6KTmDkY5Yb3r/G5UWBsnn
-	xzK/wa6ZTr5cLz9/FPvw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ts4fKXlyg43zbOi+1/gbU8e5M3JeX9/cHZorWIa3vCQ=; b=vUi5Mjsb1uVUvH
+	3isgiS5Rdu246e/bsVlne6kiSh1rN85uDMZ7+c9B5oIpcn62TRJ99V7RawCm5jbqe07RNLDCus6IG
+	bz7q2Blw4O5RkbtSlnhs7dfu/EZG57VrEPCJtVVi74oW+Nvy3Ur6cKT/scqYc8mEBAReETCrLpcNN
+	JSSvQlgsxK4r8UwYCS9iqi7OVPCWV4TD6P9KBsS2LJsSVzE4ma0B5HYIdvA6Vfp2kwimVAzOEJFfd
+	+1kqXa53vg1/Mf4ihP+cTTCDYlMbLHhkBPqDgkY3nfrKHTMWl4CqXsmOY+bDlQhVyEy/fWrrWnOV/
+	FU77KAMxm5QT3GBrqMnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n8Hxr-008GNy-SN; Fri, 14 Jan 2022 08:29:39 +0000
-Received: from mail-os0jpn01on20703.outbound.protection.outlook.com
- ([2a01:111:f403:700c::703]
- helo=JPN01-OS0-obe.outbound.protection.outlook.com)
+	id 1n8I7z-008Iv8-Ao; Fri, 14 Jan 2022 08:40:07 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n8Hxn-008GMB-Vl; Fri, 14 Jan 2022 08:29:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gNIFkSlG5xR8XlsrjeAgWioiXPqwsE4J+7XCk5qFYWkMaC7clJ+ei2AkDN9uEX3E1JHnE8d1yJJEK74/tbchMVDcnfoqeKL8W7nEfp+UTUrzcL0ncaUJwCg3LU6FwqdRc679u7h6ebmIfrWRd01UJkJorNpoEk921d7dW8piWI7KIrG7oVye+bMzJZLoYEJONSIF47JpU7aK3sfCLrFlnAEhTzXsAaWr9v/G2r40I9A6DITE8crkutaP0WSP0UImdA6vCOjj0ldqxsPuKT/fNwEnSwn5HLRydbw6gU/wO403Yye062nlKpiSAM1Agqc4nAIxD4aLXwjXWlZvq7w7bA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W2NxeqCjqYtu2cOP6gk1YMjFMOq/c4Y/8XcZ6Uzu22w=;
- b=NSc+Cx4TK725vQyB3PA2i72hRx6ORaKpRH+Gy+wHX05WmEwDOo1gs0y1J/LOXet1339qbN/secJj+9TxeiIREEn/Qdc6fOWT2+Lu7FZpUBNqKWtWegLeVIJ1fHStP0A+nW07YyI1R9XC8xWffydQcC9lTHq1PdBPHxRPKpBfCkqM40Cr7FaFXIVbQ9vAjp/JTdvAY3+12SCMYxodd5QG0GIyGYmHehEtfdzi5eIum567w93sIWhyQa6AaiSBPn2ax/72hS/eS3uvKRAH+hG/1jg/MADzsVMKZmdS5H87I0oXYbR8pZpoeZCsky6k26UOirndemFuzWpuvSJaDWiCKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W2NxeqCjqYtu2cOP6gk1YMjFMOq/c4Y/8XcZ6Uzu22w=;
- b=NNSPCHm+jrfvwd2YMPL185QzxeRDL/POExXRV+a/SOJ72yPfV9dOJvbiq3R665HKkzRs7qTuLKAgkwqR8SyWNE7ET/7WD/mf7WOmx2LreD5jKZNcyJ6H+OcGXaCRt44FfmbKaiY6Rdkl+sIwK5leuBFdOBvaWMuX34OP0Y9aCqs=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYAPR01MB5085.jpnprd01.prod.outlook.com (2603:1096:404:12d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9; Fri, 14 Jan
- 2022 08:29:28 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3847:4115:3fbe:619]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3847:4115:3fbe:619%7]) with mapi id 15.20.4888.011; Fri, 14 Jan 2022
- 08:29:28 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, Fabio Estevam
- <festevam@gmail.com>
-CC: "daniel@ffwll.ch" <daniel@ffwll.ch>, "Laurent.pinchart@ideasonboard.com"
- <Laurent.pinchart@ideasonboard.com>, "robert.foss@linaro.org"
- <robert.foss@linaro.org>, "jonas@kwiboo.se" <jonas@kwiboo.se>,
- "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
- "martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
- <linux-renesas-soc@vger.kernel.org>
-Subject: RE: dw_hdmi is showing wrong colour after commit
- 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
- callbacks")
-Thread-Topic: dw_hdmi is showing wrong colour after commit
- 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
- callbacks")
-Thread-Index: AdgIo2084AmwtmkvSTyKeewhRhjVqAAFPAUAABnsh4AAABPrEA==
-Date: Fri, 14 Jan 2022 08:29:28 +0000
-Message-ID: <OS0PR01MB592224EC8F50F41B7FF1DEE286549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <OS0PR01MB59221ED76B74231F5836D5FB86539@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAOMZO5DJiCb5bJN5_nxnYa-FsK-u7QtFghWNzs_-udE42XPDeA@mail.gmail.com>
- <502f3ec4-fea4-8e14-c7a9-39418fc05d6d@baylibre.com>
-In-Reply-To: <502f3ec4-fea4-8e14-c7a9-39418fc05d6d@baylibre.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 458717cd-86f1-47bd-f25e-08d9d737fb36
-x-ms-traffictypediagnostic: TYAPR01MB5085:EE_
-x-microsoft-antispam-prvs: <TYAPR01MB50855B2F0A648CFC2A38A3F986549@TYAPR01MB5085.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2958;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vqozZSDCOV67Gm0rQj/tzYvWMOJgwhZQjwPqGoK2s5B6l2f7SYnADBL+WI3qOcBJbsVtyxRtKqvvjzmG5o0hYwntTZAddjq0z5NpC7KHHHlmOkq5G3t0QqiNkw1OM8v25yGmOCisWfXR0829fbCIBJQRDbCs0GpymuDjzyYpBSL8mFzMC76AjbxreDNx+WQ6M8rE0xzKmrthg+sAH32S4aSiQTANWxmnwu6EeBXXuDOXMBfbY8jkrSxOY7a+GN2YefUPy3wsXDY70W05786l1330qQDMWGoHOR3jFoy7RcvUqdqMJaPqzR4GqOYbjkZ1MTHX1SRvBBASTRy/Ew5yCHcjyLfub6plCz8Fz79XO3e+/ZmtaW9+Op62ueqlRiGOr4dp4K3S3/qj8rwImKQnsny6afPEbaZ92MCxuCKUXcb3xldKJyf7gE4bzx9inGXoVJh+dCH2335Fzz4fN4Pg90ud/xinCtDJ7fRiQA78eWq+jKxRh1gcHEtEhHmCSZKDrRGBMM/f6t0LbNsrrbSM/Wj+EaHrRkH/vzeO1o8+A/GSJex/iJ2dwCDODPhvTmCYeRiZuhdR8B9SEWTq06aY7XIh/zgRLRs7sbtK+WXQIFKNGcLS7d+6N0GJubnWmle9mpfchX7altrqOhcp67AIjfbxS/hLx3GhtTGYSVckbFQnPNxvUOvtZ8JamEnTeM+SVBJl5aDqWimQFUqBhUzDGA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:OS0PR01MB5922.jpnprd01.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(66446008)(9686003)(64756008)(33656002)(122000001)(2906002)(55016003)(66556008)(83380400001)(5660300002)(66946007)(76116006)(8936002)(66476007)(26005)(7696005)(4326008)(53546011)(8676002)(86362001)(110136005)(54906003)(186003)(52536014)(7416002)(508600001)(71200400001)(38100700002)(316002)(38070700005)(6506007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bUJMSW1kZzdZNmJGUk5RSXdyK0FlZFJBNjk0c1l4cnBQSDZUNWEzbkVBYi9H?=
- =?utf-8?B?SmZSWjdGRUYwcUJ5WjdHbDdPWk0yQTJwQ2NnWS9lYXdkV3FoejNaNWdlbUd0?=
- =?utf-8?B?T1V6UmRycWNsN3lwaThoejM0cVp0Wk9ERG1QOHBYNmVoREt1UWZRV0dHM1Qr?=
- =?utf-8?B?K0JBZjFDR1o2cWdaWTlnMkgvaGYvMGZocWN0TTFKUVVJL0p0SldGZ09kMXRx?=
- =?utf-8?B?K1dYdTU4elVYTDBZZjlValg0QWZLajBWSlkwNlZrMElxWTFEMVYyZVdQaFRj?=
- =?utf-8?B?WDBoQ1o1SVJpakNzbWdKdlpSNWNZWFB4VkQ3SFRSSjd1TXJIOXEvZHhZZm9s?=
- =?utf-8?B?SktZVVFnZ0VOa0JxZzAzVTAzSDVzbTV6KzZkTER3Qmg4QTZSZDdhbjhQblhz?=
- =?utf-8?B?bmVkU1JUbFdWQ1M1d0h6R0hZOEZRTUF2YTZZcHRwbXNEV1Jjd1NkTjF5Z29P?=
- =?utf-8?B?Mm9jclFyaEdtVmlxTGtCN2ZvSzRGM2VmcmMzRVpNbnhJK3pDME0wK2x5ZlhU?=
- =?utf-8?B?elBoWjdEREdkdmdONEI2L1F0YWFYRWJkTjFWNXRrT0lPblFvQlpyaTI0ZjI2?=
- =?utf-8?B?WS80aEhJQThQS2o0RGVTWG52OERFV0JBdjFXREU0WmdvejNBR01tRXlSMTZK?=
- =?utf-8?B?dXljUi80N0k2TEMwcTZoa3dvSnZyZG9FSlF3VUo0RzZBbXdMbjVNS1ZId1pv?=
- =?utf-8?B?ZzljRml1U2szTmtmRXIzaWluVWdyWmVkV0lJd3RIZlZPR3JiOTc2VlorWUto?=
- =?utf-8?B?eG1XY0FSK3Z2Y0M2WG94VmQ3c2o1aFFlVjZuM05rSkhhMkNNeWVxQzA3N1RS?=
- =?utf-8?B?d01va2FNMzZoR1VQanVIUGhvVFRaOTdjVUFWUXoyeHd5OEVoSEw3SC9pZzE1?=
- =?utf-8?B?dTk3cThBdU1qeWRzelRHS1pnUzJQYXlrMWFJenJVUkY1b1Y4UEFOUjcwVWVB?=
- =?utf-8?B?Ri9rQTlQRXk0Vm9idU9XRXBMVUVTUU1FZGIwRFJBTDFla21XOTJjeUpvakFp?=
- =?utf-8?B?ZnBpMUpJRzVJOTJCODRZQjREUVNpdTA2RGNNZm1sTTU3OW1PRXJ6SFUxL0hy?=
- =?utf-8?B?VGkvQXlvSm42b0prSWpNcHVLbEVEckhQcERKNnkyWnR5TU5DelJZQjRjNXBp?=
- =?utf-8?B?MWl2WCtFYVE5SDdSYVJJOGtmL21ONHhBYXlYbTdyZnZ5K2w3ZC9wdy8xU2Nt?=
- =?utf-8?B?V2EzWXM3T1VDWTBuUUhvcUNyT3ZrT1djRmRSMzdaTWdZN1E4b2h1R0dPRHV4?=
- =?utf-8?B?WndYNW5kSE51MUJzVnpabWhkeU5ETjBxMUZjYnFMbTZpWS93bTVsVHp4K0E5?=
- =?utf-8?B?L2sya3hZWWdDdkdFRDIwWXJHbzF1RHk0UWYySnJxekpFMGdEUy9ydzNWeEFU?=
- =?utf-8?B?MzkxaUJlaDVkWWNRTzhESGt0MzNTeXBLdzBIK05ubEhyTVN2VnhiSDl1eXdl?=
- =?utf-8?B?Q3dnTzIyRFZvOTJKV3Y2elVpNWpEbk5IalArbktKSFZqekxlOVdPUllrZ0xM?=
- =?utf-8?B?bUc0dWVTYkoxc1BHUjFESXhadjd1YndwVkpJQngwQWp4cFFRK3BuVUtXL3pF?=
- =?utf-8?B?bjh5RUkvd3M4aVBRc1lTejlQMUpSeTZFcXZqTjJaMnVwN1FENmxPWGxLSzZ5?=
- =?utf-8?B?SUlzdnorK1FjY3hrc0lkKzNDdmlTQzArdytYcGVUMU90c1V6K2R0dGU3VS9J?=
- =?utf-8?B?bEI4NW0wN2xzSTc1bC9uYi9nN3lVVzZ3cGpUOHpJb1N2bjRXTGJTeEJZSkoz?=
- =?utf-8?B?cCtubVRiSmtIdWVQMEd3TktEY2VFSXhaeFN4TEdTc20rMjZZbEtLcFVtdHRT?=
- =?utf-8?B?MW1SeThsYytjM3hZcTFlZndOSWJRdEZ0SEU3TklFQjBINGZobTFlUTlXN2FV?=
- =?utf-8?B?ckZBS2FRdEhDOUc3aWVsZlptaTcyeGU2cDVjdkNIWlFWbXVSK3c1NHdRUnU1?=
- =?utf-8?B?cEI5alNoZmhvdGwxOVIwWmNsMXYxMDdSR2NrNDRjb1lqRTI3TW5IWUUyaDYv?=
- =?utf-8?B?aE9yZEVvUHhqdmpmK2hEa0VMcVdyZlhXMmR5RThRbzVtV2hzVkEvSEdnQTRP?=
- =?utf-8?B?OWRBVEhJak1UYXBqNDBVWDVTcU5FRVAwMTdBNnNEMDRNSC9Qbi95U243NnI3?=
- =?utf-8?B?WHFDck52RTNNM3l1MmRSa3RWSmc1Mis4bVcrNXhUOEdMMVZuT1dXZ3Rtd0I2?=
- =?utf-8?B?L0pJYzllQWNnaUtPTG9QK3pXNThNVC9DU1hoTUZyYW9OUmgrL1NzSTBva0JT?=
- =?utf-8?B?N0hKKzNxZTAwTm1KUFZOTlpRYjJBPT0=?=
+ id 1n8I7X-008Ign-Qp; Fri, 14 Jan 2022 08:39:41 +0000
+Received: from droid10-sz.amlogic.com (10.28.8.20) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 14 Jan 2022
+ 16:39:32 +0800
+From: <jiayi.zhou@amlogic.com>
+To: <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
+ <thierry.reding@gmail.com>, <robh+dt@kernel.org>
+CC: <linux-mmc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ Jiayi.zhou <jiayi.zhou@amlogic.com>
+Subject: [PATCH v2] dt-bindings: pwm: Update bindings for the Meson-S4
+Date: Fri, 14 Jan 2022 16:39:29 +0800
+Message-ID: <20220114083929.2910-1-jiayi.zhou@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 458717cd-86f1-47bd-f25e-08d9d737fb36
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jan 2022 08:29:28.6866 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gkRIH6okYWSx32Po354SCheBN4IoksQKmGGOreNxTN6CRIb0QhWYOVBbZc/KLpVAZOIv/4CrTMtoEU8cHmy38x3n872h+W+zt3ShzsOzmDk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5085
+X-Originating-IP: [10.28.8.20]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220114_002936_040575_CE8A6B71 
-X-CRM114-Status: GOOD (  22.21  )
+X-CRM114-CacheID: sfid-20220114_003939_905010_34D1782E 
+X-CRM114-Status: UNSURE (   5.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,69 +60,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+From: "Jiayi.zhou" <jiayi.zhou@amlogic.com>
+
+Update the doc to explicitly support Meson-S4
+
+Signed-off-by: Jiayi.zhou <jiayi.zhou@amlogic.com>
+---
+ Documentation/devicetree/bindings/pwm/pwm-meson.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+index bd02b0a1496f..0fbedf20074f 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+@@ -10,6 +10,7 @@ Required properties:
+                          or "amlogic,meson-g12a-ee-pwm"
+                          or "amlogic,meson-g12a-ao-pwm-ab"
+                          or "amlogic,meson-g12a-ao-pwm-cd"
++                         or "amlogic,meson-s4-pwm"
+ - #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
+   the cells format.
  
-+ renesas-soc
+-- 
+2.34.1
 
-> Subject: Re: dw_hdmi is showing wrong colour after commit
-> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
-> callbacks")
-> 
-> Hi,
-> 
-> On 13/01/2022 21:01, Fabio Estevam wrote:
-> > Hi Biju,
-> >
-> > On Thu, Jan 13, 2022 at 2:45 PM Biju Das <biju.das.jz@bp.renesas.com>
-> wrote:
-> >>
-> >> Hi All,
-> >>
-> >> RZ/G2{H, M, N} SoC has dw_hdmi IP and it was working ok(colour) till
-> >> the commit
-> >> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
-> callbacks").
-> >>
-> >> After this patch, the screen becomes greenish(may be it is setting it
-> into YUV format??).
-> >>
-> >> By checking the code, previously it used to call get_input_fmt callback
-> and set colour as RGB24.
-> >>
-> >> After this commit, it calls get_output_fmt_callbck and returns 3
-> >> outputformats(YUV16, YUV24 and RGB24) And get_input_fmt callback, I see
-> the outputformat as YUV16 instead of RGB24.
-> >>
-> >> Not sure, I am the only one seeing this issue with dw_HDMI driver.
-> 
-> This patch was introduced to maintain the bridge color format negotiation
-> after using DRM_BRIDGE_ATTACH_NO_CONNECTOR, but it seems it behaves
-> incorrectly if the first bridge doesn't implement the negotiation
-> callbacks.
-> 
-> Let me check the code to see how to fix that.
 
-Thanks for the information, I am happy to test the patch/fix.
-
-Cheers,
-Biju
-
-> 
-> >
-> > I have tested linux-next 20220112 on a imx6q-sabresd board, which shows:
-> >
-> > dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.30a with HDCP
-> > (DWC HDMI 3D TX PHY)
-> >
-> > The colors are shown correctly here.
-> >
-> 
-> The imx doesn't use DRM_BRIDGE_ATTACH_NO_CONNECTOR so the negotiation
-> fails and use the RGB fallback input & output format.
-> 
-> Anyway thanks for testing
-> 
-> Neil
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
