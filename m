@@ -4,79 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C130C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 14:58:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE981C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 23:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RnnLcmed0Bs4EG4FVL5ZoGKbI5b/A11+r0hczMpV9Ps=; b=zK6GHLS4qBdIo7
-	jq4V8NciQHCSpgZ/4dy+h8l0CYt8oaahGDl+z9hlvb9JenySlwEwnugw8+4dTZfu06IvLgPXGlEWV
-	SyRDKc47AdFfqV6mJwgqt1kl3eLQwyjf+wYBhVSv5o3pyAYNrnUCuxgqbvY9nQtri/LDLFHqxdJk3
-	8sllRW7UHKXOJ1nZcVpADlS7+F4I5ft3dKe+QKnd2yGGnI4X6Vzu4J9d5EWDtRt7z0y3EFspVHjdz
-	5xSZJ9uG77kwbqvlUBcbrhj7pltwNDojBQ90cROZthejuksPeeVD8HARHjf7EWHzk4jKf7cnwooJX
-	exSfQucdVBQQCvKs9Zww==;
+	List-Owner; bh=gJxUC6duJ0qMsJVCm0A+cVQ9XHDVl01KCWHIZlPvr3g=; b=JPQ7u61P8V3UwB
+	SPwmZ+tJnxxl3/qAK5QCWH40JvJTOamlMBDKhJXPtE81vp7R2rDBE/4Zob7xv8vs8nNbQ1gKY2KOF
+	tyjJHKwY5Ded0VO0SUYDUW4o5KnmnNqv4QgOoPyI9HTSv3Mnnb8VdGiICtGAVhgW9B1n9yZjUHP9k
+	YVTaMKWGoTLvWPaY3r0EIdt1SDD+3PvIGwQNXChhrtvSpGkQFIRr7V95QntobltFHUE2ZajIkI3EV
+	ROAVLNCc7HFTf/AF7E/WWnHh+SquD14Dp43/p/1c2XY+FV1gU4n/31dhyJlXXQjhSkFV5wRI3OwWR
+	gUQGtIlcuHNfuRrOmHgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n8O1o-009SlF-71; Fri, 14 Jan 2022 14:58:08 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1n8VYB-00AMhw-JK; Fri, 14 Jan 2022 23:00:03 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n8O1l-009SjM-NB
- for linux-amlogic@lists.infradead.org; Fri, 14 Jan 2022 14:58:07 +0000
-Received: by mail-wr1-x435.google.com with SMTP id h10so16082800wrb.1
- for <linux-amlogic@lists.infradead.org>; Fri, 14 Jan 2022 06:58:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=6vf0U5q3YvBeFSP6ko6F5Omy2TYNCgDxRvUcHVhEYQ0=;
- b=pd/Sc/ymoFhHtUDJbKUIFmJbTZs7ISdAwc/Z/4CtN3v9WiV8GkRuofTlTWTc4KHk2f
- RsnhyOCpwHcLsYotx9lqgV3q8OoB+Q9ycRNBt4VSUGccMCFGDv0z9G+We8al2dwQQDLY
- wAkC6KTN26MeXtT+8vldnrpnHKJjalrGcvh0SVSZFT6Qj3vFeyDyI1bNW+0QfxKRhXKy
- XYWQvHxG3sTil6A5HJqTC6d8DaycxwcfNWzvReiJj+0yHWD3hnLJjCcvtdA8LuZcJxG/
- BrN7DiuqrBCe2HqxYg8lDDPbJJ/6Kkpfey2aWeXcJ6YUTbftXFpgTG5OUMaAT+nMiTxZ
- mykg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=6vf0U5q3YvBeFSP6ko6F5Omy2TYNCgDxRvUcHVhEYQ0=;
- b=sb+d0t3KzC9HWhhIi+LP8qHJ5BOHupWQfxbLHAmLssdlnBOFV7URwwgXozAXayyAzR
- dB4EOle83JJg15UOSFR71EtbSCawUQjRBQuLAcMmQ4fY6z5/V1cVJLxHryS+Fs/HHX5J
- FR/8rtJ8Po7oEN7Yu81MeCqkWAG7GWXHeEhX77RppSI621hft5k67CYuoDjNBt+hbRvN
- izVUwFQ2K+kyeQQfdETeV2w0xjo0N9aWS+C1J02GujGIqB8jn5oeKZZgKB333y7IzPC7
- gqET75+wNVmgwJIwRfTi/2kCHk1rWGxWIcO+QIqHUDSjRQNDjBXHlNRupekOlI1tU0Ya
- od5A==
-X-Gm-Message-State: AOAM530FhZqbaZgGKJPSG+C5+z/+SmSP3Q50AcCfsaH+2kNu1X1ZhIxX
- 76jfAr4M8viDBeHmFHSlpEVlnQ==
-X-Google-Smtp-Source: ABdhPJwaCzxyfoZDVfCEAjJ6QGAdsVMhSBHArLgqdn2cWeUg0VmXCTSfPWbGVZ4NDt21+LmaYPHROg==
-X-Received: by 2002:a05:6000:1686:: with SMTP id
- y6mr2609775wrd.320.1642172283314; 
- Fri, 14 Jan 2022 06:58:03 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 9sm2380504wrb.77.2022.01.14.06.58.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 14 Jan 2022 06:58:02 -0800 (PST)
-References: <20220114090753.34873-1-Jiayi.Zhou@amlogic.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiayi.Zhou@amlogic.com, thierry.reding@gmail.com,
- u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] pwm: meson: external clock configuration for s4
-Date: Fri, 14 Jan 2022 15:53:58 +0100
-In-reply-to: <20220114090753.34873-1-Jiayi.Zhou@amlogic.com>
-Message-ID: <1jmtjybc05.fsf@starbuckisacylon.baylibre.com>
+ id 1n8VY8-00AMgq-8L; Fri, 14 Jan 2022 23:00:02 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 809D9B82595;
+ Fri, 14 Jan 2022 22:59:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 285ADC36AE7;
+ Fri, 14 Jan 2022 22:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1642201197;
+ bh=pinsoFsBLJXMxhqrkwnb4NPQ5Tui8gvxNk7tIaJK/Tk=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=en8/v75YdOTH0qUlFjNBsBJ320M/eAFBm5gcn+8I4NI4i7sQ40mmWfu/us8knqbCq
+ f3c7sTQxhqnbRJBbJX2VN8RySqfW+4Q4sdKMfeEbgdM40L5U9fXn+xvYV2WyUGiNaA
+ qJom3wy5rnh91yxHR096Kbav8YaAo/sVJ522qCqkP7YRTAGmADNQ7rXOquZRl4xQGk
+ mRxP1/0B8ZNALrVe9cLnkQEWRGHCWkzeC1Jbi8Gkgg9/1lC0kcw1VuOkz/RDiqLERR
+ gT2lY1LLBEHplGVPC2flRPnXnAuSBlfGie52mXlGRxeaaJblWt72BMZl9pT0vU91Uj
+ G58lcF6f6R/Yw==
 MIME-Version: 1.0
+In-Reply-To: <5d99ac02-a246-5bcc-2ecb-371b0d193537@amlogic.com>
+References: <20220113115745.45826-1-liang.yang@amlogic.com>
+ <20220113115745.45826-4-liang.yang@amlogic.com>
+ <20220113212957.768FFC36AE3@smtp.kernel.org>
+ <5d99ac02-a246-5bcc-2ecb-371b0d193537@amlogic.com>
+Subject: Re: [PATCH v9 3/4] clk: meson: add DT documentation for emmc clock
+ controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu <yonghui.yu@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Liang Yang <liang.yang@amlogic.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-clk@vger.kernel.org
+Date: Fri, 14 Jan 2022 14:59:55 -0800
+User-Agent: alot/0.10
+Message-Id: <20220114225957.285ADC36AE7@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220114_065805_809276_B55BF178 
-X-CRM114-Status: UNSURE (   8.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220114_150000_594774_07DE2ABC 
+X-CRM114-Status: GOOD (  18.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,38 +84,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Quoting Liang Yang (2022-01-13 19:06:07)
+> Hi Stephen,
+> 
+> Thanks for your quick response.
+> 
+> On 2022/1/14 5:29, Stephen Boyd wrote:
+> > [ EXTERNAL EMAIL ]
+> > 
+> > Quoting Liang Yang (2022-01-13 03:57:44)
+> >> Document the MMC sub clock controller driver, the potential consumer
+> >> of this driver is MMC or NAND. Also add four clock bindings IDs which
+> >> provided by this driver.
+> >>
+> >> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> >> ---
+> >>   .../bindings/clock/amlogic,mmc-clkc.yaml      | 64 +++++++++++++++++++
+> >>   include/dt-bindings/clock/amlogic,mmc-clkc.h  | 14 ++++
+> >>   2 files changed, 78 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
+> >>   create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
+> >> new file mode 100644
+> >> index 000000000000..a274c3d5fc2e
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
+> >> @@ -0,0 +1,64 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/clock/amlogic,mmc-clkc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Amlogic MMC Sub Clock Controller Driver Device Tree Bindings
+> >> +
+> >> +maintainers:
+> >> +  - jianxin.pan@amlogic.com
+> >> +  - liang.yang@amlogic.com
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - "amlogic,axg-mmc-clkc", "syscon"
+> > 
+> > Why is it a syscon?
+> 
+> The register documented by reg is shared with SD/eMMC controller port C, 
+> and it need to be ops on NFC driver.
+> 
 
-On Fri 14 Jan 2022 at 17:07, <Jiayi.Zhou@amlogic.com> wrote:
-
-> From: "Jiayi.zhou" <jiayi.zhou@amlogic.com>
->
-> For PWM controller in the Meson-S4 SoC,
-> PWM needs to obtain an external clock source.
-> This patch tries to describe them in the DT compatible data.
->
-
-I'm sorry but I have already commented on v1 that all the mess in here
-don't seem necessary. For Reference:
-
-"""
- You trying to bypass the input selection mux. There is no reason to do
- so.
-
- Your input clocks should be
- * OSC
- * vid_pll
- * fdiv3
- * fdiv4
-
- While the pwm driver could welcome a rework around how it deal with DT
- and the clocks, this S4 chip does not warrant any change compared to
- previous generation (AFAICT)
-
- All the stuff around "extern_clk" should go away IMO.
-"""
-
-Unless you can *really* justify why this approach is required, it is
-firm Nack.
+Is this the case where the clk is inside the SD/eMMC controller? Can the
+mmc driver register the clk controller from there and pass it an iomem
+pointer to poke clks?
 
 _______________________________________________
 linux-amlogic mailing list
