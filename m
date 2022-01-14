@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F0EDC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 10:16:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A529C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 10:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,74 +13,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Fys4+015VQJtpmv2a817yKMY3kVtg1FcgvQBoxAIJ8U=; b=Q0lmqMLH9RpkTcTMscY2YZdN2y
-	pugjkP6c8CVWH8uk6C4DtyfGGUQbP67KhT88tmDRea8Ua9r+DwsrsDv7ewCHTL5R7olIKTtEYe5jb
-	eqlM1aWeu3IokyrbpuqvJu0xukKtUSCzPPiTi79e6g5wtJkQ9ozHoWDvCTwVY7goQ87zapl8Dng6h
-	tATU+c/d07oFMXsWDhyThRZpuQpX4z92AmZsKc5+kQnP0uMeAcQ/lkOopQcowPRm5tOsrwkguK+Tm
-	e+XaiuzO1pYjyT9ZD0gZqRtNyxgWOTGDuTkmaj2tZi7ehxd+D1DxgfIbIvvrJik6c3OLLTYYrBGvA
-	TiOKO56g==;
+	bh=RvAgckvIkHng0jV0VSiG1/sBFsNvuwpIie/UbXKrjFY=; b=tY93Q6VdZJzlh9CPog7b1Q80lR
+	NoJMesd7kk2UYoOUw8rA37bU4MQX6u/6RiQdsOzTrgfzd4iwqF3FsPvBQnNQlN+Rg6DHDRk/0GNIO
+	B+0DWz4/8oxXcGS1q1C1iDJ/0wPciXKuNGn3KoIoB9XhLpJICUQ8joyk+eY+BkoQMqSZupK4+p774
+	vu+mmmVzrv+yq4BtIDnAVeMla3zIfbMbQVpXmGWudHciazFFYtsWFTkcb1qYmIs2BcCChO/z9K1iH
+	1T5XsMl41xrdJRabLhjD7DhjWMuxs7NYLkvQac/ODQ8dhPll7SUwqmnz4v4b3XrmMaJapiuRVtZ/A
+	WyuFoAuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n8Jcz-008f6H-8a; Fri, 14 Jan 2022 10:16:13 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1n8K2p-008kyf-B6; Fri, 14 Jan 2022 10:42:55 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n8Jcu-008f5G-QO
- for linux-amlogic@lists.infradead.org; Fri, 14 Jan 2022 10:16:11 +0000
-Received: by mail-wm1-x329.google.com with SMTP id l4so5657980wmq.3
- for <linux-amlogic@lists.infradead.org>; Fri, 14 Jan 2022 02:16:07 -0800 (PST)
+ id 1n8K2Z-008ktc-CQ
+ for linux-amlogic@lists.infradead.org; Fri, 14 Jan 2022 10:42:41 +0000
+Received: by mail-wr1-x430.google.com with SMTP id t20so7405652wrb.4
+ for <linux-amlogic@lists.infradead.org>; Fri, 14 Jan 2022 02:42:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=C+I9vsvv4jxUQBjyNFF7b6H2OVu+EdkKpp/nAiazxwM=;
- b=LZRGVtg1odeFV0DA1Uy+BXAM6n2s30F4/eOiaAejVqiEHtLyeZuBNArxRIy0ZBULvV
- VYKFImGFbF+r2vZyzQ0ZtBpd1gw3ghZ4lcoCzmZ4H6FTS8BC915va7X28GERiu7jAoxK
- vzJXia6iKxkMOdfOCdOlmmcqmCFHW4lA1O6iqlX5BxD3L2G2XJv1yhZhIrCj0nU3TNqN
- Rc2GSV+fEOWp4XpfAbIoL8JlJoUp4xZJhXxrvZ7aEd/XXZJCVowiK6oQcLc/eFY49fhu
- 6bCr6O4E3uFFs2Ql3rNY4qvNEg0t9di+W84RU1mgsuBCQsnzcWpiTTod8DOB1othjfqE
- SkMQ==
+ bh=gp5m+hjNnex+C5KrxF94exi88etk0hJOGkatfv4Q0bU=;
+ b=R8XlGGCi3zgVrOlJxHWY3jfI+Y42tPrDUAayaOZzeN0BjiwTcKnYiWpfHf/RyPD+PA
+ DMluxaRqAZF/FLUbiqhfVqmoKUCH5+PlpaZS2elAXXNYEukkKvu9KmUXOWa4tp+NrUob
+ wHFBIU4SBFF/5eQWwhBelF1Px8RDqviwQoGHYiVrGUQdC5AEvxJY+7Z4Q6A9YShwuoPQ
+ Rc5H9FrFvWGZ01qDSN2KjmCjPO/xOU11F8jwpuuR5GEGPN565KuEroKY9FrRWxoJLLt1
+ I8dR6W+MCZGY4N34VAvXlU/8s8P0eBDOv4bZBCvqXkpOP1/p0hwkm5x9JCNdbungfjoC
+ 5Kow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=C+I9vsvv4jxUQBjyNFF7b6H2OVu+EdkKpp/nAiazxwM=;
- b=sQPqyVZVqJMU3lmiZ+goMNMMeqOZhJyhEQtFPuwVUxHtJLHRngwBqy3yVddZxFSFHH
- iKO9PykNSmF+ZBtD+unjMnM6Tqn9PWBmTOeI4+RyF9PaAJdEomFhrHGd0rYhrKT1IFQP
- M+JMzz2Y8oFhp30UIUVusBft7aziKyct8lAOHi/r7tzN5uqC5IqQAfe6syrFKjgyR6gZ
- g4XJGKCgl3LKSZdHHQ2vVOWtTOghzzAqIc9dziQx1PgAMardNVqp+rKaqCt7ngiml6Ae
- 1hPeeXsFVLW3daza6S6k9/mmtBZyCTGAoh5Nz5XvISdj06ReTM96Cc8CYhsLlCsoqP+J
- RJ/Q==
-X-Gm-Message-State: AOAM5323mL4BDdWlIHRFB6jratLhPH0yNcLL0Jvef69t/6LG418OdgPB
- a7BfGpesIbvB7MDjn5EaTJiBGg==
-X-Google-Smtp-Source: ABdhPJxzEGiwsBcLaGV4JJUUf5a4Imbr/mzTpNoSB9QDGkSXETH5e4o9CGo13wgtKGTNF13ZKoodUg==
-X-Received: by 2002:a1c:f613:: with SMTP id w19mr14731377wmc.58.1642155366517; 
- Fri, 14 Jan 2022 02:16:06 -0800 (PST)
+ bh=gp5m+hjNnex+C5KrxF94exi88etk0hJOGkatfv4Q0bU=;
+ b=K3kM5nJHsp07zsyWHuhl369EroOsUu4QV0mOHRnlOqX7YqeS8aSxuI1vbc8J2ZRXWS
+ pf6youwWgwSQ3rwuYhl7ufoYmAq/TvcAu6f5In9X/Xh88lwCqUHb6t9KMkVyR/WhBsqe
+ e0eiUsNg7qDhgvtRfryYWptBQXxo+8WMokAiJ9v0gA6U4SApTDz0ovZ7rcZxkkY/nZrn
+ DUelX4vzapd5LcyxRmis1Qf7JY7AvCPc1kGZnF/lNTakkRIXMOTJ3CX9zHJL378XmLMU
+ wRsL5RmjWZX3IQTITmd52OcKzyOFkS5b5hLemMsjWkSSFb2Q11Bh+Ng3AsvfnC7A0rHV
+ GsVA==
+X-Gm-Message-State: AOAM530G68CRHukA7z0sAUtbsEtAkShnLgVMRZ7Z1sgBwM14Smit3a3x
+ /eEHe2d+WXVp4KavPRCrT7a2fA==
+X-Google-Smtp-Source: ABdhPJyoGyFoYIArOrqbuQZfSBwAef4ylBDlWBIOjcz0yLUP3z+XxfSUcEq33rLVvTxljW/UNcrFVA==
+X-Received: by 2002:a05:6000:2ce:: with SMTP id
+ o14mr7927987wry.70.1642156957760; 
+ Fri, 14 Jan 2022 02:42:37 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:a3fc:c40b:5afc:88ee?
  ([2001:861:44c0:66c0:a3fc:c40b:5afc:88ee])
- by smtp.gmail.com with ESMTPSA id e12sm1439643wrg.33.2022.01.14.02.16.05
+ by smtp.gmail.com with ESMTPSA id m15sm5370531wmq.6.2022.01.14.02.42.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 14 Jan 2022 02:16:05 -0800 (PST)
-Subject: Re: [PATCH v2] pwm: meson: external clock configuration for s4
-To: Jiayi.Zhou@amlogic.com, jbrunet@baylibre.com, thierry.reding@gmail.com,
- u.kleine-koenig@pengutronix.de, lee.jones@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20220114090753.34873-1-Jiayi.Zhou@amlogic.com>
+ Fri, 14 Jan 2022 02:42:37 -0800 (PST)
+Subject: Re: dw_hdmi is showing wrong colour after commit
+ 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
+ callbacks")
+To: Biju Das <biju.das.jz@bp.renesas.com>, Fabio Estevam <festevam@gmail.com>
+Cc: "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "Laurent.pinchart@ideasonboard.com" <Laurent.pinchart@ideasonboard.com>,
+ "robert.foss@linaro.org" <robert.foss@linaro.org>,
+ "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+ "martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <OS0PR01MB59221ED76B74231F5836D5FB86539@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAOMZO5DJiCb5bJN5_nxnYa-FsK-u7QtFghWNzs_-udE42XPDeA@mail.gmail.com>
+ <502f3ec4-fea4-8e14-c7a9-39418fc05d6d@baylibre.com>
+ <OS0PR01MB592224EC8F50F41B7FF1DEE286549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <07581fb8-0cd9-5b76-6fa3-1d1a7353d944@baylibre.com>
-Date: Fri, 14 Jan 2022 11:16:04 +0100
+Message-ID: <19dd6013-8a31-b2ed-29d5-93fc44193ce4@baylibre.com>
+Date: Fri, 14 Jan 2022 11:42:35 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220114090753.34873-1-Jiayi.Zhou@amlogic.com>
+In-Reply-To: <OS0PR01MB592224EC8F50F41B7FF1DEE286549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220114_021608_981496_76CE61F7 
-X-CRM114-Status: GOOD (  35.53  )
+X-CRM114-CacheID: sfid-20220114_024239_454891_9BB99AA9 
+X-CRM114-Status: GOOD (  23.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,304 +111,113 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 14/01/2022 10:07, Jiayi.Zhou@amlogic.com wrote:
-> From: "Jiayi.zhou" <jiayi.zhou@amlogic.com>
+On 14/01/2022 09:29, Biju Das wrote:
+> Hi Neil,
+>  
+> + renesas-soc
 > 
-> For PWM controller in the Meson-S4 SoC,
-> PWM needs to obtain an external clock source.
-> This patch tries to describe them in the DT compatible data.
-
-Can you be more explicit here ? On which SoC ? Why ?
-
-As I understand while reading the S805X2 datasheet, now the PWM clock input is
-done in independent CLKCTRL registers and no more in the PWM registers, right ?
-
-So with S4, instead of passing the mux input clock of clkin0 & clkin1, now you pass
-the PWM mux output clock.
-
+>> Subject: Re: dw_hdmi is showing wrong colour after commit
+>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
+>> callbacks")
+>>
+>> Hi,
+>>
+>> On 13/01/2022 21:01, Fabio Estevam wrote:
+>>> Hi Biju,
+>>>
+>>> On Thu, Jan 13, 2022 at 2:45 PM Biju Das <biju.das.jz@bp.renesas.com>
+>> wrote:
+>>>>
+>>>> Hi All,
+>>>>
+>>>> RZ/G2{H, M, N} SoC has dw_hdmi IP and it was working ok(colour) till
+>>>> the commit
+>>>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
+>> callbacks").
+>>>>
+>>>> After this patch, the screen becomes greenish(may be it is setting it
+>> into YUV format??).
+>>>>
+>>>> By checking the code, previously it used to call get_input_fmt callback
+>> and set colour as RGB24.
+>>>>
+>>>> After this commit, it calls get_output_fmt_callbck and returns 3
+>>>> outputformats(YUV16, YUV24 and RGB24) And get_input_fmt callback, I see
+>> the outputformat as YUV16 instead of RGB24.
+>>>>
+>>>> Not sure, I am the only one seeing this issue with dw_HDMI driver.
+>>
+>> This patch was introduced to maintain the bridge color format negotiation
+>> after using DRM_BRIDGE_ATTACH_NO_CONNECTOR, but it seems it behaves
+>> incorrectly if the first bridge doesn't implement the negotiation
+>> callbacks.
+>>
+>> Let me check the code to see how to fix that.
 > 
-> Signed-off-by: Jiayi.zhou <jiayi.zhou@amlogic.com>
-> ---
->  drivers/pwm/pwm-meson.c | 145 ++++++++++++++++++++++++++++++----------
->  1 file changed, 110 insertions(+), 35 deletions(-)
+> Thanks for the information, I am happy to test the patch/fix.
 > 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 3cf3bcf5ddfc..54db56c95be2 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -51,6 +51,7 @@
->  #define REG_MISC_AB		0x8
->  #define MISC_B_CLK_EN		BIT(23)
->  #define MISC_A_CLK_EN		BIT(15)
-> +
->  #define MISC_CLK_DIV_MASK	0x7f
->  #define MISC_B_CLK_DIV_SHIFT	16
->  #define MISC_A_CLK_DIV_SHIFT	8
-> @@ -93,11 +94,13 @@ struct meson_pwm_channel {
->  	struct clk *clk_parent;
->  	struct clk_mux mux;
->  	struct clk *clk;
-> +	struct clk *clk_mux;
-
-Why do you add a mux ?
-
->  };
->  
->  struct meson_pwm_data {
->  	const char * const *parent_names;
->  	unsigned int num_parents;
-> +	unsigned int extern_clk;
->  };
->  
->  struct meson_pwm {
-> @@ -105,6 +108,7 @@ struct meson_pwm {
->  	const struct meson_pwm_data *data;
->  	struct meson_pwm_channel channels[MESON_NUM_PWMS];
->  	void __iomem *base;
-> +
->  	/*
->  	 * Protects register (write) access to the REG_MISC_AB register
->  	 * that is shared between the two PWMs.
-> @@ -130,13 +134,15 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
->  
->  	channel = &meson->channels[pwm->hwpwm];
->  
-> -	if (channel->clk_parent) {
-> -		err = clk_set_parent(channel->clk, channel->clk_parent);
-> -		if (err < 0) {
-> -			dev_err(dev, "failed to set parent %s for %s: %d\n",
-> -				__clk_get_name(channel->clk_parent),
-> -				__clk_get_name(channel->clk), err);
-> -			return err;
-> +	if (!meson->data->extern_clk) {
-> +		if (channel->clk_parent) {
-> +			err = clk_set_parent(channel->clk, channel->clk_parent);
-> +			if (err < 0) {
-> +				dev_err(dev, "failed to set parent %s for %s: %d\n",
-> +					__clk_get_name(channel->clk_parent),
-> +					__clk_get_name(channel->clk), err);
-> +					return err;
-> +			}
->  		}
->  	}
->  
-> @@ -171,7 +177,11 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->  	if (state->polarity == PWM_POLARITY_INVERSED)
->  		duty = period - duty;
->  
-> -	fin_freq = clk_get_rate(channel->clk);
-> +	if (meson->data->extern_clk) {
-> +		fin_freq = clk_get_rate(channel->clk_mux);> +	} else {
-> +		fin_freq = clk_get_rate(channel->clk);
-> +	}
->  	if (fin_freq == 0) {
->  		dev_err(meson->chip.dev, "invalid source clock frequency\n");
->  		return -EINVAL;
-> @@ -228,17 +238,32 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
->  	struct meson_pwm_channel_data *channel_data;
->  	unsigned long flags;
->  	u32 value;
-> +	unsigned long set_clk;
-> +	u32 err;
->  
->  	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
->  
-> -	spin_lock_irqsave(&meson->lock, flags);
-> -
->  	value = readl(meson->base + REG_MISC_AB);
-> -	value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
-> -	value |= channel->pre_div << channel_data->clk_div_shift;
-> -	value |= channel_data->clk_en_mask;
-> -	writel(value, meson->base + REG_MISC_AB);
-> +	if (meson->data->extern_clk) {
-> +		set_clk = clk_get_rate(channel->clk_mux);
-> +
-> +		if (set_clk == 0)
-> +			dev_err(meson->chip.dev, "invalid source clock frequency\n");
-> +		set_clk /= channel->pre_div + 1;
-> +		err = clk_set_rate(channel->clk, set_clk);
-> +		if (err)
-> +			dev_err(meson->chip.dev, "%s: error in setting pwm rate!\n", __func__);
-> +	} else {
-> +		spin_lock_irqsave(&meson->lock, flags);
-> +
-> +		value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
-> +		value |= channel->pre_div << channel_data->clk_div_shift;
-> +		value |= channel_data->clk_en_mask;
-> +		writel(value, meson->base + REG_MISC_AB);
->  
-> +		spin_unlock_irqrestore(&meson->lock, flags);
-> +	}
-> +	spin_lock_irqsave(&meson->lock, flags);
->  	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
->  		FIELD_PREP(PWM_LOW_MASK, channel->lo);
->  	writel(value, meson->base + channel_data->reg_offset);
-> @@ -246,7 +271,6 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
->  	value = readl(meson->base + REG_MISC_AB);
->  	value |= channel_data->pwm_en_mask;
->  	writel(value, meson->base + REG_MISC_AB);
-> -
->  	spin_unlock_irqrestore(&meson->lock, flags);
->  }
->  
-> @@ -333,7 +357,8 @@ static void meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->  	struct meson_pwm *meson = to_meson_pwm(chip);
->  	struct meson_pwm_channel_data *channel_data;
->  	struct meson_pwm_channel *channel;
-> -	u32 value, tmp;
-> +	u32 value_pwm, value, tmp;
-> +	unsigned long gate_clk, fre;
->  
->  	if (!state)
->  		return;
-> @@ -341,30 +366,42 @@ static void meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->  	channel = &meson->channels[pwm->hwpwm];
->  	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
->  
-> -	value = readl(meson->base + REG_MISC_AB);
-> -
-> -	tmp = channel_data->pwm_en_mask | channel_data->clk_en_mask;
-> -	state->enabled = (value & tmp) == tmp;
-> -
-> -	tmp = value >> channel_data->clk_div_shift;
-> -	channel->pre_div = FIELD_GET(MISC_CLK_DIV_MASK, tmp);
-> -
-> +	value_pwm = readl(meson->base + REG_MISC_AB);
->  	value = readl(meson->base + channel_data->reg_offset);
->  
->  	channel->lo = FIELD_GET(PWM_LOW_MASK, value);
->  	channel->hi = FIELD_GET(PWM_HIGH_MASK, value);
->  
-> -	if (channel->lo == 0) {
-> -		state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
-> -		state->duty_cycle = state->period;
-> -	} else if (channel->lo >= channel->hi) {
-> -		state->period = meson_pwm_cnt_to_ns(chip, pwm,
-> -						    channel->lo + channel->hi);
-> -		state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm,
-> -							channel->hi);
-> +	if (meson->data->extern_clk) {
-> +		gate_clk = clk_get_rate(channel->clk);
-> +		fre = gate_clk / (channel->lo + channel->hi);
-> +		state->period = div_u64(NSEC_PER_SEC, fre);
-> +		state->duty_cycle = div_u64(state->period * channel->hi, channel->lo + channel->hi);
-> +		tmp = channel_data->pwm_en_mask;
-> +
-> +		if (((value_pwm & tmp) == tmp) && __clk_is_enabled(channel->clk))
-> +			state->enabled = true;
-> +		else
-> +			state->enabled = false;
->  	} else {
-> -		state->period = 0;
-> -		state->duty_cycle = 0;
-> +		tmp = channel_data->pwm_en_mask | channel_data->clk_en_mask;
-> +
-> +		state->enabled = (value_pwm & tmp) == tmp;
-> +
-> +		tmp = value_pwm >> channel_data->clk_div_shift;
-> +		channel->pre_div = FIELD_GET(MISC_CLK_DIV_MASK, tmp);
-> +
-> +		if (channel->lo == 0) {
-> +			state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
-> +			state->duty_cycle = state->period;
-> +		} else if (channel->lo >= channel->hi) {
-> +			state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->lo
-> +							    + channel->hi);
-> +			state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
-> +		} else {
-> +			state->period = 0;
-> +			state->duty_cycle = 0;
-> +		}
->  	}
->  }
-
-You need to rewrite the clock calculation entirely, instead of relying on a fin_freq, you need
-to set_rate() the needed rate to the input clock, then calculate the periods on the rate
-set by CCF.
-
-One way is to forget trying to set a rate of the input clock, simply get_rate() of the input clock
-and try to calculate periods on it.
-
-Instead rely on assignes-clock-parent & assigned-clock-rate in DT to set the right parent of the mux
-and rate of the mux post divider to feed to correct rate to the PWM controller.
-
->  
-> @@ -452,6 +489,10 @@ static const struct meson_pwm_data pwm_g12a_ee_data = {
->  	.num_parents = ARRAY_SIZE(pwm_g12a_ee_parent_names),
->  };
->  
-> +static const struct meson_pwm_data pwm_meson_data = {
-> +	.extern_clk = true,
-> +};
-> +
->  static const struct of_device_id meson_pwm_matches[] = {
->  	{
->  		.compatible = "amlogic,meson8b-pwm",
-> @@ -485,6 +526,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->  		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->  		.data = &pwm_g12a_ao_cd_data
->  	},
-> +	{
-> +		.compatible = "amlogic,meson-s4-pwm",
-> +		.data = &pwm_meson_data
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> @@ -534,6 +579,33 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
->  	return 0;
->  }
->  
-> +static int meson_pwm_extern_init_channels(struct meson_pwm *meson)
-> +{
-> +	struct meson_pwm_channel *channels = meson->channels;
-> +	struct device *dev = meson->chip.dev;
-> +	unsigned int i;
-> +	char name[255];
-> +
-> +	for (i = 0; i < meson->chip.npwm; i++) {
-> +		snprintf(name, sizeof(name), "clkin%u", i);
-> +		(channels + i)->clk = devm_clk_get(dev, name);
-> +		if (IS_ERR((channels + i)->clk)) {
-> +			dev_err_probe(meson->chip.dev, PTR_ERR((channels + i)->clk),
-> +				      "can't get device clock\n");
-> +			return PTR_ERR((channels + i)->clk);
-> +		}
-> +		snprintf(name, sizeof(name), "mux%u", i);
-> +		(channels + i)->clk_mux = devm_clk_get(dev, name);
-> +		if (IS_ERR((channels + i)->clk_mux)) {
-> +			dev_err_probe(meson->chip.dev, PTR_ERR((channels + i)->clk_mux),
-> +				      "can't get device clock\n");
-> +			return PTR_ERR((channels + i)->clk_mux);
-
-If you add mux you'll need to changes the bindings.
-
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int meson_pwm_probe(struct platform_device *pdev)
->  {
->  	struct meson_pwm *meson;
-> @@ -553,8 +625,11 @@ static int meson_pwm_probe(struct platform_device *pdev)
->  	meson->chip.npwm = MESON_NUM_PWMS;
->  
->  	meson->data = of_device_get_match_data(&pdev->dev);
-> +	if (meson->data->extern_clk)
-> +		err = meson_pwm_extern_init_channels(meson);
-> +	else
-> +		err = meson_pwm_init_channels(meson);
->  
-> -	err = meson_pwm_init_channels(meson);
->  	if (err < 0)
->  		return err;
->  
+> Cheers,
+> Biju
 > 
+>>
+>>>
+>>> I have tested linux-next 20220112 on a imx6q-sabresd board, which shows:
+>>>
+>>> dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.30a with HDCP
+>>> (DWC HDMI 3D TX PHY)
+>>>
+>>> The colors are shown correctly here.
+>>>
+>>
+>> The imx doesn't use DRM_BRIDGE_ATTACH_NO_CONNECTOR so the negotiation
+>> fails and use the RGB fallback input & output format.
+>>
+>> Anyway thanks for testing
+>>
+>> Neil
 
+Can you test :
+
+==><===============================
+diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+index c96847fc0ebc..7019acd37716 100644
+--- a/drivers/gpu/drm/drm_bridge.c
++++ b/drivers/gpu/drm/drm_bridge.c
+@@ -955,7 +955,14 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+        last_bridge_state = drm_atomic_get_new_bridge_state(crtc_state->state,
+                                                            last_bridge);
+
+-       if (last_bridge->funcs->atomic_get_output_bus_fmts) {
++       /*
++        * Only negociate with real values if both end of the bridge chain
++        * support negociation callbacks, otherwise you can end in a situation
++        * where the selected output format doesn't match with the first bridge
++        * output format.
++        */
++       if (bridge->funcs->atomic_get_input_bus_fmts &&
++           last_bridge->funcs->atomic_get_output_bus_fmts) {
+                const struct drm_bridge_funcs *funcs = last_bridge->funcs;
+
+                /*
+@@ -980,7 +987,12 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+                if (!out_bus_fmts)
+                        return -ENOMEM;
+
+-               if (conn->display_info.num_bus_formats &&
++               /*
++                * If first bridge doesn't support negociation, use MEDIA_BUS_FMT_FIXED
++                * as a safe value for the whole bridge chain
++                */
++               if (bridge->funcs->atomic_get_input_bus_fmts &&
++                   conn->display_info.num_bus_formats &&
+                    conn->display_info.bus_formats)
+                        out_bus_fmts[0] = conn->display_info.bus_formats[0];
+                else
+==><===============================
+
+This should exclude your situation where the first bridge doesn't support negociation.
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
