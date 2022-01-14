@@ -4,51 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2AE6C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 05:28:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E62BC4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jan 2022 08:24:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zXLIWSbkHsquVtqYky++Jrjw8dhls/SnVwqERvsFWGw=; b=ptvJz87EuxQxrD
-	r04BrN9fGmocWJ92HT3aIiu4QJCfkNxdaOdlVmjLFTJagaq2KL5BQ+NghtkZp8n0owKb0+8wmFH47
-	Z5SSeBgLEjjNuJNinbA/0ehkIRF4zA3huYv0d6Qc3/Yng3qqZxoemxFLSxodsWh+GkusTpomglMBc
-	eqlcCnwfIqxSaiqfkPUx+v/JCGBqHx3MRRBf3FYlHcQj+l2xNqTlAbGz9qMlpe+T9aqURYIoJ2BhS
-	XmUu2DlmYClnV6tbIb+MhhUzkj/IKXE2Ly1QQ1B8Y+vfQA3QtTA1B9q3O/iJ1wlGunwBkIQVn5Ue3
-	Pk63ge0a/aDGGd7/Y4LA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=vEQX/yh/X/1ZUNmfJ+k3P15kf7ETUa0EDp5JSWyE6Bk=; b=qPGG7EtMW1Nz/2zN4wxXYaLc8+
+	bplWucpTNhynGZ9v5FmgvMyvJ9Fycbx46xx4ei/MPTXSP4DiQyF4MuKod1GdugRExjPg0ZVno4LS3
+	uRCrZ2fjaA37sZZXY1FGPnnv0H8xbiNswJUEwp9wmitJjXijZ9wS/5m+T0ubDb9kzoyXMA/aHWvGb
+	BLuQlesRP0qrm5G10bprmaN5kl9R632U/WpQ1nxuOQZKhXVORT6CaKfHCKEPkqZd2KsywrYF/rZfg
+	sf7EeAetG2AO+F6UYXywKPJhucCFbrnvwUYv1Jt5c2JYtYaEe6RB3sbSp4nUeoqFYaLCJZE+onP3r
+	cU6WU95g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n8F8u-007mnm-Ng; Fri, 14 Jan 2022 05:28:52 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1n8HsZ-008EPR-A3; Fri, 14 Jan 2022 08:24:11 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n8F8s-007mmx-76
- for linux-amlogic@lists.infradead.org; Fri, 14 Jan 2022 05:28:51 +0000
-Received: from [10.28.39.96] (10.28.39.96) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server id 15.1.2176.2;
- Fri, 14 Jan 2022 13:28:46 +0800
-Message-ID: <29172360-024b-c4d4-e330-b89edfa698e2@amlogic.com>
-Date: Fri, 14 Jan 2022 13:28:46 +0800
+ id 1n8HsJ-008EJB-4C
+ for linux-amlogic@lists.infradead.org; Fri, 14 Jan 2022 08:23:58 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id o3so14241198wrh.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 14 Jan 2022 00:23:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=2SXNoXMdnGaSfy4KnO5GzxkSIdaPrK9msaNZUkt3T8Y=;
+ b=TyRi88oeaki7bUJT9yoFyv6wUj9fpeayXEzTbacbcpowHz8FPfwCEa5pPeNp4hic2A
+ 1LUiMChZ/JgR4XfavZjb1aUuuO2byzLkGj1zOXheJtN63skSUHN8+KmF8d19GagVbsrr
+ 3fmQKuhufkBrR7HLsFJkJOrO+niqCVoiY6pXytGHfK3Z/P2h4xZlwMO0M6mfyCp643jF
+ mVBK4R++pEHgYWm8fqj840V0Bd7FVUMAC9/gMdKD2vUoCfCbBcTjHl4ISxc5ELSpzHNM
+ hEOssy1EdHg2qUjygRA/8pzlYYvPdaPBs1bBkE4hJnxLCH+S/QkVvPnwozU/+o0Z1GpP
+ y65A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=2SXNoXMdnGaSfy4KnO5GzxkSIdaPrK9msaNZUkt3T8Y=;
+ b=xvFdCJJ6V4AajkZeC9io8Y5FOHP9tQRXNtwhuTjDx/CSHE8L0SeD4x1ccvJeiGXDxt
+ o/z6xYyB9IBd5o6DwZaLr6T4geXrbXG8dmHGC0eGEQWb2VKoBi2ojCf+zxAE673HOe8/
+ VhdgWw83AGD2OKizS807PUoGj9FdLnve5rPBZYEwqpn65Q04bjBbpEulf9qoGUIHwHG7
+ v3xwdiYKi5quCJZ6m8UL9KTriIBFgs4Ul83aR/dd7Yzrp9a6RL2mRnoNTU44YrX6NyQG
+ K2gRCUAH01aYD2iMxSGAW9W9NB4Qk0O/L9MRyFdlHXiC2NCM7TUznk6OrEQg+i3GjoQO
+ d9IA==
+X-Gm-Message-State: AOAM5316nxguc1cVMXnC4X80pmyr4njiU49skieRTfV92EkvnVqWRXIR
+ 5SXCZp1udwLD6CD9Bu3U8ysoXA==
+X-Google-Smtp-Source: ABdhPJwtTLFQyCczvzEvPARkSbWXpC8Q4vilLBDbd9n7KTtKKzr0kpI3M6BrzPhUDH5NWo5f3LRQ0Q==
+X-Received: by 2002:a5d:6781:: with SMTP id v1mr2909142wru.714.1642148633286; 
+ Fri, 14 Jan 2022 00:23:53 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:a3fc:c40b:5afc:88ee?
+ ([2001:861:44c0:66c0:a3fc:c40b:5afc:88ee])
+ by smtp.gmail.com with ESMTPSA id i82sm5990464wma.23.2022.01.14.00.23.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 14 Jan 2022 00:23:52 -0800 (PST)
+Subject: Re: dw_hdmi is showing wrong colour after commit
+ 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
+ callbacks")
+To: Fabio Estevam <festevam@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "Laurent.pinchart@ideasonboard.com" <Laurent.pinchart@ideasonboard.com>,
+ "robert.foss@linaro.org" <robert.foss@linaro.org>,
+ "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+ "martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <OS0PR01MB59221ED76B74231F5836D5FB86539@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAOMZO5DJiCb5bJN5_nxnYa-FsK-u7QtFghWNzs_-udE42XPDeA@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <502f3ec4-fea4-8e14-c7a9-39418fc05d6d@baylibre.com>
+Date: Fri, 14 Jan 2022 09:23:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] pwm: meson: external clock configuration for s4
-From: Jiayi Zhou <Jiayi.Zhou@amlogic.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>, Lee Jones
- <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, <linux-amlogic@lists.infradead.org>
-References: <20211223055833.23466-1-Jiayi.Zhou@amlogic.com>
- <CAFBinCCscyxiTq3-9n8Eq-m+avo19+14DiRke+wGKcRmSmyi4g@mail.gmail.com>
- <ee1b72e6-f18a-2dcc-cba9-6816e6fadc33@amlogic.com>
-In-Reply-To: <ee1b72e6-f18a-2dcc-cba9-6816e6fadc33@amlogic.com>
-X-Originating-IP: [10.28.39.96]
+In-Reply-To: <CAOMZO5DJiCb5bJN5_nxnYa-FsK-u7QtFghWNzs_-udE42XPDeA@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220113_212850_296671_08CA74B2 
-X-CRM114-Status: GOOD (  27.42  )
+X-CRM114-CacheID: sfid-20220114_002355_276330_ABD5D8C6 
+X-CRM114-Status: GOOD (  16.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,87 +102,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CuWcqCAyMDIyLzEvMTMgMjA6MjQsIEppYXlpIFpob3Ug5YaZ6YGTOgo+Cj4KPiDlnKggMjAyMS8x
-Mi8yNSAyOjI0LCBNYXJ0aW4gQmx1bWVuc3RpbmdsIOWGmemBkzoKPj4gSGVsbG8sCj4+Cj4+IEkg
-YW0gYWRkaW5nIG15IHRob3VnaHRzIGluIHRoaXMgZW1haWwgd2hpY2ggYXJlIGluIGFkZGl0aW9u
-IHRvIFV3ZSdzIGNvbW1lbnRzLgo+Pgo+PiBQbGVhc2UgYWx3YXlzIENjIHRoZSBsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdCB3aGVuIHlvdSBhcmUgc2VuZGluZyBwYXRjaGVzLgo+PiBDdXJyZW50
-bHkgdGhpcyBwYXRjaCBjYW5ub3QgYmUgZm91bmQgaW4gdGhlIG1haWxpbmcgbGlzdCBhcmNoaXZl
-cywKPj4gcGF0Y2h3b3JrLCAuLi4KPiDCoMKgwqAgT0ssIEknbGwgY2MgdGhlIGxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0IHdoZW4gSSBzZW5kIHRoZSB2MiByZWxlYXNlLgo+PiBPbiBUaHUsIERl
-YyAyMywgMjAyMSBhdCA2OjU4IEFNIEppYXlpIFpob3U8SmlheWkuWmhvdUBhbWxvZ2ljLmNvbT4g
-IHdyb3RlOgo+Pj4gRnJvbTogImppYXlpLnpob3UiPGppYXlpLnpob3VAYW1sb2dpYy5jb20+Cj4+
-Pgo+Pj4gRm9yIFBXTSBjb250cm9sbGVyIGluIHRoZSBNZXNvbi1TNCBTb0MsCj4+PiBQV00gbmVl
-ZHMgdG8gb2J0YWluIGFuIGV4dGVybmFsIGNsb2NrIHNvdXJjZS4KPj4+IFRoaXMgcGF0Y2ggdHJp
-ZXMgdG8gZGVzY3JpYmUgdGhlbSBpbiB0aGUgRFQgY29tcGF0aWJsZSBkYXRhLgo+PiBJIHRoaW5r
-IHRoaXMgcGF0Y2ggZG9lcyBtb3JlIHRoYW4gd2hhdCBpcyBkZXNjcmliZWQgaGVyZS4KPj4gSXQg
-YWRkcyBzdXBwb3J0IGZvciB0aGUgY29uc3RhbnQgaGlnaC9sb3cgb3V0cHV0LCB3aGljaCBpcyBh
-IGZlYXR1cmUKPj4gd2hpY2ggSSB0aGluayBoYXMgYmVlbiBpbnRyb2R1Y2VkIG9uIHRoZSBHMTJB
-IFNvQy4gSSBzdWdnZXN0IGhhdmluZyBhCj4+IHNlcGFyYXRlIHBhdGNoIGZvciB0aGlzIGFuZCBh
-bHNvIGVuYWJsaW5nIGl0IG9uIHN1cHBvcnRlZCBTb0NzIChub3QKPj4ganVzdCB0aGUgUzQpLgo+
-IMKgwqDCoCBUaGUgcmVsZXZhbnQgY29kZSBoYXMgYmVlbiByZW1vdmVkIGluIHRoZSB2MiB2ZXJz
-aW9uLgo+PiBbLi4uXQo+Pj4gKyNkZWZpbmUgUFdNX0RJU0FCTEUgICAgICAgICAgICAwCj4+IEkg
-ZG9uJ3Qgc2VlIHRoaXMgYmVpbmcgdXNlZCBhbnl3aGVyZSBzbyBJIHRoaW5rIGl0IGNhbiBiZSBk
-cm9wcGVkCj4gwqDCoMKgIGNvZGUgaGFzIGJlZW4gcmVtb3ZlZCBpbiB2MiB2ZXJpc29uLgo+PiBb
-Li4uXQo+Pj4gKyAgICAgICAvKgo+Pj4gKyAgICAgICAgKiBkdXR5X2N5Y2xlIGVxdWFsIDAlIGFu
-ZCAxMDAlLGNvbnN0YW50IHNob3VsZCBiZSBlbmFibGVkLAo+Pj4gKyAgICAgICAgKiBoaWdoIGFu
-ZCBsb3cgY291bnQgd2lsbCBub3QgaW5jZWFzZSBvbmU7Cj4+IHR5cG86IGluY2Vhc2UgLT4gaW5j
-cmVhc2UKPiDCoMKgwqAgSXQgaGFzIGJlZW4gbW9kaWZpZWQgaW4gdjIgdmVyc2lvbi4KPj4gWy4u
-Ll0KPj4+ICsgICAgICAgaWYgKG1lc29uLT5kYXRhLT5leHRlcm5fY2xrKSB7Cj4+PiArICAgICAg
-ICAgICAgICAgc2V0X2NsayA9IGNsa19nZXRfcmF0ZShjaGFubmVsLT5jbGspOwo+Pj4gKyAgICAg
-ICAgICAgICAgIGlmIChzZXRfY2xrID09IDApCj4+PiArICAgICAgICAgICAgICAgICAgICAgICBk
-ZXZfZXJyKG1lc29uLT5jaGlwLmRldiwgImludmFsaWQgc291cmNlIGNsb2NrIGZyZXF1ZW5jeVxu
-Iik7Cj4+PiArICAgICAgICAgICAgICAgc2V0X2NsayAvPSAoY2hhbm5lbC0+cHJlX2RpdiArIDEp
-Owo+Pj4gKyAgICAgICAgICAgICAgIGVyciA9IGNsa19zZXRfcmF0ZShjaGFubmVsLT5jbGssIHNl
-dF9jbGspOwo+Pj4gKyAgICAgICAgICAgICAgIGlmIChlcnIpCj4+PiArICAgICAgICAgICAgICAg
-ICAgICAgICBkZXZfZXJyKG1lc29uLT5jaGlwLmRldiwgIiVzOiBlcnJvciBpbiBzZXR0aW5nIHB3
-bSByYXRlIVxuIiwgX19mdW5jX18pOwo+Pj4gKyAgICAgICB9Cj4+PiArCj4+PiAgICAgICAgICB2
-YWx1ZSA9IHJlYWRsKG1lc29uLT5iYXNlICsgUkVHX01JU0NfQUIpOwo+Pj4gICAgICAgICAgdmFs
-dWUgJj0gfihNSVNDX0NMS19ESVZfTUFTSyA8PCBjaGFubmVsX2RhdGEtPmNsa19kaXZfc2hpZnQp
-Owo+Pj4gICAgICAgICAgdmFsdWUgfD0gY2hhbm5lbC0+cHJlX2RpdiA8PCBjaGFubmVsX2RhdGEt
-PmNsa19kaXZfc2hpZnQ7Cj4+IFdoeSBkb2VzIHRoaXMgbmV3IGNvbnRyb2xsZXIgdmVyc2lvbiBy
-ZXF1aXJlIGNsa19zZXRfcmF0ZSB3aXRoIGEgcmF0ZQo+PiB0aGF0J3MgY2FsY3VsYXRlZCBiYXNl
-ZCBvbiB0aGUgcHJlLWRpdmlkZXIgYW5kIHRoZW4gYWxzbyBjb25maWd1cmluZwo+PiB0aGUgcHJl
-LWRpdmlkZXIgaW4gdGhlIE1JU0NfQUIgcmVnaXN0ZXI/Cj4+IFRoaXMgc2VlbXMgb2RkLCBjYW4n
-dCB3ZSB1c2Ugb25seSBvbmUgb2YgdGhlbSAoZWl0aGVyIGNsa19zZXRfcmF0ZSBvcgo+PiBzZXR0
-aW5nIE1JU0NfQUIpPwo+Pgo+PiBBbHNvIGlmIGNsa19zZXRfcmF0ZSBpcyB0aGUgd2F5IHRvIGdv
-IGhlcmUgSSBzdWdnZXN0IHJlZmFjdG9yaW5nIHRoZQo+PiBleGlzdGluZyBjb2RlIHNvIHRoZSBw
-cmUtZGl2aWRlciBpcyBhIGNsb2NrIGFzIHdlbGwgc28gd2UgY2FuIHVzZQo+PiBjbGtfc2V0X3Jh
-dGUgZm9yIGJvdGgsIHRoZSAib2xkIiBhbmQgIm5ldyIgSVAgdmVyc2lvbi4KPgo+IMKgVGhpcyBw
-YXJ0IG9mIHRoZSBjb2RlIHdhcyByZWZhY3RvcmVkIGluIHRoZSB2MiB2ZXJzaW9uLCB1c2luZyAK
-PiBjbGtfc2V0X3JhdGUgdG8KPgo+IMKgZGlmZmVyZW50aWF0ZSB0aGUgIm9sZCIgYW5kICJuZXci
-IElQIHZlcnNpb25zLgo+Cj4+IFsuLi5dCj4+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBtZXNvbl9w
-d21fZGF0YSBwd21fbWVzb25fZGF0YSA9IHsKPj4+ICsgICAgICAgLmV4dGVybl9jbGsgPSB0cnVl
-LAo+Pj4gICB9Owo+PiBbLi4uXQo+Pj4gK3N0YXRpYyBpbnQgbWVzb25fcHdtX3YyX2luaXRfY2hh
-bm5lbHMoc3RydWN0IG1lc29uX3B3bSAqbWVzb24pCj4+PiArewo+Pj4gKyAgICAgICBzdHJ1Y3Qg
-bWVzb25fcHdtX2NoYW5uZWwgKmNoYW5uZWxzID0gbWVzb24tPmNoYW5uZWxzOwo+Pj4gKyAgICAg
-ICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSBtZXNvbi0+Y2hpcC5kZXY7Cj4+PiArICAgICAgIHVuc2ln
-bmVkIGludCBpOwo+Pj4gKyAgICAgICBjaGFyIG5hbWVbMjU1XTsKPj4+ICsKPj4+ICsgICAgICAg
-Zm9yIChpID0gMDsgaSA8IChtZXNvbi0+Y2hpcC5ucHdtIC8gMik7IGkrKykgewo+Pj4gKyAgICAg
-ICAgICAgICAgIHNucHJpbnRmKG5hbWUsIHNpemVvZihuYW1lKSwgImNsa2luJXUiLCBpKTsKPj4+
-ICsgICAgICAgICAgICAgICAoY2hhbm5lbHMgKyBpKS0+Y2xrID0gZGV2bV9jbGtfZ2V0KGRldiwg
-bmFtZSk7Cj4+PiArICAgICAgICAgICAgICAgaWYgKElTX0VSUigoY2hhbm5lbHMgKyBpKS0+Y2xr
-KSkgewo+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgZGV2X2VycihtZXNvbi0+Y2hpcC5kZXYs
-ICJjYW4ndCBnZXQgZGV2aWNlIGNsb2NrXG4iKTsKPj4+ICsgICAgICAgICAgICAgICAgICAgICAg
-IHJldHVybiBQVFJfRVJSKChjaGFubmVscyArIGkpLT5jbGspOwo+Pj4gKyAgICAgICAgICAgICAg
-IH0KPj4+ICsgICAgICAgICAgICAgICAoY2hhbm5lbHMgKyBpICsgMiktPmNsayA9IChjaGFubmVs
-cyArIGkpLT5jbGs7Cj4+PiArICAgICAgIH0KPj4gSSB0aGluayB0aGlzIGlzIHdob2xlIGZ1bmN0
-aW9uIGlzIGJyb2tlbi4KPj4gVGhlIHZlbmRvciBkcml2ZXIgdXNlcyBmb3VyIGNoYW5uZWxzIHBl
-ciBQV00gY29udHJvbGxlciBvbiBuZXdlciBTb0NzLgo+PiBJbiB0aGUgbWFpbmxpbmUgZHJpdmVy
-IHdlIG9ubHkgc3VwcG9ydCB0d28gUFdNIGNoYW5uZWxzIHBlciBjb250cm9sbGVyLgo+Pgo+PiBO
-b3cgdGhlIHdob2xlIGxvb3Agc3RhcnRzIHdpdGggbnB3bSAvIDIgd2hpY2ggaXMgYWx3YXlzIDEg
-aW4gdGhlCj4+IG1haW5saW5lIGRyaXZlci4KPj4gVGhpcyBpcyB0aGUgZmlyc3QgcHJvYmxlbTog
-dGhpcyB3b3VsZCBuZXZlciBpbml0aWFsaXplIHRoZSBzZWNvbmQgUFdNLgo+PiBUaGUgc2Vjb25k
-IHByb2JsZW0gaXMgdGhhdCAiY2hhbm5lbHMgKyBpICsgMiIgd291bGQgYWNjZXNzIGNoYW5uZWxz
-WzAKPj4gKyAyXSB3aGljaCBpcyBvdXQgb2YgYm91bmRzIGZvciB0aGlzIGFycmF5ICh0aGF0IGFy
-cmF5IG9ubHkgaG9sZHMgdHdvCj4+IHZhbHVlcyBzbyBvbmx5IGluZGV4IDAgYW5kIDEgYXJlIHZh
-bGlkKS4uCj4KPiDCoFRoaXMgcGFydCBvZiB0aGUgY29kZSBoYXMgYmVlbiBmaXhlZCBpbiB0aGUg
-djIgdmVyc2lvbi4KPgo+PiBCZXN0IHJlZ2FyZHMsCj4+IE1hcnRpbgo+Pgo+PiAuCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
-aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
-LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi,
+
+On 13/01/2022 21:01, Fabio Estevam wrote:
+> Hi Biju,
+> 
+> On Thu, Jan 13, 2022 at 2:45 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>>
+>> Hi All,
+>>
+>> RZ/G2{H, M, N} SoC has dw_hdmi IP and it was working ok(colour) till the commit
+>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts callbacks").
+>>
+>> After this patch, the screen becomes greenish(may be it is setting it into YUV format??).
+>>
+>> By checking the code, previously it used to call get_input_fmt callback and set colour as RGB24.
+>>
+>> After this commit, it calls get_output_fmt_callbck and returns 3 outputformats(YUV16, YUV24 and RGB24)
+>> And get_input_fmt callback, I see the outputformat as YUV16 instead of RGB24.
+>>
+>> Not sure, I am the only one seeing this issue with dw_HDMI driver.
+
+This patch was introduced to maintain the bridge color format negotiation after using DRM_BRIDGE_ATTACH_NO_CONNECTOR,
+but it seems it behaves incorrectly if the first bridge doesn't implement the negotiation callbacks.
+
+Let me check the code to see how to fix that.
+
+> 
+> I have tested linux-next 20220112 on a imx6q-sabresd board, which shows:
+> 
+> dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.30a with HDCP
+> (DWC HDMI 3D TX PHY)
+> 
+> The colors are shown correctly here.
+> 
+
+The imx doesn't use DRM_BRIDGE_ATTACH_NO_CONNECTOR so the negotiation fails and use the RGB fallback input & output format.
+
+Anyway thanks for testing
+
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
