@@ -4,56 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC9B7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jan 2022 13:28:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECEFEC433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jan 2022 15:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
-	Subject:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WnogN7hLUeZYO3BD974d4yNHQ6ugNumMdaQsDre6tKQ=; b=0Mkd0n0tXujv3O
-	R3Z6UZokpxDICqN3PHD5gP1/GUYbNoThnwzmqalFJEejV1t1U/38ghpMBhBL48VhWW2kbhZMYpXYk
-	dLmGWSHVEeoJdpetUuyBdBL3njorOaON81kASPHYRhNQZbYgEdT762mxjTzfK9GoDxQO3BRQG7uHQ
-	WChneXUrh4Iewbdb1c8nyFV9TMyo6kmAeWJaAv4o5LicisVyV+l/MFwVYFg38y7YCwaatFXMK4G1q
-	vnnaQ408HJSxDK6ycT4PGu8lBk2Qylu6XgseyNHQgeJRNvt13l0d2i2H7USnP26vyVUDT5svU4d9Z
-	YE6vqwZezh8Tpw6Wgsjw==;
+	List-Owner; bh=bfhL1pFuiMxccd1NKhgxJuzRGhWSC/zPAMo6gBIGSb0=; b=0tMMcwVRn0lISi
+	SjFxVYQxtLmyy4DDRJwjHg21VUAUG7fK4m+qlifgO7I3kcyZ9Z2MTxz8oOZ7e1gdHpJ/lg81Rv9q+
+	rOJqI/bEANgXYBznTMaP/Lf/6FrPLoLYnQK6byjT4mSbOhn0vp1wIc00q7GDsH9louM6VeYW5I5Io
+	MehXei50AkK+kcaSAHpQsoOmxZefY4nC2ZXjQkVJ8JcyfrCSLWjYiZIfaVKOjYUvQcmKvDbk3L7/K
+	9JUIo6zKxTN7/AkHUmXu3smI+lQs/+6h2Cf2WhXxk3+hw2gAq9SUhl6hAxHzx2pSYxLeZbY8syAFH
+	d+vcMoyiiWbz7P4LiHaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n8j6F-00B7th-8q; Sat, 15 Jan 2022 13:28:07 +0000
-Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
+	id 1n8klT-00BCsu-8Y; Sat, 15 Jan 2022 15:14:47 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n8j6C-00B7si-9P
- for linux-amlogic@lists.infradead.org; Sat, 15 Jan 2022 13:28:06 +0000
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
- by mail.kmu-office.ch (Postfix) with ESMTPSA id BD8F25C2F4F;
- Sat, 15 Jan 2022 14:28:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
- t=1642253281;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=psCj3yYz2JzB8Myw+pQ9GhPT5gIxMQVgGkHm8xE4YQs=;
- b=mz+CybejpGgsAXbzhE+DZqNS0sMhJy/Z+Y5EY7YFHxpDMxn9j/g9gwR8ntwy+n6HpPppai
- uDURKDGACiD+bJNKid89O6bIkOk32DyF23yWSCjNCxalVOGYsLLB/eKRMdf18SbYMwfPan
- rIEiMsH6aFYyrPXzGs/jifyJ7aLZVKc=
+ id 1n8klP-00BCsX-BL
+ for linux-amlogic@lists.infradead.org; Sat, 15 Jan 2022 15:14:45 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id
+ q9-20020a7bce89000000b00349e697f2fbso12882504wmj.0
+ for <linux-amlogic@lists.infradead.org>; Sat, 15 Jan 2022 07:14:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=oQapXi5PzBJKM1NBMeogDPHhLlUsvU7UBCouDsr/qX8=;
+ b=G7cEzfisDpAO7oFb8xC67I8Gq9+zwh8GiJ7Vjtqv2rhTMTFIgc+yBLlJUUrnXTwAPv
+ 42gCLrd/sk8pnu1OOsIw6g/zdZEStGXVKTu3bZfVehmvzIO+/T5tr+TaNvWOJ0hA2X/Z
+ Oj9OXIRLHeB99zPmt7S12oR5FqYIqVVuo7s8zQyuTyIdK2n2Rc3Z4x6AOHMt6zTR3sDB
+ b9yvkAyNcGdbyuC8dtUwF1nnWDhllCBFy3WO/pTqboNE8MjEpd8kZmOC9WvvUCa7amMF
+ 27RhAtjVNkxsub6IRyf8jRR17kLPBZnMC/v4leQOwljPnKdS4ba9Jiy20MI3TZEgGS0t
+ f5Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=oQapXi5PzBJKM1NBMeogDPHhLlUsvU7UBCouDsr/qX8=;
+ b=VVvxskrWEa7/tXsAzUlbZy7A/2Z6i80hCrSOFev2MelO3u+crvbRGtLTWyCaoOchkU
+ 5lvGgdoUCJAjd24rxK1hVc0mO7stIWuF0PjuWeR7DgMGtgX2WNhputJZTdmf7rqwwjQN
+ ZR1OyN30+tIwqo9yyZiPuSDDrvUkvlmmtv6/S1kDNDKJmlimjeHDyppT3nVQApWpNBSm
+ UtdtT7SoXEmyTPwEJr2gACwTVSxVqOBElPb28B6oXRuzJA6OJF8oYfXILesRj92tzDu3
+ 3pv55WO6e1yPdJYnqIhToMywtdVg4VkSiawkPdVS81/hwxzP9+dsRES1T78g7VW2/ZxE
+ mU6Q==
+X-Gm-Message-State: AOAM533I7rm3JdBdhDzfVUstgUUTQIVnxQ6VseC2ofbFHZLdO4HQAcqC
+ e2w2/VkOiv+U8IWf0+svpgYVvQ==
+X-Google-Smtp-Source: ABdhPJxFc+TOdI3rmNguFA4s0R71joTvnMOnY/0pm/AtD6QgdjftDSnqTPsn8CVxGMaIAb5Ogx0gIA==
+X-Received: by 2002:a05:6000:1545:: with SMTP id
+ 5mr10639823wry.552.1642259681085; 
+ Sat, 15 Jan 2022 07:14:41 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id p2sm2148600wrs.36.2022.01.15.07.14.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 15 Jan 2022 07:14:40 -0800 (PST)
+References: <20220115093557.30498-1-alexander.stein@mailbox.org>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Alexander Stein <alexander.stein@mailbox.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
+ property
+Date: Sat, 15 Jan 2022 16:04:10 +0100
+In-reply-to: <20220115093557.30498-1-alexander.stein@mailbox.org>
+Message-ID: <1jilulav4u.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Date: Sat, 15 Jan 2022 14:28:01 +0100
-From: Stefan Agner <stefan@agner.ch>
-To: Alexander Stein <alexander.stein@mailbox.org>
-Cc: narmstrong@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org
-Subject: Re: (EXT) HDMI CEC on ODROID-N2+
-In-Reply-To: <8112d37eaed169735ca8b46e5d587210@agner.ch>
-References: <d2ef8936c54567c9c2652b3c53a82f68@agner.ch>
- <5560050.DvuYhMxLoT@kongar> <8112d37eaed169735ca8b46e5d587210@agner.ch>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <772e1613cd49ddac3941ae584e0e89c2@agner.ch>
-X-Sender: stefan@agner.ch
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220115_052804_665312_BC1658F7 
-X-CRM114-Status: GOOD (  22.51  )
+X-CRM114-CacheID: sfid-20220115_071443_483947_A856AE3D 
+X-CRM114-Status: GOOD (  14.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,98 +94,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alexander, Hi Neil,
 
-On 2022-01-15 11:52, Stefan Agner wrote:
-> Hi Alexander,
-> 
-> On 2022-01-15 11:02, Alexander Stein wrote:
->> Hi Stefan,
->>
->> Am Donnerstag, 13. Januar 2022, 15:36:38 CET schrieb Stefan Agner:
->>> Hi Neil,
->>>
->>> I am trying to use HDMI CEC on ODROID-N2+ using Linux 5.10.91. However,
->>> I was unsuccessful: As far as I can tell cec-client uses the right
->>> device (I disabled CONFIG_DRM_DW_HDMI_CEC since my kernel is still
->>> missing your patch "drm/meson: dw-hdmi: disable DW-HDMI CEC
->>> sub-driver"). But communication won't work, and dmesg prints timeout
->>> messages:
->>>
->>> [   68.831253] cec-meson_g12a_ao_cec: message ff 84 20 00 06 timed out
->>> [   71.134987] cec-meson_g12a_ao_cec: message ff 87 00 15 82 timed out
->>> [   73.438826] cec-meson_g12a_ao_cec: message f0 timed out
->>> [   75.742677] cec-meson_g12a_ao_cec: message f0 timed out
->>> [   78.046555] cec-meson_g12a_ao_cec: message f0 timed out
->>> [   80.350446] cec-meson_g12a_ao_cec: message f0 timed out
->>> [   82.654358] cec-meson_g12a_ao_cec: message 11 timed out
->>> [   84.958285] cec-meson_g12a_ao_cec: message 11 timed out
->>> [   87.262194] cec-meson_g12a_ao_cec: message 11 timed out
->>> [   89.566130] cec-meson_g12a_ao_cec: message 11 timed out
->>>
->>> I did a quick test with CoreELEC which uses the 4.9 downstream kernel,
->>> CEC seems to work there. So it does not seem to be my hardware setup.
->>>
->>> A quick test with the latest Linux 5.16 shows the same errors.
->>>
->>> Do you happen to have an idea? Do you know if HDMI CEC using upstream
->>> kernels worked at one point on that particular platform?
->>
->> I'm using Arch Linux on my ODROID-n2 (non-plus) and HDMI CEC works as
->> expected.
->> Currently I'm running a 5.15.13-1-aarch64-ARCH kernel. AFAICS the mentioned
->> patch is mainline since v5.14. I can see my TV without issues. I have to add
->> that not every cable is suitable for HDMI CEC, I have one where CEC does not
->> work (in general).
-> 
-> Hm, interesting, thanks for the datapoint!
-> 
-> I tried to reproduce your findings, unfortunately I am not successful in
-> booting mainline using Arch Linux ARM so far. It seems it comes with
-> downstream 4.9 kernel by default (where CEC seems to work in this case
-> too). I then installed linux-aarch64 and adjusted the device tree, but
-> it seems that the downstream U-Boot 2015.01-10 has some hardcoded
-> "rsvmem" command which fails. How are you booting v5.14?
+On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-FWIW, adjusted U-Boot load addresses fixed that issue:
-# Set load addresses
-setenv dtb_loadaddr "0x20000000"
-setenv loadaddr "0x1080000"
-setenv initrd_loadaddr "0x4080000"
+> Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
+> property. Add it.
 
-And I can confirm, HDMI CEC works with Arch Linux 5.15.13 kernel!
+Binginds *mandates* ?? the bindings you are adding mandates that, not the
+previous doc, nor the driver.
 
-> 
-> It is a bit surprising that 5.15.13 works for you but 5.16 didn't for
-> me. That makes me wonder, could it be bootloader dependent? Are you
-> using downstream U-Boot?
+Modifying drivers and DT to accomodate made-up bindings requirement is
+disturbing.
 
-That assumption turned out to be wrong: I used our mainline based U-Boot
-2021.10 instead of the Arch Linux ARM U-Boot, and HDMI CEC continued to
-work.
+The bindings should not require that because the driver does not, as it
+stands. The driver requires the arb reset to be provided, not the name.
+Please fix the bindings.
 
-I then moved to 5.15.13 as well to rule out any kernel changes. But
-still, in our configuration HDMI CEC did not work. I ended up diffing
-configuration, and noticed that we are using built-in CONFIG_CEC_CORE
-whereas Arch Linux uses it as a module. To build CONFIG_CEC_CORE as a
-module I had to change some other configuration from built-in to module,
-namely:
+>
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> This is essentially a preparation for YAML conversion to fix the
+> warnings.
+>
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 3f5254eeb47b..b14175e2f1d6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1333,6 +1333,7 @@ toddr_a: audio-controller@100 {
+>  				interrupts = <GIC_SPI 84 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
+>  				resets = <&arb AXG_ARB_TODDR_A>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <512>;
+>  				status = "disabled";
+>  			};
+> @@ -1345,6 +1346,7 @@ toddr_b: audio-controller@140 {
+>  				interrupts = <GIC_SPI 85 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
+>  				resets = <&arb AXG_ARB_TODDR_B>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <256>;
+>  				status = "disabled";
+>  			};
+> @@ -1357,6 +1359,7 @@ toddr_c: audio-controller@180 {
+>  				interrupts = <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
+>  				resets = <&arb AXG_ARB_TODDR_C>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <256>;
+>  				status = "disabled";
+>  			};
+> @@ -1369,6 +1372,7 @@ frddr_a: audio-controller@1c0 {
+>  				interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+>  				resets = <&arb AXG_ARB_FRDDR_A>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <512>;
+>  				status = "disabled";
+>  			};
+> @@ -1381,6 +1385,7 @@ frddr_b: audio-controller@200 {
+>  				interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
+>  				resets = <&arb AXG_ARB_FRDDR_B>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <256>;
+>  				status = "disabled";
+>  			};
+> @@ -1393,6 +1398,7 @@ frddr_c: audio-controller@240 {
+>  				interrupts = <GIC_SPI 90 IRQ_TYPE_EDGE_RISING>;
+>  				clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
+>  				resets = <&arb AXG_ARB_FRDDR_C>;
+> +				reset-names = "arb";
+>  				amlogic,fifo-depth = <256>;
+>  				status = "disabled";
+>  			};
 
-- CONFIG_CEC_CORE=m
-- CONFIG_DRM_DW_HDMI=m
-- CONFIG_DRM_MESON=m
-- CONFIG_DRM_MESON_DW_HDMI=m
-
-With that change, HDMI CEC started to work in my builds too!
-
-With that change, it also works on Linux 5.10.
-
-I guess there is some ordering issue or something which makes it fail
-when those drivers are built-in? Note that I did not change
-CONFIG_CEC_MESON_G12A_AO, that driver was already a module before.
-
---
-Stefan
 
 _______________________________________________
 linux-amlogic mailing list
