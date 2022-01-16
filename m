@@ -4,57 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3948AC433F5
-	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jan 2022 10:50:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10DCCC433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jan 2022 17:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
-	Subject:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vlU4CLd3T2GrNg40O64qmn10fbrsUo0YfeafihUqE0c=; b=mhgcrH7Py9jZ1T
-	dIBHaJ3XtobTv/nhphg6/bkbuOabBDtFN4ExPJmlmGFvJC0bkbK14OZ+TmREO7GHyVWHKpqVM6NGp
-	XReBv15hHUQbEFSD0noZHkfPdnFrLGH8JDn4OrvOaLVzRSVeB+501qbMJqpPbdJ9QIiEHsHi93/Pr
-	cTCWNkyFitt9br6q1WBYq7gbiaaHQfcc79NS0F//oT0/Ej4M4GD/seLHXL+5+75zdpKnhMBQguVRg
-	GDqarq06fNKUO8wVCrZ3o4xVtQ7lq9DRngFV7VNnZ9LF3s8T9vnTvjRRqg23R8j5BYl11DK9bmPmi
-	XK8mPO45+sR5AD/VsgNw==;
+	List-Owner; bh=f7QA26h8AcRnWlVfIWzy83Q459ODimEAdovwU4OyoZE=; b=OY/cXqF7jUJggC
+	D3/NyYK+4UJZhNkpjauTAtq6vNxNtI7AE6qzNXPJQL+wUeF6FQe+KLjR1GL0su5pUpuG7YxZQ7QUI
+	/kZhFz2cA4B3WrCW67aL4wSML73GP3dlfE2xfo20XbRu3Pyb4VuLL9jGn7jtpbuODNw42DL5FTh2Y
+	Qz5Cp9wQCbsDT8/PiDAMXmiaiVGqdIx3V1yjb3l0vzN1/FCgaMZHnt4mjnVYoHVaTmFhz96fQ4QOV
+	W2rSWMk22sSp5YRSYEA5HgAdqU6Ff6Z6QK3hNIr/enI+/dhyLYmFNwMOp56TCB31qmTt2EQiu/z7C
+	QeLUMRQpwgxt+sNl0lcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9376-00CJ2u-3w; Sun, 16 Jan 2022 10:50:20 +0000
-Received: from mail.kmu-office.ch ([2a02:418:6a02::a2])
+	id 1n99Ns-00ClXO-6D; Sun, 16 Jan 2022 17:32:04 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9373-00CJ2P-8c
- for linux-amlogic@lists.infradead.org; Sun, 16 Jan 2022 10:50:19 +0000
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
- by mail.kmu-office.ch (Postfix) with ESMTPSA id EC99C5C01DD;
- Sun, 16 Jan 2022 11:50:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
- t=1642330215;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=23Ejah2uWRbfv6CyA6t6qcXAwX7LkLD/Ma6ASvyQNIE=;
- b=kH85Q7Do0DlM5rRsA7MC/mb2u6MH8voVfyEkO9ootQb6cpezuGkQLTnFhSgWiCP05G485d
- Hp6mKq5PeH91xlP3O1Ekzug5pJje8XG6gCtGw46Mr9BMRW/kiqg2QHrujROj5aUgyVpJD4
- 2ofm1SFSXiVplzZeC5GY7bl6rSg/yZ8=
+ id 1n99No-00ClWP-5A
+ for linux-amlogic@lists.infradead.org; Sun, 16 Jan 2022 17:32:02 +0000
+Received: by mail-wm1-x330.google.com with SMTP id
+ c126-20020a1c9a84000000b00346f9ebee43so17355525wme.4
+ for <linux-amlogic@lists.infradead.org>; Sun, 16 Jan 2022 09:31:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
+ b=cG5uL1yvhdYotgs9DFrlN6VpYNMt0a8uWjvm7602DsilgVBYK7TwqIbHT5OBDsD0m/
+ lQNozJdANUu+ZQ8hvN/iOY2+ShmwLmOD8uUnBNsYkimUAy/8yyz0TJ4ophKSOasPr5YL
+ uf2tiwYKTT1k9knb2hdj2WYKhgaTe2d42Ixy3f9BcWt+9KOG/guz1UxmbBPPaFWIb71F
+ wG4ybqM0mKm7h+DQcMc0lvB1CGfTL8NvFCBrFmBbKiVV+/yNMMpVc15F11LdjfN6dRyU
+ 6fXVz4DA4T4lufOJra8SqsNhuiqqcLupfIt/jANsGdXthnAEs6stvKpOQ8qz363hjM9h
+ zK1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
+ b=El7GX+X7pF0ZmdHvTkx37UjlC89jpiAZTQ/r6PF933MU2O7Whh/2FzMSWZgnmGzaEA
+ YpV9+u+k2qjN6zXGKInwukf3KEnx5zONzhngz+5QgINqZ7p0dYBTIFLRyh9ZUqZNlMuT
+ bASyato//4TcsN3wZbSUcZXdFXCbxQXmbJZjNeSdDNIXyEOra5mcRSwrU3s64wKUNDv2
+ 8FAwM/SGCQT5VYHxVBUSGqVc5r0apEWSFMXPHdOlFRBITu9dHWzaKg2AFjmmhFvHPBrv
+ 7SHmCncKid+hCC2WiIu2telCQOI4MsOgA5CdW/AloduJmsdudyptJVJSkGT9oRqo9YKg
+ LMNw==
+X-Gm-Message-State: AOAM533T597HfvEaQYE89T3cF+QLa+RAwK13R4QbtCTveEBb1Mgp8cAq
+ w9vk3kMFzhHintOT8kUiEg+cDA==
+X-Google-Smtp-Source: ABdhPJxI5CihhtOe66ecJE5IsAwQgw+NnbF/1kxAtB1F0kEcJYpVyEGhlgVMeyPjuxcEHoUssDfGQw==
+X-Received: by 2002:a5d:6251:: with SMTP id m17mr8977296wrv.49.1642354315994; 
+ Sun, 16 Jan 2022 09:31:55 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id n14sm13728953wrf.107.2022.01.16.09.31.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 16 Jan 2022 09:31:55 -0800 (PST)
+References: <20220115093557.30498-1-alexander.stein@mailbox.org>
+ <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Alexander Stein <alexander.stein@mailbox.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
+ property
+Date: Sun, 16 Jan 2022 18:30:32 +0100
+In-reply-to: <4732096.GXAFRqVoOG@kongar>
+Message-ID: <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Date: Sun, 16 Jan 2022 11:50:14 +0100
-From: Stefan Agner <stefan@agner.ch>
-To: Alexander Stein <alexander.stein@mailbox.org>
-Cc: narmstrong@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org
-Subject: Re: (EXT) HDMI CEC on ODROID-N2+
-In-Reply-To: <2219762.iZASKD2KPV@kongar>
-References: <d2ef8936c54567c9c2652b3c53a82f68@agner.ch>
- <8112d37eaed169735ca8b46e5d587210@agner.ch>
- <772e1613cd49ddac3941ae584e0e89c2@agner.ch> <2219762.iZASKD2KPV@kongar>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <3ed4754d39454354c6ac79ea2256c969@agner.ch>
-X-Sender: stefan@agner.ch
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220116_025017_661341_6095268E 
-X-CRM114-Status: GOOD (  22.24  )
+X-CRM114-CacheID: sfid-20220116_093200_229768_94C8521E 
+X-CRM114-Status: GOOD (  18.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,87 +94,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alexander,
 
-On 2022-01-16 11:14, Alexander Stein wrote:
-> Hi Stefan,
-> 
-> Am Samstag, 15. Januar 2022, 14:28:01 CET schrieb Stefan Agner:
->> That assumption turned out to be wrong: I used our mainline based U-Boot
->> 2021.10 instead of the Arch Linux ARM U-Boot, and HDMI CEC continued to
->> work.
-> 
-> Does the mainstream U-Boot work out of the box? Or does it require some 
-> additional configuration?
-> 
+On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-Yes mainline U-Boot works out of the box. Building it is somewhat
-involved since it requires extra firmwares (there are build instructions
-in the source tree in board/amlogic/w400/README.odroid-n2).
+> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
+>> 
+>> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
+> wrote:
+>> 
+>> > Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
+>> > property. Add it.
+>> 
+>> Binginds *mandates* ?? the bindings you are adding mandates that, not the
+>> previous doc, nor the driver.
+>
+> Well, under required properties 'reset-names' is listed as well as 'arb' is 
+> required, only 'rst' is optional.
 
-You need to add a boot script to your boot partition. I used the script
-part of the uboot-odroid-n2-mainline package as inspiration [1]. It
-needs some adjustments as it seems to try to boot from the root file
-system directly (and my setup used the FAT/ext4 setup still).
+I think there is a misunderstanding then.
+The arb reset is required, the "reset-names" is not - as long as there
+is single reset.
 
-We carry a single patch which improved reliability booting from eMMC,
-see [2].
-
-
->> I then moved to 5.15.13 as well to rule out any kernel changes. But
->> still, in our configuration HDMI CEC did not work. I ended up diffing
->> configuration, and noticed that we are using built-in CONFIG_CEC_CORE
->> whereas Arch Linux uses it as a module. To build CONFIG_CEC_CORE as a
->> module I had to change some other configuration from built-in to module,
->> namely:
->>
->> - CONFIG_CEC_CORE=m
->> - CONFIG_DRM_DW_HDMI=m
->> - CONFIG_DRM_MESON=m
->> - CONFIG_DRM_MESON_DW_HDMI=m
->>
->> With that change, HDMI CEC started to work in my builds too!
->>
->> With that change, it also works on Linux 5.10.
->>
->> I guess there is some ordering issue or something which makes it fail
->> when those drivers are built-in? Note that I did not change
->> CONFIG_CEC_MESON_G12A_AO, that driver was already a module before.
-> 
-> You need all 4 options above to be modules? Or is it maybe enough to set 
-> CONFIG_DRM_DW_HDMI_CEC=m? This should make CONFIG_CEC_CORE=m as well, while 
-> the other modules are built-in.
-
-In our builds I disabled CONFIG_DRM_DW_HDMI_CEC entirely actually.
-
-It seems that CONFIG_DRM_DW_HDMI is tied to CEC_CORE through this
-dependency:
-
-config DRM_DW_HDMI
-...
-        select CEC_CORE if CEC_NOTIFIER
-
-> I suspect at some point a -EPROBE_DEFER is missing.
-> 
-> Just FYI: Arch Linux aarch64 kernel config currently lacks some drivers for 
-> HDMI audio. See [1].
-
-Thanks for the link, just checked, it seems our kernel configuration
-covers those.
-
---
-Stefan
-
-> 
+> So when creating the .yaml accordingly this leads to warnings this patch is 
+> about to fix.
+>
+>> Modifying drivers and DT to accomodate made-up bindings requirement is
+>> disturbing.
+>> 
+>> The bindings should not require that because the driver does not, as it
+>> stands. The driver requires the arb reset to be provided, not the name.
+>> Please fix the bindings.
+>
+> Nothing is made up. When creating the .yaml file I took the .txt documentation 
+> for granted. How should I know the bindings documentation is apparently wrong?
+>
+> When using your older bindings conversion [1] I'm fine with dropping this one.
+>
 > Best regards,
 > Alexander
-> 
-> [1] https://github.com/archlinuxarm/PKGBUILDs/pull/1864
+>
+> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
+> series=246453&state=%2A&archive=both
 
-[1]
-https://github.com/archlinuxarm/PKGBUILDs/blob/master/alarm/uboot-odroid-c2-mainline/boot.txt
-[2]
-https://github.com/home-assistant/operating-system/blob/rel-7/buildroot-external/board/hardkernel/patches/uboot/0001-HACK-mmc-meson-gx-limit-to-24MHz.patch
 
 _______________________________________________
 linux-amlogic mailing list
