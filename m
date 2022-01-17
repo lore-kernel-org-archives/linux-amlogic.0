@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ABCDC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 13:53:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59208C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 14:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,56 +13,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=ovON5ULRzTBnXmcVUhfx42CcPC+NlDfGjStEQtuerpY=; b=bjF3BKqxH02WtWGADdYZRm6HWt
-	5P2nmc4ZhFC8se/XeMBru9xY8kqlYGI1RgV4fY6sfSREccYE5bEtNfsmekPBCwLC7tqFhFY3hqSgB
-	Y21iIdYYYqKWCXrWCB4lUzEj6ZPF0Fy1/m75a4+QJj24cjtDSN9XdlMdgewcROuUCeOdwuqOv294t
-	CpokppsMEUvrO7DZ255PF+EPggDvgjdWbYsKGSzLurLVlbzEz4PnIfJCetM0xfKtgHzI1e1nTCBrF
-	fawbKBr3BExAlf3dg49uZQg4arEnRja3t9jjUeP/y309LeJUoBUI/Ix2WMVpa0QAxqDHilkAZjejr
-	nU1XoP5w==;
+	bh=qrlfOqTJD7KcX0EdiRk6aqwkx4bt33QnzK2oDybnfOI=; b=CnwgLpAe1nUv6uD1RVHD0kJOGD
+	oupHi50cs12S44rfNpkNkRTIeNEvxLzRaO4aRX6PnPRKLuYcAI54pAEOtCk3DO5bmmb5nIN8QgeV4
+	hhk/VIx35a+GHLLhl6GxdTjezdojdxtC8C6mLRW6kikbgPFQKFXTBwUONs+eLh6TgQQ5GD3iGZogr
+	+ZHM0mgi2tth+ufzyIvp5uAtRIVcIXMqNRWADYCZJmkhliraipgKp8ybRl4E0w3fKR6WlYNQohhEE
+	M3lMIeYaxyprpvKwR2PNmGLsBFYiIvEgfc8/TNc75uMeR8rnFLgYCxceMBqHe1h8u8gGY0ue40AqE
+	yAxdFxnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9SSH-00F67E-FO; Mon, 17 Jan 2022 13:53:53 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1n9Sfn-00F89r-UH; Mon, 17 Jan 2022 14:07:51 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9SSE-00F64x-6F
- for linux-amlogic@lists.infradead.org; Mon, 17 Jan 2022 13:53:52 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id
- d187-20020a1c1dc4000000b003474b4b7ebcso22861512wmd.5
- for <linux-amlogic@lists.infradead.org>; Mon, 17 Jan 2022 05:53:50 -0800 (PST)
+ id 1n9Sfk-00F88m-J1
+ for linux-amlogic@lists.infradead.org; Mon, 17 Jan 2022 14:07:50 +0000
+Received: by mail-wm1-x336.google.com with SMTP id v123so20642270wme.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 17 Jan 2022 06:07:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:cc:references:from:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=8RdMF+9/fQ5hZWwPSmZWGoBB0YBFZiij5xYHusFAWUE=;
- b=WXGfVzJXHANPp62G9z6MJ44suALxf5JGlRAuyzQbAXLtJs3UmaylF2l6R5iySSWMZ7
- PD4qMG1ctpflk3KYwGB7XYaYG/WCLPK09Dk+t3mmdW8gYsXSOhZKoIQTTcwOakE1N1U8
- xMQP5PJUuerXuOgzguNStFPc1zv+5aVq87nt+UGcL8PYrIwjm4nbaNcQzD3joDqzy3Ae
- bev8RrPtsxXO4J4gRDE/8uoNmyJC3IVwGmxZXSefivw+GyX2SAufu/OJX/Mu7Jutuc0k
- t1k5M2phLaXcFeCJclIb7RwJMyB9pD5sE5OayjsSw+/gm1INIQuMZ9sxVbpLBABOi5HF
- kbmQ==
+ bh=roHVGOW9LS4xw5VwWVB4J43flzmTf4uk7sQSSfGZIHg=;
+ b=C2l5IHhQhIYVIfT2xnMr7nGiyaB0QWTSdpXoXYd1C9CO8xQlwVmHDbkPAip11iz5lw
+ 7OCBG4JSwrtkaNZUXqC0GdvGcZoAyF7UvDnSdFZ3uzOSDspRO3U4hfsLzjmmLTYKYwxE
+ x+EjBaqXA6PkF82TiHhbncTYjDIHJpW7Gngquonn/mPUN43j6tUFi5W11HFZR/6ZV8ZD
+ u7urgTMwTyQtVsM6bhMueGxPZTaFccABkiz73lPcYH5kZba2/tvoET8s08Mz/9RXRWjF
+ qcoY3xqgqFG8q+gJgm1Divs5dLB574QsuicdLeemU8fejDAQYr0Osnghg3Mfu6sFcriV
+ 1I/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=8RdMF+9/fQ5hZWwPSmZWGoBB0YBFZiij5xYHusFAWUE=;
- b=6jopuplEMa3GJp8s0LidRPTGkYX8q4awAca5rzmftM2etsqKc+1fKrliXa/ULufMM7
- nq2FSELwq4EyC/0os30qm77CaWaOzSJon4bZolHLfUxi83Vj9PuftVPsKpD7x1r4ipUI
- FRbRFplu3FYjJKvU6p+9jKclJFnc93k0u/ZLfIQcfO1JwgoQGnUJIC0Hewowc7Vxp53t
- FKZoYGAoL88T7Dt7TGVhSWf1uOqlrcNo98A3VJVwxptl3tJjE7+henUiATFGv5ftYVkT
- x1+LxkFgbSBnnQAANzv/D6o+MqHUK7cVlSHVvPKo8bKyyM9SuR4ArA47HNvmyaB4UKo5
- 1r/g==
-X-Gm-Message-State: AOAM532CR7/bpjCgFHSoGEtQ5Aokv2fQ8zYjpu01FH9wN5i2BUvY+HkU
- fY3RDWcCiUBH9Gm45PMdkLdJ+Q==
-X-Google-Smtp-Source: ABdhPJzEbMiheUpxSC17ar9zBj5SFD/A1puYd3hPnPEf39wDiSbNK40nyEDUamWRKB5zXDFvmlECtQ==
-X-Received: by 2002:adf:ec92:: with SMTP id z18mr13983011wrn.207.1642427628718; 
- Mon, 17 Jan 2022 05:53:48 -0800 (PST)
+ bh=roHVGOW9LS4xw5VwWVB4J43flzmTf4uk7sQSSfGZIHg=;
+ b=qhywud3J1RrGIMtycjO8xQ6RSV3C4kBaeepQgKTjo4BlFb1LVXweFA21QeTmD8wkwn
+ gU5uZeYU/havKbwR79cKGlmJKydwHEdiMrgTlqSrd2d2Z57dz5W6WKWvlpYdd8m9GU3B
+ kH1WLPtd1BIhOOPm8DdnxhA2FBtiPMV1EoTLdZVm7WAayMjDsI6BS/msCo2q7u6OWhmT
+ d7/92MJPN4gKlQONfWufADJSofpRQMmJ2BuzOpvlzTB/ViKEyuriEff/+pBLxHrRJWY2
+ ApLSj/ibqSILbRrhu3vZZGDCj1CZAMIPm6gOdmiasmTo9EqhVo52CKW2GDDW3wScyWG3
+ WkWw==
+X-Gm-Message-State: AOAM533HaywI//3ZvFCc0V6KakjgAI3lTgDYGxM7AfOyAPNUG3Jq03e8
+ g9aPmayzvz17CotWsAYWQ6zRQw==
+X-Google-Smtp-Source: ABdhPJyyNEqXAM/wCh4fH2lhaS6KFq89p3ZJ0qvxvaA1mkzRq2/irbC2SFkDubnPdY1WTfWmZ2HELw==
+X-Received: by 2002:a05:6000:1885:: with SMTP id
+ a5mr10222325wri.591.1642428467182; 
+ Mon, 17 Jan 2022 06:07:47 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:c004:9fe1:fbda:2d0c?
  ([2001:861:44c0:66c0:c004:9fe1:fbda:2d0c])
- by smtp.gmail.com with ESMTPSA id 1sm3218879wry.81.2022.01.17.05.53.47
+ by smtp.gmail.com with ESMTPSA id d22sm13660475wrb.83.2022.01.17.06.07.45
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 17 Jan 2022 05:53:48 -0800 (PST)
+ Mon, 17 Jan 2022 06:07:46 -0800 (PST)
 Subject: Re: dw_hdmi is showing wrong colour after commit
  7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
  callbacks")
@@ -81,8 +81,6 @@ Cc: "daniel@ffwll.ch" <daniel@ffwll.ch>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
 References: <OS0PR01MB59221ED76B74231F5836D5FB86539@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAOMZO5DJiCb5bJN5_nxnYa-FsK-u7QtFghWNzs_-udE42XPDeA@mail.gmail.com>
- <502f3ec4-fea4-8e14-c7a9-39418fc05d6d@baylibre.com>
  <OS0PR01MB592224EC8F50F41B7FF1DEE286549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
  <19dd6013-8a31-b2ed-29d5-93fc44193ce4@baylibre.com>
  <OS0PR01MB5922F442759BE6F228EE0B4486549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
@@ -91,18 +89,20 @@ References: <OS0PR01MB59221ED76B74231F5836D5FB86539@OS0PR01MB5922.jpnprd01.prod.
  <ebaff694-a2d7-7eb8-5850-980e9d4e1e68@baylibre.com>
  <80fdc5a0-ddb8-5a0f-eb8c-ef7988ced638@baylibre.com>
  <164241711700.10801.9011781958267060147@Monstersaurus>
+ <4f214ea2-5f9f-1217-6e65-f92e434ed826@baylibre.com>
+ <164242831905.10801.10615379536917395435@Monstersaurus>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <4f214ea2-5f9f-1217-6e65-f92e434ed826@baylibre.com>
-Date: Mon, 17 Jan 2022 14:53:47 +0100
+Message-ID: <92f37b42-23db-4aab-5262-911d07b6301f@baylibre.com>
+Date: Mon, 17 Jan 2022 15:07:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <164241711700.10801.9011781958267060147@Monstersaurus>
+In-Reply-To: <164242831905.10801.10615379536917395435@Monstersaurus>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_055350_352324_0C7FCFB0 
-X-CRM114-Status: GOOD (  29.45  )
+X-CRM114-CacheID: sfid-20220117_060748_673511_4A04741A 
+X-CRM114-Status: GOOD (  22.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,289 +119,108 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/01/2022 11:58, Kieran Bingham wrote:
-> Hi Neil,
+On 17/01/2022 15:05, Kieran Bingham wrote:
+> Quoting Neil Armstrong (2022-01-17 13:53:47)
+>> On 17/01/2022 11:58, Kieran Bingham wrote:
+>>> Hi Neil,
 > 
-> Quoting Neil Armstrong (2022-01-17 10:08:38)
->> Hi again,
->>
->> On 14/01/2022 15:40, Neil Armstrong wrote:
->>> Hi,
+> <big snips to clear up contexts>
+> 
+>>> This fixes the issue for me here on an H3 Salvator-XS.
 >>>
->>> On 14/01/2022 15:23, Biju Das wrote:
+>>> Could you add...
+>>>
+>>> Bisected-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>>> Tested-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>>>
+>>> alongside Biju's Reported-by: tag when posting as a fix please?
+>>
+>>
+>> Which patch did you test ?
+> 
+> Ah, yes that's not clear is it - sorry! I replied in the wrong place on
+> the thread when I went back to the mail ... see below...
+> 
+>>>> I'm not happy with this version since it's merely a hack which makes it work.
 >>>>
+>>>> Can you test the following change instead, it's correctly handles your situation in a generic manner.
 >>>>
->>>>> -----Original Message-----
->>>>> From: Neil Armstrong <narmstrong@baylibre.com>
->>>>> Sent: 14 January 2022 13:56
->>>>> To: Biju Das <biju.das.jz@bp.renesas.com>; Fabio Estevam
->>>>> <festevam@gmail.com>
->>>>> Cc: daniel@ffwll.ch; Laurent.pinchart@ideasonboard.com;
->>>>> robert.foss@linaro.org; jonas@kwiboo.se; jernej.skrabec@gmail.com;
->>>>> martin.blumenstingl@googlemail.com; linux-amlogic@lists.infradead.org;
->>>>> linux-arm-kernel@lists.infradead.org; dri-devel@lists.freedesktop.org;
->>>>> linux-kernel@vger.kernel.org; linux-renesas-soc@vger.kernel.org
->>>>> Subject: Re: dw_hdmi is showing wrong colour after commit
->>>>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
->>>>> callbacks")
->>>>>
->>>>> Hi,
->>>>>
->>>>> On 14/01/2022 12:08, Biju Das wrote:
->>>>>> Hi Neil,
->>>>>>
->>>>>>> Subject: Re: dw_hdmi is showing wrong colour after commit
->>>>>>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
->>>>>>> callbacks")
->>>>>>>
->>>>>>> On 14/01/2022 09:29, Biju Das wrote:
->>>>>>>> Hi Neil,
->>>>>>>>
->>>>>>>> + renesas-soc
->>>>>>>>
->>>>>>>>> Subject: Re: dw_hdmi is showing wrong colour after commit
->>>>>>>>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus fmts
->>>>>>>>> callbacks")
->>>>>>>>>
->>>>>>>>> Hi,
->>>>>>>>>
->>>>>>>>> On 13/01/2022 21:01, Fabio Estevam wrote:
->>>>>>>>>> Hi Biju,
->>>>>>>>>>
->>>>>>>>>> On Thu, Jan 13, 2022 at 2:45 PM Biju Das
->>>>>>>>>> <biju.das.jz@bp.renesas.com>
->>>>>>>>> wrote:
->>>>>>>>>>>
->>>>>>>>>>> Hi All,
->>>>>>>>>>>
->>>>>>>>>>> RZ/G2{H, M, N} SoC has dw_hdmi IP and it was working ok(colour)
->>>>>>>>>>> till the commit
->>>>>>>>>>> 7cd70656d1285b79("drm/bridge: display-connector: implement bus
->>>>>>>>>>> fmts
->>>>>>>>> callbacks").
->>>>>>>>>>>
->>>>>>>>>>> After this patch, the screen becomes greenish(may be it is
->>>>>>>>>>> setting it
->>>>>>>>> into YUV format??).
->>>>>>>>>>>
->>>>>>>>>>> By checking the code, previously it used to call get_input_fmt
->>>>>>>>>>> callback
->>>>>>>>> and set colour as RGB24.
->>>>>>>>>>>
->>>>>>>>>>> After this commit, it calls get_output_fmt_callbck and returns 3
->>>>>>>>>>> outputformats(YUV16, YUV24 and RGB24) And get_input_fmt callback,
->>>>>>>>>>> I see
->>>>>>>>> the outputformat as YUV16 instead of RGB24.
->>>>>>>>>>>
->>>>>>>>>>> Not sure, I am the only one seeing this issue with dw_HDMI driver.
->>>>>>>>>
->>>>>>>>> This patch was introduced to maintain the bridge color format
->>>>>>>>> negotiation after using DRM_BRIDGE_ATTACH_NO_CONNECTOR, but it
->>>>>>>>> seems it behaves incorrectly if the first bridge doesn't implement
->>>>>>>>> the negotiation callbacks.
->>>>>>>>>
->>>>>>>>> Let me check the code to see how to fix that.
->>>>>>>>
->>>>>>>> Thanks for the information, I am happy to test the patch/fix.
->>>>>>>>
->>>>>>>> Cheers,
->>>>>>>> Biju
->>>>>>>>
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> I have tested linux-next 20220112 on a imx6q-sabresd board, which
->>>>>>> shows:
->>>>>>>>>>
->>>>>>>>>> dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.30a with
->>>>>>>>>> HDCP (DWC HDMI 3D TX PHY)
->>>>>>>>>>
->>>>>>>>>> The colors are shown correctly here.
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> The imx doesn't use DRM_BRIDGE_ATTACH_NO_CONNECTOR so the
->>>>>>>>> negotiation fails and use the RGB fallback input & output format.
->>>>>>>>>
->>>>>>>>> Anyway thanks for testing
->>>>>>>>>
->>>>>>>>> Neil
->>>>>>>
->>>>>>> Can you test :
->>>>>>>
->>>>>>> ==><===============================
->>>>>>> diff --git a/drivers/gpu/drm/drm_bridge.c
->>>>>>> b/drivers/gpu/drm/drm_bridge.c index c96847fc0ebc..7019acd37716
->>>>>>> 100644
->>>>>>> --- a/drivers/gpu/drm/drm_bridge.c
->>>>>>> +++ b/drivers/gpu/drm/drm_bridge.c
->>>>>>> @@ -955,7 +955,14 @@ drm_atomic_bridge_chain_select_bus_fmts(struct
->>>>>>> drm_bridge *bridge,
->>>>>>>         last_bridge_state =
->>>>>>> drm_atomic_get_new_bridge_state(crtc_state-
->>>>>>>> state,
->>>>>>>
->>>>>>> last_bridge);
->>>>>>>
->>>>>>> -       if (last_bridge->funcs->atomic_get_output_bus_fmts) {
->>>>>>> +       /*
->>>>>>> +        * Only negociate with real values if both end of the bridge
->>>>> chain
->>>>>>> +        * support negociation callbacks, otherwise you can end in a
->>>>>>> situation
->>>>>>> +        * where the selected output format doesn't match with the
->>>>>>> + first
->>>>>>> bridge
->>>>>>> +        * output format.
->>>>>>> +        */
->>>>>>> +       if (bridge->funcs->atomic_get_input_bus_fmts &&
->>>>>>> +           last_bridge->funcs->atomic_get_output_bus_fmts) {
->>>>>>>                 const struct drm_bridge_funcs *funcs =
->>>>>>> last_bridge->funcs;
->>>>>>>
->>>>>>>                 /*
->>>>>>> @@ -980,7 +987,12 @@ drm_atomic_bridge_chain_select_bus_fmts(struct
->>>>>>> drm_bridge *bridge,
->>>>>>>                 if (!out_bus_fmts)
->>>>>>>                         return -ENOMEM;
->>>>>>>
->>>>>>> -               if (conn->display_info.num_bus_formats &&
->>>>>>> +               /*
->>>>>>> +                * If first bridge doesn't support negociation, use
->>>>>>> MEDIA_BUS_FMT_FIXED
->>>>>>> +                * as a safe value for the whole bridge chain
->>>>>>> +                */
->>>>>>> +               if (bridge->funcs->atomic_get_input_bus_fmts &&
->>>>>>> +                   conn->display_info.num_bus_formats &&
->>>>>>>                     conn->display_info.bus_formats)
->>>>>>>                         out_bus_fmts[0] = conn-
->>>>>>>> display_info.bus_formats[0];
->>>>>>>                 else
->>>>>>> ==><===============================
->>>>>>>
->>>>>>> This should exclude your situation where the first bridge doesn't
->>>>>>> support negociation.
+>>>> ========================><=============================
+>>>> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>>>> index 54d8fdad395f..9f2e1cac0ae2 100644
+>>>> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>>>> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>>>> @@ -2551,8 +2551,9 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+>>>>         if (!output_fmts)
+>>>>                 return NULL;
+>>>>
+>>>> -       /* If dw-hdmi is the only bridge, avoid negociating with ourselves */
+>>>> -       if (list_is_singular(&bridge->encoder->bridge_chain)) {
+>>>> +       /* If dw-hdmi is the first or only bridge, avoid negociating with ourselves */
+>>>> +       if (list_is_singular(&bridge->encoder->bridge_chain) ||
+>>>> +           list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain)) {
+>>>>                 *num_output_fmts = 1;
+>>>>                 output_fmts[0] = MEDIA_BUS_FMT_FIXED;
+>>>>
+>>>> @@ -2673,6 +2674,10 @@ static u32 *dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>>>>         if (!input_fmts)
+>>>>                 return NULL;
+>>>>
+>>>> +       /* If dw-hdmi is the first bridge fall-back to safe output format */
+>>>> +       if (list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain))
+>>>> +               output_fmt = MEDIA_BUS_FMT_FIXED;
+>>>> +
+>>>>         switch (output_fmt) {
+>>>>         /* If MEDIA_BUS_FMT_FIXED is tested, return default bus format */
+>>>>         case MEDIA_BUS_FMT_FIXED:
+>>>> ========================><=============================
 > 
-> This fixes the issue for me here on an H3 Salvator-XS.
+> Sorry, I replied in the wrong part of the thread.
 > 
-> Could you add...
+> Here's the direct diff on my local tree:
 > 
-> Bisected-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> Tested-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 > 
-> alongside Biju's Reported-by: tag when posting as a fix please?
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 54d8fdad395f..cac9a87949f1 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -2551,8 +2551,10 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+>         if (!output_fmts)
+>                 return NULL;
+>  
+> -       /* If dw-hdmi is the only bridge, avoid negociating with ourselves */
+> -       if (list_is_singular(&bridge->encoder->bridge_chain)) {
+> +       /* If dw-hdmi is the first or only bridge, avoid negociating with ourselves */
+> +       if (list_is_singular(&bridge->encoder->bridge_chain) ||
+> +           list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain)) {
+> +
+>                 *num_output_fmts = 1;
+>                 output_fmts[0] = MEDIA_BUS_FMT_FIXED;
+>  
+> @@ -2673,6 +2675,10 @@ static u32 *dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>         if (!input_fmts)
+>                 return NULL;
+>  
+> +       /* If dw-hdmi is the first bridge fall-back to safe output format */
+> +       if (list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain))
+> +               output_fmt = MEDIA_BUS_FMT_FIXED;
+> +
+>         switch (output_fmt) {
+>         /* If MEDIA_BUS_FMT_FIXED is tested, return default bus format */
+>         case MEDIA_BUS_FMT_FIXED:
+> 
+> Which I believe matches the above.
 
+Ok thanks of clarifying !
 
-Which patch did you test ?
+let me post it asap.
 
 Neil
 
 > 
+> --
+> Kieran
 > 
->>>>>>
->>>>>> I have tested this fix with Linux next-20220114. Still I see colour
->>>>> issue.
->>>>>>
->>>>>> It is still negotiating and it is calling get_output_fmt_callbck
->>>>>>
->>>>>> [    3.460155] ########dw_hdmi_bridge_atomic_get_output_bus_fmts
->>>>> MEDIA_BUS_FMT_UYVY8_1X16=0#########
->>>>>> [    3.460180] ########dw_hdmi_bridge_atomic_get_output_bus_fmts
->>>>> MEDIA_BUS_FMT_YUV8_1X24=1#########
->>>>>> [    3.460202] ########dw_hdmi_bridge_atomic_get_output_bus_fmts
->>>>> MEDIA_BUS_FMT_RGB888_1X24=2#########
->>>>>>
->>>>>> And In get_input_fmt callback, I See the outputformat as YUV16 instead
->>>>> of RGB24.
->>>>>>
->>>>>> [    3.460319] ########dw_hdmi_bridge_atomic_get_input_bus_fmts
->>>>> MEDIA_BUS_FMT_UYVY8_1X16#########
->>>>>> [    3.473644] ########hdmi_video_sample
->>>>> MEDIA_BUS_FMT_UYVY8_1X16#########
->>>>>
->>>>> OK, looking at rcar-du, the dw-hdmi bridge is directly connected to the
->>>>> encoder.
->>>>
->>>> Yep.
->>>>
->>>>>
->>>>> Let me figure that out, no sure I can find a clean solution except putting
->>>>> back RGB24 before YUV.
->>>>>
->>>>> Anyway please test that:
->>>>
->>>> It works now after reordering.
->>>>
->>>> [    3.493302] ########dw_hdmi_bridge_atomic_get_output_bus_fmts MEDIA_BUS_FMT_RGB888_1X24=0#########
->>>> [    3.493326] ########dw_hdmi_bridge_atomic_get_output_bus_fmts MEDIA_BUS_FMT_YUV8_1X24=1#########
->>>> [    3.493348] ########dw_hdmi_bridge_atomic_get_output_bus_fmts MEDIA_BUS_FMT_UYVY8_1X16=2#########
->>>>
->>>> [    3.493463] ########dw_hdmi_bridge_atomic_get_input_bus_fmts MEDIA_BUS_FMT_RGB888_1X24#########
->>>> [    3.506797] ########hdmi_video_sample MEDIA_BUS_FMT_RGB888_1X24#########
->>>>
->>>> Is it acceptable solution to the users of dw_hdmi driver? May be it is worth to post a patch.
->>>> at least it is fixing the colour issue??
->>>
->>> Yes, it gets back to default behavior before negociation, nevertheless we need to think
->>> how to handle your use-case correctly at some point.
->>>
->>> I'll post this as a patch ASAP so it gets applied before landing in linus master.
->>>
->>> Neil
->>>
->>>>
->>>> Regards,
->>>> Biju
->>>>
->>>>>
->> [...]
->>
->> I'm not happy with this version since it's merely a hack which makes it work.
->>
->> Can you test the following change instead, it's correctly handles your situation in a generic manner.
->>
->> ========================><=============================
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index 54d8fdad395f..9f2e1cac0ae2 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -2551,8 +2551,9 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
->>         if (!output_fmts)
->>                 return NULL;
->>
->> -       /* If dw-hdmi is the only bridge, avoid negociating with ourselves */
->> -       if (list_is_singular(&bridge->encoder->bridge_chain)) {
->> +       /* If dw-hdmi is the first or only bridge, avoid negociating with ourselves */
->> +       if (list_is_singular(&bridge->encoder->bridge_chain) ||
->> +           list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain)) {
->>                 *num_output_fmts = 1;
->>                 output_fmts[0] = MEDIA_BUS_FMT_FIXED;
->>
->> @@ -2673,6 +2674,10 @@ static u32 *dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->>         if (!input_fmts)
->>                 return NULL;
->>
->> +       /* If dw-hdmi is the first bridge fall-back to safe output format */
->> +       if (list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain))
->> +               output_fmt = MEDIA_BUS_FMT_FIXED;
->> +
->>         switch (output_fmt) {
->>         /* If MEDIA_BUS_FMT_FIXED is tested, return default bus format */
->>         case MEDIA_BUS_FMT_FIXED:
->> ========================><=============================
->>
->> Thanks,
->> Neil
->>
->>
->>>>>
->>>>> Neil
->>>>>
->>>>>>
->>>>>> Regards,
->>>>>> Biju
->>>>>>
->>>>
->>>
->>
 
 
 _______________________________________________
