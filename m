@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B28B2C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 17:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0BEC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 17:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jWmY/8je3jDZOlNz5MOD+hKTv9IW91imgggq/KAxFO0=; b=RNpknWhLyZHz9F
-	4jq4hQ2j3WeyylSAqpZimZl8nCupyw/vGNg4I0exOhwvXwQncRtI0yJPm1dJhe42dY/afRxa8P2hR
-	aEcGqvOzcVV0KIO75p9KKNFctDUKYbi9OoKlXWrsXBXnoRtE+gqGKs5HKKbnNViMf8Pg/okCN/LZt
-	eeN6iR7+yy1ZjILoIlZRP7dFm3L65/kAkVHMW9A2mcrDUSZrcZ010dXknvJEyQiCPNW1DfXT71rFb
-	waeQZ5o7CsVJ4a4WCoZHlFVxvrOB0epT5zkJ/23D6GykcHR4Ok1qHZ+q92vtszTb/Y6c9Pb8lCsE7
-	x2nmfn8pjCVLUgyoQRFg==;
+	List-Owner; bh=HcIZG0GNiJneR7iNtw1m45P5x8YWqQjlBZC3roXPU7U=; b=nn+kEF4k5d87xc
+	EPIs8kgqa/SgzPUuS13rrw2+yLF5YGogPtSUXYgX9xv5P1ZFRYS97V8GHA4mskO7iIRhH+1q2Qo+D
+	WPMlVJw/qqpjjOtZzk/8TukhAgZrew40F2BrFforVetwsYiq1jQS9Ahwo+C3v74t/NmZLl3vhdlA0
+	vx/iTVEMp8ZV/fDxbYJ6pHdILx/gzV+R766CWfSV3GrsMIZGJAMmeAB18lzDwe+JV937W3vaDSX8N
+	1WXKWrgh7D3LNFghgE72iFQkQS4dIYunRRoZ28mSZyNNbfgQ0sA5fEHCEUqbVXebj9vggbK1/0HWf
+	TETiRE10y5QktjGVjQ7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9VaD-00Fne4-FI; Mon, 17 Jan 2022 17:14:17 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1n9VeE-00Fpn3-Ny; Mon, 17 Jan 2022 17:18:26 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9VQ7-00Fht2-1c; Mon, 17 Jan 2022 17:03:52 +0000
+ id 1n9VRV-00FioW-4u; Mon, 17 Jan 2022 17:05:18 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6E66461266;
- Mon, 17 Jan 2022 17:03:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C178DC36AEC;
- Mon, 17 Jan 2022 17:03:48 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A8DE061242;
+ Mon, 17 Jan 2022 17:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CFF7C36AE3;
+ Mon, 17 Jan 2022 17:05:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642439030;
- bh=GnC4qoc3qNiPeEEPfhsgJBYgncJZP5nIfaEdUe0w6x0=;
+ s=k20201202; t=1642439116;
+ bh=m7JLj5kTr3Bfw//9CcyMcWKFqW+mZabH4MBRc9mSyek=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ZWmBINbiIDoDcKkL+Vkin3SPiX8wID05i6kVA7cgLwmBh/dCq9Qz8GyXWtyr8SEdG
- k2SbdPZIQgAC85+xucyOoq/IedlljdZ0D8h2IbRWb3lNLL28nQUcPc0jf2EMWnaQVO
- 17yOLFn0R9Izqrb/WLxbAXJY/69r3ZVeh0VY4sFoBfPJ3Fkck2LAadyX1XtP3yiL0M
- jvNPeZgM/yTStomS/m1JNLOjeV/+psKHYijSE/w4sS6Nx55mcXuOu1r5ejhFVNXd1R
- yv1xupfXI+ogC81Yp3NfeWzt++shtH3NpX7y2U4P98Leg+i4f9nzeNk8fyx67OquM9
- LXX2jFzFB7dRA==
+ b=bMIUkxNByK6ji0jTSH7f6rt4CWgnuEOVuqw/SARLYJtJFAKParRpSbQikdbL7gG/m
+ uTF48nepdMGVbExnFTNi96SzVyyjomts+qpAiRN5KvDbjsmu/PKiS6EAnWwYSOYejm
+ YcUMDWmm2qzjqizS6PTx9EhrStQG8c/EnX/7QTs5rdCiBjUyxFUkilm+Tq0xUkAOa4
+ 6R/jyWas0kzVB3ERqub8DSX9q9yLjvxjvd12SZJD7pGgPTgUYSWirKaNwSEQ9VWkGu
+ BF6S1SUFaAo2FEV7lnEoSA+dwlWTcO/Wd7ud4knWPg0pE+xNDtHfUS//045KwDafUb
+ A/qGEI5ftPmXw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -50,18 +50,18 @@ Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  narmstrong@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
  khilman@baylibre.com, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 11/34] clk: meson: gxbb: Fix the SDM_EN bit for
+Subject: [PATCH AUTOSEL 5.4 10/21] clk: meson: gxbb: Fix the SDM_EN bit for
  MPLL0 on GXBB
-Date: Mon, 17 Jan 2022 12:03:01 -0500
-Message-Id: <20220117170326.1471712-11-sashal@kernel.org>
+Date: Mon, 17 Jan 2022 12:04:42 -0500
+Message-Id: <20220117170454.1472347-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220117170326.1471712-1-sashal@kernel.org>
-References: <20220117170326.1471712-1-sashal@kernel.org>
+In-Reply-To: <20220117170454.1472347-1-sashal@kernel.org>
+References: <20220117170454.1472347-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_090351_250982_C7D11EC7 
+X-CRM114-CacheID: sfid-20220117_090517_325372_8259A122 
 X-CRM114-Status: GOOD (  19.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -140,7 +140,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 41 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 0a68af6eec3dd..d42551a46ec91 100644
+index 1f9c056e684ce..e8e36ec70b27f 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
 @@ -712,6 +712,35 @@ static struct clk_regmap gxbb_mpll_prediv = {
@@ -197,7 +197,7 @@ index 0a68af6eec3dd..d42551a46ec91 100644
  		.num_parents = 1,
  		.flags = CLK_SET_RATE_PARENT,
  	},
-@@ -3043,7 +3081,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+@@ -3036,7 +3074,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
  		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
  		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
  		[CLKID_VAPB]		    = &gxbb_vapb.hw,
@@ -206,7 +206,7 @@ index 0a68af6eec3dd..d42551a46ec91 100644
  		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
  		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
  		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
-@@ -3438,7 +3476,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
+@@ -3430,7 +3468,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
  	&gxbb_mpll0,
  	&gxbb_mpll1,
  	&gxbb_mpll2,
