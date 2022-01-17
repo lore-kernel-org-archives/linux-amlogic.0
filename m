@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 633E0C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 14:31:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB5E4C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 14:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,76 +13,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Pj883cX7eYb37IRCzNEb2DbpfcE7Gho7YNk4tQpQl8Y=; b=pklHQ+ynlCU1qwwkPT5ZX7R7X+
-	/3SXp+k/eGGBrP2LPJdJHsHThfwJD2jcqg/eqOFVkHBR7PDmWbJDUGzUt9DTXdRZUAVW9vOuefKMF
-	Dn1/p2DQ/YlciYWAl1v1+7xdL+T7bF+VVEffh5t75O/Jpola0fPcnkOKF2T1xZ1TfNvxu22Y9tVVT
-	bFIWYvn2ct8u4OmyvdAZPAOATkNzORBMW4VnDXdBHTxGTYu48Hj02IuDQbRwUc1Id9s/TtjL4I0I0
-	PoRWiuaz8gd6MwJ+lKDxapdNA34pLH5/E0lcwd0Kqre10UVD6ms3Guv0M7eni/XVUe1YEjRvPtkeQ
-	bH7KIj4g==;
+	bh=gtByi20CV8oZqp4kjIjL2VKsDXMeon6aWfW/xkab5Bs=; b=KnJfjZ3zUt6EkXnUGXCRJd+FAJ
+	OpIm1I2P7qUPkbLzt3f/7k0bMieQJjjJuFt6TUEsJQvBA9li19SSr1obPIsMaHMYeNpkxRJ8X7e+J
+	zn5iDWGJQziNKms6nY3NFdtk/p6rhC6r895C58ickJ1ljHyyHRwGui/ANvHL25odIn13B3zMoqtSZ
+	h/ijBIXK9eSYkn+qynMPqlly1dkI7lDlK3ZrOpjuSbokr0KS8TF0QFbUNyEKVGJu3FqFreeyWuYRI
+	2dKaosm5IrhopsI5y3O7L0f2gkSdZjytD2qNUPtNPdIs9dxn6wA9eZYLA39MpBwTyXxpToshE2wSn
+	2Sc8l9Ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9T26-00FBAn-Ss; Mon, 17 Jan 2022 14:30:54 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1n9T2H-00FBCf-Ke; Mon, 17 Jan 2022 14:31:05 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9T1u-00FB7u-8k
- for linux-amlogic@lists.infradead.org; Mon, 17 Jan 2022 14:30:44 +0000
-Received: by mail-wm1-x330.google.com with SMTP id
- p1-20020a1c7401000000b00345c2d068bdso24775453wmc.3
- for <linux-amlogic@lists.infradead.org>; Mon, 17 Jan 2022 06:30:41 -0800 (PST)
+ id 1n9T23-00FB9L-1Z
+ for linux-amlogic@lists.infradead.org; Mon, 17 Jan 2022 14:30:52 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id
+ q9-20020a7bce89000000b00349e697f2fbso24183565wmj.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 17 Jan 2022 06:30:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:references:from:organization:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=1qCDtK0pn2oxt/dygNI3dBfTIc8Ow2NP2GJorgRm9sA=;
- b=tC0xSuKFutKm9eO/94iduqujirQJ/J/cZSJASDLdN3De2Q8dwRjZEOS7gNymWSZtJk
- nJ4h6NgRWKUZFHxeib0pOht0apN3VL48llsfJc8ay91rjw4KiRm7kHeuWSgfnz5Z57EE
- aAqk43UviPgI8fRAywyd5JCxul27SxUkkz9cR9jOBSZCIFKIDmdb6I3Aoi7EQKaexCXl
- wFGjiAoLDJ/sTvl33QO2EVNS4c/ZPpWg1juygPJjlrfESgUpfwIefrSMcaBbroZUA2T9
- Xz5lNn78G5Ih/PtIuBmxC6WHNj1Ov8v1IUPjV8WLyO6cXHJ7iTZcZJGMiq0aJOKqHAXa
- RlDg==
+ bh=+iR+xqLn4ZA/GgQGnZu/dK+PUE+Bi1dnz/SKyfphrsw=;
+ b=YksXckYFme2RHIMHoHrPqpFRTQIn6dwj6tbKYWd0JJb20Y3P1MMFSu0ck4f4kDxJrq
+ IcIuDPplD6b3zCQChjSM2fnnBH3/DDCcPQ5dYEdRXzMlABv+UuH1NiuQEWV0Dr3/+MzC
+ E94+YE8ZQisz1rE2mbNWakLMrq7/VmY0VFRGlPiQ8Mr/kN2iJ7QiPM0C5/JWgqKP0pnN
+ Lc1G75IgbfoSEiTec6D0MQVG4WwcT9NVWfJg1t6DVUMHtNxLlP4H2dYr1L0S4nqI3dEv
+ 3bZpYHh5kS4odyWB2GmYSOLof8n7Yq+hPnAR7j+XXLruY9akvQRYKnhmHeM6P1VrH7AH
+ Gtvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=1qCDtK0pn2oxt/dygNI3dBfTIc8Ow2NP2GJorgRm9sA=;
- b=jnvIEIP75z2Vlds/LG/NwNwhxuidvCXpLnLob9MwpZ/rXfFHM/xs3IrJfwpqzB6nzz
- pmr6EtGNm1OKU8pdUjvIg5n+yftsdjCqueQiMVtO/ppGXOW3osbBoENX+qviXl2RcPux
- sD/I0BkGAqhqI/6Im7FlioZBXC0TEVNfK0xh/OkrRMIA7Ylw9pVAVSLxG7QUseXyOJQG
- ZYjFUJqEZkQbkAiCgBAX6lX5wZRNFMlFShF7r6Fy9u/b8G8B9NoNA5rGS64cdk6DgtPh
- SnMJXX91fpXPitosjpvYo9lYdmMn0ixTnj5X/Mdv1dyIVn3wSzJYQRApjZB+aQhXmF03
- 6TnQ==
-X-Gm-Message-State: AOAM531TOBtGGYvWOHsW7QLhsvcTnHhxUlfZ1qpAQcOx6mGEu/ZpZ4Md
- dXX04S3gjupqSZ2Sh6/N+TfKwg==
-X-Google-Smtp-Source: ABdhPJwiQM+eAaGs9tYAY5xvpnrS+AV2fSNWJAZH9VzjH87QRF+7ENwGFzuPyU57bwh6CbY/aqM+XA==
-X-Received: by 2002:a5d:42c3:: with SMTP id t3mr19995885wrr.301.1642429840767; 
- Mon, 17 Jan 2022 06:30:40 -0800 (PST)
+ bh=+iR+xqLn4ZA/GgQGnZu/dK+PUE+Bi1dnz/SKyfphrsw=;
+ b=4/PD8VaYCL8cR14PAgGuokUg68mbfBGDhBZ+M/MX/wg1bhYELAHLQwSyfBW/xJMm0R
+ HIvKo+VBqqvrlTAcEY3pRF7yzGeTzaR5rQwXTXY79XBI0vXQXZuQIe/MmnqOn1me1NzM
+ W3FXeTfmQAQfqOoefI6yq5yBbY7Fl6GuFBm0VUj9Hbl2X7Z0THQf8ucgYrRgfqZp49PV
+ CvQZr1PXzoFsrpx+uvs4TtUl6M2eHfhXps1pJ4S6YEleC+NyMIdgThFcOi9A5N0Hxmz/
+ sRQeoiiFIiYiWxJxrui/QWy4qb7c7HaqDiibZ0tYubDr6v/kj6bfr9B07qxZ604wVHec
+ kfVA==
+X-Gm-Message-State: AOAM530MYIY+sN7/bjVEUixHUAVD2DYW5cH/ragNLHfS99Th0a+fNkNH
+ VxdS5qaYGZ4XUC8V+RkpNoyg4w==
+X-Google-Smtp-Source: ABdhPJzRsacQaPlAcYkmmUq1iTAa0t7SHBvG/AXsT2UMm1nGzdbQK6xp6O3BzDQpBYliXghu7ZcNEg==
+X-Received: by 2002:a05:6000:110d:: with SMTP id
+ z13mr19925997wrw.662.1642429849388; 
+ Mon, 17 Jan 2022 06:30:49 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:c004:9fe1:fbda:2d0c?
  ([2001:861:44c0:66c0:c004:9fe1:fbda:2d0c])
- by smtp.gmail.com with ESMTPSA id x8sm13243778wru.102.2022.01.17.06.30.39
+ by smtp.gmail.com with ESMTPSA id k31sm12542420wms.15.2022.01.17.06.30.48
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 17 Jan 2022 06:30:40 -0800 (PST)
-Subject: Re: [PATCH 3/3] arm64: dts: meson: remove Broadcom WiFi/BT nodes from
- Khadas VIM1
+ Mon, 17 Jan 2022 06:30:48 -0800 (PST)
+Subject: Re: [PATCH 2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20220113041746.16040-1-christianshewitt@gmail.com>
- <20220113041746.16040-4-christianshewitt@gmail.com>
+ <20220113041746.16040-3-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <2236d8a8-77e7-7dc9-fd32-b3ade335a128@baylibre.com>
-Date: Mon, 17 Jan 2022 15:30:39 +0100
+Message-ID: <d82549cf-01cc-68de-8af3-763b94ba6ef6@baylibre.com>
+Date: Mon, 17 Jan 2022 15:30:47 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220113041746.16040-4-christianshewitt@gmail.com>
+In-Reply-To: <20220113041746.16040-3-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_063042_321651_3E89B7CC 
-X-CRM114-Status: GOOD (  18.51  )
+X-CRM114-CacheID: sfid-20220117_063051_104325_EEA806C8 
+X-CRM114-Status: GOOD (  17.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,61 +99,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
 On 13/01/2022 05:17, Christian Hewitt wrote:
-> The Broadcom WiFi/BT SDIO nodes are now inherited from the P212 common dtsi
-> so we can remove them from the VIM1 board dts.
+> Cosmetic-only change to move/alpha-sort the node.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 19 -------------------
->  1 file changed, 19 deletions(-)
+>  .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi   | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> index 6ab1cc125b96..108232a5aa2e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> @@ -217,25 +217,6 @@
->  	pinctrl-0 = <&pwm_e_pins>, <&pwm_f_clk_pins>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> index c635e5858929..b3d7b8613d6d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> @@ -97,6 +97,14 @@
+>  	pinctrl-names = "default";
 >  };
 >  
-> -&sd_emmc_a {
-> -	max-frequency = <100000000>;
-
-The SDIO freq is marked as 50000000 in the p212 DTSI and was explicitly changes
-by Jerome in adc52bf7ef16 ("arm64: dts: meson: fix mmc v2 chips max frequencies")
-
-The change is ok if you change the p212 DTSI to 100000000 aswell.
-
-> -
-> -	brcmf: wifi@1 {
-> -		reg = <1>;
-> -		compatible = "brcm,bcm4329-fmac";
-> -	};
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&clkc CLKID_FCLK_DIV4>;
+> +	clock-names = "clkin0";
+> +};
+> +
+>  &saradc {
+>  	status = "okay";
+>  	vref-supply = <&vddio_ao18>;
+> @@ -170,14 +178,6 @@
+>  	vqmmc-supply = <&vddio_boot>;
+>  };
+>  
+> -&pwm_ef {
+> -	status = "okay";
+> -	pinctrl-0 = <&pwm_e_pins>;
+> -	pinctrl-names = "default";
+> -	clocks = <&clkc CLKID_FCLK_DIV4>;
+> -	clock-names = "clkin0";
 > -};
 > -
-> -&uart_A {
-> -	bluetooth {
-> -		compatible = "brcm,bcm43438-bt";
-> -		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> -		max-speed = <2000000>;
-> -		clocks = <&wifi32k>;
-> -		clock-names = "lpo";
-> -	};
-> -};
-> -
->  /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
->  &uart_AO {
+>  /* This is connected to the Bluetooth module: */
+>  &uart_A {
 >  	status = "okay";
 > 
 
-With the change in p212 dtsi:
-
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Thanks,
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
