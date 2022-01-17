@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 920F5C4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 16:59:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88D1EC4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 17:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QJwGH9/+yElZeNleuJJnM3bdx74f213Fd8QkK/yqtKw=; b=0AiKwEw+UWWV32
-	C2nkCL62bDdJEBUtUckO8syX6/v6b+PPYydOItvv3ksX8fmxhPpTBT+BCgSYPETFjiYCAVoaUojwS
-	XvDFOAlZ6FnHG4L+N+axtga1kxBlNkSdNo2EhVeH36LlXjCbclYMMK5vehojSXU42ItRCVwdBegwB
-	vEF0hsyRIYmwZdoD5SOvcBT5flGL7XTFzxYT66XskI3ElkS6MCwrWxxDuzwgZB5wYYzkPmHjzSN3q
-	aR0LQg3UXzcqLzYw4MCVjM4BlRwk0wHe6pX38Kq6Dp/YjlJ+ot0D31G76F0hfmChYw5W8dSpPGh09
-	3ZY3CFPuTXX7xVxPsiPQ==;
+	List-Owner; bh=QJwGH9/+yElZeNleuJJnM3bdx74f213Fd8QkK/yqtKw=; b=CyOs9GpORDK1Xf
+	fV6XmKiUbCs1ltlLbtcY5VCUKcgtr1XErw1UngVtJxZo5ZO2ZJqZ+a+9cO6z1MhasAELCYc1bOZ6s
+	4Zzy3SLzRIL4yVtDosyXWtDAnessCAEH4ukZVYZhSw9CBaZbu4gkplbN+ZUk4Rbl1uQ/XA+bPkH1j
+	yQ0u2kHTOjXabUZOHD2z88kFwoLMAzXiwVr8cPMnBimkM1vNi6Fp9s8JoTKfzQZt/HdoNRQLPXRmZ
+	EoQtZxoxvquPUx+WlvuV27ZEUeP6hGfJwAvIuy4ZKnrcKUSxlzqpkZC/r68kt8XlZYMrzHq+7KuwD
+	IAucLQtKy1AI7IEJYzeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9VMB-00Ff9V-TZ; Mon, 17 Jan 2022 16:59:47 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1n9VRY-00Fiqc-4K; Mon, 17 Jan 2022 17:05:20 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9VLn-00FemL-WC; Mon, 17 Jan 2022 16:59:26 +0000
+ id 1n9VOF-00Fgfu-63; Mon, 17 Jan 2022 17:01:57 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id B1526B8113A;
- Mon, 17 Jan 2022 16:59:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 223C9C36AE3;
- Mon, 17 Jan 2022 16:59:20 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id CA7A6B81158;
+ Mon, 17 Jan 2022 17:01:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C223BC36AE7;
+ Mon, 17 Jan 2022 17:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642438761;
+ s=k20201202; t=1642438912;
  bh=lwk4z1qF/+7RF7Vl9dzFXszBwZQtFzeHpBCcrjjmNeI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fqqvIy8tlFcmUrDGy8Wdogvdd/lR/vSCmO9uYF9FGiA6WdZCg6I5Mg1rtnSsRqO4Q
- bZK4mxVyBAMXYn2fYMoK2p+hoqeRR8ZHoWTTC2lQ8vEh1Qkz0nSMv98JCsqlfp80/u
- 0NnyoMql9jsbzvN8vz1hhErbRsYUPa5egqDszTlcYCl345dvLIr9NFLBqJgK0Y5fio
- Oh/EYUJyN1SvM65UtcPeiGQ+x7BnNDbSnB4xNkfhCx3idDP1cWszJAFBCzsrccdf/p
- Vuf9GYY0lTDXSFXZMPMmRu8DhQXQlDFltqwB1QXTBOxPkhBXEvvH7AVxnAuTXTRbU9
- HfwJsDYA0XRTw==
+ b=k5G2NxgI5a3ilb2QjzYL0xph1/f0/kbgy3XvE1P31JL4pgNd1X/7mnWcBkvyUanxm
+ J8EY/IV6c5rXxEadz/XOXKsoVk781AP1fTpE8rvCTeYfr7aI4LbI//TsFTQDGOkubV
+ EnS4s4rufWG51C9iS0zgW/0SyiB+T99b4W9gMSgYqKsYvDwnfol8tIwXLv3iYhnQ4W
+ t8BsJU0EocM0FW4XPw2FyR/yixht3mnB77hEz6xkRSI2rBpzxwcz7zM7slGgXCLims
+ 5WraWBgmtLnvXp1KpUEsGH77ZBSHVIy/fwe57UFBDabKeR8OCZ9d8zL+tLtOnOQ/mP
+ AcLXtGEH8BnOw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -50,18 +50,18 @@ Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  narmstrong@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
  khilman@baylibre.com, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.16 12/52] clk: meson: gxbb: Fix the SDM_EN bit for
+Subject: [PATCH AUTOSEL 5.15 11/44] clk: meson: gxbb: Fix the SDM_EN bit for
  MPLL0 on GXBB
-Date: Mon, 17 Jan 2022 11:58:13 -0500
-Message-Id: <20220117165853.1470420-12-sashal@kernel.org>
+Date: Mon, 17 Jan 2022 12:00:54 -0500
+Message-Id: <20220117170127.1471115-11-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220117165853.1470420-1-sashal@kernel.org>
-References: <20220117165853.1470420-1-sashal@kernel.org>
+In-Reply-To: <20220117170127.1471115-1-sashal@kernel.org>
+References: <20220117170127.1471115-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_085924_358776_F56DEF05 
+X-CRM114-CacheID: sfid-20220117_090155_523314_7182279A 
 X-CRM114-Status: GOOD (  19.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
