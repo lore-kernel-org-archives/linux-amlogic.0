@@ -4,61 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F3D7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 02:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E652C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 02:58:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wqhnQPq+VvHzdNyJInP5NmeFC0LZ4KqUxhQHtOt2OLI=; b=sKKMRplIErozAt
-	z8Gk7n3p2OpZFLrnW7KFTReovESVX8cUmiMSit6wmBkcW3DO456iy/22SvOTh8FZCi10t0ds6F8nb
-	cIWYwQPb3l1yxblCMhY7wy62ZccIjW4nLlv6f9NnOQ4GrnN/SfG8x5iTp7E2lfHVA+/Y9GCobw9EX
-	ryLAsUjD+JdoALvp5wunVmscmFGAdr6+iRQFQVmLycjfoassA5eswwYgDhu/AoOebYHmjK/w7Nu+z
-	ajPhfmWoO+ZFc/fbDgh8oIKSD0xWTsM2LnuUcL8/XWgq4MhIszhjuWFgUTp2bFzsvbwls1p6mQU1L
-	TSlgFTIchkeYxXgoJysQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:To:From:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=1ZsdMqpsXsX62AwH0Gzp+0/hc54OuyCdsI2j9AI+zL0=; b=uitWpCcO6z48rY
+	nEbb6iBybXcnY4LQNyQUnWLG/WwN2XgKBsOOQCf+Hxiz2PFyXRI2GFs/NzQeo4kXIPs9HZnYYwJGn
+	dZAhlqEjvM9GmlcjW29lsTItthkZUj/BYD9c4g7CIUjLHtn9f0lKYk0/nzaS4tYD6SsbfVe2/cnj5
+	3zYy5ZoVndkq1MW5ec5MefxVi7nZASmBGALsEsIBT3mXmksGVHEjsNjVQcAIFM/zgtzEGozgVwqmA
+	z8kpplwPtYlM5wambxUARkNZkHZhzY2aS9HP6g7OmErqjCOXHqvvlkVX7xc/bokqa2B19Hr6YfslI
+	OZK/+fZ5vah9hrRz+y6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9HzO-00DHes-Ax; Mon, 17 Jan 2022 02:43:22 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1n9IEH-00DIjA-3D; Mon, 17 Jan 2022 02:58:45 +0000
+Received: from out162-62-57-49.mail.qq.com ([162.62.57.49])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9HzC-00DHdj-N7; Mon, 17 Jan 2022 02:43:12 +0000
-Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 17 Jan
- 2022 10:43:01 +0800
-Message-ID: <d6933fd7-ec4c-aee1-5cf4-9cbcf881a33d@amlogic.com>
-Date: Mon, 17 Jan 2022 10:43:01 +0800
+ id 1n9IE3-00DIgc-4T; Mon, 17 Jan 2022 02:58:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+ s=s201512; t=1642388301;
+ bh=JGr2weHXTxFi2FBYoPnWBMe7jsciVyJNcATS4sCqvi0=;
+ h=From:To:Cc:Subject:Date;
+ b=jKxftl1Bwn2KBbcIMoHyZ8jP7OC3Fvc/W8K9PfybQIaDl2bHIozgkFf0giiC+Esh7
+ uovCeKsRct3SqDHOdHTHX/ImMFmGVc1JMnlx2pNQ5UncrNzWBK5ob8de4Vh3Xca/nh
+ Y+2gmNN0RvCFQOetYLFvC+LvjqAaEBob7f+CGuwM=
+Received: from localhost.localdomain ([218.197.153.188])
+ by newxmesmtplogicsvrsza8.qq.com (NewEsmtp) with SMTP
+ id E900C0C4; Mon, 17 Jan 2022 10:58:16 +0800
+X-QQ-mid: xmsmtpt1642388296ti8y3o2r2
+Message-ID: <tencent_0589E3FF08A4905922F78BC38602361C5505@qq.com>
+X-QQ-XMAILINFO: NqPEjZpmuGEFRaoDyprIgkXuk3dUIQyMkzK+WHIbhIFdQ0G4Nugt3kB5ayloZS
+ HM9mp0jweU7D+t19VetxxU7sGTlTUq6boUV/LO3W0dVqQMq9VzMdE5G8vvV/AeffhvFvM+Lb3Tvf
+ P+gXe9NgqiKnMn7SF7qQ7kEpiwx0WgcgJAThc4HeWc1teZq5cnvPL/RCdX67sLlNpu4qYMDWv4rL
+ 4d4B7T7oop0MqNqL6erS1tIiBHEVxbLuREWwAq7+U6x9BmFUDqRuXHeP9aErKk/mYnnOiV/mvO43
+ aRPUMuK6aQIV+IfsR5N0WgBVuJmvLluSBeY0sYF1IbbpAO30v+MMmprvhK9ydFvS/cGODo8JdGs9
+ /bsepshyp7Yx8K2T8d9SgX3UBCsmKUAg94I8Z32LyjhsBDtsrjSS/neihzSQFkF+vtI/VSCYdIGe
+ 7Lhwvp14UB+sXc1G64ZJJb0HJ9tge/Y6jnxYkUqkXw3f95wEQT977NxhsIOS0mdQJtkgeaBnUFml
+ akd1G+lTJ539j0Hdqw8eZgPAq/lJmEOZ7P74ir6iNOMmEAYTvU83Iq9cy0L1oCc7dGichWjNHPmb
+ LTlLXKXEbve6e3648uQMmoVO+7pBx0opJrDWxRECugK6i9IevCKVn7OWTqhhwiJB+jCgfbCb0bmZ
+ MCUdccXjVCOxyqLYNauINVKqalxKSo+FfjLLz3juOJXism7sio+/brBZCcraIM+3XFAeVlmlL+TT
+ a+hOYIeonl9B4z2y8ZRV2g+odtvuco1S8F7UQPedUcy3DihMiINoDkhgnH+XfEV4cprHk0e4Vhjo
+ y3Xt1BXlsxisRk68JScRfHmfZu8TyqE2aq2WgaFAcZ1Lzi7jlwbJIv4JBZ4S7HXJLvHRIuqUCfL6
+ w2aUeVwy0B
+From: xkernel.wang@foxmail.com
+To: martin.blumenstingl@googlemail.com, srinivas.kandagatla@linaro.org,
+ narmstrong@baylibre.com, khilman@baylibre.com
+Cc: jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Xiaoke Wang <xkernel.wang@foxmail.com>
+Subject: [PATCH v2] nvmem: meson-mx-efuse: replace unnecessary devm_kstrdup()
+Date: Mon, 17 Jan 2022 10:56:21 +0800
+X-OQ-MSGID: <20220117025621.3214-1-xkernel.wang@foxmail.com>
+X-Mailer: git-send-email 2.33.0.windows.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v9 3/4] clk: meson: add DT documentation for emmc clock
- controller
-Content-Language: en-US
-To: Stephen Boyd <sboyd@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Michael Turquette
- <mturquette@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Rob
- Herring <robh+dt@kernel.org>, <linux-clk@vger.kernel.org>
-CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
- <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
- <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, BiChao
- Zheng <bichao.zheng@amlogic.com>, YongHui Yu <yonghui.yu@amlogic.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-References: <20220113115745.45826-1-liang.yang@amlogic.com>
- <20220113115745.45826-4-liang.yang@amlogic.com>
- <20220113212957.768FFC36AE3@smtp.kernel.org>
- <5d99ac02-a246-5bcc-2ecb-371b0d193537@amlogic.com>
- <20220114225957.285ADC36AE7@smtp.kernel.org>
-From: Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <20220114225957.285ADC36AE7@smtp.kernel.org>
-X-Originating-IP: [10.28.39.106]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220116_184310_808874_38A20387 
-X-CRM114-Status: GOOD (  10.24  )
+X-CRM114-CacheID: sfid-20220116_185831_863464_D172B3A5 
+X-CRM114-Status: UNSURE (   8.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,74 +75,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Xiaoke Wang <xkernel.wang@foxmail.com>
 
+Replace unnecessary devm_kstrdup() so to avoid redundant memory allocation.
 
-On 2022/1/15 6:59, Stephen Boyd wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Quoting Liang Yang (2022-01-13 19:06:07)
->> Hi Stephen,
->>
->> Thanks for your quick response.
->>
->> On 2022/1/14 5:29, Stephen Boyd wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> Quoting Liang Yang (2022-01-13 03:57:44)
->>>> Document the MMC sub clock controller driver, the potential consumer
->>>> of this driver is MMC or NAND. Also add four clock bindings IDs which
->>>> provided by this driver.
->>>>
->>>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
->>>> ---
->>>>    .../bindings/clock/amlogic,mmc-clkc.yaml      | 64 +++++++++++++++++++
->>>>    include/dt-bindings/clock/amlogic,mmc-clkc.h  | 14 ++++
->>>>    2 files changed, 78 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
->>>>    create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..a274c3d5fc2e
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
->>>> @@ -0,0 +1,64 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,mmc-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic MMC Sub Clock Controller Driver Device Tree Bindings
->>>> +
->>>> +maintainers:
->>>> +  - jianxin.pan@amlogic.com
->>>> +  - liang.yang@amlogic.com
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - "amlogic,axg-mmc-clkc", "syscon"
->>>
->>> Why is it a syscon?
->>
->> The register documented by reg is shared with SD/eMMC controller port C,
->> and it need to be ops on NFC driver.
->>
-> 
-> Is this the case where the clk is inside the SD/eMMC controller? Can the
-yes.
-> mmc driver register the clk controller from there and pass it an iomem
-> pointer to poke clks?
-we can't do that since EMMC and NAND is mutually exclusivem. both of 
-them share the same data pins.
-> 
-> .
+Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Xiaoke Wang <xkernel.wang@foxmail.com>
+---
+Changelogs:
+Simplify the patch to replace unnecessary devm_kstrdup().
+ drivers/nvmem/meson-mx-efuse.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
+index 07c9f38..13eb143 100644
+--- a/drivers/nvmem/meson-mx-efuse.c
++++ b/drivers/nvmem/meson-mx-efuse.c
+@@ -209,8 +209,7 @@ static int meson_mx_efuse_probe(struct platform_device *pdev)
+ 	if (IS_ERR(efuse->base))
+ 		return PTR_ERR(efuse->base);
+ 
+-	efuse->config.name = devm_kstrdup(&pdev->dev, drvdata->name,
+-					  GFP_KERNEL);
++	efuse->config.name = drvdata->name;
+ 	efuse->config.owner = THIS_MODULE;
+ 	efuse->config.dev = &pdev->dev;
+ 	efuse->config.priv = efuse;
+-- 
 
 _______________________________________________
 linux-amlogic mailing list
