@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0BEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jan 2022 17:18:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61DACC433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jan 2022 02:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HcIZG0GNiJneR7iNtw1m45P5x8YWqQjlBZC3roXPU7U=; b=nn+kEF4k5d87xc
-	EPIs8kgqa/SgzPUuS13rrw2+yLF5YGogPtSUXYgX9xv5P1ZFRYS97V8GHA4mskO7iIRhH+1q2Qo+D
-	WPMlVJw/qqpjjOtZzk/8TukhAgZrew40F2BrFforVetwsYiq1jQS9Ahwo+C3v74t/NmZLl3vhdlA0
-	vx/iTVEMp8ZV/fDxbYJ6pHdILx/gzV+R766CWfSV3GrsMIZGJAMmeAB18lzDwe+JV937W3vaDSX8N
-	1WXKWrgh7D3LNFghgE72iFQkQS4dIYunRRoZ28mSZyNNbfgQ0sA5fEHCEUqbVXebj9vggbK1/0HWf
-	TETiRE10y5QktjGVjQ7A==;
+	List-Owner; bh=mIp7ptQS3EYX7HN7LCjtWCyclCSZQkO22B/fPqHfESo=; b=rEuNw1vSgPQjj4
+	nwj+Tti/xaOgwA3Px2Hb7qfMEWer7br5/1bFn1nKckNbYjUVVZ6j1dDkEZ4sQ4gi41zhESIb9s5M8
+	lHRIYGKc8MSHnE0PMOrhRQMP123+zrTYy1P3w/ZtatVx0N50k0Q46L5Ej7zMLe3rIogtI/3ef1Re4
+	06ncpsIG5uRoDF7AgaTm57FNDVABU4e2RbW2R0QznJ7Ce8uxlj2Ll2ZIAYy8qpa1W13DmPNn5fFk2
+	WROv5VhD2EGic1aIi61Z2j1PHTHa90zV8eIg/aPck1MmCmu27aoR797/BLKPxsugyjGYRBPSPoaLI
+	NHnIbS0gDwm03BPg62KQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9VeE-00Fpn3-Ny; Mon, 17 Jan 2022 17:18:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1n9e7n-00Gsio-MJ; Tue, 18 Jan 2022 02:21:31 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9VRV-00FioW-4u; Mon, 17 Jan 2022 17:05:18 +0000
+ id 1n9e7k-00Gsgp-7z; Tue, 18 Jan 2022 02:21:30 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A8DE061242;
- Mon, 17 Jan 2022 17:05:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CFF7C36AE3;
- Mon, 17 Jan 2022 17:05:15 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B62AE612DF;
+ Tue, 18 Jan 2022 02:21:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9749C36AE3;
+ Tue, 18 Jan 2022 02:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642439116;
- bh=m7JLj5kTr3Bfw//9CcyMcWKFqW+mZabH4MBRc9mSyek=;
+ s=k20201202; t=1642472487;
+ bh=KuDx/9P+Wps9AtzStWZ2hI77/d8sYbhn6+5ghzmQjp0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=bMIUkxNByK6ji0jTSH7f6rt4CWgnuEOVuqw/SARLYJtJFAKParRpSbQikdbL7gG/m
- uTF48nepdMGVbExnFTNi96SzVyyjomts+qpAiRN5KvDbjsmu/PKiS6EAnWwYSOYejm
- YcUMDWmm2qzjqizS6PTx9EhrStQG8c/EnX/7QTs5rdCiBjUyxFUkilm+Tq0xUkAOa4
- 6R/jyWas0kzVB3ERqub8DSX9q9yLjvxjvd12SZJD7pGgPTgUYSWirKaNwSEQ9VWkGu
- BF6S1SUFaAo2FEV7lnEoSA+dwlWTcO/Wd7ud4knWPg0pE+xNDtHfUS//045KwDafUb
- A/qGEI5ftPmXw==
+ b=UWKdolORwwfQVXdJfYNLLmeAVgZ7i1HAwEUO3EfuT1EnALSjd+Whw2cZv3uBv/XQy
+ LnDCS2ai1HRjFaj2RPlI91aPMStiCH5j7Ipf9FKCpo/u/jjEeFqGpptxabBgPOpIjv
+ HUCGwZ9V/Bl+ZvAJtbIVbOGEl1ruc3m94GheNvcgpXyZEBnXQgBCz/JIS/BYKM49X+
+ qx0xAxut7kNPs2Sdx/pyuUHGZvdBEYHAinD/onjL0KcVh4tooatsKWOIdvO8HjXmWM
+ hbjOdN9Ke7Fto1h7uyxwyVznn0nJd6V2mlZHYNc0EjMdz4hUnxpKSt3NgXEe5JuiFD
+ R9O/ysKyIbUZA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Sasha Levin <sashal@kernel.org>,
- narmstrong@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
- khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 10/21] clk: meson: gxbb: Fix the SDM_EN bit for
- MPLL0 on GXBB
-Date: Mon, 17 Jan 2022 12:04:42 -0500
-Message-Id: <20220117170454.1472347-10-sashal@kernel.org>
+Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sasha Levin <sashal@kernel.org>, balbi@kernel.org, narmstrong@baylibre.com,
+ khilman@baylibre.com, p.zabel@pengutronix.de, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.16 029/217] usb: dwc3: meson-g12a: fix shared reset
+ control use
+Date: Mon, 17 Jan 2022 21:16:32 -0500
+Message-Id: <20220118021940.1942199-29-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220117170454.1472347-1-sashal@kernel.org>
-References: <20220117170454.1472347-1-sashal@kernel.org>
+In-Reply-To: <20220118021940.1942199-1-sashal@kernel.org>
+References: <20220118021940.1942199-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_090517_325372_8259A122 
-X-CRM114-Status: GOOD (  19.39  )
+X-CRM114-CacheID: sfid-20220117_182128_391660_6E491FA8 
+X-CRM114-Status: GOOD (  14.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,142 +79,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 
-[ Upstream commit ff54938dd190d85f740b9bf9dde59b550936b621 ]
+[ Upstream commit 4ce3b45704d5ef46fb4b28083c8aba6716fabf3b ]
 
-There are reports that 48kHz audio does not work on the WeTek Play 2
-(which uses a GXBB SoC), while 44.1kHz audio works fine on the same
-board. There are also reports of 48kHz audio working fine on GXL and
-GXM SoCs, which are using an (almost) identical AIU (audio controller).
+reset_control_(de)assert() calls are called on a shared reset line when
+reset_control_reset has been used. This is not allowed by the reset
+framework.
 
-Experimenting has shown that MPLL0 is causing this problem. In the .dts
-we have by default:
-	assigned-clocks = <&clkc CLKID_MPLL0>,
-			  <&clkc CLKID_MPLL1>,
-			  <&clkc CLKID_MPLL2>;
-	assigned-clock-rates = <294912000>,
-			       <270950400>,
-			       <393216000>;
-The MPLL0 rate is divisible by 48kHz without remainder and the MPLL1
-rate is divisible by 44.1kHz without remainder. Swapping these two clock
-rates "fixes" 48kHz audio but breaks 44.1kHz audio.
+Use reset_control_rearm() call in suspend() and remove() as a way to state
+that the resource is no longer used, hence the shared reset line
+may be triggered again by other devices. Use reset_control_rearm() also in
+case probe fails after reset() has been called.
 
-Everything looks normal when looking at the info provided by the common
-clock framework while playing 48kHz audio (via I2S with mclk-fs = 256):
-        mpll_prediv                 1        1        0  2000000000
-           mpll0_div                1        1        0   294909641
-              mpll0                 1        1        0   294909641
-                 cts_amclk_sel       1        1        0   294909641
-                    cts_amclk_div       1        1        0    12287902
-                       cts_amclk       1        1        0    12287902
+reset_control_rearm() keeps use of triggered_count sane in the reset
+framework, use of reset_control_reset() on shared reset line should be
+balanced with reset_control_rearm().
 
-meson-clk-msr however shows that the actual MPLL0 clock is off by more
-than 38MHz:
-        mp0_out               333322917    +/-10416Hz
-
-The rate seen by meson-clk-msr is very close to what we would get when
-SDM (the fractional part) was ignored:
-  (2000000000Hz * 16384) / ((16384 * 6) = 333.33MHz
-If SDM was considered the we should get close to:
-  (2000000000Hz * 16384) / ((16384 * 6) + 12808) = 294.9MHz
-
-Further experimenting shows that HHI_MPLL_CNTL7[15] does not have any
-effect on the rate of MPLL0 as seen my meson-clk-msr (regardless of
-whether that bit is zero or one the rate is always the same according to
-meson-clk-msr). Using HHI_MPLL_CNTL[25] on the other hand as SDM_EN
-results in SDM being considered for the rate output by the hardware. The
-rate - as seen by meson-clk-msr - matches with what we expect when
-SDM_EN is enabled (fractional part is being considered, resulting in a
-294.9MHz output) or disable (fractional part being ignored, resulting in
-a 333.33MHz output).
-
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20211031135006.1508796-1-martin.blumenstingl@googlemail.com
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20211112162827.128319-3-aouledameur@baylibre.com
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/gxbb.c | 44 +++++++++++++++++++++++++++++++++++++---
- 1 file changed, 41 insertions(+), 3 deletions(-)
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 1f9c056e684ce..e8e36ec70b27f 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -712,6 +712,35 @@ static struct clk_regmap gxbb_mpll_prediv = {
- };
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index d0f9b7c296b0d..bd814df3bf8b8 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -755,16 +755,16 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
  
- static struct clk_regmap gxbb_mpll0_div = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL,
-+			.shift   = 25,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.lock = &meson_clk_lock,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll0_div",
-+		.ops = &meson_clk_mpll_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&gxbb_mpll_prediv.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
+ 	ret = dwc3_meson_g12a_get_phys(priv);
+ 	if (ret)
+-		goto err_disable_clks;
++		goto err_rearm;
+ 
+ 	ret = priv->drvdata->setup_regmaps(priv, base);
+ 	if (ret)
+-		goto err_disable_clks;
++		goto err_rearm;
+ 
+ 	if (priv->vbus) {
+ 		ret = regulator_enable(priv->vbus);
+ 		if (ret)
+-			goto err_disable_clks;
++			goto err_rearm;
+ 	}
+ 
+ 	/* Get dr_mode */
+@@ -825,6 +825,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	if (priv->vbus)
+ 		regulator_disable(priv->vbus);
+ 
++err_rearm:
++	reset_control_rearm(priv->reset);
 +
-+static struct clk_regmap gxl_mpll0_div = {
- 	.data = &(struct meson_clk_mpll_data){
- 		.sdm = {
- 			.reg_off = HHI_MPLL_CNTL7,
-@@ -748,7 +777,16 @@ static struct clk_regmap gxbb_mpll0 = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
- 		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) { &gxbb_mpll0_div.hw },
-+		.parent_data = &(const struct clk_parent_data) {
-+			/*
-+			 * Note:
-+			 * GXL and GXBB have different SDM_EN registers. We
-+			 * fallback to the global naming string mechanism so
-+			 * mpll0_div picks up the appropriate one.
-+			 */
-+			.name = "mpll0_div",
-+			.index = -1,
-+		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
-@@ -3036,7 +3074,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
- 		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
- 		[CLKID_VAPB]		    = &gxbb_vapb.hw,
--		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
-+		[CLKID_MPLL0_DIV]	    = &gxl_mpll0_div.hw,
- 		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
- 		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
- 		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
-@@ -3430,7 +3468,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
- 	&gxbb_mpll0,
- 	&gxbb_mpll1,
- 	&gxbb_mpll2,
--	&gxbb_mpll0_div,
-+	&gxl_mpll0_div,
- 	&gxbb_mpll1_div,
- 	&gxbb_mpll2_div,
- 	&gxbb_cts_amclk_div,
+ err_disable_clks:
+ 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+ 				   priv->drvdata->clks);
+@@ -852,6 +855,8 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 	pm_runtime_put_noidle(dev);
+ 	pm_runtime_set_suspended(dev);
+ 
++	reset_control_rearm(priv->reset);
++
+ 	clk_bulk_disable_unprepare(priv->drvdata->num_clks,
+ 				   priv->drvdata->clks);
+ 
+@@ -892,7 +897,7 @@ static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
+ 		phy_exit(priv->phys[i]);
+ 	}
+ 
+-	reset_control_assert(priv->reset);
++	reset_control_rearm(priv->reset);
+ 
+ 	return 0;
+ }
+@@ -902,7 +907,9 @@ static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
+ 	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
+ 	int i, ret;
+ 
+-	reset_control_deassert(priv->reset);
++	ret = reset_control_reset(priv->reset);
++	if (ret)
++		return ret;
+ 
+ 	ret = priv->drvdata->usb_init(priv);
+ 	if (ret)
 -- 
 2.34.1
 
