@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E4A6C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jan 2022 03:46:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CE39C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jan 2022 03:48:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=x5fTFcERdXzLTXnA+d/46gaSGckjsudm73jBJoQ4v0c=; b=PwSqZGUthW1CIu
-	P6gEE3a2M1RiNAjoCLfrBbFLWd1VP3lhvbmlpoGPOWtBlAg9B/t4cOUNZsGAif+8wybWE9qhC3EUS
-	eyRahKeO+zDqDFmT4IvKiMPVYS/groLx1EuZsCJb1QoDFQKyTw4o/2TT/4PKUpyYhrKQW0qUT34PQ
-	jlXvJkFDLvKws2ju6HjnD88uNJXJoKALvHIFv5MLTk//FfvFT6ogBuxlXdEJAxvfaKOVfAJYeErKC
-	VVf20V6anup/ah7RcoL95G0r/wzbRuh6IbZbe8mItqq3cw7/4V8k7OU+IIUxaMu7Vr1utlGBSHK12
-	LbUN8V9D8NoLSqf64s1g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0534gl7FviCBChf8NRPwvH6DDAStwSwYXQrZWMi3eBY=; b=0x7G4rAy7btNE6
+	3MSoQPrjsoZKnz9oPcu+FEN/fMaGv65USV/I2v9JdZtExvCDs4i1Ci1Oz3KE4Eusp+4/PeGNGC4s5
+	NKx7IlNP/rroIuGmyFovKknEfcVFu/HTnN9hdyG8CEUk69UajDDOBctazmW0JAzPusEXF7+Yf6JXl
+	n6eVQGA1vJ1i+jgz6Oyrnk2HTbS54pCG/Jf++7RMiPSftv1XOMJ5zHO8xB7XeBfjk4c8NVpVp0swk
+	Cy//N7T3XP4Vg7v9o+dfUJPLRorPPOMGnas8KgqNtnf/lraObqYFlfOig+esB6lBcyzYCUrm7bIW6
+	/t5IM9kUEnVEwby/ovhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9fS3-00HZxI-Nl; Tue, 18 Jan 2022 03:46:31 +0000
+	id 1n9fTm-00HajO-S8; Tue, 18 Jan 2022 03:48:18 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9esd-00HKH5-D9; Tue, 18 Jan 2022 03:09:56 +0000
+ id 1n9esh-00HKH5-56; Tue, 18 Jan 2022 03:10:00 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Tue, 18 Jan 2022
- 11:09:52 +0800
+ 11:09:55 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
@@ -34,15 +34,18 @@ CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
  <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>, Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V6 0/5] Use CCF to describe the UART baud rate clock
-Date: Tue, 18 Jan 2022 11:09:06 +0800
-Message-ID: <20220118030911.12815-1-yu.tu@amlogic.com>
+Subject: [PATCH V6 2/5] tty: serial: meson: Use devm_ioremap_resource to get
+ register mapped memory
+Date: Tue, 18 Jan 2022 11:09:08 +0800
+Message-ID: <20220118030911.12815-3-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20220118030911.12815-1-yu.tu@amlogic.com>
+References: <20220118030911.12815-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_190955_498400_54D0BABA 
-X-CRM114-Status: UNSURE (   6.76  )
+X-CRM114-CacheID: sfid-20220117_190959_237591_77BA6B59 
+X-CRM114-Status: UNSURE (   8.41  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -60,36 +63,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Using the common Clock code to describe the UART baud rate
-clock makes it easier for the UART driver to be compatible
-with the baud rate requirements of the UART IP on different
-meson chips. Add Meson S4 SoC compatible.
+Replace devm_request_mem_region and devm_ioremap with
+devm_ioremap_resource to make the code cleaner.
 
-Yu Tu (5):
-  tty: serial: meson: Move request the register region to probe
-  tty: serial: meson: Use devm_ioremap_resource to get register mapped
-    memory
-  tty: serial: meson: Describes the calculation of the UART baud rate
-    clock using a clock frame
-  tty: serial: meson: Make some bit of the REG5 register writable
-  tty: serial: meson: Added S4 SOC compatibility
+Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+---
+ drivers/tty/serial/meson_uart.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-V5 -> V6: Change error format as discussed in the email.
-V4 -> V5: Change error format.
-V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
-in the email.
-V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
-the DTS before it can be deleted
-V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
-discussed in the email
-
-Link:https://lore.kernel.org/linux-amlogic/20220110104214.25321-4-yu.tu@amlogic.com/
-
- drivers/tty/serial/meson_uart.c | 217 ++++++++++++++++++++++----------
- 1 file changed, 149 insertions(+), 68 deletions(-)
-
-
-base-commit: 4d66020dcef83314092f2c8c89152a8d122627e2
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 6b80e41b4cc1..7570958d010c 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -720,15 +720,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	if (!port)
+ 		return -ENOMEM;
+ 
+-	if (!devm_request_mem_region(&pdev->dev, res_mem->start,
+-				     resource_size(res_mem),
+-				     dev_name(&pdev->dev))) {
+-		dev_err(&pdev->dev, "Memory region busy\n");
+-		return -EBUSY;
+-	}
+-
+-	port->membase = devm_ioremap(&pdev->dev, res_mem->start,
+-				     resource_size(res_mem));
++	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
+ 	if (IS_ERR(port->membase))
+ 		return PTR_ERR(port->membase);
+ 
 -- 
 2.33.1
 
