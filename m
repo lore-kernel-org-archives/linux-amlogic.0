@@ -4,86 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC67C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 08:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0074DC433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 09:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Message-ID:References:Cc:To:From:Subject:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=l7n467HbM3T+0qjKURqTn6x1EkpR1J82WrKkyRaul6c=; b=ValZI1juYi96N7tK5XUSHcS9Jl
-	uPETzVnpsfRwBHbmlUQqh3IgDCoCETRvxX20yhCXyyzBSBW3v8WU9eAkUFbKNvWSbdsQtmwKr8mA9
-	3aEfaoNV1Ooo5FzoQQpQ4fT8YlnPzIumvBP/Y97UxM2+dMohjakaZI1mbpZDy6yEzL/3PTjbwqPBl
-	7BgGUN0sG9yp/169x0TqpLCty+endbJwz6GF5I6Xb6KMbagCpUIgO3LIsp8wIMef7D+8JrGmi4+TX
-	XwTzrXyJA9xk26pGjp/8YXiTa+2Mf51wT2j08UQstkS187UWWa9KI4moxe4+uBuIKAufrUEZYF3Au
-	Zl+pa/Lg==;
+	bh=IIDAkCFVfwg2/bdWSWf73Ucz3Edi5bHB9Oa6DUsup3w=; b=lwhzKWbQeKlHqp9/o5mP0y7cbc
+	lvJw6Wk7+zgnLbquSBqDhgk6PhJe3WMAV6hwPIHEfavBCnehT8CYc+VBJ9F3qNTnArNTAdRJsj9Mh
+	7q48iyeCCegYFBZFPPjTfBMDGGOmvA+Do8I0ksCi5X8+fhywKzLDIHjMRCOr3xZzvVlXN7DpA9N2C
+	QXEFUueaV9KWWrEuiGPnasYlfBwghYlJOtJe7ZiceZxAvJ8D54W4UCg9ui6hv2Dw8XH2VMmU6wtrW
+	0Lf0dVLWFp9x8hlRzwsYK6PuikPLV2miIcSm/rcAxyq9l4IDhiJtr1qezPq7yGK3FqB35MV20vRF+
+	qSnYHAvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nA6iU-004Oqm-V6; Wed, 19 Jan 2022 08:53:18 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1nA70c-004Tyz-D1; Wed, 19 Jan 2022 09:12:02 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nA6iG-004Oju-IJ
- for linux-amlogic@lists.infradead.org; Wed, 19 Jan 2022 08:53:06 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id c2so3844879wml.1
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Jan 2022 00:53:04 -0800 (PST)
+ id 1nA70X-004TsR-3w
+ for linux-amlogic@lists.infradead.org; Wed, 19 Jan 2022 09:11:59 +0000
+Received: by mail-wm1-x332.google.com with SMTP id
+ h206-20020a1c21d7000000b0034d95625e1fso4773999wmh.4
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Jan 2022 01:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
+ h=subject:from:to:cc:references:organization:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=20v1qW8h1O5ten4wL7c3Va4icHS7gN2AsYBTibsl1ZQ=;
- b=GJ74SPI7hyP6NxRHhfOMYuYsl24Lngx/RB89jxq2D9HtNxZmAULhKzydShOrRI22Jj
- 0FXNwp8WxB0wa+85U3NpcoRmiz6hkfcHS6ogaGb9JWRz/i4IHB+BiT57Avqxla3GQ9D4
- lqItNs5U6MBgzfGp4Jll2ET/48YG/P/56kKsVEFF55eJ1HlC0NT4jhFb+EmcEQOwKIvD
- JUcOo3hrvZYh+Tzzn9x38JW8ALKqBFDIdv71WJSwzp8+AkGBQMidR9nDX4wQ42fZ3qBH
- edEWEPc2NkBGI62UgHi/BR++88ej7t2yc6Gdh6u8gYlQG+ATEfy722k/1W1eMrbceOkl
- pe7A==
+ bh=C4Zc3pg97QhRBnCL31NpgyhTD5rJxIoNyw+4jb4dhT4=;
+ b=dUWihDw/VMRg6sA/GD788IM8rAYRtmQWSJS0gFREajow6TJlqI3HWG9LdfWCkdehns
+ NruAxdRRI2X+Uk+gUUPoKPdOTqJK+YDK5CJSoGRCB/3C7H1PyEBKYLOlsvC5+ZJ/iN7w
+ sLVmiGGMz+7vD7j4OmVYXcymVoKHfPrIaHnZ3daxol1b0YtUcOYxwHo6PwsMN0R4vXH8
+ DTRh4zjjMkj5ajGAHKUT6HdO38ZLsNatcyXDwdK57z8EjwHMEFKcVrpf7Ubb/Ad3YD34
+ JlNxxTB2K9aFdD9aoaNV9IX1b4N+K7GLAEmJpqEeXp5G6u+ccu8PtuiTHp4MBNzSnSiB
+ SL1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
+ h=x-gm-message-state:subject:from:to:cc:references:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=20v1qW8h1O5ten4wL7c3Va4icHS7gN2AsYBTibsl1ZQ=;
- b=3Z4ISZ4BJtVtYS5FsGOs/wyHj+s5wJ+joKYkiUs3P6Lq9DwkbtqzB/ZoYxYI+Lq6XA
- ISIiXKk96xwKjVP9lJYW3Fed7Ug3WCCwF8MB2Tt5LgA759mBah2r73gJwKfui9AKGysr
- rQ4yFpi23PH77tCgqZOkUm753GvSIPqVefjYAmHX13K/qv02XIsPUyEGTwHMvm1HsSiX
- o+Y0F3SpyQ/8MKFxBUYImyu6+uLj1+iadx9lOh3RjtDpWeBDKiV+ZUtVJCEjmH3uhIpB
- 0xM5/ib8F1dFcg/AFVYBHuEpp4AmnxRf0f7E9drz68Hxqra+dChlFZVsKNqQrDfLi3h/
- wbkw==
-X-Gm-Message-State: AOAM533SHUtVFA+yBNpnP0RXDyHALDfwBCAI+gFsM99Apn2Jb2ecEJ/5
- xU1QN0FgkFosBdkVoLQe9NufZBQxQ/FHPw==
-X-Google-Smtp-Source: ABdhPJxOLdJpvEytnYNXzk/+DefhvASC+EPLAZjxrPyNtVfZ70hnOUvUjKXS1V3OzzkoKL+SyCyDiA==
-X-Received: by 2002:a1c:f413:: with SMTP id z19mr2376154wma.111.1642582382358; 
- Wed, 19 Jan 2022 00:53:02 -0800 (PST)
+ bh=C4Zc3pg97QhRBnCL31NpgyhTD5rJxIoNyw+4jb4dhT4=;
+ b=jLW2BcrTAc2tXced+iI4XK7GgLi5HO3EbbYOTpXkutC9KVj5oA1Oqe4zNJonzt78Sq
+ fi7OnbzDtXZMfOJ9MGGuLQ9D59Wj9QEYBzoyLEpyxX3pWv6EPpFq+t4RZyfRicKrmCQZ
+ 22FvDXEKgnAj+gwzyxPLtq3STR5xuPPWRchDYBPXFMcsM4QvLyzVxSwFioU8MTvPK0ye
+ o/sxXbeGiR8gAaeTGBEuf19uBhZ1EJEo5BB9DA+n59hzNvfw9pAZshzbtzmE+WTppYGJ
+ ZMSyZ5wkv1TCGOuI08HIi20oxdKt72FCzu9sxlgnyAlkriBIzpkv9rFOho1QJ1UNh06H
+ sCow==
+X-Gm-Message-State: AOAM533FTfqdHIohpjFAvxbxMBke6vUKBmGht3DWbGGEJonR0yAJ/fHh
+ dFVWsS84+IIIBPOOQsl6zRb6yQ==
+X-Google-Smtp-Source: ABdhPJz+1YRs3ncIGZ6eu44qYuu3hW1X9+WEUA6N5BCKeE+8wCtHHZrHR1Q6yh29u8Ny4K2ju8jeqw==
+X-Received: by 2002:a5d:46c6:: with SMTP id g6mr27435133wrs.322.1642583513901; 
+ Wed, 19 Jan 2022 01:11:53 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:d394:97d0:bc02:3846?
  ([2001:861:44c0:66c0:d394:97d0:bc02:3846])
- by smtp.gmail.com with ESMTPSA id h11sm4569696wmb.12.2022.01.19.00.53.01
+ by smtp.gmail.com with ESMTPSA id c8sm5634596wmq.34.2022.01.19.01.11.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Jan 2022 00:53:01 -0800 (PST)
-Subject: Re: [PATCH v2 2/4] irqchip/meson-gpio: support more than 8 channels
- gpio irq line
-To: Qianggui Song <qianggui.song@amlogic.com>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20220119070809.15563-1-qianggui.song@amlogic.com>
- <20220119070809.15563-3-qianggui.song@amlogic.com>
+ Wed, 19 Jan 2022 01:11:53 -0800 (PST)
+Subject: Re: [PATCH v2] phy: dphy: Correct clk_pre parameter
 From: Neil Armstrong <narmstrong@baylibre.com>
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Cc: linux-imx@nxp.com, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Robert Foss <robert.foss@linaro.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <mripard@kernel.org>,
+ =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
+References: <20220119023714.1498508-1-victor.liu@nxp.com>
+ <28e3f723-daf0-b3c5-ee10-519c4cabfe17@baylibre.com>
 Organization: Baylibre
-Message-ID: <4c6b7f6b-b9a2-c08d-7ac4-f5132808b1c5@baylibre.com>
-Date: Wed, 19 Jan 2022 09:53:00 +0100
+Message-ID: <5a638561-c704-49e7-1fed-70e26fedb186@baylibre.com>
+Date: Wed, 19 Jan 2022 10:11:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220119070809.15563-3-qianggui.song@amlogic.com>
+In-Reply-To: <28e3f723-daf0-b3c5-ee10-519c4cabfe17@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220119_005304_619107_CA6B6343 
-X-CRM114-Status: GOOD (  22.74  )
+X-CRM114-CacheID: sfid-20220119_011157_195905_AC7C9710 
+X-CRM114-Status: GOOD (  23.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,123 +103,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/01/2022 08:08, Qianggui Song wrote:
-> Current meson gpio irqchip driver only support 8 channels for gpio irq
-> line, later chips may have more then 8 channels, so need to modify code
-> to support more.
-> 
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-> ---
->  drivers/irqchip/irq-meson-gpio.c | 33 +++++++++++++++++++++++---------
->  1 file changed, 24 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-> index d90ff0b92480..eefe15e1b3a6 100644
-> --- a/drivers/irqchip/irq-meson-gpio.c
-> +++ b/drivers/irqchip/irq-meson-gpio.c
-> @@ -16,7 +16,6 @@
->  #include <linux/of.h>
->  #include <linux/of_address.h>
->  
-> -#define NUM_CHANNEL 8
->  #define MAX_INPUT_MUX 256
->  
->  #define REG_EDGE_POL	0x00
-> @@ -60,6 +59,7 @@ struct irq_ctl_ops {
->  
->  struct meson_gpio_irq_params {
->  	unsigned int nr_hwirq;
-> +	unsigned int nr_channels;
->  	bool support_edge_both;
->  	unsigned int edge_both_offset;
->  	unsigned int edge_single_offset;
-> @@ -81,6 +81,7 @@ struct meson_gpio_irq_params {
->  	.edge_single_offset = 0,				\
->  	.pol_low_offset = 16,					\
->  	.pin_sel_mask = 0xff,					\
-> +	.nr_channels = 8,					\
->  
->  #define INIT_MESON_A1_COMMON_DATA(irqs)				\
->  	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
-> @@ -90,6 +91,7 @@ struct meson_gpio_irq_params {
->  	.edge_single_offset = 8,				\
->  	.pol_low_offset = 0,					\
->  	.pin_sel_mask = 0x7f,					\
-> +	.nr_channels = 8,					\
->  
->  static const struct meson_gpio_irq_params meson8_params = {
->  	INIT_MESON8_COMMON_DATA(134)
-> @@ -136,8 +138,8 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
->  struct meson_gpio_irq_controller {
->  	const struct meson_gpio_irq_params *params;
->  	void __iomem *base;
-> -	u32 channel_irqs[NUM_CHANNEL];
-> -	DECLARE_BITMAP(channel_map, NUM_CHANNEL);
-> +	u32 *channel_irqs;
-> +	unsigned long *channel_map;
->  	spinlock_t lock;
->  };
->  
-> @@ -207,8 +209,8 @@ meson_gpio_irq_request_channel(struct meson_gpio_irq_controller *ctl,
->  	spin_lock_irqsave(&ctl->lock, flags);
->  
->  	/* Find a free channel */
-> -	idx = find_first_zero_bit(ctl->channel_map, NUM_CHANNEL);
-> -	if (idx >= NUM_CHANNEL) {
-> +	idx = find_first_zero_bit(ctl->channel_map, ctl->params->nr_channels);
-> +	if (idx >= ctl->params->nr_channels) {
->  		spin_unlock_irqrestore(&ctl->lock, flags);
->  		pr_err("No channel available\n");
->  		return -ENOSPC;
-> @@ -447,13 +449,26 @@ static int meson_gpio_irq_parse_dt(struct device_node *node, struct meson_gpio_i
->  
->  	ctl->params = match->data;
->  
-> +	ctl->channel_irqs = kcalloc(ctl->params->nr_channels, sizeof(*ctl->channel_irqs),
-> +				    GFP_KERNEL);
-> +	if (!ctl->channel_irqs)
-> +		return -ENOMEM;
-> +
-> +	ctl->channel_map = bitmap_zalloc(ctl->params->nr_channels, GFP_KERNEL);
-> +	if (!ctl->channel_map) {
-> +		kfree(ctl->channel_irqs);
-> +		return -ENOMEM;
-> +	}
-> +
->  	ret = of_property_read_variable_u32_array(node,
->  						  "amlogic,channel-interrupts",
->  						  ctl->channel_irqs,
-> -						  NUM_CHANNEL,
-> -						  NUM_CHANNEL);
-> +						  ctl->params->nr_channels,
-> +						  ctl->params->nr_channels);
->  	if (ret < 0) {
-> -		pr_err("can't get %d channel interrupts\n", NUM_CHANNEL);
-> +		pr_err("can't get %d channel interrupts\n", ctl->params->nr_channels);
-> +		kfree(ctl->channel_map);
-> +		kfree(ctl->channel_irqs);
->  		return ret;
->  	}
->  
-> @@ -507,7 +522,7 @@ static int meson_gpio_irq_of_init(struct device_node *node, struct device_node *
->  	}
->  
->  	pr_info("%d to %d gpio interrupt mux initialized\n",
-> -		ctl->params->nr_hwirq, NUM_CHANNEL);
-> +		ctl->params->nr_hwirq, ctl->params->nr_channels);
->  
->  	return 0;
->  
-> 
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTkvMDEvMjAyMiAwOTo0MCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gSGksCj4gCj4gT24g
+MTkvMDEvMjAyMiAwMzozNywgTGl1IFlpbmcgd3JvdGU6Cj4+IFRoZSBELVBIWSBzcGVjaWZpY2F0
+aW9uICh2MS4yKSBleHBsaWNpdGx5IG1lbnRpb25zIHRoYXQgdGhlIFQtQ0xLLVBSRQo+PiBwYXJh
+bWV0ZXIncyB1bml0IGlzIFVuaXQgSW50ZXJ2YWwoVUkpIGFuZCB0aGUgbWluaW11bSB2YWx1ZSBp
+cyA4LiAgQWxzbywKPj4ga2VybmVsIGRvYyBvZiB0aGUgJ2Nsa19wcmUnIG1lbWJlciBvZiBzdHJ1
+Y3QgcGh5X2NvbmZpZ3VyZV9vcHRzX21pcGlfZHBoeQo+PiBtZW50aW9ucyB0aGF0IGl0IHNob3Vs
+ZCBiZSBpbiBVSS4gIEhvd2V2ZXIsIHRoZSBkcGh5IGNvcmUgZHJpdmVyIHdyb25nbHkKPj4gc2V0
+cyAnY2xrX3ByZScgdG8gODAwMCwgd2hpY2ggc2VlbXMgdG8gaGludCB0aGF0IGl0J3MgaW4gcGlj
+b3NlY29uZHMuCj4+IEFuZCwgdGhlIGtlcm5lbCBkb2Mgb2YgdGhlICdjbGtfcHJlJyBtZW1iZXIg
+d3JvbmdseSBzYXlzIHRoZSBtaW5pbXVtIHZhbHVlCj4+IGlzICc4IFVJJywgaW5zdGVhZCBvZiA4
+Lgo+Pgo+PiBTbywgbGV0J3MgZml4IGJvdGggdGhlIGRwaHkgY29yZSBkcml2ZXIgYW5kIHRoZSBr
+ZXJuZWwgZG9jIG9mIHRoZSAnY2xrX3ByZScKPj4gbWVtYmVyIHRvIGNvcnJlY3RseSByZWZsZWN0
+IHRoZSBULUNMSy1QUkUgcGFyYW1ldGVyJ3MgdW5pdCBhbmQgdGhlIG1pbmltdW0KPj4gdmFsdWUg
+YWNjb3JkaW5nIHRvIHRoZSBELVBIWSBzcGVjaWZpY2F0aW9uLgo+Pgo+PiBJJ20gYXNzdW1pbmcg
+dGhhdCBhbGwgaW1wYWN0ZWQgY3VzdG9tIGRyaXZlcnMgc2hhbGwgcHJvZ3JhbSB2YWx1ZXMgaW4K
+Pj4gVHhCeXRlQ2xrSFMgY3ljbGVzIGludG8gaGFyZHdhcmUgZm9yIHRoZSBULUNMSy1QUkUgcGFy
+YW1ldGVyLiAgVGhlIEQtUEhZCj4+IHNwZWNpZmljYXRpb24gbWVudGlvbnMgdGhhdCB0aGUgZnJl
+cXVlbmN5IG9mIFR4Qnl0ZUNsa0hTIGlzIGV4YWN0bHkgMS84Cj4+IHRoZSBIaWdoLVNwZWVkKEhT
+KSBiaXQgcmF0ZShlYWNoIEhTIGJpdCBjb25zdW1lcyBvbmUgVUkpLiAgU28sIHJlbGV2YW50Cj4+
+IGN1c3RvbSBkcml2ZXIgY29kZSBpcyBjaGFuZ2VkIHRvIHByb2dyYW0gdGhvc2UgdmFsdWVzIGFz
+Cj4+IERJVl9ST1VORF9VUChjZmctPmNsa19wcmUsIEJJVFNfUEVSX0JZVEUpLCB0aGVuLgo+Pgo+
+PiBOb3RlIHRoYXQgSSd2ZSBvbmx5IHRlc3RlZCB0aGUgcGF0Y2ggd2l0aCBSTTY3MTkxIERTSSBw
+YW5lbCBvbiBpLk1YOG1xIEVWSy4KPj4gSGVscCBpcyBuZWVkZWQgdG8gdGVzdCB3aXRoIG90aGVy
+IGkuTVg4bXEsIE1lc29uIGFuZCBSb2NrY2hpcCBwbGF0Zm9ybXMsCj4+IGFzIEkgZG9uJ3QgaGF2
+ZSB0aGUgaGFyZHdhcmVzLgo+Pgo+PiBGaXhlczogMmVkODY5OTkwZTE0ICgicGh5OiBBZGQgTUlQ
+SSBELVBIWSBjb25maWd1cmF0aW9uIG9wdGlvbnMiKQo+PiBDYzogQW5kcnplaiBIYWpkYSA8YW5k
+cnplai5oYWpkYUBpbnRlbC5jb20+Cj4+IENjOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0Bi
+YXlsaWJyZS5jb20+Cj4+IENjOiBSb2JlcnQgRm9zcyA8cm9iZXJ0LmZvc3NAbGluYXJvLm9yZz4K
+Pj4gQ2M6IExhdXJlbnQgUGluY2hhcnQgPExhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNv
+bT4KPj4gQ2M6IEpvbmFzIEthcmxtYW4gPGpvbmFzQGt3aWJvby5zZT4KPj4gQ2M6IEplcm5laiBT
+a3JhYmVjIDxqZXJuZWouc2tyYWJlY0BnbWFpbC5jb20+Cj4+IENjOiBEYXZpZCBBaXJsaWUgPGFp
+cmxpZWRAbGludXguaWU+Cj4+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+Cj4+
+IENjOiBLaXNob24gVmlqYXkgQWJyYWhhbSBJIDxraXNob25AdGkuY29tPgo+PiBDYzogVmlub2Qg
+S291bCA8dmtvdWxAa2VybmVsLm9yZz4KPj4gQ2M6IEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXls
+aWJyZS5jb20+Cj4+IENjOiBKZXJvbWUgQnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4KPj4g
+Q2M6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5j
+b20+Cj4+IENjOiBIZWlrbyBTdHVlYm5lciA8aGVpa29Ac250ZWNoLmRlPgo+PiBDYzogTWF4aW1l
+IFJpcGFyZCA8bXJpcGFyZEBrZXJuZWwub3JnPgo+PiBDYzogR3VpZG8gR8O8bnRoZXIgPGFneEBz
+aWd4Y3B1Lm9yZz4KPj4gVGVzdGVkLWJ5OiBMaXUgWWluZyA8dmljdG9yLmxpdUBueHAuY29tPiAj
+IFJNNjcxOTEgRFNJIHBhbmVsIG9uIGkuTVg4bXEgRVZLCj4+IFNpZ25lZC1vZmYtYnk6IExpdSBZ
+aW5nIDx2aWN0b3IubGl1QG54cC5jb20+Cj4+IC0tLQo+PiB2MS0+djI6Cj4+ICogVXNlIEJJVFNf
+UEVSX0JZVEUgbWFjcm8uIChBbmRyemVqKQo+PiAqIERyb3AgZHNpIGFyZ3VtZW50IGZyb20gdWky
+YmMoKSBpbiBud2wtZHNpLmMuCj4+Cj4+ICBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL253bC1kc2ku
+YyAgICAgICAgICAgICAgICAgfCAxMiArKysrKy0tLS0tLS0KPj4gIGRyaXZlcnMvcGh5L2FtbG9n
+aWMvcGh5LW1lc29uLWF4Zy1taXBpLWRwaHkuYyAgICB8ICAzICsrLQo+PiAgZHJpdmVycy9waHkv
+cGh5LWNvcmUtbWlwaS1kcGh5LmMgICAgICAgICAgICAgICAgIHwgIDQgKystLQo+PiAgZHJpdmVy
+cy9waHkvcm9ja2NoaXAvcGh5LXJvY2tjaGlwLWlubm8tZHNpZHBoeS5jIHwgIDMgKystCj4+ICBp
+bmNsdWRlL2xpbnV4L3BoeS9waHktbWlwaS1kcGh5LmggICAgICAgICAgICAgICAgfCAgMiArLQo+
+PiAgNSBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkKPj4K
+Wy4uLl0KCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BoeS9hbWxvZ2ljL3BoeS1tZXNvbi1heGct
+bWlwaS1kcGh5LmMgYi9kcml2ZXJzL3BoeS9hbWxvZ2ljL3BoeS1tZXNvbi1heGctbWlwaS1kcGh5
+LmMKPj4gaW5kZXggY2QyMzMyYmYwZTMxLi5mZGJkNjRjMDNlMTIgMTAwNjQ0Cj4+IC0tLSBhL2Ry
+aXZlcnMvcGh5L2FtbG9naWMvcGh5LW1lc29uLWF4Zy1taXBpLWRwaHkuYwo+PiArKysgYi9kcml2
+ZXJzL3BoeS9hbWxvZ2ljL3BoeS1tZXNvbi1heGctbWlwaS1kcGh5LmMKPj4gQEAgLTksNiArOSw3
+IEBACj4+ICAKPj4gICNpbmNsdWRlIDxsaW51eC9iaXRmaWVsZC5oPgo+PiAgI2luY2x1ZGUgPGxp
+bnV4L2JpdG9wcy5oPgo+PiArI2luY2x1ZGUgPGxpbnV4L2JpdHMuaD4KPj4gICNpbmNsdWRlIDxs
+aW51eC9jbGsuaD4KPj4gICNpbmNsdWRlIDxsaW51eC9kZWxheS5oPgo+PiAgI2luY2x1ZGUgPGxp
+bnV4L2lvLmg+Cj4+IEBAIC0yNTAsNyArMjUxLDcgQEAgc3RhdGljIGludCBwaHlfbWVzb25fYXhn
+X21pcGlfZHBoeV9wb3dlcl9vbihzdHJ1Y3QgcGh5ICpwaHkpCj4+ICAJCSAgICAgKERJVl9ST1VO
+RF9VUChwcml2LT5jb25maWcuY2xrX3plcm8sIHRlbXApIDw8IDE2KSB8Cj4+ICAJCSAgICAgKERJ
+Vl9ST1VORF9VUChwcml2LT5jb25maWcuY2xrX3ByZXBhcmUsIHRlbXApIDw8IDI0KSk7Cj4+ICAJ
+cmVnbWFwX3dyaXRlKHByaXYtPnJlZ21hcCwgTUlQSV9EU0lfQ0xLX1RJTTEsCj4+IC0JCSAgICAg
+RElWX1JPVU5EX1VQKHByaXYtPmNvbmZpZy5jbGtfcHJlLCB0ZW1wKSk7Cj4+ICsJCSAgICAgRElW
+X1JPVU5EX1VQKHByaXYtPmNvbmZpZy5jbGtfcHJlLCBCSVRTX1BFUl9CWVRFKSk7Cj4+ICAKPj4g
+IAlyZWdtYXBfd3JpdGUocHJpdi0+cmVnbWFwLCBNSVBJX0RTSV9IU19USU0sCj4+ICAJCSAgICAg
+RElWX1JPVU5EX1VQKHByaXYtPmNvbmZpZy5oc19leGl0LCB0ZW1wKSB8Cj4gCj4gSSdsbCB0cnkg
+dG8gcnVuIGEgdGVzdCwgY3VycmVudGx5IHRoZSBjYWxjdWxhdGlvbiBnaXZlcyAyLCBzbyB0aGlz
+IHdvdWxkIGdpdmUgMS4KClRoZSBBbWxvZ2ljIHZlbmRvciBjb2RlIGRvZXM6CgovKiA+OCp1aSAq
+LwojZGVmaW5lIERQSFlfVElNRV9DTEtfUFJFKHVpKSAgICAgICAoMTAgKiB1aSkKCnRfdWkgPSBs
+Y2RfdGltaW5nLmJpdF9yYXRlCgp0X3VpID0gKDEwMDAwMDAgKiAxMDApIC8gKGRzaV91aSAvIDEw
+MDApOyAvKjEwMCpucyAqLwp0ZW1wID0gdF91aSAqIDg7IC8qIGxhbmVfYnl0ZSBjeWNsZSB0aW1l
+ICovCgpkcGh5LT5jbGtfcHJlID0gKChEUEhZX1RJTUVfQ0xLX1BSRSh0X3VpKSArIHRlbXAgLSAx
+KSAvIHRlbXApICYgMHhmZjsKClBIWSBSZWdpc3RlcnMgb25seSBzYXlzOgpNSVBJX0RTSV9DTEtf
+VElNMQlbMzE6MF0KNzowIAlSL1cJMAkgdENMS19QUkUKCj4gCj4gTmVpbAo+IAoKWy4uLl0KCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
