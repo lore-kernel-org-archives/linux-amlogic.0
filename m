@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 074CEC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 07:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 609D9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 07:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=LrBcnLDp7wKblwuHxMj4x43o3+IPl8T60x2XLBf09gs=; b=jf1yxBEWk7NDBJ
-	nJSXFY9bvaw+dAyhJ9z71RHbxRIt6iXMfIz9DGbKjbjsRjzu97d5d+NZ12R1tYOf86XwJ4BlJG3tL
-	xDCQh9zS4tRAsyvMyYz1Ng+PWrnayLyzO+fckGLnzxQW1zgyVS6OYL3eZIrYpgTNL+s/ysvLWcpSj
-	qw2meDyxnWFMKk13iQ3Wd1bGVMF/VE8mjgxzs0dmagv/W6cMTy0TZjQ55P90TDUyGgJicp4bXkGjp
-	PBGjbbuYmpYUZrzs5wNtpFN8uryz6IGw1uFd5pQ+kvt0ZI4S4XsI0kZ3C/y91eH78IROnfPsc3SPf
-	oxAOvTOG9EoGv6U1Qf4A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=r6LGq3g9CHiYNlIh8LCwHzZ5Ih+SWKs4EfTYM0vJkEA=; b=u4TtvdqwlqTAJ5
+	VbEzHCyJds0Ctjpyx81PZrPwlHiGkBxECcRffQD9VonjvDfORZZ+qAZ3MbRZQKOQsdpL40vPs5zZD
+	n+/ojMtsnxLsPeTlOXr6j/TOpwyOK6rfZuf58Infg9DyJaAY7kX495QFXqrlBDSNxuV7T7BDFXNGf
+	o41UACkcWqeVT75LyRN4KN9ZenXQiO08pyrfBipA5kYGXXvZDX7dpVPk2c/1AwB2tCMN20NreVbxH
+	HhIX+X5zif42FKDqFc2qbCgRn3Lwxcmb1STmrrxT/b0dF43J9IJ4tye23mvXDVTB0C3GJWYgEn0XR
+	W2I/UHVAslgEoiEgcZ6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nA556-0044gd-Gv; Wed, 19 Jan 2022 07:08:32 +0000
+	id 1nA55L-0044mL-Bj; Wed, 19 Jan 2022 07:08:47 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nA54q-0044ZD-QJ; Wed, 19 Jan 2022 07:08:18 +0000
+ id 1nA54s-0044ZD-Fh; Wed, 19 Jan 2022 07:08:19 +0000
 Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2;
  Wed, 19 Jan 2022 15:08:12 +0800
@@ -35,15 +35,18 @@ CC: Qianggui Song <qianggui.song@amlogic.com>, Kevin Hilman
  <martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
  <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 0/4] irqchip/meson-gpio: Add support for Meson-S4 SoC
-Date: Wed, 19 Jan 2022 15:08:05 +0800
-Message-ID: <20220119070809.15563-1-qianggui.song@amlogic.com>
+Subject: [PATCH v2 1/4] dt-bindings: interrupt-controller: New binding for
+ Meson-S4 SoCs
+Date: Wed, 19 Jan 2022 15:08:06 +0800
+Message-ID: <20220119070809.15563-2-qianggui.song@amlogic.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220119070809.15563-1-qianggui.song@amlogic.com>
+References: <20220119070809.15563-1-qianggui.song@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.19]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220118_230816_880137_CD5F3511 
-X-CRM114-Status: UNSURE (   6.67  )
+X-CRM114-CacheID: sfid-20220118_230818_555601_6C319FA3 
+X-CRM114-Status: UNSURE (   7.23  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -61,32 +64,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset add support for GPIO interrupt controller of Meson-S4 SoC
-Which has something different with current other meson chips. To
-support the new chips, current gpio irqchip driver need to rework as
-below:
-1. support more than 8 gpio irq lines.
-2. add a set trigger type callback function.
+Update dt-binding document for GPIO interrupt controller of Meson-S4 SoCs
 
-With above work, add support for S4 gpio irqchip
+Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+---
+ .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes since v1 at [0]:
-- fix leaking issue
-- fix some typos
-- change implementation of new feature.
-
-[0] https://lore.kernel.org/linux-amlogic/20220108084218.31877-1-qianggui.song@amlogic.com/
-
-Qianggui Song (4):
-  dt-bindings: interrupt-controller: New binding for Meson-S4 SoCs
-  irqchip/meson-gpio: support more than 8 channels gpio irq line
-  irqchip/meson-gpio: add select trigger type callback
-  irqchip/meson-gpio: Add support for meson s4 SoCs
-
- .../amlogic,meson-gpio-intc.txt               |   1 +
- drivers/irqchip/irq-meson-gpio.c              | 105 ++++++++++++++++--
- 2 files changed, 97 insertions(+), 9 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+index 23b18b92c558..bde63f8f090e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+@@ -18,6 +18,7 @@ Required properties:
+     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
+     "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
+     "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
++    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
+ - reg : Specifies base physical address and size of the registers.
+ - interrupt-controller : Identifies the node as an interrupt controller.
+ - #interrupt-cells : Specifies the number of cells needed to encode an
 -- 
 2.34.1
 
