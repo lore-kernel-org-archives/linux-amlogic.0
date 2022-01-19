@@ -4,60 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0140DC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 11:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29DB4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jan 2022 13:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eB5lE4BrHJdFUCb172Dy6EOMBTWdr1DIWCMMmlu75r8=; b=uPe4vvW8fat7n6
-	lx7id7chCVzAu/q12/YoXbWXNNXwAz7Zk2j8gPn6vv9qPDYh8faeZBrQmeq+ZM93HwP4HQEQ/BeVj
-	Ur2dZ85N8dxJmZ3WeXc8zgbyBUF+gGGLk7gEJxVyaLBiVsE5ZHFPzOzFqffG8Q23mqMEPEEoAIsR3
-	JH+T/ypOVNwhWRRokq1AHWwNT43ShtUeuTO78Uudn4Tvz+I6599e+WCyV2rEMcmMPG71h0kIP38xs
-	BAFyFS1UsL5rV0xdfPGDxOcL3zIO8hqJiS9jYp6qjUIwDfBb0ngHiHSggSo55uwn7AIS/xHJ5hvE/
-	3fs/quisyYg2hHduyDaQ==;
+	List-Owner; bh=apN5e5iCUg0LZq5GY1Pp+uIFN6xdbHEm47+BDifvcrM=; b=o2lwvFRgq1Lp1h
+	EhxspFoVvXxvKXG2MFPpOjpDS729q8IoQCB5GVTVbl0fej9kHYz8jTV97MKeWYUmMnS4kECumPT7z
+	Gs1Khg8/C/usJzM8OjPS2H0KBEkj7vH7dFqD9cYa60HU+MWdIX0HcNujxB8KlYVxJQr9NdEl2zGQu
+	svjGFfGpyAe/5ZDpHLlBL6Om4WVkdobjI1f9vSumoxJe22ZJVzkbkKSeCN5CiUEz4meQVFLbSXrym
+	SRwr+yqq02hlNc7PackfAOHi7h6OKfXKKKvr+GmQHT7xulZGqEfnVrQt1lVc80qK/9317QguOqKH1
+	X1Cb+uRr2qkzPgHukCeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nA9Qz-005EJz-OT; Wed, 19 Jan 2022 11:47:25 +0000
-Received: from honk.sigxcpu.org ([24.134.29.49])
+	id 1nAB4K-005d4P-M5; Wed, 19 Jan 2022 13:32:08 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nA9Qv-005EIG-U8; Wed, 19 Jan 2022 11:47:24 +0000
-Received: from localhost (localhost [127.0.0.1])
- by honk.sigxcpu.org (Postfix) with ESMTP id F3A14FB03;
- Wed, 19 Jan 2022 12:47:15 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
- by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Y9w4dTYgLJjm; Wed, 19 Jan 2022 12:47:14 +0100 (CET)
-Date: Wed, 19 Jan 2022 12:47:12 +0100
-From: Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Kishon Vijay Abraham I <kishon@ti.com>,
- Vinod Koul <vkoul@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v2] phy: dphy: Correct clk_pre parameter
-Message-ID: <Yef6QJMNm1AAabp/@qwark.sigxcpu.org>
-References: <20220119023714.1498508-1-victor.liu@nxp.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220119023714.1498508-1-victor.liu@nxp.com>
+ id 1nAB4H-005d30-5a; Wed, 19 Jan 2022 13:32:07 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id F3A21CE1C81;
+ Wed, 19 Jan 2022 13:32:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FAE4C340E1;
+ Wed, 19 Jan 2022 13:32:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1642599121;
+ bh=Dcxwe8xPAg1I+NdtM7U5krnqKyrJ5JxBLM/2WAGYiUY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=FBqlGY9wI3HWc3PoOe7kvrDD/InvFPUklZO2SfxvjE0YVt8z/zTt5fqOczDQNEAet
+ 2mAjOE+w5+MFMirdLFjioIKYutuk37Ta4QWRGf6Rj+9VGYJNSTJ5Z3la0sobvjZQbB
+ UiWyH84rCNHV9AZC8zJokwZckIzPAAPpQEP7lltZvrYwTzxPim60r0pKZdyRhf+rnz
+ +zXmtib7uMPegRszvngd+Mdgu3+T9VLOBFPHsnsU+O9lIvnQlok6CJ4gpqZgTxJOdh
+ 50yMp4zwRtq21Ixkqx7WYOKUSDuyuVsttCb/RYX8QsB9DLqivzRkDlfIXrwg3qe8a0
+ Dys3WDW5TovXw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <maz@kernel.org>)
+ id 1nAB4A-001U2A-Vp; Wed, 19 Jan 2022 13:31:59 +0000
+Date: Wed, 19 Jan 2022 13:31:58 +0000
+Message-ID: <87czkn97ht.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Qianggui Song <qianggui.song@amlogic.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
+Subject: Re: [PATCH v2 2/4] irqchip/meson-gpio: support more than 8 channels
+ gpio irq line
+In-Reply-To: <20220119070809.15563-3-qianggui.song@amlogic.com>
+References: <20220119070809.15563-1-qianggui.song@amlogic.com>
+ <20220119070809.15563-3-qianggui.song@amlogic.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: qianggui.song@amlogic.com, tglx@linutronix.de,
+ khilman@baylibre.com, narmstrong@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220119_034722_194626_47E06D24 
-X-CRM114-Status: GOOD (  30.48  )
+X-CRM114-CacheID: sfid-20220119_053205_587884_5C02E4CD 
+X-CRM114-Status: GOOD (  23.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,231 +86,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-On Wed, Jan 19, 2022 at 10:37:14AM +0800, Liu Ying wrote:
-> The D-PHY specification (v1.2) explicitly mentions that the T-CLK-PRE
-> parameter's unit is Unit Interval(UI) and the minimum value is 8.  Also,
-> kernel doc of the 'clk_pre' member of struct phy_configure_opts_mipi_dphy
-> mentions that it should be in UI.  However, the dphy core driver wrongly
-> sets 'clk_pre' to 8000, which seems to hint that it's in picoseconds.
-> And, the kernel doc of the 'clk_pre' member wrongly says the minimum value
-> is '8 UI', instead of 8.
-> =
-
-> So, let's fix both the dphy core driver and the kernel doc of the 'clk_pr=
-e'
-> member to correctly reflect the T-CLK-PRE parameter's unit and the minimum
-> value according to the D-PHY specification.
-> =
-
-> I'm assuming that all impacted custom drivers shall program values in
-> TxByteClkHS cycles into hardware for the T-CLK-PRE parameter.  The D-PHY
-> specification mentions that the frequency of TxByteClkHS is exactly 1/8
-> the High-Speed(HS) bit rate(each HS bit consumes one UI).  So, relevant
-> custom driver code is changed to program those values as
-> DIV_ROUND_UP(cfg->clk_pre, BITS_PER_BYTE), then.
-> =
-
-> Note that I've only tested the patch with RM67191 DSI panel on i.MX8mq EV=
-K.
-> Help is needed to test with other i.MX8mq, Meson and Rockchip platforms,
-> as I don't have the hardwares.
-> =
-
-> Fixes: 2ed869990e14 ("phy: Add MIPI D-PHY configuration options")
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Guido G=FCnther <agx@sigxcpu.org>
-> Tested-by: Liu Ying <victor.liu@nxp.com> # RM67191 DSI panel on i.MX8mq E=
-VK
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+On Wed, 19 Jan 2022 07:08:07 +0000,
+Qianggui Song <qianggui.song@amlogic.com> wrote:
+> 
+> Current meson gpio irqchip driver only support 8 channels for gpio irq
+> line, later chips may have more then 8 channels, so need to modify code
+> to support more.
+> 
+> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
 > ---
-> v1->v2:
-> * Use BITS_PER_BYTE macro. (Andrzej)
-> * Drop dsi argument from ui2bc() in nwl-dsi.c.
-> =
+>  drivers/irqchip/irq-meson-gpio.c | 33 +++++++++++++++++++++++---------
+>  1 file changed, 24 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+> index d90ff0b92480..eefe15e1b3a6 100644
+> --- a/drivers/irqchip/irq-meson-gpio.c
+> +++ b/drivers/irqchip/irq-meson-gpio.c
+> @@ -16,7 +16,6 @@
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  
+> -#define NUM_CHANNEL 8
+>  #define MAX_INPUT_MUX 256
+>  
+>  #define REG_EDGE_POL	0x00
+> @@ -60,6 +59,7 @@ struct irq_ctl_ops {
+>  
+>  struct meson_gpio_irq_params {
+>  	unsigned int nr_hwirq;
+> +	unsigned int nr_channels;
+>  	bool support_edge_both;
+>  	unsigned int edge_both_offset;
+>  	unsigned int edge_single_offset;
+> @@ -81,6 +81,7 @@ struct meson_gpio_irq_params {
+>  	.edge_single_offset = 0,				\
+>  	.pol_low_offset = 16,					\
+>  	.pin_sel_mask = 0xff,					\
+> +	.nr_channels = 8,					\
+>  
+>  #define INIT_MESON_A1_COMMON_DATA(irqs)				\
+>  	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
+> @@ -90,6 +91,7 @@ struct meson_gpio_irq_params {
+>  	.edge_single_offset = 8,				\
+>  	.pol_low_offset = 0,					\
+>  	.pin_sel_mask = 0x7f,					\
+> +	.nr_channels = 8,					\
+>  
+>  static const struct meson_gpio_irq_params meson8_params = {
+>  	INIT_MESON8_COMMON_DATA(134)
+> @@ -136,8 +138,8 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
+>  struct meson_gpio_irq_controller {
+>  	const struct meson_gpio_irq_params *params;
+>  	void __iomem *base;
+> -	u32 channel_irqs[NUM_CHANNEL];
+> -	DECLARE_BITMAP(channel_map, NUM_CHANNEL);
+> +	u32 *channel_irqs;
+> +	unsigned long *channel_map;
 
->  drivers/gpu/drm/bridge/nwl-dsi.c                 | 12 +++++-------
->  drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c    |  3 ++-
->  drivers/phy/phy-core-mipi-dphy.c                 |  4 ++--
->  drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c |  3 ++-
->  include/linux/phy/phy-mipi-dphy.h                |  2 +-
->  5 files changed, 12 insertions(+), 12 deletions(-)
-> =
+This really is over-engineering at its best.
 
-> diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nw=
-l-dsi.c
-> index a7389a0facfb..af07eeb47ca0 100644
-> --- a/drivers/gpu/drm/bridge/nwl-dsi.c
-> +++ b/drivers/gpu/drm/bridge/nwl-dsi.c
-> @@ -7,6 +7,7 @@
->   */
->  =
+With your new fancy HW, you have at most 12 bits being used in this
+bitmap. So why not have a single unsigned long, no dynamic allocation,
+and simply an assertion somewhere that checks that nr_channel is never
+bigger than BITS_PER_LONG? Less code, less memory wasted, less problems.
 
->  #include <linux/bitfield.h>
-> +#include <linux/bits.h>
->  #include <linux/clk.h>
->  #include <linux/irq.h>
->  #include <linux/math64.h>
-> @@ -196,12 +197,9 @@ static u32 ps2bc(struct nwl_dsi *dsi, unsigned long =
-long ps)
->  /*
->   * ui2bc - UI time periods to byte clock cycles
->   */
-> -static u32 ui2bc(struct nwl_dsi *dsi, unsigned long long ui)
-> +static u32 ui2bc(unsigned int ui)
->  {
-> -	u32 bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
-> -
-> -	return DIV64_U64_ROUND_UP(ui * dsi->lanes,
-> -				  dsi->mode.clock * 1000 * bpp);
-> +	return DIV_ROUND_UP(ui, BITS_PER_BYTE);
->  }
->  =
+	M.
 
->  /*
-> @@ -232,12 +230,12 @@ static int nwl_dsi_config_host(struct nwl_dsi *dsi)
->  	}
->  =
-
->  	/* values in byte clock cycles */
-> -	cycles =3D ui2bc(dsi, cfg->clk_pre);
-> +	cycles =3D ui2bc(cfg->clk_pre);
->  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "cfg_t_pre: 0x%x\n", cycles);
->  	nwl_dsi_write(dsi, NWL_DSI_CFG_T_PRE, cycles);
->  	cycles =3D ps2bc(dsi, cfg->lpx + cfg->clk_prepare + cfg->clk_zero);
->  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "cfg_tx_gap (pre): 0x%x\n", cycles);
-> -	cycles +=3D ui2bc(dsi, cfg->clk_pre);
-> +	cycles +=3D ui2bc(cfg->clk_pre);
->  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "cfg_t_post: 0x%x\n", cycles);
->  	nwl_dsi_write(dsi, NWL_DSI_CFG_T_POST, cycles);
->  	cycles =3D ps2bc(dsi, cfg->hs_exit);
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c b/drivers/phy/=
-amlogic/phy-meson-axg-mipi-dphy.c
-> index cd2332bf0e31..fdbd64c03e12 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> @@ -9,6 +9,7 @@
->  =
-
->  #include <linux/bitfield.h>
->  #include <linux/bitops.h>
-> +#include <linux/bits.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/io.h>
-> @@ -250,7 +251,7 @@ static int phy_meson_axg_mipi_dphy_power_on(struct ph=
-y *phy)
->  		     (DIV_ROUND_UP(priv->config.clk_zero, temp) << 16) |
->  		     (DIV_ROUND_UP(priv->config.clk_prepare, temp) << 24));
->  	regmap_write(priv->regmap, MIPI_DSI_CLK_TIM1,
-> -		     DIV_ROUND_UP(priv->config.clk_pre, temp));
-> +		     DIV_ROUND_UP(priv->config.clk_pre, BITS_PER_BYTE));
->  =
-
->  	regmap_write(priv->regmap, MIPI_DSI_HS_TIM,
->  		     DIV_ROUND_UP(priv->config.hs_exit, temp) |
-> diff --git a/drivers/phy/phy-core-mipi-dphy.c b/drivers/phy/phy-core-mipi=
--dphy.c
-> index 288c9c67aa74..ccb4045685cd 100644
-> --- a/drivers/phy/phy-core-mipi-dphy.c
-> +++ b/drivers/phy/phy-core-mipi-dphy.c
-> @@ -36,7 +36,7 @@ int phy_mipi_dphy_get_default_config(unsigned long pixe=
-l_clock,
->  =
-
->  	cfg->clk_miss =3D 0;
->  	cfg->clk_post =3D 60000 + 52 * ui;
-> -	cfg->clk_pre =3D 8000;
-> +	cfg->clk_pre =3D 8;
->  	cfg->clk_prepare =3D 38000;
->  	cfg->clk_settle =3D 95000;
->  	cfg->clk_term_en =3D 0;
-> @@ -97,7 +97,7 @@ int phy_mipi_dphy_config_validate(struct phy_configure_=
-opts_mipi_dphy *cfg)
->  	if (cfg->clk_post < (60000 + 52 * ui))
->  		return -EINVAL;
->  =
-
-> -	if (cfg->clk_pre < 8000)
-> +	if (cfg->clk_pre < 8)
->  		return -EINVAL;
->  =
-
->  	if (cfg->clk_prepare < 38000 || cfg->clk_prepare > 95000)
-> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c b/drivers/p=
-hy/rockchip/phy-rockchip-inno-dsidphy.c
-> index 347dc79a18c1..630e01b5c19b 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c
-> @@ -5,6 +5,7 @@
->   * Author: Wyon Bi <bivvy.bi@rock-chips.com>
->   */
->  =
-
-> +#include <linux/bits.h>
->  #include <linux/kernel.h>
->  #include <linux/clk.h>
->  #include <linux/iopoll.h>
-> @@ -364,7 +365,7 @@ static void inno_dsidphy_mipi_mode_enable(struct inno=
-_dsidphy *inno)
->  	 * The value of counter for HS Tclk-pre
->  	 * Tclk-pre =3D Tpin_txbyteclkhs * value
->  	 */
-> -	clk_pre =3D DIV_ROUND_UP(cfg->clk_pre, t_txbyteclkhs);
-> +	clk_pre =3D DIV_ROUND_UP(cfg->clk_pre, BITS_PER_BYTE);
->  =
-
->  	/*
->  	 * The value of counter for HS Tlpx Time
-> diff --git a/include/linux/phy/phy-mipi-dphy.h b/include/linux/phy/phy-mi=
-pi-dphy.h
-> index a877ffee845d..59a5e77ab409 100644
-> --- a/include/linux/phy/phy-mipi-dphy.h
-> +++ b/include/linux/phy/phy-mipi-dphy.h
-> @@ -42,7 +42,7 @@ struct phy_configure_opts_mipi_dphy {
->  	 * the transmitter prior to any associated Data Lane beginning
->  	 * the transition from LP to HS mode.
->  	 *
-> -	 * Minimum value: 8 UI
-> +	 * Minimum value: 8
->  	 */
->  	unsigned int		clk_pre;
-
-
-Tested on the Librem 5 (imx8mq) with it's rather picky panel:
-
-Tested-by: Guido G=FCnther <agx@sigxcpu.org>
-
-Cheers
- -- Guido
-
-
->  =
-
-> -- =
-
-> 2.25.1
-> =
-
+-- 
+Without deviation from the norm, progress is not possible.
 
 _______________________________________________
 linux-amlogic mailing list
