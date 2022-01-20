@@ -4,70 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3309BC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 18:32:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF26C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 18:33:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7XTMCVKUiL3nJHWX41iOFnx/baLdD1Cb69zgE9Wo13w=; b=mj6pRAeXH6lHyj
-	tmdM+p+eaqztEs7ijBAeXJ2b9R+rJKL2RYEY3ZMyPt6ktKAxcEBDo+6DEqiNGg1E2SYBTus+RKSjv
-	2K5ZK1olgZ1AqFt3hOzUMH4ODAQX9RRXILWtEDW/MIBccUP7HsVyTwn6KCC+h2yFcRlhBOJaI6fLn
-	4fC/rO+nx+LdVI6urY7S4eK9DdziKiFqQHLWKb4DoABZiLIq4Rjo3fYiQb/unIgE4OZUHWM63jVFZ
-	a2//io5F9TlC9tSur3v3W/xdBa19DNnO9xrq5TdZBijEfvXVmuBK9rp66Ttap8D4gEbD4OiHMgNX9
-	JLE4mYIUKG2swPH6Hp6Q==;
+	List-Owner; bh=R72iAX4n8zjippns6z+O/CmUW7WdPCWVFg+PkHNKDRo=; b=nyyVt9Gu14iz+0
+	KVytQjXHJiA5Rs+409hTNaaRzX7s5rQ6Q05z7EMiKTSh2OIp5b0HbgNPNyCGVh1c/y34y49RSBK+k
+	lzAjdIank+z2ciPaMJ+rtw8FIulImhXBDRdgjykh4O992jVYkqHWXFfRLpGCKYtCminaytA0ME0JZ
+	VTqAbBdbRdQ31uvxyoON42QA2Pc9GiMtvhj64SGbSwd4ZWK1844QFkowBJ0vAX46abnLfQ4ls3QT0
+	R9m0p+gNlNOZhNKpHSZAmOgO9kYtF5QHiUMT7zXudQ2kbKKJXPliiJeMWmFCb+WwybxatmQhn0xip
+	Vl8FPYe9bkvZT2BD5ptA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nAcEQ-00CnuL-Fp; Thu, 20 Jan 2022 18:32:22 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1nAcFS-00CoDr-PU; Thu, 20 Jan 2022 18:33:26 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nAcEO-00CnsT-2Z
- for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 18:32:21 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id z22so32343309edd.12
- for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 10:32:19 -0800 (PST)
+ id 1nAcFQ-00CoBw-35
+ for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 18:33:25 +0000
+Received: by mail-ed1-x536.google.com with SMTP id j23so27389635edp.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 10:33:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amarulasolutions.com; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+00NBU4zPpWp7jpvjiMcHu68nnfj/RSjb+xkfc0Ftio=;
- b=Ujrw03rYXeOdIrBL1FYq12Y7BD9PHdzWXOTbvGq3TL0sTrklNhYsPVirKgehYNdS71
- ywWPesI6LjjBA/ylLWyKbrznC3xu9vK2C4LwvKruPID0yH2J2uDbWAPWzjvhV1ctCBUb
- 27SfQeB3rVS7zw3ck64PWI4MmubiXvrFuyjH0=
+ :cc; bh=AKUPvYgb/xwsTq6T7e89Z6kjzAJSxkrEuwSzEueenMc=;
+ b=g0plarazHPwI4qlq/iLNZg6VCNmjr7t39qqS/R7UXrPsoagw0roK4Oxy1FcqigzWVD
+ 5qzEWL3uPnCjplkdgeow3xuV+Wl+XkoCQT8Bzf0+deLaZeo5j/ueuLPszaRkRnEzFPyd
+ L7MEhwee3mTd1zxtK1EYURmQ5DVeqXVW89Vbo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+00NBU4zPpWp7jpvjiMcHu68nnfj/RSjb+xkfc0Ftio=;
- b=zKhpyxxiI8hUr2A7Fjieys8871ztvhf49gFN6v0wMpU4WYkEjv8Z3PN5pLg0CNTmy3
- x2h+H/DH1NaSsyuvpr9kHQ7DPZtobGtUXXI6CexoSNXpY9u02OcZ8y3ZqzsSslCGte3C
- 8EauZiPAyNRffhHNTz7pBFpucMWIaoYxUFhIkF+MevSIc6uwdE9BQ2rFxzRjnofHbsiN
- MQk8feepD0BL5v2DWSIGlP4O5fzqFCytjmdF1KOsCpaPT4j56UB/hQjvrfImIJTjCj2L
- jjqEPO6uLaTFiwDjF1JJ603H2JuvMQuRrjPiNNHZ+jjTrXaieEg/12RFipa1OpolozIU
- Pbqg==
-X-Gm-Message-State: AOAM531DAKlD1d6Ne+rvhx7Zrg0X+hN811vm+rASzUdEK0SmSOYu7Nuz
- SMm9YH7oMdcN77mo403x3vQvPYrXXyJfsmfnxB4w2w==
-X-Google-Smtp-Source: ABdhPJwtYYJyoFJwfwyt1kfWv+pgU8yVQH9Sl8CfaEbWcew1OIQe0t3QgSU+hVN98B+hr1XFAtv5BDKbO4q/1yNbR8k=
-X-Received: by 2002:a17:906:5d0d:: with SMTP id
- g13mr131110ejt.167.1642703538208; 
- Thu, 20 Jan 2022 10:32:18 -0800 (PST)
+ bh=AKUPvYgb/xwsTq6T7e89Z6kjzAJSxkrEuwSzEueenMc=;
+ b=CCQA76lh/N3tefthD8wKjARd50Z7qjgva67jfSmpfgp6sYyXwAnY39cIDYmr3XdDWt
+ OnHwm6yfTUR7ZARt/mPWWRH2XDMjCWJnfj+MJFEdDl4pnCwMmHYp3G4Lq+TiV6moPkVv
+ wBKo1Ar3MRJSReYy4iOsmLWcw0yaeuN6YzjB+e8258aqEfbp24EEW4+ZBX1jMCp8SWm6
+ YbWahWXDj8PWEoY/bYS50VQf1WrBseZI53SQsPtL0+bPRAV7hw46GHzbWwYC8qWVffL9
+ sgx3hGq3N9SvOGRN+TGHtb4kR0u/KM2sKQnQZkTQBsPLC7SOX+LYoErmfVUJacLuvSgs
+ s18g==
+X-Gm-Message-State: AOAM530fbLxkxt9i9OYNvtnDX2VUtyYgP4Eh02g9IC7USpyS6hW/PjCd
+ iv6VpL78rCvY7qbO8AyJAfq6YCYQhGnrZU8pBHn4CA==
+X-Google-Smtp-Source: ABdhPJwt+XAMRl17Scsp8wwhWEmsO7vFjwY7BNMmq+eFOWefHMWaw75EXBzrtVVz8ykqngqnRTHQUYrvu2B/OHbFdOU=
+X-Received: by 2002:a17:907:3e23:: with SMTP id
+ hp35mr157023ejc.760.1642703602005; 
+ Thu, 20 Jan 2022 10:33:22 -0800 (PST)
 MIME-Version: 1.0
 References: <20220120083357.1541262-1-narmstrong@baylibre.com>
  <20220120083357.1541262-7-narmstrong@baylibre.com>
- <CAMty3ZBvbPvKgUpNW1LVho5_S9kwzNioE0SxvX_E8bmgw-+fXw@mail.gmail.com>
- <b2086dd4-643f-26b3-3930-4d8beb170b75@baylibre.com>
-In-Reply-To: <b2086dd4-643f-26b3-3930-4d8beb170b75@baylibre.com>
+In-Reply-To: <20220120083357.1541262-7-narmstrong@baylibre.com>
 From: Jagan Teki <jagan@amarulasolutions.com>
-Date: Fri, 21 Jan 2022 00:02:06 +0530
-Message-ID: <CAMty3ZCb=oTw8inrk0MNHtjfJPVMKm2u-L8YSr=e0eQZ9HyQbA@mail.gmail.com>
+Date: Fri, 21 Jan 2022 00:03:10 +0530
+Message-ID: <CAMty3ZBdzW++6mCaqCLuL0QWwY7ve1vmLSPhaS8QqYji_jDXSg@mail.gmail.com>
 Subject: Re: [PATCH v2 6/6] drm/meson: add support for MIPI-DSI transceiver
 To: Neil Armstrong <narmstrong@baylibre.com>
 Cc: dri-devel@lists.freedesktop.org, martin.blumenstingl@googlemail.com, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220120_103220_159381_FD3F3FFB 
-X-CRM114-Status: GOOD (  21.84  )
+X-CRM114-CacheID: sfid-20220120_103324_177912_7BFBF793 
+X-CRM114-Status: GOOD (  10.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,86 +82,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 20, 2022 at 10:00 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Thu, Jan 20, 2022 at 2:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Hi,
+> The Amlogic G12A/G12B/SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+> Glue on other Amlogic SoCs.
 >
-> On 20/01/2022 15:24, Jagan Teki wrote:
-> > On Thu, Jan 20, 2022 at 2:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >>
-> >> The Amlogic G12A/G12B/SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> >> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> >> Glue on other Amlogic SoCs.
-> >>
-> >> This adds support for the Glue managing the transceiver, mimicing the init flow provided
-> >> by Amlogic to setup the ENCL encoder, the glue, the transceiver, the digital D-PHY and the
-> >> Analog PHY in the proper way.
-> >>
-> >> An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
-> >> DW-MIPI-DSI transceiver.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/gpu/drm/meson/Kconfig             |   7 +
-> >>  drivers/gpu/drm/meson/Makefile            |   1 +
-> >>  drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 357 ++++++++++++++++++++++
-> >>  drivers/gpu/drm/meson/meson_dw_mipi_dsi.h | 160 ++++++++++
-> >>  4 files changed, 525 insertions(+)
-> >>  create mode 100644 drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
-> >>  create mode 100644 drivers/gpu/drm/meson/meson_dw_mipi_dsi.h
-> >>
-> >> diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-> >> index 6c70fc3214af..71a1364b51e1 100644
-> >> --- a/drivers/gpu/drm/meson/Kconfig
-> >> +++ b/drivers/gpu/drm/meson/Kconfig
-> >> @@ -17,3 +17,10 @@ config DRM_MESON_DW_HDMI
-> >>         default y if DRM_MESON
-> >>         select DRM_DW_HDMI
-> >>         imply DRM_DW_HDMI_I2S_AUDIO
-> >> +
-> >> +config DRM_MESON_DW_MIPI_DSI
-> >> +       tristate "MIPI DSI Synopsys Controller support for Amlogic Meson Display"
-> >> +       depends on DRM_MESON
-> >> +       default y if DRM_MESON
-> >> +       select DRM_DW_MIPI_DSI
-> >> +       select GENERIC_PHY_MIPI_DPHY
-> >> diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
-> >> index 833e18c20603..43071bdbd4b9 100644
-> >> --- a/drivers/gpu/drm/meson/Makefile
-> >> +++ b/drivers/gpu/drm/meson/Makefile
-> >> @@ -6,3 +6,4 @@ meson-drm-y += meson_encoder_hdmi.o meson_encoder_dsi.o
-> >>
-> >>  obj-$(CONFIG_DRM_MESON) += meson-drm.o
-> >>  obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
-> >> +obj-$(CONFIG_DRM_MESON_DW_MIPI_DSI) += meson_dw_mipi_dsi.o
-> >
-> > Can the naming convention prefix with dw-mipi-dsi like other glue
-> > drivers follow?
+> This adds support for the Glue managing the transceiver, mimicing the init flow provided
+> by Amlogic to setup the ENCL encoder, the glue, the transceiver, the digital D-PHY and the
+> Analog PHY in the proper way.
 >
-> Seems only rockchip names their glue like that:
+> An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
+> DW-MIPI-DSI transceiver.
 >
-> $ find drivers/gpu/drm/ -name "*dw*mipi*dsi*.c"
-> drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
-> drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-> drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-> drivers/gpu/drm/stm/dw_mipi_dsi-stm.c
->
-> If you look at dw-hdmi it's even worse:
->
-> $ find drivers/gpu/drm/ -name "*dw*hdmi*.c" | grep -v mod
-> drivers/gpu/drm/meson/meson_dw_hdmi.c
-> drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
-> drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c
-> drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
-> drivers/gpu/drm/imx/dw_hdmi-imx.c
-> drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
 
-Look like there is no standard naming, thanks.
-
-Jagan.
+Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
 
 _______________________________________________
 linux-amlogic mailing list
