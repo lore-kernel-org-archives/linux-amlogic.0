@@ -4,68 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F9CDC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 14:25:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB1DCC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 16:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i8Nj//9AmrtjHR7ijNMAjddPUUbQnD4Vfd7C2C85zWY=; b=fS+UTXC5tq4QzI
-	XvsOMmDCZPoDcUj1PF20ebF0NjyyYu63VQNkO8msG4XR5hff69knV+rDENXQE90Gq7D3MKlp6yK3J
-	A6Yeptx+O7BS8bmf4s0GWpnrP861eFWImsFZyE+ilCASxTN1Qqt4923rg2lvq8HUt9PZzaG8RXwVg
-	JZFFO0lA5mSVVOqtpjUBJKkAUBZDqmdGWq4gmnvyJ0sZCbM795JTeUflg597qsDUlxCy+f+HviaM0
-	EeNQS30S1q//19Rvq49dHmMCb8dubnvp+4XcXcTMfjm1CpIbD4nqgsr3l+SaxUvy6r1GctsPwX1Jj
-	FWR67GLPeFsGmbJVuG9w==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=vCFl3n2sZ+VZj4mXASAVWmNAiGGwyNQ2SYbBBLVSW2w=; b=HAFibsfuBDbOH8IxLgYrLz4Wm1
+	Pz7AZvpfvmCtLTkp1GM+QQvc07S87aBZAlZgVzRkxiQz5ejoL1gfjadrzV0alBH5qjKEeZx2lKO5W
+	wKdZ3woqkmKMH36+ju3RJdWBShM0pQGcqxtj6Z1qq2lO9/wIW9EQ5O0M/c0huPUKw/N2Q8h3nyLJw
+	yVXJqgW7wnIG2d75SnAnBv1KhKGILfwRnGeCjC51Pp+n80e37tu/jcc5ExGdDNASGaQUKkjVvPLvK
+	95lt93GfFECb3YwV3aZNCKNW0epcaKUT9qeLsXizPf0ocpY814hI9sQptFJ/MFuWrTe7tHhaD9dFo
+	zmwqkIDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nAYNC-00BtQc-UI; Thu, 20 Jan 2022 14:25:10 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1nAaGj-00CNw1-Dw; Thu, 20 Jan 2022 16:26:37 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nAYNA-00BtOX-D7
- for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 14:25:09 +0000
-Received: by mail-ed1-x534.google.com with SMTP id j23so24298959edp.5
- for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 06:25:07 -0800 (PST)
+ id 1nAaGV-00CNrg-9L
+ for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 16:26:26 +0000
+Received: by mail-wm1-x331.google.com with SMTP id
+ o1-20020a1c4d01000000b0034d95625e1fso8647161wmh.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 08:26:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amarulasolutions.com; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=FAhsQDmY+UEIFHjWgi4z9bftnzJtob5tCT+hA+Of3Tc=;
- b=KJEjgCdFG0dpF+3j0wAsKxGexfu15gsGWeXYUVgoDvXZHy2v0EQey/SQX7X4mYBsSp
- I2UnEh7K6RxCTHjo7Shad43R2GcXtPLrFEKdOCAxEif+jzcmr0OzMr/cGHYQmUOjX0dX
- j8VWdbTp3bckcfROeq0sRC9ycPXnU++G0KRAc=
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ZZ5JhSU7/2jMjBoqdbMoQ0Y+xZcT9Mngloieb9w8d6o=;
+ b=DITjrGZVKZ3Kub0LNW0IQpXoujisZrEIPmRjjl9DV3uc2pmPvY1ZZUX5zXby7PWqK3
+ 9PLbVvbs0PLx6ERAvpUItLJr3Eq7dhR/cW+mWuLffSNxgIa7QLGG1dODhnQPlnsvip0q
+ pv1PrNiCdDVtuiQF2svKsq1I1E6TntZ1HcB2jeAs2M0OLm+reqGU8vc2dUkAAWQM2/gT
+ hMUf1rqg6/tkB0UTzYv6ujhdoaW74/vSNPm2ortJ2TrN5ra7b5J76GybtPW0qYzX1HQq
+ LiiBDL7C/O67ATmnhRRHmiN3xysvX8vQZeOVI4mkuOfXho3ZlKFzV3uyAIt+7FSEhkfO
+ YTzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=FAhsQDmY+UEIFHjWgi4z9bftnzJtob5tCT+hA+Of3Tc=;
- b=t43oJAbEubQkKWsLNGM8mTVqafoQJtXSnWO8DOGqMepGSJj8QIRvKEamlKbX6dFjH/
- Sq0xjeREyN61ASXx7a4eDuoVcTKXrjUXHEIN2a9AtivFqbWH3W7GzC+eUok22YnYnMFd
- 8t7n/uHI09c+S+yAQyW9kBH+qviyMrrSa1sf7rALyuitLwHqrFEN1/icUo16mpLFTIUZ
- OPLXgqeDkOP1r0Ed+zLHBAaK6eYLGNkb4K9wF5Lr0W9NVOm0RLHP6+sG53zGd87kFOTN
- 0rlibSUNo3T7S1VKc5vW32bQRRUNX/6G/V+TKsnVRU67+i9pUNE5Wu55oRLo5tgQtOeq
- Gfqw==
-X-Gm-Message-State: AOAM530UATV3CSoqxZoZp+zsSUMR5bHhklcAmVr0Zhl2kvmD5l7u21e7
- eQc0JuOkmV8iCZbCFEV+U+5PXqMb8THBxNqdeinTBA==
-X-Google-Smtp-Source: ABdhPJy4wH7/I8d3vpY8drpkpk3qBL9l/808L6I024OQggLfoUx7l3gQI5KIjzpg9Q0pWjfKBcf3bh29R7L7Wb5fBgc=
-X-Received: by 2002:a05:6402:4244:: with SMTP id
- g4mr13521547edb.271.1642688706615; 
- Thu, 20 Jan 2022 06:25:06 -0800 (PST)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=ZZ5JhSU7/2jMjBoqdbMoQ0Y+xZcT9Mngloieb9w8d6o=;
+ b=xo1tJ8QQXzJgPzbyhN88Y2FkmSpHAX+CntlodqHh0wbIzzIY8wWbfyB7DQ7n9zWFtL
+ YJdBSExolqYf4Z1Tq8e91R8ycmkOp7ayAWJYYOTDYpe8eoIyFN016YqX2IgQtXSw2NIB
+ 1MdvacrbdsqSqWrkUhj1DGcbNVYzG2mPUH+Gi3CBAy/BJhXSnFHMfmIqbDk+2cegsxn5
+ rgEHL52KSOzsyGzQ8mYZ1s0HjlVETmiOMfp6iX7DICZmes5HViyentC4Hdfax4RNuUfh
+ 5pl6Gi9HKHv6pObysqitADeKtMwE+suNFLjDPh9C32kY8cl4UTa1LXJshsB/qx9h5Sh1
+ VKGA==
+X-Gm-Message-State: AOAM532o9d2AdcDUDnMQ6pwFNXEwfiVJUemAV+ny8a222d6pwYX5/R/9
+ eyKZtBrQmUY463ccZhQ/H2+qCg==
+X-Google-Smtp-Source: ABdhPJwbAAiSdauhqTNldlrH0S7IF+FpUK+Typw9zOMNriunS+cxT5vmWTpKgfs3oYApa77bCMucPw==
+X-Received: by 2002:adf:e312:: with SMTP id b18mr35829588wrj.138.1642695981542; 
+ Thu, 20 Jan 2022 08:26:21 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:ced2:397a:bee8:75f5?
+ ([2001:861:44c0:66c0:ced2:397a:bee8:75f5])
+ by smtp.gmail.com with ESMTPSA id o13sm3308832wrq.37.2022.01.20.08.26.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 20 Jan 2022 08:26:20 -0800 (PST)
+Subject: Re: [PATCH v2 3/6] drm/meson: venc: add ENCL encoder setup for
+ MIPI-DSI output
+To: dri-devel@lists.freedesktop.org, martin.blumenstingl@googlemail.com
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 References: <20220120083357.1541262-1-narmstrong@baylibre.com>
- <20220120083357.1541262-7-narmstrong@baylibre.com>
-In-Reply-To: <20220120083357.1541262-7-narmstrong@baylibre.com>
-From: Jagan Teki <jagan@amarulasolutions.com>
-Date: Thu, 20 Jan 2022 19:54:55 +0530
-Message-ID: <CAMty3ZBvbPvKgUpNW1LVho5_S9kwzNioE0SxvX_E8bmgw-+fXw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] drm/meson: add support for MIPI-DSI transceiver
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: dri-devel@lists.freedesktop.org, martin.blumenstingl@googlemail.com, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
+ <20220120083357.1541262-4-narmstrong@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <17810339-0e9c-0042-b6f7-927f5fe00421@baylibre.com>
+Date: Thu, 20 Jan 2022 17:26:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20220120083357.1541262-4-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220120_062508_468434_34763616 
-X-CRM114-Status: GOOD (  17.60  )
+X-CRM114-CacheID: sfid-20220120_082623_425096_A152A09F 
+X-CRM114-Status: GOOD (  24.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,58 +98,366 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 20, 2022 at 2:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The Amlogic G12A/G12B/SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> Glue on other Amlogic SoCs.
->
-> This adds support for the Glue managing the transceiver, mimicing the init flow provided
-> by Amlogic to setup the ENCL encoder, the glue, the transceiver, the digital D-PHY and the
-> Analog PHY in the proper way.
->
-> An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
-> DW-MIPI-DSI transceiver.
->
+On 20/01/2022 09:33, Neil Armstrong wrote:
+> This adds supports for the ENCL encoder connected to a MIPI-DSI transceiver on the
+> Amlogic AXG, G12A, G12B & SM1 SoCs.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  drivers/gpu/drm/meson/Kconfig             |   7 +
->  drivers/gpu/drm/meson/Makefile            |   1 +
->  drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 357 ++++++++++++++++++++++
->  drivers/gpu/drm/meson/meson_dw_mipi_dsi.h | 160 ++++++++++
->  4 files changed, 525 insertions(+)
->  create mode 100644 drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->  create mode 100644 drivers/gpu/drm/meson/meson_dw_mipi_dsi.h
->
-> diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-> index 6c70fc3214af..71a1364b51e1 100644
-> --- a/drivers/gpu/drm/meson/Kconfig
-> +++ b/drivers/gpu/drm/meson/Kconfig
-> @@ -17,3 +17,10 @@ config DRM_MESON_DW_HDMI
->         default y if DRM_MESON
->         select DRM_DW_HDMI
->         imply DRM_DW_HDMI_I2S_AUDIO
+>  drivers/gpu/drm/meson/meson_registers.h |  15 ++
+>  drivers/gpu/drm/meson/meson_venc.c      | 211 +++++++++++++++++++++++-
+>  drivers/gpu/drm/meson/meson_venc.h      |   6 +
+>  drivers/gpu/drm/meson/meson_vpp.h       |   2 +
+>  4 files changed, 232 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
+> index 0f3cafab8860..a422a8df1641 100644
+> --- a/drivers/gpu/drm/meson/meson_registers.h
+> +++ b/drivers/gpu/drm/meson/meson_registers.h
+> @@ -1300,13 +1300,28 @@
+>  #define RDMA_STATUS2 0x1116
+>  #define RDMA_STATUS3 0x1117
+>  #define L_GAMMA_CNTL_PORT 0x1400
+> +#define		L_GAMMA_CNTL_PORT_VCOM_POL	BIT(7)	/* RW */
+> +#define		L_GAMMA_CNTL_PORT_RVS_OUT	BIT(6)	/* RW */
+> +#define		L_GAMMA_CNTL_PORT_ADR_RDY	BIT(5)	/* Read Only */
+> +#define		L_GAMMA_CNTL_PORT_WR_RDY	BIT(4)	/* Read Only */
+> +#define		L_GAMMA_CNTL_PORT_RD_RDY	BIT(3)	/* Read Only */
+> +#define		L_GAMMA_CNTL_PORT_TR		BIT(2)	/* RW */
+> +#define		L_GAMMA_CNTL_PORT_SET		BIT(1)	/* RW */
+> +#define		L_GAMMA_CNTL_PORT_EN		BIT(0)	/* RW */
+>  #define L_GAMMA_DATA_PORT 0x1401
+>  #define L_GAMMA_ADDR_PORT 0x1402
+> +#define		L_GAMMA_ADDR_PORT_RD		BIT(12)
+> +#define		L_GAMMA_ADDR_PORT_AUTO_INC	BIT(11)
+> +#define		L_GAMMA_ADDR_PORT_SEL_R		BIT(10)
+> +#define		L_GAMMA_ADDR_PORT_SEL_G		BIT(9)
+> +#define		L_GAMMA_ADDR_PORT_SEL_B		BIT(8)
+> +#define		L_GAMMA_ADDR_PORT_ADDR		GENMASK(7, 0)
+>  #define L_GAMMA_VCOM_HSWITCH_ADDR 0x1403
+>  #define L_RGB_BASE_ADDR 0x1405
+>  #define L_RGB_COEFF_ADDR 0x1406
+>  #define L_POL_CNTL_ADDR 0x1407
+>  #define L_DITH_CNTL_ADDR 0x1408
+> +#define		L_DITH_CNTL_DITH10_EN	BIT(10)
+>  #define L_GAMMA_PROBE_CTRL 0x1409
+>  #define L_GAMMA_PROBE_COLOR_L 0x140a
+>  #define L_GAMMA_PROBE_COLOR_H 0x140b
+
+OK Somehow the following disappeared from the patchset...
+
+ #define VENC_INTCTRL 0x1b6e
+ #define		VENC_INTCTRL_ENCI_LNRST_INT_EN  BIT(1)
+-#define		VENC_INTCTRL_ENCP_LNRST_INT_EN  BIT(9)
+ #define VENC_INTFLAG 0x1b6f
+
+ #define ENCL_VIDEO_MODE 0x1ca7
+-#define		ENCL_PX_LN_CNT_SHADOW_EN	BIT(15)
+ #define ENCL_VIDEO_MODE_ADV 0x1ca8
+-#define		ENCL_VIDEO_MODE_ADV_VFIFO_EN	BIT(3)
+-#define		ENCL_VIDEO_MODE_ADV_GAIN_HDTV	BIT(4)
+-#define		ENCL_SEL_GAMMA_RGB_IN		BIT(10)
+ #define ENCL_DBG_PX_RST 0x1ca9
+ #define ENCL_VIDEO_FILT_CTRL 0x1cc2
+
+-#define		ENCL_VIDEO_FILT_CTRL_BYPASS_FILTER	BIT(12)
+ #define ENCL_VIDEO_OFLD_VPEQ_OFST 0x1cc3
+
+ #define ENCL_VIDEO_RGBIN_CTRL 0x1cc7
+-#define		ENCL_VIDEO_RGBIN_RGB	BIT(0)
+-#define		ENCL_VIDEO_RGBIN_ZBLK	BIT(1)
+ #define ENCL_MAX_LINE_SWITCH_POINT 0x1cc8
+
+
+ #define L_TCON_MISC_SEL_ADDR 0x1441
+-#define		L_TCON_MISC_SEL_STV1	BIT(4)
+-#define		L_TCON_MISC_SEL_STV2	BIT(5)
+ #define L_DUAL_PORT_CNTL_ADDR 0x1442
+
+I'll resend with those
+
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index 3c55ed003359..eb2ac0549d46 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -6,6 +6,7 @@
+>   */
+>  
+>  #include <linux/export.h>
+> +#include <linux/iopoll.h>
+>  
+>  #include <drm/drm_modes.h>
+>  
+> @@ -1557,6 +1558,205 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+>  }
+>  EXPORT_SYMBOL_GPL(meson_venc_hdmi_mode_set);
+>  
+> +static unsigned short meson_encl_gamma_table[256] = {
+> +	0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60,
+> +	64, 68, 72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124,
+> +	128, 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188,
+> +	192, 196, 200, 204, 208, 212, 216, 220, 224, 228, 232, 236, 240, 244, 248, 252,
+> +	256, 260, 264, 268, 272, 276, 280, 284, 288, 292, 296, 300, 304, 308, 312, 316,
+> +	320, 324, 328, 332, 336, 340, 344, 348, 352, 356, 360, 364, 368, 372, 376, 380,
+> +	384, 388, 392, 396, 400, 404, 408, 412, 416, 420, 424, 428, 432, 436, 440, 444,
+> +	448, 452, 456, 460, 464, 468, 472, 476, 480, 484, 488, 492, 496, 500, 504, 508,
+> +	512, 516, 520, 524, 528, 532, 536, 540, 544, 548, 552, 556, 560, 564, 568, 572,
+> +	576, 580, 584, 588, 592, 596, 600, 604, 608, 612, 616, 620, 624, 628, 632, 636,
+> +	640, 644, 648, 652, 656, 660, 664, 668, 672, 676, 680, 684, 688, 692, 696, 700,
+> +	704, 708, 712, 716, 720, 724, 728, 732, 736, 740, 744, 748, 752, 756, 760, 764,
+> +	768, 772, 776, 780, 784, 788, 792, 796, 800, 804, 808, 812, 816, 820, 824, 828,
+> +	832, 836, 840, 844, 848, 852, 856, 860, 864, 868, 872, 876, 880, 884, 888, 892,
+> +	896, 900, 904, 908, 912, 916, 920, 924, 928, 932, 936, 940, 944, 948, 952, 956,
+> +	960, 964, 968, 972, 976, 980, 984, 988, 992, 996, 1000, 1004, 1008, 1012, 1016, 1020,
+> +};
 > +
-> +config DRM_MESON_DW_MIPI_DSI
-> +       tristate "MIPI DSI Synopsys Controller support for Amlogic Meson Display"
-> +       depends on DRM_MESON
-> +       default y if DRM_MESON
-> +       select DRM_DW_MIPI_DSI
-> +       select GENERIC_PHY_MIPI_DPHY
-> diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
-> index 833e18c20603..43071bdbd4b9 100644
-> --- a/drivers/gpu/drm/meson/Makefile
-> +++ b/drivers/gpu/drm/meson/Makefile
-> @@ -6,3 +6,4 @@ meson-drm-y += meson_encoder_hdmi.o meson_encoder_dsi.o
->
->  obj-$(CONFIG_DRM_MESON) += meson-drm.o
->  obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
-> +obj-$(CONFIG_DRM_MESON_DW_MIPI_DSI) += meson_dw_mipi_dsi.o
+> +static void meson_encl_set_gamma_table(struct meson_drm *priv, u16 *data,
+> +				       u32 rgb_mask)
+> +{
+> +	int i, ret;
+> +	u32 reg;
+> +
+> +	writel_bits_relaxed(L_GAMMA_CNTL_PORT_EN, 0,
+> +			    priv->io_base + _REG(L_GAMMA_CNTL_PORT));
+> +
+> +	ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
+> +					 reg, reg & L_GAMMA_CNTL_PORT_ADR_RDY, 10, 10000);
+> +	if (ret)
+> +		pr_warn("%s: GAMMA ADR_RDY timeout\n", __func__);
+> +
+> +	writel_relaxed(L_GAMMA_ADDR_PORT_AUTO_INC | rgb_mask |
+> +		       FIELD_PREP(L_GAMMA_ADDR_PORT_ADDR, 0),
+> +		       priv->io_base + _REG(L_GAMMA_ADDR_PORT));
+> +
+> +	for (i = 0; i < 256; i++) {
+> +		ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
+> +						 reg, reg & L_GAMMA_CNTL_PORT_WR_RDY,
+> +						 10, 10000);
+> +		if (ret)
+> +			pr_warn_once("%s: GAMMA WR_RDY timeout\n", __func__);
+> +
+> +		writel_relaxed(data[i], priv->io_base + _REG(L_GAMMA_DATA_PORT));
+> +	}
+> +
+> +	ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
+> +					 reg, reg & L_GAMMA_CNTL_PORT_ADR_RDY, 10, 10000);
+> +	if (ret)
+> +		pr_warn("%s: GAMMA ADR_RDY timeout\n", __func__);
+> +
+> +	writel_relaxed(L_GAMMA_ADDR_PORT_AUTO_INC | rgb_mask |
+> +		       FIELD_PREP(L_GAMMA_ADDR_PORT_ADDR, 0x23),
+> +		       priv->io_base + _REG(L_GAMMA_ADDR_PORT));
+> +}
+> +
+> +void meson_encl_load_gamma(struct meson_drm *priv)
+> +{
+> +	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_R);
+> +	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_G);
+> +	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_B);
+> +
+> +	writel_bits_relaxed(L_GAMMA_CNTL_PORT_EN, L_GAMMA_CNTL_PORT_EN,
+> +			    priv->io_base + _REG(L_GAMMA_CNTL_PORT));
+> +}
+> +
+> +void meson_venc_mipi_dsi_mode_set(struct meson_drm *priv,
+> +				  const struct drm_display_mode *mode)
+> +{
+> +	unsigned int max_pxcnt;
+> +	unsigned int max_lncnt;
+> +	unsigned int havon_begin;
+> +	unsigned int havon_end;
+> +	unsigned int vavon_bline;
+> +	unsigned int vavon_eline;
+> +	unsigned int hso_begin;
+> +	unsigned int hso_end;
+> +	unsigned int vso_begin;
+> +	unsigned int vso_end;
+> +	unsigned int vso_bline;
+> +	unsigned int vso_eline;
+> +
+> +	max_pxcnt = mode->htotal - 1;
+> +	max_lncnt = mode->vtotal - 1;
+> +	havon_begin = mode->htotal - mode->hsync_start;
+> +	havon_end = havon_begin + mode->hdisplay - 1;
+> +	vavon_bline = mode->vtotal - mode->vsync_start;
+> +	vavon_eline = vavon_bline + mode->vdisplay - 1;
+> +	hso_begin = 0;
+> +	hso_end = mode->hsync_end - mode->hsync_start;
+> +	vso_begin = 0;
+> +	vso_end = 0;
+> +	vso_bline = 0;
+> +	vso_eline = mode->vsync_end - mode->vsync_start;
+> +
+> +	meson_vpp_setup_mux(priv, MESON_VIU_VPP_MUX_ENCL);
+> +
+> +	writel_relaxed(0, priv->io_base + _REG(ENCL_VIDEO_EN));
+> +
+> +	writel_relaxed(ENCL_PX_LN_CNT_SHADOW_EN, priv->io_base + _REG(ENCL_VIDEO_MODE));
+> +	writel_relaxed(ENCL_VIDEO_MODE_ADV_VFIFO_EN |
+> +		       ENCL_VIDEO_MODE_ADV_GAIN_HDTV |
+> +		       ENCL_SEL_GAMMA_RGB_IN, priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
+> +
+> +	writel_relaxed(ENCL_VIDEO_FILT_CTRL_BYPASS_FILTER,
+> +		       priv->io_base + _REG(ENCL_VIDEO_FILT_CTRL));
+> +	writel_relaxed(max_pxcnt, priv->io_base + _REG(ENCL_VIDEO_MAX_PXCNT));
+> +	writel_relaxed(max_lncnt, priv->io_base + _REG(ENCL_VIDEO_MAX_LNCNT));
+> +	writel_relaxed(havon_begin, priv->io_base + _REG(ENCL_VIDEO_HAVON_BEGIN));
+> +	writel_relaxed(havon_end, priv->io_base + _REG(ENCL_VIDEO_HAVON_END));
+> +	writel_relaxed(vavon_bline, priv->io_base + _REG(ENCL_VIDEO_VAVON_BLINE));
+> +	writel_relaxed(vavon_eline, priv->io_base + _REG(ENCL_VIDEO_VAVON_ELINE));
+> +
+> +	writel_relaxed(hso_begin, priv->io_base + _REG(ENCL_VIDEO_HSO_BEGIN));
+> +	writel_relaxed(hso_end, priv->io_base + _REG(ENCL_VIDEO_HSO_END));
+> +	writel_relaxed(vso_begin, priv->io_base + _REG(ENCL_VIDEO_VSO_BEGIN));
+> +	writel_relaxed(vso_end, priv->io_base + _REG(ENCL_VIDEO_VSO_END));
+> +	writel_relaxed(vso_bline, priv->io_base + _REG(ENCL_VIDEO_VSO_BLINE));
+> +	writel_relaxed(vso_eline, priv->io_base + _REG(ENCL_VIDEO_VSO_ELINE));
+> +	writel_relaxed(ENCL_VIDEO_RGBIN_RGB | ENCL_VIDEO_RGBIN_ZBLK,
+> +		       priv->io_base + _REG(ENCL_VIDEO_RGBIN_CTRL));
+> +
+> +	/* default black pattern */
+> +	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_MDSEL));
+> +	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_Y));
+> +	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CB));
+> +	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CR));
+> +	writel_relaxed(1, priv->io_base + _REG(ENCL_TST_EN));
+> +	writel_bits_relaxed(ENCL_VIDEO_MODE_ADV_VFIFO_EN, 0,
+> +			    priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
+> +
+> +	writel_relaxed(1, priv->io_base + _REG(ENCL_VIDEO_EN));
+> +
+> +	writel_relaxed(0, priv->io_base + _REG(L_RGB_BASE_ADDR));
+> +	writel_relaxed(0x400, priv->io_base + _REG(L_RGB_COEFF_ADDR)); /* Magic value */
+> +
+> +	writel_relaxed(L_DITH_CNTL_DITH10_EN, priv->io_base + _REG(L_DITH_CNTL_ADDR));
+> +
+> +	/* DE signal for TTL */
+> +	writel_relaxed(havon_begin, priv->io_base + _REG(L_OEH_HS_ADDR));
+> +	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_OEH_HE_ADDR));
+> +	writel_relaxed(vavon_bline, priv->io_base + _REG(L_OEH_VS_ADDR));
+> +	writel_relaxed(vavon_eline, priv->io_base + _REG(L_OEH_VE_ADDR));
+> +
+> +	/* DE signal for TTL */
+> +	writel_relaxed(havon_begin, priv->io_base + _REG(L_OEV1_HS_ADDR));
+> +	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_OEV1_HE_ADDR));
+> +	writel_relaxed(vavon_bline, priv->io_base + _REG(L_OEV1_VS_ADDR));
+> +	writel_relaxed(vavon_eline, priv->io_base + _REG(L_OEV1_VE_ADDR));
+> +
+> +	/* Hsync signal for TTL */
+> +	if (mode->flags & DRM_MODE_FLAG_PHSYNC) {
+> +		writel_relaxed(hso_end, priv->io_base + _REG(L_STH1_HS_ADDR));
+> +		writel_relaxed(hso_begin, priv->io_base + _REG(L_STH1_HE_ADDR));
+> +	} else {
+> +		writel_relaxed(hso_begin, priv->io_base + _REG(L_STH1_HS_ADDR));
+> +		writel_relaxed(hso_end, priv->io_base + _REG(L_STH1_HE_ADDR));
+> +	}
+> +	writel_relaxed(0, priv->io_base + _REG(L_STH1_VS_ADDR));
+> +	writel_relaxed(max_lncnt, priv->io_base + _REG(L_STH1_VE_ADDR));
+> +
+> +	/* Vsync signal for TTL */
+> +	writel_relaxed(vso_begin, priv->io_base + _REG(L_STV1_HS_ADDR));
+> +	writel_relaxed(vso_end, priv->io_base + _REG(L_STV1_HE_ADDR));
+> +	if (mode->flags & DRM_MODE_FLAG_PVSYNC) {
+> +		writel_relaxed(vso_eline, priv->io_base + _REG(L_STV1_VS_ADDR));
+> +		writel_relaxed(vso_bline, priv->io_base + _REG(L_STV1_VE_ADDR));
+> +	} else {
+> +		writel_relaxed(vso_bline, priv->io_base + _REG(L_STV1_VS_ADDR));
+> +		writel_relaxed(vso_eline, priv->io_base + _REG(L_STV1_VE_ADDR));
+> +	}
+> +
+> +	/* DE signal */
+> +	writel_relaxed(havon_begin, priv->io_base + _REG(L_DE_HS_ADDR));
+> +	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_DE_HE_ADDR));
+> +	writel_relaxed(vavon_bline, priv->io_base + _REG(L_DE_VS_ADDR));
+> +	writel_relaxed(vavon_eline, priv->io_base + _REG(L_DE_VE_ADDR));
+> +
+> +	/* Hsync signal */
+> +	writel_relaxed(hso_begin, priv->io_base + _REG(L_HSYNC_HS_ADDR));
+> +	writel_relaxed(hso_end, priv->io_base + _REG(L_HSYNC_HE_ADDR));
+> +	writel_relaxed(0, priv->io_base + _REG(L_HSYNC_VS_ADDR));
+> +	writel_relaxed(max_lncnt, priv->io_base + _REG(L_HSYNC_VE_ADDR));
+> +
+> +	/* Vsync signal */
+> +	writel_relaxed(vso_begin, priv->io_base + _REG(L_VSYNC_HS_ADDR));
+> +	writel_relaxed(vso_end, priv->io_base + _REG(L_VSYNC_HE_ADDR));
+> +	writel_relaxed(vso_bline, priv->io_base + _REG(L_VSYNC_VS_ADDR));
+> +	writel_relaxed(vso_eline, priv->io_base + _REG(L_VSYNC_VE_ADDR));
+> +
+> +	writel_relaxed(0, priv->io_base + _REG(L_INV_CNT_ADDR));
+> +	writel_relaxed(L_TCON_MISC_SEL_STV1 | L_TCON_MISC_SEL_STV2,
+> +		       priv->io_base + _REG(L_TCON_MISC_SEL_ADDR));
+> +
+> +	priv->venc.current_mode = MESON_VENC_MODE_MIPI_DSI;
+> +}
+> +EXPORT_SYMBOL_GPL(meson_venc_mipi_dsi_mode_set);
+> +
+>  void meson_venci_cvbs_mode_set(struct meson_drm *priv,
+>  			       struct meson_cvbs_enci_mode *mode)
+>  {
+> @@ -1747,8 +1947,15 @@ unsigned int meson_venci_get_field(struct meson_drm *priv)
+>  
+>  void meson_venc_enable_vsync(struct meson_drm *priv)
+>  {
+> -	writel_relaxed(VENC_INTCTRL_ENCI_LNRST_INT_EN,
+> -		       priv->io_base + _REG(VENC_INTCTRL));
+> +	switch (priv->venc.current_mode) {
+> +	case MESON_VENC_MODE_MIPI_DSI:
+> +		writel_relaxed(VENC_INTCTRL_ENCP_LNRST_INT_EN,
+> +			       priv->io_base + _REG(VENC_INTCTRL));
+> +		break;
+> +	default:
+> +		writel_relaxed(VENC_INTCTRL_ENCI_LNRST_INT_EN,
+> +			       priv->io_base + _REG(VENC_INTCTRL));
+> +	}
+>  	regmap_update_bits(priv->hhi, HHI_GCLK_MPEG2, BIT(25), BIT(25));
+>  }
+>  
+> diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
+> index 9138255ffc9e..0f59adb1c6db 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.h
+> +++ b/drivers/gpu/drm/meson/meson_venc.h
+> @@ -21,6 +21,7 @@ enum {
+>  	MESON_VENC_MODE_CVBS_PAL,
+>  	MESON_VENC_MODE_CVBS_NTSC,
+>  	MESON_VENC_MODE_HDMI,
+> +	MESON_VENC_MODE_MIPI_DSI,
+>  };
+>  
+>  struct meson_cvbs_enci_mode {
+> @@ -47,6 +48,9 @@ struct meson_cvbs_enci_mode {
+>  	unsigned int analog_sync_adj;
+>  };
+>  
+> +/* LCD Encoder gamma setup */
+> +void meson_encl_load_gamma(struct meson_drm *priv);
+> +
+>  /* HDMI Clock parameters */
+>  enum drm_mode_status
+>  meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode);
+> @@ -63,6 +67,8 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+>  			      unsigned int ycrcb_map,
+>  			      bool yuv420_mode,
+>  			      const struct drm_display_mode *mode);
+> +void meson_venc_mipi_dsi_mode_set(struct meson_drm *priv,
+> +				  const struct drm_display_mode *mode);
+>  unsigned int meson_venci_get_field(struct meson_drm *priv);
+>  
+>  void meson_venc_enable_vsync(struct meson_drm *priv);
+> diff --git a/drivers/gpu/drm/meson/meson_vpp.h b/drivers/gpu/drm/meson/meson_vpp.h
+> index afc9553ed8d3..b790042a1650 100644
+> --- a/drivers/gpu/drm/meson/meson_vpp.h
+> +++ b/drivers/gpu/drm/meson/meson_vpp.h
+> @@ -12,6 +12,8 @@
+>  struct drm_rect;
+>  struct meson_drm;
+>  
+> +/* Mux VIU/VPP to ENCL */
+> +#define MESON_VIU_VPP_MUX_ENCL	0x0
+>  /* Mux VIU/VPP to ENCI */
+>  #define MESON_VIU_VPP_MUX_ENCI	0x5
+>  /* Mux VIU/VPP to ENCP */
+> 
 
-Can the naming convention prefix with dw-mipi-dsi like other glue
-drivers follow?
-
-Jagan.
 
 _______________________________________________
 linux-amlogic mailing list
