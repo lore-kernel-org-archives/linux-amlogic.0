@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0552C433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 21:48:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88190C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jan 2022 21:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e15BCzXp+gzI+KRyr93mAL+0hywGxK1SgdrVabQVnQ0=; b=1HLmLquWPy0+Qq
-	Zc2ftxf7VjQKZVeZRwXDyG89Vi7O30j7U/quntLIbelSgMeX3CSUFdW00qxPoZk6CgnXPAP3znSN+
-	PyMJUJzOxLFZakNhhS/KnqTGkwclrRJRIZgzs9wPuef0p9St7ck7kQSK3WS7PeeFNqu/390mU9NTy
-	0VrXQ45FCp/pg5pZMNzOZcBIiaK6/JJwNjxZ5LgGOYqAoY+TzXJ2Bc+ismI3CR/qmVHGrKjh3tPJa
-	rumKeoFZQgUO+GDivQuH5ZsfSxmrj1TGpCbyqIQWSrslkfGpXNFJjASMT9Cz9wC6VOXzVr4SnS6Po
-	HkFrnypwGHyJFeBmzwng==;
+	List-Owner; bh=PNzRu9s8bIPlV13kXXmK4uKPv1rWIq1oSpWzRlhqvoA=; b=1PmO6zogHy1qoI
+	810DY1SHujwjBpNlw+SkwWFXWQvMYfwY2+iSh90d6yQujCbq6d+urcVVTTmgVAcpY2AZqe6zHOX1/
+	iFCyRzNZe/4W5GW4fgLtEwyVf0xR4DpiF5R8idQuYGcruSDIkFKVUHHZI7G3woXqGuzzDBsSXt5ty
+	7rm8KdS21g3318zgrMAGhCmRqa4WrTbIZGhhJaYdmqx80XBiaAEhmm/OQu820guYXoSaXOPTHIFvk
+	9rTXUXDB8DC1t1KQ27SHRmyZUqkDc/Mwmfj0YK6MTCd8gk6b4LcaHLxXQoX4gmJ+kzsGMQXoNUjAK
+	QruxKm2gPWL1DYCHQhiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nAfIb-00DEfo-HN; Thu, 20 Jan 2022 21:48:53 +0000
+	id 1nAfMc-00DFLE-6e; Thu, 20 Jan 2022 21:53:02 +0000
 Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nAfIQ-00DEcO-88
- for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 21:48:43 +0000
+ id 1nAfMZ-00DFKV-NQ
+ for linux-amlogic@lists.infradead.org; Thu, 20 Jan 2022 21:53:01 +0000
 Received: by mail-wm1-x32d.google.com with SMTP id
- az27-20020a05600c601b00b0034d2956eb04so17046421wmb.5
- for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 13:48:41 -0800 (PST)
+ j5-20020a05600c1c0500b0034d2e956aadso17090032wms.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 20 Jan 2022 13:52:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=references:user-agent:from:to:cc:subject:date:in-reply-to
  :message-id:mime-version;
- bh=JjVDuclbm/fwd2D1p+3vNEJf8jRpvYGorewRrFiM1Nk=;
- b=BhkPYbE7gJHwnPZPanlfo81NZiNYPU3pUlQRgPPsVwF2iIRRzRA5gL+RYJ2hDgIHb3
- aRU2eMEqs27g0lDG94wnqyLtTNN2ROeLl4IVsIRyl8hFyeYr6WQPEG2Qi9UXyVs3HHRz
- RubuD53ZgUcuVHBMhWAPnvqJvPzTPGJETf/mAkMykQaLCc8IRZU87pGIjCQw43fIeCHS
- WA87ZD/HIQ3sI5dVkDVDMt/g981l0umLfNThnpx1dG+ZSdtHuiPXkpjEF1/uQHd00Vgt
- TYLJffI9ZQblEFIescsXcuZVPO7gE9Y/f1FRv+oGSB95UJI7BxYMl/11mK5D2phSKWYf
- XQLA==
+ bh=xzD+fvNee9njgyoYpg+UfIIsMfFdbgQCkyRxjeUcLZs=;
+ b=DOWC4rjbw8rnosLNZZjD93f0SMG2hWCl/mdKZ1MaUzw8y2wcHsCnDSRlQSc6TE1Wnf
+ rlW4qh3oWy3Qeo9Wu5FOz1HVlrMU5Wr2Yg+y1ols/BK+Vl36ZyNqKxQ7I72o4pR+Mbpg
+ MQvrlYZsegGKzXFRHPCA9H/0X27k3IyKvaK/ISWR4tCvqfL6w6WLJGYC+d1M9O0tkzqX
+ Re3ru0cS6l/egUk7HyrhiE/AegRHQVZ5sOvdhK4zBW8VBNDlssyaOLW/yH3OqbAv+TxH
+ fvcJLPm+w/qoLyXWzcrr19ttNrrD+507D1gYj0MGAbNUL2mQuqA9tEz9sz9pPdL6optS
+ eRrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
  :in-reply-to:message-id:mime-version;
- bh=JjVDuclbm/fwd2D1p+3vNEJf8jRpvYGorewRrFiM1Nk=;
- b=Dzy4noY6yAdhO58hVV6hBB0PjPL8t760uEkobZMZi3tJXYA2nw00PKjSniQbMwowW8
- wSuNX1QPblGTTudZkEoSem2SIqQaT9YPtq74VBypnv0l9UCmnpoGp8VDs9NGg2yhCneU
- hiZVkOdgMGZbPXaRV57Z7oB0eLLgCWWCySEFTY9BlkOCGP3Gy/Sy1nuZJJBpPsYtDkHe
- cJ1fn+vLSk8MMlsIGzCNfNs8C7mdnbdWRUyQvgm/NdHOyk4OWgbgksW6OihvhJi3tZSY
- XNdmLNG0givE4hu9Z1mzfo2wzK8ErJ5CZrIu2WaNfpLl8F+gwSDC1bSUDmmNN3ku3sE/
- n0mA==
-X-Gm-Message-State: AOAM530MtI9lywH7iW5irXYJlA0nJKEXEZHES5/czJ7blaM6wHVPuk4p
- uZt0Ih8YqVZGyR2GK+oqRsUGWg==
-X-Google-Smtp-Source: ABdhPJyeAzG7rOyZiz2BqoVDEHOnTtESwblpIq6zOwSJ2PM3W38rOTS4SiCV4oVBL9N6rxvZoGT5Mg==
-X-Received: by 2002:a1c:19c1:: with SMTP id 184mr10699464wmz.61.1642715320804; 
- Thu, 20 Jan 2022 13:48:40 -0800 (PST)
+ bh=xzD+fvNee9njgyoYpg+UfIIsMfFdbgQCkyRxjeUcLZs=;
+ b=xUXVPLNVhAQkb5MysJ3jAdNkE0GXZWrmySGragb3DU5HuSUg9mbEnRxuzy8NS3x7QS
+ oogLxNU+L985PCP5fxJamNxZeI94EssGOU87FyWyonVZJUW4qGxyZXZE07calJPSjU4v
+ s8JlmIebGrEp4enmI/MnGW/gYvp2cemCx8Wl9/huIqB0SnUB1PXBJn4jAJ+zk6OXVIna
+ JKq8PseeEC08SiBB1wGpe0pAp60hDYvFzDc0P+PZM7BXak3IZAHAVA9hafgwqklHwAqJ
+ 4q8vrYGs75whEJW6WdrO/Rd0nr8K4At2+xjufWBl7zlNgGyJje+cC/gW80Zy0s0B+EWF
+ +Hig==
+X-Gm-Message-State: AOAM532uqM3HJMNprgkoxWrpZbZaoz5rKtfcpoRuv1SoIKXsMBMfJSP2
+ d/fNIBJ6tiwpTFzxyYSkDwyPRQ==
+X-Google-Smtp-Source: ABdhPJxQ7umiOemEiVDSGIoLE5STLtbE5klLfGxPCsiVM1g38HO04FwYGlUrBw0KI+h5aWAwhv4J1g==
+X-Received: by 2002:adf:f804:: with SMTP id s4mr933990wrp.672.1642715578424;
+ Thu, 20 Jan 2022 13:52:58 -0800 (PST)
 Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
- by smtp.gmail.com with ESMTPSA id o15sm4543402wri.86.2022.01.20.13.48.40
+ by smtp.gmail.com with ESMTPSA id a26sm8552337wmb.37.2022.01.20.13.52.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Jan 2022 13:48:40 -0800 (PST)
+ Thu, 20 Jan 2022 13:52:57 -0800 (PST)
 References: <20220118030911.12815-1-yu.tu@amlogic.com>
- <20220118030911.12815-4-yu.tu@amlogic.com>
- <7a8016ba-730b-f599-2032-31cf03990a55@kernel.org>
+ <20220118030911.12815-5-yu.tu@amlogic.com>
 User-agent: mu4e 1.6.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiri Slaby <jirislaby@kernel.org>, Yu Tu <yu.tu@amlogic.com>,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V6 3/5] tty: serial: meson: Describes the calculation of
- the UART baud rate clock using a clock frame
-Date: Thu, 20 Jan 2022 22:48:05 +0100
-In-reply-to: <7a8016ba-730b-f599-2032-31cf03990a55@kernel.org>
-Message-ID: <1jbl062i4o.fsf@starbuckisacylon.baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V6 4/5] tty: serial: meson: Make some bit of the REG5
+ register writable
+Date: Thu, 20 Jan 2022 22:49:28 +0100
+In-reply-to: <20220118030911.12815-5-yu.tu@amlogic.com>
+Message-ID: <1j7dau2hxi.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220120_134842_325641_81F0869A 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20220120_135259_786286_8E8869A7 
+X-CRM114-Status: GOOD (  13.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,61 +96,49 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue 18 Jan 2022 at 10:39, Jiri Slaby <jirislaby@kernel.org> wrote:
+On Tue 18 Jan 2022 at 11:09, Yu Tu <yu.tu@amlogic.com> wrote:
 
-> On 18. 01. 22, 4:09, Yu Tu wrote:
->> Using the common Clock code to describe the UART baud rate clock
->> makes it easier for the UART driver to be compatible with the
->> baud rate requirements of the UART IP on different meson chips.
-> ...
->> --- a/drivers/tty/serial/meson_uart.c
->> +++ b/drivers/tty/serial/meson_uart.c
-> ...
->> @@ -629,57 +640,105 @@ static struct uart_driver meson_uart_driver = {
->>   	.cons		= MESON_SERIAL_CONSOLE,
->>   };
->>   -static inline struct clk *meson_uart_probe_clock(struct device *dev,
->> -						 const char *id)
->> -{
->> -	struct clk *clk = NULL;
->> -	int ret;
->> -
->> -	clk = devm_clk_get(dev, id);
->> -	if (IS_ERR(clk))
->> -		return clk;
->> -
->> -	ret = clk_prepare_enable(clk);
->> -	if (ret) {
->> -		dev_err(dev, "couldn't enable clk\n");
->> -		return ERR_PTR(ret);
->> -	}
->> -
->> -	devm_add_action_or_reset(dev,
->> -			(void(*)(void *))clk_disable_unprepare,
->> -			clk);
->> -
->> -	return clk;
->> -}
->> +static struct clk_div_table xtal_div_table[] = {
->
-> This can be const, right?
->
->> +	{0, 3},
->> +	{1, 1},
->> +	{2, 2},
->> +	{3, 2},
->
-> Not sure if you didn't remove too much whitespace. I think it should be
-> like: "{ 0, 3 },". But I actually don't care, it's a minor thing.
+> The UART_REG5 register defaults to 0. The console port is set in
+> ROMCODE. But other UART ports default to 0, so make bit24 and
+> bit[26,27] writable so that the UART can choose a more
+> appropriate clock.
 
-Seconds
-It worth fixing in the next version
+Suggestion: Instead of talking bits (which is a bit cryptic) tell us
+what is actually does
+
+Something like:
+ Make the internal clock source mux and divider writeable, allowing the
+ uart to deviate from the settings intially applied by the ROMCode and
+ using the most appropriate clocks
 
 >
-> I cannot comment on the rest (clk and OF part) as my knowledge is pretty
-> limited there. Leaving up to others.
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> ---
+>  drivers/tty/serial/meson_uart.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> thanks,
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index 92fa91c825e6..4e7b2b38ab0a 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -678,7 +678,7 @@ static int meson_uart_probe_clocks(struct uart_port *port)
+>  							CLK_SET_RATE_NO_REPARENT,
+>  							port->membase + AML_UART_REG5,
+>  							26, 2,
+> -							CLK_DIVIDER_READ_ONLY,
+> +							CLK_DIVIDER_ROUND_CLOSEST,
+>  							xtal_div_table, NULL);
+>  		if (IS_ERR(hw))
+>  			return PTR_ERR(hw);
+> @@ -708,7 +708,7 @@ static int meson_uart_probe_clocks(struct uart_port *port)
+>  					CLK_SET_RATE_PARENT,
+>  					port->membase + AML_UART_REG5,
+>  					24, 0x1,
+> -					CLK_MUX_READ_ONLY,
+> +					CLK_MUX_ROUND_CLOSEST,
+>  					NULL, NULL);
+>  	if (IS_ERR(hw))
+>  		return PTR_ERR(hw);
 
 
 _______________________________________________
