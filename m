@@ -4,52 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 972E5C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jan 2022 07:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A742C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jan 2022 07:32:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7wV+v2kpK18JTCuEe4fdcZI9UFR3yZ1VO0uQwnA62sY=; b=sBCWh1Y88Qg8+U
-	Fc94lV/8lL1rvZ2Ivv0KyxtnO2rma3D6//b9VEgrZJaYi6bFR8R07lGOkqrf5jSSukXLJJe7jLqVy
-	lpVeVMTjkX4VaEQPwWMFZ2qA9XKsqL+k+ArHZnYttC02qaZNRGlQsYjF/9tIpbWlHJpfE2+7aRJN6
-	5q4ax4oq1MVnh4qB/Kl9ku5qcHR5A7tHJxRM2KRRH95XlCJ2LBGovmzzN791s8NInpoqzMVUx5gRn
-	6Vv1g/E8t58a69FegrUa7fk0OpvKq4kaaU0OLXBt2O/urahj5iVsk5RUKN8NP8LwmK1t/oMu3btiJ
-	zIxKkIz1xhJn887pgAFQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jYvZdzm96XHxHxKPiKNtyH7CC1ck22ib1NaTsZ4c/es=; b=MbJJubLxLp9uwE
+	MuFnGgWBx7wdWiP4Dj9uCyiNYiQbjNSailkdLe0h8f6lJIRPyQ1Ii2cftIICgiI0AnUNUEDjd9aCM
+	th0+R7NGohoOJynVFqqBtHMRLzVXzW3zrUbD1O8nLJhA88g0jCKtfozFsyHG32FudwXOraE1WIjzf
+	FZaKi2K15XTJ6eI7AUzIZIUFxjBB71xqvpdkYkPEJwtnX80MfCb9qvrdYFb7MIqWWSz2amos+Uu89
+	WcpWpjOSRcYQC7bUi43fDROmZSbWE5JrcUEGGEQCnjYSY16LBEepmAbeC4ukiW1pLTIF/J30UsyUy
+	SFoxef9KXdOjybJcdqNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nAoci-00E6IH-Hh; Fri, 21 Jan 2022 07:46:16 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1nBAt5-00GidM-MJ; Sat, 22 Jan 2022 07:32:39 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nAobu-00E5rn-On; Fri, 21 Jan 2022 07:45:28 +0000
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 21 Jan 2022
- 15:45:22 +0800
-From: Liang Yang <liang.yang@amlogic.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, <linux-clk@vger.kernel.org>
-CC: Liang Yang <liang.yang@amlogic.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, XianWei Zhao <xianwei.zhao@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>, BiChao Zheng
- <bichao.zheng@amlogic.com>, YongHui Yu <yonghui.yu@amlogic.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-Subject: [PATCH v10 4/4] clk: meson: add sub MMC clock controller driver
-Date: Fri, 21 Jan 2022 15:45:08 +0800
-Message-ID: <20220121074508.42168-5-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220121074508.42168-1-liang.yang@amlogic.com>
-References: <20220121074508.42168-1-liang.yang@amlogic.com>
-MIME-Version: 1.0
-X-Originating-IP: [10.28.8.21]
+ id 1nBAsu-00Gia6-8l; Sat, 22 Jan 2022 07:32:29 +0000
+Received: by mail-wm1-x336.google.com with SMTP id
+ l35-20020a05600c1d2300b0034d477271c1so24099956wms.3; 
+ Fri, 21 Jan 2022 23:32:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=eLJ1e0t7pNb7/jsmEfgWimt9GUNNFZcrb7wADH/t7SE=;
+ b=bl2Q4lLV4EuYLIeOTG8HyAaoPmk6wvVq5hZGZJQf8OGbqPct7X2b2Afb2Nm9M/Inkt
+ zqwcLuz1yuTqFCJ0bQDM1b+9JQ+2Zw1bh4Uy/K1G9Vtn3Y/T9nzSxAGJZ3LdBq+DWBs6
+ G60lBnB/sVJxvHNNbalhh0uOOwSKqgXn4ENyFEO4WGnkuVBmOuxH51nTtB5ewzUmJaW5
+ qtORYOG4sJqoNcnFkLE41glfyilh2b0fDmy1cGx3S0wJpyVll1sO7nm44XAHmNl2r9f8
+ Tsgn9CI2p3toUmRlCWamjTPL/e+ltWjDI4B0RhIycZ8AnfIM6lrUMDiIciWjKt+nslgY
+ S7/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=eLJ1e0t7pNb7/jsmEfgWimt9GUNNFZcrb7wADH/t7SE=;
+ b=cDRtOCerWwyn2wjgo4R62FcTRWtLi1E3YKU3VjGcFnj9VTvNXnHdi24lvS/h75GL5l
+ 2y6J8OqEkcRSCTh0a14OPeqJPk1rlfvji5i+wiAp9hvv0HF480nSRbni4WMWCPkyyqhv
+ jL82TwAeul7k/6HWwXAB10WCZnx72Q5XNKNG56+ml1zC7XjRqVKfh+MbdX7zEFRlwEZg
+ pvhrRU9SjnXc6CMKw4Atpy9ZPEo0oMNI7pQjUG3hwoZ05pX3Fy6nVHE6Sem3uCc+D0cK
+ PwXvil67hWrUFFC9tPI9JDGdXBYDd6UmN8Fbc2AygUxmfFzp5nkyw63Aszuc5D+xj053
+ Xd6g==
+X-Gm-Message-State: AOAM533HVvkRYSLAOcGxDGRqhEjmwOj0kEkGolZmoAwIOGl9Tsh137WN
+ K3HIOxvzO5bB5k/EGRRMlqY=
+X-Google-Smtp-Source: ABdhPJxETDu2LPO+h9VYZACT8m+jzuSr6/A2dMQSNAwgOT7t2iW47JBiA/7I6Nrnq495CccE0/Vn9Q==
+X-Received: by 2002:a05:600c:3caa:: with SMTP id
+ bg42mr1667733wmb.193.1642836745883; 
+ Fri, 21 Jan 2022 23:32:25 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id i8sm8970485wmq.23.2022.01.21.23.32.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 21 Jan 2022 23:32:25 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+ Furkan Kardame <furkan@fkardame.com>
+Subject: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to Beelink
+ g12b devices
+Date: Sat, 22 Jan 2022 07:32:18 +0000
+Message-Id: <20220122073221.2398-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220120_234526_845245_6A0BE131 
-X-CRM114-Status: GOOD (  22.99  )
+X-CRM114-CacheID: sfid-20220121_233228_346428_1A554D54 
+X-CRM114-Status: UNSURE (   8.39  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,376 +84,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch will add a MMC clock controller driver which used by MMC or NAND,
-It provide a mux and divider clock, and three phase clocks - core, tx, tx.
+This resolves a long-running issue where Beelink GT-King/Pro and
+GS-King-X wedge on boot or shortly after when booting from vendor
+u-boot. In some distros the issue is often reported as triggered
+by large file transfers to/from USB or SD cards. Reserving the
+BL32 memory region prevents the issue.
 
-Two clocks are provided as the parent of MMC clock controller from
-upper layer clock controller - eg "amlogic,axg-clkc" in AXG platform.
+Christian Hewitt (3):
+  arm64: dts: meson: add BL32 reserved-memory region to GT-King
+  arm64: dts: meson: add BL32 reserved-memory region to GT-King Pro
+  arm64: dts: meson: add BL32 reserved-memory region to GS-King-X
 
-To specify which clock the MMC or NAND driver may consume,
-the preprocessor macros in the dt-bindings/clock/amlogic,mmc-clkc.h header
-can be used in the device tree sources.
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts   | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts     | 8 ++++++++
+ 3 files changed, 24 insertions(+)
 
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- drivers/clk/meson/Kconfig    |  14 ++
- drivers/clk/meson/Makefile   |   1 +
- drivers/clk/meson/mmc-clkc.c | 302 +++++++++++++++++++++++++++++++++++
- 3 files changed, 317 insertions(+)
- create mode 100644 drivers/clk/meson/mmc-clkc.c
-
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index bb0f59eea366..5f344a0892cb 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -39,6 +39,20 @@ config COMMON_CLK_MESON_AO_CLKC
- 	select COMMON_CLK_MESON_REGMAP
- 	select RESET_CONTROLLER
- 
-+config COMMON_CLK_MMC_MESON
-+	tristate "Meson MMC Sub Clock Controller Driver"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select MFD_SYSCON
-+	select COMMON_CLK_AMLOGIC
-+	select COMMON_CLK_MESON_PHASE
-+	select COMMON_CLK_MESON_PHASE_DELAY
-+	select COMMON_CLK_MESON_SCLK_DIV
-+	help
-+	  Support for the MMC sub clock controller on
-+	  Amlogic Meson Platform, which includes S905 (GXBB, GXL),
-+	  A113D/X (AXG) devices. Say Y if you want this
-+	  clock enabled.
-+
- config COMMON_CLK_MESON_EE_CLKC
- 	tristate
- 	select COMMON_CLK_MESON_REGMAP
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 99fe4eeed000..7a7ffb37a726 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
- 
- obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
-+obj-$(CONFIG_COMMON_CLK_MMC_MESON) += mmc-clkc.o
- obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
- obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
-diff --git a/drivers/clk/meson/mmc-clkc.c b/drivers/clk/meson/mmc-clkc.c
-new file mode 100644
-index 000000000000..e42c4015c7a3
---- /dev/null
-+++ b/drivers/clk/meson/mmc-clkc.c
-@@ -0,0 +1,302 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/of_device.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/amlogic,mmc-clkc.h>
-+
-+#include "sclk-div.h"
-+#include "clk-phase-delay.h"
-+#include "clk-regmap.h"
-+#include "clk-phase.h"
-+
-+/* clock ID used by internal driver */
-+
-+#define SD_EMMC_CLOCK		0
-+#define CLK_DELAY_STEP_PS_GX	200
-+#define CLK_DELAY_STEP_PS_AXG	78
-+#define MUX_CLK_NUM_PARENTS	2
-+#define MMC_MAX_CLKS		4
-+
-+static struct clk_parent_data mmc_clkc_parent_data[MUX_CLK_NUM_PARENTS];
-+
-+struct mmc_clkc_data {
-+	struct meson_clk_phase_delay_data tx;
-+	struct meson_clk_phase_delay_data rx;
-+};
-+
-+static struct clk_regmap_mux_data mmc_clkc_mux_data = {
-+	.offset = SD_EMMC_CLOCK,
-+	.mask   = 0x3,
-+	.shift  = 6,
-+};
-+
-+static const struct meson_sclk_div_data mmc_clkc_div_data = {
-+	.div = {
-+		.reg_off = SD_EMMC_CLOCK,
-+		.width   = 6,
-+	},
-+	.flags = MESON_SCLK_ONE_BASED,
-+};
-+
-+static struct meson_clk_phase_data mmc_clkc_core_phase = {
-+	.ph = {
-+		.reg_off = SD_EMMC_CLOCK,
-+		.shift   = 8,
-+		.width   = 2,
-+	}
-+};
-+
-+static const struct mmc_clkc_data mmc_clkc_gx_data = {
-+	.tx = {
-+		.phase = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 10,
-+			.width   = 2,
-+		},
-+		.delay = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 16,
-+			.width   = 4,
-+		},
-+		.delay_step_ps = CLK_DELAY_STEP_PS_GX,
-+	},
-+	.rx = {
-+		.phase = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 12,
-+			.width   = 2,
-+		},
-+		.delay = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 20,
-+			.width   = 4,
-+		},
-+		.delay_step_ps   = CLK_DELAY_STEP_PS_GX,
-+	},
-+};
-+
-+static const struct mmc_clkc_data mmc_clkc_axg_data = {
-+	.tx = {
-+		.phase = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 10,
-+			.width   = 2,
-+		},
-+		.delay = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 16,
-+			.width   = 6,
-+		},
-+		.delay_step_ps   = CLK_DELAY_STEP_PS_AXG,
-+	},
-+	.rx = {
-+		.phase = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 12,
-+			.width   = 2,
-+		},
-+		.delay = {
-+			.reg_off = SD_EMMC_CLOCK,
-+			.shift   = 22,
-+			.width   = 6,
-+		},
-+		.delay_step_ps   = CLK_DELAY_STEP_PS_AXG,
-+	},
-+};
-+
-+static const struct of_device_id mmc_clkc_match_table[] = {
-+	{
-+		.compatible	= "amlogic,gx-mmc-clkc",
-+		.data		= &mmc_clkc_gx_data
-+	},
-+	{
-+		.compatible	= "amlogic,axg-mmc-clkc",
-+		.data		= &mmc_clkc_axg_data
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mmc_clkc_match_table);
-+
-+static struct clk_regmap *
-+mmc_clkc_register_clk(struct device *dev, struct regmap *map,
-+		      struct clk_init_data *init,
-+		      const char *suffix, void *data)
-+{
-+	struct clk_regmap *clk;
-+	char *name;
-+	int ret;
-+
-+	clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
-+	if (!clk)
-+		return ERR_PTR(-ENOMEM);
-+
-+	name = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), suffix);
-+	if (!name)
-+		return ERR_PTR(-ENOMEM);
-+
-+	init->name = name;
-+	clk->map = map;
-+	clk->data = data;
-+	clk->hw.init = init;
-+	ret = devm_clk_hw_register(dev, &clk->hw);
-+	if (ret)
-+		clk = ERR_PTR(ret);
-+
-+	kfree(name);
-+	return clk;
-+}
-+
-+static struct clk_regmap *mmc_clkc_register_mux(struct device *dev,
-+						struct regmap *map)
-+{
-+	struct clk_init_data init = {0};
-+	struct clk_regmap *mux;
-+	struct clk *clk;
-+	int i;
-+
-+	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
-+		char name[8];
-+
-+		snprintf(name, sizeof(name), "clkin%d", i);
-+		clk = devm_clk_get(dev, name);
-+		if (IS_ERR(clk)) {
-+			if (clk != ERR_PTR(-EPROBE_DEFER))
-+				dev_err_probe(dev, PTR_ERR(clk),
-+					      "Missing clock\n");
-+			return ERR_CAST(clk);
-+		}
-+
-+		mmc_clkc_parent_data[i].fw_name = __clk_get_name(clk);
-+	}
-+
-+	init.ops = &clk_regmap_mux_ops;
-+	init.flags = CLK_SET_RATE_PARENT;
-+	init.parent_data = mmc_clkc_parent_data;
-+	init.num_parents = MUX_CLK_NUM_PARENTS;
-+
-+	mux = mmc_clkc_register_clk(dev, map, &init, "mux", &mmc_clkc_mux_data);
-+	if (IS_ERR(mux))
-+		dev_err(dev, "Mux clock registration failed\n");
-+
-+	return mux;
-+}
-+
-+static struct clk_regmap *
-+mmc_clkc_register_clk_with_parent(struct device *dev, struct regmap *map,
-+				  char *suffix, const struct clk_hw *hw,
-+				  unsigned long flags,
-+				  const struct clk_ops *ops, void *data)
-+{
-+	struct clk_init_data init;
-+	struct clk_regmap *clk;
-+	const char *parent_name = clk_hw_get_name(hw);
-+
-+	init.ops = ops;
-+	init.flags = flags;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
-+	if (IS_ERR(clk))
-+		dev_err(dev, "%s clock registration failed\n", suffix);
-+
-+	return clk;
-+}
-+
-+static int mmc_clkc_probe(struct platform_device *pdev)
-+{
-+	struct clk_hw_onecell_data *onecell_data;
-+	struct device *dev = &pdev->dev;
-+	const struct mmc_clkc_data *data;
-+	struct regmap *map;
-+	struct clk_regmap *clk, *core;
-+	struct meson_sclk_div_data *div_data, *tx, *rx;
-+
-+	data = of_device_get_match_data(dev);
-+	if (!data)
-+		return -ENODEV;
-+
-+	/* cast to drop the const */
-+	tx = (struct meson_sclk_div_data *)&data->tx;
-+	rx = (struct meson_sclk_div_data *)&data->rx;
-+
-+	map = syscon_node_to_regmap(dev->of_node);
-+	if (IS_ERR(map)) {
-+		dev_err(dev, "could not find mmc clock controller\n");
-+		return PTR_ERR(map);
-+	}
-+
-+	onecell_data = devm_kzalloc(dev,
-+				    struct_size(onecell_data, hws,
-+						MMC_MAX_CLKS),
-+				    GFP_KERNEL);
-+	if (!onecell_data)
-+		return -ENOMEM;
-+
-+	clk = mmc_clkc_register_mux(dev, map);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	div_data = devm_kzalloc(dev, sizeof(*div_data), GFP_KERNEL);
-+	if (!div_data)
-+		return -ENOMEM;
-+
-+	memcpy(div_data, &mmc_clkc_div_data, sizeof(*div_data));
-+	clk = mmc_clkc_register_clk_with_parent(dev, map, "div",
-+						&clk->hw,
-+						CLK_SET_RATE_PARENT,
-+						&meson_sclk_div_ops,
-+						div_data);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	onecell_data->hws[CLKID_MMC_DIV] = &clk->hw;
-+	core = mmc_clkc_register_clk_with_parent(dev, map, "core",
-+						 &clk->hw,
-+						 CLK_SET_RATE_PARENT,
-+						 &meson_clk_phase_ops,
-+						 &mmc_clkc_core_phase);
-+	if (IS_ERR(core))
-+		return PTR_ERR(core);
-+	onecell_data->hws[CLKID_MMC_PHASE_CORE] = &core->hw;
-+	clk = mmc_clkc_register_clk_with_parent(dev, map, "rx",
-+						&core->hw,  0,
-+						&meson_clk_phase_delay_ops,
-+						rx);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+	onecell_data->hws[CLKID_MMC_PHASE_RX] = &clk->hw;
-+	clk = mmc_clkc_register_clk_with_parent(dev, map, "tx",
-+						&core->hw,  0,
-+						&meson_clk_phase_delay_ops,
-+						tx);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	onecell_data->hws[CLKID_MMC_PHASE_TX] = &clk->hw;
-+	onecell_data->num = MMC_MAX_CLKS;
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					   onecell_data);
-+}
-+
-+static struct platform_driver mmc_clkc_driver = {
-+	.probe		= mmc_clkc_probe,
-+	.driver		= {
-+		.name	= "meson-mmc-clkc",
-+		.of_match_table = of_match_ptr(mmc_clkc_match_table),
-+	},
-+};
-+
-+module_platform_driver(mmc_clkc_driver);
-+
-+MODULE_DESCRIPTION("Amlogic AXG MMC clock driver");
-+MODULE_AUTHOR("Jianxin Pan <jianxin.pan@amlogic.com>");
-+MODULE_LICENSE("GPL v2");
 -- 
-2.34.1
+2.17.1
 
 
 _______________________________________________
