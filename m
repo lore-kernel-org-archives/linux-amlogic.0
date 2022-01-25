@@ -4,78 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21733C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jan 2022 04:03:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005C8C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jan 2022 14:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LAaeFad46Mpm9U4jm6t2DZ1RcHfuhwJqDaExVKkghCA=; b=pp+J5vmrU72SyK
-	XEIWEikNXvf4M+hBSTHIk0Ld70kePdyFIME4uUlVqVxZuntrEyERIeI2EkUgclIIOcP3xJByqTj09
-	Dj/Nq6GERBUrAhFmlAz8LymPcbv62ZlGNXIFQBVtYLxE45INwX1JQk9ptRr8IZhljK//aL+XWx76y
-	hwtLQmeh55YfsFDLGasxBGYGhF9WIUC6/aM/EjUfUDA4/oYBfImvd5RaC9C4QH9ecSbnZWTl3omgi
-	td3sU6YAzfT5SS95NMztL7ole1cq0uDAzjD91ki7QyVRmJKryuTGwL5Xpe7j6TpDdsWU4s3EfvFKM
-	HEvYH2F7t4FCMgMqlRdg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=0GOwy2wcwhXDCu+9NeeqHUOlQd7QvFHLcLpxxhNK1uo=; b=X/ilvzgKbNsFKPxCCHFjV42Fqq
+	1Mj01zZeLNlGYocObo1AAbrHasi/Rfbci/0i2aZeXTgjg/Q+ZnVqiwFYU2Kc+y+wXueNkP0mRO22N
+	RHFrxqim0YDORZ6pFzpJrFcmHALQQMyro/H9noY2cPY8NC5+AG59GaaQ7rElOvwnxdyKRs2RhNAzm
+	stmqqmW7YerSS2EHL7tKoULjymjE+SJHJpW/r7F//gTTV65CMiY0J/nmIHbJlRRqLzTRjuf9pUcG4
+	el+5Ps8eWgmUCF84qgjLEZy5cl54VmNUSuDrCVPcJzE9Qvn/jZ4m5Ow9m2DyIXX832W/3KR6/1xVL
+	uWxgsV6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nCD3F-006Pkl-Pe; Tue, 25 Jan 2022 04:03:25 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1nCNDV-008DWW-NN; Tue, 25 Jan 2022 14:54:41 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nCD33-006Pjh-Ps; Tue, 25 Jan 2022 04:03:15 +0000
-Received: by mail-wm1-x330.google.com with SMTP id
- c190-20020a1c9ac7000000b0035081bc722dso634603wme.5; 
- Mon, 24 Jan 2022 20:03:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=C3FYe6TcjYjJbJdwbX6OqfjeFpVDE2oMdSSX3Pq1Ukk=;
- b=pKcHkaFv8cJewfXGxbaoexn8ygvz6aAsVsgb9im1bfgH1/UQPgeCfqahJ2dR2Jd6hw
- AOgIxBugel8w8NhNgNGUc96a62L5XLi7ClRbyVQaZ/sWNJTCZIFAWX3weKU8H0yMhADj
- GshQQfTaDIR+ZlBSv64qpiXbAhGVgFWhYXgI1NfaxBLlAfZYrCChvz7mNWx8KV61CCBN
- oipUOMRVHvtv4shz3+ZU5vVYSz283rDSviTI8EVMkwsiULDNG+eCrrZhNHOmOIOsMsrK
- ISx+Ta2LMa0Eh2OF2o+sGHLDFeQv4ktn5kAjzEIZJGfbHqgi10b/wM+h1LpOutSeBVLN
- rghg==
+ id 1nCNDS-008DUv-86
+ for linux-amlogic@lists.infradead.org; Tue, 25 Jan 2022 14:54:40 +0000
+Received: by mail-wr1-x430.google.com with SMTP id s9so4560380wrb.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 25 Jan 2022 06:54:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=L4EjSQRW8FE0Hy1a1OCObXW1JPeDhbxfCUQxQfcGCdA=;
+ b=PdWSH25XO3nst6j4LhWnxbuH6rcneAReUC+ulVlbs4Mn+5m+zvlBtMxnpsqbYWvNpt
+ QREr+1C4LTD/cQKwvU7FvyGRsnILtoIFcP4S+OMzNhBcxv7HgVj8Jf+JEAGrOzOVsc03
+ 0qbP+JM2T3BVds+4LoRvEQY9TWUbDX3Kj19RLWTNnZADdPdp1hjVOC5H83Kx/KVlsg6D
+ OJlqN77co5fKXAhBxX6+VyZGR+MxsIoO36/VU+uRMcS30WV4mfvD73bU8Xl5esjmOkV2
+ r5RhTdqmNV+1QTjK76qxgxHwL7IN1AgD5GeeBY58Zbh9ijFPT96ny/JBAzfY0bPkzQU+
+ K+SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=C3FYe6TcjYjJbJdwbX6OqfjeFpVDE2oMdSSX3Pq1Ukk=;
- b=YZMWfXmqjboqV2veZd8TeNHFa8sBUnL6KFUNYTQHB/eZKPxDMhpQf+OMQJWV7a28SA
- t1M186fC3Uog1pZlP8MyD2rIRY1CrGS1W/BA0CG2q71tU6Cw6g/itQr09V/JFzCZACOP
- R3XPNy5tS7cNlgQcCC9232CPNddDMIDck5St19d3eajqHYoP7kYdKbTq20ar0FKt19fR
- wiMxvcCGmP8/LSlNy1Yv6tHOBhcwHAWwqbqlYu57dJXVRWqBbXN0oaw2BHP0X4OqgnyQ
- iJAuxh9fC2t+kxDuahm/L39xM8xZnzyFPu7EbPKB0flytuBxTXh5jDLAlNyGTK3WkI2e
- d80A==
-X-Gm-Message-State: AOAM530H/dguJvOQvDWfRpgOeu8Wlx7AInQEJbMhTAshp08NySC7/8d8
- JTYC26b+SpdrjZmN71qmQb8=
-X-Google-Smtp-Source: ABdhPJw35D0LrxgrZWlhbeSpwAo2a4wXCmg7DUqpptX4Hs+orfcpR6co5iihxpSUNgAQICwdVQ+zVQ==
-X-Received: by 2002:a05:600c:3797:: with SMTP id
- o23mr1116133wmr.158.1643083392066; 
- Mon, 24 Jan 2022 20:03:12 -0800 (PST)
-Received: from [172.16.20.20] ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id z1sm1039020wma.20.2022.01.24.20.03.10
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 24 Jan 2022 20:03:11 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
- Beelink g12b devices
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <7h7daoyka3.fsf@baylibre.com>
-Date: Tue, 25 Jan 2022 08:03:09 +0400
-Cc: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Furkan Kardame <furkan@fkardame.com>
-Message-Id: <3A7E4C5F-AECB-4A3E-B074-E2E3419DD749@gmail.com>
-References: <20220122073221.2398-1-christianshewitt@gmail.com>
- <7h7daoyka3.fsf@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-X-Mailer: Apple Mail (2.3608.120.23.2.7)
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=L4EjSQRW8FE0Hy1a1OCObXW1JPeDhbxfCUQxQfcGCdA=;
+ b=KefJVWeaxO2T8mdLajyz2Nlfw43HKqdMmprpbosuLV9z0yEW/9VGqYrgydFEb2FcKf
+ FxgA7ckVDsQcnPyFgPlRltNR9pudeDk06kY0ZI7ISpxOHtHP9EbF8FsbbPF6P8WPAYCC
+ 5FvuRWYSIhFdl7VKoLeSLMjP+RU985hllLL9SAb8zbb827CkgBWmEj0tqIYBMaUS62l2
+ cctI774NPo1NhhklE/zdZ3PEQjBl+dwOVSsMQ/afPVMKPnoN1SdiRPvoN11Gxdpppv9d
+ VfIMLeN5WX9zCBtBGEP0g1kvnqrEP6PeAXbUuKnjvZOttxSMTnAV+Hwg5MWc0Q2MgB+o
+ 9b/w==
+X-Gm-Message-State: AOAM533XfTqFTrv/tpHl4sxKNHirexQ9VuWCG5MK/h6narFdTnWN/o+k
+ eTybdbhy/dyBez3e2SCV/DDjZA==
+X-Google-Smtp-Source: ABdhPJzumuKere4mTeyM17OgS2jGkO+i0UITKhP0vksIIJO0J6DMs4WkxBnFoLezAGiFq2bQUyIbxw==
+X-Received: by 2002:a5d:64e2:: with SMTP id g2mr5117625wri.22.1643122475496;
+ Tue, 25 Jan 2022 06:54:35 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:e03f:56c1:665f:b320?
+ ([2001:861:44c0:66c0:e03f:56c1:665f:b320])
+ by smtp.gmail.com with ESMTPSA id z17sm526375wmf.47.2022.01.25.06.54.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 25 Jan 2022 06:54:34 -0800 (PST)
+Subject: Re: [PATCH v10 0/4] clk: meson: add a sub EMMC clock controller
+ support
+To: Liang Yang <liang.yang@amlogic.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-clk@vger.kernel.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
+ <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20220121074508.42168-1-liang.yang@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <f5a429f2-ffbc-ea03-810a-45a0f90959a2@baylibre.com>
+Date: Tue, 25 Jan 2022 15:54:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20220121074508.42168-1-liang.yang@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220124_200313_868127_EF237362 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20220125_065438_338637_325F85A1 
+X-CRM114-Status: GOOD (  28.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,32 +106,127 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> 
-> On 25 Jan 2022, at 12:02 am, Kevin Hilman <khilman@baylibre.com> wrote:
-> 
-> Christian Hewitt <christianshewitt@gmail.com> writes:
-> 
->> This resolves a long-running issue where Beelink GT-King/Pro and
->> GS-King-X wedge on boot or shortly after when booting from vendor
->> u-boot. In some distros the issue is often reported as triggered
->> by large file transfers to/from USB or SD cards. Reserving the
->> BL32 memory region prevents the issue.
-> 
-> The BL32 is typically common for the SoC family, so this change should
-> probably go into the g12b.dtsi.  Or probably even
-> meson-g12-common.dtsi, which is where the BL31 reserved-memory is
-> described.
+Hi Liang,
 
-Hi Kevin,
+On 21/01/2022 08:45, Liang Yang wrote:
+> This driver will add a MMC clock controller driver support.
+> The original idea about adding a clock controller is during the
+> discussion in the NAND driver mainline effort[1].
+> 
+> This driver is tested in the S400 board (AXG platform) with NAND driver.
 
-Would you be okay with the same change applied to GX devices too? - I
-normally have these two catch-all patches in my tree to deal with random
-tv box hardware and it would be great to drop them:
+Thanks a lot for providing a fixed and updated version of this serie.
 
-https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda96374fc
-https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c770ea9
+After some chat with Jerome and Kevin, it seems the way the eMMC clock reuse
+for NAND was designed nearly 4 years doesn't look accurate anymore.
 
-Christian
+Having a separate clk driver designed to replace the eMMC node when NAND is
+used on the board seems over engineered.
+
+Actually having the clock code you add in this serie _but_ directly in
+the NAND looks far better, and more coherent since having Linux runtime
+detection of eMMC vs NAND will never happen and even this serie required
+some DT modification from the bootloader.
+
+I'll let Jerome or Kevin add more details if they want, but I think you should resurrect
+the work you pushed in [1] & [2] but:
+- passing the eMMC clk registers as a third "reg" cell
+- passing the same "clocks" phandle as the eMMC node
+- adding the eMMC clock code in the NAND driver directly
+
+I'm open to discussions if you consider the current approach is still superior.
+
+Thanks,
+Neil
+
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+
+> 
+> Changes since v9 [10]
+>  - use clk_parent_data instead of parent_names
+> 
+> Changes since v8 [9]
+>  - use MESON_SCLK_ONE_BASED instead of CLK_DIVIDER_ONE_BASED
+>  - use struct_size to caculate onecell_data
+>  - add clk-phase-delay.h
+>  - define CLK_DELAY_STEP_PS_GX and CLK_DELAY_STEP_PS_AXG
+> 
+> Changes since v7 [8]
+>  - move meson_clk_get_phase_delay_data() from header to driver
+>  - CONFIG sclk-div with COMMON_CLK_AMLOGIC instead of COMMON_CLK_AMLOGIC_AUDIO
+>  - remove onecell date and ID for internal MUX clk
+>  - use helper for functions for ONE_BASED in sclk-div
+>  - add ONE_BASED support for duty cycle
+> 
+> Changes since v6 [7]:
+>  - add one based support for sclk divier
+>  - alloc sclk in probe for multiple instance
+>  - fix coding styles
+> 
+> Changes since v5 [6]:
+>  - remove divider ops with .init and use sclk_div instead
+>  - drop CLK_DIVIDER_ROUND_CLOSEST in mux and div
+>  - drop the useless type cast 
+> 
+> Changes since v4 [5]:
+>  - use struct parm in phase delay driver
+>  - remove 0 delay releted part in phase delay driver
+>  - don't rebuild the parent name once again
+>  - add divider ops with .init
+> 
+> Changes since v3 [4]:
+>  - separate clk-phase-delay driver
+>  - replace clk_get_rate() with clk_hw_get_rate()
+>  - collect Rob's R-Y
+>  - drop 'meson-' prefix from compatible string
+> 
+>  Changes since v2 [3]:
+>  - squash dt-binding clock-id patch
+>  - update license
+>  - fix alignment
+>  - construct a clk register helper() function
+> 
+> Changes since v1 [2]:
+>  - implement phase clock
+>  - update compatible name
+>  - adjust file name
+>  - divider probe() into small functions, and re-use them
+> 
+> [1] https://lkml.kernel.org/r/20180628090034.0637a062@xps13
+> [2] https://lkml.kernel.org/r/20180703145716.31860-1-yixun.lan@amlogic.com
+> [3] https://lkml.kernel.org/r/20180710163658.6175-1-yixun.lan@amlogic.com
+> [4] https://lkml.kernel.org/r/20180712211244.11428-1-yixun.lan@amlogic.com
+> [5] https://lkml.kernel.org/r/20180809070724.11935-4-yixun.lan@amlogic.com
+> [6] https://lkml.kernel.org/r/1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com
+> [7] https://lkml.kernel.org/r/1541089855-19356-1-git-send-email-jianxin.pan@amlogic.com
+> [8] https://lkml.kernel.org/r/1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com
+> [9] https://lkml.kernel.org/r/1545063850-21504-1-git-send-email-jianxin.pan@amlogic.com
+> [10] https://lore.kernel.org/all/20220113115745.45826-1-liang.yang@amlogic.com/
+> Liang Yang (4):
+>   clk: meson: add one based divider support for sclk
+>   clk: meson: add emmc sub clock phase delay driver
+>   clk: meson: add DT documentation for emmc clock controller
+>   clk: meson: add sub MMC clock controller driver
+> 
+>  .../bindings/clock/amlogic,mmc-clkc.yaml      |  64 ++++
+>  drivers/clk/meson/Kconfig                     |  18 ++
+>  drivers/clk/meson/Makefile                    |   2 +
+>  drivers/clk/meson/clk-phase-delay.c           |  69 ++++
+>  drivers/clk/meson/clk-phase-delay.h           |  20 ++
+>  drivers/clk/meson/mmc-clkc.c                  | 302 ++++++++++++++++++
+>  drivers/clk/meson/sclk-div.c                  |  59 ++--
+>  drivers/clk/meson/sclk-div.h                  |   3 +
+>  include/dt-bindings/clock/amlogic,mmc-clkc.h  |  14 +
+>  9 files changed, 529 insertions(+), 22 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.yaml
+>  create mode 100644 drivers/clk/meson/clk-phase-delay.c
+>  create mode 100644 drivers/clk/meson/clk-phase-delay.h
+>  create mode 100644 drivers/clk/meson/mmc-clkc.c
+>  create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
+> 
+
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
