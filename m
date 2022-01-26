@@ -4,88 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF95C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jan 2022 15:07:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D75C28CF5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jan 2022 04:50:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=8oHdwV4kDg7xk4oJlbNTv/Ync5Ed6yIZbC1iyh+Nnr4=; b=sWqv8UgWySTSAl7rlxH3uQJ5Wm
-	uqaWOalwof3GfMSg5NR1ce/a5V6jx4pu8ByPEsB4MfToNIQ2hHZ1y19LhMVMx/BNstkL9M0iAyZ1B
-	EmDU3KzZEwIPLaKa2PoGSvsQ69Bwv5W/JBF0CTdPRpGNsAJUJudjfQw4SaTp6wwHhKC2mkC7M5ayh
-	6ZFY/aKQz6GE13XbOa4uaKW2/4DBsMIrhahV6Iweu8CyWf5NhWFQ//gbjsCAhlJUJzblLTIypbkPV
-	5Oq/iLgcbO5Ks3nlJbh6NIyE8YY+9wRrJZ2R8Iafq5/VidZ9jiWgSxuxx9wIkwAEzDCkzFsNSkHg/
-	E6XKahOQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LUVyQL7+2r//MZmPgIJsNMbbZyx7I6AKLYh1XVAB9zk=; b=h7Lhxkmkst9HuW
+	6/UVTPOpc+V/07xrmW7SihvmeYKLFmQhM+sv1On/99Vgg/Tlr8ZtkFZWSRhMAoZQvLvCpFdURD2aX
+	KGDYjnbNqnDl7pBYVkmQ74VncJbx4pIM8v0AcSz4YhmFJlFtZy6Le2iG+ZybEspoouOGuSXXkejUH
+	HRwu86YJVMjptA7hjRJphtgrjBd/Th6bHIDg/8mvEhBcMZP7Fe12ospIDquorxVe/AjXTTyyP8Pt3
+	YfPJXbkOY8PsYZSFYOQmbXrBVVHxqdoMv7u9ZNSil7C4CU0rT1K62OQIW/exGrXZnzrncOIPxR5KS
+	rPI7wVi8bfPx2E72pYIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nCNQF-008HVX-Bs; Tue, 25 Jan 2022 15:07:51 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1nCaG6-00A9MH-Kf; Wed, 26 Jan 2022 04:50:14 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nCNJz-008Es4-U9
- for linux-amlogic@lists.infradead.org; Tue, 25 Jan 2022 15:01:26 +0000
-Received: by mail-wm1-x333.google.com with SMTP id
- r82-20020a1c4455000000b0034e043aaac7so1393134wma.5
- for <linux-amlogic@lists.infradead.org>; Tue, 25 Jan 2022 07:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
- b=PLaIGp3oeEgbFGe60Jgv1mgImggG7+BEnaPTWFDFLpU8AB/c4Glw5Y1lfRQHX8syjw
- kCXCkXZSfBREnhzfQtBYYxSGsoa1xrg06P+2QdUcG3lIv2OQM4zSv2cCuSQsQ+vJg8nb
- M1uZO0EnbOpqzf+WTVDVGgxkcY0cVKEdgIfFDvKp1wmg6VyO2cXkpJ1kXbjF6D008eqf
- dVSKKinD9bRqD4UfVCGGgMVlxQbhvh2kE50XcLij98Kh1peJlXL6e1Ser0yKG/MEnU6N
- KECBjAdF3KXPD+KOkLxfkZv+u4LfxDOHP27LUtDnAqfg9K2tH7fGJlO8pLqVL3tSmYMr
- m+eg==
+ id 1nCaFt-00A9HR-1t; Wed, 26 Jan 2022 04:50:02 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id s9so7749171wrb.6;
+ Tue, 25 Jan 2022 20:49:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=ZnFERg4538qEnnFDm3nu3v0KamXDEvSagtuMNAkM2ec=;
+ b=qzRXO/gyUPn6B8dOERb/z9Y2l1TuydXikcK0/je5mLsxfq7ZFu8syLt8nbh04TjPxP
+ dFGw9oIHNDND0snYVrh2+T0HuQ1YH508eLbxae339V703WQO2MDftLW4Hm2mHZaxZo3D
+ k9VDBUMow7gaZwOcoITKmoJs4KFW1FXOlolKpH63E9htJig4tUhaLuFQgeC1R6+jw5on
+ agpJJP4Az3OrTs6+4UCcnfWnbtf4i/9GZLZFFZrZ5zj6b7mADaP7ftrjPocQzYE3BFXK
+ J0vB+HNU9TlXgdO+Eb+OnREx0KfLLYAIAOTLfdKHJHFvjr14/km/y6x1r1BwVrAataFk
+ rggQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
- b=5ffGAYdmbKD8Hmzk+ZdxltIukFAt1Wu8yxrHn/aQT5is1gq4Ik4JvpAvKIogEuR85Y
- Qi62XgIdZ+qcOUTBpBSoPB3F/sxsVNm/+V4ewXR9LcHVIl/bZ2zRj/g8zIU1WDqg73+m
- P/g2avBtoWYamfwSsdlpIo9jHmSu9ic7NFNg75zgRihgDtCEvGAZ0h07kVHU9hRty75A
- uabueQrZtCoiRArc9Cadyrpl+ZTaSspmiT6SrshdNeug2vl/xvnzGaMID20l3vF3viJq
- GpNpHcxNMsWszaaH44q1IIwk07jmO6Aob6aYhCiD9CEn3+vYEwWwnZXlX3CEklQyd0bA
- F1Hw==
-X-Gm-Message-State: AOAM531MG7joYsiIf7HIeqBMOg2UuF9QJvOCgkq2OVKoasIxR4p9oUSR
- GgjAm7biZUUY4x2nv9eR2I6bag==
-X-Google-Smtp-Source: ABdhPJzc2KXsXyiQcSuN83qgJUqGoOMhhb0gIw+vQatj3F3MBeRiqOh2SqpwYmDMDPz75JiC07+TXQ==
-X-Received: by 2002:a7b:ca55:: with SMTP id m21mr3424984wml.114.1643122879789; 
- Tue, 25 Jan 2022 07:01:19 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:e03f:56c1:665f:b320?
- ([2001:861:44c0:66c0:e03f:56c1:665f:b320])
- by smtp.gmail.com with ESMTPSA id o14sm6444341wry.104.2022.01.25.07.01.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 25 Jan 2022 07:01:18 -0800 (PST)
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
- Beelink g12b devices
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Furkan Kardame <furkan@fkardame.com>
-References: <20220122073221.2398-1-christianshewitt@gmail.com>
- <7h7daoyka3.fsf@baylibre.com>
- <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <4a8727f4-fbdd-33f7-1f1b-c4baf92ad986@baylibre.com>
-Date: Tue, 25 Jan 2022 16:01:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
-Content-Language: en-US
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=ZnFERg4538qEnnFDm3nu3v0KamXDEvSagtuMNAkM2ec=;
+ b=ADHcfPyVTq0eTaLnjs6ALdULpCD854CeqWNlAKzep50iQGkU0dwkH1mCYEiTBFr1Fk
+ aXhsIw3xRAsJKL7MRL8HEtZjZY5G0LWLhKH+NXHU/8Bm1/mwH/omk171sbZnVXZzX7CZ
+ 7tniXocceaYjy4nyPNmtaNuBEwAbatrzOQfFHeK67nE+zCi4NqrXS+oidp0L5ErF2YjI
+ gD0j1/vdtm+E7q12FCQmtbkdxo7UQa7lhJBJoSPIpHawW67oXbWUEOxxlmE5hiUOOiN8
+ rDWX+F/K91WuUyfZTI6ZLdCs1gFzhaDE9bvvboA+kVTM1EOUW2vu6qLQbDJ5FgtrCOAC
+ qClg==
+X-Gm-Message-State: AOAM531LM9Yc4M+GPkOnp4VDeKKofsWpr04eLuWeOGNn0fbZNMvaT8C8
+ L6Y+lkx3xuoOVgpEap8Ig4o=
+X-Google-Smtp-Source: ABdhPJxMQ+Owhslgsg6YV8JFt0RhWAyKkZIa7OOaBUy/CVMbb3/CMJS3NJ/mczCB9JDwi2x+UMB0bQ==
+X-Received: by 2002:adf:ee12:: with SMTP id y18mr20829820wrn.298.1643172598738; 
+ Tue, 25 Jan 2022 20:49:58 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id n15sm2171342wmr.26.2022.01.25.20.49.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 Jan 2022 20:49:58 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: meson: add ATF BL32 reserved-memory regions
+Date: Wed, 26 Jan 2022 04:49:51 +0000
+Message-Id: <20220126044954.19069-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220125_070124_003761_FB070DEB 
-X-CRM114-Status: GOOD (  16.81  )
+X-CRM114-CacheID: sfid-20220125_205001_134420_FF4DF060 
+X-CRM114-Status: GOOD (  13.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,62 +79,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+This series supersedes [0] which fixed a long-running kernel panic issue
+seen with Beelink G12B devices booted from Amlogic vendor firmware. The
+same issue exists with a wider set of devices from GXBB to SM1, although
+it is not often seen due to my kernel fork including 'catch-all' patches
+for some time (the meson-gx patch was suggested by Matheusz in 2019) and
+many distros actively supporting Amlogic hardware consuming some or all
+of my regular patchset.
 
-On 25/01/2022 05:02, Christian Hewitt wrote:
-> =
+I've also included a cleanup to the SEI510/SEI610 board files. If that's
+not desirable feel free to ignore that patch. I also dropped the fixes
+tagging as I'm not sure what original commits could be targetted. If you
+think fixes are good please provide some guidance and I'll be happy to
+send a revised series.
 
->> On 25 Jan 2022, at 12:02 am, Kevin Hilman <khilman@baylibre.com <mailto:=
-khilman@baylibre.com>> wrote:
->>
->> Christian Hewitt <christianshewitt@gmail.com <mailto:christianshewitt@gm=
-ail.com>> writes:
->>
->>> This resolves a long-running issue where Beelink GT-King/Pro and
->>> GS-King-X wedge on boot or shortly after when booting from vendor
->>> u-boot. In some distros the issue is often reported as triggered
->>> by large file transfers to/from USB or SD cards. Reserving the
->>> BL32 memory region prevents the issue.
->>
->> The BL32 is typically common for the SoC family, so this change should
->> probably go into the g12b.dtsi. =A0Or probably even
->> meson-g12-common.dtsi, which is where the BL31 reserved-memory is
->> described.
-> =
+[0] https://patchwork.kernel.org/project/linux-amlogic/list/?series=607446
 
-> Hi Kevin,
-> =
+Christian Hewitt (3):
+  arm64: dts: meson-gx: add ATF BL32 reserved-memory region
+  arm64: dts: meson-g12: add ATF BL32 reserved-memory region
+  arm64: dts: meson-g12: drop BL32 region from SEI510/SEI610
 
-> Would you be okay with the same change applied to GX devices too? - I
-> normally have these two catch-all patches in my tree to deal with random
-> tv box hardware and it would be great to drop them:
-> =
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 8 --------
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts  | 8 --------
+ 4 files changed, 12 insertions(+), 16 deletions(-)
 
-> https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda=
-96374fc <https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b56=
-2cafbda96374fc>
-> https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056=
-c770ea9 <https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad5453=
-0b5a056c770ea9>
-
-Sure, it has been done in a similar way for bl31:
-https://github.com/torvalds/linux/commit/48e21ded0432ee1e2359d4143d7a6925ce=
-fee1b5
-
-in a perfect work we wouldn't need this since mainline U-Boot does the job =
-by reserving these
-memory zones, but vendor u-boot exists and isn't avoidable.
-
-Neil
-
-> =
-
-> Christian
+-- 
+2.17.1
 
 
 _______________________________________________
