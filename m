@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D425AC28CF5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jan 2022 04:50:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C114C28CF5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jan 2022 04:50:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5GFeTEZV6Qd4s18bEU6uf9I1j0cfA9x+Q8oh2KOHlQQ=; b=mOF1E1X2rNxy0p
-	iZHb10Nbc/yL0udhaAUOjapRopiXiHfYNHa06yfk6g9ldnMvxTBrL6Q+P9H27lWo7nyqdFfqFlw5Q
-	pEi/COaU9h2Rrf9KN7p4bhvBnAvhKUQUG3ZVrjUxeKaB/fHfd4In52jJkh+BMwFPHMoSk5FNMAQs1
-	wlxqP6gNyiuITCN7Gbv4JwtBk6Pu87zisT/i7Jry7bgUVvEquyUi3Dh+O1EwZ5n5Da+1+SSWWTzwD
-	q11M8zGXPOOeKEGpoCW3JhVPbnT5FIyB/qVp4rDtEYJA9MOuNG+nnJ+Ngjkzu09F7jao8pBaPFJd3
-	IEPrTjn9PIhh7v7P6EvQ==;
+	List-Owner; bh=1XEwT5AmBuu+DVIr6kF25W+nSlS/0YwpE+Hy2chZMDs=; b=dI8iTUb/IC03xF
+	DbYgGhUi5JiSOv8UJX1jAaQhse+llO8MyDbHOFTzc1Chk4rV2nXvNzfNjitXcua9gSuswh9WT262E
+	qzJHiKaOEvBrhHhYhfEy47378uKeIFVT2cDJzF4k2Ly6wjXvO+eQ20L0wlSP75XGQkf37Kx9i6WqV
+	r/Rend6qYH97zYynAzzRYCE3zDm/5z4+C112rpbCq0s/HkQTLzsQwE5jmnNeIo8SLq4DSacmmtT0V
+	5PpYfzJn7sHD/yHsSxoaqJ8EBUlgzgEJejtG+zDx5r3/UwT3pxaT6sAmtDe1LT5A68HALFQ09E8TF
+	1H8vxGcxkobtzzivqcUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nCaGH-00A9Om-Hw; Wed, 26 Jan 2022 04:50:25 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1nCaGT-00A9Td-Fs; Wed, 26 Jan 2022 04:50:37 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nCaFu-00A9Hv-DA; Wed, 26 Jan 2022 04:50:03 +0000
-Received: by mail-wr1-x431.google.com with SMTP id f17so23565033wrx.1;
- Tue, 25 Jan 2022 20:50:02 -0800 (PST)
+ id 1nCaFx-00A9If-8Y; Wed, 26 Jan 2022 04:50:06 +0000
+Received: by mail-wm1-x329.google.com with SMTP id
+ d138-20020a1c1d90000000b0034e043aaac7so398187wmd.5; 
+ Tue, 25 Jan 2022 20:50:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=stznty7HVe/pzQfdeViHDJ1kDbJwUgBbrg0lxMVpxdA=;
- b=IqTBmOSMUo97L7KuoUK3kfpVMK590nOjpPaGAgSqlwz6OTDuXfxs7zW/VUdoQwsSE4
- zJLDECQ6EDo3kw0kwJG0WxigKWFmbLkQKm8Bv5a1FMrHs7BmnB8bCUEFE3Nr/Qq1kddT
- QeCzqd4TNDQAYKY9AtFef4sLsPy06TuRNvLQduCRAJ83FBJ0w+TXbOtwtrtocpGE74PD
- 5NfHvS0sU9E3v/1cst44vthFPEHgXkaFWE+j/fuBzE9ndCw2F9xGmyv6rxWeQgJFy6lk
- 01ZbIHpQaZE+TAd0EnDw/ylZqrSaAWP0Vtab53HX6wYOE7l1hTCt/3V0tuE74EHkWKDX
- IyrA==
+ bh=mqGfir27zJmToE36fS5ePo6W0AQ+1+pKPU+ftIb1KDQ=;
+ b=H/u5aTGxe7bDkyVyj/WetTyDAkwOgDrbmlbTQSSNgeOl6fu43dLrxIejkDwHUUc38I
+ NV1ic0G6uTxbIXSNr24DUy2lc0kMwnsA+obl/mpNa9owGGfCRGYH/7RTTG0xWJROd0/K
+ S3e8yJbW1GWEpgW/4irF2AcrlXnmzRSj/Ij7PAefYPYZ7SJfOFhz7BPWILcCprgz94V3
+ WIJ5VW4Q+ambXWN68hI+LMGTpOtVwjz7LtBGelRccZoqr9K66L//pWwweyDKE5eB8MCt
+ vae6RgKiYXenV7eWbEOXVrFxow6KOf+wzq27kHaLi5HiOfDsY7seh5iY+wmsoOzAF5ij
+ TCBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=stznty7HVe/pzQfdeViHDJ1kDbJwUgBbrg0lxMVpxdA=;
- b=C7jYae2TZJj9V4hxYOgYBEITcvF1y5A/GpJ5sFCgPjQYhSwFvyS6JlNiRKnD+UM11J
- dfvOHsYqBbNfgY0Qyvn+37ijK/0zk6OrCPsxO8HM6Bai6vH9zpsylAFC0NTCHlKcEw42
- 5r6a4HyoYW8e3WLKnjITu0IueqHLgpRAXArrirSLw8AA+oz05KP8RRxx2cYGpyVpsZIz
- MLbU3x51zZmo7UnW3anUBPb0K4RE2t+xferVMYbuLPl7mThIJXhEEfuQyr2cAU198J0q
- 15/od1wJ5bEUeUlq2KigH8vP0clYC2nNBGZF0mL/A0eH2oiE3SiTXdEYcyAK8vqHD72Y
- KXPg==
-X-Gm-Message-State: AOAM531VJD1MTNHViv5dq2Yr9CMiVUngNYowrI4pUne3CasL2Q3r7vYj
- c7GTJLMV91HbQPqD/3IXqMc=
-X-Google-Smtp-Source: ABdhPJw+jLzjJzxrxscAYl6UjeWlffrvBe2Z/FWjed0KLeKL1hSQVsDlv6N/49LYVPceKooJ7s5W5A==
-X-Received: by 2002:adf:cd8f:: with SMTP id q15mr21418931wrj.118.1643172600846; 
- Tue, 25 Jan 2022 20:50:00 -0800 (PST)
+ bh=mqGfir27zJmToE36fS5ePo6W0AQ+1+pKPU+ftIb1KDQ=;
+ b=6gfcylEizvPgOGXo63d6Nfa5wCVRThJHmWIzWCnI970Uy5qGcfVmTqEICY6Y2JoXqP
+ 9/XqlNPFT5/LzXMCNXRW5l2xNTp4z2xiZEbjUftRBwAf80D/JMl+FxCM1gasz5EYJxIr
+ ILP4bNUzk3gyFRkR1HpYxfGv6WGhi/xfoVVv+Vook1LlCh35jG8e08CAsz4eO8QXlUDF
+ MVUIJzL6NZ/5RoRalkbKmnlQJNxt3gFtqIDfEFM2i87r4wy1PqsqfJStLl+0DqteyTQ/
+ bhz7s9HloMbBdV9/Ai1mqTyeOjKk3b00C079eLTqx3iszrC22YVCvtLvLiNqWZetWf7e
+ AeQw==
+X-Gm-Message-State: AOAM530vaEJNXdMDmNp6f4q1Z073ZQNdsE535F10Lf/3bvbr6FRy/Mwi
+ pjG0IrJq3GlxuTzbse0B26QRIqk8skCBm6Y2
+X-Google-Smtp-Source: ABdhPJx7OSVbyDVHUckRwup7sGaYF8zhkCb8BJsjlfWSgjXp0ZhBEmMgluIICeh6SPivrPEIAx/fGQ==
+X-Received: by 2002:a05:600c:19d1:: with SMTP id
+ u17mr5668891wmq.24.1643172602946; 
+ Tue, 25 Jan 2022 20:50:02 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id n15sm2171342wmr.26.2022.01.25.20.49.58
+ by smtp.gmail.com with ESMTPSA id n15sm2171342wmr.26.2022.01.25.20.50.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Jan 2022 20:50:00 -0800 (PST)
+ Tue, 25 Jan 2022 20:50:02 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -62,15 +64,15 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 1/3] arm64: dts: meson-gx: add ATF BL32 reserved-memory region
-Date: Wed, 26 Jan 2022 04:49:52 +0000
-Message-Id: <20220126044954.19069-2-christianshewitt@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: meson-g12: add ATF BL32 reserved-memory region
+Date: Wed, 26 Jan 2022 04:49:53 +0000
+Message-Id: <20220126044954.19069-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220126044954.19069-1-christianshewitt@gmail.com>
 References: <20220126044954.19069-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220125_205002_473245_EA0E263C 
-X-CRM114-Status: GOOD (  11.68  )
+X-CRM114-CacheID: sfid-20220125_205005_334703_058CDF10 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,17 +93,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 Add an additional reserved memory region for the BL32 trusted firmware
 present in many devices that boot from Amlogic vendor u-boot.
 
-Suggested-by: Mateusz Krzak <kszaquitto@gmail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 6b457b2c30a4..aa14ea017a61 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -49,6 +49,12 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 6d99c23261fb..45947c1031c4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -107,6 +107,12 @@
  			no-map;
  		};
  
