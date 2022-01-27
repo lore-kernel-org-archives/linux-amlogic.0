@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33D8FC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jan 2022 10:46:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 523EDC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jan 2022 10:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,75 +13,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=XB7gn3Z4FobkXXZSZpRiMJw4t4VWF2Ru7zVpDjet6os=; b=GqRa+0S/dOoeBjmfd6mYn5N/zs
-	iFnC5RtXP94pvBQITA/9tBZkODSQf9PzaE+Tv7+CaU+E08wMOVfZ5gsuUte4eaMz2OBF0CPvncccX
-	0JMz0kZiH99FLkggZcyzZHRDMcHHLk8omVW5dtkyh9kKYhlR8TrXVUPYLv2tAOoeBRHkcNMxElzDd
-	YGCDebuoBC1duoWrv8F91l7oHm9cahv8Th6z0oUz6shfNkQzRH9UY4xsbrfGDkAtNRFPTymjF6TgH
-	tdQwbx+4aPtCuzFT5kLvOmM9vAdVy2L+Tu8GnL1JGpN7oU/rEVpOWGotllz1DzlnZ2hDg/A9YuSLQ
-	0TDHW/DA==;
+	bh=f2MXJnRkl4PLzUtbZK9WsGMJ+Uq1Z47KBL29tBHYiOI=; b=H27aagioHoE6G8oh6wGrA/kOjO
+	Q+WBWtY0uAORBDohlA+lkpJ2yFaF6rCGllVg4UfomGEm36l9pPqILNljmOJno3MKOn0dDDso34DuG
+	clQLEf7A9pDJsmihsjZ3brdFoSDK2G5FgaRkIeTzeepHlRSF6HfWUaE+mG5M3OLKPwhILVHddVOXe
+	Oxk2OrlTY7g197ouDxoskVDbglUD/p4faQg6Jy7sJiSZy1daAYfXRDhMB729Q7Ht+L1EQSuJB+2H0
+	li0JAbJ8xZGcCYyJ4DPd07leg8/0BsF6/B5rPjpE3pzImgT5OEnkan6Stqman8i5bo98YJ+jNgPzU
+	CJNZKOpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nD2IY-00FDHJ-In; Thu, 27 Jan 2022 10:46:38 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1nD2IZ-00FDHy-O1; Thu, 27 Jan 2022 10:46:39 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nD2II-00FDA9-HK
- for linux-amlogic@lists.infradead.org; Thu, 27 Jan 2022 10:46:23 +0000
-Received: by mail-wr1-x433.google.com with SMTP id l25so3878379wrb.13
- for <linux-amlogic@lists.infradead.org>; Thu, 27 Jan 2022 02:46:21 -0800 (PST)
+ id 1nD2IW-00FDFd-UH
+ for linux-amlogic@lists.infradead.org; Thu, 27 Jan 2022 10:46:38 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id h21so3916034wrb.8
+ for <linux-amlogic@lists.infradead.org>; Thu, 27 Jan 2022 02:46:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=subject:to:references:from:organization:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=jMJUQQRNGQfSVpTNxYkQjgWKQuRwp+63flTuqAq51FQ=;
- b=u3w9o4lfjlVkkkP5URbtPSU9Oll4DJlepTa3I2gW+BSrLpjzv6SpUTIEZcOIlpc3mR
- qsWEh9Q+4LE4txajrQgxHMdp6LJzBNn/X3SvwuNw6Ob/lHoslGVAavqUldTSltQHAFgu
- zwiPfza1RwmSSMSFqNICd4jjWGmXJd9xkp2v9otjYWZNqRrHtFwzjLqZs7OkQ4vAB9aj
- zRD4w/5dIyR1sPPw/AHH3izsEc5t92cj540nCrBfPuZ41pHlDUicM0cF67F/vOCvyUcA
- pOVWWrcwWT8GOXDvsPJ57BWjxBBowsqpnyzXbm7d0JPuj1waxw0NUIQxaPXFI8odqq4/
- jw5w==
+ bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
+ b=ubIxn1E+uNN1vDY8MebsAnQ7GuteGrFXwuGBUEKfvEdrfcixd8B/PL3c6z249JegoI
+ UB+w1mUpFo7WRUInG4yAS/VwFV6a02sedrhPEFAhzYmlRMaRbmFYlHRqLksIa9PC7HNU
+ hPoZrEllCxxNU4IdjpwWXJUM0TxbEwDARYj5b+g/SKG0IJRgrnbvGyJP8thtdHaEHjAw
+ PMd7tq7fp7skgzU7VW3YLI0toF343PGWT33l/q8qGNRrghmUBOSZnQCac/vvAaIhPWu1
+ hN4w138udbtDxqSo0bW8vhRWASaC8l5dbhwWAyEHr01HKVx8tiwWy8pC+W62A0IvyO5B
+ zA/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:references:from:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=jMJUQQRNGQfSVpTNxYkQjgWKQuRwp+63flTuqAq51FQ=;
- b=qyxj7VPojETDDAyNIJIqwHo2IybLYAuRvGjPfFhucKjLzQqaMdwXR/4GMdJwPxQl3q
- LrfidEj0PcCH5ENiKjYAt278gLqkh0VEWg/Kp59GFemwEkaU3B225OcZ4/p+DDKPrKl3
- vdvHzIsSgU0RBaKsmu/azRvoroZSLeBbrIxpi2tPRZtWiVb3hfRRIXe8+GkGv5JSjv5Q
- ML88dXVvD54/q51diCYgzK6HtbmME2cpZkPM4UxqcQ6Puhn0iEB0E9omvDextPknJs89
- J0XUQPL0+3FfINL9M4ccx0YwWuDs5vHnALKy2ftn1JaMh2Hnx7pDwS0uEzWOloi/uHv4
- u1Lg==
-X-Gm-Message-State: AOAM530ChzLhO/77lhuyvP8MMrfRENggGIqjNvz/xxO4gI7hykvhCe62
- bbE/KYDIkcZwWgFqu5wU1zL/l41YVFtzsA==
-X-Google-Smtp-Source: ABdhPJzAXLovLm3w1LwAV/9nZMMIWduZnrezt5OZmEwVVa7+NgBjFiaSXlAQ6BzecVuIb5qQWnhN4A==
-X-Received: by 2002:a5d:6d03:: with SMTP id e3mr2537467wrq.536.1643280380592; 
- Thu, 27 Jan 2022 02:46:20 -0800 (PST)
+ bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
+ b=wJbpyfBicsYW2R/iptIV57KnDTtdKk8z8tD72DraEnHD2diYvnlp/RBvoMXHqW5sKZ
+ A6fCwvnJV27CppRdjMDdfqAF/vGF0rK8SNJM5t6DpaPg77zxz/jeCYiBUKaGzr8QDLbi
+ 6lPX3oWEP4Y41z3jgvPGKSxfsz/DT4INBr3sYIdRN9CurMXogbBQTOT1Hy3ka9iC4Tfk
+ 8tWJ5Yfh2m9ia88Hhps4DIMxKKdbZw+uQqnZm8mF8KUIZ2Qpmi+2qa8KdZqIxmCvi1wr
+ eprd1GKxU9MFs6Z2gZEpb5ZqtLUCx0h6W0VHutzUVhY4+CQIxQpaWhnsT/OzZ51qzm+A
+ P6sA==
+X-Gm-Message-State: AOAM533Up3vT5E1Z5MTuFdKpfNVTi1CrJbIMyRU3x6AUAfEfP2pP6KaB
+ hQ0tspi1NQ6Vh0EoaSM5ufchbw==
+X-Google-Smtp-Source: ABdhPJyrYLuJIOBp3qeu8mqqbHMX/5mzQXLLyDocyJjjEBiYOnwetPI8LA9wboNZZFmrinmGUK2+mw==
+X-Received: by 2002:adf:f90c:: with SMTP id b12mr2473052wrr.97.1643280394960; 
+ Thu, 27 Jan 2022 02:46:34 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff?
  ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
- by smtp.gmail.com with ESMTPSA id l13sm5830775wmq.22.2022.01.27.02.46.19
+ by smtp.gmail.com with ESMTPSA id h4sm2162389wre.0.2022.01.27.02.46.34
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 Jan 2022 02:46:20 -0800 (PST)
-Subject: Re: [PATCH 2/3] arm64: dts: meson-g12: add ATF BL32 reserved-memory
- region
+ Thu, 27 Jan 2022 02:46:34 -0800 (PST)
+Subject: Re: [PATCH 3/3] arm64: dts: meson-g12: drop BL32 region from
+ SEI510/SEI610
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20220126044954.19069-1-christianshewitt@gmail.com>
- <20220126044954.19069-3-christianshewitt@gmail.com>
+ <20220126044954.19069-4-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <af845f03-6bd4-cc78-2b7c-a32257f8773f@baylibre.com>
-Date: Thu, 27 Jan 2022 11:46:19 +0100
+Message-ID: <cea820b0-5ca6-4a34-3d57-92e593785001@baylibre.com>
+Date: Thu, 27 Jan 2022 11:46:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220126044954.19069-3-christianshewitt@gmail.com>
+In-Reply-To: <20220126044954.19069-4-christianshewitt@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220127_024622_586688_DCA0338B 
-X-CRM114-Status: GOOD (  16.03  )
+X-CRM114-CacheID: sfid-20220127_024637_029237_714E3BB5 
+X-CRM114-Status: GOOD (  15.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,31 +99,53 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 26/01/2022 05:49, Christian Hewitt wrote:
-> Add an additional reserved memory region for the BL32 trusted firmware
-> present in many devices that boot from Amlogic vendor u-boot.
+> The BL32/TEE reserved-memory region is now inherited from the common
+> family dtsi (meson-g12-common) so we can drop it from board files.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 8 --------
+>  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts  | 8 --------
+>  2 files changed, 16 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 6d99c23261fb..45947c1031c4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -107,6 +107,12 @@
->  			no-map;
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> index d8838dde0f0f..4fb31c2ba31c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> @@ -157,14 +157,6 @@
+>  		regulator-always-on;
+>  	};
 >  
-> +		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-> +		secmon_reserved_bl32: secmon@5300000 {
-> +			reg = <0x0 0x05300000 0x0 0x2000000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			reusable;
+> -	reserved-memory {
+> -		/* TEE Reserved Memory */
+> -		bl32_reserved: bl32@5000000 {
+> -			reg = <0x0 0x05300000 0x0 0x2000000>;
+> -			no-map;
+> -		};
+> -	};
+> -
+>  	sdio_pwrseq: sdio-pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> index 427475846fc7..a5d79f2f7c19 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> @@ -203,14 +203,6 @@
+>  		regulator-always-on;
+>  	};
+>  
+> -	reserved-memory {
+> -		/* TEE Reserved Memory */
+> -		bl32_reserved: bl32@5000000 {
+> -			reg = <0x0 0x05300000 0x0 0x2000000>;
+> -			no-map;
+> -		};
+> -	};
+> -
+>  	sdio_pwrseq: sdio-pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
