@@ -4,76 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A38C5C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Feb 2022 07:48:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 400D0C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Feb 2022 19:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=t5dv+1n3+R4S2KNvh3nxGA/K2Xp6KfVP6rrL1cd/TlY=; b=wJscIgChmQwhGqE/0Ymtb2fWeD
-	zU1Vxcyp2gY4EortHz3J/FB1lfMqAI6GHIQAckXYOQJRV46l/cVM00KFPxAAVtvOHkIa19QGW+ScD
-	r79r6JeMw26zYqaXx8rbMCDdL1rcGPwZluseS4O5SzZmojcEXJf+y3b7y+6KI+Xk9pD47UyOC4bkq
-	JcuMLd4ktnGLqzrHWaelXwMeUWHecNVRPdGHoC59xqPVxSSGRuo/WRfBvqEEG5slDNqnUxUfvVlNM
-	mzdAPtp+ruJqT7o51/nSwhjdkFT9fvbkoq7liRGy7Bmdx7a7tR6KFb1lYNPx8ECIdYlWNFAUb4OKs
-	hXNiVTlA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0DxMSJnQBPShdBlId787oOZ3ZBZpna2Cb2RfDg+7Qs8=; b=qrcrsniar3jjVg
+	jinmYrWaT7a0uZvKXuy7akhVTPXwwdWXrc+jqLszTOselIVOA7uNS8z5bUPf48G5QFBFHS88E0cul
+	lB20a6sVpZcJq+Ez44haHBkVvdyRZrH7PjnkjEJILdZtfnXzGUbK/LjkjJtECY87gWMpNfv8F7f/9
+	VPA4Ew2nLWiYdWXNm+6Xr5+MwkB2NX+1yYXwIGqB9hCwsONgCU0dO7iCUdKarCq4mIiosNkhRQr1X
+	kS7M+IJcAh3HGwEofE57Hre9jbbqX74/e7lecOKKG7ztbG3O5BCuzABZG3AAD7Ohorn3BgHNLJEZn
+	aA54czlnf0f6GwxvzJgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nEntM-00BPwC-HR; Tue, 01 Feb 2022 07:47:56 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1nEySd-00DTuA-Ob; Tue, 01 Feb 2022 19:05:03 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nEntJ-00BPv2-LV
- for linux-amlogic@lists.infradead.org; Tue, 01 Feb 2022 07:47:55 +0000
-Received: by mail-ed1-x534.google.com with SMTP id w14so32378033edd.10
- for <linux-amlogic@lists.infradead.org>; Mon, 31 Jan 2022 23:47:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=OXwpypPprCxtY8e/4CjGLn2XMhoDuhJcb90FFRfLVgU=;
- b=h/joRXNroSiXYcyfh67qOX2sLX0JSoI3XZbePNcNWg0M91aHnnqkJupcxgi+AFooo2
- aVBK+SoktuifyfsOQgvCC/iNtgDQryBouSERmxTIFNHrGoi9bMEoA2SmDME5+LvyHJ1U
- vowActs2EUb+GlstTJXVrdFTvV4CWOwUcjDzxjGHZbgb1OwH3McnFROHK8KJohIHgdBS
- 4RNc0Zy64y6oF1ULDf3PJWhq8BPcjzptXW1JBx1xUCdFAKM14HdjbBv29D9q6Pr5PL3G
- 44SbPnTgbDg5wr/3f0Y2C+/21Mk9u2t3CMJO/4RcUtNw81P6qGXXIRGPydUO6Rwf2s1q
- c9lg==
+ id 1nEyS7-00DTjU-MA
+ for linux-amlogic@lists.infradead.org; Tue, 01 Feb 2022 19:04:34 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id
+ b1-20020a17090a990100b001b14bd47532so3591669pjp.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Feb 2022 11:04:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=wIaENBg/7AsUHJDq4OgnIPqvHUp4Vts4+P8qgAxYW1s=;
+ b=Y95dzwDrfydpWDBxj30R2ZccMBa6llxL8kVA34F+lHigePxpWyJM1muhJRfbeXA5Go
+ 0eKhAoQ5DrDBUxYRj46MLXMjhW9WDqWO27hhkKB2VbeNmYWnn9cZlLdSJaeqyf6SxhGT
+ /LlkOBZ5N4r4rO0KCSZBCZnVLl8x14f9/mLfR8Kn+8/6hUl2mDVGUxiftpPgUsXYB2j/
+ oXkjyEfIeIZ1UFp4r2Sm5StQhyJCU0JqxolSVYYoTW8lHIMWUj0In0Uk5kzWAPPF8orv
+ RKz8F8zPEtTNamxib0Pz+00rphknQEOZBAIQtn9LxZUEQH6vC14znFQ61HUsIKVnG0PO
+ 9bHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=OXwpypPprCxtY8e/4CjGLn2XMhoDuhJcb90FFRfLVgU=;
- b=okwd8FLe/JF1p+5mL4uOPXL2QvQPbgulUnBfZhgdZnSfAaAV4SbnmwOi3q0ZuQbGzD
- YK1QMlqCp6Z6x2Vn4A1tkQ/VWnnK2gv5AJc6p5xOU1vnhhf60oeFaTHC2TaUElDDFx64
- riUB1/qX2REyCrgZQH+7bHb4WbHj5UqD+ygsPk+DCYU5862rmVLKtg6DjiTNnYL5w/wz
- xFPhdRBAUP50JEE1kzcxzxCsNHSCQpRG3McQI8IJx2mirf2LucZ57Zl4Gvl4+TqwbdDi
- jn02B9LanfrJS6CrllSCWnSI7oZWzD3tbSUw795UKIPK8/8fOhHNOH8YAPJJ0+uXP6Go
- i7fw==
-X-Gm-Message-State: AOAM531zizpHWjI8wOxssQ1nwB3SjjmIAWlVttGiwf2jmtQiSfBqAidR
- pZ3qCymsgb95F2ug3hPKhLOQtxH4sgRosw==
-X-Google-Smtp-Source: ABdhPJyULq4LQsDquOdq0yp0fUfXhyRLb8xd289UxduZB2vpdOJHotkGNbk9xEgyoKTlo/kOK/S42A==
-X-Received: by 2002:a50:eb46:: with SMTP id z6mr23802731edp.229.1643701670985; 
- Mon, 31 Jan 2022 23:47:50 -0800 (PST)
-Received: from orome ([193.209.96.43])
- by smtp.gmail.com with ESMTPSA id cr8sm18726443edb.47.2022.01.31.23.47.49
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=wIaENBg/7AsUHJDq4OgnIPqvHUp4Vts4+P8qgAxYW1s=;
+ b=JlOaLYh1iSMLE21Z4w6X7ozuqUEL6+yJb6ykOxfVGTc1XMtUI7LOYEZ+nutQKWLHEM
+ Lp3boQ79Pdt5Fuf/dOAQuOq79bHJbZOBj599nmwq7LbVBFu45igXtAzACwMk90/q56Ir
+ j5pTvKkHYSe1xKTwO6m4ihvv+RKJTKELEp53RXxWVDhFOxYHNNL1NQuM2EfrVGh0BwTM
+ eXx+9kmMx8qG1tGoVM3O302YgXDR0JEkaIOcjkMEze9DTi2LlMhvUrByrC4AxAHLpie+
+ YdQB17YlZpz3Dq3uPMvr1vwTwQtaEQ3UlAVb9n2TBiXKu8VPv+drFj87wspg+DJjOXC2
+ +eZw==
+X-Gm-Message-State: AOAM532sEut/Do7IXhgq6JnB/5bdwUKymFYKx3BxrzKqq9DM0IcB1wAg
+ ndK/kfaaHrzhor98q2Jzmcsc9Q==
+X-Google-Smtp-Source: ABdhPJygCi8b1yCmG8oqZZPB+iH/tseA+EFVP6QFMDH3+XAyTEM1OWhw4r4ydzfW6NVUYlCesgahMA==
+X-Received: by 2002:a17:902:d2c3:: with SMTP id
+ n3mr27222538plc.45.1643742270670; 
+ Tue, 01 Feb 2022 11:04:30 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id d32sm33229135pgb.46.2022.02.01.11.04.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Jan 2022 23:47:50 -0800 (PST)
-Date: Tue, 1 Feb 2022 08:47:47 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Lee Jones <lee.jones@linaro.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- kernel@pengutronix.de
-Subject: Re: [PATCH 1/4] pwm: meson: Drop always false check from .request()
-Message-ID: <Yfjlo4JS490V95hM@orome>
-References: <20211108134628.120474-1-u.kleine-koenig@pengutronix.de>
+ Tue, 01 Feb 2022 11:04:30 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: meson: add ATF BL32 reserved-memory
+ regions
+In-Reply-To: <20220126044954.19069-1-christianshewitt@gmail.com>
+References: <20220126044954.19069-1-christianshewitt@gmail.com>
+Date: Tue, 01 Feb 2022 11:04:29 -0800
+Message-ID: <7hr18m9znm.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20211108134628.120474-1-u.kleine-koenig@pengutronix.de>
-User-Agent: Mutt/2.1.5 (31b18ae9) (2021-12-30)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220131_234753_792214_41EE867B 
-X-CRM114-Status: GOOD (  12.32  )
+X-CRM114-CacheID: sfid-20220201_110431_750864_54A45B89 
+X-CRM114-Status: GOOD (  13.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,70 +88,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1718074609037029376=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
---===============1718074609037029376==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pV92kODRvCrKSof2"
-Content-Disposition: inline
+> This series supersedes [0] which fixed a long-running kernel panic issue
+> seen with Beelink G12B devices booted from Amlogic vendor firmware. The
+> same issue exists with a wider set of devices from GXBB to SM1, although
+> it is not often seen due to my kernel fork including 'catch-all' patches
+> for some time (the meson-gx patch was suggested by Matheusz in 2019) and
+> many distros actively supporting Amlogic hardware consuming some or all
+> of my regular patchset.
+>
+> I've also included a cleanup to the SEI510/SEI610 board files. If that's
+> not desirable feel free to ignore that patch. I also dropped the fixes
+> tagging as I'm not sure what original commits could be targetted. If you
+> think fixes are good please provide some guidance and I'll be happy to
+> send a revised series.
 
-
---pV92kODRvCrKSof2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 08, 2021 at 02:46:24PM +0100, Uwe Kleine-K=C3=B6nig wrote:
-> In .request() pwm_get_chip_data() returns NULL always since commit
-> e926b12c611c ("pwm: Clear chip_data in pwm_put()"). (And if it didn't
-> returning 0 would be wrong because then .request() wouldn't reenable
-> the clk which the other driver code depends on.)
->=20
-> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> ---
->  drivers/pwm/pwm-meson.c | 8 +-------
->  1 file changed, 1 insertion(+), 7 deletions(-)
-
-All four patches applied, thanks.
-
-Thierry
-
---pV92kODRvCrKSof2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmH45aMACgkQ3SOs138+
-s6Fh9w//Ql8gqrdnYtrBphgXpsXa+yk/FR7NA5zyU+eSjy2ofl1u5wzR4KiOoXqX
-/ieJL7czibRQSwCAiLymde6Fcd5u+wQCIzIQDTh+qX1AB/CUINB41rnBGW363r3y
-SZLxiXyW8gG8XfNeiDHGMeT/16kdrOmmR/MecHyQ7hFfll65NdXkE6HRc72JKBS0
-fK19zqYeeUDlP5nEvOByEeYjWAHmDsV5t7uZhurCILELTKWovkaUtpfrxl6hZFCg
-fTuySv2AZ5uwKtkt2XhP5F+m/r6pC5DX+7HmbRTLhoboi8p7GHo0ruYp0GuLdYtC
-9bqSSF29eLLzbeLXHsQnJds8L7cetQMHfskq2J34k68BAZnIiGnUKRgcKMvBKb8w
-QomZtdaOLN+0K7s3jj0utSHzrG4qYSKg3qBixg3rOgSbSWfEY2kW9aZpzT6M0FuG
-O2UpmKlBPD8zg2PNSmiMXGISoCwF2OlzDk46ucSTcC15a/Qg091SeghDf0CJNs//
-5GUWcFwUY0p3FJPYeamdcV/00zWJiWpvwqo9J2L+/8Iv7Atax3jvYeUam6CXhtTQ
-eCU5JOfKcmIXHxbKA7vng1P88jPCqhAboO+xEa8gkAeyRgcXNNvABSw0oOet08ze
-sBNSnmONY8dzWELPtJLAsEVUuqoKXOTtmDfH2LwRzOhuuU++k28=
-=p3pi
------END PGP SIGNATURE-----
-
---pV92kODRvCrKSof2--
-
-
---===============1718074609037029376==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1718074609037029376==--
-
