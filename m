@@ -4,79 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 400D0C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Feb 2022 19:05:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47052C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Feb 2022 19:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0DxMSJnQBPShdBlId787oOZ3ZBZpna2Cb2RfDg+7Qs8=; b=qrcrsniar3jjVg
-	jinmYrWaT7a0uZvKXuy7akhVTPXwwdWXrc+jqLszTOselIVOA7uNS8z5bUPf48G5QFBFHS88E0cul
-	lB20a6sVpZcJq+Ez44haHBkVvdyRZrH7PjnkjEJILdZtfnXzGUbK/LjkjJtECY87gWMpNfv8F7f/9
-	VPA4Ew2nLWiYdWXNm+6Xr5+MwkB2NX+1yYXwIGqB9hCwsONgCU0dO7iCUdKarCq4mIiosNkhRQr1X
-	kS7M+IJcAh3HGwEofE57Hre9jbbqX74/e7lecOKKG7ztbG3O5BCuzABZG3AAD7Ohorn3BgHNLJEZn
-	aA54czlnf0f6GwxvzJgw==;
+	List-Owner; bh=aIH1ja8+9k1BA3uv2rlAggzF4XCQ2/Et//UNT5VTvcw=; b=4u4EIZGwrfoEoM
+	RALvqPMwzJ8JPDUGW2XDETjk4Iv/va1r7fnoR8OfmRkNnrGyGJYOTDR+9s9BqcMc5A6PFFNmbIA3i
+	4qwCpLj//17u5d7zms0xImbOclJzbb23InM0L5x1ivpUs+oXI/mGIU/Edu58bLPI8AQgJHulhZzxR
+	lB7G3gRF5zOXTVVTacu+Mz7OVJIZBYdqFsntkSOO/56z8C2qpT5wyAwbYeDUa8O4wgDD8fQANPakx
+	L9Fhm3dFb8SCrqgbRfXwpn5KhqP40NndlQpVd/E57sFeskpQ/5hYKI1jjgrt8GVf4VwTMW2drvQuI
+	tcCjb+LDjwvE6Z+rNpIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nEySd-00DTuA-Ob; Tue, 01 Feb 2022 19:05:03 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1nEzCp-00DZwd-VR; Tue, 01 Feb 2022 19:52:47 +0000
+Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nEyS7-00DTjU-MA
- for linux-amlogic@lists.infradead.org; Tue, 01 Feb 2022 19:04:34 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id
- b1-20020a17090a990100b001b14bd47532so3591669pjp.0
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Feb 2022 11:04:31 -0800 (PST)
+ id 1nEzCm-00DZvf-1k
+ for linux-amlogic@lists.infradead.org; Tue, 01 Feb 2022 19:52:45 +0000
+Received: by mail-pj1-x1034.google.com with SMTP id d5so18117035pjk.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Feb 2022 11:52:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=wIaENBg/7AsUHJDq4OgnIPqvHUp4Vts4+P8qgAxYW1s=;
- b=Y95dzwDrfydpWDBxj30R2ZccMBa6llxL8kVA34F+lHigePxpWyJM1muhJRfbeXA5Go
- 0eKhAoQ5DrDBUxYRj46MLXMjhW9WDqWO27hhkKB2VbeNmYWnn9cZlLdSJaeqyf6SxhGT
- /LlkOBZ5N4r4rO0KCSZBCZnVLl8x14f9/mLfR8Kn+8/6hUl2mDVGUxiftpPgUsXYB2j/
- oXkjyEfIeIZ1UFp4r2Sm5StQhyJCU0JqxolSVYYoTW8lHIMWUj0In0Uk5kzWAPPF8orv
- RKz8F8zPEtTNamxib0Pz+00rphknQEOZBAIQtn9LxZUEQH6vC14znFQ61HUsIKVnG0PO
- 9bHw==
+ :mime-version; bh=K0G1SY2wwrY+W9SNB4oFMtfetHq3vq9RQ2FLNyl/UiI=;
+ b=AmoyYeqbKB/J8fBT7GwIIJ7MSBxGiJfI2bIvKcMrbC+8uTYNUByMbB8cYdjalZvuts
+ bP6OB7nUJPZui4YHm54PBmVv7wrUBYuw0pn5eCsGBooT/y1iZuq2Nq4kJMFX23Af5xLs
+ ZgW8DJqQhPejR+1y+MZ/pJnNZW7sov/QVgx+fYolLnuvq9xgAFwQM2Nd8NySe2e85265
+ RrX41sx6lcvoEaYfIsJKTukQVAQFLtmEL4p29xx9uAzi+tp8SbEkvsaQTQJXLCKnMx60
+ uXYbxXaVHaMeSiJkSrY4eiD3j6k1Ug94P86epF/+FQkxVKs6B1Pm6E1IgxDdlcapSKVo
+ 4uMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=wIaENBg/7AsUHJDq4OgnIPqvHUp4Vts4+P8qgAxYW1s=;
- b=JlOaLYh1iSMLE21Z4w6X7ozuqUEL6+yJb6ykOxfVGTc1XMtUI7LOYEZ+nutQKWLHEM
- Lp3boQ79Pdt5Fuf/dOAQuOq79bHJbZOBj599nmwq7LbVBFu45igXtAzACwMk90/q56Ir
- j5pTvKkHYSe1xKTwO6m4ihvv+RKJTKELEp53RXxWVDhFOxYHNNL1NQuM2EfrVGh0BwTM
- eXx+9kmMx8qG1tGoVM3O302YgXDR0JEkaIOcjkMEze9DTi2LlMhvUrByrC4AxAHLpie+
- YdQB17YlZpz3Dq3uPMvr1vwTwQtaEQ3UlAVb9n2TBiXKu8VPv+drFj87wspg+DJjOXC2
- +eZw==
-X-Gm-Message-State: AOAM532sEut/Do7IXhgq6JnB/5bdwUKymFYKx3BxrzKqq9DM0IcB1wAg
- ndK/kfaaHrzhor98q2Jzmcsc9Q==
-X-Google-Smtp-Source: ABdhPJygCi8b1yCmG8oqZZPB+iH/tseA+EFVP6QFMDH3+XAyTEM1OWhw4r4ydzfW6NVUYlCesgahMA==
-X-Received: by 2002:a17:902:d2c3:: with SMTP id
- n3mr27222538plc.45.1643742270670; 
- Tue, 01 Feb 2022 11:04:30 -0800 (PST)
+ bh=K0G1SY2wwrY+W9SNB4oFMtfetHq3vq9RQ2FLNyl/UiI=;
+ b=Lxn8RHxs7PuxNBTQrWMhCie8qqjt/bh3Qk/hc35cvIhcHEWzcNaUmEBxHQJK/08a1H
+ 2reYN/2O6Y5ITrP8EOgQ9kzoKD1rxmYyGeD/6Mj5kt0K5p64UiBVpdIS/5KnyCkYsKWj
+ Gr0FXbsznLcaJWU13xhKos8VsteGHoymjJXrqBxaS0IkNarsAEViLEWtIppMLRIaFFCM
+ d11BcLY0EHTPzIYPKSRROZcfAEXd/4MT6kJ6DaXPx9Bwlrp5UwNKD07WgMUgQzJsRRK1
+ /iAQ/pd1SHUK4AwbxLaRYkXcznXRXo9eGL4DbHeJjcmVjdUF3ANOzUYeO4Qf7jwBLfBe
+ qf+w==
+X-Gm-Message-State: AOAM531oEyjis0fYw4eHkE9nkU7u4oB5I/qLxA32yAqvAwicYktNcmYe
+ yvF/hBSCOcHI8Jga0qVo+I+Dzw==
+X-Google-Smtp-Source: ABdhPJwtPqHYQaAKewNFNpgmL8T0HaZwSGxAAwv38AZO435BSJ6NiP/4SeR7D33i2armAziRPFCdFg==
+X-Received: by 2002:a17:902:db01:: with SMTP id
+ m1mr27538672plx.126.1643745163074; 
+ Tue, 01 Feb 2022 11:52:43 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id d32sm33229135pgb.46.2022.02.01.11.04.30
+ by smtp.gmail.com with ESMTPSA id b6sm23620829pfl.126.2022.02.01.11.52.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Feb 2022 11:04:30 -0800 (PST)
+ Tue, 01 Feb 2022 11:52:42 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Christian Hewitt <christianshewitt@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Neil Armstrong
- <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+To: Shunzhou Jiang <shunzhou.jiang@amlogic.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add ATF BL32 reserved-memory
- regions
-In-Reply-To: <20220126044954.19069-1-christianshewitt@gmail.com>
-References: <20220126044954.19069-1-christianshewitt@gmail.com>
-Date: Tue, 01 Feb 2022 11:04:29 -0800
-Message-ID: <7hr18m9znm.fsf@baylibre.com>
+Cc: narmstrong@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com,
+ shunzhou.jiang@amlogic.com
+Subject: Re: [PATCH 2/2] soc: s4: Add support for power domains controller
+In-Reply-To: <20220126061018.705338-3-shunzhou.jiang@amlogic.com>
+References: <20220126061018.705338-1-shunzhou.jiang@amlogic.com>
+ <20220126061018.705338-3-shunzhou.jiang@amlogic.com>
+Date: Tue, 01 Feb 2022 11:52:41 -0800
+Message-ID: <7hzgnal5yu.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220201_110431_750864_54A45B89 
-X-CRM114-Status: GOOD (  13.22  )
+X-CRM114-CacheID: sfid-20220201_115244_103653_86DCD0CC 
+X-CRM114-Status: GOOD (  16.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,23 +92,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+Hi Shunzhou,
 
-> This series supersedes [0] which fixed a long-running kernel panic issue
-> seen with Beelink G12B devices booted from Amlogic vendor firmware. The
-> same issue exists with a wider set of devices from GXBB to SM1, although
-> it is not often seen due to my kernel fork including 'catch-all' patches
-> for some time (the meson-gx patch was suggested by Matheusz in 2019) and
-> many distros actively supporting Amlogic hardware consuming some or all
-> of my regular patchset.
+Shunzhou Jiang <shunzhou.jiang@amlogic.com> writes:
+
+> Add support s4 Power controller. In s4, power control
+> registers are in secure domain, and should be accessed by smc.
 >
-> I've also included a cleanup to the SEI510/SEI610 board files. If that's
-> not desirable feel free to ignore that patch. I also dropped the fixes
-> tagging as I'm not sure what original commits could be targetted. If you
-> think fixes are good please provide some guidance and I'll be happy to
-> send a revised series.
+> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Thank you for adding support for S4 power domains.
+
+> ---
+>  drivers/soc/amlogic/meson-secure-pwrc.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>
+> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
+> index 59bd195fa9c9..8fee01aabab6 100644
+> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+>  #include <dt-bindings/power/meson-a1-power.h>
+> +#include <dt-bindings/power/meson-s4-power.h>
+>  #include <linux/arm-smccc.h>
+>  #include <linux/firmware/meson/meson_sm.h>
+>  #include <linux/module.h>
+> @@ -119,6 +120,17 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>  	SEC_PD(RSA,	0),
+>  };
+>  
+> +static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
+> +	SEC_PD(S4_DOS_HEVC,	0),
+> +	SEC_PD(S4_DOS_VDEC,	0),
+> +	SEC_PD(S4_VPU_HDMI,	GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(S4_USB_COMB,	GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(S4_GE2D,		0),
+> +	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(S4_DEMOD,	0),
+> +	SEC_PD(S4_AUDIO,	0),
+> +};
+
+We should avoid the GENPD_FLAG_ALWAYS_ON unless strictly necessary.  If
+you look at a1_pwrc_domains[] in this same driver, any use of this flag
+has a comment for why it's needed, and it's usually because the domain
+is used by low-level SoC/PM code not controlled by linux.
+
+All of these appear to be domains that linux should have driver control,
+so should not be set to always on.
+
+Kevin
+
 
 _______________________________________________
 linux-amlogic mailing list
