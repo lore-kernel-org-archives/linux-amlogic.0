@@ -4,71 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78514C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Feb 2022 15:39:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49169C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Feb 2022 20:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qUXIsMDLTKBStG6Tb2Qnqio0xlLpQMrySDbIZIN08L8=; b=cG9CfAXHlLRZ+I
-	HtuMVEe1MM7v3BZwmzs2Tr14Qwlk6doxxOhN7Vkwwebi6RAT5GzeK0g4GZR9rwcpzCSxbfUooDGJY
-	hD673sN8dkvof2uwdBNRIYL3EgXOIUO0ocieokC2cocCZ+NJHF5eziaAqRKLkY+UOqSGwFB+dbB3l
-	WrTGSAW2x2yzj5sh4XaIMdKC5Jwr5+H8y6mC4AtrLAtBRvb1cFp+xG0Ne53zqj0pyN4BxJiJQCZEV
-	HjtWsqTacJ4epkgsrYwCmhKm2tbZshZFOuLGBvqHaL5cX5aIAUPvAhEt99aItku2hSD1G3apcp0AR
-	wfj+TKtspkJmnu+G800w==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=VwyYAtmHocNl76Ozhpj3eSCGcTph3H1nOGWA4vXfG3k=; b=VHs
+	Vrk0qaguHiH9PRB0ONmffBoMknji/A87O+4ccYO1x5roU/SGbeptDr7W7CMpcntPUZnEvFJeTXn+Y
+	1vG1eU2q8Osyil06Zt6igz32rx1RG9omND8GbQdFtU37GXwOEZArhv/rxrrSgpIvWxQUxuwRAAwtX
+	I8Shxt/E78eLszo085f1N0iNJ+937uSbrncO6MW79HBIelRTWJwlwea+a9xzn0n7pGk0iF4HrR+13
+	3iSPFexn7ITrYfv5nU/fhq8aFDQYmdBVDcFHTdB5oPlcMegdYJNW8sCOk/GQdcpR1EPoyujLq6FY0
+	fvMZq4OcyGxT488frwLZ9NMmnHgD/iQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nFHjQ-00G1oJ-MU; Wed, 02 Feb 2022 15:39:40 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nFM5N-00Gn0e-6W; Wed, 02 Feb 2022 20:18:37 +0000
+Received: from mail-yb1-xb36.google.com ([2607:f8b0:4864:20::b36])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nFHSR-00Fxqd-0C; Wed, 02 Feb 2022 15:22:08 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7A6CF6159F;
- Wed,  2 Feb 2022 15:22:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113DDC004E1;
- Wed,  2 Feb 2022 15:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643815325;
- bh=OTLXgwve+GXUKqJgusIix6IvLJEmARJe1ZPe1Wk9IxQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=UxdeogQjte72mAnF7hRypZPI8xAbel7BrvRvPRlt1nfnufzyW07t/bWcHBqQ+cWPm
- Gfc7wtq1yWuM2Uxpn/bNERIJOeOvPeaoI++xw+q2x8VrjZqBmySMQSBjFDba9IJcW6
- +cwWNGtZFw79R6zllZHcbqxZrAX74luFmU3CzYCl7aa1qHcw4b+lbh8fH1pEj+uRAU
- UT0vNpdnpUacazhAij3sM8PDYaMhN6cYmFT54tdjOiJqYFz5AdKJ3TUpuMoCMpyKBE
- UBR1KsMFehen3PYeGvOFkAHjM8IfDBW3goWi6ZgbHxbfzVlmxlK6r/uhtmXJ5WFkHG
- QBJj61DDUrK7w==
-Date: Wed, 2 Feb 2022 20:52:01 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Kishon Vijay Abraham I <kishon@ti.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <mripard@kernel.org>,
- Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
- Wyon Bi <bivvy.bi@rock-chips.com>
-Subject: Re: [PATCH v4] phy: dphy: Correct clk_pre parameter
-Message-ID: <YfqhmSEL8Jym8FhA@matsya>
-References: <20220124024007.1465018-1-victor.liu@nxp.com>
+ id 1nFM5J-00Gmzt-Ss
+ for linux-amlogic@lists.infradead.org; Wed, 02 Feb 2022 20:18:35 +0000
+Received: by mail-yb1-xb36.google.com with SMTP id g14so2115883ybs.8
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Feb 2022 12:18:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=FfUHJtnMrup0bTy5QIVCTjRbmyyUJk08CV6nq2NKHqg=;
+ b=TLwLI1/8D+wB+/Wr0I0gHd39+JvOlc6CWnC6LZy/7NWtelzTUJ37jQyubuCUPyXQXw
+ m2c4jPqDfnK1Rlkw36QQPhLf6JyHcM+bSVMYjRMsQF35Alb/hPRJnW9VgxjwSBAnLVc4
+ GwPwq/QFjLpRG7YfPYB2TGOO5l6xrjdDibInCm1zP+6QDi0WOcZ6DlOROlnQUUc1ChCQ
+ EDR6r9o4+3T8voDjGpsjIf2OSw49Dcj6LUQSonHlmtc0Gse4DudkA3Ng8HMi0o1NkBH4
+ QFRxhYxvOhmRMp9A+Gf00OL8NIMSAMsnXNNxwSMmGgEHlzhqNPNaHuJnUDlNxD7HPb+5
+ fFMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=FfUHJtnMrup0bTy5QIVCTjRbmyyUJk08CV6nq2NKHqg=;
+ b=mUZ7KsQFRKnGmKysZ9qBYUcdeXAW/SHrhJGMml2JvibZH44PvTA7lKPzaBZCHxHz6h
+ fPM2g3yi5IX17BJ6ldnD33I6J6hX1xvnY4UysWJ9ZW4iBO8dvQcTJtsvNoU+m5VgS9B3
+ lp5SQrhX5XEPuBUhtJUjnx0TxNjd8NwYKoac5TOwxxHvz5XY2B7idLPING0ZXTAw6pHT
+ 5PvOwdfd6+9iL4vPdSzHFkCVl+9kN3lSNQZJcuiK+0djdVljAKUMiIamJSeaGSp8l9CF
+ iVBZpPrdWaOoSbIvv+exUw7eXEfqahs7vIcme6R539KM4G/436yRiNdrhIDO0EddQR1C
+ SdOg==
+X-Gm-Message-State: AOAM532ZfTHQWrfg+c89lRl7MtXoo2u05uFL3lFSCFdCQerD50eSvxX3
+ Fbbrix/eOOR+F+8ITGDy7zoHkKQxotXhIYprWyg=
+X-Google-Smtp-Source: ABdhPJyL4pIDzAMFYfRocB+O88iiha+++LBpNHA2QnoO+pdIe//+SkDgQYnCHznsEOfX2wkIS0ogi0JCDKTJMMV5ZV0=
+X-Received: by 2002:a81:84:: with SMTP id 126mr2163168ywa.80.1643833112144;
+ Wed, 02 Feb 2022 12:18:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220124024007.1465018-1-victor.liu@nxp.com>
+From: Erico Nunes <nunes.erico@gmail.com>
+Date: Wed, 2 Feb 2022 21:18:21 +0100
+Message-ID: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+Subject: net: stmmac: dwmac-meson8b: interface sometimes does not come up at
+ boot
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ netdev@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220202_072207_140767_96926AA3 
-X-CRM114-Status: GOOD (  15.95  )
+X-CRM114-CacheID: sfid-20220202_121833_980541_DFAF8B80 
+X-CRM114-Status: GOOD (  12.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,31 +83,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24-01-22, 10:40, Liu Ying wrote:
-> The D-PHY specification (v1.2) explicitly mentions that the T-CLK-PRE
-> parameter's unit is Unit Interval(UI) and the minimum value is 8.  Also,
-> kernel doc of the 'clk_pre' member of struct phy_configure_opts_mipi_dphy
-> mentions that it should be in UI.  However, the dphy core driver wrongly
-> sets 'clk_pre' to 8000, which seems to hint that it's in picoseconds.
-> 
-> So, let's fix the dphy core driver to correctly reflect the T-CLK-PRE
-> parameter's minimum value according to the D-PHY specification.
-> 
-> I'm assuming that all impacted custom drivers shall program values in
-> TxByteClkHS cycles into hardware for the T-CLK-PRE parameter.  The D-PHY
-> specification mentions that the frequency of TxByteClkHS is exactly 1/8
-> the High-Speed(HS) bit rate(each HS bit consumes one UI).  So, relevant
-> custom driver code is changed to program those values as
-> DIV_ROUND_UP(cfg->clk_pre, BITS_PER_BYTE), then.
-> 
-> Note that I've only tested the patch with RM67191 DSI panel on i.MX8mq EVK.
-> Help is needed to test with other i.MX8mq, Meson and Rockchip platforms,
-> as I don't have the hardwares.
+Hello,
 
-Applied, thanks
+I've been tracking down an issue with network interfaces from
+meson8b-dwmac sometimes not coming up properly at boot.
+The target systems are AML-S805X-CC boards (Amlogic S805X SoC), I have
+a group of them as part of a CI test farm that uses nfsroot.
 
--- 
-~Vinod
+After hopefully ruling out potential platform/firmware and network
+issues I managed to bisect this commit in the kernel to make a big
+difference:
+
+  46f69ded988d2311e3be2e4c3898fc0edd7e6c5a net: stmmac: Use resolved
+link config in mac_link_up()
+
+With a kernel before that commit, I am able to submit hundreds of test
+jobs and the boards always start the network interface properly.
+
+After that commit, around 30% of the jobs start hitting this:
+
+  [    2.178078] meson8b-dwmac c9410000.ethernet eth0: PHY
+[0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+  [    2.183505] meson8b-dwmac c9410000.ethernet eth0: Register
+MEM_TYPE_PAGE_POOL RxQ-0
+  [    2.200784] meson8b-dwmac c9410000.ethernet eth0: No Safety
+Features support found
+  [    2.202713] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+  [    2.209825] meson8b-dwmac c9410000.ethernet eth0: configuring for
+phy/rmii link mode
+  [    3.762108] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+100Mbps/Full - flow control off
+  [    3.783162] Sending DHCP requests ...... timed out!
+  [   93.680402] meson8b-dwmac c9410000.ethernet eth0: Link is Down
+  [   93.685712] IP-Config: Retrying forever (NFS root)...
+  [   93.756540] meson8b-dwmac c9410000.ethernet eth0: PHY
+[0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+  [   93.763266] meson8b-dwmac c9410000.ethernet eth0: Register
+MEM_TYPE_PAGE_POOL RxQ-0
+  [   93.779340] meson8b-dwmac c9410000.ethernet eth0: No Safety
+Features support found
+  [   93.781336] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+  [   93.788088] meson8b-dwmac c9410000.ethernet eth0: configuring for
+phy/rmii link mode
+  [   93.807459] random: fast init done
+  [   95.353076] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+100Mbps/Full - flow control off
+
+This still happens with a kernel from master, currently 5.17-rc2 (less
+frequently but still often hit by CI test jobs).
+The jobs still usually get to work after restarting the interface a
+couple of times, but sometimes it takes 3-4 attempts.
+
+Here is one example and full dmesg:
+https://gitlab.freedesktop.org/enunes/mesa/-/jobs/16452399/raw
+
+Note that DHCP does not seem to be an issue here, besides the fact
+that the problem only happens since the mentioned commit under the
+same setup, I did try to set up the boards to use a static ip but then
+the interfaces just don't communicate at all from boot.
+
+For test purposes I attempted to revert
+46f69ded988d2311e3be2e4c3898fc0edd7e6c5a on top of master but that
+does not apply trivially anymore, and by trying to revert it manually
+I haven't been able to get a working interface.
+
+Any advice on how to further debug or fix this?
+
+Thanks
+
+Erico
 
 _______________________________________________
 linux-amlogic mailing list
