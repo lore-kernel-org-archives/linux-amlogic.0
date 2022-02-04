@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 910E6C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Feb 2022 08:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B966C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Feb 2022 08:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2dtNA4M3Z2HH7U2YeHaXI4LEgoFOJKZgS4fWm7Lmd+g=; b=adVpoQ/Oh8rDOD
-	wqqZI3EbUxZ5NN3KPfW0Gc8Xdw5ySjzF4h9tzw0DFbF8MgVLUc5gH5ONvsrg2W1oPL24goLx7JxwH
-	B0115I72wxK9faeaTKwpPmXjhblgPU9GeyPjsqIvMQaL/91POrJ4fcIEPFfOOdaEr2chhiKGgcO+Z
-	5w1ftjy2glUClentBpxVSd7rh4U+ehdPRrD3qLQFqOmxlgTepGvfXxDthXPHR0Jj/ENS2FcBg+gzg
-	ubfya4hR6Ud2AenHUxm0WJkYT87H/heBBttxeqrR9ED6HDyppyi93xzhV8CAvh0WJmiRNgXhy5rD8
-	K9RECwryenmO9/kEXSfA==;
+	List-Owner; bh=ypjKCRog4kPgYtHGl+9zNeviZmNb8ClXciDV/Aop5r8=; b=jUvTtf9HefKGSU
+	AvwDqstW1F1WtpU958G8RgEPuJd3CNcXis+tQOJkivm+IZQXosrJ5OjjB7oIF749aAEeaVwmnLw1d
+	U6PGMRUAyStUN2HevQM2ykwbe3pSsHla19oRnOs4YBRj8JnOu3dCqow8+qaFERI1CkwpOY8jAfvjf
+	5I1+t5+1F2+0PB885WXl+itqSQreV98DzjMneKTkM9aA1NuVdqiYbzyyOQXmtptKtUU6CABIObJmG
+	DryH39qmivv7yCg6ZhF2QmGyO8BCzdlO4Hd3XI2V7ls/TXYhvak0yRCm6vZScVMwSvFPrE7J6TloM
+	67NoXdLkinh9KJhQPciA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nFtsb-003lFB-7L; Fri, 04 Feb 2022 08:23:41 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1nFtsz-003lPR-Or; Fri, 04 Feb 2022 08:24:05 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nFtsL-003l4x-3z
- for linux-amlogic@lists.infradead.org; Fri, 04 Feb 2022 08:23:26 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id m14so9775217wrg.12
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Feb 2022 00:23:24 -0800 (PST)
+ id 1nFtsM-003l5h-EX
+ for linux-amlogic@lists.infradead.org; Fri, 04 Feb 2022 08:23:28 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id
+ bg21-20020a05600c3c9500b0035283e7a012so3349750wmb.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 04 Feb 2022 00:23:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WsA2JKphRpijiftuKihdH23TIHoxkoFN5l3LxYwIuqU=;
- b=PoPP7HMJmxsQTyGfKRP63CZD5spkJJoTwkFWwm2aTTiJLOUTv5bb4S+9zlgvsfaj07
- 46zqVF1GVv3CMYYmRDKXRKC3IGJrfC+ejq0IuOUXbxXnilAI64yvPua76WbENjCmh78c
- R9M0XvRi3rVolFyXvJEn5hvNbFYBezWjwp3EydKeBknyGmde5QnPFAMElrPSyOUFq7Yg
- 2hzzQm1phOGDVsdHtP3SjMRl0BcaropWCaoUXSvggkMar0GeZCnfiDvOyMTOok2+bW8t
- ZGeLFRIxprgkER+sIV1QMuG43hVjULTuAAKj4+dKZCUejPw52RlwCqc42pyKmg3T7V+J
- 0+Qg==
+ bh=YoPvGGzXerErReeFppgzdtNkqWy9wD5WssaNJIiZPAw=;
+ b=qAz5EkaTZsfsTLh1I6QgmoLeMggzHNVtoruhvmek+PN5S03il39jVkDg9XSuFL/15H
+ BMeUWIOxFtE6gKfREYC5rGLvh/G+sr5I3fkqsfxz3KKDRantZ2aYm2oJDo5MVtInsPpF
+ Vg84QUlgZAZC1hlGL8rxzsdE8QtolELENIa3m45ocuQsfJqr6Zx7c7/pZhonPfyA0wex
+ TZgKDlm1lEjT6m6AUESdCXTVAeN6unUckrfKFO5vQVeW6akFRVw9r9WogICoWfgsZaGy
+ Syw6MtoTCthoBy+S19it+H4A275Y33s7KDS1TG+7ulAsTPmz/cuh+lNT8NLiMqcNf4od
+ Cdbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WsA2JKphRpijiftuKihdH23TIHoxkoFN5l3LxYwIuqU=;
- b=g9GguWz+DIwo8yTQemaA8jCT6McUzq0Zc0C4JYOIuwzQxx39x/Dj0WNh72ClFggKH5
- Zn17L8mKcOrfpS1UrIIDwSNjq7tfKim0yg93hkWF4yWg2HRSOZm5b9W3iVCD7r5N2JTN
- PfkGc0AmIfpAvc+f3mQahwM7bu6XJAAVT8RnN4YVXR84x72+5fwqqpZq9ZEhVIzaVAnT
- 1nd8iEpKCELH4piP1WmwXOjFhmC2kiGH+XZUco/1sbDALtp4B866pChIv2jx8U2vTL7f
- xsXdbicMMFnany12uExFG2prtn8NA6/TAa5iht/tzRsOhpw6oEOiUA4YFNMC9h2BFoGR
- 09vA==
-X-Gm-Message-State: AOAM532j+Zjauqfaio2MQZ0PwNx4Nrya98qHFhQ5aBWV4Ah5TbhgkN0n
- fjxYjpsUpWT6KSMnp/0srHlRSQ==
-X-Google-Smtp-Source: ABdhPJyf9JLV02jOegwiuzsQi/Mp6bxZdm6QLt9GlBXUY1uydNiZUAieAPIQ9343mdk1++V99qMmQg==
-X-Received: by 2002:adf:edc7:: with SMTP id v7mr1440216wro.584.1643963003539; 
- Fri, 04 Feb 2022 00:23:23 -0800 (PST)
+ bh=YoPvGGzXerErReeFppgzdtNkqWy9wD5WssaNJIiZPAw=;
+ b=SahIRWPmfEvfFaYK13Z7zNpRoSohpb7RrgZfP0Mc7crLKELqsynCP/PGldznmmTeY0
+ Prk8oLI6Uly3REgjkVrdlTjv21UizO67m18+sw7Y88U8E2jQO7MNVsbAbqfjQXN6UxXs
+ Z74Ua/P2+c0p0rR+UVzMXbvWqU99NfbLQt6gGsUa4azXDgihNyQ5m+n0FZHIcNoLGzCk
+ wj0wa99vX5M8I7ZNoFxURUK023/B7wlhwaf4+Lk5ksxNfU5nMvMzCUkji9f+0s0BCYhG
+ 9dXRWNFUJ+tHXWqwVXc9JStN+r0lV+wRuppJm1UMCKNOwaCZvr1nLJ+VU37eD4TbaEeo
+ E6Lw==
+X-Gm-Message-State: AOAM531DtTh6Z4mhYngYZOvrF5IQPeq5sGfsCIZXVG/L1yr01pebuzfj
+ /4WcaN8eX3u0cBRBe6pTrvdxjw==
+X-Google-Smtp-Source: ABdhPJw1Bomabprev4G5Jse3YWUeThRqx2iBXXS6w/R8YqCmRa+dipbHD0p+G10Qc6MuisMWmLc45Q==
+X-Received: by 2002:a05:600c:410f:: with SMTP id
+ j15mr1205575wmi.161.1643963004720; 
+ Fri, 04 Feb 2022 00:23:24 -0800 (PST)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:3fbe:ff10:110:739])
  by smtp.gmail.com with ESMTPSA id
- s22sm8914078wmj.38.2022.02.04.00.23.22
+ s22sm8914078wmj.38.2022.02.04.00.23.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Feb 2022 00:23:22 -0800 (PST)
+ Fri, 04 Feb 2022 00:23:24 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
  Jerome Brunet <jbrunet@baylibre.com>, Lutz Koschorreck <theleks@ko-hh.de>,
@@ -66,16 +68,17 @@ To: Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
 Cc: Neil Armstrong <narmstrong@baylibre.com>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: fix boot loop after reboot
-Date: Fri,  4 Feb 2022 09:23:15 +0100
-Message-Id: <164396299209.31118.5895566929848483023.b4-ty@baylibre.com>
+Subject: Re: [PATCH v2] arm64: dts: meson-sm1-odroid: use correct enable-gpio
+ pin for tf-io regulator
+Date: Fri,  4 Feb 2022 09:23:16 +0100
+Message-Id: <164396299209.31118.6606096108779211673.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220128193150.GA1304381@odroid-VirtualBox>
-References: <20220128193150.GA1304381@odroid-VirtualBox>
+In-Reply-To: <20220127130537.GA187347@odroid-VirtualBox>
+References: <20220127130537.GA187347@odroid-VirtualBox>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220204_002325_222134_BA64610A 
-X-CRM114-Status: UNSURE (   8.70  )
+X-CRM114-CacheID: sfid-20220204_002326_518422_53DD1A81 
+X-CRM114-Status: UNSURE (   9.62  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,32 +91,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiBGcmksIDI4IEphbiAyMDIyIDIwOjMxOjUwICswMTAwLCBMdXR6IEtvc2Nob3JyZWNr
-IHdyb3RlOgo+IFNpbmNlIHRoZSBjb3JyZWN0IGdwaW8gcGluIGlzIHVzZWQgZm9yIGVuYWJsaW5n
-IHRmLWlvIHJlZ3VsYXRvciB0aGUKPiBzeXN0ZW0gZGlkIG5vdCBib290IGNvcnJlY3RseSBhZnRl
-ciBjYWxsaW5nIHJlYm9vdC4KPiAKPiBbICAgMzYuODYyNDQzXSByZWJvb3Q6IFJlc3RhcnRpbmcg
-c3lzdGVtCj4gYmwzMSByZWJvb3QgcmVhc29uOiAweGQKPiBibDMxIHJlYm9vdCByZWFzb246IDB4
-MAo+IHN5c3RlbSBjbWQgIDEuCj4gU00xOkJMOjUxMWY2Yjo4MWNhMmY7RkVBVDpBMEY4MzE4MDoy
-MDI4MjAwMDtQT0M6QjtSQ1k6MDtTUElOT1I6MDtDSEs6MUY7RU1NQzo4MDA7TkFORDo4MTtTRD86
-MDtTRDowO1JFQUQ6MDswLjA7Q0hLOjA7Cj4gYmwyX3N0YWdlX2luaXQgMHgwMQo+IGJsMl9zdGFn
-ZV9pbml0IDB4ODEKPiBodyBpZDrilpJTTTE6Qkw6NTExZjZiOjgxY2EyZjtGRUFUOkEwRjgzMTgw
-OjIwMjgyMDAwO1BPQzpCO1JDWTowO1NQSU5PUjowO0NISzoxRjtFTU1DOjgwMDtOQU5EOjgxO1NE
-PzowO1NEOjQwMDtVU0I6ODtMT09QOjE7U1BJTk9SOjA7Q0hLOjFGO0VNTUM6ODAwO05BTkQ6ODE7
-U0Q/OjA7U0Q6NDAwO1VTQjo4O0xPT1A6MjtTUElOT1I6MDtDSEs6MUY7RU1NQzo4MDA7TkFORDo4
-MTtTRD86MDtTRDo0MDA7VVNCOjg7TE9PUDozO1NQSU5PUjowO0NISzoxRjtFTU1DOjgwMDtOQU5E
-OjgxO1NEPzowO1NEOjQwMDtVU0I6ODtMT09QOjQ7U1BJTk9SOjA7Q0hLOjFGO0VNTUM6ODAwO05B
-TkQ6ODE7U0Q/OjA7U0Q6NDAwO1VTQjo4O0xPT1A6NTtTUElOT1I6MDtDSEs6MUY7RU1NQzo4MDA7
-TkFORDo4MTtTRD86MDtTRDo0MDA7VVNCOjg7Cj4gCj4gWy4uLl0KClRoYW5rcywgQXBwbGllZCB0
-byBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9hbWxvZ2lj
-L2xpbnV4LmdpdCAodjUuMTcvZml4ZXMpCgpbMS8xXSBhcm02NDogZHRzOiBtZXNvbi1zbTEtb2Ry
-b2lkOiBmaXggYm9vdCBsb29wIGFmdGVyIHJlYm9vdAogICAgICBodHRwczovL2dpdC5rZXJuZWwu
-b3JnL2FtbG9naWMvYy9lNmIwMzM3NTEzMmZlZmRkYzU1Y2Y3MDA0MThjZjc5NGIzODg0ZTBjCgot
-LSAKTmVpbAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+Hi,
+
+On Thu, 27 Jan 2022 14:05:37 +0100, Lutz Koschorreck wrote:
+> The interrupt pin of the external ethernet phy is used, instead of the
+> enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
+> the gpio_ao bank.
+> 
+> This causes phy interrupt problems at system startup.
+> [   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
+> [   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
+> [   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
+> [   76.649635] Call trace:
+> [   76.649638]  dump_backtrace+0x0/0x1c8
+> [   76.649658]  show_stack+0x14/0x60
+> [   76.649667]  dump_stack_lvl+0x64/0x7c
+> [   76.649676]  dump_stack+0x14/0x2c
+> [   76.649683]  __report_bad_irq+0x38/0xe8
+> [   76.649695]  note_interrupt+0x220/0x3a0
+> [   76.649704]  handle_irq_event_percpu+0x58/0x88
+> [   76.649713]  handle_irq_event+0x44/0xd8
+> [   76.649721]  handle_fasteoi_irq+0xa8/0x130
+> [   76.649730]  generic_handle_domain_irq+0x38/0x58
+> [   76.649738]  gic_handle_irq+0x9c/0xb8
+> [   76.649747]  call_on_irq_stack+0x28/0x38
+> [   76.649755]  do_interrupt_handler+0x7c/0x80
+> [   76.649763]  el1_interrupt+0x34/0x80
+> [   76.649772]  el1h_64_irq_handler+0x14/0x20
+> [   76.649781]  el1h_64_irq+0x74/0x78
+> [   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
+> [   76.649796]  irq_thread_fn+0x5c/0x98
+> [   76.649804]  irq_thread+0x13c/0x260
+> [   76.649812]  kthread+0x144/0x178
+> [   76.649822]  ret_from_fork+0x10/0x20
+> [   76.649830] handlers:
+> [   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
+> [   76.661256] Disabling IRQ #36
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.17/fixes)
+
+[1/1] arm64: dts: meson-sm1-odroid: use correct enable-gpio pin for tf-io regulator
+      https://git.kernel.org/amlogic/c/323ca765bfe9d637fa774373baec0bc41e51fcfa
+
+-- 
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
