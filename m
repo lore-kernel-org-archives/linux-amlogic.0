@@ -4,86 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0005C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Feb 2022 08:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848DAC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Feb 2022 10:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5EZj96jdAGDtJlYsDTjwt/DOlyNQXg7uB3y837mViqo=; b=IVps/EbSW5QDzi
-	NWdWA2fxX+8E1nfCzdzObuoWuli3PaMu7mifXiij/19l4cRa0FIMTJuFlrEV8sNJUj/FBHmMohfcg
-	NqfwEOtK5VtHdWZKoVuHkdJ7KJx8SrLBh612BQ7dPGb1TvUncK/ZxqaUdVG1C/yWAvYdGiSd3zoV+
-	upof9EqNacQSi96Aeuo07hjFXt+7mXzNidtYVDr8V5we7X1020nfz9MgW27iDesjvoHobVDxzq5h9
-	CL7FoGp/ZlNfBLrLYC/Q+4ZjTnb2qG+kljJCQHfzZdSKBDVFWEL9Sk2CkPujrWYWhm1vHC34p8gN+
-	kH8cb7wBsCOsDaMkcelA==;
+	List-Owner; bh=VF3NlWFkUAQy26XbkrtWpMi2IWvcHIZxl3wiBgq76zA=; b=ueC+x53HlkSGpK
+	Xc1Q6ncHy/Ucf+t5Anfa49W+wVP49PDMsY6FTcFRudbGhf5ARtbt/9hvxN8pxlxvchspr6+1YR/Jf
+	gkG6sZeIeuUdDAoxs5SkKmFhR0Z4oNmEjqyhTU74/hotkOWeirpKYdBOnwzmdXn9h+XI/OlCHKuPf
+	xyRby5rTLFuW55d59vxrFtty3ANG8O7e71P6OhiGG/leXuSklAHqLZcBpNLWz+480AKm2WcSPeRd1
+	q6b/XoROAs/3FBUvymYyfDVttirGSzGiFZsBjQB993LRZ2cPmBP+esbXe9jpd2h+Ekj5fyTXs0TPO
+	cxGBQGqMQSenSu5EG95A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nGzB2-009JTs-RR; Mon, 07 Feb 2022 08:15:12 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1nH1hf-009ude-IQ; Mon, 07 Feb 2022 10:57:03 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nGzAq-009JQ5-3V
- for linux-amlogic@lists.infradead.org; Mon, 07 Feb 2022 08:15:02 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id
- n40-20020a05600c3ba800b00353958feb16so8005056wms.1
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Feb 2022 00:14:58 -0800 (PST)
+ id 1nH1hb-009ucD-AD
+ for linux-amlogic@lists.infradead.org; Mon, 07 Feb 2022 10:57:01 +0000
+Received: by mail-wm1-x329.google.com with SMTP id
+ bg19-20020a05600c3c9300b0034565e837b6so7088452wmb.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Feb 2022 02:56:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=fczIWa54IaZDc4T1CWGAuqTrmTb2eOKwrkRnh84PvKY=;
- b=7DQlnj++q+oWqpt0+suM56O/9jbGYLBVZ9uG389OK4Z14l6csp4EzWcanXR+trSHGW
- B4WZ7GlfBYkC0hu3irlq/aSadsOLk581sk427DrgitunJVRUx9upQNOsS3nFBmAWK1kH
- LRVNTpYViSIHQ7FUdCntexsSOnZPguuYS3ycpDA83CPjHHh863fgGnlFIt5Czll35dXT
- y5CA/S6q00nfwTA6cYjeNRPqS6ubRF1hOkXM/5nY+6gNdE8uxAeBYJlQ7rY5Lb0Wab2w
- 81hcBoCIeiSvq5WMBaPebyRazK2K0x9Q1zI6oNCBvaJ1eXCBHZhg/GnbnpiIUTvW/JmO
- UbMw==
+ h=references:user-agent:from:to:subject:date:in-reply-to:message-id
+ :mime-version; bh=gCbLAdNfo6DzwKZZhiI2gvYSp0E58X2J6K8BZ7WMiCw=;
+ b=HdVq6PkDWV64cO4Meh1wk8wgo8CdzN+zPTFC2pB2FI0bwgSi81Z/HYG5aXK5pBx5W9
+ CmRKZIAdtvIRSGLTDlE7WkPAMx3+g4v7iK/1sAjHYfFRJIQxN++xO0oQC3iVySbmeEr2
+ liwS39gPsfsrucyJX8zQIoivl9PssDAZCHqaTY/Q4YEotG+CRwK7yiaR7SA6dxoLkTLT
+ XN4QMOE6TX7YM/Kbh9Mi64oJnP8lOtqYENqGa81nj35oCQXlA63fr2aOZkdR8SPGvjWe
+ /QH8n567hcYJd3qk1Xz01BRQxfBCrVSfmkDJxRGb0BFFuatHy6dfNxj6/KD2RZaZSB2P
+ 1GTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=fczIWa54IaZDc4T1CWGAuqTrmTb2eOKwrkRnh84PvKY=;
- b=qBjkR+nEw5nr2a60YJRn/b/Yf1Fy6uyrIKCVE+Xr9sRz0LdDY8kG6XAkgG19mL8qnQ
- ZDfW8zFZJuUmpa7GfdZ0sIf/Lb3p1YXrB93B81KqJydwUrGGJ87f+BjZ3jX384eDOzuH
- cqXsDHGKXLMI88hAMH3xLDTCJUxrF1FQW3XuUlPFVznbeliPOtkH7sRKIQYyI+DH9uge
- KmI+8rKKXZxE5MQwnujjMEHCs78lRCXI8R41MuqoyUy9HfolWs5KKskMUkTiyMqg5cM/
- YbqsPGyvh2sfy//Tel68++Wvudqn3Dw2chVQUe6DkFKZ+Yvjo691zT5NuQy2XQFav9zI
- 6bpg==
-X-Gm-Message-State: AOAM531xsdpsCo/AFch3YnVe2uGuDHIGY/G8aYlmB1q1KSRtbJViTpBa
- u7mE/17ev5f/0iFQaYcVwhBhJQ==
-X-Google-Smtp-Source: ABdhPJyp3Dsj/2D1xPD5Qeeh8DKBvGDfrGuqnqvdGnd5qSAnPA2vA2jzi7lVA+gJhKbpWfAEfBP4Ow==
-X-Received: by 2002:a05:600c:34c6:: with SMTP id
- d6mr13602354wmq.103.1644221697111; 
- Mon, 07 Feb 2022 00:14:57 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:b2bb:1b67:73da:334d?
- ([2001:861:44c0:66c0:b2bb:1b67:73da:334d])
- by smtp.gmail.com with ESMTPSA id u19sm8286068wmm.39.2022.02.07.00.14.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Feb 2022 00:14:56 -0800 (PST)
-Message-ID: <42c51f9d-d122-2d09-cdcd-f733cbc60d5b@baylibre.com>
-Date: Mon, 7 Feb 2022 09:14:59 +0100
+ h=x-gm-message-state:references:user-agent:from:to:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=gCbLAdNfo6DzwKZZhiI2gvYSp0E58X2J6K8BZ7WMiCw=;
+ b=hOOEU/8mSbmr+dJZwtxD9KulEYMlu7nffMUKbQJ5mu0qdc3B8n5ynb6XjmQ3wVOLQJ
+ aUVSrWShvPVA7VKublhHXBJi/Nb4Nb2bjRZvthYym+L9s/Cl3qSSg+BsTQscq4ow+UIL
+ 7QB7x/kZF+7TmI7LPyZm8A8oV2ViHSVbYWSmgkKjZetb112cy1uOteFqqhYZwtHDDTLm
+ Z7UaujwlkPpJrbc2ivth5mjDitNsMeVrk0hpGLOkpVdE0vG1aJj4yPgXj+kgMLFYI9Z0
+ qTkBD9sYFL6zhCMCaLasFZeUvgHEbYXM8cWN8ds/PcHBB52D81wGQKrvAyknZwe+LzfA
+ Fu+w==
+X-Gm-Message-State: AOAM530qG5aQT5pjEihlbOSOgy74OkRHtItNSq4TF86lN3G3lq2kpYbL
+ /o6+6yO35zoQMjuDPx6reTyXEg==
+X-Google-Smtp-Source: ABdhPJya4Y4U2ZAbUsCovhbUSLiaQE9fPad2ZHKayIa+Ateyevndqek8qHHFBktc7reIkkgLh7oW+A==
+X-Received: by 2002:a7b:cbd7:: with SMTP id n23mr284984wmi.76.1644231416515;
+ Mon, 07 Feb 2022 02:56:56 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id u14sm11073998wmq.41.2022.02.07.02.56.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Feb 2022 02:56:56 -0800 (PST)
+References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Erico Nunes <nunes.erico@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org,
+ netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come
+ up at boot
+Date: Mon, 07 Feb 2022 11:41:36 +0100
+In-reply-to: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+Message-ID: <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] add pmu to amlogic meson sm1
-Content-Language: en-US
-To: Benjamin Mordaunt <crawford.benjamin15@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220205234554.4403-1-crawford.benjamin15@gmail.com>
- <20220206144343.2194-1-crawford.benjamin15@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220206144343.2194-1-crawford.benjamin15@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220207_001500_324355_B2BD6849 
-X-CRM114-Status: GOOD (  15.00  )
+X-CRM114-CacheID: sfid-20220207_025659_531885_B1BC25EC 
+X-CRM114-Status: GOOD (  31.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,58 +89,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On 06/02/2022 15:43, Benjamin Mordaunt wrote:
-> ---
-> The dts for meson sm1 appears to omit the SoC's PMU,
-> which is essential for accessing perf events regarding
-> e.g. cache on e.g. the Odroid C4 platform. Add it.
-> 
->   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 3d8b1f4f2..4147eecd2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -6,6 +6,8 @@
->   
->   #include "meson-g12-common.dtsi"
->   #include <dt-bindings/clock/axg-audio-clkc.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/power/meson-sm1-power.h>
->   #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
->   #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
-> @@ -90,7 +92,16 @@ l2: l2-cache0 {
->   			compatible = "cache";
->   		};
->   	};
-> -
-> +	
-> +	arm-pmu {
-> +		compatible = "arm,cortex-a55-pmu";
-> +		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-> +	};
-> +	
->   	cpu_opp_table: opp-table {
->   		compatible = "operating-points-v2";
->   		opp-shared;
+On Wed 02 Feb 2022 at 21:18, Erico Nunes <nunes.erico@gmail.com> wrote:
 
-Please see Marc's comments about PMU support:
-http://lore.kernel.org/r/8735pcq63o.wl-maz@kernel.org
+> Hello,
+>
+> I've been tracking down an issue with network interfaces from
+> meson8b-dwmac sometimes not coming up properly at boot.
+> The target systems are AML-S805X-CC boards (Amlogic S805X SoC), I have
+> a group of them as part of a CI test farm that uses nfsroot.
+>
+> After hopefully ruling out potential platform/firmware and network
+> issues I managed to bisect this commit in the kernel to make a big
+> difference:
+>
+>   46f69ded988d2311e3be2e4c3898fc0edd7e6c5a net: stmmac: Use resolved
+> link config in mac_link_up()
+>
+> With a kernel before that commit, I am able to submit hundreds of test
+> jobs and the boards always start the network interface properly.
+>
+> After that commit, around 30% of the jobs start hitting this:
+>
+>   [    2.178078] meson8b-dwmac c9410000.ethernet eth0: PHY
+> [0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+>   [    2.183505] meson8b-dwmac c9410000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+>   [    2.200784] meson8b-dwmac c9410000.ethernet eth0: No Safety
+> Features support found
+>   [    2.202713] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+>   [    2.209825] meson8b-dwmac c9410000.ethernet eth0: configuring for
+> phy/rmii link mode
+>   [    3.762108] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+> 100Mbps/Full - flow control off
+>   [    3.783162] Sending DHCP requests ...... timed out!
+>   [   93.680402] meson8b-dwmac c9410000.ethernet eth0: Link is Down
+>   [   93.685712] IP-Config: Retrying forever (NFS root)...
+>   [   93.756540] meson8b-dwmac c9410000.ethernet eth0: PHY
+> [0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+>   [   93.763266] meson8b-dwmac c9410000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+>   [   93.779340] meson8b-dwmac c9410000.ethernet eth0: No Safety
+> Features support found
+>   [   93.781336] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+>   [   93.788088] meson8b-dwmac c9410000.ethernet eth0: configuring for
+> phy/rmii link mode
+>   [   93.807459] random: fast init done
+>   [   95.353076] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+> 100Mbps/Full - flow control off
+>
+> This still happens with a kernel from master, currently 5.17-rc2 (less
+> frequently but still often hit by CI test jobs).
+> The jobs still usually get to work after restarting the interface a
+> couple of times, but sometimes it takes 3-4 attempts.
+>
+> Here is one example and full dmesg:
+> https://gitlab.freedesktop.org/enunes/mesa/-/jobs/16452399/raw
+>
+> Note that DHCP does not seem to be an issue here, besides the fact
+> that the problem only happens since the mentioned commit under the
+> same setup, I did try to set up the boards to use a static ip but then
+> the interfaces just don't communicate at all from boot.
+>
+> For test purposes I attempted to revert
+> 46f69ded988d2311e3be2e4c3898fc0edd7e6c5a on top of master but that
+> does not apply trivially anymore, and by trying to revert it manually
+> I haven't been able to get a working interface.
+>
+> Any advice on how to further debug or fix this?
 
-Neil
+Hi Erico,
+
+Thanks a lot for digging into this topic.
+I'm seeing exactly the same behavior on the g12 based khadas-vim3:
+
+* Boot stalled waiting for DHCP - with an NFS based filesystem
+* Every minute, the network driver gets a reset and try again
+
+Sometimes it works on the first attempt, sometimes it takes up to 5
+attempts. Eventually, it reaches the prompt which might be why it went
+unnoticed so far.
+
+I think that NFS just makes the problem easier to see.
+On devices with an eMMC based filesystem, I noticed that, sometimes, I
+had unplug/plug the ethernet cable to make it go.
+
+So far, the problem is reported on all the Amlogic SoC generation we
+support. I think a way forward is to ask the the other users of
+stmmac whether they have this problem or not - adding Allwinner and
+Rockchip ML.
+
+Since the commit you have identified is in the generic part of the
+stmmac code, Maybe Jose can help us understand what is going on.
+
+>
+> Thanks
+>
+> Erico
+
 
 _______________________________________________
 linux-amlogic mailing list
