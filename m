@@ -4,80 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E89E6C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Feb 2022 20:31:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AF3AC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Feb 2022 20:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3ASspFugNfbf1SWfTGGW8Te6VN2WQYv0O3LbiCv06w0=; b=z8gUjc9HOTAqw4
-	GichO4uT0ZTt4XzzGri9GI9yn3HPfI2VfPKztO8sdyC0GyHc2FcvaQxUZQmE/9kTJZWWIFx4ngE6J
-	UruXF6UIk5wUG5ml9s9Hd+LgKP85IjLHwinoyBnJ6ywsNVnv4DrHmS2UznJ7B9uB6p1Osz1VjNqTU
-	rGElPzc3JeBmyqm+MlK/Lk+/S6/PxKWKcgPpeHkwq1wZkxRtNWeU8iB3hvsSLh0MCJH1f3FFoli8m
-	cI0hvntI6gR5YJcC9iVLh8GhhFeNudxHUle5gFwh+t5sRVNfKq91sbIDP3+IDWndZuIjxzgY+73JR
-	qn4aw8Jf4BWeMzbH50rQ==;
+	List-Owner; bh=eAgYXB82MgwNP1iB+CpYjvaB0l37lpmPrYKtwWNnJp8=; b=vDuJhFq5GG77uy
+	FBqS2aTeuWJqP0AAsDJ8MKMeL7PG94LNTzIFfSmHgjcVpT/4FeFjmXk6+WL+4SOBTUpa5yQfx5h9F
+	YCtr+fNfwr/v+bAlqk49QisOKvn9vevDJUsOWIs0aQidrc+TXFAH6ON23wRfmzv44eDW08E2EcaGU
+	qiEVKGiwJmWX7mI8qb/Z7CeX4a6Zq1RsEL+J0LYqNbtGY+YVDnWbVo+LOARjoFTg0gsk3jUSzBkdw
+	eAm3G2mCGh0qeb3jY3up5JJ1MgAqAPxUneUVhtTq0WopfNtWrBteLTx9FgnaXgU11BVCKUGgbyDGo
+	pBnvpsOJVCpN6vrDFFjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nHtcD-001ZCU-ML; Wed, 09 Feb 2022 20:31:01 +0000
+	id 1nHtrH-001cYf-N1; Wed, 09 Feb 2022 20:46:35 +0000
 Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nHtcA-001ZAz-90
- for linux-amlogic@lists.infradead.org; Wed, 09 Feb 2022 20:31:00 +0000
-Received: by mail-pf1-x430.google.com with SMTP id l19so571026pfu.2
- for <linux-amlogic@lists.infradead.org>; Wed, 09 Feb 2022 12:30:57 -0800 (PST)
+ id 1nHtr5-001cVY-7v
+ for linux-amlogic@lists.infradead.org; Wed, 09 Feb 2022 20:46:26 +0000
+Received: by mail-pf1-x430.google.com with SMTP id i21so4979683pfd.13
+ for <linux-amlogic@lists.infradead.org>; Wed, 09 Feb 2022 12:46:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=H8UvkuaPa9oG6MBcN88+EFcgU6RwUy+XLZ3L+fuvwWs=;
- b=jLSqHONTNlyEU0X36UjWm1OP1joipm2nCVWebcdjjAetYBRag2vvSJpPamuNKix4yP
- rwNNjw1RlAYXs2IL0B2gDrPemV4PSFexAl7LW4k/P83PpiO5dN+gxwb4Sgv+8t56Fa5i
- 8JaSKqWn+o/nkY2XIM+I2sBbvBFeL1MGcxdBNvYaOCU8YMQqtKpPPXc2VZmdawXxmy0S
- LJ2iCFCbGYdY+JVuIDZGIZ4SWKk7VLbnBFMyEooeL2WFWVKf30pucY+hBWoZcYcfTvor
- 296JPhFbIryEeulXN9SjrmIFNcQXBZf5goMqiW0G/5tE7Fu0gUSt4OOfY/492CjnIkzh
- IyQw==
+ :mime-version; bh=78nJXDfmr//iqkCpJCXmmDUOzZ8w2oIwGyGP9nLOEfc=;
+ b=Vunja1WpaNu5p6wfFPAjyHKQ8YyGTJ6zeo0OoPoWTGhTqeSRtYhi4zvfqDseMj3UaW
+ f84lAthwXw3UmvPfjk8ltUYN+JefaEAAuhJdgRwPHutOufpI+G0S6FKbZCIaBsXQfbq6
+ NOLHolki2PKzt93ROK4Fj786sndwLxv4UVwArcIECjJ8Gu6H4LxHwMAT0wq3Nvz2Qjvw
+ PvdCas6sjRqGl9+A1kZY31Y9t8HYwweJ4LlzpklB2wR6mNTB0J1CCIzM5BRCQWAGOGml
+ PwNraH9ZBkJfm6V1UR7bFUixi9NJ7gwmInSV888GLX2Gia9BNowSFWJZMz90TiGIqWSV
+ CQhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=H8UvkuaPa9oG6MBcN88+EFcgU6RwUy+XLZ3L+fuvwWs=;
- b=mQgNGdp9EecsJatkB9o9obD8XiFBjZMcfo1o3lB0AWmwgMzRkpPiwJ4cBZkHvKcLWw
- xM1JqtreXFHpIl8Dju5lrYyaTapYrgVJQirNHf2ehIVQwGytXKes9a1TohQSjPIXxT0y
- D1+kN2ISY7/sQHSjBFCfbgqcvMLPVyz91yWSfFVh58n8XCLVqi3hytH+eaiR3s8R+yTy
- sIJwlSRGI3ug33yZUu5LognOhu66iv0PAZ1H0ZMRdvIlyqfdH7v2wm4KmAPXxcKeMjsR
- 2PVlrmN1TcBmzuqy5zzgQ8ydrspuLX2st2d6rAyXv73dLQnSvk2Edsdegu0Qp2JA94mC
- sq+w==
-X-Gm-Message-State: AOAM5339uFliiNafPRYRLHvWb6jPOZymWKwy+H/6MRp3cFtzsq0wRn91
- ADUG4JZW85aEBCIDlT95CUcsQA==
-X-Google-Smtp-Source: ABdhPJy424vIOl7jQpbzE1qFJbQKb1wuakkXY166U9x9NY98U7JPd35QgGjJclqbpBouDlTQZCmKtQ==
-X-Received: by 2002:a63:844a:: with SMTP id k71mr3226964pgd.559.1644438656578; 
- Wed, 09 Feb 2022 12:30:56 -0800 (PST)
+ bh=78nJXDfmr//iqkCpJCXmmDUOzZ8w2oIwGyGP9nLOEfc=;
+ b=PQC1Vw6DvZSHx3cvVXsYGkiiBKkxKDFzOSr02vIHrEje+gtUL3ELbHjSz+Apk44XMG
+ GeDaSryAY+D2Aspfx8k4014zdx082xyHCJ4rzeCyuCfpwhEezFUOI0qhYDy4lDoRlmQd
+ y+uWdTWH3Frg7QEOqA7HUQmgXjGAT2VEBBN9iONQ+7FPXoLci0tN4PHtSx9/gtDkmw+Y
+ naBBmwn/4Nc1Hdxq0E4MOf4QBOL7CeOyR4hs8rSTPG1lcYVNG7LDa9VmJX6s/qoskScT
+ kUTAXWz4Lo9h71BUnt1Fz4pulK1gHyD75M7oMI97RCZm1X11n5mSeqonaKt4PJh6EvQZ
+ S6fQ==
+X-Gm-Message-State: AOAM532Pz/Qb137HawvkAoiupfpeZAivL6Lzg54v2r3hb39ctjfZII/y
+ AZGatL54UBK8J88VVN2QiHZ7YO3++DXrWw==
+X-Google-Smtp-Source: ABdhPJy1EPPPscPrTxELXF/O0JLfaezpMxmi2sVgyHAvQdoKK3cPB+OENHfWbpQDEBnNlosgsUtiKQ==
+X-Received: by 2002:a63:3d85:: with SMTP id k127mr3361676pga.350.1644439582562; 
+ Wed, 09 Feb 2022 12:46:22 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id d10sm20577340pfl.16.2022.02.09.12.30.55
+ by smtp.gmail.com with ESMTPSA id k14sm8399557pgt.73.2022.02.09.12.46.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Feb 2022 12:30:55 -0800 (PST)
+ Wed, 09 Feb 2022 12:46:21 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: "shunzhou.jiang@amlogic.com" <shunzhou.jiang@amlogic.com>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-amlogic
- <linux-amlogic@lists.infradead.org>, linux-kernel
- <linux-kernel@vger.kernel.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, jbrunet
- <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, "jianxin.pan"
- <jianxin.pan@amlogic.com>
-Subject: Re: Re: [PATCH 2/2] soc: s4: Add support for power domains controller
-In-Reply-To: <202202091001287547451@amlogic.com>
-References: <20220126061018.705338-1-shunzhou.jiang@amlogic.com>
- <20220126061018.705338-3-shunzhou.jiang@amlogic.com>
- <7hzgnal5yu.fsf@baylibre.com> <202202091001287547451@amlogic.com>
-Date: Wed, 09 Feb 2022 12:30:55 -0800
-Message-ID: <7hee4bok8w.fsf@baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: remove CPU opps below 1GHz for G12B/SM1
+In-Reply-To: <20220209135535.29547-1-christianshewitt@gmail.com>
+References: <20220209135535.29547-1-christianshewitt@gmail.com>
+Date: Wed, 09 Feb 2022 12:46:21 -0800
+Message-ID: <7ha6ezojj6.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220209_123058_405365_CBAFD67E 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20220209_124623_379732_1B869F1D 
+X-CRM114-Status: GOOD (  16.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,23 +90,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-"shunzhou.jiang@amlogic.com" <shunzhou.jiang@amlogic.com> writes:
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-> Hi  Kevin:
-> Thanks your reply.
-> Please refer to below comment,
->> S4_VPU_HDMI:  for vpu domain,  this domain provide power to many moudles(osd, vpp, hdr, dv, di), if close, will cause system crash
->> S4_USB_COMB domain: for usb, if not always on,  all usb status will clear to 0, that's not right status for usb
+> Amlogic G12B and SM1 devices experience CPU stalls and random board
+> wedges when the system idles and CPU cores clock down to lower opp
+> points. Recent vendor kernels include a change to remove 100-250MHz
+> (with no explanation) [0] but other downstream sources also remove
+> the 500/667MHz points (also with no explanation). Unless 100-667Mhz
+> opps are removed or the CPU governor forced to performance, stalls
+> are observed, so let's remove them an improve stability/uptime.
+>
+> [0] https://github.com/khadas/linux/commit/20e237a4fe9f0302370e24950cb1416e038eee03
 
-Yes, I understand, this is teh same as for other SoCs (e.g. A1.)   The
-solution is not to set the domain to always on.  The solution is for the
-drivers for the devices in these domains use runtime PM so that when the
-drivers are active, the power domain does not get shut off.
+hehe, not a very helpful changelog in that khadas kernel commit :(
 
->> S4_ETH: for ethernet online wakeup, and if power down, status also not right
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+> Numerous people have experienced this issue and I have tested with
+> only the low opp-points removed and numerous voltage tweaks: but it
+> makes no difference. With the opp points present an Odroid N2 or
+> Khadas VIM3 reliably drop off my network after being left idling
+> overnight with UART showing a CPU stall splat. With the opp points
+> removed I see weeks of uninterupted uptime. It's beyond my skills
+> to research what the cause of the stalls might be, but if anyone
+> ever figures it out we can always restore things. NB: This issue
+> is not too widely reported in forums, but that's largely because
+> most of the Amlogic supporting distros have been including this
+> change picked from my kernel patchset for some time.
 
-OK, this one makes sense for "always on" since it used by firmware for
-wakeup.
+Very interesting.  I've also noticed instability across suspend resume
+on VIM3/VIM3L and only got as far in debugging to noticing it was
+DVFS/OPP related, but didn't get much further yet.  I'll give this a try
+to see if it helps.
+
+Thanks for finding & posting!
 
 Kevin
 
