@@ -4,57 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F76EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Feb 2022 16:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55D68C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Feb 2022 13:58:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TgPnP0Ix+/4DhscBsBsmZ59VYyVv5UI3MBvWmNy2cE8=; b=sDVe1mRy9iG4T0
-	zKtgNOpH8OqH/K12H40OCGT6WcsYGma1obcOSGqnEddKSG0LgDKs8Nogz0pDdImXiczC34Z7R1Tex
-	0InPxDqT6XRCnJl18+eiqAHNKADi8KRlrGAeNC2ZYkbx3/t4gCTvcN55YywRvy5oy/DUhJDtlHXCW
-	1iwX3dW5OzwR8CL4IZ+09wZd6pv+NMqpBNvGa6w0SeoK5Ln0/Hx71tkTEv2C4RG/IPe3C0h4KLm3Z
-	i3/X5R1pmimz4CRG/M99z2di6j0L/fA9zOMnn5cr7s1oVcyQEQil9C7h3wBg13yfySVEIy+2CgmqQ
-	eETanmlM/0PeM2MywOoA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MkAZ/9V7DG+2RZxf7KM6tY+6ta8b8oK03sZBu2VeHng=; b=yWRwppcK7JQQiv
+	XiI/Mw4NMdF+9QdO49adi6BbNQLoNfuFTaVygb5+n3Oh5DI+MBNjO6QcnOjAxbYbdbbiOZxNRVOwR
+	suiNUE82Hm2A4llSEJGX00k5ZdftLhCEQvwyfb2CH0TYqMQhbED0kRMPoftMUFYkRiDh5LpiIi77y
+	Wbas1C4Wr2xVR1OAwpQMde2O5kHWcNyercTqgHjzicUmoI8gSdayVnbZIe0/w16axLWKQhkNIUNkC
+	gDuNArTiimYGZP2/xoXb2PPsggFpqldrfW3BF99h6LkwBjCiPRFFfw1V9lPcbeqgbTUMhOuJ28ada
+	sqK7pew65mQZet6qjL1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nHTTr-00EvBp-PN; Tue, 08 Feb 2022 16:36:39 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nHTTp-00EvAv-9g; Tue, 08 Feb 2022 16:36:39 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FA6E1FB;
- Tue,  8 Feb 2022 08:36:36 -0800 (PST)
-Received: from [10.57.70.89] (unknown [10.57.70.89])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C50773F70D;
- Tue,  8 Feb 2022 08:36:34 -0800 (PST)
-Message-ID: <4b1d6f80-db33-b2ea-7214-34b87a7e734c@arm.com>
-Date: Tue, 8 Feb 2022 16:36:31 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v2] add pmu to amlogic meson sm1
-Content-Language: en-GB
-To: Benjamin Mordaunt <crawford.benjamin15@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220205234554.4403-1-crawford.benjamin15@gmail.com>
- <20220206144343.2194-1-crawford.benjamin15@gmail.com>
- <42c51f9d-d122-2d09-cdcd-f733cbc60d5b@baylibre.com>
- <65cde84a-8f8b-ac57-9b66-2b8d6378dbfa@arm.com>
- <CANtEDzSVxnUsC05Vhr5gG3KRBAX_X564ZiY2nBSoBFoy54RQ5w@mail.gmail.com>
- <a7adf12d-f949-9a95-9c6a-b73017107dc7@arm.com>
- <CANtEDzQDOiLKWW7c1VwnhjE-kjZ3tWYVKxBA4j1twOOjyEPcwQ@mail.gmail.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CANtEDzQDOiLKWW7c1VwnhjE-kjZ3tWYVKxBA4j1twOOjyEPcwQ@mail.gmail.com>
+	id 1nHnUd-000GuS-57; Wed, 09 Feb 2022 13:58:47 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nHnRf-000Fhx-CW; Wed, 09 Feb 2022 13:55:45 +0000
+Received: by mail-wm1-x332.google.com with SMTP id
+ y6-20020a7bc186000000b0037bdc5a531eso2403160wmi.0; 
+ Wed, 09 Feb 2022 05:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
+ b=A1Raudlcg8KbydfuTRJDWC+KE9y+kf05/OEpM2s89EkYAhXlrrtpi9qGKOnu+OqeMj
+ gz2TEjbu48jg57g5SiHYUxrwLtZEHADVglTk2P8p5a9fFeCfUR3mp41KaOUHsr2Gdr/9
+ 2vBvYQjnHuYEtFoMhYKZtypiLMju1EoF2zOHQl2wHIWtcp2+LJDSC0NlnZbiVoYZp7E7
+ y0/JqL6hg1PE7TU3cm7stqKK+T3i7EZCVnwFjvwurHJMOOF756CQxi6wcfoTlZhKGTfc
+ SB0pcp3mDEPsC/pUEVdUa3i3Fg3QZgx2zoQf+qQ16qWiel7aCQdLbm/Us2DB8RFLZ0E1
+ tAJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
+ b=RtvbrDjWvkORm2d0SylBaTf3ca22oFdhM1JQeKemg8flfOubvKtC0ymFOu7qE8VSXj
+ 3u0KT76259w0dSul1uRrJte748PK38qUdCw+65NngcBxBKQe86s+2QwpMs90+HYcuYCX
+ PMTHnvfjQ+RY9vKBnpw+qwrRe2cBRvRpS4leAk8g8zhFDUlJMiJ6WVtv1lmYBbaxseEI
+ ynfA+BrO9KbyUgeXuY9dB75Kh8/yD+o67FmltHTLYv8xC9hSuU/tzfCrTBrGxTi7mnrE
+ OyMtX2qS3uq96N2/e1RCUHeEN+w85feN52/Ofjb3sADSztffslkTcKMc89YQlPqmTN7w
+ ybXQ==
+X-Gm-Message-State: AOAM530iTmUxRDy2iABV4yY6HKr6O3NCQVKsz9ddk48w90uFO18iILs7
+ rALYt1MEBPpELzJir2Gg9XI=
+X-Google-Smtp-Source: ABdhPJwxjFBgHIB+UhKYGiBo3CoUpqS8lR5s3DiuLtu+98fiXKhZHC3z5PVCNCW/puAce4XBpJkvlQ==
+X-Received: by 2002:a05:600c:a03:: with SMTP id
+ z3mr2688181wmp.73.1644414940868; 
+ Wed, 09 Feb 2022 05:55:40 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+ by smtp.gmail.com with ESMTPSA id g14sm3014309wmq.3.2022.02.09.05.55.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Feb 2022 05:55:40 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: remove CPU opps below 1GHz for G12B/SM1
+Date: Wed,  9 Feb 2022 13:55:35 +0000
+Message-Id: <20220209135535.29547-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220208_083637_453237_427BA66C 
-X-CRM114-Status: GOOD (  21.66  )
+X-CRM114-CacheID: sfid-20220209_055543_508390_9D032074 
+X-CRM114-Status: GOOD (  12.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,87 +81,193 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAyMi0wMi0wOCAxNjowMiwgQmVuamFtaW4gTW9yZGF1bnQgd3JvdGU6Cj4gT2theSBzbyB0
-aGlzIGRvZXMgYXBwZWFyIHRvIGJlIGJlaGF2aW5nIHdpdGggc29tZSBpc3N1ZXMgKHVubGVzcyBJ
-J3ZlCj4ganVzdCBnb3QgMiBvZiB0aGUgaW50ZXJydXB0IG51bWJlcnMgd3JvbmcsIGJ1dCBpdCBz
-ZWVtcyB1bmxpa2VseSBhdAo+IHRoaXMgc3RhZ2UpLgo+IAo+IENQVXMgMCBhbmQgMSBzZWVtIHRv
-IGJlIGJlaGF2aW5nIHNvbWV3aGF0IHNlbnNpYmx5LCB3aGlsZSBgcGVyZiBzdGF0YAo+IHJlcG9y
-dHMgYDxub3Qgc3VwcG9ydGVkPmAgZm9yIGNhY2hlcyBhbmQgYnJhbmNoZXMgd2l0aCBDUFVzIDIg
-YW5kIDMuCj4gV291bGQgdGhpcyBzdWdnZXN0IHRoaXMgaW1wbGVtZW50YXRpb24gaXMgaW5kZWVk
-IGJyb2tlbj8KClRha2luZyBhIGNsb3NlciBsb29rLCB0aGUgaW50ZXJydXB0cyBmb3IgQ1BVcyAy
-IGFuZCAzIGhlcmUgYXJlIGNsZWFybHkgCndyb25nIHNpbmNlIHRoZXkgYWxyZWFkeSBiZWxvbmcg
-dG8gc29tZSBhdWRpbyBjb250cm9sbGVycyBpbiB0aGUgRFRTSS4gSSAKbG9va2VkIHVwIGRvY3Vt
-ZW50YXRpb24gYW5kIGZvdW5kIGFuIFM5MDVEMyBtYW51YWwgZnJvbSBLaGFkYXMgd2hpY2ggCmRv
-Y3VtZW50cyBTUEkgMTM3IChHSUMgaW50ZXJydXB0IDE2OSkgYXMgInxQTVVJUlFfYVszOjBdIiwg
-d2hpY2ggSSBjYW4ndCAKcmVhZCBhcyBhbnl0aGluZyBvdGhlciB0aGFuICJsb2dpY2FsIE9SIG9m
-IGFsbCA0IFBNVSBJUlFzIi4gTm90IHN1cmUgCmFib3V0IFNQSSAxMzggYnV0IEknZCBndWVzcyBp
-dCdzIHNvbWV0aGluZyB0aGF0IGp1c3QgaGFwcGVucyB0byBmaXJlIGluIAphIG1hbm5lciB0aGF0
-IGFwcGVhcnMgdG8gc29ydCBvZiB3b3JrIGZvciB0aGUgUE1VLgoKU2FkbHkgaXQgbG9va3MgbGlr
-ZSBOZWlsJ3MgaW5zdGluY3Qgd2FzIHJpZ2h0IGFuZCB0aGlzIG9uZSBpcyBhbHNvIGluIApmYWN0
-IGRlYWQsIHNvcnJ5IDooCgpSb2Jpbi4KCj4gCj4gVGhhbmtzLAo+IEJlbgo+IAo+IAo+IE9uIE1v
-biwgRmViIDcsIDIwMjIgYXQgMTo0NyBQTSBSb2JpbiBNdXJwaHkgPHJvYmluLm11cnBoeUBhcm0u
-Y29tPiB3cm90ZToKPj4KPj4gT24gMjAyMi0wMi0wNyAxMzozMywgQmVuamFtaW4gTW9yZGF1bnQg
-d3JvdGU6Cj4+PiBUaGUgUzkwNVgz4oCZcyAoT2Ryb2lkIEM0KSBkYXRhc2hlZXQgYXBwZWFycyB0
-byByZXBvcnQgNCBpbmRpdmlkdWFsIFBNVUlSUXMsCj4+PiBtdWNoIGluIHRoZSBzYW1lIHdheSBh
-cyBHWC4gSWYgdGhhdCBpcyBpbmRlZWQgdGhlIGNhc2UsIEkgdGhpbmsgdGhpcyBwYXRjaAo+Pj4g
-YXBwbGllcy4gT3RoZXJ3aXNlLCBpcyB0aGUgZGF0YXNoZWV0IHdyb25nIGlmIE1hcmPigJlzIGNv
-bW1lbnRzIGFwcGx5Pwo+Pgo+PiBBIGZhaXJseSBzb2xpZCB0ZXN0IHdvdWxkIGJlIHRvIHJ1biBh
-IHNhbXBsaW5nIGV2ZW50IChlLmcuIGBwZXJmIHN0YXRgKQo+PiB0YXNrc2V0IHRvIGEgc2luZ2xl
-IENQVSBhbmQgb2JzZXJ2ZSB0aGUgY29ycmVzcG9uZGluZyBJUlEgY291bnQgaW5jcmVhc2UKPj4g
-aW4gL3Byb2MvaW50ZXJydXB0cywgZm9yIGVhY2ggY29yZSBpbiB0dXJuLiBJZiB0aGF0IGJlaGF2
-ZXMgYXMgZXhwZWN0ZWQKPj4gdGhlbiBjaGFuY2VzIGFyZSBldmVyeXRoaW5nIGlzIGluZGVlZCBz
-YW5lLgo+Pgo+PiBDb3VwbGUgb2Ygbml0cGlja3MgZm9yIHRoZSBwYXRjaCBpdHNlbGYgLSB5b3Un
-cmUgYWxtb3N0IHRoZXJlLCBidXQKPj4geW91J3ZlIGdvdCBzcHVyaW91cyB0YWJzIG9uIHRoZSBi
-bGFuayBsaW5lcywgcGx1cyB5b3UgbmVlZCBhIHByb3Blcgo+PiBjb21taXQgbWVzc2FnZSBhbmQg
-eW91ciBzaWduLW9mZiBhYm92ZSB0aGUgIi0tLSIgbGluZSAtIGFueXRoaW5nIHlvdSBhZGQKPj4g
-YmVsb3cgdGhlcmUgaXMgdHJlYXRlZCBhcyBhZGRpdGlvbmFsIGNvbW1lbnRhcnkgZm9yIHJldmll
-d2VycycgYmVuZWZpdAo+PiBhbmQgd2lsbCBiZSBkaXNjYXJkZWQgYnkgYGdpdCBhbWAuCj4+Cj4+
-IENoZWVycywKPj4gUm9iaW4uCj4+Cj4+Pgo+Pj4gLyBCZW4KPj4+Cj4+PiBPbiBNb24sIDcgRmVi
-IDIwMjIgYXQgMTM6MjAsIFJvYmluIE11cnBoeSA8cm9iaW4ubXVycGh5QGFybS5jb20+IHdyb3Rl
-Ogo+Pj4KPj4+PiBPbiAyMDIyLTAyLTA3IDA4OjE0LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4+
-Pj4gSGksCj4+Pj4+Cj4+Pj4+IE9uIDA2LzAyLzIwMjIgMTU6NDMsIEJlbmphbWluIE1vcmRhdW50
-IHdyb3RlOgo+Pj4+Pj4gLS0tCj4+Pj4+PiBUaGUgZHRzIGZvciBtZXNvbiBzbTEgYXBwZWFycyB0
-byBvbWl0IHRoZSBTb0MncyBQTVUsCj4+Pj4+PiB3aGljaCBpcyBlc3NlbnRpYWwgZm9yIGFjY2Vz
-c2luZyBwZXJmIGV2ZW50cyByZWdhcmRpbmcKPj4+Pj4+IGUuZy4gY2FjaGUgb24gZS5nLiB0aGUg
-T2Ryb2lkIEM0IHBsYXRmb3JtLiBBZGQgaXQuCj4+Pj4+Pgo+Pj4+Pj4gICAgIGFyY2gvYXJtNjQv
-Ym9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zbTEuZHRzaSB8IDEzICsrKysrKysrKysrKy0KPj4+Pj4+
-ICAgICAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pj4+
-Pj4KPj4+Pj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24t
-c20xLmR0c2kKPj4+Pj4+IGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXNtMS5k
-dHNpCj4+Pj4+PiBpbmRleCAzZDhiMWY0ZjIuLjQxNDdlZWNkMiAxMDA2NDQKPj4+Pj4+IC0tLSBh
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zbTEuZHRzaQo+Pj4+Pj4gKysrIGIv
-YXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXNtMS5kdHNpCj4+Pj4+PiBAQCAtNiw2
-ICs2LDggQEAKPj4+Pj4+ICAgICAjaW5jbHVkZSAibWVzb24tZzEyLWNvbW1vbi5kdHNpIgo+Pj4+
-Pj4gICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9heGctYXVkaW8tY2xrYy5oPgo+Pj4+
-Pj4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4KPj4+
-Pj4+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5o
-Pgo+Pj4+Pj4gICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9wb3dlci9tZXNvbi1zbTEtcG93ZXIu
-aD4KPj4+Pj4+ICAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcmVzZXQvYW1sb2dpYyxtZXNvbi1h
-eGctYXVkaW8tYXJiLmg+Cj4+Pj4+PiAgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Jlc2V0L2Ft
-bG9naWMsbWVzb24tZzEyYS1hdWRpby1yZXNldC5oPgo+Pj4+Pj4gQEAgLTkwLDcgKzkyLDE2IEBA
-IGwyOiBsMi1jYWNoZTAgewo+Pj4+Pj4gICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiY2Fj
-aGUiOwo+Pj4+Pj4gICAgICAgICAgICAgfTsKPj4+Pj4+ICAgICAgICAgfTsKPj4+Pj4+IC0KPj4+
-Pj4+ICsKPj4+Pj4+ICsgICAgYXJtLXBtdSB7Cj4+Pj4+PiArICAgICAgICBjb21wYXRpYmxlID0g
-ImFybSxjb3J0ZXgtYTU1LXBtdSI7Cj4+Pj4+PiArICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19T
-UEkgMTM3IElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+Pj4+Pj4gKyAgICAgICAgICAgICAgICAgPEdJ
-Q19TUEkgMTM4IElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+Pj4+Pj4gKyAgICAgICAgICAgICAgICAg
-PEdJQ19TUEkgMTUzIElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+Pj4+Pj4gKyAgICAgICAgICAgICAg
-ICAgPEdJQ19TUEkgMTU0IElSUV9UWVBFX0xFVkVMX0hJR0g+Owo+Pj4+Pj4gKyAgICAgICAgaW50
-ZXJydXB0LWFmZmluaXR5ID0gPCZjcHUwPiwgPCZjcHUxPiwgPCZjcHUyPiwgPCZjcHUzPjsKPj4+
-Pj4+ICsgICAgfTsKPj4+Pj4+ICsKPj4+Pj4+ICAgICAgICAgY3B1X29wcF90YWJsZTogb3BwLXRh
-YmxlIHsKPj4+Pj4+ICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAib3BlcmF0aW5nLXBvaW50cy12
-MiI7Cj4+Pj4+PiAgICAgICAgICAgICBvcHAtc2hhcmVkOwo+Pj4+Pgo+Pj4+PiBQbGVhc2Ugc2Vl
-IE1hcmMncyBjb21tZW50cyBhYm91dCBQTVUgc3VwcG9ydDoKPj4+Pj4gaHR0cDovL2xvcmUua2Vy
-bmVsLm9yZy9yLzg3MzVwY3E2M28ud2wtbWF6QGtlcm5lbC5vcmcKPj4+Pgo+Pj4+IElmIFNNMSBh
-Y3R1YWxseSBoYXMgZGlzdGluY3QgcGVyLWNvcmUgaW50ZXJydXB0cyBhcyB0aGUgcGF0Y2ggaW1w
-bGllcwo+Pj4+IHRoZW4gaXQncyBmaW5lIC0gaXQncyBvbmx5IEcxMkIgYW5kIGFueXRoaW5nIGVs
-c2UgdGhhdCBjb21iaW5lcyBtdWx0aXBsZQo+Pj4+IFBNVSBJUlFzIGludG8gYSBzaW5nbGUgU1BJ
-IHdoaWNoIGFyZSB1bnN1cHBvcnRhYmxlLgo+Pj4+Cj4+Pj4gUm9iaW4uCj4+Pj4KPj4+CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Amlogic G12B and SM1 devices experience CPU stalls and random board
+wedges when the system idles and CPU cores clock down to lower opp
+points. Recent vendor kernels include a change to remove 100-250MHz
+(with no explanation) [0] but other downstream sources also remove
+the 500/667MHz points (also with no explanation). Unless 100-667Mhz
+opps are removed or the CPU governor forced to performance, stalls
+are observed, so let's remove them an improve stability/uptime.
+
+[0] https://github.com/khadas/linux/commit/20e237a4fe9f0302370e24950cb1416e038eee03
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+Numerous people have experienced this issue and I have tested with
+only the low opp-points removed and numerous voltage tweaks: but it
+makes no difference. With the opp points present an Odroid N2 or
+Khadas VIM3 reliably drop off my network after being left idling
+overnight with UART showing a CPU stall splat. With the opp points
+removed I see weeks of uninterupted uptime. It's beyond my skills
+to research what the cause of the stalls might be, but if anyone
+ever figures it out we can always restore things. NB: This issue
+is not too widely reported in forums, but that's largely because
+most of the Amlogic supporting distros have been including this
+change picked from my kernel patchset for some time.
+
+ .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 40 -------------------
+ .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 40 -------------------
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 20 ----------
+ 3 files changed, 100 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+index d61f43052a34..8e9ad1e51d66 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+@@ -11,26 +11,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <761000>;
+@@ -71,26 +51,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <731000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+index 1e5d0ee5d541..44c23c984034 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+@@ -11,26 +11,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <731000>;
+@@ -76,26 +56,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <771000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index 3c07a89bfd27..80737731af3f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -95,26 +95,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <666666666>;
+-			opp-microvolt = <750000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <770000>;
+-- 
+2.17.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
