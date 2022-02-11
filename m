@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B07EC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Feb 2022 11:01:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F005C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Feb 2022 11:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dc1e6XOvqARSqcd13SywTIiEcoDiHCywm5NpqPhZLBY=; b=mRxaq6ryZoGQhx
-	fWhm8B+ZP3Jv2VLN9Yx/Py2B63HHvu261ZSWLgaId1vVzqDWIdqj3xLYK6rdrW4m58xX2pyAMhj97
-	/OUiriECKH8cjxy92ylxgGm0Xfabm8ZyES40ksM74O/pJg+/+6E03358M2ZRxxvx7/Z3E8bZwMsQz
-	0nTK1OPbEqm2jBedn4LVXzUY0rnAHBSIOJSGQZ6MRYRfpE8aKhsTm7xDw/mmrnGqw7jRXnWV/QGnW
-	ZyQbegxgyEluVjihF6SH5Ue0tKjL/HVKakQfoE/YXMXB9efGzk+AD9tdmaRx3jTKqoU9f2KWclunO
-	OlEjZYBOJX+X3KOpCcNg==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=T81sLqAwntXEer6qEguYXjfH3bfAGN3o9TfHOmGnJGI=; b=DUuPue7Yis46Ox
+	XzqrRmVw30ujmriopWMQouDbBB/yr/quYpmjltzbS7WUl0Gg/ObLC2C2OeIjSZq+Tp9Fk4AVd7Xhx
+	x7bNECyCGskDiKpqgXjk+HdPd6pG4pufPwSabXg6fn03Q5z14Y5XRyjVuWfisqj7IBzlUsykC2mrY
+	gM/b+DxZsEfkbzMPs65FZE9WmDDK6FDQqH1oSrCH9mUivmW8B9I9WvOnAnj7ytzz9R7L+6LItvnHR
+	EEw8lD06bD8scgicqVk2+ph9po/Gn66MizxT/+HDG1Xt5rbwEBr9cAK8mBVoxEuaxs2Pau6qg/bC1
+	zcI1W1R93CantF+e8u7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nITg3-006m7I-Um; Fri, 11 Feb 2022 11:01:23 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1nITg7-006m9V-BM; Fri, 11 Feb 2022 11:01:27 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nITYG-006iDM-Gr; Fri, 11 Feb 2022 10:53:22 +0000
-Received: by mail-wr1-x430.google.com with SMTP id d27so14523518wrc.6;
- Fri, 11 Feb 2022 02:53:20 -0800 (PST)
+ id 1nITYF-006iCO-4y; Fri, 11 Feb 2022 10:53:21 +0000
+Received: by mail-wr1-x435.google.com with SMTP id i14so14467775wrc.10;
+ Fri, 11 Feb 2022 02:53:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=BjDFuVI1diXeHGjfeYh1Ru7NnwWu54G5DixYVQkN3LQ=;
- b=IPUH1MM4F2bcCEyH9Dk48Ibm3Ays+j2Rb9w/3XdESqiobx05n0iuIVd/fq9xu6q9Uv
- Ka7b8rG90UVojUOr5HzN6mw6hCXnq3VMD/1VBTw/edAjzy1wCeEwYZ67nZhFSAAUNute
- Zo845Ka+/CfLdBsTaC+l1qKvKBoHquJ53WRaFE0AsU6Gkm3Mlh8lGtnnr+Gq/fyxcZc/
- N2om/1XVYvH6CdqhKMHQ/JuE72JD31MXkdOwp2TdkUyNHhnG9tcoY+SIxrU7A7W/6EF3
- oJ/HmVmOntbB3MtRhaAZq29ZVGb5CL6hqbJmnAdeNUN7VH//vKPN9/XkGuvRimtpeXRg
- zw4A==
+ h=from:to:cc:subject:date:message-id;
+ bh=of3le3k/KcLzclFf7nJv6f4XfC/usK0Ju0claWmnEME=;
+ b=GZ7csHpJQWS+7GE0vCWAKb1M6ZTyGqs+BBFyESHjeloc00rNm75VLj2Vr5sLW4zOgJ
+ IPca/d27X0xAYVzJYIZ1kiOP6u45c9SNks4KwWBNwGE45FA8gymJBkSOJwh5fM1hgC0i
+ jFhWzRi9MjrVlkx5v0RWTbsKybcfuO1HynN7kWFDJ/Lff5pgcO+FrKIl1tmY8LeCyIYl
+ tNUOLa5SBzTAc2LJKz1420XCJ+c60X8lFhRSPllfsuAqBlEDkbKTclNCgmnFcnGPTtS2
+ 1iY63pArgoOHRG/TqjMIUgdbn3+Woclo1hwmfLY6kL8CZMkJj7UJ6wxGhp07DVb9Q5sm
+ hnmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=BjDFuVI1diXeHGjfeYh1Ru7NnwWu54G5DixYVQkN3LQ=;
- b=Ew16ZzGV6HwPgUTH8SKDuU9PEL4hEE3N/lP6k2he79RguyvKJD555rKBiQ+CjYaoDw
- NrMPolmJ09HEr42r1pWGpkDEZhGpDMmKrpXEFlCnJDbJ7GaSou/RHWPQx5R798QSi5Pb
- 9WEnhMxAFNmCy58PuKSCMC9gKCQjqI2thz9QUhJSdTd6zgShmffqDt47vpNUnYiGTP38
- 8YDbjiKWssz4MLJ6a/3b9hUp+4pv/X4okCfz8yr6cR9+WvOo9YUajCyPuAKrZfBmQ+0s
- T4eefyZBP3YDHPPR8pZfoYSB5n8hMBwYd8B7TcRB2L9OhYJGQdTVAf6B/CylCT9+RqN5
- SCXQ==
-X-Gm-Message-State: AOAM532tRohdot9X6qLrdpKY8xfqOZa1+7MXzVVuFpZu//QJZNEcseYg
- PxPy0LlyoDYJhdczUxFx4/0=
-X-Google-Smtp-Source: ABdhPJwxqr3gewkoJ0yU25BYbz0IFxPTaIIJdfOtrWTNsHnhSnNj02uxBL4KfOIDDfZscEFSz+BgMw==
-X-Received: by 2002:a5d:4484:: with SMTP id j4mr878215wrq.283.1644576798930;
- Fri, 11 Feb 2022 02:53:18 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=of3le3k/KcLzclFf7nJv6f4XfC/usK0Ju0claWmnEME=;
+ b=P/Os7YxEQRU+sPU8yju6Wfec6S/SafDUT2zmepsO0ZQlkUyzmq+pTI3QBzAWSO/LIQ
+ FDZn21Zal11oRP3KZV3HPUZ+UxUif3NU88ZXcQoia0wnGCAEKdWCVvHVMk50WZzIrIlM
+ 7kazm5K7ddHKl6ZKfoGBN2VbBhWSbgHN624BPXFX27WL+JqPC1nemtu+183Uex0TK/KB
+ WQ64rSgkz3oT7G7iBFX3RJB/Hwu9JUsk9ihoc0PG62YpDQZWClF0bzTnxDB4WnjZEJRT
+ m0xbk8hMti9iDef1RQTGxSj6+9mqj3S1Hj5zf0iR+n8qdSYiqnJ1JQLJnTNcpfCSGbuO
+ lMgw==
+X-Gm-Message-State: AOAM530hdE42ZpcLKcLo6D2bzXJxNYd/UKTiQTf3kcp8wOh/S3QWqIEC
+ 0zWjXrEQfgIL7dT+JSnrQDE=
+X-Google-Smtp-Source: ABdhPJwBV4hMhVs8zqK+aOVwlnMeYFKAdAUfTzKutsCN8IPhNiw/tqsDIIIgxzG4C7agGJo/SxrmzA==
+X-Received: by 2002:adf:dd8a:: with SMTP id x10mr925672wrl.422.1644576796556; 
+ Fri, 11 Feb 2022 02:53:16 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
- by smtp.gmail.com with ESMTPSA id b4sm13382374wrw.100.2022.02.11.02.53.16
+ by smtp.gmail.com with ESMTPSA id b4sm13382374wrw.100.2022.02.11.02.53.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Feb 2022 02:53:18 -0800 (PST)
+ Fri, 11 Feb 2022 02:53:15 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -63,15 +62,13 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-kernel@vger.kernel.org
 Cc: Christian Hewitt <christianshewitt@gmail.com>,
  Sam Nazarko <email@samnazarko.co.uk>, Chad Wagner <wagnerch42@gmail.com>
-Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add osmc prefix
-Date: Fri, 11 Feb 2022 10:53:09 +0000
-Message-Id: <20220211105311.30320-2-christianshewitt@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: meson: add support for OSMC Vero 4K+
+Date: Fri, 11 Feb 2022 10:53:08 +0000
+Message-Id: <20220211105311.30320-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220211105311.30320-1-christianshewitt@gmail.com>
-References: <20220211105311.30320-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220211_025320_621892_49349924 
-X-CRM114-Status: GOOD (  10.04  )
+X-CRM114-CacheID: sfid-20220211_025319_258049_3D12A361 
+X-CRM114-Status: GOOD (  11.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,27 +86,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Open Source Media Centre (Sam Nazarko Trading Ltd.) are a manufacturer
-of Linux Set-Top Box devices.
+This series adds support for the OSMC Vero 4K+ Set-Top Box device
+based on the Amlogic GXL (S905D) chipset. The Vero 4k+ is notable
+for being an original Linux (not Android) STB device, running its
+own Debian-derived 'OSMC' distro. Big thanks to Chad Wagner for his
+help with testing and device-tree fettling.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Changes since v1:
+- Address device-tree comments from Neil
+- Add Neil's reviewed-by to patch 3
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 52ff63248892..b97fd8dfe601 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -882,6 +882,8 @@ patternProperties:
-     description: Ortus Technology Co., Ltd.
-   "^osddisplays,.*":
-     description: OSD Displays
-+  "^osmc,.*":
-+    description: Sam Nazarko Trading Ltd. (Open Source Media Centre)
-   "^ouya,.*":
-     description: Ouya Inc.
-   "^overkiz,.*":
+Christian Hewitt (3):
+  dt-bindings: vendor-prefixes: add osmc prefix
+  dt-bindings: arm: amlogic: add Vero 4K+ bindings
+  arm64: dts: meson: add support for OSMC Vero 4K+
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-gxl-s905d-vero4k-plus.dts   | 117 ++++++++++++++++++
+ 4 files changed, 121 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dts
+
 -- 
 2.17.1
 
