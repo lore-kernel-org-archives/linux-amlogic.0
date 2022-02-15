@@ -4,80 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E240AC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Feb 2022 12:05:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA90CC4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Feb 2022 15:31:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s9J1hiqHBZ4AymUzGIIv/0tF6wlKkvK6kWFtEXWuHDA=; b=D3QFVnfrqnOCuN
-	2TOBsxXEibsqY3Ke3pcMccee8/5OVCjUNgkGtZjenw4+fjCgWTyxttHJNIANmkVuz4gLqwm68Uc8+
-	OPAjDyccAhmPKMdRkZ8EwKgiRH6V2ULKBmcw6NcxfU2WN3pafBgmXnTSH2DOPSitcGBIR2KBQcRRo
-	4t1UMWKgjO1dawAJKwbbjBrmkQQ4nr7D8xxrOga8K39Kut9Ns5gdWCTwMe4PIuvi3mLRrLgGc+Ofg
-	DDvdPwNu0+CqLPUcBTwNsoRHQZXr7MX6pwolZJDvQsLIu0bYUataRm4GH5bRKf7wSQAcBkYRhGatd
-	sw+xWRTVvFOk0w0zHfjw==;
+	List-Owner; bh=Ozn+QtXPZ+SpNK3O6u2F2X+/Mfp1574Hn8nzvlHSwY4=; b=smF3pGCO7sGsj5
+	OFAsBpp/w7j211M0h08LUKPMlOq1kSPfDsJUJwVfHGymnHwrYIcT6IW5CTDMM1vVTURhv+glajn6g
+	tZ2RurEVzmACxcSo3p0RkGdrFMYxu1IWXvYe5S38V8Hjcs5MZzvKU9eVfF4fpjlXQeGl13iq/FR4r
+	niiCvS6oHe3yi84SsBEpRLN69t3+zDGuSD3n/sQ45LnHYOezpeqeyTh8Ozo355mIflH0Oh2Co88lf
+	TeB5HXyLDTIDbg5ViAKAx1Mjz8mvj6U1sXTWzMZCy/YqlCyG/jTu69TcEGzsCFfxF2igEh7YC+y52
+	xDzUGS6PtIC6w3P6LLbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nJa6N-00F1Mg-M4; Mon, 14 Feb 2022 12:05:07 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1nJznJ-003Hzg-TL; Tue, 15 Feb 2022 15:31:09 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nJZ8i-00EgTk-T5
- for linux-amlogic@lists.infradead.org; Mon, 14 Feb 2022 11:03:32 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id e3so26260700wra.0
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Feb 2022 03:03:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=voOHTKZ6Kq7fuf3k40Bt/Cg/FVDuPGywOM97VgEuJp0=;
- b=xQB++bCcyZbYqGDxBMh+9AA7pbNWpiqOKO9eayXEWdhL54V9ZKRkHXGVx2ePd0kik2
- xWb4Wi5W6Kx4oDF/BjbZs0XPY+sSzfA4n7lGd3AoUhlWMrx7+h1ZjHC0wH7BTbD3vnG4
- G2PedixbbYUCGYRxVhkZ9VErAhM7CV/dy+WQhVO6qLx6+jXGvRPhqcuTg6FxqXRFPO0P
- SNaX2DwSF5G5ctwDcj973qnp1mK46X033LzKDyvwuGSQO7O1esGmOLK02lbuXaVXYtja
- fNH4HCfy1cs2OUDSPDHarllyk3/WwyM3kM/ROslSdb2Lh5nj2X8V1d3UzaNo7I4rBY+a
- 3Bqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=voOHTKZ6Kq7fuf3k40Bt/Cg/FVDuPGywOM97VgEuJp0=;
- b=P+YYBkGn+4XqNM07ZURrRqqilwBayJi2MB3C40rXPdDy+K4ZmjFSXDV3OQbsgH4T56
- J6knwdG7oXWjAU1ue94Y9LrxV9otAYnzjeo8f/Ml25Vr10eH1v7gS35tva6PoBM7EtH8
- TQGGrgD2m3lmq+4vIeyxf1s15rqCJuBfhHn39gGN4Qq6J/AKBwx74xAEMeLeh2Ea2FRZ
- C/Ckpi0+sLvt42df4VG55PH5hVA9rg6d9rWl6OJb++aD1TpM8Y1DU8zg0vFp6Yrt8HDS
- wB/q5zNnrVCzBNjECJOeF7nGksZ6xZTgiaZuwhSfxZn3MQ0FNIFfO31nR+K1dK6z5kFz
- e2bw==
-X-Gm-Message-State: AOAM532DA8iyeSHLfUbqA/jZ18Y8/6xXzP5cjvYzM80jYLgpivyzd9ro
- V76J6LaGkCQhqpdaIa4rftt/uw==
-X-Google-Smtp-Source: ABdhPJyQGzvtUz4bb1kLHT2DVtQZlLvPUFqTZLzT4FocxEGsX88hVqvn2hnq4Ye2Kn+jy3pQYRsf6Q==
-X-Received: by 2002:adf:8010:: with SMTP id 16mr10234280wrk.708.1644836606869; 
- Mon, 14 Feb 2022 03:03:26 -0800 (PST)
-Received: from [192.168.86.34]
- (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
- by smtp.googlemail.com with ESMTPSA id
- u11sm26861096wrt.108.2022.02.14.03.03.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Feb 2022 03:03:26 -0800 (PST)
-Message-ID: <c23da7e0-6881-1911-ecf1-ff515e71424e@linaro.org>
-Date: Mon, 14 Feb 2022 11:03:24 +0000
+ id 1nJzjh-003G3n-78; Tue, 15 Feb 2022 15:27:27 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id CD799B81AF7;
+ Tue, 15 Feb 2022 15:27:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65B91C340EB;
+ Tue, 15 Feb 2022 15:27:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1644938843;
+ bh=6+PrVQ3PLFy4OFhHLzKysvDD085jWO5fGKal4oKoCi4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=tE0WBnCGJ40IDKG8d8o/INNMax5awBzhvl/Wg3olJ0j3Rs09c+Fdm1B3HxR0f6UUj
+ ppixpSVn5ph9SqTdUNfAYx5ZSV/wS8HHM7RpORdLbjAykvY/xCslksK+mmi++zaAf8
+ Kyy/lakw0w559P5JIcJ04t0rq2z82f+mh6SYmHqPMUa2GgEBwkL30j3UlTUN8fY/OB
+ yUfkpIL2Kj2qz2GcptYaAPgA7C2kfoHXhy7aEJc5EfMlzDXdyt2MGvFw2AebCW7Kss
+ PLHy6WdCgoF/VNPWzcnJEQwfBypaOelJTDh1NN6pHI0onGk9wZYut04XdH7GGdaObo
+ nqUQx+wFxoDyg==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+ Mateusz Krzak <kszaquitto@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Sasha Levin <sashal@kernel.org>,
+ robh+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.16 12/34] arm64: dts: meson-gx: add ATF BL32
+ reserved-memory region
+Date: Tue, 15 Feb 2022 10:26:35 -0500
+Message-Id: <20220215152657.580200-12-sashal@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220215152657.580200-1-sashal@kernel.org>
+References: <20220215152657.580200-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] nvmem: meson-mx-efuse: replace unnecessary
- devm_kstrdup()
-Content-Language: en-US
-To: xkernel.wang@foxmail.com, martin.blumenstingl@googlemail.com,
- narmstrong@baylibre.com, khilman@baylibre.com
-Cc: jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <tencent_0589E3FF08A4905922F78BC38602361C5505@qq.com>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <tencent_0589E3FF08A4905922F78BC38602361C5505@qq.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220214_030329_044513_C5B87F5E 
-X-CRM114-Status: GOOD (  13.43  )
+X-CRM114-CacheID: sfid-20220215_072725_453630_48CD0C0D 
+X-CRM114-Status: GOOD (  10.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,44 +74,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Christian Hewitt <christianshewitt@gmail.com>
 
+[ Upstream commit 76577c9137456febb05b0e17d244113196a98968 ]
 
-On 17/01/2022 02:56, xkernel.wang@foxmail.com wrote:
-> From: Xiaoke Wang <xkernel.wang@foxmail.com>
-> 
-> Replace unnecessary devm_kstrdup() so to avoid redundant memory allocation.
-> 
-> Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Xiaoke Wang <xkernel.wang@foxmail.com>
+Add an additional reserved memory region for the BL32 trusted firmware
+present in many devices that boot from Amlogic vendor u-boot.
 
-Applied thanks,
+Suggested-by: Mateusz Krzak <kszaquitto@gmail.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Link: https://lore.kernel.org/r/20220126044954.19069-2-christianshewitt@gmail.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
---srini
-> ---
-> Changelogs:
-> Simplify the patch to replace unnecessary devm_kstrdup().
->   drivers/nvmem/meson-mx-efuse.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
-> index 07c9f38..13eb143 100644
-> --- a/drivers/nvmem/meson-mx-efuse.c
-> +++ b/drivers/nvmem/meson-mx-efuse.c
-> @@ -209,8 +209,7 @@ static int meson_mx_efuse_probe(struct platform_device *pdev)
->   	if (IS_ERR(efuse->base))
->   		return PTR_ERR(efuse->base);
->   
-> -	efuse->config.name = devm_kstrdup(&pdev->dev, drvdata->name,
-> -					  GFP_KERNEL);
-> +	efuse->config.name = drvdata->name;
->   	efuse->config.owner = THIS_MODULE;
->   	efuse->config.dev = &pdev->dev;
->   	efuse->config.priv = efuse;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 6b457b2c30a4b..aa14ea017a613 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -49,6 +49,12 @@ secmon_reserved_alt: secmon@5000000 {
+ 			no-map;
+ 		};
+ 
++		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
++		secmon_reserved_bl32: secmon@5300000 {
++			reg = <0x0 0x05300000 0x0 0x2000000>;
++			no-map;
++		};
++
+ 		linux,cma {
+ 			compatible = "shared-dma-pool";
+ 			reusable;
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
