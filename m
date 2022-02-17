@@ -4,46 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E87C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Feb 2022 12:43:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCBBC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Feb 2022 06:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=le1jS0Y7Ppy//QSaotpouZEDsueFu51+mRgolxk/sd0=; b=UkAAjsAAkiZ7Nl
-	Z19tHKpWqibLXnw2S7seIfwNiVos/MTVtYXG+CLSSL4Y/qvl+pAu7KnFHANy9VaXpq17vAYLI8Jny
-	JVC507nxGEMj6GHGu3ns9L1kCx/1rREG/rxHscxbnDv2rMdjDuJY5Q2kzLfgvBzJElKQwvaV5/FkL
-	lVsglX+J/lZP4dJITqf5Lf0A2sGlfDhnU46d3NKwcMfvg2Gnlm2+jgQSHbIFlJlfPoCK87vH7rum9
-	OO71hvRdCFg0hU5xnhfjMithpgREX/xZFYiqC5MJZeSCZrQwKGDL9yq8AaF2gbdJ3J6y8GgKeiwkg
-	TMVJ+u1SD2/IMlJweV6Q==;
+	List-Owner; bh=sHPK1NBZkmiszgWLiYz5fgRUmzDdOa02E4jPwsH24oA=; b=DAc/n6WFAABw69
+	7DqrUyjx/v9pQQl7Jg0ZCoCI4Zk0rNdFjgbkhvMrsbxhhnWhuU5tgQ9I05TKmlebjWAcP2/80tjb3
+	MWvk+cwszLXFbzko7yAovCqll+sW+WzkG3j5MLoIT5X4YBtmjLx4q8S5jN4lQtOeH/Hep8lXGo+tb
+	ZENOovbcX1CKFWa9yUuK8L+h3NB52gVdWnBS9RafEnu1D3i78lQ9brYFISbuv2h7FOI+iL5JkmudT
+	TUebBNaxtbzaDosfhv1uhJuOsqx/hwe4FwwhoJeiCQLAKYNznHEZq3ncdiTzrrqhZjBE0LdPOXqrR
+	/LCHmmwO3iNOSiHuiDIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nKJe9-006yFO-4h; Wed, 16 Feb 2022 12:43:01 +0000
+	id 1nKaMY-0096WY-3x; Thu, 17 Feb 2022 06:33:58 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nKJdw-006yCl-L7; Wed, 16 Feb 2022 12:42:49 +0000
-Received: from rd02-sz.amlogic.software (10.28.8.43) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Wed, 16 Feb 2022
- 20:42:41 +0800
-From: Rong Chen <rong.chen@amlogic.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, <1131046452@qq.com>,
- <linux-mmc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <45581586@qq.com>, Rong Chen <rong.chen@amlogic.com>
-Subject: [PATCH v2] mmc: meson: Fix usage of meson_mmc_post_req()
-Date: Wed, 16 Feb 2022 20:42:39 +0800
-Message-ID: <20220216124239.4007667-1-rong.chen@amlogic.com>
-X-Mailer: git-send-email 2.25.1
+ id 1nKaMW-0096Vc-07; Thu, 17 Feb 2022 06:33:57 +0000
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Thu, 17 Feb 2022
+ 14:33:50 +0800
+From: Liang Yang <liang.yang@amlogic.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
+CC: Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
+ <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
+ Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: [PATCH RESEND v2 0/2] refine the NFC clock framework
+Date: Thu, 17 Feb 2022 14:33:44 +0800
+Message-ID: <20220217063346.21691-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.43]
+X-Originating-IP: [10.28.8.21]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220216_044248_733721_B3A37682 
-X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-CacheID: sfid-20220216_223356_081844_520039AC 
+X-CRM114-Status: UNSURE (   6.92  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -61,76 +66,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Currently meson_mmc_post_req() is called in meson_mmc_request() right
-after meson_mmc_start_cmd(). This could lead to DMA unmapping before the request
-is actually finished.
+Background firstly, 
+EMMC and NAND has the same clock control register named 'SD_EMMC_CLOCK' which is
+defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+bit6~7 is the mux for fix pll and xtal.
+Previously a common MMC sub clock framework is implemented and shared by EMMC and
+NAND, but that is coupling the EMMC and NAND, although EMMC and NAND is mutually
+exclusive. see the link:
+[https://lore.kernel.org/all/1jy23226sa.fsf@starbuckisacylon.baylibre.com/]
+Now we plan to abandon common mmc sub clock framework and recovery the series.
 
-To fix, don't call meson_mmc_post_req() until meson_mmc_request_done().
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
+ 
+[1]
+https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+Liang Yang (2):
+  mtd: rawnand: meson: discard the common MMC sub clock framework
+  dt-bindings: nand: meson: refine Amlogic NAND controller driver
 
-Signed-off-by: Rong Chen <rong.chen@amlogic.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ .../bindings/mtd/amlogic,meson-nand.txt       |  60 ----------
+ .../bindings/mtd/amlogic,meson-nand.yaml      |  70 ++++++++++++
+ drivers/mtd/nand/raw/meson_nand.c             | 107 ++++++++++--------
+ 3 files changed, 131 insertions(+), 106 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 8f36536cb1b6..58ab9d90bc8b 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -173,6 +173,8 @@ struct meson_host {
- 	int irq;
- 
- 	bool vqmmc_enabled;
-+	bool needs_pre_post_req;
-+
- };
- 
- #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
-@@ -663,6 +665,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
- 	struct meson_host *host = mmc_priv(mmc);
- 
- 	host->cmd = NULL;
-+	if (host->needs_pre_post_req)
-+		meson_mmc_post_req(mmc, mrq, 0);
- 	mmc_request_done(host->mmc, mrq);
- }
- 
-@@ -880,7 +884,7 @@ static int meson_mmc_validate_dram_access(struct mmc_host *mmc, struct mmc_data
- static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
--	bool needs_pre_post_req = mrq->data &&
-+	host->needs_pre_post_req = mrq->data &&
- 			!(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
- 
- 	/*
-@@ -896,22 +900,19 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 		}
- 	}
- 
--	if (needs_pre_post_req) {
-+	if (host->needs_pre_post_req) {
- 		meson_mmc_get_transfer_mode(mmc, mrq);
- 		if (!meson_mmc_desc_chain_mode(mrq->data))
--			needs_pre_post_req = false;
-+			host->needs_pre_post_req = false;
- 	}
- 
--	if (needs_pre_post_req)
-+	if (host->needs_pre_post_req)
- 		meson_mmc_pre_req(mmc, mrq);
- 
- 	/* Stop execution */
- 	writel(0, host->regs + SD_EMMC_START);
- 
- 	meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
--
--	if (needs_pre_post_req)
--		meson_mmc_post_req(mmc, mrq, 0);
- }
- 
- static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
 -- 
-2.25.1
+2.34.1
 
 
 _______________________________________________
