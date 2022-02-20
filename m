@@ -4,91 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADC01C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Feb 2022 17:17:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5142C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Feb 2022 16:51:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uEa4swzKJQ1n6juib6XozjuovT+2Xy98qM1IZrQqLVE=; b=l41gV1ZGo7fqQs
-	cfBCVNYg8u/cyK6ONNKScTEFAFE1ORz+hU1kef2rFqH/DzvH4XsSJatWizZGVNbBAV2bI51vdaCZB
-	uG4Dl8FBnJ63FuOI7Y+Wh8VE3TTWd27m2/42v8g42WmLnP+enxobVMA1jCcINCFn6dfbtkxTh+2Va
-	EOHEc2bEvy0xSWluu5EIzvsc5d9IhWibibRf8VozIxusLh+DmaUkmlfT7Bcl8wxvriZemyCmPTFsE
-	8Un0gXOWwN7SZtyyLoyA7V82RDfMPN2+K2LwPLV5cErGnLLMI/f/pDr/zBkEBcF45ckRbaGM8NXeK
-	GsJdGcp0Fys4FhYaN1fA==;
+	List-Owner; bh=sa0axVOQpPgL8o/63V2aFziivIIWb5ly62DE51ruxQ4=; b=tQamz3YZ0qNE4N
+	f5w1+rNq+vSXmBgN0x2929Dn8J9CzRXydgj3KM4OPElrcLo+pLZHcMwJLkAa+XHrk+WoOle6ChnxT
+	wTsNvHIkLpRDIBQkywmImx8qO0q/hFiYuW3jqv9kaGHd7GIhVQpve9aBM7762Nm8NxckD5vM2vnDC
+	s8+1R6elrE3Sf2U9Up8nqtoNeSWZkAwOnpi2x6hjS0AueEU/G6fImgvSpQIZwqfIJhkXrBWxpRXtl
+	TkXeBej5na/N2AFCPXTxwEWkfksx8O5uYQ/ld/EyJFbw6MP+amDx2/Rzpr99YKuCR/NitDLfVOeZe
+	IuXJE+EENwj456OOLsyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nLTLn-00HN2P-U3; Sat, 19 Feb 2022 17:16:51 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1nLpQx-001teM-B2; Sun, 20 Feb 2022 16:51:39 +0000
+Received: from mail-yw1-x112e.google.com ([2607:f8b0:4864:20::112e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nLTLb-00HN1U-9K; Sat, 19 Feb 2022 17:16:41 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id s24so14548254edr.5;
- Sat, 19 Feb 2022 09:16:38 -0800 (PST)
+ id 1nLpQu-001tdm-KM; Sun, 20 Feb 2022 16:51:38 +0000
+Received: by mail-yw1-x112e.google.com with SMTP id
+ 00721157ae682-2d646fffcc2so114726247b3.4; 
+ Sun, 20 Feb 2022 08:51:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:content-language:to:cc
- :references:from:subject:in-reply-to:content-transfer-encoding;
- bh=T9EQL5ZXNiD+KSv8P5NAsXTQao5/V3noUXFDN8MuNzk=;
- b=I4x2sSs28bNnRdwIYHiDEpgJ0QStGbZFXjcOyVyb+rfJrG8t9CDV7vIiDpJM/UroJD
- GbvJzZkAlulVPXeWjl0u7yr569mLS3iv1sJMUm5+96eKHdK3yLy7xrA8l4vr60XbaQMr
- vwwK+i7ymWcIgSZQzflUhiqz9SlTstmVP3n9Kvnk0hgU8m9PSXKbmRc4ESbzK6al/Lai
- LTCFRXKcU4rPFWOaRfc8RVKszeqj+HA/P8n89Nf3jYYksC2yP4NVhB1eiyMTvnEDsSk9
- Z/97v0BE9JfNSCbgX6752MWjmjJJ8mp62RIZFzb2cB4rNKalA1VEN5SaVgmO7LXV1rki
- T/jQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=AgVy9siORY+ob7QoBdZs1K6bcI2a50HTXwEIfbQUi4A=;
+ b=JNws/Dm6eWewJC3wy/5jJvPPbh5C5RuUIXc4DHbd55829goCmebxRTEqAGo/p4XWs/
+ OM+1JaiTrxOBj3SRguD21bdlUtZVJ22SUL/kfP3KsyktGM5izBHmTAyEYdJNi1vhmo5F
+ q6E1sHYAJyiWmRnXYAubzXEGxROe9WDcqDeU1e/QCXzdajhN4B/w2ziIwBZnU9QRGK1K
+ A8nEhCcmjPGY5lfj6xXkvVCPE5UkYGb7fO3qcqrfIjb0RXUGShY51OHtiBFFT/TaHzyh
+ qq4IWvXqlJK8u6S8cWowyVRskoF++gqhc0//hVEpVdYWiNIoSQb7bX/4zDuiByRHJ4md
+ jAQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent
- :content-language:to:cc:references:from:subject:in-reply-to
- :content-transfer-encoding;
- bh=T9EQL5ZXNiD+KSv8P5NAsXTQao5/V3noUXFDN8MuNzk=;
- b=Z2Fnn8NFtptm0PW4Rd4fNDAZS0Zaf1nosgpAN7CP3ikCTf1YvsVlhsdPvbkmpkI0uY
- zc4Cne8zeEc4qJM09eGrBS+jVs0ykKwxS9uz+BHlXWUoQqrjaXsyHMtIKvuPoX51LdNs
- o7npNuUpVqAEdmuPmYwu/I2UsxLl021mzy9lio++lm3nqXL7Mo0Oq7gT02NrEET7GhG2
- uosBl+o+Uj1kebRCKprH79pPDnhYUepTTLtC8GgqDseQ6R05PU4W2YqMvrXH9bo9WkTo
- kWmcebfx4ZhqraX6AS2V36IDAhcuHnaei3uWSwapBXoJQ55aYBYxJAC2IKgR0dz8kCT7
- gm1w==
-X-Gm-Message-State: AOAM531jCWUVOP0sLcoVbXMj3XB9E0uGj8PLxNxxIoEp9wGGqSleVi3c
- RlbRs0NyCq6OC2dPqs+QG+c=
-X-Google-Smtp-Source: ABdhPJykHTjW+gWjmanRPCbVfqty60bJcp6S25QsAeOqUloeISYFvnm09pvUhltBBk0suYWV78hO3Q==
-X-Received: by 2002:a05:6402:3549:b0:412:b31c:5509 with SMTP id
- f9-20020a056402354900b00412b31c5509mr11051717edd.224.1645290997226; 
- Sat, 19 Feb 2022 09:16:37 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:5cf9:df09:c1b3:d44d?
- (p200300ea8f4d2b005cf9df09c1b3d44d.dip0.t-ipconnect.de.
- [2003:ea:8f4d:2b00:5cf9:df09:c1b3:d44d])
- by smtp.googlemail.com with ESMTPSA id z22sm6522838edd.45.2022.02.19.09.16.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 19 Feb 2022 09:16:36 -0800 (PST)
-Message-ID: <09bf3d8a-2902-723b-80d2-0c4d1c24f53d@gmail.com>
-Date: Sat, 19 Feb 2022 18:16:32 +0100
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=AgVy9siORY+ob7QoBdZs1K6bcI2a50HTXwEIfbQUi4A=;
+ b=4dZE/r6TOw1oQV3OY5jeqGy/zv+SyafSznjzOcNRt7hX6iZKWvoumDuUdCg+q1lLau
+ fu/HG7fjV72OnTY9Bykz1edtjipBBpMlUQw1AohFJQn5cHJezzDJxOiJWUqIayTsy0oO
+ aZqyDZ0Dob84/xR3Zl/2FdMXiecPe+JvGMXtGOmCM7Zzi3Mr4VIbLhjapXmCG/ltjG1u
+ Ey0M4YR1KXDLu4ntXAi8w3ZUkmbvZDsoCq+/Pse7OxMc8RnUMQFKeS5lecOJ0SL5hPUV
+ pqcxU6Ytbe0EGCjW36SkhjhSx9YCVQHQ4CY2haH7uWtdNQH6fUWsJlvOTCRQNBRf16fG
+ l1MA==
+X-Gm-Message-State: AOAM532Y01tzlJkxV8nodS8TFxX9ggIPBaP3rdIIRgplbazSnLh/hQca
+ 76imEAnPs8izWMqxCoFhe7cwVojugTeLkeuJ7co=
+X-Google-Smtp-Source: ABdhPJz1ScnekKaSBiNuLhuSzAhv3JSuixwaFTdNC5WMfsDewUyk1rTq5BMvGrZX4SDIY+w99TJjE7TVVF16Xd6oQC4=
+X-Received: by 2002:a81:5f8a:0:b0:2d0:ccb1:9c9c with SMTP id
+ t132-20020a815f8a000000b002d0ccb19c9cmr16580146ywb.265.1645375894525; Sun, 20
+ Feb 2022 08:51:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Content-Language: en-US
-To: =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
- Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, Pavel Machek <pavel@ucw.cz>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Miguel Ojeda
- <ojeda@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, linux-amlogic@lists.infradead.org
-References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
- <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com>
- <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
- <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-In-Reply-To: <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
+References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+ <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
+From: Erico Nunes <nunes.erico@gmail.com>
+Date: Sun, 20 Feb 2022 17:51:23 +0100
+Message-ID: <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
+ at boot
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>,
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ netdev@vger.kernel.org, 
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-sunxi@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220219_091639_365185_1E0A6C68 
-X-CRM114-Status: GOOD (  26.53  )
+X-CRM114-CacheID: sfid-20220220_085136_721962_A68640E7 
+X-CRM114-Status: GOOD (  41.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,58 +85,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTkuMDIuMjAyMiAxNzowNywgQW5kcmVhcyBGw6RyYmVyIHdyb3RlOgo+IEhpLAo+IAo+IE9u
-IDE5LjAyLjIyIDE0OjM3LCBIZWluZXIgS2FsbHdlaXQgd3JvdGU6Cj4+IE9uIDE5LjAyLjIwMjIg
-MTQ6MjcsIE1pZ3VlbCBPamVkYSB3cm90ZToKPj4+IE9uIFNhdCwgRmViIDE5LCAyMDIyIGF0IDI6
-MTMgUE0gSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4K
-Pj4+PiBUaGlzIHNlcmllcyBhZGRzIHN1cHBvcnQgZm9yIHRoZSBUaXRhbm1lYyBUTTE2MjggNyBz
-ZWdtZW50IGRpc3BsYXkKPj4+PiBjb250cm9sbGVyLiBJdCdzIGJhc2VkIG9uIHByZXZpb3VzIFJG
-QyB3b3JrIGZyb20gQW5kcmVhcyBGw6RyYmVyLgo+Pj4+IFRoZSBSRkMgdmVyc2lvbiBwbGFjZWQg
-dGhlIGRyaXZlciBpbiB0aGUgTEVEIHN1YnN5c3RlbSwgYnV0IHRoaXMgd2FzCj4+Pj4gTkFLJ2Vk
-IGJ5IHRoZSBMRUQgbWFpbnRhaW5lci4gVGhlcmVmb3JlIEkgbW92ZWQgdGhlIGRyaXZlciB0bwo+
-Pj4+IC9kcml2ZXJzL2F1eGRpc3BsYXkgd2hhdCBzZWVtcyBtb3N0IHJlYXNvbmFibGUgdG8gbWUu
-Cj4+Pgo+Pj4gQ291bGQgeW91IHBsZWFzZSBsaW5rIHRvIHRoZSBkaXNjdXNzaW9uIGFuZC9vciBz
-dW1tYXJpemUgdGhlIHJhdGlvbmFsZQo+Pj4gYmVoaW5kIHRoZSBOQUs/Cj4+Pgo+Pgo+PiArUGF2
-ZWwKPj4KPj4gSSBkaWRuJ3QgZmluZCBhbiBleHBsaWNpdCByZWFzb24sIGJ1dCBJIHN1cHBvc2Ug
-UGF2ZWwgc2VlcyB0aGlzIGRyaXZlciBhcwo+PiBvbmUgdGhhdCBtYWtlcyB1c2Ugb2YgdGhlIExF
-RCBzdWJzeXN0ZW0sIGJ1dCBkb2Vzbid0IGJlbG9uZyB0byBpdC4KPj4gSW4gdGhlIGZvbGxvd2lu
-ZyBtYWlsIGhlJ3MgZXhwcmVzc2luZyBoaXMgb3BpbmlvbiB0aGF0IHRoZSBkcml2ZXIgc2hvdWxk
-Cj4+IGJlIGJlc3QgcGxhY2VkIHVuZGVyIGF1eGRpc3BsYXkuCj4+Cj4+IGh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL2xpbnV4LWFybS1rZXJuZWwvMjAyMDAyMjYxMzAzMDAuR0IyODAwQGR1by51Y3cu
-Y3ovCj4gCj4gQW5kIEkgZGlzYWdyZWVkLiBJdCBkb2VzIG5vdCBmaXQgd2l0aCB0aGUgb3RoZXIg
-ZHJpdmVycyBpbiBhdXhkaXNwbGF5Cj4gdGhhdCB3ZXJlIG9wZXJhdGluZyBvbiBhIG11Y2ggaGln
-aGVyIGxldmVsLgo+IAoKV2UgbmVlZCB0byBmaW5kIGEgcGxhY2UuIEFuZCBpZiBQYXZlbCBoYXMg
-Z29vZCByZWFzb25zIHRoYXQgaXQgZG9lc24ndApmaXQgaW50byB0aGUgTEVEIHN1YnN5c3RlbSwg
-YW5kIE1pZ3VlbCBzaG91bGQgYmUgZmluZSB3aXRoIGhhdmluZwppdCBpbiBhdXhkaXNwbGF5LCB0
-aGVuIEknZCBzZWUgbm8gcmVhc29uIHRvIG5vdCBnbyB0aGlzIHdheS4KCj4gSSdkIGFsc28gbGlr
-ZSB0byBwb2ludCBvdXQgdGhhdCBJIGRpZCBpbXBsZW1lbnQgdGhlIG1hcF90b183c2VnbWVudCBB
-UEksCgpMb29raW5nIGF0IHRoZSBoaXN0b3J5IG9mIGluY2x1ZGUvdWFwaS9saW51eC9tYXBfdG9f
-N3NlZ21lbnQuaCBJIHNlZSBubwpjb21taXQgZnJvbSB5b3UuIFNlZW1zIEknbSBtaXNzaW5nIHNv
-bWV0aGluZyBoZXJlLgoKPiBhcyB3YXMgc3VnZ2VzdGVkLCBhcyB5b3Ugd2lsbCBmaW5kIGluIG15
-IHRyZWUgLSB3aGljaCB5b3UgbWF5IGhhdmUKPiBtaXNzZWQsIHJlZmVyZW5jaW5nIG9ubHkgdGhl
-IFJGQyBwYXRjaHNldCBhbmQgcHV0dGluZyB5b3VyIGF1dGhvcnNoaXAgb24KPiBpdCBleGNsdXNp
-dmVseT8gQSBtb3ZlIGZyb20gb25lIGRpcmVjdG9yeSB0byBhbm90aGVyIHNob3VsZCBub3Qgd2Fy
-cmFudAo+IG15IGF1dGhvciBhbmQgU29CIGdldHRpbmcgcmVtb3ZlZCBmcm9tIHRoZSBhY3R1YWwg
-ZHJpdmVyLgo+IApUaGUgZHJpdmVyIGluY2x1ZGVzIG1ham9yIGNoYW5nZXMgYW5kIEkgbWVudGlv
-bmVkIHlvdXIgd29yayBpbiB0aGUgY29tbWl0Cm1lc3NhZ2UuIEFsc28geW91ciBzdGlsbCBsaXN0
-ZWQgYXMgTU9EVUxFX0FVVEhPUi4gTXkgaW50ZW50aW9uIGlzIHRvCmdldCBhIGRyaXZlciB1cHN0
-cmVhbSwgbm90IHRvIGVhcm4gY3JlZGl0cyBmb3Igc29tZXRoaW5nLgpTbyBzdXJlLCB5b3VyIFNv
-QiBjYW4gYmUgKHJlLSlhZGRlZC4KCj4gR2l2ZW4gdGhhdCB3ZSBuZWVkIHRvIG1hbmFnZSBhIGJ1
-ZmZlciB3aXRoIGJpdHMgcGVyIHNlZ21lbnQgb3IgTEVECj4gc3ltYm9sLCBvbmUgaWRlYSB0aGF0
-IEkgaGF2ZW4ndCBmb3VuZCB0aW1lIGZvciB5ZXQgd2FzIHRvIGltcGxlbWVudCBpdAo+IGFzIGZy
-YW1lYnVmZmVyIG9yIGRybSBkZXZpY2UgaW5zdGVhZC4gKEFuZCBtb3N0IFJlYWx0ZWsgcGxhdGZv
-cm1zIGdvdAo+IGJyb2tlbiBieSByZW1vdmluZyB0aGUgYWRqdXN0YWJsZSB0ZXh0IGJhc2UgZGVm
-aW5lcy4pCj4gCkknbSBub3QgYXdhcmUgb2YgdGhlIFJlYWx0ZWsgcGxhdGZvcm0gaXNzdWUsIGRv
-IHlvdSBoYXZlIGEgbGluayB0byBhCnJlbGF0ZWQgZGlzY3Vzc2lvbj8gQW5kIHdvdWxkbid0IHlv
-dSB0aGluayBpdCdzIG92ZXJlbmdpbmVlcmluZyB0bwp3cml0ZSBhIERSTSBkcml2ZXIgZm9yIGEg
-NyBzZWdtZW50IGRpc3BsYXkgd2l0aCA0IGRpZ2l0cz8KRnJhbWVidWZmZXIgc2VlbXMgdG8gYmUg
-ZGVwcmVjYXRlZCBiYXNlZCBvbiBteSBleHBlcmllbmNlIHdpdGgKcHlnYW1lIC8gU0RMMi4KCj4g
-UmVnYXJkcywKPiBBbmRyZWFzCj4gCgpIZWluZXIKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
-bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Mon, Feb 7, 2022 at 11:56 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Wed 02 Feb 2022 at 21:18, Erico Nunes <nunes.erico@gmail.com> wrote:
+>
+> > Hello,
+> >
+> > I've been tracking down an issue with network interfaces from
+> > meson8b-dwmac sometimes not coming up properly at boot.
+> > The target systems are AML-S805X-CC boards (Amlogic S805X SoC), I have
+> > a group of them as part of a CI test farm that uses nfsroot.
+> >
+> > After hopefully ruling out potential platform/firmware and network
+> > issues I managed to bisect this commit in the kernel to make a big
+> > difference:
+> >
+> >   46f69ded988d2311e3be2e4c3898fc0edd7e6c5a net: stmmac: Use resolved
+> > link config in mac_link_up()
+> >
+> > With a kernel before that commit, I am able to submit hundreds of test
+> > jobs and the boards always start the network interface properly.
+> >
+> > After that commit, around 30% of the jobs start hitting this:
+> >
+> >   [    2.178078] meson8b-dwmac c9410000.ethernet eth0: PHY
+> > [0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+> >   [    2.183505] meson8b-dwmac c9410000.ethernet eth0: Register
+> > MEM_TYPE_PAGE_POOL RxQ-0
+> >   [    2.200784] meson8b-dwmac c9410000.ethernet eth0: No Safety
+> > Features support found
+> >   [    2.202713] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+> >   [    2.209825] meson8b-dwmac c9410000.ethernet eth0: configuring for
+> > phy/rmii link mode
+> >   [    3.762108] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+> > 100Mbps/Full - flow control off
+> >   [    3.783162] Sending DHCP requests ...... timed out!
+> >   [   93.680402] meson8b-dwmac c9410000.ethernet eth0: Link is Down
+> >   [   93.685712] IP-Config: Retrying forever (NFS root)...
+> >   [   93.756540] meson8b-dwmac c9410000.ethernet eth0: PHY
+> > [0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
+> >   [   93.763266] meson8b-dwmac c9410000.ethernet eth0: Register
+> > MEM_TYPE_PAGE_POOL RxQ-0
+> >   [   93.779340] meson8b-dwmac c9410000.ethernet eth0: No Safety
+> > Features support found
+> >   [   93.781336] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+> >   [   93.788088] meson8b-dwmac c9410000.ethernet eth0: configuring for
+> > phy/rmii link mode
+> >   [   93.807459] random: fast init done
+> >   [   95.353076] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+> > 100Mbps/Full - flow control off
+> >
+> > This still happens with a kernel from master, currently 5.17-rc2 (less
+> > frequently but still often hit by CI test jobs).
+> > The jobs still usually get to work after restarting the interface a
+> > couple of times, but sometimes it takes 3-4 attempts.
+> >
+> > Here is one example and full dmesg:
+> > https://gitlab.freedesktop.org/enunes/mesa/-/jobs/16452399/raw
+> >
+> > Note that DHCP does not seem to be an issue here, besides the fact
+> > that the problem only happens since the mentioned commit under the
+> > same setup, I did try to set up the boards to use a static ip but then
+> > the interfaces just don't communicate at all from boot.
+> >
+> > For test purposes I attempted to revert
+> > 46f69ded988d2311e3be2e4c3898fc0edd7e6c5a on top of master but that
+> > does not apply trivially anymore, and by trying to revert it manually
+> > I haven't been able to get a working interface.
+> >
+> > Any advice on how to further debug or fix this?
+>
+> Hi Erico,
+>
+> Thanks a lot for digging into this topic.
+> I'm seeing exactly the same behavior on the g12 based khadas-vim3:
+>
+> * Boot stalled waiting for DHCP - with an NFS based filesystem
+> * Every minute, the network driver gets a reset and try again
+>
+> Sometimes it works on the first attempt, sometimes it takes up to 5
+> attempts. Eventually, it reaches the prompt which might be why it went
+> unnoticed so far.
+>
+> I think that NFS just makes the problem easier to see.
+> On devices with an eMMC based filesystem, I noticed that, sometimes, I
+> had unplug/plug the ethernet cable to make it go.
+>
+> So far, the problem is reported on all the Amlogic SoC generation we
+> support. I think a way forward is to ask the the other users of
+> stmmac whether they have this problem or not - adding Allwinner and
+> Rockchip ML.
+>
+> Since the commit you have identified is in the generic part of the
+> stmmac code, Maybe Jose can help us understand what is going on.
+
+Hi all,
+
+thanks for the feedback so far, good to know that this is not only on
+my board farm.
+
+Any more feedback about this from the people in cc?
+
+Thanks
+
+Erico
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
