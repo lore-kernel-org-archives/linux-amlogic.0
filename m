@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 896F9C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Feb 2022 11:39:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B44C7C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Feb 2022 13:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:Message-ID:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=yDr9K7ZpX6wSFME2bv0LiaJtB0K2EHwgKInaZxj9bjY=; b=q04G/7PeJjMS3Rocc20RjeXH8/
-	sOYOcSOJMyGa7ox2K8yIOsLFND5esEbd/yHL/22J5nLqBVxKKdGL5sWQ3Br5G+YuWbZPRJ4pFk/lt
-	7U7IDFXASsOzz+50qWNu0wROTJI2eGgpExOvJOEidWu4qNVf5JSSXnDPSzjr36hW+Q2hi/j+Y5unf
-	uvzoNYoDmjowILKsqrEjOxC1b9XRYK6narPjq4AztQbpHXMHrKGLWbEstyR0gCa3QjvZ1fyCv/YrW
-	A1n48E8aqwJeAAGpsXx2ppzZyOfgOhvTQHBrLd/15jTbtyd8Kaikw8vVQHqHNxkzk/MNsqt4/A8/q
-	bG7eQuzw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Nl8tYY1kjgWnzugZ5o040JTyi4yC8rO4C5QRiTu1z6I=; b=xHXlwbBXSPcK0B
+	+ZVrTJqTnXvE4ADRRrX5YI0PHtyTjvV8a9IgHe6QkN0DW5mA117yAleWanlz1U28p7cpQbUkmim9l
+	Pxg3cCoTy38KenfbjT0jYsBhGWqiEgPN2kTSu2EuRK5y6zHjrwrHZDY8gUczSRIwcM7bYkMF6fiyU
+	sBxpaB7RP4nW+nIlb9UhaZe/aT1DUwJNl7U8ECGeb3MaVOg9JVDdK6hr7+lCIFS0or52bYfpHkS+n
+	8AgQnyfjsSLI3CQb+W14zyE5buMsySCOadJoTWhX80kwZFnQsWRWUkKmsCIF73yanmbuec2HI7Wf2
+	0eRJl/3HEk+aDTKan+jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nM71r-005P9A-Qh; Mon, 21 Feb 2022 11:38:55 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1nM8K2-005mMS-1M; Mon, 21 Feb 2022 13:01:46 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nM71m-005P73-Ev
- for linux-amlogic@lists.infradead.org; Mon, 21 Feb 2022 11:38:53 +0000
-Received: by mail-wr1-x433.google.com with SMTP id p9so26504458wra.12
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Feb 2022 03:38:49 -0800 (PST)
+ id 1nM7Uh-005Y4y-0E
+ for linux-amlogic@lists.infradead.org; Mon, 21 Feb 2022 12:08:44 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id
+ p184-20020a1c29c1000000b0037f76d8b484so1968585wmp.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Feb 2022 04:08:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:from:subject:to:cc
- :content-language:organization:content-transfer-encoding;
- bh=+3Cdr3UnkNe6hBDvjgKna9hDC0LxHXWc7I7ZTNIF3bc=;
- b=JtwqXnf+s8ap/WJHlzhKn2g2471HfSI+wX45QPGPvjGORdJcZI850z5jYx6z+cIMRJ
- zXPSFPTK/tJC57bNzuydlALyqHO1/MT259xP+1dfLX5LvKznJvCMhTWiW9+NOF9qFLGI
- fv5Q1Lyy0fKfM3W15BE0R/wfPEcFaw1NGDMQmIqO4SeDzkNC5VEcljomZGbBj0FVQd6n
- DSsBvXxGXBo6alTnUljT0jQjRhh5uGhELf6uIf+DVF1qAc0i76Wv0XkrM2X+e3knNCRs
- +kRF9i/hy61qDXpzFekZa2cIy4I270wit9DUMy/X0z94+3vffX1Mx3+G2RVLyncTUCSQ
- Gd5A==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=mrY/YH1b9s1O9jMerN3hmkMMZmwmjWK0cZUfx1sY+dQ=;
+ b=EHxIl7XNaoQqifbAvm4pywi+Wi6IHmxkBODFSm+hpEkuqO2pcABRHVqZhfTEPj1C/x
+ qh6elN871Df9GMwQuyaZdPJC3DxREktLEXIZvvlF0OV8gP3GwT0NsKoTwz65WJst/8T+
+ Jc6I9zU5zpMgjdlDS5KnRSSt+Pqg+BmmfkewzG/0DiGhzUSgxV0HMYXTaOW8wULF3qPX
+ ZlGHJKkX0klQhkX6VeZciYbt82ixAoV6ySkls8QVrWpDNVBDuSBnlgHxWIJO0XM0hqLG
+ 4CM/AUl9hfEj+n4UcteK6q2IVldLU4dmeJWbD1pH+2+6uaTjbF4hpUtFn66Vvd/UVwvy
+ JWOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:from
- :subject:to:cc:content-language:organization
- :content-transfer-encoding;
- bh=+3Cdr3UnkNe6hBDvjgKna9hDC0LxHXWc7I7ZTNIF3bc=;
- b=gECi8mR0pZw4syUbNkFGT2a6G3DU4Eq08/evNKl/HCyB0Hx16Pni37gBF0Sn39hQ6I
- NBnaV6gJJxKILVgs5n+cadloj2vYURIb8GWSLMC09C/oCdXZIt8Y3OogqEU4O9/E70Bp
- 72ZGaylXSEL3rOm9u9gi7ws/fXTkgmgZqASLAWw07YGYWI/WTkhFeRdEkB/F89YCJTIo
- zuwCPZjpti27qJuKUn1u/SK7cLyhKpmacuGnseizhIFk+2tGQNenlqQr3T+tjvkSEF2g
- g2xoBsRKlBBHJKg7SIBCZB3ufVE6Alo/d4OCeEBdeim2G+xqC76ZQeRuMSnhLI+Fromo
- PvMg==
-X-Gm-Message-State: AOAM533ZZGw0yXkmnQnVa8G30yP3MZs7YO80HURpQsJh7H1FUzlISobL
- FRgBK2jPDcUsOglzN9/dJ6EkMQ==
-X-Google-Smtp-Source: ABdhPJxKX1byj/LtVfl/YytFP4/8WtXpzyG3GoO/xZal4Tb9lygDy8NgygA864+QsEDQ1r3S64qCsA==
-X-Received: by 2002:adf:e705:0:b0:1e3:14aa:db8d with SMTP id
- c5-20020adfe705000000b001e314aadb8dmr15025056wrm.398.1645443528416; 
- Mon, 21 Feb 2022 03:38:48 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:77b7:547a:df0c:28d8?
- ([2001:861:44c0:66c0:77b7:547a:df0c:28d8])
- by smtp.gmail.com with ESMTPSA id
- bg20-20020a05600c3c9400b0037fa5c422c8sm793852wmb.48.2022.02.21.03.38.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 21 Feb 2022 03:38:48 -0800 (PST)
-Message-ID: <a7cd9937-d441-3e1f-9709-8e80cc8814f1@baylibre.com>
-Date: Mon, 21 Feb 2022 12:38:47 +0100
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=mrY/YH1b9s1O9jMerN3hmkMMZmwmjWK0cZUfx1sY+dQ=;
+ b=7o7N+fqqs9YvQowptZKvnfMWVapND5RxvDqAKhoGRviyKmDSaccI2QVS2VrrbY/qfZ
+ g3rXSObglsAlQQVz2Pcd6YhcZf/4Yf2mxAeChKWYg3J0Sz39Qw/BQJUVtjP6BD5lbTph
+ ojgdDl65jf9KCyiIDj4x9baVu08OqPnkwjnBadbpqLxbVrmH+BcYFja0KwsKcdx2nNIl
+ rKfIcyTiTs/TQmcoLEd16MQshs9t9pLI1YF7JXSFAES+I/V4slBI8Yl8MVx9R+aotMhN
+ Ic0AtljUP1nn/D8iZtRHRb8lGmrE8/fHyDGCY5ULU0GGZXvA1HjR5zvbY0kKM7lpw6cj
+ KkCw==
+X-Gm-Message-State: AOAM532F018VFCSkDt+LBbkvYOTmhMpyXvKWsrm/seOEym4dEMy0Kyvu
+ bJcDJEkOSyAO0k2uIybsGGaztA==
+X-Google-Smtp-Source: ABdhPJxZOj3bAaqzQpMpwIZwq1rULq8jrXuaL/D3GX2+h/JhGdZn8tGDnxnawe+BhPseDP53wiUJlg==
+X-Received: by 2002:a05:600c:1f16:b0:37b:c7f2:fbb4 with SMTP id
+ bd22-20020a05600c1f1600b0037bc7f2fbb4mr20467582wmb.47.1645445321196; 
+ Mon, 21 Feb 2022 04:08:41 -0800 (PST)
+Received: from localhost.localdomain
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id a8sm11821546wra.0.2022.02.21.04.08.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Feb 2022 04:08:40 -0800 (PST)
+From: Corentin Labbe <clabbe@baylibre.com>
+To: herbert@gondor.apana.org.au, jernej.skrabec@gmail.com,
+ linus.walleij@linaro.org, narmstrong@baylibre.com,
+ ulli.kroll@googlemail.com, wens@csie.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH 1/5] crypto: sun8i-ss: call finalize with bh disabled
+Date: Mon, 21 Feb 2022 12:08:29 +0000
+Message-Id: <20220221120833.2618733-2-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220221120833.2618733-1-clabbe@baylibre.com>
+References: <20220221120833.2618733-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [GIT PULL] arm64: dts: amlogic updates for v5.18
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Content-Language: en-US
-Organization: Baylibre
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220221_033850_609043_2B74CF99 
-X-CRM114-Status: UNSURE (   8.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220221_040843_088970_063DC50C 
+X-CRM114-Status: GOOD (  11.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,92 +89,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Doing ipsec produces a spinlock recursion warning.
+This is due to not disabling BH during crypto completion function.
 
-Here's a set of Amlogic ARM64 DT changes for v5.18.
+Fixes: f08fcced6d00 ("crypto: allwinner - Add sun8i-ss cryptographic offloader")
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c | 3 +++
+ drivers/crypto/allwinner/sun8i-ss/sun8i-ss-hash.c   | 3 +++
+ 2 files changed, 6 insertions(+)
 
-Notably, this adds 5 new board and a new SoC family from Amlogic, and minor additions.
+diff --git a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+index 9ef1c85c4aaa..554e400d41ca 100644
+--- a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
++++ b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+@@ -11,6 +11,7 @@
+  * You could find a link for the datasheet in Documentation/arm/sunxi.rst
+  */
+ 
++#include <linux/bottom_half.h>
+ #include <linux/crypto.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/io.h>
+@@ -274,7 +275,9 @@ static int sun8i_ss_handle_cipher_request(struct crypto_engine *engine, void *ar
+ 	struct skcipher_request *breq = container_of(areq, struct skcipher_request, base);
+ 
+ 	err = sun8i_ss_cipher(breq);
++	local_bh_disable();
+ 	crypto_finalize_skcipher_request(engine, breq, err);
++	local_bh_enable();
+ 
+ 	return 0;
+ }
+diff --git a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-hash.c b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-hash.c
+index d8c333fe5eb2..0c2ca296bede 100644
+--- a/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-hash.c
++++ b/drivers/crypto/allwinner/sun8i-ss/sun8i-ss-hash.c
+@@ -9,6 +9,7 @@
+  *
+  * You could find the datasheet in Documentation/arm/sunxi.rst
+  */
++#include <linux/bottom_half.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/scatterlist.h>
+@@ -633,6 +634,8 @@ int sun8i_ss_hash_run(struct crypto_engine *engine, void *breq)
+ 
+ 	memcpy(areq->result, result, algt->alg.hash.halg.digestsize);
+ theend:
++	local_bh_disable();
+ 	crypto_finalize_hash_request(engine, breq, err);
++	local_bh_enable();
+ 	return 0;
+ }
+-- 
+2.34.1
 
-Neil
-
-The following changes since commit 0a62b3cc0af9322e650fe89bea0bacdedf01960a:
-
-   arm64: dts: meson: p241: add sound support (2021-12-01 10:27:13 +0100)
-
-are available in the Git repository at:
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v5.18
-
-for you to fetch changes up to d926a4fe25338e120ab49547de9707dc6e5e5824:
-
-   arm64: dts: meson: add support for OSMC Vero 4K+ (2022-02-21 09:23:08 +0100)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v5.18:
-- New Boards:
-  - Amediatek X96-AIR (Amlogic S905X3)
-  - CYX A95XF3-AIR (Amlogic S905X3)
-  - Haochuangy H96-Max (Amlogic S905X3)
-  - Amlogic AQ222 (Amlogic S4)
-  - OSMC Vero 4K+ (Amlogic S905D)
-- Initial support for Amlogic S4
-- Support for uart_ao_b & pwm_f on G12 SoCs
-
-----------------------------------------------------------------
-Artem Lapkin (1):
-       arm64: dts: meson-sm1: add spdifin and pdifout nodes
-
-Christian Hewitt (12):
-       arm64: dts: meson: add common SM1 ac2xx dtsi
-       dt-bindings: arm: amlogic: add X96-AIR bindings
-       arm64: dts: meson: add initial device-trees for X96-AIR
-       dt-bindings: vendor-prefixes: add cyx prefix
-       dt-bindings: arm: amlogic: add A95XF3-AIR bindings
-       arm64: dts: meson: add initial device-trees for A95XF3-AIR
-       dt-bindings: vendor-prefixes: add haochuangyi prefix
-       dt-bindings: arm: amlogic: add H96-Max bindings
-       arm64: dts: meson: add initial device-tree for H96-Max
-       dt-bindings: vendor-prefixes: add osmc prefix
-       dt-bindings: arm: amlogic: add Vero 4K+ bindings
-       arm64: dts: meson: add support for OSMC Vero 4K+
-
-Gary Bisson (2):
-       arm64: dts: meson-g12-common: add more pwm_f options
-       arm64: dts: meson-g12-common: add uart_ao_b pins muxing
-
-Xianwei Zhao (2):
-       dt-bindings: arm: amlogic: add S4 based AQ222 bindings
-       arm64: dts: add support for S4 based Amlogic AQ222
-
-  Documentation/devicetree/bindings/arm/amlogic.yaml |  12 +
-  .../devicetree/bindings/vendor-prefixes.yaml       |   6 +
-  arch/arm64/boot/dts/amlogic/Makefile               |   7 +
-  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  43 +++
-  .../dts/amlogic/meson-gxl-s905d-vero4k-plus.dts    | 117 ++++++++
-  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     |  30 +++
-  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |  99 +++++++
-  .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 129 +++++++++
-  .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts      | 108 ++++++++
-  arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi   | 300 +++++++++++++++++++++
-  arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts  | 145 ++++++++++
-  .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts    | 133 +++++++++
-  arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts  | 112 ++++++++
-  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  27 ++
-  14 files changed, 1268 insertions(+)
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
 
 _______________________________________________
 linux-amlogic mailing list
