@@ -4,43 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14119C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Feb 2022 02:10:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA9F4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Feb 2022 12:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d/MoHupJcM2rF+rWtU7Tm31N+u729p3EvWRHDgvJnts=; b=PMTVdyelgVum5d
-	ycXd5+Fp9XBgQcVvR+iIA3p/Gc/FF2MuYgcoi8EM1Xzn+cVuv9yIOhtv+amMrTEPdCD18snEkf7pY
-	hmDdniPEDwp7RzLKlKDWK/6XcHH86qna92Ba9ftutoklrSgP5j45iFJx+aI2ZJPlVLKKmINbj2gJB
-	o2J8EntVLoUObqhWjRpljLL8S9Pxij6xYNOP2BGTR+KvvZGe9Ad8vAA0FfLuB7I29ISw4ccSWbx3W
-	h3ED3E85aEq0DO553wqzHnrVoawa85LD8d9hs1mVKBQvSfCdbHiz+g9ZeqFCRgFwLYjS2ae+guzF9
-	cW/3OesCZMTl+vSOBkZQ==;
+	List-Owner; bh=X/32DqEcNMiSlWO4dNokCf6R+Yf3cfGCt3KNm7Cl5DY=; b=tahl8HtvVUqS2t
+	X0SkOsBfX5JOt7x3sd1Mpa8xNWeXAECvU1qbg5Fu+d75KfUWBHLl8/SdnUp4fme/ksR1JejLJJnkl
+	PXGfdgckMdNxssnrmtmG0k2zDqDexnZtr0+vtwr4HmmqDRmP2YUFLU1Wd7rI6L2XximYJgtbnN47R
+	rB2opRIDu/GYnqLKLoAxd5tjDpgUrXvqDRQyR5ezK6sb8cqWtGx2+q8TNVjqWQicqLJBeG/CZ9tPy
+	A3sZ4Dn12XW5Zgf12I8MkV90NrxZJeTRqMPNRbduLbiMh3TV/x6IiK/R1NHqan8SLeO3AjH/63YTY
+	3bLzGsk88eevzIS0URCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nMh6h-00CHBh-GQ; Wed, 23 Feb 2022 02:10:19 +0000
-Received: from netrider.rowland.org ([192.131.102.5])
- by bombadil.infradead.org with smtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nMh6e-00CHAw-I0
- for linux-amlogic@lists.infradead.org; Wed, 23 Feb 2022 02:10:19 +0000
-Received: (qmail 993346 invoked by uid 1000); 22 Feb 2022 21:10:11 -0500
-Date: Tue, 22 Feb 2022 21:10:11 -0500
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Heiner Kallweit <hkallweit1@gmail.com>
+	id 1nMrDW-00EIwo-RT; Wed, 23 Feb 2022 12:58:02 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nMqj1-00EA3U-16
+ for linux-amlogic@lists.infradead.org; Wed, 23 Feb 2022 12:26:32 +0000
+Received: by mail-ed1-x529.google.com with SMTP id cm8so34308391edb.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 23 Feb 2022 04:26:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:content-language:to:cc
+ :references:from:subject:in-reply-to:content-transfer-encoding;
+ bh=BHomSSQD97eL1L3iIvV/N/L/ht5aaNsClxtdMafmHn4=;
+ b=B3u3WounpaV4NhRtuSfywxlVKLgQvcBDybBZB7eegub1Q241QIiLBfyR1msFqj95f+
+ rrYL+xBjGogjlh+aHr/SeaDthVBFsePeq/dGGecNzipnUzH2txPMtia59Kgrqe6DNrDh
+ wPH1iKrtrCaQgyIB7p4YA8oueq8y5wdf6GDiKH2FM63j8ZN/+pTthB2JZmRyh1oe1CCy
+ n8DRpoWPp4o4GGG428+g2HGpsauO+LRJjZ17YfIaIOF1gk5n9gvlY04liaGQEdN/+xWe
+ rbzqTbDj8dK3yG8E7+e6r83YZzYyYftV+ZmV6m2zHBbv6N0gfIP3HV6z8qpLbusSBoLR
+ uH7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:references:from:subject:in-reply-to
+ :content-transfer-encoding;
+ bh=BHomSSQD97eL1L3iIvV/N/L/ht5aaNsClxtdMafmHn4=;
+ b=VKiXNSLO3uXQeDTHiUovOWlRVDZnbCe3ftIEyVbfygFABVAHVglvUx9f/hN6uhbMeq
+ AAU375s1T9b8XwRm2lERDysMGsBbWESNrruk9XqUOBy/hs1c4sq0wS0y0gIHc+EbD4sI
+ /SnAQELSSW5zDONRlyyfGVx9xM37n2vLc3lgxtuIT+4HhHihWCi5SedkbwJzz0amL+kA
+ Vv24DfdMDom/4WBOvE/xyAsrk/vjXHKhq85DDZKnMaeTDrYwmxf/BmlbCPBPAEXeB/qG
+ ejDW4X0O2HedRsz88XoHevl97kIsg3HeegJ/OghitP2ggJ7gqK4jvUYwjYkQIJXcTbio
+ mNlg==
+X-Gm-Message-State: AOAM531l92Yqr8QLIsMxqxBOJguPO4FnNp8qCraRhM4pFF3wTCQH0UsR
+ ptAQSzfXYEZiCXLajoCieG4=
+X-Google-Smtp-Source: ABdhPJyutAbwGJQ5EK+Xs6/1bApegrw0In6ODfXQw75ryb93ENY9m611dnqYXPdL0M3hez9NQNOlcQ==
+X-Received: by 2002:a50:9f8b:0:b0:413:2dbd:8793 with SMTP id
+ c11-20020a509f8b000000b004132dbd8793mr4179935edf.39.1645619189444; 
+ Wed, 23 Feb 2022 04:26:29 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f4d:2b00:19e2:181b:94d8:8cf0?
+ (p200300ea8f4d2b0019e2181b94d88cf0.dip0.t-ipconnect.de.
+ [2003:ea:8f4d:2b00:19e2:181b:94d8:8cf0])
+ by smtp.googlemail.com with ESMTPSA id y21sm7251806ejq.185.2022.02.23.04.26.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Feb 2022 04:26:28 -0800 (PST)
+Message-ID: <4701f080-ef18-dbb2-7dd9-d9171a73411f@gmail.com>
+Date: Wed, 23 Feb 2022 13:26:23 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Content-Language: en-US
+To: Alan Stern <stern@rowland.harvard.edu>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Linux USB Mailing List <linux-usb@vger.kernel.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
-Message-ID: <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
 References: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
+ <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
+In-Reply-To: <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220222_181016_769374_1E2A759B 
-X-CRM114-Status: GOOD (  21.96  )
+X-CRM114-CacheID: sfid-20220223_042631_205237_5ACA7A2F 
+X-CRM114-Status: GOOD (  23.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,58 +95,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Feb 22, 2022 at 10:13:09PM +0100, Heiner Kallweit wrote:
-> I get the "hub doesn't have any ports" error message on a system with
-> Amlogic S905W SoC. Seems the SoC has internal USB 3.0 supports but
-> is crippled with regard to USB 3.0 ports.
-> Maybe we shouldn't consider this scenario an error. So let's change
-> the message to info level, but otherwise keep the handling of the
-> scenario as it is today. With the patch it looks like this on my
-> system.
+On 23.02.2022 03:10, Alan Stern wrote:
+> On Tue, Feb 22, 2022 at 10:13:09PM +0100, Heiner Kallweit wrote:
+>> I get the "hub doesn't have any ports" error message on a system with
+>> Amlogic S905W SoC. Seems the SoC has internal USB 3.0 supports but
+>> is crippled with regard to USB 3.0 ports.
+>> Maybe we shouldn't consider this scenario an error. So let's change
+>> the message to info level, but otherwise keep the handling of the
+>> scenario as it is today. With the patch it looks like this on my
+>> system.
+>>
+>> dwc2 c9100000.usb: supply vusb_d not found, using dummy regulator
+>> dwc2 c9100000.usb: supply vusb_a not found, using dummy regulator
+>> dwc2 c9100000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
+>> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+>> xhci-hcd xhci-hcd.0.auto: hcc params 0x0228f664 hci version 0x100 quirks 0x0000000002010010
+>> xhci-hcd xhci-hcd.0.auto: irq 49, io mem 0xc9000000
+>> hub 1-0:1.0: USB hub found
+>> hub 1-0:1.0: 2 ports detected
+>> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+>> xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+>> usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+>> hub 2-0:1.0: USB hub found
+>> hub 2-0:1.0: hub has no ports, exiting
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>  drivers/usb/core/hub.c | 5 ++---
+>>  1 file changed, 2 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+>> index 83b5aff25..e3f40d1f4 100644
+>> --- a/drivers/usb/core/hub.c
+>> +++ b/drivers/usb/core/hub.c
+>> @@ -1423,9 +1423,8 @@ static int hub_configure(struct usb_hub *hub,
+>>  		ret = -ENODEV;
+>>  		goto fail;
+>>  	} else if (hub->descriptor->bNbrPorts == 0) {
+>> -		message = "hub doesn't have any ports!";
+>> -		ret = -ENODEV;
+>> -		goto fail;
+>> +		dev_info(hub_dev, "hub has no ports, exiting\n");
+>> +		return -ENODEV;
+>>  	}
+>>  
+>>  	/*
 > 
-> dwc2 c9100000.usb: supply vusb_d not found, using dummy regulator
-> dwc2 c9100000.usb: supply vusb_a not found, using dummy regulator
-> dwc2 c9100000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
-> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-> xhci-hcd xhci-hcd.0.auto: hcc params 0x0228f664 hci version 0x100 quirks 0x0000000002010010
-> xhci-hcd xhci-hcd.0.auto: irq 49, io mem 0xc9000000
-> hub 1-0:1.0: USB hub found
-> hub 1-0:1.0: 2 ports detected
-> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-> xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-> usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-> hub 2-0:1.0: USB hub found
-> hub 2-0:1.0: hub has no ports, exiting
+> How about instead changing xhci-hcd so that it doesn't try to register 
+> a USB-3 root hub if the controller doesn't have any USB-3 ports?  I 
+> think that would make more sense.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  drivers/usb/core/hub.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-> index 83b5aff25..e3f40d1f4 100644
-> --- a/drivers/usb/core/hub.c
-> +++ b/drivers/usb/core/hub.c
-> @@ -1423,9 +1423,8 @@ static int hub_configure(struct usb_hub *hub,
->  		ret = -ENODEV;
->  		goto fail;
->  	} else if (hub->descriptor->bNbrPorts == 0) {
-> -		message = "hub doesn't have any ports!";
-> -		ret = -ENODEV;
-> -		goto fail;
-> +		dev_info(hub_dev, "hub has no ports, exiting\n");
-> +		return -ENODEV;
->  	}
->  
->  	/*
+Right, this would be better. I checked and it seems to be a little bit
+bigger endeavor. If I let register_root_hub() fail, then this removes
+the USB3 bus/host (shared hcd), but also the USB2 bus/host.
+It took an additional change to xhci_plat_probe() to make it work on my
+system. Not sure what the impact could be on systems not using
+xhci_plat_probe(). Users may face the same issue like me, and having
+a USB3 hub with no ports may remove also the USB2 bus/host.
 
-How about instead changing xhci-hcd so that it doesn't try to register 
-a USB-3 root hub if the controller doesn't have any USB-3 ports?  I 
-think that would make more sense.
+What I can do: submit my patches as RFC, then there's a better basis
+for a discussion.
 
-Alan Stern
+> Alan Stern
+
+Heiner
 
 _______________________________________________
 linux-amlogic mailing list
