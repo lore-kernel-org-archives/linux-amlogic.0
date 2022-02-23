@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79397C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Feb 2022 18:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11967C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Feb 2022 18:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:References:Cc:To:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qh/KjYN/VC+tJaW+YTAfT8UlJfFNwQbku/2Z+MDQ0+Y=; b=GKjtyrA8KGR1bA
-	3ZUXTxhFlMDf1yf2DMJ7L1DsSHBQX5DPZxzrk+SbWEGvl47CdLaVvqbTNtoGBnDSqltK+XYCSDOK5
-	1Ixt1+SIt7UGj8iKie3lEdsoIWgEVpifFxbG9Xh6JcPcPXFIld6HhvQAKakEezNXiW8k/vaIYTvFG
-	RaImKdrJPnuvHQ9W0wNckGmUAdC6qIpytiL7qSfRskEQNgSqLr91BClkMylYccqE+IHwZUj6vgaSt
-	CdD3toTESrsTlQiYMSCxWC+rDzcb0oiMCNRedoPt9X2CDmaSLHwMwADm4PZuNK/jkXfvtDgEx2Ufl
-	L9mkZ5IDc9vBnXAe2wfg==;
+	List-Owner; bh=ZXgpavqVawkgE7OejrjhqqzlT6/wyadfgrsNc41DVXk=; b=bds1BzUoOKEFRA
+	/vLayByUqtBjSxAVwsI3nQl/Ih2Rkvng18tku7HZlytzrjwl9rzTvGJ690gskdux3aad7qacmDUba
+	O0RgCeXWDogfcjyRlpCKvof6OGJMd3pZaWTCX2X1aG/CqVZkPTHwa7qdjDFW5vmycsgkRb3lU2KSI
+	myPWYnxb5XKHg+qLmHCqTYo07EuNgv+IslrcqIJRo6nQLZgYRnPW/g3W+6q9SWoNcKwp7hMHxmenV
+	sTILYmcybpZYFit9RQ3fpT5FEBs4drwLbY0PYwyrSuvtmLcH4gPCEGZGdsdtcxFjUWG3sYTvSmPHh
+	E7GD33qnMQSYiRYe8p3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nMvyW-00Fdgw-Ul; Wed, 23 Feb 2022 18:02:52 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1nMvym-00FdmN-5b; Wed, 23 Feb 2022 18:03:08 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nMvyH-00Fdb8-KS; Wed, 23 Feb 2022 18:02:39 +0000
-Received: by mail-ed1-x529.google.com with SMTP id i11so43766943eda.9;
- Wed, 23 Feb 2022 10:02:36 -0800 (PST)
+ id 1nMvyJ-00FdbP-6w; Wed, 23 Feb 2022 18:02:40 +0000
+Received: by mail-ed1-x533.google.com with SMTP id cm8so35908752edb.3;
+ Wed, 23 Feb 2022 10:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:content-language:from:to:cc
- :references:subject:in-reply-to:content-transfer-encoding;
- bh=hoJN2xiYRR/AiZH+KyClQAfus1beCOFyquBC28PraRo=;
- b=BK5rJXWHEtAUExxO90vanXAuMqoIbonOIR0Fe500A/Wi0GoWYYxgDa3IWghcxGlaCA
- lEgtpUVFe1Rh9cz0ZD1iV9nCsIgHde2IGE5bixRcP61Y89haI6IOO8DkycQarHveeWH6
- zoO3+sC4X9et6j+eOY6kKCYiBEGFm0fuIxTDXhvXgphq60t6uYdTp9AhwZJhx3h0xLan
- Wo5KUbwhFKOaofDSP+O2GHPq/mxIhr6jVquB19CMuwkjV3N2/K1EMR0rmFcywDHZzfQo
- 7keaLYTqABYT6W83aGQtWFaZtw6g1U7sbT5Iovo/atgRM+3Ui/f7wq36fXhOVfNrQHV9
- hYUw==
+ h=message-id:date:mime-version:user-agent:subject:content-language
+ :from:to:cc:references:in-reply-to:content-transfer-encoding;
+ bh=6/CbbKb963ZeCrGB3DpHf3S/LmT0OSOkIfiP6ix0yNw=;
+ b=ja7eWC8yM81uxKYq1CCj7+E+5nx65m6I8TNqx8d1RSupI8Vu0xgsD4tbMjzlLJwNhq
+ vGNC6G8/8yNSBTQ3ffia3tNjLQ6zCcl5cl7vLEcJs7zvEiOsLWMHIX8hcj6fVysJ9YpC
+ LjwEe9AbpSRZWE9Z71vkOPl7H/KlZUg7SoF0biFC3edx50WUsiwAj2mDgPQNMHJzyZcx
+ da5dUsscp3Twr3zXlsZMp7pFexSsch0gIKY1bubBIdQp/1fyNhQbj0JK3Hz5DuaAtry4
+ 2G8QoaDP2RvOcxtBor7mFfgycQcWMDYCSljvCaUgsPc7N0MK7c5/er+2Soq+kPplpYSB
+ ppmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent
- :content-language:from:to:cc:references:subject:in-reply-to
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:from:to:cc:references:in-reply-to
  :content-transfer-encoding;
- bh=hoJN2xiYRR/AiZH+KyClQAfus1beCOFyquBC28PraRo=;
- b=rjrG/Te4c/5NV/2UJS0NqkCgdsQIjpp8Re/CaTIVNNRijPxkQO5l5aZvmFoKtxf+nm
- 1WVoOraL4OVh/0Dc11HEUNkV7xK6dZl4UsEhFzg0s4B/I3QMGBUCjPSnu0gZDgyn5+bh
- 03n1fQ1yaqimubW+4X+6jwLcMc892en22158J9kq47hUsZuxeoRVWxqxclfFYVuHNO/E
- 1eiFDqeIToTBnxQiSGKd4HuS7Y1rFXexfUjQPTZu3a79XxPZt7eL71ZXndFKllPIV0Q4
- 3e8bwoiT5QLjAexXENK0i6alhb0PB0g5uAhu0Xm6W7CaxQUFYHi5rWQZvsvkkB8FpgMK
- WhNQ==
-X-Gm-Message-State: AOAM53054irVJtGT4hvk8S5U8hMp1uastRF/LX0hzCR6c++TaUm3arWw
- g1YQgQwIIwX5q8eo3QIikUs=
-X-Google-Smtp-Source: ABdhPJycAljqrBPqD8wJMoiV0mKJVPvgLcNKwwPiK/7ua7Ct9CK5DDDW+9+DjFMwrvIt2BR8BIn/XQ==
-X-Received: by 2002:a05:6402:849:b0:412:8cf5:73db with SMTP id
- b9-20020a056402084900b004128cf573dbmr581155edz.237.1645639355841; 
- Wed, 23 Feb 2022 10:02:35 -0800 (PST)
+ bh=6/CbbKb963ZeCrGB3DpHf3S/LmT0OSOkIfiP6ix0yNw=;
+ b=VnC5SSo2WyIp4j0LL3rs3aQRmYBAjgxdOH3/+/2W/77b7WyvW06FmtKqiTOEY0lyXv
+ UGQ09C6tSxBKsBVtt8f5FNq8InkJds4HHxI+qWUNUz6ugL1MckGkbicEiXSsv5Lr8Iwq
+ Mvx5vkLYQDfqXCr6CjzPvuX8bdprrAYJ9zsmf9qLJyA9GPdlLHYLFoSpeR7Z7A2kb9OT
+ 7fFLVqdRPiGs7mi+FYwon9e6VEvLpXfdFH7v0rSjy+e4U28+HvL0Y3EsJ5iBi8VxjmIx
+ RPNtSG3nHPFM7n53pZBf7pS9083Kb3F2GEjvRhVidEMJTynNqQxcQn9CMOXpJAmRU/So
+ 6gKA==
+X-Gm-Message-State: AOAM533lMTqbpj3GetbyzyYlk1hcF47XHGGSDPcSOEW03OnmIOVYzjj1
+ xz5uy/VLvC652ftj7/3q7to=
+X-Google-Smtp-Source: ABdhPJxIxkN5KO0RrQP8fJuziJbk305Fhl7odZ4cFGCqWDzoQmWYzPbvl+qns8Vw3cc46SN25FRaoA==
+X-Received: by 2002:a05:6402:3485:b0:40d:e8eb:1dc1 with SMTP id
+ v5-20020a056402348500b0040de8eb1dc1mr602087edc.424.1645639357148; 
+ Wed, 23 Feb 2022 10:02:37 -0800 (PST)
 Received: from ?IPV6:2003:ea:8f4d:2b00:d12c:c0a:f603:b44d?
  (p200300ea8f4d2b00d12c0c0af603b44d.dip0.t-ipconnect.de.
  [2003:ea:8f4d:2b00:d12c:c0a:f603:b44d])
- by smtp.googlemail.com with ESMTPSA id k9sm138295eje.202.2022.02.23.10.02.34
+ by smtp.googlemail.com with ESMTPSA id n2sm170707ejl.55.2022.02.23.10.02.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Feb 2022 10:02:35 -0800 (PST)
-Message-ID: <2b7f0011-8872-70fa-b9b7-50b7817e7084@gmail.com>
-Date: Wed, 23 Feb 2022 18:59:31 +0100
+ Wed, 23 Feb 2022 10:02:36 -0800 (PST)
+Message-ID: <87fc1755-4047-2bcc-56cb-8e1d1cc66f7f@gmail.com>
+Date: Wed, 23 Feb 2022 19:00:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.1
+Subject: [PATCH v3 3/5] docs: ABI: document tm1628 attribute display-text
 Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -81,12 +82,10 @@ Cc: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
  Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>, Geert Uytterhoeven <geert+renesas@glider.be>
 References: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com>
-Subject: [PATCH v3 2/5] dt-bindings: auxdisplay: Add Titan Micro Electronics
- TM1628
 In-Reply-To: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220223_100237_706598_4DB28922 
-X-CRM114-Status: GOOD (  12.62  )
+X-CRM114-CacheID: sfid-20220223_100239_276080_A3D52F89 
+X-CRM114-Status: GOOD (  10.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,65 +97,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QWRkIGEgWUFNTCBzY2hlbWEgYmluZGluZyBmb3IgVE0xNjI4IGF1eGRpc3BsYXkKKDcvMTEtc2Vn
-bWVudCBMRUQpIGNvbnRyb2xsZXIuCgpUaGlzIHBhdGNoIGlzIHBhcnRpYWxseSBiYXNlZCBvbiBw
-cmV2aW91cyB3b3JrIGZyb20KQW5kcmVhcyBGw6RyYmVyIDxhZmFlcmJlckBzdXNlLmRlPi4KCkNv
-LURldmVsb3BlZC1ieTogQW5kcmVhcyBGw6RyYmVyIDxhZmFlcmJlckBzdXNlLmRlPgpTaWduZWQt
-b2ZmLWJ5OiBBbmRyZWFzIEbDpHJiZXIgPGFmYWVyYmVyQHN1c2UuZGU+CkNvLURldmVsb3BlZC1i
-eTogSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4KU2lnbmVkLW9mZi1ieTog
-SGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4KLS0tCnYzOgotIGZpeCByZW1h
-aW5pbmcgWUFNTCBpc3N1ZXMKLSB1c2UgQ28tRGV2ZWxvcGVkLWJ5Ci0tLQogLi4uL2JpbmRpbmdz
-L2F1eGRpc3BsYXkvdGl0YW5tZWMsdG0xNjI4LnlhbWwgIHwgOTIgKysrKysrKysrKysrKysrKysr
-KwogMSBmaWxlIGNoYW5nZWQsIDkyIGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDY0NCBE
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXV4ZGlzcGxheS90aXRhbm1lYyx0bTE2
-MjgueWFtbAoKZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9h
-dXhkaXNwbGF5L3RpdGFubWVjLHRtMTYyOC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2F1eGRpc3BsYXkvdGl0YW5tZWMsdG0xNjI4LnlhbWwKbmV3IGZpbGUgbW9kZSAx
-MDA2NDQKaW5kZXggMDAwMDAwMDAwLi4yYTFlZjY5MmMKLS0tIC9kZXYvbnVsbAorKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXV4ZGlzcGxheS90aXRhbm1lYyx0bTE2Mjgu
-eWFtbApAQCAtMCwwICsxLDkyIEBACisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIu
-MC1vci1sYXRlciBPUiBCU0QtMi1DbGF1c2UpCislWUFNTCAxLjIKKy0tLQorJGlkOiBodHRwOi8v
-ZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9hdXhkaXNwbGF5L3RpdGFubWVjLHRtMTYyOC55YW1sIwor
-JHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjCisK
-K3RpdGxlOiBUaXRhbiBNaWNybyBFbGVjdHJvbmljcyBUTTE2MjggTEVEIGNvbnRyb2xsZXIKKwor
-bWFpbnRhaW5lcnM6CisgIC0gQW5kcmVhcyBGw6RyYmVyIDxhZmFlcmJlckBzdXNlLmRlPgorICAt
-IEhlaW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+CisKK2FsbE9mOgorICAtICRy
-ZWY6IC9zY2hlbWFzL3NwaS9zcGktcGVyaXBoZXJhbC1wcm9wcy55YW1sIworCitwcm9wZXJ0aWVz
-OgorICBjb21wYXRpYmxlOgorICAgIGNvbnN0OiB0aXRhbm1lYyx0bTE2MjgKKworICByZWc6Cisg
-ICAgbWF4SXRlbXM6IDEKKworICBncmlkOgorICAgIGRlc2NyaXB0aW9uOgorICAgICAgTWFwcGlu
-ZyBvZiBkaXNwbGF5IGRpZ2l0IHBvc2l0aW9uIHRvIGdyaWQgbnVtYmVyLgorICAgICAgVGhpcyBp
-bXBsaWNpdGx5IGRlZmluZXMgdGhlIGRpc3BsYXkgc2l6ZS4KKyAgICAkcmVmOiAvc2NoZW1hcy90
-eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50OC1hcnJheQorICAgIG1pbkl0ZW1zOiAxCisgICAg
-bWF4SXRlbXM6IDcKKworICBzZWdtZW50LW1hcHBpbmc6CisgICAgZGVzY3JpcHRpb246CisgICAg
-ICBNYXBwaW5nIG9mIDcgc2VnbWVudCBkaXNwbGF5IHNlZ21lbnRzIEEtRyB0byBiaXQgbnVtYmVy
-cyAxLTEyLgorICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQ4
-LWFycmF5CisgICAgbWluSXRlbXM6IDcKKyAgICBtYXhJdGVtczogNworCisgICIjYWRkcmVzcy1j
-ZWxscyI6CisgICAgY29uc3Q6IDIKKworICAiI3NpemUtY2VsbHMiOgorICAgIGNvbnN0OiAwCisK
-K3JlcXVpcmVkOgorICAtIGNvbXBhdGlibGUKKyAgLSByZWcKKworcGF0dGVyblByb3BlcnRpZXM6
-CisgICJeLipAWzEtN10sKFsxLTldfDFbMC02XSkkIjoKKyAgICB0eXBlOiBvYmplY3QKKyAgICAk
-cmVmOiAvc2NoZW1hcy9sZWRzL2NvbW1vbi55YW1sIworICAgIHVuZXZhbHVhdGVkUHJvcGVydGll
-czogZmFsc2UKKyAgICBkZXNjcmlwdGlvbjogfAorICAgICAgUHJvcGVydGllcyBmb3IgYSBzaW5n
-bGUgTEVELgorCisgICAgcHJvcGVydGllczoKKyAgICAgIHJlZzoKKyAgICAgICAgZGVzY3JpcHRp
-b246IHwKKyAgICAgICAgICAxLWJhc2VkIGdyaWQgbnVtYmVyLCBmb2xsb3dlZCBieSAxLWJhc2Vk
-IHNlZ21lbnQgYml0IG51bWJlci4KKyAgICAgICAgbWF4SXRlbXM6IDEKKworICAgIHJlcXVpcmVk
-OgorICAgICAgLSByZWcKKwordW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQorCitleGFtcGxl
-czoKKyAgLSB8CisgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2xlZHMvY29tbW9uLmg+CisKKyAg
-ICBzcGkgeworICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsKKyAgICAgICAgI3NpemUtY2Vs
-bHMgPSA8MD47CisKKyAgICAgICAgbGVkLWNvbnRyb2xsZXJAMCB7CisgICAgICAgICAgICBjb21w
-YXRpYmxlID0gInRpdGFubWVjLHRtMTYyOCI7CisgICAgICAgICAgICByZWcgPSA8MD47CisgICAg
-ICAgICAgICBzcGktMy13aXJlOworICAgICAgICAgICAgc3BpLWxzYi1maXJzdDsKKyAgICAgICAg
-ICAgIHNwaS1tYXgtZnJlcXVlbmN5ID0gPDUwMDAwMD47CisgICAgICAgICAgICBncmlkID0gL2Jp
-dHMvIDggPDQgMyAyIDE+OworICAgICAgICAgICAgc2VnbWVudC1tYXBwaW5nID0gL2JpdHMvIDgg
-PDQgNSA2IDEgMiAzIDc+OworICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8Mj47CisgICAg
-ICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsKKworICAgICAgICAgICAgYWxhcm1uQDUsNCB7Cisg
-ICAgICAgICAgICAgICAgcmVnID0gPDUgND47CisgICAgICAgICAgICAgICAgZnVuY3Rpb24gPSBM
-RURfRlVOQ1RJT05fQUxBUk07CisgICAgICAgICAgICB9OworICAgICAgICB9OworICAgIH07Cisu
-Li4KLS0gCjIuMzUuMQoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+Document the attribute for reading / writing the text to be displayed on
+the 7 segment display.
+
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628 | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
+
+diff --git a/Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628 b/Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
+new file mode 100644
+index 000000000..382757e72
+--- /dev/null
++++ b/Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
+@@ -0,0 +1,7 @@
++What:		/sys/devices/.../display-text
++Date:		February 2022
++Contact:	Heiner Kallweit <hkallweit1@gmail.com>
++Description:
++		The text to be displayed on the 7 segment display.
++		Any printable character is allowed as input, but some
++		can not be displayed in a readable way with 7 segments.
+-- 
+2.35.1
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
