@@ -4,91 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1C3C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:02:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA25FC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:07:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6i3GpSBDId1g7LskEsHCyXFW8IyvQ4p4hk8889F1FHA=; b=bhWfzZI/GhA3YD
-	n5OCQNm+sdambeG/Y2XWcmPtnWy/a0wnHTWG19QJuV7xTu+frLWn2DwjLpNgXxKCM/UpmfwUFlQeg
-	+7qtKX885mUNgtl6KGBnxuOF4EzhNtYFkp29JiXrMAIsjwi6M2yPyl7eQOqOn4BbpOytzlnu+eCG+
-	KM+xz7SxANZpq8MXvQ9V5tDSxbNZWjs/BgLuafuapML9/nLAneKCM5azhQ0/aqvD/7ROKDjVjPeTU
-	0tnbnEFrU/rLpMvGAYP9s1qXGLSlZ6tcyOEEzKA1HnUqNkO5L0nUaiM1HuyxGGnYpMQyDptaCrhTd
-	rgGbD6vW14kuKyY15Mtw==;
+	List-Owner; bh=h0qHOd3Pzhu/6IDYnP8/YSUrPqM6UynKEiBdcmHdp8w=; b=NlGQPbvnUcvZbR
+	101jEFNh+pYEsr/v2yVugigm2iiHNL3V7woUh/GmMnJjWRNMmjahSp2yxptUB1X+fOX/xYKXP+k9V
+	otoRZ48HxQC7YwBR0KWUtP/EZqzaFrEPrCKXHvvIE1/SP9y9j7QoPSex1oOAYUSLfb2CELViXC0We
+	2c6CAXIIhF4W8Yf9E/Rm0dd6cLeaxTPm5kySaaMsSFpGRBreZrfoy04kS9GI3WIVpNi5Bz012Z1SN
+	xRLtspiuTN8S/Q82MNbP3/GrOTDf/i522KV3YTUiV5/ZMbJ8JseYiSXjsNIJsss6nmMrkE6kUZieH
+	RTM7YGZInIjTdssH6XCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nNKJw-002GG0-8k; Thu, 24 Feb 2022 20:02:36 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+	id 1nNKOR-002HC4-Az; Thu, 24 Feb 2022 20:07:15 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nNKJd-002G90-HZ; Thu, 24 Feb 2022 20:02:18 +0000
-Received: by mail-ej1-x631.google.com with SMTP id lw4so6578410ejb.12;
- Thu, 24 Feb 2022 12:02:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language
- :from:to:cc:references:in-reply-to:content-transfer-encoding;
- bh=XMOMyaP+5tw/NTE2jwKE8j7Rm2F5qsTyT92ajHBSVzE=;
- b=CO0fSRAek4bdCwTabHBOyTV//bomfxsKiwtf24TvCt3E/ghibT7nI1SwynRANTKZOH
- sJ5EwBa/MKMV0M7Ao2dpvFihZJ4Sp5cnH3tBViWUwjUPSBikbQVXGsZCO4+n3t3ikBb+
- SCob2GZQT5W0WUeCOtSEQRImMwq59WQ4F4UowavJeojoDvMGtoyOgypJAYGw02O6rvVK
- iOD9aWd6bMTaN/0Kd3bVHT+8lw84NMZVfp+FuUwOKx4nJ/wtZ4Dv4xR5sRmH40p3T8Ja
- 0xeOHNlu6Zi7pxQQM0Z7ohNbwZ/P0XaRr00mOFcjfUH5Q4CMKWG5jxRiMI7uDHAQfUGt
- txng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:from:to:cc:references:in-reply-to
- :content-transfer-encoding;
- bh=XMOMyaP+5tw/NTE2jwKE8j7Rm2F5qsTyT92ajHBSVzE=;
- b=4oDDan0mld7R+OnHJOA+WIPiLCPqqI9TRq8GwpBfsycuWPHy4kstpHzyC82cBhRMra
- LM9LdQnDldLL5iNiv4+pPg5v+FE5GhDBu2DlvaJqeswr2mz26XkH93KhD4LpOT+GhGD8
- 5gRS4ZOquPtY9vt6g/35S2u54tLLcwldy9ypIPqkE6KSzZSUvux8oi8bEoygmdTenw7Y
- 9/d8GsHRiB+vRPHcFgoCm8A7zOX5sda+MQ2pYEeBTluT8MqNnvNYGjK909JM4JOGJ7E1
- S46W1BcgGH0YZKPsrDdrM6F4Nl5YFCrgq5HbFu1pPL7uuZf8kyvTjVYep3rZP3sV7BU3
- eOVQ==
-X-Gm-Message-State: AOAM533m8bz9BQdKPAGfpZVKDDx0jg58WvF3FGH5k+P2P3U0gnTS4Sc5
- MTZpi0RuRI9canT0I33JmHc=
-X-Google-Smtp-Source: ABdhPJwoQF7agrZ0iFxeuqZW1ispp3xWQbui3gq2JpfwyFy+q8EbyiXnrW3yIfB7IUj7ep7750dKaQ==
-X-Received: by 2002:a17:906:3b4b:b0:6d3:4b9f:1764 with SMTP id
- h11-20020a1709063b4b00b006d34b9f1764mr3423702ejf.345.1645732935531; 
- Thu, 24 Feb 2022 12:02:15 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd?
- (p200300ea8f4d2b0070ade6bd1cea7edd.dip0.t-ipconnect.de.
- [2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd])
- by smtp.googlemail.com with ESMTPSA id
- b22-20020aa7df96000000b0040fb8c4806fsm224276edy.93.2022.02.24.12.02.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 24 Feb 2022 12:02:14 -0800 (PST)
-Message-ID: <0d3c7622-24c9-f348-010e-a98aca251986@gmail.com>
-Date: Thu, 24 Feb 2022 21:02:14 +0100
+ id 1nNKOO-002HBP-JV
+ for linux-amlogic@lists.infradead.org; Thu, 24 Feb 2022 20:07:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1645733233; x=1677269233;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=oquRCPOPHkcQQcJh58aabPmPBddWqn9vbC+KkdzPF9A=;
+ b=hWP3XDt5wWwzrxlMdhq/eOlQVxgSzdK5LOdwuj6dxZkOgiq4gMW+YPCx
+ 5XsHUC4x2YmVudC3Yu1ehb0niwGSRPXCjVHO1DvQNWN5/RNWGO/4hJzmg
+ l4nlfGKZWNOOpm3YXF2P9ebankXJxkT98AUs+SPMul5IH3BoFPQR/YRzD E=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 24 Feb 2022 12:07:11 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 12:06:40 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 24 Feb 2022 12:06:39 -0800
+Received: from jackp-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 24 Feb 2022 12:06:39 -0800
+Date: Thu, 24 Feb 2022 12:06:38 -0800
+From: Jack Pham <quic_jackp@quicinc.com>
+To: Alan Stern <stern@rowland.harvard.edu>, Heiner Kallweit
+ <hkallweit1@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Linux USB Mailing List
+ <linux-usb@vger.kernel.org>, "open list:ARM/Amlogic Meson..."
+ <linux-amlogic@lists.infradead.org>, Tung Nguyen <tunguyen@apm.com>, "Mathias
+ Nyman" <mathias.nyman@intel.com>
+Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
+Message-ID: <20220224200637.GE13801@jackp-linux.qualcomm.com>
+References: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
+ <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
+ <4701f080-ef18-dbb2-7dd9-d9171a73411f@gmail.com>
+ <YhZB9C/xGaoslZzT@rowland.harvard.edu>
+ <131166ee-9926-2eb5-2abd-6bab294d2937@gmail.com>
+ <Yhaxb0OvMwLtd6vr@rowland.harvard.edu>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: [PATCH v4 1/6] dt-bindings: vendor-prefixes: Add Titan Micro
- Electronics
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
- =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
- Miguel Ojeda <ojeda@kernel.org>
-Cc: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Geert Uytterhoeven <geert+renesas@glider.be>
-References: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
-In-Reply-To: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
+Content-Disposition: inline
+In-Reply-To: <Yhaxb0OvMwLtd6vr@rowland.harvard.edu>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220224_120217_603786_702874BA 
-X-CRM114-Status: UNSURE (   6.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220224_120712_701292_AB975C06 
+X-CRM114-Status: GOOD (  21.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,28 +85,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogQW5kcmVhcyBGw6RyYmVyIDxhZmFlcmJlckBzdXNlLmRlPgoKQXNzaWduIHZlbmRvciBw
-cmVmaXggInRpdGFubWVjIiwgbWF0Y2hpbmcgdGhlaXIgZG9tYWluIG5hbWUuCgpBY2tlZC1ieTog
-Um9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4KU2lnbmVkLW9mZi1ieTogQW5kcmVhcyBGw6Ry
-YmVyIDxhZmFlcmJlckBzdXNlLmRlPgpTaWduZWQtb2ZmLWJ5OiBIZWluZXIgS2FsbHdlaXQgPGhr
-YWxsd2VpdDFAZ21haWwuY29tPgotLS0KIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy92ZW5kb3ItcHJlZml4ZXMueWFtbCB8IDIgKysKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlv
-bnMoKykKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVu
-ZG9yLXByZWZpeGVzLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVu
-ZG9yLXByZWZpeGVzLnlhbWwKaW5kZXggZTA2MmE4MTg3Li42ZmZkZWM5MWYgMTAwNjQ0Ci0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbAor
-KysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVzLnlh
-bWwKQEAgLTEyMzgsNiArMTIzOCw4IEBAIHBhdHRlcm5Qcm9wZXJ0aWVzOgogICAgIGRlc2NyaXB0
-aW9uOiBUZXhhcyBJbnN0cnVtZW50cwogICAiXnRpYW5tYSwuKiI6CiAgICAgZGVzY3JpcHRpb246
-IFRpYW5tYSBNaWNyby1lbGVjdHJvbmljcyBDby4sIEx0ZC4KKyAgIl50aXRhbm1lYywuKiI6Cisg
-ICAgZGVzY3JpcHRpb246IFNoZW56aGVuIFRpdGFuIE1pY3JvIEVsZWN0cm9uaWNzIENvLiwgTHRk
-LgogICAiXnRsbSwuKiI6CiAgICAgZGVzY3JpcHRpb246IFRydXN0ZWQgTG9naWMgTW9iaWxpdHkK
-ICAgIl50bXQsLioiOgotLSAKMi4zNS4xCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Wed, Feb 23, 2022 at 05:13:03PM -0500, Alan Stern wrote:
+> On Wed, Feb 23, 2022 at 09:58:56PM +0100, Heiner Kallweit wrote:
+> > On 23.02.2022 15:17, Alan Stern wrote:
+> > > Don't change register_root_hub().  Just change xhci_plat_probe(); make 
+> > > it skip the second call to usb_add_hcd() if there are no USB-3 ports.
+
+I believe this had been attempted in the past, but it does not appear
+that patch was ever accepted:
+
+https://lore.kernel.org/linux-usb/1517221474-19627-1-git-send-email-tqnguyen@apm.com/
+
+Jack
+
+> > This works on my system. However a consequence is that xhci->shared_hcd
+> > is NULL.
+> 
+> Why is that?  xhci->shared_hcd doesn't get set in usb_add_hcd(), so 
+> skipping that call shouldn't cause it to be NULL.
+> 
+> Note: If you skip calling usb_add_hcd(), you will also have to skip the 
+> corresponding call to usb_remove_hcd().  There may be a few more 
+> subtleties involved as well; like I said before, I'm not an expert on 
+> this driver.  You should ask the xhci-hcd maintainer for advice.
+> 
+> Alan Stern
+> 
+> >  There are a few places like the following in xhci.c where
+> > this may result in a NPE. Not knowing the USB subsystem in detail
+> > I can't say whether these places are in any relevant path.
+> > 
+> > static int xhci_run_finished(struct xhci_hcd *xhci)
+> > {
+> >         if (xhci_start(xhci)) {
+> >                 xhci_halt(xhci);
+> >                 return -ENODEV;
+> >         }
+> >         xhci->shared_hcd->state = HC_STATE_RUNNING;
+> > 
+> > 
+> > 
+> > > Alan Stern
+> > > 
+> > >> What I can do: submit my patches as RFC, then there's a better basis
+> > >> for a discussion.
+> > >>
+> > >>> Alan Stern
+> > >>
+> > >> Heiner
+> > 
+> > Heiner
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
