@@ -4,52 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB29EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:21:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E601DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:22:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3tiWFtwptHUwiYWpFnLRxJwMMJMOGUX603rBkTZADYo=; b=R2q7ck5AxLUmm5
-	E4JDWwBesSiv3k0bGn2mNLVjxRN1WEq/Eimmv4GshA5QRpxTjTS7VWskRJhXMYQXaxDs7EXWQDkdc
-	c6vgPKlLpruUqBrITxtzCfi+kJPNQ8mLhp/RVorhDHsoR4fXzlrLG4ZUtykWtagPMe878Mi4X0Vkk
-	O+noiTPvrlgfQ59QsrM+lItyFcWuBUOFc0kqkpRr+71QZW61BOvAB3b6H4BdKUL5hvDz/CxtUWimx
-	uaRXB5lUt635PAQTqqk0l1X6wYHi+JXYglHUkVISgBJwfsSuspZkDogrOUvg+iuNk64tXMk36hX7i
-	+bzlEyW7TWZ/r4wLTZfw==;
+	List-Owner; bh=IeQhLmV365Nh5wf+xOlQ1asFDvcmb/4tOuL2yfB+d2c=; b=U7Zt8j71l/Etrx
+	hdB4qFroNl0drweZvKwKDX6EywoM+92V1XjNS5Z2DT+/tRxEkurNXD5QG95+Jj17dc4beBOVx+Mcc
+	Qh+t0Qin/xr7WoPIqYLGDzszhkHifnJlWkIS1uMWfZXblBt5UJBW3gYyVI9FOWpab6Xrzxtemv4N+
+	3MJxX9XgTfncfWoLUWE4MS19IKEj4IBiTGnLbhsf9LS89k3IgHto+9y3FqjtT6Qk/uinHY/+KN3wQ
+	SbJqDHfKnJ/b/WK/V/yNvNnYAQJlSQpto5xOWffnmuvKHMoO531UnI99Rti7KlahoehugSR9PWQcy
+	7D3GBFhWlgSCEftHZlfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nNKc6-002KlR-Ju; Thu, 24 Feb 2022 20:21:22 +0000
-Received: from netrider.rowland.org ([192.131.102.5])
- by bombadil.infradead.org with smtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nNKc3-002KkK-1W
- for linux-amlogic@lists.infradead.org; Thu, 24 Feb 2022 20:21:20 +0000
-Received: (qmail 1057734 invoked by uid 1000); 24 Feb 2022 15:21:14 -0500
-Date: Thu, 24 Feb 2022 15:21:14 -0500
-From: Alan Stern <stern@rowland.harvard.edu>
+	id 1nNKda-002L1r-Gv; Thu, 24 Feb 2022 20:22:54 +0000
+Received: from mail-oi1-f182.google.com ([209.85.167.182])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nNKdN-002Kyc-P9; Thu, 24 Feb 2022 20:22:43 +0000
+Received: by mail-oi1-f182.google.com with SMTP id p15so4767706oip.3;
+ Thu, 24 Feb 2022 12:22:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=AQE4AnwIVz+0iF8nufHOjdzMhDHazp/XagGhyvKub5Y=;
+ b=fiTZnLyHoXuGf536pfLxp1y0fGMaYQv42cT/nowPUj1HRFavhNlzivxa9RmvAtjOio
+ 2GN0GPK7PaHfOqLqJWOnFnUynpMePebr3hXcJsEo2Ya3uiuzyVA4lrqfZ/VKusnGLBV3
+ NWZB7xytzlDTHNSgTdij05m2t0nhsLNvWmK3yWF/kR+HcuSb7gWTntw0U1BmpXR+ZVON
+ jdbAdyFaO32buSG2+J6XHRUev933nQMAian28nxcsSpYttHbHU4LjG1gBNwz9Iu+HFxK
+ dzR1usspvV0XUIDZTfiVAtejKn1CzY+zJetUj4vBYf8gnK3tAWdtrBJAGX/nYPzWNLOo
+ i/WA==
+X-Gm-Message-State: AOAM5331fKR4D1wI+Snis/oIqL9CVN19/KxJiM8s7H5XENx/6xZXKp17
+ UFMbeZg1VaKDnRtH2zUXgg==
+X-Google-Smtp-Source: ABdhPJwfBrQb6gfJqoZaI2I5EjFPNP+FuBP0Acipmhp6nabxeKxtSNtfgRIJ+DxqWy//4jsyuZl6ZQ==
+X-Received: by 2002:a05:6870:e2c6:b0:d6:cca1:2144 with SMTP id
+ w6-20020a056870e2c600b000d6cca12144mr1994776oad.267.1645734160806; 
+ Thu, 24 Feb 2022 12:22:40 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
+ [66.90.148.213]) by smtp.gmail.com with ESMTPSA id
+ i47-20020a9d172f000000b005aed7ea7b44sm144231ota.73.2022.02.24.12.22.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Feb 2022 12:22:40 -0800 (PST)
+Received: (nullmailer pid 3522835 invoked by uid 1000);
+ Thu, 24 Feb 2022 20:22:39 -0000
+Date: Thu, 24 Feb 2022 14:22:39 -0600
+From: Rob Herring <robh@kernel.org>
 To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jack Pham <quic_jackp@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux USB Mailing List <linux-usb@vger.kernel.org>,
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+ Miguel Ojeda <ojeda@kernel.org>,
+ "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Tung Nguyen <tunguyen@apm.com>, Mathias Nyman <mathias.nyman@intel.com>
-Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
-Message-ID: <YhfougN/KOTZeGV7@rowland.harvard.edu>
-References: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
- <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
- <4701f080-ef18-dbb2-7dd9-d9171a73411f@gmail.com>
- <YhZB9C/xGaoslZzT@rowland.harvard.edu>
- <131166ee-9926-2eb5-2abd-6bab294d2937@gmail.com>
- <Yhaxb0OvMwLtd6vr@rowland.harvard.edu>
- <20220224200637.GE13801@jackp-linux.qualcomm.com>
- <7522820e-0b6d-7e2b-89db-30329c6c2245@gmail.com>
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v3 2/5] dt-bindings: auxdisplay: Add Titan Micro
+ Electronics TM1628
+Message-ID: <YhfpD9qfcuAlC+wp@robh.at.kernel.org>
+References: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com>
+ <2b7f0011-8872-70fa-b9b7-50b7817e7084@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <7522820e-0b6d-7e2b-89db-30329c6c2245@gmail.com>
+In-Reply-To: <2b7f0011-8872-70fa-b9b7-50b7817e7084@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220224_122119_271380_FA037AAD 
-X-CRM114-Status: GOOD (  25.15  )
+X-CRM114-CacheID: sfid-20220224_122241_848474_16E48D0A 
+X-CRM114-Status: GOOD (  19.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,78 +87,158 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 24, 2022 at 09:16:05PM +0100, Heiner Kallweit wrote:
-> On 24.02.2022 21:06, Jack Pham wrote:
-> > On Wed, Feb 23, 2022 at 05:13:03PM -0500, Alan Stern wrote:
-> >> On Wed, Feb 23, 2022 at 09:58:56PM +0100, Heiner Kallweit wrote:
-> >>> On 23.02.2022 15:17, Alan Stern wrote:
-> >>>> Don't change register_root_hub().  Just change xhci_plat_probe(); make 
-> >>>> it skip the second call to usb_add_hcd() if there are no USB-3 ports.
-> > 
-> > I believe this had been attempted in the past, but it does not appear
-> > that patch was ever accepted:
-> > 
-> > https://lore.kernel.org/linux-usb/1517221474-19627-1-git-send-email-tqnguyen@apm.com/
-> > 
-> I also found that xhci at several places relies on a proper shared_hcd,
-> even if there are no USB3 ports. Therefore maybe go with the less invasive
-> original version of my patch?
-> 
-> https://www.spinics.net/lists/linux-usb/msg222998.html
+On Wed, Feb 23, 2022 at 06:59:31PM +0100, Heiner Kallweit wrote:
+> Add a YAML schema binding for TM1628 auxdisplay
+> (7/11-segment LED) controller.
+> =
 
-The patch that Jack refers to, written by Tung Nguyen, does always 
-create the shared_hcd.  It simply avoids registering the shared_hcd 
-when there are no USB-3 ports.
+> This patch is partially based on previous work from
+> Andreas F=E4rber <afaerber@suse.de>.
+> =
 
-You should try that patch and see if it works on your system.
+> Co-Developed-by: Andreas F=E4rber <afaerber@suse.de>
+> Signed-off-by: Andreas F=E4rber <afaerber@suse.de>
+> Co-Developed-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v3:
+> - fix remaining YAML issues
+> - use Co-Developed-by
+> ---
+>  .../bindings/auxdisplay/titanmec,tm1628.yaml  | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec=
+,tm1628.yaml
+> =
 
-Alan Stern
+> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628=
+.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+> new file mode 100644
+> index 000000000..2a1ef692c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm1628.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Titan Micro Electronics TM1628 LED controller
+> +
+> +maintainers:
+> +  - Andreas F=E4rber <afaerber@suse.de>
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: titanmec,tm1628
+> +
+> +  reg:
+> +    maxItems: 1
+> +
 
-> > Jack
-> > 
-> >>> This works on my system. However a consequence is that xhci->shared_hcd
-> >>> is NULL.
-> >>
-> >> Why is that?  xhci->shared_hcd doesn't get set in usb_add_hcd(), so 
-> >> skipping that call shouldn't cause it to be NULL.
-> >>
-> >> Note: If you skip calling usb_add_hcd(), you will also have to skip the 
-> >> corresponding call to usb_remove_hcd().  There may be a few more 
-> >> subtleties involved as well; like I said before, I'm not an expert on 
-> >> this driver.  You should ask the xhci-hcd maintainer for advice.
-> >>
-> >> Alan Stern
-> >>
-> >>>  There are a few places like the following in xhci.c where
-> >>> this may result in a NPE. Not knowing the USB subsystem in detail
-> >>> I can't say whether these places are in any relevant path.
-> >>>
-> >>> static int xhci_run_finished(struct xhci_hcd *xhci)
-> >>> {
-> >>>         if (xhci_start(xhci)) {
-> >>>                 xhci_halt(xhci);
-> >>>                 return -ENODEV;
-> >>>         }
-> >>>         xhci->shared_hcd->state = HC_STATE_RUNNING;
-> >>>
-> >>>
-> >>>
-> >>>> Alan Stern
-> >>>>
-> >>>>> What I can do: submit my patches as RFC, then there's a better basis
-> >>>>> for a discussion.
-> >>>>>
-> >>>>>> Alan Stern
-> >>>>>
-> >>>>> Heiner
-> >>>
-> >>> Heiner
-> 
+> +  grid:
+> +    description:
+> +      Mapping of display digit position to grid number.
+> +      This implicitly defines the display size.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 1
+> +    maxItems: 7
+> +
+> +  segment-mapping:
+> +    description:
+> +      Mapping of 7 segment display segments A-G to bit numbers 1-12.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 7
+> +    maxItems: 7
+
+Are these properties useful for any 7 segment display or specific to =
+
+this controller?
+
+The commit msg mentions 11 segment display. Does this need to be?:
+
+oneOf:
+  - minItems: 7
+    maxItems: 7
+  - minItems: 11
+    maxItems: 11
+
+
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +patternProperties:
+> +  "^.*@[1-7],([1-9]|1[0-6])$":
+> +    type: object
+> +    $ref: /schemas/leds/common.yaml#
+> +    unevaluatedProperties: false
+> +    description: |
+> +      Properties for a single LED.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          1-based grid number, followed by 1-based segment bit number.
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        led-controller@0 {
+> +            compatible =3D "titanmec,tm1628";
+> +            reg =3D <0>;
+> +            spi-3-wire;
+> +            spi-lsb-first;
+> +            spi-max-frequency =3D <500000>;
+> +            grid =3D /bits/ 8 <4 3 2 1>;
+> +            segment-mapping =3D /bits/ 8 <4 5 6 1 2 3 7>;
+> +            #address-cells =3D <2>;
+> +            #size-cells =3D <0>;
+> +
+> +            alarmn@5,4 {
+> +                reg =3D <5 4>;
+> +                function =3D LED_FUNCTION_ALARM;
+> +            };
+> +        };
+> +    };
+> +...
+> -- =
+
+> 2.35.1
+> =
+
+> =
+
+> =
+
 
 _______________________________________________
 linux-amlogic mailing list
