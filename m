@@ -4,90 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B223C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:13:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF98DC433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Feb 2022 20:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lrbKSvIbzCvWx087feUH4nod33gfC4qSpQ+gf0UY7nE=; b=WCZ8MYPAxqDHiK
-	nZwKWXGCQmfKCysCmuotrctikfs0HntskA0BrPZSOnMjFobFJQCFWuJWyeI6rGx9vU013MaovaVJv
-	qtqImNQXqSbkav7/TDtmlVA59sn5BdeN2MbFv6dWZ8SdQ/6zvcE+tahYh0K7V8HDdsiKNMXPqcsDs
-	jfbS8mBS3INBrJIQZFkcwUZnPPi2JWH3UnXnSdMwb/+7K8mWaPTPpHAYTYzdmv8z3AAtIHQSOBDtJ
-	tco3E+HvQQ8dFNLGF4NtxQhZEasRsROqPU4z4Cpd2Hi+JZhn4jcnh9s7htlNEYQmF5NIQEACvtgg+
-	lFRJHAYqfWJtUnTa5m8A==;
+	List-Owner; bh=7SWaY2dnFPanAo/fIy1KyLQnRqEMoK4Ez9yF0+Tj41w=; b=2kax08Pf7Q1xxW
+	NYsddpyTgmXvpKFuS9ot6PFt5B8heQeCRxzpF28zfKMrZ/tZV+qXCiV2URRjcQf8beHFeQMzEwaRT
+	7HD6V0e5J8hfFT+q6zjxERVcuqHWsxNRGkyw1hztZCIkWpv1AC+Qo+uJViXoNN4FuCySHbKrTFOsm
+	gAaxt4OHEsRSrTceiWV6fwVLgjNgyIuLjBz0Wc02fj/WjbRgsbEtOtSQzz5a2bUwT+W//Jlm3WvAL
+	VcciEnAWgaAfimh/X7/Gi5eggtHo6Xl0WAHXD09njlZt7S3tL3AeftLoDj/vMaFhfHA92Ieeflh1C
+	FZdql4Ggmr5A8qXPXuig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nNKU1-002IOE-FI; Thu, 24 Feb 2022 20:13:01 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1nNKX8-002JeT-Vl; Thu, 24 Feb 2022 20:16:15 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nNKSe-002Hjn-VZ; Thu, 24 Feb 2022 20:11:38 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id s1so4424396edd.13;
- Thu, 24 Feb 2022 12:11:36 -0800 (PST)
+ id 1nNKX6-002Jcp-3T
+ for linux-amlogic@lists.infradead.org; Thu, 24 Feb 2022 20:16:13 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id bg10so6713015ejb.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 24 Feb 2022 12:16:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language
- :from:to:cc:references:in-reply-to:content-transfer-encoding;
- bh=e5NyuFcM6LQ6ck24zC5Lh3fqt3x4cs5RkTNn8b8l2Vk=;
- b=WW8m6ltpaXjzsUeL8mbZAG+qShtaE0rRC0oJsgH8l16Cgy1HBjPK4SjOi6cc9YXKLY
- FUJfNFr4zzbeWHGgcbrVYOkyb359yLsSYLIrICroCc8Dfz4N/OTVGEFeAQkxOPu1f4fW
- PdpD74HRc1Mh9mlT8MkTomiwLIow77sUEE7l5bCUAs1MTdH8+GjcMaAHlm/i3oW9N6lW
- Si0W3p3tf3bl4ssdMwkdDn6imwemZIgV1yNF8z8s2AjajQPK0btKxnLUyZkCK8p8XCxF
- Pw8OXgy/8d/mAVufBvqg3c7mwsawDB35XWDB57W2ZxP9rBvOon7fcgYsVtfbpk58Rlmf
- OfHA==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=2kiO1t+7NFcOlx4ftFXU17rhmXrl+ejVO/EZEfGgLjY=;
+ b=NJG0nqzeOwZE5M+c1zqS4A8E2j29NoBBRzsIe+k2hBoZKX2uydYl646j2mu3OvSBXQ
+ ETSsZOQVJf0zhuvWU3bKmGpkpmNTtfhtgKEciYL3v00IXTubNxQCfVsASaLIpjSTxYK6
+ U9xmxTzMH2HaE7e8ldFtBpMAnze9eF5gOe/JNiGNZorJT8PF96d5PRzCoE27VEhKD7hm
+ tVDMCcwWnfW0DaniFBpJTI3mgnlsRntftfLwqibagqwOx2ECQKTRcb+nnSHNQ8WcHKa+
+ fJAsaGAnnO57Fm+8nm5QR7tamz1badl6X7rojFSuFl7bOpI05gYO/Vxa9Gr4eloiug9a
+ XXvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:from:to:cc:references:in-reply-to
+ :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=e5NyuFcM6LQ6ck24zC5Lh3fqt3x4cs5RkTNn8b8l2Vk=;
- b=zp44qXw91Yy8eaqLjhU5fGUxnMmMonT2fHLNDt18Dm/sGDL3cqRIvmT/ELWshQnNga
- FxTrbzbdtgtAfvmQQUgy1TGqTBn1PkaZUg7rWPi79BLcWiUDSX4FIu8PArVMF+SERoZP
- LSJlSgHUGYrQO1iTzDWb1RTvi9LSTelB4M1ouT07Ayj2y8l+OSID1WWpsLYxV9gvBbJ9
- 8mVL3JbnPAtFDiLFFZyiL637GUG/zsBNm2gBef8IKSPf1GGqIfkvUEm+rkxy1tNoZwU5
- VGZ96adXSBeTTdtTnmrCTZ9p9GnZ44hBzrsZnPayUp3PwxrVDzZ5s9Fadk1iOUievIf8
- qV4g==
-X-Gm-Message-State: AOAM531au1ENac+r7vTPkB6AE1E57X9JFX8hVnltFOr/B9LHLtjghin2
- q+6MTk9OhpsmX/4XQD3nHoc=
-X-Google-Smtp-Source: ABdhPJzgq2waSqW60Mpej34aIb3d1OVbopNz58VxC3hrhDTV4U4+trNRV9CIxszo/Xe4sDO01llm9A==
-X-Received: by 2002:a05:6402:c90:b0:410:a0a7:ca5b with SMTP id
- cm16-20020a0564020c9000b00410a0a7ca5bmr3812607edb.417.1645733495020; 
- Thu, 24 Feb 2022 12:11:35 -0800 (PST)
+ bh=2kiO1t+7NFcOlx4ftFXU17rhmXrl+ejVO/EZEfGgLjY=;
+ b=VDHDrzV1bYlT6rciObZinLEAhzpZG9J50l+sgVlCHcvVpMDsRzFy/gyTr5aBTPA4mg
+ twUd+ge+tcPUJYyvv6X6P9WnxHuugsj5CZxW92QZTbkVLFPoW3PXvtL9tVZvUanNLgD/
+ wKjWMvUwHGXcNhqZb1dPLYyghkL54VcauEn/77kYDqxY4Zy627cYmVBowDAuFpXIhLvu
+ JIVlXEkgb5FIf2PLBDS+fv/s97oezfIzvwE7X1LXk2R/eraYMxicQ9pSkSawWgzU8nGf
+ SHea+kmSwsKP6o+fHi7t7Z3ZNsDj442B2yMmq3h3d+Gx5UAxC/5tQJfdmbLxpAcQ6PRs
+ zKuw==
+X-Gm-Message-State: AOAM532HiwCsX4CnSpXqL2CS5HzvNb5i2jho2yBHl7gwsbMRGvoZaoz0
+ D0MfKIuSFk3AEZb/j3+Kn3BW0dRs3ss=
+X-Google-Smtp-Source: ABdhPJyy5svUH1PYorDzvMPQKA6SGdcq3/cNcr4GrGA0nt2maPB2VzI8ZcsolsfsMstHU+gC8Ax9AQ==
+X-Received: by 2002:a17:906:b201:b0:6b5:58c8:e43c with SMTP id
+ p1-20020a170906b20100b006b558c8e43cmr3478116ejz.441.1645733770304; 
+ Thu, 24 Feb 2022 12:16:10 -0800 (PST)
 Received: from ?IPV6:2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd?
  (p200300ea8f4d2b0070ade6bd1cea7edd.dip0.t-ipconnect.de.
  [2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd])
  by smtp.googlemail.com with ESMTPSA id
- b7-20020a50e787000000b00412d6970125sm229061edn.104.2022.02.24.12.11.34
+ q7-20020a170906940700b006b86e95dc1fsm137140ejx.41.2022.02.24.12.16.09
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 24 Feb 2022 12:11:34 -0800 (PST)
-Message-ID: <0cd06b4a-026b-5705-b36b-1914e63bbf0b@gmail.com>
-Date: Thu, 24 Feb 2022 21:11:16 +0100
+ Thu, 24 Feb 2022 12:16:09 -0800 (PST)
+Message-ID: <7522820e-0b6d-7e2b-89db-30329c6c2245@gmail.com>
+Date: Thu, 24 Feb 2022 21:16:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.1
-Subject: [PATCH v4 6/6] MAINTAINERS: Add entry for tm1628 auxdisplay driver
+Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
 Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
- =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
- Miguel Ojeda <ojeda@kernel.org>
-Cc: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
+To: Jack Pham <quic_jackp@quicinc.com>, Alan Stern <stern@rowland.harvard.edu>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Linux USB Mailing List <linux-usb@vger.kernel.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Geert Uytterhoeven <geert+renesas@glider.be>
-References: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
-In-Reply-To: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
+ Tung Nguyen <tunguyen@apm.com>, Mathias Nyman <mathias.nyman@intel.com>
+References: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
+ <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
+ <4701f080-ef18-dbb2-7dd9-d9171a73411f@gmail.com>
+ <YhZB9C/xGaoslZzT@rowland.harvard.edu>
+ <131166ee-9926-2eb5-2abd-6bab294d2937@gmail.com>
+ <Yhaxb0OvMwLtd6vr@rowland.harvard.edu>
+ <20220224200637.GE13801@jackp-linux.qualcomm.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20220224200637.GE13801@jackp-linux.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220224_121137_121421_82276712 
-X-CRM114-Status: UNSURE (   6.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220224_121612_200615_EBFFDAC0 
+X-CRM114-Status: GOOD (  15.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,34 +102,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add maintainer entry for tm1628 7-segment LED display driver.
+On 24.02.2022 21:06, Jack Pham wrote:
+> On Wed, Feb 23, 2022 at 05:13:03PM -0500, Alan Stern wrote:
+>> On Wed, Feb 23, 2022 at 09:58:56PM +0100, Heiner Kallweit wrote:
+>>> On 23.02.2022 15:17, Alan Stern wrote:
+>>>> Don't change register_root_hub().  Just change xhci_plat_probe(); make 
+>>>> it skip the second call to usb_add_hcd() if there are no USB-3 ports.
+> 
+> I believe this had been attempted in the past, but it does not appear
+> that patch was ever accepted:
+> 
+> https://lore.kernel.org/linux-usb/1517221474-19627-1-git-send-email-tqnguyen@apm.com/
+> 
+I also found that xhci at several places relies on a proper shared_hcd,
+even if there are no USB3 ports. Therefore maybe go with the less invasive
+original version of my patch?
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+https://www.spinics.net/lists/linux-usb/msg222998.html
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index eb321d82f..d66da447d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19672,6 +19672,13 @@ W:	http://sourceforge.net/projects/tlan/
- F:	Documentation/networking/device_drivers/ethernet/ti/tlan.rst
- F:	drivers/net/ethernet/ti/tlan.*
- 
-+TM1628 LED CONTROLLER DRIVER
-+M:	Heiner Kallweit <hkallweit1@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
-+F:	Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
-+F:	drivers/auxdisplay/tm1628.c
-+
- TM6000 VIDEO4LINUX DRIVER
- M:	Mauro Carvalho Chehab <mchehab@kernel.org>
- L:	linux-media@vger.kernel.org
--- 
-2.35.1
 
+> Jack
+> 
+>>> This works on my system. However a consequence is that xhci->shared_hcd
+>>> is NULL.
+>>
+>> Why is that?  xhci->shared_hcd doesn't get set in usb_add_hcd(), so 
+>> skipping that call shouldn't cause it to be NULL.
+>>
+>> Note: If you skip calling usb_add_hcd(), you will also have to skip the 
+>> corresponding call to usb_remove_hcd().  There may be a few more 
+>> subtleties involved as well; like I said before, I'm not an expert on 
+>> this driver.  You should ask the xhci-hcd maintainer for advice.
+>>
+>> Alan Stern
+>>
+>>>  There are a few places like the following in xhci.c where
+>>> this may result in a NPE. Not knowing the USB subsystem in detail
+>>> I can't say whether these places are in any relevant path.
+>>>
+>>> static int xhci_run_finished(struct xhci_hcd *xhci)
+>>> {
+>>>         if (xhci_start(xhci)) {
+>>>                 xhci_halt(xhci);
+>>>                 return -ENODEV;
+>>>         }
+>>>         xhci->shared_hcd->state = HC_STATE_RUNNING;
+>>>
+>>>
+>>>
+>>>> Alan Stern
+>>>>
+>>>>> What I can do: submit my patches as RFC, then there's a better basis
+>>>>> for a discussion.
+>>>>>
+>>>>>> Alan Stern
+>>>>>
+>>>>> Heiner
+>>>
+>>> Heiner
 
 
 _______________________________________________
