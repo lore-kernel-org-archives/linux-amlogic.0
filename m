@@ -4,64 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2A41C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Feb 2022 11:23:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C9E5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Feb 2022 11:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sVjzyfBKqE+td1g/437PhY94OYBBeYbeGs/yX/2iS9E=; b=tmhvWSNZ8922Wh
-	uEHnIKu0i1sVIIp4cjQ1w77mlrg86+NefM/qR4ksUVdoMEhdQCNUQ5hvXLb0SJikfN3hQ6DpC1DKB
-	3kV5Y8jeGN6YxubVyjLxLCBdfHsf9PMqLs22NVk2c/E2KUW9EKGaiT1g/+P5mQITIeSxWZkZFkImJ
-	VTIfvgS7wUnY26qwzFQzKQgD6nA4uBf9KkGMXB835n3zRrK3FGWr7ZlBPEZp9XEzhkWql/0BAW49W
-	dkP7Of/grarZQBSVhnPkthf4NCHENFBuztoXiWqyvSlEgQAO0zLIEuSTJhT2oXg4v0yl5L3qzRUAD
-	ssAodX5EHF1kfTileM/w==;
+	List-Owner; bh=nqN8MLhiRqLoLswtCkzfQlkpLIVEf/rPklaIQ0HQn6I=; b=dBk7/QQh28cqXK
+	3iidMypaF/dfQeiLxX6O+G8oXPFQ7PwjT/QYfX8BGtr+jTVIWykR2dv6CIi7BECC/pEe5nxGzQZbI
+	66yoH/RyDzM+S021VhuRQ0VCLJ0iQlGo6ZLB7Z+s3cOS+XXNNENLwpQCKoGWEUAPolqSTA+olcX5r
+	OZKm7Ao6kF3K5gmX22CGqJGpU2klq6gcZQeDo6vrSuGioEDELnS4arzEpwHxXSPRrBc5Yu1rQKB18
+	wZMCiue8jtIaYBlh/99UyTo6h7xNvOBeSskPWqAr8NRrH/aEl+NGPvSBDwysXYWGGmGwh0H/5y3Co
+	MAUtohlFKbmSqTLIfHCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOe7T-00Bpct-29; Mon, 28 Feb 2022 11:23:11 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1nOe8Y-00Bq4G-S5; Mon, 28 Feb 2022 11:24:18 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOdkd-00Be0l-Te
- for linux-amlogic@lists.infradead.org; Mon, 28 Feb 2022 10:59:39 +0000
-Received: by mail-wr1-x429.google.com with SMTP id d28so14790177wra.4
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Feb 2022 02:59:34 -0800 (PST)
+ id 1nOdlr-00Begl-DF
+ for linux-amlogic@lists.infradead.org; Mon, 28 Feb 2022 11:00:59 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id j17so14847459wrc.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Feb 2022 03:00:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=references:user-agent:from:to:cc:subject:date:in-reply-to
  :message-id:mime-version;
- bh=uCN8f3Fyd5pokV8pP2TP0yZnM+iGBuaGKpYFHzcRb64=;
- b=U1sd+1e2936jSttBnDkeF2aFADnnxGDPhbHqTgwESbce77Ji25yxyMYU/0U+KJCQYr
- QNhUdyoHzRf/sIJdmiN2P2EsRqdmwXrROsYdqJDj7Ev+PjrP5vDgnkszfIRm9s1m0TM9
- UNL6Zz7QOyjrX753nWNpgz43bZn3RzM/OSbX3Uj5yL8e14tJ0pGhw5Y2TZJUgviDUEfN
- IdDAV5xdYItRWJzG5xp/zTx7cAWVcnyD6V9inmPFlHMyOCfRMWEuJ4t0MPzwXhMOPDT5
- 1ysQsfR28eLGRBg/DiEg1RMrwLxR5PpMAjlEbiiLcaw5hDKubqRlBhX73V0cFtstOyCO
- sbEg==
+ bh=wQf7m/26uVP31VMRB429E5WZLQAKTBVOvjmZow4UeUo=;
+ b=n3/4I/b/w0kS8fX6M4bfXoQAqX7z4MjpWWVV88BZTBN9Nu5gAAMCBoTMOMAKkIjRCR
+ HABk7GTeVif/cKH6kAA5keI498lgXjv5RJViiy5Thc+17ZllOQCUyjNgTuDi0aUStxh3
+ Q5DV/jxCJ5oW78SQ2CTenKImMoUTqR0W3zmcC+KCwufuKxL/ySVIhlW5HjoEkMcUf8am
+ Uo5tJTjWlsqvRDXNNgcsZOmVku4B9FtLXOFjAL69XVlPxMVITfBqGpRMCFJVUWcC2UIx
+ kPy0gdo5h1y3HTKDq/7ArppulbZ/yBOEvks5h5qxQab2qySn7E5YlC3SdLm/NFLWfNwT
+ 8+Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
  :in-reply-to:message-id:mime-version;
- bh=uCN8f3Fyd5pokV8pP2TP0yZnM+iGBuaGKpYFHzcRb64=;
- b=ti5CJHGlwS0p6V3B/ZbON9XVLHW5SUWrgPapWP5DljumWiJCy2+QF5OHSUAwOGDpPy
- NjwyjcPN81NwUFv47YE2iwvz8gE4SpwLSEN8W8MuZ0yIf/P766c3oTOSHx25EhYLoest
- 8f3/uIsU0OjZF0APVKexIWQ1pzmF6ls8XWi/JQtNEuD62ylZFy4eUx9mlJCEs/ZgOveZ
- 58anxJuzRZXRJPzLbBuLMtlwEQ2yYUVsGfvbjFszW1UhpkYCnYCosXVckqGDA6conmJD
- P2gpqDGsBK+IpF5iBD2mP1b2PeE3rAYvv0uzcgQT0ejMinfrJIHi/YjIyPnue+7d1CVF
- +FLA==
-X-Gm-Message-State: AOAM5337guZG4vr3ZgLCJ/d0Z6hSI01g1FCZx+kWlHUPBUVBosSUzei+
- z4HUA5hfLfmTGv43xxX13M2ESg==
-X-Google-Smtp-Source: ABdhPJwF2zUP4Y28CMI6eZMFjYIqjlKEfAPLDcFwRGYzr64h9oXzj49Vb3OIvWo3FlvGEewcFviqJQ==
-X-Received: by 2002:adf:d089:0:b0:1ed:9e86:2144 with SMTP id
- y9-20020adfd089000000b001ed9e862144mr14956887wrh.363.1646045973473; 
- Mon, 28 Feb 2022 02:59:33 -0800 (PST)
+ bh=wQf7m/26uVP31VMRB429E5WZLQAKTBVOvjmZow4UeUo=;
+ b=CG9rh1td2dSl9HOCYwD2+w9cpQg2YdJ+ODGwolV+hpLa6nK8nJNCkirLCWXTk7FzyN
+ IkZ+9PE88bdeJeccrIaxd45Swz2nxBLNJC6pCahW4UBLttx9VIezepnOfIygtJT6BcPV
+ aJNOYqsaoMS/wfjWR3JA1iSQY3m8li4039/Pzrjr3QB+O17+cFOjv+wh99X2ZqPpyjcf
+ sYwzxsH12U5wqfT3QMvUBryh24Gr0ruGwTmpsdVabTOFG0cRRXcWS4AeQdQeHmvSNA8Z
+ MEtN87YY3itzoUFWqnquNYHIi6zux9CcSe0uAjtEPaNnB7ks+svwi4lPKk3pT1QEE7g5
+ vONQ==
+X-Gm-Message-State: AOAM530KywFRWv9MWbZK3jVqDIeQXqohJU/9b3gwQFEbe29Cn2NcGsDQ
+ J8LYd/WkhMzI5nQYsW9mP4qGEQ==
+X-Google-Smtp-Source: ABdhPJxeIv2FdVQ1UEoGzvwvf4aCugQmj8spQHXPxmB/liTIRCixUmzia8vt0dANCzMVJ1SLNZP/ow==
+X-Received: by 2002:a5d:6047:0:b0:1ea:9a8a:9542 with SMTP id
+ j7-20020a5d6047000000b001ea9a8a9542mr14900226wrt.243.1646046049864; 
+ Mon, 28 Feb 2022 03:00:49 -0800 (PST)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31]) by smtp.gmail.com with ESMTPSA id
- f1-20020a5d4dc1000000b001eeadc98c0csm10001385wru.101.2022.02.28.02.59.32
+ l26-20020a05600c1d1a00b00380def7d3desm11455779wms.17.2022.02.28.03.00.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Feb 2022 02:59:33 -0800 (PST)
+ Mon, 28 Feb 2022 03:00:49 -0800 (PST)
 References: <20220225073922.3947-1-yu.tu@amlogic.com>
- <20220225073922.3947-6-yu.tu@amlogic.com>
 User-agent: mu4e 1.6.10; emacs 27.1
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
@@ -71,15 +70,14 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
  <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V7 5/6] tty: serial: meson: The system stuck when you
- run the stty command on the console to change the baud rate
-Date: Mon, 28 Feb 2022 11:58:30 +0100
-In-reply-to: <20220225073922.3947-6-yu.tu@amlogic.com>
-Message-ID: <1jczj7xnn0.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH V7 0/6] Use CCF to describe the UART baud rate clock
+Date: Mon, 28 Feb 2022 11:59:53 +0100
+In-reply-to: <20220225073922.3947-1-yu.tu@amlogic.com>
+Message-ID: <1j8rtvxnkv.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220228_025936_005960_67CB7569 
-X-CRM114-Status: GOOD (  12.57  )
+X-CRM114-CacheID: sfid-20220228_030051_512380_9FEAD8EB 
+X-CRM114-Status: GOOD (  17.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,37 +97,52 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Fri 25 Feb 2022 at 15:39, Yu Tu <yu.tu@amlogic.com> wrote:
 
+> Using the common Clock code to describe the UART baud rate
+> clock makes it easier for the UART driver to be compatible
+> with the baud rate requirements of the UART IP on different
+> meson chips. Add Meson S4 SoC compatible.
+>
+> The test method:
 > Start the console and run the following commands in turn:
-> stty -F /dev/ttyAML0 115200 and stty -F /dev/ttyAML0 921600. The
-> system will stuck.
+> stty -F /dev/ttyAML0 115200 and stty -F /dev/ttyAML0 921600.
 >
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
->  drivers/tty/serial/meson_uart.c | 5 +++++
->  1 file changed, 5 insertions(+)
+> Since most SoCs are too old, I was able to find all the platforms myself
+> such as Meson6, Meson8, Meson8b, GXL and so on. I only tested it with
+> G12A and S4.
+
+GXL based board are still very common an easy to come by.
+I'm quite surprised that you are unable to test on this SoC family
+
 >
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index ba8dc203b9cb..d19349ead738 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -365,8 +365,13 @@ static void meson_uart_set_termios(struct uart_port *port,
->  	writel(val, port->membase + AML_UART_CONTROL);
->  
->  	baud = uart_get_baud_rate(port, termios, old, 50, 4000000);
-> +
-> +	spin_unlock_irqrestore(&port->lock, flags);
-> +
->  	meson_uart_change_speed(port, baud);
->  
-> +	spin_lock_irqsave(&port->lock, flags);
-
-Already told you before, you can make meson_change_speed()
-clk_set_rate() uses mutex and may sleep.
-
-> +
->  	port->read_status_mask = AML_UART_TX_FIFO_WERR;
->  	if (iflags & INPCK)
->  		port->read_status_mask |= AML_UART_PARITY_ERR |
+> Yu Tu (6):
+>   tty: serial: meson: Move request the register region to probe
+>   tty: serial: meson: Use devm_ioremap_resource to get register mapped
+>     memory
+>   tty: serial: meson: Describes the calculation of the UART baud rate
+>     clock using a clock frame
+>   tty: serial: meson: Make some bit of the REG5 register writable
+>   tty: serial: meson: The system stuck when you run the stty command on
+>     the console to change the baud rate
+>   tty: serial: meson: Added S4 SOC compatibility
+>
+> V6 -> V7: To solve the system stuck when you run the stty command on
+> the console to change the baud rate.
+> V5 -> V6: Change error format as discussed in the email.
+> V4 -> V5: Change error format.
+> V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
+> in the email.
+> V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
+> the DTS before it can be deleted
+> V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
+> discussed in the email
+>
+> Link:https://lore.kernel.org/linux-amlogic/20220118030911.12815-4-yu.tu@amlogic.com/
+>
+>  drivers/tty/serial/meson_uart.c | 221 ++++++++++++++++++++++----------
+>  1 file changed, 154 insertions(+), 67 deletions(-)
+>
+>
+> base-commit: a603ca60cebff8589882427a67f870ed946b3fc8
 
 
 _______________________________________________
