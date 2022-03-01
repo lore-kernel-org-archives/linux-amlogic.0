@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFE40C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 01:59:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D6F5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 01:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IPLAOy7WVbrMv1+r4pIMQlZtJW5rxnCe3lT8czxiRTE=; b=XNqxGeeaz0g1SR
-	rn0GSjfOG7FkLtCZGGTr/6zOU8PRyexbp4R5ASsvPJyPpSlyp0NLa2x3EsZ2C3Z6udKNY4C3kBydT
-	0/9mSHJ6Jtvm7Yyo8luF+PeOfb/ApuOvPdQ6DDBf27TzsofX/BMxZ0Ijho78BGqC1h+LM5/r4/u6V
-	3UJWifqu3P4u3xTsXu3aVFCfoxGR6od7XUNPUz/GxpNVSeEvgRzmUdXYnvA7lyOFb3MALWYjBPcab
-	pzndFu4GoEtuYt98tsqv6wgOSeWFRSkbcAaoWoUWVBTR0ZqBErxHo5odFcVHLXOoxmI+pWNxJ2Low
-	wRk6XsAo92xfwok7lyzw==;
+	List-Owner; bh=YYB5kZvXhbuEa1aPD8vInOs/7rLX/Ol3LiXzHM5NHTw=; b=MHcmpc7etxSgKx
+	NBjw9rQlSI8yX1RLKkkVovqtOc1N56uuRkbcLZOxWsBfjoDLsjO0cHiyBe1yFB1JfDY8h+pOaa++l
+	4iMOIZC5uArfGlaaTRXBd0ZrNJ+bnhuo8Yo7/m9gRlN2yoen3KdGB3XpiTewuEQFX9g11uhcg9Exf
+	6B4HpZwttqu66jgAf1+JBnrdN/YtZOMDpImT40336ApXl/x4VVWxAoLGWOBoP/NVhxAdt9M9L5HPU
+	YTNoZcuV1PZX+AmQxhY2uL5UHRmzJ2LG+qKmokR+d/TccDNIG7KwpeLOkEboNyVvs8tl3K6rrqEQ8
+	Iu6CYSl78GfJq8SIEVBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOrnR-00Eep1-4m; Tue, 01 Mar 2022 01:59:25 +0000
+	id 1nOrnc-00Eeua-OZ; Tue, 01 Mar 2022 01:59:36 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOrn0-00Eec0-T8; Tue, 01 Mar 2022 01:59:04 +0000
+ id 1nOrn6-00Eec0-QB; Tue, 01 Mar 2022 01:59:06 +0000
 Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Tue, 1 Mar 2022
- 09:58:54 +0800
+ 09:58:55 +0800
 From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
 To: <shunzhou.jiang@amlogic.com>
 CC: <linux-arm-kernel@lists.infradead.org>,
@@ -34,18 +34,17 @@ CC: <linux-arm-kernel@lists.infradead.org>,
  <devicetree@vger.kernel.org>, <narmstrong@baylibre.com>,
  <khilman@baylibre.com>, <jbrunet@baylibre.com>,
  <martin.blumenstingl@googlemail.com>, <jianxin.pan@amlogic.com>
-Subject: [PATCH V5 1/2] dt-bindings: power: add Amlogic s4 power domains
- bindings
-Date: Tue, 1 Mar 2022 09:58:48 +0800
-Message-ID: <20220301015849.827634-2-shunzhou.jiang@amlogic.com>
+Subject: [PATCH V5 2/2] soc: s4: Add support for power domains controller
+Date: Tue, 1 Mar 2022 09:58:49 +0800
+Message-ID: <20220301015849.827634-3-shunzhou.jiang@amlogic.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
 References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220228_175858_960579_C799EE4F 
-X-CRM114-Status: GOOD (  10.28  )
+X-CRM114-CacheID: sfid-20220228_175904_912601_0DBF51F2 
+X-CRM114-Status: GOOD (  10.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,70 +61,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the bindings for the Amlogic Secure power domains, controlling the
-secure power domains.
-
-The bindings targets the Amlogic s4, in which the power domains registers
-are in secure world.
+Add support s4 Power controller. In s4, power control
+registers are in secure domain, and should be accessed by smc.
 
 Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
 V1->V2: fix spelling error, patchset use cover-letter
 V2->V3: add power domain always on reason
 V3->V4: clear vpu and usb power domaon always on
 V4->V5: add reviewed owner in patchset
 ---
- .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
- include/dt-bindings/power/meson-s4-power.h    | 19 +++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/power/meson-s4-power.h
+ drivers/soc/amlogic/meson-secure-pwrc.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-index 5dae04d2936c..7657721a4e96 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-@@ -12,13 +12,14 @@ maintainers:
-   - Jianxin Pan <jianxin.pan@amlogic.com>
+diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
+index 59bd195fa9c9..a10a417a87db 100644
+--- a/drivers/soc/amlogic/meson-secure-pwrc.c
++++ b/drivers/soc/amlogic/meson-secure-pwrc.c
+@@ -11,6 +11,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/pm_domain.h>
+ #include <dt-bindings/power/meson-a1-power.h>
++#include <dt-bindings/power/meson-s4-power.h>
+ #include <linux/arm-smccc.h>
+ #include <linux/firmware/meson/meson_sm.h>
+ #include <linux/module.h>
+@@ -119,6 +120,18 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+ 	SEC_PD(RSA,	0),
+ };
  
- description: |+
--  Secure Power Domains used in Meson A1/C1 SoCs, and should be the child node
-+  Secure Power Domains used in Meson A1/C1/S4 SoCs, and should be the child node
-   of secure-monitor.
++static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
++	SEC_PD(S4_DOS_HEVC,	0),
++	SEC_PD(S4_DOS_VDEC,	0),
++	SEC_PD(S4_VPU_HDMI,	0),
++	SEC_PD(S4_USB_COMB,	0),
++	SEC_PD(S4_GE2D,		0),
++	/* ETH is for ethernet online wakeup, and should be always on */
++	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
++	SEC_PD(S4_DEMOD,	0),
++	SEC_PD(S4_AUDIO,	0),
++};
++
+ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+ {
+ 	int i;
+@@ -187,11 +200,20 @@ static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
+ 	.count = ARRAY_SIZE(a1_pwrc_domains),
+ };
  
- properties:
-   compatible:
-     enum:
-       - amlogic,meson-a1-pwrc
-+      - amlogic,meson-s4-pwrc
- 
-   "#power-domain-cells":
-     const: 1
-diff --git a/include/dt-bindings/power/meson-s4-power.h b/include/dt-bindings/power/meson-s4-power.h
-new file mode 100644
-index 000000000000..462dd2cb938b
---- /dev/null
-+++ b/include/dt-bindings/power/meson-s4-power.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc.
-+ * Author: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-+ */
++static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
++	.domains = s4_pwrc_domains,
++	.count = ARRAY_SIZE(s4_pwrc_domains),
++};
 +
-+#ifndef _DT_BINDINGS_MESON_S4_POWER_H
-+#define _DT_BINDINGS_MESON_S4_POWER_H
-+
-+#define PWRC_S4_DOS_HEVC_ID	0
-+#define PWRC_S4_DOS_VDEC_ID	1
-+#define PWRC_S4_VPU_HDMI_ID	2
-+#define PWRC_S4_USB_COMB_ID	3
-+#define PWRC_S4_GE2D_ID		4
-+#define PWRC_S4_ETH_ID		5
-+#define PWRC_S4_DEMOD_ID	6
-+#define PWRC_S4_AUDIO_ID	7
-+
-+#endif
+ static const struct of_device_id meson_secure_pwrc_match_table[] = {
+ 	{
+ 		.compatible = "amlogic,meson-a1-pwrc",
+ 		.data = &meson_secure_a1_pwrc_data,
+ 	},
++	{
++		.compatible = "amlogic,meson-s4-pwrc",
++		.data = &meson_secure_s4_pwrc_data,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
 -- 
 2.34.1
 
