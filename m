@@ -4,56 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAF85C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 06:50:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AC2C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 07:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C8Z5HrZ4mmuUYsf/xRoZQLi0uTPXDK20GswaOfmdFdk=; b=KyC9ag1cKNF6xX
-	Ev4IO6lyO1GuCO3Z8N2E9F1IeN0zgFv9oTd7ucGb3fUxHm62w6MZqyhPxMINoVvt/pH0BXwrOU7Uf
-	ixKXcHk8d7Yynw+BKU2SQpYCTFwA73jLSjtx18z5iEJ3ktXGgCJtDzCWlQvgKltOr7yzs5rCqJyCx
-	36bShymMAVb72UGOdJakOCKYakuwRGe7BHMd9C2kc3+AE1ePse0WZJdEVTrvfQATootAHSJHtv3MA
-	wPvNAEWCny4ZispBG2ItSZr1UFvwsuLErcRzm2pUhafydDktITnXroyIIP31bNWX77Wf8njuVJIrN
-	czKh+YgYFP3VVHE/v6Fg==;
+	List-Owner; bh=Cm8wBllAUKKvk81yx1gyKWk3fn+u3zjHMGj1Q7C+Adc=; b=lzDypfbUAUDIYV
+	LvaQvEtwsV8+xQlaqrnYF0xXbGG/MenA9Zc3UgJOgjAXKy1qT4pcd1BoxA5arbL/AaB8pxfaU3tWm
+	U9hH+SKcP8M3TuEI+9XochmBv/qd+DHL06qA2VNX90I76qXKcZWAZvWZX4XVHUiHaDpq0PR8rvxuV
+	UcIIn9KIHQiX24zy63/bAnh2M6zuLFKY4fFU+wjqYXr3sflx8n2JX47cuig/epQ7KWenCLwuhre38
+	Be4TVIZ43UOvHDOUV0cg2BAsRJ8pPufZerThgDVjLaSFrlXt93k+NA/TB6DfBXRmwXzm3XQ1FuXWj
+	6zeZioC3wdW7dMjiN8Vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOwKb-00FCne-Hr; Tue, 01 Mar 2022 06:49:57 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1nOwrA-00FI28-JB; Tue, 01 Mar 2022 07:23:36 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOwKL-00FCiA-T7; Tue, 01 Mar 2022 06:49:43 +0000
-Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 1 Mar
- 2022 14:49:38 +0800
-Message-ID: <ec3a884e-618c-63ff-056f-b660848276f6@amlogic.com>
-Date: Tue, 1 Mar 2022 14:49:37 +0800
+ id 1nOwr4-00FHzs-Uu
+ for linux-amlogic@lists.infradead.org; Tue, 01 Mar 2022 07:23:34 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id j17so18987320wrc.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Feb 2022 23:23:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=rIE4EFGbZL6WUGzIqVirpqO3d5o889rX0VfU2ArstBs=;
+ b=DSMA/InOe8DCAy1FOXo5Q8hNYk7jctcE1mLmlLYJv5dAfQy31qvAqddYdd7rechXhB
+ 3Pc9dbphWXWCcJ5wC7I92H4YOW9zubI0SWOGYxiVP4zXH4v3VxYSD40owx8Jsnvv/DXX
+ L148TZGUl4KY93X5CeCNHtb5VpbpsPMHMm+/l2bQ1Cf02gd1PrcM+8TgmfEHVo3jjNLW
+ IYmGfptof/UBwShwv91RcKES1B4mNj/FsMVXVVBlYB0oQbZ07d6Dcqy3sHjU/XN/32jl
+ 6oNSrqQdRdySGEfapDN/9ZFCsi4MKpxiAd4Pz04BsB7Ldq8+eF9H/OesOI+7IgGj47SG
+ ZNtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=rIE4EFGbZL6WUGzIqVirpqO3d5o889rX0VfU2ArstBs=;
+ b=NoBjKvIZ1NxS19qZS07sJ2CVPPGT+pKrMHUe6SxB613+51cf69SN8t/kDETNe0OM5f
+ piWE0YNRSJIdKelMy/AzFHGb0YEPKZ3z74nperoWMJRz9PS9KwUBSavyOiSRCYjf5DJ/
+ AZEhB1ZzEDKv2TxVmAdxLxdDySnZFHGWZrVkRaAevp9eRWo+N3xXI7rImxgxutmxCGd1
+ xPlTK9FJNNsbCyfxBC4HMbFhRJxRPDtuaCZgOLvdxv/kIscSip1C5XctAdDlEO1H/5I3
+ Kd6loU+VWfkhtTd6A1AwSIcXBve4Jp7st4bev7b7uRtP1dvOG91c9UDONIPyFyWDO7q9
+ oJ+w==
+X-Gm-Message-State: AOAM532DFNYLOe1CmAriEmAJeJxTzi0bHV/3Cfpb1kOtTGE+mcyOBIBk
+ ZBkZnG9ojoIJ1JhENJNPS04H5g==
+X-Google-Smtp-Source: ABdhPJy+QZiDJNqpcz0wGmi44+WOjQ0ZF8WegPcQOAe5tKXgKNVBB/+c5PQ4y6VD8Lpv6d8js3NZLw==
+X-Received: by 2002:a5d:4578:0:b0:1ed:bf30:40f3 with SMTP id
+ a24-20020a5d4578000000b001edbf3040f3mr18812678wrc.669.1646119408164; 
+ Mon, 28 Feb 2022 23:23:28 -0800 (PST)
+Received: from ?IPV6:2001:861:44c0:66c0:f9e4:b6da:2b53:5858?
+ ([2001:861:44c0:66c0:f9e4:b6da:2b53:5858])
+ by smtp.gmail.com with ESMTPSA id
+ i5-20020a1c3b05000000b00382871cf734sm186554wma.25.2022.02.28.23.23.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Feb 2022 23:23:27 -0800 (PST)
+Message-ID: <8747c5c6-a129-3a26-8ebb-9e21a18236ec@baylibre.com>
+Date: Tue, 1 Mar 2022 08:23:26 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH V7 3/6] tty: serial: meson: Describes the calculation of
- the UART baud rate clock using a clock frame
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>, <linux-serial@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-References: <20220225073922.3947-1-yu.tu@amlogic.com>
- <20220225073922.3947-4-yu.tu@amlogic.com>
- <1j4k4jxmji.fsf@starbuckisacylon.baylibre.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1j4k4jxmji.fsf@starbuckisacylon.baylibre.com>
-X-Originating-IP: [10.18.29.173]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:91.0)
+ Gecko/20100101 Thunderbird/91.4.1
+Subject: Re: [PATCH V3] tty: serial: meson: Fix the compile link error
+ reported by kernel test robot
+Content-Language: fr
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ kernel test robot <lkp@intel.com>, Dan Carpenter <dan.carpenter@oracle.com>
+References: <20220228135530.6918-1-yu.tu@amlogic.com>
+ <29b34655-f820-39c9-4363-878481cd3f63@baylibre.com>
+ <Yh087tJhakKHs88e@kroah.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <Yh087tJhakKHs88e@kroah.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220228_224941_991805_9AF80729 
-X-CRM114-Status: GOOD (  34.13  )
+X-CRM114-CacheID: sfid-20220228_232331_076337_8A856E15 
+X-CRM114-Status: GOOD (  12.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,364 +96,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
-
-On 2022/2/28 19:10, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Fri 25 Feb 2022 at 15:39, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Using the common Clock code to describe the UART baud rate clock
->> makes it easier for the UART driver to be compatible with the
->> baud rate requirements of the UART IP on different meson chips.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->> ---
->>   drivers/tty/serial/meson_uart.c | 194 +++++++++++++++++++++++---------
->>   1 file changed, 142 insertions(+), 52 deletions(-)
->>
->> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->> index 7570958d010c..4768d51fac70 100644
->> --- a/drivers/tty/serial/meson_uart.c
->> +++ b/drivers/tty/serial/meson_uart.c
->> @@ -6,6 +6,7 @@
->>    */
->>   
->>   #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>   #include <linux/console.h>
->>   #include <linux/delay.h>
->>   #include <linux/init.h>
->> @@ -65,9 +66,7 @@
->>   #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
->>   
->>   /* AML_UART_REG5 bits */
->> -#define AML_UART_BAUD_MASK		0x7fffff
->>   #define AML_UART_BAUD_USE		BIT(23)
->> -#define AML_UART_BAUD_XTAL		BIT(24)
->>   
->>   #define AML_UART_PORT_NUM		12
->>   #define AML_UART_PORT_OFFSET		6
->> @@ -76,6 +75,11 @@
->>   #define AML_UART_POLL_USEC		5
->>   #define AML_UART_TIMEOUT_USEC		10000
->>   
->> +struct meson_uart_data {
->> +	struct clk	*baud_clk;
->> +	bool		use_xtal_clk;
->> +};
->> +
->>   static struct uart_driver meson_uart_driver;
->>   
->>   static struct uart_port *meson_ports[AML_UART_PORT_NUM];
->> @@ -293,19 +297,17 @@ static int meson_uart_startup(struct uart_port *port)
->>   
->>   static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
->>   {
->> +	struct meson_uart_data *private_data = port->private_data;
->>   	u32 val;
->>   
->>   	while (!meson_uart_tx_empty(port))
->>   		cpu_relax();
->>   
->> -	if (port->uartclk == 24000000) {
->> -		val = ((port->uartclk / 3) / baud) - 1;
->> -		val |= AML_UART_BAUD_XTAL;
->> -	} else {
->> -		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
->> -	}
->> +	val = readl(port->membase + AML_UART_REG5);
->>   	val |= AML_UART_BAUD_USE;
->>   	writel(val, port->membase + AML_UART_REG5);
->> +
->> +	clk_set_rate(private_data->baud_clk, baud);
->>   }
->>   
->>   static void meson_uart_set_termios(struct uart_port *port,
->> @@ -395,11 +397,20 @@ static int meson_uart_verify_port(struct uart_port *port,
->>   
->>   static void meson_uart_release_port(struct uart_port *port)
->>   {
->> -	/* nothing to do */
->> +	struct meson_uart_data *private_data = port->private_data;
->> +
->> +	clk_disable_unprepare(private_data->baud_clk);
->>   }
->>   
->>   static int meson_uart_request_port(struct uart_port *port)
->>   {
->> +	struct meson_uart_data *private_data = port->private_data;
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(private_data->baud_clk);
->> +	if (ret)
->> +		return ret;
->> +
-> 
-> I think we already discussed that. This is yet another behavior change
-> Previously, enabling the clock was done at probe time.
-> 
-> It's fine to change it, if there is a justification, but not in the same
-> change as the rework of the divider
-> 
->>   	return 0;
->>   }
->>   
->> @@ -629,57 +640,106 @@ static struct uart_driver meson_uart_driver = {
->>   	.cons		= MESON_SERIAL_CONSOLE,
->>   };
->>   
->> -static inline struct clk *meson_uart_probe_clock(struct device *dev,
->> -						 const char *id)
->> -{
->> -	struct clk *clk = NULL;
->> -	int ret;
->> -
->> -	clk = devm_clk_get(dev, id);
->> -	if (IS_ERR(clk))
->> -		return clk;
->> -
->> -	ret = clk_prepare_enable(clk);
->> -	if (ret) {
->> -		dev_err(dev, "couldn't enable clk\n");
->> -		return ERR_PTR(ret);
->> -	}
->> +static const struct clk_div_table xtal_div_table[] = {
->> +	{ 0, 3 },
->> +	{ 1, 1 },
->> +	{ 2, 2 },
->> +	{ 3, 2 },
->> +};
->>   
->> -	devm_add_action_or_reset(dev,
->> -			(void(*)(void *))clk_disable_unprepare,
->> -			clk);
->> +static u32 use_xtal_mux_table;
->>   
->> -	return clk;
->> -}
->> -
->> -static int meson_uart_probe_clocks(struct platform_device *pdev,
->> -				   struct uart_port *port)
->> +static int meson_uart_probe_clocks(struct uart_port *port)
->>   {
->> -	struct clk *clk_xtal = NULL;
->> -	struct clk *clk_pclk = NULL;
->> -	struct clk *clk_baud = NULL;
->> +	struct meson_uart_data *private_data = port->private_data;
->> +	struct clk *clk_baud, *clk_xtal;
->> +	struct clk_hw *hw, *clk81_div4_hw;
->> +	char clk_name[32];
->> +	struct clk_parent_data use_xtal_mux_parents;
->>   
->> -	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
->> -	if (IS_ERR(clk_pclk))
->> -		return PTR_ERR(clk_pclk);
->> +	clk_baud = devm_clk_get(port->dev, "baud");
->> +	if (IS_ERR(clk_baud)) {
->> +		dev_err(port->dev, "Failed to get the 'baud' clock\n");
->> +		return PTR_ERR(clk_baud);
->> +	}
-> 
-> Calling devm_clk_get() would not be necessary if you used "fw_name" in
-> the parent table. Same bellow
-Personally, I think it is good that you can understand your meaning, but 
-as you are an expert in CCF, it is nice to write code in that way, but 
-for people who are not unfamiliar with CCF, they may only care about the 
-use of CCF.It's not pretty to use but it's easy to understand.
-> 
->>   
->> -	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
->> +	clk_xtal = devm_clk_get(port->dev, "xtal");
->>   	if (IS_ERR(clk_xtal))
->> -		return PTR_ERR(clk_xtal);
->> -
->> -	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
->> -	if (IS_ERR(clk_baud))
->> -		return PTR_ERR(clk_baud);
->> +		return dev_err_probe(port->dev, PTR_ERR(clk_xtal),
->> +				     "Failed to get the 'xtal' clock\n");
->> +
->> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev),
->> +		 "clk81_div4");
->> +	clk81_div4_hw = devm_clk_hw_register_fixed_factor(port->dev,
->> +							  clk_name,
->> +							  __clk_get_name(clk_baud),
->> +							  CLK_SET_RATE_NO_REPARENT,
->> +							  1, 4);
->> +	if (IS_ERR(clk81_div4_hw))
->> +		return PTR_ERR(clk81_div4_hw);
-> 
-> So, whatever the chip type - you register a fixed 4 divider ....
-As you suggested last time, this CLK has been stored, but some chips are 
-not used. If you have better suggestions, please let me know and I can 
-make corrections later.
-> 
->> +
->> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev),
->> +		 "xtal_div");
->> +	hw = devm_clk_hw_register_divider_table(port->dev,
->> +						clk_name,
->> +						__clk_get_name(clk_baud),
->> +						CLK_SET_RATE_NO_REPARENT,
->> +						port->membase + AML_UART_REG5,
->> +						26, 2,
->> +						CLK_DIVIDER_READ_ONLY,
->> +						xtal_div_table, NULL);
->> +	if (IS_ERR(hw))
->> +		return PTR_ERR(hw);
->> +
->> +	if (private_data->use_xtal_clk) {
->> +		use_xtal_mux_table = 1;
->> +		use_xtal_mux_parents.hw = hw;
->> +	} else {
->> +		use_xtal_mux_parents.hw = clk81_div4_hw;
-> 
-> ... which you may end up not using in the end
-> This is bad.
-If you have better suggestions, please let me know and I can make 
-corrections later.
-> 
->> +	}
->>   
->> -	port->uartclk = clk_get_rate(clk_baud);
->> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev),
->> +		 "use_xtal");
->> +	hw = __devm_clk_hw_register_mux(port->dev, NULL,
->> +					clk_name,
->> +					1,
->> +					NULL, NULL,
->> +					&use_xtal_mux_parents,
->> +					CLK_SET_RATE_PARENT,
->> +					port->membase + AML_UART_REG5,
->> +					24, 0x1,
->> +					CLK_MUX_READ_ONLY,
->> +					&use_xtal_mux_table, NULL);
->> +
->> +	if (IS_ERR(hw))
->> +		return PTR_ERR(hw);
->> +
->> +	port->uartclk = clk_hw_get_rate(hw);
->> +
->> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev),
->> +		 "baud_div");
->> +	hw = devm_clk_hw_register_divider(port->dev,
->> +					  clk_name,
->> +					  clk_hw_get_name(hw),
->> +					  CLK_SET_RATE_PARENT,
->> +					  port->membase + AML_UART_REG5,
->> +					  0, 23,
->> +					  CLK_DIVIDER_ROUND_CLOSEST,
->> +					  NULL);
->> +	if (IS_ERR(hw))
->> +		return PTR_ERR(hw);
->> +
->> +	private_data->baud_clk = hw->clk;
->>   
->>   	return 0;
->>   }
->>   
->>   static int meson_uart_probe(struct platform_device *pdev)
->>   {
->> +	struct meson_uart_data *private_data;
->>   	struct resource *res_mem;
->>   	struct uart_port *port;
->> +	struct clk *pclk;
->>   	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
->>   	int ret = 0;
->>   	int irq;
->> @@ -705,6 +765,15 @@ static int meson_uart_probe(struct platform_device *pdev)
->>   	if (!res_mem)
->>   		return -ENODEV;
->>   
->> +	pclk = devm_clk_get(&pdev->dev, "pclk");
->> +	if (IS_ERR(pclk))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(pclk),
->> +				     "Failed to get the 'pclk' clock\n");
->> +
->> +	ret = clk_prepare_enable(pclk);
->> +	if (ret)
->> +		return ret;
->> +
->>   	irq = platform_get_irq(pdev, 0);
->>   	if (irq < 0)
->>   		return irq;
->> @@ -724,9 +793,13 @@ static int meson_uart_probe(struct platform_device *pdev)
->>   	if (IS_ERR(port->membase))
->>   		return PTR_ERR(port->membase);
->>   
->> -	ret = meson_uart_probe_clocks(pdev, port);
->> -	if (ret)
->> -		return ret;
->> +	private_data = devm_kzalloc(&pdev->dev, sizeof(*private_data),
->> +				    GFP_KERNEL);
->> +	if (!private_data)
->> +		return -ENOMEM;
->> +
->> +	if (device_get_match_data(&pdev->dev))
->> +		private_data->use_xtal_clk = true;
-> 
-> As long as the device matches a compatible below, the flag will end up
-> 'true', regardless of values in the the dt_match table.
-> 
-> I don't think this is the intended behavior.
-> It highlights that proper testing of this series is important.
-> 
-> Being at Amlogic, I'm sure you can test on more than just g12a and s4
-> 
-I believe with your experience this may be a real problem. I heard that 
-your company has our boards. If so, can you help verify it?
->>   
->>   	port->iotype = UPIO_MEM;
->>   	port->mapbase = res_mem->start;
->> @@ -740,6 +813,11 @@ static int meson_uart_probe(struct platform_device *pdev)
->>   	port->x_char = 0;
->>   	port->ops = &meson_uart_ops;
->>   	port->fifosize = fifosize;
->> +	port->private_data = private_data;
->> +
->> +	ret = meson_uart_probe_clocks(port);
->> +	if (ret)
->> +		return ret;
->>   
->>   	meson_ports[pdev->id] = port;
->>   	platform_set_drvdata(pdev, port);
->> @@ -766,10 +844,22 @@ static int meson_uart_remove(struct platform_device *pdev)
->>   }
->>   
->>   static const struct of_device_id meson_uart_dt_match[] = {
->> -	{ .compatible = "amlogic,meson6-uart" },
->> -	{ .compatible = "amlogic,meson8-uart" },
->> -	{ .compatible = "amlogic,meson8b-uart" },
->> -	{ .compatible = "amlogic,meson-gx-uart" },
->> +	{
->> +		.compatible = "amlogic,meson6-uart",
->> +		.data = (void *)false,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson8-uart",
->> +		.data = (void *)false,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson8b-uart",
->> +		.data = (void *)false,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson-gx-uart",
->> +		.data = (void *)true,
->> +	},
->>   	{ /* sentinel */ },
->>   };
->>   MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgR3JlZywKCkxlIDI4LzAyLzIwMjIgw6AgMjI6MjEsIEdyZWcgS3JvYWgtSGFydG1hbiBhIMOp
+Y3JpdMKgOgo+IE9uIE1vbiwgRmViIDI4LCAyMDIyIGF0IDAzOjEzOjQ4UE0gKzAxMDAsIE5laWwg
+QXJtc3Ryb25nIHdyb3RlOgo+PiBIaSwKPj4KPj4gT24gMjgvMDIvMjAyMiAxNDo1NSwgWXUgVHUg
+d3JvdGU6Cj4+PiBEZXNjcmliZXMgdGhlIGNhbGN1bGF0aW9uIG9mIHRoZSBVQVJUIGJhdWQgcmF0
+ZSBjbG9jayB1c2luZyBhIGNsb2NrCj4+PiBmcmFtZS4gRm9yZ290IHRvIGFkZCBpbiBLY29uZmln
+IGtlcm5lbCB0ZXN0IFJvYm90IGNvbXBpbGF0aW9uIGVycm9yCj4+PiBkdWUgdG8gQ09NTU9OX0NM
+SyBkZXBlbmRlbmN5Lgo+Pj4KPj4+IEZpeGVzOiAoInR0eTogc2VyaWFsOm1lc29uOiBEZXNjcmli
+ZXMgdGhlIGNhbGN1bGF0aW9uIG9mIHRoZSBVQVJUIGJhdWQgcmF0ZSBjbG9jayB1c2luZyBhIGNs
+b2NrIGZyYW1l4oCcKQo+Pgo+PiBBcyBJIGFscmVhZHkgcmVwbGllZCBvbiBWMiBvZiB0aGlzIHBh
+dGNoLCB5b3UncmUgaW52aXRlZCB0byBhcHBseSB0aGVzZSBmaXhlcyBkaXJlY3RseQo+PiBvbiB0
+aGUgbmV4dCB2ZXJzaW9uIG9mIHlvdXIgIlVzZSBDQ0YgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1
+ZCByYXRlIGNsb2NrIiBwYXRjaHNldAo+PiBhbmQgbm90IGFzIGEgc2VwYXJhdGUgcGF0Y2guCj4g
+Cj4gTm8sIHRoaXMgaXMgYnJva2VuIGluIGxpbnV4LW5leHQgbm93IGFzIHRoZSBwYXRoIGxpc3Rl
+ZCBoZXJlIGlzIGluIG15Cj4gdHJlZSByaWdodCBub3cuCgpPaCwgSSB3YXNuJ3QgYXdhcmUgeW91
+IHRvb2sgdGhpcyBwYXRjaHNldC4KCj4gCj4gSSBuZWVkIGEgZml4IGZvciBpdCwgb3IgSSBjYW4g
+cmV2ZXJ0IHRoZSBvcmlnaW5hbC4KClBsZWFzZSByZXZlcnQgdGhlIHdob2xlIHBhdGNoc2V0LCBp
+dCdzIG5vdCByZWFkeSB5ZXQsIG5laXRoZXIgZnVsbHkgcmV2aWV3ZWQgYW5kcyBidWdneQpvbiBv
+bGQgU29Dcy4KClRoYW5rcywKTmVpbAoKPiAKPiB0aGFua3MsCj4gCj4gZ3JlZyBrLWgKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
