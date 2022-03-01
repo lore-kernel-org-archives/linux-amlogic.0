@@ -4,56 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 582F9C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 08:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56037C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 08:50:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kCYajPtsEt3Cb0pcuARSRLDiTyVS9z4inVtmOgqVrVM=; b=lTwZNc9eHWP27c
-	8gIClxCh0DQZU8KOJJoLx8UNlvIiSq+5C/A1pOZKgDj6wmL0GtDstsDNtM89dtAwNL/fGylI2cpma
-	pSjH6kyVB/WAtDCmNLBcrCrURNBTDGwnWPAyXdLhFsehYKgPZFpowqzHkjd45t6ZuINUgMYvVPcO0
-	qe8xZXvJYLiqHCGI1GynxRvhRnWrnAkTokrjMFLR++COlUjWxt9W/DHDof1dSN1h8Y6EgswoT83aF
-	yHEqEJjtLvrgtUf2KdEdF3GtppiAv8XzTgHf7BUZRUGnD9eaRQoLFzXTesD7jiGFNgCTL90kJ2O4H
-	N3E7zlgmdw9GokZenMjg==;
+	List-Owner; bh=XinAqtNtlDCDhdXj9mXXPkczoIlf0inIJr4F2q6ZzsA=; b=pyfLJnwomCt1Qs
+	tvBouRVIH+TwtitMLwGzq74oeTbqcKOFmhSsWR7jOOkq2/X9GO4x0F06e9HNKiVaXgT7YZnoQGK9t
+	s9ixf8HnQb9jvKQhYhMBJcwusQiMO0nSPqSEVdcdTrrEvjWIvj4Cu81ASuAIBOj+b3rQT6dUqOiy3
+	C+8GsewZEJ21uLYeaC7Bw4Pwk9Z3T8aW3/Zkkv+Wg4+lN/fBaAWfhZKmq8JZ4+goSa1BuP38Df4Ws
+	iL9On60/OD2bcY2PFw0xvso0YzZmzyYNhuLUnWb6Krkhpb4wPLzDrQeUNrKp6ssf0Es6ufiTc8AbS
+	r6LIDbgRCEVzYteO5yAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOyAk-00Ffxw-Un; Tue, 01 Mar 2022 08:47:54 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1nOyCl-00Fgdc-Dg; Tue, 01 Mar 2022 08:49:59 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOyAY-00Ffvx-Mu; Tue, 01 Mar 2022 08:47:44 +0000
-Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 1 Mar
- 2022 16:47:39 +0800
-Message-ID: <7c4c3272-4ebb-f84b-5436-f1ddc80686ff@amlogic.com>
-Date: Tue, 1 Mar 2022 16:47:39 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH V7 0/6] Use CCF to describe the UART baud rate clock
-Content-Language: en-US
-To: Neil Armstrong <narmstrong@baylibre.com>, <linux-serial@vger.kernel.org>, 
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
+ id 1nOyCf-00FgZs-Qr
+ for linux-amlogic@lists.infradead.org; Tue, 01 Mar 2022 08:49:55 +0000
+Received: by mail-ed1-x531.google.com with SMTP id x5so20985288edd.11
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Mar 2022 00:49:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=XXHAzHSUKx1FZRpzOVh0FkOoc+KpTYgeqdRYpbFwNrY=;
+ b=F+esdrn2u/7IDUUa1QkHWhRVrp8WFnBvGjuqIGJHuagwFCGXLVP7vSZU2U3+wERsQT
+ fWvJ+xVv29r9Vrmb9tn5rHED5cU1X8tK2CqfvV6RM7ezsNCdpa2It3cm4FlFR47szVMA
+ eCVvAxQXUxdGb0T/KPMTEqz/zILzvrx4TfoVmIeR9sr3xkFKjk0FSai0zNLjIqNh5sn+
+ fN7DjLfFSGC311dIGwM3xCmkbA+CJ1cOM9qaZ/yG4C4X3O31AX151x7loCW6uKWMF9W6
+ WUL5RqWHhqfJFCCTDtQlIVQP7aw4ks1mo9jMmZArFpwcyWc6pxYrEW01WCNfjPO6TnlG
+ /IUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=XXHAzHSUKx1FZRpzOVh0FkOoc+KpTYgeqdRYpbFwNrY=;
+ b=NnrX9gcRxxVZMv4cuWQWtE694Hd0N3azuE22cMY2ED0jiyHZdgMhxu7a9fjz+TbJHo
+ SsFGpsqrHmOd65cJRx5njMCO5ZkFcPbYPkNE9qzje6TlgwT8HEGp4o81lCktiB8vZXvT
+ 9fSt3rJdqDbqdw89Ny1g7If8t+X7O5FqO7TvedZxB0xM9Fhtt0LorYgTQZjXUED2JaPs
+ 39VbTCZkKZuHJ3h4jJXpug1tYKrndVpI1WbWjR1Gf9EalQsyJQ4TQbGpZU36ty9MJpiV
+ yZovL+Y6HsA2wKZvA3fcbhMr5KlyAEdgmLu/O4gQqQhVRsBPnh+bur14FwJaBd5bjbAu
+ COkQ==
+X-Gm-Message-State: AOAM531bySal7D1EO1tdFg4BdLdFBpU3Fl05ugjvpVdRmpsnZo0Zf8AC
+ V6VQEdHnM4dyAxyCow34PoUjRw==
+X-Google-Smtp-Source: ABdhPJwwv92nJBUIPZ3wtAe+ZLpDEefHhE/W3cCSrhFs9ZkbcU/booLmLagFYpQio8mA18rbBXJFSQ==
+X-Received: by 2002:a05:6402:5207:b0:412:806b:6424 with SMTP id
+ s7-20020a056402520700b00412806b6424mr23434103edd.131.1646124592564; 
+ Tue, 01 Mar 2022 00:49:52 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id
+ d2-20020a50cf42000000b004135b6eef60sm6931187edk.94.2022.03.01.00.49.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Mar 2022 00:49:52 -0800 (PST)
 References: <20220225073922.3947-1-yu.tu@amlogic.com>
- <849a95fd-ae81-9a3b-0c06-dd7826af9eb2@baylibre.com>
- <154c3e60-f111-6760-aa08-b9851d66b034@amlogic.com>
- <5f7d9d73-d74c-1eb6-1711-ac3de67e6203@baylibre.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <5f7d9d73-d74c-1eb6-1711-ac3de67e6203@baylibre.com>
-X-Originating-IP: [10.18.29.173]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+ <1j8rtvxnkv.fsf@starbuckisacylon.baylibre.com>
+ <d0da38f1-72c1-d111-2d0d-2bfa2faf1a1d@amlogic.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V7 0/6] Use CCF to describe the UART baud rate clock
+Date: Tue, 01 Mar 2022 09:36:07 +0100
+In-reply-to: <d0da38f1-72c1-d111-2d0d-2bfa2faf1a1d@amlogic.com>
+Message-ID: <1jilsyvyz9.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220301_004742_772627_B51BAD83 
-X-CRM114-Status: GOOD (  18.03  )
+X-CRM114-CacheID: sfid-20220301_004953_900231_F93CF8FE 
+X-CRM114-Status: GOOD (  19.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,64 +91,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCk9uIDIwMjIvMy8xIDE2OjM3LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBbIEVY
-VEVSTkFMIEVNQUlMIF0KPiAKPiBIaSwKPiAKPiBPbiAwMS8wMy8yMDIyIDA4OjU3LCBZdSBUdSB3
-cm90ZToKPj4gSGkgTmVpbCwKPj4KPj4gT24gMjAyMi8zLzEgMTU6MjUsIE5laWwgQXJtc3Ryb25n
-IHdyb3RlOgo+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Pgo+Pj4gSGksCj4+Pgo+Pj4gTGUgMjUv
-MDIvMjAyMiDDoCAwODozOSwgWXUgVHUgYSDDqWNyaXTCoDoKPj4+PiBVc2luZyB0aGUgY29tbW9u
-IENsb2NrIGNvZGUgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlCj4+Pj4gY2xvY2sgbWFr
-ZXMgaXQgZWFzaWVyIGZvciB0aGUgVUFSVCBkcml2ZXIgdG8gYmUgY29tcGF0aWJsZQo+Pj4+IHdp
-dGggdGhlIGJhdWQgcmF0ZSByZXF1aXJlbWVudHMgb2YgdGhlIFVBUlQgSVAgb24gZGlmZmVyZW50
-Cj4+Pj4gbWVzb24gY2hpcHMuIEFkZCBNZXNvbiBTNCBTb0MgY29tcGF0aWJsZS4KPj4+Pgo+Pj4+
-IFRoZSB0ZXN0IG1ldGhvZDoKPj4+PiBTdGFydCB0aGUgY29uc29sZSBhbmQgcnVuIHRoZSBmb2xs
-b3dpbmcgY29tbWFuZHMgaW4gdHVybjoKPj4+PiBzdHR5IC1GIC9kZXYvdHR5QU1MMCAxMTUyMDAg
-YW5kIHN0dHkgLUYgL2Rldi90dHlBTUwwIDkyMTYwMC4KPj4+Pgo+Pj4+IFNpbmNlIG1vc3QgU29D
-cyBhcmUgdG9vIG9sZCwgSSB3YXMgYWJsZSB0byBmaW5kIGFsbCB0aGUgcGxhdGZvcm1zIAo+Pj4+
-IG15c2VsZgo+Pj4+IHN1Y2ggYXMgTWVzb242LCBNZXNvbjgsIE1lc29uOGIsIEdYTCBhbmQgc28g
-b24uIEkgb25seSB0ZXN0ZWQgaXQgd2l0aAo+Pj4+IEcxMkEgYW5kIFM0Lgo+Pj4+Cj4+Pj4gWXUg
-VHUgKDYpOgo+Pj4+IMKgwqAgdHR5OiBzZXJpYWw6IG1lc29uOiBNb3ZlIHJlcXVlc3QgdGhlIHJl
-Z2lzdGVyIHJlZ2lvbiB0byBwcm9iZQo+Pj4+IMKgwqAgdHR5OiBzZXJpYWw6IG1lc29uOiBVc2Ug
-ZGV2bV9pb3JlbWFwX3Jlc291cmNlIHRvIGdldCByZWdpc3RlciBtYXBwZWQKPj4+PiDCoMKgwqDC
-oCBtZW1vcnkKPj4+PiDCoMKgIHR0eTogc2VyaWFsOiBtZXNvbjogRGVzY3JpYmVzIHRoZSBjYWxj
-dWxhdGlvbiBvZiB0aGUgVUFSVCBiYXVkIHJhdGUKPj4+PiDCoMKgwqDCoCBjbG9jayB1c2luZyBh
-IGNsb2NrIGZyYW1lCj4+Pj4gwqDCoCB0dHk6IHNlcmlhbDogbWVzb246IE1ha2Ugc29tZSBiaXQg
-b2YgdGhlIFJFRzUgcmVnaXN0ZXIgd3JpdGFibGUKPj4+PiDCoMKgIHR0eTogc2VyaWFsOiBtZXNv
-bjogVGhlIHN5c3RlbSBzdHVjayB3aGVuIHlvdSBydW4gdGhlIHN0dHkgCj4+Pj4gY29tbWFuZCBv
-bgo+Pj4+IMKgwqDCoMKgIHRoZSBjb25zb2xlIHRvIGNoYW5nZSB0aGUgYmF1ZCByYXRlCj4+Pj4g
-wqDCoCB0dHk6IHNlcmlhbDogbWVzb246IEFkZGVkIFM0IFNPQyBjb21wYXRpYmlsaXR5Cj4+Pj4K
-Pj4+PiBWNiAtPiBWNzogVG8gc29sdmUgdGhlIHN5c3RlbSBzdHVjayB3aGVuIHlvdSBydW4gdGhl
-IHN0dHkgY29tbWFuZCBvbgo+Pj4+IHRoZSBjb25zb2xlIHRvIGNoYW5nZSB0aGUgYmF1ZCByYXRl
-Lgo+Pj4+IFY1IC0+IFY2OiBDaGFuZ2UgZXJyb3IgZm9ybWF0IGFzIGRpc2N1c3NlZCBpbiB0aGUg
-ZW1haWwuCj4+Pj4gVjQgLT4gVjU6IENoYW5nZSBlcnJvciBmb3JtYXQuCj4+Pj4gVjMgLT4gVjQ6
-IENoYW5nZSBDQ0YgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2NrIGFzIGRpc2N1
-c3NlZAo+Pj4+IGluIHRoZSBlbWFpbC4KPj4+PiBWMiAtPiBWMzogYWRkIGNvbXBhdGlibGUgPSAi
-YW1sb2dpYyxtZXNvbi1neC11YXJ0Ii4gQmVjYXVzZSBpdCBtdXN0IAo+Pj4+IGNoYW5nZQo+Pj4+
-IHRoZSBEVFMgYmVmb3JlIGl0IGNhbiBiZSBkZWxldGVkCj4+Pj4gVjEgLT4gVjI6IFVzZSBDQ0Yg
-dG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2NrLk1ha2Ugc29tZSAKPj4+PiBjaGFu
-Z2VzIGFzCj4+Pj4gZGlzY3Vzc2VkIGluIHRoZSBlbWFpbAo+Pj4+Cj4+Pj4gTGluazpodHRwczov
-L2xvcmUua2VybmVsLm9yZy9saW51eC1hbWxvZ2ljLzIwMjIwMTE4MDMwOTExLjEyODE1LTQteXUu
-dHVAYW1sb2dpYy5jb20vIAo+Pj4+Cj4+Pj4KPj4+PiDCoCBkcml2ZXJzL3R0eS9zZXJpYWwvbWVz
-b25fdWFydC5jIHwgMjIxIAo+Pj4+ICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tCj4+
-Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDE1NCBpbnNlcnRpb25zKCspLCA2NyBkZWxldGlvbnMoLSkK
-Pj4+Pgo+Pj4+Cj4+Pj4gYmFzZS1jb21taXQ6IGE2MDNjYTYwY2ViZmY4NTg5ODgyNDI3YTY3Zjg3
-MGVkOTQ2YjNmYzgKPj4+Cj4+PiBDb3VsZCB5b3Ugc2VuZCB0aGUgZW1haWxzIFRvIEtldmluLCBK
-ZXJvbWUsIE1hcnRpbiAmIG1lLCBhbmQgcHV0IHRoZSAKPj4+IHZhcmlvdXMgbGlzdHMgaW4gQ0Mg
-aW5zdGVhZCA/IG90aGVyd2lzZSB3ZSBhcmUgbm90IG5vdGlmaWVkIHdoZW4gdGhlIAo+Pj4gcGF0
-Y2ggaXMgYWNjZXB0ZWQgYnkgdGhlIHR0eSBtYWludGFpbmVyLgo+PiBUaGUgZmFjdCBpcyB0aGF0
-IHNlbmRpbmcgaXMgYWRkaW5nIHlvdSB1cCwgeW91IHNlZQo+PiBMaW5rOiAKPj4gaHR0cHM6Ly9s
-b3JlLmtlcm5lbC5vcmcvbGludXgtYW1sb2dpYy8yMDIyMDIyNTA3MzkyMi4zOTQ3LTEteXUudHVA
-YW1sb2dpYy5jb20vIAo+Pgo+IAo+IEl0J3Mgbm90IHRoZSBwb2ludCwgdGhlIG9yZGVyIG9mIHJl
-Y2lwaWVudCBpbiBDYyBhbmQgVG8gaXMgaW1wb3J0YW50IAo+IHNpbmNlIHRoZXkgYXJlIHVzZWQK
-PiBieSBtYWludGFpbmVycyB0byB0cmFjayBwYXRjaCBmb3IgcmV2aWV3IGFuZCB0byBub3RpZnkg
-d2hlbiBwYXRjaGVzIGFyZSAKPiB0YWtlbiBpbiB0aGVpciB0cmVlLgo+IAo+IFNvIHBsZWFzZSBt
-YWtlIHN1cmUgdGhlIHJlY2lwaWVudHMgYXJlIGNvcnJlY3RseSBzZXQgYmVmb3JlIHNlbmRpbmcg
-dGhlIAo+IHBhdGNoZXMuCj4gCkkgc2VlIHdoYXQgeW91IG1lYW4uIE1haWxpbmcgbGlzdHMgc2hv
-dWxkIGFsbCB1c2UgVG8uCj4gTmVpbAo+IAo+Pj4KPj4+IFRoYW5rcywKPj4+IE5laWwKPj4+Cj4g
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
-bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+On Tue 01 Mar 2022 at 13:54, Yu Tu <yu.tu@amlogic.com> wrote:
+
+> Hi Jerome,
+>
+> On 2022/2/28 18:59, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>> 
+>> On Fri 25 Feb 2022 at 15:39, Yu Tu <yu.tu@amlogic.com> wrote:
+>> 
+>>> Using the common Clock code to describe the UART baud rate
+>>> clock makes it easier for the UART driver to be compatible
+>>> with the baud rate requirements of the UART IP on different
+>>> meson chips. Add Meson S4 SoC compatible.
+>>>
+>>> The test method:
+>>> Start the console and run the following commands in turn:
+>>> stty -F /dev/ttyAML0 115200 and stty -F /dev/ttyAML0 921600.
+>>>
+>>> Since most SoCs are too old, I was able to find all the platforms myself
+>>> such as Meson6, Meson8, Meson8b, GXL and so on. I only tested it with
+>>> G12A and S4.
+>> GXL based board are still very common an easy to come by.
+>> I'm quite surprised that you are unable to test on this SoC family
+> The fact of the matter is that the S4 is our end-2020 chip, the G12A is
+> five years old, and the GXL is seven years old. If you must ask for a 
+> test, I will report this problem to the leadership to coordinate resources.
+
+The age of the SoC is irrelevant. SoCs don't get deprecated based on age
+in mainline. It is not just GXL, same goes for meson8.
+
+These SoCs are actively used. Boards with these SoCs are still sold and
+easily available. See the VIM1 or the Libretech boards.
+
+Breaking things for the the users of these SoCs is not acceptable.
+So yes, looking at your series, I strongly recommend you do more tests.
+
+>> 
+>>>
+>>> Yu Tu (6):
+>>>    tty: serial: meson: Move request the register region to probe
+>>>    tty: serial: meson: Use devm_ioremap_resource to get register mapped
+>>>      memory
+>>>    tty: serial: meson: Describes the calculation of the UART baud rate
+>>>      clock using a clock frame
+>>>    tty: serial: meson: Make some bit of the REG5 register writable
+>>>    tty: serial: meson: The system stuck when you run the stty command on
+>>>      the console to change the baud rate
+>>>    tty: serial: meson: Added S4 SOC compatibility
+>>>
+>>> V6 -> V7: To solve the system stuck when you run the stty command on
+>>> the console to change the baud rate.
+>>> V5 -> V6: Change error format as discussed in the email.
+>>> V4 -> V5: Change error format.
+>>> V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
+>>> in the email.
+>>> V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
+>>> the DTS before it can be deleted
+>>> V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
+>>> discussed in the email
+>>>
+>>> Link:https://lore.kernel.org/linux-amlogic/20220118030911.12815-4-yu.tu@amlogic.com/
+>>>
+>>>   drivers/tty/serial/meson_uart.c | 221 ++++++++++++++++++++++----------
+>>>   1 file changed, 154 insertions(+), 67 deletions(-)
+>>>
+>>>
+>>> base-commit: a603ca60cebff8589882427a67f870ed946b3fc8
+>> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
