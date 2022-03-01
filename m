@@ -4,47 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D6F5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 01:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26237C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 02:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YYB5kZvXhbuEa1aPD8vInOs/7rLX/Ol3LiXzHM5NHTw=; b=MHcmpc7etxSgKx
-	NBjw9rQlSI8yX1RLKkkVovqtOc1N56uuRkbcLZOxWsBfjoDLsjO0cHiyBe1yFB1JfDY8h+pOaa++l
-	4iMOIZC5uArfGlaaTRXBd0ZrNJ+bnhuo8Yo7/m9gRlN2yoen3KdGB3XpiTewuEQFX9g11uhcg9Exf
-	6B4HpZwttqu66jgAf1+JBnrdN/YtZOMDpImT40336ApXl/x4VVWxAoLGWOBoP/NVhxAdt9M9L5HPU
-	YTNoZcuV1PZX+AmQxhY2uL5UHRmzJ2LG+qKmokR+d/TccDNIG7KwpeLOkEboNyVvs8tl3K6rrqEQ8
-	Iu6CYSl78GfJq8SIEVBA==;
+	List-Owner; bh=OF1KaUbGn2wbgzYlswldDZec6/eHbqV7p5C6+4eJf/I=; b=0qV03KSEBeH5HV
+	BCi+6lGPZOm40XBkZ/S8eAZsbLsP9k6VOYDaBv4RHFHXlM8Lcx9iEo9YRLT+GeWof0/t+4qcwABkk
+	6RAgsQtjHLV/oCfQ4azVeNUNlXVxVxdq++gXGH/Eifr3yI8vAnPrA34UreqE7Xkyg5C3KnPW9hr1l
+	PKcHZ1KRcf23t8NG0MV0UrYp1lIdMXe8b4tMyQLm9/H0P215kTrjXGPsX4gpOzqXbLyEwNwoFrt8U
+	wD0EwNChRoQv84GqIrsO/Gy0YvQ6g2H4giPcYS5ME8PlZy6ZkINsYc9MZCRQNpEaYJRfAzNdBV+0p
+	Rgnc7jz6Y5jwO1alLbVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOrnc-00Eeua-OZ; Tue, 01 Mar 2022 01:59:36 +0000
+	id 1nOsUc-00EimD-0B; Tue, 01 Mar 2022 02:44:02 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOrn6-00Eec0-QB; Tue, 01 Mar 2022 01:59:06 +0000
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Tue, 1 Mar 2022
- 09:58:55 +0800
-From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-To: <shunzhou.jiang@amlogic.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <narmstrong@baylibre.com>,
- <khilman@baylibre.com>, <jbrunet@baylibre.com>,
- <martin.blumenstingl@googlemail.com>, <jianxin.pan@amlogic.com>
-Subject: [PATCH V5 2/2] soc: s4: Add support for power domains controller
-Date: Tue, 1 Mar 2022 09:58:49 +0800
-Message-ID: <20220301015849.827634-3-shunzhou.jiang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
-References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
+ id 1nOsUQ-00EikY-NA; Tue, 01 Mar 2022 02:43:51 +0000
+Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 1 Mar
+ 2022 10:43:48 +0800
+Message-ID: <aa9c6622-4d3c-5bb8-ba25-d25b8b73a038@amlogic.com>
+Date: Tue, 1 Mar 2022 10:43:47 +0800
 MIME-Version: 1.0
-X-Originating-IP: [10.98.11.200]
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH V3] tty: serial: meson: Fix the compile link error
+ reported by kernel test robot
+Content-Language: en-US
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dan Carpenter
+ <dan.carpenter@oracle.com>
+CC: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Jiri
+ Slaby <jirislaby@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, kernel test robot
+ <lkp@intel.com>
+References: <20220228135530.6918-1-yu.tu@amlogic.com>
+ <20220228142751.GF2812@kadam> <Yh09abhySKsjart4@kroah.com>
+From: Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <Yh09abhySKsjart4@kroah.com>
+X-Originating-IP: [10.18.29.173]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220228_175904_912601_0DBF51F2 
-X-CRM114-Status: GOOD (  10.79  )
+X-CRM114-CacheID: sfid-20220228_184350_778378_4D3AAD86 
+X-CRM114-Status: GOOD (  12.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -56,81 +65,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support s4 Power controller. In s4, power control
-registers are in secure domain, and should be accessed by smc.
-
-Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
----
-V1->V2: fix spelling error, patchset use cover-letter
-V2->V3: add power domain always on reason
-V3->V4: clear vpu and usb power domaon always on
-V4->V5: add reviewed owner in patchset
----
- drivers/soc/amlogic/meson-secure-pwrc.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-index 59bd195fa9c9..a10a417a87db 100644
---- a/drivers/soc/amlogic/meson-secure-pwrc.c
-+++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-@@ -11,6 +11,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/power/meson-s4-power.h>
- #include <linux/arm-smccc.h>
- #include <linux/firmware/meson/meson_sm.h>
- #include <linux/module.h>
-@@ -119,6 +120,18 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
- 	SEC_PD(RSA,	0),
- };
- 
-+static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
-+	SEC_PD(S4_DOS_HEVC,	0),
-+	SEC_PD(S4_DOS_VDEC,	0),
-+	SEC_PD(S4_VPU_HDMI,	0),
-+	SEC_PD(S4_USB_COMB,	0),
-+	SEC_PD(S4_GE2D,		0),
-+	/* ETH is for ethernet online wakeup, and should be always on */
-+	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(S4_DEMOD,	0),
-+	SEC_PD(S4_AUDIO,	0),
-+};
-+
- static int meson_secure_pwrc_probe(struct platform_device *pdev)
- {
- 	int i;
-@@ -187,11 +200,20 @@ static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
- 	.count = ARRAY_SIZE(a1_pwrc_domains),
- };
- 
-+static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
-+	.domains = s4_pwrc_domains,
-+	.count = ARRAY_SIZE(s4_pwrc_domains),
-+};
-+
- static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 	{
- 		.compatible = "amlogic,meson-a1-pwrc",
- 		.data = &meson_secure_a1_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-s4-pwrc",
-+		.data = &meson_secure_s4_pwrc_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgZ3JlZyBhbmQgZGFuLAoJVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciByZXBseS4gSSB3
+aWxsIG1ha2UgYSBzZXBhcmF0ZSBzdWJtaXNzaW9uIAphcyB5b3Ugc3VnZ2VzdGVkIHRvIGZpeCBE
+YW4ncyBzdWdnZXN0aW9uLgoKT24gMjAyMi8zLzEgNToyMywgR3JlZyBLcm9haC1IYXJ0bWFuIHdy
+b3RlOgo+IFsgRVhURVJOQUwgRU1BSUwgXQo+IAo+IE9uIE1vbiwgRmViIDI4LCAyMDIyIGF0IDA1
+OjI3OjUyUE0gKzAzMDAsIERhbiBDYXJwZW50ZXIgd3JvdGU6Cj4+IE9uIE1vbiwgRmViIDI4LCAy
+MDIyIGF0IDA5OjU1OjMwUE0gKzA4MDAsIFl1IFR1IHdyb3RlOgo+Pj4gRGVzY3JpYmVzIHRoZSBj
+YWxjdWxhdGlvbiBvZiB0aGUgVUFSVCBiYXVkIHJhdGUgY2xvY2sgdXNpbmcgYSBjbG9jawo+Pj4g
+ZnJhbWUuIEZvcmdvdCB0byBhZGQgaW4gS2NvbmZpZyBrZXJuZWwgdGVzdCBSb2JvdCBjb21waWxh
+dGlvbiBlcnJvcgo+Pj4gZHVlIHRvIENPTU1PTl9DTEsgZGVwZW5kZW5jeS4KPj4+Cj4+PiBGaXhl
+czogKCJ0dHk6IHNlcmlhbDptZXNvbjogRGVzY3JpYmVzIHRoZSBjYWxjdWxhdGlvbiBvZiB0aGUg
+VUFSVCBiYXVkIHJhdGUgY2xvY2sgdXNpbmcgYSBjbG9jayBmcmFtZeKAnCkKPj4+IFJlcG9ydGVk
+LWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4KPj4+IFJlcG9ydGVkLWJ5OiBE
+YW4gQ2FycGVudGVyIDxkYW4uY2FycGVudGVyQG9yYWNsZS5jb20+Cj4+PiBTaWduZWQtb2ZmLWJ5
+OiBZdSBUdSA8eXUudHVAYW1sb2dpYy5jb20+Cj4+PiAtLS0KPj4+ICAgZHJpdmVycy90dHkvc2Vy
+aWFsL0tjb25maWcgICAgICB8ICAxICsKPj4+ICAgZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3Vh
+cnQuYyB8IDM3ICsrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLQo+Pj4gICAyIGZpbGVz
+IGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL3R0eS9zZXJpYWwvS2NvbmZpZyBiL2RyaXZlcnMvdHR5L3NlcmlhbC9L
+Y29uZmlnCj4+PiBpbmRleCBlOTUyZWM1YzdhN2MuLmEwZjJiODJmYzE4YiAxMDA2NDQKPj4+IC0t
+LSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9LY29uZmlnCj4+PiArKysgYi9kcml2ZXJzL3R0eS9zZXJp
+YWwvS2NvbmZpZwo+Pj4gQEAgLTIwMCw2ICsyMDAsNyBAQCBjb25maWcgU0VSSUFMX0tHREJfTk1J
+Cj4+PiAgIGNvbmZpZyBTRVJJQUxfTUVTT04KPj4+ICAgCXRyaXN0YXRlICJNZXNvbiBzZXJpYWwg
+cG9ydCBzdXBwb3J0Igo+Pj4gICAJZGVwZW5kcyBvbiBBUkNIX01FU09OIHx8IENPTVBJTEVfVEVT
+VAo+Pj4gKwlkZXBlbmRzIG9uIENPTU1PTl9DTEsKPj4+ICAgCXNlbGVjdCBTRVJJQUxfQ09SRQo+
+Pj4gICAJaGVscAo+Pj4gICAJICBUaGlzIGVuYWJsZXMgdGhlIGRyaXZlciBmb3IgdGhlIG9uLWNo
+aXAgVUFSVHMgb2YgdGhlIEFtbG9naWMKPj4KPj4KPj4gVGhpcyBpcyBhIGxpbmsgaXNzdWUuICBU
+aGUgcmVzdCBpcyBhbiB1bnJlbGF0ZWQgZXJyb3IgaGFuZGxpbmcgZml4Lgo+PiBJdCBzaG91bGQg
+cmVhbGx5IGJlIHNlbnQgYXMgdHdvIHBhdGNoZXMuCj4gCj4gSSdsbCB0YWtlIHRoZSBmaXJzdCB2
+ZXJzaW9uIG9mIHRoaXMgcGF0Y2gsIHdoaWNoIGp1c3QgZGlkIHRoaXMgcG9ydGlvbiwKPiBhbmQg
+dGhlIHJlc3QgY2FuIGJlIGFuIGluZGVwZW5kYW50IGNoYW5nZS4KPiAKPiB0aGFua3MsCj4gCj4g
+Z3JlZyBrLWgKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
