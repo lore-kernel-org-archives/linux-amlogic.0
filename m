@@ -4,84 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ABCBC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 08:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 582F9C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Mar 2022 08:47:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aGAKr+rK/wrIwi+5JtEXqtaCpvl0ndYYpSp+cmyqVss=; b=KDiR/x+KCwJe4Z
-	PZ7+nX8LZmV0/dtUwl/+XO5ya9v+GEmCjHAc5H6UhgA1oTySt83B0dUYLNLCuCAi6axzn0i9TfuMF
-	rJZCrORvwvaXS/UboVfK/Z7+opSnrcjOa41IqZMwVic5aTiAgJ3F/KpoKsSo2vwBFHM/RUdR6/2H0
-	6u9zAAntm/xqEZC9FrgMWqP+jNhbsBUcmpScAivwOef7WcKZrUk6uFuYCPAIQlxZHuN2bPSyKaCa2
-	ncwslnNa26zKTH9LKO+z76Nb/3jHe7h19M6UrdjU4cUx1FKheAbf1rBPugp0QA/R+1ft3ElFw/dat
-	KNTtoQs0B5MgAVoWp74w==;
+	List-Owner; bh=kCYajPtsEt3Cb0pcuARSRLDiTyVS9z4inVtmOgqVrVM=; b=lTwZNc9eHWP27c
+	8gIClxCh0DQZU8KOJJoLx8UNlvIiSq+5C/A1pOZKgDj6wmL0GtDstsDNtM89dtAwNL/fGylI2cpma
+	pSjH6kyVB/WAtDCmNLBcrCrURNBTDGwnWPAyXdLhFsehYKgPZFpowqzHkjd45t6ZuINUgMYvVPcO0
+	qe8xZXvJYLiqHCGI1GynxRvhRnWrnAkTokrjMFLR++COlUjWxt9W/DHDof1dSN1h8Y6EgswoT83aF
+	yHEqEJjtLvrgtUf2KdEdF3GtppiAv8XzTgHf7BUZRUGnD9eaRQoLFzXTesD7jiGFNgCTL90kJ2O4H
+	N3E7zlgmdw9GokZenMjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOy2X-00Fdhi-Fh; Tue, 01 Mar 2022 08:39:25 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1nOyAk-00Ffxw-Un; Tue, 01 Mar 2022 08:47:54 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOy2U-00Fdf4-6u
- for linux-amlogic@lists.infradead.org; Tue, 01 Mar 2022 08:39:24 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id e10so1643580wro.13
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Mar 2022 00:39:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=Ys5RUn00UTk4/HM+/VQ1d9YYoz2PP5VEAgLxVeBItuo=;
- b=bsBXup8JXuMjq5m2R4LX5YZYwB4jv3c8gplZTEkaXEYlZDxabb+wInQkLSxBHDveUe
- EftLA3G/0WpO65ThsVXgcKSeLo5Fau9t2AheK+c6CajAO2uphaVq4QP2TyILrolSyDE5
- De18sMJRe1PnKmAsotxRKuLSdeDBYvhPkuunybLWLfnKhpec560dY78BjxUdj5Z4nFOG
- KIUDDgZxwSgCyiG1PrQbEChQV0bnSts9xk8M8CeB8LWFT4s/6JCWLRIAMvcZAgLi0anQ
- 5B/OyXff9XWaQCMChL5HbyJaJG3YnDXNzxy1u9bmTaAhqjTZFVxfy0Mjtw5mBewuOjak
- /UAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=Ys5RUn00UTk4/HM+/VQ1d9YYoz2PP5VEAgLxVeBItuo=;
- b=BAQx728LDs5MxWmIyGGiCU08RntOYII+ZByeEIKt8c/qKgb91OIlz1eHel8K31/DSJ
- 4/kEAShGXt/8RO0gsyoc1qIB7t63gE09Uf5oMIiXikQuqo8pT+i7OkIGGkbJSydhNfsL
- TfXMa8mGalBm0ouosJ1+dVCCra8f9G6oFmvqxB7IJ+/8bBWTHGQ0oJsKVPdp8Uy6gC1m
- yJVE8O3PItZ0EaTgm1CotIfGu4fdoonkJhecOR5s26roA8stq1ufYJPYXYAbS5uhP3P2
- aDS9ulG3MSO1HKD2ljD9iy8+BbmBqLrsnyicP/wXym5WgkY2KFVaMuTRYIfRhAvKujL/
- 5AnA==
-X-Gm-Message-State: AOAM530a+9GQrxNZDjOVGDQvKasic5+5MS84XbUMThBockQX5dZ5RzMH
- HefoA+FUSn9AIee3/13TZDhKPw==
-X-Google-Smtp-Source: ABdhPJyHAAq6QqkvDXe+8kSp+Zv0Q+HGeMEuNrHEz11ZtnWxrAxvw7R+lXq+tS3APcaKgFuL9J/7jQ==
-X-Received: by 2002:a5d:6083:0:b0:1ef:761f:521f with SMTP id
- w3-20020a5d6083000000b001ef761f521fmr14275331wrt.238.1646123960395; 
- Tue, 01 Mar 2022 00:39:20 -0800 (PST)
-Received: from [10.1.3.188]
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id
- p190-20020a1c29c7000000b00381227166b2sm2488649wmp.41.2022.03.01.00.39.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Mar 2022 00:39:20 -0800 (PST)
-Message-ID: <9c35b653-6cf4-a13e-ce7b-b186cf4b68f4@baylibre.com>
-Date: Tue, 1 Mar 2022 09:39:19 +0100
+ id 1nOyAY-00Ffvx-Mu; Tue, 01 Mar 2022 08:47:44 +0000
+Received: from [10.18.29.173] (10.18.29.173) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 1 Mar
+ 2022 16:47:39 +0800
+Message-ID: <7c4c3272-4ebb-f84b-5436-f1ddc80686ff@amlogic.com>
+Date: Tue, 1 Mar 2022 16:47:39 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V5 0/2] Power: meson-s4: add s4 power domain driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH V7 0/6] Use CCF to describe the UART baud rate clock
 Content-Language: en-US
-To: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com
-References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, <linux-serial@vger.kernel.org>, 
+ <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+References: <20220225073922.3947-1-yu.tu@amlogic.com>
+ <849a95fd-ae81-9a3b-0c06-dd7826af9eb2@baylibre.com>
+ <154c3e60-f111-6760-aa08-b9851d66b034@amlogic.com>
+ <5f7d9d73-d74c-1eb6-1711-ac3de67e6203@baylibre.com>
+From: Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <5f7d9d73-d74c-1eb6-1711-ac3de67e6203@baylibre.com>
+X-Originating-IP: [10.18.29.173]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220301_003922_317109_E5FAF941 
-X-CRM114-Status: GOOD (  11.66  )
+X-CRM114-CacheID: sfid-20220301_004742_772627_B51BAD83 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,38 +65,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 01/03/2022 02:58, Shunzhou Jiang wrote:
-> This patchset adds Power controller driver support for Meson-S4 SoC
-> Likes Meson-A1, the power domains register only can access in secure world
-> 
-> Shunzhou Jiang (2):
->    dt-bindings: power: add Amlogic s4 power domains bindings
->    soc: s4: Add support for power domains controller
-> 
->   .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
->   drivers/soc/amlogic/meson-secure-pwrc.c       | 22 +++++++++++++++++++
->   include/dt-bindings/power/meson-s4-power.h    | 19 ++++++++++++++++
->   3 files changed, 43 insertions(+), 1 deletion(-)
->   create mode 100644 include/dt-bindings/power/meson-s4-power.h
-> 
-> 
-> base-commit: 3448a018ded03ccd4093d6675f4a39eb2d1a18ef
-
-I think you have an issue with your mail setup, you sent 5 times the same "[PATCH V5 0/2] Power: meson-s4: add s4 power domain driver" patchset.
-
-Please fix it and maker it doesn't happen again.
-
-Thanks,
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTmVpbCwKCk9uIDIwMjIvMy8xIDE2OjM3LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBbIEVY
+VEVSTkFMIEVNQUlMIF0KPiAKPiBIaSwKPiAKPiBPbiAwMS8wMy8yMDIyIDA4OjU3LCBZdSBUdSB3
+cm90ZToKPj4gSGkgTmVpbCwKPj4KPj4gT24gMjAyMi8zLzEgMTU6MjUsIE5laWwgQXJtc3Ryb25n
+IHdyb3RlOgo+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Pgo+Pj4gSGksCj4+Pgo+Pj4gTGUgMjUv
+MDIvMjAyMiDDoCAwODozOSwgWXUgVHUgYSDDqWNyaXTCoDoKPj4+PiBVc2luZyB0aGUgY29tbW9u
+IENsb2NrIGNvZGUgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlCj4+Pj4gY2xvY2sgbWFr
+ZXMgaXQgZWFzaWVyIGZvciB0aGUgVUFSVCBkcml2ZXIgdG8gYmUgY29tcGF0aWJsZQo+Pj4+IHdp
+dGggdGhlIGJhdWQgcmF0ZSByZXF1aXJlbWVudHMgb2YgdGhlIFVBUlQgSVAgb24gZGlmZmVyZW50
+Cj4+Pj4gbWVzb24gY2hpcHMuIEFkZCBNZXNvbiBTNCBTb0MgY29tcGF0aWJsZS4KPj4+Pgo+Pj4+
+IFRoZSB0ZXN0IG1ldGhvZDoKPj4+PiBTdGFydCB0aGUgY29uc29sZSBhbmQgcnVuIHRoZSBmb2xs
+b3dpbmcgY29tbWFuZHMgaW4gdHVybjoKPj4+PiBzdHR5IC1GIC9kZXYvdHR5QU1MMCAxMTUyMDAg
+YW5kIHN0dHkgLUYgL2Rldi90dHlBTUwwIDkyMTYwMC4KPj4+Pgo+Pj4+IFNpbmNlIG1vc3QgU29D
+cyBhcmUgdG9vIG9sZCwgSSB3YXMgYWJsZSB0byBmaW5kIGFsbCB0aGUgcGxhdGZvcm1zIAo+Pj4+
+IG15c2VsZgo+Pj4+IHN1Y2ggYXMgTWVzb242LCBNZXNvbjgsIE1lc29uOGIsIEdYTCBhbmQgc28g
+b24uIEkgb25seSB0ZXN0ZWQgaXQgd2l0aAo+Pj4+IEcxMkEgYW5kIFM0Lgo+Pj4+Cj4+Pj4gWXUg
+VHUgKDYpOgo+Pj4+IMKgwqAgdHR5OiBzZXJpYWw6IG1lc29uOiBNb3ZlIHJlcXVlc3QgdGhlIHJl
+Z2lzdGVyIHJlZ2lvbiB0byBwcm9iZQo+Pj4+IMKgwqAgdHR5OiBzZXJpYWw6IG1lc29uOiBVc2Ug
+ZGV2bV9pb3JlbWFwX3Jlc291cmNlIHRvIGdldCByZWdpc3RlciBtYXBwZWQKPj4+PiDCoMKgwqDC
+oCBtZW1vcnkKPj4+PiDCoMKgIHR0eTogc2VyaWFsOiBtZXNvbjogRGVzY3JpYmVzIHRoZSBjYWxj
+dWxhdGlvbiBvZiB0aGUgVUFSVCBiYXVkIHJhdGUKPj4+PiDCoMKgwqDCoCBjbG9jayB1c2luZyBh
+IGNsb2NrIGZyYW1lCj4+Pj4gwqDCoCB0dHk6IHNlcmlhbDogbWVzb246IE1ha2Ugc29tZSBiaXQg
+b2YgdGhlIFJFRzUgcmVnaXN0ZXIgd3JpdGFibGUKPj4+PiDCoMKgIHR0eTogc2VyaWFsOiBtZXNv
+bjogVGhlIHN5c3RlbSBzdHVjayB3aGVuIHlvdSBydW4gdGhlIHN0dHkgCj4+Pj4gY29tbWFuZCBv
+bgo+Pj4+IMKgwqDCoMKgIHRoZSBjb25zb2xlIHRvIGNoYW5nZSB0aGUgYmF1ZCByYXRlCj4+Pj4g
+wqDCoCB0dHk6IHNlcmlhbDogbWVzb246IEFkZGVkIFM0IFNPQyBjb21wYXRpYmlsaXR5Cj4+Pj4K
+Pj4+PiBWNiAtPiBWNzogVG8gc29sdmUgdGhlIHN5c3RlbSBzdHVjayB3aGVuIHlvdSBydW4gdGhl
+IHN0dHkgY29tbWFuZCBvbgo+Pj4+IHRoZSBjb25zb2xlIHRvIGNoYW5nZSB0aGUgYmF1ZCByYXRl
+Lgo+Pj4+IFY1IC0+IFY2OiBDaGFuZ2UgZXJyb3IgZm9ybWF0IGFzIGRpc2N1c3NlZCBpbiB0aGUg
+ZW1haWwuCj4+Pj4gVjQgLT4gVjU6IENoYW5nZSBlcnJvciBmb3JtYXQuCj4+Pj4gVjMgLT4gVjQ6
+IENoYW5nZSBDQ0YgdG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2NrIGFzIGRpc2N1
+c3NlZAo+Pj4+IGluIHRoZSBlbWFpbC4KPj4+PiBWMiAtPiBWMzogYWRkIGNvbXBhdGlibGUgPSAi
+YW1sb2dpYyxtZXNvbi1neC11YXJ0Ii4gQmVjYXVzZSBpdCBtdXN0IAo+Pj4+IGNoYW5nZQo+Pj4+
+IHRoZSBEVFMgYmVmb3JlIGl0IGNhbiBiZSBkZWxldGVkCj4+Pj4gVjEgLT4gVjI6IFVzZSBDQ0Yg
+dG8gZGVzY3JpYmUgdGhlIFVBUlQgYmF1ZCByYXRlIGNsb2NrLk1ha2Ugc29tZSAKPj4+PiBjaGFu
+Z2VzIGFzCj4+Pj4gZGlzY3Vzc2VkIGluIHRoZSBlbWFpbAo+Pj4+Cj4+Pj4gTGluazpodHRwczov
+L2xvcmUua2VybmVsLm9yZy9saW51eC1hbWxvZ2ljLzIwMjIwMTE4MDMwOTExLjEyODE1LTQteXUu
+dHVAYW1sb2dpYy5jb20vIAo+Pj4+Cj4+Pj4KPj4+PiDCoCBkcml2ZXJzL3R0eS9zZXJpYWwvbWVz
+b25fdWFydC5jIHwgMjIxIAo+Pj4+ICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tCj4+
+Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDE1NCBpbnNlcnRpb25zKCspLCA2NyBkZWxldGlvbnMoLSkK
+Pj4+Pgo+Pj4+Cj4+Pj4gYmFzZS1jb21taXQ6IGE2MDNjYTYwY2ViZmY4NTg5ODgyNDI3YTY3Zjg3
+MGVkOTQ2YjNmYzgKPj4+Cj4+PiBDb3VsZCB5b3Ugc2VuZCB0aGUgZW1haWxzIFRvIEtldmluLCBK
+ZXJvbWUsIE1hcnRpbiAmIG1lLCBhbmQgcHV0IHRoZSAKPj4+IHZhcmlvdXMgbGlzdHMgaW4gQ0Mg
+aW5zdGVhZCA/IG90aGVyd2lzZSB3ZSBhcmUgbm90IG5vdGlmaWVkIHdoZW4gdGhlIAo+Pj4gcGF0
+Y2ggaXMgYWNjZXB0ZWQgYnkgdGhlIHR0eSBtYWludGFpbmVyLgo+PiBUaGUgZmFjdCBpcyB0aGF0
+IHNlbmRpbmcgaXMgYWRkaW5nIHlvdSB1cCwgeW91IHNlZQo+PiBMaW5rOiAKPj4gaHR0cHM6Ly9s
+b3JlLmtlcm5lbC5vcmcvbGludXgtYW1sb2dpYy8yMDIyMDIyNTA3MzkyMi4zOTQ3LTEteXUudHVA
+YW1sb2dpYy5jb20vIAo+Pgo+IAo+IEl0J3Mgbm90IHRoZSBwb2ludCwgdGhlIG9yZGVyIG9mIHJl
+Y2lwaWVudCBpbiBDYyBhbmQgVG8gaXMgaW1wb3J0YW50IAo+IHNpbmNlIHRoZXkgYXJlIHVzZWQK
+PiBieSBtYWludGFpbmVycyB0byB0cmFjayBwYXRjaCBmb3IgcmV2aWV3IGFuZCB0byBub3RpZnkg
+d2hlbiBwYXRjaGVzIGFyZSAKPiB0YWtlbiBpbiB0aGVpciB0cmVlLgo+IAo+IFNvIHBsZWFzZSBt
+YWtlIHN1cmUgdGhlIHJlY2lwaWVudHMgYXJlIGNvcnJlY3RseSBzZXQgYmVmb3JlIHNlbmRpbmcg
+dGhlIAo+IHBhdGNoZXMuCj4gCkkgc2VlIHdoYXQgeW91IG1lYW4uIE1haWxpbmcgbGlzdHMgc2hv
+dWxkIGFsbCB1c2UgVG8uCj4gTmVpbAo+IAo+Pj4KPj4+IFRoYW5rcywKPj4+IE5laWwKPj4+Cj4g
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
