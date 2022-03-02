@@ -4,46 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6419C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 03:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 055EDC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 03:36:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YYB5kZvXhbuEa1aPD8vInOs/7rLX/Ol3LiXzHM5NHTw=; b=SkmJIXTb57fVkQ
-	X2zL6kp7EHR0ydUreU+w1m9aTRLzLyv2EzgASBW+Lh7K823fKROj23ChUyLZL06qBF03OL5o173u4
-	kU/AVyekt/CyvDm7nzW5W6gMDx3HBvZX7+uHnS0rNiyN4Y1ZahA7/bNfQkToGvKaM/HGjjpquAhJG
-	epSLB92PQqw13UifxnJxY1XekY5kh9gysnEfhC7PKSZ1hgDOIJkUs7dn6MxrHnvQ+iH/Xl7K40+Ql
-	z+hKzka19BN9u5j/gWUDb6w0EsFCG8iQIrZm8ejoGtjszCYkXUSGQxW0CO0V3cbjrpmLuthelSJ1C
-	5ejn7t2MAPWiFQtx8fRw==;
+	List-Owner; bh=GXHzv/HM1mXB9389WxfHkZ2C9gD8KWlIxeIn2Cb8Y+M=; b=aluUh9LDm7/Ut+
+	W9pA7PbiEnsuW7FmyOPUYnIPrTLHN8X75SY3FR2PhrPazZjNJX/wkxXfeJ54L7d3Ly2OeGGepuZaR
+	/hDvMBNEprMSoRTJ9BEnjYVJkBXmH4xeyun1Sa/VD1HAKXSXcyGqMELS4+nsN0jCFVKEe1U/eX/jE
+	A/B3N9fxEi6jP2C0SUeIvqf9QiP45LPvz+I3ZdfgrE4CqauKqOg8lTzXRBjNHpdSmtPw+Gf+IxJB0
+	EYujmy/4OOZpDxM+tepDmfEISLi8M9y8wMqdwqifR54qqSph61iBxtn1dxK4JuX7Dw5oW3Ggqh0yi
+	/v7FrWlb3+CX1euJhLnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nPFO3-001FFK-Bx; Wed, 02 Mar 2022 03:10:47 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1nPFmM-001JZ1-9o; Wed, 02 Mar 2022 03:35:54 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nPFNQ-001Esk-15; Wed, 02 Mar 2022 03:10:09 +0000
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 2 Mar 2022
- 11:10:04 +0800
-From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-To: <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <narmstrong@baylibre.com>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
- <martin.blumenstingl@googlemail.com>, Shunzhou Jiang
- <shunzhou.jiang@amlogic.com>
-Subject: [PATCH V5 2/2] soc: s4: Add support for power domains controller
-Date: Wed, 2 Mar 2022 11:09:59 +0800
-Message-ID: <20220302030959.823693-3-shunzhou.jiang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220302030959.823693-1-shunzhou.jiang@amlogic.com>
-References: <20220302030959.823693-1-shunzhou.jiang@amlogic.com>
+ id 1nPFmB-001JS9-Rk; Wed, 02 Mar 2022 03:35:45 +0000
+Received: from [192.168.1.103] (223.212.120.136) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 2 Mar 2022
+ 11:35:36 +0800
+Message-ID: <b5087a67-7af7-4a9f-4f8f-ad99c0ea371f@amlogic.com>
+Date: Wed, 2 Mar 2022 11:35:36 +0800
 MIME-Version: 1.0
-X-Originating-IP: [10.98.11.200]
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH RESEND v2 1/2] mtd: rawnand: meson: discard the common MMC
+ sub clock framework
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
+CC: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
+ <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
+ Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+References: <20220217063346.21691-1-liang.yang@amlogic.com>
+ <20220217063346.21691-2-liang.yang@amlogic.com>
+ <1jzgmbw7d8.fsf@starbuckisacylon.baylibre.com>
+From: Liang.Yang <liang.yang@amlogic.com>
+In-Reply-To: <1jzgmbw7d8.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [223.212.120.136]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220301_191008_108521_A305E869 
-X-CRM114-Status: GOOD (  11.06  )
+X-CRM114-CacheID: sfid-20220301_193543_955205_1E2072C8 
+X-CRM114-Status: GOOD (  27.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -55,79 +70,260 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support s4 Power controller. In s4, power control
-registers are in secure domain, and should be accessed by smc.
+Hello Jerome,
 
-Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
----
-V1->V2: fix spelling error, patchset use cover-letter
-V2->V3: add power domain always on reason
-V3->V4: clear vpu and usb power domaon always on
-V4->V5: add reviewed owner in patchset
----
- drivers/soc/amlogic/meson-secure-pwrc.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On 2022/2/28 19:28, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Thu 17 Feb 2022 at 14:33, Liang Yang <liang.yang@amlogic.com> wrote:
+> 
+>> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
+>> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+>> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
+>> implemented and can be used by the eMMC and NAND controller (which are mutually
+>> exclusive anyway). Let's use this new clock.
+>>
+>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>> ---
+>>   drivers/mtd/nand/raw/meson_nand.c | 107 +++++++++++++++++-------------
+>>   1 file changed, 61 insertions(+), 46 deletions(-)
+>>
+>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>> index ac3be92872d0..c5b892d38ea0 100644
+>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>> @@ -10,6 +10,7 @@
+>>   #include <linux/dma-mapping.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>>   #include <linux/mtd/rawnand.h>
+>>   #include <linux/mtd/mtd.h>
+>>   #include <linux/mfd/syscon.h>
+>> @@ -19,6 +20,7 @@
+>>   #include <linux/iopoll.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_device.h>
+>> +#include <linux/of_address.h>
+>>   #include <linux/sched/task_stack.h>
+>>   
+>>   #define NFC_REG_CMD		0x00
+>> @@ -104,6 +106,9 @@
+>>   
+>>   #define PER_INFO_BYTE		8
+>>   
+>> +#define CLK_DIV_SHIFT		0
+>> +#define CLK_DIV_WIDTH		6
+>> +
+>>   struct meson_nfc_nand_chip {
+>>   	struct list_head node;
+>>   	struct nand_chip nand;
+>> @@ -151,15 +156,15 @@ struct meson_nfc {
+>>   	struct nand_controller controller;
+>>   	struct clk *core_clk;
+>>   	struct clk *device_clk;
+>> -	struct clk *phase_tx;
+>> -	struct clk *phase_rx;
+>> +	struct clk *nand_clk;
+>> +	struct clk_divider nand_divider;
+>>   
+>>   	unsigned long clk_rate;
+>>   	u32 bus_timing;
+>>   
+>>   	struct device *dev;
+>>   	void __iomem *reg_base;
+>> -	struct regmap *reg_clk;
+>> +	void __iomem *sd_emmc_clock;
+>>   	struct completion completion;
+>>   	struct list_head chips;
+>>   	const struct meson_nfc_data *data;
+>> @@ -988,6 +993,8 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+>>   static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   {
+>>   	int ret;
+>> +	struct clk_init_data init = {0};
+>> +	struct clk_parent_data nfc_divider_parent_data[1];
+>>   
+>>   	/* request core clock */
+>>   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
+>> @@ -1002,21 +1009,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   		return PTR_ERR(nfc->device_clk);
+>>   	}
+>>   
+>> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+>> -	if (IS_ERR(nfc->phase_tx)) {
+>> -		dev_err(nfc->dev, "failed to get TX clk\n");
+>> -		return PTR_ERR(nfc->phase_tx);
+>> -	}
+>> -
+>> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+>> -	if (IS_ERR(nfc->phase_rx)) {
+>> -		dev_err(nfc->dev, "failed to get RX clk\n");
+>> -		return PTR_ERR(nfc->phase_rx);
+>> -	}
+>> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
+>> +	init.ops = &clk_divider_ops;
+>> +	nfc_divider_parent_data[0].fw_name = __clk_get_name(nfc->device_clk);
+> 
+> This is broken.
+> __clk_get_name() gives the actual global name of the clock
+> "fw_name" is the DT name which allows to find the index on the clock
+> 
+>>From the DT doc, the fw_name is either 'core' or 'device'
+> 
+> I don't think any clock would have such a name so I don't think this can
+> actually work. Did you actually test this ?
 
-diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-index 59bd195fa9c9..a10a417a87db 100644
---- a/drivers/soc/amlogic/meson-secure-pwrc.c
-+++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-@@ -11,6 +11,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/power/meson-s4-power.h>
- #include <linux/arm-smccc.h>
- #include <linux/firmware/meson/meson_sm.h>
- #include <linux/module.h>
-@@ -119,6 +120,18 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
- 	SEC_PD(RSA,	0),
- };
- 
-+static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
-+	SEC_PD(S4_DOS_HEVC,	0),
-+	SEC_PD(S4_DOS_VDEC,	0),
-+	SEC_PD(S4_VPU_HDMI,	0),
-+	SEC_PD(S4_USB_COMB,	0),
-+	SEC_PD(S4_GE2D,		0),
-+	/* ETH is for ethernet online wakeup, and should be always on */
-+	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(S4_DEMOD,	0),
-+	SEC_PD(S4_AUDIO,	0),
-+};
-+
- static int meson_secure_pwrc_probe(struct platform_device *pdev)
- {
- 	int i;
-@@ -187,11 +200,20 @@ static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
- 	.count = ARRAY_SIZE(a1_pwrc_domains),
- };
- 
-+static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
-+	.domains = s4_pwrc_domains,
-+	.count = ARRAY_SIZE(s4_pwrc_domains),
-+};
-+
- static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 	{
- 		.compatible = "amlogic,meson-a1-pwrc",
- 		.data = &meson_secure_a1_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-s4-pwrc",
-+		.data = &meson_secure_s4_pwrc_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
--- 
-2.34.1
+thanks, i will test whether it works or not.
+prevoisly i only run the board and check if NAND is scanning ok after 
+apply these changes, but maybe clock is using from bootloader setting.so 
+i am not sure.
 
+> 
+> 
+>> +	init.parent_data = nfc_divider_parent_data;
+>> +	init.num_parents = 1;
+>> +	nfc->nand_divider.reg = nfc->sd_emmc_clock;
+>> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
+>> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
+>> +	nfc->nand_divider.hw.init = &init;
+>> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
+>> +				  CLK_DIVIDER_ROUND_CLOSEST |
+>> +				  CLK_DIVIDER_ALLOW_ZERO;
+>> +
+>> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
+>> +	if (IS_ERR(nfc->nand_clk))
+>> +		return PTR_ERR(nfc->nand_clk);
+>>   
+>>   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+>> -	regmap_update_bits(nfc->reg_clk,
+>> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
+>> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
+>> +	       nfc->sd_emmc_clock);
+>>   
+>>   	ret = clk_prepare_enable(nfc->core_clk);
+>>   	if (ret) {
+>> @@ -1030,29 +1042,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   		goto err_device_clk;
+>>   	}
+>>   
+>> -	ret = clk_prepare_enable(nfc->phase_tx);
+>> -	if (ret) {
+>> -		dev_err(nfc->dev, "failed to enable TX clock\n");
+>> -		goto err_phase_tx;
+>> -	}
+>> -
+>> -	ret = clk_prepare_enable(nfc->phase_rx);
+>> +	ret = clk_prepare_enable(nfc->nand_clk);
+>>   	if (ret) {
+>> -		dev_err(nfc->dev, "failed to enable RX clock\n");
+>> -		goto err_phase_rx;
+>> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
+>> +		goto err_nand_clk;
+>>   	}
+>>   
+>>   	ret = clk_set_rate(nfc->device_clk, 24000000);
+>>   	if (ret)
+>> -		goto err_disable_rx;
+>> +		goto err_disable_clk;
+>>   
+>>   	return 0;
+>>   
+>> -err_disable_rx:
+>> -	clk_disable_unprepare(nfc->phase_rx);
+>> -err_phase_rx:
+>> -	clk_disable_unprepare(nfc->phase_tx);
+>> -err_phase_tx:
+>> +err_disable_clk:
+>> +	clk_disable_unprepare(nfc->nand_clk);
+>> +err_nand_clk:
+>>   	clk_disable_unprepare(nfc->device_clk);
+>>   err_device_clk:
+>>   	clk_disable_unprepare(nfc->core_clk);
+>> @@ -1061,8 +1065,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>   
+>>   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+>>   {
+>> -	clk_disable_unprepare(nfc->phase_rx);
+>> -	clk_disable_unprepare(nfc->phase_tx);
+>> +	clk_disable_unprepare(nfc->nand_clk);
+>>   	clk_disable_unprepare(nfc->device_clk);
+>>   	clk_disable_unprepare(nfc->core_clk);
+>>   }
+>> @@ -1370,11 +1373,31 @@ static const struct of_device_id meson_nfc_id_table[] = {
+>>   };
+>>   MODULE_DEVICE_TABLE(of, meson_nfc_id_table);
+>>   
+>> +static int meson_nfc_reg_resource(struct device *dev, struct meson_nfc *nfc)
+>> +{
+>> +	struct resource res;
+>> +	void __iomem *base[2];
+>> +	struct device_node *node = dev->of_node;
+>> +	int i;
+>> +
+>> +	for (i = 0; i < 2; i++) {
+>> +		if (of_address_to_resource(node, i, &res))
+>> +			return -ENOENT;
+>> +
+>> +		base[i] = devm_ioremap_resource(dev, &res);
+>> +		if (IS_ERR(base))
+>> +			return PTR_ERR(base);
+>> +	}
+>> +	nfc->reg_base = base[0];
+>> +	nfc->sd_emmc_clock = base[1];
+>> +
+> 
+> There is no reason to make a separate function for this.
+> 
+> Please name your ressource and claim them properly instead of interating
+> on them.
+> 
+ok
+> 
+>> +	return 0;
+>> +}
+>> +
+>>   static int meson_nfc_probe(struct platform_device *pdev)
+>>   {
+>>   	struct device *dev = &pdev->dev;
+>>   	struct meson_nfc *nfc;
+>> -	struct resource *res;
+>>   	int ret, irq;
+>>   
+>>   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+>> @@ -1388,20 +1411,12 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>>   	nand_controller_init(&nfc->controller);
+>>   	INIT_LIST_HEAD(&nfc->chips);
+>>   	init_completion(&nfc->completion);
+>> -
+>>   	nfc->dev = dev;
+>>   
+>> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> -	nfc->reg_base = devm_ioremap_resource(dev, res);
+>> -	if (IS_ERR(nfc->reg_base))
+>> -		return PTR_ERR(nfc->reg_base);
+>> -
+>> -	nfc->reg_clk =
+>> -		syscon_regmap_lookup_by_phandle(dev->of_node,
+>> -						"amlogic,mmc-syscon");
+>> -	if (IS_ERR(nfc->reg_clk)) {
+>> -		dev_err(dev, "Failed to lookup clock base\n");
+>> -		return PTR_ERR(nfc->reg_clk);
+>> +	ret = meson_nfc_reg_resource(dev, nfc);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to get reg resource\n");
+>> +		return ret;
+>>   	}
+>>   
+>>   	irq = platform_get_irq(pdev, 0);
+> 
+> .
 
 _______________________________________________
 linux-amlogic mailing list
