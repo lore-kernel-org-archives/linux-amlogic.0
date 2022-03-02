@@ -4,90 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F1B2C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 08:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C030C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 08:46:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iS+z+1ZHLFCXC4PAtDC6KTrOhFEpZ5ZEHVq959pPaMs=; b=vrWqWXH1zHEUW/
-	V87ySt/OQlbLi861KgaMxyis9B9lGNwI38SkhKd8nSSu2kkoO0nEv9BVPp60BiC17Eq9B7Yx1wdjc
-	GWZzJENw68kCo3ckmZbZw9hL8IU4OnYkj1TJxksneO59y+MRqjfLDfV0vKYJ1uxdQPCwT1mCReml6
-	mtbPZ+8NUsOTblw9e2/G4Yjhhsco00tObvCkCo9/Tzqy1o3/2mQKDhZMXx8re6GFGmPWsGyqbPVqO
-	6i2AaiVu2xkcUrIpaTLdcJSWKXFaIHB1/tHJ8abuz4Sv5lerJdbtEHPewh+K55lTNZWIrUTTAd2hy
-	1I9fzzWSR4R3+/FPUlxg==;
+	List-Owner; bh=UnSsm2Z6Hq4VKcqnrlNHfdkILJCiYKxmBvNyV/Q1/es=; b=oWm+tMKf2yD2cI
+	RmLi6Q+FxEXnUHRmstgCIV/1P85ushSFWVARApuqlVjNkVVQI9ae4lKsSKGA5RFciylEVcjN8rIMa
+	6mzfmZc5HDJNi0R6hUV40wqpv+jggfy0fcNCkzuAFJeESQRYuXcIPBgQu4xKhiZRFU4on4Ze2Gb9y
+	71eDDkN2/9DnKu+wdlHFVv9mkAuYndWaSk5LZ0Av7XyN8C/QiJo37L+PlrnyJeBXhgnvf8zKSgSip
+	yR0AX5ngPNqR1jOYp+ufYjaVncYRb3acijKVMGAw+WgEVwFbtESkbdpGvE8V/g7hShtp3WL0S8Jvc
+	rS8rLAzXKId9RR8KjwyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nPKLF-001rP0-8N; Wed, 02 Mar 2022 08:28:13 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1nPKcw-001uQw-JJ; Wed, 02 Mar 2022 08:46:30 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nPKLA-001rNy-Ur
- for linux-amlogic@lists.infradead.org; Wed, 02 Mar 2022 08:28:11 +0000
-Received: by mail-wm1-x331.google.com with SMTP id
- o18-20020a05600c4fd200b003826701f847so2144714wmq.4
- for <linux-amlogic@lists.infradead.org>; Wed, 02 Mar 2022 00:28:08 -0800 (PST)
+ id 1nPKch-001uLG-EP
+ for linux-amlogic@lists.infradead.org; Wed, 02 Mar 2022 08:46:18 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id u1so1501433wrg.11
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Mar 2022 00:46:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=HxGOuYmY7LiA4iGOdF2v4hBw9/NxWKDxW/pX0o8XeQY=;
- b=0U55S0NEEaImFGWugryXcG5PJIByCAy7/NHh6Eu7A5Fj3ar/XFGG/uye977EUG+E53
- kmdrPzzzSePStaFeGuLpLY2hHoFjIRoU/xwcRAwJAS/hG83UxMJBVPfLBJJy8LDwWpAc
- yG8h8lLC/S0UmDDny122K5dphkBrswi91zslmzK9vgxt3L21VTrbVLjWTOVpxTaMIgB5
- eZdTkaCO56H4Wwga0+YVUP2hgG4d/IPLBO9ow/0cDogK3HIXK+mTQdFeOtdAzznTWP1J
- 7hjIrgn4MtunhIoWwOkohx5hPhkVX0UuyTXkkz/QfRTNE1SKlCXyjEj3ean/VfH4mPKz
- LinQ==
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=OAGdmlBU750HPm6uS/2rXxP2qybmRe1eYS45j7gSSxk=;
+ b=WP4yMtfpQleDkk9wS69RYgsd68w6DMQxWIrclmUo4ldChNykmhvZIvGgi45qagVVL0
+ UM9bmwGhBpdP8zVcFR071ykfwaDmXmlr2ZJCi+E0Qhw2yvSw3V9asr736pAim0U5wGpt
+ enFSpLql7sLfSqYp5bvc1GJ2tLchgQkdateHkYFSSo3CnNOstJzQnynEB1JGCcNYVjFt
+ XcpGwRjNrBhq6+TLM/u/r3cesiY5jqJ6imlF8CzyurvZSBtCDEbqxNgWUbFzXHb+XZHH
+ u8Kvv5U8rqogA7drPeghTaWJCRa8BFA2RzR4YtjnghgYZeyhAftCkO43oHmYFlySK5UT
+ 578A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=HxGOuYmY7LiA4iGOdF2v4hBw9/NxWKDxW/pX0o8XeQY=;
- b=K/l4ymcjKDGbTuf5HzbZKw/d4vwTDfXug1356Hb5IdlM3HRdzVDSm8/KMGrjjmWeBS
- iaouRcah8mf0gb7HUvLH8IgUpJW9sRBKpJtKtHrfqcEWQvxMqov2geDd1VYlkz6SqiXO
- dc3PFJaNWHy5scMq2G2oyVoTjJYPLsCHdbHa9TF9cw0lmJ0aB+yM3WqXDfVFSD5GRUqV
- OqLNY2rXVWf5+My5dS/kH3d5cnzKp/hEOC9yQm+IfR9iaU/6Hmii7rC95qxdBtCBr95l
- 1c9dae10WK+/Q3oU56GTqHGIETvWzbdrYM//SPg2FkTWPclYkWjXcXn2ul+Cdcwn5C5j
- rzxQ==
-X-Gm-Message-State: AOAM532Nk98PttXbeZ7kG3DMTdACNrZYxcS45QClXeAyfjrhqzsPgXSh
- /IeQSpHRcoahvOwE5ZE7B21lWg==
-X-Google-Smtp-Source: ABdhPJw+rAizsnXWw82JpOop6PVVpVwgNfC4DCBaFHUIX7R//EsA8IkQlLb3ax3IfwmPlq0Qpu7x5w==
-X-Received: by 2002:a05:600c:3b10:b0:381:3b9f:e382 with SMTP id
- m16-20020a05600c3b1000b003813b9fe382mr18332369wms.9.1646209687407; 
- Wed, 02 Mar 2022 00:28:07 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:3530:ddb:a61:e8db?
- ([2001:861:44c0:66c0:3530:ddb:a61:e8db])
- by smtp.gmail.com with ESMTPSA id
- b10-20020a5d550a000000b001e30e81afd1sm15903883wrv.2.2022.03.02.00.28.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Mar 2022 00:28:07 -0800 (PST)
-Message-ID: <09756faa-5bfd-beac-0c77-976601141ad1@baylibre.com>
-Date: Wed, 2 Mar 2022 09:28:06 +0100
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=OAGdmlBU750HPm6uS/2rXxP2qybmRe1eYS45j7gSSxk=;
+ b=LfkILRcNc+0fIkUOGWcUkC8B9zpCIsuK/uASzGUGtQajVDysE2L7Bzwp0IwlNCrTwy
+ JW1IdLEdAVgDN2IdedXfv3R84tc+zMdquRMD1sTfhjcMe79PuW4tDBaYl8DnWP5wZNPQ
+ G6tCDK6TqkRqVebNQM3D58mw0DzWENj4/NCeWy57rdBpkPBeI1ywBTc5L8ZH6Ref+CYO
+ 3WvJrAkYHXCqMWVypKdfRxHmnN5lC9Sr8DD8pezEPVv5v8yzk7hCt/aL/n9888qIzf0j
+ NhWh+00KEYklMI+Ne8gIlZpI9rGVSZayPMwN8OfY3jVw7B7icW7anZCFszjlefKnV0LK
+ 4ePQ==
+X-Gm-Message-State: AOAM5307izBGyd126Ili2qZgbv7aBBbISvBZbp7x634QrN+8h+0HVgi0
+ Me3ZaFtBmO7x6L/c9ORYz1Uyrg==
+X-Google-Smtp-Source: ABdhPJw5nDmQ7R5dprkc1DDIySxAi6zQnYTihowhbWzCteml7VcyIvHFYuoM8SHpvqOj/d50zsSxUg==
+X-Received: by 2002:a05:6000:15cb:b0:1ea:78fc:2201 with SMTP id
+ y11-20020a05600015cb00b001ea78fc2201mr22973825wry.362.1646210772967; 
+ Wed, 02 Mar 2022 00:46:12 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31]) by smtp.gmail.com with ESMTPSA id
+ r2-20020adff702000000b001efd7eb7c37sm7983296wrp.34.2022.03.02.00.46.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Mar 2022 00:46:12 -0800 (PST)
+References: <20220217063346.21691-1-liang.yang@amlogic.com>
+ <20220217063346.21691-3-liang.yang@amlogic.com>
+ <1jv8wzw78r.fsf@starbuckisacylon.baylibre.com>
+ <4741f36a-e17a-75c3-124f-447e4426c436@amlogic.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: "Liang.Yang" <liang.yang@amlogic.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan
+ <victor.wan@amlogic.com>, XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin
+ Zhang <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>,
+ YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v2 2/2] dt-bindings: nand: meson: refine Amlogic
+ NAND controller driver
+Date: Wed, 02 Mar 2022 09:42:06 +0100
+In-reply-to: <4741f36a-e17a-75c3-124f-447e4426c436@amlogic.com>
+Message-ID: <1jczj47ne5.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V5 0/2] Power: meson-s4: add s4 power domain driver
-Content-Language: en-US
-To: "shunzhou.jiang@amlogic.com" <shunzhou.jiang@amlogic.com>
-Cc: linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>, khilman <khilman@baylibre.com>,
- jbrunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "jianxin.pan" <jianxin.pan@amlogic.com>
-References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
- <9c35b653-6cf4-a13e-ce7b-b186cf4b68f4@baylibre.com>
- <2022030211175891410963@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <2022030211175891410963@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220302_002809_102311_133E11C0 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20220302_004615_503569_650ED25F 
+X-CRM114-Status: GOOD (  20.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,66 +97,192 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksDQoNCk9uIDAyLzAzLzIwMjIgMDQ6MTcsIHNodW56aG91LmppYW5nQGFtbG9naWMuY29tIHdy
-b3RlOg0KPiBIaSwNCj4gT0ssIHRoYW5rcyB5b3VyIHJlcGx5DQo+IEkgd2lsbCBjaGVjayB0aGlz
-IGlzc3VlDQoNCkFub3RoZXIgeDggc2V0IG9mIG1haWxzIGFycml2ZWQgb24gdGhlIG1haWxpbmct
-bGlzdCBmcm9tIHlvdXIgc2lkZSwgcGxlYXNlIGZpeCB0aGUgcHJvYmxlbS4NCg0KTmVpbA0KDQo+
-IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiBTaHVuemhvdSBKaWFuZw0KPiBTVyBEZXBhcnRtZW50
-DQo+IA0KPiAgICAgKkZyb206KiBOZWlsIEFybXN0cm9uZyA8bWFpbHRvOm5hcm1zdHJvbmdAYmF5
-bGlicmUuY29tPg0KPiAgICAgKkRhdGU6KsKgMjAyMi0wMy0wMcKgMTY6MzkNCj4gICAgICpUbzoq
-IFNodW56aG91IEppYW5nIDxtYWlsdG86c2h1bnpob3UuamlhbmdAYW1sb2dpYy5jb20+DQo+ICAg
-ICAqQ0M6KiBsaW51eC1hcm0ta2VybmVsIDxtYWlsdG86bGludXgtYXJtLWtlcm5lbEBsaXN0cy5p
-bmZyYWRlYWQub3JnPjsgbGludXgtYW1sb2dpYyA8bWFpbHRvOmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZz47IGxpbnV4LWtlcm5lbCA8bWFpbHRvOmxpbnV4LWtlcm5lbEB2Z2VyLmtl
-cm5lbC5vcmc+OyBkZXZpY2V0cmVlIDxtYWlsdG86ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+
-OyBraGlsbWFuIDxtYWlsdG86a2hpbG1hbkBiYXlsaWJyZS5jb20+OyBqYnJ1bmV0IDxtYWlsdG86
-amJydW5ldEBiYXlsaWJyZS5jb20+OyBtYXJ0aW4uYmx1bWVuc3RpbmdsIDxtYWlsdG86bWFydGlu
-LmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT47IGppYW54aW4ucGFuIDxtYWlsdG86amlhbnhp
-bi5wYW5AYW1sb2dpYy5jb20+DQo+ICAgICAqU3ViamVjdDoqwqBSZTogW1BBVENIIFY1IDAvMl0g
-UG93ZXI6IG1lc29uLXM0OiBhZGQgczQgcG93ZXIgZG9tYWluIGRyaXZlcg0KPiAgICAgWyBFWFRF
-Uk5BTCBFTUFJTCBdDQo+ICAgICBIaSwNCj4gICAgIE9uIDAxLzAzLzIwMjIgMDI6NTgsIFNodW56
-aG91IEppYW5nIHdyb3RlOg0KPiAgICAgID4gVGhpcyBwYXRjaHNldCBhZGRzIFBvd2VyIGNvbnRy
-b2xsZXIgZHJpdmVyIHN1cHBvcnQgZm9yIE1lc29uLVM0IFNvQw0KPiAgICAgID4gTGlrZXMgTWVz
-b24tQTEsIHRoZSBwb3dlciBkb21haW5zIHJlZ2lzdGVyIG9ubHkgY2FuIGFjY2VzcyBpbiBzZWN1
-cmUgd29ybGQNCj4gICAgICA+DQo+ICAgICAgPiBTaHVuemhvdSBKaWFuZyAoMik6DQo+ICAgICAg
-PsKgwqDCoCBkdC1iaW5kaW5nczogcG93ZXI6IGFkZCBBbWxvZ2ljIHM0IHBvd2VyIGRvbWFpbnMg
-YmluZGluZ3MNCj4gICAgICA+wqDCoMKgIHNvYzogczQ6IEFkZCBzdXBwb3J0IGZvciBwb3dlciBk
-b21haW5zIGNvbnRyb2xsZXINCj4gICAgICA+DQo+ICAgICAgPsKgwqAgLi4uL3Bvd2VyL2FtbG9n
-aWMsbWVzb24tc2VjLXB3cmMueWFtbMKgwqDCoMKgwqDCoMKgwqAgfMKgIDMgKystDQo+ICAgICAg
-PsKgwqAgZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1zZWN1cmUtcHdyYy5jwqDCoMKgwqDCoMKg
-IHwgMjIgKysrKysrKysrKysrKysrKysrKw0KPiAgICAgID7CoMKgIGluY2x1ZGUvZHQtYmluZGlu
-Z3MvcG93ZXIvbWVzb24tczQtcG93ZXIuaMKgwqDCoCB8IDE5ICsrKysrKysrKysrKysrKysNCj4g
-ICAgICA+wqDCoCAzIGZpbGVzIGNoYW5nZWQsIDQzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
-LSkNCj4gICAgICA+wqDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9kdC1iaW5kaW5ncy9w
-b3dlci9tZXNvbi1zNC1wb3dlci5oDQo+ICAgICAgPg0KPiAgICAgID4NCj4gICAgICA+IGJhc2Ut
-Y29tbWl0OiAzNDQ4YTAxOGRlZDAzY2NkNDA5M2Q2Njc1ZjRhMzllYjJkMWExOGVmDQo+ICAgICBJ
-IHRoaW5rIHlvdSBoYXZlIGFuIGlzc3VlIHdpdGggeW91ciBtYWlsIHNldHVwLCB5b3Ugc2VudCA1
-IHRpbWVzIHRoZSBzYW1lICJbUEFUQ0ggVjUgMC8yXSBQb3dlcjogbWVzb24tczQ6IGFkZCBzNCBw
-b3dlciBkb21haW4gZHJpdmVyIiBwYXRjaHNldC4NCj4gICAgIFBsZWFzZSBmaXggaXQgYW5kIG1h
-a2VyIGl0IGRvZXNuJ3QgaGFwcGVuIGFnYWluLg0KPiAgICAgVGhhbmtzLA0KPiAgICAgTmVpbA0K
-PiANCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
-Ywo=
+
+On Wed 02 Mar 2022 at 13:19, Liang.Yang <liang.yang@amlogic.com> wrote:
+
+> Hi Jerome,
+>
+> On 2022/2/28 19:36, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>> 
+>> On Thu 17 Feb 2022 at 14:33, Liang Yang <liang.yang@amlogic.com> wrote:
+>> 
+>>> convert txt to yaml and refine the meson NFC clock document.
+>>>
+>>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>>> ---
+>>>   .../bindings/mtd/amlogic,meson-nand.txt       | 60 ----------------
+>>>   .../bindings/mtd/amlogic,meson-nand.yaml      | 70 +++++++++++++++++++
+>>>   2 files changed, 70 insertions(+), 60 deletions(-)
+>>>   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>>>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>>> deleted file mode 100644
+>>> index 5794ab1147c1..000000000000
+>>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>>> +++ /dev/null
+>>> @@ -1,60 +0,0 @@
+>>> -Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+>>> -
+>>> -This file documents the properties in addition to those available in
+>>> -the MTD NAND bindings.
+>>> -
+>>> -Required properties:
+>>> -- compatible : contains one of:
+>>> -  - "amlogic,meson-gxl-nfc"
+>>> -  - "amlogic,meson-axg-nfc"
+>>> -- clocks     :
+>>> -	A list of phandle + clock-specifier pairs for the clocks listed
+>>> -	in clock-names.
+>>> -
+>>> -- clock-names: Should contain the following:
+>>> -	"core" - NFC module gate clock
+>>> -	"device" - device clock from eMMC sub clock controller
+>>> -	"rx" - rx clock phase
+>>> -	"tx" - tx clock phase
+>>> -
+>>> -- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
+>>> -				controller port C
+>>> -
+>>> -Optional children nodes:
+>>> -Children nodes represent the available nand chips.
+>>> -
+>>> -Other properties:
+>>> -see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
+>>> -
+>>> -Example demonstrate on AXG SoC:
+>>> -
+>>> -	sd_emmc_c_clkc: mmc@7000 {
+>>> -		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+>>> -		reg = <0x0 0x7000 0x0 0x800>;
+>>> -	};
+>>> -
+>>> -	nand-controller@7800 {
+>>> -		compatible = "amlogic,meson-axg-nfc";
+>>> -		reg = <0x0 0x7800 0x0 0x100>;
+>>> -		#address-cells = <1>;
+>>> -		#size-cells = <0>;
+>>> -		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>>> -
+>>> -		clocks = <&clkc CLKID_SD_EMMC_C>,
+>>> -			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
+>>> -			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
+>>> -			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
+>>> -		clock-names = "core", "device", "rx", "tx";
+>>> -		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
+>>> -
+>>> -		pinctrl-names = "default";
+>>> -		pinctrl-0 = <&nand_pins>;
+>>> -
+>>> -		nand@0 {
+>>> -			reg = <0>;
+>>> -			#address-cells = <1>;
+>>> -			#size-cells = <1>;
+>>> -
+>>> -			nand-on-flash-bbt;
+>>> -		};
+>>> -	};
+>>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>>> new file mode 100644
+>>> index 000000000000..671f0a8fdc7c
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>>> @@ -0,0 +1,70 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/amlogic,mmc-clkc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+>>> +
+>>> +maintainers:
+>>> +  - liang.yang@amlogic.com
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - "amlogic,meson-gxl-nfc"
+>>> +      - "amlogic,meson-axg-nfc"
+>>> +
+>>> +  reg:
+>>> +    maxItems: 2
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: "core", "device"
+>>> +
+>>> +  "#clock-cells":
+>>> +    const: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - "#clock-cells"
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    nand-controller@7800 {
+>>> +	compatible = "amlogic,meson-axg-nfc";
+>>> +	reg = <0x0 0x7800 0x0 0x100>,
+>>> +	      <0x0 0x7000 0x0 0x1>;
+>> Please name the register ressources instead of relying on the order
+> ok
+>> Also, use the actual size of region, not the size you are using in the
+>> driver. AFAIK, the size of the 2nd region is not 0x1
+> yes, it should be 0x4 here, i will fix it.
+> we only need to use a 32bits SDEMMC_CLOCK register.
+> thanks.
+
+No, it is not the point.
+What register you need in the driver is not relevant.
+What is relevant is the actual size of the memory region - so it not 0x1
+or 0x4 ... more likely 0x800 from what I see in the AXG dts.
+
+>> 
+>>> +	#address-cells = <1>;
+>>> +	#size-cells = <0>;
+>>> +	interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>>> +
+>>> +	clocks = <&clkc CLKID_SD_EMMC_C>,
+>>> +		<&clkc CLKID_FCLK_DIV2>;
+>>> +	clock-names = "core", "device";
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&nand_pins>;
+>>> +
+>>> +	nand@0 {
+>>> +		reg = <0>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +
+>>> +		nand-on-flash-bbt;
+>>> +	};
+>>> +     };
+>>> +
+>>> +...
+>>> \ No newline at end of file
+>> .
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
