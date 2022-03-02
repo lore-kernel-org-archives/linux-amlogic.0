@@ -4,91 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64618C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 11:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91205C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Mar 2022 14:44:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rwIPtL3LTfms7P+ThdZ5T/Mm1XrAM3wobB+pCfoPxGA=; b=jn2iZNpCOPV8pU
-	l1Kruj8vcgnH9OLCePI3w9RbgLMUQrv5Hg2cO3TDwmtPLbbHWlA9geRqxPNR722+XJh87CWxg4HLx
-	tkIdHnW/Va6T6S8e2mdSMDCUulB+2nIEZvngWJZYa1GqTuuJaZUWUOTuSj75DDxjUWOCm86m0A6Xl
-	+TqIbVhCnn/4Hh5C+TcAmG/X7+DqDnI/cWJjnoJwWwTdnsKGaPYa2sVXjc9yD7UTax0ip+vFD8+Lf
-	8PEofvlcpncKzDNJMwgNSX7rTXRr0GyhCr3l/azGM5JwyhWIDnPNdugkcAiNE93i9/nWefEKUsaeh
-	D4dfn7KtBTmw4kANSiCg==;
+	List-Owner; bh=SR4/bBYSpFAaCl/JDJUyQj08y0ZuNST/Rr8sJFYOReE=; b=Mb2gyphp6NXRTP
+	vjGgIzWdSRqaeFQ+l+uC3fwVgtWFGRg7doPeSjTAMnbFg1L6oxVZ7TxccF3iSfmnKcINbst3FPr0J
+	HyaE0Mox1vb0UNRTXSr3xcIFfcxesUyam/xAUUulJrNpeGDhGbY5dwg3Hll5V5MRGQoPWRptGh/Mm
+	Isf59rKnMCC5p1oxNpjt5MSrXKymsjfUPmKk5PXXxjPtcAma9/XcO/HHtPRwJaM8senYADxrHvptl
+	XsLPfaqmgkKvHGjzFeZNU4IadbHXdqzMTAoZGWtlUJB+Lhr0+kqQ/qIWFEVMUMyzAZJLmg0Y/X5uO
+	o1nl0K9xEd5ONE0HadUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nPMkG-002Mxp-Fu; Wed, 02 Mar 2022 11:02:12 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1nPQDE-0032pv-F4; Wed, 02 Mar 2022 14:44:20 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nPMkD-002MwA-Cl; Wed, 02 Mar 2022 11:02:10 +0000
-Received: by mail-wm1-x329.google.com with SMTP id
- k29-20020a05600c1c9d00b003817fdc0f00so991744wms.4; 
- Wed, 02 Mar 2022 03:02:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:content-language:to:cc
- :references:from:subject:in-reply-to:content-transfer-encoding;
- bh=GK7LbsrLfu8NDtuAdj7VpigfGpU3e9sLo3rD9+yMAKg=;
- b=k+AVIXRPpET3eqsYjZTwW5Hwi8ly90xiacCytwW/sdH99Q1pv3OatYQSywJH8WbFOj
- rFFjCbaOE2/hJqKlseNMYm1JulAXxF6MYvEwodYD5qHvtYnNMpY05PprP8W60o+aBEN9
- 8AO3xJzHmmRmibt2BqeLaWZuzbvIf3HmCn0FgBezOgYX5prJqN5DSl9on4YoLMldlva0
- eaSdsnt+MeY72NL12QwB9wprx2uMMSloXb7bUvKEOZVw+MG4Vl8Td8rBIdJ1HHHihoF4
- gmxZhzx3yfqvC0GTHNJ30ptgpANFKm33mN6AofqaU2EXXMKwGIcb81+urCz5PfKMLvqM
- giBg==
+ id 1nPQDA-0032oJ-Sh
+ for linux-amlogic@lists.infradead.org; Wed, 02 Mar 2022 14:44:19 +0000
+Received: by mail-wr1-x430.google.com with SMTP id u10so1518801wra.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Mar 2022 06:44:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=FhWPuxj/YTUyK847np3IX93yxzJZHcz7qh4GO+7rXKE=;
+ b=msaaAUtYJ4UsgZwG4sJuMhyxBIBNud3N4C+lLFW9viMe+uajCi99kjRwYykX652Lgw
+ 2eSEg9m/6Thl27dD6VUUYSkPVLH54de9va8DFzmM9uKdE+jGdik4V2AxcDjPRt35rRUb
+ 7J3Ip4w45tgm3bkTpAY7608rIwWUzCfwOUDbvo8OP6HrGh/eBXxu/g3NlRXUgyWTxnQ7
+ SXtOpCdZrCfmkFdQpTOTWYHxPU8VHAyLZCM2k/SlgAbVKODxOX79JXrG3AnR/uhBKHpc
+ vvGCPOC4bPdxA++OUaECwgdBTpG96LjSfeI9NY5M7AswjyV9Ccp8e5lshz5zSEGZ/P7J
+ oAEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent
- :content-language:to:cc:references:from:subject:in-reply-to
- :content-transfer-encoding;
- bh=GK7LbsrLfu8NDtuAdj7VpigfGpU3e9sLo3rD9+yMAKg=;
- b=YQJki3li56eHpJB7NE9FMFxc5iW4pqSPOw6CI4rv3eKXxSPqWfa5WbcAaMQtEJR1aK
- BxTMquYdQqKG0jC3vzPFsEtoPyUlupr94fahQJG1jX7NK4OSNKcqMj+qZ999+om4zALz
- 20U3ZGbyRPMxkQY2mMCz5mDRiWFvvkuC1NBprTQStGGx37TMoiOWCI7v2abYNEz2ijVY
- enmVseBWKS9h5P8GKh4894Ip+fjJfSKo8OxRc+vsmbw2YmNVXAyrhxi/dAyu/pHGMw17
- 09kAWsi/4IDs7kh7t7e0yfUTq35cVmzjSzEeXX7QRhjeuXy+d6LPhlFBhd9CpFIUtA2w
- M4Bw==
-X-Gm-Message-State: AOAM532EOGOww8qzf4tSRSZLhwE5mJQA54r4Tkb6uMKwOlTfzQLz65nO
- IwuLxw+t/s4YDOBRSQBZwYE=
-X-Google-Smtp-Source: ABdhPJysMuAwmk3s78nTsltDe2Isbs1ISpf2VRTVkR3jz46c8siZbMwco13uuyKzYlxiEe3ux7gl+g==
-X-Received: by 2002:a05:600c:3c8b:b0:37f:1546:40c9 with SMTP id
- bg11-20020a05600c3c8b00b0037f154640c9mr20703326wmb.161.1646218925888; 
- Wed, 02 Mar 2022 03:02:05 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7331:8a00:3d70:3e0f:83b8:3269?
- (dynamic-2a01-0c22-7331-8a00-3d70-3e0f-83b8-3269.c22.pool.telefonica.de.
- [2a01:c22:7331:8a00:3d70:3e0f:83b8:3269])
- by smtp.googlemail.com with ESMTPSA id
- g17-20020a5d4891000000b001e74e998bf9sm16392585wrq.33.2022.03.02.03.02.04
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Mar 2022 03:02:05 -0800 (PST)
-Message-ID: <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
-Date: Wed, 2 Mar 2022 12:01:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Content-Language: en-US
-To: Erico Nunes <nunes.erico@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org,
- netdev@vger.kernel.org,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- linux-sunxi@lists.linux.dev
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=FhWPuxj/YTUyK847np3IX93yxzJZHcz7qh4GO+7rXKE=;
+ b=exL5IDjsQcnubPMSIhsg7Q+xrAZpW0Hmo9doIDg5nWCUBHVF0FCmbLWfu5g3WcOcn5
+ sZxYXr+XIskzN5DiwpYHKrQpKg4VnAUzDFeoC5BjYFZmmOckWAO7MKddpiJvg715p3rN
+ H1vVeiKIy6gQ/y9sY2gPwVKOa3XXuV2HtKKiYQ0RgiKwD/kccjtVWLh9nRedu3FXOuA/
+ G/NL8m5QAVXOwNUFa5L0WxBiHdUV6csFCQZ/vIJUW6u7dnl/qcgKUmMCAyHLNNHhEMdt
+ mC8AaOL/pCXyHfMOZ/3bHnLqYxKOUg6/AhuMLkxSeAELM0HsnIGjb442c1Dc+pfzGP4f
+ cHhg==
+X-Gm-Message-State: AOAM533sIBima7sybldHhfsjylPt4+hZkacEJCrny4dfczbk7n9LD5JM
+ OIZtPuswsTfkWPN4v0wi2foYiQ==
+X-Google-Smtp-Source: ABdhPJzpL4aEUuKagqpQ7KI1a1VSvKWc65xZONt1iWiFcNA6nLEK1U7HWta5oDI+FEGGzZdYSfZ2hw==
+X-Received: by 2002:a5d:5889:0:b0:1ef:d7e1:c6c with SMTP id
+ n9-20020a5d5889000000b001efd7e10c6cmr10337751wrf.569.1646232254953; 
+ Wed, 02 Mar 2022 06:44:14 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31]) by smtp.gmail.com with ESMTPSA id
+ t9-20020a05600c198900b0037c0342cb62sm7842262wmq.4.2022.03.02.06.44.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Mar 2022 06:44:14 -0800 (PST)
 References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
  <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
  <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
  <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
  <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
- at boot
-In-Reply-To: <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
+ <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Erico Nunes
+ <nunes.erico@gmail.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org, netdev@vger.kernel.org, "open
+ list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-sunxi@lists.linux.dev
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come
+ up at boot
+Date: Wed, 02 Mar 2022 14:39:47 +0100
+In-reply-to: <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
+Message-ID: <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220302_030209_480738_BCC3B0D1 
-X-CRM114-Status: GOOD (  27.08  )
+X-CRM114-CacheID: sfid-20220302_064416_940396_D173F36D 
+X-CRM114-Status: GOOD (  44.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,96 +102,151 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 02.03.2022 11:33, Erico Nunes wrote:
-> On Sat, Feb 26, 2022 at 2:53 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->> Just to rule out that the PHY may be involved:
->> - Does the issue occur with internal and/or external PHY?
-> 
-> My target boards have the internal phy only. It is not possible for me
-> at the moment to test it with an external phy.
-> 
->> - Issue still occurs in PHY polling mode? (disable PHY interrupt in dts)
-> 
-> Thanks for suggesting this. I did tests with this and it seems to be a
-> workaround.
-> With phy interrupt on recent kernels (around v5.17-rc3) I'm able to
-> reproduce the issue relatively easily over a batch of a hundred jobs.
-> With my tests with the phy in polling mode, I have not been able to
-> reproduce so far, even with several hundred jobs.
-> 
-It's my understanding that in the problem case the "aneg complete"
-interrupt fires, but no data flows.
-This might indicate a timing issue. According to the meson PHY driver
-(I don't have the datasheet) the PHY doesn't have a "link up" interrupt
-source, just the mentioned "aneg complete".
 
-Below I send an experimental patch that delays the link up processing
-a little and eliminates not needed interrupt sources.
-Could you please test it with PHY interrupts enabled?
+On Wed 02 Mar 2022 at 12:01, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
+> On 02.03.2022 11:33, Erico Nunes wrote:
+>> On Sat, Feb 26, 2022 at 2:53 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>> Just to rule out that the PHY may be involved:
+>>> - Does the issue occur with internal and/or external PHY?
+>> 
+>> My target boards have the internal phy only. It is not possible for me
+>> at the moment to test it with an external phy.
+>> 
+>>> - Issue still occurs in PHY polling mode? (disable PHY interrupt in dts)
+>> 
+>> Thanks for suggesting this. I did tests with this and it seems to be a
+>> workaround.
+>> With phy interrupt on recent kernels (around v5.17-rc3) I'm able to
+>> reproduce the issue relatively easily over a batch of a hundred jobs.
+>> With my tests with the phy in polling mode, I have not been able to
+>> reproduce so far, even with several hundred jobs.
+>> 
+> It's my understanding that in the problem case the "aneg complete"
+> interrupt fires, but no data flows.
+> This might indicate a timing issue. According to the meson PHY driver
+> (I don't have the datasheet) the PHY doesn't have a "link up" interrupt
+> source, just the mentioned "aneg complete".
+>
+> Below I send an experimental patch that delays the link up processing
+> a little and eliminates not needed interrupt sources.
+> Could you please test it with PHY interrupts enabled?
+>
+>
+> By the way, to all:
+> I found that interrupt mode is broken in fixed (aneg disabled) mode,
+> because link-up isn't signaled. Experiments showed that irq source
+> bit 7 can be used to fix this, but this bit isn't documented in the
+> driver.
+>
+>> For completeness I also tested 46f69ded988d (from my initial analysis)
+>> and setting the phy to polling mode there does not make a difference,
+>> issue still reproduces. So it may have been a different bug. Though I
+>> guess at this point we can disregard that and focus on the current
+>> kernel.
+>> 
+>> I tried adding a few debugs and delays to the interrupt code path in
+>> drivers/net/phy/meson-gxl.c but nothing gave me useful info so far.
+>> 
+>> Do you have more advice on how to proceed from here?
+>> 
+>> Thanks
+>> 
+>> Erico
+>
+> Heiner
 
-By the way, to all:
-I found that interrupt mode is broken in fixed (aneg disabled) mode,
-because link-up isn't signaled. Experiments showed that irq source
-bit 7 can be used to fix this, but this bit isn't documented in the
-driver.
+Hi,
 
-> For completeness I also tested 46f69ded988d (from my initial analysis)
-> and setting the phy to polling mode there does not make a difference,
-> issue still reproduces. So it may have been a different bug. Though I
-> guess at this point we can disregard that and focus on the current
-> kernel.
-> 
-> I tried adding a few debugs and delays to the interrupt code path in
-> drivers/net/phy/meson-gxl.c but nothing gave me useful info so far.
-> 
-> Do you have more advice on how to proceed from here?
-> 
-> Thanks
-> 
-> Erico
+I also did some tests on my side as well. Mostly with v5.10.93 ATM
+It is true that I can recall seeing this issue only on boards using the
+internal PHY (g12 and gxl board for me - I don't have meson8b boards)
 
-Heiner
+I tried on the u200 (g12 based). Being the ref design it has both
+the internal and external interfaces and I can choose.
 
+To my surprise, I could not reproduce the issue on it with the internal
+PHY ... until I noticed that eMMC was initialising more or less at the
+same time as the network.
 
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index 7e7904fee..0acb3a99a 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -7,6 +7,7 @@
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-  */
- #include <linux/kernel.h>
-+#include <linux/delay.h>
- #include <linux/module.h>
- #include <linux/mii.h>
- #include <linux/ethtool.h>
-@@ -209,12 +210,7 @@ static int meson_gxl_config_intr(struct phy_device *phydev)
- 		if (ret)
- 			return ret;
- 
--		val = INTSRC_ANEG_PR
--			| INTSRC_PARALLEL_FAULT
--			| INTSRC_ANEG_LP_ACK
--			| INTSRC_LINK_DOWN
--			| INTSRC_REMOTE_FAULT
--			| INTSRC_ANEG_COMPLETE;
-+		val = INTSRC_LINK_DOWN | INTSRC_ANEG_COMPLETE;
- 		ret = phy_write(phydev, INTSRC_MASK, val);
- 	} else {
- 		val = 0;
-@@ -240,6 +236,9 @@ static irqreturn_t meson_gxl_handle_interrupt(struct phy_device *phydev)
- 	if (irq_status == 0)
- 		return IRQ_NONE;
- 
-+	if (irq_status & INTSRC_ANEG_COMPLETE)
-+		msleep(100);
-+
- 	phy_trigger_machine(phydev);
- 
- 	return IRQ_HANDLED;
--- 
-2.35.1
+I disabled the eMMC, out of curiosity, and the issue was back.
+Like Heiner, I suspect a timing issue - at this stage, I can't tell if it
+is PHY related though.
+
+I also tried with the external phy, could not reproduce. Unfortunately,
+as we can see from the first test on the u200, not reproducing is not
+really a proof and it difficult to conclude.
+
+Like Erico, I tried bisecting but I ended up on a BT merge ... Clearly
+inconclusive :(
+
+Disabling the IRQ is an interesting test but, on my side, I have mixed
+results (on the libretech-cc this time):
+
+* I first tried quickly while bisecting, on commit
+  5.6.0-rc3-01434-g8d4ccd7770e7:
+  - With IRQ => NOK
+  - POLL => NOK
+
+Seeing Erico's report, I thought maybe I mixed things up so I tried again,
+doubled checked IRQ were disabled ... still broken. There was another
+commit I reproduce it without IRQ but I lost it.
+
+* I also tried on v5.10.93:
+  - With IRQ => NOK
+  - POLL => OK ... (well, I got bored before the issue showed up)
+
+It seems that switching to polling, in some case, changes the timings
+just enough to hide the issue ... but not always. Unless I forgot to
+consider something else ?? Ideas ?
+
+If I understand the proposed patch correctly, it is mostly about the phy
+IRQ. Since I reproduce without the IRQ, I suppose it is not the
+problem we where looking for (might still be a problem worth fixing -
+the phy is not "rock-solid" when it comes to aneg - I already tried
+stabilising it a few years ago)
+
+TBH, It bothers me that I reproduced w/o the IRQ. The idea makes
+sense :/
+
+>
+>
+> diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+> index 7e7904fee..0acb3a99a 100644
+> --- a/drivers/net/phy/meson-gxl.c
+> +++ b/drivers/net/phy/meson-gxl.c
+> @@ -7,6 +7,7 @@
+>   * Author: Neil Armstrong <narmstrong@baylibre.com>
+>   */
+>  #include <linux/kernel.h>
+> +#include <linux/delay.h>
+>  #include <linux/module.h>
+>  #include <linux/mii.h>
+>  #include <linux/ethtool.h>
+> @@ -209,12 +210,7 @@ static int meson_gxl_config_intr(struct phy_device *phydev)
+>  		if (ret)
+>  			return ret;
+>  
+> -		val = INTSRC_ANEG_PR
+> -			| INTSRC_PARALLEL_FAULT
+> -			| INTSRC_ANEG_LP_ACK
+> -			| INTSRC_LINK_DOWN
+> -			| INTSRC_REMOTE_FAULT
+> -			| INTSRC_ANEG_COMPLETE;
+> +		val = INTSRC_LINK_DOWN | INTSRC_ANEG_COMPLETE;
+>  		ret = phy_write(phydev, INTSRC_MASK, val);
+>  	} else {
+>  		val = 0;
+> @@ -240,6 +236,9 @@ static irqreturn_t meson_gxl_handle_interrupt(struct phy_device *phydev)
+>  	if (irq_status == 0)
+>  		return IRQ_NONE;
+>  
+> +	if (irq_status & INTSRC_ANEG_COMPLETE)
+> +		msleep(100);
+> +
+>  	phy_trigger_machine(phydev);
+>  
+>  	return IRQ_HANDLED;
 
 
 _______________________________________________
