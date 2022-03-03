@@ -4,78 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8176AC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Mar 2022 11:48:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAC0C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Mar 2022 12:45:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:Subject:From:References:Cc:To:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=4ExYK21ShaLiIfaVbTuzsOBQFCjUEalt2Tm1iZ+1UT4=; b=ukTTFS2RrmnfwszZBLRMMzjQQ2
-	vR8oLzoQi/LT00BUoOj1ki7zqEuY/oHtAdm799lSALA8hcv+hsWw+8fx4Jg/MusY22D1oCHneL54W
-	L11Hvw7Ca69pkjc5HrVmYjB0E+X2monYFrLVkwISiaGaZYSI6dS4ihm4UnjT2i32eMnx8Cbtk73G3
-	dl5EHOtro6pGofQJTMDxWziN+F5Rn5T7cPkR30SOj/prodAOS/0Y5hoBDJUA74pmYwa6x53xCKpck
-	kViq8YwOqr57STLH8zPjRom9PExObMHSS5MP4B9fEWULe4C4p23yAHAxFMoNXpcN+gGmoru+pZyGR
-	z1SmGrJA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=CSHdbw/GYEoutBXSZbpTZlg5jm1lHsH5gi24qYZ11x8=; b=exOp1RJnanNao7
+	tB0FjwvQ05k7GnNjxMorpU2ePeNfYAxxlq6QTVARA3qt5/N+nDkOS+LkFOnM5HjdgVSZ4xccgAUxs
+	K3AJ2N7IwZc0SyitN/cIiMHdJ2riKWMkuZA8lV2wP7KsoqXOae3EpvJszibZOvvm24bHJSx1UweTG
+	rRpUHPDVVvvDHlUNJcpomLHJOJxTwdWUXq99R0tCd/sfyzIqCN04Hl4cyVEY9Qrilu02C3G3v20nw
+	mrGfkqd6Ep+Pe+X/GXLzsxMEKPGa9qL37HqH2yvvewAxeoE/vGcCrwVSqnrg72rRx75dYopxCp+tG
+	BSfFhByipITKlIT7D5rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nPjwY-006G0a-1h; Thu, 03 Mar 2022 11:48:26 +0000
-Received: from mga11.intel.com ([192.55.52.93])
+	id 1nPkpi-006ODg-TP; Thu, 03 Mar 2022 12:45:26 +0000
+Received: from andre.telenet-ops.be ([2a02:1800:120:4::f00:15])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nPjwV-006G0D-AF
- for linux-amlogic@lists.infradead.org; Thu, 03 Mar 2022 11:48:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646308103; x=1677844103;
- h=to:cc:references:from:subject:message-id:date:
- mime-version:in-reply-to:content-transfer-encoding;
- bh=Ybg0+ozAxYOdaStjFzx7N6WGF1+kvUBfjv87WPT1mcg=;
- b=nLCcTzfEaz1LUyr7x1rlzvbIRJNUQp6uqB+qqscGCi0wYBH7sv0X7JD4
- xbU0untwui/jMpvy/sdAF9MEremnWE/EZHWpVjSYXXD0rwpaPzc0B41BW
- nnNWU66fLiKRSfkvLw2v5jUzq49Ub10Y6Q/N+cBO5EDtmld0tfl4iFNxu
- ubSAbWEZq2pTZOWdV+kSwZUgGBdIk7d/2OKWOq80OTTJ3qw2nD2h25tBI
- 1C5+WzWzXC3L50ytSgE47uYRIWdj6T2oS7/ajYPlLeeHsvJMlTdsFP9r/
- UA7NSdy3EnmxlKVJerrPsEHgZO6VE7BuZSNPyj+1KH6wLjRztuLwwcjLJ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="251228038"
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="251228038"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 03:48:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="576461193"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199])
- ([10.237.72.199])
- by orsmga001.jf.intel.com with ESMTP; 03 Mar 2022 03:48:20 -0800
-To: Alan Stern <stern@rowland.harvard.edu>,
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jack Pham <quic_jackp@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux USB Mailing List <linux-usb@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Tung Nguyen <tunguyen@apm.com>, Mathias Nyman <mathias.nyman@intel.com>
-References: <994d8963-ca4d-d4cb-a3f6-988d6aa9bcd7@gmail.com>
- <YhWXgyJ4lk8OpT57@rowland.harvard.edu>
- <4701f080-ef18-dbb2-7dd9-d9171a73411f@gmail.com>
- <YhZB9C/xGaoslZzT@rowland.harvard.edu>
- <131166ee-9926-2eb5-2abd-6bab294d2937@gmail.com>
- <Yhaxb0OvMwLtd6vr@rowland.harvard.edu>
- <20220224200637.GE13801@jackp-linux.qualcomm.com>
- <7522820e-0b6d-7e2b-89db-30329c6c2245@gmail.com>
- <YhfougN/KOTZeGV7@rowland.harvard.edu>
-From: Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH] usb: core: improve handling of hubs with no ports
-Message-ID: <4b0c7f0d-749b-a8a8-9b25-720ed826ae2a@linux.intel.com>
-Date: Thu, 3 Mar 2022 13:50:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+ id 1nPkpW-006O9T-Mk
+ for linux-amlogic@lists.infradead.org; Thu, 03 Mar 2022 12:45:20 +0000
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6495:14e6:1343:3ecb])
+ by andre.telenet-ops.be with bizsmtp
+ id 1oky2700L5ER6nL01okzmC; Thu, 03 Mar 2022 13:45:05 +0100
+Received: from rox.of.borg ([192.168.97.57])
+ by ramsan.of.borg with esmtps (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <geert@linux-m68k.org>)
+ id 1nPkpG-002XrF-8b; Thu, 03 Mar 2022 13:44:58 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+ (envelope-from <geert@linux-m68k.org>)
+ id 1nPkpF-008D6v-AA; Thu, 03 Mar 2022 13:44:57 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] drm: Drop commas after SoC match table sentinels
+Date: Thu,  3 Mar 2022 13:44:56 +0100
+Message-Id: <298f0644275d7d0b4aa3ee7143756a2431a4900c.1646311443.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YhfougN/KOTZeGV7@rowland.harvard.edu>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220303_034823_398101_6248781A 
-X-CRM114-Status: GOOD (  22.07  )
+X-CRM114-CacheID: sfid-20220303_044514_891182_AEDC4F1E 
+X-CRM114-Status: GOOD (  12.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,68 +72,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24.2.2022 22.21, Alan Stern wrote:
-> On Thu, Feb 24, 2022 at 09:16:05PM +0100, Heiner Kallweit wrote:
->> On 24.02.2022 21:06, Jack Pham wrote:
->>> On Wed, Feb 23, 2022 at 05:13:03PM -0500, Alan Stern wrote:
->>>> On Wed, Feb 23, 2022 at 09:58:56PM +0100, Heiner Kallweit wrote:
->>>>> On 23.02.2022 15:17, Alan Stern wrote:
->>>>>> Don't change register_root_hub().  Just change xhci_plat_probe(); make 
->>>>>> it skip the second call to usb_add_hcd() if there are no USB-3 ports.
->>>
->>> I believe this had been attempted in the past, but it does not appear
->>> that patch was ever accepted:
->>>
->>> https://lore.kernel.org/linux-usb/1517221474-19627-1-git-send-email-tqnguyen@apm.com/
->>>
->> I also found that xhci at several places relies on a proper shared_hcd,
->> even if there are no USB3 ports. Therefore maybe go with the less invasive
->> original version of my patch?
->>
->> https://www.spinics.net/lists/linux-usb/msg222998.html
-> 
-> The patch that Jack refers to, written by Tung Nguyen, does always 
-> create the shared_hcd.  It simply avoids registering the shared_hcd 
-> when there are no USB-3 ports.
-> 
-> You should try that patch and see if it works on your system.
-> 
-> Alan Stern
-> 
->>> Jack
->>>
->>>>> This works on my system. However a consequence is that xhci->shared_hcd
->>>>> is NULL.
->>>>
->>>> Why is that?  xhci->shared_hcd doesn't get set in usb_add_hcd(), so 
->>>> skipping that call shouldn't cause it to be NULL.
->>>>
->>>> Note: If you skip calling usb_add_hcd(), you will also have to skip the 
->>>> corresponding call to usb_remove_hcd().  There may be a few more 
->>>> subtleties involved as well; like I said before, I'm not an expert on 
->>>> this driver.  You should ask the xhci-hcd maintainer for advice.
+It does not make sense to have a comma after a sentinel, as any new
+elements must be added before the sentinel.
 
-I think we need to start supporting xHC conreollers with just one roothub. 
-Only call usb_add_hcd() once in those cases.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ drivers/gpu/drm/bridge/nwl-dsi.c  | 2 +-
+ drivers/gpu/drm/meson/meson_drv.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Even prepare for special cases where xHCI only has usb3 ports (usb2 pins routed
-to a different host controller)
-
-Currently driver reads port capabilities in:
-usb_add_hcd()
-  hcd->driver->reset   ...-> xhci_gen_setup()
-    xhci_gen_setup()
-      xhci_init(hcd)
-        xhci_mem_init()
-          xhci_setup_port_arrays()
-  
-Driver makes some assumptions based on if hcd is primary or not early in
-xhci_gen_setup(), and initializes values like hcd->speed = HCD_USB2;
-
-Should be doable, changes needed in at least xhci_run(), xhci_stop(),
-xhci_resume(), xhci_suspend(), xhci_gen_setup() and probe.
-
--Mathias
+diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nwl-dsi.c
+index 5abb5ec3de467458..846df1ee7a2888cb 100644
+--- a/drivers/gpu/drm/bridge/nwl-dsi.c
++++ b/drivers/gpu/drm/bridge/nwl-dsi.c
+@@ -1151,7 +1151,7 @@ MODULE_DEVICE_TABLE(of, nwl_dsi_dt_ids);
+ static const struct soc_device_attribute nwl_dsi_quirks_match[] = {
+ 	{ .soc_id = "i.MX8MQ", .revision = "2.0",
+ 	  .data = (void *)E11418_HS_MODE_QUIRK },
+-	{ /* sentinel. */ },
++	{ /* sentinel. */ }
+ };
+ 
+ static int nwl_dsi_probe(struct platform_device *pdev)
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 26aeaf0ab86ef932..35eaa669e8fe0c2a 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -167,7 +167,7 @@ static const struct meson_drm_soc_attr meson_drm_soc_attrs[] = {
+ 		},
+ 		.attrs = (const struct soc_device_attribute []) {
+ 			{ .soc_id = "GXL (S805*)", },
+-			{ /* sentinel */ },
++			{ /* sentinel */ }
+ 		}
+ 	},
+ };
+-- 
+2.25.1
 
 
 _______________________________________________
