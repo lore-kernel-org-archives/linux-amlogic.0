@@ -4,84 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E805C4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Mar 2022 18:37:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30499C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Mar 2022 19:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NDnQSpEqRkoZwnw6UDOCfnR5NB01z/lDwg7/b5aAbUI=; b=tp1d3uAYeV4ms5
-	gDQLgdk1lW/jd+EN9tjeC0OMj4AgLxY11Dk4i5RB2RrmfwRLk2/0WrutLP1f3g9YIfU4NA28pHUiR
-	EI1t9IXIuvjJtusXBNfRj5BwH0HgdjYdYV2fvjaSgm3pIjtT6sVQ/TuNtl9hoOJ2xpijaRpYnVRH8
-	kb2SlzETWoc5U+zwZKJIVIcPQt1plj13RaGhVLb47KvIPn5PP9TC9Nd0Tc/qRGGVWYmvvywWhUumW
-	k5tUGRA4+d3UQWZ64SSDE5T86M1tGd4yoYXRB5kS9FT+OBHHusWDMRw3hLhaA10UyiTNbHM6Hq1x4
-	LRjr0YZ5CiJ6p9RaxNXw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=c1+rQFe9Km0wwhdeWMqQp6n5ztWQoe9A/it6PhRbvfM=; b=1ihD/tojasrfjQJuM/glonxY/5
+	x7kLIzyVkkvcZE6qgrKQtACK+6G9W5lBiOBv+EHTzGuOgFS10KmSl+IDQZklXCOtzzJfVrBGL3E55
+	Fd6s7aSX82mKcMVnZsIgd8jJmTqSwacevvNiVlurV2eY2tgFtuhyEiHRzF3RcsFTA7dppsmUD76Gx
+	9IqXwWlL8AVHoeF2ov7J9FItKi1/ZZp6uN08rWCJrqjLmIZeq3i0OJI/bum1uFw/YIBTBVEM3F3bH
+	qrk4tks+nNYhdq9pXmxuJw4F0AE4QmWGpXrioFZuctg+aG9JXYLktNd5ismamhTjZux17YeipthAM
+	IMPmXOsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nQCnz-00Bex6-Eo; Fri, 04 Mar 2022 18:37:31 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1nQDz8-00Bo85-2s; Fri, 04 Mar 2022 19:53:06 +0000
+Received: from mx.msync.work ([51.91.38.21])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nQCns-00Beup-GK
- for linux-amlogic@lists.infradead.org; Fri, 04 Mar 2022 18:37:25 +0000
-Received: by mail-ej1-x633.google.com with SMTP id bg10so19267970ejb.4
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Mar 2022 10:37:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language
- :from:to:cc:references:in-reply-to:content-transfer-encoding;
- bh=5cKpBLN6W/XTLPaS2O2YVfEK3xn2DNe6RJKVM5hTxZg=;
- b=crn697PXvGDcdsA8ZF/+tfvWfLcgTa2PQ3T6bOmCREqzBTXNwlyqbKXsvWmK835X0E
- FAnw96zAEqlgSvZSGVf950J9tMqAyNbmovm8JHu0aJu3lHgcMjFzMC7ruW3+M8InO9jG
- 8xu6aSVB5QvMk5m61TuDiNz1gtWVK8z9h4igPggWmLQl6iEEyhDRi0cEF0Us8FsYcUCb
- DrWLRWq2uB258ubJdNOIzoc0TSUTtTH8/Xk7I6JSdPH5CAHU9W4ZY3iTZTANLsbWhsTR
- UfGSXKmTiRdedoNn9Yij0mSMzl6XMN9V16NQqzAC7M/zQgHyWS7xvjy3Q3n0TMmFEZBi
- Wf0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:from:to:cc:references:in-reply-to
- :content-transfer-encoding;
- bh=5cKpBLN6W/XTLPaS2O2YVfEK3xn2DNe6RJKVM5hTxZg=;
- b=a7NyDuKcWGZeuREmBruTjW9OjbaBpUSEKHBYHG431XK+dPRaOveWckLn7Fnz77WUVR
- jaf/+WJS0Bxw32WqwFvXbIb8kz3IcbqOntVThFdJrK7Qv0tp/73q7nF95bKOEk1543fb
- uqgTP9r1Qv6VCdoJeqY0+cS0GWocM1xNZOVTaRZ01xh8VrQVZ2BzYHTsfSm4Apqt74+F
- L5wETQeF1eRwre/Wf8LRXi5S9fsljux2Ym62ghMzAzx0F/H3WXYZ34ZzVvYJYNDWJlSC
- WsTQEe0vD/1Fgot1vaPg7GaWAvlvGaiTQ1nYHp/v2a25x4nLt0Z5Kask8oeTxsrP4qjm
- UyFg==
-X-Gm-Message-State: AOAM5321LGZTjE2N5IVjYPGRu2LAWqZeNQ4KybbcxJEEf317Irdc7pty
- FkTke20kgkgcYl7z8scmC8c=
-X-Google-Smtp-Source: ABdhPJyhy15uyUHHV4DHsA6OB66mWbELtC59alSCH1i8obW5MTpGlW2YCGdKgn25veJJgNTSPwaawA==
-X-Received: by 2002:a17:906:4c4b:b0:6da:a5d9:7af9 with SMTP id
- d11-20020a1709064c4b00b006daa5d97af9mr70026ejw.336.1646419043044; 
- Fri, 04 Mar 2022 10:37:23 -0800 (PST)
-Received: from ?IPV6:2a01:c23:b9fb:2800:c56d:9b34:f61c:e318?
- (dynamic-2a01-0c23-b9fb-2800-c56d-9b34-f61c-e318.c23.pool.telefonica.de.
- [2a01:c23:b9fb:2800:c56d:9b34:f61c:e318])
- by smtp.googlemail.com with ESMTPSA id
- vl11-20020a17090730cb00b006d8121d0fc4sm1989783ejb.138.2022.03.04.10.37.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 04 Mar 2022 10:37:22 -0800 (PST)
-Message-ID: <e73bc0c1-e530-7419-0197-1b7de02c87c5@gmail.com>
-Date: Fri, 4 Mar 2022 19:37:03 +0100
+ id 1nQDz3-00Bo5a-Qa; Fri, 04 Mar 2022 19:53:04 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 02CEE1E078; Fri,  4 Mar 2022 19:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+ t=1646423574; h=from:subject:date:message-id:to:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=lKAg1aZ3/OVlbnHBQ2pMnRlOfyWJyfFmLorR+5Ap/IQ=;
+ b=u4+p9YgsY4u3lL70tjKH6XhGIXH2yCrFY46fIuWJkAPggRctMKPAlLQpYm3qQFup4ynTL+
+ ZOryPcFEz4vXCDX6kHGQYM9QWLDBu5SXF9dGYUVMz1IK7DFGmWNdQc0YrjUlNbtV8MsNXY
+ k2UEtAbjNWrZ/qsyimEhAPSi5OWZoa0sj3OrRhDlSzofHdSyFE03XBBoLQ9weKNPQZ/tbU
+ +nlVcMT/8GOU42lyEM7rQALoUSCp09YL+22l3ip5gQ+lpjZN8XN2h7obGYX0mizNgup75r
+ ZYQJyfRBDdNkmD+wo0vDIS7rFKi5Gt6TcMeqUUHAB/whMIEiI31X4txyzDa0aw==
+Message-ID: <962ae330-b2aa-c52d-5888-83b4fff74c44@lexina.in>
+Date: Fri, 4 Mar 2022 22:52:48 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.1
-Subject: [PATCH 5/5] xhci: support omitting shared hcd if either of the root
- hubs has no ports
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Alan Stern <stern@rowland.harvard.edu>, Jack Pham <quic_jackp@quicinc.com>,
- Tung Nguyen <tunguyen@apm.com>
-References: <18a93669-7f7a-dad8-38f4-44819fc3b64a@gmail.com>
-In-Reply-To: <18a93669-7f7a-dad8-38f4-44819fc3b64a@gmail.com>
+Subject: Re: [PATCH net] net: phy: meson-gxl: fix interrupt handling in forced
+ mode
+Content-Language: ru
+To: Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org
+References: <04cac530-ea1b-850e-6cfa-144a55c4d75d@gmail.com>
+From: Vyacheslav <adeep@lexina.in>
+In-Reply-To: <04cac530-ea1b-850e-6cfa-144a55c4d75d@gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220304_103724_581314_2F73F1C0 
-X-CRM114-Status: GOOD (  12.29  )
+X-CRM114-CacheID: sfid-20220304_115302_213395_3B844909 
+X-CRM114-Status: GOOD (  23.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,74 +69,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-If either of the root hubs has no ports, then we can get rid of
-overhead like the shared hcd. A major internal change is that now
-the main hcd can be USB2 or USB3.
+Seems works for JetHub H1 (S905W with internal phy)
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/usb/host/xhci-mem.c | 11 +++++------
- drivers/usb/host/xhci.c     |  9 ++++++---
- 2 files changed, 11 insertions(+), 9 deletions(-)
+03.03.2022 10:54, Heiner Kallweit wrote:
+> This PHY doesn't support a link-up interrupt source. If aneg is enabled
+> we use the "aneg complete" interrupt for this purpose, but if aneg is
+> disabled link-up isn't signaled currently.
+> According to a vendor driver there's an additional "energy detect"
+> interrupt source that can be used to signal link-up if aneg is disabled.
+> We can safely ignore this interrupt source if aneg is enabled.
+> 
+> This patch was tested on a TX3 Mini TV box with S905W (even though
+> boot message says it's a S905D).
+> 
+> This issue has been existing longer, but due to changes in phylib and
+> the driver the patch applies only from the commit marked as fixed.
+> 
+> Fixes: 84c8f773d2dc ("net: phy: meson-gxl: remove the use of .ack_callback()")
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>   drivers/net/phy/meson-gxl.c | 23 +++++++++++++----------
+>   1 file changed, 13 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+> index 7e7904fee..c49062ad7 100644
+> --- a/drivers/net/phy/meson-gxl.c
+> +++ b/drivers/net/phy/meson-gxl.c
+> @@ -30,8 +30,12 @@
+>   #define  INTSRC_LINK_DOWN	BIT(4)
+>   #define  INTSRC_REMOTE_FAULT	BIT(5)
+>   #define  INTSRC_ANEG_COMPLETE	BIT(6)
+> +#define  INTSRC_ENERGY_DETECT	BIT(7)
+>   #define INTSRC_MASK	30
+>   
+> +#define INT_SOURCES (INTSRC_LINK_DOWN | INTSRC_ANEG_COMPLETE | \
+> +		     INTSRC_ENERGY_DETECT)
+> +
+>   #define BANK_ANALOG_DSP		0
+>   #define BANK_WOL		1
+>   #define BANK_BIST		3
+> @@ -200,7 +204,6 @@ static int meson_gxl_ack_interrupt(struct phy_device *phydev)
+>   
+>   static int meson_gxl_config_intr(struct phy_device *phydev)
+>   {
+> -	u16 val;
+>   	int ret;
+>   
+>   	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
+> @@ -209,16 +212,9 @@ static int meson_gxl_config_intr(struct phy_device *phydev)
+>   		if (ret)
+>   			return ret;
+>   
+> -		val = INTSRC_ANEG_PR
+> -			| INTSRC_PARALLEL_FAULT
+> -			| INTSRC_ANEG_LP_ACK
+> -			| INTSRC_LINK_DOWN
+> -			| INTSRC_REMOTE_FAULT
+> -			| INTSRC_ANEG_COMPLETE;
+> -		ret = phy_write(phydev, INTSRC_MASK, val);
+> +		ret = phy_write(phydev, INTSRC_MASK, INT_SOURCES);
+>   	} else {
+> -		val = 0;
+> -		ret = phy_write(phydev, INTSRC_MASK, val);
+> +		ret = phy_write(phydev, INTSRC_MASK, 0);
+>   
+>   		/* Ack any pending IRQ */
+>   		ret = meson_gxl_ack_interrupt(phydev);
+> @@ -237,9 +233,16 @@ static irqreturn_t meson_gxl_handle_interrupt(struct phy_device *phydev)
+>   		return IRQ_NONE;
+>   	}
+>   
+> +	irq_status &= INT_SOURCES;
+> +
+>   	if (irq_status == 0)
+>   		return IRQ_NONE;
+>   
+> +	/* Aneg-complete interrupt is used for link-up detection */
+> +	if (phydev->autoneg == AUTONEG_ENABLE &&
+> +	    irq_status == INTSRC_ENERGY_DETECT)
+> +		return IRQ_HANDLED;
+> +
+>   	phy_trigger_machine(phydev);
+>   
+>   	return IRQ_HANDLED;
 
-diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-index a1a17713a..ced139583 100644
---- a/drivers/usb/host/xhci-mem.c
-+++ b/drivers/usb/host/xhci-mem.c
-@@ -2362,12 +2362,11 @@ static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
- 		xhci->usb2_rhub.num_ports = USB_MAXCHILDREN;
- 	}
- 
--	xhci->needs_shared_hcd = 1;
--
--	/*
--	 * Note we could have all USB 3.0 ports, or all USB 2.0 ports.
--	 * Not sure how the USB core will handle a hub with no ports...
--	 */
-+	if (xhci->usb2_rhub.num_ports && xhci->usb3_rhub.num_ports)
-+		xhci->needs_shared_hcd = 1;
-+	else
-+		xhci_info(xhci, "USB%u root hub has no ports\n",
-+			  xhci->usb2_rhub.num_ports ? 3 : 2);
- 
- 	xhci_create_rhub_port_array(xhci, &xhci->usb2_rhub, flags);
- 	xhci_create_rhub_port_array(xhci, &xhci->usb3_rhub, flags);
-diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index 83a54a566..623901890 100644
---- a/drivers/usb/host/xhci.c
-+++ b/drivers/usb/host/xhci.c
-@@ -5279,9 +5279,7 @@ int xhci_gen_setup(struct usb_hcd *hcd, xhci_get_quirks_t get_quirks)
- 
- 	xhci = hcd_to_xhci(hcd);
- 
--	if (usb_hcd_is_primary_hcd(hcd)) {
--		xhci_hcd_init_usb2_data(xhci, hcd);
--	} else {
-+	if (!usb_hcd_is_primary_hcd(hcd)) {
- 		xhci_hcd_init_usb3_data(xhci, hcd);
- 		return 0;
- 	}
-@@ -5363,6 +5361,11 @@ int xhci_gen_setup(struct usb_hcd *hcd, xhci_get_quirks_t get_quirks)
- 		return retval;
- 	xhci_dbg(xhci, "Called HCD init\n");
- 
-+	if (xhci_hcd_is_usb3(hcd))
-+		xhci_hcd_init_usb3_data(xhci, hcd);
-+	else
-+		xhci_hcd_init_usb2_data(xhci, hcd);
-+
- 	xhci_info(xhci, "hcc params 0x%08x hci version 0x%x quirks 0x%016llx\n",
- 		  xhci->hcc_params, xhci->hci_version, xhci->quirks);
- 
 -- 
-2.35.1
-
-
+Vyacheslav Bocharov
 
 _______________________________________________
 linux-amlogic mailing list
