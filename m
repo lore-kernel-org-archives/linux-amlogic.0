@@ -4,75 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A450BC433F5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Mar 2022 20:31:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99626C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Mar 2022 21:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k92zxYLegXwNuh7zYb6mOYvVNMsDAb8Tp7GPQ0Q4lqw=; b=xWF6S8SKY32ZuB
-	wZatFRRoUBXxutHDBCEyaqo4I9nIm2IyDDDO0T6bBV7N4hwILPfhQc2YS5BzvZNiTrLASprA2ohAZ
-	YLnr6EUchuIu0k0iWh0GVXb4zzr62KnBbS+zwUQ0OuP/XNPVXSt+sI8iG0iiQZW9hbz7EDig60+tY
-	Ypy2hGPne+i+7nonR/Mlg4W8mw4bx/tj4YerNPgiHpdAUr5b4d1C6sY6ZAZ/z/ioce22sLVMX0Yfz
-	qP5JrGvvOV05FrK9sXDEnuzT+55S2XVhpKv5uf+AVSWm94DuuzmKTis1ms+8YqJIQoo1rl/KepG2a
-	jlpHdY0WCHTDxmWDgM9A==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=psXHE5RsJWTNQ1dYb9T39K3n0ToBb4ViKiLq3Z5Fn2w=; b=C56ZHQclQsSFXo
+	swFnRQYLTkHtDVmMj/n7UH88e6YeV7pRSRhWOMUNawu4K8iRUfE6T2jOcdw4iSuAUPNQIhUNUstUk
+	GGtIzq93MntiiMd+6z3BlYVBOKngcKli88OhDxPCvO5OMQcedIebwIr0akjKc0+RlhpIMNmhn1inh
+	ZXHoeEcHkT84cveQVyFAvgsTrxwG0fKK1mmvJE/C4zkBBbdUOMwNYTfrcNGK/JKTYBCJQtJFKqpOw
+	4/rbR3KuxzIJeZMuMu46T4T/FUmgVT3qwAHqeJZa6HlQ22THcYkUxohXGZ9Y5/ktV+DBeyh+uhisb
+	mPGtiFYBa57S5Rx8DBRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nQxXS-00FIQm-NB; Sun, 06 Mar 2022 20:31:34 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1nQxz3-00FK0j-Of; Sun, 06 Mar 2022 21:00:05 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nQxXQ-00FIQE-5o; Sun, 06 Mar 2022 20:31:33 +0000
-Received: by mail-ej1-x634.google.com with SMTP id gb39so27863226ejc.1;
- Sun, 06 Mar 2022 12:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=K4n21OYXdDZM4hk/UjVZvxqo76lcN1HhOZ4vArZv8OU=;
- b=WKfevEQAwsxI+yju5ynzzh6Tx2zdUBz9O/xOYN8MkQkoFhsfBcGRIIqxWqNNhJv9G9
- cGj9+7GBoGSyhhebJh2v7ZgRmX9Y/0YouNMSe9pzeYPYkwmbWR5SN8jg6yed730dyeuL
- E0KZ7sQOluB9Tc2GoJQZZlOfdFNT2RWadGnQZ57/g3VotDS2NUWY5yQH8rdO4C23djHP
- sbqkyIMfGlS6fBhuNFN3q2n/saPK3O0tIhTwBfuihtVasHdNOuhE6LaPL5Daycqfikbs
- k1d0yq2xWK35u/5jDuHjaaLgHMF8F4598TwUs5gRX1P0nYoj2VDtYq90a5lSdV3/LftJ
- T8eg==
+ id 1nQxyr-00FJwv-AT; Sun, 06 Mar 2022 20:59:54 +0000
+Received: by mail-ed1-x535.google.com with SMTP id s1so17285918edd.13;
+ Sun, 06 Mar 2022 12:59:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:content-language:to:cc:from
+ :subject:content-transfer-encoding;
+ bh=plQqywW49Fl/a6AW4mMf+FOFbqVTdp6ARZoJyCX2GbQ=;
+ b=pyf8UTIJsWA+ucGrY+KUNwNtKPQjOc9Hz2l8gvRwnOjJZTw6rL3lK2tJh7hqbEKTaP
+ quYPBjdRttuSzlHkKGXRBssMxWRJsoZo6mDKthLoIMF9CyoZncM3ox3UA7CiYTJNx75W
+ cv86bMsHf6DUoNL9QSn+RA/YgjyQ8LiNS1fcGF/qliPwGA1YWkl4rymH2XKZj9hFYG7m
+ ag0zQIFuedOUsUXZ2/zdJeL/PTvO/ZMa2LXlbToHbHrfpDZPnRkyPdC6TzgKtJpkFx13
+ exK9bT2tu7AU4PuXMUOWwDJR6h5dLZ4KKSePPRnW/k8dDQRz1zVY6a8ICCe9YJAkuTLV
+ osvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=K4n21OYXdDZM4hk/UjVZvxqo76lcN1HhOZ4vArZv8OU=;
- b=JoW+z3TuUFUacQEGYuXumHZ8hx0CWQsR0pu2qzTNURIImHBfCimMmnpZBY6FKusisk
- M7N4816VVvzf84wIgvDd4njZJk1z3bfYAPLmjHwnkv5gaDykG0Q4OBMDyTl3CjEhnhYg
- ERGxUtHsBOXY4LgjgFnQK6/vz/1kIth40IuA4K/dxya+MctyZYXYC+w59Wikvy6lPdny
- ByRSzyAAMYyHzymB+uq5a8febiFN2ObJmWGIt4Q64XHhV/odC0izSRNvFKXcOWdDlm1R
- Ptucnv9PAsqU7mBTn83W9dJM5jKsBA8S3qUUaN6GiNtXwC7dgS12DLGEecpeB1rnzmqJ
- h+3g==
-X-Gm-Message-State: AOAM531rwriwi+NhQJNt8Q+qCYMtM5ziJj0dDKYQ1Iqdof57jzPKdmPR
- u85oWOijX6QSHmpyExOv3aq30hTAHz7vYpuP4Ok=
-X-Google-Smtp-Source: ABdhPJwq+ENNOmm023HEMN0NHnRWKo1CSAdsqHqpMxrXDwLXKbqpfQ6vkWwsTliG+xADpIloRlSQ/LKUP/4vyZlwxb8=
-X-Received: by 2002:a17:907:d13:b0:6db:de8:615e with SMTP id
- gn19-20020a1709070d1300b006db0de8615emr3928656ejc.649.1646598689737; Sun, 06
- Mar 2022 12:31:29 -0800 (PST)
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:from:subject:content-transfer-encoding;
+ bh=plQqywW49Fl/a6AW4mMf+FOFbqVTdp6ARZoJyCX2GbQ=;
+ b=ITX7tQzjqnkYyPciRR5AEeiVbKzOKhpoTSbfnPqcHog68kuEfhFo3whjqyrPuEXT8E
+ hCSqlqAC+UIew5vIxJL4cS9YBMUtPtBxwFeEx2u2rAVUib+XdCa+9mNBzds453NH57Fr
+ CGQz20SpSE8cuPe+eKVnpYDgNpAcHXwx/nCabToc+RR2nizuK82lwkwU2KyBPdaapArZ
+ 66c9hp/u9hGpBgpRL4k7kvjSqLnuB1etP1s2WOIUHbl0a6Rm/7dGS2htuNZpSWZ2Ukc+
+ eqaQM05CD/90sdThJD17+Kfx2JZm7FeWH0XuKbhKj73H2bdb0BGw3SwCDfui5YY0It0S
+ cJPA==
+X-Gm-Message-State: AOAM5316mBbwWegIURYSORKJRrC02HbyTuOnJNGkY9Nis2EHWa8NfyF1
+ cF5QW27SoL264CK8rJSDHqYhyOVeo2s=
+X-Google-Smtp-Source: ABdhPJyD2Vnhs2/E6VZbpv0keAUS4N9MYGqt0FD6DHxNxbOlqv44QyIE5wz4xtjeHsAkRqRhobvbXA==
+X-Received: by 2002:a05:6402:1b90:b0:415:d7d0:d9bf with SMTP id
+ cc16-20020a0564021b9000b00415d7d0d9bfmr8266435edb.17.1646600391623; 
+ Sun, 06 Mar 2022 12:59:51 -0800 (PST)
+Received: from ?IPV6:2a01:c22:7720:f200:e6:1827:dd9f:3c0c?
+ (dynamic-2a01-0c22-7720-f200-00e6-1827-dd9f-3c0c.c22.pool.telefonica.de.
+ [2a01:c22:7720:f200:e6:1827:dd9f:3c0c])
+ by smtp.googlemail.com with ESMTPSA id
+ h8-20020a50ed88000000b004160630c980sm3557997edr.62.2022.03.06.12.59.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 06 Mar 2022 12:59:50 -0800 (PST)
+Message-ID: <a3c178c9-7c33-d7b8-9f6e-734dc28728ab@gmail.com>
+Date: Sun, 6 Mar 2022 21:59:45 +0100
 MIME-Version: 1.0
-References: <298f0644275d7d0b4aa3ee7143756a2431a4900c.1646311443.git.geert+renesas@glider.be>
-In-Reply-To: <298f0644275d7d0b4aa3ee7143756a2431a4900c.1646311443.git.geert+renesas@glider.be>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 6 Mar 2022 21:31:18 +0100
-Message-ID: <CAFBinCBVB8eK-4k3Kgz5bNr++k=7pjHFg+hsqO8WGTLzUzhePw@mail.gmail.com>
-Subject: Re: [PATCH] drm: Drop commas after SoC match table sentinels
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>, 
- Robert Foss <robert.foss@linaro.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@linux.ie>, 
- Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Content-Language: en-US
+To: Felipe Balbi <balbi@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] usb: dwc3-meson-g12a: constify drvdata structs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220306_123132_244149_344F9ADE 
+X-CRM114-CacheID: sfid-20220306_125953_411621_19ECD7A8 
 X-CRM114-Status: UNSURE (   8.45  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -91,23 +97,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 3, 2022 at 1:45 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> It does not make sense to have a comma after a sentinel, as any new
-> elements must be added before the sentinel.
-agreed, thanks for taking care of this!
+Constify the drvdata structs. This also matches the definition of
+member drvdata in dwc3_meson_g12a.
 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/gpu/drm/bridge/nwl-dsi.c  | 2 +-
->  drivers/gpu/drm/meson/meson_drv.c | 2 +-
-for drivers/gpu/drm/meson/meson_drv.c:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index bd814df3b..b282ad0e6 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -188,7 +188,7 @@ static int dwc3_meson_gxl_usb_post_init(struct dwc3_meson_g12a *priv);
+  * reset to recover usage of the port.
+  */
+ 
+-static struct dwc3_meson_g12a_drvdata gxl_drvdata = {
++static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
+ 	.otg_switch_supported = true,
+ 	.otg_phy_host_port_disable = true,
+ 	.clks = meson_gxl_clocks,
+@@ -202,7 +202,7 @@ static struct dwc3_meson_g12a_drvdata gxl_drvdata = {
+ 	.usb_post_init = dwc3_meson_gxl_usb_post_init,
+ };
+ 
+-static struct dwc3_meson_g12a_drvdata gxm_drvdata = {
++static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
+ 	.otg_switch_supported = true,
+ 	.otg_phy_host_port_disable = true,
+ 	.clks = meson_gxl_clocks,
+@@ -216,7 +216,7 @@ static struct dwc3_meson_g12a_drvdata gxm_drvdata = {
+ 	.usb_post_init = dwc3_meson_gxl_usb_post_init,
+ };
+ 
+-static struct dwc3_meson_g12a_drvdata axg_drvdata = {
++static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
+ 	.otg_switch_supported = true,
+ 	.clks = meson_gxl_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_gxl_clocks),
+@@ -229,7 +229,7 @@ static struct dwc3_meson_g12a_drvdata axg_drvdata = {
+ 	.usb_post_init = dwc3_meson_gxl_usb_post_init,
+ };
+ 
+-static struct dwc3_meson_g12a_drvdata g12a_drvdata = {
++static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+ 	.otg_switch_supported = true,
+ 	.clks = meson_g12a_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
+@@ -241,7 +241,7 @@ static struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+ 	.usb_init = dwc3_meson_g12a_usb_init,
+ };
+ 
+-static struct dwc3_meson_g12a_drvdata a1_drvdata = {
++static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
+ 	.otg_switch_supported = false,
+ 	.clks = meson_a1_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_a1_clocks),
+-- 
+2.35.1
 
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
