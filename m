@@ -4,83 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03E13C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Mar 2022 09:41:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D61ACC433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Mar 2022 12:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:
+	From:In-Reply-To:References:MIME-Version:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y8d2cDWocr1lPrYiymLXw8MSgcfLxw2R5wRMRYx5rk8=; b=nNOREQM3saVcEs
-	Duz+3mTO571lTAZXAIF/BiFkdG8vfEbJJqmkWQfxoz8qQpDA0DGzB84IJ2axO515MaWpzNsjdDnCA
-	hvXOIsGIrHOFCYtkyY7lI8ekOkH7woE4YA/t57i4ZMVc57/McNb4Icljmli5kfM4KPWYbPTLuFsNr
-	fdgr/9eE0ZKwjf1iu7mm89eIoP0mP3zfuKNlnhCYVDtCFTtsFIcyTVmlAZ/zGyeKKPP2w8sWuRENX
-	IQ8HjpcQOxIQmTtIdqDJtkppX3535DPyM4MFxEZErJmlyF4M57+Xm9Hq8i28pWEuOZG0+rehPI6k3
-	fj9Gdh5a5IME5LZiDd2g==;
+	List-Owner; bh=rgoRGN/6NS4/6yZ+zXLwTY5tfbwDtmJgQPPdHib7N20=; b=QQ40yCbPuhvEMn
+	J+9d4YRkARczWZor/RBY+H6vJEODrirt3S0XimaGQtzFzL7MiSv1qb7HcIt05mhCUjZO4//f88aNz
+	DpTJeRNE5CmdV32c/bygmOzO6oFrY7JeR6syAe7U8YX0VenfW6actCQm8TkMuC0bUff1FMdFWwHR+
+	11Bef+p8gPPyCbn5pG8YK0HFmISYv4SPrjqUUWMDQVhLIcFyrjf2pHLpXpfVJ1zGM2uxyXIL3Ny1A
+	EENgfM0zq3YigIiX6CgS0+beW2NCn38pkZH3uYuAG0Sk9m5NZlI8TujDPOJV2ZsD505JpbGHUhiiw
+	gMQhjJJNn3K3OgvhFODA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nQnNv-00ENoH-N7; Sun, 06 Mar 2022 09:41:03 +0000
-Received: from mail-yw1-x1130.google.com ([2607:f8b0:4864:20::1130])
+	id 1nQpZv-00EeMm-Bg; Sun, 06 Mar 2022 12:01:35 +0000
+Received: from mail-vk1-f178.google.com ([209.85.221.178])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nQnNs-00ENnX-PF; Sun, 06 Mar 2022 09:41:02 +0000
-Received: by mail-yw1-x1130.google.com with SMTP id
- 00721157ae682-2d07ae0b1c0so134099897b3.2; 
- Sun, 06 Mar 2022 01:40:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IbHyYTr6WOPJjB6Gi+P7cukHb81trN1p7PDNUlogpq0=;
- b=ULSSmk/qS6K+NUV9dXKDoKW48orew9LWfGZ1Cay/PkA+Mdf3Ct2cpAD5r4lfzceYmJ
- Wl3CwJg9d5TDzlXloE8ym4AdZhp3s6pKva8mY7Q1I5fXzH5qgx0y5HtPipp9+WarkXU+
- /0ufDpuHq2ZEZondl02FCAyeqc97Iq0AEsuB68CiDAGvazAf+j3YwVMuoyypj6xVcTq6
- OsU8UB4JsQmhBMwXpY2PIt7h2BXWzx91K7cRVD1qFCB5NzndCADnFW9MkbmYVAM0IJUI
- HOULKjSH6tiWhFK2A7tZRb2FvPlo1QIRyhiBkgdCx9M/nxfP7J45ldwO8b6otY8mKScD
- usow==
+ id 1nQo3W-00EQpS-C1
+ for linux-amlogic@lists.infradead.org; Sun, 06 Mar 2022 10:24:03 +0000
+Received: by mail-vk1-f178.google.com with SMTP id f7so6288278vkm.12
+ for <linux-amlogic@lists.infradead.org>; Sun, 06 Mar 2022 02:24:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IbHyYTr6WOPJjB6Gi+P7cukHb81trN1p7PDNUlogpq0=;
- b=4uGr3j8kpOFkZOG0f6X/z/kwLER9LpEWSqoq88auz0PWA7XV+wo0jjujgIDwP6h7Sm
- d07ojbu7DhRnylImxCkV3MxDsgtG5HhinYmbyCs2DzOQYeMBz92FD5uKCuvcD1rRdKzk
- GNC4Shl7q9QmXNnUCPRI3JrQlu+VzibwbY/BVMrZ2mSYsQgRNvpFcfHu/JtPLHB/s8tX
- Tm+g2OBwSDP8T+dYeZxpMUfcZ89LAnLsIRtRvUOL29xhRsHQFVD+AvSYr4zKRqj5jLM/
- 150Fd+C4chHxUYUkHA6HpeYXv6AU/7fefJxopnGupD6WDsluzLERaeWca0FSUGkebHuH
- HKjw==
-X-Gm-Message-State: AOAM531CfdPT11EWJZZ7ZDzo/vyubgB/XZkuV6EnJ4LgHhxAFnVd7USI
- wHINlfhc/MBeKGCrAq7lA2vzQaDHNc+HAG8oQdNN17UjBEo=
-X-Google-Smtp-Source: ABdhPJxGHlUXwba52RmTK6Cc/YUTsTVchbtsUg2P2U70IppClc6ePUHTgfFCfjBEzN9w52V2RDjWTrl5gNHkDeOtC/Q=
-X-Received: by 2002:a0d:f507:0:b0:2dc:348e:54af with SMTP id
- e7-20020a0df507000000b002dc348e54afmr4604951ywf.204.1646559658793; Sun, 06
- Mar 2022 01:40:58 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+ :from:date:message-id:subject:to;
+ bh=Q/mluVuH//YmWdgjgeN5p5RdUUgw6P5MMKlpRM4/Kj8=;
+ b=wMuelov5rbDQ26OQGO9kUNrs5jB9ZQveAgNu4+/mFr5I7kOCjqZYlfxPi2UP7a2eBR
+ WPCtuQoH4BiBmmpJCWKuVxrV2slLEZQYIp3ggM1DSFF7MKSO8oT66BIX3KjEBfUQRsqg
+ l+XmxaxBU18KnR/5rl4L0Fu1ncaETLAg6/8w2VfC7rwFwsbwEvBDZQGDomWgEcsWIB8T
+ XUnWHQWbLYMLuRMOaMFJ9yLIKZgIaow7Kn+207xBXzrpZNegRnbg/Ya+V1l5x8GhdeKF
+ 7UJBQCt2qXqCzz8TlbNVkz1sdeUSJEMCbHcV77rjpAqmP3o1rqltqsNHCXBtNt0wneun
+ Yaxg==
+X-Gm-Message-State: AOAM532BW8PjsRKlnBbloORS48IcfzA983qgouoebg6A7y4ybZFXUtSZ
+ aPuXAB9SpRf00y7Te6JColtBB4Ly2ckLxg==
+X-Google-Smtp-Source: ABdhPJzoAkV0aizsbO21S1wfz+m7bFj0CFOK16p5ePbuR/hpZMa24gMP6rpyQ6bVuUKNK605GvgaDA==
+X-Received: by 2002:ac5:cd88:0:b0:32c:5497:6995 with SMTP id
+ i8-20020ac5cd88000000b0032c54976995mr2090954vka.33.1646562240865; 
+ Sun, 06 Mar 2022 02:24:00 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com.
+ [209.85.222.47]) by smtp.gmail.com with ESMTPSA id
+ o22-20020a056122179600b0032f7563a15esm1437525vkf.13.2022.03.06.02.24.00
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 06 Mar 2022 02:24:00 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a28so5363250uaf.7
+ for <linux-amlogic@lists.infradead.org>; Sun, 06 Mar 2022 02:24:00 -0800 (PST)
+X-Received: by 2002:ab0:655a:0:b0:34b:a76f:3852 with SMTP id
+ x26-20020ab0655a000000b0034ba76f3852mr629727uap.90.1646562240465; Sun, 06 Mar
+ 2022 02:24:00 -0800 (PST)
 MIME-Version: 1.0
-References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
- <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
- <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
- <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
- <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
- <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
- <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
- <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
-In-Reply-To: <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
-From: Erico Nunes <nunes.erico@gmail.com>
-Date: Sun, 6 Mar 2022 10:40:47 +0100
-Message-ID: <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
-Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
- at boot
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
- Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>, 
- Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org, 
- netdev@vger.kernel.org, 
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- linux-sunxi@lists.linux.dev
+References: <CAJX_Q+2zibb_ABAjT=k=hbW_Xa9knOy5hcN5Ma2B6Z+h-3=FsQ@mail.gmail.com>
+In-Reply-To: <CAJX_Q+2zibb_ABAjT=k=hbW_Xa9knOy5hcN5Ma2B6Z+h-3=FsQ@mail.gmail.com>
+From: Lucas Tanure <tanure@linux.com>
+Date: Sun, 6 Mar 2022 10:23:49 +0000
+X-Gmail-Original-Message-ID: <CAJX_Q+0Gvf88EW6s6-pLoA_mwhwKCf==qyxmNnFt=S24TPN0xw@mail.gmail.com>
+Message-ID: <CAJX_Q+0Gvf88EW6s6-pLoA_mwhwKCf==qyxmNnFt=S24TPN0xw@mail.gmail.com>
+Subject: VIM3 - A311D - I2C AO Clock Questions
+To: linux-amlogic@lists.infradead.org
+X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220306_014100_876198_251334D5 
-X-CRM114-Status: GOOD (  31.53  )
+X-CRM114-CacheID: sfid-20220306_022402_430207_CB04E1F0 
+X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Sun, 06 Mar 2022 04:01:34 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,124 +81,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: tanure@linux.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 2, 2022 at 5:35 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> When using polling the time difference between aneg complete and
-> PHY state machine run is random in the interval 0 .. 1s.
-> Hence there's a certain chance that the difference is too small
-> to avoid the issue.
->
-> > If I understand the proposed patch correctly, it is mostly about the phy
-> > IRQ. Since I reproduce without the IRQ, I suppose it is not the
-> > problem we where looking for (might still be a problem worth fixing -
-> > the phy is not "rock-solid" when it comes to aneg - I already tried
-> > stabilising it a few years ago)
->
-> Below is a slightly improved version of the test patch. It doesn't sleep
-> in the (threaded) interrupt handler and lets the workqueue do it.
->
-> Maybe Amlogic is aware of a potentially related silicon issue?
->
-> >
-> > TBH, It bothers me that I reproduced w/o the IRQ. The idea makes
-> > sense :/
-> >
-> >>
-> [...]
-> >
->
->
-> diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-> index 7e7904fee..a3318ae01 100644
-> --- a/drivers/net/phy/meson-gxl.c
-> +++ b/drivers/net/phy/meson-gxl.c
-> @@ -209,12 +209,7 @@ static int meson_gxl_config_intr(struct phy_device *phydev)
->                 if (ret)
->                         return ret;
->
-> -               val = INTSRC_ANEG_PR
-> -                       | INTSRC_PARALLEL_FAULT
-> -                       | INTSRC_ANEG_LP_ACK
-> -                       | INTSRC_LINK_DOWN
-> -                       | INTSRC_REMOTE_FAULT
-> -                       | INTSRC_ANEG_COMPLETE;
-> +               val = INTSRC_LINK_DOWN | INTSRC_ANEG_COMPLETE;
->                 ret = phy_write(phydev, INTSRC_MASK, val);
->         } else {
->                 val = 0;
-> @@ -240,7 +235,10 @@ static irqreturn_t meson_gxl_handle_interrupt(struct phy_device *phydev)
->         if (irq_status == 0)
->                 return IRQ_NONE;
->
-> -       phy_trigger_machine(phydev);
-> +       if (irq_status & INTSRC_ANEG_COMPLETE)
-> +               phy_queue_state_machine(phydev, msecs_to_jiffies(100));
-> +       else
-> +               phy_trigger_machine(phydev);
->
->         return IRQ_HANDLED;
->  }
-> --
-> 2.35.1
+Hi,
 
-I did a lot of testing with this patch, and it seems to improve things.
-To me it completely resolves the original issue which was more easily
-reproducible where I would see "Link is Up" but the interface did not
-really work.
-At least in over a thousand jobs, that never reproduced again with this patch.
+I am trying to integrate an I2C device into VIM3 using the I2C_AO bus.
+My device uses a 100000Hz clock, but after changing
+meson-g12b-a311d-khadas-vim3.dts to add my I2C node the driver could
+not properly read its registers.
 
-I do see a different issue now, but it is even less frequent and
-harder to reproduce. In those over a thousand jobs, I have seen it
-only about 4 times.
-The difference is that now when the issue happens, the link is not
-even reported as Up. The output is a bit different than the original
-one, but it is consistently the same output in all instances where it
-reproduced. Looks like this (note that there is no longer Link is
-Down/Link is Up):
+It reads 0x9100, but the correct data should be 0xcb58.
+The first thing I saw on the bus was that the frequency I requested by
+the device tree was being set after the probe of my driver already
+failed.
+For that, I sent "i2c: meson: Fix wrong speed use from probe" which
+fixes that issue.
 
-[    2.186151] meson8b-dwmac c9410000.ethernet eth0: PHY
-[0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
-[    2.191582] meson8b-dwmac c9410000.ethernet eth0: Register
-MEM_TYPE_PAGE_POOL RxQ-0
-[    2.208713] meson8b-dwmac c9410000.ethernet eth0: No Safety
-Features support found
-[    2.210673] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
-[    2.218083] meson8b-dwmac c9410000.ethernet eth0: configuring for
-phy/rmii link mode
-[   22.227444] Waiting up to 100 more seconds for network.
-[   42.231440] Waiting up to 80 more seconds for network.
-[   62.235437] Waiting up to 60 more seconds for network.
-[   82.239437] Waiting up to 40 more seconds for network.
-[  102.243439] Waiting up to 20 more seconds for network.
-[  122.243446] Sending DHCP requests ...
-[  130.113944] random: fast init done
-[  134.219441] ... timed out!
-[  194.559562] IP-Config: Retrying forever (NFS root)...
-[  194.624630] meson8b-dwmac c9410000.ethernet eth0: PHY
-[0.e40908ff:08] driver [Meson GXL Internal PHY] (irq=48)
-[  194.630739] meson8b-dwmac c9410000.ethernet eth0: Register
-MEM_TYPE_PAGE_POOL RxQ-0
-[  194.649138] meson8b-dwmac c9410000.ethernet eth0: No Safety
-Features support found
-[  194.651113] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
-[  194.657931] meson8b-dwmac c9410000.ethernet eth0: configuring for
-phy/rmii link mode
-[  196.313602] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
-100Mbps/Full - flow control off
-[  196.339463] Sending DHCP requests ., OK
-...
+But I still get the wrong data, so my next guess is that the clock
+duty cycle is 30%, and I think should be 50%.
+Here is an image of the signals of the bus:
+https://pasteboard.co/TEoxQucsXUUD.png
 
+I have tested other frequencies and all of them uses a 30% duty cycle,
+where SCL is up 30% and low for 70% of the period.
 
-I don't remember seeing an output like this one in the previous tests.
-Is there any further improvement we can do to the patch based on this?
+Is possible to configure the clock to be 100000Hz, but with a 50% duty
+cycle for this I2C bus on A3111D?
 
 Thanks
-
-Erico
+Lucas Tanure
 
 _______________________________________________
 linux-amlogic mailing list
