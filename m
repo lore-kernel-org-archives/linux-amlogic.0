@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DFA4C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Mar 2022 08:47:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 980D2C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Mar 2022 10:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WqOhpkyXUAJ1NUvh9CgQL2YgidNzhA9Urkr4m0u4Lnk=; b=0z1ESdPqQFd18B
-	ugbRTWjR+ECLZJiXSPP8f0VBmLKwLWVmUe8NBd/phuZZpn2clooPPrIFBCCMM6KLqkY2b9O+tAkzJ
-	JNjGvM9lVBT4wojcvu2FxoxJsN2q14MdNfM5piLHaY4c0rwNfx8R4AlrgxPIINkNApeaa9M1FjGND
-	xXLHLIcZbXsxK4Ebup5CJaIVsVdPpI8TlydBI8mNKkKR9SCu1FZRD1jWcMJV8ui8R3blxvoUk+0ix
-	4GkAWa5FBiAlBChAeLt+3JEJyUIru/RSsi+TP8Vaqkp5rTe0TS/AT7vfmiSczYpyuY5auX6AloTFH
-	T1va0PyUHprs1/IhHORA==;
+	List-Owner; bh=KwTp2/3Td40yicQeFTdYJl6kMNQERS7mtMhe71RUmZM=; b=YOO6bV7ivZShsY
+	uJeB8/z9/8jddzV1gjuellwAvdphDPcorlLCvkidBSCugoLKbywmXYkd3Hui3hLY8M3kZ7gqIQ1f/
+	SjFwB5jTrWnVvUf92wxDgUJCB+AjZwDk1MAgmhOa29Aux1Lh1avq9jvi/N1L8Jjd66Ym0RnW1Nq5r
+	Hlqz6Ropi7vCZB/a+n7dnA40T4UQfb8DSn0OZrjc48K2g0pvE1e72uUs9UV1uSaMaHCHkp22zgwMq
+	u80PVfOWmU1ZwV8h5rfxRKiByd2eBTIEBXzcxkgrpqoQgPvR0XA/Ln8IKGrjlVqtftWXxiWQQQMOC
+	w7zLJTtBehTq4F/joHoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nR91Q-00GXXS-KV; Mon, 07 Mar 2022 08:47:16 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1nRAfG-00H8cw-P8; Mon, 07 Mar 2022 10:32:30 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nR90y-00GXLV-2d
- for linux-amlogic@lists.infradead.org; Mon, 07 Mar 2022 08:46:50 +0000
-Received: by mail-wr1-x429.google.com with SMTP id k24so12519532wrd.7
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Mar 2022 00:46:47 -0800 (PST)
+ id 1nRAfD-00H8bP-VC
+ for linux-amlogic@lists.infradead.org; Mon, 07 Mar 2022 10:32:29 +0000
+Received: by mail-wr1-x431.google.com with SMTP id t11so22469078wrm.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Mar 2022 02:32:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=WQB8Wj8L2naBf99gAuyw+5VYV82BNeXK+2ElJRbWO5s=;
- b=mFke2k3O5n2KTc+OBpSwEGYxGgXKklKBN1I7HJNehUDSEQDOLPuvhG6WYa4jPUWSaB
- /Qc2aYNubYEebqhM4q80rAJQc0hQeeMehWol8JFOfDp0o4nGAM8wU0ZQYCNevtniMC8/
- E1CwvTwI+JzsusxsubfnfYR3n5efnrFVR/OtCVB+7Zi2UsQOMD706qgJ6u3PJt/5s4+4
- Gp79oyuxv4jdVk78kP58UV3grp76skMsBgymyPcyQy2bTEXRerBgIFcAz8+p/IpPTDNN
- QXzErHXq4OcBWvqJHQm1NARbJHpFftY3LGImleS2tvtr56DIVmVWexf8wt+7GYtV+6rB
- ZgFQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=8Gy2GGJRNoE8yXst/AS7H0JV0qPwD/Ie1gxojbs4D5c=;
+ b=Fo26egBRntaoWEL3/DfwEyAAq742j6+C9p7nDoRR3xfgwKcH+E0TDoMeGdqSawnRY0
+ zK2N5vNx5GMF6qcKk9V2KQnbaO6UyAUZCaFdE/FXr9jbVZfTgPCvGzsNhJ97oyKdTfTT
+ 9E7Vnhv8Rurn78Ms2XDJxajn01Dbp0imBBo9Q3pRVgfySlysnVpEFWUvCcmDxiOegZIl
+ WWg1dZA3DQ/fsbnGYraHhMuoUVT/avjAHhbckx1TMJO0ndoAh5wSR7jCu7rJm18ex+HD
+ 6/yN5sjeCaH7th5JEU44U3ejPjC2rJ/XGT+w0F7t3lGOEwoOp7GFPRO/arGAf2ZkvV7U
+ 7hpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=WQB8Wj8L2naBf99gAuyw+5VYV82BNeXK+2ElJRbWO5s=;
- b=HOTMspgKBHH9BHIxZejgyYQ/bfEErivlig+fmP9Q0KyCVJxaVqLWzeIDsiuD7lNUQF
- j81oAsNGSRKqnXg4s3VEBTFz93Ha4gIYCdGqBoi+To//CsmhnVnEQbHtH0SPMtZjHbe8
- oIVddJtOZg8blgtIqocClhbTtVSfCv8kXCWTxhrstyc2/cKfmm1vEpGGQ4ni26iv0LmC
- 1z26BhlpV6XsZ+JWO3W+QrzsQfDqWrFfsU5CFjhJekjc66KU6l4dxgM+Q3qttiP8gd09
- Faic7CMlbVy1Y0nQ6SrRda8mjmZ7lADV6ru4XWHg89h9/ae4YETfRvrpIvogyB9TSVbI
- nxfw==
-X-Gm-Message-State: AOAM533EDARVLeofTmTzP+ibHL0pqMxeF9zl2DFrTzKDHgVGNaFMBE5v
- HVrs5C62htqBlSLykxSsyF1Jgw==
-X-Google-Smtp-Source: ABdhPJybKFvjFWhNXd7UECd+xULEdoPrtBag7Uk01fy8gziWwt4F73T11HzmlUw4rbLsGhxf0KElsw==
-X-Received: by 2002:a5d:52d2:0:b0:1ef:e22d:18ba with SMTP id
- r18-20020a5d52d2000000b001efe22d18bamr7382573wrv.30.1646642806566; 
- Mon, 07 Mar 2022 00:46:46 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:1451:71b4:fefe:6096?
- ([2001:861:44c0:66c0:1451:71b4:fefe:6096])
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=8Gy2GGJRNoE8yXst/AS7H0JV0qPwD/Ie1gxojbs4D5c=;
+ b=ROdgmdRJZAAUqWAim2VaHrIU1JfL3s6Wnm7Sx61K9H3V74zkhNOjNNE4NgBXNfZpBg
+ iLNsBjrP7Rbg3MGZL/ZoFXZpfxUMc30Fl0EKwqdEJXx3KNiAdEK46m5Mkrl3SEhdAcXH
+ T1z/qZ27hvQiOfS3o7W33M8a8MKKCvt0Ha1YqxoiBwOkWcqIRwpGnJo6V+fOtX6M93pw
+ bpoQAEXRpOYgJ4r/DRoMqpkMZKcYfd2pRflY03V0w5CkA7RFyKcv2MtR8uwOrW+GJanu
+ oeG4g0RChspMW1xBbY3QtEiQJIfZgovhLKK1L1L9zofjqDvdxXSDY+Tz8CT5JoepHevv
+ YqxA==
+X-Gm-Message-State: AOAM533dEKmuRbvKOIPnv9cQoTz4SirV/Fs1J86kTfGRpGIRvWzqoCy1
+ UBFUGKShEAFObU5zLoE9fbIQmg==
+X-Google-Smtp-Source: ABdhPJwHiGercBUiYw+DtjYkKgYMr9GAQJXwN7tAmH0OoSry2XwjfzU/p74ni4PpTyE4NNe4RLvE1w==
+X-Received: by 2002:adf:e98c:0:b0:1f0:2f5c:2e9 with SMTP id
+ h12-20020adfe98c000000b001f02f5c02e9mr7534324wrm.356.1646649146147; 
+ Mon, 07 Mar 2022 02:32:26 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:1451:71b4:fefe:6096])
  by smtp.gmail.com with ESMTPSA id
- v188-20020a1cacc5000000b00384b71a50d5sm12647353wme.24.2022.03.07.00.46.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Mar 2022 00:46:46 -0800 (PST)
-Message-ID: <72059eeb-dec6-286d-7006-0a1d4d947d4f@baylibre.com>
-Date: Mon, 7 Mar 2022 09:46:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] i2c: meson: Fix wrong speed use from probe
-Content-Language: en-US
-To: Lucas Tanure <tanure@linux.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220301072600.12352-1-tanure@linux.com>
+ v10-20020a05600c214a00b00389bcc75559sm385091wml.27.2022.03.07.02.32.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Mar 2022 02:32:25 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220301072600.12352-1-tanure@linux.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@linux.ie>,
+ Robert Foss <robert.foss@linaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm: Drop commas after SoC match table sentinels
+Date: Mon,  7 Mar 2022 11:32:23 +0100
+Message-Id: <164664911819.1311314.8887306245856110435.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <298f0644275d7d0b4aa3ee7143756a2431a4900c.1646311443.git.geert+renesas@glider.be>
+References: <298f0644275d7d0b4aa3ee7143756a2431a4900c.1646311443.git.geert+renesas@glider.be>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220307_004648_151017_A980087C 
-X-CRM114-Status: GOOD (  19.41  )
+X-CRM114-CacheID: sfid-20220307_023228_072543_FD44FDE1 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,57 +95,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/03/2022 08:26, Lucas Tanure wrote:
-> Having meson_i2c_set_clk_div after i2c_add_adapter
-> causes issues for client drivers that try to use
-> the bus before the requested speed is applied.
-> 
-> The bus can be used just after i2c_add_adapter, so
-> move i2c_add_adapter to the final step as
-> meson_i2c_set_clk_div needs to be called before
-> the bus is used.
-> 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->   drivers/i2c/busses/i2c-meson.c | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-> index ef73a42577cc..07eb819072c4 100644
-> --- a/drivers/i2c/busses/i2c-meson.c
-> +++ b/drivers/i2c/busses/i2c-meson.c
-> @@ -465,18 +465,18 @@ static int meson_i2c_probe(struct platform_device *pdev)
->   	 */
->   	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
->   
-> -	ret = i2c_add_adapter(&i2c->adap);
-> -	if (ret < 0) {
-> -		clk_disable_unprepare(i2c->clk);
-> -		return ret;
-> -	}
-> -
->   	/* Disable filtering */
->   	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR,
->   			   REG_SLV_SDA_FILTER | REG_SLV_SCL_FILTER, 0);
->   
->   	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
->   
-> +	ret = i2c_add_adapter(&i2c->adap);
-> +	if (ret < 0) {
-> +		clk_disable_unprepare(i2c->clk);
-> +		return ret;
-> +	}
-> +
->   	return 0;
->   }
->   
+Hi,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Thu, 3 Mar 2022 13:44:56 +0100, Geert Uytterhoeven wrote:
+> It does not make sense to have a comma after a sentinel, as any new
+> elements must be added before the sentinel.
+> 
+> 
+
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+
+[1/1] drm: Drop commas after SoC match table sentinels
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=f6e68388443ff50088e224b3a75090bdc0403be6
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
