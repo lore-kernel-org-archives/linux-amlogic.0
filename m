@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB704C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Mar 2022 14:53:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE7BC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Mar 2022 17:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:Subject:From:References:Cc:To:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=G5BtmAH5YNilcGQprlv/BAaqyiID8C2sb5z8cVUiVdU=; b=kB45PlgT/B0wBjz+4DxJVyp6I7
-	I0idaSXI4N5uteZbee9qUH6pGLybboWYDrgIBvG/GK8ZMRg1CHSdajb/wH3woEfMjLaod5kGcCDmj
-	1ebAwKV6278kLezSWOdt6zx1W/TtPtio3c1GfUTJHT4PVow84x5PK5alGB9EnQy9tbueBMPrpw6jF
-	Lc06yz95vgX8YrwE4V2brOmfr+rXyhwADtIqcx2R3zjDAT66Vsf7WbNWCIARz07Fv4LEeQwi2zUhp
-	tcVYjW6Ik8/FFU2RmuLnFXNztG3inM0NsDyam0kLeWyGKyNtXREgjPq8CLtNAKEsrCPzNk/vwoY8J
-	0ickbEvw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5A65V9Byl2w4Gntj1JFQF8VmUZb+ymDTP+YTzExgiOE=; b=LW54Z0SJvefHBg
+	MNSoi9zefDY3Us83nRMw68f6b3t62dRnZNWNk5mgbYE/kj43Zjd89ySkFvRHceXBDfOZOYaaDOVrw
+	b1U01T/XNm3+sntim1OoR6pncrWtXNd5fZmZyh6UliuyA0cmBLNc1ulehpy+h8cSN2TyIJHMTM3sK
+	5x6qdQAAQUrQv36nY2i4ouRcmKC76FYMmm6zYtEmjY4IKnGG6EG38u4Soe+jDMQR9DVri9hQq4ySt
+	O8BdR4+YHY3twWvOoQa2QIoyDBrQ5i256l/+lcn/EYn5cYu+7Ud1G+v9RQ2BjaNmNt5Isem+x/oUe
+	FOPjtpaf1lAMekdkBy1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRbDh-004qjs-V0; Tue, 08 Mar 2022 14:53:49 +0000
-Received: from mga12.intel.com ([192.55.52.136])
+	id 1nRdQE-005SNu-FZ; Tue, 08 Mar 2022 17:14:54 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRbDf-004qjS-VC
- for linux-amlogic@lists.infradead.org; Tue, 08 Mar 2022 14:53:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646751227; x=1678287227;
- h=to:cc:references:from:subject:message-id:date:
- mime-version:in-reply-to:content-transfer-encoding;
- bh=zeMWxwZ30S6VBETKZhm258zEcDrFW79BXEaWO/w3pOQ=;
- b=Z9UYtb9Z3eyL20H/8zjqwo2Epjno/CMOagE7UxD8qw/YRM0PqtPjZXIj
- n9a0iq79LOWyHYUqgdoHOWv2rDnd1JHPoaZugITfGqfI8EW++2m7katw0
- He9UV5CzvttyNqmlDDqbCPQRwaRRfAQbk69BfFCSeWABG+GiPbgUwGuVT
- LDJaFpDXutH7nMzsidX0q24StzXnTwwrswTKDpDGlXhCSGuG9jjJ7xzIG
- 46/xMBdf1G/2LYGVEy1vURrZfmw4+xVhsOCCciW3JEgrybhoOWlzU3ikq
- QpUWk3WwvkbrQcQikrWyn9qST9BtckK0wQUfDazT9eBxTEpjB4ieOQMXr g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="234653613"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="234653613"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 06:53:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="578011785"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199])
- ([10.237.72.199])
- by orsmga001.jf.intel.com with ESMTP; 08 Mar 2022 06:53:45 -0800
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Alan Stern <stern@rowland.harvard.edu>, Jack Pham <quic_jackp@quicinc.com>,
- Tung Nguyen <tunguyen@apm.com>
-References: <18a93669-7f7a-dad8-38f4-44819fc3b64a@gmail.com>
- <e73bc0c1-e530-7419-0197-1b7de02c87c5@gmail.com>
-From: Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH 5/5] xhci: support omitting shared hcd if either of the
- root hubs has no ports
-Message-ID: <e41743c9-73dd-0c2c-3df3-a20b53f066e8@linux.intel.com>
-Date: Tue, 8 Mar 2022 16:55:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+ id 1nRd6o-005Ls6-Ri; Tue, 08 Mar 2022 16:54:52 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 6E33BB81B76;
+ Tue,  8 Mar 2022 16:54:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499FEC340F7;
+ Tue,  8 Mar 2022 16:54:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646758488;
+ bh=K19vK6nxKS/hDQqLtDMhTlpl+t9TWom4w9EL0lGm1lc=;
+ h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Gd9Ur+AGARhDbfnuEqchXCL38pF2SgSphuxbNwbxfrHwtrGU4iyoyDjzyaZtOF3rZ
+ lb7fn5ZPuRXDB/DRTb32WA7U6mvLO3Lbfx9yqPF/Sjypl1bWzHTQQWRvJI+QBA3ARL
+ 46HUdFzKqPevqn23ucMGeF0/pxO5UMb4TUZHeFwSD/L5jHK3avnx3jlkC/Q1w6X+3Z
+ xgNWm++hCYQodcCy3UW32StYgC73GaJsnuGoACsVKZ2qmscGuJ3cgErpV6GiGPMN0e
+ kwaZprXpVDwiKv7RmhYFcQONcbnXD/yck42qJaYqMqrVVJjN+OXo5gQP9b1+nNZzdO
+ 3ovEW9K0khUbA==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ "arm@kernel.org" <arm@kernel.org>, soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ linux-amlogic@lists.infradead.org
+Subject: Re: [GIT PULL] soc: amlogic: driver updates for v5.18
+Date: Tue,  8 Mar 2022 17:54:02 +0100
+Message-Id: <164675831463.4164581.7406288447524287868.b4-ty@arndb.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <c7471989-d929-c744-c0c3-c8e86eaaa225@baylibre.com>
+References: <c7471989-d929-c744-c0c3-c8e86eaaa225@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <e73bc0c1-e530-7419-0197-1b7de02c87c5@gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220308_065348_054708_C0115D51 
-X-CRM114-Status: GOOD (  21.37  )
+X-CRM114-CacheID: sfid-20220308_085451_117664_3F1006EF 
+X-CRM114-Status: UNSURE (   9.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,59 +74,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4.3.2022 20.37, Heiner Kallweit wrote:
-> If either of the root hubs has no ports, then we can get rid of
-> overhead like the shared hcd. A major internal change is that now
-> the main hcd can be USB2 or USB3.
+From: Arnd Bergmann <arnd@arndb.de>
+
+On Mon, 7 Mar 2022 09:45:36 +0100, Neil Armstrong wrote:
+> Please find for v5.18 support for Amlogic S4 SoC in secure power domain driver.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  drivers/usb/host/xhci-mem.c | 11 +++++------
->  drivers/usb/host/xhci.c     |  9 ++++++---
->  2 files changed, 11 insertions(+), 9 deletions(-)
+> Neil
 > 
-> diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-> index a1a17713a..ced139583 100644
-> --- a/drivers/usb/host/xhci-mem.c
-> +++ b/drivers/usb/host/xhci-mem.c
-> @@ -2362,12 +2362,11 @@ static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
->  		xhci->usb2_rhub.num_ports = USB_MAXCHILDREN;
->  	}
->  
-> -	xhci->needs_shared_hcd = 1;
-> -
-> -	/*
-> -	 * Note we could have all USB 3.0 ports, or all USB 2.0 ports.
-> -	 * Not sure how the USB core will handle a hub with no ports...
-> -	 */
-> +	if (xhci->usb2_rhub.num_ports && xhci->usb3_rhub.num_ports)
-> +		xhci->needs_shared_hcd = 1;
-> +	else
-> +		xhci_info(xhci, "USB%u root hub has no ports\n",
-> +			  xhci->usb2_rhub.num_ports ? 3 : 2);
+> The following changes since commit e783362eb54cd99b2cac8b3a9aeac942e6f6ac07:
+> 
+>    Linux 5.17-rc1 (2022-01-23 10:12:53 +0200)
+> 
+> [...]
 
-This now works for xhci controllers using xhci-plat.c, but in all other cases
-the the secondary hcd will still be added.
+Merged into arm/drivers, thanks!
 
-Would it make sense to instead of setting xhci->needs_shared_hcd, we
-set a xhci->allow_single_roothub flag in the .reset override function?
-In the xhci-plat.c case this would be in xhci_plat_setup()
+merge commit: c76edea0e52d5522835534de90c893ca50b04402
 
-We would only add the flag if the respective probe supports one roothub.
-
-Add a helper function to check if we if really should set up just one 
-hcd in probe, and should call xhci_run_finished() already the he first time
-xhci_run() is called (like you do in patch 3/5).
-
-Something like:
-
-bool xhci_has_one_roothub(struct xhci_hcd *xhci)
-{
-	return xhci->allow_single_roothub && (!xhci->usb2_rhub.num_ports != !xhci->usb3_rhub.num_ports);
-}
-
-Thanks
--Mathias
+       Arnd
 
 _______________________________________________
 linux-amlogic mailing list
