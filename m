@@ -4,52 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46636C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Mar 2022 20:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D41A7C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 00:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pMLyljh8zaIqJFzXhCTFqFHsqfZLEr+3Qv1OImYikyc=; b=GEUWvoxop795e2
-	OxZbTQ1kTMv/K/0zJbxsFVjiCDix0nRnVy8uJNOJKunxQe4musf+I9jCHsv4ADPXKyuIk7OrmGZId
-	EHkjtO//LpEPjAk3U2w9VvvLkKYPq+u9b4OHVB7HyGeehn3hLuiSe4zWIGUfCsoOiSP53aMIR9Ab2
-	kGzRwgESiU0QLuq4XL9LMS1wcSuZ6RUjugkhnVbQmlm+WEYvZRvYzxL5X+BY5Du+LGO3m7ga26tpo
-	3V015i5bgMMnN5+ePngppnJRYYpUJLzzfff1irgbO2bVXhVM1DaPlljwQx7haaoH7G0ydO2WQCX9Z
-	nULAQmj4S13IqpJ1gWEw==;
+	List-Owner; bh=5Xx0TJzc/s/9JlxNslAqtc2hU9XNy10hSHSnmU8Fh8I=; b=gsUaEBghNnvof/
+	y/S21jxt/M2L1TedhsBcM/xfpnNcPwBWnZ2NzbuDEfs1K98Hbh+sEjCk2kDsMB3yb7ax+gvpIeVHy
+	EFPpCehbldRXrs6yB6EMen26Cp4jpAsRt0WsbGC6Ug2OfEh5BUTHljBnle+Kw7a+4376QdY7qIV69
+	RqUL2FXUTUOGqUeiu3Q6o/7Rle0qo+NXmTOnDVXOug6hnI2f62nXImOufh2I/FHiXMyNEsTqKX+na
+	Q4HS2RHipDEsoF2dBc7vGcZcRGwE1qpo9/S5Vv9dmg1cCLBpoDoqcwMXmgy+WaiYaMRKsNCdtSCLU
+	XL+FgS/YC2zN0BDQxTOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRgXf-006A4O-UX; Tue, 08 Mar 2022 20:34:47 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRgXd-006A3N-92; Tue, 08 Mar 2022 20:34:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA74E1650;
- Tue,  8 Mar 2022 12:34:43 -0800 (PST)
-Received: from [10.57.41.254] (unknown [10.57.41.254])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C27093FA20;
- Tue,  8 Mar 2022 12:34:42 -0800 (PST)
-Message-ID: <7eec71da-e4b4-eac3-a29c-4244c28f2875@arm.com>
-Date: Tue, 8 Mar 2022 20:34:21 +0000
+	id 1nRkE2-006jf8-FR; Wed, 09 Mar 2022 00:30:46 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nRkDz-006jdq-A8
+ for linux-amlogic@lists.infradead.org; Wed, 09 Mar 2022 00:30:45 +0000
+Received: by mail-wm1-x334.google.com with SMTP id
+ 7-20020a05600c228700b00385fd860f49so570592wmf.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 08 Mar 2022 16:30:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=53mv2wpGk88zHDCxzChxzDntymhF9ZRIwaSnWXEWls0=;
+ b=rzQBJASLVSFLoebUcrNcZ/qIFXaVAAHCd7y7ceunH2pKD3pRp2rjvtVVFyH+qzuRRg
+ 3yCVc+06J098wGtKO1DlNXNgQCDGtcXOlpIbVbPrTQzzTKGf6MmmCODt24Fjy2WR+S18
+ PnnQFWk5jZy8500Ns/JKMLBX933XiJNYCXx97LYo8sRAge4zyvknxIlQ1ZlYyDUYAS1Z
+ cDZ7OfyuXrmFRtfeMsUxzn7pA8I0zE6FkB7UaCjdRMw7iTsTiwGFeMmfBbgf1hc6keJ/
+ I2Nku8I3q4q6S8DaISQxvAxLB2dpr267zPx0DjIIF7zeiMpIrnnop1qDiZlYuw6bcyPg
+ foGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=53mv2wpGk88zHDCxzChxzDntymhF9ZRIwaSnWXEWls0=;
+ b=u6c/P02gJyqWi+tDHpy5sGnqngZjq5DvZGXgv4ytaMnIIdUbZJNs1DYm4zZrbUjgEt
+ fLGKatEICNe/RzIE8RCcJWSae6oCvXLoCXFw42eWVzh44ePdoMWE+Ng3NOCOgT5I3dMl
+ dhLuY62Qrb1D2uT/OUBujD50qoA/HtCnz0WHqy5XNsAPdyL/3Vz90yxebO2E93fKt+ZJ
+ SbZH7eJIMXeMjPN0Du6oj/aB2C39adNL3gbattuLOAP30wKeR2hneMa48ICwULRPqpl8
+ Dkf7xJqAk6xWgfnSeDdkLNwenGZnMjuYjaEY+AH44RbNgJFAaYMeU1rrLrZ1oI9l6F8U
+ 13uw==
+X-Gm-Message-State: AOAM531iLS6DJJZ1u+vavzADvOappmxHRpLNAfqTZC3w0FnKNJmnD4cd
+ Px+flmHDWKPyuJvqovYUu5zfqQ==
+X-Google-Smtp-Source: ABdhPJwmzdzw7u2eprVrxG8sP+F9kGB8M3FUlAaULW3JXjLQ/Omv6WsZIKsLtb0lDH72QvCS2qn1zA==
+X-Received: by 2002:a05:600c:1908:b0:389:c3ca:9eac with SMTP id
+ j8-20020a05600c190800b00389c3ca9eacmr1312123wmq.182.1646785836198; 
+ Tue, 08 Mar 2022 16:30:36 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id
+ u18-20020adfdd52000000b001f04e9f215fsm263527wrm.53.2022.03.08.16.30.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Mar 2022 16:30:35 -0800 (PST)
+References: <7d6c2755-77ac-86db-899f-7342ee9e69b5@gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: alsa-devel@alsa-project.org, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
+ <linux-amlogic@lists.infradead.org>
+Subject: Re: [PATCH] ASoC: meson: aiu: fix duplicate debugfs directory error
+Date: Wed, 09 Mar 2022 00:42:04 +0100
+In-reply-to: <7d6c2755-77ac-86db-899f-7342ee9e69b5@gmail.com>
+Message-ID: <1jcziwnf10.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: Missing mali regulator in Amlogic dts
-Content-Language: en-GB
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- Christian Hewitt <christianshewitt@gmail.com>
-References: <13ecb1a6-6ae6-2815-7ff8-58f661c14b2d@gmail.com>
- <CAFBinCB700+g_fDmC5dXbNONLyESghp+RmZ+1myvhPbseXpY4A@mail.gmail.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAFBinCB700+g_fDmC5dXbNONLyESghp+RmZ+1myvhPbseXpY4A@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220308_123445_399772_20722F5B 
-X-CRM114-Status: GOOD (  14.89  )
+X-CRM114-CacheID: sfid-20220308_163043_520238_9C02797E 
+X-CRM114-Status: GOOD (  20.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,45 +91,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2022-03-08 19:29, Martin Blumenstingl wrote:
-> Hi Heiner,
-> 
-> On Tue, Mar 8, 2022 at 7:24 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>
->> I get following error on a  S905W-based system.
->> lima d00c0000.gpu: dev_pm_opp_set_regulators: no regulator (mali) found: -19
-> This warning is harmless (see below)
-> 
->> I see mali-supply in the DTS of few other vendors, but in no Amlogic DTS.
->> Is it missing, or are Amlogic SoCs different here?
-> As far as I understand, on GXBB and GXL SoCs the VDDEE regulator is
-> managed by the firmware (which is unfortunately closed-source).
-> IIRC on the hardware side VDDEE is just another PWM regulator, just
-> like with the 32-bit SoCs or with G12A (and later) SoCs.
-> 
->> In the latter case supposedly drivers/gpu/drm/lima/lima_devfreq.c would
->> have to be changed to check for the optional regulator and not call
->> devm_pm_opp_set_regulators() if it's missing.
-> I think I just copied the logic from panfrost
-> (drivers/gpu/drm/panfrost/panfrost_devfreq.c) to lima.
-> So GXM boards (using panfrost) will probably report a similar warning.
-> That said, I don't know enough to judge whether your approach makes sense.
 
-As a quality-of-life thing, it might make the most sense to refactor the 
-API a bit so that it can offer a dedicated helper for setting optional 
-regulators - possibly specifically a single optional regulator, since 
-it's not necessarily clear how optionality should scale to a set of 
-multiple items.
+On Tue 08 Mar 2022 at 20:00, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-FWIW I do indeed see the same thing with panfrost, on an Arm Juno board 
-where OPPs are completely abstracted behind the arm_scmi DVFS "clock".
+> On a S905W-based system I get the following error:
+> debugfs: Directory 'c1105400.audio-controller' with parent 'P230-Q200' already present!
+>
+> Turned out that multiple components having the same name triggers this
+> error in soc_init_component_debugfs().
 
-Robin.
+Because the component name is directly derived from the dev name
+
+> With the patch the error is
+> gone and that's the debugfs entries.
+>
+> /sys/kernel/debug/asoc/P230-Q200/aiu_acodec:c1105400.audio-controller
+> /sys/kernel/debug/asoc/P230-Q200/aiu_hdmi:c1105400.audio-controller
+> /sys/kernel/debug/asoc/P230-Q200/aiu_cpu:c1105400.audio-controller
+>
+> Because debugfs is affected only, this may not be something for stable.
+
+It is not entirely true that only debugfs is affected, though it is the
+only thing really complaining.
+
+I had a similar tweak around debugfs entry when I first submitted the
+AIU. There was a discussion around that:
+
+https://patchwork.kernel.org/project/linux-amlogic/patch/20200213155159.3235792-6-jbrunet@baylibre.com/
+
+I proposed a solution which got merged but ended up breaking other cards
+because there was some assumptions around what the component name
+is: basically the dev_name since there was originally 1:1 mapping
+So it had to be reverted.
+
+Full details here:
+https://patchwork.kernel.org/project/alsa-devel/patch/20200214134704.342501-1-jbrunet@baylibre.com/
+
+Unfortunately I did not had the time to continue working on it since them
+
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  sound/soc/meson/aiu.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+> index d299a70db..c1a2aea5f 100644
+> --- a/sound/soc/meson/aiu.c
+> +++ b/sound/soc/meson/aiu.c
+> @@ -68,6 +68,20 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
+>  
+>  	*dai_name = dai->driver->name;
+
+While I don't really mind one way or the other about the prefix itself,
+aiu_of_xlate_dai_name() is not the place to tweak it.
+
+This should be done before adding the component, not when parsing the DAI
+with DT.
+
+If this is really a problem and Mark is Ok with, what you want to do is
+revert commit 024714223323 ("ASoC: meson: aiu: simplify component addition")
+>  
+> +	switch (component_id) {
+> +	case AIU_CPU:
+> +		component->debugfs_prefix = "aiu_cpu";
+> +		break;
+> +	case AIU_HDMI:
+> +		component->debugfs_prefix = "aiu_hdmi";
+> +		break;
+> +	case AIU_ACODEC:
+> +		component->debugfs_prefix = "aiu_acodec";
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+>  	return 0;
+>  }
+
 
 _______________________________________________
 linux-amlogic mailing list
