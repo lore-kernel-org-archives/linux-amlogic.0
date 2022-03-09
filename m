@@ -4,78 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84A5EC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 05:51:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 324E9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 09:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dh8KmiVSc81+pFgLyLD+I1Mw+lR67R7R8hCFMbKhSuQ=; b=24XVSirlVc9qaR
-	dh6MCGO5t659Or9eTUszQ9CMdzlcG97ec1ikDO8wpLGebDYQyTI0PDyJE9G+qJe5QPEsdLG8C8Z4w
-	4GfVUb+Lz6yUySPX2jzXsBVucqBws4aiRTI42E+ikI0g3HgNz5DWFmaR7o/3Q7QoF68Fl0XoHg8bI
-	2Y/PSadCc6bWgT9UjD4TNzT4JbkeiPmOT78diQovELYrVuPaUwUnuG9OW707BoSXQaGyZFMS6xVnG
-	Ur1i2fMgnoW3h4NbloSGQWiek0toCOysUbqOddaEijr4N68zUb5nC4GN1T0QJ7CuUIlEciDk/xH53
-	j/CL3021iB4jaccS2ZmA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
+	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=K4lNgqy08wLAeZxVo8TX98ec5nujscs4uWLe/ZZ9sg4=; b=YSI9NMOhwGFGJ0
+	enj99iMw/YAyT9FhvUG/8JFhpAWrBC5cxILg7F38JjpwrB2T2gWFpkSNxYyrmpg9rZ1AzdpEJRRwj
+	0XqYXNcpnIKnYa5rPiKYJdOO4A/NwUyvT/o9JDZaZ5epPOTTFKRWZt6tKcGMJZPxHXWV+Qqz31e4p
+	kZuZ/4QN5IQ/otpBH53/2LYczwOc4jn/vZZjuDr1eyVpA3O9PG7XzAi9nD6pbQkOi2z7sLW6jIUwc
+	FRk5f1i/28uKozeaUsIphGfxvdXcUugv/YY61keFHibgdInKxTF1NcfJIju84WQd0Y57wE7s2BAyI
+	6HaBBPPa15OZjpvFB1BQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRpE8-007O3Q-2K; Wed, 09 Mar 2022 05:51:12 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1nRsmt-007wmA-2S; Wed, 09 Mar 2022 09:39:19 +0000
+Received: from mail-ua1-f53.google.com ([209.85.222.53])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRpE6-007O33-8K; Wed, 09 Mar 2022 05:51:11 +0000
-Received: by mail-wr1-x436.google.com with SMTP id h15so1302316wrc.6;
- Tue, 08 Mar 2022 21:51:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=ntVZeP/ZOGlR7r3GVyF2LVHOL98e/gbBmFj21WaZDPc=;
- b=WlskuyIs6bV5vuXlPbuY80WlUqpgtBB2BT3OaDs/kZraZOZvE7Kl/R/SXQjklTa2v9
- 5Fkchu28aR260Qu7HO36sdD0IeroD9IcZmGS7cG9L8Zz1WttNQDL07Ut1SmbxUEKS0cC
- Fezi1i3D67Frb59Niz4ti5UoasmYo5k85DV36zJHJ7d2ItpFmWb4mnsAHb4+lnR6QNR0
- hdF9KPY4fd6DQZaZbXFH96wmbrCE1bJASBwrjKHqgO+1Q5O8bPZWfmz88/VGKDYu27Eb
- /Liv5ySAYDRBDKlKhk2Z2gibxJq0Wu0SOYXnml9y6vwsWZIhYHTHTzh0XD+C9zIdG+CH
- EZAw==
+ id 1nRsmq-007wl5-0z
+ for linux-amlogic@lists.infradead.org; Wed, 09 Mar 2022 09:39:17 +0000
+Received: by mail-ua1-f53.google.com with SMTP id j7so757039uap.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 09 Mar 2022 01:39:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=ntVZeP/ZOGlR7r3GVyF2LVHOL98e/gbBmFj21WaZDPc=;
- b=Gr7m+m8PSUpNAzPfkBUrwDmCXkPBsBnNoevYzECQYPj2ERVUe6KJqaB/LZHxqHHxUN
- qOon2TS7cZ1umm1G0MmTc9+u4rFu7N+WUXXVCWt0M3QLqon6XAKp3VW5nRzpvVYnDrO+
- VQ0e1uKvAbPJ3ArwmLWgskF6Y14vlk2ChSOU002Nyt2eVISdsW/7s/IRgD/ERnTX6LOj
- j3JQM3B21zlFlFC56jHEmNM4or+R490WzQPbUhUxPOOjqTvkb2/5B6yRCswyr25h5GUr
- E/8U9/n0GctPGbk/wSkvrkq2OUKpNU/G8gz2kYme5FpCavK67I6h5/SBsVwFG1elI6Iy
- 9YdA==
-X-Gm-Message-State: AOAM5321pvZOAkqJ65AFjdC8uutcmG9WXrk/UURbxwGM9mJZRu2DApiH
- lEEy7vTR470alGqvjyJbeLo=
-X-Google-Smtp-Source: ABdhPJxfA7kjG6ko00xScXemifNTbPyySjwSihda6fkhtp5/pF0n/+SWPrWIR4WyAnQJnu0+gCmg0A==
-X-Received: by 2002:adf:908e:0:b0:1e7:bea7:3486 with SMTP id
- i14-20020adf908e000000b001e7bea73486mr13998452wri.401.1646805067003; 
- Tue, 08 Mar 2022 21:51:07 -0800 (PST)
-Received: from smtpclient.apple ([167.99.200.149])
- by smtp.gmail.com with ESMTPSA id
- l10-20020a7bc44a000000b003899263bab1sm680112wmi.20.2022.03.08.21.51.05
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 08 Mar 2022 21:51:06 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
-Subject: Re: Missing mali regulator in Amlogic dts
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <7eec71da-e4b4-eac3-a29c-4244c28f2875@arm.com>
-Date: Wed, 9 Mar 2022 09:51:03 +0400
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Message-Id: <907B2B12-F33F-4DF5-8CAA-41CB7766FC78@gmail.com>
-References: <13ecb1a6-6ae6-2815-7ff8-58f661c14b2d@gmail.com>
- <CAFBinCB700+g_fDmC5dXbNONLyESghp+RmZ+1myvhPbseXpY4A@mail.gmail.com>
- <7eec71da-e4b4-eac3-a29c-4244c28f2875@arm.com>
-To: Robin Murphy <robin.murphy@arm.com>
-X-Mailer: Apple Mail (2.3693.60.0.1.1)
+ h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+ :from:date:message-id:subject:to:cc;
+ bh=p3OmlkM/OWiSIKDHkDHx5mNkj2zAQewRb+zd0+kavL4=;
+ b=y/nuxO5LmxAAVjHKH4kuQ8KwKnY5nhT5ys6kPcYmiulSaru85gS1GPYNJVq3j1iksU
+ 33hD2TkA1xhaSl5dK4U/ZYiba8Z/5SfuhLEJfgR89gbFvsX8PYvG8ldoQjEnRR5ffb0P
+ vIpW4XX3gIZzhu/bAKCPEJ4KxXSlKeyKt/CdJef2Iap+rb+vpXPyrh/uSu8VrTbQShy2
+ pNvW7qcHDesln34akoizRP036onEjJkyB7YFjJEOi08dIqSLUY68/FgCB4+OKUMdYQQ2
+ 3Zdffk3jqChZ0bMV+/znLz3AcFJoPqIBA7W08KH/cvSfewFwSSzmZbcOmJrRFxYrTz7q
+ 3pIg==
+X-Gm-Message-State: AOAM532EERlAhEEihj6BRjz95FCVsyB9UT7kLEGTJrR06ykDkQNR/NAi
+ vwOFJ8JFkML78Nmzn3NLAui5cqCKq01SDg==
+X-Google-Smtp-Source: ABdhPJw4lDej3u/4V5xWmUMCa2VQxNUBI+IxQkSm833ZiQYmbhT1F6Uz/DQOQg7aVoB5LgwySgMw2A==
+X-Received: by 2002:ab0:3752:0:b0:343:434c:3378 with SMTP id
+ i18-20020ab03752000000b00343434c3378mr8181550uat.95.1646818754124; 
+ Wed, 09 Mar 2022 01:39:14 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com.
+ [209.85.217.46]) by smtp.gmail.com with ESMTPSA id
+ s63-20020a1fa942000000b003336910de3esm164012vke.14.2022.03.09.01.39.13
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 09 Mar 2022 01:39:13 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id u124so1612299vsb.10
+ for <linux-amlogic@lists.infradead.org>; Wed, 09 Mar 2022 01:39:13 -0800 (PST)
+X-Received: by 2002:a67:fb87:0:b0:320:bd8a:f24c with SMTP id
+ n7-20020a67fb87000000b00320bd8af24cmr6908771vsr.51.1646818753634; Wed, 09 Mar
+ 2022 01:39:13 -0800 (PST)
+MIME-Version: 1.0
+References: <CAJX_Q+2zibb_ABAjT=k=hbW_Xa9knOy5hcN5Ma2B6Z+h-3=FsQ@mail.gmail.com>
+ <CAJX_Q+0Gvf88EW6s6-pLoA_mwhwKCf==qyxmNnFt=S24TPN0xw@mail.gmail.com>
+ <35db71b9-6574-b517-9687-33a826647821@baylibre.com>
+ <CAJX_Q+29A9zqTar=tR5JuV3xrEWQCOYu-ymw0W2368eT5AZU8A@mail.gmail.com>
+In-Reply-To: <CAJX_Q+29A9zqTar=tR5JuV3xrEWQCOYu-ymw0W2368eT5AZU8A@mail.gmail.com>
+From: Lucas Tanure <tanure@linux.com>
+Date: Wed, 9 Mar 2022 09:39:02 +0000
+X-Gmail-Original-Message-ID: <CAJX_Q+1OwvpypMXsdBpra8Ozys9DUEpbbqJipEqcuS2P3UqvVw@mail.gmail.com>
+Message-ID: <CAJX_Q+1OwvpypMXsdBpra8Ozys9DUEpbbqJipEqcuS2P3UqvVw@mail.gmail.com>
+Subject: Re: VIM3 - A311D - I2C AO Clock Questions
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220308_215110_346451_A5BC4E00 
-X-CRM114-Status: GOOD (  16.11  )
+X-CRM114-CacheID: sfid-20220309_013916_101843_D2918B41 
+X-CRM114-Status: GOOD (  35.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,45 +82,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: tanure@linux.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cj4gT24gOSBNYXIgMjAyMiwgYXQgMTI6MzQgYW0sIFJvYmluIE11cnBoeSA8cm9iaW4ubXVycGh5
-QGFybS5jb20+IHdyb3RlOgo+IAo+IE9uIDIwMjItMDMtMDggMTk6MjksIE1hcnRpbiBCbHVtZW5z
-dGluZ2wgd3JvdGU6Cj4+IEhpIEhlaW5lciwKPj4gT24gVHVlLCBNYXIgOCwgMjAyMiBhdCA3OjI0
-IFBNIEhlaW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4gCj4+
-PiBJIGdldCBmb2xsb3dpbmcgZXJyb3Igb24gYSAgUzkwNVctYmFzZWQgc3lzdGVtLgo+Pj4gbGlt
-YSBkMDBjMDAwMC5ncHU6IGRldl9wbV9vcHBfc2V0X3JlZ3VsYXRvcnM6IG5vIHJlZ3VsYXRvciAo
-bWFsaSkgZm91bmQ6IC0xOQo+PiBUaGlzIHdhcm5pbmcgaXMgaGFybWxlc3MgKHNlZSBiZWxvdykK
-Pj4+IEkgc2VlIG1hbGktc3VwcGx5IGluIHRoZSBEVFMgb2YgZmV3IG90aGVyIHZlbmRvcnMsIGJ1
-dCBpbiBubyBBbWxvZ2ljIERUUy4KPj4+IElzIGl0IG1pc3NpbmcsIG9yIGFyZSBBbWxvZ2ljIFNv
-Q3MgZGlmZmVyZW50IGhlcmU/Cj4+IEFzIGZhciBhcyBJIHVuZGVyc3RhbmQsIG9uIEdYQkIgYW5k
-IEdYTCBTb0NzIHRoZSBWRERFRSByZWd1bGF0b3IgaXMKPj4gbWFuYWdlZCBieSB0aGUgZmlybXdh
-cmUgKHdoaWNoIGlzIHVuZm9ydHVuYXRlbHkgY2xvc2VkLXNvdXJjZSkuCj4+IElJUkMgb24gdGhl
-IGhhcmR3YXJlIHNpZGUgVkRERUUgaXMganVzdCBhbm90aGVyIFBXTSByZWd1bGF0b3IsIGp1c3QK
-Pj4gbGlrZSB3aXRoIHRoZSAzMi1iaXQgU29DcyBvciB3aXRoIEcxMkEgKGFuZCBsYXRlcikgU29D
-cy4KPj4+IEluIHRoZSBsYXR0ZXIgY2FzZSBzdXBwb3NlZGx5IGRyaXZlcnMvZ3B1L2RybS9saW1h
-L2xpbWFfZGV2ZnJlcS5jIHdvdWxkCj4+PiBoYXZlIHRvIGJlIGNoYW5nZWQgdG8gY2hlY2sgZm9y
-IHRoZSBvcHRpb25hbCByZWd1bGF0b3IgYW5kIG5vdCBjYWxsCj4+PiBkZXZtX3BtX29wcF9zZXRf
-cmVndWxhdG9ycygpIGlmIGl0J3MgbWlzc2luZy4KPj4gSSB0aGluayBJIGp1c3QgY29waWVkIHRo
-ZSBsb2dpYyBmcm9tIHBhbmZyb3N0Cj4+IChkcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFuZnJv
-c3RfZGV2ZnJlcS5jKSB0byBsaW1hLgo+PiBTbyBHWE0gYm9hcmRzICh1c2luZyBwYW5mcm9zdCkg
-d2lsbCBwcm9iYWJseSByZXBvcnQgYSBzaW1pbGFyIHdhcm5pbmcuCj4+IFRoYXQgc2FpZCwgSSBk
-b24ndCBrbm93IGVub3VnaCB0byBqdWRnZSB3aGV0aGVyIHlvdXIgYXBwcm9hY2ggbWFrZXMgc2Vu
-c2UuCj4gCj4gQXMgYSBxdWFsaXR5LW9mLWxpZmUgdGhpbmcsIGl0IG1pZ2h0IG1ha2UgdGhlIG1v
-c3Qgc2Vuc2UgdG8gcmVmYWN0b3IgdGhlIEFQSSBhIGJpdCBzbyB0aGF0IGl0IGNhbiBvZmZlciBh
-IGRlZGljYXRlZCBoZWxwZXIgZm9yIHNldHRpbmcgb3B0aW9uYWwgcmVndWxhdG9ycyAtIHBvc3Np
-Ymx5IHNwZWNpZmljYWxseSBhIHNpbmdsZSBvcHRpb25hbCByZWd1bGF0b3IsIHNpbmNlIGl0J3Mg
-bm90IG5lY2Vzc2FyaWx5IGNsZWFyIGhvdyBvcHRpb25hbGl0eSBzaG91bGQgc2NhbGUgdG8gYSBz
-ZXQgb2YgbXVsdGlwbGUgaXRlbXMuCgpJIHNlZSBvY2Nhc2lvbmFsIChub3QgZnJlcXVlbnQsIGJ1
-dCBwZXJzaXN0ZW50KSDigJxlcnJvcuKAnSByZXBvcnRzIGZyb20gdXNlcnMgd2l0aCBzb21lIGtp
-bmQgb2YgZGlzcGxheSByZWxhdGVkIHByb2JsZW0sIGFuZCB0aGV5IGxvb2sgdGhyb3VnaCB0aGUg
-Ym9vdCBsb2cgYW5kIHNlZSB0aGlzIGFuZCBwb2ludCBmaW5nZXJzLiBJdOKAmXMgaGFybWxlc3Ms
-IGJ1dCBub3Qgc2hvd2luZyB0aGlzIG9uIEFtbG9naWMgZGV2aWNlcyAoYWxsIG9mIHRoZW0gc2hv
-dyB0aGlzIHZpYSBsaW1hIG9yIHBhbmZyb3N0KSB3b3VsZCBiZSBhbm90aGVyIG1pY3JvLXN0ZXAg
-dG93YXJkcyBsZXNzIGRpc3RybyBzdXBwb3J0IGVmZm9ydC4KCkNocmlzdGlhbgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, Mar 8, 2022 at 6:49 AM Lucas Tanure <tanure@linux.com> wrote:
+>
+> On Mon, Mar 7, 2022 at 8:29 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >
+> > Hi,
+> >
+> > On 06/03/2022 11:23, Lucas Tanure wrote:
+> > > Hi,
+> > >
+> > > I am trying to integrate an I2C device into VIM3 using the I2C_AO bus.
+> > > My device uses a 100000Hz clock, but after changing
+> > > meson-g12b-a311d-khadas-vim3.dts to add my I2C node the driver could
+> > > not properly read its registers.
+> > >
+> > > It reads 0x9100, but the correct data should be 0xcb58.
+> > > The first thing I saw on the bus was that the frequency I requested by
+> > > the device tree was being set after the probe of my driver already
+> > > failed.
+> > > For that, I sent "i2c: meson: Fix wrong speed use from probe" which
+> > > fixes that issue.
+> > >
+> > > But I still get the wrong data, so my next guess is that the clock
+> > > duty cycle is 30%, and I think should be 50%.
+> > > Here is an image of the signals of the bus:
+> > > https://pasteboard.co/TEoxQucsXUUD.png
+> > >
+> > > I have tested other frequencies and all of them uses a 30% duty cycle,
+> > > where SCL is up 30% and low for 70% of the period.
+> >
+> > Indeed it seems by default the duty cycle is for Fast Mode, but standard mode should
+> > be around 50%. Did you try 400khz ?
+>
+> Yes, 400Khz has the same issue of 30% duty cycle.
+>
+> >
+> > Amlogic did some changes on their off-tree linux fork, please look around:
+> > https://github.com/khadas/linux/blob/khadas-vims-5.4.y-fc/drivers/i2c/busses/i2c-meson.c#L143
+>
+> Thanks! I am investigating that code, but so far doesn't work.
+>
+> >
+> > I'm unsure when REG_SLAVE_ADDR BIT(28) appeared, but if you try to port this upstream,
+> > we'll be happy to review it for inclusion.
+>
+> I will try to get this working and push a patch.
+> Thanks
+> Lucas
+>
+> >
+> > Neil
+> >
+> > >
+> > > Is possible to configure the clock to be 100000Hz, but with a 50% duty
+> > > cycle for this I2C bus on A3111D?
+> > >
+> > > Thanks
+> > > Lucas Tanure
+> > >
+> > > _______________________________________________
+> > > linux-amlogic mailing list
+> > > linux-amlogic@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+After some debugging, I got the 50% duty cycle working, but that was
+not the issue.
+The issue was that my device address is 0x22, the same as FUSB302B.
+
+But FUSB302B is not on the device tree, so I didn't there was an
+address collision.
+I will push some patches for the duty cycle later this week.
+
+Thanks
+Lucas Tanure
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
