@@ -4,82 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D41A7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 00:30:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84A5EC433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 05:51:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5Xx0TJzc/s/9JlxNslAqtc2hU9XNy10hSHSnmU8Fh8I=; b=gsUaEBghNnvof/
-	y/S21jxt/M2L1TedhsBcM/xfpnNcPwBWnZ2NzbuDEfs1K98Hbh+sEjCk2kDsMB3yb7ax+gvpIeVHy
-	EFPpCehbldRXrs6yB6EMen26Cp4jpAsRt0WsbGC6Ug2OfEh5BUTHljBnle+Kw7a+4376QdY7qIV69
-	RqUL2FXUTUOGqUeiu3Q6o/7Rle0qo+NXmTOnDVXOug6hnI2f62nXImOufh2I/FHiXMyNEsTqKX+na
-	Q4HS2RHipDEsoF2dBc7vGcZcRGwE1qpo9/S5Vv9dmg1cCLBpoDoqcwMXmgy+WaiYaMRKsNCdtSCLU
-	XL+FgS/YC2zN0BDQxTOw==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dh8KmiVSc81+pFgLyLD+I1Mw+lR67R7R8hCFMbKhSuQ=; b=24XVSirlVc9qaR
+	dh6MCGO5t659Or9eTUszQ9CMdzlcG97ec1ikDO8wpLGebDYQyTI0PDyJE9G+qJe5QPEsdLG8C8Z4w
+	4GfVUb+Lz6yUySPX2jzXsBVucqBws4aiRTI42E+ikI0g3HgNz5DWFmaR7o/3Q7QoF68Fl0XoHg8bI
+	2Y/PSadCc6bWgT9UjD4TNzT4JbkeiPmOT78diQovELYrVuPaUwUnuG9OW707BoSXQaGyZFMS6xVnG
+	Ur1i2fMgnoW3h4NbloSGQWiek0toCOysUbqOddaEijr4N68zUb5nC4GN1T0QJ7CuUIlEciDk/xH53
+	j/CL3021iB4jaccS2ZmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRkE2-006jf8-FR; Wed, 09 Mar 2022 00:30:46 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1nRpE8-007O3Q-2K; Wed, 09 Mar 2022 05:51:12 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRkDz-006jdq-A8
- for linux-amlogic@lists.infradead.org; Wed, 09 Mar 2022 00:30:45 +0000
-Received: by mail-wm1-x334.google.com with SMTP id
- 7-20020a05600c228700b00385fd860f49so570592wmf.0
- for <linux-amlogic@lists.infradead.org>; Tue, 08 Mar 2022 16:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=53mv2wpGk88zHDCxzChxzDntymhF9ZRIwaSnWXEWls0=;
- b=rzQBJASLVSFLoebUcrNcZ/qIFXaVAAHCd7y7ceunH2pKD3pRp2rjvtVVFyH+qzuRRg
- 3yCVc+06J098wGtKO1DlNXNgQCDGtcXOlpIbVbPrTQzzTKGf6MmmCODt24Fjy2WR+S18
- PnnQFWk5jZy8500Ns/JKMLBX933XiJNYCXx97LYo8sRAge4zyvknxIlQ1ZlYyDUYAS1Z
- cDZ7OfyuXrmFRtfeMsUxzn7pA8I0zE6FkB7UaCjdRMw7iTsTiwGFeMmfBbgf1hc6keJ/
- I2Nku8I3q4q6S8DaISQxvAxLB2dpr267zPx0DjIIF7zeiMpIrnnop1qDiZlYuw6bcyPg
- foGA==
+ id 1nRpE6-007O33-8K; Wed, 09 Mar 2022 05:51:11 +0000
+Received: by mail-wr1-x436.google.com with SMTP id h15so1302316wrc.6;
+ Tue, 08 Mar 2022 21:51:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=ntVZeP/ZOGlR7r3GVyF2LVHOL98e/gbBmFj21WaZDPc=;
+ b=WlskuyIs6bV5vuXlPbuY80WlUqpgtBB2BT3OaDs/kZraZOZvE7Kl/R/SXQjklTa2v9
+ 5Fkchu28aR260Qu7HO36sdD0IeroD9IcZmGS7cG9L8Zz1WttNQDL07Ut1SmbxUEKS0cC
+ Fezi1i3D67Frb59Niz4ti5UoasmYo5k85DV36zJHJ7d2ItpFmWb4mnsAHb4+lnR6QNR0
+ hdF9KPY4fd6DQZaZbXFH96wmbrCE1bJASBwrjKHqgO+1Q5O8bPZWfmz88/VGKDYu27Eb
+ /Liv5ySAYDRBDKlKhk2Z2gibxJq0Wu0SOYXnml9y6vwsWZIhYHTHTzh0XD+C9zIdG+CH
+ EZAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=53mv2wpGk88zHDCxzChxzDntymhF9ZRIwaSnWXEWls0=;
- b=u6c/P02gJyqWi+tDHpy5sGnqngZjq5DvZGXgv4ytaMnIIdUbZJNs1DYm4zZrbUjgEt
- fLGKatEICNe/RzIE8RCcJWSae6oCvXLoCXFw42eWVzh44ePdoMWE+Ng3NOCOgT5I3dMl
- dhLuY62Qrb1D2uT/OUBujD50qoA/HtCnz0WHqy5XNsAPdyL/3Vz90yxebO2E93fKt+ZJ
- SbZH7eJIMXeMjPN0Du6oj/aB2C39adNL3gbattuLOAP30wKeR2hneMa48ICwULRPqpl8
- Dkf7xJqAk6xWgfnSeDdkLNwenGZnMjuYjaEY+AH44RbNgJFAaYMeU1rrLrZ1oI9l6F8U
- 13uw==
-X-Gm-Message-State: AOAM531iLS6DJJZ1u+vavzADvOappmxHRpLNAfqTZC3w0FnKNJmnD4cd
- Px+flmHDWKPyuJvqovYUu5zfqQ==
-X-Google-Smtp-Source: ABdhPJwmzdzw7u2eprVrxG8sP+F9kGB8M3FUlAaULW3JXjLQ/Omv6WsZIKsLtb0lDH72QvCS2qn1zA==
-X-Received: by 2002:a05:600c:1908:b0:389:c3ca:9eac with SMTP id
- j8-20020a05600c190800b00389c3ca9eacmr1312123wmq.182.1646785836198; 
- Tue, 08 Mar 2022 16:30:36 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=ntVZeP/ZOGlR7r3GVyF2LVHOL98e/gbBmFj21WaZDPc=;
+ b=Gr7m+m8PSUpNAzPfkBUrwDmCXkPBsBnNoevYzECQYPj2ERVUe6KJqaB/LZHxqHHxUN
+ qOon2TS7cZ1umm1G0MmTc9+u4rFu7N+WUXXVCWt0M3QLqon6XAKp3VW5nRzpvVYnDrO+
+ VQ0e1uKvAbPJ3ArwmLWgskF6Y14vlk2ChSOU002Nyt2eVISdsW/7s/IRgD/ERnTX6LOj
+ j3JQM3B21zlFlFC56jHEmNM4or+R490WzQPbUhUxPOOjqTvkb2/5B6yRCswyr25h5GUr
+ E/8U9/n0GctPGbk/wSkvrkq2OUKpNU/G8gz2kYme5FpCavK67I6h5/SBsVwFG1elI6Iy
+ 9YdA==
+X-Gm-Message-State: AOAM5321pvZOAkqJ65AFjdC8uutcmG9WXrk/UURbxwGM9mJZRu2DApiH
+ lEEy7vTR470alGqvjyJbeLo=
+X-Google-Smtp-Source: ABdhPJxfA7kjG6ko00xScXemifNTbPyySjwSihda6fkhtp5/pF0n/+SWPrWIR4WyAnQJnu0+gCmg0A==
+X-Received: by 2002:adf:908e:0:b0:1e7:bea7:3486 with SMTP id
+ i14-20020adf908e000000b001e7bea73486mr13998452wri.401.1646805067003; 
+ Tue, 08 Mar 2022 21:51:07 -0800 (PST)
+Received: from smtpclient.apple ([167.99.200.149])
  by smtp.gmail.com with ESMTPSA id
- u18-20020adfdd52000000b001f04e9f215fsm263527wrm.53.2022.03.08.16.30.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Mar 2022 16:30:35 -0800 (PST)
-References: <7d6c2755-77ac-86db-899f-7342ee9e69b5@gmail.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: alsa-devel@alsa-project.org, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] ASoC: meson: aiu: fix duplicate debugfs directory error
-Date: Wed, 09 Mar 2022 00:42:04 +0100
-In-reply-to: <7d6c2755-77ac-86db-899f-7342ee9e69b5@gmail.com>
-Message-ID: <1jcziwnf10.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+ l10-20020a7bc44a000000b003899263bab1sm680112wmi.20.2022.03.08.21.51.05
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 08 Mar 2022 21:51:06 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
+Subject: Re: Missing mali regulator in Amlogic dts
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <7eec71da-e4b4-eac3-a29c-4244c28f2875@arm.com>
+Date: Wed, 9 Mar 2022 09:51:03 +0400
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Message-Id: <907B2B12-F33F-4DF5-8CAA-41CB7766FC78@gmail.com>
+References: <13ecb1a6-6ae6-2815-7ff8-58f661c14b2d@gmail.com>
+ <CAFBinCB700+g_fDmC5dXbNONLyESghp+RmZ+1myvhPbseXpY4A@mail.gmail.com>
+ <7eec71da-e4b4-eac3-a29c-4244c28f2875@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+X-Mailer: Apple Mail (2.3693.60.0.1.1)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220308_163043_520238_9C02797E 
-X-CRM114-Status: GOOD (  20.70  )
+X-CRM114-CacheID: sfid-20220308_215110_346451_A5BC4E00 
+X-CRM114-Status: GOOD (  16.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,91 +87,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue 08 Mar 2022 at 20:00, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-
-> On a S905W-based system I get the following error:
-> debugfs: Directory 'c1105400.audio-controller' with parent 'P230-Q200' already present!
->
-> Turned out that multiple components having the same name triggers this
-> error in soc_init_component_debugfs().
-
-Because the component name is directly derived from the dev name
-
-> With the patch the error is
-> gone and that's the debugfs entries.
->
-> /sys/kernel/debug/asoc/P230-Q200/aiu_acodec:c1105400.audio-controller
-> /sys/kernel/debug/asoc/P230-Q200/aiu_hdmi:c1105400.audio-controller
-> /sys/kernel/debug/asoc/P230-Q200/aiu_cpu:c1105400.audio-controller
->
-> Because debugfs is affected only, this may not be something for stable.
-
-It is not entirely true that only debugfs is affected, though it is the
-only thing really complaining.
-
-I had a similar tweak around debugfs entry when I first submitted the
-AIU. There was a discussion around that:
-
-https://patchwork.kernel.org/project/linux-amlogic/patch/20200213155159.3235792-6-jbrunet@baylibre.com/
-
-I proposed a solution which got merged but ended up breaking other cards
-because there was some assumptions around what the component name
-is: basically the dev_name since there was originally 1:1 mapping
-So it had to be reverted.
-
-Full details here:
-https://patchwork.kernel.org/project/alsa-devel/patch/20200214134704.342501-1-jbrunet@baylibre.com/
-
-Unfortunately I did not had the time to continue working on it since them
-
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  sound/soc/meson/aiu.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-> index d299a70db..c1a2aea5f 100644
-> --- a/sound/soc/meson/aiu.c
-> +++ b/sound/soc/meson/aiu.c
-> @@ -68,6 +68,20 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
->  
->  	*dai_name = dai->driver->name;
-
-While I don't really mind one way or the other about the prefix itself,
-aiu_of_xlate_dai_name() is not the place to tweak it.
-
-This should be done before adding the component, not when parsing the DAI
-with DT.
-
-If this is really a problem and Mark is Ok with, what you want to do is
-revert commit 024714223323 ("ASoC: meson: aiu: simplify component addition")
->  
-> +	switch (component_id) {
-> +	case AIU_CPU:
-> +		component->debugfs_prefix = "aiu_cpu";
-> +		break;
-> +	case AIU_HDMI:
-> +		component->debugfs_prefix = "aiu_hdmi";
-> +		break;
-> +	case AIU_ACODEC:
-> +		component->debugfs_prefix = "aiu_acodec";
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
->  	return 0;
->  }
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cj4gT24gOSBNYXIgMjAyMiwgYXQgMTI6MzQgYW0sIFJvYmluIE11cnBoeSA8cm9iaW4ubXVycGh5
+QGFybS5jb20+IHdyb3RlOgo+IAo+IE9uIDIwMjItMDMtMDggMTk6MjksIE1hcnRpbiBCbHVtZW5z
+dGluZ2wgd3JvdGU6Cj4+IEhpIEhlaW5lciwKPj4gT24gVHVlLCBNYXIgOCwgMjAyMiBhdCA3OjI0
+IFBNIEhlaW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4gCj4+
+PiBJIGdldCBmb2xsb3dpbmcgZXJyb3Igb24gYSAgUzkwNVctYmFzZWQgc3lzdGVtLgo+Pj4gbGlt
+YSBkMDBjMDAwMC5ncHU6IGRldl9wbV9vcHBfc2V0X3JlZ3VsYXRvcnM6IG5vIHJlZ3VsYXRvciAo
+bWFsaSkgZm91bmQ6IC0xOQo+PiBUaGlzIHdhcm5pbmcgaXMgaGFybWxlc3MgKHNlZSBiZWxvdykK
+Pj4+IEkgc2VlIG1hbGktc3VwcGx5IGluIHRoZSBEVFMgb2YgZmV3IG90aGVyIHZlbmRvcnMsIGJ1
+dCBpbiBubyBBbWxvZ2ljIERUUy4KPj4+IElzIGl0IG1pc3NpbmcsIG9yIGFyZSBBbWxvZ2ljIFNv
+Q3MgZGlmZmVyZW50IGhlcmU/Cj4+IEFzIGZhciBhcyBJIHVuZGVyc3RhbmQsIG9uIEdYQkIgYW5k
+IEdYTCBTb0NzIHRoZSBWRERFRSByZWd1bGF0b3IgaXMKPj4gbWFuYWdlZCBieSB0aGUgZmlybXdh
+cmUgKHdoaWNoIGlzIHVuZm9ydHVuYXRlbHkgY2xvc2VkLXNvdXJjZSkuCj4+IElJUkMgb24gdGhl
+IGhhcmR3YXJlIHNpZGUgVkRERUUgaXMganVzdCBhbm90aGVyIFBXTSByZWd1bGF0b3IsIGp1c3QK
+Pj4gbGlrZSB3aXRoIHRoZSAzMi1iaXQgU29DcyBvciB3aXRoIEcxMkEgKGFuZCBsYXRlcikgU29D
+cy4KPj4+IEluIHRoZSBsYXR0ZXIgY2FzZSBzdXBwb3NlZGx5IGRyaXZlcnMvZ3B1L2RybS9saW1h
+L2xpbWFfZGV2ZnJlcS5jIHdvdWxkCj4+PiBoYXZlIHRvIGJlIGNoYW5nZWQgdG8gY2hlY2sgZm9y
+IHRoZSBvcHRpb25hbCByZWd1bGF0b3IgYW5kIG5vdCBjYWxsCj4+PiBkZXZtX3BtX29wcF9zZXRf
+cmVndWxhdG9ycygpIGlmIGl0J3MgbWlzc2luZy4KPj4gSSB0aGluayBJIGp1c3QgY29waWVkIHRo
+ZSBsb2dpYyBmcm9tIHBhbmZyb3N0Cj4+IChkcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFuZnJv
+c3RfZGV2ZnJlcS5jKSB0byBsaW1hLgo+PiBTbyBHWE0gYm9hcmRzICh1c2luZyBwYW5mcm9zdCkg
+d2lsbCBwcm9iYWJseSByZXBvcnQgYSBzaW1pbGFyIHdhcm5pbmcuCj4+IFRoYXQgc2FpZCwgSSBk
+b24ndCBrbm93IGVub3VnaCB0byBqdWRnZSB3aGV0aGVyIHlvdXIgYXBwcm9hY2ggbWFrZXMgc2Vu
+c2UuCj4gCj4gQXMgYSBxdWFsaXR5LW9mLWxpZmUgdGhpbmcsIGl0IG1pZ2h0IG1ha2UgdGhlIG1v
+c3Qgc2Vuc2UgdG8gcmVmYWN0b3IgdGhlIEFQSSBhIGJpdCBzbyB0aGF0IGl0IGNhbiBvZmZlciBh
+IGRlZGljYXRlZCBoZWxwZXIgZm9yIHNldHRpbmcgb3B0aW9uYWwgcmVndWxhdG9ycyAtIHBvc3Np
+Ymx5IHNwZWNpZmljYWxseSBhIHNpbmdsZSBvcHRpb25hbCByZWd1bGF0b3IsIHNpbmNlIGl0J3Mg
+bm90IG5lY2Vzc2FyaWx5IGNsZWFyIGhvdyBvcHRpb25hbGl0eSBzaG91bGQgc2NhbGUgdG8gYSBz
+ZXQgb2YgbXVsdGlwbGUgaXRlbXMuCgpJIHNlZSBvY2Nhc2lvbmFsIChub3QgZnJlcXVlbnQsIGJ1
+dCBwZXJzaXN0ZW50KSDigJxlcnJvcuKAnSByZXBvcnRzIGZyb20gdXNlcnMgd2l0aCBzb21lIGtp
+bmQgb2YgZGlzcGxheSByZWxhdGVkIHByb2JsZW0sIGFuZCB0aGV5IGxvb2sgdGhyb3VnaCB0aGUg
+Ym9vdCBsb2cgYW5kIHNlZSB0aGlzIGFuZCBwb2ludCBmaW5nZXJzLiBJdOKAmXMgaGFybWxlc3Ms
+IGJ1dCBub3Qgc2hvd2luZyB0aGlzIG9uIEFtbG9naWMgZGV2aWNlcyAoYWxsIG9mIHRoZW0gc2hv
+dyB0aGlzIHZpYSBsaW1hIG9yIHBhbmZyb3N0KSB3b3VsZCBiZSBhbm90aGVyIG1pY3JvLXN0ZXAg
+dG93YXJkcyBsZXNzIGRpc3RybyBzdXBwb3J0IGVmZm9ydC4KCkNocmlzdGlhbgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
+bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
