@@ -4,65 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927A9C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 13:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FCF5C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 14:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=C6X4PG4j3b3sWShVXL6DuwZjXbYOoAyhTxe+Vu2g16A=; b=kGBSTeH927lISe6hxHzi66SmIc
-	XuyKza+lhVjO7bkW4K1qKSJk3DsctJ8RkpREZK+LqvdEGVjrOh7uoSpI+qOBkPDjTq0JLJeI0NdJK
-	68TTgYn8k/wbgs2633HdneYKIItlQ5FCUIWA+laVtsw44mZLDWeIhPijfTFJW+mSBBW6QTFIDcTVI
-	CKufNvPeVJ6eVeh3OtAq+/7hiFZRtZtPAH32uVyvbHoCjZEHgyuJSPGxSsrWaAWjgYRK4b81ZgOt1
-	+7L90bEUh7k/klt2s7ORa93ysOg/PcbuTnpbmFTEk7RlUK1JoZJcoM27nGO0mPINdi9GjggzmnQxM
-	0hoQzFvA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wP/IFt/zYKhCxQoYNzMzR3XIPSSb32xp3HdW5oD6pwA=; b=IcNZpRS2VVC8QB
+	FLO8HivVQGwQmBvoYdqx5d28wyUKO4yAH9WLqYQevagZEbZ2JEW6WnJhk2+wzXY8TxOCUMazIo98C
+	Q+p3aa6cEBFsifvpMiE4TC/mFXvzacZkdVWaWOBp/i0gRK+UlQHLmHGyg8cP03Lsrrx3Dzb+W5joc
+	87wW48a93wtGznDu+4q+anOYJa9XEXWLB5GGiCgQvI7TZBS72MO8QRiJI3+ApJgP+oF2CMrprWMsq
+	9ED0VCCUND2l7NAcV3BLCv4IOAFj7LHcrdv6pW7I5mX5yYpTdkLQ2TEOxhimf2VHIJuWXmhEMv43V
+	yy9HYIxHQQkg/4IXP1UA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRwME-008lD2-O4; Wed, 09 Mar 2022 13:28:02 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nRxZW-0093Ii-Md; Wed, 09 Mar 2022 14:45:50 +0000
+Received: from mail-yb1-xb31.google.com ([2607:f8b0:4864:20::b31])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRwMB-008lBh-H3; Wed, 09 Mar 2022 13:28:00 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1606261A3E;
- Wed,  9 Mar 2022 13:27:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31715C340E8;
- Wed,  9 Mar 2022 13:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646832478;
- bh=GgSio9V80nivu9meltbA/oj2M0Xxx98EfpL6FyjL1e4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iqLPDT39jg1D7hrjKWwuN9VBULz+kWRqNXkgf325UHd8r2Ep/Em1L9n0DeqbzfAle
- CyBsMx078ZvO6Z6H8JSRTdlevSMgn/6JWHMG5vo1/8tou96gDu6kqoEr5dgM60Q/YK
- SURLN9ax36kml8uTB/eaBgfhh48kcDMnlUH1WV5qDKnlf7+OLZUuc1Z0CP2u2AA9fm
- dTpqoT4CfAEJgtD92EbpPukPBLL8NNGQDZYyGHHCZwVmpircsFB7HdxOVyKjlemkLr
- Yw7hFh613zSvB6L1uGiGCzvUXlMxad6XH2QncQjcuEup2i586vKCELnsGLoDFZiXhX
- JEkp+SqNjwW2Q==
-Date: Wed, 9 Mar 2022 13:27:52 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- alsa-devel@alsa-project.org,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] ASoC: meson: aiu: fix duplicate debugfs directory error
-Message-ID: <YiirWBvf1LonIkA6@sirena.org.uk>
-References: <7d6c2755-77ac-86db-899f-7342ee9e69b5@gmail.com>
- <1jcziwnf10.fsf@starbuckisacylon.baylibre.com>
+ id 1nRxZQ-0093DV-Hi; Wed, 09 Mar 2022 14:45:46 +0000
+Received: by mail-yb1-xb31.google.com with SMTP id h126so4868164ybc.1;
+ Wed, 09 Mar 2022 06:45:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DDxwxI7sXDfb+b36liCBjMX3NW7CAhbvcM5a4UCs5v4=;
+ b=i7W91ZT+engSvxyFtitwW4zJoC2KJUH7GAoAeYnyBpSwStQEEQ/Bt2ZPndrmmXFsaO
+ SsLBfPJbwfzEbp/wz46GBMErlD2L2WZEIImm7VsCRGt1X07GsDEyM1coyhR8i6mnOUu4
+ 9wso3n2Bs4AjvFg0MP2q34vrvW1lLTiXpwegmpTr3Mp9LEawsZSMB+Ks1eJWqJLQRDWS
+ XyYIB3ObyHBjVVcM2iujZ5q7d0vXuDd7kbHHFsl0PJy4R3LYLrpZOsflS+3lJrOE1Yf4
+ XF3nQi6sxWKYxDM72bwcjYM0g6t+haBgmTB1M136HKO8++mbKENP5zHOBuvsy3Scw6uU
+ rOBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DDxwxI7sXDfb+b36liCBjMX3NW7CAhbvcM5a4UCs5v4=;
+ b=rTnlS6pU2+u67HIm67XrgYDXBVKk1l5JmhVZIKm8wsW/IqHVhclRIorz4A1T7nrcl4
+ IwrLvNf9X2Qh3L/ZgDQZpnYR+M1D21fL5duxOmLRtORdOp6u7iFknUfT/GnEfrHoM0Ir
+ JuZOMzOBSlb6WpPcrlnJ6tpN11WSReu9n7ZJbuEPCz0v5KGijOx8B4v/LPc/SOGxXjPT
+ qKYknz6i/sFq86LA71Z+WwmEYdbetSY+wO4PqwRrVqAbAL7Qk6zUcNoNVJkHAJki/NdN
+ wgpRXbzzhbvmDVaqmHDP9u66kbX3Q5sZPbP1NL+WNjtLCenv9409YgNmlHYfZlUPbLM6
+ kPgA==
+X-Gm-Message-State: AOAM530mM35qOu5JSREiQnMYiJdlo8iXgdkX6vfjBTjYF52LixMCqr1z
+ 5G5B9pBlVFOeD82TohqmrX+HRqg2+tv0AOoa2Sjn1a5k
+X-Google-Smtp-Source: ABdhPJyJ4ZlBOxxqgJg5t84MuLjlLqtsmqVAaSTchLmm8kQRhAwvtLzf/tmkTFVdgMHjStEAfGt8JYiqQwzL0WNk4qg=
+X-Received: by 2002:a05:6902:603:b0:625:989:c675 with SMTP id
+ d3-20020a056902060300b006250989c675mr16523687ybt.470.1646837142397; Wed, 09
+ Mar 2022 06:45:42 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1jcziwnf10.fsf@starbuckisacylon.baylibre.com>
-X-Cookie: You will inherit millions of dollars.
+References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+ <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
+ <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
+ <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
+ <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
+ <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
+ <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
+ <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
+ <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
+ <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com>
+In-Reply-To: <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com>
+From: Erico Nunes <nunes.erico@gmail.com>
+Date: Wed, 9 Mar 2022 15:45:31 +0100
+Message-ID: <CAK4VdL28nWstiS09MYq5nbtiL+aMbNc=Hzv5F0-VMuNKmX9R+Q@mail.gmail.com>
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
+ at boot
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ netdev@vger.kernel.org, 
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-sunxi@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220309_052759_624402_85DDB3F8 
-X-CRM114-Status: GOOD (  11.14  )
+X-CRM114-CacheID: sfid-20220309_064544_670551_C347BAAB 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,56 +93,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8959807297931361363=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Sun, Mar 6, 2022 at 1:56 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> You could try the following (quick and dirty) test patch that fully mimics
+> the vendor driver as found here:
+> https://github.com/khadas/linux/blob/buildroot-aml-4.9/drivers/amlogic/ethernet/phy/amlogic.c
+>
+> First apply
+> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=a502a8f04097e038c3daa16c5202a9538116d563
+> This patch is in the net tree currently and should show up in linux-next
+> beginning of the week.
+>
+> On top please apply the following (it includes the test patch your working with).
 
---===============8959807297931361363==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CEoyfg+ALIwLqT5v"
-Content-Disposition: inline
+I triggered test jobs with this configuration (latest mainline +
+a502a8f0409 + test patch for vendor driver behaviour), and the results
+are pretty much the same as with the previous test patch from this
+thread only.
+That is, I never got the issue with non-functional link up anymore,
+but I get the (rare) issue with link not going up.
+The reproducibility is still extremely low, in the >1% range.
 
+So at this point, I'm not sure how much more effort to invest into
+this. Given the rate is very low and the fallback is it will just
+reset the link and proceed to work, I think the situation would
+already be much better with the solution from that test patch being
+merged. If you propose that as a patch separately, I'm happy to test
+the final submitted patch again and provide feedback there. Or if
+there is another solution to try, I can try with that too.
 
---CEoyfg+ALIwLqT5v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Mar 09, 2022 at 12:42:04AM +0100, Jerome Brunet wrote:
-
-> If this is really a problem and Mark is Ok with, what you want to do is
-> revert commit 024714223323 ("ASoC: meson: aiu: simplify component addition")
-
-I'm OK with that.
-
---CEoyfg+ALIwLqT5v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIoq1gACgkQJNaLcl1U
-h9DThAf/biv3bEd5MHh6krAL6OnRjegkqQA4maxZahCGsI2KTdipGSI+ENi1CB+K
-h/pLgFM73oyq26ovwfooz5oWt6JOzboItIsXVnB7C8wb97Ps7pwwdWHMnuXCOvi8
-6LKFUI9+XNWA+ZXy60AEtg30ijcjdJpe/DuPleNY6wlqnqL4FMNbeQ/xk+1gv/MS
-1HOOeE1nC8j3nPuRrU3ST3vGdR8kwf+DQuV+7aEsepuGl1208wZRdgSwh/QKZX4S
-MJRDcv4+WOoxIlRAj6puJe8NOzlNoBjrEtipNlRIIkWMnPbKir1jIblVbzLr5DLo
-/suV0sxeZRxh/FnmqAakQQB27EhCAg==
-=4dHR
------END PGP SIGNATURE-----
-
---CEoyfg+ALIwLqT5v--
+Thanks
 
 
---===============8959807297931361363==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Erico
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8959807297931361363==--
-
