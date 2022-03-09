@@ -4,67 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2E9BC433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 20:20:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2D65C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 20:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FkIWJH2UtdGZQ3tTf5vTR7kyBXT5lJQTiD4q0JOs73o=; b=aE6sXIPJ/dty8x
-	w4a4dMhpiJiEM5Fk1gNpH36Mu49YVxHcQ1GpSb1Syg7HTywQDLRZLxs7UQ82nNTZcHr3d9WqIE189
-	28ZiDaa7EB4eGZV8M/NZdXYQgbpXVfMJXXyH9VcgaC8fpLk8QLBjy+nEZp9mSi+FMVXPmbCYkeQVw
-	WoW/bczimdu++JUdVpKcw3ko/Cm0Vc9i2tkb5lXGVr8fhiGNUPWO+77CdIXjsGIqrKIGNxDZod7w7
-	DnXIWlV1l/ffDUETh9RA/RndGoueD0DCyS+XTSJTjUxzAsAcpSqqguJFz9aFUgEsdaMM8nrrsq3M9
-	9N3ethKBJl6d6kFoollA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1Qr0m0oZdFizNk6S44K5B4Tca12blTawitPh1nMSwWM=; b=g+IVle6EgZ5uWE
+	gMHBaBslhHu++xIwwZ2zStBXEqY5qOiD3LyTUWW72LFgaYx3YVMY3DiK4a1xpBKqg9y8dOayBiz03
+	GQJG9LyCqXBESQBZr+HPWXAB1fEl3Sylfow/PsKQOgXPRYyIT3UbHJx9RM+JwLD3UEpLBHShcSCjN
+	8RJOzcV43DDWlBDhQgjJgNrQtCMid1/lP+1aAI+jeysISOfy6/olpCbi+uUVyyhn7Kh6UIXYrWrin
+	p5cBoWbFDMpeQdFQz43bMVRfo13QNjGiqRZZKIfr6d/px0Nhb5PQS46f3WbPHP0f8UCzdU/F98OS2
+	nLdrqKQmWhSLL2YxeFLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nS2nE-00AOqY-Rn; Wed, 09 Mar 2022 20:20:20 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1nS2qE-00APIg-CM; Wed, 09 Mar 2022 20:23:26 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nS2n2-00AOpC-U1; Wed, 09 Mar 2022 20:20:10 +0000
-Received: by mail-ej1-x629.google.com with SMTP id r13so7624975ejd.5;
- Wed, 09 Mar 2022 12:20:08 -0800 (PST)
+ id 1nS2q1-00APFW-MR; Wed, 09 Mar 2022 20:23:15 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id hw13so7191906ejc.9;
+ Wed, 09 Mar 2022 12:23:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:from:to:cc:content-language
- :subject:content-transfer-encoding;
- bh=RcTddA3HB76ItcVFPeiGto64Ir7EMxqM0hxFlC7rmpw=;
- b=MI5qZBzailiAhneHd4+OjDfYDa5Nt50+tH+00MSA3GrfwXhJL28OMJ6j3814I2/1qp
- u8fwt39gjpQfwXpb9EQsfrzMobuGx5/D22cJC/9tBOX4TgRQRs3yOnQA8WaPl49ZQ1NG
- TIy1JO+wnUGm/bFIAk3Kh/ZDeJ7OsA5jviuL0IRhunFjXowExptQk1VskTMWPmuhd3Ir
- Clpv+pkA2NEyziBcup6nV+eHIdp8iRg1CkgH6VHG9bh2czKY4NRxXJscFuF9iwJ2EzAz
- XYIWyhuVJ5PAnNUQaAI/OcByyw5WdD75kp9OE0mN7agz0qtEgOpMNa01gZSTcieu3wr4
- kXNA==
+ h=message-id:date:mime-version:user-agent:subject:content-language
+ :from:to:cc:references:in-reply-to:content-transfer-encoding;
+ bh=58V2fCGzsfqcmE2/CejONEbjJLKwqBAus/Kg3pGGFn0=;
+ b=DTW0Cg0XQbj7eZyB2vytYdHgXI76DV0YL6Kw7gXv82AfcZibZ+Kd3ekPi3rwu/5gkP
+ D1jhDgNU/KSarFjqcu9BKFzQzltE1BzWAO0hpo7RpBl0eCyN+nG/HdbSinB2a132d4iM
+ 7bKiQjYltwuw8IkqT2Rzfk/xKS7qsn+W9vJHSo22Z+3Nk5fB7rX90TM1iORek7K1VZMq
+ zfjlpwZ0LdGfonW4bf1mdP08XaFfopD8IpAQiclNelX5cDzyQ8RKaaUeZeCQ+qIcKoFL
+ yBrjmFnBpBZ3x1d2ro2woTt4hVjIfe9fTr68m1CCnvyinsGPaWsf2jd4V6d1yzqr+lfO
+ iU/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:from:to
- :cc:content-language:subject:content-transfer-encoding;
- bh=RcTddA3HB76ItcVFPeiGto64Ir7EMxqM0hxFlC7rmpw=;
- b=Nql14CG5KBa9IgXeyt9AZkJFlohZYtAiVez26fC18mct2gaOxM7Ma5y93HXhLbspZW
- mWmuu5bP3yhdfnLNdIWn+K3lJe9cGLP9DSzJTKvcylt8hJjUquU1iZ5RnVKKnRhgrZhM
- bcNAcYl6PEKR24MTdj+LrRu1xFPxy0umgNKNhgvPXNXvnX6EbCeNMrC0EZgdgkDFbfTk
- 2eLnH92DLysOzkxFBWnXHMu6NQMdXgqdvlPv8An5PqIBDyuMzDAUuSVhC89tOThqA1PC
- ulu96q1NomS7bbR1GK8odIQBplt5QcMYRJGuLcfn3FOUhq2vfVZwMSjpanwk/v8xRKTh
- EBFQ==
-X-Gm-Message-State: AOAM531L34vncWQU4KbNsHy64K3JMrqHxnFfwIP+rIFG53rPvGiqk/hz
- 4NkaJTz8QyGtb+pT7/TZ7bc=
-X-Google-Smtp-Source: ABdhPJyyc4PFdseh+km03ErxkxgbvmAZ4sg5mReDbXoDuGBg9vDmkzkHCT6h3sZa4enqFieD0HBfKw==
-X-Received: by 2002:a17:906:b6c7:b0:6db:2e14:875 with SMTP id
- ec7-20020a170906b6c700b006db2e140875mr1333017ejb.737.1646857206984; 
- Wed, 09 Mar 2022 12:20:06 -0800 (PST)
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:from:to:cc:references:in-reply-to
+ :content-transfer-encoding;
+ bh=58V2fCGzsfqcmE2/CejONEbjJLKwqBAus/Kg3pGGFn0=;
+ b=rfZqLuxQSIVO5EFTzNbTp2MpDFFumrpT7zviLHilbcWcrlxvVhPg9gyb29Nh5590WA
+ j77/tvMOR1u0YxmOa6WYWEEgWFxvN2M/0vJXyGp0Qis8W5XpkKKpXrKmn6SEsm5EOMKs
+ Z6qmC050lVfbCKJTxsvgGJmzVO/eayj/INigJQLcLigGe6ybnIjJ0XIna2qiLlh5G9hx
+ xlNLQX+uSwYGNo4ZItNg/0t83D8ShrA+/9j5U2JsqKIohOBgXMJoKb0/DHnv7tEuRHZI
+ Ag2oUAhEiky1imP5lNZCankVLexFD1SRXqgnGLrF32OekJsMbHPo8TiQxhYfh9bVlAme
+ 2YNw==
+X-Gm-Message-State: AOAM532OHqUh1Due3ausza2spx+1glHQ8J2eA4AJvRfnjs+wExwF7UQw
+ HGGH6gBslZMnRZNhSelv5tc=
+X-Google-Smtp-Source: ABdhPJw9W6C1dtgKkVtzTNA2p/OxN3Hn/V9XQcdDnA9AWe1lpB4wWU73n1t2Zni0youpz82qb78esQ==
+X-Received: by 2002:a17:907:2a53:b0:6ce:e4fe:3f92 with SMTP id
+ fe19-20020a1709072a5300b006cee4fe3f92mr1353881ejc.389.1646857391435; 
+ Wed, 09 Mar 2022 12:23:11 -0800 (PST)
 Received: from ?IPV6:2a01:c22:7793:600:9d6a:7788:3389:da6c?
  (dynamic-2a01-0c22-7793-0600-9d6a-7788-3389-da6c.c22.pool.telefonica.de.
  [2a01:c22:7793:600:9d6a:7788:3389:da6c])
  by smtp.googlemail.com with ESMTPSA id
- w15-20020a1709062f8f00b006cd545d4af6sm1115989eji.45.2022.03.09.12.20.06
+ qb30-20020a1709077e9e00b006d6f8c77695sm1101748ejc.101.2022.03.09.12.23.10
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 09 Mar 2022 12:20:06 -0800 (PST)
-Message-ID: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
-Date: Wed, 9 Mar 2022 21:20:01 +0100
+ Wed, 09 Mar 2022 12:23:11 -0800 (PST)
+Message-ID: <d18bff6a-1df1-5f95-0cf8-10dbaa62d7be@gmail.com>
+Date: Wed, 9 Mar 2022 21:21:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.2
+Subject: [PATCH v2 1/2] ASoC: soc-core: add debugfs_prefix member to
+ snd_soc_component_driver
+Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
  <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -75,12 +79,11 @@ To: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
 Cc: alsa-devel@alsa-project.org, "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Language: en-US
-Subject: [PATCH v2 0/2] ASoC: meson: aiu: fix duplicate debugfs directory error
+References: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
+In-Reply-To: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220309_122009_014987_63EADFA9 
-X-CRM114-Status: UNSURE (   8.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220309_122313_795656_F53BC7EF 
+X-CRM114-Status: GOOD (  11.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,36 +100,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On a S905W-based system I get the following error:
-debugfs: Directory 'c1105400.audio-controller' with parent 'P230-Q200' already present!
+Allow the component debugfs_prefix to be set from
+snd_soc_component_driver. First use case is avoiding a duplicate
+debugfs entry error in case a device has multiple components
+which have the same name therefore.
 
-Turned out that multiple components having the same name triggers this
-error in soc_init_component_debugfs(). The proposed solution allows
-other drivers to adopt the same approach with minimal effort.
-With the patch the error is gone and that's the debugfs entries.
+Note that we don't set component->debugfs_prefix if it's set already.
+That's needed because partially component->debugfs_prefix is set
+before calling snd_soc_component_initialize().
 
-/sys/kernel/debug/asoc/P230-Q200/acodec:c1105400.audio-controller
-/sys/kernel/debug/asoc/P230-Q200/hdmi:c1105400.audio-controller
-/sys/kernel/debug/asoc/P230-Q200/cpu:c1105400.audio-controller
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ include/sound/soc-component.h | 4 ++++
+ sound/soc/soc-core.c          | 5 +++++
+ 2 files changed, 9 insertions(+)
 
-v2:
-- Reworked approach based on [0]
-
-[0] https://www.spinics.net/lists/arm-kernel/msg960881.html
-
-Heiner Kallweit (2):
-  ASoC: soc-core: add debugfs_prefix member to snd_soc_component_driver
-  ASoC: meson: aiu: fix duplicate debugfs directory error
-
- include/sound/soc-component.h     | 4 ++++
- sound/soc/meson/aiu-acodec-ctrl.c | 3 +++
- sound/soc/meson/aiu-codec-ctrl.c  | 3 +++
- sound/soc/meson/aiu.c             | 3 +++
- sound/soc/soc-core.c              | 5 +++++
- 5 files changed, 18 insertions(+)
-
+diff --git a/include/sound/soc-component.h b/include/sound/soc-component.h
+index a52080407..766dc6f00 100644
+--- a/include/sound/soc-component.h
++++ b/include/sound/soc-component.h
+@@ -179,6 +179,10 @@ struct snd_soc_component_driver {
+ 				  struct snd_pcm_hw_params *params);
+ 	bool use_dai_pcm_id;	/* use DAI link PCM ID as PCM device number */
+ 	int be_pcm_base;	/* base device ID for all BE PCMs */
++
++#ifdef CONFIG_DEBUG_FS
++	const char *debugfs_prefix;
++#endif
+ };
+ 
+ struct snd_soc_component {
+diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
+index a088bc9f7..11cb15319 100644
+--- a/sound/soc/soc-core.c
++++ b/sound/soc/soc-core.c
+@@ -2586,6 +2586,11 @@ int snd_soc_component_initialize(struct snd_soc_component *component,
+ 	component->dev		= dev;
+ 	component->driver	= driver;
+ 
++#ifdef CONFIG_DEBUG_FS
++	if (!component->debugfs_prefix)
++		component->debugfs_prefix = driver->debugfs_prefix;
++#endif
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(snd_soc_component_initialize);
 -- 
 2.35.1
+
 
 
 _______________________________________________
