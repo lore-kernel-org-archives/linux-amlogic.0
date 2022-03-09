@@ -4,85 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD4E7C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 20:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB7EC433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Mar 2022 20:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GyxwuMuPkm/I05srQKwCvAgNLiIqj4ub/b16A20d3bQ=; b=jxDXTDCa6Hzyxl
-	3iGbuWbn3FKiIb8hB4U+mBrn2NPW8W2gsyzTaLDaOOM464oT2Kg+Qxq0BoSjentro1QIUAU23QFsW
-	c9NnR15g1OfnW0Zhkw2xXpFjrq6llQyn2juv0ylxJaECXj06XzBMFwzoj3eyfEj4tJyWEpi1AO4Vn
-	SVZ+AO5NkeubjyDci+9/RSDcNyXhN91pMNT5kevc1hF2EUF7fygah68lEdesHaR205iQ+KpFGay/p
-	6NXj/AhO1aEUVibzn1mHoNi8pMLJX6U/LDG9NTPid1q+6tDbfWwxPNV1+tz4DeQQz8mokm15lGr5A
-	qJ23GvSEWcNDcoW7gKoA==;
+	List-Owner; bh=U8ekrinb6LH9RAbZ5Lt3GEAQ7/RTnXWR1SNWc1Dl2zk=; b=h2eillKLS9gfha
+	RSTj5+BAIqeKSp6WlgzS2eoaF2WkPnQSbCR5PrPMPczgZOXbtFiigYZZBoCKf6ePE3/Puc7oSmywC
+	FBhty5pJsED5ULs1APVdcF6ooVpaD/w5nOP8y3ndqDXiV2wP3T7KOesVA8USTpktHJ+ZA5SW2xA7H
+	Om/12UT/7v2D0VrPi8mBfOid1Fnx8UPtnQSGqvnw44Dby8c1NcH7B/QJBfITPQdI8TlaGSH50sav1
+	UlegK78v0O7yDdCTdgwc5GtP+pdTiIdUMPpA0oQOuMhN20J4SKC6fn8saYUPgNEz+bA2LUwWU1bcw
+	v4MNsmYcD+1SmmzJc+uQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nS2qP-00APLX-0b; Wed, 09 Mar 2022 20:23:37 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1nS38R-00ASCr-Aj; Wed, 09 Mar 2022 20:42:15 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nS2q1-00APFZ-SH; Wed, 09 Mar 2022 20:23:16 +0000
-Received: by mail-ej1-x629.google.com with SMTP id gb39so7618668ejc.1;
- Wed, 09 Mar 2022 12:23:13 -0800 (PST)
+ id 1nS38O-00ASBh-Da; Wed, 09 Mar 2022 20:42:14 +0000
+Received: by mail-wm1-x336.google.com with SMTP id
+ i205-20020a1c3bd6000000b00389d0a5c511so100164wma.5; 
+ Wed, 09 Mar 2022 12:42:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language
- :from:to:cc:references:in-reply-to:content-transfer-encoding;
- bh=NGVLTVFJsUCjubXSfriwHtfIwsDlVociFIc0hJBnwpk=;
- b=pqtjIe+ZUtDb1ZeuVaqwVq3YPbDh9rBJ4o7jyWzzNMQt0nHlCL4Wuj5VpJemji07sH
- Vf1B1wzDI+F6bk5VrPCnxIfcTUOa6+A/th9ruhGAPiVAdw6FIlTN87ic5wVM8qhQs2aK
- r74cazB0augzHOao39P1VzZcnbuUtXilmz7T4A6pQXaIfiY8a/0fOUNVmTml6eUh9WLh
- kIkLRp6KLWr/gE3g5XRVvuOv7zvaIGQSTN4qzuO4s9VlPfpVVV1n0DcRTFfV/7kbgAe3
- gmsXVwzg/hnw9U3yfK1kreuFVymSQyJq8IMjb03WOkkuIaK1iT9NsCzzGEuQOibTJuvI
- h6zQ==
+ h=message-id:date:mime-version:user-agent:content-language:to:cc
+ :references:from:subject:in-reply-to:content-transfer-encoding;
+ bh=aSOCxd0O0AlSABEw2+WmMslTuNXzOT8psYUKdCBZjow=;
+ b=iDcQWsrBUQBbOYpkdV/CKJL8qJq5WWMmLaX1Qzg+fJOoD2jytPJDY7x1Az2iaD1WIP
+ UOXtgCvsRC8f4nVQFEO6lUFkEWq2gsgVHQ5q9RSXlcJUNj8cxEVoXBKDLazyevhQYLZq
+ ce/g6buwwH7nstsQOJkuU1tk3Zl7BaLGCIEovkxHTpISFK+W4DowavUXX6bqokYAykWu
+ lEDwcAOkIn22scFP/WqhKCep3FLwxOW75H5aQHsWeKbFXSvYXbg0eBK4K2/sZYn4uwi5
+ h10BTo9eBedCvGMAJE4YgRvhm2efV+HnZXG+gCXZEVHiYYG1USxmldmohtySVC+pX+1F
+ yYqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:from:to:cc:references:in-reply-to
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:references:from:subject:in-reply-to
  :content-transfer-encoding;
- bh=NGVLTVFJsUCjubXSfriwHtfIwsDlVociFIc0hJBnwpk=;
- b=nzz2wsax8g3s8R2cV7DO1hPDYUshCwH4D5/beXzWoj63Tua1ojf0pBLSMLka06Yjxe
- 9l+K5+yZ6JGRRPa9osk8Ix7U59i27jiFUFdk9W+cBzke9ErB/eM2VVuBWkqP7ZTO++a7
- t4KPtvUlZuYQHsjzMMnTuBeTshXStTnYCQYZKb1+pydsIMz4DtntoqQfUdgxZkl2kwta
- /KnGBqBuGMUoFz9ok+9I3RwIl5oLeujt2xOCoIUPaLb9I1pKCSLfJe8m6OOoqVvFu2o3
- qGrLs/E+JN17rlhy/DxuAm6FNhSYj4MqunL7If+RZ91NPBnP5Y+80WRdqL+4yWELATHk
- 2Oqw==
-X-Gm-Message-State: AOAM532gmrpluMYi8eRVZwhF6GQiheTjIJ/cuRuDU3R30gI7nUbjHUok
- OsP5Xj6y6I1rUBrnMIikfHQ=
-X-Google-Smtp-Source: ABdhPJwjwNyDz7Zhk+G5PJeQBhyjrdvyfOflLQPcu37GGOkDRuK7VvaTPqYNd6yuk4zpv9a2q9rHSQ==
-X-Received: by 2002:a17:907:2d25:b0:6d7:c831:5714 with SMTP id
- gs37-20020a1709072d2500b006d7c8315714mr1411549ejc.137.1646857392603; 
- Wed, 09 Mar 2022 12:23:12 -0800 (PST)
+ bh=aSOCxd0O0AlSABEw2+WmMslTuNXzOT8psYUKdCBZjow=;
+ b=4JrveKwOlCx5QWiqb/fAEXkZ5RTQIjK5u3IUQgBc35EDwwl04d+jAcRawJpl/z97Az
+ UQFowzBPRHtjQF98I2cdN8CxBB1CMkzfmHElZC+geDVF3kF+BbLHS1pE/GCfR+xpWUJy
+ TKMC8CuYKUF7jPdA3ti3dfbojejN30507irTWzGgul2bxPQFJQTmRf9+xPxYDnx++tdX
+ OJ2OfCs9NDuaqzMAuwpz7GY/afjCHEID8RpX88mFkYznQTkdNoDaoC7+4dovlb1qNOZA
+ bNJjeb7TCSF23IqxxEsh/kzlL5HEu6469s5VYolZT++T+P0oHvbc2HQnnYiYtxQRqfIX
+ H3ug==
+X-Gm-Message-State: AOAM530nwELK01CdN1GTH7SMEL+OItrZPIIHiDbK29G8CVsvvzwwehu5
+ RXsym6buMQNYsRzHTPsfboM=
+X-Google-Smtp-Source: ABdhPJyOGhORUyM5EXeW2PmVMEuYS8h2EGD1SJyFy4GGHmjvmuDHXyH+wyKl36U7mJjN9GdoJ0W6CA==
+X-Received: by 2002:a7b:c114:0:b0:381:f7ee:e263 with SMTP id
+ w20-20020a7bc114000000b00381f7eee263mr9091536wmi.30.1646858530342; 
+ Wed, 09 Mar 2022 12:42:10 -0800 (PST)
 Received: from ?IPV6:2a01:c22:7793:600:9d6a:7788:3389:da6c?
  (dynamic-2a01-0c22-7793-0600-9d6a-7788-3389-da6c.c22.pool.telefonica.de.
  [2a01:c22:7793:600:9d6a:7788:3389:da6c])
  by smtp.googlemail.com with ESMTPSA id
- d1-20020a17090694c100b006da91d57e93sm1143326ejy.207.2022.03.09.12.23.11
+ j15-20020a05600c410f00b00389d35f7624sm2351990wmi.0.2022.03.09.12.42.08
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 09 Mar 2022 12:23:12 -0800 (PST)
-Message-ID: <38053baf-c33b-7fdf-7593-99b22153a9c0@gmail.com>
-Date: Wed, 9 Mar 2022 21:23:06 +0100
+ Wed, 09 Mar 2022 12:42:09 -0800 (PST)
+Message-ID: <44006194-eab1-7ae2-3cc8-41c210efd0b1@gmail.com>
+Date: Wed, 9 Mar 2022 21:42:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.2
-Subject: [PATCH v2 2/2] ASoC: meson: aiu: fix duplicate debugfs directory error
 Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>, Erico Nunes <nunes.erico@gmail.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org,
+ netdev@vger.kernel.org,
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-sunxi@lists.linux.dev
+References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+ <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
+ <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
+ <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
+ <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
+ <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
+ <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
+ <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
+ <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
+ <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com>
+ <CAK4VdL28nWstiS09MYq5nbtiL+aMbNc=Hzv5F0-VMuNKmX9R+Q@mail.gmail.com>
+ <1j5yonnp1a.fsf@starbuckisacylon.baylibre.com>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: alsa-devel@alsa-project.org, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
-In-Reply-To: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
+ at boot
+In-Reply-To: <1j5yonnp1a.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220309_122313_981470_5E092FB6 
-X-CRM114-Status: GOOD (  11.37  )
+X-CRM114-CacheID: sfid-20220309_124212_511288_8F6F42C2 
+X-CRM114-Status: GOOD (  27.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,70 +112,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On a S905W-based system I get the following error:
-debugfs: Directory 'c1105400.audio-controller' with parent 'P230-Q200' already present!
+On 09.03.2022 15:57, Jerome Brunet wrote:
+> 
+> On Wed 09 Mar 2022 at 15:45, Erico Nunes <nunes.erico@gmail.com> wrote:
+> 
+>> On Sun, Mar 6, 2022 at 1:56 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>> You could try the following (quick and dirty) test patch that fully mimics
+>>> the vendor driver as found here:
+>>> https://github.com/khadas/linux/blob/buildroot-aml-4.9/drivers/amlogic/ethernet/phy/amlogic.c
+>>>
+>>> First apply
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=a502a8f04097e038c3daa16c5202a9538116d563
+>>> This patch is in the net tree currently and should show up in linux-next
+>>> beginning of the week.
+>>>
+>>> On top please apply the following (it includes the test patch your working with).
+>>
+>> I triggered test jobs with this configuration (latest mainline +
+>> a502a8f0409 + test patch for vendor driver behaviour), and the results
+>> are pretty much the same as with the previous test patch from this
+>> thread only.
+>> That is, I never got the issue with non-functional link up anymore,
+>> but I get the (rare) issue with link not going up.
+>> The reproducibility is still extremely low, in the >1% range.
+> 
+> Low reproducibility means the problem is still there, or at least not
+> understood completly.
+> 
+> I understand the benefit from the user standpoint.
+> 
+> Heiner if you are going to continue from the test patch you sent,
+> I would welcome some explanation with each of the changes.
+> 
+The latest test patch was purely for checking whether we see any
+difference in behavior between vendor driver and the mainlined
+version. It's in no way meant to be applied to mainline.
 
-Turned out that multiple components having the same name triggers this
-error in soc_init_component_debugfs(). With the patch the error is gone
-and that's the debugfs entries.
+> We know very little about this IP and I'm not very confortable with
+> tweaking/aligning with AML sdk "blindly" on a driver that has otherwise
+> been working well so far.
+> 
 
-/sys/kernel/debug/asoc/P230-Q200/acodec:c1105400.audio-controller
-/sys/kernel/debug/asoc/P230-Q200/hdmi:c1105400.audio-controller
-/sys/kernel/debug/asoc/P230-Q200/cpu:c1105400.audio-controller
+This touches one thing I wanted to ask anyway: Supposedly Amlogic
+didn't develop an own Ethernet PHY, and if they licensed an existing
+IP then it should be similar to some other existing PHY (that may
+have a driver in phylib).
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- sound/soc/meson/aiu-acodec-ctrl.c | 3 +++
- sound/soc/meson/aiu-codec-ctrl.c  | 3 +++
- sound/soc/meson/aiu.c             | 3 +++
- 3 files changed, 9 insertions(+)
+Then what I'll do is submit the following small change that brought
+the error rate significantly down according to Erico's tests.
 
-diff --git a/sound/soc/meson/aiu-acodec-ctrl.c b/sound/soc/meson/aiu-acodec-ctrl.c
-index 27a6d3259..22e181646 100644
---- a/sound/soc/meson/aiu-acodec-ctrl.c
-+++ b/sound/soc/meson/aiu-acodec-ctrl.c
-@@ -193,6 +193,9 @@ static const struct snd_soc_component_driver aiu_acodec_ctrl_component = {
- 	.of_xlate_dai_name	= aiu_acodec_of_xlate_dai_name,
- 	.endianness		= 1,
- 	.non_legacy_dai_naming	= 1,
-+#ifdef CONFIG_DEBUG_FS
-+	.debugfs_prefix		= "acodec",
-+#endif
- };
- 
- int aiu_acodec_ctrl_register_component(struct device *dev)
-diff --git a/sound/soc/meson/aiu-codec-ctrl.c b/sound/soc/meson/aiu-codec-ctrl.c
-index c3ea733fc..59ee66fc2 100644
---- a/sound/soc/meson/aiu-codec-ctrl.c
-+++ b/sound/soc/meson/aiu-codec-ctrl.c
-@@ -140,6 +140,9 @@ static const struct snd_soc_component_driver aiu_hdmi_ctrl_component = {
- 	.of_xlate_dai_name	= aiu_hdmi_of_xlate_dai_name,
- 	.endianness		= 1,
- 	.non_legacy_dai_naming	= 1,
-+#ifdef CONFIG_DEBUG_FS
-+	.debugfs_prefix		= "hdmi",
-+#endif
- };
- 
- int aiu_hdmi_ctrl_register_component(struct device *dev)
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index d299a70db..88e611e64 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -103,6 +103,9 @@ static const struct snd_soc_component_driver aiu_cpu_component = {
- 	.pointer		= aiu_fifo_pointer,
- 	.probe			= aiu_cpu_component_probe,
- 	.remove			= aiu_cpu_component_remove,
-+#ifdef CONFIG_DEBUG_FS
-+	.debugfs_prefix		= "cpu",
-+#endif
- };
- 
- static struct snd_soc_dai_driver aiu_cpu_dai_drv[] = {
--- 
-2.35.1
+-       phy_trigger_machine(phydev);
++       if (irq_status & INTSRC_ANEG_COMPLETE)
++               phy_queue_state_machine(phydev, msecs_to_jiffies(100));
++       else
++               phy_trigger_machine(phydev);
 
 
+> Thx
+> 
+>>
+>> So at this point, I'm not sure how much more effort to invest into
+>> this. Given the rate is very low and the fallback is it will just
+>> reset the link and proceed to work, I think the situation would
+>> already be much better with the solution from that test patch being
+>> merged. If you propose that as a patch separately, I'm happy to test
+>> the final submitted patch again and provide feedback there. Or if
+>> there is another solution to try, I can try with that too.
+>>
+>> Thanks
+>>
+>>
+>> Erico
+> 
+
+Heiner
 
 _______________________________________________
 linux-amlogic mailing list
