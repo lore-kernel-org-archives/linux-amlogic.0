@@ -4,61 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B818EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Mar 2022 08:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C7CBC433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Mar 2022 14:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OL1Rz2FqRm9FUhtS6XS7P/pz4fdRRg55aE5+Nj7gU1g=; b=MHdy9cvKmIsgUk
-	6jnGSrsF0YIjZ9Cf7DCr4ixdTFPzS4o1puWiXDZ63qgp59SqZXPzOAjcOVeZk7ZYRTciLb34ivDwL
-	YlOFp0e6sJRQ8ilfY59SAFZ0GwTHv/SRA4b7HbyaVWiCLOzLg5fzg93/PXy5F6Ce8YkOXAoq4bTnr
-	I4V3uR12Ag9Ie46J4Ieqfbxx35yTX/rzSjwKCDLb2nD9mZzprjLYuOTV6ae4z+F1FBuImJBtKGvMk
-	UfokrKyG1W3I49g9X6fFzCT5sEv/VfZe9h+QzYfMwpJHMB+lQnsVemRvg69OumjqYnUGGOQGyCp+7
-	OyZF1G4sEfLa7bzGnVmA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6859lMqpdhTL1L1emkzixlBgR3I8QJumZUFLsDQXXcE=; b=Xn858QyTPQUOLA
+	RdrvGS71whNiI6JV4yJ0wtJGatjlK9srNeC3jEmEiqkBgPg7cWLw6lYuO/Wowdyh7/p9D1ywb/w2T
+	4AweJvPSKfUhQ9t6D/hCbntr2Hxosn+lgt5FoJwH7ybe28EUJ4ZeAunC6zpuNC8ah0cCyhuPodDZ/
+	9nq17JpEhiZIsEdQDJTM4xdoN6oAKNiTQBFHqVxp5aKcrqfwFmNYOHUxnzLT539XMkcCE1XnTup44
+	YpSVaDCYy531ffgb6HZJtfUD4R9rga0PKsQ63GNO5nKfpbCXOQdQhUaZBUh1kZ3GSSN9bX2JOEzE1
+	XEIXTISMeuiZTafZLKyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nSade-00FY0U-8B; Fri, 11 Mar 2022 08:28:42 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1nSfwc-00GdjB-E4; Fri, 11 Mar 2022 14:08:38 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nSadZ-00FXxv-PS; Fri, 11 Mar 2022 08:28:39 +0000
-Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 11 Mar
- 2022 16:28:32 +0800
-Message-ID: <54a87a83-c631-0cec-08a8-cf95f6090ead@amlogic.com>
-Date: Fri, 11 Mar 2022 16:28:32 +0800
+ id 1nSfw1-00GdSH-Eq; Fri, 11 Mar 2022 14:08:08 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id DD2E6B82C24;
+ Fri, 11 Mar 2022 14:07:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B1DC340F5;
+ Fri, 11 Mar 2022 14:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1647007676;
+ bh=oxhEMvElWODt6u9CQYS0TOzkW9ZRnJdY8HwZrc0XbnA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=I1IWazuBan229oTPyXer46CT9bijBRhJJ438WpPXOCKnJHuH3LeSiHJtETgwak7Cp
+ RriKkP6rtuas2UOOhvuwjNOEDgPJfjFZhnKcr8zG6zQViko9vb21SdMBmnSKh1PQSc
+ Qy0JIkMVupausOA+J7sYzH1JLhewlQtAO6NFu5t6x5zXy7qvKJh0SGW3PPVYsP8HRT
+ LGlj/1X9iqZK64iYH49dD+0mM5TFOxCzC9kS/v92w1KYH4o34oP4eI8wkIF2V70jO5
+ 6TShJ2I2kNzNWoacqVs4hAwAQiDPtgn4VVvEsv3RJ2XfrO2bKsDhF2zGb3FOd1oouB
+ xG+udw2dDr8EA==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+ (envelope-from <mchehab@kernel.org>)
+ id 1nSfvt-000lAX-Ey; Fri, 11 Mar 2022 15:07:53 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Jeffery <andrew@aj.id.au>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Andy Gross <agross@kernel.org>, Andy Walls <awalls@md.metrocast.net>,
+ Benoit Parrot <bparrot@ti.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
+ Dafna Hirschfeld <dafna@fastmail.com>, Dmitry Osipenko <digetx@gmail.com>,
+ Eddie James <eajames@linux.ibm.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Jacob Chen <jacob-chen@iotwrt.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Michael Krufky <mkrufky@linuxtv.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
+ Ming Qian <ming.qian@nxp.com>, Mirela Rabulea <mirela.rabulea@nxp.com>,
+ NXP Linux Team <linux-imx@nxp.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Robert Foss <robert.foss@linaro.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Shijie Qin <shijie.qin@nxp.com>,
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+ Stefan Richter <stefanr@s5r6.in-berlin.de>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Sylwester Nawrocki <sylvester.nawrocki@gmail.com>,
+ Todor Tomov <todor.too@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Yong Deng <yong.deng@magewell.com>, Zhou Peng <eagle.zhou@nxp.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ openbmc@lists.ozlabs.org
+Subject: [PATCH v2 00/38] Sort Makefiles and platform/Kconfig
+Date: Fri, 11 Mar 2022 15:07:13 +0100
+Message-Id: <cover.1647006877.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH RESEND v2 1/2] mtd: rawnand: meson: discard the common MMC
- sub clock framework
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
-CC: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
- XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
- <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
- Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-References: <20220217063346.21691-1-liang.yang@amlogic.com>
- <20220217063346.21691-2-liang.yang@amlogic.com>
- <1jzgmbw7d8.fsf@starbuckisacylon.baylibre.com>
-From: Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <1jzgmbw7d8.fsf@starbuckisacylon.baylibre.com>
-X-Originating-IP: [10.28.39.106]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220311_002838_074592_5C896549 
-X-CRM114-Status: GOOD (  26.20  )
+X-CRM114-CacheID: sfid-20220311_060801_889238_7CB832C2 
+X-CRM114-Status: GOOD (  17.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,256 +113,269 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jerome,
+Entries at Makefiles and Kconfig files end being merged on random order. 
 
-On 2022/2/28 19:28, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Thu 17 Feb 2022 at 14:33, Liang Yang <liang.yang@amlogic.com> wrote:
-> 
->> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
->> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
->> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
->> implemented and can be used by the eMMC and NAND controller (which are mutually
->> exclusive anyway). Let's use this new clock.
->>
->> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
->> ---
->>   drivers/mtd/nand/raw/meson_nand.c | 107 +++++++++++++++++-------------
->>   1 file changed, 61 insertions(+), 46 deletions(-)
->>
->> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
->> index ac3be92872d0..c5b892d38ea0 100644
->> --- a/drivers/mtd/nand/raw/meson_nand.c
->> +++ b/drivers/mtd/nand/raw/meson_nand.c
->> @@ -10,6 +10,7 @@
->>   #include <linux/dma-mapping.h>
->>   #include <linux/interrupt.h>
->>   #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>   #include <linux/mtd/rawnand.h>
->>   #include <linux/mtd/mtd.h>
->>   #include <linux/mfd/syscon.h>
->> @@ -19,6 +20,7 @@
->>   #include <linux/iopoll.h>
->>   #include <linux/of.h>
->>   #include <linux/of_device.h>
->> +#include <linux/of_address.h>
->>   #include <linux/sched/task_stack.h>
->>   
->>   #define NFC_REG_CMD		0x00
->> @@ -104,6 +106,9 @@
->>   
->>   #define PER_INFO_BYTE		8
->>   
->> +#define CLK_DIV_SHIFT		0
->> +#define CLK_DIV_WIDTH		6
->> +
->>   struct meson_nfc_nand_chip {
->>   	struct list_head node;
->>   	struct nand_chip nand;
->> @@ -151,15 +156,15 @@ struct meson_nfc {
->>   	struct nand_controller controller;
->>   	struct clk *core_clk;
->>   	struct clk *device_clk;
->> -	struct clk *phase_tx;
->> -	struct clk *phase_rx;
->> +	struct clk *nand_clk;
->> +	struct clk_divider nand_divider;
->>   
->>   	unsigned long clk_rate;
->>   	u32 bus_timing;
->>   
->>   	struct device *dev;
->>   	void __iomem *reg_base;
->> -	struct regmap *reg_clk;
->> +	void __iomem *sd_emmc_clock;
->>   	struct completion completion;
->>   	struct list_head chips;
->>   	const struct meson_nfc_data *data;
->> @@ -988,6 +993,8 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
->>   static int meson_nfc_clk_init(struct meson_nfc *nfc)
->>   {
->>   	int ret;
->> +	struct clk_init_data init = {0};
->> +	struct clk_parent_data nfc_divider_parent_data[1];
->>   
->>   	/* request core clock */
->>   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
->> @@ -1002,21 +1009,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->>   		return PTR_ERR(nfc->device_clk);
->>   	}
->>   
->> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
->> -	if (IS_ERR(nfc->phase_tx)) {
->> -		dev_err(nfc->dev, "failed to get TX clk\n");
->> -		return PTR_ERR(nfc->phase_tx);
->> -	}
->> -
->> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
->> -	if (IS_ERR(nfc->phase_rx)) {
->> -		dev_err(nfc->dev, "failed to get RX clk\n");
->> -		return PTR_ERR(nfc->phase_rx);
->> -	}
->> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
->> +	init.ops = &clk_divider_ops;
->> +	nfc_divider_parent_data[0].fw_name = __clk_get_name(nfc->device_clk);
-> 
-> This is broken.
-> __clk_get_name() gives the actual global name of the clock
-> "fw_name" is the DT name which allows to find the index on the clock
-> 
->>From the DT doc, the fw_name is either 'core' or 'device'
-> 
-> I don't think any clock would have such a name so I don't think this can
-> actually work. Did you actually test this ?
-> Indeed, it can't work. i have tried it.
-so let us get solved by nfc_divider_parent_data[0].fw_name = "device" or 
-previous parent_names? thanks.
+Sort Makefile entries in alphabetical order. 
 
-> 
->> +	init.parent_data = nfc_divider_parent_data;
->> +	init.num_parents = 1;
->> +	nfc->nand_divider.reg = nfc->sd_emmc_clock;
->> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
->> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
->> +	nfc->nand_divider.hw.init = &init;
->> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
->> +				  CLK_DIVIDER_ROUND_CLOSEST |
->> +				  CLK_DIVIDER_ALLOW_ZERO;
->> +
->> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
->> +	if (IS_ERR(nfc->nand_clk))
->> +		return PTR_ERR(nfc->nand_clk);
->>   
->>   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
->> -	regmap_update_bits(nfc->reg_clk,
->> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
->> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
->> +	       nfc->sd_emmc_clock);
->>   
->>   	ret = clk_prepare_enable(nfc->core_clk);
->>   	if (ret) {
->> @@ -1030,29 +1042,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->>   		goto err_device_clk;
->>   	}
->>   
->> -	ret = clk_prepare_enable(nfc->phase_tx);
->> -	if (ret) {
->> -		dev_err(nfc->dev, "failed to enable TX clock\n");
->> -		goto err_phase_tx;
->> -	}
->> -
->> -	ret = clk_prepare_enable(nfc->phase_rx);
->> +	ret = clk_prepare_enable(nfc->nand_clk);
->>   	if (ret) {
->> -		dev_err(nfc->dev, "failed to enable RX clock\n");
->> -		goto err_phase_rx;
->> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
->> +		goto err_nand_clk;
->>   	}
->>   
->>   	ret = clk_set_rate(nfc->device_clk, 24000000);
->>   	if (ret)
->> -		goto err_disable_rx;
->> +		goto err_disable_clk;
->>   
->>   	return 0;
->>   
->> -err_disable_rx:
->> -	clk_disable_unprepare(nfc->phase_rx);
->> -err_phase_rx:
->> -	clk_disable_unprepare(nfc->phase_tx);
->> -err_phase_tx:
->> +err_disable_clk:
->> +	clk_disable_unprepare(nfc->nand_clk);
->> +err_nand_clk:
->>   	clk_disable_unprepare(nfc->device_clk);
->>   err_device_clk:
->>   	clk_disable_unprepare(nfc->core_clk);
->> @@ -1061,8 +1065,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->>   
->>   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
->>   {
->> -	clk_disable_unprepare(nfc->phase_rx);
->> -	clk_disable_unprepare(nfc->phase_tx);
->> +	clk_disable_unprepare(nfc->nand_clk);
->>   	clk_disable_unprepare(nfc->device_clk);
->>   	clk_disable_unprepare(nfc->core_clk);
->>   }
->> @@ -1370,11 +1373,31 @@ static const struct of_device_id meson_nfc_id_table[] = {
->>   };
->>   MODULE_DEVICE_TABLE(of, meson_nfc_id_table);
->>   
->> +static int meson_nfc_reg_resource(struct device *dev, struct meson_nfc *nfc)
->> +{
->> +	struct resource res;
->> +	void __iomem *base[2];
->> +	struct device_node *node = dev->of_node;
->> +	int i;
->> +
->> +	for (i = 0; i < 2; i++) {
->> +		if (of_address_to_resource(node, i, &res))
->> +			return -ENOENT;
->> +
->> +		base[i] = devm_ioremap_resource(dev, &res);
->> +		if (IS_ERR(base))
->> +			return PTR_ERR(base);
->> +	}
->> +	nfc->reg_base = base[0];
->> +	nfc->sd_emmc_clock = base[1];
->> +
-> 
-> There is no reason to make a separate function for this.
-> 
-> Please name your ressource and claim them properly instead of interating
-> on them.
-> 
-> 
->> +	return 0;
->> +}
->> +
->>   static int meson_nfc_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	struct meson_nfc *nfc;
->> -	struct resource *res;
->>   	int ret, irq;
->>   
->>   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
->> @@ -1388,20 +1411,12 @@ static int meson_nfc_probe(struct platform_device *pdev)
->>   	nand_controller_init(&nfc->controller);
->>   	INIT_LIST_HEAD(&nfc->chips);
->>   	init_completion(&nfc->completion);
->> -
->>   	nfc->dev = dev;
->>   
->> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> -	nfc->reg_base = devm_ioremap_resource(dev, res);
->> -	if (IS_ERR(nfc->reg_base))
->> -		return PTR_ERR(nfc->reg_base);
->> -
->> -	nfc->reg_clk =
->> -		syscon_regmap_lookup_by_phandle(dev->of_node,
->> -						"amlogic,mmc-syscon");
->> -	if (IS_ERR(nfc->reg_clk)) {
->> -		dev_err(dev, "Failed to lookup clock base\n");
->> -		return PTR_ERR(nfc->reg_clk);
->> +	ret = meson_nfc_reg_resource(dev, nfc);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to get reg resource\n");
->> +		return ret;
->>   	}
->>   
->>   	irq = platform_get_irq(pdev, 0);
-> 
-> .
+Sorting Kconfig is harder. So, for now, do it only for platform/Kconfig.
+
+On platform/Kconfig, there is a mix of:
+	- two ancillary drivers;
+	- per-SoC drivers whose Kconfig/Makefile is on separate files;
+	- per-SoC drivers whose Makefile is on separate files, but the
+	  driver is at platform/Makefile;
+	- per-SoC drivers that are specified inside platform/Makefile and
+	  platform/Kconfig.
+
+Give some order by ensuring that all non-generic drivers will be on
+subdirectories.
+
+The end goal is to have one directory below platform per manufacturer,
+This series prepare for that.
+
+Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+-
+
+v2:
+  - removed some renames at DVB frontend;
+  - added patches for platform/Kconfig sort.
+
+Mauro Carvalho Chehab (38):
+  media: xc2028: rename the driver from tuner-xc2028
+  media: Makefiles: remove extra spaces
+  media: Makefiles: sort entries where it fits
+  media: platform: Makefile: reorganize its contents
+  media: platform: move platform menu dependencies to drivers
+  media: platform: place Aspeed driver on a separate dir
+  media: platform: place NXP drivers on a separate dir
+  media: platform: place Intel drivers on a separate dir
+  media: platform: place Via drivers on a separate dir
+  media: platform: place Renesas drivers on a separate dir
+  media: platform: allegro-dvt: move config to its own file
+  media: platform: amphion: move config to its own file
+  media: platform: coda: move config to its own file
+  media: platform: exynos-gsc: move config to its own file
+  media: platform: ge2d: move config to its own file
+  media: platform: mtk-jpeg: move config to its own file
+  media: platform: mtk-mdp: move config to its own file
+  media: platform: mtk-vcodec: move config to its own file
+  media: platform: mtk-vpu: move config to its own file
+  media: platform: omap3isp: move config to its own file
+  media: platform: camss: move config to its own file
+  media: platform: venus: move config to its own file
+  media: platform: rga: move config to its own file
+  media: platform: s3c-camif: move config to its own file
+  media: platform: s5p-g2d: move config to its own file
+  media: platform: hva: move config to its own file
+  media: platform: stm32: move config to its own file
+  media: platform: sun8i-di: move config to its own file
+  media: platform: sun8i-rotate: move config to its own file
+  media: platform: vde: move config to its own file
+  media: platform: ti-vpe: move config to its own file
+  media: platform: rkisp1: move config to its own file
+  media: platform: delta: move config to its own file
+  media: platform: bdisp: move config to its own file
+  media: platform: s5p-mfc: move config to its own file
+  media: platform: s5p-jpeg: move config to its own file
+  media: platform: Kconfig: sort entries
+  drivers: media: platform: move some manufacturer entries
+
+ .../admin-guide/media/i2c-cardlist.rst        |   2 +-
+ MAINTAINERS                                   |  22 +-
+ drivers/media/Makefile                        |   4 +-
+ drivers/media/cec/platform/Makefile           |  16 +-
+ drivers/media/common/Makefile                 |   4 +-
+ drivers/media/common/videobuf2/Makefile       |   6 +-
+ drivers/media/dvb-frontends/Makefile          | 192 ++---
+ drivers/media/firewire/Makefile               |   2 +-
+ drivers/media/i2c/Makefile                    |  92 +--
+ drivers/media/pci/Makefile                    |  18 +-
+ drivers/media/pci/cx18/cx18-driver.c          |   2 +-
+ drivers/media/pci/cx18/cx18-dvb.c             |   2 +-
+ drivers/media/pci/cx18/cx18-gpio.c            |   2 +-
+ drivers/media/pci/cx23885/cx23885-cards.c     |   2 +-
+ drivers/media/pci/cx23885/cx23885-dvb.c       |   2 +-
+ drivers/media/pci/cx23885/cx23885-video.c     |   2 +-
+ drivers/media/pci/cx88/cx88.h                 |   2 +-
+ drivers/media/pci/ivtv/ivtv-driver.c          |   2 +-
+ drivers/media/pci/ivtv/ivtv-gpio.c            |   2 +-
+ drivers/media/pci/saa7134/saa7134-cards.c     |   2 +-
+ drivers/media/pci/saa7134/saa7134-dvb.c       |   2 +-
+ drivers/media/platform/Kconfig                | 755 ++----------------
+ drivers/media/platform/Makefile               | 132 +--
+ drivers/media/platform/allegro-dvt/Kconfig    |  16 +
+ drivers/media/platform/am437x/Kconfig         |   1 +
+ drivers/media/platform/amphion/Kconfig        |  20 +
+ drivers/media/platform/aspeed/Kconfig         |  10 +
+ drivers/media/platform/aspeed/Makefile        |   1 +
+ .../platform/{ => aspeed}/aspeed-video.c      |   0
+ drivers/media/platform/atmel/Kconfig          |   4 +
+ drivers/media/platform/cadence/Kconfig        |   1 +
+ drivers/media/platform/coda/Kconfig           |  17 +
+ drivers/media/platform/davinci/Kconfig        |   6 +
+ drivers/media/platform/exynos-gsc/Kconfig     |  10 +
+ drivers/media/platform/exynos4-is/Kconfig     |   1 +
+ drivers/media/platform/imx-jpeg/Kconfig       |   1 +
+ drivers/media/platform/imx/Kconfig            |   1 +
+ drivers/media/platform/intel/Kconfig          |  11 +
+ drivers/media/platform/intel/Makefile         |   1 +
+ .../media/platform/{ => intel}/pxa_camera.c   |   0
+ drivers/media/platform/marvell-ccic/Kconfig   |   2 +
+ drivers/media/platform/meson/ge2d/Kconfig     |  14 +
+ drivers/media/platform/mtk-jpeg/Kconfig       |  16 +
+ drivers/media/platform/mtk-mdp/Kconfig        |  17 +
+ drivers/media/platform/mtk-vcodec/Kconfig     |  36 +
+ drivers/media/platform/mtk-vpu/Kconfig        |  15 +
+ drivers/media/platform/nxp/Kconfig            |  40 +
+ drivers/media/platform/nxp/Makefile           |   5 +
+ drivers/media/platform/{ => nxp}/fsl-viu.c    |   0
+ drivers/media/platform/{ => nxp}/imx-pxp.c    |   0
+ drivers/media/platform/{ => nxp}/imx-pxp.h    |   0
+ .../media/platform/{ => nxp}/mx2_emmaprp.c    |   0
+ drivers/media/platform/omap/Kconfig           |   1 +
+ drivers/media/platform/omap3isp/Kconfig       |  21 +
+ drivers/media/platform/qcom/Kconfig           |   3 +
+ drivers/media/platform/qcom/camss/Kconfig     |   9 +
+ drivers/media/platform/qcom/venus/Kconfig     |  14 +
+ drivers/media/platform/renesas/Kconfig        | 119 +++
+ drivers/media/platform/renesas/Makefile       |  14 +
+ .../media/platform/{ => renesas}/rcar-fcp.c   |   0
+ .../media/platform/{ => renesas}/rcar-isp.c   |   0
+ .../platform/{ => renesas}/rcar-vin/Kconfig   |   2 +
+ .../platform/{ => renesas}/rcar-vin/Makefile  |   0
+ .../{ => renesas}/rcar-vin/rcar-core.c        |   0
+ .../{ => renesas}/rcar-vin/rcar-csi2.c        |   0
+ .../{ => renesas}/rcar-vin/rcar-dma.c         |   0
+ .../{ => renesas}/rcar-vin/rcar-v4l2.c        |   0
+ .../{ => renesas}/rcar-vin/rcar-vin.h         |   0
+ .../media/platform/{ => renesas}/rcar_drif.c  |   0
+ .../media/platform/{ => renesas}/rcar_fdp1.c  |   0
+ .../media/platform/{ => renesas}/rcar_jpu.c   |   0
+ .../platform/{ => renesas}/renesas-ceu.c      |   0
+ drivers/media/platform/{ => renesas}/sh_vou.c |   0
+ drivers/media/platform/rockchip/Kconfig       |   3 +
+ drivers/media/platform/rockchip/rga/Kconfig   |  14 +
+ .../media/platform/rockchip/rkisp1/Kconfig    |  19 +
+ drivers/media/platform/s3c-camif/Kconfig      |  15 +
+ drivers/media/platform/s5p-g2d/Kconfig        |  11 +
+ drivers/media/platform/s5p-jpeg/Kconfig       |  12 +
+ drivers/media/platform/s5p-mfc/Kconfig        |   9 +
+ drivers/media/platform/sti/Kconfig            |   5 +
+ drivers/media/platform/sti/bdisp/Kconfig      |  10 +
+ drivers/media/platform/sti/c8sectpfe/Kconfig  |   1 +
+ drivers/media/platform/sti/delta/Kconfig      |  36 +
+ drivers/media/platform/sti/hva/Kconfig        |  26 +
+ drivers/media/platform/stm32/Kconfig          |  31 +
+ drivers/media/platform/sunxi/Kconfig          |   2 +
+ .../media/platform/sunxi/sun4i-csi/Kconfig    |   1 +
+ .../media/platform/sunxi/sun6i-csi/Kconfig    |   1 +
+ drivers/media/platform/sunxi/sun8i-di/Kconfig |  14 +
+ .../media/platform/sunxi/sun8i-rotate/Kconfig |  14 +
+ drivers/media/platform/tegra/vde/Kconfig      |  17 +
+ drivers/media/platform/ti-vpe/Kconfig         |  62 ++
+ drivers/media/platform/via/Kconfig            |  11 +
+ drivers/media/platform/via/Makefile           |   1 +
+ drivers/media/platform/{ => via}/via-camera.c |   0
+ drivers/media/platform/{ => via}/via-camera.h |   0
+ drivers/media/platform/xilinx/Kconfig         |   1 +
+ drivers/media/radio/Makefile                  |  42 +-
+ drivers/media/rc/Makefile                     |  45 +-
+ drivers/media/rc/keymaps/Makefile             |  33 +-
+ drivers/media/spi/Makefile                    |   5 +-
+ drivers/media/test-drivers/Makefile           |  13 +-
+ drivers/media/tuners/Makefile                 |  66 +-
+ drivers/media/tuners/tuner-types.c            |   2 +-
+ .../{tuner-xc2028-types.h => xc2028-types.h}  |   6 +-
+ .../media/tuners/{tuner-xc2028.c => xc2028.c} |   6 +-
+ .../media/tuners/{tuner-xc2028.h => xc2028.h} |   2 +-
+ drivers/media/tuners/xc4000.c                 |   2 +-
+ drivers/media/usb/Makefile                    |  25 +-
+ drivers/media/usb/dvb-usb/cxusb.c             |   2 +-
+ drivers/media/usb/dvb-usb/dib0700_devices.c   |   2 +-
+ drivers/media/usb/em28xx/em28xx-i2c.c         |   2 +-
+ drivers/media/usb/em28xx/em28xx.h             |   2 +-
+ drivers/media/usb/gspca/Makefile              |  88 +-
+ drivers/media/usb/tm6000/tm6000-cards.c       |   2 +-
+ drivers/media/usb/tm6000/tm6000-dvb.c         |   2 +-
+ drivers/media/usb/tm6000/tm6000-i2c.c         |   2 +-
+ drivers/media/v4l2-core/Makefile              |  29 +-
+ drivers/media/v4l2-core/tuner-core.c          |   2 +-
+ 120 files changed, 1248 insertions(+), 1144 deletions(-)
+ create mode 100644 drivers/media/platform/allegro-dvt/Kconfig
+ create mode 100644 drivers/media/platform/amphion/Kconfig
+ create mode 100644 drivers/media/platform/aspeed/Kconfig
+ create mode 100644 drivers/media/platform/aspeed/Makefile
+ rename drivers/media/platform/{ => aspeed}/aspeed-video.c (100%)
+ create mode 100644 drivers/media/platform/coda/Kconfig
+ create mode 100644 drivers/media/platform/exynos-gsc/Kconfig
+ create mode 100644 drivers/media/platform/intel/Kconfig
+ create mode 100644 drivers/media/platform/intel/Makefile
+ rename drivers/media/platform/{ => intel}/pxa_camera.c (100%)
+ create mode 100644 drivers/media/platform/meson/ge2d/Kconfig
+ create mode 100644 drivers/media/platform/mtk-jpeg/Kconfig
+ create mode 100644 drivers/media/platform/mtk-mdp/Kconfig
+ create mode 100644 drivers/media/platform/mtk-vcodec/Kconfig
+ create mode 100644 drivers/media/platform/mtk-vpu/Kconfig
+ create mode 100644 drivers/media/platform/nxp/Kconfig
+ create mode 100644 drivers/media/platform/nxp/Makefile
+ rename drivers/media/platform/{ => nxp}/fsl-viu.c (100%)
+ rename drivers/media/platform/{ => nxp}/imx-pxp.c (100%)
+ rename drivers/media/platform/{ => nxp}/imx-pxp.h (100%)
+ rename drivers/media/platform/{ => nxp}/mx2_emmaprp.c (100%)
+ create mode 100644 drivers/media/platform/omap3isp/Kconfig
+ create mode 100644 drivers/media/platform/qcom/Kconfig
+ create mode 100644 drivers/media/platform/qcom/camss/Kconfig
+ create mode 100644 drivers/media/platform/qcom/venus/Kconfig
+ create mode 100644 drivers/media/platform/renesas/Kconfig
+ create mode 100644 drivers/media/platform/renesas/Makefile
+ rename drivers/media/platform/{ => renesas}/rcar-fcp.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-isp.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/Kconfig (93%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/Makefile (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/rcar-core.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/rcar-csi2.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/rcar-dma.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/rcar-v4l2.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar-vin/rcar-vin.h (100%)
+ rename drivers/media/platform/{ => renesas}/rcar_drif.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar_fdp1.c (100%)
+ rename drivers/media/platform/{ => renesas}/rcar_jpu.c (100%)
+ rename drivers/media/platform/{ => renesas}/renesas-ceu.c (100%)
+ rename drivers/media/platform/{ => renesas}/sh_vou.c (100%)
+ create mode 100644 drivers/media/platform/rockchip/Kconfig
+ create mode 100644 drivers/media/platform/rockchip/rga/Kconfig
+ create mode 100644 drivers/media/platform/rockchip/rkisp1/Kconfig
+ create mode 100644 drivers/media/platform/s3c-camif/Kconfig
+ create mode 100644 drivers/media/platform/s5p-g2d/Kconfig
+ create mode 100644 drivers/media/platform/s5p-jpeg/Kconfig
+ create mode 100644 drivers/media/platform/s5p-mfc/Kconfig
+ create mode 100644 drivers/media/platform/sti/Kconfig
+ create mode 100644 drivers/media/platform/sti/bdisp/Kconfig
+ create mode 100644 drivers/media/platform/sti/delta/Kconfig
+ create mode 100644 drivers/media/platform/sti/hva/Kconfig
+ create mode 100644 drivers/media/platform/stm32/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun8i-di/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun8i-rotate/Kconfig
+ create mode 100644 drivers/media/platform/tegra/vde/Kconfig
+ create mode 100644 drivers/media/platform/ti-vpe/Kconfig
+ create mode 100644 drivers/media/platform/via/Kconfig
+ create mode 100644 drivers/media/platform/via/Makefile
+ rename drivers/media/platform/{ => via}/via-camera.c (100%)
+ rename drivers/media/platform/{ => via}/via-camera.h (100%)
+ rename drivers/media/tuners/{tuner-xc2028-types.h => xc2028-types.h} (96%)
+ rename drivers/media/tuners/{tuner-xc2028.c => xc2028.c} (99%)
+ rename drivers/media/tuners/{tuner-xc2028.h => xc2028.h} (99%)
+
+-- 
+2.35.1
+
+
 
 _______________________________________________
 linux-amlogic mailing list
