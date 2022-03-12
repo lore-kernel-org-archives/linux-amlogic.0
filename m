@@ -4,68 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0B8C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Mar 2022 14:09:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7AC2C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Mar 2022 02:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bszt/thNPBwc967G9HGWnHYN27oSZlLjHmi3wWOqUKg=; b=LWSKt78jxGJO/o
-	v0GwzEL6mKGUKTrkP3frNzcvbJn2mzLr543F52Kkkwe3XV2D8DPGwzgmjRPd96cUVrtM0por5Dbke
-	QHZBiuRYm4AJX0D/FrBTBYbyuW/jNO3euVPuuNk5IxFwdBN0bkBWHRuXpsWb3o1Ftdj7Td3TYLlde
-	PFFSwZ9WoggYuo9vgdlNQWsYpnDvTtv7U6eDiFcUf6BmDluzVdHdOPLivmEugLDE24tEgRAqb4fYj
-	jopFlJWUzmCeDuFVJCpqCsHAIRzxgr6OxnTi7JYMJqvQjMDGlrUwiW1KbevJtvw+CgYfVhJZfR7ef
-	91qeUg6ITB/kBeOPupyQ==;
+	List-Owner; bh=azfM6NU+J0299Hc4LtZGzQS8Yvb5qls3pv4MlAX9QdA=; b=tFSVQQSjmT5TCi
+	vyn5KS9rr5W+UVmqDiJPJ1VnK1Ue3xX5pIY8meENRe0UQaYCXGUCrMC1OIrEXaUUKge/pWKMxeCi1
+	5Rk/a0V7qdU1zojruf7mIZppVxDbjmLYZQ+w+uvivysLxW+rDDBncIcS1j09fXNAu4M6h8FNgN468
+	EzHd5708xj1yIK71XjtsAJoqIYK08XxJZleqQb4OV/dzPN1CZiuL/C/Wd941/yeLeB9/z43zYJZY3
+	4iP2oE5FJoJAG80daebWyZEODp/+PkH8Dd1HoKKF6jE77F2UJeV/bQgQvf5YD8zTEy32PBIuMkvSp
+	DYKzyDwKn31IsqNQbFKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nSfxh-00GeVt-Rd; Fri, 11 Mar 2022 14:09:45 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nSrPh-000bqA-3n; Sat, 12 Mar 2022 02:23:25 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nSfxa-00GeNG-Qw; Fri, 11 Mar 2022 14:09:42 +0000
+ id 1nSrPf-000bpT-0c; Sat, 12 Mar 2022 02:23:24 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5118461ED9;
- Fri, 11 Mar 2022 14:09:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 533DCC340F5;
- Fri, 11 Mar 2022 14:09:37 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 83AC7617CB;
+ Sat, 12 Mar 2022 02:23:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F7EC340E9;
+ Sat, 12 Mar 2022 02:23:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1647007777;
- bh=pBU8eWzce6ApAIANMXvFwA0HyPcMlWbrMfVuhgBa7Os=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pNWsT92fWbyJas68mktc5eYgi81P13AVCqRIQlSN4XVfYmPy7gohp1e+/cMVl1q7m
- tafbr0UXzn/H3voKegA5YB5PEfwUyd8nRUzv+lpNR1KrBKecslGiyrUR6xDf2iHJ5S
- YQW/2n9zGauDBWf5x12aJXDWEzMwd3Og3RKe4g2Pcsg8Y+9qCP4haMoIvGZeJloWwc
- L1cVBekdxcZPTBYBvYZJZPNn5CnEThQVH1XMUeSTl3BGrntEWO+NwfFof7wDKq1GLb
- CQ9addVbQXyPcYAN0vKJJrWsdxO/nHTGNZGlxeqgY9RBU7ase2cAqgGELpyxC3Kk2P
- AQh5lCDg2Td1Q==
-Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
- (envelope-from <mchehab@kernel.org>)
- id 1nSfxX-000lHJ-4N; Fri, 11 Mar 2022 15:09:35 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: 
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Dmitry Osipenko <digetx@gmail.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ming Qian <ming.qian@nxp.com>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Subject: [PATCH v2 15/38] media: platform: ge2d: move config to its own file
-Date: Fri, 11 Mar 2022 15:07:28 +0100
-Message-Id: <b57b7e055791a38bf441be85f7c0bdfed5998d44.1647006877.git.mchehab@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <cover.1647006877.git.mchehab@kernel.org>
-References: <cover.1647006877.git.mchehab@kernel.org>
+ s=k20201202; t=1647051802;
+ bh=H7+KWKVuEkz2ZDnsRcOBekRcv+1e9fwHY0nBxbU/9qo=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=TEqfYNq9bXWlhC8GsZFRVdQy47W6IotvpHIS1jRt3j63yhRnbZZP8tbHw8BbG3yQe
+ FJmtBYoVkZ/N3Fl1mwnAspJV79WzaNT3v+dAPpkIAGesrghfnr3QeIK+zLLXyfN3uB
+ 0OlkxCHPlCukC4DqtQ3NvJyRpL9N+b1XrYY5e8AIvhBjmet8D9oNeo99e5fdS1qnaM
+ Ih37ziRKuYXJZRVIwAFmPZzM92oZaYUvaUBUptKE8r+lAp7Qp/bGAydxIm29wQIei1
+ dm2RSpTwlB758H5Hq5NPnMFgVuBPVyrvLhXj+KAAip+ViBJSUmTK5dmGuy6jxt0bFg
+ OodxViAEyzUpw==
 MIME-Version: 1.0
+In-Reply-To: <20220222195153.3817625-1-trix@redhat.com>
+References: <20220222195153.3817625-1-trix@redhat.com>
+Subject: Re: [PATCH] clk: cleanup comments
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@axis.com, linux-amlogic@lists.infradead.org,
+ Tom Rix <trix@redhat.com>
+To: alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+ dinguyen@kernel.org, f.fainelli@gmail.com, jbrunet@baylibre.com,
+ jesper.nilsson@axis.com, khilman@baylibre.com, lars.persson@axis.com,
+ martin.blumenstingl@googlemail.com, mturquette@baylibre.com,
+ narmstrong@baylibre.com, nicolas.ferre@microchip.com, rjui@broadcom.com,
+ sbranden@broadcom.com, trix@redhat.com
+Date: Fri, 11 Mar 2022 18:23:20 -0800
+User-Agent: alot/0.10
+Message-Id: <20220312022321.D4F7EC340E9@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220311_060938_980925_223CC8E5 
-X-CRM114-Status: GOOD (  15.10  )
+X-CRM114-CacheID: sfid-20220311_182323_124210_3FDFFD89 
+X-CRM114-Status: UNSURE (   7.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,77 +79,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In order to better organize the platform/Kconfig, place
-ge2d-specific config stuff on a separate Kconfig file.
+Quoting trix@redhat.com (2022-02-22 11:51:53)
+> From: Tom Rix <trix@redhat.com>
+> 
+> For spdx
+> Space instead of tab before spdx tag
+> 
+> Removed repeated works
+> the, to, two
+> 
+> Replacements
+> much much to a much
+> 'to to' to 'to do'
+> aready to already
+> Comunications to Communications
+> freqency to frequency
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
+> ---
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
-
-To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-See [PATCH v2 00/38] at: https://lore.kernel.org/all/cover.1647006877.git.mchehab@kernel.org/
-
- drivers/media/platform/Kconfig            | 15 +--------------
- drivers/media/platform/meson/ge2d/Kconfig | 14 ++++++++++++++
- 2 files changed, 15 insertions(+), 14 deletions(-)
- create mode 100644 drivers/media/platform/meson/ge2d/Kconfig
-
-diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-index 103f3771fd29..da1fa4642bca 100644
---- a/drivers/media/platform/Kconfig
-+++ b/drivers/media/platform/Kconfig
-@@ -54,6 +54,7 @@ source "drivers/media/platform/coda/Kconfig"
- source "drivers/media/platform/davinci/Kconfig"
- 
- source "drivers/media/platform/exynos-gsc/Kconfig"
-+source "drivers/media/platform/meson/ge2d/Kconfig"
- source "drivers/media/platform/omap/Kconfig"
- 
- source "drivers/media/platform/aspeed/Kconfig"
-@@ -284,20 +285,6 @@ config VIDEO_MEM2MEM_DEINTERLACE
- 	help
- 	    Generic deinterlacing V4L2 driver.
- 
--config VIDEO_MESON_GE2D
--	tristate "Amlogic 2D Graphic Acceleration Unit"
--	depends on V4L_MEM2MEM_DRIVERS
--	depends on VIDEO_DEV && VIDEO_V4L2
--	depends on ARCH_MESON || COMPILE_TEST
--	select VIDEOBUF2_DMA_CONTIG
--	select V4L2_MEM2MEM_DEV
--	help
--	  This is a v4l2 driver for Amlogic GE2D 2D graphics accelerator.
--	  GE2D is a standalone 2D graphic acceleration unit, with color converter,
--	  image scaling, BitBLT & alpha blending operations.
--
--	  To compile this driver as a module choose m here.
--
- config VIDEO_SAMSUNG_S5P_G2D
- 	tristate "Samsung S5P and EXYNOS4 G2D 2d graphics accelerator driver"
- 	depends on V4L_MEM2MEM_DRIVERS
-diff --git a/drivers/media/platform/meson/ge2d/Kconfig b/drivers/media/platform/meson/ge2d/Kconfig
-new file mode 100644
-index 000000000000..8c3f3b1b6b05
---- /dev/null
-+++ b/drivers/media/platform/meson/ge2d/Kconfig
-@@ -0,0 +1,14 @@
-+config VIDEO_MESON_GE2D
-+	tristate "Amlogic 2D Graphic Acceleration Unit"
-+	depends on V4L_MEM2MEM_DRIVERS
-+	depends on VIDEO_DEV && VIDEO_V4L2
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select VIDEOBUF2_DMA_CONTIG
-+	select V4L2_MEM2MEM_DEV
-+	help
-+	  This is a v4l2 driver for Amlogic GE2D 2D graphics accelerator.
-+	  GE2D is a standalone 2D graphic acceleration unit, with color converter,
-+	  image scaling, BitBLT & alpha blending operations.
-+
-+	  To compile this driver as a module choose m here.
-+
--- 
-2.35.1
-
+Applied to clk-next
 
 _______________________________________________
 linux-amlogic mailing list
