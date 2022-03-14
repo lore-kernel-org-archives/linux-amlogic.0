@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ADB5C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Mar 2022 08:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5634C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Mar 2022 08:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+YtGVV8ia1VtXlMRt+bVv7OnS+DwpC13oDls/GH4xUE=; b=buryEjfEuK3rZD
-	aQbUM0OGyH4O+smuZFC3GFIBpJIwxxQxtZPhIFRl6Uz1g9kE72wD8EYJBeo3pCyzpQBQmv7+dDrJ7
-	pc3xQohMFG/jzTDViBRRzCk9+LniM739THd0s4zGAoXjue9TfuDV6emLHcobR2jQ7Xmg0eMq50BeJ
-	G3yvd0q9Wdw8q0tPMSbN3UdNqkhF92lYnlC0AZd+LYYOHkeHh/Wo9AIxnMRBFxj7Z9a/fsvppfZ97
-	jOVA0MswQHvUgmIrwtMbKrrR67XF0A0q/pOG4+tGv7digMTiOoDAPfkFpC5JZkKbw1GR+dnsGLnDO
-	3QVsVLJTWYsfp3VbMd7A==;
+	List-Owner; bh=HM8wLaAsnVZJtWLmO5ENdWAa7/OocPVBi4prZ3WaJHw=; b=jLY8XlLkW+qjjo
+	BwQGwK6bs4anQbGlH/OrNiInzaW+POnhUCGEuEjE5mJEVpIJAi+NGfEMZWFf0cJ3AIxG5LumcVBlB
+	k5R+qP0k79bP5hsFl/w4SDmQ9YFkDq3qRM0H0InKwo5JHfAsI8gAM3yO8CT20VsQOm2uH02hPAec5
+	zyB30JVINjl6Pv2tjMowDoKY6fHM0Do9ORJN96soJvdX4thM7uU+FT7eOyqVOymmDcuofDqB9Y9sJ
+	FjkFVOBUNUuvMjpzUuW+mvDUdkQGtuSCMLJoEyhwnJ/jKIoWYIIirf0aHRvxRWqiwwUY4ekPz9fGk
+	K4YyUNe+NOFjA3S2Vr2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nTfur-004PsZ-Hc; Mon, 14 Mar 2022 08:18:57 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1nTfym-004Rld-KY; Mon, 14 Mar 2022 08:23:00 +0000
+Received: from desiato.infradead.org ([90.155.92.199])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nTfej-004IQZ-A0
- for linux-amlogic@lists.infradead.org; Mon, 14 Mar 2022 08:02:18 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id p9so22429181wra.12
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Mar 2022 01:02:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=FCTa1MEHZ8RflaCaL+Kv3IB7oupUyUxIYhWpI7cZElk=;
- b=CPYvO7CXsDtRHFv+aDgUHU3k7MoLfFq17gtgRZR4JdQQpMZli8AiYNEUu+PbzficSb
- kDLK7fNDlYCoxWfM3BOU2HueKNJDZIK7I8FZ6wWB9ui2crHxS9Xs4NT9/goKSvhMxDaC
- Su/z3KOd5lN3ajtVx0cM1iXhpFPSDH2ClbJUQMQ4FZayf+7vJ1C2ZcNeR5klliK+Zh8G
- yC+yUtrQhzURXVIK4aC3wcr1GxrSzO65DF7KDecC6oL00uM9/eG1Nn13sUKmdnUE3x+J
- HCgbhL6ICpV2tGofvMIQEVBoxio1VM2bYHKzKXhsw+s4FNCnL8RBXUZ86ObcZVOCX5IQ
- z8uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=FCTa1MEHZ8RflaCaL+Kv3IB7oupUyUxIYhWpI7cZElk=;
- b=Fjd+AL9Jljo7f6Hols1MM9lPFWKp7IVE4AO83Y+FBXb+SeCDqGcBazwkHEntyKRMMg
- Im74cDZK4iS4Jdd8pgFWIntDEL0Px2yi4za2GV3Eo29pKgW/eysQyScC3wbHwPP/U8gQ
- mZh5VMYzRq7r+sn4f6/tOPtql3V7eVP8NlO8K7Dj+IEHvVzelbzEwHe2u0UXeKnYqXDO
- D74gY3gRHGddtbEHBe96RaaN+5890HLpbJ4mEIrf69ZYtrr3jutDS/b5VT7CtCnFJNx3
- PQJSQ9JRGRk5DXngEdP7+4TRa4gXoRuvV9PddcRECIZUkkQJxVQb0v3Aq1o8cm8viilB
- yKSA==
-X-Gm-Message-State: AOAM530gbMVMTOHulhqbTQggHYRyg4pDu/KygOrrn4F+nGum9myfu9vS
- zGWNZyywlrbpcB8SRv3GPbZ8uQ==
-X-Google-Smtp-Source: ABdhPJygPodjlvvW7OainAGLKsdDvzFoilMLfj02cRFY2jabbkEhO2PBY0GqOsOjtLsFBdJBcYu+Ag==
-X-Received: by 2002:a5d:51cb:0:b0:203:8dff:e9e4 with SMTP id
- n11-20020a5d51cb000000b002038dffe9e4mr13637700wrv.512.1647244935364; 
- Mon, 14 Mar 2022 01:02:15 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:67f0:57f7:2185:6d18?
- ([2001:861:44c0:66c0:67f0:57f7:2185:6d18])
- by smtp.gmail.com with ESMTPSA id
- o6-20020a5d6846000000b001f044a8e214sm12331808wrw.107.2022.03.14.01.02.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Mar 2022 01:02:14 -0700 (PDT)
-Message-ID: <846c8a4f-73ed-5003-1c7c-578d580a9833@baylibre.com>
-Date: Mon, 14 Mar 2022 09:02:19 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] media: meson-ir-tx: fix platform_get_irq.cocci warning
-Content-Language: en-US
-To: Yihao Han <hanyihao@vivo.com>, Sean Young <sean@mess.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ id 1nTfpX-004LzU-KV; Mon, 14 Mar 2022 08:13:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description;
+ bh=GTX0Fhaf+Wy7UcpONcvzdOGtAwJcod667qWv0x3RWfM=; b=N4+z7QNW5YD8n+WKvoiMA7pDGO
+ HAuiD5BJtW5u6wW3HOITIa858P3XBPDWqf+M8B6cAx2vRpJ4z1FuwCnUHBq2SZYELfz3+V4xu9Hex
+ ICRnW6qA4NiVMgfYB+07iX/E1eR2rumWedLF20qKsOq+42EnasKc2IWlj+xS5BvEbFIJ4C5RCcdQ4
+ FC5HFYPpU3BHw28AhjKdwu1NimpSr4xH9wGOn0zJcr7Go0BULVBi2juBFg7jCgCgZ/OR6RbClG5dH
+ jmFiXRz12C1uFzzTUqNikBApJZdzPLR42CKSpceO/t4oYTPFA1yru0yphSXE8UTo4mZMN5Sdq+fwk
+ ouq18I8g==;
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+ by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nTfYo-000kPi-4o; Mon, 14 Mar 2022 07:56:15 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id D4246CE10BF;
+ Mon, 14 Mar 2022 07:56:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E9BC341D7;
+ Mon, 14 Mar 2022 07:56:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1647244562;
+ bh=0NC/tC/kV06rr47XvjpViOX6Ts4NzorwYqCzhcRrWH8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=SVGjmsYIDysSiC05lcChWEnhMsnfGs7QFC+eJGuvGtp3n1unDAX9L+7FRlgAPq68h
+ 6DjoiT+0WOc9M/BKIVTpk8HIposCeEsyI40X3cONdC24JhOLqt9x2dvY0epQzfOCVM
+ Ows9PlZYVAqmBLAaWaKeD45lv/6Fxh8pwDJvp3DOGyDVi3jTh+tp3QrcyGlSojlUwP
+ tKJCz0PRAnN7YknW6fkcbrJLbmSuxlJarZLSQaR5fwYQlvE2058uELQCOH+SiZpVbv
+ aK+9XqOUorg7DFyrxVhokEVogh5hrlwiN405UzZd8gYq9a1zgpwdGlM9VBkwjxmW8q
+ 2SyFybRyCf5cA==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+ (envelope-from <mchehab@kernel.org>)
+ id 1nTfYe-001kWt-0t; Mon, 14 Mar 2022 08:56:00 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Cai Huoqing <caihuoqing@baidu.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Dmitry Osipenko <digetx@gmail.com>,
+ Eugen Hristev <eugen.hristev@microchip.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Jacopo Mondi <jacopo@jmondi.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: kernel@vivo.com
-References: <20220310074059.12269-1-hanyihao@vivo.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220310074059.12269-1-hanyihao@vivo.com>
+ Ming Qian <ming.qian@nxp.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Subject: [PATCH 42/64] media: platform: rename meson/ge2d/ to
+ amlogic/meson-ge2d/
+Date: Mon, 14 Mar 2022 08:55:34 +0100
+Message-Id: <ca17efa7ff931475071461fd046e50c300575834.1647242579.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <cover.1647242578.git.mchehab@kernel.org>
+References: <cover.1647242578.git.mchehab@kernel.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220314_010217_449575_F75F5DA7 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20220314_075610_623558_78A1B83A 
+X-CRM114-Status: GOOD (  10.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,40 +96,105 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/03/2022 08:40, Yihao Han wrote:
-> Remove dev_err() messages after platform_get_irq*() failures.
-> platform_get_irq() already prints an error.
-> 
-> Generated by: scripts/coccinelle/api/platform_get_irq.cocci
-> 
-> Signed-off-by: Yihao Han <hanyihao@vivo.com>
-> ---
->   drivers/media/rc/meson-ir-tx.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
-> index 63e1dbf0a4e9..abdb62b16e98 100644
-> --- a/drivers/media/rc/meson-ir-tx.c
-> +++ b/drivers/media/rc/meson-ir-tx.c
-> @@ -323,10 +323,8 @@ static int __init meson_irtx_probe(struct platform_device *pdev)
->   		return PTR_ERR(ir->reg_base);
->   
->   	irq = platform_get_irq(pdev, 0);
-> -	if (irq < 0) {
-> -		dev_err(dev, "no irq resource found\n");
-> +	if (irq < 0)
->   		return -ENODEV;
-> -	}
->   
->   	ir->dev = dev;
->   	ir->carrier = MIRTX_DEFAULT_CARRIER;
+As the end goal is to have platform drivers split by vendor,
+rename meson/ge2d/ to amlogic/meson-ge2d/.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+---
+
+To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
+See [PATCH 00/64] at: https://lore.kernel.org/all/cover.1647242578.git.mchehab@kernel.org/
+
+ MAINTAINERS                                                     | 2 +-
+ drivers/media/platform/Kconfig                                  | 2 +-
+ drivers/media/platform/Makefile                                 | 2 +-
+ .../media/platform/{meson/ge2d => amlogic/meson-ge2d}/Kconfig   | 0
+ .../media/platform/{meson/ge2d => amlogic/meson-ge2d}/Makefile  | 0
+ .../platform/{meson/ge2d => amlogic/meson-ge2d}/ge2d-regs.h     | 0
+ .../media/platform/{meson/ge2d => amlogic/meson-ge2d}/ge2d.c    | 0
+ 7 files changed, 3 insertions(+), 3 deletions(-)
+ rename drivers/media/platform/{meson/ge2d => amlogic/meson-ge2d}/Kconfig (100%)
+ rename drivers/media/platform/{meson/ge2d => amlogic/meson-ge2d}/Makefile (100%)
+ rename drivers/media/platform/{meson/ge2d => amlogic/meson-ge2d}/ge2d-regs.h (100%)
+ rename drivers/media/platform/{meson/ge2d => amlogic/meson-ge2d}/ge2d.c (100%)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b83cf0eb99ce..09b0e60da4e9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12523,7 +12523,7 @@ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+-F:	drivers/media/platform/meson/ge2d/
++F:	drivers/media/platform/amlogic/meson-ge2d/
+ 
+ MESON NAND CONTROLLER DRIVER FOR AMLOGIC SOCS
+ M:	Liang Yang <liang.yang@amlogic.com>
+diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
+index 0a4260627a00..b4faee0a1b63 100644
+--- a/drivers/media/platform/Kconfig
++++ b/drivers/media/platform/Kconfig
+@@ -67,6 +67,7 @@ config VIDEO_MUX
+ 
+ source "drivers/media/platform/allegro-dvt/Kconfig"
+ source "drivers/media/platform/am437x/Kconfig"
++source "drivers/media/platform/amlogic/meson-ge2d/Kconfig"
+ source "drivers/media/platform/amphion/Kconfig"
+ source "drivers/media/platform/aspeed/Kconfig"
+ source "drivers/media/platform/atmel/Kconfig"
+@@ -77,7 +78,6 @@ source "drivers/media/platform/exynos-gsc/Kconfig"
+ source "drivers/media/platform/exynos4-is/Kconfig"
+ source "drivers/media/platform/intel/Kconfig"
+ source "drivers/media/platform/marvell/Kconfig"
+-source "drivers/media/platform/meson/ge2d/Kconfig"
+ source "drivers/media/platform/mtk-jpeg/Kconfig"
+ source "drivers/media/platform/mtk-mdp/Kconfig"
+ source "drivers/media/platform/mtk-vcodec/Kconfig"
+diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
+index 8b2deba4b62c..48531f93d92f 100644
+--- a/drivers/media/platform/Makefile
++++ b/drivers/media/platform/Makefile
+@@ -7,6 +7,7 @@
+ # (e. g. LC_ALL=C sort Makefile)
+ obj-y += allegro-dvt/
+ obj-y += am437x/
++obj-y += amlogic/meson-ge2d/
+ obj-y += amphion/
+ obj-y += aspeed/
+ obj-y += atmel/
+@@ -17,7 +18,6 @@ obj-y += exynos-gsc/
+ obj-y += exynos4-is/
+ obj-y += intel/
+ obj-y += marvell/
+-obj-y += meson/ge2d/
+ obj-y += mtk-jpeg/
+ obj-y += mtk-mdp/
+ obj-y += mtk-vcodec/
+diff --git a/drivers/media/platform/meson/ge2d/Kconfig b/drivers/media/platform/amlogic/meson-ge2d/Kconfig
+similarity index 100%
+rename from drivers/media/platform/meson/ge2d/Kconfig
+rename to drivers/media/platform/amlogic/meson-ge2d/Kconfig
+diff --git a/drivers/media/platform/meson/ge2d/Makefile b/drivers/media/platform/amlogic/meson-ge2d/Makefile
+similarity index 100%
+rename from drivers/media/platform/meson/ge2d/Makefile
+rename to drivers/media/platform/amlogic/meson-ge2d/Makefile
+diff --git a/drivers/media/platform/meson/ge2d/ge2d-regs.h b/drivers/media/platform/amlogic/meson-ge2d/ge2d-regs.h
+similarity index 100%
+rename from drivers/media/platform/meson/ge2d/ge2d-regs.h
+rename to drivers/media/platform/amlogic/meson-ge2d/ge2d-regs.h
+diff --git a/drivers/media/platform/meson/ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+similarity index 100%
+rename from drivers/media/platform/meson/ge2d/ge2d.c
+rename to drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+-- 
+2.35.1
+
 
 _______________________________________________
 linux-amlogic mailing list
