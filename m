@@ -4,88 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92FC0C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Mar 2022 14:21:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B178C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Mar 2022 16:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FQ+NUA5Vd957Mb8blkmNaUTwoZetQWk/bkgX+JEWGUE=; b=FVeQNeKCjxKhVq
-	o7S36aOoXLMn/C/S2lvv6Kz7kbAba4Ly+9HISTCFR2o23T64pT22nqWrjr5FjE5L2tu07ZAhJGa77
-	1VJ46/NCgNnkBanyYM48wdy0QLHCeZgi9jSj2UpuScDZrOyNh6aDc2oyrJdz8sIhcrspig9Ir6roL
-	Q2P5eXMtWYQWXsHHnYSZXFW9WBGTmQbSPuzzmqAOBlcjN3Ge3BXlOE/Fwg3K/9XGjPXC5dqUelyn4
-	tcMXcXGUGDAN+g6sLTIDgt6Zw6BlJa9JfXLRS+R+uk8GS5zbaazcvJj6i4855Wq4b9dg6pfhziR49
-	82JM+Vtz6xjcxpCumwtA==;
+	List-Owner; bh=EeKH4Vde51IdJPec8yURvkF+x79U9CIs0IUNpHKvWbQ=; b=khsU01bgMTkcw8
+	/YVxnUkSckWpWwSpCtNotxBm7GDpEhV0/ZVFUXaXH279f/zLvvvv66J5Ua9ebqgYd2OGRgIPNh4DA
+	mAre3gBM/lQIurmnBcjvibw/DjxJavV27uouXOLaGAbaCJugRypX+h8jrOcmYg4UjUc4Qsg0gzexR
+	JhcUuL8hyz0Y8/oFdIGu5U1AnzYGwwDjAtYztieKIJ3fRicz7mZsLB5Six8GP7s+7VNHBHpQMXp1o
+	TdxN1kmXE/rg97I/6jD7Tqpt6CCnNrrkrSXECJwexEroJ3inuRWfDPu78NYdpo0Z+cCcE7ZvUMiII
+	y0tixge+HqB2f3dHWSVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nTlZF-005eTb-LD; Mon, 14 Mar 2022 14:21:01 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1nTo0f-006CHk-65; Mon, 14 Mar 2022 16:57:29 +0000
+Received: from relay5-d.mail.gandi.net ([217.70.183.197])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nTlWi-005d1l-98
- for linux-amlogic@lists.infradead.org; Mon, 14 Mar 2022 14:18:26 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1nTlVQ-0004zL-Eh; Mon, 14 Mar 2022 15:17:04 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nTlVI-000f2l-Q9; Mon, 14 Mar 2022 15:16:55 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nTlVG-0097af-Ma; Mon, 14 Mar 2022 15:16:54 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>,
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- UNGLinuxDriver@microchip.com, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Matt Mackall <mpm@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>
-Cc: linux-clk@vger.kernel.org, kernel@pengutronix.de,
- Paul Cercueil <paul@crapouillou.net>, Vladimir Zapolskiy <vz@mleia.com>,
- Heiko Stuebner <heiko@sntech.de>, Tomislav Denis <tomislav.denis@avl.com>,
- Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
- Michal Simek <michal.simek@xilinx.com>,
- =?utf-8?q?Andr=C3=A9_Gustavo_Nakagomi_Lopez?= <andregnl@usp.br>,
- Cai Huoqing <caihuoqing@baidu.com>, linux-iio@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ id 1nTmJ9-005lo1-En; Mon, 14 Mar 2022 15:08:32 +0000
+Received: (Authenticated sender: jacopo@jmondi.org)
+ by mail.gandi.net (Postfix) with ESMTPSA id 54FA41C0013;
+ Mon, 14 Mar 2022 15:07:47 +0000 (UTC)
+Date: Mon, 14 Mar 2022 16:07:45 +0100
+From: Jacopo Mondi <jacopo@jmondi.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+ =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Jeffery <andrew@aj.id.au>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Andrey Utkin <andrey.utkin@corp.bluecherry.net>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Andy Gross <agross@kernel.org>, Andy Walls <awalls@md.metrocast.net>,
+ Antoine Jacquet <royale@zerezo.com>,
+ Anton Sviridenko <anton@corp.bluecherry.net>,
+ Antti Palosaari <crope@iki.fi>, Arec Kao <arec.kao@intel.com>,
+ Benoit Parrot <bparrot@ti.com>, Bin Liu <bin.liu@mediatek.com>,
+ Bingbu Cao <bingbu.cao@intel.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Bluecherry Maintainers <maintainers@bluecherrydvr.com>,
+ Chen-Yu Tsai <wens@csie.org>, Christian Hemp <c.hemp@phytec.de>,
+ Colin Ian King <colin.king@intel.com>,
+ Corentin Labbe <clabbe@baylibre.com>,
+ Dafna Hirschfeld <dafna@fastmail.com>, Dan Scally <djrscally@gmail.com>,
+ Dmitry Osipenko <digetx@gmail.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Eddie James <eajames@linux.ibm.com>, Erik Andren <erik.andren@gmail.com>,
+ Eugen Hristev <eugen.hristev@microchip.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Fabien Dessenne <fabien.dessenne@foss.st.com>,
+ Fabio Estevam <festevam@gmail.com>, Felipe Balbi <balbi@kernel.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Giulio Benetti <giulio.benetti@benettiengineering.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, Heiko Stuebner <heiko@sntech.de>,
+ Heungjun Kim <riverful.kim@samsung.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Hugues Fruchet <hugues.fruchet@foss.st.com>,
+ Hyun Kwon <hyun.kwon@xilinx.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Jacob Chen <jacob-chen@iotwrt.com>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>, Jaroslav Kysela <perex@perex.cz>,
+ Jean-Christophe Trotin <jean-christophe.trotin@foss.st.com>,
+ Jeff LaBundy <jeff@labundy.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Joe Hung <joe_hung@ilitek.com>, Joel Stanley <joel@jms.id.au>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Marek Vasut <marex@denx.de>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH v8 03/16] hwmon: Make use of devm_clk_get_enabled()
-Date: Mon, 14 Mar 2022 15:16:30 +0100
-Message-Id: <20220314141643.22184-4-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220314141643.22184-1-u.kleine-koenig@pengutronix.de>
-References: <20220314141643.22184-1-u.kleine-koenig@pengutronix.de>
+ Martina Krasteva <martinax.krasteva@intel.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Michael Grzeschik <m.grzeschik@pengutronix.de>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Michal Simek <michal.simek@xilinx.com>,
+ Mike Isely <isely@pobox.com>, Ming Qian <ming.qian@nxp.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Mirela Rabulea <mirela.rabulea@nxp.com>,
+ NXP Linux Team <linux-imx@nxp.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Olivier Lorin <o.lorin@laposte.net>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Pavel Machek <pavel@ucw.cz>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Randy Dunlap <rdunlap@infradead.org>, Ray Jui <rjui@broadcom.com>,
+ Rick Chang <rick.chang@mediatek.com>, Robert Foss <robert.foss@linaro.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Scott Branden <sbranden@broadcom.com>, Sean Young <sean@mess.org>,
+ Shawn Guo <shawnguo@kernel.org>, Shawn Tu <shawnx.tu@intel.com>,
+ Shijie Qin <shijie.qin@nxp.com>, Shuah Khan <skhan@linuxfoundation.org>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+ Steve Longerbeam <slongerbeam@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, Takashi Iwai <tiwai@suse.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>,
+ Tiffany Lin <tiffany.lin@mediatek.com>, Todor Tomov <todor.too@gmail.com>,
+ Vincent Knecht <vincent.knecht@mailoo.org>,
+ Yong Deng <yong.deng@magewell.com>, Yong Zhi <yong.zhi@intel.com>,
+ Zhou Peng <eagle.zhou@nxp.com>, alsa-devel@alsa-project.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-aspeed@lists.ozlabs.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+ linux-usb@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
+ openbmc@lists.ozlabs.org
+Subject: Re: [PATCH] media: Kconfig: cleanup VIDEO_DEV dependencies
+Message-ID: <20220314150745.ph2jpjpvdft3645v@uno.localdomain>
+References: <42ae3d28d4d822f3e14db76b99f2f4c41688ae3e.1647155467.git.mchehab@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5520; i=uwe@kleine-koenig.org;
- h=from:subject; bh=yoWCqkNop/4c6OeHmiSUVdq/1kzaWm1CMWom+WTtANQ=;
- b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBiL03yCpTW66mjenPvolXbHi93VsM0yzx1/1i/xg38
- JATIi6SJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYi9N8gAKCRDB/BR4rcrsCQkqB/
- 9PjEPh2PyWfNPLXABv6MwOZQFQlkQEqb7Uekuh33gB2X0gHncSoOfkEhvSA3yU5f1JKsoWGktEOVRg
- n+3bvFwDe1hNoOS5coZgZV7FTfW8NcDdt1L55ROM501f7GHgh9/VyyqTbW9Jfg108IB6GXoVFmyiA3
- zdrIOdlQb2gSicQGiLiTWR0+HZModM3RWjv+KN8b3Mz5fHJdX2rt20lVLbG6aC4fgbxgl/k2GNIq7F
- utAI4QGzo9+Vc41UCForfyIXi/JNyyOSfFvugrXq8ze/4V3IkxdO+/DOtDfkPum8ClhrVLXZeDmngJ
- RvozUy0kpU8RDShp4aDvanTK0USO9z
-X-Developer-Key: i=uwe@kleine-koenig.org; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <42ae3d28d4d822f3e14db76b99f2f4c41688ae3e.1647155467.git.mchehab@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220314_071824_517686_43AE463F 
-X-CRM114-Status: GOOD (  15.52  )
+X-CRM114-CacheID: sfid-20220314_080827_822292_891077FB 
+X-CRM114-Status: GOOD (  25.26  )
+X-Mailman-Approved-At: Mon, 14 Mar 2022 09:56:58 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,105 +153,381 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-U2V2ZXJhbCBkcml2ZXJzIG1hbnVhbGx5IHJlZ2lzdGVyIGEgZGV2bSBoYW5kbGVyIHRvIGRpc2Fi
-bGUgdGhlaXIgY2xrLgpDb252ZXJ0IHRoZW0gdG8gZGV2bV9jbGtfZ2V0X2VuYWJsZWQoKS4KClNp
-Z25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9u
-aXguZGU+Ci0tLQogZHJpdmVycy9od21vbi9heGktZmFuLWNvbnRyb2wuYyB8IDE1ICstLS0tLS0t
-LS0tLS0tLQogZHJpdmVycy9od21vbi9sdGMyOTQ3LWNvcmUuYyAgICB8IDE3ICstLS0tLS0tLS0t
-LS0tLS0tCiBkcml2ZXJzL2h3bW9uL21yNzUyMDMuYyAgICAgICAgIHwgMjYgKy0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvaHdtb24vc3Bhcng1LXRlbXAuYyAgICAgfCAxOSArLS0t
-LS0tLS0tLS0tLS0tLS0tCiA0IGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNzMgZGVs
-ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9od21vbi9heGktZmFuLWNvbnRyb2wuYyBi
-L2RyaXZlcnMvaHdtb24vYXhpLWZhbi1jb250cm9sLmMKaW5kZXggZDIwOTJjMTdkOTkzLi5jZTQw
-NGVkOWM1M2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvaHdtb24vYXhpLWZhbi1jb250cm9sLmMKKysr
-IGIvZHJpdmVycy9od21vbi9heGktZmFuLWNvbnRyb2wuYwpAQCAtMzkzLDExICszOTMsNiBAQCBz
-dGF0aWMgaW50IGF4aV9mYW5fY29udHJvbF9pbml0KHN0cnVjdCBheGlfZmFuX2NvbnRyb2xfZGF0
-YSAqY3RsLAogCXJldHVybiByZXQ7CiB9CiAKLXN0YXRpYyB2b2lkIGF4aV9mYW5fY29udHJvbF9j
-bGtfZGlzYWJsZSh2b2lkICpjbGspCi17Ci0JY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGNsayk7Ci19
-Ci0KIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25fY2hhbm5lbF9pbmZvICpheGlfZmFuX2NvbnRy
-b2xfaW5mb1tdID0gewogCUhXTU9OX0NIQU5ORUxfSU5GTyhwd20sIEhXTU9OX1BXTV9JTlBVVCks
-CiAJSFdNT05fQ0hBTk5FTF9JTkZPKGZhbiwgSFdNT05fRl9JTlBVVCB8IEhXTU9OX0ZfRkFVTFQg
-fCBIV01PTl9GX0xBQkVMKSwKQEAgLTQ3NywyMCArNDcyLDEyIEBAIHN0YXRpYyBpbnQgYXhpX2Zh
-bl9jb250cm9sX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAJaWYgKElTX0VS
-UihjdGwtPmJhc2UpKQogCQlyZXR1cm4gUFRSX0VSUihjdGwtPmJhc2UpOwogCi0JY2xrID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsIE5VTEwpOworCWNsayA9IGRldm1fY2xrX2dldF9lbmFibGVk
-KCZwZGV2LT5kZXYsIE5VTEwpOwogCWlmIChJU19FUlIoY2xrKSkgewogCQlkZXZfZXJyKCZwZGV2
-LT5kZXYsICJjbGtfZ2V0IGZhaWxlZCB3aXRoICVsZFxuIiwgUFRSX0VSUihjbGspKTsKIAkJcmV0
-dXJuIFBUUl9FUlIoY2xrKTsKIAl9CiAKLQlyZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUoY2xrKTsK
-LQlpZiAocmV0KQotCQlyZXR1cm4gcmV0OwotCi0JcmV0ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jl
-c2V0KCZwZGV2LT5kZXYsIGF4aV9mYW5fY29udHJvbF9jbGtfZGlzYWJsZSwgY2xrKTsKLQlpZiAo
-cmV0KQotCQlyZXR1cm4gcmV0OwotCiAJY3RsLT5jbGtfcmF0ZSA9IGNsa19nZXRfcmF0ZShjbGsp
-OwogCWlmICghY3RsLT5jbGtfcmF0ZSkKIAkJcmV0dXJuIC1FSU5WQUw7CmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2h3bW9uL2x0YzI5NDctY29yZS5jIGIvZHJpdmVycy9od21vbi9sdGMyOTQ3LWNvcmUu
-YwppbmRleCA1NDIzNDY2ZGU2OTcuLjYyNmY1YmYyYzljNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9o
-d21vbi9sdGMyOTQ3LWNvcmUuYworKysgYi9kcml2ZXJzL2h3bW9uL2x0YzI5NDctY29yZS5jCkBA
-IC05NTYsMTMgKzk1Niw2IEBAIHN0YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICpsdGMyOTQ3X2F0dHJz
-W10gPSB7CiB9OwogQVRUUklCVVRFX0dST1VQUyhsdGMyOTQ3KTsKIAotc3RhdGljIHZvaWQgbHRj
-Mjk0N19jbGtfZGlzYWJsZSh2b2lkICpkYXRhKQotewotCXN0cnVjdCBjbGsgKmV4dGNsayA9IGRh
-dGE7Ci0KLQljbGtfZGlzYWJsZV91bnByZXBhcmUoZXh0Y2xrKTsKLX0KLQogc3RhdGljIGludCBs
-dGMyOTQ3X3NldHVwKHN0cnVjdCBsdGMyOTQ3X2RhdGEgKnN0KQogewogCWludCByZXQ7CkBAIC05
-ODksNyArOTgyLDcgQEAgc3RhdGljIGludCBsdGMyOTQ3X3NldHVwKHN0cnVjdCBsdGMyOTQ3X2Rh
-dGEgKnN0KQogCQlyZXR1cm4gcmV0OwogCiAJLyogY2hlY2sgZXh0ZXJuYWwgY2xvY2sgcHJlc2Vu
-Y2UgKi8KLQlleHRjbGsgPSBkZXZtX2Nsa19nZXRfb3B0aW9uYWwoc3QtPmRldiwgTlVMTCk7CisJ
-ZXh0Y2xrID0gZGV2bV9jbGtfZ2V0X29wdGlvbmFsX2VuYWJsZWQoc3QtPmRldiwgTlVMTCk7CiAJ
-aWYgKElTX0VSUihleHRjbGspKQogCQlyZXR1cm4gZGV2X2Vycl9wcm9iZShzdC0+ZGV2LCBQVFJf
-RVJSKGV4dGNsayksCiAJCQkJICAgICAiRmFpbGVkIHRvIGdldCBleHRlcm5hbCBjbG9ja1xuIik7
-CkBAIC0xMDA3LDE0ICsxMDAwLDYgQEAgc3RhdGljIGludCBsdGMyOTQ3X3NldHVwKHN0cnVjdCBs
-dGMyOTQ3X2RhdGEgKnN0KQogCQkJcmV0dXJuIC1FSU5WQUw7CiAJCX0KIAotCQlyZXQgPSBjbGtf
-cHJlcGFyZV9lbmFibGUoZXh0Y2xrKTsKLQkJaWYgKHJldCkKLQkJCXJldHVybiByZXQ7Ci0KLQkJ
-cmV0ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KHN0LT5kZXYsIGx0YzI5NDdfY2xrX2Rpc2Fi
-bGUsCi0JCQkJCSAgICAgICBleHRjbGspOwotCQlpZiAocmV0KQotCQkJcmV0dXJuIHJldDsKIAkJ
-LyogYXMgaW4gdGFibGUgMSBvZiB0aGUgZGF0YXNoZWV0ICovCiAJCWlmIChyYXRlX2h6ID49IExU
-QzI5NDdfQ0xLX01JTiAmJiByYXRlX2h6IDw9IDEwMDAwMDApCiAJCQlwcmUgPSAwOwpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9od21vbi9tcjc1MjAzLmMgYi9kcml2ZXJzL2h3bW9uL21yNzUyMDMuYwpp
-bmRleCAxYmExZTMxNDU5NjkuLjBjNjkxZjI5MWE2NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9od21v
-bi9tcjc1MjAzLmMKKysrIGIvZHJpdmVycy9od21vbi9tcjc1MjAzLmMKQEAgLTQ2MSwyNCArNDYx
-LDYgQEAgc3RhdGljIGludCBwdnRfZ2V0X3JlZ21hcChzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpw
-ZGV2LCBjaGFyICpyZWdfbmFtZSwKIAlyZXR1cm4gMDsKIH0KIAotc3RhdGljIHZvaWQgcHZ0X2Ns
-a19kaXNhYmxlKHZvaWQgKmRhdGEpCi17Ci0Jc3RydWN0IHB2dF9kZXZpY2UgKnB2dCA9IGRhdGE7
-Ci0KLQljbGtfZGlzYWJsZV91bnByZXBhcmUocHZ0LT5jbGspOwotfQotCi1zdGF0aWMgaW50IHB2
-dF9jbGtfZW5hYmxlKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IHB2dF9kZXZpY2UgKnB2dCkK
-LXsKLQlpbnQgcmV0OwotCi0JcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKHB2dC0+Y2xrKTsKLQlp
-ZiAocmV0KQotCQlyZXR1cm4gcmV0OwotCi0JcmV0dXJuIGRldm1fYWRkX2FjdGlvbl9vcl9yZXNl
-dChkZXYsIHB2dF9jbGtfZGlzYWJsZSwgcHZ0KTsKLX0KLQogc3RhdGljIHZvaWQgcHZ0X3Jlc2V0
-X2NvbnRyb2xfYXNzZXJ0KHZvaWQgKmRhdGEpCiB7CiAJc3RydWN0IHB2dF9kZXZpY2UgKnB2dCA9
-IGRhdGE7CkBAIC01MTUsMTYgKzQ5NywxMCBAQCBzdGF0aWMgaW50IG1yNzUyMDNfcHJvYmUoc3Ry
-dWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwogCi0J
-cHZ0LT5jbGsgPSBkZXZtX2Nsa19nZXQoZGV2LCBOVUxMKTsKKwlwdnQtPmNsayA9IGRldm1fY2xr
-X2dldF9lbmFibGVkKGRldiwgTlVMTCk7CiAJaWYgKElTX0VSUihwdnQtPmNsaykpCiAJCXJldHVy
-biBkZXZfZXJyX3Byb2JlKGRldiwgUFRSX0VSUihwdnQtPmNsayksICJmYWlsZWQgdG8gZ2V0IGNs
-b2NrXG4iKTsKIAotCXJldCA9IHB2dF9jbGtfZW5hYmxlKGRldiwgcHZ0KTsKLQlpZiAocmV0KSB7
-Ci0JCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIGVuYWJsZSBjbG9ja1xuIik7Ci0JCXJldHVybiBy
-ZXQ7Ci0JfQotCiAJcHZ0LT5yc3QgPSBkZXZtX3Jlc2V0X2NvbnRyb2xfZ2V0X2V4Y2x1c2l2ZShk
-ZXYsIE5VTEwpOwogCWlmIChJU19FUlIocHZ0LT5yc3QpKQogCQlyZXR1cm4gZGV2X2Vycl9wcm9i
-ZShkZXYsIFBUUl9FUlIocHZ0LT5yc3QpLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9od21vbi9zcGFy
-eDUtdGVtcC5jIGIvZHJpdmVycy9od21vbi9zcGFyeDUtdGVtcC5jCmluZGV4IDk4YmU0OGUzYTIy
-YS4uMDRmZDg1MDVlNWQ2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2h3bW9uL3NwYXJ4NS10ZW1wLmMK
-KysrIGIvZHJpdmVycy9od21vbi9zcGFyeDUtdGVtcC5jCkBAIC0yNiwxMyArMjYsNiBAQCBzdHJ1
-Y3QgczVfaHdtb24gewogCXN0cnVjdCBjbGsgKmNsazsKIH07CiAKLXN0YXRpYyB2b2lkIHM1X3Rl
-bXBfY2xrX2Rpc2FibGUodm9pZCAqZGF0YSkKLXsKLQlzdHJ1Y3QgY2xrICpjbGsgPSBkYXRhOwot
-Ci0JY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGNsayk7Ci19Ci0KIHN0YXRpYyB2b2lkIHM1X3RlbXBf
-ZW5hYmxlKHN0cnVjdCBzNV9od21vbiAqaHdtb24pCiB7CiAJdTMyIHZhbCA9IHJlYWRsKGh3bW9u
-LT5iYXNlICsgVEVNUF9DRkcpOwpAQCAtMTEzLDcgKzEwNiw2IEBAIHN0YXRpYyBpbnQgczVfdGVt
-cF9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVjdCBkZXZpY2Ug
-Kmh3bW9uX2RldjsKIAlzdHJ1Y3QgczVfaHdtb24gKmh3bW9uOwotCWludCByZXQ7CiAKIAlod21v
-biA9IGRldm1fa3phbGxvYygmcGRldi0+ZGV2LCBzaXplb2YoKmh3bW9uKSwgR0ZQX0tFUk5FTCk7
-CiAJaWYgKCFod21vbikKQEAgLTEyMywxOSArMTE1LDEwIEBAIHN0YXRpYyBpbnQgczVfdGVtcF9w
-cm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogCWlmIChJU19FUlIoaHdtb24tPmJh
-c2UpKQogCQlyZXR1cm4gUFRSX0VSUihod21vbi0+YmFzZSk7CiAKLQlod21vbi0+Y2xrID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsIE5VTEwpOworCWh3bW9uLT5jbGsgPSBkZXZtX2Nsa19nZXRf
-ZW5hYmxlZCgmcGRldi0+ZGV2LCBOVUxMKTsKIAlpZiAoSVNfRVJSKGh3bW9uLT5jbGspKQogCQly
-ZXR1cm4gUFRSX0VSUihod21vbi0+Y2xrKTsKIAotCXJldCA9IGNsa19wcmVwYXJlX2VuYWJsZSho
-d21vbi0+Y2xrKTsKLQlpZiAocmV0KQotCQlyZXR1cm4gcmV0OwotCi0JcmV0ID0gZGV2bV9hZGRf
-YWN0aW9uX29yX3Jlc2V0KCZwZGV2LT5kZXYsIHM1X3RlbXBfY2xrX2Rpc2FibGUsCi0JCQkJICAg
-ICAgIGh3bW9uLT5jbGspOwotCWlmIChyZXQpCi0JCXJldHVybiByZXQ7Ci0KIAlzNV90ZW1wX2Vu
-YWJsZShod21vbik7CiAKIAlod21vbl9kZXYgPSBkZXZtX2h3bW9uX2RldmljZV9yZWdpc3Rlcl93
-aXRoX2luZm8oJnBkZXYtPmRldiwKLS0gCjIuMzUuMQoKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
-LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Mauro
+
+On Sun, Mar 13, 2022 at 08:12:05AM +0100, Mauro Carvalho Chehab wrote:
+> media Kconfig has two entries associated to V4L API:
+> VIDEO_DEV and VIDEO_V4L2.
+>
+> On Kernel 2.6.x, there were two V4L APIs, each one with its own flag.
+> VIDEO_DEV were meant to:
+> 	1) enable Video4Linux and make its Kconfig options to appear;
+> 	2) it makes the Kernel build the V4L core.
+>
+> while VIDEO_V4L2 where used to distinguish between drivers that
+> implement the newer API and drivers that implemented the former one.
+>
+> With time, such meaning changed, specially after the removal of
+> all V4L version 1 drivers.
+>
+> At the current implementation, VIDEO_DEV only does (1): it enables
+> the media options related to V4L, that now has:
+>
+> 	menu "Video4Linux options"
+> 		visible if VIDEO_DEV
+>
+> 	source "drivers/media/v4l2-core/Kconfig"
+> 	endmenu
+>
+> but it doesn't affect anymore the V4L core drivers.
+>
+> The rationale is that the V4L2 core has a "soft" dependency
+> at the I2C bus, and now requires to select a number of other
+> Kconfig options:
+>
+> 	config VIDEO_V4L2
+> 		tristate
+> 		depends on (I2C || I2C=n) && VIDEO_DEV
+> 		select RATIONAL
+> 		select VIDEOBUF2_V4L2 if VIDEOBUF2_CORE
+> 		default (I2C || I2C=n) && VIDEO_DEV
+>
+> In the past, merging them would be tricky, but it seems that it is now
+> possible to merge those symbols, in order to simplify V4L dependencies.
+>
+> Let's keep VIDEO_DEV, as this one is used on some make *defconfig
+> configurations.
+>
+> Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> ---
+>  drivers/input/rmi4/Kconfig                    |   2 +-
+>  drivers/input/touchscreen/Kconfig             |   4 +-
+>  drivers/media/Kconfig                         |   3 +
+>  drivers/media/common/saa7146/Kconfig          |   2 +-
+>  drivers/media/dvb-core/Kconfig                |   2 +-
+>  drivers/media/dvb-frontends/Kconfig           |   4 +-
+>  drivers/media/i2c/Kconfig                     | 250 +++++++++---------
+>  drivers/media/i2c/ccs/Kconfig                 |   2 +-
+>  drivers/media/i2c/cx25840/Kconfig             |   2 +-
+>  drivers/media/i2c/et8ek8/Kconfig              |   2 +-
+>  drivers/media/i2c/m5mols/Kconfig              |   2 +-
+>  drivers/media/pci/Kconfig                     |   2 +-
+>  drivers/media/pci/bt8xx/Kconfig               |   2 +-
+>  drivers/media/pci/cobalt/Kconfig              |   2 +-
+>  drivers/media/pci/cx18/Kconfig                |   2 +-
+>  drivers/media/pci/dt3155/Kconfig              |   2 +-
+>  drivers/media/pci/intel/ipu3/Kconfig          |   2 +-
+>  drivers/media/pci/ivtv/Kconfig                |   2 +-
+>  drivers/media/pci/meye/Kconfig                |   2 +-
+>  drivers/media/pci/saa7146/Kconfig             |   6 +-
+>  drivers/media/pci/sta2x11/Kconfig             |   2 +-
+>  drivers/media/pci/tw5864/Kconfig              |   2 +-
+>  drivers/media/pci/tw68/Kconfig                |   2 +-
+>  drivers/media/pci/tw686x/Kconfig              |   2 +-
+>  drivers/media/platform/Kconfig                |   6 +-
+>  drivers/media/platform/allegro-dvt/Kconfig    |   2 +-
+>  drivers/media/platform/am437x/Kconfig         |   2 +-
+>  drivers/media/platform/amphion/Kconfig        |   2 +-
+>  drivers/media/platform/aspeed/Kconfig         |   2 +-
+>  drivers/media/platform/atmel/Kconfig          |   8 +-
+>  drivers/media/platform/cadence/Kconfig        |   4 +-
+>  drivers/media/platform/coda/Kconfig           |   2 +-
+>  drivers/media/platform/davinci/Kconfig        |  12 +-
+>  drivers/media/platform/exynos-gsc/Kconfig     |   2 +-
+>  drivers/media/platform/exynos4-is/Kconfig     |   2 +-
+>  drivers/media/platform/intel/Kconfig          |   2 +-
+>  drivers/media/platform/marvell-ccic/Kconfig   |   4 +-
+>  drivers/media/platform/meson/ge2d/Kconfig     |   2 +-
+>  drivers/media/platform/mtk-jpeg/Kconfig       |   2 +-
+>  drivers/media/platform/mtk-mdp/Kconfig        |   2 +-
+>  drivers/media/platform/mtk-vcodec/Kconfig     |   2 +-
+>  drivers/media/platform/mtk-vpu/Kconfig        |   2 +-
+>  drivers/media/platform/nxp/Kconfig            |   8 +-
+>  drivers/media/platform/nxp/imx-jpeg/Kconfig   |   2 +-
+>  drivers/media/platform/omap/Kconfig           |   2 +-
+>  drivers/media/platform/omap3isp/Kconfig       |   2 +-
+>  drivers/media/platform/qcom/camss/Kconfig     |   2 +-
+>  drivers/media/platform/qcom/venus/Kconfig     |   2 +-
+>  drivers/media/platform/renesas/Kconfig        |  12 +-
+>  .../media/platform/renesas/rcar-vin/Kconfig   |   4 +-
+>  drivers/media/platform/rockchip/rga/Kconfig   |   2 +-
+>  .../media/platform/rockchip/rkisp1/Kconfig    |   2 +-
+>  drivers/media/platform/s3c-camif/Kconfig      |   2 +-
+>  drivers/media/platform/s5p-g2d/Kconfig        |   2 +-
+>  drivers/media/platform/s5p-jpeg/Kconfig       |   2 +-
+>  drivers/media/platform/s5p-mfc/Kconfig        |   2 +-
+>  drivers/media/platform/sti/bdisp/Kconfig      |   2 +-
+>  drivers/media/platform/sti/delta/Kconfig      |   2 +-
+>  drivers/media/platform/sti/hva/Kconfig        |   2 +-
+>  drivers/media/platform/stm32/Kconfig          |   4 +-
+>  .../media/platform/sunxi/sun4i-csi/Kconfig    |   2 +-
+>  .../media/platform/sunxi/sun6i-csi/Kconfig    |   2 +-
+>  drivers/media/platform/sunxi/sun8i-di/Kconfig |   2 +-
+>  .../media/platform/sunxi/sun8i-rotate/Kconfig |   2 +-
+>  drivers/media/platform/tegra/vde/Kconfig      |   2 +-
+>  drivers/media/platform/ti-vpe/Kconfig         |   4 +-
+>  drivers/media/platform/via/Kconfig            |   2 +-
+>  drivers/media/platform/xilinx/Kconfig         |   2 +-
+>  drivers/media/radio/Kconfig                   |  54 ++--
+>  drivers/media/radio/si470x/Kconfig            |   2 +-
+>  drivers/media/radio/wl128x/Kconfig            |   2 +-
+>  drivers/media/spi/Kconfig                     |   4 +-
+>  drivers/media/test-drivers/Kconfig            |   2 +-
+>  drivers/media/test-drivers/vicodec/Kconfig    |   2 +-
+>  drivers/media/test-drivers/vimc/Kconfig       |   2 +-
+>  drivers/media/test-drivers/vivid/Kconfig      |   2 +-
+>  drivers/media/tuners/Kconfig                  |   6 +-
+>  drivers/media/tuners/e4000.c                  |   6 +-
+>  drivers/media/tuners/fc2580.c                 |   6 +-
+>  drivers/media/usb/airspy/Kconfig              |   2 +-
+>  drivers/media/usb/au0828/Kconfig              |   6 +-
+>  drivers/media/usb/cpia2/Kconfig               |   2 +-
+>  drivers/media/usb/dvb-usb-v2/Kconfig          |   8 +-
+>  drivers/media/usb/dvb-usb/Kconfig             |   4 +-
+>  drivers/media/usb/gspca/Kconfig               |  96 +++----
+>  drivers/media/usb/gspca/gl860/Kconfig         |   2 +-
+>  drivers/media/usb/gspca/m5602/Kconfig         |   2 +-
+>  drivers/media/usb/hackrf/Kconfig              |   2 +-
+>  drivers/media/usb/hdpvr/Kconfig               |   2 +-
+>  drivers/media/usb/msi2500/Kconfig             |   2 +-
+>  drivers/media/usb/pvrusb2/Kconfig             |   2 +-
+>  drivers/media/usb/pwc/Kconfig                 |   2 +-
+>  drivers/media/usb/s2255/Kconfig               |   2 +-
+>  drivers/media/usb/stkwebcam/Kconfig           |   2 +-
+>  drivers/media/usb/usbtv/Kconfig               |   2 +-
+>  drivers/media/usb/uvc/Kconfig                 |   2 +-
+>  drivers/media/usb/zr364xx/Kconfig             |   2 +-
+>  drivers/media/v4l2-core/Kconfig               |  12 +-
+>  drivers/media/v4l2-core/Makefile              |   2 +-
+>  drivers/staging/media/atomisp/Kconfig         |   2 +-
+>  drivers/staging/media/atomisp/i2c/Kconfig     |  14 +-
+>  drivers/staging/media/hantro/Kconfig          |   2 +-
+>  drivers/staging/media/imx/Kconfig             |   2 +-
+>  drivers/staging/media/ipu3/Kconfig            |   2 +-
+>  drivers/staging/media/max96712/Kconfig        |   2 +-
+>  drivers/staging/media/meson/vdec/Kconfig      |   2 +-
+>  drivers/staging/media/omap4iss/Kconfig        |   2 +-
+>  drivers/staging/media/rkvdec/Kconfig          |   2 +-
+>  drivers/staging/media/sunxi/cedrus/Kconfig    |   2 +-
+>  drivers/staging/media/tegra-video/Kconfig     |   2 +-
+>  drivers/staging/media/zoran/Kconfig           |   2 +-
+>  drivers/staging/most/video/Kconfig            |   2 +-
+>  .../vc04_services/bcm2835-camera/Kconfig      |   2 +-
+>  drivers/usb/gadget/Kconfig                    |   2 +-
+>  drivers/usb/gadget/legacy/Kconfig             |   2 +-
+>  sound/pci/Kconfig                             |   4 +-
+>  116 files changed, 363 insertions(+), 368 deletions(-)
+>
+> diff --git a/drivers/input/rmi4/Kconfig b/drivers/input/rmi4/Kconfig
+> index 16119f760d11..c0163b983ce6 100644
+> --- a/drivers/input/rmi4/Kconfig
+> +++ b/drivers/input/rmi4/Kconfig
+> @@ -110,7 +110,7 @@ config RMI4_F3A
+>
+>  config RMI4_F54
+>  	bool "RMI4 Function 54 (Analog diagnostics)"
+> -	depends on VIDEO_V4L2=y || (RMI4_CORE=m && VIDEO_V4L2=m)
+> +	depends on VIDEO_DEV=y || (RMI4_CORE=m && VIDEO_DEV=m)
+>  	select VIDEOBUF2_VMALLOC
+>  	select RMI4_F55
+>  	help
+> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> index 2f6adfb7b938..ff7794cecf69 100644
+> --- a/drivers/input/touchscreen/Kconfig
+> +++ b/drivers/input/touchscreen/Kconfig
+> @@ -131,7 +131,7 @@ config TOUCHSCREEN_ATMEL_MXT
+>  config TOUCHSCREEN_ATMEL_MXT_T37
+>  	bool "Support T37 Diagnostic Data"
+>  	depends on TOUCHSCREEN_ATMEL_MXT
+> -	depends on VIDEO_V4L2=y || (TOUCHSCREEN_ATMEL_MXT=m && VIDEO_V4L2=m)
+> +	depends on VIDEO_DEV=y || (TOUCHSCREEN_ATMEL_MXT=m && VIDEO_DEV=m)
+>  	select VIDEOBUF2_VMALLOC
+>  	help
+>  	  Say Y here if you want support to output data from the T37
+> @@ -1252,7 +1252,7 @@ config TOUCHSCREEN_SUN4I
+>  config TOUCHSCREEN_SUR40
+>  	tristate "Samsung SUR40 (Surface 2.0/PixelSense) touchscreen"
+>  	depends on USB && MEDIA_USB_SUPPORT && HAS_DMA
+> -	depends on VIDEO_V4L2
+> +	depends on VIDEO_DEV
+>  	select VIDEOBUF2_DMA_SG
+>  	help
+>  	  Say Y here if you want support for the Samsung SUR40 touchscreen
+> diff --git a/drivers/media/Kconfig b/drivers/media/Kconfig
+> index 01b536863657..2d02d9a44b94 100644
+> --- a/drivers/media/Kconfig
+> +++ b/drivers/media/Kconfig
+> @@ -160,6 +160,9 @@ menu "Media core support"
+>  config VIDEO_DEV
+>  	tristate "Video4Linux core"
+>  	default MEDIA_CAMERA_SUPPORT || MEDIA_ANALOG_TV_SUPPORT || MEDIA_RADIO_SUPPORT || MEDIA_SDR_SUPPORT || MEDIA_PLATFORM_SUPPORT || MEDIA_TEST_SUPPORT
+> +	depends on (I2C || I2C=n)
+
+Is this I2C || I2C=n intentional ?
+
+> +	select RATIONAL
+> +	select VIDEOBUF2_V4L2 if VIDEOBUF2_CORE
+>  	help
+>  	  Enables the V4L2 API, used by cameras, analog TV, video grabbers,
+>  	  radio devices and by some input devices.
+> diff --git a/drivers/media/common/saa7146/Kconfig b/drivers/media/common/saa7146/Kconfig
+> index 3e85c0c3fd9a..a0aa155e5d85 100644
+> --- a/drivers/media/common/saa7146/Kconfig
+> +++ b/drivers/media/common/saa7146/Kconfig
+> @@ -5,6 +5,6 @@ config VIDEO_SAA7146
+>
+>  config VIDEO_SAA7146_VV
+>  	tristate
+> -	depends on VIDEO_V4L2
+> +	depends on VIDEO_DEV
+>  	select VIDEOBUF_DMA_SG
+>  	select VIDEO_SAA7146
+> diff --git a/drivers/media/dvb-core/Kconfig b/drivers/media/dvb-core/Kconfig
+> index 6ffac618417b..8b3f2d53cd62 100644
+> --- a/drivers/media/dvb-core/Kconfig
+> +++ b/drivers/media/dvb-core/Kconfig
+> @@ -6,7 +6,7 @@
+>  config DVB_MMAP
+>  	bool "Enable DVB memory-mapped API (EXPERIMENTAL)"
+>  	depends on DVB_CORE
+> -	depends on VIDEO_V4L2=y || VIDEO_V4L2=DVB_CORE
+> +	depends on VIDEO_DEV=y || VIDEO_DEV=DVB_CORE
+>  	select VIDEOBUF2_VMALLOC
+>  	help
+>  	  This option enables DVB experimental memory-mapped API, which
+> diff --git a/drivers/media/dvb-frontends/Kconfig b/drivers/media/dvb-frontends/Kconfig
+> index 2c1ed98d43c5..4101f9b1e731 100644
+> --- a/drivers/media/dvb-frontends/Kconfig
+> +++ b/drivers/media/dvb-frontends/Kconfig
+> @@ -510,7 +510,7 @@ config DVB_RTL2832
+>
+>  config DVB_RTL2832_SDR
+>  	tristate "Realtek RTL2832 SDR"
+> -	depends on DVB_CORE && I2C && I2C_MUX && VIDEO_V4L2 && MEDIA_SDR_SUPPORT && USB
+> +	depends on DVB_CORE && I2C && I2C_MUX && VIDEO_DEV && MEDIA_SDR_SUPPORT && USB
+>  	select DVB_RTL2832
+>  	select VIDEOBUF2_VMALLOC
+>  	default m if !MEDIA_SUBDRV_AUTOSELECT
+> @@ -681,7 +681,7 @@ config DVB_AU8522_DTV
+>
+>  config DVB_AU8522_V4L
+>  	tristate "Auvitek AU8522 based ATV demod"
+> -	depends on VIDEO_V4L2 && DVB_CORE && I2C
+> +	depends on VIDEO_DEV && DVB_CORE && I2C
+>  	select DVB_AU8522
+>  	default m if !MEDIA_SUBDRV_AUTOSELECT
+>  	help
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index e7194c1be4d2..5abc169f0a5c 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -3,7 +3,7 @@
+>  # Multimedia Video device configuration
+>  #
+>
+> -if VIDEO_V4L2
+> +if VIDEO_DEV
+>
+>  comment "IR I2C driver auto-selected by 'Autoselect ancillary drivers'"
+>  	depends on MEDIA_SUBDRV_AUTOSELECT && I2C && RC_CORE
+> @@ -36,7 +36,7 @@ menu "Audio decoders, processors and mixers"
+>
+>  config VIDEO_TVAUDIO
+>  	tristate "Simple audio decoder chips"
+> -	depends on VIDEO_V4L2 && I2C
+> +	depends on VIDEO_DEV && I2C
+
+Are there symbols in drivers/media/i2c that do not depend on I2C ?
+Could we make the menu conditional on I2C presence ?
+
+>  	help
+>  	  Support for several audio decoder chips found on some bt8xx boards:
+>  	  Philips: tda9840, tda9873h, tda9874h/a, tda9850, tda985x, tea6300,
+> @@ -48,7 +48,7 @@ config VIDEO_TVAUDIO
+
+[snip]
+
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  config VIDEO_TW5864
+>  	tristate "Techwell TW5864 video/audio grabber and encoder"
+> -	depends on VIDEO_DEV && PCI && VIDEO_V4L2
+> +	depends on VIDEO_DEV && PCI && VIDEO_DEV
+
+Double VIDEO_DEV
+
+>  	select VIDEOBUF2_DMA_CONTIG
+>  	help
+>  	  Support for boards based on Techwell TW5864 chip which provides
+> diff --git a/drivers/media/pci/tw68/Kconfig b/drivers/media/pci/tw68/Kconfig
+> index af0cb60337bb..ef29be7db493 100644
+> --- a/drivers/media/pci/tw68/Kconfig
+> +++ b/drivers/media/pci/tw68/Kconfig
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  config VIDEO_TW68
+>  	tristate "Techwell tw68x Video For Linux"
+> -	depends on VIDEO_DEV && PCI && VIDEO_V4L2
+> +	depends on VIDEO_DEV && PCI && VIDEO_DEV
+
+Same here
+
+>  	select VIDEOBUF2_DMA_SG
+>  	help
+>  	  Support for Techwell tw68xx based frame grabber boards.
+
+[snip]
+
+> diff --git a/drivers/media/platform/amphion/Kconfig b/drivers/media/platform/amphion/Kconfig
+> index 13899649f766..e9ddca7a9e4a 100644
+> --- a/drivers/media/platform/amphion/Kconfig
+> +++ b/drivers/media/platform/amphion/Kconfig
+> @@ -5,7 +5,7 @@ config VIDEO_AMPHION_VPU
+>  	depends on ARCH_MXC || COMPILE_TEST
+>  	depends on MEDIA_SUPPORT
+>  	depends on VIDEO_DEV
+> -	depends on VIDEO_V4L2
+> +	depends on VIDEO_DEV
+
+VIDEO_DEV already listed
+
+>  	select MEDIA_CONTROLLER
+>  	select V4L2_MEM2MEM_DEV
+>  	select VIDEOBUF2_DMA_CONTIG
+
+[snip]
+
+>
+> -if RADIO_ADAPTERS && VIDEO_V4L2
+> +if RADIO_ADAPTERS && VIDEO_DEV
+>
+>  config RADIO_TEA575X
+>  	tristate
+> @@ -20,13 +20,13 @@ source "drivers/media/radio/si470x/Kconfig"
+>
+>  config RADIO_SI4713
+>  	tristate "Silicon Labs Si4713 FM Radio with RDS Transmitter support"
+> -	depends on VIDEO_V4L2
+> +	depends on VIDEO_DEV
+
+Isn't this menu section already conditional to VIDEO_DEV
+
+[snip]
+
+With the above minors fixed
+
+Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+
+Thanks
+   j
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
