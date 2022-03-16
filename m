@@ -4,68 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B959FC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Mar 2022 22:08:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08225C4321E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Mar 2022 22:12:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=YhmZQ31aYax1RE+eASreVEETK/TS4Apj5+SfbKKmA9M=; b=y1Kdzvf0ywKpSx
-	PxoHUQJSfbqfm2mtZKswVMq+cuuRuJi2/n7AiugVeiRZY1O6JnDrj+ve4riV2gkvcH02pvcb5965J
-	b6Q4uors4WJn/aTTfb9DmMig3QGgGX3htrybQY3E/Q/jlOQT7qf6eO0YxqVLmRYs7yoFLZZwX9pkV
-	9Jee21RqkXUltJNhDCCwWHCsMBiVDztL2BJamyLUODD/Lx566Vev8Frek+82dYif0/vHH3Uoe+ZCR
-	cCC3bC1WAxSxYL7xTUalCakWuGK06paG2GdNv41Zpa0NmiXcCQad/TCkLhzQBe8HrfQJ0BLLAWrtU
-	CJjopvDgkixvrqrdAs9A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/cj/r0uGbMjcZy7Ac90XyKa9pQgR7iICxwjaXMVmaY8=; b=IuW6T2c6CY5iTB
+	ILvGPvleucFHxTfkTTmxNWI4Tlcl5+GbC0hI3tS6J3/9mDHumLMhNntNO6x5D8IVzRynxoJqpLd8S
+	YlUbnkxGjMdqCXugcefJ3vJWojprJ9jj7c932I6ZGezsDdzfU1Fkv+FQZiKCUGps5BsFj8ziK6yN2
+	wRRQARjYc/FLrVE1oYGbbM91wG/YFAlGSO1U1KcLuCq9xMhqcU4q04b+m6qSZIISYP18Yya+9oR3g
+	CJoue3nMFSoWyDnhqHsF3MoJeq40O7itZssMZvkXVwOJd0+uV+8nVWtzL4pbXHQc76/tjqXqI2Se7
+	Et0JS4/psQZKTZCz+vWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nUbog-00EPVp-C3; Wed, 16 Mar 2022 22:08:26 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1nUbsn-00EPj3-0u; Wed, 16 Mar 2022 22:12:41 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nUbod-00EPVR-6d
- for linux-amlogic@lists.infradead.org; Wed, 16 Mar 2022 22:08:24 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id p15so7035120ejc.7
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Mar 2022 15:08:22 -0700 (PDT)
+ id 1nUbsk-00EPhf-Hz
+ for linux-amlogic@lists.infradead.org; Wed, 16 Mar 2022 22:12:39 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id b24so4408354edu.10
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Mar 2022 15:12:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:from:to:cc:content-language
- :subject:content-transfer-encoding;
- bh=H5p7KDojsPR51UiFeLhop4zIdSM2nwHHhjG3xAzjwck=;
- b=TdrbpcdpwrFhtovYeWwlDnhBPxtQoqOAXBFyafrNLg3HFjufI3n4MTWHlq7HeuBSWT
- hIA2D01rnldgmY0kKapDeBaaP4PlQ44DSC9ObPJy5PFsl16yimSLzdlXbVpbyklHSrb2
- VFqeQg8iAyQX+1ZZ1l7Fdsmeq/sdvrqmNuP6amVjraMlaHb71rbFqrF3TgMvKxUm+Rf5
- CB0v05jX8w7DQ8Dq7F8sWYc8n3dQB0TxU/UtUlQyZeydThFGjfM3Wuoxa25GYpgdhfRt
- 49oUR+Q9kJoLWu0JzNQc/fiXCb0rIO37gCq+HiB2SYejmirQJt0IhgejXP3b1lC3ObvE
- Ycqw==
+ h=message-id:date:mime-version:user-agent:subject:content-language
+ :from:to:cc:references:in-reply-to:content-transfer-encoding;
+ bh=Mbk9eDgtV28j0TWUuMi3KlCoJjoq5ox4im4qxu+j5Ck=;
+ b=SmhRYRQhoXZPq4H8FSWuHTlBLFyJmoQ8H9PxDXvVqGz+Myc/4Kx9o0TKTuo1gXBIgl
+ 8lazzj1K2J7wvX/iEG3pOjANpIdSfgP5YCKS8nnCETMFlTFdpl0yF1M/64fl4tc+QR/R
+ xszvesuLHTL1GJ7qJJZ0e2QV+W+C+Aseaza7EGvktqdlVs/nR0R7rQ0YwfL1HHIHElSf
+ 8OjHRgzHqND5IbDVDoT7YtTFW5FYTNy+P+/pomkyAPQbRegIVij728nORfjyVUooUZQY
+ kSCry2bhKdTt+bkMl1liOGajsKjWctE0+Fyr4Y6RfABK01fcxqYnduOBON3/2DHl6Swt
+ CocA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:from:to
- :cc:content-language:subject:content-transfer-encoding;
- bh=H5p7KDojsPR51UiFeLhop4zIdSM2nwHHhjG3xAzjwck=;
- b=kQkKBxqudLaiTQtcIDZqSpBHtzzcecEqrf6Llbd8q44/En6AkYo1lyaPlijW2amzRA
- PAx61BGWPy509rn/h0WlJP5sdHRcsFD9KH60OzqJT8h267dSHiMpD3v1ddmsqVV9sI0x
- wtTSBNxw7CMxg0NbCetgyvpZ5LSc8dFmBczmTwpxy7wxoePMUMI4C1cZPg/wU3IVXAX1
- l7Cb69lLZwCEJTLeG5W09eT5VZQvOdS3NGIEsM69pMQNQ7vITUqzrrSeL5wAWeNxJc/7
- j0+IdD02tXR9JhOXtgVFZjdljt2P63MnMKBSDl71YnUCl50R2BhM180jrYaoGx5gTLcU
- HQaA==
-X-Gm-Message-State: AOAM531WDxpgo/xMubOB6MZs2FWrZHh47VlDpbim8BntVkWezqPzU8lR
- qF0KvNj46jR6IMDGPaYN/WaeC5t2g6w=
-X-Google-Smtp-Source: ABdhPJzBwRQmn3QTHV9/qO6uSV4xPY7g695ypwauXXfmjgGtdX3YQSYfXkxG4c6aluSN9R4UfWb73A==
-X-Received: by 2002:a17:906:be1:b0:6ce:c3c8:b4b6 with SMTP id
- z1-20020a1709060be100b006cec3c8b4b6mr1676819ejg.617.1647468501354; 
- Wed, 16 Mar 2022 15:08:21 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:from:to:cc:references:in-reply-to
+ :content-transfer-encoding;
+ bh=Mbk9eDgtV28j0TWUuMi3KlCoJjoq5ox4im4qxu+j5Ck=;
+ b=Gb4QutecS9oVcQJHFeQHIzEi0qx7+7jAK7GrMFaO7epZ1hmdgVyfjbvCycCmmgJzgV
+ hMMQwgFeKBvCtgEgIvmCbkSVuPmAs6LCUBeTeErMKdfwW65Ms+JNE5X3ucSc409P0eFb
+ 3Uwc8Im5UbxzEnqgccbSvMaJJ0Up9Pte34hPji4H1pVWUcUq/z3Ey+CrFdw5fUDuFE4U
+ L+AaMcInEvPow6yQSZsP8khNvHhaTjK4ryPVIBDL26M4HqlBf/dVL2Sirh3/UvxLp5lA
+ H0faEKKKdY9HPOs3w47Vrb1XjEInxYfnN5kKI4x/N13FkXxBvGNuxLAvFlmhK2aH8r6I
+ TdHg==
+X-Gm-Message-State: AOAM531z40fYvsXfw7w3gE8Enewq6Oer+TBW7bIBnF8MEe0yk270spc6
+ CGCyCr82Ibnc6xJf80+ruy8=
+X-Google-Smtp-Source: ABdhPJyOYTPz8Lm6U+5GQXq3v/ePt7jRdvqzUwNvaWYE2Emf9uwGbx2vo9KvFKvzAOWYR5pDdSLSwA==
+X-Received: by 2002:a05:6402:50cf:b0:418:ee57:ed9 with SMTP id
+ h15-20020a05640250cf00b00418ee570ed9mr1494329edb.37.1647468756890; 
+ Wed, 16 Mar 2022 15:12:36 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:b866:cc00:e490:2de6:a89f:9b66?
  (dynamic-2a01-0c23-b866-cc00-e490-2de6-a89f-9b66.c23.pool.telefonica.de.
  [2a01:c23:b866:cc00:e490:2de6:a89f:9b66])
  by smtp.googlemail.com with ESMTPSA id
- u4-20020aa7db84000000b004136c2c357csm1646002edt.70.2022.03.16.15.08.20
+ ec21-20020a170906b6d500b006d170a3444csm1424902ejb.164.2022.03.16.15.12.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Mar 2022 15:08:20 -0700 (PDT)
-Message-ID: <0684616b-5cc0-e9f6-7015-ce709c6d4386@gmail.com>
-Date: Wed, 16 Mar 2022 23:08:15 +0100
+ Wed, 16 Mar 2022 15:12:36 -0700 (PDT)
+Message-ID: <506113fe-5bd9-bdd0-7858-2b702ca32d53@gmail.com>
+Date: Wed, 16 Mar 2022 23:11:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
+Subject: [PATCH v2 4/5] usb: host: xhci-plat: prepare operation w/o shared hcd
+Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Mathias Nyman <mathias.nyman@intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>
@@ -73,13 +76,11 @@ Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  Alan Stern <stern@rowland.harvard.edu>, Jack Pham <quic_jackp@quicinc.com>,
  Tung Nguyen <tunguyen@apm.com>
-Content-Language: en-US
-Subject: [PATCH v2 0/5] usb: host: xhci-plat: omit shared hcd if either of the
- root hubs has no ports
+References: <0684616b-5cc0-e9f6-7015-ce709c6d4386@gmail.com>
+In-Reply-To: <0684616b-5cc0-e9f6-7015-ce709c6d4386@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220316_150823_314270_50BDA9A3 
-X-CRM114-Status: UNSURE (   8.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220316_151238_631276_CEF9FF6A 
+X-CRM114-Status: GOOD (  12.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,42 +97,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I have a system with a low-cost Amlogic S905W SoC that supports USB3
-but has a USB3 root hub with no ports. This results in an error
-message and a hcd that is good for nothing. The USB2 root hub has
-ports and works normally.
-I think we can do better and omit creating a shared hcd if either of
-the root hubs has no ports. This series is based on discussion [0].
+This patch prepares xhci-plat for the following scenario
+- If either of the root hubs has no ports, then omit shared hcd
+- Main hcd can be USB3 if there are no USB2 ports
 
-The series works as intended for me. What I couldn't test is the case
-of the USB2 root hub having no ports.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/usb/host/xhci-plat.c | 31 ++++++++++++++++++-------------
+ 1 file changed, 18 insertions(+), 13 deletions(-)
 
-Follow-up to this series could be applying the xhci-plat extension
-to other xhci drivers.
-
-[0] https://www.spinics.net/lists/linux-usb/msg223416.html
-
-v2:
-- reordered patches
-- create new helper xhci_has_one_roothub() instead of using
-  xhci_hcd->needs_shared_hcd (proposed by Mathias)
-
-Heiner Kallweit (5):
-  xhci: factor out parts of xhci_gen_setup()
-  xhci: prepare for operation w/o shared hcd
-  usb: host: xhci-plat: create shared hcd after having added main hcd
-  usb: host: xhci-plat: prepare operation w/o shared hcd
-  usb: host: xhci-plat: omit shared hcd if either root hub has no ports
-
- drivers/usb/host/xhci-hub.c  |   3 +-
- drivers/usb/host/xhci-mem.c  |  11 +--
- drivers/usb/host/xhci-plat.c |  46 +++++++----
- drivers/usb/host/xhci.c      | 155 ++++++++++++++++++++---------------
- drivers/usb/host/xhci.h      |  26 ++++++
- 5 files changed, 149 insertions(+), 92 deletions(-)
-
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index 5d752b384..c512ec214 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -180,7 +180,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 	struct device		*sysdev, *tmpdev;
+ 	struct xhci_hcd		*xhci;
+ 	struct resource         *res;
+-	struct usb_hcd		*hcd;
++	struct usb_hcd		*hcd, *usb3_hcd;
+ 	int			ret;
+ 	int			irq;
+ 	struct xhci_plat_priv	*priv = NULL;
+@@ -327,21 +327,26 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto disable_usb_phy;
+ 
+-	xhci->shared_hcd = __usb_create_hcd(driver, sysdev, &pdev->dev,
+-			dev_name(&pdev->dev), hcd);
+-	if (!xhci->shared_hcd) {
+-		ret = -ENOMEM;
+-		goto dealloc_usb2_hcd;
+-	}
++	if (!xhci_has_one_roothub(xhci)) {
++		xhci->shared_hcd = __usb_create_hcd(driver, sysdev, &pdev->dev,
++						    dev_name(&pdev->dev), hcd);
++		if (!xhci->shared_hcd) {
++			ret = -ENOMEM;
++			goto dealloc_usb2_hcd;
++		}
+ 
+-	xhci->shared_hcd->tpl_support = hcd->tpl_support;
++		xhci->shared_hcd->tpl_support = hcd->tpl_support;
++	}
+ 
+-	if (HCC_MAX_PSA(xhci->hcc_params) >= 4)
+-		xhci->shared_hcd->can_do_streams = 1;
++	usb3_hcd = xhci_get_usb3_hcd(xhci);
++	if (usb3_hcd && HCC_MAX_PSA(xhci->hcc_params) >= 4)
++		usb3_hcd->can_do_streams = 1;
+ 
+-	ret = usb_add_hcd(xhci->shared_hcd, irq, IRQF_SHARED);
+-	if (ret)
+-		goto put_usb3_hcd;
++	if (xhci->shared_hcd) {
++		ret = usb_add_hcd(xhci->shared_hcd, irq, IRQF_SHARED);
++		if (ret)
++			goto put_usb3_hcd;
++	}
+ 
+ 	device_enable_async_suspend(&pdev->dev);
+ 	pm_runtime_put_noidle(&pdev->dev);
 -- 
 2.35.1
+
 
 
 _______________________________________________
