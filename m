@@ -4,129 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8520FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Mar 2022 19:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12B4C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Mar 2022 20:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	References:MIME-Version:Message-ID:In-Reply-To:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=o/18N3M2YiLAvktWbXomjbHaGoYrbw8Su/DSW/WbEeA=; b=2npyWgr16ng5WT1T/T5NrkJXLA
-	jTjdW0VPvMnEQWyrtezVglhK07mGtx9lTQ9iYOjo26x9l0ArcbLw6op58jn9e5NCxIvNVC1aHCw4X
-	3f4HjcmUpFaOk1ZAz6ffHvbK/J3ksus3Lv3NLtD68QIctZmQP2dO7GKiW3I0S18J2SpJ+lHYpL28Z
-	qZcm/pXlnsb6JiuoXZFyLzZxPlj3XISqcF4ub9B4lYfcfzRFtR89EDwWqkZcvTNtZpeCHPBG2sVD5
-	h2QUehHlPqh0e73RnjYvJMHe3d0jTAxVxgmq50nEjgjPRalvsQHQ6ATHPsj3pAUPLetvynGG/tnd1
-	6qyqY8yQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PPYGLGVIs1z94y5StBeAo5amYnGAjmyjGc4W2phSPOc=; b=kalvKVfvU+B2EG
+	kM8CYxOKVScV4qJ9lRAg3/a4iE0rCMq9SsGBXZ9SRRVVQn9NWw1Am1Z5A8paN1G9zg+XbR0UTGmFN
+	xW10zlJQAh3ZQx8eDHklPOgY1b347rf4GvYzrddLT6ZOby27QQt8PqTqIv4XTg7zaVyMP+921GCly
+	Smn1rjtKmkHNgm7r44j3hrcpIuiDaMGEjQPWO0uHa+xFk1knBDBwqwoiVVOy+x+c8BNbujMNRhFvm
+	BbMAQJx9cNuNm0ppM8Di66bg8UNukQyJ9QP+J8eOEQgG69xtjkGUL/fCTVNYcc5XqlGcjiCgC6E2h
+	zDuC4FUtijtY6kd7fUjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nUvgu-00HBNA-83; Thu, 17 Mar 2022 19:21:44 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nUvgq-00HBLM-CW; Thu, 17 Mar 2022 19:21:42 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20220317192137euoutp017e71ba0ed22d1b91ba2d8624c345a9c9~dQVr6851W0692706927euoutp01j;
- Thu, 17 Mar 2022 19:21:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20220317192137euoutp017e71ba0ed22d1b91ba2d8624c345a9c9~dQVr6851W0692706927euoutp01j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1647544897;
- bh=8AJD7LLy/THFDuNHTzws2WZ7Rh8dubqLenZAtO6y33w=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SSsYA3sB8VCPS64sV7bKPBdT8Gs/9iazS1cVIbja0uftAb3Jtq7aVK0HmcrvM88Y1
- NoEJ9kl4mWA5MXUH10J7hVGyfodyRX1b5gMz1n+rN5J9woekIMHDbFexQ8XqDOWVDm
- SBXoHQ05p7Jo9XqAW4y1w7OlZTplPAkddYsl9vKc=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20220317192137eucas1p26a509d5aaf346c7b64b070301bf61eb3~dQVrnVIS11741017410eucas1p2i;
- Thu, 17 Mar 2022 19:21:37 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id 08.B3.09887.14A83326; Thu, 17
- Mar 2022 19:21:37 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20220317192136eucas1p185dfbf79e792ebdc4c5614a90c1b0cd8~dQVqafbfc3134231342eucas1p1O;
- Thu, 17 Mar 2022 19:21:36 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20220317192136eusmtrp180d92f8748820fe9ee93ff913a9123e8~dQVqZWQ871868218682eusmtrp1x;
- Thu, 17 Mar 2022 19:21:36 +0000 (GMT)
-X-AuditID: cbfec7f4-45bff7000000269f-39-62338a41cdcf
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id C4.14.09404.F3A83326; Thu, 17
- Mar 2022 19:21:35 +0000 (GMT)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
- (KnoxPortal) with ESMTPA id
- 20220317192135eusmtip11512036116a92f228b87ec99e1e8e94b~dQVqJMrcG1419214192eusmtip1r;
- Thu, 17 Mar 2022 19:21:35 +0000 (GMT)
-From: Lukasz Stelmach <l.stelmach@samsung.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: alsa-devel@alsa-project.org,  bcm-kernel-feedback-list@broadcom.com,
- linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org,  linux-aspeed@lists.ozlabs.org,
- linux-input@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org,  linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org,  linux-rockchip@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
- linux-staging@lists.linux.dev,  linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev,  linux-tegra@vger.kernel.org,
- linux-usb@vger.kernel.org,  mjpeg-users@lists.sourceforge.net,
- openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v2 65/67] media: Kconfig: cleanup VIDEO_DEV dependencies
-Date: Thu, 17 Mar 2022 20:21:35 +0100
-In-Reply-To: <d5b6678363c4374436014137fecc22ff666e3ebc.1647274407.git.mchehab@kernel.org>
- (Mauro Carvalho Chehab's message of "Mon, 14 Mar 2022 17:35:00 +0100")
-Message-ID: <dleftj1qz0mlkw.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+	id 1nUwQC-00HFYD-Od; Thu, 17 Mar 2022 20:08:32 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nUwQ9-00HFXG-Ma; Thu, 17 Mar 2022 20:08:31 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 92E5D16F2;
+ Thu, 17 Mar 2022 13:08:24 -0700 (PDT)
+Received: from [10.57.43.230] (unknown [10.57.43.230])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 76D733F766;
+ Thu, 17 Mar 2022 13:08:22 -0700 (PDT)
+Message-ID: <132a5a99-6dbf-12d4-723b-2a327f23d24e@arm.com>
+Date: Thu, 17 Mar 2022 20:08:17 +0000
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf1DTZRzHe77f7777Dhw+DpDnlkfdMCo4QcPySQj0sLvvVWdcWnnVNSd8
- BY6xrf3IrDNmUMGaIAMvmJhACZ78aA5FI52JlqfEYETkgoSEFCe6k3GQhNC2L9753/vz+bzf
- r+f5PPcwpKSUljK5Kj2nVSmUMjqEav/lvnPVRlPSjtV/+8Jwv6uTwC37fqZw7cFQbB8dEODy
- c91CXNjkJLF7clqAf+uoobHZdtKvCl0An7x1l8CTIwskLh+0CXFVj4PAF30cNg2MCXClo4PG
- JVNWGtc3fE7iBvscgfsLXTS+UjRObVjO2nyf0ax1uJtm7cdKaLbtuwJ2vK0asD1VdYD9sdZH
- sOcda1ifPTpD9E5IShanzP2Q0yambg/JcR9Sac5lfOS746CMoDvZBEQMgmvR78YaygRCGAk8
- CtDtwQeLxZS/GHcL+cIH0I0+i/BhxHSiIqglsBGgQnsOb7oJ0IzxG2ACDEPDBNTSsi3gifDL
- m22uIJWEfQI0MlBOBQbh8DXU5hgMgij4FBo1zQoCWgTrAXowvzrAEcN16KuFjEA7Er6I5m7c
- C9rFcBm6XD0WxJAwH1X3TIAAH8FpESobHAP8RTehhVNzJK/DkefSicUFVqCuCjMV4CNYgCos
- L/BZM0DtNf9SvCcZDTlnaV5vRJMXviR4fxi6emcZf24YsrR/TfJtMSr+QsK7V6LWsjOLFCna
- 5zkKeAuLLjue4F+qGSBX6RC9HzxpfWQb6yPbWP0REj6Lvu9I5NvxqKHuNsnrl1Brq5eqBYJj
- IIoz6PKzOd1zKm5Xgk6RrzOoshMy1fl24P+mXfOXpk6DRs+9hE5AMKATrPSHr9uaeoGUUqlV
- nCxC/Ot44g6JOEux+2NOq5ZrDUpO1wkeZyhZlDgz16aQwGyFnsvjOA2nfTglGJHUSCz5jwiT
- Wuf7RPGMO0ZuT1txPm1XkdfIls/Id8rfDE9LuYqFOvnFmLzZvriu++7imOvc3U+lWUmHt2yO
- X/hpiIJdbrOtd/3zfzmUu/fH1Vz5IzZ9xHDw7AFxaDdXJd++NEUc++7a9brmptKYvMhrFq/y
- afVpvUEtK4YTinWV2Y/1vz165NVXNlSFbrFr0jPet+6xaupPSXGvfucz8tSRt6hts9NJwkNQ
- f2RJkbh55nikWd+YWnLGLV1aklz3AV7Vku6JOr75FpP5Hrd36z/RzuE3csctzJDn8ITrdW/l
- /IGXzw57DWWfwGvfOlMKNBfizVunueU/RPzp3rM32hs7kFMmo3Q5ijVxpFan+B+mhywbIQQA
- AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmplleLIzCtJLcpLzFFi42I5/e/4XV37LuMkg4XvLSyuXDzEZLG29yiL
- xYLZ3BabHl9jtZi4/yy7RfPqc8wWNz99Y7W4vGsOm0XPhq1AVvNFRoutL98xWXx68J/ZYuLt
- DewWM87vY7I48jnVouvaE1aLKft2sVl0fpnFZrFoWSuzxbJNf5gsrjRfZLM41fKCxUHMY8Pn
- JjaPWffPsnlsWtXJ5rF5Sb3Hi80zGT3Oz1jI6LF7wWcmj4P7DD0+b5IL4IzSsynKLy1JVcjI
- Ly6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy7g5N69gf0DF57f7WBoY
- z1p3MXJySAiYSHRtmcwOYgsJLGWU+Po2p4uRAyguJbFybjpEibDEn2tdbBAlTxklVr1yAClh
- E9CTWLs2AiQsAmQ+33yRpYuRi4NZ4A6rRPPBLUwgCWEBH4nN+25DjY+QeDT/ClicRUBV4nHX
- L1YQm1NgEaPE338GIDN5Bcwluv8HgIRFBSwl/jz7CNbKKyAocXLmExYQm1kgW+Lr6ufMExgF
- ZiFJzUKSmgU0iVlAU2L9Ln2IsLbEsoWvmSFsW4l1696zLGBkXcUoklpanJueW2ykV5yYW1ya
- l66XnJ+7iRGYBrYd+7llB+PKVx/1DjEycTAeYlQB6ny0YfUFRimWvPy8VCUR3jMv9JOEeFMS
- K6tSi/Lji0pzUosPMZoCfTaRWUo0OR+YoPJK4g3NDEwNTcwsDUwtzYyVxHk9CzoShQTSE0tS
- s1NTC1KLYPqYODilGphibDLLzno6a12RuDKlvcxuZvKmx2eWWB5gnB5gUWXGNVsodHGRqhCz
- Pg9XyWxtr7VzpZ9P3hNRbMCt65M2a2Ge2rfLJw5tj9m7M9oh9VdhTkTaD/uPSTwRbxS7jzSL
- B4vd17WZInhyi7znJvmJfHYZ0y9uzPf51et2rNRa7eyadRl3RJdb7c6dG5/5ZvPfVelu/OFy
- pQ0xXB+yAqOC/zGZPEqxNDt5IlYh/0Lr14P3pCMCd6oZ3JLTZbry59WdaRMc3e6+YHjx+I13
- 6cwlzY/az/VOm73l4jPeGON4HienzZ/YF5RyXNizpM3tTnXW/W13Xuzus3NWTZE+0dB6LGOj
- pbZ4/N24dTtW7mBSmajEUpyRaKjFXFScCABQmWVNmAMAAA==
-X-CMS-MailID: 20220317192136eucas1p185dfbf79e792ebdc4c5614a90c1b0cd8
-X-Msg-Generator: CA
-X-RootMTR: 20220317192136eucas1p185dfbf79e792ebdc4c5614a90c1b0cd8
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220317192136eucas1p185dfbf79e792ebdc4c5614a90c1b0cd8
-References: <d5b6678363c4374436014137fecc22ff666e3ebc.1647274407.git.mchehab@kernel.org>
- <CGME20220317192136eucas1p185dfbf79e792ebdc4c5614a90c1b0cd8@eucas1p1.samsung.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+Content-Language: en-GB
+To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ Miguel Ojeda <ojeda@kernel.org>
+Cc: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Geert Uytterhoeven <geert+renesas@glider.be>
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
+ <84739af1-cbb8-e957-6e30-4121ed0a3517@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <84739af1-cbb8-e957-6e30-4121ed0a3517@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220317_122140_809250_5315BA63 
-X-CRM114-Status: GOOD (  24.37  )
+X-CRM114-CacheID: sfid-20220317_130829_874779_FC872309 
+X-CRM114-Status: GOOD (  32.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,245 +70,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4067986033896480459=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============4067986033896480459==
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-	protocol="application/pgp-signature"
-
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-It was <2022-03-14 pon 17:35>, when Mauro Carvalho Chehab wrote:
-> media Kconfig has two entries associated to V4L API:
-> VIDEO_DEV and VIDEO_V4L2.
->
-> On Kernel 2.6.x, there were two V4L APIs, each one with its own flag.
-> VIDEO_DEV were meant to:
-> 	1) enable Video4Linux and make its Kconfig options to appear;
-> 	2) it makes the Kernel build the V4L core.
->
-> while VIDEO_V4L2 where used to distinguish between drivers that
-> implement the newer API and drivers that implemented the former one.
->
-> With time, such meaning changed, specially after the removal of
-> all V4L version 1 drivers.
->
-> At the current implementation, VIDEO_DEV only does (1): it enables
-> the media options related to V4L, that now has:
->
-> 	menu "Video4Linux options"
-> 		visible if VIDEO_DEV
->
-> 	source "drivers/media/v4l2-core/Kconfig"
-> 	endmenu
->
-> but it doesn't affect anymore the V4L core drivers.
->
-> The rationale is that the V4L2 core has a "soft" dependency
-> at the I2C bus, and now requires to select a number of other
-> Kconfig options:
->
-> 	config VIDEO_V4L2
-> 		tristate
-> 		depends on (I2C || I2C=3Dn) && VIDEO_DEV
-> 		select RATIONAL
-> 		select VIDEOBUF2_V4L2 if VIDEOBUF2_CORE
-> 		default (I2C || I2C=3Dn) && VIDEO_DEV
->
-> In the past, merging them would be tricky, but it seems that it is now
-> possible to merge those symbols, in order to simplify V4L dependencies.
->
-> Let's keep VIDEO_DEV, as this one is used on some make *defconfig
-> configurations.
->
-> Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> ---
->
-> To avoid mailbombing on a large number of people, only mailing lists were=
- C/C on the cover.
-> See [PATCH v2 00/67] at: https://lore.kernel.org/all/cover.1647274406.git=
-.mchehab@kernel.org/
->
->  drivers/input/rmi4/Kconfig                    |   2 +-
->  drivers/input/touchscreen/Kconfig             |   4 +-
->  drivers/media/Kconfig                         |   3 +
->  drivers/media/common/saa7146/Kconfig          |   2 +-
->  drivers/media/dvb-core/Kconfig                |   2 +-
->  drivers/media/dvb-frontends/Kconfig           |   4 +-
->  drivers/media/i2c/Kconfig                     | 250 +++++++++---------
->  drivers/media/i2c/ccs/Kconfig                 |   2 +-
->  drivers/media/i2c/cx25840/Kconfig             |   2 +-
->  drivers/media/i2c/et8ek8/Kconfig              |   2 +-
->  drivers/media/i2c/m5mols/Kconfig              |   2 +-
->  drivers/media/pci/Kconfig                     |   2 +-
->  drivers/media/pci/bt8xx/Kconfig               |   2 +-
->  drivers/media/pci/cobalt/Kconfig              |   2 +-
->  drivers/media/pci/cx18/Kconfig                |   2 +-
->  drivers/media/pci/dt3155/Kconfig              |   2 +-
->  drivers/media/pci/intel/ipu3/Kconfig          |   2 +-
->  drivers/media/pci/ivtv/Kconfig                |   2 +-
->  drivers/media/pci/meye/Kconfig                |   2 +-
->  drivers/media/pci/saa7146/Kconfig             |   6 +-
->  drivers/media/pci/sta2x11/Kconfig             |   2 +-
->  drivers/media/pci/tw5864/Kconfig              |   2 +-
->  drivers/media/pci/tw68/Kconfig                |   2 +-
->  drivers/media/pci/tw686x/Kconfig              |   2 +-
->  drivers/media/platform/Kconfig                |   6 +-
->  drivers/media/platform/allegro-dvt/Kconfig    |   2 +-
->  .../platform/allwinner/sun4i-csi/Kconfig      |   2 +-
->  .../platform/allwinner/sun6i-csi/Kconfig      |   2 +-
->  .../media/platform/allwinner/sun8i-di/Kconfig |   2 +-
->  .../platform/allwinner/sun8i-rotate/Kconfig   |   2 +-
->  .../media/platform/amlogic/meson-ge2d/Kconfig |   2 +-
->  drivers/media/platform/amphion/Kconfig        |   1 -
->  drivers/media/platform/aspeed/Kconfig         |   2 +-
->  drivers/media/platform/atmel/Kconfig          |   8 +-
->  drivers/media/platform/cadence/Kconfig        |   4 +-
->  drivers/media/platform/chips-media/Kconfig    |   2 +-
->  drivers/media/platform/intel/Kconfig          |   2 +-
->  drivers/media/platform/marvell/Kconfig        |   4 +-
->  .../media/platform/mediatek/mtk-jpeg/Kconfig  |   2 +-
->  .../media/platform/mediatek/mtk-mdp/Kconfig   |   2 +-
->  .../platform/mediatek/mtk-vcodec/Kconfig      |   2 +-
->  .../media/platform/mediatek/mtk-vpu/Kconfig   |   2 +-
->  .../media/platform/nvidia/tegra-vde/Kconfig   |   2 +-
->  drivers/media/platform/nxp/Kconfig            |   6 +-
->  drivers/media/platform/nxp/imx-jpeg/Kconfig   |   2 +-
->  drivers/media/platform/qcom/camss/Kconfig     |   2 +-
->  drivers/media/platform/qcom/venus/Kconfig     |   2 +-
->  drivers/media/platform/renesas/Kconfig        |  30 +--
->  .../media/platform/renesas/rcar-vin/Kconfig   |   4 +-
->  drivers/media/platform/rockchip/rga/Kconfig   |   2 +-
->  .../media/platform/rockchip/rkisp1/Kconfig    |   2 +-
->  .../media/platform/samsung/exynos-gsc/Kconfig |   2 +-
->  .../media/platform/samsung/exynos4-is/Kconfig |   2 +-
->  .../media/platform/samsung/s3c-camif/Kconfig  |   2 +-
->  .../media/platform/samsung/s5p-g2d/Kconfig    |   2 +-
->  .../media/platform/samsung/s5p-jpeg/Kconfig   |   2 +-
->  .../media/platform/samsung/s5p-mfc/Kconfig    |   2 +-
->  drivers/media/platform/stm/sti/bdisp/Kconfig  |   2 +-
->  drivers/media/platform/stm/sti/delta/Kconfig  |   2 +-
->  drivers/media/platform/stm/sti/hva/Kconfig    |   2 +-
->  drivers/media/platform/stm/stm32/Kconfig      |   4 +-
->  drivers/media/platform/ti/am437x/Kconfig      |   2 +-
->  drivers/media/platform/ti/davinci/Kconfig     |  12 +-
->  drivers/media/platform/ti/omap/Kconfig        |   2 +-
->  drivers/media/platform/ti/omap3isp/Kconfig    |   2 +-
->  drivers/media/platform/via/Kconfig            |   2 +-
->  drivers/media/platform/xilinx/Kconfig         |   2 +-
->  drivers/media/radio/Kconfig                   |  42 ++-
->  drivers/media/radio/si470x/Kconfig            |   2 +-
->  drivers/media/radio/wl128x/Kconfig            |   2 +-
->  drivers/media/spi/Kconfig                     |   4 +-
->  drivers/media/test-drivers/Kconfig            |   2 +-
->  drivers/media/test-drivers/vicodec/Kconfig    |   2 +-
->  drivers/media/test-drivers/vimc/Kconfig       |   2 +-
->  drivers/media/test-drivers/vivid/Kconfig      |   2 +-
->  drivers/media/tuners/Kconfig                  |   6 +-
->  drivers/media/tuners/e4000.c                  |   6 +-
->  drivers/media/tuners/fc2580.c                 |   6 +-
->  drivers/media/usb/airspy/Kconfig              |   2 +-
->  drivers/media/usb/au0828/Kconfig              |   6 +-
->  drivers/media/usb/cpia2/Kconfig               |   2 +-
->  drivers/media/usb/dvb-usb-v2/Kconfig          |   8 +-
->  drivers/media/usb/dvb-usb/Kconfig             |   4 +-
->  drivers/media/usb/gspca/Kconfig               |  96 +++----
->  drivers/media/usb/gspca/gl860/Kconfig         |   2 +-
->  drivers/media/usb/gspca/m5602/Kconfig         |   2 +-
->  drivers/media/usb/hackrf/Kconfig              |   2 +-
->  drivers/media/usb/hdpvr/Kconfig               |   2 +-
->  drivers/media/usb/msi2500/Kconfig             |   2 +-
->  drivers/media/usb/pvrusb2/Kconfig             |   2 +-
->  drivers/media/usb/pwc/Kconfig                 |   2 +-
->  drivers/media/usb/s2255/Kconfig               |   2 +-
->  drivers/media/usb/stkwebcam/Kconfig           |   2 +-
->  drivers/media/usb/usbtv/Kconfig               |   2 +-
->  drivers/media/usb/uvc/Kconfig                 |   2 +-
->  drivers/media/usb/zr364xx/Kconfig             |   2 +-
->  drivers/media/v4l2-core/Kconfig               |  12 +-
->  drivers/media/v4l2-core/Makefile              |   2 +-
->  drivers/staging/media/atomisp/Kconfig         |   2 +-
->  drivers/staging/media/atomisp/i2c/Kconfig     |  14 +-
->  drivers/staging/media/hantro/Kconfig          |   2 +-
->  drivers/staging/media/imx/Kconfig             |   2 +-
->  drivers/staging/media/ipu3/Kconfig            |   2 +-
->  drivers/staging/media/max96712/Kconfig        |   2 +-
->  drivers/staging/media/meson/vdec/Kconfig      |   2 +-
->  drivers/staging/media/omap4iss/Kconfig        |   2 +-
->  drivers/staging/media/rkvdec/Kconfig          |   2 +-
->  drivers/staging/media/sunxi/cedrus/Kconfig    |   2 +-
->  drivers/staging/media/tegra-video/Kconfig     |   2 +-
->  drivers/staging/media/zoran/Kconfig           |   2 +-
->  drivers/staging/most/video/Kconfig            |   2 +-
->  .../vc04_services/bcm2835-camera/Kconfig      |   2 +-
->  drivers/usb/gadget/Kconfig                    |   2 +-
->  drivers/usb/gadget/legacy/Kconfig             |   2 +-
->  sound/pci/Kconfig                             |   4 +-
->  115 files changed, 356 insertions(+), 374 deletions(-)
->
-
-Acked-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-
-[...]
-
-
-> diff --git a/drivers/media/platform/samsung/s5p-g2d/Kconfig b/drivers/med=
-ia/platform/samsung/s5p-g2d/Kconfig
-> index 9bc9d90a666a..28ab88fc2d7c 100644
-> --- a/drivers/media/platform/samsung/s5p-g2d/Kconfig
-> +++ b/drivers/media/platform/samsung/s5p-g2d/Kconfig
-> @@ -1,7 +1,7 @@
->  config VIDEO_SAMSUNG_S5P_G2D
->  	tristate "Samsung S5P and EXYNOS4 G2D 2d graphics accelerator driver"
->  	depends on V4L_MEM2MEM_DRIVERS
-> -	depends on VIDEO_DEV && VIDEO_V4L2
-> +	depends on VIDEO_DEV
->  	depends on ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
->  	select VIDEOBUF2_DMA_CONTIG
->  	select V4L2_MEM2MEM_DEV
-
-[...]
-
-
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmIzij8ACgkQsK4enJil
-gBBbcgf/aneuRLpVmb3t9XhFHinqWTwAHjmHijfM4Bxpeie5LGPD+ZODOQbbTHI/
-SXYJS3DSxcgXnRGiv7g4MNmazBgof2zjvt/C8g0cTWdthAC4RALkjvOFd+4JyyJP
-ozwCmesdus9emei4oZwgFKK914YZDEjYr8bWMicgALtwdnF7z9A00O5RwqaptPTX
-jSFQlpjo5s4gYR2xpQZaLPRwnr328DtW8oertBocpd32+OtNe+A2u1cjdxKuOPqt
-1iB2h/WFOgzqi5noKYu5eQ37WtWZsiPlUuEcrUXRddHEj/TYOFwBEclb+TtkaO0X
-ysdUvYWSGALn6XAUtaiDpl43o6bQ2A==
-=1sCe
------END PGP SIGNATURE-----
---=-=-=--
-
-
---===============4067986033896480459==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4067986033896480459==--
-
+T24gMjAyMi0wMy0xNiAyMToxOSwgSGVpbmVyIEthbGx3ZWl0IHdyb3RlOgo+IE9uIDE2LjAzLjIw
+MjIgMDE6MzgsIFJvYmluIE11cnBoeSB3cm90ZToKPj4gT24gMjAyMi0wMi0yNSAyMTowOSwgSGVp
+bmVyIEthbGx3ZWl0IHdyb3RlOgo+Pj4gVGhpcyBzZXJpZXMgYWRkcyBzdXBwb3J0IGZvciB0aGUg
+VGl0YW5tZWMgVE0xNjI4IDcgc2VnbWVudCBkaXNwbGF5Cj4+PiBjb250cm9sbGVyLiBJdCdzIGJh
+c2VkIG9uIHByZXZpb3VzIFJGQyB3b3JrIGZyb20gQW5kcmVhcyBGw6RyYmVyLgo+Pj4gVGhlIFJG
+QyB2ZXJzaW9uIHBsYWNlZCB0aGUgZHJpdmVyIGluIHRoZSBMRUQgc3Vic3lzdGVtLCBidXQgdGhp
+cyB3YXMKPj4+IE5BSydlZCBieSB0aGUgTEVEIG1haW50YWluZXIuIFRoZXJlZm9yZSBJIG1vdmVk
+IHRoZSBkcml2ZXIgdG8KPj4+IC9kcml2ZXJzL2F1eGRpc3BsYXkgd2hhdCBzZWVtcyBtb3N0IHJl
+YXNvbmFibGUgdG8gbWUuCj4+Pgo+Pj4gRnVydGhlciBjaGFuZ2VzIHRvIHRoZSBSRkMgdmVyc2lv
+bjoKPj4+IC0gRHJpdmVyIGNhbiBiZSBidWlsdCBhbHNvIHcvbyBMRUQgY2xhc3Mgc3VwcG9ydCwg
+Zm9yIGRpc3BsYXlzIHRoYXQKPj4+ICDCoMKgIGRvbid0IGhhdmUgYW55IHN5bWJvbHMgdG8gYmUg
+ZXhwb3NlZCBhcyBMRUQncy4KPj4+IC0gU2ltcGxpZmllZCB0aGUgY29kZSBhbmQgcmV3cm90ZSBh
+IGxvdCBvZiBpdC4KPj4+IC0gRHJpdmVyIGlzIG5vdyBraW5kIG9mIGEgTVZQLCBidXQgZnVuY3Rp
+b25hbGl0eSBzaG91bGQgYmUgc3VmZmljaWVudAo+Pj4gIMKgwqAgZm9yIG1vc3QgdXNlIGNhc2Vz
+Lgo+Pj4gLSBVc2UgdGhlIGV4aXN0aW5nIDcgc2VnbWVudCBzdXBwb3J0IGluIHVhcGkvbGludXgv
+bWFwX3RvXzdzZWdtZW50LmgKPj4+ICDCoMKgIGFzIHN1Z2dlc3RlZCBieSBHZWVydCBVeXR0ZXJo
+b2V2ZW4uCj4+Pgo+Pj4gTm90ZTogVGhlcmUncyBhIG51bWJlciBvZiBjaGlwcyBmcm9tIG90aGVy
+IG1hbnVmYWN0dXJlcnMgdGhhdCBhcmUKPj4+ICDCoMKgwqDCoMKgwqAgYWxtb3N0IGlkZW50aWNh
+bCwgZS5nLiBGRDYyOCwgU00xNjI4LiBPbmx5IGRpZmZlcmVuY2UgSSBzYXcgc28KPj4+ICDCoMKg
+wqDCoMKgwqAgZmFyIGlzIHRoYXQgdGhleSBwYXJ0aWFsbHkgc3VwcG9ydCBvdGhlciBkaXNwbGF5
+IG1vZGVzLgo+Pj4gIMKgwqDCoMKgwqDCoCBUTTE2Mjg6IDZ4MTIsIDd4MTEKPj4+ICDCoMKgwqDC
+oMKgwqAgU00xNjI4QzogNHgxMywgNXgxMiwgNngxMSwgN3gxMAo+Pj4gIMKgwqDCoMKgwqDCoCBG
+b3IgdHlwaWNhbCBkaXNwbGF5cyBvbiBkZXZpY2VzIHVzaW5nIHRoZXNlIGNoaXBzIHRoaXMKPj4+
+ICDCoMKgwqDCoMKgwqAgZGlmZmVyZW5jZSBzaG91bGRuJ3QgbWF0dGVyLgo+Pj4KPj4+IFN1Y2Nl
+c3NmdWxseSB0ZXN0ZWQgb24gYSBUWDMgTWluaSBUViBib3ggdGhhdCBoYXMgYW4gU00xNjI4QyBh
+bmQgYQo+Pj4gZGlzcGxheSB3aXRoIDQgZGlnaXRzIGFuZCA3IHN5bWJvbHMuCj4+Cj4+IEZXSVcg
+SSBnYXZlIHRoaXMgYSBnbyBvbiBteSBCZWVsaW5rIEExLCB3aGljaCBoYXMgYW4gQWlQMTYxOCBh
+bmQgYSBjbG9jayBkaXNwbGF5IHdoaWNoIHdvdWxkIG1hcHBlZCBsaWtlIHNvOgo+Pgo+PiAgwqDC
+oMKgwqB0aXRhbm1lYyxzZWdtZW50LW1hcHBpbmcgPSAvYml0cy8gOCA8MSAyIDMgMTMgMTIgNSA0
+PjsKPj4gIMKgwqDCoMKgdGl0YW5tZWMsZ3JpZCA9IC9iaXRzLyA4IDw1IDQgMiAxPjsKPj4KPj4g
+KGdyaWQgMyBzZWdtZW50IDIgaXMgdXNlZCBmb3IgYSBjb2xvbiBpbiB0aGUgbWlkZGxlKQo+Pgo+
+PiBJZiBJIGJvZGdlIGFyb3VuZCB0aGUgbGFjayBvZiBzdXBwb3J0IGZvciBub24tY29udGlndW91
+cyBncmlkcywgaXQgZG9lcyBvdGhlcndpc2Ugd29yayBmYWlybHkgd2VsbCwgb3RoZXIgdGhhbiBi
+ZWluZyA2LXNlZ21lbnQgZGlzcGxheXMgYmVjYXVzZSBpdCBuZWVkcyB0byBiZSBpbiBkaXNwbGF5
+IG1vZGUgMSB0byBkcml2ZSBTRUcxMyByYXRoZXIgdGhhbiBHUklENi4gSSB3b25kZXIgaWYgd2Ug
+Y291bGQgYmUgYSBiaXQgY2xldmVyZXIgYWJvdXQgcGlja2luZyBhIGRpc3BsYXkgbW9kZSBiYXNl
+ZCBvbiB0aGUgZ3JpZC9zZWdtZW50IG51bWJlcnMgdXNlZD8KPj4KPiBEZWZpbml0ZWx5IHRoaXMg
+Y291bGQgYmUgb25lIGZ1dHVyZSBleHRlbnNpb24uIEl0IGNvdWxkIGFsc28gY29uc2lkZXIgdGhh
+dCB0aGVyZSdzIGEgbnVtYmVyIG9mIG1vcmUgb3IgbGVzcwo+IGlkZW50aWNhbCBjaGlwcyBmcm9t
+IG90aGVyIHZlbmRvcnMgdGhhdCBkaWZmZXIgcHJpbWFyaWx5IGluIHRoZSBzdXBwb3J0ZWQgZGlz
+cGxheSBtb2Rlcy4KPiAKPj4gSSBhbHNvIGhhdmUgYSBjb3VwbGUgb2YgdGhvc2UgVE0xNjM4IGJy
+ZWFrb3V0IGJvYXJkcyB3aXRoIDggZGlnaXRzLCA4IHNpbmdsZSBMRURzIGFuZCA4IGJ1dHRvbnMg
+dGhhdCBJIG1pZ2h0IGhhdmUgYSBnbyB3aXRoIHRvby4gSGF2ZSB5b3UgZ2l2ZW4gYW55IHRob3Vn
+aHQgdG8gaG93IHRoZSBEVCBiaW5kaW5nIG1pZ2h0IHN1cHBvcnQgaW5wdXRzIGFzIHdlbGw/IChU
+aGUgYmVzdCB0aW1lIHRvIGJlIGZ1dHVyZS1wcm9vZiBpcyBiZWZvcmUgaXQncyBtZXJnZWQuLi4p
+Cj4+Cj4gV2l0aCByZWdhcmRzIHRvIGlucHV0cyBhdCBsZWFzdCBJIGhhdmUgbm8gcGxhbnMgYmVj
+YXVzZSBJIGhhdmUgbm8gaHcgc3VwcG9ydGluZyBpbnB1dC4KCkZXSVcsIGlmIHlvdSd2ZSBnb3Qg
+YSBib2FyZCB3aXRoIGV4cG9zZWQgR1BJTy9TUEkgaGVhZGVycywgc2VhcmNoaW5nIAoiVE0xNjM4
+IiBvbiBlYmF5L2FsaWV4cHJlc3MvZXRjLiBzaG91bGQgZmluZCB0aGUgY2hlYXBvIGJyZWFrb3V0
+IGJvYXJkcy4gCkkgYmVsaWV2ZSB0aGV5J3JlIHF1aXRlIHBvcHVsYXIgd2l0aCB0aGUgQXJkdWlu
+byBjcm93ZCwgc28gSSBleHBlY3QgdGhhdCAKbWF5IHdlbGwgY2Fycnkgb3ZlciB0byB0aGUgUmFz
+cGJlcnJ5IFBpIGNyb3dkIG9uY2UgdGhleSBnZXQgd2luZCBvZiBhIAprZXJuZWwgZHJpdmVyIHRo
+YXQgY2FuIGJlIGRyaXZlbiBieSBEVCBvdmVybGF5cy4KCj4gU2luY2UgdGhlIGZpcnN0IGF0dGVt
+cHRzIHRvIHN1cHBvcnQgdGhpcyBMRUQgZHJpdmVyIGh3IHR3byB5ZWFycyBoYXZlIGJlZW4gcGFz
+c2VkIHcvbyBhbnkgdGFuZ2libGUgKG1haW5saW5lKSByZXN1bHQuCj4gVGhlcmVmb3JlIEkgd2Fu
+dCB0byBrZWVwIHRoZSBpbml0aWFsIHZlcnNpb24gYSBNVlAuIFdhbnRpbmcgdG8gaGF2ZSB0b28g
+bWFueSBmZWF0dXJlcyBpbiBhbiBpbml0aWFsIHZlcnNpb24KPiBtYXkgcmVzdWx0IGluIGxvbmdl
+ciBkaXNjdXNzaW9ucyB1bnRpbCBtYWludGFpbmVyIG9yIEkgZ2l2ZSB1cC4KClVuZm9ydHVuYXRl
+bHkgdGhlIHByaW5jaXBsZSBpcyB0aGF0IERUIGJpbmRpbmdzIGRlc2NyaWJlIHRoZSBkZXZpY2Us
+IG5vdCAKd2hhdGV2ZXIgdGhlIGN1cnJlbnQgbGV2ZWwgb2YgTGludXggZHJpdmVyIHN1cHBvcnQg
+Zm9yIGl0IG1pZ2h0IGJlLiAKUGVyaGFwcyBJJ20gYSBsaXR0bGUgc2Vuc2l0aXNlZCBzaW5jZSBJ
+J20gY3VycmVudGx5IGZlZWxpbmcgdGhlIHBhaW4gb2YgCmV4dGVuZGluZyBhIGRlY2FkZS1vbGQg
+YmluZGluZyB3aXRoIGZ1bmN0aW9uYWxpdHkgdGhhdCB3YXMgb3Zlcmxvb2tlZCBhdCAKdGhlIHRp
+bWUsIGFuZCBub3QgYnJlYWtpbmcgY29tcGF0aWJpbGl0eSBpcyBub3cgcmF0aGVyIGF3a3dhcmQu
+CgpJJ20gbm90IHN1Z2dlc3RpbmcgdGhhdCB0aGVyZSBuZWVkcyB0byBiZSBhbnkgc3VwcG9ydCBp
+bXBsZW1lbnRlZCBpbiB0aGUgCmRyaXZlciwganVzdCB0byBiZSBjZXJ0YWluIHRoYXQgd2UncmUg
+bm90IHBhaW50aW5nIG91cnNlbHZlcyBpbnRvIGEgCmNvcm5lciB3aXRoIHRoZSBiaW5kaW5nLgoK
+PiBJbXBvcnRhbnQgaXMgdGhhdCB1c2VyIHNwYWNlIGludGVyZmFjZSAvIERUIGJpbmRpbmdzIGFy
+ZSBmbGV4aWJsZSBlbm91Z2ggc28gdGhhdCBmdXR1cmUgZXh0ZW5zaW9ucyBkb24ndCBoYXZlIHRv
+IGJyZWFrCj4gZXhpc3RpbmcgdXNlcnMuIEFuZCBJIHRoaW5rIHRoYXQncyB0aGUgY2FzZS4KCk1h
+eSBJIGFzayB3aGF0IHlvdSBoYXZlIGluIG1pbmQ/IEkgZmlndXJlIHRoYXQgaW5wdXRzIHdvdWxk
+IG1vc3QgbGlrZWx5IAp3YW50IHRvIGJlIGRlc2NyaWJlZCBpbmRpdmlkdWFsbHksIHNpbWlsYXJs
+eSB0byB0aGUgZ3Bpby1rZXlzIGJpbmRpbmcsIAp3aGljaCB3b3VsZCBsZW5kIGl0c2VsZiB0byBo
+YXZpbmcgdGhlbSBhcyBjaGlsZCBub2RlcywgZXhjZXB0IHRoYXQgCmRvZXNuJ3QgZml0IHdpdGgg
+dGhlIGN1cnJlbnQgc2NoZW1lIG9mIGNoaWxkIG5vZGVzIGhhdmluZyB0byBiZSBMRURzIAphZGRy
+ZXNzZWQgYnkgKGdyaWQsc2VnbWVudCkuIEkgc3VwcG9zZSB0aGVyZSBpcyBhIHBvc3NpYmxlIGVz
+Y2FwZSBoYXRjaCAKb2YgYWJ1c2luZyB1bnVzZWQgYWRkcmVzc2VzLCBlLmcuIHNheWluZyBhIG5v
+ZGUgYXQgYWRkcmVzcyAoMCxuKSBpcyAKaW5wdXQgbiByYXRoZXIgdGhhbiBhbiBMRUQgc2VnbWVu
+dCwgYnV0IHRoYXQgc2VlbXMgcHJldHR5IGhvcnJpZCAoYW5kIApJJ20gbm90IHN1cmUgaG93IHdl
+bGwgc2NoZW1hIGNvdWxkIHZhbGlkYXRlIGl0KS4gT3IgcG9zc2libHkgcHJldGVuZGluZyAKdG8g
+YWxzbyBiZSBhIEdQSU8gY29udHJvbGxlciB0byByZWZlcmVuY2UgZnJvbSBhIHNlcGFyYXRlIGdw
+aW8ta2V5cyAKbm9kZSwgYnV0IGFnYWluIHRoYXQgc2VlbXMgdWdseSBhbmQgbW9yZSBsaWtlIHNv
+bWV0aGluZyB0byBvbmx5IGRvIGlmIAp0aGVyZSdzIG5vIG90aGVyIG9wdGlvbi4KCklNTyBpdCB3
+b3VsZCBiZSBjbGVhbmVzdCBqdXN0IHRvIGhhdmUgYW4gZXh0cmEgbGV2ZWwgb2YgaGllcmFyY2h5
+LCBlLmcuOgoKCglsZWQtY29udHJvbGxlckAwIHsKCQljb21wYXRpYmxlID0gInRpdGFubWVjLHRt
+MTYyOCI7CgkJLi4uCgoJCWxlZHMgewoJCQkjYWRkcmVzcy1jZWxscyA9IDwyPjsKCQkJI3NpemUt
+Y2VsbHMgPSA8MD47CgoJCQlhbGFybUA1LDQgewoJCQkJLi4uCgkJCX07CgkJfTsKCX07CgpUaGF0
+IHdheSB0aGVyZSdzIGNsZWFybHkgYWxtb3N0IG5vIHJpc2sgb2YgYnJlYWthZ2UgaWYgYW4gYWRk
+aXRpb25hbCAKImlucHV0cyIgbm9kZSB3aXRoIGl0cyBvd24gY2hpbGRyZW4gdHVybnMgdXAgbGF0
+ZXIuIFBsdXMgaXQgc2hvdWxkIGFsc28gCmJlIGEgdHJpdmlhbCBjaGFuZ2UgdG8gdGhlIGN1cnJl
+bnQgZHJpdmVyLCBjb21wYXJlZCB0byBoYXZpbmcgdG8gCmltcGxlbWVudCB0cmljayBzcGVjaWFs
+IGNhc2VzIG9yIHdob2xlIG90aGVyIEFQSXMgZG93biB0aGUgbGluZSAtIG9mIApjb3Vyc2UgYmlu
+ZGluZ3Mgc2hvdWxkIG5vdCBiZSBkZXNpZ25lZCBleHByZXNzbHkgZm9yIGVhc2Ugb2YgZHJpdmVy
+IAppbXBsZW1lbnRhdGlvbiwgYnV0IGlmIHRoZXkgZG8gd29yayBvdXQgdGhhdCB3YXkgaXQncyB1
+c3VhbGx5IGEgZ29vZCBzaWduIDopCgpUaGFua3MsClJvYmluLgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
