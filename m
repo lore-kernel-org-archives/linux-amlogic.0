@@ -4,93 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C864C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Mar 2022 14:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F96C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Mar 2022 20:13:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2qtKHZPJ2Q/rVeJ3J7g6HH8anTQT/JxmU7As3LAji0g=; b=mu20jfQXsEDW8z
-	UJbPtjO/vSKEi64Q5OZ4e52lQU+fM6CsO7rWdH1V8tzk4v5JO3h3P0ACeCbiKnhHhy+HgI45BaizQ
-	FIRaEEQu5zpD0jO/j84vAsKF0C1m9Rhifb8KzrOmd81iQwSumi0vQya7t/QUH2WsdgkuwO4LO4GS3
-	iW1fgLZKvqzAV/T4Cm9vrQd3Wo8mzm7dwODGGcSdOc92UU4H7c/aPWaJ8/2KQX7qKCNvPzT5r+RaY
-	sGv33YGpsyDauDlcpzCRoWjG76mh/7/cHosY1pIAYAX4QPuEv1Kit2ueJ7dT0HwSVTj32yjkldOxu
-	79L10WBl94GgFqsgfjIA==;
+	List-Owner; bh=r44VGKOXXs1OgshHES9EaDSre0hX5DdzFWnIYIbnD+c=; b=1qcEbSIHnW1LAK
+	Vf3ro974f+XRambw6Nk5bUs6hDRybmPIXYq2DS3Dnf/JW0pSu2riIDEDBAn3iphcOjn6QE9h4Rlug
+	Yfg8qs1/RKV10uU0K4U5JA55V7uEONNegVW3o0TpCULPE0t/8apIB9AlCXqv7Oj8UVWmK/MbL1hgc
+	fY/QfFSueEnlHCtkPX8OKszisjZ53vaUmifalP6k3EM1qz7FXiaZJVjazkZtmefz6mfYLVpvyd39N
+	ZB5bF0tnb0aaDJapCj6MnJ7wv4UU0Wf9RdGk+d7bu5xCz4q9gr3ILsukBcg1/Ew7lwPGoWQdsPqh9
+	sARwSTYoNHRyZSRdddBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nVDC5-001og7-Aj; Fri, 18 Mar 2022 14:03:05 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nVDBe-001oXf-Ee
- for linux-amlogic@lists.infradead.org; Fri, 18 Mar 2022 14:02:40 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id u10so11866012wra.9
- for <linux-amlogic@lists.infradead.org>; Fri, 18 Mar 2022 07:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=MSfe0oNqlxTc3hvFVxCHI7kIYgD3mVI4QDSibjDlGsU=;
- b=nMhlwQ7fYXVSj9Kxm6vqRqlZnpDQarVv0lQR0Hg11heP3FNNsF4h5gZiEb3MvyQTej
- jYSBWp7kxj44YE3MPxa0GbgcOrOWm4RJobVSYibpGv90gL07vkwEQ0qYbgtRD16tFpFv
- X7Yz+1T7u4QyHZSdgEvEoShJRmYU9LXuD8ASt44rcjYN05lFuk+D5/nwJNOOGBZHfkQn
- +XEkjSzN+Slwothm8OyrVqyCklqXtF2Pmgg7ENPkMN/zr3PtOO7Kt7L5G7HpxoIXKHPm
- iqCvEQM7YjfUDPlTsmQlulYSBe741JioYea2Oo9Ns/zYMioEac1mSRL62d8Aqy27Y7Lj
- XxGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=MSfe0oNqlxTc3hvFVxCHI7kIYgD3mVI4QDSibjDlGsU=;
- b=uxNDB+xfgxPTk8gwzukDIbc9rfCMYSoGeMmqf1p9FjGceoUdsxSSMzf0mqo+H15B+I
- I+RrgrQZaB9USv2ay1aCDwnyyRZ0EhogVJ8VRTc223MOnLxj5Qo5eUVhIFd976TWoYKH
- ZNKss26bKBwXHamOLNvvHzksVD4Ez5Jg+duSsabKCSJOmmWE6F2c9uCVUTd5NzRKiMhm
- en1mWy3B+q7liCb6vnYGCfVEJygzIkiCmnnsXVzNWqL3gO1n1Ixfq+zNsAicYtYinw/l
- IBz0ULZfReixM7ZhWeJiQ4H1vyaK4f+8ZQtj1armieAPfgD5nQSHu44TakGnTrhjIhyL
- VjNQ==
-X-Gm-Message-State: AOAM533as4K/jj7bvCasrdQDYAsasIdrDLcFXMjYI5DY4RKVNJCAN0xg
- KCHibgjcVeRFFtKpL3Rx68Qcng==
-X-Google-Smtp-Source: ABdhPJzlx1nTpb3i5pgvyJajDxSfqFs4eVc0qGGx7Z0lDoyM6Sev+Wxrf/asoUJYby5Nx1ty10WW8w==
-X-Received: by 2002:a5d:4609:0:b0:203:e792:3add with SMTP id
- t9-20020a5d4609000000b00203e7923addmr7416026wrq.657.1647612154903; 
- Fri, 18 Mar 2022 07:02:34 -0700 (PDT)
-Received: from [192.168.1.10]
- (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
- by smtp.gmail.com with ESMTPSA id
- c12-20020a05600c0a4c00b00381141f4967sm8613506wmq.35.2022.03.18.07.02.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Mar 2022 07:02:34 -0700 (PDT)
-Message-ID: <afeff479-624c-73c8-3a1a-7d21f85ac09b@baylibre.com>
-Date: Fri, 18 Mar 2022 15:02:33 +0100
+	id 1nVIyX-002m4x-PU; Fri, 18 Mar 2022 20:13:29 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nVIyV-002m44-2T; Fri, 18 Mar 2022 20:13:29 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 42B6B1515;
+ Fri, 18 Mar 2022 13:13:23 -0700 (PDT)
+Received: from [10.57.43.230] (unknown [10.57.43.230])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C696C3F766;
+ Fri, 18 Mar 2022 13:13:20 -0700 (PDT)
+Message-ID: <4c999827-0c13-8628-9322-51d68dfcad5c@arm.com>
+Date: Fri, 18 Mar 2022 20:13:15 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Content-Language: en-US
-To: Liang Yang <liang.yang@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
-Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+Content-Language: en-GB
+To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ Miguel Ojeda <ojeda@kernel.org>
+Cc: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
- <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
- BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
- <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20220318124121.26117-1-liang.yang@amlogic.com>
- <20220318124121.26117-2-liang.yang@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220318124121.26117-2-liang.yang@amlogic.com>
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Geert Uytterhoeven <geert+renesas@glider.be>
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
+ <84739af1-cbb8-e957-6e30-4121ed0a3517@gmail.com>
+ <132a5a99-6dbf-12d4-723b-2a327f23d24e@arm.com>
+ <953246ad-282b-c182-cbf6-3caa28979dbc@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <953246ad-282b-c182-cbf6-3caa28979dbc@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220318_070238_517558_ECC0E70D 
-X-CRM114-Status: GOOD (  28.56  )
+X-CRM114-CacheID: sfid-20220318_131327_259242_807084BB 
+X-CRM114-Status: GOOD (  36.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,250 +72,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 18/03/2022 13:41, Liang Yang wrote:
-> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
-> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
-> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
-> implemented and can be used by the eMMC and NAND controller (which are mutually
-> exclusive anyway). Let's use this new clock.
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->   drivers/mtd/nand/raw/meson_nand.c | 101 ++++++++++++++++--------------
->   1 file changed, 53 insertions(+), 48 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index ac3be92872d0..257ffc8a41ab 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -10,6 +10,7 @@
->   #include <linux/dma-mapping.h>
->   #include <linux/interrupt.h>
->   #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->   #include <linux/mtd/rawnand.h>
->   #include <linux/mtd/mtd.h>
->   #include <linux/mfd/syscon.h>
-> @@ -19,6 +20,7 @@
->   #include <linux/iopoll.h>
->   #include <linux/of.h>
->   #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->   #include <linux/sched/task_stack.h>
->   
->   #define NFC_REG_CMD		0x00
-> @@ -104,6 +106,9 @@
->   
->   #define PER_INFO_BYTE		8
->   
-> +#define CLK_DIV_SHIFT		0
-> +#define CLK_DIV_WIDTH		6
-> +
->   struct meson_nfc_nand_chip {
->   	struct list_head node;
->   	struct nand_chip nand;
-> @@ -151,15 +156,15 @@ struct meson_nfc {
->   	struct nand_controller controller;
->   	struct clk *core_clk;
->   	struct clk *device_clk;
-> -	struct clk *phase_tx;
-> -	struct clk *phase_rx;
-> +	struct clk *nand_clk;
-> +	struct clk_divider nand_divider;
->   
->   	unsigned long clk_rate;
->   	u32 bus_timing;
->   
->   	struct device *dev;
->   	void __iomem *reg_base;
-> -	struct regmap *reg_clk;
-> +	void __iomem *sd_emmc_clock;
->   	struct completion completion;
->   	struct list_head chips;
->   	const struct meson_nfc_data *data;
-> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
->   	nfc->timing.tbers_max = meson_chip->tbers_max;
->   
->   	if (nfc->clk_rate != meson_chip->clk_rate) {
-> -		ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
-> +		ret = clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
->   		if (ret) {
->   			dev_err(nfc->dev, "failed to set clock rate\n");
->   			return;
-> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
->   	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
->   		| nfc->param.chip_select | nfc->timing.tbers_max;
->   	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> -
->   	ret = wait_for_completion_timeout(&nfc->completion,
->   					  msecs_to_jiffies(timeout_ms));
->   	if (ret == 0)
-> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
->   	.free = meson_ooblayout_free,
->   };
->   
-> +struct clk_parent_data nfc_divider_parent_data[1];
->   static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   {
->   	int ret;
-> +	struct clk_init_data init = {0};
->   
->   	/* request core clock */
->   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
-> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   		return PTR_ERR(nfc->device_clk);
->   	}
->   
-> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
-> -	if (IS_ERR(nfc->phase_tx)) {
-> -		dev_err(nfc->dev, "failed to get TX clk\n");
-> -		return PTR_ERR(nfc->phase_tx);
-> -	}
-> -
-> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
-> -	if (IS_ERR(nfc->phase_rx)) {
-> -		dev_err(nfc->dev, "failed to get RX clk\n");
-> -		return PTR_ERR(nfc->phase_rx);
-> -	}
-> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
-> +	init.ops = &clk_divider_ops;
-> +	nfc_divider_parent_data[0].fw_name = "device";
-> +	init.parent_data = nfc_divider_parent_data;
-> +	init.num_parents = 1;
-> +	nfc->nand_divider.reg = nfc->sd_emmc_clock;
-> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
-> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
-> +	nfc->nand_divider.hw.init = &init;
-> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
-> +				  CLK_DIVIDER_ROUND_CLOSEST |
-> +				  CLK_DIVIDER_ALLOW_ZERO;
-> +
-> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
-> +	if (IS_ERR(nfc->nand_clk))
-> +		return PTR_ERR(nfc->nand_clk);
->   
->   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
-> -	regmap_update_bits(nfc->reg_clk,
-> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
-> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
-> +	       nfc->sd_emmc_clock);
->   
->   	ret = clk_prepare_enable(nfc->core_clk);
->   	if (ret) {
-> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   		goto err_device_clk;
->   	}
->   
-> -	ret = clk_prepare_enable(nfc->phase_tx);
-> -	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable TX clock\n");
-> -		goto err_phase_tx;
-> -	}
-> -
-> -	ret = clk_prepare_enable(nfc->phase_rx);
-> +	ret = clk_prepare_enable(nfc->nand_clk);
->   	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable RX clock\n");
-> -		goto err_phase_rx;
-> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
-> +		goto err_nand_clk;
->   	}
->   
-> -	ret = clk_set_rate(nfc->device_clk, 24000000);
-> +	ret = clk_set_rate(nfc->nand_clk, 24000000);
->   	if (ret)
-> -		goto err_disable_rx;
-> +		goto err_disable_clk;
->   
->   	return 0;
->   
-> -err_disable_rx:
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -err_phase_rx:
-> -	clk_disable_unprepare(nfc->phase_tx);
-> -err_phase_tx:
-> +err_disable_clk:
-> +	clk_disable_unprepare(nfc->nand_clk);
-> +err_nand_clk:
->   	clk_disable_unprepare(nfc->device_clk);
->   err_device_clk:
->   	clk_disable_unprepare(nfc->core_clk);
-> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   
->   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
->   {
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -	clk_disable_unprepare(nfc->phase_tx);
-> +	clk_disable_unprepare(nfc->nand_clk);
->   	clk_disable_unprepare(nfc->device_clk);
->   	clk_disable_unprepare(nfc->core_clk);
->   }
-> @@ -1373,9 +1375,10 @@ MODULE_DEVICE_TABLE(of, meson_nfc_id_table);
->   static int meson_nfc_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->of_node;
->   	struct meson_nfc *nfc;
-> -	struct resource *res;
-> -	int ret, irq;
-> +	struct resource res;
-> +	int ret, irq, i;
->   
->   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
->   	if (!nfc)
-> @@ -1388,21 +1391,23 @@ static int meson_nfc_probe(struct platform_device *pdev)
->   	nand_controller_init(&nfc->controller);
->   	INIT_LIST_HEAD(&nfc->chips);
->   	init_completion(&nfc->completion);
-> -
->   	nfc->dev = dev;
->   
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	nfc->reg_base = devm_ioremap_resource(dev, res);
-> +	i = of_property_match_string(node, "reg-names", "nfc");
-> +	if (of_address_to_resource(node, i, &res))
-> +		return -ENOENT;
-> +
-> +	nfc->reg_base = devm_ioremap_resource(dev, &res);
->   	if (IS_ERR(nfc->reg_base))
->   		return PTR_ERR(nfc->reg_base);
-
-You can use devm_platform_ioremap_resource_byname() here which is musch simpler,
-and permits dropping platform_get_resource() at the same time.
-
->   
-> -	nfc->reg_clk =
-> -		syscon_regmap_lookup_by_phandle(dev->of_node,
-> -						"amlogic,mmc-syscon");
-> -	if (IS_ERR(nfc->reg_clk)) {
-> -		dev_err(dev, "Failed to lookup clock base\n");
-> -		return PTR_ERR(nfc->reg_clk);
-> -	}
-> +	i = of_property_match_string(node, "reg-names", "emmc");
-> +	if (of_address_to_resource(node, i, &res))
-> +		return -ENOENT;
-> +
-> +	nfc->sd_emmc_clock = devm_ioremap_resource(dev, &res);
-> +	if (IS_ERR(nfc->sd_emmc_clock))
-> +		return PTR_ERR(nfc->sd_emmc_clock);
-
-Same here.
-
->   
->   	irq = platform_get_irq(pdev, 0);
->   	if (irq < 0)
-
-Thanks !
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjAyMi0wMy0xNyAyMTo0OSwgSGVpbmVyIEthbGx3ZWl0IHdyb3RlOgo+IE9uIDE3LjAzLjIw
+MjIgMjE6MDgsIFJvYmluIE11cnBoeSB3cm90ZToKPj4gT24gMjAyMi0wMy0xNiAyMToxOSwgSGVp
+bmVyIEthbGx3ZWl0IHdyb3RlOgo+Pj4gT24gMTYuMDMuMjAyMiAwMTozOCwgUm9iaW4gTXVycGh5
+IHdyb3RlOgo+Pj4+IE9uIDIwMjItMDItMjUgMjE6MDksIEhlaW5lciBLYWxsd2VpdCB3cm90ZToK
+Pj4+Pj4gVGhpcyBzZXJpZXMgYWRkcyBzdXBwb3J0IGZvciB0aGUgVGl0YW5tZWMgVE0xNjI4IDcg
+c2VnbWVudCBkaXNwbGF5Cj4+Pj4+IGNvbnRyb2xsZXIuIEl0J3MgYmFzZWQgb24gcHJldmlvdXMg
+UkZDIHdvcmsgZnJvbSBBbmRyZWFzIEbDpHJiZXIuCj4+Pj4+IFRoZSBSRkMgdmVyc2lvbiBwbGFj
+ZWQgdGhlIGRyaXZlciBpbiB0aGUgTEVEIHN1YnN5c3RlbSwgYnV0IHRoaXMgd2FzCj4+Pj4+IE5B
+SydlZCBieSB0aGUgTEVEIG1haW50YWluZXIuIFRoZXJlZm9yZSBJIG1vdmVkIHRoZSBkcml2ZXIg
+dG8KPj4+Pj4gL2RyaXZlcnMvYXV4ZGlzcGxheSB3aGF0IHNlZW1zIG1vc3QgcmVhc29uYWJsZSB0
+byBtZS4KPj4+Pj4KPj4+Pj4gRnVydGhlciBjaGFuZ2VzIHRvIHRoZSBSRkMgdmVyc2lvbjoKPj4+
+Pj4gLSBEcml2ZXIgY2FuIGJlIGJ1aWx0IGFsc28gdy9vIExFRCBjbGFzcyBzdXBwb3J0LCBmb3Ig
+ZGlzcGxheXMgdGhhdAo+Pj4+PiAgwqDCoMKgIGRvbid0IGhhdmUgYW55IHN5bWJvbHMgdG8gYmUg
+ZXhwb3NlZCBhcyBMRUQncy4KPj4+Pj4gLSBTaW1wbGlmaWVkIHRoZSBjb2RlIGFuZCByZXdyb3Rl
+IGEgbG90IG9mIGl0Lgo+Pj4+PiAtIERyaXZlciBpcyBub3cga2luZCBvZiBhIE1WUCwgYnV0IGZ1
+bmN0aW9uYWxpdHkgc2hvdWxkIGJlIHN1ZmZpY2llbnQKPj4+Pj4gIMKgwqDCoCBmb3IgbW9zdCB1
+c2UgY2FzZXMuCj4+Pj4+IC0gVXNlIHRoZSBleGlzdGluZyA3IHNlZ21lbnQgc3VwcG9ydCBpbiB1
+YXBpL2xpbnV4L21hcF90b183c2VnbWVudC5oCj4+Pj4+ICDCoMKgwqAgYXMgc3VnZ2VzdGVkIGJ5
+IEdlZXJ0IFV5dHRlcmhvZXZlbi4KPj4+Pj4KPj4+Pj4gTm90ZTogVGhlcmUncyBhIG51bWJlciBv
+ZiBjaGlwcyBmcm9tIG90aGVyIG1hbnVmYWN0dXJlcnMgdGhhdCBhcmUKPj4+Pj4gIMKgwqDCoMKg
+wqDCoMKgIGFsbW9zdCBpZGVudGljYWwsIGUuZy4gRkQ2MjgsIFNNMTYyOC4gT25seSBkaWZmZXJl
+bmNlIEkgc2F3IHNvCj4+Pj4+ICDCoMKgwqDCoMKgwqDCoCBmYXIgaXMgdGhhdCB0aGV5IHBhcnRp
+YWxseSBzdXBwb3J0IG90aGVyIGRpc3BsYXkgbW9kZXMuCj4+Pj4+ICDCoMKgwqDCoMKgwqDCoCBU
+TTE2Mjg6IDZ4MTIsIDd4MTEKPj4+Pj4gIMKgwqDCoMKgwqDCoMKgIFNNMTYyOEM6IDR4MTMsIDV4
+MTIsIDZ4MTEsIDd4MTAKPj4+Pj4gIMKgwqDCoMKgwqDCoMKgIEZvciB0eXBpY2FsIGRpc3BsYXlz
+IG9uIGRldmljZXMgdXNpbmcgdGhlc2UgY2hpcHMgdGhpcwo+Pj4+PiAgwqDCoMKgwqDCoMKgwqAg
+ZGlmZmVyZW5jZSBzaG91bGRuJ3QgbWF0dGVyLgo+Pj4+Pgo+Pj4+PiBTdWNjZXNzZnVsbHkgdGVz
+dGVkIG9uIGEgVFgzIE1pbmkgVFYgYm94IHRoYXQgaGFzIGFuIFNNMTYyOEMgYW5kIGEKPj4+Pj4g
+ZGlzcGxheSB3aXRoIDQgZGlnaXRzIGFuZCA3IHN5bWJvbHMuCj4+Pj4KPj4+PiBGV0lXIEkgZ2F2
+ZSB0aGlzIGEgZ28gb24gbXkgQmVlbGluayBBMSwgd2hpY2ggaGFzIGFuIEFpUDE2MTggYW5kIGEg
+Y2xvY2sgZGlzcGxheSB3aGljaCB3b3VsZCBtYXBwZWQgbGlrZSBzbzoKPj4+Pgo+Pj4+ICDCoMKg
+wqDCoMKgdGl0YW5tZWMsc2VnbWVudC1tYXBwaW5nID0gL2JpdHMvIDggPDEgMiAzIDEzIDEyIDUg
+ND47Cj4+Pj4gIMKgwqDCoMKgwqB0aXRhbm1lYyxncmlkID0gL2JpdHMvIDggPDUgNCAyIDE+Owo+
+Pj4+Cj4+Pj4gKGdyaWQgMyBzZWdtZW50IDIgaXMgdXNlZCBmb3IgYSBjb2xvbiBpbiB0aGUgbWlk
+ZGxlKQo+Pj4+Cj4+Pj4gSWYgSSBib2RnZSBhcm91bmQgdGhlIGxhY2sgb2Ygc3VwcG9ydCBmb3Ig
+bm9uLWNvbnRpZ3VvdXMgZ3JpZHMsIGl0IGRvZXMgb3RoZXJ3aXNlIHdvcmsgZmFpcmx5IHdlbGws
+IG90aGVyIHRoYW4gYmVpbmcgNi1zZWdtZW50IGRpc3BsYXlzIGJlY2F1c2UgaXQgbmVlZHMgdG8g
+YmUgaW4gZGlzcGxheSBtb2RlIDEgdG8gZHJpdmUgU0VHMTMgcmF0aGVyIHRoYW4gR1JJRDYuIEkg
+d29uZGVyIGlmIHdlIGNvdWxkIGJlIGEgYml0IGNsZXZlcmVyIGFib3V0IHBpY2tpbmcgYSBkaXNw
+bGF5IG1vZGUgYmFzZWQgb24gdGhlIGdyaWQvc2VnbWVudCBudW1iZXJzIHVzZWQ/Cj4+Pj4KPj4+
+IERlZmluaXRlbHkgdGhpcyBjb3VsZCBiZSBvbmUgZnV0dXJlIGV4dGVuc2lvbi4gSXQgY291bGQg
+YWxzbyBjb25zaWRlciB0aGF0IHRoZXJlJ3MgYSBudW1iZXIgb2YgbW9yZSBvciBsZXNzCj4+PiBp
+ZGVudGljYWwgY2hpcHMgZnJvbSBvdGhlciB2ZW5kb3JzIHRoYXQgZGlmZmVyIHByaW1hcmlseSBp
+biB0aGUgc3VwcG9ydGVkIGRpc3BsYXkgbW9kZXMuCj4+Pgo+Pj4+IEkgYWxzbyBoYXZlIGEgY291
+cGxlIG9mIHRob3NlIFRNMTYzOCBicmVha291dCBib2FyZHMgd2l0aCA4IGRpZ2l0cywgOCBzaW5n
+bGUgTEVEcyBhbmQgOCBidXR0b25zIHRoYXQgSSBtaWdodCBoYXZlIGEgZ28gd2l0aCB0b28uIEhh
+dmUgeW91IGdpdmVuIGFueSB0aG91Z2h0IHRvIGhvdyB0aGUgRFQgYmluZGluZyBtaWdodCBzdXBw
+b3J0IGlucHV0cyBhcyB3ZWxsPyAoVGhlIGJlc3QgdGltZSB0byBiZSBmdXR1cmUtcHJvb2YgaXMg
+YmVmb3JlIGl0J3MgbWVyZ2VkLi4uKQo+Pj4+Cj4+PiBXaXRoIHJlZ2FyZHMgdG8gaW5wdXRzIGF0
+IGxlYXN0IEkgaGF2ZSBubyBwbGFucyBiZWNhdXNlIEkgaGF2ZSBubyBodyBzdXBwb3J0aW5nIGlu
+cHV0Lgo+Pgo+PiBGV0lXLCBpZiB5b3UndmUgZ290IGEgYm9hcmQgd2l0aCBleHBvc2VkIEdQSU8v
+U1BJIGhlYWRlcnMsIHNlYXJjaGluZyAiVE0xNjM4IiBvbiBlYmF5L2FsaWV4cHJlc3MvZXRjLiBz
+aG91bGQgZmluZCB0aGUgY2hlYXBvIGJyZWFrb3V0IGJvYXJkcy4gSSBiZWxpZXZlIHRoZXkncmUg
+cXVpdGUgcG9wdWxhciB3aXRoIHRoZSBBcmR1aW5vIGNyb3dkLCBzbyBJIGV4cGVjdCB0aGF0IG1h
+eSB3ZWxsIGNhcnJ5IG92ZXIgdG8gdGhlIFJhc3BiZXJyeSBQaSBjcm93ZCBvbmNlIHRoZXkgZ2V0
+IHdpbmQgb2YgYSBrZXJuZWwgZHJpdmVyIHRoYXQgY2FuIGJlIGRyaXZlbiBieSBEVCBvdmVybGF5
+cy4KPj4KPj4+IFNpbmNlIHRoZSBmaXJzdCBhdHRlbXB0cyB0byBzdXBwb3J0IHRoaXMgTEVEIGRy
+aXZlciBodyB0d28geWVhcnMgaGF2ZSBiZWVuIHBhc3NlZCB3L28gYW55IHRhbmdpYmxlIChtYWlu
+bGluZSkgcmVzdWx0Lgo+Pj4gVGhlcmVmb3JlIEkgd2FudCB0byBrZWVwIHRoZSBpbml0aWFsIHZl
+cnNpb24gYSBNVlAuIFdhbnRpbmcgdG8gaGF2ZSB0b28gbWFueSBmZWF0dXJlcyBpbiBhbiBpbml0
+aWFsIHZlcnNpb24KPj4+IG1heSByZXN1bHQgaW4gbG9uZ2VyIGRpc2N1c3Npb25zIHVudGlsIG1h
+aW50YWluZXIgb3IgSSBnaXZlIHVwLgo+Pgo+PiBVbmZvcnR1bmF0ZWx5IHRoZSBwcmluY2lwbGUg
+aXMgdGhhdCBEVCBiaW5kaW5ncyBkZXNjcmliZSB0aGUgZGV2aWNlLCBub3Qgd2hhdGV2ZXIgdGhl
+IGN1cnJlbnQgbGV2ZWwgb2YgTGludXggZHJpdmVyIHN1cHBvcnQgZm9yIGl0IG1pZ2h0IGJlLiBQ
+ZXJoYXBzIEknbSBhIGxpdHRsZSBzZW5zaXRpc2VkIHNpbmNlIEknbSBjdXJyZW50bHkgZmVlbGlu
+ZyB0aGUgcGFpbiBvZiBleHRlbmRpbmcgYSBkZWNhZGUtb2xkIGJpbmRpbmcgd2l0aCBmdW5jdGlv
+bmFsaXR5IHRoYXQgd2FzIG92ZXJsb29rZWQgYXQgdGhlIHRpbWUsIGFuZCBub3QgYnJlYWtpbmcg
+Y29tcGF0aWJpbGl0eSBpcyBub3cgcmF0aGVyIGF3a3dhcmQuCj4+Cj4+IEknbSBub3Qgc3VnZ2Vz
+dGluZyB0aGF0IHRoZXJlIG5lZWRzIHRvIGJlIGFueSBzdXBwb3J0IGltcGxlbWVudGVkIGluIHRo
+ZSBkcml2ZXIsIGp1c3QgdG8gYmUgY2VydGFpbiB0aGF0IHdlJ3JlIG5vdCBwYWludGluZyBvdXJz
+ZWx2ZXMgaW50byBhIGNvcm5lciB3aXRoIHRoZSBiaW5kaW5nLgo+Pgo+Pj4gSW1wb3J0YW50IGlz
+IHRoYXQgdXNlciBzcGFjZSBpbnRlcmZhY2UgLyBEVCBiaW5kaW5ncyBhcmUgZmxleGlibGUgZW5v
+dWdoIHNvIHRoYXQgZnV0dXJlIGV4dGVuc2lvbnMgZG9uJ3QgaGF2ZSB0byBicmVhawo+Pj4gZXhp
+c3RpbmcgdXNlcnMuIEFuZCBJIHRoaW5rIHRoYXQncyB0aGUgY2FzZS4KPj4KPj4gTWF5IEkgYXNr
+IHdoYXQgeW91IGhhdmUgaW4gbWluZD8gSSBmaWd1cmUgdGhhdCBpbnB1dHMgd291bGQgbW9zdCBs
+aWtlbHkgd2FudCB0byBiZSBkZXNjcmliZWQgaW5kaXZpZHVhbGx5LCBzaW1pbGFybHkgdG8gdGhl
+IGdwaW8ta2V5cyBiaW5kaW5nLCB3aGljaCB3b3VsZCBsZW5kIGl0c2VsZiB0byBoYXZpbmcgdGhl
+bSBhcyBjaGlsZCBub2RlcywgZXhjZXB0IHRoYXQgZG9lc24ndCBmaXQgd2l0aCB0aGUgY3VycmVu
+dCBzY2hlbWUgb2YgY2hpbGQgbm9kZXMgaGF2aW5nIHRvIGJlIExFRHMgYWRkcmVzc2VkIGJ5IChn
+cmlkLHNlZ21lbnQpLiBJIHN1cHBvc2UgdGhlcmUgaXMgYSBwb3NzaWJsZSBlc2NhcGUgaGF0Y2gg
+b2YgYWJ1c2luZyB1bnVzZWQgYWRkcmVzc2VzLCBlLmcuIHNheWluZyBhIG5vZGUgYXQgYWRkcmVz
+cyAoMCxuKSBpcyBpbnB1dCBuIHJhdGhlciB0aGFuIGFuIExFRCBzZWdtZW50LCBidXQgdGhhdCBz
+ZWVtcyBwcmV0dHkgaG9ycmlkIChhbmQgSSdtIG5vdCBzdXJlIGhvdyB3ZWxsIHNjaGVtYSBjb3Vs
+ZCB2YWxpZGF0ZSBpdCkuIE9yIHBvc3NpYmx5IHByZXRlbmRpbmcgdG8gYWxzbyBiZSBhIEdQSU8g
+Y29udHJvbGxlciB0byByZWZlcmVuY2UgZnJvbSBhIHNlcGFyYXRlIGdwaW8ta2V5cyBub2RlLCBi
+dXQgYWdhaW4gdGhhdCBzZWVtcyB1Z2x5IGFuZCBtb3JlIGxpa2Ugc29tZXRoaW5nIHRvIG9ubHkg
+ZG8gaWYgdGhlcmUncyBubyBvdGhlciBvcHRpb24uCj4+Cj4gCj4gTm90IGJlaW5nIGFuIGV4cGVy
+dCBpbiBPRiBzdHVmZiBJJ20ganVzdCBmb2N1c2VkIG9uIGdldHRpbmcgc3VwcG9ydCBmb3IgdGhl
+IGh3IEkgb3duLgo+IEkgdHJpZWQgdG8gZG8gdGhpcyBpbiB0aGUgbW9zdCBzaW1wbGUgYW5kIGdl
+bmVyaWMgd2F5IHNvIHRoYXQgb3RoZXJzIGNhbiBmb2xsb3ctdXAKPiBhbmQgYWRkIGFkZGl0aW9u
+YWwgZnVuY3Rpb25hbGl0eS4KClN1cmUsIEkgYXBwcmVjaWF0ZSB0aGF0LCBhbmQgd2hhdCBJJ20g
+c2F5aW5nIGlzIHRoYXQgd2hpbGUgd2hhdCB3ZSAKY3VycmVudGx5IGhhdmUgaXMgcGxlYXNhbnRs
+eSBzaW1wbGUsIEkgdGhpbmsgaXQncyBhY3R1YWxseSBhIGxpdHRsZSAKKnRvbyogc2ltcGxlIGFu
+ZCBub3QgZ2VuZXJpYyBlbm91Z2ggdG8gZXh0ZW5kIGVhc2lseS4gSSdtIG1vcmUgdGhhbiAKaGFw
+cHkgdG8gc2VuZCBwYXRjaGVzIGFkZGluZyB0aGUgZnVuY3Rpb25hbGl0eSBJJ20gaW50ZXJlc3Rl
+ZCBpbiB0byB0aGUgCmRyaXZlciBvbmNlIGl0J3MgbWVyZ2VkLCBidXQgSSBjYW4ndCBtYWtlIHNp
+Z25pZmljYW50IGNoYW5nZXMgdG8gdGhlIApiaW5kaW5nIGF0IHRoYXQgcG9pbnQgYW5kIGJyZWFr
+IGl0IGZvciBlYXJseSBhZG9wdGVycy4gQnV0IGxldCBtZSBnbyAKbWFrZSBwcm9wZXIgcmV2aWV3
+IGNvbW1lbnRzIG9uIHRoZSBwYXRjaCByYXRoZXIgdGhhbiBjb25mdXNpbmcgCm1ldGEtcmV2aWV3
+IGhlcmUuLi4KClRoYW5rcywKUm9iaW4uCgo+IAo+IAo+PiBJTU8gaXQgd291bGQgYmUgY2xlYW5l
+c3QganVzdCB0byBoYXZlIGFuIGV4dHJhIGxldmVsIG9mIGhpZXJhcmNoeSwgZS5nLjoKPj4KPj4K
+Pj4gIMKgwqDCoMKgbGVkLWNvbnRyb2xsZXJAMCB7Cj4+ICDCoMKgwqDCoMKgwqDCoCBjb21wYXRp
+YmxlID0gInRpdGFubWVjLHRtMTYyOCI7Cj4+ICDCoMKgwqDCoMKgwqDCoCAuLi4KPj4KPj4gIMKg
+wqDCoMKgwqDCoMKgIGxlZHMgewo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjYWRkcmVzcy1j
+ZWxscyA9IDwyPjsKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI3NpemUtY2VsbHMgPSA8MD47
+Cj4+Cj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGFsYXJtQDUsNCB7Cj4+ICDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgLi4uCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+
+ICDCoMKgwqDCoMKgwqDCoCB9Owo+PiAgwqDCoMKgwqB9Owo+Pgo+PiBUaGF0IHdheSB0aGVyZSdz
+IGNsZWFybHkgYWxtb3N0IG5vIHJpc2sgb2YgYnJlYWthZ2UgaWYgYW4gYWRkaXRpb25hbCAiaW5w
+dXRzIiBub2RlIHdpdGggaXRzIG93biBjaGlsZHJlbiB0dXJucyB1cCBsYXRlci4gUGx1cyBpdCBz
+aG91bGQgYWxzbyBiZSBhIHRyaXZpYWwgY2hhbmdlIHRvIHRoZSBjdXJyZW50IGRyaXZlciwgY29t
+cGFyZWQgdG8gaGF2aW5nIHRvIGltcGxlbWVudCB0cmljayBzcGVjaWFsIGNhc2VzIG9yIHdob2xl
+IG90aGVyIEFQSXMgZG93biB0aGUgbGluZSAtIG9mIGNvdXJzZSBiaW5kaW5ncyBzaG91bGQgbm90
+IGJlIGRlc2lnbmVkIGV4cHJlc3NseSBmb3IgZWFzZSBvZiBkcml2ZXIgaW1wbGVtZW50YXRpb24s
+IGJ1dCBpZiB0aGV5IGRvIHdvcmsgb3V0IHRoYXQgd2F5IGl0J3MgdXN1YWxseSBhIGdvb2Qgc2ln
+biA6KQo+Pgo+PiBUaGFua3MsCj4+IFJvYmluLgo+IAo+IEhlaW5lcgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxp
+c3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
+YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
