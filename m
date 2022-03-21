@@ -4,67 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 183C5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Mar 2022 23:22:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A4BC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Mar 2022 05:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5rXdNf1dG090b8vkrqknbxw6FzhXjq2kp4LNUhSIPGU=; b=uQTMN/4KL/nQBeg+bI33pB59j7
-	xlKdNDcJuF0lDuZ/+1jcu/AYMQ0HNfirV/JxtugsgfqPZLoQuQ32C7XIYGHIz/MpEc0HzpE5OqRsz
-	jfloc5pVm/dNMsMikDPZ2mwsidUWkXZiJzKXpHdykEuL2fUVopsHgF7L+VWUjsGiLOEwKW5vsgSsw
-	MHxLoQpScr+dmy9AtMuPJeE4KVzFU8GIbvLs4+5eFYHurjWtXAaK/HyHB36xjPLN/qqfitAa1ntO5
-	18pGLizneNBfvF0Xg9PDxncPN1zRMFFuvveWRzU8buIFGZLNdtkPQV9pNvx7QxofqjS9JKlOwuyR0
-	fJTkA6ww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ea9QjGpH6zMYaCCfO2NyHsUjolkex/OCfAfzPS+YpvY=; b=bfCi9OHynZpvpK
+	MEK93xeB2dfNpJEVn6MOjUN5szgpuNnwZNV5OSR7RJXTAwJsUs/Ro9lM4JIc9w4IipjBDP1q1mghg
+	n86XI1yViZ5fIPFhuGhHIFUC4fG0AO28cnpcVPf8zzanDVK9E2LqQ4cmuVHkIxfotn64n87kn4gHA
+	7Toq6+Ol0Sp4LzIqJSrpvYqUQT3bqHRl0jQ/nzpAIxPpr7PqkbABRq3ZjQDxhZY6nq5/71mkyHs1D
+	jitII0Z0pn08/Zw6PkV7J1Z+Llu3MsDKwGo7b90h6+grX5eCRj+piLs5ufoMCzkaYr7e6sabgy73I
+	Y97GdwmsNNaMWVRTh9Qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nViOY-004V1o-Tl; Sat, 19 Mar 2022 23:22:02 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nWAPI-006Yj4-M0; Mon, 21 Mar 2022 05:16:40 +0000
+Received: from mga02.intel.com ([134.134.136.20])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nViOW-004V1I-AF; Sat, 19 Mar 2022 23:22:01 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 48740B80D71;
- Sat, 19 Mar 2022 23:21:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40892C340EC;
- Sat, 19 Mar 2022 23:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1647732116;
- bh=7rNCrigihKYFJsz9mQGJnD95OoZCiJnpX8Y/WhFL9sA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=K9vIasWY030kTGiFRsRkRw4eze+GOnjq3FST37B19P7HkJJJCB0v8Kjc73NIIS9ZV
- dmfdScdCAGGogjXCOWhp0AHhS8XiwSPTP1/pS6YY3iOGpiizn4Uzycn1g7VHGA1yN1
- RKRSBp7uFk6O8C41fL6vOCll8lAHv/FGMpOjC4LmqWdlKXQiYXbZLzSV4LR44RMMWr
- QyRSa8nWJOhIIH4wVe9zEHeIkSRMHtN/TfoJQ7hqq4Z6AywL0wPL8GYsD7POo6rTaO
- pTozNIfl9JM+kZsu4z7irfwL6Ai+9cn5Kbxou4pohaWfA/3XOiZTIEy8fGYhcpmMtR
- ORIzS8OWT6NJA==
-Date: Sun, 20 Mar 2022 00:21:53 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] i2c: meson: Fix wrong speed use from probe
-Message-ID: <YjZlkRHWsQRVuj4j@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
- Lucas Tanure <tanure@linux.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
+ id 1nWAOl-006YUY-U6; Mon, 21 Mar 2022 05:16:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647839767; x=1679375767;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZSklBNTsSIb9u8Zs+cghnGiUg/0nwYn/5hxrTKgdUw0=;
+ b=jl9iTZUe+3kcFgm8dNNOPxBroOPhOJEN6DCZa5FS+GHKa0zjRbOusQnm
+ SSngKC5zOF5K8/QI8O83xLAItcbnseY+yfkmUWHCjjT84bkTT/feT/Gzj
+ R4amunVD0Fz84Fl0wD+mTmYdsq1azSxhIZhCDQ1f67y/bgStU5WnOzcI/
+ Io/q8ncc/AzUFVwCK9MSmnvny4hadXrFKmfXQGbNTCCbtrP0CBX241iZb
+ UZj7YaaYCVLddZAIE1ay3JhM0olkVDeEh0J28TBUU2BvhTnU1piCkDUmU
+ hp6527A01v7+DOfYnxA6vwugHFgVrUe+wi5PIbXFFm/V2xCpC972Fx5eO g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="244942593"
+X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; d="scan'208";a="244942593"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2022 22:16:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; d="scan'208";a="692058812"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2022 22:16:00 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nWAOd-000HVG-PW; Mon, 21 Mar 2022 05:15:59 +0000
+Date: Mon, 21 Mar 2022 13:15:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Liang Yang <liang.yang@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
+Cc: kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
+ Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220301072600.12352-1-tanure@linux.com>
+ Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>,
+ YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Message-ID: <202203211339.6SuyU3aA-lkp@intel.com>
+References: <20220318124121.26117-2-liang.yang@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20220301072600.12352-1-tanure@linux.com>
+Content-Disposition: inline
+In-Reply-To: <20220318124121.26117-2-liang.yang@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220319_162200_547204_6AB97DFC 
-X-CRM114-Status: GOOD (  12.84  )
+X-CRM114-CacheID: sfid-20220320_221608_062238_4EB5FBF0 
+X-CRM114-Status: GOOD (  14.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,70 +88,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9113552690055262782=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Liang,
 
---===============9113552690055262782==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="M1jqmkmfi3QEXijd"
-Content-Disposition: inline
+I love your patch! Yet something to improve:
 
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.17 next-20220318]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
---M1jqmkmfi3QEXijd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+url:    https://github.com/0day-ci/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: m68k-randconfig-r015-20220320 (https://download.01.org/0day-ci/archive/20220321/202203211339.6SuyU3aA-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/8722c778a1a81891f7362662caf9d166442d5990
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
+        git checkout 8722c778a1a81891f7362662caf9d166442d5990
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash
 
-On Tue, Mar 01, 2022 at 07:26:00AM +0000, Lucas Tanure wrote:
-> Having meson_i2c_set_clk_div after i2c_add_adapter
-> causes issues for client drivers that try to use
-> the bus before the requested speed is applied.
->=20
-> The bus can be used just after i2c_add_adapter, so
-> move i2c_add_adapter to the final step as
-> meson_i2c_set_clk_div needs to be called before
-> the bus is used.
->=20
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Applied to for-next with a Fixes tag added, thanks!
+All errors (new ones prefixed by >>):
 
+   m68k-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
+>> meson_nand.c:(.text+0xaae): undefined reference to `clk_divider_ops'
+>> m68k-linux-ld: meson_nand.c:(.text+0xaf0): undefined reference to `devm_clk_register'
 
---M1jqmkmfi3QEXijd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmI2ZZEACgkQFA3kzBSg
-KbYFPA/7BD/tp4i2gYsqEpAqGKr1iM9kvlzI8IWgsLobfM4DUGr3pLs/ftcJJNWV
-XxlgAWGqjG9YKVNh+o8CWunvGDvxoCZIZoMldP+wiBlLlTmMMXy4mhYMJ9So1Im5
-FFX8zbS0bBNPXQXfwI7v523ibOB/fpue0cmM4nVVIY0IGh1/FxKgvpNcTDlLl1e0
-4IuVNa0WL3PSdaKpkbZC5bvWUaAFZOoUhDGu0UbfTlyNtsH3DcAxYYPi6xq7xYRA
-WHPhfwfKhMf8tvIK4IUSw7LY1fPa6p69TvUOtWT4/tXjGDASgwRPzcPAlpLty6wb
-G3T0lun5sSFegy0wyBem98avUfulHU+8KP5MG/lWW5NUOSUL2gL9UQMuFwMj2tbW
-OxgUbj7bt94EXfbMVyTaIWLfHduxPAUij2/rWMnc767bbb4vKuV/bMJltnAwpA4C
-/WdSUysadIRlvsR3ttPimKE3U1nHxrHG/gvOR+HUkOJaB6wAW0nawotK//jHFftw
-rk+16AemIhRy71h/qt+JPYdVpdJbyzMTloUSeaiywmusZl4eNuxRHHEHQaaVPWh8
-DqjmVDOyn8DYJIT+vJ4ZnMJnnrpM7RU1d5kWIZYXVDZnlsUSzWhHiSMAZORo43hX
-TQIFqIoiAfff05ic3+LIpWp/nIN3yuMf76adaIpdhygCMYJx+i4=
-=eJIv
------END PGP SIGNATURE-----
-
---M1jqmkmfi3QEXijd--
-
-
---===============9113552690055262782==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============9113552690055262782==--
-
