@@ -4,110 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19AC1C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Mar 2022 07:23:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D736C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Mar 2022 08:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=J7itpkY8+GUK2uMVBl4ax4bewZwEZmQHUMMt9Q5bJaM=; b=cp40l1liJJO8UFJ0GGcltedFob
-	CGvk2FUT8quyKyoxR6/joNBM5dgloHdXK4RLHv6d9XV2HMF/KV6eRsAjV+5oWOCP7T3MJdMGHX8XE
-	tvZ/hNuwrALTvVtCwJrn8RNrIRKpZKFq3SXuXnL/TSzbGK3L2ZhQ9dVmQBLB9IBmIK772sGGtCwQ7
-	t3A4j6xmd98VVk3CbDPPxGHAEKyTJcAU6W1Iodvph3kzLYocyiZxbDOj9YR8uhh62KLO5k+6QEGR2
-	cReXAWxuS0U0IqDWdKaPbb80Xy4sggAW3wC9X0EDLJUxFJtY6AMxHkkNOsK8nCgDn/u2x/A9mn3nl
-	tybkWZMw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=f9EAIizGJmPMRuK9iKkl+P/nhWxpYhgPa8oIvpQQhS4=; b=Dibhns9syuoAiI
+	R0RNSMXXxNk4yhOCVzFtoSlh2Dz1HRWL3TGmkPmBly7YW2yHOVivShsaUDbQu5cyicCqwVXDW/Cul
+	wcQY137RnRneFvD+Bl3B2odPmO+avkejaLtBI4PFwqRfHlImCUeXvOyD8MzGgYm8cthKRz6mF+ydY
+	ldS7gMMlpFo+Z6P9W/488JUeRDxAryQcbSPCMnVd52LsnbdOmbjcCvVSAlDsgv2PwyjinFuOgiG1h
+	pkpBfzrWDTCZtwItoune2ak7nGZp32w84Dm+RozEO4nlUoQWvip8tNg5i9O6TYdPxrkzG8o3PFruB
+	hDmaWLh6vqtNcjoAE6aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWCNz-006niR-SB; Mon, 21 Mar 2022 07:23:27 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1nWD9b-006yWA-2v; Mon, 21 Mar 2022 08:12:39 +0000
+Received: from mail-qv1-f47.google.com ([209.85.219.47])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWCNw-006ngG-La
- for linux-amlogic@lists.infradead.org; Mon, 21 Mar 2022 07:23:26 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1nWCND-0006et-Tt; Mon, 21 Mar 2022 08:22:39 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nWCMp-0021t4-Og; Mon, 21 Mar 2022 08:22:16 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nWCMp-00AcZn-OA; Mon, 21 Mar 2022 08:22:15 +0100
-Date: Mon, 21 Mar 2022 08:22:15 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>,
- Alexandru Ardelean <aardelean@deviqon.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Tomislav Denis <tomislav.denis@avl.com>,
- =?utf-8?B?QW5kcsOp?= Gustavo Nakagomi Lopez <andregnl@usp.br>,
- Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
- Paul Cercueil <paul@crapouillou.net>,
- Thierry Reding <thierry.reding@gmail.com>, linux-i2c@vger.kernel.org,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
- Oleksij Rempel <linux@rempel-privat.de>,
- Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Kevin Hilman <khilman@baylibre.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Russell King <linux@armlinux.org.uk>, linux-pwm@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- linux-iio@vger.kernel.org, Andy Gross <agross@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
- Keguang Zhang <keguang.zhang@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Guenter Roeck <linux@roeck-us.net>, NXP Linux Team <linux-imx@nxp.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Jean Delvare <jdelvare@suse.com>,
- Michal Simek <michal.simek@xilinx.com>, kernel@pengutronix.de,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
- Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
- Vladimir Zapolskiy <vz@mleia.com>, linux-gpio@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
- Fabio Estevam <festevam@gmail.com>, Matt Mackall <mpm@selenic.com>,
- linux-amlogic@lists.infradead.org,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Lars Povlsen <lars.povlsen@microchip.com>, linux-hwmon@vger.kernel.org,
- Alessandro Zummo <a.zummo@towertech.it>,
- linux-watchdog@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- linux-stm32@st-md-mailman.stormreply.com,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- UNGLinuxDriver@microchip.com, Vinod Koul <vkoul@kernel.org>,
- Cai Huoqing <caihuoqing@baidu.com>, linux-crypto@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, dmaengine@vger.kernel.org,
- Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>,
- Shawn Guo <shawnguo@kernel.org>,
- Steen Hegelund <Steen.Hegelund@microchip.com>
-Subject: Re: [PATCH v8 02/16] clk: Provide new devm_clk helpers for prepared
- and enabled clocks
-Message-ID: <20220321072215.5lffm7qtpvg5ofk4@pengutronix.de>
-References: <20220314141643.22184-1-u.kleine-koenig@pengutronix.de>
- <20220314141643.22184-3-u.kleine-koenig@pengutronix.de>
- <20220319182936.06d75742@jic23-huawei>
+ id 1nWD9P-006yT3-8x; Mon, 21 Mar 2022 08:12:28 +0000
+Received: by mail-qv1-f47.google.com with SMTP id ke15so1989679qvb.11;
+ Mon, 21 Mar 2022 01:12:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=wICsFIN9ZJuas+sxL7xNcM8ZFAXB8Ijif9RKrDeIc3o=;
+ b=tTv/hf7XPaqGTrlbqd2nkrnBo+OmrVUVQ6OVLEs9oG7Ert1o2NvICOCYcstsKidzqr
+ SktQo5+sWUiz9phYKyAnfGHUTGd1f3q8XmnnFnf5eLon1i39rPe14nuNWN//7jc36FrL
+ gLo70KVnUkGyNyTz/AqoQoLiRlmri37/VKDoOA8Th2tmpwdF5HqMub1dakCJdhpO6PDu
+ 6Ry9npHkDyHMaVsu9DuGuVFRbijbCX8dUHRtAGql7/6SKIc+AqGWHeTyq5c4tLgehPMp
+ D/DgljNjhzwjVc2yTwd1pjAPAi1V1uHIZOrCY994AGITS63HFCHKdIP9sfsy4SZK+vQV
+ rRkQ==
+X-Gm-Message-State: AOAM532kzsB4bDcFXHF0izzAAXNn7PWsxb3qG/a2gEXrO3T0e3eU4tPg
+ aSZto0RtDsnhFqRfni8bGZGh04zu+NOaOw==
+X-Google-Smtp-Source: ABdhPJzMZ55eNUJ3Yimi5EZoTRxyLI2wbF0qZnPeXqFCC7ISL4P5Sc5zbhJNkVik+a/O/ID57qr2Ig==
+X-Received: by 2002:ad4:5ba3:0:b0:441:32c:767b with SMTP id
+ 3-20020ad45ba3000000b00441032c767bmr9221473qvq.9.1647850345975; 
+ Mon, 21 Mar 2022 01:12:25 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com.
+ [209.85.128.180]) by smtp.gmail.com with ESMTPSA id
+ p14-20020a05622a13ce00b002e1fd7e0e3bsm7993305qtk.14.2022.03.21.01.12.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Mar 2022 01:12:25 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id
+ 00721157ae682-2e612af95e3so34851237b3.9; 
+ Mon, 21 Mar 2022 01:12:25 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr22987805ywb.132.1647850345315; Mon, 21
+ Mar 2022 01:12:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20220319182936.06d75742@jic23-huawei>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
+ <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
+In-Reply-To: <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 21 Mar 2022 09:12:14 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
+Message-ID: <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
+ Electronics TM1628
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+ Miguel Ojeda <ojeda@kernel.org>,
+ "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>, 
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220321_002324_719949_1FC2FB9B 
-X-CRM114-Status: GOOD (  25.23  )
+X-CRM114-CacheID: sfid-20220321_011227_339122_A650830A 
+X-CRM114-Status: GOOD (  25.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,98 +93,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2048416641495236845=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============2048416641495236845==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oterd73bfcoy35ck"
-Content-Disposition: inline
-
-
---oterd73bfcoy35ck
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Mar 19, 2022 at 06:29:36PM +0000, Jonathan Cameron wrote:
-> On Mon, 14 Mar 2022 15:16:29 +0100
-> Uwe Kleine-K=F6nig         <u.kleine-koenig@pengutronix.de> wrote:
->=20
-> > When a driver keeps a clock prepared (or enabled) during the whole
-> > lifetime of the driver, these helpers allow to simplify the drivers.
-> >=20
-> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Reviewed-by: Alexandru Ardelean <aardelean@deviqon.com>
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
->=20
-> One trivial thing below.
->=20
-> > ---
-> >  drivers/clk/clk-devres.c | 31 ++++++++++++++
-> >  include/linux/clk.h      | 90 +++++++++++++++++++++++++++++++++++++++-
-> >  2 files changed, 120 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/clk/clk-devres.c b/drivers/clk/clk-devres.c
-> > index fb7761888b30..4707fe718f0b 100644
-> > --- a/drivers/clk/clk-devres.c
-> > +++ b/drivers/clk/clk-devres.c
-> > @@ -67,12 +67,43 @@ struct clk *devm_clk_get(struct device *dev, const =
-char *id)
-> >  }
-> >  EXPORT_SYMBOL(devm_clk_get);
-> > =20
-> > +struct clk *devm_clk_get_prepared(struct device *dev, const char *id)
-> > +{
-> > +	return __devm_clk_get(dev, id, clk_get, clk_prepare, clk_unprepare);
->=20
-> Nitpick but this spacing before } in functions is rather unusual and not
-> in keeping with the existing code in this file.
->=20
-> > +
-> > +}
-
-ack, I fixed that in my tree, so this will be part of an v9. I won't
-send it just for this change, though. I fixed three further functions
-that had a similar empty line, too.
-
-Thanks for looking
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---oterd73bfcoy35ck
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmI4J6MACgkQwfwUeK3K
-7Ak5sAf/aG3oVD1FgzqJLWD3uSmF0uX0/3lky1l56go3LpRjDym8tlGglXT4z7Hl
-Z3q8YXru6LSihHT/n6V4EUdpV6f49dxPfrr9hu9OFU+UY0Cd7NgisKr+0Wi61dbS
-d8IVGHwcCPqBZanHdAEjhle7d7WdWhfukR1oLljd8B2XM6qP2jQgjFWzrSJfZ+hd
-qd6k9TcfIHjy8n8xBtyIYSvYZbywqfa+wJeU54fe4fp4NNPVTmxGtzHFNDipSZGL
-uF+yg7qDqSezst7wO3dNeblEvpVZfG9TZAXvGMCZQLn9x4b35iSmZtLVPN+HZZM4
-WBr/EA6mCSOr4iHXCKfNr4UegGV4/w==
-=gON5
------END PGP SIGNATURE-----
-
---oterd73bfcoy35ck--
-
-
---===============2048416641495236845==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2048416641495236845==--
-
+SGkgUm9iaW4sCgpPbiBGcmksIE1hciAxOCwgMjAyMiBhdCA5OjUwIFBNIFJvYmluIE11cnBoeSA8
+cm9iaW4ubXVycGh5QGFybS5jb20+IHdyb3RlOgo+IE9uIDIwMjItMDItMjUgMjE6MTMsIEhlaW5l
+ciBLYWxsd2VpdCB3cm90ZToKPiA+IEFkZCBhIFlBTUwgc2NoZW1hIGJpbmRpbmcgZm9yIFRNMTYy
+OCBhdXhkaXNwbGF5Cj4gPiAoNy8xMS1zZWdtZW50IExFRCkgY29udHJvbGxlci4KPiA+Cj4gPiBU
+aGlzIHBhdGNoIGlzIHBhcnRpYWxseSBiYXNlZCBvbiBwcmV2aW91cyB3b3JrIGZyb20KPiA+IEFu
+ZHJlYXMgRsOkcmJlciA8YWZhZXJiZXJAc3VzZS5kZT4uCj4gPgo+ID4gQ28tZGV2ZWxvcGVkLWJ5
+OiBBbmRyZWFzIEbDpHJiZXIgPGFmYWVyYmVyQHN1c2UuZGU+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBB
+bmRyZWFzIEbDpHJiZXIgPGFmYWVyYmVyQHN1c2UuZGU+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBIZWlu
+ZXIgS2FsbHdlaXQgPGhrYWxsd2VpdDFAZ21haWwuY29tPgoKPiA+IC0tLSAvZGV2L251bGwKPiA+
+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hdXhkaXNwbGF5L3RpdGFu
+bWVjLHRtMTYyOC55YW1sCgo+ID4gKwo+ID4gK3BhdHRlcm5Qcm9wZXJ0aWVzOgo+ID4gKyAgIl4u
+KkBbMS03XSwoWzEtOV18MVswLTZdKSQiOgo+ID4gKyAgICB0eXBlOiBvYmplY3QKPiA+ICsgICAg
+JHJlZjogL3NjaGVtYXMvbGVkcy9jb21tb24ueWFtbCMKPiA+ICsgICAgdW5ldmFsdWF0ZWRQcm9w
+ZXJ0aWVzOiBmYWxzZQo+ID4gKyAgICBkZXNjcmlwdGlvbjogfAo+ID4gKyAgICAgIFByb3BlcnRp
+ZXMgZm9yIGEgc2luZ2xlIExFRC4KPiA+ICsKPiA+ICsgICAgcHJvcGVydGllczoKPiA+ICsgICAg
+ICByZWc6Cj4gPiArICAgICAgICBkZXNjcmlwdGlvbjogfAo+ID4gKyAgICAgICAgICAxLWJhc2Vk
+IGdyaWQgbnVtYmVyLCBmb2xsb3dlZCBieSAxLWJhc2VkIHNlZ21lbnQgYml0IG51bWJlci4KPiA+
+ICsgICAgICAgIG1heEl0ZW1zOiAxCj4gPiArCj4gPiArICAgIHJlcXVpcmVkOgo+ID4gKyAgICAg
+IC0gcmVnCj4KPiBJJ20gY29uY2VybmVkIHRoYXQgdGhpcyBsZWF2ZXMgdXMgbm8gcm9vbSB0byBz
+dXBwb3J0IHRoZSBhZGRpdGlvbmFsCj4ga2V5cGFkIGZ1bmN0aW9uYWxpdHkgaW4gZnV0dXJlLiBI
+YXZpbmcgbm93IGRvdWJsZS1jaGVja2VkIGEgZGF0YXNoZWV0LAo+IHRoZSBpbnB1dHMgYXJlIGFs
+c28gYSB0d28tZGltZW5zaW9uYWwgbXV4IChzaGFyaW5nIHRoZSBzZWdtZW50IGxpbmVzKSwKPiBz
+byB0aGUgZGV2aWNlIGVmZmVjdGl2ZWx5IGhhcyB0d28gZGlzdGluY3QgYnV0IG51bWVyaWNhbGx5
+LW92ZXJsYXBwaW5nCj4gY2hpbGQgYWRkcmVzcyBzcGFjZXMgLSBvbmUgYWRkcmVzc2VkIGJ5IChn
+cmlkLHNlZ21lbnQpIGFuZCB0aGUgb3RoZXIgYnkKPiAoc2VnbWVudCxrZXkpLgoKU291bmRzIHNp
+bWlsYXIgdG8gSFQxNkszMz8KCj4gUm9iLCBLcnlzenRvZiwgYW55IHRob3VnaHRzIG9uIHRoZSBi
+ZXN0IERUIGlkaW9tIHRvIGxlYXZlIGFjY29tbW9kYXRpb24KPiBmb3IgdGhhdD8gSSdtIHRoaW5r
+aW5nIGVpdGhlciByZXF1aXJlIGFuIGludGVybWVkaWF0ZSBub2RlIHRvIGNvbnRhaW4KPiBlYWNo
+IG5vdGlvbmFsIGFkZHJlc3Mgc3BhY2UsIG9yIHBlcmhhcHMgYWRkIGFub3RoZXIgbGVhZGluZyBh
+ZGRyZXNzIGNlbGwKPiB0byBzZWxlY3QgYmV0d2VlbiB0aGVtPyBJIGRvbid0IGJlbGlldmUgYW55
+IG9mIHRoZXNlIHRoaW5ncyBoYXZlIGZ1cnRoZXIKPiBmdW5jdGlvbmFsaXR5IGJleW9uZCB0aGF0
+LgoKVGhlIHByb2JsZW0gd2l0aCB0aGVzZSBkZXZpY2VzIGlzIHRoYXQgdGhlcmUgYXJlIHRob3Vz
+YW5kcyBvZiBkaWZmZXJlbnQKd2F5cyB0byB3aXJlIHRoZW0sIGFuZCBjb21pbmcgdXAgd2l0aCBh
+IGdlbmVyaWMgd2lyaW5nIGRlc2NyaXB0aW9uIGluCkRUIGFuZCB3cml0aW5nIGNvZGUgdG8gaGFu
+ZGxlIHRoYXQgY2FuIGJlIHZlcnkgaGFyZC4KCkZvciBIVDE2SzMzIG5vbi1kb3QtbWF0cml4IHdp
+cmluZ3MsIEkganVzdCBhZGRlZCBleHRyYSBjb21wYXRpYmxlCnZhbHVlcyBtYXRjaGluZyB0aGUg
+d2lyaW5nIG9mIGEgZmV3IGtub3duIGRldmljZXNbMV0uICBUaGF0IHdheSB0aGUKZHJpdmVyIGNh
+biBoYW5kbGUgdGhlbSBlZmZpY2llbnRseS4KSXQgZG9lcyBoYXZlIHRoZSBkaXNhZHZhbnRhZ2Ug
+dGhhdCBhZGRpbmcgc3VwcG9ydCBmb3IgbmV3IGRldmljZXMKbWVhbnMgaW50cm9kdWNpbmcgbW9y
+ZSBjb21wYXRpYmxlIHZhbHVlcywgYW5kIGFkZGluZyBtb3JlIGNvZGUuCgpEb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvYXV4ZGlzcGxheS9ob2x0ZWssaHQxNmszMy55YW1sCgpHcntv
+ZXRqZSxlZXRpbmd9cywKCiAgICAgICAgICAgICAgICAgICAgICAgIEdlZXJ0CgotLQpHZWVydCBV
+eXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0
+QGxpbnV4LW02OGsub3JnCgpJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2Fs
+IHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0CndoZW4gSSdtIHRhbGtpbmcgdG8g
+am91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhh
+dC4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcwoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
+YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
