@@ -4,79 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A4BC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Mar 2022 05:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19AC1C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Mar 2022 07:23:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ea9QjGpH6zMYaCCfO2NyHsUjolkex/OCfAfzPS+YpvY=; b=bfCi9OHynZpvpK
-	MEK93xeB2dfNpJEVn6MOjUN5szgpuNnwZNV5OSR7RJXTAwJsUs/Ro9lM4JIc9w4IipjBDP1q1mghg
-	n86XI1yViZ5fIPFhuGhHIFUC4fG0AO28cnpcVPf8zzanDVK9E2LqQ4cmuVHkIxfotn64n87kn4gHA
-	7Toq6+Ol0Sp4LzIqJSrpvYqUQT3bqHRl0jQ/nzpAIxPpr7PqkbABRq3ZjQDxhZY6nq5/71mkyHs1D
-	jitII0Z0pn08/Zw6PkV7J1Z+Llu3MsDKwGo7b90h6+grX5eCRj+piLs5ufoMCzkaYr7e6sabgy73I
-	Y97GdwmsNNaMWVRTh9Qg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=J7itpkY8+GUK2uMVBl4ax4bewZwEZmQHUMMt9Q5bJaM=; b=cp40l1liJJO8UFJ0GGcltedFob
+	CGvk2FUT8quyKyoxR6/joNBM5dgloHdXK4RLHv6d9XV2HMF/KV6eRsAjV+5oWOCP7T3MJdMGHX8XE
+	tvZ/hNuwrALTvVtCwJrn8RNrIRKpZKFq3SXuXnL/TSzbGK3L2ZhQ9dVmQBLB9IBmIK772sGGtCwQ7
+	t3A4j6xmd98VVk3CbDPPxGHAEKyTJcAU6W1Iodvph3kzLYocyiZxbDOj9YR8uhh62KLO5k+6QEGR2
+	cReXAWxuS0U0IqDWdKaPbb80Xy4sggAW3wC9X0EDLJUxFJtY6AMxHkkNOsK8nCgDn/u2x/A9mn3nl
+	tybkWZMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWAPI-006Yj4-M0; Mon, 21 Mar 2022 05:16:40 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1nWCNz-006niR-SB; Mon, 21 Mar 2022 07:23:27 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWAOl-006YUY-U6; Mon, 21 Mar 2022 05:16:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647839767; x=1679375767;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ZSklBNTsSIb9u8Zs+cghnGiUg/0nwYn/5hxrTKgdUw0=;
- b=jl9iTZUe+3kcFgm8dNNOPxBroOPhOJEN6DCZa5FS+GHKa0zjRbOusQnm
- SSngKC5zOF5K8/QI8O83xLAItcbnseY+yfkmUWHCjjT84bkTT/feT/Gzj
- R4amunVD0Fz84Fl0wD+mTmYdsq1azSxhIZhCDQ1f67y/bgStU5WnOzcI/
- Io/q8ncc/AzUFVwCK9MSmnvny4hadXrFKmfXQGbNTCCbtrP0CBX241iZb
- UZj7YaaYCVLddZAIE1ay3JhM0olkVDeEh0J28TBUU2BvhTnU1piCkDUmU
- hp6527A01v7+DOfYnxA6vwugHFgVrUe+wi5PIbXFFm/V2xCpC972Fx5eO g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="244942593"
-X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; d="scan'208";a="244942593"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2022 22:16:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; d="scan'208";a="692058812"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
- by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2022 22:16:00 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nWAOd-000HVG-PW; Mon, 21 Mar 2022 05:15:59 +0000
-Date: Mon, 21 Mar 2022 13:15:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Liang Yang <liang.yang@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
-Cc: kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
- Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
+ id 1nWCNw-006ngG-La
+ for linux-amlogic@lists.infradead.org; Mon, 21 Mar 2022 07:23:26 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1nWCND-0006et-Tt; Mon, 21 Mar 2022 08:22:39 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1nWCMp-0021t4-Og; Mon, 21 Mar 2022 08:22:16 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1nWCMp-00AcZn-OA; Mon, 21 Mar 2022 08:22:15 +0100
+Date: Mon, 21 Mar 2022 08:22:15 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <narmstrong@baylibre.com>,
+ David Airlie <airlied@linux.ie>,
+ Alexandru Ardelean <aardelean@deviqon.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Tomislav Denis <tomislav.denis@avl.com>,
+ =?utf-8?B?QW5kcsOp?= Gustavo Nakagomi Lopez <andregnl@usp.br>,
+ Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-i2c@vger.kernel.org,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Oleksij Rempel <linux@rempel-privat.de>,
+ Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Kevin Hilman <khilman@baylibre.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Russell King <linux@armlinux.org.uk>, linux-pwm@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ linux-iio@vger.kernel.org, Andy Gross <agross@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ Keguang Zhang <keguang.zhang@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Guenter Roeck <linux@roeck-us.net>, NXP Linux Team <linux-imx@nxp.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Jean Delvare <jdelvare@suse.com>,
+ Michal Simek <michal.simek@xilinx.com>, kernel@pengutronix.de,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>,
- XianWei Zhao <xianwei.zhao@amlogic.com>,
- Kelvin Zhang <kelvin.zhang@amlogic.com>,
- BiChao Zheng <bichao.zheng@amlogic.com>,
- YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <202203211339.6SuyU3aA-lkp@intel.com>
-References: <20220318124121.26117-2-liang.yang@amlogic.com>
+ linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+ Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, linux-gpio@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+ Fabio Estevam <festevam@gmail.com>, Matt Mackall <mpm@selenic.com>,
+ linux-amlogic@lists.infradead.org,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Lars Povlsen <lars.povlsen@microchip.com>, linux-hwmon@vger.kernel.org,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ linux-watchdog@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ UNGLinuxDriver@microchip.com, Vinod Koul <vkoul@kernel.org>,
+ Cai Huoqing <caihuoqing@baidu.com>, linux-crypto@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, dmaengine@vger.kernel.org,
+ Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>,
+ Shawn Guo <shawnguo@kernel.org>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>
+Subject: Re: [PATCH v8 02/16] clk: Provide new devm_clk helpers for prepared
+ and enabled clocks
+Message-ID: <20220321072215.5lffm7qtpvg5ofk4@pengutronix.de>
+References: <20220314141643.22184-1-u.kleine-koenig@pengutronix.de>
+ <20220314141643.22184-3-u.kleine-koenig@pengutronix.de>
+ <20220319182936.06d75742@jic23-huawei>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220318124121.26117-2-liang.yang@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20220319182936.06d75742@jic23-huawei>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220320_221608_062238_4EB5FBF0 
-X-CRM114-Status: GOOD (  14.39  )
+X-CRM114-CacheID: sfid-20220321_002324_719949_1FC2FB9B 
+X-CRM114-Status: GOOD (  25.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,50 +119,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2048416641495236845=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Liang,
 
-I love your patch! Yet something to improve:
+--===============2048416641495236845==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oterd73bfcoy35ck"
+Content-Disposition: inline
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.17 next-20220318]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
 
-url:    https://github.com/0day-ci/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: m68k-randconfig-r015-20220320 (https://download.01.org/0day-ci/archive/20220321/202203211339.6SuyU3aA-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/8722c778a1a81891f7362662caf9d166442d5990
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
-        git checkout 8722c778a1a81891f7362662caf9d166442d5990
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash
+--oterd73bfcoy35ck
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+On Sat, Mar 19, 2022 at 06:29:36PM +0000, Jonathan Cameron wrote:
+> On Mon, 14 Mar 2022 15:16:29 +0100
+> Uwe Kleine-K=F6nig         <u.kleine-koenig@pengutronix.de> wrote:
+>=20
+> > When a driver keeps a clock prepared (or enabled) during the whole
+> > lifetime of the driver, these helpers allow to simplify the drivers.
+> >=20
+> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Reviewed-by: Alexandru Ardelean <aardelean@deviqon.com>
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> One trivial thing below.
+>=20
+> > ---
+> >  drivers/clk/clk-devres.c | 31 ++++++++++++++
+> >  include/linux/clk.h      | 90 +++++++++++++++++++++++++++++++++++++++-
+> >  2 files changed, 120 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/clk/clk-devres.c b/drivers/clk/clk-devres.c
+> > index fb7761888b30..4707fe718f0b 100644
+> > --- a/drivers/clk/clk-devres.c
+> > +++ b/drivers/clk/clk-devres.c
+> > @@ -67,12 +67,43 @@ struct clk *devm_clk_get(struct device *dev, const =
+char *id)
+> >  }
+> >  EXPORT_SYMBOL(devm_clk_get);
+> > =20
+> > +struct clk *devm_clk_get_prepared(struct device *dev, const char *id)
+> > +{
+> > +	return __devm_clk_get(dev, id, clk_get, clk_prepare, clk_unprepare);
+>=20
+> Nitpick but this spacing before } in functions is rather unusual and not
+> in keeping with the existing code in this file.
+>=20
+> > +
+> > +}
 
-All errors (new ones prefixed by >>):
+ack, I fixed that in my tree, so this will be part of an v9. I won't
+send it just for this change, though. I fixed three further functions
+that had a similar empty line, too.
 
-   m68k-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
->> meson_nand.c:(.text+0xaae): undefined reference to `clk_divider_ops'
->> m68k-linux-ld: meson_nand.c:(.text+0xaf0): undefined reference to `devm_clk_register'
+Thanks for looking
+Uwe
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--oterd73bfcoy35ck
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmI4J6MACgkQwfwUeK3K
+7Ak5sAf/aG3oVD1FgzqJLWD3uSmF0uX0/3lky1l56go3LpRjDym8tlGglXT4z7Hl
+Z3q8YXru6LSihHT/n6V4EUdpV6f49dxPfrr9hu9OFU+UY0Cd7NgisKr+0Wi61dbS
+d8IVGHwcCPqBZanHdAEjhle7d7WdWhfukR1oLljd8B2XM6qP2jQgjFWzrSJfZ+hd
+qd6k9TcfIHjy8n8xBtyIYSvYZbywqfa+wJeU54fe4fp4NNPVTmxGtzHFNDipSZGL
+uF+yg7qDqSezst7wO3dNeblEvpVZfG9TZAXvGMCZQLn9x4b35iSmZtLVPN+HZZM4
+WBr/EA6mCSOr4iHXCKfNr4UegGV4/w==
+=gON5
+-----END PGP SIGNATURE-----
+
+--oterd73bfcoy35ck--
+
+
+--===============2048416641495236845==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2048416641495236845==--
+
