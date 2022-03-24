@@ -4,73 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88A8CC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Mar 2022 19:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B54C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Mar 2022 20:45:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3tTXk/VaKWPcYc+vWPws/MFZ6Z9v1Jq2WQqCVT5NCT0=; b=cI1HlpeA3BSHhY
-	VrZKy02KQPTdVMZqoBo75U54DWeTnJgwfAIUO3WRgX5cpiyeP0Gj/x5FZF0GJDk/gPX1YzOJ8JIoX
-	a+h15Sjke4yNsSZ6wypTLCH/xQkx4RxEI23bg0aH4zkNvzUqn392SEhh/+Mr4dsghx2Ip4nPpNOMH
-	XbKL+mpuFcufbupICTudshgl5N4hNgjWzr3i61cpWa0XmdeIPclNDFMLLmtqO9Zv0opSUIUh7QnW9
-	EaJmhdieXxAGrvm6DQQRQbAzf4PamOxFpHHSCSC3su1hcwTD2Up+0w9RViMmx4aaS9G8J9yWfLkmx
-	NkzJLYojvwJgkXDhxpww==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:Subject:From:References:Cc:To:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=oXtqE98kEXA1zWAND1W7LbFJUWQmYSl7jwfXEtABe+o=; b=D38gcCLfaR4L5zxIhQGu7m8QVY
+	6Q53nF/YU3S6Pca7xaCjdYr2UcCzeN2vdifOZAJUhM8K5/nYvQi7jHyOlPsWRPxQ943WWrDCUH0mY
+	uP6cxe+68hJJutlVyD5glHy3s4Zykj3xYUQztCtGdtMifOxa3gY//JBD0p2K2fuuf1tCWc6bNKf7b
+	45Uk0yaQy85AV77QzX+EM/CKddOBOr4npamSEUwrl1PZ+IjQPoOD2VQCf9EAIDEP7lCHeZysii25l
+	HsIs5QfMWEaA3TLRVZxkqWTdiU3YER+d5oeX4IxPdVNKvyakDckOySGQUkCPi8xuAE+SbIQDCgIGe
+	jBcf1FzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nXTIE-0004aM-BF; Thu, 24 Mar 2022 19:38:46 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1nXUKX-000AZo-U1; Thu, 24 Mar 2022 20:45:13 +0000
+Received: from mga18.intel.com ([134.134.136.126])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nXTIC-0004a3-1V
- for linux-amlogic@lists.infradead.org; Thu, 24 Mar 2022 19:38:45 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a8so11207389ejc.8
- for <linux-amlogic@lists.infradead.org>; Thu, 24 Mar 2022 12:38:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=JsC1ljWQ7PaTxrkJOFLNJfWF+WnCziDIYzUHRZWy+Ko=;
- b=fP/2Gp9Fli8rKY53x0KQ6VK5CryYZPCdLOr4PgkyqSjuyklJcEAf/zwLmZypNMjpVd
- i9l71LLgC3cb7adqtq4BbPc2chJyBHEzU1lw26/EOMJo8kL8T2mJfJ3gaKV3PV+q7xjL
- m2/JoNZFo6NFjy3X9QNOvNIsRNA53XBZZMFCtKAc4UeeZO8XB7R1bc9pLV7qZ+Me8twH
- ai9Q4o/vJ8ZYz5X5INdNBxRaEc68FqieSva9+YZ2HQu+Naqz+8ZT5Pj7eOtQepxfcdME
- je1ZfjBspNFYhi76QLMzs4YmFJ/K3cPgeFQSXdf08au73PZc1APfp1WGOD98bpuRi3iM
- hz0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=JsC1ljWQ7PaTxrkJOFLNJfWF+WnCziDIYzUHRZWy+Ko=;
- b=hNVg61Dk1yZcS3bQcqL2Lvp18rhtioDgRbpavNaJHQ171D1MiRr7wXboGgmHdEhzQe
- ELgOUndOUow36vpfeHa15DZM5126483kTXcGiVxzr+2AQc6OPKf09cztwFC+NGtTVh8w
- NQugl9X48OfmzrFqgtQd/bs1iYaZssDxS/zrVC2/wttBssQH/SejfifscvtNHuq/DNu7
- QBxlCd30dnGfEJzzcEnXLpk60JEDkbhqubA5GT7DrSQ9C4tE8Y9aj6NXBVuEDfo0xFLL
- W4dPHNidgNdVPKnJMlh4mTBK3NforZZBtT+ix1oWCm9XQXMVel44YWgnbtNwZ3mFmBWH
- b8CA==
-X-Gm-Message-State: AOAM530idvbOsXxsRdGaNX+AV1ZLdL9iHV6nHR6FvUIn7dclefxE/buf
- woJEF3+wD5TV0hpSdOzJOxM=
-X-Google-Smtp-Source: ABdhPJxvdkXfoQh474U14neRpshTh8VhbYLeeo+iE+AqbZs1MHO6EKV8GAK/ZSuYwKUOZ0nAsIinnA==
-X-Received: by 2002:a17:906:4fc3:b0:6e0:66a5:d59c with SMTP id
- i3-20020a1709064fc300b006e066a5d59cmr7364347ejw.131.1648150721627; 
- Thu, 24 Mar 2022 12:38:41 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:6f59:e300:1c54:60b6:3fbf:1a8e?
- (dynamic-2a01-0c22-6f59-e300-1c54-60b6-3fbf-1a8e.c22.pool.telefonica.de.
- [2a01:c22:6f59:e300:1c54:60b6:3fbf:1a8e])
- by smtp.googlemail.com with ESMTPSA id
- r11-20020aa7cfcb000000b0041902ac4c6asm1791177edy.1.2022.03.24.12.38.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 24 Mar 2022 12:38:40 -0700 (PDT)
-Message-ID: <73b6b3aa-b38e-bf28-59e0-7c58afaadf9d@gmail.com>
-Date: Thu, 24 Mar 2022 20:38:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 0/5] usb: host: xhci-plat: omit shared hcd if either of
- the root hubs has no ports
-Content-Language: en-US
-To: Mathias Nyman <mathias.nyman@linux.intel.com>,
+ id 1nXUKV-000AYg-E0
+ for linux-amlogic@lists.infradead.org; Thu, 24 Mar 2022 20:45:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648154711; x=1679690711;
+ h=to:cc:references:from:subject:message-id:date:
+ mime-version:in-reply-to:content-transfer-encoding;
+ bh=zu+gYtD2+KcE/K52Or4TrL/smYI3UwGe+DLSnR2LqZw=;
+ b=M5FL1WkB4t8yFXAOml9Mtg3XtxuXOo7JLs5dfwCtQ5DZTbJKo+qhsdp1
+ DLeR7wZbuTEZ5qoZyqtx8ov05QiDKESfCoAiRYM9Bh3kCmA8UMXIJMcI+
+ PqbLKzA8wEcrz2nowAH33MQpeGkxUg3kZPs6aUo4MQt3CsHpcnjKjbS70
+ loCyfT/FCGfr8WlOql76NhyovqDjmvTVuS+SIU/Ddqn9TPogZ6r09oFhC
+ ikGjt/UmOsU2WADlVETDesvi5fbFcNciQYsfWognSWFdXGYqb+Q3j17yQ
+ AFIiS7tigtMaUtRW10BGgXo3kDIpz5giSxLv5YjJVKFDnkWLHLh4L1ZGx g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="240643538"
+X-IronPort-AV: E=Sophos;i="5.90,208,1643702400"; d="scan'208";a="240643538"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 13:45:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,208,1643702400"; d="scan'208";a="649996811"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199])
+ ([10.237.72.199])
+ by orsmga004.jf.intel.com with ESMTP; 24 Mar 2022 13:45:05 -0700
+To: Heiner Kallweit <hkallweit1@gmail.com>,
  Mathias Nyman <mathias.nyman@intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
@@ -79,11 +57,20 @@ Cc: Linux USB Mailing List <linux-usb@vger.kernel.org>,
  Tung Nguyen <tunguyen@apm.com>
 References: <0684616b-5cc0-e9f6-7015-ce709c6d4386@gmail.com>
  <cd18385f-cc94-45fc-4a39-60e05dd6031e@linux.intel.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <cd18385f-cc94-45fc-4a39-60e05dd6031e@linux.intel.com>
+ <73b6b3aa-b38e-bf28-59e0-7c58afaadf9d@gmail.com>
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [PATCH v2 0/5] usb: host: xhci-plat: omit shared hcd if either of
+ the root hubs has no ports
+Message-ID: <7ab8d931-2b48-5297-4b2e-2d5ac0149428@linux.intel.com>
+Date: Thu, 24 Mar 2022 22:46:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <73b6b3aa-b38e-bf28-59e0-7c58afaadf9d@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220324_123844_149924_9FCCDE9A 
-X-CRM114-Status: GOOD (  13.69  )
+X-CRM114-CacheID: sfid-20220324_134511_551078_5E2E9744 
+X-CRM114-Status: GOOD (  15.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,39 +87,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24.03.2022 10:23, Mathias Nyman wrote:
-> On 17.3.2022 0.08, Heiner Kallweit wrote:
->> I have a system with a low-cost Amlogic S905W SoC that supports USB3
->> but has a USB3 root hub with no ports. This results in an error
->> message and a hcd that is good for nothing. The USB2 root hub has
->> ports and works normally.
->> I think we can do better and omit creating a shared hcd if either of
->> the root hubs has no ports. This series is based on discussion [0].
+On 24.3.2022 21.38, Heiner Kallweit wrote:
+> On 24.03.2022 10:23, Mathias Nyman wrote:
+>> On 17.3.2022 0.08, Heiner Kallweit wrote:
+>>> I have a system with a low-cost Amlogic S905W SoC that supports USB3
+>>> but has a USB3 root hub with no ports. This results in an error
+>>> message and a hcd that is good for nothing. The USB2 root hub has
+>>> ports and works normally.
+>>> I think we can do better and omit creating a shared hcd if either of
+>>> the root hubs has no ports. This series is based on discussion [0].
+>>>
+>>> The series works as intended for me. What I couldn't test is the case
+>>> of the USB2 root hub having no ports.
+>>>
+>>> Follow-up to this series could be applying the xhci-plat extension
+>>> to other xhci drivers.
+>>>
 >>
->> The series works as intended for me. What I couldn't test is the case
->> of the USB2 root hub having no ports.
+>> Thanks,
+>> Patches look good but something must have changed since you submitted them.
+>> I can't apply them neatly on usb-next, usb-linus, 5.17, or 5.17-rc8
 >>
->> Follow-up to this series could be applying the xhci-plat extension
->> to other xhci drivers.
 >>
+>> On top of usb-next I get:
+>> Applying: usb: host: xhci-plat: create shared hcd after having added main hcd
+>> error: patch failed: drivers/usb/host/xhci-plat.c:313
+>> error: drivers/usb/host/xhci-plat.c: patch does not apply
+>> Patch failed at 0003 usb: host: xhci-plat: create shared hcd after having added main hcd
+>>
+> The series was based on linux-next. Seems you're missing 8e10548f7f48
+> ("Revert "usb: host: xhci: mvebu: make USB 3.0 PHY optional for Armada 3720"").
 > 
-> Thanks,
-> Patches look good but something must have changed since you submitted them.
-> I can't apply them neatly on usb-next, usb-linus, 5.17, or 5.17-rc8
+>> -Mathias
 > 
+> Heiner
 > 
-> On top of usb-next I get:
-> Applying: usb: host: xhci-plat: create shared hcd after having added main hcd
-> error: patch failed: drivers/usb/host/xhci-plat.c:313
-> error: drivers/usb/host/xhci-plat.c: patch does not apply
-> Patch failed at 0003 usb: host: xhci-plat: create shared hcd after having added main hcd
-> 
-The series was based on linux-next. Seems you're missing 8e10548f7f48
-("Revert "usb: host: xhci: mvebu: make USB 3.0 PHY optional for Armada 3720"").
 
-> -Mathias
+Thanks, applies fine on linux-next.
 
-Heiner
+I'll add these after 5.18-rc1 to my own tree, and try them out by faking a one roothub
+PCI xhci device. Patches should end up in 5.19 if all goes well.
+
+-Mathias 
+
 
 _______________________________________________
 linux-amlogic mailing list
