@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4002AC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Mar 2022 20:04:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D4FCC433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Mar 2022 20:04:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jvlJmrNg4szSNHhev39uXVEBxrmQqdVNkM2F+UjtB64=; b=3ooyR3tcpYs/zH
-	B7+Ixbukn8UOd8HDDtI9QvkqzdT17aMb7snL1Nm24VQyR7uFwO9i5C5vBm0aDYKZ/rqEkvreBJmLB
-	kBcPexUm05AEN53tPi/Uwx/+j4MDfEpRM3aknQ4Y1o3BTWXY8l9m6IiGbWf5Osm8h3pIIIH/nNGGS
-	nd0Mn3nzhr29hrG06R3Bk71ytkM0KZLBwR8En1zHTLiTK5MAn0XdYRl1MTywnYAk08l2Nj/DOzdZL
-	Jnxp7sYAW0AK5W83N0gpCwd5jMdMDwnz3+z+0D2VFgRsRkuBbMABUNOiDZEXidwK3PC4nqobj7jOF
-	pdN4DlScqgIDfvFX/Gag==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5nv+6RnfAo3zdVoxt5TqLA1LLnlDFuaTeqD/gYqcFhc=; b=Cau60mG5+uPSm2
+	+E1pTh1nk1ksBV4YLo1LB8PRfxJCNBheR+Jgj7sjZnOZFUZGOj+Lc+LvtTtdlCz9EXBZXMMl2qSTd
+	XbjsiwOiI+MG+Xd7mOueOmCtwtR/EapUgWq9DAfNXOE8yCblWNgo26cp6RRchTi1OnndbVWWDxp5U
+	s2muPDOlEwz+QC5HKqtGBCRd6XCE/fa3C+IeXGEdkhIYWJQSsXxYNhnCT7IfTAdy02V8nIyShpxoD
+	O2IzCUAdPVHGKzBbzqrg/aHhgaiarZ9fJ5mKTkKhCNYOX3yPglojRdtbDyZUTtI0Mik2My+uPdX41
+	1Bq3eYtOs0GQ71sxSb5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nXqAU-003B0i-NI; Fri, 25 Mar 2022 20:04:18 +0000
-Received: from mga14.intel.com ([192.55.52.115])
+	id 1nXqAe-003B3V-TW; Fri, 25 Mar 2022 20:04:28 +0000
+Received: from mga02.intel.com ([134.134.136.20])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nXqAS-003Azf-Dr; Fri, 25 Mar 2022 20:04:17 +0000
+ id 1nXqAS-003Azg-Jz; Fri, 25 Mar 2022 20:04:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1648238656; x=1679774656;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=I9qL3XzxipS1lgo6CpdL7eX6zDMQG8eU8y3dPwQxX+Y=;
- b=RnflvfzP4TD30gDb/532e1dlsLDiXB+b8QDrgGZRqZVyX0kau7lnr/77
- 9mMbUV0/ZKe9vHtaJoGiDbH446TRZM7aukgw1FyF4m+6yGT+nSNtJbpIR
- C65DMoEZmEZMbEHIy4KSFF708EeSU2oXh7LMokELJ2qdgxXLX11FLT84G
- 7mvQn6YugE2ZRZJo9JoRCz5UsqiG/0tKlE4BEcEFv8YM3Ch/igGSpzE9v
- yNTUthWRfczfPd/fESHsZM/rDMSW7xQ51E/pIEsBj8j9YwhjbhKK79ZWb
- 2nPtOFchgvBc8xn000VhErXVrHgbNf3JVXRPmfJTY2mHjSyiuz+o73BLd Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10297"; a="258900035"
-X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="258900035"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=s157fb9lA4a8XOSEq9n0q0pdUa5Gw9sK4n7L6BfC7jE=;
+ b=SPrCOXHxQzgMYwokmPwL6bHmyQZvXg4N83LPvJjUxw6/esn7N9+1XEiN
+ J5z6nJk0IGD6cfhxokgZx8SnHUmjA9rGuaRrJdu0RogfEeyJj9+GVD/Jf
+ wHhGkaaUYENIWir4KN6Vka2kZI/ofS08zUC1vXvrtFb7vsBi1oxgLk9XJ
+ kmZMvLd1oQRcb3bcLo/PkO4MTPVXn3nC/ZV3kqY3/T+E8iOcJ0fIAWiKg
+ 87Tkt4lfzsIigEq+qsKdxA20MLInthFuFvdkPsi4EAFN6eEeD7QQDsPcJ
+ Upg3yzZDIf+t+BGh6E0B8xHykPF94H4sgcvvL91F3XvXf+WZV8NMM24m8 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10297"; a="246195672"
+X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="246195672"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Mar 2022 13:04:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="501886245"
+X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="638321942"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga003.jf.intel.com with ESMTP; 25 Mar 2022 13:04:09 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 25 Mar 2022 13:04:09 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 75E9F11E; Fri, 25 Mar 2022 22:04:30 +0200 (EET)
+ id 8C8E61C8; Fri, 25 Mar 2022 22:04:30 +0200 (EET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Gregory CLEMENT <gregory.clement@bootlin.com>,
@@ -64,14 +64,17 @@ Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: [PATCH v1 1/5] gpiolib: Introduce gpiochip_count() helper
-Date: Fri, 25 Mar 2022 22:03:34 +0200
-Message-Id: <20220325200338.54270-1-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 3/5] pinctrl: renesas: Replace custom code by
+ gpiochip_count() call
+Date: Fri, 25 Mar 2022 22:03:36 +0200
+Message-Id: <20220325200338.54270-3-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220325200338.54270-1-andriy.shevchenko@linux.intel.com>
+References: <20220325200338.54270-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220325_130416_502660_30470F72 
-X-CRM114-Status: GOOD (  11.84  )
+X-CRM114-CacheID: sfid-20220325_130416_721543_394AF047 
+X-CRM114-Status: GOOD (  12.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,45 +91,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The gpiochip_count() helper iterates over the device child nodes that have
-the "gpio-controller" property set. It returns the number of such nodes
-under given device.
+Since we have generic function to count GPIO controller nodes
+under given device, there is no need to open code it. Replace
+custom code by gpiochip_count() call.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- include/linux/gpio/driver.h | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/pinctrl/renesas/pinctrl-rza1.c | 17 +----------------
+ 1 file changed, 1 insertion(+), 16 deletions(-)
 
-diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-index 894eab753fdf..52918ef5d288 100644
---- a/include/linux/gpio/driver.h
-+++ b/include/linux/gpio/driver.h
-@@ -9,6 +9,7 @@
- #include <linux/lockdep.h>
- #include <linux/pinctrl/pinctrl.h>
- #include <linux/pinctrl/pinconf-generic.h>
-+#include <linux/property.h>
- #include <linux/types.h>
+diff --git a/drivers/pinctrl/renesas/pinctrl-rza1.c b/drivers/pinctrl/renesas/pinctrl-rza1.c
+index c1d6e9512c7a..c66e72e7dd71 100644
+--- a/drivers/pinctrl/renesas/pinctrl-rza1.c
++++ b/drivers/pinctrl/renesas/pinctrl-rza1.c
+@@ -1154,21 +1154,6 @@ static const struct pinmux_ops rza1_pinmux_ops = {
+  * RZ/A1 pin controller driver operations
+  */
  
- struct gpio_desc;
-@@ -750,4 +751,17 @@ static inline void gpiochip_unlock_as_irq(struct gpio_chip *gc,
- }
- #endif /* CONFIG_GPIOLIB */
+-static unsigned int rza1_count_gpio_chips(struct device_node *np)
+-{
+-	struct device_node *child;
+-	unsigned int count = 0;
+-
+-	for_each_child_of_node(np, child) {
+-		if (!of_property_read_bool(child, "gpio-controller"))
+-			continue;
+-
+-		count++;
+-	}
+-
+-	return count;
+-}
+-
+ /**
+  * rza1_parse_gpiochip() - parse and register a gpio chip and pin range
+  *
+@@ -1255,7 +1240,7 @@ static int rza1_gpio_register(struct rza1_pinctrl *rza1_pctl)
+ 	unsigned int i;
+ 	int ret;
  
-+static inline unsigned int gpiochip_count(struct device *dev)
-+{
-+	struct fwnode_handle *child;
-+	unsigned int count = 0;
-+
-+	device_for_each_child_node(dev, child) {
-+		if (device_property_read_bool(child, "gpio-controller"))
-+			count++;
-+	}
-+
-+	return count;
-+}
-+
- #endif /* __LINUX_GPIO_DRIVER_H */
+-	ngpiochips = rza1_count_gpio_chips(np);
++	ngpiochips = gpiochip_count(rza1_pctl->dev);
+ 	if (ngpiochips == 0) {
+ 		dev_dbg(rza1_pctl->dev, "No gpiochip registered\n");
+ 		return 0;
 -- 
 2.35.1
 
