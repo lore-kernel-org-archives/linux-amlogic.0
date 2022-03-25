@@ -4,49 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAF54C4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Mar 2022 16:55:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2B26C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Mar 2022 16:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=UrZv3OPHjMJxtuH9IPBU7EAuGCjdUVvJZTSiNaB55PA=; b=I8EhAtc/LKLg4F
-	CQ2mb6AiTfvhYj4FGp68yBPtbAXxrkeVK4JF1bBOihwAe+Czgf7t1n1kGRc9EDwm2msaqp1zk6syl
-	XNb11hh8wmgSc44CBuEBpqkUrYRCWTvIvcMV80tQKfT+UHlKINn3nMA5kGVaYFBUqNuBtBuCUpAAU
-	oatYwbbxWe//ejjmSgajL+5K8KkiKteMW2WU2GlAOg9spviX9/FEDp3AdvsCN7Ym+HkWtRm/SneQR
-	AaKXaL7FGucsIY3q64vPzTTm+8EMFO1oowE5pew8V+LwFyiQdAqkYYRqI5vHlPIrq+zAKHUeEhFOJ
-	EzHV7EJ85VgTbj/ei1mQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qJKVHeOVsZ4h3Y42NNUtA44iMBMhVyq+AyDR8geU+js=; b=2EpcWteY0aBl5A
+	+xuZUEvVNlhYgQ1qtqACZn4TcG5qYlQ8ueIx1PL6wcB3P7RxPvSmZsMaJPgokGimNXS5iuEF00JUK
+	ODnuYxRrgmd4pRQSyfFEAPTTux6QA2Eu+y4Tha2f892DyJ2p0++yKtmxv3jBFpG3PgY4s5aosnKJx
+	0JuD4HTMFKzPWoMJ9o+qd2HhrPNpee5TK3GA4i6qRP3PNnBWGSrhjenSsi2ndYtX3nb5ETooBxuYu
+	ud492Yy/xwZ0srDELAi1to5IL945TngcuRqgPsQ9wrYAfW2N8JqO0lwmklHHVYP0UcZJF06qQwlS5
+	gV+llfEAO36QO1yqh5fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nXnDZ-002eL7-2N; Fri, 25 Mar 2022 16:55:17 +0000
-Received: from mx.msync.work ([2001:41d0:d:357f:aaaa::3])
+	id 1nXnDj-002ePp-Qv; Fri, 25 Mar 2022 16:55:27 +0000
+Received: from mx.msync.work ([51.91.38.21])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nXnDV-002eIz-LD; Fri, 25 Mar 2022 16:55:15 +0000
+ id 1nXnDW-002eJX-T6; Fri, 25 Mar 2022 16:55:16 +0000
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id D0F7232041; Fri, 25 Mar 2022 16:55:07 +0000 (UTC)
+ with ESMTPSA id 677A331FD6; Fri, 25 Mar 2022 16:55:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
- t=1648227308; h=from:subject:date:message-id:to:mime-version:
- content-transfer-encoding; bh=2Z9kbaIxV2YtXn9npaupo8QgaDLgj6YOX0GWnSHvOAM=;
- b=mYg7YTNYbC0EF7KlDstBcBvIlGJJYmSib8o1ozqXxnv8/MKDQ1IEQQF5vu5grX0DPCk10d
- pDg3tGT1qoUMx6g4HQRkinZfCloc0xAJPcJ+/p9o4MRvgDdlPZLRo1EkrE9f/gE4O20qlE
- VO6d089C0YHKzDmTKzXaAF9/FPtrueL3N9mXeT+GRaPw2d2iZD4c0CsBpGqe9xkJZYdGq7
- LejGM4JzytsHT0NBYpAO304h+AR7bU/uWJ/WSCAX7pvvtp+GKtrgRSP4S7QPwQOJnUzY2U
- LsYPWmBOLCGencPRX0hJtbgguA5rrk878vn/2JQJ/fiEokd2WvZ32TzDf22ECA==
+ t=1648227312; h=from:subject:date:message-id:to:mime-version:
+ content-transfer-encoding:in-reply-to:references;
+ bh=lMkPsT9wmYQRWVhCSgEyUxO6l9DD/Z5L18efF0PKVNA=;
+ b=dcqdVUFBtvhsacFMgAMkygcIlC6DX6JtyTQiKOlNvVW7ItoUlu9jRvO7CUo1Gbkfjp9sR+
+ +2UkQ+xtF2LXicdMdspMCR41L7L11So7fW/nWK/OAlb1Gs77cV0BanUY724A31VsZP71s8
+ ja35hInBOhj27KWmH2lo2tHZVPMlQ4m8gq9JK41YmGes8oDLtqkOulzOqijnS0DGUn2T4t
+ poP1Rwpevyx4Yoywn9daf3jHIIXwHaGxiNgTGHu5GDtuHVt4o7nPCNOOMtVn6kyKm8eweR
+ D7a2OqQeW7BD+PSiJYa7AbgtToPw7MtbFLyLc0EEIAe/o+js273bkk7TboUyrw==
 From: Vyacheslav Bocharov <adeep@lexina.in>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-Subject: [PATCH 0/3] arm64: meson: update dts for JetHub devices
-Date: Fri, 25 Mar 2022 19:54:58 +0300
-Message-Id: <20220325165501.81551-1-adeep@lexina.in>
+Subject: [PATCH 2/3] arm64: meson: dts: update serial alias in dts for JetHub
+ D1
+Date: Fri, 25 Mar 2022 19:55:00 +0300
+Message-Id: <20220325165501.81551-3-adeep@lexina.in>
+In-Reply-To: <20220325165501.81551-1-adeep@lexina.in>
+References: <20220325165501.81551-1-adeep@lexina.in>
 MIME-Version: 1.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220325_095514_002482_3F97469D 
-X-CRM114-Status: UNSURE (   5.37  )
+X-CRM114-CacheID: sfid-20220325_095515_101651_F9549CD3 
+X-CRM114-Status: UNSURE (   9.63  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -64,22 +68,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Update dts for JetHub H1:
-- add bluetooth node for RTL8822CS uart port
+Change zigbee serial port alias to ttyAML2 for backward compatibility.
 
-Update dts for JetHub D1:
-- add ZigBee serial alias (ttyAML2) for backward compatibility
-- update voltage regulators and SDIO config to match board's reference design
+Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Vyacheslav Bocharov (3):
-  arm64: meson: add to dts for JetHub H1 bluetooth node
-  arm64: meson: dts: update dts for JetHub D1
-  arm64: meson: fix sdio in dts for JetHub D1
-
- .../amlogic/meson-axg-jethome-jethub-j100.dts   | 17 +++++++++++++----
- .../meson-gxl-s905w-jethome-jethub-j80.dts      |  5 +++++
- 2 files changed, 18 insertions(+), 4 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+index 52ebe371df26..66c1eeba8f48 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+@@ -18,7 +18,7 @@ / {
+ 	model = "JetHome JetHub J100";
+ 	aliases {
+ 		serial0 = &uart_AO;   /* Console */
+-		serial1 = &uart_AO_B; /* External UART (Wireless Module) */
++		serial2 = &uart_AO_B; /* External UART (Wireless Module) */
+ 		ethernet0 = &ethmac;
+ 	};
+ 
 -- 
 2.30.2
 
