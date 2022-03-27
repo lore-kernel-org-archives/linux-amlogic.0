@@ -4,72 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56BECC433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Mar 2022 08:19:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61710C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Mar 2022 11:10:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GnsyPb6aIDbhlk0biD0qY7ULXhqBVo2dLRwYTaERlWY=; b=CWu9w6MmSE+V6p
-	vlnIO5lmqn+cJ+fXaFWJDV7IfEAJBP+MNOmDQzJYFsKb4ArUf/6Dj9w3I12QwzW1eM8ON4ljrUv0f
-	RuBnqTXZmKbK+F+tlzTUuMKwqw1pHWYIx60TY9Rdmt0Atv39OKhcOUa89stX8USdo7RjkdzIRV7sf
-	aUS7yqLYAT56aeTWWJkfyKdgAUCfaOwV1tvElhSYq1YsuT2oyoECMXDpGCYsiC+dHNys4S7YKaXKP
-	Xq1laPdTCy8Id/LLsXlQy4GZ1A4MKZQ2L5dA43BqsdRigYDAl06MZUB7uVSx1nw0myTckPVX/JGs1
-	5ABUOHHhwWyc4j059nRQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ct4D1mLhen2KywfkNahBtetTU81Cdn+vnmIFHYXK3Jc=; b=i+1NEGN87aFAja
+	5lDGaXuw1MK5uFWGlyjQq+PQmF9g2Fk7CCNB3bqKDIwQrrjJxwIzZqsN+D/OWc7T66evo3FVKoicJ
+	xFBTxsRXjzRLRwLfbU4sPP6xYBu+oYT+AQjXrqhOsuf5WXpkHT8LtKtWyDyi8iQ7t+cc/wPDyaVGc
+	yFy19sERHIzbbBoJGkPyqy/Rh3TYi832NQkTYh6OfVbitil8Mpe5hiA15ymXJfy/4c+fjHR77/K/9
+	DDG4bTzbA/yYZoTxQwkbSrSsKVDDqhzEduvEnNZzxEynd2Nu9rdx+Y0THeblPMhBnQgerQHkNUh+t
+	HxtDjwXcQW4+IzzeAnCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nYO7B-005KIf-J2; Sun, 27 Mar 2022 08:19:09 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1nYQn1-005TNc-TL; Sun, 27 Mar 2022 11:10:31 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nYO6z-005KG2-Mn; Sun, 27 Mar 2022 08:18:58 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id s8so9943484pfk.12;
- Sun, 27 Mar 2022 01:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=FRlj4xMxhi5GXSX1Cps2ByHahJKaninAekH9Bevmx9w=;
- b=fbkCuL3X0EpNGQHTKPQN+J5o1tk1WD1ZvaSnCkLlNZpDKc4eMyPgKFGCQbXnWcFvwb
- 33MLo/BbChs+qJaWwTnyYbj3zIPZGsB+hU9b1HftLEiRqDP+s/ukZiVzzB6oDjQX7cuC
- VPNty0xABL2HSE+QkHT1+VTL+RwqVUjtukyrmfy/+AEaz45KxkYx+adzwYkTmmeEURC5
- I40YEYLxdDmlXR7uuv6VK1SpwnAaQBuQkhrbokCGJiP5qzD4HAJgSqf+UDyDKLnfO/lC
- YcTVmUj5nvXw6l3PmuEOtQ9uvRmyTPUMo1wb0GJ/zbvt6mrZY+ekvi+hE3cGbKVxQDmi
- kEng==
+ id 1nYQmx-005TMU-TY
+ for linux-amlogic@lists.infradead.org; Sun, 27 Mar 2022 11:10:30 +0000
+Received: by mail-wm1-x329.google.com with SMTP id
+ r190-20020a1c2bc7000000b0038a1013241dso6905663wmr.1
+ for <linux-amlogic@lists.infradead.org>; Sun, 27 Mar 2022 04:10:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=references:user-agent:from:to:cc:subject:date:in-reply-to
+ :message-id:mime-version;
+ bh=+BzHZSvsn/H69wlmb/H6rNB8e3j/o17VqP5fAwR3vQU=;
+ b=n+TM4caOAp7aEq8To+f6jO0BS7LMe0+DMBVCErD3nIzBkOALI2ZJlInZiWkvYKLyqB
+ H+4F7iYjKqYaLj/OPPzW9gq+l/M9Z0u6a8WTTf6LH/6M+0VXHjVNWfLpj5h9WLbTDly9
+ PJkw2fhaZ+69LqpOJ+zOCsrcktLX2QSq48Td+AlXqCzNCKa9dO0WK70MfS6fKUQC9Wtk
+ +fFh+kf/2aZXUIKt7Qtoq42+r5NKVrbBQryKeKWeDT12xPt7ASgtSsTKwm8D0eA3DWUo
+ 8Zs14hKV4x0VtL+2deVPC7sbA3/beiz2cDtnHAf4stM2aEO3tYUFOqpZX9yriEm4A7M+
+ Mq6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=FRlj4xMxhi5GXSX1Cps2ByHahJKaninAekH9Bevmx9w=;
- b=2L71S0/HkhwLSsnkChLVzRbNsNeGd1M5y2EjvYK0s/UFhdI3rnWmd1j+BlasAWlMQx
- ABRT6qQ39sQqIKiS8L8tr3ZVhw8JrKA3lxdRoT+hkKS6pn7CdNElj87vhb4Rg2NJUP6g
- BsDmivv7hCqA3Qp6fmheB9Zwl3CS3AwBTYIEI66a23QTMwJ6xNfb/4QJKejUOzmLCgMu
- gBjShDxGPqxAbeLxvtITZvb+Z0V0h0YKEW+rH2bIFHzQi5zYjCwmT+nvUBWxUEhlJBux
- zjCBAwHg988FhopNJD1HK7fkSgoJYFH9+zCpNWGMPjkpPRlyBZv0AgJ9DeoswB4kaMA1
- 0MFw==
-X-Gm-Message-State: AOAM533Q4zBK9i2MCPwmHgGwNjLov8qaP8UNHtN63/ReaejX1gQauOtI
- 7DOdjY7pP2LZAsxjv3i3ZwI=
-X-Google-Smtp-Source: ABdhPJz2wxWOOC7GRX1rgnX4yaY4pEyOhkAnmMPQd+DoD4Q6rJJmJhlYuKx6PRfaZyj47p55C72mMg==
-X-Received: by 2002:a63:4721:0:b0:382:70fa:479d with SMTP id
- u33-20020a634721000000b0038270fa479dmr6059863pga.259.1648369136640; 
- Sun, 27 Mar 2022 01:18:56 -0700 (PDT)
-Received: from localhost ([115.220.243.108]) by smtp.gmail.com with ESMTPSA id
- x14-20020aa784ce000000b004fa79973c94sm11560749pfn.165.2022.03.27.01.18.55
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 27 Mar 2022 01:18:56 -0700 (PDT)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: jbrunet@baylibre.com, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, narmstrong@baylibre.com,
- khilman@baylibre.com
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+ :in-reply-to:message-id:mime-version;
+ bh=+BzHZSvsn/H69wlmb/H6rNB8e3j/o17VqP5fAwR3vQU=;
+ b=HjzWH97PLFGofzxNkoA0So+gHGruPAndB1JYQ5pEVcqOgeQInrBoICn2vmP824B39A
+ Xm6A/+mcJlfcaX7TXYBqaw+WJ00yy5a0n1IMKuoBnD4ZVYy7p6u9iCLBeyqdrOCkzbO1
+ z8mwd4Hqw9Mt/4MRIO0k2Xx6twUx/mCGIa9t3+epBKsKCNMleF0YWZyVCD0j8xHpzLEk
+ MWm3YQcrPXAQPQAPfAKii7UyRjC6VZOuttJN4LqEdLrr3Gpj2YTm/Vs9wYYG9qFKwbI9
+ 2vE9j18knR7MhV3sCEHXwoYCljNe/wNB7+layV7mEYibmDzImytuyvylFxpNWeRKgcXI
+ ntMw==
+X-Gm-Message-State: AOAM532bEjyF/u7rhziMDhoplrHTDbFOX4pt/viSqjZW8YF+mKZFFWCM
+ 7J1LNG4gnTOTmBVX13ZabagVOA==
+X-Google-Smtp-Source: ABdhPJzw8TxaeNM+RLDCb4Y1lZLHWqMHpKjAx9JRCVm8lX0y2gwyKrD4U6GXSV5yvfD0ii3RXeXiXw==
+X-Received: by 2002:a05:600c:1c8e:b0:38c:a386:26aa with SMTP id
+ k14-20020a05600c1c8e00b0038ca38626aamr19308151wms.204.1648379425745; 
+ Sun, 27 Mar 2022 04:10:25 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+ by smtp.gmail.com with ESMTPSA id
+ g6-20020a5d5406000000b001f049726044sm9577806wrv.79.2022.03.27.04.10.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Mar 2022 04:10:24 -0700 (PDT)
+References: <20220327081850.13456-1-xiam0nd.tong@gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Xiaomeng Tong <xiam0nd.tong@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+ narmstrong@baylibre.com, khilman@baylibre.com
 Cc: martin.blumenstingl@googlemail.com, alsa-devel@alsa-project.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Xiaomeng Tong <xiam0nd.tong@gmail.com>,
- stable@vger.kernel.org
-Subject: [PATCH] soc: meson: fix a missing check on list iterator
-Date: Sun, 27 Mar 2022 16:18:50 +0800
-Message-Id: <20220327081850.13456-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] soc: meson: fix a missing check on list iterator
+Date: Sun, 27 Mar 2022 13:03:14 +0200
+In-reply-to: <20220327081850.13456-1-xiam0nd.tong@gmail.com>
+Message-ID: <1jk0cf6480.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220327_011857_764951_8680F498 
-X-CRM114-Status: GOOD (  12.48  )
+X-CRM114-CacheID: sfid-20220327_041028_068544_0265B402 
+X-CRM114-Status: GOOD (  19.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,57 +89,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The bug is here:
-	*dai_name = dai->driver->name;
 
-For for_each_component_dais(), just like list_for_each_entry,
-the list iterator 'runtime' will point to a bogus position
-containing HEAD if the list is empty or no element is found.
-This case must be checked before any use of the iterator,
-otherwise it will lead to a invalid memory access.
+On Sun 27 Mar 2022 at 16:18, Xiaomeng Tong <xiam0nd.tong@gmail.com> wrote:
 
-To fix the bug, just move the assignment into loop and return
-0 when element is found, otherwise return -EINVAL;
+> The bug is here:
+> 	*dai_name = dai->driver->name;
+>
+> For for_each_component_dais(), just like list_for_each_entry,
+> the list iterator 'runtime' will point to a bogus position
+> containing HEAD if the list is empty or no element is found.
+> This case must be checked before any use of the iterator,
+> otherwise it will lead to a invalid memory access.
+>
+> To fix the bug, just move the assignment into loop and return
+> 0 when element is found, otherwise return -EINVAL;
 
-Cc: stable@vger.kernel.org
-Fixes: 6ae9ca9ce986b ("ASoC: meson: aiu: add i2s and spdif support")
-Signed-off-by: Xiaomeng Tong <xiam0nd.tong@gmail.com>
----
- sound/soc/meson/aiu.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Except we already checked that the id is valid and know an element will
+be be found once we enter the loop. No bug here and this patch does not
+seem necessary to me.
 
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index d299a70db7e5..b52915c6f53b 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -61,14 +61,14 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
- 		return -EINVAL;
- 
- 	for_each_component_dais(component, dai) {
--		if (id == 0)
--			break;
-+		if (id == 0) {
-+			*dai_name = dai->driver->name;
-+			return 0;
-+		}
- 		id--;
- 	}
- 
--	*dai_name = dai->driver->name;
--
--	return 0;
-+	return -EINVAL;
- }
- 
- static int aiu_cpu_of_xlate_dai_name(struct snd_soc_component *component,
--- 
-2.17.1
+>
+> Cc: stable@vger.kernel.org
+> Fixes: 6ae9ca9ce986b ("ASoC: meson: aiu: add i2s and spdif support")
+> Signed-off-by: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+> ---
+>  sound/soc/meson/aiu.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+> index d299a70db7e5..b52915c6f53b 100644
+> --- a/sound/soc/meson/aiu.c
+> +++ b/sound/soc/meson/aiu.c
+> @@ -61,14 +61,14 @@ int aiu_of_xlate_dai_name(struct snd_soc_component *component,
+>  		return -EINVAL;
+>  
+>  	for_each_component_dais(component, dai) {
+> -		if (id == 0)
+> -			break;
+> +		if (id == 0) {
+> +			*dai_name = dai->driver->name;
+> +			return 0;
+> +		}
+>  		id--;
+>  	}
+>  
+> -	*dai_name = dai->driver->name;
+> -
+> -	return 0;
+> +	return -EINVAL;
+>  }
+>  
+>  static int aiu_cpu_of_xlate_dai_name(struct snd_soc_component *component,
 
 
 _______________________________________________
