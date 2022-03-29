@@ -4,54 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC3A2C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 08:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F253C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 09:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LevbHUr5xic6XK2nUgI2eVOI+v+dA0Wg2KDrfoJzboA=; b=oKvTzwyVUNpkW/
-	BLcKikN9eEnUe9FyK3B8sncViJKQUppOTgJjOIfmzEEbTxCsiiHcKy+VztnOmB+6Nk5AAh+I8Wjsy
-	Y5nHGVJY7oph8tvDuxG36YVcqcyNpS/sZBmnlvsDuK41EyLGVHJLKK2vGbghL/QgXsz8q0JXQExzb
-	ow67qI3yEKd/eh4aSyrO5KEjDOX85vLFj1LBRZ/vDzzh2P/ppGKIHwsq798JSXtVdjJg0BShXtgHt
-	NgWrRZWUhVft7uClUQ0yrYTa6NdPVBKLuCTs346ZlzDGfU5QD3sTToOc/zwo7JxuGt4uUiCYtDTuQ
-	fuZKR6TcQLHQqwgTTAlQ==;
+	List-Owner; bh=xHWEUSbvCV9CmBiqoXBiAZcvMwlxr5efiZV9+P8+Ou8=; b=PLI09xuvPJ/z7a
+	BspjaXWoQix5txDWPXiYSq02xbF/vKJ7SxAWjQK3QNc9Nmkqz2POnnLNFrbWwEwd2xyxZv60NT4ap
+	yll8OWXtU+LKPZvD5ygTyRk+3jdfCq+HIc+JRSlqOJz9Q46fqyk4JCyGDgrz5dpEurZnkaXdJhEuw
+	VkoID2KOvOMXQ+qI5vuU4FKJPoNP/4jWsYnhitktTYVSRoVPJY/nM3Y+7DqcJ2yTwEp6w4cPqavQ9
+	9FjIapTgvxAWaK2pCeaPNypRK+bLdgbcTzpTsjBkiBw21DvYjPPP7vVtjCqc3PnR3zNMxGtZXjb5Z
+	v/nL3tnJndmQn1uUiRcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZ7cV-00BWwR-Dw; Tue, 29 Mar 2022 08:54:31 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1nZ7mL-00BaGb-7g; Tue, 29 Mar 2022 09:04:41 +0000
+Received: from mail-qt1-f180.google.com ([209.85.160.180])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZ7bu-00BWb4-7z; Tue, 29 Mar 2022 08:53:55 +0000
-Received: from [192.168.1.103] (10.28.39.59) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 29 Mar
- 2022 16:53:50 +0800
-Message-ID: <a5708e46-7169-c2e3-369f-e31b8a5d1b14@amlogic.com>
-Date: Tue, 29 Mar 2022 16:54:33 +0800
+ id 1nZ7m7-00BaCg-Hz; Tue, 29 Mar 2022 09:04:28 +0000
+Received: by mail-qt1-f180.google.com with SMTP id s11so14690288qtc.3;
+ Tue, 29 Mar 2022 02:04:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7LLXUdiKn5zGolda6p6nU0L90Q8R5gkNG4kyWBHOgl4=;
+ b=BsF7CrPUdzvdH7Ree8xyv/TBfmCxCvupTjY5RwBLO8axctk3JQQB22+3KpcuShkqW+
+ rSHAzy45oA5yS1XrnhvqFzU5NsRNvgIX6sNqkM8oH+foNQ8Q3HUzRMIQvcfYuJq5EmCN
+ 0uDGD7aEhxqL5gzOgwh4e6Vf9zbQZXc9NCvHlH2c3ITwYLfEQAyQKefjBS3ZvXbGrA08
+ uBQJXxAKZRIRfGx69hj/KsX4kStN21KnYRUpYwD89iqQR7RRrpESUxpGAFs1mJzkBmFZ
+ Cw6ICcAUPq1DhUYDWozy6TN/5PVksIqpJ2abHuN3z1YgQwpkuKf8vZGegK17DVRetcxh
+ JGcA==
+X-Gm-Message-State: AOAM531u5x8Y+UxMSIDhwrP21IWmkqNVy1cppUnLd2D/zai621oMGruO
+ 6BMOlCioFYBDhXurxjUfDEFDf9L6KPq+WQ==
+X-Google-Smtp-Source: ABdhPJzKUfBS9wwA2t5bSkI/jv9jjVcTtZn8Vg1KiZuQELGccecb9rhGRR/JpWgC5ZLZnMkERWQiYQ==
+X-Received: by 2002:a05:622a:1d6:b0:2e2:db3:17c9 with SMTP id
+ t22-20020a05622a01d600b002e20db317c9mr26036686qtw.665.1648544664574; 
+ Tue, 29 Mar 2022 02:04:24 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com.
+ [209.85.128.179]) by smtp.gmail.com with ESMTPSA id
+ e20-20020ac84e54000000b002e06753cf70sm16162457qtw.6.2022.03.29.02.04.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 29 Mar 2022 02:04:24 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id
+ 00721157ae682-2e6ceb45174so136291607b3.8; 
+ Tue, 29 Mar 2022 02:04:23 -0700 (PDT)
+X-Received: by 2002:a81:24d6:0:b0:2e5:b253:f9fc with SMTP id
+ k205-20020a8124d6000000b002e5b253f9fcmr30366724ywk.438.1648544663596; Tue, 29
+ Mar 2022 02:04:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] pinctrl: meson: fix unused variable warning
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>, Linus Walleij
- <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
-CC: kernel test robot <lkp@intel.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-References: <20220329060821.15251-1-qianggui.song@amlogic.com>
- <1j8rstjhec.fsf@starbuckisacylon.baylibre.com>
-From: qianggui.song <Qianggui.Song@amlogic.com>
-In-Reply-To: <1j8rstjhec.fsf@starbuckisacylon.baylibre.com>
-X-Originating-IP: [10.28.39.59]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+ <YkK691VG6ON/6Ysn@atomide.com>
+In-Reply-To: <YkK691VG6ON/6Ysn@atomide.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 29 Mar 2022 11:04:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXDDNTgBdJTa8+H1H5v1gAarp07xxWu_E1JL8mXS8HPMg@mail.gmail.com>
+Message-ID: <CAMuHMdXDDNTgBdJTa8+H1H5v1gAarp07xxWu_E1JL8mXS8HPMg@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+To: Tony Lindgren <tony@atomide.com>
+Cc: Daniel Palmer <daniel@0x0f.com>, Ansuel Smith <ansuelsmth@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ DTML <devicetree@vger.kernel.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ "open list:TI ETHERNET SWITCH DRIVER (CPSW)" <linux-omap@vger.kernel.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org, 
+ linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+ chrome-platform@lists.linux.dev, 
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+ linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, 
+ linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com, 
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org, 
+ linux-tegra <linux-tegra@vger.kernel.org>, linux-oxnas@groups.io, 
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>, linux-unisoc@lists.infradead.org,
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-realtek-soc@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_015354_348925_57063572 
-X-CRM114-Status: GOOD (  15.10  )
+X-CRM114-CacheID: sfid-20220329_020427_642372_B712A560 
+X-CRM114-Status: GOOD (  24.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,61 +98,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Tony,
 
+On Tue, Mar 29, 2022 at 10:03 AM Tony Lindgren <tony@atomide.com> wrote:
+> * Daniel Palmer <daniel@0x0f.com> [220328 08:53]:
+> > On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> > > as the title say, the intention of this ""series"" is to finally categorize
+> > > the ARM dts directory in subdirectory for each oem.
+> >
+> > While I agree with this change and think it's for the good (browsing
+> > the ARM dts directory at the moment is frustrating..) I think
+> > buildroot and others need to be told about this as it'll potentially
+> > break their kernel build scripting for ARM and probably messes up the
+> > configs they have for existing boards.
+>
+> Yeah.. And ideally this would be done in smaller steps as these will
+> conflict with all the other pending patches.
+>
+> For example, I have a pile of pending omap clock clean-up dts patches
+> posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
+> redoing or fixing up the patches with sed :)
 
-On 3/29/22 16:21, Jerome Brunet wrote:
-> 
-> On Tue 29 Mar 2022 at 14:08, Qianggui Song <qianggui.song@amlogic.com> wrote:
-> 
->> The kernel test robot reported a warning as below:
->>>> drivers/pinctrl/meson/pinctrl-meson-s4.c:178:27: warning: unused variable 'tdm_sclk1_c_pins' [-Wunused-const-variable]
->>     static const unsigned int tdm_sclk1_c_pins[]            = { GPIOC_3 };
->>
->> Fix it by adding missing description about this pins
->>
->> Fixes: 775214d389c2 ("pinctrl: meson: add pinctrl driver support for Meson-S4 Soc")
->> Reported-by: kernel test robot <lkp@intel.com>
->> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
->> ---
->>   drivers/pinctrl/meson/pinctrl-meson-s4.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
->> index 3c7358f53302..067c6749c849 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
->> @@ -575,6 +575,7 @@ static struct meson_pmx_group meson_s4_periphs_groups[] = {
->>   	GROUP(tdm_d2_c,			4),
->>   	GROUP(tdm_d3_c,			4),
->>   	GROUP(tdm_fs1_c,		4),
->> +	GROUP(tdm_sclk1_c,		4),
->>   	GROUP(mclk_1_c,			4),
->>   	GROUP(tdm_d4_c,			4),
->>   	GROUP(tdm_d5_c,			4),
->> @@ -937,6 +938,7 @@ static const char * const iso7816_groups[] = {
->>   
->>   static const char * const tdm_groups[] = {
->>   	"tdm_d2_c", "tdm_d3_c", "tdm_fs1_c", "tdm_d4_c", "tdm_d5_c",
->> +	"tdm_sclk1_c",
-> 
-> Thanks for fixing this.
-> Could you please try to keep this list somehow ordered a bit ?
-> Here you are adding a new line in the middle with single entry ... it
-> looks weird.
-> 
->>   	"tdm_fs1_d", "tdm_d4_d", "tdm_d3_d", "tdm_d2_d", "tdm_sclk1_d",
->>   	"tdm_sclk1_h", "tdm_fs1_h", "tdm_d2_h", "tdm_d3_h", "tdm_d4_h",
->>   	"tdm_d1", "tdm_d0", "tdm_fs0", "tdm_sclk0", "tdm_fs2", "tdm_sclk2",
-> 
-> .
-Just think that put the tdm_sclk1_c in first line make line too long. 
-Okay, will put it to first line next patch that make one line per bank 
-for pins in order.
+Git merge/rebase/cherry-pick should handle renames fine?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
