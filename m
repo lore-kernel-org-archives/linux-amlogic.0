@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D96AEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 099B8C433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ndUl2Q1VbboPBoZLWr8VQ2f5bJ2Zdo5K5k3HD7eGsa0=; b=HpwJyLvv9yWCok
-	TNWu3ecVyo4kt+VEykF6fSUIXxmj0HMHzUduuh3/Lhr4KQqfUMpR8rUYThAhv0nngXbhT0aozzdrW
-	iYm7Kch3wCBWNSKtVyRAiidQxza2j/gckjx4exxjO4T7UhHVqwv81uDksOv1y2tO01q0pBSpys1uE
-	BC3XbLQgFsiHnXjcPdFHCAF7K23As+cfpjU8j9WLnl+7ub811JrcQg/7jtSQQbhnEELqjIKSLxY5K
-	v1zgJ9zBBEpryFBV87uat2x/2yXwJtTNfw0bctHcFYe0SOESqdL2aA/j2gCGc0/TN2uZNFZ8XruO4
-	ueGm3fKtR1579zpDHyjg==;
+	List-Owner; bh=0YLWMaVLQ3YXmZ1ZoWzyf0wgvxqvkAztDpHkZ2Umcd8=; b=D1hqCEbCkAsUV6
+	qaaOpIjseha9sD1Lpr+5v58LomWQWaLx+hKoL4goXgUx5JqGlGe6zzh9YY7JCE1UDKJX4PBXsMkd2
+	mYQzTA2xf+jgUddCrJloMvgG4x1VedpxjGrayZeHSoVl5JBQcf+wjMPlB3kMVJc1bjU+8+g6prnEI
+	fJ1XC0k82SzF34uKPuZUsdZwDZe68n0PkiUR2j0xOUqvICMsD7Djqob4Ze213vNznlxQ9bph5Q8Kl
+	+hjtrMK5zOiK6qxgtIxwtDozFDNaorGr30X+s8+/IcRwcFt9QkIGP6pd8bqI01r7/SGVPnaHxRJdw
+	rObjt0PAOwPzaOmCo2wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZDpS-00Ch9o-UQ; Tue, 29 Mar 2022 15:32:18 +0000
-Received: from mga14.intel.com ([192.55.52.115])
+	id 1nZDpV-00ChBE-Hn; Tue, 29 Mar 2022 15:32:21 +0000
+Received: from mga02.intel.com ([134.134.136.20])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZDmf-00Cfju-2H; Tue, 29 Mar 2022 15:29:28 +0000
+ id 1nZDmf-00Cfjv-0q; Tue, 29 Mar 2022 15:29:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1648567765; x=1680103765;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kMudTMtGxVZVHwV5VTjyiNEvYYx7Ej7e2ciD6y9y198=;
- b=Yl4oCbO6ibDna+XHE643laqdgAve2LrUhXBgyE3ybM7oSBwouV/XmT5+
- pSTj9PlSgvL1G0Iz2xOPXfHSmeGF8EfUGOqU/EkJ5SJfO9p70BounqZu6
- nryRAqt10OIEjuC9JlQWTBLAvaBbs/w9r5VIchRLyDA9WzP7SYcaeOaZW
- vj3SHYM+UtAdi27VN5d3kt7W7D0Ss2jlBF1PHT8D0bsoI7HN8zi88c/EL
- dWhV/t8oY3Qwu7/4ko4H59raMqtj6ahVLKzbtS4lf64sFk+z2bAeu2yAV
- M2/Fxhk9TPK9fAoYlCExwThYnmvUy9ZTMYoXLP4j66YG7fdW+l1SWREtF A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="259463025"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="259463025"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=W+IP0ugtBZoN9WwC/3gHuhgkJJpzkCJxYwfn4NdIErE=;
+ b=IvpDQENkbbPB9wXNDipGf6t5RCJUnI3y5RSpQfCU58DVWqgRFDI6LMvC
+ IVJVOaNpOZ2KQ0p7SdPF29TYzJOogLvZvlgBGm6vFnHmF90QBHUBVIq3A
+ p4AJI03qVJCAP7sfdzR/f/yxClOOHH7eTM/y6DKsr3ST33HfeiyTHYfwA
+ M6tvp2B5PvCZ0eFQlSdiZ3Ej8bv7hFYL0/Vwg5rEZyqEeBZ88BawGO3Zf
+ cTWsMlWQTzyxPauKyuvEOTrmqWQX+kyGsCExf5lXkvszx5cMtKDU1OPLK
+ 3d1Bax425glmgnUAT+TbGRkbkXejL/aL+AEY1Tmr3PSZY/SqBAjg1F2H5 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="246767243"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="246767243"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Mar 2022 08:29:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="649486724"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="554297181"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga002.fm.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 7CEB63F2; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
+ id 427B5239; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,16 +73,17 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v2 09/13] pinctrl: meson: Rename REG_* to MREG_*
-Date: Tue, 29 Mar 2022 18:29:22 +0300
-Message-Id: <20220329152926.50958-10-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 05/13] pinctrl: samsung: Switch to use
+ for_each_gpiochip_node() helper
+Date: Tue, 29 Mar 2022 18:29:18 +0300
+Message-Id: <20220329152926.50958-6-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_082925_236180_848610F9 
-X-CRM114-Status: GOOD (  14.31  )
+X-CRM114-CacheID: sfid-20220329_082925_233694_D1B90FFB 
+X-CRM114-Status: GOOD (  20.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,164 +100,133 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rename REG_* to MREG_* as a prerequisite for enabling COMPILE_TEST.
+Switch the code to use for_each_gpiochip_node() helper.
+
+While at it, in order to avoid additional churn in the future,
+switch to fwnode APIs where it makes sense.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 24 ++++++++++++------------
- drivers/pinctrl/meson/pinctrl-meson.h | 24 ++++++++++++------------
- 2 files changed, 24 insertions(+), 24 deletions(-)
+ drivers/pinctrl/samsung/pinctrl-samsung.c | 30 +++++++++++------------
+ drivers/pinctrl/samsung/pinctrl-samsung.h |  2 +-
+ 2 files changed, 15 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 49851444a6e3..64da61ba2bb9 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -218,13 +218,13 @@ static int meson_pinconf_set_output(struct meson_pinctrl *pc,
- 				    unsigned int pin,
- 				    bool out)
- {
--	return meson_pinconf_set_gpio_bit(pc, pin, REG_DIR, !out);
-+	return meson_pinconf_set_gpio_bit(pc, pin, MREG_DIR, !out);
+diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
+index 8eb423193680..8eb0aa1de595 100644
+--- a/drivers/pinctrl/samsung/pinctrl-samsung.c
++++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
+@@ -18,6 +18,7 @@
+ #include <linux/init.h>
+ #include <linux/platform_device.h>
+ #include <linux/io.h>
++#include <linux/property.h>
+ #include <linux/slab.h>
+ #include <linux/err.h>
+ #include <linux/gpio/driver.h>
+@@ -966,7 +967,7 @@ static int samsung_gpiolib_register(struct platform_device *pdev,
+ 		gc->base = bank->grange.base;
+ 		gc->ngpio = bank->nr_pins;
+ 		gc->parent = &pdev->dev;
+-		gc->of_node = bank->of_node;
++		gc->fwnode = bank->fwnode;
+ 		gc->label = bank->name;
+ 
+ 		ret = devm_gpiochip_add_data(&pdev->dev, gc, bank);
+@@ -1002,27 +1003,25 @@ samsung_pinctrl_get_soc_data_for_of_alias(struct platform_device *pdev)
+ 	return &(of_data->ctrl[id]);
  }
  
- static int meson_pinconf_get_output(struct meson_pinctrl *pc,
- 				    unsigned int pin)
+-static void samsung_banks_of_node_put(struct samsung_pinctrl_drv_data *d)
++static void samsung_banks_node_put(struct samsung_pinctrl_drv_data *d)
  {
--	int ret = meson_pinconf_get_gpio_bit(pc, pin, REG_DIR);
-+	int ret = meson_pinconf_get_gpio_bit(pc, pin, MREG_DIR);
+ 	struct samsung_pin_bank *bank;
+ 	unsigned int i;
  
- 	if (ret < 0)
- 		return ret;
-@@ -236,13 +236,13 @@ static int meson_pinconf_set_drive(struct meson_pinctrl *pc,
- 				   unsigned int pin,
- 				   bool high)
- {
--	return meson_pinconf_set_gpio_bit(pc, pin, REG_OUT, high);
-+	return meson_pinconf_set_gpio_bit(pc, pin, MREG_OUT, high);
+ 	bank = d->pin_banks;
+ 	for (i = 0; i < d->nr_banks; ++i, ++bank)
+-		of_node_put(bank->of_node);
++		fwnode_handle_put(bank->fwnode);
  }
  
- static int meson_pinconf_get_drive(struct meson_pinctrl *pc,
- 				   unsigned int pin)
- {
--	return meson_pinconf_get_gpio_bit(pc, pin, REG_OUT);
-+	return meson_pinconf_get_gpio_bit(pc, pin, MREG_OUT);
- }
- 
- static int meson_pinconf_set_output_drive(struct meson_pinctrl *pc,
-@@ -269,7 +269,7 @@ static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
- 	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit), 0);
- 	if (ret)
- 		return ret;
-@@ -288,7 +288,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_PULL, &reg, &bit);
- 	if (pull_up)
- 		val = BIT(bit);
- 
-@@ -296,7 +296,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
- 	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit),	BIT(bit));
- 	if (ret)
- 		return ret;
-@@ -321,7 +321,7 @@ static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_DS, &reg, &bit);
- 
- 	if (drive_strength_ua <= 500) {
- 		ds_val = MESON_PINCONF_DRV_500UA;
-@@ -407,7 +407,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
- 
- 	ret = regmap_read(pc->reg_pullen, reg, &val);
- 	if (ret)
-@@ -416,7 +416,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
- 	if (!(val & BIT(bit))) {
- 		conf = PIN_CONFIG_BIAS_DISABLE;
- 	} else {
--		meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-+		meson_calc_reg_and_bit(bank, pin, MREG_PULL, &reg, &bit);
- 
- 		ret = regmap_read(pc->reg_pull, reg, &val);
- 		if (ret)
-@@ -447,7 +447,7 @@ static int meson_pinconf_get_drive_strength(struct meson_pinctrl *pc,
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, pin, MREG_DS, &reg, &bit);
- 
- 	ret = regmap_read(pc->reg_ds, reg, &val);
- 	if (ret)
-@@ -595,7 +595,7 @@ static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
- 	if (ret)
- 		return ret;
- 
--	meson_calc_reg_and_bit(bank, gpio, REG_IN, &reg, &bit);
-+	meson_calc_reg_and_bit(bank, gpio, MREG_IN, &reg, &bit);
- 	regmap_read(pc->reg_gpio, reg, &val);
- 
- 	return !!(val & BIT(bit));
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-index ff5372e0a475..c00d9ad27843 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson.h
-@@ -63,12 +63,12 @@ struct meson_reg_desc {
-  * enum meson_reg_type - type of registers encoded in @meson_reg_desc
+ /*
+  * Iterate over all driver pin banks to find one matching the name of node,
+  * skipping optional "-gpio" node suffix. When found, assign node to the bank.
   */
- enum meson_reg_type {
--	REG_PULLEN,
--	REG_PULL,
--	REG_DIR,
--	REG_OUT,
--	REG_IN,
--	REG_DS,
-+	MREG_PULLEN,
-+	MREG_PULL,
-+	MREG_DIR,
-+	MREG_OUT,
-+	MREG_IN,
-+	MREG_DS,
- 	NUM_REG,
- };
+-static void samsung_banks_of_node_get(struct device *dev,
+-				      struct samsung_pinctrl_drv_data *d,
+-				      struct device_node *node)
++static void samsung_banks_node_get(struct device *dev, struct samsung_pinctrl_drv_data *d)
+ {
+ 	const char *suffix = "-gpio-bank";
+ 	struct samsung_pin_bank *bank;
+-	struct device_node *child;
++	struct fwnode_handle *child;
+ 	/* Pin bank names are up to 4 characters */
+ 	char node_name[20];
+ 	unsigned int i;
+@@ -1038,17 +1037,17 @@ static void samsung_banks_of_node_get(struct device *dev,
+ 			continue;
+ 		}
  
-@@ -150,12 +150,12 @@ struct meson_pinctrl {
- 		.irq_first	= fi,					\
- 		.irq_last	= li,					\
- 		.regs = {						\
--			[REG_PULLEN]	= { per, peb },			\
--			[REG_PULL]	= { pr, pb },			\
--			[REG_DIR]	= { dr, db },			\
--			[REG_OUT]	= { or, ob },			\
--			[REG_IN]	= { ir, ib },			\
--			[REG_DS]	= { dsr, dsb },			\
-+			[MREG_PULLEN]	= { per, peb },			\
-+			[MREG_PULL]	= { pr, pb },			\
-+			[MREG_DIR]	= { dr, db },			\
-+			[MREG_OUT]	= { or, ob },			\
-+			[MREG_IN]	= { ir, ib },			\
-+			[MREG_DS]	= { dsr, dsb },			\
- 		},							\
- 	 }
+-		for_each_child_of_node(node, child) {
+-			if (!of_find_property(child, "gpio-controller", NULL))
+-				continue;
+-			if (of_node_name_eq(child, node_name))
++		for_each_gpiochip_node(dev, child) {
++			struct device_node *np = to_of_node(child);
++
++			if (of_node_name_eq(np, node_name))
+ 				break;
+-			else if (of_node_name_eq(child, bank->name))
++			if (of_node_name_eq(np, bank->name))
+ 				break;
+ 		}
  
+ 		if (child)
+-			bank->of_node = child;
++			bank->fwnode = child;
+ 		else
+ 			dev_warn(dev, "Missing node for bank %s - invalid DTB\n",
+ 				 bank->name);
+@@ -1061,7 +1060,6 @@ static const struct samsung_pin_ctrl *
+ samsung_pinctrl_get_soc_data(struct samsung_pinctrl_drv_data *d,
+ 			     struct platform_device *pdev)
+ {
+-	struct device_node *node = pdev->dev.of_node;
+ 	const struct samsung_pin_bank_data *bdata;
+ 	const struct samsung_pin_ctrl *ctrl;
+ 	struct samsung_pin_bank *bank;
+@@ -1125,7 +1123,7 @@ samsung_pinctrl_get_soc_data(struct samsung_pinctrl_drv_data *d,
+ 	 */
+ 	d->virt_base = virt_base[0];
+ 
+-	samsung_banks_of_node_get(&pdev->dev, d, node);
++	samsung_banks_node_get(&pdev->dev, d);
+ 
+ 	d->pin_base = pin_base;
+ 	pin_base += d->nr_pins;
+@@ -1186,7 +1184,7 @@ static int samsung_pinctrl_probe(struct platform_device *pdev)
+ err_unregister:
+ 	samsung_pinctrl_unregister(pdev, drvdata);
+ err_put_banks:
+-	samsung_banks_of_node_put(drvdata);
++	samsung_banks_node_put(drvdata);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctrl/samsung/pinctrl-samsung.h
+index 5b32d3f30fcd..fc6f5199c548 100644
+--- a/drivers/pinctrl/samsung/pinctrl-samsung.h
++++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
+@@ -165,7 +165,7 @@ struct samsung_pin_bank {
+ 
+ 	u32		pin_base;
+ 	void		*soc_priv;
+-	struct device_node *of_node;
++	struct fwnode_handle *fwnode;
+ 	struct samsung_pinctrl_drv_data *drvdata;
+ 	struct irq_domain *irq_domain;
+ 	struct gpio_chip gpio_chip;
 -- 
 2.35.1
 
