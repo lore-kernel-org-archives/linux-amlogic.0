@@ -4,80 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F51EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 08:24:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 068F8C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 08:32:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
+	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kaxxt3dt7wrr1WkMOVj6zv7JWyKUEGCeoMEXag42Wxs=; b=SmiL7QHemA7vwr
-	L2dIDNYFywyP11qZaeNqncUDSx6JZJbUvoVHKbTIfFPy1/JVv1JSqw3A8zaFHUKr7H9f03IBhsWu5
-	jknAD/4HST6WdtPCtWI/HB/R8Vj51HZHXq5aH55PxmAN/5ilZLf9EcbJlUIJ3POlF2qIKFv0cWRkm
-	cBUjIjyvoAFuGOEQjv4wW7icYVMD/BJdPi4LQ+ozD21z3/daorsfoV7LwVIDlAhvXoiIj6D27/MAj
-	senRf+gQrWC7LcFQxlyCgMR/ll6HSgV305GN2yKE+5USE1S2eNS1bxcu8kcmcm/ZuERW+nyIqSYcc
-	q8JEas8ui8Oxrhsa1jOw==;
+	List-Owner; bh=lCMAwYAaBet7/no+z2T9hS4C6zsNYYYZfP21Hd7wcMo=; b=gPct92qToanCvA
+	RgG8l0tCqwER12GdORmo9igAUGqUn/rKFoUh1giCGlm0oB4mH/m5yQmUUZktLjd10wNu5XiuhWfK4
+	At++9+Pi9uhL5Xy0kMfD0pjHkB/4dkdXGOmdTso7/aLjRRGHoyZaIB2aftadNOafiP7Evhb0PrWqn
+	ZgqY17WRwbLwF/vVAUPlwZp1mGPEtrjH1fXfm4e88dVAvX3cnADrzBkyNjEs1zYYYqFsz/GuEo5db
+	qJSuPM24vEkyJHqfd04ekaYi8hxzZ1AgHY6cuUVP2arx6mvfZ1HHcQ6oRe4i6y3H7y+yMmXZMi3I8
+	z7QrcUfvC5opZSiUCsRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZ79G-00BSTX-OJ; Tue, 29 Mar 2022 08:24:18 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1nZ7HG-00BTeG-2T; Tue, 29 Mar 2022 08:32:34 +0000
+Received: from new2-smtp.messagingengine.com ([66.111.4.224])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZ79D-00BSSa-Cz
- for linux-amlogic@lists.infradead.org; Tue, 29 Mar 2022 08:24:17 +0000
-Received: by mail-wr1-x430.google.com with SMTP id r7so22518237wrc.0
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Mar 2022 01:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=references:user-agent:from:to:cc:subject:date:in-reply-to
- :message-id:mime-version;
- bh=4q7utA2N5uBdT/Hk7/7TmYG0IOBace6qzAeWlAkbf9o=;
- b=1CpE15dMw2nEkW4YYCMic9aIKN2w3BNoDfSIkhBuAqCEEzczO2Y6fdOfXW+XelLTAQ
- A7SdjqBc4nxPzuMKdFd6vSMl88516biNL7AhFjZIpwaFRyBqAegNsblBNLlF/Rjmh4+k
- TjeLLdIUxio9O2iohXtFhvi2sTzYoZTU6HfRyUHmk+sYvImqH+oMggNAoVV0R7FsUE44
- npiH/sfKMS/F5I7QcO6RvJiM538xhyb6SEVfA2GHJVOyK/cb293haK2W8D5xbuOtBYiD
- gCOn3lZgrE2no/rDri5oQCiz8jZuyRFRL+lRphFsdaAp1WczDBU4ecRlplWu+7Eh+wiE
- lFlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
- :in-reply-to:message-id:mime-version;
- bh=4q7utA2N5uBdT/Hk7/7TmYG0IOBace6qzAeWlAkbf9o=;
- b=qKXrXKHrRHkq/1VqE8WxQ+B/YUCLnNkbGgrsaokVtQa2a+9jab6c+wCUw8ealaPU75
- ITU4qIFvlhGXaf5HC+C2Ff/1SW6Td5GdUBNBHzIHPcG+aOB3/dNBOp1KVrT8XF9JyhUz
- Aim38VoRylO9cNk/YfXOYeM8vRqx6mqZH450VQsqH6BV6RyEXI0uIKu03RPLiyxmS87S
- 3zyRVM/dUoKh2gvf5tHzT2QPm4wn3QkAhTfqSzg0tXRGLoqh+RKoCfPXsl95/5HFsa33
- RX8ceIXnVOxOLaXmvdNu4tZGDxbxwt4qSgV2Gm7dOh6AAdlDPkE/Z2ucK1Uz0LbPadtu
- QtYg==
-X-Gm-Message-State: AOAM532JE+5ka2zK4lSZw3ZoQqJiLIQL7PvB0JIRdSsg735zzcINTRIs
- nvfdUrakgqLDhvRASA8hH9ya3Q==
-X-Google-Smtp-Source: ABdhPJzKxD/KLU6iWPF6ZxbUV+9xxFwOzMdCAGFHX4ig6YXgf4XhA3i6zqnXEY8LtnifQ8Zuyx/LWQ==
-X-Received: by 2002:a05:6000:1568:b0:1f0:250a:d3ef with SMTP id
- 8-20020a056000156800b001f0250ad3efmr7916035wrz.402.1648542253218; 
- Tue, 29 Mar 2022 01:24:13 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31]) by smtp.gmail.com with ESMTPSA id
- l20-20020a05600c1d1400b0038cba2f88c0sm2000306wms.26.2022.03.29.01.24.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Mar 2022 01:24:12 -0700 (PDT)
-References: <20220329060821.15251-1-qianggui.song@amlogic.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Qianggui Song <qianggui.song@amlogic.com>, Linus Walleij
- <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] pinctrl: meson: fix unused variable warning
-Date: Tue, 29 Mar 2022 10:21:42 +0200
-In-reply-to: <20220329060821.15251-1-qianggui.song@amlogic.com>
-Message-ID: <1j8rstjhec.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+ id 1nZ7HC-00BTbe-J0; Tue, 29 Mar 2022 08:32:32 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.nyi.internal (Postfix) with ESMTP id C8AFC580117;
+ Tue, 29 Mar 2022 04:32:25 -0400 (EDT)
+Received: from imap49 ([10.202.2.99])
+ by compute5.internal (MEProxy); Tue, 29 Mar 2022 04:32:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; bh=g+MRVCTHkd5UITx1/MCA0rtdiS/Q7gdlkLwbx1
+ Cvlxo=; b=UCo5xVnvSc2K5kqHRzTJYLeCTDsbjgl6xT1NBykQQVKMp4Ur92CcFO
+ AVM/JayZKVAC/L65NLtrgIbuEHLVwP1Co3xz7FvhPeYlG1Aa5OHK5Qzj2LLMcBlE
+ WDtU+9q9xR4065u7bzMG2cnDmDNge9YR3DUCJyjxKPy6ijNuBxr2WhIiWtmAFGLx
+ CaVwyLl64hj1MiG3Uig1TLYu4vrIGHosrlS82ja6VAHEBoC5JYmZ2CKUWQMpqg+p
+ LhX0oBQIe2SVGDKB1tl9YuLNvxELH4cOL2WMDEfBEJeyYF2z/QfC0sM0WfFEA9jv
+ yiENlM4gRwAggRNn+gcXyaRjlMVLYwRQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=g+MRVCTHkd5UITx1/
+ MCA0rtdiS/Q7gdlkLwbx1Cvlxo=; b=JQKycoTgRna0MzP3EC2Bm6lralytF7Tvt
+ lO0V5VJRByINopZ+fWpwTMDpmc9b/kA60ODT10jjyv7RLyd3OIx56kYmaRKvKXC+
+ 9qywkBjHLtg84fuHVkJ82sdvyWSVvO7j8dRzTPrBA5cWRk2mWM6v+O/RybVFk6XN
+ 1317aXIiz7LSlCY9H/UvNDXEnOEWcl2X8I5I9ZMOO6mUX7BmtuqNX/TOlTncnjxM
+ vnb/YbOBUfwse4qT7wmShdeh7Zr9gvKg4veBUWBzDumgWjl4uoEolDtlj0LQms3L
+ KmnJxQzF1LHoY56R0OmEIx4KCtCggE0RHmifBELWQFRqbXe/dRoUQ==
+X-ME-Sender: <xms:GMRCYi9lAlRf_jy7QNeRahO_YXR-VhpiMkQ_YloAqeAlNIQCJYksiQ>
+ <xme:GMRCYitrNz2rRmWvgRBDL9li4UdVscERnbnixCB8cuM7YHtD6CAt27u0YdYH6glcG
+ xVRD9PHWS3Uu0dLBA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudehledgtddvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+ rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+ grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+ hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+ eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:GMRCYoCb5efEYVXCkjDv6RMqt50vpeN1UgDVvgcJYHA7Q7yrh-bcyw>
+ <xmx:GMRCYqehW6WYsT5oizMPuHR-1iStUAS0tj_iRWm6Rvh2pxQnybYqzA>
+ <xmx:GMRCYnOid8_hb9g4tQfGh5YCQefCRBpCLNIYlNoVWZYfWgt5M14Cig>
+ <xmx:GcRCYhUHyBdj-xhT55yXBJuRVssviSpjCt6GNkSVx49WFreCEk1xiw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 599DFF6043F; Tue, 29 Mar 2022 04:32:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-4911-g925b585eab-fm-20220323.003-g925b585e
+Mime-Version: 1.0
+Message-Id: <a2542d9f-581a-49be-8e70-722fd98ab6f1@www.fastmail.com>
+In-Reply-To: <YkK691VG6ON/6Ysn@atomide.com>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+ <YkK691VG6ON/6Ysn@atomide.com>
+Date: Tue, 29 Mar 2022 19:02:04 +1030
+From: "Andrew Jeffery" <andrew@aj.id.au>
+To: "Tony Lindgren" <tony@atomide.com>, "Daniel Palmer" <daniel@0x0f.com>
+Cc: "Ansuel Smith" <ansuelsmth@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, 
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ DTML <devicetree@vger.kernel.org>,
+ "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+ linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
+ linux-rpi-kernel@lists.infradead.org, chrome-platform@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com,
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
+ linux-tegra@vger.kernel.org, linux-oxnas@groups.io,
+ linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_012415_511783_18E60DAF 
-X-CRM114-Status: GOOD (  15.10  )
+X-CRM114-CacheID: sfid-20220329_013230_879642_C04E8C8C 
+X-CRM114-Status: GOOD (  20.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,48 +114,43 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue 29 Mar 2022 at 14:08, Qianggui Song <qianggui.song@amlogic.com> wrote:
 
-> The kernel test robot reported a warning as below:
->>> drivers/pinctrl/meson/pinctrl-meson-s4.c:178:27: warning: unused variable 'tdm_sclk1_c_pins' [-Wunused-const-variable]
->    static const unsigned int tdm_sclk1_c_pins[]            = { GPIOC_3 };
+On Tue, 29 Mar 2022, at 18:23, Tony Lindgren wrote:
+> Hi,
 >
-> Fix it by adding missing description about this pins
+> * Daniel Palmer <daniel@0x0f.com> [220328 08:53]:
+>> Hi Ansuel
+>> 
+>> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+>> >
+>> > Hi,
+>> > as the title say, the intention of this ""series"" is to finally categorize
+>> > the ARM dts directory in subdirectory for each oem.
+>> 
+>> While I agree with this change and think it's for the good (browsing
+>> the ARM dts directory at the moment is frustrating..) I think
+>> buildroot and others need to be told about this as it'll potentially
+>> break their kernel build scripting for ARM and probably messes up the
+>> configs they have for existing boards.
 >
-> Fixes: 775214d389c2 ("pinctrl: meson: add pinctrl driver support for Meson-S4 Soc")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-> ---
->  drivers/pinctrl/meson/pinctrl-meson-s4.c | 2 ++
->  1 file changed, 2 insertions(+)
+> Yeah.. And ideally this would be done in smaller steps as these will
+> conflict with all the other pending patches.
 >
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> index 3c7358f53302..067c6749c849 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> @@ -575,6 +575,7 @@ static struct meson_pmx_group meson_s4_periphs_groups[] = {
->  	GROUP(tdm_d2_c,			4),
->  	GROUP(tdm_d3_c,			4),
->  	GROUP(tdm_fs1_c,		4),
-> +	GROUP(tdm_sclk1_c,		4),
->  	GROUP(mclk_1_c,			4),
->  	GROUP(tdm_d4_c,			4),
->  	GROUP(tdm_d5_c,			4),
-> @@ -937,6 +938,7 @@ static const char * const iso7816_groups[] = {
->  
->  static const char * const tdm_groups[] = {
->  	"tdm_d2_c", "tdm_d3_c", "tdm_fs1_c", "tdm_d4_c", "tdm_d5_c",
-> +	"tdm_sclk1_c",
+> For example, I have a pile of pending omap clock clean-up dts patches
+> posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
+> redoing or fixing up the patches with sed :)
+>
+> What I'd like to have see is that at some point when suitable we move
+> one machine at a time with a script if possible.. Maybe the dtb files
+> generated would need to remain in the current directory until all of
+> the machine dts files are moved? That should help with the build
+> scripting too probably :)
 
-Thanks for fixing this.
-Could you please try to keep this list somehow ordered a bit ?
-Here you are adding a new line in the middle with single entry ... it
-looks weird. 
+There's probably some reason not to, but could we symlink the new paths 
+in the subdirectories to the existing files to handle the transition? 
+Then do the move to remove the symlinks at some future point.
 
->  	"tdm_fs1_d", "tdm_d4_d", "tdm_d3_d", "tdm_d2_d", "tdm_sclk1_d",
->  	"tdm_sclk1_h", "tdm_fs1_h", "tdm_d2_h", "tdm_d3_h", "tdm_d4_h",
->  	"tdm_d1", "tdm_d0", "tdm_fs0", "tdm_sclk0", "tdm_fs2", "tdm_sclk2",
-
+Andrew
 
 _______________________________________________
 linux-amlogic mailing list
