@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C597C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:32:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E87C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kblzqxJOuLeoFj+Q/EjivfSPeS28VrG24p5fOM8PG4M=; b=d25ZWx9axDt77J
-	AFaIEgP62BkJIXzQuYSJOWaSYi/cCdl5kVIBxI9qVwBb0SF8zODEFXc0UoLUEn8SGNajop9VKyBLs
-	Ih0dK3mWDJKnZbz/kl4iYPwv9PvdlNDo+rfbXQH2ctfE+ZwjdPY0tAZprp9JoghIAUj7yrhd8+5T/
-	RJbYaA+EUgVB+KsMELIgWkM6xGiTQrAkFBxVLLc/wsBIcBSukBuo2QjymvCZiAul6ekvzglgMObDi
-	lgd6yx5WVsojbsjXsAH5d7MmjuDtyBdXh3HhdVJbwR41riJemeIzO1rcZxbtsAQK0knesNiB2Gh8N
-	H8aFZT8DSQpOZicGrTJw==;
+	List-Owner; bh=/rbxvLUyi9UuGQs2RCkAnl3DZinOYGpOgSdsCQdaZtM=; b=tUpgMx8iNxms41
+	pHencKRQYl/aFPHtMdVq2gaY/INw1iUY5/dxY+ZgjOVwdNxSMQdsKh3xuj+uyz1tn3XrUEwl4bzYz
+	SWgvIeajMigz3VASHfDzNAc08OEptFDpU88C70AzVx4O9rYsveK4vZB0JWroujGLdsoFmFKoGsKcf
+	HqP51uU3tqFA/Y/FHGF83xl1qtGbZROV9BQNrgBYe8N4s0ZbDlU8tSKTLCQmAaGMxbtOSt42vtEHe
+	IC9H3KpY2Jw9NojtCPALMM97VFQtkN2Le2mRG4SPjOQIzGqYAOOVhwZuAczxLPZSEbpiYfJ7TdYt3
+	K/mixMWA8DY8ewC0au5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZDpP-00Ch8D-LK; Tue, 29 Mar 2022 15:32:15 +0000
-Received: from mga07.intel.com ([134.134.136.100])
+	id 1nZDpQ-00Ch8i-Jr; Tue, 29 Mar 2022 15:32:16 +0000
+Received: from mga05.intel.com ([192.55.52.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZDmf-00Cfk1-Bk; Tue, 29 Mar 2022 15:29:28 +0000
+ id 1nZDmf-00Cfks-PL; Tue, 29 Mar 2022 15:29:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1648567765; x=1680103765;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hkl8/8feuNYMImY/ozo/322V2NGiY6bRDjU8vGAhPTw=;
- b=TjglrxGjY+je8a7SC9dGwdcvkNnH2mc+cln0tbX5Yd5sVqFRWaJzfoYn
- EWhb5irmbDznYhbjVRU1siZFDylyXkPAmQAzuqFdEtYeMbKgCry+HbaBr
- AxRXlA7y5XsSvD/A/Sp6g0g3QihMvh8PYAGWtcUnyXvxU6FHlUjzeCQO1
- Lm/fOQBzOiRWSF92rUgkQf/p7uYGnH1b+M0gthKPBMK8tGMr0elEgpGnU
- /9+ItLc4RSuEKtrTRDSo25NK/tVbi7Y12hRPAy+Tjz+jEIHCBxA66fcQV
- II7LvTd9Lg5yfownDm4YjtJ/XgP5gZuGMqmNjKKcLSVPMHc6+At7L9JDF g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="322460296"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="322460296"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2022 08:29:24 -0700
+ bh=UCAuTqBZ9mYCDZIPOGv2WkU53JOPeTds3YQkaU6nhzA=;
+ b=N4FfoMqOX7SzgBesDKdIlbFAWw+yB496gfz4L9rH7e4AI2CnFrQZJE4A
+ +OW1bleT2H4P6SUnncp7n3hBdQwLzcoBKc2zFW7weo/hIaMBgCcL8o44M
+ BqcQUmEmC2gFtxSBN/48ZOlic5nbbqdS9HiNmpUsa7wFyme8MIm8aTXxj
+ +J6f7a+RjN6T2P7R5cSwcyGBBV6YkSunG18/75F7XvseLPAgCbCfqoVHm
+ 8ZlRACT6lujKGN1WbTkLegiFvH3Y3cC7RDLlotPZPS9eYy4JUlMzjb1GV
+ I/OFggUph8FQSoYpao/1buYw2sSq59okKOjj6hylhqVXINuzOZYx6ZJg4 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="345712301"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="345712301"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 08:29:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="653044903"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="518990850"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga004.jf.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
+ by orsmga002.jf.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 89A4940B; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
+ id B4175809; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,16 +73,17 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v2 10/13] pinctrl: meson: Enable COMPILE_TEST
-Date: Tue, 29 Mar 2022 18:29:23 +0300
-Message-Id: <20220329152926.50958-11-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 13/13] pinctrl: armada-37xx: Reuse GPIO fwnode in
+ armada_37xx_irqchip_register()
+Date: Tue, 29 Mar 2022 18:29:26 +0300
+Message-Id: <20220329152926.50958-14-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_082925_485954_CE8A3DC7 
-X-CRM114-Status: GOOD (  11.56  )
+X-CRM114-CacheID: sfid-20220329_082925_885786_78D72734 
+X-CRM114-Status: GOOD (  14.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,26 +100,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable COMPILE_TEST for a better test coverage.
+Since we have fwnode of the first found GPIO controller assigned to the
+struct gpio_chip, we may reuse it in the armada_37xx_irqchip_register().
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/pinctrl/meson/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pinctrl/mvebu/pinctrl-armada-37xx.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index d1955c65b4b6..64fb9e074ac6 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- menuconfig PINCTRL_MESON
- 	tristate "Amlogic SoC pinctrl drivers"
--	depends on ARCH_MESON
-+	depends on ARCH_MESON || COMPILE_TEST
- 	depends on OF
- 	default y
- 	select PINMUX
+diff --git a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
+index 4a2fa10f94f8..54f473f4afed 100644
+--- a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
++++ b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
+@@ -727,23 +727,13 @@ static int armada_37xx_irqchip_register(struct platform_device *pdev,
+ 	struct gpio_chip *gc = &info->gpio_chip;
+ 	struct irq_chip *irqchip = &info->irq_chip;
+ 	struct gpio_irq_chip *girq = &gc->irq;
++	struct device_node *np = to_of_node(gc->fwnode);
+ 	struct device *dev = &pdev->dev;
+-	struct device_node *np;
+-	int ret = -ENODEV, i, nr_irq_parent;
+-
+-	/* Check if we have at least one gpio-controller child node */
+-	for_each_child_of_node(dev->of_node, np) {
+-		if (of_property_read_bool(np, "gpio-controller")) {
+-			ret = 0;
+-			break;
+-		}
+-	}
+-	if (ret)
+-		return dev_err_probe(dev, ret, "no gpio-controller child node\n");
++	unsigned int i, nr_irq_parent;
+ 
+-	nr_irq_parent = of_irq_count(np);
+ 	spin_lock_init(&info->irq_lock);
+ 
++	nr_irq_parent = of_irq_count(np);
+ 	if (!nr_irq_parent) {
+ 		dev_err(dev, "invalid or no IRQ\n");
+ 		return 0;
 -- 
 2.35.1
 
