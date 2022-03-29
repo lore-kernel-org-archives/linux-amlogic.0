@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FD5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:34:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A29C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=udEauTCYJDxT+/S16eBHKHvVL+9ngxtkTW9TmFXKGZg=; b=ZMQ2rGf4hzOJ1l
-	0ckLuDINQrOuWuTIKkqDcTjo9kdXYg8c8pkS7OIfy64Jm//XbojKdfS/y2tBVOTPbAOwbAbjKQduJ
-	EaLLDqjPDW3GkEQ2KOSwbQvwHJy8bTAVN/nsfZeFd5oQj0GDRbzneLmm/1FE2BxcWL7ZQtuhGLYEe
-	C9YJriaUuBR3K82V/N209MzbIpU/2D45kehPzmPWDjbgA8lZ6IQ/kdRSwyVIu7MitkHortQBY3r1i
-	ai6rUWaQscpsheUXeHu6QGL6RMFVa1sXZSgntklHB3RsMOpUKSXWd67A/l5OjuKtsmDBQoqG1RPbR
-	fVajBp+8upJNsk7TERNA==;
+	List-Owner; bh=XtpbINC+/+diU8sfYWOAm+UyWPkR1CVv71DF4C7HEEk=; b=luKkdFaf7fPtKi
+	WoRZ4BjDPcLSfhIV9pHjnIgzc7Yw9h+QNpF7rAuPngcW/Ez7nOl56NFimLII5UEJYcEJlDArHeQ0G
+	2h6Hy8MhCvbv+220z+wNp7ddazTfW/Wb0Mj2DV80wEZRDnjmYTpV9uErWhVk/Iq2kBAHR+fIb/XI0
+	dpPe31DUpKzeuN+DVz5+XvYwFwzlbk1LklGM+BltDEhL+DZl6MCYe6AXFCX7QxWWI5NsV3o0zhGdd
+	I6TsrhyoKswOKYa7Af4tj06Km8IX7TVKmrYlXe9I+WqGnBAC2nMzFqr7msiv9MK3uUzZvqRRuPK7q
+	lEEEFpiNN5Rm0nxohxdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZDrR-00CiFv-Le; Tue, 29 Mar 2022 15:34:21 +0000
-Received: from mga01.intel.com ([192.55.52.88])
+	id 1nZDrV-00CiHg-Tr; Tue, 29 Mar 2022 15:34:26 +0000
+Received: from mga05.intel.com ([192.55.52.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZDmg-00CflB-Io; Tue, 29 Mar 2022 15:29:30 +0000
+ id 1nZDmi-00Cfks-K8; Tue, 29 Mar 2022 15:29:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648567766; x=1680103766;
+ t=1648567768; x=1680103768;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Pdfled0GCqwc7iDQ57lJV4J/3sRBeMXhKiS4YDZIDhI=;
- b=InDDaK6RgdfyI3RcsTbn7LPM2brsfKq+jyEEQ1nsEJoQph08HmEM3HlG
- 4Ddhgr8zNaTS1eOdmxXPlgwa7FKWr32eiYGR2FiHOF/ExG2SkWUDbUvhi
- xP9Ip8w1raOZiTNNLIahRO2CkLazakvv2IJW2eomYUAaSOry54D5eAiCz
- tSnWIbK3ae1+0vbFiGxFd6bk3+m/LyB8h0DMAYb1QP6sLyByH5LeWwq60
- 2fq4ZS8zvaBUOF3n60GH98jXwPhZ2ESbpiPWsyNv76qvmliMX6Jgd/Irw
- IiOOd/AmCSWlBwavNVgSqIau9faRzIl3GBRfbzikf5WmyjLCMnyj0AoO9 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="284176838"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="284176838"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=1uhnGCeQRRhPDv5FfIf14aURC8nLj45dxjP/6kq7UUg=;
+ b=ICya7ee3bNz78SzhZucx1FBdIx/BTX79fy4G9KfFxboy+PMNpCjl9kT/
+ AgvEerVNXgw5LSrxHUfgkrP524IBp8qGf1zEQv6dzdriMTiO0WLOIJoN7
+ y2AdQ8Palcm1IubcESXr96cmW0AfpnUENcUmesrD2lCrZ+L45GBAZI1im
+ RhSuzAVhTyWTpiwl4E4gKQqbNa6X/GWrHFzKpM6Mzr/2FvItijctK8fFl
+ FNKYYecbZdmk1eRnOMx56pl5XzRS3kJjArSa1T2wrowMap2rFNlW8tPCB
+ sNZZMwu/VlaBuvpm/eiV6dn9Kn5/OHuIq94duNT9QCUUZjz5H/HO8Ph3q w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="345712304"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="345712304"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Mar 2022 08:29:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="719566993"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="546425146"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga005.jf.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
+ by orsmga007.jf.intel.com with ESMTP; 29 Mar 2022 08:29:16 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id A52104E5; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
+ id 5FAC0314; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,17 +73,17 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v2 12/13] pinctrl: armada-37xx: Switch to use fwnode instead
- of of_node
-Date: Tue, 29 Mar 2022 18:29:25 +0300
-Message-Id: <20220329152926.50958-13-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 07/13] pinctrl: renesas: rza1: Switch to use
+ for_each_gpiochip_node() helper
+Date: Tue, 29 Mar 2022 18:29:20 +0300
+Message-Id: <20220329152926.50958-8-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_082926_754502_446377D2 
-X-CRM114-Status: GOOD (  16.05  )
+X-CRM114-CacheID: sfid-20220329_082928_750193_8F68C282 
+X-CRM114-Status: GOOD (  15.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,59 +100,94 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-GPIO library now accepts fwnode as a firmware node,
-so switch the driver to use it.
+Switch the code to use for_each_gpiochip_node() helper.
+
+While at it, in order to avoid additional churn in the future,
+switch to fwnode APIs where it makes sense.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/pinctrl/mvebu/pinctrl-armada-37xx.c | 18 +++++++-----------
- 1 file changed, 7 insertions(+), 11 deletions(-)
+ drivers/pinctrl/renesas/pinctrl-rza1.c | 22 +++++++++-------------
+ 1 file changed, 9 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-index 3e10a44e2669..4a2fa10f94f8 100644
---- a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-+++ b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-@@ -21,6 +21,7 @@
+diff --git a/drivers/pinctrl/renesas/pinctrl-rza1.c b/drivers/pinctrl/renesas/pinctrl-rza1.c
+index 5075d5cebe8c..74183f36567b 100644
+--- a/drivers/pinctrl/renesas/pinctrl-rza1.c
++++ b/drivers/pinctrl/renesas/pinctrl-rza1.c
+@@ -24,6 +24,7 @@
+ #include <linux/pinctrl/pinconf-generic.h>
  #include <linux/pinctrl/pinctrl.h>
  #include <linux/pinctrl/pinmux.h>
- #include <linux/platform_device.h>
 +#include <linux/property.h>
- #include <linux/regmap.h>
  #include <linux/slab.h>
- #include <linux/string_helpers.h>
-@@ -787,18 +788,13 @@ static int armada_37xx_gpiochip_register(struct platform_device *pdev,
- 					struct armada_37xx_pinctrl *info)
+ 
+ #include "../core.h"
+@@ -1166,17 +1167,17 @@ static const struct pinmux_ops rza1_pinmux_ops = {
+  * @range: pin range to register to pinctrl core
+  */
+ static int rza1_parse_gpiochip(struct rza1_pinctrl *rza1_pctl,
+-			       struct device_node *np,
++			       struct fwnode_handle *fwnode,
+ 			       struct gpio_chip *chip,
+ 			       struct pinctrl_gpio_range *range)
  {
- 	struct device *dev = &pdev->dev;
--	struct device_node *np;
-+	struct fwnode_handle *fwnode;
- 	struct gpio_chip *gc;
--	int ret = -ENODEV;
-+	int ret;
+ 	const char *list_name = "gpio-ranges";
+-	struct of_phandle_args of_args;
++	struct fwnode_reference_args of_args;
+ 	unsigned int gpioport;
+ 	u32 pinctrl_base;
+ 	int ret;
  
--	for_each_child_of_node(dev->of_node, np) {
--		if (of_find_property(np, "gpio-controller", NULL)) {
--			ret = 0;
--			break;
--		}
--	}
--	if (ret)
--		return ret;
-+	fwnode = device_get_named_child_node(dev, "gpio-controller");
-+	if (!fwnode)
-+		return -ENODEV;
+-	ret = of_parse_phandle_with_fixed_args(np, list_name, 3, 0, &of_args);
++	ret = fwnode_property_get_reference_args(fwnode, list_name, NULL, 3, 0, &of_args);
+ 	if (ret) {
+ 		dev_err(rza1_pctl->dev, "Unable to parse %s list property\n",
+ 			list_name);
+@@ -1197,13 +1198,12 @@ static int rza1_parse_gpiochip(struct rza1_pinctrl *rza1_pctl,
  
- 	info->gpio_chip = armada_37xx_gpiolib_chip;
+ 	*chip		= rza1_gpiochip_template;
+ 	chip->base	= -1;
+-	chip->label	= devm_kasprintf(rza1_pctl->dev, GFP_KERNEL, "%pOFn",
+-					 np);
++	chip->label	= devm_kasprintf(rza1_pctl->dev, GFP_KERNEL, "%pfw", fwnode);
+ 	if (!chip->label)
+ 		return -ENOMEM;
  
-@@ -806,7 +802,7 @@ static int armada_37xx_gpiochip_register(struct platform_device *pdev,
- 	gc->ngpio = info->data->nr_pins;
- 	gc->parent = dev;
- 	gc->base = -1;
--	gc->of_node = np;
-+	gc->fwnode = fwnode;
- 	gc->label = info->data->name;
+ 	chip->ngpio	= of_args.args[2];
+-	chip->of_node	= np;
++	chip->fwnode	= fwnode;
+ 	chip->parent	= rza1_pctl->dev;
  
- 	ret = armada_37xx_irqchip_register(pdev, info);
+ 	range->id	= gpioport;
+@@ -1232,10 +1232,9 @@ static int rza1_parse_gpiochip(struct rza1_pinctrl *rza1_pctl,
+  */
+ static int rza1_gpio_register(struct rza1_pinctrl *rza1_pctl)
+ {
+-	struct device_node *np = rza1_pctl->dev->of_node;
+ 	struct pinctrl_gpio_range *gpio_ranges;
+ 	struct gpio_chip *gpio_chips;
+-	struct device_node *child;
++	struct fwnode_handle *child;
+ 	unsigned int ngpiochips;
+ 	unsigned int i;
+ 	int ret;
+@@ -1254,14 +1253,11 @@ static int rza1_gpio_register(struct rza1_pinctrl *rza1_pctl)
+ 		return -ENOMEM;
+ 
+ 	i = 0;
+-	for_each_child_of_node(np, child) {
+-		if (!of_property_read_bool(child, "gpio-controller"))
+-			continue;
+-
++	for_each_gpiochip_node(rza1_pctl->dev, child) {
+ 		ret = rza1_parse_gpiochip(rza1_pctl, child, &gpio_chips[i],
+ 					  &gpio_ranges[i]);
+ 		if (ret) {
+-			of_node_put(child);
++			fwnode_handle_put(child);
+ 			return ret;
+ 		}
+ 
 -- 
 2.35.1
 
