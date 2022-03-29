@@ -4,84 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ADE2C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 08:51:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC3A2C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 08:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lOhmjiWVkx5O8nKrHkU7klcnBySIFrqbfSRetXsIm6E=; b=hw6B3CzsLEDBe0
-	x++UgOfQ4E+rNHVawNAkWL/hYGWMig/UHC0EcOQR/vJF6Uv1rbAa5WHQxRIhDq03tyaOPdRDqHeTS
-	YXo25Wri7hUsM70r/qa7PCOImCrIg04LzVNl25j63rWZTBtr9cD6CtIQehpQcb3f+s9DetmCpN9C7
-	NqIFXdJjigQGwZEbRtXb1fgUcozUa4iWstyyR6qD6LkC/DAmCvTUnEQEeum23YyvEgLt++gBrNd2D
-	c7aQOe0m0PJhLPeuOz78PJtyQxRwV0KBuP2AE5q9nwnkk9HinCVwlt+xjp1wlDzEW928QfBCKlbfC
-	KacG3X1ZwiIAyukb5rxw==;
+	List-Owner; bh=LevbHUr5xic6XK2nUgI2eVOI+v+dA0Wg2KDrfoJzboA=; b=oKvTzwyVUNpkW/
+	BLcKikN9eEnUe9FyK3B8sncViJKQUppOTgJjOIfmzEEbTxCsiiHcKy+VztnOmB+6Nk5AAh+I8Wjsy
+	Y5nHGVJY7oph8tvDuxG36YVcqcyNpS/sZBmnlvsDuK41EyLGVHJLKK2vGbghL/QgXsz8q0JXQExzb
+	ow67qI3yEKd/eh4aSyrO5KEjDOX85vLFj1LBRZ/vDzzh2P/ppGKIHwsq798JSXtVdjJg0BShXtgHt
+	NgWrRZWUhVft7uClUQ0yrYTa6NdPVBKLuCTs346ZlzDGfU5QD3sTToOc/zwo7JxuGt4uUiCYtDTuQ
+	fuZKR6TcQLHQqwgTTAlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZ7Z3-00BVIU-5q; Tue, 29 Mar 2022 08:50:57 +0000
-Received: from esa.microchip.iphmx.com ([68.232.153.233])
+	id 1nZ7cV-00BWwR-Dw; Tue, 29 Mar 2022 08:54:31 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZ7Yx-00BVH1-Se; Tue, 29 Mar 2022 08:50:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1648543851; x=1680079851;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0r3zs2np5g1OGyfR5AfBJmzryAoR1xJqsqcoDejQqWU=;
- b=SvzazobpV11jWeMgpXo0FTvE1SLSgCyZ7Xqqf+G+mtJGMfNJ9dbOCrDf
- ysi5EidKWkWJ49RAyHugcujFV5Kw0oT1phK7DlUFPa6sZN1D1b/yMAXmv
- RCdj/QsyqhI3Z1SjDcDYeAcyh/VPEi7+sI5OLoYwx9CjtHPiYDaJevD76
- 8I6jXHHTjFr79/zR8y4Bgh1Gy35vFCZqn2MULJmTFkyb95PUicosRdfrd
- ZDbhw2po6iiow2+V+HMacAd2XS96BryxDwBl6ib89n3nhoZYszcVOAd31
- VA5WMVXwoTHyfGGelRpyFs3vNbtaDve3Zad+K6r7cbpt8O6NzEkpqUN+Y A==;
-X-IronPort-AV: E=Sophos;i="5.90,219,1643698800"; d="scan'208";a="158497460"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 29 Mar 2022 01:50:48 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 29 Mar 2022 01:50:48 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Tue, 29 Mar 2022 01:50:41 -0700
-Message-ID: <4ff4f171-c5f8-87af-aad1-5e7686292288@microchip.com>
-Date: Tue, 29 Mar 2022 10:50:38 +0200
+ id 1nZ7bu-00BWb4-7z; Tue, 29 Mar 2022 08:53:55 +0000
+Received: from [192.168.1.103] (10.28.39.59) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 29 Mar
+ 2022 16:53:50 +0800
+Message-ID: <a5708e46-7169-c2e3-369f-e31b8a5d1b14@amlogic.com>
+Date: Tue, 29 Mar 2022 16:54:33 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] pinctrl: meson: fix unused variable warning
 Content-Language: en-US
-To: Daniel Palmer <daniel@0x0f.com>, Ansuel Smith <ansuelsmth@gmail.com>,
- Claudiu Beznea <Claudiu.Beznea@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Santiago Esteban
- <Santiago.Esteban@microchip.com>, Cristian Birsan
- <Cristian.Birsan@microchip.com>
-CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- <linux-actions@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
- <linux-omap@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-arm-kernel@axis.com>, <linux-aspeed@lists.ozlabs.org>,
- <linux-rpi-kernel@lists.infradead.org>, <chrome-platform@lists.linux.dev>,
- <linux-renesas-soc@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
- <linux-stm32@st-md-mailman.stormreply.com>, <kernel@dh-electronics.com>,
- <linux-mediatek@lists.infradead.org>, <openbmc@lists.ozlabs.org>,
- <linux-tegra@vger.kernel.org>, <linux-oxnas@groups.io>,
- <linux-arm-msm@vger.kernel.org>, <linux-unisoc@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-realtek-soc@lists.infradead.org>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Linus Walleij
+ <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
+CC: kernel test robot <lkp@intel.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>
+References: <20220329060821.15251-1-qianggui.song@amlogic.com>
+ <1j8rstjhec.fsf@starbuckisacylon.baylibre.com>
+From: qianggui.song <Qianggui.Song@amlogic.com>
+In-Reply-To: <1j8rstjhec.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [10.28.39.59]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_015052_008233_4845F7E3 
-X-CRM114-Status: GOOD (  16.75  )
+X-CRM114-CacheID: sfid-20220329_015354_348925_57063572 
+X-CRM114-Status: GOOD (  15.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,51 +68,56 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ansuel, All,
 
-On 28/03/2022 at 10:55, Daniel Palmer wrote:
-> Hi Ansuel
+
+On 3/29/22 16:21, Jerome Brunet wrote:
 > 
-> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> On Tue 29 Mar 2022 at 14:08, Qianggui Song <qianggui.song@amlogic.com> wrote:
+> 
+>> The kernel test robot reported a warning as below:
+>>>> drivers/pinctrl/meson/pinctrl-meson-s4.c:178:27: warning: unused variable 'tdm_sclk1_c_pins' [-Wunused-const-variable]
+>>     static const unsigned int tdm_sclk1_c_pins[]            = { GPIOC_3 };
 >>
->> Hi,
->> as the title say, the intention of this ""series"" is to finally categorize
->> the ARM dts directory in subdirectory for each oem.
+>> Fix it by adding missing description about this pins
+>>
+>> Fixes: 775214d389c2 ("pinctrl: meson: add pinctrl driver support for Meson-S4 Soc")
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+>> ---
+>>   drivers/pinctrl/meson/pinctrl-meson-s4.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
+>> index 3c7358f53302..067c6749c849 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
+>> @@ -575,6 +575,7 @@ static struct meson_pmx_group meson_s4_periphs_groups[] = {
+>>   	GROUP(tdm_d2_c,			4),
+>>   	GROUP(tdm_d3_c,			4),
+>>   	GROUP(tdm_fs1_c,		4),
+>> +	GROUP(tdm_sclk1_c,		4),
+>>   	GROUP(mclk_1_c,			4),
+>>   	GROUP(tdm_d4_c,			4),
+>>   	GROUP(tdm_d5_c,			4),
+>> @@ -937,6 +938,7 @@ static const char * const iso7816_groups[] = {
+>>   
+>>   static const char * const tdm_groups[] = {
+>>   	"tdm_d2_c", "tdm_d3_c", "tdm_fs1_c", "tdm_d4_c", "tdm_d5_c",
+>> +	"tdm_sclk1_c",
 > 
-> While I agree with this change and think it's for the good (browsing
-> the ARM dts directory at the moment is frustrating..) I think
-> buildroot and others need to be told about this as it'll potentially
-> break their kernel build scripting for ARM and probably messes up the
-> configs they have for existing boards.
-
-This aspect mustn't be underestimated and I anticipate lots of issues 
-during a long time on this particular topic of "build systems".
-
-Another aspect is CI and public or private testing farms we all have 
-running.
-
-These aspects always refrained me to change anything in the naming 
-scheme of our DT files, but if we go in this direction, we must really 
-be prepared and I'm still not convince it's worth it...
-
-
-If this has to happen, I would also like to queue some file name changes 
-to do all modifications in one go in order to lower the annoyance level 
-of those who would need to adapt to those changes.
-
-BTW, is there a common scheme for dts/dtsi file naming? Is it more 
-enforced in one way or another for arm64 in a sense that I can take some 
-norm as an example?
-
-[..]
-
-Best regards,
-   Nicolas
-
-
-
--- 
-Nicolas Ferre
+> Thanks for fixing this.
+> Could you please try to keep this list somehow ordered a bit ?
+> Here you are adding a new line in the middle with single entry ... it
+> looks weird.
+> 
+>>   	"tdm_fs1_d", "tdm_d4_d", "tdm_d3_d", "tdm_d2_d", "tdm_sclk1_d",
+>>   	"tdm_sclk1_h", "tdm_fs1_h", "tdm_d2_h", "tdm_d3_h", "tdm_d4_h",
+>>   	"tdm_d1", "tdm_d0", "tdm_fs0", "tdm_sclk0", "tdm_fs2", "tdm_sclk2",
+> 
+> .
+Just think that put the tdm_sclk1_c in first line make line too long. 
+Okay, will put it to first line next patch that make one line per bank 
+for pins in order.
 
 _______________________________________________
 linux-amlogic mailing list
