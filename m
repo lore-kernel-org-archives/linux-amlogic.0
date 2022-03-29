@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D4AC433F5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914FEC433EF
 	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 15:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,41 +12,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=215nG6ONQm7KWVVOVb/KoEZCFTcb1mglElo2FGmnRIA=; b=2GIrbhsxGygp8x
-	cnHrVJmCAfeh7MECtyMAfCr+i7tvqXF5IrTcc78b22qwG2Wq2fglBwoAiqI5ZeOxBkUfujKhyqYwL
-	m6pFYgXjfsjY8r//SIxS4jhhF0V/uGFK/FtJFoBqaGg5xExmya/LlHp5VNaDEWXIgddbY7Aabr/ml
-	2peVbPt9vy1+rnIgjHxFU3dDuHTfaegFbioUJG6L0zqLlRc8dajFQUC9XRYyWmAUS90MHui5/BDAa
-	A904zNldyH5VQZktIaZ81axZk8XF7T1ZiRJfJPk1595S5iU7wYIZEPzMzbXziE8EsaReBm21Zm2Bj
-	O071fpjmajapzRtKPAHA==;
+	List-Owner; bh=YPDbGiyUo6IcPkyH34Dng4kZMijNAUvXG+3tK04t3NA=; b=rDGMwCz3ROjIEj
+	UWlTuymggIu0OmXAwd+2rKQoI/BbMRpXv25R12XXR8TJOBZb3kOzfydK4NlVvAoZZg1gV/Ko97D5M
+	QM0c13lNZoZjUPuRPJp3sswuOuYCQpMoZTusJDU/dcOSYpA5339by14r9JvX4qSj451WSR+zIWW9B
+	EbPvDibq1H3Cu5sMfB9KI8He8LQpVJxVi5lu+6gM/IoXVhh6iNv0gxP4BNOZY8zuOfM3q386POdkL
+	4xMSEsMenLVZvMyVP1BVVNcMNHbrBQbAVw6pATfcRHcVn0W0G5qMvUZy9qygDP/Y1d/0eLxnMN0zW
+	FkNwnfNY/01WgoYpXCzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZDmc-00Cfiq-Pw; Tue, 29 Mar 2022 15:29:22 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1nZDmb-00Cfhv-Hk; Tue, 29 Mar 2022 15:29:21 +0000
+Received: from mga17.intel.com ([192.55.52.151])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZDmW-00Cffp-U4; Tue, 29 Mar 2022 15:29:20 +0000
+ id 1nZDmW-00Cffr-Sy; Tue, 29 Mar 2022 15:29:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1648567756; x=1680103756;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fCKfKSD0iyV78apRqDWQhujTsUEBgiS/rWxFJUbLX2w=;
- b=JYETm3ewTbChAu60nzmVqY64uYM2q4Qt7ZXICT58LGvzF5cAfzTpmCOh
- M9jeNIU/T0hqg5xDmNNtn7w3D7wOUJjnwsql8ecgksFuof4yqGnrsF6GN
- IiDD7gQLg1Iq3V1dO0tKZxDvY6fs4Q8MH4o6RBQicdXp9WruiOY6++Czl
- 4YSmX+sXXS9VnxDos2JYIUJiS+yoxX6R4ls6017JbZlGLtsgBnFv3WgJH
- qV0Vvit/mkYLQwaHTnRdn2HODPVHTkwyoK2TdAt2Exrgt2VbNxmNJ4ciV
- wqMQJGMkFakoG91DHJAOixjmNhlTgvrILK/koQg5MtA01MTSJLrzm7e9j g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="246767216"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="246767216"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=of6aC29MFt/gFsErfEks/90Bjvx9npiRIawi0g8JJ7E=;
+ b=jLX+WehhGOzHn5TQB0PwsLFr3RHG4NjgoQVkOcEV6U8oK3gBFgwJddT4
+ GadjyifjnXhP6U0u+Ua/Z5B9oReNu+LM91fMFY5qx/0CtgdH++uZ/Czw8
+ fdAt21zwUOWLhTU3Uz4LR7negzGnER/C0Hm2eHVQuzpw5OI25BG+zAYLQ
+ kxmNmgvUytXgAQY+qELtvsZpL3+Xs937vXKuGZK9TcF8h3isO4WWDMxrW
+ mdIzhnlTX+DtRvLQvlc810T5Sk3z2uwi8ehEecCCmyHFMx1QRBMoI1jmB
+ Tm851g4ieZjU5rsgGq/gzFNP65UYf9nSDgP6qLe/vlxfpVbVESOKBo/X3 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="239873076"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="239873076"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Mar 2022 08:29:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="521478476"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="564710306"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga006.jf.intel.com with ESMTP; 29 Mar 2022 08:29:08 -0700
+ by orsmga008.jf.intel.com with ESMTP; 29 Mar 2022 08:29:07 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 259551DD; Tue, 29 Mar 2022 18:29:29 +0300 (EEST)
+ id 02BDB11E; Tue, 29 Mar 2022 18:29:28 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,17 +73,17 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v2 03/13] pinctrl: stm32: Replace custom code by
- gpiochip_node_count() call
-Date: Tue, 29 Mar 2022 18:29:16 +0300
-Message-Id: <20220329152926.50958-4-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 01/13] gpiolib: Introduce for_each_gpiochip_node() loop
+ helper
+Date: Tue, 29 Mar 2022 18:29:14 +0300
+Message-Id: <20220329152926.50958-2-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_082917_080752_683BDB12 
-X-CRM114-Status: GOOD (  13.49  )
+X-CRM114-CacheID: sfid-20220329_082916_997242_40545F79 
+X-CRM114-Status: GOOD (  10.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,42 +100,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since we have generic function to count GPIO controller nodes
-under a given device, there is no need to open code it. Replace
-custom code by gpiochip_node_count() call.
+Introduce for_each_gpiochip_node() loop helper which iterates over
+the GPIO controller child nodes of a given device.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Reviewed-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
 ---
- drivers/pinctrl/stm32/pinctrl-stm32.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ include/linux/gpio/driver.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.c b/drivers/pinctrl/stm32/pinctrl-stm32.c
-index 92348e09af28..4043a44211f0 100644
---- a/drivers/pinctrl/stm32/pinctrl-stm32.c
-+++ b/drivers/pinctrl/stm32/pinctrl-stm32.c
-@@ -1423,7 +1423,8 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct stm32_pinctrl *pctl;
- 	struct pinctrl_pin_desc *pins;
--	int i, ret, hwlock_id, banks = 0;
-+	int i, ret, hwlock_id;
-+	unsigned int banks;
+diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
+index be2fc9b15cf3..e6b9c17614ef 100644
+--- a/include/linux/gpio/driver.h
++++ b/include/linux/gpio/driver.h
+@@ -3,13 +3,14 @@
+ #define __LINUX_GPIO_DRIVER_H
  
- 	if (!np)
- 		return -EINVAL;
-@@ -1513,10 +1514,7 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 		return PTR_ERR(pctl->pctl_dev);
- 	}
+ #include <linux/device.h>
+-#include <linux/types.h>
+ #include <linux/irq.h>
+ #include <linux/irqchip/chained_irq.h>
+ #include <linux/irqdomain.h>
+ #include <linux/lockdep.h>
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinconf-generic.h>
++#include <linux/property.h>
++#include <linux/types.h>
  
--	for_each_available_child_of_node(np, child)
--		if (of_property_read_bool(child, "gpio-controller"))
--			banks++;
--
-+	banks = gpiochip_node_count(dev);
- 	if (!banks) {
- 		dev_err(dev, "at least one GPIO bank is required\n");
- 		return -EINVAL;
+ struct gpio_desc;
+ struct seq_file;
+@@ -750,4 +751,8 @@ static inline void gpiochip_unlock_as_irq(struct gpio_chip *gc,
+ }
+ #endif /* CONFIG_GPIOLIB */
+ 
++#define for_each_gpiochip_node(dev, child)					\
++	device_for_each_child_node(dev, child)					\
++		if (!fwnode_property_present(child, "gpio-controller")) {} else
++
+ #endif /* __LINUX_GPIO_DRIVER_H */
 -- 
 2.35.1
 
