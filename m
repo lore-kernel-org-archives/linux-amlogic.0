@@ -4,89 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA4F6C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 16:13:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70075C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 16:47:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9iY2Qy2Xck8mBhI6ARg8KjhIsAX8DmvA01uYIiZaXjs=; b=OGzcPruwCmf82i
-	EMbjY4X7caLE8HTjx4O6MB9IC6ur6n5y4gnk5YGKS4zYMxdcFXu5Ihr0jC7OkTk8JYPnUnIQwH8Ud
-	ZFsvhd/2Fnjq+6VBUP7BnN+0BA4Egjq1mPJrCXMO+HsLRPGUgNhIc6biPh70FEc2N59CD4dPKvmKY
-	s3W7PFpDKaRTo0pkXL/y1vubbjt2F6yAY3JcjEabHNvX3SsILBlSCN74M1Nr599hsFuSKNfNDUuMK
-	aoqeai17jPaHsXjsC7IwMSqGX//wu7UsWm1DmBBsehzypk7r/TSj80Z07cAJfeCZUx/LPX9VccTQa
-	zpgGQM/9Fakpq54/0nLA==;
+	List-Owner; bh=dHQYksLAN0/qTx9klMg+I0s7ERWijjF/E+N3u0L4Wtk=; b=NAYFsq22zvcSz8
+	15Zpo+jQDGsW3uwDxQNsUuQCTNn8n9OVo3XC7Rn/fYa0CeOt7RtW9KwNFFiEBOf4LpJ+gpFThhVVo
+	YPBWDhCYORY5glw88yVOH279OiNmyBrkXrbBDkpiSl1GeudY7gYvREf2fDQAQZBBm9foWqmLlL9Ss
+	ndWelV2ksRJgLWfUokeQiF0S8hgM+4j/e+QUdbRHW3mVTWaTJVH2rpLiHbKiGnb2ZeUT1SkpvepH3
+	NJTvTrY0Q1iE3KE2zWd5jW0hx3hJjo0XWV4fXUdTgYcHUHn4fhLafkwc2C4/2mLMXAKDHTpzLFUmj
+	qBhj6O3xrxU5xOBd487Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZETX-00CrjC-Qe; Tue, 29 Mar 2022 16:13:43 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1nZEzq-00CwX2-NQ; Tue, 29 Mar 2022 16:47:06 +0000
+Received: from mga11.intel.com ([192.55.52.93])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZETU-00CrdU-Gu
- for linux-amlogic@lists.infradead.org; Tue, 29 Mar 2022 16:13:42 +0000
-Received: by mail-wm1-x333.google.com with SMTP id
- p12-20020a05600c430c00b0038cbdf52227so1796089wme.2
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Mar 2022 09:13:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=YTxP7HWRQagvLol49w9U8StQxxwKyv5+VjuLHJHzNBc=;
- b=xaD4Og1Xqqt/c+vuuNvNvPRGz0QjW7LfiuaJLGgqojn5KiEeGmfbb9hX5Iqw9D1QCv
- cbLo+8LQFk0quq/KXtXrPEZ3Ae+H573+RMGNPXj/dBVwmge/E08j10ZXwiTksoj/nZ1+
- JF/PjAU/rYfvs2ZkDWTK2X1iv+I3ioS0ZSNgsWvkOuU2CyY+72Lc3Vw1s81OI/NB+HUQ
- /NPpwTIKSCqCzIietzPRRCn+3Z3aKCz1jFRKoAiiocpXHH7xZE8iz3yIVpUlukDFpOhl
- FGU5m1kuJL9YmBczNFSXf6jjtID0BkoU4ys0izSF9lL9NqWPVc0qI7hZicay4HQ6Efvn
- aGKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=YTxP7HWRQagvLol49w9U8StQxxwKyv5+VjuLHJHzNBc=;
- b=U0AbpgEvipkeVFR449CJy2ECJl7OUm/0V4hgIh+Ti/0mwHlUVcrwMIbAqnA0EMNRZj
- dMguLNWeABEpn1iHkiqsBLgA/0gQ0BmcfTOnxQuTMZMci2jRmoNUzC2a0z26Qq0Wn5xD
- r3lN2odomgccvDrTHnLQEGIZBfBCq7nvaVCkYGeu4l3SLlLkdxk38YP00/AacuVhdU/i
- w1vnrg4QfQl4o7DdoXsV9dJ/P0IKHTpdqactYtLkNnLppSkhKYsaRLFcZhw2y9PYFrZT
- +yX3zkbi6lAVVms+y2OcIIkVQEjb5UxhwfOahzeKWw9lE3t7ij3G7KpzPMqyVhqpjzgf
- ozCg==
-X-Gm-Message-State: AOAM531xsVJGNud0uxJaMV8qSUZZqtGFJlrOH2KQSnwvDk/Yobz2zw2I
- iLSwZkuciD6Eky9MZyos9OmiWg==
-X-Google-Smtp-Source: ABdhPJxNC8QU4RkF7zsoVybBcs79idtSW/nKBSrMwv6YVnFFHPw6flf9Pyqw6kxzux0CMOPDesy1PQ==
-X-Received: by 2002:a05:600c:4e8a:b0:380:e340:bfba with SMTP id
- f10-20020a05600c4e8a00b00380e340bfbamr542917wmq.80.1648570402437; 
- Tue, 29 Mar 2022 09:13:22 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:a663:978b:3ffb:7dc3?
- ([2001:861:44c0:66c0:a663:978b:3ffb:7dc3])
- by smtp.gmail.com with ESMTPSA id
- q16-20020adff950000000b00205aa05fa03sm11025699wrr.58.2022.03.29.09.13.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Mar 2022 09:13:21 -0700 (PDT)
-Message-ID: <94e888fe-d8fc-5379-302f-66d64f2ae10b@baylibre.com>
-Date: Tue, 29 Mar 2022 18:13:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 09/13] pinctrl: meson: Rename REG_* to MREG_*
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Qianggui Song <qianggui.song@amlogic.com>,
+ id 1nZEzI-00CwH9-VI; Tue, 29 Mar 2022 16:46:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648572392; x=1680108392;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=l79PCfT680tSg5itoW3f+C4BVaO65e08V3oBAzUaQsg=;
+ b=f06cvkxvn6rtCCUVO3fG49cmUXL+RXAjWYOlumTW9Q5DnmecOSrqDxC8
+ ikOkBSp4gIsKMa5lpIrTDyIQaS3a1djiPKxCdJHDtFDa5fSeeFR1V9ccf
+ tZ9fggP//S6Y37oGEmnEhvvLeqGLT5DDBVQMDbQy2Qfk/vDD4AtDaLQJj
+ +CEgjyGLPT9ExTcUhUK2mQ2D9AQJTLU9HAXiKSpZ49Hcg1wktl2h8LVZS
+ DXP/Y1VkneF/SQxsxf+iYgKeh6MkXdSGWzrMpl49HImMoK8HMvMSsXmaj
+ xFRFHvMxoDTYqJL0uiFZMjPK9BiXNeuQFu1y40QSDmHYwvc4CwHIhyXG9 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="256882779"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="256882779"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 09:42:43 -0700
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="554327473"
+Received: from smile.fi.intel.com ([10.237.72.59])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 09:42:36 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1nZEuu-008rb0-Vw; Tue, 29 Mar 2022 19:42:00 +0300
+Date: Tue, 29 Mar 2022 19:42:00 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Qianggui Song <qianggui.song@amlogic.com>,
  Krzysztof Kozlowski <krzk@kernel.org>,
- Fabien Dessenne <fabien.dessenne@foss.st.com>, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Fabien Dessenne <fabien.dessenne@foss.st.com>,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Linus Walleij <linus.walleij@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
+ Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
  Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Tali Perry <tali.perry1@gmail.com>,
+ Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+ Benjamin Fair <benjaminfair@google.com>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
  Tomasz Figa <tomasz.figa@gmail.com>,
  Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -94,14 +76,19 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH v2 09/13] pinctrl: meson: Rename REG_* to MREG_*
+Message-ID: <YkM22GwhxV+YKl8l@smile.fi.intel.com>
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
  <20220329152926.50958-10-andriy.shevchenko@linux.intel.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220329152926.50958-10-andriy.shevchenko@linux.intel.com>
+ <94e888fe-d8fc-5379-302f-66d64f2ae10b@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <94e888fe-d8fc-5379-302f-66d64f2ae10b@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_091340_605943_F9CE1B85 
-X-CRM114-Status: GOOD (  17.50  )
+X-CRM114-CacheID: sfid-20220329_094633_064100_DB93EF7C 
+X-CRM114-Status: UNSURE (   9.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,180 +100,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/03/2022 17:29, Andy Shevchenko wrote:
-> Rename REG_* to MREG_* as a prerequisite for enabling COMPILE_TEST.
-
-What error do you hit ?
-
-MREG_ is rather ugly, something like PINCONF_REG_ or more simpler MESON_REG_ would be more appropriate.
-
-Neil
-
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->   drivers/pinctrl/meson/pinctrl-meson.c | 24 ++++++++++++------------
->   drivers/pinctrl/meson/pinctrl-meson.h | 24 ++++++++++++------------
->   2 files changed, 24 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 49851444a6e3..64da61ba2bb9 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -218,13 +218,13 @@ static int meson_pinconf_set_output(struct meson_pinctrl *pc,
->   				    unsigned int pin,
->   				    bool out)
->   {
-> -	return meson_pinconf_set_gpio_bit(pc, pin, REG_DIR, !out);
-> +	return meson_pinconf_set_gpio_bit(pc, pin, MREG_DIR, !out);
->   }
->   
->   static int meson_pinconf_get_output(struct meson_pinctrl *pc,
->   				    unsigned int pin)
->   {
-> -	int ret = meson_pinconf_get_gpio_bit(pc, pin, REG_DIR);
-> +	int ret = meson_pinconf_get_gpio_bit(pc, pin, MREG_DIR);
->   
->   	if (ret < 0)
->   		return ret;
-> @@ -236,13 +236,13 @@ static int meson_pinconf_set_drive(struct meson_pinctrl *pc,
->   				   unsigned int pin,
->   				   bool high)
->   {
-> -	return meson_pinconf_set_gpio_bit(pc, pin, REG_OUT, high);
-> +	return meson_pinconf_set_gpio_bit(pc, pin, MREG_OUT, high);
->   }
->   
->   static int meson_pinconf_get_drive(struct meson_pinctrl *pc,
->   				   unsigned int pin)
->   {
-> -	return meson_pinconf_get_gpio_bit(pc, pin, REG_OUT);
-> +	return meson_pinconf_get_gpio_bit(pc, pin, MREG_OUT);
->   }
->   
->   static int meson_pinconf_set_output_drive(struct meson_pinctrl *pc,
-> @@ -269,7 +269,7 @@ static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
->   	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit), 0);
->   	if (ret)
->   		return ret;
-> @@ -288,7 +288,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_PULL, &reg, &bit);
->   	if (pull_up)
->   		val = BIT(bit);
->   
-> @@ -296,7 +296,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
->   	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit),	BIT(bit));
->   	if (ret)
->   		return ret;
-> @@ -321,7 +321,7 @@ static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_DS, &reg, &bit);
->   
->   	if (drive_strength_ua <= 500) {
->   		ds_val = MESON_PINCONF_DRV_500UA;
-> @@ -407,7 +407,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_PULLEN, &reg, &bit);
->   
->   	ret = regmap_read(pc->reg_pullen, reg, &val);
->   	if (ret)
-> @@ -416,7 +416,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
->   	if (!(val & BIT(bit))) {
->   		conf = PIN_CONFIG_BIAS_DISABLE;
->   	} else {
-> -		meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-> +		meson_calc_reg_and_bit(bank, pin, MREG_PULL, &reg, &bit);
->   
->   		ret = regmap_read(pc->reg_pull, reg, &val);
->   		if (ret)
-> @@ -447,7 +447,7 @@ static int meson_pinconf_get_drive_strength(struct meson_pinctrl *pc,
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, pin, MREG_DS, &reg, &bit);
->   
->   	ret = regmap_read(pc->reg_ds, reg, &val);
->   	if (ret)
-> @@ -595,7 +595,7 @@ static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
->   	if (ret)
->   		return ret;
->   
-> -	meson_calc_reg_and_bit(bank, gpio, REG_IN, &reg, &bit);
-> +	meson_calc_reg_and_bit(bank, gpio, MREG_IN, &reg, &bit);
->   	regmap_read(pc->reg_gpio, reg, &val);
->   
->   	return !!(val & BIT(bit));
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-> index ff5372e0a475..c00d9ad27843 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.h
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
-> @@ -63,12 +63,12 @@ struct meson_reg_desc {
->    * enum meson_reg_type - type of registers encoded in @meson_reg_desc
->    */
->   enum meson_reg_type {
-> -	REG_PULLEN,
-> -	REG_PULL,
-> -	REG_DIR,
-> -	REG_OUT,
-> -	REG_IN,
-> -	REG_DS,
-> +	MREG_PULLEN,
-> +	MREG_PULL,
-> +	MREG_DIR,
-> +	MREG_OUT,
-> +	MREG_IN,
-> +	MREG_DS,
->   	NUM_REG,
->   };
->   
-> @@ -150,12 +150,12 @@ struct meson_pinctrl {
->   		.irq_first	= fi,					\
->   		.irq_last	= li,					\
->   		.regs = {						\
-> -			[REG_PULLEN]	= { per, peb },			\
-> -			[REG_PULL]	= { pr, pb },			\
-> -			[REG_DIR]	= { dr, db },			\
-> -			[REG_OUT]	= { or, ob },			\
-> -			[REG_IN]	= { ir, ib },			\
-> -			[REG_DS]	= { dsr, dsb },			\
-> +			[MREG_PULLEN]	= { per, peb },			\
-> +			[MREG_PULL]	= { pr, pb },			\
-> +			[MREG_DIR]	= { dr, db },			\
-> +			[MREG_OUT]	= { or, ob },			\
-> +			[MREG_IN]	= { ir, ib },			\
-> +			[MREG_DS]	= { dsr, dsb },			\
->   		},							\
->   	 }
->   
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBNYXIgMjksIDIwMjIgYXQgMDY6MTM6MTlQTSArMDIwMCwgTmVpbCBBcm1zdHJvbmcg
+d3JvdGU6Cj4gT24gMjkvMDMvMjAyMiAxNzoyOSwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOgo+ID4g
+UmVuYW1lIFJFR18qIHRvICogYXMgYSBwcmVyZXF1aXNpdGUgZm9yIGVuYWJsaW5nIENPTVBJTEVf
+VEVTVC4KPiAKPiBXaGF0IGVycm9yIGRvIHlvdSBoaXQgPwoKYXJjaC94ODYvaW5jbHVkZS9hc20v
+YXJjaF9od2VpZ2h0Lmg6OToxNzogZXJyb3I6IGV4cGVjdGVkIGlkZW50aWZpZXIgYmVmb3JlIHN0
+cmluZyBjb25zdGFudAo5IHwgI2RlZmluZSBSRUdfT1VUICJhIgogIHwgICAgICAgICAgICAgICAg
+IF5+fgpkcml2ZXJzL3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5oOjY5Ojk6IG5vdGU6IGlu
+IGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfT1VU4oCZCjY5IHwgICAgICAgICBSRUdfT1VULAoK
+QW5kIHNvbWUgbW9yZS4KCj4gTVJFR18gaXMgcmF0aGVyIHVnbHksIHNvbWV0aGluZyBsaWtlIFBJ
+TkNPTkZfUkVHXyBvciBtb3JlIHNpbXBsZXIgTUVTT05fUkVHXyB3b3VsZCBiZSBtb3JlIGFwcHJv
+cHJpYXRlLgoKRmluZSB3aXRoIG1lLgoKLS0gCldpdGggQmVzdCBSZWdhcmRzLApBbmR5IFNoZXZj
+aGVua28KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
+b2dpYwo=
