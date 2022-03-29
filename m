@@ -4,100 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE97BC433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 10:07:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F515C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Mar 2022 11:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bMrOctNdKZUsRQjCESj/jj+XC2fEGpwx1NXYKVe6j/E=; b=37bLUl1dMhYkNA
-	IDWhkoc+SBpuQMUhbjkwx1R3yEUk7+rBotXdftIiBdohgntWqOIsHnzVpHzZSk8/LI5yl8Sh3Y5We
-	oaW4BKrnpVIhWi/+3HvlvkkJK1fEa0k9Qa3kQUyxfZjjuo5HSmSTBzFVgQgxJPNIp8dzSm7nH4ka9
-	sZTR8Opc7k1ZdvqMx/AuissSJ04o49RiWzo94zJU3+Jv6zJnm87JR1zwt3PhqQABF12J+epY3CnBg
-	UJrevl9yZ4M/yuEJSozyM3MuBEvupykcLHVUSnUbeEV52GfVnXcxzGx0svGOMLbELGu2pWIO0tk5x
-	RXiR6e/HRnrHqqqImLmw==;
+	List-Owner; bh=gzwE3HFoBNQlL9zzv1FCdkjH9RJyq6Hu7yYp4A/KDQs=; b=enWckNOZWXsSOI
+	5m04Xco2DPjlqDPHbKFLtXMuLboUDxa+QVBa1K3sYt/0jpVIgJb0u1J380uFnn6v76+85Is/tSozW
+	h7IU0EumDajtL7020quCUctCnqO1IeV57qUOL6Cwgup5GVHmCauDCSnDi8uM1q/NAH5KURPlHy8Jg
+	fJL3qVul67B5Y5M2Jp0LuP+opgqpzjOghCIiGykASi0ueX5PIrIxRnSH+lE5jdlCKyrYxulL1nE0N
+	Xz5Vn8SDJuHZ7iQuS3hAQlJPOVqgO6SoMWiPmqrQRJlW6ZrqF96G3LMnhKLrj6b9/7O+PoT5SG2Xl
+	KtAyxqpDhWRwLgc07llQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZ8ka-00BltU-39; Tue, 29 Mar 2022 10:06:56 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1nZ9oW-00Bwk9-6p; Tue, 29 Mar 2022 11:15:04 +0000
+Received: from mga14.intel.com ([192.55.52.115])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZ8kN-00BlqE-Au; Tue, 29 Mar 2022 10:06:44 +0000
-Received: by mail-wm1-x336.google.com with SMTP id
- i131-20020a1c3b89000000b0038ce25c870dso964776wma.1; 
- Tue, 29 Mar 2022 03:06:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
- b=g1SGsbd/jLtCfDq6yzASjQLg1D1Di4TRzjMb5UiIfrE9WiDmnp4ps8sIblZUNtYLhl
- BEYp/E3cwcQ3Zx0+p3QoptHL3A/ppqsLefEG80tXSSwr+mpdP4i1AcDwb/671KD/V7Or
- SrBc47ULMLUb19cniOzsSHJIDLc2hutPluz+X07qok/90+UjDzhv6DSHFkWqgCReRafg
- 8hQGGxrcX5P2AlRlhAUeG7o275fLN5UY/luSiQ/PippZc5scePfD88DWfB5YY4mbajP2
- /wEv07hBPdodolgvcwPf/ryO4mcjf2pm6CqHleQKRp4LwbU9hZS+Lg1pg+jJITwfzWUK
- 5rMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
- b=fYgjcfWRWNsFGZdOOHRpki1Xl9+cFawqmV6ttT7oSjRM71+ih7GgmzEvH2al+MWydd
- PAe6im/fko5BC9w9fFlLI1b4CWcxAuy6cCN84HpnnlYPEflW+lP+iYeW2vKlxDBRakYn
- rEFYWRLA71CqQkkR1Uoy+ClQbkyeT1Tp0hnxn4d6j/4Xnc24z8uFc4gxun0pxNzEiey4
- ipnM9Y7kahO8gLmVLeQfuIbM+gHda2KnUbntzwhYW33hETm3AS4v8ZNeb6PA73p0iSxJ
- O45kyC8wADxoiCs8GKSsYu3f130bbaUZZm1G7C/Xka46kMosn2JEhQuvvWaD5sU1fLKW
- 9G9A==
-X-Gm-Message-State: AOAM532DPQZRJj28dIdJH1EF2SuwWzE1Ae7/Co/f0e9RKZGpzfKOpuES
- I/iwNTohefsGi0cPvNStCGU=
-X-Google-Smtp-Source: ABdhPJw/yl37bo84CH0/pwnTrqSkLHICdBHbZfyNAKleJ5pkLbBWcMtajlzC2TVgbnU7tHyn6wt30Q==
-X-Received: by 2002:a05:600c:a47:b0:37c:965:2b6f with SMTP id
- c7-20020a05600c0a4700b0037c09652b6fmr5636166wmq.31.1648548400811; 
- Tue, 29 Mar 2022 03:06:40 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
- by smtp.gmail.com with ESMTPSA id
- a11-20020a5d456b000000b0020406ce0e06sm14201716wrc.94.2022.03.29.03.06.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Mar 2022 03:06:39 -0700 (PDT)
-Message-ID: <6dafde7d-17c6-bd25-dbe8-7f7acf80fd91@gmail.com>
-Date: Tue, 29 Mar 2022 12:06:38 +0200
+ id 1nZ9oG-00Bwcp-Ei; Tue, 29 Mar 2022 11:14:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648552488; x=1680088488;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WW7g88rQ37IyUYcFgRuJ0tHqtRy6l/Sd1url/SgYtxc=;
+ b=kvXUGNxZmjieinCdH/uxgmKVPiXUW3F3fsyRCfwCcYwPZvymkmiAqEjM
+ ksGzejmgxl94kySCaJgzsJyswU8sxyzMJhx9DsGS/IMbXsp8PrQ+G7Ae4
+ OXIPQSQME0Mt55GVu026QDg7S1JNTBpYk9b0HQUNgv+z/TLicB5Fmzshy
+ tpN51qqqXmAtxlQD9cgDo+0srP/rVOrcYrRP9lngTH5LnYh0W4KtTA8cb
+ XSBqhms3cyLDGzdjuVdF5ls6ppG6GrNvAZmAc6RXBqEF4Riog2S5XKNUO
+ 8wQQfENaMM8BsscA3v1QSubHVVSkSdUXStWW8z25GfZ1SXwj6KdIxATj0 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="259410043"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="259410043"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 04:14:46 -0700
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="787559197"
+Received: from smile.fi.intel.com ([10.237.72.59])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 04:14:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1nZ9nb-008hp9-9H; Tue, 29 Mar 2022 14:14:07 +0300
+Date: Tue, 29 Mar 2022 14:14:07 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Fabien DESSENNE <fabien.dessenne@foss.st.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v1 2/5] pinctrl: stm32: Replace custom code by
+ gpiochip_count() call
+Message-ID: <YkLp//IFvgohHycw@smile.fi.intel.com>
+References: <20220325200338.54270-1-andriy.shevchenko@linux.intel.com>
+ <20220325200338.54270-2-andriy.shevchenko@linux.intel.com>
+ <44057328-2454-4f4d-cc90-b0ca35ba1e5a@foss.st.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Language: en-US
-To: Tony Lindgren <tony@atomide.com>, Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Daniel Palmer <daniel@0x0f.com>, Ansuel Smith <ansuelsmth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
- "open list:TI ETHERNET SWITCH DRIVER (CPSW)" <linux-omap@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
- linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
- chrome-platform@lists.linux.dev,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com,
- linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
- linux-tegra <linux-tegra@vger.kernel.org>, linux-oxnas@groups.io,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- linux-unisoc@lists.infradead.org,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
- <YkK691VG6ON/6Ysn@atomide.com>
- <CAMuHMdXDDNTgBdJTa8+H1H5v1gAarp07xxWu_E1JL8mXS8HPMg@mail.gmail.com>
- <YkLXTWdZ3zASxr4H@atomide.com>
-From: Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <YkLXTWdZ3zASxr4H@atomide.com>
+Content-Disposition: inline
+In-Reply-To: <44057328-2454-4f4d-cc90-b0ca35ba1e5a@foss.st.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_030643_435410_27FD510C 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20220329_041448_548207_04C6DD98 
+X-CRM114-Status: UNSURE (   9.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,33 +91,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, Mar 29, 2022 at 09:59:32AM +0200, Fabien DESSENNE wrote:
+> On 25/03/2022 21:03, Andy Shevchenko wrote:
 
+Thanks for review, my answers below.
 
-On 29/03/2022 11:54, Tony Lindgren wrote:
-> * Geert Uytterhoeven <geert@linux-m68k.org> [220329 09:02]:
->> On Tue, Mar 29, 2022 at 10:03 AM Tony Lindgren <tony@atomide.com> wrote:
->>> For example, I have a pile of pending omap clock clean-up dts patches
->>> posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
->>> redoing or fixing up the patches with sed :)
->>
->> Git merge/rebase/cherry-pick should handle renames fine?
+> > -	for_each_available_child_of_node(np, child)
 > 
-> Possibly.. Not sure I'd count on that based on my earlier experiences
-> though :)
-> 
+> Here we look for "available" child, while the new generic helper
+> gpiochip_count() looks for any child, available or not.
+> Would it be possible to hav gpiochip_count() looking for available child as
+> well?
 
-Yes. If this could be split up in per silicon-vendor patches, the maintainer 
-could take them. Although it might be a pain to soc maintainers to resolve small 
-conflicts when merging that branches.
+It's done already that way. The fwnode loop is done against available children.
 
-Just my 5 cents.
+> It looks like there is '_available_' version of
+> 'device_for_each_child_node', maybe this shall be added too.
 
-Matthias
+No need.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
 _______________________________________________
 linux-amlogic mailing list
