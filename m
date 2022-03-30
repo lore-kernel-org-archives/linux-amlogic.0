@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 246D8C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Mar 2022 10:01:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B222C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Mar 2022 10:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XgOgIROnAxSbGQNG/UuSPOvaxdt4kWSZ4SlzVXZv4Q4=; b=2gjse/86uyfjek
-	vNDiLbksDq3Tu4Ltga/ainfG7LlcaR5bMxmOoBINs9JVPIcw/nDREE2v65oOCrl74d+tEbDwO5P04
-	a2/MY3AVWo8G/M5NOZEUFGdsstv2xkX6Y4vcwB4kFz7XO0mnJ07WajOO4fdy4sDDzfiykXKIQZiqC
-	/1QJCApF2SP6lnKyEl7wlezOESzb9Aa5iOVf2Xhe3hXn5CSp/24nyH5wge3b1U7fz1yD7J2JuNoM/
-	93vgjg/ULEc88p6mRXC7xaxqQR9yC5Cofx9qtoysPK3ALYwMFL10yQ0HFGNnVF7MRKeXUZggl7Biv
-	Blm0QLkISqpQVc4bAQvg==;
+	List-Owner; bh=In91m0aI9LQ2M4HPAqnEC45zQhWjAA48GczknRRNA/E=; b=yjj/naK/1kdWOW
+	d8GI7sjb76w4uqWFQdFAfppNjs2j+QU8tgo5URqVta2+y+gVaIuhmfuNKwwRZg/ixg4A01WVyBh+W
+	doHX2o7XFww7VCnqHWauRpybAR0H1pI4sKLx7Oy7q6e/4/MMieCOXG7rSmvB8hJmHWNVvoq2kbTg+
+	F2h2uBXaHLQgLxA9fZ8SdgDHIYemsq3y/UxiZYaP3dUHtUmWaMaTNGgBLAW0t5dYVUKR0lJ+pO/9h
+	Hg6Iw2YxKnOvJDNaBKX0TalqRmixFz3eMb6Mp7G+NTWRNTHJ7b8RbkYrhPy6hkmA0wgCZ0FrIPKPw
+	0NBJAe02rq58ablAbjbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZV8L-00F66O-4U; Wed, 30 Mar 2022 10:00:57 +0000
-Received: from mail-qv1-f41.google.com ([209.85.219.41])
+	id 1nZV8u-00F6Ii-4z; Wed, 30 Mar 2022 10:01:32 +0000
+Received: from mail-qv1-f49.google.com ([209.85.219.49])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZV85-00F61R-Eg; Wed, 30 Mar 2022 10:00:43 +0000
-Received: by mail-qv1-f41.google.com with SMTP id gi14so16504499qvb.0;
- Wed, 30 Mar 2022 03:00:40 -0700 (PDT)
+ id 1nZV8Z-00F69e-1O; Wed, 30 Mar 2022 10:01:12 +0000
+Received: by mail-qv1-f49.google.com with SMTP id gi14so16505302qvb.0;
+ Wed, 30 Mar 2022 03:01:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=hBxbmNoSIF+gD71y4kkXlaJNmYHsVeI/sGoRnpdFxrc=;
- b=k4hdauQemjUfjg1W+yezxd6bHrA0jfrxRdmlOKfKEXDSl5YEyyyQMhVAEw+aKAnMWU
- G9lBKOeBbDCYp3s61NgNBvpGzzCQ1GU1BqXvhoBF0uWOZ9po0CcgcxLIqFPRsQHA73bA
- a3z7QtuTNvRZYwo39QlK8yhKTb1w+soId42p35abN1tfqIFeVixK0PmA9ZaXb6rQ1bz0
- AXt0AJX7S7sgYdRXBmMbvvO3Hqrv65eyxaRwjZZpvQB0ekWT8fL4F43c8Lq7I+J8U3bC
- 0jtsaxHDyq8KTOjPxkiD3SgkSrm7R396A+vE+5dd9wfiBSBXVSnUpXkxB9ts5iGRFdzZ
- RHwA==
-X-Gm-Message-State: AOAM53176xQ+EdCGkLf6k9l0vfJ6dy0l+4KltOMtwzyXBN7QwAfLeP7j
- 5etD3jjzMvjzR2GTMptGYUYVCeXE8YEteg==
-X-Google-Smtp-Source: ABdhPJz4+IUN9VXKLzMC59C6oZoib+QrodCK0GN8hnLm/8Lpl59Pen3593RiZL7RRsDoZoCRS/RrWg==
-X-Received: by 2002:a05:6214:766:b0:441:a5df:8ace with SMTP id
- f6-20020a056214076600b00441a5df8acemr22858794qvz.87.1648634439386; 
- Wed, 30 Mar 2022 03:00:39 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com.
- [209.85.128.170]) by smtp.gmail.com with ESMTPSA id
- k73-20020a37a14c000000b0067b316a4161sm11057850qke.120.2022.03.30.03.00.38
+ bh=eWVEyP8xb0gTFVWSPikhwxNAnBSVX8r5lpCe0its8eQ=;
+ b=mR38YI0ArLBexzBRMKbzwql47IbsZqMYd5w3QnwymdL+L08hyiTdmGE64SA7YcG8Zj
+ klytdu6jo+yLWBzCXw9xUDmmZNF6mKyJMqepvW5gafBxUdOmvVSkK++we70bwp+lW9RA
+ j1++htYUM5+UJHrkaETo5ERuPFn72tUpUmpDx4CFfIR4PGK3HTXCAgNZRq8ZkmS75v+F
+ 2ZDI60fu9OurfzTByVmbX67KTwHOXuQ3Iy2wYbxCz0O57Ucla3Gn48WyHtdNRUBuQ+tD
+ k9xioWUABJLcRmzOuDuzsnQNEh8trY5xrZON6DuyqOoahgIvtDYAKjSw12HU7a5x0DnA
+ TFiQ==
+X-Gm-Message-State: AOAM531RHzmdvXJ8+CTzG7J65iZb7z7YacJ7oJxkdhvhdXWply7LH9RL
+ iSEzUuuTQZ53Aux/7lKQXOYU8hx4I3wSog==
+X-Google-Smtp-Source: ABdhPJwuuwzqdnkHX51SwzOgsnFvAGn+PorGGLy0eCxXAOmJXTXlO1Z06cKfGpo7RDiJDtRIGjQBAw==
+X-Received: by 2002:a05:6214:529e:b0:441:2c37:52e5 with SMTP id
+ kj30-20020a056214529e00b004412c3752e5mr29990671qvb.4.1648634468323; 
+ Wed, 30 Mar 2022 03:01:08 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com.
+ [209.85.128.171]) by smtp.gmail.com with ESMTPSA id
+ p10-20020a05620a132a00b0067f926e36b2sm10370804qkj.91.2022.03.30.03.01.06
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 30 Mar 2022 03:00:38 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id
- 00721157ae682-2e592e700acso212349357b3.5; 
- Wed, 30 Mar 2022 03:00:38 -0700 (PDT)
-X-Received: by 2002:a25:45:0:b0:633:96e2:2179 with SMTP id
- 66-20020a250045000000b0063396e22179mr32596280yba.393.1648634438344; 
- Wed, 30 Mar 2022 03:00:38 -0700 (PDT)
+ Wed, 30 Mar 2022 03:01:07 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-2e6650cde1bso211465527b3.12; 
+ Wed, 30 Mar 2022 03:01:06 -0700 (PDT)
+X-Received: by 2002:a25:aa0e:0:b0:633:7c3b:94a0 with SMTP id
+ s14-20020a25aa0e000000b006337c3b94a0mr33028380ybi.546.1648634466403; Wed, 30
+ Mar 2022 03:01:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220329152926.50958-1-andriy.shevchenko@linux.intel.com>
- <20220329152926.50958-8-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20220329152926.50958-8-andriy.shevchenko@linux.intel.com>
+ <20220329152926.50958-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20220329152926.50958-2-andriy.shevchenko@linux.intel.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 30 Mar 2022 12:00:27 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWs+OuxV0cO=XGYvOOJ0Mctwu6fKV5HnkdRBXNKkLE3uQ@mail.gmail.com>
-Message-ID: <CAMuHMdWs+OuxV0cO=XGYvOOJ0Mctwu6fKV5HnkdRBXNKkLE3uQ@mail.gmail.com>
-Subject: Re: [PATCH v2 07/13] pinctrl: renesas: rza1: Switch to use
- for_each_gpiochip_node() helper
+Date: Wed, 30 Mar 2022 12:00:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXhiLi8YxxG0f9hBfBkwds3LAdJNSOBSR9FYE4_z=RvcA@mail.gmail.com>
+Message-ID: <CAMuHMdXhiLi8YxxG0f9hBfBkwds3LAdJNSOBSR9FYE4_z=RvcA@mail.gmail.com>
+Subject: Re: [PATCH v2 01/13] gpiolib: Introduce for_each_gpiochip_node() loop
+ helper
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Qianggui Song <qianggui.song@amlogic.com>,
  Krzysztof Kozlowski <krzk@kernel.org>, 
@@ -96,8 +96,8 @@ Cc: Qianggui Song <qianggui.song@amlogic.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, 
  Philipp Zabel <p.zabel@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220330_030041_517933_FC7F55EB 
-X-CRM114-Status: GOOD (  24.19  )
+X-CRM114-CacheID: sfid-20220330_030111_110922_78F252C2 
+X-CRM114-Status: GOOD (  16.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,72 +114,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andy,
-
 On Tue, Mar 29, 2022 at 5:29 PM Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> wrote:
-> Switch the code to use for_each_gpiochip_node() helper.
->
-> While at it, in order to avoid additional churn in the future,
-> switch to fwnode APIs where it makes sense.
+> Introduce for_each_gpiochip_node() loop helper which iterates over
+> the GPIO controller child nodes of a given device.
 >
 > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Thanks for your patch!
-
-> --- a/drivers/pinctrl/renesas/pinctrl-rza1.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rza1.c
-
-> @@ -1166,17 +1167,17 @@ static const struct pinmux_ops rza1_pinmux_ops = {
->   * @range: pin range to register to pinctrl core
->   */
->  static int rza1_parse_gpiochip(struct rza1_pinctrl *rza1_pctl,
-> -                              struct device_node *np,
-> +                              struct fwnode_handle *fwnode,
->                                struct gpio_chip *chip,
->                                struct pinctrl_gpio_range *range)
->  {
->         const char *list_name = "gpio-ranges";
-> -       struct of_phandle_args of_args;
-> +       struct fwnode_reference_args of_args;
-
-fw_args?
-
->         unsigned int gpioport;
->         u32 pinctrl_base;
->         int ret;
->
-> -       ret = of_parse_phandle_with_fixed_args(np, list_name, 3, 0, &of_args);
-> +       ret = fwnode_property_get_reference_args(fwnode, list_name, NULL, 3, 0, &of_args);
->         if (ret) {
->                 dev_err(rza1_pctl->dev, "Unable to parse %s list property\n",
->                         list_name);
-> @@ -1197,13 +1198,12 @@ static int rza1_parse_gpiochip(struct rza1_pinctrl *rza1_pctl,
->
->         *chip           = rza1_gpiochip_template;
->         chip->base      = -1;
-> -       chip->label     = devm_kasprintf(rza1_pctl->dev, GFP_KERNEL, "%pOFn",
-> -                                        np);
-> +       chip->label     = devm_kasprintf(rza1_pctl->dev, GFP_KERNEL, "%pfw", fwnode);
-
-This changes the label from e.g. "/soc/pinctrl@fcfe3000/gpio-11" to "gpio-11".
-
-%pfwP?
-
->         if (!chip->label)
->                 return -ENOMEM;
->
->         chip->ngpio     = of_args.args[2];
-> -       chip->of_node   = np;
-> +       chip->fwnode    = fwnode;
->         chip->parent    = rza1_pctl->dev;
->
->         range->id       = gpioport;
-
-With the above fixed:
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
