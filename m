@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF0CC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Mar 2022 18:47:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12C6C433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Mar 2022 19:59:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LAHhqYE1A8ohhHx4brx2s6Lm9EM+BTN2v32Rarqv2g0=; b=ZvuxWwjU0hF6aO
-	6m8IG5S7T2vjKtArqB9qRMVJWJxy6M8Lze/zwzoJAsd6erSGHoKAphb8EL7hDxyLkMZ1jlA+wN09S
-	lvO0RddCMRPH3080p+EAANdeYwSrmHQKGNgibHFB0Stwk0GbiZXJRWQ+I1OjCKPPKT8JkyOT6z47j
-	Cp1EtmkIpT1YZ3ziA4d4mElPN13YYPN8nhGKqbHp4PZHc6Imp5ixnXKeIsohUTBFxHTNDkph1PHy2
-	7iTa6K6Um1T58X3ijUTOvmkdUZ7XSCHcmHzxBeQA4DErjEJNPcdj+Ji2shSU2k/OBhtfC+pArDqYW
-	htPkQbykSEi3EhpcSJ+A==;
+	List-Owner; bh=gGHLi2xuznlRg4Ts6HM04szZgVlkgAU66jabgpYgVmE=; b=ZgxgdmxboX6p+P
+	o85PUffXQmQJgnzxN1t13nCYNW+QLBURypsPgShhcH5p6hL8pSxtoxmgn/+dVijJK/MMkR9Pto2UZ
+	IW+PkomdYrOARY8upKgczzaqkDS66FIE7MwF3H74rFE4RXnPPzKGBKC2RGnEIxhI0xGvZx0V00+tJ
+	Sj2Q7jGtzT21mlerB/8yNZNYjuSk042KR042ehfWBxaftZbuS3D10o+TMd5HYpnYSdMlUhBNcGzVy
+	HVRn8WJCIXXa3ielHuXV2p+vJ8s3TiBeSp0lPYf3Kcqn0SocSEulWdH8+ejEXDH8GuJnhKYJRPNci
+	1LTDc3+X10vstWcZHDjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZdME-00HBcn-H4; Wed, 30 Mar 2022 18:47:50 +0000
-Received: from mga14.intel.com ([192.55.52.115])
+	id 1nZeTn-00HODh-JA; Wed, 30 Mar 2022 19:59:43 +0000
+Received: from mga02.intel.com ([134.134.136.20])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZdM1-00HBaN-LN; Wed, 30 Mar 2022 18:47:39 +0000
+ id 1nZeTa-00HOAu-5w; Wed, 30 Mar 2022 19:59:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648666057; x=1680202057;
+ t=1648670370; x=1680206370;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=1gyOUmznH3pZBVK2tU7XqvNJ978LLkV6wParuR9BPcg=;
- b=OndB5kLfRBZ2QM3hkxkSokNYoyRyAe2v2Wn+T4B8PUjIOX9CVPTsJPV4
- +LP5rBRHNYXT6oroEBIqPosyNmkoNWNiu+JZtmZ87b5Ju3j5ht0ZekdwE
- 81mCsi36UdzcDrFO/9WXYiV7spf36hE0XbKnJy+pNSTRnib+IySZj/257
- ER6vDIB7jHv5e6Xgvi1ToXC3nLx5Eac06aeeiZtPhnWVEWsXbXjYxXuM2
- PNAIvlO5yKupUsTobrPXkTn5NtnLnK34WkbyKJVmsbE8JcJ5zMr1UMtMi
- YSL0aW0Chr4ua0SQ75Cgqioc7Br4/Hfd3PMilfjHrhaOzOtcFweP9G+Dm Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259802800"
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="259802800"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 11:47:35 -0700
+ bh=7tDoFQmVXXYn7rMUwMmyJcJFUqWlgwtXoTN80z/SlAk=;
+ b=nkWyWma1CEmPu0EoR9NvoGD6FGCvvmCKeTHJ/5O5xuFNbnj8AsATao+h
+ KWhTKceoda7rIju3wH/OilrYcxwmYK+V6eQ5bm6X9gu0VF75QcJViARsj
+ +3ndaKItxiiP+EX2tMZ5P60h9pZti3dOvN12lxlkzSXdLkjB8e6b6qREj
+ 6x2O2H+JBo8TkGtHJCutlqrYeiSYX3ftCSi1xxC0I7eJD/Kk3RuWNTp2j
+ OZtuHgxCEEpIqyJd3LsXl54YdD53dWDLQysfDZVqXhBglrNTJ1MsYUi3R
+ Fd2kvTBgsjpP1GYP9HZuDX3y74Ic+jLCtBCyxdVXIDqvSt19IhnJBMoCD Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="247134769"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="247134769"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 12:59:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="788107199"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="639849777"
 Received: from lkp-server02.sh.intel.com (HELO 56431612eabd) ([10.239.97.151])
- by fmsmga006.fm.intel.com with ESMTP; 30 Mar 2022 11:47:27 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 30 Mar 2022 12:59:21 -0700
 Received: from kbuild by 56431612eabd with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nZdLq-0000K0-RG;
- Wed, 30 Mar 2022 18:47:26 +0000
-Date: Thu, 31 Mar 2022 02:46:39 +0800
+ (envelope-from <lkp@intel.com>) id 1nZeTQ-0000RU-Jy;
+ Wed, 30 Mar 2022 19:59:20 +0000
+Date: Thu, 31 Mar 2022 03:58:20 +0800
 From: kernel test robot <lkp@intel.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Qianggui Song <qianggui.song@amlogic.com>,
@@ -60,8 +60,7 @@ To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  openbmc@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org,
  linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
- Neil Armstrong <narmstrong@baylibre.com>,
+Cc: kbuild-all@lists.01.org, Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Andrew Lunn <andrew@lunn.ch>,
@@ -76,15 +75,15 @@ Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
  Alim Akhtar <alim.akhtar@samsung.com>
 Subject: Re: [PATCH v3 05/13] pinctrl: samsung: Switch to use
  for_each_gpiochip_node() helper
-Message-ID: <202203310240.Za1Wqczl-lkp@intel.com>
+Message-ID: <202203310305.QZp98VzT-lkp@intel.com>
 References: <20220330145030.1562-6-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20220330145030.1562-6-andriy.shevchenko@linux.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220330_114737_754596_A1C81535 
-X-CRM114-Status: GOOD (  14.25  )
+X-CRM114-CacheID: sfid-20220330_125930_321593_ECBEA226 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,34 +108,29 @@ I love your patch! Yet something to improve:
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/gpiolib-Two-new-helpers-and-way-toward-fwnode/20220330-225341
 base:   a67ba3cf9551f8c92d5ec9d7eae1aadbb9127b57
-config: riscv-randconfig-r032-20220330 (https://download.01.org/0day-ci/archive/20220331/202203310240.Za1Wqczl-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0f6d9501cf49ce02937099350d08f20c4af86f3d)
+config: alpha-randconfig-r013-20220330 (https://download.01.org/0day-ci/archive/20220331/202203310305.QZp98VzT-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.2.0
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
         # https://github.com/intel-lab-lkp/linux/commit/3539d23dd289ca77a85d66fe8721e4febfc50ea4
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Andy-Shevchenko/gpiolib-Two-new-helpers-and-way-toward-fwnode/20220330-225341
         git checkout 3539d23dd289ca77a85d66fe8721e4febfc50ea4
         # save the config file to linux build tree
         mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/pinctrl/samsung/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
 All errors (new ones prefixed by >>):
 
->> drivers/pinctrl/samsung/pinctrl-s3c24xx.c:528:50: error: no member named 'of_node' in 'struct samsung_pin_bank'; did you mean 'fwnode'?
-                   bank->irq_domain = irq_domain_add_linear(bank->of_node,
-                                                                  ^~~~~~~
-                                                                  fwnode
-   drivers/pinctrl/samsung/pinctrl-samsung.h:168:24: note: 'fwnode' declared here
-           struct fwnode_handle *fwnode;
-                                 ^
-   1 error generated.
+   drivers/pinctrl/samsung/pinctrl-s3c24xx.c: In function 's3c24xx_eint_init':
+>> drivers/pinctrl/samsung/pinctrl-s3c24xx.c:528:64: error: 'struct samsung_pin_bank' has no member named 'of_node'; did you mean 'fwnode'?
+     528 |                 bank->irq_domain = irq_domain_add_linear(bank->of_node,
+         |                                                                ^~~~~~~
+         |                                                                fwnode
 
 
 vim +528 drivers/pinctrl/samsung/pinctrl-s3c24xx.c
