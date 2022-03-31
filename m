@@ -4,32 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BE5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Mar 2022 09:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72D58C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Mar 2022 09:55:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NDd7IIPlq1l2SepvBJsURvmQMMsZV2Hlli5VGo2eOI0=; b=k86DCF2kcWAPg6
-	0yh2S0IMn70rUAMi8TpdlfR4taoPcCNjTYmesaFwaSWGFQDX/BWhK9Z4NdwiCYki9BOUoBF+rzs1k
-	zsOIH0dlL+5tfmMZ0oV1q8P/doPpovGas4fsJCjrxt2anOS+Avm7wOz/iUn4UwlJKN+WKZoF/Zt1j
-	YT3mkrW6d+7oB7ZFkYzD7kYhC3cnxLiJqIwKT2QoFzI/2Z4MQ5S7Nd8P+JSFom0spHmrO+bAkhGvx
-	yz9/mVbcvVjO1e5EPw5ZgzgsWEtGasDACadjzZds6SgEVv+839zoTZjoXjEfPtwK2RWIy1DHsur6d
-	2RdnSvd7nHoud8WW//Cw==;
+	List-Owner; bh=8mKGrJDtaOsva4ZTDMOXqkETOwpIgKuUNAbZA3OjIuY=; b=uTlXbskCtOblj+
+	2UNW8RkNou/l4FJE6AL/F16e5IxBak/jhCGzL1pdbGXbKbMpUJ7w/QFxyPwZrxbhEurlg/wRh9YFe
+	+b5QdAHiCfqmZGBbPqniiRw1OlPK5qQcApB9j9RrQx2mX/mfArnS2fC9EnkUOf3EQPaX/PIqDVOCb
+	4bOhBeT7sM5Mv2rUfiMYuZNV5AEsX/VCo14ZunxMvsRsaUZlFo2ABfPtKTn6GGBOyPSD1G0lQvUq6
+	ZcCGvCr/c4LqbBiR08qO1Ov0nm1q4/7MjTX4Qr2k+j58zQRD9NpgepbHNmIF6kxuAGKBQ13AuEoFU
+	Uvv0YmurLLL0XZ49rZOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZrJw-001Wt8-6V; Thu, 31 Mar 2022 09:42:24 +0000
-Received: from muru.com ([72.249.23.125])
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZrJn-001WpV-RZ; Thu, 31 Mar 2022 09:42:17 +0000
-Received: from localhost (localhost [127.0.0.1])
- by muru.com (Postfix) with ESMTPS id A7D9580DB;
- Thu, 31 Mar 2022 09:40:03 +0000 (UTC)
-Date: Thu, 31 Mar 2022 12:42:10 +0300
-From: Tony Lindgren <tony@atomide.com>
-To: Maxime Ripard <maxime@cerno.tech>
+	id 1nZrWJ-001aFb-7q; Thu, 31 Mar 2022 09:55:11 +0000
+Received: from out3-smtp.messagingengine.com ([66.111.4.27])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nZrWF-001aE1-BU; Thu, 31 Mar 2022 09:55:09 +0000
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.nyi.internal (Postfix) with ESMTP id 3B5655C01CE;
+ Thu, 31 Mar 2022 05:55:00 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Thu, 31 Mar 2022 05:55:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm3; bh=fIschB+nqCMB98
+ fI8niTL+6mM5W6p3IndMLM7eMuJYg=; b=L8gqq6q27fRzO3XPlGK64ELnFPiAZn
+ wL5KwFb1orZWm/7K7ZUKqQLQ94ZfkAVq0Di4FxYMm0VnoaDVAgOu+9EdLUuQpJnM
+ aNus2ZH9ysUyVcv+A0pmxZbFNNJwXfpYu5xgBkXx9LTESYJbdSUJZBxRXixkImYw
+ 5jGZBU+wwO9HKvfBb3PCoDb0jYLTp9I7EIBs5790/QBy5c1cP80mfg0FzeIFdM8r
+ zsMfyMK+4kHpIvFwAlq3104cXV3yPjj9ULNMW8u023IVVQWGh80S/xZHohCK9+fy
+ /Z5X+2aSr0+uYhUWjh6jZNwN0jrbrWAMtMNIhbxxxIjQsS+edSylG7nw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm3; bh=fIschB+nqCMB98fI8niTL+6mM5W6p3IndMLM7eMuJ
+ Yg=; b=efzsegme4AINtrqnsMxTyXhdweEgc+X3PQgEX7lIEcYU7tsY+4sb/O8WG
+ 9sWSpraeBlHWCopoy1UZZTtkBvIFlHy1B57ITz8D12OCTgFTUF8deIjUU/s5Z2mv
+ 3u+r9OyPJosmFfC/pKdVxCYboCJ1kRFF5iIb0aAjrPwL35AL6z7Yr0OoQKg6+EOF
+ oUiyWA+QW8pAP0f4C49PfqsasJZsWkNSFtKkhHNFTrJOKQj4smPgayqeSsQ8p3jU
+ W3DjlewuCX1avxqZ+xH9B2ZwDLXSFRy2VgRk8bx2uLfpe/puax7YjQ73hYmbNvD6
+ KX9ou/15o0qJ26HYlcankGWNg3DPw==
+X-ME-Sender: <xms:cnpFYgDV5qaH4rUHuhjTMLtX5WY3jbRHVM8gd_FpDliXUKXk3e-Qeg>
+ <xme:cnpFYijNnBfcOmnj9t4Adp8H5S5COHn5L7_EEyxHCNdzvUuluL-LcyCX6C_tkOrUy
+ G_IlGv1L5fYw3xnCRk>
+X-ME-Received: <xmr:cnpFYjmiVbayL9og8FBywuFPc_qh2q-_JIL6ViyXk3ZCalKgbK4A8QwEYmWEwQnyWiQfb8GGQajUwqRz0swWVidNKMqVpUIpZZrZp_M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeigedgvdduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeehledvhfeklefgveelkeeludevffethfdukedvfffhhfegfeeugfehgeef
+ jeevtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:cnpFYmy0pNHY2jnkNa2mo0MQHPE8EO69bKBH2IP6Cip9Qlg6Kuj7QQ>
+ <xmx:cnpFYlSeDXXYQoL7cYBbOKN0IQVi173MyJLo0mMXAiXh95nMp6DryA>
+ <xmx:cnpFYhZ-YmG5Nw6SNiiI66moIMtPHr1F48HxQTNfaV9n-ROtVomcxQ>
+ <xmx:dHpFYgGLhRCvGhFkr45uejAlf7yPx5Dd6PooQs8A_aRajr4GXCctKA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 31 Mar 2022 05:54:58 -0400 (EDT)
+Date: Thu, 31 Mar 2022 11:54:56 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Tony Lindgren <tony@atomide.com>
 Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
  Mike Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
@@ -38,18 +80,19 @@ Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH v2 3/3] clk: Drop the rate range on clk_put
-Message-ID: <YkV3ch7R7YxlATW+@atomide.com>
+Message-ID: <20220331095456.dyyxsiu2b3yw2vvs@houat>
 References: <20220325161144.1901695-1-maxime@cerno.tech>
  <20220325161144.1901695-4-maxime@cerno.tech>
  <CGME20220330080612eucas1p195caaf35d900412de762a27ae02b7b9e@eucas1p1.samsung.com>
  <366a0232-bb4a-c357-6aa8-636e398e05eb@samsung.com>
  <20220330084710.3r6b5pjspz5hdmy6@houat>
+ <YkV3ch7R7YxlATW+@atomide.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220330084710.3r6b5pjspz5hdmy6@houat>
+In-Reply-To: <YkV3ch7R7YxlATW+@atomide.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220331_024215_968227_73E7731D 
-X-CRM114-Status: GOOD (  26.27  )
+X-CRM114-CacheID: sfid-20220331_025507_745776_A428E2CE 
+X-CRM114-Status: GOOD (  28.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,57 +104,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgoqIE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPiBbNzAwMTAxIDAyOjAwXToK
-PiBIaSBNYXJlaywKPiAKPiBPbiBXZWQsIE1hciAzMCwgMjAyMiBhdCAxMDowNjoxM0FNICswMjAw
-LCBNYXJlayBTenlwcm93c2tpIHdyb3RlOgo+ID4gT24gMjUuMDMuMjAyMiAxNzoxMSwgTWF4aW1l
-IFJpcGFyZCB3cm90ZToKPiA+ID4gV2hpbGUgdGhlIGN1cnJlbnQgY29kZSB3aWxsIHRyaWdnZXIg
-YSBuZXcgY2xrX3NldF9yYXRlIGNhbGwgd2hlbmV2ZXIgdGhlCj4gPiA+IHJhdGUgYm91bmRhcmll
-cyBhcmUgY2hhbmdlZCB0aHJvdWdoIGNsa19zZXRfcmF0ZV9yYW5nZSwgdGhpcyBkb2Vzbid0Cj4g
-PiA+IG9jY3VyIHdoZW4gY2xrX3B1dCgpIGlzIGNhbGxlZC4KPiA+ID4KPiA+ID4gSG93ZXZlciwg
-dGhpcyBpcyBlc3NlbnRpYWxseSBlcXVpdmFsZW50IHNpbmNlLCBhZnRlciBjbGtfcHV0KCkKPiA+
-ID4gY29tcGxldGVzLCB0aG9zZSBib3VuZGFyaWVzIHdvbid0IGJlIGVuZm9yY2VkIGFueW1vcmUu
-Cj4gPiA+Cj4gPiA+IExldCdzIGFkZCBhIGNhbGwgdG8gY2xrX3NldF9yYXRlX3JhbmdlIGluIGNs
-a19wdXQgdG8gbWFrZSBzdXJlIHRob3NlCj4gPiA+IHJhdGUgYm91bmRhcmllcyBhcmUgZHJvcHBl
-ZCBhbmQgdGhlIGNsb2NrIGRyaXZlcnMgY2FuIHJlYWN0Lgo+ID4gPgo+ID4gPiBMZXQncyBhbHNv
-IGFkZCBhIGZldyB0ZXN0cyB0byBtYWtlIHN1cmUgdGhpcyBjYXNlIGlzIGNvdmVyZWQuCj4gPiA+
-Cj4gPiA+IEZpeGVzOiBjODBhYzUwY2JiMzcgKCJjbGs6IEFsd2F5cyBzZXQgdGhlIHJhdGUgb24g
-Y2xrX3NldF9yYW5nZV9yYXRlIikKPiA+ID4gU2lnbmVkLW9mZi1ieTogTWF4aW1lIFJpcGFyZCA8
-bWF4aW1lQGNlcm5vLnRlY2g+Cj4gPiAKPiA+IFRoaXMgcGF0Y2ggbGFuZGVkIHJlY2VudGx5IGlu
-IGxpbnV4LW5leHQgMjAyMjAzMjggYXMgY29tbWl0IDdkYWJmYTJiYzQ4MCAKPiA+ICgiY2xrOiBE
-cm9wIHRoZSByYXRlIHJhbmdlIG9uIGNsa19wdXQoKSIpLiBTYWRseSBpdCBicmVha3MgYm9vdGlu
-ZyBvZiAKPiA+IHRoZSBmZXcgb2YgbXkgdGVzdCBzeXN0ZW1zOiBTYW1zdW5nIEFSTSAzMmJpdCBF
-eHlub3MzMjUwIGJhc2VkIFJpbmF0byAKPiA+IGJvYXJkIGFuZCBhbGwgQW1sb2dpYyBNZXNvbiBH
-MTJCL1NNMSBiYXNlZCBib2FyZHMgKE9kcm9pZCBDNCwgTjIsIEtoYWRhcyAKPiA+IFZJTTMvVklN
-M2wpLiBSaW5hdG8gaGFuZ3MgYWx3YXlzIHdpdGggdGhlIGZvbGxvd2luZyBvb3BzOgo+ID4gCj4g
-PiAtLS0+OC0tLQo+ID4gCj4gPiBLZXJuZWwgcGFuaWMgLSBub3Qgc3luY2luZzogTUNUIGhhbmdz
-IGFmdGVyIHdyaXRpbmcgNCAob2Zmc2V0OjB4NDIwKQo+ID4gQ1BVOiAxIFBJRDogMCBDb21tOiBz
-d2FwcGVyLzEgTm90IHRhaW50ZWQgNS4xNy4wLXJjMS0wMDAxNC1nN2RhYmZhMmJjNDgwIAo+ID4g
-IzExNTUxCj4gPiBIYXJkd2FyZSBuYW1lOiBTYW1zdW5nIEV4eW5vcyAoRmxhdHRlbmVkIERldmlj
-ZSBUcmVlKQo+ID4gIMKgdW53aW5kX2JhY2t0cmFjZSBmcm9tIHNob3dfc3RhY2srMHgxMC8weDE0
-Cj4gPiAgwqBzaG93X3N0YWNrIGZyb20gZHVtcF9zdGFja19sdmwrMHg1OC8weDcwCj4gPiAgwqBk
-dW1wX3N0YWNrX2x2bCBmcm9tIHBhbmljKzB4MTBjLzB4MzI4Cj4gPiAgwqBwYW5pYyBmcm9tIGV4
-eW5vczRfbWN0X3RpY2tfc3RvcCsweDAvMHgyYwo+ID4gLS0tWyBlbmQgS2VybmVsIHBhbmljIC0g
-bm90IHN5bmNpbmc6IE1DVCBoYW5ncyBhZnRlciB3cml0aW5nIDQgCj4gPiAob2Zmc2V0OjB4NDIw
-KSBdLS0tCj4gPiAKPiA+IC0tLT44LS0tCj4gPiAKPiA+IEFtbG9naWMgYm9hcmRzIGhhbmcgcmFu
-ZG9tbHkgZHVyaW5nIGVhcmx5IHVzZXJzcGFjZSBpbml0LCB1c3VhbGx5IGp1c3QgCj4gPiBhZnRl
-ciBsb2FkaW5nIHRoZSBkcml2ZXIgbW9kdWxlcy4KPiA+IAo+ID4gUmV2ZXJ0aW5nICRzdWJqZWN0
-IG9uIHRvcCBvZiBsaW51eC1uZXh0IGZpeGVzIGFsbCB0aG9zZSBwcm9ibGVtcy4KPiA+IAo+ID4g
-SSB3aWxsIHRyeSB0byBhbmFseXplIGl0IGEgYml0IG1vcmUgYW5kIGlmIHBvc3NpYmxlIHByb3Zp
-ZGUgc29tZSBtb3JlIAo+ID4gdXNlZnVsL21lYW5pbmcgZnVsbCBsb2dzIGxhdGVyLgo+IAo+IEkn
-bSBub3Qgc3VyZSB3aGF0IGNvdWxkIGdvIHdyb25nIHRoZXJlLCBidXQgaWYgeW91IGNhbiBmaWd1
-cmUgb3V0IHRoZQo+IGNsb2NrLCBpZiBpdCB0cmllcyB0byBzZXQgYSBuZXcgcmF0ZSBhbmQgd2hh
-dCByYXRlIGl0IGlzLCBpdCB3b3VsZCBiZQo+IGF3ZXNvbWUgOikKCkknbSBhbHNvIHNlZWluZyBj
-bG9ja2V2ZW50IGJyZWFrIG9uIG9tYXBzIGFzIGEgd3Jvbmcgc291cmNlIGNsb2NrIGdldHMKcGlj
-a2VkLgoKSXQgc2VlbXMgdGhlIGR0cyBhc3NpZ25lZC1jbG9jay1wYXJlbnRzIG5vIGxvbmdlciB3
-b3JrcyBub3c/CgpTbyB0aGUgZm9sbG93aW5nIG5vIGxvbmdlciBzZXRzIG9tYXBfMzJrX2ZjayBh
-cyB0aGUgY2xvY2tldmVudCBzb3VyY2U6Cgp0aW1lckAwIHsKCWFzc2lnbmVkLWNsb2NrcyA9IDwm
-Z3B0MV9mY2s+OwoJYXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmb21hcF8zMmtfZmNrPjsKfTsK
-ClJlZ2FyZHMsCgpUb255CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+Hi,
+
+On Thu, Mar 31, 2022 at 12:42:10PM +0300, Tony Lindgren wrote:
+> * Maxime Ripard <maxime@cerno.tech> [700101 02:00]:
+> > Hi Marek,
+> > =
+
+> > On Wed, Mar 30, 2022 at 10:06:13AM +0200, Marek Szyprowski wrote:
+> > > On 25.03.2022 17:11, Maxime Ripard wrote:
+> > > > While the current code will trigger a new clk_set_rate call wheneve=
+r the
+> > > > rate boundaries are changed through clk_set_rate_range, this doesn't
+> > > > occur when clk_put() is called.
+> > > >
+> > > > However, this is essentially equivalent since, after clk_put()
+> > > > completes, those boundaries won't be enforced anymore.
+> > > >
+> > > > Let's add a call to clk_set_rate_range in clk_put to make sure those
+> > > > rate boundaries are dropped and the clock drivers can react.
+> > > >
+> > > > Let's also add a few tests to make sure this case is covered.
+> > > >
+> > > > Fixes: c80ac50cbb37 ("clk: Always set the rate on clk_set_range_rat=
+e")
+> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > =
+
+> > > This patch landed recently in linux-next 20220328 as commit 7dabfa2bc=
+480 =
+
+> > > ("clk: Drop the rate range on clk_put()"). Sadly it breaks booting of =
+
+> > > the few of my test systems: Samsung ARM 32bit Exynos3250 based Rinato =
+
+> > > board and all Amlogic Meson G12B/SM1 based boards (Odroid C4, N2, Kha=
+das =
+
+> > > VIM3/VIM3l). Rinato hangs always with the following oops:
+> > > =
+
+> > > --->8---
+> > > =
+
+> > > Kernel panic - not syncing: MCT hangs after writing 4 (offset:0x420)
+> > > CPU: 1 PID: 0 Comm: swapper/1 Not tainted 5.17.0-rc1-00014-g7dabfa2bc=
+480 =
+
+> > > #11551
+> > > Hardware name: Samsung Exynos (Flattened Device Tree)
+> > >  =A0unwind_backtrace from show_stack+0x10/0x14
+> > >  =A0show_stack from dump_stack_lvl+0x58/0x70
+> > >  =A0dump_stack_lvl from panic+0x10c/0x328
+> > >  =A0panic from exynos4_mct_tick_stop+0x0/0x2c
+> > > ---[ end Kernel panic - not syncing: MCT hangs after writing 4 =
+
+> > > (offset:0x420) ]---
+> > > =
+
+> > > --->8---
+> > > =
+
+> > > Amlogic boards hang randomly during early userspace init, usually jus=
+t =
+
+> > > after loading the driver modules.
+> > > =
+
+> > > Reverting $subject on top of linux-next fixes all those problems.
+> > > =
+
+> > > I will try to analyze it a bit more and if possible provide some more =
+
+> > > useful/meaning full logs later.
+> > =
+
+> > I'm not sure what could go wrong there, but if you can figure out the
+> > clock, if it tries to set a new rate and what rate it is, it would be
+> > awesome :)
+> =
+
+> I'm also seeing clockevent break on omaps as a wrong source clock gets
+> picked.
+> =
+
+> It seems the dts assigned-clock-parents no longer works now?
+
+That would make some kind of sense, __set_clk_parents calls clk_put on
+both the assigned clock and its parent.
+
+Could you see what parent (and why?) it tries to enforce then?
+
+It looks like the gpt1_fck driver might favor another parent for that
+rate, which, if it's an invalid configuration, shouldn't really happen?
+
+Maxime
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
