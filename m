@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE845C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Apr 2022 10:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB4BFC433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Apr 2022 10:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9lv4tYAUTi9/ZWLK+whUMn2L6ox+Q5WMU7ps7p8x9zg=; b=lfjJ4M/LNWtmzR
-	H0S100mK5rtQp5RizBdg4xYDtNh3+PMmswdXtcbUl0QB642t58yYlkGeqcGDFi+6X7va43bMuIUex
-	7aon0iFHq9DihVR/B5PV2mrYHen46k5+YEKnFj5VFdpZ2/bbcHqKTn9UjTBms/0zpXgLvJyOg/SjI
-	FDIhVivym1B+X5ETIPGP7Opkt+GWGz6PNnOkyIsbQlJunblK5AT+iYnVAZxQ3j38MeoNpdy+CMQ1D
-	VgzH/bMuAJ93Yw0aKolyLBf5MWrwDp54ZHFkrOiPY1cqEejSlBjsu7SLlfRD4wUsyBkKXTpHho69Y
-	UFtB5G9ujXY0dZJ9WwvA==;
+	List-Owner; bh=DoL07j8ta+a8fd62hKW42qZwoEquS9Nj5B+fubrXyq4=; b=MCefavZbOEK6zB
+	DlimKe3Lbr4S3bKTvlujKyOB96nTq7Y+A3M6fqAZBXggltg/h92bIZBvojAvY3HBhgS2ewlCtOTQl
+	qERgg2z6VcdgxREo+1dMRPDqUjZpLRHcoa+v+R+JT4heizLUBk+v9oxokTw5zUJ3Oxoj7RYH/Xon7
+	amlXkH7uZro6j+qikSN7a4HM6y5KCQSvYiIrAHKIGXPMZ07iX14PBlVQ6udSF04IPiQlTIcIjQYq0
+	wJ2t4QLH3r96SehpA2EqUFanzKvwlzqFFQt84bvZs8pKedb++i22WJzoGizMcKhR/whrDjvxfzCGP
+	bIqXy3FphB3eI/21sgQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naEdc-005CpC-66; Fri, 01 Apr 2022 10:36:16 +0000
+	id 1naEdo-005CwQ-TJ; Fri, 01 Apr 2022 10:36:28 +0000
 Received: from mga05.intel.com ([192.55.52.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naEdH-005Cfq-BS; Fri, 01 Apr 2022 10:35:57 +0000
+ id 1naEdM-005CiO-EK; Fri, 01 Apr 2022 10:36:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648809355; x=1680345355;
+ t=1648809360; x=1680345360;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LT/CSy5JpaWUNE3hS0zZPYlM1WwfMM5j7JNnfmfMtD8=;
- b=nO2tscEMF8CEoN8z0O8abPAeXSZg9QBdwKX0nZ+1IDDyBdIjth5/OhLo
- eO9MQ+NNlC7je78aUpc+Zgp/8S2U11arzqzzqZrKN35wegV6/gJ9NlchA
- gXKKsX+AeQRZX+zKStL/nhRQUS1Fgg76p0Ws80q7YeQ31JReu3Zt5XYs7
- 9HfIM3MOFTKCebxegRtZ8JZyAICxLbbMdbUisC3oCngJBScg2lbdDOzh8
- N6CVLTXEXnZw6X6BRE+k9PRxbNVDAngeP1WLpdz1fpcMDuB87A3lVOoop
- Sulfq7CBl8D1sNwjlj8t03m7sB//dEY1kHZkQib47422kyqTz9R7aq7oV Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="346541345"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="346541345"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ bh=FBjJubezRNdOufs68VLhvnQ07zN00wBh7949bWAqU/U=;
+ b=OGjDxB5wQ9cRSMjFpkVE+QfMHXkedmT4QvpLDu55PhOUpK5o9On/Y7dB
+ cfYDWwdGEad3uBHUgBtiTwCwb4/q+GPnz5bGToEZbSDXdza5FvBVN0EZ2
+ 9n1DDRq4Gddi8eV8KAM0jjcoPqJf+naSL5wescvOpPnDpIeJcRhQhnos7
+ 94nOXsPr0x+jnYUyj3YBwa+tv2k2kOnEUehCvYcC/BBxGuR4Mh4LGiAqu
+ W72DZl/sQ1JKcbGNYImGNvRre1GI1veKP70qiVrRLJEWnpz4IsBWvSQJH
+ sLPFHxzKhLj3xNbG195eHQojRfWBdeCheN/in4zURRl69HhNBnGrkWMa8 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="346541388"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="346541388"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 03:35:52 -0700
+ 01 Apr 2022 03:36:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="843133146"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="619271370"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga005.fm.intel.com with ESMTP; 01 Apr 2022 03:35:44 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 01 Apr 2022 03:35:52 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id AC82A1C3; Fri,  1 Apr 2022 13:36:05 +0300 (EEST)
+ id F1EA1602; Fri,  1 Apr 2022 13:36:05 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,16 +73,17 @@ Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v4 02/13] gpiolib: Introduce gpiochip_node_count() helper
-Date: Fri,  1 Apr 2022 13:35:53 +0300
-Message-Id: <20220401103604.8705-3-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v4 08/13] pinctrl: npcm7xx: Switch to use
+ for_each_gpiochip_node() helper
+Date: Fri,  1 Apr 2022 13:35:59 +0300
+Message-Id: <20220401103604.8705-9-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
 References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_033555_446546_7D4FC865 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20220401_033600_541051_A957F4A9 
+X-CRM114-Status: GOOD (  19.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,37 +100,181 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The gpiochip_node_count() helper iterates over the device child nodes that
-have the "gpio-controller" property set. It returns the number of such nodes
-under a given device.
+Switch the code to use for_each_gpiochip_node() helper.
+
+While at it, in order to avoid additional churn in the future,
+do the following:
+- use a temporary variable for struct device pointer to shorten a few lines
+- get rid of a temporary variable for vIRQ number, assign it directly
+- switch to fwnode APIs where it makes sense
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- include/linux/gpio/driver.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c | 142 ++++++++++------------
+ 1 file changed, 62 insertions(+), 80 deletions(-)
 
-diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-index bfc91f122d5f..12de0b22b4ef 100644
---- a/include/linux/gpio/driver.h
-+++ b/include/linux/gpio/driver.h
-@@ -755,4 +755,15 @@ static inline void gpiochip_unlock_as_irq(struct gpio_chip *gc,
- 	device_for_each_child_node(dev, child)					\
- 		if (!fwnode_property_present(child, "gpio-controller")) {} else
+diff --git a/drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c b/drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c
+index 9557fac5d11c..3cf0f8a43c37 100644
+--- a/drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c
++++ b/drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c
+@@ -17,6 +17,7 @@
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinmux.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/regmap.h>
  
-+static inline unsigned int gpiochip_node_count(struct device *dev)
-+{
+ /* GCR registers */
+@@ -1862,88 +1863,69 @@ static int npcm7xx_gpio_of(struct npcm7xx_pinctrl *pctrl)
+ {
+ 	int ret = -ENXIO;
+ 	struct resource res;
+-	int id = 0, irq;
+-	struct device_node *np;
+-	struct of_phandle_args pinspec;
+-
+-	for_each_available_child_of_node(pctrl->dev->of_node, np)
+-		if (of_find_property(np, "gpio-controller", NULL)) {
+-			ret = of_address_to_resource(np, 0, &res);
+-			if (ret < 0) {
+-				dev_err(pctrl->dev,
+-					"Resource fail for GPIO bank %u\n", id);
+-				return ret;
+-			}
+-
+-			pctrl->gpio_bank[id].base =
+-				ioremap(res.start, resource_size(&res));
+-
+-			irq = irq_of_parse_and_map(np, 0);
+-			if (irq < 0) {
+-				dev_err(pctrl->dev,
+-					"No IRQ for GPIO bank %u\n", id);
+-				ret = irq;
+-				return ret;
+-			}
+-
+-			ret = bgpio_init(&pctrl->gpio_bank[id].gc,
+-					 pctrl->dev, 4,
+-					 pctrl->gpio_bank[id].base +
+-					 NPCM7XX_GP_N_DIN,
+-					 pctrl->gpio_bank[id].base +
+-					 NPCM7XX_GP_N_DOUT,
+-					 NULL,
+-					 NULL,
+-					 pctrl->gpio_bank[id].base +
+-					 NPCM7XX_GP_N_IEM,
+-					 BGPIOF_READ_OUTPUT_REG_SET);
+-			if (ret) {
+-				dev_err(pctrl->dev, "bgpio_init() failed\n");
+-				return ret;
+-			}
+-
+-			ret = of_parse_phandle_with_fixed_args(np,
+-							       "gpio-ranges", 3,
+-							       0, &pinspec);
+-			if (ret < 0) {
+-				dev_err(pctrl->dev,
+-					"gpio-ranges fail for GPIO bank %u\n",
+-					id);
+-				return ret;
+-			}
+-
+-			pctrl->gpio_bank[id].irq = irq;
+-			pctrl->gpio_bank[id].irq_chip = npcmgpio_irqchip;
+-			pctrl->gpio_bank[id].gc.parent = pctrl->dev;
+-			pctrl->gpio_bank[id].irqbase =
+-				id * NPCM7XX_GPIO_PER_BANK;
+-			pctrl->gpio_bank[id].pinctrl_id = pinspec.args[0];
+-			pctrl->gpio_bank[id].gc.base = pinspec.args[1];
+-			pctrl->gpio_bank[id].gc.ngpio = pinspec.args[2];
+-			pctrl->gpio_bank[id].gc.owner = THIS_MODULE;
+-			pctrl->gpio_bank[id].gc.label =
+-				devm_kasprintf(pctrl->dev, GFP_KERNEL, "%pOF",
+-					       np);
+-			if (pctrl->gpio_bank[id].gc.label == NULL)
+-				return -ENOMEM;
+-
+-			pctrl->gpio_bank[id].gc.dbg_show = npcmgpio_dbg_show;
+-			pctrl->gpio_bank[id].direction_input =
+-				pctrl->gpio_bank[id].gc.direction_input;
+-			pctrl->gpio_bank[id].gc.direction_input =
+-				npcmgpio_direction_input;
+-			pctrl->gpio_bank[id].direction_output =
+-				pctrl->gpio_bank[id].gc.direction_output;
+-			pctrl->gpio_bank[id].gc.direction_output =
+-				npcmgpio_direction_output;
+-			pctrl->gpio_bank[id].request =
+-				pctrl->gpio_bank[id].gc.request;
+-			pctrl->gpio_bank[id].gc.request = npcmgpio_gpio_request;
+-			pctrl->gpio_bank[id].gc.free = npcmgpio_gpio_free;
+-			pctrl->gpio_bank[id].gc.of_node = np;
+-			id++;
++	struct device *dev = pctrl->dev;
++	struct fwnode_reference_args args;
 +	struct fwnode_handle *child;
-+	unsigned int count = 0;
++	int id = 0;
 +
-+	for_each_gpiochip_node(dev, child)
-+		count++;
++	for_each_gpiochip_node(dev, child) {
++		struct device_node *np = to_of_node(child);
 +
-+	return count;
-+}
++		ret = of_address_to_resource(np, 0, &res);
++		if (ret < 0) {
++			dev_err(dev, "Resource fail for GPIO bank %u\n", id);
++			return ret;
++		}
 +
- #endif /* __LINUX_GPIO_DRIVER_H */
++		pctrl->gpio_bank[id].base = ioremap(res.start, resource_size(&res));
++
++		ret = bgpio_init(&pctrl->gpio_bank[id].gc, dev, 4,
++				 pctrl->gpio_bank[id].base + NPCM7XX_GP_N_DIN,
++				 pctrl->gpio_bank[id].base + NPCM7XX_GP_N_DOUT,
++				 NULL,
++				 NULL,
++				 pctrl->gpio_bank[id].base + NPCM7XX_GP_N_IEM,
++				 BGPIOF_READ_OUTPUT_REG_SET);
++		if (ret) {
++			dev_err(dev, "bgpio_init() failed\n");
++			return ret;
+ 		}
+ 
++		ret = fwnode_property_get_reference_args(child, "gpio-ranges", NULL, 3, 0, &args);
++		if (ret < 0) {
++			dev_err(dev, "gpio-ranges fail for GPIO bank %u\n", id);
++			return ret;
++		}
++
++		ret = irq_of_parse_and_map(np, 0);
++		if (ret < 0) {
++			dev_err(dev, "No IRQ for GPIO bank %u\n", id);
++			return ret;
++		}
++		pctrl->gpio_bank[id].irq = ret;
++		pctrl->gpio_bank[id].irq_chip = npcmgpio_irqchip;
++		pctrl->gpio_bank[id].irqbase = id * NPCM7XX_GPIO_PER_BANK;
++		pctrl->gpio_bank[id].pinctrl_id = args.args[0];
++		pctrl->gpio_bank[id].gc.base = args.args[1];
++		pctrl->gpio_bank[id].gc.ngpio = args.args[2];
++		pctrl->gpio_bank[id].gc.owner = THIS_MODULE;
++		pctrl->gpio_bank[id].gc.parent = dev;
++		pctrl->gpio_bank[id].gc.fwnode = child;
++		pctrl->gpio_bank[id].gc.label = devm_kasprintf(dev, GFP_KERNEL, "%pfw", child);
++		if (pctrl->gpio_bank[id].gc.label == NULL)
++			return -ENOMEM;
++
++		pctrl->gpio_bank[id].gc.dbg_show = npcmgpio_dbg_show;
++		pctrl->gpio_bank[id].direction_input = pctrl->gpio_bank[id].gc.direction_input;
++		pctrl->gpio_bank[id].gc.direction_input = npcmgpio_direction_input;
++		pctrl->gpio_bank[id].direction_output = pctrl->gpio_bank[id].gc.direction_output;
++		pctrl->gpio_bank[id].gc.direction_output = npcmgpio_direction_output;
++		pctrl->gpio_bank[id].request = pctrl->gpio_bank[id].gc.request;
++		pctrl->gpio_bank[id].gc.request = npcmgpio_gpio_request;
++		pctrl->gpio_bank[id].gc.free = npcmgpio_gpio_free;
++		id++;
++	}
++
+ 	pctrl->bank_num = id;
+ 	return ret;
+ }
 -- 
 2.35.1
 
