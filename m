@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E753C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Apr 2022 10:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAD4DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Apr 2022 10:38:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NEONhoNhoKKmfmDYgBp+NYS+6xiNk48Mary7z+WtJV4=; b=aVR/Ob5df2U7VT
-	bEew+couk1ik46sKDRiYajeutyOBrs/C8Q3upz7aUF3d0UhAIX2ks0EcVkvZJChY3QQIkr2f7hzOY
-	k1z4vHQ3hXKZXkc2R20LjD1gghT1fHpRSkWSRVK24PlxrfkF56U9BL1ka3wUIaB7IWqBgSJdDdgDf
-	YIAAfV/5BcGB6tq/o4ghWFO3qoDRIvvbgE9BQgBvnkrA6nZVKUm2TPyowPsJFUsdD2xMHmnDvdey+
-	ZZdAFkNJQD7SOSQmoliKHL4a8a6ssq/2GPowYSeJfRKACgyT492f77pprFoznIy2Ap9lu/mCQ7htt
-	mqcm9d8znPh4yHeI1jMA==;
+	List-Owner; bh=H2rYA5xaK+o+UYih6xpRCBfoy9rGYItETvlizMg9kvY=; b=CFi3GkClcvwEUl
+	sYTjc1mi8zvHihdmDLT7vv1K6lg/6C4E16EL5eMtIPiGwzWDDyHI77gXWjQvulM+gaOT3apFueWeC
+	3Qm9KE/PAJ2kPcjoQtUtnzBiducNkGTFUfTp5yOBJZbUEgHmL3RvVx+68HRwwODj1EOhu+Z/SMsYz
+	xJ8bAGzrC5w19zU0VJtkROg8BhEdEoxggEwsjmgKkDERsaFqdaFlHVotg1o+SQCPCWQ9SJrQluRzf
+	/DNT5Q42JfcXYwdrVfUCBu3Kv9G/euw/Va8rDYwKkiQks6S4LJp4soEqVFavMEVfnPJGxliOLeE1r
+	6JKOyyjDApPMSMkGYGiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naEfz-005EOA-DX; Fri, 01 Apr 2022 10:38:43 +0000
+	id 1naEfx-005END-Op; Fri, 01 Apr 2022 10:38:41 +0000
 Received: from mga06.intel.com ([134.134.136.31])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naEdh-005Crc-8i; Fri, 01 Apr 2022 10:36:22 +0000
+ id 1naEdg-005CqY-J0; Fri, 01 Apr 2022 10:36:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648809381; x=1680345381;
+ t=1648809380; x=1680345380;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EgXmB1hmlgyBRyTbiaI44zoA0d0R4GjmhsIVDP1LpQo=;
- b=avhA2PAQWBpQCSsJD9nmP0wCBEyMWD/PFxnhUvOOcqr5wMl6hyzrb5+1
- GdTa37L3d/czrsXst8iU8X2wIrCtu3EDuLLGL0PfJ8Q+uF7NkN+07Z1kW
- GPZ3ZhOnuaVh3Dl1GuJSaXc6eiCQUpUeMkU0JDmJec5Ho+Zf9Kv3B25xc
- kUWvx4nzZiGu59DN4KcAyEcfzfKrC7fDO0v3uFGc5kUWR0KbR1q94R6HF
- xT4LmtPyF9YyEo5HU2yk5DQM8/WFiEXvB6f+rV153rvdXW/3pzpZczOcQ
- Z6Wf5Gr5fdINXLdJnepTTeTkZw+tj1rBKYr6jt2Leg3p3xHitE+pFsmnV g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="320790062"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="320790062"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=jQJeoHDjZLYzGmOrK+oBTqEppFS7ObLysie7MCABhco=;
+ b=HDJ3zQtpzLR4Dq2QivLew1CTYe6r0DvHfrxr/LKcJ3pOgZlaWcsgEX98
+ ZmD3RG/t4GI0Ob3V0g9qCcf/uO3lU643b6TV+6pXV6CfNhdB5WSzweDop
+ 8cGFWcDlncjvDictIZgdnyiSlr7K4JBeEJugu9XZGkLOSZJ2gxBcD4q24
+ 2NzhR/orw7MDZi4fDcNMntrrGXQKrpVf6gCk3m+IGhMTJwp5Nu4uBxMKj
+ 0vd6ZDOJXS+/zHJFHGpHslAMI1+YmnW01G2v4W9pnLjBLCDgWuFqX5PXc
+ ipqlf0C/+tev9IhijEqKuRWKqRAyGurqifEL7R3Td2A+gIJPoNRuIBM+B w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="320790027"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="320790027"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 03:36:00 -0700
+ 01 Apr 2022 03:35:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="650672369"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="606673270"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga002.fm.intel.com with ESMTP; 01 Apr 2022 03:35:52 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 01 Apr 2022 03:35:44 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 14307668; Fri,  1 Apr 2022 13:36:06 +0300 (EEST)
+ id C344620B; Fri,  1 Apr 2022 13:36:05 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Qianggui Song <qianggui.song@amlogic.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -73,16 +73,17 @@ Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v4 10/13] pinctrl: meson: Enable COMPILE_TEST
-Date: Fri,  1 Apr 2022 13:36:01 +0300
-Message-Id: <20220401103604.8705-11-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v4 04/13] pinctrl: stm32: Switch to use
+ for_each_gpiochip_node() helper
+Date: Fri,  1 Apr 2022 13:35:55 +0300
+Message-Id: <20220401103604.8705-5-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
 References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_033621_392514_B142F635 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20220401_033620_731984_F892B1D0 
+X-CRM114-Status: GOOD (  17.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,27 +100,169 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable COMPILE_TEST for a better test coverage.
+Switch the code to use for_each_gpiochip_node() helper.
+
+While at it, in order to avoid additional churn in the future,
+switch to fwnode APIs where it makes sense.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
 ---
- drivers/pinctrl/meson/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pinctrl/stm32/pinctrl-stm32.c | 72 ++++++++++++---------------
+ 1 file changed, 33 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index d1955c65b4b6..64fb9e074ac6 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- menuconfig PINCTRL_MESON
- 	tristate "Amlogic SoC pinctrl drivers"
--	depends on ARCH_MESON
-+	depends on ARCH_MESON || COMPILE_TEST
- 	depends on OF
- 	default y
- 	select PINMUX
+diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.c b/drivers/pinctrl/stm32/pinctrl-stm32.c
+index 91b9a64b649e..09952c463f67 100644
+--- a/drivers/pinctrl/stm32/pinctrl-stm32.c
++++ b/drivers/pinctrl/stm32/pinctrl-stm32.c
+@@ -24,6 +24,7 @@
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinmux.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/regmap.h>
+ #include <linux/reset.h>
+ #include <linux/slab.h>
+@@ -1215,13 +1216,12 @@ static const struct pinconf_ops stm32_pconf_ops = {
+ 	.pin_config_dbg_show	= stm32_pconf_dbg_show,
+ };
+ 
+-static int stm32_gpiolib_register_bank(struct stm32_pinctrl *pctl,
+-	struct device_node *np)
++static int stm32_gpiolib_register_bank(struct stm32_pinctrl *pctl, struct fwnode_handle *fwnode)
+ {
+ 	struct stm32_gpio_bank *bank = &pctl->banks[pctl->nbanks];
+ 	int bank_ioport_nr;
+ 	struct pinctrl_gpio_range *range = &bank->range;
+-	struct of_phandle_args args;
++	struct fwnode_reference_args args;
+ 	struct device *dev = pctl->dev;
+ 	struct resource res;
+ 	int npins = STM32_GPIO_PINS_PER_BANK;
+@@ -1230,7 +1230,7 @@ static int stm32_gpiolib_register_bank(struct stm32_pinctrl *pctl,
+ 	if (!IS_ERR(bank->rstc))
+ 		reset_control_deassert(bank->rstc);
+ 
+-	if (of_address_to_resource(np, 0, &res))
++	if (of_address_to_resource(to_of_node(fwnode), 0, &res))
+ 		return -ENODEV;
+ 
+ 	bank->base = devm_ioremap_resource(dev, &res);
+@@ -1245,15 +1245,15 @@ static int stm32_gpiolib_register_bank(struct stm32_pinctrl *pctl,
+ 
+ 	bank->gpio_chip = stm32_gpio_template;
+ 
+-	of_property_read_string(np, "st,bank-name", &bank->gpio_chip.label);
++	fwnode_property_read_string(fwnode, "st,bank-name", &bank->gpio_chip.label);
+ 
+-	if (!of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, i, &args)) {
++	if (!fwnode_property_get_reference_args(fwnode, "gpio-ranges", NULL, 3, i, &args)) {
+ 		bank_nr = args.args[1] / STM32_GPIO_PINS_PER_BANK;
+ 		bank->gpio_chip.base = args.args[1];
+ 
+ 		/* get the last defined gpio line (offset + nb of pins) */
+ 		npins = args.args[0] + args.args[2];
+-		while (!of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, ++i, &args))
++		while (!fwnode_property_get_reference_args(fwnode, "gpio-ranges", NULL, 3, ++i, &args))
+ 			npins = max(npins, (int)(args.args[0] + args.args[2]));
+ 	} else {
+ 		bank_nr = pctl->nbanks;
+@@ -1268,20 +1268,20 @@ static int stm32_gpiolib_register_bank(struct stm32_pinctrl *pctl,
+ 				       &pctl->banks[bank_nr].range);
+ 	}
+ 
+-	if (of_property_read_u32(np, "st,bank-ioport", &bank_ioport_nr))
++	if (fwnode_property_read_u32(fwnode, "st,bank-ioport", &bank_ioport_nr))
+ 		bank_ioport_nr = bank_nr;
+ 
+ 	bank->gpio_chip.base = bank_nr * STM32_GPIO_PINS_PER_BANK;
+ 
+ 	bank->gpio_chip.ngpio = npins;
+-	bank->gpio_chip.of_node = np;
++	bank->gpio_chip.fwnode = fwnode;
+ 	bank->gpio_chip.parent = dev;
+ 	bank->bank_nr = bank_nr;
+ 	bank->bank_ioport_nr = bank_ioport_nr;
+ 	spin_lock_init(&bank->lock);
+ 
+ 	/* create irq hierarchical domain */
+-	bank->fwnode = of_node_to_fwnode(np);
++	bank->fwnode = fwnode;
+ 
+ 	bank->domain = irq_domain_create_hierarchy(pctl->domain, 0,
+ 					STM32_GPIO_IRQ_LINE, bank->fwnode,
+@@ -1418,7 +1418,7 @@ static int stm32_pctrl_create_pins_tab(struct stm32_pinctrl *pctl,
+ int stm32_pctl_probe(struct platform_device *pdev)
+ {
+ 	struct device_node *np = pdev->dev.of_node;
+-	struct device_node *child;
++	struct fwnode_handle *child;
+ 	const struct of_device_id *match;
+ 	struct device *dev = &pdev->dev;
+ 	struct stm32_pinctrl *pctl;
+@@ -1525,40 +1525,34 @@ int stm32_pctl_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 
+ 	i = 0;
+-	for_each_available_child_of_node(np, child) {
++	for_each_gpiochip_node(dev, child) {
+ 		struct stm32_gpio_bank *bank = &pctl->banks[i];
++		struct device_node *np = to_of_node(child);
+ 
+-		if (of_property_read_bool(child, "gpio-controller")) {
+-			bank->rstc = of_reset_control_get_exclusive(child,
+-								    NULL);
+-			if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
+-				of_node_put(child);
+-				return -EPROBE_DEFER;
+-			}
+-
+-			bank->clk = of_clk_get_by_name(child, NULL);
+-			if (IS_ERR(bank->clk)) {
+-				if (PTR_ERR(bank->clk) != -EPROBE_DEFER)
+-					dev_err(dev,
+-						"failed to get clk (%ld)\n",
+-						PTR_ERR(bank->clk));
+-				of_node_put(child);
+-				return PTR_ERR(bank->clk);
+-			}
+-			i++;
++		bank->rstc = of_reset_control_get_exclusive(np, NULL);
++		if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
++			fwnode_handle_put(child);
++			return -EPROBE_DEFER;
+ 		}
+-	}
+ 
+-	for_each_available_child_of_node(np, child) {
+-		if (of_property_read_bool(child, "gpio-controller")) {
+-			ret = stm32_gpiolib_register_bank(pctl, child);
+-			if (ret) {
+-				of_node_put(child);
+-				return ret;
+-			}
++		bank->clk = of_clk_get_by_name(np, NULL);
++		if (IS_ERR(bank->clk)) {
++			if (PTR_ERR(bank->clk) != -EPROBE_DEFER)
++				dev_err(dev, "failed to get clk (%ld)\n", PTR_ERR(bank->clk));
++			fwnode_handle_put(child);
++			return PTR_ERR(bank->clk);
++		}
++		i++;
++	}
+ 
+-			pctl->nbanks++;
++	for_each_gpiochip_node(dev, child) {
++		ret = stm32_gpiolib_register_bank(pctl, child);
++		if (ret) {
++			fwnode_handle_put(child);
++			return ret;
+ 		}
++
++		pctl->nbanks++;
+ 	}
+ 
+ 	dev_info(dev, "Pinctrl STM32 initialized\n");
 -- 
 2.35.1
 
