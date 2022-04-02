@@ -4,67 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBD64C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Apr 2022 16:25:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61D71C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Apr 2022 07:49:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DWWAi2HZ9m+5YQCj6lo7gyA7ZqNGjd9o+egvIRV7tpU=; b=E4tAFPv03/ttRUmvsnRZiDQXqB
-	Y20M1B5sYCojugYmoGKgNSexBZ4gKNjL5XS2m2+vzhmac3H3208k4FQdEn7KzDGDAMclaeoaPZszQ
-	wtpYIENS4FX6WYrGwmaOmiXjEkoLksl5iXwb6xL7ci8YcF8qO1hXHYbwsibG3+G0BZzhDrL/KVzOd
-	tS1c/bWdl7xzT4dBHlDCMy5tJuIs84/5bf+o+GQZj5izRSGSq267ysxP243IZv25l/tgqgF+RhfJz
-	nnDaVmO3DH5bMGwCv06+JlbjQeLL0y9iCdUFTjdcV9aDRzosU2jn8m7hY/gapkem21tNt0hM7IXkT
-	ibTu2l0w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kTuj/wkONxw81yRuO7h97/NodaX4W0zDBtyibxfTMF8=; b=XhNGxMGkzALGfW
+	WEPiDyFa3X1TOzFgT9mDkNgniaOsyg7j/k1ifK8YMPQFnI86Pt5guRlSLwj/BdGafu93nWb6f/1ZK
+	ucMoF9YrgWzarTL345J9FqBli0KzKYYDOcZz/SalmCVtMdYDjuxXI+Xxbx0DV4PPt2D50Wgguv8LS
+	kUTDPmIrBnesjsub5RNmoE7nBczcY5zvM65nQhsr0SfPlJwH/Gn1tbiVSIFgXrVbPK0Uc2plBlC12
+	OXMhrhKDToL5Gd9d+ibmpa37c2OZXo57lLEa0FcchyeC9sMmbhEVroGj7ylcrsT/ImLpHDnUctm4Y
+	s8Hpy7HkOGS88yYdnzZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naK5V-006XK1-SB; Fri, 01 Apr 2022 16:25:25 +0000
-Received: from www.zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
+	id 1naYVr-008FvN-Qu; Sat, 02 Apr 2022 07:49:35 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naK5J-006XHD-Lj
- for linux-amlogic@lists.infradead.org; Fri, 01 Apr 2022 16:25:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=k1; bh=AcBPC6b8Ow54uIrFRglU9gzXaSUC
- Q4cd7DaZDtjcLyQ=; b=Tep0sd+ZQs/pV7W17OP62Su2NA/HIveSPhneZhKmB3yr
- EFlsmnQ5J+3HzyhQ8LEt7EK1iocP9C2nrggkVq47g0R2v2ipR57zJ83uApFUonar
- qZ9hKdd71rBIwi6WhnPuU9lacp/q/XseyT093J/wJcxudPOdGVdA1ORY6mfVvpY=
-Received: (qmail 801843 invoked from network); 1 Apr 2022 18:25:03 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted,
- authenticated); 1 Apr 2022 18:25:03 +0200
-X-UD-Smtp-Session: l3s3148p1@tUKLOJrbdqYgAQnoAGGbAFirbAEmXd1u
-Date: Fri, 1 Apr 2022 18:25:03 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-mmc@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- ath10k@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
- brcm80211-dev-list.pdl@broadcom.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- SHA-cyfmac-dev-list@infineon.com
-Subject: Re: [RFC PATCH 00/10] mmc: improve API to make clear {h|s}w_reset is
- for cards
-Message-ID: <YkcnXxNjMNdDgEBt@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-mmc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com,
- brcm80211-dev-list.pdl@broadcom.com,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- SHA-cyfmac-dev-list@infineon.com
-References: <20220321115059.21803-1-wsa+renesas@sang-engineering.com>
+ id 1naYVn-008FtD-CH; Sat, 02 Apr 2022 07:49:33 +0000
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Sat, 2 Apr 2022
+ 15:49:25 +0800
+From: Liang Yang <liang.yang@amlogic.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
+CC: Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
+ <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
+ Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/2]  refine the NFC clock framework
+Date: Sat, 2 Apr 2022 15:49:18 +0800
+Message-ID: <20220402074921.13316-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <20220321115059.21803-1-wsa+renesas@sang-engineering.com>
+X-Originating-IP: [10.28.8.21]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_092514_021455_9DED031B 
-X-CRM114-Status: UNSURE (   6.57  )
+X-CRM114-CacheID: sfid-20220402_004931_441807_A93C6225 
+X-CRM114-Status: UNSURE (   8.22  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,63 +61,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2733656036408694168=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Background firstly, 
+Both EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
+defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+bit6~7 is the mux for fix pll and xtal.
+Previously a common MMC sub clock framework is implemented and shared by EMMC and
+NAND, but that is coupling the EMMC and NAND, although EMMC and NAND is mutually
+exclusive. see the link:
+[https://lore.kernel.org/all/1jy23226sa.fsf@starbuckisacylon.baylibre.com/]
+Now we plan to abandon common mmc sub clock framework and recovery the series.
 
---===============2733656036408694168==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PxhwHXhOFLOXfgmr"
-Content-Disposition: inline
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
 
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
 
---PxhwHXhOFLOXfgmr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
 
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
 
-> I tested it with my Renesas boards, so far no regressions. Buildbots are
+Liang Yang (2):
+  mtd: rawnand: meson: discard the common MMC sub clock framework
+  dt-bindings: nand: meson: refine Amlogic NAND controller driver
 
-Wishful thinking, the patches crash now when booting. Still checking
-what is the difference to when I send the patches out.
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 80 +++++++++++++++++
+ drivers/mtd/nand/raw/meson_nand.c             | 89 +++++++++----------
+ 3 files changed, 122 insertions(+), 107 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
 
-Still, looking forward to comments on the general approach.
+-- 
+2.34.1
 
-
---PxhwHXhOFLOXfgmr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmJHJ1oACgkQFA3kzBSg
-KbYPGw//YUU0c/TCXVii8TbBtVaxFJ+SFYjCQiY3RhhVPIrWlCF7+1v7BKyWdqz+
-I/ctuhs3uUutw1dE3/WI12HevWANnVdw6EI8D0+aJOrxaCfMueJpEugMYguwpk8t
-ZWB8Kh+8Lozg55uOn7i4byGA5UThrrbV9k6/IwKnfbGS+fKUVWL9uJxMKssYx0uM
-ZjgVIKF0bSg0As+UuQBiFhKqJQybnBa27DHtl1n8Co3zX79M5T//aB/SvLbeyyKM
-MhsVF3xd7LxdWDVTkXEdjQqVtApNlGAp9+2iYdb86V0dd+hz0PWO9Acp9VB2ZOEv
-OcIhc8r0iExSdFITQeSevS5LdnRhyxv8mA0K4pS2ndbIPwut0dmHSSU4PnseFcAy
-khFA8jDujq1jz83z0ucAlCsr3U/u0Yrb7CGyLA3zKTCP05RLvPsbAxyymT2EOfen
-S9+LsJhEXiQ2KstNsFqWch/PebTxMkyrVvCo+US+HhCsDTP01WvqxwtC0TkB69Zk
-cjVeDWo5QkggA1nYKPntr9OIyqeHCmowWHW+2V4zmWAgI1qodhPfQnFsUuzwbbXy
-j8cavhOoe3ZKwLeH5X1gP0mOClgbRWFEzOBEFq2W94rLvt8gMp85Md8l2Y1MMUO2
-5byHakN0xAIFBbcv+tGO6SAK9ld3vFtWIoPtyYHnDKjmKQwU1GE=
-=v18S
------END PGP SIGNATURE-----
-
---PxhwHXhOFLOXfgmr--
-
-
---===============2733656036408694168==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2733656036408694168==--
-
