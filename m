@@ -4,86 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD941C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 12:42:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 549FEC433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 14:26:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XzBf8GnnvCcvM11zREL6g2Fl9wMwwutq0fyLcUMWGdI=; b=24aYe8iOd8+54C
-	pVEdjan4Pwf2+kiFZwuEy3bAuK5BTJz6AoMdtE83o4quRJ9xqWSaWo2Bb00nnYViVZ1gojzvMjgou
-	nGkpDMO8FdemupIhjAIhW29vFQaT5Vm7opF3KQvqQj8Fj2aM7lITDeJJkGs9NE0VrZ/odmxJZ9pUf
-	raIJlrCbd2hEL4+SJQZTrI7+qj9Ox5b/Zzrz4s0PS3/hliv6iuU8oAGGxnGojEM94piDZcCZnWzUT
-	9aSdAsfTHDRO0j5meiJgUGUj6/6n7GmxjrDkYyZYReHX9xKSjVU1xX/dUe/UMAYiGAwrj6nB4jg3x
-	lx8ThDh4MR4X3Tomipsw==;
+	List-Owner; bh=uquqHqOl4YAKE4HwNEm8cvNbas9Apk9LcdTycgdLcas=; b=abtbUUf3aCa503
+	lB5w7oyyqbR7TvXK1GDvp5NftQ31KSgGuw24QET3DGyLSZuT7xuU8aXwQTBoos3mvZXtu/dUSMhs/
+	dGM3ZnNexXdOTjjXlpX04y1UFgRtByuBFK93Jq2uAQnviUzkJAusugQp3txE0nI3+0Fo/eB3maC8+
+	jg1WxFyxBq4YDvt0zO/I5SrdPBuTAUDAZZ0Ohp69UT38Tu0dQQoZUZFDq6DMsFV2LYsAqN1CKw1+Z
+	SHOaxew5FrvMbQciEHDnf/3BxPRJFAlJcu1e7HrmM80x987PTK2cX3qz/NV2Zmk6xVvP8pLT0P/J5
+	mZlY2/JmO5ldH7k7vLHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbM1s-00Ev3j-8q; Mon, 04 Apr 2022 12:41:56 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1nbNfO-00FK8L-16; Mon, 04 Apr 2022 14:26:50 +0000
+Received: from mga05.intel.com ([192.55.52.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbM1e-00EuwQ-6s
- for linux-amlogic@lists.infradead.org; Mon, 04 Apr 2022 12:41:43 +0000
-Received: by mail-wr1-x435.google.com with SMTP id m30so14339363wrb.1
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Apr 2022 05:41:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=DUL8S2OoMyRqG/7s7R2uoNem727ljU5XkfbK9p9cv8E=;
- b=jfIyJSwm7twCD2gonoFI5cvJ1q989UYupliKqNo5taQD3EC5fk8JIG6tFGn9rPvnIh
- rFW8S0rhW86K58S2y5RliT4UjSAttaoPQuiC+syqjzC0+96Nef5Oypi2MQqj3bojMRYq
- BQluEagVa7jVK0SSg54Oj/TdeWKLapd2l7Q12iUI0mBDrXv0lBfFUAo7B+MU84Zht4xb
- iQH1h23lkNATwU6CGnvxPBtSAS+7bJiGqck493YCSpJg15u0ElPPCQvqGn9bvejMrqcL
- fCTooY9hQRwfyjjq+hzJAB6Wn24VbZIdM3WAJlIEn4XzZJYo66bpFGHSE6gwUlpuXIRp
- ewXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=DUL8S2OoMyRqG/7s7R2uoNem727ljU5XkfbK9p9cv8E=;
- b=ghO+jH3Y8UUVFLjp2WQwyHPVPcjdx7Qt48B2SCamO69C5lkHqmrdwRUDPH6r2gsUPz
- GHvc9mHEAeYLRpEodHgbRL4Skbi3Orr8tozevf1u5GmLUFNYyOxRfsKPtsieaJmVTUyU
- IUd7n6MffyAhdz4GrcPWwk0LqCKvVqOG7z3UA9wE6LZsQ17c4E3EBupd1ZhL+pgFAFqG
- EM8VbxnaoGVu5V4rvSkO/w9Kgvgc/QRYkwWzHgDmHnuQm4Lr691KZiqkO7AVZypcGG26
- 5XghO0rI1cNlU6ZAwvf/YM7SZ03SmUkXoRFUmFyOr0Sb2oV5cucaHS6GDm2UsjlFB+qJ
- lJiw==
-X-Gm-Message-State: AOAM533N3m9THnbAGVeqVsPnLwK81gp4W1G3SRJuMe9j34lSxJt2mP71
- EQx/3nE7mTHQRnVItKGHwuR8IQ==
-X-Google-Smtp-Source: ABdhPJxIvCW+TSeCMCYrtX59dAKO6en+LRllfjmQ29fzb7TMQBy6ka32MfCRQwy7hwenEnWYNF6F2g==
-X-Received: by 2002:adf:d081:0:b0:203:e209:7def with SMTP id
- y1-20020adfd081000000b00203e2097defmr16839540wrh.388.1649076098346; 
- Mon, 04 Apr 2022 05:41:38 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:1add:1b28:2457:eb46?
- ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
- by smtp.gmail.com with ESMTPSA id
- i10-20020a0560001aca00b00203daf3759asm9772755wry.68.2022.04.04.05.41.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 04 Apr 2022 05:41:37 -0700 (PDT)
-Message-ID: <05e7917b-adaf-53d9-c3af-7d65b5f39ac7@baylibre.com>
-Date: Mon, 4 Apr 2022 14:41:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] pinctrl: meson: fix unused variable warning
-Content-Language: en-US
-To: Qianggui Song <qianggui.song@amlogic.com>,
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
+ id 1nbNf4-00FK2j-0v; Mon, 04 Apr 2022 14:26:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649082390; x=1680618390;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=YFMFyz8A4KQU+l3+HDFx/zBlfNq5vKwG+g4aU+dWt+M=;
+ b=Z3oa0hPRiWEhbS7Q9O9PvJv1uog26i3Ak/K5MQIgEKcl2ZfpzCtTUzvp
+ DtjJmZ2rNdhStg0UX4YuFXtKVhPu8AH0F+d9ge4D1VNulhB0zBkLM01R4
+ zGrs9GNmOCafDQ7uShzhxAREguekPVoKbmlVcDNgsn970GyPIUo6U0frH
+ cXaO5mR5PJhEHG1gQRv6gXHrt7wh3RXtkIqK/oIAUUmoh5E4foMMcjX0y
+ mqyDmO7/8/cm7G+YGrHBSXC++HmBoVxz0Bb9NECaxSjdXrx1qgv4XgfLU
+ lMbknO/xdw0wxm6kwr28g1LhZtBqM0Pwt0AfY02ynD0BXtphso/pXy48/ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="346963709"
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="346963709"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 07:26:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="657518638"
+Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
+ by orsmga004.jf.intel.com with ESMTP; 04 Apr 2022 07:26:16 -0700
+Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1nbNep-00027d-VP;
+ Mon, 04 Apr 2022 14:26:15 +0000
+Date: Mon, 4 Apr 2022 22:26:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Liang Yang <liang.yang@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
+Cc: kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
+ Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20220330023720.18238-1-qianggui.song@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220330023720.18238-1-qianggui.song@amlogic.com>
+ Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>,
+ YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Message-ID: <202204042238.eZq8bjau-lkp@intel.com>
+References: <20220402074921.13316-2-liang.yang@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220404_054142_318332_873F08A7 
-X-CRM114-Status: GOOD (  15.44  )
+X-CRM114-CacheID: sfid-20220404_072630_151977_8709E6CD 
+X-CRM114-Status: GOOD (  11.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,48 +88,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/03/2022 04:37, Qianggui Song wrote:
-> The kernel test robot reported a warning as below:
->>> drivers/pinctrl/meson/pinctrl-meson-s4.c:178:27: warning: unused variable 'tdm_sclk1_c_pins' [-Wunused-const-variable]
->     static const unsigned int tdm_sclk1_c_pins[]            = { GPIOC_3 };
-> 
-> Fix it by adding missing description about this pins
-> 
-> Fixes: 775214d389c2 ("pinctrl: meson: add pinctrl driver support for Meson-S4 Soc")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-> ---
->   drivers/pinctrl/meson/pinctrl-meson-s4.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> index 3c7358f53302..cea77864b880 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-> @@ -575,6 +575,7 @@ static struct meson_pmx_group meson_s4_periphs_groups[] = {
->   	GROUP(tdm_d2_c,			4),
->   	GROUP(tdm_d3_c,			4),
->   	GROUP(tdm_fs1_c,		4),
-> +	GROUP(tdm_sclk1_c,		4),
->   	GROUP(mclk_1_c,			4),
->   	GROUP(tdm_d4_c,			4),
->   	GROUP(tdm_d5_c,			4),
-> @@ -936,7 +937,7 @@ static const char * const iso7816_groups[] = {
->   };
->   
->   static const char * const tdm_groups[] = {
-> -	"tdm_d2_c", "tdm_d3_c", "tdm_fs1_c", "tdm_d4_c", "tdm_d5_c",
-> +	"tdm_d2_c", "tdm_d3_c", "tdm_fs1_c", "tdm_d4_c", "tdm_d5_c", "tdm_sclk1_c",
->   	"tdm_fs1_d", "tdm_d4_d", "tdm_d3_d", "tdm_d2_d", "tdm_sclk1_d",
->   	"tdm_sclk1_h", "tdm_fs1_h", "tdm_d2_h", "tdm_d3_h", "tdm_d4_h",
->   	"tdm_d1", "tdm_d0", "tdm_fs0", "tdm_sclk0", "tdm_fs2", "tdm_sclk2",
+Hi Liang,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.18-rc1 next-20220404]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: s390-randconfig-r002-20220403 (https://download.01.org/0day-ci/archive/20220404/202204042238.eZq8bjau-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c34b64ab8005a978739f157a07ed342d247fecac
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
+        git checkout c34b64ab8005a978739f157a07ed342d247fecac
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   s390-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
+   meson_nand.c:(.text+0xd9e): undefined reference to `clk_divider_ops'
+>> s390-linux-ld: meson_nand.c:(.text+0xe34): undefined reference to `devm_clk_register'
+   s390-linux-ld: net/core/sock.o: in function `sk_destruct':
+   sock.c:(.text+0x373e): undefined reference to `__sk_defer_free_flush'
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
