@@ -4,55 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FE97C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 10:40:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4BA1C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 10:54:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jQPRj5zGdFC6pja3OOBZWPOZeqqahEW0Z82pN/Ig1vo=; b=JkJpNIAcQoTjMWXOCTlxbM4Eqs
-	APbY3HsVSG9IcKQZZHyWCkyqTw/97Y1YqfFpOhLNzPCO9/B5+q/yr+yWFGEDK4yfpPIOwytnuZSJ0
-	uEhM6d3jO4ue0IKXyBMCvAYEqZUvMdUKZQS+uQCuE4ieyDHi5VH5niJ5zx6wyvs1dVcWOdVWaXJxG
-	xQQcAWQYsavtXB+ByQygKKwl681O3hbOfdF2EVY25AbYnYs9KqCK2TerDhAs2cwRvNRw4FAycjd/S
-	/yyxxBoADCHXky7dGIo71FLH99mmeELBkKwLWHgm7RXgJGfAa6+Fx1YbLQAeZOWriQub4+2NFnD69
-	YbISATGg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=C8vYFY6Udc44B/ohGzwl8uw7jFlZ+V4pG0nTJ6RxvdY=; b=nXg04MD8MYzYd4
+	YgD+4NGPBtRXep6hnuLdMJ0EN5+0/8gYFlAd3Jf8xsMwC2s2IZAUIGVOXdHStYBr66iOwiTuPLcGu
+	Ed3Qngy0IJf9OxNcxahNae1p4Kqil7PTwLT2kyAN7aBY2MckcMtmYT3AfI5d5XTwfIhKSjmER9Wck
+	8jB4gm6VR4E+DgaNsz+2WYannLukASw6jEruBwcCdCBPCgjnF3/QL45TFkvd7v5FaZ5a7lY7rj/c1
+	Lg538YO6shtQF27jGu0nOjKCRGnBrGPxpsabDA/0bV+OFvMBT+ZBQxP5bysvrpJHtHPy+Bb7olvqo
+	Ob9tDZkXx7IuWOgwsq8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbK7s-00EZfL-0Z; Mon, 04 Apr 2022 10:40:00 +0000
-Received: from mx.msync.work ([2001:41d0:d:357f:aaaa::3])
+	id 1nbKLq-00Ecm9-HM; Mon, 04 Apr 2022 10:54:26 +0000
+Received: from mx1.tq-group.com ([93.104.207.81])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbK7o-00EZcV-5D; Mon, 04 Apr 2022 10:39:58 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 4965C3964D; Mon,  4 Apr 2022 10:39:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
- t=1649068790; h=from:subject:date:message-id:to:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references:
- disposition-notification-to; bh=K8y6f0ZyIOvwaXnDqPqMX/eCkxRTN6+lglp1GjSsoF0=; 
- b=WbQ5fDISwpYYjCwTRN06a2PF9QC4E6eLyo2UaFMa1S3Rz8yBnghyulWkLF9hlcaPXLyG6U
- jYEJAVSgXcUx7gh6m+zS0IN3Djz/fVBzj5JHvNY0FfhbP5iq8vj5nNNQK/zhZFYrenOjlj
- FdeUu70vEO3hGdGidGVvRRtvXl9M423wkhaDE8wFc5fKIMjonbdN7FHDvPt5GxyVN8Qr3h
- eQqJnj49aH06xMEfPrWieUC5oaN0G+QBMpnfFtO9k0dLlkQyDOnlvxe1ViSuCeT6FyeL27
- eZ6o1NUdebQJt5Jj0+dm7Sz4cV2DVzbjUlDuZKYbp9vpU5YWQ2YXfvd3L9Wpeg==
-Subject: Re: [PATCH v2 0/4] arm64: meson: update dts for JetHub devices
-To: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220326075110.1462301-1-adeep@lexina.in>
- <164905930207.1797085.9678466232916244683.b4-ty@baylibre.com>
-From: Vyacheslav <adeep@lexina.in>
-Message-ID: <d53b8c6f-6bc2-5445-c426-5409d324fac1@lexina.in>
-Date: Mon, 4 Apr 2022 13:39:47 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ id 1nbKLm-00EciR-2u; Mon, 04 Apr 2022 10:54:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+ t=1649069662; x=1680605662;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rQ+A9jrxP/AoNdJehS0U+xaw6T3SSUsxJMay+kwDw0g=;
+ b=U6oWvS31yGE+gKE4w9vx/xDc/yi1mEkXbRy5Ha844KcAroz0I+dOuM08
+ XJU0/sAVCA9e9IxD7q3gv3urzr24HNZsL3wLDqbx1yjSJBsLY71b5jyGA
+ JQhBcvSn45LdvwJzvtJ3pi4aFs/y+JJ4agFWcsQGX8u6svzsWucz+p3xx
+ BXA91jfmqn4g2C5JlWoNxCMTe2Isf6Hp4GJHoMHIKsXQvAUOVJfjMzmhO
+ 4BnGrEwgeqdxDbDyR1R0lhoJ/+cLBokXlf8WC+gE3pjj/CeErAyybLrgZ
+ ZSPUfFNRTy0D2tU+Dcc/IiC9RKNdA6jiywUHb0p5s0ddI+FtGCrTdpgfU A==;
+X-IronPort-AV: E=Sophos;i="5.90,234,1643670000"; d="scan'208";a="23073726"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+ by mx1-pgp.tq-group.com with ESMTP; 04 Apr 2022 12:54:16 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+ by tq-pgp-pr1.tq-net.de (PGP Universal service);
+ Mon, 04 Apr 2022 12:54:16 +0200
+X-PGP-Universal: processed;
+ by tq-pgp-pr1.tq-net.de on Mon, 04 Apr 2022 12:54:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+ t=1649069656; x=1680605656;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rQ+A9jrxP/AoNdJehS0U+xaw6T3SSUsxJMay+kwDw0g=;
+ b=UeSxzdcc2p1icXFPdkoh46DqaU+0QaKapY01QotqNbfAheCiBj/lrg4N
+ btU/syVGc/Cdz4Jxmpxqq+fMkkTIaaaYAaEf6oY4bsSGT8eAcxQjifXXu
+ CQLGwV0SDXpuKQL5lIhbxw/sCrlsdoPIl+uVJg6GVxMD4T3PokhPevJJ7
+ qPqlpTK94h0XAIEqypTveTV4t2Uv1uqglX/vB2/V73uvSY166R+FykoMJ
+ dIzsl3sEA9Seqf/tSQnKYk8XHo4pkR0nxgXKA6P5H4UexXXkVWTj8ccJM
+ BfBKs+5Oer8bZebfSC4gqBdxMTMe3b2wFieloaVwiH2UiBbC2YdKBgW/7 g==;
+X-IronPort-AV: E=Sophos;i="5.90,234,1643670000"; d="scan'208";a="23073724"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+ by mx1.tq-group.com with ESMTP; 04 Apr 2022 12:54:09 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CB22F280065;
+ Mon,  4 Apr 2022 12:54:04 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: Tony Lindgren <tony@atomide.com>, linux-arm-kernel@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mike Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ linux-clk@vger.kernel.org, Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ 'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org
+Subject: Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re:
+ [PATCH v2 3/3] clk: Drop the rate range on clk_put
+Date: Mon, 04 Apr 2022 12:54:02 +0200
+Message-ID: <12990313.uLZWGnKmhe@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220404072712.bbsbkq3cpyx4xuzy@houat>
+References: <20220325161144.1901695-1-maxime@cerno.tech>
+ <4391300.LvFx2qVVIh@steina-w> <20220404072712.bbsbkq3cpyx4xuzy@houat>
 MIME-Version: 1.0
-In-Reply-To: <164905930207.1797085.9678466232916244683.b4-ty@baylibre.com>
-Content-Language: en-US
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220404_033956_673147_48275094 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20220404_035422_569773_205D1EC8 
+X-CRM114-Status: GOOD (  28.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,39 +95,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-04.04.2022 11:01, Neil Armstrong wrote:
-> Hi,
-> 
-> On Sat, 26 Mar 2022 10:51:06 +0300, Vyacheslav Bocharov wrote:
->> Update dts for JetHub H1:
->> - add bluetooth node for RTL8822CS uart port
->>
->> Update dts for JetHub D1:
->> - add ZigBee serial alias (ttyAML2) for backward compatibility
->> - update voltage regulators and SDIO config to match board's reference design
->> - update max freq for WiFi SDIO
->>
->> [...]
-> 
-> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
+Hello Maxime,
 
-Thanks.
+Am Montag, 4. April 2022, 09:27:12 CEST schrieb Maxime Ripard:
+> On Mon, Apr 04, 2022 at 09:06:42AM +0200, Alexander Stein wrote:
+> > Here is the requested output:
+> > ---
+> > $ ./scripts/faddr2line build_arm64/vmlinux
+> > 'clk_mux_determine_rate_flags+0x33c/0x380'
+> > clk_mux_determine_rate_flags+0x33c/0x380:
+> > clk_mux_determine_rate_flags at drivers/clk/clk.c:627
+> > ---
+> > From a first look it seems that 'best_parent' is just a NULL-pointer here.
+> > With this small fix
+> > --->8---
+> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> > index 071857ef381a..45e081330fac 100644
+> > --- a/drivers/clk/clk.c
+> > +++ b/drivers/clk/clk.c
+> > @@ -626,7 +626,7 @@ int clk_mux_determine_rate_flags(struct clk_hw *hw,
+> > 
+> >         pr_crit("%s: Best parent %s (%lu)\n",
+> >         
+> >                 __func__,
+> > 
+> > -               best_parent->name,
+> > +               best_parent? best_parent->name : "unknown",
+> > 
+> >                 best);
+> >         
+> >         return 0;
+> > 
+> > --->8---
+> > 
+> > The boot eventually get stuck, but at a later point.Which is probably why
+> > your analysis found nothing strange. Due to the size of the output I put
+> > it on a gist on github [1]. Please note that this is still based on a
+> > next-20220331 based tree without the revert.
+> 
+> I've looked into it over the weekend, and ran qemu on an imx6 to try to
+> see if it was any similar
+> 
+> I believe the issue comes from the fact that the core will forward rate
+> requests structure to the parent clock as is, and if the parent clock
+> changes the parent it wants, we end up trying to use that parent in the
+> initial clock which doesn't work really well.
+> 
+> I've fixed it in my branch here:
+> https://github.com/mripard/linux/commits/rpi/clk-improvements-more-fixes
 
-> 
-> [1/4] arm64: meson: add dts bluetooth node for JetHub H1
->        https://git.kernel.org/amlogic/c/2bda08dfc501967a7a7bd6f77f04afef14dc7271
-> [2/4] arm64: meson: dts: update serial alias in dts for JetHub D1
->        https://git.kernel.org/amlogic/c/cf94e26508ad411c2a618b00dfaae515affd0ca7
-> [3/4] arm64: meson: update SDIO voltage in dts for JetHub D1
->        https://git.kernel.org/amlogic/c/81bbd2bd24a9ebac3871b293060df50445458c79
-> [4/4] arm64: meson: update WiFi SDIO in dts for JetHub D1
->        https://git.kernel.org/amlogic/c/87a87657249316616138c103c2bdb7525c34d987
-> 
+Thanks for providing another patchset. Unfortunately, my board hangs still at 
+the same location. For reference I put a branch based on next-20220401 on [1].
+Reverting still does the jobs, a branch is shown on [2]
+
+next-20220404 has the offending patch already reverted, so this should work 
+again, I did not test it on that base on purpose.
+
+Best regards,
+Alexander
+
+[1] https://github.com/tq-steina/linux/tree/clk-fix
+[2] https://github.com/tq-steina/linux/tree/clk-revert
+
 
 
 _______________________________________________
