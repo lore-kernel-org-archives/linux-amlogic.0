@@ -4,78 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DD68C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 08:12:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EE21C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 08:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VQg0J+JYARshlvysObTKJevLUzyql1InU1v8PNbdGJs=; b=B0V8JedeCI5xU8
-	eFSKDsNVHhMwhhxakrR04FX0MB8itRECXDWYkxMjYvW9e7gTBlHN//qin7YeeZRCpEWmvXkhS4Nkn
-	dS3gn21ayVF0u8EQQ3QbFyM80IE1PE02s/uJ4EKR+4aKbRPAQ3doHRJ/P67mddPellTH15yheCehP
-	iVkd1zl8iYBWPEtm6FZFmmuPUuBJ+fv+UpOBKIRoIqDN9/TuM1WhEn07qs7++l5CK6XOcEQvoTz0S
-	zEqOgPR4A03emDUC7rUDx0zOZcv70Mw24xSIsHmmu7t63Kp2ls3rZ1enOAZ6h89r9eJfe8zd0Tr2t
-	x/q+u9HQl4jnpxZFvI9Q==;
+	List-Owner; bh=Z5d0Q8dYXI0sNnbLLTzyETkWEZZGCR9qpMHMahghmas=; b=BcO9DP2GG+J2D/
+	Kq8CBjVV1C6WS1RPURHcgi3hkDmSRQKS51UqZ5Xg11mjfwIkr6J20ExsDlG0NYIn/7eG3TGabrADR
+	lARtqs5cC6EVms13EMPtzg19LBbmZJiPoox4xyl3LF0kc8BcXv1Bfy1rLP0i3Bh3wA/5RoA/vTz7G
+	ij0JlJuevsKIAog/8YcSwQj2xSEOZxaZN6kFnU+VnYiZp/KdpZkMqX6GYtTZ3pINXyD1Awp0Hc8jo
+	lNPsvLaNyIHy+eDUPJ4gPm3yU0J8ud6c+wYMIQ/X8IffXS4xcFJ3XJVwCCP58RE2/RUmps5iCcKZ1
+	7/NQ/gSTi6lU1CA+Z6yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbHpK-00DmUV-7Q; Mon, 04 Apr 2022 08:12:42 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1nbHpV-00DmbY-Pc; Mon, 04 Apr 2022 08:12:53 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbHpG-00DmSy-Jq
- for linux-amlogic@lists.infradead.org; Mon, 04 Apr 2022 08:12:40 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id d29so7136732wra.10
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Apr 2022 01:12:38 -0700 (PDT)
+ id 1nbHpJ-00DmTv-E5
+ for linux-amlogic@lists.infradead.org; Mon, 04 Apr 2022 08:12:42 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id q20so5389683wmq.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Apr 2022 01:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2KUYaNEQe34m5nOz7Zxkxlzwl60Qyx6SmSc4/ZeE2sI=;
- b=OyiZylLrN5ZiRuFLVbMbZYHLj62zDMwd2urabqGZzwATM7FAHvAyaauPvXzCW9PJhb
- f1km0830T1d9mjpXHyTEAHFYJk5BN/4k/zao0wNtp7iQT20ds3gTulXnyu2Zxt8t+fjT
- BLpkk1BTvubc36HStJVXNBMSby+H/BDr8xBMF8mwUUd/s94CZNNUcmN4ZNo7vW7Dm0YE
- RHxZhbRha6RmbjFfafonVkpicxA0srIBbZO8cKhXdmw1KsS4DR9j5JuHEWVmi7CiJp2c
- GImq1qIJnZOz+Lh/eQMIgzgT6dUG2/f+Iw7lnBBTkPgpsVI47RA1r+WhK50c/0vEw9pH
- Vh5w==
+ bh=U1Fdq0DczHkP3YF2vj5LPcppX6TH/kpuXtMffHmyoZQ=;
+ b=ccWa7BZsRyHZFk7vojdgTbQYkDBDeSyof2uyKirvXqz3ERteAC5pvLBFmlrdNffaDj
+ p+h/6RjcW3bvMEt4clBiGuxS4MnUtbhEuG6ULWRAL2wzcrUkKm7nekYS/fEmLz/nNeNu
+ rv9ohiz3Y5OUaUaCiliDT7BFQiWeSfvOCBU4JEOkxtTWkO+lb2KjOob3dSsPWNC+WSym
+ Xz41jfw5uuRnvhkaF78QwpwQTRVkpeaag5/JyFtzF18D3ufw8rxZ/9ZKSIGOMCBuaqHz
+ 1aFgwncugW9a6H6tmYi7vFWdcmEJ0e0LgjX57qkWrFqFewDBYMps4GhpSaLFvMGpi787
+ jtLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2KUYaNEQe34m5nOz7Zxkxlzwl60Qyx6SmSc4/ZeE2sI=;
- b=SAj+1iMhRyM3S8Gt46X6jvXu4607cvZ/6OFkWkR/e1FPgspVaEXW+KVHDyT7JhT/Cd
- 0889wiXe+50UYd9VAMw4xxq+Efg43vNHtF0q0nGOBD7wIb95uriSZnaC9cAFlro2DvY/
- 8mqVrArsRVtv8HPnJ81KEls64RO5k9LxBK2zkn1VDEk6JyeLlmCvUM6CP9UNjSULSWL2
- CuKhVKxYtf6JinhgtuSYuzAB4ADvb/Svv+Glyyp6C+AlAARufhqKTpjhWkNnO4r4qvib
- 2fUpsMFnvOdrehrp6LNOBkPlUQ/MEdf+ke0bVfOOnBHUC8m5xf/CLsRFIhZfy/QD6TzC
- QNCw==
-X-Gm-Message-State: AOAM533JO7fgfObflha/+PrWBq2hkfbYljtZaJ9x0wDY/m9nllx8THOQ
- 9FN1CcadARqEq/JOqyNPx+Jd5Q==
-X-Google-Smtp-Source: ABdhPJw3MtEPc84beBjhrO06hI241G1wbvcyCar+JXX7Es91MBpaPzSHy40gU1H09PqfvpRlqi9Ayw==
-X-Received: by 2002:a05:6000:1a86:b0:205:a82d:4769 with SMTP id
- f6-20020a0560001a8600b00205a82d4769mr15816745wry.424.1649059956978; 
- Mon, 04 Apr 2022 01:12:36 -0700 (PDT)
+ bh=U1Fdq0DczHkP3YF2vj5LPcppX6TH/kpuXtMffHmyoZQ=;
+ b=vJHbV/prgyyxfNcmWQ2azCLD7TB0JojvcvCX/q3jMQCzyBOh+P2pvjvOJD/sAyLDVr
+ Zx/xiPD4NxHCStqt9gWKwaHeM6KMv7wVI0z6N5HcH1NwL0Zu+8rMLHQOWnX3DbiZHl9N
+ GlsMDQ8WQ/0OGL4j1J14R9zuOxCmBqeEk3AQAMbZO6woTz9PBhP+G0jxs/3Ow0icGH75
+ zzhHOakysyEtiP6MguRwNWkwfEzj6CUVWMiocJ0xSF2L0Lf/a68qMOs6U47ZktS+TAYk
+ /eR1zLZIYW6ZplwFincTsk5sQomFSIypvzJ507FcqZoi3jTbjsEgWWVOvpa1BrG5GJJ/
+ ej0g==
+X-Gm-Message-State: AOAM531zNPT7HU5kCPY8smkf6gJC9vrZha/d3yEwR4vrY+t7tuWHe9Tl
+ XsjXfS9Gx7nC+cjQcmyomMCkHA==
+X-Google-Smtp-Source: ABdhPJwWjslOc4kHuu+OQclfFY0BZN3W5Rz/UbNzTFSp4pRRp+RHXzsaOZB05j1V4cEt05SxETfHWg==
+X-Received: by 2002:a7b:cb87:0:b0:38e:7464:f796 with SMTP id
+ m7-20020a7bcb87000000b0038e7464f796mr1674221wmi.133.1649059959885; 
+ Mon, 04 Apr 2022 01:12:39 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
  by smtp.gmail.com with ESMTPSA id
- s12-20020a7bc38c000000b0038e708d163dsm3297510wmj.0.2022.04.04.01.12.35
+ s12-20020a7bc38c000000b0038e708d163dsm3297510wmj.0.2022.04.04.01.12.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Apr 2022 01:12:36 -0700 (PDT)
+ Mon, 04 Apr 2022 01:12:39 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: Rob Herring <robh+dt@kernel.org>, Qianggui Song <qianggui.song@amlogic.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: meson-s4: add gpio_intc node
-Date: Mon,  4 Apr 2022 10:12:32 +0200
-Message-Id: <164905994877.1805420.15536867817056125438.b4-ty@baylibre.com>
+To: krzk+dt@kernel.org, khilman@baylibre.com,
+ Shunzhou Jiang <shunzhou.jiang@amlogic.com>, robh+dt@kernel.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, martin.blumenstingl@googlemail.com,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V0] arm64: dts: add support for S4 power domain controller
+Date: Mon,  4 Apr 2022 10:12:34 +0200
+Message-Id: <164905994877.1805420.15799716011771473596.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220310092645.4303-1-qianggui.song@amlogic.com>
-References: <20220310092645.4303-1-qianggui.song@amlogic.com>
+In-Reply-To: <20220401110306.3364551-1-shunzhou.jiang@amlogic.com>
+References: <20220401110306.3364551-1-shunzhou.jiang@amlogic.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220404_011238_713324_76A54DDB 
-X-CRM114-Status: UNSURE (   7.62  )
+X-CRM114-CacheID: sfid-20220404_011241_507976_F8036C00 
+X-CRM114-Status: UNSURE (   6.79  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,15 +96,15 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Thu, 10 Mar 2022 17:26:45 +0800, Qianggui Song wrote:
-> Add gpio interrupt controller node
+On Fri, 1 Apr 2022 19:03:06 +0800, Shunzhou Jiang wrote:
+> Enable power domain controller for Meson s4 SoC
 > 
 > 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
 
-[1/1] arm64: dts: meson-s4: add gpio_intc node
-      https://git.kernel.org/amlogic/c/393633936976fb8bd2c26ae76fa8d30822bb7fee
+[1/1] arm64: dts: add support for S4 power domain controller
+      https://git.kernel.org/amlogic/c/085f7a298a14ed2a088c8ba01d2feda2499cbc72
 
 -- 
 Neil
