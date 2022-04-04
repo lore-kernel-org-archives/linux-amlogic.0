@@ -4,86 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4BA1C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 10:54:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80B39C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 12:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C8vYFY6Udc44B/ohGzwl8uw7jFlZ+V4pG0nTJ6RxvdY=; b=nXg04MD8MYzYd4
-	YgD+4NGPBtRXep6hnuLdMJ0EN5+0/8gYFlAd3Jf8xsMwC2s2IZAUIGVOXdHStYBr66iOwiTuPLcGu
-	Ed3Qngy0IJf9OxNcxahNae1p4Kqil7PTwLT2kyAN7aBY2MckcMtmYT3AfI5d5XTwfIhKSjmER9Wck
-	8jB4gm6VR4E+DgaNsz+2WYannLukASw6jEruBwcCdCBPCgjnF3/QL45TFkvd7v5FaZ5a7lY7rj/c1
-	Lg538YO6shtQF27jGu0nOjKCRGnBrGPxpsabDA/0bV+OFvMBT+ZBQxP5bysvrpJHtHPy+Bb7olvqo
-	Ob9tDZkXx7IuWOgwsq8A==;
+	List-Owner; bh=CkB58IlzkOP9Q/PPxURnx8FjFOOGZ08fN9QFCtShH2g=; b=TjjhoYVm9V6qX8
+	15v7SqwAkfXIqvsvSWoeur51G/QkGm8WCudKdHQuGYeuv1IxrNHRxz5V4wPBwgWRAT8SpnOvM33Y7
+	ANZT4bX9oW+Ku2tMJ3QCVImNdc5NhJx9Zj9MINnSoYkz/knjv+SEN8y5de4eUASH2pk8msWZrbBTc
+	TcbVRjrlZ3P9/3u4zB5mszevsHeOWABQ1SZJYvCkSikB7fL9NW6OQcQzWItoYm3cXsz8rKbXUtkvO
+	GOShHxfXFYFP3IMhxZymGw8rAUJhanR0KqxIWls+s3KeMvQYJLLxjqAChkcO9A4BHbhHmHNhzBrnY
+	qwERlqZ34huJBXC9McFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbKLq-00Ecm9-HM; Mon, 04 Apr 2022 10:54:26 +0000
-Received: from mx1.tq-group.com ([93.104.207.81])
+	id 1nbM0Y-00EuYA-Ef; Mon, 04 Apr 2022 12:40:34 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbKLm-00EciR-2u; Mon, 04 Apr 2022 10:54:24 +0000
+ id 1nbM0D-00EuT0-Nv
+ for linux-amlogic@lists.infradead.org; Mon, 04 Apr 2022 12:40:18 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id n35so5812646wms.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Apr 2022 05:40:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
- t=1649069662; x=1680605662;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rQ+A9jrxP/AoNdJehS0U+xaw6T3SSUsxJMay+kwDw0g=;
- b=U6oWvS31yGE+gKE4w9vx/xDc/yi1mEkXbRy5Ha844KcAroz0I+dOuM08
- XJU0/sAVCA9e9IxD7q3gv3urzr24HNZsL3wLDqbx1yjSJBsLY71b5jyGA
- JQhBcvSn45LdvwJzvtJ3pi4aFs/y+JJ4agFWcsQGX8u6svzsWucz+p3xx
- BXA91jfmqn4g2C5JlWoNxCMTe2Isf6Hp4GJHoMHIKsXQvAUOVJfjMzmhO
- 4BnGrEwgeqdxDbDyR1R0lhoJ/+cLBokXlf8WC+gE3pjj/CeErAyybLrgZ
- ZSPUfFNRTy0D2tU+Dcc/IiC9RKNdA6jiywUHb0p5s0ddI+FtGCrTdpgfU A==;
-X-IronPort-AV: E=Sophos;i="5.90,234,1643670000"; d="scan'208";a="23073726"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
- by mx1-pgp.tq-group.com with ESMTP; 04 Apr 2022 12:54:16 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
- by tq-pgp-pr1.tq-net.de (PGP Universal service);
- Mon, 04 Apr 2022 12:54:16 +0200
-X-PGP-Universal: processed;
- by tq-pgp-pr1.tq-net.de on Mon, 04 Apr 2022 12:54:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
- t=1649069656; x=1680605656;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rQ+A9jrxP/AoNdJehS0U+xaw6T3SSUsxJMay+kwDw0g=;
- b=UeSxzdcc2p1icXFPdkoh46DqaU+0QaKapY01QotqNbfAheCiBj/lrg4N
- btU/syVGc/Cdz4Jxmpxqq+fMkkTIaaaYAaEf6oY4bsSGT8eAcxQjifXXu
- CQLGwV0SDXpuKQL5lIhbxw/sCrlsdoPIl+uVJg6GVxMD4T3PokhPevJJ7
- qPqlpTK94h0XAIEqypTveTV4t2Uv1uqglX/vB2/V73uvSY166R+FykoMJ
- dIzsl3sEA9Seqf/tSQnKYk8XHo4pkR0nxgXKA6P5H4UexXXkVWTj8ccJM
- BfBKs+5Oer8bZebfSC4gqBdxMTMe3b2wFieloaVwiH2UiBbC2YdKBgW/7 g==;
-X-IronPort-AV: E=Sophos;i="5.90,234,1643670000"; d="scan'208";a="23073724"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
- by mx1.tq-group.com with ESMTP; 04 Apr 2022 12:54:09 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CB22F280065;
- Mon,  4 Apr 2022 12:54:04 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: Tony Lindgren <tony@atomide.com>, linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mike Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- linux-clk@vger.kernel.org, Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- 'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org
-Subject: Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re: (EXT) Re:
- [PATCH v2 3/3] clk: Drop the rate range on clk_put
-Date: Mon, 04 Apr 2022 12:54:02 +0200
-Message-ID: <12990313.uLZWGnKmhe@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220404072712.bbsbkq3cpyx4xuzy@houat>
-References: <20220325161144.1901695-1-maxime@cerno.tech>
- <4391300.LvFx2qVVIh@steina-w> <20220404072712.bbsbkq3cpyx4xuzy@houat>
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=ZeotdEyuaTGdsdLJ4Jmy4Ks/jM3YHCk6KKZJjilIqN8=;
+ b=d2ACJ4FMKOj+ZM4t31aUYUvlo+gq5OXoKso3xQjGB0BTJw3j0494Vvff+SqZczkhmH
+ 48/p0IUyMek7zMIvV0edVPA15DEb3kduZ0HwkUeKioDT9+GARrqJ35+uy+fMQEUrJlXu
+ 21ELX9Sur5wPriXnF6/OdKMfYvFhmccQVe7WOKEjnf6Ad3os32/r2Zo2Z+cIOiCxxZl5
+ tH+1gy3y8tnbRN+10wgkIO5LcQESPxqcRCWbzI3Pt4pAWgbsp1LQwDLPL9l1iz85ttdr
+ XlQRuhDPoYmIafzzxonjT1E5KAwIdKOmHY2zbltzxk7qW/MfCA/I0ItDkpnFnGTtki3y
+ f5ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=ZeotdEyuaTGdsdLJ4Jmy4Ks/jM3YHCk6KKZJjilIqN8=;
+ b=DaJwnC+JIbp6k3V8DLINu3MDlHlQ2c/Sp5Fnvs4dsx2GWw9tXo0eYJCaXusQY3u4hO
+ ZOc/3Dr8+BXGsSONoIoAWk+MjNf7ciClZYppqEbyBxzYR4/mltOCMMuccVQgp54D+xns
+ x69jTx9iPW0ZAFIv8Y6M+mBJV2FE4wQd+RCLMwq3aR8/9cTB5jB6Xsu/BztNEGPR1Vo6
+ kHnPcSBM8Xsyhi8NXpQEl2amurQUCM/yVtmqnNkQ+hiumW5gyA6O2S72jtHTXuYoX3K/
+ bk7qOjweqSIXIBdbbOmQYl3D12egiw1NAdMFlcuP/zOb5Y9Pb5unjAnO7a5eyr89rabi
+ eHxQ==
+X-Gm-Message-State: AOAM530udQxmVZ2KYxQMthpyYeF2L8jqn3W/B5s68WK0yYphsGm/GAIh
+ 9FuGA7peBmN4Dt5sFEj/nv6GLw==
+X-Google-Smtp-Source: ABdhPJzuy3b3TtMxOWHYxOYY54z4mIT4gXGcVATO1XYdj1uwDkn7Dkq4yjzBf0nohbQq8Q4aC57KwQ==
+X-Received: by 2002:a7b:c382:0:b0:388:2e76:49ed with SMTP id
+ s2-20020a7bc382000000b003882e7649edmr19337941wmj.195.1649076009796; 
+ Mon, 04 Apr 2022 05:40:09 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:1add:1b28:2457:eb46?
+ ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
+ by smtp.gmail.com with ESMTPSA id
+ l28-20020a05600c1d1c00b0038e72a95ec4sm2849603wms.13.2022.04.04.05.40.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 04 Apr 2022 05:40:09 -0700 (PDT)
+Message-ID: <d30b32fe-e1d4-0684-a1fa-710c1da3faea@baylibre.com>
+Date: Mon, 4 Apr 2022 14:40:07 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Content-Language: en-US
+To: Liang Yang <liang.yang@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
+ <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
+ <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20220402074921.13316-1-liang.yang@amlogic.com>
+ <20220402074921.13316-2-liang.yang@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220404_035422_569773_205D1EC8 
-X-CRM114-Status: GOOD (  28.85  )
+X-CRM114-CacheID: sfid-20220404_054013_794610_83E2134F 
+X-CRM114-Status: GOOD (  29.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,74 +102,239 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Maxime,
+Hi,
 
-Am Montag, 4. April 2022, 09:27:12 CEST schrieb Maxime Ripard:
-> On Mon, Apr 04, 2022 at 09:06:42AM +0200, Alexander Stein wrote:
-> > Here is the requested output:
-> > ---
-> > $ ./scripts/faddr2line build_arm64/vmlinux
-> > 'clk_mux_determine_rate_flags+0x33c/0x380'
-> > clk_mux_determine_rate_flags+0x33c/0x380:
-> > clk_mux_determine_rate_flags at drivers/clk/clk.c:627
-> > ---
-> > From a first look it seems that 'best_parent' is just a NULL-pointer here.
-> > With this small fix
-> > --->8---
-> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> > index 071857ef381a..45e081330fac 100644
-> > --- a/drivers/clk/clk.c
-> > +++ b/drivers/clk/clk.c
-> > @@ -626,7 +626,7 @@ int clk_mux_determine_rate_flags(struct clk_hw *hw,
-> > 
-> >         pr_crit("%s: Best parent %s (%lu)\n",
-> >         
-> >                 __func__,
-> > 
-> > -               best_parent->name,
-> > +               best_parent? best_parent->name : "unknown",
-> > 
-> >                 best);
-> >         
-> >         return 0;
-> > 
-> > --->8---
-> > 
-> > The boot eventually get stuck, but at a later point.Which is probably why
-> > your analysis found nothing strange. Due to the size of the output I put
-> > it on a gist on github [1]. Please note that this is still based on a
-> > next-20220331 based tree without the revert.
+On 02/04/2022 09:49, Liang Yang wrote:
+> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
+> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
+> implemented and can be used by the eMMC and NAND controller (which are mutually
+> exclusive anyway). Let's use this new clock.
 > 
-> I've looked into it over the weekend, and ran qemu on an imx6 to try to
-> see if it was any similar
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> ---
+>   drivers/mtd/nand/raw/meson_nand.c | 89 +++++++++++++++----------------
+>   1 file changed, 42 insertions(+), 47 deletions(-)
 > 
-> I believe the issue comes from the fact that the core will forward rate
-> requests structure to the parent clock as is, and if the parent clock
-> changes the parent it wants, we end up trying to use that parent in the
-> initial clock which doesn't work really well.
-> 
-> I've fixed it in my branch here:
-> https://github.com/mripard/linux/commits/rpi/clk-improvements-more-fixes
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> index ac3be92872d0..1b1a9407fb2f 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/dma-mapping.h>
+>   #include <linux/interrupt.h>
+>   #include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+>   #include <linux/mtd/rawnand.h>
+>   #include <linux/mtd/mtd.h>
+>   #include <linux/mfd/syscon.h>
+> @@ -19,6 +20,7 @@
+>   #include <linux/iopoll.h>
+>   #include <linux/of.h>
+>   #include <linux/of_device.h>
+> +#include <linux/of_address.h>
+>   #include <linux/sched/task_stack.h>
+>   
+>   #define NFC_REG_CMD		0x00
+> @@ -104,6 +106,9 @@
+>   
+>   #define PER_INFO_BYTE		8
+>   
+> +#define CLK_DIV_SHIFT		0
+> +#define CLK_DIV_WIDTH		6
+> +
+>   struct meson_nfc_nand_chip {
+>   	struct list_head node;
+>   	struct nand_chip nand;
+> @@ -151,15 +156,15 @@ struct meson_nfc {
+>   	struct nand_controller controller;
+>   	struct clk *core_clk;
+>   	struct clk *device_clk;
+> -	struct clk *phase_tx;
+> -	struct clk *phase_rx;
+> +	struct clk *nand_clk;
+> +	struct clk_divider nand_divider;
+>   
+>   	unsigned long clk_rate;
+>   	u32 bus_timing;
+>   
+>   	struct device *dev;
+>   	void __iomem *reg_base;
+> -	struct regmap *reg_clk;
+> +	void __iomem *sd_emmc_clock;
 
-Thanks for providing another patchset. Unfortunately, my board hangs still at 
-the same location. For reference I put a branch based on next-20220401 on [1].
-Reverting still does the jobs, a branch is shown on [2]
+The name could still be reg_clk, even if not a regmap anymore.
 
-next-20220404 has the offending patch already reverted, so this should work 
-again, I did not test it on that base on purpose.
+>   	struct completion completion;
+>   	struct list_head chips;
+>   	const struct meson_nfc_data *data;
+> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
+>   	nfc->timing.tbers_max = meson_chip->tbers_max;
+>   
+>   	if (nfc->clk_rate != meson_chip->clk_rate) {
+> -		ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
+> +		ret = clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
+>   		if (ret) {
+>   			dev_err(nfc->dev, "failed to set clock rate\n");
+>   			return;
+> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+>   	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
+>   		| nfc->param.chip_select | nfc->timing.tbers_max;
+>   	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+> -
+>   	ret = wait_for_completion_timeout(&nfc->completion,
+>   					  msecs_to_jiffies(timeout_ms));
+>   	if (ret == 0)
+> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+>   	.free = meson_ooblayout_free,
+>   };
+>   
+> +struct clk_parent_data nfc_divider_parent_data[1];
 
-Best regards,
-Alexander
+This should be in the meson_nfc_clk_init() function, not global
 
-[1] https://github.com/tq-steina/linux/tree/clk-fix
-[2] https://github.com/tq-steina/linux/tree/clk-revert
+>   static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>   {
+>   	int ret;
+> +	struct clk_init_data init = {0};
+>   
+>   	/* request core clock */
+>   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
+> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>   		return PTR_ERR(nfc->device_clk);
+>   	}
+>   
+> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+> -	if (IS_ERR(nfc->phase_tx)) {
+> -		dev_err(nfc->dev, "failed to get TX clk\n");
+> -		return PTR_ERR(nfc->phase_tx);
+> -	}
+> -
+> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+> -	if (IS_ERR(nfc->phase_rx)) {
+> -		dev_err(nfc->dev, "failed to get RX clk\n");
+> -		return PTR_ERR(nfc->phase_rx);
+> -	}
+> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
 
+name = devm_kasprintf(nfc->dev, GFP_KERNEL, "%s#div", dev_name(dev));
 
+would be better.
+
+> +	init.ops = &clk_divider_ops;
+> +	nfc_divider_parent_data[0].fw_name = "device";
+> +	init.parent_data = nfc_divider_parent_data;
+> +	init.num_parents = 1;
+> +	nfc->nand_divider.reg = nfc->sd_emmc_clock;
+> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
+> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
+> +	nfc->nand_divider.hw.init = &init;
+> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
+> +				  CLK_DIVIDER_ROUND_CLOSEST |
+> +				  CLK_DIVIDER_ALLOW_ZERO;
+> +
+> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
+> +	if (IS_ERR(nfc->nand_clk))
+> +		return PTR_ERR(nfc->nand_clk);
+>   
+>   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+> -	regmap_update_bits(nfc->reg_clk,
+> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
+> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
+> +	       nfc->sd_emmc_clock);
+>   
+>   	ret = clk_prepare_enable(nfc->core_clk);
+>   	if (ret) {
+> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>   		goto err_device_clk;
+>   	}
+>   
+> -	ret = clk_prepare_enable(nfc->phase_tx);
+> +	ret = clk_prepare_enable(nfc->nand_clk);
+>   	if (ret) {
+> -		dev_err(nfc->dev, "failed to enable TX clock\n");
+> -		goto err_phase_tx;
+> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
+> +		goto err_nand_clk;
+>   	}
+>   
+> -	ret = clk_prepare_enable(nfc->phase_rx);
+> -	if (ret) {
+> -		dev_err(nfc->dev, "failed to enable RX clock\n");
+> -		goto err_phase_rx;
+> -	}
+> -
+> -	ret = clk_set_rate(nfc->device_clk, 24000000);
+> +	ret = clk_set_rate(nfc->nand_clk, 24000000);
+>   	if (ret)
+> -		goto err_disable_rx;
+> +		goto err_disable_clk;
+>   
+>   	return 0;
+>   
+> -err_disable_rx:
+> -	clk_disable_unprepare(nfc->phase_rx);
+> -err_phase_rx:
+> -	clk_disable_unprepare(nfc->phase_tx);
+> -err_phase_tx:
+> +err_disable_clk:
+> +	clk_disable_unprepare(nfc->nand_clk);
+> +err_nand_clk:
+>   	clk_disable_unprepare(nfc->device_clk);
+>   err_device_clk:
+>   	clk_disable_unprepare(nfc->core_clk);
+> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>   
+>   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+>   {
+> -	clk_disable_unprepare(nfc->phase_rx);
+> -	clk_disable_unprepare(nfc->phase_tx);
+> +	clk_disable_unprepare(nfc->nand_clk);
+>   	clk_disable_unprepare(nfc->device_clk);
+>   	clk_disable_unprepare(nfc->core_clk);
+>   }
+> @@ -1374,7 +1376,6 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct meson_nfc *nfc;
+> -	struct resource *res;
+>   	int ret, irq;
+>   
+>   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+> @@ -1388,21 +1389,15 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>   	nand_controller_init(&nfc->controller);
+>   	INIT_LIST_HEAD(&nfc->chips);
+>   	init_completion(&nfc->completion);
+> -
+>   	nfc->dev = dev;
+>   
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	nfc->reg_base = devm_ioremap_resource(dev, res);
+> +	nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
+>   	if (IS_ERR(nfc->reg_base))
+>   		return PTR_ERR(nfc->reg_base);
+>   
+> -	nfc->reg_clk =
+> -		syscon_regmap_lookup_by_phandle(dev->of_node,
+> -						"amlogic,mmc-syscon");
+> -	if (IS_ERR(nfc->reg_clk)) {
+> -		dev_err(dev, "Failed to lookup clock base\n");
+> -		return PTR_ERR(nfc->reg_clk);
+> -	}
+> +	nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, "emmc");
+> +	if (IS_ERR(nfc->sd_emmc_clock))
+> +		return PTR_ERR(nfc->sd_emmc_clock);
+>   
+>   	irq = platform_get_irq(pdev, 0);
+>   	if (irq < 0)
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
