@@ -4,79 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 549FEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 14:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1C58C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Apr 2022 18:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uquqHqOl4YAKE4HwNEm8cvNbas9Apk9LcdTycgdLcas=; b=abtbUUf3aCa503
-	lB5w7oyyqbR7TvXK1GDvp5NftQ31KSgGuw24QET3DGyLSZuT7xuU8aXwQTBoos3mvZXtu/dUSMhs/
-	dGM3ZnNexXdOTjjXlpX04y1UFgRtByuBFK93Jq2uAQnviUzkJAusugQp3txE0nI3+0Fo/eB3maC8+
-	jg1WxFyxBq4YDvt0zO/I5SrdPBuTAUDAZZ0Ohp69UT38Tu0dQQoZUZFDq6DMsFV2LYsAqN1CKw1+Z
-	SHOaxew5FrvMbQciEHDnf/3BxPRJFAlJcu1e7HrmM80x987PTK2cX3qz/NV2Zmk6xVvP8pLT0P/J5
-	mZlY2/JmO5ldH7k7vLHQ==;
+	List-Owner; bh=AxW+/MmSzuclEa4jxwpTh3KHRd5oJNil99MEovk66DM=; b=EZRZ0TZqxH4mLH
+	F8dDRczDvOT/kjexTBzS7Pe+CmYv75a22lJk5DpvrhIspHbn8p2NtAjb438CTsmimfbYPx5imrppD
+	ctajGO+63PfXYI3mPrTQb45WbgpGfxe6t9MLmM8+gcwPE5fxfO6WAKXic1uUUwbjCc1IFV2qGQgoI
+	E57OM7PtNXKvEEHC1U3w2xcEyXn4KXy9L6UbIZzVY/nZ/skVGMiy+42Rw0oHMcQSh7k/z+GMH5gVH
+	4B9iMyodITQnwc0GzVYO1jyzrRf9N6lOxawotuoMwRCWaEZlMDXWhEe9Fgf8ARUejdlzenNtnfGlR
+	qVOLmnZBpfINdViC7+sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbNfO-00FK8L-16; Mon, 04 Apr 2022 14:26:50 +0000
-Received: from mga05.intel.com ([192.55.52.43])
+	id 1nbR0C-00G5PA-6t; Mon, 04 Apr 2022 18:00:32 +0000
+Received: from mx.msync.work ([51.91.38.21])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbNf4-00FK2j-0v; Mon, 04 Apr 2022 14:26:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649082390; x=1680618390;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=YFMFyz8A4KQU+l3+HDFx/zBlfNq5vKwG+g4aU+dWt+M=;
- b=Z3oa0hPRiWEhbS7Q9O9PvJv1uog26i3Ak/K5MQIgEKcl2ZfpzCtTUzvp
- DtjJmZ2rNdhStg0UX4YuFXtKVhPu8AH0F+d9ge4D1VNulhB0zBkLM01R4
- zGrs9GNmOCafDQ7uShzhxAREguekPVoKbmlVcDNgsn970GyPIUo6U0frH
- cXaO5mR5PJhEHG1gQRv6gXHrt7wh3RXtkIqK/oIAUUmoh5E4foMMcjX0y
- mqyDmO7/8/cm7G+YGrHBSXC++HmBoVxz0Bb9NECaxSjdXrx1qgv4XgfLU
- lMbknO/xdw0wxm6kwr28g1LhZtBqM0Pwt0AfY02ynD0BXtphso/pXy48/ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="346963709"
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="346963709"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 07:26:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="657518638"
-Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
- by orsmga004.jf.intel.com with ESMTP; 04 Apr 2022 07:26:16 -0700
-Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nbNep-00027d-VP;
- Mon, 04 Apr 2022 14:26:15 +0000
-Date: Mon, 4 Apr 2022 22:26:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Liang Yang <liang.yang@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
-Cc: kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
- Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>,
- XianWei Zhao <xianwei.zhao@amlogic.com>,
- Kelvin Zhang <kelvin.zhang@amlogic.com>,
- BiChao Zheng <bichao.zheng@amlogic.com>,
- YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <202204042238.eZq8bjau-lkp@intel.com>
-References: <20220402074921.13316-2-liang.yang@amlogic.com>
+ id 1nbR09-00G5Mo-9D; Mon, 04 Apr 2022 18:00:31 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id CC3A73B01F; Mon,  4 Apr 2022 18:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+ t=1649095223; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=e4rEEW1CHNAO9Rw05pMKLdvrOaRjn2nB0lWvqsJB/YE=;
+ b=AGxfBeyUsX2CJvgiIWm9xFYwWlrarsTY0GIWhYZj3CYvlEOgR/Gnws76052KycThOR4h14
+ wuwBMur/eJ80gpveFSKQ7w1BktIOziBXSN3lkTYY1RiqxaSubjGpKDzcTL9bWxxGne/dZ5
+ N0J4K+Zrf/lJzIQqlmNDohShl1c6I2+EveF4ikgLmfWrAUpJ4ktvniMl9PJwY30VEqI/zf
+ lUEJctuhA3h2WDs3q2rJ+nyu5x/Iaz9KjCxUg+G0YW5/8uc3I099BtVMke8n5hKlRloAtk
+ Rd0cThQGLCujPT7NYNy0lcv+3Hz7Rt+ZE/W2C5hFk5wb9rDU5BTH8+9ooAIlwA==
+Message-ID: <d4ebfe84-2948-8270-32f4-6cfc55047600@lexina.in>
+Date: Mon, 4 Apr 2022 21:00:20 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 0/3] Ensure Low period of SCL is correct
+Content-Language: ru
+To: Neil Armstrong <narmstrong@baylibre.com>, tanure@linux.com,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220326102229.421718-1-tanure@linux.com>
+ <7hee2lu82n.fsf@baylibre.com>
+ <CAJX_Q+1tz7BYL+CvXnc=zAamPiZDEFAASv9a7YoWGmzqYL+cUg@mail.gmail.com>
+ <8986ec34-616b-d497-29d1-6f7896c26e37@baylibre.com>
+From: Vyacheslav <adeep@lexina.in>
+In-Reply-To: <8986ec34-616b-d497-29d1-6f7896c26e37@baylibre.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220404_072630_151977_8709E6CD 
-X-CRM114-Status: GOOD (  11.96  )
+X-CRM114-CacheID: sfid-20220404_110029_827756_0C56A567 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,50 +69,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Liang,
 
-I love your patch! Yet something to improve:
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.18-rc1 next-20220404]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+04.04.2022 11:01, Neil Armstrong wrote:
+> Hi,
+> 
+> On 29/03/2022 00:31, Lucas Tanure wrote:
+>> On Mon, 28 Mar 2022, 21:37 Kevin Hilman, <khilman@baylibre.com> wrote:
+>>>
+>>> Hi Lucas,
+>>>
+>>> Lucas Tanure <tanure@linux.com> writes:
+>>>
+>>>> The default duty cycle of 33% is less than the required
+>>>> by the I2C specs for the LOW period of the SCL clock.
+>>>>
+>>>> So, for 100Khz or less, use 50%H/50%L duty cycle, and
+>>>> for the clock above 100Khz, use 40%H/60%L duty cycle.
+>>>> That ensures the low period of SCL is always more than
+>>>> the minimum required by the specs at any given frequency.
+>>>
+>>> Thanks for the fixes!
+>>>
+>>> This is going to affect all SoCs, so ould you please summarize how your
+>>> changes were tested, and on which SoCs & boards?
+>>>
+>>> Thanks,
+>>>
+>>> Kevin
+>>
+>> Hi,
+>>
+>> I only tested against the vim3 board, measured the bus with a Saleae
+>> logic pro 16.
+>> The measurements were with 100k, 400k, and a few in-between frequencies.
+> 
+> Thanks, it's a great addition to have !
+> 
+>>
+>> Is that enough?
+> 
+> A test on GXL/GXM (VIM1 or VIM2) & GXBB (Odroid-C2) devices is lacking 
+> before we
+> can merge this.
+> 
+> If I find some time, I'll have a try, but everyone is welcome testing 
+> this serie
+> and report if it still works fine for them.
+> 
+> Vyacheslav, do you think you can test on your JetHub devices ? it would 
+> validate GXL & AXG.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: s390-randconfig-r002-20220403 (https://download.01.org/0day-ci/archive/20220404/202204042238.eZq8bjau-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c34b64ab8005a978739f157a07ed342d247fecac
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
-        git checkout c34b64ab8005a978739f157a07ed342d247fecac
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
+It builds ok on 5.17. JetHub H1/D1 has only rtc clock (pcf8563) and 
+1-wire controller (ds2482) on i2c bus. I did't see any difference with 
+or without patches. all works at first look.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Vyacheslav
 
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
-   meson_nand.c:(.text+0xd9e): undefined reference to `clk_divider_ops'
->> s390-linux-ld: meson_nand.c:(.text+0xe34): undefined reference to `devm_clk_register'
-   s390-linux-ld: net/core/sock.o: in function `sk_destruct':
-   sock.c:(.text+0x373e): undefined reference to `__sk_defer_free_flush'
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
