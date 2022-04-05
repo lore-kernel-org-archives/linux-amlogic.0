@@ -4,86 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56902C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Apr 2022 15:11:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4193C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Apr 2022 18:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6YTWWXTBTUdJj2N9Jntm2psV2sEezVwsdEkhhG609Ks=; b=O8UF1si/RyMBc0
-	LI06c4qSuQH+VWMTt95BsEzKqUtmgSDala6d0sWbZtDZDgEntmYCZOFoUpMQO/Y/rynhpkZhMhOmw
-	uyhTEjdwwvXrgsoQRyhrn/TK3Bf92xx98i75tD9FEbTJl0WaltdK+m6p0G/ONaheLLpvN2tqxCDlt
-	LkUM1NpcggYly47KbuJFtQYI9B4AQuIq4UTeiCXTxQDX4TKxxtSOJ9Vwei/Ky3Y8Xa3DL5tlOcdYs
-	Hx7jSClMs6AA3YY/jafXa70p0RHECbXGllSAE/C3plYHaesNjTmhu70oTjrBb2rTuaeGHqsGiVdw8
-	BcPFn/rguXtOuHgmvGNg==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=PEkPNx3Z2JRaKRzH7DQs/jf+yQbjHfSgRZmWnHDTVNo=; b=UtNreu2rl/Wv+Q6OmvfcYpTAvk
+	3ilnUhWk5/tpDDL6GTiE0mJ3Rv4eUzNX17d+YQYAZMiRgwLqm4r4nZU/4mZZWEITuoN4Lkl8iYW0B
+	7N8OzWhQ9t2k/OGiuo7xnqCNQ6kAE3S+nEE2lmtfvqjFe94WJJpeihKLHQN0NkR3/vGEwiEcdK80N
+	lVXirrfhoBLce1qwt/x+FvgS4aT1dESnhb5D0dTfvTsKGPVhMkhkQMyXlQ96wZ32dsSkmTpBfN26W
+	U9AH718u6kx8K9fxQ4G8jwWS7BrXg3gLi18FPBnxC0KLZyh6dAluSYTCqQCfn9fsmYCMBOYsS/KH9
+	zWj8dUIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbkqH-001d5u-JV; Tue, 05 Apr 2022 15:11:37 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1nbnbn-002AFC-Bo; Tue, 05 Apr 2022 18:08:51 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbkq6-001d0S-76
- for linux-amlogic@lists.infradead.org; Tue, 05 Apr 2022 15:11:27 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id t25so23773234lfg.7
- for <linux-amlogic@lists.infradead.org>; Tue, 05 Apr 2022 08:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=knadBC5/9Dlj8rbZddGyUUv9/Z5ol7Dtv9U1ioqP9jA=;
- b=4WXxBwXx7EL1bnbBadqVFwnRXzEoKBnMCPyQY1ZoY51R3YnPyJSrpchjfB6SICDwsJ
- 5alKgXGkZ0+I2dyFvgJGXRqq9S7J0CWijdEsqtbZyqcsb9/kzsafqkVrI8xVxcY72nkg
- UGCEDmkItzRH77RJhiDAiVZmPMq9iBdIfg9uaN8BHGlPsTQynByp4OpSEyaEevxlFS77
- Qef8G+zninZ7IFRAGP9u/2MlkCD19bQzY1o2vc3fSvDaAeHrUE7NH83wxI08mKsTZK7G
- sJ5I+oQd+gn/b/mCW4Ct/uXiaXcZ1hOSLpsU3SjMOep+xv/JHCQbkqq7/lg9kEhzrpAK
- li0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=knadBC5/9Dlj8rbZddGyUUv9/Z5ol7Dtv9U1ioqP9jA=;
- b=iQdNy9gRuFgDI2FWuPchcb5fKiDeJOGUxtFlc3+WZpilFg9/mGvteQ7MWikTduPtqC
- NRwCHtcdmZ+UcumDb/F0GPT0m9KC7NTq82CbODkW4ie8CUasM7EKE+Lac9rDVBmVrifT
- dyBDFhHSZkNjncBA7vWrNav0ZKWA3ex6m6xjZ2WIQqHEpQhATi11hiXYi21eyirSLuXn
- DC8PQZbq3Y9vFNe0UYPZL0pKTUv7xipSUZILfx6vX3XLQbVG23eehbJkLpDAcstVvUQ+
- o90BLCHcnqULRFkxmw5wIIC8EoBUwyExn0IRnHzxmz/GsyhGhyjHkLauQrciQowKe3Ng
- lF6g==
-X-Gm-Message-State: AOAM531EeFDdibgeY/BgmyX5KiEngCrFTzX7mQwlyPiju+SacszdFYGr
- zgc310eLQ+tyEUEy0CumphI0og==
-X-Google-Smtp-Source: ABdhPJzACQiDfI4qUdkgsvTX0RPVvPl+IFhGVEeH45oKkhd6o7WfMVVtWugGdQVsuaBLCEHNpE0Tsw==
-X-Received: by 2002:a05:6512:3a83:b0:44a:5878:24d6 with SMTP id
- q3-20020a0565123a8300b0044a587824d6mr2899935lfu.426.1649171480237; 
- Tue, 05 Apr 2022 08:11:20 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:5cd5:d9c8:ef4:b0ed?
- ([2001:861:44c0:66c0:5cd5:d9c8:ef4:b0ed])
- by smtp.gmail.com with ESMTPSA id
- x23-20020a056512047700b0044a3c53e12dsm1533643lfd.169.2022.04.05.08.11.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 05 Apr 2022 08:11:19 -0700 (PDT)
-Message-ID: <a27da359-3922-e4ee-16d2-b4cb6fc06ca8@baylibre.com>
-Date: Tue, 5 Apr 2022 17:11:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 0/3] Ensure Low period of SCL is correct
-Content-Language: en-US
-To: tanure@linux.com, Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ id 1nbnbk-002AEV-AZ; Tue, 05 Apr 2022 18:08:49 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id E57CBB81F69;
+ Tue,  5 Apr 2022 18:08:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72C53C385A0;
+ Tue,  5 Apr 2022 18:08:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1649182123;
+ bh=NtBhGURVESJUSY8I9nvNgpznPalXmXHV0lFgfPnMkxk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=qOy5MakrI0EOT7P8JeLQx2F/MwmflIt1w4Vijv94UiEFSKbI0/LjQDFLSMNOff2cD
+ FEwTAHiEAXA1xFNXLe5dtSUvC2xMorJb8wWLmzfJLN/NSCIslF2HR0YF9GH/8kBEC+
+ +dL/iulLAfgdv+OvrVx9xX3a7uRTYkkvTW7u/Sv5LZTyJ+X7nQe7vqyvAvacgbJgzN
+ /qTUCoowkyDFTlCKQhcGP+Q5AOfSg7yrxgRd47XSJJ8GUSaDkaqTRiKrBcgDdhGSu2
+ KrD6zTRA3rx8VGMYVHbzCPF4TfzNwjNq8fvY2l9KCvufMUmghSFck/axFGWBevTcZY
+ toELS8zyDBPfA==
+Date: Tue, 5 Apr 2022 19:08:38 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220326102229.421718-1-tanure@linux.com>
- <7hee2lu82n.fsf@baylibre.com>
- <CAJX_Q+1Y5pO_AGaFSXfo-J3EdGQeM2XYXzvsUtjtAFEXdwKEdQ@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <CAJX_Q+1Y5pO_AGaFSXfo-J3EdGQeM2XYXzvsUtjtAFEXdwKEdQ@mail.gmail.com>
+ alsa-devel@alsa-project.org,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Subject: Re: [PATCH v2 0/2] ASoC: meson: aiu: fix duplicate debugfs directory
+ error
+Message-ID: <YkyFpmHhZwg19EmL@sirena.org.uk>
+References: <51953618-79b6-0df7-2d28-d5dce4dc86c7@gmail.com>
+ <8a63cf25-3662-032e-b088-6a343b86462f@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <8a63cf25-3662-032e-b088-6a343b86462f@gmail.com>
+X-Cookie: diplomacy, n:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220405_081126_283896_9FC89B26 
-X-CRM114-Status: GOOD (  16.97  )
+X-CRM114-CacheID: sfid-20220405_110848_553804_CE3B5560 
+X-CRM114-Status: GOOD (  14.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,47 +74,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2600129343637704955=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAyOC8wMy8yMDIyIDIzOjUxLCBMdWNhcyBUYW51cmUgd3JvdGU6Cj4gCj4gCj4gT24g
-TW9uLCAyOCBNYXIgMjAyMiwgMjE6MzcgS2V2aW4gSGlsbWFuLCA8a2hpbG1hbkBiYXlsaWJyZS5j
-b20gPG1haWx0bzpraGlsbWFuQGJheWxpYnJlLmNvbT4+IHdyb3RlOgo+IAo+ICAgICBIaSBMdWNh
-cywKPiAKPiAgICAgTHVjYXMgVGFudXJlIDx0YW51cmVAbGludXguY29tIDxtYWlsdG86dGFudXJl
-QGxpbnV4LmNvbT4+IHdyaXRlczoKPiAKPiAgICAgID4gVGhlIGRlZmF1bHQgZHV0eSBjeWNsZSBv
-ZiAzMyUgaXMgbGVzcyB0aGFuIHRoZSByZXF1aXJlZAo+ICAgICAgPiBieSB0aGUgSTJDIHNwZWNz
-IGZvciB0aGUgTE9XIHBlcmlvZCBvZiB0aGUgU0NMIGNsb2NrLgo+ICAgICAgPgo+ICAgICAgPiBT
-bywgZm9yIDEwMEtoeiBvciBsZXNzLCB1c2UgNTAlSC81MCVMIGR1dHkgY3ljbGUsIGFuZAo+ICAg
-ICAgPiBmb3IgdGhlIGNsb2NrIGFib3ZlIDEwMEtoeiwgdXNlIDQwJUgvNjAlTCBkdXR5IGN5Y2xl
-Lgo+ICAgICAgPiBUaGF0IGVuc3VyZXMgdGhlIGxvdyBwZXJpb2Qgb2YgU0NMIGlzIGFsd2F5cyBt
-b3JlIHRoYW4KPiAgICAgID4gdGhlIG1pbmltdW0gcmVxdWlyZWQgYnkgdGhlIHNwZWNzIGF0IGFu
-eSBnaXZlbiBmcmVxdWVuY3kuCj4gCj4gICAgIFRoYW5rcyBmb3IgdGhlIGZpeGVzIQo+IAo+ICAg
-ICBUaGlzIGlzIGdvaW5nIHRvIGFmZmVjdCBhbGwgU29Dcywgc28gb3VsZCB5b3UgcGxlYXNlIHN1
-bW1hcml6ZSBob3cgeW91cgo+ICAgICBjaGFuZ2VzIHdlcmUgdGVzdGVkLCBhbmQgb24gd2hpY2gg
-U29DcyAmIGJvYXJkcz8KPiAKPiAgICAgVGhhbmtzLAo+IAo+ICAgICBLZXZpbgo+IAo+IAo+IEhp
-LAo+IAo+IEkgb25seSB0ZXN0ZWQgYWdhaW5zdCB2aW0zIGJvYXJkLCBtZWFzdXJlZCB0aGUgYnVz
-IHdpdGggYW7CoHNhbGVhZSBsb2dpYyBwcm8gMTYuCj4gVGhlIG1lYXN1cmVtZW50cyB3ZXJlIHdp
-dGggMTAwaywgNDAwayBhbmQgYSBmZXcgaW4gYmV0d2VlbiBmcmVxdWVuY2llcy4KPiAKPiBJcyB0
-aGF0IGVub3VnaD8KCkkgZGlkIGEgZmV3IG1lYXN1cmVzIG9uIHRoZSBMaWJyZSBDb21wdXRlciBM
-ZSBQb3RhdG8gUzkwNVggYm9hcmQ6CgppMmNfQU86CgpCZWZvcmUgdGhlIHBhdGNoc2V0LCBJIGdv
-dDoKLSAxMDBLSHo6IDEuNjZ1UyBISUdILCA2Ljc1dVMgTE9XLCAyMCUvODAlLCBGcmVxIDExOEtI
-eiAvIVwKLSA0MDBLSHo6IFVuYWJsZSB0byBkZWNvZGUsIGNsb2NrIGxpbmUgaXMgaW52YWxpZCwg
-RGF0YSBsaW5lIGlzIGFsc28gaW52YWxpZAoKV2l0aCB0aGUgcGF0Y2hzZXQKLSAxMDBLSHo6IDQu
-MjV1UyBISUdILCA2LjU4dVMgTE9XLCA0MCUvNjAlLCBGcmVxIDkyS0h6Ci0gNDAwS0h6OiAwLjMz
-dVMgSElHSCwgMy4wMHVTIExPVywgMTAlLzkwJSwgRnJlcSAzMDBLSHoKCmkyY19COgoKQmVmb3Jl
-IHRoZSBwYXRjaHNldCwgSSBnb3Q6Ci0gMTAwS0h6OiAyLjI1dVMgSElHSCwgNS40MXVTIExPVywg
-MjklLzcxJSwgRnJlcSAxMzBLSHogLyFcCi0gNDAwS0h6OiAwLjQydVMgSElHSCwgMS42NnVTIExP
-VywgMjAlLzgwJSwgRnJlcSA0ODBLSHogLyFcCgpXaXRoIHRoZSBwYXRjaHNldAotIDEwMEtIejog
-NC43NXVTIEhJR0gsIDUuNDJ1UyBMT1csIDQ2JS81NCUsIEZyZXEgOThLSHoKLSA0MDBLSHo6IDAu
-NjZ1UyBISUdILCAyLjAwdVMgTE9XLCAyNCUvNzUlLCBGcmVxIDM3NUtIegoKClNvIHRoaXMgZml4
-ZXMgdGhlIGZyZXF1ZW5jeSwgYmVmb3JlIHRoZXkgd2VyZSBpbnZhbGlkLgpBbmQgaXQgZml4ZXMg
-NDAwS0h6IG9uIGkyY19BTy4uLgoKSSBkbyBub3QgdW5kZXJzdGFuZCB3aHkgYmVoYXZpb3IgaXMg
-ZGlmZmVyZW50IGJldHdlZW4gaTJjX0FPICYgaTJjX0IsIHRoZXkKYXJlIGZlZWQgd2l0aCB0aGUg
-c2FtZSBjbG9jayBzbyBpdCBzaG91bGQgYmUgdGhlIHNhbWUuCgpEaWQgeW91IGNoZWNrIG9uIGJv
-dGggaTJjIGludGVyZmFjZXMgPyBjYW4geW91IHNoYXJlIHlvdXIgcmVzdWx0cyA/CgpOZWlsCgo+
-IAo+IFRoYW5rcwo+IEx1Y2FzCj4gCj4gCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1s
-b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
-YW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============2600129343637704955==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="T9mryndXkvnrkI3o"
+Content-Disposition: inline
+
+
+--T9mryndXkvnrkI3o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 31, 2022 at 07:56:03AM +0200, Heiner Kallweit wrote:
+
+> Any feedback here?
+
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
+
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
+
+--T9mryndXkvnrkI3o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJMhaUACgkQJNaLcl1U
+h9ChEQf/fdrtl6/9MJ57RFUXrTsC2lG+dsXbtpQcaTa4gKgwY4vaKp1fejWu7nOv
+WIolAlOmllu2hZGHWQqMfpoeWmAwNvTyk7Hbp2pjotT1IAK8GqqRzNXBd0C+q4tG
+aj3cObZTK+03w5WNG7soIhQki0yscHapzYqx0zA2X4Io96OaAOZ+2ltF5ZIGUV4e
+3GYwkO9c8mAD9Y+9iDf/LQV4pzN/IE5fnfQv59u8wc9UuJle+mr9HTcwNecmgCAo
+jLhjCjskR20/m3Oj1Cj6tIaqeIjM1zzyw/Lvs9FlH2nC+OO6mJm2T57Mwvfmr0EW
+ydpIMBaKkx8D4DjhbeVzJi4tou+KLg==
+=5pXh
+-----END PGP SIGNATURE-----
+
+--T9mryndXkvnrkI3o--
+
+
+--===============2600129343637704955==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2600129343637704955==--
+
