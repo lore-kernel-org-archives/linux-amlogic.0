@@ -4,62 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3BDBC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Apr 2022 10:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3EB1C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Apr 2022 11:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2JwlOfJjv0aP8WQmpNOtMN4Utg/dZ9wQZ1q+53IKsQg=; b=DLZACEJUfPg/Pr
-	7lhlPjTXwC7pVAgWWm8wkx6NPEohsVm5D2I1YpD2n1cgMfuTHDQ4pVoB+RNpP4VfQPDx3invMoPqq
-	hsbGZgrnhvXHOWhpDHhzSaPlVLRZBVbmmAE4iJhjR5+kQEI83aPFRRbu29Vt37lK67ohz5jMjSj4M
-	YmZw07Z44eof3sswhpbr8Ul1SvZR9x0DPaK+KovWaR+JopZS/PIvYwKCuKiG1/jdynimdRDp96rls
-	Y1Tl6203wkIyoAe7/whpLAAvhYsUAGs9tUmEKHaJU6UCY28C6y1LIaGxTx03psH61l9bwQ693qV/U
-	EAFLfLRSfIqNxE+1/fjg==;
+	List-Owner; bh=OUrk9w3W2wR9wo0rcg5dreWoENI1vLv+MbXLqagjZrg=; b=mZmcIVXij/6tfj
+	oXPVQyU1kO2Pp0safmUtI8XI+63TrmAs9fzZRH2Aj2Wl9pt9jY0yso4hHPQsKILYnhSH01kRnqVMd
+	39n7BLimIStx86JIG5lC+53Exj07ciYkPYCmtIlCOjYCTWsPGaSsvLs+28/wZ3CAN+5Ko9dI/UHgB
+	YHZt6OI+//g3JPtU2zyBrAdkEvbvjxhI9mLlq2uVgkXMuJeLZVfP3ZW4ImZ0ZhkOTKvjMK4m4riN+
+	m+2SfTDaLtOzo1EP4nYj556tKZ1DtQpySn/50LQjFbgZfa7iEOfZrZiSK0w0G8wJOUBms5FRfCfIs
+	dgHNsnv62wDgKUgqIxsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ncP1j-00B7Y2-Gh; Thu, 07 Apr 2022 10:06:07 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ncP1I-00B7N9-GQ
- for linux-amlogic@lists.infradead.org; Thu, 07 Apr 2022 10:05:41 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1ncP1C-0001nx-Fo; Thu, 07 Apr 2022 12:05:34 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1ncP17-001aOp-Fq; Thu, 07 Apr 2022 12:05:28 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1ncP14-0004Zo-RV; Thu, 07 Apr 2022 12:05:26 +0200
-Message-ID: <bf62ecb64b6c2667ee22d0ecbf11c53802caa7a1.camel@pengutronix.de>
-Subject: Re: [PATCH] clk: meson: meson8b: fix a memory leak in
- meson8b_clkc_init_common()
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: xkernel.wang@foxmail.com, narmstrong@baylibre.com, jbrunet@baylibre.com,
- mturquette@baylibre.com, sboyd@kernel.org, khilman@baylibre.com
-Cc: martin.blumenstingl@googlemail.com, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 07 Apr 2022 12:05:26 +0200
-In-Reply-To: <tencent_FE734C50BC851F2AB5FE1380F833A7E67A0A@qq.com>
-References: <tencent_FE734C50BC851F2AB5FE1380F833A7E67A0A@qq.com>
-User-Agent: Evolution 3.38.3-1 
+	id 1ncPzm-00BTpZ-N6; Thu, 07 Apr 2022 11:08:10 +0000
+Received: from muru.com ([72.249.23.125])
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1ncPzj-00BTo8-IC; Thu, 07 Apr 2022 11:08:09 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by muru.com (Postfix) with ESMTPS id ADB298125;
+ Thu,  7 Apr 2022 11:05:43 +0000 (UTC)
+Date: Thu, 7 Apr 2022 14:08:05 +0300
+From: Tony Lindgren <tony@atomide.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mike Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ 'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] clk: Drop the rate range on clk_put
+Message-ID: <Yk7GFWdJd2EN7L1V@atomide.com>
+References: <20220325161144.1901695-1-maxime@cerno.tech>
+ <20220325161144.1901695-4-maxime@cerno.tech>
+ <CGME20220330080612eucas1p195caaf35d900412de762a27ae02b7b9e@eucas1p1.samsung.com>
+ <366a0232-bb4a-c357-6aa8-636e398e05eb@samsung.com>
+ <20220330084710.3r6b5pjspz5hdmy6@houat>
+ <YkV3ch7R7YxlATW+@atomide.com>
+ <20220407075356.lmqnax35cewiwh4k@houat>
+ <Yk6a7meIO+fV5J1D@atomide.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <Yk6a7meIO+fV5J1D@atomide.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220407_030540_587864_52C8F1F3 
-X-CRM114-Status: UNSURE (   7.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220407_040807_693433_0878F918 
+X-CRM114-Status: GOOD (  15.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,20 +69,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Do, 2022-04-07 at 17:28 +0800, xkernel.wang@foxmail.com wrote:
-> From: Xiaoke Wang <xkernel.wang@foxmail.com>
+* Tony Lindgren <tony@atomide.com> [220407 08:23]:
+> Hi,
 > 
-> `rstc` is allocated by kzalloc() for resetting the controller register,
-> however, if reset_controller_register() fails, `rstc` is not properly
-> released before returning, which can lead to memory leak.
-> Therefore, this patch adds kfree(rstc) on the above error path.
+> * Maxime Ripard <maxime@cerno.tech> [220407 07:51]:
+> > I haven't been able to find an omap3 board or a qemu target that could
+> > help me debug this, but I fixed a few issues already that could fix omap
+> > as well.
+> > 
+> > Could you test today's
+> > https://github.com/mripard/linux/tree/rpi/clk-improvements-more-fixes
+> > 
+> > And let me know if it works?
 > 
-> Signed-off-by: Xiaoke Wang <xkernel.wang@foxmail.com>
+> Yes sorry I've been meaning to try your fixes but had some file system
+> issues on my build box after a power cut while updating the system. All
+> good now though, I should be able to give it a try this afternoon.
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+It now boots, but does a lot of checks on the clocks before the timers
+get initialized compared to v5.18-rc1. And then there's this:
 
-regards
-Philipp
+[    2.532501] clk_core_set_rate_nolock +2293: ssi_ssr_fck_3430es2 affected!
+...
+[    2.554443]  unwind_backtrace from show_stack+0x10/0x14
+[    2.559875]  show_stack from dump_stack_lvl+0x40/0x4c
+[    2.565093]  dump_stack_lvl from clk_core_set_rate_nolock+0x278/0x2c4
+[    2.571777]  clk_core_set_rate_nolock from clk_set_rate_range_nolock.part.0+0x154/0x384
+[    2.580047]  clk_set_rate_range_nolock.part.0 from __clk_put+0x64/0x174
+[    2.586853]  __clk_put from clk_add_alias+0x48/0x5c
+[    2.591918]  clk_add_alias from _add_clkdev.part.0+0x94/0x154
+[    2.597869]  _add_clkdev.part.0 from omap_device_alloc+0x88/0x114
+[    2.604156]  omap_device_alloc from _omap_device_notifier_call+0x25c/0x3b4
+[    2.611236]  _omap_device_notifier_call from blocking_notifier_call_chain+0x6c/0x90
+[    2.619140]  blocking_notifier_call_chain from device_add+0x360/0x894
+[    2.625823]  device_add from of_platform_device_create_pdata+0x8c/0xb8
+[    2.632568]  of_platform_device_create_pdata from of_platform_bus_create+0x194/0x22c
+[    2.640563]  of_platform_bus_create from of_platform_bus_create+0x1e0/0x22c
+[    2.647735]  of_platform_bus_create from of_platform_populate+0x60/0xb8
+[    2.654571]  of_platform_populate from pdata_quirks_init+0xb4/0xe0
+[    2.660980]  pdata_quirks_init from omap_generic_init+0xc/0x18
+[    2.666992]  omap_generic_init from customize_machine+0x1c/0x30
+[    2.673126]  customize_machine from do_one_initcall+0x44/0x24c
+[    2.679138]  do_one_initcall from kernel_init_freeable+0x1e8/0x298
+[    2.685546]  kernel_init_freeable from kernel_init+0x14/0x140
+[    2.691467]  kernel_init from ret_from_fork+0x14/0x24
+
+I'll email you the full log separately to look at.
+
+Regards,
+
+Tony
 
 _______________________________________________
 linux-amlogic mailing list
