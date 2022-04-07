@@ -4,32 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3EB1C433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Apr 2022 11:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEEC3C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Apr 2022 13:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OUrk9w3W2wR9wo0rcg5dreWoENI1vLv+MbXLqagjZrg=; b=mZmcIVXij/6tfj
-	oXPVQyU1kO2Pp0safmUtI8XI+63TrmAs9fzZRH2Aj2Wl9pt9jY0yso4hHPQsKILYnhSH01kRnqVMd
-	39n7BLimIStx86JIG5lC+53Exj07ciYkPYCmtIlCOjYCTWsPGaSsvLs+28/wZ3CAN+5Ko9dI/UHgB
-	YHZt6OI+//g3JPtU2zyBrAdkEvbvjxhI9mLlq2uVgkXMuJeLZVfP3ZW4ImZ0ZhkOTKvjMK4m4riN+
-	m+2SfTDaLtOzo1EP4nYj556tKZ1DtQpySn/50LQjFbgZfa7iEOfZrZiSK0w0G8wJOUBms5FRfCfIs
-	dgHNsnv62wDgKUgqIxsg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=TlsYlZ24+OiLVL5XPucoobKCD5S2J0IMKwcE1peEvjA=; b=FJkGQH5KRyOJKZHd52mZbjkmcs
+	TOqkIsKCvT/uBXRZ76grm1Mnuhs/ZXhAZM9yj4IbUFwH14+346nFmU3MpLGDQtMv9cF/6riTUlkLL
+	A2qSauErsp8Ze5WYgS1DFuu9UlL8cwWqbSyZfz9bbLPpqFIpnb5oSmnZ4fOk8XTjI9RJwW9gMcwrq
+	9UDv7WN0KwS4A2j7JIxe8NrIOjwg3MMo4RnFxZ2uNdsU61AdP2pxihOq3GOTJGiGViDSWUNG1vno/
+	O5fcK6F94mqrFxQjDpw7UQSamQYz26UJTDDE1rUD676lTVq8AqHieDcP9fQXY2QXBSLCMq4Ibc/GW
+	V8hMTekA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ncPzm-00BTpZ-N6; Thu, 07 Apr 2022 11:08:10 +0000
-Received: from muru.com ([72.249.23.125])
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ncPzj-00BTo8-IC; Thu, 07 Apr 2022 11:08:09 +0000
-Received: from localhost (localhost [127.0.0.1])
- by muru.com (Postfix) with ESMTPS id ADB298125;
- Thu,  7 Apr 2022 11:05:43 +0000 (UTC)
-Date: Thu, 7 Apr 2022 14:08:05 +0300
-From: Tony Lindgren <tony@atomide.com>
-To: Maxime Ripard <maxime@cerno.tech>
+	id 1ncSS0-00CD3T-BT; Thu, 07 Apr 2022 13:45:28 +0000
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1ncSRw-00CD1z-G3; Thu, 07 Apr 2022 13:45:27 +0000
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.west.internal (Postfix) with ESMTP id B76FB3201F18;
+ Thu,  7 Apr 2022 09:45:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Thu, 07 Apr 2022 09:45:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; bh=XkgppvWgDnu/dZMOPFJ84XRY5MZLfXMWnu3CdV
+ AKWzo=; b=ErC8jTThrapv3meVeiCaIp4oQMk1742n5RkSAhpxngeFRxZdCaX5Rv
+ tbN/SaLmQ6MEjyWmlFoY4jptA+/CdJjtapBcbadaGE5GuZ1SsoPAnY1ZiNOemg5J
+ YAoUN0B+KZPgrqp4q3RjHp+GomLVUQ+xkA6ODZs9XE02yScCzQ8Qrosq9CZsh2aC
+ J/G0hxDhqiKUaz3Mbjo98OAcrQ0vjYu53dgR3kT33/kz5GRQfl7yh3D2i6tpWf4t
+ EDtiZy45C5/Mkexh3gsa2v3N1zlCuxeVHfUA18k/YPSIFEOp22qWGKusSb5pcuNS
+ TsCnsiDdmQBfp+kvnWycs96kc9pKPE4g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=XkgppvWgDnu/dZMOP
+ FJ84XRY5MZLfXMWnu3CdVAKWzo=; b=Xl2w+l77DtuRQfLFe5XimIwd63k8tYMFK
+ 2yQ3Op+jnrgMHdXT/q+s9Siljg+WhBeWA5FDS14tvNiziqB34y0pvXgzE2UGuoVM
+ pDW3K5hEajfSmMiOhPwLPOsj+QnpjIFddMI9PgGjoxnAAwZgXskzLmX7H/Q8Y3af
+ n1+ZbpyZw5vDCEzDthACJ6wf79ksjpkFB/+VrqJFUHhQ0QWT+xFxBNbzA/wO/Ubo
+ 6R4UofifRQkoAVgRu16is3k3nr9u8etrw2ESPpwaXwzlalZFMIBTdsnbRR4Jxh34
+ HMyXbOJCPYQsS6pNQe1yJVckgWKh9JtkpSBhE3QvxIiaiA9dkZ/Kg==
+X-ME-Sender: <xms:7OpOYlM1bekRlxSaKAsr27tB-r0yvn1IDR1Dahx-Ejk9VJIgC3Amkw>
+ <xme:7OpOYn9i4uu5ALEe5GK9sexLHZgUVDz7VQ-1N_2MQIWt3UJ6cYnFJhlNTnrhGvdfd
+ SuGUxMgRgsDR5jWXQY>
+X-ME-Received: <xmr:7OpOYkRiVrocdVIVXayPSzll4MazcZZ-da0Lugf4amDdUQXQHlteYheFN8k9pyjF_fK6b2GmE1KMA05Hd2T73DqPYFxGxK2CKN4y0nc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejkedgieekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepveegudetkeethfetgffgtdekkefghefhffefgeduleehgeehieeuveefgedv
+ ieegnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpe
+ dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:7OpOYhtbpMYLolv3eqNP-UzpuFOix2F0UlT0Mug28Jn_Eun5dDhtGQ>
+ <xmx:7OpOYtfQ_OBwLW0z8TSOviHu8bTA0bpF1PCfu-8SNgGZzVNwKd0xug>
+ <xmx:7OpOYt2xYGgQI7waoL6OGOMkctYS3EfAGrze-Z_mr_-MPzlIQvftsw>
+ <xmx:7upOYsxjMjuEkj8Fmk-gMr_daYo48UE3vPj21r0UevDMV0DJufF7_A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Apr 2022 09:45:16 -0400 (EDT)
+Date: Thu, 7 Apr 2022 15:45:14 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Tony Lindgren <tony@atomide.com>
 Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
  Mike Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
@@ -38,7 +79,7 @@ Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
  linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH v2 3/3] clk: Drop the rate range on clk_put
-Message-ID: <Yk7GFWdJd2EN7L1V@atomide.com>
+Message-ID: <20220407134514.sct7g23yto47ylgr@houat>
 References: <20220325161144.1901695-1-maxime@cerno.tech>
  <20220325161144.1901695-4-maxime@cerno.tech>
  <CGME20220330080612eucas1p195caaf35d900412de762a27ae02b7b9e@eucas1p1.samsung.com>
@@ -46,13 +87,12 @@ References: <20220325161144.1901695-1-maxime@cerno.tech>
  <20220330084710.3r6b5pjspz5hdmy6@houat>
  <YkV3ch7R7YxlATW+@atomide.com>
  <20220407075356.lmqnax35cewiwh4k@houat>
- <Yk6a7meIO+fV5J1D@atomide.com>
+ <Yk6a7meIO+fV5J1D@atomide.com> <Yk7GFWdJd2EN7L1V@atomide.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Yk6a7meIO+fV5J1D@atomide.com>
+In-Reply-To: <Yk7GFWdJd2EN7L1V@atomide.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220407_040807_693433_0878F918 
-X-CRM114-Status: GOOD (  15.36  )
+X-CRM114-CacheID: sfid-20220407_064525_201783_F1D9E383 
+X-CRM114-Status: GOOD (  25.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,63 +104,121 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0926597084853181958=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-* Tony Lindgren <tony@atomide.com> [220407 08:23]:
-> Hi,
-> 
-> * Maxime Ripard <maxime@cerno.tech> [220407 07:51]:
-> > I haven't been able to find an omap3 board or a qemu target that could
-> > help me debug this, but I fixed a few issues already that could fix omap
-> > as well.
-> > 
-> > Could you test today's
-> > https://github.com/mripard/linux/tree/rpi/clk-improvements-more-fixes
-> > 
-> > And let me know if it works?
-> 
-> Yes sorry I've been meaning to try your fixes but had some file system
-> issues on my build box after a power cut while updating the system. All
-> good now though, I should be able to give it a try this afternoon.
 
-It now boots, but does a lot of checks on the clocks before the timers
-get initialized compared to v5.18-rc1. And then there's this:
+--===============0926597084853181958==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s43o3564yso7cyde"
+Content-Disposition: inline
 
-[    2.532501] clk_core_set_rate_nolock +2293: ssi_ssr_fck_3430es2 affected!
-...
-[    2.554443]  unwind_backtrace from show_stack+0x10/0x14
-[    2.559875]  show_stack from dump_stack_lvl+0x40/0x4c
-[    2.565093]  dump_stack_lvl from clk_core_set_rate_nolock+0x278/0x2c4
-[    2.571777]  clk_core_set_rate_nolock from clk_set_rate_range_nolock.part.0+0x154/0x384
-[    2.580047]  clk_set_rate_range_nolock.part.0 from __clk_put+0x64/0x174
-[    2.586853]  __clk_put from clk_add_alias+0x48/0x5c
-[    2.591918]  clk_add_alias from _add_clkdev.part.0+0x94/0x154
-[    2.597869]  _add_clkdev.part.0 from omap_device_alloc+0x88/0x114
-[    2.604156]  omap_device_alloc from _omap_device_notifier_call+0x25c/0x3b4
-[    2.611236]  _omap_device_notifier_call from blocking_notifier_call_chain+0x6c/0x90
-[    2.619140]  blocking_notifier_call_chain from device_add+0x360/0x894
-[    2.625823]  device_add from of_platform_device_create_pdata+0x8c/0xb8
-[    2.632568]  of_platform_device_create_pdata from of_platform_bus_create+0x194/0x22c
-[    2.640563]  of_platform_bus_create from of_platform_bus_create+0x1e0/0x22c
-[    2.647735]  of_platform_bus_create from of_platform_populate+0x60/0xb8
-[    2.654571]  of_platform_populate from pdata_quirks_init+0xb4/0xe0
-[    2.660980]  pdata_quirks_init from omap_generic_init+0xc/0x18
-[    2.666992]  omap_generic_init from customize_machine+0x1c/0x30
-[    2.673126]  customize_machine from do_one_initcall+0x44/0x24c
-[    2.679138]  do_one_initcall from kernel_init_freeable+0x1e8/0x298
-[    2.685546]  kernel_init_freeable from kernel_init+0x14/0x140
-[    2.691467]  kernel_init from ret_from_fork+0x14/0x24
 
-I'll email you the full log separately to look at.
+--s43o3564yso7cyde
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
+Hi Tony,
 
-Tony
+On Thu, Apr 07, 2022 at 02:08:05PM +0300, Tony Lindgren wrote:
+> * Tony Lindgren <tony@atomide.com> [220407 08:23]:
+> > Hi,
+> >=20
+> > * Maxime Ripard <maxime@cerno.tech> [220407 07:51]:
+> > > I haven't been able to find an omap3 board or a qemu target that could
+> > > help me debug this, but I fixed a few issues already that could fix o=
+map
+> > > as well.
+> > >=20
+> > > Could you test today's
+> > > https://github.com/mripard/linux/tree/rpi/clk-improvements-more-fixes
+> > >=20
+> > > And let me know if it works?
+> >=20
+> > Yes sorry I've been meaning to try your fixes but had some file system
+> > issues on my build box after a power cut while updating the system. All
+> > good now though, I should be able to give it a try this afternoon.
+>=20
+> It now boots, but does a lot of checks on the clocks before the timers
+> get initialized compared to v5.18-rc1.
+
+I was about to say that this is fairly normal with the new behaviour,
+but I've reworked the initial patch in that discussion to only call into
+clk_set_rate_range if there was a range on that clock to begin with.
+
+It should remove the huge majority of the checks you mentioned (and
+hopefully get rid of most of the side effects as well).
+
+It's now pushed to my branch, so it would be awesome if you could test
+again.
+
+> And then there's this:
+>=20
+> [    2.532501] clk_core_set_rate_nolock +2293: ssi_ssr_fck_3430es2 affect=
+ed!
+> ...
+> [    2.554443]  unwind_backtrace from show_stack+0x10/0x14
+> [    2.559875]  show_stack from dump_stack_lvl+0x40/0x4c
+> [    2.565093]  dump_stack_lvl from clk_core_set_rate_nolock+0x278/0x2c4
+> [    2.571777]  clk_core_set_rate_nolock from clk_set_rate_range_nolock.p=
+art.0+0x154/0x384
+> [    2.580047]  clk_set_rate_range_nolock.part.0 from __clk_put+0x64/0x174
+> [    2.586853]  __clk_put from clk_add_alias+0x48/0x5c
+> [    2.591918]  clk_add_alias from _add_clkdev.part.0+0x94/0x154
+> [    2.597869]  _add_clkdev.part.0 from omap_device_alloc+0x88/0x114
+> [    2.604156]  omap_device_alloc from _omap_device_notifier_call+0x25c/0=
+x3b4
+> [    2.611236]  _omap_device_notifier_call from blocking_notifier_call_ch=
+ain+0x6c/0x90
+> [    2.619140]  blocking_notifier_call_chain from device_add+0x360/0x894
+> [    2.625823]  device_add from of_platform_device_create_pdata+0x8c/0xb8
+> [    2.632568]  of_platform_device_create_pdata from of_platform_bus_crea=
+te+0x194/0x22c
+> [    2.640563]  of_platform_bus_create from of_platform_bus_create+0x1e0/=
+0x22c
+> [    2.647735]  of_platform_bus_create from of_platform_populate+0x60/0xb8
+> [    2.654571]  of_platform_populate from pdata_quirks_init+0xb4/0xe0
+> [    2.660980]  pdata_quirks_init from omap_generic_init+0xc/0x18
+> [    2.666992]  omap_generic_init from customize_machine+0x1c/0x30
+> [    2.673126]  customize_machine from do_one_initcall+0x44/0x24c
+> [    2.679138]  do_one_initcall from kernel_init_freeable+0x1e8/0x298
+> [    2.685546]  kernel_init_freeable from kernel_init+0x14/0x140
+> [    2.691467]  kernel_init from ret_from_fork+0x14/0x24
+
+It shouldn't be there anymore after that rework, but I couldn't find
+wher the ssi_ssr_fck clock was defined? The only relevant driver seems
+to be omap_ssi_core.c but I don't see any clock driver registered there
+either.
+
+Thanks!
+Maxime
+
+--s43o3564yso7cyde
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYk7q6gAKCRDj7w1vZxhR
+xT8RAPsF2jISFo6CxJQha6ZZVnCgejb1BfTDE4in0xEHwBrGJgEA+KOr64odsCO6
+iACqEk1ESIdBRsaRsLaRK2yxLg0+7A0=
+=e3xE
+-----END PGP SIGNATURE-----
+
+--s43o3564yso7cyde--
+
+
+--===============0926597084853181958==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0926597084853181958==--
+
