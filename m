@@ -4,88 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C10C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 07:23:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD336C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 07:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ohl3farbm7dAaHGSnvgQTe+xZw5k2nJPQPfVS5V8Vw8=; b=Jyb5rS3h4Si8pRW9VlGFUgwxU2
-	WDjigSSC3zT2Rv9a6aLmGYz6AQrRQlcDxnJ1zv13niZ58D4RdD5wWQ1HBICnDR+p0hS0v5MKKN78t
-	f/Yplkr5svPiMkqHHrIzCAUaDjJuqlSx7NMS4U6iLvRoNcnxdBFnbE0PpIZYUZp2yeR19HIdsRtz6
-	WD/D3Umwfdyf9lS5lmOWaYYnzUYjBAhnZlna0kvIqwJbOMfjNy6Azp8n+dbW44a7v7Gfl6y/T5J8b
-	d9iK0XdrT3pd/odSgsy+qFlBCOACvHNhgUitdavNOJ+iYm/NBmkl0DwsKN9GDXOvgh5RxmGRC40V+
-	DnLtXQgw==;
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WUep9URhxY7PvrLxklA9wTVu7n8/SUN0KaRVNd4sBO0=; b=2xHIoB4S5ZsVbR
+	HdDn72BQpp905J9ermiZ5eUs7bvoeyLzcEQ4TEqC8TXdsovhVLkkclcTtWbnhG1stroHTWjkBAPRl
+	EyRGMc14WUPAhu9PVCy6r2t+z1lgmCQPHcRoKqUD1X0z0Qi4AagHVg8I1N9Va//Zj9ljg5n27AQEH
+	walNWxvEVbiy6DOWDbKy2CnDG8QK301DWfBA9NyPkTMYbW2vcMsQN6vU8f6i2vmQWa4NbeP65tw3k
+	9s/4htJk7/7cXjUbUSwMAVx2EsITeHadKnNzM1inVopgkkefkVaLno0exNZp0qBo04Orf2haWbDC5
+	hY8hvPQSfvwPDFpluyog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ncixU-00FVYE-Nb; Fri, 08 Apr 2022 07:23:04 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1ncixX-00FVZf-L3; Fri, 08 Apr 2022 07:23:07 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nciwY-00FV4T-Lt
- for linux-amlogic@lists.infradead.org; Fri, 08 Apr 2022 07:22:09 +0000
-Received: by mail-wm1-x331.google.com with SMTP id
- k124-20020a1ca182000000b0038c9cf6e2a6so4994709wme.0
- for <linux-amlogic@lists.infradead.org>; Fri, 08 Apr 2022 00:22:05 -0700 (PDT)
+ id 1nciwp-00FVDB-EI
+ for linux-amlogic@lists.infradead.org; Fri, 08 Apr 2022 07:22:25 +0000
+Received: by mail-wr1-x433.google.com with SMTP id d29so11444096wra.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 08 Apr 2022 00:22:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
- :references:from:organization:in-reply-to:content-transfer-encoding;
- bh=HwBqnOa1E0VlKqSq871tPPYQ3FcLKgr7WO5uW7Uw2Eo=;
- b=qPq7Ttkmagr0EKp8wlqfUPgVgLcoiaYn151NPeEAixOI0CRtf6dSduscBxufr4uM3v
- KH6eA4pvw+dWR78LOfdNN3ZtNEJvK9JgmWh+P3Id3JnSiC8VHbS2bobN47ktnZqN4erm
- gkjunFOKEuN8yf5oKbBjkvN05FLNImEXRVs+M3d9bSHAS0o6sw8eOUHHsYH4ib2rYcox
- U2WB+xTfDCb08r5MdnH5hAOrC9iKJ0kiGkUPozet3TWbUZ/lcY89Ljhj06OuvuhzHjkg
- wRCx7lS1XnZj1hc7nQ1OUw0t7TR8l+wWoGeOpAOib2Cw8qHXfPhiWeORgGFqh/nCNT7j
- b65Q==
+ :cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=+i3M7I/si8nBTwp4HQFlyF6kBw/Y86O3UtaIOhQqSgw=;
+ b=njMPMNppMly5ssPAOWWTMzALhM0HuSZ4dOHB+/r2gqxGyi/nQQNRlus2x/AzAuQrKq
+ xCilly7J5UpWytTYHGj/BJaOyWPPe6iScw8BQ1a/oUCPMMw4Yp1CxsDEGRWKgFfd+ykL
+ ZGMozqHk83wJ5DmDgszP1Z35wW+R9WleLoi+DIx2nvUQDCefq/HcPuchXIBbwRZ+7wiL
+ XuBSOvjFLXquYJb4WPbu2gZnDc+YANvNfHJ9gPYnGlX8f4IANQYMlBC+yG/mThiAUJat
+ luu6g5f9FuWplQUkrgYlMMRm0SWFJTby6uL48HZSa1aiYsry0+sbc1tk2fR9A8EfCOiz
+ vbNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:organization:in-reply-to
+ :content-language:to:cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=HwBqnOa1E0VlKqSq871tPPYQ3FcLKgr7WO5uW7Uw2Eo=;
- b=1hIrXGRp8pbxhLQLYaiPBDLxR/j2nm1XgUau3Rqwv1GEhjtFEVZfjMtvuh0nF+v3x/
- Zu70g9/50WbJIHQd+TAa9irRokGn/upfRqciYsl9Z3gubVFp6hq+sf3t/iDCX20aM1ze
- 4ODtDV+GV05XJFNcrC3PVFOtP6n208y2a4r51XJALsg6BiY/I6698rma/em89o5LiHZi
- kZY/QemDIiGyzRElTAlrAuDHdmGf2jDvvr9Iz/sbSef9y8HWLSd7WMR/GW9JUzYJsk9U
- 0Gw7qsjRWHnJDP+qGHLTejwExENicPMsPjUaJ8+clxM9K5L4+hI5G98A9d/m89Lj3EJ6
- p7Gg==
-X-Gm-Message-State: AOAM533gMMDJ+Phasc22rTwGmev8NecWcDcjuhlsakT6cLWu7433VQYI
- +DfZlxjcp7NP18OgwJwh88sPIw==
-X-Google-Smtp-Source: ABdhPJww8AuspZpWbFyeaKBTt1PnhZvYHHposZmg6lmxyzorxCgMnc8+vMSOdc3trfi2NWE+I3bmpA==
-X-Received: by 2002:a05:600c:3b8c:b0:38c:b365:7220 with SMTP id
- n12-20020a05600c3b8c00b0038cb3657220mr15632000wms.120.1649402523902; 
- Fri, 08 Apr 2022 00:22:03 -0700 (PDT)
+ bh=+i3M7I/si8nBTwp4HQFlyF6kBw/Y86O3UtaIOhQqSgw=;
+ b=lKgvLs5TrJ8YNpXmKk2qR3REH7AZJb+JpxEc6Rhm9TgUQ/+Kpg5whanJKt9mFmMq+z
+ /Ga6Vi44wJ7mjTAWqTgacaI7BQ4PX1HzCAcrJAQKQdjIsfjhb+p9NirIOkYR07MoObTx
+ cBWgszcR8liiMzBZThErnLqE1Oowgya+DlQCb5gwpBeSQ77jbW7F2k1s5+dyQ7RfdYa1
+ C/ELkfN1+EwT5s50mtjGxZnzZR4IgbIebp+FwUfx00P4ZMMmyVjlQKLx7ghGo+j1rFIz
+ Q4GAsk+pbE+t6HKtVCvrMrRoO215stZUQEtE/of8H8xHvwM6KzeO13uEvy4B+mtMP7eo
+ LP3g==
+X-Gm-Message-State: AOAM533q6gmlrkO7WjsBPFNtqUWrzO3/IfKSoTLeY7Fdge6/pNtsOgjp
+ VQG8iXLK85bbJtxE7yF7fyAeWQ==
+X-Google-Smtp-Source: ABdhPJzgZitTrYz3M9Cl0bidcrh0p0LPFm7YGEXMIsJOsY8wQ5D2NRTazZW7HoEvc0P98B75WWK8dg==
+X-Received: by 2002:a5d:44ca:0:b0:206:893:6b5c with SMTP id
+ z10-20020a5d44ca000000b0020608936b5cmr13623307wrr.145.1649402540310; 
+ Fri, 08 Apr 2022 00:22:20 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:eacd:ce6:e294:acd1?
  ([2001:861:44c0:66c0:eacd:ce6:e294:acd1])
  by smtp.gmail.com with ESMTPSA id
- az19-20020a05600c601300b0038cadf3aa69sm14084506wmb.36.2022.04.08.00.22.02
+ m7-20020adfe0c7000000b002060e7bbe49sm17924124wri.45.2022.04.08.00.22.18
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 08 Apr 2022 00:22:03 -0700 (PDT)
-Message-ID: <56595ef2-a0fa-a92f-596b-511828295229@baylibre.com>
-Date: Fri, 8 Apr 2022 09:22:02 +0200
+ Fri, 08 Apr 2022 00:22:19 -0700 (PDT)
+Message-ID: <e704bdfd-7b09-6549-5efc-a2088e3490f1@baylibre.com>
+Date: Fri, 8 Apr 2022 09:22:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] arm64: dts: meson: align SPI NOR node name with
- dtschema
+Subject: Re: [PATCH] arm64: dts: remove cpu compatible "arm,armv8" for s4
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220407142159.293836-1-krzysztof.kozlowski@linaro.org>
- <20220407142159.293836-2-krzysztof.kozlowski@linaro.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>
+References: <20220408070901.26446-1-xianwei.zhao@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <20220407142159.293836-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220408070901.26446-1-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220408_002206_785142_D7695E90 
-X-CRM114-Status: GOOD (  12.70  )
+X-CRM114-CacheID: sfid-20220408_002223_593160_1E4423EE 
+X-CRM114-Status: GOOD (  13.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,97 +97,55 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/04/2022 16:21, Krzysztof Kozlowski wrote:
-> The node names should be generic and SPI NOR dtschema expects "flash".
+On 08/04/2022 09:09, Xianwei Zhao wrote:
+> Amlogic s4 device is already applied, but cpu compatible 'arm,armv8'
+> is only valid for software models, so we remove it.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: ac4dfd0d1d35 ("arm64: dts: add support for S4 based Amlogic AQ222")
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi          | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts    | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts           | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi              | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts            | 2 +-
->   6 files changed, 6 insertions(+), 6 deletions(-)
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> index 2d7032f41e4b..bcdf55f48a83 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> @@ -416,7 +416,7 @@ &spifc {
->   	pinctrl-names = "default";
->   	status = "okay";
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index bf9ae1e1016b..480afa2cc61f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -13,28 +13,28 @@ cpus {
 >   
-> -	gd25lq128: spi-flash@0 {
-> +	gd25lq128: flash@0 {
->   		compatible = "jedec,spi-nor";
->   		#address-cells = <1>;
->   		#size-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> index 2d769203f671..213a0705ebdc 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> @@ -298,7 +298,7 @@ &spifc {
->   	pinctrl-0 = <&nor_pins>;
->   	pinctrl-names = "default";
+>   		cpu0: cpu@0 {
+>   			device_type = "cpu";
+> -			compatible = "arm,cortex-a35","arm,armv8";
+> +			compatible = "arm,cortex-a35";
+>   			reg = <0x0 0x0>;
+>   			enable-method = "psci";
+>   		};
 >   
-> -	w25q32: spi-flash@0 {
-> +	w25q32: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "jedec,spi-nor";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> index 93d8f8aff70d..874f91c348ec 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> @@ -284,7 +284,7 @@ &spifc {
->   	pinctrl-0 = <&nor_pins>;
->   	pinctrl-names = "default";
+>   		cpu1: cpu@1 {
+>   			device_type = "cpu";
+> -			compatible = "arm,cortex-a35","arm,armv8";
+> +			compatible = "arm,cortex-a35";
+>   			reg = <0x0 0x1>;
+>   			enable-method = "psci";
+>   		};
 >   
-> -	nor_4u1: spi-flash@0 {
-> +	nor_4u1: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "jedec,spi-nor";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 86bdc0baf032..f43c45daf7eb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -374,7 +374,7 @@ &spifc {
->   	pinctrl-0 = <&nor_pins>;
->   	pinctrl-names = "default";
+>   		cpu2: cpu@2 {
+>   			device_type = "cpu";
+> -			compatible = "arm,cortex-a35","arm,armv8";
+> +			compatible = "arm,cortex-a35";
+>   			reg = <0x0 0x2>;
+>   			enable-method = "psci";
+>   		};
 >   
-> -	w25q32: spi-flash@0 {
-> +	w25q32: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "winbond,w25q16", "jedec,spi-nor";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 3cf4ecb6d52e..c9705941e4ab 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -458,7 +458,7 @@ &spifc {
->   	pinctrl-0 = <&nor_pins>;
->   	pinctrl-names = "default";
->   
-> -	w25q128: spi-flash@0 {
-> +	w25q128: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "winbond,w25q128fw", "jedec,spi-nor";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> index f3f953225bf5..e3486f60645a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> @@ -121,7 +121,7 @@ &spifc {
->   	pinctrl-0 = <&nor_pins>;
->   	pinctrl-names = "default";
->   
-> -	spi-flash@0 {
-> +	flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "jedec,spi-nor";
+>   		cpu3: cpu@3 {
+>   			device_type = "cpu";
+> -			compatible = "arm,cortex-a35","arm,armv8";
+> +			compatible = "arm,cortex-a35";
+>   			reg = <0x0 0x3>;
+>   			enable-method = "psci";
+>   		};
+> 
+> base-commit: fd86d85401c2049f652293877c0f7e6e5afc3bbc
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
