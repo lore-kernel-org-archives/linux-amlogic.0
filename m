@@ -4,74 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12D5DC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 09:06:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BD84C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 15:22:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WRUzvslT6WzZT+i3qjRjPRjc27uOgAdA91owzGN9Xfk=; b=n0GfgSMWvDnMYE
-	1BhTjhKDex57fDrut4lKnM/OyU9vYmJzyfxepkfvEyo3xQI9nwYFZxrJDRcfM8DTPNBi817aulbun
-	KgqSN42QYVVzb9xHWIlN+rGlTWKtqzbo6tRuV4wUHKsh1m6aYdscZK1GWyXFSNLXJXo3q1IP0uwRB
-	l79mw/mgrtXrGHfYZBDViOS4ILrWQZ6Qo3xaT6rVoFYuovRB0WGp6wkaj44lGjV+AP5cbMncRPNMp
-	Xi7XS/z46dKN9vhoP/4n7OsC3bS7vBCbYKaCRfuMg7HEk1beqoR6cnouNTPZK0ZDTx0irCNXocEMb
-	k9u+CdvO/DRVIbn8G8dg==;
+	List-Owner; bh=HJFfeSdrRzv93iFfe9k0EusIiVXl5whiBqXt+70oEC8=; b=FgNlrm40u3LO4e
+	xMFjougGHrvME4DCke76d0MrueAc4r4MTHkIysTKTsfn/22es6+zDbLsumZpd4r69BNCZyaXhyONj
+	HKh/6obSPisNiBDBwcCPcx5hAHTCblSuM5bAKCXH7Z0sxLeUJTOWOXihTZ/wv3AzV5z8eOZ0uwjlG
+	iBHgDF2E4VFpk5VCbPjrf/m65cwVa1uUCEYZS9rIRweXCWLRpg14ZPFLktlFBT+FpGiZWPiAvZ6wo
+	KFSMZWkHs0zfHNq1ZV88+YZfAIp3ygR9+tk0dZb9aHdNbUVA7WmqRIuVbIgr0OrI5RV858VxatzPS
+	4SnJ97oCS/VH/hOSTiDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nckZr-00G3C0-VP; Fri, 08 Apr 2022 09:06:47 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1ncqRT-000Fvd-7r; Fri, 08 Apr 2022 15:22:31 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nckZg-00G354-HX
- for linux-amlogic@lists.infradead.org; Fri, 08 Apr 2022 09:06:38 +0000
-Received: by mail-lf1-x131.google.com with SMTP id e16so13880280lfc.13
- for <linux-amlogic@lists.infradead.org>; Fri, 08 Apr 2022 02:06:33 -0700 (PDT)
+ id 1ncqRP-000Fs9-Hc
+ for linux-amlogic@lists.infradead.org; Fri, 08 Apr 2022 15:22:28 +0000
+Received: by mail-wr1-x431.google.com with SMTP id r13so13392618wrr.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 08 Apr 2022 08:22:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZTgTrO8kYm9f4pu/QJrfNd/0CjpbX6Q1P+5MHmfotqk=;
- b=i2envguo4E6b4pLxv4XJXo+T/VB92G0yxDyRf6C4Zynw809rRjG4TPgiKQW4iUdAv3
- 0tw/FwIqX9NFRcxNywh1A2CkXqBeDO3z4zaJ1HWc81YOpnbcYUz2HphICFC28YyT8dRd
- rnL5rspaX1Anjxgpb5DF1oPVz0MJGGmd0zEMMkm7FLJmnWzCBJfKcnhRsqBP3rZAGVnH
- UJIRsQeHZCYIOFRUoxrDZxh0DeotCHIgMIdzstU0UQd+Nxv5L1bQcdKzr7r++SlNCXpe
- QgXC9KKAMxXCuoM3kGDuy6rRVjV0ECnVx9rKx3YmL5/KKn+bFgar4zwneztVZ0fKeyNS
- qQJg==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=sPygLbD1B7EQ520hW5RQW4mGJJ5DO7vPlVdwf9z6NxI=;
+ b=rnNZUmsDC25DLs3861xbnitTubGbaLpRp0g4SSNU90qrEH3Em2POjR8w4Wc+PNhH+N
+ x2k51skqLe1F+lNYA9yvKLgAqtBISBFL6XVsgUZcRPfauhPI80VDFulZpkt5bmLpVDYY
+ ZtcQhj39tTE2VqLciTtIybGXe+9YaHlgWcLqIkY0nOkMJZBBMOlSvxWId5Ha6vVxvmYz
+ 7xnHdPudHX8+SFOLpTAwifky/xUbZjXnyx5436vJaaC0pZeTZxL3DQb4xvQz3KJUXv9q
+ L9x98EaoaCIDFhQ0BAtDJvGbbNLRFinrYxieLx/dCD5jaTsZlGT4ryA5e8iHSxWZ89Kc
+ mMPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZTgTrO8kYm9f4pu/QJrfNd/0CjpbX6Q1P+5MHmfotqk=;
- b=Kn88rivUQubjwAJLXs/qFHKKn6O15fSuQkkFAeA+8cnsXoP05jt70DaRXK74Yg39JT
- dNMlY2BpexBhqdpJmZRcT4AQSnO72V9+QXK0vOQ2NFc5mQTXR2+Lhz4kNfp6HKfonAPu
- c57xwn6GwU+kePptWtrkrdTb7Fz6M7RjHYxK69wJwbgl2QCWaZR39dts2gUCOOxNhxtz
- 2TBBn70U6BdapVBJkTXatuQDOwG5Fq9XgNXtlEanjkQJ87AeGNwwuXe1u4EZqHT4yWk1
- PzSodSD7l4g5K8ZxXaG3R4n86IhjrUMvQYKzA8GxrDkbhUbxpsxBAukv2Qck6VaN+QqZ
- fx2g==
-X-Gm-Message-State: AOAM530E2h9OmgKteiQ2RZNDcwuL8VofZ+QxuyPdPoPAm66iV4JQXJUe
- VMl9n1BaE15CMJNo1NIhv2E7OdvXcqdXCHBx8qbOrg==
-X-Google-Smtp-Source: ABdhPJxJkWFAtOiYY7lH9mD1xE8veW54kPfgnqaEUsfjr6zNHODKBpmFl1OMxUDn+3CZnMq6R8G5Xp9HAI1SN+XENZ8=
-X-Received: by 2002:a05:6512:2627:b0:44a:f55c:ded9 with SMTP id
- bt39-20020a056512262700b0044af55cded9mr12460116lfb.373.1649408791888; Fri, 08
- Apr 2022 02:06:31 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=sPygLbD1B7EQ520hW5RQW4mGJJ5DO7vPlVdwf9z6NxI=;
+ b=5zwgwKEgMWCLxH4nXOgbCZoz3XUW0R+vTo1KW78AwiK144zCg5ekvAur5/hk/wCREy
+ 2CcVHIEZDcp+lD+tFrgY3zmezVDFyYimO3FpCOTVEZCtKZz+LINdOia9qYuKdsaCh/iI
+ 4GLMd+jXQ9naPesF8yYct69+wi1fla7PvXnceX4JEqqIldXTZ4w8iv7deOVhUCtAgXhR
+ 36tzszwkcpUOovz6yxq5eJF6H9x2Scrgw0xyznP4KoQsINfUG8zZ9EO2drZrGL1DBYoH
+ xINYc9RzMHMt6plj599msGuIyug/Y/ysEMyaBDdVrJLppYbIgKuWFxqfkvtL0WPgVpUn
+ jesg==
+X-Gm-Message-State: AOAM532q4Z/b7znt1598YhO4iI7c0ooI7tnxtuNjXxSWAyjVjNVDtRMn
+ HYt4LfdQ4iSasxA3IQU0JULrZ4PJqSJz2WWn
+X-Google-Smtp-Source: ABdhPJxGPNgXgsufUjB8Lp8JJWbca8cu17Hg8qjIbnxCrticuxKM/31Uln39Sz96BlX1M76FBt7ZIw==
+X-Received: by 2002:a5d:6dac:0:b0:204:12ba:45ef with SMTP id
+ u12-20020a5d6dac000000b0020412ba45efmr14920479wrs.416.1649431343717; 
+ Fri, 08 Apr 2022 08:22:23 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch.
+ [188.155.201.27]) by smtp.gmail.com with ESMTPSA id
+ r4-20020a1c2b04000000b0038a0e15ee13sm10714642wmr.8.2022.04.08.08.22.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 08 Apr 2022 08:22:23 -0700 (PDT)
+Message-ID: <d1f873c6-150f-5f4d-7aa8-7bb15823d991@linaro.org>
+Date: Fri, 8 Apr 2022 17:22:21 +0200
 MIME-Version: 1.0
-References: <20220408080045.6497-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20220408080045.6497-1-wsa+renesas@sang-engineering.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 8 Apr 2022 11:05:55 +0200
-Message-ID: <CAPDyKFpaMy7ATDm6PCnYBxS_6-TZ-TF+gfHbp_o0nTo-6RaGdQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] mmc: improve API to make clear {h|s}w_reset is for
- cards
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-mmc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- ath10k@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com, 
- brcm80211-dev-list.pdl@broadcom.com, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-wireless@vger.kernel.org, 
- netdev@vger.kernel.org, SHA-cyfmac-dev-list@infineon.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 05/13] pinctrl: samsung: Switch to use
+ for_each_gpiochip_node() helper
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Qianggui Song <qianggui.song@amlogic.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Marc Zyngier <maz@kernel.org>,
+ Fabien Dessenne <fabien.dessenne@foss.st.com>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+ linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Tomasz Figa <tomasz.figa@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
+References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
+ <20220401103604.8705-6-andriy.shevchenko@linux.intel.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220401103604.8705-6-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220408_020636_642741_4DE2DC7B 
-X-CRM114-Status: GOOD (  16.18  )
+X-CRM114-CacheID: sfid-20220408_082227_597186_2F3E0DA6 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,58 +114,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 8 Apr 2022 at 10:01, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> As discussed in 2020 [1], Ulf and I agreed that it would be easier to
-> understand the {h|s}w_reset mechanisms if it was clear that they are for
-> cards. This series implements that by changing the parameter to mmc_card
-> where apropriate. Also, the callback into host drivers has been renamed
-> to 'card_hw_reset' to make it obvious what exactly the driver is
-> expected to reset.
->
-> I tested it with my Renesas boards, so far no regressions. Buildbots are
-> currently checking the series.
->
-> This series is based on mmc/next as of yesterday. A branch is here:
->
-> git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/mmc/reset-api-v2
->
-> Looking forward to comments. Happy hacking,
->
->    Wolfram
->
-> [1] https://lore.kernel.org/all/20200916090121.2350-1-wsa+renesas@sang-engineering.com/
->
-> Wolfram Sang (3):
->   mmc: core: improve API to make clear mmc_hw_reset is for cards
->   mmc: core: improve API to make clear that mmc_sw_reset is for cards
->   mmc: improve API to make clear hw_reset callback is for cards
->
->  drivers/mmc/core/block.c                             |  2 +-
->  drivers/mmc/core/core.c                              | 12 +++++++-----
->  drivers/mmc/core/mmc.c                               |  4 ++--
->  drivers/mmc/core/mmc_test.c                          |  3 +--
->  drivers/mmc/host/bcm2835.c                           |  2 +-
->  drivers/mmc/host/dw_mmc.c                            |  2 +-
->  drivers/mmc/host/meson-mx-sdhc-mmc.c                 |  2 +-
->  drivers/mmc/host/mtk-sd.c                            |  2 +-
->  drivers/mmc/host/sdhci.c                             |  2 +-
->  drivers/mmc/host/sunxi-mmc.c                         |  2 +-
->  drivers/mmc/host/uniphier-sd.c                       |  2 +-
->  drivers/net/wireless/ath/ath10k/sdio.c               |  2 +-
->  .../net/wireless/broadcom/brcm80211/brcmfmac/sdio.c  |  2 +-
->  drivers/net/wireless/marvell/mwifiex/sdio.c          |  2 +-
->  drivers/net/wireless/ti/wlcore/sdio.c                |  2 +-
->  include/linux/mmc/core.h                             |  4 ++--
->  include/linux/mmc/host.h                             |  2 +-
->  17 files changed, 25 insertions(+), 24 deletions(-)
->
+On 01/04/2022 12:35, Andy Shevchenko wrote:
+> Switch the code to use for_each_gpiochip_node() helper.
+> 
 
-Patch 1 applied for fixes and the two others for next, thanks!
+(...)
 
-Kind regards
-Uffe
+>  /*
+>   * Iterate over all driver pin banks to find one matching the name of node,
+>   * skipping optional "-gpio" node suffix. When found, assign node to the bank.
+>   */
+> -static void samsung_banks_of_node_get(struct device *dev,
+> -				      struct samsung_pinctrl_drv_data *d,
+> -				      struct device_node *node)
+> +static void samsung_banks_node_get(struct device *dev, struct samsung_pinctrl_drv_data *d)
+
+This is worth simplification anyway, so please split it to separate patch.
+
+>  {
+>  	const char *suffix = "-gpio-bank";
+>  	struct samsung_pin_bank *bank;
+> -	struct device_node *child;
+> +	struct fwnode_handle *child;
+>  	/* Pin bank names are up to 4 characters */
+>  	char node_name[20];
+>  	unsigned int i;
+> @@ -1038,17 +1037,17 @@ static void samsung_banks_of_node_get(struct device *dev,
+>  			continue;
+>  		}
+>  
+> -		for_each_child_of_node(node, child) {
+> -			if (!of_find_property(child, "gpio-controller", NULL))
+> -				continue;
+
+This does not look equivalent. There are nodes without this property.
+
+> -			if (of_node_name_eq(child, node_name))
+> +		for_each_gpiochip_node(dev, child) {
+> +			struct device_node *np = to_of_node(child);
+> +
+> +			if (of_node_name_eq(np, node_name))
+>  				break;
+> -			else if (of_node_name_eq(child, bank->name))
+> +			if (of_node_name_eq(np, bank->name))
+>  				break;
+>  		}
+
+This patch has to wait till someone provides you a tested-by. I might do
+it around next week.
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
