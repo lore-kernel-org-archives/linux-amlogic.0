@@ -4,56 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E60AC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 05:03:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E044EC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Apr 2022 07:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=M9KzdD7w+BhRF4Hnywh2eI+BwAhxNXTFDpQowrpt/pM=; b=W2b0zGDGx9K8jE
-	/bPqpeqf+RuZ6YdlvoRteoGqgG4QhGEL1OSXqIPa9g2sU1L00Pvyho63bzekt+50mjEqXPEH5sMxn
-	whYcSQtirt0hhAD4CPKObAItEGYK8yhLG3t/tJ6fOYeBxBJXbUXIXM28wEAy3esivSv9D4UmwSyKr
-	RV6LxrTIeih89tzoeWlknFzCyMh235RESD566pKYBpDsQA/Z9lrLt51QIuCjspiLjCVCdMDkGOYWl
-	Y7Ey05ifHjk3MMn/My0Fp4LrKMvkSstao69z/Vl5p7iQLwj+wuYxelHoy9ObjSx6CqHfGwa5pJ3Dh
-	0E2jzMWk+YOyDsuLUnkg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OPd7oL5nuaRgwHoKI6MYEDA5PmpBj1OuGJ2Vtz6V0Ug=; b=sVh6uXIfzvslde
+	ZCotsAGV+T9Tlef0hwlvii9/RoUrCljq3xlFESTaaDjB6QluJeKwhqkW5eG44IcvyAw7cscuSMTcc
+	wi0vIKjoPU6QyrnErG3pwWiiujfKJGmFTf5tGEXv8bxyQBbMb/mo+auxvCCi4NN0Z5AdieXjq/WfG
+	CCEIY2IfAxGue7E01HVVFAQpnLMjFyBqBOGiAcBbHV41WgjvK4cfMd9DBA9hyjqNDtioQiVmdRgJ4
+	aKzKqitd3I8INg48HehziHXszAsxapAOOP7jVLRbPwZtTZ46frunpwElBHngXrYrZ9ue/GjDCbs89
+	ZgIvMfoDZ+OIlCLCwouQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ncgml-00F0B0-1B; Fri, 08 Apr 2022 05:03:51 +0000
-Received: from muru.com ([72.249.23.125])
- by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ncgmh-00F0AG-Gw; Fri, 08 Apr 2022 05:03:49 +0000
-Received: from localhost (localhost [127.0.0.1])
- by muru.com (Postfix) with ESMTPS id 295158125;
- Fri,  8 Apr 2022 05:01:22 +0000 (UTC)
-Date: Fri, 8 Apr 2022 08:03:45 +0300
-From: Tony Lindgren <tony@atomide.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
- Mike Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- 'Linux Samsung SOC' <linux-samsung-soc@vger.kernel.org>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] clk: Drop the rate range on clk_put
-Message-ID: <Yk/CMUZ6zRSzYruS@atomide.com>
-References: <20220325161144.1901695-1-maxime@cerno.tech>
- <20220325161144.1901695-4-maxime@cerno.tech>
- <CGME20220330080612eucas1p195caaf35d900412de762a27ae02b7b9e@eucas1p1.samsung.com>
- <366a0232-bb4a-c357-6aa8-636e398e05eb@samsung.com>
- <20220330084710.3r6b5pjspz5hdmy6@houat>
- <YkV3ch7R7YxlATW+@atomide.com>
- <20220407075356.lmqnax35cewiwh4k@houat>
- <Yk6a7meIO+fV5J1D@atomide.com> <Yk7GFWdJd2EN7L1V@atomide.com>
- <20220407134514.sct7g23yto47ylgr@houat>
+	id 1ncikM-00FQ0W-IJ; Fri, 08 Apr 2022 07:09:30 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
+ by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1ncikB-00FPxu-TG; Fri, 08 Apr 2022 07:09:21 +0000
+Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Fri, 8 Apr 2022
+ 15:09:11 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>
+Subject: [PATCH] arm64: dts: remove cpu compatible "arm,armv8" for s4
+Date: Fri, 8 Apr 2022 15:09:01 +0800
+Message-ID: <20220408070901.26446-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220407134514.sct7g23yto47ylgr@houat>
+X-Originating-IP: [10.18.11.246]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220407_220347_635102_3905EE01 
-X-CRM114-Status: GOOD (  19.22  )
+X-CRM114-CacheID: sfid-20220408_000919_978323_2E36E742 
+X-CRM114-Status: UNSURE (   7.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,41 +60,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-* Maxime Ripard <maxime@cerno.tech> [220407 13:43]:
-> On Thu, Apr 07, 2022 at 02:08:05PM +0300, Tony Lindgren wrote:
-> > It now boots, but does a lot of checks on the clocks before the timers
-> > get initialized compared to v5.18-rc1.
-> 
-> I was about to say that this is fairly normal with the new behaviour,
-> but I've reworked the initial patch in that discussion to only call into
-> clk_set_rate_range if there was a range on that clock to begin with.
-> 
-> It should remove the huge majority of the checks you mentioned (and
-> hopefully get rid of most of the side effects as well).
+Amlogic s4 device is already applied, but cpu compatible 'arm,armv8'
+is only valid for software models, so we remove it.
 
-OK yeah thanks, looks good to me now. Boot time looks normal, timer clocks
-are right, and runtime PM still works too.
+Fixes: ac4dfd0d1d35 ("arm64: dts: add support for S4 based Amlogic AQ222")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-> It shouldn't be there anymore after that rework, but I couldn't find
-> wher the ssi_ssr_fck clock was defined? The only relevant driver seems
-> to be omap_ssi_core.c but I don't see any clock driver registered there
-> either.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index bf9ae1e1016b..480afa2cc61f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -13,28 +13,28 @@ cpus {
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+-			compatible = "arm,cortex-a35","arm,armv8";
++			compatible = "arm,cortex-a35";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
+ 		};
+ 
+ 		cpu1: cpu@1 {
+ 			device_type = "cpu";
+-			compatible = "arm,cortex-a35","arm,armv8";
++			compatible = "arm,cortex-a35";
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
+ 		};
+ 
+ 		cpu2: cpu@2 {
+ 			device_type = "cpu";
+-			compatible = "arm,cortex-a35","arm,armv8";
++			compatible = "arm,cortex-a35";
+ 			reg = <0x0 0x2>;
+ 			enable-method = "psci";
+ 		};
+ 
+ 		cpu3: cpu@3 {
+ 			device_type = "cpu";
+-			compatible = "arm,cortex-a35","arm,armv8";
++			compatible = "arm,cortex-a35";
+ 			reg = <0x0 0x3>;
+ 			enable-method = "psci";
+ 		};
 
-I'm not seeing this warning any longer :)
-
-FYI, this clock is defined here:
-
-$ git grep ssi_ssr_fck_3430es2
-arch/arm/boot/dts/omap36xx-omap3430es2plus-clocks.dtsi: ssi_ssr_fck: ssi_ssr_fck_3430es2 {
-drivers/clk/ti/clk-3xxx.c:      DT_CLK(NULL, "ssi_ssr_fck", "ssi_ssr_fck_3430es2"),
-
-Yeah it's confusing, the clock is still created based on the node name.
-I have some clean-up patches coming to fix most of the related make dtbs
-checks warnings now that the clock driver changes got merged.
-
-Regards,
-
-Tony
+base-commit: fd86d85401c2049f652293877c0f7e6e5afc3bbc
+-- 
+2.30.2
 
 
 _______________________________________________
