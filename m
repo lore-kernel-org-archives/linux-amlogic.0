@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (unknown [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF1DC433FE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Apr 2022 16:44:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CBC5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Apr 2022 16:44:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Lxgi9GPdvslNEIhwpbgMSlvLSyc+JiXacpHu5pL8PoM=; b=or5aMsAaGWC4r8
-	TcZteUpoRqTLxdi84N/79aMV9/zlSKGkCQRL9BkyTwazR4Pw8P/Alf/xgvem0TX9fsoX57NBJFD18
-	zcpL+xSGAtY2eVB8GQYc7MhMQdi7V9tB1LdeE66epvRWeEbdgQZguEy+q2+zdVz+Wnh1tfQTV1xET
-	y5isNJlfFfdi4bdT/YfFmxx1AqAimlULHjJkUlExmFw9qCAwlt2maIYMr5o+97Ap0MKlM30vzjysj
-	YrZO2jPyp9ncPXqoEvM/RvWxxGbghubZ5RiDRgZFQ8jiu8rgbU0HyPHGjK1ELYUfTefl0kiXszWM7
-	BFqtA5054rEJKzcvVNSg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=A6gkWm4iDZkc5Gkk1fb0Cc10jVjMNzrOVy/TAcdy2iw=; b=Qmy2rv0L7mkxX1
+	+Gd+MoxxlZtEMNkh7zhzk3furhq5qBO4G7bs0XyQRNI6i56wOmQ1xDynlfcE4jMYYnF3prcKF1Xn+
+	ry5xwfZ+BW45HN7qmpJcUCnsIGiCK0auI3xXPxYHNK0ZKwGohGHSsQ57iXrDrVzmWvy3Cl553Lefc
+	rYyblUlZKE9ZwZGuH6+Zk5B6uAcVSQ8NouIoy8nMiFqVc+YtP8HYEgvpdBXaHmgNY6ADYazhXi1zT
+	E2kCI3GhhjPFIPq7vkKx84+dTEKVelWYrz2UALLYLz0GhKrXdfyl+aANZni/fZg9QJgKrVJgXLSRw
+	T/ERrJ03J1aWL4/SLYLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ndEBs-003VZQ-Iv; Sat, 09 Apr 2022 16:44:00 +0000
-Received: from mail-ej1-f42.google.com ([209.85.218.42])
+	id 1ndEC2-003Vcw-1Y; Sat, 09 Apr 2022 16:44:10 +0000
+Received: from mail-ej1-f48.google.com ([209.85.218.48])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndEBY-003VU2-LL; Sat, 09 Apr 2022 16:43:42 +0000
-Received: by mail-ej1-f42.google.com with SMTP id bq8so22899279ejb.10;
- Sat, 09 Apr 2022 09:43:37 -0700 (PDT)
+ id 1ndEBZ-003VU6-Ew; Sat, 09 Apr 2022 16:43:43 +0000
+Received: by mail-ej1-f48.google.com with SMTP id l7so17514693ejn.2;
+ Sat, 09 Apr 2022 09:43:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pVmzukBjy0oK5OWKVTDNtxD4bzljFSiqXQowPFnBMAs=;
- b=LGD8Xt8694dvoqkYkDhEGHl//3dXnPzLVO0VZRNZd0ntzzZWL+VUaJnR9PD8QJ+F6E
- AZtbk3OHSvzmAYUMiQU2wLgnDVMec/UESdWhIZTKp3A3rVoGO+NozE5DaFj3zEbvkeUS
- xE8IBfPXSbL1sWiGci3lrfh91CuczqxnQM0VHsYjUuWk/SqUHcFvOUAS/ElyLg3ID/tt
- EFtDOIXhmozZx3Cixdx9XMvzVrnmUL6Yi7j+5WS6uoNs7HjAyN/huSRWSuO9iQp1nsqU
- +YMTy4Wby8PsrTa7fIBMUhBccXpCav7WPGzgQYpY5/n749JjQ9D3pYXu6IzXXqBkvS4d
- cp5g==
-X-Gm-Message-State: AOAM533rfjI6V9EnT6VUQKd8vHatRRI5YChoZSWi1g2nCuMwhzdJ1Lh4
- NbLWn57CDRxa99caA7Tao74=
-X-Google-Smtp-Source: ABdhPJzqla9fbXMWhSk7USFQi80ez1A3cQaB67I3GHpphQCdfi0MUOiNvSFfSUUj+Z8egjN7MomlTw==
-X-Received: by 2002:a17:906:9c84:b0:6e0:7c75:6f01 with SMTP id
- fj4-20020a1709069c8400b006e07c756f01mr22916698ejc.103.1649522616408; 
- Sat, 09 Apr 2022 09:43:36 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=tAZvsU5nlu0FKdd+G9qXCM7NYkg4H55ZT6LFNEgv3RI=;
+ b=ZF7HujwkJDxopJ/tyIvmS6Vx+0k3ggKtUN8NNap0l5oHy6awCuUXAKJ9A4t7wLpODr
+ dQDb8nriK7z57EvsqcIPIYOyi3wuLRK8ZhZOrrM6Mh3s9PWp0L3T0YUM1RF0vZM6BX+q
+ R3PddSlMHRD49tNjv6P+/xgiPEy4OSEHh1jJs9NnTL4Uk1s479OPbGE3kNFu4R7+N1Z2
+ c4ElJT2tYoi5NqYPBxE5gb0AcDZddWoBBAXN4qE8ri76pWg/yjaUxMhkUghJJJIACMkb
+ ns3CDQbihikjhyEmHppcX0jWnzQVH9mLIHmT0nFsbigUKhCxPJ1I01tdrurb7ox4iX+X
+ 8Mnw==
+X-Gm-Message-State: AOAM531f+HdvQDptYaKkh0OekuY9ToagxDFDe0nffDzRi/lKXccGEgPJ
+ imbi80i9xQkSo4RUNEQ9CCo=
+X-Google-Smtp-Source: ABdhPJwKRHXA6qAgKaGLSsVhLM5Gp+zrWPdyoW27bFbY+D9wpStbVWJl5x0brNlf44SvE6zwahQuNw==
+X-Received: by 2002:a17:907:86a3:b0:6da:870c:af44 with SMTP id
+ qa35-20020a17090786a300b006da870caf44mr22664327ejc.445.1649522618211; 
+ Sat, 09 Apr 2022 09:43:38 -0700 (PDT)
 Received: from aryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net.
  [82.11.51.62]) by smtp.googlemail.com with ESMTPSA id
- hu8-20020a170907a08800b006dfd2056ab2sm9893735ejc.97.2022.04.09.09.43.35
+ hu8-20020a170907a08800b006dfd2056ab2sm9893735ejc.97.2022.04.09.09.43.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 09 Apr 2022 09:43:35 -0700 (PDT)
+ Sat, 09 Apr 2022 09:43:37 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
@@ -55,15 +55,16 @@ To: Neil Armstrong <narmstrong@baylibre.com>,
 Cc: linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  Lucas Tanure <tanure@linux.com>
-Subject: [PATCH v2 0/2] Ensure High and Low periods of SCL are correct
-Date: Sat,  9 Apr 2022 17:43:32 +0100
-Message-Id: <20220409164334.157664-1-tanure@linux.com>
+Subject: [PATCH v2 2/2] i2c: meson: Use 50% duty cycle for I2C clock
+Date: Sat,  9 Apr 2022 17:43:34 +0100
+Message-Id: <20220409164334.157664-3-tanure@linux.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220409164334.157664-1-tanure@linux.com>
+References: <20220409164334.157664-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220409_094340_738009_837956F9 
-X-CRM114-Status: UNSURE (   7.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220409_094341_535604_63C69905 
+X-CRM114-Status: GOOD (  17.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,58 +81,140 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The default duty cycle of 33% is less than the required
-by the I2C specs for the LOW period of the SCL clock at
-100KHz bus speed.
+The duty cycle of 33% is less than the required
+by the I2C specs for the LOW period of the SCL
+clock.
 
-So, for 100Khz or less, use 50%H/50%L duty cycle, and
-for the clock above 100Khz, use 40%H/60%L duty cycle.
-That ensures the low period of SCL is always more than
-the minimum required by the specs at any given frequency.
+Move the duty cyle to 50% for 100Khz or lower
+clocks, and (40% High SCL / 60% Low SCL) duty
+cycle for clocks above 100Khz.
 
-I did a few measures on the Khadas Vim3 board:
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ drivers/i2c/busses/i2c-meson.c | 70 +++++++++++++++++++++++++++++-----
+ 1 file changed, 60 insertions(+), 10 deletions(-)
 
-i2c_AO (i2c@5000):
-
-Before the patchset, I got:
-- 100KHz: 3.338us HIGH, 6.746us LOW, 33%/67%, Freq 99KHz (Not Valid tHIGH < 4.0us)
-- 400KHz: 860ns HIGH, 1.734us LOW, 33.15%/62.85%, Freq 385.505KHz (Valid)
-- 1000KHz: 362ns HIGH, 732ns LOW, 33.09%/66.91%, Freq 914.077KHz (Valid)
-
-With the patchset
-- 100KHz: 4.952us HIGH, 5.134us LOW, 49%/51%, Freq 99KHz (Valid)
-- 400KHz: 966ns HIGH, 1.628us LOW, 37.24%/62.76%, Freq 385.505KHz (Valid)
-- 1000KHz: 372ns HIGH, 720ns LOW, 34.07%/65.93%, Freq 915.741KHz (Valid)
-
-i2c3 (i2c@1c000):
-
-Before the patchset, I got:
-- 100KHz: 3.348us HIGH, 6.704us LOW, 33%/67%, Freq 99.5KHz (Not Valid tHIGH < 4.0us)
-- 400KHz: 864ns HIGH, 1.69us LOW, 33.83%/62.17%, Freq 391.543KHz (Valid)
-- 1000KHz: 360ns HIGH, 690ns LOW, 34.29%/65.71%, Freq 952.381KHz (Valid)
-
-With the patchset
-- 100KHz: 4.958us HIGH, 5.092us LOW, 49%/51%, Freq 99KHz (Valid)
-- 400KHz: 970ns HIGH, 1.582us LOW, 38%/62%, Freq 391.85KHz (Valid)
-- 1000KHz: 370ns HIGH, 680ns LOW, 35.24%/64.76%, Freq 952.57KHz (Valid)
-
-v2 changelog:
- - Keep the previous calculation for Meson6
- - Use I2C_MAX_STANDARD_MODE_FREQ
- - move the comment before the if()
- - use FIELD_PREP for setting div_l
- - Drop removal of meson_i2c_data
-
-Previous versions:
- V1: https://lkml.org/lkml/2022/3/26/109
-
-Lucas Tanure (2):
-  i2c: meson: Use _SHIFT and _MASK for register definitions
-  i2c: meson: Use 50% duty cycle for I2C clock
-
- drivers/i2c/busses/i2c-meson.c | 111 ++++++++++++++++++++++++---------
- 1 file changed, 82 insertions(+), 29 deletions(-)
-
+diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+index 4b4a5b2d77ab..50dab123380a 100644
+--- a/drivers/i2c/busses/i2c-meson.c
++++ b/drivers/i2c/busses/i2c-meson.c
+@@ -65,10 +65,6 @@ enum {
+ 	STATE_WRITE,
+ };
+ 
+-struct meson_i2c_data {
+-	unsigned char div_factor;
+-};
+-
+ /**
+  * struct meson_i2c - Meson I2C device private data
+  *
+@@ -109,6 +105,10 @@ struct meson_i2c {
+ 	const struct meson_i2c_data *data;
+ };
+ 
++struct meson_i2c_data {
++	void (*set_clk_div)(struct meson_i2c *i2c, unsigned int freq);
++};
++
+ static void meson_i2c_set_mask(struct meson_i2c *i2c, int reg, u32 mask,
+ 			       u32 val)
+ {
+@@ -137,14 +137,62 @@ static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
+ 	i2c->num_tokens++;
+ }
+ 
+-static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
++static void meson_gxbb_axg_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
++{
++	unsigned long clk_rate = clk_get_rate(i2c->clk);
++	unsigned int div_h, div_l;
++
++	/* According to I2C-BUS Spec 2.1, in FAST-MODE, the minimum LOW period is 1.3uS, and
++	 * minimum HIGH is least 0.6us.
++	 * For 400000 freq, the period is 2.5us. To keep within the specs, give 40% of period to
++	 * HIGH and 60% to LOW. This means HIGH at 1.0us and LOW 1.5us.
++	 * The same applies for Fast-mode plus, where LOW is 0.5us and HIGH is 0.26us.
++	 * Duty = H/(H + L) = 2/5
++	 */
++	if (freq <= I2C_MAX_STANDARD_MODE_FREQ) {
++		div_h = DIV_ROUND_UP(clk_rate, freq);
++		div_l = DIV_ROUND_UP(div_h, 4);
++		div_h = DIV_ROUND_UP(div_h, 2) - FILTER_DELAY;
++	} else {
++		div_h = DIV_ROUND_UP(clk_rate * 2, freq * 5) - FILTER_DELAY;
++		div_l = DIV_ROUND_UP(clk_rate * 3, freq * 5 * 2);
++	}
++
++	/* clock divider has 12 bits */
++	if (div_h > GENMASK(11, 0)) {
++		dev_err(i2c->dev, "requested bus frequency too low\n");
++		div_h = GENMASK(11, 0);
++	}
++	if (div_l > GENMASK(11, 0)) {
++		dev_err(i2c->dev, "requested bus frequency too low\n");
++		div_l = GENMASK(11, 0);
++	}
++
++	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
++			   FIELD_PREP(REG_CTRL_CLKDIV_MASK, div_h & GENMASK(9, 0)));
++
++	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT_MASK,
++			   FIELD_PREP(REG_CTRL_CLKDIVEXT_MASK, div_h >> 10));
++
++	/* set SCL low delay */
++	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR, REG_SLV_SCL_LOW_MASK,
++			   FIELD_PREP(REG_SLV_SCL_LOW_MASK, div_l));
++
++	/* Enable HIGH/LOW mode */
++	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR, REG_SLV_SCL_LOW_EN, REG_SLV_SCL_LOW_EN);
++
++	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, divh %u, divl %u\n", __func__,
++		clk_rate, freq, div_h, div_l);
++}
++
++static void meson6_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
+ {
+ 	unsigned long clk_rate = clk_get_rate(i2c->clk);
+ 	unsigned int div;
+ 
+ 	div = DIV_ROUND_UP(clk_rate, freq);
+ 	div -= FILTER_DELAY;
+-	div = DIV_ROUND_UP(div, i2c->data->div_factor);
++	div = DIV_ROUND_UP(div, 4);
+ 
+ 	/* clock divider has 12 bits */
+ 	if (div > GENMASK(11, 0)) {
+@@ -472,7 +520,9 @@ static int meson_i2c_probe(struct platform_device *pdev)
+ 	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR,
+ 			   REG_SLV_SDA_FILTER_MASK | REG_SLV_SCL_FILTER_MASK, 0);
+ 
+-	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
++	if (!i2c->data->set_clk_div)
++		return -EINVAL;
++	i2c->data->set_clk_div(i2c, timings.bus_freq_hz);
+ 
+ 	ret = i2c_add_adapter(&i2c->adap);
+ 	if (ret < 0) {
+@@ -494,15 +544,15 @@ static int meson_i2c_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct meson_i2c_data i2c_meson6_data = {
+-	.div_factor = 4,
++	.set_clk_div = meson6_i2c_set_clk_div,
+ };
+ 
+ static const struct meson_i2c_data i2c_gxbb_data = {
+-	.div_factor = 4,
++	.set_clk_div = meson_gxbb_axg_i2c_set_clk_div,
+ };
+ 
+ static const struct meson_i2c_data i2c_axg_data = {
+-	.div_factor = 3,
++	.set_clk_div = meson_gxbb_axg_i2c_set_clk_div,
+ };
+ 
+ static const struct of_device_id meson_i2c_match[] = {
 -- 
 2.35.1
 
