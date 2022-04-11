@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A067EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 10:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C05C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 11:45:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a26XGjyEm0YnU9b8XwEAPjEnFLFpR7KqyX9McafPuLg=; b=c2eZhnhGxfQS2c
-	P+AFmun5gk/3K7dTemkW4U/WcgWDRIfvN2JE60WKwpnnkelq/FkikBEeZv7Fw8xxHpn9TfcnYdA3E
-	ouEgMh9vFCbCQoWlNxBrdAq1ugKX7how7O9wOSF9uBxIis24eYAmgqxJJcrHCeopCi8tLKHzGCSna
-	TrrUQN2oNQ1U433HWCK2NW5nO+sM7TYriqbueZ8/MXprhR9gIvo7lFnemzthabsKjU++1QLdILdPJ
-	DET3H/iyqEhGOCvIbY/6koq6o53EePZEckYCMqfcb2Gvs4e91C3UbtjTMhxrKXbgUfsmCjARG0Cdo
-	entdgf/htgKhqZh1HcZw==;
+	List-Owner; bh=DnsL4Ffz17h5ht7lcd5K5XN4YO5aFHb6ER1kmXhmD1w=; b=ttEEvV2p+1JCpl
+	3s82Fj6/GpPAq1lRBKzndbiQBiKByF8bYulcdLUqP36QENwU+Jn0tu0dXn8XUc1909FVMxLzGAPPz
+	wV/Hf5oPBbjCOCbP84/Uka+SJWwB5B2X1jG+XnsMQc1JaZ/Wv3oREIkiIVsQRUoriPmmiGYy7gCfb
+	pROzuyo5b+mPQGLAzDiZcFM61u2nOy6hLs0TIVN1EJl1HOPSRpqnW2Bxj9+QHPsFhbG+NVgaxupvd
+	d05whBPWricC42ixuQ0vbMjMOlqdcU+WNZ9pMwt6iUiJx+x1IYtiOY1BwkLzHKCCvl8mJlCEzKHzi
+	VFJ6+NXrhx9Esmbvcr7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ndrQH-008Oyi-VP; Mon, 11 Apr 2022 10:37:30 +0000
-Received: from mga09.intel.com ([134.134.136.24])
+	id 1ndsUG-008lLe-NA; Mon, 11 Apr 2022 11:45:40 +0000
+Received: from mga07.intel.com ([134.134.136.100])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndrCJ-008Hyp-Rj; Mon, 11 Apr 2022 10:23:06 +0000
+ id 1ndsU5-008lIe-7M; Mon, 11 Apr 2022 11:45:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649672583; x=1681208583;
+ t=1649677529; x=1681213529;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=W9PBitEIG3h2GlCxu7zEfN69pBWFXH7+lRg/Bcxe/tU=;
- b=ZC2AF/cQqGnjY0Nl8jXOyt1X+DC9kvD5J9JyFcXXqQPEY/VQI9iR+3y+
- BZBK69/4cxiBqxv2KVmkAAXtonoy7UwiQ0nYGbY3eFXaFP5fGydnJmEVM
- 7V+pIHDTeh5WcRvXynVCAQuyc86fdVWpI5jGQ83zAYewKnUlvlcfAxunS
- qh82tKGwktz2/l37Xql6W9cfBQergipHxxi5o8pNzxMIKDXvhwIAZg/gF
- 9EOzW88CukEcjdJuF5yTVaGrirkMgUOmcFCaK4tMbEyqY0IzKn3tEqPJM
- k8zii7kYDlKjYQ5KLgTAfUIPrIY8SUTALimeVO366mXVvrBV70PSa1fJ/ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="261521099"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="261521099"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 03:23:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="525460425"
+ bh=r5Ar8qxrxZpK4XRu/tA3qWYavit0uwaROYPXccoJAjE=;
+ b=leR+6MD1TauS60Hf5EbzB8QQEfSB2aul1EDlEe/1GqNyo6A5T9u4861M
+ LIEfCTwCJ8p30LDWOxNg2Sxh3Z1rWGABougBpw6iPR2sDruR/f9LKkAkm
+ lD2JgZNn0CIe/9dhWxy1h//H816i3i88o842d0Eu6Q4wTstbzNQDPLeNS
+ +lch2tAT1ozUApKHre2LdpCt2anKA0o1fdiyqRfUVUvcv5825rQ6VH9GS
+ xgxZcF54Gd5cI6jAX2IhRY4giuAGXd57w84ACqnim3oYf+SvL6hrhOJnK
+ Zjla1QGEZS+aWdSVIMOAuu3q5mMprEYi9v5FyoiS1RcFFQm/owStlkJCf w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="325007489"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="325007489"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 04:45:24 -0700
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="622798226"
 Received: from smile.fi.intel.com ([10.237.72.54])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 03:22:52 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 04:45:16 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.95)
  (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1ndr8Z-001B7S-AA; Mon, 11 Apr 2022 13:19:11 +0300
-Date: Mon, 11 Apr 2022 13:19:11 +0300
+ id 1ndsQJ-001CCZ-MO; Mon, 11 Apr 2022 14:41:35 +0300
+Date: Mon, 11 Apr 2022 14:41:35 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Geert Uytterhoeven <geert@linux-m68k.org>
 Cc: Qianggui Song <qianggui.song@amlogic.com>,
@@ -80,17 +80,18 @@ Cc: Qianggui Song <qianggui.song@amlogic.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
 Subject: Re: [PATCH v4 09/13] pinctrl: meson: Rename REG_* to MESON_REG_*
-Message-ID: <YlQAn9+4kdB0F/4d@smile.fi.intel.com>
+Message-ID: <YlQT7w1XSbnkNI9E@smile.fi.intel.com>
 References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
  <20220401103604.8705-10-andriy.shevchenko@linux.intel.com>
  <CAMuHMdX8zWA-3_=Je7sB_72G8Ky7-syqCH-RXGxNMazUipW-2g@mail.gmail.com>
+ <YlQAn9+4kdB0F/4d@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdX8zWA-3_=Je7sB_72G8Ky7-syqCH-RXGxNMazUipW-2g@mail.gmail.com>
+In-Reply-To: <YlQAn9+4kdB0F/4d@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220411_032303_989110_30B9CFDE 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20220411_044529_408103_7980E42C 
+X-CRM114-Status: GOOD (  11.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,23 +108,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 11, 2022 at 11:04:00AM +0200, Geert Uytterhoeven wrote:
-> On Fri, Apr 1, 2022 at 12:36 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > Currently compilation test fails on x86 due to name collision. The usual
-> > way to fix that is to move both conflicting parts to their own namespaces.
-> >
-> > Rename REG_* to MESON_REG_* as a prerequisite for enabling COMPILE_TEST.
+On Mon, Apr 11, 2022 at 01:19:11PM +0300, Andy Shevchenko wrote:
+> On Mon, Apr 11, 2022 at 11:04:00AM +0200, Geert Uytterhoeven wrote:
+> > On Fri, Apr 1, 2022 at 12:36 PM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
 
-> >         NUM_REG,
+...
+
+> > >         NUM_REG,
+> > 
+> > MESON_NUM_REG?
 > 
-> MESON_NUM_REG?
+> Hmm... Only one place where it's defined and used, but I can do it, sure.
 
-Hmm... Only one place where it's defined and used, but I can do it, sure.
-
-$ git grep -n -w NUM_REG
-drivers/pinctrl/meson/pinctrl-meson.h:72:       NUM_REG,
-drivers/pinctrl/meson/pinctrl-meson.h:105:      struct meson_reg_desc regs[NUM_REG];
+Updated locally.
 
 -- 
 With Best Regards,
