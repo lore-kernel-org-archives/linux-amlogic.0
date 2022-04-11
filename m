@@ -4,100 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EC44C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 12:21:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC6BBC433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 12:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vQpplAIMWANVAiigauyV+zKbO3lSaGMTp+BMVrEJpvI=; b=QR6/FTZFF2J+zi
-	eW5UNEhUtxxKZojlmZql2AI8PirfhRzLtHwhsBO5SZI/3LLuK3wl1JdmmYO+DnD4H4qk1YXlhTb+J
-	HPAprvgMONDY5u/h+FLIPHjSORtx4ZKQyIdhSuomw53yhBW9wYxxkTgxNejCxCbHxsJoeuhiNvduQ
-	0fwgRuL0eTrjKNEyzaEn0UGS3c5NOgUYRoedMMPFo7x/6mbTcDEE2YJ1CC9HtKBIFqEusBIZfL8sl
-	7o/ujqfMFAV35rCbPkHrrgY4ZY2v1MS67058REKr9quynoS/g6MwPgilZjleMNIe/Z+LNJBgzOvlE
-	R/HWlbf9hzi9wjcnwHnA==;
+	List-Owner; bh=dqxNU7wvAQiSevYMYOiCj2BUEpCsXVn9kOdmH/N75JQ=; b=jxMf4WxxRcjmIm
+	PYqc0wlE7rAOW67KPpjHdCfX6rmCny00RenykhI/JSi1s8LJmj8jo7QKpnfu41Gp2p3KA1GPcc7+M
+	8jrZE40+KJT5CDTNQ86/wXy0xzSNxPyzDMH4PbPmJMFkqjXEdSL/kEPaSnzveQK7aPDKNv+LtIq6k
+	izg7dEUahiJRwIuQGtt76WRd5f0C/8fM5nL9qtsiSVYUVKcn1v1NdiCDOxWa3IGHeBMwq4Avr2p7b
+	DoorSDIVW4X1DfywioNeeFxbhKp+KNnJoKlYBcAeELytj10TjQ/epf7PtoFLWLCDDbi5m1gCiktz/
+	TtH8AzjogWYHFmSsHc8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ndt2n-008xAX-H9; Mon, 11 Apr 2022 12:21:21 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1ndtYD-0092Vs-9N; Mon, 11 Apr 2022 12:53:49 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndt2W-008x49-2j
- for linux-amlogic@lists.infradead.org; Mon, 11 Apr 2022 12:21:05 +0000
-Received: by mail-ej1-x629.google.com with SMTP id ks6so5836940ejb.1
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Apr 2022 05:21:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=RWDiMWfhIWr53FwXEogy4euvp8PAvtGehm8/baIndcM=;
- b=zQpR9VZ+woJvNm5syngZCOBKwr61vOpjGU9a4vz+/8zEiU57r4DunLKIktFy6+XJOY
- rHZC+TmG68NnXuKeXCGRNoJeyGNbsVWhdcjj8WjAsQmCLb4dp9ysubH/dHqKRovadDlE
- x0FujnVPvMz5nyYyxT98DpK2RyMqbKeKIRRCABEm5v7fsb6W1u/w7QXoWMSngRY7jIUU
- /xCqP+AYXVqsQ7sRPyRMuRJ8u3OLMMY2bW9p+5wjBVlXXpB9t3DLN0Q/W6xBPK/3c8rc
- dQwFZ0V/hsyYTs9Gaw8hhxTMrAnzyuZltzbKevnbBsYWBfIwY1tDyOAd1jRHFX4Q5IKY
- qvTQ==
+ id 1ndtY0-0092TR-Fh
+ for linux-amlogic@lists.infradead.org; Mon, 11 Apr 2022 12:53:39 +0000
+Received: by mail-wr1-x436.google.com with SMTP id g18so6612176wrb.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Apr 2022 05:53:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
+ b=K++AZqOu12JXzZwEh27ZnzSiLauYhZ429z4DGGxRxtltLvCIIPB8hbzu20nV3Lf5IE
+ i50tR2SmPpo3vAyoivozenYAKfWdUATC1wpCrn14O4F/6thnVXiLB/4Eergew46a7BlP
+ lA1KhCgyXEtoi/0rmgyS7Aco5A3slPKfo5bhMEooe72KmRbJfBcm73Jd8YIfvHQIijJ6
+ Ea1xHzXEFjb0Ym+EufbtDsAKYApeaImPJiL0Rj7GYibVhA0jpveCDpOE+u8I5tJte2cU
+ fQFk96Ksyn6eLgR6UbCKb1HKxo+zjw1enMfdQVuIszqYUytCrzC9CbPKYI1xrDChKqml
+ cExw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=RWDiMWfhIWr53FwXEogy4euvp8PAvtGehm8/baIndcM=;
- b=vJru+o9wtUgAjP5vEwU+4G9C0kISH58j1zZLcaxlDS//0OqedCGm6uNZAhx+5DtC3p
- pKkD/hqRrhMCgQejzBvZbLJZLJxLoW9wE0XeTmLY6xcn6BphtcgngFy4r04oWSqSR7Cf
- ITAzgCYMGovhSDKLv9XFNL3UuM6eAF8+FukN3UU5dVFJWa+j7In4vfNCDRZydjVyz4tE
- bx5YU0hR/sm49/9L9bfIqsHrYI6nfdO8gXtiYxdnXuDolAnL2I1q3kTz24OVpCdh7HlR
- zmaGY8z0u84ua3SgsolqZBP8vF0xKCGkHyBWgL4Gz1VM52tJO+xTngdYuKqzZFnNdtn5
- r3IQ==
-X-Gm-Message-State: AOAM533PDXfy42k7WCy5Rr9zEEg5qzigFCmqkWt0C5HwekZTz1w4DxtU
- R4If/Vu4uPgGHUMw1qFXBy2VDg==
-X-Google-Smtp-Source: ABdhPJzoWPcAyK9l16OvBAmj/RtOilX6prVo8h/I1VXPgagIcmmB9cRqHlnw49UNvIPQhNfGzSvvNA==
-X-Received: by 2002:a17:906:68c2:b0:6b4:9f26:c099 with SMTP id
- y2-20020a17090668c200b006b49f26c099mr30356381ejr.41.1649679662257; 
- Mon, 11 Apr 2022 05:21:02 -0700 (PDT)
-Received: from [192.168.0.192] (xdsl-188-155-201-27.adslplus.ch.
- [188.155.201.27]) by smtp.gmail.com with ESMTPSA id
- w6-20020a170906d20600b006ca00cb99e0sm11790596ejz.34.2022.04.11.05.21.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Apr 2022 05:21:01 -0700 (PDT)
-Message-ID: <4513324d-3dba-fd21-2a7f-9f1b9ef535cc@linaro.org>
-Date: Mon, 11 Apr 2022 14:21:00 +0200
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
+ b=rn/w6mYxRp/VEW5lUHDNR0znoa4GDRDbDgu8Z2deYab3+Gz48bWh0wTUnpdY3nXoit
+ RF4AKDZ8JzpqTwyiMmL+EIUcvBj4ta1v9xkln0xevX/slczohv0Z65Rrdhmdq6P1svLM
+ +Zl0NhuBW3+uU4tBzhtT0gqq5vY3CfneAh4ljiL04cNezNEefmX3ojAh37DOL44kbxI7
+ FSe52H3NmZI9N6zMyJ9+cYxqIHbSFB6IRC1VTMOUdLSV+1wKVrkL5UbGTZSuk5I5hQyV
+ Gs5kjh9JKb9vCe15QYc/IHp9tRbRk808E7KAKNIge7hR0XmH5n3XuO9zxSS/NQZuYhYs
+ t6IA==
+X-Gm-Message-State: AOAM5338Wo1EgX3MD1Hl0nnp9R+h8gxBwjXGbMZ+SHNG+qgQT3oI47g1
+ YM4QBxGMPl+wzEyo3oj5mb8/Sw==
+X-Google-Smtp-Source: ABdhPJyKHLzX422TghnhzNrWqsYIgexNfpxMzJ6eMiGfRQI2foPOm76YuWIKjNXyDCksYKZV0Ft/XQ==
+X-Received: by 2002:a5d:6b0b:0:b0:1ef:d826:723a with SMTP id
+ v11-20020a5d6b0b000000b001efd826723amr25713546wrw.420.1649681614311; 
+ Mon, 11 Apr 2022 05:53:34 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:d1:e096:d183:1bc5])
+ by smtp.gmail.com with ESMTPSA id
+ t9-20020a05600c198900b0038cb8b38f9fsm18613040wmq.21.2022.04.11.05.53.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Apr 2022 05:53:33 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: linux-arm-kernel@lists.infradead.org,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: alpa sort the board Makefile
+Date: Mon, 11 Apr 2022 14:53:31 +0200
+Message-Id: <164968160694.932109.7341549191882617182.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220409064257.24453-1-christianshewitt@gmail.com>
+References: <20220409064257.24453-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 05/13] pinctrl: samsung: Switch to use
- for_each_gpiochip_node() helper
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Qianggui Song <qianggui.song@amlogic.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Marc Zyngier <maz@kernel.org>,
- Fabien Dessenne <fabien.dessenne@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
- Tomasz Figa <tomasz.figa@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
- <20220401103604.8705-6-andriy.shevchenko@linux.intel.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401103604.8705-6-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220411_052104_171924_603EC536 
-X-CRM114-Status: GOOD (  10.63  )
+X-CRM114-CacheID: sfid-20220411_055336_750024_6FE502FE 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,28 +94,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/04/2022 12:35, Andy Shevchenko wrote:
-> Switch the code to use for_each_gpiochip_node() helper.
+Hi,
+
+On Sat, 9 Apr 2022 06:42:57 +0000, Christian Hewitt wrote:
+> Let's alpha-sort the board Makefile to keep things organised.
 > 
-> While at it, in order to avoid additional churn in the future,
-> switch to fwnode APIs where it makes sense.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  drivers/pinctrl/samsung/pinctrl-exynos.c  |  8 +++---
->  drivers/pinctrl/samsung/pinctrl-s3c24xx.c |  2 +-
->  drivers/pinctrl/samsung/pinctrl-s3c64xx.c |  4 +--
->  drivers/pinctrl/samsung/pinctrl-samsung.c | 30 +++++++++++------------
->  drivers/pinctrl/samsung/pinctrl-samsung.h |  2 +-
->  5 files changed, 22 insertions(+), 24 deletions(-)
 > 
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
 
-Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1/1] arm64: dts: meson: alpa sort the board Makefile
+      https://git.kernel.org/amlogic/c/456733feb0da2dbb1288b9e8f5765df163620c2c
 
-
-Best regards,
-Krzysztof
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
