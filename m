@@ -4,64 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C05C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 11:45:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D7E3C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Apr 2022 12:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DnsL4Ffz17h5ht7lcd5K5XN4YO5aFHb6ER1kmXhmD1w=; b=ttEEvV2p+1JCpl
-	3s82Fj6/GpPAq1lRBKzndbiQBiKByF8bYulcdLUqP36QENwU+Jn0tu0dXn8XUc1909FVMxLzGAPPz
-	wV/Hf5oPBbjCOCbP84/Uka+SJWwB5B2X1jG+XnsMQc1JaZ/Wv3oREIkiIVsQRUoriPmmiGYy7gCfb
-	pROzuyo5b+mPQGLAzDiZcFM61u2nOy6hLs0TIVN1EJl1HOPSRpqnW2Bxj9+QHPsFhbG+NVgaxupvd
-	d05whBPWricC42ixuQ0vbMjMOlqdcU+WNZ9pMwt6iUiJx+x1IYtiOY1BwkLzHKCCvl8mJlCEzKHzi
-	VFJ6+NXrhx9Esmbvcr7w==;
+	List-Owner; bh=ZmiUP2lrhXqViooDHPxPYJyRrYpFYEv085d9gU6QXc8=; b=yje9qOsn8FlaB3
+	Qj12h/IuQtZYdSHeta0Ksbtx4c6mGeQ1f+BcxsMBBn5FJnJxd4Lmi53Xy/MQsGLLyxbMtNP8h61Gn
+	uPwvW1OjcL3s08rOu0R1zB9Q/EWs6f0ZyPvgh6/S5XunTUXfnfihwi1s25xezSVEGkSz2aehHESuF
+	LQNx3CQo9Ny1HJbt39k/X3GijmhiGIB30HpjK5xdlqlu6+9KZUi9nFkpGiDZWufO4Wikwcbht2ktl
+	CEQ3c6kp82BuSRtLZy1dizrkLoh7ucbsckPziwJxcBp2uZjZ5RvoSIojFx8SeH4PVuR/jqh7O+zqk
+	wD+ENsbgMZxg78fHx8XQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ndsUG-008lLe-NA; Mon, 11 Apr 2022 11:45:40 +0000
-Received: from mga07.intel.com ([134.134.136.100])
+	id 1ndsit-008pDC-8q; Mon, 11 Apr 2022 12:00:47 +0000
+Received: from mga18.intel.com ([134.134.136.126])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndsU5-008lIe-7M; Mon, 11 Apr 2022 11:45:30 +0000
+ id 1ndsiU-008p0P-Nm; Mon, 11 Apr 2022 12:00:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649677529; x=1681213529;
+ t=1649678422; x=1681214422;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=r5Ar8qxrxZpK4XRu/tA3qWYavit0uwaROYPXccoJAjE=;
- b=leR+6MD1TauS60Hf5EbzB8QQEfSB2aul1EDlEe/1GqNyo6A5T9u4861M
- LIEfCTwCJ8p30LDWOxNg2Sxh3Z1rWGABougBpw6iPR2sDruR/f9LKkAkm
- lD2JgZNn0CIe/9dhWxy1h//H816i3i88o842d0Eu6Q4wTstbzNQDPLeNS
- +lch2tAT1ozUApKHre2LdpCt2anKA0o1fdiyqRfUVUvcv5825rQ6VH9GS
- xgxZcF54Gd5cI6jAX2IhRY4giuAGXd57w84ACqnim3oYf+SvL6hrhOJnK
- Zjla1QGEZS+aWdSVIMOAuu3q5mMprEYi9v5FyoiS1RcFFQm/owStlkJCf w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="325007489"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="325007489"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 04:45:24 -0700
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="622798226"
+ bh=sC8CyttMimPSNhIr3hh4HcfuM59Ph6N7lGNcafQdvcs=;
+ b=Rt/hjiYnVKutx3rEz7hJcr4+wc9eUC/PjQoioRZA8kjo2rXpyTPKhArh
+ C2JxzkWBe4Cc8WeGEmFooygYwHfTSEWQbFvfaEbkZSKyGu8ybJr7oPDLy
+ 4dAb6YnJ1Pln/vrQAKpFaHF/Np3OifYl5rFjN2elgr5Aq2Y0d0UVkK47K
+ iyGs6tl0O74L4fBAK0nDL9qZq/URFYWL+xNiVl5T+DJqt2xIByldi4Ebr
+ SGuAFEAqlxnXooDr56pdxSuL0KtA+MP93OlAjdCLQX9tc9Q7LBZQz0iRb
+ ZWsK7xoy1pMsfEXcvEeUkc9NVp5CMzq5Vo+jONjadno6IHoqBBsAisUDy g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="243981350"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="243981350"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 05:00:12 -0700
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="699346695"
 Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 04:45:16 -0700
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 05:00:05 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.95)
  (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1ndsQJ-001CCZ-MO; Mon, 11 Apr 2022 14:41:35 +0300
-Date: Mon, 11 Apr 2022 14:41:35 +0300
+ id 1ndsed-001CQ3-RA; Mon, 11 Apr 2022 14:56:23 +0300
+Date: Mon, 11 Apr 2022 14:56:23 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: Qianggui Song <qianggui.song@amlogic.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Marc Zyngier <maz@kernel.org>,
  Fabien Dessenne <fabien.dessenne@foss.st.com>,
  Linus Walleij <linus.walleij@linaro.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- openbmc@lists.ozlabs.org,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com,
  Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
@@ -79,19 +77,21 @@ Cc: Qianggui Song <qianggui.song@amlogic.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v4 09/13] pinctrl: meson: Rename REG_* to MESON_REG_*
-Message-ID: <YlQT7w1XSbnkNI9E@smile.fi.intel.com>
+Subject: Re: [PATCH v4 05/13] pinctrl: samsung: Switch to use
+ for_each_gpiochip_node() helper
+Message-ID: <YlQXZ3Ye13rObMy8@smile.fi.intel.com>
 References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
- <20220401103604.8705-10-andriy.shevchenko@linux.intel.com>
- <CAMuHMdX8zWA-3_=Je7sB_72G8Ky7-syqCH-RXGxNMazUipW-2g@mail.gmail.com>
- <YlQAn9+4kdB0F/4d@smile.fi.intel.com>
+ <20220401103604.8705-6-andriy.shevchenko@linux.intel.com>
+ <d1f873c6-150f-5f4d-7aa8-7bb15823d991@linaro.org>
+ <YlBXSVyj88CqjGj4@smile.fi.intel.com>
+ <3b527700-444e-1f6e-fee1-5cd6ed2ef7f9@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YlQAn9+4kdB0F/4d@smile.fi.intel.com>
+In-Reply-To: <3b527700-444e-1f6e-fee1-5cd6ed2ef7f9@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220411_044529_408103_7980E42C 
-X-CRM114-Status: GOOD (  11.77  )
+X-CRM114-CacheID: sfid-20220411_050022_846463_E767ED22 
+X-CRM114-Status: GOOD (  17.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,20 +108,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 11, 2022 at 01:19:11PM +0300, Andy Shevchenko wrote:
-> On Mon, Apr 11, 2022 at 11:04:00AM +0200, Geert Uytterhoeven wrote:
-> > On Fri, Apr 1, 2022 at 12:36 PM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-
-...
-
-> > >         NUM_REG,
+On Sat, Apr 09, 2022 at 03:33:49PM +0200, Krzysztof Kozlowski wrote:
+> On 08/04/2022 17:39, Andy Shevchenko wrote:
+> > On Fri, Apr 08, 2022 at 05:22:21PM +0200, Krzysztof Kozlowski wrote:
+> >> On 01/04/2022 12:35, Andy Shevchenko wrote:
+> >>> Switch the code to use for_each_gpiochip_node() helper.
 > > 
-> > MESON_NUM_REG?
+> > (...)
+> > 
+> >>>  /*
+> >>>   * Iterate over all driver pin banks to find one matching the name of node,
+> >>>   * skipping optional "-gpio" node suffix. When found, assign node to the bank.
+> >>>   */
+> >>> -static void samsung_banks_of_node_get(struct device *dev,
+> >>> -				      struct samsung_pinctrl_drv_data *d,
+> >>> -				      struct device_node *node)
+> >>> +static void samsung_banks_node_get(struct device *dev, struct samsung_pinctrl_drv_data *d)
+> >>
+> >> This is worth simplification anyway, so please split it to separate patch.
+> > 
+> > Not sure what to do and why it worth an additional churn.
 > 
-> Hmm... Only one place where it's defined and used, but I can do it, sure.
+> Makes this change smaller so it's easier to review.
 
-Updated locally.
+https://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-gpio-intel.git/log/?h=review-andy
+
+That's how it looks like. Tell me if it is what you have had in mind.
 
 -- 
 With Best Regards,
