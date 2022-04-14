@@ -4,144 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 238BEC433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 06:39:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 141B9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 13:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VnMIy5G5hI143hV4wuaxumy+TA1c/xFQXD8kQirRWNc=; b=zKYPbt7AWbggRr
-	1tgEsZlIx0/EjbFdsbMSwPHImJm/Vv4/Lab2npJBcJGzhhf3KV0QcCCnKzdJOvC9jPVYjoiMlXnpb
-	AUpqjb49H1jgBHx/WBey0XwShgH9okpJg22lYQV1PCbinS+5zqHztyhuUAN4VYNtZmU/KxYeVFXMo
-	m7MGaiEyHqkfQzFLElRIlf3WMR303kC7fvPYoZd6tF2lCId4fdVbL3dvZ1DbTUUXG8/wsqA/6h5NE
-	gkwoV+4JQqyTPYjThUx9BVUyzEICC5YSQAE8tpJPHWg0ax/T7uuYD0L/3ziNq8N5YzNFnxY1ASCew
-	NR6qxbzvG9yzMOMe4OnQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:Message-ID:To:From
+	:Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=aGiy7zSMU/h1T/Zijr53ki9pnI4VtUTtgCbhV3jgbz8=; b=yEQX0WaBmKI1hc
+	1aDsU1Qulw2FH6auT2yPNWvX1xMj+wT8jhWdWcj55VvSHoay+QzxTOkj1z1k+eEXsYp+hPoDF4Mjp
+	m0vHKbRbbAJaBjlyxliFPSFdNwIt/GV4Sj5QacWUgHLbBSp0++zPEzvct53MeoGdIzdNaahfp3vZP
+	3IIhcxuuHynixvhTSV8VYZg5fxKNfleZ+/6wGF+ZrtUTx+KsmoSXydhEjIhzt72S8x+78xBmnj0pn
+	l36HBtRN6XkQW8bbiaAcTmXIGhbp1tJQwrOY4XPHNI2gB/N1erm2Skp/leic6OrCwHbPpUm8JeZCT
+	5e8ZW9xAGCWv4eZ4H2rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1net8F-0048Df-Qj; Thu, 14 Apr 2022 06:39:07 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1nezqf-005sL9-Lc; Thu, 14 Apr 2022 13:49:25 +0000
+Received: from sender4-of-o58.zoho.com ([136.143.188.58])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1net8A-0048Ai-T9; Thu, 14 Apr 2022 06:39:06 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20220414063850euoutp013d3a81c830570d4e44c36506643ddb5e~lr-rAXsDP0823308233euoutp01a;
- Thu, 14 Apr 2022 06:38:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20220414063850euoutp013d3a81c830570d4e44c36506643ddb5e~lr-rAXsDP0823308233euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1649918330;
- bh=iZJ0s+Xj2eet3xX8TAKGb2899dU+i00esTWn1QUmUaE=;
- h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
- b=swaPJwNZ/dok3lpu7CKnLpFvMNK66+bsViY0NWvnGzO+i3Cx4SIh+69lzQr7kPluQ
- WkXXWLFmS4+SS65FURorJUHhid6/2/Pq0bG6fb3BkREkY6gcKzwO+HLKX0H4YpJafb
- oJfgPJwWyNflwR107wF/yAHK00ENO85PcPDV2yZI=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20220414063849eucas1p2edb867a5d82f16c3ecd193c3c5253ca1~lr-quG01i2885528855eucas1p2J;
- Thu, 14 Apr 2022 06:38:49 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id 27.72.09887.971C7526; Thu, 14
- Apr 2022 07:38:49 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9~lr-qSAv_c3094930949eucas1p1_;
- Thu, 14 Apr 2022 06:38:49 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20220414063849eusmtrp1feb8830483e8f0c8cc09abb606d918bc~lr-qQt94F1095910959eusmtrp1f;
- Thu, 14 Apr 2022 06:38:49 +0000 (GMT)
-X-AuditID: cbfec7f4-45bff7000000269f-36-6257c1797257
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 19.B3.09404.971C7526; Thu, 14
- Apr 2022 07:38:49 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20220414063847eusmtip12bd90501637cb3e6303ce2fd8295e5d3~lr-oxFH-51804918049eusmtip1m;
- Thu, 14 Apr 2022 06:38:47 +0000 (GMT)
-Message-ID: <3a24ef01-3231-1bee-7429-dce5680c5682@samsung.com>
-Date: Thu, 14 Apr 2022 08:38:46 +0200
+ id 1nezqd-005sJ4-2t
+ for linux-amlogic@lists.infradead.org; Thu, 14 Apr 2022 13:49:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1649944159; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=ac9pIi1EM6rozrp4sj1tmIXE0ikL+gMjMxUC1HXK75sRz//T2og8SN1tdsDtE97AnWVdA7viDt5kvFtfor0wMsZj7+pdmwMnMjv2liNKeh657Uv9zKsHpQfqcFHGu/QqnHJoqRGXQcK3SRQEDHATN8l3qFHllRIICmuSBzcdfFw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1649944159;
+ h=Content-Type:Content-Transfer-Encoding:Date:From:MIME-Version:Message-ID:Subject:To;
+ bh=Om9iVIyN+brj7ODCQkEYUTaqxUp9t/PdBW1/4arEDxI=; 
+ b=k7oISmcOBuv66VnsLkPJcY4dJzPDNmK3KqMCpZ+ed/BGLlotj3nq/Q5gkWtbKUNTalYpyzqgNi9qfJJpOJkZSR7INveCSDITxbV7FuStmjmBH4HzlgMfOEC8lXYOvlgD/cvK9O0HQruhG27HQ4fd2oWjXTG82rjI9vLrTKtbxXk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=fkardame.com;
+ spf=pass  smtp.mailfrom=furkan@fkardame.com;
+ dmarc=pass header.from=<furkan@fkardame.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649944159; 
+ s=fktech; d=fkardame.com; i=furkan@fkardame.com;
+ h=Date:Date:From:From:To:To:Message-ID:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
+ bh=Om9iVIyN+brj7ODCQkEYUTaqxUp9t/PdBW1/4arEDxI=;
+ b=NlHzopulGdOQ4GPA8/JfcHLkjUASIqOnU4hXm+qJmKiyD5ubNfG4Nm+EfaAeBpwT
+ vlzOunactbjZbKpiSCrTk/0wLo8gm2gfc+XsGrgKmsFux8mdK5iL4fxnyn/ZSDSoJkY
+ WNutKKrW3ah6Ok5WCpyeEV0F93DZ/hKiSd5fgv4A=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 1649944157714936.090972217281;
+ Thu, 14 Apr 2022 06:49:17 -0700 (PDT)
+Date: Thu, 14 Apr 2022 16:49:17 +0300
+From: Furkan Salman <furkan@fkardame.com>
+To: "linux-amlogic" <linux-amlogic@lists.infradead.org>
+Message-ID: <1802855ddf7.b865db636934.4739943741619136272@fkardame.com>
+Subject: Amlogic A311D2 Support
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.0
-Subject: Re: [PATCH v4 11/13] pinctrl: meson: Replace custom code by
- gpiochip_node_count() call
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Qianggui Song
- <qianggui.song@amlogic.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk@kernel.org>, Marc Zyngier <maz@kernel.org>, Fabien
- Dessenne <fabien.dessenne@foss.st.com>, Linus Walleij
- <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Andrew Lunn
- <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Avi Fishman
- <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, Tali Perry
- <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, Nancy Yuen
- <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, Tomasz Figa
- <tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Bartosz Golaszewski <brgl@bgdev.pl>, Philipp
- Zabel <p.zabel@pengutronix.de>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20220401103604.8705-12-andriy.shevchenko@linux.intel.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SfVCTdRy/3/M8e56xbvrwUvykDBtpV54ggne/3hQ6iCf/iouLkg7b3HNs
- 8nqbM3ERyiEYhw5RYYw5Xsx4iUq28bLlCJCck3JFB6Ix4oqlEAScWm4n0MaDxX+f7+f7/Xy+
- L/fl40E3yTC+POcgq8gRZ4lIAdF51XNjW35fqmR7Y0ME8kxVATRh6CSR09WPo5NF1RjyVJ/C
- kNY2gSPrhC/xR4+GROdrKwHSN+ejmd8GcOQpNWPI6bxEobOPmjBUX/sEMv4+wkOmukcA/WzV
- k6hj6i+fh7MHQ2Ujkzx0tdFBIIvewUOGxS95qP9UGrpefJdArvFrBLJ5fZZXZkp5aM4Tj6y9
- xyjkNU8D1Gr1udl62wlU4v2cjItgBtq+AMzc6HGKuTDyC48xtKkZt6aDYk7/sI2x6FwUU29U
- Me6KMxRjbP2UZMZGLpOMwZHMmD4rZJzaBsBYuu9hjGZx+9vBewWvSdks+SFWEbXrQ4FsvmuZ
- ypt/6vBwXdhRYAsqAwF8SMfCJacNlAEBP4huBvDa5XMEF9wH8ErfAM4F9wC82ViMPZac/mZp
- NdEE4HDXhVXJAoDOi2Okv0pI74Kdy+WUHxP0Zmi+O4dzfCB01EwSfvwkLYHne8ZX+GBaDIsm
- ZlZ4nA6FtyfrML9pCP09AYvsxyh/gNNOEs4Pcx1IOhqWzZat4AA6CXqNOopTh8OuWf3KfJCe
- EcCWKi3BDZ4A62YvkhwOhtN2M8XhZ+DgmXJfDd+Hc+GiNoajD8ORP9twDr8Kx254SX8JTr8I
- v7ZGcXQ8HNLVkJxyHRydDeQmWAcrO6txjhbCEyWrt94Cdfav/uvZ9+MQXgFEujVX0a3ZXrdm
- F93/fesB0QpCWZUyO4NV7shhP4pUirOVqpyMyP252Ubg+/3BJfv9btA0vRDZDzA+6AeQj4tC
- hLc0qZIgoVScf4RV5O5TqLJYZT94mk+IQoX75ZfEQXSG+CCbybJ5rOJxFuMHhB3FykffKc2v
- fPfWwORguOMhDLmzszfh7z17LUndTa3rqQQoO2dIkbRo3HBo0+5wd7q8QntWujF4Uzxb+lPK
- cnPlBvMHjslBvalkxx55mv2tcY09/OVl12JlS7r6nxfEb2SrEjOj1d9GifriTMkD+u6tSYZD
- cQdqAtUWSrevIeZN03cF6Ynlue89V6vfYNKeTMQjyY8pT2ceMot7xqSCSE2yUf5r1WY13+O2
- SAseeHdmbixP6b0jWaiJ6IiZKnq++sC4tb3koWXaeCKK9r7vEu6ueEU2lXa9ME8EjhTLFh3t
- D3i1z1bdrm2J3aLtWv86CmAlqbGuAuknsoythXVLx3NEhFImjn4JVyjF/wJe+8E9agQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDKsWRmVeSWpSXmKPExsVy+t/xu7qVB8OTDHZuYrP4+XIao8WDedvY
- LM7fPcRs0ds0ncni5/Q+JosZex8wW+x6AJR4tq+fzWLu7EmMFnNWVFq8eXSE2eJn+xYmi/Pn
- N7BbTPmznMliwWxui02Pr7FabJ7/h9Hi8q45bBZbX74DmnF+H5NF17UnrBbHFp1ksdg55ySr
- xby/a1ktDvVFW5xqecFicffeCRaLvb+ARh5+085q8f6no8WuA43sFr+2vGK0WLULaNreAxtZ
- LNp+LWNzUPY4smY1o8f7G63sHouv3Wb1mLem2uNp/1Z2j4lndT12zrrL7rFgU6nH0wmT2T02
- repk87hzbQ+bx7yTgR6bl9R7nJ+xkNFj547PTB79fw0ChKP0bIryS0tSFTLyi0tslaINLYz0
- DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0Mj5s/89e8EGs4up8qQbGvUJdjJwcEgIm
- EhN3/2PuYuTiEBJYyihx70sHK0RCRuLktAYoW1jiz7UuNoii94wSF7qOs4EkeAXsJLb972EH
- sVkEVCW2vHjPDBEXlDg58wkLiC0qkCTxYttzRhBbWCBRounBG7A4s4C4xK0n85lAhooInGOR
- uHCulxXEYRa4yCYxedcKqJuaGCX2PnwFNpZNwFCi620X2GpOAXeJX5tmsUOMMpPo2trFCGHL
- S2x/O4d5AqPQLCSXzEKycRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQITHbb
- jv3csoNx5auPeocYmTgYDzFKcDArifDe7A9PEuJNSaysSi3Kjy8qzUktPsRoCgyOicxSosn5
- wHSbVxJvaGZgamhiZmlgamlmrCTO61nQkSgkkJ5YkpqdmlqQWgTTx8TBKdXA5HZNZmJ915EU
- zk8a4k5mYjuWb77+1mpFYYPKuqenVt8Pdv4hMt/blndi0WtHpcZbbWqPnSZHxyV/q16pWrV5
- bVL59uOrj1et19XQmfqO779z9arVR/f0v9asaNV5cie09O1n8cqzG+S/tFe7bNn1/djKraIV
- 5VNYw96oBZ1q4zPyZOzaXWb7bYWbjoqH65EI/mcNfAUbPzxgOfPEJjLWP/ZCyHn1/rSTjFdu
- 7eqfuN98mtBDeVblbb8Oyi9WcZgWo3NaZntotPTyttnl1zqeX53Uf27u2TTnB8Jr1h+R9KlT
- 6rP70Ld2Vm7EjHl1Fk4HGppLOT7kneFOeF+8YFXMNO1NS221OSsSNWdP4Us6qcRSnJFoqMVc
- VJwIAKE4crP/AwAA
-X-CMS-MailID: 20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9
-X-Msg-Generator: CA
-X-RootMTR: 20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9
-References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
- <20220401103604.8705-12-andriy.shevchenko@linux.intel.com>
- <CGME20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9@eucas1p1.samsung.com>
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220413_233903_245433_61922376 
-X-CRM114-Status: GOOD (  18.02  )
+X-CRM114-CacheID: sfid-20220414_064923_248515_A529DDE7 
+X-CRM114-Status: UNSURE (   4.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,91 +76,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi
+Hello Devs,
 
-On 01.04.2022 12:36, Andy Shevchenko wrote:
-> Since we have generic function to count GPIO controller nodes
-> under a given device, there is no need to open code it. Replace
-> custom code by gpiochip_node_count() call.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Is anyone looking into A311D2 support ?
 
-This patch landed in linux next-20220413 as commit 88834c75cae5 
-("pinctrl: meson: Replace custom code by gpiochip_node_count() call"). 
-Unfortunately it breaks booting of all my Amlogic-based test boards 
-(Odroid C4, N2, Khadas VIM3, VIM3l). MMC driver is no longer probed and 
-boards are unable to mount rootfs. Reverting this patch on top of 
-linux-next fixes the issue.
+If so then I will be happy to help with testing the work. I have just received development board for testing.
 
-> ---
->   drivers/pinctrl/meson/pinctrl-meson.c | 28 ++++++++++++---------------
->   1 file changed, 12 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 5b46a0979db7..1b078da81523 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -49,6 +49,7 @@
->   #include <linux/pinctrl/pinctrl.h>
->   #include <linux/pinctrl/pinmux.h>
->   #include <linux/platform_device.h>
-> +#include <linux/property.h>
->   #include <linux/regmap.h>
->   #include <linux/seq_file.h>
->   
-> @@ -662,27 +663,22 @@ static struct regmap *meson_map_resource(struct meson_pinctrl *pc,
->   	return devm_regmap_init_mmio(pc->dev, base, &meson_regmap_config);
->   }
->   
-> -static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
-> -				  struct device_node *node)
-> +static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc)
->   {
-> -	struct device_node *np, *gpio_np = NULL;
-> +	struct device_node *gpio_np;
-> +	unsigned int chips;
->   
-> -	for_each_child_of_node(node, np) {
-> -		if (!of_find_property(np, "gpio-controller", NULL))
-> -			continue;
-> -		if (gpio_np) {
-> -			dev_err(pc->dev, "multiple gpio nodes\n");
-> -			of_node_put(np);
-> -			return -EINVAL;
-> -		}
-> -		gpio_np = np;
-> -	}
-> -
-> -	if (!gpio_np) {
-> +	chips = gpiochip_node_count(pc->dev);
-> +	if (!chips) {
->   		dev_err(pc->dev, "no gpio node found\n");
->   		return -EINVAL;
->   	}
-> +	if (chips > 1) {
-> +		dev_err(pc->dev, "multiple gpio nodes\n");
-> +		return -EINVAL;
-> +	}
->   
-> +	gpio_np = to_of_node(device_get_named_child_node(pc->dev, "gpio-controller"));
->   	pc->of_node = gpio_np;
->   
->   	pc->reg_mux = meson_map_resource(pc, gpio_np, "mux");
-> @@ -751,7 +747,7 @@ int meson_pinctrl_probe(struct platform_device *pdev)
->   	pc->dev = dev;
->   	pc->data = (struct meson_pinctrl_data *) of_device_get_match_data(dev);
->   
-> -	ret = meson_pinctrl_parse_dt(pc, dev->of_node);
-> +	ret = meson_pinctrl_parse_dt(pc);
->   	if (ret)
->   		return ret;
->   
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Kind regards,
+Furkan Kardame.
+Manjaro ARM.
 
 
 _______________________________________________
