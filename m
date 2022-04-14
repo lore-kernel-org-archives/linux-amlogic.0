@@ -4,72 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9523C433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:04:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60A37C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 20:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NEONhoNhoKKmfmDYgBp+NYS+6xiNk48Mary7z+WtJV4=; b=ZJ+GTbDcDdRZk+
-	DlvQ4REFz7aPPGd1q0OIOTX9flWRKZVSH/eTYPzsKd4ykOPZraaL/p+taezANqkUXWlcg2X5saW1n
-	G0ZroD1LHvJTNrt0TO1cf0hsUK3I/eAu8TGrP5gb4Pulid7E53D8Fe0sJ0zG3JTnbBwqqDULuYkNs
-	5rxsJJ72fkE+/wme9M4UiDCCcYDb1aabN0tVis94wWSA8KvQWTMOaa59fwLBqJNrA6p/7tP/0cHAq
-	pWz1DL97kpPCzy9P7ZCetcSqmwiy2kEoLP+wQeM0yE49fpMEda9JfVeVNuFX1wpm4pwmiM3MtgSpG
-	oAOS0z/IOzheZ/CQql4A==;
+	List-Owner; bh=CxVDEnE1SR7alebEwm0QnifDY0g7Nbe+/hPX1dZyOPM=; b=2DjvJN7vnvfD2/
+	4280cVJ6ww07sQRuznB0XoaIeAIQj7Qd3VUdm/2k/3OP9pN6132r78CMxlKpCWvpyVvnk7Q3kYKk9
+	AiOzjDO3LuG74QfIexnogSFMlzP4hWQSn9OyGCOsyAXSSNKb9P7M3kBQKTIVEvX/MrJkdJwCoEPT7
+	GM9txezwt1Si7lZPMq2yjnnGkaCoT3GmvvP4MvtnRY11Bv/hqscQ0IfhT5tq9MVtSFyvFtTW8k9tY
+	MuA/Piu+FslSFbLIFgN84BhSoWpeYLnLH0vmPkCskaJ83fbxJAMZYsLGzsR7rlrRMcVFHp+IU48Z7
+	PayawJoYWa+4Fbs9lgLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nf4lK-006yNF-G9; Thu, 14 Apr 2022 19:04:14 +0000
-Received: from mga12.intel.com ([192.55.52.136])
+	id 1nf65T-007CCi-1z; Thu, 14 Apr 2022 20:29:07 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nf4k8-006xdP-CX; Thu, 14 Apr 2022 19:03:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649962980; x=1681498980;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EgXmB1hmlgyBRyTbiaI44zoA0d0R4GjmhsIVDP1LpQo=;
- b=OSuiduazpRHytNFKeo1NptDw4N+nvBcYwkbI4YTlin6GgGCNYvo1XOdz
- YXnmTb9Y/uJYuQkk101NLZYXVZFobqb0pJ4ehtMFna1htXKhUOkpXCKz+
- fbPPg6GIabQSVvV+wNd8p0MsUWKx8DuPtSyO5/jBOZbU3v164/l5yUR1A
- JTzJxZxNMTxdZP9aYEjXxcdtM5qXmqgAkYO13QYfItHusqZLwFOYpoElH
- Zp2Z5hEZHmtDA03rpSl/3UPa111nfWDfwkLr0+kxyj/RPrRdTPEmc/G2r
- B4PBYv+3UbcGObEAC0qdbXwn5ERjRB5GkDp6DgC6pX7YRQAHtIgygMZEZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="242942935"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="242942935"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 12:02:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="573947631"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga008.jf.intel.com with ESMTP; 14 Apr 2022 12:02:47 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 9F6ED2B0; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org,
+ id 1nf65G-007C8l-Ro
+ for linux-amlogic@lists.infradead.org; Thu, 14 Apr 2022 20:28:57 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20220414202846euoutp01ebe9893b87783e97bbab00fd388e01ee~l3UTOYB2D1896618966euoutp01j
+ for <linux-amlogic@lists.infradead.org>; Thu, 14 Apr 2022 20:28:46 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20220414202846euoutp01ebe9893b87783e97bbab00fd388e01ee~l3UTOYB2D1896618966euoutp01j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1649968126;
+ bh=8fopOn+BsG7tgfdIJWaWqZa9LoS6fiCnp9r6pVMlrLo=;
+ h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+ b=lGzIAFoRzGM0K8CDIloPGLBAq6QugELNKmqT3RSYX/aGzL/fp1z6I5Ix8K8QBTAkm
+ upwvR7yFhOqJM4GXdWMXRWZeFNUTiyd2BekjAW6exetaR/YdbxHlEjgo1khUcLsYiT
+ 0EAPBIb673/JUUWP4QRHWIGdyVjdnEEB3Z5ZaKu4=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20220414202844eucas1p2415e652f3dbef83d0ac0de25e4a1b127~l3USEfTvV0184801848eucas1p2R;
+ Thu, 14 Apr 2022 20:28:44 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id B7.6E.10260.CF388526; Thu, 14
+ Apr 2022 21:28:44 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20220414202843eucas1p211113b6c9c721a3b9c3b76efe16189e5~l3UQblGKX2534925349eucas1p2c;
+ Thu, 14 Apr 2022 20:28:43 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20220414202843eusmtrp24a5806523eb0c59e4bbcb18c74edf499~l3UQa0YQG2678226782eusmtrp2A;
+ Thu, 14 Apr 2022 20:28:43 +0000 (GMT)
+X-AuditID: cbfec7f5-bf3ff70000002814-c0-625883fc22d0
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id AC.B8.09522.AF388526; Thu, 14
+ Apr 2022 21:28:42 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20220414202842eusmtip18ae7d76fd80e5de47f1e1bc9fa467bb3~l3UPpuMN31818618186eusmtip13;
+ Thu, 14 Apr 2022 20:28:42 +0000 (GMT)
+Message-ID: <2f0f0bf4-ceb7-b226-dd76-aea64ee517c4@samsung.com>
+Date: Thu, 14 Apr 2022 22:28:41 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+ Gecko/20100101 Thunderbird/91.8.0
+Subject: Re: [PATCH v5 0/6] gpiolib: more helpers and fwnode conversion
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v5 5/6] pinctrl: meson: Enable COMPILE_TEST
-Date: Thu, 14 Apr 2022 22:02:41 +0300
-Message-Id: <20220414190242.22178-6-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+Cc: Linus Walleij <linus.walleij@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Andrew Lunn
+ <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Bartosz Golaszewski
+ <brgl@bgdev.pl>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
 In-Reply-To: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
-References: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
-MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIKsWRmVeSWpSXmKPExsWy7djP87p/miOSDLY+0bc4f/cQs0Vv03Qm
+ i10PtrFZzFlRafHm0RFmi5/tW5gspvxZzmSxYDa3xabH11gtNs//w2hxedccNotji06yWBzq
+ i7Z4/9PRgc/j/Y1Wdo/F126zesxbU+2xc9Zddo+nEyaze9y5tofNY97JQI/NS+o9du74zOTx
+ eZNcAFcUl01Kak5mWWqRvl0CV0br0c/sBZ8lKpY/3MXUwHhAuIuRk0NCwETi/PcdzF2MXBxC
+ AisYJea+W8IG4XxhlPj1eCojhPOZUeLvmV/sMC1n575hhUgsZ5T403CACcL5yCjxaNFZVpAq
+ XgE7icbnH5hBbBYBVYm2J4vZIeKCEidnPmEBsUUFkiTm7rsHViMs4C7x8chCJhCbWUBc4taT
+ +WBDRQReMUqcnL2DDSLxjEnifGMsiM0mYCjR9bYLLM4J1Hz70W2oGnmJ7W/ngH0kIbCeU+Ls
+ 31dAT3AAOS4S99fVQLwgLPHq+Baod2Qk/u8EWQZSki/xd4YxRLhC4trrNcwQtrXEnXO/2EBK
+ mAU0Jdbv0ocIO0rM3rAXqpNP4sZbQYgD+CQmbZvODBHmlehoE4KoVpOYdXwd3M6DFy4xT2BU
+ moUUJrOQ/D4LySuzEPYuYGRZxSieWlqcm55abJyXWq5XnJhbXJqXrpecn7uJEZjqTv87/nUH
+ 44pXH/UOMTJxMB5ilOBgVhLhvdkfniTEm5JYWZValB9fVJqTWnyIUZqDRUmcNzlzQ6KQQHpi
+ SWp2ampBahFMlomDU6qBSb3hPKP9ttq6lc9v61gefPlsTcjGXeu0PFR3i+tZP87lXch13Kzo
+ 6vsLl5Kfnb+QtGJuRptk6pMpjM91wzr4/RS84rkffGBKWqk8wWOSSQffYS1PuU9RCx+dXRg2
+ tSP1jM0q3aAsztNrb2t8WFy+bYvAEma2PyI34pg4s34EdUw/Lx0qx6l6xDy8ric/2P7epIf+
+ h4WWz54quG7Fhrwczzmny05qlTIe+3qM/+C6Y884Hv/bVFQucfyc0Yrfy/T+vFu/Uzdov+wt
+ zjOLWEOuVrCEf4tYpZNx/4/YziCpt/maL9o4H09it5HvVjWJmrc26nd6idysjxuPz7rnufpM
+ o6NL3MxEy8B7Bbe8viw6ckiJpTgj0VCLuag4EQCJLy1D5AMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBIsWRmVeSWpSXmKPExsVy+t/xu7q/miOSDHYstbE4f/cQs0Vv03Qm
+ i10PtrFZzFlRafHm0RFmi5/tW5gspvxZzmSxYDa3xabH11gtNs//w2hxedccNotji06yWBzq
+ i7Z4/9PRgc/j/Y1Wdo/F126zesxbU+2xc9Zddo+nEyaze9y5tofNY97JQI/NS+o9du74zOTx
+ eZNcAFeUnk1RfmlJqkJGfnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWRqZK+nU1Kak5mWWqRvl2C
+ Xkbr0c/sBZ8lKpY/3MXUwHhAuIuRk0NCwETi7Nw3rF2MXBxCAksZJVZO2sMOkZCRODmtgRXC
+ Fpb4c62LDaLoPaPEiUVHmEESvAJ2Eo3PP4DZLAKqEm1PFrNDxAUlTs58wgJiiwokSbzY9pwR
+ xBYWcJf4eGQhE4jNLCAucevJfCaQoSICrxglLk14zA7iMAs8Y5JYsWsqE8S6WYwSW06dAWtn
+ EzCU6HoLcgcnByfQqNuPbrNBjDKT6NraxQhhy0tsfzuHeQKj0Cwkl8xCsnEWkpZZSFoWMLKs
+ YhRJLS3OTc8tNtQrTswtLs1L10vOz93ECIzybcd+bt7BOO/VR71DjEwcjIcYJTiYlUR4b/aH
+ JwnxpiRWVqUW5ccXleakFh9iNAUGx0RmKdHkfGCaySuJNzQzMDU0MbM0MLU0M1YS5/Us6EgU
+ EkhPLEnNTk0tSC2C6WPi4JRqYDKZlnORpyx3/Yc+qYz+r8rlk3ftTkkMVGCUtnFdp8oUc+77
+ +klzOrtVrRMPpG+u3f3PZ42fceOi2ZuDiz8oayrr2t8sOmPt/V9Nel7rgf8RPtVbd7pIBITJ
+ 2ap5mqdcmCuRONFs9Yy/u+auXf/FUS8hosCkcd7Ze6bm7Lo/z6Uw6T6aUTLx4DuZwirBGYel
+ k2N9bZjF/pXO8UrJbixiiOCcHProJ9O5I082lJ9QSGRR/W58+sLefZlGVyMY1NNYO6fsVa0M
+ +BX6hjmM+di0O7mZAt/45Vhf3fkQa13JIyx5ttKJ7QXXCbnDnBMsN9nuXrh4/QKWxg+ubbKL
+ 3fZqbOLu6o9MmnYn4MSXyMUXlViKMxINtZiLihMBR+HmjHsDAAA=
+X-CMS-MailID: 20220414202843eucas1p211113b6c9c721a3b9c3b76efe16189e5
+X-Msg-Generator: CA
+X-RootMTR: 20220414190251eucas1p1ef520fa995057550fa533eb34a02ae63
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20220414190251eucas1p1ef520fa995057550fa533eb34a02ae63
+References: <CGME20220414190251eucas1p1ef520fa995057550fa533eb34a02ae63@eucas1p1.samsung.com>
+ <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220414_120300_525703_C065B06B 
-X-CRM114-Status: GOOD (  10.00  )
+X-CRM114-CacheID: sfid-20220414_132855_375966_06C3606D 
+X-CRM114-Status: GOOD (  22.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,29 +140,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable COMPILE_TEST for a better test coverage.
+Hi Andy,
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/pinctrl/meson/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 14.04.2022 21:02, Andy Shevchenko wrote:
+> This is a spin-off (*) of the previous work of switching GPIO library
+> to use fwnode instead of of_node. Here we introduce a couple of
+> a new macro helpers, which allows to switch some of the drivers
+> to use fwnode and partially fwnode APIs. As a result of this cleanup
+> a few drivers switched to use GPIO fwnode instead of of_node.
+>
+> *) it's subset of it with a new (patch 1) helper.
+>
+> Marek, Martin, can you give this a try?
+> This requires at least two patches for GPIO library to be applied.
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index d1955c65b4b6..64fb9e074ac6 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- menuconfig PINCTRL_MESON
- 	tristate "Amlogic SoC pinctrl drivers"
--	depends on ARCH_MESON
-+	depends on ARCH_MESON || COMPILE_TEST
- 	depends on OF
- 	default y
- 	select PINMUX
+I've applied patch #1 and #6 on top of linux next-20220413 with commit 
+88834c75cae5 ("pinctrl: meson: Replace custom code by 
+gpiochip_node_count() call") reverted. All my Meson-based test boards 
+(Odroid C4, N2, Khadas VIM3/3l) work fine now. Thanks! Feel free to add:
+
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+
+> Bart, Linus, I can take it thru my tree with an immutable branch if
+> it's the way you prefer, otherwise please suggest on how to proceed.
+>
+> Changelog v5:
+> - dropped tested patches (this series based on them, though)
+> - introduced a new helper (thanks Marek and Martin for reporting an issue)
+> - redone Armada and Meson code using newly introduced helper
+>
+> Changelog v4:
+> - fixed compilation of the Samsung pin control drivers (LKP)
+> - explained in the commit message why namespacing is good for meson defs
+> - added tag to one of meson patches (Neil)
+>
+> Changelog v3:
+> - moved count initialization to the definition in patch 2 (Geert)
+> - replaced of_args by args, used %pfwP in patch 7 (Geert)
+> - fixed kernel doc warning in patch 7
+> - added tags to patches 1, 2, 6, and 7 (Geert)
+> - added tag to patch 4 (Fabien)
+> - renamed MREG to MESON_REG in patch 9 (Neil)
+> - added tag to patch 10 (Neil)
+> - used --base for cover-letter
+>
+> Changelog v2:
+> - properly based, so kbuild bot may test it (LKP)
+> - fixed typo in the macro (Geert)
+> - split to two macro helpers and rename the gpiochip_count()
+> - tagged one of stm32 and one of meson patches (Fabien, Neil)
+> - unified previously standalone armada patch
+> - due to above rewrote the armada patch from v1 completely (Sergey)
+> - added a lot of a new patches
+> - compile tested all of them on x86
+>
+> Andy Shevchenko (6):
+>    gpiolib: Introduce a helper to get first GPIO controller node
+>    pinctrl: armada-37xx: Switch to use fwnode instead of of_node
+>    pinctrl: armada-37xx: Reuse GPIO fwnode in
+>      armada_37xx_irqchip_register()
+>    pinctrl: meson: Rename REG_* to MESON_REG_*
+>    pinctrl: meson: Enable COMPILE_TEST
+>    pinctrl: meson: Replace custom code by gpiochip_node_count() call
+>
+>   drivers/pinctrl/meson/Kconfig               |  2 +-
+>   drivers/pinctrl/meson/pinctrl-meson.c       | 52 ++++++++++-----------
+>   drivers/pinctrl/meson/pinctrl-meson.h       | 28 +++++------
+>   drivers/pinctrl/mvebu/pinctrl-armada-37xx.c | 34 ++++----------
+>   include/linux/gpio/driver.h                 | 10 ++++
+>   5 files changed, 59 insertions(+), 67 deletions(-)
+>
+Best regards
 -- 
-2.35.1
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
 
 _______________________________________________
