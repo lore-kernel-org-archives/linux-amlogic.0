@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B02EAC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:03:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 667C0C433FE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:03:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ElXE1JMbCTwysnFP8pPP3NXqbmETQfiKMbxMWjJjjMA=; b=fT6ODYFOt0h13r
-	GXXLMmaNhRHMdqgdfGe7I58IDAtRZ8wPCZ54CWwULbUS5hD1CQ0iTQHhIHmeBu6eyQQEPhNnxWxKs
-	buYhXFYdZG0VIHvwRFsE5ahJuLfNYk85wdrf5dGr8XYAiZsnLf4jxJmhjXcTmtay32ypLImvXJQea
-	l1ljaPdofkDIsdrSCkZ2Tbpa5vN3Hz8UQUBP03IrYiNXkswy08lHxACOPC99cXlNhnvh0c/t/AMgq
-	VoEUSpGw838WdMY8Gbqrhg87z+vCFfZE6b9SxfHf9dE4fuwAZ4dO6Z8XCl7DiNzgskitxu3UmzEl1
-	j1LKUl0lqtxnLw/wlg+g==;
+	List-Owner; bh=cxCjeNIHehGP8Rna9u6hRCnhR/4BGe5qqC5GqGU3kt8=; b=bHrd17o8jSB40o
+	YsSuPOCmu5bALcu/bL/Moc9dA5274MOBx66He3aUMFyT8nkWqwQqxSKl4aA4RKgMVbJOkZo4LHkrq
+	wOZHx94oeNYatl7NM5Eo27zii+q+HZ6hp8yJsAGPfYZRm9R8fBKtweBi1vyIQQFWxGDOJbvltWcZy
+	40utNdE2SSBMuScx9mhbKq9V94tE8mLKT8w5C1WqJnTRTWNgT9ijgRSf89Wg5D9nfGOvr11RAQsde
+	ZGdoX9rb2UFeE5WYiUxFgIGxu87OSGWCDceHXTvbrHYVcVXJhX4+ewAnbfLBr50yc8YpXKgkmlIoJ
+	I7XPN+Ulue3eBeh6t3cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nf4kq-006y4x-Um; Thu, 14 Apr 2022 19:03:44 +0000
-Received: from mga05.intel.com ([192.55.52.43])
+	id 1nf4ks-006y5n-F7; Thu, 14 Apr 2022 19:03:46 +0000
+Received: from mga07.intel.com ([134.134.136.100])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nf4k1-006xZp-Bd; Thu, 14 Apr 2022 19:02:56 +0000
+ id 1nf4k0-006xaM-In; Thu, 14 Apr 2022 19:02:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649962973; x=1681498973;
+ t=1649962972; x=1681498972;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4kQAdZbM0d9HyF5OdGeeBfcWXECLhEkSZzq2j0XSYdc=;
- b=CbuHZSISMCgSqPJOysyD9zG+42UfCLFmFUsgYPR2V1TdoDUWfLvbzd25
- S4tW9ujvzNEIGayIfaZ+maSf7tM0kTtFuXaw4InBEmOE02sYVGQRfYndE
- zRlR7EqvnTvQ+qhmEsBaA5h9wRdkTpEZjgHezbwlmfy3eUkx9gYjsgAcC
- fgQqhI+jRylGP0wuLTbAk7k++r5DNCBAmPi1g2auK6L0APKCQqaVYwct8
- i2Y8syhoqWSvzDhW8G0VeHAx25h+WqLLtKa4epJUMHv3IiYYszP4EoxJ4
- l2nYBIukaVBOOZ7TosDglca20IiJh3hFjdBYpteZxAxwzPiLQyAf1PlsL A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="349445612"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="349445612"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 12:02:48 -0700
+ bh=DKcjs5P6/J4J40ANpQxsRNN9gqCAV/44HTd2AkmL+k0=;
+ b=bqI/Rw+53x6SjMA71kmYawMbvO4CNnhWoiRRFE6wXpbJwqei7aZrbmIy
+ jtZbfmy9b6U9nJYvjfr+xC5nY/+oTDfQoEFgW6U4er0YZ3Iz7enbdg5lv
+ t3ta8fLsCMFkC2o0LgGzTBuRPn51Da7YwPKXX85dntMx0SuwVqqVxhlJt
+ UQKarmjBkoa6XEM7zPxoERnIUmsjTVKS2YIT7/uyC5NmIVZ6cDr56hMtx
+ 76WxVBF5E5ggKjWPqhadUCND0ZN0UkSosiPLfi0CpKIdg9oozuWMtQ6ep
+ SKDAyPcYPVUVXF9zwIgxwOaCaX/l38mIfb4dOVj998G7mjZWrsYhTqcEU w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="325915242"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="325915242"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 12:02:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="661484765"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="656121825"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga004.jf.intel.com with ESMTP; 14 Apr 2022 12:02:43 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 14 Apr 2022 12:02:47 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 8350B1A1; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
+ id ACE2C379; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Neil Armstrong <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org,
@@ -60,17 +60,17 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v5 3/6] pinctrl: armada-37xx: Reuse GPIO fwnode in
- armada_37xx_irqchip_register()
-Date: Thu, 14 Apr 2022 22:02:39 +0300
-Message-Id: <20220414190242.22178-4-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v5 6/6] pinctrl: meson: Replace custom code by
+ gpiochip_node_count() call
+Date: Thu, 14 Apr 2022 22:02:42 +0300
+Message-Id: <20220414190242.22178-7-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 References: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220414_120253_449405_E2DC3E06 
-X-CRM114-Status: GOOD (  11.41  )
+X-CRM114-CacheID: sfid-20220414_120252_754801_F2518A78 
+X-CRM114-Status: GOOD (  13.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,45 +87,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since we have fwnode of the first found GPIO controller assigned to the
-struct gpio_chip, we may reuse it in the armada_37xx_irqchip_register().
+Since we have generic function to count GPIO controller nodes
+under a given device, there is no need to open code it. Replace
+custom code by gpiochip_node_count() call.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/mvebu/pinctrl-armada-37xx.c | 16 +++-------------
- 1 file changed, 3 insertions(+), 13 deletions(-)
+ drivers/pinctrl/meson/pinctrl-meson.c | 28 ++++++++++++---------------
+ 1 file changed, 12 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-index 110f70bce3fe..ef4118e49f16 100644
---- a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-+++ b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c
-@@ -727,23 +727,13 @@ static int armada_37xx_irqchip_register(struct platform_device *pdev,
- 	struct gpio_chip *gc = &info->gpio_chip;
- 	struct irq_chip *irqchip = &info->irq_chip;
- 	struct gpio_irq_chip *girq = &gc->irq;
-+	struct device_node *np = to_of_node(gc->fwnode);
- 	struct device *dev = &pdev->dev;
--	struct device_node *np;
--	int ret = -ENODEV, i, nr_irq_parent;
--
--	/* Check if we have at least one gpio-controller child node */
--	for_each_child_of_node(dev->of_node, np) {
--		if (of_property_read_bool(np, "gpio-controller")) {
--			ret = 0;
--			break;
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 5b46a0979db7..cc2cd73ff8f9 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -49,6 +49,7 @@
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinmux.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/regmap.h>
+ #include <linux/seq_file.h>
+ 
+@@ -662,27 +663,22 @@ static struct regmap *meson_map_resource(struct meson_pinctrl *pc,
+ 	return devm_regmap_init_mmio(pc->dev, base, &meson_regmap_config);
+ }
+ 
+-static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
+-				  struct device_node *node)
++static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc)
+ {
+-	struct device_node *np, *gpio_np = NULL;
++	struct device_node *gpio_np;
++	unsigned int chips;
+ 
+-	for_each_child_of_node(node, np) {
+-		if (!of_find_property(np, "gpio-controller", NULL))
+-			continue;
+-		if (gpio_np) {
+-			dev_err(pc->dev, "multiple gpio nodes\n");
+-			of_node_put(np);
+-			return -EINVAL;
 -		}
+-		gpio_np = np;
 -	}
--	if (ret)
--		return dev_err_probe(dev, ret, "no gpio-controller child node\n");
-+	unsigned int i, nr_irq_parent;
+-
+-	if (!gpio_np) {
++	chips = gpiochip_node_count(pc->dev);
++	if (!chips) {
+ 		dev_err(pc->dev, "no gpio node found\n");
+ 		return -EINVAL;
+ 	}
++	if (chips > 1) {
++		dev_err(pc->dev, "multiple gpio nodes\n");
++		return -EINVAL;
++	}
  
--	nr_irq_parent = of_irq_count(np);
- 	spin_lock_init(&info->irq_lock);
++	gpio_np = to_of_node(gpiochip_node_get_first(pc->dev));
+ 	pc->of_node = gpio_np;
  
-+	nr_irq_parent = of_irq_count(np);
- 	if (!nr_irq_parent) {
- 		dev_err(dev, "invalid or no IRQ\n");
- 		return 0;
+ 	pc->reg_mux = meson_map_resource(pc, gpio_np, "mux");
+@@ -751,7 +747,7 @@ int meson_pinctrl_probe(struct platform_device *pdev)
+ 	pc->dev = dev;
+ 	pc->data = (struct meson_pinctrl_data *) of_device_get_match_data(dev);
+ 
+-	ret = meson_pinctrl_parse_dt(pc, dev->of_node);
++	ret = meson_pinctrl_parse_dt(pc);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.35.1
 
