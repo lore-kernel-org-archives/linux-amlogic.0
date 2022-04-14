@@ -4,100 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8744C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 18:34:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97F76C4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gPnBEuElR+98j7j2uT1OYupNi/n4eXFeHpHecJsQ27g=; b=ia7rKeCD+nIgaI
-	JkeJYSDo4Nemb1FSv9rR7iv/mMXk7MFNEtyPeP7S7EPB53GBSU0yIYXVtsslT8PzTXNVnSlhnOiNk
-	v8NfmR3y4rYJFPU6msop5ysE9jAvVkqwF7zvQ9iYZu9iVn77FdZj5EI6GpwQCaVI6TFJMFlw2swNN
-	9ocA4oqUfBmeqm0cQnFJu4Tx7gS6tv/aSRnfR9qRpq+/SNJdaqLlbgFjGOt5grXH5CV0eFrPJHxjA
-	M/oqVggBGJ5G0taykO+u1mk6HR03/v9QasgBPLSwhK+POau+bNlBg+/bT+9RJVTt1HFYAlWJ5fAuk
-	Csgjd8PzdKignoeK+0Lw==;
+	List-Owner; bh=Lu71L2xK1EV5VeWUKa1xHrKPyE0XzqirKVWk83nbpQU=; b=1RvtySMr1kDaMp
+	zjXBdvCJxajz/U2L8iXDQZg1v+4PikUM91PR0Qq8va52qP+ckV4JbXHcpdb2+tdhNZTb1fRBylUcj
+	Zs7PrA5fGQgL3ub+itlj9aOXQiAPYpHq2lIZHjcdSeHob+m+uhmUEuoB9WAD6I/XHNkBXo6vceygN
+	M9aaUB4f9qNHcH3EEPoJ9q/Av4BmrnuoViZ4P8jgEFipoKaBj6zHxleidzS3LfVicD5dkqpSDJUnk
+	RlVxzqNMFDZphmwUEaZ4wvVLClX0K3opddfBbxr9lD1Z+Md97rKdDO9aumqtCQ0MXJ0Pnrt/v727a
+	SBRCMmgIFStdl++kK0lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nf4I2-006tld-P2; Thu, 14 Apr 2022 18:33:58 +0000
-Received: from mga07.intel.com ([134.134.136.100])
+	id 1nf4k0-006xaP-Fd; Thu, 14 Apr 2022 19:02:52 +0000
+Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nf4Hq-006tj7-T1; Thu, 14 Apr 2022 18:33:48 +0000
+ id 1nf4jw-006xZm-Qp; Thu, 14 Apr 2022 19:02:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649961226; x=1681497226;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oRmVExYVaB1xDR78U0c+1m6aDPKj+y1FVLIHRd7bypw=;
- b=NsWrnO/Xax3gUkRFeDs/RxrYdu+pDeAuQEJCcif5O0yEX3YZezNqWm9s
- krF31/X+mOFPklyGJWRmDnd47Mpi6vmF3Dau4jEj7RqAJoqH5O6d0XSjW
- ta7y5j4pKHW2QXutqlQ7GGaq1FCbbNXTZgMLrMFVzEwWCsK4d13tiwDAu
- 5B1C1+ionPUFmtF5A/HSTC40+lV/y1cv51GT9vkc0U4BQbOlL5dm527te
- VPMC99BNEoqJpWi2+dAdEOY0WW6+FE+CMvEH4t9t7WuFWuUQWwydEvzRx
- sbrrT+FDF85wD9mj5JY9+VGsTpVnZD3b5Myngti4iQEpLARuDQLlOsRzT A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="325909055"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="325909055"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 11:33:23 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="527503151"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 11:33:15 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1nf4HH-002Rzo-IM; Thu, 14 Apr 2022 21:33:11 +0300
-Date: Thu, 14 Apr 2022 21:33:11 +0300
+ t=1649962968; x=1681498968;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=A0aFgjBgiv4WjziTFwIZjoDlAYjSNTm8rHyC38Bfo30=;
+ b=hLEIobCN+HBRByWHMltn9eK1sxRvf1/Xsw6IGwxE7EMcAR18X/Gp9fZn
+ MN4Qa+R/f4VAjWCst1Pf0MlweHaiM/6zbHx3xXbVAKjjT5K8Cse413ZY1
+ 9lDMlnQxKwEz4tO0vu7ysX85sY3HY88k8P/NTCp/LcxnNYDqEF3WOHjTJ
+ DeozBYA1PU/RB36Iu4urc8/JgAeqCA28NtGSCM1IeloCw4rWgSZnb51RM
+ ELDssxFQ4Q9YAzCjO52xUTjCBQ3XMPjo8rL/LUvs0NFR7KUhRAvxZl0HL
+ FXffyz4LPD6B0djiiVL6VaPgHP7UMyjXbza4BoYwbIMzHaZYdWYgNlraL A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="323454217"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="323454217"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 12:02:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="725486343"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orsmga005.jf.intel.com with ESMTP; 14 Apr 2022 12:02:43 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id 908E82AE; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
- Qianggui Song <qianggui.song@amlogic.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Fabien Dessenne <fabien.dessenne@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Andrew Lunn <andrew@lunn.ch>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Lunn <andrew@lunn.ch>,
  Gregory Clement <gregory.clement@bootlin.com>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>,
- Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
- Benjamin Fair <benjaminfair@google.com>,
- Tomasz Figa <tomasz.figa@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v4 11/13] pinctrl: meson: Replace custom code by
- gpiochip_node_count() call
-Message-ID: <Ylho5+teMJGxooYI@smile.fi.intel.com>
-References: <20220401103604.8705-1-andriy.shevchenko@linux.intel.com>
- <CGME20220414063849eucas1p126e41b53ff0d342f5c48408994b704e9@eucas1p1.samsung.com>
- <20220401103604.8705-12-andriy.shevchenko@linux.intel.com>
- <3a24ef01-3231-1bee-7429-dce5680c5682@samsung.com>
- <CAHp75VfMPpfeMpawRyLo_GtLR8+gVGgm8zW-fatp6=9a9wK18A@mail.gmail.com>
- <CAFBinCCCtZvdp+01DdEE=-f7rZ8V46O125wKDqE1muA645sdUg@mail.gmail.com>
- <CAHp75VcYaGmEruEsi2UUrLU4=k3OpBn2YV8B0LhyrhtQ=uCTXg@mail.gmail.com>
- <Ylhnzg3bvbrfpoFi@smile.fi.intel.com>
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v5 4/6] pinctrl: meson: Rename REG_* to MESON_REG_*
+Date: Thu, 14 Apr 2022 22:02:40 +0300
+Message-Id: <20220414190242.22178-5-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
+References: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Ylhnzg3bvbrfpoFi@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220414_113347_025725_79F0E394 
-X-CRM114-Status: GOOD (  30.78  )
+X-CRM114-CacheID: sfid-20220414_120248_950609_16BD90FA 
+X-CRM114-Status: GOOD (  12.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,67 +86,181 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 14, 2022 at 09:28:30PM +0300, Andy Shevchenko wrote:
-> On Thu, Apr 14, 2022 at 07:06:21PM +0300, Andy Shevchenko wrote:
-> > On Thu, Apr 14, 2022 at 6:32 PM Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > > On Thu, Apr 14, 2022 at 3:51 PM Andy Shevchenko
-> > > <andy.shevchenko@gmail.com> wrote:
-> > > [...]
-> > > > > This patch landed in linux next-20220413 as commit 88834c75cae5
-> > > > > ("pinctrl: meson: Replace custom code by gpiochip_node_count() call").
-> > > > > Unfortunately it breaks booting of all my Amlogic-based test boards
-> > > > > (Odroid C4, N2, Khadas VIM3, VIM3l). MMC driver is no longer probed and
-> > > > > boards are unable to mount rootfs. Reverting this patch on top of
-> > > > > linux-next fixes the issue.
-> > > >
-> > > > Thank you for letting me know, I'll withdraw it and investigate.
-> > > If needed I can investigate further later today/tomorrow. I think the
-> > > problem is that our node name doesn't follow the .dts recommendation.
-> > >
-> > > For GXL (arch/arm64/boot/dts/amlogic/meson-gxl.dtsi) the GPIO
-> > > controller nodes are for example:
-> > >   gpio: bank@4b0 {
-> > >       ...
-> > >   }
-> > > and
-> > >   gpio_ao: bank@14 {
-> > >       ...
-> > >   }
-> > >
-> > > See also:
-> > > $ git grep -C6 gpio-controller arch/arm64/boot/dts/amlogic/*.dtsi
-> > >
-> > > Marek did not state which error he's getting but I suspect it fails
-> > > with "no gpio node found".
-> > 
-> > Would be interesting to know that, yeah.
-> > 
-> > The subtle difference between the patched and unpatched version is
-> > that the former uses only available nodes, it means that node is not
-> > available by some reason and then the error would be the one you
-> > guessed.
-> 
-> Looking into the difference between iterating via available nodes I have found
-> nothing suspicious. Your DTSes do not have status property, so it assumes the
-> node is available.
-> 
-> I'm quite puzzled what's going on there. Because I can't see what the logical
-> difference the patch brought in.
-> 
-> P.S. In any case it's withdrawn now and shouldn't appear in the next Linux
-> Next. But I would really appreciate more input on this.
+Currently compilation test fails on x86 due to name collision. The usual
+way to fix that is to move both conflicting parts to their own namespaces.
 
-Okay, now I got it. The "name" of the node is not the same as containing the
-property with a given name. So, the faulting line of the code is this one:
+Rename REG_* to MESON_REG_* as a prerequisite for enabling COMPILE_TEST.
 
-gpio_np = to_of_node(device_get_named_child_node(pc->dev, "gpio-controller"));
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 24 +++++++++++------------
+ drivers/pinctrl/meson/pinctrl-meson.h | 28 +++++++++++++--------------
+ 2 files changed, 26 insertions(+), 26 deletions(-)
 
-
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 49851444a6e3..5b46a0979db7 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -218,13 +218,13 @@ static int meson_pinconf_set_output(struct meson_pinctrl *pc,
+ 				    unsigned int pin,
+ 				    bool out)
+ {
+-	return meson_pinconf_set_gpio_bit(pc, pin, REG_DIR, !out);
++	return meson_pinconf_set_gpio_bit(pc, pin, MESON_REG_DIR, !out);
+ }
+ 
+ static int meson_pinconf_get_output(struct meson_pinctrl *pc,
+ 				    unsigned int pin)
+ {
+-	int ret = meson_pinconf_get_gpio_bit(pc, pin, REG_DIR);
++	int ret = meson_pinconf_get_gpio_bit(pc, pin, MESON_REG_DIR);
+ 
+ 	if (ret < 0)
+ 		return ret;
+@@ -236,13 +236,13 @@ static int meson_pinconf_set_drive(struct meson_pinctrl *pc,
+ 				   unsigned int pin,
+ 				   bool high)
+ {
+-	return meson_pinconf_set_gpio_bit(pc, pin, REG_OUT, high);
++	return meson_pinconf_set_gpio_bit(pc, pin, MESON_REG_OUT, high);
+ }
+ 
+ static int meson_pinconf_get_drive(struct meson_pinctrl *pc,
+ 				   unsigned int pin)
+ {
+-	return meson_pinconf_get_gpio_bit(pc, pin, REG_OUT);
++	return meson_pinconf_get_gpio_bit(pc, pin, MESON_REG_OUT);
+ }
+ 
+ static int meson_pinconf_set_output_drive(struct meson_pinctrl *pc,
+@@ -269,7 +269,7 @@ static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_PULLEN, &reg, &bit);
+ 	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit), 0);
+ 	if (ret)
+ 		return ret;
+@@ -288,7 +288,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_PULL, &reg, &bit);
+ 	if (pull_up)
+ 		val = BIT(bit);
+ 
+@@ -296,7 +296,7 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_PULLEN, &reg, &bit);
+ 	ret = regmap_update_bits(pc->reg_pullen, reg, BIT(bit),	BIT(bit));
+ 	if (ret)
+ 		return ret;
+@@ -321,7 +321,7 @@ static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_DS, &reg, &bit);
+ 
+ 	if (drive_strength_ua <= 500) {
+ 		ds_val = MESON_PINCONF_DRV_500UA;
+@@ -407,7 +407,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_PULLEN, &reg, &bit);
+ 
+ 	ret = regmap_read(pc->reg_pullen, reg, &val);
+ 	if (ret)
+@@ -416,7 +416,7 @@ static int meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
+ 	if (!(val & BIT(bit))) {
+ 		conf = PIN_CONFIG_BIAS_DISABLE;
+ 	} else {
+-		meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
++		meson_calc_reg_and_bit(bank, pin, MESON_REG_PULL, &reg, &bit);
+ 
+ 		ret = regmap_read(pc->reg_pull, reg, &val);
+ 		if (ret)
+@@ -447,7 +447,7 @@ static int meson_pinconf_get_drive_strength(struct meson_pinctrl *pc,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
++	meson_calc_reg_and_bit(bank, pin, MESON_REG_DS, &reg, &bit);
+ 
+ 	ret = regmap_read(pc->reg_ds, reg, &val);
+ 	if (ret)
+@@ -595,7 +595,7 @@ static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_calc_reg_and_bit(bank, gpio, REG_IN, &reg, &bit);
++	meson_calc_reg_and_bit(bank, gpio, MESON_REG_IN, &reg, &bit);
+ 	regmap_read(pc->reg_gpio, reg, &val);
+ 
+ 	return !!(val & BIT(bit));
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+index ff5372e0a475..b197827027bd 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.h
++++ b/drivers/pinctrl/meson/pinctrl-meson.h
+@@ -63,13 +63,13 @@ struct meson_reg_desc {
+  * enum meson_reg_type - type of registers encoded in @meson_reg_desc
+  */
+ enum meson_reg_type {
+-	REG_PULLEN,
+-	REG_PULL,
+-	REG_DIR,
+-	REG_OUT,
+-	REG_IN,
+-	REG_DS,
+-	NUM_REG,
++	MESON_REG_PULLEN,
++	MESON_REG_PULL,
++	MESON_REG_DIR,
++	MESON_REG_OUT,
++	MESON_REG_IN,
++	MESON_REG_DS,
++	MESON_NUM_REG,
+ };
+ 
+ /**
+@@ -102,7 +102,7 @@ struct meson_bank {
+ 	unsigned int last;
+ 	int irq_first;
+ 	int irq_last;
+-	struct meson_reg_desc regs[NUM_REG];
++	struct meson_reg_desc regs[MESON_NUM_REG];
+ };
+ 
+ struct meson_pinctrl_data {
+@@ -150,12 +150,12 @@ struct meson_pinctrl {
+ 		.irq_first	= fi,					\
+ 		.irq_last	= li,					\
+ 		.regs = {						\
+-			[REG_PULLEN]	= { per, peb },			\
+-			[REG_PULL]	= { pr, pb },			\
+-			[REG_DIR]	= { dr, db },			\
+-			[REG_OUT]	= { or, ob },			\
+-			[REG_IN]	= { ir, ib },			\
+-			[REG_DS]	= { dsr, dsb },			\
++			[MESON_REG_PULLEN]	= { per, peb },		\
++			[MESON_REG_PULL]	= { pr, pb },		\
++			[MESON_REG_DIR]		= { dr, db },		\
++			[MESON_REG_OUT]		= { or, ob },		\
++			[MESON_REG_IN]		= { ir, ib },		\
++			[MESON_REG_DS]		= { dsr, dsb },		\
+ 		},							\
+ 	 }
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.35.1
 
 
 _______________________________________________
