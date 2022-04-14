@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 667C0C433FE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9523C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Apr 2022 19:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cxCjeNIHehGP8Rna9u6hRCnhR/4BGe5qqC5GqGU3kt8=; b=bHrd17o8jSB40o
-	YsSuPOCmu5bALcu/bL/Moc9dA5274MOBx66He3aUMFyT8nkWqwQqxSKl4aA4RKgMVbJOkZo4LHkrq
-	wOZHx94oeNYatl7NM5Eo27zii+q+HZ6hp8yJsAGPfYZRm9R8fBKtweBi1vyIQQFWxGDOJbvltWcZy
-	40utNdE2SSBMuScx9mhbKq9V94tE8mLKT8w5C1WqJnTRTWNgT9ijgRSf89Wg5D9nfGOvr11RAQsde
-	ZGdoX9rb2UFeE5WYiUxFgIGxu87OSGWCDceHXTvbrHYVcVXJhX4+ewAnbfLBr50yc8YpXKgkmlIoJ
-	I7XPN+Ulue3eBeh6t3cw==;
+	List-Owner; bh=NEONhoNhoKKmfmDYgBp+NYS+6xiNk48Mary7z+WtJV4=; b=ZJ+GTbDcDdRZk+
+	DlvQ4REFz7aPPGd1q0OIOTX9flWRKZVSH/eTYPzsKd4ykOPZraaL/p+taezANqkUXWlcg2X5saW1n
+	G0ZroD1LHvJTNrt0TO1cf0hsUK3I/eAu8TGrP5gb4Pulid7E53D8Fe0sJ0zG3JTnbBwqqDULuYkNs
+	5rxsJJ72fkE+/wme9M4UiDCCcYDb1aabN0tVis94wWSA8KvQWTMOaa59fwLBqJNrA6p/7tP/0cHAq
+	pWz1DL97kpPCzy9P7ZCetcSqmwiy2kEoLP+wQeM0yE49fpMEda9JfVeVNuFX1wpm4pwmiM3MtgSpG
+	oAOS0z/IOzheZ/CQql4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nf4ks-006y5n-F7; Thu, 14 Apr 2022 19:03:46 +0000
-Received: from mga07.intel.com ([134.134.136.100])
+	id 1nf4lK-006yNF-G9; Thu, 14 Apr 2022 19:04:14 +0000
+Received: from mga12.intel.com ([192.55.52.136])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nf4k0-006xaM-In; Thu, 14 Apr 2022 19:02:56 +0000
+ id 1nf4k8-006xdP-CX; Thu, 14 Apr 2022 19:03:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649962972; x=1681498972;
+ t=1649962980; x=1681498980;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DKcjs5P6/J4J40ANpQxsRNN9gqCAV/44HTd2AkmL+k0=;
- b=bqI/Rw+53x6SjMA71kmYawMbvO4CNnhWoiRRFE6wXpbJwqei7aZrbmIy
- jtZbfmy9b6U9nJYvjfr+xC5nY/+oTDfQoEFgW6U4er0YZ3Iz7enbdg5lv
- t3ta8fLsCMFkC2o0LgGzTBuRPn51Da7YwPKXX85dntMx0SuwVqqVxhlJt
- UQKarmjBkoa6XEM7zPxoERnIUmsjTVKS2YIT7/uyC5NmIVZ6cDr56hMtx
- 76WxVBF5E5ggKjWPqhadUCND0ZN0UkSosiPLfi0CpKIdg9oozuWMtQ6ep
- SKDAyPcYPVUVXF9zwIgxwOaCaX/l38mIfb4dOVj998G7mjZWrsYhTqcEU w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="325915242"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="325915242"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=EgXmB1hmlgyBRyTbiaI44zoA0d0R4GjmhsIVDP1LpQo=;
+ b=OSuiduazpRHytNFKeo1NptDw4N+nvBcYwkbI4YTlin6GgGCNYvo1XOdz
+ YXnmTb9Y/uJYuQkk101NLZYXVZFobqb0pJ4ehtMFna1htXKhUOkpXCKz+
+ fbPPg6GIabQSVvV+wNd8p0MsUWKx8DuPtSyO5/jBOZbU3v164/l5yUR1A
+ JTzJxZxNMTxdZP9aYEjXxcdtM5qXmqgAkYO13QYfItHusqZLwFOYpoElH
+ Zp2Z5hEZHmtDA03rpSl/3UPa111nfWDfwkLr0+kxyj/RPrRdTPEmc/G2r
+ B4PBYv+3UbcGObEAC0qdbXwn5ERjRB5GkDp6DgC6pX7YRQAHtIgygMZEZ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="242942935"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="242942935"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Apr 2022 12:02:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="656121825"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="573947631"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga002.fm.intel.com with ESMTP; 14 Apr 2022 12:02:47 -0700
+ by orsmga008.jf.intel.com with ESMTP; 14 Apr 2022 12:02:47 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id ACE2C379; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
+ id 9F6ED2B0; Thu, 14 Apr 2022 22:02:43 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Neil Armstrong <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org,
@@ -60,17 +60,16 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
  Bartosz Golaszewski <brgl@bgdev.pl>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v5 6/6] pinctrl: meson: Replace custom code by
- gpiochip_node_count() call
-Date: Thu, 14 Apr 2022 22:02:42 +0300
-Message-Id: <20220414190242.22178-7-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v5 5/6] pinctrl: meson: Enable COMPILE_TEST
+Date: Thu, 14 Apr 2022 22:02:41 +0300
+Message-Id: <20220414190242.22178-6-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 References: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220414_120252_754801_F2518A78 
-X-CRM114-Status: GOOD (  13.63  )
+X-CRM114-CacheID: sfid-20220414_120300_525703_C065B06B 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,75 +86,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since we have generic function to count GPIO controller nodes
-under a given device, there is no need to open code it. Replace
-custom code by gpiochip_node_count() call.
+Enable COMPILE_TEST for a better test coverage.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 28 ++++++++++++---------------
- 1 file changed, 12 insertions(+), 16 deletions(-)
+ drivers/pinctrl/meson/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 5b46a0979db7..cc2cd73ff8f9 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -49,6 +49,7 @@
- #include <linux/pinctrl/pinctrl.h>
- #include <linux/pinctrl/pinmux.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/seq_file.h>
- 
-@@ -662,27 +663,22 @@ static struct regmap *meson_map_resource(struct meson_pinctrl *pc,
- 	return devm_regmap_init_mmio(pc->dev, base, &meson_regmap_config);
- }
- 
--static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
--				  struct device_node *node)
-+static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc)
- {
--	struct device_node *np, *gpio_np = NULL;
-+	struct device_node *gpio_np;
-+	unsigned int chips;
- 
--	for_each_child_of_node(node, np) {
--		if (!of_find_property(np, "gpio-controller", NULL))
--			continue;
--		if (gpio_np) {
--			dev_err(pc->dev, "multiple gpio nodes\n");
--			of_node_put(np);
--			return -EINVAL;
--		}
--		gpio_np = np;
--	}
--
--	if (!gpio_np) {
-+	chips = gpiochip_node_count(pc->dev);
-+	if (!chips) {
- 		dev_err(pc->dev, "no gpio node found\n");
- 		return -EINVAL;
- 	}
-+	if (chips > 1) {
-+		dev_err(pc->dev, "multiple gpio nodes\n");
-+		return -EINVAL;
-+	}
- 
-+	gpio_np = to_of_node(gpiochip_node_get_first(pc->dev));
- 	pc->of_node = gpio_np;
- 
- 	pc->reg_mux = meson_map_resource(pc, gpio_np, "mux");
-@@ -751,7 +747,7 @@ int meson_pinctrl_probe(struct platform_device *pdev)
- 	pc->dev = dev;
- 	pc->data = (struct meson_pinctrl_data *) of_device_get_match_data(dev);
- 
--	ret = meson_pinctrl_parse_dt(pc, dev->of_node);
-+	ret = meson_pinctrl_parse_dt(pc);
- 	if (ret)
- 		return ret;
- 
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index d1955c65b4b6..64fb9e074ac6 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ menuconfig PINCTRL_MESON
+ 	tristate "Amlogic SoC pinctrl drivers"
+-	depends on ARCH_MESON
++	depends on ARCH_MESON || COMPILE_TEST
+ 	depends on OF
+ 	default y
+ 	select PINMUX
 -- 
 2.35.1
 
