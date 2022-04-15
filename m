@@ -4,56 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8174BC433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Apr 2022 13:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718BDC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Apr 2022 14:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kv3mVgYG3af37APU92RrYIwsdqnfdXlLeJBnqXvXrEc=; b=0yU0lmYnPXrdH6
-	QPeQeMjTK5aLm6JKmKwjzBSSSTRKvhhl33OuNsmL9qsRUtZIHkg00p2k4/xlAoACUETdUTfzJfIHk
-	cqvXCNKTEzk+6e1dey9053l4S66MUO+gTYBuWiOGQc/iYL6POj5ZkEuDpjnExfQ7q3xEo06jUfw09
-	kEeeJ7Yzl44ZktnDtvtdkCS+FaDaHfuBall7yd53gBu7JHQeleelXpG51LzECcO64o3uP232VAWfr
-	RJ6KX3r2L4X97RnMypDsnCfHXcQjlha1O8j3KG/SHYee4Phv1wNX14EOBzr/nKKQ5p0gtAHDWLOII
-	RuzE4ZdnTtW1MTl19eiQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7x+Iq/zs5L9UGHGNq2SlcSd23fRNJ/erCSupctKPKPQ=; b=rV9FVnRjl1Wbg4
+	VapKDiF/d3CPoyOejvG8LCP1h8HEmv2I479I5nT9JWe5mpJzL4U4/KlNPBe286aL06Dwk8+5Clp1L
+	HawrcULuhAGu2STf2/yPT4pwvYGGd4cJgrWrLsYkhUg4qTI0vpDAyZBerJWgZ5oACTDgfS0Rot4dX
+	lND3pQs9Afwsq8UBF2uB70k1Kx6D/YOwSDSWJrs0nzDAX+akpHso+iKNycoVREDNlnNinmmXN21Gp
+	rckuGOjmTtkRjXt4P5wm/VRXL+URi61s9ElpNm9UTfQP7W/FHODQiGs1cMTiE+CgDHcPCWVHJJFJk
+	ZlQakiqrbiSE355frfkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nfM7L-00AF5M-Tq; Fri, 15 Apr 2022 13:36:07 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1nfMXv-00AH0A-LS; Fri, 15 Apr 2022 14:03:35 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nfM7A-00AF0L-Fx; Fri, 15 Apr 2022 13:35:57 +0000
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Fri, 15 Apr
- 2022 21:35:45 +0800
-Message-ID: <77c83f45-3782-624d-36c4-dec5c53cdd09@amlogic.com>
-Date: Fri, 15 Apr 2022 21:35:44 +0800
+ id 1nfMXk-00AGyb-F7; Fri, 15 Apr 2022 14:03:25 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id t11so15482317eju.13;
+ Fri, 15 Apr 2022 07:03:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:content-language:to:cc:from
+ :subject:content-transfer-encoding;
+ bh=D4t9NO5NWJPGH0i73+EeLfUPoJ/RYJ61BCd8WF3HY3U=;
+ b=gJVfexSeMKIpTELwnxi0/aK+eQbdD4ybXANL0WSG3e8ojlhpGpCTz29IoOBWPmGCE7
+ UysZIUlLD1wTvqhq2midcSyN5VSdysBGs9wQhnx1yDEk6mJs/fGzB7ApkSQ8dNLZXV0P
+ 7gx3wF4/aYewcfqRfNTYo0bNgfjGDHJ5E8Xpl0Vl2NLLhHuxeAqNj631vEh8Wb2l+fxi
+ pVWFxNFaspcU8cc4Nr8xMj57Nq1oVGFvW0kiDRi7mMGLIlsDQKzFQFI7BvqVCLRv4m4f
+ t3LBwcvoiPH64GGntfQbfhC9XA9Sp60JHh/2Z2jwZs22/col97vp73vfA/sFCAGtK3xf
+ Y0EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:from:subject:content-transfer-encoding;
+ bh=D4t9NO5NWJPGH0i73+EeLfUPoJ/RYJ61BCd8WF3HY3U=;
+ b=dHFo+ykmdJRU9treIVGKFu+pEXUAD13HggQWmSH3n0V6/awYEbzQpOuoutXaXmkX+n
+ 4ZQAcE/xSOo3b+9BzIizYiU2hgKKYWBY1hCqrDZsvA+xI8xhPf/1i+QWxEyaV4U5ZB9R
+ DIInTELuNxibYBHpGH+aCyapVehwEtnIyQM+upQfnhl8xNx+w9M28OVp9kuvOaM90as4
+ QvtB9ZnvOkBDtCMI+lez0y8IfJvKP7ATx7Oz5PCxLBAedwSTSerVDIicju+mvixV5CPK
+ FGx87h5WxGdlANBHHS7untJWYQJzoqW7+UUCWEsPzJVoZIipiycOt48RGAHvISmF0hyY
+ 9qDw==
+X-Gm-Message-State: AOAM530iLHFrrIvM3AtWCjE1R+TNOTBrtmG3Y/lf7yRupMSZBSGFtFR3
+ 5+lWzcGL3nDetoIZokt38cvQKOOLmQg=
+X-Google-Smtp-Source: ABdhPJwguWo/qCKtqqQziyyXQFp4ykoVs3hQQo2jNNd6BGD/yWfFyG+adj4pmzYkTSqD0zrmwwis2Q==
+X-Received: by 2002:a17:907:9604:b0:6ec:9b5:c55b with SMTP id
+ gb4-20020a170907960400b006ec09b5c55bmr5881200ejc.321.1650031401424; 
+ Fri, 15 Apr 2022 07:03:21 -0700 (PDT)
+Received: from ?IPV6:2a01:c22:6faa:ed00:b906:e23f:946b:b9f7?
+ (dynamic-2a01-0c22-6faa-ed00-b906-e23f-946b-b9f7.c22.pool.telefonica.de.
+ [2a01:c22:6faa:ed00:b906:e23f:946b:b9f7])
+ by smtp.googlemail.com with ESMTPSA id
+ n14-20020a50934e000000b0042053e79386sm2700015eda.91.2022.04.15.07.03.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 15 Apr 2022 07:03:20 -0700 (PDT)
+Message-ID: <8e416f95-1084-ee28-860e-7884f7fa2e32@gmail.com>
+Date: Fri, 15 Apr 2022 16:03:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/3] tty: serial: meson: Added 12Mhz as the clock source
- for calculating baud rate
+ Thunderbird/91.8.0
 Content-Language: en-US
-To: Neil Armstrong <narmstrong@baylibre.com>, <linux-serial@vger.kernel.org>, 
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-References: <20220407081355.13602-1-yu.tu@amlogic.com>
- <20220407081355.13602-3-yu.tu@amlogic.com>
- <bedff186-8ce4-3cfd-aa67-f0375daf29b4@baylibre.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <bedff186-8ce4-3cfd-aa67-f0375daf29b4@baylibre.com>
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] phy: amlogic: fix error path in phy_g12a_usb3_pcie_probe()
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220415_063556_568269_315C63BB 
-X-CRM114-Status: GOOD (  21.72  )
+X-CRM114-CacheID: sfid-20220415_070324_552615_20C83F7F 
+X-CRM114-Status: GOOD (  10.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,89 +88,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCVRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4KCk9uIDIwMjIvNC83IDIyOjAzLCBO
-ZWlsIEFybXN0cm9uZyB3cm90ZToKPiBbIEVYVEVSTkFMIEVNQUlMIF0KPiAKPiBPbiAwNy8wNC8y
-MDIyIDEwOjEzLCBZdSBUdSB3cm90ZToKPj4gU3RhcnRpbmcgd2l0aCB0aGUgZzEyQSBjaGlwLCBh
-ZGQgYSAxMk1oeiBjbG9jayB0byBjYWxjdWxhdGUgdGhlIGJhdWQKPj4gcmF0ZSwgc2luY2UgdGhl
-IEJUIG1vZHVsZSB1c2VzIDNNaHogYmF1ZCByYXRlLiA4TWh6IGNhbGN1bGF0aW9ucyBjYW4KPj4g
-bGVhZCB0byBiYXVkIHJhdGUgYmlhcywgY2F1c2luZyBzb21lIHByb2JsZW1zLgo+IAo+IFRoZSBj
-b21taXQgbWVzc2FnZSBpc24ndCBjbGVhciBlbm91Z2gsIDEyTUh6IGlzIGEgbmV3IGludGVybWVk
-aWF0ZSBjbG9jawo+IHJhdGUsIG5vdCBhIG5ldyBjbG9jayBzb3VyY2Ugb2YgdGhlIFVBUlQgbW9k
-dWxlLgo+IAo+IFBsZWFzZSBleHBsYWluIGEgLzIgZGl2aWRlciBvdmVyIFhUQUwgd2FzIGludHJv
-ZHVjZWQgc2luY2UgRzEyQSwgYW5kCj4gaXMgcHJlZmVycmVkIHRvIGJlIHVzZWQgb3ZlciB0aGUg
-c3RpbGwgcHJlc2VudCAvMyBkaXZpZGVyIHNpbmNlIGl0Cj4gcHJvdmlkZXMgbXVjaCBjbG9zZXIg
-ZnJlcXVlbmNpZXMgdnMgdGhlIHJlcXVlc3QgYmF1ZHJhdGUuCj4gCkkgd2lsbCBwcmVwYXJlIHRo
-ZSBuZXh0IHZlcnNpb24gb2YgdGhlIGNvZGUgYXMgeW91IHJlcXVlc3RlZC4KPj4KPj4gU2lnbmVk
-LW9mZi1ieTogWXUgVHUgPHl1LnR1QGFtbG9naWMuY29tPgo+PiAtLS0KPj4gwqAgZHJpdmVycy90
-dHkvc2VyaWFsL21lc29uX3VhcnQuYyB8IDI1ICsrKysrKysrKysrKysrKysrKysrKysrLS0KPj4g
-wqAgMSBmaWxlIGNoYW5nZWQsIDIzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4+Cj4+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jIAo+PiBiL2RyaXZl
-cnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMKPj4gaW5kZXggOGU1OTYyNDkzNWFmLi43ZTc3Njkz
-YTEzMTggMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMKPj4g
-KysrIGIvZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+PiBAQCAtNjgsNiArNjgsNyBA
-QAo+PiDCoCAjZGVmaW5lIEFNTF9VQVJUX0JBVURfTUFTS8KgwqDCoMKgwqDCoMKgIDB4N2ZmZmZm
-Cj4+IMKgICNkZWZpbmUgQU1MX1VBUlRfQkFVRF9VU0XCoMKgwqDCoMKgwqDCoCBCSVQoMjMpCj4+
-IMKgICNkZWZpbmUgQU1MX1VBUlRfQkFVRF9YVEFMwqDCoMKgwqDCoMKgwqAgQklUKDI0KQo+PiAr
-I2RlZmluZSBBTUxfVUFSVF9CQVVEX1hUQUxfRElWMsKgwqDCoMKgwqDCoMKgIEJJVCgyNykKPj4g
-wqAgI2RlZmluZSBBTUxfVUFSVF9QT1JUX05VTcKgwqDCoMKgwqDCoMKgIDEyCj4+IMKgICNkZWZp
-bmUgQU1MX1VBUlRfUE9SVF9PRkZTRVTCoMKgwqDCoMKgwqDCoCA2Cj4+IEBAIC04MCw2ICs4MSwx
-MCBAQCBzdGF0aWMgc3RydWN0IHVhcnRfZHJpdmVyIG1lc29uX3VhcnRfZHJpdmVyOwo+PiDCoCBz
-dGF0aWMgc3RydWN0IHVhcnRfcG9ydCAqbWVzb25fcG9ydHNbQU1MX1VBUlRfUE9SVF9OVU1dOwo+
-PiArc3RydWN0IG1lc29uX3VhcnRfZGF0YSB7Cj4+ICvCoMKgwqAgYm9vbCBoYXNfeHRhbF9kaXYy
-Owo+PiArfTsKPj4gKwo+PiDCoCBzdGF0aWMgdm9pZCBtZXNvbl91YXJ0X3NldF9tY3RybChzdHJ1
-Y3QgdWFydF9wb3J0ICpwb3J0LCB1bnNpZ25lZCAKPj4gaW50IG1jdHJsKQo+PiDCoCB7Cj4+IMKg
-IH0KPj4gQEAgLTI5MywxMyArMjk4LDIwIEBAIHN0YXRpYyBpbnQgbWVzb25fdWFydF9zdGFydHVw
-KHN0cnVjdCB1YXJ0X3BvcnQgCj4+ICpwb3J0KQo+PiDCoCBzdGF0aWMgdm9pZCBtZXNvbl91YXJ0
-X2NoYW5nZV9zcGVlZChzdHJ1Y3QgdWFydF9wb3J0ICpwb3J0LCB1bnNpZ25lZCAKPj4gbG9uZyBi
-YXVkKQo+PiDCoCB7Cj4+IC3CoMKgwqAgdTMyIHZhbDsKPj4gK8KgwqDCoCBzdHJ1Y3QgbWVzb25f
-dWFydF9kYXRhICpwcml2YXRlX2RhdGEgPSBwb3J0LT5wcml2YXRlX2RhdGE7Cj4+ICvCoMKgwqAg
-dTMyIHZhbCA9IDA7Cj4+IMKgwqDCoMKgwqAgd2hpbGUgKCFtZXNvbl91YXJ0X3R4X2VtcHR5KHBv
-cnQpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgY3B1X3JlbGF4KCk7Cj4+IMKgwqDCoMKgwqAgaWYg
-KHBvcnQtPnVhcnRjbGsgPT0gMjQwMDAwMDApIHsKPj4gLcKgwqDCoMKgwqDCoMKgIHZhbCA9IERJ
-Vl9ST1VORF9DTE9TRVNUKHBvcnQtPnVhcnRjbGsgLyAzLCBiYXVkKSAtIDE7Cj4+ICvCoMKgwqDC
-oMKgwqDCoCB1bnNpZ25lZCBpbnQgeHRhbF9kaXYgPSAzOwo+PiArCj4+ICvCoMKgwqDCoMKgwqDC
-oCBpZiAocHJpdmF0ZV9kYXRhLT5oYXNfeHRhbF9kaXYyKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHh0YWxfZGl2ID0gMjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdmFsIHw9IEFN
-TF9VQVJUX0JBVURfWFRBTF9ESVYyOwo+PiArwqDCoMKgwqDCoMKgwqAgfQo+PiArwqDCoMKgwqDC
-oMKgwqAgdmFsIHw9IERJVl9ST1VORF9DTE9TRVNUKHBvcnQtPnVhcnRjbGsgLyB4dGFsX2Rpdiwg
-YmF1ZCkgLSAxOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgdmFsIHw9IEFNTF9VQVJUX0JBVURfWFRB
-TDsKPj4gwqDCoMKgwqDCoCB9IGVsc2Ugewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgdmFsID3CoCBE
-SVZfUk9VTkRfQ0xPU0VTVChwb3J0LT51YXJ0Y2xrIC8gNCwgYmF1ZCkgLSAxOwo+PiBAQCAtNjkx
-LDYgKzcwMyw3IEBAIHN0YXRpYyBpbnQgbWVzb25fdWFydF9wcm9iZV9jbG9ja3Moc3RydWN0IAo+
-PiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsCj4+IMKgIHN0YXRpYyBpbnQgbWVzb25fdWFydF9wcm9i
-ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+PiDCoCB7Cj4+ICvCoMKgwqAgc3RydWN0
-IG1lc29uX3VhcnRfZGF0YSAqcHJpdmF0ZV9kYXRhOwo+PiDCoMKgwqDCoMKgIHN0cnVjdCByZXNv
-dXJjZSAqcmVzX21lbTsKPj4gwqDCoMKgwqDCoCBzdHJ1Y3QgdWFydF9wb3J0ICpwb3J0Owo+PiDC
-oMKgwqDCoMKgIHUzMiBmaWZvc2l6ZSA9IDY0OyAvKiBEZWZhdWx0IGlzIDY0LCAxMjggZm9yIEVF
-IFVBUlRfMCAqLwo+PiBAQCAtNzMzLDYgKzc0NiwxMyBAQCBzdGF0aWMgaW50IG1lc29uX3VhcnRf
-cHJvYmUoc3RydWN0IAo+PiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+IMKgwqDCoMKgwqAgaWYg
-KCFwb3J0KQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FTk9NRU07Cj4+ICvCoMKgwqAg
-cHJpdmF0ZV9kYXRhID0gZGV2bV9remFsbG9jKCZwZGV2LT5kZXYsIHNpemVvZihzdHJ1Y3QgCj4+
-IG1lc29uX3VhcnRfZGF0YSksIEdGUF9LRVJORUwpOwo+PiArwqDCoMKgIGlmICghcHJpdmF0ZV9k
-YXRhKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FTk9NRU07Cj4+ICsKPj4gK8KgwqDCoCBp
-ZiAoKGJvb2wpZGV2aWNlX2dldF9tYXRjaF9kYXRhKCZwZGV2LT5kZXYpKQo+PiArwqDCoMKgwqDC
-oMKgwqAgcHJpdmF0ZV9kYXRhLT5oYXNfeHRhbF9kaXYyID0gdHJ1ZTsKPiAKPiBJdCBzaG91bGQg
-YmUgbXVjaCBjbGVhbmVyIHRvIHBhc3MgbWVzb25fdWFydF9kYXRhIHRvIG1lc29uX3VhcnRfZHRf
-bWF0Y2ggCj4gLmRhdGEsCj4gYW5kIHRoZW4geW91IGNhbiByZXRyaWV2ZSBkZXZpY2VfZ2V0X21h
-dGNoX2RhdGEoKSBhbmQgcHV0IHRoZSByZXN1bHQgaW50bwo+IHBvcnQtPnByaXZhdGVfZGF0YS4K
-PiBUaGlzIHdpbGwgYXZvaWQgYSBkZXZtX2t6YWxsb2MoKS4KPiAKPiBUaGVuIGluIG1lc29uX3Vh
-cnRfY2hhbmdlX3NwZWVkKCkgY2hhbmdlIHRoZSB0ZXN0IHRvIGNoZWNrIGZvciBOVUxMIAo+IHBy
-aXZhdGVfZGF0YToKPiBpZiAocHJpdmF0ZV9kYXRhICYmIHByaXZhdGVfZGF0YS0+aGFzX3h0YWxf
-ZGl2MikKPiAKPj4gKwo+PiDCoMKgwqDCoMKgIHJldCA9IG1lc29uX3VhcnRfcHJvYmVfY2xvY2tz
-KHBkZXYsIHBvcnQpOwo+PiDCoMKgwqDCoMKgIGlmIChyZXQpCj4+IMKgwqDCoMKgwqDCoMKgwqDC
-oCByZXR1cm4gcmV0Owo+PiBAQCAtNzQ5LDYgKzc2OSw3IEBAIHN0YXRpYyBpbnQgbWVzb25fdWFy
-dF9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlIAo+PiAqcGRldikKPj4gwqDCoMKgwqDCoCBw
-b3J0LT54X2NoYXIgPSAwOwo+PiDCoMKgwqDCoMKgIHBvcnQtPm9wcyA9ICZtZXNvbl91YXJ0X29w
-czsKPj4gwqDCoMKgwqDCoCBwb3J0LT5maWZvc2l6ZSA9IGZpZm9zaXplOwo+PiArwqDCoMKgIHBv
-cnQtPnByaXZhdGVfZGF0YSA9IHByaXZhdGVfZGF0YTsKPj4gwqDCoMKgwqDCoCBtZXNvbl9wb3J0
-c1twZGV2LT5pZF0gPSBwb3J0Owo+PiDCoMKgwqDCoMKgIHBsYXRmb3JtX3NldF9kcnZkYXRhKHBk
-ZXYsIHBvcnQpOwo+IAo+IE5laWwKPgpJIHdpbGwgcHJlcGFyZSB0aGUgbmV4dCB2ZXJzaW9uIG9m
-IHRoZSBjb2RlIGFzIHlvdSByZXF1ZXN0ZWQuCgo+IC4KCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
-LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+If clk_prepare_enable() fails we call clk_disable_unprepare()
+in the error path what results in a warning that the clock
+is disabled and unprepared already.
+And if we fail later in phy_g12a_usb3_pcie_probe() then we
+bail out w/o calling clk_disable_unprepare().
+This patch fixes both errors.
+
+Fixes: 36077e16c050 ("phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY Driver")
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+index 5b471ab80..54d65a6f0 100644
+--- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
++++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+@@ -414,19 +414,19 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
+ 
+ 	ret = clk_prepare_enable(priv->clk_ref);
+ 	if (ret)
+-		goto err_disable_clk_ref;
++		return ret;
+ 
+ 	priv->reset = devm_reset_control_array_get_exclusive(dev);
+-	if (IS_ERR(priv->reset))
+-		return PTR_ERR(priv->reset);
++	if (IS_ERR(priv->reset)) {
++		ret = PTR_ERR(priv->reset);
++		goto err_disable_clk_ref;
++	}
+ 
+ 	priv->phy = devm_phy_create(dev, np, &phy_g12a_usb3_pcie_ops);
+ 	if (IS_ERR(priv->phy)) {
+ 		ret = PTR_ERR(priv->phy);
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(dev, "failed to create PHY\n");
+-
+-		return ret;
++		dev_err_probe(dev, ret, "failed to create PHY\n");
++		goto err_disable_clk_ref;
+ 	}
+ 
+ 	phy_set_drvdata(priv->phy, priv);
+@@ -434,8 +434,12 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
+ 
+ 	phy_provider = devm_of_phy_provider_register(dev,
+ 						     phy_g12a_usb3_pcie_xlate);
++	if (IS_ERR(phy_provider)) {
++		ret = PTR_ERR(phy_provider);
++		goto err_disable_clk_ref;
++	}
+ 
+-	return PTR_ERR_OR_ZERO(phy_provider);
++	return 0;
+ 
+ err_disable_clk_ref:
+ 	clk_disable_unprepare(priv->clk_ref);
+-- 
+2.35.2
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
