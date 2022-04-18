@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF39C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Apr 2022 05:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B13C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Apr 2022 05:33:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7PiOiL5KWewYlof1ywbetveQQXqXNXQPBaKv0yOK5xA=; b=nE9rrkmv3hpWFk
-	1Dqq4cgAA07I7BW90B9+ehmk1rsq/mRTBkjdsQAegnMfkEJGa/OS/TRjFsIuPKVt02fUYatyA4FIP
-	LZZQpoLzGAcIg4o+Xtbzwk7Br3+wE/gvuuY7VatZVXHI8j+PkWT0JNtQVjWP0NA94KrIAw35kdytb
-	vagwLfPk62HWVRKFTjfIOOCZJfV61JSdGJrPMpeXlNpejxpiT4/9XgFty3V6dNhafQZYBpoCbW0N9
-	oaNaNHDL2e08VTUItlB0dheMHvtGfY6zhxcwuoowDLkecw6IexY6m3Im5tGUgNf/KUBFFB2lIBLkc
-	87AknRPJJ1Vyyc+Im7WA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=b+ok3eIht5lQ7Z/ZvqwDRGBnSSoKQi+3tjQH/01DGLY=; b=S3+QAw4+pzvWG8
+	HnZLuxmzP7AjRVl3LI9hNTomF/goFIQGyu0vk7Q0J/vJWAuhvZDynwVO8t6Y2jdca8xFrIsM0YH6A
+	W5odjj2ETXXh8/lKJaMi8KcYb9H+rdTw5wKSxUeU87wfCeTIW9wSGqABlC0r7LO+QNOT68cvoG2GK
+	mtBqXCXq95LGwIm3U7psisOCU0bGg+nIaJ6tFDupL/nhbyTgnrzlQQCldutjGh4yZLnDvZgc0khBY
+	YRC7LEBg+TJsrFrEDhMKNBcSN7SP3ZKNJQjTiG2AwCQ1lJCdHJH+btcPrn5odE7YbblRJcDIGcW96
+	2CFn54gTnmLOj+cMwKuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ngK0z-00Fg4g-1N; Mon, 18 Apr 2022 05:33:33 +0000
+	id 1ngK18-00Fg7F-1C; Mon, 18 Apr 2022 05:33:42 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ngK0o-00Fg2J-Ep; Mon, 18 Apr 2022 05:33:23 +0000
+ id 1ngK0q-00Fg2J-8l; Mon, 18 Apr 2022 05:33:25 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Mon, 18 Apr 2022
- 13:33:09 +0800
+ 13:33:23 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Greg
@@ -35,16 +35,19 @@ To: <linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <jbrunet@baylibre.com>
 CC: Jiri Slaby <jirislaby@kernel.org>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>, Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V2 0/2] Add q 12MHz internal clock rate to calculate
-Date: Mon, 18 Apr 2022 13:32:00 +0800
-Message-ID: <20220418053202.24528-1-yu.tu@amlogic.com>
+Subject: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock rate to
+ calculate baud rate in order to meet the baud rate requirements of special BT
+ modules
+Date: Mon, 18 Apr 2022 13:32:01 +0800
+Message-ID: <20220418053202.24528-2-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20220418053202.24528-1-yu.tu@amlogic.com>
+References: <20220418053202.24528-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220417_223322_523540_EADE0C8A 
-X-CRM114-Status: UNSURE (   4.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220417_223324_324143_1B179DF2 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,25 +64,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-1.Added 12Mhz as the clock source for calculating baud rate.
+A /2 divider over XTAL was introduced since G12A, and is preferred
+to be used over the still present /3 divider since it provides much
+closer frequencies vs the request baudrate.Especially the BT module
+uses 3Mhz baud rate. 8Mhz calculations can lead to baud rate bias,
+causing some problems.
 
-2.Added S4 SOC compatibility. 
+Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+---
+ drivers/tty/serial/meson_uart.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-Yu Tu (2):
-  tty: serial: meson: Add a 12MHz internal clock rate to calculate baud
-    rate in order to meet the baud rate requirements of special BT
-    modules
-  tty: serial: meson: Added S4 SOC compatibility
-
-V1 -> V2: Change format as discussed in the email.
-
-Link:https://lore.kernel.org/linux-amlogic/20220407081355.13602-3-yu.tu@amlogic.com/
-
- drivers/tty/serial/meson_uart.c | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
-
-
-base-commit: f398e0aa325c61fa20903833a5b534ecb8e6e418
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 8e59624935af..58bd2723c004 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -68,6 +68,7 @@
+ #define AML_UART_BAUD_MASK		0x7fffff
+ #define AML_UART_BAUD_USE		BIT(23)
+ #define AML_UART_BAUD_XTAL		BIT(24)
++#define AML_UART_BAUD_XTAL_DIV2		BIT(27)
+ 
+ #define AML_UART_PORT_NUM		12
+ #define AML_UART_PORT_OFFSET		6
+@@ -80,6 +81,10 @@ static struct uart_driver meson_uart_driver;
+ 
+ static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+ 
++struct meson_uart_data {
++	bool has_xtal_div2;
++};
++
+ static void meson_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
+ {
+ }
+@@ -293,13 +298,20 @@ static int meson_uart_startup(struct uart_port *port)
+ 
+ static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
+ {
+-	u32 val;
++	const struct meson_uart_data *private_data = port->private_data;
++	u32 val = 0;
+ 
+ 	while (!meson_uart_tx_empty(port))
+ 		cpu_relax();
+ 
+ 	if (port->uartclk == 24000000) {
+-		val = DIV_ROUND_CLOSEST(port->uartclk / 3, baud) - 1;
++		unsigned int xtal_div = 3;
++
++		if (private_data && private_data->has_xtal_div2) {
++			xtal_div = 2;
++			val |= AML_UART_BAUD_XTAL_DIV2;
++		}
++		val |= DIV_ROUND_CLOSEST(port->uartclk / xtal_div, baud) - 1;
+ 		val |= AML_UART_BAUD_XTAL;
+ 	} else {
+ 		val =  DIV_ROUND_CLOSEST(port->uartclk / 4, baud) - 1;
+@@ -749,6 +761,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	port->x_char = 0;
+ 	port->ops = &meson_uart_ops;
+ 	port->fifosize = fifosize;
++	port->private_data = (void *)device_get_match_data(&pdev->dev);
+ 
+ 	meson_ports[pdev->id] = port;
+ 	platform_set_drvdata(pdev, port);
 -- 
 2.33.1
 
