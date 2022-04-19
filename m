@@ -4,78 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C768EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 07:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B6EC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 08:22:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s2zAm0+dl7Sf/g+uV5rvuQqHX+yyyWsF0XrTtQXeZ5s=; b=BgYi378wN3Uvfw
-	UDVxNB6PaZoQgCqtvMyFD19Q4gv3MGN4F0xXE0Q9QJscUXBU0EipPCkYZKNwhwxfeAsdu7RHu2zrH
-	6WSdb4KuvzrTeUFxbCudbPwhEhDKjYJKKcE/9VWaLaoJB8hkF40Qjduxyel8MewbadHBTHWohufPi
-	tWKwEZV3nEf3kPViB4kLguzU43bY9TXS0I9zVgIOYmPzEmqsC4ksqOvKRGbPfvxWYZfzYYP727dmG
-	f0MrlBwWBmnnCB1lismYl62RU0RnVPvVDL+xBOo6HxXSVcm1u1t5SVs4uepXCVqjekb2JWaZxYsHv
-	ry+RQKaemtmk0/VS7Rjw==;
+	List-Owner; bh=d5K/LQV8zZJZglLzqcuKHfTvBjYLzitrsQq2c0mjHNY=; b=J9mPzQnv7Jwcyr
+	X2h9cxI/FZdKBlZ3MueeZdo/4P0VYiRnmeUufQN9j7MxNydcOyM4B1adUaHmyHpFG1xtH+kc30KpB
+	K788OL6+tUHr8vgkMiSe8qRTQcN6rLflSSvdKXaGp15xQPGMpsZ3GyeY1a8XOFwkZ5xqgaS+1el9b
+	3Ay13kS5p6rJ1lSFBXaQHBAH2dzAPYJUp61u18CBgoCdHDZTHgh63EjoWMkwTmns7kzAmtLnWJ4ma
+	qXL0OrhrQD5KccMsNDYvaDgeYlZGFD9K5PLlc5dY3KCmAGkE02cM9a6rlO7NCrk//ilw+sM2Wz4vJ
+	F7TCICRlehiLBaciFj9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ngiZc-00289d-2M; Tue, 19 Apr 2022 07:46:56 +0000
-Received: from mail-ed1-f46.google.com ([209.85.208.46])
+	id 1ngj83-002I5R-PI; Tue, 19 Apr 2022 08:22:31 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ngiRe-00248I-US; Tue, 19 Apr 2022 07:38:44 +0000
-Received: by mail-ed1-f46.google.com with SMTP id v15so20079967edb.12;
- Tue, 19 Apr 2022 00:38:39 -0700 (PDT)
+ id 1ngj7k-002Hux-3g; Tue, 19 Apr 2022 08:22:13 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id s18so31397489ejr.0;
+ Tue, 19 Apr 2022 01:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aDezyw7oAUdrZNSvtrlYFBOqIqBL/GY7YbeRS6TE8iQ=;
+ b=bPSYUl/EaJ3C6Tecf4Uf0NbSMXV8VtkVBYgVginaVN7zmCBGBRbDERUOE+V52oJstl
+ WrOho5AtwZ2he/XVu+3gjnKmNOoFrnYS50UiBw9/G/SYevyPq0uZ5NeeanfNhQnool/+
+ w3VYKNcHXFx95ZT/iUcUofzDHJN/qF0YllzgwtMx3FsqC3Y8mqJwGVRwGiHYIr4XZ1hW
+ JxpztDCp1KtUIodshiR4OO1t4uC009P9dS1HoiQthzrLSGFvzh8qiiTKC7IQLK8sp/LS
+ 0UkJADrf0kaXf261R3h/20dixv5WWZ+Rn+2t2MCyaijIfPdjVdh7xYtkDvJZg6/Q2OCi
+ nmiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=cMIQtXBcL0LX2Xu0lItqcQNjpRN4Lxw6ZeFSuk932VI=;
- b=NXP0Xtenv2cF0iIEHKjwgvfgsvFv3YVUIH5L2O0sPtllI/68NEhUNh0QjJwdNU5QGI
- HF6Tp0k7iPKLfpPhjosRyZmHlo/rVzdKzTTKN896gJZ7ZZfld3d8wHCTepqvfCd1J18O
- TnMVMCNq/waLDyLvvfaaivbFPgWX9QIBoqaw25fltuIV4ZHP7XJ1GRnZwzxfDI6i6mLs
- QdvFfNBd7rU16jKGWjpi4VR8O4L3O1+8t80eGDz9P+FSHhPqciaiZ3P3AQY6TYe95jd6
- TuzHu2VaYfxfAyeoZIsxnFCDfHjK4zS0br+b6ybkRdOMvu/+7ts42dMdohCqGy/BTOTB
- jbvw==
-X-Gm-Message-State: AOAM5316Q1f0sdv2dEKN0r6z9tsQ4JEqiirIVSRd/kG7Vu/qgH1BJQs2
- KGkOaAPmgcjn+6qIQQm4Ino=
-X-Google-Smtp-Source: ABdhPJx9uF7mg6dncUt7CC20Ri+ArabDBoEQkVzbHd/rqPriMfROsVzMkJEP2rCKSX2QYiazZ8y76A==
-X-Received: by 2002:a05:6402:22c4:b0:41d:78b1:349 with SMTP id
- dm4-20020a05640222c400b0041d78b10349mr16239817edb.365.1650353918802; 
- Tue, 19 Apr 2022 00:38:38 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
- by smtp.gmail.com with ESMTPSA id
- p9-20020a05640243c900b0041facb9ac9esm7807362edc.1.2022.04.19.00.38.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 19 Apr 2022 00:38:38 -0700 (PDT)
-Message-ID: <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
-Date: Tue, 19 Apr 2022 09:38:36 +0200
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aDezyw7oAUdrZNSvtrlYFBOqIqBL/GY7YbeRS6TE8iQ=;
+ b=POPnEJJhNFD8s9wMh8EwilKuwqPOF8isLNO7efnERcT8HekfIJ/HUA7lrGzagRxka8
+ 7u+obYd9kXO0VVw+xgoaQRgM4Me3P600KA6V62UM6aiaKVb9Xs0pY/UId8vjIAAj6uUu
+ 07neNyUqwmMpGm7HbrusdxtdhxuM+J+xBK/LuEZA8p1+knheyK/cp1GUIJqlUXlvH/5G
+ jin8Q09gyTC3ryTUk+E76UJZOBDkkY5vzWaGkAoxBkuUzy61NkVeRzdOP2hY7K2GXa0r
+ E6qsfouaucDN1or4Wv2VNGC8rTFznq49I+MBIaTOCuOhaA7Q4PjLkzYi3V4fFxgHDjXd
+ corQ==
+X-Gm-Message-State: AOAM532vP0DO0eso+sPVQQ7OegHQSQGaz4yvTyna1waSthkymheveTT5
+ wNvgDUWqr3BXox+6y6XoNisfifEc3JaD3KzP00E=
+X-Google-Smtp-Source: ABdhPJy1BI+kV6WyWW37ji+ylkjjIWTBWFf1qwtkGDw3Mxc8DghxigPvlj/PBqptD5608TIHvHb826oYhxBwwZ8+2WI=
+X-Received: by 2002:a17:906:1692:b0:6e8:d245:44a9 with SMTP id
+ s18-20020a170906169200b006e8d24544a9mr12378077ejd.639.1650356528238; Tue, 19
+ Apr 2022 01:22:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock
- rate to calculate baud rate in order to meet the baud rate requirements of
- special BT modules
-Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20220418053202.24528-1-yu.tu@amlogic.com>
  <20220418053202.24528-2-yu.tu@amlogic.com>
  <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
  <d10e27ff-e674-87bd-2c98-63c7040baeb1@amlogic.com>
-From: Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <d10e27ff-e674-87bd-2c98-63c7040baeb1@amlogic.com>
+ <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
+In-Reply-To: <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 19 Apr 2022 11:21:32 +0300
+Message-ID: <CAHp75Vc87oTmJ6zVeY2mGbP8Jx_SSDtp39Uq4YhWerDUX9RdQQ@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock
+ rate to calculate baud rate in order to meet the baud rate requirements of
+ special BT modules
+To: Jiri Slaby <jirislaby@kernel.org>
+Cc: Yu Tu <yu.tu@amlogic.com>, 
+ "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>, 
+ linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>, 
+ linux-amlogic <linux-amlogic@lists.infradead.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220419_003843_010532_9772FF7B 
-X-CRM114-Status: GOOD (  14.78  )
+X-CRM114-CacheID: sfid-20220419_012212_221850_519526DC 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,31 +89,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAxOS4gMDQuIDIyLCA5OjI5LCBZdSBUdSB3cm90ZToKPiBIaSBBbmR5LAo+ICDCoMKg
-wqDCoFRoYW5rIHlvdSBmb3IgeW91ciBhZHZpY2UuCj4gCj4gT24gMjAyMi80LzE4IDIwOjA5LCBB
-bmR5IFNoZXZjaGVua28gd3JvdGU6Cj4+IFsgRVhURVJOQUwgRU1BSUwgXQo+Pgo+PiBPbiBNb24s
-IEFwciAxOCwgMjAyMiBhdCA4OjUwIEFNIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4gd3JvdGU6
-Cj4+Pgo+Pj4gQSAvMiBkaXZpZGVyIG92ZXIgWFRBTCB3YXMgaW50cm9kdWNlZCBzaW5jZSBHMTJB
-LCBhbmQgaXMgcHJlZmVycmVkCj4+PiB0byBiZSB1c2VkIG92ZXIgdGhlIHN0aWxsIHByZXNlbnQg
-LzMgZGl2aWRlciBzaW5jZSBpdCBwcm92aWRlcyBtdWNoCj4+PiBjbG9zZXIgZnJlcXVlbmNpZXMg
-dnMgdGhlIHJlcXVlc3QgYmF1ZHJhdGUuRXNwZWNpYWxseSB0aGUgQlQgbW9kdWxlCj4+Cj4+ICdl
-LiBFJyAobWluZCB0aGUgc3BhY2UpCj4gTXkgc3RhdGVtZW50IGlzIGEgd2hvbGUuIFRoZXJlIHNo
-b3VsZCBiZSBubyBzcGFjZXMuCgpQZXJpb2Qgc2hvdWxkIGJlIGZvbGxvd2VkIGJ5IGEgc3BhY2Us
-IG9mIGNvdXJzZS4KCj4+PiB1c2VzIDNNaHogYmF1ZCByYXRlLiA4TWh6IGNhbGN1bGF0aW9ucyBj
-YW4gbGVhZCB0byBiYXVkIHJhdGUgYmlhcywKPj4+IGNhdXNpbmcgc29tZSBwcm9ibGVtcy4KPj4K
-Pj4gLi4uCj4+Cj4+PiArc3RydWN0IG1lc29uX3VhcnRfZGF0YSB7Cj4+PiArwqDCoMKgwqDCoMKg
-IGJvb2wgaGFzX3h0YWxfZGl2MjsKPj4KPj4gSSB3b3VsZCBwcmVmZXIgdG8gc2VlIHRoaXMgYXMg
-YW4gdW5zaWduZWQgaW50IGFuZCB3aXRoIGEgbGVzcwo+PiBwYXJ0aWN1bGFyIG5hbWUsIGUuZy4g
-eHRhbF9kaXYgd291bGQgc3VmZmljZS4KPiBJIGRvbid0IGhhdmUgYSBwcm9ibGVtIHdpdGggeW91
-ciBzdWdnZXN0aW9uLkxldCdzIHNlZSBXaGF0IE5laWwgaGFzIHRvIHNheS4KCkFjdHVhbGx5IHdo
-eSB1aW50IHByb3ZpZGVkIGl0J3MgYSBib29sZWFuIHZhbHVlPyBPciBkbyB5b3UgbWVhbiB0byBz
-dG9yZSAKdGhlIGRpdmlzb3IgZGlyZWN0bHkgaW4gdGhpcyBtZW1iZXIsIEFuZHk/Cgp0aGFua3Ms
-Ci0tIApqcwpzdXNlIGxhYnMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+On Tue, Apr 19, 2022 at 10:38 AM Jiri Slaby <jirislaby@kernel.org> wrote:
+> On 19. 04. 22, 9:29, Yu Tu wrote:
+> > On 2022/4/18 20:09, Andy Shevchenko wrote:
+> >> On Mon, Apr 18, 2022 at 8:50 AM Yu Tu <yu.tu@amlogic.com> wrote:
+
+...
+
+> >>> +struct meson_uart_data {
+> >>> +       bool has_xtal_div2;
+> >>
+> >> I would prefer to see this as an unsigned int and with a less
+> >> particular name, e.g. xtal_div would suffice.
+> > I don't have a problem with your suggestion.Let's see What Neil has to say.
+>
+> Actually why uint provided it's a boolean value? Or do you mean to store
+> the divisor directly in this member, Andy?
+
+Yes I was thinking to provide the value and then always provide the
+private data. In such cases we don't need an additional condition.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
