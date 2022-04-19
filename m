@@ -4,80 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B6EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 08:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D82C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 08:26:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d5K/LQV8zZJZglLzqcuKHfTvBjYLzitrsQq2c0mjHNY=; b=J9mPzQnv7Jwcyr
-	X2h9cxI/FZdKBlZ3MueeZdo/4P0VYiRnmeUufQN9j7MxNydcOyM4B1adUaHmyHpFG1xtH+kc30KpB
-	K788OL6+tUHr8vgkMiSe8qRTQcN6rLflSSvdKXaGp15xQPGMpsZ3GyeY1a8XOFwkZ5xqgaS+1el9b
-	3Ay13kS5p6rJ1lSFBXaQHBAH2dzAPYJUp61u18CBgoCdHDZTHgh63EjoWMkwTmns7kzAmtLnWJ4ma
-	qXL0OrhrQD5KccMsNDYvaDgeYlZGFD9K5PLlc5dY3KCmAGkE02cM9a6rlO7NCrk//ilw+sM2Wz4vJ
-	F7TCICRlehiLBaciFj9w==;
+	List-Owner; bh=xvXgV6qMsqKz227DogVKyBVxcJ+PFERhpQNfzdwWUIs=; b=zhx6E+Fv7d/hVx
+	pF1oA0NpsicSC0Rdz5mFyaOqQ3JGbAakgKn8ppZTaBWrh/yfsL7M80NSyx2SDHe//uoVOuTmO2jOt
+	siFzsCJjP1Vq7xW+au8sd9l0b3i7LX1Fxdx1KppgYpzyFvUtSiFB3ihKxkct9o6WHWx7CPG4xTVrG
+	FrQkNcRvR104cRse9BNGJAK/+p7wuqLtLF7l9RjVjAInIMAS66S6ZG7vpeoy2GGoNbcewjcyfROWb
+	Y2Mpu9YOGAc3gR4U1R4EblD9JFMbpbsWYtpQNgB4gfmTV34Mv6KOWjeqqXdeEShCHp3p8dJuXR6z5
+	g6AnGXD2r9o3KjVP5/SA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ngj83-002I5R-PI; Tue, 19 Apr 2022 08:22:31 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1ngjCA-002JpZ-6X; Tue, 19 Apr 2022 08:26:46 +0000
+Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ngj7k-002Hux-3g; Tue, 19 Apr 2022 08:22:13 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id s18so31397489ejr.0;
- Tue, 19 Apr 2022 01:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aDezyw7oAUdrZNSvtrlYFBOqIqBL/GY7YbeRS6TE8iQ=;
- b=bPSYUl/EaJ3C6Tecf4Uf0NbSMXV8VtkVBYgVginaVN7zmCBGBRbDERUOE+V52oJstl
- WrOho5AtwZ2he/XVu+3gjnKmNOoFrnYS50UiBw9/G/SYevyPq0uZ5NeeanfNhQnool/+
- w3VYKNcHXFx95ZT/iUcUofzDHJN/qF0YllzgwtMx3FsqC3Y8mqJwGVRwGiHYIr4XZ1hW
- JxpztDCp1KtUIodshiR4OO1t4uC009P9dS1HoiQthzrLSGFvzh8qiiTKC7IQLK8sp/LS
- 0UkJADrf0kaXf261R3h/20dixv5WWZ+Rn+2t2MCyaijIfPdjVdh7xYtkDvJZg6/Q2OCi
- nmiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=aDezyw7oAUdrZNSvtrlYFBOqIqBL/GY7YbeRS6TE8iQ=;
- b=POPnEJJhNFD8s9wMh8EwilKuwqPOF8isLNO7efnERcT8HekfIJ/HUA7lrGzagRxka8
- 7u+obYd9kXO0VVw+xgoaQRgM4Me3P600KA6V62UM6aiaKVb9Xs0pY/UId8vjIAAj6uUu
- 07neNyUqwmMpGm7HbrusdxtdhxuM+J+xBK/LuEZA8p1+knheyK/cp1GUIJqlUXlvH/5G
- jin8Q09gyTC3ryTUk+E76UJZOBDkkY5vzWaGkAoxBkuUzy61NkVeRzdOP2hY7K2GXa0r
- E6qsfouaucDN1or4Wv2VNGC8rTFznq49I+MBIaTOCuOhaA7Q4PjLkzYi3V4fFxgHDjXd
- corQ==
-X-Gm-Message-State: AOAM532vP0DO0eso+sPVQQ7OegHQSQGaz4yvTyna1waSthkymheveTT5
- wNvgDUWqr3BXox+6y6XoNisfifEc3JaD3KzP00E=
-X-Google-Smtp-Source: ABdhPJy1BI+kV6WyWW37ji+ylkjjIWTBWFf1qwtkGDw3Mxc8DghxigPvlj/PBqptD5608TIHvHb826oYhxBwwZ8+2WI=
-X-Received: by 2002:a17:906:1692:b0:6e8:d245:44a9 with SMTP id
- s18-20020a170906169200b006e8d24544a9mr12378077ejd.639.1650356528238; Tue, 19
- Apr 2022 01:22:08 -0700 (PDT)
+ id 1ngjC6-002Jli-Ta; Tue, 19 Apr 2022 08:26:44 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+ by mail.gandi.net (Postfix) with ESMTPSA id 5B566FF804;
+ Tue, 19 Apr 2022 08:26:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1650356793;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=VXBlhum4y6XFxuELbe8JGMivZRApx0IpgXnue2l+2tA=;
+ b=En4XckKRy2XUHcPmxdD3HS/8imGMUX23JA+DVW2whyGf+0TkYT1GxTJToeKg7JxW6sp5YD
+ 5T0JqZyLmOcpT1Iscp4JTrMcF69FqaC2psvhgVarurkbtDHCd+TQMp1LDZQTn6fSMVP84V
+ m2EAoe4FtF7XBLmH+M/XIhq17fudmWBlAwS/Wj97MBQcbsMXbn0E16axGlemoqdzPpyoya
+ fAisPIPcnZTYKVRtov653V9gvO5sDfdIPJe/GZr/3QyP8Ea81PUSS5b6v3GY9CSZBnVm0t
+ RyH6QoClKUE+YOkWoXhtMnMlpeNu/C5hwRwH4GI3lUOr9PNnM21z0cRB9bfj7Q==
+Date: Tue, 19 Apr 2022 10:26:29 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Liang Yang <liang.yang@amlogic.com>
+Cc: <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
+ <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>,
+ YongHui Yu <yonghui.yu@amlogic.com>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Message-ID: <20220419102629.1c77aa2a@xps13>
+In-Reply-To: <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
+References: <20220402074921.13316-1-liang.yang@amlogic.com>
+ <20220402074921.13316-2-liang.yang@amlogic.com>
+ <20220404103034.48ec16b1@xps13>
+ <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
+ <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20220418053202.24528-1-yu.tu@amlogic.com>
- <20220418053202.24528-2-yu.tu@amlogic.com>
- <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
- <d10e27ff-e674-87bd-2c98-63c7040baeb1@amlogic.com>
- <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
-In-Reply-To: <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 19 Apr 2022 11:21:32 +0300
-Message-ID: <CAHp75Vc87oTmJ6zVeY2mGbP8Jx_SSDtp39Uq4YhWerDUX9RdQQ@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock
- rate to calculate baud rate in order to meet the baud rate requirements of
- special BT modules
-To: Jiri Slaby <jirislaby@kernel.org>
-Cc: Yu Tu <yu.tu@amlogic.com>, 
- "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>, 
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>, 
- linux-amlogic <linux-amlogic@lists.infradead.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Neil Armstrong <narmstrong@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220419_012212_221850_519526DC 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20220419_012643_271417_24B822AB 
+X-CRM114-Status: GOOD (  20.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,36 +80,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 19, 2022 at 10:38 AM Jiri Slaby <jirislaby@kernel.org> wrote:
-> On 19. 04. 22, 9:29, Yu Tu wrote:
-> > On 2022/4/18 20:09, Andy Shevchenko wrote:
-> >> On Mon, Apr 18, 2022 at 8:50 AM Yu Tu <yu.tu@amlogic.com> wrote:
-
-...
-
-> >>> +struct meson_uart_data {
-> >>> +       bool has_xtal_div2;
-> >>
-> >> I would prefer to see this as an unsigned int and with a less
-> >> particular name, e.g. xtal_div would suffice.
-> > I don't have a problem with your suggestion.Let's see What Neil has to say.
->
-> Actually why uint provided it's a boolean value? Or do you mean to store
-> the divisor directly in this member, Andy?
-
-Yes I was thinking to provide the value and then always provide the
-private data. In such cases we don't need an additional condition.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8sCgpsaWFuZy55YW5nQGFtbG9naWMuY29tIHdyb3RlIG9uIE1vbiwgMTggQXByIDIwMjIg
+MTE6NDA6MTAgKzA4MDA6Cgo+IEhpIE1pcXVlbCwKPiAKPiBpIGhhdmUgc29tZSBjb25mdXNpb24g
+d2hlbiBpIHByZXBhcmUgdGhlIHBhdGNoZXMuIGZvciBEVCBjb21wYXRpYmlsaXR5LCBpdCBmYWxs
+cyBiYWNrIHRvIHRoZSBvbGQgRFQgd2hlbiBmYWlsZWQgdG8gZ2V0IHJlc291cmNlIGJ5IHRoZSBu
+ZXcgRFQsIGJ1dCB0aGVyZSBpcyBzb21lIHBvaW50czoKPiBhLiBvbGQgRFQgZGVwZW5kcyBvbiBN
+TUMgc3ViIGNsb2NrIGRyaXZlciwgYnV0IGl0IG5ldmVyIGJlIG1lcmdlZCwgc28gaXQgY2FuJ3Qg
+d29yay4KCkkgZG9uJ3QgZ2V0IHdoYXQgeW91IG1lYW4gaGVyZSwgc29ycnkuIEkgYmVsaWV2ZSB0
+aGVyZSBpcyBhIG5ldyB3YXkgdG8KZGVzY3JpYmUgdGhpcyBjbG9jayBidXQgZ3JhYmJpbmcgdGhl
+IG9uZSBmcm9tIHRoZSBNTUMgc3RpbGwgd29ya3MsIGRvZXMKbm90IGl0PwoKPiBiLiBpZiBpdCBm
+YWxscyBiYWNrIHRvIHRoZSBvbGQgRFQsIGJlc2lkZSB0aGUgcmVnbWFwIGxvb2t1cCBiZWxvdywg
+aXQgc2VlbXMgdGhhdCB3ZSBoYXZlIHRvIHByZXNlcnZlIHRoZSBjb2RlIG9mIHRoZSBvbGQgY2xv
+Y2sgc2V0dGluZyBpbiBuZmNfY2xrX2luaXQoKS4KClllcywgcHJvYmFibHkuCgo+IGRvIHdlIHN0
+aWxsIG5lZWQgdG8gYXZvaWQgYnJlYWsgRFQgY29tcGF0aWJpbGl0eT8KCldlIHNob3VsZCB0cnkg
+b3VyIGJlc3QgdG8gYXZvaWQgYnJlYWtpbmcgdGhlIERULCB5ZXMuCgo+IAo+IFRoYW5rcy4KPiAK
+PiBPbiAyMDIyLzQvMTEgMTA6NDAsIExpYW5nIFlhbmcgd3JvdGU6Cj4gPj4+IMKgwqDCoMKgwqAg
+bmZjLT5kZXYgPSBkZXY7Cj4gPj4+IC3CoMKgwqAgcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNl
+KHBkZXYsIElPUkVTT1VSQ0VfTUVNLCAwKTsKPiA+Pj4gLcKgwqDCoCBuZmMtPnJlZ19iYXNlID0g
+ZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgcmVzKTsKPiA+Pj4gK8KgwqDCoCBuZmMtPnJlZ19i
+YXNlID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlX2J5bmFtZShwZGV2LCAibmZjIik7
+ICAKPiA+Pgo+ID4+IFRoaXMgY2hhbmdlIHNlZW1zIHVucmVsYXRlZC4gIAo+ID4gCj4gPiBUbyBi
+ZSBjb25zaXN0ZW50IHdpdGggdGhlIGZvbGxvd2luZyA+IGRldm1fcGxhdGZvcm1faW9yZW1hcF9y
+ZXNvdXJjZV9ieW5hbWUocGRldiwgImVtbWMiKS4gZG8geW91IG1lYW4gdGhhdCB3ZSA+IGRvbid0
+IG5lZWQgaXQ/PiAgCj4gPj4+IMKgwqDCoMKgwqAgaWYgKElTX0VSUihuZmMtPnJlZ19iYXNlKSkK
+PiA+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBQVFJfRVJSKG5mYy0+cmVnX2Jhc2UpOwo+
+ID4+PiAtwqDCoMKgIG5mYy0+cmVnX2NsayA9Cj4gPj4+IC3CoMKgwqDCoMKgwqDCoCBzeXNjb25f
+cmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKGRldi0+b2Zfbm9kZSwKPiA+Pj4gLcKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImFtbG9naWMsbW1jLXN5c2NvbiIp
+Owo+ID4+PiAtwqDCoMKgIGlmIChJU19FUlIobmZjLT5yZWdfY2xrKSkgewo+ID4+PiAtwqDCoMKg
+wqDCoMKgwqAgZGV2X2VycihkZXYsICJGYWlsZWQgdG8gbG9va3VwIGNsb2NrIGJhc2VcbiIpOwo+
+ID4+PiAtwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIobmZjLT5yZWdfY2xrKTsKPiA+Pj4g
+LcKgwqDCoCB9Cj4gPj4+ICvCoMKgwqAgbmZjLT5zZF9lbW1jX2Nsb2NrID0gZGV2bV9wbGF0Zm9y
+bV9pb3JlbWFwX3Jlc291cmNlX2J5bmFtZShwZGV2LCA+Pj4gImVtbWMiKTsKPiA+Pj4gK8KgwqDC
+oCBpZiAoSVNfRVJSKG5mYy0+c2RfZW1tY19jbG9jaykpCj4gPj4+ICvCoMKgwqDCoMKgwqDCoCBy
+ZXR1cm4gUFRSX0VSUihuZmMtPnNkX2VtbWNfY2xvY2spOyAgCj4gPj4KPiA+PiBXaGlsZSBJIGFn
+cmVlIHRoaXMgaXMgbXVjaCBiZXR0ZXIgdGhhbiB0aGUgcHJldmlvdXMgc29sdXRpb24sIHdlIGNh
+bm5vdAo+ID4+IGJyZWFrIERUIGNvbXBhdGliaWxpdHksIHNvIHlvdSBuZWVkIHRvIHRyeSBnZXR0
+aW5nIHRoZSBlbW1jIGNsb2NrLCBidXQKPiA+PiBpZiBpdCBmYWlscyB5b3Ugc2hvdWxkIGZhbGxi
+YWNrIHRvIHRoZSByZWdtYXAgbG9va3VwLiAgCj4gPiAKPiA+IG9rLCBpIHdpbGwgZml4IGl0IG5l
+eHQgdmVyc2lvbi4gdGhhbmtzLgo+ID4gICAKPiA+PiAgCj4gPj4+IMKgwqDCoMKgwqAgaXJxID0g
+cGxhdGZvcm1fZ2V0X2lycShwZGV2LCAwKTsgIAoKClRoYW5rcywKTWlxdcOobAoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
+aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
+bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
