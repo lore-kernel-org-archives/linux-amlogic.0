@@ -4,73 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E424AC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 15:40:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 791B5C433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Apr 2022 21:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fRsUBO2irSDfcAnSbjA+w1TTCLr5SLlT00pk7pdaFGc=; b=kZ2Lkjq2a5XbPx
-	e8mvScjbuaPDYLSbPRXCDIUDsaNVQRGcZmM+IKJJ4rcS00BPIbSNcHzzD5NEbvIUMGwuN+Oinpro0
-	O6nETA78EzIdLrEgwuX1eVGx0QGScTHERHMuJS1b2KpzJyiGpHFXaTCNiVOuj1pn9mm8JsnZOaB4D
-	3//rLwz8QM5Rth7IvdTFys+Iyj3UMT0kw+bv8lbawVZAbPM+0k9KKMRv/0dXHGBAdDVUZB4EIP4TG
-	W2Sty+xUbWpe2U9TjTGr9Gb7pRQ6FBfzDz5+Iyih2BrKKvpTr6+FsSIfYkntw0Ph+4B3LvEJEh8kj
-	xzuV5LnhCY/Dl40FT36A==;
+	List-Owner; bh=mFJkB+oXgixCLgCsNZsp4CIsCEWLMykeI9MAwjBAxQ0=; b=1VEyRuYWVKgA6S
+	k+syEBS5uKznedjpWSDisGrolZuEqr9pP/jnvz47Jv9TqHMNuBk5kyRCvRALalTL/DuwHuT1+yiyS
+	cdRYsBMeknOGRM9I7pmhj8nxUnt1Fed8WXPH40NCyTgmfTzRkyH5cuWdDFIhDfkhgz1n1/2Urj8ll
+	xPMfNmEl114fqiqVyTjxooLGu3+DstfDcEyFzKEXGd9BmFwedD8odtSjxdpyTNcdpx1GPvCld3nNO
+	LkwyUUcgGJxB6Nr/txG2wd0ZUTrzALnYCediccF0c2mtzPuLFFeC5jMmonxwwOoCnD6DLIk4y7v20
+	VnQ6a3ZtcpMAM32nBpBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ngpy2-004k4I-M1; Tue, 19 Apr 2022 15:40:38 +0000
-Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
+	id 1ngvlD-006SAj-2C; Tue, 19 Apr 2022 21:51:47 +0000
+Received: from mail-yw1-x1129.google.com ([2607:f8b0:4864:20::1129])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ngpjW-004dIV-2q; Tue, 19 Apr 2022 15:25:40 +0000
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
- by mail.gandi.net (Postfix) with ESMTPSA id 59F30FF80D;
- Tue, 19 Apr 2022 15:25:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1650381932;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Bq9PeeGKcHRkxdXVgUr01rmzSL3+CeljQ3EucZX0P7Y=;
- b=D5GBhDkyZrK5yvyrOhTnlTFai3nybJgtqeJ4Btz8MX+iAYbIB8QguBUEXby9NcFEsox2Ay
- nEBVao0mKpzibIZwXRjI+fegNSQSw7yP0VTNq2TEF9zGIcyMj40seUL5zSgEDw6yP0fImV
- lJF05G0KenAPpCFxgqJkSYhSYBiG/PZ/bVpCHQ4t0OlvyMid9HQRfk/ROI9Kgcj6DyTUMD
- xvSthEuLiZuwLSoV+spy5qdHex3A5uN+vsMGrjnOmyQmI94UOSi1NIfHY47bk0U1gnoFxS
- +z+RfEv5dQrJmZydxKRtn5ikkNVGrQpVuMaMw2rcPP/XoxZz0Iya3GbS7msmUg==
-Date: Tue, 19 Apr 2022 17:25:28 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Liang Yang <liang.yang@amlogic.com>
-Cc: <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
- XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
- <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>,
- YongHui Yu <yonghui.yu@amlogic.com>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <20220419172528.2dd75e7b@xps13>
-In-Reply-To: <2e382e3e-c231-c9e4-73a1-0637288fcd4f@amlogic.com>
-References: <20220402074921.13316-1-liang.yang@amlogic.com>
- <20220402074921.13316-2-liang.yang@amlogic.com>
- <20220404103034.48ec16b1@xps13>
- <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
- <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
- <20220419102629.1c77aa2a@xps13>
- <2e382e3e-c231-c9e4-73a1-0637288fcd4f@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1ngvky-006S0L-En
+ for linux-amlogic@lists.infradead.org; Tue, 19 Apr 2022 21:51:34 +0000
+Received: by mail-yw1-x1129.google.com with SMTP id
+ 00721157ae682-2f19fdba41fso61956907b3.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Apr 2022 14:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=8LhDtsOPaDlH3w6gyeu3mci7iJleTkKy6Uui9MQ6Hds=;
+ b=TmJ0eiZYxAZdUE5sh6L1cK/xtUM2pWMJ2d6VLd7GncE5o2BPF8IhN74KoYLmbqhlqJ
+ 751S7YfxUmlLYCB/tgrlgHFmP1pOaZYQvNOegYyL7AEw/AvmbnEgaGsD6reGB657DSW5
+ SLtQWdiI4av5zn9s6lCHbNTOxDNFgFbjdU2/ySPN/iks+s7ygV4PF2EChzm99R1Sj6fd
+ uHkOK44JlKGAdcPmAK92pVDG8HfBkBMdNY8y7hgaIzSXq+dYT0pMiMXVOwmYskbMLIwP
+ RdLXDObtdw0G6sxyzlQRmVRWV0d9Lzy0dn9bQ+kQB910wQWErhsL9r8ObnCdXEon9VKY
+ xtWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=8LhDtsOPaDlH3w6gyeu3mci7iJleTkKy6Uui9MQ6Hds=;
+ b=y80T7d8Ga8YNusUJPqBMCUoGhWYlBdy5hgGUItAnfEYOyGG6+NuosXMJZx2ZMJ0AQz
+ 3uJ+bbpdAdPvtM6wTX4s12FqE8MCflcZS1zVRgUJ+FsFTE0U4lEfcw0bSRpPYpI6Zm6m
+ 0QbUwG68qDd0AG5Fiiz/Xm1mqT4sNHmLM+QZVOXCj7AaIIFdPRNIPGJr+bP2umq1rvww
+ 2hAgstKji4+Efhfq4/56hFZRiAoDuOp+FmWCpFSmx1BHSnIv6DHUbiTtGiOY+/NpBiqF
+ QmHqOHAYUb1NgrjZY7oatgbrz3jtWc4W5PChWqoWOdNM5HCBGf/YZ58zOLhQ1uLbeBiG
+ ovYQ==
+X-Gm-Message-State: AOAM5303u8i4h35Ba4WKGfLlEGIQWoa74RO7rlxlUjQeO6Y93gcgL8Hi
+ b2zOYx4PCm5ANbTBsL+CSJbfzLQYi0HyYfG+/kJWPw==
+X-Google-Smtp-Source: ABdhPJycEnrH7NVifO4MaU0HhRu9JHmy3mauXkWvCyOyFGBRyszpFOK/1t0vV+rQEn1AzyuIAhpReNnCvDyBl6IzkMs=
+X-Received: by 2002:a0d:e813:0:b0:2ec:1e83:e5f0 with SMTP id
+ r19-20020a0de813000000b002ec1e83e5f0mr18570099ywe.151.1650405089150; Tue, 19
+ Apr 2022 14:51:29 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20220414190242.22178-1-andriy.shevchenko@linux.intel.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 19 Apr 2022 23:51:17 +0200
+Message-ID: <CACRpkdanmmwfMHHQsK+d_CXq92YkFj4Pw0EhsJStukL6C7Qa0A@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] gpiolib: more helpers and fwnode conversion
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220419_082538_501216_AB2181F0 
-X-CRM114-Status: GOOD (  28.16  )
+X-CRM114-CacheID: sfid-20220419_145132_540682_83F8FC98 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,69 +86,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgpsaWFuZy55YW5nQGFtbG9naWMuY29tIHdyb3RlIG9uIFR1ZSwgMTkgQXByIDIwMjIg
-MTc6MTc6NDggKzA4MDA6Cgo+IEhlbGxvIE1pcXVlbCwKPiAKPiBPbiAyMDIyLzQvMTkgMTY6MjYs
-IE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gPiBbIEVYVEVSTkFMIEVNQUlMIF0KPiA+IAo+ID4gSGVs
-bG8sCj4gPiAKPiA+IGxpYW5nLnlhbmdAYW1sb2dpYy5jb20gd3JvdGUgb24gTW9uLCAxOCBBcHIg
-MjAyMiAxMTo0MDoxMCArMDgwMDoKPiA+ICAgCj4gPj4gSGkgTWlxdWVsLAo+ID4+Cj4gPj4gaSBo
-YXZlIHNvbWUgY29uZnVzaW9uIHdoZW4gaSBwcmVwYXJlIHRoZSBwYXRjaGVzLiBmb3IgRFQgY29t
-cGF0aWJpbGl0eSwgaXQgZmFsbHMgYmFjayB0byB0aGUgb2xkIERUIHdoZW4gZmFpbGVkIHRvIGdl
-dCByZXNvdXJjZSBieSB0aGUgbmV3IERULCBidXQgdGhlcmUgaXMgc29tZSBwb2ludHM6Cj4gPj4g
-YS4gb2xkIERUIGRlcGVuZHMgb24gTU1DIHN1YiBjbG9jayBkcml2ZXIsIGJ1dCBpdCBuZXZlciBi
-ZSBtZXJnZWQsIHNvIGl0IGNhbid0IHdvcmsuICAKPiA+IAo+ID4gSSBkb24ndCBnZXQgd2hhdCB5
-b3UgbWVhbiBoZXJlLCBzb3JyeS4gSSBiZWxpZXZlIHRoZXJlIGlzIGEgbmV3IHdheSB0bwo+ID4g
-ZGVzY3JpYmUgdGhpcyBjbG9jayBidXQgZ3JhYmJpbmcgdGhlIG9uZSBmcm9tIHRoZSBNTUMgc3Rp
-bGwgd29ya3MsIGRvZXMKPiA+IG5vdCBpdD8KPiA+ICAgCj4gCj4gTm8sIGl0IGRvZXNuJ3QuIGFm
-dGVyIHRoZSBORkMgZHJpdmVyIHVzaW5nIHRoZSBNTUMgc3ViIGNsb2NrIGZyYW1ld29yayB3YXMg
-bWVyZ2VkIGludG8gdGhlIG1haW5saW5lIG9mIGtlcm5lbCwgd2UgZGlkbid0IGNvbnRpbnVlIHRv
-IHN1Ym1pdCB0aGUgc2VyaWVzIG9mIHBhdGNoZXMgYWJvdXQgTU1DIHN1YiBjbG9jayBhZnRlciB2
-OS4gd2hlbiBpIGZvdW5kIHRoYXQsIHdlIG1hZGUgYSBkaXNjdXNzaW9uIHRvIGRlY2lkZSB3aGV0
-aGVyIHRvIHJlY292ZXIgdGhlIHNlcmllcyBvZiBwYXRjaGVzIGFib3V0IE1NQyBzdWIgY2xvY2sg
-ZnJhbWV3b3JrLCBmaW5hbGx5LCBzZWUgdGhlIGRlc2NyaXB0aW9uIGZyb20gY292ZXIgbGV0dGVy
-LCB3ZSBwbGFuIHRvIGFiYW5kb24gaXQgYW5kIGFkb3B0IHRoZSBuZXcgY2xvY2sgc2NoZW1lIGlu
-IHRoaXMgc2VyaWVzIG9mIHBhdGNoZXMuCgpJIGFtIG5vdCBzdXJlIHRvIGZvbGxvdy4gSXMgdGhl
-IGN1cnJlbnQgY29kZSBjb21wbGV0ZWx5IGJyb2tlbj8gSQpiZWxpZXZlIGl0IGlzIG5vdCwgc28g
-SSBkb24ndCB1bmRlcnN0YW5kIHlvdXIgaXNzdWUuCgpDYW4geW91IHBsZWFzZSBzdW1tYXJpemUg
-dGhlIHNpdHVhdGlvbj8KCj4gCj4gVGhhbmtzLgo+IAo+ID4+IGIuIGlmIGl0IGZhbGxzIGJhY2sg
-dG8gdGhlIG9sZCBEVCwgYmVzaWRlIHRoZSByZWdtYXAgbG9va3VwIGJlbG93LCBpdCBzZWVtcyB0
-aGF0IHdlIGhhdmUgdG8gcHJlc2VydmUgdGhlIGNvZGUgb2YgdGhlIG9sZCBjbG9jayBzZXR0aW5n
-IGluIG5mY19jbGtfaW5pdCgpLiAgCj4gPiAKPiA+IFllcywgcHJvYmFibHkuCj4gPiAgIAo+ID4+
-IGRvIHdlIHN0aWxsIG5lZWQgdG8gYXZvaWQgYnJlYWsgRFQgY29tcGF0aWJpbGl0eT8gIAo+ID4g
-Cj4gPiBXZSBzaG91bGQgdHJ5IG91ciBiZXN0IHRvIGF2b2lkIGJyZWFraW5nIHRoZSBEVCwgeWVz
-Lgo+ID4gICAKPiA+Pgo+ID4+IFRoYW5rcy4KPiA+Pgo+ID4+IE9uIDIwMjIvNC8xMSAxMDo0MCwg
-TGlhbmcgWWFuZyB3cm90ZTogIAo+ID4+Pj4+ICDCoMKgwqDCoMKgIG5mYy0+ZGV2ID0gZGV2Owo+
-ID4+Pj4+IC3CoMKgwqAgcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkZXYsIElPUkVTT1VS
-Q0VfTUVNLCAwKTsKPiA+Pj4+PiAtwqDCoMKgIG5mYy0+cmVnX2Jhc2UgPSBkZXZtX2lvcmVtYXBf
-cmVzb3VyY2UoZGV2LCByZXMpOwo+ID4+Pj4+ICvCoMKgwqAgbmZjLT5yZWdfYmFzZSA9IGRldm1f
-cGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZV9ieW5hbWUocGRldiwgIm5mYyIpOyAgCj4gPj4+Pgo+
-ID4+Pj4gVGhpcyBjaGFuZ2Ugc2VlbXMgdW5yZWxhdGVkLiAgCj4gPj4+Cj4gPj4+IFRvIGJlIGNv
-bnNpc3RlbnQgd2l0aCB0aGUgZm9sbG93aW5nID4gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291
-cmNlX2J5bmFtZShwZGV2LCAiZW1tYyIpLiBkbyB5b3UgbWVhbiB0aGF0IHdlID4gZG9uJ3QgbmVl
-ZCBpdD8+ICAKPiA+Pj4+PiAgwqDCoMKgwqDCoCBpZiAoSVNfRVJSKG5mYy0+cmVnX2Jhc2UpKQo+
-ID4+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIobmZjLT5yZWdfYmFzZSk7
-Cj4gPj4+Pj4gLcKgwqDCoCBuZmMtPnJlZ19jbGsgPQo+ID4+Pj4+IC3CoMKgwqDCoMKgwqDCoCBz
-eXNjb25fcmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKGRldi0+b2Zfbm9kZSwKPiA+Pj4+PiAtwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiYW1sb2dpYyxtbWMt
-c3lzY29uIik7Cj4gPj4+Pj4gLcKgwqDCoCBpZiAoSVNfRVJSKG5mYy0+cmVnX2NsaykpIHsKPiA+
-Pj4+PiAtwqDCoMKgwqDCoMKgwqAgZGV2X2VycihkZXYsICJGYWlsZWQgdG8gbG9va3VwIGNsb2Nr
-IGJhc2VcbiIpOwo+ID4+Pj4+IC3CoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihuZmMtPnJl
-Z19jbGspOwo+ID4+Pj4+IC3CoMKgwqAgfQo+ID4+Pj4+ICvCoMKgwqAgbmZjLT5zZF9lbW1jX2Ns
-b2NrID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlX2J5bmFtZShwZGV2LCA+Pj4gImVt
-bWMiKTsKPiA+Pj4+PiArwqDCoMKgIGlmIChJU19FUlIobmZjLT5zZF9lbW1jX2Nsb2NrKSkKPiA+
-Pj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIobmZjLT5zZF9lbW1jX2Nsb2NrKTsg
-IAo+ID4+Pj4KPiA+Pj4+IFdoaWxlIEkgYWdyZWUgdGhpcyBpcyBtdWNoIGJldHRlciB0aGFuIHRo
-ZSBwcmV2aW91cyBzb2x1dGlvbiwgd2UgY2Fubm90Cj4gPj4+PiBicmVhayBEVCBjb21wYXRpYmls
-aXR5LCBzbyB5b3UgbmVlZCB0byB0cnkgZ2V0dGluZyB0aGUgZW1tYyBjbG9jaywgYnV0Cj4gPj4+
-PiBpZiBpdCBmYWlscyB5b3Ugc2hvdWxkIGZhbGxiYWNrIHRvIHRoZSByZWdtYXAgbG9va3VwLiAg
-Cj4gPj4+Cj4gPj4+IG9rLCBpIHdpbGwgZml4IGl0IG5leHQgdmVyc2lvbi4gdGhhbmtzLiAgCj4g
-Pj4+ICAgID4+Pj4gICA+Pj4+PiAgwqDCoMKgwqDCoCBpcnEgPSBwbGF0Zm9ybV9nZXRfaXJxKHBk
-ZXYsIDApOyAgCj4gPiAKPiA+IAo+ID4gVGhhbmtzLAo+ID4gTWlxdcOobAo+ID4gCj4gPiAuICAK
-CgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+On Thu, Apr 14, 2022 at 9:02 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+
+> This is a spin-off (*) of the previous work of switching GPIO library
+> to use fwnode instead of of_node. Here we introduce a couple of
+> a new macro helpers, which allows to switch some of the drivers
+> to use fwnode and partially fwnode APIs. As a result of this cleanup
+> a few drivers switched to use GPIO fwnode instead of of_node.
+>
+> *) it's subset of it with a new (patch 1) helper.
+>
+> Marek, Martin, can you give this a try?
+> This requires at least two patches for GPIO library to be applied.
+>
+> Bart, Linus, I can take it thru my tree with an immutable branch if
+> it's the way you prefer, otherwise please suggest on how to proceed.
+
+Hmmm that sounds best, patch 1 does not apply to the pinctrl
+tree so I suppose there are already dependencies in the GPIO
+tree?
+
+FWIW, the series:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+I'm of course a fan of this nice refactoring series.
+
+Yours,
+Linus Walleij
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
