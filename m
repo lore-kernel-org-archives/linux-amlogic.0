@@ -4,92 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B1F9C433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Apr 2022 08:47:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEA25C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Apr 2022 08:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WnxtE9Z8tv7aa7PbrVrOwF2u5bWQh+PAl2AoyItnfMs=; b=QGgy6c3bbn3gKX
-	mcYW9HxJK9mQBjWmZgIEUcbF2oxgmEetJqGDSAIeN7uFDD/d83y5219An0eRiiuO0Lf5mAWgImIrU
-	2geSo4St+oWpbMvGeOQJP5+J6Nh9ui5kPEYw/2cjatI+EQPzqtZ8Ndmk7nQAySRtQc1a+PDazaoq+
-	tQZsahOkeW8XOsDbhghb2mkLMT0Ucj391KK0qLPbolPw6lQ5YM1VkquFSk0yyceDpXQ9SsY67NkBW
-	W6+R1gkmABafkYDC+o/z45+SkQFiqrAaY1s2SjpkGC6TxOd7yuLEOmy6+PmYWidOIIG8CHnDQ4CZh
-	StLtxly7AG1TMjbDhnyw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vxnB5gErHVv9rWrvSiHETKNVLjANNPqxoP4alObUtc4=; b=cnn8qYZoS6/uDL
+	8xmptelvs7IhuQXEUHHKRcokH+xJI595VMY/Xuwe6WSjJi+zNwrQcmt8dGr0QC0+MjeEetxRRWyaW
+	FkzFTYJlcBNakO+nHzgkU49UM1qdUMmZOmCsnw8j5hwS9g+N7xdyP/v8vWkU9w23k8gp56/F37hxr
+	lOFRcQsZwefVU41G5dmCHW9c8ZWWbhHBWuIOTT6dNCzzzy6Nx/sYG9ow0br5h8rdGF+MIR13MmCyn
+	mDuzlEBqPWq97HKFC8nv2+PblJbUYa0i9K4NI7Qu+8G13FDY1RuCIfz4HF1K+iL2KfivxlYDbTElF
+	+zDOczYIaSNBu41D6cJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nhSSu-00CUs5-FP; Thu, 21 Apr 2022 08:47:04 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1nhSUP-00CVU5-Lg; Thu, 21 Apr 2022 08:48:37 +0000
+Received: from szxga01-in.huawei.com ([45.249.212.187])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nhSSi-00CUo3-HM
- for linux-amlogic@lists.infradead.org; Thu, 21 Apr 2022 08:46:53 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id i20so5614355wrb.13
- for <linux-amlogic@lists.infradead.org>; Thu, 21 Apr 2022 01:46:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=Z1R8XAgRO1RY9ptbheHK+UH29R2eRMz8Ro595MvYVes=;
- b=aOom/33qqLb3Lfu2zcsAjrk7UdXHJJVRy0kJNKJDjgPslzoTYHMMljkC085jJpJYR4
- EegA7KKwIkF+/1WfHa3PQDt8NPu1ipsKPgiV9Avgu/YlXoYfX3R3pVRdtMLK0PAE95+G
- UHsar2YSfO7sL93bYGnai0RpaCTbEzQAbufLW2NgH5woKN7/5vWtjkeIg6qBaVFU9VPh
- Er2VeFX0ErcmUSIvBehlMeYXwv74Smim+58XkpaLUxJJBJDykvoLxNjR1g9kU7+ERwWU
- wOq/Kfa6Rk9IbqfWUUDvnYA5BPRNIkFSag2Qr75UmCf3pYTGplwMsiLgofgIOxNEtMbH
- LLww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=Z1R8XAgRO1RY9ptbheHK+UH29R2eRMz8Ro595MvYVes=;
- b=lyeljPA8J6VQRxsSFzPsTmE2z+fk8bQyc6pppYh+o4BMuOZMOA7hHvXhFIj4XQVX6t
- +HB++E4TDTTs3WrQczPuDAtSFm9C4ZNyWmNxTX+dsGGauXTrbRkzNi/mzz3V/yqV5eKA
- kvLHguWVJVWSi90ncmplLAw85w83SK/QBvXw5K4BxkGcn9mi6ZJObITNG/cixgf4MWbR
- FAS7b5Tn7788bYGwU7GCP5aYxb6nV7fs3X8SGrFpJERGNiYd1usgYcOyOGauwtRvpjqD
- xygBgloAyyBmU4No/s6YxiznKIQcXqPJeAEV8bl4IdOvPgMfQmTXZfDWQ0dlVo/WN0O2
- wmaQ==
-X-Gm-Message-State: AOAM531CN4PEU5/QXL6HvSCjvgFFGiKfjcSkkaW+fVkj/pV2TmJdA2Hs
- rcsnIySXcp3yjvRloG5wnle/gA==
-X-Google-Smtp-Source: ABdhPJzkRWJgbzkZ114xvkXhqIqlkVxz401XfIJZslOH3Cuuu/rWZ1ncxnciYetQhmsi7vVlYYPT2w==
-X-Received: by 2002:a05:6000:c4:b0:20a:bfeb:68dc with SMTP id
- q4-20020a05600000c400b0020abfeb68dcmr1261741wrx.488.1650530810597; 
- Thu, 21 Apr 2022 01:46:50 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:35ba:2677:956:980d?
- ([2001:861:44c0:66c0:35ba:2677:956:980d])
- by smtp.gmail.com with ESMTPSA id
- b14-20020a7bc24e000000b003899c8053e1sm1675671wmj.41.2022.04.21.01.46.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Apr 2022 01:46:50 -0700 (PDT)
-Message-ID: <ea86eee0-409c-2d19-3669-35a8eaded53e@baylibre.com>
-Date: Thu, 21 Apr 2022 10:46:57 +0200
+ id 1nhSUN-00CVSY-9o; Thu, 21 Apr 2022 08:48:36 +0000
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4KkWQ91zG0zfZQG;
+ Thu, 21 Apr 2022 16:47:45 +0800 (CST)
+Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 21 Apr 2022 16:48:31 +0800
+Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
+ (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 21 Apr
+ 2022 16:48:31 +0800
+From: Yang Yingliang <yangyingliang@huawei.com>
+To: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>
+CC: <wsa@kernel.org>, <narmstrong@baylibre.com>, <tanure@linux.com>
+Subject: [PATCH -next] i2c: meson: fix missing clk_disable_unprepare() on
+ error in meson_i2c_probe()
+Date: Thu, 21 Apr 2022 17:00:42 +0800
+Message-ID: <20220421090042.2278081-1-yangyingliang@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock
- rate to calculate baud rate in order to meet the baud rate requirements of
- special BT modules
-Content-Language: en-US
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, Yu Tu <yu.tu@amlogic.com>
-Cc: "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jiri Slaby <jirislaby@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220418053202.24528-1-yu.tu@amlogic.com>
- <20220418053202.24528-2-yu.tu@amlogic.com>
- <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
+X-Originating-IP: [10.175.103.91]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500007.china.huawei.com (7.185.36.183)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220421_014652_628407_73FFC2E8 
-X-CRM114-Status: GOOD (  14.63  )
+X-CRM114-CacheID: sfid-20220421_014835_549034_B6A311FF 
+X-CRM114-Status: UNSURE (   9.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,56 +64,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andy,
+Fix the missing clk_disable_unprepare() before return
+from meson_i2c_probe() in the error handling case.
 
-On 18/04/2022 14:09, Andy Shevchenko wrote:
-> On Mon, Apr 18, 2022 at 8:50 AM Yu Tu <yu.tu@amlogic.com> wrote:
->>
->> A /2 divider over XTAL was introduced since G12A, and is preferred
->> to be used over the still present /3 divider since it provides much
->> closer frequencies vs the request baudrate.Especially the BT module
-> 
-> 'e. E' (mind the space)
-> 
->> uses 3Mhz baud rate. 8Mhz calculations can lead to baud rate bias,
->> causing some problems.
-> 
-> ...
-> 
->> +struct meson_uart_data {
->> +       bool has_xtal_div2;
-> 
-> I would prefer to see this as an unsigned int and with a less
-> particular name, e.g. xtal_div would suffice.
-> 
->> +};
-> 
-> ...
-> 
->> +               unsigned int xtal_div = 3;
-> 
->> +               if (private_data && private_data->has_xtal_div2) {
->> +                       xtal_div = 2;
-> 
-> Better to define privata data always
+Fixes: a57f9b4dd6f5 ("i2c: meson: Use 50% duty cycle for I2C clock")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+---
+ drivers/i2c/busses/i2c-meson.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-While I'm in favor of defining private data, here 3 and 2 are actually the values
-2 and 3 used to divide.
-
-The code is easy to read and we quickly understand this value is the clock divider.
-
-> 
-> 
->> +                       val |= AML_UART_BAUD_XTAL_DIV2;
->> +               }
->> +               val |= DIV_ROUND_CLOSEST(port->uartclk / xtal_div, baud) - 1;
-> 
-> 
+diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+index 50dab123380a..195a9716da31 100644
+--- a/drivers/i2c/busses/i2c-meson.c
++++ b/drivers/i2c/busses/i2c-meson.c
+@@ -520,8 +520,10 @@ static int meson_i2c_probe(struct platform_device *pdev)
+ 	meson_i2c_set_mask(i2c, REG_SLAVE_ADDR,
+ 			   REG_SLV_SDA_FILTER_MASK | REG_SLV_SCL_FILTER_MASK, 0);
+ 
+-	if (!i2c->data->set_clk_div)
++	if (!i2c->data->set_clk_div) {
++		clk_disable_unprepare(i2c->clk);
+ 		return -EINVAL;
++	}
+ 	i2c->data->set_clk_div(i2c, timings.bus_freq_hz);
+ 
+ 	ret = i2c_add_adapter(&i2c->adap);
+-- 
+2.25.1
 
 
 _______________________________________________
