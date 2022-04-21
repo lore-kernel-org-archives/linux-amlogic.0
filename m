@@ -4,68 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5105C433F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Apr 2022 08:44:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B1F9C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Apr 2022 08:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HNoSjgnOjXRsgzi4lqq0I4/AdDXjGTp1ie40PCbphqw=; b=ZJi1YEtSceTqrg
-	u5KI98HrqEki0CLUKBi4/gFssZv0OzIzDLRiK3F/E/NlckAvpd4m99vnhlVw4MoNnvKNSY3I8R0Wc
-	9jM37t84oRkQWq0YLnejYerbh9eci3Bfix7v6NTpDK3spdT5xsx7YIUUBGecRQakofyZ0rq4YcTax
-	R11weGirDIF+bn3xbml82f7h6R9rtDTtVvGqahhhPO7PtBiA4uvdy5yPHxd1FOpi6H6LMDqeZwAZ+
-	bpFJbL26q83iLbyYk4m+KVFwKQNnQfmRmM6j4fDMz9qRYt6NuyIxS4layO8GCyu5Q7ZzT4xilNwe2
-	5lgelPAveGyj88nFrkzQ==;
+	List-Owner; bh=WnxtE9Z8tv7aa7PbrVrOwF2u5bWQh+PAl2AoyItnfMs=; b=QGgy6c3bbn3gKX
+	mcYW9HxJK9mQBjWmZgIEUcbF2oxgmEetJqGDSAIeN7uFDD/d83y5219An0eRiiuO0Lf5mAWgImIrU
+	2geSo4St+oWpbMvGeOQJP5+J6Nh9ui5kPEYw/2cjatI+EQPzqtZ8Ndmk7nQAySRtQc1a+PDazaoq+
+	tQZsahOkeW8XOsDbhghb2mkLMT0Ucj391KK0qLPbolPw6lQ5YM1VkquFSk0yyceDpXQ9SsY67NkBW
+	W6+R1gkmABafkYDC+o/z45+SkQFiqrAaY1s2SjpkGC6TxOd7yuLEOmy6+PmYWidOIIG8CHnDQ4CZh
+	StLtxly7AG1TMjbDhnyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nhSQf-00CU2t-CI; Thu, 21 Apr 2022 08:44:45 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1nhSSu-00CUs5-FP; Thu, 21 Apr 2022 08:47:04 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nhSQU-00CU0d-4g
- for linux-amlogic@lists.infradead.org; Thu, 21 Apr 2022 08:44:35 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id
- ay11-20020a05600c1e0b00b0038eb92fa965so5365293wmb.4
- for <linux-amlogic@lists.infradead.org>; Thu, 21 Apr 2022 01:44:32 -0700 (PDT)
+ id 1nhSSi-00CUo3-HM
+ for linux-amlogic@lists.infradead.org; Thu, 21 Apr 2022 08:46:53 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id i20so5614355wrb.13
+ for <linux-amlogic@lists.infradead.org>; Thu, 21 Apr 2022 01:46:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20210112.gappssmtp.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=7NcpkA7Pw9hAO8IT6wBMBlDV/T3SO7ggWZNFOJPPHDU=;
- b=MQECcGKVohiNS5vFHXZHfPei6sjTLX7AbRBc5gb+1cz+EJcMoDkCvHLLucoHdQZeE7
- Ax4gPbC9KBzX74VcvQfmswh3+AnC3rVzH04Ay1JuVVMj6I57yZbAT2HZJhCbl7i9Ul92
- QUpzdofWN0LsAMMiLXa1JfDaA7YRCPqyoMIsiCDf95O9FMlGMSAkWYoeOwwxHuHXYZya
- 53i/uSGduoAvI8Y/JQ/IyAdSAgrm4/hOteE5AdtrMG+srHvdp6SD16TpTVL3xsTNpQuv
- qbojfgiloucpsxE5up5cj0ehLMZQlqMfgbLu8oPRYbPVV4mvOIVc2TvHCeY/B+hYB3LU
- rMzg==
+ bh=Z1R8XAgRO1RY9ptbheHK+UH29R2eRMz8Ro595MvYVes=;
+ b=aOom/33qqLb3Lfu2zcsAjrk7UdXHJJVRy0kJNKJDjgPslzoTYHMMljkC085jJpJYR4
+ EegA7KKwIkF+/1WfHa3PQDt8NPu1ipsKPgiV9Avgu/YlXoYfX3R3pVRdtMLK0PAE95+G
+ UHsar2YSfO7sL93bYGnai0RpaCTbEzQAbufLW2NgH5woKN7/5vWtjkeIg6qBaVFU9VPh
+ Er2VeFX0ErcmUSIvBehlMeYXwv74Smim+58XkpaLUxJJBJDykvoLxNjR1g9kU7+ERwWU
+ wOq/Kfa6Rk9IbqfWUUDvnYA5BPRNIkFSag2Qr75UmCf3pYTGplwMsiLgofgIOxNEtMbH
+ LLww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=7NcpkA7Pw9hAO8IT6wBMBlDV/T3SO7ggWZNFOJPPHDU=;
- b=gBNRKtG3ljSEydLxdnckxMgZEH8JoVJ/HmVD4WcGxQl9nv1oxhBh49O8rJO0f4FObH
- AI9DCYFL6DNJILg3UQU03H6zrxFXwPUWWunAts3myNmZgIp12T7ZY5U4Chw77kJjJilx
- s+HJZlySLUJiFIsWyfcRVXv32nwgcKV29TzOLG4XAUCBacAsfF9YeoHSbXZ+dnvho4fp
- ulgMmaJ8iG56XJ332DFKnKHakqHInt18Iu9AWBNGL4U6l+/M9/o7b2WD1Wn5prFv6tsd
- lOxvCFUQh0HOalELvp/PdYDJyGzKoq/wOoh1igxoKOb/exOhvi1LpcP/o1ngHe6e82ue
- +mnA==
-X-Gm-Message-State: AOAM531CkQwMQPBEeZcTVfZEpEN9NCcCfGvECmgq5AiogpPj7h57nPZY
- kUdvKASQVQzlmUKlhJlfTCXisg==
-X-Google-Smtp-Source: ABdhPJxo2qSVLuSHhc7uKb9o+3uAOxw4dje5NJIJLKDy6nHZr8RDh9WuhE9wiKBRYMmykUWgl7k3XQ==
-X-Received: by 2002:a1c:f219:0:b0:38c:782c:3bb with SMTP id
- s25-20020a1cf219000000b0038c782c03bbmr7353742wmc.94.1650530671247; 
- Thu, 21 Apr 2022 01:44:31 -0700 (PDT)
+ bh=Z1R8XAgRO1RY9ptbheHK+UH29R2eRMz8Ro595MvYVes=;
+ b=lyeljPA8J6VQRxsSFzPsTmE2z+fk8bQyc6pppYh+o4BMuOZMOA7hHvXhFIj4XQVX6t
+ +HB++E4TDTTs3WrQczPuDAtSFm9C4ZNyWmNxTX+dsGGauXTrbRkzNi/mzz3V/yqV5eKA
+ kvLHguWVJVWSi90ncmplLAw85w83SK/QBvXw5K4BxkGcn9mi6ZJObITNG/cixgf4MWbR
+ FAS7b5Tn7788bYGwU7GCP5aYxb6nV7fs3X8SGrFpJERGNiYd1usgYcOyOGauwtRvpjqD
+ xygBgloAyyBmU4No/s6YxiznKIQcXqPJeAEV8bl4IdOvPgMfQmTXZfDWQ0dlVo/WN0O2
+ wmaQ==
+X-Gm-Message-State: AOAM531CN4PEU5/QXL6HvSCjvgFFGiKfjcSkkaW+fVkj/pV2TmJdA2Hs
+ rcsnIySXcp3yjvRloG5wnle/gA==
+X-Google-Smtp-Source: ABdhPJzkRWJgbzkZ114xvkXhqIqlkVxz401XfIJZslOH3Cuuu/rWZ1ncxnciYetQhmsi7vVlYYPT2w==
+X-Received: by 2002:a05:6000:c4:b0:20a:bfeb:68dc with SMTP id
+ q4-20020a05600000c400b0020abfeb68dcmr1261741wrx.488.1650530810597; 
+ Thu, 21 Apr 2022 01:46:50 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:35ba:2677:956:980d?
  ([2001:861:44c0:66c0:35ba:2677:956:980d])
  by smtp.gmail.com with ESMTPSA id
- i74-20020adf90d0000000b0020373ba7beesm2150548wri.0.2022.04.21.01.44.30
+ b14-20020a7bc24e000000b003899c8053e1sm1675671wmj.41.2022.04.21.01.46.49
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Apr 2022 01:44:30 -0700 (PDT)
-Message-ID: <0d76ba66-9e2c-510d-780e-26fe9626c1a5@baylibre.com>
-Date: Thu, 21 Apr 2022 10:44:38 +0200
+ Thu, 21 Apr 2022 01:46:50 -0700 (PDT)
+Message-ID: <ea86eee0-409c-2d19-3669-35a8eaded53e@baylibre.com>
+Date: Thu, 21 Apr 2022 10:46:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
@@ -73,28 +72,24 @@ Subject: Re: [PATCH V2 1/2] tty: serial: meson: Add a 12MHz internal clock
  rate to calculate baud rate in order to meet the baud rate requirements of
  special BT modules
 Content-Language: en-US
-To: Andy Shevchenko <andy.shevchenko@gmail.com>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: Yu Tu <yu.tu@amlogic.com>,
- "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, Yu Tu <yu.tu@amlogic.com>
+Cc: "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
  linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
  linux-amlogic <linux-amlogic@lists.infradead.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Jiri Slaby <jirislaby@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20220418053202.24528-1-yu.tu@amlogic.com>
  <20220418053202.24528-2-yu.tu@amlogic.com>
  <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
- <d10e27ff-e674-87bd-2c98-63c7040baeb1@amlogic.com>
- <9af92c78-73a7-d524-182c-3ebffa69b08a@kernel.org>
- <CAHp75Vc87oTmJ6zVeY2mGbP8Jx_SSDtp39Uq4YhWerDUX9RdQQ@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <CAHp75Vc87oTmJ6zVeY2mGbP8Jx_SSDtp39Uq4YhWerDUX9RdQQ@mail.gmail.com>
+In-Reply-To: <CAHp75VeW65dV9jJu8-yUWME+XKnaxZBu5Zv8iEJxP2dizA=HUg@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220421_014434_206446_9DBBAC68 
-X-CRM114-Status: GOOD (  16.71  )
+X-CRM114-CacheID: sfid-20220421_014652_628407_73FFC2E8 
+X-CRM114-Status: GOOD (  14.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,39 +108,50 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Andy,
 
-On 19/04/2022 10:21, Andy Shevchenko wrote:
-> On Tue, Apr 19, 2022 at 10:38 AM Jiri Slaby <jirislaby@kernel.org> wrote:
->> On 19. 04. 22, 9:29, Yu Tu wrote:
->>> On 2022/4/18 20:09, Andy Shevchenko wrote:
->>>> On Mon, Apr 18, 2022 at 8:50 AM Yu Tu <yu.tu@amlogic.com> wrote:
+On 18/04/2022 14:09, Andy Shevchenko wrote:
+> On Mon, Apr 18, 2022 at 8:50 AM Yu Tu <yu.tu@amlogic.com> wrote:
+>>
+>> A /2 divider over XTAL was introduced since G12A, and is preferred
+>> to be used over the still present /3 divider since it provides much
+>> closer frequencies vs the request baudrate.Especially the BT module
+> 
+> 'e. E' (mind the space)
+> 
+>> uses 3Mhz baud rate. 8Mhz calculations can lead to baud rate bias,
+>> causing some problems.
 > 
 > ...
 > 
->>>>> +struct meson_uart_data {
->>>>> +       bool has_xtal_div2;
->>>>
->>>> I would prefer to see this as an unsigned int and with a less
->>>> particular name, e.g. xtal_div would suffice.
->>> I don't have a problem with your suggestion.Let's see What Neil has to say.
->>
->> Actually why uint provided it's a boolean value? Or do you mean to store
->> the divisor directly in this member, Andy?
+>> +struct meson_uart_data {
+>> +       bool has_xtal_div2;
 > 
-> Yes I was thinking to provide the value and then always provide the
-> private data. In such cases we don't need an additional condition.
+> I would prefer to see this as an unsigned int and with a less
+> particular name, e.g. xtal_div would suffice.
+> 
+>> +};
+> 
+> ...
+> 
+>> +               unsigned int xtal_div = 3;
+> 
+>> +               if (private_data && private_data->has_xtal_div2) {
+>> +                       xtal_div = 2;
+> 
+> Better to define privata data always
+
+While I'm in favor of defining private data, here 3 and 2 are actually the values
+2 and 3 used to divide.
+
+The code is easy to read and we quickly understand this value is the clock divider.
+
+> 
+> 
+>> +                       val |= AML_UART_BAUD_XTAL_DIV2;
+>> +               }
+>> +               val |= DIV_ROUND_CLOSEST(port->uartclk / xtal_div, baud) - 1;
+> 
 > 
 
-Actually, the original boolean "has_xtal_div2" is right because it encodes
-if the HW has an internal /2 divider for the XTAL clock input path.
-
-The HW historically has a /3 divider on the same path, and new HW now has both.
-
-So the boolean indicates if the /2 divider is present so it can be used.
-
-So I'm in favour of keeping the boolean type.
-For the naming, it seems appropriate for me.
-
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
