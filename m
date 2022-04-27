@@ -4,67 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 195CEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Apr 2022 07:38:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5FCDC433F5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Apr 2022 09:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KWgplEBw2SplnuhyyofgqKgg8lUkLmSm6s7+vKsLR0Q=; b=0Twv6NCvVO0o9L
-	S1vtqRIVG1L5bia22j9pkYNxlivnZ4n6uvFl75BwMbtzyJmzGXdQXdknD1osFoxbZjnbMip+D34I2
-	aUj8kH4t1BtIU9bGtDVWxrKNY41g7SkS2UTOs6bxKIk3OVyMd40W9j05gTp7Oxyd2qOpceGYx6Mlb
-	k8qMN37rXE4i4P+orvjqoK98uXXMVyxpB/mjosIAS+sIF7mOgMGWi/cUCXjJlH0wrm11V5qb/I4kn
-	mPajmRlypK+bmAAFUP1UFcSD593GoxKct5QujmOw1yLEtPbf8NKp+EPZgeHj8Adoc9VJYuivk8y8D
-	ZnUxDIF6lg7a8AZaGZZA==;
+	List-Owner; bh=PQj4VONI11AJA9IychBdxH01ZOXRQfokFLGdz2L0R4A=; b=2xsH1HFor86hep
+	VVTWC9T/Ae2tJTG5ToLDVnqGjxYxwRuEJTkrqohcpniX9Aw7EveTrHTYJwafMhduAcc4hZJ0YOA5c
+	MuL+/HZH+Pp4l0/XdBNcJJtAXxkmjVpKdzZFDCBXEIuHhx9BN6KfsIzQ7o6PS9MX2XkKUVIHxpiTS
+	MSC0bgo1bfx+tL6nRLNvVVptZXWyPwre8T5FvSh3Tjs7yPzk0odhkyKQGbgat/TBIGSC8pLso3D7g
+	qcI5AoWi7hBG3UxUXVpHnuNc8NBfPevBtPIFn1gR5hyPMrW2Y++cfLY/n+w0MwUB4T76rrfc3HxXf
+	Oy0NDIIzOVxmF8fvEQjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njcFb-000LBv-DV; Wed, 27 Apr 2022 07:38:15 +0000
-Received: from smtp-out2.suse.de ([195.135.220.29])
+	id 1nje76-000mM6-PD; Wed, 27 Apr 2022 09:37:36 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njcFY-000L9d-Um
- for linux-amlogic@lists.infradead.org; Wed, 27 Apr 2022 07:38:14 +0000
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id 6E11D1F746;
- Wed, 27 Apr 2022 07:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1651045090; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=57pWPR14Ne9tA5nJvzDyYoG3eEBDpwAnTWbaFiNJcLo=;
- b=YAf5B2D8R9QJpD27vbCviOY55n3pEtVEmNPLHxrve0FRpwGqd7K15Ri5nJsQwpeGeO6XFK
- Lq0zcDL307LHA1QI+q7nGdlqlFpjxDWu1uI3JbgqPByuhwf6dNqjgm2l57/wWNbnljeOxC
- F7AhfzghcWugNbVEM5IVPxWNNuMl5D0=
-Received: from suse.cz (unknown [10.100.224.162])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 1DF6F2C141;
- Wed, 27 Apr 2022 07:38:09 +0000 (UTC)
-Date: Wed, 27 Apr 2022 09:38:06 +0200
-From: Petr Mladek <pmladek@suse.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
- per-console locking
-Message-ID: <Ymjy3rHRenba7r7R@alley>
-References: <20220421212250.565456-1-john.ogness@linutronix.de>
- <20220421212250.565456-15-john.ogness@linutronix.de>
- <878rrs6ft7.fsf@jogness.linutronix.de> <Ymfgis0EAw0Oxoa5@alley>
- <Ymfwk+X0CHq6ex3s@alley>
- <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
- <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+ id 1nje73-000mHq-An
+ for linux-amlogic@lists.infradead.org; Wed, 27 Apr 2022 09:37:35 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id l18so2217055ejc.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 27 Apr 2022 02:37:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=dFDIusijO9n5QCDJSFl1CYKz5YJK7pzw/4cw23J1A6o=;
+ b=ST+is0zx4YSe27FRNP0XmVMibxo9UayqbpJD+WX/CzTQ5wF/w9rhhs2nOJacNmFIO5
+ gNP+taI3WmPSkr2z3QqvWX7rvgUNB8y74Lp30/c5+5pwhShjPE0KOBVlQjyRJr0X7rYw
+ ZRDUYVMXkum2HkFQ12UvCaqtdOdH3qPWay9xhOirHFu10MXdfQ4Zp0Dyke9WMO/4L5Wg
+ bQuPdHkYpnKIZo/9fJs9nrKOOVj5fbhUW60oXVk0gXqPq3K7cjc5dfWqrxeIbmeRvkMH
+ fbMfd73C3J5hQb6+Wo6AupmcsSBc2+xkB0aRDyBL1QMcL0w/DecNG+9wc6R/Z/gV/1dv
+ U3FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=dFDIusijO9n5QCDJSFl1CYKz5YJK7pzw/4cw23J1A6o=;
+ b=sLDXfpIFjNoyDGvQ62LJgwUuCy7GInlw7uHg0ytw+irPDuSgRb6AYHVkLzexXNdy3R
+ iFDPQd1J5qZ1eXWLDSTbGLdIDR7a9VpDJm3Ak4koVOASXSItXLs1W1tcueQ45MOWQAoQ
+ tZwrKSwmBpNtpX6Pweiqd6fC7RgEFUzvQDou0hMXKI6AwcLXY16WBenPoLLlfwy09K3r
+ zwYzgXbgwFMuK9xMnS1V9qoq0VI57uGoSRoO9cQn6Cpfsq+h/4K4RqXlvbvlUkt4P7mb
+ eQlEMUVhJJy0h6n/KeapPinmE13sFrs5opwtTe3hMJZqjDfqlbuTXyFZBGF9GN65n9dd
+ WsXg==
+X-Gm-Message-State: AOAM531eNJU4OAy/oVUfjTkeMoMPSVYzaQyl5l9CaoAdXSyN2YYg9J/D
+ Yl4GgwyjWlBRkEw/5Q3eUWtxnEMns/k=
+X-Google-Smtp-Source: ABdhPJxMBw0OHkQ26GYtW+11asppYws4rX3aWdxSFCGMD3H6okoC/jSPgvIKEQnSRWq+3GTc2gKL9Q==
+X-Received: by 2002:a17:906:dc8b:b0:6ef:86e8:777 with SMTP id
+ cs11-20020a170906dc8b00b006ef86e80777mr26446343ejc.326.1651052247501; 
+ Wed, 27 Apr 2022 02:37:27 -0700 (PDT)
+Received: from ?IPV6:2a01:c23:c0f8:2900:a9e5:b0ef:a21b:5633?
+ (dynamic-2a01-0c23-c0f8-2900-a9e5-b0ef-a21b-5633.c23.pool.telefonica.de.
+ [2a01:c23:c0f8:2900:a9e5:b0ef:a21b:5633])
+ by smtp.googlemail.com with ESMTPSA id
+ ci21-20020a170906c35500b006f394323ccesm3968713ejb.34.2022.04.27.02.37.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 27 Apr 2022 02:37:27 -0700 (PDT)
+Message-ID: <04527367-b26f-d843-7711-d75c543b5787@gmail.com>
+Date: Wed, 27 Apr 2022 11:37:22 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: Solid green screen with experimental panfrost/hdmi sc2 support
+Content-Language: en-US
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <210d9cab-9704-1ece-a046-9ae1f61e09f6@gmail.com>
+ <a8b8d5e8-758a-3cf5-6798-6769021ec4b4@baylibre.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <a8b8d5e8-758a-3cf5-6798-6769021ec4b4@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220427_003813_196557_6F8111C8 
-X-CRM114-Status: GOOD (  39.80  )
+X-CRM114-CacheID: sfid-20220427_023733_438729_EEBF32C0 
+X-CRM114-Status: GOOD (  20.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,144 +95,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed 2022-04-27 09:08:33, Marek Szyprowski wrote:
+On 26.04.2022 09:28, Neil Armstrong wrote:
 > Hi,
 > 
-> On 26.04.2022 15:16, Petr Mladek wrote:
-> > On Tue 2022-04-26 14:07:42, Petr Mladek wrote:
-> >> On Mon 2022-04-25 23:04:28, John Ogness wrote:
-> >>> Currently threaded console printers synchronize against each
-> >>> other using console_lock(). However, different console drivers
-> >>> are unrelated and do not require any synchronization between
-> >>> each other. Removing the synchronization between the threaded
-> >>> console printers will allow each console to print at its own
-> >>> speed.
-> >>>
-> >>> But the threaded consoles printers do still need to synchronize
-> >>> against console_lock() callers. Introduce a per-console mutex
-> >>> and a new console boolean field @blocked to provide this
-> >>> synchronization.
-> >>>
-> >>> console_lock() is modified so that it must acquire the mutex
-> >>> of each console in order to set the @blocked field. Console
-> >>> printing threads will acquire their mutex while printing a
-> >>> record. If @blocked was set, the thread will go back to sleep
-> >>> instead of printing.
-> >>>
-> >>> The reason for the @blocked boolean field is so that
-> >>> console_lock() callers do not need to acquire multiple console
-> >>> mutexes simultaneously, which would introduce unnecessary
-> >>> complexity due to nested mutex locking. Also, a new field
-> >>> was chosen instead of adding a new @flags value so that the
-> >>> blocked status could be checked without concern of reading
-> >>> inconsistent values due to @flags updates from other contexts.
-> >>>
-> >>> Threaded console printers also need to synchronize against
-> >>> console_trylock() callers. Since console_trylock() may be
-> >>> called from any context, the per-console mutex cannot be used
-> >>> for this synchronization. (mutex_trylock() cannot be called
-> >>> from atomic contexts.) Introduce a global atomic counter to
-> >>> identify if any threaded printers are active. The threaded
-> >>> printers will also check the atomic counter to identify if the
-> >>> console has been locked by another task via console_trylock().
-> >>>
-> >>> Note that @console_sem is still used to provide synchronization
-> >>> between console_lock() and console_trylock() callers.
-> >>>
-> >>> A locking overview for console_lock(), console_trylock(), and the
-> >>> threaded printers is as follows (pseudo code):
-> >>>
-> >>> console_lock()
-> >>> {
-> >>>          down(&console_sem);
-> >>>          for_each_console(con) {
-> >>>                  mutex_lock(&con->lock);
-> >>>                  con->blocked = true;
-> >>>                  mutex_unlock(&con->lock);
-> >>>          }
-> >>>          /* console_lock acquired */
-> >>> }
-> >>>
-> >>> console_trylock()
-> >>> {
-> >>>          if (down_trylock(&console_sem) == 0) {
-> >>>                  if (atomic_cmpxchg(&console_kthreads_active, 0, -1) == 0) {
-> >>>                          /* console_lock acquired */
-> >>>                  }
-> >>>          }
-> >>> }
-> >>>
-> >>> threaded_printer()
-> >>> {
-> >>>          mutex_lock(&con->lock);
-> >>>          if (!con->blocked) {
-> >>> 		/* console_lock() callers blocked */
-> >>>
-> >>>                  if (atomic_inc_unless_negative(&console_kthreads_active)) {
-> >>>                          /* console_trylock() callers blocked */
-> >>>
-> >>>                          con->write();
-> >>>
-> >>>                          atomic_dec(&console_lock_count);
-> >>>                  }
-> >>>          }
-> >>>          mutex_unlock(&con->lock);
-> >>> }
-> >>>
-> >>> The console owner and waiter logic now only applies between contexts
-> >>> that have taken the console_lock via console_trylock(). Threaded
-> >>> printers never take the console_lock, so they do not have a
-> >>> console_lock to handover. Tasks that have used console_lock() will
-> >>> block the threaded printers using a mutex and if the console_lock
-> >>> is handed over to an atomic context, it would be unable to unblock
-> >>> the threaded printers. However, the console_trylock() case is
-> >>> really the only scenario that is interesting for handovers anyway.
-> >>>
-> >>> @panic_console_dropped must change to atomic_t since it is no longer
-> >>> protected exclusively by the console_lock.
-> >>>
-> >>> Since threaded printers remain asleep if they see that the console
-> >>> is locked, they now must be explicitly woken in __console_unlock().
-> >>> This means wake_up_klogd() calls following a console_unlock() are
-> >>> no longer necessary and are removed.
-> >>>
-> >>> Also note that threaded printers no longer need to check
-> >>> @console_suspended. The check for the @blocked field implicitly
-> >>> covers the suspended console case.
-> >>>
-> >>> Signed-off-by: John Ogness <john.ogness@linutronix.de>
-> >> Nice, it it better than v4. I am going to push this for linux-next.
-> >>
-> >> Reviewed-by: Petr Mladek <pmladek@suse.com>
-> > JFYI, I have just pushed this patch instead of the one
-> > from v4 into printk/linux.git, branch rework/kthreads.
-> >
-> > It means that this branch has been rebased. It will be
-> > used in the next refresh of linux-next.
+> On 25/04/2022 22:21, Heiner Kallweit wrote:
+>> Based on a HK1 RBOX X4 (S905X4) I'm "playing" with mainline support for SC2.
+>> This Android TV box is based on the ah212 reference board according to uboot prompt.
+>> Most relevant things are working meanwhile (eMMC, SD, SDIO/WiFi, USB2/3, ethernet)
+>> and I can use the system headless.
+>> However I'm struggling with panfrost/hdmi. With SC2 a lot of vpu registers have been
+>> relocated (e.g. all hhi regs), even though the functionality seems to be more or less
+>> compatible to G12A. I had to extend the timeout for HDMI PLL locking.
+>> After having sorted out such things:
+>> - dmesg for panfrost and hdmi looks normal
+>> - monitor detects signal and OSD shows correct resolution (1920x1080@60 in my case).
+>> I'd interpret this in a way that the clock/divider/mux registers are programmed correctly.
+>> However I just get a solid green screen. From what I've read this can be caused
+>> by a failing hdmi handshake. Not being an expert in DRM/HDMI any hint on where to start
+>> debugging would be appreciated.
 > 
-> This patchset landed in linux next-20220426. In my tests I've found that 
-> it causes deadlock on all my Amlogic Meson G12B/SM1 based boards: Odroid 
-> C4/N2 and Khadas VIM3/VIM3l. The deadlock happens when system boots to 
-> userspace and getty (with automated login) is executed. I even see the 
-> bash prompt, but then the console is freezed. Reverting this patch 
-> (e00cc0e1cbf4) on top of linux-next (together with 6b3d71e87892 to make 
-> revert clean) fixes the issue.
+> A solid green means the pipeline has been correctly set up in regard to the clocking,
+> and some (invalid) pixels flows to the HDMI transceiver.
+> 
+> This means you can consider the HDMI & clock portion OK, and propably the ENCP aswell.
+> 
+> The OSD video pipeline is the following:
+> 
+> [ DDR -> VIU (RGB2YUV) -> VPP (Blending of planes, Scaling) -> ENCP (Pixel generation) -> HDMI-TX -> TMDS]
+> 
+> Green means value 0 in YUV, this means 0 is in the YUV pipeline, so it must be an issue with the VIU
+> part reading from DDR and doing the color conversion.
+> 
+> Check in the downstrean source code how the SC2 VPU is initialized, and looks at the differences since SM1.
+> Look at the VIU & VPP stuff init.
+> 
+I found that in case of the solid green screen the number of crtc interrupts (handled by meson_crtc_irq())
+is constantly increasing, with a rate of a few hundred interrupts per minute.
+On a S905W-based system where HDMI output works normally I see about 100 such interrupts after boot
+and the number doesn't change.
+Maybe this can provide a hint on what's going wrong?
 
-Thanks a lot for the report!
-
-Just by chance, do you have the log from the dead-locked boot stored
-in userspace and can you share it? I mean the log stored in
-/var/log/dmesg or journaltctl.
-
-In the worst case, it might help to see log from the boot with
-the reverted patch. I would help us to see the ordering of various
-console-related operations on your system.
-
-And regarding the console. Is it the graphics console (ttyX)
-or a serial one (ttyS) or yet another one?
-
-Best Regards,
-Petr
+> Neil
+> 
+Heiner
+>>
+>>
 
 _______________________________________________
 linux-amlogic mailing list
