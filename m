@@ -4,128 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 935CFC433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 May 2022 09:19:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D16A8C433F5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 May 2022 10:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/P03R1dEo84VOCnYiIetG4B8nAsUW8y9utBeebUsAgs=; b=qpfwZo0/dn3D5Z
-	FttE/fh52JAFk4npQ5bd0hh6kAx/yVSwUbNM9hNZLzsNpcjZlZP/0hO/pHPHoT8hR8IKGD3hgfUBL
-	lfSL+h1Cjpb6hyNaWkP9+T2TIUUZtXcNPEzgBXID32vhOXBR736VJCq4ZKuetcQvOLwyhDKygKgI2
-	OGjaxzXHoEf3p8LcPOEyemKV9W7fAVvIpryLC1vzmVkwK0Lgvu1rS/p604Rd73Tqgnv4roc+7s2Ig
-	AJ9drxpBoIAtJvPACZ1rEESlSJejWDIHYTWJeFzA4MGoH5m5YiYHrhubDNiM8TjxjXwfr8iqWowKG
-	ELHHb1REuMN5ROFr3IiA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NnoPsNLNCMX5dGLLWayGSH29o5uxT9qfW0YPgACUarQ=; b=4BR2Ue5lgyf66IA6EEeP1Pnva/
+	rYJ9bxYqJALJXApdI3FBZNq+vq7LbJcqWu1V4LEVsRecNaU/hwhpGdceE503FhCQESpNYYFEdH67A
+	cvuwLRU8W1QxAvxv/BUUKs1nBz0yk1YMX0gLnMcpeiyXGg0ekzMDlqtykcA345vC/gTef0SPcSqiE
+	w08RsZtQwmcHxTSMAHRICQA3cbSwLD9xwQw3/3cIGlYNaAK3fM/X8jgw/9ZChpgI1VOa0o0gysp8+
+	epX16nzXPmOrYTH27+Zu3OpCSwvA+SQOwqy4l85zvpEcWrnTBJF7sRTANikf4/JO1gWN8WEUE0XwB
+	sylTEKag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlSDD-000aRt-MZ; Mon, 02 May 2022 09:19:23 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1nlTP2-000ppa-2C; Mon, 02 May 2022 10:35:40 +0000
+Received: from smtp-out2.suse.de ([195.135.220.29])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlSD6-000aPL-Sv
- for linux-amlogic@lists.infradead.org; Mon, 02 May 2022 09:19:20 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20220502091909euoutp01ef4659d90c7950f3e34b7f69b6866b17~rPyyeugb90058200582euoutp017
- for <linux-amlogic@lists.infradead.org>; Mon,  2 May 2022 09:19:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20220502091909euoutp01ef4659d90c7950f3e34b7f69b6866b17~rPyyeugb90058200582euoutp017
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1651483149;
- bh=lDXJ5CYaoAKSZPGi9MeFLI+70hpv6Q1ZJIVgPfaCf/Y=;
- h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
- b=j05/VmpNwtde6gqetWcyrTDaB1uT5GuzZr2+NQACFa50sfuzX2cF1f+YVXqWITSwz
- KI5ElXLtZufBZeI9g4LTPUMWHgKvTvWrvSYhOjq6Oj8P+VBDrQ0b+N91o130rS+ODN
- UrW2cvZi8XWLr3Awc7/yiTS9txykjmtS4SLTJ4N8=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20220502091909eucas1p25e68edb6237939a8909c016f6cbb5ecb~rPyySFm0B1423514235eucas1p2L;
- Mon,  2 May 2022 09:19:09 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges3new.samsung.com (EUCPMTA) with SMTP id C3.0C.10260.C02AF626; Mon,  2
- May 2022 10:19:08 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20220502091908eucas1p188479523b542fce2d66567129c3c3e7e~rPyx_rcnj2475724757eucas1p1B;
- Mon,  2 May 2022 09:19:08 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20220502091908eusmtrp1317a784349930bc4e312e61e33ce09bf~rPyx9ULCf1600616006eusmtrp1b;
- Mon,  2 May 2022 09:19:08 +0000 (GMT)
-X-AuditID: cbfec7f5-bddff70000002814-b8-626fa20cb2d2
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 9A.FD.09404.C02AF626; Mon,  2
- May 2022 10:19:08 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20220502091908eusmtip1304e3d1c3eb3dee07717ebf2af2f4ab8~rPyxY_Wyf2870128701eusmtip1j;
- Mon,  2 May 2022 09:19:08 +0000 (GMT)
-Message-ID: <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
-Date: Mon, 2 May 2022 11:19:07 +0200
+ id 1nlTOy-000poV-QO; Mon, 02 May 2022 10:35:38 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CD1991F896;
+ Mon,  2 May 2022 10:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1651487731; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dn9XSHCKolq6/lQSxksAI1EWQRJzfzUctxGyNj4FIbc=;
+ b=H4Pm0Q0yA3s++FBy4JhcAn+VXsuwbz8Fxq1+g7xdI//6lmgPdtYrk9qwl89iFjgY0q+v9A
+ vFfgslZCIPHnKronaXZ/xRH87DKgxyVR8/JSXQlT/q/Pwr5ghzvKTpZcu2JAFb64XOum3g
+ 5KuwBjjGXfL0jKv0D9JkVIZKHfgyH5c=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1651487731;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dn9XSHCKolq6/lQSxksAI1EWQRJzfzUctxGyNj4FIbc=;
+ b=ganiifpaAbCaoGrzd9cDb8HCGMIpNTyU2n6eScpJ0CJfhXLvFgc8nPVsZ6QrNcNCjCSg1R
+ 3/CwDrQVFXtGwPAw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4DFCC133E5;
+ Mon,  2 May 2022 10:35:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id dugIEvKzb2IfRQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 02 May 2022 10:35:30 +0000
+Message-ID: <c120e1c4-ac5c-afd5-8dd1-b4b51e0dcca9@suse.de>
+Date: Mon, 2 May 2022 12:35:29 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.0
-Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
- per-console locking
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 0/3] drm: Allow simpledrm to setup its emulated FB as
+ firmware provided
 Content-Language: en-US
-To: John Ogness <john.ogness@linutronix.de>, Petr Mladek <pmladek@suse.com>
-Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, Steven Rostedt
- <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>,
- linux-kernel@vger.kernel.org, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, linux-amlogic@lists.infradead.org
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <87k0b6blz2.fsf@jogness.linutronix.de>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOKsWRmVeSWpSXmKPExsWy7djP87o8i/KTDD59MLdoXryezWLblfmM
- Fgtmc1tc3jWHzeL/46+sFvs6HjBZ7N64iM1i86apzA4cHrMbLrJ4tOy7xe7x7tw5do/9c9ew
- e2xeUu+xfstVFo/Pm+QC2KO4bFJSczLLUov07RK4Mvb2TGUuuCFcMf/MerYGxl/8XYycHBIC
- JhJN89YxdjFycQgJrGCUeLDgPwuE84VR4nnTA2YI5zOjxMN1z1hhWjZuOMYEYgsJLGeU+Hbe
- EqLoI6PE8ae32EASvAJ2EvduTmQGsVkEVCQaDsxkhogLSpyc+YQFxBYVSJKYu+8eUJyDQ1gg
- QqJtbyhImFlAXOLWk/lg80UEvCVWvd7LDjKfWeAro8Tkyf8ZQRJsAoYSXW+7wHZxChhLtN/a
- wQLRLC+x/e0cZohDP3BI7L7vCWG7SPTe/Af1gLDEq+Nb2CFsGYnTk3tYQG6QEMiX+DvDGCJc
- IXHt9RqoMdYSd879YgMpYRbQlFi/Sx8i7Cgx5VcfO0Qnn8SNt4IQB/BJTNo2nRkizCvR0SYE
- Ua0mMev4OridBy9cYp7AqDQLKUhmIfl9FpJXZiHsXcDIsopRPLW0ODc9tdg4L7Vcrzgxt7g0
- L10vOT93EyMwLZ3+d/zrDsYVrz7qHWJk4mA8xCjBwawkwtu2ISdJiDclsbIqtSg/vqg0J7X4
- EKM0B4uSOG9y5oZEIYH0xJLU7NTUgtQimCwTB6dUA9Os3AUSopMPt9p9F1xZcL/9gFXhxUxX
- 1nIPL4GbyYuM3y3vmGf9aidT0PxNN+bJbAjbkrk0LTn54uNs8Te7JzBZ9BxhOnjrhYaS4rQ1
- bfv/aDkLhl7+PXGjjFLT65SJ05nfWH6r3yTquzxyZ1DjkhVyljPkJhXdyviYI5vUKqz9c049
- R/73D3siCsTDIryE1zltErKVftrYGHSQLyZaQ+nb+2CH/Tdr/R++cWff2LKU9YTK2u317B2r
- /NJjNmSdbEvZ3XKR0XRm5LsmCeuEHZI/p3002l62vO4Yz0yBxYUG804J+20V0k5N27XBamvg
- khmGxXe3Hv0huNpnp4vddP0PEUF9vi4Pvzh79rd8kVBiKc5INNRiLipOBABmqsuuugMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDIsWRmVeSWpSXmKPExsVy+t/xu7o8i/KTDM7PU7JoXryezWLblfmM
- Fgtmc1tc3jWHzeL/46+sFvs6HjBZ7N64iM1i86apzA4cHrMbLrJ4tOy7xe7x7tw5do/9c9ew
- e2xeUu+xfstVFo/Pm+QC2KP0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTt
- bFJSczLLUov07RL0Mvb2TGUuuCFcMf/MerYGxl/8XYycHBICJhIbNxxj6mLk4hASWMoocfrh
- D3aIhIzEyWkNrBC2sMSfa11sILaQwHtGie/380FsXgE7iXs3JzKD2CwCKhINB2YyQ8QFJU7O
- fMICYosKJEm82PacsYuRg0NYIELifS9YmFlAXOLWk/lMILaIgLfEqtd72UFuYBb4yiix9sMz
- RohdG1kk9n8yAbHZBAwlut5C3MApYCzRfmsH1CAzia6tXYwQtrzE9rdzmCcwCs1CcsYsJPtm
- IWmZhaRlASPLKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMBo3Hbs55YdjCtffdQ7xMjEwXiI
- UYKDWUmEt21DTpIQb0piZVVqUX58UWlOavEhRlNgWExklhJNzgemg7ySeEMzA1NDEzNLA1NL
- M2MlcV7Pgo5EIYH0xJLU7NTUgtQimD4mDk6pBqYMv2XryvSXKC7QWWrqd7X93HLFLZNMpBby
- qqlbT65h03Rc9snifX3oFKnsak+mrdy5lz4f2d1YuS//WK+4Pz9nbfr2SdvveewsUXQu2Cuz
- 1iWrQEgkqvONsdhnXm4zizUTzpX57N77/uFuqUdb7rl1Fm9ssVkyrXShlh7H76gD82OM6+st
- 9ZokmgNXPs9PFq6YksUVn7Om0Gt6I+PCqIOHZ2Ve53toFlawl7fgTAerSYrV749OIT/XOCm4
- l6czT9l/4av2XMXISwlbTmgElp1NPMmgsWfyvFUaVRoPPDZWuj14vDfo5pZ6n1LXZYmirk/3
- G2nYmycv11g699ChbIPDE4+s/9HoaqDsO8m9XYmlOCPRUIu5qDgRAFuCh+pPAwAA
-X-CMS-MailID: 20220502091908eucas1p188479523b542fce2d66567129c3c3e7e
-X-Msg-Generator: CA
-X-RootMTR: 20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c
-References: <20220421212250.565456-1-john.ogness@linutronix.de>
- <20220421212250.565456-15-john.ogness@linutronix.de>
- <878rrs6ft7.fsf@jogness.linutronix.de> <Ymfgis0EAw0Oxoa5@alley>
- <Ymfwk+X0CHq6ex3s@alley>
- <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
- <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com> <Ymjy3rHRenba7r7R@alley>
- <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
- <87fslyv6y3.fsf@jogness.linutronix.de>
- <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
- <87k0b6blz2.fsf@jogness.linutronix.de>
+To: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Alain Volmat <alain.volmat@foss.st.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Alison Wang <alison.wang@nxp.com>,
+ Andrew Jeffery <andrew@aj.id.au>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Brian Starkey <brian.starkey@arm.com>, Chen Feng <puck.chen@hisilicon.com>,
+ Chen-Yu Tsai <wens@csie.org>, Chia-I Wu <olvaffe@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ David Airlie <airlied@linux.ie>, Emma Anholt <emma@anholt.net>,
+ Evan Quan <evan.quan@amd.com>, Fabio Estevam <festevam@gmail.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hdegoede@redhat.com>, Hao Fang <fanghao11@huawei.com>,
+ Hyun Kwon <hyun.kwon@xilinx.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Joel Stanley <joel@jms.id.au>,
+ John Stultz <john.stultz@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Mario Limonciello <mario.limonciello@amd.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Nirmoy Das <nirmoy.das@amd.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
+ <noralf@tronnes.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Samuel Holland <samuel@sholland.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Solomon Chiu <solomon.chiu@amd.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>, Tomi Valkeinen <tomba@kernel.org>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Yong Wu <yong.wu@mediatek.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org
+References: <20220502084830.285639-1-javierm@redhat.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20220502084830.285639-1-javierm@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_021917_472396_26ADB5A5 
-X-CRM114-Status: GOOD (  21.87  )
+X-CRM114-CacheID: sfid-20220502_033537_193033_3959F8C8 
+X-CRM114-Status: GOOD (  22.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,77 +139,201 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3540984648753973459=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi John,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============3540984648753973459==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------bZs9O7gVydbPyh0mFowmyKkQ"
 
-On 30.04.2022 18:00, John Ogness wrote:
-> On 2022-04-29, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
->> The same issue happens if I boot with init=/bin/bash
-> Very interesting. Since you are seeing all the output up until you try
-> doing something, I guess receiving UART data is triggering the issue.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------bZs9O7gVydbPyh0mFowmyKkQ
+Content-Type: multipart/mixed; boundary="------------JAaQiYXsw1Wg2huPZuTUbFwL";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ linux-kernel@vger.kernel.org
+Cc: Alain Volmat <alain.volmat@foss.st.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Alison Wang <alison.wang@nxp.com>,
+ Andrew Jeffery <andrew@aj.id.au>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Brian Starkey <brian.starkey@arm.com>, Chen Feng <puck.chen@hisilicon.com>,
+ Chen-Yu Tsai <wens@csie.org>, Chia-I Wu <olvaffe@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ David Airlie <airlied@linux.ie>, Emma Anholt <emma@anholt.net>,
+ Evan Quan <evan.quan@amd.com>, Fabio Estevam <festevam@gmail.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hdegoede@redhat.com>, Hao Fang <fanghao11@huawei.com>,
+ Hyun Kwon <hyun.kwon@xilinx.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Joel Stanley <joel@jms.id.au>,
+ John Stultz <john.stultz@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Mario Limonciello <mario.limonciello@amd.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Nirmoy Das <nirmoy.das@amd.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
+ <noralf@tronnes.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Samuel Holland <samuel@sholland.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Solomon Chiu <solomon.chiu@amd.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>, Tomi Valkeinen <tomba@kernel.org>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Yong Wu <yong.wu@mediatek.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org
+Message-ID: <c120e1c4-ac5c-afd5-8dd1-b4b51e0dcca9@suse.de>
+Subject: Re: [PATCH 0/3] drm: Allow simpledrm to setup its emulated FB as
+ firmware provided
+References: <20220502084830.285639-1-javierm@redhat.com>
+In-Reply-To: <20220502084830.285639-1-javierm@redhat.com>
 
-Right, this is how it looks like.
+--------------JAaQiYXsw1Wg2huPZuTUbFwL
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
->> I found something really interesting. When lockup happens, I'm still
->> able to log via ssh and trigger any magic sysrq action via
->> /proc/sysrq-trigger.
-> If you boot the system and directly login via ssh (without sending any
-> data via serial), can you trigger printk output on the UART? For
-> example, with:
->
->      echo hello > /dev/kmsg
->
-> (You might need to increase your loglevel to see it.)
+SGkgSmF2aWVyDQoNCkFtIDAyLjA1LjIyIHVtIDEwOjQ4IHNjaHJpZWIgSmF2aWVyIE1hcnRp
+bmV6IENhbmlsbGFzOg0KPiBIZWxsbywNCj4gDQo+IFRoaXMgc2VyaWVzIGNvbnRhaW4gcGF0
+Y2hlcyBzdWdnZXN0ZWQgYnkgVGhvbWFzIFppbW1lcm1hbm5hcyBhIGZlZWRiYWNrIGZvcg0K
+PiAiW1JGQyBQQVRDSCB2NCAwMC8xMV0gRml4IHNvbWUgcmFjZSBiZXR3ZWVuIHN5c2ZiIGRl
+dmljZSByZWdpc3RyYXRpb24gYW5kDQo+IGRyaXZlcnMgcHJvYmUiIFswXS4NCj4gDQo+IFNp
+bmNlIG90aGVyIGNoYW5nZXMgaW4gWzBdIHdlcmUgbW9yZSBjb250cm92ZXJzaWFsLCBJIGRl
+Y2lkZWQgdG8ganVzdCBzcGxpdA0KPiB0aGlzIHBhcnQgaW4gYSBuZXcgcGF0Y2gtc2V0IGFu
+ZCByZXZpc2l0IHRoZSByZXN0IG9mIHRoZSBwYXRjaGVzIGxhdGVyLg0KPiANCj4gUGF0Y2gg
+IzEgaXMganVzdCBhIGNsZWFudXAgc2luY2Ugd2hlbiB3b3JraW5nIG9uIHRoaXMgbm90aWNl
+ZCB0aGF0IHNvbWUgRFJNDQo+IGRyaXZlcnMgd2VyZSBwYXNzaW5nIGFzIHByZWZlcnJlZCBi
+aXRzIHBlciBwaXhlbCB0byBkcm1fZmJkZXZfZ2VuZXJpY19zZXR1cCgpDQo+IHRoZSB2YWx1
+ZSB0aGF0IGlzIHRoZSBkZWZhdWx0IGFueXdheXMuDQo+IA0KPiBQYXRjaCAjMiByZW5hbWVz
+IHRoZSAncHJlZmVycmVkX2JwcCcgZHJtX2ZiZGV2X2dlbmVyaWNfc2V0dXAoKSBwYXJhbWV0
+ZXIgdG8NCj4gJ29wdGlvbnMnLCBhbmQgbWFrZSB0aGlzIGEgbXVsdGkgZmllbGQgcGFyYW1l
+dGVyIHNvIHRoYXQgaXQgY2FuIGJlIGV4dGVuZGVkDQo+IGxhdGVyIHRvIHBhc3Mgb3RoZXIg
+b3B0aW9ucyBhcyB3ZWxsLg0KPiANCj4gUGF0Y2ggIzMgZmluYWxseSBhZGRzIHRoZSBuZXcg
+RFJNX0ZCX0ZXIG9wdGlvbiBhbmQgbWFrZXMgc2ltcGxlZHJtIHRvIHVzZSBpdA0KPiBzbyB0
+aGF0IHRoZSByZWdpc3RlcmVkIGZyYW1lYnVmZmVyIGRldmljZSBpcyBhbHNvIG1hcmtlZCBh
+cyBmaXJtd2FyZSBwcm92aWRlZC4NCg0KRm9yIHRoZSB3aG9sZSBwYXRjaHNldDoNCg0KUmV2
+aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KDQpU
+aGFua3MgYSBsb3QhDQoNCj4gDQo+IFswXTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGtt
+bC8yMDIyMDQyOTA4NDI1My4xMDg1OTExLTEtamF2aWVybUByZWRoYXQuY29tLw0KPiANCj4g
+DQo+IEphdmllciBNYXJ0aW5leiBDYW5pbGxhcyAoMyk6DQo+ICAgIGRybTogUmVtb3ZlIHN1
+cGVyZmx1b3VzIGFyZyB3aGVuIGNhbGxpbmcgdG8gZHJtX2ZiZGV2X2dlbmVyaWNfc2V0dXAo
+KQ0KPiAgICBkcm0vZmItaGVscGVyOiBSZW5hbWUgcHJlZmVycmVkX2JwcCBkcm1fZmJkZXZf
+Z2VuZXJpY19zZXR1cCgpDQo+ICAgICAgcGFyYW1ldGVyDQo+ICAgIGRybTogQWxsb3cgc2lt
+cGxlZHJtIHRvIHNldHVwIGl0cyBlbXVsYXRlZCBGQiBhcyBmaXJtd2FyZSBwcm92aWRlZA0K
+PiANCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMgICAgICAg
+fCAgNiArKystLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hcm0vaGRsY2RfZHJ2LmMgICAgICAg
+ICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMg
+ICAgICAgICAgICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vYXNwZWVkL2FzcGVl
+ZF9nZnhfZHJ2LmMgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0
+X2Rydi5jICAgICAgICAgICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL2F0
+bWVsLWhsY2RjL2F0bWVsX2hsY2RjX2RjLmMgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9k
+cm0vZHJtX2Rydi5jICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMv
+Z3B1L2RybS9kcm1fZmJfaGVscGVyLmMgICAgICAgICAgICAgICB8IDI1ICsrKysrKysrKysr
+KysrKystLS0NCj4gICBkcml2ZXJzL2dwdS9kcm0vZnNsLWRjdS9mc2xfZGN1X2RybV9kcnYu
+YyAgICAgfCAgMiArLQ0KPiAgIC4uLi9ncHUvZHJtL2hpc2lsaWNvbi9oaWJtYy9oaWJtY19k
+cm1fZHJ2LmMgICB8ICAyICstDQo+ICAgLi4uL2dwdS9kcm0vaGlzaWxpY29uL2tpcmluL2tp
+cmluX2RybV9kcnYuYyAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vaW14L2Rjc3Mv
+ZGNzcy1rbXMuYyAgICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pbXgv
+aW14LWRybS1jb3JlLmMgICAgICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJt
+L2luZ2VuaWMvaW5nZW5pYy1kcm0tZHJ2LmMgICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dw
+dS9kcm0vbWNkZS9tY2RlX2Rydi5jICAgICAgICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jICAgICAgICB8ICAyICstDQo+ICAg
+ZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jICAgICAgICAgICAgIHwgIDIgKy0N
+Cj4gICBkcml2ZXJzL2dwdS9kcm0vbXhzZmIvbXhzZmJfZHJ2LmMgICAgICAgICAgICAgfCAg
+MiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9wbDExMS9wbDExMV9kcnYuYyAgICAgICAgICAg
+ICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfZHJ2LmMgICAgICAgICAg
+ICAgICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vcmNhci1kdS9yY2FyX2R1X2Ry
+di5jICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9zdGkvc3RpX2Rydi5j
+ICAgICAgICAgICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL3N0bS9kcnYu
+YyAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vc3Vu
+NGkvc3VuNGlfZHJ2LmMgICAgICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2Ry
+bS90aWRzcy90aWRzc19kcnYuYyAgICAgICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9n
+cHUvZHJtL3RpbGNkYy90aWxjZGNfZHJ2LmMgICAgICAgICAgIHwgIDIgKy0NCj4gICBkcml2
+ZXJzL2dwdS9kcm0vdGlueS9hcmNwZ3UuYyAgICAgICAgICAgICAgICAgfCAgMiArLQ0KPiAg
+IGRyaXZlcnMvZ3B1L2RybS90aW55L2JvY2hzLmMgICAgICAgICAgICAgICAgICB8ICAyICst
+DQo+ICAgZHJpdmVycy9ncHUvZHJtL3RpbnkvY2lycnVzLmMgICAgICAgICAgICAgICAgIHwg
+IDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vdGlueS9zaW1wbGVkcm0uYyAgICAgICAgICAg
+ICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS90dmUyMDAvdHZlMjAwX2Rydi5jICAg
+ICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL3Zib3h2aWRlby92Ym94X2Ry
+di5jICAgICAgICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9kcnYu
+YyAgICAgICAgICAgICAgICAgfCAgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS92aXJ0aW8v
+dmlydGdwdV9kcnYuYyAgICAgICAgICB8ICAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL3hs
+bngvenlucW1wX2Rwc3ViLmMgICAgICAgICAgIHwgIDIgKy0NCj4gICBpbmNsdWRlL2RybS9k
+cm1fZmJfaGVscGVyLmggICAgICAgICAgICAgICAgICAgfCAyMiArKysrKysrKysrKysrKysr
+DQo+ICAgMzYgZmlsZXMgY2hhbmdlZCwgODAgaW5zZXJ0aW9ucygrKSwgMzkgZGVsZXRpb25z
+KC0pDQo+IA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2
+ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRz
+dHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5i
+ZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
 
-Data written to /dev/kmsg and all kernel logs were always displayed 
-correctly. Also data written directly to /dev/ttyAML0 is displayed 
-properly on the console. The latter doesn't however trigger the input 
-related activity.
+--------------JAaQiYXsw1Wg2huPZuTUbFwL--
 
-It looks that the data read from the uart is delivered only if other 
-activity happens on the kernel console. If I type 'reboot' and press 
-enter, nothing happens immediately. If I type 'date >/dev/ttyAML0' via 
-ssh then, I only see the date printed on the console. However if I type 
-'date >/dev/kmsg', the the date is printed and reboot happens.
+--------------bZs9O7gVydbPyh0mFowmyKkQ
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
+-----BEGIN PGP SIGNATURE-----
 
->> It turned out that the UART console is somehow blocked, but it
->> receives and buffers all the input. For example after issuing "echo
->>   >/proc/sysrq-trigger" from the ssh console, the UART console has been
->> updated and I see the magic sysrq banner and then all the commands I
->> blindly typed in the UART console! However this doesn't unblock the
->> console.
-> sysrq falls back to direct printing. This would imply that the kthread
-> printer is somehow unable to print.
->
->> Here is the output of 't' magic sys request:
->>
->> https://protect2.fireeye.com/v1/url?k=8649f24d-e73258c4-86487902-74fe48600034-a2ca6bb18361467d&q=1&e=1bc4226f-a422-42b9-95e8-128845b8609f&u=https%3A%2F%2Fpastebin.com%2FfjbRuy4f
-> It looks like the call trace for the printing kthread (pr/ttyAML0) is
-> corrupt.
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmJvs/EFAwAAAAAACgkQlh/E3EQov+Bv
+yxAAyojQIwyTt0AkQrH8ujHQ2z3VZLLTBfvwuS0Xf7dxJnvpnddrmMLeQjx/dJgIsu5Kpoq+cC89
+JF4cEgYrs1G9WTVDlxCJ6aMAA8EV3lRH6ECyFZrbc8MNiebvArPucqStj6VQiaLNYDS/TMGBTBdO
+/rxHsubsTAALLJkWsuEoSJMATSrWyqdxzVwj0DUmMZCc2p3zF7+PakvAE8OHpzNOQYg++vORApLq
+4qHowqHrVSPpbACr+XhYpOMuzo4dWJDx98HuVrzXDNOBtcll5tTGTOuJv2tJw+aotRhGuV71ALNd
+yKPP2+GV+kCwNOVcr8OEnfCQa26DsIzooE2SlHwcnIRksqxoKiheTT9YCL+LA7cY0K+h2ybmjqaS
+awZ5pzqRq9egCdFc1KGCctvRxm+BVVnXHGJ4nsGtQp8Z34tClsjquHGR1BFfNw1NEG/jOh7iFY/j
+kvo5qlUcKW28ooufV/c7fZ/u0M++S9nJSgAO3XnXwG2DhZ0FtKz95EsfKAQZLY/fFv/m05mdr/KZ
+OIZ/OcBWfPLwNcR9MVHSArO1VYFUqQSsi8IJUhYZKKhpYmAXrF/h0YeUOLlLRvfB4OtuuOyZQ+zt
+Y2UtHrTmNm7pHfj2IOCPJDvnLfbMUsQQvYxpBWIF5lslFkzCrnECTSy/8Ue36oRlan7yclndRQvm
+h0A=
+=gWxx
+-----END PGP SIGNATURE-----
 
-Right, good catch. For comparison, here is a 't' sysrq result from the 
-'working' serial console (next-20220429), which happens usually 1 of 4 
-boots:
-
-https://pastebin.com/mp8zGFbW
+--------------bZs9O7gVydbPyh0mFowmyKkQ--
 
 
-> Could you post your kernel config?
-
-https://pastebin.com/GUWGdCHX
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+--===============3540984648753973459==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3540984648753973459==--
+
