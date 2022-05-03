@@ -4,72 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAEFEC433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 May 2022 06:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39396C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 May 2022 07:16:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XRnV+s97s2SjbAbQQYqMUeiiMl+C2BR0VycC8h/ZBU0=; b=aI3UAmYLDkPPHW
-	wI08n+w2+9b7n6FYhmPZOjorR9QW/rI4ic5NeEWvCvU2w8be1Bbnw27/cYYPUTI75JLT/BoLBzNwM
-	GcOZos7mK/d51Cnyjjlf1MVcgGJDxMWe3LwBKE0vJA7pzy2IRTSVIAD4qt/YfAIZJfznSp+uJWC/a
-	vpaHDT1Nwg2/itPqQmZUkl6VHiAMp7VT3PQ6iKY0qSkjXBJCOaGrtoAxyuOJcPuKmVJCU3tO2iv0K
-	8N+GiE9+PrXJ80OZ8MkYgtc1qD6TAtkg/OluXw4nhZJiyZkdge6w2ZetxlIkFX4258hm5ihoWoHVg
-	oIbABCQm8ln6XX4TvFLA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=KVDMGu+7Xd0u2seVlzelPK8OBWkT0uU75+7RCdpHhk0=; b=kICSoTeoZSI9Kb
+	Or0GCMukdXemayrEU606O7GfliHZNLZicW8HRJehS4hwhe7kQ3VHrnrDjNgoR1UQqcH7WhPFuAuZ5
+	rLp8fR+rD1I/jvYU8QtdL9HEKfcwH2wCW/bJ9ZNIRqoyo+JG5agvAz50WcMDm7cq5Mo0sV8x7CYRN
+	SCdeGJlNzSW0B0MZnU8ivvtS2QEtQYUBEeq2zOjSS0bz7VCylJHW6rFklXFMwj/98LvFyiyuMNDXw
+	IzLqPsOdCRVXwOxhKeGdVVU3OfCW24QuOMtAxTOa4U22baUp+38v8rWdmdNB009ShIK9sz+GL4gIy
+	IaO67O7ljKT49YGhZNcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlmLS-0041Zj-3H; Tue, 03 May 2022 06:49:14 +0000
-Received: from smtp-out1.suse.de ([195.135.220.28])
+	id 1nlmlj-004AP2-PG; Tue, 03 May 2022 07:16:23 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlmLO-0041Z2-O7
- for linux-amlogic@lists.infradead.org; Tue, 03 May 2022 06:49:13 +0000
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id 05690210E5;
- Tue,  3 May 2022 06:49:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1651560548; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NP8vAZfmgF+dnOWl0SRaBrH1NF8WDUxMZVLc1BzYQqw=;
- b=o8xoGS5KraH9ARSziPEkg5dZeG0W/0bLG0oFhwtvWVWKbxdCYbny/B1baHRpZISePxbVYi
- Y9u/wF6CMwadwSM6rnov2CrNGsgI2suJTGAjur1FwUvHnIH5jJurmtNcMzForBQ2sVJWvb
- LgHcwRgCoWzzw6Dx2MrXsHGqdnSU6ok=
-Received: from suse.cz (unknown [10.100.224.162])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 9286E2C141;
- Tue,  3 May 2022 06:49:07 +0000 (UTC)
-Date: Tue, 3 May 2022 08:49:04 +0200
-From: Petr Mladek <pmladek@suse.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
- per-console locking
-Message-ID: <YnDQYIWLZMjOPKK5@alley>
-References: <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
- <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
- <Ymjy3rHRenba7r7R@alley>
- <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
- <87fslyv6y3.fsf@jogness.linutronix.de>
- <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
- <87k0b6blz2.fsf@jogness.linutronix.de>
- <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
- <Ym/Z7PYPqvWPEjuL@alley>
- <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
+ id 1nlmlE-004A3T-Sc
+ for linux-amlogic@lists.infradead.org; Tue, 03 May 2022 07:15:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1651562151;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Fcdc52RHnyOtW2Ji8ao5Mx7dAO83bo9+YY00o6q0qI8=;
+ b=iymczZXtFwrJKomltXqSKkBNeO22qbedAaYbzktKzf4spQn6ncMktSdP2Hh6HhI7XEeDs4
+ ZCiPY94feiyF+rgG5/g6eJ9wlZU5QlODfAihCiAjDyj81wGG/ICO2HWLSJNaw2WAUP//a5
+ UCy9cNgQUvw2thOCOm/RQxm94PSSkIU=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-351-c9shNJjmMp6XJnJJm5OArA-1; Tue, 03 May 2022 03:15:50 -0400
+X-MC-Unique: c9shNJjmMp6XJnJJm5OArA-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ v9-20020a05600c214900b00393fedddf26so417910wml.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 03 May 2022 00:15:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Fcdc52RHnyOtW2Ji8ao5Mx7dAO83bo9+YY00o6q0qI8=;
+ b=JySD3Rql/L/+T5DMwB1NQmxeHPVXvs/T4IEwdwjo06zrvIA3rG7/iPrU5/0Hkp6jtW
+ DmhvyTUwCawb9w9ipUPtEJsg4/QPYHW4s/yAr8vQewEf9Fo7sGNl9WECQ8rafJmMi0bY
+ ueomO1GHsFBILJIuPXxchhZ7QVbVbjolbejL+76rRVYu/Dm/YkY47lzEonCKoVGIRWVu
+ f2JsOx+H67N/00x1HlEZlRapDooaFpownzn+eIVDOez0xvNn2SSiG+34k39KJnKNEwzN
+ 7igmcHBoeAbS7eANLRqSvaYgcyA7aRNkum25RWDer8vkt/Oc9JcX3N8Uw1RWx7ajyBZ0
+ 4bTg==
+X-Gm-Message-State: AOAM533T/NtJZ4PlODdwRqTApP7zpmSsoQialMaE9CvtgUuMizvXBK3/
+ 3tnupWIhpdvwkqR+QGw0wsRQiAl7mjk3QAb1XuAUYPUvl+K2xdnWPsuZSE3SmgS6maAoosLRrMS
+ 08xOBkhfNLwAvYagSi4x8Fm+DqhLjaxU=
+X-Received: by 2002:a05:6000:1445:b0:20c:731c:c1d4 with SMTP id
+ v5-20020a056000144500b0020c731cc1d4mr1856917wrx.76.1651562149392; 
+ Tue, 03 May 2022 00:15:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyvXXP0f4w1nXpXqVVOb+Guc+0Jj2Rw1NklRnskTnVt1GV+W8d6q/MLtZExFVKZCb9QVoENKA==
+X-Received: by 2002:a05:6000:1445:b0:20c:731c:c1d4 with SMTP id
+ v5-20020a056000144500b0020c731cc1d4mr1856886wrx.76.1651562149040; 
+ Tue, 03 May 2022 00:15:49 -0700 (PDT)
+Received: from minerva.home ([92.176.231.205])
+ by smtp.gmail.com with ESMTPSA id
+ o20-20020a05600c339400b003942a244f33sm1035387wmp.12.2022.05.03.00.15.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 May 2022 00:15:48 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org
+Subject: [PATCH v3 0/3] drm: Allow simpledrm to setup its emulated FB as
+ firmware provided
+Date: Tue,  3 May 2022 09:15:37 +0200
+Message-Id: <20220503071540.471667-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_234910_988509_277DDE66 
-X-CRM114-Status: GOOD (  45.19  )
+X-CRM114-CacheID: sfid-20220503_001553_066304_009CE754 
+X-CRM114-Status: GOOD (  12.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,240 +105,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue 2022-05-03 01:13:19, Marek Szyprowski wrote:
-> Hi Petr,
-> =
+Hello,
 
-> On 02.05.2022 15:17, Petr Mladek wrote:
-> > On Mon 2022-05-02 11:19:07, Marek Szyprowski wrote:
-> >> On 30.04.2022 18:00, John Ogness wrote:
-> >>> On 2022-04-29, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
-> >>>> The same issue happens if I boot with init=3D/bin/bash
-> >>> Very interesting. Since you are seeing all the output up until you try
-> >>> doing something, I guess receiving UART data is triggering the issue.
-> >> Right, this is how it looks like.
-> >>
-> >>>> I found something really interesting. When lockup happens, I'm still
-> >>>> able to log via ssh and trigger any magic sysrq action via
-> >>>> /proc/sysrq-trigger.
-> >>> If you boot the system and directly login via ssh (without sending any
-> >>> data via serial), can you trigger printk output on the UART? For
-> >>> example, with:
-> >>>
-> >>>       echo hello > /dev/kmsg
-> >>>
-> >>> (You might need to increase your loglevel to see it.)
-> >> Data written to /dev/kmsg and all kernel logs were always displayed
-> >> correctly. Also data written directly to /dev/ttyAML0 is displayed
-> >> properly on the console. The latter doesn't however trigger the input
-> >> related activity.
-> >>
-> >> It looks that the data read from the uart is delivered only if other
-> >> activity happens on the kernel console. If I type 'reboot' and press
-> >> enter, nothing happens immediately. If I type 'date >/dev/ttyAML0' via
-> >> ssh then, I only see the date printed on the console. However if I type
-> >> 'date >/dev/kmsg', the the date is printed and reboot happens.
-> > This is really interesting.
-> >
-> > 'date >/dev/kmsg' should be handled like a normal printk().
-> > It should get pushed to the console using printk kthread,
-> > that calls call_console_driver() that calls con->write()
-> > callback. In our case, it should be meson_serial_console_write().
-> >
-> > I am not sure if meson_serial_console_write() is used also
-> > when writing via /dev/ttyAML0.
-> >
-> >>>> It turned out that the UART console is somehow blocked, but it
-> >>>> receives and buffers all the input. For example after issuing "echo
-> >>>>    >/proc/sysrq-trigger" from the ssh console, the UART console has =
-been
-> >>>> updated and I see the magic sysrq banner and then all the commands I
-> >>>> blindly typed in the UART console! However this doesn't unblock the
-> >>>> console.
-> >>> sysrq falls back to direct printing. This would imply that the kthread
-> >>> printer is somehow unable to print.
-> >>>
-> >>>> Here is the output of 't' magic sys request:
-> >>>>
-> >>>> https://protect2.fireeye.com/v1/url?k=3D8649f24d-e73258c4-86487902-7=
-4fe48600034-a2ca6bb18361467d&q=3D1&e=3D1bc4226f-a422-42b9-95e8-128845b8609f=
-&u=3Dhttps%3A%2F%2Fpastebin.com%2FfjbRuy4f
-> >>> It looks like the call trace for the printing kthread (pr/ttyAML0) is
-> >>> corrupt.
-> >> Right, good catch. For comparison, here is a 't' sysrq result from the
-> >> 'working' serial console (next-20220429), which happens usually 1 of 4
-> >> boots:
-> >>
-> >> https://protect2.fireeye.com/v1/url?k=3D610106f1-008a13b6-61008dbe-000=
-babff99aa-11083c39c44861df&q=3D1&e=3D2eafad9e-c5d2-4696-9d78-f3b5885256dc&u=
-=3Dhttps%3A%2F%2Fpastebin.com%2Fmp8zGFbW
-> > Strange. The backtrace is weird here too:
-> >
-> > [   50.514509] task:pr/ttyAML0      state:R  running task     stack:   =
- 0 pid:   65 ppid:     2 flags:0x00000008
-> > [   50.514540] Call trace:
-> > [   50.514548]  __switch_to+0xe8/0x160
-> > [   50.514561]  meson_serial_console+0x78/0x118
-> >
-> > There should be kthread() and printk_kthread_func() on the stack.
-> >
-> > Hmm,  meson_serial_console+0x78/0x118 is weird on its own.
-> > meson_serial_console is the name of the structure. I would
-> > expect a name of the .write callback, like
-> > meson_serial_console_write()
-> =
+This series contain patches suggested by Thomas Zimmermann as a feedback for
+"[RFC PATCH v4 00/11] Fix some race between sysfb device registration and
+drivers probe" [0].
 
-> Well, this sounds a bit like a stack corruption. For the reference, I've =
+Since other changes in [0] were more controversial, I decided to just split
+this part in a new patch-set and revisit the rest of the patches later.
 
-> checked what magic sysrq 't' reports for my other test boards:
-> =
+This is a v2 that addresses issues pointed out in v1.
 
-> RaspberryPi4:
-> =
+Patch #1 is just a cleanup since when working on this noticed that some DRM
+drivers were passing as preferred bits per pixel to drm_fbdev_generic_setup()
+the value that is the default anyways.
 
-> [=A0 166.702431] task:pr/ttyS0=A0=A0=A0=A0=A0=A0=A0 state:R stack:=A0=A0=
-=A0 0 pid:=A0=A0 64 =
+Patch #2 renames the 'preferred_bpp' drm_fbdev_generic_setup() parameter to
+'options', and make this a multi field parameter so that it can be extended
+later to pass other options as well.
 
-> ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0 166.711069] Call trace:
-> [=A0 166.713647]=A0 __switch_to+0xe8/0x160
-> [=A0 166.717216]=A0 __schedule+0x2f4/0x9f0
-> [=A0 166.720862]=A0 log_wait+0x0/0x50
-> [=A0 166.724081] task:vfio-irqfd-clea state:I stack:=A0=A0=A0 0 pid:=A0=
-=A0 65 =
+Patch #3 finally adds the new DRM_FB_FW option and makes simpledrm to use it
+so that the registered framebuffer device is also marked as firmware provided.
 
-> ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0 166.732698] Call trace:
-> =
+The patches were tested on a rpi4 board with the vc4 DRM driver built as a
+module and either simplefb or simpledrm built-in.
 
-> =
+[0]: https://lore.kernel.org/lkml/20220429084253.1085911-1-javierm@redhat.com/
 
-> ARM Juno R1:
-> =
+Changes in v3:
+- Drop the preferred_bpp local variable (Laurent Pinchart).
+- Add a const qualifier to options parameter (Laurent Pinchart).
+- Drop the firmware local variable (Laurent Pinchart).
+- Use DRM_FB_OPTION() since DRM_FB_SET_OPTION() got renamed (kernel test robot).
 
-> [=A0=A0 74.356562] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:R=A0 running task=
- stack:=A0=A0=A0 0 =
+Changes in v2:
+- Rename DRM_FB_SET_OPTION() to DRM_FB_OPTION() and make more clear in
+  the kernel-doc what this macro does (Laurent Pinchart).
+- Fix some kernel-doc issues I didn't notice in v1.
+- Add Reviewed-by tags from Thomas and Laurent.
 
-> pid:=A0=A0 47 ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0=A0 74.356605] Call trace:
-> [=A0=A0 74.356617]=A0 __switch_to+0xe8/0x160
-> [=A0=A0 74.356637]=A0 amba_console+0x78/0x118
-> [=A0=A0 74.356657] task:kworker/2:1=A0=A0=A0=A0 state:I stack:=A0=A0=A0 0=
- pid:=A0=A0 48 =
+Javier Martinez Canillas (3):
+  drm: Remove superfluous arg when calling to drm_fbdev_generic_setup()
+  drm/fb-helper: Rename preferred_bpp drm_fbdev_generic_setup()
+    parameter
+  drm: Allow simpledrm to setup its emulated FB as firmware provided
 
-> ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0=A0 74.356695] Workqueue:=A0 0x0 (mm_percpu_wq)
-> [=A0=A0 74.356738] Call trace:
-> =
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  6 ++--
+ drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
+ drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  2 +-
+ drivers/gpu/drm/ast/ast_drv.c                 |  2 +-
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  2 +-
+ drivers/gpu/drm/drm_drv.c                     |  2 +-
+ drivers/gpu/drm/drm_fb_helper.c               | 34 ++++++++++++++-----
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  2 +-
+ .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
+ drivers/gpu/drm/imx/dcss/dcss-kms.c           |  2 +-
+ drivers/gpu/drm/imx/imx-drm-core.c            |  2 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  2 +-
+ drivers/gpu/drm/mcde/mcde_drv.c               |  2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
+ drivers/gpu/drm/meson/meson_drv.c             |  2 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
+ drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |  2 +-
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  2 +-
+ drivers/gpu/drm/sti/sti_drv.c                 |  2 +-
+ drivers/gpu/drm/stm/drv.c                     |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |  2 +-
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                 |  2 +-
+ drivers/gpu/drm/tiny/bochs.c                  |  2 +-
+ drivers/gpu/drm/tiny/cirrus.c                 |  2 +-
+ drivers/gpu/drm/tiny/simpledrm.c              |  2 +-
+ drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.c          |  2 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                 |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |  2 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c           |  2 +-
+ include/drm/drm_fb_helper.h                   | 24 ++++++++++++-
+ 36 files changed, 85 insertions(+), 45 deletions(-)
 
-> =
+-- 
+2.35.1
 
-> QEMU virt/arm64:
-> =
-
-> [=A0 174.155760] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:S stack:=A0=A0=A0 0=
- pid:=A0=A0 26 =
-
-> ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0 174.156305] Call trace:
-> [=A0 174.156529]=A0 __switch_to+0xe8/0x160
-> [=A0 174.157131]=A0 0xffff5ebbbfdd62d8
-
-You mentioned in the other mail that the other boards work as
-expected. I mean that console gets stuck only on the meson board.
-Is it true, please?
-
-The stack looks really weird. But another weird thing is that
-even the meson board is able to show the messages, for example,
-using echo hello >/dev/kmsg. It suggests that the kthreads
-somehow work.
-
-There is also a possibility that this code path is optimized
-some special way and the unwinder has troubles to show
-the stack correctly.
-
-
-> In the last case it doesn't happen always. In the other runs I got the =
-
-> following log from QEMU virt/arm64:
-> =
-
-> [=A0 200.537579] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:S stack:=A0=A0=A0 0=
- pid:=A0=A0 26 =
-
-> ppid:=A0=A0=A0=A0 2 flags:0x00000008
-> [=A0 200.538121] Call trace:
-> [=A0 200.538341]=A0 __switch_to+0xe8/0x160
-> [=A0 200.538583]=A0 __schedule+0x2f4/0x9f0
-> [=A0 200.538822]=A0 schedule+0x54/0xd0
-> [=A0 200.539047]=A0 printk_kthread_func+0x2d8/0x3bc
-> [=A0 200.539301]=A0 kthread+0x118/0x11c
-> [=A0 200.539523]=A0 ret_from_fork+0x10/0x20
-
-This is what I would expect when the kthread is in an interruptible
-sleep waiting for new strings to handle.
-
-BTW: This is what I see on my x86_64 test system:
-
-[61892.932242] task:pr/tty0         state:S stack:    0 pid:   14 ppid:    =
- 2 flags:0x00004000
-[61892.932250] Call Trace:
-[61892.932253]  <TASK>
-[61892.932263]  __schedule+0x376/0xbb0
-[61892.932284]  schedule+0x44/0xb0
-[61892.932290]  printk_kthread_func+0x18f/0x370
-[61892.932303]  ? schedstat_stop+0x10/0x10
-[61892.932316]  ? console_start+0x30/0x30
-[61892.932322]  kthread+0xf2/0x120
-[61892.932327]  ? kthread_complete_and_exit+0x20/0x20
-[61892.932338]  ret_from_fork+0x1f/0x30
-[61892.932370]  </TASK>
-[61892.932373] task:pr/ttyS0        state:R  running task     stack:    0 p=
-id:   15 ppid:     2 flags:0x00004000
-[61892.932391] Call Trace:
-[61892.932398]  <TASK>
-[61892.932427]  ? printk_kthread_func+0x15b/0x370
-[61892.932436]  ? schedstat_stop+0x10/0x10
-[61892.932449]  ? console_start+0x30/0x30
-[61892.932455]  ? kthread+0xf2/0x120
-[61892.932460]  ? kthread_complete_and_exit+0x20/0x20
-[61892.932471]  ? ret_from_fork+0x1f/0x30
-[61892.932502]  </TASK>
-
-
-pr/tty0 is in the interruptible sleep and the stack looks reasonable.
-
-pr/ttyS0 is in runnable state and the stack is weird. The '?' means
-that this address was found on the stack, it belongs to some
-function but the unwinder is not able to assign it to the current
-call path by going back via the return addresses stored on the stack.
-
-
-> I hope that at least the qemu case will let you to analyze it by =
-
-> yourself. I run my test system with the following command:
-> =
-
-> qemu-system-aarch64 -kernel virt/Image -append "console=3DttyAMA0 =
-
-> root=3D/dev/vda rootwait" -M virt -cpu cortex-a57 -smp 2 -m 1024 -device =
-
-> virtio-blk-device,drive=3Dvirtio-blk0 -drive =
-
-> file=3Dqemu-virt-rootfs.raw,id=3Dvirtio-blk0,if=3Dnone,format=3Draw -netd=
-ev =
-
-> user,id=3Duser -device virtio-net-device,netdev=3Duser -display none
-
-Thanks a lot for all the information. It is really helpful.
-
-Best Regards,
-Petr
 
 _______________________________________________
 linux-amlogic mailing list
