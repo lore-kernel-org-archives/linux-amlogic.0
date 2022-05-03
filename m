@@ -4,56 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07761C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 May 2022 14:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6EA9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 May 2022 17:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	Subject:To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jrYnuus4Oe8zwLNrbN5YIKcmtGuLAnF47rRb/d0Ov9I=; b=fep8xiCLp1JGzW
-	qL/e+6He7LXFxQdqhu0/xDzzKb15fNNrsyzFBKMo07fWaziW78tYN43vAX1AX1a9s1hnb3SJGlcVR
-	a4OM9WZbJZSfFTEF4y6oFlRFKNx2rDFJpTZhMc6BZPazPPg+UC0Fo9pyEjgUsV+0bRDR7YFDWhvyg
-	RC1EJvv1aEqU2pNLjL1SuDJFQzfRnhDCj4Q8jNiaJxPK4bLcJ3NrCUfap1FYzq30o0oxsvqXFrLtM
-	6EWy2hC7eiNnwqSln+H7SdJ7Hsi6SH+KFq3yaS/KxaeAGts5TorqokiJ2s1nFpRBEEkMmbjcVMZTS
-	ZwI/vQO9hRce6c1SNw2Q==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+JlUNxe1jnUKBnZuhiMDkWhU3CGG4jdjdx4Fla/Y4fc=; b=xXUUt+r9688MoK
+	N86+nOSlNTEVSiu6vShYwHQoCoouv2Imi06O9W6E5+ADadfYI2EgcCsGbLNmvSfUAa5Z8bkzowh+q
+	W+gAv/YUa5Bte+RIdpftTgnpGN8XLaPG/qfXGRikOnbIYsFttmgajsMk/FjB42GB1rzMUyZBcljIG
+	E6n5Gob3f58jLkzeTHMFIeJVJCnhwepsuPKng68wubuFUUcfLiBJczYueJxAKEwPX0z3imT+qnUhd
+	J9LtN6Zze8LN0Hk1FauM/QkS6PU+SDMF2Bj5ASupxuvNlsZMsLLWkrNwQaI627uq0dnOT1ICQtCLd
+	OP4/PRV8NZlZioryEP9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nltpi-006K5p-Dd; Tue, 03 May 2022 14:48:58 +0000
-Received: from mail.megasoftsol.com ([43.231.250.141])
+	id 1nlvvV-006sWC-Bl; Tue, 03 May 2022 17:03:05 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nltpe-006K2t-Do
- for linux-amlogic@lists.infradead.org; Tue, 03 May 2022 14:48:56 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.megasoftsol.com (Postfix) with ESMTP id 3BD3890E9BB
- for <linux-amlogic@lists.infradead.org>; Tue,  3 May 2022 20:16:22 +0530 (IST)
-Received: from mail.megasoftsol.com ([127.0.0.1])
- by localhost (mail.megasoftsol.com [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id 8EElwe3Ns6NY for <linux-amlogic@lists.infradead.org>;
- Tue,  3 May 2022 20:16:21 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
- by mail.megasoftsol.com (Postfix) with ESMTP id AA9DB90E9B3
- for <linux-amlogic@lists.infradead.org>; Tue,  3 May 2022 20:16:21 +0530 (IST)
-X-Virus-Scanned: amavisd-new at megasoftsol.com
-Received: from mail.megasoftsol.com ([127.0.0.1])
- by localhost (mail.megasoftsol.com [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id w1YXPa5GUyu1 for <linux-amlogic@lists.infradead.org>;
- Tue,  3 May 2022 20:16:21 +0530 (IST)
-Received: from asda.co.uk (unknown [20.97.211.134])
- (Authenticated sender: admin)
- by mail.megasoftsol.com (Postfix) with ESMTPSA id DC67090E9B7
- for <linux-amlogic@lists.infradead.org>; Tue,  3 May 2022 20:16:20 +0530 (IST)
-From: ASDA Stores Limited <Hanes.Thomas23877@asda.co.uk>
-To: linux-amlogic@lists.infradead.org
-Subject: 2nd Quater puchase request
-Date: 03 May 2022 14:48:47 +0000
-Message-ID: <20220503092157.6047B6BEF04424A9@asda.co.uk>
+ id 1nlvvS-006sUC-3E; Tue, 03 May 2022 17:03:03 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id be20so20556852edb.12;
+ Tue, 03 May 2022 10:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=0ebsl3t9Q4A5ZhggZdMt0K6huVQ4nPLjVF1HT4eHwHY=;
+ b=HaGnyx7pBoke+0aSLZ+0Cl9i2Z3rtc277xsE07lgnGx2lIPgKNR+/cHf1BHMJd+tWY
+ xLxDVjfXM0LpLkK6W47aSnLqvt4qcngT1GxJ9qnMFGWSSL68ZSpCJur0Qp+flnz9TG9V
+ 8iSPz7fXNdaty2uNHB4TWoNsqJrz0v03bb5rxLo5UKkUbCeepA8IK+d4f511ABt2QcWd
+ ZpC42ODRQgilCYofK3JnmcBW/XdrLxgbLavwJlZDJe38uRpGjKQRfb1xNvaHi8pmKFwS
+ 8RYFI+ibpzWIAh8L22MX0fUODrvS/rlJYgws3AcC0d8zDmBJEhPw91evXIyGqHtd9B1w
+ 9Xiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=0ebsl3t9Q4A5ZhggZdMt0K6huVQ4nPLjVF1HT4eHwHY=;
+ b=BTU26TVDPZPi/oXXGSqCb0aZaH+ertMgYk96CnDBp7ZFjsnjgl1LosBA82hBBhhijo
+ azoSLKo8jxR/XVk/6qvi10lj/L1xCdJ8iQsKJTjqqQWERkLQqgbU/2tVPQENOcgSVzJh
+ Bbi5GpUiNUthjmfxoCYjwrviwy9kFw3X6uPSS1heV6tuEOq184H/SEEtclvUN+T+xJEf
+ aiRCr9oiSIfnNcsMl+nEIJq931CEUlQDNT4sSOQH1MpvdJQJ0J0J7TQ5dFlr/F9N7JV6
+ BhPH+cdF0hkJUs7YV+LJZ3wcm9kbPDWckrwcseJ1oAQilm+pbsc6jc0x/0wWLwf2pxij
+ 4iOA==
+X-Gm-Message-State: AOAM5327uEhAnfCqhJ+PG4WoD8t4qYBvtOy6VLOaQCj4UWdp81JiNGW3
+ a5t8yEywPwYFHuKxvHA3SCg=
+X-Google-Smtp-Source: ABdhPJwhqGbymFuBTyPLL+yyc+nnpILMy/ni7d7XOhYbnZCBoZ0oS8dRxaoc/0h9PTlfn8SevSJmlw==
+X-Received: by 2002:a05:6402:1941:b0:413:2822:9c8 with SMTP id
+ f1-20020a056402194100b00413282209c8mr18716302edz.13.1651597377548; 
+ Tue, 03 May 2022 10:02:57 -0700 (PDT)
+Received: from kista.localnet (cpe1-3-76.cable.triera.net. [213.161.3.76])
+ by smtp.gmail.com with ESMTPSA id
+ q8-20020aa7cc08000000b0042617ba637esm8000905edt.8.2022.05.03.10.02.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 May 2022 10:02:56 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-kernel@vger.kernel.org, Javier Martinez Canillas <javierm@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-sunxi@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH v3 2/3] drm/fb-helper: Rename preferred_bpp
+ drm_fbdev_generic_setup() parameter
+Date: Tue, 03 May 2022 19:02:54 +0200
+Message-ID: <2626921.mvXUDI8C0e@kista>
+In-Reply-To: <20220503071540.471667-3-javierm@redhat.com>
+References: <20220503071540.471667-1-javierm@redhat.com>
+ <20220503071540.471667-3-javierm@redhat.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220503_074854_808398_659CCD1D 
-X-CRM114-Status: UNSURE (  -0.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220503_100302_185354_C47522D1 
+X-CRM114-Status: GOOD (  17.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,27 +92,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sales@asdaa.uk
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RGVhciBsaW51eC1hbWxvZ2ljCgpXZSBhcmUgaW50ZXJlc3RlZCBpbiBoYXZpbmcgc29tZSBvZiB5
-b3VyIGhvdCBzZWxsaW5nIHByb2R1Y3QgaW4gCm91ciBzdG9yZXMgYW5kIG91dGxldHMgc3ByZWFk
-IGFsbCBvdmVyIFVuaXRlZCBLaW5nZG9tLCBOb3J0aGVybiAKSXNsYW5kIGFuZCBBZnJpY2EuIEFT
-REEgU3RvcmVzIExpbWl0ZWQgaXMgb25lIG9mIHRoZSBoaWdoZXN0LQpyYW5raW5nIFdob2xlc2Fs
-ZSAmIFJldGFpbCBvdXRsZXRzIGluIHRoZSBVbml0ZWQgS2luZ2RvbS4gCiAgCldlIHNoYWxsIGZ1
-cm5pc2ggb3VyIGRldGFpbGVkIGNvbXBhbnkgcHJvZmlsZSBpbiBvdXIgbmV4dCAKY29ycmVzcG9u
-ZGVudC4gSG93ZXZlciwgaXQgd291bGQgYmUgYXBwcmVjaWF0ZWQgaWYgeW91IGNhbiBzZW5kIAp1
-cyB5b3VyIGNhdGFsb2cgdGhyb3VnaCBlbWFpbCB0byBsZWFybiBtb3JlIGFib3V0IHlvdXIgY29t
-cGFueSdzIApwcm9kdWN0cyBhbmQgd2hvbGVzYWxlIHF1b3RlLiBJdCBpcyBob3BlZnVsIHRoYXQg
-d2UgY2FuIHN0YXJ0IGEgCnZpYWJsZSBsb25nLWxhc3RpbmcgYnVzaW5lc3MgcmVsYXRpb25zaGlw
-IChwYXJ0bmVyc2hpcCkgd2l0aCB5b3UuICAKICAKICAKWW91ciBwcm9tcHQgcmVzcG9uc2Ugd291
-bGQgYmUgZGVsaWdodGZ1bGx5IGFwcHJlY2lhdGVkLiAKICAKQmVzdCBXaXNoZXMgCiAgCiAgCkhh
-bmVzIFMuIFRob21hcyAKUHJvY3VyZW1lbnQgT2ZmaWNlLiAKQVNEQSBTdG9yZXMgTGltaXRlZCAK
-VGVsOiAgKyA0NCAtIDc0NTEyNzE2NTAgCldoYXRzQXBwOiArIDQ0IOKAkyA3NDQxNDQwMzYwIApX
-ZWJzaXRlOiB3d3cuYXNkYS5jby51awoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+Dne torek, 03. maj 2022 ob 09:15:39 CEST je Javier Martinez Canillas 
+napisal(a):
+> By default the bits per pixel for the emulated framebuffer device is set
+> to dev->mode_config.preferred_depth, but some devices need another value.
+> 
+> Since this second parameter is only used by a few drivers, and to allow
+> drivers to use it for passing other configurations when registering the
+> fbdev, rename @preferred_bpp to @options and make it a multi-field param.
+> 
+> The DRM_FB_OPTION() and DRM_FB_GET_OPTION() macros are provided to drivers
+> for computing options bitfield values and getting the values respectively
+> 
+> For now, only the DRM_FB_BPP option exists but other options can be added.
+> 
+> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> 
+> Changes in v3:
+> - Drop the preferred_bpp local variable (Laurent Pinchart).
+> - Add a const qualifier to options parameter (Laurent Pinchart).
+> 
+> Changes in v2:
+> - Rename DRM_FB_SET_OPTION() to DRM_FB_OPTION() and make more clear in
+>   the kernel-doc what this macro does (Laurent Pinchart).
+> - Fix some kernel-doc issues I didn't notice in v1.
+> - Add Reviewed-by tags from Thomas and Laurent.
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  6 +++--
+>  drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
+>  drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  2 +-
+>  drivers/gpu/drm/ast/ast_drv.c                 |  2 +-
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  2 +-
+>  drivers/gpu/drm/drm_drv.c                     |  2 +-
+>  drivers/gpu/drm/drm_fb_helper.c               | 26 ++++++++++++-------
+>  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
+>  .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
+>  drivers/gpu/drm/imx/dcss/dcss-kms.c           |  2 +-
+>  drivers/gpu/drm/imx/imx-drm-core.c            |  2 +-
+>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  2 +-
+>  drivers/gpu/drm/mcde/mcde_drv.c               |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
+>  drivers/gpu/drm/meson/meson_drv.c             |  2 +-
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
+>  drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
+>  drivers/gpu/drm/qxl/qxl_drv.c                 |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  2 +-
+>  drivers/gpu/drm/sti/sti_drv.c                 |  2 +-
+>  drivers/gpu/drm/stm/drv.c                     |  2 +-
+>  drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
+
+For sun4i:
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regard,
+Jernej
+
+>  drivers/gpu/drm/tidss/tidss_drv.c             |  2 +-
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  2 +-
+>  drivers/gpu/drm/tiny/arcpgu.c                 |  2 +-
+>  drivers/gpu/drm/tiny/bochs.c                  |  2 +-
+>  drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c          |  2 +-
+>  drivers/gpu/drm/vc4/vc4_drv.c                 |  2 +-
+>  drivers/gpu/drm/virtio/virtgpu_drv.c          |  2 +-
+>  drivers/gpu/drm/xlnx/zynqmp_dpsub.c           |  2 +-
+>  include/drm/drm_fb_helper.h                   | 14 +++++++++-
+>  33 files changed, 64 insertions(+), 42 deletions(-)
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
