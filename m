@@ -4,127 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0576C433F5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 May 2022 23:13:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAEFEC433F5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 May 2022 06:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CSMbn9BEnvCLB2NiMygBEIo9jCB3tvmvV4ATcAd2uns=; b=xmEQLGFqkdKfwE
-	DLPtX3TueJRHCzeIQHXsSB1eIQENSr/idLMiJT0GNQpJOcsNRwg5d3/efpl8qly0LBqGy4UrYFk7x
-	QZobpO0XcfdSLExmmjyzZrH7CB42T4QogdEY4JZTNEsURj3RyF3BWc5ehL4nxq19KKXs3ei8vmspQ
-	F/kpgq7GX3MStE4/4dZ1FW9CxqJTO6J93ou/qCrwocKfIsxhvItZP4ZqI8cDmxhy2eeKdMYzwm5zS
-	ZqkRdGRvfGVPi+QHrU30S6iv+G3nN2kwRuGqi9rI9zEkT5CydUGQ25Hw+hYkbAX/CK304PvymwlsB
-	kQ4OpSadlwvp5IvB+7tA==;
+	List-Owner; bh=XRnV+s97s2SjbAbQQYqMUeiiMl+C2BR0VycC8h/ZBU0=; b=aI3UAmYLDkPPHW
+	wI08n+w2+9b7n6FYhmPZOjorR9QW/rI4ic5NeEWvCvU2w8be1Bbnw27/cYYPUTI75JLT/BoLBzNwM
+	GcOZos7mK/d51Cnyjjlf1MVcgGJDxMWe3LwBKE0vJA7pzy2IRTSVIAD4qt/YfAIZJfznSp+uJWC/a
+	vpaHDT1Nwg2/itPqQmZUkl6VHiAMp7VT3PQ6iKY0qSkjXBJCOaGrtoAxyuOJcPuKmVJCU3tO2iv0K
+	8N+GiE9+PrXJ80OZ8MkYgtc1qD6TAtkg/OluXw4nhZJiyZkdge6w2ZetxlIkFX4258hm5ihoWoHVg
+	oIbABCQm8ln6XX4TvFLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlfEb-0033nW-DU; Mon, 02 May 2022 23:13:41 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1nlmLS-0041Zj-3H; Tue, 03 May 2022 06:49:14 +0000
+Received: from smtp-out1.suse.de ([195.135.220.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlfEU-0033mO-SQ
- for linux-amlogic@lists.infradead.org; Mon, 02 May 2022 23:13:39 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20220502231321euoutp02c35ecd48594525376f7e84d0957a0d3d~rbLJW1dWN2986229862euoutp02F
- for <linux-amlogic@lists.infradead.org>; Mon,  2 May 2022 23:13:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20220502231321euoutp02c35ecd48594525376f7e84d0957a0d3d~rbLJW1dWN2986229862euoutp02F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1651533201;
- bh=O4SBpucQaaZpy0wlqrx6Q5wqjcA2LOrSDyMwdeMswJM=;
- h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
- b=BinZEjz2n2c757SILoJMNuElNPjP+vn/I+cWAQagPK2lM9yAsyQOoGdLQ9lPOBHW5
- P4y0GrD+yObuXlOKMY5T9bFH76KOMf3Nd7Mz1Ajg+1q3q/x8S1juPfC1wmjRdGKKdF
- B0Smwjtiyxpsn67wAu2jY9SYx023vWEAJ4ZJmPGI=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20220502231320eucas1p154014c9e41d9d79fb0616d93cae11686~rbLIVy7Y32165021650eucas1p1k;
- Mon,  2 May 2022 23:13:20 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges1new.samsung.com (EUCPMTA) with SMTP id 03.51.10009.09560726; Tue,  3
- May 2022 00:13:20 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20220502231320eucas1p13095408ebf98c36f16b5483154e0e8e5~rbLH631U80771507715eucas1p1I;
- Mon,  2 May 2022 23:13:20 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20220502231320eusmtrp249f17587d36192005f388f10e66e14ee~rbLH6NPH81389913899eusmtrp2E;
- Mon,  2 May 2022 23:13:20 +0000 (GMT)
-X-AuditID: cbfec7f2-e95ff70000002719-e3-627065909a8e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id C5.85.09404.F8560726; Tue,  3
- May 2022 00:13:19 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20220502231319eusmtip1ec77346424a1be48207ed3ba70edf175~rbLHSZP7K0906209062eusmtip1N;
- Mon,  2 May 2022 23:13:19 +0000 (GMT)
-Message-ID: <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
-Date: Tue, 3 May 2022 01:13:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.0
+ id 1nlmLO-0041Z2-O7
+ for linux-amlogic@lists.infradead.org; Tue, 03 May 2022 06:49:13 +0000
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 05690210E5;
+ Tue,  3 May 2022 06:49:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1651560548; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=NP8vAZfmgF+dnOWl0SRaBrH1NF8WDUxMZVLc1BzYQqw=;
+ b=o8xoGS5KraH9ARSziPEkg5dZeG0W/0bLG0oFhwtvWVWKbxdCYbny/B1baHRpZISePxbVYi
+ Y9u/wF6CMwadwSM6rnov2CrNGsgI2suJTGAjur1FwUvHnIH5jJurmtNcMzForBQ2sVJWvb
+ LgHcwRgCoWzzw6Dx2MrXsHGqdnSU6ok=
+Received: from suse.cz (unknown [10.100.224.162])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 9286E2C141;
+ Tue,  3 May 2022 06:49:07 +0000 (UTC)
+Date: Tue, 3 May 2022 08:49:04 +0200
+From: Petr Mladek <pmladek@suse.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: John Ogness <john.ogness@linutronix.de>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
  per-console locking
-Content-Language: en-US
-To: Petr Mladek <pmladek@suse.com>
-Cc: John Ogness <john.ogness@linutronix.de>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Steven Rostedt <rostedt@goodmis.org>, Thomas
- Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <Ym/Z7PYPqvWPEjuL@alley>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOKsWRmVeSWpSXmKPExsWy7djP87oTUguSDO5/FLdoXryezWLblfmM
- Fgtmc1tc3jWHzeL/46+sFvs6HjBZ7N64iM1i86apzA4cHrMbLrJ4tOy7xe7x7tw5do/9c9ew
- e2xeUu+xfstVFo/Pm+QC2KO4bFJSczLLUov07RK4Mn50dbEXnNerODijhaWB8Z1aFyMHh4SA
- icTXa3ldjFwcQgIrGCU+rN/ECuF8YZSY++ozE4TzmVFiwvY/bF2MnGAdyz9fZYRILGeUuLdg
- GTuE85FR4vn1E+wgVbwCdhK7nvcxgtgsAioSq//uZYOIC0qcnPmEBcQWFUiSmLvvHjPIHcIC
- ERJte0NBwswC4hK3nsxnArFFBJQkXs2/ywwRX8Ak0dqQBmKzCRhKdL3tAhvJKaAqsePxOxaI
- GnmJ5q2zmUHukRD4wCHxes0rqKtdJGataWaCsIUlXh3fwg5hy0j83wmyDBQW+RJ/ZxhDhCsk
- rr1ewwxhW0vcOfeLDaSEWUBTYv0ufYiwo8SUX33sEJ18EjfeCkJcwCcxadt0Zogwr0RHmxBE
- tZrErOPr4HYevHCJeQKj0iykIJmF5PdZSH6ZhbB3ASPLKkbx1NLi3PTUYsO81HK94sTc4tK8
- dL3k/NxNjMC0dPrf8U87GOe++qh3iJGJg/EQowQHs5IIb9uGnCQh3pTEyqrUovz4otKc1OJD
- jNIcLErivMmZGxKFBNITS1KzU1MLUotgskwcnFINTLKhL21FT8pPk1h1Pf32zJ8FwjYBEzZ/
- CthX5T1zk7KJz6vm40H+5R0VXRWGB9IvrDq1t/lm/Jo7IjYpVw1eiivPNC5JveowT70+wUYj
- 396rdE7tMqlbD5dpLOOdVl3vwHBiMbuYkfaNH7lrPzn2P5I/ovJ/2vnp/o/vLXuUL3rSi9l8
- 8dp0drdPTud5Wp955Fc7bxD4dzLOOFFMVi64rjuT1/3zMtVbKyTvnvvb77A/T/1T9Cq57+m1
- bS/ml0Zf0fslmX3Qf62QUdHyu3u1arMePD51r0tRteNUnZewjIHwuoN7b2bbno6wWf2RM2T9
- 2Xb1yCeXtn9jCDTu9en9vrTby7TI4ktd5o+LL6JdlViKMxINtZiLihMB/++gQroDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsVy+t/xu7r9qQVJBufPWlg0L17PZrHtynxG
- iwWzuS0u75rDZvH/8VdWi30dD5gsdm9cxGaxedNUZgcOj9kNF1k8WvbdYvd4d+4cu8f+uWvY
- PTYvqfdYv+Uqi8fnTXIB7FF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2
- NimpOZllqUX6dgl6GT+6utgLzutVHJzRwtLA+E6ti5GTQ0LARGL556uMXYxcHEICSxklLhy6
- wgKRkJE4Oa2BFcIWlvhzrYsNxBYSeM8osXQJD4jNK2Anset5HyOIzSKgIrH67142iLigxMmZ
- T8DmiAokSbzY9hyohoNDWCBC4n0vWJhZQFzi1pP5TCC2iICSxKv5d5lBbmAWWMAksW7RGqiD
- XjJLzJ7+G6yKTcBQoustxBGcAqoSOx6/g5pkJtG1tYsRwpaXaN46m3kCo9AsJHfMQrJwFpKW
- WUhaFjCyrGIUSS0tzk3PLTbSK07MLS7NS9dLzs/dxAiMx23Hfm7Zwbjy1Ue9Q4xMHIyHGCU4
- mJVEeNs25CQJ8aYkVlalFuXHF5XmpBYfYjQFBsZEZinR5HxgQsgriTc0MzA1NDGzNDC1NDNW
- Euf1LOhIFBJITyxJzU5NLUgtgulj4uCUamDyYRHa7eudd0qqeoeL6PaCxd4aHF3zPkycuydj
- ZnYtx56Pkg83Rlwvt571+1aLvv/Svqtt9wWFG/2sJ85n+JmT1JmxpswrckLuZZffP+7t2vhx
- v8TfnJC5XXNun3KPyzt39MrSvZ+mPV3D8+mE66WvJXNFuqP9eWbf49oyI/W1shuf9UG5rT/f
- zi/tELWqjGUr37j6z5UHdVabngttWZYUc+LE9BfMXtNrd1y7FaT70fKcZ/MzVZfAnLpXSc7X
- Hge6rmlL9zpbnS3Ltqa9luvnq6XzeC/9mbnjvSzTXa2WfE3nlDajQ7dFz/b72u2IrLiiFsfc
- aFjDp5s3/+vVU8sEd7BqzD44Y52mhGHaZBcTJZbijERDLeai4kQA30i3J1ADAAA=
-X-CMS-MailID: 20220502231320eucas1p13095408ebf98c36f16b5483154e0e8e5
-X-Msg-Generator: CA
-X-RootMTR: 20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c
-References: <Ymfgis0EAw0Oxoa5@alley> <Ymfwk+X0CHq6ex3s@alley>
- <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
- <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com> <Ymjy3rHRenba7r7R@alley>
+Message-ID: <YnDQYIWLZMjOPKK5@alley>
+References: <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
+ <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+ <Ymjy3rHRenba7r7R@alley>
  <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
  <87fslyv6y3.fsf@jogness.linutronix.de>
  <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
  <87k0b6blz2.fsf@jogness.linutronix.de>
- <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com> <Ym/Z7PYPqvWPEjuL@alley>
+ <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
+ <Ym/Z7PYPqvWPEjuL@alley>
+ <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_161335_221300_DCA4960A 
-X-CRM114-Status: GOOD (  30.21  )
+X-CRM114-CacheID: sfid-20220502_234910_988509_277DDE66 
+X-CRM114-Status: GOOD (  45.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,114 +81,242 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUGV0ciwKCk9uIDAyLjA1LjIwMjIgMTU6MTcsIFBldHIgTWxhZGVrIHdyb3RlOgo+IE9uIE1v
-biAyMDIyLTA1LTAyIDExOjE5OjA3LCBNYXJlayBTenlwcm93c2tpIHdyb3RlOgo+PiBPbiAzMC4w
-NC4yMDIyIDE4OjAwLCBKb2huIE9nbmVzcyB3cm90ZToKPj4+IE9uIDIwMjItMDQtMjksIE1hcmVr
-IFN6eXByb3dza2kgPG0uc3p5cHJvd3NraUBzYW1zdW5nLmNvbT4gd3JvdGU6Cj4+Pj4gVGhlIHNh
-bWUgaXNzdWUgaGFwcGVucyBpZiBJIGJvb3Qgd2l0aCBpbml0PS9iaW4vYmFzaAo+Pj4gVmVyeSBp
-bnRlcmVzdGluZy4gU2luY2UgeW91IGFyZSBzZWVpbmcgYWxsIHRoZSBvdXRwdXQgdXAgdW50aWwg
-eW91IHRyeQo+Pj4gZG9pbmcgc29tZXRoaW5nLCBJIGd1ZXNzIHJlY2VpdmluZyBVQVJUIGRhdGEg
-aXMgdHJpZ2dlcmluZyB0aGUgaXNzdWUuCj4+IFJpZ2h0LCB0aGlzIGlzIGhvdyBpdCBsb29rcyBs
-aWtlLgo+Pgo+Pj4+IEkgZm91bmQgc29tZXRoaW5nIHJlYWxseSBpbnRlcmVzdGluZy4gV2hlbiBs
-b2NrdXAgaGFwcGVucywgSSdtIHN0aWxsCj4+Pj4gYWJsZSB0byBsb2cgdmlhIHNzaCBhbmQgdHJp
-Z2dlciBhbnkgbWFnaWMgc3lzcnEgYWN0aW9uIHZpYQo+Pj4+IC9wcm9jL3N5c3JxLXRyaWdnZXIu
-Cj4+PiBJZiB5b3UgYm9vdCB0aGUgc3lzdGVtIGFuZCBkaXJlY3RseSBsb2dpbiB2aWEgc3NoICh3
-aXRob3V0IHNlbmRpbmcgYW55Cj4+PiBkYXRhIHZpYSBzZXJpYWwpLCBjYW4geW91IHRyaWdnZXIg
-cHJpbnRrIG91dHB1dCBvbiB0aGUgVUFSVD8gRm9yCj4+PiBleGFtcGxlLCB3aXRoOgo+Pj4KPj4+
-ICAgICAgIGVjaG8gaGVsbG8gPiAvZGV2L2ttc2cKPj4+Cj4+PiAoWW91IG1pZ2h0IG5lZWQgdG8g
-aW5jcmVhc2UgeW91ciBsb2dsZXZlbCB0byBzZWUgaXQuKQo+PiBEYXRhIHdyaXR0ZW4gdG8gL2Rl
-di9rbXNnIGFuZCBhbGwga2VybmVsIGxvZ3Mgd2VyZSBhbHdheXMgZGlzcGxheWVkCj4+IGNvcnJl
-Y3RseS4gQWxzbyBkYXRhIHdyaXR0ZW4gZGlyZWN0bHkgdG8gL2Rldi90dHlBTUwwIGlzIGRpc3Bs
-YXllZAo+PiBwcm9wZXJseSBvbiB0aGUgY29uc29sZS4gVGhlIGxhdHRlciBkb2Vzbid0IGhvd2V2
-ZXIgdHJpZ2dlciB0aGUgaW5wdXQKPj4gcmVsYXRlZCBhY3Rpdml0eS4KPj4KPj4gSXQgbG9va3Mg
-dGhhdCB0aGUgZGF0YSByZWFkIGZyb20gdGhlIHVhcnQgaXMgZGVsaXZlcmVkIG9ubHkgaWYgb3Ro
-ZXIKPj4gYWN0aXZpdHkgaGFwcGVucyBvbiB0aGUga2VybmVsIGNvbnNvbGUuIElmIEkgdHlwZSAn
-cmVib290JyBhbmQgcHJlc3MKPj4gZW50ZXIsIG5vdGhpbmcgaGFwcGVucyBpbW1lZGlhdGVseS4g
-SWYgSSB0eXBlICdkYXRlID4vZGV2L3R0eUFNTDAnIHZpYQo+PiBzc2ggdGhlbiwgSSBvbmx5IHNl
-ZSB0aGUgZGF0ZSBwcmludGVkIG9uIHRoZSBjb25zb2xlLiBIb3dldmVyIGlmIEkgdHlwZQo+PiAn
-ZGF0ZSA+L2Rldi9rbXNnJywgdGhlIHRoZSBkYXRlIGlzIHByaW50ZWQgYW5kIHJlYm9vdCBoYXBw
-ZW5zLgo+IFRoaXMgaXMgcmVhbGx5IGludGVyZXN0aW5nLgo+Cj4gJ2RhdGUgPi9kZXYva21zZycg
-c2hvdWxkIGJlIGhhbmRsZWQgbGlrZSBhIG5vcm1hbCBwcmludGsoKS4KPiBJdCBzaG91bGQgZ2V0
-IHB1c2hlZCB0byB0aGUgY29uc29sZSB1c2luZyBwcmludGsga3RocmVhZCwKPiB0aGF0IGNhbGxz
-IGNhbGxfY29uc29sZV9kcml2ZXIoKSB0aGF0IGNhbGxzIGNvbi0+d3JpdGUoKQo+IGNhbGxiYWNr
-LiBJbiBvdXIgY2FzZSwgaXQgc2hvdWxkIGJlIG1lc29uX3NlcmlhbF9jb25zb2xlX3dyaXRlKCku
-Cj4KPiBJIGFtIG5vdCBzdXJlIGlmIG1lc29uX3NlcmlhbF9jb25zb2xlX3dyaXRlKCkgaXMgdXNl
-ZCBhbHNvCj4gd2hlbiB3cml0aW5nIHZpYSAvZGV2L3R0eUFNTDAuCj4KPj4+PiBJdCB0dXJuZWQg
-b3V0IHRoYXQgdGhlIFVBUlQgY29uc29sZSBpcyBzb21laG93IGJsb2NrZWQsIGJ1dCBpdAo+Pj4+
-IHJlY2VpdmVzIGFuZCBidWZmZXJzIGFsbCB0aGUgaW5wdXQuIEZvciBleGFtcGxlIGFmdGVyIGlz
-c3VpbmcgImVjaG8KPj4+PiAgICA+L3Byb2Mvc3lzcnEtdHJpZ2dlciIgZnJvbSB0aGUgc3NoIGNv
-bnNvbGUsIHRoZSBVQVJUIGNvbnNvbGUgaGFzIGJlZW4KPj4+PiB1cGRhdGVkIGFuZCBJIHNlZSB0
-aGUgbWFnaWMgc3lzcnEgYmFubmVyIGFuZCB0aGVuIGFsbCB0aGUgY29tbWFuZHMgSQo+Pj4+IGJs
-aW5kbHkgdHlwZWQgaW4gdGhlIFVBUlQgY29uc29sZSEgSG93ZXZlciB0aGlzIGRvZXNuJ3QgdW5i
-bG9jayB0aGUKPj4+PiBjb25zb2xlLgo+Pj4gc3lzcnEgZmFsbHMgYmFjayB0byBkaXJlY3QgcHJp
-bnRpbmcuIFRoaXMgd291bGQgaW1wbHkgdGhhdCB0aGUga3RocmVhZAo+Pj4gcHJpbnRlciBpcyBz
-b21laG93IHVuYWJsZSB0byBwcmludC4KPj4+Cj4+Pj4gSGVyZSBpcyB0aGUgb3V0cHV0IG9mICd0
-JyBtYWdpYyBzeXMgcmVxdWVzdDoKPj4+Pgo+Pj4+IGh0dHBzOi8vcHJvdGVjdDIuZmlyZWV5ZS5j
-b20vdjEvdXJsP2s9ODY0OWYyNGQtZTczMjU4YzQtODY0ODc5MDItNzRmZTQ4NjAwMDM0LWEyY2E2
-YmIxODM2MTQ2N2QmcT0xJmU9MWJjNDIyNmYtYTQyMi00MmI5LTk1ZTgtMTI4ODQ1Yjg2MDlmJnU9
-aHR0cHMlM0ElMkYlMkZwYXN0ZWJpbi5jb20lMkZmamJSdXk0Zgo+Pj4gSXQgbG9va3MgbGlrZSB0
-aGUgY2FsbCB0cmFjZSBmb3IgdGhlIHByaW50aW5nIGt0aHJlYWQgKHByL3R0eUFNTDApIGlzCj4+
-PiBjb3JydXB0Lgo+PiBSaWdodCwgZ29vZCBjYXRjaC4gRm9yIGNvbXBhcmlzb24sIGhlcmUgaXMg
-YSAndCcgc3lzcnEgcmVzdWx0IGZyb20gdGhlCj4+ICd3b3JraW5nJyBzZXJpYWwgY29uc29sZSAo
-bmV4dC0yMDIyMDQyOSksIHdoaWNoIGhhcHBlbnMgdXN1YWxseSAxIG9mIDQKPj4gYm9vdHM6Cj4+
-Cj4+IGh0dHBzOi8vcHJvdGVjdDIuZmlyZWV5ZS5jb20vdjEvdXJsP2s9NjEwMTA2ZjEtMDA4YTEz
-YjYtNjEwMDhkYmUtMDAwYmFiZmY5OWFhLTExMDgzYzM5YzQ0ODYxZGYmcT0xJmU9MmVhZmFkOWUt
-YzVkMi00Njk2LTlkNzgtZjNiNTg4NTI1NmRjJnU9aHR0cHMlM0ElMkYlMkZwYXN0ZWJpbi5jb20l
-MkZtcDh6R0ZiVwo+IFN0cmFuZ2UuIFRoZSBiYWNrdHJhY2UgaXMgd2VpcmQgaGVyZSB0b286Cj4K
-PiBbICAgNTAuNTE0NTA5XSB0YXNrOnByL3R0eUFNTDAgICAgICBzdGF0ZTpSICBydW5uaW5nIHRh
-c2sgICAgIHN0YWNrOiAgICAwIHBpZDogICA2NSBwcGlkOiAgICAgMiBmbGFnczoweDAwMDAwMDA4
-Cj4gWyAgIDUwLjUxNDU0MF0gQ2FsbCB0cmFjZToKPiBbICAgNTAuNTE0NTQ4XSAgX19zd2l0Y2hf
-dG8rMHhlOC8weDE2MAo+IFsgICA1MC41MTQ1NjFdICBtZXNvbl9zZXJpYWxfY29uc29sZSsweDc4
-LzB4MTE4Cj4KPiBUaGVyZSBzaG91bGQgYmUga3RocmVhZCgpIGFuZCBwcmludGtfa3RocmVhZF9m
-dW5jKCkgb24gdGhlIHN0YWNrLgo+Cj4gSG1tLCAgbWVzb25fc2VyaWFsX2NvbnNvbGUrMHg3OC8w
-eDExOCBpcyB3ZWlyZCBvbiBpdHMgb3duLgo+IG1lc29uX3NlcmlhbF9jb25zb2xlIGlzIHRoZSBu
-YW1lIG9mIHRoZSBzdHJ1Y3R1cmUuIEkgd291bGQKPiBleHBlY3QgYSBuYW1lIG9mIHRoZSAud3Jp
-dGUgY2FsbGJhY2ssIGxpa2UKPiBtZXNvbl9zZXJpYWxfY29uc29sZV93cml0ZSgpCgpXZWxsLCB0
-aGlzIHNvdW5kcyBhIGJpdCBsaWtlIGEgc3RhY2sgY29ycnVwdGlvbi4gRm9yIHRoZSByZWZlcmVu
-Y2UsIEkndmUgCmNoZWNrZWQgd2hhdCBtYWdpYyBzeXNycSAndCcgcmVwb3J0cyBmb3IgbXkgb3Ro
-ZXIgdGVzdCBib2FyZHM6CgpSYXNwYmVycnlQaTQ6CgpbwqAgMTY2LjcwMjQzMV0gdGFzazpwci90
-dHlTMMKgwqDCoMKgwqDCoMKgIHN0YXRlOlIgc3RhY2s6wqDCoMKgIDAgcGlkOsKgwqAgNjQgCnBw
-aWQ6wqDCoMKgwqAgMiBmbGFnczoweDAwMDAwMDA4ClvCoCAxNjYuNzExMDY5XSBDYWxsIHRyYWNl
-OgpbwqAgMTY2LjcxMzY0N13CoCBfX3N3aXRjaF90bysweGU4LzB4MTYwClvCoCAxNjYuNzE3MjE2
-XcKgIF9fc2NoZWR1bGUrMHgyZjQvMHg5ZjAKW8KgIDE2Ni43MjA4NjJdwqAgbG9nX3dhaXQrMHgw
-LzB4NTAKW8KgIDE2Ni43MjQwODFdIHRhc2s6dmZpby1pcnFmZC1jbGVhIHN0YXRlOkkgc3RhY2s6
-wqDCoMKgIDAgcGlkOsKgwqAgNjUgCnBwaWQ6wqDCoMKgwqAgMiBmbGFnczoweDAwMDAwMDA4ClvC
-oCAxNjYuNzMyNjk4XSBDYWxsIHRyYWNlOgoKCkFSTSBKdW5vIFIxOgoKW8KgwqAgNzQuMzU2NTYy
-XSB0YXNrOnByL3R0eUFNQTDCoMKgwqDCoMKgIHN0YXRlOlLCoCBydW5uaW5nIHRhc2sgc3RhY2s6
-wqDCoMKgIDAgCnBpZDrCoMKgIDQ3IHBwaWQ6wqDCoMKgwqAgMiBmbGFnczoweDAwMDAwMDA4ClvC
-oMKgIDc0LjM1NjYwNV0gQ2FsbCB0cmFjZToKW8KgwqAgNzQuMzU2NjE3XcKgIF9fc3dpdGNoX3Rv
-KzB4ZTgvMHgxNjAKW8KgwqAgNzQuMzU2NjM3XcKgIGFtYmFfY29uc29sZSsweDc4LzB4MTE4ClvC
-oMKgIDc0LjM1NjY1N10gdGFzazprd29ya2VyLzI6McKgwqDCoMKgIHN0YXRlOkkgc3RhY2s6wqDC
-oMKgIDAgcGlkOsKgwqAgNDggCnBwaWQ6wqDCoMKgwqAgMiBmbGFnczoweDAwMDAwMDA4ClvCoMKg
-IDc0LjM1NjY5NV0gV29ya3F1ZXVlOsKgIDB4MCAobW1fcGVyY3B1X3dxKQpbwqDCoCA3NC4zNTY3
-MzhdIENhbGwgdHJhY2U6CgoKUUVNVSB2aXJ0L2FybTY0OgoKW8KgIDE3NC4xNTU3NjBdIHRhc2s6
-cHIvdHR5QU1BMMKgwqDCoMKgwqAgc3RhdGU6UyBzdGFjazrCoMKgwqAgMCBwaWQ6wqDCoCAyNiAK
-cHBpZDrCoMKgwqDCoCAyIGZsYWdzOjB4MDAwMDAwMDgKW8KgIDE3NC4xNTYzMDVdIENhbGwgdHJh
-Y2U6ClvCoCAxNzQuMTU2NTI5XcKgIF9fc3dpdGNoX3RvKzB4ZTgvMHgxNjAKW8KgIDE3NC4xNTcx
-MzFdwqAgMHhmZmZmNWViYmJmZGQ2MmQ4CgoKSW4gdGhlIGxhc3QgY2FzZSBpdCBkb2Vzbid0IGhh
-cHBlbiBhbHdheXMuIEluIHRoZSBvdGhlciBydW5zIEkgZ290IHRoZSAKZm9sbG93aW5nIGxvZyBm
-cm9tIFFFTVUgdmlydC9hcm02NDoKClvCoCAyMDAuNTM3NTc5XSB0YXNrOnByL3R0eUFNQTDCoMKg
-wqDCoMKgIHN0YXRlOlMgc3RhY2s6wqDCoMKgIDAgcGlkOsKgwqAgMjYgCnBwaWQ6wqDCoMKgwqAg
-MiBmbGFnczoweDAwMDAwMDA4ClvCoCAyMDAuNTM4MTIxXSBDYWxsIHRyYWNlOgpbwqAgMjAwLjUz
-ODM0MV3CoCBfX3N3aXRjaF90bysweGU4LzB4MTYwClvCoCAyMDAuNTM4NTgzXcKgIF9fc2NoZWR1
-bGUrMHgyZjQvMHg5ZjAKW8KgIDIwMC41Mzg4MjJdwqAgc2NoZWR1bGUrMHg1NC8weGQwClvCoCAy
-MDAuNTM5MDQ3XcKgIHByaW50a19rdGhyZWFkX2Z1bmMrMHgyZDgvMHgzYmMKW8KgIDIwMC41Mzkz
-MDFdwqAga3RocmVhZCsweDExOC8weDExYwpbwqAgMjAwLjUzOTUyM13CoCByZXRfZnJvbV9mb3Jr
-KzB4MTAvMHgyMAoKCkkgaG9wZSB0aGF0IGF0IGxlYXN0IHRoZSBxZW11IGNhc2Ugd2lsbCBsZXQg
-eW91IHRvIGFuYWx5emUgaXQgYnkgCnlvdXJzZWxmLiBJIHJ1biBteSB0ZXN0IHN5c3RlbSB3aXRo
-IHRoZSBmb2xsb3dpbmcgY29tbWFuZDoKCnFlbXUtc3lzdGVtLWFhcmNoNjQgLWtlcm5lbCB2aXJ0
-L0ltYWdlIC1hcHBlbmQgImNvbnNvbGU9dHR5QU1BMCAKcm9vdD0vZGV2L3ZkYSByb290d2FpdCIg
-LU0gdmlydCAtY3B1IGNvcnRleC1hNTcgLXNtcCAyIC1tIDEwMjQgLWRldmljZSAKdmlydGlvLWJs
-ay1kZXZpY2UsZHJpdmU9dmlydGlvLWJsazAgLWRyaXZlIApmaWxlPXFlbXUtdmlydC1yb290ZnMu
-cmF3LGlkPXZpcnRpby1ibGswLGlmPW5vbmUsZm9ybWF0PXJhdyAtbmV0ZGV2IAp1c2VyLGlkPXVz
-ZXIgLWRldmljZSB2aXJ0aW8tbmV0LWRldmljZSxuZXRkZXY9dXNlciAtZGlzcGxheSBub25lCgoK
-QmVzdCByZWdhcmRzCi0tIApNYXJlayBTenlwcm93c2tpLCBQaEQKU2Ftc3VuZyBSJkQgSW5zdGl0
-dXRlIFBvbGFuZAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+On Tue 2022-05-03 01:13:19, Marek Szyprowski wrote:
+> Hi Petr,
+> =
+
+> On 02.05.2022 15:17, Petr Mladek wrote:
+> > On Mon 2022-05-02 11:19:07, Marek Szyprowski wrote:
+> >> On 30.04.2022 18:00, John Ogness wrote:
+> >>> On 2022-04-29, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+> >>>> The same issue happens if I boot with init=3D/bin/bash
+> >>> Very interesting. Since you are seeing all the output up until you try
+> >>> doing something, I guess receiving UART data is triggering the issue.
+> >> Right, this is how it looks like.
+> >>
+> >>>> I found something really interesting. When lockup happens, I'm still
+> >>>> able to log via ssh and trigger any magic sysrq action via
+> >>>> /proc/sysrq-trigger.
+> >>> If you boot the system and directly login via ssh (without sending any
+> >>> data via serial), can you trigger printk output on the UART? For
+> >>> example, with:
+> >>>
+> >>>       echo hello > /dev/kmsg
+> >>>
+> >>> (You might need to increase your loglevel to see it.)
+> >> Data written to /dev/kmsg and all kernel logs were always displayed
+> >> correctly. Also data written directly to /dev/ttyAML0 is displayed
+> >> properly on the console. The latter doesn't however trigger the input
+> >> related activity.
+> >>
+> >> It looks that the data read from the uart is delivered only if other
+> >> activity happens on the kernel console. If I type 'reboot' and press
+> >> enter, nothing happens immediately. If I type 'date >/dev/ttyAML0' via
+> >> ssh then, I only see the date printed on the console. However if I type
+> >> 'date >/dev/kmsg', the the date is printed and reboot happens.
+> > This is really interesting.
+> >
+> > 'date >/dev/kmsg' should be handled like a normal printk().
+> > It should get pushed to the console using printk kthread,
+> > that calls call_console_driver() that calls con->write()
+> > callback. In our case, it should be meson_serial_console_write().
+> >
+> > I am not sure if meson_serial_console_write() is used also
+> > when writing via /dev/ttyAML0.
+> >
+> >>>> It turned out that the UART console is somehow blocked, but it
+> >>>> receives and buffers all the input. For example after issuing "echo
+> >>>>    >/proc/sysrq-trigger" from the ssh console, the UART console has =
+been
+> >>>> updated and I see the magic sysrq banner and then all the commands I
+> >>>> blindly typed in the UART console! However this doesn't unblock the
+> >>>> console.
+> >>> sysrq falls back to direct printing. This would imply that the kthread
+> >>> printer is somehow unable to print.
+> >>>
+> >>>> Here is the output of 't' magic sys request:
+> >>>>
+> >>>> https://protect2.fireeye.com/v1/url?k=3D8649f24d-e73258c4-86487902-7=
+4fe48600034-a2ca6bb18361467d&q=3D1&e=3D1bc4226f-a422-42b9-95e8-128845b8609f=
+&u=3Dhttps%3A%2F%2Fpastebin.com%2FfjbRuy4f
+> >>> It looks like the call trace for the printing kthread (pr/ttyAML0) is
+> >>> corrupt.
+> >> Right, good catch. For comparison, here is a 't' sysrq result from the
+> >> 'working' serial console (next-20220429), which happens usually 1 of 4
+> >> boots:
+> >>
+> >> https://protect2.fireeye.com/v1/url?k=3D610106f1-008a13b6-61008dbe-000=
+babff99aa-11083c39c44861df&q=3D1&e=3D2eafad9e-c5d2-4696-9d78-f3b5885256dc&u=
+=3Dhttps%3A%2F%2Fpastebin.com%2Fmp8zGFbW
+> > Strange. The backtrace is weird here too:
+> >
+> > [   50.514509] task:pr/ttyAML0      state:R  running task     stack:   =
+ 0 pid:   65 ppid:     2 flags:0x00000008
+> > [   50.514540] Call trace:
+> > [   50.514548]  __switch_to+0xe8/0x160
+> > [   50.514561]  meson_serial_console+0x78/0x118
+> >
+> > There should be kthread() and printk_kthread_func() on the stack.
+> >
+> > Hmm,  meson_serial_console+0x78/0x118 is weird on its own.
+> > meson_serial_console is the name of the structure. I would
+> > expect a name of the .write callback, like
+> > meson_serial_console_write()
+> =
+
+> Well, this sounds a bit like a stack corruption. For the reference, I've =
+
+> checked what magic sysrq 't' reports for my other test boards:
+> =
+
+> RaspberryPi4:
+> =
+
+> [=A0 166.702431] task:pr/ttyS0=A0=A0=A0=A0=A0=A0=A0 state:R stack:=A0=A0=
+=A0 0 pid:=A0=A0 64 =
+
+> ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0 166.711069] Call trace:
+> [=A0 166.713647]=A0 __switch_to+0xe8/0x160
+> [=A0 166.717216]=A0 __schedule+0x2f4/0x9f0
+> [=A0 166.720862]=A0 log_wait+0x0/0x50
+> [=A0 166.724081] task:vfio-irqfd-clea state:I stack:=A0=A0=A0 0 pid:=A0=
+=A0 65 =
+
+> ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0 166.732698] Call trace:
+> =
+
+> =
+
+> ARM Juno R1:
+> =
+
+> [=A0=A0 74.356562] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:R=A0 running task=
+ stack:=A0=A0=A0 0 =
+
+> pid:=A0=A0 47 ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0=A0 74.356605] Call trace:
+> [=A0=A0 74.356617]=A0 __switch_to+0xe8/0x160
+> [=A0=A0 74.356637]=A0 amba_console+0x78/0x118
+> [=A0=A0 74.356657] task:kworker/2:1=A0=A0=A0=A0 state:I stack:=A0=A0=A0 0=
+ pid:=A0=A0 48 =
+
+> ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0=A0 74.356695] Workqueue:=A0 0x0 (mm_percpu_wq)
+> [=A0=A0 74.356738] Call trace:
+> =
+
+> =
+
+> QEMU virt/arm64:
+> =
+
+> [=A0 174.155760] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:S stack:=A0=A0=A0 0=
+ pid:=A0=A0 26 =
+
+> ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0 174.156305] Call trace:
+> [=A0 174.156529]=A0 __switch_to+0xe8/0x160
+> [=A0 174.157131]=A0 0xffff5ebbbfdd62d8
+
+You mentioned in the other mail that the other boards work as
+expected. I mean that console gets stuck only on the meson board.
+Is it true, please?
+
+The stack looks really weird. But another weird thing is that
+even the meson board is able to show the messages, for example,
+using echo hello >/dev/kmsg. It suggests that the kthreads
+somehow work.
+
+There is also a possibility that this code path is optimized
+some special way and the unwinder has troubles to show
+the stack correctly.
+
+
+> In the last case it doesn't happen always. In the other runs I got the =
+
+> following log from QEMU virt/arm64:
+> =
+
+> [=A0 200.537579] task:pr/ttyAMA0=A0=A0=A0=A0=A0 state:S stack:=A0=A0=A0 0=
+ pid:=A0=A0 26 =
+
+> ppid:=A0=A0=A0=A0 2 flags:0x00000008
+> [=A0 200.538121] Call trace:
+> [=A0 200.538341]=A0 __switch_to+0xe8/0x160
+> [=A0 200.538583]=A0 __schedule+0x2f4/0x9f0
+> [=A0 200.538822]=A0 schedule+0x54/0xd0
+> [=A0 200.539047]=A0 printk_kthread_func+0x2d8/0x3bc
+> [=A0 200.539301]=A0 kthread+0x118/0x11c
+> [=A0 200.539523]=A0 ret_from_fork+0x10/0x20
+
+This is what I would expect when the kthread is in an interruptible
+sleep waiting for new strings to handle.
+
+BTW: This is what I see on my x86_64 test system:
+
+[61892.932242] task:pr/tty0         state:S stack:    0 pid:   14 ppid:    =
+ 2 flags:0x00004000
+[61892.932250] Call Trace:
+[61892.932253]  <TASK>
+[61892.932263]  __schedule+0x376/0xbb0
+[61892.932284]  schedule+0x44/0xb0
+[61892.932290]  printk_kthread_func+0x18f/0x370
+[61892.932303]  ? schedstat_stop+0x10/0x10
+[61892.932316]  ? console_start+0x30/0x30
+[61892.932322]  kthread+0xf2/0x120
+[61892.932327]  ? kthread_complete_and_exit+0x20/0x20
+[61892.932338]  ret_from_fork+0x1f/0x30
+[61892.932370]  </TASK>
+[61892.932373] task:pr/ttyS0        state:R  running task     stack:    0 p=
+id:   15 ppid:     2 flags:0x00004000
+[61892.932391] Call Trace:
+[61892.932398]  <TASK>
+[61892.932427]  ? printk_kthread_func+0x15b/0x370
+[61892.932436]  ? schedstat_stop+0x10/0x10
+[61892.932449]  ? console_start+0x30/0x30
+[61892.932455]  ? kthread+0xf2/0x120
+[61892.932460]  ? kthread_complete_and_exit+0x20/0x20
+[61892.932471]  ? ret_from_fork+0x1f/0x30
+[61892.932502]  </TASK>
+
+
+pr/tty0 is in the interruptible sleep and the stack looks reasonable.
+
+pr/ttyS0 is in runnable state and the stack is weird. The '?' means
+that this address was found on the stack, it belongs to some
+function but the unwinder is not able to assign it to the current
+call path by going back via the return addresses stored on the stack.
+
+
+> I hope that at least the qemu case will let you to analyze it by =
+
+> yourself. I run my test system with the following command:
+> =
+
+> qemu-system-aarch64 -kernel virt/Image -append "console=3DttyAMA0 =
+
+> root=3D/dev/vda rootwait" -M virt -cpu cortex-a57 -smp 2 -m 1024 -device =
+
+> virtio-blk-device,drive=3Dvirtio-blk0 -drive =
+
+> file=3Dqemu-virt-rootfs.raw,id=3Dvirtio-blk0,if=3Dnone,format=3Draw -netd=
+ev =
+
+> user,id=3Duser -device virtio-net-device,netdev=3Duser -display none
+
+Thanks a lot for all the information. It is really helpful.
+
+Best Regards,
+Petr
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
