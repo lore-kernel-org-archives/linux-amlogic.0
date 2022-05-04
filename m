@@ -4,63 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B755C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 May 2022 20:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA95C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 May 2022 21:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UBdA3ELHkaPWxW9jDfGjjI8LzBaNFOWozXZ2fucRFSw=; b=DV2qCoKCFgUn+E8xpM7anU0Vv3
-	t2+CfraH8Hr3Fbv+1X2aFfWRgZ8YSZTl7GnzYdcvHmy6z8TH+DEzGmi0WESn4DhJkhNrEzih88tvw
-	FPu7e4BQYPpsFL/XBMob7Ts1PBt3BUDth/2XI5XjpB5VoOkilwUYcYaT+94Lh8AuSFxe1WbKHR/98
-	qv92XmWDIzgSXcLIy4HhHk03grjnnB2hxMKJ5GAl+13/OCTkEnWAXm9tXvKbbBohlSVQVgl4v7x7z
-	km1F2n1xu90ajRAGZ0MNlT/Bfp0LkXsFwDS8md/+PwZTIYmLdPQYVH7gWVE3x3hMZ4EmjcLdzNaoc
-	+yBbNsIQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2BkTNhmxOl+Sr62G9YYVd8MUCzL4vHPjy9jsFfl+ZJ4=; b=IdwjfOxfacxGQS
+	wlPbOTUdGa6rcsufzQE0IuOoA5PmX85QORaxXwxWCcnciM4p5Uxhd2ePdYg22f/FjM4uxlnNJKhHZ
+	vGMRo1oTmkvJfiZ1Uu+cUniZ1wJ7wUQwzXk353bpjmVQzcJ3O64JIZmqz+5tYTRWGKYUDVh+C8SMB
+	b19kmew5DE6JcsivgAB9AeVC0hDqe5IN18OLJHsnZ2hHqVG+5bABNzcexXy8XgEW1wz4c+vC1T5D0
+	ZDWdr+tCvXbQwu48rPv5F6Vb3gPZu4fHoCCFLSjvbqI9LhsDWXm11qAD1Yv/wY/q+mbDlr69rIv9A
+	4jSP0qwgcVDk3+I/Od/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmLlp-00Cc6V-To; Wed, 04 May 2022 20:38:49 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nmMHF-00Cjm6-Ic; Wed, 04 May 2022 21:11:17 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmLlh-00Cc4k-M6; Wed, 04 May 2022 20:38:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 51071B82936;
- Wed,  4 May 2022 20:38:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C861C385A5;
- Wed,  4 May 2022 20:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651696719;
- bh=bAFjKvIBpiguiHw0d8TsEXxAy/N7r3y3izCenwfFfsg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=HQcIy0Cpc0WIWw79MFGyRtF2UFkbh6oPmE77mgArpyx9hDC+t3r7H1i9fK6FyVpZj
- jp3l7DzRcUnAc4pGRJiQxGKY/cc99nO4pW/I4lYmJ9C9ZR7RNzuabNQt5TX2f/BFYZ
- 0Mz/GurO2PecTtBVP9resMh11+pws7dsA52nym3h0frQzDiFFABOqgNL+wYn1hXR/H
- IUWLzs3WMQLonKw/AuomuGs/zCuOf9Tv12STZNCOfL0VUvY/O6r2x55OacmNWwgIYP
- 4PMuMUPCZmlJP/nMzeRbJ73+aPy8dhC6WV8Z3i+VnVZINEofDj6WoRiYzAAMs4pufj
- LG2DBehl+3iGQ==
-Date: Wed, 4 May 2022 22:38:35 +0200
-From: Wolfram Sang <wsa@kernel.org>
-To: Yang Yingliang <yangyingliang@huawei.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- narmstrong@baylibre.com, tanure@linux.com
-Subject: Re: [PATCH -next] i2c: meson: fix missing clk_disable_unprepare() on
- error in meson_i2c_probe()
-Message-ID: <YnLkS+/oT8qeL75s@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
- Yang Yingliang <yangyingliang@huawei.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- narmstrong@baylibre.com, tanure@linux.com
-References: <20220421090042.2278081-1-yangyingliang@huawei.com>
+ id 1nmMHB-00Cjit-K3
+ for linux-amlogic@lists.infradead.org; Wed, 04 May 2022 21:11:15 +0000
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1651698671;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=CKPWYgbYXcfIsG95x1ua8STRPsIFuKN1LA1dfgcwhhA=;
+ b=1MWan81qhvKGVvbdBCrUwXV2WiAmiNVsoUUJGH95QqQOMCpw0T4wgYf4A+g2olyc52bhX5
+ iPkjnQLkzaMTi6VwTaowiIS8cbMF7deB2YVuXC6CUU1VPuQ0YyXE1YyRKgqSVh1BMx6NGY
+ PH7E3XlFBlJH0+YsLdSpZOxcxPkVBmlBZUuac+FRKCc1CbnblGRLezF+pnd2zkQkPYobde
+ NaJitdWbNoqLmjxim0r4NRHMYq9KhbymOq1JeraQhNiJCk1xWoFypAIhsCW0HAdWfFsUFL
+ 3/ne/DduUXaQcaFFNpanLge4E7y8ZnNcJfzhpa8/MiaFMZpTtRXJftD4L7GM8w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1651698671;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=CKPWYgbYXcfIsG95x1ua8STRPsIFuKN1LA1dfgcwhhA=;
+ b=odQlOZT03eWDUW4JUq55Nq9AyO8/0Gcb6em6qQlxjX+3nYEkdyYhLk80Lhp1/T42KeqlyS
+ GYGy6dmQmHzE4bBQ==
+To: Marek Szyprowski <m.szyprowski@samsung.com>, Petr Mladek <pmladek@suse.com>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, Steven Rostedt
+ <rostedt@goodmis.org>, Thomas
+ Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
+ per-console locking
+In-Reply-To: <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
+References: <Ymfgis0EAw0Oxoa5@alley> <Ymfwk+X0CHq6ex3s@alley>
+ <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
+ <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+ <Ymjy3rHRenba7r7R@alley>
+ <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
+ <87fslyv6y3.fsf@jogness.linutronix.de>
+ <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
+ <87k0b6blz2.fsf@jogness.linutronix.de>
+ <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
+ <Ym/Z7PYPqvWPEjuL@alley>
+ <45849b63-d7a8-5cc3-26ad-256a28d09991@samsung.com>
+Date: Wed, 04 May 2022 23:17:10 +0206
+Message-ID: <87pmktm2a9.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20220421090042.2278081-1-yangyingliang@huawei.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220504_133841_909730_6AA439FE 
-X-CRM114-Status: GOOD (  10.80  )
+X-CRM114-CacheID: sfid-20220504_141113_843933_9E2763A6 
+X-CRM114-Status: UNSURE (   4.86  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,66 +85,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0474465374345968655=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============0474465374345968655==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+8ScGLI3M/D7Ttui"
-Content-Disposition: inline
-
-
---+8ScGLI3M/D7Ttui
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Apr 21, 2022 at 05:00:42PM +0800, Yang Yingliang wrote:
-> Fix the missing clk_disable_unprepare() before return
-> from meson_i2c_probe() in the error handling case.
->=20
-> Fixes: a57f9b4dd6f5 ("i2c: meson: Use 50% duty cycle for I2C clock")
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
-
-Applied to for-next, thanks!
-
-
---+8ScGLI3M/D7Ttui
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmJy5EsACgkQFA3kzBSg
-Kbb9JA/9Fff1+jTo+deKplfTktFDn0s8+w4imP4ghlpLhCfwpa0P0R4GQzJD7Nch
-Z66l9/oYE3Xx5OLU3NeRPg6SEoLPvlxuCHj9EoUX2Pu8v9e26TTUir8+dDOrfBuR
-Q3Rs9jzVyKs/MXV85o6lS0n2oDd6AZZPWpOFR1Zh6HYMZT/T3+l2Xs6bwS0G9oQn
-ONS8rABeZeUV4cziYCo0mDaFdafJTGBq2SAH7m8OVuPqBbSNM2oDZ3yZCRL2Hd/x
-/t7YYW6KHh3oW5UHS8WyJEAzsdh11YSVl3VORTYOLG1Efd+AWZwigiCHI3zmrQV2
-irm0mFxkimkPcKlTjiZD471ATBHhv1FQgPKXMHomMWA/ui1bhO4BuAk0bPf5n5u+
-m6QDvip+SR1v1bDnRWC8yWzDhORKhveCVAU3WOUhM67ycIzbeX6yaIgfvDneupTc
-cR2PCChAlmnVvBev13FAHpwTah3+yTTzx4pbNJJBloOCPoQC8FFbcOfRKckSKJZx
-zmfJeo9f4Mm12mMbcaUK3WmTg9Lt4AfNnA0uluOt2bl0T7SHh+DTqp/J+20Kb91Z
-supznEKa92FFzmL2sHu8ETGHLaSgMHk30Ua+dIVkkqOgVAKS5jMQNIbAnIDQk7QF
-lkdW6ggvS0Rn9t1TPmaWhN2VjnD//M2ZPaSrWFMYOvRR8HUvQAA=
-=WE8/
------END PGP SIGNATURE-----
-
---+8ScGLI3M/D7Ttui--
-
-
---===============0474465374345968655==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0474465374345968655==--
-
+T24gMjAyMi0wNS0wMywgTWFyZWsgU3p5cHJvd3NraSA8bS5zenlwcm93c2tpQHNhbXN1bmcuY29t
+PiB3cm90ZToKPiBRRU1VIHZpcnQvYXJtNjQ6Cj4KPiBbwqAgMTc0LjE1NTc2MF0gdGFzazpwci90
+dHlBTUEwwqDCoMKgwqDCoCBzdGF0ZTpTIHN0YWNrOsKgwqDCoCAwIHBpZDrCoMKgIDI2IAo+IHBw
+aWQ6wqDCoMKgwqAgMiBmbGFnczoweDAwMDAwMDA4Cj4gW8KgIDE3NC4xNTYzMDVdIENhbGwgdHJh
+Y2U6Cj4gW8KgIDE3NC4xNTY1MjldwqAgX19zd2l0Y2hfdG8rMHhlOC8weDE2MAo+IFvCoCAxNzQu
+MTU3MTMxXcKgIDB4ZmZmZjVlYmJiZmRkNjJkOAoKSSBjYW4gcmVwcm9kdWNlIHRoZSBhcHBhcmVu
+dCBzdGFjayBjb3JydXB0aW9uIHdpdGggcWVtdToKClsgICAgNS41NDUyNjhdIHRhc2s6cHIvdHR5
+QU1BMCAgICAgIHN0YXRlOlMgc3RhY2s6ICAgIDAgcGlkOiAgIDI2IHBwaWQ6ICAgICAyIGZsYWdz
+OjB4MDAwMDAwMDgKWyAgICA1LjU0NTUyMF0gQ2FsbCB0cmFjZToKWyAgICA1LjU0NTYyMF0gIF9f
+c3dpdGNoX3RvKzB4MTA0LzB4MTYwClsgICAgNS41NDU3OTZdICBfX3NjaGVkdWxlKzB4MmY0LzB4
+OWYwClsgICAgNS41NDYxMjJdICBzY2hlZHVsZSsweDU0LzB4ZDAKWyAgICA1LjU0NjIwNl0gIDB4
+MAoKV2hlbiBpdCBoYXBwZW5zLCB0aGUgcHJpbnRrLWt0aHJlYWQgaXMgdGhlIG9ubHkgb25lIHdp
+dGggdGhlIGNvcnJ1cHRlZApzdGFjay4gSXQgc2VlbXMgSSBhbSBkb2luZyBzb21ldGhpbmcgd3Jv
+bmcgd2hlbiBjcmVhdGluZyB0aGUga3RocmVhZD8gSQp3aWxsIGludmVzdGlnYXRlIHRoaXMuCgpU
+aGFua3MgTWFyZWsgZm9yIGhlbHBpbmcgdXMgdG8gbmFycm93IHRoaXMgZG93bi4KCkpvaG4KCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
