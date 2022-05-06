@@ -4,56 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16059C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 May 2022 08:23:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A630C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 May 2022 09:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JJ8ZIjq/d8sejc2p2s2NvXhsaBBe9LLxLa89V38bIkA=; b=3SfLMzJ3Hq4Kiy
-	Ji7hFbjeIPvfzw6PyX6+wQBDq233HoPr2iF4mxn7YvKmZZ9e2suaWviQ1k+9+sSGs+OIyHI+sBZwk
-	pffbDwBa11kChmxL57oRSXGRxvD4ZV65FQE0S2SlTGHkRTh/s2X3XNzbV4zl2+y624bmLw9yMOkVN
-	iDQiHdcOiOudVUUCK9561V5ZWOYG/tfS2L5YIVqcRJXm3/7+IZ4QOG7J7rnlEWVLJIBVUEZX7v+C7
-	ZpY9SRFjGOw1a8Yx1vOd2Z14IL25z78bWuyy5gw68bSEGRoJ1ynPqoZQymgJMPBu2DmW9oCRT+V/M
-	5osYHbxUYmFgcU6v/9gQ==;
+	List-Owner; bh=oWdt3SPB4ly/pMouLF26wQ4P/8sVDStsQ/xZ+Gzh/rU=; b=RqWbxG5f2o+GAe
+	CYnVuFziEjCPoc37fZULwcoS/XgMetf62aQSw6SJl1U52layM4pCWsZHFGF2K+a2KkuaqSs78C0gv
+	rUSyy7abZNhBJIfnAA1HS8t9ijszJo0RRLOtjdjN8JJBkxReDNOKQicuURfYjKOumqbB4LZuh0XUH
+	HhIznSQSXsMBJLB09auzEO85GgwrfvGmd3HEZbLdfkzh4pRZZKG5Tk2szSVbuNdpalG9nmv4tYd1H
+	eugcd5pCpu53INLjNC/fy/3wIBKlWMkDGnNAG3AXzfeXS39tp4qT5FlxAN3LfhCJT6XhQCo5rjsTX
+	hcOJkwAIOL1k/Aj0P0KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmtF3-0023Nj-VX; Fri, 06 May 2022 08:23:14 +0000
-Received: from smtp-out2.suse.de ([195.135.220.29])
+	id 1nmu8u-002JQl-1Y; Fri, 06 May 2022 09:20:56 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmt8O-0020rL-Be
- for linux-amlogic@lists.infradead.org; Fri, 06 May 2022 08:16:21 +0000
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id 96AD01F910;
- Fri,  6 May 2022 08:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1651824974; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ id 1nmu8q-002JO7-0b
+ for linux-amlogic@lists.infradead.org; Fri, 06 May 2022 09:20:53 +0000
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1651828848;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=vMtR9RH4hTYIsMANbyKvgkBZPC808rHyRFlpC3fYLRo=;
- b=BDN/cKlwvO99GE7qhWLk8USYXX45YH1F8Sy30e3vxmtG4E3B6lAp9+pe0VDCuA3jQJXAq8
- 09OWYYPDLZtCK3iTfGb2Fr9k6sgJbBQOKNa4REs7Bb455QeO8QWOXXKAOAHBnojDeb5esX
- P70Rn/O1tBYx6sw0icRrV5yH/BLX1Wg=
-Received: from suse.cz (unknown [10.100.201.202])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 3A0D22C142;
- Fri,  6 May 2022 08:16:13 +0000 (UTC)
-Date: Fri, 6 May 2022 10:16:13 +0200
-From: Petr Mladek <pmladek@suse.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org
+ bh=ByGMit4bInofkI4sp0URUqarfW2TZeUZlukIgdPUvmI=;
+ b=2xLeSLrZtbphqBEHpyBD6Jp8lUHc9pa8DxvTNRq18TNLO7sGo+vzptVDKo/gLFsakfbJZD
+ kI7CaEPdDu02nj1WPhve0bW0S8a6PKnotGP2Kcy2AENcJStC1kz/1L433P0J0orBXR+OEK
+ fs9UBw4pUxHF6X/xq/AJ7nUw9QU1l6wQZGZRN3DT8B1QCWL2DT3YoQjfimAh1KJWhKC3o3
+ 2qamUtne30lYqw+s+3bC+URgqNjjiIP2L2otEJ6eh38BSCUxMkqM75uyhrhMhJkm0BIXlc
+ gM4Yq0em3GnaTHi3ICqQTirV6ibRirsY/Pc5bV+N5FURqr751Jk96B+ZWdQdhg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1651828848;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ByGMit4bInofkI4sp0URUqarfW2TZeUZlukIgdPUvmI=;
+ b=RBSAE2VBBVWieZu/LaOmvSElA6Yx5ZMtPFrmrn3/HspTF7dIczN+W7SFimeJZj9XZ3nhSY
+ 3NxH8BEdpamHiwBQ==
+To: Marek Szyprowski <m.szyprowski@samsung.com>, Petr Mladek <pmladek@suse.com>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, Steven Rostedt
+ <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>,
+ linux-kernel@vger.kernel.org, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
  per-console locking
-Message-ID: <YnTZTQv/oGwMiXud@alley>
-References: <87fslyv6y3.fsf@jogness.linutronix.de>
+In-Reply-To: <b7c81f02-039e-e877-d7c3-6834728d2117@samsung.com>
+References: <Ymfgis0EAw0Oxoa5@alley> <Ymfwk+X0CHq6ex3s@alley>
+ <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
+ <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+ <Ymjy3rHRenba7r7R@alley>
+ <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
+ <87fslyv6y3.fsf@jogness.linutronix.de>
  <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
  <87k0b6blz2.fsf@jogness.linutronix.de>
  <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
@@ -63,12 +68,13 @@ References: <87fslyv6y3.fsf@jogness.linutronix.de>
  <87a6bwapij.fsf@jogness.linutronix.de>
  <87zgjvd2zb.fsf@jogness.linutronix.de>
  <b7c81f02-039e-e877-d7c3-6834728d2117@samsung.com>
+Date: Fri, 06 May 2022 11:26:48 +0206
+Message-ID: <87pmkrkoen.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b7c81f02-039e-e877-d7c3-6834728d2117@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220506_011620_606220_CAFE0EE7 
-X-CRM114-Status: GOOD (  17.20  )
+X-CRM114-CacheID: sfid-20220506_022052_246778_B859A75C 
+X-CRM114-Status: UNSURE (   4.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,37 +91,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri 2022-05-06 08:43:02, Marek Szyprowski wrote:
-> Hi John,
-> 
-> On 06.05.2022 00:33, John Ogness wrote:
-> > On 2022-05-05, John Ogness <john.ogness@linutronix.de> wrote:
-> >> I will go through and check if all access to AML_UART_CONTROL is
-> >> protected by port->lock.
-> > The startup() callback of the uart_ops is not called with the port
-> > locked. I'm having difficulties identifying if the startup() callback
-> > can occur after the console was already registered via meson_uart_init()
-> > and could be actively printing, but I see other serial drivers are
-> > protecting their registers in the startup() callback with the
-> > port->lock.
-
-I guess that it is used by the early console before the racy
-code is called.
-
-> > Could you try booting the meson hardware with the following change? (And
-> > removing any previous debug changes I posted?)
-> 
+On 2022-05-06, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>> Could you try booting the meson hardware with the following change? (And
+>> removing any previous debug changes I posted?)
+>
 > Bingo! It looks that the startup() is called when getty initializes 
 > console. This fixed the issues observed on the Amlogic Meson based boards.
-> 
+>
 > Feel free to add:
-> 
+>
 > Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-Uff, it is a huge relief that it has got fixed.
+Thanks Marek. I will post an official patch on the correct people/lists.
 
-Best Regards,
-Petr
+John
 
 _______________________________________________
 linux-amlogic mailing list
