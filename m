@@ -4,81 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F4BC433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 May 2022 23:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AC4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 May 2022 10:36:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=wVUM17HAHoOv+rfAW+jKJbHCfVfk1AX1huyAaZ1n/Zc=; b=2mZLBQ7xVTLrPT
-	+16M+Mh9UB8cOceSS1MHBtpdF3ZepU561nL2mq7jQlqUbyKvp4tx2rq9E9GNmjPTeRuLpETlOsmha
-	JI1sqr7hQeuauN6d86DdOeXLeTKiuiaj1r9iwAbCnzYTVt7lGNB1OVXVJKcWD9sVj4f7zmpClguYd
-	BUEEBk6G4fQZvZsQCxl0mhj+DiZNWyU19InHmexg8a0MWf6UEVrTqTWU5RQJeYwinp84dmjpXlRsh
-	ephKx91+IOXh9dBYLVH/JvTS16YiH1klDYFKQQBjivvR21qKn698dZFOTrJYMuBsy9mfJwHzJX73e
-	KwbOLP/vHDZSDadnYf7g==;
+	List-Owner; bh=jQ5dAVpVVoo6qEFmcSrnGK8tPaoB+v77SUlg/o3OSLU=; b=OcoqKsKDyd35QI
+	+52DR+FcaL3liYzlnZOrgxzTErQ309G/o3lyM1TJpkF3arxVqDpIc8xCgrs9nbUnHA5BwpF9ExK8n
+	Oh5uRASp/jmQvWlnQnQ+GM5D1FKQop7Eny0BnM89YCx8LYci1rUHdFcm+xYmwoO3HH9WieDCzJV08
+	O66tBgSxBfKv3VwtWEyk1+Dbs0NeY6c/iAumdTEsbTwuUgVLJ0OWyVNFq59yEFBX97RBI/t38ZK44
+	ushHIC9/6/0VbR7KZwSrDzx6Zak6B+/NidOSd2WZIIq2NNsI2tSYVQBiF3fVb/Mnh2mEvaTzBmIrt
+	A5zKf+uNZ/BB3Y5vp0Dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nn7O5-005Q5L-3D; Fri, 06 May 2022 23:29:29 +0000
-Received: from mail-pf1-x42a.google.com ([2607:f8b0:4864:20::42a])
+	id 1nneGa-009qh0-Ef; Sun, 08 May 2022 10:35:56 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nn7Nu-005Pxs-5d
- for linux-amlogic@lists.infradead.org; Fri, 06 May 2022 23:29:19 +0000
-Received: by mail-pf1-x42a.google.com with SMTP id i24so7442793pfa.7
- for <linux-amlogic@lists.infradead.org>; Fri, 06 May 2022 16:29:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nigauri-org.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ZryJIATSG1rhke0rJfXTfUFsBQ86+ZTOTmR7kVabtXI=;
- b=N8dL8GLe87MYs6OgH7bRT1eZgTqQyzOBKIjqgJ//OQYPu/gPDbsr6lhxB4RSRjjuOE
- sneUljFGtZHU1OSXJF80lMprGDCqMmp1suZ1v6xEU3ry/RbWrxDeBZCI/D64v7Yjn94M
- y7mVGqwunG/Czz+9/0m0HElq5op5dJpzi3ShdWh55jfqHkqbtXtX8EsPxP6YtkS2kYg6
- 8LZXeT0ihJ7ekaUgOyFExvPQ7ZcbbysyDw9EtMMfcxYdOI5f2W2mFEO9AJ3MNgGZvCSm
- ZEBHydh1grVmTOmU5ZCClEbpsVFRTrS3KqWloySM09EWCZkcK2VSHfb4pY/33QylqviM
- pABA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ZryJIATSG1rhke0rJfXTfUFsBQ86+ZTOTmR7kVabtXI=;
- b=f2WblPVTcKVkdIDSGjHvR5GLO9sP/D/MwwwE03TqPndeIRBnc5QlIM5lu1qiSycWUS
- oDaMDKbLn26qkylmFGlBXls8QG2YL/N3tiXU4N7hwbo8sD7ZQbOs6sbtr8s6LuaaPVKK
- fHb8Usv0e2XKbga2qSYpRRRB7uSDCOiwq23KLbURD4/n1EnFsvMH66DD6lXLz8FhPZ2w
- lEpzBiE0Q3RportK16GLHJv4o1nr7H57TpduWNTi2uzeQP0idVJ00NvwpgWxgT4FveJt
- edkvf1jh+xyU/grs7d6EIgTiJMtnwO5BQo3ym8qbf0smsZWFVna2CIN0QHIMwwI4CLqD
- H8/g==
-X-Gm-Message-State: AOAM530Ce3cC9qfNQkAZzhiDictd6r1mcmGHHm7MzpdGrXO3ugw/fAPW
- cTjjvvaCPSLd9cQwA3MDLUAc
-X-Google-Smtp-Source: ABdhPJwDqQtSYBlWcHAu64fZxver1LDggAI7mPO/6wt4Kp2hobdi2w57JzQzPqGrjGjah4egCMW73w==
-X-Received: by 2002:a63:1d26:0:b0:3c1:eb3f:9daf with SMTP id
- d38-20020a631d26000000b003c1eb3f9dafmr4590923pgd.284.1651879756163; 
- Fri, 06 May 2022 16:29:16 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
- by smtp.gmail.com with ESMTPSA id
- t9-20020a170902a5c900b0015e8d4eb1e3sm2333441plq.45.2022.05.06.16.29.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 May 2022 16:29:15 -0700 (PDT)
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-X-Google-Original-From: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To: Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Ben Dooks <ben.dooks@codethink.co.uk>
-Cc: linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ id 1nneGX-009qew-2i; Sun, 08 May 2022 10:35:54 +0000
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1652006148;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Wg5rgmNfLBMFs6+g076Tc69lJyydQy68rcQ9tdaUcOE=;
+ b=d8FMbrH+ZnIzNn38VNXgyx0rlmVihz2sgmBykxM1ijuFHr/encYlNAO/FYu+00jN5IaBPf
+ nuT70471orDPF3hqmVgafDF+6S44F0DBmgHNcDDXybOzpk2dytgoLzeWg35VQJW5rLBx+2
+ CO2hxm90hqJoqW+/c+6edL583AnVr+IvIHWQl7KMaT+LqnoP5+WhaqKm/i2FZMcKyqtQON
+ 2lu8+YOHSNxdzeYuGUZ+9xA9ZPKMGN9VYjrNAhLH9k9izTmalcjST1YecYH4ZRm3Vc9+47
+ wCZrxf+vm13kfAZMwgZoV/uSs3Lp8leLOcTpXlMrXKVYhTN2d9FgXEY0t6sXpA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1652006148;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Wg5rgmNfLBMFs6+g076Tc69lJyydQy68rcQ9tdaUcOE=;
+ b=jbctOsS1Qy4kMsGrmyICmp7zgkryPYX6MCehq3ekzyo01N9EyO256vJmZBPTyf8dl2IGuw
+ 1Usb4/w4051eRfBg==
+To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
  Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Petr Mladek <pmladek@suse.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Steven Rostedt <rostedt@goodmis.org>, linux-kernel@vger.kernel.org,
+ Jiri Slaby <jirislaby@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] rtc: rtc-meson: Fix email address in MODULE_AUTHOR
-Date: Sat,  7 May 2022 08:28:50 +0900
-Message-Id: <20220506232850.220582-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.36.0
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v1] serial: meson: acquire port->lock in startup()
+Date: Sun,  8 May 2022 12:41:47 +0206
+Message-Id: <20220508103547.626355-1-john.ogness@linutronix.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220506_162918_444617_00AC08F5 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20220508_033553_355673_0DAFC2BE 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,31 +78,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+The uart_ops startup() callback is called without interrupts
+disabled and without port->lock locked, relatively late during the
+boot process (from the call path of console_on_rootfs()). If the
+device is a console, it was already previously registered and could
+be actively printing messages.
 
-Ben Dooks's email address is <ben.dooks@codethink.co.uk>.
-Fix Ben Dooks's email address in MODULE_AUTHOR.
+Since the startup() callback is reading/writing registers used by
+the console write() callback (AML_UART_CONTROL), its access must
+be synchronized using the port->lock. Currently it is not.
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+The startup() callback is the only function that explicitly enables
+interrupts. Without the synchronization, it is possible that
+interrupts become accidentally permanently disabled.
+
+CPU0                           CPU1
+meson_serial_console_write     meson_uart_startup
+--------------------------     ------------------
+spin_lock(port->lock)
+val = readl(AML_UART_CONTROL)
+uart_console_write()
+                               writel(INT_EN, AML_UART_CONTROL)
+writel(val, AML_UART_CONTROL)
+spin_unlock(port->lock)
+
+Add port->lock synchronization to meson_uart_startup() to avoid
+racing with meson_serial_console_write().
+
+Also add detailed comments to meson_uart_reset() explaining why it
+is *not* using port->lock synchronization.
+
+Link: https://lore.kernel.org/lkml/2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: John Ogness <john.ogness@linutronix.de>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 ---
- drivers/rtc/rtc-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/tty/serial/meson_uart.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-index 44bdc8b4a90d6..db1d626edca5f 100644
---- a/drivers/rtc/rtc-meson.c
-+++ b/drivers/rtc/rtc-meson.c
-@@ -399,7 +399,7 @@ static struct platform_driver meson_rtc_driver = {
- module_platform_driver(meson_rtc_driver);
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 2bf1c57e0981..39021dac09cc 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -253,6 +253,14 @@ static const char *meson_uart_type(struct uart_port *port)
+ 	return (port->type == PORT_MESON) ? "meson_uart" : NULL;
+ }
  
- MODULE_DESCRIPTION("Amlogic Meson RTC Driver");
--MODULE_AUTHOR("Ben Dooks <ben.doosk@codethink.co.uk>");
-+MODULE_AUTHOR("Ben Dooks <ben.dooks@codethink.co.uk>");
- MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
- MODULE_LICENSE("GPL v2");
- MODULE_ALIAS("platform:meson-rtc");
++/*
++ * This function is called only from probe() using a temporary io mapping
++ * in order to perform a reset before setting up the device. Since the
++ * temporarily mapped region was successfully requested, there can be no
++ * console on this port at this time. Hence it is not necessary for this
++ * function to acquire the port->lock. (Since there is no console on this
++ * port at this time, the port->lock is not initialized yet.)
++ */
+ static void meson_uart_reset(struct uart_port *port)
+ {
+ 	u32 val;
+@@ -267,9 +275,12 @@ static void meson_uart_reset(struct uart_port *port)
+ 
+ static int meson_uart_startup(struct uart_port *port)
+ {
++	unsigned long flags;
+ 	u32 val;
+ 	int ret = 0;
+ 
++	spin_lock_irqsave(&port->lock, flags);
++
+ 	val = readl(port->membase + AML_UART_CONTROL);
+ 	val |= AML_UART_CLEAR_ERR;
+ 	writel(val, port->membase + AML_UART_CONTROL);
+@@ -285,6 +296,8 @@ static int meson_uart_startup(struct uart_port *port)
+ 	val = (AML_UART_RECV_IRQ(1) | AML_UART_XMIT_IRQ(port->fifosize / 2));
+ 	writel(val, port->membase + AML_UART_MISC);
+ 
++	spin_unlock_irqrestore(&port->lock, flags);
++
+ 	ret = request_irq(port->irq, meson_uart_interrupt, 0,
+ 			  port->name, port);
+ 
+
+base-commit: 672c0c5173427e6b3e2a9bbb7be51ceeec78093a
 -- 
-2.36.0
+2.30.2
 
 
 _______________________________________________
