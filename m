@@ -4,76 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 773B3C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 May 2022 05:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D34F5C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 May 2022 07:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vNEdVYqBzzfg4taorqQg0zCNx01LIYrEumRi6RZP9nM=; b=rnzE+kcNDRyxh5
-	AqdEIl/V+hAMMELLWz5lxsieM44jJSnTu/b5axBCJa4ivy7zvnpNwl6Y2+WL0LEfA2P/jDJ22YAaB
-	sPRrKZQ6KBLtOtZsijisLIxpQ07DoSAcqqkYjOkRtvD63grcbhgYNdYTFCxw9UvcVow5coiXHi7wY
-	vZ7Ohma4pWuagXl7r+N0Foq3VGDLFRiGsuygW5K4qVXuLfOYbBkJ+BHgaEtmBkb5Dvtdv3p/51xmD
-	V1NCoBM9gwb8l4sO49B8S/ELelZ+9RsowNIJ3cvIJVJ5AerL87KOJNxPjwjI2iRJ4WgZfqIPvVftI
-	Pxw2CJq27WItw5i4mnAw==;
+	List-Owner; bh=ad9UeBuo/uOT/ux68Fcpo2VTjDN6xEeyl/kChkryjA0=; b=LSCre5jq2g4qNM
+	yHbjale2yMs/x9KQ+j/nt6hOR3Z1aenDIBfWiMz5ISkrm+98vVKxQRU6Fo+d9OZ8S4FB98Mq0odzG
+	hYefKFvNHFtmhF31OBrLCLbhq/aI0s/L8ijr52Slec/f2+Grstu3NmFfVBw+ZXCGzIJzt8lXkhx6n
+	YTu+R4hPGLNHbWBUZO+lrnGApo0q0PqfcDV1iwP7RgP9yA+AkD6pXomvSCpboj0vNkTxW0s7xnbfM
+	/5H/xV8P5xreWutkNisCkivI8OXAyGRMcOIOV/s385zYd8YXH+enavkJBFxR/2BcRURzZ0OCEeyOc
+	PSH0d8Fvi32za6v+nqAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nnwAP-00CYfY-Km; Mon, 09 May 2022 05:42:45 +0000
-Received: from mail-wm1-f44.google.com ([209.85.128.44])
+	id 1nnxwx-00CtXc-27; Mon, 09 May 2022 07:36:59 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nnwAE-00CYdG-H3; Mon, 09 May 2022 05:42:36 +0000
-Received: by mail-wm1-f44.google.com with SMTP id
- m2-20020a1ca302000000b003943bc63f98so7604749wme.4; 
- Sun, 08 May 2022 22:42:32 -0700 (PDT)
+ id 1nnxwj-00CtPu-Fi
+ for linux-amlogic@lists.infradead.org; Mon, 09 May 2022 07:36:47 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id v12so18105315wrv.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 09 May 2022 00:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=6y0i+8IvUfpM15cKXcNjuJU/4mkCpkZfX4YXWqvQ1Js=;
+ b=lhqV1BbqxVLsXAlcHPqFKn2QZeiHzCGSZ3xMHe5C150zWMV3iQdJFB4oLBPwcDwTgz
+ fmtjWtTzoWHg3AHPShPOmwUZHOQXvEsTXw0ThO+dwUG8HFsKio0RSx2j4AKE1BITDeDz
+ /v6xz61ilCoaSDQ2UNdVxgqGLQNZxZLBpfdSfpnehNLRF2t86P8WpCfbPPirLw2/H7FD
+ V6ZsfLw9UHL89Smoe8CqgTK2EWy/87Jzvzm92hH6bx0b1jdgAipRJj2ZZZ2+gV5sTZXE
+ /G1ADH9jSggWv1urk9UdeEH2G1JCS4SFCHLE61bexKvjxaq51Fd37yK1nj+0a609lfDy
+ eUig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
+ :content-language:to:cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=PgUJQCGuVuN7RMUt/u/GB2vkYIZJaEjDbMnifyGw+XM=;
- b=wPKjJL75FThjNeWbW2dV9I1xVXkApcJForyaoYw2w3z4xn2ibpWni+s3yoQRPT2M/3
- tdWlVHfAtHts/6IzQfrhkwavZd2qlXbkTEBngpxbbWzt2abuFSoYC5xdrHbj7vkAAB8y
- bupnd//EhNeeZ0fV/2Nw7nrXmJOBFAa0DtuQhuB9NuW4+Eo61Y9riPMjU1oE2IegeDQ5
- 5BJpbHsimpRpPPyRHvcoFyhFZ+bziCBt65DxEutpqx2Rtc2XPR/NbBMo9bDMioRXNq8L
- GejgS9iM0vfUvyiq07Y0IPn4PM2Ct12E3au2sDv+YFU9xdWy/QPu3ZHaddJutCEtCxez
- nXhA==
-X-Gm-Message-State: AOAM532v6Qc9Gp6frSm7FRxZiLB4cfwliJzuh7DqZV++1LjtmhG3gCXM
- oveBaavmjp7MEymJ6cVcdpk=
-X-Google-Smtp-Source: ABdhPJwc4eYBOaGWeOZpzdHrP/EzHMr+8axHRm30/zjzwNtxs/nJxF3qH+zPotS6vDu9D2X/XzPbUQ==
-X-Received: by 2002:a05:600c:3b11:b0:394:57eb:c58b with SMTP id
- m17-20020a05600c3b1100b0039457ebc58bmr20723567wms.3.1652074950839; 
- Sun, 08 May 2022 22:42:30 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
+ bh=6y0i+8IvUfpM15cKXcNjuJU/4mkCpkZfX4YXWqvQ1Js=;
+ b=AMnxLdtjuTwB2qZqpP4eSTTOwJUW+yGGygbL4SGQpznu00FMBnSrFgAlUSn2ccMoxg
+ QlS+ExpYmJo4l1lnsM3NOoO0jPnJWe9/D4/4X3NBofLAaVPgd6Dlj4oTlc3R3fI/ep+t
+ sy/A4KPntFP4JaYYlW4ANwhg7H0iG6AwKmNpoAFI92oFgvX75sfUxVNarRlr9TDco7T6
+ dOT0j7I7hQOAe9q4Zrvuw2SzksxGTlRXK2tWZPEFSrtdkMV8au9Dtaquk8braY9FEtUX
+ mdKdc55hWTs0ESuTF5gBTUm7F5cXBETR0U7xvVOjY1kMfdPSqxhUXnooT3VYHj/jFQU4
+ GaDw==
+X-Gm-Message-State: AOAM530SDYvuOg+b+KyC4XHhKlmUSfPn0kDLKZJ8rlirV80oHfiipJym
+ kt6/vw4QQTpbJbUZKIvEIW3yog==
+X-Google-Smtp-Source: ABdhPJy2RhLQ+p1zNBH1qCsIEwkacJo/ZUmf6kHo7ueOOQy2OiKWAzP3ct7aOKYz4lFrNtdvWV9wRw==
+X-Received: by 2002:a5d:4703:0:b0:20a:ce3c:7528 with SMTP id
+ y3-20020a5d4703000000b0020ace3c7528mr12556104wrq.688.1652081799169; 
+ Mon, 09 May 2022 00:36:39 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:23c8:2656:fd52:f1cb?
+ ([2001:861:44c0:66c0:23c8:2656:fd52:f1cb])
  by smtp.gmail.com with ESMTPSA id
- d7-20020adffbc7000000b0020c66310845sm9972919wrs.55.2022.05.08.22.42.29
+ 11-20020a05600c264b00b0039444973258sm18402407wmy.0.2022.05.09.00.36.37
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 08 May 2022 22:42:30 -0700 (PDT)
-Message-ID: <c0eac83f-8483-7709-b558-561ff7a382b0@kernel.org>
-Date: Mon, 9 May 2022 07:42:12 +0200
+ Mon, 09 May 2022 00:36:38 -0700 (PDT)
+Message-ID: <cf593ff3-bf57-ccd3-9a25-b28cc604d6f4@baylibre.com>
+Date: Mon, 9 May 2022 09:36:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
+ Thunderbird/91.7.0
 Subject: Re: [PATCH v1] serial: meson: acquire port->lock in startup()
 Content-Language: en-US
 To: John Ogness <john.ogness@linutronix.de>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+ Kevin Hilman <khilman@baylibre.com>
 Cc: Petr Mladek <pmladek@suse.com>,
  Sergey Senozhatsky <senozhatsky@chromium.org>,
  Steven Rostedt <rostedt@goodmis.org>, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>,
+ Jiri Slaby <jirislaby@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org,
  Marek Szyprowski <m.szyprowski@samsung.com>
 References: <20220508103547.626355-1-john.ogness@linutronix.de>
-From: Jiri Slaby <jirislaby@kernel.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
 In-Reply-To: <20220508103547.626355-1-john.ogness@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220508_224234_627930_80859618 
-X-CRM114-Status: GOOD (  26.68  )
+X-CRM114-CacheID: sfid-20220509_003645_619259_1DBA1C5B 
+X-CRM114-Status: GOOD (  27.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,7 +104,7 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08. 05. 22, 12:35, John Ogness wrote:
+On 08/05/2022 12:35, John Ogness wrote:
 > The uart_ops startup() callback is called without interrupts
 > disabled and without port->lock locked, relatively late during the
 > boot process (from the call path of console_on_rootfs()). If the
@@ -125,11 +139,6 @@ On 08. 05. 22, 12:35, John Ogness wrote:
 > Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > Signed-off-by: John Ogness <john.ogness@linutronix.de>
 > Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-
-Makes sense to me.
-
-Reviewed-by: Jiri Slaby <jirislaby@kernel.org>
-
 > ---
 >   drivers/tty/serial/meson_uart.c | 13 +++++++++++++
 >   1 file changed, 13 insertions(+)
@@ -178,10 +187,16 @@ Reviewed-by: Jiri Slaby <jirislaby@kernel.org>
 > 
 > base-commit: 672c0c5173427e6b3e2a9bbb7be51ceeec78093a
 
+Thanks for fixing this, it may also fix an uart apparent lockup I encountered
+several time while developing on the platform, but the target was still alive
+so it matches.
 
--- 
-js
-suse labs
+So I'll add:
+Fixes: ff7693d079e5 ("ARM: meson: serial: add MesonX SoC on-chip uart driver")
+
+and
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
