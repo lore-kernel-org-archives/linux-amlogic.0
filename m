@@ -4,77 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C69EFC433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 May 2022 05:41:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 312D3C433F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 May 2022 02:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Bt9sL0NKsH6SmH9WOL07oBBMZi6zigf3SCBBsTYe9bA=; b=YIr1IdCyznWKzg
-	XT4wvfB+Fpa2G8whcfe329pE3fTFbPlwQ1aBcJrfvI26EUAb0sM9UYrKy7NDy3rzc6PUhXgEFt4Ot
-	EsechjcoKAzEhbvmj82QWgajwL9Og5U/Zp0Jfr3HwIxxYqwpiL64UIG7DXPgN8zbMV+f48JsnZu0e
-	/ELVjC2xVSJYWGaHdr91AupyyaN+1FTlF/6sNltcWZ/ygQE4IiHQzgOBJwI6oeeOcS7aNzjhjqygw
-	DCVh5EsxrigC3Jql+M1jgcbR0cS+vguPyCHKKinZqD6vq/iTXSPf/atJbrigtB0ZWnOaJBYWfkkkL
-	qhWVa7aL4s+A/QL2wVxg==;
+	List-Owner; bh=v/R8j5Zh3n1GjfjjCe+r+hEVzJeZ/M74Hsapmt3XGT0=; b=VbHlKLhcDKSdGo
+	cgHITqZjyXuDIHS+61fcUDVBUl+Wa99CA8WDhfSdatUFeYbpwrKoXbd+6Vez7B+1oez1CUMtxzB/Q
+	dz3SV721S3eyJy4pZ0py8kcVND6oLHqvqrVlERiRHqyyNLZH+++k18L0hFpAMdRvOIEEiffKIHq7S
+	+0lgs+CAy/FnOWxkeWfTK4/wTkW34mutC6YbO2/x/NwqO3zw8WDG1xCewsq7vI8ZptwI4Tcg6B7VO
+	nGu5Bya+qM6gJslQZR6JIAOlscy7BfLAZClaKJcy6t8Wpjj+IwKkrDxelEV556l/9cHIE2t5aruHo
+	QqyjlekOuIljIfo7dESA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nof5s-005Iob-G3; Wed, 11 May 2022 05:41:04 +0000
-Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
+	id 1noyNa-009NR2-3G; Thu, 12 May 2022 02:16:38 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nof5q-005Io1-3v; Wed, 11 May 2022 05:41:03 +0000
-Received: by mail-pg1-x52a.google.com with SMTP id 7so845924pga.12;
- Tue, 10 May 2022 22:41:01 -0700 (PDT)
+ id 1noyNK-009NKZ-DU; Thu, 12 May 2022 02:16:27 +0000
+Received: by mail-pg1-x529.google.com with SMTP id 31so3324131pgp.8;
+ Wed, 11 May 2022 19:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=yXF3SCNfjM2bxLwQ5AjghUOySdcJkYrZZ8M04WZEgOE=;
- b=je2OkTXoLAiJsYF6ntKWkXMs5+pyupPPj6tCBhGU4fGDuWvUG10HQ0BqCMmSaUA5YX
- tXf1U6mKLkDBRGx5eW6S6uconZii8wv4a2pMYNv799tH9Qqt/KcmfzF3ZbfGGMrgNhTr
- KmRxZla6QKPpnw9wUoXoDmACI0tmIBBKs4PuuqjSNvT6BPINoH8w2ftMVsH9U/GN/S+u
- cnFkluyiZ5jsPtVzFtHl6EYQaAVaijYDfifiA2+YhZXtkPdksSOyaU/H6xCmd8iYsg5k
- utWCOxed4g2PcsPd2RHU/ew5XSyPFWPuJvUwN8XXRuw9kWQa69naewIi9ULUljOm212V
- ArnA==
+ bh=X2j6TD2mIuTPKvyhgEM84vF0mnSOjtOspQG8G1GXffs=;
+ b=p1OXZw6z2v4rx3gFzTZYeRYEHweMQThNO3HvXWX/Ly+fMO+GCCRNuXu+dfQF8WHB9v
+ KFFCJH1uMORluOnXfEBBLx8TCFGJZk8ugaavQKyD5DBxsGpOvkbDfmTEoG+B2LEHvhIH
+ /YoETu4eRXd8aafzrI/O904zSfaxqmXUXvytytIC6FxS59joxaE9RAlt+rjF2SxYvGC/
+ vo+IIPoWSZFI/L0kFI987Rfajz7GVvSdBOqBoBC+dOdv9WrJD1OCdkdUDoYDd6wbAdzS
+ 9BaRbwXaw8rmGwVzXCkdq3T8PnhSt0S/DITRkqtZk0CXCp4DXQar5ovEVnxzov/Aue7b
+ ucdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=yXF3SCNfjM2bxLwQ5AjghUOySdcJkYrZZ8M04WZEgOE=;
- b=ZtG70A4pss65YgA4/DOE1orjnK0EzWfVobER7NXOFk7cOaKr7ZNwsuYQ00Ec5+BkI/
- j48T5WiGVyrW6Ee+qrknixbqgd/5RUW7Gz16b1MBKubGovIDThwHzsWwKG6SmbNb7ZrG
- gDKxvgCySBdRzgGbFEPGo1OS+IjDIjNVPSo/06UhXGS9jP+jKK5ehacKJjwSDlrCP1ki
- Qs4dtOc/dVYOFhmCB7cMC+5JTYDhZuarfmjb6VNm2ZGVZgvxfTp2o5AiU9zUYFNKjxFL
- J1vEiVHxSM2WO19COG0MDhzfYX08lJXkCGv48928+/m6CfGamJ3CN0X0xaCgXXy2SHam
- E16w==
-X-Gm-Message-State: AOAM530GHaFLmKuYWmsXvahSFYDCNeoTP4KpSYFV+HPnkAF+IZK+1c+h
- i0dOcuOO0C2YPWNMbBFBJ8c=
-X-Google-Smtp-Source: ABdhPJw7a6nCTB9DlRmTN0EmUxMmxzMov1YhkKH8myZAr3gidDhmH5/zIHIY+HZx3JcDbV79Xk2ULw==
-X-Received: by 2002:a05:6a00:21c8:b0:4fd:f89f:ec0e with SMTP id
- t8-20020a056a0021c800b004fdf89fec0emr23243222pfj.83.1652247661317; 
- Tue, 10 May 2022 22:41:01 -0700 (PDT)
+ bh=X2j6TD2mIuTPKvyhgEM84vF0mnSOjtOspQG8G1GXffs=;
+ b=kAHOggWi2HDXhwuz8MaWkvfKFoLRb2DZGbXbaQnDbDlvtrjxnpU+YTCFc5wmyqX9Ks
+ sLf9clNrUQYEJ8De4i+8EvRq7NNRl2Pu1gRnxN0DOB+YC7f616MGbcsFOh3XAs7jnlia
+ ze68/C93zo3SvgT4d/u5HowO+FzsMkokt7NwUkzDci7+/TdFPHjgW75t+u+okGkMgJJm
+ N6YfiIaRj9ED8EEQfD2j52sY+w4TxZUBaoMLXDghLQxMzoDamFsbHzHq8KyClXee3lI7
+ kickvqLeypnK4Kf9XfPd8CT9pKv9B862P4zfQLoyGozLZuU909JLSqSdhIjGrkVnI/mh
+ uA9A==
+X-Gm-Message-State: AOAM5334PcfLhSA8iGaynFSi01wy/XlqeErSRYFQ6BgLdw2FASDVrIt1
+ GAOzfNVcuAxOWbvtSbHFwR8=
+X-Google-Smtp-Source: ABdhPJzwUrvw0u4Ts5wcIk8VISitjh89yUfdKrp/c3awkVtG7tvC+Yr23Yqcf/H1PK4Sm6VH/0eWMA==
+X-Received: by 2002:a63:5902:0:b0:3c2:43c8:dff0 with SMTP id
+ n2-20020a635902000000b003c243c8dff0mr23291690pgb.385.1652321780960; 
+ Wed, 11 May 2022 19:16:20 -0700 (PDT)
 Received: from localhost.localdomain ([202.120.234.246])
  by smtp.googlemail.com with ESMTPSA id
- r17-20020a170903021100b0015e8d4eb20bsm673772plh.85.2022.05.10.22.40.56
+ k12-20020a170902c40c00b0015e8d4eb292sm2590167plk.220.2022.05.11.19.16.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 May 2022 22:41:00 -0700 (PDT)
+ Wed, 11 May 2022 19:16:20 -0700 (PDT)
 From: Miaoqian Lin <linmq006@gmail.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
+To: Russell King <linux@armlinux.org.uk>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+ Carlo Caione <carlo@endlessm.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc: linmq006@gmail.com
-Subject: [PATCH] drm/meson: Fix refcount leak in meson_encoder_hdmi_init
-Date: Wed, 11 May 2022 09:40:51 +0400
-Message-Id: <20220511054052.51981-1-linmq006@gmail.com>
+Subject: [PATCH] ARM: meson: Fix refcount leak in meson_smp_prepare_cpus
+Date: Thu, 12 May 2022 06:16:10 +0400
+Message-Id: <20220512021611.47921-1-linmq006@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220510_224102_215115_3059E083 
-X-CRM114-Status: GOOD (  12.21  )
+X-CRM114-CacheID: sfid-20220511_191622_515341_588BA571 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,33 +90,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-of_find_device_by_node() takes reference, we should use put_device()
-to release it when not need anymore.
-Add missing put_device() in error path to avoid refcount
-leak.
+of_find_compatible_node() returns a node pointer with refcount
+incremented, we should use of_node_put() on it when done.
+Add missing of_node_put() to avoid refcount leak.
 
-Fixes: 0af5e0b41110 ("drm/meson: encoder_hdmi: switch to bridge DRM_BRIDGE_ATTACH_NO_CONNECTOR")
+Fixes: d850f3e5d296 ("ARM: meson: Add SMP bringup code for Meson8 and Meson8b")
 Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
 ---
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm/mach-meson/platsmp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 5e306de6f485..de87f02cd388 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -435,8 +435,10 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 		cec_fill_conn_info_from_drm(&conn_info, meson_encoder_hdmi->connector);
- 
- 		notifier = cec_notifier_conn_register(&pdev->dev, NULL, &conn_info);
--		if (!notifier)
-+		if (!notifier) {
-+			put_device(&pdev->dev);
- 			return -ENOMEM;
-+		}
- 
- 		meson_encoder_hdmi->cec_notifier = notifier;
+diff --git a/arch/arm/mach-meson/platsmp.c b/arch/arm/mach-meson/platsmp.c
+index 4b8ad728bb42..32ac60b89fdc 100644
+--- a/arch/arm/mach-meson/platsmp.c
++++ b/arch/arm/mach-meson/platsmp.c
+@@ -71,6 +71,7 @@ static void __init meson_smp_prepare_cpus(const char *scu_compatible,
  	}
+ 
+ 	sram_base = of_iomap(node, 0);
++	of_node_put(node);
+ 	if (!sram_base) {
+ 		pr_err("Couldn't map SRAM registers\n");
+ 		return;
+@@ -91,6 +92,7 @@ static void __init meson_smp_prepare_cpus(const char *scu_compatible,
+ 	}
+ 
+ 	scu_base = of_iomap(node, 0);
++	of_node_put(node);
+ 	if (!scu_base) {
+ 		pr_err("Couldn't map SCU registers\n");
+ 		return;
 -- 
 2.25.1
 
