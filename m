@@ -4,92 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44857C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 May 2022 13:12:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBE21C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 May 2022 01:53:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HCBTY3sN8u7U1j/K7Lq7A8QB9+WvZlLbrhQ972lb3DQ=; b=S1OKSONErHoOFU
-	uaTNejjqykWr8c/B+M3TiB66Zp42BMXXUeeKFiy8FfjeybcxSrqCnaL5z5tIgX40FVxBcJLj4+5MO
-	fY1k3cAe+Y67ERlCWQ59c1J4R8vbP/V/uxbArxnFm4Cw487P7EbKBoJlJqkxi7xyjzhGvbb9s9MYi
-	HaYwRUrHYTbjwL9cJAlAVdU4eH5uN2TbshiGZ4LPrni2XDFGxvvKhW91354PNQTUKKAmIBkKc31OW
-	hmUBxq+xOgpVitguadYCDSWupB4uZNb0WoRyuR/W/Cgi/e+OHiSSC9mGD/WczHTELn3egEgTqpPMF
-	lXWx0h6Pr4DhGC5C3ehA==;
+	List-Owner; bh=vXUORxvYybJowuM1qSItzMj4rjwiq2Nnj4680OTDwIo=; b=Xr+R5hM8cp4hmr
+	Z2RnwmQIiA07tTtWBl2I0R5Ja2IQsc2xkuYMjJll70YfyicgmjD6XidmafWjggLMGlKqDl4e0UCI2
+	CTM9X06wD1HBz5QsleW3kSmgfFRZE9MdmYIemX7meC7CaYRuyN/1++k2dgPFNL1KQFm1v98o6lXFQ
+	Dfdsjw7QwBp9RsAA9Ika+VI5ND5vvX001Kz9QqOqCgOXFJPj/VSK+XVAyrMXlELGokyXCGA2/e67N
+	FFYCGUIhcniSqoK/vsOF5Q9dR3DMaZGIlscxRJiotQlqz6uIvouAMPC/oTL0LWm17i9/ICb5iHemi
+	nqzX/LBH7pwOPs8t91uA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1npV5c-00GBfw-Vo; Fri, 13 May 2022 13:12:16 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1npgxq-000WiV-A0; Sat, 14 May 2022 01:53:02 +0000
+Received: from mga04.intel.com ([192.55.52.120])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1npV5U-00GBbY-O8
- for linux-amlogic@lists.infradead.org; Fri, 13 May 2022 13:12:10 +0000
-Received: by mail-wr1-x434.google.com with SMTP id v12so11370995wrv.10
- for <linux-amlogic@lists.infradead.org>; Fri, 13 May 2022 06:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=LGxOhx8g+uzMEucXSgcWuDgXr4IlXAOmT59wc9xxNUQ=;
- b=wRQl3HzxSMdYo3oAFiLxfCpRXx68CvABA7PTFHJ4KoYFsSKoKYI2o0kck84GVkrBPy
- Ydmi/opjnQr49lORQ2aUaZSPE+/GVtznPLLirTIhAGKxyF9K+8SkFklnqG8THPvEnIl9
- 4OnyFli6+XLHcvlwPFcd/Lruz0Fk2j8qyZ0QhBnKLJzDsnJjuHoUuslW66qfhOHUDICf
- FYaXMNNqGc7u+UnZbaWj8jLEL35mH0fsJEnNRtrBKIZ1clKfzNQhhoetCB5ScLqSg8/J
- idGnNG0BGzsGtIvpg4JMSLaF5jqun0MxhJPpGU0TfZaAvlaDKAHhqGaxavFd2yb+/dB2
- vveQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=LGxOhx8g+uzMEucXSgcWuDgXr4IlXAOmT59wc9xxNUQ=;
- b=gnA1rEIbMjzpowxVeNP2O3Uw+If1HMmu8Bgl+zsCQ/lR9QCuzc0y68nZl9TS5SWfKY
- IJ/jtq5VcfmSV8SrcXI75JLECTKFD9ezbue+is78mEpXzlKH2OVA4xvtW4qnY7cTjzem
- vxApsFX4cTki5eG+BtCChrYVO61YSVIx/dWrVqFx6f/KwSDc36acSREIcpKQ84Z1gU+2
- gXcOy3aY3ziXDlDk2QRgz+17P761G6SWxkhCvvRcCg4r0oTc1el4ZSYhVzagQBRD9eF6
- aAE/o8sOvqyMC/ocYTRhWDbU3Bz8cm9FRInTTJjW4lv3cmrD0wRxMMf4eebtM6Nmc8Wb
- b5fw==
-X-Gm-Message-State: AOAM531uY9FppMbJBd8jsJpzpp4f7949UJi+U+c2HtubxREcboTAWwNB
- oyQlpUoYq8a0Hsdv47HC9HTtZA==
-X-Google-Smtp-Source: ABdhPJzqtxMi8tXdBozGwPO/lz7/uf3fxfcq7tdNkmA+KiH+k9aO4jgE0qPxI3t/ZmZJHJs6tODIAw==
-X-Received: by 2002:adf:cc83:0:b0:20a:ca0c:ca1 with SMTP id
- p3-20020adfcc83000000b0020aca0c0ca1mr3817869wrj.553.1652447524944; 
- Fri, 13 May 2022 06:12:04 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:7639:a43b:f4c1:258d?
- ([2001:861:44c0:66c0:7639:a43b:f4c1:258d])
- by smtp.gmail.com with ESMTPSA id
- m10-20020a05600c460a00b003947e11c3ecsm2204392wmo.17.2022.05.13.06.12.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 May 2022 06:12:04 -0700 (PDT)
-Message-ID: <d0730221-537c-ba0e-378b-388a37a2a736@baylibre.com>
-Date: Fri, 13 May 2022 15:12:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 3/4] mtd: rawnand: meson: refine resource getting in
- probe
-Content-Language: en-US
+ id 1npgxR-000Wfi-GW; Sat, 14 May 2022 01:52:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652493157; x=1684029157;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RcLuLGGwbVePLOb+KFTMTX4VKymqOx1Gc+kdRlxjhqc=;
+ b=h9pmVTIk7vgx4Opviq0YH8impYetjeo9xjbqjR3ggaOrQuUYYSyaoGAL
+ j4AnjaUMph2jpxA6v6icPfuFWryqO9ZlvXYe9J5RimghNsWA4Mnw/jcrA
+ W4qeAIPn950FIg7wzeYqUY/axWKmk+myzcI2GXZ/RQQ4s4oMxLLYzUaFX
+ Vh2jnf1s/moIVQD2C2rlKHHIOmmBP23JfdBsEV6Sbmg0Sbwf0+AF7Cpnt
+ 3RqP5YAR07KP5cC5tM+CeL4PzEmxiv6MS9pMSx90XUxS/kzl8AKjp5hhq
+ TPk8RnsTEQpdmoxEqIcnavTZEONTJzrVvwc+Eg03b3ksx6bx5XYWy4YaE w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10346"; a="269289081"
+X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="269289081"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2022 18:52:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="712631468"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+ by fmsmga001.fm.intel.com with ESMTP; 13 May 2022 18:52:30 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1npgxJ-000MIi-SJ;
+ Sat, 14 May 2022 01:52:29 +0000
+Date: Sat, 14 May 2022 09:51:32 +0800
+From: kernel test robot <lkp@intel.com>
 To: Liang Yang <liang.yang@amlogic.com>,
  Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
-Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
+Cc: kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
+ Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
- <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
- BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
- <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ Victor Wan <victor.wan@amlogic.com>,
+ XianWei Zhao <xianwei.zhao@amlogic.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>,
+ YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220513123404.48513-1-liang.yang@amlogic.com>
- <20220513123404.48513-4-liang.yang@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220513123404.48513-4-liang.yang@amlogic.com>
+Subject: Re: [PATCH v5 2/4] mtd: rawnand: meson: fix the clock
+Message-ID: <202205140935.9YRSlRhB-lkp@intel.com>
+References: <20220513123404.48513-3-liang.yang@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20220513123404.48513-3-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220513_061208_840181_4DBEA9BB 
-X-CRM114-Status: GOOD (  14.47  )
+X-CRM114-CacheID: sfid-20220513_185237_604510_F299EC1D 
+X-CRM114-Status: GOOD (  12.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,41 +85,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/05/2022 14:34, Liang Yang wrote:
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->   drivers/mtd/nand/raw/meson_nand.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index cc93667a1e7f..6e50387475bb 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -1378,7 +1378,6 @@ static int meson_nfc_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct meson_nfc *nfc;
-> -	struct resource *res;
->   	int ret, irq;
->   
->   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
-> @@ -1395,8 +1394,7 @@ static int meson_nfc_probe(struct platform_device *pdev)
->   
->   	nfc->dev = dev;
->   
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	nfc->reg_base = devm_ioremap_resource(dev, res);
-> +	nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
->   	if (IS_ERR(nfc->reg_base))
->   		return PTR_ERR(nfc->reg_base);
->   
+Hi Liang,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on mtd/mtd/next]
+[also build test ERROR on mtd/mtd/fixes mtd/nand/next v5.18-rc6 next-20220513]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Liang-Yang/fix-the-meson-NFC-clock/20220513-203700
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next
+config: m68k-buildonly-randconfig-r001-20220512 (https://download.01.org/0day-ci/archive/20220514/202205140935.9YRSlRhB-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/2a8371d672486fa71241af04615efeff5efed94b
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Liang-Yang/fix-the-meson-NFC-clock/20220513-203700
+        git checkout 2a8371d672486fa71241af04615efeff5efed94b
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   m68k-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
+>> meson_nand.c:(.text+0xcf8): undefined reference to `clk_divider_ops'
+>> m68k-linux-ld: meson_nand.c:(.text+0xd38): undefined reference to `devm_clk_register'
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
