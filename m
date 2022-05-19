@@ -4,59 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57F1BC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 May 2022 18:44:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB09C433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 May 2022 23:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y/7rRtiDOAUWTN/JsFMnJbGQ7FWqNI8Rsrtnr5oJoLY=; b=j60c7Q2zm5+1nA
-	MK6KpJbA8odnNRLEQI3fFQGPhKT+k4vHt2Vjt4P7pxyNHQoZjbxTQsT/0MxsdNqYM3aaEo4zsI3Ft
-	A0rBUNzEiVR1R7PrdCsH1luYifY5CnuRsT7wRyBKdpGlWy/WiVVMWAqcw/Em2OAhuvNmF1CDeFriu
-	mkhs66eW7ZxPHzn6xIUYws086ONui1xrapvex6AY1I8YiAMaZxz7gS+FZKlafsIaz37V0aHlP4Udw
-	v1CdG6YwQWgBXv36jz3DiGLo1OPtdKrweJocQVwdgfYpYZ3o9baDiRAJ1VO9zfCog6TZckVg/5MoR
-	tTwA7zrQ4NrckrMZ0QZQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=Kg1Av/tw0L8cZg0YNguTbDHOYsvFV9kMLEjvzIpOZy0=; b=vUmHUiqK9jd53P7nhdVMeQzXw3
+	PjZgRZ6W/FOqlJsvGYXHyRlbmt7HiM+O6nimZ1txNHXmbqsEZraHdraWgtcFvkbmu+lmDm6N2imGb
+	Q7Ea9KnO3gkvgScOYWMVuovzKqps61Zt7qM3TUchKDZc9pePsQjI47w7jU8UVW/BsRPOVUPXpP07X
+	ZZrmX1ryO1Bwn0EteNI4uAIpY6BrbT7DWxYUxmICRMzuykI8wo8soqiThWtwhOewga59etTs4jSLZ
+	sP5DOq7QbuIOk0XNikcdRK/gB7j/ppVwLAW5ggBb7sIiUd3Bx+FQMXCI6lOEXVHYG5uaepKDCYGbC
+	/zX7v1vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nrl84-008x8n-QI; Thu, 19 May 2022 18:44:08 +0000
-Received: from mga18.intel.com ([134.134.136.126])
+	id 1nrpkm-009hYy-Ij; Thu, 19 May 2022 23:40:24 +0000
+Received: from out5-smtp.messagingengine.com ([66.111.4.29])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nrl80-008x5X-Ve; Thu, 19 May 2022 18:44:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652985844; x=1684521844;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=R6wPRFuxi1lyRSKNjtJtOfNrBIGNiVRk0AM8VBBZpvQ=;
- b=kjFP/wfroWQ0sANO/VBvnySKu0rbF+19InRvgOT+zahPF0ML/+nZORzF
- joMPcwayF2VrK343nBouKTmePQ0+d2QgjvtONpUtIp074BOdL6pa7Kceu
- HoWO4Ig2L9hk28BxvM2ASyX7Kib5aftW9SSyz65G1x64xYx2Cm9bLT4Cc
- c6YBmEpwgr/etrh3zQX3Lt4HBIuqvHLh6tB6GZ7VnHqFSp9bTvLoFLKF5
- 1LyBJ1lpc8ekhkq2qFlxlWWfUmScytS60/bA7YuKu3XHmhJAv8gD2KRNH
- d9m7j1Kl/3vfAsg9J3igyB0433P5aInI2S4eiDrdjwGWyQTo+MveC/Y90 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="254374774"
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="254374774"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 11:44:01 -0700
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="639936525"
-Received: from vrgokulr-mobl1.amr.corp.intel.com (HELO [10.251.4.170])
- ([10.251.4.170])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 11:43:56 -0700
-Message-ID: <935f76f2-c4cf-d66f-e1e1-8acf5a643f92@linux.intel.com>
-Date: Thu, 19 May 2022 13:43:55 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.5.0
-Subject: Re: [PATCH 00/56] Specify clock provider directly to CPU DAIs
-Content-Language: en-US
+ id 1nrpkj-009hY1-IU; Thu, 19 May 2022 23:40:23 +0000
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id 568E05C023E;
+ Thu, 19 May 2022 19:40:15 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Thu, 19 May 2022 19:40:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+ cc:cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1653003615; x=
+ 1653090015; bh=iqHByxP/PP0RV5Kp27EEtrVjbBff5eU8E6iDfYSzvlo=; b=v
+ WvrghW/tnB2wQQZ7H1BtAjOy1RhwPLZpgzo98sCQvJhYWwor/HzjJNsV/LVOFbsE
+ YSiG6I57bor0I2nDEC6ZNocpWKkv71xzTjDYt6ZfZ8NcTOw4uLTbONYN6bKYH0PY
+ ZXLXErKuqY/OVSt1aiUR4bNuR2iEWFiDRXePo8UJrjuv+NMyWc7SgXvTTXZClSjS
+ xX/9GfMLAZ8ZS2t+SmXFzd5bG9/XZqH4LhunRvn1mAKETHqh9PDqXC25nNdQWczb
+ Ozc+ESgOxLy8gZ1sJC+Wq7Am0HXvT/m2QJQsf+liwgR8ULL+hRLTOVRO4mvNvxjd
+ KHsL6W3LPExCEUM/TygiQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1653003615; x=
+ 1653090015; bh=iqHByxP/PP0RV5Kp27EEtrVjbBff5eU8E6iDfYSzvlo=; b=k
+ pRbno/Gt6gUXFzSSorr0j6sxajaPEN+rwHFd8+jcnA6Sce0eyMe1DAfgUIuR5rln
+ yyI3d7qfzMsS8JltiVQrFJi7K/ZoDyKheaneInXoIGCdVSulwqOTjJorhLCu2Gw7
+ IoRXmbGJ3trZhAv+ZBVHrxN0gMC5BalsJ/SKUO/9f+9Ut6HKvwFdvvQ8z8xsuHUk
+ fxcCGXOOf/BbfqT8Y8VSjsuEJ6GBj8XDHJJ8IRfvpiEixjiRTsOTlez4NEgoU/2g
+ W4aJu6F/kQHejyjCH6arZw/g+aNM+9HBFIdRKkeEFQw/69yhZyT9EcMBkfbZV9md
+ 9NuahsBfHX2ficK+iYbDQ==
+X-ME-Sender: <xms:XdWGYgUGUf75UPVgls83XPWiF6A-tBj4e3s97Kb34YKu5oXO3A13_Q>
+ <xme:XdWGYkkqej7Sw873SF-tPbdbpAwSLvqaubcCTMpPfIOnD1JzRCeaEf8RmHncNciRB
+ jroNjyXsoqZ4PKpkg>
+X-ME-Received: <xmr:XdWGYkbvrZwpUnOM1O4-_2tYjgJTQpjZPqXkpDEw0EpgcjUMjLmwhmRAdevmUe4wB8Y-f3nIrmriP-19jvjm7O0yy8ouh7KCEVebaavF9pBHI4yR_-4r_4bKXQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedriedvgddviecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+ vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+ ftrfgrthhtvghrnhepffdtveekvdegkeeuueetgfetffeileevudekuefhheelvdfhiedt
+ heduhfduhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+ homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:XdWGYvUwc4jVKeqPla_0-WQCIkx0RnvqDhfHPs1ZzAd8QctkVgY8fQ>
+ <xmx:XdWGYqm6J2stCQX-STAMuroIUM4y_rHHyhG_yTajyWgKhMRCq9JK7Q>
+ <xmx:XdWGYkfsUHQ4XlJCEJ_vR0OyzJAV_JKQMFS6xef23lbxi7aCuM1zAg>
+ <xmx:X9WGYo3IuYUdLigJsZOLgqfeufUYTAN7skI0dQ2vQGpXXTD2m7p_Gw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 May 2022 19:40:12 -0400 (EDT)
+Subject: Re: [PATCH 22/56] ASoC: sunxi: Update to use set_fmt_new callback
 To: Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org
 Cc: lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
  nicolas.ferre@microchip.com, nsaenz@kernel.org, shawnguo@kernel.org,
- linux-imx@nxp.com, cezary.rojewski@intel.com, linux-mips@vger.kernel.org,
+ linux-imx@nxp.com, cezary.rojewski@intel.com,
+ pierre-louis.bossart@linux.intel.com, linux-mips@vger.kernel.org,
  linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
  daniel@zonque.org, srinivas.kandagatla@linaro.org,
  linux-rockchip@lists.infradead.org, krzk@kernel.org,
@@ -67,11 +89,18 @@ Cc: lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
  kernel@pengutronix.de, alsa-devel@alsa-project.org,
  patches@opensource.cirrus.com
 References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
+ <20220519154318.2153729-23-ckeepax@opensource.cirrus.com>
+From: Samuel Holland <samuel@sholland.org>
+Message-ID: <948d5418-44ca-2e60-0c1c-0b16f315feba@sholland.org>
+Date: Thu, 19 May 2022 18:40:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
+MIME-Version: 1.0
+In-Reply-To: <20220519154318.2153729-23-ckeepax@opensource.cirrus.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220519_114405_154028_21936962 
-X-CRM114-Status: GOOD (  25.96  )
+X-CRM114-CacheID: sfid-20220519_164021_976898_609AADB2 
+X-CRM114-Status: GOOD (  16.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,181 +117,118 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 5/19/22 10:42 AM, Charles Keepax wrote:
+> As part of updating the core to directly tell drivers if they are clock
+> provider or consumer update these CPU side drivers to use the new direct
+> callback.
+> 
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+>  sound/soc/sunxi/sun4i-i2s.c   | 20 ++++++++++----------
+>  sound/soc/sunxi/sun8i-codec.c |  8 ++++----
+>  2 files changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> index 7047f71629ab3..872838d3e0a94 100644
+> --- a/sound/soc/sunxi/sun4i-i2s.c
+> +++ b/sound/soc/sunxi/sun4i-i2s.c
+> @@ -702,13 +702,13 @@ static int sun4i_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+>  			   SUN4I_I2S_FMT0_FMT_MASK, val);
+>  
+>  	/* DAI clock master masks */
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBS_CFS:
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP:
+>  		/* BCLK and LRCLK master */
+>  		val = SUN4I_I2S_CTRL_MODE_MASTER;
+>  		break;
+>  
+> -	case SND_SOC_DAIFMT_CBM_CFM:
+> +	case SND_SOC_DAIFMT_BC_FC:
+>  		/* BCLK and LRCLK slave */
+>  		val = SUN4I_I2S_CTRL_MODE_SLAVE;
+>  		break;
+> @@ -802,13 +802,13 @@ static int sun8i_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+>  			   SUN8I_I2S_TX_CHAN_OFFSET(offset));
+>  
+>  	/* DAI clock master masks */
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBS_CFS:
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP:
+>  		/* BCLK and LRCLK master */
+>  		val = SUN8I_I2S_CTRL_BCLK_OUT |	SUN8I_I2S_CTRL_LRCK_OUT;
+>  		break;
+>  
+> -	case SND_SOC_DAIFMT_CBM_CFM:
+> +	case SND_SOC_DAIFMT_BC_FC:
+>  		/* BCLK and LRCLK slave */
+>  		val = 0;
+>  		break;
+> @@ -909,13 +909,13 @@ static int sun50i_h6_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+>  			   SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset));
+>  
+>  	/* DAI clock master masks */
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBS_CFS:
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP:
+>  		/* BCLK and LRCLK master */
+>  		val = SUN8I_I2S_CTRL_BCLK_OUT |	SUN8I_I2S_CTRL_LRCK_OUT;
+>  		break;
+>  
+> -	case SND_SOC_DAIFMT_CBM_CFM:
+> +	case SND_SOC_DAIFMT_BC_FC:
+>  		/* BCLK and LRCLK slave */
+>  		val = 0;
+>  		break;
+> @@ -1081,7 +1081,7 @@ static int sun4i_i2s_set_tdm_slot(struct snd_soc_dai *dai,
+>  
+>  static const struct snd_soc_dai_ops sun4i_i2s_dai_ops = {
+>  	.hw_params	= sun4i_i2s_hw_params,
+> -	.set_fmt	= sun4i_i2s_set_fmt,
+> +	.set_fmt_new	= sun4i_i2s_set_fmt,
+>  	.set_sysclk	= sun4i_i2s_set_sysclk,
+>  	.set_tdm_slot	= sun4i_i2s_set_tdm_slot,
+>  	.trigger	= sun4i_i2s_trigger,
+> diff --git a/sound/soc/sunxi/sun8i-codec.c b/sound/soc/sunxi/sun8i-codec.c
+> index 0bea2162f68d9..6e9ef948d6621 100644
+> --- a/sound/soc/sunxi/sun8i-codec.c
+> +++ b/sound/soc/sunxi/sun8i-codec.c
+> @@ -286,11 +286,11 @@ static int sun8i_codec_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+>  	u32 dsp_format, format, invert, value;
+>  
+>  	/* clock masters */
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBS_CFS: /* Codec slave, DAI master */
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP: /* Codec slave, DAI master */
 
+This is a codec driver, and it is only ever used on the codec end of a link, so
+I would not expect it to be changed.
 
-On 5/19/22 10:42, Charles Keepax wrote:
-> Currently the set_fmt callback always passes clock provider/consumer
-> with respect to the CODEC. This made sense when the framework was
-> directly broken down into platforms and CODECs. However, as things
-> are now broken down into components which can be connected as either
-> the CPU or CODEC side of a DAI link it simplifies things if each
-> side of the link is just told if it is provider or consumer of the
-> clocks. Making this change allows us to remove one of the last parts
-> of the ASoC core that needs to know if a driver is a CODEC driver,
-> where it flips the clock format specifier if a CODEC driver is used on
-> the CPU side of a DAI link, as well as just being conceptually more
-> consistent with componentisation.
-> 
-> The basic idea of this patch chain is to change the set_fmt callback
-> from specifying if the CODEC is provider/consumer into directly
-> specifying if the component is provider/consumer. To do this we add
-> some new defines, and then to preserve bisectability, the migration is
-> done by adding a new callback, converting over all existing CPU side
-> drivers, converting the core, and then finally reverting back to the
-> old callback.
-> 
-> Converting the platform drivers makes sense as the existing defines
-> are from the perspective of the CODEC and there are more CODEC drivers
-> than platform drivers.
-> 
-> Obviously a fair amount of this patch chain I was only able to build
-> test, so any testing that can be done would be greatly appreciated.
+Regards,
+Samuel
 
-All good for the SOF CI (small subset tested for Intel platforms).
+>  		value = 0x1;
+>  		break;
+> -	case SND_SOC_DAIFMT_CBM_CFM: /* Codec Master, DAI slave */
+> +	case SND_SOC_DAIFMT_BC_FC: /* Codec Master, DAI slave */
+>  		value = 0x0;
+>  		break;
+>  	default:
+> @@ -630,7 +630,7 @@ static int sun8i_codec_hw_free(struct snd_pcm_substream *substream,
+>  }
+>  
+>  static const struct snd_soc_dai_ops sun8i_codec_dai_ops = {
+> -	.set_fmt	= sun8i_codec_set_fmt,
+> +	.set_fmt_new	= sun8i_codec_set_fmt,
+>  	.set_tdm_slot	= sun8i_codec_set_tdm_slot,
+>  	.startup	= sun8i_codec_startup,
+>  	.hw_params	= sun8i_codec_hw_params,
+> 
 
-https://github.com/thesofproject/linux/pull/3660
-
-> 
-> Thanks,
-> Charles
-> 
-> Charles Keepax (56):
->   ASoC: core: Add set_fmt_new callback that directly specifies provider
->   ASoC: amd: vangogh: Update to use set_fmt_new callback
->   ASoC: atmel: Update to use set_fmt_new callback
->   ASoC: au1x: Update to use set_fmt_new callback
->   ASoC: bcm: Update to use set_fmt_new callback
->   ASoC: ep93xx: Update to use set_fmt_new callback
->   ASoC: dwc: Update to use set_fmt_new callback
->   ASoC: fsl: Update to use set_fmt_new callback
->   ASoC: hisilicon: Update to use set_fmt_new callback
->   ASoC: img: Update to use set_fmt_new callback
->   ASoC: Intel: Update to use set_fmt_new callback
->   ASoC: js4740-i2s: Update to use set_fmt_new callback
->   ASoC: mediatek: Update to use set_fmt_new callback
->   ASoC: meson: Update to use set_fmt_new callback
->   ASoC: mxs-saif: Update to use set_fmt_new callback
->   ASoC: pxa: Update to use set_fmt_new callback
->   ASoC: qcom: Update to use set_fmt_new callback
->   ASoC: rockchip: Update to use set_fmt_new callback
->   ASoC: samsung: Update to use set_fmt_new callback
->   ASoC: sh: Update to use set_fmt_new callback
->   ASoC: stm: Update to use set_fmt_new callback
->   ASoC: sunxi: Update to use set_fmt_new callback
->   ASoC: tegra: Update to use set_fmt_new callback
->   ASoC: test-component: Update to use set_fmt_new callback
->   ASoC: ti: Update to use set_fmt_new callback
->   ASoC: ux500: Update to use set_fmt_new callback
->   ASoC: xtensa: Update to use set_fmt_new callback
->   ASoC: core: Always send the CPU DAI a direct clock specifier
->   ASoC: amd: vangogh: Rename set_fmt_new back to set_fmt
->   ASoC: atmel: Rename set_fmt_new back to set_fmt
->   ASoC: au1x: Rename set_fmt_new back to set_fmt
->   ASoC: bcm: Rename set_fmt_new back to set_fmt
->   ASoC: ep93xx: Rename set_fmt_new back to set_fmt
->   ASoC: dwc: Rename set_fmt_new back to set_fmt
->   ASoC: fsl: Rename set_fmt_new back to set_fmt
->   ASoC: hisilicon: Rename set_fmt_new back to set_fmt
->   ASoC: img: Rename set_fmt_new back to set_fmt
->   ASoC: Intel: Rename set_fmt_new back to set_fmt
->   ASoC: jz4740-i2s: Rename set_fmt_new back to set_fmt
->   ASoC: mediatek: Rename set_fmt_new back to set_fmt
->   ASoC: meson: Rename set_fmt_new back to set_fmt
->   ASoC: mxs-saif: Rename set_fmt_new back to set_fmt
->   ASoC: pxa: Rename set_fmt_new back to set_fmt
->   ASoC: qcom: Rename set_fmt_new back to set_fmt
->   ASoC: rockchip: Rename set_fmt_new back to set_fmt
->   ASoC: samsung: Rename set_fmt_new back to set_fmt
->   ASoC: sh: Rename set_fmt_new back to set_fmt
->   ASoC: stm: Rename set_fmt_new back to set_fmt
->   ASoC: sunxi: Rename set_fmt_new back to set_fmt
->   ASoC: tegra: Rename set_fmt_new back to set_fmt
->   ASoC: test-component: Rename set_fmt_new back to set_fmt
->   ASoC: ti: Rename set_fmt_new back to set_fmt
->   ASoC: ux500: Rename set_fmt_new back to set_fmt
->   ASoC: xtensa: Rename set_fmt_new back to set_fmt
->   ASoC: soc-dai: Remove set_fmt_new callback
->   ASoC: simple-card-utils: Move snd_soc_component_is_codec to be local
-> 
->  include/sound/soc-component.h                |  5 ---
->  include/sound/soc-dai.h                      |  6 ++++
->  sound/soc/amd/vangogh/acp5x-i2s.c            |  4 +--
->  sound/soc/atmel/atmel-i2s.c                  |  4 +--
->  sound/soc/atmel/atmel_ssc_dai.c              | 18 +++++-----
->  sound/soc/atmel/mchp-i2s-mcc.c               |  8 ++---
->  sound/soc/atmel/mchp-pdmc.c                  |  4 +--
->  sound/soc/au1x/i2sc.c                        |  2 +-
->  sound/soc/au1x/psc-i2s.c                     |  4 +--
->  sound/soc/bcm/bcm2835-i2s.c                  | 20 +++++------
->  sound/soc/bcm/cygnus-ssp.c                   |  4 +--
->  sound/soc/cirrus/ep93xx-i2s.c                |  4 +--
->  sound/soc/dwc/dwc-i2s.c                      |  8 ++---
->  sound/soc/fsl/fsl_audmix.c                   |  6 ++--
->  sound/soc/fsl/fsl_esai.c                     |  8 ++---
->  sound/soc/fsl/fsl_mqs.c                      |  2 +-
->  sound/soc/fsl/fsl_sai.c                      |  8 ++---
->  sound/soc/fsl/fsl_ssi.c                      | 22 ++++++------
->  sound/soc/fsl/imx-audmix.c                   |  4 +--
->  sound/soc/fsl/imx-card.c                     |  2 +-
->  sound/soc/generic/simple-card-utils.c        |  7 +++-
->  sound/soc/generic/test-component.c           | 18 +++++-----
->  sound/soc/hisilicon/hi6210-i2s.c             | 18 +++++-----
->  sound/soc/img/img-i2s-in.c                   |  4 +--
->  sound/soc/img/img-i2s-out.c                  |  6 ++--
->  sound/soc/intel/atom/sst-atom-controls.c     |  4 +--
->  sound/soc/intel/boards/bytcht_cx2072x.c      |  2 +-
->  sound/soc/intel/boards/bytcht_da7213.c       |  2 +-
->  sound/soc/intel/boards/bytcht_es8316.c       |  2 +-
->  sound/soc/intel/boards/bytcht_nocodec.c      |  2 +-
->  sound/soc/intel/boards/bytcr_rt5640.c        |  2 +-
->  sound/soc/intel/boards/bytcr_rt5651.c        |  2 +-
->  sound/soc/intel/boards/bytcr_wm5102.c        |  2 +-
->  sound/soc/intel/boards/cht_bsw_max98090_ti.c |  3 +-
->  sound/soc/intel/boards/cht_bsw_rt5645.c      |  6 ++--
->  sound/soc/intel/boards/cht_bsw_rt5672.c      |  2 +-
->  sound/soc/intel/keembay/kmb_platform.c       |  4 +--
->  sound/soc/jz4740/jz4740-i2s.c                | 10 +++---
->  sound/soc/mediatek/mt8195/mt8195-dai-etdm.c  |  6 ++--
->  sound/soc/mediatek/mt8195/mt8195-dai-pcm.c   |  6 ++--
->  sound/soc/meson/aiu-encoder-i2s.c            |  2 +-
->  sound/soc/meson/axg-tdm-interface.c          | 14 ++++----
->  sound/soc/mxs/mxs-saif.c                     |  4 +--
->  sound/soc/pxa/magician.c                     |  8 ++---
->  sound/soc/pxa/mmp-sspa.c                     |  6 ++--
->  sound/soc/pxa/pxa-ssp.c                      | 22 ++++++------
->  sound/soc/pxa/pxa2xx-i2s.c                   |  6 ++--
->  sound/soc/qcom/apq8016_sbc.c                 |  2 +-
->  sound/soc/qcom/qdsp6/audioreach.c            |  4 +--
->  sound/soc/qcom/qdsp6/q6afe.c                 |  6 ++--
->  sound/soc/qcom/sc7180.c                      |  2 +-
->  sound/soc/qcom/sdm845.c                      |  6 ++--
->  sound/soc/qcom/sm8250.c                      |  4 +--
->  sound/soc/rockchip/rockchip_i2s.c            |  6 ++--
->  sound/soc/rockchip/rockchip_i2s_tdm.c        |  6 ++--
->  sound/soc/samsung/i2s.c                      |  6 ++--
->  sound/soc/samsung/pcm.c                      |  4 +--
->  sound/soc/samsung/s3c-i2s-v2.c               |  6 ++--
->  sound/soc/samsung/s3c24xx-i2s.c              |  6 ++--
->  sound/soc/sh/fsi.c                           |  6 ++--
->  sound/soc/sh/rcar/core.c                     |  4 +--
->  sound/soc/sh/rz-ssi.c                        |  2 +-
->  sound/soc/sh/ssi.c                           | 10 +++---
->  sound/soc/soc-core.c                         | 14 ++------
->  sound/soc/soc-dai.c                          |  3 +-
->  sound/soc/stm/stm32_i2s.c                    |  8 ++---
->  sound/soc/stm/stm32_sai_sub.c                |  8 ++---
->  sound/soc/sunxi/sun4i-i2s.c                  | 18 +++++-----
->  sound/soc/sunxi/sun8i-codec.c                |  6 ++--
->  sound/soc/tegra/tegra20_i2s.c                |  6 ++--
->  sound/soc/tegra/tegra210_i2s.c               |  6 ++--
->  sound/soc/tegra/tegra30_i2s.c                |  6 ++--
->  sound/soc/ti/davinci-i2s.c                   | 32 ++++++++---------
->  sound/soc/ti/davinci-mcasp.c                 | 10 +++---
->  sound/soc/ti/omap-mcbsp.c                    | 12 +++----
->  sound/soc/ux500/ux500_msp_dai.c              | 36 ++++++++++----------
->  sound/soc/xtensa/xtfpga-i2s.c                |  4 +--
->  77 files changed, 279 insertions(+), 283 deletions(-)
-> 
 
 _______________________________________________
 linux-amlogic mailing list
