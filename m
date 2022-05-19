@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC0CC43219
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 May 2022 15:47:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC210C433FE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 May 2022 15:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zS2dRhf7dc2kBlWmWneXvkZZxMcgbBCcqCdfrM4LGB4=; b=d/8D1Rcav6QdHe
-	UhvzvhhBeOrbfdDWztujvZGJz7Rg3iGlfMLvWxx/EM/EZz3Mf3RSOgI/DegHeuJf3pG9C/vjFsRKx
-	H91rctGYeed3l2o4vWNjS7GaL8GZayimE2W8RhLk72Lr7SoUlGFo/UiByfCMWxDl1HluFyauzHxdY
-	hWIUxr6AObODFqYJtuFLk4zgz/SVIzHYWjwzUO/2ggAC8xcCZFic1chF0rqXx6UI+2zOUe9FbFWS1
-	ew4n1j/IRwC4apWsiytaN15NRSboPCwzaFFkNsW5r9uoXD7BHQDP+90sefLKnCdNLBuKzZ4uMPN/c
-	JKILKYfOnJquz0MjiLTQ==;
+	List-Owner; bh=MywPzsQVV8arBQ4aQUrG7N4qMR87K79IGMuy3DvnU4I=; b=XbT9lhDmWX69aC
+	pl5l03zfnTXMNNrsjRpxawJ/psf0bDQOLzjCqZ+U7LqwQ8Cob+m9cZu9Q4a4AZtcouvozSAtS4BKj
+	WAQA1qyfIjMEmINrGs66Zl76s3RySWsiMreM3sgzERGYP59D3s1Y77AnHtFu4n6g6Kz76bkMVvPvJ
+	3vo11502lqMVOtnfUgE8HBoMPcTZi0ZTtx/Ri8yDCGh2H0esx0n6hQV9xoh423yxtofCqL86dK+49
+	8k9vQBY1f9GRK1HDYEeBun/G2A6UxgheDqDLUR7xYsb3VEcwSOWXMj6npoHEGO+30Ua64Y5efVEmQ
+	DIyBXTipmHxvb1KO18zA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nriNA-0086dW-Je; Thu, 19 May 2022 15:47:32 +0000
+	id 1nriNG-0086kE-8c; Thu, 19 May 2022 15:47:38 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nriJs-0083Sx-Vq; Thu, 19 May 2022 15:44:08 +0000
+ id 1nriJs-0083Sl-JT; Thu, 19 May 2022 15:44:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Type:Content-Transfer-Encoding:
  MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender
  :Reply-To:Content-ID:Content-Description;
- bh=eGYFlG3Htf11GYri2u8Av0yY7RtKBp+5GHIN2hbYX6g=; b=O3le25+U8fjydnXPnZFBtQyIyl
- bZ8l3bwYuahmJ/8RUUcvqtWrHeZoeSK2tueyjV2LdvrfTndyrNqUsVuC1C2tIUHQUm3vt/XzF6DCR
- F4xIBnR6/113SXLM4bKU7F2WC6gMCXcDbBbrseZE47VLh09qSvqBy5FaxzTj3e82eAAuthDi4XOsy
- b0+ot8Kkq/K3V/kWVUwcyd+6OpdcK48b1TP0Gnc0dLMHFAu1kXOzRy14ygwFLorlV0RERBx83EiES
- 29lCBvDp2k0620vt6KNisNuTGOQmzAX3EUyfgo0HGwXqy+PmmXBGpv4hLHHHlWY6SvODOyxdFf9T+
- /qnTxQpw==;
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]
- helo=mx0b-001ae601.pphosted.com)
+ bh=oil1ZKHs2gIMho1AoeBK9FgMU7gcVZ4wK4kjgOzdSgU=; b=CWw+yFk2DI6dGc6fyzwqmZ/1BX
+ WJWWo4bcDIQgzaDE1XRZllbqLflX6mFE7usbuVHN6f1iVt2d7bCKngY91irPCyfP8pmcFl9Zta7lR
+ 9k9cWGaq2mWsjEuY25HTzQuAbX4oBrhFqZTQOdargl/DKt2ZspmlRiic7Z2tidAwAKxHdzkNILc2k
+ g4GfCS/0j6XQAgsC9OcoD6pJ1JExwiK5nHQydzXAIEi0Faic+mFL+tKssyay7s6LxDELbpWzo2QI0
+ 2XdPBO8eKdhvAwfqM9tsUmUmtWdWuZFqQn5bXOy4ceOtjRL00v+ZJUaDsoXeKJGUKiIyKOPKvotOT
+ Hvyscnig==;
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
  by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nriJm-00CqQm-LG; Thu, 19 May 2022 15:44:07 +0000
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
- by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24J6k12A002261;
- Thu, 19 May 2022 10:43:41 -0500
+ id 1nriJm-00CqQi-LJ; Thu, 19 May 2022 15:44:07 +0000
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+ by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24J66mWF012194;
+ Thu, 19 May 2022 10:43:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com;
  h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=eGYFlG3Htf11GYri2u8Av0yY7RtKBp+5GHIN2hbYX6g=;
- b=O+w8tG67JSaQk07m3qWqUWMeSMitpMGwE2mqPEef9kEUYE83vSjG6ylpMUSPTpeQ5Y4s
- YjU3erNeoJHT+w9R5LsYXXwH+u/oo1M3j1o6o+iH1+ETquH28K+XrORFKS/f/sB95TRB
- Ldc6rtbGEg2SB8vnp/4TTgOhRHO4zYWi7NZUyyYTCXbEMiSXUXXlphks0xZZZo4ssekn
- K7oxRN6VdpsOhB6GyZwVnavWG96WNuWjLC4Zxq1oRMwNne8je7f1RNspA16LtPj1b0ut
- afC1ItdmxzfcgjUiYLsIiG1JHRIF6xcobUziLvk4mi8sq+AH6qDgQdCPEvJItjuhy9ju 0Q== 
+ bh=oil1ZKHs2gIMho1AoeBK9FgMU7gcVZ4wK4kjgOzdSgU=;
+ b=VQjZoP93a0c8d+W/ugsjRxH9Fh1c1s3oEgc2mW54Kkr56QBRJ88v6LW8A8/rSjGStAsO
+ Nf1wuE4VqmHUd+/RjkSpFuiZ0cMmWa3CdoAK0RCYsILdmBymnKNchfv1FYGaApL7R4fj
+ kPxLk4H6KmvxU/TsS1AKvB1RzEZDzrpsOhNLC+OtRHWFmJnim4Yl0ypQBX2NYM2tFmwh
+ SlabDEdIZwWaFx6REBIak6ICHrHTatIr57nUQyEjgxgcyiy0INoclm90w5blGBoZOg/a
+ io4sDZ82+vQyPAxpgqierRNnmO+F8kkxvNZAAIKN0iQyMoEssAq1im2hGfWe9JzGdOXB PQ== 
 Received: from ediex02.ad.cirrus.com ([84.19.233.68])
- by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3g29u37mcg-12
+ by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3g28upf5dn-18
  (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Thu, 19 May 2022 10:43:40 -0500
+ Thu, 19 May 2022 10:43:41 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
  (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 19 May
@@ -63,7 +62,7 @@ Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via
  Frontend Transport; Thu, 19 May 2022 16:43:22 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
- by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1485F11D3;
+ by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 6025911DA;
  Thu, 19 May 2022 15:43:22 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
@@ -80,19 +79,20 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
  <peter.ujfalusi@gmail.com>, <jarkko.nikula@bitmer.com>,
  <heiko@sntech.de>, <jbrunet@baylibre.com>, <kernel@pengutronix.de>,
  <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>
-Subject: [PATCH 52/56] ASoC: ti: Rename set_fmt_new back to set_fmt
-Date: Thu, 19 May 2022 16:43:14 +0100
-Message-ID: <20220519154318.2153729-53-ckeepax@opensource.cirrus.com>
+Subject: [PATCH 56/56] ASoC: simple-card-utils: Move
+ snd_soc_component_is_codec to be local
+Date: Thu, 19 May 2022 16:43:18 +0100
+Message-ID: <20220519154318.2153729-57-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
 References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: mdgP--FrYQJ8LQr97yUif1MMz6GgTqJw
-X-Proofpoint-ORIG-GUID: mdgP--FrYQJ8LQr97yUif1MMz6GgTqJw
+X-Proofpoint-GUID: g2VJ5uiOojlv2ZUJ1ZRM-SzjnwXJaEpV
+X-Proofpoint-ORIG-GUID: g2VJ5uiOojlv2ZUJ1ZRM-SzjnwXJaEpV
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220519_164403_037445_9CD3D5D3 
-X-CRM114-Status: GOOD (  12.98  )
+X-CRM114-CacheID: sfid-20220519_164402_998372_BFC2FA33 
+X-CRM114-Status: GOOD (  21.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,56 +109,77 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now the core has been migrated across to the new direct clock
-specification we can move the drivers back to the normal set_fmt
-callback.
+The helper function snd_soc_component_is_codec is based off the
+presence of the non_legacy_dai_naming flag. This isn't super robust
+as CPU side components may also specify this flag, and indeed the
+kernel already contains a couple that do. After componentisation there
+isn't really a totally robust solution to identifying what is a CODEC
+driver, without introducing a flag specifically for that purpose, and
+really the desirable direction to move in is that the distinction
+doesn't matter.
+
+This patch does two things to try to mitigate these problems. Firstly,
+now that all the other users of the helper function have been removed,
+it makes the helper function local to the driver rather, than being
+part of the core. This should help to discourage any new code from
+being created that depends on the CODEC driver distinction. Secondly,
+it updates the helper function itself to use the endianness flag
+rather than the non_legacy_dai_naming flag. The endianness flag is
+definitely invalid on a CPU side component, so it a more reliable
+indicator that the device is definitely a CODEC. The vast majority of
+buses require the CODEC to set the endianness flag, so the number of
+corner cases should be fairly minimal. It is worth noting that CODECs
+sending audio over SPI, or built into the CPU CODECs are potential
+corner cases, however the hope is that in most cases those types of
+devices do not consitute a simple audio card.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/ti/davinci-i2s.c   | 2 +-
- sound/soc/ti/davinci-mcasp.c | 2 +-
- sound/soc/ti/omap-mcbsp.c    | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ include/sound/soc-component.h         | 5 -----
+ sound/soc/generic/simple-card-utils.c | 7 ++++++-
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/sound/soc/ti/davinci-i2s.c b/sound/soc/ti/davinci-i2s.c
-index c7368d5296688..fe572b720b094 100644
---- a/sound/soc/ti/davinci-i2s.c
-+++ b/sound/soc/ti/davinci-i2s.c
-@@ -606,7 +606,7 @@ static const struct snd_soc_dai_ops davinci_i2s_dai_ops = {
- 	.prepare	= davinci_i2s_prepare,
- 	.trigger	= davinci_i2s_trigger,
- 	.hw_params	= davinci_i2s_hw_params,
--	.set_fmt_new	= davinci_i2s_set_dai_fmt,
-+	.set_fmt	= davinci_i2s_set_dai_fmt,
- 	.set_clkdiv	= davinci_i2s_dai_set_clkdiv,
+diff --git a/include/sound/soc-component.h b/include/sound/soc-component.h
+index 5a764c3099d3e..5c4cfa70b018c 100644
+--- a/include/sound/soc-component.h
++++ b/include/sound/soc-component.h
+@@ -348,11 +348,6 @@ static inline int snd_soc_component_cache_sync(
+ 	return regcache_sync(component->regmap);
+ }
  
- };
-diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
-index 961bac6963652..e2aab4729f3ab 100644
---- a/sound/soc/ti/davinci-mcasp.c
-+++ b/sound/soc/ti/davinci-mcasp.c
-@@ -1620,7 +1620,7 @@ static const struct snd_soc_dai_ops davinci_mcasp_dai_ops = {
- 	.trigger	= davinci_mcasp_trigger,
- 	.delay		= davinci_mcasp_delay,
- 	.hw_params	= davinci_mcasp_hw_params,
--	.set_fmt_new	= davinci_mcasp_set_dai_fmt,
-+	.set_fmt	= davinci_mcasp_set_dai_fmt,
- 	.set_clkdiv	= davinci_mcasp_set_clkdiv,
- 	.set_sysclk	= davinci_mcasp_set_sysclk,
- 	.set_tdm_slot	= davinci_mcasp_set_tdm_slot,
-diff --git a/sound/soc/ti/omap-mcbsp.c b/sound/soc/ti/omap-mcbsp.c
-index 5bfb56d4ff844..58d8e200a7b97 100644
---- a/sound/soc/ti/omap-mcbsp.c
-+++ b/sound/soc/ti/omap-mcbsp.c
-@@ -1271,7 +1271,7 @@ static const struct snd_soc_dai_ops mcbsp_dai_ops = {
- 	.trigger	= omap_mcbsp_dai_trigger,
- 	.delay		= omap_mcbsp_dai_delay,
- 	.hw_params	= omap_mcbsp_dai_hw_params,
--	.set_fmt_new	= omap_mcbsp_dai_set_dai_fmt,
-+	.set_fmt	= omap_mcbsp_dai_set_dai_fmt,
- 	.set_clkdiv	= omap_mcbsp_dai_set_clkdiv,
- 	.set_sysclk	= omap_mcbsp_dai_set_dai_sysclk,
- };
+-static inline int snd_soc_component_is_codec(struct snd_soc_component *component)
+-{
+-	return component->driver->non_legacy_dai_naming;
+-}
+-
+ void snd_soc_component_set_aux(struct snd_soc_component *component,
+ 			       struct snd_soc_aux_dev *aux);
+ int snd_soc_component_init(struct snd_soc_component *component);
+diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
+index 539d7f081bd79..50a9827089335 100644
+--- a/sound/soc/generic/simple-card-utils.c
++++ b/sound/soc/generic/simple-card-utils.c
+@@ -513,6 +513,11 @@ static int asoc_simple_init_dai(struct snd_soc_dai *dai,
+ 	return 0;
+ }
+ 
++static inline int asoc_simple_component_is_codec(struct snd_soc_component *component)
++{
++	return component->driver->endianness;
++}
++
+ static int asoc_simple_init_dai_link_params(struct snd_soc_pcm_runtime *rtd,
+ 					    struct simple_dai_props *dai_props)
+ {
+@@ -524,7 +529,7 @@ static int asoc_simple_init_dai_link_params(struct snd_soc_pcm_runtime *rtd,
+ 
+ 	/* Only Codecs */
+ 	for_each_rtd_components(rtd, i, component) {
+-		if (!snd_soc_component_is_codec(component))
++		if (!asoc_simple_component_is_codec(component))
+ 			return 0;
+ 	}
+ 
 -- 
 2.30.2
 
