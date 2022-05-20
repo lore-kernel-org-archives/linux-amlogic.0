@@ -4,97 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD55C433F5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 May 2022 11:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 543A4C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 May 2022 13:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oO6Cegt462i3ZbWaxKybFbDf3riMA+yoFZz2197ANjw=; b=I33NwmToh4uCoi
-	DVFhBUb5cgXz2FnN6dCt4Zf3UsuOjxCJrbUBtjmd1/KjGYQf6pqq8cAP0ZXo6RK2muVmhX+vvDiC0
-	CEjdCHT9gz4vfcFy/3xV0ChkBDxXZIs59FnBZQx89CY024krHR6lrucZn5CbxfqlRFCWBAzvQmua1
-	dvh6ATwQCDnSs7FWzHseAltLKhqr/C6k77wrATy5ByFMlXNEafzcvsB5nfKCb5uslAtp03ejb2TEf
-	MLMMH6/NyZ0p1l/ptRtVjUlSGx+8ZOxuDDpQ3ykEfITpTa5CjkQkr6yVuBNnFYY2MFXshgVcBhpj1
-	ipOCiafjSNjbZQbPhnTg==;
+	List-Owner; bh=3Bskh0EodpWEufTlbla2WeLURP8Oj6yX0jU3x4846fo=; b=weIxrkh8NvvMDp
+	7vplS5q/ga+MAbKlHevDCFBQ/hoUzSo/ljhkxI65gLNt46SBL//96fcI9QNHyz7n4yI6eOJ6zrE3J
+	HLDTgF8L2qLUMyznELa8WknIAUm53Hvfd6KaqJbCxgHQCjY8G8E01XbvSz70HmSaJNdm+E9poIGQl
+	ubvN6npc9h4Lyan/Azo6e1qwyTeZpHdYKHjo/+kU2zRKOFAkQqbqRfUa20AI6IBaHzcKXLAURywUF
+	OnftOOhZQW7Jvrgo31GDh+GrmpuQtO4Wkz7UrOskA0IJTfuo9pavBlxNsXxhZQu3DkrmJ6eVJ15BO
+	QjbxZkpNoq8sW4z1qN8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ns0qJ-00C5ge-Su; Fri, 20 May 2022 11:30:51 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1ns2qZ-00ChC5-7J; Fri, 20 May 2022 13:39:15 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nrzop-00BsMw-IA; Fri, 20 May 2022 10:25:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=WSOvhMBIg+CnexC+Y8X+ZG7BYMkoKeetiZYSiJmE0cw=; b=EOoktUHChXRYEYWKii5MVDtiyi
- kS+dAPJ6Ekg5JNdq1mEhTUSUYvxSProQ9DM1LfwfVLYm0V6/djh5F6aCoswLJTh2BXFGKZgRFGsCM
- vRWlX3xtLjoiGT7Yrpe+aIubWp+q58YH+G6yHpvxomkBykyH/6hV46yxR1V7bq5OtknIHwuAgUDiH
- NNE5pSzb33dNJFoaD/ayO1UjFh2sA8dgFBS+mKa2Yx8gQ9g7zh87iTVPShBkYwjFqLG6/51mVHtO9
- wULbVakzYssjMprd26LEupA6EXdq9XcTSqZQ+2JNOXPlhEeF84qKwt81Rs+Gz6iFjCzU1WGQDxpbx
- KsVYRJTA==;
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
- by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nrzoh-002JLT-0u; Fri, 20 May 2022 10:25:09 +0000
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
- by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24K5UCxB026795;
- Fri, 20 May 2022 05:24:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com;
- h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=WSOvhMBIg+CnexC+Y8X+ZG7BYMkoKeetiZYSiJmE0cw=;
- b=E3MDFwXsbJRiBaE4OT2ai+JBwbYdqbCNDnTM5WTrjlOXZlrikeuJ1tiL+m5bGqsZo03j
- hZNgysmRG2QNG9jfqt9CJyU1HKdQikMi9FpVUiaR7mHeBwbTedb07Mex56RR9EocUbFP
- vjQtPAGfK1wk5RM/9IUs9D/tVUYW0yOqIgk1qYoeQRhBJEla3nFqJiatKvzERFcXHqSI
- Q+/Hno0xMo5/BjF4Kn3iHQ0QMOXFJX9/9GuLbAmIRVv9J84ewdgkmDjMuNAiVSG2dbUO
- otHvJplf8L8ZVHcLm7hZgWu0kIHYmP+5RyytltwUsoK/TaAybqvdQMM8AE7gkhiA4klo dQ== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
- by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3g28upg6de-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Fri, 20 May 2022 05:24:48 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 20 May
- 2022 11:24:47 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via
- Frontend Transport; Fri, 20 May 2022 11:24:47 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
- by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 20F84458;
- Fri, 20 May 2022 10:24:47 +0000 (UTC)
-Date: Fri, 20 May 2022 10:24:47 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <nicolas.ferre@microchip.com>,
- <nsaenz@kernel.org>, <shawnguo@kernel.org>, <linux-imx@nxp.com>,
- <cezary.rojewski@intel.com>, <pierre-louis.bossart@linux.intel.com>,
- <linux-mips@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <daniel@zonque.org>,
- <srinivas.kandagatla@linaro.org>, <linux-rockchip@lists.infradead.org>,
- <krzk@kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
- <linux-sunxi@lists.linux.dev>, <linux-tegra@vger.kernel.org>,
- <linux-omap@vger.kernel.org>, <linux-xtensa@linux-xtensa.org>,
- <peter.ujfalusi@gmail.com>, <jarkko.nikula@bitmer.com>,
- <heiko@sntech.de>, <jbrunet@baylibre.com>, <kernel@pengutronix.de>,
- <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>
-Subject: Re: [PATCH 56/56] ASoC: simple-card-utils: Move
- snd_soc_component_is_codec to be local
-Message-ID: <20220520102447.GL38351@ediswmail.ad.cirrus.com>
+ id 1ns2qU-00Ch8N-8q; Fri, 20 May 2022 13:39:11 +0000
+Received: by mail-ed1-x532.google.com with SMTP id p26so10852278eds.5;
+ Fri, 20 May 2022 06:39:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=/vZ5EIynCj28UhpMo2WaUDTGXgrMDD6ssuzpbKQFTrE=;
+ b=dbdCdy787bi5RG1nfo93JEf7fRSGqgvdGgWbhi5+jiM2gZq411FflPdY9L2o3Sz097
+ XA9SzdoyvFOw4oNvCmxQtifumEL2ucGkRJdht2gKQbj9YVfuffNrO+QPvuuZxjrqoS0F
+ NfU67GWBYzEpstGDy844RVUmfAl7HNRGvf/LwT4rnlN6DngXc2ZKIaPbBdhEQ53EpZ4s
+ ITsYoJPxw+STd6rZ1MhtfXgofir7SDd7Ohuuh33FWGAKbBMX+xkiGJYwBkluf7rb/Tbk
+ 3LkMR2KGcBuBeRhqmlx3nsng24xG35IMWoTed7v6OpPZiYpWbvZKUFT3MZVg1KYI/Bnh
+ bK1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=/vZ5EIynCj28UhpMo2WaUDTGXgrMDD6ssuzpbKQFTrE=;
+ b=Su4Ks8zwH8vkN4XxF09a/+vpClLulgWgygM1MmKlxii2rrjUCS5vw2xwgF06fOeeBD
+ RLg16nLiEGNb4a0Mqe/tXm5rjOWuG4FwsZTrf5KO2TQEENFpX7RD1D6dNRIv46V+9EIm
+ I2qww1VAryXqMQdrPHYrV+dk4ur65Z3wQVyfQSlAq9xcM0lF6yfBwxRt73l6B5qmZ1EI
+ ecsQ8bbSAR9TEYhocTVLu711CfsC0mMSDh4FyAcNweUZR7f12K/dILGRZjptoslfGc8D
+ X2WClx/qd4cgO61KgyWvnscJafdFBbQcFUAWu8f6WH6NqCFk1h4UrFf/JTvrtMX/cC9g
+ c0QA==
+X-Gm-Message-State: AOAM531AyEbXYNaJaaonH5WJbDneATDk3W8movSkEGROdLLiiWElIAUJ
+ vHilBWqD2fKjWA8pdzJKup4HJjZg14k=
+X-Google-Smtp-Source: ABdhPJzB4dDO6rQGcvP8GfFmFaDFqb3hZ0xhEwmOtYMgE32gUNPAUosh+C78GjzIs6waR9fAZFTMtw==
+X-Received: by 2002:a05:6402:3488:b0:427:b4ec:991b with SMTP id
+ v8-20020a056402348800b00427b4ec991bmr10869813edc.319.1653053945963; 
+ Fri, 20 May 2022 06:39:05 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch.
+ [84.72.105.84]) by smtp.gmail.com with ESMTPSA id
+ b2-20020aa7df82000000b0042abfe32ac8sm4225152edy.30.2022.05.20.06.39.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 May 2022 06:39:05 -0700 (PDT)
+From: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To: broonie@kernel.org, Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
+ nicolas.ferre@microchip.com, nsaenz@kernel.org, shawnguo@kernel.org,
+ linux-imx@nxp.com, cezary.rojewski@intel.com,
+ pierre-louis.bossart@linux.intel.com, linux-mips@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ daniel@zonque.org, srinivas.kandagatla@linaro.org,
+ linux-rockchip@lists.infradead.org, krzk@kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-xtensa@linux-xtensa.org, peter.ujfalusi@gmail.com,
+ jarkko.nikula@bitmer.com, heiko@sntech.de, jbrunet@baylibre.com,
+ kernel@pengutronix.de, alsa-devel@alsa-project.org,
+ patches@opensource.cirrus.com
+Subject: Re: [PATCH 18/56] ASoC: rockchip: Update to use set_fmt_new callback
+Date: Fri, 20 May 2022 15:39:03 +0200
+Message-ID: <4375965.enAZpblka2@archbook>
+In-Reply-To: <20220519154318.2153729-19-ckeepax@opensource.cirrus.com>
 References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
- <20220519154318.2153729-57-ckeepax@opensource.cirrus.com>
- <87czg98193.wl-kuninori.morimoto.gx@renesas.com>
+ <20220519154318.2153729-19-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87czg98193.wl-kuninori.morimoto.gx@renesas.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: EewLKkNvojqM2gQAbwrh9EQ5fKjwiv7u
-X-Proofpoint-ORIG-GUID: EewLKkNvojqM2gQAbwrh9EQ5fKjwiv7u
-X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220520_112507_643729_1CA32371 
-X-CRM114-Status: GOOD (  27.63  )
+X-CRM114-CacheID: sfid-20220520_063910_400263_2CB21D72 
+X-CRM114-Status: GOOD (  16.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,68 +99,91 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, May 20, 2022 at 01:02:33AM +0000, Kuninori Morimoto wrote:
+On Donnerstag, 19. Mai 2022 17:42:40 CEST Charles Keepax wrote:
+> As part of updating the core to directly tell drivers if they are clock
+> provider or consumer update these CPU side drivers to use the new direct
+> callback.
 > 
-> Hi
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+>  sound/soc/rockchip/rockchip_i2s.c     | 8 ++++----
+>  sound/soc/rockchip/rockchip_i2s_tdm.c | 8 ++++----
+>  2 files changed, 8 insertions(+), 8 deletions(-)
 > 
-> This is not related to this patch, but...
+> diff --git a/sound/soc/rockchip/rockchip_i2s.c b/sound/soc/rockchip/rockchip_i2s.c
+> index 4ce5d25793875..0a66c7df323dc 100644
+> --- a/sound/soc/rockchip/rockchip_i2s.c
+> +++ b/sound/soc/rockchip/rockchip_i2s.c
+> @@ -199,13 +199,13 @@ static int rockchip_i2s_set_fmt(struct snd_soc_dai *cpu_dai,
+>  
+>  	pm_runtime_get_sync(cpu_dai->dev);
+>  	mask = I2S_CKR_MSS_MASK;
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBS_CFS:
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP:
+>  		/* Set source clock in Master mode */
+>  		val = I2S_CKR_MSS_MASTER;
+>  		i2s->is_master_mode = true;
+>  		break;
+> -	case SND_SOC_DAIFMT_CBM_CFM:
+> +	case SND_SOC_DAIFMT_BC_FC:
+>  		val = I2S_CKR_MSS_SLAVE;
+>  		i2s->is_master_mode = false;
+>  		break;
+> @@ -486,7 +486,7 @@ static const struct snd_soc_dai_ops rockchip_i2s_dai_ops = {
+>  	.hw_params = rockchip_i2s_hw_params,
+>  	.set_bclk_ratio	= rockchip_i2s_set_bclk_ratio,
+>  	.set_sysclk = rockchip_i2s_set_sysclk,
+> -	.set_fmt = rockchip_i2s_set_fmt,
+> +	.set_fmt_new = rockchip_i2s_set_fmt,
+>  	.trigger = rockchip_i2s_trigger,
+>  };
+>  
+> diff --git a/sound/soc/rockchip/rockchip_i2s_tdm.c b/sound/soc/rockchip/rockchip_i2s_tdm.c
+> index 98700e75b82a1..c90afccdae362 100644
+> --- a/sound/soc/rockchip/rockchip_i2s_tdm.c
+> +++ b/sound/soc/rockchip/rockchip_i2s_tdm.c
+> @@ -411,12 +411,12 @@ static int rockchip_i2s_tdm_set_fmt(struct snd_soc_dai *cpu_dai,
+>  	}
+>  
+>  	mask = I2S_CKR_MSS_MASK;
+> -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> -	case SND_SOC_DAIFMT_CBC_CFC:
+> +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> +	case SND_SOC_DAIFMT_BP_FP:
+>  		val = I2S_CKR_MSS_MASTER;
+>  		i2s_tdm->is_master_mode = true;
+>  		break;
+> -	case SND_SOC_DAIFMT_CBP_CFP:
+> +	case SND_SOC_DAIFMT_BC_FC:
+>  		val = I2S_CKR_MSS_SLAVE;
+>  		i2s_tdm->is_master_mode = false;
+>  		break;
+> @@ -1113,7 +1113,7 @@ static const struct snd_soc_dai_ops rockchip_i2s_tdm_dai_ops = {
+>  	.hw_params = rockchip_i2s_tdm_hw_params,
+>  	.set_bclk_ratio	= rockchip_i2s_tdm_set_bclk_ratio,
+>  	.set_sysclk = rockchip_i2s_tdm_set_sysclk,
+> -	.set_fmt = rockchip_i2s_tdm_set_fmt,
+> +	.set_fmt_new = rockchip_i2s_tdm_set_fmt,
+>  	.set_tdm_slot = rockchip_dai_tdm_slot,
+>  	.trigger = rockchip_i2s_tdm_trigger,
+>  };
 > 
-> > -static inline int snd_soc_component_is_codec(struct snd_soc_component *component)
-> > -{
-> > -	return component->driver->non_legacy_dai_naming;
-> > -}
-> (snip)
-> > +static inline int asoc_simple_component_is_codec(struct snd_soc_component *component)
-> > +{
-> > +	return component->driver->endianness;
-> > +}
-> 
-> I have added "endianness" "non_legacy_dai_naming" to component
-> when convert old "Codec style" into current "Component style".
-> All codec needs to have these 2.
-> 
-> 	69941bab7c7aeaa7bf7e84397e294c17f0b7c6df
-> 	("ASoC: snd_soc_component_driver has non_legacy_dai_naming")
-> 
-> 	273d778ef38a8861f880e9df5799029dc82bd55d
-> 	("ASoC: snd_soc_component_driver has endianness")
-> 
-> The reason why I didn't use "codec" was that try to keep
-> original style as much as possible.
-> But it seems this is good time to use "codec" for it ?
-> I think the code will be more understandable.
-> 
-> -	.endianness
-> -	.non_legacy_dai_naming
-> +	.is_codec
 
-Yeah I considered this but it didn't really feel like the right
-way to go to me. Firstly, at this stage we almost certainly need
-to keep the endianness and non_legacy_dai_naming flags, there are
-corner cases when endianness probably shouldn't be applied to CODECs
-(as noted in my endianness series), and there are platform drivers
-that use non_legacy_dai_naming.
+Please run ./scripts/get_maintainer.pl against the individual patches so
+that I'm included in the recipients of the e-mail as well.
 
-We could add an is_codec flag along side the other two. But it
-means a whole extra flag and means the the core is still requiring
-a concept of what is a CODEC driver, which really we want to get
-rid of as part of componentisation.
+Anyway, for the i2s-tdm parts:
 
-My thinking was that, whilst making this function local to the
-driver isn't perfect, simple card will be used with simple CODECs
-that are likely to exist on a standard audio bus, and thus have
-endianness and the newer graph cards don't require specific
-identification of what is a CODEC driver. So it probably works as
-a solution for now.
+Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 
-> 
-> Thank you for your help !!
+Tested on a RK3566 connected to an RK817 codec.
 
-Absolutely no problem, thank you for all the work you have done
-on this over the years.
+Regards,
+Nicolas Frattaroli
 
-Thanks,
-Charles
+
 
 _______________________________________________
 linux-amlogic mailing list
