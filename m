@@ -4,75 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38DB5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 May 2022 07:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17E99C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 May 2022 11:03:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=i54pqJbRZF5a5CyPvdZD4cCoilsM9+irEfxl4pkxmcg=; b=XDPR7iJOtk1yTw
-	0UHaGNrw0fxTIW3pJSPzwqZhVbiYnJa8+S5GnFC3+ZauNXJt5Cij3dzZO1DbIvaQ/uEQQs2no2Dsx
-	ZfpkhR3OeD6aHZ0493SYvQwy1fh7Vw0puolu28PdZwuTXRrHYZUZwC4lljcA3ojA0tm4GdlECs4Jo
-	r1TC6oIe6ZS4hSin3hR+UzghKXhJwY4b0QqCxVdqGqVrkF0tT/mjU8fGmVyD3usXLdjhMtqXeAoXl
-	g1NTNSowQ5zedOIQzidHzvl4+WsbDsPAZnFLVbb3MczwnRcIfr5VpoT8wdlgmt3VuC5Fz+hkEmNHl
-	iuLVO0s0z2fbmEdeTsGA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=n1JnV/SSkznhXA21QWB97cADnsKaovlqERqXvQZf2GU=; b=amuS3W/geKtvRg
+	FY78j3IQIH47m81hevuoy2b32YPJ82FQO3/ZXyqslXl0CeS8yT58TZx/RltwEWq29PD2qurHCqz1Q
+	HP5Jkllxa0DIV4Gm7iB/FgLEYfO+ihcFRqIizAfD8F5SHGDswdyrM9gD8FmNHYS119EiMO7N4Pyto
+	RlZtZOQ/zIefIlUeHxGxYIJjAHDPYqX/wAvycNPo9ykIWfFyJyuVRYqjSR7a0kfiTNLdpTM7q9rPr
+	EZoyuCMin2SyKziIEPFsL9Ae4H3NQdAvjmy5FvjfthmkcAChaAcH+E7B09aSUtNSSWmDPeM5zcaE3
+	wDdLSzZx2U1bU+fENgsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nrxWf-00BAEW-Vz; Fri, 20 May 2022 07:58:22 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1ns0Q2-00ByIz-UW; Fri, 20 May 2022 11:03:42 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nrxWc-00BACI-4R
- for linux-amlogic@lists.infradead.org; Fri, 20 May 2022 07:58:19 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1nrxWI-0006bH-3M; Fri, 20 May 2022 09:57:58 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nrxWH-003ROu-O1; Fri, 20 May 2022 09:57:56 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nrxWF-00AveO-69; Fri, 20 May 2022 09:57:55 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Russell King <linux@armlinux.org.uk>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, kernel@pengutronix.de,
- Michael Turquette <mturquette@baylibre.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Alexandru Ardelean <aardelean@deviqon.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH v9 0/4] clk: provide new devm helpers for prepared and enabled
- clocks
-Date: Fri, 20 May 2022 09:57:33 +0200
-Message-Id: <20220520075737.758761-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.35.1
+ id 1ns0OP-00BxEJ-F6; Fri, 20 May 2022 11:02:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=OE6raZbucX9LQfP+TUClB+u691iV9kBCVX1IaiFUTRE=; b=GBAc4E+d890dACNmy1V5iNzH7n
+ XiCNsIPrBp13FTu7pC6+wuJsXxCv1rn6JpntHwSs6wURzXy19oVinvyco81H1KmEiUtpuKQgfv7In
+ MABC0AapBKLeyHuQCLzjhR/9LsPi7aQ18mtEAM1n4WwuOQBdGAoOSSPt09RUiq4lpizu6RweK+I0E
+ 4XKx7dc9KjuAnOybVmZ6+HcB8RUT4aukfFU2RAgifDkDAKuxV8FUjsrNZrsgqOCoXmyzNJmZmv4YD
+ DRZxFKfX9KKJXDUtnF25AXcbhZiWZXxsTh8c20Z4exSyZXZvTLEAM0og+xCthbEmLNy1IUnZjgMdg
+ e6Wp0PoQ==;
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
+ by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nrzNm-002Inw-EU; Fri, 20 May 2022 09:57:22 +0000
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+ by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24K5UCw9026795;
+ Fri, 20 May 2022 04:56:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com;
+ h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=OE6raZbucX9LQfP+TUClB+u691iV9kBCVX1IaiFUTRE=;
+ b=OZjWqUg2GB9AJ9JqFusRILLr+RJoWNaMdCe9RA8DZ3zC+BqhasJKotr9r087ufLn2CfT
+ ImDGP7AQdM1dEhMs05cuGKULUV2UMVhWKhwv1lv9aIYxP58hsADDle5oYJD73+1i/5E/
+ DJ4PIeWt9ouGrMRIwpVZYIv2N+Hl3NLhwUKoEL7upZzJBlhj+H8WMUIA+0c0utHrFXib
+ 6St0njUEwySoagUHdfOhKQMIhve6czUMiuHZthPtAEsJdIL2UVkqXmo+S/ET4vQeKKCR
+ eK2EWlTLp4WJJ/WhIR7yVYO0bDmrZEz1nQCC+kwy9kogs86oLbScSXA9l5o3Xs/ta2/U LQ== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+ by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3g28upg5ms-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+ Fri, 20 May 2022 04:56:55 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 20 May
+ 2022 10:56:54 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via
+ Frontend Transport; Fri, 20 May 2022 10:56:54 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+ by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 42FB3476;
+ Fri, 20 May 2022 09:56:54 +0000 (UTC)
+Date: Fri, 20 May 2022 09:56:54 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Samuel Holland <samuel@sholland.org>
+CC: <broonie@kernel.org>, <lgirdwood@gmail.com>,
+ <kuninori.morimoto.gx@renesas.com>, <nicolas.ferre@microchip.com>,
+ <nsaenz@kernel.org>, <shawnguo@kernel.org>, <linux-imx@nxp.com>,
+ <cezary.rojewski@intel.com>, <pierre-louis.bossart@linux.intel.com>,
+ <linux-mips@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <daniel@zonque.org>,
+ <srinivas.kandagatla@linaro.org>, <linux-rockchip@lists.infradead.org>,
+ <krzk@kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-sunxi@lists.linux.dev>, <linux-tegra@vger.kernel.org>,
+ <linux-omap@vger.kernel.org>, <linux-xtensa@linux-xtensa.org>,
+ <peter.ujfalusi@gmail.com>, <jarkko.nikula@bitmer.com>,
+ <heiko@sntech.de>, <jbrunet@baylibre.com>, <kernel@pengutronix.de>,
+ <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 22/56] ASoC: sunxi: Update to use set_fmt_new callback
+Message-ID: <20220520095654.GK38351@ediswmail.ad.cirrus.com>
+References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
+ <20220519154318.2153729-23-ckeepax@opensource.cirrus.com>
+ <948d5418-44ca-2e60-0c1c-0b16f315feba@sholland.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1942; h=from:subject;
- bh=sEhuMmJW8l03//A/Pq9UCpgGc389v3t6wXwl4AtmbV0=;
- b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBih0nW4RmK5Skbk1HhqzFWTduO8ASNdMPskUzcaNyF
- DKDG/iyJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYodJ1gAKCRDB/BR4rcrsCTC9B/
- 9J9jmZqoBS7CZI8eRtCxLpm5BhzRPL8uY4LD07XNagLaYHx9kNRbQKyNr/W3e6TTxQDlSO29xUogcn
- NetIM7xPbD4dLe/4Z65dxaziw0a/j9YxEFOacX4DrnA3bvaVA6ML47qngWs9ss70L/sIOzwQGhhNzy
- KG1KT03FW4cANfcgaD+rmyCH7q+Fob/Les4PVhNKOY6O2O9kA2Ayf5bRoAdWs7U09x76iLuO2IqEmt
- /u0JKbEoFLHbzSy3rNvsb4Sz2qYFH5PzLvP0u0oHGSJ4P2Jqdi6qenBzdslpOHD/d6WVXYw+A/P1CX
- fHyHLW9F+naC/qAWydNC3FC18Z51R/
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <948d5418-44ca-2e60-0c1c-0b16f315feba@sholland.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: 0o2bd6ilE3N_-d0xNvYBerQp3pGSYvGE
+X-Proofpoint-ORIG-GUID: 0o2bd6ilE3N_-d0xNvYBerQp3pGSYvGE
+X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220520_005818_215262_9BD71B66 
-X-CRM114-Status: GOOD (  12.56  )
+X-CRM114-CacheID: sfid-20220520_105720_162570_4BAEA60F 
+X-CRM114-Status: GOOD (  20.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,45 +106,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgphZnRlciBTdGVwaGVuIHNpZ25hbGVkIHRvIGFjY2VwdCB0aGUgaWRlYSwgdGhpcyBp
-cyBhIHJld29yayBvZiB2OFsxXSB3aXRoCnRoZSBmb2xsb3dpbmcgY2hhbmdlczoKCiAtIERyb3Ag
-dGhlIGZvbGxvdyB1cCBjb252ZXJzaW9ucy4gSSB3aWxsIHJlc2VuZCB0aGVtIGluZGl2aWR1YWxs
-eSBwZXIKICAgc3Vic3lzdGVtIG9uY2UgdGhlIHByZWNvbmRpdGlvbnMgZnJvbSB0aGlzIHY5IGFy
-ZSBpbi4gSSBvbmx5IGtlcHQgb25lCiAgIGNsayBwYXRjaCB0aGF0IHdpbGwgZ28gaW4gdmlhIHRo
-ZSBjbGsgdHJlZSBhbnlob3cuIEkgdHJpbW1lZCB0aGUgQ2M6CiAgIGxpc3QgYWNjb3JkaW5nbHku
-CgogLSAodHJpdmlhbGx5KSByZWJhc2VkIHRvIHY1LjE4LXJjMQoKIC0gSW50cm9kdWNlIGEgbmV3
-IGNvbW1pdCB0aGF0IGZpcnN0IGltcHJvdmVzIHRoZSBkb2N1bWVudGlvbiBvZgogICBkZXZtX2Ns
-a19nZXQoKSBhbmQgZGV2bV9jbGtfZ2V0X29wdGlvbmFsKCkgYmVmb3JlIChtb3N0bHkpCiAgIGR1
-cGxpY2F0aW5nIHRoZXNlIGZvciB0aGUgbmV3IGZ1bmN0aW9ucy4KCiAtIE1ha2UgdGhlIG5ldyBm
-dW5jdGlvbnMgdXNlIGEgR1BMIGV4cG9ydC4gKE5vdGUgdGhlIGV4aXN0aW5nIGZ1bmN0aW9ucwog
-ICB1c2UgYSBwbGFpbiBleHBvcnQsIEkgZGlkbid0IGNoYW5nZSB0aGF0LikKCiAtIERyb3AgYSBi
-b2d1cyBlbXB0eSBsaW5lIHRoYXQgd2FzIGN1dC1uLXBhc3RlZCBpbnRvIHNldmVyYWwgZnVuY3Rp
-b25zLgoKVGhhbmtzIGZvciBmZWVkYmFjayBieSBTdGVwaGVuIGFuZCBKb25hdGhhbi4KCkBSdXNz
-ZWxsOiBTdGVwaGVuIHdyb3RlIGluIHY4OiAiSSdtIGxhcmdlbHkgd2FpdGluZyBmb3IgUnVzc2Vs
-bCB0byBhY2sKdGhlIGNsay5oIGNoYW5nZSBbLi4uXSIuIFdvdWxkIGJlIGdyZWF0IGlmIHlvdSBs
-b29rZWQgYXQgdGhlIHNlcmllcyBhbmQKdGVsbCB1cyB5b3VyIHRob3VnaHRzLgoKQFN0ZXBoZW46
-IFlvdSBhc2tlZCB0byBhZGQgdGhlIGFja3MgZnJvbSB2OC4gVGhlcmUgd2VyZSBob3dldmVyIG9u
-bHkKYWNrcyBmb3IgdGhlIGZvbGxvd3VwIGNvbnZlcnNpb25zLiBTbyBubyBjaGFuZ2VzIGhlcmUu
-CihBbmR5IFNoZXZjaGVua28gcmVwbGllZCB0byBwYXRjaCAwLCBidXQgaGlzIFJldmlld2VkLWJ5
-OiBvbmx5IGFmZmVjdGVkCnRoZSBwYXRjaCAiaWlvOiBNYWtlIHVzZSBvZiBkZXZtX2Nsa19nZXRf
-ZW5hYmxlZCgpIi4pCgpCZXN0IHJlZ2FyZHMKVXdlCgpbMV0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5v
-cmcvbGludXgtY2xrLzIwMjIwMzE0MTQxNjQzLjIyMTg0LTEtdS5rbGVpbmUta29lbmlnQHBlbmd1
-dHJvbml4LmRlCgpVd2UgS2xlaW5lLUvDtm5pZyAoNCk6CiAgY2xrOiBJbXByb3ZlIGRvY3VtZW50
-YXRpb24gZm9yIGRldm1fY2xrX2dldCgpIGFuZCBpdHMgb3B0aW9uYWwgdmFyaWFudAogIGNsazog
-Z2VuZXJhbGl6ZSBkZXZtX2Nsa19nZXQoKSBhIGJpdAogIGNsazogUHJvdmlkZSBuZXcgZGV2bV9j
-bGsgaGVscGVycyBmb3IgcHJlcGFyZWQgYW5kIGVuYWJsZWQgY2xvY2tzCiAgY2xrOiBtZXNvbjog
-YXhnLWF1ZGlvOiBEb24ndCBkdXBsaWNhdGUgZGV2bV9jbGtfZ2V0X2VuYWJsZWQoKQoKIGRyaXZl
-cnMvY2xrL2Nsay1kZXZyZXMuYyAgICAgIHwgIDkxICsrKysrKysrKysrKysrKysrKystLS0tCiBk
-cml2ZXJzL2Nsay9tZXNvbi9heGctYXVkaW8uYyB8ICAzNiArLS0tLS0tLS0KIGluY2x1ZGUvbGlu
-dXgvY2xrLmggICAgICAgICAgIHwgMTM0ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-LS0KIDMgZmlsZXMgY2hhbmdlZCwgMjA3IGluc2VydGlvbnMoKyksIDU0IGRlbGV0aW9ucygtKQoK
-CmJhc2UtY29tbWl0OiAzMTIzMTA5Mjg0MTc2YjE1MzI4NzQ1OTFmN2M4MWYzODM3YmJkYzE3Ci0t
-IAoyLjM1LjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+On Thu, May 19, 2022 at 06:40:11PM -0500, Samuel Holland wrote:
+> On 5/19/22 10:42 AM, Charles Keepax wrote:
+> > As part of updating the core to directly tell drivers if they are clock
+> > provider or consumer update these CPU side drivers to use the new direct
+> > callback.
+> > 
+> > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > ---
+> >  sound/soc/sunxi/sun4i-i2s.c   | 20 ++++++++++----------
+> >  sound/soc/sunxi/sun8i-codec.c |  8 ++++----
+> >  2 files changed, 14 insertions(+), 14 deletions(-)
+> > diff --git a/sound/soc/sunxi/sun8i-codec.c b/sound/soc/sunxi/sun8i-codec.c
+> > index 0bea2162f68d9..6e9ef948d6621 100644
+> > --- a/sound/soc/sunxi/sun8i-codec.c
+> > +++ b/sound/soc/sunxi/sun8i-codec.c
+> > @@ -286,11 +286,11 @@ static int sun8i_codec_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+> >  	u32 dsp_format, format, invert, value;
+> >  
+> >  	/* clock masters */
+> > -	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> > -	case SND_SOC_DAIFMT_CBS_CFS: /* Codec slave, DAI master */
+> > +	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
+> > +	case SND_SOC_DAIFMT_BP_FP: /* Codec slave, DAI master */
+> 
+> This is a codec driver, and it is only ever used on the codec end of a link, so
+> I would not expect it to be changed.
+> 
+
+Thanks for spotting that, silly mistake on my part. Will fix for
+a rev 2.
+
+Thanks,
+Charles
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
