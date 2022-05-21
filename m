@@ -4,56 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23289C433F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 May 2022 11:17:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D429C433F5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 21 May 2022 11:33:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=hcyNKAQAKZELcjLWLxS41ql5YqDMZk6H+x84xiFPglY=; b=ouy9+CxY1RT8+q
-	05J07oxM2A1Kcf/OvD8IFJggTzQJRIzIBp3nOPXYDnpN+GKApXVGmm9IrfRtUDyjbc0xh+d9Q/PTr
-	xrk7wl3QRpdjv+78jS3Bn3+X2NnQ+vc7D0Kb5nDDl33MNvAKd95njLIIZQ7nuWkwx7AQkr1l3qofT
-	f2X3AlZyMxVAs+BmkfqfFzrL8b7KhIP9WE3zN96TBYhFVuhRHG3gLAfSKWF8NG2APSubm0pAZUgDn
-	KOqbdPtmD8rq5JPsa8RdfKcA64TstpDc1vPal0USEgFREeiCI0HjW0PRiG0iTzfYYB34e5yUs4zPo
-	/B2a7+7aSCbhsaCzCOaQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=qFkZu0jNOOxRtoJvDvztVwdEYWmi6IQztEo6CSSVyII=; b=2RdUmovEZVlM0i/sI8EUXz+JeY
+	VHrDqdKgQu2r5SLblyj9hF9m+FLZFBi6xfLUt0vldeD+isatY27J49qAhEp1cW5fPwr33sG8QvQZb
+	hl/t7DCY9QmpxBZ/hveBWxtMTz0rXoMIhrxee0KGQNKgbsZf5K237Y9jW2XOdevDg5IclaozIIcYW
+	C50BwAfXWOA5stcoP5p3TfgEZ9VY0/CxphehE4qUNIICt/bfdKvVHp1kdHOaKOe0/nRW2jegPWpgc
+	un3kn/yXPsca/UjoZpQNxR3ibbWRXoO4q4syD6ITIXjt1tLxn72bAkAnGzhvFD7+uh40ks/QX4MuL
+	6T5QIC0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nsN6n-00GIrg-BJ; Sat, 21 May 2022 11:17:21 +0000
-Received: from mail3-relais-sop.national.inria.fr ([192.134.164.104])
+	id 1nsNMj-00GOlF-W3; Sat, 21 May 2022 11:33:50 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nsN1o-00GFFY-2G; Sat, 21 May 2022 11:12:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9wrNYIqEvyrnG9iiMAt+K7orQjSJi1d7S7pYQrFwucI=;
- b=EfF0aOKSs4g3wIIaklisoXUwQF+siyCP+iLoqh8+Ts2ANXeSXtlxpOEA
- 8bv0ot52CkAASAgnLiwGstKTOL4eDALptGDX26OB47+hXzgWv8zq39RdM
- PWFAHHjMxXGD9P9el3K+BOta4etD1Bg8i2WNj1vcy5Rg/50IzYrWSLOmy 4=;
-Authentication-Results: mail3-relais-sop.national.inria.fr;
- dkim=none (message not signed) header.i=none;
- spf=SoftFail smtp.mailfrom=Julia.Lawall@inria.fr;
- dmarc=fail (p=none dis=none) d=inria.fr
-X-IronPort-AV: E=Sophos;i="5.91,242,1647298800"; d="scan'208";a="14727955"
-Received: from i80.paris.inria.fr (HELO i80.paris.inria.fr.) ([128.93.90.48])
- by mail3-relais-sop.national.inria.fr with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 13:12:01 +0200
-From: Julia Lawall <Julia.Lawall@inria.fr>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: kernel-janitors@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ id 1nsNMh-00GOkP-Gz; Sat, 21 May 2022 11:33:48 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id DF52961361;
+ Sat, 21 May 2022 11:33:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83905C385A9;
+ Sat, 21 May 2022 11:33:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1653132826;
+ bh=l9by86nw6iePCzOmDkZQU5SCVcvIjg3rIH78FcJrxnk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=vPBjUecgsVVV+Rur5PY4bm1PRiEojRK9gCAXChl0pEH0hJWeZmRyT3qqPCpz+F06W
+ zatZylozBgQY8aDCI9OmrH6IhfKNry2gjURTt1yfKqaVGvmYiDQbt1/g3kCx/1l+UL
+ DKryVlwuLKerKaa0GTpbevegruq4iHjs01lcyUwV7Jz2pqu0c9bzVmRdXGmwwJoRyU
+ yzl4pVSKJOhlHR+W+GANr0K6QrL+gQHSY4w5jI18DjEpwadJHgJxCBqujzqmghupO2
+ SzN6U+ywJBfMPyAVnmNw9kZ2Q24yLgWg+HhkDE6yrlDqrdEwJutbYxRVDPsbMBXrS5
+ JRAeXkua22QSQ==
+Date: Sat, 21 May 2022 13:33:42 +0200
+From: Wolfram Sang <wsa@kernel.org>
+To: Julia Lawall <Julia.Lawall@inria.fr>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, kernel-janitors@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] i2c: meson: fix typo in comment
+Message-ID: <YojOFtmzkQ9IH8UE@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+ Julia Lawall <Julia.Lawall@inria.fr>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ kernel-janitors@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] i2c: meson: fix typo in comment
-Date: Sat, 21 May 2022 13:11:03 +0200
-Message-Id: <20220521111145.81697-53-Julia.Lawall@inria.fr>
-X-Mailer: git-send-email 2.20.1
+References: <20220521111145.81697-53-Julia.Lawall@inria.fr>
 MIME-Version: 1.0
+In-Reply-To: <20220521111145.81697-53-Julia.Lawall@inria.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220521_041212_474525_C2D0C491 
-X-CRM114-Status: GOOD (  11.29  )
+X-CRM114-CacheID: sfid-20220521_043347_637000_2D1D07F1 
+X-CRM114-Status: GOOD (  10.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,36 +77,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4839289893052958847=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Spelling mistake (triple letters) in comment.
-Detected with the help of Coccinelle.
 
-Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+--===============4839289893052958847==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fYqSdqxjDeDE3M9G"
+Content-Disposition: inline
 
----
- drivers/i2c/busses/i2c-meson.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 195a9716da31..61cc5b2462c6 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -82,7 +82,7 @@ enum {
-  * @done:	Completion used to wait for transfer termination
-  * @tokens:	Sequence of tokens to be written to the device
-  * @num_tokens:	Number of tokens
-- * @data:	Pointer to the controlller's platform data
-+ * @data:	Pointer to the controller's platform data
-  */
- struct meson_i2c {
- 	struct i2c_adapter	adap;
+--fYqSdqxjDeDE3M9G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, May 21, 2022 at 01:11:03PM +0200, Julia Lawall wrote:
+> Spelling mistake (triple letters) in comment.
+> Detected with the help of Coccinelle.
+>=20
+> Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+>=20
+
+Applied to for-next, thanks!
+
+
+--fYqSdqxjDeDE3M9G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKIzhYACgkQFA3kzBSg
+KbZP+Q/+M2eKB9fBFm0ki/BdRKVvwXbqZBQHMvjPeORijOnWqLSUqY8b/bGmFxaP
+Bzjii2CgLl059ir58BeYWUCawy9uRK3aeHONPD1ZtiN8XQRiJ3dAgHZSFUOYc6YX
+pZwftv7y3c1XmSCZtsZy3liAwbKrk9RK2s8lLpEl3IrI1+Za3PpMX3jbO0WJILpl
+LAD7X9dEsJ+HkjwvSs1trMwn3Xfun2wQBV84R/1ZqhrCxPnmroomfI3YJUrF6L78
+yVvc4x/rJ0dLFKzy/FnHBu01ifUm3BwGxwWnntT3jOwfUufy4E65gsHiC+qf9xU6
+q4XEqqZPC5lXyL5c0uelcQn9KxrNwHqoNkRR32xputrN5B4TPzDmaVUphg6XVTme
+1v6ykpneJOkb6LYwHHx9mw1386C14hUQHH82ByFLMggVmbOOrXbYbqh3zuala8bN
+X1sPNYJKSo6oyKiWYzIj3mODcftyqV+Dn9Rn1MpsFK1nzHu6rR6dT+XyKK6zOTa5
+5oxp2Bd9qWSAZ/WH9N2LJm1qRJDX1Hk+6oG0cqbqkQSCFbqnIi6bEYnOKSstI06E
+lEwCNheKDK6HpMAIkzIRWYbwqkkTVF2UDzOQSY7Ojhy9dGwzwbAlmuUk3ABn2Fbr
+MywuhDhGO68vdD3e2tpgg7X9k5/qMHbXs+G16G4TPbvKDYCYQqM=
+=YTwd
+-----END PGP SIGNATURE-----
+
+--fYqSdqxjDeDE3M9G--
+
+
+--===============4839289893052958847==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4839289893052958847==--
+
