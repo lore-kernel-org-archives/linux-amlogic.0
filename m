@@ -4,52 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3E16C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 May 2022 10:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F6AAC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 May 2022 19:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	Subject:To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NicfVkDtoAcvQ/RlB3ZvTbRQOlCOhBR71rqUl21H6J0=; b=zO726qqYAa7/A4
-	leCTBa9+zTVS34/F+EGjNkTOH1hPPm09pFQKs1x1NfI39z0fphZaN8AB/5EFmPcM5VxXJIHS5Qxj0
-	8FB92Vf4Zd9BMIsJQ6CgEQu+gAAp06jbj2JJXONOidOK8gWjL2Ai7dqTmTjZzNOFkaowd/ppwmspT
-	8Nme4LtZ+jj9PyxxGNiz8M9O9IUiIwbWVsoQk0VPjGBxtHDr+CIhJPs3UGC8KxRqE05W/3XXgRTLO
-	tsdMCGtOatCTLwqKI08d7M8FpPnzgoXQc9X47qw5zMp5jjUAiDoQXNzEge4jMin6U/WVREnbVGj6X
-	BBZhsRKWSHEOeTVV4xbQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QcTSczr7hD0GAw1UJ/BQhlGi5KxI2ZFZLi1Nju/EAsw=; b=CIL86sIM1Z2kKu
+	FpHH/veigaiYUj1GiabuH9bSvgogKm4vYrj26qigWXOlG7wtdiY5jaUYN7X7MS1I+3DG+urhYvVOI
+	ysCPGd/0/DPYr0ngiv5BD3ZiLSaQk740kIBHbgRjf1d/1qA2mjjsfWji62csd2/8VyAJz11sS030T
+	XwTXT4G3/56CLdCCDaRJ5Awker9vNiPppWFe4LC7vP73jcybO1+FA2Y3gU/xJQ/7DZEVwjx6ubqLf
+	a8ccVz6wciQBu9EmofR2rSceocTcI4DjBLsDhTdID6y4FA0kqAA+2HqwZlaEPuHtzjZxNc6sEW7dH
+	6vSpxaSi211KKrlo21/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ntRWy-007b4D-Da; Tue, 24 May 2022 10:12:48 +0000
-Received: from hwsrv-970840.hostwindsdns.com ([104.168.149.109]
- helo=box.indicandustries.com)
+	id 1ntZyV-008zc8-L0; Tue, 24 May 2022 19:13:47 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ntRWw-007b2w-4I
- for linux-amlogic@lists.infradead.org; Tue, 24 May 2022 10:12:47 +0000
-Received: from authenticated-user (box.indicandustries.com [104.168.149.109])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by box.indicandustries.com (Postfix) with ESMTPSA id 3586B10785C
- for <linux-amlogic@lists.infradead.org>; Tue, 24 May 2022 03:25:26 -0600 (MDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=box.indicandustries.com; s=mail; t=1653384326;
- bh=V6VCn7WEbqHjVVQ20/+SYu6rwS1WmTHcxX88g+j430s=;
- h=Reply-To:From:To:Subject:Date:From;
- b=fHag0cApoAJ9MZDX6KkuatBPtbaorPb7jZ0z1FXwf5j9xzgyFXxhOgM+nRVLeWVDT
- 9qbBNC4KyDgy8sw4QlMyKWT1/UiZgVGJY7SPhyn3ItjM9nMDxi1HluxISBS1wLL/Z4
- yLHUkgJC4qnpDChFkLnL8A0V7QmIt/kn30fI/aS+1LsOLrDP087dkZfySRhw9B7z+3
- QhiUDIqZlCf4tm34d4Dqoz4lrA6YsLpI6M6UwZ692UAoBK4O1uS76yhVNrUHQ3WZIY
- OwJ+KNEW1JineIkS7DitQnTADiXj8UNfv/4ei+ptST4AdDhIgjO2PHrcKypp9wsb90
- t94HWSTVlOj3g==
-From: amjad.ali@box.indicandustries.com
-To: linux-amlogic@lists.infradead.org
-Subject: Hello Sir, I seek your urgent consideration.
-Date: 24 May 2022 11:25:25 +0200
-Message-ID: <20220524112525.FA2281C0E6B80F8C@box.indicandustries.com>
+ id 1ntZyK-008zWP-9G; Tue, 24 May 2022 19:13:37 +0000
+Received: by mail-ej1-x630.google.com with SMTP id gi33so28790828ejc.3;
+ Tue, 24 May 2022 12:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=rsS2AGuhnxF/8N9VLB8T2eF5RNbu94pUOvL2LTXnFJg=;
+ b=HAOZoW6A4tlSRA4X6y2Fl9zXR6BbnUdHXqJK1PPa7kNEiCJPrx3Mkm9mA02+4w3mhS
+ 3IgN1UTNYCGQE96ZCbfxbESZ0ktW9AHIqsuNIQ7NSQfjBqvVI/GLUOXY5jzNIopN0MFS
+ Lvsp/dCaenWSovY9acjyDgmGSuaouWlDOtmGMVB3V29UWsujfu56WHVhr/1kSWkjWgGe
+ W7z60NolLIfgv0RaKGqxehWT5CpuD5ynhQB+4MX79DIcwUNiQaZxhlXMZXn/CvZNwcyE
+ /EakcTnMFNYWor03QAZvpHLWLZ6BITYAl2wT671q3RJYKJROvWe2t1PrKZMQYxn55DHZ
+ rTEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=rsS2AGuhnxF/8N9VLB8T2eF5RNbu94pUOvL2LTXnFJg=;
+ b=RNQBdwZi8WAR6CKOi5qhVWquCe6qoValH8hjAkXtzxdwuIpzjaDzAvbTSpldUm6nRB
+ lrAv/mDQP9Dc/nzxnMQjIaeHN92pcCevIqToqXVkLtOShyaF6UkjFP57sWW8O+CLvzAO
+ FKvglI0ODDykxfmPib1eVhGVZepeU+3SxBiRDcg5fjG3TX6m/eMmIBhDA7CoaQi22/se
+ PS5ZS9GxmJzhBQBFqBrTn7vLXkBYt4NFcXqi8aSdrZnyeFZ3F6ruEEXH/PnJi0y6Npal
+ qVqgpXRsIHgKG/RUPehlfnxLZ9z/Cm+wjCHxS2eTV0rCRze15ETkSgbBH/eqvZeoJnRt
+ MB3A==
+X-Gm-Message-State: AOAM531prwRVhZzntwKxwMNIjMLZUQwu5xNSuGPFUaw/X++id+Fb1QIM
+ R2np14lpxIYacl+00I/6sQDRj/WJEIgRlbkkZd3GxEOUxXQ=
+X-Google-Smtp-Source: ABdhPJweaG+KIiYEQRCw11koCjYEypL+sU3mG2PwGIxlwKKLPT/Lpe4gKmlZNoAShS54tEeFI9QdtEboS/aMHjzFECo=
+X-Received: by 2002:a17:907:7f21:b0:6ff:10b:9cee with SMTP id
+ qf33-20020a1709077f2100b006ff010b9ceemr5288487ejc.302.1653419614752; Tue, 24
+ May 2022 12:13:34 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220524065729.33689-1-linmq006@gmail.com>
+In-Reply-To: <20220524065729.33689-1-linmq006@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 May 2022 21:13:23 +0200
+Message-ID: <CAFBinCA=bDdo3SJuoDgugtNz1zAMQEgxxHfZo6ZQ9Q3mRQciUw@mail.gmail.com>
+Subject: Re: [PATCH] meson-mx-socinfo: Fix refcount leak in
+ meson_mx_socinfo_init
+To: Miaoqian Lin <linmq006@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220524_031246_204430_4A647DA6 
-X-CRM114-Status: UNSURE (   1.39  )
+X-CRM114-CacheID: sfid-20220524_121336_372725_05ECBBC5 
+X-CRM114-Status: UNSURE (   9.38  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -62,22 +81,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: amjalia90@gmail.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgpHcmVldGluZ3M/IEkgYW0gQW1qYWQuIEkgd29yayB3aXRoIGEgbGVhZGluZyBCaW8g
-RmlybS4gIER1ZSB0byAKdGhlIHNldGJhY2tzIG9mIHRoZSBwYW5kZW1pYywgbXkgY29tcGFueSBo
-YXMgb3BlbmVkIGEgYmlkIGluIApzZWFyY2ggb2YgbmV3IHN1cHBsaWVycyBmb3IgYmFzaWMgcmF3
-IG1hdGVyaWFscyBuZWVkZWQgaW4gCnByb2R1Y3Rpb24uCgpJIGFtIHNlZWtpbmcgYSByZXByZXNl
-bnRhdGl2ZcKgYXMgSSBhbSBhIHN0YWZmLCBJIGNhbiBub3QgYmUgCmludm9sdmVkIGRpcmVjdGx5
-LiBJdCBtYXkgbm90IGJlIHlvdXIgYXJlYSBvZiB3b3JrIGJ1dCB0aGUgCnByb2ZpdHMgYXJlIGdy
-ZWF0IGFuZCBJIHdpbGwgZ3VpZGUgeW91IHRocm91Z2guIEkgaGF2ZSBhbHJlYWR5IApzb3VyY2Vk
-IGEgbG9jYWwgc3VwcGxpZXIgZm9yIHRoaXMuIEkgb25seSBuZWVkIGEgcmVsaWFibGUgCnJlcHJl
-c2VudGF0aXZlLgoKUGxlYXNlIGdldCBiYWNrIHRvIG1lIHNvIEkgY2FuIGV4cGxhaW4gdGhpcyBp
-biBmdWxsLgoKQW1qYWQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+On Tue, May 24, 2022 at 8:57 AM Miaoqian Lin <linmq006@gmail.com> wrote:
+>
+> of_find_matching_node() returns a node pointer with refcount
+> incremented, we should use of_node_put() on it when not need anymore.
+> Add missing of_node_put() to avoid refcount leak.
+>
+> Fixes: 5e68c0fc8df8 ("soc: amlogic: Add Meson6/Meson8/Meson8b/Meson8m2 SoC Information driver")
+> Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Thank you for finding and fixing this!
+
+
+Best regards,
+Martin
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
