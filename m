@@ -4,72 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F6AAC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 May 2022 19:13:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFFFDC433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 May 2022 07:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QcTSczr7hD0GAw1UJ/BQhlGi5KxI2ZFZLi1Nju/EAsw=; b=CIL86sIM1Z2kKu
-	FpHH/veigaiYUj1GiabuH9bSvgogKm4vYrj26qigWXOlG7wtdiY5jaUYN7X7MS1I+3DG+urhYvVOI
-	ysCPGd/0/DPYr0ngiv5BD3ZiLSaQk740kIBHbgRjf1d/1qA2mjjsfWji62csd2/8VyAJz11sS030T
-	XwTXT4G3/56CLdCCDaRJ5Awker9vNiPppWFe4LC7vP73jcybO1+FA2Y3gU/xJQ/7DZEVwjx6ubqLf
-	a8ccVz6wciQBu9EmofR2rSceocTcI4DjBLsDhTdID6y4FA0kqAA+2HqwZlaEPuHtzjZxNc6sEW7dH
-	6vSpxaSi211KKrlo21/g==;
+	List-Owner; bh=wvh2g5VvsYgtlnb7piDNNP2h7uT2YxlaM5okoC1DTjo=; b=Ocf698YO7iQmNe
+	pLxB3n86//cCERTip/4EYxwmMxQ80Gi4GhU9PXhioLqboXRD99Mq+6wXOXQT7WMtylbetFiX+c24T
+	n0++VcqSmYQXybLqRXBVSrR3O6pUyPbQt16goBsPiPm0CUUq+o8TZkNgBN3WHK+tykd2wR2oVbmuq
+	SgiRPGqtg6EzYhPMSxE/xdApjEgX0gWglX+mxmupXAuLshLNHaWsy6DzCIWEJXwVhGd/viM3TqN63
+	5g5O5/TZ6GRg/VfMijq69IDTr4R2+kJ6BkTrR5MkyWmwdGRm/W8G+ZKbUcu2e2oIrqxcSxMpRSDEA
+	H/DstOhbXGe00Ti0I0QQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ntZyV-008zc8-L0; Tue, 24 May 2022 19:13:47 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1ntlJt-00ABOU-E6; Wed, 25 May 2022 07:20:37 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ntZyK-008zWP-9G; Tue, 24 May 2022 19:13:37 +0000
-Received: by mail-ej1-x630.google.com with SMTP id gi33so28790828ejc.3;
- Tue, 24 May 2022 12:13:35 -0700 (PDT)
+ id 1ntlJg-00ABJp-6O
+ for linux-amlogic@lists.infradead.org; Wed, 25 May 2022 07:20:27 +0000
+Received: by mail-wm1-x333.google.com with SMTP id
+ i20-20020a05600c355400b0039456976dcaso2058162wmq.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 25 May 2022 00:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rsS2AGuhnxF/8N9VLB8T2eF5RNbu94pUOvL2LTXnFJg=;
- b=HAOZoW6A4tlSRA4X6y2Fl9zXR6BbnUdHXqJK1PPa7kNEiCJPrx3Mkm9mA02+4w3mhS
- 3IgN1UTNYCGQE96ZCbfxbESZ0ktW9AHIqsuNIQ7NSQfjBqvVI/GLUOXY5jzNIopN0MFS
- Lvsp/dCaenWSovY9acjyDgmGSuaouWlDOtmGMVB3V29UWsujfu56WHVhr/1kSWkjWgGe
- W7z60NolLIfgv0RaKGqxehWT5CpuD5ynhQB+4MX79DIcwUNiQaZxhlXMZXn/CvZNwcyE
- /EakcTnMFNYWor03QAZvpHLWLZ6BITYAl2wT671q3RJYKJROvWe2t1PrKZMQYxn55DHZ
- rTEQ==
+ d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=uYFYfxoNsvqjWq3cVk8VAYueu2Qkp0ObH+2Y6ZW4tVQ=;
+ b=XGpLDihouofUM8O+WmU1hMyTds9voxGLf2+10wlHnzh7857rKLTFOqqXtMoSjsfNvP
+ Fr5/cKEMJ4/Z0pLAKITrhaptemgAWoTemUTcbHDdeJ0jPzlt7IPwzI1eNbBxWK4p/ieo
+ OcO+hgtPh/7vrrg9VpQ3A2L+PuPAcVRdWSaNsCGkkDa1tukQN4TXCuNYulrDRpo3Bxq1
+ LLOgpadflKlxpb+nUge2e2FE2vlqm0wWaw9T7Ml0niU0IM2gz6D6cCA1RfygadWp/MxG
+ gYOacGo98zJFr91/uk30yQ8wWmAsxzjuqY4ncIrFaB9DzdBeX/pX61FK0DWB+JoGU/es
+ nzXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rsS2AGuhnxF/8N9VLB8T2eF5RNbu94pUOvL2LTXnFJg=;
- b=RNQBdwZi8WAR6CKOi5qhVWquCe6qoValH8hjAkXtzxdwuIpzjaDzAvbTSpldUm6nRB
- lrAv/mDQP9Dc/nzxnMQjIaeHN92pcCevIqToqXVkLtOShyaF6UkjFP57sWW8O+CLvzAO
- FKvglI0ODDykxfmPib1eVhGVZepeU+3SxBiRDcg5fjG3TX6m/eMmIBhDA7CoaQi22/se
- PS5ZS9GxmJzhBQBFqBrTn7vLXkBYt4NFcXqi8aSdrZnyeFZ3F6ruEEXH/PnJi0y6Npal
- qVqgpXRsIHgKG/RUPehlfnxLZ9z/Cm+wjCHxS2eTV0rCRze15ETkSgbBH/eqvZeoJnRt
- MB3A==
-X-Gm-Message-State: AOAM531prwRVhZzntwKxwMNIjMLZUQwu5xNSuGPFUaw/X++id+Fb1QIM
- R2np14lpxIYacl+00I/6sQDRj/WJEIgRlbkkZd3GxEOUxXQ=
-X-Google-Smtp-Source: ABdhPJweaG+KIiYEQRCw11koCjYEypL+sU3mG2PwGIxlwKKLPT/Lpe4gKmlZNoAShS54tEeFI9QdtEboS/aMHjzFECo=
-X-Received: by 2002:a17:907:7f21:b0:6ff:10b:9cee with SMTP id
- qf33-20020a1709077f2100b006ff010b9ceemr5288487ejc.302.1653419614752; Tue, 24
- May 2022 12:13:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220524065729.33689-1-linmq006@gmail.com>
-In-Reply-To: <20220524065729.33689-1-linmq006@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 24 May 2022 21:13:23 +0200
-Message-ID: <CAFBinCA=bDdo3SJuoDgugtNz1zAMQEgxxHfZo6ZQ9Q3mRQciUw@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=uYFYfxoNsvqjWq3cVk8VAYueu2Qkp0ObH+2Y6ZW4tVQ=;
+ b=ue8w3YPx53W+wYx0l3KRTHs4mWcKET+Nkn5qjrIPNPcILVVPAbFb/x92tYgWbR+sPJ
+ yLXtOAUQ2i0P3XNVdezvUWLPqME1Gr4hz2uZoZjGcdGJsEp0ytcgw7Tkny8qAORAZGSH
+ v/AakDQF9itdIW7GDqHuMS9toxT23yjoBc37QaOH/PCm6eNVIdz9pvW5f1jiAqIaFdg1
+ gTlkxNR02SoVd+45TGWfAJTA1BWXlngiyIfnp/QzKDo8PqL7cTZVX6hDnuHdvSj2XdvJ
+ 0ZXalLKx6lI8hgEZA2NJBrm9qssqIiGqyu2fFlKGoM7ZAGQlvwyEPI3kNm5pvY3/rS13
+ /RhA==
+X-Gm-Message-State: AOAM530Nd7Nk5916LMk952GQ4gOhcmLwgxggx9tCoxFQJF+8ojXzpLoe
+ AnhYyiLMCmqJtjV2pea1BARFiw==
+X-Google-Smtp-Source: ABdhPJzJ6lz+uvAOJ07h80qckjrMvByvZ0P4qBjlYnuhD69PdbR1PHuv8YidpCb+7KBJOIQ0a9GHxQ==
+X-Received: by 2002:a05:600c:3482:b0:397:4abe:9f8e with SMTP id
+ a2-20020a05600c348200b003974abe9f8emr6827443wmq.71.1653463219696; 
+ Wed, 25 May 2022 00:20:19 -0700 (PDT)
+Received: from localhost.localdomain
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id
+ g14-20020a5d46ce000000b0020ff3a2a925sm1529240wrs.63.2022.05.25.00.20.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 May 2022 00:20:19 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Miaoqian Lin <linmq006@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: [PATCH] meson-mx-socinfo: Fix refcount leak in
  meson_mx_socinfo_init
-To: Miaoqian Lin <linmq006@gmail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Wed, 25 May 2022 09:20:16 +0200
+Message-Id: <165346315887.272786.7785185844599075827.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220524065729.33689-1-linmq006@gmail.com>
+References: <20220524065729.33689-1-linmq006@gmail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220524_121336_372725_05ECBBC5 
-X-CRM114-Status: UNSURE (   9.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220525_002024_511272_37615393 
+X-CRM114-Status: GOOD (  12.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,21 +95,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, May 24, 2022 at 8:57 AM Miaoqian Lin <linmq006@gmail.com> wrote:
->
+Hi,
+
+On Tue, 24 May 2022 10:57:29 +0400, Miaoqian Lin wrote:
 > of_find_matching_node() returns a node pointer with refcount
 > incremented, we should use of_node_put() on it when not need anymore.
 > Add missing of_node_put() to avoid refcount leak.
->
-> Fixes: 5e68c0fc8df8 ("soc: amlogic: Add Meson6/Meson8/Meson8b/Meson8m2 SoC Information driver")
-> Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> 
 
-Thank you for finding and fixing this!
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/drivers)
 
+[1/1] meson-mx-socinfo: Fix refcount leak in meson_mx_socinfo_init
+      https://git.kernel.org/amlogic/c/a2106f38077e78afcb4bf98fdda3e162118cfb3d
 
-Best regards,
-Martin
+These changes has been applied on the intermediate git tree [1].
+
+The v5.20/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
