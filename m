@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05846C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 May 2022 08:18:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7560C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 May 2022 09:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=u45vkzP46QN6mNMiUu8IjzY3Xf8e0jAZwMW40nQGiws=; b=yFpaKjav+TLzcPXO4lAAXwulN9
-	sTsYdjU5jEjDEEnh7R0qnL1grlO/WzBeum/3ylboR4yNdW43Owtie+rxPLcFLxTTTuq9BQPCDSR4z
-	pDbrNoQTdMER28aP8SPIHTzIxX1tTIxG4rMvQJadWVvvNEF0HPZOa9jBtD3vHEd87/F6kkJ9Nwhxh
-	pCzPNTZE65JoNIIqnlULGp8LZFybb3VxdaZSaQsR3hN7Na1GVknqPRXWMGW8UwwZdPCFGqv/L0hxU
-	C0XjgjUSPlqXIk3usBY0yy8m2eta2+WjF+EbBoVJ4HsbTT6jK6WZOkd80+qDulE0RBFVYATbsE6vI
-	xkY6haug==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=iWNr3L9p5yEPiK4PIsoZ+F0JPEfWDhVLL7WGuuU/aoI=; b=c9KmOYrwAutU9h
+	t3QiCYZQ8BNO3HN5T8Z+WWUMyXfQS8bE2KLBrffKcWT/0jNokuv619BuTKxKkEuwYT2FBi/ntNHO8
+	p8WvpsQQst8xpeH1qVAH9tbmGSOdHT53BAL1SiFTiq/WLJ79W/Cbr/uL4ttzaSyxjhxGO+eQKdWCe
+	olALgCtr9m0ZXAJd+3N20/XGoHpwizqhwp/TTtEEN9zCpusuIRZzyAshnCdwvahk0It3f3Jgt94IZ
+	m5lKHSQ57vfwMnXVgCZQsoRe+etNtxD+YfdYkK1CAznYc1L+UQN0Fr5Vv9ZBpHPXkFrABCjnfVBES
+	UX6cczG5rs2ISf2Q61Kw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuVBN-00GzkJ-NE; Fri, 27 May 2022 08:18:53 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1nuVpv-00H73N-Fv; Fri, 27 May 2022 09:00:47 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuVB9-00GzfZ-CR
-	for linux-amlogic@lists.infradead.org; Fri, 27 May 2022 08:18:40 +0000
-Received: by mail-wr1-x432.google.com with SMTP id u3so4900850wrg.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 May 2022 01:18:36 -0700 (PDT)
+	id 1nuVpi-00H70V-0y
+	for linux-amlogic@lists.infradead.org; Fri, 27 May 2022 09:00:36 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 7so1135098wmz.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 27 May 2022 02:00:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=ZkFo19yN9FE8l6w1oc0IJiQl2EoWP33mdxcOBd2mVFc=;
-        b=Fq9c32hxcx2ufnuS5yUUdwgf84fJ2V+HR5zXjKcBgRRQOBn4Oo+Y8PIBAAJ0eAGKis
-         BFq8Tk+WkMh/OpMKqPxu/qDH20z/0g2Bu6S8gNtK+qUGjyVeDQ+QCHdDUEIhiM69KTww
-         kB3Put3kNcCckMhB+JJdnh7Xq3M0LVZC8tIFMlpEgP3SxokQvFGjVw/RAL3kY8sTL1Kh
-         pqEWSwQcYGhjLE01TMhH1jN7uXz6ebJsZ4yeKtRSOIOJpljU58WV9IlzyfOLS+A16ABz
-         9GQnTG5cJGDEJHaTbumnaHlKut9Gc/NSmWOT5otOpcjqqnNXttpKcqTJXWtIV6XqOQYg
-         iHyA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=KgOndPAfyvmijpJMBj3VbzHjuhYijVFfIUTkT6Spj0I=;
+        b=yq2L9Iov93prcrerNONY8meYTbFWpiD9fleBq4FXsdIRRV8zY6ph1xHdNY/dzwUrcH
+         vvxyR7HN6/UlVUj1cLMIpxlGYFf4UiDun28TCZzbHE7fNGH0BeuIipqNGnKNpqiAj1Mj
+         DBtUJc1PrpN+1hs6oQMc1WoWyoCsE+ZOzGDMWBsXA7EO223rkpH9kKWQIn7gsB3q5h2C
+         lAvbqAyNeosmQHZ0E7+ipm13Rfd8quSni+xiz9546V4eiDxUdj10O08iBeIaw+KXjHbP
+         MwqfUHMwlumF0Hq84IIh5K4nhvndxXbYTxhG7szKBIBD0U82R5tnmIMQ0FwwZhB5RAb0
+         H08w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=ZkFo19yN9FE8l6w1oc0IJiQl2EoWP33mdxcOBd2mVFc=;
-        b=Q2ardixVDITC84NvpL3N+06cJG2bpdXN9WkhQCbfEldlGR6Sq+1msYjevj1xXBbqOS
-         n502s36aVdiJul8+xNKKrxkQVsFOkxj3vxGvjYbSbANMCwKvYLxQdEPhlNr+tkHrBDuu
-         NAlhundbSjcfRPdQosvOVjjLuiRmtcIgeT1HaJUpZhfj6bZ8Zz/yIK1s0wkQTZgsZ/Gf
-         5hOt3/AgarmlxlAe2ZfjwZ9ZKj3bTkTlj6I+17ltmCO9dOw2VnrNvZ073GJVINp3asn3
-         9c29/Ukl3D/27k88v4LEPnvhrLX1Jq+oYTZf6eqbUOoRvos1YVAgLzvudPj+O6bihrIH
-         bONg==
-X-Gm-Message-State: AOAM5332WboWKnV9tYn65Uj1vQ+zGUMHqda5qQ2JCit1WcZ5Ny2Jad7n
-	BbMKAFQgOjCn+jt4gK/93ata8A==
-X-Google-Smtp-Source: ABdhPJz+oqbBEG4R4LguW/AlVaAt1T7SUCg4RxJCopLYPsk+CUpf7UJyCqHBCjs0nVw/onX+8/KQFA==
-X-Received: by 2002:adf:e28a:0:b0:210:b31:722 with SMTP id v10-20020adfe28a000000b002100b310722mr5408462wri.65.1653639515570;
-        Fri, 27 May 2022 01:18:35 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:f081:5ded:fc86:365d? ([2001:861:44c0:66c0:f081:5ded:fc86:365d])
-        by smtp.gmail.com with ESMTPSA id v18-20020adfebd2000000b0020c5253d8besm1130050wrn.10.2022.05.27.01.18.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 May 2022 01:18:35 -0700 (PDT)
-Message-ID: <19a9260c-322b-10e1-e361-cc2d5fdd8ff9@baylibre.com>
-Date: Fri, 27 May 2022 10:18:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] ARM: dts: meson: adjust whitespace around '='
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
- arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
- <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=KgOndPAfyvmijpJMBj3VbzHjuhYijVFfIUTkT6Spj0I=;
+        b=S8WzR5DlfN+dRnLwOXI3bTBHujfiOyMH0Hc1GjeTv89Qw6mAZQ4j4cwNkB43yvzUNm
+         7wBpq2QldQ0mvca/Yxckj3XhGJmczLb0mtP10mgML+g5Wr8qEnn/pT2sGTEmFTBCeXaV
+         SBTjfqymQHLzqE64lDLtStgD7+/VUFkvlcMJiU0l1mxvXgphR3nh1Ti03tRGO+ViNypH
+         bLe5tbvS+raAz00sZAY0iam8y3Y7Hy1mAnKnAQjf+novrO8eke6X4eLbyNQZANyfDilD
+         Qif8bpzF6pMTmIZSGrSaW+okW44ANQyFR0xyZuUWhUjEoW+kfw7DyIVMgHx/KrDh6X4+
+         TvdA==
+X-Gm-Message-State: AOAM531NmvnAvlTueSTqlyt5mioJOYe1kyNQT16sk/4uNQtL9VTIP2M1
+	c9/wY4E93+U3q1bJXjQWUwukdA==
+X-Google-Smtp-Source: ABdhPJzkbMuzL2NSPBI/c7uo7e2MnvfNayThyWCQt8pFuNppY95EZcMlvC/RzIZPXwXVBZa2UnWCTQ==
+X-Received: by 2002:a05:600c:1e85:b0:397:6bcb:c52c with SMTP id be5-20020a05600c1e8500b003976bcbc52cmr6042990wmb.41.1653642031059;
+        Fri, 27 May 2022 02:00:31 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:f081:5ded:fc86:365d])
+        by smtp.gmail.com with ESMTPSA id u12-20020a5d6dac000000b0020feb9c44c2sm1347807wrs.20.2022.05.27.02.00.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 May 2022 02:00:30 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	soc@kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Olof Johansson <olof@lixom.net>,
+	arm@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 1/2] arm64: dts: amlogic: adjust whitespace around '='
+Date: Fri, 27 May 2022 11:00:29 +0200
+Message-Id: <165364202476.67525.12506050494553411270.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
+References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220527_011839_452850_5A8A29B0 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20220527_020034_097068_FAFEAB94 
+X-CRM114-Status: GOOD (  11.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,76 +95,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/05/2022 22:45, Krzysztof Kozlowski wrote:
+Hi,
+
+On Thu, 26 May 2022 22:45:51 +0200, Krzysztof Kozlowski wrote:
 > Fix whitespace coding style: use single space instead of tabs or
 > multiple spaces around '=' sign in property assignment.  No functional
 > changes (same DTB).
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> ---
-> 
-> Output compared with dtx_diff and fdtdump.
-> ---
->   arch/arm/boot/dts/meson.dtsi   | 4 ++--
->   arch/arm/boot/dts/meson8.dtsi  | 2 +-
->   arch/arm/boot/dts/meson8b.dtsi | 2 +-
->   3 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 26eaba3fa96f..8e3860d5d916 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -214,14 +214,14 @@ aobus: aobus@c8100000 {
->   			ranges = <0x0 0xc8100000 0x100000>;
->   
->   			ao_arc_rproc: remoteproc@1c {
-> -				compatible= "amlogic,meson-mx-ao-arc";
-> +				compatible = "amlogic,meson-mx-ao-arc";
->   				reg = <0x1c 0x8>, <0x38 0x8>;
->   				reg-names = "remap", "cpu";
->   				status = "disabled";
->   			};
->   
->   			ir_receiver: ir-receiver@480 {
-> -				compatible= "amlogic,meson6-ir";
-> +				compatible = "amlogic,meson6-ir";
->   				reg = <0x480 0x20>;
->   				interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
->   				status = "disabled";
-> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index 9997a5d0333a..0f8bac8bac8b 100644
-> --- a/arch/arm/boot/dts/meson8.dtsi
-> +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -430,7 +430,7 @@ mux {
->   };
->   
->   &ao_arc_rproc {
-> -	compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
-> +	compatible = "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
->   	amlogic,secbus2 = <&secbus2>;
->   	sram = <&ao_arc_sram>;
->   	resets = <&reset RESET_MEDIA_CPU>;
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index 94f1c03decce..cf9c04a61ba3 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -384,7 +384,7 @@ mux {
->   };
->   
->   &ao_arc_rproc {
-> -	compatible= "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
-> +	compatible = "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
->   	amlogic,secbus2 = <&secbus2>;
->   	sram = <&ao_arc_sram>;
->   	resets = <&reset RESET_MEDIA_CPU>;
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/arm64)
+
+[1/2] arm64: dts: amlogic: adjust whitespace around '='
+      https://git.kernel.org/amlogic/c/7c928017461a740300ba0d74a5a4e7c09c8f75cd
+[2/2] ARM: dts: meson: adjust whitespace around '='
+      https://git.kernel.org/amlogic/c/5d08817f99847d0ccff65903a99794703de9ad46
+
+These changes has been applied on the intermediate git tree [1].
+
+The v5.20/arm64 branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
