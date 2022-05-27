@@ -4,86 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7560C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 May 2022 09:00:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 439C7C433F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 May 2022 13:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iWNr3L9p5yEPiK4PIsoZ+F0JPEfWDhVLL7WGuuU/aoI=; b=c9KmOYrwAutU9h
-	t3QiCYZQ8BNO3HN5T8Z+WWUMyXfQS8bE2KLBrffKcWT/0jNokuv619BuTKxKkEuwYT2FBi/ntNHO8
-	p8WvpsQQst8xpeH1qVAH9tbmGSOdHT53BAL1SiFTiq/WLJ79W/Cbr/uL4ttzaSyxjhxGO+eQKdWCe
-	olALgCtr9m0ZXAJd+3N20/XGoHpwizqhwp/TTtEEN9zCpusuIRZzyAshnCdwvahk0It3f3Jgt94IZ
-	m5lKHSQ57vfwMnXVgCZQsoRe+etNtxD+YfdYkK1CAznYc1L+UQN0Fr5Vv9ZBpHPXkFrABCjnfVBES
-	UX6cczG5rs2ISf2Q61Kw==;
+	List-Owner; bh=fQqh/TKJP0k2v4EvCfqxPOytXitvNqu8qiHtyxiIEvg=; b=YQ02AgH2fQHtiE
+	nLbHp0Yt4j1mor8d6sz7TGJeLqPqiLT5+LuDlcNeKJzXT0w0pS2w+q2JPYINyKTB9SQCPDvFPpmoH
+	yMaFnKCSMaFTF28OPOgaB/4aKh0sxLF9sXijDBAgeUIuMR6mmWfnqGCJVIFTmGB15GmPw0mDIWZ+k
+	2EKXt9/ZMWoKmTzI/C5+S06mzaJ52C2K/horhtdIMIGkVpJKbNKna4+nu3DPvV11lvQJqz/w3qb/T
+	ugbmxaYWfSxm1miBCZ4f5D236101fER16m5UO9VCiznxWyeiy4ubtyXT7LdWk2RATE3KQIJRyasbe
+	mFWtrFgxC6K5c2Y1Ld6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuVpv-00H73N-Fv; Fri, 27 May 2022 09:00:47 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1nuaHs-0009sl-Da; Fri, 27 May 2022 13:45:56 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuVpi-00H70V-0y
-	for linux-amlogic@lists.infradead.org; Fri, 27 May 2022 09:00:36 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 7so1135098wmz.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 May 2022 02:00:32 -0700 (PDT)
+	id 1nuaHX-0009nB-2u
+	for linux-amlogic@lists.infradead.org; Fri, 27 May 2022 13:45:37 +0000
+Received: by mail-wm1-x332.google.com with SMTP id o9so2700401wmd.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 27 May 2022 06:45:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KgOndPAfyvmijpJMBj3VbzHjuhYijVFfIUTkT6Spj0I=;
-        b=yq2L9Iov93prcrerNONY8meYTbFWpiD9fleBq4FXsdIRRV8zY6ph1xHdNY/dzwUrcH
-         vvxyR7HN6/UlVUj1cLMIpxlGYFf4UiDun28TCZzbHE7fNGH0BeuIipqNGnKNpqiAj1Mj
-         DBtUJc1PrpN+1hs6oQMc1WoWyoCsE+ZOzGDMWBsXA7EO223rkpH9kKWQIn7gsB3q5h2C
-         lAvbqAyNeosmQHZ0E7+ipm13Rfd8quSni+xiz9546V4eiDxUdj10O08iBeIaw+KXjHbP
-         MwqfUHMwlumF0Hq84IIh5K4nhvndxXbYTxhG7szKBIBD0U82R5tnmIMQ0FwwZhB5RAb0
-         H08w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=jBX6sPP/edoe4coCPmiUBmbs1kcK2bMRWX97xjgtvx8=;
+        b=JWLI8KLcxTNF3ggaTQHWvElnpoMg5ySLRYT9qMnjpJ26mb4XV1XZnrtGP6RdIb63oU
+         vVdTAiv6SK9RQ7WGAxamRpwlEDXpQv2X6QNcMsKFNrXb6zdxCIiw6HLV7DD4JV1NqL8R
+         xwau3E89cavQkVogB64htJPJdOo//B6QRNen8YVJ+p2ldlm+MUov87XMIJsBZfMS2Epu
+         1m2Ds2dbBDUbrajs7hUy1hkqjNSYWFRaLX4KS0vsnUy0EqF62XGRK4v6cmlsvcWt+sQB
+         4K5HeuAIW/7e2qjNvc/27xOiqY5E1lmLiUeMsi13xzYP2MG5nF1lpVEvjORm6JdgGPjp
+         j3/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KgOndPAfyvmijpJMBj3VbzHjuhYijVFfIUTkT6Spj0I=;
-        b=S8WzR5DlfN+dRnLwOXI3bTBHujfiOyMH0Hc1GjeTv89Qw6mAZQ4j4cwNkB43yvzUNm
-         7wBpq2QldQ0mvca/Yxckj3XhGJmczLb0mtP10mgML+g5Wr8qEnn/pT2sGTEmFTBCeXaV
-         SBTjfqymQHLzqE64lDLtStgD7+/VUFkvlcMJiU0l1mxvXgphR3nh1Ti03tRGO+ViNypH
-         bLe5tbvS+raAz00sZAY0iam8y3Y7Hy1mAnKnAQjf+novrO8eke6X4eLbyNQZANyfDilD
-         Qif8bpzF6pMTmIZSGrSaW+okW44ANQyFR0xyZuUWhUjEoW+kfw7DyIVMgHx/KrDh6X4+
-         TvdA==
-X-Gm-Message-State: AOAM531NmvnAvlTueSTqlyt5mioJOYe1kyNQT16sk/4uNQtL9VTIP2M1
-	c9/wY4E93+U3q1bJXjQWUwukdA==
-X-Google-Smtp-Source: ABdhPJzkbMuzL2NSPBI/c7uo7e2MnvfNayThyWCQt8pFuNppY95EZcMlvC/RzIZPXwXVBZa2UnWCTQ==
-X-Received: by 2002:a05:600c:1e85:b0:397:6bcb:c52c with SMTP id be5-20020a05600c1e8500b003976bcbc52cmr6042990wmb.41.1653642031059;
-        Fri, 27 May 2022 02:00:31 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:f081:5ded:fc86:365d])
-        by smtp.gmail.com with ESMTPSA id u12-20020a5d6dac000000b0020feb9c44c2sm1347807wrs.20.2022.05.27.02.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 May 2022 02:00:30 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	soc@kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Olof Johansson <olof@lixom.net>,
-	arm@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/2] arm64: dts: amlogic: adjust whitespace around '='
-Date: Fri, 27 May 2022 11:00:29 +0200
-Message-Id: <165364202476.67525.12506050494553411270.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=jBX6sPP/edoe4coCPmiUBmbs1kcK2bMRWX97xjgtvx8=;
+        b=tTGdYj3R8lG90YhIDqyCxU6KBZACAQhK+C6at9uBOkO/vhGuSj70/bNx2oG50CDC56
+         l0mk9fs6je/EM4m9H3P94rrfC0c+j2EeiiSHb1iqL19G/WmOj86ePhJng5RnDYxMdW1i
+         sLEBEpWSkwHDkj4MF4fLvL57Jf8zq1dyXxY5bmw5vGupYdbAxSRUhdSYYalESZZenJIo
+         mbHYsDD8QX2GL1ZSB2U6MfoOV438wGLihuCLB1nhUF4U7ur7nuhm04lmk46++1h+1dO4
+         lVLsx5EQIjaMsu1KP7qtlVUdk2AWqpyvloO3Rtd5MJGB43JbYelBQAqJ7IbGAOquC0Ri
+         +AyA==
+X-Gm-Message-State: AOAM533WfbHwUAbO7m6r1Oms9GM3ggYpyl94TXk8N7eoKgT5MxXfmbZM
+	R2da0aMzIlC64QbxveTVDuFm6A==
+X-Google-Smtp-Source: ABdhPJzPdKyv3HnK5pKB3f32K0HPpugENpmEnYc8YylJwZqpuwS9yD2Zu4cpYiY8OxyWx4YH6xFk4Q==
+X-Received: by 2002:a05:600c:154d:b0:394:8d64:9166 with SMTP id f13-20020a05600c154d00b003948d649166mr7123702wmg.102.1653659132457;
+        Fri, 27 May 2022 06:45:32 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:f081:5ded:fc86:365d? ([2001:861:44c0:66c0:f081:5ded:fc86:365d])
+        by smtp.gmail.com with ESMTPSA id e7-20020adfa447000000b0020e5d2a9d0bsm2107939wra.54.2022.05.27.06.45.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 May 2022 06:45:32 -0700 (PDT)
+Message-ID: <a6b1fd65-d6c4-e3dc-d237-9cb2e72bbecf@baylibre.com>
+Date: Fri, 27 May 2022 15:45:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] arm64: dts: meson: add reset controller for Meson-S4 SoC
+Content-Language: en-US
+To: Zelong Dong <zelong.dong@amlogic.com>, devicetree@vger.kernel.org,
+ p.zabel@pengutronix.de, robh+dt@kernel.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+References: <20220526130158.36651-1-zelong.dong@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220526130158.36651-1-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220527_020034_097068_FAFEAB94 
-X-CRM114-Status: GOOD (  11.56  )
+X-CRM114-CacheID: sfid-20220527_064535_414370_C96B8D44 
+X-CRM114-Status: GOOD (  12.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,50 +90,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Thu, 26 May 2022 22:45:51 +0200, Krzysztof Kozlowski wrote:
-> Fix whitespace coding style: use single space instead of tabs or
-> multiple spaces around '=' sign in property assignment.  No functional
-> changes (same DTB).
+On 26/05/2022 15:01, Zelong Dong wrote:
+> Add the reset controller device of Meson-S4 SoC family
 > 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index 480afa2cc61f..c750bc60786f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -94,6 +94,12 @@ uart_B: serial@7a000 {
+>   				clocks = <&xtal>, <&xtal>, <&xtal>;
+>   				clock-names = "xtal", "pclk", "baud";
+>   			};
+> +
+> +			reset: reset-controller@2000 {
+> +				compatible = "amlogic,meson-s4-reset";
+> +				reg = <0x0 0x2000 0x0 0x98>;
+> +				#reset-cells = <1>;
+> +			};
+>   		};
+>   	};
+>   };
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/arm64)
-
-[1/2] arm64: dts: amlogic: adjust whitespace around '='
-      https://git.kernel.org/amlogic/c/7c928017461a740300ba0d74a5a4e7c09c8f75cd
-[2/2] ARM: dts: meson: adjust whitespace around '='
-      https://git.kernel.org/amlogic/c/5d08817f99847d0ccff65903a99794703de9ad46
-
-These changes has been applied on the intermediate git tree [1].
-
-The v5.20/arm64 branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
