@@ -4,87 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 689A4C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 May 2022 09:18:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AD50C433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 May 2022 19:19:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nivYBMaVBBOTgET+XJnDseMwprMeF5N0B0HNhY5P+lw=; b=xzEKW38iwZjMlV
-	SS+x7tFi4l60Q8poAl7jzvxLfn5QFFE8TwAeZu2iVnRoplVmXQhcPPV95489d3w4y/fXjCJM6ixOx
-	qwiZZw1AKF3VzcprcpC7vtkYLWxjPgZA15WIqOdWw20uTOgwLasiTS3jxV/yXRTvwkDxkPgjVXEL2
-	htpak7a7OOHyuZ0GE313F8M9VXri5TM4e6ivWyuHHHihnJTiqPpWgi9xEkVBoWoeIWPcxTfo7gFq5
-	ak1rO1FW0W+pAcTLYIQ5rfqny9kt0oZq8VQgJeKomoBPVgz8mgg9IXuWDYvm3TqUszDxQwsG3vg3G
-	5EN+EiAFNBK9+6+l0aRw==;
+	List-Owner; bh=rpHybOJqnj14HoahvFmIdPgF2D3FVDf42aMcxH98yLo=; b=a6U3qg9/Tvk4Wx
+	DEKzQ4r+JXrzoZfqkymJzutyCRnXP7adNlweCuyN4YoLAxbO05Bf858Tb05GmfTzNqTX+1LDjiCZb
+	osrcsNVTgZDhleAaVMfvEw+o8NKmmrmPb8Iyv/AUCSGDpgP1WqKWFvGxf5Kdj4CFml3/cYk8BgdbF
+	Q6KaWMreC+QCHFw4IMd7v1YeEdmzxJ6ETG8PAGQz5nhBVT2WO0K7sjv2ndQOAis9N7BJ2FOLgpuuM
+	BdEbjOn/itcYyjCUfLYXZ0O0sAGLbfp9glNCp8xbvTnzP4m47Q3+3ZROZYSMyOK5w6eadkeJgheuw
+	2sJE8EAgVEFL6YKKtgtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nusaN-001p1S-11; Sat, 28 May 2022 09:18:15 +0000
-Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
+	id 1nvORa-004Xj3-Ky; Sun, 29 May 2022 19:19:18 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nusaI-001ozI-TC; Sat, 28 May 2022 09:18:12 +0000
-Received: by mail-lj1-x22b.google.com with SMTP id m11so7132532ljc.1;
-        Sat, 28 May 2022 02:18:08 -0700 (PDT)
+	id 1nvORO-004XhI-SK; Sun, 29 May 2022 19:19:08 +0000
+Received: by mail-ej1-x632.google.com with SMTP id jx22so17165723ejb.12;
+        Sun, 29 May 2022 12:19:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HVRfiub+OH+3yERsymAq7YJAzta8XBR77uv0v0VV0CI=;
-        b=emBIciAFdQnHcKQSohgcuqMQM4xd/Tz5hPJWkxKaoqpZiunJ9s/OTs4WGMG95NSW4L
-         IgZczc+9GJXxJcHaJPXn5wGWSwvNNr7NK0iPiKDna7ZgvHSU3H+3cqKDq++bLMIID/pg
-         WGi2IGkojhYGQUTThKK+rMJIPdLBixIvgKrHxkmswTwOqRnEJD7L5yQqGEaEOrvK5lk+
-         qkpbzv53N91WJdtTRf68St7YDzO4K7K4CZ379sj7xnW+IFrVVRAmkaJKxBPwkYKBzJkg
-         l3Y5YpoNbKupcj3Ag1FqEF0wqmBD5ctEDUT8y+jgldf7YfuRmpnjc1XtWB+r4HJU6Val
-         yWqw==
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wc+EE6uFclfQj0Z++trSIQDhAONqieaeq0cvRbIdEio=;
+        b=BlHzcGTrKIpNrIPqJBGVqSC3Fmx0nmtG91acp41+I2sSr3UwjOBg7PTUW2jugiyjOS
+         KV8gAeOQp1DF/XZ9Pooh/305TP+Doq4JtQ0i8yC2Av2Uz2LdEKbs+j/83L4p2STY1KYx
+         En+nLsDLwEMuFHglSNpbCLREVZyMiC0ZGljmE6AXUHKafD5ej5j3ZPMkpy6pzasMO3IQ
+         YFcV65NJBFwWCiRBCdOIGxUgh/6rkm9bY7FuQkIDBQxHwPesIXk/xjTinHFakSnFUihs
+         TZY2FgsN57eQPwg+TpyxneWO62ff16jYV2HpwWXkdDu7CPj6cTmh9S5XEfpOm6bfxalB
+         r1EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HVRfiub+OH+3yERsymAq7YJAzta8XBR77uv0v0VV0CI=;
-        b=G7wU0TuKiCaTY66XQyRNXJuW+UlHRNFl6TqFf2qJbg2qtAIYO+ZShmteIHY9jB50JG
-         3cDDzMe+eAYNf4AmA+/amXBSYxL+5FAl6UQfbrYBEfGkMMUW0XXiCf7lULrHlRaRtCPm
-         rNjZiD/NPuGtt4bObxMgUIweAtaSH5iMS6P3lzDosnShxnq8CutGZtC9o4RfGmR/Fphp
-         d2qcl3AAIUSW9LzLrL85MKrFBkjU/eVKegp4bRywQfxc7GEcw3+740RAL/5zIe/pC71J
-         S56ZY2Y3q2azQdnh+s6KKQ6CRhqC71PaW+W7D8ZIIasuSC1XsI4xqNXihLUhJVteAJMy
-         FtVA==
-X-Gm-Message-State: AOAM533g/Qhhr3hpaO3wW0YwWIxAuU1x5ZkS40dc8K/4etFehT/cxB8r
-	jZwXAXSqRS5AOVZaxY7EUIs+UAzzjigqNTVF
-X-Google-Smtp-Source: ABdhPJxNkzG4eousUKAj15zHH6g3YqSnU9H8B29bmyYBmgxkfeUg1JCXHoHxE95njq7TczFOLpZl7Q==
-X-Received: by 2002:a2e:a5ca:0:b0:253:c604:647c with SMTP id n10-20020a2ea5ca000000b00253c604647cmr27577549ljp.403.1653729487689;
-        Sat, 28 May 2022 02:18:07 -0700 (PDT)
-Received: from [10.0.0.127] (91-159-150-230.elisa-laajakaista.fi. [91.159.150.230])
-        by smtp.gmail.com with ESMTPSA id v9-20020a2ea449000000b0024f3d1daee2sm1402828ljn.106.2022.05.28.02.18.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 May 2022 02:18:07 -0700 (PDT)
-Message-ID: <454f31e4-12ce-2bee-8e95-d75854b34380@gmail.com>
-Date: Sat, 28 May 2022 12:19:20 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wc+EE6uFclfQj0Z++trSIQDhAONqieaeq0cvRbIdEio=;
+        b=IoUtE62wxmIb5Oaoii4KXPAOXT7X2gWq4yOt1o7ZgyNZM2pZdFZ9b4u/WeXAXifrs8
+         r43ccvhhtKa/8iDExK6eUoP7ShhbHdExjT/MG78Vi/LfXah6X41pHVaTy75c08Fzw/21
+         yliUL4BeKFgv6WpuwxnNv6ePjjvaulpbJBX2rlDa2Um1FDxc/zzP/Pesnodzhambvb4T
+         /oqRh8DL+sBuBHRKxYFanJh0kAUA9IWeZYqYEfOpAUYtJnyUz/2/guUKwLEypoTUZYE0
+         l1XsCVXTOqa/5/XUbE+7tM1Lsp/+EWbj7EzQEU5UB0v8SLP2QZt2XTTWiU3mKn+yVHnk
+         GXfQ==
+X-Gm-Message-State: AOAM532SiN7qQQM4hp3+8cslKzDHb06/3et/2kHfXm4dKoK7iekwRCWe
+	FVyipylQ66Td9FAicVKN4eHjI9OIZ+zss+MoxxA=
+X-Google-Smtp-Source: ABdhPJzCykqQ15vSmNqR86SAPkvkeK17qhqbNMfKxY3rcmoGgzF/riVWYcYCENQrz5Q479KG33OuWkNZXm5nuyzqvrU=
+X-Received: by 2002:a17:907:7f21:b0:6ff:10b:9cee with SMTP id
+ qf33-20020a1709077f2100b006ff010b9ceemr25697803ejc.302.1653851944022; Sun, 29
+ May 2022 12:19:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 52/56] ASoC: ti: Rename set_fmt_new back to set_fmt
-Content-Language: en-US
-To: Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org
-Cc: lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
- nicolas.ferre@microchip.com, nsaenz@kernel.org, shawnguo@kernel.org,
- linux-imx@nxp.com, cezary.rojewski@intel.com,
- pierre-louis.bossart@linux.intel.com, linux-mips@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- daniel@zonque.org, srinivas.kandagatla@linaro.org,
- linux-rockchip@lists.infradead.org, krzk@kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-xtensa@linux-xtensa.org, jarkko.nikula@bitmer.com, heiko@sntech.de,
- jbrunet@baylibre.com, kernel@pengutronix.de, alsa-devel@alsa-project.org,
- patches@opensource.cirrus.com
-References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
- <20220519154318.2153729-53-ckeepax@opensource.cirrus.com>
-From: =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20220519154318.2153729-53-ckeepax@opensource.cirrus.com>
+References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org> <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 29 May 2022 21:18:53 +0200
+Message-ID: <CAFBinCA=VXjR99AELCnV8nLbt=DinWhcpmKnC1jN0p6Dpx83Dw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: meson: adjust whitespace around '='
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220528_021810_987473_DE881111 
-X-CRM114-Status: GOOD (  13.35  )
+X-CRM114-CacheID: sfid-20220529_121906_974438_A90DA24D 
+X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,50 +84,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAxOS8wNS8yMDIyIDE4OjQzLCBDaGFybGVzIEtlZXBheCB3cm90ZToKPiBOb3cgdGhlIGNv
-cmUgaGFzIGJlZW4gbWlncmF0ZWQgYWNyb3NzIHRvIHRoZSBuZXcgZGlyZWN0IGNsb2NrCj4gc3Bl
-Y2lmaWNhdGlvbiB3ZSBjYW4gbW92ZSB0aGUgZHJpdmVycyBiYWNrIHRvIHRoZSBub3JtYWwgc2V0
-X2ZtdAo+IGNhbGxiYWNrLgoKQWNrZWQtYnk6IFBldGVyIFVqZmFsdXNpIDxwZXRlci51amZhbHVz
-aUBnbWFpbC5jb20+Cgo+IFNpZ25lZC1vZmYtYnk6IENoYXJsZXMgS2VlcGF4IDxja2VlcGF4QG9w
-ZW5zb3VyY2UuY2lycnVzLmNvbT4KPiAtLS0KPiAgc291bmQvc29jL3RpL2RhdmluY2ktaTJzLmMg
-ICB8IDIgKy0KPiAgc291bmQvc29jL3RpL2RhdmluY2ktbWNhc3AuYyB8IDIgKy0KPiAgc291bmQv
-c29jL3RpL29tYXAtbWNic3AuYyAgICB8IDIgKy0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAzIGluc2Vy
-dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy90aS9k
-YXZpbmNpLWkycy5jIGIvc291bmQvc29jL3RpL2RhdmluY2ktaTJzLmMKPiBpbmRleCBjNzM2OGQ1
-Mjk2Njg4Li5mZTU3MmI3MjBiMDk0IDEwMDY0NAo+IC0tLSBhL3NvdW5kL3NvYy90aS9kYXZpbmNp
-LWkycy5jCj4gKysrIGIvc291bmQvc29jL3RpL2RhdmluY2ktaTJzLmMKPiBAQCAtNjA2LDcgKzYw
-Niw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgc25kX3NvY19kYWlfb3BzIGRhdmluY2lfaTJzX2Rh
-aV9vcHMgPSB7Cj4gIAkucHJlcGFyZQk9IGRhdmluY2lfaTJzX3ByZXBhcmUsCj4gIAkudHJpZ2dl
-cgk9IGRhdmluY2lfaTJzX3RyaWdnZXIsCj4gIAkuaHdfcGFyYW1zCT0gZGF2aW5jaV9pMnNfaHdf
-cGFyYW1zLAo+IC0JLnNldF9mbXRfbmV3CT0gZGF2aW5jaV9pMnNfc2V0X2RhaV9mbXQsCj4gKwku
-c2V0X2ZtdAk9IGRhdmluY2lfaTJzX3NldF9kYWlfZm10LAo+ICAJLnNldF9jbGtkaXYJPSBkYXZp
-bmNpX2kyc19kYWlfc2V0X2Nsa2RpdiwKPiAgCj4gIH07Cj4gZGlmZiAtLWdpdCBhL3NvdW5kL3Nv
-Yy90aS9kYXZpbmNpLW1jYXNwLmMgYi9zb3VuZC9zb2MvdGkvZGF2aW5jaS1tY2FzcC5jCj4gaW5k
-ZXggOTYxYmFjNjk2MzY1Mi4uZTJhYWI0NzI5ZjNhYiAxMDA2NDQKPiAtLS0gYS9zb3VuZC9zb2Mv
-dGkvZGF2aW5jaS1tY2FzcC5jCj4gKysrIGIvc291bmQvc29jL3RpL2RhdmluY2ktbWNhc3AuYwo+
-IEBAIC0xNjIwLDcgKzE2MjAsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9zb2NfZGFpX29w
-cyBkYXZpbmNpX21jYXNwX2RhaV9vcHMgPSB7Cj4gIAkudHJpZ2dlcgk9IGRhdmluY2lfbWNhc3Bf
-dHJpZ2dlciwKPiAgCS5kZWxheQkJPSBkYXZpbmNpX21jYXNwX2RlbGF5LAo+ICAJLmh3X3BhcmFt
-cwk9IGRhdmluY2lfbWNhc3BfaHdfcGFyYW1zLAo+IC0JLnNldF9mbXRfbmV3CT0gZGF2aW5jaV9t
-Y2FzcF9zZXRfZGFpX2ZtdCwKPiArCS5zZXRfZm10CT0gZGF2aW5jaV9tY2FzcF9zZXRfZGFpX2Zt
-dCwKPiAgCS5zZXRfY2xrZGl2CT0gZGF2aW5jaV9tY2FzcF9zZXRfY2xrZGl2LAo+ICAJLnNldF9z
-eXNjbGsJPSBkYXZpbmNpX21jYXNwX3NldF9zeXNjbGssCj4gIAkuc2V0X3RkbV9zbG90CT0gZGF2
-aW5jaV9tY2FzcF9zZXRfdGRtX3Nsb3QsCj4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy90aS9vbWFw
-LW1jYnNwLmMgYi9zb3VuZC9zb2MvdGkvb21hcC1tY2JzcC5jCj4gaW5kZXggNWJmYjU2ZDRmZjg0
-NC4uNThkOGUyMDBhN2I5NyAxMDA2NDQKPiAtLS0gYS9zb3VuZC9zb2MvdGkvb21hcC1tY2JzcC5j
-Cj4gKysrIGIvc291bmQvc29jL3RpL29tYXAtbWNic3AuYwo+IEBAIC0xMjcxLDcgKzEyNzEsNyBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9zb2NfZGFpX29wcyBtY2JzcF9kYWlfb3BzID0gewo+
-ICAJLnRyaWdnZXIJPSBvbWFwX21jYnNwX2RhaV90cmlnZ2VyLAo+ICAJLmRlbGF5CQk9IG9tYXBf
-bWNic3BfZGFpX2RlbGF5LAo+ICAJLmh3X3BhcmFtcwk9IG9tYXBfbWNic3BfZGFpX2h3X3BhcmFt
-cywKPiAtCS5zZXRfZm10X25ldwk9IG9tYXBfbWNic3BfZGFpX3NldF9kYWlfZm10LAo+ICsJLnNl
-dF9mbXQJPSBvbWFwX21jYnNwX2RhaV9zZXRfZGFpX2ZtdCwKPiAgCS5zZXRfY2xrZGl2CT0gb21h
-cF9tY2JzcF9kYWlfc2V0X2Nsa2RpdiwKPiAgCS5zZXRfc3lzY2xrCT0gb21hcF9tY2JzcF9kYWlf
-c2V0X2RhaV9zeXNjbGssCj4gIH07CgotLSAKUMOpdGVyCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Thu, May 26, 2022 at 10:45 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Fix whitespace coding style: use single space instead of tabs or
+> multiple spaces around '=' sign in property assignment.  No functional
+> changes (same DTB).
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Neil, I have seen that you applied this patch to the v5.20/arm64 branch.
+I am not sure if it's supposed to go there. If not: please add my
+reviewed-by when moving this patch.
+
+
+Thank you!
+Martin
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
