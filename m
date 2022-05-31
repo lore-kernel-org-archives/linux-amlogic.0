@@ -4,71 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ADE4C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 May 2022 21:21:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BDEAC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 May 2022 21:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1kfsOLSa+f3KT9N7JcDCE8TSnIB7ga+P802Z3u4uVas=; b=d+B88jwBYKWUHV
-	tALp1oaC8fyl64NTAFwSNkKB8P0rQlmMfIGbAQRI5hME0lX+unTqxFedyQ3LXxA7DOxLrT54OIJvL
-	TSMwrAFeZkCvHliD/9lXWlNWlg/kP38nUc4n4Qyz+NebC4N15X0Kw9ctBg3W7b6k9BRAt1DzdJ1gQ
-	pgXklQ2/luqLeTmvjXpesiXmuSETU1OfFkLkYGwsz/KkrizPn1pBq5JHC83EaNBFf43KozFBHFyky
-	tWKASwifPWJf99F7yhqD3pU8nUaIH0hDXiEEmAlT6OF6XJw8dh4imdgI5iox2w7ZY0xK5Pz/mLxym
-	j+jGzUMQVhPeydC+rO/g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kglUlZI4v8/EM5fUFY5wpYn3beX9IGgNUW0J+ZenQxg=; b=inT/iD1pov6S24
+	p0dd0JxryjWFnt/LlEWz1VsE/1KLr1FyBL+uLuFH7M2MzoARrECndlWdiOQxB3lZLXvvO02AMEtYU
+	OPppEJf+bt1jddv+JkFjXYBOkEdfY8s9XAyHC2XaI69s9t20Vuv1MQvvnuxIfIHw57s1XsMqmHeov
+	Hkp2opOdpnYiFLYkac+N5NdVdzYjCsKt/sMhQU57hK7nguQsG3xgBOua8t7u2xc+MyVWVhtFXw96A
+	jZ8ktaP19VCA6M10bu2QyYbqMjd683FUDImF37epmp0Oyu9Au6JrnhJzJERhQL5fK55o8Ao0RhM/M
+	a6Z6TMNdUrG5MYWQwxTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nw9IL-00ChNN-BS; Tue, 31 May 2022 21:20:53 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1nw9RQ-00CjBd-Fg; Tue, 31 May 2022 21:30:16 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nw9II-00Cgei-4c; Tue, 31 May 2022 21:20:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654032050; x=1685568050;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=95N/U1wc3ENWDPrktkKLJxWiCnlTcRmWQDNgyhivVEs=;
-  b=RJ7pjhoVLCRwUzR8oWTKc3ZnTxdvJQj8G3TDILJ+vfpCcUz/jJxoW/0u
-   BvgFUlDuEXDIPePu5B+Y5BW8pzKl79vUubb4Bz7Bjg8JUbY8cPybUwMsB
-   McV4Q8csD96K+EKpDhUWoRtosQSUjyb7I9nVILJVgs/Ng4yhdAoLEdLOv
-   XHj4E9VlzG7gAhgDtTty1Lg08ISO9DFkSOo1V7wh1op0VKFlK/TIVtWSy
-   k+VTxex1CzEKst6vCO6u5s9Y2Tzesk+COvtHEcdwu5csUWWp22rU1O7eN
-   tpTOZv7cd2g0e3MhOEYbzx0rtsguC6kNqsTSkyafPSKMKgkXby1uBLrH4
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="336045525"
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; 
-   d="scan'208";a="336045525"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2022 14:18:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; 
-   d="scan'208";a="823454439"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga006.fm.intel.com with ESMTP; 31 May 2022 14:18:41 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id E369B18B; Wed,  1 Jun 2022 00:18:43 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-iio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 1/3] iio: adc: meson_saradc: Convert to use dev_err_probe()
-Date: Wed,  1 Jun 2022 00:18:40 +0300
-Message-Id: <20220531211842.71998-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+	id 1nw9RE-00CjA0-Id; Tue, 31 May 2022 21:30:06 +0000
+Received: by mail-ej1-x632.google.com with SMTP id y19so1058705ejq.6;
+        Tue, 31 May 2022 14:30:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OdK+eE4TOLAxsJTNj+9orro+91ojVQC6MaYJmCCbeQE=;
+        b=piTVTfroLPwR9dT+4Pxk3X3JiQOi8Rvd7xtOxQFx22lNbSupKGHOb6zriXv+TUGynk
+         fX0z5+eNlfg9jIyx3P+oq8kLuA/g+0IJ41r4WwXAgBllyhENcpto9vfLhekqVuFVoe+v
+         ZcNdT+zYtkLnjbb7PBkn+c211KiaN/Wl562tyGgJVXK89NJrMqZtT/Vg7QKP+pGhzcDf
+         3pRWxtyXogxNnfGeWDYyCRcUtgBMfvaGiSQj+3egVqLwVmxiHNXEp4ADIAMmQCHJ7wQg
+         hBFM69KE1ooA+Qqi5iIh0uEpykPCaCNtb98Ev52oHt7yi97C/zp2pHELNMgdvWzd4NXS
+         ORVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OdK+eE4TOLAxsJTNj+9orro+91ojVQC6MaYJmCCbeQE=;
+        b=x76P7op6n92cawo3YzOrs3hRY+ErhbFy5I+tEfMujNW+hfFFqI2xBVrDDM5U0VlWJf
+         IZ7ntkbtkfd7MFP0vn1eYbpFk14NYXF3vDYxmCYSdMor9ahYUeNkSrf+o2aA1Vu1cJ1R
+         i7ws51Is7DFHXw8qF+2zeEdwXZ+mjBa/l33ThmUo723JrjbxtJ8/mLSaSAsFZEU9C3p8
+         oTOqf03p3WLwVMj1kqFaBLYERIwhSm9eJ/9qo3N0F/aXfoCA20L8HP9rmia7PoK+hDgB
+         uFuvb1bzhavf8bZJfFBelA2RD99/FPkfeybRKswHIqSlsys0xTJnV7qHwce3jq+tkwPh
+         aLOg==
+X-Gm-Message-State: AOAM531xlMcMVJ8c0CS4vTljb/KzSjl6CY3TjFgcy0uWgCT8LQHQtdvl
+	lYhU+kSvhwHU6WVcC0oJPXbsTbEKD6IGGpz5uCU=
+X-Google-Smtp-Source: ABdhPJyOPJ2fxBW5GtBabP3sWZr13JugYTG7IRGrl+fbQSib4tmjBMNQZI9rwETvFrK9H3lHfAOxdiHHf2/cp8zGX3k=
+X-Received: by 2002:a17:907:1b19:b0:6f0:1022:1430 with SMTP id
+ mp25-20020a1709071b1900b006f010221430mr55649654ejc.13.1654032602340; Tue, 31
+ May 2022 14:30:02 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220531211842.71998-1-andriy.shevchenko@linux.intel.com> <20220531211842.71998-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20220531211842.71998-2-andriy.shevchenko@linux.intel.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 31 May 2022 23:29:51 +0200
+Message-ID: <CAFBinCCDyX-dncLWV-CEuQ2Ksauxg-Qm=ZO4jRtMvXNbMYuBCA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] iio: adc: meson_saradc: Use devm_clk_get_optional()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220531_142050_260847_0576642D 
-X-CRM114-Status: GOOD (  14.40  )
+X-CRM114-CacheID: sfid-20220531_143004_648522_5223488A 
+X-CRM114-Status: UNSURE (   6.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,128 +87,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It's fine to call dev_err_probe() in ->probe() when error code is known.
-Convert the driver to use dev_err_probe().
-
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/iio/adc/meson_saradc.c | 51 ++++++++++++----------------------
- 1 file changed, 18 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 62cc6fb0ef85..c2abbfc1396c 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -701,6 +701,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
- 	u8 *buf, trimming_bits, trimming_mask, upper_adc_val;
-+	struct device *dev = indio_dev->dev.parent;
- 	struct nvmem_cell *temperature_calib;
- 	size_t read_len;
- 	int ret;
-@@ -717,30 +718,22 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 		if (ret == -ENODEV)
- 			return 0;
- 
--		return dev_err_probe(indio_dev->dev.parent, ret,
--				     "failed to get temperature_calib cell\n");
-+		return dev_err_probe(dev, ret, "failed to get temperature_calib cell\n");
- 	}
- 
- 	priv->tsc_regmap =
- 		syscon_regmap_lookup_by_phandle(indio_dev->dev.parent->of_node,
- 						"amlogic,hhi-sysctrl");
--	if (IS_ERR(priv->tsc_regmap)) {
--		dev_err(indio_dev->dev.parent,
--			"failed to get amlogic,hhi-sysctrl regmap\n");
--		return PTR_ERR(priv->tsc_regmap);
--	}
-+	if (IS_ERR(priv->tsc_regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap), "failed to get amlogic,hhi-sysctrl regmap\n");
- 
- 	read_len = MESON_SAR_ADC_EFUSE_BYTES;
- 	buf = nvmem_cell_read(temperature_calib, &read_len);
--	if (IS_ERR(buf)) {
--		dev_err(indio_dev->dev.parent,
--			"failed to read temperature_calib cell\n");
--		return PTR_ERR(buf);
--	} else if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
-+	if (IS_ERR(buf))
-+		return dev_err_probe(dev, PTR_ERR(buf), "failed to read temperature_calib cell\n");
-+	if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
- 		kfree(buf);
--		dev_err(indio_dev->dev.parent,
--			"invalid read size of temperature_calib cell\n");
--		return -EINVAL;
-+		return dev_err_probe(dev, -EINVAL, "invalid read size of temperature_calib cell\n");
- 	}
- 
- 	trimming_bits = priv->param->temperature_trimming_bits;
-@@ -765,6 +758,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- static int meson_sar_adc_init(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-+	struct device *dev = indio_dev->dev.parent;
- 	int regval, i, ret;
- 
- 	/*
-@@ -888,18 +882,12 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 	}
- 
- 	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
--	if (ret) {
--		dev_err(indio_dev->dev.parent,
--			"failed to set adc parent to clkin\n");
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set adc parent to clkin\n");
- 
- 	ret = clk_set_rate(priv->adc_clk, priv->param->clock_rate);
--	if (ret) {
--		dev_err(indio_dev->dev.parent,
--			"failed to set adc clock rate\n");
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set adc clock rate\n");
- 
- 	return 0;
- }
-@@ -1186,24 +1174,21 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
- {
- 	const struct meson_sar_adc_data *match_data;
- 	struct meson_sar_adc_priv *priv;
-+	struct device *dev = &pdev->dev;
- 	struct iio_dev *indio_dev;
- 	void __iomem *base;
- 	int irq, ret;
- 
- 	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*priv));
--	if (!indio_dev) {
--		dev_err(&pdev->dev, "failed allocating iio device\n");
--		return -ENOMEM;
--	}
-+	if (!indio_dev)
-+		return dev_err_probe(dev, -ENOMEM, "failed allocating iio device\n");
- 
- 	priv = iio_priv(indio_dev);
- 	init_completion(&priv->done);
- 
- 	match_data = of_device_get_match_data(&pdev->dev);
--	if (!match_data) {
--		dev_err(&pdev->dev, "failed to get match data\n");
--		return -ENODEV;
--	}
-+	if (!match_data)
-+		return dev_err_probe(dev, -ENODEV, "failed to get match data\n");
- 
- 	priv->param = match_data->param;
- 
--- 
-2.35.1
-
+On Tue, May 31, 2022 at 11:18 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> Replace open coded variants of devm_clk_get_optional().
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
