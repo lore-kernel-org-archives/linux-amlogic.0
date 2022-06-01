@@ -4,75 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B859C433F5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jun 2022 10:35:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95B8C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jun 2022 19:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Eg/Ae7mT9QKMzdTIY2MmXyy10VVthM+af0BMFPvehVE=; b=ZiY4mtAeCtzWbs
-	PyPE/G5IqNIyB7EUrQppc0dZ6spSSi0oqUmzMCWhkqVHEb6zVvghJyYurbSaLIXCQ1Rjsvz6IZioE
-	KEtOZ4AOukvcwf/v9r8+wx+ohe9CVzmEAc6Q6sWt7qL74D8W57FmeWZ4OOh/wjmadZl5+K7uw3uSS
-	wzu8Tcs+cJdo74bMaabcxTxBUf3iqM14kOOGkMXVszNF8qpi+PaQvzqQJG670DQ3pO0FF0ngu5Ngz
-	mWjmD+vnQ9tcsUcX0XiZTQfOd8c5Y2faxTsx48ULLsOdmbU4dSlGXeN6+e5yw5UFqtnzlJtY14cgT
-	4hDFabXLmdi7xxerUA1g==;
+	List-Owner; bh=F4anYAk6P2nlzYJSAXQ8JUmk2NUrz0PSXR3iy5drlpE=; b=2xn6y5n5uuK2UZ
+	l6BopPAcnjm/ZaHojKDAtF3XpoTEB9SlyQImSRyErqYRvQDh84cgvcMs5NUzEOsvBSLeWP2RXePbF
+	HlVpbY2UmU3F48rHGksHFASeaVVkrUU+CXSztrpKRWy1dsfbLpWV6akgHuCBx3zwkiTBTAXVwjDHt
+	3qCXBae6omvzn8jodG8ZF4r0IKaBP6nL6aOU2Wgp4aGkxboKS5YL9w1ZpGKYxWj5SiyMUUy1CwXk9
+	wiQEBVWSQtsD+SvwnMlYRl/D+wets2eeBa7OZk6QVtiFtvOnNkJThdTxZMaDAZxgH3RzmpJfKsxHx
+	0+M7zrmFCSC3lwLewnmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwLhL-00FLgU-1V; Wed, 01 Jun 2022 10:35:31 +0000
-Received: from mga17.intel.com ([192.55.52.151])
+	id 1nwUNC-000Cx9-Ip; Wed, 01 Jun 2022 19:51:18 +0000
+Received: from mail-oi1-f180.google.com ([209.85.167.180])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwLcr-00FJZx-N0; Wed, 01 Jun 2022 10:30:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654079453; x=1685615453;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qD5rv9i5Du7irA/swnuN3jwbdILA1dofh7zhQ5sAHp8=;
-  b=GDmkFpwOm67tjM8n28StNVm6x6vprCMpZeaCIHgwR8mJU7ezet7GcjkD
-   YVdHAxeaGUSMhYCcMRFPW0TEvFYCm11InDQFztNUpBWA17vdEHQF/eBX3
-   zJ0YAsQe67KM6Wa5TEev9Q9ozesadN54lwK1Q5Y0EZQNAxI/yWTb6X+xn
-   bslHc0O+p0oiL/xzAwY8FAj6ycyyrs0g+ywh8QkcHXYKvnvtF1cKcxIot
-   iHKSNiZC6n8hbsacwqglCGPZfRdmDKeiERhEgwbiuyhGWy+hAsbSFbyJX
-   7xhVMKsT+U8NfzLWbtGAsNrn7MSqEQ3ffnFnt6sx0wJs6b/dv3OTfajJ/
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="256021895"
-X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
-   d="scan'208";a="256021895"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 03:30:37 -0700
-X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
-   d="scan'208";a="530002767"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 03:30:34 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1nwLcV-000QYP-MW;
-	Wed, 01 Jun 2022 13:30:31 +0300
-Date: Wed, 1 Jun 2022 13:30:31 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH v1 3/3] iio: adc: meson_saradc: Use temporary variable
- for struct device
-Message-ID: <Ypc/x2G+jgHvBjLY@smile.fi.intel.com>
-References: <20220531211842.71998-1-andriy.shevchenko@linux.intel.com>
- <20220531211842.71998-3-andriy.shevchenko@linux.intel.com>
- <CAFBinCDf4UfEPFV4_Qf3m16DE-NzNUk_ZVcHZhgxVvn_pokdgw@mail.gmail.com>
+	id 1nwUN1-000Cts-5e; Wed, 01 Jun 2022 19:51:08 +0000
+Received: by mail-oi1-f180.google.com with SMTP id k187so4037848oif.1;
+        Wed, 01 Jun 2022 12:51:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gn5G0sk6V7ansC6nBxDu6+mXNt9uJIpkYkYkuE5zjDs=;
+        b=0Vqy+klibrPHQJ11yES2PwoY4JmjQikA2/tVJGXGnIMOYLqI9L7jSG/pT66c74oy0t
+         4YX6lMnnySR/uitt4umMYvsMRuEGgy92hlfcdG5U/vzw3PXM2mEYqAVsLJivpl/SjPOs
+         Nd3rouTZsE7pnoiYyo9Da1NiOZp8K+kQc4T1SPEkSiJn/FhwgHD+8PM0QpyzW/BbLSON
+         q/c4Kw18YZE+0Q4pUh3+y4EjUV1ptGyrNApx5GGJpX8CPH+QFAd6pUgGN6fgaBuyERgM
+         kMQM3lF4eKL0OWOSzcWnLr/+FhaxU81rZf5prIq6L3crsonU9N5qmjpHg6rK1N5BDVn5
+         lNog==
+X-Gm-Message-State: AOAM531QMlMw2E+WXYyGE3ULe+W7T3nr4Ma+4y0lSijlABssirTmgHRZ
+	Pp+TZ4erU3teOdsH0MjtJzhV2qd46w==
+X-Google-Smtp-Source: ABdhPJwAJpzi0PcdaldTmKtUN95zZ7XXm0EePIpfGX5LC4bNAZ845Iwj0Rw0ZOPMk6mqDxpbS339oA==
+X-Received: by 2002:aca:f143:0:b0:32b:dc40:c1c4 with SMTP id p64-20020acaf143000000b0032bdc40c1c4mr12678221oih.293.1654113065824;
+        Wed, 01 Jun 2022 12:51:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bc32-20020a05682016a000b0035eb4e5a6dasm1361259oob.48.2022.06.01.12.51.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 12:51:05 -0700 (PDT)
+Received: (nullmailer pid 320227 invoked by uid 1000);
+	Wed, 01 Jun 2022 19:51:04 -0000
+Date: Wed, 1 Jun 2022 14:51:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Liang Yang <liang.yang@amlogic.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, linux-arm-kernel@lists.infradead.org, XianWei Zhao <xianwei.zhao@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>, YongHui Yu <yonghui.yu@amlogic.com>, Richard Weinberger <richard@nod.at>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, Vignesh Raghavendra <vigneshr@ti.com>, linux-mtd@lists.infradead.org, Kelvin Zhang <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: nand: meson: fix meson nfc clock
+Message-ID: <20220601195104.GA320194-robh@kernel.org>
+References: <20220513123404.48513-1-liang.yang@amlogic.com>
+ <20220513123404.48513-2-liang.yang@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAFBinCDf4UfEPFV4_Qf3m16DE-NzNUk_ZVcHZhgxVvn_pokdgw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20220513123404.48513-2-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220601_033053_816251_79563AA8 
-X-CRM114-Status: GOOD (  18.82  )
+X-CRM114-CacheID: sfid-20220601_125107_248686_F004A4AE 
+X-CRM114-Status: GOOD (  13.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,40 +78,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, May 31, 2022 at 11:47:50PM +0200, Martin Blumenstingl wrote:
-> On Tue, May 31, 2022 at 11:18 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> [...]
-> > @@ -650,11 +648,12 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
-> >                                   void __iomem *base)
-> >  {
-> >         struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> > +       struct device *idev = &indio_dev->dev;
-> > +       struct device *dev = dev->parent;
-> It looks like this should read:
->     struct device *dev = idev->parent;
+On Fri, 13 May 2022 20:34:01 +0800, Liang Yang wrote:
+> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+> which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+> the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+> a common MMC and NAND sub-clock was discussed and planed to be implemented
+> as NFC clock provider, but now this series of patches of a common MMC and
+> NAND sub-clock are never being accepted and the current binding was never
+> valid. the reasons are:
+> 1. EMMC and NAND, which are mutually exclusive anyway
+> 2. coupling the EMMC and NAND.
+> 3. it seems that a common MMC and NAND sub-clock is over engineered.
+> and let us see the link for more information:
+> https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+> so The meson nfc can't work now, let us rework the clock.
+> 
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.txt       | 29 ++++++++-----------
+>  1 file changed, 12 insertions(+), 17 deletions(-)
+> 
 
-Oops, indeed.
-
-> That said, I think this kind of typo is very easy with the current
-> naming schema.
-> It's been a while since I looked at other drivers but maybe the IIO
-> maintainers have some recommendations for us (which would apply to
-> multiple IIO drivers, not just meson_saradc).
-> For example: I am not sure if iio_{err,warn} functions (which take a
-> struct iio_dev pointer) have been proposed/discussed before. I think
-> they could be useful for other drivers as well.
-
-Looking deeper into this example, I think the IIO dev usage might be wrong
-in the first place, but since there are managed resources attached, I dunno
-if it's the way to go. Let's wait for maintainers to chime in.
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
