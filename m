@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F433C43334
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jun 2022 11:42:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD599C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jun 2022 11:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Wxy1EddzR1iu1Vkd/dvjWGmdy+AJ7xj7PYmD3en8WPY=; b=A27hflJzr4+psB
-	bmyccJga4S+nomHPgvJVu9vCZt0t+HX0JhchJ+VzzoS4oHsTj/eAjl93lw79T8o1P2Jj9CNu8w5WX
-	lfwwQ7r84amT236IS0aX11sD/m22AFLOaFjonWapzud7OvAQ/YVnbALhKWCZQasab/H4Pzt+omki1
-	wD27DnFgdASP6pYL4Q/+O8yKcPAKlARqy3Abv1Gxh+8tsiPgk+f8k5tdE5nR/yiROOUB5vtL3tfiv
-	AKPAV7xFw4iSkMSDeL86wMbLtPCSAzbqJnAij4Z/zS1xg5Agy4kra+8aPPCrxn3VATI9N8Aau5TFU
-	ZyWP4bpkdWIOXjvJZYDg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=uvKr82xXT+J5BfTSjtHFHU4nd41Nj2nJo5MWeYBoTTY=; b=IMuKELVUdQvjA7
+	ElRL8C932HmfzA7IEGs+S2hwBfbDEUDDaHOgFAw7tHPgjNWOf33rkLHvc311tWbcYSk9gc0o7xvkY
+	DTxKj+/jsI5/pk5MI7Zj3fgIn1CCKOd4TCCHO1ChuAy17glR8F/o8gHzPj2xgHRVexbtxUzsjCJhb
+	tmIb37C3roEIw4yv3HE3rakx0HAjOtIOlGuwL2zZdfo7U6oNmqbSRVcMOgYtTmwy99ixzjSk99bRS
+	R4TQjypKVZ+b3N3Uqi0E7zrOS2I+RnSffRXHl2FZZ7igntSpx2BVdamPEAgRBbx7RNh6z9heXuge+
+	DyIGdICwAdubSOfU7dPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwjE0-002yjp-0X; Thu, 02 Jun 2022 11:42:48 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1nwjE9-002yoV-RB; Thu, 02 Jun 2022 11:42:57 +0000
+Received: from mga04.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwjDw-002yhu-Oo; Thu, 02 Jun 2022 11:42:46 +0000
+	id 1nwjDw-002yhv-Ko; Thu, 02 Jun 2022 11:42:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
   t=1654170164; x=1685706164;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=oIz/mvMCV+BGSqUcB6eZa50Ln+1c3te5NV7Zv6a5Yeg=;
-  b=mq2TyYXYWct80H1Dns9C9VYH1crn0sjDN6iMg5V1y2Mp7+lSpGGPt5x9
-   kyf2L2vKmPOnXmJdHpuWwN6fWd7vTC7d91Zj15bISQNRt+svdIoaTNOcS
-   1O/ZuJmj8ks27VERLDtIpSRbRnku/9daF/3yP4aQ1XTEXiTaMC+lnaJ9a
-   3YPUhSlqSMJCuvQ2t4u1awdTeOBRj1VZHwX9MEkLhlHDoChjIAcaqRUo7
-   8AJtfXIojpbjImnl4KCJ0WmdGA/cteuasVuATH5s/WWpMhIC6vH4l11oY
-   FAE/P8zfRonU1e9hNdHQYd+kgyDH0A5JEJE1E9O/roj4K9L4ev/BgE3sI
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="263557930"
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TxSg/zeqHqeKSH+c5lsz78IoUwxOmvrTiLmC8LlVeQc=;
+  b=TFE8+xQoUSC038N9fdsxuFkFEH7qbsj6vfSvH9fX7XP7ub8Ur4oX92XZ
+   ZsskA1yoXVVH7EzDeHsjsWqRoxKGb+Y4eBmIxCoSfandUcBIJU6BjTMdS
+   RL4yitwDx4gnL4hiLmTImGqOa0Zm34SrJ0HB5IiXBSk9n/bN2eg48hv6C
+   xt+FUeybVhPco6P0VOJ5z+Xhz3h0X7+oT8+UBeqwIvsmyWmOdAS8wMJG7
+   Dc1pGk6EUf5j1S8tSKGZrEJ3sFr9qzsEAcJ7LznNnx5ttZtnSjRTtxHKs
+   EJJ/FhS8crJHPPcbOymGSdDxdn5RaAtYmGDqdwaqxWF2DGJOl62/kXhwX
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="274722266"
 X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
-   d="scan'208";a="263557930"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 04:42:43 -0700
+   d="scan'208";a="274722266"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 04:42:43 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
-   d="scan'208";a="721269396"
+   d="scan'208";a="756949085"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga001.fm.intel.com with ESMTP; 02 Jun 2022 04:42:40 -0700
+  by orsmga005.jf.intel.com with ESMTP; 02 Jun 2022 04:42:40 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id BEFD8F8; Thu,  2 Jun 2022 14:42:42 +0300 (EEST)
+	id D7DE99A9; Thu,  2 Jun 2022 14:42:42 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -61,14 +61,16 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	Neil Armstrong <narmstrong@baylibre.com>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>
-Subject: [PATCH v2 1/3] iio: adc: meson_saradc: Convert to use dev_err_probe()
-Date: Thu,  2 Jun 2022 14:42:39 +0300
-Message-Id: <20220602114241.12601-1-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 3/3] iio: adc: meson_saradc: Use temporary variable for struct device
+Date: Thu,  2 Jun 2022 14:42:41 +0300
+Message-Id: <20220602114241.12601-3-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220602114241.12601-1-andriy.shevchenko@linux.intel.com>
+References: <20220602114241.12601-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220602_044244_931478_47266855 
-X-CRM114-Status: GOOD (  16.71  )
+X-CRM114-CacheID: sfid-20220602_044244_773184_8B491E0E 
+X-CRM114-Status: GOOD (  14.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,126 +87,257 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It's fine to call dev_err_probe() in ->probe() when error code is known.
-Convert the driver to use dev_err_probe().
+Use temporary variable for struct device to make code neater.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
-v2: split long line (Martin)
- drivers/iio/adc/meson_saradc.c | 52 +++++++++++++---------------------
- 1 file changed, 19 insertions(+), 33 deletions(-)
+v2: fixed typo (LKP, Martin)
+
+The Martin's idea about iio specific prints still can be discussed before
+or after applying this, I have no preference. That said, this change can be
+postponed.
+
+ drivers/iio/adc/meson_saradc.c | 73 +++++++++++++++-------------------
+ 1 file changed, 31 insertions(+), 42 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 62cc6fb0ef85..a2e83eca03e8 100644
+index e0762103c869..c66f1e978c3c 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -701,6 +701,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+@@ -345,6 +345,7 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+ 					 int *val)
  {
  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
- 	u8 *buf, trimming_bits, trimming_mask, upper_adc_val;
++	struct device *idev = &indio_dev->dev;
+ 	int regval, fifo_chan, fifo_val, count;
+ 
+ 	if (!wait_for_completion_timeout(&priv->done,
+@@ -353,16 +354,14 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+ 
+ 	count = meson_sar_adc_get_fifo_count(indio_dev);
+ 	if (count != 1) {
+-		dev_err(&indio_dev->dev,
+-			"ADC FIFO has %d element(s) instead of one\n", count);
++		dev_err(idev, "ADC FIFO has %d element(s) instead of one\n", count);
+ 		return -EINVAL;
+ 	}
+ 
+ 	regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &regval);
+ 	fifo_chan = FIELD_GET(MESON_SAR_ADC_FIFO_RD_CHAN_ID_MASK, regval);
+ 	if (fifo_chan != chan->address) {
+-		dev_err(&indio_dev->dev,
+-			"ADC FIFO entry belongs to channel %d instead of %lu\n",
++		dev_err(idev, "ADC FIFO entry belongs to channel %d instead of %lu\n",
+ 			fifo_chan, chan->address);
+ 		return -EINVAL;
+ 	}
+@@ -550,6 +549,7 @@ static int meson_sar_adc_get_sample(struct iio_dev *indio_dev,
+ 				    int *val)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
 +	struct device *dev = indio_dev->dev.parent;
- 	struct nvmem_cell *temperature_calib;
+ 	int ret;
+ 
+ 	if (chan->type == IIO_TEMP && !priv->temperature_sensor_calibrated)
+@@ -573,8 +573,7 @@ static int meson_sar_adc_get_sample(struct iio_dev *indio_dev,
+ 	meson_sar_adc_unlock(indio_dev);
+ 
+ 	if (ret) {
+-		dev_warn(indio_dev->dev.parent,
+-			 "failed to read sample for channel %lu: %d\n",
++		dev_warn(dev, "failed to read sample for channel %lu: %d\n",
+ 			 chan->address, ret);
+ 		return ret;
+ 	}
+@@ -587,6 +586,7 @@ static int meson_sar_adc_iio_info_read_raw(struct iio_dev *indio_dev,
+ 					   int *val, int *val2, long mask)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
++	struct device *dev = indio_dev->dev.parent;
+ 	int ret;
+ 
+ 	switch (mask) {
+@@ -603,9 +603,7 @@ static int meson_sar_adc_iio_info_read_raw(struct iio_dev *indio_dev,
+ 		if (chan->type == IIO_VOLTAGE) {
+ 			ret = regulator_get_voltage(priv->vref);
+ 			if (ret < 0) {
+-				dev_err(indio_dev->dev.parent,
+-					"failed to get vref voltage: %d\n",
+-					ret);
++				dev_err(dev, "failed to get vref voltage: %d\n", ret);
+ 				return ret;
+ 			}
+ 
+@@ -650,11 +648,12 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 				  void __iomem *base)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
++	struct device *idev = &indio_dev->dev;
++	struct device *dev = idev->parent;
+ 	struct clk_init_data init;
+ 	const char *clk_parents[1];
+ 
+-	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
+-				   dev_name(indio_dev->dev.parent));
++	init.name = devm_kasprintf(idev, GFP_KERNEL, "%s#adc_div", dev_name(dev));
+ 	if (!init.name)
+ 		return -ENOMEM;
+ 
+@@ -670,13 +669,11 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 	priv->clk_div.hw.init = &init;
+ 	priv->clk_div.flags = 0;
+ 
+-	priv->adc_div_clk = devm_clk_register(&indio_dev->dev,
+-					      &priv->clk_div.hw);
++	priv->adc_div_clk = devm_clk_register(idev, &priv->clk_div.hw);
+ 	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
+ 		return PTR_ERR(priv->adc_div_clk);
+ 
+-	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
+-				   dev_name(indio_dev->dev.parent));
++	init.name = devm_kasprintf(idev, GFP_KERNEL, "%s#adc_en", dev_name(dev));
+ 	if (!init.name)
+ 		return -ENOMEM;
+ 
+@@ -690,7 +687,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 	priv->clk_gate.bit_idx = __ffs(MESON_SAR_ADC_REG3_CLK_EN);
+ 	priv->clk_gate.hw.init = &init;
+ 
+-	priv->adc_clk = devm_clk_register(&indio_dev->dev, &priv->clk_gate.hw);
++	priv->adc_clk = devm_clk_register(idev, &priv->clk_gate.hw);
+ 	if (WARN_ON(IS_ERR(priv->adc_clk)))
+ 		return PTR_ERR(priv->adc_clk);
+ 
+@@ -706,8 +703,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
  	size_t read_len;
  	int ret;
-@@ -717,30 +718,23 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 		if (ret == -ENODEV)
- 			return 0;
  
--		return dev_err_probe(indio_dev->dev.parent, ret,
--				     "failed to get temperature_calib cell\n");
-+		return dev_err_probe(dev, ret, "failed to get temperature_calib cell\n");
+-	temperature_calib = devm_nvmem_cell_get(indio_dev->dev.parent,
+-						"temperature_calib");
++	temperature_calib = devm_nvmem_cell_get(dev, "temperature_calib");
+ 	if (IS_ERR(temperature_calib)) {
+ 		ret = PTR_ERR(temperature_calib);
+ 
+@@ -721,9 +717,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+ 		return dev_err_probe(dev, ret, "failed to get temperature_calib cell\n");
  	}
  
- 	priv->tsc_regmap =
- 		syscon_regmap_lookup_by_phandle(indio_dev->dev.parent->of_node,
- 						"amlogic,hhi-sysctrl");
--	if (IS_ERR(priv->tsc_regmap)) {
--		dev_err(indio_dev->dev.parent,
--			"failed to get amlogic,hhi-sysctrl regmap\n");
--		return PTR_ERR(priv->tsc_regmap);
--	}
-+	if (IS_ERR(priv->tsc_regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
-+				     "failed to get amlogic,hhi-sysctrl regmap\n");
- 
- 	read_len = MESON_SAR_ADC_EFUSE_BYTES;
- 	buf = nvmem_cell_read(temperature_calib, &read_len);
--	if (IS_ERR(buf)) {
--		dev_err(indio_dev->dev.parent,
--			"failed to read temperature_calib cell\n");
--		return PTR_ERR(buf);
--	} else if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
-+	if (IS_ERR(buf))
-+		return dev_err_probe(dev, PTR_ERR(buf), "failed to read temperature_calib cell\n");
-+	if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
- 		kfree(buf);
--		dev_err(indio_dev->dev.parent,
--			"invalid read size of temperature_calib cell\n");
--		return -EINVAL;
-+		return dev_err_probe(dev, -EINVAL, "invalid read size of temperature_calib cell\n");
- 	}
- 
- 	trimming_bits = priv->param->temperature_trimming_bits;
-@@ -765,6 +759,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- static int meson_sar_adc_init(struct iio_dev *indio_dev)
+-	priv->tsc_regmap =
+-		syscon_regmap_lookup_by_phandle(indio_dev->dev.parent->of_node,
+-						"amlogic,hhi-sysctrl");
++	priv->tsc_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "amlogic,hhi-sysctrl");
+ 	if (IS_ERR(priv->tsc_regmap))
+ 		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
+ 				     "failed to get amlogic,hhi-sysctrl regmap\n");
+@@ -911,6 +905,7 @@ static void meson_sar_adc_set_bandgap(struct iio_dev *indio_dev, bool on_off)
+ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
  {
  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
 +	struct device *dev = indio_dev->dev.parent;
- 	int regval, i, ret;
+ 	int ret;
+ 	u32 regval;
  
- 	/*
-@@ -888,18 +883,12 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+@@ -920,14 +915,13 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
+ 
+ 	ret = regulator_enable(priv->vref);
+ 	if (ret < 0) {
+-		dev_err(indio_dev->dev.parent,
+-			"failed to enable vref regulator\n");
++		dev_err(dev, "failed to enable vref regulator\n");
+ 		goto err_vref;
  	}
  
- 	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
--	if (ret) {
--		dev_err(indio_dev->dev.parent,
--			"failed to set adc parent to clkin\n");
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set adc parent to clkin\n");
+ 	ret = clk_prepare_enable(priv->core_clk);
+ 	if (ret) {
+-		dev_err(indio_dev->dev.parent, "failed to enable core clk\n");
++		dev_err(dev, "failed to enable core clk\n");
+ 		goto err_core_clk;
+ 	}
  
- 	ret = clk_set_rate(priv->adc_clk, priv->param->clock_rate);
--	if (ret) {
--		dev_err(indio_dev->dev.parent,
--			"failed to set adc clock rate\n");
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set adc clock rate\n");
+@@ -945,7 +939,7 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
  
- 	return 0;
- }
-@@ -1186,24 +1175,21 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
- {
- 	const struct meson_sar_adc_data *match_data;
- 	struct meson_sar_adc_priv *priv;
-+	struct device *dev = &pdev->dev;
- 	struct iio_dev *indio_dev;
+ 	ret = clk_prepare_enable(priv->adc_clk);
+ 	if (ret) {
+-		dev_err(indio_dev->dev.parent, "failed to enable adc clk\n");
++		dev_err(dev, "failed to enable adc clk\n");
+ 		goto err_adc_clk;
+ 	}
+ 
+@@ -1180,14 +1174,14 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
  	void __iomem *base;
  	int irq, ret;
  
- 	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*priv));
--	if (!indio_dev) {
--		dev_err(&pdev->dev, "failed allocating iio device\n");
--		return -ENOMEM;
--	}
-+	if (!indio_dev)
-+		return dev_err_probe(dev, -ENOMEM, "failed allocating iio device\n");
+-	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*priv));
++	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
+ 	if (!indio_dev)
+ 		return dev_err_probe(dev, -ENOMEM, "failed allocating iio device\n");
  
  	priv = iio_priv(indio_dev);
  	init_completion(&priv->done);
  
- 	match_data = of_device_get_match_data(&pdev->dev);
--	if (!match_data) {
--		dev_err(&pdev->dev, "failed to get match data\n");
--		return -ENODEV;
--	}
-+	if (!match_data)
-+		return dev_err_probe(dev, -ENODEV, "failed to get match data\n");
+-	match_data = of_device_get_match_data(&pdev->dev);
++	match_data = of_device_get_match_data(dev);
+ 	if (!match_data)
+ 		return dev_err_probe(dev, -ENODEV, "failed to get match data\n");
  
- 	priv->param = match_data->param;
+@@ -1201,29 +1195,25 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
+-	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
+-					     priv->param->regmap_config);
++	priv->regmap = devm_regmap_init_mmio(dev, base, priv->param->regmap_config);
+ 	if (IS_ERR(priv->regmap))
+ 		return PTR_ERR(priv->regmap);
+ 
+-	irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
++	irq = irq_of_parse_and_map(dev->of_node, 0);
+ 	if (!irq)
+ 		return -EINVAL;
+ 
+-	ret = devm_request_irq(&pdev->dev, irq, meson_sar_adc_irq, IRQF_SHARED,
+-			       dev_name(&pdev->dev), indio_dev);
++	ret = devm_request_irq(dev, irq, meson_sar_adc_irq, IRQF_SHARED, dev_name(dev), indio_dev);
+ 	if (ret)
+ 		return ret;
+ 
+-	priv->clkin = devm_clk_get(&pdev->dev, "clkin");
++	priv->clkin = devm_clk_get(dev, "clkin");
+ 	if (IS_ERR(priv->clkin))
+-		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clkin),
+-				     "failed to get clkin\n");
++		return dev_err_probe(dev, PTR_ERR(priv->clkin), "failed to get clkin\n");
+ 
+-	priv->core_clk = devm_clk_get(&pdev->dev, "core");
++	priv->core_clk = devm_clk_get(dev, "core");
+ 	if (IS_ERR(priv->core_clk))
+-		return dev_err_probe(&pdev->dev, PTR_ERR(priv->core_clk),
+-				     "failed to get core clk\n");
++		return dev_err_probe(dev, PTR_ERR(priv->core_clk), "failed to get core clk\n");
+ 
+ 	priv->adc_clk = devm_clk_get_optional(dev, "adc_clk");
+ 	if (IS_ERR(priv->adc_clk))
+@@ -1240,10 +1230,9 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+ 			return ret;
+ 	}
+ 
+-	priv->vref = devm_regulator_get(&pdev->dev, "vref");
++	priv->vref = devm_regulator_get(dev, "vref");
+ 	if (IS_ERR(priv->vref))
+-		return dev_err_probe(&pdev->dev, PTR_ERR(priv->vref),
+-				     "failed to get vref regulator\n");
++		return dev_err_probe(dev, PTR_ERR(priv->vref), "failed to get vref regulator\n");
+ 
+ 	priv->calibscale = MILLION;
+ 
+@@ -1273,7 +1262,7 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+ 
+ 	ret = meson_sar_adc_calib(indio_dev);
+ 	if (ret)
+-		dev_warn(&pdev->dev, "calibration failed\n");
++		dev_warn(dev, "calibration failed\n");
+ 
+ 	platform_set_drvdata(pdev, indio_dev);
  
 -- 
 2.35.1
