@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 599E6C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 16:12:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7469FC43334
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 16:14:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H2YZz6YmckJ4cIeP1KehVs5zgLa/qZKic/xV5kDZEdk=; b=IiutAAyvp62jgP
-	L7b8g7ZN5z/cxoNpOqjSzlkrLx686ol3L/YaYyYfuDxXqE3qtxi9WeyS/PsMrmsV8BMgc6CtNWP5D
-	rcTMT8SP2xcoDzdsPbCID+ctJwm7DESoFHL+u0moe6yklNgwYeOs5UAF+gGMrrRvGShZ0iVDeifoy
-	7WX5JYK9+yMf7qothmDCdgW01PCKRogPSha6Cu+XZqW5mhPBmlkEbHLzvTEmZb6MfaVML2fkvm8nN
-	exdN8Kvren3zxnjc/a46SWKRs1vN/YWr3rlnAXWW7A8lCyKv9ni841bZXDm/YT3avybOjD72Ed9nX
-	jWsCDXCS3EhrA+BaeQ/g==;
+	List-Owner; bh=CFpK1Iz0uc+LQIpxxW7KH6OfCLDtZ5kgTygq7HDQWQI=; b=2qzQ33H2IqhjyU
+	K4qqA7rsrxJhhxqgBMiLLvKgSCwrUP8X0xwZSEQuNmy9LoF4ZPdK2k9hmc75430HrXUoBACRXHY5P
+	5vw70aJQpAcdR7Wni7cnbI9Fux3Ofi4ZFkS2EWUR4SZhyyfXNm2V5uVvqbPmUkd90zB6hZsvRAXHc
+	RJ/dFhY7O3D2BCRy7XtGp5dZHkujcWsyvYPqbtD37VqeTEDz+69RSHR8LosP9nTcxh4Jd4417I5RX
+	y6OjJ1odC14klZ0krvNDV5fqiqyqXh9gTdDECzyAV320t5I8R+x29S6DZ2YaqiI/Uc3YSQbkQSl3y
+	ZvFbifKdea/0SN7aGndw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx9uR-0087fC-Ej; Fri, 03 Jun 2022 16:12:23 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nx9wH-008886-DT; Fri, 03 Jun 2022 16:14:17 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx9uO-0087eD-3w; Fri, 03 Jun 2022 16:12:21 +0000
+	id 1nx9w8-008868-9O; Fri, 03 Jun 2022 16:14:15 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id D087AB82371;
-	Fri,  3 Jun 2022 16:12:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3980C385A9;
-	Fri,  3 Jun 2022 16:12:14 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C678D61984;
+	Fri,  3 Jun 2022 16:14:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53D9C385B8;
+	Fri,  3 Jun 2022 16:14:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1654272737;
-	bh=O9M5jqdylfIYfPPpysrTSvpb5Slsp0Ov8SEYrUNJiRs=;
+	s=k20201202; t=1654272847;
+	bh=Pf4UcvShu0d5b4Z8DwPTXDYV1z+qP0sFlyeLVxRBXSo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KQVT60gjcauzcYjwva9tzOpQ2w+i89jrkPNenFv4Y74edbsCMOv5m50Ec+jofIe6c
-	 C+EqPf6Wd3vnsieZ/Pj72WbHbtO8ihiv/EcpJaRbpkB0gwr2vdde1wEzgaSkkO7kWI
-	 U1ZXQjPAAzB3ZfvBZp3sdsRAf+PUn9shAuYbCmnvdPzmWIZu8nO/z8+jRdxvnLqHXS
-	 0l9fy9HXF4CPmfmAPCluDMT7BySyzznnWyM3jXzsNjHORYgGJ2P6vjq3ZRY+rU0lqk
-	 xfiWFz79f+EI8EyMMyihqFD0APlz6dfM/abhxLHRhYVy4w+6P01L1/3Ew+ftJQjmKe
-	 wiOfUL8KR8bLA==
-Date: Fri, 3 Jun 2022 17:21:17 +0100
+	b=d1OoTOg/qodrgQrJAE2Sh+7Yi37UqzTpHqqhe5NEpoX6lVZLpQxDx+scr8cz4Yw8h
+	 xLmm5362E0JEgJz0Qic0zMGX77hVWEwt9C0cU9yoABidKs145CZhecnZOULysPIjOB
+	 ughLCrsomLoOSfeYI3Upx2RKdq7Lb1vmZetbH2cEYjd217Sj4O/IIvP0DW+Jgj+96h
+	 1LPSkG3ftX+L3FWTZNF2duJbbhJ1NkN6FhB/XZ+2zOCcWTjBvuoxPo4wmyERnzcvKK
+	 bDCwsCuvzx1XstuTResiKIXutY/9YSt8bKgktDnu5P1yyoFwF1HMIyCN3JNWo33lCe
+	 ZG6apUliTWlig==
+Date: Fri, 3 Jun 2022 17:23:07 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -49,17 +49,17 @@ Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Clausen <lars@metafoo.de>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
  Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 2/6] iio: adc: meson_saradc: Align messages to be
- with physical device prefix
-Message-ID: <20220603172117.792ce869@jic23-huawei>
-In-Reply-To: <20220603100004.70336-2-andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v3 1/6] iio: adc: meson_saradc: Don't attach managed
+ resource to IIO device object
+Message-ID: <20220603172307.5d2f3c52@jic23-huawei>
+In-Reply-To: <20220603170612.561edfbf@jic23-huawei>
 References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
-	<20220603100004.70336-2-andriy.shevchenko@linux.intel.com>
+	<20220603170612.561edfbf@jic23-huawei>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220603_091220_346883_11B501F5 
-X-CRM114-Status: GOOD (  20.55  )
+X-CRM114-CacheID: sfid-20220603_091408_472614_1E6BD69D 
+X-CRM114-Status: GOOD (  34.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,55 +76,108 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri,  3 Jun 2022 13:00:00 +0300
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+On Fri, 3 Jun 2022 17:06:12 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-> Align messages to be printed with the physical device prefix as it's done
-> everywhere else in this driver.
+> On Fri,  3 Jun 2022 12:59:59 +0300
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Here I'm fine with the use of the parent as can only happen after all
-the setup is done, so it's obvious the parent will be assigned
-(some might argue it is obvious in the previous patch, but I had to check
-as I couldn't remember when we set it :)
+> > It feels wrong and actually inconsistent to attach managed resources
+> > to the IIO device object, which is child of the physical device object.
+> > The rest of the ->probe() calls do that against physical device.
+> > 
+> > Resolve this by reassigning managed resources to the physical device object.
+> > 
+> > Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+> > Suggested-by: Lars-Peter Clausen <lars@metafoo.de>
+> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>  
+> Hi Andy,
+> 
+> This has come up a few times in the past (and we elected to not clean it up
+> at the time, though it wasn't a decision to never do so!)
+> 
+> It would definitely be wrong if we had another driver binding against
+> the resulting created device (funnily enough I reported a bug on a driver
+> doing just that earlier this week), but in this case it's harmless because the
+> the tear down will occur with a put_device() ultimately calling device_release()
+> and devres_release_all()
+> 
+> https://elixir.bootlin.com/linux/latest/source/drivers/base/core.c#L2211
+> 
+> Has a comment that covers this case (more or less).
+> "
+> 	 * Some platform devices are driven without driver attached
+> 	 * and managed resources may have been acquired.  Make sure
+> 	 * all resources are released.
+> "
+> 
+> Now, I definitely agree with your statement that it's a bit inconsistent to
+> do this, just not the fixes tag.
+> 
+> One other suggestion below.
+> 
+> 
+> > ---
+> > v3: new fix-patch
+> >  drivers/iio/adc/meson_saradc.c | 12 +++++-------
+> >  1 file changed, 5 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> > index 62cc6fb0ef85..4fe6b997cd03 100644
+> > --- a/drivers/iio/adc/meson_saradc.c
+> > +++ b/drivers/iio/adc/meson_saradc.c
+> > @@ -650,11 +650,11 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+> >  				  void __iomem *base)
+> >  {
+> >  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+> > +	struct device *dev = indio_dev->dev.parent;  
+> 
+> I'd slightly prefer the device was passed in explicitly to this function rather
+> than using the parent assignment which feels a little fragile. 
 
-Anyhow, LGTM. 
-> ---
-> v3: new patch (inspired by previous change)
->  drivers/iio/adc/meson_saradc.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
+Meh, ignore this. I see from one of the later patches, the driver is already
+making the assumption this is set in other calls, so we aren't making anything
+worse with this change.
+
+Jonathan
+
 > 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 4fe6b997cd03..658047370db0 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -345,6 +345,7 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
->  					 int *val)
->  {
->  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> +	struct device *dev = indio_dev->dev.parent;
->  	int regval, fifo_chan, fifo_val, count;
->  
->  	if (!wait_for_completion_timeout(&priv->done,
-> @@ -353,16 +354,14 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
->  
->  	count = meson_sar_adc_get_fifo_count(indio_dev);
->  	if (count != 1) {
-> -		dev_err(&indio_dev->dev,
-> -			"ADC FIFO has %d element(s) instead of one\n", count);
-> +		dev_err(dev, "ADC FIFO has %d element(s) instead of one\n", count);
->  		return -EINVAL;
->  	}
->  
->  	regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &regval);
->  	fifo_chan = FIELD_GET(MESON_SAR_ADC_FIFO_RD_CHAN_ID_MASK, regval);
->  	if (fifo_chan != chan->address) {
-> -		dev_err(&indio_dev->dev,
-> -			"ADC FIFO entry belongs to channel %d instead of %lu\n",
-> +		dev_err(dev, "ADC FIFO entry belongs to channel %d instead of %lu\n",
->  			fifo_chan, chan->address);
->  		return -EINVAL;
->  	}
+> 
+> >  	struct clk_init_data init;
+> >  	const char *clk_parents[1];
+> >  
+> > -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
+> > -				   dev_name(indio_dev->dev.parent));
+> > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#adc_div", dev_name(dev));
+> >  	if (!init.name)
+> >  		return -ENOMEM;
+> >  
+> > @@ -670,13 +670,11 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+> >  	priv->clk_div.hw.init = &init;
+> >  	priv->clk_div.flags = 0;
+> >  
+> > -	priv->adc_div_clk = devm_clk_register(&indio_dev->dev,
+> > -					      &priv->clk_div.hw);
+> > +	priv->adc_div_clk = devm_clk_register(dev, &priv->clk_div.hw);
+> >  	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
+> >  		return PTR_ERR(priv->adc_div_clk);
+> >  
+> > -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
+> > -				   dev_name(indio_dev->dev.parent));
+> > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#adc_en", dev_name(dev));
+> >  	if (!init.name)
+> >  		return -ENOMEM;
+> >  
+> > @@ -690,7 +688,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+> >  	priv->clk_gate.bit_idx = __ffs(MESON_SAR_ADC_REG3_CLK_EN);
+> >  	priv->clk_gate.hw.init = &init;
+> >  
+> > -	priv->adc_clk = devm_clk_register(&indio_dev->dev, &priv->clk_gate.hw);
+> > +	priv->adc_clk = devm_clk_register(dev, &priv->clk_gate.hw);
+> >  	if (WARN_ON(IS_ERR(priv->adc_clk)))
+> >  		return PTR_ERR(priv->adc_clk);
+> >    
+> 
 
 
 _______________________________________________
