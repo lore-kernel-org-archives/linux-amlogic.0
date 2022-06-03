@@ -4,63 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA9B5C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 16:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3101C43334
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 16:50:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KT6L7Wgrsy06dENG25fp4FO8BgLz9jo/+gglmvtE/s8=; b=dcv+x7SjdjPT/T
-	KStb4hvkt88dC1yxPrfn4XQcwxv9ydObr+DjjuagerQz0XhZy4sFCTxxSsMrhkicesZ/1VXyd4jTc
-	N3HEfh+i5kThZ7PWvOTj6S6wDCRXTm1oaFqdDC6vgjiPWd00Zi78e98odlEutEEwAxCnrFV4SeGiP
-	6u9QAhwCpHjJBe4UPvgUNrppqatRqlyFDgFC1CqWn291z7KRUZsXqDjQ841Up+MfFEUm8uAhO9aAK
-	zhIzUiGdBi94uJgCYEaMRMI2w6b9zAuum7hxEahOFZgmEyiLdgYcF5xn5xnBKXrzYhElX+GRGcdrb
-	8sgQdwfBfzku0E4ttmCA==;
+	List-Owner; bh=DuIS0myzw8+90m791TPLPEKQohlUg9p2bcDlJkj92Pw=; b=hFosrHwrc6Ayob
+	9l1V82aFo43NvtPuaKIhrmckvbFM1v6XdABr10iPsybiIAleIwRKQR8Qbs0FFHadz1WoNg2B2a7NN
+	Y6INsIQUewrpj+fWr4zQYsJzgDCONaxxOe47ylsWMYAjrQmIxOXAQ/MseUJ5TkPHtccgOOAh0YYR5
+	GkUYRf6xVNZMMwGruAIln7UIpbgV994HgdzokT9CF69pIubIICcMnCzHNothhRRrUpE2r3+o6kqUg
+	njy4nGyZY5+7alG+7kE4FhsSK/c/eRx+NIi65xAlb9MzCF3vdcgEXPrXmT84sGlNQAsF34o/Yz+tk
+	AJJ5jEw6bAJSyr31mCpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxA2E-0089FL-Se; Fri, 03 Jun 2022 16:20:26 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nxAVg-008DZF-NO; Fri, 03 Jun 2022 16:50:52 +0000
+Received: from mga05.intel.com ([192.55.52.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxA2B-0089Eg-2S; Fri, 03 Jun 2022 16:20:25 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id B5B9EB82371;
-	Fri,  3 Jun 2022 16:20:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9DE9C385B8;
-	Fri,  3 Jun 2022 16:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1654273220;
-	bh=Wl6jNcEEZrNKgBUdf6JAvynPXfoygzNFLAPCwn93l58=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=iNVcwujOuPJbVl+BIdBVWyszCXQ7Fb4XQjIcBWE3RG7YCSPVSclztPRGYGcTN8oHV
-	 gRchtkFwLJfZD1Rd0M6Yf1O0G2NXYhE4dR1yeVnVxfTx71iEmPcgxdTqbLBpUotvye
-	 8gy6bjTGA8E/aW+unfLyGtFgLkqTIpMlIp6hsAo54pxPT1wtIN+LRv/oLilD15N3Lw
-	 rDYPG7DIv6+99RCcgYXmlf0T3Z3tAZi0351Y24fIzwR8hSeZ+60teryt91JLrt2s1+
-	 Ed03pX2CxAfQPEyhEwNuh52MI+ydmRQ+QvJEALE1LZbooPCczEpxvKRUFhhUG1EVKN
-	 QVpOtXvMtEF0g==
-Date: Fri, 3 Jun 2022 17:29:20 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	id 1nxAVW-008DY7-04; Fri, 03 Jun 2022 16:50:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654275041; x=1685811041;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NzC/yKGfgbXpUiptMc8VzWfAMs4deWz+1hiZ7ehs/Ys=;
+  b=CDo8yHzlNijU1KWVqTWTFM7LT34J4imQMEVd0kse5/TOA/0tqS/y/nBA
+   eJ58nHXI8cwh4A+0M/R3+XpTicKk/MoffdQOMbvScZ8Ehl1alHtNZ09B+
+   nXyggqpTeKbfpyf2poTCJiI1ueuB7CPWzxDcBoVf8mGPskJCJcOJjCTW/
+   xsMh/m0eHv489wwYnpo6nIe/iWul5l/acA6p4aZ8DR7vwt13kqd8Ru6Ay
+   IVKluee4ftwr4d6mZ+TFayAdx3ZabWD2hYc0fhgoCgVqNRpS3/CmRrOzD
+   RbCY5fi6jh/LgHt4H/8ay+N0t9O61xFsyLvFOO2P8YfTAiUFkMjMwVZRT
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10367"; a="362664951"
+X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; 
+   d="scan'208";a="362664951"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2022 09:50:40 -0700
+X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; 
+   d="scan'208";a="553410112"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2022 09:50:37 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1nxAVO-000Sbi-9J;
+	Fri, 03 Jun 2022 19:50:34 +0300
+Date: Fri, 3 Jun 2022 19:50:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
 Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 1/6] iio: adc: meson_saradc: Don't attach managed
- resource to IIO device object
-Message-ID: <20220603172920.3239bbd6@jic23-huawei>
-In-Reply-To: <20220603172307.5d2f3c52@jic23-huawei>
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 2/6] iio: adc: meson_saradc: Align messages to be with
+ physical device prefix
+Message-ID: <Ypo72X1X3aCtBBGd@smile.fi.intel.com>
 References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
-	<20220603170612.561edfbf@jic23-huawei>
-	<20220603172307.5d2f3c52@jic23-huawei>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+ <20220603100004.70336-2-andriy.shevchenko@linux.intel.com>
+ <20220603172117.792ce869@jic23-huawei>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20220603172117.792ce869@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220603_092023_459209_AB08AD14 
-X-CRM114-Status: GOOD (  40.33  )
+X-CRM114-CacheID: sfid-20220603_095042_090348_6CB52862 
+X-CRM114-Status: GOOD (  12.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,125 +89,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 3 Jun 2022 17:23:07 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
-
-> On Fri, 3 Jun 2022 17:06:12 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
+On Fri, Jun 03, 2022 at 05:21:17PM +0100, Jonathan Cameron wrote:
+> On Fri,  3 Jun 2022 13:00:00 +0300
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 > 
-> > On Fri,  3 Jun 2022 12:59:59 +0300
-> > Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> >   
-> > > It feels wrong and actually inconsistent to attach managed resources
-> > > to the IIO device object, which is child of the physical device object.
-> > > The rest of the ->probe() calls do that against physical device.
-> > > 
-> > > Resolve this by reassigning managed resources to the physical device object.
-> > > 
-> > > Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
-> > > Suggested-by: Lars-Peter Clausen <lars@metafoo.de>
-> > > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>    
-> > Hi Andy,
-> > 
-> > This has come up a few times in the past (and we elected to not clean it up
-> > at the time, though it wasn't a decision to never do so!)
-> > 
-> > It would definitely be wrong if we had another driver binding against
-> > the resulting created device (funnily enough I reported a bug on a driver
-> > doing just that earlier this week), but in this case it's harmless because the
-> > the tear down will occur with a put_device() ultimately calling device_release()
-> > and devres_release_all()
-> > 
-> > https://elixir.bootlin.com/linux/latest/source/drivers/base/core.c#L2211
-> > 
-> > Has a comment that covers this case (more or less).
-> > "
-> > 	 * Some platform devices are driven without driver attached
-> > 	 * and managed resources may have been acquired.  Make sure
-> > 	 * all resources are released.
-> > "
-> > 
-> > Now, I definitely agree with your statement that it's a bit inconsistent to
-> > do this, just not the fixes tag.
-> > 
-> > One other suggestion below.
+> > Align messages to be printed with the physical device prefix as it's done
+> > everywhere else in this driver.
 
-Andy, put a cover letter on these larger series - if nothing else it gives
-somewhere convenient for people to give tags for the whole series, or 
-maintainer to say what they are doing with it.
-
-Anyhow, I'm fine with the series, but will leave it on list for a while
-longer, particularly to get patch 6 some eyes + testing.
-
-Currently I plan to drop the fixes tag from this first patch, but I'm prepared
-to be convinced it's a bug fix rather than a consistency cleanup.
-
-Jonathan
-
-> > 
-> >   
-> > > ---
-> > > v3: new fix-patch
-> > >  drivers/iio/adc/meson_saradc.c | 12 +++++-------
-> > >  1 file changed, 5 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> > > index 62cc6fb0ef85..4fe6b997cd03 100644
-> > > --- a/drivers/iio/adc/meson_saradc.c
-> > > +++ b/drivers/iio/adc/meson_saradc.c
-> > > @@ -650,11 +650,11 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
-> > >  				  void __iomem *base)
-> > >  {
-> > >  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> > > +	struct device *dev = indio_dev->dev.parent;    
-> > 
-> > I'd slightly prefer the device was passed in explicitly to this function rather
-> > than using the parent assignment which feels a little fragile.   
+> Here I'm fine with the use of the parent as can only happen after all
+> the setup is done, so it's obvious the parent will be assigned
+> (some might argue it is obvious in the previous patch, but I had to check
+> as I couldn't remember when we set it :)
 > 
-> Meh, ignore this. I see from one of the later patches, the driver is already
-> making the assumption this is set in other calls, so we aren't making anything
-> worse with this change.
-> 
-> Jonathan
-> 
-> > 
-> >   
-> > >  	struct clk_init_data init;
-> > >  	const char *clk_parents[1];
-> > >  
-> > > -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
-> > > -				   dev_name(indio_dev->dev.parent));
-> > > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#adc_div", dev_name(dev));
-> > >  	if (!init.name)
-> > >  		return -ENOMEM;
-> > >  
-> > > @@ -670,13 +670,11 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
-> > >  	priv->clk_div.hw.init = &init;
-> > >  	priv->clk_div.flags = 0;
-> > >  
-> > > -	priv->adc_div_clk = devm_clk_register(&indio_dev->dev,
-> > > -					      &priv->clk_div.hw);
-> > > +	priv->adc_div_clk = devm_clk_register(dev, &priv->clk_div.hw);
-> > >  	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
-> > >  		return PTR_ERR(priv->adc_div_clk);
-> > >  
-> > > -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
-> > > -				   dev_name(indio_dev->dev.parent));
-> > > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#adc_en", dev_name(dev));
-> > >  	if (!init.name)
-> > >  		return -ENOMEM;
-> > >  
-> > > @@ -690,7 +688,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
-> > >  	priv->clk_gate.bit_idx = __ffs(MESON_SAR_ADC_REG3_CLK_EN);
-> > >  	priv->clk_gate.hw.init = &init;
-> > >  
-> > > -	priv->adc_clk = devm_clk_register(&indio_dev->dev, &priv->clk_gate.hw);
-> > > +	priv->adc_clk = devm_clk_register(dev, &priv->clk_gate.hw);
-> > >  	if (WARN_ON(IS_ERR(priv->adc_clk)))
-> > >  		return PTR_ERR(priv->adc_clk);
-> > >      
-> >   
-> 
+> Anyhow, LGTM. 
+
+Thanks!
+
+> > v3: new patch (inspired by previous change)
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
 _______________________________________________
