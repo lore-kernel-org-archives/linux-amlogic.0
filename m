@@ -4,76 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AA29C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 16:55:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BECBC43334
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jun 2022 21:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aG1cpxXZNM6t8Pv2E3eUZihEiZnFgUe5Ta2HKy2BcP4=; b=pHAm2C/FkVybmh
-	KJ6/ghRhxMIfo/VMafiY3qYA82Tb1HgpC0+LdVX3QKCentUWkj7KHqTpiSc7nfVsPFnGsa5k90xSV
-	cq6VIPDuEwNe4+5sHK5vKylbGGskhYToIFthCIqKEuvVHzKGwG6bVNvInneLTr2gVJDVtSVGSGrBD
-	+bYTndUXCbmXVtaOEZUH3tz3qMhRdG3rFIGAn7K0A2LoKq9mYi9yXwfr7PiTgHKdQeS88quEoLyJj
-	LBzVFiaHFfjyw9abDjAzJnduXFl54Ja403JOZDsU8i2rfPZbBFFgRwUQ/4yVYR85N3P/9K0S2fgVn
-	Xk9uWsDV+7j7RHR+cnqA==;
+	List-Owner; bh=Hn9kEnnG6lnCtjWRylxUP/1zeoyLydJADBPPFiIkM18=; b=oXw1o3yD0Mjx87
+	Sza5qPU0vO5WGm9GnZ5nhppHJZV84XZOlKRSE6J2BlTSXb65t4/7mHLCNW87a7WLRexhqi6dZCLqj
+	+6uo0E9rRVkDZP+GKTAIWii8f+T2Ph8fxy6ScE8ReAqzeQPGakRzHLJ05LYzX6TiLPfev1P+zlRkd
+	3ADdm1uKu04G6T8rRE4XFsP3wYNiUgS3pNAxy0USz5c+5qZjE/h8fh8Bb+CeUpJi141BUiJJ96+jg
+	jelfyoCDyLVoe0hy6pAIMG4+rhARhDUrTcFt7KO8NbyFj15CJ7lbrm9x5u1PXG3PD9jbEqBVG5Nqd
+	FfY4x7u8puGNcV9JYaGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxAZj-008Dtq-KD; Fri, 03 Jun 2022 16:55:03 +0000
-Received: from mga18.intel.com ([134.134.136.126])
+	id 1nxEXz-008hsD-Jp; Fri, 03 Jun 2022 21:09:31 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxAZY-008Ds8-UR; Fri, 03 Jun 2022 16:54:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654275292; x=1685811292;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=b+9kqzkRua+/duStmsCCB0EK7KhyEmKZ5kB1ESim+XA=;
-  b=n55MFoy3q34r+EAyMwyqWwGEx3ggMTSml/XhqVysdqXLLBvfyBMaYJHh
-   goWpGN20+7U7J6UU/JbFlPpaeIbGJueBPNgQbVg8bsag9NcLYqVo3f9k3
-   ANUZCtpJ9B/zpXplfegoYyNDZ2YISt4pAK7rbhGPF88JrYa3MCSxldXih
-   fmXMAR9NCwRu9STFsJqyhqu9ryFUgiW/4aMTxq/QumiSkieYx8BE3Y5p6
-   vpjsOjO4fhxgPYxTc/4Bt5EinqbqfcNkds3P2CDElcOVdqRbOVh8IW7XQ
-   YsuIehfkzMCtK5swf/Vd7RZluohJ7l7NyISp3icvZ4Tw5f4IRpWvkNW0S
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10367"; a="258380426"
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; 
-   d="scan'208";a="258380426"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2022 09:54:49 -0700
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; 
-   d="scan'208";a="563867301"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2022 09:54:46 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1nxAZP-000Sbs-He;
-	Fri, 03 Jun 2022 19:54:43 +0300
-Date: Fri, 3 Jun 2022 19:54:43 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	id 1nxEWr-008h1Z-FD
+	for linux-amlogic@lists.infradead.org; Fri, 03 Jun 2022 21:08:22 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nxEWe-0003rQ-M1; Fri, 03 Jun 2022 23:08:08 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nxEWd-006HqT-NF; Fri, 03 Jun 2022 23:08:06 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nxEWb-00E1Hi-D0; Fri, 03 Jun 2022 23:08:05 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Liang Yang <liang.yang@amlogic.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>
+Cc: kernel@pengutronix.de,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 1/6] iio: adc: meson_saradc: Don't attach managed
- resource to IIO device object
-Message-ID: <Ypo80/NpWLLP43jm@smile.fi.intel.com>
-References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
- <20220603170612.561edfbf@jic23-huawei>
- <20220603172307.5d2f3c52@jic23-huawei>
- <20220603172920.3239bbd6@jic23-huawei>
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 11/14] mtd: rawnand: meson: Don't skip cleanup after mtd_device_unregister() failed
+Date: Fri,  3 Jun 2022 23:07:55 +0200
+Message-Id: <20220603210758.148493-12-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220603210758.148493-1-u.kleine-koenig@pengutronix.de>
+References: <20220603210758.148493-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220603172920.3239bbd6@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2079; i=uwe@kleine-koenig.org; h=from:subject; bh=RARxTiaUJYu4OZ6zHphWegS1/d3oBvCOapegjJ7Xz2w=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBimnfok3XZnM8xPmeh6eqHGnVxhDUlHH6mjDHSnMtj XzhjYlWJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYpp36AAKCRDB/BR4rcrsCR0fB/ 0XtpF397Uz0TI5bccMu6LPI+SY3xLErkAzy0oq/qVB0J5MexcIdYbctHySiybN1IFKvlbgrQ5cupk6 /iaHpfoOmhZNe4gKrjbocltz+mXgT3dn9PpT6NpXq9cuu/BgQ1ie0+ePFymUHBOKmEevSFLL681zvk cMvB5sdiQwojrFzUNQPK2rU/Paveuencs0tKWbOUSX74Gw+QcDtMJQUT67ZQCVuFCZ9+RWrYcWdcl7 J0cg9UgAZ/S/DWHHzIjABKtzbEZ0dp6906yCsINCp+wRhPu0EPRWBZQRpJIuSWw+qR7RVpml+lVjKh gor07c5W15prWMTew+AfkLn/qAwXj7
+X-Developer-Key: i=uwe@kleine-koenig.org; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220603_095453_062341_4DD11523 
-X-CRM114-Status: GOOD (  16.21  )
+X-CRM114-CacheID: sfid-20220603_140821_536780_CBAC7058 
+X-CRM114-Status: GOOD (  13.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,40 +77,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 03, 2022 at 05:29:20PM +0100, Jonathan Cameron wrote:
-> On Fri, 3 Jun 2022 17:23:07 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
-
-...
-
-> Andy, put a cover letter on these larger series - if nothing else it gives
-> somewhere convenient for people to give tags for the whole series, or 
-> maintainer to say what they are doing with it.
-
-I'll try to remember this. The series was started from only a couple of patches
-and grew to this big, and I forgot to add a cover letter when it seems not
-anymore obvious what has been done.
-
-> Anyhow, I'm fine with the series, but will leave it on list for a while
-> longer, particularly to get patch 6 some eyes + testing.
-> 
-> Currently I plan to drop the fixes tag from this first patch, but I'm prepared
-> to be convinced it's a bug fix rather than a consistency cleanup.
-
-Fine with me, thanks!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SWYgbXRkX2RldmljZV91bnJlZ2lzdGVyKCkgZmFpbHMgKHdoaWNoIGl0IGRvZXNuJ3Qgd2hlbiB1
+c2VkIGNvcnJlY3RseSksCnRoZSByZXNvdXJjZXMgYm91bmQgYnkgdGhlIG5hbmQgY2hpcCBzaG91
+bGQgYmUgZnJlZWQgYW55aG93IGFzIHJldHVybmluZwphbiBlcnJvciB2YWx1ZSBkb2Vzbid0IHBy
+ZXZlbnQgdGhlIGRldmljZSBnZXR0aW5nIHVuYm91bmQuCgpJbnN0ZWFkIHVzZSBXQVJOX09OIG9u
+IHRoZSByZXR1cm4gdmFsdWUgc2ltaWxhciB0byBob3cgb3RoZXIgZHJpdmVycyBkbwppdC4gVGhl
+biBtZXNvbl9uZmNfbmFuZF9jaGlwX2NsZWFudXAoKSByZXR1cm5zIDAgdW5jb25kaXRpb25hbGx5
+IGFuZCBjYW4KYmUgY2hhbmdlZCB0byByZXR1cm4gdm9pZCB3aGljaCBhbGxvd3MgZnVydGhlciBz
+aW1wbGlmaWNhdGlvbiBpbiB0aGUKcmVtb3ZlIGNhbGxiYWNrLgoKVGhpcyBpcyBhIHByZXBhcmF0
+aW9uIGZvciBtYWtpbmcgcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrcyByZXR1cm4gdm9pZC4KClNp
+Z25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9u
+aXguZGU+Ci0tLQogZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIHwgMTQgKysrLS0t
+LS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZl
+cnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwppbmRleCBhYzNiZTkyODcyZDAuLjc0OGUxMTVi
+MGJiNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCisrKyBi
+L2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwpAQCAtMTI5MywyNiArMTI5MywyMSBA
+QCBtZXNvbl9uZmNfbmFuZF9jaGlwX2luaXQoc3RydWN0IGRldmljZSAqZGV2LAogCXJldHVybiAw
+OwogfQogCi1zdGF0aWMgaW50IG1lc29uX25mY19uYW5kX2NoaXBfY2xlYW51cChzdHJ1Y3QgbWVz
+b25fbmZjICpuZmMpCitzdGF0aWMgdm9pZCBtZXNvbl9uZmNfbmFuZF9jaGlwX2NsZWFudXAoc3Ry
+dWN0IG1lc29uX25mYyAqbmZjKQogewogCXN0cnVjdCBtZXNvbl9uZmNfbmFuZF9jaGlwICptZXNv
+bl9jaGlwOwogCXN0cnVjdCBtdGRfaW5mbyAqbXRkOwotCWludCByZXQ7CiAKIAl3aGlsZSAoIWxp
+c3RfZW1wdHkoJm5mYy0+Y2hpcHMpKSB7CiAJCW1lc29uX2NoaXAgPSBsaXN0X2ZpcnN0X2VudHJ5
+KCZuZmMtPmNoaXBzLAogCQkJCQkgICAgICBzdHJ1Y3QgbWVzb25fbmZjX25hbmRfY2hpcCwgbm9k
+ZSk7CiAJCW10ZCA9IG5hbmRfdG9fbXRkKCZtZXNvbl9jaGlwLT5uYW5kKTsKLQkJcmV0ID0gbXRk
+X2RldmljZV91bnJlZ2lzdGVyKG10ZCk7Ci0JCWlmIChyZXQpCi0JCQlyZXR1cm4gcmV0OworCQlX
+QVJOX09OKG10ZF9kZXZpY2VfdW5yZWdpc3RlcihtdGQpKTsKIAogCQltZXNvbl9uZmNfZnJlZV9i
+dWZmZXIoJm1lc29uX2NoaXAtPm5hbmQpOwogCQluYW5kX2NsZWFudXAoJm1lc29uX2NoaXAtPm5h
+bmQpOwogCQlsaXN0X2RlbCgmbWVzb25fY2hpcC0+bm9kZSk7CiAJfQotCi0JcmV0dXJuIDA7CiB9
+CiAKIHN0YXRpYyBpbnQgbWVzb25fbmZjX25hbmRfY2hpcHNfaW5pdChzdHJ1Y3QgZGV2aWNlICpk
+ZXYsCkBAIC0xNDQ1LDExICsxNDQwLDggQEAgc3RhdGljIGludCBtZXNvbl9uZmNfcHJvYmUoc3Ry
+dWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIHN0YXRpYyBpbnQgbWVzb25fbmZjX3JlbW92ZShz
+dHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVjdCBtZXNvbl9uZmMgKm5mYyA9
+IHBsYXRmb3JtX2dldF9kcnZkYXRhKHBkZXYpOwotCWludCByZXQ7CiAKLQlyZXQgPSBtZXNvbl9u
+ZmNfbmFuZF9jaGlwX2NsZWFudXAobmZjKTsKLQlpZiAocmV0KQotCQlyZXR1cm4gcmV0OworCW1l
+c29uX25mY19uYW5kX2NoaXBfY2xlYW51cChuZmMpOwogCiAJbWVzb25fbmZjX2Rpc2FibGVfY2xr
+KG5mYyk7CiAKLS0gCjIuMzYuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
