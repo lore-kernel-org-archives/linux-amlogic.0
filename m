@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C7BEC433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Jun 2022 21:47:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B93C43334
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Jun 2022 21:53:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4T/mZEVVlDEwtzo5roYwG1UHTHdkQY/QvFX/yh9Jpg4=; b=BtB6qn3KhGt7Qz
-	WxIVVu+HgzaGiRn6hLf8wL6q+618SHTzGshykr7ryk7Zjxo94EWAVvpTFRvbKkEDPwW7O5KQ6Ho15
-	EK8+Kg1IiEG33EMBkOsrY+qjTeBwjc/axbZdrLrwdJhs5PT4kaB47WWKxpik5OonFc42Oz+Ntcoe3
-	ni/gbIZ4I8cErojtwjGc5YNGnbhvO/dDjhTQ7oLhLaYJILfXWooZVwmOvhCm4biWiAaoXk26jgOOu
-	jDinRKJEpD9SMIBK94XA7XDiP+F0mv8EHBXPWnyjMMAG4j2CjmQ0vct9k9VpxrBcEclBs7KVpcmgN
-	OAXVkJRTxDbUMJJx13HQ==;
+	List-Owner; bh=swBY173x0ACwcpHiqFAUH1CxFzDsNVRcx0U/vfShtug=; b=Qmgn7W9eaHJO9J
+	xRMc6U/LynFGYPWMzmz2z+76uhs7r8sAtuQzjUV+Y8qPqEjlBzQcMb64FIiz4V9wFrptvfkxusO1M
+	RndgQtCc3WnhxocmUh75RibVDBh/aNlsL6CAbc1zW5uJAWQLJ4k+s8IUS396EkgaqS/QfRgXvPE1l
+	r/Sdkg4hvlo7on6WMhfstSTCGmjtYTZSsng3eLDrWo4UwDaYbM2v1TRlSFFcnDXX64pyMkBN5n3Py
+	T6HqS4xmqktAcwThTV5Y2Wm81aUvjCwaJMsYTDI4HAvzgPc1RwMOw7d67K4cCTjsGHe3/uB9o6Yu7
+	IvO7WmyB5mKcPIbUhZxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxy5O-00FSWI-8d; Sun, 05 Jun 2022 21:47:02 +0000
-Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+	id 1nxyBD-00FTOk-GW; Sun, 05 Jun 2022 21:53:03 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxy5D-00FSVN-MQ; Sun, 05 Jun 2022 21:46:52 +0000
-Received: by mail-ej1-x62e.google.com with SMTP id gl15so11737139ejb.4;
-        Sun, 05 Jun 2022 14:46:49 -0700 (PDT)
+	id 1nxyB2-00FTMl-LH; Sun, 05 Jun 2022 21:52:53 +0000
+Received: by mail-ej1-x634.google.com with SMTP id q21so25655246ejm.1;
+        Sun, 05 Jun 2022 14:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZEUtBzgO4NZOQwhouRlnr+KmdLlgAtaO1quMCtr8kN0=;
-        b=EzNZbIqzqAxHvlOfdJQ4Q4/+Bz6oT6H3mPwe1M2NMDVkrm7+FuCtLHzzlYlpZnxF43
-         7N7AwmxZEGSG+u1bGnwd4lusykPGVHLesUaxGiH1VOLojeaVTIvw8fQN4tYBtMRlis2O
-         qNCjFANiUanA18+qqgGU+0ewDk8Ze/0Aw69lszx0KeGMHsccYc2L2cAE36jZINAgVxcz
-         QZ9y4mAhJTVi865OgpSrPBszI8M2KdgpsIsmzEXmax4INKVJLZbRYPZqxC/CcMMvqGg+
-         ImdX4Mcqo8V0Wy1x/6icRPuHqswrluFbOEX1w0FjNaEeznLR0eS1DGLlOoGPqLaZQ60x
-         kktQ==
+        bh=jqTk340kUGoNwvIFE+KUlemPpmjVQ4n06NM+Fh67geI=;
+        b=S7PqYSet+vFl8kirvv4A6Qj3FyqLfBo228GfA3RfabMvlQmLo/s3OVoof1ooAGwJ3O
+         unGBnwV4EiXcgJxpynVgRcp4PSZjjn8j13ixj5R9mEka6MDWqepLy8A66iXeuAPsufwX
+         mHoP0ZSAxQv7Ge2g52W057FMKljiqg3+xVVN1IUAqd49D+Owx1ee/15lRWRnoU8r07l/
+         d5nFwzYjK+kq4TI7akEb9KUteEikzmQBEaKkJH0Tdwr6/4MI79G4E1mp9xlNHBMz9q94
+         SU4L30TKJX19OYFXv+UXJT0ADC9gpd/Dos+m6tZk+X778Ca+QMozAZhDGC232x3Z1qQZ
+         pnXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZEUtBzgO4NZOQwhouRlnr+KmdLlgAtaO1quMCtr8kN0=;
-        b=G5BGNsYJcPNpkEdJhouozaEgSSmZ/RShOjsHGiytE7bTpfJaIw9fCZlbM0/W/Ufxfa
-         UC/hY7ajH5PHcvlp1OsMOF2mir+F/RA5LQSwXlgFVWFrRBc7sJ0hka+iW1Bk4m7JbI4u
-         LWhglOmGr/m+yPIBggZYQ+HnrA7J4hsHbMTk8SFrBnp55P1zSAjQmzQWso5zOY42H4fk
-         K0SKsZqdGTQ1byjDIvqCAEcw8q6S0pI/xKpFHiuR5FlZDtMT53VnFnjCrRySoBLTDnLM
-         Ch3x/uYTcesTQppMMslgIJ9CFnYkqjBiEFfPbhahTqqWGj6RCRRnmvXr4enHAfU/Yt7L
-         LRVw==
-X-Gm-Message-State: AOAM530NDbT0sLgv5DlRbN773Wt4OBVZ+axTtflNz5MH78WhbVAAiBbr
-	od5svfviH4rHLIiIGCqdMZfN4b3qxa7+4gqvtSGAW7yOY5Q=
-X-Google-Smtp-Source: ABdhPJw4MafiBKxna9+gCyvTQb5jcAjT9aT9fXw1fhtlbfQJhud3ireSbEz74FWDSxvgX3qA6LoS8DFqFY8L0qleilY=
-X-Received: by 2002:a17:907:7246:b0:6ff:241f:200a with SMTP id
- ds6-20020a170907724600b006ff241f200amr18547956ejc.543.1654465608121; Sun, 05
- Jun 2022 14:46:48 -0700 (PDT)
+        bh=jqTk340kUGoNwvIFE+KUlemPpmjVQ4n06NM+Fh67geI=;
+        b=uiCy8mazFGRbQYfnHckX6roOAJnyQuG5eba+5PB5dHikQA4gismuJEFyF32SkndyeL
+         4Xxw9Mdc+ZxdGt20xu0NbCP2j9VRHeAADwbwC1Q3NkRsH/tjQas4fI/JYV+z6Ft8HvhS
+         6AAkxKmWRdjZ8XEVsG51tJwpcIIIyRcgGeJ8tHi1waRSbE95bZ9yRcKa8KczECLT1WSQ
+         lfaR0f4qAOIMn/l8zCzjiau/8EXy+OZL28x9s+w1nbkdZPc4dfjGSzWtNiDtNcP/t2LZ
+         sxZ9jSQ3E5nYE5kICWe5MbXsGvDHQ6YwjxQrQGFQszQBVQm5YhTZstQ5Ysv3pX5eM/yo
+         76zQ==
+X-Gm-Message-State: AOAM5323xOEcC0qjrUdfrmBJPubqGiqaWnKoFw5aWkQbhg6JZpjrmmC6
+	56jfe0UfcX5DCnwmhrGA3vMtPvr/8fIwC04mG38=
+X-Google-Smtp-Source: ABdhPJyajjoGEdHfoyCFfJ5xd/VGskW7hkoSyT1FnOhazKlHAmOLujiBhmJOBWa5cnZ57m/vRbQEmQ7U9GhZYiWGRT0=
+X-Received: by 2002:a17:907:7f21:b0:6ff:10b:9cee with SMTP id
+ qf33-20020a1709077f2100b006ff010b9ceemr18748924ejc.302.1654465970323; Sun, 05
+ Jun 2022 14:52:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
+References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com> <20220603100004.70336-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20220603100004.70336-2-andriy.shevchenko@linux.intel.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 5 Jun 2022 23:46:37 +0200
-Message-ID: <CAFBinCDe=k+4YcSUqz5dpAtJ3NTqsHe9Krt0O1pAS=L=rVKCrA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] iio: adc: meson_saradc: Don't attach managed
- resource to IIO device object
+Date: Sun, 5 Jun 2022 23:52:39 +0200
+Message-ID: <CAFBinCDJm=hvbE3gy0H-3rQvnxOO6bnQe-5yir9=aMG1BiXVuw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] iio: adc: meson_saradc: Align messages to be with
+ physical device prefix
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
@@ -69,8 +69,9 @@ Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
 	Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220605_144651_790362_03FCECAF 
-X-CRM114-Status: GOOD (  10.15  )
+X-CRM114-CacheID: sfid-20220605_145252_752194_775DAF06 
+X-CRM114-Status: UNSURE (   7.81  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,19 +91,11 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On Fri, Jun 3, 2022 at 12:00 PM Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> wrote:
 >
-> It feels wrong and actually inconsistent to attach managed resources
-> to the IIO device object, which is child of the physical device object.
-> The rest of the ->probe() calls do that against physical device.
+> Align messages to be printed with the physical device prefix as it's done
+> everywhere else in this driver.
 >
-> Resolve this by reassigning managed resources to the physical device object.
->
-> Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
-> Suggested-by: Lars-Peter Clausen <lars@metafoo.de>
 > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-I am also fine if the Fixes tag is being dropped - please keep my
-Reviewed-by in that case.
 
 _______________________________________________
 linux-amlogic mailing list
