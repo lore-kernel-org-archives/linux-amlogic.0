@@ -4,72 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46CB7C433EF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Jun 2022 22:07:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1259BC43334
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jun 2022 10:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zqgCfx7wavisDfTgNpqqucIZEw6J9MHABOUzGpQ/IaU=; b=rKqbImOKTzC1dm
-	E5sWLANYpjHsM/ed/F1dAAykQ2/Pt8TmqkS6Op1nkNNmmBT7q04A7l5KxcO28qzLIDzBuESO45FOw
-	RWqvpWwXOaKm/oMU+dY22GbRnYS53SDeJRN6ElLxQRX+fqeoCbhNz2MGmNkz6jTI4BY+qalf6sUxz
-	AyTIyAdq4YZIJ4jQ/dF1FwPAqaq4YVxvv4M2sf1NoXtX/qDW43f15pzbZrF1WqZORRSqlNeHXRocw
-	oIs6rSr/tzVmFUDopjVkUIgYCPV1PTGg1d8aqz6e5XVAvrESqWDhZYpZWNmFbtOU/cL+4mUn7UipN
-	xpH0VCMH8XwZX+Q8/ElQ==;
+	List-Owner; bh=b4jHhLck5mY122RE3m2pXw2UoV1XJqVyB3IrRxgFpOc=; b=47pOvqyaj8SAoE
+	6d16TgPOsqrEz9c9qt2nIx6UQV2rUEyfcmUn834v/5oDnw5ZzI0QaUNtYdx9e7epyEOMXrOgEX50q
+	33RpOHWYMkv1yomKgcZToi1F/ymuCXF7XipCKvPEob9JwrkEGgAZopvY1st0vllez3K4/+AvVnVEX
+	g2sp7NlrvG/3uwpfVrcjlBpQYzdFaqqoAH7hRzV4wVB8U2RASXqSXNX9I9MR4GtMEnIllR0YhQqrp
+	pmAJqSH4OKeNVyM7vXVfxoS9mNAQ9u0ycgoGfP5Uxkf/LV84GZScMszWcoJnS+S3CItpI+1njR+HE
+	tNMAl9QP44Nf1eGbJQYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxyOx-00FWWz-1J; Sun, 05 Jun 2022 22:07:15 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1ny9nE-000gii-KI; Mon, 06 Jun 2022 10:17:04 +0000
+Received: from mga09.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nxyOu-00FWW0-BI; Sun, 05 Jun 2022 22:07:13 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id h23so14572487ejj.12;
-        Sun, 05 Jun 2022 15:07:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EvdrzNnwpDnDn9YN3OQw+McxNhWHrslS9QPN5TMLp4w=;
-        b=jvBhc6+k40HESfBa2/kHjiPXNsmhn9RWusQQuekRCoRpZQxLjI+/bUUbQl40oGkXNZ
-         DDlDD3Kts3OXg3AmYrDeujl79CfM+aMVcarycdisbklXcuz9M6WyPexFrr+ZQMwsJ7fn
-         dYHoHaT6aA2SCKYliWMEXzOsKPHOWWDi99Y6hRp5dv1oHYwcBWUEXQlnm+bbcGdQQLZH
-         LV2qZDFjXplNKazciGbp3xseWSxXEVDm6+uGpG8oJEcAMulX+6vxNeX0qqBb+3f0vEKP
-         okp7x7oGotXEuPMC3aAd5a+4/PqZ12tcenMvg6drAosssBmSjmuhpmp/86uuoPdeDk2c
-         QyMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EvdrzNnwpDnDn9YN3OQw+McxNhWHrslS9QPN5TMLp4w=;
-        b=1Elzd4TqOEklN+RFHG6NnGW5XwrJvksh/6C5G5CSWwlULQedajhOKcC9RvAPUjFqWK
-         YyFUlf+zJgW2Je2/MEHc4aNCN6hfaXjs8WiTjkDWOdIrGPfi1tnS6gJLUwSLhBw6NHbl
-         KqBDCyvCdAxJBkNLGlYoqeFscRq5EXEKlrWhaKUI7lkc4bluBH3uaOoIkef25xiXSQ/S
-         GfN3/b8G0ufiFl0Rtf/17wDVu5XwgDdCZvjPzEKkn8pOVOE8klVkCHS/yQ2KIvxsJ+cZ
-         AFv490SD5HmOKwwRWYD/KTqWwfd/n4JPH+NWEfRQ+hfnwBkNjjRc+e6H8eAFtYVPLamJ
-         JHAA==
-X-Gm-Message-State: AOAM530QeFJ+EC1WMQKzCJvn3M/7fe2QR8VIrm0WStdmhkjKOL6/3Kcu
-	Am/QF9q0kKdxhYW6BHcqYv+7JLJc5bWh2ILZlBU=
-X-Google-Smtp-Source: ABdhPJyum2q6NTjWpptCxZaYoHpCsIXUQommOK3UQGv2TUoY11eOyZCV12TIf8OGUqFO9UJM26QCVQsp7K7VJczHj2I=
-X-Received: by 2002:a17:907:1b19:b0:6f0:1022:1430 with SMTP id
- mp25-20020a1709071b1900b006f010221430mr19174262ejc.13.1654466831106; Sun, 05
- Jun 2022 15:07:11 -0700 (PDT)
+	id 1ny9hG-000e3g-AQ; Mon, 06 Jun 2022 10:10:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654510254; x=1686046254;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gZSzdjIX2BvSWabQuJE5Re9N3GWxjm5jrXSz5gYEGxg=;
+  b=d30HzJDlbaozIqwhgtkhipEF1LyN1WEzhc6rlnKuvoV5kjlAn3MI4pTY
+   OrnUGned3o1M8XxwGe/1KdzOnjM+0Qh6InIzfErjIRR+ZPYK0GFgH5dNE
+   V4pnqp49n9r5UK+cu5vlNuuRZqdYNISJpob+xjOuT6JB08q0dzPtC8f9k
+   SHrVGnZBvIdVa+mWFXTl2edY6QJa3ZHyJOTYhbDP0c+rSl9liQeqFS5Ut
+   EhdFT+u+wI7gEIL7JUqJeROP8C8al5PMr/8wcRa0+VvZeQ/MrmTeWhfi2
+   W8pUVygOPrjG6Z2sOIX5Ty09KdKXdJPiKwwVNZW+px709fkJRgItpwsc8
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10369"; a="276590021"
+X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; 
+   d="scan'208";a="276590021"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2022 03:10:51 -0700
+X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; 
+   d="scan'208";a="722737822"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2022 03:10:48 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1ny9h7-000UXR-Gu;
+	Mon, 06 Jun 2022 13:10:45 +0300
+Date: Mon, 6 Jun 2022 13:10:45 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [RFC PATCH v3 6/6] iio: adc: meson_saradc: Use
+ regmap_read_poll_timeout() for busy wait
+Message-ID: <Yp3SpRIUFBBbNOQn@smile.fi.intel.com>
+References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
+ <20220603100004.70336-6-andriy.shevchenko@linux.intel.com>
+ <CAFBinCD1cn19uf0pyUF-Af7_thP81Ehih+X4F9+rO8tzeUm+Ow@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220601033927.47814-1-linmq006@gmail.com> <20220601033927.47814-3-linmq006@gmail.com>
-In-Reply-To: <20220601033927.47814-3-linmq006@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 6 Jun 2022 00:07:00 +0200
-Message-ID: <CAFBinCCS2ypuv8jWCyhTVruGJTUfq394CySDDaXExHq4R526rQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/meson: encoder_hdmi: Fix refcount leak in meson_encoder_hdmi_init
-To: Miaoqian Lin <linmq006@gmail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>, 
-	Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <CAFBinCD1cn19uf0pyUF-Af7_thP81Ehih+X4F9+rO8tzeUm+Ow@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220605_150712_445136_B65D0CEE 
-X-CRM114-Status: GOOD (  11.01  )
+X-CRM114-CacheID: sfid-20220606_031054_469167_11C177B5 
+X-CRM114-Status: GOOD (  12.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,31 +89,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+On Sun, Jun 05, 2022 at 11:59:53PM +0200, Martin Blumenstingl wrote:
+> On Fri, Jun 3, 2022 at 12:00 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > Simplify busy wait stages by using regmap_read_poll_timeout().
+> >
+> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> > v3: new patch, but RFC, not always the read_poll_timeout() can be used, would
+> >     be nice to have it tested.
+> and also:
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # GXM VIM2
 
-thank you for working on this!
+Thanks for testing!
 
-On Wed, Jun 1, 2022 at 5:40 AM Miaoqian Lin <linmq006@gmail.com> wrote:
->
-> of_graph_get_remote_node() returns remote device nodepointer with
-> refcount incremented, we should use of_node_put() on it when done.
-> Add missing of_node_put() to avoid refcount leak.
->
-> Fixes: e67f6037ae1b ("drm/meson: split out encoder from meson_dw_hdmi")
-> Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-Note to self: at first I thought the following code needs to be changed as well:
-  notifier = cec_notifier_conn_register(&pdev->dev, NULL, &conn_info);
-  if (!notifier)
-    return -ENOMEM;
-But a few lines before this we already have:
-of_node_put(remote);
-Meaning: this patch is fine as is.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
