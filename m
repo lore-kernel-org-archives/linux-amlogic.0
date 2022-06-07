@@ -4,75 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 411A5C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jun 2022 10:52:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C432C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jun 2022 11:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LOXnzZlOUQF6z6gBw+qQvTM+H6waL1hgpt3RcnHnn34=; b=zfdq2beU3S4dJo
-	ILV14ITA3CcLMDKr6VkdyDMuc0FGmMrRMtyhWU1/s95h2PNzg0SmhPCWc75Jj2MwEzwtbAzRJ1qbt
-	NKnlWv9mYdrUW6qbzHGQqP1h8bbU7Izd9m+EUmfXZPOEgjqGyOahRQu0+hH0IPRu+NeOeZQGLaOqB
-	edd/6ObGKTbTGQa2jiSQzWEmyy8tG2Rg1/HVs3iFmfMZSjt4RJWE11tLkpIBQGJEs0WmcTrqJLFza
-	ceovUN6RcU4CywP2mDSVWoFPmv3ynX9fSgfJCYBsypK9RA/G+vsOYtBRnme/Kgmfdq9HZrXzc9mug
-	bBAtJlYtnbXOBe3aS14A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VXQfcYIscvfpyOlB4hFHDAXWHDB+DHZnzYAOQtU3Jzs=; b=K8r4TaEJi0w6Pgo92kI03Lyk7I
+	5q+2NvWmWcqO1UbOYxOdH31zWsE2EOtGPBYuHWC6MCON3b5py8+TUxb/DPvLUK3gTMWiWGnODbNFb
+	mjVvlRiRBHTCpNHNkXSuIIzXzxGQ+9qRG4LQcz5TBoi9gxZ3CwdZH2rWbp8e1hX0/x0dprA6t87Ah
+	YROa0n5+nL3u9626S2ClQH+I06k5B8qCNJJmP3cNsBziElmLF4ys+vBU/au6fBC1GBEbwQqUktgq7
+	nxfI7OPj+eB9IUUIL07Fd01UFyRmSxP3Kg/rlEvp7YMd4AUm+DSm4+r0GZQbOjivBFKEk6vIkGiG+
+	vZkpSLeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyWoc-006pyQ-QN; Tue, 07 Jun 2022 10:52:02 +0000
-Received: from relay6-d.mail.gandi.net ([2001:4b98:dc4:8::226])
+	id 1nyX4T-006wks-C2; Tue, 07 Jun 2022 11:08:25 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyWkh-006nxr-Cu; Tue, 07 Jun 2022 10:48:03 +0000
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 8AE33C0005;
-	Tue,  7 Jun 2022 10:47:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1654598874;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Wq5/ssyPN5Y2d5mBYNCD8f8OJkz94AbXsY62iwSKIwk=;
-	b=dvnmUkdNBgtcS2a46ed2tT2ngs19//jK3OYvXoJqzMjQ82TTe4fDkUNPnbINTFVZ9ntR03
-	6mFmDyJ8H+yeQ4SYlEkluHLVJIUEV41V2AoxNv6REcRquM86cAt1d1s0Md1le6vMfO+2Z9
-	kGyiACWguhKIT/NKA25XobYB8QTAi59XEjzZqqiqFhBLzzHuZM/jw++6plY2lpf5XvHDdp
-	ElhYpXuRt62LVHSheq9LJ32GKQbTydvJxgwYwaVNXklcN3KO9cvB47IPBZLvI0/3UxdWRi
-	ddcVEexyDY7gxd5IvFeEXJ8gueKYWoIk0nSfnbF23xUQmr4N/r5RYFPPenFdlA==
-Date: Tue, 7 Jun 2022 12:47:46 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Pratyush Yadav <p.yadav@ti.com>
-Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
- Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>,
- Tudor Ambarus <tudor.ambarus@microchip.com>, Joel Stanley <joel@jms.id.au>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Claudiu Beznea
- <claudiu.beznea@microchip.com>, Stefan Agner <stefan@agner.ch>, Lucas Stach
- <dev@lynxeye.de>, Thierry Reding <thierry.reding@gmail.com>, Jonathan
- Hunter <jonathanh@nvidia.com>, Liang Yang <liang.yang@amlogic.com>, Neil
- Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- <kernel@pengutronix.de>, <linux-mtd@lists.infradead.org>, Michael Walle
- <michael@walle.cc>, Andrew Jeffery <andrew@aj.id.au>,
- <linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, Paul Mackerras
- <paulus@samba.org>, <linuxppc-dev@lists.ozlabs.org>,
- <linux-tegra@vger.kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH 00/14] mtd: Fix platform remove callbacks to always
- return 0
-Message-ID: <20220607124746.20a2eaf0@xps-13>
-In-Reply-To: <20220607093236.67txulke76mi6t75@ti.com>
-References: <20220603210758.148493-1-u.kleine-koenig@pengutronix.de>
-	<20220606151841.682a5939@xps-13>
-	<20220607093236.67txulke76mi6t75@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	id 1nyX4Q-006wjY-LM
+	for linux-amlogic@lists.infradead.org; Tue, 07 Jun 2022 11:08:24 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nyX4M-0000Nc-D8; Tue, 07 Jun 2022 13:08:18 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nyX4M-006ySL-DU; Tue, 07 Jun 2022 13:08:17 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1nyX4K-00EkYc-Ai; Tue, 07 Jun 2022 13:08:16 +0200
+Date: Tue, 7 Jun 2022 13:08:16 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Russell King <linux@armlinux.org.uk>, Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Alexandru Ardelean <aardelean@deviqon.com>, kernel@pengutronix.de,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH v9 0/4] clk: provide new devm helpers for prepared and
+ enabled clocks
+Message-ID: <20220607110816.hjacgojgmf2p7xdq@pengutronix.de>
+References: <20220520075737.758761-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
+In-Reply-To: <20220520075737.758761-1-u.kleine-koenig@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220607_034759_986978_D8F5289E 
-X-CRM114-Status: GOOD (  18.66  )
+X-CRM114-CacheID: sfid-20220607_040822_753431_30B25BBF 
+X-CRM114-Status: GOOD (  21.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,36 +72,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2341362131441672082=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUHJhdHl1c2gsIFV3ZSwKCnAueWFkYXZAdGkuY29tIHdyb3RlIG9uIFR1ZSwgNyBKdW4gMjAy
-MiAxNTowMjozNiArMDUzMDoKCj4gSGkgTWlxdWVsLAo+IAo+IE9uIDA2LzA2LzIyIDAzOjE4UE0s
-IE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gPiBIaSBGb2xrcywKPiA+IAo+ID4gdS5rbGVpbmUta29l
-bmlnQHBlbmd1dHJvbml4LmRlIHdyb3RlIG9uIEZyaSwgIDMgSnVuIDIwMjIgMjM6MDc6NDQgKzAy
-MDA6Cj4gPiAgIAo+ID4gPiBIZWxsbywKPiA+ID4gCj4gPiA+IHRoaXMgc2VyaWVzIHByZXBhcmVz
-IHRvIG1ha2UgcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrcyByZXR1cm4gdm9pZC4KPiA+ID4gVGhl
-cmVmb3IgZmlyc3QgdXBkYXRlIHRoZW0gdG8gYWx3YXlzIHJldHVybiAwLiBUaGUgcmF0aW9uYWxl
-IGlzIHRoYXQgdGhlCj4gPiA+IExpbnV4IGRldmljZSBtb2RlbCBkb2Vzbid0IGhhbmRsZSBmYWls
-dXJlcyBvbiByZW1vdmUgYW5kIGlmIGEgcmVtb3ZlCj4gPiA+IGNhbGxiYWNrIHJldHVybnMgYW4g
-ZXJyb3IsIGl0IGp1c3QgZW1pdHMgYSBxdWl0ZSBnZW5lcmljIGVycm9yIG1lc3NhZ2UKPiA+ID4g
-YW5kIHN0aWxsIHJlbW92ZXMgdGhlIGRldmljZS4gIAo+ID4gCj4gPiBUdWRvciwgUHJhdHl1c2gs
-IFJpY2hhcmQsIFZpZ25lc2gsCj4gPiAKPiA+IFRoZSBzZXJpZXMgbG9va3MgZ29vZCB0byBtZSAo
-YmVzaWRlcyB0aGUgYXRtZWwgcGF0Y2gpLCBJIHRoaW5rIGl0J3MKPiA+IGJlc3QgdG8gdGFrZSBp
-dCBkaXJlY3RseSB0aHJvdWdoIG10ZC9uZXh0IGluc3RlYWQgb2YgZ29pbmcgdGhyb3VnaCBhbGwK
-PiA+IHRoZSBkaWZmZXJlbnQgaW50ZXJuYWwgYnJhbmNoZXMsIHBsZWFzZSBsZXQgbWUga25vdyBp
-ZiB5b3UgZGlzYWdyZWUKPiA+IHdpdGggdGhlIGlkZWEuICAKPiAKPiBQYXRjaCAyIGRvZXMgbm90
-IGxvb2sgZ29vZCB0byBtZS4gSXQgbW9kaWZpZXMgdGhlIGFzcGVlZC1zbWMgZHJpdmVyIGluIAo+
-IGRyaXZlcnMvbXRkL3NwaS1ub3IvY29udHJvbGxlcnMvIGJ1dCB0aGUgZHJpdmVyIGhhcyBiZWVu
-IG1vdmVkIHRvIAo+IGRyaXZlcnMvc3BpLyBpbiBNYXJrJ3MgbmV4dCBicmFuY2ggWzBdLiBUaGUg
-cGF0Y2ggd291bGQgbGlrZWx5IGNvbmZsaWN0IAo+IHdpdGggdGhhdC4KPiAKPiBbMF0gaHR0cHM6
-Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvbmV4dC9saW51eC1uZXh0
-LmdpdC9jb21taXQ/aWQ9OWM2M2I4NDZlNmRmNDNlNWIzZDMxMjYzZjdkYjU0NWYzMmRlZWRhMwoK
-UmlnaHQsIEkgYmVsaWV2ZSBVd2UgaXMgc2VuZGluZyBwZXItc3Vic3lzdGVtcyBzZXJpZXMgc28g
-bm93IHRoYXQgaGUgaXMKYXdhcmUgd2UgY2FuIHNhZmVseSBkcm9wIHBhdGNoIDIuCgpUaGFua3Ms
-Ck1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
-Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
-bG9naWMK
+
+--===============2341362131441672082==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="khx3ydxphtqwbrvl"
+Content-Disposition: inline
+
+
+--khx3ydxphtqwbrvl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, May 20, 2022 at 09:57:33AM +0200, Uwe Kleine-K=F6nig wrote:
+> after Stephen signaled to accept the idea, this is a rework of v8[1] with
+> the following changes:
+>=20
+>  - Drop the follow up conversions. I will resend them individually per
+>    subsystem once the preconditions from this v9 are in. I only kept one
+>    clk patch that will go in via the clk tree anyhow. I trimmed the Cc:
+>    list accordingly.
+>=20
+>  - (trivially) rebased to v5.18-rc1
+>=20
+>  - Introduce a new commit that first improves the documention of
+>    devm_clk_get() and devm_clk_get_optional() before (mostly)
+>    duplicating these for the new functions.
+>=20
+>  - Make the new functions use a GPL export. (Note the existing functions
+>    use a plain export, I didn't change that.)
+>=20
+>  - Drop a bogus empty line that was cut-n-pasted into several functions.
+>=20
+> Thanks for feedback by Stephen and Jonathan.
+>=20
+> @Russell: Stephen wrote in v8: "I'm largely waiting for Russell to ack
+> the clk.h change [...]". Would be great if you looked at the series and
+> tell us your thoughts.
+
+That didn't happen :-\
+
+> @Stephen: You asked to add the acks from v8. There were however only
+> acks for the followup conversions. So no changes here.
+> (Andy Shevchenko replied to patch 0, but his Reviewed-by: only affected
+> the patch "iio: Make use of devm_clk_get_enabled()".)
+
+Hmm, I somehow expected this series to go into v5.19-rc1, but it didn't
+:-\. Is there anything still needed from my side?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--khx3ydxphtqwbrvl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKfMZ0ACgkQwfwUeK3K
+7AmI7Qf7BpHyH7NQYdAbsyxMDtr5lbVKJvPPCve9JQxjjfil9E/JZWGZ+IHDCfXR
+ajjVz+wK22Oby5H4YY7lRqqz7X8bB+lQampjulr/UhdN2jSfVC3HQ7Faregv3ZBb
+vahwcrMYutKKsgFN4SzHUvTvfsoaIZVx9MvcmBgoO7nnPlKhuJdbxKWhzHZwwk8F
+czMDQh6KUmPMurtPK0R+5dEJNXBGQi+XqYCgTYQhiRaxJ4eGY/Z6gXXq1Y80FYj+
+JxkoVOb9rPbT5zWUNL9E8cssKgL4aS725+sRxmwIuYhhoIV66xtkS5xTV5vGr2Gi
+4WR8JNY8bELBna5K0ZXi3hie9QQv2A==
+=ooR/
+-----END PGP SIGNATURE-----
+
+--khx3ydxphtqwbrvl--
+
+
+--===============2341362131441672082==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2341362131441672082==--
+
