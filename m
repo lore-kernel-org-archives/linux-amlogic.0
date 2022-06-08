@@ -4,83 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FCCAC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jun 2022 12:27:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87269C43334
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jun 2022 15:10:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iyxlKSf2wKBkypX3cna+U0duR0+MYPyequHxx+HFlZg=; b=K/RdU4XI/ia9tS
-	yPSfoUzYmNUPcCP/U27gzwFT7o+zO/pdDJ4I3jpG0D81M4Xh5JP8TpZYA+BeAv7KTeQ2tQvdzV+gx
-	HUwEA9E1916j1KHTta8uvldjXHDL0BL/kogUppWuxEbTk4+PD/B0qbYW3oOKQfCzSPV1ERIrzpmEP
-	0RsP58HOl7Uhm9IoLEHKFwHYiiGZ8b3C5xEw8fLc3hpDzAemztM9LFN3duUUKLrE4nBLx4nQlBIYG
-	rBKhLOixidnR7iZru4xsz1QMQJZ8o1wByYDwHRzqWGrihz6HGCvf1IFlALtvRJVEx6eIVyAijyHxN
-	IkHzWjzCGltuPBOK9UFA==;
+	List-Owner; bh=TF27myy6Y7wbyth5fU6kx05qEm7tj8V+YmkL895xI94=; b=AlJKsWYbnXK+nX
+	p+cqWjuX6AlxcK4B6PzUq6BwRdJihFvSTmOcGrrnwJqwRYBxA+c9qIqZnBaPHZb3F3n4qKRtWafVG
+	BRD7yQJcYKTNZiPNqrejVTZamEtUHB/iUxP6tva2jJ9wjMs2uXeCJ3l9kcmW0IjT9yQMidQDsZ9A1
+	G8lAfELWjf/7xrw2x4Pg/gNSGLQfBRYei2rt84PnbF+eeB3Yiv2hcuyH1AlBxk6oxQaX/6qcPqfot
+	zlV+5sG/weWqCnXtylRpIewPNbdcnUmsBpOkpovIBiFWEcL/P8XPmTKj0XCTUpWrS5Wv1P9L7+K5R
+	33eyKOBtcK3y3jWSVR1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyYJF-007LPZ-3V; Tue, 07 Jun 2022 12:27:45 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1nyxKZ-00DweT-5N; Wed, 08 Jun 2022 15:10:47 +0000
+Received: from mail-qt1-f175.google.com ([209.85.160.175])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyYIn-007LDD-V9
-	for linux-amlogic@lists.infradead.org; Tue, 07 Jun 2022 12:27:19 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id u3so23958010wrg.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jun 2022 05:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MnS9eZBppnZjRJEyPEWcwbc8qEUGNcbl9p3ctix2mdQ=;
-        b=Jszx/Wi26USE9TtJWbMiiHrtAozvWbXe9c3sHzU7LSgZNED7VOPVQmXwkicOV9u6RT
-         /wX0EMV6B19rD42E+0GzJ6YUnQgc9DtniJ9Ixff4M5oRQaw6rRM51B98kwscnMTjT45H
-         T1ip3clG3PHk1wh/HVieVEzlNf6lvK/ZJLhgGgXinrM8DG/lLmsccix1OgrMV7rpbjwj
-         9VHRhqjYrBRaihvRnR4fRqqZJ5YakE5G5kG9N6vKLWiVfRzcqowm9zISNFFko0nLesv5
-         IHNF5f+8hQyLleVlNdc/9rHU0RCoZco/GincvPZJbvVltgITdRm2u2ts7cIL1ePL5QJT
-         CopA==
+	id 1nyxKU-00Dwa2-VM
+	for linux-amlogic@lists.infradead.org; Wed, 08 Jun 2022 15:10:46 +0000
+Received: by mail-qt1-f175.google.com with SMTP id t21so8072182qtw.11
+        for <linux-amlogic@lists.infradead.org>; Wed, 08 Jun 2022 08:10:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MnS9eZBppnZjRJEyPEWcwbc8qEUGNcbl9p3ctix2mdQ=;
-        b=J6c9/EXxDw7gT7jnTy/kFKTPO4Ej7W32+cyGFabHc2kynv7onkw9G7qAoxjrvY935+
-         VvdBOmfLA6eghWg6/Vu2SivuuFbB0JzpqVi7ySTYDh30tp/nPYvAItk8LGrazngkXkS4
-         cRq7kAf7i3ZCr+dQZQQFYyAM0S/I7wgY3suwCDtx/Qb1DuDC+BUvN+GaN9xLlkjtRoTR
-         o8x+FWzh/GWYl7tXSRajorytpFr/5+3Q9qqTCG2a0tpgtJVmpd5g2Tn76vvLWkq/9O4B
-         yMust2lWr2PqZ6wjCQ8KBw8aDjuWAxFaI4j+pD0mqpvWH04jV7j2xhPhL6c3wJ5yDlww
-         jjwQ==
-X-Gm-Message-State: AOAM530Bp1OqkhDs+ohvyz/Up7QD7yteIZf9BGEZnOrsz47GC9KUYmi3
-	3r7cGPpL04bGBZ8RO8zVaD/B1w==
-X-Google-Smtp-Source: ABdhPJz39mrIrz65dmQlmcX3m/aOeY5/aTHzZPbMkd34nx5R2i8IAXjv1ymugad1I8spt3xpgUJJcQ==
-X-Received: by 2002:a5d:6483:0:b0:20f:d046:6382 with SMTP id o3-20020a5d6483000000b0020fd0466382mr27123834wri.342.1654604834197;
-        Tue, 07 Jun 2022 05:27:14 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:87c5:1f51:1550:2ebc])
-        by smtp.gmail.com with ESMTPSA id 186-20020a1c19c3000000b0039c4ec6fdacsm6553533wmz.40.2022.06.07.05.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 05:27:13 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Daniel Vetter <daniel@ffwll.ch>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	dri-devel@lists.freedesktop.org,
-	Miaoqian Lin <linmq006@gmail.com>,
-	David Airlie <airlied@linux.ie>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Sam Ravnborg <sam@ravnborg.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 0/2] drm/meson: Fix refcount leak
-Date: Tue,  7 Jun 2022 14:27:11 +0200
-Message-Id: <165460481589.1168988.17623464252935400226.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220601033927.47814-1-linmq006@gmail.com>
-References: <20220601033927.47814-1-linmq006@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d6PtJz0BrJE/Hg+05Q61y2MGcQT6vQ+yOTNRosqppNs=;
+        b=jIs8M3TAgizM6+k7XpCflG7e5x5sIAbex6358Yirk2+6k6lGUFRKO0MHKigIWhQLCS
+         92lPWfEDg7vFKoalYVCWscXUCOpIIMJZByMZYElKQcHLJokpXzUMNKz+mM8B0fVBEuo2
+         r7vQlixQstjUMEAM7Pup+5YZAj74Nlpw7E/Ws7eAr8C6AYPHIxW3HoU3ZBhYBXSZj5dJ
+         Ly5aX2T7CLTi8rfTRPjNb8SpVJ3wy71mdyS75jM3K+g0zRvm/CDV1c9kfYTBG/SDik6Q
+         +RD1agqssI9Vr6R/5RI6e1mvr1gHHE9k3ROBuNFZaVhrCYlWOIrq0bXnaSKY7YIDxYuX
+         fcEw==
+X-Gm-Message-State: AOAM532kwYH7u1EjfG766ZkwHBdn7WgPDMwmUso+bvzNb/65uyYXt9do
+	kaZhDxYex54IPjEexZzPKpq90NUPUJBJwQ==
+X-Google-Smtp-Source: ABdhPJw1EjLZ6/9G3gTp2ozgV7/IRpimrOvNVkDu4pFjyNAjmmBeTSFHIWMckAa4n0Zw7yZ/TMwlcg==
+X-Received: by 2002:ac8:7f52:0:b0:305:8c5:2f5d with SMTP id g18-20020ac87f52000000b0030508c52f5dmr1106313qtk.577.1654701039893;
+        Wed, 08 Jun 2022 08:10:39 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id bj18-20020a05620a191200b006a71398f06fsm887338qkb.32.2022.06.08.08.10.38
+        for <linux-amlogic@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 08:10:39 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id i39so8989619ybj.9
+        for <linux-amlogic@lists.infradead.org>; Wed, 08 Jun 2022 08:10:38 -0700 (PDT)
+X-Received: by 2002:a25:d748:0:b0:65c:6b00:55af with SMTP id
+ o69-20020a25d748000000b0065c6b0055afmr34410545ybg.365.1654701038694; Wed, 08
+ Jun 2022 08:10:38 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220421212250.565456-1-john.ogness@linutronix.de>
+ <20220421212250.565456-15-john.ogness@linutronix.de> <878rrs6ft7.fsf@jogness.linutronix.de>
+ <Ymfgis0EAw0Oxoa5@alley> <Ymfwk+X0CHq6ex3s@alley> <CGME20220427070833eucas1p27a32ce7c41c0da26f05bd52155f0031c@eucas1p2.samsung.com>
+ <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com> <Ymjy3rHRenba7r7R@alley>
+ <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com> <87fslyv6y3.fsf@jogness.linutronix.de>
+ <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com> <87k0b6blz2.fsf@jogness.linutronix.de>
+ <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com> <87y1zkkrjy.fsf@jogness.linutronix.de>
+In-Reply-To: <87y1zkkrjy.fsf@jogness.linutronix.de>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 8 Jun 2022 17:10:27 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVmoj3Tqz65VmSuVL2no4+bGC=qdB8LWoB=vyASf9vS+g@mail.gmail.com>
+Message-ID: <CAMuHMdVmoj3Tqz65VmSuVL2no4+bGC=qdB8LWoB=vyASf9vS+g@mail.gmail.com>
+Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for per-console locking
+To: John Ogness <john.ogness@linutronix.de>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Petr Mladek <pmladek@suse.com>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Steven Rostedt <rostedt@goodmis.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220607_052718_051985_8CEB645A 
-X-CRM114-Status: GOOD (  10.34  )
+X-CRM114-CacheID: sfid-20220608_081043_098887_46E36110 
+X-CRM114-Status: GOOD (  39.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,29 +93,174 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi John,
 
-On Wed, 1 Jun 2022 07:39:25 +0400, Miaoqian Lin wrote:
-> The following patchset fix two refcount leak bugs.
-> The cause of the bugs are missing of_node_put()
-> after of_graph_get_remote_node().
-> 
-> changes in v2:
-> - patch#2:Fixed patch in meson_encoder_hdmi_init, call of_node_put()
->   after of_find_device_by_node() and error paths before that.
->   noted by Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> [...]
+On Mon, May 2, 2022 at 3:19 PM John Ogness <john.ogness@linutronix.de> wrote:
+> On 2022-05-02, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+> > Data written to /dev/kmsg and all kernel logs were always displayed
+> > correctly. Also data written directly to /dev/ttyAML0 is displayed
+> > properly on the console. The latter doesn't however trigger the input
+> > related activity.
+> >
+> > It looks that the data read from the uart is delivered only if other
+> > activity happens on the kernel console. If I type 'reboot' and press
+> > enter, nothing happens immediately. If I type 'date >/dev/ttyAML0' via
+> > ssh then, I only see the date printed on the console. However if I
+> > type 'date >/dev/kmsg', the the date is printed and reboot happens.
+>
+> I suppose if you login via ssh and check /proc/interrupts, then type
+> some things over serial, then check /proc/interrupts again, you will see
+> there have been no interrupts for the uart. But interrupts for other
+> devices are happening. Is this correct?
+>
+> > For comparison, here is a 't' sysrq result from the 'working' serial
+> > console (next-20220429), which happens usually 1 of 4 boots:
+> >
+> > https://pastebin.com/mp8zGFbW
+>
+> This still looks odd to me. We should be seeing a trace originating from
+> ret_from_fork+0x10/0x20 and kthread+0x118/0x11c.
+>
+> I wonder if the early creation of the thread is somehow causing
+> problems. Could you try the following patch to see if it makes a
+> difference? I would also like to see the sysrq-t output with this patch
+> applied:
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+On one board, I'm seeing a new splat during early boot, pointing to
+printk_activate_kthreads:
 
-[1/2] drm/meson: encoder_cvbs: Fix refcount leak in meson_encoder_cvbs_init
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=7d255ddbbf679aa47e041cbf68520fd985ed2279
-[2/2] drm/meson: encoder_hdmi: Fix refcount leak in meson_encoder_hdmi_init
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d82a5a4aae9d0203234737caed1bf470aa317568
+    Calibrating delay loop (skipped), value calculated using timer
+frequency.. 48.00 BogoMIPS (lpj=96000)
+    pid_max: default: 32768 minimum: 301
+    Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+    Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
 
--- 
-Neil
+    =============================
+    [ BUG: Invalid wait context ]
+    5.19.0-rc1-ebisu-00802-g06a0dd60d6e4 #431 Not tainted
+    -----------------------------
+    swapper/0/1 is trying to lock:
+    ffffffc00910bac8 (base_crng.lock){....}-{3:3}, at:
+crng_make_state+0x148/0x1e4
+    other info that might help us debug this:
+    context-{5:5}
+    2 locks held by swapper/0/1:
+     #0: ffffffc008f8ae00 (console_lock){+.+.}-{0:0}, at:
+printk_activate_kthreads+0x10/0x54
+     #1: ffffffc009da4a28 (&meta->lock){....}-{2:2}, at:
+__kfence_alloc+0x378/0x5c4
+    stack backtrace:
+    CPU: 0 PID: 1 Comm: swapper/0 Not tainted
+5.19.0-rc1-ebisu-00802-g06a0dd60d6e4 #431
+    Hardware name: Renesas Ebisu-4D board based on r8a77990 (DT)
+    Call trace:
+     dump_backtrace.part.0+0x98/0xc0
+     show_stack+0x14/0x28
+     dump_stack_lvl+0xac/0xec
+     dump_stack+0x14/0x2c
+     __lock_acquire+0x388/0x10a0
+     lock_acquire+0x190/0x2c0
+     _raw_spin_lock_irqsave+0x6c/0x94
+     crng_make_state+0x148/0x1e4
+     _get_random_bytes.part.0+0x4c/0xe8
+     get_random_u32+0x4c/0x140
+     __kfence_alloc+0x460/0x5c4
+     kmem_cache_alloc_trace+0x194/0x1dc
+     __kthread_create_on_node+0x5c/0x1a8
+     kthread_create_on_node+0x58/0x7c
+     printk_start_kthread.part.0+0x34/0xa8
+     printk_activate_kthreads+0x4c/0x54
+     do_one_initcall+0xec/0x278
+     kernel_init_freeable+0x11c/0x214
+     kernel_init+0x24/0x124
+     ret_from_fork+0x10/0x20
+    rcu: Hierarchical SRCU implementation.
+    printk: console [tty0] printing thread started
+    EFI services will not be available.
+    smp: Bringing up secondary CPUs ...
+    Detected VIPT I-cache on CPU1
+    CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+    smp: Brought up 1 node, 2 CPUs
+    SMP: Total of 2 processors activated.
+
+> ---------------- BEGIN PATCH ---------------
+> diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
+> index 2311a0ad584a..c4362d25de22 100644
+> --- a/kernel/printk/printk.c
+> +++ b/kernel/printk/printk.c
+> @@ -3837,7 +3837,7 @@ static int __init printk_activate_kthreads(void)
+>
+>         return 0;
+>  }
+> -early_initcall(printk_activate_kthreads);
+> +late_initcall(printk_activate_kthreads);
+>
+>  #if defined CONFIG_PRINTK
+>  /* If @con is specified, only wait for that console. Otherwise wait for all. */
+> ---------------- END PATCH ---------------
+
+Doesn't seem to make much of a difference, only a slightly different
+backtrace, compared to the above:
+
+     Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+     Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+    +rcu: Hierarchical SRCU implementation.
+
+     =============================
+     [ BUG: Invalid wait context ]
+    -5.19.0-rc1-ebisu-00802-g06a0dd60d6e4 #431 Not tainted
+    +5.19.0-rc1-ebisu-00802-g06a0dd60d6e4-dirty #433 Not tainted
+     -----------------------------
+     swapper/0/1 is trying to lock:
+     ffffffc00910bac8 (base_crng.lock){....}-{3:3}, at:
+crng_make_state+0x148/0x1e4
+     other info that might help us debug this:
+     context-{5:5}
+    -2 locks held by swapper/0/1:
+    - #0: ffffffc008f8ae00 (console_lock){+.+.}-{0:0}, at:
+printk_activate_kthreads+0x10/0x54
+    - #1: ffffffc009da4a28 (&meta->lock){....}-{2:2}, at:
+__kfence_alloc+0x378/0x5c4
+    +1 lock held by swapper/0/1:
+    + #0: ffffffc009da4a28 (&meta->lock){....}-{2:2}, at:
+__kfence_alloc+0x378/0x5c4
+     stack backtrace:
+    -CPU: 0 PID: 1 Comm: swapper/0 Not tainted
+5.19.0-rc1-ebisu-00802-g06a0dd60d6e4 #431
+    +CPU: 0 PID: 1 Comm: swapper/0 Not tainted
+5.19.0-rc1-ebisu-00802-g06a0dd60d6e4-dirty #433
+     Hardware name: Renesas Ebisu-4D board based on r8a77990 (DT)
+     Call trace:
+      dump_backtrace.part.0+0x98/0xc0
+    @@ -33,20 +32,14 @@ Call trace:
+      kmem_cache_alloc_trace+0x194/0x1dc
+      __kthread_create_on_node+0x5c/0x1a8
+      kthread_create_on_node+0x58/0x7c
+    - printk_start_kthread.part.0+0x34/0xa8
+    - printk_activate_kthreads+0x4c/0x54
+    + rcu_spawn_gp_kthread+0x54/0x208
+      do_one_initcall+0xec/0x278
+      kernel_init_freeable+0x11c/0x214
+      kernel_init+0x24/0x124
+      ret_from_fork+0x10/0x20
+    -rcu: Hierarchical SRCU implementation.
+    -printk: console [tty0] printing thread started
+     EFI services will not be available.
+     smp: Bringing up secondary CPUs ...
+     Detected VIPT I-cache on CPU1
+     ...
+    +printk: console [tty0] printing thread started
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
