@@ -4,86 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EBF6C43334
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jun 2022 11:41:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DB2BC43334
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jun 2022 12:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5tHiBWfkWvDPVth8XoZeUOK1CbxrFDAm5BdK8blwRrk=; b=lXEe+xDmeljftV
-	HVM9+DevTNjLaMyROWGbJA55SrE4Mqlw/DOBrSVUlMKL+lvgvlO3xocyddpD4k/Dr2zvzLn3dXr/c
-	+cyn0bggWNmDFm9XQ9VrAgSNO2cYnz2okaN8uhjK2UeZ4g78n4c0C+PUs92UkOBCpZfye8oqUH1M1
-	4gSEceV+HoIaFA9EZeRU7NnGqOk8PNsaz1/1IREAm1TTvTvafyzJbeQ6BBxX16fQeuN2UPL5F8hDH
-	uF3cbl7DTP2Dhm54/MJ6MXsf+6LKYLJhPLgkdOH4swrJSVjq820X37i1PMAFOKXHIZTZ8KNAGUqPA
-	xhS6tBe5Ib1FPH8NheJg==;
+	List-Owner; bh=GsCVyqWVK/6utv/E9a5vrSWXqbU7kU3JAgXRcTq/9Do=; b=0PmPvUB4dGLNRA
+	rIhmTj9GIpJ2R4bqlijaDqYpTYrTf6DlcyBkEfSffKJ6hVACo2YmxtlNXxhJcF5I0rxztDuYjCvHt
+	r1pu+UxPdp+OaWgCnxar4X8UCEl0WpHK/6Jx5aKKweQgJaSW/Lj8TcyNDi/R5+0VnXoxx6TxuanWe
+	5kgu7oTJyzJQ4JM3VyNU4NEKT7S1zpR9qQm2X56/RfR1q9/iz2BMSvZP6neD3dz9WgkEoCk7ukKPX
+	mibbNADK2sMkxuadu6kQZudi+bScJMN0/EMkQwHedVVkYiQnyp5g/1WpZx8ueLli3rT05OzIlldyc
+	hPCadZrAmV6wRX0RKK8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzGXi-001PrQ-L9; Thu, 09 Jun 2022 11:41:38 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1nzH35-001dRM-JA; Thu, 09 Jun 2022 12:14:03 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzGVi-001Oog-4d
-	for linux-amlogic@lists.infradead.org; Thu, 09 Jun 2022 11:39:36 +0000
-Received: by mail-ed1-x530.google.com with SMTP id n28so30815299edb.9
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jun 2022 04:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=moyo8KWDYD1Sw7v39IoJtDJxVuleCUkjc8zzaL8h67s=;
-        b=aY58Eyp/oD4ErEbOY4zHZiaIvRUCdLzGhe26XILJWGeJ5qA1isPZOhDq5/RqXtUQZf
-         XBklI52EapnvH2OPYq9DNGaULO94GxSobSDDq7clP59LhTHITTlvxzMBoYMMs04H3p4C
-         HiHcYqoiY6nBx91Zb/DGOhgCNr03qzvP5M0mgdJTQJaG3xSPwOT193YOXoHqmd2d0NLU
-         4ZIHD0jukYdjF774IvCk3cwq6giHMxc7EHu+B2DPGoB4H+BoiH9GmflcLkSplsPLMgIY
-         t1abRppSqVEzXBJJ6aVnT5Zvy8xf2ZqcMaZVfkM/ssdp8i3XHlvkA6eMbccro8MbW3w0
-         vMjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=moyo8KWDYD1Sw7v39IoJtDJxVuleCUkjc8zzaL8h67s=;
-        b=fu4gutPoF4TOh6CacmcA6Inq2mulTOY9eQBMGGGgxZrY74chvCnwPnSLdbywGsOffK
-         snoKNg4bmlRPV2KdA96LrjuVZMkj3nbCfy9a5GtRRkeGG5EpVVul5WnR4rZFv1XYYEc7
-         3crIomlviTHFeufnM1FIWLQA8zw+8jwdDuBRgCvPKSlU/aYfyF7yLMHCi+HlpXfKd+dG
-         NyG2dfUIv9V69rKgQMNV4DLhjcmaeGxUvL8DancwOx9RZ83Ta0YapOyDT56TXBQb4nDP
-         XpQg3Fz4iMvA9+RLjAd8+zJX4BIOwNeZ/2s02F3Lns7IiA74DtG1ZXJdgSEkmTcp2Wnx
-         YwrQ==
-X-Gm-Message-State: AOAM530m6gqjt1AL5XeJ03MPaq5EX4Dt3FHCipgkPurAG8Lf8RfKgTx5
-	Yob9W3ioSCkG3cAfhilzxoC01A==
-X-Google-Smtp-Source: ABdhPJxNWpQCygCIS3enUIsR+XqOJyd9NdAUtnRSVKLoNE/vwqCX3MSchbBiqeaPMSb5jXkyLlQBhg==
-X-Received: by 2002:a05:6402:5212:b0:42e:2fa:41a7 with SMTP id s18-20020a056402521200b0042e02fa41a7mr44238163edd.22.1654774770535;
-        Thu, 09 Jun 2022 04:39:30 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u14-20020aa7d54e000000b0042e21f8c412sm11898495edr.42.2022.06.09.04.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:39:30 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Arnd Bergmann <arnd@arndb.de>,
-	Olof Johansson <olof@lixom.net>,
-	arm@kernel.org,
-	soc@kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 08/48] arm64: dts: amlogic: align gpio-key node names with dtschema
-Date: Thu,  9 Jun 2022 13:39:10 +0200
-Message-Id: <20220609113911.380368-7-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
+	id 1nzGoc-001XM7-2u
+	for linux-amlogic@lists.infradead.org; Thu, 09 Jun 2022 11:59:07 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5F7F960C92;
+	Thu,  9 Jun 2022 11:59:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56CF2C34114;
+	Thu,  9 Jun 2022 11:59:03 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="qAkHwz2j"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
+	t=1654775941;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RJORkAj3NYvpFmB7Va3TCC7yJxwVqGg4INvFsRsC1Dc=;
+	b=qAkHwz2jr4oCqOOVRj78DuuxoJkmmUX4fPRZKXfsz4meQuqHLz4LN0u/rjJFW5FdSmeY2Y
+	CDTcMkoCYHq1luCGXvyHiVS5q3V+ByoO9LplbfpB90MaDetyPd5tE6XSQfZQB8ydr2Vt6c
+	U7H+8O/1A8YthKJqeNeHEigJDa+s9/w=
+Received: 	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 5cfe460d (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO);
+	Thu, 9 Jun 2022 11:59:00 +0000 (UTC)
+Date: Thu, 9 Jun 2022 13:58:44 +0200
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: John Ogness <john.ogness@linutronix.de>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Petr Mladek <pmladek@suse.com>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+	Theodore Ts'o <tytso@mit.edu>,
+	Alexander Potapenko <glider@google.com>,
+	Marco Elver <elver@google.com>, kasan-dev@googlegroups.com
+Subject: Re: [PATCH printk v5 1/1] printk: extend console_lock for
+ per-console locking
+Message-ID: <YqHgdECTYFNJgdGc@zx2c4.com>
+References: <2a82eae7-a256-f70c-fd82-4e510750906e@samsung.com>
+ <Ymjy3rHRenba7r7R@alley>
+ <b6c1a8ac-c691-a84d-d3a1-f99984d32f06@samsung.com>
+ <87fslyv6y3.fsf@jogness.linutronix.de>
+ <51dfc4a0-f6cf-092f-109f-a04eeb240655@samsung.com>
+ <87k0b6blz2.fsf@jogness.linutronix.de>
+ <32bba8f8-dec7-78aa-f2e5-f62928412eda@samsung.com>
+ <87y1zkkrjy.fsf@jogness.linutronix.de>
+ <CAMuHMdVmoj3Tqz65VmSuVL2no4+bGC=qdB8LWoB=vyASf9vS+g@mail.gmail.com>
+ <87fske3wzw.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87fske3wzw.fsf@jogness.linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220609_043934_274614_88476793 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20220609_045906_416143_17AF6E18 
+X-CRM114-Status: GOOD (  12.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,66 +95,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The node names should be generic and DT schema expects certain pattern
-(e.g. with key/button/switch).
+Hi John,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Thu, Jun 09, 2022 at 01:25:15PM +0206, John Ogness wrote:
+> (Added RANDOM NUMBER DRIVER and KFENCE people.)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-index a5d79f2f7c19..603337ca5608 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-@@ -48,7 +48,7 @@ emmc_pwrseq: emmc-pwrseq {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		key1 {
-+		key-1 {
- 			label = "A";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio GPIOH_6 GPIO_ACTIVE_LOW>;
-@@ -56,7 +56,7 @@ key1 {
- 			interrupts = <34 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
--		key2 {
-+		key-2 {
- 			label = "B";
- 			linux,code = <BTN_1>;
- 			gpios = <&gpio GPIOH_7 GPIO_ACTIVE_LOW>;
-@@ -64,7 +64,7 @@ key2 {
- 			interrupts = <35 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
--		key3 {
-+		key-3 {
- 			label = "C";
- 			linux,code = <BTN_2>;
- 			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-@@ -72,7 +72,7 @@ key3 {
- 			interrupts = <2 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
--		mic_mute {
-+		key-mic-mute {
- 			label = "MicMute";
- 			linux,code = <SW_MUTE_DEVICE>;
- 			linux,input-type = <EV_SW>;
-@@ -81,7 +81,7 @@ mic_mute {
- 			interrupts = <99 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
--		power_key {
-+		key-power {
- 			label = "PowerKey";
- 			linux,code = <KEY_POWER>;
- 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
--- 
-2.34.1
+Thanks.
 
+> I am guessing you have CONFIG_PROVE_RAW_LOCK_NESTING enabled?
+> 
+> We are seeing a spinlock (base_crng.lock) taken while holding a
+> raw_spinlock (meta->lock).
+> 
+> kfence_guarded_alloc()
+>   raw_spin_trylock_irqsave(&meta->lock, flags)
+>     prandom_u32_max()
+>       prandom_u32()
+>         get_random_u32()
+>           get_random_bytes()
+>             _get_random_bytes()
+>               crng_make_state()
+>                 spin_lock_irqsave(&base_crng.lock, flags);
+> 
+> I expect it is allowed to create kthreads via kthread_run() in
+> early_initcalls.
+
+AFAIK, CONFIG_PROVE_RAW_LOCK_NESTING is useful for teasing out cases
+where RT's raw spinlocks will nest wrong with RT's sleeping spinlocks.
+But nobody who wants an RT kernel will be using KFENCE. So this seems
+like a non-issue? Maybe just add a `depends on !KFENCE` to
+PROVE_RAW_LOCK_NESTING?
+
+Jason
 
 _______________________________________________
 linux-amlogic mailing list
