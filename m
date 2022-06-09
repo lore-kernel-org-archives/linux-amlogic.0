@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18564CCA473
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jun 2022 15:41:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91F6CC433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jun 2022 20:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RpNcXqScaUu2AkubuysNxZ2OnkiRQ0x9BBN3IP3o+sA=; b=WvMthM/m7hGd0p
-	hiUy6TkWF7P4NQP8BL6iZo7zgBENgeYzh/Umou00cEJ3y9tlr6ka2Y+/xRyXtLyfiFNr81sD7BuMp
-	9EHINttcFUR6e6tYWXfmgPU+EDVys8OpqsMfo5F60JWzIF+ZAaPNxvcQHzFaBw1LsVpJC8g9BPS4X
-	Y3/ihv5zZPhe7TeNTNcL9ivrOd+BZBKR0isjolWyWzz7Evhg+cEabV+CVO89UDBP6LzxEbWfqg2CK
-	0C6MYHx8/GB//NtNws3ockpfiBWADS0JUgzf9sCiejkEAhM4XvonHdyiJn21gyvw2KYFbxCefryuS
-	DavNxbe5Rl/8qB6RR3CA==;
+	List-Owner; bh=rkmS9s8Na5Fn5owhX2PRx46k2bGOY579g8AvuMnDOOc=; b=TkNPrEuAelyyks
+	d1Decyhu9IrO+geSjUagE6FxtwbGTg9JPMfFxEqdKzyV63rFHVkS2xGUM0/Q67okOrwGprOOUq+ck
+	JxK97SKaWFUCcoJj9Ei2Mtw3bK8BLnm05Hc1/jIphh0qBnw4l3pViGUnJ/I16hvHcBERkI9bPmhK4
+	UOdTbTyE+OGqMlv3/vdSu968XX5U0yQLAcULuqprWyWkhTWaOMhpwoAG5n3WbW3PG8ipQNaYAg7/s
+	XJ2pqFhZ2tOOqfYUna4zE6WE+LKkE/udpSp4m6dDvgxHSc7UsG6eJPBg3AiMizUXed0JMAzK7Ox9+
+	bei2NJDiUEraRxmcK3UQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzKI3-002lFG-No; Thu, 09 Jun 2022 15:41:43 +0000
-Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	id 1nzONh-003t9c-Ux; Thu, 09 Jun 2022 20:03:49 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzKI0-002lEQ-Vx
-	for linux-amlogic@lists.infradead.org; Thu, 09 Jun 2022 15:41:42 +0000
-Received: by mail-pj1-x102e.google.com with SMTP id o6-20020a17090a0a0600b001e2c6566046so27023599pjo.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jun 2022 08:41:38 -0700 (PDT)
+	id 1nzONW-003t6y-Dy; Thu, 09 Jun 2022 20:03:39 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id n10so49600491ejk.5;
+        Thu, 09 Jun 2022 13:03:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bFs2IUbelOqYg14a8I3dhoLqs2Bgqc5B+E7uIXvQdIw=;
-        b=CsDpq3niF7HVVJkr2AGXZrRBA27sHBwYtoUgYA3YAttQ8E4C1MRoKp477ea9D6Iudm
-         dv8JPRzH+Yrxiss4TGU/7Pqq8JSqw++QgQFiPE/Ny5BUA8pvXEXgS7uIYK8eqtMTAboI
-         Dc0qVEVDOFiyQfydstRFp1r2ZjK265vqAielA=
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=65BKb6+QTnEhJJ0Vp4EQuB44eWGIpxtLTjcmvbPa/Q8=;
+        b=Emp0E+5ZxCn3BLb90p4QITBjZiOgXtq9gcju7V+lZINA/YbIJQvdKPYv/H+HAI3qdr
+         v3odiCW/sg1rz55NsstJQfMbjM+0cKeb4V1dgkeONQd6WbK/k5XLPQ1CNO+Ne9dkCX13
+         aeVUsUCiGxtMYwgPo0cvLAJgHQdfddrgVPIqyKjWvwD3LLIsm3JGBJ1Lleg/QO/A9cF3
+         xY9VqZZdQmcdUSpl5co5d1gYh0gFmez3VXE0PbMxNA4W/pt29g/2J+SK0aXDYPR54oq0
+         a1+FMG3tXEkm8NR2gDdbm72+qF1y0kTwUyJJOafmA7/U/FCBQThsyIGCUmUECf370ACE
+         a/lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bFs2IUbelOqYg14a8I3dhoLqs2Bgqc5B+E7uIXvQdIw=;
-        b=LM5a/uCjpzUgbrzYLVzx7Wy5jWKK5G4FOqI4HGuXTgiVthZN9gYzil815I9NYewM8A
-         CC9ZkLLiFo02MvtEfumSXqmQMLZrvn78OPVX55RifxX0jxBgScTLYYhjGoK+GFQLjxTZ
-         GXRP/naS112y6AyQPUgsMgv+U1O1xLhsTuCFbL0c8nvGdYHoNuFxcTFUe0IksX9E1Dp9
-         /IrOROyI32vx407kUWy47bnufsEh6YTuLlSCigZkNkN2VZdJ7wRNo6PhKTUTirFFNjKE
-         2/kzDK/g4YUT4qyJT/jXvX0pKjqjJTtcXo3wH39hxd/s/iToyyjrL1l/TP2UMj1SzHNZ
-         nPpA==
-X-Gm-Message-State: AOAM532fleWm8ol5zSaD+Nb5JWV7XTavq1C9mOeEaHwtYH6amDa9xWqD
-	Lj7+pPT16z5MiSuDnls04VlehA==
-X-Google-Smtp-Source: ABdhPJz7l2shBD5wm9aHvwcmcGQmYOa3+pR/Q8WoVPHOsEwwyl8ikvu0HNhUNYVg6RRh05dpi20QQg==
-X-Received: by 2002:a17:90b:4d81:b0:1e3:33e9:6677 with SMTP id oj1-20020a17090b4d8100b001e333e96677mr3948846pjb.116.1654789297913;
-        Thu, 09 Jun 2022 08:41:37 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:c543:2c9:1206:951b])
-        by smtp.gmail.com with UTF8SMTPSA id b1-20020a63d301000000b003fbfd5e4ddcsm9314592pgg.75.2022.06.09.08.41.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 08:41:37 -0700 (PDT)
-Date: Thu, 9 Jun 2022 08:41:36 -0700
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Mathias Nyman <mathias.nyman@linux.intel.com>
-Cc: hkallweit1@gmail.com, gregkh@linuxfoundation.org,
-	stern@rowland.harvard.edu, linux-usb@vger.kernel.org,
-	quic_jackp@quicinc.com, tunguyen@apm.com,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [RFT PATCH] xhci: Fix null pointer dereference in resume if xhci
- has only one roothub
-Message-ID: <YqIUsP437G8g75YS@google.com>
-References: <c4e9f0d8-c736-1153-3f32-b85e7024b3fe@linux.intel.com>
- <20220609120336.831533-1-mathias.nyman@linux.intel.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=65BKb6+QTnEhJJ0Vp4EQuB44eWGIpxtLTjcmvbPa/Q8=;
+        b=Jyi+vrZjekcJN8PTwMGKPuBjUFWGfwraEdcGgnSCUVavDsvcI8h3d9xsY6LK6SNs56
+         qkiBEORBTWcMPa+b7gYnYU6z3DMhSHbwtSFMIzgWRRBrWXSI3K/BpURAluXK59OxZ8+P
+         Qa+3EcFr4+6sbcgCBJZSltdKD3pHA2miVMaOlXOLpJTAMu8pCn+VVzxdJLjibDW9fgn4
+         aldLhAPaVBwNf+vTwOR3bR4FVur7RW28bba/lGfaRq4p4i6/oJvplD0dhyam0qHON3ve
+         PeN4aEcyEEPM+7Ne759n2K6SmzBXrifZ3uP7bwskEppC2S23CJqiODqR6IMkp27EHpUR
+         ZHEQ==
+X-Gm-Message-State: AOAM531WBq+vplbkyrfAvAYRC3sh+kmRfo7wW7CKVNaL9zKKhSGaCnAo
+	JsOp9Jr8dzxNbUehjm4JoTkpfhLqN5vIIw5+TCQ=
+X-Google-Smtp-Source: ABdhPJwfjXkI4NfrY0Ak8ggvGl+owfQ44h7IsmFLeTxpiYz+agoIaeTAoH5NeXgbZqJNRr4AYiO6dtCK5cHgctlK6qs=
+X-Received: by 2002:a17:907:7246:b0:6ff:241f:200a with SMTP id
+ ds6-20020a170907724600b006ff241f200amr37297815ejc.543.1654805015941; Thu, 09
+ Jun 2022 13:03:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220609120336.831533-1-mathias.nyman@linux.intel.com>
+References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609113911.380368-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220609113911.380368-6-krzysztof.kozlowski@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 9 Jun 2022 22:03:25 +0200
+Message-ID: <CAFBinCAwS2zYksWUbQiPY+XNhQHFz8Qvfe+Li79Lw16dviWSZA@mail.gmail.com>
+Subject: Re: [PATCH v2 07/48] arm64: dts: amlogic: correct gpio-keys properties
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220609_084141_108741_BD971C76 
-X-CRM114-Status: GOOD (  19.67  )
+X-CRM114-CacheID: sfid-20220609_130338_510322_603E4FDD 
+X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,70 +89,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jun 09, 2022 at 03:03:36PM +0300, Mathias Nyman wrote:
-> In the re-init path xhci_resume() passes 'hcd->primary_hcd' to hci_init(),
-> however this field isn't initialized by __usb_create_hcd() for a HCD
-> without secondary controller.
-> 
-> xhci_resume() is called once per xHC device, not per hcd, so the extra
-> checking for primary hcd can be removed.
-> 
-> Fixes: e0fe986972f5 ("usb: host: xhci-plat: prepare operation w/o shared hcd")
-> Reported-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
-> ---
->  drivers/usb/host/xhci.c | 15 +++++----------
->  1 file changed, 5 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-> index f0ab63138016..9ac56e9ffc64 100644
-> --- a/drivers/usb/host/xhci.c
-> +++ b/drivers/usb/host/xhci.c
-> @@ -1107,7 +1107,6 @@ int xhci_resume(struct xhci_hcd *xhci, bool hibernated)
->  {
->  	u32			command, temp = 0;
->  	struct usb_hcd		*hcd = xhci_to_hcd(xhci);
-> -	struct usb_hcd		*secondary_hcd;
->  	int			retval = 0;
->  	bool			comp_timer_running = false;
->  	bool			pending_portevent = false;
-> @@ -1214,23 +1213,19 @@ int xhci_resume(struct xhci_hcd *xhci, bool hibernated)
->  		 * first with the primary HCD, and then with the secondary HCD.
->  		 * If we don't do the same, the host will never be started.
->  		 */
-> -		if (!usb_hcd_is_primary_hcd(hcd))
-> -			secondary_hcd = hcd;
-> -		else
-> -			secondary_hcd = xhci->shared_hcd;
-> -
->  		xhci_dbg(xhci, "Initialize the xhci_hcd\n");
-> -		retval = xhci_init(hcd->primary_hcd);
-> +		retval = xhci_init(hcd);
->  		if (retval)
->  			return retval;
->  		comp_timer_running = true;
->  
->  		xhci_dbg(xhci, "Start the primary HCD\n");
-
-Is the log still correct? IIUC this now isn't necessarily the primary HCD.
-
-> -		retval = xhci_run(hcd->primary_hcd);
-> -		if (!retval && secondary_hcd) {
-> +		retval = xhci_run(hcd);
-> +		if (!retval && xhci->shared_hcd) {
->  			xhci_dbg(xhci, "Start the secondary HCD\n");
-
-ditto
-
-> -			retval = xhci_run(secondary_hcd);
-> +			retval = xhci_run(xhci->shared_hcd);
->  		}
-> +
->  		hcd->state = HC_STATE_SUSPENDED;
->  		if (xhci->shared_hcd)
->  			xhci->shared_hcd->state = HC_STATE_SUSPENDED;
-
-Tested-by: Matthias Kaehlcke <mka@chromium.org>
+On Thu, Jun 9, 2022 at 1:39 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> gpio-keys children do not use unit addresses.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
