@@ -4,40 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C52C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 11:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4865DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 12:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=UT5uT2hv/Q7Ojh48NNNpQq8eyiGTVLdwMYr9XLwEZrM=; b=dPEXXthPvp7ahn
-	lNSY883DxvSE3W84oNKQphTjfexRJq64n8szN2glkJsR8cqLmDaOOH3obOjgNd93sKVKKDm3aD4Jl
-	w17NQ/PumwBNnNflRoI3LtCjQbGN+lh19Bw/pmuoiCBCsbs2bJBb4wUv7+bKv6IVflPjPF160D2s4
-	dn4keZ+vTXZrF2AipcY+Jp92IKZnuU2Y1jje/FtaQtgm7BI13LiQZ9+M3dDB9gLr0v+Br/XKdC8Z+
-	1G42IcBPpvRogZ6haPeINP0XNOFSIFNXsw4NT8DcWtrv0QUrkKkz4ZXr+FknQjXHo4WK9IsKbAwjS
-	QEPuistOEZH5DO2MHBnQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ph6xCXt9kiJpFlxbdSR6zLeApBe8NXG1H6sR1PXAWNY=; b=oR/4AuOfaMuheG1bC7Ra0gCpy8
+	SL4byHJ67JqKtWfzejAjNprHfBmrn2HDvca9yv2TXiRJHPAKMJ87Jb6o2wu6+IfH7Gb7NqEXMo41S
+	K1fJlhVU2R9iz0E1WvDV+FSRK8s00w7wdkvftJrcjc4LckIoFRQi6LtwWtx2fwDIsR32/uDxerY5z
+	okcwEuIiucdalqJcKJs2Fn/2c7zLUxXSd8IPVKwKL9vEcDd7scAkBcfXEUzOlTJLRYXGvWjBGcqmI
+	eifClX3SUN037GugfQzmuXWwVj5m7iCbXoyVqzvMNIg2nWkDfedi54A/CypRoB0mPw9oI0gOESezm
+	ggDg2ecA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzcWq-007mzb-DJ; Fri, 10 Jun 2022 11:10:12 +0000
-Received: from mail.manjaro.org ([116.203.91.91])
+	id 1nzdML-0083kH-8Q; Fri, 10 Jun 2022 12:03:25 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzcTC-007kfB-O0; Fri, 10 Jun 2022 11:06:29 +0000
-From: Furkan Kardame <f.kardame@manjaro.org>
-To: narmstrong@baylibre.com
-Cc: khilman@baylibre.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Furkan Kardame <f.kardame@manjaro.org>
-Subject: [PATCH v3] arm64: dts: meson: add gpio-fan control to GS-King-X
-Date: Fri, 10 Jun 2022 14:06:09 +0300
-Message-Id: <20220610110609.13533-1-f.kardame@manjaro.org>
+	id 1nzdMI-0083gS-4c; Fri, 10 Jun 2022 12:03:23 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by sin.source.kernel.org (Postfix) with ESMTPS id A4AC5CE35D7;
+	Fri, 10 Jun 2022 12:03:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9656BC3411D;
+	Fri, 10 Jun 2022 12:03:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1654862598;
+	bh=f91prLddVZ6W3Wxb6Hqxhw4VdV2kGrg/IH7kR4PdhnY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U1znS8ABzt3/7+3tW8r9w0ODLWoHYuds726WAKeoahr9hFltRLm81H0CA03oc5Onx
+	 23VM+SJfFghn425BmH1i2xpNVPDVsNSvEL/cpHEuCZoyxDGEaAo989Whdcq+w8Xr0x
+	 eM1QnspuhULq9B32zaxPnZEYYuRFsh5AvVkZYA+n9Rb1/XRe3sNm605YjInqypuQGf
+	 Ct0RLvUATkkDNkfEu+LaV/yPbv5tU1dN7tRgiZFdckQmCpZSAeMflyqASdKidO9ISp
+	 ZlUgqPC+kRCvY06U7U1bpuV5knThQEuewmaR79v8OzQme2AWBWAAH0vkrEzq39r705
+	 METMJ1sJh6Oyg==
+Date: Fri, 10 Jun 2022 13:03:08 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Samuel Holland <samuel@sholland.org>
+Cc: ckeepax@opensource.cirrus.com, linux-sunxi@lists.linux.dev,
+	peter.ujfalusi@gmail.com, pierre-louis.bossart@linux.intel.com,
+	linux-imx@nxp.com, krzk@kernel.org, jarkko.nikula@bitmer.com,
+	linux-xtensa@linux-xtensa.org, cezary.rojewski@intel.com,
+	shawnguo@kernel.org, linux-mediatek@lists.infradead.org,
+	nicolas.ferre@microchip.com, patches@opensource.cirrus.com,
+	linux-amlogic@lists.infradead.org, srinivas.kandagatla@linaro.org,
+	daniel@zonque.org, linux-mips@vger.kernel.org,
+	linux-tegra@vger.kernel.org, nsaenz@kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com, heiko@sntech.de,
+	alsa-devel@alsa-project.org, kernel@pengutronix.de,
+	jbrunet@baylibre.com,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org,
+	lgirdwood@gmail.com
+Subject: Re: [PATCH 00/56] Specify clock provider directly to CPU DAIs
+Message-ID: <YqMy/FkxDPKmzdrB@sirena.org.uk>
+References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
+ <165478153064.1052094.1721875477574787769.b4-ty@kernel.org>
+ <2a498819-dbbf-31c1-4145-bbd2d7179bd8@sholland.org>
 MIME-Version: 1.0
+In-Reply-To: <2a498819-dbbf-31c1-4145-bbd2d7179bd8@sholland.org>
+X-Cookie: Teachers have class.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220610_040626_975369_1F5CE00F 
-X-CRM114-Status: UNSURE (   8.22  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220610_050322_595576_C79BA8D6 
+X-CRM114-Status: GOOD (  15.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -49,37 +81,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2145448889339438577=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-R1MtS2luZy1YIGhhcyBhIHNpbmdsZSBzcGVlZCBHUElPIGZhbiB3aGljaCBpcyBhbHdheXMtb24g
-YnkgZGVmYXVsdC4gSWYgd2UgYWRkIGNvbnRyb2xzIGZvciB0aGUgZmFuIGFuZCBhIHRyaXAgcG9p
-bnQsIHRoZSBmYW4gc3RheXMgb2ZmIG1vc3Qgb2YgdGhlIHRpbWUsIHJlZHVjaW5nIGJhY2tncm91
-bmQgbm9pc2UgZnJvbSB0aGUgdW5pdC4KClNpZ25lZC1vZmYtYnk6IEZ1cmthbiBLYXJkYW1lIDxm
-LmthcmRhbWVAbWFuamFyby5vcmc+Ci0tLQpGaXhlZCBzcGVlZC1tYXAgaW5kZW50YXRpb24sIGFs
-aWduZWQgYnJhY2tldCwgY2hhbmdlZCBjb29saW5nLWRldmljZSBhbmQgaW5jcmVhc2VkIHRlbXBl
-cmF0dXJlIHRvIDcwwrBDCiAuLi4vYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWdza2luZy14
-LmR0cyAgfCAyNSArKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMjUgaW5zZXJ0
-aW9ucygrKQoKZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1n
-MTJiLWdza2luZy14LmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJi
-LWdza2luZy14LmR0cwppbmRleCA2YzdiZmFjYmEuLjIzNTkyYWUyMSAxMDA2NDQKLS0tIGEvYXJj
-aC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItZ3NraW5nLXguZHRzCisrKyBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWdza2luZy14LmR0cwpAQCAtMjAs
-NiArMjAsMTQgQEAgYWxpYXNlcyB7CiAJCXJ0YzEgPSAmdnJ0YzsKIAl9OwogCisJZ3Bpb19mYW46
-IGdwaW8tZmFuIHsKKwkJY29tcGF0aWJsZSA9ICJncGlvLWZhbiI7CisJCWdwaW9zID0gPCZncGlv
-IEdQSU9IXzUgR1BJT19BQ1RJVkVfSElHSD47CisJCS8qIFVzaW5nIER1bW15IFNwZWVkICovCisJ
-CWdwaW8tZmFuLHNwZWVkLW1hcCA9IDwwIDA+LCA8MSAxPjsKKwkJI2Nvb2xpbmctY2VsbHMgPSA8
-Mj47CisJfTsKKwogCWdwaW8ta2V5cy1wb2xsZWQgewogCQljb21wYXRpYmxlID0gImdwaW8ta2V5
-cy1wb2xsZWQiOwogCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsKQEAgLTk2LDYgKzEwNCwyMyBAQCAm
-Y2xrY19hdWRpbyB7CiAJc3RhdHVzID0gIm9rYXkiOwogfTsKIAorJmNwdV90aGVybWFsIHsKKwl0
-cmlwcyB7CisJCWNwdV9hY3RpdmU6IGNwdS1hY3RpdmUKKwkJCXRlbXBlcmF0dXJlID0gPDcwMDAw
-PjsgLyogbWlsbGljZWxzaXVzICovCisJCQloeXN0ZXJlc2lzID0gPDIwMDA+OyAvKiBtaWxsaWNl
-bHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0aXZlIjsKKwkJfTsKKwl9OworCisJY29vbGluZy1tYXBz
-IHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8JmNwdV9hY3RpdmU+OworCQkJY29vbGluZy1kZXZpY2Ug
-PSA8JmdwaW9fZmFuIFRIRVJNQUxfTk9fTElNSVQgVEhFUk1BTF9OT19MSU1JVD47CisJCX07CisJ
-fTsKK307CisKICZmcmRkcl9hIHsKIAlzdGF0dXMgPSAib2theSI7CiB9OwotLSAKMi4zNi4xCgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============2145448889339438577==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uQXJNv1MQUHjV+R+"
+Content-Disposition: inline
+
+
+--uQXJNv1MQUHjV+R+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, Jun 09, 2022 at 09:03:15PM -0500, Samuel Holland wrote:
+> On 6/9/22 8:32 AM, Mark Brown wrote:
+> > On Thu, 19 May 2022 16:42:22 +0100, Charles Keepax wrote:
+
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
+
+> > [22/56] ASoC: sunxi: Update to use set_fmt_new callback
+> >         commit: 7cc3965fde74c9c725ed01de4ac35bc7d562d16a
+
+> This patch is wrong, which I pointed out earlier[1]. It will break audio on the
+> Allwinner A33 and A64 SoCs. Charles said he would send a v2[2]. Excluding the
+> changes to sound/soc/sunxi/sun8i-codec.c from the patch would fix it.
+
+Your mail doesn't say that this will break, it says the change is
+unexpected.  In any case, please send an incremental fix - there's no
+need to revert the entire series for this.
+
+--uQXJNv1MQUHjV+R+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKjMvsACgkQJNaLcl1U
+h9DEiwgAg5/u/EffroYC0gc/E++OVOkz3gwInEgNAC9hOiZUubIV0pLgHmDWF03b
+jPn25vdDiJrTgFiUmwAYyaI1N8iwXmd1UllhVOv/gLkFfltVeVeI5bb7VHjskvpU
+Xx9nbpqcM0LhbDF9NG+WYAoVy5NB/aJZRKoCWoc2qbqyxE4kHlcQ+uGmXHyJDseS
+8BmRAzbUgyMhj1H2rxUsdSJBv07mGmLozTE9V6Ah8CM/7n4PVN9VjDs29qDcs1v2
+4cxYC5JHT+tbp1KldMeaAv50v0292Sfvps0RbW8zrLY4WwXo5mYJWrS+TYv1UQ+M
+XNVup9oVA23wO2KVtvmWoirnwl8blg==
+=hG/3
+-----END PGP SIGNATURE-----
+
+--uQXJNv1MQUHjV+R+--
+
+
+--===============2145448889339438577==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2145448889339438577==--
+
