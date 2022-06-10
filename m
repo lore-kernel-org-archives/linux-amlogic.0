@@ -4,76 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC8ACC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jun 2022 20:04:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34459C43334
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 02:03:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ujlih8RLB4fEBgpyNne+Uq7pPW4RQ7/3vjz9HuFI9X0=; b=Hkxecq+LKcUkCY
-	0fvbBMlVWMow/Ifh0qsHvve+F+m7EbBSdyihfw+7Qs+ITnr2otnuqYzfiEtpbMuNREgB9TeoqaoL+
-	DKDh7lTLsPRnMJ2qUmcM+JjaCLSOSC6UZ3sn83R2UglBFEol6EeK9rrnuVaOcccrZY3Vp/QT7Y+WP
-	AZYuNZ/C+A9ohFBaB3BfruH7IFvbPH2oOrQgWA5d6zLa9c8hdQOZpkwviT7CUv9LXqt5DvBukEMZw
-	QEII7vfeieHd+pBFE9KYKibkmEiisw+8wtNWbCzTjRtslLWBUTTqzMOM0OPacamFbgrQBEVlUzI+i
-	UU32pPjQNsTHvMoTv8wQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=+uVQ58lhrL1Dw961K9J1Ps/tJugNCaBfLoiawUCykOk=; b=vLD+dGZ9YJBhhAmYL1OXXE41uY
+	EiLs9LmGuOMD91RqwPTCRhLLxqMvKpBTNWZeO0etuiFZDHuqZ56o1w2O61dyDfX3A9Vgy2KpBSp5q
+	ID4S9Y2C4eljFZxWk0JhpwpMlj/YBrNZv1MZIWWkKVmvEthK2UOFrJ6slUSuFvWbhQMWCjLiqy+Oh
+	niOq/g+d1vEs8lbH8srCaHSNp7WA/mhM9lirOMeadOPrLPrXVZxT8JhY/CNqOX/v0quJ7wsHVUA7F
+	xrmG7RC359CILfVlRtivnGkpHHlwFxo8ruWLbnbzXVNgQqp2SZBm49Y8eAnMr87MTqacvYqPHDIjB
+	22NZrBlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzOOP-003tMp-Ld; Thu, 09 Jun 2022 20:04:33 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1nzTzk-0058QI-AK; Fri, 10 Jun 2022 02:03:28 +0000
+Received: from out1-smtp.messagingengine.com ([66.111.4.25])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzOOD-003tGl-Gm; Thu, 09 Jun 2022 20:04:22 +0000
-Received: by mail-ej1-x636.google.com with SMTP id fu3so48081735ejc.7;
-        Thu, 09 Jun 2022 13:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hHccYO4z5usBojn087eWGV+jtlxg4L1Z0rSYUHXah30=;
-        b=MzK55xDftqFwDPyfVCY7qiTgQHhw5KesPgjLEHgVe5c8iVsi7WJVaGi3HQShA5VfEQ
-         Kn/0mRYQS73Chzq89V+ucqGUae0L6oTBbtkQRbknGz2rA/qaiNxFD22oFYTqCkDAU4EZ
-         a+/aVe6nUWt4hKAQosJGv3YfLIXqFcS90I9GBPXwz+VnH4A41p/PhAHRX2rDp7fU6StS
-         NduLvu5zanSz2LpVdKlLaZvlsuLPjgrMyntgiAU8noKZgFaLX9LU6wY6aTEHkp3SqXuZ
-         59c/FZe+gEKxuZ/pgVYQZ+AnBvfYbshMkp90Fkaqe9Iu8ek0XMEp3B2Ez93Xd++aCQsj
-         z66Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hHccYO4z5usBojn087eWGV+jtlxg4L1Z0rSYUHXah30=;
-        b=OmQfVL3e+f+ltqd+W2hOWSxTLvH6Ft29+ds9lYr45acyaUinCOO36iwypPYSAHPMnR
-         1xRM7ZKsWzapbNUc8BP6+QjHYyMJKJUH4iZE74PoLNyu8TU2P0Lzkt8ZepwQVWfhIwXg
-         4BYBbhMsJNAsNXTH5dGv8aPolaS2oU2RDN1gIuoMYmCzWo1mL1fNV+zastxCN8/UGyUN
-         Z9T4w10ESmwsyPlJBR1LlnIQMdrUlVv/A0YICZjkD+mvbZj0bj+Pt+AjMJFuRb2/bYbI
-         1T7FV/BLGReHhg17wOphhHF+LBXkAsEFO3ISqhHrUdOsPF8vAINb4GxqWMvoKt0rZ+If
-         mITg==
-X-Gm-Message-State: AOAM531Crz9ZDTXAXPCgiDg+ACRKcZUzhovFX4EvjvfFb2jYfVwFXlKC
-	QdFIoqbv/k68fND4V+wFcwLGbBx0p3YvMz3JoVc=
-X-Google-Smtp-Source: ABdhPJxfhhcOra1ui4AvrkvXdWpqY9OeKmCTNjSpjd2RoNGVaKcF2Dqv56z2FDMl582+UvxSiToI0PJmhOR4YpEYj9Y=
-X-Received: by 2002:a17:906:b18e:b0:710:26db:7a53 with SMTP id
- w14-20020a170906b18e00b0071026db7a53mr29313366ejy.290.1654805056333; Thu, 09
- Jun 2022 13:04:16 -0700 (PDT)
+	id 1nzTzg-0058MY-F5; Fri, 10 Jun 2022 02:03:26 +0000
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 283EC5C012B;
+	Thu,  9 Jun 2022 22:03:19 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 09 Jun 2022 22:03:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+	cc:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to; s=fm3; t=1654826599; x=
+	1654912999; bh=auv2y1q/XHGLdEIrA+k3tJpicIXejmP+D7ve/EoZ7GM=; b=T
+	lueWR2anscPTLp0GLpyNG2+xRDvlxqL4hHB649GKDVxE+83H0KogHLzK7+y7p1tl
+	DhCwJiGfhsexGpVmouxwk198ga4JMmAxvc0MPItUHh02vk4LRvUraBFLAjEYzL7H
+	gZcuiRXlvoicEFjgLzVXW800HjEb+HDIcWMTDaizkpQmKHhL77Q8uKOOZz707O40
+	TIz9C4thfrQn3s2q2+xaIwggUvQqHrFUz2TqGq1d4nIqw7xfdbXSW30edDJyuQuH
+	yq3ZTH9aWoSA/finyesptEcxaUPQUKI96Nsq8jdr1mMFqphTsaDNhASvslpIpCZs
+	KuHK82wLrkBr7ibytLhow==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1654826599; x=
+	1654912999; bh=auv2y1q/XHGLdEIrA+k3tJpicIXejmP+D7ve/EoZ7GM=; b=H
+	jaQGVAUFJ+o43qxljJhhhS7u5lZVx5+WEwMvXkqqfGfjYrY4QoCjutwZAnmZEjoi
+	UJkCS7XhYJDA1P48qBCrVwgj71pEU+N52OHb1JTH/DSvb0m3ai5Jy+f+uP4ewgto
+	jCgSFGjRPxUxrZo4gX98NmnppaNPRvC2tURk1H/pTCigjKDBHM6600/pBBy/aDtQ
+	9gG2FmWceVGLRo4xsWSTNiAqaow9F80mCByr562WBl+Sm9MDBq92NOgaHEbLJ8nM
+	mDr5zac63XZVJmWiVE5oiukoidXAgr8j4l85vEPJ0c54Qu3kFJMG2Pyy78sK4Rqo
+	pcjUqTi4+Fa8a0sfFqWAg==
+X-ME-Sender: <xms:ZaaiYna9xxSUqWwOqN2o4LbFxDQu91IYyvn7Ey86UqV2RrC2yZzEfw>
+    <xme:ZaaiYmbLAZJMC-YelQXR7lHVv9B0EGQgCOn61JOLlB4fAvLGnPCLxIQuJS_Jqc5nd
+    -t5T7a4wtpCMDnIsA>
+X-ME-Received: <xmr:ZaaiYp-W6bS5nyInJAR8JRslpyj4PadpQGE-IaOz_bAAWC1bMSMRGVDiT8TLXsxwNr-Y84i1EqQRN_fQ5uv3dGFQwBe77L4PBugRC1gmugy_d1ux0NXfRXQrdw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddutddgheegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefuvfevfhfhkffffgggjggtgfesth
+    ejredttdefjeenucfhrhhomhepufgrmhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghl
+    sehshhholhhlrghnugdrohhrgheqnecuggftrfgrthhtvghrnhepleetjeffvdegheektd
+    ekveeuueetffetffehudefueejvddufeduteeiieejveelnecuffhomhgrihhnpehkvghr
+    nhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:ZaaiYtpnP-ZI6-J9uVGSSPK2oule0PiJy9MQZ77TQHt5ROhcNr4NMg>
+    <xmx:ZaaiYirYiAV5Vy1rURPPL3TX0xJdFr7XYP3Sz-8v6317Kmg3HYStWg>
+    <xmx:ZaaiYjRiGIEvtRQGbryJCwl4Mz2lfRVOT8dq1v23yOQq8Q4SKY931A>
+    <xmx:Z6aiYvq427nOQFMRmcwWTUq6YZyNTbWxjVLldeY5Zj6xsbSPPt914Q>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 9 Jun 2022 22:03:15 -0400 (EDT)
+Subject: Re: [PATCH 00/56] Specify clock provider directly to CPU DAIs
+To: Mark Brown <broonie@kernel.org>, ckeepax@opensource.cirrus.com
+Cc: linux-sunxi@lists.linux.dev, peter.ujfalusi@gmail.com,
+ pierre-louis.bossart@linux.intel.com, linux-imx@nxp.com, krzk@kernel.org,
+ jarkko.nikula@bitmer.com, linux-xtensa@linux-xtensa.org,
+ cezary.rojewski@intel.com, shawnguo@kernel.org,
+ linux-mediatek@lists.infradead.org, nicolas.ferre@microchip.com,
+ patches@opensource.cirrus.com, linux-amlogic@lists.infradead.org,
+ srinivas.kandagatla@linaro.org, daniel@zonque.org,
+ linux-mips@vger.kernel.org, linux-tegra@vger.kernel.org, nsaenz@kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, heiko@sntech.de,
+ alsa-devel@alsa-project.org, kernel@pengutronix.de, jbrunet@baylibre.com,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org,
+ lgirdwood@gmail.com
+References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
+ <165478153064.1052094.1721875477574787769.b4-ty@kernel.org>
+From: Samuel Holland <samuel@sholland.org>
+Message-ID: <2a498819-dbbf-31c1-4145-bbd2d7179bd8@sholland.org>
+Date: Thu, 9 Jun 2022 21:03:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609113911.380368-7-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220609113911.380368-7-krzysztof.kozlowski@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 9 Jun 2022 22:04:05 +0200
-Message-ID: <CAFBinCC2A-Fe9QbZtffmCvHFNWcgaL-TZydwFBKsBp-n2sD_1A@mail.gmail.com>
-Subject: Re: [PATCH v2 08/48] arm64: dts: amlogic: align gpio-key node names
- with dtschema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+In-Reply-To: <165478153064.1052094.1721875477574787769.b4-ty@kernel.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220609_130421_579926_B1EB1D12 
-X-CRM114-Status: UNSURE (   7.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220609_190325_038328_167CF8CF 
+X-CRM114-Status: GOOD (  15.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,14 +117,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jun 9, 2022 at 1:39 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> The node names should be generic and DT schema expects certain pattern
-> (e.g. with key/button/switch).
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Mark,
+
+On 6/9/22 8:32 AM, Mark Brown wrote:
+> On Thu, 19 May 2022 16:42:22 +0100, Charles Keepax wrote:
+>> Currently the set_fmt callback always passes clock provider/consumer
+>> with respect to the CODEC. This made sense when the framework was
+>> directly broken down into platforms and CODECs. However, as things
+>> are now broken down into components which can be connected as either
+>> the CPU or CODEC side of a DAI link it simplifies things if each
+>> side of the link is just told if it is provider or consumer of the
+>> clocks. Making this change allows us to remove one of the last parts
+>> of the ASoC core that needs to know if a driver is a CODEC driver,
+>> where it flips the clock format specifier if a CODEC driver is used on
+>> the CPU side of a DAI link, as well as just being conceptually more
+>> consistent with componentisation.
+>>
+>> [...]
+> 
+> Applied to
+> 
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> 
+> Thanks!
+> 
+> [01/56] ASoC: core: Add set_fmt_new callback that directly specifies provider
+>         commit: 905f3a04e184854555fc248ca4e692fdbf2f2547
+> [02/56] ASoC: amd: vangogh: Update to use set_fmt_new callback
+>         commit: ab890e0f83a65624d20b0ca4a7cb6306b8511558
+> [03/56] ASoC: atmel: Update to use set_fmt_new callback
+>         commit: 0fd054a577180cd807992e32c7cd394e54c85903
+> [04/56] ASoC: au1x: Update to use set_fmt_new callback
+>         commit: fee11f70849b21a244e6e27d281f3858b671bfea
+> [05/56] ASoC: bcm: Update to use set_fmt_new callback
+>         commit: 04ea2404468b7885c560c3673f6f2fd368f305a2
+> [06/56] ASoC: ep93xx: Update to use set_fmt_new callback
+>         commit: 5d6124e58d56818249a6266f56d9c3739e72e1bd
+> [07/56] ASoC: dwc: Update to use set_fmt_new callback
+>         commit: ca0444f1f7b228ae3b8d1a5c0f0d1b4463171f98
+> [08/56] ASoC: fsl: Update to use set_fmt_new callback
+>         commit: 3b14c15a333b8225ea38479e13c0366539d3374a
+> [09/56] ASoC: hisilicon: Update to use set_fmt_new callback
+>         commit: 0f362524dd3face4865077a4f7e7e640a95702aa
+> [10/56] ASoC: img: Update to use set_fmt_new callback
+>         commit: ed2b384082a678a0c4c8c56deff9e5f46d5e3fca
+> [11/56] ASoC: Intel: Update to use set_fmt_new callback
+>         commit: add9ee8c64c617f561a309cdda50104e9e2c12f6
+> [12/56] ASoC: js4740-i2s: Update to use set_fmt_new callback
+>         commit: cbb3a19f090d5a41b822caf9ff2058e1c6bc7ea3
+> [13/56] ASoC: mediatek: Update to use set_fmt_new callback
+>         commit: 3af99430f8d948a41556156155b0295dec274d41
+> [14/56] ASoC: meson: Update to use set_fmt_new callback
+>         commit: f60442bf6eab47aa4ab127aab88afdcc29a09a73
+> [15/56] ASoC: mxs-saif: Update to use set_fmt_new callback
+>         commit: f3c0064f1f8e358799c70c7905a09d15c5ec5e5a
+> [16/56] ASoC: pxa: Update to use set_fmt_new callback
+>         commit: 84c5b47c8ce4d5059d5e7539d3b44922cc0390e9
+> [17/56] ASoC: qcom: Update to use set_fmt_new callback
+>         commit: 1148e16b335f341f36475b646c692b4a71a1855e
+> [18/56] ASoC: rockchip: Update to use set_fmt_new callback
+>         commit: 27646d265da1745b2d1d10fec18465631cb1135f
+> [19/56] ASoC: samsung: Update to use set_fmt_new callback
+>         commit: 0b491c7c1b2555ef08285fd49a8567f2f9f34ff8
+> [20/56] ASoC: sh: Update to use set_fmt_new callback
+>         commit: 2d4dd776e902546389f2d7808ece7fd815aa829c
+> [21/56] ASoC: stm: Update to use set_fmt_new callback
+>         commit: 0092dac91ec1c404787841bdd9ecbf3404d1a41c
+> [22/56] ASoC: sunxi: Update to use set_fmt_new callback
+>         commit: 7cc3965fde74c9c725ed01de4ac35bc7d562d16a
+
+This patch is wrong, which I pointed out earlier[1]. It will break audio on the
+Allwinner A33 and A64 SoCs. Charles said he would send a v2[2]. Excluding the
+changes to sound/soc/sunxi/sun8i-codec.c from the patch would fix it.
+
+Regards,
+Samuel
+
+[1]:
+https://lore.kernel.org/alsa-devel/948d5418-44ca-2e60-0c1c-0b16f315feba@sholland.org/
+[2]:
+https://lore.kernel.org/linux-sunxi/20220520095654.GK38351@ediswmail.ad.cirrus.com/
 
 _______________________________________________
 linux-amlogic mailing list
