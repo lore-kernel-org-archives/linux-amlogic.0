@@ -4,81 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5649C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 06:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99FF6C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 08:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:To:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EAV/o4NnCXhzbaNZdLo5NWGCRM1hhNV660TQ2gcfPVo=; b=DUGhbMx6Ec4zBE
-	joU+AgEo8d3JKNHcNMWqAzLHmOwMmXk6HezKGtmbb5GWtfwGOm/unsTo0L3WBfDrB3z3ex8dZZv+K
-	KG1NsROd9kKIjCNy8pOPD9n5xW7wdy6g6Z2EBr/qr2EKO4IeocJa1Szn9BJByoHxIHbCHMvSgyb/g
-	eLR5vqM7C7z1TNFx6CozzYKQ6zJr49kQsp7MYRC3XhM2jaFUcq2sV2GXPLWgj1IojvM7zGHVD9LfG
-	Lgh90+SQlidG6LM8FMNuMS1SgeU3k1a3jdwQmj33/z7t2mo53EX183a3vrX3Pyl/zZEtc7bAgKjQD
-	5Hks2DCc5Vau091GkfIg==;
+	List-Owner; bh=iExWTfBc8FGJUy2VVRpXBnCOaQxNiyqEPDoeSXaAYRg=; b=vDG8g4T15NJIxy
+	jUM2m2PwMRPxvBJH3eW1jG1NFlI4VdVa51kXPHPQYrFxw1NZrCCflbaDrQgIEdvl9wYkuXEG2YmlI
+	n6q+lPBe3cCS/z5DGbXfrlU5Q9zVUn36pK7cs4b9WscChLwu2zw3/FvSmIKfjax1Inf3l7D1IW2Xh
+	r2OIoj3JHpKtjn2JWKRyRW0aWYkXMefu7iZH78IwuxIbcyFEDD6rYPs+cRb7IfR8kUt8dQNJLN9xG
+	wnhw/u+l50N0leHiw62gNl3Y7UnWc0io71iw7PFCik6stI/38eTxI+bFMAN0kFCP0ufn3HH5SmAYo
+	zrfUm4kQlbebLaUesyGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzYN5-006DiE-Mt; Fri, 10 Jun 2022 06:43:51 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1nzZoz-006iRk-HO; Fri, 10 Jun 2022 08:16:45 +0000
+Received: from mga04.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzYMz-006Deu-3s
-	for linux-amlogic@lists.infradead.org; Fri, 10 Jun 2022 06:43:50 +0000
-Received: by mail-wm1-x336.google.com with SMTP id l2-20020a05600c4f0200b0039c55c50482so662839wmq.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jun 2022 23:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+pMYTdTOwcWkh7F/q0j0AiuTSMLZ7GoNW5PGLysPGgQ=;
-        b=RY0+3FU0v4gL04KoZBho/SaD7j9RO8it3RTo+CNH9f+5KS/uvSeAfZCjs0d34jJGB5
-         lsoRPDGq0g7zFmKVmMm0g1grQHXNaARt5wgIXnY/W/11KM+wTFGwGHvICwf8Ji2BKm2B
-         irT9Uk2ydvgv7peGrN1GShuBnLBMnjAjiCdivYPNWxVrSF7gp7p3ilC9qi4HYXj9DA9N
-         6hJmKhFeJbhMmr3htXMx6ng1NDUuitPa9w/FilqUhftxR6wBQwBwg6f8Vk5NxUWTpZGG
-         jIq/cILt9VsVBgJY5KWln8kaXo/HJqXr0+Cn0wVHZNER1aTJ8xiPTs4kGi88gRT9H4n7
-         2I4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+pMYTdTOwcWkh7F/q0j0AiuTSMLZ7GoNW5PGLysPGgQ=;
-        b=OAG8Jg5nsCstWJgyv1W1R3duE3X+lemslf+jSWCs+CbBVK8VM3MFinuiP2/mVt3mUi
-         bJBsxm3PIqVTjP+0mJOOS9fqW/RLsPItMyfnVqQjQ+05qC+RX4jmShYqkCeTeC6oLenr
-         cNr13winXDfmvdcsQSjrp2j5NHbbplNgXY6cbcmkMjSD7RWFebezdVyZes5gzR1RUVo5
-         hrMacjZdbICsDG2FHrq7QhVz0g6/CGHlwqnzQJaPo8z55tawUMtrMMPBsDkeNna9ri4d
-         wWPNgCPwTP3s1sBFM9OyhaAumcZ4C7MrGc52kLxG89VRWnwpe0qeC/5PciEKl9skqID1
-         BQhQ==
-X-Gm-Message-State: AOAM533KnQrsEG+9Dn8rEUhYHkuPU+dMKUpXh1AnZO2fFjAsmGwtMQLt
-	lRBwDgNoLjLfnsck8UdzAhY7eA==
-X-Google-Smtp-Source: ABdhPJyfRLX7Z45385BozdvtX7Q1i5LrdI5pS4W17si77omQpV9Jutm5XmEuywAMqOBLbVOjy6g81g==
-X-Received: by 2002:a7b:cd91:0:b0:39c:4a18:1533 with SMTP id y17-20020a7bcd91000000b0039c4a181533mr7051332wmj.148.1654843422354;
-        Thu, 09 Jun 2022 23:43:42 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:27b0:82d9:d0c6:702a])
-        by smtp.gmail.com with ESMTPSA id i65-20020a1c3b44000000b0039c5a765388sm1799916wma.28.2022.06.09.23.43.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 23:43:41 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Carlo Caione <carlo@endlessm.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	Miaoqian Lin <linmq006@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	Russell King <linux@armlinux.org.uk>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] ARM: meson: Fix refcount leak in meson_smp_prepare_cpus
-Date: Fri, 10 Jun 2022 08:43:38 +0200
-Message-Id: <165484341553.1385009.11750075420975194525.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220512021611.47921-1-linmq006@gmail.com>
-References: <20220512021611.47921-1-linmq006@gmail.com>
+	id 1nzZop-006iO6-Hq
+	for linux-amlogic@lists.infradead.org; Fri, 10 Jun 2022 08:16:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654848995; x=1686384995;
+  h=message-id:date:mime-version:to:cc:references:from:
+   subject:in-reply-to:content-transfer-encoding;
+  bh=xB+8lCXM5ehOpPzqxNz9AwgTMfQZq9K7WuVY39UAKsA=;
+  b=eEjGoOX1U4ne0E5RwG+KnwxuxG7jQRvvh0UnOqJJjfXW499Y7oktHEo9
+   GrTLq7dNsvE8+PsOYGjDltMyze3S0p2xdPH5/v1pYtcaelbX+g4MeEWTc
+   MqyqH0cSrcRr9XKdPbxKQOPJbZ5FDvNjlQzoumLnP+cCHWyaMLTwl7kBA
+   ExA6CPvFApWYajJ9ffK08UYYWeeLiZsMNHbk1N+jCw4MjxWw5L46E56Df
+   czBRrVNMtF+3Tvs+r2YoaQ3hnwwV0xnhDZawtB21qBKR6u5kyCrY/BMiw
+   rr+E7IxFFkVHRf1UUxONOc5vehw9HsSm9aMJjbjHF6WCh0Hyx3idamdI5
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="276331436"
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
+   d="scan'208";a="276331436"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 01:16:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
+   d="scan'208";a="724856825"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
+  by fmsmga001.fm.intel.com with ESMTP; 10 Jun 2022 01:16:27 -0700
+Message-ID: <dfd65190-fe38-3189-70fa-6b2c31ebecdf@linux.intel.com>
+Date: Fri, 10 Jun 2022 11:17:55 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.8.1
+Content-Language: en-US
+To: Matthias Kaehlcke <mka@chromium.org>
+Cc: hkallweit1@gmail.com, gregkh@linuxfoundation.org,
+ stern@rowland.harvard.edu, linux-usb@vger.kernel.org,
+ quic_jackp@quicinc.com, tunguyen@apm.com, linux-amlogic@lists.infradead.org
+References: <c4e9f0d8-c736-1153-3f32-b85e7024b3fe@linux.intel.com>
+ <20220609120336.831533-1-mathias.nyman@linux.intel.com>
+ <YqIUsP437G8g75YS@google.com>
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [RFT PATCH] xhci: Fix null pointer dereference in resume if xhci
+ has only one roothub
+In-Reply-To: <YqIUsP437G8g75YS@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220609_234345_184050_59E8E417 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20220610_011635_649422_1A30E468 
+X-CRM114-Status: GOOD (  18.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,48 +79,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Thu, 12 May 2022 06:16:10 +0400, Miaoqian Lin wrote:
-> of_find_compatible_node() returns a node pointer with refcount
-> incremented, we should use of_node_put() on it when done.
-> Add missing of_node_put() to avoid refcount leak.
+*On 9.6.2022 18.41, Matthias Kaehlcke wrote:
+> On Thu, Jun 09, 2022 at 03:03:36PM +0300, Mathias Nyman wrote:
+>> In the re-init path xhci_resume() passes 'hcd->primary_hcd' to hci_init(),
+>> however this field isn't initialized by __usb_create_hcd() for a HCD
+>> without secondary controller.
+>>
+>> xhci_resume() is called once per xHC device, not per hcd, so the extra
+>> checking for primary hcd can be removed.
+>>
+>> Fixes: e0fe986972f5 ("usb: host: xhci-plat: prepare operation w/o shared hcd")
+>> Reported-by: Matthias Kaehlcke <mka@chromium.org>
+>> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+>> ---
+>>   drivers/usb/host/xhci.c | 15 +++++----------
+>>   1 file changed, 5 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+>> index f0ab63138016..9ac56e9ffc64 100644
+>> --- a/drivers/usb/host/xhci.c
+>> +++ b/drivers/usb/host/xhci.c
+>> @@ -1107,7 +1107,6 @@ int xhci_resume(struct xhci_hcd *xhci, bool hibernated)
+>>   {
+>>   	u32			command, temp = 0;
+>>   	struct usb_hcd		*hcd = xhci_to_hcd(xhci);
+>> -	struct usb_hcd		*secondary_hcd;
+>>   	int			retval = 0;
+>>   	bool			comp_timer_running = false;
+>>   	bool			pending_portevent = false;
+>> @@ -1214,23 +1213,19 @@ int xhci_resume(struct xhci_hcd *xhci, bool hibernated)
+>>   		 * first with the primary HCD, and then with the secondary HCD.
+>>   		 * If we don't do the same, the host will never be started.
+>>   		 */
+>> -		if (!usb_hcd_is_primary_hcd(hcd))
+>> -			secondary_hcd = hcd;
+>> -		else
+>> -			secondary_hcd = xhci->shared_hcd;
+>> -
+>>   		xhci_dbg(xhci, "Initialize the xhci_hcd\n");
+>> -		retval = xhci_init(hcd->primary_hcd);
+>> +		retval = xhci_init(hcd);
+>>   		if (retval)
+>>   			return retval;
+>>   		comp_timer_running = true;
+>>   
+>>   		xhci_dbg(xhci, "Start the primary HCD\n");
 > 
+> Is the log still correct? IIUC this now isn't necessarily the primary HCD.
+
+It's still correct as this is always the xhci->main_hcd, the one that is created first.
+There could be a better word than "primary", but my brain is accustomed to seeing this
+line while debugging.
+
+
 > 
+>> -		retval = xhci_run(hcd->primary_hcd);
+>> -		if (!retval && secondary_hcd) {
+>> +		retval = xhci_run(hcd);
+>> +		if (!retval && xhci->shared_hcd) {
+>>   			xhci_dbg(xhci, "Start the secondary HCD\n");
+> 
+> ditto
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/arm)
+same, always xhci->shared_hcd, the one that is created second.
 
-[1/1] ARM: meson: Fix refcount leak in meson_smp_prepare_cpus
-      https://git.kernel.org/amlogic/c/34d2cd3fccced12b958b8848e3eff0ee4296764c
+> 
+>> -			retval = xhci_run(secondary_hcd);
+>> +			retval = xhci_run(xhci->shared_hcd);
+>>   		}
+>> +
+>>   		hcd->state = HC_STATE_SUSPENDED;
+>>   		if (xhci->shared_hcd)
+>>   			xhci->shared_hcd->state = HC_STATE_SUSPENDED;
+> 
+> Tested-by: Matthias Kaehlcke <mka@chromium.org>
 
-These changes has been applied on the intermediate git tree [1].
-
-The v5.20/arm branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Thanks for testing
+-Mathias
 
 _______________________________________________
 linux-amlogic mailing list
