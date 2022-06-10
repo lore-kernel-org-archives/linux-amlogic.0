@@ -4,140 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F6BEC43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 06:37:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7220C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jun 2022 06:42:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ozLW+sN8tKIKWJe383UDrlWMCHbeH9/QnK1Yf3V8irM=; b=j6SHAth72YCH83
-	WJiJx/PO4RdUbqCuJpSwpVRfiRKrCjipc+qlhORpex71Cv7MJi+T0ZruZg9u2OmhusPAELc3MOzZx
-	ix1zGn7vxGFO1n7uDdmgAr0d80194kax1s6rIy1Z1Tmn47jeM65QwPCydByYB8fKt/fwXEjrh8dZL
-	TSyIzNxFq6Yh3JiWjceTfgwecvmTRx9hDrc5CZYvxhuhVep5w3BUuXv7qFk0Z7fqHfpUbJjyVl5uW
-	3MOWliFOS46ckeSc6Dhys87bzqsVoRMZI8YmRUTUnitY9CeDRWkWMgEvgrcuKL5gWB1zYJqhXf0xq
-	smIYl48KiVZLKykIfo4g==;
+	List-Owner; bh=Ai44ShRjJy0DS3z+BUpCzjfverbBSpfx3qStbzAziGo=; b=fjzP0Ylx55VzjX
+	In6zSzSH6F1CAPW4wG4DI4Z43oYiMucGTjjfn0h2FVroHdhQz3vuQsI/d7VDM8VCu8C6zKDsSteNx
+	KXZl0sJPpGI/rPKNDfkKE+On3peQiil/c0fX2mvm67jwWrCr/jVZxjFkzy4OfZsM42BEE6z1QbexJ
+	PwaHWnlxYwccCGGmpIW8FvcRetlNofndqKYEIIL+nu4qpZDr2QG2U57YjoS2ZObtvYxaIGwuVJbqV
+	42DUo0Dn3wj3OX4riBEmdtAWlvGUIB7QnjYTBxSfaIwnAYI4D32cGQz4GF5FaQmgvK80Jy3xZjyMT
+	RXDjwX39tnX9QPrat7Dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzYGu-006Baa-Qj; Fri, 10 Jun 2022 06:37:28 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1nzYLT-006D9P-Cj; Fri, 10 Jun 2022 06:42:11 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzYGq-006BWj-5s
-	for linux-amlogic@lists.infradead.org; Fri, 10 Jun 2022 06:37:26 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id z9so6641149wmf.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jun 2022 23:37:22 -0700 (PDT)
+	id 1nzYLO-006D6v-6l
+	for linux-amlogic@lists.infradead.org; Fri, 10 Jun 2022 06:42:10 +0000
+Received: by mail-wr1-x434.google.com with SMTP id c21so2072891wrb.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jun 2022 23:42:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Qxlw/2GeYPhBz4i8FzCqobc8aHph2WQJ2uzH+wlAQPM=;
-        b=YvKD/lnZFHPf9Bklm5hR2t0kTgFB1/rXSkgOKvxFTago0OfV/XXVBnr65QfdQ0sIbE
-         X56d5w92lO93EaOJsDJ8oCNGyjZkcJXPRSg9xTkOKhWDw62K7tpcO84Az2vOBRZU/r3+
-         YIHnLV0yk1ox4ibJDxo/xtHUE91KPK5nhGt24yQglgyRLlAN46Y1Z1t0+GvzN7M+MEou
-         tOdQLaDCWTLurM3ng8g7elKpPBlMcfWMNnTz6GEuMIGKZgA7WgUpL2gOP6VsKo5/EHPb
-         626ZTuTKw9tktPSgibPC7QlWbKT0XcsOV4TdzYgmUmuC1ODYErjWurNuno/msyBC5MwG
-         9u4A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=zMNCk/31aUciAiebJKdTYPV4j9Vtd2J/5ScdJkdhTD0=;
+        b=a7Kl+RQHfdntGugzD0xjDrfMWJAGDI+fDDuTxoAllENKRCEjKkhj1TU1m3rJkt43pV
+         u8KBobX0nLmOvcyJSSy+9o7GRnE82IU6qUwDCv5rpYbHAFcjg2qtSi23GtIlO6NhSrcS
+         Mx8KVY6hqcYiCLaq6ppYN3VmWhyX2rK3Uumm14LSROEfumUby0ZRwrcJ8gWCMscn3ZQ8
+         KbD/EqO3uhu+gaYi2hNjv+dOO2auTmxCXZu9flAnxh1bPAJigTaMfjcmKSmY3/rN7gJM
+         CgR2AncNE44rlabNv82swyVUm5vVJoQ7v0/2iowjfs5jzKUeF4iMFtx5lKVjszSH16pB
+         lDBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Qxlw/2GeYPhBz4i8FzCqobc8aHph2WQJ2uzH+wlAQPM=;
-        b=Nl4c+YsVzaRoiF+PIK+gI+eguxmYLtxEP2TR3AimKe60zDqrj0hMmWxvtLPzu15jAq
-         qoApuUkZEH4/ceBb8AdRT0rwZb14S5l4AhaO0o8JdHhtaJAzE2xmNtnYNPvjES4EaF2v
-         Ff1VbKFTsAnyYbrwpwTHPg3cvxb5IFx/WWfGSLQVs35mQxP9axy7+1edsNwp8kgXkGlZ
-         kv+5mPqH15CKI4TA5A93PWXRE6ZBZd9eWcZZReJQrJmgVIK1fAbCvo0kkPMmUOaFN+c+
-         uL6R3TJabryMk3dGAumCqavQ5uZNa6+onNDmuyTV/XFjJi6W778SQfLdyjZE83dbTzdv
-         UiCw==
-X-Gm-Message-State: AOAM5330Jenfr6YXhGAHoj7ymctg8XwFeWhFiVX148RW8EIcTZiUPMYb
-	Ioc6df2FujcPQ1ZX+xzDTnNwVw==
-X-Google-Smtp-Source: ABdhPJw4Hge4NDaRn0TL71ijVSQhRo1MhCaO3HbTb1tYRGHCORKkku8fnKoEAx9FGxDoG3CaWVnJNw==
-X-Received: by 2002:a1c:4e03:0:b0:39c:5bbc:e0d2 with SMTP id g3-20020a1c4e03000000b0039c5bbce0d2mr7034980wmh.184.1654843041123;
-        Thu, 09 Jun 2022 23:37:21 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:27b0:82d9:d0c6:702a])
-        by smtp.gmail.com with ESMTPSA id 2-20020a05600c228200b0039482d95ab7sm1729030wmf.24.2022.06.09.23.37.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 23:37:20 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	soc@kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	Olof Johansson <olof@lixom.net>,
-	arm@kernel.org
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	linux-mediatek@lists.infradead.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-tegra@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Tero Kristo <kristo@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	linux-omap@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	linux-gpio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Nishanth Menon <nm@ti.com>,
-	devicetree@vger.kernel.org,
-	Chen-Yu Tsai <wens@csie.org>,
-	linux-arm-msm@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-kernel@vger.kernel.org,
-	Andrew Jeffery <andrew@aj.id.au>,
-	linux-input@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Peter Rosin <peda@axentia.se>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andy Gross <agross@kernel.org>,
-	Michal Simek <michal.simek@xilinx.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	linux-sunxi@lists.linux.dev,
-	Bjorn Andersson <bjorn.andersson@linaro.org>,
-	linux-samsung-soc@vger.kernel.org,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	=?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Li Yang <leoyang.li@nxp.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Wei Xu <xuwei5@hisilicon.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Joel Stanley <joel@jms.id.au>,
-	linux-rockchip@lists.infradead.org
-Subject: Re: (subset) [PATCH v2 00/48] dt-bindings: input: gpio-keys: rework matching children
-Date: Fri, 10 Jun 2022 08:37:18 +0200
-Message-Id: <165484301356.1384204.15957178175784526690.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=zMNCk/31aUciAiebJKdTYPV4j9Vtd2J/5ScdJkdhTD0=;
+        b=bdbialEUxL07yJN5LZKMYxgMnWYcBKg0nEWzkH3sYFMzfVHq8GtxRsm6RfGfSPxYir
+         Ct76rpPe/0N16i/chwcKhcq89yj3BCTO1FzVZh55s5L8nXwkJNCnS5p0RiPCbyc34d5q
+         Gr+qVxrydOkveU+o+ghM0uU9CFM2KrkDbUrNBb8D+KveQnMhUojlOSprHiSPmboTNgbm
+         aVgTi5Fy797wylMsB1jT4Pgzakqk2cdyzxYHrGDbNmwiYstBdBQN5ZetK5uamfRFwSvu
+         1yiRbxXGgI35TTm1R4J7CIxASq+DUTdRbJhZnj+mbSxTlUoYrX5JK3ajKXDBO5UXOgUK
+         0RZQ==
+X-Gm-Message-State: AOAM530Fp7moYCYXNH7SktDKEGBLvVl+UUwCuo2LWcE3DgOfFl8Jlmw2
+	ljnuDEbQlJfApbBuWrBgFG+Flg==
+X-Google-Smtp-Source: ABdhPJw+50PDWQ7tCG/zfY+Q7ldNoggWeqwArBqWYMbSFTVY9Q9vBf59wpT5cXbUD2OQct6Zm9qU/Q==
+X-Received: by 2002:adf:ed45:0:b0:210:2f9c:f269 with SMTP id u5-20020adfed45000000b002102f9cf269mr42673305wro.470.1654843323444;
+        Thu, 09 Jun 2022 23:42:03 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:27b0:82d9:d0c6:702a? ([2001:861:44c0:66c0:27b0:82d9:d0c6:702a])
+        by smtp.gmail.com with ESMTPSA id k12-20020adfd84c000000b0021126891b05sm26247256wrl.61.2022.06.09.23.42.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 23:42:03 -0700 (PDT)
+Message-ID: <c6a152af-dc8a-c3ec-3abb-015328554fbd@baylibre.com>
+Date: Fri, 10 Jun 2022 08:42:02 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 1/1] arm64: dts: meson: add gpio-fan control to
+ GS-King-X
+Content-Language: en-US
+To: Furkan Kardame <f.kardame@manjaro.org>
+Cc: khilman@baylibre.com, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20220516122511.40062-1-f.kardame@manjaro.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220516122511.40062-1-f.kardame@manjaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220609_233724_508719_78FB747D 
-X-CRM114-Status: GOOD (  15.46  )
+X-CRM114-CacheID: sfid-20220609_234206_297902_F5101CE2 
+X-CRM114-Status: GOOD (  17.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,53 +89,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Thu, 9 Jun 2022 13:37:21 +0200, Krzysztof Kozlowski wrote:
-> Merging
-> =======
-> 1. dt-bindings: rebased on top of Rob's:
->    https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
+On 16/05/2022 14:25, Furkan Kardame wrote:
+> GS-King-X has a single speed GPIO fan which is always-on by default. If
+> we add controls for the fan and a trip point, the fan stays off most of
+> the time, reducing background noise from the unit.
 > 
-> 2. DTS patches are independent. They can be picked up directly by sub-arch
->    maintainers, by Arnd or Olof, or eventually by me (if you wish).
+> Signed-off-by: Furkan Kardame <f.kardame@manjaro.org>
+> ---
+>   .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 26 +++++++++++++++++++
+>   1 file changed, 26 insertions(+)
 > 
-> [...]
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> index 6c7bfacba..243410913 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> @@ -19,6 +19,15 @@ aliases {
+>   		rtc0 = &rtc;
+>   		rtc1 = &vrtc;
+>   	};
+> +
+> +	gpio_fan: gpio-fan {
+> +		compatible = "gpio-fan";
+> +		gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+> +		/* Using Dummy Speed */
+> +		gpio-fan,speed-map = <0 0
+> +					1 1>;
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/arm64-dt)
+The speed-map is not correctly indented, it should be:
 
-[07/48] arm64: dts: amlogic: correct gpio-keys properties
-        https://git.kernel.org/amlogic/c/4956be9944d1fb23107f27bad8a2cca0fa167443
-[08/48] arm64: dts: amlogic: align gpio-key node names with dtschema
-        https://git.kernel.org/amlogic/c/4fd9afd894ebe5831dbd737e6ca7b6de14da7fda
+gpio-fan,speed-map = <0 0>, <1 1>;
 
-These changes has been applied on the intermediate git tree [1].
+> +		#cooling-cells = <2>;
+> +		};
 
-The v5.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+This bracked is not correctly aligned
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+>   
+>   	gpio-keys-polled {
+>   		compatible = "gpio-keys-polled";
+> @@ -131,3 +140,20 @@ &tdmout_a {
+>   &tohdmitx {
+>   	status = "okay";
+>   };
+> +
+> +&cpu_thermal {
+> +	trips {
+> +		cpu_active: cpu-active
+> +			temperature = <60000>; /* millicelsius */
+> +			hysteresis = <2000>; /* millicelsius */
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map {
+> +			trip = <&cpu_active>;
+> +			cooling-device = <&gpio_fan 1 THERMAL_NO_LIMIT>;
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+This should be: cooling-device = <&gpio_fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+> +		};
+> +	};
+> +};
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
+Thanks,
 Neil
 
 _______________________________________________
