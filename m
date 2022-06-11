@@ -4,80 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B740C43334
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Jun 2022 06:49:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14B3FC43334
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Jun 2022 07:33:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Date:Message-Id:Subject:Mime-Version
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Ovb1XLmb/2C/Xtt4T++hfFN8zS6B6faQgkgrjELe4Z4=; b=zFjZEfAxn0ClKA
-	So1wwGoLsYFzH8WRDOyV/Y98oSTM+1Lt1fG+jJ3F68cjmQE7E+G8xV6V8nw3aYUSFPhEDMpxCyN7p
-	I9fT9NxSF7XC6rn6yRlutqh4aO/1Rosba7bORyzkbH5V5qBjKUxAfrnYAUqOfqq271nVn0GonGgLi
-	M7BeaU4r39tYjlnud6jUh9dSgsulqBiyk9EqfC/l8rZr19f0Arji7/bJEmXGdKVT+iluOukblQlDZ
-	MbdsJtWv/swrdk3a3segU/C8M5yFozTR9l0kRZtXwhjpQd2qcsd86qBUDeRIdM4vGFwnHumYp2opK
-	ofNXU3QsXNJLN9WSCdVQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=17+2yz3py2WiXSDWJ1PbrJRBMnICrnQd0Fru1esXhwI=; b=Vdz1uuY85cRbmO
+	VUWxO8sO9+GtLSAjEMF9yTvFvn1PbKD7+nkL8tUodrYb00bDOHJGiZcxpP23wGbspbP8ihvY5R9EZ
+	XT/sdHscLn+vWUuJ0U4blOPchP/9xSQ/3DT198U7k0lR9bYINLu3Gnd701RhstHC+LY7EAncd7JB7
+	qjbGl40i8QPQAev+CulK9P7MRdYI9g2Wro7CvdvH1xpD8TGJDxeT0nMjzZfUxCe6PiBwquzpADKvG
+	/m1x2UxUmNvjW2GSNlDsehUB7R2qXDAt0ynHjPIr1vmk6IYyAaqQJE9nz4wlBkHi6ZgI/v0ceJd5S
+	GQ1VsfJ8KW6rEdkwIBIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzuwD-00Biq4-3j; Sat, 11 Jun 2022 06:49:37 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1nzvcC-00BroN-JB; Sat, 11 Jun 2022 07:33:00 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nzuwA-00BioW-2a
-	for linux-amlogic@lists.infradead.org; Sat, 11 Jun 2022 06:49:35 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id q15so1049732wrc.11
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jun 2022 23:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :to;
-        bh=2mnLJx/YLtGg6XB3yrCKXBONKfuMv1V1OCyuSTcWLew=;
-        b=UEHygF8XU7HI1eHnGVcveKltbaP0GmmI92POtL5a6zilfHSvYYnTKPrt2HU021uGSd
-         G5IDJoCyRnSK7IDadSVPwtjewfuk/1I2Zw1/FgHm7iE31gWkzUBjUIHjqFA4a6Uwbgsm
-         hPUFrdYQlzW5YipDjGielnHHQjziwUkm+6TRoZXYs0PM5JIL4bi3ra9k4tnOt9sSnzqT
-         Amy17oPNgWQcnWaJs+dJXZgRIUv9IOFNCxH9EyWss/X1mauFtGSKxdw7iIB7bmkNxTuV
-         wurBKBOBfmNNkJE0RcTB5P3edmQdmCz3wlGjgQgoUERW/Fl/t2JhZ89k9TQtjPBQHKZD
-         LudQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:to;
-        bh=2mnLJx/YLtGg6XB3yrCKXBONKfuMv1V1OCyuSTcWLew=;
-        b=0kKfJYrQFMiNzQygwyFNhwg3jW3QzjmG0cYfZsre3fh7a3E2nGNl3UMtuniQDteUYf
-         5nY18pY+i97DV9QcUe+Bttf7hcdHnbz2yAPiBFrzsUThaw8CyHEMjA/sdzvQx1KNrY4I
-         /uyGKNSPAZlgUHb87hYNvo9dDNhddCTYYiq646bajId7rbTjWahY2mxcrzAzNQeeUrHv
-         qBMQMJtyOq4GvEQ85quyCDWTPjOldb4jxQRehxLpXAirIq3gC1vtCSvPI/rLHgL/JIka
-         vQTbjvTSsh8Y2kpRsiWHNhl+upnxA9X4nu7ZPATVhHfAEJEucq79qC9r7Ct1uTECT+tZ
-         ReyQ==
-X-Gm-Message-State: AOAM530RsDrEU+oKIYZn+zFQZTGErZGOR93cw6xuiaRA9vvbIVCzzoVu
-	Jj3ZzEN/fuW0F1rSRZrS+QE=
-X-Google-Smtp-Source: ABdhPJxHNyWOzUNETd/M21rDxElmX7TvMc2ZdG8j8u5bGnHDc5kubegQK/UQxGq7RhBoJ4IviPS9Kg==
-X-Received: by 2002:a5d:4c47:0:b0:210:2f9f:a21b with SMTP id n7-20020a5d4c47000000b002102f9fa21bmr48064948wrt.493.1654930168120;
-        Fri, 10 Jun 2022 23:49:28 -0700 (PDT)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id k11-20020a056000004b00b0020d02262664sm1580865wrx.25.2022.06.10.23.49.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 10 Jun 2022 23:49:27 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.100.31\))
-Subject: Regression in 5.18.3 from "xhci: Set HCD flag to defer primary
+	id 1nzvc9-00BrnR-Q4
+	for linux-amlogic@lists.infradead.org; Sat, 11 Jun 2022 07:32:59 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by sin.source.kernel.org (Postfix) with ESMTPS id D043ECE39BC;
+	Sat, 11 Jun 2022 07:32:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC21AC3411E;
+	Sat, 11 Jun 2022 07:32:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1654932772;
+	bh=0L+NbLxu5/2Vf8Nu/sGq044kwZeuPfMPeOJvnd7ulEg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X1ejGEtzXQNuZ40KpwuykTjm7Xh94aS1JPxEa8XqiAsFNj20GYZ0zhdKSX4sbwvh3
+	 G46dU1BG5xlQsxQd5VghamPbZf3XT2XlDg0X8hzk3NNcaaOZFovJahGEL0HQXHv1Lp
+	 X15B/wwyfTXUPJrMiq0yvMdUqh4gqQLWKA2KQS8I=
+Date: Sat, 11 Jun 2022 09:32:47 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>,
+	Mathias Nyman <mathias.nyman@linux.intel.com>,
+	Chris Chiu <chris.chiu@canonical.com>, linux-usb@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, stable@vger.kernel.org,
+	LKML <linux-kernel@vger.kernel.org>,
+	Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: Regression in 5.18.3 from "xhci: Set HCD flag to defer primary
  roothub registration"
-Message-Id: <743F7369-2794-4189-8891-5DA62E4B62DA@gmail.com>
-Date: Sat, 11 Jun 2022 10:49:23 +0400
-To: Kishon Vijay Abraham I <kishon@ti.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Mathias Nyman <mathias.nyman@linux.intel.com>,
- Chris Chiu <chris.chiu@canonical.com>,
- linux-usb@vger.kernel.org,
- linux-amlogic@lists.infradead.org,
- stable@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>
-X-Mailer: Apple Mail (2.3696.100.31)
+Message-ID: <YqRFH2i3s/jL28ZG@kroah.com>
+References: <743F7369-2794-4189-8891-5DA62E4B62DA@gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <743F7369-2794-4189-8891-5DA62E4B62DA@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220610_234934_159068_FA4E7EF8 
-X-CRM114-Status: UNSURE (   4.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220611_003258_064917_92F78332 
+X-CRM114-Status: GOOD (  11.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,21 +74,24 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Q29tbWl0IDZjNjRhNjY0ZTFjZmYzMzllYzY5OGQ4MDNmYThjYmI5YWY1ZDk1Y2Ug4oCceGhjaTog
-U2V0IEhDRCBmbGFnIHRvIGRlZmVyCnByaW1hcnkgcm9vdGh1YiByZWdpc3RyYXRpb27igJ0gYWRk
-ZWQgZm9yIExpbnV4IDUuMTguMyBjYXVzZWQgYSByZWdyZXNzaW9uIG9uCnNvbWUgQW1sb2dpYyBT
-OTEyIGRldmljZXMgKG9yaWdpbmFsIHVzZXIgZm9ydW0gcmVwb3J0IHdpdGggYW4gQW5kcm9pZCBU
-ViBib3gKYW5kIGNvbmZpcm1lZCB3aXRoIGEgS2hhZGFzIFZJTTIgYm9hcmQpLiBJIGRvIG5vdCBz
-ZWUgaXNzdWVzIHdpdGggb2xkZXIgUzkwNQooV2VUZUsgUGxheTIpIG9yIG5ld2VyIFM5MjJYIChP
-ZHJvaWQgTjIrKSBkZXZpY2VzIHJ1bm5pbmcgdGhlIHNhbWUga2VybmVsLgpUaGVyZSBhcmUgbm8g
-a2VybmVsIHNwbGF0cyBvciBlcnJvciBtZXNzYWdlcyBidXQgbHN1c2Igc2hvd3Mgbm8gb3V0cHV0
-IGFuZApub3RoaW5nIHdvcmtzLiBTaW1wbGUgcmV2ZXJ0IHJlc3RvcmVzIHRoZSBwcmV2aW91cyBn
-b29kIHdvcmtpbmcgYmVoYXZpb3VyLgoKZG1lc2cgd2l0aCBjb21taXQgaHR0cDovL2l4LmlvLzNa
-VHYKZG1lc2cgd2l0aCByZXZlcnQgaHR0cDovL2l4LmlvLzNaVHcKCknigJltIG5vdCBhIGNvZGVy
-IHNvIHdpbGwgbmVlZCB0byBiZSBmZWQgaW5zdHJ1Y3Rpb25zIHRvIGFzc2lzdCB3aXRoIGRlYnVn
-Z2luZwp0aGUgaXNzdWUgZnVydGhlciBpZiB5b3UgZG9uJ3QgaGF2ZSBhY2Nlc3MgdG8gYW4gQW1s
-b2dpYyBTOTEyIGRldmljZS4gSSBjYW4Kc2hhcmUgZGV2aWNlcyBvbmxpbmUgZm9yIHJlbW90ZSBw
-b2tpbmcgYXJvdW5kIGlmIG5lZWRlZC4KCkNocmlzdGlhbgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+T24gU2F0LCBKdW4gMTEsIDIwMjIgYXQgMTA6NDk6MjNBTSArMDQwMCwgQ2hyaXN0aWFuIEhld2l0
+dCB3cm90ZToKPiBDb21taXQgNmM2NGE2NjRlMWNmZjMzOWVjNjk4ZDgwM2ZhOGNiYjlhZjVkOTVj
+ZSDigJx4aGNpOiBTZXQgSENEIGZsYWcgdG8gZGVmZXIKPiBwcmltYXJ5IHJvb3RodWIgcmVnaXN0
+cmF0aW9u4oCdIGFkZGVkIGZvciBMaW51eCA1LjE4LjMgY2F1c2VkIGEgcmVncmVzc2lvbiBvbgo+
+IHNvbWUgQW1sb2dpYyBTOTEyIGRldmljZXMgKG9yaWdpbmFsIHVzZXIgZm9ydW0gcmVwb3J0IHdp
+dGggYW4gQW5kcm9pZCBUViBib3gKPiBhbmQgY29uZmlybWVkIHdpdGggYSBLaGFkYXMgVklNMiBi
+b2FyZCkuIEkgZG8gbm90IHNlZSBpc3N1ZXMgd2l0aCBvbGRlciBTOTA1Cj4gKFdlVGVLIFBsYXky
+KSBvciBuZXdlciBTOTIyWCAoT2Ryb2lkIE4yKykgZGV2aWNlcyBydW5uaW5nIHRoZSBzYW1lIGtl
+cm5lbC4KPiBUaGVyZSBhcmUgbm8ga2VybmVsIHNwbGF0cyBvciBlcnJvciBtZXNzYWdlcyBidXQg
+bHN1c2Igc2hvd3Mgbm8gb3V0cHV0IGFuZAo+IG5vdGhpbmcgd29ya3MuIFNpbXBsZSByZXZlcnQg
+cmVzdG9yZXMgdGhlIHByZXZpb3VzIGdvb2Qgd29ya2luZyBiZWhhdmlvdXIuCj4gCj4gZG1lc2cg
+d2l0aCBjb21taXQgaHR0cDovL2l4LmlvLzNaVHYKPiBkbWVzZyB3aXRoIHJldmVydCBodHRwOi8v
+aXguaW8vM1pUdwo+IAo+IEnigJltIG5vdCBhIGNvZGVyIHNvIHdpbGwgbmVlZCB0byBiZSBmZWQg
+aW5zdHJ1Y3Rpb25zIHRvIGFzc2lzdCB3aXRoIGRlYnVnZ2luZwo+IHRoZSBpc3N1ZSBmdXJ0aGVy
+IGlmIHlvdSBkb24ndCBoYXZlIGFjY2VzcyB0byBhbiBBbWxvZ2ljIFM5MTIgZGV2aWNlLiBJIGNh
+bgo+IHNoYXJlIGRldmljZXMgb25saW5lIGZvciByZW1vdGUgcG9raW5nIGFyb3VuZCBpZiBuZWVk
+ZWQuCgpEb2VzIDUuMTktcmMxIGFsc28gaGF2ZSB0aGlzIHByb2JsZW0/Cgp0aGFua3MsCgpncmVn
+IGstaAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
+dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
+Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
+Ywo=
