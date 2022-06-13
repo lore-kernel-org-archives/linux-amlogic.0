@@ -4,76 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5E4DC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 08:19:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3630C43334
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 09:40:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7Tmho9OetlgmbcZph3pfAmAoFAUrf3i/MZmHakX0sbQ=; b=mZt8KYJAdT1U3r
-	I1qIy8cUr6ErjvsBLuhwVnDUDeQ7ofMvYfsMRXHnSgNro1uh+TofLTEgC8alWcTRMJcZAI7IWaSvd
-	Pr0Cbt/BbjKY7LfNryFOD8vIF98UYieEBIQa8xLbJMIKGlIhSRqZGpYtmd2KNNec4Po71pA962qJD
-	j570qLxRGLHLqlDYrrXF05ipob9LDWmFysl32+Gc4zlMKtvQuPzPBDrZuO6cEwXyIPucJ3TJrt8Ic
-	b4QcDQwHMdJkTkgJGyMAiQeGJ3hnNkc7vVm+nS2IvLH0GxfGpupBnDr3sFgQtp04rk6ftYnKJx9re
-	FXxmVTW+yjCtlaQHo0Nw==;
+	List-Owner; bh=ZqQjjsp3Ce1v6wYkiPCqHyB4BkzpACfwIMF22kNaquM=; b=F6KsanuQHLrhQu
+	ca4oKbJtwXfVL1JVq+R1ji6JXxBsTUSuilXuUBsk3ZfHMA3lM3xzcbeINbrsgrIy0nIE/VO+5jHN0
+	SLb6TuK2+HqwP8etfLfaKzIs3ODO6UiVnR4QXW1nKV17PftQQnfQq2QZSfPb04oI5zt/Y8hc/47RL
+	WRKSpWK0maM1LREXgFJs+6e62UW69Kxypb/IGIG3eHBR5L/mBq1ZMnbCI1rBGtiRqP0YnDKmDCn5M
+	ywxRVBVVTZoHS+bB8l3Eatn0DtW9m/BuGmk6oWuxMdeY2cEZ4gfJhK9LDAezNstTCCUZkn0IVsXF0
+	3JIN/vnAxKKA5Q1FEVFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0fIP-002EVe-Hm; Mon, 13 Jun 2022 08:19:37 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1o0gYD-002Zws-6n; Mon, 13 Jun 2022 09:40:01 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0fID-002EOf-BF
-	for linux-amlogic@lists.infradead.org; Mon, 13 Jun 2022 08:19:27 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id i17-20020a7bc951000000b0039c4760ec3fso3684817wml.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jun 2022 01:19:24 -0700 (PDT)
+	id 1o0gY8-002Zu3-NA
+	for linux-amlogic@lists.infradead.org; Mon, 13 Jun 2022 09:39:59 +0000
+Received: by mail-wr1-x432.google.com with SMTP id o16so6374788wra.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jun 2022 02:39:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1WMyctGz3kKdq12eI1+meTtyOevW4VDeNZoMvLfkg5o=;
-        b=etM/cmhMDH3xgWDE2zxxotQPQhYQh6NtV/XaHpq675WE+WqrG3o90O3AjU1yd4RFDg
-         c5fuoXnKAi4OPlWmhpiP0eWsko6iMG50MBtpYjBK7DNEAbt778t59KEa5VtVRWgWqXtC
-         pK8SfF8m9UMH/crIArMU9H3zPJiFVoSmx4XymRCqYVpy13eybmSVxp5wt1GC+NoYPsJo
-         rOcGyXS88c4bODnx2tPOSn9gU5QXBE7bEDwNYjgXqjMwCJqoH10vY7f+XSw6fiTbt6uA
-         t1pWP5KyPGRe17GjzDuIDSR0tqv02Jfk5RXbSJCPIxaBEAyezjdq4da7j9tefkVffRus
-         tyuA==
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=MrZPrCpzMv5ZGraAtIMvxCJ7sbcfmkSDpcXF0V3831o=;
+        b=pZkFyjgLzgoi4J/6kncK8psnp1MLuKhj2iKl2jEnO4DyPUu5t94TYF9SK+uiKddRGX
+         EBgm2MQ4YorQJHgraUZqDc9oRu14EMDO18MpcATL/glxJGyvX0JJvdYXVF244lM1tUqY
+         ZKfHqgvOuQvpUb7sadTsBj6Y1a0VzfcJ+cBW5q8OPQJM8bA2sQ/dO36wJf2ClBDoTMzc
+         pQGw6ziZSrQAYMf0K3fXu9MdH+jsddx1lzVSFX6n9GmHK+C5blcxGO1ACyfY8M9xk63x
+         4LnnHYToGytg0ESbfoq5mrNeXEMJStDyxfLjMgeqyE8TJ8nJMObSyZPK/5Tmh+rwjHh5
+         UXrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1WMyctGz3kKdq12eI1+meTtyOevW4VDeNZoMvLfkg5o=;
-        b=S9mGuajJgPCaZp+GGq1eYJ4sl5MeAegAlzSSK8T+XHYO0m2elSCdhpuU4OaNgNpIfA
-         r/cxQ4NaIRyLJq3t3b0cFlhGotrJftflxkAtoM/6tx2p8WYWeUHdmjuEPwNKV4fHAfwK
-         RCcLtjGjh8hrHSi/OvFG82E70iLu4PZ5oCVaN8qd5b+N2DB/rsT3eVAteMbymtSeR5kg
-         G7t3AUyLhThQax3SG4bSFCNhj/fmJpPNl/so4qC2l7VlHyWSeF09hdUhe8Six3sfD0QB
-         yjnqGpkzuQrohg3JBXi0CAlMMiazb/iDu8OSfmRPcMhQtj4d+cKAnwyVNFEkVpAnzYPP
-         qgdw==
-X-Gm-Message-State: AOAM533JOlS81vgwu3KrrgUvq5rBpSUlfn/oKIUYBgMsq9YmQpVJdpdm
-	Rdjdm1WMyEiIRm1/XKzQxK4ljA==
-X-Google-Smtp-Source: ABdhPJyKP86sP8B3Fxw27KCYKVmgS8/s4wLD42HUHsqfz3Mq6/xBkDl04b3Gf1GNB/+glZYiu8VQsw==
-X-Received: by 2002:a05:600c:34cf:b0:39c:4dfb:1398 with SMTP id d15-20020a05600c34cf00b0039c4dfb1398mr13315001wmq.133.1655108363092;
-        Mon, 13 Jun 2022 01:19:23 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:e21a:482:575c:1c8b])
-        by smtp.gmail.com with ESMTPSA id n8-20020a7bc5c8000000b003974860e15esm12385638wmk.40.2022.06.13.01.19.22
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=MrZPrCpzMv5ZGraAtIMvxCJ7sbcfmkSDpcXF0V3831o=;
+        b=Nv26RK96g8MqUo9B2AIX++qWkS1L+bES12GXtcMDn9ByQpgC2Vkrn/71fP90U5v4KC
+         gBpSWEdunJwiE9lW50SSM9me9eb+tc/or5aKWj8+Wi5LioDtUBsP/DVq13+1U71lGLSL
+         qstDvP70R+6x9Djw9JBuo+X6IUdPyLmYJcgpHaL1nU7RJ24jXQS+JkTgx+E4XFWvzo6V
+         wOQHEwuGDLksZ+CTuOR6/DePli3wJANzTOJOZZspgb9LAfvapZ7+l4aYlpoD5N55Xfcd
+         gTr+Kvh63iKNDHZF5qMBwNQyY3NL8XwUUxboRIArLJqat9n8TLb3cO95XFbUQ+9OzKgP
+         YS/g==
+X-Gm-Message-State: AOAM531+arB7i12wsd2B+nWlaNHgD+4pjE34qCwPe5T832CShMec6LQG
+	/ojZsrk712Ju9BPsP+/1hx2BPA==
+X-Google-Smtp-Source: ABdhPJypByM9Jw1bwLYBwoXFLYaEnhkkvavblSHVHzgB0yMEgT0UuxOZdFLWBUNs9o+WNKn4mLmoCA==
+X-Received: by 2002:a05:6000:1a89:b0:219:b255:d874 with SMTP id f9-20020a0560001a8900b00219b255d874mr21656856wry.50.1655113194309;
+        Mon, 13 Jun 2022 02:39:54 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id c130-20020a1c3588000000b0039c693a54ecsm10357994wma.23.2022.06.13.02.39.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 01:19:22 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Furkan Kardame <f.kardame@manjaro.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	khilman@baylibre.com
-Subject: Re: [PATCH v4] arm64: dts: meson: add gpio-fan control to GS-King-X
-Date: Mon, 13 Jun 2022 10:19:20 +0200
-Message-Id: <165510835715.1458195.705062163805484746.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220611170852.19487-1-f.kardame@manjaro.org>
-References: <20220611170852.19487-1-f.kardame@manjaro.org>
+        Mon, 13 Jun 2022 02:39:53 -0700 (PDT)
+References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
+ <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
+ <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
+ <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
+ <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
+ <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
+ <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
+ <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
+ <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
+ <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com>
+ <CAK4VdL28nWstiS09MYq5nbtiL+aMbNc=Hzv5F0-VMuNKmX9R+Q@mail.gmail.com>
+ <1j5yonnp1a.fsf@starbuckisacylon.baylibre.com>
+ <44006194-eab1-7ae2-3cc8-41c210efd0b1@gmail.com>
+ <CACdvmAhcyNXViJgk6o6oAoYvAjAg-NFD74Eym_nGHJx3YAqjzw@mail.gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Da Xue <da@lessconfused.com>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Erico Nunes <nunes.erico@gmail.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org, netdev@vger.kernel.org, "open
+ list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-sunxi@lists.linux.dev
+Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come
+ up at boot
+Date: Mon, 13 Jun 2022 11:10:19 +0200
+In-reply-to: <CACdvmAhcyNXViJgk6o6oAoYvAjAg-NFD74Eym_nGHJx3YAqjzw@mail.gmail.com>
+Message-ID: <1j35g8gavs.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220613_011925_468944_CE80318D 
-X-CRM114-Status: GOOD (  13.35  )
+X-CRM114-CacheID: sfid-20220613_023956_990527_62ED2E60 
+X-CRM114-Status: GOOD (  51.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,44 +108,140 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Sat, 11 Jun 2022 20:08:52 +0300, Furkan Kardame wrote:
-> GS-King-X has a single speed GPIO fan which is always-on by default.
-> If we add controls for the fan and a trip point,
-> the fan stays off most of the time, reducing background
-> noise from the unit.
-> 
-> 
+On Sat 11 Jun 2022 at 17:00, Da Xue <da@lessconfused.com> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.20/arm64-dt)
+> On Wed, Mar 9, 2022 at 3:42 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+>  On 09.03.2022 15:57, Jerome Brunet wrote:
+>  > 
+>  > On Wed 09 Mar 2022 at 15:45, Erico Nunes <nunes.erico@gmail.com> wrote:
+>  > 
+>  >> On Sun, Mar 6, 2022 at 1:56 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>  >>> You could try the following (quick and dirty) test patch that fully mimics
+>  >>> the vendor driver as found here:
+>  >>> https://github.com/khadas/linux/blob/buildroot-aml-4.9/drivers/amlogic/ethernet/phy/amlogic.c
+>  >>>
+>  >>> First apply
+>  >>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=a502a8f04097e038c3daa16c5202a9538116d563
+>  >>> This patch is in the net tree currently and should show up in linux-next
+>  >>> beginning of the week.
+>  >>>
+>  >>> On top please apply the following (it includes the test patch your working with).
+>  >>
+>  >> I triggered test jobs with this configuration (latest mainline +
+>  >> a502a8f0409 + test patch for vendor driver behaviour), and the results
+>  >> are pretty much the same as with the previous test patch from this
+>  >> thread only.
+>  >> That is, I never got the issue with non-functional link up anymore,
+>  >> but I get the (rare) issue with link not going up.
+>  >> The reproducibility is still extremely low, in the >1% range.
+>  > 
+>  > Low reproducibility means the problem is still there, or at least not
+>  > understood completly.
+>  > 
+>  > I understand the benefit from the user standpoint.
+>  > 
+>  > Heiner if you are going to continue from the test patch you sent,
+>  > I would welcome some explanation with each of the changes.
+>  > 
+>  The latest test patch was purely for checking whether we see any
+>  difference in behavior between vendor driver and the mainlined
+>  version. It's in no way meant to be applied to mainline.
+>
+>  > We know very little about this IP and I'm not very confortable with
+>  > tweaking/aligning with AML sdk "blindly" on a driver that has otherwise
+>  > been working well so far.
+>  > 
+>
+>  This touches one thing I wanted to ask anyway: Supposedly Amlogic
+>  didn't develop an own Ethernet PHY, and if they licensed an existing
+>  IP then it should be similar to some other existing PHY (that may
+>  have a driver in phylib).
+>
+>  Then what I'll do is submit the following small change that brought
+>  the error rate significantly down according to Erico's tests.
+>
+>  -       phy_trigger_machine(phydev);
+>  +       if (irq_status & INTSRC_ANEG_COMPLETE)
+>  +               phy_queue_state_machine(phydev, msecs_to_jiffies(100));
+>  +       else
+>  +               phy_trigger_machine(phydev);
+>
+>  > Thx
+>  > 
+>  >>
+>  >> So at this point, I'm not sure how much more effort to invest into
+>  >> this. Given the rate is very low and the fallback is it will just
+>  >> reset the link and proceed to work, I think the situation would
+>  >> already be much better with the solution from that test patch being
+>  >> merged. If you propose that as a patch separately, I'm happy to test
+>  >> the final submitted patch again and provide feedback there. Or if
+>  >> there is another solution to try, I can try with that too.
+>  >>
+>  >> Thanks
+>  >>
+>  >>
+>  >> Erico
+>  > 
+>
+>  Heiner
+>
+> To help reproduce this problem, I have had this problem for as long as I can remember and it still occurs with this patch.
 
-[1/1] arm64: dts: meson: add gpio-fan control to GS-King-X
-      https://git.kernel.org/amlogic/c/b7bfbbbf72fcf95c9a58d6ad0e905de539fba025
+Same here, on both gxl and g12a. Occurrence remains unchanged.
+The is even reproduced if the PHY is switched to polling mode so the
+merged change, related to the IRQ handling, is very unlikely to fix the
+problem.
 
-These changes has been applied on the intermediate git tree [1].
+>
+> This doesn't happen on first boot most of the time. It happens on reboot consistently. I have tested with AML-S805X-CC board, AML-S905X-CC V1, and V2 boards.
+>
 
-The v5.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+On my side, I confirm the network never seems to get stuck in u-boot but
+it might break in Linux, even on the first boot after a power up from
+what I have seen so far.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+> I am on u-boot 22.04 with 5.18.3 which includes the patch.
+> u-boot brings up ethernet on start and can grab an IP.
+> Linux brings up ethernet and can grab an IP.
+> reboot
+> u-boot can grab an IP.
+> Linux does not get anything. 
+> I have to do ip link set dev eth0 down && up once or more to get ethernet to work again.
+> Sometimes it spams meson8b-dwmac c9410000.ethernet eth0: Reset adapter. If it spams this, ethernet is dead and can't be recovered.
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+I tried several things, none showing any improvement so far
+* Make sure LPI/EEE is disabled
+* Add the ethernet reset from the main controller on the MAC
+* Test the various DMA modes of STMMAC
+* Port the differences from u-boot and the vendor kernel in the Phy driver
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+I have also tried to go back in time, up to v4.19 but the problem is actually
+already there. It occurs at lot less though.
+Since v5.6+ the occurence is quite high: approx 1 in 4 boots
+On v4.19: 1 in 50 boots - up to 150.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>
 
--- 
-Neil
+When the problem happen
+* link is reported up
+* ifconfig / MAC is claiming to be sending packets (Tx increasing - no Rx)
+* I see no traffic with wireshark
+
+The packets are getting lost somewhere. Can't say for sure if it is in
+the MAC or the PHY.
+
+> This is fixed via power cycle so I'm assuming some register is not reset or maybe the IP is stuck.
+>
+
+`ethtool -r eth0` also seems to work around the problem.
+This trigs the restart of so many things, it is close to an un/replug of
+the ethernet cable :/
+
+> Best,
+> Da Xue
+
 
 _______________________________________________
 linux-amlogic mailing list
