@@ -4,94 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3630C43334
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 09:40:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92B4C43334
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 09:58:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZqQjjsp3Ce1v6wYkiPCqHyB4BkzpACfwIMF22kNaquM=; b=F6KsanuQHLrhQu
-	ca4oKbJtwXfVL1JVq+R1ji6JXxBsTUSuilXuUBsk3ZfHMA3lM3xzcbeINbrsgrIy0nIE/VO+5jHN0
-	SLb6TuK2+HqwP8etfLfaKzIs3ODO6UiVnR4QXW1nKV17PftQQnfQq2QZSfPb04oI5zt/Y8hc/47RL
-	WRKSpWK0maM1LREXgFJs+6e62UW69Kxypb/IGIG3eHBR5L/mBq1ZMnbCI1rBGtiRqP0YnDKmDCn5M
-	ywxRVBVVTZoHS+bB8l3Eatn0DtW9m/BuGmk6oWuxMdeY2cEZ4gfJhK9LDAezNstTCCUZkn0IVsXF0
-	3JIN/vnAxKKA5Q1FEVFA==;
+	List-Owner; bh=hjT2QEvtmD8A0izFI5dTmKtyR/pKf2nfLC5MV8LEgHA=; b=iMze4b087tsQfj
+	Fnr5Ujg0/vmbumv2u/rXvxWdD6jMRGTbyBNJBJaV+3cF9Pw43IZ5iL4sBe3CQRqOB1nw7Fv6rLnaB
+	64hZGulA4Fe4btUklT9Bm3D1+zDOJwMtJ4baf64DSheiZrzn7TYQCC4ECirHtK3BMImaOP/iw/vkt
+	9+rRXQKkc+IUZZW0pUJp7Mromdf9nJNHAA6GYgO29fBdQgSg47eEbh2gDAgXSbAzYju0Ccg+C5Izb
+	AgUTydY2dO0isOzvMXauliwlBt9OoZyhBckNi/J7civlHBDpdJfKv2ok/Kpc48iXC45IXLgYZmZkx
+	6Iq55L69zGS7mqLN09gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0gYD-002Zws-6n; Mon, 13 Jun 2022 09:40:01 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1o0gpa-002iA7-BR; Mon, 13 Jun 2022 09:57:58 +0000
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0gY8-002Zu3-NA
-	for linux-amlogic@lists.infradead.org; Mon, 13 Jun 2022 09:39:59 +0000
-Received: by mail-wr1-x432.google.com with SMTP id o16so6374788wra.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jun 2022 02:39:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=MrZPrCpzMv5ZGraAtIMvxCJ7sbcfmkSDpcXF0V3831o=;
-        b=pZkFyjgLzgoi4J/6kncK8psnp1MLuKhj2iKl2jEnO4DyPUu5t94TYF9SK+uiKddRGX
-         EBgm2MQ4YorQJHgraUZqDc9oRu14EMDO18MpcATL/glxJGyvX0JJvdYXVF244lM1tUqY
-         ZKfHqgvOuQvpUb7sadTsBj6Y1a0VzfcJ+cBW5q8OPQJM8bA2sQ/dO36wJf2ClBDoTMzc
-         pQGw6ziZSrQAYMf0K3fXu9MdH+jsddx1lzVSFX6n9GmHK+C5blcxGO1ACyfY8M9xk63x
-         4LnnHYToGytg0ESbfoq5mrNeXEMJStDyxfLjMgeqyE8TJ8nJMObSyZPK/5Tmh+rwjHh5
-         UXrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=MrZPrCpzMv5ZGraAtIMvxCJ7sbcfmkSDpcXF0V3831o=;
-        b=Nv26RK96g8MqUo9B2AIX++qWkS1L+bES12GXtcMDn9ByQpgC2Vkrn/71fP90U5v4KC
-         gBpSWEdunJwiE9lW50SSM9me9eb+tc/or5aKWj8+Wi5LioDtUBsP/DVq13+1U71lGLSL
-         qstDvP70R+6x9Djw9JBuo+X6IUdPyLmYJcgpHaL1nU7RJ24jXQS+JkTgx+E4XFWvzo6V
-         wOQHEwuGDLksZ+CTuOR6/DePli3wJANzTOJOZZspgb9LAfvapZ7+l4aYlpoD5N55Xfcd
-         gTr+Kvh63iKNDHZF5qMBwNQyY3NL8XwUUxboRIArLJqat9n8TLb3cO95XFbUQ+9OzKgP
-         YS/g==
-X-Gm-Message-State: AOAM531+arB7i12wsd2B+nWlaNHgD+4pjE34qCwPe5T832CShMec6LQG
-	/ojZsrk712Ju9BPsP+/1hx2BPA==
-X-Google-Smtp-Source: ABdhPJypByM9Jw1bwLYBwoXFLYaEnhkkvavblSHVHzgB0yMEgT0UuxOZdFLWBUNs9o+WNKn4mLmoCA==
-X-Received: by 2002:a05:6000:1a89:b0:219:b255:d874 with SMTP id f9-20020a0560001a8900b00219b255d874mr21656856wry.50.1655113194309;
-        Mon, 13 Jun 2022 02:39:54 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id c130-20020a1c3588000000b0039c693a54ecsm10357994wma.23.2022.06.13.02.39.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 02:39:53 -0700 (PDT)
-References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
- <1jczjzt05k.fsf@starbuckisacylon.baylibre.com>
- <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
- <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com>
- <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
- <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com>
- <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
- <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com>
- <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
- <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com>
- <CAK4VdL28nWstiS09MYq5nbtiL+aMbNc=Hzv5F0-VMuNKmX9R+Q@mail.gmail.com>
- <1j5yonnp1a.fsf@starbuckisacylon.baylibre.com>
- <44006194-eab1-7ae2-3cc8-41c210efd0b1@gmail.com>
- <CACdvmAhcyNXViJgk6o6oAoYvAjAg-NFD74Eym_nGHJx3YAqjzw@mail.gmail.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Da Xue <da@lessconfused.com>, Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Erico Nunes <nunes.erico@gmail.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Kevin Hilman
- <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-amlogic@lists.infradead.org, netdev@vger.kernel.org, "open
- list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- linux-sunxi@lists.linux.dev
-Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come
- up at boot
-Date: Mon, 13 Jun 2022 11:10:19 +0200
-In-reply-to: <CACdvmAhcyNXViJgk6o6oAoYvAjAg-NFD74Eym_nGHJx3YAqjzw@mail.gmail.com>
-Message-ID: <1j35g8gavs.fsf@starbuckisacylon.baylibre.com>
+	id 1o0gmq-002gR9-K5; Mon, 13 Jun 2022 09:55:09 +0000
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25D7jncr030852;
+	Mon, 13 Jun 2022 04:54:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=SAL9QBrR9Hifnxdadv6LtK1riDzGLGAzq1j5dDkQ/eE=;
+ b=YSEazX0uO5GV3d6eprUPFqBpY2HPFw6tjVtpSwFjm3pPOCyD6SFrbQuT8qP8aTpkafDG
+ wEMwsYZTSezO57v7oNilz7MY86TJm4g9OiORe+E7d5kLh74zbgbf6wXjUpBlmEMbG8H6
+ 9xgtekY2JVsWrI1WFghS9KWch1o2j/pFUmPWiGjLFQqZgwvmN/ZSCq4a8Nzev/hxGIaI
+ 067Wj8AJx34nIpY4KIQbEKUU5w5DkIZnl8ZWtlBRglqaIwVerccqsUrkRpF0VTgpw5/W
+ 8eqrcUGfEwdkdNFAaj8W5vDvtbi+DB3ikcOmlpx6B/W4dW4VZCSzcPsBWfNJkdOGtTqz hA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf31py0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 13 Jun 2022 04:54:55 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 13 Jun
+ 2022 10:54:53 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Mon, 13 Jun 2022 10:54:53 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2C2AD11D1;
+	Mon, 13 Jun 2022 09:54:53 +0000 (UTC)
+Date: Mon, 13 Jun 2022 09:54:53 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Mark Brown <broonie@kernel.org>
+CC: Samuel Holland <samuel@sholland.org>, <linux-sunxi@lists.linux.dev>,
+        <peter.ujfalusi@gmail.com>, <pierre-louis.bossart@linux.intel.com>,
+        <linux-imx@nxp.com>, <krzk@kernel.org>, <jarkko.nikula@bitmer.com>,
+        <linux-xtensa@linux-xtensa.org>, <cezary.rojewski@intel.com>,
+        <shawnguo@kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <nicolas.ferre@microchip.com>, <patches@opensource.cirrus.com>,
+        <linux-amlogic@lists.infradead.org>, <srinivas.kandagatla@linaro.org>,
+        <daniel@zonque.org>, <linux-mips@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <nsaenz@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <heiko@sntech.de>,
+        <alsa-devel@alsa-project.org>, <kernel@pengutronix.de>,
+        <jbrunet@baylibre.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        <linux-rockchip@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <lgirdwood@gmail.com>
+Subject: Re: [PATCH 00/56] Specify clock provider directly to CPU DAIs
+Message-ID: <20220613095453.GB38351@ediswmail.ad.cirrus.com>
+References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
+ <165478153064.1052094.1721875477574787769.b4-ty@kernel.org>
+ <2a498819-dbbf-31c1-4145-bbd2d7179bd8@sholland.org>
+ <YqMy/FkxDPKmzdrB@sirena.org.uk>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <YqMy/FkxDPKmzdrB@sirena.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: UiaFdV3e1tP7Nx8vGVE1XxJr6gdm5Oey
+X-Proofpoint-ORIG-GUID: UiaFdV3e1tP7Nx8vGVE1XxJr6gdm5Oey
+X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220613_023956_990527_62ED2E60 
-X-CRM114-Status: GOOD (  51.43  )
+X-CRM114-CacheID: sfid-20220613_025508_698247_049E0C1D 
+X-CRM114-Status: GOOD (  18.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,140 +100,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Fri, Jun 10, 2022 at 01:03:08PM +0100, Mark Brown wrote:
+> On Thu, Jun 09, 2022 at 09:03:15PM -0500, Samuel Holland wrote:
+> > On 6/9/22 8:32 AM, Mark Brown wrote:
+> > > On Thu, 19 May 2022 16:42:22 +0100, Charles Keepax wrote:
+> 
+> Please delete unneeded context from mails when replying.  Doing this
+> makes it much easier to find your reply in the message, helping ensure
+> it won't be missed by people scrolling through the irrelevant quoted
+> material.
+> 
+> > > [22/56] ASoC: sunxi: Update to use set_fmt_new callback
+> > >         commit: 7cc3965fde74c9c725ed01de4ac35bc7d562d16a
+> 
+> > This patch is wrong, which I pointed out earlier[1]. It will break audio on the
+> > Allwinner A33 and A64 SoCs. Charles said he would send a v2[2]. Excluding the
+> > changes to sound/soc/sunxi/sun8i-codec.c from the patch would fix it.
+> 
+> Your mail doesn't say that this will break, it says the change is
+> unexpected.  In any case, please send an incremental fix - there's no
+> need to revert the entire series for this.
 
-On Sat 11 Jun 2022 at 17:00, Da Xue <da@lessconfused.com> wrote:
+Apologies guys was on PTO last week, I will send an incremental
+fix today to patch up the issues.
 
-> On Wed, Mar 9, 2022 at 3:42 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
->  On 09.03.2022 15:57, Jerome Brunet wrote:
->  > 
->  > On Wed 09 Mar 2022 at 15:45, Erico Nunes <nunes.erico@gmail.com> wrote:
->  > 
->  >> On Sun, Mar 6, 2022 at 1:56 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->  >>> You could try the following (quick and dirty) test patch that fully mimics
->  >>> the vendor driver as found here:
->  >>> https://github.com/khadas/linux/blob/buildroot-aml-4.9/drivers/amlogic/ethernet/phy/amlogic.c
->  >>>
->  >>> First apply
->  >>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=a502a8f04097e038c3daa16c5202a9538116d563
->  >>> This patch is in the net tree currently and should show up in linux-next
->  >>> beginning of the week.
->  >>>
->  >>> On top please apply the following (it includes the test patch your working with).
->  >>
->  >> I triggered test jobs with this configuration (latest mainline +
->  >> a502a8f0409 + test patch for vendor driver behaviour), and the results
->  >> are pretty much the same as with the previous test patch from this
->  >> thread only.
->  >> That is, I never got the issue with non-functional link up anymore,
->  >> but I get the (rare) issue with link not going up.
->  >> The reproducibility is still extremely low, in the >1% range.
->  > 
->  > Low reproducibility means the problem is still there, or at least not
->  > understood completly.
->  > 
->  > I understand the benefit from the user standpoint.
->  > 
->  > Heiner if you are going to continue from the test patch you sent,
->  > I would welcome some explanation with each of the changes.
->  > 
->  The latest test patch was purely for checking whether we see any
->  difference in behavior between vendor driver and the mainlined
->  version. It's in no way meant to be applied to mainline.
->
->  > We know very little about this IP and I'm not very confortable with
->  > tweaking/aligning with AML sdk "blindly" on a driver that has otherwise
->  > been working well so far.
->  > 
->
->  This touches one thing I wanted to ask anyway: Supposedly Amlogic
->  didn't develop an own Ethernet PHY, and if they licensed an existing
->  IP then it should be similar to some other existing PHY (that may
->  have a driver in phylib).
->
->  Then what I'll do is submit the following small change that brought
->  the error rate significantly down according to Erico's tests.
->
->  -       phy_trigger_machine(phydev);
->  +       if (irq_status & INTSRC_ANEG_COMPLETE)
->  +               phy_queue_state_machine(phydev, msecs_to_jiffies(100));
->  +       else
->  +               phy_trigger_machine(phydev);
->
->  > Thx
->  > 
->  >>
->  >> So at this point, I'm not sure how much more effort to invest into
->  >> this. Given the rate is very low and the fallback is it will just
->  >> reset the link and proceed to work, I think the situation would
->  >> already be much better with the solution from that test patch being
->  >> merged. If you propose that as a patch separately, I'm happy to test
->  >> the final submitted patch again and provide feedback there. Or if
->  >> there is another solution to try, I can try with that too.
->  >>
->  >> Thanks
->  >>
->  >>
->  >> Erico
->  > 
->
->  Heiner
->
-> To help reproduce this problem, I have had this problem for as long as I can remember and it still occurs with this patch.
-
-Same here, on both gxl and g12a. Occurrence remains unchanged.
-The is even reproduced if the PHY is switched to polling mode so the
-merged change, related to the IRQ handling, is very unlikely to fix the
-problem.
-
->
-> This doesn't happen on first boot most of the time. It happens on reboot consistently. I have tested with AML-S805X-CC board, AML-S905X-CC V1, and V2 boards.
->
-
-On my side, I confirm the network never seems to get stuck in u-boot but
-it might break in Linux, even on the first boot after a power up from
-what I have seen so far.
-
-> I am on u-boot 22.04 with 5.18.3 which includes the patch.
-> u-boot brings up ethernet on start and can grab an IP.
-> Linux brings up ethernet and can grab an IP.
-> reboot
-> u-boot can grab an IP.
-> Linux does not get anything. 
-> I have to do ip link set dev eth0 down && up once or more to get ethernet to work again.
-> Sometimes it spams meson8b-dwmac c9410000.ethernet eth0: Reset adapter. If it spams this, ethernet is dead and can't be recovered.
-
-I tried several things, none showing any improvement so far
-* Make sure LPI/EEE is disabled
-* Add the ethernet reset from the main controller on the MAC
-* Test the various DMA modes of STMMAC
-* Port the differences from u-boot and the vendor kernel in the Phy driver
-
-I have also tried to go back in time, up to v4.19 but the problem is actually
-already there. It occurs at lot less though.
-Since v5.6+ the occurence is quite high: approx 1 in 4 boots
-On v4.19: 1 in 50 boots - up to 150.
-
->
-
-When the problem happen
-* link is reported up
-* ifconfig / MAC is claiming to be sending packets (Tx increasing - no Rx)
-* I see no traffic with wireshark
-
-The packets are getting lost somewhere. Can't say for sure if it is in
-the MAC or the PHY.
-
-> This is fixed via power cycle so I'm assuming some register is not reset or maybe the IP is stuck.
->
-
-`ethtool -r eth0` also seems to work around the problem.
-This trigs the restart of so many things, it is close to an un/replug of
-the ethernet cable :/
-
-> Best,
-> Da Xue
-
+Thanks,
+Charles
 
 _______________________________________________
 linux-amlogic mailing list
