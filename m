@@ -4,86 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92B4C43334
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 09:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A824C433EF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 20:48:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hjT2QEvtmD8A0izFI5dTmKtyR/pKf2nfLC5MV8LEgHA=; b=iMze4b087tsQfj
-	Fnr5Ujg0/vmbumv2u/rXvxWdD6jMRGTbyBNJBJaV+3cF9Pw43IZ5iL4sBe3CQRqOB1nw7Fv6rLnaB
-	64hZGulA4Fe4btUklT9Bm3D1+zDOJwMtJ4baf64DSheiZrzn7TYQCC4ECirHtK3BMImaOP/iw/vkt
-	9+rRXQKkc+IUZZW0pUJp7Mromdf9nJNHAA6GYgO29fBdQgSg47eEbh2gDAgXSbAzYju0Ccg+C5Izb
-	AgUTydY2dO0isOzvMXauliwlBt9OoZyhBckNi/J7civlHBDpdJfKv2ok/Kpc48iXC45IXLgYZmZkx
-	6Iq55L69zGS7mqLN09gg==;
+	List-Owner; bh=40SVBtXnGfrC3ENbgOhTBVY6NsZ6lgtuqKzJhtfcca4=; b=zGWnV+K6k8y6rB
+	vdavuKaa9Js8G+fYzZCHirzqDuhojzyk0fMwiNa91OhEarpH1XMWBvWPcnejPh7saYCMkJ/Rwbk2q
+	aofTtxLx7Nwbr/9siqqktQvBj+8FEtN4W4RId1kWGoGcANQOpmfevS/+dilAhhZIKnXAYXZmhpuBR
+	N8g4XsxLH9AcTaGsZRmo6T/qGtn0Hj77E+yiT+aosHeetZfZBjgifUydimKZKh/PIL1lo20Fcu8Nk
+	NguvZ/0MlTlme3XuCuI4eM0T2wttpYp55zfQERa8PbSKrE2Te5nfNZOmxGoOX5sx99nKK/zOgh1Nk
+	Xk8yoDEPyDmAx83Ns4rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0gpa-002iA7-BR; Mon, 13 Jun 2022 09:57:58 +0000
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
+	id 1o0qys-005mu2-7T; Mon, 13 Jun 2022 20:48:14 +0000
+Received: from mail-il1-f176.google.com ([209.85.166.176])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0gmq-002gR9-K5; Mon, 13 Jun 2022 09:55:09 +0000
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25D7jncr030852;
-	Mon, 13 Jun 2022 04:54:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=SAL9QBrR9Hifnxdadv6LtK1riDzGLGAzq1j5dDkQ/eE=;
- b=YSEazX0uO5GV3d6eprUPFqBpY2HPFw6tjVtpSwFjm3pPOCyD6SFrbQuT8qP8aTpkafDG
- wEMwsYZTSezO57v7oNilz7MY86TJm4g9OiORe+E7d5kLh74zbgbf6wXjUpBlmEMbG8H6
- 9xgtekY2JVsWrI1WFghS9KWch1o2j/pFUmPWiGjLFQqZgwvmN/ZSCq4a8Nzev/hxGIaI
- 067Wj8AJx34nIpY4KIQbEKUU5w5DkIZnl8ZWtlBRglqaIwVerccqsUrkRpF0VTgpw5/W
- 8eqrcUGfEwdkdNFAaj8W5vDvtbi+DB3ikcOmlpx6B/W4dW4VZCSzcPsBWfNJkdOGtTqz hA== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf31py0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Mon, 13 Jun 2022 04:54:55 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 13 Jun
- 2022 10:54:53 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Mon, 13 Jun 2022 10:54:53 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2C2AD11D1;
-	Mon, 13 Jun 2022 09:54:53 +0000 (UTC)
-Date: Mon, 13 Jun 2022 09:54:53 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Samuel Holland <samuel@sholland.org>, <linux-sunxi@lists.linux.dev>,
-        <peter.ujfalusi@gmail.com>, <pierre-louis.bossart@linux.intel.com>,
-        <linux-imx@nxp.com>, <krzk@kernel.org>, <jarkko.nikula@bitmer.com>,
-        <linux-xtensa@linux-xtensa.org>, <cezary.rojewski@intel.com>,
-        <shawnguo@kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <nicolas.ferre@microchip.com>, <patches@opensource.cirrus.com>,
-        <linux-amlogic@lists.infradead.org>, <srinivas.kandagatla@linaro.org>,
-        <daniel@zonque.org>, <linux-mips@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <nsaenz@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>, <heiko@sntech.de>,
-        <alsa-devel@alsa-project.org>, <kernel@pengutronix.de>,
-        <jbrunet@baylibre.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        <linux-rockchip@lists.infradead.org>, <linux-omap@vger.kernel.org>,
-        <lgirdwood@gmail.com>
-Subject: Re: [PATCH 00/56] Specify clock provider directly to CPU DAIs
-Message-ID: <20220613095453.GB38351@ediswmail.ad.cirrus.com>
-References: <20220519154318.2153729-1-ckeepax@opensource.cirrus.com>
- <165478153064.1052094.1721875477574787769.b4-ty@kernel.org>
- <2a498819-dbbf-31c1-4145-bbd2d7179bd8@sholland.org>
- <YqMy/FkxDPKmzdrB@sirena.org.uk>
+	id 1o0qyn-005msr-Tj; Mon, 13 Jun 2022 20:48:11 +0000
+Received: by mail-il1-f176.google.com with SMTP id z11so5164530ilq.6;
+        Mon, 13 Jun 2022 13:48:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/dzRBMIn98y05EN99Sgq5WDsEwo7wpH66xTE6XCo/M4=;
+        b=QlOoUzlj+BGDjIMX98sYZ07evySSX16e7LY1VRIZ3qklSw3h4XypJR3aQKI6peUzzD
+         3b0q9Uu+rrHPaPacV7QuuBzXa1qj4lFjJGo7mLVbD2dMQh+DemmoHxIjWTQKgDnVAZRC
+         ZTc2l+v8mVOvfape2KyHKd2jJX4cPaSy6Nst/etKqsW26fjiJyJLiF6V3wf53WOaxN5L
+         VjzcAozlZkVRdCb9ZHubwvLKK4TVo7HIbYZmmC+VlSOGBUZNO4hT8scDmiuodicyf3qK
+         ToX/J0R61/C2VSGyPy9rJGijyjt8m5dmdkVCUtyAxpwLTD9G4ZeLMFrSWBs/ds+GoKNH
+         cauw==
+X-Gm-Message-State: AJIora/48RGaxuNvh8zh03NXHXsqHGc1pvifcGIlFPeQX8Dyvee2+EdH
+	iDIoot/Jb31LJeloXOzKkw==
+X-Google-Smtp-Source: AGRyM1uVO/KYjaDwGOXreGf4KGdEqy/t353ouqbFZgp5s/y6kuWD2fxXl3ut4zPLn500QHJwX/rd6w==
+X-Received: by 2002:a92:ca45:0:b0:2d1:b7cf:26a9 with SMTP id q5-20020a92ca45000000b002d1b7cf26a9mr962751ilo.52.1655153288816;
+        Mon, 13 Jun 2022 13:48:08 -0700 (PDT)
+Received: from robh.at.kernel.org ([69.39.28.171])
+        by smtp.gmail.com with ESMTPSA id c2-20020a92c8c2000000b002d11397f4f9sm4380280ilq.74.2022.06.13.13.48.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 13:48:08 -0700 (PDT)
+Received: (nullmailer pid 56167 invoked by uid 1000);
+	Mon, 13 Jun 2022 20:48:06 -0000
+Date: Mon, 13 Jun 2022 14:48:06 -0600
+From: Rob Herring <robh@kernel.org>
+To: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+	Kishon Vijay Abraham I <kishon@ti.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Richard Zhu <hongxing.zhu@nxp.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Minghuan Lian <minghuan.Lian@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>, 
+	Yue Wang <yue.wang@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jonathan Chocron <jonnyc@amazon.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Jesper Nilsson <jesper.nilsson@axis.com>, 
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Greentime Hu <greentime.hu@sifive.com>, 
+	Rahul Tanwar <rtanwar@maxlinear.com>, Srikanth Thokala <srikanth.thokala@intel.com>, 
+	Xiaowei Song <songxiaowei@hisilicon.com>, Binghui Wang <wangbinghui@hisilicon.com>, 
+	Stanimir Varbanov <svarbanov@mm-sol.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@linaro.org>, Pratyush Anand <pratyush.anand@gmail.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Serge Semin <fancer.lancer@gmail.com>, 
+	Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>, 
+	Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>, Frank Li <Frank.Li@nxp.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@axis.com, linux-rockchip@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v4 15/18] PCI: dwc: Add dw_ prefix to the pcie_port
+ structure name
+Message-ID: <20220613204806.GA55629-robh@kernel.org>
+References: <20220610082535.12802-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610082535.12802-16-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YqMy/FkxDPKmzdrB@sirena.org.uk>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: UiaFdV3e1tP7Nx8vGVE1XxJr6gdm5Oey
-X-Proofpoint-ORIG-GUID: UiaFdV3e1tP7Nx8vGVE1XxJr6gdm5Oey
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <20220610082535.12802-16-Sergey.Semin@baikalelectronics.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220613_025508_698247_049E0C1D 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20220613_134810_003118_67378BA3 
+X-CRM114-Status: GOOD (  16.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,32 +107,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 10, 2022 at 01:03:08PM +0100, Mark Brown wrote:
-> On Thu, Jun 09, 2022 at 09:03:15PM -0500, Samuel Holland wrote:
-> > On 6/9/22 8:32 AM, Mark Brown wrote:
-> > > On Thu, 19 May 2022 16:42:22 +0100, Charles Keepax wrote:
+On Fri, Jun 10, 2022 at 11:25:31AM +0300, Serge Semin wrote:
+> All of the DW PCIe core driver entities have names with the dw_ prefix in
+> order to easily distinguish local and common PCIe name spaces. All except
+> the pcie_port structure which contains the DW PCIe Root Port descriptor.
+> For historical reason the structure has retained the original name since
+> commit 340cba6092c2 ("pci: Add PCIe driver for Samsung Exynos") when
+> the DW PCIe IP-core support was added to the kernel. Let's finally fix
+> that by adding the dw_ prefix to the structure name and by adding the _rp
+> suffix to be similar to the EP counterpart. Thus the name will be coherent
+> with the common driver naming policy. It shall make the driver code more
+> readable eliminating visual confusion between the local and generic PCI
+> name spaces.
 > 
-> Please delete unneeded context from mails when replying.  Doing this
-> makes it much easier to find your reply in the message, helping ensure
-> it won't be missed by people scrolling through the irrelevant quoted
-> material.
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
-> > > [22/56] ASoC: sunxi: Update to use set_fmt_new callback
-> > >         commit: 7cc3965fde74c9c725ed01de4ac35bc7d562d16a
+> ---
 > 
-> > This patch is wrong, which I pointed out earlier[1]. It will break audio on the
-> > Allwinner A33 and A64 SoCs. Charles said he would send a v2[2]. Excluding the
-> > changes to sound/soc/sunxi/sun8i-codec.c from the patch would fix it.
-> 
-> Your mail doesn't say that this will break, it says the change is
-> unexpected.  In any case, please send an incremental fix - there's no
-> need to revert the entire series for this.
+> Changelog v4:
+> - This is a new patch created on the v4 lap of the series.
+> ---
+>  drivers/pci/controller/dwc/pci-dra7xx.c       | 12 +++----
+>  drivers/pci/controller/dwc/pci-exynos.c       |  6 ++--
+>  drivers/pci/controller/dwc/pci-imx6.c         |  6 ++--
+>  drivers/pci/controller/dwc/pci-keystone.c     | 20 +++++------
+>  drivers/pci/controller/dwc/pci-layerscape.c   |  2 +-
+>  drivers/pci/controller/dwc/pci-meson.c        |  2 +-
+>  drivers/pci/controller/dwc/pcie-al.c          |  6 ++--
+>  drivers/pci/controller/dwc/pcie-armada8k.c    |  4 +--
+>  drivers/pci/controller/dwc/pcie-artpec6.c     |  4 +--
+>  .../pci/controller/dwc/pcie-designware-host.c | 36 +++++++++----------
+>  .../pci/controller/dwc/pcie-designware-plat.c |  2 +-
+>  drivers/pci/controller/dwc/pcie-designware.h  | 30 ++++++++--------
+>  drivers/pci/controller/dwc/pcie-dw-rockchip.c |  4 +--
+>  drivers/pci/controller/dwc/pcie-fu740.c       |  2 +-
+>  drivers/pci/controller/dwc/pcie-histb.c       | 10 +++---
+>  drivers/pci/controller/dwc/pcie-intel-gw.c    |  6 ++--
+>  drivers/pci/controller/dwc/pcie-keembay.c     |  4 +--
+>  drivers/pci/controller/dwc/pcie-kirin.c       |  2 +-
+>  drivers/pci/controller/dwc/pcie-qcom.c        |  4 +--
+>  drivers/pci/controller/dwc/pcie-spear13xx.c   |  6 ++--
+>  drivers/pci/controller/dwc/pcie-tegra194.c    | 22 ++++++------
+>  drivers/pci/controller/dwc/pcie-uniphier.c    | 10 +++---
+>  drivers/pci/controller/dwc/pcie-visconti.c    |  6 ++--
+>  23 files changed, 103 insertions(+), 103 deletions(-)
 
-Apologies guys was on PTO last week, I will send an incremental
-fix today to patch up the issues.
-
-Thanks,
-Charles
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
