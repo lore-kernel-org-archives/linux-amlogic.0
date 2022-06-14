@@ -4,93 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A824C433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jun 2022 20:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37472C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jun 2022 10:12:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=40SVBtXnGfrC3ENbgOhTBVY6NsZ6lgtuqKzJhtfcca4=; b=zGWnV+K6k8y6rB
-	vdavuKaa9Js8G+fYzZCHirzqDuhojzyk0fMwiNa91OhEarpH1XMWBvWPcnejPh7saYCMkJ/Rwbk2q
-	aofTtxLx7Nwbr/9siqqktQvBj+8FEtN4W4RId1kWGoGcANQOpmfevS/+dilAhhZIKnXAYXZmhpuBR
-	N8g4XsxLH9AcTaGsZRmo6T/qGtn0Hj77E+yiT+aosHeetZfZBjgifUydimKZKh/PIL1lo20Fcu8Nk
-	NguvZ/0MlTlme3XuCuI4eM0T2wttpYp55zfQERa8PbSKrE2Te5nfNZOmxGoOX5sx99nKK/zOgh1Nk
-	Xk8yoDEPyDmAx83Ns4rA==;
+	List-Owner; bh=7pC0nWosJRND+UfJ2zAJoRmRiIuZAcn1JIo6cM1BIDg=; b=lPqab+Af2DnINC
+	9xwRvtooOK0RabM/4h8GEJYavCFF8ZNLVHM5t0drgjmqEKzQ5rkFTbqvraAfan0qtmqbkURIBjADx
+	0AaKZRP9juqGXPYBmsnnSO66Ytw/na8rAtw1A8mswBsKr66LMlynMDUJEU57LipGJEwvbaeU2UVo4
+	mPlg15rVx36s8XIVB0h8hdlgSeG8a9FZJwZD1fWlQMCYd9n2zetiOWdGXRwWzXCKs51QIJTFclcGk
+	SzkdHxXwcLtpTfzImELWAA1LKFivfbF56zZL+zuGAJzcwluW/yRuGkDBw2P2WuZmsI4G2M/kYyv49
+	bAvxuFo32M89/Cy5gnDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0qys-005mu2-7T; Mon, 13 Jun 2022 20:48:14 +0000
-Received: from mail-il1-f176.google.com ([209.85.166.176])
+	id 1o13XJ-008x8E-Pk; Tue, 14 Jun 2022 10:12:37 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o0qyn-005msr-Tj; Mon, 13 Jun 2022 20:48:11 +0000
-Received: by mail-il1-f176.google.com with SMTP id z11so5164530ilq.6;
-        Mon, 13 Jun 2022 13:48:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/dzRBMIn98y05EN99Sgq5WDsEwo7wpH66xTE6XCo/M4=;
-        b=QlOoUzlj+BGDjIMX98sYZ07evySSX16e7LY1VRIZ3qklSw3h4XypJR3aQKI6peUzzD
-         3b0q9Uu+rrHPaPacV7QuuBzXa1qj4lFjJGo7mLVbD2dMQh+DemmoHxIjWTQKgDnVAZRC
-         ZTc2l+v8mVOvfape2KyHKd2jJX4cPaSy6Nst/etKqsW26fjiJyJLiF6V3wf53WOaxN5L
-         VjzcAozlZkVRdCb9ZHubwvLKK4TVo7HIbYZmmC+VlSOGBUZNO4hT8scDmiuodicyf3qK
-         ToX/J0R61/C2VSGyPy9rJGijyjt8m5dmdkVCUtyAxpwLTD9G4ZeLMFrSWBs/ds+GoKNH
-         cauw==
-X-Gm-Message-State: AJIora/48RGaxuNvh8zh03NXHXsqHGc1pvifcGIlFPeQX8Dyvee2+EdH
-	iDIoot/Jb31LJeloXOzKkw==
-X-Google-Smtp-Source: AGRyM1uVO/KYjaDwGOXreGf4KGdEqy/t353ouqbFZgp5s/y6kuWD2fxXl3ut4zPLn500QHJwX/rd6w==
-X-Received: by 2002:a92:ca45:0:b0:2d1:b7cf:26a9 with SMTP id q5-20020a92ca45000000b002d1b7cf26a9mr962751ilo.52.1655153288816;
-        Mon, 13 Jun 2022 13:48:08 -0700 (PDT)
-Received: from robh.at.kernel.org ([69.39.28.171])
-        by smtp.gmail.com with ESMTPSA id c2-20020a92c8c2000000b002d11397f4f9sm4380280ilq.74.2022.06.13.13.48.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 13:48:08 -0700 (PDT)
-Received: (nullmailer pid 56167 invoked by uid 1000);
-	Mon, 13 Jun 2022 20:48:06 -0000
-Date: Mon, 13 Jun 2022 14:48:06 -0600
-From: Rob Herring <robh@kernel.org>
-To: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Kishon Vijay Abraham I <kishon@ti.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Richard Zhu <hongxing.zhu@nxp.com>, 
-	Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Minghuan Lian <minghuan.Lian@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>, 
-	Yue Wang <yue.wang@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jonathan Chocron <jonnyc@amazon.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Jesper Nilsson <jesper.nilsson@axis.com>, 
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Greentime Hu <greentime.hu@sifive.com>, 
-	Rahul Tanwar <rtanwar@maxlinear.com>, Srikanth Thokala <srikanth.thokala@intel.com>, 
-	Xiaowei Song <songxiaowei@hisilicon.com>, Binghui Wang <wangbinghui@hisilicon.com>, 
-	Stanimir Varbanov <svarbanov@mm-sol.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@linaro.org>, Pratyush Anand <pratyush.anand@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Serge Semin <fancer.lancer@gmail.com>, 
-	Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>, 
-	Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>, Frank Li <Frank.Li@nxp.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@axis.com, linux-rockchip@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 15/18] PCI: dwc: Add dw_ prefix to the pcie_port
- structure name
-Message-ID: <20220613204806.GA55629-robh@kernel.org>
-References: <20220610082535.12802-1-Sergey.Semin@baikalelectronics.ru>
- <20220610082535.12802-16-Sergey.Semin@baikalelectronics.ru>
+	id 1o13XH-008x7Z-2G; Tue, 14 Jun 2022 10:12:36 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C6A9760AEB;
+	Tue, 14 Jun 2022 10:12:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C89FC3411B;
+	Tue, 14 Jun 2022 10:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1655201553;
+	bh=OU/NN+viO7AEHR96HAV2XGs7BeFoWc8CIQP0hQgj6vU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=N0h9lZRJmQuixNqG6kalxSCRX53PXSuiPfVYsOlhI8XrzjFCEBMrsy427hsL/bzUa
+	 nM/e5pkmu6fOdd7zZJTwHbjipGLTPtj191vmJi/3aFaGrbPAzTwxyKm2iRCLcIU4P5
+	 0W1UPsirm5b3jLJLQB5nO2oAe2mFBBx/Uxy+Ut72hOrEDS0zluBfBV10ussQJFdX5k
+	 YC3oJC7l13zFtvUvhHcc7y9kQbsx+etzhD9zmWelnUdASAmKnOL5nRgoZOVWi7V8El
+	 Oa7P6VbFTmnCbRdpuHJEMoV3JbqmnxOFqlImK18KaWBdDghwG+7RM7Azl4aKS0gGky
+	 1GJdoKQuuR7Rw==
+Date: Tue, 14 Jun 2022 11:21:42 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 1/6] iio: adc: meson_saradc: Don't attach managed
+ resource to IIO device object
+Message-ID: <20220614112142.3eb70a8d@jic23-huawei>
+In-Reply-To: <Ypo80/NpWLLP43jm@smile.fi.intel.com>
+References: <20220603100004.70336-1-andriy.shevchenko@linux.intel.com>
+	<20220603170612.561edfbf@jic23-huawei>
+	<20220603172307.5d2f3c52@jic23-huawei>
+	<20220603172920.3239bbd6@jic23-huawei>
+	<Ypo80/NpWLLP43jm@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220610082535.12802-16-Sergey.Semin@baikalelectronics.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220613_134810_003118_67378BA3 
-X-CRM114-Status: GOOD (  16.44  )
+X-CRM114-CacheID: sfid-20220614_031235_189918_B20C089F 
+X-CRM114-Status: GOOD (  20.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,52 +79,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 10, 2022 at 11:25:31AM +0300, Serge Semin wrote:
-> All of the DW PCIe core driver entities have names with the dw_ prefix in
-> order to easily distinguish local and common PCIe name spaces. All except
-> the pcie_port structure which contains the DW PCIe Root Port descriptor.
-> For historical reason the structure has retained the original name since
-> commit 340cba6092c2 ("pci: Add PCIe driver for Samsung Exynos") when
-> the DW PCIe IP-core support was added to the kernel. Let's finally fix
-> that by adding the dw_ prefix to the structure name and by adding the _rp
-> suffix to be similar to the EP counterpart. Thus the name will be coherent
-> with the common driver naming policy. It shall make the driver code more
-> readable eliminating visual confusion between the local and generic PCI
-> name spaces.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v4:
-> - This is a new patch created on the v4 lap of the series.
-> ---
->  drivers/pci/controller/dwc/pci-dra7xx.c       | 12 +++----
->  drivers/pci/controller/dwc/pci-exynos.c       |  6 ++--
->  drivers/pci/controller/dwc/pci-imx6.c         |  6 ++--
->  drivers/pci/controller/dwc/pci-keystone.c     | 20 +++++------
->  drivers/pci/controller/dwc/pci-layerscape.c   |  2 +-
->  drivers/pci/controller/dwc/pci-meson.c        |  2 +-
->  drivers/pci/controller/dwc/pcie-al.c          |  6 ++--
->  drivers/pci/controller/dwc/pcie-armada8k.c    |  4 +--
->  drivers/pci/controller/dwc/pcie-artpec6.c     |  4 +--
->  .../pci/controller/dwc/pcie-designware-host.c | 36 +++++++++----------
->  .../pci/controller/dwc/pcie-designware-plat.c |  2 +-
->  drivers/pci/controller/dwc/pcie-designware.h  | 30 ++++++++--------
->  drivers/pci/controller/dwc/pcie-dw-rockchip.c |  4 +--
->  drivers/pci/controller/dwc/pcie-fu740.c       |  2 +-
->  drivers/pci/controller/dwc/pcie-histb.c       | 10 +++---
->  drivers/pci/controller/dwc/pcie-intel-gw.c    |  6 ++--
->  drivers/pci/controller/dwc/pcie-keembay.c     |  4 +--
->  drivers/pci/controller/dwc/pcie-kirin.c       |  2 +-
->  drivers/pci/controller/dwc/pcie-qcom.c        |  4 +--
->  drivers/pci/controller/dwc/pcie-spear13xx.c   |  6 ++--
->  drivers/pci/controller/dwc/pcie-tegra194.c    | 22 ++++++------
->  drivers/pci/controller/dwc/pcie-uniphier.c    | 10 +++---
->  drivers/pci/controller/dwc/pcie-visconti.c    |  6 ++--
->  23 files changed, 103 insertions(+), 103 deletions(-)
+On Fri, 3 Jun 2022 19:54:43 +0300
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On Fri, Jun 03, 2022 at 05:29:20PM +0100, Jonathan Cameron wrote:
+> > On Fri, 3 Jun 2022 17:23:07 +0100
+> > Jonathan Cameron <jic23@kernel.org> wrote:  
+> 
+> ...
+> 
+> > Andy, put a cover letter on these larger series - if nothing else it gives
+> > somewhere convenient for people to give tags for the whole series, or 
+> > maintainer to say what they are doing with it.  
+> 
+> I'll try to remember this. The series was started from only a couple of patches
+> and grew to this big, and I forgot to add a cover letter when it seems not
+> anymore obvious what has been done.
+> 
+> > Anyhow, I'm fine with the series, but will leave it on list for a while
+> > longer, particularly to get patch 6 some eyes + testing.
+> > 
+> > Currently I plan to drop the fixes tag from this first patch, but I'm prepared
+> > to be convinced it's a bug fix rather than a consistency cleanup.  
+> 
+> Fine with me, thanks!
+> 
+Applied to the togreg branch of iio.git and pushed out as testing for all the normal
+reasons.
+
+Thanks,
+
+Jonathan
+
 
 _______________________________________________
 linux-amlogic mailing list
