@@ -4,83 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77072C43334
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF32C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aTXnvU2QNQhyt9wxs7yYR3hFMVhC877964CpLoosaPI=; b=3d+uit+EPM/GQK
-	tv/yh6LTVlPIaA+ltEK377MonWpYSCtDMI0MG0XFeQMWUydUrRrru1RN8/rA3gFkieADC4FE1ss9I
-	KhljHYUcPhu4zGlHdU5iPQ/TpAtF4jqoabDmhVzktw1Z5R4cJNpcopOxVIwkOa767HvrlGOzxA5fi
-	asAftsmJEkA55Y8+mOclds/v7wa0REw9T6PN2UvEl2Ab/t7nE2YT3F3i8pHUcgsYGKwiJAWJhrmox
-	e1LpUC7IOEmvzNMmFR9BV/GdolZdJAgsZyRN+Fb47QioNpf4qG9nylO+Tl9+ABzcMH+6Z48u5VwxA
-	96fcS0qLKqmszgKY+JiQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wiF0/cNaCwKQIoIO0gFLulmVxOIWFsuBlFnu7zC5AZ4=; b=oo6p6/mnD9jsxA
+	HuvF0n5JkvrXseguE2VLj8l/x0VAkRMXaLfwCUiWgG3oajjaiFopPKOqd4r+MFTyi0Bn2CEvESEet
+	MqA97WktKGGcVq89tWHTJfesYonwAEzkLLriebtvaKssW/tz44ZCJx1kWMnsu2XQUbMRzhd8cxqkd
+	bLuU5KLwZ9Wu5H8qJnHgYCk4+eEmHlD9pO7cnSnqgS3guIaCusuW3lW3uNQvkyKPfI5OZ8ktD3CBH
+	2Df0XmIqOIfRmaWDmKYB14WdrZTT8QDxzRsTVg/JxG4wSJQcOBYABh9Wq/oa6l+pOi1UKx5zG1bw8
+	1KbUuLl1FfFbA5N+IbcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qez-002wZn-0h; Thu, 16 Jun 2022 14:39:49 +0000
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qcC-002tFf-RI; Thu, 16 Jun 2022 14:36:58 +0000
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CG027888;
-	Thu, 16 Jun 2022 09:34:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=PODMain02222019;
- bh=NdWNqGk7KYNCnb6vF06SM0HZUNiwmzGy7/npWlCANTY=;
- b=gsdkNsfo/0O13JhpLG/Y6+/kJMHeayAZNaKGelZCe/HB68N4BqesyNXhHbOCDFQqUwPB
- /u9V891+dcl70g7R+PJrhdN9nzqabkNoc74zYBpj6YuYVzA9ZlQG3zw+jXJbqqc/gxVz
- PWPmhIZpW7vnyd/UNpjgrY4mBgbnwit1gZOQk5ko1OZjRhJCekop+6K3435/3WBslkaV
- MqPhFncyZpcWCAfO0FZhM11MicI1Yp8Rc5Q6WXamy/dwG3viSP7+Ny9oCYORDn+LfIFZ
- 6nx1t5hKqtTaVpkE7f3j5qKFAEBsOx3MIrhNYH5q/y13IlXxh9ezb7OfJU5GO/rOXn0S aw== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-13
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 16 Jun 2022 09:34:42 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
- 2022 15:34:32 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 16 Jun 2022 15:34:32 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 99B5C11D4;
-	Thu, 16 Jun 2022 14:34:32 +0000 (UTC)
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: <broonie@kernel.org>
-CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
-        <mripard@kernel.org>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <vkoul@kernel.org>, <nicolas.ferre@microchip.com>, <nsaenz@kernel.org>,
-        <shawnguo@kernel.org>, <linux-imx@nxp.com>,
-        <cezary.rojewski@intel.com>, <pierre-louis.bossart@linux.intel.com>,
-        <linux-mips@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <daniel@zonque.org>, <srinivas.kandagatla@linaro.org>,
-        <linux-rockchip@lists.infradead.org>, <krzk@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-sunxi@lists.linux.dev>, <linux-tegra@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>, <linux-xtensa@linux-xtensa.org>,
-        <peter.ujfalusi@gmail.com>, <jarkko.nikula@bitmer.com>,
-        <heiko@sntech.de>, <jbrunet@baylibre.com>, <kernel@pengutronix.de>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-rpi-kernel@lists.infradead.org>
-Subject: [PATCH 33/96] ASoC: samsung: Migrate to new style legacy DAI naming flag
-Date: Thu, 16 Jun 2022 15:33:26 +0100
-Message-ID: <20220616143429.1324494-34-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
-References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
+	id 1o1qpK-0030Jj-1i; Thu, 16 Jun 2022 14:50:30 +0000
+Received: from m15113.mail.126.com ([220.181.15.113])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1o1qp7-0030FM-8T; Thu, 16 Jun 2022 14:50:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ARBcG
+	NcD3T88nKaXT4MWM/zoSyK1nZmN5buYZLmG/Ok=; b=ZsvkMzs/NznMFaHRatqKk
+	O7Js+dZEmVL5eYjbA71d+mH7Q5qiWtRQDKX/1Cd1CCKuI1wHdSY146DAhF/okeTM
+	uQoKKpZs43siheQnNcy0NUp9BdmddvVePiJEgy3SbaWiJ7EdSAswy1fII2+xxGr7
+	FClXStbkw3rgdJmwbfTHdI=
+Received: from localhost.localdomain (unknown [124.16.139.61])
+	by smtp3 (Coremail) with SMTP id DcmowACXp5_rQqtigmn6DQ--.14906S2;
+	Thu, 16 Jun 2022 22:49:15 +0800 (CST)
+From: Liang He <windhl@126.com>
+To: narmstrong@baylibre.com,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com
+Cc: windhl@126.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] soc: amlogic: Fix refcount leak in meson-secure-pwrc.c
+Date: Thu, 16 Jun 2022 22:49:15 +0800
+Message-Id: <20220616144915.3988071-1-windhl@126.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Proofpoint-GUID: 8_ol56DkCUVdYxwog0l7JC1OmNRUBq55
-X-Proofpoint-ORIG-GUID: 8_ol56DkCUVdYxwog0l7JC1OmNRUBq55
-X-Proofpoint-Spam-Reason: safe
+X-CM-TRANSID: DcmowACXp5_rQqtigmn6DQ--.14906S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWruF18Jw17Jr1UCr1rGw43GFg_yoW3AwcEka
+	ykJrnrXFy8ArWxtrWFkryS9rW09F1j93yv93W5tFy3Aw4UAr18XF9rurn3W3y7X3yvyF4U
+	XFykJFZrtrZ2yjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjnYwUUUUUU==
+X-Originating-IP: [124.16.139.61]
+X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbi7QwiF1pEANi9CQAAsm
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_073656_946088_7A01454D 
-X-CRM114-Status: GOOD (  14.91  )
+X-CRM114-CacheID: sfid-20220616_075018_557913_7A71DB57 
+X-CRM114-Status: UNSURE (   7.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,103 +74,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change the legacy DAI naming flag from opting in to the new scheme
-(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
-These drivers appear to be on the CPU side of the DAI link and
-currently uses the legacy naming, so add the new flag.
+In meson_secure_pwrc_probe(), there is a refcount leak in one fail
+path.
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Signed-off-by: Liang He <windhl@126.com>
 ---
- sound/soc/samsung/i2s.c         | 2 ++
- sound/soc/samsung/pcm.c         | 3 ++-
- sound/soc/samsung/s3c2412-i2s.c | 7 ++++---
- sound/soc/samsung/s3c24xx-i2s.c | 7 ++++---
- sound/soc/samsung/spdif.c       | 7 ++++---
- 5 files changed, 16 insertions(+), 10 deletions(-)
+ drivers/soc/amlogic/meson-secure-pwrc.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/sound/soc/samsung/i2s.c b/sound/soc/samsung/i2s.c
-index fdd9561c6a9f3..9505200f3d11b 100644
---- a/sound/soc/samsung/i2s.c
-+++ b/sound/soc/samsung/i2s.c
-@@ -1143,6 +1143,8 @@ static const struct snd_soc_component_driver samsung_i2s_component = {
+diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
+index a10a417a87db..e93518763526 100644
+--- a/drivers/soc/amlogic/meson-secure-pwrc.c
++++ b/drivers/soc/amlogic/meson-secure-pwrc.c
+@@ -152,8 +152,10 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+ 	}
  
- 	.suspend = i2s_suspend,
- 	.resume = i2s_resume,
-+
-+	.legacy_dai_naming = 1,
- };
+ 	pwrc = devm_kzalloc(&pdev->dev, sizeof(*pwrc), GFP_KERNEL);
+-	if (!pwrc)
++	if (!pwrc) {
++		of_node_put(sm_np);
+ 		return -ENOMEM;
++	}
  
- #define SAMSUNG_I2S_FMTS (SNDRV_PCM_FMTBIT_S8 | SNDRV_PCM_FMTBIT_S16_LE | \
-diff --git a/sound/soc/samsung/pcm.c b/sound/soc/samsung/pcm.c
-index c2eb3534bfccb..e859252ae5e6e 100644
---- a/sound/soc/samsung/pcm.c
-+++ b/sound/soc/samsung/pcm.c
-@@ -480,7 +480,8 @@ static struct snd_soc_dai_driver s3c_pcm_dai[] = {
- };
- 
- static const struct snd_soc_component_driver s3c_pcm_component = {
--	.name		= "s3c-pcm",
-+	.name			= "s3c-pcm",
-+	.legacy_dai_naming	= 1,
- };
- 
- static int s3c_pcm_dev_probe(struct platform_device *pdev)
-diff --git a/sound/soc/samsung/s3c2412-i2s.c b/sound/soc/samsung/s3c2412-i2s.c
-index ec1c6f9d76ac7..0579a352961cc 100644
---- a/sound/soc/samsung/s3c2412-i2s.c
-+++ b/sound/soc/samsung/s3c2412-i2s.c
-@@ -192,9 +192,10 @@ static struct snd_soc_dai_driver s3c2412_i2s_dai = {
- };
- 
- static const struct snd_soc_component_driver s3c2412_i2s_component = {
--	.name		= "s3c2412-i2s",
--	.suspend	= s3c2412_i2s_suspend,
--	.resume		= s3c2412_i2s_resume,
-+	.name			= "s3c2412-i2s",
-+	.suspend		= s3c2412_i2s_suspend,
-+	.resume			= s3c2412_i2s_resume,
-+	.legacy_dai_naming	= 1,
- };
- 
- static int s3c2412_iis_dev_probe(struct platform_device *pdev)
-diff --git a/sound/soc/samsung/s3c24xx-i2s.c b/sound/soc/samsung/s3c24xx-i2s.c
-index 4082ad7cbcc11..e760fc8b42636 100644
---- a/sound/soc/samsung/s3c24xx-i2s.c
-+++ b/sound/soc/samsung/s3c24xx-i2s.c
-@@ -415,9 +415,10 @@ static struct snd_soc_dai_driver s3c24xx_i2s_dai = {
- };
- 
- static const struct snd_soc_component_driver s3c24xx_i2s_component = {
--	.name		= "s3c24xx-i2s",
--	.suspend	= s3c24xx_i2s_suspend,
--	.resume		= s3c24xx_i2s_resume,
-+	.name			= "s3c24xx-i2s",
-+	.suspend		= s3c24xx_i2s_suspend,
-+	.resume			= s3c24xx_i2s_resume,
-+	.legacy_dai_naming	= 1,
- };
- 
- static int s3c24xx_iis_dev_probe(struct platform_device *pdev)
-diff --git a/sound/soc/samsung/spdif.c b/sound/soc/samsung/spdif.c
-index 47b6d19e43ffb..7d815e237e5c6 100644
---- a/sound/soc/samsung/spdif.c
-+++ b/sound/soc/samsung/spdif.c
-@@ -352,9 +352,10 @@ static struct snd_soc_dai_driver samsung_spdif_dai = {
- };
- 
- static const struct snd_soc_component_driver samsung_spdif_component = {
--	.name		= "samsung-spdif",
--	.suspend	= spdif_suspend,
--	.resume		= spdif_resume,
-+	.name			= "samsung-spdif",
-+	.suspend		= spdif_suspend,
-+	.resume			= spdif_resume,
-+	.legacy_dai_naming	= 1,
- };
- 
- static int spdif_probe(struct platform_device *pdev)
+ 	pwrc->fw = meson_sm_get(sm_np);
+ 	of_node_put(sm_np);
 -- 
-2.30.2
+2.25.1
 
 
 _______________________________________________
