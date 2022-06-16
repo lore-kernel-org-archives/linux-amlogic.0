@@ -4,78 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF93C43334
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 13:39:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D7C2C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xYPwBAXvh2vTnnWXM1AyIFwvU6qoApmhOKAxIhnhrGw=; b=vD3WpxCNMofIw/
-	q5rtSvWRmIkd6TjwE0GlvaDfRls0F00aU1rP6VXIPQK+jZB40k6tCRdqWapJGwijyWwUvKj7qYCin
-	6HsO+Fy6MtO63RQo2UP0Mclp0K8gbRAroswqpXHtbSHA2w7neF8HN/EKQAMO8vNO9rildpM/OuWxK
-	1ojAmhzHfAom9PIM6Jad1FZ1V3onzXoqPYnF/XnnPXoFtkeGlK1903HPHjyX48NScMIpTQ3X8qXHE
-	in0QqHA57GL1p4mE60CjdpoXoHxlPFb5at3Y8QOtd//etPYcRV/JtQkTG98kcku7JYDftd52+lsbr
-	3Jyj6Crathvryf0G0AnA==;
+	List-Owner; bh=70yBPWzXA2EqeTBesGamRCMObnLVhXdYfiJAuGx3aas=; b=fVi9R4+xpsV+AX
+	p3XMj0wArV9vKN+2I3BBr7CPBAq1AiKYoOHAM47hX7BsQy6jvsOcaLr289vbLfrTpbus74ZBgwSFK
+	4K7PINAcU5QjyMOxjZ9MvXM4rOqKoR+yCoNEjzDlwVvilD3eeMQSxxvBYkcgZxROQK5eDIYiZqWnC
+	Qxce0dqXKD4Dv9WqA3P+KeelwBDQWdxzm4YN7iQISjF1l/rJ4jMVPKmAW2pumeNcUDcO7cuI22RNF
+	K35cb3gFqlUVx+jGWxY3w0/HnmyBUm5jSmQb2u1Mg1PwSoOcNgYSue1CDVZTCflWXVN07fn0PHofd
+	AOGhFXISc1PtJPqBRSZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1pi5-002UoF-3u; Thu, 16 Jun 2022 13:38:57 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1o1qaQ-002rW2-JN; Thu, 16 Jun 2022 14:35:06 +0000
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1phY-002Uby-Iy
-	for linux-amlogic@lists.infradead.org; Thu, 16 Jun 2022 13:38:28 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id n1so1676342wrg.12
-        for <linux-amlogic@lists.infradead.org>; Thu, 16 Jun 2022 06:38:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=F/SPXYyJ9pOv+57/VRPyN+3QaTNRZ+8Q87oNWa1ed6U=;
-        b=sZnvhiQPTbFhgH01BZXK9frx5kA9oJjPA7EMRswq3DvCa7aU2L5g/j16bM8oXtkyta
-         +6FFNp85niS7md8GlEVv6dVl98KHd4ItmqnZyV5UZ21UaR5BSI2QdXVgdK4P7F9/05c0
-         tz9W+4UPJzYD9RjCidvYnXljAXw39h2u+Vj86JfR+Vj/Jects2tXu53R5vpYJe1s4lkJ
-         9/gCtdFoTGn1fpcZyy2sFS4ezcNNDRTrdnb3u8Scp7rv27YI5dnx1psDIityA7Qkd/VM
-         L0ApCvLQWYvfmo5Xnk66wXKtIiFm1NUtKDIPDeBmdNlb33mfMSiHnd38NEKWn5KOTktH
-         RwKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=F/SPXYyJ9pOv+57/VRPyN+3QaTNRZ+8Q87oNWa1ed6U=;
-        b=ZsD6De4oPhILjdoHL+3/95mWniTNUABkprdnRj5s32PXfKFq60U8F8oVC6mYD4Jxu/
-         4f8CwGpHJltFnNlBzl1Rmoz6Y9P/6DCkkoEsq9T6LOh5ow5WRh4NmT16InYbq8gAWpud
-         R3KpjLvXHx0ZBl81O+oRrvIdF9YbhquMJ/WYV6Qq4ULrD18dA5JFs0KhBk5g9xdiPRJr
-         uLuB/a4SXo92MyFpORLUa2BU06x5U0YqTdRwfkA5WerkSdxX1z3cu5aQn1fl+gnU8G7A
-         kFeqKVa5f1UnlpyfZt52GZFZyjIDxUcL6vOuGAo8Fu2naGb6rGInxugykCIwnTDPhPXu
-         NDVg==
-X-Gm-Message-State: AJIora8nt2G0h1QiiGbepIg0t3Hi/hM50H0d9dkiViD2FRPLSBCU8i8p
-	mrVtR/TnqB7WbBek9YLsg7rDHA==
-X-Google-Smtp-Source: AGRyM1uzUj7FAN/10Bu3b+bPtVXXKsugwJewcCZ3H2BR0vg8eYeVP6T8bZOBrzVRTv2yR+QDna/jIA==
-X-Received: by 2002:a5d:4d8f:0:b0:210:3e14:ff27 with SMTP id b15-20020a5d4d8f000000b002103e14ff27mr4601797wru.81.1655386701496;
-        Thu, 16 Jun 2022 06:38:21 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:34f:da80:9c48:d9f8:5c33:3dd5])
-        by smtp.gmail.com with ESMTPSA id v12-20020a5d678c000000b0020c5253d90asm1935423wru.86.2022.06.16.06.38.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 06:38:21 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: kishon@ti.com,
-	vkoul@kernel.org
-Cc: linux-phy@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v4 2/2] phy: amlogic: Add G12A Analog MIPI D-PHY driver
-Date: Thu, 16 Jun 2022 15:38:11 +0200
-Message-Id: <20220616133811.1674777-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220616133811.1674777-1-narmstrong@baylibre.com>
-References: <20220616133811.1674777-1-narmstrong@baylibre.com>
+	id 1o1qaG-002rQV-EY; Thu, 16 Jun 2022 14:35:02 +0000
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07C7027888;
+	Thu, 16 Jun 2022 09:34:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=PODMain02222019;
+ bh=qFSgNYX1ptHx3ipGzxboQwtB9TZr5xpVdo+hP8vZjJM=;
+ b=bI93gPFnjtQOblJffv1qBNNfBAGpvM//qhi9qYzU6YkSpd59ggwddCGSOPgArh+WV07I
+ GFl+lAqmaAe/nDNGnaf/XcgjX5n9x8OIbp7K19IGdjRbrk+BDj4zUfN5IVMAc2xbDrst
+ isnMjKWzX2BMb0YKd7PMStXHIeHif2mNa+PMwkcj63S0ThxC/7SbXrnZOAgS1MeYo/Zm
+ haPlfemYW9T4SaB39lxkxsrBZiyDkXyz7tUJyngQYSGRbzvDQa9tWYrkvBPZp6GSZsbH
+ jtyE2+kC7ZgtLKRRJk6G+zwuNO16tpnGeFjIqRWfZQDqQ9TKb2EHHb4SbS6q+Ha5r6r/ 7g== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-4
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 16 Jun 2022 09:34:34 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
+ 2022 15:34:30 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Thu, 16 Jun 2022 15:34:30 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 89F00468;
+	Thu, 16 Jun 2022 14:34:30 +0000 (UTC)
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
+        <mripard@kernel.org>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <vkoul@kernel.org>, <nicolas.ferre@microchip.com>, <nsaenz@kernel.org>,
+        <shawnguo@kernel.org>, <linux-imx@nxp.com>,
+        <cezary.rojewski@intel.com>, <pierre-louis.bossart@linux.intel.com>,
+        <linux-mips@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <daniel@zonque.org>, <srinivas.kandagatla@linaro.org>,
+        <linux-rockchip@lists.infradead.org>, <krzk@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-sunxi@lists.linux.dev>, <linux-tegra@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>, <linux-xtensa@linux-xtensa.org>,
+        <peter.ujfalusi@gmail.com>, <jarkko.nikula@bitmer.com>,
+        <heiko@sntech.de>, <jbrunet@baylibre.com>, <kernel@pengutronix.de>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-rpi-kernel@lists.infradead.org>
+Subject: [PATCH 08/96] ASoC: stm32: Migrate to new style legacy DAI naming flag
+Date: Thu, 16 Jun 2022 15:33:01 +0100
+Message-ID: <20220616143429.1324494-9-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
+References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
+X-Proofpoint-GUID: IbrsgpRBPrn8x9_fKU5s8xBmx29OGaCy
+X-Proofpoint-ORIG-GUID: IbrsgpRBPrn8x9_fKU5s8xBmx29OGaCy
+X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_063824_756430_527FB881 
-X-CRM114-Status: GOOD (  20.27  )
+X-CRM114-CacheID: sfid-20220616_073456_529404_5952CBB5 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,237 +97,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A SoCs embeds an Analog MIPI D-PHY used to communicate with DSI
-panels.
+Change the legacy DAI naming flag from opting in to the new scheme
+(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+These drivers appear to be on the CPU side of the DAI link and
+currently uses the legacy naming, so add the new flag.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- drivers/phy/amlogic/Kconfig                   |  12 ++
- drivers/phy/amlogic/Makefile                  |   1 +
- .../amlogic/phy-meson-g12a-mipi-dphy-analog.c | 177 ++++++++++++++++++
- 3 files changed, 190 insertions(+)
- create mode 100644 drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
+ sound/soc/stm/stm32_adfsdm.c  | 1 +
+ sound/soc/stm/stm32_i2s.c     | 1 +
+ sound/soc/stm/stm32_sai_sub.c | 1 +
+ sound/soc/stm/stm32_spdifrx.c | 1 +
+ 4 files changed, 4 insertions(+)
 
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index 486ca23aba32..e4d1170efd54 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -59,6 +59,18 @@ config PHY_MESON_G12A_USB3_PCIE
- 	  in Meson G12A SoCs.
- 	  If unsure, say N.
+diff --git a/sound/soc/stm/stm32_adfsdm.c b/sound/soc/stm/stm32_adfsdm.c
+index 122805160e70b..04f2912e14181 100644
+--- a/sound/soc/stm/stm32_adfsdm.c
++++ b/sound/soc/stm/stm32_adfsdm.c
+@@ -149,6 +149,7 @@ static const struct snd_soc_dai_driver stm32_adfsdm_dai = {
  
-+config PHY_MESON_G12A_MIPI_DPHY_ANALOG
-+	tristate "Meson G12A MIPI Analog DPHY driver"
-+	default ARCH_MESON
-+	depends on OF && (ARCH_MESON || COMPILE_TEST)
-+	select GENERIC_PHY
-+	select REGMAP_MMIO
-+	select GENERIC_PHY_MIPI_DPHY
-+	help
-+	  Enable this to support the Meson MIPI Analog DPHY found in Meson G12A
-+	  SoCs.
-+	  If unsure, say N.
-+
- config PHY_MESON_AXG_PCIE
- 	tristate "Meson AXG PCIE PHY driver"
- 	default ARCH_MESON
-diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-index c0886c850bb0..91e3b9790c03 100644
---- a/drivers/phy/amlogic/Makefile
-+++ b/drivers/phy/amlogic/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
- obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
- obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
- obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)		+= phy-meson-g12a-usb3-pcie.o
-+obj-$(CONFIG_PHY_MESON_G12A_MIPI_DPHY_ANALOG)	+= phy-meson-g12a-mipi-dphy-analog.o
- obj-$(CONFIG_PHY_MESON_AXG_PCIE)		+= phy-meson-axg-pcie.o
- obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE_ANALOG)	+= phy-meson-axg-mipi-pcie-analog.o
- obj-$(CONFIG_PHY_MESON_AXG_MIPI_DPHY)		+= phy-meson-axg-mipi-dphy.o
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c b/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
-new file mode 100644
-index 000000000000..adfcca38a952
---- /dev/null
-+++ b/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
-@@ -0,0 +1,177 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Meson G12A MIPI DSI Analog PHY
-+ *
-+ * Copyright (C) 2018 Amlogic, Inc. All rights reserved
-+ * Copyright (C) 2020 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+#include <linux/delay.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/phy/phy.h>
-+
-+#define HHI_MIPI_CNTL0 0x00
-+#define		HHI_MIPI_CNTL0_DIF_REF_CTL1	GENMASK(31, 16)
-+#define		HHI_MIPI_CNTL0_DIF_REF_CTL0	GENMASK(15, 0)
-+
-+#define HHI_MIPI_CNTL1 0x04
-+#define		HHI_MIPI_CNTL1_BANDGAP		BIT(16)
-+#define		HHI_MIPI_CNTL2_DIF_REF_CTL2	GENMASK(15, 0)
-+
-+#define HHI_MIPI_CNTL2 0x08
-+#define		HHI_MIPI_CNTL2_DIF_TX_CTL1	GENMASK(31, 16)
-+#define		HHI_MIPI_CNTL2_CH_EN		GENMASK(15, 11)
-+#define		HHI_MIPI_CNTL2_DIF_TX_CTL0	GENMASK(10, 0)
-+
-+#define DSI_LANE_0				BIT(4)
-+#define DSI_LANE_1				BIT(3)
-+#define DSI_LANE_CLK				BIT(2)
-+#define DSI_LANE_2				BIT(1)
-+#define DSI_LANE_3				BIT(0)
-+
-+struct phy_g12a_mipi_dphy_analog_priv {
-+	struct phy *phy;
-+	struct regmap *regmap;
-+	struct phy_configure_opts_mipi_dphy config;
-+};
-+
-+static int phy_g12a_mipi_dphy_analog_configure(struct phy *phy,
-+					       union phy_configure_opts *opts)
-+{
-+	struct phy_g12a_mipi_dphy_analog_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = phy_mipi_dphy_config_validate(&opts->mipi_dphy);
-+	if (ret)
-+		return ret;
-+
-+	memcpy(&priv->config, opts, sizeof(priv->config));
-+
-+	return 0;
-+}
-+
-+static int phy_g12a_mipi_dphy_analog_power_on(struct phy *phy)
-+{
-+	struct phy_g12a_mipi_dphy_analog_priv *priv = phy_get_drvdata(phy);
-+	unsigned int reg;
-+
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL0,
-+		     FIELD_PREP(HHI_MIPI_CNTL0_DIF_REF_CTL0, 0x8) |
-+		     FIELD_PREP(HHI_MIPI_CNTL0_DIF_REF_CTL1, 0xa487));
-+
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL1,
-+		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_REF_CTL2, 0x2e) |
-+		     HHI_MIPI_CNTL1_BANDGAP);
-+
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL2,
-+		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_TX_CTL0, 0x459) |
-+		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_TX_CTL1, 0x2680));
-+
-+	reg = DSI_LANE_CLK;
-+	switch (priv->config.lanes) {
-+	case 4:
-+		reg |= DSI_LANE_3;
-+		fallthrough;
-+	case 3:
-+		reg |= DSI_LANE_2;
-+		fallthrough;
-+	case 2:
-+		reg |= DSI_LANE_1;
-+		fallthrough;
-+	case 1:
-+		reg |= DSI_LANE_0;
-+		break;
-+	default:
-+		reg = 0;
-+	}
-+
-+	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL2,
-+			   HHI_MIPI_CNTL2_CH_EN,
-+			   FIELD_PREP(HHI_MIPI_CNTL2_CH_EN, reg));
-+
-+	return 0;
-+}
-+
-+static int phy_g12a_mipi_dphy_analog_power_off(struct phy *phy)
-+{
-+	struct phy_g12a_mipi_dphy_analog_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL0, 0);
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL1, 0);
-+	regmap_write(priv->regmap, HHI_MIPI_CNTL2, 0);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops phy_g12a_mipi_dphy_analog_ops = {
-+	.configure = phy_g12a_mipi_dphy_analog_configure,
-+	.power_on = phy_g12a_mipi_dphy_analog_power_on,
-+	.power_off = phy_g12a_mipi_dphy_analog_power_off,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int phy_g12a_mipi_dphy_analog_probe(struct platform_device *pdev)
-+{
-+	struct phy_provider *phy;
-+	struct device *dev = &pdev->dev;
-+	struct phy_g12a_mipi_dphy_analog_priv *priv;
-+	struct device_node *np = dev->of_node;
-+	struct regmap *map;
-+	int ret;
-+
-+	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	/* Get the hhi system controller node */
-+	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	if (IS_ERR(map)) {
-+		dev_err(dev,
-+			"failed to get HHI regmap\n");
-+		return PTR_ERR(map);
-+	}
-+
-+	priv->regmap = map;
-+
-+	priv->phy = devm_phy_create(dev, np, &phy_g12a_mipi_dphy_analog_ops);
-+	if (IS_ERR(priv->phy)) {
-+		ret = PTR_ERR(priv->phy);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to create PHY\n");
-+		return ret;
-+	}
-+
-+	phy_set_drvdata(priv->phy, priv);
-+	dev_set_drvdata(dev, priv);
-+
-+	phy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy);
-+}
-+
-+static const struct of_device_id phy_g12a_mipi_dphy_analog_of_match[] = {
-+	{
-+		.compatible = "amlogic,g12a-mipi-dphy-analog",
-+	},
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, phy_g12a_mipi_dphy_analog_of_match);
-+
-+static struct platform_driver phy_g12a_mipi_dphy_analog_driver = {
-+	.probe = phy_g12a_mipi_dphy_analog_probe,
-+	.driver = {
-+		.name = "phy-meson-g12a-mipi-dphy-analog",
-+		.of_match_table = phy_g12a_mipi_dphy_analog_of_match,
-+	},
-+};
-+module_platform_driver(phy_g12a_mipi_dphy_analog_driver);
-+
-+MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-+MODULE_DESCRIPTION("Meson G12A MIPI Analog D-PHY driver");
-+MODULE_LICENSE("GPL v2");
+ static const struct snd_soc_component_driver stm32_adfsdm_dai_component = {
+ 	.name = "stm32_dfsdm_audio",
++	.legacy_dai_naming = 1,
+ };
+ 
+ static void stm32_memcpy_32to16(void *dest, const void *src, size_t n)
+diff --git a/sound/soc/stm/stm32_i2s.c b/sound/soc/stm/stm32_i2s.c
+index 32d885f84a922..6aafe793eec44 100644
+--- a/sound/soc/stm/stm32_i2s.c
++++ b/sound/soc/stm/stm32_i2s.c
+@@ -978,6 +978,7 @@ static const struct snd_dmaengine_pcm_config stm32_i2s_pcm_config = {
+ 
+ static const struct snd_soc_component_driver stm32_i2s_component = {
+ 	.name = "stm32-i2s",
++	.legacy_dai_naming = 1,
+ };
+ 
+ static void stm32_i2s_dai_init(struct snd_soc_pcm_stream *stream,
+diff --git a/sound/soc/stm/stm32_sai_sub.c b/sound/soc/stm/stm32_sai_sub.c
+index 03cc6d12d18bb..eb31b49e65978 100644
+--- a/sound/soc/stm/stm32_sai_sub.c
++++ b/sound/soc/stm/stm32_sai_sub.c
+@@ -1336,6 +1336,7 @@ static const struct snd_dmaengine_pcm_config stm32_sai_pcm_config_spdif = {
+ 
+ static const struct snd_soc_component_driver stm32_component = {
+ 	.name = "stm32-sai",
++	.legacy_dai_naming = 1,
+ };
+ 
+ static const struct of_device_id stm32_sai_sub_ids[] = {
+diff --git a/sound/soc/stm/stm32_spdifrx.c b/sound/soc/stm/stm32_spdifrx.c
+index 6f7882c4fe6ad..0f71467567176 100644
+--- a/sound/soc/stm/stm32_spdifrx.c
++++ b/sound/soc/stm/stm32_spdifrx.c
+@@ -888,6 +888,7 @@ static const struct snd_pcm_hardware stm32_spdifrx_pcm_hw = {
+ 
+ static const struct snd_soc_component_driver stm32_spdifrx_component = {
+ 	.name = "stm32-spdifrx",
++	.legacy_dai_naming = 1,
+ };
+ 
+ static const struct snd_dmaengine_pcm_config stm32_spdifrx_pcm_config = {
 -- 
-2.25.1
+2.30.2
 
 
 _______________________________________________
