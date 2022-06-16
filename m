@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D5A6CCA481
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:56:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D61CCA47A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:56:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8G4qwHFmp+QffQvqGg/JDJcGkWtxu8thq0fKQoIHKUU=; b=FO+aqImY3Bs7LX
-	j5qJsTLHx8H/SqEmVQathFv0jZTjjRVJiYWy9hUlLCuBk4pWmpkp7BunoSHIVMyZnXyM1XAObavd7
-	ahpbSXaxVhxDvZfELlUeUXjzly0PhT07dwkfv7EncTUsrq3xUwn/W806BgvaPGkzjgQFwsIu05iIT
-	Kmw/Q21FtpVEX3VYRMm7lNJ+np9ndkFCGYs1NFj14SWO+Hj2UDip7tLWYAUoq55DJx+reFhEDofuQ
-	zXbYOsWEZG5qNKUBGSNeTr2eF53fHu39hvFqvqTwyjm3llaG6xfx9kbs1/6y19FXEjILxTRBVYgf0
-	3UDV/T31dvEqPUO0Jeog==;
+	List-Owner; bh=ZDBKFj0viN6LFgHC1O1bI3JkzpOzJMvFnHqq2GTPy1M=; b=LqggingKrD4asS
+	9iniZHA00pPWVTjPX5O7NS4K/JEMJatVG+UlB17zw//eDLzMbCuT+ny3Z5oaxiC03G1h4Hb+mzh4n
+	1HjpPUu3G5wQrAeidVXANkIpMgd/AAZpMD9DL7/7ZcPEkoXoyRajDYegK92TRyDj6hASr3RVVAJx4
+	iouoswyWvVizJhyvYF6Xzb6p5ERXRrM5kqQkMXCeHzRY+o4Iwyk4ozyzFGpTkq56X4ZgrjzQ393iz
+	b8EUKytlUK9jFnaW6XkP3dubKlK9alSD/XF4w32OrAd8lxkQsPxp0apbVfbWfTT7wEp3h84T+Slkx
+	qkVDvQXYp8wBZ86w7Ciw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1quy-00338a-MA; Thu, 16 Jun 2022 14:56:20 +0000
+	id 1o1qv1-0033CY-DL; Thu, 16 Jun 2022 14:56:23 +0000
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1quN-0032Kv-6G; Thu, 16 Jun 2022 14:55:46 +0000
+	id 1o1quM-0032KC-HE; Thu, 16 Jun 2022 14:55:46 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CE027888;
-	Thu, 16 Jun 2022 09:34:41 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CH027888;
+	Thu, 16 Jun 2022 09:34:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=w2elvprt/NPXLmHM0bB06m5qSNTTQZOMLvUvMKNQ3w8=;
- b=jf7PxyL/w4OFh9bwY+xWqqoWuKxDpHijUR8oE9w7rNuOZcm4ZlPXmWaUzd2x/Wv9pxvk
- w525luItMMkGrjWtqxJ8fTan7w8bhV1xD1eSkRPV4XAZ/zYSwHLby+kcEgRWFzRgCxCS
- Emy9j08QeSp+LPR4xIuyY5na+O5omGL1pyDssKG27BnAKQ+p1gJtHGlNuyb738XxchE9
- 8EZIyccWbMawBOk9qEQ4KpaD4F37pHvHQOAFwvZynVc0Ie1/ZelNrx7fmXaSzqFghXRQ
- 1jutLYO8awc5xO3HifDRwEaTwFz99COh3m1LR8VTzsozGmZ5cQdMlkLS6JX7A+MfC/PH tA== 
+ bh=UKatc6+tXyUsYCxIUlOCKACRDXtjL/84KfpSbCPcQ6U=;
+ b=PVEf/gSBt1LrSmysiT/MfKCEqEuopaWdPpEGU6ngsUBRBfSA3DVN619Ate1wBzxNso82
+ /d+DwJ2CB9MVBEfTyWHEbVWVRrA4Um6ZdSHZ6rcUKMCCGRKs847pYfYVdic7OowtWiy5
+ PRphUBqgwffGkX177bGgo8IfWe2mt/cn0rOv2CAcZ1iD1++4evb48Oacy/TM5aZKhj8O
+ P/yTHnlVN7vTTq8Ym1cXRWpuyw3w2U1YfKHSgXozo/HZdS3kwo2PsTjbey8H+K51fEqT
+ 4qBpeUkyOsQ0oxd26dWX476QmNP1PSE+Gw141MYWtRj18bB/cLKnpv4MzDsBncpq+YC9 +Q== 
 Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-11
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-14
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 16 Jun 2022 09:34:40 -0500
+	Thu, 16 Jun 2022 09:34:43 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
- 2022 15:34:32 +0100
+ 2022 15:34:33 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 16 Jun 2022 15:34:32 +0100
+ Transport; Thu, 16 Jun 2022 15:34:33 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E47B611DA;
-	Thu, 16 Jun 2022 14:34:31 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 07BB011DA;
+	Thu, 16 Jun 2022 14:34:33 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>
-Subject: [PATCH 25/96] ASoC: test-component: Migrate to new style legacy DAI naming flag
-Date: Thu, 16 Jun 2022 15:33:18 +0100
-Message-ID: <20220616143429.1324494-26-ckeepax@opensource.cirrus.com>
+Subject: [PATCH 38/96] ASoC: pistachio: Remove now redundant non_legacy_dai_naming flag
+Date: Thu, 16 Jun 2022 15:33:31 +0100
+Message-ID: <20220616143429.1324494-39-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: Imefr2FbWEKdHfYaMvZ_557fVEkOHJiT
-X-Proofpoint-ORIG-GUID: Imefr2FbWEKdHfYaMvZ_557fVEkOHJiT
+X-Proofpoint-GUID: kgcjvTB7aSQbNwlmVULg7B1ofhUZ2hNS
+X-Proofpoint-ORIG-GUID: kgcjvTB7aSQbNwlmVULg7B1ofhUZ2hNS
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_075543_384046_103E84D3 
-X-CRM114-Status: GOOD (  14.34  )
+X-CRM114-CacheID: sfid-20220616_075542_729445_F0828084 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,28 +97,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change the legacy DAI naming flag from opting in to the new scheme
-(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
-This driver appears to be on the CPU side of the DAI link and
-currently uses the legacy naming, so add the new flag.
+The ASoC core has now been changed to default to the non-legacy DAI
+naming, as such drivers using the new scheme no longer need to specify
+the non_legacy_dai_naming flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/generic/test-component.c | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/img/pistachio-internal-dac.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/sound/soc/generic/test-component.c b/sound/soc/generic/test-component.c
-index d28712fabe3f6..e2a009bc69af2 100644
---- a/sound/soc/generic/test-component.c
-+++ b/sound/soc/generic/test-component.c
-@@ -564,6 +564,7 @@ static int test_driver_probe(struct platform_device *pdev)
- 		cdriv->pcm_construct		= test_component_pcm_construct;
- 		cdriv->pointer			= test_component_pointer;
- 		cdriv->trigger			= test_component_trigger;
-+		cdriv->legacy_dai_naming	= 1;
- 	} else {
- 		cdriv->name			= "test_codec";
- 		cdriv->idle_bias_on		= 1;
+diff --git a/sound/soc/img/pistachio-internal-dac.c b/sound/soc/img/pistachio-internal-dac.c
+index 802c0ee63aa26..e3b858643bd5d 100644
+--- a/sound/soc/img/pistachio-internal-dac.c
++++ b/sound/soc/img/pistachio-internal-dac.c
+@@ -138,7 +138,6 @@ static const struct snd_soc_component_driver pistachio_internal_dac_driver = {
+ 	.num_dapm_routes	= ARRAY_SIZE(pistachio_internal_dac_routes),
+ 	.use_pmdown_time	= 1,
+ 	.endianness		= 1,
+-	.non_legacy_dai_naming	= 1,
+ };
+ 
+ static int pistachio_internal_dac_probe(struct platform_device *pdev)
 -- 
 2.30.2
 
