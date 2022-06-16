@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28F9ECCA495
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:36:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D0E6CCA499
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:37:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qgsm8MHrwVP3aiSnGhj3Si2ul5G9V+rKxKDiPorG+/o=; b=MviUG3RFqh1lFm
-	rR/d7bVTjAih3QcgJ+cCtw2287dQpB8u9ZrgICcvL1fRiEg0qzxaJEhhJ1dqwXc16qrBeHpi3txpy
-	z1kd9xOruw1JrLBUMvhMaBG3vRI/bEsemw1jZmOQdoTcWjuHzMRbb5B3u5X1BH99/W5EOjM2N6GLm
-	+JHIzEktEX3UmFCynRo+Nd/e0fQ1lXQhUMU1sllu0uZQJnwYxaXJHi1r2mPtqebLCrvTaW1wAz0mC
-	LmqaTeexlxCXVB0u02y++d6D4O0XWbAQKELUHMtW27+EDDo6cHbL6GxZVfHlqjvF+XS0DtRvz+u57
-	gE/qZckCIH2vbXTuDHAw==;
+	List-Owner; bh=GYH3BYDTctXD0N7yBkSldM9DWKuUGkU5lKiajA80TJE=; b=FOaP1hhkw256n6
+	mJNGye1U63PnVPhoTVc3gDrOIoVHNzSFgWjkJYBiCxOynBZ/tb3DBQdQwIl4uHWvcpa2d9iyHODsA
+	z7IrunnTdoneZIo6dpVbaIrEuEyS8SViVUuXMub9C747X4qD3+zGFPFVxtsMQ15RgtyqLOlxcSsIN
+	u5S0pGZfEDFbRUeBhWbYq2EaQDNt3Xa0z6RFlfBgRcU86N6FG8mUDAakEBGiBehD0ReWDfd4gasmN
+	sMq/TpMYHKKRvbx6Q60SVqI/BymvGJJGnt8AlGUyq24l4oDo1xjzA0rOms0G9p7DrxMzLkI0y6uMr
+	TFKwgsdxULlcfGEzMlBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qc8-002t9X-Dy; Thu, 16 Jun 2022 14:36:52 +0000
-Received: from casper.infradead.org ([90.155.50.34])
+	id 1o1qcB-002tDw-F9; Thu, 16 Jun 2022 14:36:55 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qab-002rhL-TO; Thu, 16 Jun 2022 14:35:18 +0000
+	id 1o1qad-002rjE-9r; Thu, 16 Jun 2022 14:35:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=casper.20170209; h=Content-Type:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender
 	:Reply-To:Content-ID:Content-Description;
-	bh=Jgy4HYvWutWIwNsNORzLVRecig1c5kbslPS86+xHyEg=; b=Cy4ogxiv6jxnPPh7YaUJANa1Cu
-	A98TrkXiiNtOjpMqZsV7vVGSujL/w34P0zqRC0M9GUdVvHR2VYQ8EfZVZa9U7PbnCkE7++HzbfRAf
-	kknasQnWSMNI9Vl0RdB0iB0UMocDtzomc8enaNRR/9Gho6nVvt65C2nLEQgn+Fu41tBGOVhC8go/e
-	ry/wGEzfedx7szETnwRfoUf2Nv3kDTIC43uM13KN8LsoTcKx2WaMRyPwna/D0G7swk86fA3RvZ9z0
-	sLV5Af3Wwb3/xP0+q5uJtYWVj1+TQ/uBMyzMe0S726vwhLrxx9pX0zd2LPupIfwcx8GTCydmwOxFW
-	qfRrUZ6Q==;
+	bh=rKzBw62X0FKPJT/o0h8GzZ/Zi9TWVvhHqxnovZBRfSk=; b=EeA6Jb5EV91XREIPyWHW9F626e
+	NKdPAZTgrxs9ZD0DmbD/jGVLsH3s+gVSLr7IXR+rJZw5DsKtlKLcgm+zfQ823zl5ZdI3nWrTP58iQ
+	jKEzuoqYEN8Smvnovptn0Z3OT6CcWrpBGoZEEcrvSHcKQEykaiOz6zAMx4bACaMbJa3WZ9lAVgfJX
+	3XOPsUu1EcCqfF7vlRa2zA/Avw4OIVgvF1HSwbPYGP569GQlOpQMEO0bGmu2hDhHFynXSF6EwgIqV
+	pWLFj3PkCSkWFTr5UWsyr8ILsoXHJLvdJSBbgx026/zvWIA9gZWx6kR/6pwS8wAEV57veYpExsDS4
+	T5YUlSeA==;
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qaV-0020kX-GP; Thu, 16 Jun 2022 14:35:15 +0000
+	id 1o1qaV-0020kF-I6; Thu, 16 Jun 2022 14:35:17 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CB027888;
-	Thu, 16 Jun 2022 09:34:38 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CI027888;
+	Thu, 16 Jun 2022 09:34:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=Jgy4HYvWutWIwNsNORzLVRecig1c5kbslPS86+xHyEg=;
- b=mgSUGDdDdpekTdlEAUpg7wE+LP369Rc3nUTdx/i78NvLL0khdeqZUXymwvnMr/ndg+Y2
- 7dM5ha1U1u7v6YOuu7TE17NbtXDOPMIWYYoZFYvW+FAG5dmq5ubNNVGNnMY+oslWNoZO
- ZXdJIind7Vu0pQbk+niy0Nx3sWc+t2yG+6UxyZbdw+fJxiClb9PrVs4YN5HiqA5vayRE
- ugGeyCj2wiCFoQ+qcLJj7dURgtkp7Pgtc3K9WiGxRPbeyRWAeIXAT+0ezNobqDQbvHMA
- S55H5hYo32oL2nZoGifMM0BrTe/JgTks27bX1MtYOhVCKBpuYgD8kmmQx6C13BgS3xa8 2g== 
+ bh=rKzBw62X0FKPJT/o0h8GzZ/Zi9TWVvhHqxnovZBRfSk=;
+ b=Gd3YS2srmC4blGeP6h2RneTUOTwe1dXBVCeAjSUQMfZAOz4CON7R8j4KNjOaApQQGCXL
+ hjLxwQa1ScWtjW1xeGj4q4irHzVG/PRnKqqpaM/Xtucx56JI+m+Unn3ul1Eoh2Sc9EoO
+ RQNtUfoReNj8/c9vzgW2WSiYVpyCYUF29eClkCF8xJWpMAAIMAVo/MuXupfIejwRyLrz
+ KueEYq4vBZKcoWNxTgpsItA4wjW5pGYa/C1YvavI6tJyRtU3/m67mSCm9d7IvdHhjYsK
+ A/ZrnzRbuP0WCdHY71fYjamPxWQEtj2H2Tzcn7Qy0UhL8xBNTG1hzQ0mxHp5ZStuYs4a KA== 
 Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-8
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-15
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 16 Jun 2022 09:34:38 -0500
+	Thu, 16 Jun 2022 09:34:44 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
- 2022 15:34:31 +0100
+ 2022 15:34:33 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 16 Jun 2022 15:34:31 +0100
+ Transport; Thu, 16 Jun 2022 15:34:33 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2D276468;
-	Thu, 16 Jun 2022 14:34:31 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 583BB11D3;
+	Thu, 16 Jun 2022 14:34:33 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -81,19 +81,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>
-Subject: [PATCH 16/96] ASoC: meson: Migrate to new style legacy DAI naming flag
-Date: Thu, 16 Jun 2022 15:33:09 +0100
-Message-ID: <20220616143429.1324494-17-ckeepax@opensource.cirrus.com>
+Subject: [PATCH 42/96] ASoC: tegra: Remove now redundant non_legacy_dai_naming flag
+Date: Thu, 16 Jun 2022 15:33:35 +0100
+Message-ID: <20220616143429.1324494-43-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: UFBxm3IHq5fcn3nVljfzcgJ60t0r2xj7
-X-Proofpoint-ORIG-GUID: UFBxm3IHq5fcn3nVljfzcgJ60t0r2xj7
+X-Proofpoint-GUID: C1qkgaygaUHoY-k23uRyRKcW4334VHri
+X-Proofpoint-ORIG-GUID: C1qkgaygaUHoY-k23uRyRKcW4334VHri
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_153512_123871_36380196 
-X-CRM114-Status: GOOD (  15.08  )
+X-CRM114-CacheID: sfid-20220616_153513_061555_4AAF4870 
+X-CRM114-Status: GOOD (  12.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,115 +110,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change the legacy DAI naming flag from opting in to the new scheme
-(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
-These drivers appear to be on the CPU side of the DAI link and
-currently uses the legacy naming, so add the new flag.
+The ASoC core has now been changed to default to the non-legacy DAI
+naming, as such drivers using the new scheme no longer need to specify
+the non_legacy_dai_naming flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/meson/axg-frddr.c    | 3 +++
- sound/soc/meson/axg-pdm.c      | 4 +++-
- sound/soc/meson/axg-spdifin.c  | 1 +
- sound/soc/meson/axg-spdifout.c | 1 +
- sound/soc/meson/axg-toddr.c    | 3 +++
- 5 files changed, 11 insertions(+), 1 deletion(-)
+ sound/soc/tegra/tegra210_i2s.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/sound/soc/meson/axg-frddr.c b/sound/soc/meson/axg-frddr.c
-index 37f4bb3469b5c..61f9d417fd608 100644
---- a/sound/soc/meson/axg-frddr.c
-+++ b/sound/soc/meson/axg-frddr.c
-@@ -161,6 +161,7 @@ static const struct snd_soc_component_driver axg_frddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
+diff --git a/sound/soc/tegra/tegra210_i2s.c b/sound/soc/tegra/tegra210_i2s.c
+index 01c76ba36e1ac..39ffa4d76b593 100644
+--- a/sound/soc/tegra/tegra210_i2s.c
++++ b/sound/soc/tegra/tegra210_i2s.c
+@@ -803,7 +803,6 @@ static const struct snd_soc_component_driver tegra210_i2s_cmpnt = {
+ 	.num_dapm_routes	= ARRAY_SIZE(tegra210_i2s_routes),
+ 	.controls		= tegra210_i2s_controls,
+ 	.num_controls		= ARRAY_SIZE(tegra210_i2s_controls),
+-	.non_legacy_dai_naming	= 1,
  };
  
- static const struct axg_fifo_match_data axg_frddr_match_data = {
-@@ -286,6 +287,7 @@ static const struct snd_soc_component_driver g12a_frddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct axg_fifo_match_data g12a_frddr_match_data = {
-@@ -356,6 +358,7 @@ static const struct snd_soc_component_driver sm1_frddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct axg_fifo_match_data sm1_frddr_match_data = {
-diff --git a/sound/soc/meson/axg-pdm.c b/sound/soc/meson/axg-pdm.c
-index 672e43a9729dc..88ac58272f95b 100644
---- a/sound/soc/meson/axg-pdm.c
-+++ b/sound/soc/meson/axg-pdm.c
-@@ -457,7 +457,9 @@ static struct snd_soc_dai_driver axg_pdm_dai_drv = {
- 	.remove		= axg_pdm_dai_remove,
- };
- 
--static const struct snd_soc_component_driver axg_pdm_component_drv = {};
-+static const struct snd_soc_component_driver axg_pdm_component_drv = {
-+	.legacy_dai_naming = 1,
-+};
- 
- static const struct regmap_config axg_pdm_regmap_cfg = {
- 	.reg_bits	= 32,
-diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
-index 4ba44e0d65d9f..e2cc4c4be7586 100644
---- a/sound/soc/meson/axg-spdifin.c
-+++ b/sound/soc/meson/axg-spdifin.c
-@@ -390,6 +390,7 @@ static const struct snd_kcontrol_new axg_spdifin_controls[] = {
- static const struct snd_soc_component_driver axg_spdifin_component_drv = {
- 	.controls		= axg_spdifin_controls,
- 	.num_controls		= ARRAY_SIZE(axg_spdifin_controls),
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config axg_spdifin_regmap_cfg = {
-diff --git a/sound/soc/meson/axg-spdifout.c b/sound/soc/meson/axg-spdifout.c
-index 3960d082e1436..e8a12f15f3b4a 100644
---- a/sound/soc/meson/axg-spdifout.c
-+++ b/sound/soc/meson/axg-spdifout.c
-@@ -383,6 +383,7 @@ static const struct snd_soc_component_driver axg_spdifout_component_drv = {
- 	.dapm_routes		= axg_spdifout_dapm_routes,
- 	.num_dapm_routes	= ARRAY_SIZE(axg_spdifout_dapm_routes),
- 	.set_bias_level		= axg_spdifout_set_bias_level,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config axg_spdifout_regmap_cfg = {
-diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
-index d6adf7edea41f..e9208e74e9659 100644
---- a/sound/soc/meson/axg-toddr.c
-+++ b/sound/soc/meson/axg-toddr.c
-@@ -182,6 +182,7 @@ static const struct snd_soc_component_driver axg_toddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct axg_fifo_match_data axg_toddr_match_data = {
-@@ -242,6 +243,7 @@ static const struct snd_soc_component_driver g12a_toddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct axg_fifo_match_data g12a_toddr_match_data = {
-@@ -312,6 +314,7 @@ static const struct snd_soc_component_driver sm1_toddr_component_drv = {
- 	.hw_free		= axg_fifo_pcm_hw_free,
- 	.pointer		= axg_fifo_pcm_pointer,
- 	.trigger		= axg_fifo_pcm_trigger,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct axg_fifo_match_data sm1_toddr_match_data = {
+ static bool tegra210_i2s_wr_reg(struct device *dev, unsigned int reg)
 -- 
 2.30.2
 
