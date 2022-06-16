@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D61CCA47A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:56:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22D14C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 14:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZDBKFj0viN6LFgHC1O1bI3JkzpOzJMvFnHqq2GTPy1M=; b=LqggingKrD4asS
-	9iniZHA00pPWVTjPX5O7NS4K/JEMJatVG+UlB17zw//eDLzMbCuT+ny3Z5oaxiC03G1h4Hb+mzh4n
-	1HjpPUu3G5wQrAeidVXANkIpMgd/AAZpMD9DL7/7ZcPEkoXoyRajDYegK92TRyDj6hASr3RVVAJx4
-	iouoswyWvVizJhyvYF6Xzb6p5ERXRrM5kqQkMXCeHzRY+o4Iwyk4ozyzFGpTkq56X4ZgrjzQ393iz
-	b8EUKytlUK9jFnaW6XkP3dubKlK9alSD/XF4w32OrAd8lxkQsPxp0apbVfbWfTT7wEp3h84T+Slkx
-	qkVDvQXYp8wBZ86w7Ciw==;
+	List-Owner; bh=DrQ+qG7EiI9R6kDfUcm1ukMSuJKyrgSCiPNmS2lPcFo=; b=colTmAlhqaYjfr
+	YekilGPV7W96pgJOyGBGG4OqLfcC0o4wy8JAUezpVFQ/FdpEY0xM3qhkz44s6/TfTiB+TM1uBdseQ
+	rduEcYPiXlxvfc44zbPr+smIgbl/VrNHUg1/qGU1OaAFHdjDj7pDqdTayZJKNDgtKJ/JrwGJ9SeYz
+	0pn6JO1CBiLfy0TBV2CIRxVCmxrf3y+qmvcfD8Q9KuDgQslvOCRTuE4zwM1CTITzv95Mr5OFODkFQ
+	iWjek6rHs9yxEwZbW0lEHHl5bADTcd+6rPmtwU5y7+b70WP8FGKCKXj+woJjShVB4ClYLl9VmsT4G
+	MQUoLgxRaW4L662+f+eA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qv1-0033CY-DL; Thu, 16 Jun 2022 14:56:23 +0000
+	id 1o1qv1-0033DD-US; Thu, 16 Jun 2022 14:56:23 +0000
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1quM-0032KC-HE; Thu, 16 Jun 2022 14:55:46 +0000
+	id 1o1quM-0032KE-HD; Thu, 16 Jun 2022 14:55:46 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07CH027888;
-	Thu, 16 Jun 2022 09:34:43 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25G4igBn030693;
+	Thu, 16 Jun 2022 09:34:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=UKatc6+tXyUsYCxIUlOCKACRDXtjL/84KfpSbCPcQ6U=;
- b=PVEf/gSBt1LrSmysiT/MfKCEqEuopaWdPpEGU6ngsUBRBfSA3DVN619Ate1wBzxNso82
- /d+DwJ2CB9MVBEfTyWHEbVWVRrA4Um6ZdSHZ6rcUKMCCGRKs847pYfYVdic7OowtWiy5
- PRphUBqgwffGkX177bGgo8IfWe2mt/cn0rOv2CAcZ1iD1++4evb48Oacy/TM5aZKhj8O
- P/yTHnlVN7vTTq8Ym1cXRWpuyw3w2U1YfKHSgXozo/HZdS3kwo2PsTjbey8H+K51fEqT
- 4qBpeUkyOsQ0oxd26dWX476QmNP1PSE+Gw141MYWtRj18bB/cLKnpv4MzDsBncpq+YC9 +Q== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-14
+ bh=UpVtM3GhDa8LxnMJynyFTiJGRkwOtaAZVwvm7j+y7i4=;
+ b=Vbk49ry7KJWmurgYBbWaRg/efZ508xGCT9dvGbpB+ztSsJ9ztOruptFt2DhD+4XVdoJi
+ wlTGa3kgn2vlgbkxmdFMqQMzgVkN6e0K70GFkFJC2vbS8XwS2ggKbA+PXfuOHCDJx+UJ
+ Tpwof175fykCnrDEmDqPtzJ8Utxk/DU16W2G9MZXplowaASZZIdrKR9cCdXEpl1VVlbo
+ 8TrKsQLY56XytS8qGLtZVxoXbnOC0JG34W/Iv1E3nUlI3sW1kh7eo0HLj88NMs/CDBLR
+ 5Iv+UdOEpNDNGToNzqQlaKsoEQUqauwobY/MihCNIhKjf1YkiFbU1zn5XJRhryiIPTg8 Ew== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuw-17
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 16 Jun 2022 09:34:43 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 16 Jun 2022 09:34:52 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
- 2022 15:34:33 +0100
+ 2022 15:34:36 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 16 Jun 2022 15:34:33 +0100
+ Transport; Thu, 16 Jun 2022 15:34:36 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 07BB011DA;
-	Thu, 16 Jun 2022 14:34:33 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 9793A11D3;
+	Thu, 16 Jun 2022 14:34:36 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>
-Subject: [PATCH 38/96] ASoC: pistachio: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 16 Jun 2022 15:33:31 +0100
-Message-ID: <20220616143429.1324494-39-ckeepax@opensource.cirrus.com>
+Subject: [PATCH 83/96] ASoC: jz4740: Remove now redundant non_legacy_dai_naming flag
+Date: Thu, 16 Jun 2022 15:34:16 +0100
+Message-ID: <20220616143429.1324494-84-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: kgcjvTB7aSQbNwlmVULg7B1ofhUZ2hNS
-X-Proofpoint-ORIG-GUID: kgcjvTB7aSQbNwlmVULg7B1ofhUZ2hNS
+X-Proofpoint-GUID: Wga18Z78TkpdbdBomDbum1yNuyGVhnga
+X-Proofpoint-ORIG-GUID: Wga18Z78TkpdbdBomDbum1yNuyGVhnga
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_075542_729445_F0828084 
-X-CRM114-Status: GOOD (  13.18  )
+X-CRM114-CacheID: sfid-20220616_075542_764366_7418B1BB 
+X-CRM114-Status: GOOD (  12.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,21 +103,22 @@ the non_legacy_dai_naming flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/img/pistachio-internal-dac.c | 1 -
- 1 file changed, 1 deletion(-)
+ sound/soc/codecs/jz4740.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/sound/soc/img/pistachio-internal-dac.c b/sound/soc/img/pistachio-internal-dac.c
-index 802c0ee63aa26..e3b858643bd5d 100644
---- a/sound/soc/img/pistachio-internal-dac.c
-+++ b/sound/soc/img/pistachio-internal-dac.c
-@@ -138,7 +138,6 @@ static const struct snd_soc_component_driver pistachio_internal_dac_driver = {
- 	.num_dapm_routes	= ARRAY_SIZE(pistachio_internal_dac_routes),
+diff --git a/sound/soc/codecs/jz4740.c b/sound/soc/codecs/jz4740.c
+index 081485f784e9b..7c25acf6ff0de 100644
+--- a/sound/soc/codecs/jz4740.c
++++ b/sound/soc/codecs/jz4740.c
+@@ -291,8 +291,6 @@ static const struct snd_soc_component_driver soc_codec_dev_jz4740_codec = {
+ 	.idle_bias_on		= 1,
  	.use_pmdown_time	= 1,
  	.endianness		= 1,
 -	.non_legacy_dai_naming	= 1,
+-
  };
  
- static int pistachio_internal_dac_probe(struct platform_device *pdev)
+ static const struct regmap_config jz4740_codec_regmap_config = {
 -- 
 2.30.2
 
