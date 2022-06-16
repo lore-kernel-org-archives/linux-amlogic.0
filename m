@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 480A4CCA480
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4807ACCA47E
 	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jun 2022 15:46:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z7Oa4sEV0+XEXhIgMNVCWg2HVL+Q5nmNB2902Fcn6KQ=; b=e+AhppGkc1VrI6
-	bK2yPZtxEKUrcxxGyT4ZRWyViqdi5+54sZpIlEG9LEl9jo+GDY2Ns+JkUX/DeKxFlXA6THLX1mRoG
-	PsK+OkmzuwCq59jVhJYERClT1FRU+p6CUpsPWjBYsYS8+saAgpM377JwGFmSVJGMcRHfpu1rxhCN4
-	JzOUojS3MNfHL1upbt3erFLLqg6w7Pv1h4Nb4oNsQDH5oeS2B+wXsMQNAzz36KMFJqolIFKnuz3Vs
-	HLaVquAttxlG9/1GgnJ+TiJGtqhcP1+4+IHsEewqIZCMVDUy4joaeMiJeinMDnda19n3krD2tuBcL
-	Lz/SjOLC9LsaAjx4m0Vw==;
+	List-Owner; bh=rimXjT/MdIRnXQ40H/7rBVbzZqmlOI2XQKa5xbumBfk=; b=a2fVFf1DoPWjHm
+	W7ctHXVjtn0VVTjc7sychzBCRkm4tzXHilwpHW4l55AJ7XkLJPCGGhky8mAwfI29MhkOczSh4qg1A
+	31ll2mucSYNxCBfRTTTFPDg9zC0f5Nj4HQeZOJf3po/l2HsbBWNbnIjSUXUtea71cMewMsrbuzXyK
+	843kfYeB+D4c9r94G453eIoAm/Osr6nDRk7hjU9EMNlx87QmNn3qcpIEDUar0FgXd5RvcNiaPptLB
+	qiw1s6K7FJM469jvUgtcHyYsd1mczBVHylJndR0TckRDpg/2LYvM08CkyrBNyRqVjSsrwEE8MrplA
+	NUWdGleJTtBcEEZv2Ahw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1rgl-003EOr-WD; Thu, 16 Jun 2022 15:45:44 +0000
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
+	id 1o1rgn-003EQM-OY; Thu, 16 Jun 2022 15:45:45 +0000
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o1qaF-002rPS-NQ; Thu, 16 Jun 2022 14:35:00 +0000
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC0DJX015765;
-	Thu, 16 Jun 2022 09:34:34 -0500
+	id 1o1qaG-002rPT-17; Thu, 16 Jun 2022 14:35:01 +0000
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25GC07C5027888;
+	Thu, 16 Jun 2022 09:34:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=NITDP0/FzeUs4judT0jNQp5cBIgyRfB6xBGDNoV8sco=;
- b=ClzRE7fBiz+GWthoVNTPsY6Fx7c1X8cRUAIgzZ/qS9WG1RR6BXUoQY5FA7DIngYuUoiJ
- UvkNB3gdBMNIHksHNt3Phkpfr9SzcHgu4ysbvMxlRGGU+cbkgeT1b4dZl7HeyVIu2HPC
- TorThIqOBQiSLb9VC0I7Z3tZtk+FO0fIGPDUS/tyD2jhLcRCU/mtH/6ukYWVuq4DI+s6
- C8ADRe0WLljJiNOfEOeO2j+guVW5X/20k8sq81CpH+oTaqmNgT1vU1JzpfiJ/CdAm/uA
- svK8DaIsOfCaIagQ7D2Cv8B5aGSbGxCn8Sl/OSnvV25h6mVJFQOqo7s73LELeZpRWEEB Uw== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gmqfq5w3h-5
+ bh=+ZJvFPqRLHsK8VJgqeCq9KcDpAuthuuELv8JAfqtDxU=;
+ b=nej2Axtf3Ci8j7ARIaEkPtOyX3vHnMlxdIR7EowuXUDmwLLCRbwyITudvd2N+3nyYidV
+ wWfhF62jHLB4vyOrVOqj5afDE3XT+8sjGTkl23WZwFFI5sMNH3hXMdmtpARcb6ljKktV
+ 6TVNLBGOtAFjlfXtMV/KxKtCSNHigrUCHwiA6Y9HWNW3KTOIm+PTPuhunABhBPu8sWiP
+ yzV8LE1mphYrBVqok4aLeYyd1vllWn3abct/40oDOOFplUn0WWMq27eRffnO7xH6mBbh
+ h0lrs4F/hFFmTHRk33zfORXdEQRJV5XF2X3ulmj/ibqLJAfpXR8BeAW4FJRMoBG/elyH 0w== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf35vuu-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 16 Jun 2022 09:34:34 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 16 Jun 2022 09:34:33 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 16 Jun
  2022 15:34:30 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
  Transport; Thu, 16 Jun 2022 15:34:30 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 692FC11D1;
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 282A9478;
 	Thu, 16 Jun 2022 14:34:30 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>
-Subject: [PATCH 06/96] ASoC: jz4740-i2c: Migrate to new style legacy DAI naming flag
-Date: Thu, 16 Jun 2022 15:32:59 +0100
-Message-ID: <20220616143429.1324494-7-ckeepax@opensource.cirrus.com>
+Subject: [PATCH 03/96] drm/vc4: Migrate to new style legacy DAI naming flag
+Date: Thu, 16 Jun 2022 15:32:56 +0100
+Message-ID: <20220616143429.1324494-4-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-ORIG-GUID: iSA6Egfg7F-z7JxBynJ2xhU-srF922i2
-X-Proofpoint-GUID: iSA6Egfg7F-z7JxBynJ2xhU-srF922i2
+X-Proofpoint-GUID: 5u1n12_iA3o4iDdyKTapjKv8prc9bFEK
+X-Proofpoint-ORIG-GUID: 5u1n12_iA3o4iDdyKTapjKv8prc9bFEK
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_073455_935861_51D0C0F2 
-X-CRM114-Status: GOOD (  14.45  )
+X-CRM114-CacheID: sfid-20220616_073456_132286_9AC361A6 
+X-CRM114-Status: GOOD (  13.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,27 +104,21 @@ currently uses the legacy naming, so add the new flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/jz4740/jz4740-i2s.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/vc4/vc4_hdmi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/jz4740/jz4740-i2s.c b/sound/soc/jz4740/jz4740-i2s.c
-index 446c5e0615649..79afac0c50038 100644
---- a/sound/soc/jz4740/jz4740-i2s.c
-+++ b/sound/soc/jz4740/jz4740-i2s.c
-@@ -498,9 +498,10 @@ static const struct i2s_soc_info jz4780_i2s_soc_info = {
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index 823d812f49829..3e3bd88745b7c 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -1969,6 +1969,7 @@ static int vc4_hdmi_audio_prepare(struct device *dev, void *data,
+ 
+ static const struct snd_soc_component_driver vc4_hdmi_audio_cpu_dai_comp = {
+ 	.name = "vc4-hdmi-cpu-dai-component",
++	.legacy_dai_naming = 1,
  };
  
- static const struct snd_soc_component_driver jz4740_i2s_component = {
--	.name		= "jz4740-i2s",
--	.suspend	= jz4740_i2s_suspend,
--	.resume		= jz4740_i2s_resume,
-+	.name			= "jz4740-i2s",
-+	.suspend		= jz4740_i2s_suspend,
-+	.resume			= jz4740_i2s_resume,
-+	.legacy_dai_naming	= 1,
- };
- 
- static const struct of_device_id jz4740_of_matches[] = {
+ static int vc4_hdmi_audio_cpu_dai_probe(struct snd_soc_dai *dai)
 -- 
 2.30.2
 
