@@ -4,58 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41996C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jun 2022 01:23:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE46C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jun 2022 07:38:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:References:
-	In-Reply-To:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y9H8faZFIQNI8R1bPbT2VgEzu4oeyOvHr++QFl+/LOc=; b=A1oP0YwLajM55T
-	1vH+3LBFHFN0RJBwtgOFa2IHbbKdKfb2VOfOJdxMSql/Kgu2Q0M9RKJ8xItzKkFgTunZl2TxOgwdY
-	1sN6VgVP9001AZKIpnmyDRjaSx9YuP8Szosp/gNsYtHO2/nUuopWHPcZ5OL0/TUkWbdQ95XrgH5L/
-	vovgO8YwLuaXXZTFnqfaLJTfC4MfeS+X/Z4fi2UF0x0BYcb1wteC8pLxQ8ABoQn2d9kTM5EUpsM06
-	cfmsv3fo3Oj7D0NRZ6Zf5LZltJ4GDGBRnsjcBpfV2dbzgYka7MspNkuP+lkO0w8iX1fFawZw/lwgd
-	/DmdzatD1eCXrU7mTOOQ==;
+	List-Owner; bh=9mIvu+oGwUB0vEe4SOTbhncrJ6gP08tZefDMW1o5pfA=; b=VQ7gyPJRrZuukh
+	Zy+YDSptsLZ16ZMWGOo4GABcDap03BeY2luIKSu499RXsbONqIFfASuTdd2VNZWoOyoDwEIgkf05J
+	pycch4tGoTYFDjhoJVp/HvYFv+BAzaghHFgbfwsWlj6o+gLJzah97e0BcFsL5T4DJnQrg5y8yO+bq
+	mfbIMIFJJpWKOg0sVDMNSD4OPwxYK8NJlge5kPvK10z1pg5HrSNiMptYiMhy2KpD8jVsZmjO0KY2D
+	YM3j9B/u/61eF6gFCYBUT2MZ6LPsMfc5KST0ZnkMVCGfDCQ2Nw0LYfIgQtl/K5+gFmk6mQzbAZ5jV
+	ct2iRbAHapGv+3agUodg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o20hc-004zeZ-OP; Fri, 17 Jun 2022 01:23:12 +0000
-Received: from m1550.mail.126.com ([220.181.15.50])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o20hR-004zdE-66; Fri, 17 Jun 2022 01:23:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=Cq+ut
-	oE+mzqgQ3KbNKOTWVc1zRuzyYEd9yXx+hs2Kq4=; b=QG88Z9PAD2tEhsPlrBTqn
-	rzuMe8lMtyjZ5HwYh4darp5KrKjLIRcPcTP7f8hb+i1umKZUroSmY1wLL0zQ0fdT
-	MKXe1Gh2cjVhqIFjDqKBujQqWFJosiO4KoEL3FUeRhbJoGDRxg/1OmOXqA24cLTn
-	NrbmhP50tdn1v9z4nKYaOk=
-Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr50
- (Coremail) ; Fri, 17 Jun 2022 09:22:52 +0800 (CST)
-X-Originating-IP: [124.16.139.61]
-Date: Fri, 17 Jun 2022 09:22:52 +0800 (CST)
-From: "Liang He" <windhl@126.com>
-To: "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>
-Cc: "Neil Armstrong" <narmstrong@baylibre.com>, khilman@baylibre.com, 
-	jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re:Re: [PATCH] soc: amlogic: Fix refcount leak in
- meson-secure-pwrc.c
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
- Copyright (c) 2002-2022 www.mailtech.cn 126com
-In-Reply-To: <CAFBinCB-WZmnMtvG1P=sWASQZCg9F9d-Hg0OzVNUsEutUFX0Cg@mail.gmail.com>
-References: <20220616144915.3988071-1-windhl@126.com>
- <CAFBinCB-WZmnMtvG1P=sWASQZCg9F9d-Hg0OzVNUsEutUFX0Cg@mail.gmail.com>
+	id 1o26YP-0060zZ-CS; Fri, 17 Jun 2022 07:38:05 +0000
+Received: from out4-smtp.messagingengine.com ([66.111.4.28])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1o26MR-005wWJ-TF; Fri, 17 Jun 2022 07:25:45 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id D16F15C0151;
+	Fri, 17 Jun 2022 03:25:38 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Fri, 17 Jun 2022 03:25:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to; s=fm1; t=1655450738; x=
+	1655537138; bh=t6QXcNLzauxbqf0PNTG8MvaAdoQQFis6uQHBpNA5m+I=; b=n
+	r/26OCnEDIr6jYGUp00hxr/NMoxkf6xXfRuhMockkxh6n/wloYbpla88d1SGLc3P
+	BtUBgD8RZGZwQq1VPEdFsxTpp0vbEShL/ls6VxYlg3QMzR0vwLar8HSi00UlQ0gL
+	CH0ldBnQE8fgusDetIp4GspeBfNwxFV/Kux0Hx5Gn4thT/XQgU8PMW4HgsFFcXRm
+	Zivnb/+Onrj1LGZ5AHx2nvHV0C75KC/tYxnCCabt/MYKO/z8c0fQcLinaQbHGkZ/
+	ReDK0Ixt6XyqgHi5Jl8vZzwm7V5ELSXQsKa2v6qLRWnUgG5G2P5dohWhsokjAjTc
+	L+OzZ1aV3f76OQGSJyChg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1655450738; x=
+	1655537138; bh=t6QXcNLzauxbqf0PNTG8MvaAdoQQFis6uQHBpNA5m+I=; b=C
+	kYUa18GGhGd0oZQ43NnZDN3+5y/3awo+Sws0Pq3eb6UKVOekXJ4Y7ZEHvLp36JHj
+	tycJVtu9HwZf6jSnqxW4zSYXVJbe86AaaXxlWH7q4QH3qe9lRa6jd+fNATp9LPAT
+	uMB4hcgr49bGrbUHs5jLTWfsDcAY1XnxmodGaA/DgxKZG0akk8naBHEsjI+9wBbi
+	bdBT2GvJE4pNDjc9Q1xJKM5StazQkLXgIHK2oujsy/VM2X0INDscm2W7ndAJ5rcf
+	mBBIfmMwMR/jziK5WAQT6SO63sjbrOoLYrgXG/T1UfFrVqW/5w3OIEWPJWQoFPkh
+	/k+4PB1FRuFRA5/pGTzAw==
+X-ME-Sender: <xms:cCysYuGbj_tXIkPunEurAIwroXW5XpxjXpF4QSJbzxhbPXclwax6XA>
+    <xme:cCysYvWgkzuxSA4c7vUx_UbBJT8gLLCv-uNPJbxN_6t01QjqR06uBZtc0l9wxHzhR
+    zr0LWaTeAJNrwG7Sv4>
+X-ME-Received: <xmr:cCysYoL-s8_MAzYdUOgHxl_upF4_8dJ4RyvHl_ZD6Qzg5t8bcXrIWoJ5sq56JxsiML5p_3EqajNOb9VnX0x1uY0f2nUbuWm7o5g4tUo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvgedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgr
+    gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
+    frrghtthgvrhhnpeetgfelgefggeekkefggfeludeiudffjeffgeevveekjedukedtudeu
+    teefteefgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:cCysYoGVB8cZQ7yOz48SmLfp873hgDRpdEpPRutGsvxTCLizycl41w>
+    <xmx:cCysYkVSvHtiRSBPNAhrPCzXsNP5d45QhqafU_iIo0w9pj_rG6ibZQ>
+    <xmx:cCysYrOhmw8cG_xUkAWqqi3Xw5qv0x5wtJ9n4l4N9ZI1Bu5NZbr7WA>
+    <xmx:ciysYvyJISiAd-XGF0UUbZ-Rv8dPZGqNpVjs7CZjxA6lvgGh5OS30A>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Jun 2022 03:25:36 -0400 (EDT)
+Date: Fri, 17 Jun 2022 09:25:33 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com,
+	kuninori.morimoto.gx@renesas.com, airlied@linux.ie, daniel@ffwll.ch,
+	vkoul@kernel.org, nicolas.ferre@microchip.com, nsaenz@kernel.org,
+	shawnguo@kernel.org, linux-imx@nxp.com, cezary.rojewski@intel.com,
+	pierre-louis.bossart@linux.intel.com, linux-mips@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, daniel@zonque.org,
+	srinivas.kandagatla@linaro.org, linux-rockchip@lists.infradead.org,
+	krzk@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-xtensa@linux-xtensa.org,
+	peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com, heiko@sntech.de,
+	jbrunet@baylibre.com, kernel@pengutronix.de,
+	alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH 03/96] drm/vc4: Migrate to new style legacy DAI naming
+ flag
+Message-ID: <20220617072533.foajsg6z3c2js3nb@houat>
+References: <20220616143429.1324494-1-ckeepax@opensource.cirrus.com>
+ <20220616143429.1324494-4-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-Message-ID: <12f4df52.f06.1816f417fcf.Coremail.windhl@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: MsqowADHHPFs16ti+Q44AA--.53959W
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/xtbBGgYiF1-HZUGFPAADsv
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Disposition: inline
+In-Reply-To: <20220616143429.1324494-4-ckeepax@opensource.cirrus.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220616_182301_594636_377FB5F0 
-X-CRM114-Status: UNSURE (   5.16  )
+X-CRM114-CacheID: sfid-20220617_002544_564966_7834B29D 
+X-CRM114-Status: UNSURE (   6.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,42 +118,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Thu, Jun 16, 2022 at 03:32:56PM +0100, Charles Keepax wrote:
+> Change the legacy DAI naming flag from opting in to the new scheme
+> (non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+> This driver appears to be on the CPU side of the DAI link and
+> currently uses the legacy naming, so add the new flag.
+> 
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
+Thanks!
+Maxime
 
-At 2022-06-17 04:17:19, "Martin Blumenstingl" <martin.blumenstingl@googlemail.com> wrote:
->Hello,
->
->On Thu, Jun 16, 2022 at 4:50 PM Liang He <windhl@126.com> wrote:
->>
->> In meson_secure_pwrc_probe(), there is a refcount leak in one fail
->> path.
->>
->> Signed-off-by: Liang He <windhl@126.com>
->Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
->[...]
->>         pwrc = devm_kzalloc(&pdev->dev, sizeof(*pwrc), GFP_KERNEL);
->> -       if (!pwrc)
->> +       if (!pwrc) {
->> +               of_node_put(sm_np);
->>                 return -ENOMEM;
->> +       }
->Another approach would be to just move devm_kzalloc() a few lines
->further up (above of_find_compatible_node()).
->That would catch similar issues in future when someone wants to add
->more code right after devm_kzalloc(). That said, I don't think that
->this is a likely scenario so the patch is fine for me as-is.
->
->Thanks a lot for submitting this!
->
->
->Best regards,
->Martin
-
-Thanks for your confirm.
-
-Liang
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
