@@ -4,69 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 872DFC433EF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jun 2022 10:40:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAD91C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jun 2022 11:05:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FBPHx2Ob3n8QHVzMJ4MMr7cp0pJTt0HovrYEtVr5rSo=; b=VPo+8S67PYT+PhcyNswaF1eLtM
-	TwbyotK8NGxXPrHFqiuf5G2a4+5nafLYg0C3YVgU/mAPWoslUWCyguYkZFn0mtPETJ8Vm4qr6HjTz
-	RV49JqfjHYiMru7/xfcbVXfUtnCJRxWtJL6cdj4S41qd3UcfVKdVZ9PVsQpv6kESWSR4V/JGbIaL8
-	TO5lz10iO+fDjy2qQqemwRVqJ5cOQ2RfbO2nSjozKHUnSmQlBMVbRxsRcnvvdvGWN2H4AgY/b/0MI
-	ByxyAXfb2XIep7gk+opv2UVr38hyLZGYVPD3QDPv3jvFjBlsSOO21RCwUbZEIGu9JWrLsFXslQo74
-	tdn+8D4Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	Subject:To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=mbCmMTIvMdVGP6f+7UEyuctDHTi5BE+nh5BShQFosz8=; b=Fa8VoEH4hJlZ6W
+	DQTcQhmLI4ZgtTaVRiDa3ijGJZIvpMBwSOLAEe7ukVN55QbS6gfuKqty3O+1D8jqrAf4W0PfYJIbU
+	q7jRjG8QwtACtog8YYe7oNAljFfowDX/9csJiK/ubufnTTSVv14MyMpptneycJFGr3yJ7sibXVhBA
+	9l+auUIo3PdqrZmOfY2rQ5QaFICz+FnsGSfnvbuAK7ezHSN5KaUvt0hbTd7HZ156Ep6fz37u6nFlK
+	zpFPobtuL+KsIu2k8qS2qbmhRPA9rCQUcJN4F2DtSad9sy2xrD8FNiV2bF1IXL6zZ8K2vJ8QWMwaC
+	IUKIVvEI1CMb9ksM1q5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3EpS-00HVN2-9e; Mon, 20 Jun 2022 10:40:22 +0000
-Received: from mga11.intel.com ([192.55.52.93])
+	id 1o3bhB-0050VS-8y; Tue, 21 Jun 2022 11:05:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3Ep4-00HVEd-6I; Mon, 20 Jun 2022 10:39:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655721598; x=1687257598;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=LeRkSVDTT0Yb76jEsTjO7SM/+tjqpDRALlVCJn6AsZE=;
-  b=PHUfaCBHW82fflsie8N9CBbFclS+UaV8Glxj7m5n5kTwYt5/Vbb1tufM
-   XeyTbVK81PatKGUFqSpn9BET6KmJI/jpU1vLc6fnv0F7ZVZp9i8AAvMWS
-   tCJwewgLBSWVOrSrF12oE7WBsSdrqgcaJ6BvXCxSCr6QE6K3xEpZEDybF
-   eWQNXTrDNlsS0beBGuwAiGwzu+gKqnGBGvuXVUQsoNquO+s/tA95ZwgJJ
-   3L5Fq1XjqtmIM/l1ram8HsHs/p+SmzJT2/4JQTiLzF+tY/2j7xoElgfJW
-   ThlFp3x4LdTDFGjemvBDq0ujBpPxmLD0JFFx/mXT2Kpxi9drZY83NowZZ
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="277410208"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; 
-   d="scan'208";a="277410208"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 03:39:57 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; 
-   d="scan'208";a="643056879"
-Received: from lspinell-mobl1.ger.corp.intel.com ([10.251.215.169])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 03:39:54 -0700
-Date: Mon, 20 Jun 2022 13:39:52 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-serial <linux-serial@vger.kernel.org>
-cc: Greg KH <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-    Neil Armstrong <narmstrong@baylibre.com>, 
-    Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-    Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-    =?ISO-8859-15?Q?Andreas_F=E4rber?= <afaerber@suse.de>, 
-    Manivannan Sadhasivam <mani@kernel.org>, 
-    LKML <linux-kernel@vger.kernel.org>, linux-arm-kernel@lists.infradead.org, 
-    linux-amlogic@lists.infradead.org, linux-actions@lists.infradead.org, 
-    linux-unisoc@lists.infradead.org
-Subject: Re: [PATCH 5/6] cleanup: Use UART_XMIT_SIZE
-In-Reply-To: <20220620103408.37454-6-ilpo.jarvinen@linux.intel.com>
-Message-ID: <aa117e1a-7ec-149b-2337-db4ead968aa@linux.intel.com>
-References: <20220620103408.37454-1-ilpo.jarvinen@linux.intel.com> <20220620103408.37454-6-ilpo.jarvinen@linux.intel.com>
+	id 1o3bh1-0050Tw-FO
+	for linux-amlogic@bombadil.infradead.org; Tue, 21 Jun 2022 11:05:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=uUZIMU47P6dJU2wQrlHidzKhjU0X5Ew56yOxpmDv6FA=; b=NuUCBAf1TZQYouHdzriHnuj3Zy
+	jMW6oHYFCLvMKPeunuFw56sTNhdRTGd/jpU2SgpBYfaDiTxn7+63I+7AZMvNCa/RMBkLQGyyWG0B+
+	bwd6QDGHeIjKNERISXhfjr6gvVWuqUvU2pijXBf99fuiA0/DJ7/KdCdYyFMbbX27v31wYltJeIFAV
+	yXuHARUYL0MiTaQZ37nDlKrn8D+0V2iRu+21ZZ2QEhhKIe5mXGwyGaY06XCrRLOe9FdhM9dC453op
+	RfG7EDEwesF9foTAiaGYZn/OXxDBEjF1Gpdth63Za9gK774u/r0o3o/hsSo1QKS0p0TxJlWn7McYw
+	SmKcJiVg==;
+Received: from static.163.53.161.5.clients.your-server.de ([5.161.53.163] helo=quickfundit.com)
+	by desiato.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1o3bfD-00AJnY-2n
+	for linux-amlogic@lists.infradead.org; Tue, 21 Jun 2022 11:04:19 +0000
+From: "Quickfundit" <sales@quickfundit.com>
+To: linux-amlogic@lists.infradead.org
+Subject: QUICK LOAN
+Date: 21 Jun 2022 04:02:50 -0700
+Message-ID: <20220621040250.29C47539BBF79EE5@quickfundit.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1889180693-1655721597=:2433"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220620_033958_283716_0145D518 
-X-CRM114-Status: UNSURE (   7.19  )
+X-CRM114-CacheID: sfid-20220621_120355_823306_E6FBE0ED 
+X-CRM114-Status: UNSURE (  -2.31  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,40 +60,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: info@quickfundit.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Have you applied for a Loan before and been denied ? Do you need 
+a Loan to start that dream business ? Then worry no more, 
+QUICKFUNDIT https://www.quickfundit.com Offers Business loan, 
+Debt Consolidation Loan, Personal Loan with a 15 years repayment 
+period at the lowest interest rate of 5% for small and big time 
+projects/businesses.
 
---8323329-1889180693-1655721597=:2433
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+We offer loans ranging from $10,000 (Ten thousand Dollar's) to  
+$2,000.000 (Two Million Dollars) With six months defer grace 
+period for Repayment.
 
-On Mon, 20 Jun 2022, Ilpo Järvinen wrote:
+We've developed a lending program that makes it easy for us to 
+meet up with our clients' needs.
 
-> Both UART_XMIT_SIZE and SERIAL_XMIT_SIZE are defined. Make them all
-> UART_XMIT_SIZE.
-> 
-> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-
-Grr, it seems that my internal naming to organize patches managed to leak 
-into that summary on subject line. It should have been serial: obviously 
-and I only noticed while git send-email was sending the bits out. :-(
-
--- 
- i.
-
---8323329-1889180693-1655721597=:2433
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Interested Applicants are advised to contact us via Email for our 
+application form. info@quickfundit.com
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---8323329-1889180693-1655721597=:2433--
-
