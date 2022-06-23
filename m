@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3C5EC433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 13:23:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC81CC433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 13:23:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DrQ+qG7EiI9R6kDfUcm1ukMSuJKyrgSCiPNmS2lPcFo=; b=rT6SbFj8UWFeXz
-	77B7h/CP7inCzAaMcJ9BmsTm/ljCvUp1cb5nG13xw8Q1BPz33IyQRUIdJK4ibAHx0Xc9qMVfdey0t
-	+bLB0/B5pQEln9H1bcpA9b0jgdCCnhc4dTPNv4Ap2dzETUBUlCVXrrpzQ4s0PA2co18CE3uyJwkM4
-	55wU+40f8VoqibokrELqaN+kqR6cR6URNEjE5jytXaDak3vs8M44BJPmio11OqszAPwJmOExzyE2c
-	RvjHRRyF8hwG5mQ+mlNG60rgDg8xAhDelgWZBw9VtGUlElOvRj3TtIq7E2F6zY7Wn41Pjfpa9BXiR
-	/z0igJpYjLeLddF/lsqQ==;
+	List-Owner; bh=8G4qwHFmp+QffQvqGg/JDJcGkWtxu8thq0fKQoIHKUU=; b=kKmozAWHMwgc8i
+	EqV/Z/jK+mm3xYREai0CfrpDM36YAR0jWZYvL2Bqm7xzPkQzozTKrup0CstYh44pSA9oao6F/tYHP
+	TiKywytQRe2iPFm2l9TwThnjJ03TiHt7TUcVSIRnLeq/8SPcLfvZSMC3jo1lTx1Lfve3qjMjUTFEo
+	TFTwZQJOMi2lm125DTVYUTvMnQK+d5S9w/QWLVlnwgDlx89tB8h+LQEAOCiar4N0S+I9DQ0XT/gMD
+	AgV0HJYUhTZykGam7rj33n7iwUo4WoB6Cn68ScJMJHZJNm7nxfqQepV5klyYVSVQ/d5U8/i++v1Jy
+	3qQW6kmGYuwUOyHRIKiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4Mnc-00FJnW-HU; Thu, 23 Jun 2022 13:23:08 +0000
+	id 1o4Mnd-00FJpF-PJ; Thu, 23 Jun 2022 13:23:09 +0000
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MnU-00FJeQ-Fz; Thu, 23 Jun 2022 13:23:01 +0000
+	id 1o4MnU-00FJeP-Gz; Thu, 23 Jun 2022 13:23:01 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NAKUtH006859;
-	Thu, 23 Jun 2022 07:53:14 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NAKUt2006859;
+	Thu, 23 Jun 2022 07:53:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=UpVtM3GhDa8LxnMJynyFTiJGRkwOtaAZVwvm7j+y7i4=;
- b=JkCWsmb5YvVhUXHqJxD5368znUoCdT3dYlqIq9dUi2+xePH+p61zeHyfFNL28fSFFGc0
- 6qowzYR3ybVeDEnzgW7RdFP2vsryH0qRhUvoNJsl3Gu/Sw6H59ifdG31lDe8WdFbdqJ4
- eDt29h2VcLSOWyjNNXcXUVZtYijZ01bIOjU2hXek8UV+OkBmMeCItGP65hcxLiSFi4QQ
- cU9bjho3k5yAXzxWInlN3lbOx3i3bTmopo141N57qeWrG01GwpHv6ZA0st8uUuC10q7f
- 08rI7TiX7nDat6Jv1OKuaKDuAu5THs4HIlo/23yjOe+FjTPq/zmM8rY9scwXaQmf7b/Z RQ== 
+ bh=w2elvprt/NPXLmHM0bB06m5qSNTTQZOMLvUvMKNQ3w8=;
+ b=VUGCFPp7ufZwssSe0nog3VemZ5RZEV3zlj3d0WzDQgfpZyV5udJlT8haWEWT7+slekz/
+ y+oxkRwtiU0g/91EF457/bfpRfq6KnZDD8imLzuF8SjjFbWzcUufx5TW3ObX3xMznVVj
+ FFdD9owpJbL+bqSORpnggmhAPh2KUR/hqNNHpig14/w9jFHSAgrsl4dVoRvsMI0jQZNW
+ 5KzLe8mcneml1u6GPxf85YN1i++148WBqtA9aOGpwHQ9AI8Wu32uoG8D1260oxRtjokr
+ YEB3o1MBlqrsHaHTbIqOufIUGnfOEtwAPEpHaYfTqire2wZU3mLfJVSz4SmpnaGWlPLR EQ== 
 Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4u-15
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4u-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:53:13 -0500
+	Thu, 23 Jun 2022 07:53:01 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
  (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 13:52:58 +0100
+ 2022 13:52:53 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 23 Jun 2022 13:52:58 +0100
+ Transport; Thu, 23 Jun 2022 13:52:53 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 25DC711D3;
-	Thu, 23 Jun 2022 12:52:58 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0A0E011D1;
+	Thu, 23 Jun 2022 12:52:53 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 83/96] ASoC: jz4740: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 23 Jun 2022 13:52:37 +0100
-Message-ID: <20220623125250.2355471-84-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 25/96] ASoC: test-component: Migrate to new style legacy DAI naming flag
+Date: Thu, 23 Jun 2022 13:51:39 +0100
+Message-ID: <20220623125250.2355471-26-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: LlDNOpc3I-8TWl9BHoqD91cIdV6cWDtK
-X-Proofpoint-ORIG-GUID: LlDNOpc3I-8TWl9BHoqD91cIdV6cWDtK
+X-Proofpoint-GUID: 6uBOnnVdRRLfo531GfkxBDbTIoScnY5m
+X-Proofpoint-ORIG-GUID: 6uBOnnVdRRLfo531GfkxBDbTIoScnY5m
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220623_062300_577499_D0ED380D 
-X-CRM114-Status: GOOD (  11.99  )
+X-CRM114-CacheID: sfid-20220623_062300_601068_1436D36D 
+X-CRM114-Status: GOOD (  14.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,28 +97,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ASoC core has now been changed to default to the non-legacy DAI
-naming, as such drivers using the new scheme no longer need to specify
-the non_legacy_dai_naming flag.
+Change the legacy DAI naming flag from opting in to the new scheme
+(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+This driver appears to be on the CPU side of the DAI link and
+currently uses the legacy naming, so add the new flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/codecs/jz4740.c | 2 --
- 1 file changed, 2 deletions(-)
+ sound/soc/generic/test-component.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/codecs/jz4740.c b/sound/soc/codecs/jz4740.c
-index 081485f784e9b..7c25acf6ff0de 100644
---- a/sound/soc/codecs/jz4740.c
-+++ b/sound/soc/codecs/jz4740.c
-@@ -291,8 +291,6 @@ static const struct snd_soc_component_driver soc_codec_dev_jz4740_codec = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
--
- };
- 
- static const struct regmap_config jz4740_codec_regmap_config = {
+diff --git a/sound/soc/generic/test-component.c b/sound/soc/generic/test-component.c
+index d28712fabe3f6..e2a009bc69af2 100644
+--- a/sound/soc/generic/test-component.c
++++ b/sound/soc/generic/test-component.c
+@@ -564,6 +564,7 @@ static int test_driver_probe(struct platform_device *pdev)
+ 		cdriv->pcm_construct		= test_component_pcm_construct;
+ 		cdriv->pointer			= test_component_pointer;
+ 		cdriv->trigger			= test_component_trigger;
++		cdriv->legacy_dai_naming	= 1;
+ 	} else {
+ 		cdriv->name			= "test_codec";
+ 		cdriv->idle_bias_on		= 1;
 -- 
 2.30.2
 
