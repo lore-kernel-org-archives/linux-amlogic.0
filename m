@@ -4,80 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E846C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 02:16:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F4ACCCA47F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 07:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fo8ADKNAYtQ5mP5dqknbOz1HKsG23G49TR70r9WElW8=; b=REoUUygRZOwUfK
-	3TRR6sMm25vtNQe804BFjSLvxw1ZWNEwHMyz6NRDudKaT81LyNRzP2I2vpbVYrgupKqLTtySQJgOZ
-	ncTw4S/2+Tinkp1u6rhMJKNmXhnumKzpM0CNs+DMsQMumcUrBtrSBlZVXHHqJhwIcePnmC1Fzlwn4
-	L5qLLFpYNoDthY4j+KGzjMwZAfRALaQK+Ex9+muaVdilPOgRGDjzSiLjsbKB7U7kO/kyE6PtG+wPa
-	BO5gYYVH6InIEZnFGhF/akaSlz9igsrI8Ot07rHfxgRNlmdQnTvOlDUliZlvM3XapwNOt8kF8iHdA
-	PIp0JY1aXu5L7aKddKOQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zloawIeq8YWjPcRMH3Az16c8YaBya447J1wQDBkD3iw=; b=ju+3ILzXUyda5I+3EwunNTgaHH
+	FhgxC2++ALIzfmx5ET0TBcQ58H9eW4bj+ks5kiom+ZgYCEG9jn/QcD+byaemTS6ta93zevlqhUdAO
+	lkM1IkxqLARzwL3Obl3gacOc8NmG8nqoggR6IcJsLqsooniDtaiCq/Wm9vxsYBREEre8R+L8cC7qH
+	3kHnwxrQznY3fLT5ee6ZPqaDmCNuk72EBeChyXUzxcTB0tL8F1JNbiTkqjKffUwEKrChI+BZ20Ci7
+	Zqc2O17+xRcEoTU4gUoHbpRVtttBuzhTAvcbzXYcInes3E8srZ57cng8DdcY5e6UWmYwQyGbJ7I2i
+	BrACk5Jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4COS-00Cv5k-96; Thu, 23 Jun 2022 02:16:28 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1o4HII-00DshZ-P4; Thu, 23 Jun 2022 07:30:26 +0000
+Received: from mail-ej1-f46.google.com ([209.85.218.46])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4C8i-00Co6G-D5; Thu, 23 Jun 2022 02:00:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655949612; x=1687485612;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KbeXCVtz+edFvopo5p5QoDn9huAgw0qHkMWWoFBLhXA=;
-  b=IVOQLpFC00oWG6FkyTmkdLiuRsuVASPL9qDevRUCK27wAoFJYCmh7z3V
-   WffdL4SCAxDgfJt9s9RjAeDfejbpX83LX3lHjtiiaunZ/sGs+SBHKXuIl
-   lkPMCLJAQB8tRdXfDCtJ5/Oip6Hav5BjI3D3ONiutI3aMeCR/Ec3TIiO1
-   xR9wwCQVJ+nNvLZQ+w7F0ha9UkY+e8dMHCt8uxvwoHAgifDjlw/s1nAr8
-   cLNzzOd0hrwyEnebRFpfI7V5h8UL410UwZ+/hTK34bRCUtAgLA9gXJzjC
-   1NjEMLs3AVNhW5Z5yBevIZAtIIZypi2TOcM/zi7qRkFH92S0S39NMS0Pf
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="342281580"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="342281580"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 19:00:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="615398908"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 22 Jun 2022 19:00:02 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
-	(envelope-from <lkp@intel.com>)
-	id 1o4C8X-0000LT-BJ;
-	Thu, 23 Jun 2022 02:00:01 +0000
-Date: Thu, 23 Jun 2022 09:59:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org
-Cc: kbuild-all@lists.01.org, lgirdwood@gmail.com,
-	kuninori.morimoto.gx@renesas.com, mripard@kernel.org,
-	airlied@linux.ie, daniel@ffwll.ch, vkoul@kernel.org,
-	nicolas.ferre@microchip.com, nsaenz@kernel.org, shawnguo@kernel.org,
-	linux-imx@nxp.com, cezary.rojewski@intel.com,
-	pierre-louis.bossart@linux.intel.com, linux-mips@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, daniel@zonque.org,
-	srinivas.kandagatla@linaro.org, linux-rockchip@lists.infradead.org,
-	krzk@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	linux-omap@vger.kernel.org, linux-xtensa@linux-xtensa.org,
-	peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com, heiko@sntech.de,
-	jbrunet@baylibre.com, kernel@pengutronix.de,
-	alsa-devel@alsa-project.org
-Subject: Re: [PATCH 27/96] ASoC: au1x: Migrate to new style legacy DAI naming
- flag
-Message-ID: <202206230910.wUXKFP3z-lkp@intel.com>
-References: <20220616143429.1324494-28-ckeepax@opensource.cirrus.com>
+	id 1o4HI6-00Dsb0-Fa; Thu, 23 Jun 2022 07:30:15 +0000
+Received: by mail-ej1-f46.google.com with SMTP id pk21so16045894ejb.2;
+        Thu, 23 Jun 2022 00:30:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pCJQPDJM0DHo8w0E8CwSS4Lsl1UxwVygfcfBvOi6lBU=;
+        b=S03sO7Oov9dtKu6HLkHvKG3XwdFaAe2T7HcMq6Sr+UXd4/pX/La2Z+fsTWL4PQaJWu
+         04uOOPlthUZpa5BNxHHIJ2pfT88GAN7pjgO9ROzixHBNB1UxqWNHYZln7bhMCgsaW1Ts
+         pcUtbNoDYIeTCaTHf6lxwOg5jOTo9oKBaN563SErMz0IlhwnyhwcazSCQzTgGnkrhEmv
+         24SiOmuoUlBCZJsFMNMk9Z3pxeAFhBTBDsItg2N+UmNjI2Z5kqiX2N6ZaFOKzN8fnyik
+         /lEDuH6X+EWW607OLMODFY3ODuum35BcoqqOg9N0e5PIp5FL5tcg69eRqtZ0aVfC8HE2
+         AVww==
+X-Gm-Message-State: AJIora9vP8HshvDABCwS7j7xaYKQ2pySKryt/Cz168ciUgmzCLOspR9X
+	FF2YJ9lwjOvt6PD9Z++KHQM=
+X-Google-Smtp-Source: AGRyM1uzgyyn+5wazWdjwR1XOCL14kh/tF9Cc3OS+496AVZLMjXbvILFPpyZx/g8PE1USH6/kwYwKA==
+X-Received: by 2002:a17:906:2a86:b0:711:d8a5:cb0c with SMTP id l6-20020a1709062a8600b00711d8a5cb0cmr6783395eje.426.1655969411375;
+        Thu, 23 Jun 2022 00:30:11 -0700 (PDT)
+Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
+        by smtp.gmail.com with ESMTPSA id l16-20020aa7cad0000000b0043585bb803fsm8076171edt.25.2022.06.23.00.30.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 00:30:10 -0700 (PDT)
+Message-ID: <e864ffbc-5885-f648-01c4-68a598f942b9@kernel.org>
+Date: Thu, 23 Jun 2022 09:30:09 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220616143429.1324494-28-ckeepax@opensource.cirrus.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 5/6] serial: Use UART_XMIT_SIZE
+Content-Language: en-US
+To: =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ linux-serial@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <mani@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-actions@lists.infradead.org, linux-unisoc@lists.infradead.org
+References: <20220621124958.3342-1-ilpo.jarvinen@linux.intel.com>
+ <20220621124958.3342-6-ilpo.jarvinen@linux.intel.com>
+From: Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <20220621124958.3342-6-ilpo.jarvinen@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220622_190012_574684_1E531188 
-X-CRM114-Status: GOOD (  11.82  )
+X-CRM114-CacheID: sfid-20220623_003014_560177_41C7C7D7 
+X-CRM114-Status: GOOD (  13.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,65 +81,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Charles,
-
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on tegra/for-next sunxi/sunxi/for-next linus/master v5.19-rc3 next-20220622]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Charles-Keepax/Refactor-non_legacy_dai_naming-flag/20220616-224300
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: mips-db1xxx_defconfig (https://download.01.org/0day-ci/archive/20220623/202206230910.wUXKFP3z-lkp@intel.com/config)
-compiler: mipsel-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/794205d61285d0921e564e722daf9b20df82ed57
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Charles-Keepax/Refactor-non_legacy_dai_naming-flag/20220616-224300
-        git checkout 794205d61285d0921e564e722daf9b20df82ed57
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash sound/soc/au1x/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All error/warnings (new ones prefixed by >>):
-
->> sound/soc/au1x/ac97c.c:227:10: error: 'const struct snd_soc_component_driver' has no member named 'legacy_dai_name'; did you mean 'legacy_dai_naming'?
-     227 |         .legacy_dai_name        = 1,
-         |          ^~~~~~~~~~~~~~~
-         |          legacy_dai_naming
->> sound/soc/au1x/ac97c.c:227:35: warning: initialization of 'const struct snd_kcontrol_new *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     227 |         .legacy_dai_name        = 1,
-         |                                   ^
-   sound/soc/au1x/ac97c.c:227:35: note: (near initialization for 'au1xac97c_component.controls')
-
-
-vim +227 sound/soc/au1x/ac97c.c
-
-   224	
-   225	static const struct snd_soc_component_driver au1xac97c_component = {
-   226		.name			= "au1xac97c",
- > 227		.legacy_dai_name	= 1,
-   228	};
-   229	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjEuIDA2LiAyMiwgMTQ6NDksIElscG8gSsOkcnZpbmVuIHdyb3RlOgo+IC0tLSBhL2luY2x1
+ZGUvbGludXgvc2VyaWFsLmgKPiArKysgYi9pbmNsdWRlL2xpbnV4L3NlcmlhbC5oCj4gQEAgLTks
+NyArOSw2IEBACj4gICAjaWZuZGVmIF9MSU5VWF9TRVJJQUxfSAo+ICAgI2RlZmluZSBfTElOVVhf
+U0VSSUFMX0gKPiAgIAo+IC0jaW5jbHVkZSA8YXNtL3BhZ2UuaD4KPiAgICNpbmNsdWRlIDx1YXBp
+L2xpbnV4L3NlcmlhbC5oPgo+ICAgCj4gICAvKiBIZWxwZXIgZm9yIGRlYWxpbmcgd2l0aCBVQVJU
+X0xDUl9XTEVOKiBkZWZpbmVzICovCj4gQEAgLTI1LDExICsyNCw2IEBAIHN0cnVjdCBhc3luY19p
+Y291bnQgewo+ICAgCV9fdTMyCWJ1Zl9vdmVycnVuOwo+ICAgfTsKPiAgIAo+IC0vKgo+IC0gKiBU
+aGUgc2l6ZSBvZiB0aGUgc2VyaWFsIHhtaXQgYnVmZmVyIGlzIDEgcGFnZSwgb3IgNDA5NiBieXRl
+cwo+IC0gKi8KPiAtI2RlZmluZSBTRVJJQUxfWE1JVF9TSVpFIFBBR0VfU0laRQo+IC0KPiAgICNp
+bmNsdWRlIDxsaW51eC9jb21waWxlci5oPgo+ICAgCj4gICAjZW5kaWYgLyogX0xJTlVYX1NFUklB
+TF9IICovCj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvc2VyaWFsX2NvcmUuaCBiL2luY2x1
+ZGUvbGludXgvc2VyaWFsX2NvcmUuaAo+IGluZGV4IDU1MThiNzAxNzdiMy4uMTc2N2RlZTk4MDIx
+IDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvbGludXgvc2VyaWFsX2NvcmUuaAo+ICsrKyBiL2luY2x1
+ZGUvbGludXgvc2VyaWFsX2NvcmUuaAo+IEBAIC0yOTYsNiArMjk2LDcgQEAgc3RydWN0IHVhcnRf
+c3RhdGUgewo+ICAgCXN0cnVjdCB1YXJ0X3BvcnQJKnVhcnRfcG9ydDsKPiAgIH07Cj4gICAKPiAr
+LyogVGhlIHNpemUgb2YgdGhlIHNlcmlhbCB4bWl0IGJ1ZmZlciBpcyAxIHBhZ2UsIG9yIDQwOTYg
+Ynl0ZXMgKi8KClRoYXQgaXMgbm90IGNvbXBsZXRlbHkgdHJ1ZSwgSSdkIHJlbW92ZSB0aGUgIm9y
+IiBwYXJ0LiBIbW0sIGJ1dCB0aGVuIHRoZSAKY29tbWVudCBpcyBzb21laG93IHN1cGVyZmx1b3Vz
+IGFzIGl0IHNheXMgd2hhdCB3ZSBjYW4gc2VlIGJlbG93LiBTbyAKbWF5YmUgZG9uJ3QgYWRkIGl0
+IGF0IGFsbD8KCj4gICAjZGVmaW5lIFVBUlRfWE1JVF9TSVpFCVBBR0VfU0laRQoKdGhhbmtzLAot
+LSAKanMKc3VzZSBsYWJzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
+aW51eC1hbWxvZ2ljCg==
