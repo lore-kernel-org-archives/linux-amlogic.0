@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3E64C43334
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 13:27:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84DD0C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 14:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uwFu3givdqptOEs4AhNySo62NnARW1kSYDBAheis+8Q=; b=vhPw3kizHyuiut
-	5rQMi0wcHkADyRnDxA2sWlHcZW6Gijcc+Aue+ReKOqkLiVp8Uh7CVZDO8T+kXKJexJfb606o0qdqc
-	v5hOoSXsSCSpIeOAYqL7YwQGRAcdu2j7oNXbgCf5pVf8rjVPmQ+O1e/lPniHNdvLkK0dw9Y6hxhcU
-	xdJ6SM5Xs+4Splxhssb1/E/XneV/W6/QelXrSpUEKBii4xyIwJH2FG6FGY84fsXzJwn54Wu6Pjxc3
-	Elc1Yvs+R+Cf/5hOnNjUGiwXSj5ownWEusyN1Edm+eN34Vbxt0sQjZhCqPq4RsjIb+EB778T2+QWR
-	BOmbVfAzHYUZAczmG9mQ==;
+	List-Owner; bh=cV0F7tGwjA/pQnhOKy8cOugBjyiSABt3L+Y97Vy7sqc=; b=yWdzX5yE6ZWEFn
+	94DNI1pgiWCCUso6x68+DPe9fU9oKtF11Cu7gxJksOyg21zHtguYfuWQLRGy19+OUyELQHYHPrJDb
+	69usIZrULNEPigZFcvO40pl52CQSvL8vohZHzHNlFNjz3KZbZF2/lruSVeGPeUZPD+RTlJAm03OZD
+	eCmaVLf0OTpdlUxbjCHXsel/Xz8X2aN+bjgwq9jAG9QiwtLRkvPn+nLso82O+bU9VMsM7A97b3xLD
+	YretgG8tjAODl7Qa9QUaWIrFvBDrym61O8ya46r9F1Oy3OciBUSVMX9ecOFiZ4W2kc1DpOIZEfLjQ
+	UWpidn05Ash0wtU6hR0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MrI-00FMOD-AI; Thu, 23 Jun 2022 13:26:56 +0000
+	id 1o4NNx-00FS1d-HI; Thu, 23 Jun 2022 14:00:41 +0000
 Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MrF-00FMNE-V5; Thu, 23 Jun 2022 13:26:55 +0000
+	id 1o4MLZ-00F7iU-Nw; Thu, 23 Jun 2022 12:54:12 +0000
 Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25N5mxlJ032604;
-	Thu, 23 Jun 2022 07:53:11 -0500
+	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NBvlrB011978;
+	Thu, 23 Jun 2022 07:52:56 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=sFY4wRr8WulvDnwK7W8ChZOFLV2DaNEc42qtRtmconE=;
- b=Xg8fwml1tmddtrzKEsagzjwrYtoQLpnPZgIYRPTbM+Ma2mNH2bSM1WfHcncKMPVTLAqw
- amttbft5Wagoy532G0ihpgXQE8svDA2ROvdEpSIIu5Aa0Frg+qp2F1EnvLp1z4lWbRbx
- vW2W3N3//t7aK9QE5ntc8MbTXtFc441ZejrqVwLjql02t8g1+uq6lb9zqQ5ZDXjVrpHR
- 6L9VZI/MxY9DIQoGzGsXLNppEIsgnYM7alHAmCoZIDWVsXJIQan/6gn5Wpm9D8QxaGnr
- nSaWlZ91LsAXyW+gUSufndzNcnbQIbO5enQZ0Y9EdCNMgGSZwl7W/uMToL+ya2DtF8iU Wg== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gsb4p6wvu-18
+ bh=8Jk9hCbOsuYwm0RYQaJwiZ5tuQRLpnFj2YNVDn9mPS8=;
+ b=ZlKISOSd0aU6kpUJEuTl5VPzpA35D6xmjUEqHY6eymuduuCI0CIJfJcGFdgAhoRSmpcc
+ 7pRKTYfPGDo9a0AVq0Wfep7+xvIvhqkaodjxZpoguHq+JLRsJLoYk2Y0rMLRsxP/u8gg
+ wkXBTFsSZET+HXNY786tWLZW09W2g4GNx3b6QCn3b7ObIar7mPdZKu2NGH7udgAU9bjk
+ Z8WOyGJQyH7LTqJ9Qsoh5Dro9dpyhhmm84cJHmvffcb+s+tvFfkgrMmQ2J2Svwo2ooe0
+ QXj0lzsDZ29fLJecV00w7iZ/cAXAeHgcmPcrM/rv+PJ0wjjVW5NODcKAl4GG7NLs3rab 3g== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gsb4p6wvp-6
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:53:11 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 23 Jun 2022 07:52:55 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 13:52:58 +0100
+ 2022 13:52:51 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 23 Jun 2022 13:52:58 +0100
+ Transport; Thu, 23 Jun 2022 13:52:51 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 11F1911D4;
-	Thu, 23 Jun 2022 12:52:58 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 93FAE475;
+	Thu, 23 Jun 2022 12:52:51 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 82/96] ASoC: isabelle: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 23 Jun 2022 13:52:36 +0100
-Message-ID: <20220623125250.2355471-83-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 10/96] ASoC: sh: Migrate to new style legacy DAI naming flag
+Date: Thu, 23 Jun 2022 13:51:24 +0100
+Message-ID: <20220623125250.2355471-11-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: JNOqKJfPAmBhwjs7rUnTxW4_oYEj_CLr
-X-Proofpoint-ORIG-GUID: JNOqKJfPAmBhwjs7rUnTxW4_oYEj_CLr
+X-Proofpoint-GUID: O_5n4ZiN7VIqKmZ3Nm0eqpWkhLP5Ce19
+X-Proofpoint-ORIG-GUID: O_5n4ZiN7VIqKmZ3Nm0eqpWkhLP5Ce19
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220623_062654_177452_25155A73 
-X-CRM114-Status: GOOD (  12.51  )
+X-CRM114-CacheID: sfid-20220623_055410_098844_CA0ECB5B 
+X-CRM114-Status: GOOD (  15.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,27 +97,117 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ASoC core has now been changed to default to the non-legacy DAI
-naming, as such drivers using the new scheme no longer need to specify
-the non_legacy_dai_naming flag.
+Change the legacy DAI naming flag from opting in to the new scheme
+(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+These drivers appear to be on the CPU side of the DAI link and
+currently uses the legacy naming, so add the new flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/codecs/isabelle.c | 1 -
- 1 file changed, 1 deletion(-)
+ sound/soc/sh/hac.c       |  3 ++-
+ sound/soc/sh/rcar/core.c | 11 ++++++-----
+ sound/soc/sh/rz-ssi.c    |  9 +++++----
+ sound/soc/sh/siu_pcm.c   | 17 +++++++++--------
+ sound/soc/sh/ssi.c       |  3 ++-
+ 5 files changed, 24 insertions(+), 19 deletions(-)
 
-diff --git a/sound/soc/codecs/isabelle.c b/sound/soc/codecs/isabelle.c
-index 39be31e1282e7..50105d72b2b74 100644
---- a/sound/soc/codecs/isabelle.c
-+++ b/sound/soc/codecs/isabelle.c
-@@ -1095,7 +1095,6 @@ static const struct snd_soc_component_driver soc_component_dev_isabelle = {
- 	.num_dapm_routes	= ARRAY_SIZE(isabelle_intercon),
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+diff --git a/sound/soc/sh/hac.c b/sound/soc/sh/hac.c
+index 475fc984f8c51..46d145cbaf297 100644
+--- a/sound/soc/sh/hac.c
++++ b/sound/soc/sh/hac.c
+@@ -307,7 +307,8 @@ static struct snd_soc_dai_driver sh4_hac_dai[] = {
  };
  
- static const struct regmap_config isabelle_regmap_config = {
+ static const struct snd_soc_component_driver sh4_hac_component = {
+-	.name		= "sh4-hac",
++	.name			= "sh4-hac",
++	.legacy_dai_naming	= 1,
+ };
+ 
+ static int hac_soc_platform_probe(struct platform_device *pdev)
+diff --git a/sound/soc/sh/rcar/core.c b/sound/soc/sh/rcar/core.c
+index a4180dc5a59ba..4973f94a21446 100644
+--- a/sound/soc/sh/rcar/core.c
++++ b/sound/soc/sh/rcar/core.c
+@@ -1813,11 +1813,12 @@ int rsnd_kctrl_new(struct rsnd_mod *mod,
+  *		snd_soc_component
+  */
+ static const struct snd_soc_component_driver rsnd_soc_component = {
+-	.name		= "rsnd",
+-	.probe		= rsnd_debugfs_probe,
+-	.hw_params	= rsnd_hw_params,
+-	.hw_free	= rsnd_hw_free,
+-	.pointer	= rsnd_pointer,
++	.name			= "rsnd",
++	.probe			= rsnd_debugfs_probe,
++	.hw_params		= rsnd_hw_params,
++	.hw_free		= rsnd_hw_free,
++	.pointer		= rsnd_pointer,
++	.legacy_dai_naming	= 1,
+ };
+ 
+ static int rsnd_rdai_continuance_probe(struct rsnd_priv *priv,
+diff --git a/sound/soc/sh/rz-ssi.c b/sound/soc/sh/rz-ssi.c
+index beaf1a8d6da10..0d0594a0e4f6c 100644
+--- a/sound/soc/sh/rz-ssi.c
++++ b/sound/soc/sh/rz-ssi.c
+@@ -906,10 +906,11 @@ static struct snd_soc_dai_driver rz_ssi_soc_dai[] = {
+ };
+ 
+ static const struct snd_soc_component_driver rz_ssi_soc_component = {
+-	.name		= "rz-ssi",
+-	.open		= rz_ssi_pcm_open,
+-	.pointer	= rz_ssi_pcm_pointer,
+-	.pcm_construct	= rz_ssi_pcm_new,
++	.name			= "rz-ssi",
++	.open			= rz_ssi_pcm_open,
++	.pointer		= rz_ssi_pcm_pointer,
++	.pcm_construct		= rz_ssi_pcm_new,
++	.legacy_dai_naming	= 1,
+ };
+ 
+ static int rz_ssi_probe(struct platform_device *pdev)
+diff --git a/sound/soc/sh/siu_pcm.c b/sound/soc/sh/siu_pcm.c
+index 0a8a3c314a73d..f15ff36e79345 100644
+--- a/sound/soc/sh/siu_pcm.c
++++ b/sound/soc/sh/siu_pcm.c
+@@ -540,13 +540,14 @@ static void siu_pcm_free(struct snd_soc_component *component,
+ }
+ 
+ const struct snd_soc_component_driver siu_component = {
+-	.name		= DRV_NAME,
+-	.open		= siu_pcm_open,
+-	.close		= siu_pcm_close,
+-	.prepare	= siu_pcm_prepare,
+-	.trigger	= siu_pcm_trigger,
+-	.pointer	= siu_pcm_pointer_dma,
+-	.pcm_construct	= siu_pcm_new,
+-	.pcm_destruct	= siu_pcm_free,
++	.name			= DRV_NAME,
++	.open			= siu_pcm_open,
++	.close			= siu_pcm_close,
++	.prepare		= siu_pcm_prepare,
++	.trigger		= siu_pcm_trigger,
++	.pointer		= siu_pcm_pointer_dma,
++	.pcm_construct		= siu_pcm_new,
++	.pcm_destruct		= siu_pcm_free,
++	.legacy_dai_naming	= 1,
+ };
+ EXPORT_SYMBOL_GPL(siu_component);
+diff --git a/sound/soc/sh/ssi.c b/sound/soc/sh/ssi.c
+index bf7a3c69920a6..96cf523c22734 100644
+--- a/sound/soc/sh/ssi.c
++++ b/sound/soc/sh/ssi.c
+@@ -377,7 +377,8 @@ static struct snd_soc_dai_driver sh4_ssi_dai[] = {
+ };
+ 
+ static const struct snd_soc_component_driver sh4_ssi_component = {
+-	.name		= "sh4-ssi",
++	.name			= "sh4-ssi",
++	.legacy_dai_naming	= 1,
+ };
+ 
+ static int sh4_soc_dai_probe(struct platform_device *pdev)
 -- 
 2.30.2
 
