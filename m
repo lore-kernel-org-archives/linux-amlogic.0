@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FDDBCCA47C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 12:58:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 587AAC433EF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 12:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LnjsJRkGTLCiTzw51bK8W3gBU5gUjJpDeEYADDRqu0M=; b=nQjlTmF+qSz7GX
-	60BiTC7yl281HtFLhhYTs+apgwlmuxmQcfWwnyNwGlj/rZ6KOW/xTZdj9BCPQoKYXlYxjSmKCbYCq
-	NvfYWDQWCzg/PrYMJciigMfV/P//+lFlk5RuWrPBvSusXLF8mDXyp4v9XAHKisqRWJ8T50Z9bauN3
-	SPHPMnoTz9DTHD2gDLfeybi9mpI2Nko+RCyraTUnNzdGu6npycZBG7IWNKCF+JVU7O4f3kB6slYml
-	fNJpKyLcxplDHRTa1uSn79mWQWCOeHlBiGOeNNoiVkqLNelf/t2Jc0Y4u/HkIsee8wJxqvMfTTxnq
-	rn5V700b9U6klgRsMkDQ==;
+	List-Owner; bh=Yf5tf5KM7WHIwZ9oTm1h1PhP54AfG8LFhR+l5K8qGrk=; b=tl+WqTxq3GDtbn
+	Uc22ft1mjzv3I6uDMqw2YB5YZ98wfDM3oiqPk4EDHkbYJGZy2+tgSGoX8xB6q+0Orwox4WlNEyesK
+	XqKt446hvFS0YLudMMhG/3FZ78hgVe+eyFsGbL17yrZwCuS9UxPwkDVaYagxY5I82kdrSsiZx0XB5
+	74nEQlEa9Fh3KSW1oPc8UD/tSabGTY0KXiPqBZ0WtzS38P+LoUeXIa0KQyWNQuNPdXXuDWw1GsQXZ
+	C6TCmG443miI66pUPa3dfw4subHk2jPdy8KULvObXs8gGGBwD3WGgoASTXHLEbj3QBtEIRFm9bhyu
+	R0iGqChbU0F5QxpUbT3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MQ3-00FD6W-KA; Thu, 23 Jun 2022 12:58:47 +0000
+	id 1o4MQ1-00FD2c-FQ; Thu, 23 Jun 2022 12:58:45 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MNS-00F9xL-MO; Thu, 23 Jun 2022 12:56:06 +0000
+	id 1o4MNS-00F9xP-OE; Thu, 23 Jun 2022 12:56:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
 	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
 	Sender:Reply-To:Content-ID:Content-Description;
-	bh=2oOH0ajpjX51SxIUnf5QoeLn4u7Pp4JTnUSfyoYuy5c=; b=Qd1GJ/+VobyxzBMZsPN2NLLClH
-	1C4381zHwp5xBHSoqPZY6dRVwtaDa5Utojsa0XQTDPjnU8yuXltgULukzgRNLvpHdwsHO1OLTUvSE
-	XyjMrOMiAefx0JEWpU2WzVKjAdZ/XBZI+G5QIBY2qdDhKf+xmX0KfgQfjASfnolJUwAceK/FNWweB
-	Suay6WOvIjyMVlRNNHKs+4swhGrjBfDhJk/RD0LukswO6V5x+0F3lwcOUqcEo0n58BE6vFhQq6ToQ
-	hMSbl7S6MbUr6sUPtfrGWjgk5bo4ENAkJkjtn1BBMVAkxXfrH9XYKOSALT5+2nVsmAIunbPvBBdyb
-	C3QX0l/A==;
+	bh=qB9TzZptXxMq27rHMq4lEOjBC7xijNuixvv7m2asfGg=; b=YvKrxI/i0ihlYA9ZgamccMaZrP
+	O0rIW7eTeehV7qIZugojngiv8cOOpchlYrIn/92tSV0H3s9qbVSRLJS7MLVlnmLs1u1qKOMAQqNt2
+	UkgIkrq69xQUq2VU2n0uIeKb5Uq8x0+BDwwdZBwsXu5fCEo6eNxngburfpSZpjSAOQ0oPjr6bGyek
+	yNEjH8E1HDIar1nBrT5SjbLBG//4rMRaZHnXvOdzD7P/rXzRe8fBi6fu2clw/wHRcWolthWdfmvcE
+	LbBDG1OZz2bnyV73aiAYNhSksI/M1SZCtOHBIspN3saD1/sTeOFYSMS8XT+aITI0mheDDMYLSHT2G
+	yrpL4gOg==;
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MM2-00Bj0O-Da; Thu, 23 Jun 2022 12:56:00 +0000
+	id 1o4MM2-00Bj0M-DY; Thu, 23 Jun 2022 12:56:00 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NAKUt8006859;
-	Thu, 23 Jun 2022 07:53:06 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25N6FQeP013924;
+	Thu, 23 Jun 2022 07:53:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=2oOH0ajpjX51SxIUnf5QoeLn4u7Pp4JTnUSfyoYuy5c=;
- b=Yj3HxcQ5Nq5ttDCOuIp+XU/qOxpTKhDa4zZiD4WMR7xISVGlCB1hmBVuGJ0BkM3BZTpN
- y/U5WSLz+8E1M9oFO3oZPqaGyj63x4nwB6pNpRCeWWUgLqZKG904cJcvclX7XknHzBQ6
- 410fbLz0gxVAv6/VeMcssQH3pwxJ2aDOgJfgXpSr6CJ63/rx6F9tw1UHMBGVj3m2UY/v
- vPlTt71PvwMVS2yGisURtucfUOoGQYxhXsK9wtU3Cg62+N1JiZc8+cYIRhUWFPic4S3Q
- 8O4zh/A5/8Ml0yQQHB3jHBHy2vzZDtOfUw8DeM39+gqstUgvG2vgTNrebSDnRw3GxQOu kA== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4u-6
+ bh=qB9TzZptXxMq27rHMq4lEOjBC7xijNuixvv7m2asfGg=;
+ b=Myc8DuBGzmBY6PpimVDg7JowJlqUVUbNYCOVJGXqGrHsTUl1GuXbhREl6GiBovxy2QzX
+ +dbvWGoE1jE2FzyuhltULwUWKgIcNZK+ozXHdC/OCXqMl+wBORdeh1+ezs4OxW/xrakL
+ AOml0A5pcIfXaMGJRCkzB+dQHoU7WugW26ZyI3Bc5Whnsj10T8dGXFNKftXw6ijT7nXp
+ xH68wnGZKeA6Q1c9Ez3iut60O8TYKIvqBtD7DMFvt73MfXDpI+hszSPTDoDaAdU/jr3A
+ pbA3RqvdiShnMMhOjUcSbg6lwX/hWb5QYvv1NMfwbT9C3iZquUtvbNHi7moNOS1IQ0zs KQ== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4x-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:53:05 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 23 Jun 2022 07:53:03 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 13:52:55 +0100
+ 2022 13:52:53 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 23 Jun 2022 13:52:55 +0100
+ Transport; Thu, 23 Jun 2022 13:52:53 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3A00611D4;
-	Thu, 23 Jun 2022 12:52:55 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 31B9511D3;
+	Thu, 23 Jun 2022 12:52:53 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -81,19 +81,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 50/96] ASoC: da*: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 23 Jun 2022 13:52:04 +0100
-Message-ID: <20220623125250.2355471-51-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 27/96] ASoC: au1x: Migrate to new style legacy DAI naming flag
+Date: Thu, 23 Jun 2022 13:51:41 +0100
+Message-ID: <20220623125250.2355471-28-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: sRpSKbzDDkWksB9kvIVycJdJBNHREjM2
-X-Proofpoint-ORIG-GUID: sRpSKbzDDkWksB9kvIVycJdJBNHREjM2
+X-Proofpoint-GUID: 5W9aCtwCMCd5hLlYtQKTcTXDoaBqX75h
+X-Proofpoint-ORIG-GUID: 5W9aCtwCMCd5hLlYtQKTcTXDoaBqX75h
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220623_135553_869702_819FDDBE 
-X-CRM114-Status: GOOD (  12.12  )
+X-CRM114-CacheID: sfid-20220623_135553_848336_C838E376 
+X-CRM114-Status: GOOD (  15.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,92 +110,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ASoC core has now been changed to default to the non-legacy DAI
-naming, as such drivers using the new scheme no longer need to specify
-the non_legacy_dai_naming flag.
+Change the legacy DAI naming flag from opting in to the new scheme
+(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+These drivers appear to be on the CPU side of the DAI link and
+currently uses the legacy naming, so add the new flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/codecs/da7210.c | 1 -
- sound/soc/codecs/da7213.c | 1 -
- sound/soc/codecs/da7218.c | 1 -
- sound/soc/codecs/da7219.c | 1 -
- sound/soc/codecs/da732x.c | 1 -
- sound/soc/codecs/da9055.c | 1 -
- 6 files changed, 6 deletions(-)
 
-diff --git a/sound/soc/codecs/da7210.c b/sound/soc/codecs/da7210.c
-index 76a21976ccddb..f838466bfebf8 100644
---- a/sound/soc/codecs/da7210.c
-+++ b/sound/soc/codecs/da7210.c
-@@ -1173,7 +1173,6 @@ static const struct snd_soc_component_driver soc_component_dev_da7210 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+Changes since v1:
+ - Fix typo in ac97c.c legacy_dai_name -> legacy_dai_naming
+
+ sound/soc/au1x/ac97c.c    | 3 ++-
+ sound/soc/au1x/i2sc.c     | 3 ++-
+ sound/soc/au1x/psc-ac97.c | 3 ++-
+ sound/soc/au1x/psc-i2s.c  | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/sound/soc/au1x/ac97c.c b/sound/soc/au1x/ac97c.c
+index 3b1700e665f52..b18512ca25781 100644
+--- a/sound/soc/au1x/ac97c.c
++++ b/sound/soc/au1x/ac97c.c
+@@ -223,7 +223,8 @@ static struct snd_soc_dai_driver au1xac97c_dai_driver = {
  };
  
- #if IS_ENABLED(CONFIG_I2C)
-diff --git a/sound/soc/codecs/da7213.c b/sound/soc/codecs/da7213.c
-index 2e645dc60eda4..544ccbcfc8844 100644
---- a/sound/soc/codecs/da7213.c
-+++ b/sound/soc/codecs/da7213.c
-@@ -1922,7 +1922,6 @@ static const struct snd_soc_component_driver soc_component_dev_da7213 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+ static const struct snd_soc_component_driver au1xac97c_component = {
+-	.name		= "au1xac97c",
++	.name			= "au1xac97c",
++	.legacy_dai_naming	= 1,
  };
  
- static const struct regmap_config da7213_regmap_config = {
-diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
-index a5d7c350a3ded..91372909d184b 100644
---- a/sound/soc/codecs/da7218.c
-+++ b/sound/soc/codecs/da7218.c
-@@ -3040,7 +3040,6 @@ static const struct snd_soc_component_driver soc_component_dev_da7218 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+ static int au1xac97c_drvprobe(struct platform_device *pdev)
+diff --git a/sound/soc/au1x/i2sc.c b/sound/soc/au1x/i2sc.c
+index 45bb7851e75d7..b15c8baa9ee45 100644
+--- a/sound/soc/au1x/i2sc.c
++++ b/sound/soc/au1x/i2sc.c
+@@ -227,7 +227,8 @@ static struct snd_soc_dai_driver au1xi2s_dai_driver = {
  };
  
- 
-diff --git a/sound/soc/codecs/da7219.c b/sound/soc/codecs/da7219.c
-index c18f76f370fc4..50ecf30e6136a 100644
---- a/sound/soc/codecs/da7219.c
-+++ b/sound/soc/codecs/da7219.c
-@@ -2647,7 +2647,6 @@ static const struct snd_soc_component_driver soc_component_dev_da7219 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+ static const struct snd_soc_component_driver au1xi2s_component = {
+-	.name		= "au1xi2s",
++	.name			= "au1xi2s",
++	.legacy_dai_naming	= 1,
  };
  
- 
-diff --git a/sound/soc/codecs/da732x.c b/sound/soc/codecs/da732x.c
-index 3f1cfee10df3f..2c5b0b74201c7 100644
---- a/sound/soc/codecs/da732x.c
-+++ b/sound/soc/codecs/da732x.c
-@@ -1503,7 +1503,6 @@ static const struct snd_soc_component_driver soc_component_dev_da732x = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+ static int au1xi2s_drvprobe(struct platform_device *pdev)
+diff --git a/sound/soc/au1x/psc-ac97.c b/sound/soc/au1x/psc-ac97.c
+index 05eb36991f147..b536394b9ca08 100644
+--- a/sound/soc/au1x/psc-ac97.c
++++ b/sound/soc/au1x/psc-ac97.c
+@@ -356,7 +356,8 @@ static const struct snd_soc_dai_driver au1xpsc_ac97_dai_template = {
  };
  
- static int da732x_i2c_probe(struct i2c_client *i2c)
-diff --git a/sound/soc/codecs/da9055.c b/sound/soc/codecs/da9055.c
-index 9d8c8adc5d768..28043b4530df8 100644
---- a/sound/soc/codecs/da9055.c
-+++ b/sound/soc/codecs/da9055.c
-@@ -1460,7 +1460,6 @@ static const struct snd_soc_component_driver soc_component_dev_da9055 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
+ static const struct snd_soc_component_driver au1xpsc_ac97_component = {
+-	.name		= "au1xpsc-ac97",
++	.name			= "au1xpsc-ac97",
++	.legacy_dai_naming	= 1,
  };
  
- static const struct regmap_config da9055_regmap_config = {
+ static int au1xpsc_ac97_drvprobe(struct platform_device *pdev)
+diff --git a/sound/soc/au1x/psc-i2s.c b/sound/soc/au1x/psc-i2s.c
+index 530a072d74274..79b5ae4e494cb 100644
+--- a/sound/soc/au1x/psc-i2s.c
++++ b/sound/soc/au1x/psc-i2s.c
+@@ -286,7 +286,8 @@ static const struct snd_soc_dai_driver au1xpsc_i2s_dai_template = {
+ };
+ 
+ static const struct snd_soc_component_driver au1xpsc_i2s_component = {
+-	.name		= "au1xpsc-i2s",
++	.name			= "au1xpsc-i2s",
++	.legacy_dai_naming	= 1,
+ };
+ 
+ static int au1xpsc_i2s_drvprobe(struct platform_device *pdev)
 -- 
 2.30.2
 
