@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B8DFC43334
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A93E7CCA47C
 	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 12:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,57 +12,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UZ0HDMAKnzRicPzAqWtfM6veXV32uDtgP+RaonyJ+tQ=; b=LX26tr9QrTpBmI
-	VGx7yHGA7W5XClYueVn8wmVeUj10MUuVUQSnr21/+yD6kI3UDvzKeQbX1IA6r7qKlqUMDgxrSQGFV
-	ssmXAvc6R8oIWtbs32Ha5ImwGTcc2o2r+30+uJ5d94n64sl6nUO01aW3IjKIL1sFOR+aPO+gGYdnX
-	XtKfEBk3I+qTAf8iM2SAbEgwV8Nwl24lCFfXKQ5tvtk8CB3U/7Gy9cSqTy5vgf2X8q/tSAJQ8ML42
-	rtz5PfZeQdeaJZmb5k1JUyzfGBZgcP11m6DC8nqrA8Zib/KuFT4qAB9onWgVMw46t9fdqlAVLzuPJ
-	wR8QLgALdKxOvau6F+pg==;
+	List-Owner; bh=GYH3BYDTctXD0N7yBkSldM9DWKuUGkU5lKiajA80TJE=; b=itxXXkSjsFI8eq
+	GJxKOgjrbt3FdmCbydMUzZuQQhQUpUGVR0NvdBBZWR0/NtK3sEHuGq14yguTl9cenPd5dSXHQBqjD
+	eHNEQMGN2kWpSjg01w+g/7HWLhiWyPNl3b2+WLyAEjyj2Q/X5kOfRJ1N6sCmXDRkRRqpJI8lSNLX6
+	Gwoy+bQ8CXwqqFytzEVikdP37emXcH3L0/EELCh/+xzXjT6GQg8iDy7pafBMmQgxmKPk+Nk59ca8F
+	4yi4SWq7DXFUJoMMw0CmX4CFF06ZEYsUdMd/HQoOsXRa14zKUdsmMK1o4kSzSvgc534+k0n296rDS
+	ucyr54sdgq4M426pUZbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MPr-00FCos-NE; Thu, 23 Jun 2022 12:58:35 +0000
+	id 1o4MPs-00FCqJ-C0; Thu, 23 Jun 2022 12:58:36 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MNL-00F9li-Ao; Thu, 23 Jun 2022 12:55:59 +0000
+	id 1o4MNL-00F9m3-GH; Thu, 23 Jun 2022 12:55:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
 	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
 	Sender:Reply-To:Content-ID:Content-Description;
-	bh=TTe/CecmY+9QKzBX8S0Rj3j8y6EEdzCLr8WaNNo1SnQ=; b=rXg2hr3suykJgKHEtwgvN5TJZA
-	Cvacz/f5sN38IyXPbj9NQDleAjkyqDhLITT+kxs8IWXm9CPkur8Nrl4BHuzzneyt8aWvMYwuXiD3X
-	j/YnMmh0am1mM/JSM81rY4DUQ/czdDZe2oosWzbtr2Pr2hfT4FgyqaYJ4xFOmOzGz8tM8T41fFSHz
-	zc/WbbCaH4QN0otBWBELWDK0XaV6zFU/Rt2dNfQuzqvDLuXpkrIWD0WoCM6q6TWfb5W2d8f5VK2OH
-	3hvvcWuywAVQWi8sCNcwFKGRACKohvAmY0IuYk6kT6kGpJTCbPkIvIMUenLQ2DIg2tKdXu7Vzrc5r
-	P58UOSfQ==;
+	bh=rKzBw62X0FKPJT/o0h8GzZ/Zi9TWVvhHqxnovZBRfSk=; b=MY+n+0ibcN8AMo297XpV4qnVUF
+	Zj5rj1jRX+Ehmp6rMxdpFliDqQfCqdNXAJRbamgskQLzn4GE+JrA2msp0D3jJRknCfqkm/6p5IyLJ
+	cTsRt1n9ccm7eo67Y46wgYtHnKkESSqwy2X1qYRX6kIyVuAp8tMUUnJjsT1xSASNWglxuatDFRTjy
+	CZIt5s5lhC3JOg+R2d+OUEFg0SuiPzjyPIu51yWsUhAO2C8gX0FO0KkC2JBvjXTZTQiqYGUQN+8Vq
+	5wedrr2BV/uDTan9TJQKLOd4mBGoLGsZIf+WtOLmTa6GbySIUwp5oXCqBCFy3eL3tsx/Uxt8YtBNf
+	McwBLwhA==;
 Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
 	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MM2-00Bizz-Df; Thu, 23 Jun 2022 12:55:55 +0000
+	id 1o4MM2-00Bj00-Dl; Thu, 23 Jun 2022 12:55:57 +0000
 Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NBvlrD011978;
-	Thu, 23 Jun 2022 07:52:57 -0500
+	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NBvlrK011978;
+	Thu, 23 Jun 2022 07:53:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=TTe/CecmY+9QKzBX8S0Rj3j8y6EEdzCLr8WaNNo1SnQ=;
- b=bh9RDLptrDmcxbWFrZly6hCxC1g8IcmDj5vmmDNsXZ+E3MPs9GYM5d/V2hr2a5bvFh+K
- bBI5WWwgsypbigEtd0rcYjeitEJRhW5onaLWsRcbvchjYDG+MK6dTUHSFJLwyCzYXMts
- IfQAplk8CJ3+dFWd4ThF/hDRErK1Me/4Cj3k2xYzsfRKF+0qhQploS2GGLLmDXzyLYwH
- 09SHG9+fwisSBmRhL3SFXfBmTF9FOt7/bvT0HgTuOHeX/sq0PIpmcu4imK+qUUHqhTFW
- G56mddyuMfcb7GjzF+sDFaPM4tUTKP7AIFZnyo3avKitnFlkC7T7wTNKWSUnTjVHptF8 EA== 
+ bh=rKzBw62X0FKPJT/o0h8GzZ/Zi9TWVvhHqxnovZBRfSk=;
+ b=XsQ/SXNkTP7sGJPxI2rGT2nFOeKw2hTStVOBXneunTPQPqassv/BcNPtcqocYDtGhpSi
+ aiEuzRPCiFctDEq+7/kExBG7HrVz5n9X5B2L8OO+U5fGhd0emv873EnYKekmFvJcKxG+
+ G1CHdTf7Xb/I/biWeluoGxcXwp2z/XXhuuURHOecREMLYngSgQ1B5KWOIb+GuJGntDTU
+ 9+dks+rgyunzEsV4OJ7XDTR+2afhUgsdA0hpr/uOZX6U6IwihPO4my4I9J7KzIOwAvJu
+ 5KgBmnSR1rxJso5g9TOOOKoLx56bJA0+rctcninmMzA/798O8QQllpK4iEBNdU7hh4wn BA== 
 Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gsb4p6wvp-8
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gsb4p6wvp-15
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:52:57 -0500
+	Thu, 23 Jun 2022 07:53:03 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
  (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 13:52:52 +0100
+ 2022 13:52:54 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 23 Jun 2022 13:52:52 +0100
+ Transport; Thu, 23 Jun 2022 13:52:54 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 9DBC611D3;
-	Thu, 23 Jun 2022 12:52:52 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 724A511D3;
+	Thu, 23 Jun 2022 12:52:54 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -81,15 +81,15 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 21/96] ASoC: xtensa: Migrate to new style legacy DAI naming flag
-Date: Thu, 23 Jun 2022 13:51:35 +0100
-Message-ID: <20220623125250.2355471-22-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 42/96] ASoC: tegra: Remove now redundant non_legacy_dai_naming flag
+Date: Thu, 23 Jun 2022 13:51:56 +0100
+Message-ID: <20220623125250.2355471-43-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: UT8f1XYJ0y16Uxm3jG1UZFGszERJpkcF
-X-Proofpoint-ORIG-GUID: UT8f1XYJ0y16Uxm3jG1UZFGszERJpkcF
+X-Proofpoint-GUID: -WBaHKD_lPVP8zd7_EAL9HtjbqAfq0_N
+X-Proofpoint-ORIG-GUID: -WBaHKD_lPVP8zd7_EAL9HtjbqAfq0_N
 X-Proofpoint-Spam-Reason: safe
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,42 +107,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change the legacy DAI naming flag from opting in to the new scheme
-(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
-This driver appears to be on the CPU side of the DAI link and
-currently uses the legacy naming, so add the new flag.
+The ASoC core has now been changed to default to the non-legacy DAI
+naming, as such drivers using the new scheme no longer need to specify
+the non_legacy_dai_naming flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/xtensa/xtfpga-i2s.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ sound/soc/tegra/tegra210_i2s.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/sound/soc/xtensa/xtfpga-i2s.c b/sound/soc/xtensa/xtfpga-i2s.c
-index 8bd1215460327..a8f156540b500 100644
---- a/sound/soc/xtensa/xtfpga-i2s.c
-+++ b/sound/soc/xtensa/xtfpga-i2s.c
-@@ -475,13 +475,14 @@ static int xtfpga_pcm_new(struct snd_soc_component *component,
- }
- 
- static const struct snd_soc_component_driver xtfpga_i2s_component = {
--	.name		= DRV_NAME,
--	.open		= xtfpga_pcm_open,
--	.close		= xtfpga_pcm_close,
--	.hw_params	= xtfpga_pcm_hw_params,
--	.trigger	= xtfpga_pcm_trigger,
--	.pointer	= xtfpga_pcm_pointer,
--	.pcm_construct	= xtfpga_pcm_new,
-+	.name			= DRV_NAME,
-+	.open			= xtfpga_pcm_open,
-+	.close			= xtfpga_pcm_close,
-+	.hw_params		= xtfpga_pcm_hw_params,
-+	.trigger		= xtfpga_pcm_trigger,
-+	.pointer		= xtfpga_pcm_pointer,
-+	.pcm_construct		= xtfpga_pcm_new,
-+	.legacy_dai_naming	= 1,
+diff --git a/sound/soc/tegra/tegra210_i2s.c b/sound/soc/tegra/tegra210_i2s.c
+index 01c76ba36e1ac..39ffa4d76b593 100644
+--- a/sound/soc/tegra/tegra210_i2s.c
++++ b/sound/soc/tegra/tegra210_i2s.c
+@@ -803,7 +803,6 @@ static const struct snd_soc_component_driver tegra210_i2s_cmpnt = {
+ 	.num_dapm_routes	= ARRAY_SIZE(tegra210_i2s_routes),
+ 	.controls		= tegra210_i2s_controls,
+ 	.num_controls		= ARRAY_SIZE(tegra210_i2s_controls),
+-	.non_legacy_dai_naming	= 1,
  };
  
- static const struct snd_soc_dai_ops xtfpga_i2s_dai_ops = {
+ static bool tegra210_i2s_wr_reg(struct device *dev, unsigned int reg)
 -- 
 2.30.2
 
