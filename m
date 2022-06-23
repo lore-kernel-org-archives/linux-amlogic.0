@@ -4,43 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 819BBCCA482
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 13:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D3D1C43334
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 13:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RyzbVQ+LP/fK6oyTgGxM+Sas3FZCVjNz9TCTR3UA3YU=; b=EyqpDrWZdaKPwn
-	uZK9a9NlZta1udh0T6tOz7/xzNJFz+hnpg25NHtmazWttwKG9O71tjES7uLsZh4VSHJRMZaaUiHX7
-	Du11mVD5rN+URZRRTWG8OPrp6hM9OBkwIX5Na761v+B6OGaAn2oAf6UWHB2Cl5/qa37buYbfrUiGF
-	guE62hVPeVOcmGF3ert31894WU6nzxJhYHahdofSCEx9Z94NamVcUuF5tnAKUkBnn2ejPYnXVFeuy
-	GE8bYDo6Gb7AMR+dfPmKWWWfxJKyc5DpNf4n9y/cNCIK4JSjO5lmZ3SMu+EHlHZaGjaR5v7Fa8zJY
-	ZSwXMrAWjT0+xuVCKmAw==;
+	List-Owner; bh=PohPFKVoEbeUUvyzWkUktSjQBDR/K1VH9S66qSbXRUs=; b=O5nejHK1ggj7aU
+	SRBAATDSVK9KKKnuNrzQXYyfVf0bZJ/cBxnAubK/0yGrURYSQwVKRm4Dzog97RmXCNgITfM3O6e7Q
+	s20V/6j+RhWlzOY/Ai0TJnRGFRmkTGZ0C5FapdFAJ/R/YOci7gm3uEt57LW9H8UMJOzoQWmA9H1y8
+	/gsPVePjpOjuvxS1WOMSsRE2o5N1iWSmNsmJu7XaRcrj3fuwag5o/H46gdv9ZJgB3D5/0vqrmFQPY
+	i8NclBPHKytWaiJ0Lu/vqx2tve9ZPDYRX/rMjG36ua914HiNNjRxgJ8UXfdV3FoYMDIumq5cpI+IP
+	xvOL/TYwGwQE/ejue3dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4Mo0-00FKDT-Rb; Thu, 23 Jun 2022 13:23:32 +0000
+	id 1o4Mo4-00FKJa-GV; Thu, 23 Jun 2022 13:23:36 +0000
 Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MnZ-00FJkR-Qg
-	for linux-amlogic@lists.infradead.org; Thu, 23 Jun 2022 13:23:07 +0000
+	id 1o4Mnb-00FJmX-H1; Thu, 23 Jun 2022 13:23:09 +0000
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25N6FQeS013924;
-	Thu, 23 Jun 2022 07:53:05 -0500
+	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NBNlql015665;
+	Thu, 23 Jun 2022 07:53:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=sAu3pH6/6lU/XyXTN91/1WuCwzQ/mNc+bW7Bo0i0LcU=;
- b=e5pW6kTgadxBfVjgB+WLozMyvQm+QgqTbNVLiEAF5NO7iy6+VeNfy8GXGDshMTsB5qIG
- 7NVSyrkreBiGGNtNjDw5XDPPisMSCKM6Q7oFAUdckU9dLs6cZJG+LaCGX/Z9ek5gX8tq
- jW6xVDhdjphWKEbAh+tR1+9Z91kW7rl+OofX3wRvs2P4M2ogGq4k6uVvzkHaKlW8Kx9P
- MrHopxddztVJSSkCNpw79dwFo6bDkDt33c9eX+6vkgoXWied2bGIH1dCnpU4shr4FSbG
- 715cucK4Pea88b04cm6r0xXzogfFwc9koX3DNm6WZIu+DKha/XMljiInAJXf0bUZYmhr YA== 
+ bh=6YarS5ewCrE1AMRJ2CvNPD3pBYbddA86uZKIfmQBxOQ=;
+ b=M+nfhuLgdlEhzOi91C50OFPSm1rEcnoSq5kHjH2tS+N6ug6oXuguFoit0tayle32U59C
+ 2y7tVrM7Ig3LnPzH4dqnot2hkJPjFiDY+HQHteb0jPyiKhofmrGBLJp3q2PzoimiGF98
+ CKhirrnjuUFGUDVulMsVwcCLeOM+qhpcX+8+AXH5wknRnCAyGyZQWq5907RfycVrRXTj
+ aQEhGrQ3gWZG5P3XZ7ofP3W+XNL3Q7Fa6iK18uKNxfNa0oDBqw8NKX83I/A1ad9L0YSK
+ bJ+3O5wqdlDu3SWw0SWp++85Fl0viyYBoUi5PlLOor0N27Kq5KqeirMp3G9pW2yqQ9Ow 5w== 
 Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4x-4
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4j-18
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:53:05 -0500
+	Thu, 23 Jun 2022 07:53:07 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
@@ -49,7 +48,7 @@ Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
  Transport; Thu, 23 Jun 2022 13:52:55 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 6858A11D3;
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D1AED11D4;
 	Thu, 23 Jun 2022 12:52:55 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
@@ -69,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 52/96] ASoC: max*: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 23 Jun 2022 13:52:06 +0100
-Message-ID: <20220623125250.2355471-53-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 57/96] ASoC: spdif: Remove now redundant non_legacy_dai_naming flag
+Date: Thu, 23 Jun 2022 13:52:11 +0100
+Message-ID: <20220623125250.2355471-58-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: VQEw18QrbBwkdqgg7ilMzg33g8OLPaLL
-X-Proofpoint-ORIG-GUID: VQEw18QrbBwkdqgg7ilMzg33g8OLPaLL
+X-Proofpoint-GUID: Mfrlo0kPjHgdQMefAhRh0EAa21OWVAYc
+X-Proofpoint-ORIG-GUID: Mfrlo0kPjHgdQMefAhRh0EAa21OWVAYc
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220623_062305_952848_7ADB1722 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20220623_062307_659422_7A27214C 
+X-CRM114-Status: GOOD (  12.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,219 +103,34 @@ the non_legacy_dai_naming flag.
 
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/codecs/max98088.c  | 1 -
- sound/soc/codecs/max98090.c  | 1 -
- sound/soc/codecs/max98095.c  | 1 -
- sound/soc/codecs/max98357a.c | 1 -
- sound/soc/codecs/max98371.c  | 1 -
- sound/soc/codecs/max98373.c  | 2 --
- sound/soc/codecs/max98390.c  | 1 -
- sound/soc/codecs/max98396.c  | 2 --
- sound/soc/codecs/max9850.c   | 1 -
- sound/soc/codecs/max98520.c  | 1 -
- sound/soc/codecs/max9860.c   | 1 -
- sound/soc/codecs/max9867.c   | 1 -
- sound/soc/codecs/max98925.c  | 1 -
- sound/soc/codecs/max98926.c  | 1 -
- sound/soc/codecs/max98927.c  | 1 -
- 15 files changed, 17 deletions(-)
+ sound/soc/codecs/spdif_receiver.c    | 1 -
+ sound/soc/codecs/spdif_transmitter.c | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/sound/soc/codecs/max98088.c b/sound/soc/codecs/max98088.c
-index 5ef2e1279ee71..08e5c606ff27d 100644
---- a/sound/soc/codecs/max98088.c
-+++ b/sound/soc/codecs/max98088.c
-@@ -1734,7 +1734,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98088 = {
+diff --git a/sound/soc/codecs/spdif_receiver.c b/sound/soc/codecs/spdif_receiver.c
+index 276db978e5871..862e0b654a1c2 100644
+--- a/sound/soc/codecs/spdif_receiver.c
++++ b/sound/soc/codecs/spdif_receiver.c
+@@ -43,7 +43,6 @@ static struct snd_soc_component_driver soc_codec_spdif_dir = {
  	.idle_bias_on		= 1,
  	.use_pmdown_time	= 1,
  	.endianness		= 1,
 -	.non_legacy_dai_naming	= 1,
  };
  
- static const struct i2c_device_id max98088_i2c_id[] = {
-diff --git a/sound/soc/codecs/max98090.c b/sound/soc/codecs/max98090.c
-index 72471cdb22292..142083b13ac3b 100644
---- a/sound/soc/codecs/max98090.c
-+++ b/sound/soc/codecs/max98090.c
-@@ -2519,7 +2519,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98090 = {
+ static struct snd_soc_dai_driver dir_stub_dai = {
+diff --git a/sound/soc/codecs/spdif_transmitter.c b/sound/soc/codecs/spdif_transmitter.c
+index 2c8cebfc66031..7365189215558 100644
+--- a/sound/soc/codecs/spdif_transmitter.c
++++ b/sound/soc/codecs/spdif_transmitter.c
+@@ -43,7 +43,6 @@ static struct snd_soc_component_driver soc_codec_spdif_dit = {
  	.idle_bias_on		= 1,
  	.use_pmdown_time	= 1,
  	.endianness		= 1,
 -	.non_legacy_dai_naming	= 1,
  };
  
- static const struct regmap_config max98090_regmap = {
-diff --git a/sound/soc/codecs/max98095.c b/sound/soc/codecs/max98095.c
-index 7bca99fa61b54..44aa58fcc23f8 100644
---- a/sound/soc/codecs/max98095.c
-+++ b/sound/soc/codecs/max98095.c
-@@ -2103,7 +2103,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98095 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct i2c_device_id max98095_i2c_id[] = {
-diff --git a/sound/soc/codecs/max98357a.c b/sound/soc/codecs/max98357a.c
-index 9188127638848..2a2b286f1747f 100644
---- a/sound/soc/codecs/max98357a.c
-+++ b/sound/soc/codecs/max98357a.c
-@@ -93,7 +93,6 @@ static const struct snd_soc_component_driver max98357a_component_driver = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct snd_soc_dai_ops max98357a_dai_ops = {
-diff --git a/sound/soc/codecs/max98371.c b/sound/soc/codecs/max98371.c
-index 800f2bca6a0f1..bac9d1bcf60ae 100644
---- a/sound/soc/codecs/max98371.c
-+++ b/sound/soc/codecs/max98371.c
-@@ -351,7 +351,6 @@ static const struct snd_soc_component_driver max98371_component = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98371_regmap = {
-diff --git a/sound/soc/codecs/max98373.c b/sound/soc/codecs/max98373.c
-index 1517c47afbf14..f90a6a7ba83b8 100644
---- a/sound/soc/codecs/max98373.c
-+++ b/sound/soc/codecs/max98373.c
-@@ -437,7 +437,6 @@ const struct snd_soc_component_driver soc_codec_dev_max98373 = {
- 	.num_dapm_routes	= ARRAY_SIZE(max98373_audio_map),
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- EXPORT_SYMBOL_GPL(soc_codec_dev_max98373);
- 
-@@ -462,7 +461,6 @@ const struct snd_soc_component_driver soc_codec_dev_max98373_sdw = {
- 	.num_dapm_routes	= ARRAY_SIZE(max98373_audio_map),
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- EXPORT_SYMBOL_GPL(soc_codec_dev_max98373_sdw);
- 
-diff --git a/sound/soc/codecs/max98390.c b/sound/soc/codecs/max98390.c
-index d83f81d9ff4ea..5c08166a8dc62 100644
---- a/sound/soc/codecs/max98390.c
-+++ b/sound/soc/codecs/max98390.c
-@@ -983,7 +983,6 @@ static const struct snd_soc_component_driver soc_codec_dev_max98390 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98390_regmap = {
-diff --git a/sound/soc/codecs/max98396.c b/sound/soc/codecs/max98396.c
-index 56eb62bb041f9..225effede9d25 100644
---- a/sound/soc/codecs/max98396.c
-+++ b/sound/soc/codecs/max98396.c
-@@ -1453,7 +1453,6 @@ static const struct snd_soc_component_driver soc_codec_dev_max98396 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct snd_soc_component_driver soc_codec_dev_max98397 = {
-@@ -1467,7 +1466,6 @@ static const struct snd_soc_component_driver soc_codec_dev_max98397 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98396_regmap = {
-diff --git a/sound/soc/codecs/max9850.c b/sound/soc/codecs/max9850.c
-index 9ca6fc254883c..a6733396b0cad 100644
---- a/sound/soc/codecs/max9850.c
-+++ b/sound/soc/codecs/max9850.c
-@@ -296,7 +296,6 @@ static const struct snd_soc_component_driver soc_component_dev_max9850 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static int max9850_i2c_probe(struct i2c_client *i2c)
-diff --git a/sound/soc/codecs/max98520.c b/sound/soc/codecs/max98520.c
-index f0f085ecab550..5edd6f90f8a7b 100644
---- a/sound/soc/codecs/max98520.c
-+++ b/sound/soc/codecs/max98520.c
-@@ -657,7 +657,6 @@ static const struct snd_soc_component_driver soc_codec_dev_max98520 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98520_regmap = {
-diff --git a/sound/soc/codecs/max9860.c b/sound/soc/codecs/max9860.c
-index a1d0179e12c76..771b3dcd6cc32 100644
---- a/sound/soc/codecs/max9860.c
-+++ b/sound/soc/codecs/max9860.c
-@@ -537,7 +537,6 @@ static const struct snd_soc_component_driver max9860_component_driver = {
- 	.num_dapm_routes	= ARRAY_SIZE(max9860_dapm_routes),
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- #ifdef CONFIG_PM
-diff --git a/sound/soc/codecs/max9867.c b/sound/soc/codecs/max9867.c
-index eb628b7e84f55..6d2941a9dbd6e 100644
---- a/sound/soc/codecs/max9867.c
-+++ b/sound/soc/codecs/max9867.c
-@@ -589,7 +589,6 @@ static const struct snd_soc_component_driver max9867_component = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static bool max9867_volatile_register(struct device *dev, unsigned int reg)
-diff --git a/sound/soc/codecs/max98925.c b/sound/soc/codecs/max98925.c
-index 63849ebcfd354..c24d9f2c8874d 100644
---- a/sound/soc/codecs/max98925.c
-+++ b/sound/soc/codecs/max98925.c
-@@ -544,7 +544,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98925 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98925_regmap = {
-diff --git a/sound/soc/codecs/max98926.c b/sound/soc/codecs/max98926.c
-index 56e0a87c7112f..bffd56e240e9a 100644
---- a/sound/soc/codecs/max98926.c
-+++ b/sound/soc/codecs/max98926.c
-@@ -496,7 +496,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98926 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98926_regmap = {
-diff --git a/sound/soc/codecs/max98927.c b/sound/soc/codecs/max98927.c
-index b7cff76d7b5b9..9cce7c0f01424 100644
---- a/sound/soc/codecs/max98927.c
-+++ b/sound/soc/codecs/max98927.c
-@@ -832,7 +832,6 @@ static const struct snd_soc_component_driver soc_component_dev_max98927 = {
- 	.idle_bias_on		= 1,
- 	.use_pmdown_time	= 1,
- 	.endianness		= 1,
--	.non_legacy_dai_naming	= 1,
- };
- 
- static const struct regmap_config max98927_regmap = {
+ static struct snd_soc_dai_driver dit_stub_dai = {
 -- 
 2.30.2
 
