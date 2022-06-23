@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD13CCA489
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 12:54:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC8FC04E85
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jun 2022 12:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rfokZuz2Leod+w08EYL3pFTh1PxrOOMy5uiZMQ56Z1A=; b=cKMIYYfMfKJcHl
-	xDLDdn3IY0iSkzivOkN6XPmQfhaOr+dOgxoYVOL9XTmXMAlXFM2RoyrUae+U3WhkGuaE4miU6jgpN
-	7qZU6w4UKJCtkRCYCaf709zO7tL+63Y0vFSOFRj8NvQJTs8F/Z7pMtyfaITeYzUpyFJs7lscDoNdw
-	si2ekRVe1LxjAgac0fhVcOdicHfvFLixIUrYNtt3j6cN2wrU5LLGK0zx28pUC7IcT/O7E4iHYMnoa
-	x/zaTs6kYS4zXyKxGFzbujVzHl2b5iw+nLlvCwF94VubpN76DdEwC5qdVY99G9aZC/2GjIJBzr1hb
-	xSrRy3u+Nh2m6L6QXqMg==;
+	List-Owner; bh=pG4YL6woKLb2eHeMPBpGpX7Bv4r85nCtogrNXieFqsI=; b=C5gqezauovzWi4
+	MTl48aXlTGke8IZG2mQ9LddfqNAgWvluiQhzSavuBDBMzrVrg79zOTwnVscsqU9uChw0rgLYbUUif
+	EpV/JEPEwsBQkwtLC3YsvELciz6d0DldgxjiAohYQmZl9AQTX1xHq4ZUmRuMUJkvzI/5NGnSgSftW
+	2m+stJpA7N6eB8u7REgzXxAlVsp6jN+nFcEJX6Tl7ThNiXiX0lKETPj6rLmHHIh3qZxdnRwODZ2BU
+	aPXxzTzbCtojxn41h26ZIFQiWDbnYvFKvOXK2yaMtV/dgzCZM748W0Rh5RTOCivahnqAL5rqo/6Vx
+	XiVPPITocRmNoBsSBpvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MLu-00F843-3I; Thu, 23 Jun 2022 12:54:30 +0000
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
+	id 1o4MM4-00F8F6-Ku; Thu, 23 Jun 2022 12:54:40 +0000
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4MKi-00F6xg-7R; Thu, 23 Jun 2022 12:53:22 +0000
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NAKUt3006859;
-	Thu, 23 Jun 2022 07:53:02 -0500
+	id 1o4MKj-00F6yQ-7P; Thu, 23 Jun 2022 12:53:25 +0000
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25NBvlr7011978;
+	Thu, 23 Jun 2022 07:52:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=PODMain02222019;
- bh=5SS4T7VeSvIj1FC5R5zWoo7UcAx6bgPzaWWgtGA6/yE=;
- b=jn6uN96B1wivnuU+Tk3zcTu3AT7F6/5AAOM1nFjPeYYlLgeayYMpYHeo073ySXZVTPVn
- 0NfSPBx2sHy6I/DZGQmcOLQmEn5lJp58D4o0OrhDsQSrPD1VxPXxUxf7luQcQbFMwFqb
- ICg9yn6rD+/wyVbVLa+4JkUSK3y5w8lDnBJtZEbJdjXlN11xQ+/7o7oH53y4uSjzzYFp
- L9mvEbL+0aJr8DL2j3rYvUWCI1jc44rowHg6bfn1/WhgaPEWGbN969F9W2/bCFdcMN6d
- Jf1gp6LONWik/yJAV+coErIPlCpiXwloN/whhF1npwVe3lNVQYrwkXXNbYOmNcXv3c3c OA== 
+ bh=CH7Rz/1KuHpV4YxCkXPzfQUK8RD/b+X5rgIdZtTOciE=;
+ b=NDWVh72qf0hqMMjO1QtFHJrufPaTFbgNPGV/beTMbXK2TASWcX7PuumffBht1ldSPKO1
+ YqRJTqq5qwneMnEILbhrndPGGiF2yYfwVXdKkzOY9Q70Hlw0ciBR/XXuMCkJ1O50l11o
+ QNwaxYY6xaR71xqIAswlvWrd46tJhSn+oatKHmkfRDHFJQqBJGD8bZjl71t3zpYNyUfh
+ /oUBWtRE4ACE/2BLL1C5GgZALQ6g6QXDd7nD+t5noj51mW6FMrAxlURMvBM0VMf9K2jH
+ ljbBMMeelEkLHHecqwPE7cfOlzdk1ADrTK3YOljHYclr9JYo5OYD+BnB/g9oNbNcot/O iA== 
 Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gsc41fa4u-2
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3gsb4p6wvp-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Jun 2022 07:53:02 -0500
+	Thu, 23 Jun 2022 07:52:53 -0500
 Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
  (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 13:52:54 +0100
+ 2022 13:52:51 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 23 Jun 2022 13:52:54 +0100
+ Transport; Thu, 23 Jun 2022 13:52:51 +0100
 Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id F1B7911D3;
-	Thu, 23 Jun 2022 12:52:53 +0000 (UTC)
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id F2AF811D4;
+	Thu, 23 Jun 2022 12:52:50 +0000 (UTC)
 From: Charles Keepax <ckeepax@opensource.cirrus.com>
 To: <broonie@kernel.org>
 CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
@@ -68,19 +68,19 @@ CC: <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
         <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-rpi-kernel@lists.infradead.org>, <frattaroli.nicolas@gmail.com>
-Subject: [PATCH v2 36/96] ASoC: fsl: Remove now redundant non_legacy_dai_naming flag
-Date: Thu, 23 Jun 2022 13:51:50 +0100
-Message-ID: <20220623125250.2355471-37-ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 03/96] drm/vc4: Migrate to new style legacy DAI naming flag
+Date: Thu, 23 Jun 2022 13:51:17 +0100
+Message-ID: <20220623125250.2355471-4-ckeepax@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 References: <20220623125250.2355471-1-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-X-Proofpoint-GUID: 8l4owaLREXHc23kLDcPMpfygNeuavSCn
-X-Proofpoint-ORIG-GUID: 8l4owaLREXHc23kLDcPMpfygNeuavSCn
+X-Proofpoint-GUID: AFej8aE8tVY0MBQClfxehpUlOUym3KR3
+X-Proofpoint-ORIG-GUID: AFej8aE8tVY0MBQClfxehpUlOUym3KR3
 X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220623_055316_359368_A86DCB67 
-X-CRM114-Status: GOOD (  12.54  )
+X-CRM114-CacheID: sfid-20220623_055317_452486_668E69FE 
+X-CRM114-Status: GOOD (  14.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,27 +97,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ASoC core has now been changed to default to the non-legacy DAI
-naming, as such drivers using the new scheme no longer need to specify
-the non_legacy_dai_naming flag.
+Change the legacy DAI naming flag from opting in to the new scheme
+(non_legacy_dai_naming), to opting out of it (legacy_dai_naming).
+This driver appears to be on the CPU side of the DAI link and
+currently uses the legacy naming, so add the new flag.
 
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/fsl/fsl_mqs.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/vc4/vc4_hdmi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/fsl/fsl_mqs.c b/sound/soc/fsl/fsl_mqs.c
-index bb25c58e335fb..c1e2f671191b5 100644
---- a/sound/soc/fsl/fsl_mqs.c
-+++ b/sound/soc/fsl/fsl_mqs.c
-@@ -155,7 +155,6 @@ static void fsl_mqs_shutdown(struct snd_pcm_substream *substream,
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index 823d812f49829..3e3bd88745b7c 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -1969,6 +1969,7 @@ static int vc4_hdmi_audio_prepare(struct device *dev, void *data,
  
- static const struct snd_soc_component_driver soc_codec_fsl_mqs = {
- 	.idle_bias_on = 1,
--	.non_legacy_dai_naming	= 1,
+ static const struct snd_soc_component_driver vc4_hdmi_audio_cpu_dai_comp = {
+ 	.name = "vc4-hdmi-cpu-dai-component",
++	.legacy_dai_naming = 1,
  };
  
- static const struct snd_soc_dai_ops fsl_mqs_dai_ops = {
+ static int vc4_hdmi_audio_cpu_dai_probe(struct snd_soc_dai *dai)
 -- 
 2.30.2
 
