@@ -4,70 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE839C433EF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jun 2022 20:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EE9C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jun 2022 20:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GzDV+mXZILajFpKnnEO8Ph5/p7faSDwoNuxZoSWf3Vo=; b=nbWQlKznqdZ+7mxQmsDCY6h2SQ
-	xDf8/4dQ3PUfZdG1n5/IZVlZ+vGdEyl5fQcDDLp9LTE4ezP3aQdXk5yO/GlSEJ+CT4g9eW/jXEE0M
-	TLioaSncq1DDcL+xItCAlNzjGjBnmA9xh9fbv0xoaKt42CHNj1HHNJ6ZhAN/6U5tJdrzZFEjTYAbV
-	bN62Nnl+10DTarBZ6LUJZKRi0zhegoRswJohIy+rl9iHuK9K1JzZPqkm1bNKNvEG0t7PXdOZB/4Cx
-	7srZelQ29SpkrCC39BnCkC/K2T4dNdwTNem+VNgnEVMvBybnEbkPmj+glZAAGj/Dqg5WmaIOHIJ6V
-	OJGMnLxg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NomcG+ay+pzirM556nXHiS8BFIDgHBh8XmCD5dvweXU=; b=yo8doLa43XdcMo
+	x++Balmbv2gOloPl89zwVHl9t2tDXuwD86e2S+SApC1f4I80jwiTKcxt8Z0wrdQczgU7NQg2TOSgO
+	gl8vDj5wmLKUZA2VJkBH0Uh2k6C5d6Bc3vzQ530j0HQ28u3W0WUdBz2EsuxPX3RdEuVrxOr7aMLqZ
+	brg2NA6TxiStTHA7ApH4OImsyCukkOzFBjkiyE/0TKNAzOVWcQ8KdNjI2SGomQV+2IpaMgY8OqDP5
+	RS7WylAO47WnOVXfESYIO0Zm04DVng/gyRNf+tAHIxRveX5u/rdt8PvZ1XLw6qyextmERpmNq+Lk0
+	exXWLXhgTaRP2BzYifCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4pTs-003i82-GV; Fri, 24 Jun 2022 20:00:40 +0000
-Received: from mga17.intel.com ([192.55.52.151])
+	id 1o4qKh-003nW6-57; Fri, 24 Jun 2022 20:55:15 +0000
+Received: from mga12.intel.com ([192.55.52.136])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4pTh-003i4c-0b; Fri, 24 Jun 2022 20:00:30 +0000
+	id 1o4qKV-003nSe-Pe; Fri, 24 Jun 2022 20:55:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656100829; x=1687636829;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=aPeFMT2xLIQ7Nk30nxXxTOVKrUtn7QWE8ufSym4FWP4=;
-  b=J/vblKG1gRj9GHVosYBIVPHjfX62aSxP9FKPsYwuf3OptoRg4yAv3SrR
-   xQo9j7H4kO8cSA3AwGgPhQsVRJ4M+AyfESdi6mQJE/YIpo1syHYYFCDEw
-   H2MmuHaUtypG4fBVCWwSzu4WxsLaSiMP+DM9t3N6O988XNWNgnyXUEUZZ
-   jY3Ao2l+N496NfF8QNTDqnwvq6HlBK7mVTd1ndurvbFVZ0CBXoy4qqR6l
-   xWga8oSuanFoynKSafZAZ568LF8qiRjn3zlBLycSMndmTzOTKaNuNret+
-   SwNUQg7uZCeUoRNf4RAQrwondWwXcPoGwbwDcJrg/zYbQODsmHi2qtRby
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="261501426"
+  t=1656104103; x=1687640103;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4aZHN2G/eQajxFyFoeTD1MtcxfTjtBeZalxelXiSht4=;
+  b=afFieyMnBA54WtnP8oFJBSMu3FC1Fh4Z3VyOG8Xur6z11rimkgmfVd/A
+   QzFbOx453oAynRi6+36iOBygsTehgAu0hMK5E2mUs6xjsdk2dZs2mzeBu
+   tV6CQ4a+dmknel37qY/9RLjMeAJBlzY7MUSpZHTOlW0N4DNVSRNtcYTeC
+   G/EW50zYm0fvQND1I3Y/4WUYydzyW8aP2IL1baGhFHzmQEtISjqqllwX8
+   Pw33lgoEH1WL3MlGV2N2desgNWQ7WQJMCxHNqV5NtSgUqqbrs1ifc31C9
+   aq9ikJPna1wuipFTEKs/iPI3g8oYv8aLhrFRrya6+QRaI/2mpdQFyLB1P
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="260901937"
 X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; 
-   d="scan'208";a="261501426"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 13:00:27 -0700
+   d="scan'208";a="260901937"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 13:55:01 -0700
 X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; 
-   d="scan'208";a="645421660"
-Received: from vhavel-mobl.ger.corp.intel.com ([10.251.216.91])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 13:00:22 -0700
-Date: Fri, 24 Jun 2022 23:00:13 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Jiri Slaby <jirislaby@kernel.org>
-cc: linux-serial <linux-serial@vger.kernel.org>, 
-    Greg KH <gregkh@linuxfoundation.org>, 
-    Neil Armstrong <narmstrong@baylibre.com>, 
-    Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-    Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-    =?ISO-8859-15?Q?Andreas_F=E4rber?= <afaerber@suse.de>, 
-    Manivannan Sadhasivam <mani@kernel.org>, 
-    LKML <linux-kernel@vger.kernel.org>, linux-arm-kernel@lists.infradead.org, 
-    linux-amlogic@lists.infradead.org, linux-actions@lists.infradead.org, 
-    linux-unisoc@lists.infradead.org
-Subject: Re: [PATCH v2 5/6] serial: Use UART_XMIT_SIZE
-In-Reply-To: <e864ffbc-5885-f648-01c4-68a598f942b9@kernel.org>
-Message-ID: <6fb33489-946f-ad92-df35-7f608420bc7@linux.intel.com>
-References: <20220621124958.3342-1-ilpo.jarvinen@linux.intel.com> <20220621124958.3342-6-ilpo.jarvinen@linux.intel.com> <e864ffbc-5885-f648-01c4-68a598f942b9@kernel.org>
+   d="scan'208";a="593384295"
+Received: from vhavel-mobl.ger.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.251.216.91])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 13:54:56 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-serial@vger.kernel.org,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-actions@lists.infradead.org,
+	linux-unisoc@lists.infradead.org
+Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v3 5/6] serial: Convert SERIAL_XMIT_SIZE to UART_XMIT_SIZE
+Date: Fri, 24 Jun 2022 23:54:23 +0300
+Message-Id: <20220624205424.12686-6-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220624205424.12686-1-ilpo.jarvinen@linux.intel.com>
+References: <20220624205424.12686-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-120668389-1656100826=:2099"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220624_130029_108468_84169ED0 
-X-CRM114-Status: GOOD (  15.98  )
+X-CRM114-CacheID: sfid-20220624_135503_889580_11295F31 
+X-CRM114-Status: GOOD (  13.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,69 +84,110 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-120668389-1656100826=:2099
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-
-On Thu, 23 Jun 2022, Jiri Slaby wrote:
-
-> On 21. 06. 22, 14:49, Ilpo Järvinen wrote:
-> > --- a/include/linux/serial.h
-> > +++ b/include/linux/serial.h
-> > @@ -9,7 +9,6 @@
-> >   #ifndef _LINUX_SERIAL_H
-> >   #define _LINUX_SERIAL_H
-> >   -#include <asm/page.h>
-> >   #include <uapi/linux/serial.h>
-> >     /* Helper for dealing with UART_LCR_WLEN* defines */
-> > @@ -25,11 +24,6 @@ struct async_icount {
-> >   	__u32	buf_overrun;
-> >   };
-> >   -/*
-> > - * The size of the serial xmit buffer is 1 page, or 4096 bytes
-> > - */
-> > -#define SERIAL_XMIT_SIZE PAGE_SIZE
-> > -
-> >   #include <linux/compiler.h>
-> >     #endif /* _LINUX_SERIAL_H */
-> > diff --git a/include/linux/serial_core.h b/include/linux/serial_core.h
-> > index 5518b70177b3..1767dee98021 100644
-> > --- a/include/linux/serial_core.h
-> > +++ b/include/linux/serial_core.h
-> > @@ -296,6 +296,7 @@ struct uart_state {
-> >   	struct uart_port	*uart_port;
-> >   };
-> >   +/* The size of the serial xmit buffer is 1 page, or 4096 bytes */
-> 
-> That is not completely true, I'd remove the "or" part. Hmm, but then the
-> comment is somehow superfluous as it says what we can see below. So maybe
-> don't add it at all?
-> 
-> >   #define UART_XMIT_SIZE	PAGE_SIZE
-
-Yeah, the comment is probably not that useful. I managed to get into  
-an "autopilot mode" with a sole goal to preserve the comment rather than 
-thinking/reading it through whether it's worth preserving.
-
--- 
- i.
-
---8323329-120668389-1656100826=:2099
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---8323329-120668389-1656100826=:2099--
-
+Qm90aCBVQVJUX1hNSVRfU0laRSBhbmQgU0VSSUFMX1hNSVRfU0laRSBhcmUgZGVmaW5lZC4gTWFr
+ZSB0aGVtIGFsbApVQVJUX1hNSVRfU0laRS4KClNpZ25lZC1vZmYtYnk6IElscG8gSsOkcnZpbmVu
+IDxpbHBvLmphcnZpbmVuQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL3R0eS9hbWlzZXJp
+YWwuYyAgICAgICAgIHwgMTggKysrKysrKysrLS0tLS0tLS0tCiBkcml2ZXJzL3R0eS9taXBzX2Vq
+dGFnX2ZkYy5jICAgIHwgIDIgKy0KIGRyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMgfCAg
+MiArLQogZHJpdmVycy90dHkvc2VyaWFsL293bC11YXJ0LmMgICB8ICAyICstCiBkcml2ZXJzL3R0
+eS9zZXJpYWwvcmRhLXVhcnQuYyAgIHwgIDIgKy0KIGluY2x1ZGUvbGludXgvc2VyaWFsLmggICAg
+ICAgICAgfCAgNiAtLS0tLS0KIDYgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgMTkg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy90dHkvYW1pc2VyaWFsLmMgYi9kcml2
+ZXJzL3R0eS9hbWlzZXJpYWwuYwppbmRleCBhZmIyZDM3M2RkNDcuLjU0NThlMmIxYzEyNSAxMDA2
+NDQKLS0tIGEvZHJpdmVycy90dHkvYW1pc2VyaWFsLmMKKysrIGIvZHJpdmVycy90dHkvYW1pc2Vy
+aWFsLmMKQEAgLTUxLDYgKzUxLDcgQEAKICNpbmNsdWRlIDxsaW51eC9zZXFfZmlsZS5oPgogI2lu
+Y2x1ZGUgPGxpbnV4L3NlcmlhbC5oPgogI2luY2x1ZGUgPGxpbnV4L3NlcmlhbF9yZWcuaD4KKyNp
+bmNsdWRlIDxsaW51eC9zZXJpYWxfY29yZS5oPgogI2luY2x1ZGUgPGxpbnV4L3NjaGVkLmg+CiAj
+aW5jbHVkZSA8bGludXgvc2lnbmFsLmg+CiAjaW5jbHVkZSA8bGludXgvc2xhYi5oPgpAQCAtMjgz
+LDEyICsyODQsMTIgQEAgc3RhdGljIHZvaWQgdHJhbnNtaXRfY2hhcnMoc3RydWN0IHNlcmlhbF9z
+dGF0ZSAqaW5mbykKIAogCWFtaWdhX2N1c3RvbS5zZXJkYXQgPSBpbmZvLT54bWl0LmJ1ZltpbmZv
+LT54bWl0LnRhaWwrK10gfCAweDEwMDsKIAltYigpOwotCWluZm8tPnhtaXQudGFpbCA9IGluZm8t
+PnhtaXQudGFpbCAmIChTRVJJQUxfWE1JVF9TSVpFLTEpOworCWluZm8tPnhtaXQudGFpbCA9IGlu
+Zm8tPnhtaXQudGFpbCAmIChVQVJUX1hNSVRfU0laRSAtIDEpOwogCWluZm8tPmljb3VudC50eCsr
+OwogCiAJaWYgKENJUkNfQ05UKGluZm8tPnhtaXQuaGVhZCwKIAkJICAgICBpbmZvLT54bWl0LnRh
+aWwsCi0JCSAgICAgU0VSSUFMX1hNSVRfU0laRSkgPCBXQUtFVVBfQ0hBUlMpCisJCSAgICAgVUFS
+VF9YTUlUX1NJWkUpIDwgV0FLRVVQX0NIQVJTKQogCQl0dHlfd2FrZXVwKGluZm8tPnRwb3J0LnR0
+eSk7CiAKICNpZmRlZiBTRVJJQUxfREVCVUdfSU5UUgpAQCAtNzA4LDEzICs3MDksMTMgQEAgc3Rh
+dGljIGludCByc19wdXRfY2hhcihzdHJ1Y3QgdHR5X3N0cnVjdCAqdHR5LCB1bnNpZ25lZCBjaGFy
+IGNoKQogCWxvY2FsX2lycV9zYXZlKGZsYWdzKTsKIAlpZiAoQ0lSQ19TUEFDRShpbmZvLT54bWl0
+LmhlYWQsCiAJCSAgICAgICBpbmZvLT54bWl0LnRhaWwsCi0JCSAgICAgICBTRVJJQUxfWE1JVF9T
+SVpFKSA9PSAwKSB7CisJCSAgICAgICBVQVJUX1hNSVRfU0laRSkgPT0gMCkgewogCQlsb2NhbF9p
+cnFfcmVzdG9yZShmbGFncyk7CiAJCXJldHVybiAwOwogCX0KIAogCWluZm8tPnhtaXQuYnVmW2lu
+Zm8tPnhtaXQuaGVhZCsrXSA9IGNoOwotCWluZm8tPnhtaXQuaGVhZCAmPSBTRVJJQUxfWE1JVF9T
+SVpFLTE7CisJaW5mby0+eG1pdC5oZWFkICY9IFVBUlRfWE1JVF9TSVpFIC0gMTsKIAlsb2NhbF9p
+cnFfcmVzdG9yZShmbGFncyk7CiAJcmV0dXJuIDE7CiB9CkBAIC03NTMsMTUgKzc1NCwxNCBAQCBz
+dGF0aWMgaW50IHJzX3dyaXRlKHN0cnVjdCB0dHlfc3RydWN0ICogdHR5LCBjb25zdCB1bnNpZ25l
+ZCBjaGFyICpidWYsIGludCBjb3VudAogCXdoaWxlICgxKSB7CiAJCWMgPSBDSVJDX1NQQUNFX1RP
+X0VORChpbmZvLT54bWl0LmhlYWQsCiAJCQkJICAgICAgaW5mby0+eG1pdC50YWlsLAotCQkJCSAg
+ICAgIFNFUklBTF9YTUlUX1NJWkUpOworCQkJCSAgICAgIFVBUlRfWE1JVF9TSVpFKTsKIAkJaWYg
+KGNvdW50IDwgYykKIAkJCWMgPSBjb3VudDsKIAkJaWYgKGMgPD0gMCkgewogCQkJYnJlYWs7CiAJ
+CX0KIAkJbWVtY3B5KGluZm8tPnhtaXQuYnVmICsgaW5mby0+eG1pdC5oZWFkLCBidWYsIGMpOwot
+CQlpbmZvLT54bWl0LmhlYWQgPSAoKGluZm8tPnhtaXQuaGVhZCArIGMpICYKLQkJCQkgICAoU0VS
+SUFMX1hNSVRfU0laRS0xKSk7CisJCWluZm8tPnhtaXQuaGVhZCA9IChpbmZvLT54bWl0LmhlYWQg
+KyBjKSAmIChVQVJUX1hNSVRfU0laRSAtIDEpOwogCQlidWYgKz0gYzsKIAkJY291bnQgLT0gYzsK
+IAkJcmV0ICs9IGM7CkBAIC03ODgsMTQgKzc4OCwxNCBAQCBzdGF0aWMgdW5zaWduZWQgaW50IHJz
+X3dyaXRlX3Jvb20oc3RydWN0IHR0eV9zdHJ1Y3QgKnR0eSkKIHsKIAlzdHJ1Y3Qgc2VyaWFsX3N0
+YXRlICppbmZvID0gdHR5LT5kcml2ZXJfZGF0YTsKIAotCXJldHVybiBDSVJDX1NQQUNFKGluZm8t
+PnhtaXQuaGVhZCwgaW5mby0+eG1pdC50YWlsLCBTRVJJQUxfWE1JVF9TSVpFKTsKKwlyZXR1cm4g
+Q0lSQ19TUEFDRShpbmZvLT54bWl0LmhlYWQsIGluZm8tPnhtaXQudGFpbCwgVUFSVF9YTUlUX1NJ
+WkUpOwogfQogCiBzdGF0aWMgdW5zaWduZWQgaW50IHJzX2NoYXJzX2luX2J1ZmZlcihzdHJ1Y3Qg
+dHR5X3N0cnVjdCAqdHR5KQogewogCXN0cnVjdCBzZXJpYWxfc3RhdGUgKmluZm8gPSB0dHktPmRy
+aXZlcl9kYXRhOwogCi0JcmV0dXJuIENJUkNfQ05UKGluZm8tPnhtaXQuaGVhZCwgaW5mby0+eG1p
+dC50YWlsLCBTRVJJQUxfWE1JVF9TSVpFKTsKKwlyZXR1cm4gQ0lSQ19DTlQoaW5mby0+eG1pdC5o
+ZWFkLCBpbmZvLT54bWl0LnRhaWwsIFVBUlRfWE1JVF9TSVpFKTsKIH0KIAogc3RhdGljIHZvaWQg
+cnNfZmx1c2hfYnVmZmVyKHN0cnVjdCB0dHlfc3RydWN0ICp0dHkpCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL3R0eS9taXBzX2VqdGFnX2ZkYy5jIGIvZHJpdmVycy90dHkvbWlwc19lanRhZ19mZGMuYwpp
+bmRleCA0OTkwNzQyN2ExNjUuLmU4MTcwMWE2NjQyOSAxMDA2NDQKLS0tIGEvZHJpdmVycy90dHkv
+bWlwc19lanRhZ19mZGMuYworKysgYi9kcml2ZXJzL3R0eS9taXBzX2VqdGFnX2ZkYy5jCkBAIC05
+MTYsNyArOTE2LDcgQEAgc3RhdGljIGludCBtaXBzX2VqdGFnX2ZkY190dHlfcHJvYmUoc3RydWN0
+IG1pcHNfY2RtbV9kZXZpY2UgKmRldikKIAltaXBzX2VqdGFnX2ZkY193cml0ZShwcml2LCBSRUdf
+RkRDRkcsIGNmZyk7CiAKIAkvKiBNYWtlIGVhY2ggcG9ydCdzIHhtaXQgRklGTyBiaWcgZW5vdWdo
+IHRvIGZpbGwgRkRDIFRYIEZJRk8gKi8KLQlwcml2LT54bWl0X3NpemUgPSBtaW4odHhfZmlmbyAq
+IDQsICh1bnNpZ25lZCBpbnQpU0VSSUFMX1hNSVRfU0laRSk7CisJcHJpdi0+eG1pdF9zaXplID0g
+bWluKHR4X2ZpZm8gKiA0LCAodW5zaWduZWQgaW50KVVBUlRfWE1JVF9TSVpFKTsKIAogCWRyaXZl
+ciA9IHR0eV9hbGxvY19kcml2ZXIoTlVNX1RUWV9DSEFOTkVMUywgVFRZX0RSSVZFUl9SRUFMX1JB
+Vyk7CiAJaWYgKElTX0VSUihkcml2ZXIpKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy90dHkvc2VyaWFs
+L21lc29uX3VhcnQuYyBiL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMKaW5kZXggNDg2
+OWMwMDU5Yzk4Li42YzhkYjE5ZmQ1NzIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9t
+ZXNvbl91YXJ0LmMKKysrIGIvZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwpAQCAtMTYy
+LDcgKzE2Miw3IEBAIHN0YXRpYyB2b2lkIG1lc29uX3VhcnRfc3RhcnRfdHgoc3RydWN0IHVhcnRf
+cG9ydCAqcG9ydCkKIAogCQljaCA9IHhtaXQtPmJ1Zlt4bWl0LT50YWlsXTsKIAkJd3JpdGVsKGNo
+LCBwb3J0LT5tZW1iYXNlICsgQU1MX1VBUlRfV0ZJRk8pOwotCQl4bWl0LT50YWlsID0gKHhtaXQt
+PnRhaWwrMSkgJiAoU0VSSUFMX1hNSVRfU0laRSAtIDEpOworCQl4bWl0LT50YWlsID0gKHhtaXQt
+PnRhaWwgKyAxKSAmIChVQVJUX1hNSVRfU0laRSAtIDEpOwogCQlwb3J0LT5pY291bnQudHgrKzsK
+IAl9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9vd2wtdWFydC5jIGIvZHJpdmVy
+cy90dHkvc2VyaWFsL293bC11YXJ0LmMKaW5kZXggNDRkMjBlNWE3ZGQzLi44ODhlMTdlM2YyNWYg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9vd2wtdWFydC5jCisrKyBiL2RyaXZlcnMv
+dHR5L3NlcmlhbC9vd2wtdWFydC5jCkBAIC0yMDEsNyArMjAxLDcgQEAgc3RhdGljIHZvaWQgb3ds
+X3VhcnRfc2VuZF9jaGFycyhzdHJ1Y3QgdWFydF9wb3J0ICpwb3J0KQogCiAJCWNoID0geG1pdC0+
+YnVmW3htaXQtPnRhaWxdOwogCQlvd2xfdWFydF93cml0ZShwb3J0LCBjaCwgT1dMX1VBUlRfVFhE
+QVQpOwotCQl4bWl0LT50YWlsID0gKHhtaXQtPnRhaWwgKyAxKSAmIChTRVJJQUxfWE1JVF9TSVpF
+IC0gMSk7CisJCXhtaXQtPnRhaWwgPSAoeG1pdC0+dGFpbCArIDEpICYgKFVBUlRfWE1JVF9TSVpF
+IC0gMSk7CiAJCXBvcnQtPmljb3VudC50eCsrOwogCX0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy90
+dHkvc2VyaWFsL3JkYS11YXJ0LmMgYi9kcml2ZXJzL3R0eS9zZXJpYWwvcmRhLXVhcnQuYwppbmRl
+eCBmNTU2YjQ5NTVmNTkuLmZlYjIwNTRhYmEzNyAxMDA2NDQKLS0tIGEvZHJpdmVycy90dHkvc2Vy
+aWFsL3JkYS11YXJ0LmMKKysrIGIvZHJpdmVycy90dHkvc2VyaWFsL3JkYS11YXJ0LmMKQEAgLTM1
+Myw3ICszNTMsNyBAQCBzdGF0aWMgdm9pZCByZGFfdWFydF9zZW5kX2NoYXJzKHN0cnVjdCB1YXJ0
+X3BvcnQgKnBvcnQpCiAKIAkJY2ggPSB4bWl0LT5idWZbeG1pdC0+dGFpbF07CiAJCXJkYV91YXJ0
+X3dyaXRlKHBvcnQsIGNoLCBSREFfVUFSVF9SWFRYX0JVRkZFUik7Ci0JCXhtaXQtPnRhaWwgPSAo
+eG1pdC0+dGFpbCArIDEpICYgKFNFUklBTF9YTUlUX1NJWkUgLSAxKTsKKwkJeG1pdC0+dGFpbCA9
+ICh4bWl0LT50YWlsICsgMSkgJiAoVUFSVF9YTUlUX1NJWkUgLSAxKTsKIAkJcG9ydC0+aWNvdW50
+LnR4Kys7CiAJfQogCmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L3NlcmlhbC5oIGIvaW5jbHVk
+ZS9saW51eC9zZXJpYWwuaAppbmRleCAwYjhiN2Q3YzhmMzMuLjcwYTk4NjZlNGFiYiAxMDA2NDQK
+LS0tIGEvaW5jbHVkZS9saW51eC9zZXJpYWwuaAorKysgYi9pbmNsdWRlL2xpbnV4L3NlcmlhbC5o
+CkBAIC05LDcgKzksNiBAQAogI2lmbmRlZiBfTElOVVhfU0VSSUFMX0gKICNkZWZpbmUgX0xJTlVY
+X1NFUklBTF9ICiAKLSNpbmNsdWRlIDxhc20vcGFnZS5oPgogI2luY2x1ZGUgPHVhcGkvbGludXgv
+c2VyaWFsLmg+CiAKIC8qIEhlbHBlciBmb3IgZGVhbGluZyB3aXRoIFVBUlRfTENSX1dMRU4qIGRl
+ZmluZXMgKi8KQEAgLTI1LDExICsyNCw2IEBAIHN0cnVjdCBhc3luY19pY291bnQgewogCV9fdTMy
+CWJ1Zl9vdmVycnVuOwogfTsKIAotLyoKLSAqIFRoZSBzaXplIG9mIHRoZSBzZXJpYWwgeG1pdCBi
+dWZmZXIgaXMgMSBwYWdlLCBvciA0MDk2IGJ5dGVzCi0gKi8KLSNkZWZpbmUgU0VSSUFMX1hNSVRf
+U0laRSBQQUdFX1NJWkUKLQogI2luY2x1ZGUgPGxpbnV4L2NvbXBpbGVyLmg+CiAKICNlbmRpZiAv
+KiBfTElOVVhfU0VSSUFMX0ggKi8KLS0gCjIuMzAuMgoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
