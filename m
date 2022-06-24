@@ -4,62 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 808CCC43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jun 2022 10:28:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D087C43334
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jun 2022 13:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=PEjGcXgKvRNbzk0xdWVIgj+bjgVvqyr9kXhhWZuxq78=; b=fDOitWsqAxY4l1
-	/gd5nloqOm2Y8dBwQCGLgUgzf0moOlyizTZ2CrGznbH6IOH9kta+ZHdF98TKfWeVpGj4tv2C9hmkP
-	Ik3E+3wx6dePWtUajyC8OcodeWlJaAWdwzj2v4nuYVZqBQJksioSJ1J8tYuz/eq2G0fOtlxkxDQTu
-	4r8R4JyQcZRG/WDUzZLSkbu7Un/XjGtgJqn3pwuTBbsqHRI5rhoCaXkeQ5iAwWJ8iKKWc2ahbDBwW
-	WGxgqOwh3ssNkTBSHLgyP4UUtXu0AEjv8oOGOlLfAHtGnicAotiAL7fcCm8RCdIA+lf7giwkfP4Yq
-	BvV/sL+Pigb/A/BjRYNg==;
+	List-Owner; bh=qAg7frgkVhXduW/jicpMlm0N76w/5SPShmBA2RTSLvQ=; b=orOZUzSZYbUuyA
+	m0/iHnVxRUyLArPM9HoBauSwajGFqWq/z+ynjlBjg3hqzI6CVnDk6CySTVo4pwr2b/S03F152Sgk+
+	uTLlYQUf3mlaGFU34eqjxs+F542ucdZ8N3WshPPTnRKWvQq5i0MIuZ7YLK/gOWdVMaM+v0chhKr6N
+	asadbg68v+AuWwz/1/Y7yONDRrDpl32mrppTqjz47FDVZJaE3NvbfI9jxhyMwRL+ikOl7kQc3yC0q
+	uzQTjz4cQ4KDzvOYyfPjxkUyA4ouOZcytAXb2rgLid3Yfwz9ygc0wud23IKQ9c+/qI88XDba5lnSH
+	TTnm5juDNI9ARc8Urndw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4gYM-001lRz-Tt; Fri, 24 Jun 2022 10:28:42 +0000
-Received: from m15114.mail.126.com ([220.181.15.114])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o4gYJ-001lN6-AB; Fri, 24 Jun 2022 10:28:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=YQEMA
-	Jwho1dpvA2cYEpUQiIvp+xYug1V/GH8HoE8DYQ=; b=dtxKEtj/5HxIspYy5wJCN
-	S9nr31G0CxC9i+n6BBgr0Nl5KRN0t+eL8VQBsSaYVOmF5ezk/yEcKFkbmP1+8PBg
-	o21OzVWB2B+y2PsX78RNgKVP+ZR5EX6X0G418yYtCJY7dXbG2EyBkulweTCLom9w
-	6MWc3T7QEmnv5Lbe6wxd2g=
-Received: from localhost.localdomain (unknown [124.16.139.61])
-	by smtp7 (Coremail) with SMTP id DsmowAA34vuHkbViAIufDw--.39196S2;
-	Fri, 24 Jun 2022 18:27:20 +0800 (CST)
-From: Liang He <windhl@126.com>
-To: narmstrong@baylibre.com,
-	jbrunet@baylibre.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	windhl@126.com
-Subject: [PATCH] clk/meson: Hold reference returned by of_get_parent()
-Date: Fri, 24 Jun 2022 18:27:19 +0800
-Message-Id: <20220624102719.4166125-1-windhl@126.com>
-X-Mailer: git-send-email 2.25.1
+	id 1o4j7d-002Jgu-G8; Fri, 24 Jun 2022 13:13:17 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1o4j7X-002Je6-Gm; Fri, 24 Jun 2022 13:13:15 +0000
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 24 Jun 2022
+ 21:13:00 +0800
+From: Liang Yang <liang.yang@amlogic.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
+CC: Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+	<narmstrong@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+	Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+	XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
+	<kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
+ Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v7 0/5] fix the meson NFC clock
+Date: Fri, 24 Jun 2022 21:12:50 +0800
+Message-ID: <20220624131257.29906-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-CM-TRANSID: DsmowAA34vuHkbViAIufDw--.39196S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCr18Kr18Cr17JF13Kr4kZwb_yoW5Cr47pF
-	97JFySyF47Xr15Wr18trZrCFWSg34IgFWYk397Cw1rZwn3JFyUJFy3Jay8CFs0vFWrCa4r
-	JrnYkrW8Ar47XF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4BTrUUUUU=
-X-Originating-IP: [124.16.139.61]
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbi2gkqF1uwMRqlQgAAsJ
+X-Originating-IP: [10.28.8.21]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220624_032839_774668_00AB01A5 
-X-CRM114-Status: UNSURE (   9.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220624_061311_599016_B6F273E1 
+X-CRM114-Status: GOOD (  10.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,89 +65,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-We should hold the reference returned by of_get_parent() and use it
-to call of_node_put() for refcount balance.
+EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+a common MMC and NAND sub-clock was discussed and planed to be implemented
+as NFC clock provider, but now this series of patches of a common MMC and
+NAND sub-clock are never being accepted and the current binding was never
+valid. the reasons are:
+1. EMMC and NAND, which are mutually exclusive anyway
+2. coupling the EMMC and NAND.
+3. it seems that a common MMC and NAND sub-clock is over engineered.
+and let us see the link for more information:
+https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+so The meson nfc can't work now, let us rework the clock.
 
-Fixes: 88e2da81241e ("clk: meson: aoclk: refactor common code into dedicated file")
-Fixes: 6682bd4d443f ("clk: meson: factorise meson64 peripheral clock controller drivers")
-Fixes: bb6eddd1d28c ("clk: meson: meson8b: use the HHI syscon if available")
-Signed-off-by: Liang He <windhl@126.com>
----
- these bugs are found in 5.19rc2
- these bugs are confirmed not fixed by lore.kernel.org
- these bugs are compiled tested in 5.19rc2 with at91_dt_defconfig
+Changes since v6 [7]
+ - use COMMON_CLK instead of !HAVE_LEGACY_CLK
 
+Changes since v5 [6]
+ - add change log for patch 3/5
+ - add patch 5/5 to fix the reporting error of test robot
 
- drivers/clk/meson/meson-aoclk.c | 5 ++++-
- drivers/clk/meson/meson-eeclk.c | 5 ++++-
- drivers/clk/meson/meson8b.c     | 5 ++++-
- 3 files changed, 12 insertions(+), 3 deletions(-)
+Changes since v4 [5]
+ - split the dt binding patch into two patches, one for fixing, 
+   clock, the other for coverting to yaml
+ - split the nfc driver patch into two patches, one for fixing 
+   clock, the other for refining the get nfc resource.
 
-diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
-index 27cd2c1f3f61..434cd8f9de82 100644
---- a/drivers/clk/meson/meson-aoclk.c
-+++ b/drivers/clk/meson/meson-aoclk.c
-@@ -38,6 +38,7 @@ int meson_aoclkc_probe(struct platform_device *pdev)
- 	struct meson_aoclk_reset_controller *rstc;
- 	struct meson_aoclk_data *data;
- 	struct device *dev = &pdev->dev;
-+	struct device_node *np;
- 	struct regmap *regmap;
- 	int ret, clkid;
- 
-@@ -49,7 +50,9 @@ int meson_aoclkc_probe(struct platform_device *pdev)
- 	if (!rstc)
- 		return -ENOMEM;
- 
--	regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	np = of_get_parent(dev->of_node);
-+	regmap = syscon_node_to_regmap(np);
-+	of_node_put(np);
- 	if (IS_ERR(regmap)) {
- 		dev_err(dev, "failed to get regmap\n");
- 		return PTR_ERR(regmap);
-diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
-index 8d5a5dab955a..0e5e6b57eb20 100644
---- a/drivers/clk/meson/meson-eeclk.c
-+++ b/drivers/clk/meson/meson-eeclk.c
-@@ -18,6 +18,7 @@ int meson_eeclkc_probe(struct platform_device *pdev)
- {
- 	const struct meson_eeclkc_data *data;
- 	struct device *dev = &pdev->dev;
-+	struct device_node *np;
- 	struct regmap *map;
- 	int ret, i;
- 
-@@ -26,7 +27,9 @@ int meson_eeclkc_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 
- 	/* Get the hhi system controller node */
--	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	np = of_get_parent(dev->of_node);
-+	map = syscon_node_to_regmap(np);
-+	of_node_put(np);
- 	if (IS_ERR(map)) {
- 		dev_err(dev,
- 			"failed to get HHI regmap\n");
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 8f3b7a94a667..54188319f349 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -3796,8 +3796,11 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
- 	struct clk *notifier_clk;
- 	struct regmap *map;
- 	int i, ret;
-+	struct device_node *tp;
- 
--	map = syscon_node_to_regmap(of_get_parent(np));
-+	tp = of_get_parent(np);
-+	map = syscon_node_to_regmap(tp);
-+	of_node_put(tp);
- 	if (IS_ERR(map)) {
- 		pr_err("failed to get HHI regmap - Trying obsolete regs\n");
- 		return;
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
+
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
+
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
+
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+[4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+[5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+[6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+
+Liang Yang (5):
+  dt-bindings: nand: meson: fix meson nfc clock
+  mtd: rawnand: meson: fix the clock
+  mtd: rawnand: meson: refine resource getting in probe
+  dt-bindings: nand: meson: convert txt to yaml
+  mtd: rawnand: meson: not support legacy clock
+
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+ drivers/mtd/nand/raw/Kconfig                  |  2 +-
+ drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+ 4 files changed, 131 insertions(+), 105 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
 -- 
-2.25.1
+2.34.1
 
 
 _______________________________________________
