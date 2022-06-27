@@ -4,125 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07EB0CCA47E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0379ACCA479
 	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Jun 2022 07:05:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:From:Subject:References:
-	Mime-Version:Message-Id:In-Reply-To:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=A9mIerG3GkWUphKXNOJDgoGn5+WTp87h6WSgzxVtE6w=; b=mqoeDlkhUKQgSTpbAyx1J+v/bz
-	qkxesUFxS7XwqpqIk669ZfbHVsJXv1RBIUf7tpDtK0cAoxrivoxX3Eog6FAjOR9kLwIvXcQhBusGL
-	YX2vW7tOadDSn4PUcXaqLHkapwwk4+pW9ObuyCZsz97UrfuhXSCSu+hBB/ReTqyMbcrseNr+XAe3x
-	M0SQXTnJHpP69RXoxZ78y64c8LwIh1FIZpCKeAgqFTy9t98Gikqz2J5HLo3W6+62+/Etf+Jy4Kmy3
-	ZallirWj28bxTsRCEC0DyzX/FapOW0i7BOmf7PA3kLfCgGarXAqmKcG5+JYRblBiEyjiblaF7yQZ1
-	HwnaPoeg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PVs/QHEvq1RdLzgJIDSgnWnS8tY+QkeP1+9XuVFR4L8=; b=h71JH/dNE5wv6f
+	5xwIzhHPYBgNzdwzCEBIXhr9cIuOLAyL9IF+EmakGSj509hlKl+ucoj0QXkJCAQhDmNW3SloWpgN/
+	xBew7Yh3GqNAvxBzEgnGGOFvRq6dguIEX9b70CzNPFWM0H5V2iFPmwmN9DEypvIKu77aNhYpJnBki
+	Tw0DLYSbQQKIgPWPSAmSIGV4Q/mQpCjj7E0mjw+3Te7s7NaMc1JQ/zT/umMIITT+GuTI3dI4Vht0u
+	uR4qhZCXkICjlfcLzhDincqk/wh9hOj2XXAbW5+12Ui5EQhBFkTZbwqAekpMwFUzhQ0ARNepvCVUd
+	s7Qcj4cM0ov6Ae8W/OkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o65IG-004sNp-Oc; Tue, 28 Jun 2022 07:05:52 +0000
-Received: from mail-yw1-x1149.google.com ([2607:f8b0:4864:20::1149])
+	id 1o65IF-004sMx-OL; Tue, 28 Jun 2022 07:05:51 +0000
+Received: from mail-tycjpn01olkn2011.outbound.protection.outlook.com ([40.92.99.11] helo=JPN01-TYC-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o60ZM-003c4Z-RR
-	for linux-amlogic@lists.infradead.org; Tue, 28 Jun 2022 02:03:17 +0000
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-31814f7654dso91894987b3.15
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Jun 2022 19:03:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=YzHIr0V9HMEpxWmEi0Xj1DJ+4d2XCpwecNoe7o3TDGc=;
-        b=WOYPYkzcX52RhlZvpifs4I6lPFXV+5C99yJcPGn4swZ412myqZhpEpJGG6JT8I+diP
-         wmRTXCjvAFpcr/KomN65nvaJHvYHD4UymktEo8kdn5KBIufKB90oBi6uJgpha1QorqN4
-         FoHUev8RwrPNG+R9y5XCbQZGHm1ydbiuEHKmkqJMqr5AQVuz0Cn/swj+fCPxGk277wcm
-         FeyAuVEaB9fajv1pTRajXKWxqwQb5RRy57WkXDveO+g9jxpPIug/uOD6UHEfjE7VM4eE
-         2vOtDCyMr9g/g/WN/lFcVpdMLesGVIWYzLk/qWic19C/MVsZG3elryvTosIN7O8GZ4ml
-         x6ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=YzHIr0V9HMEpxWmEi0Xj1DJ+4d2XCpwecNoe7o3TDGc=;
-        b=RgYyWpUHFQSq51dH5WbnKLgB9RFry9/ZIpvC5nzu7vGyD3VQ25ORwTI6iLSDUZYZwH
-         qZ+sLIKGyf6tSP5b1M/ZEhIcvkxIo2H2OaLCPPCoc8YDoBSjipYkCgyvzImk4l9h/WaP
-         xN0m3mHNuo8l40mLwbWHjEpjI8NSUe8QR5E12winGAMTJ7T0O/9KkRYyyWxcLJfYTVy3
-         FVK939anWmQBjAp+keOM+kpfTqjUntmuydZedO10/FA7DhS6/0jAhVhIX9j2LX7GNBOb
-         n+ElmeuHZY809lWvPxkxSYYbCD22Mucs4KMOk/ZOMMd39Tc/X7/8AMszZh25nE6PZWAk
-         QSpQ==
-X-Gm-Message-State: AJIora8u7+UZ5jfqiWeqxG/GKJhgCoZ9+zY6XDiGfFGeYVxTIUizq0Df
-	+PEG8uTBWhnfiQUFaxVElVtkcEnk4OaqoY4=
-X-Google-Smtp-Source: AGRyM1u1CI3RZWjDOxskNtWWSrcYu4D2aM8Nq4tr5iOtzOleCFvS4Q121j5zvIY5WKw81S4m4Q0aaxhGddgoJuc=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:1f27:a302:2101:1c82])
- (user=saravanak job=sendgmr) by 2002:a81:12d3:0:b0:317:aa20:e4eb with SMTP id
- 202-20020a8112d3000000b00317aa20e4ebmr18821146yws.352.1656381787829; Mon, 27
- Jun 2022 19:03:07 -0700 (PDT)
-Date: Mon, 27 Jun 2022 19:01:02 -0700
-In-Reply-To: <20220628020110.1601693-1-saravanak@google.com>
-Message-Id: <20220628020110.1601693-2-saravanak@google.com>
-Mime-Version: 1.0
-References: <20220628020110.1601693-1-saravanak@google.com>
-X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
-Subject: [PATCH v1 1/2] driver core: Add probe_no_timeout flag for drivers
-From: Saravana Kannan <saravanak@google.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
-	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, Al Cooper <alcooperx@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
-	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
-	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
-	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
-	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
-	Michal Simek <michal.simek@xilinx.com>, Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh@kernel.org>, sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, 
-	kevin hilman <khilman@kernel.org>, ulf hansson <ulf.hansson@linaro.org>, 
-	len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, 
-	will deacon <will@kernel.org>, andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
-	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
-	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
-	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
-	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	sparclinux@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+	id 1o5olu-0018xG-6h
+	for linux-amlogic@lists.infradead.org; Mon, 27 Jun 2022 13:27:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CWI0TJ7sqhDSNikOI2rbVwcg/1ijCpCiMI1RWh5KpxA/enN8uJ2WZGtuTzf49V2OV9Yl51oENt7+48IWBiubbNtzn+sFaqWIz3rkED/SgbLRY857eIe4qbA0LSYIiyZzC51uBL/twrER4pJz1PgH6nwSJ+HKa6b4LKzDsOADccXTCRk/a8WG1BfDqOhXf7NF3T7V+3JCV62Kj43eJylJRUu6UFsChlikVzUG4OhRrbE8BsgpadTL3H1klzGXc2H1Tx5cWsyu1xU/Ee4G7HFLy+3UZJuScT9SQxVEkObE4MvQoyLIPMre7aeF5Tcjh+0Z6v5PpoS9QUYdCMYWiruS5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hUKM87HsqYyNG90mWt/0thkIxDZuNaW3aL05/dGhqRI=;
+ b=kf8PINu+lDblYhYocCc/XZBMAiNXpdQN9HShYdXWhNanNVyordAxCqRH30Ep3P0gf1O6Yi5mcoe52UUgOFhPR8feXKdFDoOEoKMAiv+xoLRLYLMpHirjeVKOK0sxbprbKRSGVEI+LlAsECMntwOkVF+yzU3jClQ6jgUtu4g+VgnYVqZ9EAxOeDLzz/aKPI3S5kK9KgDvP+TPCe1iI2ObQDmbGxp4wP0BfluNy9A7jaT0ro3CAe5yp5Ayj7U8/mWxrfDjER2bzCzCSoAt+a5dmuslzwtQh4O6v+FRDSFZG1jO9QrimLN2XhAfzdfxAmOnATtXNjYoFpLa51ryeswAxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hUKM87HsqYyNG90mWt/0thkIxDZuNaW3aL05/dGhqRI=;
+ b=D+QWcgHwCUTco8OuJwXbasrKSUWjyZbuXzw8vQmt6fyVLLpctx2+k/MwwfS8O+TOGTIX/DNBQ5BWA81bisNYxqE8kWEDnxbLN8VXNalAdvJ5cYDNutdoCXHcufU0JrwlzraLH9TGFPTIvQ5Uo72wP5WX2VtHYK1xUJhp0vfudhoguygHE5mjhRQblPSz8WgoFnPn1uhJq0p5EsmYjCwPhB94N2/Cnxvpjk2LhPtLLrrdg0YexnO+qRnBdLbpE8uzrzYaRzC0LrlOC2SEQYLlzlmal8u9m2TJYU27t/PdKBRJajgdCZjf/1B71WBVJPTYnMPePdDu1KS1D/SO6oR+8g==
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:cb::10)
+ by OSZP286MB0709.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:f7::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Mon, 27 Jun
+ 2022 13:27:16 +0000
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::816e:460a:dd94:b94c]) by OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::816e:460a:dd94:b94c%9]) with mapi id 15.20.5373.018; Mon, 27 Jun 2022
+ 13:27:16 +0000
+From: =?utf-8?B?5bygIOWugQ==?= <zhangn1985@outlook.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+CC: "zhang1985@outlook.com" <zhang1985@outlook.com>
+Subject:  =?utf-8?B?5Zue5aSNOiBWSU0vUzkwNXg6IFVuYWJsZSB0byBoYW5kbGUga2VybmVsIE5V?=
+ =?utf-8?B?TEwgcG9pbnRlciBkZXJlZmVyZW5jZSBhdCB2aXJ0dWFsIGFkZHJlc3MgMDAw?=
+ =?utf-8?Q?0000000000038?=
+Thread-Topic: VIM/S905x: Unable to handle kernel NULL pointer dereference at
+ virtual address 0000000000000038
+Thread-Index: AQHYiOzesXPHD0+mM02UccNk3IAAHq1jAl6AgAA+tvA=
+Date: Mon, 27 Jun 2022 13:27:16 +0000
+Message-ID:  <OS0P286MB0641DF1A1EEA24C11FF67CC7CDB99@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+References:  <OS0P286MB064100964669BC707C8DDE67CDB79@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+ <11a93076-e9bb-c9b0-08c6-aaa268639d97@baylibre.com>
+In-Reply-To: <11a93076-e9bb-c9b0-08c6-aaa268639d97@baylibre.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [oVyQgvrB3QlTwqL2T7TKFfjQt5Mj7njt]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 89b847c1-499d-43da-db9f-08da5840c0b8
+x-ms-exchange-slblob-mailprops:  KzxekxNgZV3fN+KPbmVf2T/XSNKIwjaX7p2VIS48NqDyGFzWEQIYKNMI5m4v/4bFcY7plTpXTCpBCPTLWJD+fBr/1Wg8CzfRYBwmQPrTKVq7xZfBHV3fD56h/hSMcrJSjnvad6i63xwgy88i8RqCXkutcY8T8jg51padbU7Z7hFuWgmhlt1ESaJ70JQi3WMgV5l9tF3P8eS9sNr0/BKqrRf/7mbuTa9FPuCTb/r5ERmqodynYB7VzsxQIrWX1IUqoPEKGo6j1W6BBpcR5vLwaxiAqk/XUQCL57f9ovlr5nHQQQTDwPUsdFiKif8KtFoaAl1WVRrRaWdMrdPGgOXPL7W5+IMqBiP8cTe9f1jdbB1VOdKfEWw4IeJ6Bn4jbCEnZyYcGlc9VUt+7si6NiAIkuBjbCNWjfELzEmZLSxSSkpMNrRrsKluK3EI0459UJlVok3JTLGXGouMDx010fooGtPQVKv7yO3zIep+J15cDATRrAG5kVSDIw7iaFuasgCBNIclgfVkRD+31DqY1rS/iwVFFeYvo8VnHRfIDuOiYoY0Twj893qyr8N3/LOtD/WcmIIFIyj5Gvcm8x7vYDTvpImnyEM7RToRcO0KEZ7bOD8ocN/bBaOTNYX3aICjhZBiIVhawMaxxc4KyyZy3NmPFVhAYG4oKUEgJFOOtb6+ByoP1nVk8asvcVDwbfXtUSMeRZ+9gf0jB5U19PG6jq+wmk6hpZyQQbKWMWZy7hs2TZYfmHppS9TWLlEJG3jp8aKNVUQtDUfdq0PCJmCP5PsGq4o6Vu9AFQAkQQBrXhuFw/I=
+x-ms-traffictypediagnostic: OSZP286MB0709:EE_
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:  sVLsubYD4aSBDto7PNhxZVWAnElQb8PaTBV2Kbx8SpObgNrWaKrkdmPPdruHOQbtnT1yzH+ShKop58EMXsxDosrEBDFTUJ4+olzqhSm9W7+Lw0ZxhxOIx0eOKvIqj9YpiFWq+Hws8zFxsSDiKi8IFuoWYKp2g7TgxDnmh3YaRUgBYPRaHXdbe69cCmisYejc6389r6EqMQM/8ZIF6M6kLTe2WJbX2eG+9IuaUgfm8RJCVmWEAvL/IrHGRzseJR39LK5ckjItDGPkxVWIyH7htPWNKgSkf2gqQLTHdlFlyNqDeIQSgf3WoQLfmdXcx/M4HFn7Ofnu3KSsTL/jFdBIctekC2IJX41u+rvWQOvdt1Rej9R+hYKT6myyOd1WKt2AjgmhmhXRlzis+Kn6Cl5IVn6lOzFwpE+n2t42ABZizW7yne6nw+zX/PLKszsJ4qjBk/pXPx8xphDXvi0XGNzj5gznc6Qr0YRDuBdB8kaLg0V1M79X7SKVU7Vth2qxABFqFm2nb9vZJXK6Rv6uYkOkhPEb43MdK8vEU9pysESzcr+/a6tsT7aAD7feHxeVVWxLQLP3yPVDU6Jjmm3RznCobIIaNbzU06NYwv7N6939j++gokGlc3CYbHmDhTuNESZM
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:  =?utf-8?B?MDNlMThYV1hZT0JOWnhuc2hubGtyWE9qSzN0bVFoRUZoSm1lL0w3N3M5NUlO?=
+ =?utf-8?B?cGUraDl5QklnSENwQ2NVUlJzN1N4MHR1RHZ4cDhsZlNERkNOM0lYYm9NcDRV?=
+ =?utf-8?B?cjNkbWJPU0dvQ212bkxENXhUN1VmaFdrQk9pZFQ5eUtmWnUzRlpNUTB0emtw?=
+ =?utf-8?B?NmRkalFrRHY3MFczS1JuMkNKc3ppeHZzRkMxYnpZWWdhYWxDdVJ5a0pucXNu?=
+ =?utf-8?B?dmQzZVQ2c3lHelJHS0g3SzhkM0lQdStJcFRjNUtuYis3Sm5zNktKdUtRblBw?=
+ =?utf-8?B?VithclNOQ1FSVnZDNnBBOWpQOVBQRk95TTRZbmdBZXI3M0JUZEo1ZU5LcGxK?=
+ =?utf-8?B?TVduWlpSMHZ0dWVtRHBkQTE4MThqY2dFT01mTnJkSVBVQ3pOd1doTUFjcDN3?=
+ =?utf-8?B?SUtRekdoaDB6cmRzd1VJYXc3RzJEQ29iN2lhWnhsa0lsaVQyZkxnTTJZMnAr?=
+ =?utf-8?B?c1RueEo1QnpnaHk0d0t6bm5uVTR6dXN0NGdhMGdBZ1FVamwrVDd6NnUraU51?=
+ =?utf-8?B?bWJOc2src0ZRaEZ4WW52L3ZlOWR1QlRvS1dEcmd3eFgxVDdjbkRGL3FMcWdT?=
+ =?utf-8?B?OVZ6UUovR0toNzlCMUlvdmc4M0J3ZWJZd2gyUk95ZkxWOXJ2MHJ4YkNZdi8v?=
+ =?utf-8?B?dHdNRU5Qd2tQTnRyQzhHbHRqaStrWXQyM09lY1FObTBnSFA3QTFzcDgxajh5?=
+ =?utf-8?B?U0l1TEpEeEd4SWhJZEFHUFc1OWtkL1VRQWUySnVWdE1pcUZ6QlVFWmtHMkta?=
+ =?utf-8?B?eFhZdk5MdlpNcDBTTm91MWpKMjErRGc5SlFyRHl5Y2R5b1pCRlR6UmZobmpB?=
+ =?utf-8?B?blVzK3o0Y0hjQjhxREVOblozbWEvb3dwOGlQYWQzTTI4THl3allOcG5hbkk4?=
+ =?utf-8?B?UjBFNHRPWTE5V2habm8xN09jUUJ4R2kwZGZkcXRzbG05d2o3RnVUdEdNRlV6?=
+ =?utf-8?B?RHQvYldXV3g1M1NOWnlpeUlXTmxGSkIxcFpmU3Z0UDNVdG1IS1BKNTBQcXJv?=
+ =?utf-8?B?OVd3d3NLYnJUaVV2dDBJbS8rOEowN0pyZ2M1cjkxOXNGaTYyZytLeGVkNzRT?=
+ =?utf-8?B?RmpLaDRvZ0pGaDRzR0VlYTFHRUxZOVZKM0ZIc2ZSUnBDT20wOE5ObGJuRVlu?=
+ =?utf-8?B?M05KT2Z2ejMvTEkyRklCZWd5R3pHaGc4K0w0NDVybStaazF4QXlLREFVS1g3?=
+ =?utf-8?B?S0tZOFdBVFR2US9lejAvb1h5SkMwVXRmVUdnejBXY0NIUnRZaTk0czV1Nm40?=
+ =?utf-8?B?U1lOSmp2cGdtQmJLSksrNis0ZURZVEJXd2s0K2RzZmQra0VXbWVtc2dzZkhl?=
+ =?utf-8?B?Ti9VWW5GaU1IU1IrczZsaGNGTGRnS0ZPc29sSHZjMG9mOHN2QzlFRWhRSWdi?=
+ =?utf-8?B?YTBMRjFpenVSMXlCL2VNZXJ5SUgwUHNLNXpwdGhWb2didHdPZDZKTllaRUhU?=
+ =?utf-8?B?em1iRGFsdWF5S0ZNRkkvMWs4SkE5R2RyeDlVMjVmd1B6YWlkZmtKVXhNZ29n?=
+ =?utf-8?B?c21MSzk3c01JR3pFcTA5dXBtMUkyMFJwTjJ4MEZKMWJ0WnVIRUoxaUdTLzRs?=
+ =?utf-8?B?cmM0bTVJMTZpNFM0TU11ZFg2Z24yMWRzVnYyMnZmZGI4VDJ4bDBaTzRpVkll?=
+ =?utf-8?B?VWhZdXRhYldKM1pmeDZIYXFaMWlvN1N4TGVkZXFuWjJDc3lJTGo1QzIySGdn?=
+ =?utf-8?Q?8pZieDfaE0wpn6WWWgWZ?=
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89b847c1-499d-43da-db9f-08da5840c0b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2022 13:27:16.0525
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZP286MB0709
+X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220627_190312_967719_5C5AD922 
-X-CRM114-Status: GOOD (  23.06  )
+X-CRM114-CacheID: sfid-20220627_062722_378618_FDC9F777 
+X-CRM114-Status: UNSURE (   7.51  )
+X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Tue, 28 Jun 2022 00:05:50 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,160 +135,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This flag only needs to be set for drivers of devices that meet all the
-following conditions:
-- Need to probe successfully before userspace init in started
-- Have optional suppliers
-- Can't wait for deferred_probe_timeout to expire
-
-fw_devlink=on uses this info, as needed, to ignore dependencies on supplier
-devices that have not been added or supplier devices that don't have any
-drivers.  It's still up to the driver to decide which of the missing
-suppliers are optional or not.
-
-Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
-Reported-by: Sascha Hauer <sha@pengutronix.de>
-Reported-by: Peng Fan <peng.fan@nxp.com>
-Reported-by: Fabio Estevam <festevam@gmail.com>
-Reported-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/base/base.h           |  1 +
- drivers/base/core.c           |  7 +++++++
- drivers/base/dd.c             |  3 +++
- include/linux/device.h        |  7 +++++++
- include/linux/device/driver.h | 11 +++++++++++
- 5 files changed, 29 insertions(+)
-
-diff --git a/drivers/base/base.h b/drivers/base/base.h
-index b3a43a164dcd..149822d2086f 100644
---- a/drivers/base/base.h
-+++ b/drivers/base/base.h
-@@ -193,6 +193,7 @@ extern void device_links_no_driver(struct device *dev);
- extern bool device_links_busy(struct device *dev);
- extern void device_links_unbind_consumers(struct device *dev);
- extern void fw_devlink_drivers_done(void);
-+extern void fw_devlink_probe_no_timeout(void);
- 
- /* device pm support */
- void device_pm_move_to_tail(struct device *dev);
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index ccdd5b4295de..8e18904a1584 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -54,6 +54,7 @@ static unsigned int defer_sync_state_count = 1;
- static DEFINE_MUTEX(fwnode_link_lock);
- static bool fw_devlink_is_permissive(void);
- static bool fw_devlink_drv_reg_done;
-+static bool fw_devlink_no_timeout;
- static bool fw_devlink_best_effort;
- 
- /**
-@@ -969,6 +970,7 @@ static void device_links_missing_supplier(struct device *dev)
- static bool dev_is_best_effort(struct device *dev)
- {
- 	return (fw_devlink_best_effort && dev->can_match) ||
-+		(fw_devlink_no_timeout && dev->probe_no_timeout) ||
- 		(dev->fwnode && (dev->fwnode->flags & FWNODE_FLAG_BEST_EFFORT));
- }
- 
-@@ -1688,6 +1690,11 @@ void fw_devlink_drivers_done(void)
- 	device_links_write_unlock();
- }
- 
-+void fw_devlink_probe_no_timeout(void)
-+{
-+	fw_devlink_no_timeout = true;
-+}
-+
- /**
-  * wait_for_init_devices_probe - Try to probe any device needed for init
-  *
-diff --git a/drivers/base/dd.c b/drivers/base/dd.c
-index e600dd2afc35..9b0ef2b6a058 100644
---- a/drivers/base/dd.c
-+++ b/drivers/base/dd.c
-@@ -324,6 +324,8 @@ static int deferred_probe_initcall(void)
- 
- 	if (!IS_ENABLED(CONFIG_MODULES))
- 		fw_devlink_drivers_done();
-+	else
-+		fw_devlink_probe_no_timeout();
- 
- 	/*
- 	 * Trigger deferred probe again, this time we won't defer anything
-@@ -734,6 +736,7 @@ static int __driver_probe_device(struct device_driver *drv, struct device *dev)
- 		return -EBUSY;
- 
- 	dev->can_match = true;
-+	dev->probe_no_timeout = drv->probe_no_timeout;
- 	pr_debug("bus: '%s': %s: matched device %s with driver %s\n",
- 		 drv->bus->name, __func__, dev_name(dev), drv->name);
- 
-diff --git a/include/linux/device.h b/include/linux/device.h
-index 424b55df0272..e6246b6cf6cf 100644
---- a/include/linux/device.h
-+++ b/include/linux/device.h
-@@ -536,6 +536,12 @@ struct device_physical_location {
-  * @can_match:	The device has matched with a driver at least once or it is in
-  *		a bus (like AMBA) which can't check for matching drivers until
-  *		other devices probe successfully.
-+ * @probe_no_timeout: Set by driver core to indicate that this device's probe
-+ *		can't wait till driver_probe_timeout expires. This information
-+ *		is used by fw_devlink=on to avoid deferring the probe of this
-+ *		device to wait on supplier devices that haven't been added or
-+ *		probed successfully.
-+ *		See also: probe_no_timeout in struct driver.
-  * @dma_coherent: this particular device is dma coherent, even if the
-  *		architecture supports non-coherent devices.
-  * @dma_ops_bypass: If set to %true then the dma_ops are bypassed for the
-@@ -642,6 +648,7 @@ struct device {
- 	bool			of_node_reused:1;
- 	bool			state_synced:1;
- 	bool			can_match:1;
-+	bool			probe_no_timeout:1;
- #if defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE) || \
-     defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU) || \
-     defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU_ALL)
-diff --git a/include/linux/device/driver.h b/include/linux/device/driver.h
-index 7acaabde5396..2ce60e511504 100644
---- a/include/linux/device/driver.h
-+++ b/include/linux/device/driver.h
-@@ -55,6 +55,15 @@ enum probe_type {
-  * @owner:	The module owner.
-  * @mod_name:	Used for built-in modules.
-  * @suppress_bind_attrs: Disables bind/unbind via sysfs.
-+ * @probe_no_timeout: Set to true by drivers that bind to devices that meet all
-+ *		these conditions:
-+ *		- Need to probe successfully before userspace init in started
-+ *		- Have optional suppliers
-+ *		- Can't wait for deferred_probe_timeout to expire
-+ *		fw_devlink=on uses this info, as needed, to ignore dependencies
-+ *		on supplier devices that have not been added or supplier devices
-+ *		that don't have any drivers. It's still up to the driver to
-+ *		decide which of the missing suppliers are optional or not.
-  * @probe_type:	Type of the probe (synchronous or asynchronous) to use.
-  * @of_match_table: The open firmware table.
-  * @acpi_match_table: The ACPI match table.
-@@ -101,6 +110,8 @@ struct device_driver {
- 	const char		*mod_name;	/* used for built-in modules */
- 
- 	bool suppress_bind_attrs;	/* disables bind/unbind via sysfs */
-+	bool probe_no_timeout;
-+
- 	enum probe_type probe_type;
- 
- 	const struct of_device_id	*of_match_table;
--- 
-2.37.0.rc0.161.g10f37bed90-goog
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+dGhhbmtzLCBOZWlsCgpJIHdpbGwgc3VibWl0IGEgcGF0Y2ggdG8gRGViaWFuIHRvIGZpeCBpdC4K
+CkJSLgpOaW5nLgoKCuWPkeS7tuS6ujogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGli
+cmUuY29tPgrlj5HpgIHml7bpl7Q6IDIwMjLlubQ25pyIMjfml6UgOTo0MQrmlLbku7bkuro6IOW8
+oCDlroEgPHpoYW5nbjE5ODVAb3V0bG9vay5jb20+OyBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
+ZGVhZC5vcmcgPGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZz4K5oqE6YCBOiB6aGFu
+ZzE5ODVAb3V0bG9vay5jb20gPHpoYW5nMTk4NUBvdXRsb29rLmNvbT4K5Li76aKYOiBSZTogVklN
+L1M5MDV4OiBVbmFibGUgdG8gaGFuZGxlIGtlcm5lbCBOVUxMIHBvaW50ZXIgZGVyZWZlcmVuY2Ug
+YXQgdmlydHVhbCBhZGRyZXNzIDAwMDAwMDAwMDAwMDAwMzggCsKgCkhpLAoKT24gMjYvMDYvMjAy
+MiAwMTo0Mywg5bygIOWugSB3cm90ZToKPiBoaSwgbWFpbnRhaW5lcnMKPiAKPiBkb21haW4tMCBp
+bml0IGR2ZnM6IFvCoMKgwqAgOC43OTUzODFdIFVuYWJsZSB0byBoYW5kbGUga2VybmVsIE5VTEwg
+cG9pbnRlciBkZXJlZmVyZW5jZSBhdCB2aXJ0dWFsIGFkZHJlc3MgMDAwMDAwMDAwMDAwMDAzOAo+
+IFvCoMKgwqAgOC43OTg3NjFdIE1lbSBhYm9ydCBpbmZvOgo+IFvCoMKgwqAgOC44MDE0NzNdwqDC
+oCBFU1IgPSAweDk2MDAwMDA0Cj4gW8KgwqDCoCA4LjgwNDQ2Nl3CoMKgIEVDID0gMHgyNTogREFC
+VCAoY3VycmVudCBFTCksIElMID0gMzIgYml0cwo+IFvCoMKgwqAgOC44MDk3NjBdwqDCoCBTRVQg
+PSAwLCBGblYgPSAwCj4gW8KgwqDCoCA4LjgxMjc3Ml3CoMKgIEVBID0gMCwgUzFQVFcgPSAwCj4g
+W8KgwqDCoCA4LjgxNTgzMV3CoMKgIEZTQyA9IDB4MDQ6IGxldmVsIDAgdHJhbnNsYXRpb24gZmF1
+bHQKPiBbwqDCoMKgIDguODIwNzAwXSBEYXRhIGFib3J0IGluZm86Cj4gW8KgwqDCoCA4LjgyMzUw
+OF3CoMKgIElTViA9IDAsIElTUyA9IDB4MDAwMDAwMDQKPiBbwqDCoMKgIDguODI3MzMyXcKgwqAg
+Q00gPSAwLCBXblIgPSAwCj4gW8KgwqDCoCA4LjgzMDI2OV0gdXNlciBwZ3RhYmxlOiA0ayBwYWdl
+cywgNDgtYml0IFZBcywgcGdkcD0wMDAwMDAwMDdkMzU1MDAwCj4gW8KgwqDCoCA4LjgzNjY1MV0g
+WzAwMDAwMDAwMDAwMDAwMzhdIHBnZD0wMDAwMDAwMDAwMDAwMDAwLCBwNGQ9MDAwMDAwMDAwMDAw
+MDAwMAo+IFvCoMKgwqAgOC44NDMzNzhdIEludGVybmFsIGVycm9yOiBPb3BzOiA5NjAwMDAwNCBb
+IzFdIFNNUAo+IFvCoMKgwqAgOC44NDgxNzldIE1vZHVsZXMgbGlua2VkIGluOiBzY3BpX2h3bW9u
+KCspIGNsa19zY3BpKCspIGV2ZGV2IHNoYTUxMl9nZW5lcmljIHNoYTUxMl9hcm02NCBnaGFzaF9j
+ZSBnZjEyOG11bCBkcmJnIHNoYTJfY2UgZ292ZXJub3Jfc2ltcGxlb25kZW1hbmQgc2hhMjU2X2Fy
+bTY0IGFuc2lfY3BybmcgbWVzb25fZHJtIHNoYTFfY2UgaXJfbmVjX2RlY29kZXIgbGltYSBncHVf
+c2NoZWQgYWVzX25lb25fYnMgc25kX3NvY19tZXNvbl9neF9zb3VuZF9jYXJkIHNuZF9zb2NfbWVz
+b25fYWl1IHNuZF9zb2NfbWVzb25fY2FyZF91dGlscyBkcm1fc2htZW1faGVscGVyIGRybV9jbWFf
+aGVscGVyIHNuZF9zb2NfbWVzb25fY29kZWNfZ2x1ZSBzbmRfc29jX2NvcmUgZWNkaF9nZW5lcmlj
+KCspIHJma2lsbCBlY2MgcmNfa2hhZGFzIGFlc19uZW9uX2JsayBwbGF0Zm9ybV9taHUgc25kX3Bj
+bV9kbWFlbmdpbmUgbWVzb25fZHdfaGRtaSBtZXNvbl9jYW52YXMgbWVzb25faXIgc3VucnBjIG1l
+c29uX3JuZyBzbmRfcGNtIHJuZ19jb3JlIGR3X2hkbWkgY2VjIHNuZF90aW1lciBhZXNfY2VfYmxr
+IHJjX2NvcmUgYWVzX2NlX2NpcGhlciBzbmQgYW1sb2dpY19neGxfY3J5cHRvIG1lc29uX3NhcmFk
+YyBzb3VuZGNvcmUgcHdtX21lc29uIG1lc29uX2d4YmJfd2R0IGNyeXB0b19lbmdpbmUgbnZtZW1f
+bWVzb25fZWZ1c2UgZGlzcGxheV9jb25uZWN0b3IgbGVkc19wd20gZHJtX2ttc19oZWxwZXIgYmlu
+Zm10X21pc2MgZHJtIGZ1c2UgY29uZmlnZnMgaXBfdGFibGVzIHhfdGFibGVzIGF1dG9mczQgZXh0
+NCBjcmMxNiBtYmNhY2hlIGpiZDIgY3JjMzJjX2dlbmVyaWMgbWVzb25fZ3hsIHhoY2lfcGxhdF9o
+Y2QgZHdtYWNfZ2VuZXJpYyB4aGNpX2hjZCBkd21hY19tZXNvbjhiIHN0bW1hY19wbGF0Zm9ybSBz
+dG1tYWMgZHdjMiBkd2MzIHBjc194cGNzIHBoeWxpbmsgdWRjX2NvcmUgbWRpb19tdXhfbW1pb3Jl
+ZyBtZGlvX211eCB1c2Jjb3JlIHVscGkgb2ZfbWRpbyBmaXhlZF9waHkKPiBbwqDCoMKgIDguODQ4
+NDUzXcKgIGZ3bm9kZV9tZGlvIHB0cCBsaWJwaHkgcHBzX2NvcmUgbWVzb25fZ3hfbW1jIGR3YzNf
+bWVzb25fZzEyYSBjcmN0MTBkaWZfY2UgY3JjdDEwZGlmX2NvbW1vbiBjbGtfcHdtIHJvbGVzIHVz
+Yl9jb21tb24gcnRjX21lc29uX3ZydGMgaTJjX21lc29uIGFybV9zY3BpIGZpeGVkIGFkY19rZXlz
+IGluZHVzdHJpYWxpbwo+IFvCoMKgwqAgOC45NTExNjddIENQVTogMyBQSUQ6IDI2MCBDb21tOiBz
+eXN0ZW1kLXVkZXZkIE5vdCB0YWludGVkIDUuMTguMC0yLWFybTY0ICMxwqAgRGViaWFuIDUuMTgu
+NS0xCj4gW8KgwqDCoCA4Ljk1OTY5OF0gSGFyZHdhcmUgbmFtZTogS2hhZGFzIFZJTSAoRFQpCj4g
+W8KgwqDCoCA4Ljk2Mzc1MF0gcHN0YXRlOiA2MDAwMDAwNSAoblpDdiBkYWlmIC1QQU4gLVVBTyAt
+VENPIC1ESVQgLVNTQlMgQlRZUEU9LS0pCj4gW8KgwqDCoCA4Ljk3MDY0OV0gcGMgOiBzY3BpX2R2
+ZnNfcmVjYWxjX3JhdGUrMHg0Yy8weDZjIFtjbGtfc2NwaV0KPiBbwqDCoMKgIDguOTc2MTY5XSBs
+ciA6IF9fY2xrX3JlZ2lzdGVyKzB4NGIwLzB4ODQ0Cj4gW8KgwqDCoCA4Ljk4MDMwOF0gc3AgOiBm
+ZmZmODAwMDA4NTMzNzkwCj4gW8KgwqDCoCA4Ljk4MzU4NV0geDI5OiBmZmZmODAwMDA4NTMzNzkw
+IHgyODogZmZmZmFjNzJkZjMyYjA2MCB4Mjc6IDAwMDAwMDAwMDAwMDAwMDAKPiBbwqDCoMKgIDgu
+OTkwNjU5XSB4MjY6IGZmZmY2ZTAyNGMxY2VhODggeDI1OiAwMDAwMDAwMDAwMDAwMDAwIHgyNDog
+ZmZmZjZlMDJiZmJlOTZiMAo+IFvCoMKgwqAgOC45OTc3MzJdIHgyMzogZmZmZjZlMDI0YzFjZWE4
+OCB4MjI6IGZmZmY2ZTAyNDM1NGFlODAgeDIxOiAwMDAwMDAwMDAwMDAwMDAwCj4gW8KgwqDCoCA5
+LjAwNDgwNF0geDIwOiBmZmZmNmUwMjQzNTRhMTgwIHgxOTogZmZmZjZlMDI0YzEzMTIwMCB4MTg6
+IGZmZmZmZmZmZmZmZmZmZmYKPiBbwqDCoMKgIDkuMDExODc2XSB4MTc6IDAwMDAwMDAwMGY5ZjVh
+YjIgeDE2OiBmZmZmYWM3MzRmYTA2MzAwIHgxNTogMDAwMDAwMDAwMDAzZmUwMAo+IFvCoMKgwqAg
+OS4wMTg5NDldIHgxNDogMDAwMDAwMDAwMDAzYjAwMCB4MTM6IDAwMDAwMDAwMDAwMDAwMDAgeDEy
+OiBmZmZmYWM3MzRmYzk2NDQwCj4gW8KgwqDCoCA5LjAyNjAyMl0geDExOiBmZmZmYWM3MzUwODJl
+YmEwIHgxMDogZmZmZmMxOGVmMzgxNTI3OCB4OSA6IGZmZmZhYzcyZGVkMjg4OTAKPiBbwqDCoMKg
+IDkuMDMzMDk0XSB4OCA6IDAxMDEwMTAxMDEwMTAxMDEgeDcgOiBmZmZmYzE4ZjZmN2I3MDAwIHg2
+IDogMDAwMDAwMDAxYTMyNzkxNAo+IFvCoMKgwqAgOS4wNDAxNjZdIHg1IDogMDBmZmZmZmZmZmZm
+ZmZmZiB4NCA6IDAwMDAwMDAwMDAwMDAwMDAgeDMgOiAwMDAwMDAwMDAwMDAwMDAwCj4gW8KgwqDC
+oCA5LjA0NzIzOV0geDIgOiAwMDAwMDAwMDAwMDAwMDAwIHgxIDogMDAwMDAwMDAwMDAwMDAxMCB4
+MCA6IDAwMDAwMDAwMDAwMDAwMjgKPiBbwqDCoMKgIDkuMDU0MzEzXSBDYWxsIHRyYWNlOgo+IFvC
+oMKgwqAgOS4wNTY3MjVdwqAgc2NwaV9kdmZzX3JlY2FsY19yYXRlKzB4NGMvMHg2YyBbY2xrX3Nj
+cGldCj4gW8KgwqDCoCA5LjA2MTkwMl3CoCBkZXZtX2Nsa19od19yZWdpc3RlcisweDY4LzB4ZTQK
+PiBbwqDCoMKgIDkuMDY2MDQxXcKgIHNjcGlfY2xvY2tzX3Byb2JlKzB4MWQ4LzB4M2Y0IFtjbGtf
+c2NwaV0KPiBbwqDCoMKgIDkuMDcxMDQ0XcKgIHBsYXRmb3JtX3Byb2JlKzB4NzQvMHhmMAo+IFvC
+oMKgwqAgOS4wNzQ2NjVdwqAgcmVhbGx5X3Byb2JlKzB4MTg0LzB4M2QwCj4gW8KgwqDCoCA5LjA3
+ODI4OF3CoCBfX2RyaXZlcl9wcm9iZV9kZXZpY2UrMHgxMWMvMHgxOTAKPiBbwqDCoMKgIDkuMDgy
+Njg3XcKgIGRyaXZlcl9wcm9iZV9kZXZpY2UrMHg0NC8weGY0Cj4gW8KgwqDCoCA5LjA4Njc0MV3C
+oCBfX2RyaXZlcl9hdHRhY2grMHhkOC8weDFmMAo+IFvCoMKgwqAgOS4wOTA1MzZdwqAgYnVzX2Zv
+cl9lYWNoX2RldisweDdjLzB4ZTAKPiBbwqDCoMKgIDkuMDk0MzMwXcKgIGRyaXZlcl9hdHRhY2gr
+MHgzMC8weDQwCj4gW8KgwqDCoCA5LjA5Nzg2Nl3CoCBidXNfYWRkX2RyaXZlcisweDE1NC8weDI0
+MAo+IFvCoMKgwqAgOS4xMDE2NjJdwqAgZHJpdmVyX3JlZ2lzdGVyKzB4ODQvMHgxNDAKPiBbwqDC
+oMKgIDkuMTA1NDU3XcKgIF9fcGxhdGZvcm1fZHJpdmVyX3JlZ2lzdGVyKzB4MzQvMHg0MAo+IFvC
+oMKgwqAgOS4xMTAxMTRdwqAgc2NwaV9jbG9ja3NfZHJpdmVyX2luaXQrMHgyYy8weDEwMDAgW2Ns
+a19zY3BpXQo+IFvCoMKgwqAgOS4xMTU2MzVdwqAgZG9fb25lX2luaXRjYWxsKzB4NTAvMHgyNDAK
+PiBbwqDCoMKgIDkuMTE5NDI5XcKgIGRvX2luaXRfbW9kdWxlKzB4NTAvMHgyNjAKPiBbwqDCoMKg
+IDkuMTIzMTM4XcKgIGxvYWRfbW9kdWxlKzB4MjNhOC8weDI4MDAKPiBbwqDCoMKgIDkuMTI2ODQ3
+XcKgIF9fZG9fc3lzX2Zpbml0X21vZHVsZSsweGFjLzB4MTMwCj4gW8KgwqDCoCA5LjEzMTE2MF3C
+oCBfX2FybTY0X3N5c19maW5pdF9tb2R1bGUrMHgyYy8weDQwCj4gW8KgwqDCoCA5LjEzNTY0NV3C
+oCBpbnZva2Vfc3lzY2FsbCsweDUwLzB4MTIwCj4gW8KgwqDCoCA5LjEzOTM1M13CoCBlbDBfc3Zj
+X2NvbW1vbi5jb25zdHByb3AuMCsweGRjLzB4MTAwCj4gW8KgwqDCoCA5LjE0NDA5N13CoCBkb19l
+bDBfc3ZjKzB4MzQvMHhhMAo+IFvCoMKgwqAgOS4xNDczNzRdwqAgZWwwX3N2YysweDNjLzB4MTAw
+Cj4gW8KgwqDCoCA5LjE1MDQ3OV3CoCBlbDB0XzY0X3N5bmNfaGFuZGxlcisweGE0LzB4MTMwCj4g
+W8KgwqDCoCA5LjE1NDcwNl3CoCBlbDB0XzY0X3N5bmMrMHgxOGMvMHgxOTAKPiBbwqDCoMKgIDku
+MTU4MzMzXSBDb2RlOiBmOTQwMGJmMyBmOTQwMDQyMSBhOGMyN2JmZCBkNTAzMjNiZiAoYjg2MDY4
+MjApCj4gW8KgwqDCoCA5LjE2NDM3MF0gLS0tWyBlbmQgdHJhY2UgMDAwMDAwMDAwMDAwMDAwMCBd
+LS0tCj4gCj4ga2VybmVsOgo+IHVuYW1lIC1hCj4gTGludXggVklNIDUuMTguMC0yLWFybTY0ICMx
+IFNNUCBEZWJpYW4gNS4xOC41LTEgKDIwMjItMDYtMTYpIGFhcmNoNjQgR05VL0xpbnV4Cj4gCj4g
+ZHRibzoKPiAKPiAvZHRzLXYxLzsKPiAvcGx1Z2luLzsKPiAvIHsKPsKgwqDCoMKgwqAgZnJhZ21l
+bnRAMCB7Cj7CoMKgwqDCoMKgwqDCoMKgwqAgdGFyZ2V0LXBhdGggPSAiL3Jlc2VydmVkLW1lbW9y
+eS9saW51eCxjbWEiOwo+wqDCoMKgwqDCoMKgwqDCoMKgIF9fb3ZlcmxheV9fIHsKPsKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHNpemUgPSA8MHgwIDB4MzgwMDAwMDA+Owo+wqDCoMKgwqDCoMKg
+wqDCoMKgIH07Cj7CoMKgwqDCoMKgIH07Cj7CoMKgwqDCoMKgIGZyYWdtZW50QDEgewo+wqDCoMKg
+wqDCoMKgwqDCoMKgIHRhcmdldC1wYXRoID0gIi9zb2MvYnVzQGM4MTAwMDAwIjsKPsKgwqDCoMKg
+wqDCoMKgwqDCoCBfX292ZXJsYXlfXyB7Cj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjYWRk
+cmVzcy1jZWxscyA9IDwyPjsKPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNzaXplLWNlbGxz
+ID0gPDI+Owo+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcnRjQGE4IHsKPsKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uLXZydGMi
+Owo+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwIDB4MDAwYTgg
+MHgwIDB4ND47Cj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+wqDCoMKgwqDCoMKgwqDC
+oMKgIH07Cj7CoMKgwqDCoMKgIH07Cj4gfTsKPiAKPiBpdCdzIG5vdCAxMDAlIGNyYXNoLiBhYm91
+dCAxLzMgb3IgbGVzcy4KPiAKClRoaXMgaGFwcGVucyBvbiB0aG9zZSBvbGQgcGxhdGZvcm1zIHdo
+ZW4gU0NQSSBkcml2ZXJzIGFyZW4ndCBidWlsdCBpbiB0aGUga2VybmVsLAp0cnkgdG8gbW92ZSB0
+aGVtIGJ1aWx0LWluLgoKTmVpbAoKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IGxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cj4gbGludXgtYW1s
+b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
