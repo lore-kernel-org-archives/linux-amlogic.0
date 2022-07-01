@@ -4,153 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC67C00140
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1A45C25B0E
 	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Aug 2022 09:07:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1I7tfDtHEp6f7EFzsvpyOJ4h2ugrhaD6uxjZJYpMJrQ=; b=X/8VWUHGjXKCpN
-	NMVvMuz6eKrzwoZJYdgciuVIl1qG/4LN29v9stFIwWOopDfluSKMibxUAdmz4Tq+8r28PKOOWqz11
-	DVnvZBQhB2GjAZpK5NdK6HkGCCvuMX1X0AKVGWfqFn0VKpYTNI9De5A8ZryUPLwo1dBtSN0BKxtiG
-	J7Bw7xMg/QBWKOKRRzXxnYCkbxW8Qncj3dcVJ9xGExrUiM0jmdvrn6gzOaXTvVpWIpHEF50leMpQ3
-	Y8pr8ffYbwBOeOCtNE5VxNGGaatiGk10EM2m1XGjmgm+XwocumVM/3xovCb5sXNHnLR4DY5Z84/nl
-	RLO5rDuBPygJzw9jyHRQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:From:Subject:References:
+	Mime-Version:Message-Id:In-Reply-To:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=VRzrV6EaGkh7A7Gj3iKho9aMUC4LUAfjBdJHnThV+nI=; b=wTcqbIzB7/v7Vj6trsNAMZ2UrG
+	rAaok1st8iHDZeDh2Hzuc3kTVPj9qCsvh+c7y8jLpsDtXQ/taAaGqGsbcm6whTwY8UPa/FOTZ4kjr
+	QvR2Gb4VD9k+UU5ndOAS1e1DbTDhv7LmfIvvMNmW+D/Mg1/tSTJUQQfagLt2qvYyGKGMhj74UQZaE
+	cP60Xrj7Vqrh0guRzkRBZiQS9ddjveQaLFsJ2H1c9i0QEiDn/VhHu2NVFJvPPJRiApFMwBUY6ygQq
+	ODNCZYwKkYVm+aD9LsVH1B4sp9dtxvG/JKv0rNfOGVieDI/+oSg5puqSl9pTn3Em5a3EOOlPxbQ7F
+	fCtYqkMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oMQd7-003SOD-1c; Fri, 12 Aug 2022 09:06:57 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1oMQd8-003SOl-Fo; Fri, 12 Aug 2022 09:06:58 +0000
+Received: from mail-pg1-x549.google.com ([2607:f8b0:4864:20::549])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o69C5-005sCm-Fa; Tue, 28 Jun 2022 11:15:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656414945; x=1687950945;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VAm8GqMxSVbXa5l11MJLdH5RISvLfde2v1QEXHVyiio=;
-  b=HRBsKKPDtpbtyLVdjR9THOK1h86J8RZxN7df8fXQhvGxGxEJsF2w0rWr
-   B9xN/EBai9qTk3bCJsIa9Eeit/DSFFLigVPMIb0dMaOkYHsMM1bj3L5Dt
-   U35LWXssooBcqjpmKvOMfi5AMYF4nh269Z7x6Z41PTk/lwUffCZQZEzXn
-   W+X4Ap7gSkVfLnb0KHmuKUTXEpSZ2Rm9P429/eAMO/VqLZPadGoNf4H+t
-   S8hd/remurn7Tm3x5lk3EWDjc0BOk1g/hWHtFxPDJJj1fB+O9e/lZfIFS
-   fxY6+UE3pXxJqbcTDKr3NgNwF383Es15TXBAIsztti3y6GpQhMLHVpea6
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="343402312"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="343402312"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 04:15:39 -0700
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="540456672"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 04:15:17 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1o69BV-000wl7-8C;
-	Tue, 28 Jun 2022 14:15:09 +0300
-Date: Tue, 28 Jun 2022 14:15:09 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Al Cooper <alcooperx@gmail.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Tobias Klauser <tklauser@distanz.ch>,
-	Russell King <linux@armlinux.org.uk>,
-	Vineet Gupta <vgupta@kernel.org>,
-	Richard Genoud <richard.genoud@gmail.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Alexander Shiyan <shc_work@mail.ru>,
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Karol Gugala <kgugala@antmicro.com>,
-	Mateusz Holenko <mholenko@antmicro.com>,
-	Gabriel Somlo <gsomlo@gmail.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Takao Orito <orito.takao@socionext.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <bjorn.andersson@linaro.org>,
-	Pali Rohar <pali@kernel.org>, Andreas Farber <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Hammer Hsieh <hammerh0314@gmail.com>,
-	Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>,
-	Michal Simek <michal.simek@xilinx.com>,
-	Rob Herring <robh@kernel.org>, sascha hauer <sha@pengutronix.de>,
-	peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>,
-	ulf hansson <ulf.hansson@linaro.org>,
-	len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
-	joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
-	andrew lunn <andrew@lunn.ch>,
-	heiner kallweit <hkallweit1@gmail.com>,
-	eric dumazet <edumazet@google.com>,
-	jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>,
-	linus walleij <linus.walleij@linaro.org>,
-	hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
-	david ahern <dsahern@kernel.org>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-tegra@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-actions@lists.infradead.org, linux-unisoc@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	sparclinux@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] Fix console probe delay when stdout-path isn't set
-Message-ID: <Yrrivbk2NSK3loBW@smile.fi.intel.com>
-References: <20220628020110.1601693-1-saravanak@google.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220628020110.1601693-1-saravanak@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+	id 1o75Qw-002H5g-6H
+	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 01:27:00 +0000
+Received: by mail-pg1-x549.google.com with SMTP id 134-20020a63018c000000b0040cf04213a1so492607pgb.6
+        for <linux-amlogic@lists.infradead.org>; Thu, 30 Jun 2022 18:26:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=N2ZBZX0ts4Mk2TYGZHAbQ0+iD2FAHUFhD02Oe5yw0x8=;
+        b=O1+XSLj0oSVLFId1abGtsY3tm0452of7YtoG6NXZHX/e84inEivfhRvPM2mxa0YyIW
+         IVE4lsrSj5BWadwFDlAWpmHnRK/doKl5AOePnDPGsAS+cA+NgfaWURouVPcfJ+UegMnP
+         gFn2YJgYpdS58AkA+jg1y+IJirkP1kEzvd9LDdSLlSQ/Sq4aCkWSKEc/oTe6fZiOhW65
+         BjkrHlyKrTJJXC29sJDuGTXqd5/40GhwO7WCZbDbcQB2MuJGIhtqAJ7KaIiPcGoYN1l9
+         s4fr0zbsiZbvNiOgTU00jLdLs0pkeLRUFjFRS2ioFddA+CNMuoRvkffPzuaP06JwXoHV
+         SNqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=N2ZBZX0ts4Mk2TYGZHAbQ0+iD2FAHUFhD02Oe5yw0x8=;
+        b=isbXeqlnBeWlcPZKJcODGsKTTJ5ZTqBaoIicgl5GgXkI6/sVZIDuXNdqczDfsA03ZY
+         KF4piJ2mlDEjtihl+nt+PbTUMkg+6M1ExXuynQx1jxj/M0AJNMv7p3YrhnFtuOSQ6RSN
+         BNNkUxxHtllWFenGHk0sfdwllKPbDtzG1t/d69VHKyLel2KluyRzgc15Mj1LHsxslxvz
+         z9D5HzvQrjiPn4I5ivSiETmag3aYggOHvXoU88I1/HyK0Glapk6x7SBsUbzotEO21+SU
+         09zXoAWOwRXX21cXSY8s8xPjYoy3h6q95ia3H8LFFmfyEq9tXJ1nyQj2YHrmVb3xivXB
+         Togw==
+X-Gm-Message-State: AJIora9yORJH+C/+pfPLV8eV9dthu/rpmPFG3hTFt8lyOP70ZISgeMOX
+	eCRupILSgAEhlufwk7lkzSPqKPsz6SUY1bA=
+X-Google-Smtp-Source: AGRyM1sj2jrR3+blrSHPqJTzLp24osPeSbuJ6WFdrG/ishciKwr2k4mXrnUZAcDZaxDsMilQN7eUGTW8uxdoZkM=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:3973:d0f0:34a8:bf61])
+ (user=saravanak job=sendgmr) by 2002:a05:6a00:1995:b0:525:bca8:b062 with SMTP
+ id d21-20020a056a00199500b00525bca8b062mr18860129pfl.26.1656638814784; Thu,
+ 30 Jun 2022 18:26:54 -0700 (PDT)
+Date: Thu, 30 Jun 2022 18:26:39 -0700
+In-Reply-To: <20220701012647.2007122-1-saravanak@google.com>
+Message-Id: <20220701012647.2007122-2-saravanak@google.com>
+Mime-Version: 1.0
+References: <20220701012647.2007122-1-saravanak@google.com>
+X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
+Subject: [PATCH v2 1/2] driver core: Add probe_no_timeout flag for drivers
+From: Saravana Kannan <saravanak@google.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
+	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
+	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
+	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
+	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
+	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
+	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
+	Michal Simek <michal.simek@xilinx.com>, Saravana Kannan <saravanak@google.com>
+Cc: Rob Herring <robh@kernel.org>, sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, 
+	kevin hilman <khilman@kernel.org>, ulf hansson <ulf.hansson@linaro.org>, 
+	len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, 
+	will deacon <will@kernel.org>, andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
+	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
+	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
+	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
+	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	sparclinux@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220628_041545_654337_1559F2A4 
-X-CRM114-Status: GOOD (  13.91  )
+X-CRM114-CacheID: sfid-20220630_182658_338155_78DD27DC 
+X-CRM114-Status: GOOD (  23.04  )
 X-Mailman-Approved-At: Fri, 12 Aug 2022 02:06:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -168,21 +140,153 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 27, 2022 at 07:01:01PM -0700, Saravana Kannan wrote:
-> Since the series that fixes console probe delay based on stdout-path[1] got
-> pulled into driver-core-next, I made these patches on top of them.
-> 
-> Even if stdout-path isn't set in DT, this patch should take console
-> probe times back to how they were before the deferred_probe_timeout
-> clean up series[2].
+This flag only needs to be set for drivers of devices that meet all the
+following conditions:
+- Need to probe successfully before userspace init in started
+- Have optional suppliers
+- Can't wait for deferred_probe_timeout to expire
 
-Are you sure it's only limited to the serial drivers?
-(just asking, I don't know myself the answer)
+fw_devlink=on uses this info, as needed, to ignore dependencies on supplier
+devices that have not been added or supplier devices that don't have any
+drivers.  It's still up to the driver to decide which of the missing
+suppliers are optional or not.
 
+Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+Reported-by: Sascha Hauer <sha@pengutronix.de>
+Reported-by: Peng Fan <peng.fan@nxp.com>
+Reported-by: Fabio Estevam <festevam@gmail.com>
+Reported-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Tested-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+ drivers/base/base.h           |  1 +
+ drivers/base/core.c           |  7 +++++++
+ drivers/base/dd.c             |  3 +++
+ include/linux/device.h        |  7 +++++++
+ include/linux/device/driver.h | 11 +++++++++++
+ 5 files changed, 29 insertions(+)
+
+diff --git a/drivers/base/base.h b/drivers/base/base.h
+index b3a43a164dcd..149822d2086f 100644
+--- a/drivers/base/base.h
++++ b/drivers/base/base.h
+@@ -193,6 +193,7 @@ extern void device_links_no_driver(struct device *dev);
+ extern bool device_links_busy(struct device *dev);
+ extern void device_links_unbind_consumers(struct device *dev);
+ extern void fw_devlink_drivers_done(void);
++extern void fw_devlink_probe_no_timeout(void);
+ 
+ /* device pm support */
+ void device_pm_move_to_tail(struct device *dev);
+diff --git a/drivers/base/core.c b/drivers/base/core.c
+index ccdd5b4295de..8e18904a1584 100644
+--- a/drivers/base/core.c
++++ b/drivers/base/core.c
+@@ -54,6 +54,7 @@ static unsigned int defer_sync_state_count = 1;
+ static DEFINE_MUTEX(fwnode_link_lock);
+ static bool fw_devlink_is_permissive(void);
+ static bool fw_devlink_drv_reg_done;
++static bool fw_devlink_no_timeout;
+ static bool fw_devlink_best_effort;
+ 
+ /**
+@@ -969,6 +970,7 @@ static void device_links_missing_supplier(struct device *dev)
+ static bool dev_is_best_effort(struct device *dev)
+ {
+ 	return (fw_devlink_best_effort && dev->can_match) ||
++		(fw_devlink_no_timeout && dev->probe_no_timeout) ||
+ 		(dev->fwnode && (dev->fwnode->flags & FWNODE_FLAG_BEST_EFFORT));
+ }
+ 
+@@ -1688,6 +1690,11 @@ void fw_devlink_drivers_done(void)
+ 	device_links_write_unlock();
+ }
+ 
++void fw_devlink_probe_no_timeout(void)
++{
++	fw_devlink_no_timeout = true;
++}
++
+ /**
+  * wait_for_init_devices_probe - Try to probe any device needed for init
+  *
+diff --git a/drivers/base/dd.c b/drivers/base/dd.c
+index 70f79fc71539..943b0363aaab 100644
+--- a/drivers/base/dd.c
++++ b/drivers/base/dd.c
+@@ -324,6 +324,8 @@ static int deferred_probe_initcall(void)
+ 
+ 	if (!IS_ENABLED(CONFIG_MODULES))
+ 		fw_devlink_drivers_done();
++	else
++		fw_devlink_probe_no_timeout();
+ 
+ 	/*
+ 	 * Trigger deferred probe again, this time we won't defer anything
+@@ -734,6 +736,7 @@ static int __driver_probe_device(struct device_driver *drv, struct device *dev)
+ 		return -EBUSY;
+ 
+ 	dev->can_match = true;
++	dev->probe_no_timeout = drv->probe_no_timeout;
+ 	pr_debug("bus: '%s': %s: matched device %s with driver %s\n",
+ 		 drv->bus->name, __func__, dev_name(dev), drv->name);
+ 
+diff --git a/include/linux/device.h b/include/linux/device.h
+index 424b55df0272..e6246b6cf6cf 100644
+--- a/include/linux/device.h
++++ b/include/linux/device.h
+@@ -536,6 +536,12 @@ struct device_physical_location {
+  * @can_match:	The device has matched with a driver at least once or it is in
+  *		a bus (like AMBA) which can't check for matching drivers until
+  *		other devices probe successfully.
++ * @probe_no_timeout: Set by driver core to indicate that this device's probe
++ *		can't wait till driver_probe_timeout expires. This information
++ *		is used by fw_devlink=on to avoid deferring the probe of this
++ *		device to wait on supplier devices that haven't been added or
++ *		probed successfully.
++ *		See also: probe_no_timeout in struct driver.
+  * @dma_coherent: this particular device is dma coherent, even if the
+  *		architecture supports non-coherent devices.
+  * @dma_ops_bypass: If set to %true then the dma_ops are bypassed for the
+@@ -642,6 +648,7 @@ struct device {
+ 	bool			of_node_reused:1;
+ 	bool			state_synced:1;
+ 	bool			can_match:1;
++	bool			probe_no_timeout:1;
+ #if defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE) || \
+     defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU) || \
+     defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU_ALL)
+diff --git a/include/linux/device/driver.h b/include/linux/device/driver.h
+index 7acaabde5396..2ce60e511504 100644
+--- a/include/linux/device/driver.h
++++ b/include/linux/device/driver.h
+@@ -55,6 +55,15 @@ enum probe_type {
+  * @owner:	The module owner.
+  * @mod_name:	Used for built-in modules.
+  * @suppress_bind_attrs: Disables bind/unbind via sysfs.
++ * @probe_no_timeout: Set to true by drivers that bind to devices that meet all
++ *		these conditions:
++ *		- Need to probe successfully before userspace init in started
++ *		- Have optional suppliers
++ *		- Can't wait for deferred_probe_timeout to expire
++ *		fw_devlink=on uses this info, as needed, to ignore dependencies
++ *		on supplier devices that have not been added or supplier devices
++ *		that don't have any drivers. It's still up to the driver to
++ *		decide which of the missing suppliers are optional or not.
+  * @probe_type:	Type of the probe (synchronous or asynchronous) to use.
+  * @of_match_table: The open firmware table.
+  * @acpi_match_table: The ACPI match table.
+@@ -101,6 +110,8 @@ struct device_driver {
+ 	const char		*mod_name;	/* used for built-in modules */
+ 
+ 	bool suppress_bind_attrs;	/* disables bind/unbind via sysfs */
++	bool probe_no_timeout;
++
+ 	enum probe_type probe_type;
+ 
+ 	const struct of_device_id	*of_match_table;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.37.0.rc0.161.g10f37bed90-goog
 
 
 _______________________________________________
