@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0321AC43334
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Jul 2022 08:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCEACC43334
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Jul 2022 08:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:Message-ID:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=I6Ghi3G6lgM406VvJ3ltsd97cscW2NZ2W1ha3r8K5Rc=; b=ZRDixTXijn5SRrLk4Uq9aCrphm
-	KYUC+YEEBL4+p1D9eChew8iaWh5Fg1+InHk7zX+msMXmLwW/02eKKzlSWUWgyHMajZ9zvwIU+pegS
-	cQaI2sBhqw+dcMY9U03xeDIorBZ/KGtZPykJCuI24N/PB/vsvc5OOrYVylQM+1Ersa0DEZ1veD+rv
-	pocntNCw2wQGmbUQnlDboQFBJpGjb19QQc2kAL7uqQc7RQIvjwJD8VeiGKBtFtUaXbDgMILfBUION
-	lolaR3VcDaUG9w6SPjTxoysr+JYKs4X4weOTPQwLLbS8CWUD7SogZbw4TPM4BO3/XJvcl9N9wYbvf
-	l7FvuCww==;
+	bh=27/YUZoHsb6B+mFALNURUxgo1FZ1KakCp9pB0flf6Uk=; b=kmkLXP9i1IkjkCdU9xqw/nkGiV
+	DGF5jm+fCe8SHK3Kl1wxz9n10H0QSgtUgvhUqDSTyYPaqnc0sr6ptjWoprDMQJsJIQB/kocgrSl9v
+	0HcN2QvzgmEEQLx7ygShdlz/ua0K8YmlGcUvc4VAQcsB/ItsSYK81ycLMvR6nx0TCH7N4lg/zJhSh
+	FN8rMv/utdaRNLzBYUSkHbzVqQIPhIfFGhgkqAUzVDN+Ydvs5U7hIxBVB4JnOi9/ZvqBFmVo3Ish7
+	r/9YsBWH5nxAcIVchyeBs3mZWRaq1bkj9AQjLspC/vnIJjCiJVSr6Wkvv+7PowGZm1QsvNysP5v2o
+	QgvzMgow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7BjD-003XTj-UX; Fri, 01 Jul 2022 08:10:15 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1o7Bjw-003XkD-HX; Fri, 01 Jul 2022 08:11:00 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7Bj1-003XOP-6u
-	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 08:10:05 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id be14-20020a05600c1e8e00b003a04a458c54so1070305wmb.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 01 Jul 2022 01:10:01 -0700 (PDT)
+	id 1o7Bjt-003Xik-Qj
+	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 08:10:59 +0000
+Received: by mail-wm1-x333.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so787144wme.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 01 Jul 2022 01:10:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:from:to:cc:subject
          :content-language:organization:content-transfer-encoding;
-        bh=urfXnQFf8lee47nSLlfhwTosSVCF2VVZF7chXj2fkIQ=;
-        b=DshPVdS8/FO6WCE1hdXngdZUjQaEbY1+55s56TVplpXEDl7+Gvtn3Puq4n39xx096K
-         qi5eBvaxiHVSLlAdDf+QvRbM/ltjmSlV3vDgvVMPIrhumybZvYpGZdi4j6jxcKeBrKQ4
-         2PA/+LJxp9cU2A5JgIibwN4N6kXIREmbPzDzVipExghhQzO5TuQdtYCo+j4jeWppNJgB
-         5HZ7RZDbMlStWmKsh7zYzM0Xpqd4VFR/aYAFLHojMdkXTYOxUSAv+9WkNnRhRItk3TYe
-         ME+Bh7AK+5EjKT1cdF1an86W4TK6EXoQlMQdMEWPvm3sXnOi9ZY2NBnzObdYufGq55wg
-         BpdA==
+        bh=PEvEMy93ucfW13yHE94YOmbNRns7+Ib4NBPXZ7XvoEw=;
+        b=Mt1RuHzngbB+zqsN2kd3N9qgMKxQd8fSXs0VW3SVr+idWjDX3a43uW9ybY23sRfk8h
+         WnAykZv8wpeqmfwaAQizocN5GbJWqO9ODFDzqC5Wo82ylW+X9pFpi9eZZ6dtRSo3hdH7
+         JnEBlJwj7Wlg0daMOi0bYNPwOHxr16gPeXnk41ElhOydvflUfkVqBSaMkmnHsLk44u8i
+         CNFukCsm7KSqBrAL8pD1y46qq9Kslq8whJl+lelvcdljD9zJ2Dy5VAyULjAl1mXfIgT6
+         W6Q7fUIP1825C8EzUUY2ia0PrjGyzw1fpzOWCQ2a0XScjtyhWBPW+RarE79lfrOb7tc4
+         roTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:from:to
          :cc:subject:content-language:organization:content-transfer-encoding;
-        bh=urfXnQFf8lee47nSLlfhwTosSVCF2VVZF7chXj2fkIQ=;
-        b=TnoWdaSkuDlUNh/uyxj+cndm5AiUhegnYuLTtpA35dvmN/lSOTBckBlzZlvuH2izum
-         A5isfRsnjehso9ebgc926sCctASJTgvMMEkznZgf7VA2oHcGG+CqNaxa4wlW4QvLbBZM
-         RzySGwepezXsRSNILOakTwAG9SO/lp0vZ+5UvsrmFD9UU7fCBqarH9JvWMjaDg9PCrtg
-         tRi5Ibe0A7xo/TLiiCkMsw/msgw+G2oPBjFcYPhhHK7wzYpwtdHqN7m+2v1AzYRQ/AsQ
-         RKIpRH+PgFzUkkDTZa9YrNWrJOscFhtUyvzqt4eTbzTvXd220aZMGMeug8ZOfBhvP39+
-         YyVA==
-X-Gm-Message-State: AJIora9SpTgVuCfEyxqjQJ5BGdtxIHlMySj5n+iSbOh90FLrmKWSDKOh
-	09ae9rxJEecjByurB8OYYmSGtw==
-X-Google-Smtp-Source: AGRyM1v+njBFoeEjpQR6P1UIx7Hhvceuf+h39EIAS9k/yljAVQ2mNXlCG9w8Iw5cObgn/N+IxPqDtA==
-X-Received: by 2002:a05:600c:1e87:b0:3a1:8f12:8a8d with SMTP id be7-20020a05600c1e8700b003a18f128a8dmr795964wmb.3.1656663000427;
-        Fri, 01 Jul 2022 01:10:00 -0700 (PDT)
+        bh=PEvEMy93ucfW13yHE94YOmbNRns7+Ib4NBPXZ7XvoEw=;
+        b=7vkvx932ypNd8R1reMN+d2qEJhFbQWQQLSMFKq1TVunr3bLL+njSfYP859L4M/+tvg
+         U6vHo8397nVm+16MsWA2djlsZDENdoPK3DIGBh9Y1yUbSxOxmEt1KWu8ncH2AFW26/jI
+         8PjqtpenBBfFb91V2BNWwOd/WOuQ5NJike1FrA3l9AXY9KM9rgxCSrqt1IsmOX3Kd3pU
+         Af90RopiR1bW8cX5QkTkABjB/LfF8tvz29BCNKcqfAoR8c1wpMOdNY3tnNXqRuy7VIcr
+         UDAgyF6vyEIIGZEVYmkO09pnq5s3dYlPSF9zCXVcbyYBXjHIxaJnk9cpd9BTTM/yw6st
+         +OMg==
+X-Gm-Message-State: AJIora8WsLzK6hYbHmGkTSnbuLfua817BO1fB+yzpOASDMOA2Twllt0o
+	S/T6r38BkIBf7DofTHxCezf8Tw==
+X-Google-Smtp-Source: AGRyM1trCN/aqUGFns0X8+n21lgxvxmp5/Y0AmRjGUhA0XB+qgR6KYewyfaRVQiJSZInBfkaqKIj9A==
+X-Received: by 2002:a1c:e907:0:b0:3a0:3e42:9c72 with SMTP id q7-20020a1ce907000000b003a03e429c72mr14806896wmc.162.1656663055560;
+        Fri, 01 Jul 2022 01:10:55 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:5d81:390:1737:2a33? ([2001:861:44c0:66c0:5d81:390:1737:2a33])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5d6551000000b0021b932de5d6sm21853730wrv.39.2022.07.01.01.09.58
+        by smtp.gmail.com with ESMTPSA id f2-20020a7bcd02000000b003a0499df21asm9748688wmj.25.2022.07.01.01.10.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 01:10:00 -0700 (PDT)
-Message-ID: <cbf6bcb5-c7be-40fe-4436-4578c9d6c532@baylibre.com>
-Date: Fri, 1 Jul 2022 10:09:57 +0200
+        Fri, 01 Jul 2022 01:10:55 -0700 (PDT)
+Message-ID: <51034acd-13db-5c25-7b9f-ff87537406bd@baylibre.com>
+Date: Fri, 1 Jul 2022 10:10:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: [GIT PULL] amlogic ARM updates for v5.20
+Subject: [GIT PULL] amlogic ARM DT updates for v5.20
 Content-Language: en-US
 Organization: Baylibre
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220701_011003_324873_3D519D04 
-X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-CacheID: sfid-20220701_011057_936026_8D8A33BA 
+X-CRM114-Status: UNSURE (   7.44  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,7 +91,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's an Amlogic ARM change for v5.20, a minor refcount fix.
+Here's an Amlogic ARM DT change for v5.20, a minor whitespace fix.
 
 Neil
 
@@ -101,22 +101,24 @@ The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-for-v5.20
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-dt-for-v5.20
 
-for you to fetch changes up to 34d2cd3fccced12b958b8848e3eff0ee4296764c:
+for you to fetch changes up to c110f7a94015a8da24520c5f460dc461ffc30a34:
 
-   ARM: meson: Fix refcount leak in meson_smp_prepare_cpus (2022-06-10 08:43:05 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM mach-meson changes for v5.20:
-- Fix refcount leak in meson_smp_prepare_cpus
+   ARM: dts: meson: adjust whitespace around '=' (2022-06-10 08:34:15 +0200)
 
 ----------------------------------------------------------------
-Miaoqian Lin (1):
-       ARM: meson: Fix refcount leak in meson_smp_prepare_cpus
+Amlogic ARM DT changes for v5.20:
+- adjust whitespace around '=' in ARM meson DT
 
-  arch/arm/mach-meson/platsmp.c | 2 ++
-  1 file changed, 2 insertions(+)
+----------------------------------------------------------------
+Krzysztof Kozlowski (1):
+       ARM: dts: meson: adjust whitespace around '='
+
+  arch/arm/boot/dts/meson.dtsi   | 4 ++--
+  arch/arm/boot/dts/meson8.dtsi  | 2 +-
+  arch/arm/boot/dts/meson8b.dtsi | 2 +-
+  3 files changed, 4 insertions(+), 4 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
