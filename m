@@ -4,76 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD5DC00140
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Aug 2022 08:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7EBC282E7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Aug 2022 09:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CrDWPeQNJLfPbGMJGtLuzVHGHj7ei3wCg2Q6DLHsBWw=; b=GTcGrWGFCzV9+g
-	tdIWf1GXZg+Oar4LSRmOR/+3v/AOOZUOg3FQv87Zb1g/WRXbNGXkp4FDERCZSFXns62oMDv7xaTfq
-	eHKeSZCl3+g/Wnp/LiX5u1o/Fgras9DbcJpQ2segoJhOlEZLK4iETK1FwVNd1tO1X/eMdyUIkyT6U
-	e6ohD3VT0kwYcUsNdD6eXh9em9t+gs6Q4lxWLkYYKMsealjW7E2/65LLg9U8q7mXdR67zyp2IdJAv
-	NG+n7fW5Tzx01xQSdOgBj1WS/RSPbErAySA3KnoI3AtkVGBECdv7jcTpeAyfBiwcd2LfWgDPb0TkM
-	5UHYo6EZ4KVw2hGKPrTg==;
+	List-Owner; bh=5nVEGyrSA2JHSR4cEbQ75Fw3HkwIum8C5WOkONJKPzA=; b=0X3BiEEr4Nz278
+	hrCezlq6j9PjsLwR/rALdjUk/bhB38wROUl5bUCcDFb8w8J8/hW40yHYeOYj77j6AVxnw8APpFDJ4
+	SaPRhylm/yBoOgjunQPi/L/8GEc/o2+sdLcgz3ZYJUHzshx2u6MlCtgw1zxOguxSL9w/hH6EeLuIs
+	QIhU9Go0dbm57w9UwHqgzpKkvZI3RWPvHRAU/wqH2Nr2/ui8s3NAkxDfUQ67owSZeCuiuoIETKign
+	gk/oni0RnKEHjs94hwxGVGujzIJlPqCOlJD/exgDqznz4zdW6ADnzy10QLDyMfs7iWRZ7YP6GCy2r
+	TTwUjcHUPd4rNYsJbcPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oMPzX-0032ol-3v; Fri, 12 Aug 2022 08:26:03 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1oMQd9-003SPU-MM; Fri, 12 Aug 2022 09:06:59 +0000
+Received: from mail-yb1-xb31.google.com ([2607:f8b0:4864:20::b31])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oMPzT-0032fS-7Y
-	for linux-amlogic@lists.infradead.org; Fri, 12 Aug 2022 08:26:01 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id s23so232186wmj.4
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 Aug 2022 01:25:58 -0700 (PDT)
+	id 1o7Dj2-004356-Ql; Fri, 01 Jul 2022 10:18:14 +0000
+Received: by mail-yb1-xb31.google.com with SMTP id r3so3229330ybr.6;
+        Fri, 01 Jul 2022 03:18:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:from:to:cc;
-        bh=6ehiMB0+39tML8IE5wmDSuzaTlzDcKsQgUz9LzCsjzs=;
-        b=7HdXztEsGi5VAuAuBJddokRjToU81wjSb1LlaONQoHq5CsO99VNK4gVmjghlQcmzA1
-         +LEe6jr/wD5yfO1CEtO/rJYrIJe2eRRjoFWYqRNvAqU1hgUCvPaiWHDxzNJn9OQKsRQj
-         Ux99mx4nbhviGZfJOZ3e1DxZHknVClaXB/UIKpJ7KsanmpaegcLP8SIkLM+RrSMa/xML
-         UudN1Cj8txPl+u7UY7bApCFjj8x5wfjK+g1BzYit05Eg26lY8jaRCx7jaGJs/HMNcTyc
-         zgMJW1FyeC8nL/BeNSBq/CD9BKOJlOg4mds2RYcNWCnLRp7InOawH0wF4QJ7vXNG63cu
-         Kjdg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IK1q7pWvnzmd2/yzmMQOB6gFUgHkXgsyzwODpSKqHtU=;
+        b=jSDpH5b4ezTXYDkI+Kv1qjoulW4GueRKAo9MfvH6Or74WD1aO19b0yl9X6h7ikpgsb
+         Yzj9/9QR8pvv9s537mQBeUk8bodicRt2sYNtrKP02dXkQyCDQKSj99VRGbrzh5/zLrXe
+         3DbujuLPciSi5vALJ+old//V6zoLm6pd0LhvBAARG1SXsh/2UP6qVVa/FfV3DuM5if+u
+         lMLgaAYtih653stfzpF6JzV1TgtPEvIAiwFM7x+VFO7m6+ikg5S95jdc8NlSpoxf6NUC
+         chD7vf96GrCNEtWT2dpp9TfC5k1TkiGvGH1SczyJzPL6/3uFcjCYC/RxAKuWF753UD7k
+         NBBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:x-gm-message-state:from:to:cc;
-        bh=6ehiMB0+39tML8IE5wmDSuzaTlzDcKsQgUz9LzCsjzs=;
-        b=HdRXCjPTUbN60n8rUIGC/cM1OtrCVWsBiAEVzrZT5nYHTk2Ngl4P/u3Q4RWILYbMa1
-         eGu5kKk1/wfSjCz1S9gomRDjwgkYrPieQ4zH127s3kW+OxH6BdtHDYRZTQWjQibN1GEn
-         /91XkTnFAPlBBiFFyGBPFHeQLmn15Bi4yri96W1+Wq+EVzNCeTy5VvYUcTrWJLQZT3iq
-         pmhNY9rOtRPa1O8+MtZHdgpNc+dPEfZlqhda+5Ry1mmLRLDLdhSnHxv5C5myrr7IhA8+
-         gD1ROFeQ4xWOUNg4p5pJ68gN038G/FnvfdjV7BGLkwKuWQrqtDH5uaxf0DaghDpoE2K3
-         jdVg==
-X-Gm-Message-State: ACgBeo00IWBT1ZiIh4ySCJQN3iP8MYeg+Wwk7uLA0k8DmvD6vlT/WuNV
-	Rah5UFLqNnEPrUYLMlYPMD7/IA==
-X-Google-Smtp-Source: AA6agR54QE+hN8Ju7DTkIazxJPW5QIo7EsNEoEP0MXXqd+n+3q+eLAs0p3AavhTMwpzHhqygcu3p2g==
-X-Received: by 2002:a05:600c:3555:b0:3a5:d319:35cd with SMTP id i21-20020a05600c355500b003a5d31935cdmr432849wmq.161.1660292757271;
-        Fri, 12 Aug 2022 01:25:57 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s13-20020adff80d000000b002206ba7430bsm1337991wrp.15.2022.08.12.01.25.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Aug 2022 01:25:56 -0700 (PDT)
-References: <20220726073841.1320509-1-windhl@126.com>
-User-agent: mu4e 1.8.7; emacs 27.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: narmstrong@baylibre.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- windhl@126.com
-Subject: Re: [PATCH v2] soc: amlogic: meson-pwrc: Hold reference returned by
-  of_get_parent()
-Date: Fri, 12 Aug 2022 10:23:19 +0200
-In-reply-to: <20220726073841.1320509-1-windhl@126.com>
-Message-ID: <1jsfm1zx4c.fsf@starbuckisacylon.baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IK1q7pWvnzmd2/yzmMQOB6gFUgHkXgsyzwODpSKqHtU=;
+        b=bKEW8Ry0Dc7JWpcsTzfqOEZXgVD93DyEcOHHsubyywQFfUZ94PG/REMiyCQ1yFPlc1
+         ayfM0chkW6AIr9cJsCf65QdK7Gx6bgoQqYkqS7TIcnHhAU15zwITAxAgqUKThdLs1A+Y
+         wonqxW0cs1f5vojvbilC4isezZD5wp536hZin0Lw7cLD+7+tp1zUynbdzPEBPpx1Ooyr
+         lil0LPOX4PUc3JRNAcgQzi0r6i9/+YQD2G9MdVguJO/GgctbNCiPbPF7IwnOjfE/t8u2
+         iKaXmZN5w3gfbiWMUewxWHOCpDGetzs/dkuz1o2lpGiano869IqEsNYly1o5J2I/eUBy
+         m1hw==
+X-Gm-Message-State: AJIora89JqE6zL3KgHUrUS5nkhzJQEf+MmiTpkt2dH/dd9IfNjyCRe8j
+	of8hqQn5oJ9w5XuycenQ27US2xNEWzhjsrJ/LwI=
+X-Google-Smtp-Source: AGRyM1tvrcPaXjb6qpRZmlm3mN1+HaZ3X5zFt5Vb6BDK08mCBJ8qF4vfcIrvo5gC3LEAhM4YrPgldTFVhwpUgFcS228=
+X-Received: by 2002:a05:6902:1549:b0:66d:5f76:27ba with SMTP id
+ r9-20020a056902154900b0066d5f7627bamr14092504ybu.385.1656670690515; Fri, 01
+ Jul 2022 03:18:10 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220701012647.2007122-1-saravanak@google.com> <20220701012647.2007122-3-saravanak@google.com>
+In-Reply-To: <20220701012647.2007122-3-saravanak@google.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 1 Jul 2022 12:17:33 +0200
+Message-ID: <CAHp75Vdw8pZePnqR=mmJh4pv0bPMRJE=p7-cG3akskdxMHmoKw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] serial: Set probe_no_timeout for all DT based drivers
+To: Saravana Kannan <saravanak@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
+	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
+	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
+	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
+	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
+	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
+	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
+	Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>, 
+	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>, 
+	ulf hansson <ulf.hansson@linaro.org>, len brown <len.brown@intel.com>, 
+	pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>, 
+	andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
+	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
+	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
+	david ahern <dsahern@kernel.org>, Android Kernel Team <kernel-team@android.com>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, 
+	"list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>, netdev <netdev@vger.kernel.org>, 
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, 
+	"open list:LINUX FOR POWERPC PA SEMI PWRFICIENT" <linuxppc-dev@lists.ozlabs.org>, 
+	"open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>, 
+	linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>, 
+	"moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>, 
+	linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>, 
+	"open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>, 
+	linux-tegra <linux-tegra@vger.kernel.org>, linux-snps-arc@lists.infradead.org, 
+	linux-amlogic <linux-amlogic@lists.infradead.org>, 
+	linux-arm-msm <linux-arm-msm@vger.kernel.org>, linux-actions@lists.infradead.org, 
+	linux-unisoc@lists.infradead.org, 
+	Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>, 
+	linux-riscv <linux-riscv@lists.infradead.org>, linux-stm32@st-md-mailman.stormreply.com, 
+	Sparc kernel list <sparclinux@vger.kernel.org>, Ahmad Fatoum <a.fatoum@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220812_012559_332602_66D98B36 
-X-CRM114-Status: GOOD (  16.02  )
+X-CRM114-CacheID: sfid-20220701_031812_944217_140ACF2F 
+X-CRM114-Status: GOOD (  15.23  )
+X-Mailman-Approved-At: Fri, 12 Aug 2022 02:06:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,75 +143,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue 26 Jul 2022 at 15:38, Liang He <windhl@126.com> wrote:
-
-> We should hold the reference returned by of_get_parent() and use
-> it to call of_node_put() for refcount balance.
-
-Considering you are making this type of changes more or less everywhere
-in the tree it would be good to propose an helper function instead of
-repeating the of_get_parent(), syscon_node_to_regmap(), of_node_put()
-pattern.
-
-A coccinelle script would be nice too.
-
-Thx
-
+On Fri, Jul 1, 2022 at 3:28 AM Saravana Kannan <saravanak@google.com> wrote:
 >
-> Signed-off-by: Liang He <windhl@126.com>
-> ---
->  drivers/soc/amlogic/meson-ee-pwrc.c     | 5 ++++-
->  drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 5 ++++-
->  2 files changed, 8 insertions(+), 2 deletions(-)
+> With commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by
+> default") the probing of TTY consoles could get delayed if they have
+> optional suppliers that are listed in DT, but those suppliers don't
+> probe by the time kernel boot finishes. The console devices will probe
+> eventually after driver_probe_timeout expires.
 >
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index 2be3afe6c2e3..dd5f2a13ceb5 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -469,6 +469,7 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->  {
->  	const struct meson_ee_pwrc_domain_data *match;
->  	struct regmap *regmap_ao, *regmap_hhi;
-> +	struct device_node *parent_np;
->  	struct meson_ee_pwrc *pwrc;
->  	int i, ret;
->  
-> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->  
->  	pwrc->xlate.num_domains = match->count;
->  
-> -	regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
-> +	parent_np = of_get_parent(pdev->dev.of_node);
-> +	regmap_hhi = syscon_node_to_regmap(parent_np);
-> +	of_node_put(parent_np);
->  	if (IS_ERR(regmap_hhi)) {
->  		dev_err(&pdev->dev, "failed to get HHI regmap\n");
->  		return PTR_ERR(regmap_hhi);
-> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> index b4615b288625..312fd9afccb0 100644
-> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> @@ -273,6 +273,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
->  	const struct meson_gx_pwrc_vpu *vpu_pd_match;
->  	struct regmap *regmap_ao, *regmap_hhi;
->  	struct meson_gx_pwrc_vpu *vpu_pd;
-> +	struct device_node *parent_np;
->  	struct reset_control *rstc;
->  	struct clk *vpu_clk;
->  	struct clk *vapb_clk;
-> @@ -291,7 +292,9 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
->  
->  	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
->  
-> -	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
-> +	parent_np = of_get_parent(pdev->dev.of_node);
-> +	regmap_ao = syscon_node_to_regmap(parent_np);
-> +	of_node_put(parent_np);
->  	if (IS_ERR(regmap_ao)) {
->  		dev_err(&pdev->dev, "failed to get regmap\n");
->  		return PTR_ERR(regmap_ao);
+> However, since consoles are often used for debugging kernel issues, it
+> does not make sense to delay their probe. So, set the newly added
+> probe_no_timeout flag for all serial drivers that at DT based. This way,
+> fw_devlink will know not to delay the probing of the consoles past
+> kernel boot.
 
+Same question, do you think only serial drivers need that?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 _______________________________________________
 linux-amlogic mailing list
