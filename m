@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 503A5C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Jul 2022 08:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7603C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Jul 2022 08:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:Message-ID:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=vqMwCf6tX3JQa5UXyK71XnPdU87ElGPOXc8zOIaYnNQ=; b=2/eaU6btFPM6xg+QrKUPe1zw3v
-	9JXQFvnXEo3wyLYQPr1Yp2lu28QHewQogEQqT0pZAxcZmz8l8JkaLtT4At6lXEuazZuGd8kAGhDxB
-	4ni0uaZ4BrCMkb3VmIzzcMW7VewLwQNvzcN/3JMWdvQlZV6NAIWYqDCBgYRhEp7DBma+oJzTLYymF
-	waeObWBeiPP/SOU0AVwI5Ico643rYX/AVSkk803QbHxkoScX96TueBjc7ovOzoK9ITeI7NoW578w2
-	qZFjR3ENXW6MVqYFJdN9481xU/nFCeIwD4sm2Jkq9eRQZaM7bCF2AIVoxctHiYzHNw7HDNZNm+dWa
-	8PsI325w==;
+	bh=9XLui9mbXYAzw1TMMJ8V9V4nFX3YsqZ/6k52ScPG53E=; b=3xTAe9WSrI2p9HN/RmujmZx0D1
+	DV23/I9gsjLkX8bHCwTP/XE9W9HAkG54trHHGbt4IvUXoNFrMTugwiMtDAa2wBTn+KflrsysSNmUr
+	Ul4uauyehGCfeFZrf6YaxfnNCQtssBJ7oxqyM8qm82S6C4yGa12laQyM5S3wOffOAvYu3aI39aE59
+	xF4RQsfQJrJSaQzEIdPxkqxEjPkrH1wJWszUro3biTDq8ed6Qx0p+rudenmjuFT1cbZLYz8N5y7qe
+	7R5lOREPI8Rqz/BcXJqPWSkvTv66ViUQjwEdV5153U8Ro1vTpD1AbkyMQSMT9r7pa3ANHTnMnRNhK
+	9egScP2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7Ble-003YMQ-8Q; Fri, 01 Jul 2022 08:12:46 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1o7BmH-003YaA-DS; Fri, 01 Jul 2022 08:13:25 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7Blb-003YL1-D0
-	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 08:12:44 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id k22so2041953wrd.6
-        for <linux-amlogic@lists.infradead.org>; Fri, 01 Jul 2022 01:12:42 -0700 (PDT)
+	id 1o7Bm5-003YVi-KE
+	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 08:13:15 +0000
+Received: by mail-wr1-x431.google.com with SMTP id k7so2006869wrc.12
+        for <linux-amlogic@lists.infradead.org>; Fri, 01 Jul 2022 01:13:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:from:to:cc:subject
          :content-language:organization:content-transfer-encoding;
-        bh=nPLf+k62bR1v4UhKo16dcYa81QGxp+MYk5E2KS1E2v4=;
-        b=dPi2XFHQLHaw79AdJB6i2Dto3gQXwJpTVHwjW92AZv6KduncIOr374aIm5s3Hv6xUw
-         aOotoixBZR+aajy7DOdiy0UK6r2vYGc30Se041dSloaC1WSE8MLSV0kRsR3CKdCweuy5
-         dx8v5wPlnPMBd9UmmRoFotAYllhaDodsseTEml5KRxiRz6a1ZaY1lJ7unmSyV9gM7lbg
-         wcOa+ySNqOKSwdWay3T9UKE5K5MIhJEhYUnj6fOPHO73VguiYyKon7ap1k4pwI9WNMPw
-         rtsZhyUGS0WlKJeIJJDAQSsStbHJKjvnEAjDdgKvRzMUQG8/Tbyu4HRLiH+NKEuopdvI
-         7zZQ==
+        bh=HwLeHqQPElorq6Og4+tDk5X+T/oy7d1KKsj0RbH81C0=;
+        b=bHpxrDi1joMTeaaiFVPtfffheyCyKXceHc01tC7INBxAwFzceWUHhun81DYtTa9wtU
+         iG++gTdkLzV5Is+3J1w9EdVAfHBEaBIKIeceQGSj/Da+9BXcTFnhxdbYmEvszBh5koyq
+         T1UtPlD3n0gidXyNDEa82gkvBMU7z6D00g7wY37iQoooQPgFuVOZsB6l+ZP6M5fivgcT
+         DdgwN+EtmSzPi9ibYiu9NVQ7meRhcx5tHTAQw7G/AycI/hGW+ZtfFvzK2J49DzA/fwCJ
+         yf8p+C1XR+RF3IX4KE61huNIyLo9cXVF7Hewejjp3tk+3+yHT3SDFJzArbOdXtl38tkP
+         G3Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:from:to
          :cc:subject:content-language:organization:content-transfer-encoding;
-        bh=nPLf+k62bR1v4UhKo16dcYa81QGxp+MYk5E2KS1E2v4=;
-        b=oxG53dyZWnacVX6sMtdG+UYNyy8UYacHgZVgfX5CkseJSSF4yKfMVrfgdHpewAAeMG
-         Zr8mellmNeOE2t+5qAJjOVDmE66OP1Bg5CsYHYM/A09V/3cv5UbvEk5pnO13Mzb4blbX
-         BNRHdKn8BmmGVvfl2iMLMpiloFsOHdJuy8+rilk06bEpoM9LFSPVFwdIzwavap++4JJA
-         tEsIZRfY7G5rCImsOp4xGPAPXWpyyX5keZHxU074rvT8p7aIBLfRryYkPcpC6Cz6Dngl
-         QeH8B0w9CUfZixeeXpJ1uXqjux2dYZa0vPZoPvMUcLZqv6hSKXHZRlrN8vWzpw8bRkgC
-         qEug==
-X-Gm-Message-State: AJIora8cwDbr83fGXnKZywlPbKixMn8Jat9IdUmomFhBwICTd2XfazV5
-	vysipiNVV/M+o2l+ZXxguJsMWfFc7OOc5bEz
-X-Google-Smtp-Source: AGRyM1u7ohMizxo7sai0pTmDDDp6+3ZsvvczqWUyizJIj+zrRlxLaJhsXoGCs+n95cj5Q4/81hav6A==
-X-Received: by 2002:a05:6000:1689:b0:21d:22d0:8e5e with SMTP id y9-20020a056000168900b0021d22d08e5emr12525533wrd.574.1656663160909;
-        Fri, 01 Jul 2022 01:12:40 -0700 (PDT)
+        bh=HwLeHqQPElorq6Og4+tDk5X+T/oy7d1KKsj0RbH81C0=;
+        b=7x6Z2YXvFya4KXZO+UOBVo8KRs2SkFkyzfuzVNNAWVEgo/VobGmUXl1An8YNrpBNLh
+         P3zGQlwRPfz2B0Hby/TUrvYvXbE0nnm2XA/5GaADze0xHjWLrdVvfNmiIZ19SDz7tqCB
+         H/MZ2uUYiT91ZE2OTtRkRRZYokZ0uHy6wj6QpaWn6I0XZXCMeCVhzIXrzNsddHP69Itc
+         XMjF8x4fCvCwUrgKVyPOHdp6UKaJd45/R2uPt4NqIcEN6WKjl26Cjq+w8nx3eufJ0UIO
+         bd4UANQ8fBYKnN2ayS0PVoh5O9txsg1j10GzRBLhayPUlcA/MadPMU7CTSLKGaZrXXvA
+         IBkw==
+X-Gm-Message-State: AJIora9ze7Y/malaHQkCwnIE9I0fPbGzm2gIFAPYIOO62GN6sf7XRhyP
+	vO7ZAUx+qgNF3zoIdJEYmDdscg==
+X-Google-Smtp-Source: AGRyM1u1BN7zw8isDhjU7X/ZJVBot0OFEjFkwjjXd3OlCtR6x02MDz3OAHse4yhY6kft5WsjdpDIrg==
+X-Received: by 2002:a05:6000:137c:b0:21b:994a:a6e1 with SMTP id q28-20020a056000137c00b0021b994aa6e1mr12452993wrz.636.1656663191377;
+        Fri, 01 Jul 2022 01:13:11 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:5d81:390:1737:2a33? ([2001:861:44c0:66c0:5d81:390:1737:2a33])
-        by smtp.gmail.com with ESMTPSA id u3-20020a05600c210300b003a044fe7fe7sm9451117wml.9.2022.07.01.01.12.39
+        by smtp.gmail.com with ESMTPSA id j10-20020a5d448a000000b0021b8c99860asm21771427wrq.115.2022.07.01.01.13.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 01:12:40 -0700 (PDT)
-Message-ID: <9c8b8570-f20c-ce9a-8c6c-51fdadf7722c@baylibre.com>
-Date: Fri, 1 Jul 2022 10:12:39 +0200
+        Fri, 01 Jul 2022 01:13:10 -0700 (PDT)
+Message-ID: <0c01e173-9abf-69ac-7882-e6ecc3935c33@baylibre.com>
+Date: Fri, 1 Jul 2022 10:13:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: [GIT PULL] amlogic ARM64 DT updates for v5.20
+Subject: [GIT PULL] amlogic Drivers updates for v5.20
 Content-Language: en-US
 Organization: Baylibre
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220701_011243_519119_15BFFE3B 
-X-CRM114-Status: UNSURE (   8.48  )
+X-CRM114-CacheID: sfid-20220701_011313_691123_E0D5DEEA 
+X-CRM114-Status: UNSURE (   7.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,61 +91,37 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's a set of Amlogic ARM64 DT changes for v5.20, with minor DT fixes, reset controller
-node addition for the S4 SoC Family and FAN control for the GS-King-X Set-top Box.
+Here's a set of Amlogic Drivers changes for v5.20, with refcount leak fixes.
 
 Neil
 
-The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+The following changes since commit f2b03c1056ef5c0829678f51273eace3e6327884:
 
-   Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+   soc: s4: Add support for power domains controller (2022-03-07 09:40:39 +0100)
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v5.20
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v5.20
 
-for you to fetch changes up to b7bfbbbf72fcf95c9a58d6ad0e905de539fba025:
+for you to fetch changes up to d18529a4c12f66d83daac78045ea54063bd43257:
 
-   arm64: dts: meson: add gpio-fan control to GS-King-X (2022-06-13 10:18:53 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v5.20:
-- adjust whitespace around '='
-- add reset controller node for Meson-S4 SoC
-- correct gpio-keys properties
-- align gpio-key node names with dtschema
-- add gpio-fan control to GS-King-X
+   soc: amlogic: Fix refcount leak in meson-secure-pwrc.c (2022-06-17 09:40:40 +0200)
 
 ----------------------------------------------------------------
-Furkan Kardame (1):
-       arm64: dts: meson: add gpio-fan control to GS-King-X
+Amlogic Drivers changes for v5.20:
+- Fix refcount leak in meson-secure-pwrc.c
+- Fix refcount leak in meson_mx_socinfo_init
 
-Krzysztof Kozlowski (3):
-       arm64: dts: amlogic: adjust whitespace around '='
-       arm64: dts: amlogic: correct gpio-keys properties
-       arm64: dts: amlogic: align gpio-key node names with dtschema
+----------------------------------------------------------------
+Liang He (1):
+       soc: amlogic: Fix refcount leak in meson-secure-pwrc.c
 
-Zelong Dong (1):
-       arm64: dts: meson: add reset controller for Meson-S4 SoC
+Miaoqian Lin (1):
+       meson-mx-socinfo: Fix refcount leak in meson_mx_socinfo_init
 
-  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  2 +-
-  .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts | 27 ++++++++++++++++++++--
-  .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  2 --
-  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |  2 +-
-  arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts |  2 --
-  .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  4 +---
-  .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    |  4 +---
-  .../dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts |  4 +---
-  .../boot/dts/amlogic/meson-gxl-s905d-p230.dts      |  4 +---
-  .../dts/amlogic/meson-gxl-s905d-vero4k-plus.dts    |  4 +---
-  .../amlogic/meson-gxl-s905w-jethome-jethub-j80.dts |  2 +-
-  .../boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts |  4 +---
-  .../boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts   |  4 +---
-  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts     |  4 +---
-  .../boot/dts/amlogic/meson-gxm-wetek-core2.dts     |  2 --
-  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |  6 +++++
-  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   | 10 ++++----
-  17 files changed, 47 insertions(+), 40 deletions(-)
+  drivers/soc/amlogic/meson-mx-socinfo.c  | 1 +
+  drivers/soc/amlogic/meson-secure-pwrc.c | 4 +++-
+  2 files changed, 4 insertions(+), 1 deletion(-)
 
 _______________________________________________
 linux-amlogic mailing list
