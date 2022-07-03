@@ -4,100 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CDAFC43334
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Jul 2022 01:03:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1356C43334
+	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Jul 2022 03:57:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aG2u+RJUlKwh15DMwUi4nap4SYlCViIQ+b8D0S7f8wU=; b=Ah8hcazd3CX0XK
-	r9z6930/VEArkxcB2HtgaIwmnXdXkzuR10SfSzOMmfiJOjCuE1P4TloA7dqnH3kQp9Zf5bTgrxmJG
-	XrtIIF1lsJxJDHZ1LAl18MNgwS/2KCUNAfwGQWaa9KrzUichEziYnVY6KewPea20okm2MxL3RUV0M
-	q4/Xl8GGLA98o2BmwRP30NbIkUeUZcH6S8507vMKq+NNoNIjCLdyCyxi0T4Acefjve7P/o2NbA4qH
-	KllqTaUv6j1b9aF6i8gDjjEIsw+Gb5VinSarFkz6Ov1UhsvySGN7ocFxR6ESm9qO1QuhpXk+yPlDr
-	BnaNIMV+xDRK6h/SP1Gg==;
+	List-Owner; bh=B27D0mxZYnzoqFg7vgzmeKxAzg89qHRg5HXgPb0WVdU=; b=vxO/cmZjKBOSL1
+	83P6htWj04YMYEc6+AlcaJ/povxrpjqIVtM+mQALJX7hEeevlZPe2EjEgbpTrmw1FP4LDsNAskvt4
+	eZHQIA44zQr6Ff7LTmCseXcV23D7EijSPiaCfDwFa2gP5r5VBz2oyCYreyJIGXUEi6i8kAE/GE/Z2
+	M5mOtTvvRIAn0zTA4H7wBwTxkC69qsRwbEjGoHZI0s75pIbqKFKLEFIXLbxiXN6hou77ERmBjaDEP
+	XKfv6EMTMISaIGsW037pvWjD0K9oJmb5+ZBauKsSJGmMbqX7DES5uai1BOpnUixuo4mIsNRQ5tMH7
+	ASlk+N1BpHdk0GYt/G7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7RY0-007dYz-VP; Sat, 02 Jul 2022 01:03:44 +0000
-Received: from out1.migadu.com ([2001:41d0:2:863f::])
+	id 1o7qjm-00DXWH-Ja; Sun, 03 Jul 2022 03:57:34 +0000
+Received: from mail-oi1-x232.google.com ([2607:f8b0:4864:20::232])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o7RXx-007dV2-Hm; Sat, 02 Jul 2022 01:03:43 +0000
-Date: Fri, 1 Jul 2022 18:03:10 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1656723813;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UefsvJWBOCsJEHG/jcpgIGR+KBtUCRUqjXcROu7qjh4=;
-	b=oGHlDm4tgr6UzDbC5z/sb7q2WEts5mi8mJ8aiIMXBOzW75BRr4BaIuszRL9hOCzoFfVxku
-	tmO6BM7R9GzDDzZbe/MQeyeOEOAx+3VHqH/w/8ecEZ7fImffcNYGlal4Cw/gQ26E9Sym1J
-	usYWeNXz8OdB9Vt23HLuxwKOwXbZ7ng=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Roman Gushchin <roman.gushchin@linux.dev>
-To: Andrew Morton <akpm@linux-foundation.org>,
-	kernel test robot <lkp@intel.com>
-Cc: virtualization@lists.linux-foundation.org, usbb2k-api-dev@nongnu.org,
-	tipc-discussion@lists.sourceforge.net, target-devel@vger.kernel.org,
-	sound-open-firmware@alsa-project.org,
-	samba-technical@lists.samba.org, rds-devel@oss.oracle.com,
-	patches@opensource.cirrus.com, osmocom-net-gprs@lists.osmocom.org,
-	openipmi-developer@lists.sourceforge.net, nvdimm@lists.linux.dev,
-	ntb@lists.linux.dev, netfilter-devel@vger.kernel.org,
-	netdev@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
-	megaraidlinux.pdl@broadcom.com, linuxppc-dev@lists.ozlabs.org,
-	linux1394-devel@lists.sourceforge.net, linux-x25@vger.kernel.org,
-	linux-wpan@vger.kernel.org, linux-wireless@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-unionfs@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
-	linux-sctp@vger.kernel.org, linux-scsi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
+	id 1o7qjj-00DXU8-SO
+	for linux-amlogic@lists.infradead.org; Sun, 03 Jul 2022 03:57:33 +0000
+Received: by mail-oi1-x232.google.com with SMTP id i3so8878635oif.13
+        for <linux-amlogic@lists.infradead.org>; Sat, 02 Jul 2022 20:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=S2PQt3HxkBxUYjC+VtlXEq4NoCpstcc7waq7Ie+ZSSw=;
+        b=LcxkuQlcBom6K7cYz2cObFcKqvmFziGvIewxr5CVdQDXpiVs4Qe1p9/ma3MjpEBl0m
+         LdiaLTeEwxUPT1iylGK2uBRwa96fvGW0y6QRWq5F+NZCFL6N1e6TXJlkAQCGEx5XaKBZ
+         bMXT/f+ogoq6vs4TCzgBdramsCAz0nmWRD4br2nzTC8FHRTsVjgo15di4+fdqYbsWQIV
+         4/vga7HK3myEs7r2HcBsoYeS5QL/sXXpo879hazt2tPiyyJMP+yzm9vvBM9i2od8IqAh
+         LSpFzHsWhZD+5n1ToMnLkj0S4zSlSFpghH27+UmeVqnGiX+vxJHJBYAk1fLnQfBbxsFF
+         J2sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=S2PQt3HxkBxUYjC+VtlXEq4NoCpstcc7waq7Ie+ZSSw=;
+        b=VdsAkPd2bEPsNwtxWhldBoNJXGtrId1GVdNbflV8rT98ec/PgOrgsrk0jW0GdMGPU6
+         rMLqd5lJLEDfkFQT937Q15JZ5J2lxpvtY5pRvqGRrJx5hKua/AtmmPnWSSO4iQ+rE78s
+         7Yb60DM2he6D/14ThOyFF9S8zroepCQVpdL5lB0qaYLWfm/rXZJjdlmpJ+H663GJdhp+
+         7x7ITnMwngmMQkew80D4OSgS+a4OFBr0/d8Yh8dSw6xCJiHP42lhONiqgT/LGCx7Shzj
+         xpk7wbPJBB12XjKxqZ45HVYfqeyQZ9yffgnCYQmMyO4N9w1VslwEhzpnr7285fI/Y1Pm
+         J0Xg==
+X-Gm-Message-State: AJIora9PJJzBmtfwx1kGXtHFpq//197OpuG+lCv6x8eLrcWashPuc2wL
+	tM4PkB4z4zmwOSuCDl4pyA3Hhw==
+X-Google-Smtp-Source: AGRyM1vPsLVLSd2YTyZeBHDlHn82rVPH0GlTr+Bdo5oMuTiVoQgn60DY/3PL3sh3O2ct5ts3e02W/w==
+X-Received: by 2002:a05:6808:1b25:b0:32e:e59c:3901 with SMTP id bx37-20020a0568081b2500b0032ee59c3901mr13881725oib.186.1656820650648;
+        Sat, 02 Jul 2022 20:57:30 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Jul 2022 20:57:29 -0700 (PDT)
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Olof Johansson <olof@lixom.net>,
+	soc@kernel.org,
+	Arnd Bergmann <arnd@arndb.de>,
+	arm@kernel.org
+Cc: Li Yang <leoyang.li@nxp.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tero Kristo <kristo@kernel.org>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	Scott Branden <sbranden@broadcom.com>,
 	linux-rockchip@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org, linux-rdma@vger.kernel.org,
-	linux-raid@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-perf-users@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-parport@lists.infradead.org,
-	linux-parisc@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-nfc@lists.01.org, linux-mtd@lists.infradead.org,
-	linux-mmc@vger.kernel.org, linux-mm@kvack.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	linux-leds@vger.kernel.org, linux-integrity@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-fpga@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-ext4@vger.kernel.org,
-	linux-efi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	linux-crypto@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-cifs@vger.kernel.org, linux-btrfs@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-block@vger.kernel.org,
-	linux-bcache@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-tegra@vger.kernel.org,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	linux-gpio@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	Fabio Estevam <festevam@gmail.com>,
+	Michal Simek <michal.simek@xilinx.com>,
+	linux-samsung-soc@vger.kernel.org,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Andrew Jeffery <andrew@aj.id.au>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nishanth Menon <nm@ti.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Peter Rosin <peda@axentia.se>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linaro-mm-sig@lists.linaro.org,
-	legousb-devel@lists.sourceforge.net, kvm@vger.kernel.org,
-	keyrings@vger.kernel.org, isdn4linux@listserv.isdn4linux.de,
-	iommu@lists.linux.dev, iommu@lists.linux-foundation.org,
-	intel-wired-lan@lists.osuosl.org, dri-devel@lists.freedesktop.org,
-	dm-devel@redhat.com, devicetree@vger.kernel.org,
-	dev@openvswitch.org, dccp@vger.kernel.org, damon@lists.linux.dev,
-	coreteam@netfilter.org, cgroups@vger.kernel.org,
-	ceph-devel@vger.kernel.org, apparmor@lists.ubuntu.com,
-	amd-gfx@lists.freedesktop.org, alsa-devel@alsa-project.org,
-	accessrunner-general@lists.sourceforge.net
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 6cc11d2a1759275b856e464265823d94aabd5eaf
-Message-ID: <Yr+ZTnLb9lJk6fJO@castle>
-References: <62be3696.+PAAAVlbtWK6G2hk%lkp@intel.com>
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	openbmc@lists.ozlabs.org,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Andy Gross <agross@kernel.org>,
+	Wei Xu <xuwei5@hisilicon.com>,
+	linux-omap@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Ray Jui <rjui@broadcom.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	=?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-input@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org,
+	Chen-Yu Tsai <wens@csie.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: Re: (subset) [PATCH v2 00/48] dt-bindings: input: gpio-keys: rework matching children
+Date: Sat,  2 Jul 2022 22:56:25 -0500
+Message-Id: <165682055971.445910.5189932421143220440.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
+References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <62be3696.+PAAAVlbtWK6G2hk%lkp@intel.com>
-X-Migadu-Flow: FLOW_OUT
-X-Migadu-Auth-User: linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220701_180342_051202_7D358D6D 
-X-CRM114-Status: GOOD (  14.73  )
+X-CRM114-CacheID: sfid-20220702_205731_979865_D9F8EA8B 
+X-CRM114-Status: GOOD (  10.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,102 +153,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-esOn Fri, Jul 01, 2022 at 07:49:42AM +0800, kbuild test robot wrote:
-> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-> branch HEAD: 6cc11d2a1759275b856e464265823d94aabd5eaf  Add linux-next specific files for 20220630
+On Thu, 9 Jun 2022 13:37:21 +0200, Krzysztof Kozlowski wrote:
+> Merging
+> =======
+> 1. dt-bindings: rebased on top of Rob's:
+>    https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
 > 
-> Error/Warning reports:
+> 2. DTS patches are independent. They can be picked up directly by sub-arch
+>    maintainers, by Arnd or Olof, or eventually by me (if you wish).
 > 
-> https://lore.kernel.org/linux-mm/202206301859.UodBCrva-lkp@intel.com
-> 
-> Error/Warning: (recently discovered and may have been fixed)
-> 
-> arch/powerpc/kernel/interrupt.c:542:55: error: suggest braces around empty body in an 'if' statement [-Werror=empty-body]
-> arch/powerpc/kernel/interrupt.c:542:55: warning: suggest braces around empty body in an 'if' statement [-Wempty-body]
-> drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
-> drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
-> mm/shrinker_debug.c:143:9: warning: function 'shrinker_debugfs_rename' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-> mm/shrinker_debug.c:217:9: warning: function 'shrinker_debugfs_rename' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-> mm/vmscan.c:637:9: warning: function 'prealloc_shrinker' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-> mm/vmscan.c:642:9: warning: function 'prealloc_shrinker' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-> mm/vmscan.c:697:9: warning: function 'register_shrinker' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-> mm/vmscan.c:702:9: warning: function 'register_shrinker' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
+> [...]
 
-Shrinker-related warnings should be fixed by the following patch.
+Applied, thanks!
 
-Thanks!
+[27/48] arm64: dts: qcom: align gpio-key node names with dtschema
+        commit: b08f5cbd69dcd25f5ab2a0798fe3836a97a9d7c6
+[28/48] arm64: dts: qcom: correct gpio-keys properties
+        commit: 5a4b0b853a2914403746b0a1decab695202ff242
+[29/48] arm64: dts: qcom: sdm630-sony-xperia-nile: drop unneeded status from gpio-keys
+        commit: 9d8840f6ee426b6dfcb65bdf39e2898652e2b1e5
+[30/48] arm64: dts: qcom: align led node names with dtschema
+        commit: 3cfe94d660a8ebc19e78ea0a4781d7e9a1054c65
 
---
-
-From c399aff65c7745a209397a531c5b28fd404d83c2 Mon Sep 17 00:00:00 2001
-From: Roman Gushchin <roman.gushchin@linux.dev>
-Date: Fri, 1 Jul 2022 17:38:31 -0700
-Subject: [PATCH] mm:shrinkers: fix build warnings
-
-Add __printf(a, b) attributes to shrinker functions taking shrinker
-name as an argument to avoid compiler warnings like:
-
-mm/shrinker_debug.c:143:9: warning: function 'shrinker_debugfs_rename'
-  might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-mm/shrinker_debug.c:217:9: warning: function 'shrinker_debugfs_rename'
-  might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-mm/vmscan.c:637:9: warning: function 'prealloc_shrinker' might be a
-  candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-mm/vmscan.c:642:9: warning: function 'prealloc_shrinker' might be a
-  candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-mm/vmscan.c:697:9: warning: function 'register_shrinker' might be a
-  candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-mm/vmscan.c:702:9: warning: function 'register_shrinker' might be a
-  candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-
-Signed-off-by: Roman Gushchin <roman.gushchin@linux.dev>
----
- include/linux/shrinker.h | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
-
-diff --git a/include/linux/shrinker.h b/include/linux/shrinker.h
-index 64416f3e0a1f..08e6054e061f 100644
---- a/include/linux/shrinker.h
-+++ b/include/linux/shrinker.h
-@@ -93,9 +93,11 @@ struct shrinker {
-  */
- #define SHRINKER_NONSLAB	(1 << 3)
- 
--extern int prealloc_shrinker(struct shrinker *shrinker, const char *fmt, ...);
-+extern int __printf(2, 3) prealloc_shrinker(struct shrinker *shrinker,
-+					    const char *fmt, ...);
- extern void register_shrinker_prepared(struct shrinker *shrinker);
--extern int register_shrinker(struct shrinker *shrinker, const char *fmt, ...);
-+extern int __printf(2, 3) register_shrinker(struct shrinker *shrinker,
-+					    const char *fmt, ...);
- extern void unregister_shrinker(struct shrinker *shrinker);
- extern void free_prealloced_shrinker(struct shrinker *shrinker);
- extern void synchronize_shrinkers(void);
-@@ -103,8 +105,8 @@ extern void synchronize_shrinkers(void);
- #ifdef CONFIG_SHRINKER_DEBUG
- extern int shrinker_debugfs_add(struct shrinker *shrinker);
- extern void shrinker_debugfs_remove(struct shrinker *shrinker);
--extern int shrinker_debugfs_rename(struct shrinker *shrinker,
--				   const char *fmt, ...);
-+extern int __printf(2, 3) shrinker_debugfs_rename(struct shrinker *shrinker,
-+						  const char *fmt, ...);
- #else /* CONFIG_SHRINKER_DEBUG */
- static inline int shrinker_debugfs_add(struct shrinker *shrinker)
- {
-@@ -113,8 +115,8 @@ static inline int shrinker_debugfs_add(struct shrinker *shrinker)
- static inline void shrinker_debugfs_remove(struct shrinker *shrinker)
- {
- }
--static inline int shrinker_debugfs_rename(struct shrinker *shrinker,
--					  const char *fmt, ...)
-+static inline __printf(2, 3)
-+int shrinker_debugfs_rename(struct shrinker *shrinker, const char *fmt, ...)
- {
- 	return 0;
- }
+Best regards,
 -- 
-2.36.1
-
+Bjorn Andersson <bjorn.andersson@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
