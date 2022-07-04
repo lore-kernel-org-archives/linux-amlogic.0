@@ -4,86 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 405F9C43334
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jul 2022 11:27:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9769CCCA479
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Jul 2022 11:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nKI0EbYZksAhGtzP95VaNEL0E5kJ9foWXX3rymtUFzg=; b=Xvzp6EQZNiyZIr
-	QQQsL/ZIlNT39/IdCKX1ne89jbhnMqMUBYtVz2iILZmiKPgNbPZjQJIJH/Yo+qAwdz7FIfenFRvFT
-	e43SQBSZwAgSKyJzJ23at3nxTnsq3VaQvSoqyuJ5Wmq1j0NXLz1ffGZTc+VDxqXA1Ua4/WZWIRyZq
-	XxNfLLdGXZxc5d2pwPQMoVc9MsHgCVnwm1eFSBIbPsQsiyiyMdddK66qdQM1CBgS2f6o6T9hdQYHN
-	On0ZnnvBNFoWeE6HKSfRwM6E03N915mOsxqz98KHMMYkRKf5cTwwlFx4raZtl55lC7T6YusrdzvRg
-	Q6oy/0gAIPr6eSYXF0lw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mYWzMNKpZhzrezLMoY5unpPW54f5eM2rH3IlaxrpKD0=; b=V3ADFsPIv/7Hw8
+	qMJqrvTrlPxHhYXFjS8nnSGEGOfmag56Oipdd92Tf8nrPSCcBLCHk0EDDrqU0bk/i3k0DHMGYaMNC
+	19WtNjSqrRQxaRlFdd/recs493Jiry+lEN2KVME5GnRsQ0CfOctM4PKE11bDeneIqfJ9Zn+RUjCNV
+	K+rB7+wGutPkl6pzuTZ+EntPWrYn0ujr5TEfA9MYkm9yPZ2rZfXrBL8io0FtxfRzvb1V/MIa091Kb
+	wYNlpVpGe2kvfLBg1H1h/7oeIxEljeFwQMPQy5DUx90WVFOabvzOPorvFZIw66n4olInII7I4oSHF
+	dE32t/AkOHN3Xjjg6XMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8KF0-007j9L-DX; Mon, 04 Jul 2022 11:27:46 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1o8KGx-007kho-W3; Mon, 04 Jul 2022 11:29:48 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8JhY-007HPe-74; Mon, 04 Jul 2022 10:53:13 +0000
-Received: by mail-wm1-x333.google.com with SMTP id m6-20020a05600c3b0600b003a0489f412cso6041217wms.1;
-        Mon, 04 Jul 2022 03:53:10 -0700 (PDT)
+	id 1o8Jkc-007Jrc-Qi; Mon, 04 Jul 2022 10:56:24 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id r18so11184530edb.9;
+        Mon, 04 Jul 2022 03:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4weMpjvNiH7V9U3sbXbzJxXZClEc9I2GMKVTP6AA2c0=;
-        b=P/c9/IGQEPreCQ0nHotpRmWlzk39e7XMKW9T1rPAbMMpTnQ47CZMILeQACoGFMJqXj
-         XqtSTeHGSTDhG21kzL36QiDSkWLlqw0l3u/wHq535AB+7dEIByE6VaRgseGxScnqzu3a
-         AynlarYdZFNfiVu9g8fw1POFreKLUKD+tTkT+baijQlbwAMytXb8Ye7LUyNOchS4Yak7
-         l7Dwawiw/vOv0Cw+muKgJmPI2Wpx/MONt1B82xSSAXi7euyoPQwEfgHhRun+sLzMIZrJ
-         rbR/fcrwD1D+hmje51P59xSsw5xq/0AMNGa/4PlyV12zRbhTchJcOfYVxFgotRPgNINp
-         XX1A==
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yLNLTQJBz4K88aihRO/hyNY3I/0qFhkE7Lhod8FKE3c=;
+        b=XX9JttmfJ0/zIulSmshOxmiYWgz963+s6cj2I3vDXDUT9CcC2gZu5LK2P8F/KpTJMm
+         cIrCdbEKy+nFds6CN2c0mIGN7IKuZZEyVIPI2T8V8L+U3DLixL6l5zIKtIylXc9A2yVI
+         IEabH0KVA3GsVUNWzqex0dFzvpN1Spt3IISxDa482tRRd/NC1PFpvE2k+OF7zq5kkiMK
+         wbvFD4ZvpFY+4B+Sw73vGfy9Bls5+2QwkEWJRI79jl606fCfU1BgRaVEXZ973Ncy8MN4
+         lUjv4onkb0iGKNmyTduzvLTQesZXhvlFBgs2zA3tV1+hgKZ+qHujlcnzmsaNuBWWC54G
+         xgiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4weMpjvNiH7V9U3sbXbzJxXZClEc9I2GMKVTP6AA2c0=;
-        b=XbF19S1mUARD03pWl8wHqd6wSvC7AVsQsXgSdyyfokcqQDRPdj7b2Gf0GJA/Me4LGw
-         FR2muFmBRHUYm8wNfLi5r6qDAcxBDxZN0XlFa5mQb3qIeeBFqFTYMlq3hd0a+vnRSZFF
-         eni282cFFJMUf4jBK8WIXzJjjCcayMsRx1mu+5rJpo3TwpMZajYhCLq6hGrv7psY+pfd
-         CAuU7lAX/E2IG1oSZhoq0aX4NHn2O497VBd1EgfDSFMAKHW5JxMuBRwgOtbhMQnf39aB
-         RZvPXKAqmYtBp8HTYqP4JjQZ8Qy65b1fA1aOnt8hI7JDNl5//soO7EhZhFG1hMnyNK1k
-         X2YA==
-X-Gm-Message-State: AJIora8bNICSkaI2FrS0Jp5lltOuDfq8ZAwh4DdJw+RSbQijAkdQQ20W
-	MNbrZOUKabPqo1PlRpJ5/5Q=
-X-Google-Smtp-Source: AGRyM1v3rotBr0o2IFPa2Oszpyd49EUK6GjimhNUEb5xJaX04pIc3hhz3Bnr2maVLeqLXFi2YAsyXQ==
-X-Received: by 2002:a7b:c410:0:b0:3a0:2d7d:732a with SMTP id k16-20020a7bc410000000b003a02d7d732amr32454903wmi.113.1656931989088;
-        Mon, 04 Jul 2022 03:53:09 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
-        by smtp.gmail.com with ESMTPSA id j31-20020a05600c1c1f00b003a18d352893sm10907140wms.42.2022.07.04.03.53.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jul 2022 03:53:08 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lee Jones <lee.jones@linaro.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] dt-bindings: Fix spelling mistakes in documentation yaml files "is is" -> "is"
-Date: Mon,  4 Jul 2022 11:53:07 +0100
-Message-Id: <20220704105307.552247-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yLNLTQJBz4K88aihRO/hyNY3I/0qFhkE7Lhod8FKE3c=;
+        b=Hv7jsWtt+Dig83nhWHTKtQnG1wx3oUVB0SzisqR+Xr+UbJF5hTESPCfVl6a5x6nk0E
+         58rASCFPSEEfSQfiPjs3cPv2JcTUkfL4WSgFbzL9o3tQGtaO/0At28+QaXVLp5qRFtxI
+         vpPuylThO/toEgv7YVpmcyU2T1UBofhF/8djKQIOuQyLBcW/yMAbMybj4Dnq1906MpiG
+         zNvYz4DI73Hbnh4uj4dihBZPsFcmhQj0a+JSoNvOi3fn4d/02AI0t1SnvYqpE2AalQvG
+         NZu5zQx+Lh00pes9ybSHKpLHeh91T4eQ689tY2Siszz1vy0KnKsTA75QzMCUYdlB9Ru3
+         s8IQ==
+X-Gm-Message-State: AJIora+IOjNWU3qnuK2ovglxhIgs7GIYgtVoI77ltqqZ9ZW+h7GjogAq
+	1tDauU52fGuvUTe7Y/xaGuN5GPdyYUPzMshkFmvDAJyYHz4=
+X-Google-Smtp-Source: AGRyM1vLTWZbM65JclBW/D3ypExCkNB9vaIsK0IRrxdPcg72SmG7E09xNtFjfQQZKcQd68bq/rpP1K/5NiOlUjezuik=
+X-Received: by 2002:aa7:d685:0:b0:435:7910:f110 with SMTP id
+ d5-20020aa7d685000000b004357910f110mr37267629edr.247.1656932179663; Mon, 04
+ Jul 2022 03:56:19 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220704105307.552247-1-colin.i.king@gmail.com>
+In-Reply-To: <20220704105307.552247-1-colin.i.king@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 4 Jul 2022 12:56:08 +0200
+Message-ID: <CAFBinCB-dTQRMOQm1mac7gOaxj97FK-fAa-Lgz4i+erW0-PEtg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix spelling mistakes in documentation yaml
+ files "is is" -> "is"
+To: Colin Ian King <colin.i.king@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lee Jones <lee.jones@linaro.org>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, kernel-janitors@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220704_035312_322380_EC2A2341 
-X-CRM114-Status: GOOD (  13.96  )
+X-CRM114-CacheID: sfid-20220704_035622_953844_998594E4 
+X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,86 +92,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There are several occurrances of duplicated words "is" on the documentation
-yaml files. Fix these.
+On Mon, Jul 4, 2022 at 12:53 PM Colin Ian King <colin.i.king@gmail.com> wrote:
+>
+> There are several occurrances of duplicated words "is" on the documentation
+I think there's a typo in "occurrences".
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml   | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-index a4b4452afc1d..a04882e101f3 100644
---- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-@@ -139,7 +139,7 @@ patternProperties:
-       the connection between the motherboard and any tiles. Sometimes the
-       compatible is placed directly under this node, sometimes it is placed
-       in a subnode named "motherboard-bus". Sometimes the compatible includes
--      "arm,vexpress,v2?-p1" sometimes (on software models) is is just
-+      "arm,vexpress,v2?-p1" sometimes (on software models) is just
-       "simple-bus". If the compatible is placed in the "motherboard-bus" node,
-       it is stricter and always has two compatibles.
-     type: object
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-index f6cac4b1079c..3549a32452ec 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-@@ -26,7 +26,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-index dc5a29b5ef7d..43a3f7ccaf36 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-@@ -26,7 +26,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-index 012d25111054..373c4f89c4ea 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-@@ -28,7 +28,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-index 608e1d62bed5..3eb0513d824c 100644
---- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -149,7 +149,7 @@ properties:
-       - description:
-           The first register range should be the one of the DWMAC controller
-       - description:
--          The second range is is for the Amlogic specific configuration
-+          The second range is for the Amlogic specific configuration
-           (for example the PRG_ETHERNET register range on Meson8b and newer)
- 
- required:
--- 
-2.35.3
-
+> yaml files. Fix these.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml   | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
+For amlogic,meson-dwmac.yaml:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
