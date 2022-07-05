@@ -4,83 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D57C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:22:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56047C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:57:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:Cc:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A7c+lSxmpT5Q3wkoHabYEmJwECAKGBa5ZB37xOCJomc=; b=TbHttazlWPNy9K
-	JVuIBmOVgMr/jdsWmIRgcT8HdmVUm3k86z1XZVO8s+Kw5283dv3AMhKL5R9h1H+QQCI1AFqWjr0sx
-	y+C5JCHIrtUgsrCUzk/Gw9PDTXR+MrnhWw8BJx37tfLCtPPjyUWytn7fQMligYSmv0qgVvHdw4Hsw
-	SrHhUPHa86DLJqTH3Vs2grf4dPve/7rS/aJ16YaySIM84fNY4hPONuuIetl1ouZ9buSbTdevxSMA0
-	ArrbP1ZLQ0NNWmA5nhnV31XsfmpcUF1sIabGfIeB8lRz3XVXHbWPTEV+sPYxc04lY6RlGDME3t74h
-	sSRI7IFNXtY+A2oIg+MA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=+EERcuPM97qhVmZ59vSDfH5vVG+S6e5quU89Fy0g/pk=; b=or+IjbJ6k1Sm8s
+	yrcjTlh3VZJ7AmF0FKDLeFQ7ANCfrkpOvYrpCOGSE17o8Xc/ZJ9vIWhnlFGKDdKBGsdc5mOc2mOKe
+	npPn1k5VLQUNVwbp1mDdi7W3n9YGg/nN5l6vxcb3DG8GR8/i4aNjb/jjbUV05f7IYTWCmHFfmbuEK
+	0TZLMX0O4sqDRlA8wMzvZTpUFaJKlJ9JLE8uXb1cjgxFTw4aIQ0StR0NJYaGfMPPFdyQjHcAAbMWL
+	1GCknZqZm4xUi16T/xfU1DgOGPHHzS9OhOlQWt6PaOzDkw3fXMtHvvBgIGak1R6lFzHUNOsf+b59+
+	8zFX2ny7laMbsIslb2dA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8ctC-00FYaU-Vq; Tue, 05 Jul 2022 07:22:31 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1o8dQm-00Frvg-M4; Tue, 05 Jul 2022 07:57:12 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8ct9-00FYKV-Iu
-	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:22:29 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id v14so16190040wra.5
-        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:22:24 -0700 (PDT)
+	id 1o8dQX-00FraO-Qx
+	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:57:02 +0000
+Received: by mail-wr1-x434.google.com with SMTP id b26so16335321wrc.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:56:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:cc:from:organization:in-reply-to
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=8usoLhk9ovXL0VS3GA/YN9J82Mt+1GOJy2yE4dko6a0=;
-        b=txG/xRqNc6oEFbK0RW1XEurQ0naCyxCJC/Eiilem93tWdd9hnz85Y8XFr1hgWYsbbK
-         RGehH4WkOmGstmSt0iaiJ/MR42Txb6KfIn14+W2PtA0f1Q8ILxDZtelZXLBBbgFSD+0I
-         nFA8O/Mv41ABZ7BR5vbmH1iVk6ZiO46+I9adc+oxbLiVk3LD3mLbJUg5ONZMDCXkKDmR
-         y2tHcvYlQk50Pip8Gr8Zr2ZTXk+4hd7p2Qr9k4wvJ3Lf/WUXmFosEVFvP2PFBWFYVBAA
-         HWCcduzModaFma/1939yHkpuz4SRjld80v/HfDXTw2861sP29uGwpq3XWYH+JH2jFzaY
-         MSBg==
+        bh=c5dZdIc1hvkMEYVAj9UyiGCz6EmxkSEM83h7TJOheUI=;
+        b=6s9g4MM/WSArj6qBhSnDTy4B3b+hiTstuCKJxNZ3trOEsw4AuPSUxSYYW0QW68WUgX
+         tABhnW0yqeEF0xHVTnQ0vU29GH5vy/n9Zw+hMyWcaNKY2u91I52Pbm5n/EbWsNjB0IvC
+         U8afSRPrqjmtbsptiGCvxjj1S2caLzb1x6dAs/SxUENCKKKs/7adHOpCwV+prvPDtzw6
+         LMtGC+wKsqM7gmqOKjXLhGwCnSMomJ9HMKly3jWvL1GGjy+aKXKOVubHjDp7WoHjcS6/
+         5v8cIk10SH4rZN8ofmPZlgBStlye/QcYrbNO+nJrVJY1opHre4KchD8qzh0k+b/SKcgZ
+         H/9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:cc:from:organization:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=8usoLhk9ovXL0VS3GA/YN9J82Mt+1GOJy2yE4dko6a0=;
-        b=ljZRnKkF+2omb0duP8Rg+UcfoP515tsI5c85QJQrovek+W3pNqXtr3SvLHMo/nWv/q
-         sCU0j1TzOpuNi12PWMynCer6pD+ImGMWElmUD7kipqqxmBy3mSwz3eKWfuKa5M4F7SG/
-         n3yOXNdFDaoHblf1Y7nueBz25ipeoVK9MK1qCJ8okihqgLwAMVIOxg/oFWrD3lRjKHgq
-         fNzkzcangeKzaIwoO/YXCyK2bo40K+rDEow1o4SZhnGZeIc5Ssg/HIiEONoqblfC3trJ
-         e64fon6nebD/zS6s3j6jff1kaTHFIUOwIljXo7hBRmS6wMnK0UraLjf4dXGcYlZQj4Yi
-         o14w==
-X-Gm-Message-State: AJIora8sxyoSXcDTNBrs+bdH6dHd0blMU11bPOOhzuFqy9D2vFOSBd2b
-	2iQCOqHpVo0dsH5ffW0GoA4Ohw==
-X-Google-Smtp-Source: AGRyM1uLfoGwkyfaq+jx1rt6UosZKcFRh1dnyTkBvMdLgCBKeSxXdFLJaQ7qcwlcvo2Y2gDyzeuf8A==
-X-Received: by 2002:a05:6000:118e:b0:21d:701e:7cc5 with SMTP id g14-20020a056000118e00b0021d701e7cc5mr3214424wrx.376.1657005743778;
-        Tue, 05 Jul 2022 00:22:23 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:3c4f:78be:dc90:14f9? ([2001:861:44c0:66c0:3c4f:78be:dc90:14f9])
-        by smtp.gmail.com with ESMTPSA id d7-20020a5d5387000000b0021d5c52f4b4sm8416024wrv.34.2022.07.05.00.22.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 00:22:23 -0700 (PDT)
-Message-ID: <da01677e-8a53-060a-f5ff-075106696c46@baylibre.com>
-Date: Tue, 5 Jul 2022 09:22:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] soc: amlogic: meson-pwrc: Hold reference returned by
- of_get_parent()
-Content-Language: en-US
-To: Liang He <windhl@126.com>, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, inux-amlogic@lists.infradead.org
-References: <20220705022032.281665-1-windhl@126.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        bh=c5dZdIc1hvkMEYVAj9UyiGCz6EmxkSEM83h7TJOheUI=;
+        b=gWIjuEFBbk+sx9VrqzogcLRpJgUjJAhiwyKIT0cHEK4wEmq4cYiUdY834qKMSqAhHg
+         FYkezewzfnEIbVIrygNKc/Dvm9TXoxH33zITnUoMiCfv4HmaKX4IsAmslQ5FZh1ndJnK
+         7s4ehmTndNsUXuNKGbr9kvjFcd3Mp9ZdODpfN9HoB5g2D+yZusDwHuWkuU4raPMcimil
+         kZqE2uK8OHsWkEiEzdSgljtHvUDzDLS6iFQoJvCtj530TXUC2LmI2hgpJEf8AILdJ8KP
+         yEi/6MvFqnD0pD4vO2nWFj+FvwmBdozTY2PjCH4ydM2z7TATbTaajUyujq6bmBnpBkIT
+         BjCQ==
+X-Gm-Message-State: AJIora902EBs2l3GxFDZkBGWL1TAk9Q/0WBNyFXHw//IPm3aHxOhtdfW
+	b2tFlFSBMBez7atY+k1Oa2VFiy0q2yxDqkAc
+X-Google-Smtp-Source: AGRyM1vAi92HlCcP340VdsuW1eshwTJpEKAu0VF0zzIoSkayd5WUd0mGsFmCavTXKFLDUuf6AIFuWQ==
+X-Received: by 2002:adf:e78d:0:b0:21d:67d8:6e30 with SMTP id n13-20020adfe78d000000b0021d67d86e30mr9948862wrm.109.1657007816194;
+        Tue, 05 Jul 2022 00:56:56 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:3c4f:78be:dc90:14f9])
+        by smtp.gmail.com with ESMTPSA id v17-20020a5d5911000000b0021bbdc3375fsm8323473wrd.68.2022.07.05.00.56.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 00:56:55 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220705022032.281665-1-windhl@126.com>
+To: kishon@ti.com,
+	vkoul@kernel.org
+Cc: linux-phy@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v5 0/2] phy: amlogic: Add support for the G12A Analog MIPI D-PHY
+Date: Tue,  5 Jul 2022 09:56:48 +0200
+Message-Id: <20220705075650.3165348-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1592; h=from:subject; bh=nDetBA3HotL8bYLSaVKluyx7j3QuDEtAntCaS1aC/Hc=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBiw+6eCamVpBN7p2hTYDYzwk+y1u4fjJBS4nv/fE/2 7XFZMMWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYsPungAKCRB33NvayMhJ0e9uD/ 0YC6+R9Lh2/AGg5uSX2jqwJ7tx9VOQ7b3rP4l7V6PZDgfpJ4qGWw37cfEMJitIcDf7Da1I7s6qahl1 3qGAlj0RBriaWa8rIYPYncv12u/dCo0ZH61YdWwgXv6vYL0GZvBu/GyT2JGewazWCJCNOp5Bnj+qra +5dWQ5FSvknEvWJxZX2alCZLvvt/NkBC5ReoSUPteqnCgILtYgV9OUGjU2wflhl291w0Ea8MOC4B49 wucrMGtl2GiWuDsJcX7kScHtBjBkzeogvi/2Ls3dWvFqKR8i8uVvlCbbXNKR8X32V8RJsrxhArDMLk LUZlIeugqGDVy6E3vrErD/fQ+d+krvDTQVfLuJX0buF5+7PasbA8rD3gyDzNBcFiW0fKYF+eaQ1Wdl lhBgt9TocIOaGVbWqthVTWqV+ELnpnspjycWBOPNfp86E5uunnemIT2BvoMUeLZzCZabz8a+KL29dv q6qcVE6GAAPnm7HJb+XGGPYvH4iw/YcyvReaY8WugJSuv1h9dLOOV5sSuQXJkl6XbpWAV0xKICklJ8 hChNqfjXFJfV+pHfVYZujvbEmHoaJZnkJ4hUEZYeRbE+Wpxep9jpgDVQVTZsigOj9jAbpHISSy54fp BG/jYCk08IX0TT99+ADKu3iElLs7M92cmcrG+lA/4ZgbD4WZtJirQ55XG3HQ==
+X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220705_002227_685450_B4C870E3 
-X-CRM114-Status: GOOD (  15.46  )
+X-CRM114-CacheID: sfid-20220705_005657_933503_3BC8DBE5 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,69 +87,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-+ linux-amlogic, linux-arm-kernel, linux-kernel
+The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
+panels, this adds the bindings.
+    
+This Analog D-PHY works with a separate Digital MIPI D-PHY.
 
-On 05/07/2022 04:20, Liang He wrote:
-> We should hold the reference returned by of_get_parent() and use
-> it to call of_node_put() for refcount balance.
-> 
-> Signed-off-by: Liang He <windhl@126.com>
-> ---
->   drivers/soc/amlogic/meson-ee-pwrc.c     | 5 ++++-
->   drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 5 ++++-
->   2 files changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index 2be3afe6c2e3..872ab8ba90bc 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -470,6 +470,7 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->   	const struct meson_ee_pwrc_domain_data *match;
->   	struct regmap *regmap_ao, *regmap_hhi;
->   	struct meson_ee_pwrc *pwrc;
-> +	struct device_node *np;
->   	int i, ret;
->   
->   	match = of_device_get_match_data(&pdev->dev);
-> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->   
->   	pwrc->xlate.num_domains = match->count;
->   
-> -	regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
-> +	np = of_get_parent(pdev->dev.of_node);
-> +	regmap_hhi = syscon_node_to_regmap(np);
-> +	of_node_put(np);
->   	if (IS_ERR(regmap_hhi)) {
->   		dev_err(&pdev->dev, "failed to get HHI regmap\n");
->   		return PTR_ERR(regmap_hhi);
-> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> index b4615b288625..75a4e1cec416 100644
-> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> @@ -274,6 +274,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
->   	struct regmap *regmap_ao, *regmap_hhi;
->   	struct meson_gx_pwrc_vpu *vpu_pd;
->   	struct reset_control *rstc;
-> +	struct device_node *np;
->   	struct clk *vpu_clk;
->   	struct clk *vapb_clk;
->   	bool powered_off;
-> @@ -291,7 +292,9 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
->   
->   	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
->   
-> -	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
-> +	np = of_get_parent(pdev->dev.of_node);
-> +	regmap_ao = syscon_node_to_regmap(np);
-> +	of_node_put(np);
->   	if (IS_ERR(regmap_ao)) {
->   		dev_err(&pdev->dev, "failed to get regmap\n");
->   		return PTR_ERR(regmap_ao);
+This serie adds the Bindings and the PHY driver.
+
+Changes from v4 at [4]:
+- Add bindings review from Rib
+- Order in Kconfig alphabetically
+- Switch to dev_err_probe for error log
+- Remove last comma after sentinel compatible entry
+- Depends on MFD_SYSCON instead
+- Do not keep reference of parent node pointer
+
+Changes from v3 at [3]:
+- Add sentinel comment as requested by Martin
+
+Changes from v2 at [2]:
+- Bindings example fix
+
+Changes from v1 at [1]:
+- Bindings fixes
+
+[1] https://lore.kernel.org/r/20201123145157.300456-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/20210210080736.771803-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/r/20220107150512.614423-1-narmstrong@baylibre.com
+[4] https://lore.kernel.org/r/20220616133811.1674777-1-narmstrong@baylibre.com
+
+Neil Armstrong (2):
+  dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
+  phy: amlogic: Add G12A Analog MIPI D-PHY driver
+
+ .../phy/amlogic,g12a-mipi-dphy-analog.yaml    |  35 ++++
+ drivers/phy/amlogic/Kconfig                   |  12 ++
+ drivers/phy/amlogic/Makefile                  |   1 +
+ .../amlogic/phy-meson-g12a-mipi-dphy-analog.c | 171 ++++++++++++++++++
+ 4 files changed, 219 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+ create mode 100644 drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
+
+-- 
+2.25.1
 
 
 _______________________________________________
