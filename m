@@ -4,78 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56047C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:57:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07125C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+EERcuPM97qhVmZ59vSDfH5vVG+S6e5quU89Fy0g/pk=; b=or+IjbJ6k1Sm8s
-	yrcjTlh3VZJ7AmF0FKDLeFQ7ANCfrkpOvYrpCOGSE17o8Xc/ZJ9vIWhnlFGKDdKBGsdc5mOc2mOKe
-	npPn1k5VLQUNVwbp1mDdi7W3n9YGg/nN5l6vxcb3DG8GR8/i4aNjb/jjbUV05f7IYTWCmHFfmbuEK
-	0TZLMX0O4sqDRlA8wMzvZTpUFaJKlJ9JLE8uXb1cjgxFTw4aIQ0StR0NJYaGfMPPFdyQjHcAAbMWL
-	1GCknZqZm4xUi16T/xfU1DgOGPHHzS9OhOlQWt6PaOzDkw3fXMtHvvBgIGak1R6lFzHUNOsf+b59+
-	8zFX2ny7laMbsIslb2dA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=khkPB0UZr3N3R8zozOIRZ0wt6aLlEQSrs+fGT1NX/+g=; b=oTH2TiWvwtP2xa
+	SF+S7VDWBgJpGE3ULDZen4UgG7XoEJtDM7kkegrZxfs9Z/bBRqsCJlBNnMFQk3TOw//lvqI7ymST6
+	w2RefvbukRlqzc7IIcqplVfCvJC0YIhWmMKoqmbf39a16O3uC6X5h6yNPrR3tL+D4itWpgBIyn+RO
+	vm5NG2BtxMhEEiWZL5NdDiF/xsrHr75aklCxbkWo5CGeHJcTrX7wMkkbQzPQv2zp7PTjox9okuxYh
+	pTb36SkVytIiDj1RrbS88EnjnIYfPwngu0GVIikCOO0MHi7c2xLVNP5U3gbL8agcFFzRR+XZh1cdJ
+	/IhHcmQsWRHe7VKNR9iw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8dQm-00Frvg-M4; Tue, 05 Jul 2022 07:57:12 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1o8dR6-00FsFl-4A; Tue, 05 Jul 2022 07:57:32 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8dQX-00FraO-Qx
-	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:57:02 +0000
-Received: by mail-wr1-x434.google.com with SMTP id b26so16335321wrc.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:56:57 -0700 (PDT)
+	id 1o8dQd-00Frb1-5S
+	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:57:04 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so6797567wmb.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:56:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c5dZdIc1hvkMEYVAj9UyiGCz6EmxkSEM83h7TJOheUI=;
-        b=6s9g4MM/WSArj6qBhSnDTy4B3b+hiTstuCKJxNZ3trOEsw4AuPSUxSYYW0QW68WUgX
-         tABhnW0yqeEF0xHVTnQ0vU29GH5vy/n9Zw+hMyWcaNKY2u91I52Pbm5n/EbWsNjB0IvC
-         U8afSRPrqjmtbsptiGCvxjj1S2caLzb1x6dAs/SxUENCKKKs/7adHOpCwV+prvPDtzw6
-         LMtGC+wKsqM7gmqOKjXLhGwCnSMomJ9HMKly3jWvL1GGjy+aKXKOVubHjDp7WoHjcS6/
-         5v8cIk10SH4rZN8ofmPZlgBStlye/QcYrbNO+nJrVJY1opHre4KchD8qzh0k+b/SKcgZ
-         H/9Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6b5YvPP6Cm40ZHiN9lWJqY1BKAIBQa8OhFlxO39IAZI=;
+        b=gP5wyRaik5C0Bjp8IpFbJIrMLOKs8yPVyFoIC42ZhaAjw9hbxpQaNPA6lwZH/hBMMR
+         Az65dtQPZvxgKhuFZAewgXi4f3rJH6dyxYi6BBEgm7qh2Cz9WwuwBdLMDl1wrG9CP16B
+         De60OBUbiyPKd9GnYvzAMQ+gAFmXVFzUbLKGx+kL5oy931YQsYHcsgf1uL+qse8VdlyC
+         9vb30Wz3+t94By/y3yfcb3Wd/LWhq71v4N8NJBhKlHEkFExBz0anPACZMLfl/7139uTl
+         rrZc+Huh/mbAFyhHO8OB5ogxAzNEoIX3RDYTnHQDd/uoCIP7Yev8tgOL8uu1dqz3cooA
+         wQpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c5dZdIc1hvkMEYVAj9UyiGCz6EmxkSEM83h7TJOheUI=;
-        b=gWIjuEFBbk+sx9VrqzogcLRpJgUjJAhiwyKIT0cHEK4wEmq4cYiUdY834qKMSqAhHg
-         FYkezewzfnEIbVIrygNKc/Dvm9TXoxH33zITnUoMiCfv4HmaKX4IsAmslQ5FZh1ndJnK
-         7s4ehmTndNsUXuNKGbr9kvjFcd3Mp9ZdODpfN9HoB5g2D+yZusDwHuWkuU4raPMcimil
-         kZqE2uK8OHsWkEiEzdSgljtHvUDzDLS6iFQoJvCtj530TXUC2LmI2hgpJEf8AILdJ8KP
-         yEi/6MvFqnD0pD4vO2nWFj+FvwmBdozTY2PjCH4ydM2z7TATbTaajUyujq6bmBnpBkIT
-         BjCQ==
-X-Gm-Message-State: AJIora902EBs2l3GxFDZkBGWL1TAk9Q/0WBNyFXHw//IPm3aHxOhtdfW
-	b2tFlFSBMBez7atY+k1Oa2VFiy0q2yxDqkAc
-X-Google-Smtp-Source: AGRyM1vAi92HlCcP340VdsuW1eshwTJpEKAu0VF0zzIoSkayd5WUd0mGsFmCavTXKFLDUuf6AIFuWQ==
-X-Received: by 2002:adf:e78d:0:b0:21d:67d8:6e30 with SMTP id n13-20020adfe78d000000b0021d67d86e30mr9948862wrm.109.1657007816194;
-        Tue, 05 Jul 2022 00:56:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6b5YvPP6Cm40ZHiN9lWJqY1BKAIBQa8OhFlxO39IAZI=;
+        b=GfqainxQ613iNbrPTYFtzhVuVPKfX9HPgc8Y1FA4n1BHkA9KUGIhg/7jkEdqkd5EJw
+         5fBHTou5JpT9SiHib2uISaR5KwptaX8/WtPCFWsaSFxJRHgdvo0ewbsXkj0+WOqUEWRt
+         l/DtT7jhvJkVlXrM0FcievpEURSIdc+GN5rkXwSSeU87uflwclusKNDF3pQXjG/I7d38
+         iVySyjCr7KUM+PV4+eh9bOoCQ9odCiw1T/IQ/Pt4ufhLNeMUj/+QLku5qUFAvR0dmPW6
+         iePbwV3xCut0U72fwTZes37Z1VFAru0ey0K4Eib3DQDNZdr2csZN/X9w3qfROpEmn1mr
+         Yuxg==
+X-Gm-Message-State: AJIora/n53AyCKMxD/PR3Ru4xZe6918HsFvi2MAmnz1958pC8P5PaM3j
+	uKEN8EGJB8I5/HfdTZ9YOp54cA==
+X-Google-Smtp-Source: AGRyM1uMxsAd5+tDhIMxilNng66yioFL7S4YFsUh8CVh5sqh2ZnJ1n8jfi26E8hTZse1QgEQddWSEQ==
+X-Received: by 2002:a05:600c:3ac3:b0:3a0:45b6:7efb with SMTP id d3-20020a05600c3ac300b003a045b67efbmr36527404wms.183.1657007817253;
+        Tue, 05 Jul 2022 00:56:57 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:3c4f:78be:dc90:14f9])
-        by smtp.gmail.com with ESMTPSA id v17-20020a5d5911000000b0021bbdc3375fsm8323473wrd.68.2022.07.05.00.56.55
+        by smtp.gmail.com with ESMTPSA id v17-20020a5d5911000000b0021bbdc3375fsm8323473wrd.68.2022.07.05.00.56.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 00:56:55 -0700 (PDT)
+        Tue, 05 Jul 2022 00:56:56 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: kishon@ti.com,
-	vkoul@kernel.org
+	vkoul@kernel.org,
+	devicetree@vger.kernel.org
 Cc: linux-phy@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v5 0/2] phy: amlogic: Add support for the G12A Analog MIPI D-PHY
-Date: Tue,  5 Jul 2022 09:56:48 +0200
-Message-Id: <20220705075650.3165348-1-narmstrong@baylibre.com>
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
+Date: Tue,  5 Jul 2022 09:56:49 +0200
+Message-Id: <20220705075650.3165348-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220705075650.3165348-1-narmstrong@baylibre.com>
+References: <20220705075650.3165348-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1592; h=from:subject; bh=nDetBA3HotL8bYLSaVKluyx7j3QuDEtAntCaS1aC/Hc=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBiw+6eCamVpBN7p2hTYDYzwk+y1u4fjJBS4nv/fE/2 7XFZMMWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYsPungAKCRB33NvayMhJ0e9uD/ 0YC6+R9Lh2/AGg5uSX2jqwJ7tx9VOQ7b3rP4l7V6PZDgfpJ4qGWw37cfEMJitIcDf7Da1I7s6qahl1 3qGAlj0RBriaWa8rIYPYncv12u/dCo0ZH61YdWwgXv6vYL0GZvBu/GyT2JGewazWCJCNOp5Bnj+qra +5dWQ5FSvknEvWJxZX2alCZLvvt/NkBC5ReoSUPteqnCgILtYgV9OUGjU2wflhl291w0Ea8MOC4B49 wucrMGtl2GiWuDsJcX7kScHtBjBkzeogvi/2Ls3dWvFqKR8i8uVvlCbbXNKR8X32V8RJsrxhArDMLk LUZlIeugqGDVy6E3vrErD/fQ+d+krvDTQVfLuJX0buF5+7PasbA8rD3gyDzNBcFiW0fKYF+eaQ1Wdl lhBgt9TocIOaGVbWqthVTWqV+ELnpnspjycWBOPNfp86E5uunnemIT2BvoMUeLZzCZabz8a+KL29dv q6qcVE6GAAPnm7HJb+XGGPYvH4iw/YcyvReaY8WugJSuv1h9dLOOV5sSuQXJkl6XbpWAV0xKICklJ8 hChNqfjXFJfV+pHfVYZujvbEmHoaJZnkJ4hUEZYeRbE+Wpxep9jpgDVQVTZsigOj9jAbpHISSy54fp BG/jYCk08IX0TT99+ADKu3iElLs7M92cmcrG+lA/4ZgbD4WZtJirQ55XG3HQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1543; h=from:subject; bh=iOBx9fr8HbPBX94EGJGOKU8CqvBCi3FrRoD0vFQxImA=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBiw+6hxEXENvi29/8PBCp5BxvMDA7bv97mLUSzbfas Q+zBXg+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYsPuoQAKCRB33NvayMhJ0ZxbD/ 9ABJc/gmqqibXPvDP7CwOXJs8Lwvf9rKLthCjcc6dMMYJ5jtc56LQggDPLxJwdGFXud+5OHshvoz9c uIm3aXTBe4BA+/C0FO+yKgtqV9BXUecjOQIbWCpfsJc8sC/qvo/oiKDnbzQKYTnOR2gKZO1dntpg8k PXjYR0wnPyCW9baVjL/8BJw0LLOpteulqtPK4ji36GoTIGKqhoLHLbDi+wDfxDFRnB294cdlv5KDxn z3EG5QKI7cWJBCfKVSmb3H0A39yzcWr+04v8+vxhraEtePgfWteL5AINR+CW0kzYZzTxJ1348TekIT 7YlmyuaRwpq69CArNMwHv65oIWV1cyV8ttNO7SKWJL0cL79Ck9NHnEdDJ98DvmQkNhVEJhRfYXE7ak O64wonKAv86sM77DSkXmT8m6Req/mvqQREyKbrg5tmbJ2Ju8Z/YWb4UvA4N+5mcTB8+HTWKFQvZZwW Ahm+3m55tagtDZRslRtOVG6Z/kGIT5l43OdYL4mX1qHkiUMixOwJLZxyMX263tPpEfSwguMJYDoZuk U1BJa/Dz9jwHSSZhQTr8YCfqj+kTkIlfsoEaateRbo7gj7mluDJftuWlOb1zp79ZOspLLX+vZrb5BC V0P+LpUwBeb3iHbui/gfMcw7y9JDbkDoTygn+LcYXLgUfHux4BoJMu1OYTIw==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220705_005657_933503_3BC8DBE5 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20220705_005703_219914_33B822E6 
+X-CRM114-Status: GOOD (  11.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,45 +98,57 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
 panels, this adds the bindings.
-    
+
 This Analog D-PHY works with a separate Digital MIPI D-PHY.
 
-This serie adds the Bindings and the PHY driver.
-
-Changes from v4 at [4]:
-- Add bindings review from Rib
-- Order in Kconfig alphabetically
-- Switch to dev_err_probe for error log
-- Remove last comma after sentinel compatible entry
-- Depends on MFD_SYSCON instead
-- Do not keep reference of parent node pointer
-
-Changes from v3 at [3]:
-- Add sentinel comment as requested by Martin
-
-Changes from v2 at [2]:
-- Bindings example fix
-
-Changes from v1 at [1]:
-- Bindings fixes
-
-[1] https://lore.kernel.org/r/20201123145157.300456-1-narmstrong@baylibre.com
-[2] https://lore.kernel.org/r/20210210080736.771803-1-narmstrong@baylibre.com
-[3] https://lore.kernel.org/r/20220107150512.614423-1-narmstrong@baylibre.com
-[4] https://lore.kernel.org/r/20220616133811.1674777-1-narmstrong@baylibre.com
-
-Neil Armstrong (2):
-  dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
-  phy: amlogic: Add G12A Analog MIPI D-PHY driver
-
- .../phy/amlogic,g12a-mipi-dphy-analog.yaml    |  35 ++++
- drivers/phy/amlogic/Kconfig                   |  12 ++
- drivers/phy/amlogic/Makefile                  |   1 +
- .../amlogic/phy-meson-g12a-mipi-dphy-analog.c | 171 ++++++++++++++++++
- 4 files changed, 219 insertions(+)
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
- create mode 100644 drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
 
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+new file mode 100644
+index 000000000000..7aa0c05d6ce4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic G12A MIPI analog PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    const: amlogic,g12a-mipi-dphy-analog
++
++  "#phy-cells":
++    const: 0
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@0 {
++          compatible = "amlogic,g12a-mipi-dphy-analog";
++          reg = <0x0 0xc>;
++          #phy-cells = <0>;
++    };
 -- 
 2.25.1
 
