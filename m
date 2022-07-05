@@ -4,82 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7535AC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:20:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD81C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Jul 2022 07:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:From:Cc:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YRyaI2SXl19mHGfICwK+519ykOpIMchbFxw5HoQtGZY=; b=VV6alyUX3uL5ix
-	xZ87jztf2RkXPITyKKEWxoHZsHPVgfrR7I68a676FxRyQFeam6GqR8d3DQ6SQxOuS8Be6ks4p40Xz
-	e2k6hImutF4ljRBMRMbF0dFvqtPXNiT5E9VZ7V0Mh78ZinDCgzTBE3s3psI8W7fTXwf/JsrzscRi+
-	PJhgDnHHKEtowfwuswUvh3rSIxnIDS9Hgg/f64ocmd7CnqFhUf+72vLMLu3H4CZJ08KTtHSFVfOEA
-	GadG35o4Xc/eRmGKq+MCfoQm/WnvD7Y8dart8OAg66QnK2HbDGSP2abi37bvkUdPIH8iLGf4YFJW5
-	Y3XB7mjwCGy7Wmh594aw==;
+	List-Owner; bh=uhZtyQUslAIRjErY7QqjPGHsSg/8vFlhB6RzxpRQdFY=; b=OgyHcNHcY0/QA/
+	zjCpBr793TkcVlxbYsOttIqc6APXQUTwUzTgDLtlkCEDu2pTne2mwY4ytpNVcoZGyBYkelsQ2NNE6
+	ZES/DCrbk5aNRnvGeaFrQ2g/5RCbS/KZEl6C0D7UCeNaBZFxBTX7heHoMjKuu16PSh5iiLR91orHy
+	gYTmuM/TEPxNO4Rk+pC6+3Xo4ju9UN/4jS0uVv/YX4JaYHA31grUoziWDJCQulWJZGGW+EJVp5UEn
+	l/4MTD3P6s+f4RhRlexnKWuC9ZckEgyeiQ1eiay1ygXVUzougWy5QmaYhoN+Pd5+ma1nTCFW/sV8w
+	OK1CkP7g7lJsWh8WuiNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8cr5-00FUki-TH; Tue, 05 Jul 2022 07:20:19 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1o8csq-00FXtx-3t; Tue, 05 Jul 2022 07:22:08 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o8cr2-00FUYx-KO
-	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:20:18 +0000
-Received: by mail-wr1-x429.google.com with SMTP id bk26so1105328wrb.11
-        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:20:14 -0700 (PDT)
+	id 1o8csc-00FXMR-Ae
+	for linux-amlogic@lists.infradead.org; Tue, 05 Jul 2022 07:21:55 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id f2so10818536wrr.6
+        for <linux-amlogic@lists.infradead.org>; Tue, 05 Jul 2022 00:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
+         :references:cc:from:organization:in-reply-to
          :content-transfer-encoding;
-        bh=WOCsSx7lXxV2zIAe6a5ICZiPw9+Fban/swGG8Q3QNlo=;
-        b=eAZgWcaQ3Ym+dDujbSrzG9GD8fhXJPblJIPHUgdlDVU5gt1MOyltWjoBDsZLz0lmhr
-         C9LvfK7ud2vLUv8G+uJUGAOq+/1nLQPCQAcHdfam0Sdn3oGjfJzYbtvh/sgYITI+7N5W
-         zh79llYUWLoEye5pvlacy0vqfGVgVYfTv/DLQCuE8q96hJk5778exqRRirsZA7KTZfav
-         4E0xMbceM/c4vUw+/tPyU2LUaojDuOLHMW1S9q/XomuVpPZzm5jnuNRZHvjQR2aifVXN
-         JTy3OrBj6wSyfE4/LhZasYeKrYVgH23heAWwUDX36X6zBuoYRpkW0afQSWrheHsMaB3a
-         9D+Q==
+        bh=jup5yi9H7xUYGePSxxyktmglyW6uLEzBdr9VBRZBloA=;
+        b=LzyC1BslQcQDLwEh59d9Kfgx2N20Ze+0hRqNNCPsWakeskMfJdQfZpxWmWtA34cHFT
+         xgCbDp7n8a0oIe1/vz3FeCy7qd2GKvBrFEX5HnGSTOq894MfppO6OOXFxL50ATudJ0ea
+         tH+jsB5hb0v8JAIY4Rsu5CU+G+t1QEmxZcWmjjq24GmMTpjESFqyUWsldy7IJplbglH/
+         ti0+hHwePBRCkv5Or5A+COl332Bv+lcii5owVjP+aoAZACzXkasK1qn1yTg/dQC92eow
+         oSM6DubSDEGR6PpxG6rZqbXCngI43E7+/GP1u1ILKaDV5vj7DiM7BnrlteJAEG0kTz8h
+         tOGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-language:to:references:cc:from:organization:in-reply-to
          :content-transfer-encoding;
-        bh=WOCsSx7lXxV2zIAe6a5ICZiPw9+Fban/swGG8Q3QNlo=;
-        b=LQ9dEP0Ruac3Ooj7IHpraiT0924VlVpaX8cfOm+SMaFGwb4Urxv11E5CIX5Ijvzxyh
-         QQbZtPwZKGNvvFkM7a4yb1jcZI9IOHwWDZF/rtwY4ZaqIqS3Zvc5Dee2nBu3dhsFvNI9
-         azHH1SoCigHOzqrBQ3AKI8AFPlM8wj7+rnuu4JkeRsdx8I0JCkVbRAgQoEk6lzDiKwLq
-         1uoPQwgXXce5Uq2TsfTF/NEUnvweHpvMd761q414MdVfeYpmxbd2yvc+AdGeTIvKvYmF
-         TPiCzm5wdGgL79+Zsp85BFgsrWnQzvmd2jPvgwb2KwBiyARc30BTEY3ZKE2cUAxX3qUU
-         XotA==
-X-Gm-Message-State: AJIora8zYfQuPqiUQMhd5rC0qBcl/gMgh1BFjX5fMU+yY9JOgUVsNSj9
-	7C+2On6PLHS0nB7QpUBiSKShJg==
-X-Google-Smtp-Source: AGRyM1v0iE9uSUwOdct/LvoIWesjgrfOMAhlaLrsxS5mOVCu8GaB2/jMPXa+Znr80FYF3PS3amNKnQ==
-X-Received: by 2002:a05:6000:1f81:b0:21b:a1b5:776 with SMTP id bw1-20020a0560001f8100b0021ba1b50776mr29171942wrb.201.1657005612799;
-        Tue, 05 Jul 2022 00:20:12 -0700 (PDT)
+        bh=jup5yi9H7xUYGePSxxyktmglyW6uLEzBdr9VBRZBloA=;
+        b=ZM2GzzSRVMXJxXxxACZNng6UA/KIW5Hmg0hTHaJcEgRehj9igOYBXSTfcS5Ahf0ZwP
+         pjg3HaIX/2yM0vK7kArQWF3uBZdE0pJq/FPPBNm6CvHHJhqrACRWfMBeB5EpwEnBSJ/y
+         9kRn7oSBB0/FV9aH/dBeG19fUNbEB0Roa11DgaylcTx3ggbIQ8q7cH7QDAHE1SoEzWmi
+         beexBaXpoKNapWUhTihg/e/DTY+KAIWHSLnuWII8WMS9Pkb5xcdHO4pnJgZkD9EfWoYw
+         SsFnxTOdiMP0ZYOUmIhzRTc6fP/Dk6nN4XIeMfGHKLREAxXsnzUn1ohU7c9MOcLN5PLn
+         /S0A==
+X-Gm-Message-State: AJIora/V0sa//dXDMhGzN8sL3xWf+q0isVLmcXPGwrOFsyzxUwMu5QOu
+	p81e4DX0WXT+8YC38h9HDZ05uA==
+X-Google-Smtp-Source: AGRyM1smRihRT50fdOIiQfU+V8EUtDDGx/W73L/08nARMlYF5jSo5SQ5+guiRsMa9ttFJ2BN1YUJJQ==
+X-Received: by 2002:a5d:598e:0:b0:21d:37df:3f2e with SMTP id n14-20020a5d598e000000b0021d37df3f2emr25254699wri.451.1657005710509;
+        Tue, 05 Jul 2022 00:21:50 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:3c4f:78be:dc90:14f9? ([2001:861:44c0:66c0:3c4f:78be:dc90:14f9])
-        by smtp.gmail.com with ESMTPSA id b4-20020a5d6344000000b0021d68a504cbsm5847353wrw.94.2022.07.05.00.20.11
+        by smtp.gmail.com with ESMTPSA id r16-20020a05600c35d000b003a0375c4f73sm22157331wmq.44.2022.07.05.00.21.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 00:20:12 -0700 (PDT)
-Message-ID: <58efe130-921d-3794-6399-eaf534002069@baylibre.com>
-Date: Tue, 5 Jul 2022 09:20:11 +0200
+        Tue, 05 Jul 2022 00:21:50 -0700 (PDT)
+Message-ID: <e2746084-ee88-7dc6-afd5-0d0dca4723c4@baylibre.com>
+Date: Tue, 5 Jul 2022 09:21:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/2] phy: amlogic: Add G12A Analog MIPI D-PHY driver
+Subject: Re: [PATCH] phy: amlogic: phy-meson-axg-mipi-pcie-analog: Hold
+ reference returned by of_get_parent()
 Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: kishon@ti.com, vkoul@kernel.org, linux-phy@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20220616133811.1674777-1-narmstrong@baylibre.com>
- <20220616133811.1674777-3-narmstrong@baylibre.com>
- <CAFBinCCcx_pG7rsMMGsoOOZC6E0-+qiWY3HPQTizMsDWm9wBnw@mail.gmail.com>
+To: Liang He <windhl@126.com>, kishon@ti.com, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-phy@lists.infradead.org
+References: <20220705021526.281441-1-windhl@126.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <CAFBinCCcx_pG7rsMMGsoOOZC6E0-+qiWY3HPQTizMsDWm9wBnw@mail.gmail.com>
+In-Reply-To: <20220705021526.281441-1-windhl@126.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220705_002016_769296_AE4A0C16 
-X-CRM114-Status: GOOD (  23.79  )
+X-CRM114-CacheID: sfid-20220705_002154_438553_82C8876C 
+X-CRM114-Status: GOOD (  16.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,79 +98,42 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/06/2022 00:21, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Thu, Jun 16, 2022 at 3:39 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> The Amlogic G12A SoCs embeds an Analog MIPI D-PHY used to communicate with DSI
->> panels.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>   drivers/phy/amlogic/Kconfig                   |  12 ++
->>   drivers/phy/amlogic/Makefile                  |   1 +
->>   .../amlogic/phy-meson-g12a-mipi-dphy-analog.c | 177 ++++++++++++++++++
->>   3 files changed, 190 insertions(+)
->>   create mode 100644 drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
->>
->> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
->> index 486ca23aba32..e4d1170efd54 100644
->> --- a/drivers/phy/amlogic/Kconfig
->> +++ b/drivers/phy/amlogic/Kconfig
->> @@ -59,6 +59,18 @@ config PHY_MESON_G12A_USB3_PCIE
->>            in Meson G12A SoCs.
->>            If unsure, say N.
->>
->> +config PHY_MESON_G12A_MIPI_DPHY_ANALOG
->> +       tristate "Meson G12A MIPI Analog DPHY driver"
->> +       default ARCH_MESON
->> +       depends on OF && (ARCH_MESON || COMPILE_TEST)
->> +       select GENERIC_PHY
->> +       select REGMAP_MMIO
-> I think this should be "select MFD_SYSCON" as we're not using
-> REGMAP_MMIO directly
-> 
-> [...]
->> +       /* Get the hhi system controller node */
->> +       map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-> I just reviewed a patch that adds of_node_put() for the node returned
-> by of_get_parent() (after (syscon_node_to_regmap() has been used).
-> I think we need the same here
-> 
->> +       if (IS_ERR(map)) {
->> +               dev_err(dev,
->> +                       "failed to get HHI regmap\n");
->> +               return PTR_ERR(map);
-> to simplify we can use:
->      return dev_err_probe(dev, PTR_ERR(map), "failed to get HHI regmap\n");
-> doesn't make much difference for this one though, but...
-> 
-> [...]
->> +       priv->phy = devm_phy_create(dev, np, &phy_g12a_mipi_dphy_analog_ops);
->> +       if (IS_ERR(priv->phy)) {
->> +               ret = PTR_ERR(priv->phy);
->> +               if (ret != -EPROBE_DEFER)
->> +                       dev_err(dev, "failed to create PHY\n");
->> +               return ret;
-> here dev_err_probe() would simplify the code a lot
-> 
-> [...]
->> +static const struct of_device_id phy_g12a_mipi_dphy_analog_of_match[] = {
->> +       {
->> +               .compatible = "amlogic,g12a-mipi-dphy-analog",
->> +       },
->> +       { /* sentinel */ },
-> super nit-pick: no comma here
-> 
-> 
-> Best regards,
-> Martin
++ linux-amlogic, linux-arm-kernel, linux-kernel
 
-Thanks,
-will fix all that.
-
-Neil
+On 05/07/2022 04:15, Liang He wrote:
+> We should hold the reference returned by of_get_parent() and use it
+> to call of_node_put() for reference balance.
+> 
+> Fixes: 8eff8b4e22d9 ("phy: amlogic: phy-meson-axg-mipi-pcie-analog: add support for MIPI DSI analog")
+> Signed-off-by: Liang He <windhl@126.com>
+> ---
+>   drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> index 1027ece6ca12..a3e1108b736d 100644
+> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+> @@ -197,7 +197,7 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+>   	struct phy_provider *phy;
+>   	struct device *dev = &pdev->dev;
+>   	struct phy_axg_mipi_pcie_analog_priv *priv;
+> -	struct device_node *np = dev->of_node;
+> +	struct device_node *np = dev->of_node, *parent_np;
+>   	struct regmap *map;
+>   	int ret;
+>   
+> @@ -206,7 +206,9 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
+>   		return -ENOMEM;
+>   
+>   	/* Get the hhi system controller node */
+> -	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
+> +	parent_np = of_get_parent(dev->of_node);
+> +	map = syscon_node_to_regmap(parent_np);
+> +	of_node_put(parent_np);
+>   	if (IS_ERR(map)) {
+>   		dev_err(dev,
+>   			"failed to get HHI regmap\n");
 
 
 _______________________________________________
