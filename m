@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B804FC43334
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jul 2022 16:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F287C433EF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Jul 2022 17:22:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xsuMjXbSKnsPuESWsiYIxMbOmtMo2DSerOkX59KW1bM=; b=Zrlv1HBs459ng6
-	VRsX0XsMAQzHYuL4OPNReldOhvgIm/sDvM2Ax/tAFlKk6sM8hlY8bgDTyXfAQP5snahcx0b0uqzQn
-	4z52CtVGkqjFz3dcC0PAVYO5y1QnoJgZODdwyY4W/MA5epu8JpwJBstY1ESHmYl9TLt2DkDh0bLZV
-	kFA8gsrftTAoqbVvshvNSEXDdt+Bp4QRTcsz4HvJDQGn+o79l7L+dLpckkX4q2RVu7ogbb6S1P/BZ
-	3HiaQb9uPRwADXm3+OrDFbDO1lRZf49FtnpsYSaU42UMOTabMT5JKSBFV3SeEUUwxrFeBkWex5pO9
-	IEankMxrn1fRA0ttjvRw==;
+	List-Owner; bh=n+JUezVqzNUUbXOvtOJC5qcmUByuGM5lQvt2Pm4AN0o=; b=x+3G4O6fPGtKD/
+	anRxSjoGM/x3NcY3PMiGqX0D7E6YPslM8gx5rD2fl5NeuIAjBtGozsW+1nGtRfvV2a8EsmKAxEgm+
+	+Ry1sLS2tf426IXdVzHr9mmo2kz172mHKRWLG518FMHMKfWIhT6SgpxK0ndcyjbT6pBe494i/5YhY
+	KVCoyzVI3A2lcd7wZunBtMj+tMjtzSvXHd2InqNMJRKGu/e+MpI0eGzpDH7+RsUCbT6EKlPQbEFVS
+	H4rVDTYncnnAnSlHpjFaXwGoq3F6SaSCkid63atJ3c/M9KIl8tS3s1TaOVY6F3ds6FbOTgvs1BA8b
+	syOZqds31Y1TkMcYb8yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o98BC-00BRzc-QZ; Wed, 06 Jul 2022 16:47:10 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1o98iq-00Bgel-W8; Wed, 06 Jul 2022 17:21:57 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o987c-00BQFo-Px; Wed, 06 Jul 2022 16:43:30 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id v4-20020a17090abb8400b001ef966652a3so6512900pjr.4;
-        Wed, 06 Jul 2022 09:43:28 -0700 (PDT)
+	id 1o98Wm-00BbU4-76
+	for linux-amlogic@lists.infradead.org; Wed, 06 Jul 2022 17:09:35 +0000
+Received: by mail-wm1-x329.google.com with SMTP id f190so9199915wma.5
+        for <linux-amlogic@lists.infradead.org>; Wed, 06 Jul 2022 10:09:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oraZyyvVir1700yNQVzrP9Zwaxp7xrxcJj7xCrbOwKY=;
-        b=EfJh9o7U1fzaM7uW6JPnPBco1gx5afL8OEXdBvSEwnnQzDqzqN65FghE6rrrlQ2L3+
-         p+Dpmz5ngc/Ntn6shHZm/lOtJEfedW0os2igAWzQR37X8hcZ2mpJBjSIEM3Su+YB8ggR
-         NDR6nWv0pqQxrt/gpcDp1CBhiKkQBpST2EnW8i2hECHMUd4yb0oekQ+A+59+p5DdB2M9
-         HRQyC99nu2wVuQp0CuL9qk4b4mz7oaFl42gUL2z5dA/gG7QCBZAdFPVfviLOe3u5zMes
-         BeLQ9rQRBPQIIhcx2FvpZHMjFgb8pW+fn5nHqQaVW52Ua25EzRK5osDhv2Z9NxlJUe5s
-         3hpQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=5LUOM8ZYJNqDNXNRkK8SW6v1KeODGn/t/tSrSeB93Hg=;
+        b=FWxQ9w9QQNjX8fhNNM4ShlZTIrizS+PKUFTG21pr1iRgQ7Vf64He23QLE9Bp6vZC9d
+         QZu2/gYfSpYUu+IGln2mRJLyYTBfq/2oQnalM/9l2402od6QikiGfzuLSKyyHtUvM0ND
+         H8c1Ve5FE8EFWb3V5w4SgEjotxtGfnYtzZH/0u8do8Ur8T0RcZirfEQuMgVoNg6hEjJl
+         IFvuFdAFs7G+vCfMwzF+R9e5ptnM53k9g6vDUW9c9MrHQ6945QoFT/IiVHoXUxXm909V
+         DfjWv/xGi1nJsBJDn0frsfD/P79LZl9yDkDVyV2rDWgVln6fVNSHmzJB+nvuFcX8uCDE
+         vGYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=oraZyyvVir1700yNQVzrP9Zwaxp7xrxcJj7xCrbOwKY=;
-        b=ABySFw1YaCL3YiEhkkN0b2fPO5c+GtzbAcq9g4++x6Mi9lRmfNZ2I/0HVsh9renh3+
-         8CaP1RrY2pXZzPWtkOTrg/DpWefqYFHb6eDdnFkrqjBz44diRUtSnnyj8kJMWhm+dHRb
-         N8OX0ZpYLSrM7XJUqLrljklmnqygNk62C5PjNZA8aNIVTnK5fIPQNW4weZZVcZO6q0Yl
-         /FhxIfv/LEsOKOqtsAF9Aej2p3JOG49Zh9o60hbflXJUJwJP9AGksUfG1RVgjHTdeo/s
-         /0tZvEvivYLiyZCm9kHOb7SiHW2h+AgflkZu82IDH2sv635Z7mqG2Xn91Eu75hb0lZJ6
-         GiZw==
-X-Gm-Message-State: AJIora/Z0r3sNoHWXfp3t6WY7CUITGgqEpZ7PuUXnPAqVH3C6d8jRSUD
-	CNCBqxKLOVVhSllGZ2q/tmk=
-X-Google-Smtp-Source: AGRyM1skinJBZte4Q+yq3FR+y6tbCuPsShkOzB4+jvtzpcNoq/exAfYvBFN41bB15wIBO1q8dnwGig==
-X-Received: by 2002:a17:90b:38c4:b0:1ef:84e0:90f5 with SMTP id nn4-20020a17090b38c400b001ef84e090f5mr23618932pjb.149.1657125808122;
-        Wed, 06 Jul 2022 09:43:28 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x67-20020a628646000000b005252ab25363sm25121974pfd.206.2022.07.06.09.43.25
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=5LUOM8ZYJNqDNXNRkK8SW6v1KeODGn/t/tSrSeB93Hg=;
+        b=XV0C2jXipPZddBVthn25ygXUG+QVtIqXXZY6NsSgFxu5FCxf9ydQsT/G02aELNQdep
+         3Odxylrlougi5c5rcJabICGBWZ49NZYQBBIf/ssL8Qnl4aOc+V+LpkbfpAKa9hyOJTQ2
+         P6Kr+1WKr+CsYfAD//61Ww+o1PfLZ2Kej14E49KK4dTCQ7smPjYW8o/4yKdimjYbHsKv
+         LUV6Hypa+QUe5fUc2yOdkwPNPAUYI9H1vLw09qNK9a3xacQGv8JD7oVghShAE+dnAdd2
+         a7u+g8eToBie4IHvH+wSsrlaUoGaNJKk0kM1XG1ZV9eLUuEGqF0lvQyjiUDM4NGDeBSk
+         ezMQ==
+X-Gm-Message-State: AJIora8lLLtCl/cSzCXpLMqxOw1ZV7vamffB9oUABxxwdpUzFcNDnGA4
+	c6Yg9gGtFqtANQHJ33EzpKHWyQ==
+X-Google-Smtp-Source: AGRyM1tDs+r809drkm9fTo8mDedQDX5NO3elMnVmkCGdj1wZQpsTYCLXuaPJsjJ/fdV04pS7uHNxFg==
+X-Received: by 2002:a05:600c:1e14:b0:3a0:2bba:4b2e with SMTP id ay20-20020a05600c1e1400b003a02bba4b2emr42964111wmb.196.1657127362770;
+        Wed, 06 Jul 2022 10:09:22 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id m16-20020adfe950000000b0021d70a871cbsm5605291wrn.32.2022.07.06.10.09.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 09:43:26 -0700 (PDT)
-Date: Wed, 6 Jul 2022 09:43:25 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
-	Philippe Boos <pboos@baylibre.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-watchdog@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] watchdog: meson: keep running if already active
-Message-ID: <20220706164325.GA776177@roeck-us.net>
+        Wed, 06 Jul 2022 10:09:22 -0700 (PDT)
 References: <20220705142444.17063-1-pboos@baylibre.com>
  <f756b2d5-56e7-6e52-2739-eca4bb33508b@baylibre.com>
  <1jmtdnwd7y.fsf@starbuckisacylon.baylibre.com>
  <20220706124139.GB492220@roeck-us.net>
  <1j8rp6z720.fsf@starbuckisacylon.baylibre.com>
+ <20220706164325.GA776177@roeck-us.net>
+User-agent: mu4e 1.8.3; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Philippe Boos <pboos@baylibre.com>, Wim Van
+ Sebroeck <wim@linux-watchdog.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] watchdog: meson: keep running if already active
+Date: Wed, 06 Jul 2022 19:00:39 +0200
+In-reply-to: <20220706164325.GA776177@roeck-us.net>
+Message-ID: <1j4jzuyxq8.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1j8rp6z720.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220706_094328_896364_56AF50A4 
-X-CRM114-Status: GOOD (  15.79  )
+X-CRM114-CacheID: sfid-20220706_100928_302692_68C0ACB2 
+X-CRM114-Status: GOOD (  18.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,32 +97,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 06, 2022 at 03:24:27PM +0200, Jerome Brunet wrote:
-> 
-[ ... ]
 
-> 
-> No worries. That being said, I have gone over 
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst
-> 
-> It just says that Reviewed-by sent on the list should be collected for
-> the following version. Nothing against adding the tag if the job has
-> been done, on or off list. Same goes for Suggested-by, Tested-by, etc.
-> 
-> If I missed something or it is non-written rule, please let me know.
+On Wed 06 Jul 2022 at 09:43, Guenter Roeck <linux@roeck-us.net> wrote:
 
-Your interpretation is quite a strict one. I don't think there is a rule
-that states that tags not sent to a list must not be collected.
+> On Wed, Jul 06, 2022 at 03:24:27PM +0200, Jerome Brunet wrote:
+>> 
+> [ ... ]
+>
+>> 
+>> No worries. That being said, I have gone over 
+>> 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst
+>> 
+>> It just says that Reviewed-by sent on the list should be collected for
+>> the following version. Nothing against adding the tag if the job has
+>> been done, on or off list. Same goes for Suggested-by, Tested-by, etc.
+>> 
+>> If I missed something or it is non-written rule, please let me know.
+>
+> Your interpretation is quite a strict one. I don't think there is a rule
+> that states that tags not sent to a list must not be collected.
+>
+> Anyway, I would have called it common sense, especially since it does
+> happen that someone accidentally hits "reply" instead of "reply all"
+> and replies end up not being sent to the list. If you expect me to dig
+> through e-mail headers to determine if you meant your tags to be published
+> or not, sorry, that won't happen. Do not send me e-mails with any tags
+> unless you accept that they may be published.
+>
+> Guenter
 
-Anyway, I would have called it common sense, especially since it does
-happen that someone accidentally hits "reply" instead of "reply all"
-and replies end up not being sent to the list. If you expect me to dig
-through e-mail headers to determine if you meant your tags to be published
-or not, sorry, that won't happen. Do not send me e-mails with any tags
-unless you accept that they may be published.
+Exactly. Not expecting anything. I'm 100% aligned with you.
+Maybe this is where is misunderstanding is.
 
-Guenter
+The Reviewed-by was there when Philippe sent his mail.
+I was meant to be there and taken. Plain and simple.
+No other expectation whatsoever.
+
+I'm not asking for the tag to dropped, quite the opposite actually.
 
 _______________________________________________
 linux-amlogic mailing list
