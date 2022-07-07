@@ -4,112 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A8ECCA48C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Jul 2022 08:45:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D99DFC43334
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Jul 2022 09:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9Ylqg5KXJGsbAAWS+dqjwcbjBXSIclhleyNt8Upu0jk=; b=2FOY+vaiOj/DN5UliK/t2OeOKb
-	8BMVVjuMLlsaz0ziDthrkXeqhAvXGokQFOoY/ICyxVTMX4XvikFaCXTmjCbjyLreBUzEERbXT16uP
-	kGf+RllqAmP/+IT04l65qLU9/O8yy0wL14aeqfiN6b/GeiLV/XeEK8+pvUzohCVJpPMcGH7HHIhd6
-	0FGGvFvnUQx9EqZMd5GRSHDdxI495009sx2srL+xLvdGOGL+/6vTJPjf9nNxBuOK/0LHOFXIvxy1c
-	P307qp6jeUemtdDK0GxUdw2VAwJQ5EC1eTpwOIPRtQbLxeuWNddzVhWRfiQHYf/Rig/TB7xbntTfD
-	pJDagovg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=lW8Crtoz0RSrJ63NQoJlvm864XudV9ygA43J7jIvYl4=; b=4Ahfex5kTP+hmp
+	9UuyXM9ixNsQynHiCXbR9QzAzkI6K5LxXTmQG6Nb9acFsSGmRYlPZdPr2DQqs6bIjUej6ThuKF8wh
+	uRVto9J9pItWHlTHjMOWTr8/TrCsTIuMsifAMNYLK89nlgYHVlJN5Zg/lPd0z1WPqNBgtHXyflvVe
+	1p0aoa2IYmKt5NQ+lAcyUexwU7st5mZZ3pkCmpLv+bxt1aQm2N5Lc/SOUfUK0d5qUcJVo/aDudrdl
+	mjkYNT8rbIJO7W0UL2OAY5DO/slEsxNSGXapdoVFBjsq0Jby6QDCgf9xzAsXj8+5cqjmqCd7z61lx
+	UrYF3Kzxu2SdNQrMLV0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9N8P-00FGZD-Nb; Thu, 07 Jul 2022 08:45:17 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1o9Nzc-00FQeq-Vd; Thu, 07 Jul 2022 09:40:16 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9N8F-00FGOb-VJ; Thu, 07 Jul 2022 08:45:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657183507; x=1688719507;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=edbKoKalbvq90CBmxogPesuIiDjl8rwJ49B+zZvetjQ=;
-  b=HiiJL9RxGyH8rKpUv2MWjjUuOC/zS0tS8qIGjDPsnd81FSwzIJx2E7o5
-   6/44FElUWps9i5zOXK8V4qHj80Eagp/wB8tJfWMVhL/VUDgOGp95vZINp
-   yEHrFlQOoL9vTDD4lmTGee6/WtJFe4IVTinHz3HWT1nhuPtXWPafTZNyS
-   xcwwxUTDdd9PzQwC0B/i0XZ7C0tVzf+VWqaNOG03Nq3uT8dAKwoWC8i8z
-   q6n7mZnnZB8ksFyNbnXS3f+Vk8I9XyuXQif31Icmp+YKj9VASQdgCGExm
-   mEgN5Ob5btwwwlK51t52mn6wIU3ziGf4KXkiiy0HfEv8ZHv2jkdaEa5Cz
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="345659131"
-X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
-   d="scan'208";a="345659131"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2022 01:45:06 -0700
-X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
-   d="scan'208";a="651047273"
-Received: from rongch2-mobl.ccr.corp.intel.com (HELO [10.255.31.6]) ([10.255.31.6])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2022 01:44:45 -0700
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 088b9c375534d905a4d337c78db3b3bfbb52c4a0
-To: Greg KH <gregkh@linuxfoundation.org>, kernel test robot <lkp@intel.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- virtualization@lists.linux-foundation.org, usbb2k-api-dev@nongnu.org,
- tipc-discussion@lists.sourceforge.net, target-devel@vger.kernel.org,
- sound-open-firmware@alsa-project.org, samba-technical@lists.samba.org,
- rds-devel@oss.oracle.com, patches@opensource.cirrus.com,
- osmocom-net-gprs@lists.osmocom.org,
- openipmi-developer@lists.sourceforge.net, nvdimm@lists.linux.dev,
- ntb@lists.linux.dev, netfilter-devel@vger.kernel.org,
- netdev@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
- megaraidlinux.pdl@broadcom.com, linuxppc-dev@lists.ozlabs.org,
- linux1394-devel@lists.sourceforge.net, linux-x25@vger.kernel.org,
- linux-wpan@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-unionfs@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-staging@lists.linux.dev,
- linux-serial@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-perf-users@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-parport@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-nfc@lists.01.org,
- linux-mtd@lists.infradead.org, linux-mmc@vger.kernel.org,
- linux-mm@kvack.org, linux-mediatek@lists.infradead.org,
- linux-media@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-integrity@vger.kernel.org, linux-input@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-ide@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-fpga@vger.kernel.org, linux-fbdev@vger.kernel.org,
- linux-ext4@vger.kernel.org, linux-efi@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-btrfs@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, linux-block@vger.kernel.org,
- linux-bcache@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linaro-mm-sig@lists.linaro.org, legousb-devel@lists.sourceforge.net,
- kvm@vger.kernel.org, keyrings@vger.kernel.org,
- isdn4linux@listserv.isdn4linux.de, iommu@lists.linux.dev,
- iommu@lists.linux-foundation.org, intel-wired-lan@lists.osuosl.org,
- greybus-dev@lists.linaro.org, dri-devel@lists.freedesktop.org,
- dm-devel@redhat.com, devicetree@vger.kernel.org, dev@openvswitch.org,
- dccp@vger.kernel.org, damon@lists.linux.dev, coreteam@netfilter.org,
- cgroups@vger.kernel.org, ceph-devel@vger.kernel.org,
- ath11k@lists.infradead.org, apparmor@lists.ubuntu.com,
- amd-gfx@lists.freedesktop.org, alsa-devel@alsa-project.org,
- accessrunner-general@lists.sourceforge.net
-References: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
- <YsaUgfPbOg7WuBuB@kroah.com>
-From: "Chen, Rong A" <rong.a.chen@intel.com>
-Message-ID: <c86816fd-aaba-01a9-5def-44868f0a46c9@intel.com>
-Date: Thu, 7 Jul 2022 16:44:43 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <YsaUgfPbOg7WuBuB@kroah.com>
-Content-Language: en-US
+	id 1o9NzR-00FQZ7-Eh; Thu, 07 Jul 2022 09:40:06 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id l42so594267wms.5;
+        Thu, 07 Jul 2022 02:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=cfC1eHw7vjyJEGT4bP0Ijue63QAf+zrsCzWAQ0rV+Js=;
+        b=eBaCrhvMik2nM7yS82rCJEfeku6KyF5Gd9yVUjzBw9knDNqqQA3UHJLWB7PgMDbT+T
+         PDa6S0zhQQ6h4qf5AEA0ayAM7yxjiKcl3IkCCQO71pYoys76DlHv+cjOrQYOGj1bszh6
+         vZaHugoCRLiR+X2f9O7nnnQBgtxTGIWQm614m743tWWHXzwY7YTiw/0Y3Tbx5sFphmOz
+         9by034TRbwnNZCENdFEUow6A8kCv3srDOfcUUWDC1TiGjqJKrODDOgq8Y8DR13WYOr1/
+         iMmG31vrAxgbsLlB+QKtPI4+gphvXPMTzAQtrIBp/lI+kMGH2IC4//b0EfdMFBfH+RKh
+         DBMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=cfC1eHw7vjyJEGT4bP0Ijue63QAf+zrsCzWAQ0rV+Js=;
+        b=1IBtmjcxKiuUp1ZlxWVWwX8DFO96AcE2eePkjoUDEp8JNkwQmlzCtRquluF0PTbH2k
+         A1ltPSH5P0rNOd3n69LDc4sN7BCH6DUTRuCk77sRwGuc+Jr7s8XIQZRFYmDJoQENdpor
+         0Yt9sy68IahradW0XVog24OtMJvfvP3QWUBKkZjPMVshJHsRT0zoVdAXBAJgq11jmonE
+         S9fl33yt8JoTbVTAUpxuD2NfWlvMmkC+fa3hx4BeLxN8Grge4lJmBzTtVTWXM8H0AHhz
+         QBPVv9WuJv/QPOCJxR5gL7XLJYhOo6hcgX5wLTjqhC73Mbmw1vzdZOscNkoKYJ4npu6i
+         Cyow==
+X-Gm-Message-State: AJIora/yGZdzLDH8mikQHav4T1IpFekG6cd72oC4Zo1FnMBxSy+zpe2R
+	PnSXUbeMlEksu77w9WWbO1Y=
+X-Google-Smtp-Source: AGRyM1tV3ux5VMnFhY59IYP2nYIcJ/IVUvUn/b66ZUw7h8bA6IKJ3xV0bIf+akq51E1t5JZKF5xDng==
+X-Received: by 2002:a05:600c:214c:b0:3a0:401a:6f4b with SMTP id v12-20020a05600c214c00b003a0401a6f4bmr3209000wml.15.1657186799374;
+        Thu, 07 Jul 2022 02:39:59 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id j14-20020a5d564e000000b0021d68d3a27dsm13831314wrw.45.2022.07.07.02.39.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 02:39:58 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>,
+	Furkan Kardame <furkan@fkardame.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add Beelink GT1 Ultimate binding
+Date: Thu,  7 Jul 2022 09:39:53 +0000
+Message-Id: <20220707093954.21716-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220707_014508_157468_FC540254 
-X-CRM114-Status: GOOD (  10.54  )
+X-CRM114-CacheID: sfid-20220707_024005_560477_2B20E66D 
+X-CRM114-Status: UNSURE (   9.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,89 +85,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add the board binding for the Shenzen AZW (Beelink) GT1 Ultimate
+Android Set-Top Box device.
 
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 7/7/2022 4:08 PM, Greg KH wrote:
-> On Thu, Jul 07, 2022 at 02:56:34PM +0800, kernel test robot wrote:
->> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
->> branch HEAD: 088b9c375534d905a4d337c78db3b3bfbb52c4a0  Add linux-next specific files for 20220706
->>
->> Error/Warning reports:
->>
->> https://lore.kernel.org/linux-doc/202207070644.x48XOOvs-lkp@intel.com
->>
->> Error/Warning: (recently discovered and may have been fixed)
->>
->> Documentation/arm/google/chromebook-boot-flow.rst: WARNING: document isn't included in any toctree
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1108): undefined reference to `__aeabi_ddiv'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1124): undefined reference to `__aeabi_ui2d'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1164): undefined reference to `__aeabi_dmul'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1170): undefined reference to `__aeabi_dadd'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1180): undefined reference to `__aeabi_dsub'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1190): undefined reference to `__aeabi_d2uiz'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x162c): undefined reference to `__aeabi_d2iz'
->> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x16b0): undefined reference to `__aeabi_i2d'
->> dc_dmub_srv.c:(.text+0x10f8): undefined reference to `__aeabi_ui2d'
->> dc_dmub_srv.c:(.text+0x464): undefined reference to `__floatunsidf'
->> dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x33c): undefined reference to `__floatunsidf'
->> drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
->> drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
->> drivers/vfio/vfio_iommu_type1.c:2141:35: warning: cast to smaller integer type 'enum iommu_cap' from 'void *' [-Wvoid-pointer-to-enum-cast]
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x34c): undefined reference to `__floatunsidf'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x378): undefined reference to `__divdf3'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x38c): undefined reference to `__muldf3'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3a0): undefined reference to `__adddf3'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3b4): undefined reference to `__subdf3'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3d4): undefined reference to `__fixunsdfsi'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x750): undefined reference to `__fixdfsi'
->> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x7c0): undefined reference to `__floatsidf'
->> powerpc-linux-ld: drivers/pci/endpoint/functions/pci-epf-vntb.c:174: undefined reference to `ntb_link_event'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x468): undefined reference to `__divdf3'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x46c): undefined reference to `__muldf3'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x470): undefined reference to `__adddf3'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x474): undefined reference to `__subdf3'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x478): undefined reference to `__fixunsdfsi'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x47c): undefined reference to `__fixdfsi'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x480): undefined reference to `__floatsidf'
->> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x60c): undefined reference to `__floatunsidf'
->>
->> Unverified Error/Warning (likely false positive, please contact us if interested):
->>
->> arch/x86/events/core.c:2114 init_hw_perf_events() warn: missing error code 'err'
->> drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
->> drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
->> drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
->> drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
->> drivers/base/regmap/regmap.c:1996:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/char/random.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/gpu/drm/amd/display/dc/os_types.h: drm/drm_print.h is included more than once.
->> drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
->> drivers/greybus/operation.c:617:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-> 
-> <snip>
-> 
-> When the compiler crashes, why are you blaming all of these different
-> mailing lists?  Perhaps you need to fix your compiler :)
-> 
-> thanks,
-> 
-> greg k-h
-> 
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 61a6cabb375b..3217c069673e 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -120,6 +120,7 @@ properties:
+           - enum:
+               - amlogic,q200
+               - amlogic,q201
++              - azw,gt1-ultimate
+               - khadas,vim2
+               - kingnovel,r-box-pro
+               - libretech,aml-s912-pc
+-- 
+2.17.1
 
-Hi Greg,
-
-Sorry for the inconvience, we'll fix it ASAP.
-
-Best Regards,
-Rong Chen
 
 _______________________________________________
 linux-amlogic mailing list
