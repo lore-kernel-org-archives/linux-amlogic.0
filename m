@@ -4,83 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32A06C433EF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Jul 2022 10:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91B9CCCA48E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Jul 2022 14:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=/S7EuFzVpoOwge5DVVKRZFq3SSx1YynTKOjsKuWrzLE=; b=sasSUThOQWorEK
-	3gBLG1JMvBi63C2WyBUeEpwC84DYrw45+yjfVBfDlzCodZY2Y6MJUfTTAkohbpzyibGC84M3v83uZ
-	7fvZnJy0GH8gQc2CrR1XV+UM4GiTfxTZOFQwE8TGKagAX0EQYX6w0vRhJRkUphl9SBRpteW7TA5pb
-	cR0AXxkaGctnPbJhcoaZrEpNDJNCyE8dUIxU6taTogsQE5xX3KGngzSjW9QbVRTPO2vbMAH4sv+p0
-	yBY+X4flXRzzu0XE0fNAvs5X8z2Iui6Qzqd1eEFtWmopKZimfEahsD8WePbNSNS/wjCTrQNtFnTvK
-	oqNkr6t/ynoiWroW3hpw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=A2jnzrDLnt8eAu3/NlUcOltg+TavIgmNO3Q2cMq5qbo=; b=iDKrW1BkbP+kRp
+	P3MfSr4mxG/6yuYzkraC04NOXeXGV3j1qazaTMRBGi+rNs9FQlWQoH3wfJsGAAQ7TC/g8zMWi/I/G
+	cSmVoC225+/lG7cayp1FiZ2RR4pmZEUYbBrgsM0qQ1QxhmuNR2OmUbjh8xiE8A3NNzda7h1tubuH8
+	mwrIwNZu7oucuZ9vaSKpRTZwAxOSwV9kOlW7kQeV8M1ad+OFO9/cR+qjt9TS6gc6peqsFAR/+gmYE
+	9EsitSD77E4mizs+3aHazVsdp6r6uWd8BOE3GNkIRjzX0WVD10B74gdbidkAFfVa4+Gc6ygZcdTXu
+	R5JT5xkDhTo1rCQM0OGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9OXA-00FXbt-2K; Thu, 07 Jul 2022 10:14:56 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1o9S63-00GOsy-Qs; Thu, 07 Jul 2022 14:03:11 +0000
+Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9OX4-00FXYg-Pg
-	for linux-amlogic@lists.infradead.org; Thu, 07 Jul 2022 10:14:54 +0000
-Received: by mail-wr1-x432.google.com with SMTP id a5so10919141wrx.12
-        for <linux-amlogic@lists.infradead.org>; Thu, 07 Jul 2022 03:14:47 -0700 (PDT)
+	id 1o9S5w-00GOmb-SQ; Thu, 07 Jul 2022 14:03:06 +0000
+Received: by mail-pf1-x42e.google.com with SMTP id j3so6934638pfb.6;
+        Thu, 07 Jul 2022 07:03:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SSgNLLbJ50VCDaH8BIYRHOpcuQy4PBpSnIZTiijPY+s=;
-        b=mTlAPtr3tyQGyLNzZ3lqfSOw9kmdd7anPumzfF1AwyqOX9zE52Mq0GMSuMmTsyhb85
-         br7YVPkr8y2e+rnVa7QKMXsFSmfacAooylGAOi/U+jZMf5kLPJ6RgqQuymt/+Cs8dslJ
-         9Snl19ou0HABvluTo1izSofvxSMYSzLspGb8cTvAmUqPR8+2Lzih9SmFakd5PffVV1EA
-         PghirMQt3EeQvBy0YV6MfTHQcuB2vtgz1851PSW9pHvowear4RNUYPsCGTNOvHfLTS/6
-         VgRIO3H7l2f0mQyG/dCFlGyRa7X3gVNTcM4vRDSBk2OVxGgVznu8ZQhjFOBIvzupQLKU
-         5rsw==
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=afbiyF16Fd4Ewaaf3EKKCpvpR7aHAsNAQp7K3TuQXs4=;
+        b=EzpeppBfdoHkOWruUNAYNHzOi8S5lBuVkWR/uarc/O7MDVJ2qM1NUNdy3hxzZeKinw
+         1f6tPe15AftcBiSP1Sugt5jiQpAKlLcyz+gPyHgHTvK6IkiuSg6SYHkmzqBCpGaHkm3K
+         GirawtqITR+EFkG0pF8QxPm0bxzk97EH7JYJxQXFRi4d1kRfsZVOuxKRapjByLByJ3DF
+         qAVqAZfaAfJT+F8T/W2rPtPmXy6/uaYwejGaDWQ5Frl3XCXwsQlqWF67lU3BIXdseGBS
+         CTJ5pH+oR76s++4uNTCxHCZwHNyWF4xdxY3ay2k5fQlKGRbstnEbIjnAVDZkl7wMQgN9
+         oSpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SSgNLLbJ50VCDaH8BIYRHOpcuQy4PBpSnIZTiijPY+s=;
-        b=Lkkb/Y/ebWo5Jw7cQzvk3aMX+h3YfIjKh9QEk2MpNyP4SxcV3UfgRr5LFVMru4CkAA
-         WjeA9ZCfP5WEAiy0xQ2w4wZn6/fiyBDygjCauS9GWM8wbc6XZg4UBUf0RIChhXpJzIlr
-         ua6poePjaPc127IREoVgUnTAaTEiFOl1RisVdLvOEIJk6iuSPpZ5URRexYe/nU/WsWxy
-         m+ZBY8/8mS0VRTR6DryD929XeWnqi2jqzK5qWzBeCn5l7Vbe2hT/iQXJdiL+jTMTFBjm
-         kZlFvAeDN7VBKNOvdHJrqnweaAf/tti5TnW325Q4VYgu9/0Iu/Z1zv1sDxbT/xQckK2U
-         Do/A==
-X-Gm-Message-State: AJIora9Cd9fJ0TYtPmde6PhcCMN5M868IWFfvjyqH8dlSiEklVoty4qz
-	CSzknaFKa3yDPMCDLxyEi8j5sQ==
-X-Google-Smtp-Source: AGRyM1t7A2+WyXOf/CUDW4Xy+uzMrWN9QYBNI+mVq/LrxwYs5i6OKcl4oc5hBVKSq152h68H7xHeMg==
-X-Received: by 2002:a5d:6d0a:0:b0:21d:6f28:5ead with SMTP id e10-20020a5d6d0a000000b0021d6f285eadmr14593631wrq.95.1657188886653;
-        Thu, 07 Jul 2022 03:14:46 -0700 (PDT)
-Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id z21-20020a1c4c15000000b0039c871d3191sm29370749wmf.3.2022.07.07.03.14.45
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=afbiyF16Fd4Ewaaf3EKKCpvpR7aHAsNAQp7K3TuQXs4=;
+        b=N1Pm889/ZxFEDqfLXpSp3Pulplms+j8WQItLnmqecLAcF1WB2akH+TmTy/FmGml2/g
+         zRSb+TjdUU6ZILaoXpBAnxekmDO29NhfUPNp6ThNUbpwFhwXpFj76HLWQydqAqjttPO9
+         rsn/+dnFMrmiqiYdyTdIhNOF0RwSJfoxKsQ0BhArZsZ+xXeL8aI5+8dYzfPx3GjuLE4H
+         Isn6n75mNhBJ8c6SXZMtimr9f6eK2nw3hhg+5xDwXPMqpjk7rOWbuoKmow1AJR3TAbie
+         YUq67PbqmcmTKX7eOXB9HCz/eVJUWf26sFCrbJSeABCiOo8JJE6m1UesCXnIbwlVf7j8
+         qdFA==
+X-Gm-Message-State: AJIora/KahlyT5YYkbmw7be7XMyX9GGAIzTECmINdwRfdJFYT6BBNI9j
+	miSSyh9tairCSSaBnCOFfNQ=
+X-Google-Smtp-Source: AGRyM1uGEg1zRLKU3mt/8yK/HfEqKFBdv1eoQpzxhqHLW6DjIp1gLh6JEsU/RWRdBfoHFypH/TfaNQ==
+X-Received: by 2002:a17:90b:4c8f:b0:1ec:cdd0:41b7 with SMTP id my15-20020a17090b4c8f00b001eccdd041b7mr5420238pjb.119.1657202580508;
+        Thu, 07 Jul 2022 07:03:00 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id k127-20020a632485000000b004148cbdd4e5sm1215293pgk.57.2022.07.07.07.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 03:14:46 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Erico Nunes <nunes.erico@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	netdev@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Vyacheslav <adeep@lexina.in>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Da Xue <da@lessconfused.com>,
-	Qi Duan <qi.duan@amlogic.com>
-Subject: [RFC/RFT PATCH] net: stmmac: do not poke MAC_CTRL_REG twice on link up
-Date: Thu,  7 Jul 2022 12:14:23 +0200
-Message-Id: <20220707101423.90106-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.36.1
+        Thu, 07 Jul 2022 07:02:59 -0700 (PDT)
+Date: Thu, 7 Jul 2022 07:02:58 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: kernel test robot <lkp@intel.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	virtualization@lists.linux-foundation.org,
+	usbb2k-api-dev@nongnu.org, tipc-discussion@lists.sourceforge.net,
+	target-devel@vger.kernel.org, sound-open-firmware@alsa-project.org,
+	samba-technical@lists.samba.org, rds-devel@oss.oracle.com,
+	patches@opensource.cirrus.com, osmocom-net-gprs@lists.osmocom.org,
+	openipmi-developer@lists.sourceforge.net, nvdimm@lists.linux.dev,
+	ntb@lists.linux.dev, netfilter-devel@vger.kernel.org,
+	netdev@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
+	megaraidlinux.pdl@broadcom.com, linuxppc-dev@lists.ozlabs.org,
+	linux1394-devel@lists.sourceforge.net, linux-x25@vger.kernel.org,
+	linux-wpan@vger.kernel.org, linux-wireless@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-unionfs@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+	linux-sctp@vger.kernel.org, linux-scsi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org, linux-rdma@vger.kernel.org,
+	linux-raid@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-perf-users@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-parport@lists.infradead.org,
+	linux-parisc@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-nfc@lists.01.org, linux-mtd@lists.infradead.org,
+	linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-integrity@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-fpga@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, linux-ext4@vger.kernel.org,
+	linux-efi@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-cxl@vger.kernel.org, linux-crypto@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-cifs@vger.kernel.org,
+	linux-btrfs@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linaro-mm-sig@lists.linaro.org,
+	legousb-devel@lists.sourceforge.net, kvm@vger.kernel.org,
+	keyrings@vger.kernel.org, isdn4linux@listserv.isdn4linux.de,
+	iommu@lists.linux.dev, iommu@lists.linux-foundation.org,
+	intel-wired-lan@lists.osuosl.org, greybus-dev@lists.linaro.org,
+	dri-devel@lists.freedesktop.org, dm-devel@redhat.com,
+	devicetree@vger.kernel.org, dev@openvswitch.org,
+	dccp@vger.kernel.org, damon@lists.linux.dev, coreteam@netfilter.org,
+	cgroups@vger.kernel.org, ceph-devel@vger.kernel.org,
+	ath11k@lists.infradead.org, apparmor@lists.ubuntu.com,
+	amd-gfx@lists.freedesktop.org, alsa-devel@alsa-project.org,
+	accessrunner-general@lists.sourceforge.net
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 088b9c375534d905a4d337c78db3b3bfbb52c4a0
+Message-ID: <20220707140258.GA3492673@roeck-us.net>
+References: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
+ <YsaUgfPbOg7WuBuB@kroah.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <YsaUgfPbOg7WuBuB@kroah.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220707_031451_136722_1E91F324 
-X-CRM114-Status: GOOD (  25.48  )
+X-CRM114-CacheID: sfid-20220707_070304_956905_F5982C70 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,115 +138,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-For some reason, poking MAC_CTRL_REG a second time, even with the same
-value, causes problem on a dwmac 3.70a.
+On Thu, Jul 07, 2022 at 10:08:33AM +0200, Greg KH wrote:
 
-This problem happens on all the Amlogic SoCs, on link up, when the RMII
-10/100 internal interface is used. The problem does not happen on boards
-using the external RGMII 10/100/1000 interface. Initially we suspected the
-PHY to be the problem but after a lot of testing, the problem seems to be
-coming from the MAC controller.
+[ ... ]
+> > 
+> > Unverified Error/Warning (likely false positive, please contact us if interested):
+> > 
+> > arch/x86/events/core.c:2114 init_hw_perf_events() warn: missing error code 'err'
+> > drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
+> > drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
+> > drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
+> > drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
+> > drivers/base/regmap/regmap.c:1996:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/char/random.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/gpu/drm/amd/display/dc/os_types.h: drm/drm_print.h is included more than once.
+> > drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> > drivers/greybus/operation.c:617:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> 
+> <snip>
+> 
+> When the compiler crashes, why are you blaming all of these different
+> mailing lists?  Perhaps you need to fix your compiler :)
+> 
 
-> meson8b-dwmac c9410000.ethernet: IRQ eth_wake_irq not found
-> meson8b-dwmac c9410000.ethernet: IRQ eth_lpi not found
-> meson8b-dwmac c9410000.ethernet: PTP uses main clock
-> meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys ID: 0x37
-> meson8b-dwmac c9410000.ethernet: 	DWMAC1000
-> meson8b-dwmac c9410000.ethernet: DMA HW capability register supported
-> meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engine supported
-> meson8b-dwmac c9410000.ethernet: COE Type 2
-> meson8b-dwmac c9410000.ethernet: TX Checksum insertion supported
-> meson8b-dwmac c9410000.ethernet: Wake-Up On Lan supported
-> meson8b-dwmac c9410000.ethernet: Normal descriptors
-> meson8b-dwmac c9410000.ethernet: Ring mode enabled
-> meson8b-dwmac c9410000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+To be fair, it says above "likely false positive, please contact us
+if interested". Also, the 32-bit build errors _are_ real, and the NULL
+dereferences in the binder driver are at the very least suspicious.
 
-The problem is not systematic. Its occurence is very random from 1/50 to
-1/2. It is fairly easy to detect by setting the kernel to boot over NFS and
-possibly setting it to reboot automatically when reaching the prompt.
-
-When problem happens, the link is reported up by the PHY but no packet are
-actually going out. DHCP requests eventually times out and the kernel reset
-the interface. It may take several attempts but it will eventually work.
-
-> meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> Sending DHCP requests ...... timed out!
-> meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-> IP-Config: Retrying forever (NFS root)...
-> meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
-> meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
-> meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
-> meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
-> meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> Sending DHCP requests ...... timed out!
-> meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-> IP-Config: Retrying forever (NFS root)...
-> [...] 5 retries ...
-> IP-Config: Retrying forever (NFS root)...
-> meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
-> meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
-> meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
-> meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
-> meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> Sending DHCP requests ., OK
-> IP-Config: Got DHCP answer from 10.1.1.1, my address is 10.1.3.229
-
-Of course the same problem happens when not using NFS and it fairly
-difficult for IoT products to detect this situation and recover.
-
-The call to stmmac_mac_set() should be no-op in our case, the bits it sets
-have already been set by an earlier call to stmmac_mac_set(). However
-removing this call solves the problem. We have no idea why or what is the
-actual problem.
-
-Even weirder, keeping the call to stmmac_mac_set() but inserting a
-udelay(1) between writel() and stmmac_mac_set() solves the problem too.
-
-Suggested-by: Qi Duan <qi.duan@amlogic.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
-
- Hi,
-
- There is no intention to get this patch merged as it is.
- It is sent with the hope to get a better understanding of the issue
- and more testing.
-
- The discussion on this issue initially started on this thread
- https://lore.kernel.org/all/CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com/
-
- The patches previously proposed in this thread have not solved the
- problem.
-
- The line removed in this patch should be a no-op when it comes to the
- value of MAC_CTRL_REG. So the change should make not a difference but
- it does. Testing result have been very good so far so there must be an
- unexpected consequence on the HW. I hope that someone with more
- knowledge on this controller will be able to shine some light on this.
-
- Cheers
- Jerome
-
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index d1a7cf4567bc..3dca3cc61f39 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -1072,7 +1072,6 @@ static void stmmac_mac_link_up(struct phylink_config *config,
- 
- 	writel(ctrl, priv->ioaddr + MAC_CTRL_REG);
- 
--	stmmac_mac_set(priv, priv->ioaddr, true);
- 	if (phy && priv->dma_cap.eee) {
- 		priv->eee_active = phy_init_eee(phy, 1) >= 0;
- 		priv->eee_enabled = stmmac_eee_init(priv);
--- 
-2.36.1
-
+Guenter
 
 _______________________________________________
 linux-amlogic mailing list
