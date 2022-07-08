@@ -4,50 +4,197 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522B5CCA47B
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Jul 2022 06:45:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B867C433EF
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Jul 2022 10:04:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sj1Ic9U8g6eAp5+4omWUNd44DunfrxCWqeUmVV/juDY=; b=lqXudQLkfvWuR9
-	EluJ8ihmsOjdZLK6Z+n4sTv6WKAUTyYPfSsYZfjlN2zMMKuinZ8L3Yx82qG30SYMya2JbbL20MfgX
-	iwLDtfz9T3p9J2vdbzyls4ubfd+jB0nxEdG+PFZy3XBwezas+96c5ssKe61rDqjcN5KTU2+QGyyVx
-	8a2kEWYmVKLqMEpcAGW+9BAtqO/p9V2aBhLIgN6+wzaNdYk348cevfYXyE4+UjPkwlrDGGrGYKpou
-	1vhdsJiWVduq74YPDynzCJIsnp6uLSBNWOGQO0rLJJMBCWJv1WvoVhd157BVSTnudNgZJpI4gtPPM
-	tP/1jKSzDQhXjKAjj+hg==;
+	List-Owner; bh=rzIwQpxzM6V57IIvz2tiULZMttkU+TE8Kfmrl83ETxQ=; b=u9ehYOUW23UoM+
+	i2FQpDyBh3VI5SytyjmgM2iaivG2JxtdQicol8L3MQRMw4WbXz2Cl5A+tEr3p3Snrp95nseWHI51I
+	8aN2hMra3R5Ue04O5Y+0peHiRvGTUwS76Sze6JGbd8NBoAmG1Cy3bS7XXE8WRri5o3f++NLDKKIa5
+	qHujLEBvmjM8pIxkrPjrv8TXQNT+4xVqBxvYavML8n2w3fGTEMtK90+Rv6O4g6Y5sW9UQ/3z421EH
+	dXhPEOGaxMxzJDRBMBvkA4ilpMcB0reZV11nDDWKBwhffIj+H63ei3WQB4shcyEBAGzdpcZZOMNfq
+	zGCzvxMWz8yZ5KQQ8NtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9hjR-0025ga-D7; Fri, 08 Jul 2022 06:44:53 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1o9kqK-0036Ug-Kb; Fri, 08 Jul 2022 10:04:12 +0000
+Received: from mx0a-00069f02.pphosted.com ([205.220.165.32])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o9hjF-0025d9-J5; Fri, 08 Jul 2022 06:44:44 +0000
-Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Fri, 8 Jul 2022
- 14:29:30 +0800
-From: Yu Tu <yu.tu@amlogic.com>
-To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, "Neil
- Armstrong" <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH 1/3] dt-bindings: clk: meson: add S4 SoC clock controller bindings
-Date: Fri, 8 Jul 2022 14:27:55 +0800
-Message-ID: <20220708062757.3662-2-yu.tu@amlogic.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220708062757.3662-1-yu.tu@amlogic.com>
-References: <20220708062757.3662-1-yu.tu@amlogic.com>
+	id 1o9kqG-0036Np-Uk; Fri, 08 Jul 2022 10:04:10 +0000
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2689TABU000383;
+	Fri, 8 Jul 2022 10:03:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : content-type : in-reply-to :
+ mime-version; s=corp-2021-07-09;
+ bh=5pLPxSfVxyKstenSeJF5S36kf0san/dvZM+lTJUj5kk=;
+ b=PA50aJSWEClK7uNepTEBZoL1lirjNs/B6KGo9hv+IgJJBjI6PrnU57gxCy/+qz2/vyQj
+ oL0aTg5oA3vyQMa5i4vjthnyKQ6BWTpbc8hSzC0vhsKNARztRAH/NSsh9dW8f41s1/so
+ h5x4py0i5Nyy4To7vgnyw4i4pepyPuSuElcTKvhwEliSRnJF5BIoM6faxeMhcKGZ71tu
+ g6CK9oLrA1c0tCFliM/drLZbAOaKa4nWye+NvPyHRWT2dOAH5yfsktPPdZbnkumXqDVe
+ vFnJqDCdS5VkE4w/NgvMoS8PEsTTgT8axv27cKNHj4hM8Pf0gEOvc6MehQ4ndh5dhJ+k bw== 
+Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3h4ubyfbtq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 08 Jul 2022 10:03:43 +0000
+Received: from pps.filterd (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.16.1.2/8.16.1.2) with SMTP id 268A1thI017973;
+	Fri, 8 Jul 2022 10:03:41 GMT
+Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2170.outbound.protection.outlook.com [104.47.56.170])
+	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com with ESMTP id 3h4ud9qcwg-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 08 Jul 2022 10:03:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TuiT5fxH64XD++PmsUHkgC7ckixWshUllFXzVoKD339c0SUUkEprR7RnhpyFoyYisCA3NgjigZj0XW0EB5megweHyiCr6hSkfjB4vmdtFZJIMeIcOup727hO99v4rU+KHGM2VxwCN0yEPdAuLSBVLjtDTX+2+alSVMxVUN1rOEFRoTOqCwuurnCJXuJ1xPpJDNTQHwg2CNYTSw5W3ZOLPO8s1GctuCHa9QH/Ddp/uuq+iey3U7OeI5ijPny7xK4dwWsD56h4gO5WjB52nrwuK9WvUAqgGj2AkqywRBgcs4ouzPFjlOii0aq44XhdilOpDJ5HsYjXYD41Haw5vgod9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5pLPxSfVxyKstenSeJF5S36kf0san/dvZM+lTJUj5kk=;
+ b=kn1SRlyC5i2qMq14iJp3u48Sc+6YLSyptZNqh+j52LiRAD4GE2LcttsO6tAENFsPKuzk0Ce08wCzR+lQG8YmiaOgDnuauDBR2FvBbWexvMMmaZ1Gtgall4dYhQ8nFYVBMV+c4a2xbe0iKblpnv5Lbi5/H/pOGmdYGjmGP1p+wxaosjR71LV5GqWcVa04uuscYArmjbbs+qiZZIVeTb6tTvgvlzG5R23qxAzaJ8iflf+0CtE45WIcD0krL0IkSbT/GPMV9C2DEQxNKh8rwrnxfyMJIVACZCMqqIyLV0YCRqAjFA2nxRbNB1uuBMsc2b+mBbGgrzbk6dvqLMZZkRVkOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5pLPxSfVxyKstenSeJF5S36kf0san/dvZM+lTJUj5kk=;
+ b=d5aihqu/jeH907HQhVDkAIsIAk1o2UUnZLfhRzqbZs24b2LPJu/0i/iO9RegZ/usVjNRK7F6zKl0TV7RkbNtwNk5jSLgf7v7g1ni6mo16f9Ema6DtSWAvvMnjH5lMjvtoIAn4Dcxo3jB26XbdYBYv/P0T7VJlIaKMBVEZ26Hd3s=
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28) by CH0PR10MB4924.namprd10.prod.outlook.com
+ (2603:10b6:610:ca::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20; Fri, 8 Jul
+ 2022 10:03:37 +0000
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5020:9b82:5917:40b]) by MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5020:9b82:5917:40b%6]) with mapi id 15.20.5417.016; Fri, 8 Jul 2022
+ 10:03:37 +0000
+Date: Fri, 8 Jul 2022 13:02:19 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Greg KH <gregkh@linuxfoundation.org>, kernel test robot <lkp@intel.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        virtualization@lists.linux-foundation.org, usbb2k-api-dev@nongnu.org,
+        tipc-discussion@lists.sourceforge.net, target-devel@vger.kernel.org,
+        sound-open-firmware@alsa-project.org, samba-technical@lists.samba.org,
+        rds-devel@oss.oracle.com, patches@opensource.cirrus.com,
+        osmocom-net-gprs@lists.osmocom.org,
+        openipmi-developer@lists.sourceforge.net, nvdimm@lists.linux.dev,
+        ntb@lists.linux.dev, netfilter-devel@vger.kernel.org,
+        netdev@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
+        megaraidlinux.pdl@broadcom.com, linuxppc-dev@lists.ozlabs.org,
+        linux1394-devel@lists.sourceforge.net, linux-x25@vger.kernel.org,
+        linux-wpan@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-unionfs@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+        linux-sctp@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-raid@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-perf-users@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-parport@lists.infradead.org,
+        linux-parisc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-nfc@lists.01.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-fpga@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-ext4@vger.kernel.org,
+        linux-efi@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-cxl@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-cifs@vger.kernel.org,
+        linux-btrfs@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linaro-mm-sig@lists.linaro.org,
+        legousb-devel@lists.sourceforge.net, kvm@vger.kernel.org,
+        keyrings@vger.kernel.org, isdn4linux@listserv.isdn4linux.de,
+        iommu@lists.linux.dev, iommu@lists.linux-foundation.org,
+        intel-wired-lan@lists.osuosl.org, greybus-dev@lists.linaro.org,
+        dri-devel@lists.freedesktop.org, dm-devel@redhat.com,
+        devicetree@vger.kernel.org, dev@openvswitch.org, dccp@vger.kernel.org,
+        damon@lists.linux.dev, coreteam@netfilter.org, cgroups@vger.kernel.org,
+        ceph-devel@vger.kernel.org, ath11k@lists.infradead.org,
+        apparmor@lists.ubuntu.com, amd-gfx@lists.freedesktop.org,
+        alsa-devel@alsa-project.org,
+        accessrunner-general@lists.sourceforge.net
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 088b9c375534d905a4d337c78db3b3bfbb52c4a0
+Message-ID: <20220708100219.GJ2338@kadam>
+References: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
+ <YsaUgfPbOg7WuBuB@kroah.com>
+ <20220707140258.GA3492673@roeck-us.net>
+Content-Disposition: inline
+In-Reply-To: <20220707140258.GA3492673@roeck-us.net>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: JNAP275CA0050.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4e::10)
+ To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.248]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 60888dca-74ab-415d-c312-08da60c91fbd
+X-MS-TrafficTypeDiagnostic: CH0PR10MB4924:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	QpeUnUA80G+bljAIjcJUjdGQmN5uY1eFjfrdzbA17ZIS3uabFZv6Hj1kGve2Lkd6ukSIrwiau9r0ovgbwx+dZEkKmEv6+vXYk4KZAt/MIhaL91UGE+paD/7pDhxzw4BYYVzzpcTlpWSU2EifziKfjy7zSFc7TnpneOwuqT8aeevBVsak78DiURzZSmtUYh/Qt36gA5/ksmagoLtxfOrwnwiX4glTSsn8t5yf7q4IzdByoZMhq0/OHP2LZ5gMTFtZ6UHjHdMMXGvblMy4nwFFyDxr86OS56TwXu8Un5G4D4DsBq8RB57WhWGKUtSyUbZZbVRFVkXmco1NenhtSk86OVpxyYHEtK55FxQsoFvpcV9t5yQLp1tE1ssb1OlZae0sqORl49xAPisMT7jN1cFGRywkbs4jxpVhNo8QYdWoQ3VACsB1KUJ93fDES9dLhmgaIFwDWA8dmP2LXuL1Pd+DFJJTLkU2NgkpHh5jR/cu2c2jTU6PpCMhJIrwzdDt8sfkR6UcBI76NJL0PW+PVyYni0a7Pe3rbeU1PW70RjKKv2/VmnwT8TE08KBGeDQFp1AHEmMbpH2SgzlQWxMvwgGWtM/6/xUqkCQd/CwrTTQo63A1MOH6B7syzqHOaHclI2HJeLiaHI3iu+zlJxnG2+klM626OprekeiAtpkpRWukWRhFT8PONEEVRTQsT2XM6vCyFIqckzuC+ioRgs4tOx6NIenPb/oTrABzGoY+mHsNaR1Q2HerdVNbOlkOvYEcJhoSs2/qCEmiEqL11HGPPZoOhtWl90u/pVoJWO8OqO1Cy/1JYLe4uJbmE6i1YFG6PeLI
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(376002)(346002)(136003)(39860400002)(396003)(366004)(33716001)(33656002)(478600001)(41300700001)(44832011)(52116002)(6486002)(38100700002)(6506007)(316002)(54906003)(6666004)(4744005)(38350700002)(6916009)(2906002)(86362001)(66556008)(6512007)(66946007)(8676002)(7336002)(7366002)(7416002)(7406005)(26005)(9686003)(5660300002)(66476007)(186003)(4326008)(1076003)(83380400001)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?uG7EisZU53uo3Eyn1rAkH1Zp7prdDVjLvtewrji3nHaInhwwPqKJd8IS9Ml6?=
+ =?us-ascii?Q?cCMDRE9xZtRy2ixvN9HtQCxQ6wyVdCMjht4JEfcGvVBGnhiqaHo4dtqdZQNj?=
+ =?us-ascii?Q?TGMY5D1FDrgRGu1ZqSXbxw6awVGysMa0+MX66gOjQV085NsMve2O4eyl5F5y?=
+ =?us-ascii?Q?1R/1hXNMky/piEnyu/AV2u9cPc8QXEEh5K/YB5xHM0lnOA68c0zycKWASuhL?=
+ =?us-ascii?Q?Kla+gf2FV2JSVMUu/Ri/D4jFuSeza/bxZHWLcnm2ZsVWcrf0/LgByhqRjtSp?=
+ =?us-ascii?Q?is7aqVU5aytLlmIcj33/i5SfhSOL6wtmqbxmSOEOtAVcsEJtIXON2a0hsur6?=
+ =?us-ascii?Q?hsWV1BvYk4AATAbHUOntCKDw5fmW1Zb7JOZVwY9IVuxyRJroXe+t96bJLXrI?=
+ =?us-ascii?Q?MssjNzxXj4Jypus/6TmDDUIrYr/PohLpQ7G33Mmk20Wl8iVHL8gXU0umskty?=
+ =?us-ascii?Q?O4Hi9SohVBBFpOOh6t4TgJ/w2hGioWQ3sldG+lmRcJwb3j0MzuvquWbIKe1R?=
+ =?us-ascii?Q?gnxXwQFlT03ge3rnLtt4I5eXee2ZugYaT8hbKKltmH00UW2rot4ogdsXX2iI?=
+ =?us-ascii?Q?DNsESB9w2oxovD/ZQf1hpR0G4CNtCUS0CYB5QKnSBDpXPeXkQpoHeFzSSfjR?=
+ =?us-ascii?Q?wLuWIMCwND+t3ovztoAdWN/UQtE5mMC0kkUBUToTTjIvLciDMD0PSNB6BJUe?=
+ =?us-ascii?Q?w0PR0q9LRd1D/jkiavRKpLKgXzeczspq+Psu7R01u1srIE/QHzUUjYVl5f9a?=
+ =?us-ascii?Q?L02x85oqudSEWTubWsX6ss1WfTqA+8NqL5ENwQjoi9UEoTolcwA7e2XUcwAO?=
+ =?us-ascii?Q?ic9ZTDSAl8/AsX+2l6+qsgzLGODxDFe3K1ko9b4kwkQxpr9NU9z8O/MWDlAK?=
+ =?us-ascii?Q?Dnlvq31Zf740z3fuyX3wN9p5/ha59mVpxZF+xjtVxT7DoDfkostGyBOBfUce?=
+ =?us-ascii?Q?e6fdpEx92+LmFi1lzmVO4Ia+ECDiem6tXYEmQXIyfxx3Lw0RUCChVAujKWLo?=
+ =?us-ascii?Q?oUy4+s0iF6iSny0nF8zOLNHqJzxvFEexDubf1ILb/3btBYa9NgUS5BOaIoA9?=
+ =?us-ascii?Q?WqJ1H2aDG9Kic8ymHAc4FFqNBtuTucRoBG6Ms8LMqLNF0Vza4OaikcRksmX4?=
+ =?us-ascii?Q?rgBMlDqx5pO3KFCTenU+qbHOBovKp6H6HnXn/7m/aF3l+ZqmdwuG77shGwxJ?=
+ =?us-ascii?Q?u+KGV063dyQ+dCgsyvudHwbxefjBFDbkHK/Ybw0NmKX2mYGuv7jbzKnp7JDc?=
+ =?us-ascii?Q?AF5HmXDQhKXZbO2HxUKsXY8vRrxFZhmbIJJMirc8HFwPS3gAzjzb+szX+vF7?=
+ =?us-ascii?Q?xOUKc56091EkjOl6fcqQEf5AMF6UjW4HOZCLHO1S/4o81dPO+oVZQykyHGNa?=
+ =?us-ascii?Q?fevSECWId0k6CwanCU7579YdUXJJMBRkComEJNrTAoR4lhftqLiI0U3rDdrj?=
+ =?us-ascii?Q?Del01xUlm7N66LbqNEPYOHt8Vj9P+Nd4ahXQKeqyeKRQ+d5V2/xM7j6eGiim?=
+ =?us-ascii?Q?CELTFADnEsTdWjQiE8bsPhByqbhH87XWEemEF1ulwsM6DII28FAYU+uBiySC?=
+ =?us-ascii?Q?89eQCwECLDAfd9gxbLFLH7xJjKAclbo03RJxaMbLiExaPJ39HgBBQBjVroGH?=
+ =?us-ascii?Q?Pw=3D=3D?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60888dca-74ab-415d-c312-08da60c91fbd
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 10:03:37.5131
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Xmfxxd2ImvCkN86fhSrHry1xr1wVpvkQCd/kvXC28R2/OhB8G8NrxAgoSiTGxSTnG4h/h/BFA9rqzl+lMJyKXtKr24bFre3OPhNr8wLciI8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR10MB4924
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.517,18.0.883
+ definitions=2022-07-08_08:2022-06-28,2022-07-08 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 bulkscore=0 malwarescore=0
+ mlxscore=0 spamscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
+ definitions=main-2207080036
+X-Proofpoint-GUID: Ew-Ts5aNqfwze6JmTbUyOisAm9IQ4z0u
+X-Proofpoint-ORIG-GUID: Ew-Ts5aNqfwze6JmTbUyOisAm9IQ4z0u
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220707_234442_545169_58631ED8 
-X-CRM114-Status: GOOD (  10.92  )
+X-CRM114-CacheID: sfid-20220708_030409_108361_A4CF4219 
+X-CRM114-Status: GOOD (  12.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,403 +211,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add new clock controller compatible and dt-bindings header for the
-Everything-Else domain of the S4 SoC.
+On Thu, Jul 07, 2022 at 07:02:58AM -0700, Guenter Roeck wrote:
+> and the NULL
+> dereferences in the binder driver are at the very least suspicious.
 
-Signed-off-by: Yu Tu <yu.tu@amlogic.com>
----
- .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
- MAINTAINERS                                   |   1 +
- include/dt-bindings/clock/s4-clkc.h           | 354 ++++++++++++++++++
- 3 files changed, 356 insertions(+)
- create mode 100644 include/dt-bindings/clock/s4-clkc.h
+The NULL dereferences in binder are just nonsense Sparse annotations.
+They don't affect runtime.
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-index 7ccecd5c02c1..301b43dea912 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-@@ -12,6 +12,7 @@ Required Properties:
- 		"amlogic,g12a-clkc" for G12A SoC.
- 		"amlogic,g12b-clkc" for G12B SoC.
- 		"amlogic,sm1-clkc" for SM1 SoC.
-+		"amlogic,s4-clkc" for S4 SoC.
- - clocks : list of clock phandle, one for each entry clock-names.
- - clock-names : should contain the following:
-   * "xtal": the platform xtal
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c1abc53f9e91..e4ca46c5c8a1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
- F:	drivers/clk/meson/
- F:	include/dt-bindings/clock/gxbb*
- F:	include/dt-bindings/clock/meson*
-+F:	include/dt-bindings/clock/s*
- 
- ARM/Amlogic Meson SoC Crypto Drivers
- M:	Corentin Labbe <clabbe@baylibre.com>
-diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
-new file mode 100644
-index 000000000000..8b46d54d79fe
---- /dev/null
-+++ b/include/dt-bindings/clock/s4-clkc.h
-@@ -0,0 +1,354 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ * Author: Yu Tu <yu.tu@amlogic.com>
-+ */
-+
-+#ifndef __S4_CLKC_H
-+#define __S4_CLKC_H
-+
-+/*
-+ * CLKID index values
-+ */
-+
-+#define CLKID_PLL_BASE			0
-+#define CLKID_FIXED_PLL_DCO		(CLKID_PLL_BASE + 0)
-+#define CLKID_FIXED_PLL			(CLKID_PLL_BASE + 1)
-+#define CLKID_FCLK_DIV2_DIV		(CLKID_PLL_BASE + 2)
-+#define CLKID_FCLK_DIV2			(CLKID_PLL_BASE + 3)
-+#define CLKID_FCLK_DIV3_DIV		(CLKID_PLL_BASE + 4)
-+#define CLKID_FCLK_DIV3			(CLKID_PLL_BASE + 5)
-+#define CLKID_FCLK_DIV4_DIV		(CLKID_PLL_BASE + 6)
-+#define CLKID_FCLK_DIV4			(CLKID_PLL_BASE + 7)
-+#define CLKID_FCLK_DIV5_DIV		(CLKID_PLL_BASE + 8)
-+#define CLKID_FCLK_DIV5			(CLKID_PLL_BASE + 9)
-+#define CLKID_FCLK_DIV7_DIV		(CLKID_PLL_BASE + 10)
-+#define CLKID_FCLK_DIV7			(CLKID_PLL_BASE + 11)
-+#define CLKID_FCLK_DIV2P5_DIV		(CLKID_PLL_BASE + 12)
-+#define CLKID_FCLK_DIV2P5		(CLKID_PLL_BASE + 13)
-+#define CLKID_GP0_PLL_DCO		(CLKID_PLL_BASE + 14)
-+#define CLKID_GP0_PLL			(CLKID_PLL_BASE + 15)
-+#define CLKID_HIFI_PLL_DCO		(CLKID_PLL_BASE + 16)
-+#define CLKID_HIFI_PLL			(CLKID_PLL_BASE + 17)
-+#define CLKID_HDMI_PLL_DCO		(CLKID_PLL_BASE + 18)
-+#define CLKID_HDMI_PLL_OD		(CLKID_PLL_BASE + 19)
-+#define CLKID_HDMI_PLL			(CLKID_PLL_BASE + 20)
-+#define CLKID_MPLL_50M_DIV		(CLKID_PLL_BASE + 21)
-+#define CLKID_MPLL_50M			(CLKID_PLL_BASE + 22)
-+#define CLKID_MPLL_PREDIV		(CLKID_PLL_BASE + 23)
-+#define CLKID_MPLL0_DIV			(CLKID_PLL_BASE + 24)
-+#define CLKID_MPLL0			(CLKID_PLL_BASE + 25)
-+#define CLKID_MPLL1_DIV			(CLKID_PLL_BASE + 26)
-+#define CLKID_MPLL1			(CLKID_PLL_BASE + 27)
-+#define CLKID_MPLL2_DIV			(CLKID_PLL_BASE + 28)
-+#define CLKID_MPLL2			(CLKID_PLL_BASE + 29)
-+#define CLKID_MPLL3_DIV			(CLKID_PLL_BASE + 30)
-+#define CLKID_MPLL3			(CLKID_PLL_BASE + 31)
-+
-+#define CLKID_BASE			(CLKID_PLL_BASE + 32)
-+#define CLKID_RTC_32K_CLKIN		(CLKID_BASE + 0)
-+#define CLKID_RTC_32K_DIV		(CLKID_BASE + 1)
-+#define CLKID_RTC_32K_SEL		(CLKID_BASE + 2)
-+#define CLKID_RTC_32K_XATL		(CLKID_BASE + 3)
-+#define CLKID_RTC_CLK			(CLKID_BASE + 4)
-+#define CLKID_SYS_CLK_B_SEL		(CLKID_BASE + 5)
-+#define CLKID_SYS_CLK_B_DIV		(CLKID_BASE + 6)
-+#define CLKID_SYS_CLK_B_GATE		(CLKID_BASE + 7)
-+#define CLKID_SYS_CLK_A_SEL		(CLKID_BASE + 8)
-+#define CLKID_SYS_CLK_A_DIV		(CLKID_BASE + 9)
-+#define CLKID_SYS_CLK_A_GATE		(CLKID_BASE + 10)
-+#define CLKID_SYS_CLK			(CLKID_BASE + 11)
-+
-+#define CLKID_CECA_32K_CLKIN		(CLKID_BASE + 12)
-+#define CLKID_CECA_32K_DIV		(CLKID_BASE + 13)
-+#define CLKID_CECA_32K_SEL_PRE		(CLKID_BASE + 14)
-+#define CLKID_CECA_32K_SEL		(CLKID_BASE + 15)
-+#define CLKID_CECA_32K_CLKOUT		(CLKID_BASE + 16)
-+#define CLKID_CECB_32K_CLKIN		(CLKID_BASE + 17)
-+#define CLKID_CECB_32K_DIV		(CLKID_BASE + 18)
-+#define CLKID_CECB_32K_SEL_PRE		(CLKID_BASE + 19)
-+#define CLKID_CECB_32K_SEL		(CLKID_BASE + 20)
-+#define CLKID_CECB_32K_CLKOUT		(CLKID_BASE + 21)
-+
-+#define CLKID_SC_CLK_SEL		(CLKID_BASE + 22)
-+#define CLKID_SC_CLK_DIV		(CLKID_BASE + 23)
-+#define CLKID_SC_CLK_GATE		(CLKID_BASE + 24)
-+
-+#define CLKID_DSPA_CLK_B_SEL		(CLKID_BASE + 25)
-+#define CLKID_DSPA_CLK_B_DIV		(CLKID_BASE + 26)
-+#define CLKID_DSPA_CLK_B_GATE		(CLKID_BASE + 27)
-+#define CLKID_DSPA_CLK_A_SEL		(CLKID_BASE + 28)
-+#define CLKID_DSPA_CLK_A_DIV		(CLKID_BASE + 29)
-+#define CLKID_DSPA_CLK_A_GATE		(CLKID_BASE + 30)
-+#define CLKID_DSPA_CLK			(CLKID_BASE + 31)
-+
-+#define CLKID_12_24M_CLK_GATE		(CLKID_BASE + 32)
-+#define CLKID_12M_CLK_DIV		(CLKID_BASE + 33)
-+#define CLKID_12_24M_CLK_SEL		(CLKID_BASE + 34)
-+#define CLKID_25M_CLK_DIV		(CLKID_BASE + 35)
-+#define CLKID_25M_CLK_GATE		(CLKID_BASE + 36)
-+
-+#define CLKID_VID_PLL_DIV		(CLKID_BASE + 37)
-+#define CLKID_VID_PLL_SEL		(CLKID_BASE + 38)
-+#define CLKID_VID_PLL			(CLKID_BASE + 39)
-+#define CLKID_VCLK_SEL			(CLKID_BASE + 40)
-+#define CLKID_VCLK2_SEL			(CLKID_BASE + 41)
-+#define CLKID_VCLK_INPUT		(CLKID_BASE + 42)
-+#define CLKID_VCLK2_INPUT		(CLKID_BASE + 43)
-+#define CLKID_VCLK_DIV			(CLKID_BASE + 44)
-+#define CLKID_VCLK2_DIV			(CLKID_BASE + 45)
-+#define CLKID_VCLK			(CLKID_BASE + 46)
-+#define CLKID_VCLK2			(CLKID_BASE + 47)
-+#define CLKID_VCLK_DIV1			(CLKID_BASE + 48)
-+#define CLKID_VCLK_DIV2_EN		(CLKID_BASE + 49)
-+#define CLKID_VCLK_DIV4_EN		(CLKID_BASE + 50)
-+#define CLKID_VCLK_DIV6_EN		(CLKID_BASE + 51)
-+#define CLKID_VCLK_DIV12_EN		(CLKID_BASE + 52)
-+#define CLKID_VCLK2_DIV1		(CLKID_BASE + 53)
-+#define CLKID_VCLK2_DIV2_EN		(CLKID_BASE + 54)
-+#define CLKID_VCLK2_DIV4_EN		(CLKID_BASE + 55)
-+#define CLKID_VCLK2_DIV6_EN		(CLKID_BASE + 56)
-+#define CLKID_VCLK2_DIV12_EN		(CLKID_BASE + 57)
-+#define CLKID_VCLK_DIV2			(CLKID_BASE + 58)
-+#define CLKID_VCLK_DIV4			(CLKID_BASE + 59)
-+#define CLKID_VCLK_DIV6			(CLKID_BASE + 60)
-+#define CLKID_VCLK_DIV12		(CLKID_BASE + 61)
-+#define CLKID_VCLK2_DIV2		(CLKID_BASE + 62)
-+#define CLKID_VCLK2_DIV4		(CLKID_BASE + 63)
-+#define CLKID_VCLK2_DIV6		(CLKID_BASE + 64)
-+#define CLKID_VCLK2_DIV12		(CLKID_BASE + 65)
-+#define CLKID_CTS_ENCI_SEL		(CLKID_BASE + 66)
-+#define CLKID_CTS_ENCP_SEL		(CLKID_BASE + 67)
-+#define CLKID_CTS_VDAC_SEL		(CLKID_BASE + 68)
-+#define CLKID_HDMI_TX_SEL		(CLKID_BASE + 69)
-+#define CLKID_CTS_ENCI			(CLKID_BASE + 70)
-+#define CLKID_CTS_ENCP			(CLKID_BASE + 71)
-+#define CLKID_CTS_VDAC			(CLKID_BASE + 72)
-+#define CLKID_HDMI_TX			(CLKID_BASE + 73)
-+
-+#define CLKID_HDMI_SEL			(CLKID_BASE + 74)
-+#define CLKID_HDMI_DIV			(CLKID_BASE + 75)
-+#define CLKID_HDMI			(CLKID_BASE + 76)
-+#define CLKID_TS_CLK_DIV		(CLKID_BASE + 77)
-+#define CLKID_TS_CLK_GATE		(CLKID_BASE + 78)
-+
-+#define CLKID_MALI_0_SEL		(CLKID_BASE + 79)
-+#define CLKID_MALI_0_DIV		(CLKID_BASE + 80)
-+#define CLKID_MALI_0			(CLKID_BASE + 81)
-+#define CLKID_MALI_1_SEL		(CLKID_BASE + 82)
-+#define CLKID_MALI_1_DIV		(CLKID_BASE + 83)
-+#define CLKID_MALI_1			(CLKID_BASE + 84)
-+#define CLKID_MALI			(CLKID_BASE + 85)
-+
-+#define CLKID_VDEC_P0_SEL		(CLKID_BASE + 86)
-+#define CLKID_VDEC_P0_DIV		(CLKID_BASE + 87)
-+#define CLKID_VDEC_P0			(CLKID_BASE + 88)
-+#define CLKID_VDEC_P1_SEL		(CLKID_BASE + 89)
-+#define CLKID_VDEC_P1_DIV		(CLKID_BASE + 90)
-+#define CLKID_VDEC_P1			(CLKID_BASE + 91)
-+#define CLKID_VDEC_SEL			(CLKID_BASE + 92)
-+
-+#define CLKID_HCODEC_P0_SEL		(CLKID_BASE + 93)
-+#define CLKID_HCODEC_P0_DIV		(CLKID_BASE + 94)
-+#define CLKID_HCODEC_P0			(CLKID_BASE + 95)
-+#define CLKID_HCODEC_P1_SEL		(CLKID_BASE + 96)
-+#define CLKID_HCODEC_P1_DIV		(CLKID_BASE + 97)
-+#define CLKID_HCODEC_P1			(CLKID_BASE + 98)
-+#define CLKID_HCODEC_SEL		(CLKID_BASE + 99)
-+
-+#define CLKID_HEVCB_P0_SEL		(CLKID_BASE + 100)
-+#define CLKID_HEVCB_P0_DIV		(CLKID_BASE + 101)
-+#define CLKID_HEVCB_P0			(CLKID_BASE + 102)
-+#define CLKID_HEVCB_P1_SEL		(CLKID_BASE + 103)
-+#define CLKID_HEVCB_P1_DIV		(CLKID_BASE + 104)
-+#define CLKID_HEVCB_P1			(CLKID_BASE + 105)
-+#define CLKID_HEVCB_SEL			(CLKID_BASE + 106)
-+
-+#define CLKID_HEVCF_P0_SEL		(CLKID_BASE + 107)
-+#define CLKID_HEVCF_P0_DIV		(CLKID_BASE + 108)
-+#define CLKID_HEVCF_P0			(CLKID_BASE + 109)
-+#define CLKID_HEVCF_P1_SEL		(CLKID_BASE + 110)
-+#define CLKID_HEVCF_P1_DIV		(CLKID_BASE + 111)
-+#define CLKID_HEVCF_P1			(CLKID_BASE + 112)
-+#define CLKID_HEVCF_SEL			(CLKID_BASE + 113)
-+
-+#define CLKID_WAVE_A_SEL		(CLKID_BASE + 114)
-+#define CLKID_WAVE_A_DIV		(CLKID_BASE + 115)
-+#define CLKID_WAVE_A_GATE		(CLKID_BASE + 116)
-+#define CLKID_WAVE_B_SEL		(CLKID_BASE + 117)
-+#define CLKID_WAVE_B_DIV		(CLKID_BASE + 118)
-+#define CLKID_WAVE_B_GATE		(CLKID_BASE + 119)
-+#define CLKID_WAVE_C_SEL		(CLKID_BASE + 120)
-+#define CLKID_WAVE_C_DIV		(CLKID_BASE + 121)
-+#define CLKID_WAVE_C_GATE		(CLKID_BASE + 122)
-+
-+#define CLKID_VPU_0_SEL			(CLKID_BASE + 123)
-+#define CLKID_VPU_0_DIV			(CLKID_BASE + 124)
-+#define CLKID_VPU_0			(CLKID_BASE + 125)
-+#define CLKID_VPU_1_SEL			(CLKID_BASE + 126)
-+#define CLKID_VPU_1_DIV			(CLKID_BASE + 127)
-+#define CLKID_VPU_1			(CLKID_BASE + 128)
-+#define CLKID_VPU			(CLKID_BASE + 129)
-+
-+#define CLKID_VPU_CLKB_TMP_SEL		(CLKID_BASE + 130)
-+#define CLKID_VPU_CLKB_TMP_DIV		(CLKID_BASE + 131)
-+#define CLKID_VPU_CLKB_TMP		(CLKID_BASE + 132)
-+#define CLKID_VPU_CLKB_DIV		(CLKID_BASE + 133)
-+#define CLKID_VPU_CLKB			(CLKID_BASE + 134)
-+
-+#define CLKID_VPU_CLKC_P0_SEL		(CLKID_BASE + 135)
-+#define CLKID_VPU_CLKC_P0_DIV		(CLKID_BASE + 136)
-+#define CLKID_VPU_CLKC_P0		(CLKID_BASE + 137)
-+#define CLKID_VPU_CLKC_P1_SEL		(CLKID_BASE + 138)
-+#define CLKID_VPU_CLKC_P1_DIV		(CLKID_BASE + 139)
-+#define CLKID_VPU_CLKC_P1		(CLKID_BASE + 140)
-+#define CLKID_VPU_CLKC_SEL		(CLKID_BASE + 141)
-+
-+#define CLKID_VAPB_0_SEL		(CLKID_BASE + 142)
-+#define CLKID_VAPB_0_DIV		(CLKID_BASE + 143)
-+#define CLKID_VAPB_0			(CLKID_BASE + 144)
-+#define CLKID_VAPB_1_SEL		(CLKID_BASE + 145)
-+#define CLKID_VAPB_1_DIV		(CLKID_BASE + 146)
-+#define CLKID_VAPB_1			(CLKID_BASE + 147)
-+#define CLKID_VAPB			(CLKID_BASE + 148)
-+
-+#define CLKID_GE2D			(CLKID_BASE + 149)
-+
-+#define CLKID_VDIN_MEAS_SEL		(CLKID_BASE + 150)
-+#define CLKID_VDIN_MEAS_DIV		(CLKID_BASE + 151)
-+#define CLKID_VDIN_MEAS_GATE		(CLKID_BASE + 152)
-+
-+#define CLKID_SD_EMMC_C_CLK_SEL		(CLKID_BASE + 153)
-+#define CLKID_SD_EMMC_C_CLK_DIV		(CLKID_BASE + 154)
-+#define CLKID_SD_EMMC_C_CLK		(CLKID_BASE + 155)
-+#define CLKID_SD_EMMC_A_CLK_SEL		(CLKID_BASE + 156)
-+#define CLKID_SD_EMMC_A_CLK_DIV		(CLKID_BASE + 157)
-+#define CLKID_SD_EMMC_A_CLK		(CLKID_BASE + 158)
-+#define CLKID_SD_EMMC_B_CLK_SEL		(CLKID_BASE + 159)
-+#define CLKID_SD_EMMC_B_CLK_DIV		(CLKID_BASE + 160)
-+#define CLKID_SD_EMMC_B_CLK		(CLKID_BASE + 161)
-+
-+#define CLKID_SPICC0_SEL		(CLKID_BASE + 162)
-+#define CLKID_SPICC0_DIV		(CLKID_BASE + 163)
-+#define CLKID_SPICC0_GATE		(CLKID_BASE + 164)
-+#define CLKID_SPICC1_SEL		(CLKID_BASE + 165)
-+#define CLKID_SPICC1_DIV		(CLKID_BASE + 166)
-+#define CLKID_SPICC1_GATE		(CLKID_BASE + 167)
-+
-+#define CLKID_PWM_A_SEL			(CLKID_BASE + 168)
-+#define CLKID_PWM_A_DIV			(CLKID_BASE + 169)
-+#define CLKID_PWM_A_GATE		(CLKID_BASE + 170)
-+#define CLKID_PWM_B_SEL			(CLKID_BASE + 171)
-+#define CLKID_PWM_B_DIV			(CLKID_BASE + 172)
-+#define CLKID_PWM_B_GATE		(CLKID_BASE + 173)
-+#define CLKID_PWM_C_SEL			(CLKID_BASE + 174)
-+#define CLKID_PWM_C_DIV			(CLKID_BASE + 175)
-+#define CLKID_PWM_C_GATE		(CLKID_BASE + 176)
-+#define CLKID_PWM_D_SEL			(CLKID_BASE + 177)
-+#define CLKID_PWM_D_DIV			(CLKID_BASE + 178)
-+#define CLKID_PWM_D_GATE		(CLKID_BASE + 179)
-+#define CLKID_PWM_E_SEL			(CLKID_BASE + 180)
-+#define CLKID_PWM_E_DIV			(CLKID_BASE + 181)
-+#define CLKID_PWM_E_GATE		(CLKID_BASE + 182)
-+#define CLKID_PWM_F_SEL			(CLKID_BASE + 183)
-+#define CLKID_PWM_F_DIV			(CLKID_BASE + 184)
-+#define CLKID_PWM_F_GATE		(CLKID_BASE + 185)
-+#define CLKID_PWM_G_SEL			(CLKID_BASE + 186)
-+#define CLKID_PWM_G_DIV			(CLKID_BASE + 187)
-+#define CLKID_PWM_G_GATE		(CLKID_BASE + 188)
-+#define CLKID_PWM_H_SEL			(CLKID_BASE + 189)
-+#define CLKID_PWM_H_DIV			(CLKID_BASE + 190)
-+#define CLKID_PWM_H_GATE		(CLKID_BASE + 191)
-+#define CLKID_PWM_I_SEL			(CLKID_BASE + 192)
-+#define CLKID_PWM_I_DIV			(CLKID_BASE + 193)
-+#define CLKID_PWM_I_GATE		(CLKID_BASE + 194)
-+#define CLKID_PWM_J_SEL			(CLKID_BASE + 195)
-+#define CLKID_PWM_J_DIV			(CLKID_BASE + 196)
-+#define CLKID_PWM_J_GATE		(CLKID_BASE + 197)
-+
-+#define CLKID_SARADC_SEL		(CLKID_BASE + 198)
-+#define CLKID_SARADC_DIV		(CLKID_BASE + 199)
-+#define CLKID_SARADC_GATE		(CLKID_BASE + 200)
-+#define CLKID_GEN_SEL			(CLKID_BASE + 201)
-+#define CLKID_GEN_DIV			(CLKID_BASE + 202)
-+#define CLKID_GEN_GATE			(CLKID_BASE + 203)
-+
-+#define CLKID_DDR			(CLKID_BASE + 204)
-+#define CLKID_DOS			(CLKID_BASE + 205)
-+#define CLKID_ETHPHY			(CLKID_BASE + 206)
-+#define CLKID_MALI_GATE			(CLKID_BASE + 207)
-+#define CLKID_AOCPU			(CLKID_BASE + 208)
-+#define CLKID_AUCPU			(CLKID_BASE + 209)
-+#define CLKID_CEC			(CLKID_BASE + 210)
-+#define CLKID_SD_EMMC_A			(CLKID_BASE + 211)
-+#define CLKID_SD_EMMC_B			(CLKID_BASE + 212)
-+#define CLKID_NAND			(CLKID_BASE + 213)
-+#define CLKID_SMARTCARD			(CLKID_BASE + 214)
-+#define CLKID_ACODEC			(CLKID_BASE + 215)
-+#define CLKID_SPIFC			(CLKID_BASE + 216)
-+#define CLKID_MSR_CLK			(CLKID_BASE + 217)
-+#define CLKID_IR_CTRL			(CLKID_BASE + 218)
-+#define CLKID_AUDIO			(CLKID_BASE + 219)
-+#define CLKID_ETH			(CLKID_BASE + 220)
-+#define CLKID_UART_A			(CLKID_BASE + 221)
-+#define CLKID_UART_B			(CLKID_BASE + 222)
-+#define CLKID_UART_C			(CLKID_BASE + 223)
-+#define CLKID_UART_D			(CLKID_BASE + 224)
-+#define CLKID_UART_E			(CLKID_BASE + 225)
-+#define CLKID_AIFIFO			(CLKID_BASE + 226)
-+#define CLKID_TS_DDR			(CLKID_BASE + 227)
-+#define CLKID_TS_PLL			(CLKID_BASE + 228)
-+#define CLKID_G2D			(CLKID_BASE + 229)
-+#define CLKID_SPICC0			(CLKID_BASE + 230)
-+#define CLKID_SPICC1			(CLKID_BASE + 231)
-+#define CLKID_PCIE			(CLKID_BASE + 232)
-+#define CLKID_USB			(CLKID_BASE + 233)
-+#define CLKID_PCIE_PHY			(CLKID_BASE + 234)
-+#define CLKID_I2C_M_A			(CLKID_BASE + 235)
-+#define CLKID_I2C_M_B			(CLKID_BASE + 236)
-+#define CLKID_I2C_M_C			(CLKID_BASE + 237)
-+#define CLKID_I2C_M_D			(CLKID_BASE + 238)
-+#define CLKID_I2C_M_E			(CLKID_BASE + 239)
-+#define CLKID_I2C_M_F			(CLKID_BASE + 240)
-+#define CLKID_HDMITX_APB		(CLKID_BASE + 241)
-+#define CLKID_I2C_S_A			(CLKID_BASE + 242)
-+#define CLKID_USB1_TO_DDR		(CLKID_BASE + 243)
-+#define CLKID_HDCP22			(CLKID_BASE + 244)
-+#define CLKID_MMC_APB			(CLKID_BASE + 245)
-+#define CLKID_RSA			(CLKID_BASE + 246)
-+#define CLKID_CPU_DEBUG			(CLKID_BASE + 247)
-+#define CLKID_DSPA			(CLKID_BASE + 248)
-+#define CLKID_VPU_INTR			(CLKID_BASE + 249)
-+#define CLKID_SAR_ADC			(CLKID_BASE + 250)
-+#define CLKID_GIC			(CLKID_BASE + 251)
-+#define CLKID_PWM_AB			(CLKID_BASE + 252)
-+#define CLKID_PWM_CD			(CLKID_BASE + 253)
-+#define CLKID_PWM_EF			(CLKID_BASE + 254)
-+#define CLKID_PWM_GH			(CLKID_BASE + 255)
-+#define CLKID_PWM_IJ			(CLKID_BASE + 256)
-+#define CLKID_DEMOD			(CLKID_BASE + 257)
-+
-+#define CLKID_HDCP22_ESMCLK_SEL		(CLKID_BASE + 258)
-+#define CLKID_HDCP22_ESMCLK_DIV		(CLKID_BASE + 259)
-+#define CLKID_HDCP22_ESMCLK_GATE	(CLKID_BASE + 260)
-+#define CLKID_HDCP22_SKPCLK_SEL		(CLKID_BASE + 261)
-+#define CLKID_HDCP22_SKPCLK_DIV		(CLKID_BASE + 262)
-+#define CLKID_HDCP22_SKPCLK_GATE	(CLKID_BASE + 263)
-+
-+#define CLKID_DEMOD_CORE_CLK_SEL	(CLKID_BASE + 264)
-+#define CLKID_DEMOD_CORE_CLK_DIV	(CLKID_BASE + 265)
-+#define CLKID_DEMOD_CORE_CLK_GATE	(CLKID_BASE + 266)
-+#define CLKID_ADC_EXTCLK_IN_SEL		(CLKID_BASE + 267)
-+#define CLKID_ADC_EXTCLK_IN_DIV		(CLKID_BASE + 268)
-+#define CLKID_ADC_EXTCLK_IN_GATE	(CLKID_BASE + 269)
-+#define CLKID_DEMOD_CORE_T2_CLK_SEL	(CLKID_BASE + 270)
-+#define CLKID_DEMOD_CORE_T2_CLK_DIV	(CLKID_BASE + 271)
-+#define CLKID_DEMOD_CORE_T2_CLK_GATE	(CLKID_BASE + 272)
-+#define CLKID_DEMOD_32K_CLKIN		(CLKID_BASE + 273)
-+#define CLKID_DEMOD_32K_DIV		(CLKID_BASE + 274)
-+#define CLKID_DEMOD_32K_XTAL		(CLKID_BASE + 275)
-+#define CLKID_DEMOD_32K_CLK		(CLKID_BASE + 276)
-+
-+#define NR_CLKS				(CLKID_BASE + 277)
-+
-+#endif /* __S4_CLKC_H */
--- 
-2.33.1
+drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
+drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
+drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
+drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
+
+regards,
+dan carpenter
 
 
 _______________________________________________
