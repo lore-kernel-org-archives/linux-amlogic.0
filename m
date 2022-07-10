@@ -4,65 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0B41C43334
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Jul 2022 20:15:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4EA0C43334
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Jul 2022 21:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=J8CWe1o/5VloJU9MkP3bwpeOiaRlDu0o0JAdqBlUO84=; b=vqv
-	ikemwllThnClFxQFDxMskm2DuI8iEQh9//9OTpYkrTsz3wYpQ+7xlhND72bx1+9UULTgfuO9ZjpHt
-	AUrQM4fakXHuxa9CbUNK7QG+vqm0lTa/dU8kYXJR0k5CpPyDmlMjvMMOyidjXyuP4gvhs9oYZt3da
-	sq1OYT7ZNlJsBWSHeK22lZ+/d53OXsv1Y0qZCAZTiNF2193W6mcSV3FeSFL+5GTE1sA4qrM9IGK09
-	nXZYRbH2GUvgHZiPoRrU/vpDVTxG89k+AL4B6qv1uNG3jrxGkFSyqON9Z1rxz8AGoKpS5sxXOKZuy
-	fj/0c9e7tZLhZNTpC+JIzcVcyzthNzw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ACURgE20bQBJ6fDrEwbTKGM2XrUKp5LLgU/oSUyB6uo=; b=PDqIEadFT/eY6O
+	c8FcOvfcWMvwEY+pJT0ARe5B5d8vA2qT50/SRx/TaQEE0iuhR7u2GD0kwh7+FMw/k+prRvWFhQk2a
+	uLrnEjvouSnwg9qN4O913VeNb4S05OiHBpzSRClHjCF5oVfx1dwvs166RHZ0G0ksvmbC4IeyWg/1o
+	t2za3mYrQxE7p7NEJwJ8rPPZnLJAFUH3onGHM3eOuDrV5pmieAWrDS+i6FNppaC0OGyqqPlBgvupJ
+	p3TBEeupqjcU3RO2O59vr+yKvdlTI1Rq6lRetDtjfmxHW1gCef1FFRgHwsrOH3rR5OQRsS3Aa1V8u
+	EMkdi+DOfb9/PtyDjaFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oAGr3-009Fjk-2X; Sat, 09 Jul 2022 20:15:05 +0000
-Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
+	id 1oAeQo-00DoS3-Ok; Sun, 10 Jul 2022 21:25:34 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oAGqz-009FiC-N1
-	for linux-amlogic@lists.infradead.org; Sat, 09 Jul 2022 20:15:03 +0000
-Received: by mail-lj1-x229.google.com with SMTP id 19so2087096ljz.4
-        for <linux-amlogic@lists.infradead.org>; Sat, 09 Jul 2022 13:15:00 -0700 (PDT)
+	id 1oAeQK-00DoE9-DU
+	for linux-amlogic@lists.infradead.org; Sun, 10 Jul 2022 21:25:05 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id be14-20020a05600c1e8e00b003a04a458c54so2015925wmb.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 10 Jul 2022 14:25:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=XCKvgdakwuVZnQHlmluz1ab7BHcachJR1RqZJvjEEv8=;
-        b=pFm2Jn0lkC/Wol0KEZzwJ+8I09eG3huwEDZJTsoLAXNFlQ+/PPp/wv7KFA/044x83z
-         4bWUOzhJ8KbYGIikHfp75/hym7siv6knCUXpx9+6Ihmvxf/NCQ9JeORrpcPJRSTkCMQq
-         s/7dhDhOtXBsvl9k/Hj7uiIMxWNpNKyjlyjfAq4Ot3/qJ4fCbb1T+GIRvakBah/aDP/n
-         1jE2UhmdHrMVzrwajqPLOsQt6HqMK/cgjH87AhDjXkGF+yt/Q4KbzQ5zPn1T2CHHP1KB
-         OMsSOoikGJn4xZhVHfDXsrBTtydLZGtYBm5od8NLuvExudPMdlglXFZgumVKypf/1Z0o
-         Gs3Q==
+        d=linexp-org.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CDpLMifMj8xD25r4WkNfIKy72vVUOFHmRwDlvbLrKrs=;
+        b=u5uV8L0CMYjZ3UtssL772lhFuB9HX5aWqtsXxGQc2rgGuqmKez0AwC+7jF26V6usaq
+         kaXCQWAI9cMaimIXKKeZO2JP3bqaOMg8Ip0psbVMPamwv/Wicw2umoWRcM0qUQ8zD0O5
+         nNeC65Bf2xgedE35kO705wdh7C3apIrAHFsZL2CftoQt1m0zrkmp2llLnHJiRs2jnbrG
+         bYWgGc5VHPLk4nOzpnEDeafE8GJdtgqSIclj4dtRwP/ULsfUPfqlM8Phvd2C3ZXSdWsz
+         Gr00uwO7961qsnpSAZ+dlcXkEGnQEe9YEXrv04odFxZpI97Hbv+TZfXCwoqFMXB8ZxYs
+         44WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=XCKvgdakwuVZnQHlmluz1ab7BHcachJR1RqZJvjEEv8=;
-        b=cbGTmWRrbWfiTfjBK+k7egudwjY3ybO4LjaSWEAxBow2RSwVX8QM5D6B7u7r23BQRF
-         1tL/YwOKx8KwfN4bwTOcPo7voRlJeq86ky9+Ra4I0BBWCYLVHGjRObqMwYzqHBqakCBv
-         VnHoKCmYpGwgxqSBTm6g9xI/8fJ/T7iKZlqCDKF2M+P1ls6IauxcGMSvqvBTgTwe4gBe
-         Ht4Vc5F5jH20lBy/HJxmam5DD7H7w8ZxpmtlDfyx/QU2JwAced155WqvlMn/hWxIA5j0
-         oKWcYArTFrwEc5ZYiEPMtfM1YUPhNTgg7vMFb4+We0GIaaiWeec64cTuHbibQlmO8Phk
-         Jgug==
-X-Gm-Message-State: AJIora/Pjz4RFI/MHlNUNh8PccTuQGp+wH9YRwWsDqSqCyansoPTed3q
-	TnxaDJa+C7XuF/900KSjUVM+dM1aMBpY4+Eh4DTvtmRSomY=
-X-Google-Smtp-Source: AGRyM1vRIfcrNv9nUJhcdazJUZiaR4PSb4lxwLPZQOPhtSoVg6ROQr2ElJD6fUxs9MYQWRtCM3d9qT8nW/vGSWtXqrY=
-X-Received: by 2002:a05:651c:243:b0:25d:5b44:197d with SMTP id
- x3-20020a05651c024300b0025d5b44197dmr4541570ljn.516.1657397698964; Sat, 09
- Jul 2022 13:14:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CDpLMifMj8xD25r4WkNfIKy72vVUOFHmRwDlvbLrKrs=;
+        b=yQrI+9waAKhcl2YNhZ81xML1dpZCAtnDJjrB5T1kGgQtvyGxTJ7Yeex5LLJ6ZsoZgO
+         1KK02HIGIRN60b6zwPiGVCA8WsmwyVQ8TUQtiQ64Qeju0uP/hR9tLeZsx9RUHUtFUpsx
+         cZFSWqkp+IpfSo3ehaz9L3cojqLkXARt1ToaJXQa6IwUgT6iSCBuWkutYXtR4ltP88n4
+         Uh9PNES0ht2oXfXGmh+FiyBQfDvASlTOfvPwsim4YhZx1q5PMypDb7fzBbfdhxt6xwme
+         5OX4WY0kSVBKM8ZCk+IFCVxdmCHb2BX2c446/+y3bZlQKHYH7xINFb9LeWIYd9JtEFeV
+         tRlA==
+X-Gm-Message-State: AJIora+c6O2jSC2NO3IhOqBirj1MgvjuLNT8r3IlIo7T4Cdpzks29dYE
+	UHv7rEJsHSjZngZRlvrKB/tKEA==
+X-Google-Smtp-Source: AGRyM1tb9dJ2C2FATBCjs5fyOV7YnyJ32Mmp+pPKK4xv6L6sx3r48q2s7ovpZXLuMvaIcd3yG41Sxg==
+X-Received: by 2002:a05:600c:22da:b0:3a0:4e7b:4237 with SMTP id 26-20020a05600c22da00b003a04e7b4237mr11879597wmg.101.1657488301801;
+        Sun, 10 Jul 2022 14:25:01 -0700 (PDT)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:c7c0:6823:f3ce:2447])
+        by smtp.gmail.com with ESMTPSA id m19-20020a05600c3b1300b003a2dd0d21f0sm7142759wms.13.2022.07.10.14.25.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Jul 2022 14:25:01 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linexp.org>
+To: daniel.lezcano@linaro.org,
+	rafael@kernel.org
+Cc: rui.zhang@intel.com,
+	khilman@baylibre.com,
+	abailon@baylibre.com,
+	amitk@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Guillaume La Roque <glaroque@baylibre.com>,
+	linux-amlogic@lists.infradead.org (open list:THERMAL DRIVER FOR AMLOGIC SOCS)
+Subject: [PATCH v1 13/33] thermal/drivers/amlogic: Switch to new of API
+Date: Sun, 10 Jul 2022 23:24:03 +0200
+Message-Id: <20220710212423.681301-14-daniel.lezcano@linexp.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220710212423.681301-1-daniel.lezcano@linexp.org>
+References: <20220710212423.681301-1-daniel.lezcano@linexp.org>
 MIME-Version: 1.0
-From: =?UTF-8?Q?Peter_H=C3=B6ller?= <drmedvet.hoeller@gmail.com>
-Date: Sat, 9 Jul 2022 22:14:45 +0200
-Message-ID: <CAJgPF1+b+=iaxE_RkAY=zG7y=PeEZ8r-2A6JSvNQbkTtHBUVAw@mail.gmail.com>
-Subject: GPIO dynamic IRQ handling for AMlogic
-To: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220709_131501_766187_60C47DC2 
-X-CRM114-Status: UNSURE (   8.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220710_142504_520679_5BF3D42D 
+X-CRM114-Status: GOOD (  12.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,49 +95,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+The thermal OF code has a new API allowing to migrate the OF
+initialization to a simpler approach.
 
-we are working on an Odroid C2 rev2 (S905 AMlogic) project for 3 years now.
-While upgrading to Kernel 5.16 we stumbled over the issue that there
-were only 8 static IRQ availabe for GPIO, so you get reduzed down to 4
-I/O-pins, if you use them with edge both, rising as well as falling -
-if you set up the IRQs for GPIO statically.
+Use this new API.
 
-Referring to your post
-http://lists.infradead.org/pipermail/linux-amlogic/2020-July/007684.html
-from Neil Armstraong:
-<<
-The only available driver for GPIO interrupts is irq-meson-gpio and
-should be enough for most of your use-cases
-if you pass the GPIO interrupt as `interrupt = ` and `interrupt-parent
-=` as we do for the Ethernet PHY on some
-boards.
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linexp.org>
+---
+ drivers/thermal/amlogic_thermal.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
->>
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index e61b91d14ad1..53eb7612884f 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -179,12 +179,12 @@ static int amlogic_thermal_disable(struct amlogic_thermal *data)
+ 	return 0;
+ }
+ 
+-static int amlogic_thermal_get_temp(void *data, int *temp)
++static int amlogic_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+ {
+ 	unsigned int tval;
+-	struct amlogic_thermal *pdata = data;
++	struct amlogic_thermal *pdata = tz->devdata;
+ 
+-	if (!data)
++	if (!pdata)
+ 		return -EINVAL;
+ 
+ 	regmap_read(pdata->regmap, TSENSOR_STAT0, &tval);
+@@ -195,7 +195,7 @@ static int amlogic_thermal_get_temp(void *data, int *temp)
+ 	return 0;
+ }
+ 
+-static const struct thermal_zone_of_device_ops amlogic_thermal_ops = {
++static struct thermal_zone_device_ops amlogic_thermal_ops = {
+ 	.get_temp	= amlogic_thermal_get_temp,
+ };
+ 
+@@ -276,10 +276,10 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 		return PTR_ERR(pdata->sec_ao_map);
+ 	}
+ 
+-	pdata->tzd = devm_thermal_zone_of_sensor_register(&pdev->dev,
+-							  0,
+-							  pdata,
+-							  &amlogic_thermal_ops);
++	pdata->tzd = devm_thermal_of_zone_register(&pdev->dev,
++						   0,
++						   pdata,
++						   &amlogic_thermal_ops);
+ 	if (IS_ERR(pdata->tzd)) {
+ 		ret = PTR_ERR(pdata->tzd);
+ 		dev_err(dev, "Failed to register tsensor: %d\n", ret);
+-- 
+2.25.1
 
-we completely understand there is no out-of-the-box upstream
-compatibilty because you are loosing kernel's compatibilty for other
-boards. But as we are using our kernel only for odroidC2 only, we
-wondered how to customize it correctly:
-
-So we need information as foollows please:
-
-1.) What are the IRQ-ranges availabe for GPIO of odroid C2 working
-with Kernel 5.16. Unfortunately, we cannot derive that information
-from anywhere else.
-
-2.) we would be verry happy to get further syntax information about
-how exactly to implement the mentioned  'interrups =' and
-'interrupt-parent =' in the DeviceTree with the correct IRQ-ranges.
-
-and 3.) How to correctly declare/announce the GPIO-IRQs dynamically in
-the DeviceTree (syntax) and, if so, which corresponding syntax-changes
-are needed to be done where in the driver 'irq-meson-gpio' to make
-this finally work.
-
-with kind regards and many many thanks in advance
-
-Peter
 
 _______________________________________________
 linux-amlogic mailing list
