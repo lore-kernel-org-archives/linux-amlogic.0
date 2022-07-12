@@ -4,56 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C3CBC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 12:54:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD98FC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 14:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yXecJoJn2l1/camBVfGzJ+LvUcoNrFW6LyeFUyJfAK0=; b=Zy4BKwQAXsZQD6
-	C3F9qqxS17e6nSgYzQCgWlekRs4GEFH5dEMaYZ1MJR9OEcEGwaCwAuu1HL2YKFvF6FvwK7ukeFUNt
-	f3Poiw4YITX56JsmPJOtECa7K0rjNa9ckSg2LIUBVH5mOpukZL/3ei22TYm1Uggrz+qmaKbc6FIHf
-	a7QS0KNi0SIc+YZQCCmIj77PePu++OaDBCGbo3q/dM6LB5NVFvzsO2dg6k9u9yhg2Q9tvek1luzjM
-	N4/xdaF6m+piz20mXwOxP5waI7sMb0xS6j79QsiG9zadLNTmh9/TEN0iKS7Wf0/Xz92y89HvM4Sqa
-	Wh5UXRijrmPa2OZNU6PQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:To:From:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=BLS559913psBev/anzeiYlmpfsnxMlXdAs8oH42F10s=; b=h/kcS1xqJpS28o
+	mFqM7h87e+DICxUEbWnbUZj2Io0b5sRoNb8xpryHvlhn2etOjFVnXik25mFTSHbILxQS4+S6Fm33M
+	Qq4BXCM+d0Rr9ZuJBg69UwUzCKYUrkmbTZX7P5XqmSgZBPrcEJpp5NKSYQks0VvnZd1AjxQYHz+se
+	sm6DjQYk90P2PLRCRFM9DzExaJ/AOGLQq0otmrgq5PJHbR/LrmLJxPcvya2LlFqhnvMH163U1wVnS
+	i2zg6JFHzIq2DsXFz5g4PVE1BSYFDAw87Gp4WNajzeuWHN5y1+H61zj3AGKTN22Sy7cAI89sKWmp8
+	lu2smoL3Yuxhe3S8P9HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBFPb-00B9fR-KD; Tue, 12 Jul 2022 12:54:47 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBFPW-00B9bM-Ps; Tue, 12 Jul 2022 12:54:45 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1A1D1596;
-	Tue, 12 Jul 2022 05:54:41 -0700 (PDT)
-Received: from [10.57.85.194] (unknown [10.57.85.194])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2D11B3F70D;
-	Tue, 12 Jul 2022 05:54:39 -0700 (PDT)
-Message-ID: <94ab770b-8a8a-4299-a54e-2ff77afb9e04@arm.com>
-Date: Tue, 12 Jul 2022 13:54:37 +0100
+	id 1oBGon-00BglR-3e; Tue, 12 Jul 2022 14:24:53 +0000
+Received: from out203-205-251-27.mail.qq.com ([203.205.251.27])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oBGoi-00BghW-8i
+	for linux-amlogic@lists.infradead.org; Tue, 12 Jul 2022 14:24:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1657635879; bh=/oQMXHUypDVMZ9kircvgiPPG8uI4ziB0xvtL1YmzSU4=;
+	h=From:To:Cc:Subject:Date;
+	b=VPDrt2jqXjSgYSo337SYqeqLvsAet5v/i8iIbxmU1HjU3ChflTqsWkEmHZVk8NR0E
+	 cJSjFxjX1dI+bJirs4RuB4jx9fW23Di6bdSt0kjjl6EQXl4EnmLQfMg9Oz3aaBF43D
+	 /oUsIOkLum39v5vS7ynCewllTcOBFPjjeNenkQX0=
+Received: from TS-551.. ([101.229.115.105])
+	by newxmesmtplogicsvrsza30.qq.com (NewEsmtp) with SMTP
+	id 625168CE; Tue, 12 Jul 2022 22:24:37 +0800
+X-QQ-mid: xmsmtpt1657635877tp7b68oxj
+Message-ID: <tencent_5FC75850BB8ECD9374E98461C38C41CAC506@qq.com>
+X-QQ-XMAILINFO: OKkKo7I1HxIenvf2soaMAlNhDeE4FAs+rCRqYcpduDtc0UxCMmCVtd47mm9eLq
+	 NvoQFnSLkFaXH19dCsqC9WcDXzcVonoC61q42iuF6dMVC6o638dplVhbgwEbeAyZA0RO4WsFCWqd
+	 HntQZBbrjx0BEDEEFwlx+lSgONcgVEIxQv7KRN4UHi0B8aL/PU47OhslCpF+gMdcQTIWqKq8YW2j
+	 YwsWeC3/i0z2r/hC6RHORQYh5gel/spN+38c0uTRDrQ4WYR6nzYSZYFO/tihOd6zUhEjCIjPfoCD
+	 BqTa8Rwr/OiDN2ZPsI40/6jiqK/tBFDObF/Xxk3DrwWciBtcx6gu2Mgn8VfwaQJ+NCnUtm/PweqC
+	 uP2yU2G1s+TvJ0Awn7Y0OrcuDL2BrJEhby6VHbh4/fdSugEjGOG3nadk8DuxcF7J8gEgr5e3HCQ5
+	 v1WVeibz2dZtMEYbxIm10DIjErl1CsDoNYWvrOv1cuyWIbCyEApgtxV3py0RBS9nNnr5zPbkbNIb
+	 /eDoPAsFFG4TXkeqnd00OsyyAngjT7GwiJHfq553KQF7OeHvVLVfZ1A6FeEG8JcjaPtwEEdxxUGF
+	 /twX2+TUX9RdgJaB2afLuoSgz37dWaF1uYOpIqciUSMyypyWJCCP3m8pkOIr0Z4xHU43gViOb0u4
+	 xTjj4Fu6rnsm2ERJFU+NTEFMCYOj+F95f9wFwUcoHXf5TR4hV1AOk5+vDE+0+Pxx1yCOLXbI3uMs
+	 u6u1fM+BB9jr7037mXe/VxGhXgBpmUlNLf1Btj4Xr188Ytww9dPqeECnShlc0SsnVfHJehAqvqHg
+	 WWT9mZaxzYlwR7EcSTTBd+dOQ9vX7g+tBkwqYu66dyCDckiWEk04P76Y8DvB9OdzNrXNt8PG+3MN
+	 E9wp/0yVpTIkjj3zQMKm2fVcVmSW9FrP4h1qL3JWBV
+From: Zhang Ning <zhangn1985@qq.com>
+To: narmstrong@baylibre.com,
+	robh+dt@kernel.org,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Zhang Ning <zhangn1985@qq.com>
+Subject: [PATCH] Add MagicBox M16S support
+Date: Tue, 12 Jul 2022 22:24:04 +0800
+X-OQ-MSGID: <20220712142404.26021-1-zhangn1985@qq.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
-Content-Language: en-GB
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220712_055443_001611_08E64C2D 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20220712_072448_807064_1BB4182C 
+X-CRM114-Status: GOOD (  10.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,124 +74,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2022-07-12 07:36, Jiucheng Xu wrote:
-> Add binding documentation for the Amlogic G12 series DDR
-> performance monitor unit.
-> 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-> ---
->   .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
->   MAINTAINERS                                   |  1 +
->   2 files changed, 52 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
-> new file mode 100644
-> index 000000000000..c586b4ab4009
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/aml-ddr-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic G12 DDR performance monitor
-> +
-> +maintainers:
-> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - aml,g12-ddr-pmu
-> +      - items:
-> +          - enum:
-> +              - aml,g12-ddr-pmu
-> +          - const: aml,g12-ddr-pmu
+MagicBox M16S or MagicBox 3Pro is popular Tv box in China.
 
-Judging by what the driver actually implements, this should probably be:
+it's gxm_q201_v1 according u-boot log.
+and it's almost same as Q201 reference design.
 
-   compatible:
-     items:
-       - enum:
-         - amlogic,g12a-ddr-pmu
-         - amlogic,g12b-ddr-pmu
-         - amlogic,sm1-ddr-pmu
-       - const: amlogic,g12-ddr-pmu
+add a simple dts to support this Tv box.
 
-There doesn't seem much point in allowing only the common compatible 
-without a SoC-specific identifier. Note also that "aml," is not the 
-documented vendor prefix.
+Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 20 +++++++++++++++++++
+ 2 files changed, 21 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
 
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - model
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 8773211df50e..e0907fb41829 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxm-magicbox-m16s.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+new file mode 100644
+index 000000000000..be543d65a529
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+@@ -0,0 +1,20 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
++ */
++
++/dts-v1/;
++
++#include "meson-gxm.dtsi"
++#include "meson-gx-p23x-q20x.dtsi"
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
++	model = "MagicBox M16S";
++};
++&ethmac {
++        phy-mode = "rmii";
++        phy-handle = <&internal_phy>;
++};
+-- 
+2.35.1
 
-Remove this, and use the compatible strings properly as above.
-
-> +  - dmc_nr
-> +  - chann_nr
-
-I suspect those could probably be inferred from the correct compatible 
-string, but if not (i.e. within one SoC you have multiple PMUs 
-supporting the same events but with different numbers of usable 
-channels), then document what exactly they mean.
-
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-
-As mentioned in the driver review, if you really want to use a named 
-interrupt (which should usually be unnecessary when there's only one), 
-it has to be a defined name. DT is not a mechanism for overriding what 
-Linux shows in /proc/interrupts.
-
-Thanks,
-Robin.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +          ddr_pmu: ddr_pmu {
-> +                  compatible = "amlogic,g12-ddr-pmu";
-> +                  model = "g12a";
-> +                  dmc_nr = <1>;
-> +                  chann_nr = <4>;
-> +                  reg = <0x0 0xff638000 0x0 0x100
-> +                         0x0 0xff638c00 0x0 0x100>;
-> +                  interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-> +                  interrupt-names = "ddr_pmu";
-> +          };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fd2a56a339b4..ac0a1df4622d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1055,6 +1055,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
->   S:	Supported
->   W:	http://www.amlogic.com
->   F:	Documentation/admin-guide/perf/aml-ddr-pmu.rst
-> +F:	Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->   F:	drivers/perf/amlogic/
->   F:	include/soc/amlogic/
->   
 
 _______________________________________________
 linux-amlogic mailing list
