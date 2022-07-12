@@ -4,85 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B756C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 07:16:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B668C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 09:41:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mZYCN29toGN3FDKdMuihXnC5fJkTijXyG2A0r7lKzmU=; b=Ghp73k96z7GRUJ
-	K/H+RidAt8FFJ+x1GtMC3m+94AwiPfsNCuYUUzclQs8OkH7OGvFNwKbFXvUr1okwxKD88IdvHHx68
-	rRKIPFbmsyGbq8h14zONWx/OhNachPq/FDNxTuhqtgB8sMjkZw3TKjg41Sz9Uyk8iAu4Z0Dk7JSNH
-	Q0m/lNqHaO2NlYvpvmYIi0aDrJvHUwXCNg+/5C8pM9skJbtBp1YaCTNHp6MHFYgqA5o8/KhorHHan
-	FODCZ8bt62taDJfZ6XzTthFhqTDKlfW0iOyHSyC8qDOWD6j1aN2A+ZUgetEk2ksHLO7mMwqYGla9P
-	CXnn8ATQjRX2lg0UrkhQ==;
+	List-Owner; bh=LpkuH4UgoFgONesTFNWnol6cAaVC3sNl8YyOsvmuKkk=; b=z/DopDPhD+Is73
+	sxFpjjaRugcX1aL6cpzHmSwaU4nmiOwzoRNKJqLuQHwS9A1/huZUpivWW5aS9MOp2qwV2vCQaGN1G
+	gTkynBnxXisP6foKV//mGPUwaq8oEsB6XXtsw51f3wW91YkPXciPXRi682RzzrJrzaKvgLzAwL5j/
+	J9nKV45pePSKvuusESt6UicHmUbZt5ec7/C5LevZFSgXjBXDggqyX/6IXPt1zSw49oFVYxwmGW2B4
+	GfEriIvaXbx8A2jlbO4RKgn9Hj6WO1JT0uIVlwKQFKhlL/pX4Fj6v45C+z/DvWJaE4TwlHUoW5WYG
+	dXHp9UU7JHbh876jnhCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBA7a-008GyL-EI; Tue, 12 Jul 2022 07:15:50 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1oBCNx-009MUe-AW; Tue, 12 Jul 2022 09:40:53 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBA7P-008GsA-Ho
-	for linux-amlogic@lists.infradead.org; Tue, 12 Jul 2022 07:15:42 +0000
-Received: by mail-lf1-x131.google.com with SMTP id e28so8847906lfj.4
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Jul 2022 00:15:36 -0700 (PDT)
+	id 1oBCNk-009MEJ-Av
+	for linux-amlogic@lists.infradead.org; Tue, 12 Jul 2022 09:40:41 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id u14so9225725ljh.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 12 Jul 2022 02:40:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nsCsUCsLeks7gLQjyy032kLwCiyMm8kobhR40LxLfCE=;
-        b=fP1az/JP9d5e2iu960Ic2C2JTKpsqA318fncQOEWI9lQMTMo+xqjwtxRR9GzAJl9T1
-         waUAo5RWk2oP0WP1wxNQcNwoQoOTqyFpWexrqawczTQ88goI0jJ+pi5UkvaqFbe06xLo
-         4Zpu5I/bS5dsF/jj/997rgIvJlDmKF/Dc7mEpXgMnnlpf6oNR1Ty9VGOSLn87BcCFbfZ
-         3Ss5NS6m0EcKYvxggwyTvMWQIdvFJGS5SswRD0E/ErY4YjPP8gjp+H8+0q5uEa3ZSEHj
-         Aiw4zbELh/Bi1yjMrdRBMOBqEDgxfWUAvDTocnRPXWW/y6ZiM6KJ/CL8NYwcZ3iCF5Rv
-         JEuQ==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=+qkfPlCxqbG9qhgmJwcaiOZdFi09fLFwfAcMTyA0/dc=;
+        b=Cp5V6ic8+iXNW0gpQPXNWkZGKPNpR5qcuZWGSQTQpjHWgYR97zHZ4yVixyEO+8AqQY
+         BDRKCgnwhou+j14dllE0e8aTfqWfIMX3ByM/nPHClWbPuvEVBb+vvbf4bNN/WFVf9jgq
+         BfbkQCwUOQnSqoTOt7haVyJSIk7cmSeZ63IZ7mXWMLW3z25y16QmiSHuGLuUz+TNSWMb
+         KYNTr0AtYJFiH/kacbYcE4AUaFGedq/jnl6CQiXk5jMdoGHrSPOnBKj6q8Q+VcFjjTOZ
+         STQcWjh6ehL3VBN1Fp2Gi2eIBk8fHO2FVMvOLmmiuTMxir8Aotb8v1ki3073Imwk0V8+
+         ICaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=nsCsUCsLeks7gLQjyy032kLwCiyMm8kobhR40LxLfCE=;
-        b=KHQGHnCCFZf1kqXdnNpTDZM438sMdQ54uuT8hi1i8yr7WXAfEW8aIfmH93AShbUT1f
-         kUf1istpHiW8k797kKwYFxntyNQ3dipMF1IXA4GA85zAQjY16aDTbRz0ETkN4msH7PEf
-         4kMAWv32J2pncmubIM569rrG/54cOoJn/6rOd6lnIZz3j1vdfHjRU7jV6lZ7Je2HTnjU
-         T2ml1wLFF9FfIeZO55ksZkMKo04VYbyKjb5iz4785669Qw7Mj4HOP1KzX/6CQD1uHdN2
-         yJfwdg06m3PPRmGrTB/SNsCwzWVMJZzO1UNfq7D7qmKPRJaIL0sxaMROpD4JnT4hdWqW
-         3Ivg==
-X-Gm-Message-State: AJIora9971Y0Qf9/RBCsKKKXW3wI4FVlveDM7ODrQEGaM8c2S8Aw86l7
-	wAaUCCbpBw9hWo1hCSXQr42biA==
-X-Google-Smtp-Source: AGRyM1spCUHNkLtF0Uo+VDAZEfXmPYq1704v0M4hpSxhTZ9ocQTZspqz/bbrl5COvtkZ1IRDf9Mtng==
-X-Received: by 2002:a05:6512:45b:b0:489:cf49:4623 with SMTP id y27-20020a056512045b00b00489cf494623mr8890654lfk.266.1657610135495;
-        Tue, 12 Jul 2022 00:15:35 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id r6-20020ac25c06000000b00483f8c40c17sm2003762lfp.240.2022.07.12.00.15.32
+        bh=+qkfPlCxqbG9qhgmJwcaiOZdFi09fLFwfAcMTyA0/dc=;
+        b=zlChce1mkdCHVxfeI8GTwU9AOmhYSK1Arcn3CwxG6yrBWwiuew6U7ni2+P1f3R1hCy
+         B/rDZIzAUiJqJP8yNSWZ4vgywAubyqvE+h0kBPKodHmwQAM3BZkCmXvYrvr5pbwVrfY+
+         DojfR8v37LrhMxfHFBMLOYR4einYpr9QZFAwISqzBd7SHBZMPjPG7pv7LSttMgAAip+X
+         aoK2e013pT4FWsBFjPCSH+S58w6iHdbrzd+bi8Yo2WQtlCwRLwIkzVwBt8FO3e9gHu25
+         NnLzlEk65qx56b2ZoZm9aEacxzpelrGDebUcI7SowaO0SGGjSOet5kNKNKoqWvJLpWpW
+         8f1g==
+X-Gm-Message-State: AJIora9OmM9tpn+GmXXe6T8ynGQSMOdKRhdLNWsng+GeApL7NaqfWSNH
+	Vc/44CrwgNucpNiuAyAAeFOBkw==
+X-Google-Smtp-Source: AGRyM1vv/Ki6opySk8sYVUy+JwlZPDRRGxZPc2h0jjpQjs8Nsi3a3cth7n+hXa8lU5/cRpQhhKPg4A==
+X-Received: by 2002:a2e:aa8e:0:b0:25d:5ac8:854d with SMTP id bj14-20020a2eaa8e000000b0025d5ac8854dmr11740857ljb.324.1657618836591;
+        Tue, 12 Jul 2022 02:40:36 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id v14-20020ac2560e000000b0047fae90bfb4sm2083581lfd.56.2022.07.12.02.40.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 00:15:34 -0700 (PDT)
-Message-ID: <1aa8e9aa-8cb3-8537-6d65-dd9441d5ee07@linaro.org>
-Date: Tue, 12 Jul 2022 09:15:32 +0200
+        Tue, 12 Jul 2022 02:40:36 -0700 (PDT)
+Message-ID: <b7a33482-9bce-7ab1-43cb-3c93a5282490@linaro.org>
+Date: Tue, 12 Jul 2022 11:40:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add S4 SoC clock controller
+ bindings
 Content-Language: en-US
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220708062757.3662-1-yu.tu@amlogic.com>
+ <20220708062757.3662-2-yu.tu@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+In-Reply-To: <20220708062757.3662-2-yu.tu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220712_001539_648582_E732AC29 
-X-CRM114-Status: GOOD (  17.38  )
+X-CRM114-CacheID: sfid-20220712_024040_426094_4F2A9532 
+X-CRM114-Status: GOOD (  18.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,96 +98,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/07/2022 08:36, Jiucheng Xu wrote:
-> Add binding documentation for the Amlogic G12 series DDR
-> performance monitor unit.
-
-You need to fix subject - use a prefix matching subsystem. Space after
-each ':'.
-
+On 08/07/2022 08:27, Yu Tu wrote:
+> Add new clock controller compatible and dt-bindings header for the
+> Everything-Else domain of the S4 SoC.
 > 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > ---
->  .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
+>  MAINTAINERS                                   |   1 +
+>  include/dt-bindings/clock/s4-clkc.h           | 354 ++++++++++++++++++
+>  3 files changed, 356 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/s4-clkc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> index 7ccecd5c02c1..301b43dea912 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> @@ -12,6 +12,7 @@ Required Properties:
+>  		"amlogic,g12a-clkc" for G12A SoC.
+>  		"amlogic,g12b-clkc" for G12B SoC.
+>  		"amlogic,sm1-clkc" for SM1 SoC.
+> +		"amlogic,s4-clkc" for S4 SoC.
+>  - clocks : list of clock phandle, one for each entry clock-names.
+>  - clock-names : should contain the following:
+>    * "xtal": the platform xtal
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c1abc53f9e91..e4ca46c5c8a1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
+>  F:	drivers/clk/meson/
+>  F:	include/dt-bindings/clock/gxbb*
+>  F:	include/dt-bindings/clock/meson*
+> +F:	include/dt-bindings/clock/s*
+>  
+>  ARM/Amlogic Meson SoC Crypto Drivers
+>  M:	Corentin Labbe <clabbe@baylibre.com>
+> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
 > new file mode 100644
-> index 000000000000..c586b4ab4009
+> index 000000000000..8b46d54d79fe
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
-
-Filename: aml,g12-ddr-pmu.yaml
-
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/aml-ddr-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/include/dt-bindings/clock/s4-clkc.h
+> @@ -0,0 +1,354 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + */
 > +
-> +title: Amlogic G12 DDR performance monitor
-> +
-> +maintainers:
-> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - aml,g12-ddr-pmu
-> +      - items:
-> +          - enum:
-> +              - aml,g12-ddr-pmu
-> +          - const: aml,g12-ddr-pmu
+> +#ifndef __S4_CLKC_H
+> +#define __S4_CLKC_H
 
-This does not make any sense. Why do you use two compatibles
-"aml,g12-ddr-pmu", "aml,g12-ddr-pmu" after each other?
+Use header guards mathcing paths. See other files for examples.
 
 > +
-> +  reg:
-> +    maxItems: 2
-
-You need to describe the items.
-
+> +/*
+> + * CLKID index values
+> + */
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - model
-> +  - dmc_nr
-> +  - chann_nr
+> +#define CLKID_PLL_BASE			0
+> +#define CLKID_FIXED_PLL_DCO		(CLKID_PLL_BASE + 0)
 
-How these ended up here?
-No underscores.
+Drop CLKID_PLL_BASE
 
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
+> +#define CLKID_FIXED_PLL			(CLKID_PLL_BASE + 1)
 
-Also something new. No.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +          ddr_pmu: ddr_pmu {
-
-Wrong indentation. 4 spaces for DTS example.
-
-Generic node name, so "pmu", no underscores in node names.
-
-> +                  compatible = "amlogic,g12-ddr-pmu";
-> +                  model = "g12a";
-> +                  dmc_nr = <1>;
-> +                  chann_nr = <4>;
-
-This does not pass the test. Please do not send untested bindings.
+ditto... and so on.
 
 
 Best regards,
