@@ -4,83 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A9C3C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 09:44:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34183C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 12:37:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R/HCczrpOiKVUPVNsVmFBDMP2c4wDHnj+/FwDX9N4hU=; b=SbabbNdKPJ7xAq
-	JYWjeRuDzB7Ohejh+p9M91bPDVzbo6yndM1OoViHLToivfRmuR7LidFeyzao3sWjYRuccBBcZC9YR
-	VeyTEC/zs1T+cbAW/rMfjxkY8B85sjiXwbcYuZ6bEJhErfC61L9laJd0gLt6j2BdXER2D4A7Fa5Jr
-	HlKct4nlds59+rZgpHtW/LHuL8zYLyog4a5Q1AmwZFDWjZ5ag1MG/82EXKkc8A3DGkq3cieEgQLpU
-	u9LDtQHQmyLKzNtocMm3SmuyBE+egP70rDygYHX7AyEVbeDR1MFctYa+fPn6kjQz9vmOF6vBE35w+
-	0UdJ9O8gmk5GYjJLGYmQ==;
+	List-Owner; bh=FarrpTAmwL4VBMIfSFmDpjZGaK2GD6gl8GexaRtYREA=; b=oJoT0sCPI/a+QU
+	h6A+aDf5VKNPaYqymgdkFRpnYp7YFciSAQBz1yUMbD7TcL8MJCPef2ad5LuM8l6o53BXSYqbLdfds
+	yn8MukgrD2i7IoFjzvdjDSIc2PnSIQgI927V9a5eJgdKmU49m3BO4A4TKVZ8RltlBTJ+lmXSWZ6xn
+	eExgbi0W0Ao8VoB2ndjuBHAUw1UBZDxiRRlhypvj6xABUuw9n7ZtpnXo/p56mhlIGDjM2jwvMa+AO
+	y+oJjNg7jmSaY8nw41fiv42wIohyLfiwf0APHf0HCcnnnihiq+BOWT//R14kcTHb/ZdWjzBLwW04r
+	VnW+Gx5N1wH24qS06qag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBCRc-009Osd-H9; Tue, 12 Jul 2022 09:44:40 +0000
-Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBCRX-009Opr-VV
-	for linux-amlogic@lists.infradead.org; Tue, 12 Jul 2022 09:44:38 +0000
-Received: by mail-lf1-x12c.google.com with SMTP id bu42so13074233lfb.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Jul 2022 02:44:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=ccOiMAgtSqX6XMOBrUrIJ0SaPuYb17sx2V9mHM1gD1E=;
-        b=Y0a/DBRjll737XFCNqzw6+eMJGYJBX6D/hxspikU6eioe8Urv+VmTU4PAYR1jlkCc1
-         JG/QXZYpVXP4sJVrD76Ej5OABuRlJqixN3zMtB1vcdxJHyc66ebGLe1VSjEbjUG30E1B
-         8+bix2IrOGOVVKtbrVUvk2m6iKYZZJk4XkiAs7OQDql9f3CTajF8DvWUSHete2hSTZuQ
-         e39cjbGzckLrRzCWgIZD4/kbCJv8Q5iAmBVEiCk672YXxIn99hLe36e9KvvKtM60H0qc
-         CmJTOhlaD+Wuf7hknq8BQ8nzKMdF9WARIbGPRVYeHotKWrC6vZlhVoCxrsvypWm1LNYi
-         ZeMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ccOiMAgtSqX6XMOBrUrIJ0SaPuYb17sx2V9mHM1gD1E=;
-        b=7rEF2HBCHsa3Y3rUOsKMkfvAgZ/juWItXfQTNBZ26K0zCJakG+RCV+NtiU+E9Iwfwx
-         CQBYFczD36fomEGg2hJKAFPCdMvpM7/Dm0ZLZbq0m3dOwO2h4lU8C0l5gMrk5+0z2CF7
-         di0Yp22+VsKrrLMu/F2LrW42/C08A0X1wWi8GUZtd10ieNMbvud1dEy7kZPvALUkdtKt
-         yVUAdJB1a5IQk019ZmCEcXooeO3+4pnisW2pFilTHybZWKjop9g6D75bhoazz9zeDR3U
-         AAwyqRWB5vnXmtDXexAXYQ87QuLYZCmtrW+nofk4ahibh6zXs4l4Uh0QDh/d9QWSW0CI
-         Vw/g==
-X-Gm-Message-State: AJIora9kHbI4I4VF5UhCq8Zic3XPbX9yF58J2Zci/UP61cQuz+mhjV/o
-	csItMZn3+wDbO6LB0IH7GdvP/w==
-X-Google-Smtp-Source: AGRyM1t0XIrqxrRUMiAPNhXh/+UpC10KkgPORctfq7pZBW+gpw3mxfsKIRyrLm7Hrb3xag7p8eKBdA==
-X-Received: by 2002:a05:6512:304c:b0:489:d0e3:2efb with SMTP id b12-20020a056512304c00b00489d0e32efbmr9494549lfb.34.1657619072024;
-        Tue, 12 Jul 2022 02:44:32 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b00478fe690207sm2078959lfh.286.2022.07.12.02.44.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 02:44:31 -0700 (PDT)
-Message-ID: <7fe9aab5-73a2-6209-ae65-d955c426f745@linaro.org>
-Date: Tue, 12 Jul 2022 11:44:29 +0200
+	id 1oBF8I-00B2fA-EA; Tue, 12 Jul 2022 12:36:54 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oBF8C-00B2cy-4B; Tue, 12 Jul 2022 12:36:53 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37BB71516;
+	Tue, 12 Jul 2022 05:36:45 -0700 (PDT)
+Received: from [10.57.85.194] (unknown [10.57.85.194])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EB9793F70D;
+	Tue, 12 Jul 2022 05:36:40 -0700 (PDT)
+Message-ID: <55be073b-caf1-320b-dd42-165636b45a74@arm.com>
+Date: Tue, 12 Jul 2022 13:36:34 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 3/3] clk: meson: s4: add s4 SoC clock controller driver
-Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+Subject: Re: [PATCH 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC
+ DDR PMU driver
+Content-Language: en-GB
+To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220708062757.3662-1-yu.tu@amlogic.com>
- <20220708062757.3662-4-yu.tu@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220708062757.3662-4-yu.tu@amlogic.com>
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chris Healy <cphealy@gmail.com>
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220712_024436_066654_945F7133 
-X-CRM114-Status: GOOD (  29.64  )
+X-CRM114-CacheID: sfid-20220712_053648_387430_6DCA868F 
+X-CRM114-Status: GOOD (  50.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,695 +65,1501 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/07/2022 08:27, Yu Tu wrote:
-> Add the peripheral clock controller found in the s4 SoC family.
+On 2022-07-12 07:36, Jiucheng Xu wrote:
+> This patch adds support Amlogic meson G12 series SoC
+> DDR bandwidth PMU driver framework and interfaces.
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> The PMU not only can monitor the total DDR bandwidth,
+> but also the bandwidth which is from individual IP module.
+> 
+> Example usage:
+> 
+>   $ perf stat -a -e aml_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
+> 
+> - or -
+> 
+>   $ perf stat -a -e \
+>     aml_ddr_bw/total_rw_bytes/,\
+>     aml_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 \
+>     sleep 10
+> 
+> g12 SoC support 4 channels to monitor DDR bandwidth
+> simultaneously. Each channel can monitor up to 4 IP modules
+> simultaneously.
+> 
+> For Instance, If you want to get the sum of DDR bandwidth
+> from CPU, GPU, USB3.0 and VDEC. You can use the following
+> command parameters to display.
+> 
+>   $ perf stat -a -e \
+>     aml_ddr_bw/chan_2_rw_bytes,arm=1,gpu=1,usb3_0=1,nna=1/ -I 1000 \
+>     sleep 10
+> 
+> Other events are supported, and advertised via perf list.
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
 > ---
->  MAINTAINERS                |    2 +-
->  drivers/clk/meson/Kconfig  |   17 +
->  drivers/clk/meson/Makefile |    1 +
->  drivers/clk/meson/s4.c     | 4678 ++++++++++++++++++++++++++++++++++++
->  drivers/clk/meson/s4.h     |  156 ++
->  5 files changed, 4853 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/meson/s4.c
->  create mode 100644 drivers/clk/meson/s4.h
+>   MAINTAINERS                            |   7 +
+>   drivers/perf/Kconfig                   |   2 +
+>   drivers/perf/Makefile                  |   1 +
+>   drivers/perf/amlogic/Kconfig           |  11 +
+>   drivers/perf/amlogic/Makefile          |   3 +
+>   drivers/perf/amlogic/aml_ddr_pmu.c     | 725 +++++++++++++++++++++++++
+>   drivers/perf/amlogic/aml_ddr_pmu_g12.c | 398 ++++++++++++++
+>   include/soc/amlogic/aml_ddr_pmu.h      |  63 +++
+>   8 files changed, 1210 insertions(+)
+>   create mode 100644 drivers/perf/amlogic/Kconfig
+>   create mode 100644 drivers/perf/amlogic/Makefile
+>   create mode 100644 drivers/perf/amlogic/aml_ddr_pmu.c
+>   create mode 100644 drivers/perf/amlogic/aml_ddr_pmu_g12.c
+>   create mode 100644 include/soc/amlogic/aml_ddr_pmu.h
 > 
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index e4ca46c5c8a1..f116ec0642f2 100644
+> index f679152bdbad..cb6ee59a4f44 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -1772,7 +1772,7 @@ M:	Jerome Brunet <jbrunet@baylibre.com>
->  L:	linux-amlogic@lists.infradead.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/amlogic*
-> -F:	drivers/clk/meson/
-> +F:	drivers/clk/meson/*
-
-Why?
-
->  F:	include/dt-bindings/clock/gxbb*
->  F:	include/dt-bindings/clock/meson*
->  F:	include/dt-bindings/clock/s*
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index fc002c155bc3..1a344b0564e8 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -115,4 +115,21 @@ config COMMON_CLK_G12A
->  	help
->  	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
->  	  devices, aka g12a. Say Y if you want peripherals to work.
+> @@ -1050,6 +1050,13 @@ S:	Maintained
+>   F:	Documentation/hid/amd-sfh*
+>   F:	drivers/hid/amd-sfh-hid/
+>   
+> +AMLOGIC DDR PMU DRIVER
+> +M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
+> +S:	Supported
+> +W:	http://www.amlogic.com
+> +F:	drivers/perf/amlogic/
+> +F:	include/soc/amlogic/
 > +
-> +config COMMON_CLK_S4
-> +	tristate "S4 SoC clock controllers support"
-> +	depends on ARM64
-> +	default y
-> +	select COMMON_CLK_MESON_REGMAP
-> +	select HAVE_ARM_SMCCC
-> +	select COMMON_CLK_MESON_DUALDIV
-> +	select COMMON_CLK_MESON_MPLL
-> +	select COMMON_CLK_MESON_PLL
-> +	select COMMON_CLK_MESON_CPU_DYNDIV
-> +	select COMMON_CLK_MESON_VID_PLL_DIV
-> +	select MFD_SYSCON
-> +	help
-> +	  Support for the clock controller on Amlogic S805X2 and S905Y4 devices,
-> +	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
-> +	  Say Y if you want peripherals and CPU frequency scaling to work.
->  endmenu
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 6eca2a406ee3..b3ef5f67820f 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
-> +obj-$(CONFIG_COMMON_CLK_S4) += s4.o
-> diff --git a/drivers/clk/meson/s4.c b/drivers/clk/meson/s4.c
+>   AMPHION VPU CODEC V4L2 DRIVER
+>   M:	Ming Qian <ming.qian@nxp.com>
+>   M:	Shijie Qin <shijie.qin@nxp.com>
+> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> index 1e2d69453771..68200c798128 100644
+> --- a/drivers/perf/Kconfig
+> +++ b/drivers/perf/Kconfig
+> @@ -192,4 +192,6 @@ config MARVELL_CN10K_DDR_PMU
+>   	  Enable perf support for Marvell DDR Performance monitoring
+>   	  event on CN10K platform.
+>   
+> +source "drivers/perf/amlogic/Kconfig"
+> +
+>   endmenu
+> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+> index 57a279c61df5..ef82b27e36d0 100644
+> --- a/drivers/perf/Makefile
+> +++ b/drivers/perf/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_AML_DDR_PMU) += amlogic/
+>   obj-$(CONFIG_ARM_CCI_PMU) += arm-cci.o
+>   obj-$(CONFIG_ARM_CCN) += arm-ccn.o
+>   obj-$(CONFIG_ARM_CMN) += arm-cmn.o
+> diff --git a/drivers/perf/amlogic/Kconfig b/drivers/perf/amlogic/Kconfig
 > new file mode 100644
-> index 000000000000..a97159222f0e
+> index 000000000000..d88bd8371aba
 > --- /dev/null
-> +++ b/drivers/clk/meson/s4.c
-> @@ -0,0 +1,4678 @@
-> +// SPDX-License-Identifier: GPL-2.0+
+> +++ b/drivers/perf/amlogic/Kconfig
+> @@ -0,0 +1,11 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +config AML_DDR_PMU
+> +	tristate "Amlogic DDR Bandwidth Performance Monitor"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	default n
+
+"n" is the automatic default anyway, so you don't need to specify this.
+
+> +	help
+> +          Provides support for the DDR performance monitor
+> +          in Amlogic SoCs, which can give information about
+> +          memory throughput and other related events. It
+> +          supports multiple channels to monitor the memory
+> +          bandwidth simultaneously.
+> diff --git a/drivers/perf/amlogic/Makefile b/drivers/perf/amlogic/Makefile
+> new file mode 100644
+> index 000000000000..4dc11620292b
+> --- /dev/null
+> +++ b/drivers/perf/amlogic/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_AML_DDR_PMU) += aml_ddr_pmu.o \
+> +			     aml_ddr_pmu_g12.o
+> diff --git a/drivers/perf/amlogic/aml_ddr_pmu.c b/drivers/perf/amlogic/aml_ddr_pmu.c
+> new file mode 100644
+> index 000000000000..67956d2a4cfc
+> --- /dev/null
+> +++ b/drivers/perf/amlogic/aml_ddr_pmu.c
+> @@ -0,0 +1,725 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Amlogic Meson-S4 Clock Controller Driver
-> + *
-> + * Copyright (c) 2021 Amlogic, inc.
-> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
 > + */
-> +
-> +#include <linux/clk-provider.h>
+> +#include <linux/bitfield.h>
 > +#include <linux/init.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/clk.h>
+> +#include <linux/irqreturn.h>
+> +#include <linux/kernel.h>
 > +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <dt-bindings/clock/s4-clkc.h>
+> +#include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/perf_event.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/printk.h>
+> +#include <linux/sysfs.h>
+> +#include <linux/types.h>
+> +#include <linux/version.h>
 > +
-> +#include "clk-mpll.h"
-> +#include "clk-pll.h"
-> +#include "clk-regmap.h"
-> +#include "vid-pll-div.h"
-> +#include "clk-dualdiv.h"
-> +#include "s4.h"
-> +#include "meson-eeclk.h"
+> +#include <soc/amlogic/aml_ddr_pmu.h>
 > +
-> +static DEFINE_SPINLOCK(meson_clk_lock);
+> +#define DDR_PERF_DEV_NAME "aml_ddr_bw"
+> +#define MAX_AXI_PORTS_OF_CHANNEL	4	/* A DMC channel can monitor max 4 axi ports */
+> +#define MAX_BITMAP			64	/* u64 event.attr.config1, 64 bits */
 > +
-> +static struct clk_regmap s4_fixed_pll_dco = {
-
-None of these are const?
-
-> +	.data = &(struct meson_clk_pll_data){
-> +		.en = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 8,
-> +		},
-> +		.n = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 10,
-> +			.width   = 5,
-> +		},
-> +		.frac = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
-> +		.l = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fixed_pll_dco",
-> +		.ops = &meson_clk_pll_ro_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal", }
-> +		},
-> +		.num_parents = 1,
-> +	},
+> +#define to_ddr_pmu(p)		container_of(p, struct ddr_pmu, pmu)
+> +
+> +#define hw_info_to_pmu(p)	container_of(p, struct ddr_pmu, info)
+> +
+> +struct ddr_pmu {
+> +	struct pmu pmu;
+> +	struct dmc_hw_info info;
+> +	struct dmc_counter counters;	/* save counters from hw */
+> +	bool pmu_enabled;
+> +	spinlock_t lock;		/* protect hw counter */
+> +	struct device *dev;
+> +	char *name;
+> +	struct	hlist_node node;
+> +	enum cpuhp_state cpuhp_state;
+> +	int cpu;			/* for cpu hotplug */
 > +};
 > +
-> +static struct clk_regmap s4_fixed_pll = {
-> +	.data = &(struct clk_regmap_div_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL0,
-> +		.shift = 16,
-> +		.width = 2,
-> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fixed_pll",
-> +		.ops = &clk_regmap_divider_ro_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fixed_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
+> +static inline void dmc_pmu_enable(struct ddr_pmu *pmu)
+
+Don't bother with "inline" in .c files - it's effectively just noise, 
+since the compiler will make its own decisions anyway.
+
+> +{
+> +	spin_lock(&pmu->lock);
+
+You shouldn't need locking - perf core takes care to run all the 
+callbacks on event->cpu, and expects the IRQ to be affine to that CPU as 
+well (which is why we need to do the whole hotplug thing), so mutual 
+exclusion should be inherent. Furthermore, as-is this locking all looks 
+rather broken - at a glance I can see it can deadlock the IRQ handler, 
+which is also racily accessing PMU state outside the lock anyway, so I'm 
+just going to ignore it for the rest of this review.
+
+> +	if (!pmu->pmu_enabled && pmu->info.ops->enable)
+> +		pmu->info.ops->enable(&pmu->info);
+> +
+> +	pmu->pmu_enabled = true;
+> +	spin_unlock(&pmu->lock);
+> +}
+> +
+> +static inline void dmc_pmu_disable(struct ddr_pmu *pmu)
+> +{
+> +	spin_lock(&pmu->lock);
+> +	if (pmu->pmu_enabled && pmu->info.ops->disable)
+> +		pmu->info.ops->disable(&pmu->info);
+> +
+> +	pmu->pmu_enabled = false;
+> +	spin_unlock(&pmu->lock);
+> +}
+> +
+> +static inline void ddr_cnt_accumulate(struct ddr_pmu *pmu,
+> +				      struct dmc_counter *c)
+> +{
+> +	struct dmc_counter *cnter = &pmu->counters;
+> +	int chann_nr = pmu->info.chann_nr;
+> +	int i;
+> +
+> +	cnter->all_cnt += c->all_cnt;
+> +	cnter->all_req += c->all_req;
+> +
+> +	for (i = 0; i < chann_nr; i++)
+> +		cnter->channel_cnt[i] += c->channel_cnt[i];
+> +}
+> +
+> +static void aml_ddr_config_axi_id(struct ddr_pmu *pmu, int axi_id, int chann)
+> +{
+> +	if (pmu->info.ops->config_axi_id) {
+> +		spin_lock(&pmu->lock);
+> +		pmu->info.ops->config_axi_id(&pmu->info, axi_id, chann);
+> +		spin_unlock(&pmu->lock);
+> +	}
+> +}
+> +
+> +static void aml_ddr_set_filter(struct perf_event *event, u8 axi_id)
+> +{
+> +	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> +	int chann;
+> +
+> +	if (event->attr.config > ALL_CHAN_COUNTER_ID &&
+> +	    event->attr.config < COUNTER_MAX_ID) {
+> +		chann = event->attr.config - CHAN1_COUNTER_ID;
+> +
+> +		aml_ddr_config_axi_id(pmu, axi_id, chann);
+> +	}
+> +}
+> +
+> +static inline void ddr_cnt_addition(struct dmc_counter *sum,
+> +				    struct dmc_counter *add1,
+> +				    struct dmc_counter *add2)
+> +{
+> +	int i;
+> +	u64 cnt1, cnt2;
+> +
+> +	sum->all_cnt = add1->all_cnt + add2->all_cnt;
+> +	sum->all_req = add1->all_req + add2->all_req;
+> +	for (i = 0; i < MAX_CHANNEL_NUM; i++) {
+
+AFAICS the caller knows the actual number of channels, so why not pass 
+that as an argument to save unnecessary operations? Plus then there's 
+really no reason at all to keep the redundant ddr_cnt_accumulate() 
+implementation.
+
+> +		cnt1 = add1->channel_cnt[i];
+> +		cnt2 = add2->channel_cnt[i];
+> +
+> +		sum->channel_cnt[i] = cnt1 + cnt2;
+> +	}
+> +}
+> +
+> +static void aml_ddr_perf_event_update(struct perf_event *event)
+> +{
+> +	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> +	u64 new_raw_count = 0;
+> +	struct dmc_counter dc = {0}, sum_dc = {0};
+> +	int idx;
+> +
+> +	spin_lock(&pmu->lock);
+> +	/* get the remain counters in register. */
+> +	pmu->info.ops->get_counters(&pmu->info, &dc);
+> +
+> +	ddr_cnt_addition(&sum_dc, &pmu->counters, &dc);
+> +	spin_unlock(&pmu->lock);
+> +
+> +	switch (event->attr.config) {
+> +	case ALL_CHAN_COUNTER_ID:
+> +		new_raw_count = sum_dc.all_cnt;
+> +		break;
+> +	case CHAN1_COUNTER_ID:
+> +	case CHAN2_COUNTER_ID:
+> +	case CHAN3_COUNTER_ID:
+> +	case CHAN4_COUNTER_ID:
+> +	case CHAN5_COUNTER_ID:
+> +	case CHAN6_COUNTER_ID:
+> +	case CHAN7_COUNTER_ID:
+> +	case CHAN8_COUNTER_ID:
+> +		idx = event->attr.config - CHAN1_COUNTER_ID;
+> +		new_raw_count = sum_dc.channel_cnt[idx];
+> +		break;
+> +	default:
+> +		dev_err(pmu->dev, "unsupported counter id\n ");
+
+Don't print messages that only indicate a bug in the driver - an invalid 
+config should never get past event_init.
+
+> +	}
+> +
+> +	local64_set(&event->count, new_raw_count);
+> +}
+> +
+> +static int aml_ddr_perf_event_init(struct perf_event *event)
+> +{
+> +	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> +	struct hw_perf_event *hwc = &event->hw;
+> +	struct perf_event *sibling;
+> +	u64 config1 = event->attr.config1;
+> +	int i, count = 0;
+> +
+> +	if (event->attr.type != event->pmu->type)
+> +		return -ENOENT;
+> +
+> +	if (is_sampling_event(event) || event->attach_state & PERF_ATTACH_TASK)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (event->cpu < 0) {
+> +		dev_warn(pmu->dev, "Can't provide per-task data!\n");
+
+Don't log a warning (or indeed anything, usually) for something which is 
+perfectly valid for a user to try.
+
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	if (event->group_leader->pmu != event->pmu &&
+> +	    !is_software_event(event->group_leader))
+> +		return -EINVAL;
+> +
+> +	if ((event)->group_leader == (event))
+
+Random parentheses?
+
+> +		list_for_each_entry((sibling), &(event)->sibling_list,
+> +				    sibling_list) {
+> +			if (sibling->pmu != event->pmu &&
+> +			    !is_software_event(sibling))
+> +				return -EINVAL;
+
+It looks like you don't have multiple sets of hardware counters; if so 
+you'd also need to reject the group if it contains more than one event 
+for this PMU.
+
+> +		}
+> +
+> +	/* check if the number of parameters is too much */
+> +	if (event->attr.config != ALL_CHAN_COUNTER_ID) {
+> +		for (i = 0; i < MAX_BITMAP; i++) {
+> +			if (config1 & 0x1 && ++count > MAX_AXI_PORTS_OF_CHANNEL) {
+> +				dev_warn(pmu->dev, "Too many parameters append the event\n");
+
+Again, it's questionable whether this is a warning condition.
+
+> +				return -EOPNOTSUPP;
+> +			}
+> +
+> +			config1 >>= 1;
+> +		}
+
+Also consider the hweight64() helper rather than this whole loop.
+
+> +	}
+> +
+> +	event->cpu = pmu->cpu;
+> +	hwc->idx = -1;
+
+You never read hwc->idx anywhere, so it's a bit pointless to set it.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void aml_ddr_perf_event_start(struct perf_event *event, int flags)
+> +{
+> +	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> +	struct hw_perf_event *hwc = &event->hw;
+> +
+> +	local64_set(&hwc->prev_count, 0);
+> +	local64_set(&event->count, 0);
+> +	hwc->state = 0;
+
+Ditto for hwc->prev_count and hwc->state. The point of event->hw is to 
+hold driver-internal data, so if you don't need to keep track of any 
+per-event data beyond the config you can ignore it entirely.
+
+> +
+> +	memset(&pmu->counters, 0, sizeof(pmu->counters));
+> +	dmc_pmu_enable(pmu);
+> +}
+> +
+> +static int aml_ddr_perf_event_add(struct perf_event *event, int flags)
+> +{
+> +	struct hw_perf_event *hwc = &event->hw;
+> +	u64 config1 = event->attr.config1;
+> +	int i, count = 0;
+> +
+> +	hwc->idx = event->attr.config;
+> +	hwc->state |= PERF_HES_STOPPED;
+> +
+> +	/*
+> +	 * for individual channel event , check if the number of axi_id
+> +	 * supported is beyond the max
+> +	 */
+
+Again, you don't need to check things that have already been validated 
+by event_init.
+
+However it looks like you probably *should* be checking whether there's 
+an event counting on the relevant PMU already - AFAICS this is just 
+going to blindly reprogram the hardware and corrupt the other event's count.
+
+> +	if (event->attr.config != ALL_CHAN_COUNTER_ID) {
+> +		for (i = 0; i < MAX_BITMAP; i++) {
+> +			if (config1 & 0x1) {
+> +				aml_ddr_set_filter(event, i);
+> +				if (++count > MAX_AXI_PORTS_OF_CHANNEL)
+> +					break;
+> +			}
+> +
+> +			config1 >>= 1;
+> +		}
+
+Consider the for_each_set_bit() helper.
+
+> +	}
+> +
+> +	if (flags & PERF_EF_START)
+> +		aml_ddr_perf_event_start(event, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static void aml_ddr_perf_event_stop(struct perf_event *event, int flags)
+> +{
+> +	struct hw_perf_event *hwc = &event->hw;
+> +	struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> +
+> +	if (flags & PERF_EF_UPDATE)
+> +		aml_ddr_perf_event_update(event);
+> +
+> +	dmc_pmu_disable(pmu);
+> +	hwc->state |= PERF_HES_STOPPED;
+> +}
+> +
+> +static void aml_ddr_perf_event_del(struct perf_event *event, int flags)
+> +{
+> +	struct hw_perf_event *hwc = &event->hw;
+> +
+> +	aml_ddr_perf_event_stop(event, PERF_EF_UPDATE);
+> +	hwc->idx = -1;
+> +}
+> +
+> +static ssize_t aml_ddr_perf_cpumask_show(struct device *dev,
+> +					 struct device_attribute *attr,
+> +					 char *buf)
+> +{
+> +	struct ddr_pmu *pmu = dev_get_drvdata(dev);
+> +
+> +	return cpumap_print_to_pagebuf(true, buf, cpumask_of(pmu->cpu));
+> +}
+> +
+> +static struct device_attribute aml_ddr_perf_cpumask_attr =
+> +__ATTR(cpumask, 0444, aml_ddr_perf_cpumask_show, NULL);
+> +
+> +static struct attribute *aml_ddr_perf_cpumask_attrs[] = {
+> +	&aml_ddr_perf_cpumask_attr.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group ddr_perf_cpumask_attr_group = {
+> +	.attrs = aml_ddr_perf_cpumask_attrs,
+> +};
+> +
+> +static ssize_t
+> +pmu_event_show(struct device *dev, struct device_attribute *attr,
+> +	       char *page)
+> +{
+> +	struct perf_pmu_events_attr *pmu_attr;
+> +
+> +	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
+> +	return sprintf(page, "event=0x%02llx\n", pmu_attr->id);
+
+Use sysfs_emit() for all of these.
+
+> +}
+> +
+> +static ssize_t
+> +event_show_unit(struct device *dev, struct device_attribute *attr,
+> +		char *page)
+> +{
+> +	struct perf_pmu_events_attr *pmu_attr;
+> +
+> +	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
+> +	return sprintf(page, "MB\n");
+> +}
+> +
+> +static ssize_t
+> +event_show_scale(struct device *dev, struct device_attribute *attr,
+> +		 char *page)
+> +{
+> +	struct perf_pmu_events_attr *pmu_attr;
+> +
+> +	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
+> +
+> +	/* one count = 16byte = 1.52587890625e-05 MB */
+> +	return sprintf(page, "1.52587890625e-05\n");
+> +}
+> +
+> +#define AML_DDR_PMU_EVENT_ATTR(_name, _id)				\
+> +{									\
+> +	.attr = __ATTR(_name, 0444, pmu_event_show, NULL),		\
+> +	.id = _id,							\
+> +}
+> +
+> +#define AML_DDR_PMU_EVENT_UNIT_ATTR(_name)				\
+> +	__ATTR(_name.unit, 0444, event_show_unit, NULL)
+> +
+> +#define AML_DDR_PMU_EVENT_SCALE_ATTR(_name)				\
+> +	__ATTR(_name.scale, 0444, event_show_scale, NULL)
+> +
+> +static struct device_attribute event_unit_attrs[] = {
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(total_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_1_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_2_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_3_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_4_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_5_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_6_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_7_rw_bytes),
+> +	AML_DDR_PMU_EVENT_UNIT_ATTR(chan_8_rw_bytes),
+> +};
+> +
+> +static struct device_attribute event_scale_attrs[] = {
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(total_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_1_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_2_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_3_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_4_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_5_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_6_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_7_rw_bytes),
+> +	AML_DDR_PMU_EVENT_SCALE_ATTR(chan_8_rw_bytes),
+> +};
+> +
+> +static struct perf_pmu_events_attr event_attrs[] = {
+> +	AML_DDR_PMU_EVENT_ATTR(total_rw_bytes, ALL_CHAN_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_1_rw_bytes, CHAN1_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_2_rw_bytes, CHAN2_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_3_rw_bytes, CHAN3_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_4_rw_bytes, CHAN4_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_5_rw_bytes, CHAN5_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_6_rw_bytes, CHAN6_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_7_rw_bytes, CHAN7_COUNTER_ID),
+> +	AML_DDR_PMU_EVENT_ATTR(chan_8_rw_bytes, CHAN8_COUNTER_ID),
+> +};
+> +
+> +/* three attrs are combined an event */
+> +static struct attribute *ddr_perf_events_attrs[COUNTER_MAX_ID * 3];
+> +
+> +static struct attribute_group ddr_perf_events_attr_group = {
+> +	.name = "events",
+> +	.attrs = ddr_perf_events_attrs,
+> +};
+> +
+> +/* an attr represents axi id, the max id is less than 256 */
+> +static struct attribute *ddr_perf_format_attrs[256];
+> +
+> +static struct attribute_group ddr_perf_format_attr_group = {
+> +	.name = "format",
+> +	.attrs = ddr_perf_format_attrs,
+> +};
+> +
+> +static ssize_t aml_ddr_perf_identifier_show(struct device *dev,
+> +					    struct device_attribute *attr,
+> +					    char *page)
+> +{
+> +	struct ddr_pmu *pmu = dev_get_drvdata(dev);
+> +
+> +	return sprintf(page, "%s\n", pmu->name);
+> +}
+> +
+> +static umode_t aml_ddr_perf_identifier_attr_visible(struct kobject *kobj,
+> +						    struct attribute *attr,
+> +						    int n)
+> +{
+> +	return attr->mode;
+> +}
+
+If you're not going to override the static mode then you don't need to 
+implement .is_visible at all.
+
+> +
+> +static struct device_attribute aml_ddr_perf_identifier_attr =
+> +__ATTR(identifier, 0444, aml_ddr_perf_identifier_show, NULL);
+> +
+> +static struct attribute *aml_ddr_perf_identifier_attrs[] = {
+> +	&aml_ddr_perf_identifier_attr.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group ddr_perf_identifier_attr_group = {
+> +	.attrs = aml_ddr_perf_identifier_attrs,
+> +	.is_visible = aml_ddr_perf_identifier_attr_visible,
+> +};
+> +
+> +static const struct attribute_group *attr_groups[] = {
+> +	&ddr_perf_events_attr_group,
+> +	&ddr_perf_format_attr_group,
+> +	&ddr_perf_cpumask_attr_group,
+> +	&ddr_perf_identifier_attr_group,
+> +	NULL,
+> +};
+> +
+> +static irqreturn_t dmc_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct dmc_hw_info *info = dev_id;
+> +	struct ddr_pmu *pmu;
+> +	struct dmc_counter counters;
+> +
+> +	if (irq != info->irq_num)
+> +		return IRQ_HANDLED;
+
+How could that even happen? And either way, claiming to have handled it 
+is clearly untrue.
+
+> +
+> +	pmu = hw_info_to_pmu(info);
+> +	WARN_ON(!info->ops->irq_handler);
+
+Why? It's an obvious driver bug, and even if it was the case then you'd 
+get just as good a backtrace from the crash when you subsequently call it.
+
+> +
+> +	if (pmu->pmu_enabled) {
+> +		spin_lock(&pmu->lock);
+> +		if (info->ops->irq_handler(info, &counters) != 0) {
+> +			spin_unlock(&pmu->lock);
+> +			goto out;
+> +		}
+> +		ddr_cnt_accumulate(pmu, &counters);
+> +
 > +		/*
-> +		 * This clock won't ever change at runtime so
-> +		 * CLK_SET_RATE_PARENT is not required
+> +		 * the timer interrupt only supprt
+> +		 * one shot mode, we have to re-enable
+> +		 * it in ISR to support continue mode.
 > +		 */
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div2 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 24,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div2_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		/*
-> +		 * Similar to fclk_div3, it seems that this clock is used by
-> +		 * the resident firmware and is required by the platform to
-> +		 * operate correctly.
-> +		 * Until the following condition are met, we need this clock to
-> +		 * be marked as critical:
-> +		 * a) Mark the clock used by a firmware resource, if possible
-> +		 * b) CCF has a clock hand-off mechanism to make the sure the
-> +		 *    clock stays on until the proper driver comes along
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div3_div = {
-> +	.mult = 1,
-> +	.div = 3,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div3_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div3 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 20,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div3",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div3_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		/*
-> +		 * This clock is used by the resident firmware and is required
-> +		 * by the platform to operate correctly.
-> +		 * Until the following condition are met, we need this clock to
-> +		 * be marked as critical:
-> +		 * a) Mark the clock used by a firmware resource, if possible
-> +		 * b) CCF has a clock hand-off mechanism to make the sure the
-> +		 *    clock stays on until the proper driver comes along
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div4_div = {
-> +	.mult = 1,
-> +	.div = 4,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div4_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div4 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 21,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div4",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div4_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div5_div = {
-> +	.mult = 1,
-> +	.div = 5,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div5_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div5 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 22,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div5",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div5_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div7_div = {
-> +	.mult = 1,
-> +	.div = 7,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div7_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div7 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 23,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div7",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div7_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div2p5_div = {
-> +	.mult = 2,
-> +	.div = 5,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2p5_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fixed_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div2p5 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 25,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2p5",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div2p5_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct pll_mult_range s4_gp0_pll_mult_range = {
+> +		info->ops->enable(info);
 
-Not const?
+Couldn't the .irq_handler routine do that for itself if it needs to? TBH 
+this whole extra layer of abstraction is hard to reason about when it 
+only has one user. How soon are you going to be adding more different 
+DDR PMU backends which might make it make a bit more sense?
 
-> +	.min = 125,
-> +	.max = 250,
-> +};
+> +		spin_unlock(&pmu->lock);
+> +	}
 > +
+> +	dev_dbg(pmu->dev, "counts: %llu %llu %llu, %llu, %llu, %llu\t\t"
+> +			"sum: %llu %llu %llu, %llu, %llu, %llu\n",
+> +			counters.all_req,
+> +			counters.all_cnt,
+> +			counters.channel_cnt[0],
+> +			counters.channel_cnt[1],
+> +			counters.channel_cnt[2],
+> +			counters.channel_cnt[3],
+> +
+> +			pmu->counters.all_req,
+> +			pmu->counters.all_cnt,
+> +			pmu->counters.channel_cnt[0],
+> +			pmu->counters.channel_cnt[1],
+> +			pmu->counters.channel_cnt[2],
+> +			pmu->counters.channel_cnt[3]);
+> +out:
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int ddr_perf_offline_cpu(unsigned int cpu, struct hlist_node *node)
+> +{
+> +	struct ddr_pmu *pmu = hlist_entry_safe(node, struct ddr_pmu, node);
+> +	int target;
+> +
+> +	if (cpu != pmu->cpu)
+> +		return 0;
+> +
+> +	target = cpumask_any_but(cpu_online_mask, cpu);
+> +	if (target >= nr_cpu_ids)
+> +		return 0;
+> +
+> +	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
+> +	pmu->cpu = target;
+> +
+> +	WARN_ON(irq_set_affinity_hint(pmu->info.irq_num, cpumask_of(pmu->cpu)));
 
-(...)
+This is wrong, it needs to be irq_set_affinity().
 
-> +/* Convenience table to populate regmap in .probe */
-> +static struct clk_regmap *const s4_clk_regmaps[] = {
-> +	&s4_rtc_32k_by_oscin_clkin,
-> +	&s4_rtc_32k_by_oscin_div,
-> +	&s4_rtc_32k_by_oscin_sel,
-> +	&s4_rtc_32k_by_oscin,
-> +	&s4_rtc_clk,
 > +
-> +	&s4_sysclk_b_sel,
-> +	&s4_sysclk_b_div,
-> +	&s4_sysclk_b,
-> +	&s4_sysclk_a_sel,
-> +	&s4_sysclk_a_div,
-> +	&s4_sysclk_a,
-> +	&s4_sys_clk,
+> +	return 0;
+> +}
 > +
-> +	&s4_ceca_32k_clkin,
-> +	&s4_ceca_32k_div,
-> +	&s4_ceca_32k_sel_pre,
-> +	&s4_ceca_32k_sel,
-> +	&s4_ceca_32k_clkout,
-> +	&s4_cecb_32k_clkin,
-> +	&s4_cecb_32k_div,
-> +	&s4_cecb_32k_sel_pre,
-> +	&s4_cecb_32k_sel,
-> +	&s4_cecb_32k_clkout,
+> +static int ddr_pmu_get_hw_info(struct platform_device *pdev,
+> +			       struct dmc_hw_info *info)
+> +{
+> +	int ret = -EINVAL;
+> +#ifdef CONFIG_OF
+
+This shouldn't ne needed.
+
+> +	struct device_node *node = pdev->dev.of_node;
+> +	/*struct pinctrl *p;*/
+> +	struct resource *res;
+> +	resource_size_t *base;
+> +	const char *irq_name;
+> +	u32 dmc_nr, chann_nr;
+> +	int i;
 > +
-> +	&s4_sc_clk_mux,
-> +	&s4_sc_clk_div,
-> +	&s4_sc_clk_gate,
+> +	/* for multiple ddr controller */
+> +	if (of_property_read_u32(node, "dmc_nr", &dmc_nr))
+> +		info->dmc_nr = 1;
 > +
-> +	&s4_12_24M_clk_gate,
-> +	&s4_12_24M_clk,
-> +	&s4_vid_pll_div,
-> +	&s4_vid_pll_sel,
-> +	&s4_vid_pll,
-> +	&s4_vclk_sel,
-> +	&s4_vclk2_sel,
-> +	&s4_vclk_input,
-> +	&s4_vclk2_input,
-> +	&s4_vclk_div,
-> +	&s4_vclk2_div,
-> +	&s4_vclk,
-> +	&s4_vclk2,
-> +	&s4_vclk_div1,
-> +	&s4_vclk_div2_en,
-> +	&s4_vclk_div4_en,
-> +	&s4_vclk_div6_en,
-> +	&s4_vclk_div12_en,
-> +	&s4_vclk2_div1,
-> +	&s4_vclk2_div2_en,
-> +	&s4_vclk2_div4_en,
-> +	&s4_vclk2_div6_en,
-> +	&s4_vclk2_div12_en,
-> +	&s4_cts_enci_sel,
-> +	&s4_cts_encp_sel,
-> +	&s4_cts_vdac_sel,
-> +	&s4_hdmi_tx_sel,
-> +	&s4_cts_enci,
-> +	&s4_cts_encp,
-> +	&s4_cts_vdac,
-> +	&s4_hdmi_tx,
+> +	else
+> +		info->dmc_nr = dmc_nr;
 > +
-> +	&s4_hdmi_sel,
-> +	&s4_hdmi_div,
-> +	&s4_hdmi,
-> +	&s4_ts_clk_div,
-> +	&s4_ts_clk_gate,
+> +	for (i = 0; i < dmc_nr; i++) {
+> +		/* resource 0 for ddr register base */
+> +		res = platform_get_resource(pdev, IORESOURCE_MEM, i);
+> +		if (!res) {
+> +			dev_err(&pdev->dev, "can't get ddr reg base\n");
+> +			return -EINVAL;
+> +		}
+> +		base = ioremap(res->start, res->end - res->start);
+> +		if (!base) {
+> +			dev_err(&pdev->dev, "couldn't ioremap ddr reg\n");
+> +			return -EINVAL;
+> +		}
+
+Consider helpers like devm_platform_ioremap_resource().
+
+> +		info->ddr_reg[i] = (void *)base;
+> +	}
 > +
-> +	&s4_mali_0_sel,
-> +	&s4_mali_0_div,
-> +	&s4_mali_0,
-> +	&s4_mali_1_sel,
-> +	&s4_mali_1_div,
-> +	&s4_mali_1,
-> +	&s4_mali_mux,
+> +	/* get DMC monitor channel number */
+> +	if (of_property_read_u32(node, "chann_nr", &chann_nr))
+> +		info->chann_nr = 4;	/* g12 serials support 4 channels */
+> +	else
+> +		info->chann_nr = chann_nr;
 > +
-> +	&s4_vdec_p0_mux,
-> +	&s4_vdec_p0_div,
-> +	&s4_vdec_p0,
-> +	&s4_vdec_p1_mux,
-> +	&s4_vdec_p1_div,
-> +	&s4_vdec_p1,
-> +	&s4_vdec_mux,
+> +	/* resource i for pll register base */
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, i);
+> +	if (!res) {
+> +		dev_err(&pdev->dev, "can't get ddr reg base\n");
+> +		goto err1;
+> +	}
+> +	base = ioremap(res->start, res->end - res->start);
+> +	if (!base) {
+> +		dev_err(&pdev->dev, "couldn't ioremap for pll reg\n");
+> +		goto err1;
+> +	}
+> +	info->pll_reg = (void *)base;
 > +
-> +	&s4_hevcf_p0_mux,
-> +	&s4_hevcf_p0_div,
-> +	&s4_hevcf_p0,
-> +	&s4_hevcf_p1_mux,
-> +	&s4_hevcf_p1_div,
-> +	&s4_hevcf_p1,
-> +	&s4_hevcf_mux,
+> +	info->irq_num = of_irq_get(node, 0);
+
+Use platform_get_irq().
+
+> +	if (info->irq_num < 0) {
+> +		dev_err(&pdev->dev, "couldn't get irq\n");
+
+(...which also prints its own error message as well)
+
+> +		goto err2;
+> +	}
 > +
-> +	&s4_vpu_0_sel,
-> +	&s4_vpu_0_div,
-> +	&s4_vpu_0,
-> +	&s4_vpu_1_sel,
-> +	&s4_vpu_1_div,
-> +	&s4_vpu_1,
-> +	&s4_vpu,
-> +	&s4_vpu_clkb_tmp_mux,
-> +	&s4_vpu_clkb_tmp_div,
-> +	&s4_vpu_clkb_tmp,
-> +	&s4_vpu_clkb_div,
-> +	&s4_vpu_clkb,
-> +	&s4_vpu_clkc_p0_mux,
-> +	&s4_vpu_clkc_p0_div,
-> +	&s4_vpu_clkc_p0,
-> +	&s4_vpu_clkc_p1_mux,
-> +	&s4_vpu_clkc_p1_div,
-> +	&s4_vpu_clkc_p1,
-> +	&s4_vpu_clkc_mux,
+> +	irq_name = of_get_property(node, "interrupt-names", NULL);
+> +	if (!irq_name)
+> +		irq_name = "ddr_pmu";
+
+That's not how the "interrupt-names" property works. If you only have a 
+single interrupt then there's not much need for it to be named in the DT 
+at all. If you do want to use named interrupts then use 
+platform_get_irq_byname(), and the name should probably have a bnit more 
+functional meaning. Either way, please don't abuse the DT like this.
+
 > +
-> +	&s4_vapb_0_sel,
-> +	&s4_vapb_0_div,
-> +	&s4_vapb_0,
-> +	&s4_vapb_1_sel,
-> +	&s4_vapb_1_div,
-> +	&s4_vapb_1,
-> +	&s4_vapb,
-> +	&s4_ge2d_gate,
+> +	ret = request_irq(info->irq_num, dmc_irq_handler,
+> +			  IRQF_SHARED, irq_name, (void *)info);
+
+Who else is sharing the IRQ? If it's other instances of this PMU then 
+that's still manageable under the normal paradigm, the driver just needs 
+to coordinate affinity chanmges between all instances. If it's random 
+other devices, then maybe it's time to reason about how system PMUs 
+could use proper IRQ-safe locking and abandon the affinity stuff, since 
+this seems to be coming up more and more.
+
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "ddr request irq failed\n");
+> +		goto err2;
+> +	}
 > +
-> +	&s4_hdcp22_esmclk_mux,
-> +	&s4_hdcp22_esmclk_div,
-> +	&s4_hdcp22_esmclk_gate,
-> +	&s4_hdcp22_skpclk_mux,
-> +	&s4_hdcp22_skpclk_div,
-> +	&s4_hdcp22_skpclk_gate,
+> +	return 0;
 > +
-> +	&s4_vdin_meas_mux,
-> +	&s4_vdin_meas_div,
-> +	&s4_vdin_meas_gate,
+> +err2:
+> +	iounmap(info->pll_reg);
+> +err1:
+> +	for (i = 0; i < info->dmc_nr; i++)
+> +		iounmap(info->ddr_reg[i]);
+
+Note also that using devm_* helpers saves you all the manual cleanup.
+
+> +#endif
+> +	return ret;
+> +}
 > +
-> +	&s4_sd_emmc_c_clk0_sel,
-> +	&s4_sd_emmc_c_clk0_div,
-> +	&s4_sd_emmc_c_clk0,
-> +	&s4_sd_emmc_a_clk0_sel,
-> +	&s4_sd_emmc_a_clk0_div,
-> +	&s4_sd_emmc_a_clk0,
-> +	&s4_sd_emmc_b_clk0_sel,
-> +	&s4_sd_emmc_b_clk0_div,
-> +	&s4_sd_emmc_b_clk0,
+> +static void ddr_pmu_free_hw_info(struct dmc_hw_info *info)
+> +{
+> +	int i;
 > +
-> +	&s4_spicc0_mux,
-> +	&s4_spicc0_div,
-> +	&s4_spicc0_gate,
+> +	iounmap(info->pll_reg);
 > +
-> +	&s4_pwm_a_mux,
-> +	&s4_pwm_a_div,
-> +	&s4_pwm_a_gate,
-> +	&s4_pwm_b_mux,
-> +	&s4_pwm_b_div,
-> +	&s4_pwm_b_gate,
-> +	&s4_pwm_c_mux,
-> +	&s4_pwm_c_div,
-> +	&s4_pwm_c_gate,
-> +	&s4_pwm_d_mux,
-> +	&s4_pwm_d_div,
-> +	&s4_pwm_d_gate,
-> +	&s4_pwm_e_mux,
-> +	&s4_pwm_e_div,
-> +	&s4_pwm_e_gate,
-> +	&s4_pwm_f_mux,
-> +	&s4_pwm_f_div,
-> +	&s4_pwm_f_gate,
-> +	&s4_pwm_g_mux,
-> +	&s4_pwm_g_div,
-> +	&s4_pwm_g_gate,
-> +	&s4_pwm_h_mux,
-> +	&s4_pwm_h_div,
-> +	&s4_pwm_h_gate,
-> +	&s4_pwm_i_mux,
-> +	&s4_pwm_i_div,
-> +	&s4_pwm_i_gate,
-> +	&s4_pwm_j_mux,
-> +	&s4_pwm_j_div,
-> +	&s4_pwm_j_gate,
+> +	for (i = 0; i < info->dmc_nr; i++)
+> +		iounmap(info->ddr_reg[i]);
+> +}
 > +
-> +	&s4_saradc_mux,
-> +	&s4_saradc_div,
-> +	&s4_saradc_gate,
+> +static void fill_event_attr(struct ddr_pmu *pmu)
+> +{
+> +	int i, j, k;
+> +	struct attribute **dst = ddr_perf_events_attrs;
 > +
-> +	&s4_gen_clk_sel,
-> +	&s4_gen_clk_div,
-> +	&s4_gen_clk,
+> +	j = 0;
+> +	k = 0;
 > +
-> +	&s4_ddr,
-> +	&s4_dos,
-> +	&s4_ethphy,
-> +	&s4_mali,
-> +	&s4_aocpu,
-> +	&s4_aucpu,
-> +	&s4_cec,
-> +	&s4_sdemmca,
-> +	&s4_sdemmcb,
-> +	&s4_nand,
-> +	&s4_smartcard,
-> +	&s4_acodec,
-> +	&s4_spifc,
-> +	&s4_msr_clk,
-> +	&s4_ir_ctrl,
-> +	&s4_audio,
-> +	&s4_eth,
-> +	&s4_uart_a,
-> +	&s4_uart_b,
-> +	&s4_uart_c,
-> +	&s4_uart_d,
-> +	&s4_uart_e,
-> +	&s4_aififo,
-> +	&s4_ts_ddr,
-> +	&s4_ts_pll,
-> +	&s4_g2d,
-> +	&s4_spicc0,
-> +	&s4_usb,
-> +	&s4_i2c_m_a,
-> +	&s4_i2c_m_b,
-> +	&s4_i2c_m_c,
-> +	&s4_i2c_m_d,
-> +	&s4_i2c_m_e,
-> +	&s4_hdmitx_apb,
-> +	&s4_i2c_s_a,
-> +	&s4_usb1_to_ddr,
-> +	&s4_hdcp22,
-> +	&s4_mmc_apb,
-> +	&s4_rsa,
-> +	&s4_cpu_debug,
-> +	&s4_vpu_intr,
-> +	&s4_demod,
-> +	&s4_sar_adc,
-> +	&s4_gic,
-> +	&s4_pwm_ab,
-> +	&s4_pwm_cd,
-> +	&s4_pwm_ef,
-> +	&s4_pwm_gh,
-> +	&s4_pwm_ij,
-> +	&s4_demod_core_clk_mux,
-> +	&s4_demod_core_clk_div,
-> +	&s4_demod_core_clk_gate,
-> +	&s4_adc_extclk_in_mux,
-> +	&s4_adc_extclk_in_div,
-> +	&s4_adc_extclk_in_gate,
+> +	/* fill ALL_CHAN_COUNTER_ID event */
+> +	dst[j++] = &event_attrs[k].attr.attr;
+> +	dst[j++] = &event_unit_attrs[k].attr;
+> +	dst[j++] = &event_scale_attrs[k].attr;
 > +
-> +	&s4_fixed_pll_dco,
-> +	&s4_fixed_pll,
-> +	&s4_fclk_div2,
-> +	&s4_fclk_div3,
-> +	&s4_fclk_div4,
-> +	&s4_fclk_div5,
-> +	&s4_fclk_div7,
-> +	&s4_fclk_div2p5,
-> +	&s4_gp0_pll_dco,
-> +	&s4_gp0_pll,
+> +	k++;
 > +
-> +	&s4_hifi_pll_dco,
-> +	&s4_hifi_pll,
-> +	&s4_hdmi_pll_dco,
-> +	&s4_hdmi_pll_od,
-> +	&s4_hdmi_pll,
-> +	&s4_mpll_50m,
-> +	&s4_mpll0_div,
-> +	&s4_mpll0,
-> +	&s4_mpll1_div,
-> +	&s4_mpll1,
-> +	&s4_mpll2_div,
-> +	&s4_mpll2,
-> +	&s4_mpll3_div,
-> +	&s4_mpll3,
+> +	pr_info("pmu->info.chann_nr %d\n", pmu->info.chann_nr);
+
+That's a dev_dbg() at best, but TBH I'm not sure it's useful at all.
+
+> +
+> +	/* fill each channel event */
+> +	for (i = 0; i < pmu->info.chann_nr; i++, k++) {
+> +		dst[j++] = &event_attrs[k].attr.attr;
+> +		dst[j++] = &event_unit_attrs[k].attr;
+> +		dst[j++] = &event_scale_attrs[k].attr;
+> +	}
+> +
+> +	dst[j] = NULL; /* mark end */
+> +}
+> +
+> +static void fmt_attr_fill(struct attribute **fmt_attr)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; fmt_attr[i]; i++)
+> +		ddr_perf_format_attrs[i] = fmt_attr[i];
+> +
+> +	ddr_perf_format_attrs[i] = NULL;
+> +}
+> +
+> +int aml_ddr_pmu_create(struct platform_device *pdev,
+> +		       struct dmc_pmu_hw_ops *ops,
+> +		       struct attribute **fmt_attr)
+> +{
+> +	int ret;
+> +	char *name;
+> +	struct ddr_pmu *pmu;
+> +
+> +	pmu = devm_kzalloc(&pdev->dev, sizeof(struct ddr_pmu), GFP_KERNEL);
+> +	if (!pmu)
+> +		return -ENOMEM;
+> +
+> +	*pmu = (struct ddr_pmu) {
+> +		.pmu = (struct pmu) {
+> +			.module		= THIS_MODULE,
+> +			.capabilities	= PERF_PMU_CAP_NO_EXCLUDE,
+> +			.task_ctx_nr	= perf_invalid_context,
+> +			.attr_groups	= attr_groups,
+> +			.event_init	= aml_ddr_perf_event_init,
+> +			.add		= aml_ddr_perf_event_add,
+> +			.del		= aml_ddr_perf_event_del,
+> +			.start		= aml_ddr_perf_event_start,
+> +			.stop		= aml_ddr_perf_event_stop,
+> +			.read		= aml_ddr_perf_event_update,
+> +		}
+> +	};
+> +
+> +	ret = ddr_pmu_get_hw_info(pdev, &pmu->info);
+> +	if (ret < 0)
+> +		goto pmu_alloc_err;
+> +
+> +	fmt_attr_fill(fmt_attr);
+> +
+> +	pmu->info.ops = ops;
+> +
+> +	spin_lock_init(&pmu->lock);
+> +
+> +	pmu->cpu = raw_smp_processor_id();
+> +
+> +	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, DDR_PERF_DEV_NAME);
+> +	if (!name) {
+> +		dev_err(&pdev->dev, "couldn't alloc memory for name\n");
+
+Don't print "out of memory" messages. If kmalloc() ever does actually 
+fail, it's not quiet.
+
+> +		ret = -ENOMEM;
+> +		goto get_dev_name_err;
+> +	}
+> +
+> +	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN, name, NULL,
+> +				      ddr_perf_offline_cpu);
+
+Why set up a multiple-instance state that's private to a single instance?
+
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "cpuhp_setup_state_multi failed\n");
+> +		goto cpuhp_state_err;
+> +	}
+> +	pmu->cpuhp_state = ret;
+> +
+> +	/* Register the pmu instance for cpu hotplug */
+> +	ret = cpuhp_state_add_instance_nocalls(pmu->cpuhp_state, &pmu->node);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Error %d registering hotplug\n", ret);
+> +		goto cpuhp_instance_err;
+> +	}
+> +
+> +	fill_event_attr(pmu);
+> +
+> +	ret = perf_pmu_register(&pmu->pmu, name, -1);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "perf pmu register failed\n");
+> +		goto pmu_register_err;
+> +	}
+> +
+> +	pmu->name = name;
+> +	pmu->dev = &pdev->dev;
+> +	pmu->pmu_enabled = false;
+> +
+> +	platform_set_drvdata(pdev, pmu);
+> +
+> +	dev_info(&pdev->dev, "ddr perf init ok\n");
+
+Don't print meaningless log spam. The driver core already has plenty of 
+debug messages you can enable to monitor driver binding.
+
+> +
+> +	return 0;
+> +
+> +pmu_register_err:
+> +	cpuhp_state_remove_instance_nocalls(pmu->cpuhp_state, &pmu->node);
+> +cpuhp_instance_err:
+> +	cpuhp_remove_multi_state(pmu->cpuhp_state);
+> +cpuhp_state_err:
+> +	devm_kfree(&pdev->dev, name);
+
+The point of devres is that you don't need to do that.
+
+> +get_dev_name_err:
+> +	ddr_pmu_free_hw_info(&pmu->info);
+> +pmu_alloc_err:
+> +	devm_kfree(&pdev->dev, pmu);
+
+Ditto.
+
+> +
+> +	return ret;
+> +}
+> +
+> +int aml_ddr_pmu_remove(struct platform_device *pdev)
+> +{
+> +	struct ddr_pmu *pmu = platform_get_drvdata(pdev);
+> +
+> +	perf_pmu_unregister(&pmu->pmu);
+> +	cpuhp_state_remove_instance_nocalls(pmu->cpuhp_state, &pmu->node);
+> +	cpuhp_remove_multi_state(pmu->cpuhp_state);
+> +	devm_kfree(pmu->dev, pmu->name);
+> +	free_irq(pmu->info.irq_num, &pmu->info);
+> +	ddr_pmu_free_hw_info(&pmu->info);
+> +	devm_kfree(&pdev->dev, pmu);
+> +
+> +	dev_info(&pdev->dev, "ddr perf finit ok\n");
+
+Again, no.
+
+> +
+> +	return 0;
+> +}
+> +
+> diff --git a/drivers/perf/amlogic/aml_ddr_pmu_g12.c b/drivers/perf/amlogic/aml_ddr_pmu_g12.c
+> new file mode 100644
+> index 000000000000..29e351157f49
+> --- /dev/null
+> +++ b/drivers/perf/amlogic/aml_ddr_pmu_g12.c
+> @@ -0,0 +1,398 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
+> + */
+> +#include <linux/err.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/perf_event.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/printk.h>
+> +#include <linux/types.h>
+> +#include <linux/version.h>
+> +
+> +#include <soc/amlogic/aml_ddr_pmu.h>
+> +
+> +#define PORT_MAJOR		32
+> +#define DEFAULT_XTAL_FREQ	24000000UL
+> +
+> +#define DMC_QOS_IRQ		BIT(30)
+> +
+> +/* DMC bandwidth monitor register address offset */
+> +#define DMC_MON_G12_CTRL0		(0x20  << 2)
+> +#define DMC_MON_G12_CTRL1		(0x21  << 2)
+> +#define DMC_MON_G12_CTRL2		(0x22  << 2)
+> +#define DMC_MON_G12_CTRL3		(0x23  << 2)
+> +#define DMC_MON_G12_CTRL4		(0x24  << 2)
+> +#define DMC_MON_G12_CTRL5		(0x25  << 2)
+> +#define DMC_MON_G12_CTRL6		(0x26  << 2)
+> +#define DMC_MON_G12_CTRL7		(0x27  << 2)
+> +#define DMC_MON_G12_CTRL8		(0x28  << 2)
+> +
+> +#define DMC_MON_G12_ALL_REQ_CNT		(0x29  << 2)
+> +#define DMC_MON_G12_ALL_GRANT_CNT	(0x2a  << 2)
+> +#define DMC_MON_G12_ONE_GRANT_CNT	(0x2b  << 2)
+> +#define DMC_MON_G12_SEC_GRANT_CNT	(0x2c  << 2)
+> +#define DMC_MON_G12_THD_GRANT_CNT	(0x2d  << 2)
+> +#define DMC_MON_G12_FOR_GRANT_CNT	(0x2e  << 2)
+> +#define DMC_MON_G12_TIMER		(0x2f  << 2)
+> +
+> +/* Each bit represent a axi line */
+> +PMU_FORMAT_ATTR(event, "config:0-7");
+> +PMU_FORMAT_ATTR(arm, "config1:0");
+> +PMU_FORMAT_ATTR(gpu, "config1:1");
+> +PMU_FORMAT_ATTR(pcie, "config1:2");
+> +PMU_FORMAT_ATTR(hdcp, "config1:3");
+> +PMU_FORMAT_ATTR(hevc_front, "config1:4");
+> +PMU_FORMAT_ATTR(usb3_0, "config1:6");
+> +PMU_FORMAT_ATTR(device, "config1:7");
+> +PMU_FORMAT_ATTR(hevc_back, "config1:8");
+> +PMU_FORMAT_ATTR(h265enc, "config1:9");
+> +PMU_FORMAT_ATTR(vpu_read1, "config1:16");
+> +PMU_FORMAT_ATTR(vpu_read2, "config1:17");
+> +PMU_FORMAT_ATTR(vpu_read3, "config1:18");
+> +PMU_FORMAT_ATTR(vpu_write1, "config1:19");
+> +PMU_FORMAT_ATTR(vpu_write2, "config1:20");
+> +PMU_FORMAT_ATTR(vdec, "config1:21");
+> +PMU_FORMAT_ATTR(hcodec, "config1:22");
+> +PMU_FORMAT_ATTR(ge2d, "config1:23");
+> +
+> +PMU_FORMAT_ATTR(spicc1, "config1:32");
+> +PMU_FORMAT_ATTR(usb0, "config1:33");
+> +PMU_FORMAT_ATTR(dma, "config1:34");
+> +PMU_FORMAT_ATTR(arb0, "config1:35");
+> +PMU_FORMAT_ATTR(sd_emmc_b, "config1:36");
+> +PMU_FORMAT_ATTR(usb1, "config1:37");
+> +PMU_FORMAT_ATTR(audio, "config1:38");
+> +PMU_FORMAT_ATTR(aififo, "config1:39");
+> +PMU_FORMAT_ATTR(parser, "config1:41");
+> +PMU_FORMAT_ATTR(ao_cpu, "config1:42");
+> +PMU_FORMAT_ATTR(sd_emmc_c, "config1:43");
+> +PMU_FORMAT_ATTR(spicc2, "config1:44");
+> +PMU_FORMAT_ATTR(ethernet, "config1:45");
+> +PMU_FORMAT_ATTR(sana, "config1:46");
+> +
+> +/* for sm1 and g12b */
+> +PMU_FORMAT_ATTR(nna, "config1:10");
+> +
+> +/* for g12b only */
+> +PMU_FORMAT_ATTR(gdc, "config1:11");
+> +PMU_FORMAT_ATTR(mipi_isp, "config1:12");
+> +PMU_FORMAT_ATTR(arm1, "config1:13");
+> +PMU_FORMAT_ATTR(sd_emmc_a, "config1:40");
+> +
+> +/* 256 is enough for axi id */
+> +static struct attribute *g12_pmu_format_attrs[256] = {
+
+But a statically-initialised array already knows exactly how large it 
+needs to be, why explicitly size it at all?
+
+> +	&format_attr_event.attr,
+> +	&format_attr_arm.attr,
+> +	&format_attr_gpu.attr,
+> +	&format_attr_pcie.attr,
+> +	&format_attr_hdcp.attr,
+> +	&format_attr_hevc_front.attr,
+> +	&format_attr_usb3_0.attr,
+> +	&format_attr_device.attr,
+> +	&format_attr_hevc_back.attr,
+> +	&format_attr_h265enc.attr,
+> +	&format_attr_vpu_read1.attr,
+> +	&format_attr_vpu_read2.attr,
+> +	&format_attr_vpu_read3.attr,
+> +	&format_attr_vpu_write1.attr,
+> +	&format_attr_vpu_write2.attr,
+> +	&format_attr_vdec.attr,
+> +	&format_attr_hcodec.attr,
+> +	&format_attr_ge2d.attr,
+> +	&format_attr_spicc1.attr,
+> +	&format_attr_usb0.attr,
+> +	&format_attr_dma.attr,
+> +	&format_attr_arb0.attr,
+> +	&format_attr_sd_emmc_b.attr,
+> +	&format_attr_usb1.attr,
+> +	&format_attr_audio.attr,
+> +	&format_attr_aififo.attr,
+> +	&format_attr_parser.attr,
+> +	&format_attr_ao_cpu.attr,
+> +	&format_attr_sd_emmc_c.attr,
+> +	&format_attr_spicc2.attr,
+> +	&format_attr_ethernet.attr,
+> +	&format_attr_sana.attr,
+> +	NULL,
 > +};
 > +
-> +static const struct reg_sequence s4_init_regs[] = {
-> +	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
+> +static void append_attr_list(struct attribute *attr)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; g12_pmu_format_attrs[i] && i < 255; i++)
+> +		;
+
+Eww, what? :(
+
+> +
+> +	g12_pmu_format_attrs[i] = attr;
+> +
+> +	g12_pmu_format_attrs[i + 1] = NULL;
+
+(that's pointless either way)
+
+OK, I think I see what's going on here now. Dynamically patching the 
+attribute arrays is pretty grim - it's far cleaner and more sustainable 
+to statically define the whole array with all the possible attributes, 
+then use .is_visible to hide the ones which aren't relevant to the 
+current system.
+
+> +}
+> +
+> +/* calculate ddr clock */
+> +static unsigned long dmc_g12_get_freq_quick(struct dmc_hw_info *info)
+> +{
+> +	unsigned int val;
+> +	unsigned int n, m, od1;
+> +	unsigned int od_div = 0xfff;
+> +	unsigned long freq = 0;
+> +
+> +	val = readl(info->pll_reg);
+> +	val = val & 0xfffff;
+> +	switch ((val >> 16) & 7) {
+> +	case 0:
+> +		od_div = 2;
+> +		break;
+> +
+> +	case 1:
+> +		od_div = 3;
+> +		break;
+> +
+> +	case 2:
+> +		od_div = 4;
+> +		break;
+> +
+> +	case 3:
+> +		od_div = 6;
+> +		break;
+> +
+> +	case 4:
+> +		od_div = 8;
+> +		break;
+> +
+> +	default:
+> +		break;
+> +	}
+> +
+> +	m = val & 0x1ff;
+> +	n = ((val >> 10) & 0x1f);
+> +	od1 = (((val >> 19) & 0x1)) == 1 ? 2 : 1;
+> +	freq = DEFAULT_XTAL_FREQ / 1000;        /* avoid overflow */
+> +	if (n)
+> +		freq = ((((freq * m) / n) >> od1) / od_div) * 1000;
+> +
+> +	return freq;
+> +}
+> +
+> +#ifdef DEBUG
+> +static void g12_dump_reg(struct dmc_hw_info *db)
+> +{
+> +	int s = 0, i;
+> +	unsigned int r;
+> +
+> +	for (i = 0; i < 9; i++) {
+> +		r  = readl(db->ddr_reg[0] + (DMC_MON_G12_CTRL0 + (i << 2)));
+> +		pr_notice("DMC_MON_CTRL%d:        %08x\n", i, r);
+> +	}
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_ALL_REQ_CNT);
+> +	pr_notice("DMC_MON_ALL_REQ_CNT:  %08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_ALL_GRANT_CNT);
+> +	pr_notice("DMC_MON_ALL_GRANT_CNT:%08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_ONE_GRANT_CNT);
+> +	pr_notice("DMC_MON_ONE_GRANT_CNT:%08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_SEC_GRANT_CNT);
+> +	pr_notice("DMC_MON_SEC_GRANT_CNT:%08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_THD_GRANT_CNT);
+> +	pr_notice("DMC_MON_THD_GRANT_CNT:%08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_FOR_GRANT_CNT);
+> +	pr_notice("DMC_MON_FOR_GRANT_CNT:%08x\n", r);
+> +	r  = readl(db->ddr_reg[0] + DMC_MON_G12_TIMER);
+> +	pr_notice("DMC_MON_TIMER:        %08x\n", r);
+> +}
+> +#endif
+> +
+> +static void dmc_g12_counter_enable(struct dmc_hw_info *info)
+> +{
+> +	unsigned int val;
+> +	unsigned long clock_count = dmc_g12_get_freq_quick(info) / 10; /* 100ms */
+> +
+> +	writel(clock_count, info->ddr_reg[0] + DMC_MON_G12_TIMER);
+> +
+> +	val = readl(info->ddr_reg[0] + DMC_MON_G12_CTRL0);
+> +
+> +	/* enable all channel */
+> +	val =  BIT(31) |	/* enable bit */
+> +	       BIT(20) |	/* use timer  */
+> +	       0x0f;		/* 4 channels */
+> +
+> +	writel(val, info->ddr_reg[0] + DMC_MON_G12_CTRL0);
+> +
+> +#ifdef DEBUG
+> +	g12_dump_reg(info);
+> +#endif
+> +}
+> +
+> +static void dmc_g12_config_fiter(struct dmc_hw_info *info,
+> +				 int port, int channel)
+> +{
+> +	u32 val;
+> +	u32 rp[MAX_CHANNEL_NUM] = {DMC_MON_G12_CTRL1, DMC_MON_G12_CTRL3,
+> +					DMC_MON_G12_CTRL5, DMC_MON_G12_CTRL7};
+> +	u32 rs[MAX_CHANNEL_NUM] = {DMC_MON_G12_CTRL2, DMC_MON_G12_CTRL4,
+> +					DMC_MON_G12_CTRL6, DMC_MON_G12_CTRL8};
+> +	int subport = -1;
+> +
+> +	/* clear all port mask */
+> +	if (port < 0) {
+> +		writel(0, info->ddr_reg[0] + rp[channel]);
+> +		writel(0, info->ddr_reg[0] + rs[channel]);
+> +		return;
+> +	}
+> +
+> +	if (port >= PORT_MAJOR)
+> +		subport = port - PORT_MAJOR;
+> +
+> +	if (subport < 0) {
+> +		val = readl(info->ddr_reg[0] + rp[channel]);
+> +		val |=  (1 << port);
+> +		writel(val, info->ddr_reg[0] + rp[channel]);
+> +		val = 0xffff;
+> +		writel(val, info->ddr_reg[0] + rs[channel]);
+> +	} else {
+> +		val = BIT(23);		/* select device */
+> +		writel(val, info->ddr_reg[0] + rp[channel]);
+> +		val = readl(info->ddr_reg[0] + rs[channel]);
+> +		val |= (1 << subport);
+> +		writel(val, info->ddr_reg[0] + rs[channel]);
+> +	}
+> +}
+> +
+> +static void dmc_g12_config_axi_id(struct dmc_hw_info *info, int axi_id, int channel)
+> +{
+> +	if (channel > info->chann_nr)
+> +		return;
+> +
+> +	dmc_g12_config_fiter(info, axi_id, channel);
+> +}
+> +
+> +static void dmc_g12_counter_disable(struct dmc_hw_info *info)
+> +{
+> +	int i;
+> +
+> +	/* clear timer */
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_CTRL0);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_TIMER);
+> +
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_ALL_REQ_CNT);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_ALL_GRANT_CNT);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_ONE_GRANT_CNT);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_SEC_GRANT_CNT);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_THD_GRANT_CNT);
+> +	writel(0, info->ddr_reg[0] + DMC_MON_G12_FOR_GRANT_CNT);
+> +
+> +	/* clear port channel mapping */
+> +	for (i = 0; i < info->chann_nr; i++)
+> +		dmc_g12_config_fiter(info, -1, i);
+> +}
+> +
+> +static void dmc_g12_get_counters(struct dmc_hw_info *info,
+> +				 struct dmc_counter *counter)
+> +{
+> +	int i;
+> +	unsigned int reg;
+> +
+> +	counter->all_cnt = readl(info->ddr_reg[0] + DMC_MON_G12_ALL_GRANT_CNT);
+> +	counter->all_req   = readl(info->ddr_reg[0] + DMC_MON_G12_ALL_REQ_CNT);
+> +
+> +	for (i = 0; i < info->chann_nr; i++) {
+> +		reg = DMC_MON_G12_ONE_GRANT_CNT + (i << 2);
+> +		counter->channel_cnt[i] = readl(info->ddr_reg[0] + reg);
+> +	}
+> +}
+> +
+> +static int dmc_g12_irq_handler(struct dmc_hw_info *info,
+> +			       struct dmc_counter *counter)
+> +{
+> +	unsigned int val;
+> +	int ret = -1;
+> +
+> +	val = readl(info->ddr_reg[0] + DMC_MON_G12_CTRL0);
+> +	if (val & DMC_QOS_IRQ) {
+> +		dmc_g12_get_counters(info, counter);
+> +		/* clear irq flags */
+> +		writel(val, info->ddr_reg[0] + DMC_MON_G12_CTRL0);
+> +		ret = 0;
+> +	}
+> +	return ret;
+> +}
+> +
+> +static struct dmc_pmu_hw_ops g12_ops = {
+> +	.enable		= dmc_g12_counter_enable,
+> +	.disable	= dmc_g12_counter_disable,
+> +	.irq_handler	= dmc_g12_irq_handler,
+> +	.get_counters	= dmc_g12_get_counters,
+> +	.config_axi_id	= dmc_g12_config_axi_id,
 > +};
 > +
-> +static const struct meson_eeclkc_data s4_clkc_data = {
-> +	.regmap_clks = s4_clk_regmaps,
-> +	.regmap_clk_num = ARRAY_SIZE(s4_clk_regmaps),
-> +	.hw_onecell_data = &s4_hw_onecell_data,
-> +	.init_regs = s4_init_regs,
-> +	.init_count = ARRAY_SIZE(s4_init_regs),
-> +};
+> +static int __init g12_ddr_pmu_probe(struct platform_device *pdev)
+> +{
+> +#ifdef CONFIG_OF
+
+As before, remove all these. The of_* APIs should be stubbed out well 
+enough that it still compile-tests OK.
+
+> +	struct device_node *node = pdev->dev.of_node;
+> +	const char *model;
 > +
-> +static const struct of_device_id clkc_match_table[] = {
+> +	if (of_property_read_string(node, "model", &model))
+> +		return -EINVAL;
+
+No, use of_device_is_compatible(), and define the binding properly.
+
+> +	dev_info(&pdev->dev, "%s", model);
+> +
+> +	if (strcmp(model, "g12a") == 0) {
+> +		dev_info(&pdev->dev, "ddr pmu for g12a\n");
+> +	} else if (strcmp(model, "g12b") == 0) {
+> +		dev_info(&pdev->dev, "ddr pmu for g12b\n");
+> +
+> +		append_attr_list(&format_attr_nna.attr);
+> +		append_attr_list(&format_attr_gdc.attr);
+> +		append_attr_list(&format_attr_arm1.attr);
+> +		append_attr_list(&format_attr_mipi_isp.attr);
+> +		append_attr_list(&format_attr_sd_emmc_a.attr);
+> +	} else if (strcmp(model, "sm1") == 0) {
+> +		dev_info(&pdev->dev, "ddr pmu for sm1\n");
+> +
+> +		append_attr_list(&format_attr_nna.attr);
+> +	}
+> +#endif
+> +	return aml_ddr_pmu_create(pdev, &g12_ops, g12_pmu_format_attrs);
+> +}
+> +
+> +static int  __exit g12_ddr_pmu_remove(struct platform_device *pdev)
+> +{
+> +	aml_ddr_pmu_remove(pdev);
+> +
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id aml_ddr_pmu_dt_match[] = {
 > +	{
-> +		.compatible = "amlogic,s4-clkc",
-> +		.data = &s4_clkc_data
+> +		.compatible = "amlogic,g12-ddr-pmu",
 > +	},
 > +	{}
 > +};
+> +#endif
 > +
-> +static struct platform_driver s4_driver = {
-> +	.probe		= meson_eeclkc_probe,
-> +	.driver		= {
-> +		.name	= "s4-clkc",
-> +		.of_match_table = clkc_match_table,
+> +static struct platform_driver g12_ddr_pmu_driver = {
+> +	.driver = {
+> +		.name = "amlogic,ddr-pmu",
+> +		.owner = THIS_MODULE,
+
+The driver core sets this automatically.
+
+> +	#ifdef CONFIG_OF
+> +		.of_match_table = aml_ddr_pmu_dt_match,
+> +	#endif
 > +	},
+> +	.remove = g12_ddr_pmu_remove,
 > +};
 > +
-> +module_platform_driver(s4_driver);
+> +static int __init aml_g12_ddr_pmu_init(void)
+> +{
+> +	return platform_driver_probe(&g12_ddr_pmu_driver, g12_ddr_pmu_probe);
+> +}
+> +
+> +static void __exit aml_g12_ddr_pmu_exit(void)
+> +{
+> +	platform_driver_unregister(&g12_ddr_pmu_driver);
+> +}
+> +
+> +module_init(aml_g12_ddr_pmu_init);
+> +module_exit(aml_g12_ddr_pmu_exit);
+
+Use module_platform_driver_probe() (if of course you really think the 
+__init shenanigans are beneficial, otherwise just use regular 
+module_platform_driver() for even less surprise).
+
+Thanks,
+Robin.
+
 > +MODULE_LICENSE("GPL");
-> diff --git a/drivers/clk/meson/s4.h b/drivers/clk/meson/s4.h
+> diff --git a/include/soc/amlogic/aml_ddr_pmu.h b/include/soc/amlogic/aml_ddr_pmu.h
 > new file mode 100644
-> index 000000000000..d5563dcbd52e
+> index 000000000000..4f60a9f4fa4a
 > --- /dev/null
-> +++ b/drivers/clk/meson/s4.h
-> @@ -0,0 +1,156 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +++ b/include/soc/amlogic/aml_ddr_pmu.h
+> @@ -0,0 +1,63 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 > +/*
-> + * Copyright (c) 2021 Amlogic, inc.
-> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
 > + */
 > +
-> +#ifndef __S4_H
-> +#define __S4_H
+> +#ifndef __AML_DDR_PMU_H__
+> +#define __AML_DDR_PMU_H__
 > +
-> +/*
-> + * Clock controller register offsets
-> + * REG_BASE:  REGISTER_BASE_ADDR = 0xfe000000
-> + */
-> +#define CLKCTRL_OSCIN_CTRL                         ((0x0001 << 2))
-
-No need for double ((
-
-> +#define CLKCTRL_RTC_BY_OSCIN_CTRL0                 ((0x0002 << 2))
-> +#define CLKCTRL_RTC_BY_OSCIN_CTRL1                 ((0x0003 << 2))
-
-
-
-Best regards,
-Krzysztof
+> +#define MAX_CHANNEL_NUM		8
+> +
+> +enum {
+> +	ALL_CHAN_COUNTER_ID,
+> +	CHAN1_COUNTER_ID,
+> +	CHAN2_COUNTER_ID,
+> +	CHAN3_COUNTER_ID,
+> +	CHAN4_COUNTER_ID,
+> +	CHAN5_COUNTER_ID,
+> +	CHAN6_COUNTER_ID,
+> +	CHAN7_COUNTER_ID,
+> +	CHAN8_COUNTER_ID,
+> +	COUNTER_MAX_ID,
+> +};
+> +
+> +struct dmc_hw_info {
+> +	struct dmc_pmu_hw_ops *ops;
+> +	void __iomem *ddr_reg[4];
+> +	unsigned long timer_value;	/* Timer value in TIMER register */
+> +	void __iomem *pll_reg;
+> +	int irq_num;			/* irq vector number */
+> +	int dmc_nr;			/* The number of dmc controller */
+> +	int chann_nr;			/* The number of dmc bandwidth monitor channels */
+> +	int id;				/* The number of supported channels */
+> +};
+> +
+> +struct dmc_counter {
+> +	u64 all_cnt;	/* The count of all requests come in/out ddr controller */
+> +	union {
+> +		u64 all_req;
+> +		struct {
+> +			u64 all_idle_cnt;
+> +			u64 all_16bit_cnt;
+> +		};
+> +	};
+> +	u64 channel_cnt[MAX_CHANNEL_NUM]; /* To save a DMC bandwidth-monitor channel counter */
+> +};
+> +
+> +struct dmc_pmu_hw_ops {
+> +	void (*enable)(struct dmc_hw_info *info);
+> +	void (*disable)(struct dmc_hw_info *info);
+> +	/* Bind an axi line to a bandwidth-monitor channel */
+> +	void (*config_axi_id)(struct dmc_hw_info *info, int axi_id, int chann);
+> +	int (*irq_handler)(struct dmc_hw_info *info,
+> +			   struct dmc_counter *counter);
+> +	void (*get_counters)(struct dmc_hw_info *info,
+> +			     struct dmc_counter *counter);
+> +};
+> +
+> +int aml_ddr_pmu_create(struct platform_device *pdev,
+> +		       struct dmc_pmu_hw_ops *ops,
+> +		       struct attribute **fmt_attr);
+> +int aml_ddr_pmu_remove(struct platform_device *pdev);
+> +
+> +#endif /* __AML_DDR_PMU_H__ */
 
 _______________________________________________
 linux-amlogic mailing list
