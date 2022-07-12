@@ -4,65 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD98FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 14:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47CCDC43334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Jul 2022 14:26:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:To:From:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=BLS559913psBev/anzeiYlmpfsnxMlXdAs8oH42F10s=; b=h/kcS1xqJpS28o
-	mFqM7h87e+DICxUEbWnbUZj2Io0b5sRoNb8xpryHvlhn2etOjFVnXik25mFTSHbILxQS4+S6Fm33M
-	Qq4BXCM+d0Rr9ZuJBg69UwUzCKYUrkmbTZX7P5XqmSgZBPrcEJpp5NKSYQks0VvnZd1AjxQYHz+se
-	sm6DjQYk90P2PLRCRFM9DzExaJ/AOGLQq0otmrgq5PJHbR/LrmLJxPcvya2LlFqhnvMH163U1wVnS
-	i2zg6JFHzIq2DsXFz5g4PVE1BSYFDAw87Gp4WNajzeuWHN5y1+H61zj3AGKTN22Sy7cAI89sKWmp8
-	lu2smoL3Yuxhe3S8P9HA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OODlFHuH/k78Zy2CTl052RGAw51izi3wcC/qIr9vlm0=; b=eKJTrn1G0tUBSP
+	HkctAJuLiVNs3ONrTTI0PmXS1g5pifsdfFRUOMKo3o03JPKdc+BwhEiA0YMJSt8qRScF6lPzjXou4
+	9FXqO4istRC81tTnXOtMc5WvBs0KTnRcjotfnzuI1YeWqNpY2p1k8lL5eM1Ei3MqKyvFa7F5K3/gN
+	X1R4kU/dQlGmEId88+916HjvdiFxHxaFgTvBhnPqNGWI9F+n7VRObW3WcBDRS1IYpoD+ccfbj6Bt5
+	q7/kVo5n5WFwsMnkQ+cATF0HLcwY+0vIdmb0kqQ+VcwSxhsi1jgLzUNc9SQrtwOHfqwqTQpZ6v3oe
+	QYkPlgdb4oXR7GS/iD5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBGon-00BglR-3e; Tue, 12 Jul 2022 14:24:53 +0000
-Received: from out203-205-251-27.mail.qq.com ([203.205.251.27])
+	id 1oBGqG-00BhPR-G6; Tue, 12 Jul 2022 14:26:24 +0000
+Received: from mail-io1-f45.google.com ([209.85.166.45])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oBGoi-00BghW-8i
-	for linux-amlogic@lists.infradead.org; Tue, 12 Jul 2022 14:24:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1657635879; bh=/oQMXHUypDVMZ9kircvgiPPG8uI4ziB0xvtL1YmzSU4=;
-	h=From:To:Cc:Subject:Date;
-	b=VPDrt2jqXjSgYSo337SYqeqLvsAet5v/i8iIbxmU1HjU3ChflTqsWkEmHZVk8NR0E
-	 cJSjFxjX1dI+bJirs4RuB4jx9fW23Di6bdSt0kjjl6EQXl4EnmLQfMg9Oz3aaBF43D
-	 /oUsIOkLum39v5vS7ynCewllTcOBFPjjeNenkQX0=
-Received: from TS-551.. ([101.229.115.105])
-	by newxmesmtplogicsvrsza30.qq.com (NewEsmtp) with SMTP
-	id 625168CE; Tue, 12 Jul 2022 22:24:37 +0800
-X-QQ-mid: xmsmtpt1657635877tp7b68oxj
-Message-ID: <tencent_5FC75850BB8ECD9374E98461C38C41CAC506@qq.com>
-X-QQ-XMAILINFO: OKkKo7I1HxIenvf2soaMAlNhDeE4FAs+rCRqYcpduDtc0UxCMmCVtd47mm9eLq
-	 NvoQFnSLkFaXH19dCsqC9WcDXzcVonoC61q42iuF6dMVC6o638dplVhbgwEbeAyZA0RO4WsFCWqd
-	 HntQZBbrjx0BEDEEFwlx+lSgONcgVEIxQv7KRN4UHi0B8aL/PU47OhslCpF+gMdcQTIWqKq8YW2j
-	 YwsWeC3/i0z2r/hC6RHORQYh5gel/spN+38c0uTRDrQ4WYR6nzYSZYFO/tihOd6zUhEjCIjPfoCD
-	 BqTa8Rwr/OiDN2ZPsI40/6jiqK/tBFDObF/Xxk3DrwWciBtcx6gu2Mgn8VfwaQJ+NCnUtm/PweqC
-	 uP2yU2G1s+TvJ0Awn7Y0OrcuDL2BrJEhby6VHbh4/fdSugEjGOG3nadk8DuxcF7J8gEgr5e3HCQ5
-	 v1WVeibz2dZtMEYbxIm10DIjErl1CsDoNYWvrOv1cuyWIbCyEApgtxV3py0RBS9nNnr5zPbkbNIb
-	 /eDoPAsFFG4TXkeqnd00OsyyAngjT7GwiJHfq553KQF7OeHvVLVfZ1A6FeEG8JcjaPtwEEdxxUGF
-	 /twX2+TUX9RdgJaB2afLuoSgz37dWaF1uYOpIqciUSMyypyWJCCP3m8pkOIr0Z4xHU43gViOb0u4
-	 xTjj4Fu6rnsm2ERJFU+NTEFMCYOj+F95f9wFwUcoHXf5TR4hV1AOk5+vDE+0+Pxx1yCOLXbI3uMs
-	 u6u1fM+BB9jr7037mXe/VxGhXgBpmUlNLf1Btj4Xr188Ytww9dPqeECnShlc0SsnVfHJehAqvqHg
-	 WWT9mZaxzYlwR7EcSTTBd+dOQ9vX7g+tBkwqYu66dyCDckiWEk04P76Y8DvB9OdzNrXNt8PG+3MN
-	 E9wp/0yVpTIkjj3zQMKm2fVcVmSW9FrP4h1qL3JWBV
-From: Zhang Ning <zhangn1985@qq.com>
-To: narmstrong@baylibre.com,
-	robh+dt@kernel.org,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Zhang Ning <zhangn1985@qq.com>
-Subject: [PATCH] Add MagicBox M16S support
-Date: Tue, 12 Jul 2022 22:24:04 +0800
-X-OQ-MSGID: <20220712142404.26021-1-zhangn1985@qq.com>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
+	id 1oBGq9-00BhIE-Dr; Tue, 12 Jul 2022 14:26:19 +0000
+Received: by mail-io1-f45.google.com with SMTP id n68so7975049iod.3;
+        Tue, 12 Jul 2022 07:26:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Mwfd/m3zpk78sJK7nn2vE1VYk2hb35cFLS9pd42jCiI=;
+        b=hssHQcGg1YUgUTe60UG3pzBRTUsMSLzHKc+0xfhAY3bf+ZS1DcyULjvEDosXWAYrL1
+         DONvs45LLh184I8AnK9vFU0Xt7c4q8zIkIjmPvlg9RTWao4UlCkB/DtDYjtuwYq2szJa
+         w8qHk7HYriaUsdZQ5nXTgJwj39AYda87y+ZsYXktYBQAF0Oc/BQm59syZfCG1pqRgpF3
+         +SL7icNBuzotZi9mkJZY/LtynkDUAM4nlSVtIf1dqmx9jNqV8D4gxPbt2qQoG42xTYBq
+         LQvgLS8YGf1zmCM1DUF5qaeZa/WwmExPEuohfG6eMeC675yExeq96VQYjwVlG2Na79pu
+         JUmA==
+X-Gm-Message-State: AJIora8gpiCrnPtoKcqb2dtq5BQ2Qc39I0FVC5y8nt8ZtJ6k1KxUqB51
+	NDnfj0qBAoL7hK8pc/6c4A==
+X-Google-Smtp-Source: AGRyM1uQLAcirqFEfLkDKLsk9TU4a8owrMVfxUjgaeO2hrKaXbUywPSmFTal17hen3JlJmxPkXBYqQ==
+X-Received: by 2002:a05:6638:218c:b0:33c:9cae:166d with SMTP id s12-20020a056638218c00b0033c9cae166dmr13409432jaj.223.1657635973941;
+        Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id w8-20020a92d608000000b002dc0e7027edsm3799668ilm.32.2022.07.12.07.26.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
+Received: (nullmailer pid 1805847 invoked by uid 1000);
+	Tue, 12 Jul 2022 14:26:12 -0000
+From: Rob Herring <robh@kernel.org>
+To: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, Chris Healy <cphealy@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mark Rutland <mark.rutland@arm.com>
+In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com> <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
+Date: Tue, 12 Jul 2022 08:26:12 -0600
+Message-Id: <1657635972.094089.1805846.nullmailer@robh.at.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220712_072448_807064_1BB4182C 
-X-CRM114-Status: GOOD (  10.87  )
+X-CRM114-CacheID: sfid-20220712_072617_500619_FD6F7C73 
+X-CRM114-Status: GOOD (  13.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,65 +70,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-MagicBox M16S or MagicBox 3Pro is popular Tv box in China.
+On Tue, 12 Jul 2022 14:36:41 +0800, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> ---
+>  .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+> 
 
-it's gxm_q201_v1 according u-boot log.
-and it's almost same as Q201 reference design.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-add a simple dts to support this Tv box.
+yamllint warnings/errors:
 
-Signed-off-by: Zhang Ning <zhangn1985@qq.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 20 +++++++++++++++++++
- 2 files changed, 21 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts'
+Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 33, in <module>
+    sys.exit(load_entry_point('yamllint==1.26.3', 'console_scripts', 'yamllint')())
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 210, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 106, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 203, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 140, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 580, in check
+    for problem in _check(conf, token, prev, next, nextnext, context):
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 346, in _check
+    'wrong indentation: expected %d but found %d' %
+TypeError: %d format: a real number is required, not NoneType
+./Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml: ignoring, error parsing file
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 8773211df50e..e0907fb41829 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-magicbox-m16s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
-new file mode 100644
-index 000000000000..be543d65a529
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
-+	model = "MagicBox M16S";
-+};
-+&ethmac {
-+        phy-mode = "rmii";
-+        phy-handle = <&internal_phy>;
-+};
--- 
-2.35.1
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
 
 _______________________________________________
