@@ -4,83 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A3AC43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jul 2022 05:36:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE868C43334
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jul 2022 06:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fALedGopgcqYaUGCcoOC+EJJ57yuo+f+WYbxORzTtsU=; b=bk/5FtW1Ax4/au
-	Fuz0PF6A7Iyqi845EtaBcKxBqpNwc845WRZZIIlniqUf0QcLpAUidFodZWIDkVfgXiqx0f9iH9G9R
-	IBabLGTpcRiE0k44LbY4Ff2lmxoh826tUGIaD43GEUY344A1Jvu4dWZRMAABThtvnvxE/MCnosSdL
-	gScbLernWI3wiBUdDGxGJl7qBIxAIQw5DB12y/8xeqGsBjrX9vjcsZ2glc/E24MXO9uWaRk6NTiX7
-	cdnfreQSTQic4trD5lSiJ8tMeztBluiwKBMJMkIvOWW7hqAykYjJj/gjlFMFUa3UNrRZgXGieZwGG
-	7ty7evdmqV0EUAvEB7aw==;
+	List-Owner; bh=jwiuYSj0k0KEvq2w36Wfb3Xdge8Xrxz4LDD8EjivaEo=; b=iQqLynWIs3Suae
+	8h6uNmtq4yZVskkV6WwQDQrJH9giPd4DfqQpZh4+3k97Hd6YaxO5in7benzqZI0tHTJ7caDUz/mzE
+	GtpuF83JxzgImd70ezBO8x0X3OwVjnuabXWm6+hEh6wkkxSdfHPBTdnvS6xsZe7AuAmFXGETwDONX
+	wlbioBV75Iyu1OUt7cAK+h4fD2GzRhp5k0osfnDisA9tegrPBffXiB4fST9SlbNWVau2mq9VGhekN
+	X5QTtIV0TxQsCWzMnTLlVwAyUzy7NLfNXjBehdVEgRhOIwGltYys6qxlzC/E7/1hpHfBnAJkgTMSl
+	vaYfIkFBQNVhyvkIgAug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCDzZ-004TBl-LT; Fri, 15 Jul 2022 05:35:57 +0000
-Received: from mail-il1-x12b.google.com ([2607:f8b0:4864:20::12b])
+	id 1oCFHP-004mBr-Fw; Fri, 15 Jul 2022 06:58:27 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCDzV-004TB7-Md; Fri, 15 Jul 2022 05:35:55 +0000
-Received: by mail-il1-x12b.google.com with SMTP id d4so2045864ilc.8;
-        Thu, 14 Jul 2022 22:35:51 -0700 (PDT)
+	id 1oCFHK-004m8U-W8
+	for linux-amlogic@lists.infradead.org; Fri, 15 Jul 2022 06:58:24 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id p6so4707731ljc.8
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 Jul 2022 23:58:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=lessconfused.com; s=lessconfused;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jYAWOOGtFlkiPG/21I7baDMXyOiUU0gckUwJzmfvwVo=;
-        b=LXP7zqiq3V8qxuINIqGk6Lz9zv+XREfojszRJdCNcksqKFsuAIte5OdR5gPw9FOWkZ
-         iKPN4sNsVyn3wswEfGaqvCi7nAc+/1UyOIj7gB/ZniGfpZHHOPacEuGKuW0IfKGJHjfS
-         MNEZeNLRygOEoCRq1QKYb7mxYusiVsAJQ5oza8cbBh3GJ5MhUx0Mck1TpCtoVqiL2N1Z
-         lLKk0YW4wt5um6nED796GFuC9E3fWRtaxmMfn2mXW4Mly/kkNgF35wLMo7v4xxbyRq3X
-         G9hEYp4bUJas+Z6Z32oNj8TszzWfHFmU1nx6yU17/a7GczRgJUuHUnLnFyp4+ympyKNI
-         DTew==
+        bh=BJwazGQZJW/uLVik//axHOH23W4pKtSA8Q3XriyhUmc=;
+        b=aqTX5lyeo4zyOGbJuWS5PtHeQ51cfrngS7PkLm7m/+0HuBKQ/6W8/f6IgIv74WR8AE
+         ZNePrO60SD/ZtXxyb3aROTEjXizmcOMAJRoI31uqS9mqZqg63SpmjqHDjV3BoyfxTvFZ
+         e+qYfxrvZv3wBPKGcysWj1ibjttxnHpmovkQ8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jYAWOOGtFlkiPG/21I7baDMXyOiUU0gckUwJzmfvwVo=;
-        b=1K7MnrgXskty/Qiq90Xebw1+y/8bXZGKQsEm31wPid4g9CCpZ45jJDyT3A+jKLVffs
-         wNBbQFFTdV+GnyS8vK2lDoA+jc37+fdWvjKvykKm0HfEZtZnGhB3ztffLtcyv+Tm/1up
-         4/CTBg0HM34tMHHJcA6m/dSjDB4gsW4dhpRTmFyyeOSWHqKVoZ1OYTNAB0tnKyjs6HtC
-         YyKjQapo3XFY17EwllqBlDgvvfWFvAEQA4jNYzvldsdUX0doQzvPE7ADaBQR37UzGq0P
-         E10woHtfx2GfG/uy6X0ZoOvMMQJNqeu8StdIMUFOtjuS9GDpVFPloV48cGfy66CWjH3+
-         GOMg==
-X-Gm-Message-State: AJIora+Ere3UxtCt+rQnDhab0Zw+ngPI4R/rpXvHDWOQB6nEsxDNS8lJ
-	n7Xd+++7ylD2V1Yo0/KQ6/zjKujhA2GM7CDnPP4=
-X-Google-Smtp-Source: AGRyM1ub23J3OVvO9vrhvoc+99/w7w7FMUkJp4c4jpx89FzhqkMUGqZ5GsWn6mekMOlprLXKEknDD5j4IlqQOQP/F5k=
-X-Received: by 2002:a05:6e02:1b85:b0:2dc:c1c5:c444 with SMTP id
- h5-20020a056e021b8500b002dcc1c5c444mr541688ili.81.1657863350838; Thu, 14 Jul
- 2022 22:35:50 -0700 (PDT)
+        bh=BJwazGQZJW/uLVik//axHOH23W4pKtSA8Q3XriyhUmc=;
+        b=7bGjEpiIkIao9QebIwdyVVgYyLvDtP1hdm/vhOJo7jwFfIEbjmQ60wbrWHskJGVnu/
+         SbsP+LAMyBoSMfNTopHbRVqxDF330z4MbKQzLGRWSpDf2xSle1eKNFGLmiQBFoj72NVC
+         KBDyydo/scmkzxJxA0bchCh69PYXH8sIjRJUtTwXDTcFI6O/mqAzI7WKxE6qGlpYVN4A
+         +4kYyfd/KG0GPkwpqydKq6vgxY0e/y7XC/MhUw4LTe1qUccu8IUb+OBlGqZiL3CwwU4A
+         5hu+980lblORdH5PKYVu64pfRQ6O6pO+5ym6TpYfr+cKMknMJ8JDomEFBRSrkPCtgf9A
+         sswA==
+X-Gm-Message-State: AJIora+5+ChUjvMoKPNzoUVf7ZcL+MUJwB1JplKuWWH/aA1c8DzvVtEV
+	/9czuJCY4V5GnbWZH/CGBuzSPP0clUFzrwiOelIUIX/RwJpywmgJ
+X-Google-Smtp-Source: AGRyM1sa5jZmcE2eFhomUSTWVzfgAAUu2l+24idODbu3F3KQ3MUjG1kstqYjoDAdosvLrZc4+kMIQVhMcdzT23yE02M=
+X-Received: by 2002:a2e:b88b:0:b0:25d:a15a:bba9 with SMTP id
+ r11-20020a2eb88b000000b0025da15abba9mr1507486ljp.357.1657868296471; Thu, 14
+ Jul 2022 23:58:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com>
- <1jczjzt05k.fsf@starbuckisacylon.baylibre.com> <CAK4VdL2=1ibpzMRJ97m02AiGD7_sN++F3SCKn6MyKRZX_nhm=g@mail.gmail.com>
- <6b04d864-7642-3f0a-aac0-a3db84e541af@gmail.com> <CAK4VdL0gpz_55aYo6pt+8h14FHxaBmo5kNookzua9+0w+E4JcA@mail.gmail.com>
- <1e828df4-7c5d-01af-cc49-3ef9de2cf6de@gmail.com> <1j8rts76te.fsf@starbuckisacylon.baylibre.com>
- <a4d3fef1-d410-c029-cdff-4d90f578e2da@gmail.com> <CAK4VdL08sdZV7o7Bw=cutdmoCEi1NYB-yisstLqRuH7QcHOHvA@mail.gmail.com>
- <435b2a9d-c3c6-a162-331f-9f47f69be5ac@gmail.com> <CAK4VdL28nWstiS09MYq5nbtiL+aMbNc=Hzv5F0-VMuNKmX9R+Q@mail.gmail.com>
- <1j5yonnp1a.fsf@starbuckisacylon.baylibre.com> <44006194-eab1-7ae2-3cc8-41c210efd0b1@gmail.com>
- <CACdvmAhcyNXViJgk6o6oAoYvAjAg-NFD74Eym_nGHJx3YAqjzw@mail.gmail.com> <1j35g8gavs.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1j35g8gavs.fsf@starbuckisacylon.baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 15 Jul 2022 11:05:35 +0530
-Message-ID: <CANAwSgQBz_VKhkRmMnYdbq2FJiMg5pvp12Ar32SQrU=mYiH2Ug@mail.gmail.com>
-Subject: Re: net: stmmac: dwmac-meson8b: interface sometimes does not come up
- at boot
+References: <20220707101423.90106-1-jbrunet@baylibre.com> <CACdvmAjz9EzeapjATa0aOnRURYgS7NSZRE=uUAuc4X+2otG5EA@mail.gmail.com>
+In-Reply-To: <CACdvmAjz9EzeapjATa0aOnRURYgS7NSZRE=uUAuc4X+2otG5EA@mail.gmail.com>
+From: Da Xue <da@lessconfused.com>
+Date: Fri, 15 Jul 2022 02:58:04 -0400
+Message-ID: <CACdvmAjjgnLzipU7-A+RFjiqh3ijBaJ9gGcRzCHF_NxYevGu9w@mail.gmail.com>
+Subject: Re: [RFC/RFT PATCH] net: stmmac: do not poke MAC_CTRL_REG twice on
+ link up
 To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Da Xue <da@lessconfused.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Erico Nunes <nunes.erico@gmail.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	netdev@vger.kernel.org, 
-	"open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>, linux-sunxi@lists.linux.dev
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Erico Nunes <nunes.erico@gmail.com>, netdev@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Vyacheslav <adeep@lexina.in>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Qi Duan <qi.duan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220714_223553_785490_97378B15 
-X-CRM114-Status: GOOD (  62.87  )
+X-CRM114-CacheID: sfid-20220714_235823_059771_0CADB582 
+X-CRM114-Status: GOOD (  53.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,155 +85,152 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome
+On Wed, Jul 13, 2022 at 5:24 AM Da Xue <da@lessconfused.com> wrote:
+>
+> On Thu, Jul 7, 2022 at 6:14 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+> >
+> > For some reason, poking MAC_CTRL_REG a second time, even with the same
+> > value, causes problem on a dwmac 3.70a.
+> >
+> > This problem happens on all the Amlogic SoCs, on link up, when the RMII
+> > 10/100 internal interface is used. The problem does not happen on boards
+> > using the external RGMII 10/100/1000 interface. Initially we suspected the
+> > PHY to be the problem but after a lot of testing, the problem seems to be
+> > coming from the MAC controller.
+> >
+> > > meson8b-dwmac c9410000.ethernet: IRQ eth_wake_irq not found
+> > > meson8b-dwmac c9410000.ethernet: IRQ eth_lpi not found
+> > > meson8b-dwmac c9410000.ethernet: PTP uses main clock
+> > > meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys ID: 0x37
+> > > meson8b-dwmac c9410000.ethernet:      DWMAC1000
+> > > meson8b-dwmac c9410000.ethernet: DMA HW capability register supported
+> > > meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engine supported
+> > > meson8b-dwmac c9410000.ethernet: COE Type 2
+> > > meson8b-dwmac c9410000.ethernet: TX Checksum insertion supported
+> > > meson8b-dwmac c9410000.ethernet: Wake-Up On Lan supported
+> > > meson8b-dwmac c9410000.ethernet: Normal descriptors
+> > > meson8b-dwmac c9410000.ethernet: Ring mode enabled
+> > > meson8b-dwmac c9410000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+> >
+> > The problem is not systematic. Its occurence is very random from 1/50 to
+> > 1/2. It is fairly easy to detect by setting the kernel to boot over NFS and
+> > possibly setting it to reboot automatically when reaching the prompt.
+> >
+> > When problem happens, the link is reported up by the PHY but no packet are
+> > actually going out. DHCP requests eventually times out and the kernel reset
+> > the interface. It may take several attempts but it will eventually work.
+> >
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+> > > Sending DHCP requests ...... timed out!
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+> > > IP-Config: Retrying forever (NFS root)...
+> > > meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
+> > > meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
+> > > meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+> > > Sending DHCP requests ...... timed out!
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+> > > IP-Config: Retrying forever (NFS root)...
+> > > [...] 5 retries ...
+> > > IP-Config: Retrying forever (NFS root)...
+> > > meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
+> > > meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
+> > > meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
+> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+> > > Sending DHCP requests ., OK
+> > > IP-Config: Got DHCP answer from 10.1.1.1, my address is 10.1.3.229
+> >
+> > Of course the same problem happens when not using NFS and it fairly
+> > difficult for IoT products to detect this situation and recover.
+> >
+> > The call to stmmac_mac_set() should be no-op in our case, the bits it sets
+> > have already been set by an earlier call to stmmac_mac_set(). However
+> > removing this call solves the problem. We have no idea why or what is the
+> > actual problem.
+> >
+> > Even weirder, keeping the call to stmmac_mac_set() but inserting a
+> > udelay(1) between writel() and stmmac_mac_set() solves the problem too.
+> >
+> > Suggested-by: Qi Duan <qi.duan@amlogic.com>
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> >
+> >  Hi,
+> >
+> >  There is no intention to get this patch merged as it is.
+> >  It is sent with the hope to get a better understanding of the issue
+> >  and more testing.
+> >
+> >  The discussion on this issue initially started on this thread
+> >  https://lore.kernel.org/all/CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com/
+> >
+> >  The patches previously proposed in this thread have not solved the
+> >  problem.
+> >
+> >  The line removed in this patch should be a no-op when it comes to the
+> >  value of MAC_CTRL_REG. So the change should make not a difference but
+> >  it does. Testing result have been very good so far so there must be an
+> >  unexpected consequence on the HW. I hope that someone with more
+> >  knowledge on this controller will be able to shine some light on this.
+> >
+> >  Cheers
+> >  Jerome
+> >
+> >  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 1 -
+> >  1 file changed, 1 deletion(-)
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > index d1a7cf4567bc..3dca3cc61f39 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > @@ -1072,7 +1072,6 @@ static void stmmac_mac_link_up(struct phylink_config *config,
+> >
+> >         writel(ctrl, priv->ioaddr + MAC_CTRL_REG);
+> >
+> > -       stmmac_mac_set(priv, priv->ioaddr, true);
+> >         if (phy && priv->dma_cap.eee) {
+> >                 priv->eee_active = phy_init_eee(phy, 1) >= 0;
+> >                 priv->eee_enabled = stmmac_eee_init(priv);
+> > --
+> > 2.36.1
+> >
+>
+> We had a problem with GXL (S805X/S905X) where the ethernet interface
+> would sometimes not come up. Before the 5.10 LTS, it was just a matter
+> of bringing down and up (ip link set) the interface to fix the issue.
+> With 5.15, 5.18, and 5.19, we would get "meson8b-dwmac
+> c9410000.ethernet eth0: Reset adapter." No amount of link down ups can
+> fix it anymore.
 
-On Mon, 13 Jun 2022 at 15:10, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Sat 11 Jun 2022 at 17:00, Da Xue <da@lessconfused.com> wrote:
->
-> > On Wed, Mar 9, 2022 at 3:42 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> >
-> >  On 09.03.2022 15:57, Jerome Brunet wrote:
-> >  >
-> >  > On Wed 09 Mar 2022 at 15:45, Erico Nunes <nunes.erico@gmail.com> wrote:
-> >  >
-> >  >> On Sun, Mar 6, 2022 at 1:56 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> >  >>> You could try the following (quick and dirty) test patch that fully mimics
-> >  >>> the vendor driver as found here:
-> >  >>> https://github.com/khadas/linux/blob/buildroot-aml-4.9/drivers/amlogic/ethernet/phy/amlogic.c
-> >  >>>
-> >  >>> First apply
-> >  >>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=a502a8f04097e038c3daa16c5202a9538116d563
-> >  >>> This patch is in the net tree currently and should show up in linux-next
-> >  >>> beginning of the week.
-> >  >>>
-> >  >>> On top please apply the following (it includes the test patch your working with).
-> >  >>
-> >  >> I triggered test jobs with this configuration (latest mainline +
-> >  >> a502a8f0409 + test patch for vendor driver behaviour), and the results
-> >  >> are pretty much the same as with the previous test patch from this
-> >  >> thread only.
-> >  >> That is, I never got the issue with non-functional link up anymore,
-> >  >> but I get the (rare) issue with link not going up.
-> >  >> The reproducibility is still extremely low, in the >1% range.
-> >  >
-> >  > Low reproducibility means the problem is still there, or at least not
-> >  > understood completly.
-> >  >
-> >  > I understand the benefit from the user standpoint.
-> >  >
-> >  > Heiner if you are going to continue from the test patch you sent,
-> >  > I would welcome some explanation with each of the changes.
-> >  >
-> >  The latest test patch was purely for checking whether we see any
-> >  difference in behavior between vendor driver and the mainlined
-> >  version. It's in no way meant to be applied to mainline.
-> >
-> >  > We know very little about this IP and I'm not very confortable with
-> >  > tweaking/aligning with AML sdk "blindly" on a driver that has otherwise
-> >  > been working well so far.
-> >  >
-> >
-> >  This touches one thing I wanted to ask anyway: Supposedly Amlogic
-> >  didn't develop an own Ethernet PHY, and if they licensed an existing
-> >  IP then it should be similar to some other existing PHY (that may
-> >  have a driver in phylib).
-> >
-> >  Then what I'll do is submit the following small change that brought
-> >  the error rate significantly down according to Erico's tests.
-> >
-> >  -       phy_trigger_machine(phydev);
-> >  +       if (irq_status & INTSRC_ANEG_COMPLETE)
-> >  +               phy_queue_state_machine(phydev, msecs_to_jiffies(100));
-> >  +       else
-> >  +               phy_trigger_machine(phydev);
-> >
-> >  > Thx
-> >  >
-> >  >>
-> >  >> So at this point, I'm not sure how much more effort to invest into
-> >  >> this. Given the rate is very low and the fallback is it will just
-> >  >> reset the link and proceed to work, I think the situation would
-> >  >> already be much better with the solution from that test patch being
-> >  >> merged. If you propose that as a patch separately, I'm happy to test
-> >  >> the final submitted patch again and provide feedback there. Or if
-> >  >> there is another solution to try, I can try with that too.
-> >  >>
-> >  >> Thanks
-> >  >>
-> >  >>
-> >  >> Erico
-> >  >
-> >
-> >  Heiner
-> >
-> > To help reproduce this problem, I have had this problem for as long as I can remember and it still occurs with this patch.
->
-> Same here, on both gxl and g12a. Occurrence remains unchanged.
-> The is even reproduced if the PHY is switched to polling mode so the
-> merged change, related to the IRQ handling, is very unlikely to fix the
-> problem.
->
-> >
-> > This doesn't happen on first boot most of the time. It happens on reboot consistently. I have tested with AML-S805X-CC board, AML-S905X-CC V1, and V2 boards.
-> >
->
-> On my side, I confirm the network never seems to get stuck in u-boot but
-> it might break in Linux, even on the first boot after a power up from
-> what I have seen so far.
->
-> > I am on u-boot 22.04 with 5.18.3 which includes the patch.
-> > u-boot brings up ethernet on start and can grab an IP.
-> > Linux brings up ethernet and can grab an IP.
-> > reboot
-> > u-boot can grab an IP.
-> > Linux does not get anything.
-> > I have to do ip link set dev eth0 down && up once or more to get ethernet to work again.
-> > Sometimes it spams meson8b-dwmac c9410000.ethernet eth0: Reset adapter. If it spams this, ethernet is dead and can't be recovered.
->
-> I tried several things, none showing any improvement so far
-> * Make sure LPI/EEE is disabled
-> * Add the ethernet reset from the main controller on the MAC
-> * Test the various DMA modes of STMMAC
-> * Port the differences from u-boot and the vendor kernel in the Phy driver
->
-> I have also tried to go back in time, up to v4.19 but the problem is actually
-> already there. It occurs at lot less though.
-> Since v5.6+ the occurence is quite high: approx 1 in 4 boots
-> On v4.19: 1 in 50 boots - up to 150.
->
-> >
->
-> When the problem happen
-> * link is reported up
-> * ifconfig / MAC is claiming to be sending packets (Tx increasing - no Rx)
-> * I see no traffic with wireshark
->
-> The packets are getting lost somewhere. Can't say for sure if it is in
-> the MAC or the PHY.
->
-> > This is fixed via power cycle so I'm assuming some register is not reset or maybe the IP is stuck.
-> >
->
-> `ethtool -r eth0` also seems to work around the problem.
-> This trigs the restart of so many things, it is close to an un/replug of
-> the ethernet cable :/
->
+I realized that I did not add the ethernet reset in the device tree
+that u-boot was passing to Linux. Sorry about the noise on this.
 
-Have you give a try for setting up a regulator for ethernet and
-implementing runtime power management
+>
+> When we get the "meson8b-dwmac c9410000.ethernet eth0: Reset
+> adapter.", it affects traffic on the network switch. I have a ping
+> going from two different devices on a GS108PP PoE network switch and
+> it would go through the roof. When I remove the GXL board, everything
+> comes back to normal.
 
-Best Regards
--Anand
-> > Best,
-> > Da Xue
+Given that the reset fixes the ethernet issues, the hardware still
+could be causing this but it is no longer long enough to notice.
+
 >
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> We would get randomized corruption when ethernet is brought up
+> (successfully or not) about half the time. If it boots up without a
+> problem, it remains super stable. I would run benchmarks for CPU, 3D,
+> and ethernet for days without that glitch ever appearing. It seems to
+> be determined at startup.
+
+This is gone with ethernet reset in the device tree and the no
+double-poke register change Jerome provided.
+
+Best,
+Da
 
 _______________________________________________
 linux-amlogic mailing list
