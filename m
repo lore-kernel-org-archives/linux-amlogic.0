@@ -4,71 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE868C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jul 2022 06:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93568C43334
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jul 2022 16:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jwiuYSj0k0KEvq2w36Wfb3Xdge8Xrxz4LDD8EjivaEo=; b=iQqLynWIs3Suae
-	8h6uNmtq4yZVskkV6WwQDQrJH9giPd4DfqQpZh4+3k97Hd6YaxO5in7benzqZI0tHTJ7caDUz/mzE
-	GtpuF83JxzgImd70ezBO8x0X3OwVjnuabXWm6+hEh6wkkxSdfHPBTdnvS6xsZe7AuAmFXGETwDONX
-	wlbioBV75Iyu1OUt7cAK+h4fD2GzRhp5k0osfnDisA9tegrPBffXiB4fST9SlbNWVau2mq9VGhekN
-	X5QTtIV0TxQsCWzMnTLlVwAyUzy7NLfNXjBehdVEgRhOIwGltYys6qxlzC/E7/1hpHfBnAJkgTMSl
-	vaYfIkFBQNVhyvkIgAug==;
+	List-Owner; bh=gT6AcddZtZ5RONAZbaRIrfRXgkTJav5J3QQ4uNHP7FY=; b=LtDy2NyCAIdK3X
+	yie1W264lmn81Qa8Yi8VNyOVdp5I+q1elE04f7FU4353Ma5F3DJCKPIex4sFvrmCvyIvvlTi9lKFn
+	Oed4V9QjvswLMwJot5YmQMhJG0MGHXbtVYNrRvleWsbS/BoVWB7MX/eNmeIb7eD4tYLszoRVY0EFD
+	59vWQcAYtkvhq8nbAxhJ5zNsakux3TikTo4bv3tztItSabS4mO7/Sd1aLmDL2bZFfxGYoEwmAQtCw
+	xsRvSs/xCMD62jkh1WdfW3YJyR8Q4PCilsP2E7VaE3pliI670GU7Ji9D83k2DOA4xUhgZDqt1Iyrd
+	MDj3dQK1Ii1j0G1aw2jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCFHP-004mBr-Fw; Fri, 15 Jul 2022 06:58:27 +0000
-Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCFHK-004m8U-W8
-	for linux-amlogic@lists.infradead.org; Fri, 15 Jul 2022 06:58:24 +0000
-Received: by mail-lj1-x22b.google.com with SMTP id p6so4707731ljc.8
-        for <linux-amlogic@lists.infradead.org>; Thu, 14 Jul 2022 23:58:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lessconfused.com; s=lessconfused;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BJwazGQZJW/uLVik//axHOH23W4pKtSA8Q3XriyhUmc=;
-        b=aqTX5lyeo4zyOGbJuWS5PtHeQ51cfrngS7PkLm7m/+0HuBKQ/6W8/f6IgIv74WR8AE
-         ZNePrO60SD/ZtXxyb3aROTEjXizmcOMAJRoI31uqS9mqZqg63SpmjqHDjV3BoyfxTvFZ
-         e+qYfxrvZv3wBPKGcysWj1ibjttxnHpmovkQ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BJwazGQZJW/uLVik//axHOH23W4pKtSA8Q3XriyhUmc=;
-        b=7bGjEpiIkIao9QebIwdyVVgYyLvDtP1hdm/vhOJo7jwFfIEbjmQ60wbrWHskJGVnu/
-         SbsP+LAMyBoSMfNTopHbRVqxDF330z4MbKQzLGRWSpDf2xSle1eKNFGLmiQBFoj72NVC
-         KBDyydo/scmkzxJxA0bchCh69PYXH8sIjRJUtTwXDTcFI6O/mqAzI7WKxE6qGlpYVN4A
-         +4kYyfd/KG0GPkwpqydKq6vgxY0e/y7XC/MhUw4LTe1qUccu8IUb+OBlGqZiL3CwwU4A
-         5hu+980lblORdH5PKYVu64pfRQ6O6pO+5ym6TpYfr+cKMknMJ8JDomEFBRSrkPCtgf9A
-         sswA==
-X-Gm-Message-State: AJIora+5+ChUjvMoKPNzoUVf7ZcL+MUJwB1JplKuWWH/aA1c8DzvVtEV
-	/9czuJCY4V5GnbWZH/CGBuzSPP0clUFzrwiOelIUIX/RwJpywmgJ
-X-Google-Smtp-Source: AGRyM1sa5jZmcE2eFhomUSTWVzfgAAUu2l+24idODbu3F3KQ3MUjG1kstqYjoDAdosvLrZc4+kMIQVhMcdzT23yE02M=
-X-Received: by 2002:a2e:b88b:0:b0:25d:a15a:bba9 with SMTP id
- r11-20020a2eb88b000000b0025da15abba9mr1507486ljp.357.1657868296471; Thu, 14
- Jul 2022 23:58:16 -0700 (PDT)
+	id 1oCOLL-008rdl-4B; Fri, 15 Jul 2022 16:39:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oCOLH-008rcO-3R; Fri, 15 Jul 2022 16:39:05 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D5A512FC;
+	Fri, 15 Jul 2022 09:39:00 -0700 (PDT)
+Received: from [10.57.86.139] (unknown [10.57.86.139])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E116B3F792;
+	Fri, 15 Jul 2022 09:38:57 -0700 (PDT)
+Message-ID: <a0c763c0-eaa0-999e-31bb-d2dbaeb988bb@arm.com>
+Date: Fri, 15 Jul 2022 17:38:53 +0100
 MIME-Version: 1.0
-References: <20220707101423.90106-1-jbrunet@baylibre.com> <CACdvmAjz9EzeapjATa0aOnRURYgS7NSZRE=uUAuc4X+2otG5EA@mail.gmail.com>
-In-Reply-To: <CACdvmAjz9EzeapjATa0aOnRURYgS7NSZRE=uUAuc4X+2otG5EA@mail.gmail.com>
-From: Da Xue <da@lessconfused.com>
-Date: Fri, 15 Jul 2022 02:58:04 -0400
-Message-ID: <CACdvmAjjgnLzipU7-A+RFjiqh3ijBaJ9gGcRzCHF_NxYevGu9w@mail.gmail.com>
-Subject: Re: [RFC/RFT PATCH] net: stmmac: do not poke MAC_CTRL_REG twice on
- link up
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Erico Nunes <nunes.erico@gmail.com>, netdev@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
-	Neil Armstrong <narmstrong@baylibre.com>, Vyacheslav <adeep@lexina.in>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Qi Duan <qi.duan@amlogic.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC
+ DDR PMU driver
+Content-Language: en-GB
+To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chris Healy <cphealy@gmail.com>
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
+ <55be073b-caf1-320b-dd42-165636b45a74@arm.com>
+ <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220714_235823_059771_0CADB582 
-X-CRM114-Status: GOOD (  53.73  )
+X-CRM114-CacheID: sfid-20220715_093903_263255_FFCB09DF 
+X-CRM114-Status: GOOD (  51.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,159 +67,189 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 13, 2022 at 5:24 AM Da Xue <da@lessconfused.com> wrote:
->
-> On Thu, Jul 7, 2022 at 6:14 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> >
-> > For some reason, poking MAC_CTRL_REG a second time, even with the same
-> > value, causes problem on a dwmac 3.70a.
-> >
-> > This problem happens on all the Amlogic SoCs, on link up, when the RMII
-> > 10/100 internal interface is used. The problem does not happen on boards
-> > using the external RGMII 10/100/1000 interface. Initially we suspected the
-> > PHY to be the problem but after a lot of testing, the problem seems to be
-> > coming from the MAC controller.
-> >
-> > > meson8b-dwmac c9410000.ethernet: IRQ eth_wake_irq not found
-> > > meson8b-dwmac c9410000.ethernet: IRQ eth_lpi not found
-> > > meson8b-dwmac c9410000.ethernet: PTP uses main clock
-> > > meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys ID: 0x37
-> > > meson8b-dwmac c9410000.ethernet:      DWMAC1000
-> > > meson8b-dwmac c9410000.ethernet: DMA HW capability register supported
-> > > meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engine supported
-> > > meson8b-dwmac c9410000.ethernet: COE Type 2
-> > > meson8b-dwmac c9410000.ethernet: TX Checksum insertion supported
-> > > meson8b-dwmac c9410000.ethernet: Wake-Up On Lan supported
-> > > meson8b-dwmac c9410000.ethernet: Normal descriptors
-> > > meson8b-dwmac c9410000.ethernet: Ring mode enabled
-> > > meson8b-dwmac c9410000.ethernet: Enable RX Mitigation via HW Watchdog Timer
-> >
-> > The problem is not systematic. Its occurence is very random from 1/50 to
-> > 1/2. It is fairly easy to detect by setting the kernel to boot over NFS and
-> > possibly setting it to reboot automatically when reaching the prompt.
-> >
-> > When problem happens, the link is reported up by the PHY but no packet are
-> > actually going out. DHCP requests eventually times out and the kernel reset
-> > the interface. It may take several attempts but it will eventually work.
-> >
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> > > Sending DHCP requests ...... timed out!
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-> > > IP-Config: Retrying forever (NFS root)...
-> > > meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
-> > > meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
-> > > meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> > > Sending DHCP requests ...... timed out!
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
-> > > IP-Config: Retrying forever (NFS root)...
-> > > [...] 5 retries ...
-> > > IP-Config: Retrying forever (NFS root)...
-> > > meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.1:08] driver [Meson G12A Internal PHY] (irq=POLL)
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > meson8b-dwmac ff3f0000.ethernet eth0: No Safety Features support found
-> > > meson8b-dwmac ff3f0000.ethernet eth0: PTP not supported by HW
-> > > meson8b-dwmac ff3f0000.ethernet eth0: configuring for phy/rmii link mode
-> > > meson8b-dwmac ff3f0000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-> > > Sending DHCP requests ., OK
-> > > IP-Config: Got DHCP answer from 10.1.1.1, my address is 10.1.3.229
-> >
-> > Of course the same problem happens when not using NFS and it fairly
-> > difficult for IoT products to detect this situation and recover.
-> >
-> > The call to stmmac_mac_set() should be no-op in our case, the bits it sets
-> > have already been set by an earlier call to stmmac_mac_set(). However
-> > removing this call solves the problem. We have no idea why or what is the
-> > actual problem.
-> >
-> > Even weirder, keeping the call to stmmac_mac_set() but inserting a
-> > udelay(1) between writel() and stmmac_mac_set() solves the problem too.
-> >
-> > Suggested-by: Qi Duan <qi.duan@amlogic.com>
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> >
-> >  Hi,
-> >
-> >  There is no intention to get this patch merged as it is.
-> >  It is sent with the hope to get a better understanding of the issue
-> >  and more testing.
-> >
-> >  The discussion on this issue initially started on this thread
-> >  https://lore.kernel.org/all/CAK4VdL3-BEBzgVXTMejrAmDjOorvoGDBZ14UFrDrKxVEMD2Zjg@mail.gmail.com/
-> >
-> >  The patches previously proposed in this thread have not solved the
-> >  problem.
-> >
-> >  The line removed in this patch should be a no-op when it comes to the
-> >  value of MAC_CTRL_REG. So the change should make not a difference but
-> >  it does. Testing result have been very good so far so there must be an
-> >  unexpected consequence on the HW. I hope that someone with more
-> >  knowledge on this controller will be able to shine some light on this.
-> >
-> >  Cheers
-> >  Jerome
-> >
-> >  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > index d1a7cf4567bc..3dca3cc61f39 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > @@ -1072,7 +1072,6 @@ static void stmmac_mac_link_up(struct phylink_config *config,
-> >
-> >         writel(ctrl, priv->ioaddr + MAC_CTRL_REG);
-> >
-> > -       stmmac_mac_set(priv, priv->ioaddr, true);
-> >         if (phy && priv->dma_cap.eee) {
-> >                 priv->eee_active = phy_init_eee(phy, 1) >= 0;
-> >                 priv->eee_enabled = stmmac_eee_init(priv);
-> > --
-> > 2.36.1
-> >
->
-> We had a problem with GXL (S805X/S905X) where the ethernet interface
-> would sometimes not come up. Before the 5.10 LTS, it was just a matter
-> of bringing down and up (ip link set) the interface to fix the issue.
-> With 5.15, 5.18, and 5.19, we would get "meson8b-dwmac
-> c9410000.ethernet eth0: Reset adapter." No amount of link down ups can
-> fix it anymore.
-
-I realized that I did not add the ethernet reset in the device tree
-that u-boot was passing to Linux. Sorry about the noise on this.
-
->
-> When we get the "meson8b-dwmac c9410000.ethernet eth0: Reset
-> adapter.", it affects traffic on the network switch. I have a ping
-> going from two different devices on a GS108PP PoE network switch and
-> it would go through the roof. When I remove the GXL board, everything
-> comes back to normal.
-
-Given that the reset fixes the ethernet issues, the hardware still
-could be causing this but it is no longer long enough to notice.
-
->
-> We would get randomized corruption when ethernet is brought up
-> (successfully or not) about half the time. If it boots up without a
-> problem, it remains super stable. I would run benchmarks for CPU, 3D,
-> and ethernet for days without that glitch ever appearing. It seems to
-> be determined at startup.
-
-This is gone with ethernet reset in the device tree and the no
-double-poke register change Jerome provided.
-
-Best,
-Da
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjAyMi0wNy0xNCAwOToxNywgSml1Y2hlbmcgWHUgd3JvdGU6ClsuLi5dCj4+PiArwqDCoMKg
+wqDCoMKgwqAgbGlzdF9mb3JfZWFjaF9lbnRyeSgoc2libGluZyksICYoZXZlbnQpLT5zaWJsaW5n
+X2xpc3QsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc2libGlu
+Z19saXN0KSB7Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoc2libGluZy0+cG11ICE9
+IGV2ZW50LT5wbXUgJiYKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIWlzX3Nv
+ZnR3YXJlX2V2ZW50KHNpYmxpbmcpKQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCByZXR1cm4gLUVJTlZBTDsKPj4KPj4gSXQgbG9va3MgbGlrZSB5b3UgZG9uJ3QgaGF2ZSBtdWx0
+aXBsZSBzZXRzIG9mIGhhcmR3YXJlIGNvdW50ZXJzOyBpZiBzbyAKPj4geW91J2QgYWxzbyBuZWVk
+IHRvIHJlamVjdCB0aGUgZ3JvdXAgaWYgaXQgY29udGFpbnMgbW9yZSB0aGFuIG9uZSBldmVudCAK
+Pj4gZm9yIHRoaXMgUE1VLgo+IEkgaGF2ZSA1IEhXIGNvdW50ZXJzIGFuZCA1IHJlbGV2YW50IGV2
+ZW50cy4gRG8geW91IG1lYW4gSSBuZWVkIHJlamVjdCAKPiB0aGUgZ3JvdXA/CgpBaCwgSSB0aGlu
+ayBJIHVuZGVyc3RhbmQgYSBiaXQgYmV0dGVyIG5vdywgc28gZWFjaCBjaGFubmVsIGlzIGEgc2Vw
+YXJhdGUgCmNvdW50ZXIgLSBpbiB0aGF0IGNhc2UgeW91IG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUg
+Z3JvdXAgZG9lc24ndCBjb250YWluIAptb3JlIHRoYW4gb25lIGV2ZW50IHRhcmdldGluZyB0aGUg
+c2FtZSBjaGFubmVsLiBUaGUgcmVhc29uIGlzIHRoYXQgCmV2ZW50X2FkZCBzaG91bGQgcmV0dXJu
+IGFuIGVycm9yIHdoZW4gYW5vdGhlciBldmVudCBpcyBhbHJlYWR5IHVzaW5nIHRoZSAKZ2l2ZW4g
+Y291bnRlciAtIHdoZW4gdGhhdCBoYXBwZW5zLCBwZXJmIHdpbGwgdHJ5IHRvIHNjaGVkdWxlIGRp
+ZmZlcmVudCAKY29tYmluYXRpb25zIG9mIGV2ZW50cyB0byB3b3JrIG91dCB3aGljaCBvbmVzIGNh
+biBjb3VudCBzaW11bHRhbmVvdXNseSAKYW5kIHdoaWNoIG5lZWQgdG8gYmUgbXVsdGlwbGV4ZWQu
+IEhvd2V2ZXIgaWYgdHdvIGNvbmZsaWN0aW5nIGV2ZW50cyBhcmUgCmluIHRoZSBzYW1lIGdyb3Vw
+LCBhbmQgdGh1cyByZXF1aXJlZCB0byBiZSBzY2hlZHVsZWQgdG9nZXRoZXIgCmF0b21pY2FsbHks
+IHRoZW4gaXQgZW5kcyB1cCBpbiBhbiBpbmZpbml0ZSBsb29wIHRyeWluZyB0byBhY2hpZXZlIHRo
+ZSAKaW1wb3NzaWJsZS4gVGhlcmVmb3JlIGV2ZW50X2luaXQgbXVzdCByZWplY3QgYW55IGdyb3Vw
+IHdob3NlIGV2ZW50cyAKd291bGQgbmV2ZXIgYmUgYWJsZSB0byBiZSBzY2hlZHVsZWQgdG9nZXRo
+ZXIuCgpbLi4uXQo+Pj4gK3N0YXRpYyBpbnQgZGRyX3BlcmZfb2ZmbGluZV9jcHUodW5zaWduZWQg
+aW50IGNwdSwgc3RydWN0IGhsaXN0X25vZGUgCj4+PiAqbm9kZSkKPj4+ICt7Cj4+PiArwqDCoMKg
+IHN0cnVjdCBkZHJfcG11ICpwbXUgPSBobGlzdF9lbnRyeV9zYWZlKG5vZGUsIHN0cnVjdCBkZHJf
+cG11LCBub2RlKTsKPj4+ICvCoMKgwqAgaW50IHRhcmdldDsKPj4+ICsKPj4+ICvCoMKgwqAgaWYg
+KGNwdSAhPSBwbXUtPmNwdSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gMDsKPj4+ICsKPj4+
+ICvCoMKgwqAgdGFyZ2V0ID0gY3B1bWFza19hbnlfYnV0KGNwdV9vbmxpbmVfbWFzaywgY3B1KTsK
+Pj4+ICvCoMKgwqAgaWYgKHRhcmdldCA+PSBucl9jcHVfaWRzKQo+Pj4gK8KgwqDCoMKgwqDCoMKg
+IHJldHVybiAwOwo+Pj4gKwo+Pj4gK8KgwqDCoCBwZXJmX3BtdV9taWdyYXRlX2NvbnRleHQoJnBt
+dS0+cG11LCBjcHUsIHRhcmdldCk7Cj4+PiArwqDCoMKgIHBtdS0+Y3B1ID0gdGFyZ2V0Owo+Pj4g
+Kwo+Pj4gK8KgwqDCoCBXQVJOX09OKGlycV9zZXRfYWZmaW5pdHlfaGludChwbXUtPmluZm8uaXJx
+X251bSwgCj4+PiBjcHVtYXNrX29mKHBtdS0+Y3B1KSkpOwo+Pgo+PiBUaGlzIGlzIHdyb25nLCBp
+dCBuZWVkcyB0byBiZSBpcnFfc2V0X2FmZmluaXR5KCkuCj4gCj4gT2theSwgQ291bGQgeW91IHBs
+ZWFzZSB0ZWxsIHdoYXQgaXMgdGhlIG1ham9yIGRpZmZlcmVuY2UgYmV0d2VlbiB0aGUgdHdvIAo+
+IEFQST8KClRoZSBhZmZpbml0eSBoaW50IGlzIGp1c3QgYSBmaWVsZCBleHBvc2VkIHRvIHVzZXJz
+cGFjZSwgZm9yIHRoZSBiZW5lZml0IApvZiB0b29scyBsaWtlIGlycWJhbGFuY2UsIGl0IGRvZXNu
+J3QgYWN0dWFsbHkgc2VydmUgYW55IHB1cnBvc2UgaW4gdGhlIAprZXJuZWwgaXRzZWxmLgoKSGlz
+dG9yaWNhbGx5LCBpdCB1c2VkIHRvIGJlIHRoZSBjYXNlIHRoYXQgaXJxX3NldF9hZmZpbml0eV9o
+aW50KCkgYWxzbyAKaGFwcGVuZWQgdG8gY2FsbCBpcnFfc2V0X2FmZmluaXR5KCkgaW50ZXJuYWxs
+eSwgYW5kIHRoaXMgYW50aS1wYXR0ZXJuIApkZXZlbG9wZWQgYXJvdW5kIHRoYXQgZHVlIHRvIG1v
+ZHVsZSBleHBvcnRzLCBidXQgdGhhdCBoYXMgYWxsIGJlZW4gCmNsZWFuZWQgdXAgbm93LgoKWy4u
+Ll0KPj4+ICvCoMKgwqDCoMKgwqDCoCBnb3RvIGVycjI7Cj4+PiArwqDCoMKgIH0KPj4+ICsKPj4+
+ICvCoMKgwqAgaXJxX25hbWUgPSBvZl9nZXRfcHJvcGVydHkobm9kZSwgImludGVycnVwdC1uYW1l
+cyIsIE5VTEwpOwo+Pj4gK8KgwqDCoCBpZiAoIWlycV9uYW1lKQo+Pj4gK8KgwqDCoMKgwqDCoMKg
+IGlycV9uYW1lID0gImRkcl9wbXUiOwo+Pgo+PiBUaGF0J3Mgbm90IGhvdyB0aGUgImludGVycnVw
+dC1uYW1lcyIgcHJvcGVydHkgd29ya3MuIElmIHlvdSBvbmx5IGhhdmUgCj4+IGEgc2luZ2xlIGlu
+dGVycnVwdCB0aGVuIHRoZXJlJ3Mgbm90IG11Y2ggbmVlZCBmb3IgaXQgdG8gYmUgbmFtZWQgaW4g
+Cj4+IHRoZSBEVCBhdCBhbGwuIElmIHlvdSBkbyB3YW50IHRvIHVzZSBuYW1lZCBpbnRlcnJ1cHRz
+IHRoZW4gdXNlIAo+PiBwbGF0Zm9ybV9nZXRfaXJxX2J5bmFtZSgpLCBhbmQgdGhlIG5hbWUgc2hv
+dWxkIHByb2JhYmx5IGhhdmUgYSBibml0IAo+PiBtb3JlIGZ1bmN0aW9uYWwgbWVhbmluZy4gRWl0
+aGVyIHdheSwgcGxlYXNlIGRvbid0IGFidXNlIHRoZSBEVCBsaWtlIHRoaXMuCj4gT2theSwgYWN0
+dWFsbHkgdGhlcmUgd2lsbCBiZSBtdWx0aXBsZSBpbnRlcnJ1cHRzICwgYnV0IG5vdCBpbiBjdXJy
+ZW50IAo+IEcxMiBzZXJpZXMuCgpUaGF0J3MgZmFpciBlbm91Z2gsIHNvIHdlIHNob3VsZCB0cnkg
+dG8gYW50aWNpcGF0ZSBpdCBpbiB0aGUgZGVzaWduIG9mIAp0aGUgRFQgYmluZGluZy4gSWYgZm9y
+IGluc3RhbmNlIGZ1dHVyZSBTb0NzIGFyZSBnb2luZyB0byBtb3ZlIGZyb20gCmhhdmluZyBhIHNp
+bmdsZSBjb21iaW5lZCBvdmVyZmxvdyBpbnRlcnJ1cHQgdG8gYSBzZXBhcmF0ZSBpbnRlcnJ1cHQg
+Zm9yIAplYWNoIGNvdW50ZXIsIHRoZW4gdGhlIGRyaXZlciBjYW4gcmVhc29uYWJseSBjb250aW51
+ZSB0byBnZXQgdGhlbSBieSAKaW5kZXggYW5kIHdlJ2xsIGVmZmVjdGl2ZWx5IG9ubHkgbmVlZCB0
+byB1cGRhdGUgbWF4SXRlbXMgaW4gdGhlIGJpbmRpbmcuIApJZiBvbiB0aGUgb3RoZXIgaGFuZCB0
+aGVyZSdzIHN0aWxsIGdvaW5nIHRvIGJlIG9uZSBjb21iaW5lZCBvdmVyZmxvdyAKaW50ZXJydXB0
+LCBwbHVzIHNvbWUgb3RoZXIgbmV3IGludGVycnVwdCBmb3Igc29tZXRoaW5nIGNvbXBsZXRlbHkg
+CmRpZmZlcmVudCwgdGhlbiBpdCAqY291bGQqIGJlIG1vcmUgYXBwcm9wcmlhdGUgdG8gaGF2ZSBu
+YW1lcywgYW5kIHRodXMgCnRvIGRlZmluZSBhbmQgdXNlIGEgc3RhbmRhcmQgIm92ZXJmbG93IiBu
+YW1lIGZyb20gdGhlIGJlZ2lubmluZyBldmVuIAp3aGVuIGl0IGlzIHRoZSBvbmx5IG9uZSBwcmVz
+ZW50LCBzbyB0aGF0IHdlIGNhbiByZW1haW4gY29uc2lzdGVudCBsYXRlciAKb25jZSBtb3JlIGFy
+ZSBhZGRlZC4KCj4+PiArCj4+PiArwqDCoMKgIHJldCA9IHJlcXVlc3RfaXJxKGluZm8tPmlycV9u
+dW0sIGRtY19pcnFfaGFuZGxlciwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBJUlFG
+X1NIQVJFRCwgaXJxX25hbWUsICh2b2lkICopaW5mbyk7Cj4+Cj4+IFdobyBlbHNlIGlzIHNoYXJp
+bmcgdGhlIElSUT8gSWYgaXQncyBvdGhlciBpbnN0YW5jZXMgb2YgdGhpcyBQTVUgdGhlbiAKPj4g
+dGhhdCdzIHN0aWxsIG1hbmFnZWFibGUgdW5kZXIgdGhlIG5vcm1hbCBwYXJhZGlnbSwgdGhlIGRy
+aXZlciBqdXN0IAo+PiBuZWVkcyB0byBjb29yZGluYXRlIGFmZmluaXR5IGNoYW5tZ2VzIGJldHdl
+ZW4gYWxsIGluc3RhbmNlcy4gSWYgaXQncyAKPj4gcmFuZG9tIG90aGVyIGRldmljZXMsIHRoZW4g
+bWF5YmUgaXQncyB0aW1lIHRvIHJlYXNvbiBhYm91dCBob3cgc3lzdGVtIAo+PiBQTVVzIGNvdWxk
+IHVzZSBwcm9wZXIgSVJRLXNhZmUgbG9ja2luZyBhbmQgYWJhbmRvbiB0aGUgYWZmaW5pdHkgc3R1
+ZmYsIAo+PiBzaW5jZSB0aGlzIHNlZW1zIHRvIGJlIGNvbWluZyB1cCBtb3JlIGFuZCBtb3JlLgo+
+IAo+IFRoZSBJUlEgaXMgcHJpdmF0ZS4gSSB3aWxsIGNoYW5nZSBpdC4KCk9LLCB0aGF0J3MgZ29v
+ZC4gSW4gdGhhdCBjYXNlIHlvdSBjYW4gc2ltcGx5IHJlcGxhY2UgSVJRRl9TSEFSRUQgd2l0aCAK
+SVJRRl9OT0JBTEFOQ0lORyBoZXJlLCBzaW5jZSB0aGF0IGlzIG5lZWRlZCBlaXRoZXIgd2F5IHRv
+IHByZXZlbnQgCnVzZXJzcGFjZSBjaGFuZ2luZyBhZmZpbml0aWVzIGJlaGluZCBvdXIgYmFjay4K
+ClsuLi5dCj4+PiArc3RhdGljIHZvaWQgYXBwZW5kX2F0dHJfbGlzdChzdHJ1Y3QgYXR0cmlidXRl
+ICphdHRyKQo+Pj4gK3sKPj4+ICvCoMKgwqAgaW50IGk7Cj4+PiArCj4+PiArwqDCoMKgIGZvciAo
+aSA9IDA7IGcxMl9wbXVfZm9ybWF0X2F0dHJzW2ldICYmIGkgPCAyNTU7IGkrKykKPj4+ICvCoMKg
+wqDCoMKgwqDCoCA7Cj4+Cj4+IEV3dywgd2hhdD8gOigKPj4KPj4+ICsKPj4+ICvCoMKgwqAgZzEy
+X3BtdV9mb3JtYXRfYXR0cnNbaV0gPSBhdHRyOwo+Pj4gKwo+Pj4gK8KgwqDCoCBnMTJfcG11X2Zv
+cm1hdF9hdHRyc1tpICsgMV0gPSBOVUxMOwo+Pgo+PiAodGhhdCdzIHBvaW50bGVzcyBlaXRoZXIg
+d2F5KQo+Pgo+PiBPSywgSSB0aGluayBJIHNlZSB3aGF0J3MgZ29pbmcgb24gaGVyZSBub3cuIER5
+bmFtaWNhbGx5IHBhdGNoaW5nIHRoZSAKPj4gYXR0cmlidXRlIGFycmF5cyBpcyBwcmV0dHkgZ3Jp
+bSAtIGl0J3MgZmFyIGNsZWFuZXIgYW5kIG1vcmUgCj4+IHN1c3RhaW5hYmxlIHRvIHN0YXRpY2Fs
+bHkgZGVmaW5lIHRoZSB3aG9sZSBhcnJheSB3aXRoIGFsbCB0aGUgcG9zc2libGUgCj4+IGF0dHJp
+YnV0ZXMsIHRoZW4gdXNlIC5pc192aXNpYmxlIHRvIGhpZGUgdGhlIG9uZXMgd2hpY2ggYXJlbid0
+IAo+PiByZWxldmFudCB0byB0aGUgY3VycmVudCBzeXN0ZW0uCj4+Cj4gSSBoYXZlIG5vdCBnb3Qg
+eW91ciBwb2ludCB5ZXQuIEkgaGF2ZSBubyBpZGVhIGhvdyB0byB1c2UgLmlzX3Zpc2libGUgdG8g
+Cj4gaGlkZSB0aGUgaXJyZWxldmFudCBhdHRyaWJ1dGUuIEkgbmVlZCBhIGxpdHRsZSB0aW1lIHRv
+IHRoaW5rIGl0LgoKSXQgbWlnaHQgYmUgZWFzaWVzdCB0byBmb2xsb3cgYW4gZXhhbXBsZSBsaWtl
+IGFybV9kc3VfcG11IC0gaW4gdGhhdCAKY2FzZSwgdGhlIGhhcmR3YXJlIGhhcyBhbiBJRCByZWdp
+c3RlciB0aGF0IHNheXMgd2hpY2ggZXZlbnQgSURzIGFyZSAKc3VwcG9ydGVkOyB5b3UgY291bGQg
+aGF2ZSBzb21lIGtpbmQgb2Ygc3RhdGljIGJpdG1hcC9sb29rdXAgCnRhYmxlL2Z1bmN0aW9uIHRv
+IGVuY29kZSB0aGUgZXF1aXZhbGVudCBkYXRhIG9mIHdoaWNoIEFYSSBJRHMgYXJlIApyZWxldmFu
+dCB0byB3aGljaCBQTVUgbW9kZWwocykuIEFub3RoZXIgYXBwcm9hY2ggaXMgdG8gZW5jb2RlIHRo
+ZSAKc3VwcG9ydGVkIG1vZGVscyBkaXJlY3RseSBpbiBlYWNoIGF0dHJpYnV0ZSBpdHNlbGYgYW5k
+IHRodXMgbWFrZSB0aGUgCmxvb2t1cCB0aGUgb3RoZXIgd2F5IHJvdW5kIC0gdGhpcyBpcyBwcm9i
+YWJseSBtb3JlIGNvbXBsZXggdG8gaW1wbGVtZW50LCAKYW5kIEkgaGVzaXRhdGUgdG8gc3VnZ2Vz
+dCBsb29raW5nIGF0IGFybS1jbW4gYXMgYW4gZXhhbXBsZSBzaW5jZSB0aGF0J3MgCnJhdGhlciBl
+eHRyZW1lIGFuZCBoYXJkIHRvIGZvbGxvdywgYnV0IGl0IGlzIGFub3RoZXIgcG9zc2liaWxpdHku
+CgpBIHRoaXJkIG9wdGlvbiBtaWdodCBiZSB0byBwdXNoIGFsbCB0aGUgQVhJIElEIGRhdGEgb3V0
+IHRvIEpTT04gaW4gdGhlIAp1c2Vyc3BhY2UgcGVyZiB0b29sLCBsaWtlIGZzbF9pbXg4X2Rkcl9w
+ZXJmIHNlZW1zIHRvIGRvLCBob3dldmVyIHRoYXQgCm1pZ2h0IG1ha2UgaXQgbGVzcyBhY2Nlc3Np
+YmxlIHRvIG90aGVyIHVzZXJzcGFjZSB0b29scywgc28gaXQgcHJvYmFibHkgCmRlcGVuZHMgb24g
+eW91ciBleHBlY3RlZCB1c2UtY2FzZXMgd2hldGhlciB0aGF0J3Mgd29ydGggY29uc2lkZXJpbmcg
+b3Igbm90LgoKWy4uLl0KPj4+ICvCoMKgwqAgc3RydWN0IGRldmljZV9ub2RlICpub2RlID0gcGRl
+di0+ZGV2Lm9mX25vZGU7Cj4+PiArwqDCoMKgIGNvbnN0IGNoYXIgKm1vZGVsOwo+Pj4gKwo+Pj4g
+K8KgwqDCoCBpZiAob2ZfcHJvcGVydHlfcmVhZF9zdHJpbmcobm9kZSwgIm1vZGVsIiwgJm1vZGVs
+KSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVJTlZBTDsKPj4KPj4gTm8sIHVzZSBvZl9k
+ZXZpY2VfaXNfY29tcGF0aWJsZSgpLCBhbmQgZGVmaW5lIHRoZSBiaW5kaW5nIHByb3Blcmx5Lgo+
+IAo+IFdoeSB0aGUgIm1vZGVsIiBwcm9wZXJ0eSBjb3VsZG4ndCBiZSB1c2VkPyBEbyB5b3UgbWVh
+biB1c2UgZXhpc3RpbmcgCj4gcHJvcGVydHkgcmF0aGVyIHRoYW4gY3JlYXRpbmcgbmV3IG9uZT8K
+ClllcywgYXMgSSBzdWdnZXN0ZWQgb24gcGF0Y2ggIzQsIHRoZSBzdGFuZGFyZCBwcmFjdGljZSB3
+b3VsZCBiZSB0byBoYXZlIApoaWVyYXJjaGljYWwgY29tcGF0aWJsZSBzdHJpbmdzIGluIHRoZSBE
+VCBsaWtlIHNvOgoKCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxnMTJiLWRkci1wbXUiLCAiYW1sb2dp
+YyxnMTItZGRyLXBtdSI7Cgp0aGVuIHlvdXIgb2ZfZGV2aWNlX2lkIHRhYmxlIGNhbiBzdGlsbCBt
+YXRjaCBvbiB0aGUgZ2VuZXJpYyAKImFtbG9naWMsZzEyLWRkci1wbXUiIHN0cmluZyB0byBiaW5k
+IHRoZSBkcml2ZXIsIGFuZCB3aGVyZSBuZWNlc3NhcnkgeW91IApjYW4gdGhlbiBkbzoKCglpZiAo
+b2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobm9kZSwgImFtbG9naWMsZzEyYi1kZHItcG11IikpCgkJ
+LyogZG8gRzEyQi1zcGVjaWZpYyBzdHVmZiAqLwoKQWx0ZXJuYXRpdmVseSwgeW91IGNhbiBwdXQg
+YWxsIHRoZSBTb0Mtc3BlY2lmaWMgY29tcGF0aWJsZXMgZGlyZWN0bHkgaW4gCnRoZSBvZl9kZXZp
+Y2VfaWQgdGFibGUgYW5kIHVzZSB0aGUgLmRhdGEgbWVtYmVyIHRvIGFzc29jaWF0ZSB5b3VyIApT
+b0Mtc3BlY2lmaWMgaWRlbnRpZmllciBvciBzdGF0aWMgZGF0YSB3aGljaCB5b3UgY2FuIHRoZW4g
+cmV0cmlldmUgd2l0aCAKZGV2aWNlX2dldF9tYXRjaF9kYXRhKCkuIEJvdGggYXBwcm9hY2hlcyBh
+cmUgY29tbW9ubHkgdXNlZC4KCj4+PiArwqDCoMKgIGRldl9pbmZvKCZwZGV2LT5kZXYsICIlcyIs
+IG1vZGVsKTsKPj4+ICsKPj4+ICvCoMKgwqAgaWYgKHN0cmNtcChtb2RlbCwgImcxMmEiKSA9PSAw
+KSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgZGV2X2luZm8oJnBkZXYtPmRldiwgImRkciBwbXUgZm9y
+IGcxMmFcbiIpOwo+Pj4gK8KgwqDCoCB9IGVsc2UgaWYgKHN0cmNtcChtb2RlbCwgImcxMmIiKSA9
+PSAwKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgZGV2X2luZm8oJnBkZXYtPmRldiwgImRkciBwbXUg
+Zm9yIGcxMmJcbiIpOwo+Pj4gKwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGFwcGVuZF9hdHRyX2xpc3Qo
+JmZvcm1hdF9hdHRyX25uYS5hdHRyKTsKPj4+ICvCoMKgwqDCoMKgwqDCoCBhcHBlbmRfYXR0cl9s
+aXN0KCZmb3JtYXRfYXR0cl9nZGMuYXR0cik7Cj4+PiArwqDCoMKgwqDCoMKgwqAgYXBwZW5kX2F0
+dHJfbGlzdCgmZm9ybWF0X2F0dHJfYXJtMS5hdHRyKTsKPj4+ICvCoMKgwqDCoMKgwqDCoCBhcHBl
+bmRfYXR0cl9saXN0KCZmb3JtYXRfYXR0cl9taXBpX2lzcC5hdHRyKTsKPj4+ICvCoMKgwqDCoMKg
+wqDCoCBhcHBlbmRfYXR0cl9saXN0KCZmb3JtYXRfYXR0cl9zZF9lbW1jX2EuYXR0cik7Cj4+PiAr
+wqDCoMKgIH0gZWxzZSBpZiAoc3RyY21wKG1vZGVsLCAic20xIikgPT0gMCkgewo+Pj4gK8KgwqDC
+oMKgwqDCoMKgIGRldl9pbmZvKCZwZGV2LT5kZXYsICJkZHIgcG11IGZvciBzbTFcbiIpOwo+Pj4g
+Kwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGFwcGVuZF9hdHRyX2xpc3QoJmZvcm1hdF9hdHRyX25uYS5h
+dHRyKTsKPj4+ICvCoMKgwqAgfQo+Pj4gKyNlbmRpZgo+Pj4gK8KgwqDCoCByZXR1cm4gYW1sX2Rk
+cl9wbXVfY3JlYXRlKHBkZXYsICZnMTJfb3BzLCBnMTJfcG11X2Zvcm1hdF9hdHRycyk7Cj4+PiAr
+fQo+Pj4gKwo+Pj4gK3N0YXRpYyBpbnTCoCBfX2V4aXQgZzEyX2Rkcl9wbXVfcmVtb3ZlKHN0cnVj
+dCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+PiArewo+Pj4gK8KgwqDCoCBhbWxfZGRyX3BtdV9y
+ZW1vdmUocGRldik7Cj4+PiArCj4+PiArwqDCoMKgIHJldHVybiAwOwo+Pj4gK30KPj4+ICsKPj4+
+ICsjaWZkZWYgQ09ORklHX09GCj4+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQg
+YW1sX2Rkcl9wbXVfZHRfbWF0Y2hbXSA9IHsKPj4+ICvCoMKgwqAgewo+Pj4gK8KgwqDCoMKgwqDC
+oMKgIC5jb21wYXRpYmxlID0gImFtbG9naWMsZzEyLWRkci1wbXUiLAo+Pj4gK8KgwqDCoCB9LAo+
+Pj4gK8KgwqDCoCB7fQo+Pj4gK307Cj4+PiArI2VuZGlmCj4+PiArCj4+PiArc3RhdGljIHN0cnVj
+dCBwbGF0Zm9ybV9kcml2ZXIgZzEyX2Rkcl9wbXVfZHJpdmVyID0gewo+Pj4gK8KgwqDCoCAuZHJp
+dmVyID0gewo+Pj4gK8KgwqDCoMKgwqDCoMKgIC5uYW1lID0gImFtbG9naWMsZGRyLXBtdSIsCj4+
+PiArwqDCoMKgwqDCoMKgwqAgLm93bmVyID0gVEhJU19NT0RVTEUsCj4+Cj4+IFRoZSBkcml2ZXIg
+Y29yZSBzZXRzIHRoaXMgYXV0b21hdGljYWxseS4KPj4KPj4+ICvCoMKgwqAgI2lmZGVmIENPTkZJ
+R19PRgo+Pj4gK8KgwqDCoMKgwqDCoMKgIC5vZl9tYXRjaF90YWJsZSA9IGFtbF9kZHJfcG11X2R0
+X21hdGNoLAo+Pj4gK8KgwqDCoCAjZW5kaWYKPj4+ICvCoMKgwqAgfSwKPj4+ICvCoMKgwqAgLnJl
+bW92ZSA9IGcxMl9kZHJfcG11X3JlbW92ZSwKPj4+ICt9Owo+Pj4gKwo+Pj4gK3N0YXRpYyBpbnQg
+X19pbml0IGFtbF9nMTJfZGRyX3BtdV9pbml0KHZvaWQpCj4+PiArewo+Pj4gK8KgwqDCoCByZXR1
+cm4gcGxhdGZvcm1fZHJpdmVyX3Byb2JlKCZnMTJfZGRyX3BtdV9kcml2ZXIsIAo+Pj4gZzEyX2Rk
+cl9wbXVfcHJvYmUpOwo+Pj4gK30KPj4+ICsKPj4+ICtzdGF0aWMgdm9pZCBfX2V4aXQgYW1sX2cx
+Ml9kZHJfcG11X2V4aXQodm9pZCkKPj4+ICt7Cj4+PiArwqDCoMKgIHBsYXRmb3JtX2RyaXZlcl91
+bnJlZ2lzdGVyKCZnMTJfZGRyX3BtdV9kcml2ZXIpOwo+Pj4gK30KPj4+ICsKPj4+ICttb2R1bGVf
+aW5pdChhbWxfZzEyX2Rkcl9wbXVfaW5pdCk7Cj4+PiArbW9kdWxlX2V4aXQoYW1sX2cxMl9kZHJf
+cG11X2V4aXQpOwo+Pgo+PiBVc2UgbW9kdWxlX3BsYXRmb3JtX2RyaXZlcl9wcm9iZSgpIChpZiBv
+ZiBjb3Vyc2UgeW91IHJlYWxseSB0aGluayB0aGUgCj4+IF9faW5pdCBzaGVuYW5pZ2FucyBhcmUg
+YmVuZWZpY2lhbCwgb3RoZXJ3aXNlIGp1c3QgdXNlIHJlZ3VsYXIgCj4+IG1vZHVsZV9wbGF0Zm9y
+bV9kcml2ZXIoKSBmb3IgZXZlbiBsZXNzIHN1cnByaXNlKS4KPj4KPj4gVGhhbmtzLAo+PiBSb2Jp
+bi4KPiAKPiAKPiBUaGFua3MgZm9yIHlvdXIgdGltZSwgUm9iaW4hIFRCSCBJJ20gYSBsaXR0bGUg
+bmVydm91cyBzaW5jZSB0aGlzIGlzIG15IAo+IGZpcnN0IHN1Ym1pdHRpbmcgdG8gdXBzdHJlYW0u
+IFlvdXIgY29tbWVudHMgYXJlIGdyZWF0IGFuZCBoZWxwZnVsLiBJIAo+IHdpbGwgdXBkYXRlIHRo
+ZSBkcml2ZXIuCgpObyB3b3JyaWVzLCB0aGlzIGlzIGFjdHVhbGx5IHByZXR0eSBnb29kIGZvciBh
+IGZpcnN0IHN1Ym1pc3Npb24uIEFuZCB0aGUgCnBlcmYgQVBJcyBpbiBwYXJ0aWN1bGFyIGRvIGhh
+dmUgc29tZSBob3JyaWJseSBzdWJ0bGUgYXNwZWN0cyB3aGljaCB0b29rIAptZSBhIGxvbmcgdGlt
+ZSB0byBmdWxseSB1bmRlcnN0YW5kIHRvbyA6KQoKVGhhbmtzLApSb2Jpbi4KCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
