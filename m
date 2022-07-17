@@ -4,58 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93568C43334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Jul 2022 16:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2E0AC433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Jul 2022 20:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gT6AcddZtZ5RONAZbaRIrfRXgkTJav5J3QQ4uNHP7FY=; b=LtDy2NyCAIdK3X
-	yie1W264lmn81Qa8Yi8VNyOVdp5I+q1elE04f7FU4353Ma5F3DJCKPIex4sFvrmCvyIvvlTi9lKFn
-	Oed4V9QjvswLMwJot5YmQMhJG0MGHXbtVYNrRvleWsbS/BoVWB7MX/eNmeIb7eD4tYLszoRVY0EFD
-	59vWQcAYtkvhq8nbAxhJ5zNsakux3TikTo4bv3tztItSabS4mO7/Sd1aLmDL2bZFfxGYoEwmAQtCw
-	xsRvSs/xCMD62jkh1WdfW3YJyR8Q4PCilsP2E7VaE3pliI670GU7Ji9D83k2DOA4xUhgZDqt1Iyrd
-	MDj3dQK1Ii1j0G1aw2jw==;
+	List-Owner; bh=mqQJ+/5duhTcc6wSVcsli5/SgvK3WIKaNIxmwFpGqCU=; b=3Mmvl6YgIgqkCY
+	CjtjNvsIyL5S9U3l9HOVN7255hWRx23HfNcmq6xqx/gvHKmUzkz9Ogs3H6TiSmxiw84cUH6DqiXJi
+	vxZ9039q5ghOQlAZNgCe5H3VanpFMPALLogwTYsvjNt6NQ9AfBA24iAoXazVayrgROhRDC95Totx0
+	e5Ccy6jGADzc87aAjXTxFT+QExEIVa5jWy1oJ4jaJtC/F6F5UXMJi6Ke2TiJMHqBf4xyAdTlIetq9
+	kOFbuy4bUne0rYmWmhAkEIGHwpSg2976dcEQb3XY54rsomY7n3oK502SgP4GCUGDfJmYGNjnm/1KO
+	HM0MaNyNkNXZiXsjgqSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCOLL-008rdl-4B; Fri, 15 Jul 2022 16:39:07 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCOLH-008rcO-3R; Fri, 15 Jul 2022 16:39:05 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D5A512FC;
-	Fri, 15 Jul 2022 09:39:00 -0700 (PDT)
-Received: from [10.57.86.139] (unknown [10.57.86.139])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E116B3F792;
-	Fri, 15 Jul 2022 09:38:57 -0700 (PDT)
-Message-ID: <a0c763c0-eaa0-999e-31bb-d2dbaeb988bb@arm.com>
-Date: Fri, 15 Jul 2022 17:38:53 +0100
+	id 1oDBLq-008djg-B2; Sun, 17 Jul 2022 20:58:54 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oDBLe-008dgt-3h; Sun, 17 Jul 2022 20:58:44 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id t1so16391665lft.8;
+        Sun, 17 Jul 2022 13:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kanw2W2ASERpZFaOvgv2bw3hiX5n9J9uuXMW7Yv/z2U=;
+        b=U2pOAfmh/Xxe11p+789pY9PWjsVEDcLcyDchyt1WRfQGyyzdY/yTqgOh8oYRk5yCLw
+         FwVW86RDDdzZaQvufLNN+sN/Im4Z7Le0rLMaB9xk029v1PC4lhl/XqBgKynBiu+DeK8s
+         LhUqP4VhZWioP13bIi+W3hFL2FvoFD6LukURa9FPh/JXRwt2+UJsYtRKvbxpSASIlGC2
+         YwBHdJRMpPRAbfhciEbAl2Do0nEJBWoV2NyNT8F/SbgGGv9GMGFcQK41wxsRcydxXVrR
+         LTmECb/HVAQDBYr62c+3oPTezCIoARUIhEddBuZ4vjCdwENp6MG+31XGZoBC05o1VJoF
+         uy7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kanw2W2ASERpZFaOvgv2bw3hiX5n9J9uuXMW7Yv/z2U=;
+        b=2baALN6CAINH3lXebVLzzxcfN10wF4aqgkfgJLKNgJMoCeRlCmWYmDUbYJd18AZbpL
+         1lVzvi+5tb8eA1ZukCTh3PlJcEDNAe4F+AgcGkaKQdOkafII3FtT/yl8BfPjqwRoTOhI
+         YvS/MXNffRDuxpz2dkHdsPJRw2Wx+MlxoZ8eUal1g9NyDSG/6jkPIlPuyydzys8ttYDR
+         KwCTqSlV2CNoe8jThXhxug7GZL9AoOcsoobS70JIxAig22AS2Ga14aFBWrwjFud7U++A
+         iDtbgs8s9RAYU38L3VuxxU9oDKUdIFEsAnYmYlJwImdN2/ZMaaFUtCC1tzTnfU10Li4N
+         l9kw==
+X-Gm-Message-State: AJIora8gixioi7K7N/AirWfzU71plVvqHn3RAg2WDJiXSofFhpW7aZKA
+	isJyMsk9VPtH/HVS3c/xJY28090XD06xUEmK+gA=
+X-Google-Smtp-Source: AGRyM1s12hP9nP2VRpUGUIefpYEJ6cLVZxKIgevyVlKmyAcJ2LjBE3HBNKMleQ9WWA4rKbkJ//yWffj1BxkGW+/DY6Y=
+X-Received: by 2002:a05:6512:308c:b0:48a:22a5:f3d0 with SMTP id
+ z12-20020a056512308c00b0048a22a5f3d0mr7158729lfd.494.1658091519876; Sun, 17
+ Jul 2022 13:58:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
+ <55be073b-caf1-320b-dd42-165636b45a74@arm.com> <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
+ <a0c763c0-eaa0-999e-31bb-d2dbaeb988bb@arm.com>
+In-Reply-To: <a0c763c0-eaa0-999e-31bb-d2dbaeb988bb@arm.com>
+From: Chris Healy <cphealy@gmail.com>
+Date: Sun, 17 Jul 2022 13:58:28 -0700
+Message-ID: <CAFXsbZqQC7Vq3bO8GtqtY2hyLjh=+C1qa49pH+9BORmFk6P9XQ@mail.gmail.com>
 Subject: Re: [PATCH 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC
  DDR PMU driver
-Content-Language: en-GB
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <55be073b-caf1-320b-dd42-165636b45a74@arm.com>
- <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux ARM <linux-arm-kernel@lists.infradead.org>, linux-amlogic@lists.infradead.org, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220715_093903_263255_FFCB09DF 
-X-CRM114-Status: GOOD (  51.10  )
+X-CRM114-CacheID: sfid-20220717_135842_182942_5F3AD5B1 
+X-CRM114-Status: GOOD (  73.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,189 +86,289 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAyMi0wNy0xNCAwOToxNywgSml1Y2hlbmcgWHUgd3JvdGU6ClsuLi5dCj4+PiArwqDCoMKg
-wqDCoMKgwqAgbGlzdF9mb3JfZWFjaF9lbnRyeSgoc2libGluZyksICYoZXZlbnQpLT5zaWJsaW5n
-X2xpc3QsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc2libGlu
-Z19saXN0KSB7Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoc2libGluZy0+cG11ICE9
-IGV2ZW50LT5wbXUgJiYKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIWlzX3Nv
-ZnR3YXJlX2V2ZW50KHNpYmxpbmcpKQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCByZXR1cm4gLUVJTlZBTDsKPj4KPj4gSXQgbG9va3MgbGlrZSB5b3UgZG9uJ3QgaGF2ZSBtdWx0
-aXBsZSBzZXRzIG9mIGhhcmR3YXJlIGNvdW50ZXJzOyBpZiBzbyAKPj4geW91J2QgYWxzbyBuZWVk
-IHRvIHJlamVjdCB0aGUgZ3JvdXAgaWYgaXQgY29udGFpbnMgbW9yZSB0aGFuIG9uZSBldmVudCAK
-Pj4gZm9yIHRoaXMgUE1VLgo+IEkgaGF2ZSA1IEhXIGNvdW50ZXJzIGFuZCA1IHJlbGV2YW50IGV2
-ZW50cy4gRG8geW91IG1lYW4gSSBuZWVkIHJlamVjdCAKPiB0aGUgZ3JvdXA/CgpBaCwgSSB0aGlu
-ayBJIHVuZGVyc3RhbmQgYSBiaXQgYmV0dGVyIG5vdywgc28gZWFjaCBjaGFubmVsIGlzIGEgc2Vw
-YXJhdGUgCmNvdW50ZXIgLSBpbiB0aGF0IGNhc2UgeW91IG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUg
-Z3JvdXAgZG9lc24ndCBjb250YWluIAptb3JlIHRoYW4gb25lIGV2ZW50IHRhcmdldGluZyB0aGUg
-c2FtZSBjaGFubmVsLiBUaGUgcmVhc29uIGlzIHRoYXQgCmV2ZW50X2FkZCBzaG91bGQgcmV0dXJu
-IGFuIGVycm9yIHdoZW4gYW5vdGhlciBldmVudCBpcyBhbHJlYWR5IHVzaW5nIHRoZSAKZ2l2ZW4g
-Y291bnRlciAtIHdoZW4gdGhhdCBoYXBwZW5zLCBwZXJmIHdpbGwgdHJ5IHRvIHNjaGVkdWxlIGRp
-ZmZlcmVudCAKY29tYmluYXRpb25zIG9mIGV2ZW50cyB0byB3b3JrIG91dCB3aGljaCBvbmVzIGNh
-biBjb3VudCBzaW11bHRhbmVvdXNseSAKYW5kIHdoaWNoIG5lZWQgdG8gYmUgbXVsdGlwbGV4ZWQu
-IEhvd2V2ZXIgaWYgdHdvIGNvbmZsaWN0aW5nIGV2ZW50cyBhcmUgCmluIHRoZSBzYW1lIGdyb3Vw
-LCBhbmQgdGh1cyByZXF1aXJlZCB0byBiZSBzY2hlZHVsZWQgdG9nZXRoZXIgCmF0b21pY2FsbHks
-IHRoZW4gaXQgZW5kcyB1cCBpbiBhbiBpbmZpbml0ZSBsb29wIHRyeWluZyB0byBhY2hpZXZlIHRo
-ZSAKaW1wb3NzaWJsZS4gVGhlcmVmb3JlIGV2ZW50X2luaXQgbXVzdCByZWplY3QgYW55IGdyb3Vw
-IHdob3NlIGV2ZW50cyAKd291bGQgbmV2ZXIgYmUgYWJsZSB0byBiZSBzY2hlZHVsZWQgdG9nZXRo
-ZXIuCgpbLi4uXQo+Pj4gK3N0YXRpYyBpbnQgZGRyX3BlcmZfb2ZmbGluZV9jcHUodW5zaWduZWQg
-aW50IGNwdSwgc3RydWN0IGhsaXN0X25vZGUgCj4+PiAqbm9kZSkKPj4+ICt7Cj4+PiArwqDCoMKg
-IHN0cnVjdCBkZHJfcG11ICpwbXUgPSBobGlzdF9lbnRyeV9zYWZlKG5vZGUsIHN0cnVjdCBkZHJf
-cG11LCBub2RlKTsKPj4+ICvCoMKgwqAgaW50IHRhcmdldDsKPj4+ICsKPj4+ICvCoMKgwqAgaWYg
-KGNwdSAhPSBwbXUtPmNwdSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gMDsKPj4+ICsKPj4+
-ICvCoMKgwqAgdGFyZ2V0ID0gY3B1bWFza19hbnlfYnV0KGNwdV9vbmxpbmVfbWFzaywgY3B1KTsK
-Pj4+ICvCoMKgwqAgaWYgKHRhcmdldCA+PSBucl9jcHVfaWRzKQo+Pj4gK8KgwqDCoMKgwqDCoMKg
-IHJldHVybiAwOwo+Pj4gKwo+Pj4gK8KgwqDCoCBwZXJmX3BtdV9taWdyYXRlX2NvbnRleHQoJnBt
-dS0+cG11LCBjcHUsIHRhcmdldCk7Cj4+PiArwqDCoMKgIHBtdS0+Y3B1ID0gdGFyZ2V0Owo+Pj4g
-Kwo+Pj4gK8KgwqDCoCBXQVJOX09OKGlycV9zZXRfYWZmaW5pdHlfaGludChwbXUtPmluZm8uaXJx
-X251bSwgCj4+PiBjcHVtYXNrX29mKHBtdS0+Y3B1KSkpOwo+Pgo+PiBUaGlzIGlzIHdyb25nLCBp
-dCBuZWVkcyB0byBiZSBpcnFfc2V0X2FmZmluaXR5KCkuCj4gCj4gT2theSwgQ291bGQgeW91IHBs
-ZWFzZSB0ZWxsIHdoYXQgaXMgdGhlIG1ham9yIGRpZmZlcmVuY2UgYmV0d2VlbiB0aGUgdHdvIAo+
-IEFQST8KClRoZSBhZmZpbml0eSBoaW50IGlzIGp1c3QgYSBmaWVsZCBleHBvc2VkIHRvIHVzZXJz
-cGFjZSwgZm9yIHRoZSBiZW5lZml0IApvZiB0b29scyBsaWtlIGlycWJhbGFuY2UsIGl0IGRvZXNu
-J3QgYWN0dWFsbHkgc2VydmUgYW55IHB1cnBvc2UgaW4gdGhlIAprZXJuZWwgaXRzZWxmLgoKSGlz
-dG9yaWNhbGx5LCBpdCB1c2VkIHRvIGJlIHRoZSBjYXNlIHRoYXQgaXJxX3NldF9hZmZpbml0eV9o
-aW50KCkgYWxzbyAKaGFwcGVuZWQgdG8gY2FsbCBpcnFfc2V0X2FmZmluaXR5KCkgaW50ZXJuYWxs
-eSwgYW5kIHRoaXMgYW50aS1wYXR0ZXJuIApkZXZlbG9wZWQgYXJvdW5kIHRoYXQgZHVlIHRvIG1v
-ZHVsZSBleHBvcnRzLCBidXQgdGhhdCBoYXMgYWxsIGJlZW4gCmNsZWFuZWQgdXAgbm93LgoKWy4u
-Ll0KPj4+ICvCoMKgwqDCoMKgwqDCoCBnb3RvIGVycjI7Cj4+PiArwqDCoMKgIH0KPj4+ICsKPj4+
-ICvCoMKgwqAgaXJxX25hbWUgPSBvZl9nZXRfcHJvcGVydHkobm9kZSwgImludGVycnVwdC1uYW1l
-cyIsIE5VTEwpOwo+Pj4gK8KgwqDCoCBpZiAoIWlycV9uYW1lKQo+Pj4gK8KgwqDCoMKgwqDCoMKg
-IGlycV9uYW1lID0gImRkcl9wbXUiOwo+Pgo+PiBUaGF0J3Mgbm90IGhvdyB0aGUgImludGVycnVw
-dC1uYW1lcyIgcHJvcGVydHkgd29ya3MuIElmIHlvdSBvbmx5IGhhdmUgCj4+IGEgc2luZ2xlIGlu
-dGVycnVwdCB0aGVuIHRoZXJlJ3Mgbm90IG11Y2ggbmVlZCBmb3IgaXQgdG8gYmUgbmFtZWQgaW4g
-Cj4+IHRoZSBEVCBhdCBhbGwuIElmIHlvdSBkbyB3YW50IHRvIHVzZSBuYW1lZCBpbnRlcnJ1cHRz
-IHRoZW4gdXNlIAo+PiBwbGF0Zm9ybV9nZXRfaXJxX2J5bmFtZSgpLCBhbmQgdGhlIG5hbWUgc2hv
-dWxkIHByb2JhYmx5IGhhdmUgYSBibml0IAo+PiBtb3JlIGZ1bmN0aW9uYWwgbWVhbmluZy4gRWl0
-aGVyIHdheSwgcGxlYXNlIGRvbid0IGFidXNlIHRoZSBEVCBsaWtlIHRoaXMuCj4gT2theSwgYWN0
-dWFsbHkgdGhlcmUgd2lsbCBiZSBtdWx0aXBsZSBpbnRlcnJ1cHRzICwgYnV0IG5vdCBpbiBjdXJy
-ZW50IAo+IEcxMiBzZXJpZXMuCgpUaGF0J3MgZmFpciBlbm91Z2gsIHNvIHdlIHNob3VsZCB0cnkg
-dG8gYW50aWNpcGF0ZSBpdCBpbiB0aGUgZGVzaWduIG9mIAp0aGUgRFQgYmluZGluZy4gSWYgZm9y
-IGluc3RhbmNlIGZ1dHVyZSBTb0NzIGFyZSBnb2luZyB0byBtb3ZlIGZyb20gCmhhdmluZyBhIHNp
-bmdsZSBjb21iaW5lZCBvdmVyZmxvdyBpbnRlcnJ1cHQgdG8gYSBzZXBhcmF0ZSBpbnRlcnJ1cHQg
-Zm9yIAplYWNoIGNvdW50ZXIsIHRoZW4gdGhlIGRyaXZlciBjYW4gcmVhc29uYWJseSBjb250aW51
-ZSB0byBnZXQgdGhlbSBieSAKaW5kZXggYW5kIHdlJ2xsIGVmZmVjdGl2ZWx5IG9ubHkgbmVlZCB0
-byB1cGRhdGUgbWF4SXRlbXMgaW4gdGhlIGJpbmRpbmcuIApJZiBvbiB0aGUgb3RoZXIgaGFuZCB0
-aGVyZSdzIHN0aWxsIGdvaW5nIHRvIGJlIG9uZSBjb21iaW5lZCBvdmVyZmxvdyAKaW50ZXJydXB0
-LCBwbHVzIHNvbWUgb3RoZXIgbmV3IGludGVycnVwdCBmb3Igc29tZXRoaW5nIGNvbXBsZXRlbHkg
-CmRpZmZlcmVudCwgdGhlbiBpdCAqY291bGQqIGJlIG1vcmUgYXBwcm9wcmlhdGUgdG8gaGF2ZSBu
-YW1lcywgYW5kIHRodXMgCnRvIGRlZmluZSBhbmQgdXNlIGEgc3RhbmRhcmQgIm92ZXJmbG93IiBu
-YW1lIGZyb20gdGhlIGJlZ2lubmluZyBldmVuIAp3aGVuIGl0IGlzIHRoZSBvbmx5IG9uZSBwcmVz
-ZW50LCBzbyB0aGF0IHdlIGNhbiByZW1haW4gY29uc2lzdGVudCBsYXRlciAKb25jZSBtb3JlIGFy
-ZSBhZGRlZC4KCj4+PiArCj4+PiArwqDCoMKgIHJldCA9IHJlcXVlc3RfaXJxKGluZm8tPmlycV9u
-dW0sIGRtY19pcnFfaGFuZGxlciwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBJUlFG
-X1NIQVJFRCwgaXJxX25hbWUsICh2b2lkICopaW5mbyk7Cj4+Cj4+IFdobyBlbHNlIGlzIHNoYXJp
-bmcgdGhlIElSUT8gSWYgaXQncyBvdGhlciBpbnN0YW5jZXMgb2YgdGhpcyBQTVUgdGhlbiAKPj4g
-dGhhdCdzIHN0aWxsIG1hbmFnZWFibGUgdW5kZXIgdGhlIG5vcm1hbCBwYXJhZGlnbSwgdGhlIGRy
-aXZlciBqdXN0IAo+PiBuZWVkcyB0byBjb29yZGluYXRlIGFmZmluaXR5IGNoYW5tZ2VzIGJldHdl
-ZW4gYWxsIGluc3RhbmNlcy4gSWYgaXQncyAKPj4gcmFuZG9tIG90aGVyIGRldmljZXMsIHRoZW4g
-bWF5YmUgaXQncyB0aW1lIHRvIHJlYXNvbiBhYm91dCBob3cgc3lzdGVtIAo+PiBQTVVzIGNvdWxk
-IHVzZSBwcm9wZXIgSVJRLXNhZmUgbG9ja2luZyBhbmQgYWJhbmRvbiB0aGUgYWZmaW5pdHkgc3R1
-ZmYsIAo+PiBzaW5jZSB0aGlzIHNlZW1zIHRvIGJlIGNvbWluZyB1cCBtb3JlIGFuZCBtb3JlLgo+
-IAo+IFRoZSBJUlEgaXMgcHJpdmF0ZS4gSSB3aWxsIGNoYW5nZSBpdC4KCk9LLCB0aGF0J3MgZ29v
-ZC4gSW4gdGhhdCBjYXNlIHlvdSBjYW4gc2ltcGx5IHJlcGxhY2UgSVJRRl9TSEFSRUQgd2l0aCAK
-SVJRRl9OT0JBTEFOQ0lORyBoZXJlLCBzaW5jZSB0aGF0IGlzIG5lZWRlZCBlaXRoZXIgd2F5IHRv
-IHByZXZlbnQgCnVzZXJzcGFjZSBjaGFuZ2luZyBhZmZpbml0aWVzIGJlaGluZCBvdXIgYmFjay4K
-ClsuLi5dCj4+PiArc3RhdGljIHZvaWQgYXBwZW5kX2F0dHJfbGlzdChzdHJ1Y3QgYXR0cmlidXRl
-ICphdHRyKQo+Pj4gK3sKPj4+ICvCoMKgwqAgaW50IGk7Cj4+PiArCj4+PiArwqDCoMKgIGZvciAo
-aSA9IDA7IGcxMl9wbXVfZm9ybWF0X2F0dHJzW2ldICYmIGkgPCAyNTU7IGkrKykKPj4+ICvCoMKg
-wqDCoMKgwqDCoCA7Cj4+Cj4+IEV3dywgd2hhdD8gOigKPj4KPj4+ICsKPj4+ICvCoMKgwqAgZzEy
-X3BtdV9mb3JtYXRfYXR0cnNbaV0gPSBhdHRyOwo+Pj4gKwo+Pj4gK8KgwqDCoCBnMTJfcG11X2Zv
-cm1hdF9hdHRyc1tpICsgMV0gPSBOVUxMOwo+Pgo+PiAodGhhdCdzIHBvaW50bGVzcyBlaXRoZXIg
-d2F5KQo+Pgo+PiBPSywgSSB0aGluayBJIHNlZSB3aGF0J3MgZ29pbmcgb24gaGVyZSBub3cuIER5
-bmFtaWNhbGx5IHBhdGNoaW5nIHRoZSAKPj4gYXR0cmlidXRlIGFycmF5cyBpcyBwcmV0dHkgZ3Jp
-bSAtIGl0J3MgZmFyIGNsZWFuZXIgYW5kIG1vcmUgCj4+IHN1c3RhaW5hYmxlIHRvIHN0YXRpY2Fs
-bHkgZGVmaW5lIHRoZSB3aG9sZSBhcnJheSB3aXRoIGFsbCB0aGUgcG9zc2libGUgCj4+IGF0dHJp
-YnV0ZXMsIHRoZW4gdXNlIC5pc192aXNpYmxlIHRvIGhpZGUgdGhlIG9uZXMgd2hpY2ggYXJlbid0
-IAo+PiByZWxldmFudCB0byB0aGUgY3VycmVudCBzeXN0ZW0uCj4+Cj4gSSBoYXZlIG5vdCBnb3Qg
-eW91ciBwb2ludCB5ZXQuIEkgaGF2ZSBubyBpZGVhIGhvdyB0byB1c2UgLmlzX3Zpc2libGUgdG8g
-Cj4gaGlkZSB0aGUgaXJyZWxldmFudCBhdHRyaWJ1dGUuIEkgbmVlZCBhIGxpdHRsZSB0aW1lIHRv
-IHRoaW5rIGl0LgoKSXQgbWlnaHQgYmUgZWFzaWVzdCB0byBmb2xsb3cgYW4gZXhhbXBsZSBsaWtl
-IGFybV9kc3VfcG11IC0gaW4gdGhhdCAKY2FzZSwgdGhlIGhhcmR3YXJlIGhhcyBhbiBJRCByZWdp
-c3RlciB0aGF0IHNheXMgd2hpY2ggZXZlbnQgSURzIGFyZSAKc3VwcG9ydGVkOyB5b3UgY291bGQg
-aGF2ZSBzb21lIGtpbmQgb2Ygc3RhdGljIGJpdG1hcC9sb29rdXAgCnRhYmxlL2Z1bmN0aW9uIHRv
-IGVuY29kZSB0aGUgZXF1aXZhbGVudCBkYXRhIG9mIHdoaWNoIEFYSSBJRHMgYXJlIApyZWxldmFu
-dCB0byB3aGljaCBQTVUgbW9kZWwocykuIEFub3RoZXIgYXBwcm9hY2ggaXMgdG8gZW5jb2RlIHRo
-ZSAKc3VwcG9ydGVkIG1vZGVscyBkaXJlY3RseSBpbiBlYWNoIGF0dHJpYnV0ZSBpdHNlbGYgYW5k
-IHRodXMgbWFrZSB0aGUgCmxvb2t1cCB0aGUgb3RoZXIgd2F5IHJvdW5kIC0gdGhpcyBpcyBwcm9i
-YWJseSBtb3JlIGNvbXBsZXggdG8gaW1wbGVtZW50LCAKYW5kIEkgaGVzaXRhdGUgdG8gc3VnZ2Vz
-dCBsb29raW5nIGF0IGFybS1jbW4gYXMgYW4gZXhhbXBsZSBzaW5jZSB0aGF0J3MgCnJhdGhlciBl
-eHRyZW1lIGFuZCBoYXJkIHRvIGZvbGxvdywgYnV0IGl0IGlzIGFub3RoZXIgcG9zc2liaWxpdHku
-CgpBIHRoaXJkIG9wdGlvbiBtaWdodCBiZSB0byBwdXNoIGFsbCB0aGUgQVhJIElEIGRhdGEgb3V0
-IHRvIEpTT04gaW4gdGhlIAp1c2Vyc3BhY2UgcGVyZiB0b29sLCBsaWtlIGZzbF9pbXg4X2Rkcl9w
-ZXJmIHNlZW1zIHRvIGRvLCBob3dldmVyIHRoYXQgCm1pZ2h0IG1ha2UgaXQgbGVzcyBhY2Nlc3Np
-YmxlIHRvIG90aGVyIHVzZXJzcGFjZSB0b29scywgc28gaXQgcHJvYmFibHkgCmRlcGVuZHMgb24g
-eW91ciBleHBlY3RlZCB1c2UtY2FzZXMgd2hldGhlciB0aGF0J3Mgd29ydGggY29uc2lkZXJpbmcg
-b3Igbm90LgoKWy4uLl0KPj4+ICvCoMKgwqAgc3RydWN0IGRldmljZV9ub2RlICpub2RlID0gcGRl
-di0+ZGV2Lm9mX25vZGU7Cj4+PiArwqDCoMKgIGNvbnN0IGNoYXIgKm1vZGVsOwo+Pj4gKwo+Pj4g
-K8KgwqDCoCBpZiAob2ZfcHJvcGVydHlfcmVhZF9zdHJpbmcobm9kZSwgIm1vZGVsIiwgJm1vZGVs
-KSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVJTlZBTDsKPj4KPj4gTm8sIHVzZSBvZl9k
-ZXZpY2VfaXNfY29tcGF0aWJsZSgpLCBhbmQgZGVmaW5lIHRoZSBiaW5kaW5nIHByb3Blcmx5Lgo+
-IAo+IFdoeSB0aGUgIm1vZGVsIiBwcm9wZXJ0eSBjb3VsZG4ndCBiZSB1c2VkPyBEbyB5b3UgbWVh
-biB1c2UgZXhpc3RpbmcgCj4gcHJvcGVydHkgcmF0aGVyIHRoYW4gY3JlYXRpbmcgbmV3IG9uZT8K
-ClllcywgYXMgSSBzdWdnZXN0ZWQgb24gcGF0Y2ggIzQsIHRoZSBzdGFuZGFyZCBwcmFjdGljZSB3
-b3VsZCBiZSB0byBoYXZlIApoaWVyYXJjaGljYWwgY29tcGF0aWJsZSBzdHJpbmdzIGluIHRoZSBE
-VCBsaWtlIHNvOgoKCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxnMTJiLWRkci1wbXUiLCAiYW1sb2dp
-YyxnMTItZGRyLXBtdSI7Cgp0aGVuIHlvdXIgb2ZfZGV2aWNlX2lkIHRhYmxlIGNhbiBzdGlsbCBt
-YXRjaCBvbiB0aGUgZ2VuZXJpYyAKImFtbG9naWMsZzEyLWRkci1wbXUiIHN0cmluZyB0byBiaW5k
-IHRoZSBkcml2ZXIsIGFuZCB3aGVyZSBuZWNlc3NhcnkgeW91IApjYW4gdGhlbiBkbzoKCglpZiAo
-b2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobm9kZSwgImFtbG9naWMsZzEyYi1kZHItcG11IikpCgkJ
-LyogZG8gRzEyQi1zcGVjaWZpYyBzdHVmZiAqLwoKQWx0ZXJuYXRpdmVseSwgeW91IGNhbiBwdXQg
-YWxsIHRoZSBTb0Mtc3BlY2lmaWMgY29tcGF0aWJsZXMgZGlyZWN0bHkgaW4gCnRoZSBvZl9kZXZp
-Y2VfaWQgdGFibGUgYW5kIHVzZSB0aGUgLmRhdGEgbWVtYmVyIHRvIGFzc29jaWF0ZSB5b3VyIApT
-b0Mtc3BlY2lmaWMgaWRlbnRpZmllciBvciBzdGF0aWMgZGF0YSB3aGljaCB5b3UgY2FuIHRoZW4g
-cmV0cmlldmUgd2l0aCAKZGV2aWNlX2dldF9tYXRjaF9kYXRhKCkuIEJvdGggYXBwcm9hY2hlcyBh
-cmUgY29tbW9ubHkgdXNlZC4KCj4+PiArwqDCoMKgIGRldl9pbmZvKCZwZGV2LT5kZXYsICIlcyIs
-IG1vZGVsKTsKPj4+ICsKPj4+ICvCoMKgwqAgaWYgKHN0cmNtcChtb2RlbCwgImcxMmEiKSA9PSAw
-KSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgZGV2X2luZm8oJnBkZXYtPmRldiwgImRkciBwbXUgZm9y
-IGcxMmFcbiIpOwo+Pj4gK8KgwqDCoCB9IGVsc2UgaWYgKHN0cmNtcChtb2RlbCwgImcxMmIiKSA9
-PSAwKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgZGV2X2luZm8oJnBkZXYtPmRldiwgImRkciBwbXUg
-Zm9yIGcxMmJcbiIpOwo+Pj4gKwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGFwcGVuZF9hdHRyX2xpc3Qo
-JmZvcm1hdF9hdHRyX25uYS5hdHRyKTsKPj4+ICvCoMKgwqDCoMKgwqDCoCBhcHBlbmRfYXR0cl9s
-aXN0KCZmb3JtYXRfYXR0cl9nZGMuYXR0cik7Cj4+PiArwqDCoMKgwqDCoMKgwqAgYXBwZW5kX2F0
-dHJfbGlzdCgmZm9ybWF0X2F0dHJfYXJtMS5hdHRyKTsKPj4+ICvCoMKgwqDCoMKgwqDCoCBhcHBl
-bmRfYXR0cl9saXN0KCZmb3JtYXRfYXR0cl9taXBpX2lzcC5hdHRyKTsKPj4+ICvCoMKgwqDCoMKg
-wqDCoCBhcHBlbmRfYXR0cl9saXN0KCZmb3JtYXRfYXR0cl9zZF9lbW1jX2EuYXR0cik7Cj4+PiAr
-wqDCoMKgIH0gZWxzZSBpZiAoc3RyY21wKG1vZGVsLCAic20xIikgPT0gMCkgewo+Pj4gK8KgwqDC
-oMKgwqDCoMKgIGRldl9pbmZvKCZwZGV2LT5kZXYsICJkZHIgcG11IGZvciBzbTFcbiIpOwo+Pj4g
-Kwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGFwcGVuZF9hdHRyX2xpc3QoJmZvcm1hdF9hdHRyX25uYS5h
-dHRyKTsKPj4+ICvCoMKgwqAgfQo+Pj4gKyNlbmRpZgo+Pj4gK8KgwqDCoCByZXR1cm4gYW1sX2Rk
-cl9wbXVfY3JlYXRlKHBkZXYsICZnMTJfb3BzLCBnMTJfcG11X2Zvcm1hdF9hdHRycyk7Cj4+PiAr
-fQo+Pj4gKwo+Pj4gK3N0YXRpYyBpbnTCoCBfX2V4aXQgZzEyX2Rkcl9wbXVfcmVtb3ZlKHN0cnVj
-dCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+PiArewo+Pj4gK8KgwqDCoCBhbWxfZGRyX3BtdV9y
-ZW1vdmUocGRldik7Cj4+PiArCj4+PiArwqDCoMKgIHJldHVybiAwOwo+Pj4gK30KPj4+ICsKPj4+
-ICsjaWZkZWYgQ09ORklHX09GCj4+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQg
-YW1sX2Rkcl9wbXVfZHRfbWF0Y2hbXSA9IHsKPj4+ICvCoMKgwqAgewo+Pj4gK8KgwqDCoMKgwqDC
-oMKgIC5jb21wYXRpYmxlID0gImFtbG9naWMsZzEyLWRkci1wbXUiLAo+Pj4gK8KgwqDCoCB9LAo+
-Pj4gK8KgwqDCoCB7fQo+Pj4gK307Cj4+PiArI2VuZGlmCj4+PiArCj4+PiArc3RhdGljIHN0cnVj
-dCBwbGF0Zm9ybV9kcml2ZXIgZzEyX2Rkcl9wbXVfZHJpdmVyID0gewo+Pj4gK8KgwqDCoCAuZHJp
-dmVyID0gewo+Pj4gK8KgwqDCoMKgwqDCoMKgIC5uYW1lID0gImFtbG9naWMsZGRyLXBtdSIsCj4+
-PiArwqDCoMKgwqDCoMKgwqAgLm93bmVyID0gVEhJU19NT0RVTEUsCj4+Cj4+IFRoZSBkcml2ZXIg
-Y29yZSBzZXRzIHRoaXMgYXV0b21hdGljYWxseS4KPj4KPj4+ICvCoMKgwqAgI2lmZGVmIENPTkZJ
-R19PRgo+Pj4gK8KgwqDCoMKgwqDCoMKgIC5vZl9tYXRjaF90YWJsZSA9IGFtbF9kZHJfcG11X2R0
-X21hdGNoLAo+Pj4gK8KgwqDCoCAjZW5kaWYKPj4+ICvCoMKgwqAgfSwKPj4+ICvCoMKgwqAgLnJl
-bW92ZSA9IGcxMl9kZHJfcG11X3JlbW92ZSwKPj4+ICt9Owo+Pj4gKwo+Pj4gK3N0YXRpYyBpbnQg
-X19pbml0IGFtbF9nMTJfZGRyX3BtdV9pbml0KHZvaWQpCj4+PiArewo+Pj4gK8KgwqDCoCByZXR1
-cm4gcGxhdGZvcm1fZHJpdmVyX3Byb2JlKCZnMTJfZGRyX3BtdV9kcml2ZXIsIAo+Pj4gZzEyX2Rk
-cl9wbXVfcHJvYmUpOwo+Pj4gK30KPj4+ICsKPj4+ICtzdGF0aWMgdm9pZCBfX2V4aXQgYW1sX2cx
-Ml9kZHJfcG11X2V4aXQodm9pZCkKPj4+ICt7Cj4+PiArwqDCoMKgIHBsYXRmb3JtX2RyaXZlcl91
-bnJlZ2lzdGVyKCZnMTJfZGRyX3BtdV9kcml2ZXIpOwo+Pj4gK30KPj4+ICsKPj4+ICttb2R1bGVf
-aW5pdChhbWxfZzEyX2Rkcl9wbXVfaW5pdCk7Cj4+PiArbW9kdWxlX2V4aXQoYW1sX2cxMl9kZHJf
-cG11X2V4aXQpOwo+Pgo+PiBVc2UgbW9kdWxlX3BsYXRmb3JtX2RyaXZlcl9wcm9iZSgpIChpZiBv
-ZiBjb3Vyc2UgeW91IHJlYWxseSB0aGluayB0aGUgCj4+IF9faW5pdCBzaGVuYW5pZ2FucyBhcmUg
-YmVuZWZpY2lhbCwgb3RoZXJ3aXNlIGp1c3QgdXNlIHJlZ3VsYXIgCj4+IG1vZHVsZV9wbGF0Zm9y
-bV9kcml2ZXIoKSBmb3IgZXZlbiBsZXNzIHN1cnByaXNlKS4KPj4KPj4gVGhhbmtzLAo+PiBSb2Jp
-bi4KPiAKPiAKPiBUaGFua3MgZm9yIHlvdXIgdGltZSwgUm9iaW4hIFRCSCBJJ20gYSBsaXR0bGUg
-bmVydm91cyBzaW5jZSB0aGlzIGlzIG15IAo+IGZpcnN0IHN1Ym1pdHRpbmcgdG8gdXBzdHJlYW0u
-IFlvdXIgY29tbWVudHMgYXJlIGdyZWF0IGFuZCBoZWxwZnVsLiBJIAo+IHdpbGwgdXBkYXRlIHRo
-ZSBkcml2ZXIuCgpObyB3b3JyaWVzLCB0aGlzIGlzIGFjdHVhbGx5IHByZXR0eSBnb29kIGZvciBh
-IGZpcnN0IHN1Ym1pc3Npb24uIEFuZCB0aGUgCnBlcmYgQVBJcyBpbiBwYXJ0aWN1bGFyIGRvIGhh
-dmUgc29tZSBob3JyaWJseSBzdWJ0bGUgYXNwZWN0cyB3aGljaCB0b29rIAptZSBhIGxvbmcgdGlt
-ZSB0byBmdWxseSB1bmRlcnN0YW5kIHRvbyA6KQoKVGhhbmtzLApSb2Jpbi4KCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Resending as plaintext instead of HTML...
+
+On Fri, Jul 15, 2022 at 9:39 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2022-07-14 09:17, Jiucheng Xu wrote:
+> [...]
+> >>> +        list_for_each_entry((sibling), &(event)->sibling_list,
+> >>> +                    sibling_list) {
+> >>> +            if (sibling->pmu != event->pmu &&
+> >>> +                !is_software_event(sibling))
+> >>> +                return -EINVAL;
+> >>
+> >> It looks like you don't have multiple sets of hardware counters; if so
+> >> you'd also need to reject the group if it contains more than one event
+> >> for this PMU.
+> > I have 5 HW counters and 5 relevant events. Do you mean I need reject
+> > the group?
+>
+> Ah, I think I understand a bit better now, so each channel is a separate
+> counter - in that case you need to check that the group doesn't contain
+> more than one event targeting the same channel. The reason is that
+> event_add should return an error when another event is already using the
+> given counter - when that happens, perf will try to schedule different
+> combinations of events to work out which ones can count simultaneously
+> and which need to be multiplexed. However if two conflicting events are
+> in the same group, and thus required to be scheduled together
+> atomically, then it ends up in an infinite loop trying to achieve the
+> impossible. Therefore event_init must reject any group whose events
+> would never be able to be scheduled together.
+>
+> [...]
+> >>> +static int ddr_perf_offline_cpu(unsigned int cpu, struct hlist_node
+> >>> *node)
+> >>> +{
+> >>> +    struct ddr_pmu *pmu = hlist_entry_safe(node, struct ddr_pmu, node);
+> >>> +    int target;
+> >>> +
+> >>> +    if (cpu != pmu->cpu)
+> >>> +        return 0;
+> >>> +
+> >>> +    target = cpumask_any_but(cpu_online_mask, cpu);
+> >>> +    if (target >= nr_cpu_ids)
+> >>> +        return 0;
+> >>> +
+> >>> +    perf_pmu_migrate_context(&pmu->pmu, cpu, target);
+> >>> +    pmu->cpu = target;
+> >>> +
+> >>> +    WARN_ON(irq_set_affinity_hint(pmu->info.irq_num,
+> >>> cpumask_of(pmu->cpu)));
+> >>
+> >> This is wrong, it needs to be irq_set_affinity().
+> >
+> > Okay, Could you please tell what is the major difference between the two
+> > API?
+>
+> The affinity hint is just a field exposed to userspace, for the benefit
+> of tools like irqbalance, it doesn't actually serve any purpose in the
+> kernel itself.
+>
+> Historically, it used to be the case that irq_set_affinity_hint() also
+> happened to call irq_set_affinity() internally, and this anti-pattern
+> developed around that due to module exports, but that has all been
+> cleaned up now.
+>
+> [...]
+> >>> +        goto err2;
+> >>> +    }
+> >>> +
+> >>> +    irq_name = of_get_property(node, "interrupt-names", NULL);
+> >>> +    if (!irq_name)
+> >>> +        irq_name = "ddr_pmu";
+> >>
+> >> That's not how the "interrupt-names" property works. If you only have
+> >> a single interrupt then there's not much need for it to be named in
+> >> the DT at all. If you do want to use named interrupts then use
+> >> platform_get_irq_byname(), and the name should probably have a bnit
+> >> more functional meaning. Either way, please don't abuse the DT like this.
+> > Okay, actually there will be multiple interrupts , but not in current
+> > G12 series.
+>
+> That's fair enough, so we should try to anticipate it in the design of
+> the DT binding. If for instance future SoCs are going to move from
+> having a single combined overflow interrupt to a separate interrupt for
+> each counter, then the driver can reasonably continue to get them by
+> index and we'll effectively only need to update maxItems in the binding.
+> If on the other hand there's still going to be one combined overflow
+> interrupt, plus some other new interrupt for something completely
+> different, then it *could* be more appropriate to have names, and thus
+> to define and use a standard "overflow" name from the beginning even
+> when it is the only one present, so that we can remain consistent later
+> once more are added.
+
+My assumption is that the goal of having this "interrupt-names" in DT
+is to cover future cases where there is more than one DRAM controller
+instance in the SoC and you want to be able to discriminate between
+the two instances with this driver's interrupt name.  If this is true,
+as an alternative, you could do something like this:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/i2c/busses/i2c-mt65xx.c?h=v5.19-rc6&id=7fb9dc8109bf9713ffcda65617249099a1942f0f
+
+This should result in each instance having a unique name that includes
+the base address as the prefix to the interrupt name which should be
+sufficient for determining which instance is which.
+
+>
+>
+> >>> +
+> >>> +    ret = request_irq(info->irq_num, dmc_irq_handler,
+> >>> +              IRQF_SHARED, irq_name, (void *)info);
+> >>
+> >> Who else is sharing the IRQ? If it's other instances of this PMU then
+> >> that's still manageable under the normal paradigm, the driver just
+> >> needs to coordinate affinity chanmges between all instances. If it's
+> >> random other devices, then maybe it's time to reason about how system
+> >> PMUs could use proper IRQ-safe locking and abandon the affinity stuff,
+> >> since this seems to be coming up more and more.
+> >
+> > The IRQ is private. I will change it.
+>
+> OK, that's good. In that case you can simply replace IRQF_SHARED with
+> IRQF_NOBALANCING here, since that is needed either way to prevent
+> userspace changing affinities behind our back.
+>
+> [...]
+> >>> +static void append_attr_list(struct attribute *attr)
+> >>> +{
+> >>> +    int i;
+> >>> +
+> >>> +    for (i = 0; g12_pmu_format_attrs[i] && i < 255; i++)
+> >>> +        ;
+> >>
+> >> Eww, what? :(
+> >>
+> >>> +
+> >>> +    g12_pmu_format_attrs[i] = attr;
+> >>> +
+> >>> +    g12_pmu_format_attrs[i + 1] = NULL;
+> >>
+> >> (that's pointless either way)
+> >>
+> >> OK, I think I see what's going on here now. Dynamically patching the
+> >> attribute arrays is pretty grim - it's far cleaner and more
+> >> sustainable to statically define the whole array with all the possible
+> >> attributes, then use .is_visible to hide the ones which aren't
+> >> relevant to the current system.
+> >>
+> > I have not got your point yet. I have no idea how to use .is_visible to
+> > hide the irrelevant attribute. I need a little time to think it.
+>
+> It might be easiest to follow an example like arm_dsu_pmu - in that
+> case, the hardware has an ID register that says which event IDs are
+> supported; you could have some kind of static bitmap/lookup
+> table/function to encode the equivalent data of which AXI IDs are
+> relevant to which PMU model(s). Another approach is to encode the
+> supported models directly in each attribute itself and thus make the
+> lookup the other way round - this is probably more complex to implement,
+> and I hesitate to suggest looking at arm-cmn as an example since that's
+> rather extreme and hard to follow, but it is another possibility.
+>
+> A third option might be to push all the AXI ID data out to JSON in the
+> userspace perf tool, like fsl_imx8_ddr_perf seems to do, however that
+> might make it less accessible to other userspace tools, so it probably
+> depends on your expected use-cases whether that's worth considering or not.
+>
+> [...]
+> >>> +    struct device_node *node = pdev->dev.of_node;
+> >>> +    const char *model;
+> >>> +
+> >>> +    if (of_property_read_string(node, "model", &model))
+> >>> +        return -EINVAL;
+> >>
+> >> No, use of_device_is_compatible(), and define the binding properly.
+> >
+> > Why the "model" property couldn't be used? Do you mean use existing
+> > property rather than creating new one?
+>
+> Yes, as I suggested on patch #4, the standard practice would be to have
+> hierarchical compatible strings in the DT like so:
+>
+>         compatible = "amlogic,g12b-ddr-pmu", "amlogic,g12-ddr-pmu";
+>
+> then your of_device_id table can still match on the generic
+> "amlogic,g12-ddr-pmu" string to bind the driver, and where necessary you
+> can then do:
+>
+>         if (of_device_is_compatible(node, "amlogic,g12b-ddr-pmu"))
+>                 /* do G12B-specific stuff */
+>
+> Alternatively, you can put all the SoC-specific compatibles directly in
+> the of_device_id table and use the .data member to associate your
+> SoC-specific identifier or static data which you can then retrieve with
+> device_get_match_data(). Both approaches are commonly used.
+>
+> >>> +    dev_info(&pdev->dev, "%s", model);
+> >>> +
+> >>> +    if (strcmp(model, "g12a") == 0) {
+> >>> +        dev_info(&pdev->dev, "ddr pmu for g12a\n");
+> >>> +    } else if (strcmp(model, "g12b") == 0) {
+> >>> +        dev_info(&pdev->dev, "ddr pmu for g12b\n");
+> >>> +
+> >>> +        append_attr_list(&format_attr_nna.attr);
+> >>> +        append_attr_list(&format_attr_gdc.attr);
+> >>> +        append_attr_list(&format_attr_arm1.attr);
+> >>> +        append_attr_list(&format_attr_mipi_isp.attr);
+> >>> +        append_attr_list(&format_attr_sd_emmc_a.attr);
+> >>> +    } else if (strcmp(model, "sm1") == 0) {
+> >>> +        dev_info(&pdev->dev, "ddr pmu for sm1\n");
+> >>> +
+> >>> +        append_attr_list(&format_attr_nna.attr);
+> >>> +    }
+> >>> +#endif
+> >>> +    return aml_ddr_pmu_create(pdev, &g12_ops, g12_pmu_format_attrs);
+> >>> +}
+> >>> +
+> >>> +static int  __exit g12_ddr_pmu_remove(struct platform_device *pdev)
+> >>> +{
+> >>> +    aml_ddr_pmu_remove(pdev);
+> >>> +
+> >>> +    return 0;
+> >>> +}
+> >>> +
+> >>> +#ifdef CONFIG_OF
+> >>> +static const struct of_device_id aml_ddr_pmu_dt_match[] = {
+> >>> +    {
+> >>> +        .compatible = "amlogic,g12-ddr-pmu",
+> >>> +    },
+> >>> +    {}
+> >>> +};
+> >>> +#endif
+> >>> +
+> >>> +static struct platform_driver g12_ddr_pmu_driver = {
+> >>> +    .driver = {
+> >>> +        .name = "amlogic,ddr-pmu",
+> >>> +        .owner = THIS_MODULE,
+> >>
+> >> The driver core sets this automatically.
+> >>
+> >>> +    #ifdef CONFIG_OF
+> >>> +        .of_match_table = aml_ddr_pmu_dt_match,
+> >>> +    #endif
+> >>> +    },
+> >>> +    .remove = g12_ddr_pmu_remove,
+> >>> +};
+> >>> +
+> >>> +static int __init aml_g12_ddr_pmu_init(void)
+> >>> +{
+> >>> +    return platform_driver_probe(&g12_ddr_pmu_driver,
+> >>> g12_ddr_pmu_probe);
+> >>> +}
+> >>> +
+> >>> +static void __exit aml_g12_ddr_pmu_exit(void)
+> >>> +{
+> >>> +    platform_driver_unregister(&g12_ddr_pmu_driver);
+> >>> +}
+> >>> +
+> >>> +module_init(aml_g12_ddr_pmu_init);
+> >>> +module_exit(aml_g12_ddr_pmu_exit);
+> >>
+> >> Use module_platform_driver_probe() (if of course you really think the
+> >> __init shenanigans are beneficial, otherwise just use regular
+> >> module_platform_driver() for even less surprise).
+> >>
+> >> Thanks,
+> >> Robin.
+> >
+> >
+> > Thanks for your time, Robin! TBH I'm a little nervous since this is my
+> > first submitting to upstream. Your comments are great and helpful. I
+> > will update the driver.
+>
+> No worries, this is actually pretty good for a first submission. And the
+> perf APIs in particular do have some horribly subtle aspects which took
+> me a long time to fully understand too :)
+>
+> Thanks,
+> Robin.
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
