@@ -4,77 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EBDBC43334
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jul 2022 07:56:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69910C43334
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jul 2022 07:58:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0e+dGXweXrXpg6+zUr2tebQklOe4/eVylb+/jKIRDgQ=; b=VbtaXzE6H1ihVqbEj+3utyJKK1
-	vPREXATRyxo4BTJB6uvobew6bbkmuLmu7RiAbTVdNd4Jg/5bE0jFOOJQU9E21eWJrT/WvtXqQgvNJ
-	nc99C1rXn0JqrWyxOybsC/JTmA8OdKdzdtHjC/RCL8Me5fgDPJRraE6X+MhjaVtR9lME03sEWaHSj
-	GqgRl/fTrbEKKyA+QshAtAVxn+HAH7BSdrDEVfvJ3wFda1vBpQWHkRDIJYi+4tywT5ju5H6QSqBO7
-	khuI21spcpLJ+OCqc8GHALzyq4FyYow7GlNeBI45GHCY29fEOQrbiM7YpxxysW+jkK1MkYDU9Ex0Q
-	QsRJUAVw==;
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=z1S4msYqckvVOJ9rWh/zty6JW84ypjAQNfrCg0CPYAo=; b=0OggGhBoIczDai
+	2ADVmt5nZvjn25j3PXWaxy7LKv6ArNFL3LbQAJqrG4HNDO163vhWJ3xwEqbP8nD/40nQyDougSyYw
+	P5pEGzFjr8w2dz4j6MH5poK5UoeLask7m0Pn3iHBIe8zEqnaBrOM/CvdWOnsB8USV8Ss6yeXv3MOX
+	lvmzPmIk+fWEa5f/84Wrtu1jVNVR1mINJuPl8lCQgDg8NricNwNk9sqDhSh4ISgeUZQMqfMCSEs5g
+	HIqRwX0slHvHWZ/uIaGqbVpFI36N95S/jXWgN3JXBGSBT2Cyfnn85fyT1PbnpCUkjktUyRv85dVS+
+	R33d4WzbWFmPsr4t6PsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDLcA-00BZjZ-PH; Mon, 18 Jul 2022 07:56:26 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1oDLdV-00Ba7K-Ns; Mon, 18 Jul 2022 07:57:49 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDLc5-00BZgm-EJ
-	for linux-amlogic@lists.infradead.org; Mon, 18 Jul 2022 07:56:25 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id az2-20020a05600c600200b003a301c985fcso6572955wmb.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Jul 2022 00:56:19 -0700 (PDT)
+	id 1oDLdS-00Ba5V-UU
+	for linux-amlogic@lists.infradead.org; Mon, 18 Jul 2022 07:57:48 +0000
+Received: by mail-wr1-x436.google.com with SMTP id n12so2974951wrc.8
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 Jul 2022 00:57:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=oKcb/OS3S9hjRLH4pWkYJiXmN7IOjQXrtgPCo34Tb0w=;
-        b=3bgL7duAuoVKfqqZKTy5kINERqOvOiumApi5fLR/5ynoVBrIFHajAC30rjxneK4kVl
-         FUDS/cy1MlHEMgmIWPU/0ZSf72OLCtm92BAnpLElQOZUd3t5AJzOKjNxjpsPz40P5o8W
-         pAr0/vRvcvvONF80R+7eBHwIQ7VDwOh7tOyTrLzJgE8edH1/6WtZtu6J/52keBF/GGh5
-         SOm9yR4m0ndDEg0f1akLHypFROrtm45h6r4y4ivbJPSMbybRuv2X5kDPU1S3R3JGlKSz
-         B+Zr9yY1n0w0Anl62rwFPqR6egBrYmPHsAhEwEseM1zeUcwZf78P1TIYcmvxN882c9wA
-         uw6w==
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
+        b=7RsWumKS/cfYmyRJ4MP3H3gJCDxUZGilhTzh5mFgx2JHv7QQSCOVAoF11HW/UZceyh
+         m6TYGjxr/YHwiRCtHvbmEDUO4eqF9SSsjkaP8fiJl0YmP8UU6+l3xLbT0X9UARxcoyRX
+         8nqsGx6f0bBGyTgCMbHxPmz+k0A3V7hDKsyjvskTk2KWIMyYbRtniOxmFhvUAVZGWCPa
+         3XkWspTkyyfp3FImy7eJ4Ch/xO9+sU0fLLuspGM9oyw+iLig/BpNIBDfNVpnYNnMiq2g
+         uoA6LS206TFe5Hun/lOQb9cgEJoj9qoAn5A/qkUkNvnlsOdn0DZflOze/JkimIyev7U4
+         3ppw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
+         :content-language:to:cc:references:from:organization:in-reply-to
          :content-transfer-encoding;
-        bh=oKcb/OS3S9hjRLH4pWkYJiXmN7IOjQXrtgPCo34Tb0w=;
-        b=mSgzUmAIHQohzfpjYcSU9Ih5aUaQuAYQHONuVpX3xPmS6saNhiqj4AzmuU1hKMdxxj
-         QubP8ZOKwE/Krau+qpci8j0uwHUkK1cvV2D5jFwUyppZFbNsnOeH7hv9/uAUQ6zUDhFy
-         BQP26k4s2Dygn6Tby/dVbXkNlSZT4TlcEI8rb6SJnrjQ1Kife10PEJaiby4Cqm8AKvO5
-         kTF8l8qLzR9IHbxa/OFPNW9EBrhUoEDWeql+xLBIQumCFkzSxefKGbRZEb6IDy7/TAum
-         evXcfRp8ooEgz/cSmGq4t5Juobo83fIpOao93NVk2kiIly58vU3M2hwNggYtotPkx8zs
-         kc0Q==
-X-Gm-Message-State: AJIora9TmXyNIfMBXAjNXxsfs7nIoNi34CdpMu29qI2Q+aeAMZ5Ddx8z
-	KTUNAy4adEItMbRR9WtwgYUfe4qbntf1TiFE
-X-Google-Smtp-Source: AGRyM1ui9srHJBLF5ZHJkidHYNRQ+ltQtueDIRFLW9AHZEJk0rimQsTPQBvXXAzk8WF5MjgrLzf8eA==
-X-Received: by 2002:a05:600c:4e51:b0:3a2:e2a1:21f8 with SMTP id e17-20020a05600c4e5100b003a2e2a121f8mr24460270wmq.204.1658130978037;
-        Mon, 18 Jul 2022 00:56:18 -0700 (PDT)
+        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
+        b=REIaMIAZpHIUBVkl4qXQVtKJFQ45A2yDJbtCE58BshiTW6la3sEAd8/r7BehYc0hrc
+         UcePdEvt0IWYPKNWhUhveMADvkMDbeo/EqtVqUnHqHWRXGtPPuxiPIch9KaOrOeKGafE
+         6qOLH0XO7CXSxoVp6y2B7FUpFVN6tOb46aaUMmZdbodYylYjshZ3k6YIs6tpJAJ0F99L
+         l6JYpm5cVPZpy0IYynPVaM7CSAluDETjPLd2l0B2lmafrnWOIHx4kwV7rs0tQCFezptg
+         EZvrybI9UeuL5dKReLTkU9V+xAV0JYiyesQBjYpc9l/3U+BamMghRJajTNBN2F3COTrz
+         5GNQ==
+X-Gm-Message-State: AJIora+slNI4bKujAOrKO61v3ei4zfNybBvEmsN6BVuEkjgKGuM31Akl
+	PSyzUlUebGTWIwWG6H/+dz4MRw==
+X-Google-Smtp-Source: AGRyM1t29nFzQjLeYWvn0zyBdJryjDXStwGg7Go31PP+MzU2+XxCaU1TQoV6XTBGcA6KsPOOyHfHDw==
+X-Received: by 2002:a5d:5985:0:b0:21d:b6b6:4434 with SMTP id n5-20020a5d5985000000b0021db6b64434mr21345760wri.111.1658131063310;
+        Mon, 18 Jul 2022 00:57:43 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:a2b7:375c:fabd:3626? ([2001:861:44c0:66c0:a2b7:375c:fabd:3626])
-        by smtp.gmail.com with ESMTPSA id a27-20020a5d457b000000b0021dbaa4f38dsm9076047wrc.18.2022.07.18.00.56.17
+        by smtp.gmail.com with ESMTPSA id a7-20020adfeec7000000b0021d7050ace4sm5040248wrp.77.2022.07.18.00.57.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 00:56:17 -0700 (PDT)
-Message-ID: <963ce12a-ade1-09c1-984d-52df1531da17@baylibre.com>
-Date: Mon, 18 Jul 2022 09:56:16 +0200
+        Mon, 18 Jul 2022 00:57:42 -0700 (PDT)
+Message-ID: <2280fc46-cd0a-6267-ad0f-9916bd0ea146@baylibre.com>
+Date: Mon, 18 Jul 2022 09:57:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: GPIO dynamic IRQ handling for AMlogic
+Subject: Re: [PATCH 2/2] arm64: dts: meson: add support for Beelink GT1
+ Ultimate
 Content-Language: en-US
-To: =?UTF-8?Q?Peter_H=c3=b6ller?= <drmedvet.hoeller@gmail.com>,
- linux-amlogic@lists.infradead.org
-References: <CAJgPF1+b+=iaxE_RkAY=zG7y=PeEZ8r-2A6JSvNQbkTtHBUVAw@mail.gmail.com>
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Furkan Kardame <furkan@fkardame.com>
+References: <20220707093954.21716-1-christianshewitt@gmail.com>
+ <20220707093954.21716-2-christianshewitt@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <CAJgPF1+b+=iaxE_RkAY=zG7y=PeEZ8r-2A6JSvNQbkTtHBUVAw@mail.gmail.com>
+In-Reply-To: <20220707093954.21716-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220718_005621_716889_3A1758DF 
-X-CRM114-Status: GOOD (  24.44  )
+X-CRM114-CacheID: sfid-20220718_005747_016048_3578EECF 
+X-CRM114-Status: GOOD (  18.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,59 +93,149 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUGV0ZXIsCgpPbiAwOS8wNy8yMDIyIDIyOjE0LCBQZXRlciBIw7ZsbGVyIHdyb3RlOgo+IEhp
-LAo+IAo+IHdlIGFyZSB3b3JraW5nIG9uIGFuIE9kcm9pZCBDMiByZXYyIChTOTA1IEFNbG9naWMp
-IHByb2plY3QgZm9yIDMgeWVhcnMgbm93Lgo+IFdoaWxlIHVwZ3JhZGluZyB0byBLZXJuZWwgNS4x
-NiB3ZSBzdHVtYmxlZCBvdmVyIHRoZSBpc3N1ZSB0aGF0IHRoZXJlCj4gd2VyZSBvbmx5IDggc3Rh
-dGljIElSUSBhdmFpbGFiZSBmb3IgR1BJTywgc28geW91IGdldCByZWR1emVkIGRvd24gdG8gNAo+
-IEkvTy1waW5zLCBpZiB5b3UgdXNlIHRoZW0gd2l0aCBlZGdlIGJvdGgsIHJpc2luZyBhcyB3ZWxs
-IGFzIGZhbGxpbmcgLQo+IGlmIHlvdSBzZXQgdXAgdGhlIElSUXMgZm9yIEdQSU8gc3RhdGljYWxs
-eS4KPiAKPiBSZWZlcnJpbmcgdG8geW91ciBwb3N0Cj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvcGlwZXJtYWlsL2xpbnV4LWFtbG9naWMvMjAyMC1KdWx5LzAwNzY4NC5odG1sCj4gZnJvbSBO
-ZWlsIEFybXN0cmFvbmc6Cj4gPDwKPiBUaGUgb25seSBhdmFpbGFibGUgZHJpdmVyIGZvciBHUElP
-IGludGVycnVwdHMgaXMgaXJxLW1lc29uLWdwaW8gYW5kCj4gc2hvdWxkIGJlIGVub3VnaCBmb3Ig
-bW9zdCBvZiB5b3VyIHVzZS1jYXNlcwo+IGlmIHlvdSBwYXNzIHRoZSBHUElPIGludGVycnVwdCBh
-cyBgaW50ZXJydXB0ID0gYCBhbmQgYGludGVycnVwdC1wYXJlbnQKPiA9YCBhcyB3ZSBkbyBmb3Ig
-dGhlIEV0aGVybmV0IFBIWSBvbiBzb21lCj4gYm9hcmRzLgo+IAo+Pj4KPiAKPiB3ZSBjb21wbGV0
-ZWx5IHVuZGVyc3RhbmQgdGhlcmUgaXMgbm8gb3V0LW9mLXRoZS1ib3ggdXBzdHJlYW0KPiBjb21w
-YXRpYmlsdHkgYmVjYXVzZSB5b3UgYXJlIGxvb3Npbmcga2VybmVsJ3MgY29tcGF0aWJpbHR5IGZv
-ciBvdGhlcgo+IGJvYXJkcy4gQnV0IGFzIHdlIGFyZSB1c2luZyBvdXIga2VybmVsIG9ubHkgZm9y
-IG9kcm9pZEMyIG9ubHksIHdlCj4gd29uZGVyZWQgaG93IHRvIGN1c3RvbWl6ZSBpdCBjb3JyZWN0
-bHk6Cj4gCj4gU28gd2UgbmVlZCBpbmZvcm1hdGlvbiBhcyBmb29sbG93cyBwbGVhc2U6Cj4gCj4g
-MS4pIFdoYXQgYXJlIHRoZSBJUlEtcmFuZ2VzIGF2YWlsYWJlIGZvciBHUElPIG9mIG9kcm9pZCBD
-MiB3b3JraW5nCj4gd2l0aCBLZXJuZWwgNS4xNi4gVW5mb3J0dW5hdGVseSwgd2UgY2Fubm90IGRl
-cml2ZSB0aGF0IGluZm9ybWF0aW9uCj4gZnJvbSBhbnl3aGVyZSBlbHNlLgoKWW91IGNhbiBmaW5k
-IHRob3NlIG51bWJlcnMgaW4gdGhlIFM5MDUgYXQgWzFdIHBhZ2UgODYsIG51bWJlciBpcyBpbiB0
-aGUgdGhlICJJbnB1dCBNdXggTG9jYXRpb24iIGNvbHVtbi4KCj4gCj4gMi4pIHdlIHdvdWxkIGJl
-IHZlcnJ5IGhhcHB5IHRvIGdldCBmdXJ0aGVyIHN5bnRheCBpbmZvcm1hdGlvbiBhYm91dAo+IGhv
-dyBleGFjdGx5IHRvIGltcGxlbWVudCB0aGUgbWVudGlvbmVkICAnaW50ZXJydXBzID0nIGFuZAo+
-ICdpbnRlcnJ1cHQtcGFyZW50ID0nIGluIHRoZSBEZXZpY2VUcmVlIHdpdGggdGhlIGNvcnJlY3Qg
-SVJRLXJhbmdlcy4KClRoZSBzeW50YXggaXMgYWxyZWFkeSBpbiB0aGUgT2Ryb2lkIEMyIERUUyBh
-dCBbMl0gYW5kIGZvbGxvd3MgdGhlIHN0YW5kYXJkIGludGVycnVwdHMgRFQgc3ludGF4LgoKPiBh
-bmQgMy4pIEhvdyB0byBjb3JyZWN0bHkgZGVjbGFyZS9hbm5vdW5jZSB0aGUgR1BJTy1JUlFzIGR5
-bmFtaWNhbGx5IGluCj4gdGhlIERldmljZVRyZWUgKHN5bnRheCkgYW5kLCBpZiBzbywgd2hpY2gg
-Y29ycmVzcG9uZGluZyBzeW50YXgtY2hhbmdlcwo+IGFyZSBuZWVkZWQgdG8gYmUgZG9uZSB3aGVy
-ZSBpbiB0aGUgZHJpdmVyICdpcnEtbWVzb24tZ3BpbycgdG8gbWFrZQo+IHRoaXMgZmluYWxseSB3
-b3JrLgoKVGhlIG9ubHkgd2F5IHRvIGdldCBhbiBpbnRlcnJ1cHQgZm9yIGEgR1BJTyBpbiBMaW51
-eCBpcyB2aWEgdGhlIEdQSU8gdG9faXJxKCkgY2FsbGJhY2ssCmJ1dCB1bmZvcnR1bmF0ZWx5IHRo
-ZSBIVyBkZXNpZ24gb2YgdGhlIEFtbG9naWMgU29DIGRvZXNuJ3QgbWFrZSBpdCBlYXN5IHRvIHRy
-YW5zbGF0ZSBhbnkKR1BJTyB0byBhbiBpbnRlcnJ1cHQgYmVjYXVzZSBpdCBvbmx5IGhhcyA4IGF2
-YWlsYWJsZSBHUElPIGludGVycnVwdHMgaW4gYSBzZXBhcmF0ZSBIVyBibG9jay4KCkFuIGltcGxl
-bWVudGF0aW9uIGV4aXN0cyBidXQgaXQncyBub3Qgc2FmZSBlbm91Z2ggYW5kIGZlYXR1cmUtZnVs
-bCB0byBiZSBhY2NlcHRlZCB1cHN0cmVhbS4KCk5laWwKCj4gCj4gd2l0aCBraW5kIHJlZ2FyZHMg
-YW5kIG1hbnkgbWFueSB0aGFua3MgaW4gYWR2YW5jZQo+IAo+IFBldGVyCj4gCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1h
-aWxpbmcgbGlzdAo+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwoKClsxXSBo
-dHRwczovL2RuLm9kcm9pZC5jb20vUzkwNS9EYXRhU2hlZXQvUzkwNV9QdWJsaWNfRGF0YXNoZWV0
-X1YxLjEuNC5wZGYKWzJdIGh0dHBzOi8vZ2l0aHViLmNvbS90b3J2YWxkcy9saW51eC9ibG9iL2Zm
-Njk5MjczNWFkZTc1YWFlM2UzNWQxNmIxN2RhMTAwOGQ3NTNkMjgvYXJjaC9hcm02NC9ib290L2R0
-cy9hbWxvZ2ljL21lc29uLWd4YmItb2Ryb2lkYzIuZHRzI0wyNDYtTDI0OAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 07/07/2022 11:39, Christian Hewitt wrote:
+> The Beelink GT1 Ultimate is based on the Amlogic S912 (Q200)
+> reference design with the following specifications:
+> 
+> - 3GB DDR3 RAM
+> - 32GB eMMC
+> - HDMI 2.1 video
+> - S/PDIF optical output
+> - 10/100/1000 Ethernet
+> - AP6356S Wireless (802.11 a/b/g/n, BT 4.2)
+> - 3x USB 2.0 ports
+> - IR receiver
+> - 1x micro SD card slot
+> - 1x Power LED (white)
+> - 1x Reset button (internal)
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>   .../dts/amlogic/meson-gxm-gt1-ultimate.dts    | 91 +++++++++++++++++++
+>   2 files changed, 92 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 8773211df50e..641399fcbdd9 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> new file mode 100644
+> index 000000000000..2c267884cc16
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) Christian Hewitt <christianshewitt@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-gxm.dtsi"
+> +#include "meson-gx-p23x-q20x.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	compatible = "azw,gt1-ultimate", "amlogic,s912", "amlogic,meson-gxm";
+> +	model = "Beelink GT1 Ultimate";
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-white {
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +			panic-indicator;
+> +		};
+> +	};
+> +
+> +	adc-keys {
+> +		compatible = "adc-keys";
+> +		io-channels = <&saradc 0>;
+> +		io-channel-names = "buttons";
+> +		keyup-threshold-microvolt = <1710000>;
+> +
+> +		button-function {
+> +			label = "update";
+> +			linux,code = <KEY_VENDOR>;
+> +			press-threshold-microvolt = <10000>;
+> +		};
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	pinctrl-0 = <&eth_pins>;
+> +	pinctrl-names = "default";
+> +	phy-handle = <&external_phy>;
+> +	amlogic,tx-delay-ns = <2>;
+> +	phy-mode = "rgmii";
+> +};
+> +
+> +&external_mdio {
+> +	external_phy: ethernet-phy@0 {
+> +		/* Realtek RTL8211F (0x001cc916) */
+> +		reg = <0>;
+> +		max-speed = <1000>;
+> +
+> +		reset-assert-us = <10000>;
+> +		reset-deassert-us = <80000>;
+> +		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
+> +
+> +		interrupt-parent = <&gpio_intc>;
+> +		/* MAC_INTR on GPIOZ_15 */
+> +		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&ir {
+> +	linux,rc-map-name = "rc-beelink-gs1";
+> +};
+> +
+> +&sd_emmc_a {
+> +	brcmf: wifi@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
+> +};
+> +
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm43438-bt";
+> +		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+> +		max-speed = <2000000>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "lpo";
+> +	};
+> +};
+
+
+Looks fine for me:
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
