@@ -4,84 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69910C43334
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jul 2022 07:58:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C129C43334
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Jul 2022 08:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z1S4msYqckvVOJ9rWh/zty6JW84ypjAQNfrCg0CPYAo=; b=0OggGhBoIczDai
-	2ADVmt5nZvjn25j3PXWaxy7LKv6ArNFL3LbQAJqrG4HNDO163vhWJ3xwEqbP8nD/40nQyDougSyYw
-	P5pEGzFjr8w2dz4j6MH5poK5UoeLask7m0Pn3iHBIe8zEqnaBrOM/CvdWOnsB8USV8Ss6yeXv3MOX
-	lvmzPmIk+fWEa5f/84Wrtu1jVNVR1mINJuPl8lCQgDg8NricNwNk9sqDhSh4ISgeUZQMqfMCSEs5g
-	HIqRwX0slHvHWZ/uIaGqbVpFI36N95S/jXWgN3JXBGSBT2Cyfnn85fyT1PbnpCUkjktUyRv85dVS+
-	R33d4WzbWFmPsr4t6PsA==;
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=u+xACl++DEf+BuuuO7LGInq3za8lArljqSzP952BEGo=; b=kYKhLF9V7esAQtBvQ6uoeE4wPt
+	vp6dQXQ2VW1QY+SAajuDu1FcTQImqVfnv2XToG9dJy4YYitYmUo4Wp87g9Mt7zqYD4IfO5WPr6EpE
+	u3Iw1xO70uu03+zHb4Vz8Do0uAtKShK9RIGFKM9AkgiZwBUUN/lclMYr6QXBawekjo4KxZPSSGZ1P
+	gwDelCQp6X+wUOHd2YBrOrGCwd49801ynLwnPrjoG+t4vLS2UgRX+DFMwzG8Lc1+tzJkb2gRf1xBm
+	dHMamz4WfjTTwJKCbxMNfLKilK5Hpm/1ugLk7IJ3CmWRNDHuh8wIbJlX/gH7jZrDJ54GAyxGNcDC+
+	Ad5TzxPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDLdV-00Ba7K-Ns; Mon, 18 Jul 2022 07:57:49 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1oDLiB-00BbZj-AU; Mon, 18 Jul 2022 08:02:39 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDLdS-00Ba5V-UU
-	for linux-amlogic@lists.infradead.org; Mon, 18 Jul 2022 07:57:48 +0000
-Received: by mail-wr1-x436.google.com with SMTP id n12so2974951wrc.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Jul 2022 00:57:44 -0700 (PDT)
+	id 1oDLi8-00BbXy-HN
+	for linux-amlogic@lists.infradead.org; Mon, 18 Jul 2022 08:02:38 +0000
+Received: by mail-wm1-x331.google.com with SMTP id r203-20020a1c44d4000000b003a2fa488efdso682800wma.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 Jul 2022 01:02:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
-        b=7RsWumKS/cfYmyRJ4MP3H3gJCDxUZGilhTzh5mFgx2JHv7QQSCOVAoF11HW/UZceyh
-         m6TYGjxr/YHwiRCtHvbmEDUO4eqF9SSsjkaP8fiJl0YmP8UU6+l3xLbT0X9UARxcoyRX
-         8nqsGx6f0bBGyTgCMbHxPmz+k0A3V7hDKsyjvskTk2KWIMyYbRtniOxmFhvUAVZGWCPa
-         3XkWspTkyyfp3FImy7eJ4Ch/xO9+sU0fLLuspGM9oyw+iLig/BpNIBDfNVpnYNnMiq2g
-         uoA6LS206TFe5Hun/lOQb9cgEJoj9qoAn5A/qkUkNvnlsOdn0DZflOze/JkimIyev7U4
-         3ppw==
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=Bb5/lM+GRxAa42IupCRmP1fczOrPwTmyAqspZ+OTEr0=;
+        b=lIK4VnICjYO/FSib0CuiP0Ty9FS5V5HeSDTRVvHSE3kEBDtBt5kncpqJdVdp88rCVE
+         r5SPVF6BkPrnsK7gINwsbCRAobI10eFBcnvN/gNv8bnpeFRQ3Vwyb8kJthUwOV1EbfdC
+         hAcZ3rSloUFp05Eb0qLFzV3sfqMqpqrTgyn9w6yUsLoSsiEGEahnTzTgiF6X6/dT/xdl
+         oDqt3Ho+MhXxW8jBNDRiiHQC/abKQm67PqGiYX862DRrZNLhW3kllGOQ0HRfzE7xFKNq
+         o9HF+2uRA8OIIcNuN+5cuVwhEQ77MrPXJzGDFGoORH2s9ICWlnoBNq6dbZ+xUTzQXYwp
+         5IqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-language:to:references:from:organization:in-reply-to
          :content-transfer-encoding;
-        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
-        b=REIaMIAZpHIUBVkl4qXQVtKJFQ45A2yDJbtCE58BshiTW6la3sEAd8/r7BehYc0hrc
-         UcePdEvt0IWYPKNWhUhveMADvkMDbeo/EqtVqUnHqHWRXGtPPuxiPIch9KaOrOeKGafE
-         6qOLH0XO7CXSxoVp6y2B7FUpFVN6tOb46aaUMmZdbodYylYjshZ3k6YIs6tpJAJ0F99L
-         l6JYpm5cVPZpy0IYynPVaM7CSAluDETjPLd2l0B2lmafrnWOIHx4kwV7rs0tQCFezptg
-         EZvrybI9UeuL5dKReLTkU9V+xAV0JYiyesQBjYpc9l/3U+BamMghRJajTNBN2F3COTrz
-         5GNQ==
-X-Gm-Message-State: AJIora+slNI4bKujAOrKO61v3ei4zfNybBvEmsN6BVuEkjgKGuM31Akl
-	PSyzUlUebGTWIwWG6H/+dz4MRw==
-X-Google-Smtp-Source: AGRyM1t29nFzQjLeYWvn0zyBdJryjDXStwGg7Go31PP+MzU2+XxCaU1TQoV6XTBGcA6KsPOOyHfHDw==
-X-Received: by 2002:a5d:5985:0:b0:21d:b6b6:4434 with SMTP id n5-20020a5d5985000000b0021db6b64434mr21345760wri.111.1658131063310;
-        Mon, 18 Jul 2022 00:57:43 -0700 (PDT)
+        bh=Bb5/lM+GRxAa42IupCRmP1fczOrPwTmyAqspZ+OTEr0=;
+        b=I8IamAGpHVI/SqKOqzoe6Eif/mjlmzHM2zcOR1pX+g0LCigQ25qMhTGd/pZ783ikem
+         SQ+9yGXiQyMT7BqsjWgRcAIjQyTzqjJS71IekWPOpxuiBZlNNeH4StXf9/UBv38k1HhN
+         wjbwNMSUrsPkRqUUmKbqDC81suOdul0AC5E6NlXLqFvF1pYV2gXTA2axBHfyP8xfdo/x
+         8eBLgGdw0gPSIviLd9EeyRxiRpTTI4Z++Kf7ZDrDyy0wp6dW9bJw7EPQXF3rF4WeYrWT
+         IJXbWw7ioLXDjzIp0UuaywOcqmPF62DtHnXCaDS1eFMiIx8esRP+mBRiBYMAW8pXbpo1
+         RjDQ==
+X-Gm-Message-State: AJIora++Xky7ZqJ1i37A0vBdX1Pcfjv7BO5ykU0z+KrQNkBsi+QIL5fl
+	Iio2MPs0iCud7MVVry2iECrIKpoNXC5br10Y
+X-Google-Smtp-Source: AGRyM1uJQtTmoxMAsdym6wWB8qaOW4x9WJFAjInH6TcNkN08gGgfGVZN73TTqZ53xQV1tJy7SHs8rA==
+X-Received: by 2002:a05:600c:4ece:b0:3a3:1c7d:daaf with SMTP id g14-20020a05600c4ece00b003a31c7ddaafmr2355238wmq.181.1658131353926;
+        Mon, 18 Jul 2022 01:02:33 -0700 (PDT)
 Received: from ?IPV6:2001:861:44c0:66c0:a2b7:375c:fabd:3626? ([2001:861:44c0:66c0:a2b7:375c:fabd:3626])
-        by smtp.gmail.com with ESMTPSA id a7-20020adfeec7000000b0021d7050ace4sm5040248wrp.77.2022.07.18.00.57.42
+        by smtp.gmail.com with ESMTPSA id d14-20020adffd8e000000b0021d6a23fdf3sm10130704wrr.15.2022.07.18.01.02.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 00:57:42 -0700 (PDT)
-Message-ID: <2280fc46-cd0a-6267-ad0f-9916bd0ea146@baylibre.com>
-Date: Mon, 18 Jul 2022 09:57:41 +0200
+        Mon, 18 Jul 2022 01:02:33 -0700 (PDT)
+Message-ID: <050c3f94-5c65-d745-ffe7-6035e55a372f@baylibre.com>
+Date: Mon, 18 Jul 2022 10:02:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 2/2] arm64: dts: meson: add support for Beelink GT1
- Ultimate
+Subject: Re: [PATCH] Add MagicBox M16S support
 Content-Language: en-US
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Furkan Kardame <furkan@fkardame.com>
-References: <20220707093954.21716-1-christianshewitt@gmail.com>
- <20220707093954.21716-2-christianshewitt@gmail.com>
+To: Zhang Ning <zhangn1985@qq.com>, robh+dt@kernel.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <tencent_5FC75850BB8ECD9374E98461C38C41CAC506@qq.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <20220707093954.21716-2-christianshewitt@gmail.com>
+In-Reply-To: <tencent_5FC75850BB8ECD9374E98461C38C41CAC506@qq.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220718_005747_016048_3578EECF 
-X-CRM114-Status: GOOD (  18.49  )
+X-CRM114-CacheID: sfid-20220718_010236_614238_4619A207 
+X-CRM114-Status: GOOD (  16.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,50 +91,44 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/07/2022 11:39, Christian Hewitt wrote:
-> The Beelink GT1 Ultimate is based on the Amlogic S912 (Q200)
-> reference design with the following specifications:
+Hi,
+
+On 12/07/2022 16:24, Zhang Ning wrote:
+> MagicBox M16S or MagicBox 3Pro is popular Tv box in China.
 > 
-> - 3GB DDR3 RAM
-> - 32GB eMMC
-> - HDMI 2.1 video
-> - S/PDIF optical output
-> - 10/100/1000 Ethernet
-> - AP6356S Wireless (802.11 a/b/g/n, BT 4.2)
-> - 3x USB 2.0 ports
-> - IR receiver
-> - 1x micro SD card slot
-> - 1x Power LED (white)
-> - 1x Reset button (internal)
+> it's gxm_q201_v1 according u-boot log.
+> and it's almost same as Q201 reference design.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> add a simple dts to support this Tv box.
+> 
+> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
 > ---
 >   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->   .../dts/amlogic/meson-gxm-gt1-ultimate.dts    | 91 +++++++++++++++++++
->   2 files changed, 92 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+>   .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 20 +++++++++++++++++++
+>   2 files changed, 21 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 8773211df50e..641399fcbdd9 100644
+> index 8773211df50e..e0907fb41829 100644
 > --- a/arch/arm64/boot/dts/amlogic/Makefile
 > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
 >   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
 >   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
 >   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-magicbox-m16s.dtb
 >   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
 >   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
 > new file mode 100644
-> index 000000000000..2c267884cc16
+> index 000000000000..be543d65a529
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
-> @@ -0,0 +1,91 @@
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+> @@ -0,0 +1,20 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Copyright (c) Christian Hewitt <christianshewitt@gmail.com>
+> + * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
 > + */
 > +
 > +/dts-v1/;
@@ -152,88 +139,21 @@ On 07/07/2022 11:39, Christian Hewitt wrote:
 > +#include <dt-bindings/leds/common.h>
 > +
 > +/ {
-> +	compatible = "azw,gt1-ultimate", "amlogic,s912", "amlogic,meson-gxm";
-> +	model = "Beelink GT1 Ultimate";
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-white {
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +			panic-indicator;
-> +		};
-> +	};
-> +
-> +	adc-keys {
-> +		compatible = "adc-keys";
-> +		io-channels = <&saradc 0>;
-> +		io-channel-names = "buttons";
-> +		keyup-threshold-microvolt = <1710000>;
-> +
-> +		button-function {
-> +			label = "update";
-> +			linux,code = <KEY_VENDOR>;
-> +			press-threshold-microvolt = <10000>;
-> +		};
-> +	};
+> +	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
+> +	model = "MagicBox M16S";
 > +};
-> +
+
+The compatible should be documented in the DT bindings in:
+Documentation/devicetree/bindings/arm/amlogic.yaml
+
 > +&ethmac {
-> +	pinctrl-0 = <&eth_pins>;
-> +	pinctrl-names = "default";
-> +	phy-handle = <&external_phy>;
-> +	amlogic,tx-delay-ns = <2>;
-> +	phy-mode = "rgmii";
-> +};
-> +
-> +&external_mdio {
-> +	external_phy: ethernet-phy@0 {
-> +		/* Realtek RTL8211F (0x001cc916) */
-> +		reg = <0>;
-> +		max-speed = <1000>;
-> +
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <80000>;
-> +		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
-> +
-> +		interrupt-parent = <&gpio_intc>;
-> +		/* MAC_INTR on GPIOZ_15 */
-> +		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&ir {
-> +	linux,rc-map-name = "rc-beelink-gs1";
-> +};
-> +
-> +&sd_emmc_a {
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
-> +};
-> +
-> +&uart_A {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-> +	pinctrl-names = "default";
-> +	uart-has-rtscts;
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm43438-bt";
-> +		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <2000000>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "lpo";
-> +	};
+> +        phy-mode = "rmii";
+> +        phy-handle = <&internal_phy>;
 > +};
 
+Is the sd_emmc_a change incompatible with the M16S ?
 
-Looks fine for me:
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
