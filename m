@@ -4,70 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 804C8CCA47C
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Jul 2022 14:18:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD37DC433EF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Jul 2022 14:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:To:From:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0qKyPgp7I4sq4wWQSs/LJD1VeTH3epmZjXclaj4j7JE=; b=d9/BPkANhUYV3o
-	xiwO5Jzhk+rfvhlw5FycgxUCQWW7zVrUohXa6JGXSRZEKrhvrSpNnEQ55UrogE/eQJMuplXhOrkHp
-	g+2+odXphrxCNe/Sm3H+wS+WOZh15v0ecPfhlk733lufEXIuK5Do3meUGhxzRcE1M5nrWTJLQHjg6
-	t0PVY4tAzdBh8jiGQtSgjRA15NJc9UYi7n4S5iyqMoXFzF9Odurh0o1ilaGH/f+5BETSx9BLOFtC5
-	NwTa9pzEpWaGFKjgdmq/MqpurQmlYbhf2l165E/75LZHgfD0ygPesyZQB0ZlPFTbPa7z44YI1X2wf
-	nb0Ix5BjbmjmnmGHNHAw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Subject:Cc:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zDIwDf8DLRUT4d/7hBFWDG5xEvKvQEDTTuPucMfo1o4=; b=df3Fb2z8YZUIiD
+	Hb6PW04WRvdzs+xTWDT/6yXRJcrSwHmaGu1icaxjTKGiPN6saLWBc19WRl3a9w8tvrzo06WldMLTT
+	yF2uY8n1Pm0SnVrnieGwJm15zvFqGI+3bpOFlHf2I/PSFf9paHiS/5OtDEuFy5O0/Ta/9hbjchraV
+	Nn3hc4TTFuNObnMjbZf9bJFxOtnc+uWu9JmotBs0FuwZBByeX5fTVpXKE37MgUqxKRbGv8Zty8m5d
+	6QLw4M9p6Gu/wMPMj6HtTrkmu/ZAQOnI2Ij0lzJyE5YtiqZA1dEY4OT1qC7ZnYnuvmgY299cpEHId
+	TEDqkcx5cxFG6RxXm/FA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFcQw-006WIx-Iz; Sun, 24 Jul 2022 14:18:14 +0000
-Received: from out162-62-57-252.mail.qq.com ([162.62.57.252])
+	id 1oFcic-006cqg-O9; Sun, 24 Jul 2022 14:36:30 +0000
+Received: from out203-205-251-60.mail.qq.com ([203.205.251.60])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFcQt-006WEa-87
-	for linux-amlogic@lists.infradead.org; Sun, 24 Jul 2022 14:18:13 +0000
+	id 1oFciY-006cnh-Up; Sun, 24 Jul 2022 14:36:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1658672285; bh=NgI3If1mGDqIugqOUsphsHVnaxjJRfNnV5FrHmEFTk8=;
-	h=From:To:Cc:Subject:Date;
-	b=bqPQ7UBrdAV1mQtnv76tpFug/ty36yMisd1/1aGsN+aXJ1Fi9QNez17TJ3gXu/2pG
-	 bwXJ2DcU1bRJXEXOQh2cy5QaozxHVTMGPpXfPzq1Xyzf1lkz1a2FYXCNLiEPvQtGC8
-	 6eI4of2pPyclAGuyWk9uAcESTSwbLp7Y3t2yAsbQ=
-Received: from TS-551.. ([101.229.115.105])
-	by newxmesmtplogicsvrszc13.qq.com (NewEsmtp) with SMTP
-	id 48289623; Sun, 24 Jul 2022 22:18:02 +0800
-X-QQ-mid: xmsmtpt1658672282t5lfuun3z
-Message-ID: <tencent_E18C3DB41BD86448074C8834E41B685C380A@qq.com>
-X-QQ-XMAILINFO: NkHKfw09D6j8EuS0u7RT32TfUeP+kLBDAKk6sr+HKD86du6VFtuwK/c3aeahXI
-	 kDR/YMPQdopQrcH/fZHQ9+poam6VVSixDDtiMNaWbxR/7LHr3xETAR1EWmhckCknxb1Lu+dLc9kb
-	 ojJd9a25H8mcWzhPReOKIxrVmBCbxXjWkCjFrx/ACa5ToY7rwDlQwywu1slaPIwtnVc7Q6PyFhD3
-	 E/EMrpXfRNnRhOHVUN9PzK3gkMDMNOGd0oLf/3Jze0eMIbXPQkcMgbEcNm9dgnHA9dqjQ1w94tx+
-	 8cco4HbwZelAfRPCgrrY7CuqLhZgOEZpaOMA+oMSVQDAMfkNkXjeNGEBPHNQ5cgF3AIzY+Y7+WNg
-	 9VLIA8k2zhI8b9w++EtIfjnO9CkteURAeo2CHWcaqgwXoznVNsHi+zx/GMrtNndHg9GhKyViqSim
-	 lQvUcQFPA6Zfb1zqr7VyZod87FBHIq/S0Y1r/uymEiIgxzZDxWPpDDR291epWwlXzrlCbqipziuE
-	 88Y0n175F0bQaQrItv94CKHXgshD6P5EF7FRmsGh+l3OEWQL0aJoUcR80wv3S+yONNBiJCrAoEqW
-	 4WG1uwCrRwxk5JOazjeUKDP8vKlDGwu3HqACTFQTG67kZk/l1pBb1qQ6VxRgbQsH8btKzFSvPvda
-	 OKluFQlz/NQkysCohRLNbRf4kgV6olwxg4kZ5Q/18bn0egNR9CFvIgVehtqEiDishejC88gCw/BV
-	 DBwRF6obMZbQ+mBICEBTf6XuDYCbzXEsE9AqqzJgDzBhaDyvZUWge2VRQ+JMSfw4d74eNeabvolE
-	 vNO34bW6X0AgGTzNeoKMccPBBDteAlbgJsUv+mpXTMkdzdvl526ezUDrjR8PAclYdWbmON83ykIO
-	 zWYsJfns0EMSi4LoDlU/Bgl0bCVlH47lHJol4B9dkh3j9AhIJYKt8qTn8uhuiygA==
+	t=1658673374; bh=0jHGeQ/fsGCQDcfez4v19ebiJgzsG9N9syrolZ1GLTc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Rek5rdissJ0DQ1ioi3jKZvBjw2I2Mc5+MNsrJnnSK2HWHVBEEnvj57tPCqDuUneRF
+	 t00qkZEPj7SgGIOufWHjI+c0DTJOKU0oleI8YzcuycU2fn/Vfx0tNpmP1NT2/GnueX
+	 webAlxa8iTZjkEpDZ5K8G8Q5V5gnCst/HE1zzN70=
+Received: from TS-551 ([101.229.115.105])
+	by newxmesmtplogicsvrszc11.qq.com (NewEsmtp) with SMTP
+	id 90BB322D; Sun, 24 Jul 2022 22:36:11 +0800
+X-QQ-mid: xmsmtpt1658673371ti491kkw5
+Message-ID: <tencent_EB43BF01D785F7587D7BBF8D86F4CA047406@qq.com>
+X-QQ-XMAILINFO: M6lqjKFHeg8FaHGkPlEt3K0r8cvPU6vQTOLEiqjmTVTLkGC1SOCsAsFeZuBGa2
+	 rHtLzphtRU3i+fHBU79XgwuEDFzYbCWq4cGaE+oHcBBQ0ScaWOkzrdslDZQnBqObkyr4NvV0/epb
+	 F2EbB8CMNOboRY9kBgsEaGdyhFEaI+7TlijKC8w3Lwpg7OC3GjU8/+/gXyW9SqgAJywYvTshAtnO
+	 S07rlLf/tI7qc5U1rwO4zvjOmFeJIxyuTUPqm3z3DNC/nd7fOc1cp7ovtZdbNcpok5YuRKB2WPHM
+	 Dkrs0oeDB+lQ/2DogfTd0kLAhkljg3Rkrp5BFpCNvkWnIPHNBugHkZH6I7EjcUT9wtJI0b+oAdas
+	 ttrB6AzehsJtXRSeyBIrpZMw9YRIg+e8PvnN9RaXZW4RILfNmdnc1SxH9WeKD2I8z3yy+pteIMsx
+	 OQD3jKEIe8//1dFouyupX3PpFfhpDzkgoQ56b+Mwz2freAKQX3g1be7gT59kAWcanRtikT2OHELr
+	 QYIecQAN+DgZK0MRZtSl+Fe1n2TK3JXspkQYlgMZvb9S1p71mVPBqrUYRjst20QdcD3YRzkVFkZ3
+	 A+tMh4e88ETQ7GKrxuenPXh+NGDVwAr22YcExwGj9fdm8n016n0piUvjYoYH+8SoidCWlz5AvdWU
+	 IGQyoQL8nEFliSjZrfqYuaEfZuq62sj4Mi0tZdHcwbesN0erL0TdS8vWOiXAq1OH92ofkddJtSnG
+	 C0/oOqy5vFL2bbV+JADJKS8/PmMBBfITAdMGp9+dWLJKuC4LvwMQYKZ1M8QxR6/mUco7PtqMQ7wi
+	 Mij4bquivPWktlJm2aEsOj2/gY18JwVnWZCXCHP0rPD9CWg3uDaQjIKaDbJo2tj23VAHzEOlBlut
+	 2+KbNtTH5gO+LzhV3b7191DCPFtidxfQ==
+Date: Sun, 24 Jul 2022 22:36:11 +0800
 From: Zhang Ning <zhangn1985@qq.com>
-To: martin.blumenstingl@googlemail.com,
-	narmstrong@baylibre.com,
-	linux-amlogic@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	sean@mess.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: Zhang Ning <zhangn1985@qq.com>
-Subject: [v4 0/4] Add Magicbox M16S support
-Date: Sun, 24 Jul 2022 22:17:45 +0800
-X-OQ-MSGID: <20220724141749.131724-1-zhangn1985@qq.com>
-X-Mailer: git-send-email 2.35.1
+To: Sean Young <sean@mess.org>
+Cc: narmstrong@baylibre.com, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH 2/2] rc/keymap: add keymap for MagicBox M16S
+X-OQ-MSGID: <Yt1Y2ykN5O3Qmkkc@TS-551>
+References: <20220723155502.127404-1-zhangn1985@qq.com>
+ <tencent_ED01C585DBD86EFB91CD8074FB0460C3BA06@qq.com>
+ <Yt1MvOQtRgxYFm7F@gofer.mess.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <Yt1MvOQtRgxYFm7F@gofer.mess.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220724_071811_927487_EDAB99C4 
-X-CRM114-Status: UNSURE (   7.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220724_073627_320530_ED3A8C1E 
+X-CRM114-Status: GOOD (  25.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,64 +80,145 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-these patches aim to add MagicBox M16S support.
+Hi Sean
 
-MagicBox M16S is populor Tv box in China, manufacted by Alibaba at 2016,
-with below spec:
+thank you for review.
 
-Amlogic S912-H (S912 with dolby and dts)
-2G ddr3
-16G emmc
-Marvell sd8897 BT/wifi module
-100M ethernet
-IR reciever
-4K HDMI
-AV out
-Rest hole
-5V2A power input
-white LED
-
-current status with these patches:
-HDMI sound and AV out status unknown, others work well.
-Wifi/Bt work without DT support.
-LED pin is GPIO_TEST_N. Depends on Neil's patch. 
-
-previouse patch:
-v1: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013022.html
-v2: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013051.html
-v3: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013054.html
+I sent v4 before see your review.
 
 
-Changes since v3:
-split dt bindings to new patches.
-change keymap scancode to hex.
-move dts changes to single patch.
-update commit msg.
 
-Changes since V2:
-add IR keymap.
-update patch title.
-
-Zhang Ning (4):
-  media: rc: add keymap for MagicBox M16S remote
-  media: rc: add keymap for MagicBox M16S remote
-  dt-bindings: arm: add Magicbox M16S bindings
-  arm64: dts: meson: Add MagicBox M16S support
-
- .../devicetree/bindings/arm/amlogic.yaml      |  1 +
- .../devicetree/bindings/media/rc.yaml         |  1 +
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 40 ++++++++++++++
- drivers/media/rc/keymaps/Makefile             |  1 +
- drivers/media/rc/keymaps/rc-magicbox.c        | 55 +++++++++++++++++++
- include/media/rc-map.h                        |  1 +
- 7 files changed, 100 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
- create mode 100644 drivers/media/rc/keymaps/rc-magicbox.c
-
--- 
-2.35.1
-
+On Sun, Jul 24, 2022 at 02:44:28PM +0100, Sean Young wrote:
+> On Sat, Jul 23, 2022 at 11:55:02PM +0800, Zhang Ning wrote:
+> > Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+> > ---
+> >  .../dts/amlogic/meson-gxm-magicbox-m16s.dts   |  4 ++
+> >  drivers/media/rc/keymaps/Makefile             |  1 +
+> >  drivers/media/rc/keymaps/rc-magicbox.c        | 55 +++++++++++++++++++
+> >  include/media/rc-map.h                        |  1 +
+> >  4 files changed, 61 insertions(+)
+> >  create mode 100644 drivers/media/rc/keymaps/rc-magicbox.c
+> > 
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+> > index 464de73d2f0f..69e72687ac9c 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+> > @@ -34,3 +34,7 @@ &ethmac {
+> >  &sdio_pwrseq {
+> >  	reset-gpios = <&gpio GPIODV_2 GPIO_ACTIVE_LOW>;
+> >  };
+> > +
+> > +&ir {
+> > +        linux,rc-map-name = "rc-magicbox";
+> > +};
+> 
+> As has been pointed out already, this should go a in a different patch.
+already do it in v4
+> 
+> > diff --git a/drivers/media/rc/keymaps/Makefile b/drivers/media/rc/keymaps/Makefile
+> > index f513ff5caf4e..02c1c2150f03 100644
+> > --- a/drivers/media/rc/keymaps/Makefile
+> > +++ b/drivers/media/rc/keymaps/Makefile
+> > @@ -71,6 +71,7 @@ obj-$(CONFIG_RC_MAP) += \
+> >  			rc-kworld-plus-tv-analog.o \
+> >  			rc-leadtek-y04g0051.o \
+> >  			rc-lme2510.o \
+> > +			rc-magicbox.o \
+> >  			rc-manli.o \
+> >  			rc-mecool-kiii-pro.o \
+> >  			rc-mecool-kii-pro.o \
+> > diff --git a/drivers/media/rc/keymaps/rc-magicbox.c b/drivers/media/rc/keymaps/rc-magicbox.c
+> > new file mode 100644
+> > index 000000000000..7dd3afd8a42c
+> > --- /dev/null
+> > +++ b/drivers/media/rc/keymaps/rc-magicbox.c
+> > @@ -0,0 +1,55 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +//
+> > +// Copyright (C) 2022 Zhang Ning <zhangn1985@qq.com>
+> > +
+> > +/*
+> > + * Keytable for the MagicBox M16S remote control
+> > + */
+> > +
+> > +#include <media/rc-map.h>
+> > +#include <linux/module.h>
+> > +
+> > +
+> > +static struct rc_map_table magicbox[] = {
+> > +	{ 40791, KEY_POWER },
+> > +	{ 40842, KEY_MUTE }, // M
+> 
+> This comment needs elaboration. What does M mean?
+this is answered in v4. a key labeled with "M" as Magic key in vendor
+OS.
+> 
+> > +	{ 40771, KEY_UP },
+> > +	{ 40714, KEY_DOWN },
+> > +	{ 40710, KEY_LEFT },
+> > +	{ 40718, KEY_RIGHT },
+> > +	{ 40706, KEY_OK },
+> > +
+> > +	{ 40775, KEY_HOME },
+> > +	{ 40783, KEY_BACK },
+> > +	{ 40726, KEY_MENU },
+> > +
+> > +	{ 40959, KEY_VOLUMEDOWN },
+> > +	{ 40797, KEY_VOLUMEUP },
+> 
+> Please use hex values here, they make much more sense for nec protocol.
+in v4.
+> 
+> > +
+> 
+> Remove blank line.
+will do it in v5.
+> 
+> > +};
+> > +
+> > +static struct rc_map_list magicbox_map = {
+> > +	.map = {
+> > +		.scan     = magicbox,
+> > +		.size     = ARRAY_SIZE(magicbox),
+> > +		.rc_proto = RC_PROTO_NEC,
+> > +		.name     = RC_MAP_MAGICBOX,
+> > +	}
+> > +};
+> > +
+> > +static int __init init_rc_map_magicbox(void)
+> > +{
+> > +	return rc_map_register(&magicbox_map);
+> > +}
+> > +
+> > +static void __exit exit_rc_map_magicbox(void)
+> > +{
+> > +	rc_map_unregister(&magicbox_map);
+> > +}
+> > +
+> > +module_init(init_rc_map_magicbox)
+> > +module_exit(exit_rc_map_magicbox)
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_AUTHOR("Zhang Ning <zhangn1985@qq.com>");
+> > diff --git a/include/media/rc-map.h b/include/media/rc-map.h
+> > index 793b54342dff..656217b8e91b 100644
+> > --- a/include/media/rc-map.h
+> > +++ b/include/media/rc-map.h
+> > @@ -277,6 +277,7 @@ struct rc_map *rc_map_get(const char *name);
+> >  #define RC_MAP_KWORLD_PLUS_TV_ANALOG     "rc-kworld-plus-tv-analog"
+> >  #define RC_MAP_LEADTEK_Y04G0051          "rc-leadtek-y04g0051"
+> >  #define RC_MAP_LME2510                   "rc-lme2510"
+> > +#define RC_MAP_MAGICBOX                  "rc-magicbox"
+> >  #define RC_MAP_MANLI                     "rc-manli"
+> >  #define RC_MAP_MECOOL_KII_PRO            "rc-mecool-kii-pro"
+> >  #define RC_MAP_MECOOL_KIII_PRO           "rc-mecool-kiii-pro"
+> 
+> You should update Documentation/devicetree/bindings/media/rc.yaml as well.
+alread do it in v4.
+> 
+> Thanks,
+> 
+> Sean
 
 _______________________________________________
 linux-amlogic mailing list
