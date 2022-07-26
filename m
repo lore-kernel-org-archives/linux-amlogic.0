@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F2FC433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 13:16:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56EBFCCA489
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 13:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:To:From:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=pSCKskX0HKvftTWC2xQsL6ifq6FmWC2qhS5YA6dqWQU=; b=iXxs6cDyafXZbY
-	LBmeXFrsr/9E4bnEq98lzj5Xmg0e26JMUpF54lVuFNIF3FFNp/0NogUf7uW7p0r13IGf6CN9et2Ia
-	Cyqv171+B2htealw8WvMkAfWKc91BrMr+VX+mkCIsy3aYda1blKFLr3LBwJXmbue99YYAv1GHz2My
-	MKQrHw4epIJaxBTfOnXQEnaCaUdfOwvy5PGKDF4gBzCQqlTalj27ybX0XuiPVwNvo8mq2qB+TevTF
-	UaLXXKCPbys06UVVwRxbrjqOUpSSWXvexetP3yXu3DPVPiaUUw2YxhlLCa2m+J6AsQ8xiXDXiTTd+
-	Fdb1nM5TaS+9vB0Yk1fQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Subject:Cc:To:From:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OQVJ5WxRP3nDpI+S8aMTN1baZ8ntR4pcsNwy2MqoihU=; b=coPqtN1kmP56mG
+	5tz/nkdaxxremif8bJ/6S+HpiJ4hS8tVaF2dgqooAk1uxlvPFQK66CCh4g0EFAQfl7qZzQlRmZn1e
+	pDZ63lsFVwFbki6vjJ3OqGCXN0rnCYUoRPCxLiNMZLr15ciV7GcivwCJTIQJy0hGkClBn/iC8HWhX
+	hRy7AI0eiBGIx7jCN5jmO1RqLc5rHnSlcbzgUVloiAmKbvawF/8zya2aia0jlONDFKD89hqP7XpJN
+	jeR0H4InwM4qpKXTZ06Y87Y5hvps7v1S/6jGnlD909qj+FtD9hDxJg5NlcW/IlegkZ3Ot2ZsoKXl8
+	WqkbhmNel8d4f2F1UhpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGKPn-00HJ2R-VR; Tue, 26 Jul 2022 13:15:59 +0000
-Received: from out203-205-251-59.mail.qq.com ([203.205.251.59])
+	id 1oGKPj-00HJ0D-Fp; Tue, 26 Jul 2022 13:15:55 +0000
+Received: from out203-205-251-53.mail.qq.com ([203.205.251.53])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGKPh-00HIws-Ab
-	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 13:15:56 +0000
+	id 1oGKPg-00HIxY-Ul
+	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 13:15:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1658841344; bh=FIo+SqMyx18RjZEIAmLZAjP5zqPI0I8yR1Nj0y5yjKQ=;
-	h=From:To:Cc:Subject:Date;
-	b=xk6eq/UfXnVwEbqFfgoVHkqNiIt5sZq7JnM7q5TljWiqftggn6AiOzal3A9CxJl6h
-	 fiIuIP28d+0rhawNKYUKQ4Zu9VVyktUUzYkPkFDC1U6aIxaV/8PoaTzot6VwVoTaXV
-	 XdJIBybAjp321Hku6tgtZICSaWFXn9xz8cwLItSE=
+	t=1658841346; bh=EWEPpnkJzYXDEouSUCLZ+x2NT/waXn7X2RwOOX3umWM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=WacEwwpNVkwnFKz9wuzWDsrGt5jY2nibIfC04YFljq22rapHvGa/Q6BmD0Vh40Y5y
+	 CpjYjleK3QxL8lasvYuvC2KQ4pD6/bGxCJ79oqYu5j4P8FhDJoN4rDoJ6ICyjilM5H
+	 X3aCNpPQXItQek2ju3U3/fGj1VicwitXJi73W5YI=
 Received: from TS-551.. ([101.229.115.99])
 	by newxmesmtplogicsvrsza8.qq.com (NewEsmtp) with SMTP
 	id 3EA1E4DA; Tue, 26 Jul 2022 21:15:42 +0800
-X-QQ-mid: xmsmtpt1658841342tszr81qok
-Message-ID: <tencent_59B4863603BE8B94319376559B1BE9C28907@qq.com>
-X-QQ-XMAILINFO: MB5+LsFw85Nocj1lYxmGiHrGgGn3kuKLhFc4xoPNizvwonND+i8Ia0meP/nFRW
-	 uxrhTertZ/zwMWM870F0rTvD/+8yce6egrIgxC16jOVltc5C7wI2W4AnB9GuC5aemBIUOM9Gb3f8
-	 pb1OSIXcTLU7JV6uX8zHhGo5rymfZrR+nlZAPyDXvYGdbTVVQxbp6DjB0SeDo8CGQJ835LnjpFFv
-	 R4M81WtD1/lcKGXA3xpfdYhGD1XtripcK9QV/i833hLosflkcDL70vWpWWzab/x+WCE3GI2H4i2v
-	 3u63kUyog3cEjn1rf+I/0V6UtQvNiE6FxRVWtgwJ2nxtr1d96ei/NRMyahUES+pFI/xWFnlmmPFz
-	 V8yvHwbXLa1LpU4om+0iWNG/TLJ6WDYJ43cddqkOQWVh34YbBVWFBezoZB43ey5UGcU50lVyEZ9p
-	 phVb7nu/eSq/J26j1HP7aK+lszVLI23FXZhDhs53AD73e8QYcr65PmkscSWQrixnSPAXH9VPkMry
-	 v0/Tt7tUXRI7/VqKDsV2efF0oGRxMSgNhcsMrjpZLkyiVCrBEOtaMLFla2JupGgk1blujxUMIZOz
-	 hEpWeu+Man3n5cK28Sk1XRvSFqxsG6DlewpsUABYui4jHh4u6Ls2hd0pLmIle2ekNV37lA4RnVx+
-	 nO495MzKunIN6tKxFcTuLPtv8lbWx8CdyQWUPAWjQnVtNpX6kcIFQhtII2VSBB8MOqckQEqY/K2d
-	 lSdx99UOdXJHUAEKAFJwlM5C4RPQ1aACpU9MSLrxU7OSYcnXI+1ne17TMnBF6vDJH0vZAsv+PcnD
-	 +BK0aJZ1ZqkLKKrNP58ctZxzXpJ9ZoAtjhChR6nN3GtmWzlhVqNgEjpSngfzu7Shqfba3YY8zc0H
-	 2Ilii2MORiNfOp4tk7odMIcRZDrQhROc1v12LKI0TPa4IpNDo0ni8+urdZXUkzFBy4iynsI0hr
+X-QQ-mid: xmsmtpt1658841344tu0101qua
+Message-ID: <tencent_57D90453038881DBC5C9D86F3B860D917406@qq.com>
+X-QQ-XMAILINFO: N4r4IakIsd1kDjW+p75ze0sw0vHSeLWbr+ytB5p0pVyQLIdzXiBSx4BXV9LBWy
+	 +MBsXHD3LKTNNIUXvmlTnV73xV6y6DVYs4zfoeW9u0Xb7QuCsHHwVO17s2zWG/5E0B/G6LAMrFmS
+	 T6vqQCAV7XXCA4KVb/xbFhc/s67wFIZxKf1TvZ8eu1XYn/ny8YHtTTM5uHJ5wZVwZ+7Ffa4bIJAK
+	 7/9nSY4dO0cyWotod5ra5chMpRb8dGKR8i4+882pNdInvM3bUF9GLEK8RivCetG9qyUu44Hu2UtC
+	 ApboAXoQMADC4kSQBbkrxr9x1I+6plV4vQkbn3tVocP6egxHHXluTMWzJgaNm4/xSH5GuQ78TZl2
+	 AXSNQWU3TapcR8DbuBdBptIxzl6OpdZc8NF5emwi7kOi7UzcnoWNTxjLv4KkT2K84X0S9fqZmWeO
+	 iSuPidf+YDvVz4AqAyrXHZ6sB3GPZBpqFUW6B1E48x7Vj4FXkNlrFPDdrTd1BGcK6acfUn+aYq47
+	 V8noc5U8sbnqGemNPfJ9kSSZSFxx6UrmN5VjV9kHdw4KLmmjV6w6mFYYgILftzr3y4oocxSr87Q0
+	 s6mo8KLfqlksWvjEww7BAlH6xsGYrS3/ePovwThihUePCw37fnUlHn6qYv1Jfgx7b0+GUQhpsvVZ
+	 x2MbuhVhJeFcfu+uO6qKuUNwNpHxqT8U6CDtec1TMHjU8vF6k57ZUL7Htc2KnkPZsa4fumQH14zU
+	 UYMIatu1kWRoUDEmUs63F9hUuSMHkpmrJuYXOrNXKZumZQj0q36dGeaHffvS/BUpGtSbIgGlInV1
+	 c/3WZz9ypOI7pPQs+/2egxJr3OtbGfdOjcHoheCjxxjjCv5LmVHvcOUcrPPYEoOIYWs+e+sPlN/b
+	 opLZDvXhD3NiAaY5jQHow+Qei3mgd8jcTNVauqbMF7kqEswfa7A98ntfuUV8O5hg==
 From: Zhang Ning <zhangn1985@qq.com>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -59,14 +59,16 @@ To: robh+dt@kernel.org,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Zhang Ning <zhangn1985@qq.com>
-Subject: [v6 0/4] Add Magicbox M16S support
-Date: Tue, 26 Jul 2022 21:15:19 +0800
-X-OQ-MSGID: <20220726131523.140581-1-zhangn1985@qq.com>
+Subject: [v6 1/4] dt-bindings: media: rc: add keymap bindings for MagicBox M16S remote
+Date: Tue, 26 Jul 2022 21:15:20 +0800
+X-OQ-MSGID: <20220726131523.140581-2-zhangn1985@qq.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220726131523.140581-1-zhangn1985@qq.com>
+References: <20220726131523.140581-1-zhangn1985@qq.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220726_061553_687506_D9280E00 
-X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-CacheID: sfid-20220726_061553_311423_1C281F9E 
+X-CRM114-Status: UNSURE (   6.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,78 +86,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-these patches aim to add MagicBox M16S support.
+MagicBox M16S Tv box shipped with a simple NEC remote.
 
-MagicBox M16S is populor Tv box in China, manufacted by Alibaba at 2016,
-with below spec:
+Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+---
+ Documentation/devicetree/bindings/media/rc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Amlogic S912-H (S912 with dolby and dts)
-2G ddr3
-16G emmc
-Marvell sd8897 BT/wifi module
-100M ethernet
-IR reciever
-4K HDMI
-AV out
-Rest hole
-5V2A power input
-white LED
-
-current status with these patches:
-HDMI sound and AV out status unknown, others work well.
-Wifi/Bt work without DT support.
-LED pin is GPIO_TEST_N. Depends on Neil's patch. 
-
-previouse patchs:
-v1: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013022.html
-v2: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013051.html
-v3: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013054.html
-v4: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013060.html
-v5: http://lists.infradead.org/pipermail/linux-amlogic/2022-July/013067.html
-
-Changes since v5:
-update keymap bindings patch title, and commit msg.
-fix swapped volume up/down key, find out by my wife.
-move rc "M" key description from git log to code.
-update board binding patch title.
-update gpio key name.
-remove gpio-keys address-cells and size-cells, which should be done in
-v4.
-add 1 blank line before ethmac.
-make phandle in alphabet order.
-
-Changes since v4:
-fix typo in commit msg
-remove useless blank line
-
-Changes since v3:
-split dt bindings to new patches.
-change keymap scancode to hex.
-move dts changes to single patch.
-update commit msg.
-
-Changes since V2:
-add IR keymap.
-update patch title.
-
-
-Zhang Ning (4):
-  dt-bindings: media: rc: add keymap bindings for MagicBox M16S remote
-  media: rc: add keymap for MagicBox M16S remote
-  dt-bindings: arm: amlogic: add MagicBox M16S bindings
-  arm64: dts: meson: Add MagicBox M16S support
-
- .../devicetree/bindings/arm/amlogic.yaml      |  1 +
- .../devicetree/bindings/media/rc.yaml         |  1 +
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 39 +++++++++++++
- drivers/media/rc/keymaps/Makefile             |  1 +
- drivers/media/rc/keymaps/rc-magicbox.c        | 58 +++++++++++++++++++
- include/media/rc-map.h                        |  1 +
- 7 files changed, 102 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
- create mode 100644 drivers/media/rc/keymaps/rc-magicbox.c
-
+diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
+index d4c541c4b164..6491d1bdbac7 100644
+--- a/Documentation/devicetree/bindings/media/rc.yaml
++++ b/Documentation/devicetree/bindings/media/rc.yaml
+@@ -90,6 +90,7 @@ properties:
+       - rc-kworld-plus-tv-analog
+       - rc-leadtek-y04g0051
+       - rc-lme2510
++      - rc-magicbox
+       - rc-manli
+       - rc-mecool-kii-pro
+       - rc-mecool-kiii-pro
 -- 
 2.35.1
 
