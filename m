@@ -4,59 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B73A3C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 01:18:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7272C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 05:19:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:References:
-	In-Reply-To:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZBskQfQrCrTtmFueXFyOdWNX/PfZVl1wPKay0WFdFGo=; b=VauKsWXt6Ty20V
-	s/Th9/7N9bi/PvF6G97szZozWmb1sHKp4/dmmbPXpJdC4ERMg27HtO9PgUuHUEpeWOM4xRF9/nXv0
-	rcPBXnVRqf0OijPFLJQpjR2c2vM8eqz87rmZHjyiEfQijVgCztBwVVTZZHWdEFB+30PcjXN0cWU7f
-	2cDO0XxUqBWG4ARjDK4f4XXxCrwyHGjAzmMmFUr/K3JwwfkwhJpfujQusSktBlVthwq1L/Dbp0bJ8
-	5EHfX5GKdkUC/GR4IKXXDmwmgQPRM6YC988T28FItoVVk8hh1UdE6xipIuhUehYhxV3n3exQyFPbw
-	KVMA2y5DDu1zktMT9QWw==;
+	List-Owner; bh=iUzH2OJ8i052Kf/biNV+dbeJdp5U/xMDMbQC7n47VXM=; b=Uc5f/xS3CHdLXv
+	WlhSOx+6EUbWU/vHHgr+/LmxiS291b0Om+8AEesU+9emCDJxcxwWVDFvkfhKqWfBXz72CqwbxO01A
+	CFEW4nAIseX0o9/c30jVMKBKE3NuhHGUdp9fCBA4xL48NcoLzxowUK2NLILraYl4pFCRiDAXxEpeu
+	19xXuJ6xnLWW9f59FNbWSPlvj96bGKNmIXZm8606CvBaD+S/EKooWhnP97bRwe8fNOeeka9pOXHL0
+	KKXsbtza1iX9Tp8iZ+sw7mcHo8EJSCJALk+pPon1G/zSbeSxGECwxE2UKl3nsZ1FMktldWMBlBFmp
+	R+wGYK5onj6R0dVKtUYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG9DP-006eoV-2l; Tue, 26 Jul 2022 01:18:27 +0000
-Received: from m1524.mail.126.com ([220.181.15.24])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG9DM-006enL-9u; Tue, 26 Jul 2022 01:18:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=j3dkc
-	IQ84zuA8we5a/p2xpKcWeYwmO0R0vs/a2YSY/g=; b=TU6R8dYqDYcFzjPzE1eTW
-	Go+a6GLq7U3t0jI6cRGMvgvSdLM5OTOiHG/JZOcJyJR9DTUNsIolVHkG+Qvx3aNj
-	zYFgq5kbeUWvAmuk4myQS88mfNLpX24g7j25F/ONugGeMXRHz2HhcPZylOeff7BN
-	S+K7ItmObInj5zh50GyDYM=
-Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr24
- (Coremail) ; Tue, 26 Jul 2022 09:17:21 +0800 (CST)
-X-Originating-IP: [124.16.139.61]
-Date: Tue, 26 Jul 2022 09:17:21 +0800 (CST)
-From: "Liang He" <windhl@126.com>
-To: "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>
-Cc: "Neil Armstrong" <narmstrong@baylibre.com>, khilman@baylibre.com, 
-	jbrunet@baylibre.com, inux-amlogic@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re:Re: [PATCH] soc: amlogic: meson-pwrc: Hold reference returned by
- of_get_parent()
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
- Copyright (c) 2002-2022 www.mailtech.cn 126com
-In-Reply-To: <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
-References: <20220705022032.281665-1-windhl@126.com>
- <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
+	id 1oGCy2-007vSa-RY; Tue, 26 Jul 2022 05:18:51 +0000
+Received: from mail-yb1-xb33.google.com ([2607:f8b0:4864:20::b33])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oGCy0-007vMJ-QQ; Tue, 26 Jul 2022 05:18:50 +0000
+Received: by mail-yb1-xb33.google.com with SMTP id f73so23598365yba.10;
+        Mon, 25 Jul 2022 22:18:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6q7692tRTcvxlctWBLa2EQMxtAdhfY0jiQAAp5IstQM=;
+        b=ToskS5StynEYtsUReY+Ec7C5qMGMci+PufEwwOQUYBaBTeSSo5BpfHFPOR7FrBaV37
+         2I1Yv1AqhVvaxmYQlRrR4193CzR9WIpWgjaYIgpRNPIJSxRnZG83DnxTpudqMYfiahEv
+         OE1iNtgwaCkoVhva6n0N/IMlmxGvmY93dubgQb0yoytlniDBOsjr/ZiUjq04v4UdDAhv
+         d63k78D52fwFxRJp9JHWhdNRk5rC28Q1c1mXtmPhJd0Zni2NIlbJ9W72dpBBBR7nwnxf
+         V/kohW37YcYPCBvE9GniWFIs58PO9sZmwaS9/PuPCFugWUZSwdlvtXWsU6Bg8l9EYyqy
+         GQug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6q7692tRTcvxlctWBLa2EQMxtAdhfY0jiQAAp5IstQM=;
+        b=uKje/360CXbrShxFQyojkNqvFv1WYN4ql6EIMQI/8uQh5yTAleHu5gUgxJA9OpHA2b
+         uP4QIEyHLzZ1m6OxLTeHt96NrLpzXTu1VPHm6qS87DuuzBR8H16l08PkCe9GchzBJwlw
+         IKFnk68+ZdxBdUCl9TaJdqgn9Ezv0nmarpxsqJEd+mIrFDR9oHXGYMzjgDR+jhEPwQXT
+         6mZvQ0TxyGoKTVBnIGSVHtxFPXGXPpRNsQErpPd3k6zL8XQOAf2p7S2ijPSnvLSEbzW/
+         fE31smRXj74l41UIpDCGsL0eTBlsxFCyAkic8ee2Ff+QNwiNXprAbuzy99fU1uQcEhGg
+         GY3A==
+X-Gm-Message-State: AJIora8WXMguvbnvGZbOSrJD+7GwPdxuA9BxlYcNKYPgrAR66BSFwrsB
+	ORG6I3JQsa47SoIs+3H4JJsN7DFgEu6ZsY6dhDE=
+X-Google-Smtp-Source: AGRyM1v30EAdPG+A0F3vatNSXI/6ddQM0dTUWWbnA0DK4SjIqiYF4u78c4GkZh+SSLynnq0MX9B1srKy6J6Q6jysSZU=
+X-Received: by 2002:a05:6902:114d:b0:66d:9fa6:4bd4 with SMTP id
+ p13-20020a056902114d00b0066d9fa64bd4mr11317252ybu.362.1658812724555; Mon, 25
+ Jul 2022 22:18:44 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <40b3ed24.b4d.1823814761a.Coremail.windhl@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: GMqowAD3_iaiQN9ii2ROAA--.45279W
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbi2hpKF1uwMd0kkAACss
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+References: <20220705022032.281665-1-windhl@126.com> <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
+ <40b3ed24.b4d.1823814761a.Coremail.windhl@126.com>
+In-Reply-To: <40b3ed24.b4d.1823814761a.Coremail.windhl@126.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 26 Jul 2022 07:18:33 +0200
+Message-ID: <CAFBinCCzOt1s5ExH5H-BzmJbFLAzMZgkTvBt+vCuRBbL_1QQOg@mail.gmail.com>
+Subject: Re: Re: [PATCH] soc: amlogic: meson-pwrc: Hold reference returned by of_get_parent()
+To: Liang He <windhl@126.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com, jbrunet@baylibre.com, 
+	inux-amlogic@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_181824_707521_C06DAAE5 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20220725_221848_894596_975B3283 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,52 +86,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Liang,
 
-At 2022-07-26 03:46:30, "Martin Blumenstingl" <martin.blumenstingl@googlemail.com> wrote:
->Hello,
->
->thank you for your patch!
->
->On Tue, Jul 5, 2022 at 4:20 AM Liang He <windhl@126.com> wrote:
->[...]
->> +       struct device_node *np;
->>
->>         int i, ret;
->>
->>         match = of_device_get_match_data(&pdev->dev);
->> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->>
->>         pwrc->xlate.num_domains = match->count;
->>
->> -       regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
->> +       np = of_get_parent(pdev->dev.of_node);
->> +       regmap_hhi = syscon_node_to_regmap(np);
->This works but I had to read the code twice because I thought the
->wrong struct device_node was used.
->Other drivers typically use "np" for whatever the code section
->currently refers to. In this case the code section is about the power
->controller, so I thought that "np" was the same as
->"pdev->dev.of_node".
->
->I think the code would be easier to understand and the likelihood of
->someone making the same mistake as I did if you could rename "np" to
->"parent_np" (just like you have done in your other patches).
->
->[...]
->> +       struct device_node *np;
-
->same as above, I suggest renaming this to parent_np.
+On Tue, Jul 26, 2022 at 3:18 AM Liang He <windhl@126.com> wrote:
+[...]
+> I notice the declarations keep the reverse Christmas tree order,
+> should I keep that order as the  'parent_np' will become longer than 'np'.
+Good catch!
+Personally I would move parent_np up (above pwrc) to keep the reverse
+Christmas tree ordering, even for new variables.
 
 
-Hi, Martin,
+Best regards,
+Martin
 
-
-I notice the declarations keep the reverse Christmas tree order, 
-should I keep that order as the  'parent_np' will become longer than 'np'.
-
-
-Thanks,
-Liang
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
