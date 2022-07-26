@@ -4,46 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F1BEC43334
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 07:52:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8440C43334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 08:51:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Subject:Cc:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pY3LXPHFHYqV2URgy1NbF91/NcI7FS9yuAbZUAWfLD4=; b=u/zylDXghtKo3t
-	4vSTWyVcplL6oPryNKwNo0vX5vIvFIfgtNftELY51B/6X7y0fZT3uXC6VyhhEltTQRamArj9uC0qY
-	/8zgvw7X+VMh6/qu3hPPNr7sOE91ketrjIMUcBVsSYoIELoj3XDt5pwjsm7njQVYEENwnnvLJwG2T
-	FKG4Btzdwj1CoejvUQ9EqC4NiWV1wGg8n+E3K+gKgAhxfxTCfDoh0dA0CFE6TlxRfb987VCIqfvDS
-	mD45fr61SYxW8BLO/tWLadKT5FjRVIYdoyCT55wxmHA1Z8UVyXH9qwu0SG6UnAeC5hagWPEJYFf4U
-	Hv6CuTqwbaNtCG3ZnZpw==;
+	List-Owner; bh=d0SYY3o21ZrJLgzjSpc+CCsPwRPQPAoSMZ1FSccDow0=; b=TIAgJxPG4Mpd3u
+	c7cZ6zfodlSCSjKDfZmoh4xA9tloaCtA48PsVEymWzuOCRyWAO6NbuNHNqJ3KEVlnY+GtHwS4V3Wh
+	liK6EyFK/fVi5fDta9vqG3bB38o8dKbG6HPqRsg0PaHCT3dD5lHgJiJpo9udGwJmWw8Tpfajk2jf+
+	DkLKvQfkwp/xtOcgzJZOQPY8/T3fbyjtLXKVSxMbahGwu/WBW/eZgQsti+fI8x5JQ6Dlvj6vT8oO3
+	uztHzdJs6I3tBKCvODy4WGTUyUkMT+OKjDwlhd4kkY5HHsMUvu4S6zEaDzwE+KYno5sWxg4h8EjZJ
+	iQz0B9rdU++OxZr0wcdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGFMq-009fqK-Hx; Tue, 26 Jul 2022 07:52:36 +0000
-Received: from gofer.mess.org ([2a02:8011:d000:212::1])
+	id 1oGGHs-00AXkp-8q; Tue, 26 Jul 2022 08:51:32 +0000
+Received: from out203-205-251-60.mail.qq.com ([203.205.251.60])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGFDU-009ZIu-VI
-	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 07:42:58 +0000
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id E6AB9100063; Tue, 26 Jul 2022 08:42:48 +0100 (BST)
-Date: Tue, 26 Jul 2022 08:42:48 +0100
-From: Sean Young <sean@mess.org>
-To: Zhang Ning <zhangn1985@qq.com>
+	id 1oGGHp-00AXey-Op
+	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 08:51:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1658825483; bh=HUlF4q5Ebo8KXPl8eHyhpYElMmyBxU+tBq4Nhzw6x+o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=d6t2K9vZ4tdYZt7JtEiwC/JTwcFdrFMuhHXUDfJp1ukGZhDMjlduKHOd2FMGVcbSh
+	 HOVDMK3Rbzc109nmhAdnj0gtFlida0LndvQlIaNpP2HH7ir9LOJL01rJSakJkCLj+h
+	 Vn41pIcqE3deSuS3GyzZULXER+chCGVzlOI1P9GQ=
+Received: from TS-551 ([101.229.115.99])
+	by newxmesmtplogicsvrsza30.qq.com (NewEsmtp) with SMTP
+	id CD41E8CB; Tue, 26 Jul 2022 16:51:20 +0800
+X-QQ-mid: xmsmtpt1658825480tx084lu5x
+Message-ID: <tencent_A4721B2869C4099E065D03E78BCC31937607@qq.com>
+X-QQ-XMAILINFO: NioaTWkRhWwarFF6rDVbi0H1m0axP8TeTYTSCu/D/xDB+DTTsEONskXCpFrDmS
+	 WsgbXHPBOIGB7JsO4zuq8wrq/dMr3Lijw7sCSBw38mQwmtfPqrZZJWzj1BlxyU8mt5XefU6Ji9UH
+	 AWR87uzXuAIG8eTn0yMmzKyYv6Vh34N4OgSyM5PVXQSTF7X3z0tcZ2A8WQDJDYAJGyJ5rC2JDTNa
+	 OlV7o6bDB4kCs4HF0RUI+Wdz4RFJoNka7B/IS0Uu5vaHu2bwYeZuc816A2oHnd4uDzpibflS5owd
+	 y/PQD8xgD8Mdg6iE622Gi+J6k6wkyuEeRs9d2AVI6lV3O7fEasDNpNeUGgUp7M/hDJeAJWVpGygC
+	 53ailkHOJI+Hg06q3cx0mTL4eE+8Nfg3ulUrWO1AHsfXRRGB1wAWyBMoZ7jh5XlWokAcyc3exAi2
+	 SezQokL8zv222Pp366ReOxWbjyARWZHyF3u58ThqOVxAZ30Vla/sWLagA+J2od2i23xZF+ndXK5I
+	 N4gI5QbyJBWsdu/N/v8ywL1JJJCdWKmT0tejjfgMMVn+sZKBNJrg+StjLkT6GsVXwr7UINilbN81
+	 NsPOygLZMtBItqUIDVzMFyzmOZVAOcqkoG35tqgfoBgQbavfM4JBk8J5eie0RzKGYRt4yK545XxF
+	 vgRbNK9+icCIWniw4DV1zk7A/m8ivTw2LOaew260gAxVpMCLcn02kn38bFsqHaFLuz9lgFamHyxm
+	 HOMhBfLrNbV7WOdF0slpEaWdyTGO/7kOE6dZiEVDoITW3+IBnqbIFXIy6xyOv/d1jLpQBikjA60v
+	 lBoC6CVAVpgSHWTigJcA/a6F7uG4N2tKMc5gStAerD7MO3UkfSOvDLC3NfMRZi8UaQW3SepGMOEz
+	 njAjC0BFFRBD0gDUFtA58blHUSCw/i6FddGKfa6cHcFRTCtMbA4lge07zqyKjVsCZ0owoOojwG
+Date: Tue, 26 Jul 2022 16:51:20 +0800
+From: Zhang Ning <zhangn1985@qq.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
 	linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [v5 2/4] media: rc: add keymap for MagicBox M16S remote
-Message-ID: <Yt+a+N1BJ+AZqPRt@gofer.mess.org>
+	krzysztof.kozlowski+dt@linaro.org, sean@mess.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [v5 4/4] arm64: dts: meson: Add MagicBox M16S support
+X-OQ-MSGID: <Yt+rCDxwRXEtYFFt@TS-551>
 References: <20220724231704.132472-1-zhangn1985@qq.com>
- <tencent_5AC39B81CB85E258763BA8CD8774E9045806@qq.com>
+ <tencent_9D885D188E51B537DB904A774CEC35E4180A@qq.com>
+ <677c9314-593e-3512-539a-fd74f634c470@linaro.org>
+ <tencent_1B5B069917D86370ED4136BDD2C413240D08@qq.com>
+ <62334f55-df8a-936a-ec88-2db469aede21@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <tencent_5AC39B81CB85E258763BA8CD8774E9045806@qq.com>
+In-Reply-To: <62334f55-df8a-936a-ec88-2db469aede21@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220726_004257_224960_25F15318 
-X-CRM114-Status: GOOD (  20.86  )
+X-CRM114-CacheID: sfid-20220726_015130_149363_B14EA090 
+X-CRM114-Status: GOOD (  11.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,111 +85,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 25, 2022 at 07:17:02AM +0800, Zhang Ning wrote:
-> MagicBox M16S Tv box shipped with a simple NEC remote.
-> it has a key labeled "M", used as Magic key in vendor OS.
-> This has mapped to KEY_MUTE.
-
-Please put this commit in the source code next to the key definition.
-This doesn't belong in the commit message.
-
-Thanks
-Sean
-
+On Tue, Jul 26, 2022 at 08:48:45AM +0200, Krzysztof Kozlowski wrote:
+> On 26/07/2022 02:04, Zhang Ning wrote:
 > 
-> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
-> ---
->  drivers/media/rc/keymaps/Makefile      |  1 +
->  drivers/media/rc/keymaps/rc-magicbox.c | 53 ++++++++++++++++++++++++++
->  include/media/rc-map.h                 |  1 +
->  3 files changed, 55 insertions(+)
->  create mode 100644 drivers/media/rc/keymaps/rc-magicbox.c
+> >>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
+> >>> @@ -0,0 +1,40 @@
+> >>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >>> +/*
+> >>> + * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
+> >>> + */
+> >>> +
+> >>> +/dts-v1/;
+> >>> +
+> >>> +#include "meson-gxm.dtsi"
+> >>> +#include "meson-gx-p23x-q20x.dtsi"
+> >>> +#include <dt-bindings/input/input.h>
+> >>> +
+> >>> +/ {
+> >>> +	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
+> >>> +	model = "MagicBox M16S";
+> >>> +
+> >>> +	gpio-keys-polled {
+> >>
+> >> Just gpio-keys (or even "keys").
+> > I see all dts for amlogic platform are using gpio-keys-polled, could I
+> > keep current name?
 > 
-> diff --git a/drivers/media/rc/keymaps/Makefile b/drivers/media/rc/keymaps/Makefile
-> index f513ff5caf4e..02c1c2150f03 100644
-> --- a/drivers/media/rc/keymaps/Makefile
-> +++ b/drivers/media/rc/keymaps/Makefile
-> @@ -71,6 +71,7 @@ obj-$(CONFIG_RC_MAP) += \
->  			rc-kworld-plus-tv-analog.o \
->  			rc-leadtek-y04g0051.o \
->  			rc-lme2510.o \
-> +			rc-magicbox.o \
->  			rc-manli.o \
->  			rc-mecool-kiii-pro.o \
->  			rc-mecool-kii-pro.o \
-> diff --git a/drivers/media/rc/keymaps/rc-magicbox.c b/drivers/media/rc/keymaps/rc-magicbox.c
-> new file mode 100644
-> index 000000000000..b4fc1856a9e7
-> --- /dev/null
-> +++ b/drivers/media/rc/keymaps/rc-magicbox.c
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright (C) 2022 Zhang Ning <zhangn1985@qq.com>
-> +
-> +/*
-> + * Keytable for the MagicBox M16S remote control
-> + */
-> +
-> +#include <media/rc-map.h>
-> +#include <linux/module.h>
-> +
-> +static struct rc_map_table magicbox[] = {
-> +	{ 0x9f57, KEY_POWER },
-> +	{ 0x9f8a, KEY_MUTE }, // M
-> +
-> +	{ 0x9f43, KEY_UP },
-> +	{ 0x9f0a, KEY_DOWN },
-> +	{ 0x9f06, KEY_LEFT },
-> +	{ 0x9f0e, KEY_RIGHT },
-> +	{ 0x9f02, KEY_OK },
-> +
-> +	{ 0x9f47, KEY_HOME },
-> +	{ 0x9f4f, KEY_BACK },
-> +	{ 0x9f16, KEY_MENU },
-> +
-> +	{ 0x9fff, KEY_VOLUMEDOWN },
-> +	{ 0x9f5d, KEY_VOLUMEUP },
-> +};
-> +
-> +static struct rc_map_list magicbox_map = {
-> +	.map = {
-> +		.scan     = magicbox,
-> +		.size     = ARRAY_SIZE(magicbox),
-> +		.rc_proto = RC_PROTO_NEC,
-> +		.name     = RC_MAP_MAGICBOX,
-> +	}
-> +};
-> +
-> +static int __init init_rc_map_magicbox(void)
-> +{
-> +	return rc_map_register(&magicbox_map);
-> +}
-> +
-> +static void __exit exit_rc_map_magicbox(void)
-> +{
-> +	rc_map_unregister(&magicbox_map);
-> +}
-> +
-> +module_init(init_rc_map_magicbox)
-> +module_exit(exit_rc_map_magicbox)
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Zhang Ning <zhangn1985@qq.com>");
-> diff --git a/include/media/rc-map.h b/include/media/rc-map.h
-> index 793b54342dff..656217b8e91b 100644
-> --- a/include/media/rc-map.h
-> +++ b/include/media/rc-map.h
-> @@ -277,6 +277,7 @@ struct rc_map *rc_map_get(const char *name);
->  #define RC_MAP_KWORLD_PLUS_TV_ANALOG     "rc-kworld-plus-tv-analog"
->  #define RC_MAP_LEADTEK_Y04G0051          "rc-leadtek-y04g0051"
->  #define RC_MAP_LME2510                   "rc-lme2510"
-> +#define RC_MAP_MAGICBOX                  "rc-magicbox"
->  #define RC_MAP_MANLI                     "rc-manli"
->  #define RC_MAP_MECOOL_KII_PRO            "rc-mecool-kii-pro"
->  #define RC_MAP_MECOOL_KIII_PRO           "rc-mecool-kiii-pro"
-> -- 
-> 2.35.1
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+thank you let me know this, I will update in next version.
+> 
+> 
+> Best regards,
+> Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
