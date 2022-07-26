@@ -4,59 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AAFBCCA48A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 00:58:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 402D1C433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 01:08:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:References:
-	In-Reply-To:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CHvPGTyhi9LKOQeBNSnTpdIkx7tAHMUjpLTea1Qbq3w=; b=1HE/LJwsWSIb5j
-	o2Pcb6bsHEmJGHxgaadb7Tx+T37fc3Zi79PSw36tU3ftftpGfcQuEBvHC67RuqN+wonTp1xuTFyqH
-	OFnLGNN3xQ+5w6LRNzwxTdTsNYAnQ+Cblrb4NRYd1HDeSovFR8gdOXb4Q2CHFOkucsTaHPqcCV3cq
-	wVcgFbCMtPy3SN9L0ghg/oTmvDmN2t5gJepQQhMok6/gpxsi1Yo77AH6MCwBm7zLk6fCYzTOXa9O3
-	qeTVUI5P4XirvEiztVTmUEwAJOCbaz/c9ApFv87p8NKw3/ngwrbkJ2dRc9KA54OrNtIvI5tYJY9CZ
-	A3Jf/LYstfk9ScQ4Fjhw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DwZarnptm7pFWOUHvY4kflOkotbFHHPgP5koVNy8QVs=; b=K7p+w/u7BWbPIH
+	owr2UPpUeYQeEu1eVatZ5S/c0ho3mSlBbHiGbMHywYrbmmulKCRxXaNapIVpZAEcata3MJyv/8m1C
+	1sR4xZa0ojian25OERCwOCEvIYI5GCf36GlrxdEUQgb/Wzqr0PWs1Qnl6wNn8/cmBZWb2MKXnX+o8
+	n9TFa044/GtaKRv+2+1vKFzxC9+5hTLRSpT5xyjfwp4GfmvnL1+TrL+qJkpeJGGfjKRL9csNTBWrI
+	J2ragLenaQ3r/UCdIexLgmbyymal3AaXAVcl2JL1OjRWBPIEv19jOX2YK7o+BGCraNOHR9x7ps6oG
+	ujcOFv2h8JBr/YSPL+oA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG8uI-006ZMt-4U; Tue, 26 Jul 2022 00:58:42 +0000
-Received: from m1524.mail.126.com ([220.181.15.24])
+	id 1oG93n-006bTf-LY; Tue, 26 Jul 2022 01:08:31 +0000
+Received: from mail-m963.mail.126.com ([123.126.96.3])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG8uF-006ZBC-Bw; Tue, 26 Jul 2022 00:58:41 +0000
+	id 1oG93k-006bRx-Jy
+	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 01:08:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=aUJcO
-	SgrP6VjZXkDhOlDqKQYGvO8kUGmx5Y3EFQVfZ8=; b=d2l7aSU1v/25jFnF/PSO0
-	I5Ntq2cH2fyvSCb8X4dydxcLoPvxI7+Sq9pNaPPLkXjS3XgtldhWf6co9GVMRGad
-	TQvkddPvKlQmtDne27wa6rO8dLaa7bC2YU5CFGBxUPf8IVfdZoyAOF//gqxST/Ih
-	4gOtSdV1fkEwkH28TcNJrk=
-Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr24
- (Coremail) ; Tue, 26 Jul 2022 08:58:13 +0800 (CST)
-X-Originating-IP: [124.16.139.61]
-Date: Tue, 26 Jul 2022 08:58:13 +0800 (CST)
-From: "Liang He" <windhl@126.com>
-To: "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>
-Cc: "Neil Armstrong" <narmstrong@baylibre.com>, khilman@baylibre.com, 
-	jbrunet@baylibre.com, inux-amlogic@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re:Re: [PATCH] soc: amlogic: meson-pwrc: Hold reference returned by
- of_get_parent()
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
- Copyright (c) 2002-2022 www.mailtech.cn 126com
-In-Reply-To: <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
-References: <20220705022032.281665-1-windhl@126.com>
- <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=lvbhG
+	MrtTullxjZx01jQpF6ivXWHh1XL/NmfhOLf2sE=; b=AoI0tCAASJWvRxpnWjhzf
+	jpePc29tH/vJ1VbQA7pBfCGPj+28mFlxtFsYJjnz3RdHXjH5dQwRv8sWI0bLGaBA
+	GPJ66Of7gBqNWncn7UeUshrpkR1aJx8d+x8/RFJm2dXzvr4fXGHkiccVsZ6bC6DJ
+	O7d1TbuBsMkuXDzY7bJ034=
+Received: from localhost.localdomain (unknown [124.16.139.61])
+	by smtp8 (Coremail) with SMTP id NORpCgDniZZLPt9ia0IKIg--.28429S2;
+	Tue, 26 Jul 2022 09:07:24 +0800 (CST)
+From: Liang He <windhl@126.com>
+To: narmstrong@baylibre.com,
+	airlied@linux.ie,
+	daniel@ffwll.ch,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	windhl@126.com
+Subject: [PATCH] drm/meson: Fix refcount bugs in meson_vpu_has_available_connectors()
+Date: Tue, 26 Jul 2022 09:07:22 +0800
+Message-Id: <20220726010722.1319416-1-windhl@126.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Message-ID: <48085de5.7dd.1823802f2c1.Coremail.windhl@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: GMqowACXpiYmPN9ig19OAA--.39639W
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbiuBxJF2JVkiE4RgABsB
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+X-CM-TRANSID: NORpCgDniZZLPt9ia0IKIg--.28429S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Wr1xKw4kKr43Ar13CF48JFb_yoWkurc_WF
+	W8XFZrWr4UZr48AF4ayFy7uF9FkF1xurWfCF15ta4fCa4UAr1UZr1j9r90qw1fZFW3ZrZr
+	A3ykCF1Ykry3KjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjFdyUUUUUU==
+X-Originating-IP: [124.16.139.61]
+X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbiuAxKF2JVkiHHxAAAsu
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_175839_791896_02E9250E 
-X-CRM114-Status: GOOD (  10.03  )
+X-CRM114-CacheID: sfid-20220725_180828_993627_ACA9EBE1 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,44 +76,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+In this function, there are two refcount leak bugs:
+(1) when breaking out of for_each_endpoint_of_node(), we need call
+the of_node_put() for the 'ep';
+(2) we should call of_node_put() for the reference returned by
+of_graph_get_remote_port() when it is not used anymore.
 
-At 2022-07-26 03:46:30, "Martin Blumenstingl" <martin.blumenstingl@googlemail.com> wrote:
->Hello,
->
->thank you for your patch!
->
->On Tue, Jul 5, 2022 at 4:20 AM Liang He <windhl@126.com> wrote:
->[...]
->> +       struct device_node *np;
->>
->>         int i, ret;
->>
->>         match = of_device_get_match_data(&pdev->dev);
->> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
->>
->>         pwrc->xlate.num_domains = match->count;
->>
->> -       regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
->> +       np = of_get_parent(pdev->dev.of_node);
->> +       regmap_hhi = syscon_node_to_regmap(np);
->This works but I had to read the code twice because I thought the
->wrong struct device_node was used.
->Other drivers typically use "np" for whatever the code section
->currently refers to. In this case the code section is about the power
->controller, so I thought that "np" was the same as
->"pdev->dev.of_node".
->
->I think the code would be easier to understand and the likelihood of
->someone making the same mistake as I did if you could rename "np" to
->"parent_np" (just like you have done in your other patches).
->
->[...]
->> +       struct device_node *np;
->same as above, I suggest renaming this to parent_np.
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+Signed-off-by: Liang He <windhl@126.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/gpu/drm/meson/meson_drv.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Thanks, I will send a new verison soon.
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 1b70938cfd2c..bd4ca11d3ff5 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -115,8 +115,11 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
+ 	for_each_endpoint_of_node(dev->of_node, ep) {
+ 		/* If the endpoint node exists, consider it enabled */
+ 		remote = of_graph_get_remote_port(ep);
+-		if (remote)
++		if (remote) {
++			of_node_put(remote);
++			of_node_put(ep);
+ 			return true;
++		}
+ 	}
+ 
+ 	return false;
+-- 
+2.25.1
 
-Liang
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
