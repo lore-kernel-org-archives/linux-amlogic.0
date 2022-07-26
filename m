@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6144C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 11:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5EBC433EF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 11:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7vpfR0qyVU22Ji0eVeatpfkoqoGClQtJ1Cs3aTlQg3A=; b=en4KZUAeHIrYSD
-	MvvJVvPnbEwRjICRo1TYcFqi3sYp5OaRXGbBu00MECDc1LhT5hhOtBy9jewezQDAR4MBY5wkkNRYh
-	RB/Kb/p237gYCuPZHUuJI8rBs36tCndG4Knb6jPWMIuBy5I3cb7Umdf7LmXCgvoz6bPuFEGLSlI79
-	YBPeM7ZUPc/oniYgNfZ1tHUFr3BQwQTjL6wKmokH9NzZCVXWK4mfu7Iw61ZfEY1ZdXJQgO1OXSCSr
-	hYiGmO8bVa5sB7eHWcc9sbodM5CXF5tiJl55Qgw//Uzchh45LzTZ+rPIeVg2hseEuOoJ4F5KQVS0k
-	CTYdJbX5y6qMMAyI8HwA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6Xi/uv0yOHxx6xYwCPoY1Tgk4KriE/lfykOHjlsj0DQ=; b=4IZfb7U864hu73
+	djw/nKntxwaGYiFL2oKHPooANyNbNU1BV8cRBBdK4pzrl28BgHa8zgXfWNZh0IAORjX9vwxsRiEvT
+	2/peF4+Z00tLeBIwTaNe6pK4pYcqsohuqCEe4wpmYk8SIybZenuTn38g38TIuyK1thQ9eV2+v2U/f
+	KGLyOBUzFmYlpFOXPdDnkkq0gy3jNA5gyxwMxI95F9T2P5fT0vuDh7FzrLgqlAlpxnZh690YqWnAI
+	1fN8j1ElAKYLKO8ZEh2Oyb0Suk73ha8lIJXBdc3+/LjHi6YE5JNtpfz9mdXpBXnghKQG+Cw7p/I+P
+	3K4J0rKs+rswZPA8ZzNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGJCo-00GXiH-KB; Tue, 26 Jul 2022 11:58:30 +0000
-Received: from mail-lj1-x234.google.com ([2a00:1450:4864:20::234])
+	id 1oGJCp-00GXiU-Ab; Tue, 26 Jul 2022 11:58:31 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGJCM-00GXDc-F6
-	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 11:58:06 +0000
-Received: by mail-lj1-x234.google.com with SMTP id p21so8583041ljh.12
-        for <linux-amlogic@lists.infradead.org>; Tue, 26 Jul 2022 04:57:57 -0700 (PDT)
+	id 1oGJCN-00GXJ1-6D
+	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 11:58:09 +0000
+Received: by mail-lj1-x230.google.com with SMTP id m9so16181217ljp.9
+        for <linux-amlogic@lists.infradead.org>; Tue, 26 Jul 2022 04:58:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZwkQZasg6IBuIX69FQ87eiIi43RzDJyxPSLaxovlxC4=;
-        b=kYqEifC17FN7TtUjiBjuAmb1wrChjCst87iBC8TDZ7+xc8vNgwBl2B/DHmo4mtsUTk
-         ukHgvpU7hg4sndI3GIByDjcaQPJeBlvQr8pYw+n9B7CX8aDi+7QwW8qL+4zmVIHZe9rD
-         zDqLjIx9UR84zUhofG2J+SbCH9xpzcmW6j2abK87ChShLIwY+IkusBLVayEyUfEVUuZH
-         as5eQOemkZMLR1sbfhY1Sd4wMqv4fw+pvLTxsnhqbpBea6C5A8Qb0jVVqeqLgaqQa/56
-         RbYJvEoLI5xxRb9DURsh2h4t39Cy/0nkA3xIDdOUEltZFfLFnouXJb0kFRvTngXQ9Wvf
-         BgGw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ZD4oWR8lLLm0h5UiJTByuHzTZOByI5QF329GLIt5dRk=;
+        b=Dlg9Vr86jIDl2AyTMP/rQqeen7cbUiOBxZyLMsFQyBmwc81Qd8pEUVSzSjCGGC7uEu
+         D4IOTA6Azi+sAitVNl8HJWRaebZKlLdsfBvAzSybVmWO+m5H19z7yM/b6e/Njujpby7m
+         bX1EWkEH6GKJ6o1uxmZHWpH2GmC2o+m/YTc8B89nB/56+tTMOkQ/kw8OpsfIQhjGE/gs
+         pqmLDjXg4Kw/antbq70l9seU+6jrNGu0rWiL1/4R9fXdOguf7GtT8yZh4XQCc62wuvMp
+         hCOR55O0tiCMpHHPec9kxIixs2GPCbIgWozegDQsRDl+Fr91Q6iXKaffh2Sk7ENprU2i
+         4m2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZwkQZasg6IBuIX69FQ87eiIi43RzDJyxPSLaxovlxC4=;
-        b=iynLkjadMnstv5OecC8+IhTpu8B86n+X/nS1Sb6L5IMeujC0n8E6gM+R0gDJ84Nqp4
-         YTLsoDG0N62NFLbFfMpepasWMLnw47qlyNAWwVbKE9sKWHdoxzk2ySvlzowaagK3P70P
-         laVwEPALQHKT2eUomlaQqjmv2cO8mnZCCnnalYUK4zZ+HwDx6aPNh/d3lq/hQVYq3hUK
-         +LR99IT+ppocrRFnJ17ZzDBhsx9/NsyRNIOLVDL9eSAcNJOpnRrjZJ7LKeTvJfRLsJpl
-         66WrlgCVIg7oJH+msHmlvX2u3xjkIlNliCkGv/SIXp2V+aE9VRe6o4dQK9cGNGy9E2s8
-         doDg==
-X-Gm-Message-State: AJIora8YWfQENwGPtLLzQ/ABeT+NDXuZmRuziKs4kQpIXm6giAJiZjYe
-	+qsZHsa2Za2ZnRoxAEKTIh1qlQ==
-X-Google-Smtp-Source: AGRyM1sbTSItTpSSwTcmlDwnnQpx/0JkNaISSUBsOMOvGMIufatVh9gvLfu9MyNfud5Jhd7RQsdUlg==
-X-Received: by 2002:a05:651c:1208:b0:25e:141e:63a7 with SMTP id i8-20020a05651c120800b0025e141e63a7mr1085274lja.513.1658836675690;
-        Tue, 26 Jul 2022 04:57:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ZD4oWR8lLLm0h5UiJTByuHzTZOByI5QF329GLIt5dRk=;
+        b=1o8Eu4x9nStwO6hky7mOfC1er2RmVNWpuJmIxMnsk8TwBCqyWo7Oe1UOcozUhA7a4S
+         0lEGMzW3w9/rZnfjirxTNkJwwkQ4y4ZbVCGxI6tA2tY1Uslb3ja/vHIJVj8pyUFU/nes
+         4Wy2/nQhGyukPvQyaKqE1GMt2UuAK4GkeFfXqiGCiODyTmD79Gom4BSDtdI5XoQHRa5S
+         ME6b7fD9DFVl4Kd8drieRRURrgITqDNDI2qnouvMYYtIaJzeAqV4bMA7J7Oj8EhsKX9d
+         Mtt4S7mUBF/AWZ9fJxs+oeKf8b9lVV7lMBTweicoZN1/Kc/R1nlsCYJOI5E2aZZV3exu
+         Rpcg==
+X-Gm-Message-State: AJIora8CHqlL+ITLF0irk9fpaSLNEmRldMwnh7ZOfQM3AFGCAXySbbkx
+	r6X00iCLvp2BhaO/RQ4U+3GYVg==
+X-Google-Smtp-Source: AGRyM1sf7OccntL6OHASCh63UHGBxUSN3DSTt4KunkGAGPRSojU2+jhNffQP1WK+ZRFbxWpKHKPxAQ==
+X-Received: by 2002:a2e:a5c5:0:b0:25e:818:34c7 with SMTP id n5-20020a2ea5c5000000b0025e081834c7mr3315066ljp.119.1658836680931;
+        Tue, 26 Jul 2022 04:58:00 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id g24-20020a19e058000000b0048a7d05739asm222219lfj.4.2022.07.26.04.57.53
+        by smtp.gmail.com with ESMTPSA id g24-20020a19e058000000b0048a7d05739asm222219lfj.4.2022.07.26.04.57.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 04:57:55 -0700 (PDT)
+        Tue, 26 Jul 2022 04:58:00 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -103,14 +103,16 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-pm@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] dt-bindings: power: drop quotes when not needed
-Date: Tue, 26 Jul 2022 13:57:46 +0200
-Message-Id: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] dt-bindings: power: supply: drop quotes when not needed
+Date: Tue, 26 Jul 2022 13:57:48 +0200
+Message-Id: <20220726115748.101015-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
+References: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220726_045802_593844_2A004821 
-X-CRM114-Status: UNSURE (   9.94  )
+X-CRM114-CacheID: sfid-20220726_045803_311871_243208FD 
+X-CRM114-Status: UNSURE (   9.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,101 +134,695 @@ Id and schema fields do not need quotes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 4 ++--
- .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 4 ++--
- .../devicetree/bindings/power/apple,pmgr-pwrstate.yaml        | 2 +-
- .../devicetree/bindings/power/brcm,bcm63xx-power.yaml         | 4 ++--
- Documentation/devicetree/bindings/power/renesas,apmu.yaml     | 4 ++--
- .../devicetree/bindings/power/renesas,rcar-sysc.yaml          | 4 ++--
- 6 files changed, 11 insertions(+), 11 deletions(-)
+ .../bindings/power/supply/active-semi,act8945a-charger.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq2415x.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq24190.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq24257.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq24735.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq2515x.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq256xx.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq25890.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq25980.yaml   | 4 ++--
+ Documentation/devicetree/bindings/power/supply/bq27xxx.yaml   | 4 ++--
+ .../devicetree/bindings/power/supply/cpcap-battery.yaml       | 4 ++--
+ .../devicetree/bindings/power/supply/cpcap-charger.yaml       | 4 ++--
+ .../devicetree/bindings/power/supply/dlg,da9150-charger.yaml  | 4 ++--
+ .../bindings/power/supply/dlg,da9150-fuel-gauge.yaml          | 4 ++--
+ .../devicetree/bindings/power/supply/ingenic,battery.yaml     | 4 ++--
+ Documentation/devicetree/bindings/power/supply/isp1704.yaml   | 4 ++--
+ .../devicetree/bindings/power/supply/lego,ev3-battery.yaml    | 4 ++--
+ .../devicetree/bindings/power/supply/lltc,lt3651-charger.yaml | 4 ++--
+ .../devicetree/bindings/power/supply/lltc,ltc294x.yaml        | 4 ++--
+ Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml | 4 ++--
+ .../devicetree/bindings/power/supply/maxim,ds2760.yaml        | 4 ++--
+ .../devicetree/bindings/power/supply/maxim,max14656.yaml      | 4 ++--
+ .../devicetree/bindings/power/supply/maxim,max17040.yaml      | 4 ++--
+ .../devicetree/bindings/power/supply/maxim,max17042.yaml      | 4 ++--
+ .../devicetree/bindings/power/supply/maxim,max8903.yaml       | 4 ++--
+ .../devicetree/bindings/power/supply/nokia,n900-battery.yaml  | 4 ++--
+ .../devicetree/bindings/power/supply/olpc-battery.yaml        | 4 ++--
+ .../devicetree/bindings/power/supply/power-supply.yaml        | 4 ++--
+ .../bindings/power/supply/richtek,rt5033-battery.yaml         | 4 ++--
+ .../devicetree/bindings/power/supply/richtek,rt9455.yaml      | 4 ++--
+ .../devicetree/bindings/power/supply/sc2731-charger.yaml      | 4 ++--
+ Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml | 4 ++--
+ .../bindings/power/supply/stericsson,ab8500-btemp.yaml        | 4 ++--
+ .../bindings/power/supply/stericsson,ab8500-chargalg.yaml     | 4 ++--
+ .../bindings/power/supply/stericsson,ab8500-charger.yaml      | 4 ++--
+ .../bindings/power/supply/stericsson,ab8500-fg.yaml           | 4 ++--
+ .../bindings/power/supply/summit,smb347-charger.yaml          | 4 ++--
+ .../devicetree/bindings/power/supply/tps65090-charger.yaml    | 4 ++--
+ .../devicetree/bindings/power/supply/tps65217-charger.yaml    | 4 ++--
+ .../devicetree/bindings/power/supply/twl4030-charger.yaml     | 4 ++--
+ .../power/supply/x-powers,axp20x-ac-power-supply.yaml         | 4 ++--
+ .../power/supply/x-powers,axp20x-battery-power-supply.yaml    | 4 ++--
+ .../power/supply/x-powers,axp20x-usb-power-supply.yaml        | 4 ++--
+ 43 files changed, 86 insertions(+), 86 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-index 4e52ef33a986..5390e988a934 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+diff --git a/Documentation/devicetree/bindings/power/supply/active-semi,act8945a-charger.yaml b/Documentation/devicetree/bindings/power/supply/active-semi,act8945a-charger.yaml
+index 3f74bc19415d..5220d9cb16d8 100644
+--- a/Documentation/devicetree/bindings/power/supply/active-semi,act8945a-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/active-semi,act8945a-charger.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/active-semi,act8945a-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/active-semi,act8945a-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Active-semi ACT8945A Charger Function
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq2415x.yaml b/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
+index 118cf484cc69..a3c00e078918 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
 @@ -2,8 +2,8 @@
- # Copyright 2019 BayLibre, SAS
+ # Copyright (C) 2021 Sebastian Reichel
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#"
+-$id: "http://devicetree.org/schemas/power/supply/bq2415x.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#
++$id: http://devicetree.org/schemas/power/supply/bq2415x.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Amlogic Meson Everything-Else Power Domains
+ title: Binding for TI bq2415x Li-Ion Charger
  
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-index 86e5f6513bb3..eab21bb2050a 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-@@ -3,8 +3,8 @@
- # Author: Jianxin Pan <jianxin.pan@amlogic.com>
+diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
+index 402d9d2ed2b9..4884ec90e2b8 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
+-$id: "http://devicetree.org/schemas/power/supply/bq24190.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#
++$id: http://devicetree.org/schemas/power/supply/bq24190.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Amlogic Meson Secure Power Domains
+ title: Binding for TI BQ2419x Li-Ion Battery Charger
  
-diff --git a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-index 19a194980142..94d369eb85de 100644
---- a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-+++ b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Hector Martin <marcan@marcan.st>
+diff --git a/Documentation/devicetree/bindings/power/supply/bq24257.yaml b/Documentation/devicetree/bindings/power/supply/bq24257.yaml
+index 3a0f6cd9015a..c7406bef0fa8 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq24257.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq24257.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq24257.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq24257.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- allOf:
--  - $ref: "power-domain.yaml#"
-+  - $ref: power-domain.yaml#
+ title: Binding for bq24250, bq24251 and bq24257 Li-Ion Charger
  
- description: |
-   Apple SoCs include PMGR blocks responsible for power management,
-diff --git a/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml b/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
-index 63b15ac6dde4..d867bd6976d8 100644
---- a/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
-+++ b/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
+diff --git a/Documentation/devicetree/bindings/power/supply/bq24735.yaml b/Documentation/devicetree/bindings/power/supply/bq24735.yaml
+index 131be6782c4b..dd9176ce71b3 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq24735.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq24735.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq24735.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq24735.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Binding for TI BQ24735 Li-Ion Battery Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq2515x.yaml b/Documentation/devicetree/bindings/power/supply/bq2515x.yaml
+index 813d6afde606..27db38577822 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq2515x.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq2515x.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2020 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq2515x.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq2515x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TI bq2515x 500-mA Linear charger family
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+index 92ec7ed25668..91abe5733c41 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2020 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq256xx.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq256xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TI bq256xx Switch Mode Buck Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25890.yaml b/Documentation/devicetree/bindings/power/supply/bq25890.yaml
+index bf823b615439..204c0147188f 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq25890.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq25890.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq25890.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq25890.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Binding for bq25890, bq25892, bq25895 and bq25896 Li-Ion Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25980.yaml b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+index 8367a1fd4057..4883527ab5c7 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq25980.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2020 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq25980.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq25980.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TI BQ25980 Flash Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+index 6af41da3e055..65fc6049efc1 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2020 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/bq27xxx.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/bq27xxx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TI BQ27XXX fuel gauge family
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml b/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
+index 7153fd4ce55f..694bfdb5815c 100644
+--- a/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/cpcap-battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/cpcap-battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Motorola CPCAP PMIC battery
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml b/Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml
+index cb6353683d7b..7e6bf30a0107 100644
+--- a/Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/cpcap-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/cpcap-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Motorola CPCAP PMIC charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/dlg,da9150-charger.yaml b/Documentation/devicetree/bindings/power/supply/dlg,da9150-charger.yaml
+index 96336b05d76d..b289388952bf 100644
+--- a/Documentation/devicetree/bindings/power/supply/dlg,da9150-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/dlg,da9150-charger.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/dlg,da9150-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/dlg,da9150-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Dialog Semiconductor DA9150 Charger Power Supply bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/dlg,da9150-fuel-gauge.yaml b/Documentation/devicetree/bindings/power/supply/dlg,da9150-fuel-gauge.yaml
+index 30c2fff7cf92..d47caf59d204 100644
+--- a/Documentation/devicetree/bindings/power/supply/dlg,da9150-fuel-gauge.yaml
++++ b/Documentation/devicetree/bindings/power/supply/dlg,da9150-fuel-gauge.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/dlg,da9150-fuel-gauge.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/dlg,da9150-fuel-gauge.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Dialog Semiconductor DA9150 Fuel-Gauge Power Supply bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+index 76c227a7cd5c..46527038bf22 100644
+--- a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019-2020 Artur Rojek
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/ingenic,battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/ingenic,battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Ingenic JZ47xx battery bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/isp1704.yaml b/Documentation/devicetree/bindings/power/supply/isp1704.yaml
+index 4c91da70011d..7e3449ed70d4 100644
+--- a/Documentation/devicetree/bindings/power/supply/isp1704.yaml
++++ b/Documentation/devicetree/bindings/power/supply/isp1704.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/isp1704.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/isp1704.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Binding for NXP ISP1704 USB Charger Detection
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/lego,ev3-battery.yaml b/Documentation/devicetree/bindings/power/supply/lego,ev3-battery.yaml
+index 518eabb63588..a99d989f1450 100644
+--- a/Documentation/devicetree/bindings/power/supply/lego,ev3-battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/lego,ev3-battery.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/lego,ev3-battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/lego,ev3-battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: LEGO MINDSTORMS EV3 Battery
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/lltc,lt3651-charger.yaml b/Documentation/devicetree/bindings/power/supply/lltc,lt3651-charger.yaml
+index e2d8d2aebb73..76cedf95a12c 100644
+--- a/Documentation/devicetree/bindings/power/supply/lltc,lt3651-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/lltc,lt3651-charger.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/lltc,lt3651-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/lltc,lt3651-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Analog Devices LT3651 Charger Power Supply bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/lltc,ltc294x.yaml b/Documentation/devicetree/bindings/power/supply/lltc,ltc294x.yaml
+index 043bf378040f..109b41a0d56c 100644
+--- a/Documentation/devicetree/bindings/power/supply/lltc,ltc294x.yaml
++++ b/Documentation/devicetree/bindings/power/supply/lltc,ltc294x.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/lltc,ltc294x.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/lltc,ltc294x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Binding for LTC2941, LTC2942, LTC2943 and LTC2944 battery fuel gauges
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+index 6d7aa97a6475..cfffaeef8b09 100644
+--- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2020 Topic Embedded Products
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/ltc4162-l.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/ltc4162-l.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Linear Technology (Analog Devices) LTC4162-L Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,ds2760.yaml b/Documentation/devicetree/bindings/power/supply/maxim,ds2760.yaml
+index 818647edf63d..c838efcf7e16 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,ds2760.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,ds2760.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/maxim,ds2760.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/maxim,ds2760.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Maxim DS2760 DT bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max14656.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max14656.yaml
+index 0a41078ebd99..070ef6f96e60 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max14656.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max14656.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/maxim,max14656.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/maxim,max14656.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Maxim MAX14656 DT bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+index 6b4588a3253b..3a529326ecbd 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/maxim,max17040.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/maxim,max17040.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Maxim 17040 fuel gauge series
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+index 971b53c58cc6..aff5d0792e0f 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/maxim,max17042.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/maxim,max17042.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Maxim 17042 fuel gauge series
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
+index 4828ca0842ae..a8d625f285f1 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max8903.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/maxim,max8903.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/maxim,max8903.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Maxim Semiconductor MAX8903 Battery Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml b/Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml
+index 4a1489f2b28d..5178e6207271 100644
+--- a/Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/nokia,n900-battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/nokia,n900-battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Nokia N900 battery
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/olpc-battery.yaml b/Documentation/devicetree/bindings/power/supply/olpc-battery.yaml
+index 0bd7bf3b8e1b..dd89e2532a07 100644
+--- a/Documentation/devicetree/bindings/power/supply/olpc-battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/olpc-battery.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/olpc-battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/olpc-battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: OLPC Battery
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/power-supply.yaml b/Documentation/devicetree/bindings/power/supply/power-supply.yaml
+index 9a490fbd32e1..2f672e6e8d72 100644
+--- a/Documentation/devicetree/bindings/power/supply/power-supply.yaml
++++ b/Documentation/devicetree/bindings/power/supply/power-supply.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/power-supply.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/power-supply.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Power Supply Core Support
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml
+index ae647d3355a2..756c16d1727d 100644
+--- a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/richtek,rt5033-battery.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/richtek,rt5033-battery.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Richtek RT5033 PMIC Fuel Gauge
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt9455.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt9455.yaml
+index e1c233462f29..bce15101318e 100644
+--- a/Documentation/devicetree/bindings/power/supply/richtek,rt9455.yaml
++++ b/Documentation/devicetree/bindings/power/supply/richtek,rt9455.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/richtek,rt9455.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/richtek,rt9455.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Binding for Richtek rt9455 battery charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/sc2731-charger.yaml b/Documentation/devicetree/bindings/power/supply/sc2731-charger.yaml
+index b62c2431f94e..eeb043f9bb4f 100644
+--- a/Documentation/devicetree/bindings/power/supply/sc2731-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/sc2731-charger.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/sc2731-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/sc2731-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Spreadtrum SC2731 PMICs battery charger binding
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
+index e019cffd1f38..d90a838a1744 100644
+--- a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
++++ b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/sc27xx-fg.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/sc27xx-fg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Spreadtrum SC27XX PMICs Fuel Gauge Unit Power Supply Bindings
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
+index 4b8a00cec39c..525abdfb3e2d 100644
+--- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
++++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/stericsson,ab8500-btemp.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/stericsson,ab8500-btemp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AB8500 Battery Temperature Monitor
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
+index 6799224f7fb4..10bbdcfc87b6 100644
+--- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
++++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/stericsson,ab8500-chargalg.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/stericsson,ab8500-chargalg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AB8500 Charging Algorithm
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
+index 9518eb7289d0..e33329b3af61 100644
+--- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/stericsson,ab8500-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/stericsson,ab8500-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AB8500 Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
+index 2ce408a7c0ae..6a724ca90e99 100644
+--- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
++++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) 2021 Sebastian Reichel
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/stericsson,ab8500-fg.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/stericsson,ab8500-fg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AB8500 Fuel Gauge
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+index ce0bca4689f6..2d552becbfe6 100644
+--- a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
 @@ -1,8 +1,8 @@
  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/power/brcm,bcm63xx-power.yaml#"
+-$id: "http://devicetree.org/schemas/power/supply/summit,smb347-charger.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/power/brcm,bcm63xx-power.yaml#
++$id: http://devicetree.org/schemas/power/supply/summit,smb347-charger.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: BCM63xx power domain driver
+ title: Battery charger driver for SMB345, SMB347 and SMB358
  
-diff --git a/Documentation/devicetree/bindings/power/renesas,apmu.yaml b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
-index d77fc88050c8..f2cc89e7f4e4 100644
---- a/Documentation/devicetree/bindings/power/renesas,apmu.yaml
-+++ b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+diff --git a/Documentation/devicetree/bindings/power/supply/tps65090-charger.yaml b/Documentation/devicetree/bindings/power/supply/tps65090-charger.yaml
+index f2dd38bf078c..586745426341 100644
+--- a/Documentation/devicetree/bindings/power/supply/tps65090-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/tps65090-charger.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # SPDX-License-Identifier: GPL-2.0
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/power/renesas,apmu.yaml#"
+-$id: "http://devicetree.org/schemas/power/supply/tps65090-charger.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/power/renesas,apmu.yaml#
++$id: http://devicetree.org/schemas/power/supply/tps65090-charger.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Renesas Advanced Power Management Unit
+ title: TPS65090 Frontend PMU with Switchmode Charger
  
-diff --git a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
-index 8d56bedd3390..0720b54881c2 100644
---- a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
-+++ b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
+diff --git a/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
+index 2c2fe883bb48..7ccf0cdffd3e 100644
+--- a/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # SPDX-License-Identifier: GPL-2.0
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/power/renesas,rcar-sysc.yaml#"
+-$id: "http://devicetree.org/schemas/power/supply/tps65217-charger.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/power/renesas,rcar-sysc.yaml#
++$id: http://devicetree.org/schemas/power/supply/tps65217-charger.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Renesas R-Car and RZ/G System Controller
+ title: TPS65217 Charger
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/twl4030-charger.yaml b/Documentation/devicetree/bindings/power/supply/twl4030-charger.yaml
+index fe3f32a0ea79..d8d3154f9cb1 100644
+--- a/Documentation/devicetree/bindings/power/supply/twl4030-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/twl4030-charger.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/twl4030-charger.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/twl4030-charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TWL4030 BCI (Battery Charger Interface)
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-ac-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-ac-power-supply.yaml
+index de6a23aee977..5c8369fd3ef7 100644
+--- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-ac-power-supply.yaml
++++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-ac-power-supply.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/x-powers,axp20x-ac-power-supply.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/x-powers,axp20x-ac-power-supply.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AXP20x AC power-supply
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
+index d055428ae39f..e0b95ecbbebd 100644
+--- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
++++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/x-powers,axp20x-battery-power-supply.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/x-powers,axp20x-battery-power-supply.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AXP20x Battery power-supply
+ 
+diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
+index 0c371b55c9e1..3ce648dd91bd 100644
+--- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
++++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/supply/x-powers,axp20x-usb-power-supply.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/supply/x-powers,axp20x-usb-power-supply.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AXP20x USB power-supply
  
 -- 
 2.34.1
