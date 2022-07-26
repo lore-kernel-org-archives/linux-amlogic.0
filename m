@@ -4,82 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D55C43334
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 06:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E9EDC43334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 07:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MQCKecjrr1Qr6acsN+SZXP9b8GspwAoSHehRet1ClOU=; b=0hr6C/Lf/Ism59
-	epNiivP7HorWJD5jdnAQUs5MDK2sIY2d7k/TU6PWCLm0rayasJ/96X5leYqNTvXodczQLU1yvZDej
-	5BnvE8s+7HC9BXaEgDI6Harl9bFNt9NVBtwsEbQk4JcK33ipR7ErOWuwUhaCF6oYUcmxpkFeSDmUw
-	AlgJ6UB2M41C5l2CYougTUN2ofqxMwJlo9g6IHf++i8mZWe1uLyVU3urARGLhOlseawgD1e1WgYKx
-	/HqlvrjTL7tXfhQx6yYt2i69hRGSqSvHeeaLBJX/LCguRBavndEMUaV9hW1n1kA6ltiSNHNnxp1dS
-	1On6SV45pNQzblv43iqg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=j91EUvtjYQD3tHsyVXys5a1+4LK0sYWLVapJLjzY/BI=; b=o5DLaISnnDGWGE
+	iT0Vq2fj31BwZkk3Zfu3s5+71Ug258q6Gwk5i5CQOKRg4w5aKPh8tMrWuj18Z29AAT4vrs6e1ERvW
+	HwntX6Tb22bFb8ZggFkVwC5IK8e4TsHvQkWjy24QglWIAQlukybu3t6LMRlnFSXqD4xqUBvC/M+Dj
+	4qYDX8ITqTBR6hxn/R+HV+Hu8Z2VL5fGmP0UoYNETYPny7XI5hKwSfZgOs/gs6ifB42iqgUfED25O
+	kUHXclt0OHGXoPXA/mgQHrH/USQsRHoMh0sqoEFMuQbcUfgC6dPgK0N43TotgIrmeLt5VYdPsnap8
+	lBWGwvc9V2CdQsKRzTEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGENB-0091V7-34; Tue, 26 Jul 2022 06:48:53 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGEN7-0091SF-QY
-	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 06:48:51 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id p21so7840942ljh.12
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Jul 2022 23:48:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YQAX1nHFxjgbPeWSF5HcitnTzR9QJkqmNB7ys8ahImk=;
-        b=ZAQg6RBStU2emVYsrxY8SB+/iLgCdCdZppEZKCGHFcxK1B9TaEM9cGtzToIUJzmgXG
-         jqm/pS2AIkbr70qUJtwGqOycsbSyLmGMZY+zpkotF+FSw7GmcqhIlrfofQbcVnVymSC2
-         VxPFBg5JwJLNJPPdmylHpHT5vH1SmKsSeRH4VVcDs3MgrK6+AiyfC+cshQ1DMC047/KL
-         MxbyGITrMZKRQvZLik7XvFGdoIpR/EvPBnugXEnea3HwkOBart/qpUagxM2BkKb0Yn07
-         HWxYBXCu009+/uaz2rvV3j3DzLfHgHtLJhAevpB6t9ZgL+0+uNTQ8QuAkdE2e6zQXJLe
-         iw5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YQAX1nHFxjgbPeWSF5HcitnTzR9QJkqmNB7ys8ahImk=;
-        b=dEuLUHIOGFogxQzjJFt+kwI/H+DifkPtFOpAsPw4IKHby8/P5hNxfHFRlH0vzQ5lpx
-         6RcBAlmShBhy/7gsVglppTh9/oaDOo/Zl+iVw1OXzyRpLS9A1WbgtRSjy7oB7h3HGSbW
-         CDei4rzGT2EUy0VzDyP2QL9j3r9pePCw9HIZWuiLwt/X3h4Htl7j9E8NS6FO6ZKf9AXO
-         v08CIj/oCVPaanmS0xR94Zac1lKXHjPfgfjuTv0DzGtxR+YRJyAftz+nOgndmeB6khvZ
-         IUNWGZt4T4nNPFlQU6cJ1b9vLVn9QVoPbBISYTW3X8GCu+3V5pLR+L/6J6T4Z7cdq0Wu
-         7Q8g==
-X-Gm-Message-State: AJIora+9YhcYokWqHnwcoZyntCrim1mp3QZSLtEl7dDPeu4fqDs+Wphx
-	QDsJvOCR+hor6ir6QwiniThOOA==
-X-Google-Smtp-Source: AGRyM1v50oF7j0YPM0N9tEZsNCmSS9smoq4lDxi2jLcRE6+q/pABRsU6NY2KTXRoxfo1f4c5dXAvnA==
-X-Received: by 2002:a2e:b947:0:b0:25d:d6f6:adaf with SMTP id 7-20020a2eb947000000b0025dd6f6adafmr5720547ljs.230.1658818127437;
-        Mon, 25 Jul 2022 23:48:47 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id j7-20020a2e6e07000000b0025d53e34fe7sm3136020ljc.56.2022.07.25.23.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 23:48:46 -0700 (PDT)
-Message-ID: <62334f55-df8a-936a-ec88-2db469aede21@linaro.org>
-Date: Tue, 26 Jul 2022 08:48:45 +0200
+	id 1oGFKp-009eKO-UZ; Tue, 26 Jul 2022 07:50:31 +0000
+Received: from mail-m965.mail.126.com ([123.126.96.5])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oGFAP-009WlX-1n; Tue, 26 Jul 2022 07:39:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=/yW/t
+	bD0LNvX+u4t+d8dyyc68MM5cwGlNp9S4N1ES7c=; b=Pt4/9zm8T6cGyFyi4rX0I
+	Ov9r5BPLlpORwtWCpYfthAZrbYjvyxh3IhEK2BxHgyMf0o9bjQozKMQXtrqKZ35s
+	oR/griV8pd06s5Ay9M342FfrOeV7BcLG/l0cCPjj1o0ahIeUWeo+1iXrMcq8jlVC
+	+zXltojOJU5ttjcjjM3Glc=
+Received: from localhost.localdomain (unknown [124.16.139.61])
+	by smtp10 (Coremail) with SMTP id NuRpCgAHboIDmt9iNJZWHA--.59720S2;
+	Tue, 26 Jul 2022 15:38:44 +0800 (CST)
+From: Liang He <windhl@126.com>
+To: narmstrong@baylibre.com,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	p.zabel@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	windhl@126.com
+Subject: [PATCH v2] soc: amlogic: meson-pwrc: Hold reference returned by  of_get_parent()
+Date: Tue, 26 Jul 2022 15:38:41 +0800
+Message-Id: <20220726073841.1320509-1-windhl@126.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [v5 4/4] arm64: dts: meson: Add MagicBox M16S support
-Content-Language: en-US
-To: Zhang Ning <zhangn1985@qq.com>
-Cc: martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
- linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, sean@mess.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-References: <20220724231704.132472-1-zhangn1985@qq.com>
- <tencent_9D885D188E51B537DB904A774CEC35E4180A@qq.com>
- <677c9314-593e-3512-539a-fd74f634c470@linaro.org>
- <tencent_1B5B069917D86370ED4136BDD2C413240D08@qq.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_1B5B069917D86370ED4136BDD2C413240D08@qq.com>
+X-CM-TRANSID: NuRpCgAHboIDmt9iNJZWHA--.59720S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7AryDWF4rJFykAw48XFy8AFb_yoW8KF4Upa
+	1DKFyYyFW7Jr1YgryrKan8Za13K3y3Ja1F93ykG3WfZr1vyF1UGFyfGay2yrZa9FZ5CFyf
+	Jr1jkFy8XF4UXFUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziCD7fUUUUU=
+X-Originating-IP: [124.16.139.61]
+X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbi3ARKF1pED-CaNQAAsL
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_234849_911833_4A941FF9 
-X-CRM114-Status: UNSURE (   8.07  )
+X-CRM114-CacheID: sfid-20220726_003945_525542_5E080647 
+X-CRM114-Status: UNSURE (   9.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,37 +74,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/07/2022 02:04, Zhang Ning wrote:
+We should hold the reference returned by of_get_parent() and use
+it to call of_node_put() for refcount balance.
 
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
->>> @@ -0,0 +1,40 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "meson-gxm.dtsi"
->>> +#include "meson-gx-p23x-q20x.dtsi"
->>> +#include <dt-bindings/input/input.h>
->>> +
->>> +/ {
->>> +	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
->>> +	model = "MagicBox M16S";
->>> +
->>> +	gpio-keys-polled {
->>
->> Just gpio-keys (or even "keys").
-> I see all dts for amlogic platform are using gpio-keys-polled, could I
-> keep current name?
+Signed-off-by: Liang He <windhl@126.com>
+---
+ drivers/soc/amlogic/meson-ee-pwrc.c     | 5 ++++-
+ drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 5 ++++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+index 2be3afe6c2e3..dd5f2a13ceb5 100644
+--- a/drivers/soc/amlogic/meson-ee-pwrc.c
++++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+@@ -469,6 +469,7 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+ {
+ 	const struct meson_ee_pwrc_domain_data *match;
+ 	struct regmap *regmap_ao, *regmap_hhi;
++	struct device_node *parent_np;
+ 	struct meson_ee_pwrc *pwrc;
+ 	int i, ret;
+ 
+@@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+ 
+ 	pwrc->xlate.num_domains = match->count;
+ 
+-	regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
++	parent_np = of_get_parent(pdev->dev.of_node);
++	regmap_hhi = syscon_node_to_regmap(parent_np);
++	of_node_put(parent_np);
+ 	if (IS_ERR(regmap_hhi)) {
+ 		dev_err(&pdev->dev, "failed to get HHI regmap\n");
+ 		return PTR_ERR(regmap_hhi);
+diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+index b4615b288625..312fd9afccb0 100644
+--- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
++++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+@@ -273,6 +273,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+ 	const struct meson_gx_pwrc_vpu *vpu_pd_match;
+ 	struct regmap *regmap_ao, *regmap_hhi;
+ 	struct meson_gx_pwrc_vpu *vpu_pd;
++	struct device_node *parent_np;
+ 	struct reset_control *rstc;
+ 	struct clk *vpu_clk;
+ 	struct clk *vapb_clk;
+@@ -291,7 +292,9 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+ 
+ 	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
+ 
+-	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
++	parent_np = of_get_parent(pdev->dev.of_node);
++	regmap_ao = syscon_node_to_regmap(parent_np);
++	of_node_put(parent_np);
+ 	if (IS_ERR(regmap_ao)) {
+ 		dev_err(&pdev->dev, "failed to get regmap\n");
+ 		return PTR_ERR(regmap_ao);
+-- 
+2.25.1
 
-
-Best regards,
-Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
