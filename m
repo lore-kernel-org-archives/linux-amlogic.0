@@ -4,67 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E97D9C433EF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 00:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AAFBCCA48A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Jul 2022 00:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Subject:To:From:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:References:
+	In-Reply-To:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cyKkhWbKS5D6cHttDHAv1ybWmvUcLINrzwm80F1rp7E=; b=uZOWCqOtXV5RMb
-	0+4WB/lXWoIUWqIlaY8E3y0uStmR73uQQN6FT56NuiGtHGXJPdBZqaP6xil168SkTid5PkpvGiuYB
-	/NoLZV4XjC5xeOx/LzC05hUFd0XkYuciW9+a2z/pxe/y6DrUg9+gJDvfv05narv1dNZ7GXkApVUZu
-	LlfTOREiNQXMqkORhbDh4C6bPlzP22zMg98QvbLznOT05g26qXjZpg3Ze2gV+hc4N6Hw69SFwIPlI
-	h89uGC8Nx10tYojT2LKgncgWm9ysAGiMMLuZg4dnFEYKzbwg/Orxsb57ZBuYasMRnmbbg0WCuDrVC
-	TASQeq4dLX3q6joXy2cQ==;
+	List-Owner; bh=CHvPGTyhi9LKOQeBNSnTpdIkx7tAHMUjpLTea1Qbq3w=; b=1HE/LJwsWSIb5j
+	o2Pcb6bsHEmJGHxgaadb7Tx+T37fc3Zi79PSw36tU3ftftpGfcQuEBvHC67RuqN+wonTp1xuTFyqH
+	OFnLGNN3xQ+5w6LRNzwxTdTsNYAnQ+Cblrb4NRYd1HDeSovFR8gdOXb4Q2CHFOkucsTaHPqcCV3cq
+	wVcgFbCMtPy3SN9L0ghg/oTmvDmN2t5gJepQQhMok6/gpxsi1Yo77AH6MCwBm7zLk6fCYzTOXa9O3
+	qeTVUI5P4XirvEiztVTmUEwAJOCbaz/c9ApFv87p8NKw3/ngwrbkJ2dRc9KA54OrNtIvI5tYJY9CZ
+	A3Jf/LYstfk9ScQ4Fjhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG8U5-006Uo9-LZ; Tue, 26 Jul 2022 00:31:37 +0000
-Received: from out203-205-251-59.mail.qq.com ([203.205.251.59])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG8U3-006UnG-35
-	for linux-amlogic@lists.infradead.org; Tue, 26 Jul 2022 00:31:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1658795488; bh=tJTFfS52mY6ZQ0pPAfIqFD/u1tEFZCruhQ2+pJXTXT4=;
-	h=Date:From:To:Subject:References:In-Reply-To;
-	b=A9Tvl4SvXxMR/ZPjnHK0U5c6H7HD9qVMjQ5SbhwSZYHEE2kXTxjpFwhvTbaCvrW0B
-	 mV4G+MQu24Txe46fMxUpWGKNUx3VPiCOHsi0DBYxzEhqvuft6b5w/eUVMOrwU7zFt3
-	 +9XD6JdorDcXQ+pZa20tQJvbL2H+qMoTai8zRxL8=
-Received: from TS-551 ([101.229.115.99])
-	by newxmesmtplogicsvrsza7.qq.com (NewEsmtp) with SMTP
-	id 7D897E33; Tue, 26 Jul 2022 08:31:24 +0800
-X-QQ-mid: xmsmtpt1658795484th5oqgqpm
-Message-ID: <tencent_D4DBBC49534ED036FC19485DB48F05B6FF0A@qq.com>
-X-QQ-XMAILINFO: NvH2zBBgt3uTV2mey/3w1Qh1F2G4VZlUwftdas+zcS7coPVWPbxTJYj4j0j0ee
-	 5Wy/5MtZrpBCmHN9dvtQzu1szHMU4rSBNoX1fTnIgWQwFVWTWXtCMP81k0G8XgYJul1CX9xYqXPH
-	 P+YR7Xxx15KPhgIUWwdLYSCkHI12k2/PjlNQoLVD6h6EVE1iFG1eNg5NJCxpgPnZPuz4js6hPlmB
-	 pUyMjtKF22UO8Y/V3B/j+dlpOECzYwZCga7eCeMb57CQJ+kG7GMwM9BdScbVNV66eq8NMSXCarKM
-	 p136LMzRdpP7gdmneZ4RoVpZzMxFBczfTtF7DGi5TSDq8mZk00yN8nBUHFUCTEdqTRAzI6G6um8R
-	 M5OP01+A6PmILZBISM/ADCxJCzdNFlQnNd2W2urfEwzXvB3+kZlPO2RTTPPyyMZh/6kXIbYtoy7k
-	 a8LoDxLtRWfahwsbhY3A9hRWb+9ZPNJORxg4SPpg/L4KVMuWaQEKI4K92hDR0d7kTIfSMj/799qs
-	 d0xIK2K8QEhzGliO/Gcs7jVNYrMY7PrLbnTAIPU6IyZbO3g46YUKLf/q93BoTtX2/VH6bu92hQFB
-	 yOdS8iMEITeMCV+z0fsAYU25AGc6UemLembCaVpFZT56ZXuKtIznXYKTIgeKcXHqGXDJA2mCwtkU
-	 PRKtj9Hdfn5uyv3XP9InJ6tmt4fqyCSJ2Dl4VJtoYpsNquRupaoJtb4fztzIWTtmi5DEUbgmmqSh
-	 zNpFpXtQ5GqZmWJCQhRMsj1m9JUlvpPrjVMSpQRU9dM4ABKfxY1GvslbT+bntxGuUNZtkR93xM9n
-	 d+ksa5Z1PGqwZPtJ1VMDY+ur/bW1QCPYF+sfJzp4mR/YwQtty5keZOVayu9rUB8ekFNLUVinn7wU
-	 4pqzl6sAIRFGjHs4QTK+Wb2sJjgQmp1ADlPQ0FarEwHiDLFcf5v+7WK/gP+xHXxQ==
-Date: Tue, 26 Jul 2022 08:31:24 +0800
-From: Zhang Ning <zhangn1985@qq.com>
-To: martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-	linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, sean@mess.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [v5 1/4] media: rc: add keymap for MagicBox M16S remote
-X-OQ-MSGID: <Yt813EW8+5abLGG/@TS-551>
-References: <20220724231704.132472-1-zhangn1985@qq.com>
- <tencent_3A0D41063A178C639FED0736A3D292134008@qq.com>
+	id 1oG8uI-006ZMt-4U; Tue, 26 Jul 2022 00:58:42 +0000
+Received: from m1524.mail.126.com ([220.181.15.24])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oG8uF-006ZBC-Bw; Tue, 26 Jul 2022 00:58:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=aUJcO
+	SgrP6VjZXkDhOlDqKQYGvO8kUGmx5Y3EFQVfZ8=; b=d2l7aSU1v/25jFnF/PSO0
+	I5Ntq2cH2fyvSCb8X4dydxcLoPvxI7+Sq9pNaPPLkXjS3XgtldhWf6co9GVMRGad
+	TQvkddPvKlQmtDne27wa6rO8dLaa7bC2YU5CFGBxUPf8IVfdZoyAOF//gqxST/Ih
+	4gOtSdV1fkEwkH28TcNJrk=
+Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr24
+ (Coremail) ; Tue, 26 Jul 2022 08:58:13 +0800 (CST)
+X-Originating-IP: [124.16.139.61]
+Date: Tue, 26 Jul 2022 08:58:13 +0800 (CST)
+From: "Liang He" <windhl@126.com>
+To: "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>
+Cc: "Neil Armstrong" <narmstrong@baylibre.com>, khilman@baylibre.com, 
+	jbrunet@baylibre.com, inux-amlogic@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re:Re: [PATCH] soc: amlogic: meson-pwrc: Hold reference returned by
+ of_get_parent()
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
+ Copyright (c) 2002-2022 www.mailtech.cn 126com
+In-Reply-To: <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
+References: <20220705022032.281665-1-windhl@126.com>
+ <CAFBinCC1x-655H2LbbUhiVGmgXL+tdSRnCPV0a-NJcZKOFJZuw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <tencent_3A0D41063A178C639FED0736A3D292134008@qq.com>
+Message-ID: <48085de5.7dd.1823802f2c1.Coremail.windhl@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: GMqowACXpiYmPN9ig19OAA--.39639W
+X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbiuBxJF2JVkiE4RgABsB
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_173135_473043_D29B417A 
-X-CRM114-Status: GOOD (  11.69  )
+X-CRM114-CacheID: sfid-20220725_175839_791896_02E9250E 
+X-CRM114-Status: GOOD (  10.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,38 +73,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I will change the title to:
 
-dt-bindings: media: rc: add keymap for MagicBox M16S remote
+At 2022-07-26 03:46:30, "Martin Blumenstingl" <martin.blumenstingl@googlemail.com> wrote:
+>Hello,
+>
+>thank you for your patch!
+>
+>On Tue, Jul 5, 2022 at 4:20 AM Liang He <windhl@126.com> wrote:
+>[...]
+>> +       struct device_node *np;
+>>
+>>         int i, ret;
+>>
+>>         match = of_device_get_match_data(&pdev->dev);
+>> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+>>
+>>         pwrc->xlate.num_domains = match->count;
+>>
+>> -       regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
+>> +       np = of_get_parent(pdev->dev.of_node);
+>> +       regmap_hhi = syscon_node_to_regmap(np);
+>This works but I had to read the code twice because I thought the
+>wrong struct device_node was used.
+>Other drivers typically use "np" for whatever the code section
+>currently refers to. In this case the code section is about the power
+>controller, so I thought that "np" was the same as
+>"pdev->dev.of_node".
+>
+>I think the code would be easier to understand and the likelihood of
+>someone making the same mistake as I did if you could rename "np" to
+>"parent_np" (just like you have done in your other patches).
+>
+>[...]
+>> +       struct device_node *np;
+>same as above, I suggest renaming this to parent_np.
 
-next version.
+Thanks, I will send a new verison soon.
 
-On Mon, Jul 25, 2022 at 07:17:01AM +0800, Zhang Ning wrote:
-> MagicBox M16S Tv box shipped with a simple NEC remote.
-> it has a key labeled "M", used as Magic key in vendor OS.
-> This has mapped to KEY_MUTE.
-> 
-> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
-> ---
->  Documentation/devicetree/bindings/media/rc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
-> index d4c541c4b164..6491d1bdbac7 100644
-> --- a/Documentation/devicetree/bindings/media/rc.yaml
-> +++ b/Documentation/devicetree/bindings/media/rc.yaml
-> @@ -90,6 +90,7 @@ properties:
->        - rc-kworld-plus-tv-analog
->        - rc-leadtek-y04g0051
->        - rc-lme2510
-> +      - rc-magicbox
->        - rc-manli
->        - rc-mecool-kii-pro
->        - rc-mecool-kiii-pro
-> -- 
-> 2.35.1
-> 
-
+Liang
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
