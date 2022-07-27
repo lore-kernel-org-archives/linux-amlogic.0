@@ -4,61 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AB96C19F21
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 03:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB74DC04A68
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 07:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TM9YhFRwK9EqxBhY6GpuKyauoz4DVbNSrEteUHi8+I0=; b=b/MDFVMTZ1Xdq7
-	QmbIBpnddrvleIFEIBsAL8SDUNJ+/ZCOCujFHybQa7N7e38ln2RpFjTL0unjfX2dlYRNz+qBdPl2Z
-	QoWJ+qv8kcMRJcRgx2hZeVAnL2uS7SVKPlu8xFieMrICVX07MSELXkJ8PewVCcFiGJf/KEP5pOHHI
-	x3+MySNGDEU2AMS5ssHMBw0mASxsknkj1LiS+XIdiy4Z2sRADqbcUNwuUupHI1FaWQNuNN/t+Q2O2
-	Au5p6nyI31XrhHRetmRLdi0TWD8aZ+AEMpVI//ORlGLymbrn/IK/qNtyoJ0ZFQyLwz0gH4+hIu0xg
-	89gmrhR7bbMjveMC7k5w==;
+	List-Owner; bh=AweD4zg1d/lKz4lo8mq54cUpQiCZYm533H4r5hh7FD4=; b=hFJhmOCdgRDYQe
+	ZcS4fm0hCD1DSYxmBQofnByq3c+ntV6Td42aNKut1D/a5TvP7n3lFuJN85dg+kTPWxpXoA9XDwFOR
+	MIVZmA0Vn9h8KuXhFZrmJh+iZxsAGXf+wqGozZT5oFmCZfHkW4TyMflM4dmQVO7a4J7rYHxfLo9RR
+	oZM1De9tRUZG+RL0o3DQw+D1i6ptSCPvxTPvjXRb3gUH35e4W7kKp/Dm56CWYekARslKg9r9mP5te
+	DupBt8vjU3xsYK3umMTdSMeXut+FpBOnY4xWXY6PPruyCWt4JzQzv52M33JIUwkjBYiWIxCY0U7u6
+	GyOvBfE/JRLQFSM9xRww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGXqR-008OLu-Lf; Wed, 27 Jul 2022 03:36:23 +0000
-Received: from mail-il1-f174.google.com ([209.85.166.174])
+	id 1oGb7Y-00AKKN-Er; Wed, 27 Jul 2022 07:06:16 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGXqF-008OCu-9j; Wed, 27 Jul 2022 03:36:13 +0000
-Received: by mail-il1-f174.google.com with SMTP id y10so533131ili.3;
-        Tue, 26 Jul 2022 20:36:05 -0700 (PDT)
+	id 1oGb7V-00AKFc-UF
+	for linux-amlogic@lists.infradead.org; Wed, 27 Jul 2022 07:06:15 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id y11so25651025lfs.6
+        for <linux-amlogic@lists.infradead.org>; Wed, 27 Jul 2022 00:06:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=4sf9T+KkmX+oKbYf44r0dMaCsbRx2OJI0DY04Ho/KW0=;
+        b=XhyVVxoBGYlOH7LOualKl0oesVqPAiTF79SgVH4tPivvYz8h+2BXVbzizOooH6BLQl
+         FWiqJXmDXCLYdH2E2kT76qMS3UoW9tK7OVQRxRbxOaNpU0lCXf3alqGXxbG5j1TyXD0c
+         FAUBvF5ECKgbAPm0koN6pqUOiF8ot7wdOgMH6OYrJgVTIySsG4ufoSWVNQGcI9ZFXJYs
+         EjnBc+a1tAK7O3OClre3Fibp4IehsiAyrRcq1uVZ5ADrd21dvTXrLwBeHJcXnBDialZI
+         0VS4qsGlkY9mliBR25kyEmFLLlek7aoRrW2UT+Eb85v/uQ1WFbplMYgAhPJHBMJ+0iHG
+         RuIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=dnK7WbRCdK4HBAuf4lsZCAqmt9UgwDBVwNpaccKaKvo=;
-        b=sh+/4Ji4qp+Y1WEwjKSmTlrbOwcwh6ulxc+nZ9QBQlSV/i69HmhB8uPg1SNAnYEnHs
-         ZHY4yYFIedT8XEnFbs4/Upv0kcvuY2gWPJCtE6kq1M9srqVPWM/2l7KtnSq/Y6LoTTUS
-         X9UuNKTMSIv3V7ycxPPLpyR16uSzk2KiF/bQxgZNqu5c3s2quslmOeIpbnsxQNDdB3aF
-         qH1sLfhANBIg0gV5nRsBf7/8SWNAg/u3PeSe30z4FDicicdxfA793NmE6n5bTW/fzN9J
-         Cq3v8IVATXOLCH9DcyepM0IeqyS2f2NkVbysEX+KJxmrm3mxK1FjBOcwr+5PBRP+DqnP
-         bJtw==
-X-Gm-Message-State: AJIora9GoHK42f6hIIng/2PICEzrrKzzgdGBjscQTpjp/xGrgbCHLYeo
-	VA6dlpIiOiBsg8qaKK8xmg==
-X-Google-Smtp-Source: AGRyM1vPpRVEUNUO4vaxRM4Cs/vOlGLG2Tz+Cv5RcXMqMX7kBrmifz+HCaRGiayZ4f4YJmOABxm/aQ==
-X-Received: by 2002:a05:6e02:11a3:b0:2dd:1a51:119c with SMTP id 3-20020a056e0211a300b002dd1a51119cmr7657899ilj.308.1658892965199;
-        Tue, 26 Jul 2022 20:36:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y4-20020a056602178400b0067c05ad90d6sm8016707iox.19.2022.07.26.20.36.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 20:36:04 -0700 (PDT)
-Received: (nullmailer pid 1589324 invoked by uid 1000);
-	Wed, 27 Jul 2022 03:36:03 -0000
-From: Rob Herring <robh@kernel.org>
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, Will Deacon <will@kernel.org>, Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, Chris Healy <cphealy@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
-References: <20220726230329.2844101-1-jiucheng.xu@amlogic.com> <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
-Subject: Re: [PATCH v2 4/4] dt-binding: perf: Add Amlogic DDR PMU
-Date: Tue, 26 Jul 2022 21:36:03 -0600
-Message-Id: <1658892963.218595.1589323.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4sf9T+KkmX+oKbYf44r0dMaCsbRx2OJI0DY04Ho/KW0=;
+        b=cggVd+IMa0D2gwZ9GU7F8CzLYBl+F/b69FrTurTsevX/lyjIu08KwTq6V6cI4iX2Vx
+         Yr7kM83RCJnVt9gVhjsiGSMS6h6ypzhY6lZEuI+Zaz9y6h9PzTyKz2XuEh/Bm8A2KAvL
+         fSjE7otsoQf5ySCCwE2R2STD1gRW7VWs19thQVcEjQFEAXuVEU7tjMIZ47vh1/TRj1Lm
+         MPHAvHRxRBkk9Br6lAm3srKtaanyqh2wjoZ5uTgc806F6t6zTagwraTdl2YC/xUTg3Dl
+         8CUGd1zqX9OwVQ9JR2q8DzQORLr9dqqG1gcf+x5zymWtcubPAZFM9Jbd1iftaupKmr/o
+         AHYA==
+X-Gm-Message-State: AJIora/J7OUdVKtCypvMCVPF5QkXsGd+XYAQiodS9z+8bVV3S8GK68x+
+	Wo9h4i3WN3QosbJR+vMSj3tJPQ==
+X-Google-Smtp-Source: AGRyM1smLYBVDCToR7HgdYuRNy05cPwfZUcF2DERzTh5zJoAqiJt5xc2kcI5NHi2mD6/B2qbs17SLw==
+X-Received: by 2002:ac2:54a1:0:b0:48a:6908:1d54 with SMTP id w1-20020ac254a1000000b0048a69081d54mr7981941lfk.295.1658905569296;
+        Wed, 27 Jul 2022 00:06:09 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id f2-20020a056512228200b0047f7b641951sm774404lfu.272.2022.07.27.00.06.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 00:06:08 -0700 (PDT)
+Message-ID: <20725cba-220c-5664-5766-14d89d24b93c@linaro.org>
+Date: Wed, 27 Jul 2022 09:06:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
+Content-Language: en-US
+To: Zhang Ning <zhangn1985@qq.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
+ martin.blumenstingl@googlemail.com, sean@mess.org,
+ christianshewitt@gmail.com, linux-amlogic@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220726143649.142574-1-zhangn1985@qq.com>
+ <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220726_203611_359691_41E9C5F2 
-X-CRM114-Status: GOOD (  13.37  )
+X-CRM114-CacheID: sfid-20220727_000614_018496_01AA5444 
+X-CRM114-Status: GOOD (  12.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,55 +89,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 27 Jul 2022 07:03:29 +0800, Jiucheng Xu wrote:
-> Add binding documentation for the Amlogic G12 series DDR
-> performance monitor unit.
+On 26/07/2022 16:36, Zhang Ning wrote:
+> Add manufactor bindings for Tmall
+> Add the board bindings for Magicbox M16S Tv Box
 > 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+
+All your subjects are still partially wrong. I pointed this out in v5
+and you still send v6 and v7 without proper patch prefix.
+
 > ---
-> Changes v1 -> v2:
->   - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
->   - Delete "model", "dmc_nr", "chann_nr" new properties
->   - Fix compiling error
-> ---
->  .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 45 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+>  Documentation/devicetree/bindings/arm/amlogic.yaml     | 1 +
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  2 files changed, 3 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 61a6cabb375b..a67af2adf6a5 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -125,6 +125,7 @@ properties:
+>                - libretech,aml-s912-pc
+>                - minix,neo-u9h
+>                - nexbox,a1
+> +              - tmall,magicbox-m16s
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Previously the vendor was magicbox... now it is tmall. But you write
+also Alibaba. It's a bit confusing.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/perf/amlogic,g12_ddr_pmu.yaml#
-Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.example.dts:21.26-29.11: Warning (unit_address_vs_reg): /example-0/ddr_pmu: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.example.dtb:0:0: /example-0/ddr_pmu: failed to match any schema with compatible: ['amlogic,g12a-ddr-pmu']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
