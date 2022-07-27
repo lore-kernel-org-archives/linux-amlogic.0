@@ -4,80 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB74DC04A68
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 07:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA97AC19F21
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 07:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AweD4zg1d/lKz4lo8mq54cUpQiCZYm533H4r5hh7FD4=; b=hFJhmOCdgRDYQe
-	ZcS4fm0hCD1DSYxmBQofnByq3c+ntV6Td42aNKut1D/a5TvP7n3lFuJN85dg+kTPWxpXoA9XDwFOR
-	MIVZmA0Vn9h8KuXhFZrmJh+iZxsAGXf+wqGozZT5oFmCZfHkW4TyMflM4dmQVO7a4J7rYHxfLo9RR
-	oZM1De9tRUZG+RL0o3DQw+D1i6ptSCPvxTPvjXRb3gUH35e4W7kKp/Dm56CWYekARslKg9r9mP5te
-	DupBt8vjU3xsYK3umMTdSMeXut+FpBOnY4xWXY6PPruyCWt4JzQzv52M33JIUwkjBYiWIxCY0U7u6
-	GyOvBfE/JRLQFSM9xRww==;
+	List-Owner; bh=KnY54lOTJYk730tWS1QeOVMz1Wk8rmKXQHyL26iqlGM=; b=VlEdiFILhvHnz7
+	O0g4rmOVKKKU8wqL0OehOGGPRNJxxUzF8/5QtZaGb+yDA1QGcVkJ9Nt66sUjY+araVkK3u9raN/5s
+	/QECPud7v0uvtdZ0a6F7txB5UmESmSd3Mu63Nc3Nn/dgY2VTVmuuYWYEt+fvJ61o0mn/0fOX8pVGH
+	04ZCzawB2APJD9ervaLulDQlj29vLJ7rClnlin9lbwY2P/6MR8tofV7qj96kt63w1QPVbCXVQEvgt
+	foDVpHs/ATSZcPh+bzMHL3Iyytv2oRQjXy5gsP7GYBW3tso5YEHZJdUaBfsZw9SUyeGT4Rw+LS3Ri
+	vRpR8e9SvWXqkkFNS6Qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGb7Y-00AKKN-Er; Wed, 27 Jul 2022 07:06:16 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1oGbB1-00AMIE-BB; Wed, 27 Jul 2022 07:09:51 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGb7V-00AKFc-UF
-	for linux-amlogic@lists.infradead.org; Wed, 27 Jul 2022 07:06:15 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id y11so25651025lfs.6
-        for <linux-amlogic@lists.infradead.org>; Wed, 27 Jul 2022 00:06:10 -0700 (PDT)
+	id 1oGbAq-00AM9n-5K
+	for linux-amlogic@lists.infradead.org; Wed, 27 Jul 2022 07:09:41 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id m12so24732866lfj.4
+        for <linux-amlogic@lists.infradead.org>; Wed, 27 Jul 2022 00:09:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=4sf9T+KkmX+oKbYf44r0dMaCsbRx2OJI0DY04Ho/KW0=;
-        b=XhyVVxoBGYlOH7LOualKl0oesVqPAiTF79SgVH4tPivvYz8h+2BXVbzizOooH6BLQl
-         FWiqJXmDXCLYdH2E2kT76qMS3UoW9tK7OVQRxRbxOaNpU0lCXf3alqGXxbG5j1TyXD0c
-         FAUBvF5ECKgbAPm0koN6pqUOiF8ot7wdOgMH6OYrJgVTIySsG4ufoSWVNQGcI9ZFXJYs
-         EjnBc+a1tAK7O3OClre3Fibp4IehsiAyrRcq1uVZ5ADrd21dvTXrLwBeHJcXnBDialZI
-         0VS4qsGlkY9mliBR25kyEmFLLlek7aoRrW2UT+Eb85v/uQ1WFbplMYgAhPJHBMJ+0iHG
-         RuIA==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=sf552mPgsYsMMY77D6I22t6pOm3pYqj+viQ1dNWKK5Y=;
+        b=EfnhCF1HreZcHUhmcuTEdf5fbkyhxucRe3fJfSFtwTZWrOY13nsmnZ+wNMgulF9/Yg
+         ZvAGrjaDWwAroarDr488fTcmkBt9bhxbVdDi4oXgdx/brzjoYGoXFXlzCFyQzm44FVwt
+         FaMhloIL+26SxhgumPbvBuklERDDB3C087quGwBo9fQ+YiXR5XdPgazPeacSV/GORF32
+         4eCNIukD7o3XxCX0j24tll/lsG+h7ZMiJ+jBIYPHvUqf5/jDj6jGF82JPPDpGuigjK4a
+         XN88b60O6GaKttciEsllHHhmPDsCd2Yg1Va+uZpx9jLMD6UDv8cflOkrZtyKMK3Ql4Gj
+         XC6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4sf9T+KkmX+oKbYf44r0dMaCsbRx2OJI0DY04Ho/KW0=;
-        b=cggVd+IMa0D2gwZ9GU7F8CzLYBl+F/b69FrTurTsevX/lyjIu08KwTq6V6cI4iX2Vx
-         Yr7kM83RCJnVt9gVhjsiGSMS6h6ypzhY6lZEuI+Zaz9y6h9PzTyKz2XuEh/Bm8A2KAvL
-         fSjE7otsoQf5ySCCwE2R2STD1gRW7VWs19thQVcEjQFEAXuVEU7tjMIZ47vh1/TRj1Lm
-         MPHAvHRxRBkk9Br6lAm3srKtaanyqh2wjoZ5uTgc806F6t6zTagwraTdl2YC/xUTg3Dl
-         8CUGd1zqX9OwVQ9JR2q8DzQORLr9dqqG1gcf+x5zymWtcubPAZFM9Jbd1iftaupKmr/o
-         AHYA==
-X-Gm-Message-State: AJIora/J7OUdVKtCypvMCVPF5QkXsGd+XYAQiodS9z+8bVV3S8GK68x+
-	Wo9h4i3WN3QosbJR+vMSj3tJPQ==
-X-Google-Smtp-Source: AGRyM1smLYBVDCToR7HgdYuRNy05cPwfZUcF2DERzTh5zJoAqiJt5xc2kcI5NHi2mD6/B2qbs17SLw==
-X-Received: by 2002:ac2:54a1:0:b0:48a:6908:1d54 with SMTP id w1-20020ac254a1000000b0048a69081d54mr7981941lfk.295.1658905569296;
-        Wed, 27 Jul 2022 00:06:09 -0700 (PDT)
+        bh=sf552mPgsYsMMY77D6I22t6pOm3pYqj+viQ1dNWKK5Y=;
+        b=U+PjvCFW27cHefpBBMQY8I6uyOUpiX/pIqMi7AWRm0BSkpY4fCJMQ5jwTfI814KXQe
+         mnyYFvJXVYNq7FD+e18ChkBOf/e/qbIiBCEKx5B9/jivRDFWWEE4vZNRb8DA6z5WR0y4
+         MYXnPku/4OTG9P8iXoJ+UVivfdfYRTdOhO97v4S0qlc6KrhiPV8wROQsgWLKIJWUv2eS
+         h2GYg2pcTS3awtLzVzWqDMTAyiTm/ytfNfA+bqGe5+qiSZDHG28q5Xu9pQIe+MvoaICX
+         oRBY87CZ1+DzGsPOTAFte8W/u2Tsfpk5o1u6K725CkpsBXTSYKk7dvdE+nIefLhatmCQ
+         p77g==
+X-Gm-Message-State: AJIora8hVtyk5XsaANh078Fyv5zr0RKmU2FcvZJVnbbwgk0QTKTcK2Pl
+	HcXC92vtVzltqyledhkevpFVqg==
+X-Google-Smtp-Source: AGRyM1uK9oExglPVaieaOMc4kk1/xZEEBcnjm26EnaG/q9CwC/wwPOx6aSi4/p5zLo9Ml3qvDo2oww==
+X-Received: by 2002:a05:6512:3045:b0:48a:7635:ff22 with SMTP id b5-20020a056512304500b0048a7635ff22mr8141679lfb.314.1658905776265;
+        Wed, 27 Jul 2022 00:09:36 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056512228200b0047f7b641951sm774404lfu.272.2022.07.27.00.06.08
+        by smtp.gmail.com with ESMTPSA id e14-20020a2e930e000000b0025e0ca6f6b8sm674048ljh.77.2022.07.27.00.09.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 00:06:08 -0700 (PDT)
-Message-ID: <20725cba-220c-5664-5766-14d89d24b93c@linaro.org>
-Date: Wed, 27 Jul 2022 09:06:07 +0200
+        Wed, 27 Jul 2022 00:09:35 -0700 (PDT)
+Message-ID: <a45957f9-bb51-8774-8f2f-675fd8314698@linaro.org>
+Date: Wed, 27 Jul 2022 09:09:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
+Subject: Re: [PATCH v2 4/4] dt-binding: perf: Add Amlogic DDR PMU
 Content-Language: en-US
-To: Zhang Ning <zhangn1985@qq.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
- martin.blumenstingl@googlemail.com, sean@mess.org,
- christianshewitt@gmail.com, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220726143649.142574-1-zhangn1985@qq.com>
- <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chris Healy <cphealy@gmail.com>
+References: <20220726230329.2844101-1-jiucheng.xu@amlogic.com>
+ <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+In-Reply-To: <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220727_000614_018496_01AA5444 
-X-CRM114-Status: GOOD (  12.10  )
+X-CRM114-CacheID: sfid-20220727_000940_211011_1BAE407F 
+X-CRM114-Status: GOOD (  15.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,32 +99,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/07/2022 16:36, Zhang Ning wrote:
-> Add manufactor bindings for Tmall
-> Add the board bindings for Magicbox M16S Tv Box
+On 27/07/2022 01:03, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
 > 
-> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
-
-All your subjects are still partially wrong. I pointed this out in v5
-and you still send v6 and v7 without proper patch prefix.
-
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml     | 1 +
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  2 files changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index 61a6cabb375b..a67af2adf6a5 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -125,6 +125,7 @@ properties:
->                - libretech,aml-s912-pc
->                - minix,neo-u9h
->                - nexbox,a1
-> +              - tmall,magicbox-m16s
+> Changes v1 -> v2:
+>   - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+>   - Delete "model", "dmc_nr", "chann_nr" new properties
+>   - Fix compiling error
+> ---
+>  .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 45 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
 
-Previously the vendor was magicbox... now it is tmall. But you write
-also Alibaba. It's a bit confusing.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> new file mode 100644
+> index 000000000000..46ef52b61492
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic G12 DDR performance monitor
+> +
+> +maintainers:
+> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+That's not oneOf...
+
+> +      - items:
+> +          - enum:
+> +              - amlogic,g12b-ddr-pmu
+> +                amlogic,g12a-ddr-pmu
+> +                amlogic,sm1-ddr-pmu
+> +          - const: amlogic,g12-ddr-pmu
+> +
+> +  reg:
+> +    maxItems: 2
+
+You need to list and describe the items.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ddr_pmu: ddr_pmu {
+> +
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+
+Code looks terrible...
+
+> +
+> +        compatible = "amlogic,g12a-ddr-pmu";
+> +        reg = <0x0 0xff638000 0x0 0x100
+> +               0x0 0xff638c00 0x0 0x100>;
+
+That's one item. You need to separate regs.
+
+
 
 Best regards,
 Krzysztof
