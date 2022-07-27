@@ -4,81 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22DACC04A68
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 15:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594ABC19F29
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Jul 2022 21:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OlQAT883hkchFpDgwrm9MZxiS6JhLBpNUqMPi1Wp1Do=; b=g/NDOiOkFMpyGm
-	7v2y9hsR3jTHertsy70l9yhgg8I/pQc79p00CLunmx8KHLgIVWZR6ax2kkctP3itJIEJMghwQJuUr
-	4cL+1RA9mZQlNt+zqVD4rSCdHgUblb0z4uBOeKiMwiCdsLhNGW0UDTkH4Hg7f6FEYgXLnvwRaTHhV
-	yel1dwMeIG8C39FcboVBKlHrTtf5PUTnzjy78w1OpWFkXGRb+on+5xcL9QJxLpGq4g3MbG/qK17No
-	42BjpEPEi4uy0F8lopRSvy3uRilNj8/TAmAWvyS0ynQPbNL7ALvOSgJhQTus6KUYX3WBBffHz7dVn
-	Ydxm1thev0mW1Is+glKQ==;
+	List-Owner; bh=D9DZuxLriTIc9gGnrvlSGU0Zj3nhiYH+yR2DjNZq2LI=; b=Z2MqTtcOosRz3g
+	ssEKeLW5SNYv1sX9zVZpwOd9YjEBUoDSihhJSZzo8bEY6Q+YdlrbjPaDAVahZ0GRWyjiYpU2HBXwX
+	LR3WnoKUVApcFfwCj1AcAMLuiisOK/ajtB8DiUgcyWu1VXfqj+9bRdSnvhHD7GcY+VQmCmPkCXyzz
+	5V7FgOz3SDz3l9j7ZeetBk/cQSg+5xncDcoDiX85yi0jvhWv9lr2Ld9ucBc4sfXmrTLfli9suP3Gu
+	EEYZbRLsr9guZDT39Ula/V/toGvwiTgtaWJcnTlwFNaMZZPxdqD6bMSi34C3ijlFywziDQIjKoZYU
+	elA8KQZYYmKsNpHvn1VQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGiwg-00F2mf-FD; Wed, 27 Jul 2022 15:27:34 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1oGoED-000IoQ-BT; Wed, 27 Jul 2022 21:06:01 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGiwd-00F2k5-3g
-	for linux-amlogic@lists.infradead.org; Wed, 27 Jul 2022 15:27:32 +0000
-Received: by mail-lf1-x133.google.com with SMTP id t17so15374814lfk.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 27 Jul 2022 08:27:28 -0700 (PDT)
+	id 1oGoC2-000HLS-FP
+	for linux-amlogic@lists.infradead.org; Wed, 27 Jul 2022 21:03:48 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id h8so26063714wrw.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 27 Jul 2022 14:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=cldYDRGoUxCLGjKsA9926W9qeodJZ5xTATUaMdBvw+8=;
-        b=IFEiuYWNIzztkedjqQaYCsURRrAMCmcyR3MxjlWulOlcDLq5r0GkgLlc0flh9hU6nB
-         PUEeD5hTOQ5edIdxUSpnBvBwx1jihISMolvW2Qme/F1ADtXpLvDaksgfVW7Bvz+L9Mjv
-         w2nDuh3hjSX+/d8ng3YY0SBoyz15Zmhr2il5qj7IbVSpV1rU6G9SjglVUXDvvoMHbkVR
-         lXZZw2AcoPA5qEaoLcbRZUKWhZx+pvNTiUyVmAIPeoo/gIns5ZN94nEvfYOP+5ORaqYR
-         aIvq/8KuvBZ3g6jY9SqSZQ1eDDfdTFvaGwc9ymnMT9LTmPA488cyU/aS7HS/tk5YJPTG
-         FHng==
+        d=linexp-org.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=YLbrdXUnmrQegHQ4ArILFVac507m4xUt/E4MiWL2p00=;
+        b=47RymGc11nlAImgXbnxoetDsfvDXPpfxd/sUZKt+T2GBGm0k+GR2KX0yADQ3/iY8ZW
+         RcEK9GgmSIyd504dayr0MWnP5oSwBF+vfbLe5/TNFY0Nkl3SmipU7lc5LSM8leX632L1
+         2GXMqhdHj0qgnYXW6yJ4lZHl1jvwsXuNUhEGPgCneSuTkaKpMtjjuquaBQJ9yFgz32Zt
+         lX26Sh3qdOtmWRd4P/GQxfIM9C56IMpWSijIM3v7QCyltU05Gm4dKan4iaVqbrO4g4FB
+         QJhiTJEpt9cp2VwNr1x2feETRj59X5WErwnqSJtL0Kd3i6xfqyfLcJ+DfJftafrJB0Q2
+         +64A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cldYDRGoUxCLGjKsA9926W9qeodJZ5xTATUaMdBvw+8=;
-        b=ugYtwECsJpmiNNGHbfk4snZQHoiyxiR/pgy6ZDvjNkrv3Yuru9vQXX/7ShDiY1spOg
-         0Mo7XtTrau24o2fxktiw6QqwBrdLnxM8OlxFMbzgMEcfA8UvBFZLstJmFgUZud1EiyqF
-         vvIE0jbMPq6zlZLL4QDenEEThzxb5SSdsTi+nHYeSk4PUUCt5ut6utZRCXCzDQclm4+z
-         BZGMSqhpM3n34j1qNCh5A5BkQ/438/dsQ4q6cmFC6fY0fCa9PL7kcaY7+Xkvc/rbvmZm
-         r6rdD1myp3lRFH+xUtewMVKsLK5XluPytCMAaZUmkpfwAsRXdL5xnJpaINrymNzAstBk
-         O4EA==
-X-Gm-Message-State: AJIora98CgMXP+t4PZ77ZdAqb6JWXUVGafKHCWZfkWsKMdT35qCPvbL7
-	nevf8ddQ6tL31BPWIfqLbj4+3g==
-X-Google-Smtp-Source: AGRyM1tOIzFvIUBsCCRkrLBJuFm7HZXYfpM6CS8zcYiZaGmW4hlA1AJt9pj6bSSxBcxrMTF8RdqO8w==
-X-Received: by 2002:ac2:4c8a:0:b0:48a:bee2:37fb with SMTP id d10-20020ac24c8a000000b0048abee237fbmr757958lfl.235.1658935647224;
-        Wed, 27 Jul 2022 08:27:27 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id z20-20020a056512309400b0048a93325906sm1497148lfd.171.2022.07.27.08.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 08:27:26 -0700 (PDT)
-Message-ID: <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
-Date: Wed, 27 Jul 2022 17:27:25 +0200
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=YLbrdXUnmrQegHQ4ArILFVac507m4xUt/E4MiWL2p00=;
+        b=fZf5YujxPk7kgmeHDLGc1RDgdi6RQ5phXeFCsmhdS7CybyKbxGrd2YuEdSXpNBRpJf
+         axrM2/soYpHIURfOmUgNv+PKrd2oj2ORnjUogfzqzBQefSvIpZju+QkdhC/+06saBseJ
+         JAJ6m7mdGv1MO8xOzIh8j2CAONe0xmt7tXakU6q240gtHhNdvJYYt+eTw1AM7Uhah3JE
+         muPEAcyO63lPNe59MTS5KqheSFMmCmayhI8irYjZRTI+HVNdpDmdF+oGbvg54K58DBGU
+         pPgekp6Gq+TfMyI+XgXps1VVZ/mFs/+VnDLJZL+iYs3dUqVpXRT1LbgPNvmjq3vh/ttq
+         jkIA==
+X-Gm-Message-State: AJIora+u9J9FIg2FSAYca79JOzrI8A6hp1l3xzQQoWyPC/guvIEM0jfP
+	Mg49EbjSB/CG4PsWNUGDjJV8Xw==
+X-Google-Smtp-Source: AGRyM1t2JSzjiczvonH/VShf1AaEdECxWHyrV9ovfT8+o55/saAc25YXJBitNk4g7Oblrubt3m4YtA==
+X-Received: by 2002:a5d:58c9:0:b0:21d:9374:1373 with SMTP id o9-20020a5d58c9000000b0021d93741373mr15262679wrf.20.1658955822870;
+        Wed, 27 Jul 2022 14:03:42 -0700 (PDT)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:65a8:ebd8:4098:d9d0])
+        by smtp.gmail.com with ESMTPSA id h6-20020a05600c350600b003a38606385esm37908wmq.3.2022.07.27.14.03.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jul 2022 14:03:42 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linexp.org>
+To: daniel.lezcano@linaro.org,
+	rafael@kernel.org
+Cc: rui.zhang@intel.com,
+	linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	khilman@baylibre.com,
+	abailon@baylibre.com,
+	lukasz.luba@arm.com,
+	broonie@kernel.org,
+	damien.lemoal@opensource.wdc.com,
+	heiko@sntech.de,
+	hayashi.kunihiko@socionext.com,
+	mhiramat@kernel.org,
+	talel@amazon.com,
+	thierry.reding@gmail.com,
+	digetx@gmail.com,
+	jonathanh@nvidia.com,
+	anarsoul@gmail.com,
+	tiny.windzz@gmail.com,
+	baolin.wang7@gmail.com,
+	f.fainelli@gmail.com,
+	bjorn.andersson@linaro.org,
+	mcoquelin.stm32@gmail.com,
+	glaroque@baylibre.com,
+	miquel.raynal@bootlin.com,
+	shawnguo@kernel.org,
+	niklas.soderlund@ragnatech.se,
+	matthias.bgg@gmail.com,
+	j-keerthy@ti.com,
+	Amit Kucheria <amitk@kernel.org>,
+	linux-amlogic@lists.infradead.org (open list:THERMAL DRIVER FOR AMLOGIC SOCS)
+Subject: [PATCH v3 13/32] thermal/drivers/amlogic: Switch to new of API
+Date: Wed, 27 Jul 2022 23:02:34 +0200
+Message-Id: <20220727210253.3794069-14-daniel.lezcano@linexp.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220727210253.3794069-1-daniel.lezcano@linexp.org>
+References: <20220727210253.3794069-1-daniel.lezcano@linexp.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
-Content-Language: en-US
-To: Zhang Ning <zhangn1985@qq.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
- martin.blumenstingl@googlemail.com, sean@mess.org,
- christianshewitt@gmail.com, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220726143649.142574-1-zhangn1985@qq.com>
- <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220727_082731_182394_BDB89C5B 
-X-CRM114-Status: UNSURE (   7.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220727_140346_548660_50D5F4F5 
+X-CRM114-Status: GOOD (  14.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,23 +116,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/07/2022 16:36, Zhang Ning wrote:
-> Add manufactor bindings for Tmall
-> Add the board bindings for Magicbox M16S Tv Box
-> 
-> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+The thermal OF code has a new API allowing to migrate the OF
+initialization to a simpler approach. The ops are no longer device
+tree specific and are the generic ones provided by the core code.
 
-Please send patches with correct subject PATCH.
+Convert the ops to the thermal_zone_device_ops format and use the new
+API to register the thermal zone with these generic ops.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linexp.org>
+---
+ drivers/thermal/amlogic_thermal.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml     | 1 +
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  2 files changed, 3 insertions(+)
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index e61b91d14ad1..d30cb791e63c 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -179,12 +179,12 @@ static int amlogic_thermal_disable(struct amlogic_thermal *data)
+ 	return 0;
+ }
+ 
+-static int amlogic_thermal_get_temp(void *data, int *temp)
++static int amlogic_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+ {
+ 	unsigned int tval;
+-	struct amlogic_thermal *pdata = data;
++	struct amlogic_thermal *pdata = tz->devdata;
+ 
+-	if (!data)
++	if (!pdata)
+ 		return -EINVAL;
+ 
+ 	regmap_read(pdata->regmap, TSENSOR_STAT0, &tval);
+@@ -195,7 +195,7 @@ static int amlogic_thermal_get_temp(void *data, int *temp)
+ 	return 0;
+ }
+ 
+-static const struct thermal_zone_of_device_ops amlogic_thermal_ops = {
++static const struct thermal_zone_device_ops amlogic_thermal_ops = {
+ 	.get_temp	= amlogic_thermal_get_temp,
+ };
+ 
+@@ -276,10 +276,10 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 		return PTR_ERR(pdata->sec_ao_map);
+ 	}
+ 
+-	pdata->tzd = devm_thermal_zone_of_sensor_register(&pdev->dev,
+-							  0,
+-							  pdata,
+-							  &amlogic_thermal_ops);
++	pdata->tzd = devm_thermal_of_zone_register(&pdev->dev,
++						   0,
++						   pdata,
++						   &amlogic_thermal_ops);
+ 	if (IS_ERR(pdata->tzd)) {
+ 		ret = PTR_ERR(pdata->tzd);
+ 		dev_err(dev, "Failed to register tsensor: %d\n", ret);
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
