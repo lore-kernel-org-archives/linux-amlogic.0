@@ -4,154 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57035C19F2B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Jul 2022 07:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FEC3C04A68
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Jul 2022 07:15:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=xpr0AR0XereQE56tor+svSfjr2bDvGVRuHzQhOUZpHE=; b=sEQMDIf1U28hiF
-	swa9ypU4NI9ZI0N2Vu91RPbbGfSl7nyrAmeuMzAKHTRSQjTuw9ibwCKeOoe1QJnmBLBtduKVLmacc
-	nz5BAu+VlvDhNbDT5UIw5dw7pyPVV5yjq768lIEmF+KV7a+81fMC53x+dfbL+cOW+WYhW/QA4ErW4
-	ciDb5OOzLdx9AEeRTw9VITXFnVIpxcRFcAxLslHJYYjqJ8NtTlUhaMVUEsQc/WPqhCsJto3aVV+/g
-	b4DICgAg3sX+3SLcN6l3ja2SsRERQQtWOOpVUUYxFL3k6tYqJ0ffNQAesBE1MX5nCnwmxmVePy4Oy
-	CRDTxkgBIueiB47wMj8A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NhJvKd3n9y10SmRW+NW5qjmIgLHArFMVzInutboYX1U=; b=aRB7O3MvR/IyjJ
+	FnjqE48a+DPoVkXHboj3uZQsMbEMflOHGiZ6n5sQoHsHpBJtvgkhJi6dSjz9deGx+e3In8+YbqJLR
+	n9YIJMqfGgH8/05qbjKyyD0OIVVpkGxXN6hGVOZR1wIGLqZ0HyoLFRumz3XnP7p7SO5RIWrpQb5qx
+	Wguy7t99lvah4aa5MMkNBcVBpxJhUwCX2T+a7FMG/s4j9q5nBj1IG17Aa3fqazXs3OixCBzJAB9un
+	lNwFM1EKW7l8p6JnAouYPb7ivaWs1YsQqh3czXMAaOLdONnq9kraH74pnQuH431ypuFI/JSJYxi+L
+	OucKyjKFwsp4gMBkXfhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGxhP-005L0l-UA; Thu, 28 Jul 2022 07:12:47 +0000
-Received: from mx0a-00069f02.pphosted.com ([205.220.165.32])
+	id 1oGxk3-005LyY-1l; Thu, 28 Jul 2022 07:15:31 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oGxhL-005Kxv-1U; Thu, 28 Jul 2022 07:12:44 +0000
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26S66F9b019125;
-	Thu, 28 Jul 2022 07:12:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : content-type : mime-version; s=corp-2022-7-12;
- bh=fnO7c+j5lUKy2ZxBu7RJHElh46IGQ1aFAJhOX3IK+Sk=;
- b=xGiYQnoPIEO5Oimtkkl1zObMjObXYMlaHAMmST5B5YGvPABsob3voQZsBKEe83X7qF1A
- k7JRFsWqz3KEiX5djxW0d4Ara1Z2Pctlpp/fwC/R/r1PITZll13W/noe49NHyjNchah6
- ySnpGbHV8GJeoI7l/cHCposqCZ/gwsWYVRBYL0ieNawuRb/Z5gvTOHyP207gDJpm978y
- ggV+SnhMoipcB225ZHlXqgS9NIFH8HXBUMkYaUpVXqNkF+f9uqYRUjY0tfnYHfbMRif9
- uPcEkEMvSGqtIzlt5/11u89hm18/v9gI0NRe6KiPn6PGMIW8LPEbI/hZ6chZBLR0n8Px eg== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3hg9ap3acc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 28 Jul 2022 07:12:30 +0000
-Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 26S6Ob5B034537;
-	Thu, 28 Jul 2022 07:12:28 GMT
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2102.outbound.protection.outlook.com [104.47.58.102])
-	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3hh6358j55-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 28 Jul 2022 07:12:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=STmzdJfnApBcyb/1e0JamiOdySaozCq+C9+hAPNIplJeFi63QICrgmq5cVwM95stcLM8lEBJUI0TigIbg2qabq25uS8hYlteyU+2/3wbKLlkZ1STqcrsBm1eUbtCMZrda2weLx6N2jlA8cmTusVFP8LWqhWoBDsy86Z1rzhy5k8tUazcOxTW52D/vKQluOZhpvIY/CyvcjiSStyZCL17lj+WG8bkboZ0fWKESzx8dt03YFdBBLyBGv+ZchCe5ZWLbDpwJizzpMXsaMhDMdaF1dQr9JdWW3yaeGoKWWmVH9gFYlpP+ac9Wgtp/igQiVw/nn29u9GJAJs9cneOpJpimA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fnO7c+j5lUKy2ZxBu7RJHElh46IGQ1aFAJhOX3IK+Sk=;
- b=P80pWPDYKPsAknMCmQpBKTWjsEUcb6sSB4AEkweViFzyVGItZGPuyyKXCWydsveUsH3MCbaQECcb/aIrFkLgeNVwS3k+Dkn2sZrHyOTD8/IzgAHiE6Vu3hKfeiwEdSjVcn6MFP0f4mvqwnwb0vv+d1Q5KG1QbAP5hoBBg89GFVeBWezBfK4PhIhs92zNNINwO4eDrUJDpRkgaTZFdfKYN6Jd1Kmu46tQerX1zJwD58REe56sR8voDiweWxYoHP9HQVtQDgHA+g25dU+43LAEMTjBQ0JZO2KUp4yaQVROBKpUC//bFxum0sreYFAMRdlTcA/MSr9EWya6oUjVieGnQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+	id 1oGxjz-005Lvy-6t
+	for linux-amlogic@lists.infradead.org; Thu, 28 Jul 2022 07:15:30 +0000
+Received: by mail-wm1-x331.google.com with SMTP id id17so467226wmb.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 28 Jul 2022 00:15:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fnO7c+j5lUKy2ZxBu7RJHElh46IGQ1aFAJhOX3IK+Sk=;
- b=MYxrLDawkiENV+sT7r05Pmh3d1QhnCZDd70vFKrjIXyZhApFQx/hoz5ok3gmXjB54wC1Qcpa2gOsz0WKFJCW4kigcr2VBepNk3DHpOJ8Fzem/swesbKkXvM1QwrrLVe5nqFKlZgcK3NuY0JvP6PRlDw4xOpigG9EjrUkBL07h9Q=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by BL0PR10MB2802.namprd10.prod.outlook.com
- (2603:10b6:208:33::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.25; Thu, 28 Jul
- 2022 07:12:26 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::209e:de4d:68ea:c026]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::209e:de4d:68ea:c026%3]) with mapi id 15.20.5482.011; Thu, 28 Jul 2022
- 07:12:26 +0000
-Date: Thu, 28 Jul 2022 10:12:12 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Liang Yang <liang.yang@amlogic.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Yixun Lan <yixun.lan@amlogic.com>, linux-mtd@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] mtd: rawnand: meson: fix bit map use in
- meson_nfc_ecc_correct()
-Message-ID: <YuI2zF1hP65+LE7r@kili>
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-ClientProxiedBy: ZR0P278CA0009.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:16::19) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=AaIaSUDCvbW74aHuiO4CJrSTxDz4crTVOTtdXBqcE0U=;
+        b=AWbcHHbX5voPsqXsYc0lPhQLZ7zq2Rbg+WDm4j47FHMHXMKBPLuAwqpaMLT4oN34qS
+         R6hvle5W3TN4f3TJRhkhZx0QPFmqjX98W46tEqeGl2ss33pWsTUsz6ICWmUhi/rNGcp6
+         3eQgOfcF15Ov6JaO/BaW85eAfyYfbTZQOU7lHqyUe9RumDh0CPDhSAXX5tspMaURVBIN
+         hAIUu2L93pP5MlYjVltII27G+d2lmMvuyd0SOq/7MlSZeJoZH16sIqKEMA/AAaXCwDjZ
+         ZO3DlrFDankTYdhuu2q7oCaJtjXdqKBN2swatEdyWuhc0kJ1eFLYTZlGg6qxjCqabDjz
+         qUNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=AaIaSUDCvbW74aHuiO4CJrSTxDz4crTVOTtdXBqcE0U=;
+        b=37CLoC7nywFODNcYmNGl5/G/f0O3ZfA7x25ddHK/AIHJJ/2gKHc4Q2ri+e+bp4YTbn
+         SMkN8tWxUvpFovdUN26fx9/9Ru/3E0HCIwV+pFfXLv74a22WTa2+EAgtzKvikjBK6ekZ
+         VQufHz2ekAhgcdTxagg4mZ11t7JrR+9vf4+xJAr4EzZzmbAL8P6soBd1NUKUuYvw1BLY
+         UGr1AVVzo0THAZHt9E3+h6SdGVZOn6Q0jEzAmSqYA5DyLzC+D4059sMMC2I7yt1QMGGk
+         UGSwevVdfP5GN+tQOVY4zBViC6kNSXYGMLgInZLgs4QmUrFPukaMfkw1hUcDdg2f55Pu
+         vsZg==
+X-Gm-Message-State: AJIora9xZLYjAsaaZWLLHIuL5WtrhnnllX1K41TIeb0gYEDe1726R5Ts
+	fr379cMYVNXmOeDLYBsxb/R9I6LkL1AZdA==
+X-Google-Smtp-Source: AGRyM1uBQSHcp5qkcijv00Bu7Y7/z1KirWW8lPysYxj5MYnLBGbrvNTmEd6qDPwVfOty8mtSm4vSMw==
+X-Received: by 2002:a05:600c:1289:b0:3a4:8401:5ced with SMTP id t9-20020a05600c128900b003a484015cedmr384142wmd.148.1658992524267;
+        Thu, 28 Jul 2022 00:15:24 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n186-20020a1ca4c3000000b003a2d87aea57sm4519126wme.10.2022.07.28.00.15.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 00:15:23 -0700 (PDT)
+References: <20220728054202.6981-1-yu.tu@amlogic.com>
+User-agent: mu4e 1.8.6; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Neil  Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
+  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V2 0/3] Add S4 SoC clock controller driver
+Date: Thu, 28 Jul 2022 09:08:44 +0200
+In-reply-to: <20220728054202.6981-1-yu.tu@amlogic.com>
+Message-ID: <1j8rodhfn9.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 08ea9cf6-3445-4876-b83c-08da7068863a
-X-MS-TrafficTypeDiagnostic: BL0PR10MB2802:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	iq9jjvR9b59Wz4azLOy8FSDYzHYTh+mQ+p8gAJfBygZwPMVQQ+ix9KgPFbgvGWiXvETJ4cZG/2+1uIe5cfZ6CbKR6AQIYltTYToXn3eTCAJVEggO1y59sO70kQ8dTxQIk/OC5rVWZ+x06mV4SU6aSVS8wbrD5wSnoNGWkFBgca3YnwQiJ3koKUrCTw5tPGpNA3gE+qNbjNEMDo/2J6ChO3Xx3gZO45cBI56nLfcANSKfhMq5kN+lHM7hJ0icb/q2q990sdUk2N83uFhOuDbszo8crQQnUj07II6iiCfDJHq/+o2dBqxB1qQcie/er6HjtDIppiaTUxpqCVaxQMjItArhGlZqgicDWWzzjaBoqlTsTYDtArlh8HbE4hqNtPZ/+kEt/5RHTUP93QwL/jhPvWJNB4HKVm+UBHAjaBuAJ9s9Mr8uz4+2gifr/yGjkA0nyvM+dVShJ+Bj+OQZ2hHT+x/22jfWCznRs+mqY9kt+8K/XGXoqjB357auGdok4YgF6gxUhlCZK79YWrqWaIJrUMYLD/SvJWsLDWeJXv7rXEKVXtjxyxnLu9qk/3f8i3u1Pt8+bxQclk7obVMLEv2C4H90o5dhPpKCu0F/EakewauYHNiLnHEMpiMF+GJUgmqimiolSaZqSz43FqRI0UcqGzgt2n/R6agrFuZzMRceCRVjK6Hh9BNyy2VN0ve+GfnZUtIpxnZE4sbGFc3FlpEKm1bpR/LDdHHPPRLhcvZgyUtlSp7mFQCME483zVl9a7hgLQRQJmrmq70yCD3B9V/thGfUQ3TSy2mvp6F0mHUuJWOC5ZGVeOkf17YIHFfyF/CiwG1IzLrC/XTKbKVt1J8MNQ==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(136003)(346002)(396003)(376002)(39860400002)(366004)(66476007)(41300700001)(6486002)(9686003)(6512007)(26005)(38350700002)(478600001)(52116002)(186003)(6506007)(83380400001)(6666004)(8936002)(7416002)(33716001)(5660300002)(44832011)(6916009)(54906003)(86362001)(316002)(38100700002)(2906002)(66556008)(4326008)(8676002)(66946007)(67856001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?a8K4cr2oF9VN6x0Fe0dJeyejy7xDPmgR1NEG0udvdhSx31kbBWc17sa9sZ6e?=
- =?us-ascii?Q?BmdmpmqAT3g67LZ6jwIB1JJyNRtHAb9GNfqOvR6UAGrlAkmjyDPF9XeXxMMO?=
- =?us-ascii?Q?cRyXvmEPm+FX9kCXg8Y96FnLMnQYum4Xq2n0Aqu19upMJKLrT05VRKyfP1Si?=
- =?us-ascii?Q?TOcxHfBxnt0GAv36WbXmxsw91ue52e/yRHEVoAnigrU5RhiNcCvsHDRfVJhx?=
- =?us-ascii?Q?PArLz155/bFbiBgxptY63y9U96jeIrYyylpLDoi0gbbV34K4Dh3fNWEu23wx?=
- =?us-ascii?Q?JsI5jmupwit4yGopDX4wv1u1Fwij5+nUSljgJ7a2cDtRq5p6L4P7WtwXKvjp?=
- =?us-ascii?Q?9gBuCAwXXU7gBhrq+LDvDDn8/hkKQn9rKEAWlqbMFpTpjNbd2HATVBshpiMt?=
- =?us-ascii?Q?Chi4LmspE2Zcid5tDOhkibBM662NIw44YIoZnJhqX51W/4CJNFlxuR9xS0mp?=
- =?us-ascii?Q?82xs5ge5yyxqDmuUp6d8lHnUDxr0jY8hUKHs6izj6bDj7gwDko/KoO2gSkbU?=
- =?us-ascii?Q?OeGzXkY5szHR3V0dc3T3o2h8WO69qwohPbdp5QI+4bvBoEcqTGUbDOSwKKKk?=
- =?us-ascii?Q?2KKFLisGCn+01A4hwV0Oc58TOScos0gFmGBYCBgVRKmfJmzawhZ6h+rBcCg0?=
- =?us-ascii?Q?D6qoel3kztOGINxx7/VNULfcPdtyDDrCQkTx9goolcaAd7u6nxFkKjY7hLw0?=
- =?us-ascii?Q?mc1oB9pbMNzLrqYeWLX7jkZsOCFuDR0+EoAi8QMfz+oPjw8vqYAnK7swxl8x?=
- =?us-ascii?Q?WlCeZZq2RYP20Xb4dfGkj3ti1cmLTcnMo8juZZPr1ObsU2M26/rIYs9t2dbl?=
- =?us-ascii?Q?JPoK8S/Ev5nhSkamf7uwlm2Vv+Uk1RSaVhSFB3TQIi7guC3kRN9BBHG6dW8Y?=
- =?us-ascii?Q?acm5ToJEd0wDEq0SGK1D12pK29WqdVSuCbw/OFC3RBVktfti5cQcjvSEvs9l?=
- =?us-ascii?Q?NzZgp2XRsJfzonN9jm5PwiDXM3ndaK5020hgyCbGz8L5YdnQB7BBzWzy5P6I?=
- =?us-ascii?Q?8lmAKZsyutT8uyqCRV8cANIWvE49qbMWSFaOix9eiROURuDgICUHuP4esWvc?=
- =?us-ascii?Q?4/wyWmcW6O5j42mZ//jbaEVjyBbeFr0unsDmvPIdd8fGixlJ66xbujT/EvpX?=
- =?us-ascii?Q?+RtFGGFO5lWDcsRhxGVMi01FaJJ/fZwAggQiR6PoPKjxPQdNgsE+J5s/MgdL?=
- =?us-ascii?Q?y7qJWT7aXofr8Q4018Ob1UnlrytFMg8ba2Pvn/3p56WwliqHap7653pJOc4S?=
- =?us-ascii?Q?9cgF/dhzxIp8+2sQJW0/fpUqoEeDeltoNZAJjdjLWFNaX0KTcTwIq7/w1lLh?=
- =?us-ascii?Q?dSjsxut+/qpgmrc9OaxwwX0FAzNrmF7aXrE0QFDSl4sWAqrQ/5tO5MxTE2SJ?=
- =?us-ascii?Q?hTE0mnBoxDv3gD04WgKoMnYwnzkb/xo6cClFh07j315e6oOnFevlqTmGztAb?=
- =?us-ascii?Q?z4wYg2FWQqwQOXBCzPIbkEcz82yBcKriEfz4PlUB9dWakJNs6a/qMCAcDS0Q?=
- =?us-ascii?Q?NLC9bBb+xIF5uTYYYehE8nYzer+a5nBS0rzj2OgdfZBGYwhW/IFQ+boTyXa9?=
- =?us-ascii?Q?Gi6OJm6SgH8Njg2hyJHvGMQdfnAJXaZmM/C/U8nDcXIxREbSGbj5/hPlnxPR?=
- =?us-ascii?Q?xA=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08ea9cf6-3445-4876-b83c-08da7068863a
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2022 07:12:26.0376
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9ZZTT3nRE+eBQTcv5EnmoIvu0vSGaLRE1apN8XIxT96oBnJAd5OpKxOBRYCnBNBUaJDbNlOJ5Ohd4Kj872bv8Qj4hmmLx96+ccH4ZrjEPtU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR10MB2802
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-28_01,2022-07-28_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 bulkscore=0 malwarescore=0
- adultscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
- definitions=main-2207280028
-X-Proofpoint-ORIG-GUID: YI8qEF4RLQLPa09HdeTdRZ-nhntW0mD2
-X-Proofpoint-GUID: YI8qEF4RLQLPa09HdeTdRZ-nhntW0mD2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220728_001243_749461_72AC342C 
-X-CRM114-Status: GOOD (  15.74  )
+X-CRM114-CacheID: sfid-20220728_001527_489538_7BEC9419 
+X-CRM114-Status: GOOD (  11.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -168,44 +93,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson_nfc_ecc_correct() function accidentally does a right shift
-instead of a left shift so it only works for BIT(0).  Also use
-BIT_ULL() because "correct_bitmap" is a u64 and we want to avoid
-shift wrapping bugs.
 
-Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
-From review.  Untested.
+On Thu 28 Jul 2022 at 13:41, Yu Tu <yu.tu@amlogic.com> wrote:
 
- drivers/mtd/nand/raw/meson_nand.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 1. Add clock controller driver for S4 SOC.
+>
+> Yu Tu (3):
+>   dt-bindings: clk: meson: add S4 SoC clock controller bindings
+>   arm64: dts: meson: add S4 Soc clock controller in DT
+>   clk: meson: s4: add s4 SoC clock controller driver
+>
+> V1 -> V2: Change format as discussed in the email.
+>
+> Link:https://lore.kernel.org/linux-amlogic/20220708062757.3662-1-yu.tu@amlogic.com/
+>
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |    1 +
+>  MAINTAINERS                                   |    1 +
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   11 +
+>  drivers/clk/meson/Kconfig                     |   15 +
+>  drivers/clk/meson/Makefile                    |    1 +
+>  drivers/clk/meson/s4.c                        | 4732 +++++++++++++++++
+>  drivers/clk/meson/s4.h                        |  296 ++
+>  include/dt-bindings/clock/s4-clkc.h           |  146 +
+>  8 files changed, 5203 insertions(+)
+>  create mode 100644 drivers/clk/meson/s4.c
+>  create mode 100644 drivers/clk/meson/s4.h
+>  create mode 100644 include/dt-bindings/clock/s4-clkc.h
+>
+>
+> base-commit: b293bc9286ee21824e93f0fcfed3b78fdfee01e6
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 829b76b303aa..ad2ffd0ca800 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -454,7 +454,7 @@ static int meson_nfc_ecc_correct(struct nand_chip *nand, u32 *bitflips,
- 		if (ECC_ERR_CNT(*info) != ECC_UNCORRECTABLE) {
- 			mtd->ecc_stats.corrected += ECC_ERR_CNT(*info);
- 			*bitflips = max_t(u32, *bitflips, ECC_ERR_CNT(*info));
--			*correct_bitmap |= 1 >> i;
-+			*correct_bitmap |= BIT_ULL(i);
- 			continue;
- 		}
- 		if ((nand->options & NAND_NEED_SCRAMBLING) &&
-@@ -800,7 +800,7 @@ static int meson_nfc_read_page_hwecc(struct nand_chip *nand, u8 *buf,
- 			u8 *data = buf + i * ecc->size;
- 			u8 *oob = nand->oob_poi + i * (ecc->bytes + 2);
- 
--			if (correct_bitmap & (1 << i))
-+			if (correct_bitmap & BIT_ULL(i))
- 				continue;
- 			ret = nand_check_erased_ecc_chunk(data,	ecc->size,
- 							  oob, ecc->bytes + 2,
--- 
-2.35.1
+Please don't post until you have addressed *ALL* the comments from the
+previous version.
 
+At first glance, I can see that this is still a single driver for
+what is obviously 2 controllers with 2 register spaces. Simple comments
+like the "<< 2" in the register declaration have not been addressed either.
+
+Seeing that, I have not reviewed this version further.
+I won't until all the comments from v1 are either addressed or answered.
+
+Regards
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
