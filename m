@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F60EC00144
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 17:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1C1EC00144
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 17:05:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1ooJkTBAuzPgMucAP+9BtjbK1kXyDUiauCzbm1b9060=; b=PEfg7nGhT8lvQK
-	NiNw4qE4ZbZNZf30KQgjVsAQfOP8nuvxCbH47I7a9GVw91lwuDdQzV+PyAyBujTEBMgH1c0qH/xpn
-	adOBmRLKo37Th4g8aWMapAT74uBfB9N4wkJZ4uzGO34v27oQudUotwPpF1Hf7H4+XlZgkn5uyhP18
-	UGH2xlJJWyPtThZLw7qIOIw/Ta19cIRy+WOW/jtWDHeDtMSFo8pAAXhNquWYA7Ajk7fRsOowHD+2z
-	P6jCtRimNivAtnzVoGePeHwvzdGm0/jF/mmv1zLG/kEfaoCLM7hhZSzB5FT3jhXCfQWTFkTq8EiDr
-	uTlytVA66d9PCczwR8/A==;
+	List-Owner; bh=2eygd0AanzymrKoOmjS7mxTK1KW9u+ikf/V/TV+h+O8=; b=rt7Bjepukcm4QP
+	TlWA0tA5zNqk2NgEMIs1fdc4YhHhGd6KVUI3QRodwIW8KUR/PGpmCqS+ScxrSaopeGUvF0cAxjGJo
+	KUmu7KYdGqkcUrsYTSEHgz6Xfu0UmRwzme2z9yeV3/6tliChsu2txjEmCBsvswi7XoOV2aChkEmKp
+	1B55NczAo2cdBCjGbhCqgK7mBnviULTLmaa7+fNPjz837lH+KaFQpPvBHk0aNOErtG5hl3o9WKF7H
+	D47pmuxcA/nbIssurcM0dAX3SRNey2yKmpQpOpwDsdOy+Mf602pRJCs9Xo7fPun2iqlM/Ynx7cts5
+	SoQN3AH/5N99N/p95soQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHTMQ-006mjI-8F; Fri, 29 Jul 2022 17:01:14 +0000
+	id 1oHTPt-006uib-G1; Fri, 29 Jul 2022 17:04:49 +0000
 Received: from new4-smtp.messagingengine.com ([66.111.4.230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHSyP-006SOh-D9; Fri, 29 Jul 2022 16:36:27 +0000
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 9E44458094F;
-	Fri, 29 Jul 2022 12:36:24 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Fri, 29 Jul 2022 12:36:24 -0400
+	id 1oHSyT-006SS6-QA; Fri, 29 Jul 2022 16:36:31 +0000
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 08BC6580951;
+	Fri, 29 Jul 2022 12:36:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 29 Jul 2022 12:36:29 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
 	:cc:content-transfer-encoding:content-type:date:date:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112584; x=
-	1659119784; bh=HUTF54qcrEltxzuIrBwhVolQypRjTlRuOsWlypQ6pmU=; b=Y
-	3qvbMg0nMPY/sSD+ANhC6NoLOghOrembCe1ttCjztXQ2l7ogT0Y+fWmrmpAH/NXm
-	/9kv0RnY/Qpvn9sF/6zd1Bfr/IjZLrjFMl6SlI0bW3oadrWHw452dKIylhjC0nq1
-	l+ZK4pDoe8BS5WVBUkosSetZpteAuRQOjOjNtQXCpPOj01Xi8FW7ngYfQNTqypfJ
-	pBW7Feenp5eE6mFwUcr7um5GVrGewPLtUMHCBugBbrkBkPXDMpNtcAmezO5oy/J+
-	ALu1Up7V2KcKE4RkwOt8OylDVw0QARU/BiJ/dTZ2aLpyFqTWRm5zKruHw2YV7S25
-	wu5/a7TQmebkxp1WUubeA==
+	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112589; x=
+	1659119789; bh=xVGYG5LL1TbN6HzfjsLCzXmVKf2LOPhGZdr8USk7meY=; b=p
+	sUv3q5i+eOKguiIImUQZjbGJyoHNNhvkb2t+VGuXB5IClNxqPzKYyAnHHT3vzZHy
+	E6/fYXzf1DMsQuhv2VNT1zSJrRyNfsau+S4DLyqiVVRfHPx83YDp944G1vbFC6Ff
+	W5yJ3IdfRTWWDHySAyuS+S3GPg6DDs1v2Vsqw8kjb+lwBS99A5gNaiXYkfry7/TS
+	Vmr7rzftZS7RBzTLqZqBEFww3MiyzpdDR6b2Q1FCbGCceZTR1qQw3E9F+20xwotR
+	USLQpnjD/4B/MtuCWCgY75uoB90DZ5Ba3maV/VZL/3yIyCFEQOlJ95e5BqB7OSLb
+	X1DbxcB3Q/gGhVFbyGlpA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112584; x=
-	1659119784; bh=HUTF54qcrEltxzuIrBwhVolQypRjTlRuOsWlypQ6pmU=; b=j
-	x+492p3mBGelDO/J5BTtexdxgdebe0Y6tqY904gOm5dkSo/jHdL8xbP1xOsscBd+
-	ZuVRBbe2UsGTTKFiv98e8mBwaeRjpQeDXGO/BNFHaDKzlrq5IARsVSgY9TE2W8if
-	SQ/KlAaVbYe9zrrbCbyiXovT2fZ9jxUokUqkeGCnrbrtK/eluymVEUczT/cD0ArT
-	ck+G+JUvvvAEkw+toXuylIBGDhQZfO9lW81HKGiCKuePuld2jHCYi9afWd1PBM+N
-	Dt+F+4hEDdsx/WEw9r8l2FqNWRO2yQZJIu4qTTWU6RWA6QyEwC+iC/N5EX3lNuvv
-	QeCgQgG8cMp6RCRN+BOsw==
-X-ME-Sender: <xms:iAzkYpmtiRn-da7KR7fdlMBNk4ZEp-UvVasIgEOonZWSMu6bqo-Qgw>
-    <xme:iAzkYk18mJCAXeX7oW6lohVRrN1-vIKTCBeVjo_-dtYTjrGCBVWg9TKekPnfIZ_WN
-    iglEnIY0ympab-WIt8>
-X-ME-Received: <xmr:iAzkYvpy9uTq3XzxzPjqz-dEIIS2I97W2_-OP8_yvG3UVSOVqVRzd7-AuCHTSRSHXz_of_JsrIJp6cUv9YE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtgecutefuodetggdotefrod
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112589; x=
+	1659119789; bh=xVGYG5LL1TbN6HzfjsLCzXmVKf2LOPhGZdr8USk7meY=; b=A
+	SwGXUrqj4EmXJlUL0MlMca60jel0G/0BdWq4AKtJgbUk2+Z415jf7iCPLxDXvtqa
+	pHKSTb4Vt7VcGsZ4KoXkLKQeap7bdv9iOxMWFygwVdTmOyQtmLwPpngPJee4Giri
+	vgyHzt4URsvg/qX8TVUU4z9HzwqUsRl3V3tz4Bzqs7VKF1Ojd32N2y2mf4Z+p+C7
+	SGbRYLG9eo3j3ZRIOUNaRKO5LGn+LlVnJnAQfKhU/KIOLZQ9rl4E7qwM2Q0DQML/
+	vJsJZSY/f859ci4OpnFCB0qMVPVtvhZCgy+r+jZpBJ0LnryzvPeincjdlcWV1266
+	Ohi6e/Thnl8kRnAhK8EGQ==
+X-ME-Sender: <xms:jAzkYve5CRcbHVTdnVmb1Gj7lw1cliMyPUqry7Mvj5U8gCwPsIPT3Q>
+    <xme:jAzkYlM04nX9l-erxTblGp_XvcIFIyO_QtJnaWVT8wklliMdbpwNpYROqL2o_Zlyj
+    wy3MqaIfAvReLCDaLs>
+X-ME-Received: <xmr:jAzkYogxN5oFnyn1H3mksBVDsUaro-XWMSoS4x0WNqPIvYVCglEAVUC7xb0ZDCItCW-xCCra4boPVxKhz88>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtfecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
     enucfjughrpefhvfevufffkffojghfgggtoffgsehtkeertdertdejnecuhfhrohhmpefo
     rgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecugg
     ftrfgrthhtvghrnhepgfffgfetffduudelhfevieffffduleevgfegkeeutefgffejheel
-    leekjeefhfejnecuvehluhhsthgvrhfuihiivgepgeenucfrrghrrghmpehmrghilhhfrh
+    leekjeefhfejnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehmrghilhhfrh
     homhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:iAzkYpn8lveDuwGB43as4FpZMYL0kIKwCdZK52Qte6XabTH66F11MQ>
-    <xmx:iAzkYn3HitmPCMfvRR308V1Vxrs_d-dJYomcrrbKPOVcIJXpFsw8pA>
-    <xmx:iAzkYovacx27N2JoBD8YUJTjLOrf3uaLHYgDAAt_-X9pahAXP2mjfg>
-    <xmx:iAzkYiFahJ68lyA8bT6vERSXox_ZGa0Rt2a7M-Yy0qmE3bgYfXJ7oA>
+X-ME-Proxy: <xmx:jAzkYg-zQx4ynVmr7E6m7SkQRTI3zcpOZ2RACKvE6g38Ac_KpNHd_g>
+    <xmx:jAzkYrt7ygVOEWAH12qSZ3tzenrxONQgiGq1kVlSBBxq_rABaeJcFA>
+    <xmx:jAzkYvFMqx0tWkHkMnN5uUL6h9sP4ZQI2qyWVUQf5krvbEGnBqD9jQ>
+    <xmx:jQzkYq93fXjd52PPMzdA-jwe_WxG3CJGLxUWfukPFUxzKGWLodZZCw>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 29 Jul 2022 12:36:22 -0400 (EDT)
+ 29 Jul 2022 12:36:27 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -99,19 +99,19 @@ Cc: Maxime Ripard <maxime@cerno.tech>,
 	linux-amlogic@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	Dom Cobley <dom@raspberrypi.com>
-Subject: [PATCH v1 16/35] drm/vc4: vec: Convert to atomic helpers
-Date: Fri, 29 Jul 2022 18:34:59 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v1-16-3d53ae722097@cerno.tech>
+Subject: [PATCH v1 17/35] drm/vc4: vec: Refactor VEC TV mode setting
+Date: Fri, 29 Jul 2022 18:35:00 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v1-17-3d53ae722097@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 MIME-Version: 1.0
 X-Mailer: b4 0.10.0-dev-49460
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1629; i=maxime@cerno.tech; h=from:subject:message-id; bh=wVpNGhINRc9XThGUAhn0EA3UH3mvunqoxgBDqkbwN5Q=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VG6xvf4oSR3yY7Oi/Vbm2aslYzTtm1Z13u3QovjwtEY HaVvHaUsDMIcDLJiiizXBd/a8YVFuUXwfNgMM4eVCWQIAxenAEwkUpuR4YEvN8NXTddpXNp/8rY+7l Q8udq9SSVyvrLN+WW3pv9f/Ybhf0DqlncdV19tmPb6R/Np8efuewJmutnXrDOMq9xlfi76zHoA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4172; i=maxime@cerno.tech; h=from:subject:message-id; bh=O/9+DbxGFhrV8t/G57jPy8C5DgCC7v+vV6zzCbqSKNs=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VHKtvsgPEGAadeceQIW801MC7y4uz0L+num9/jOc5GW P2jWUcrCIMzBICumyHJd8K0dX1iUWwTPh80wc1iZQIYwcHEKwES21DAyvPZht+Wcx2DHc+5as6NJXY DLL9uzTvFRcjkSmSab0hffYWTYGt2TcElkfXZCq0/XZl/GrKoL3bybAiUzV/LUms3Knf0LAA==
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp; fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220729_093625_617618_7790CB96 
-X-CRM114-Status: UNSURE (   7.51  )
+X-CRM114-CacheID: sfid-20220729_093629_985459_E8FFD0A5 
+X-CRM114-Status: UNSURE (   9.85  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -129,47 +129,150 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The VC4 VEC driver still uses legacy enable and disable hook
-implementation. Let's convert to the atomic variants.
+From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
 
+Change the mode_set function pointer logic to declarative config0,
+config1 and custom_freq fields, to make TV mode setting logic more
+concise and uniform.
+
+Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
-index 17a6afac61cd..ba0a81250d08 100644
+index ba0a81250d08..02cef4134f2f 100644
 --- a/drivers/gpu/drm/vc4/vc4_vec.c
 +++ b/drivers/gpu/drm/vc4/vc4_vec.c
-@@ -375,7 +375,8 @@ static int vc4_vec_connector_init(struct drm_device *dev, struct vc4_vec *vec)
- 	return 0;
- }
+@@ -194,7 +194,9 @@ enum vc4_vec_tv_mode_id {
  
--static void vc4_vec_encoder_disable(struct drm_encoder *encoder)
-+static void vc4_vec_encoder_disable(struct drm_encoder *encoder,
-+				    struct drm_atomic_state *state)
- {
- 	struct drm_device *drm = encoder->dev;
- 	struct vc4_vec *vec = encoder_to_vc4_vec(encoder);
-@@ -406,7 +407,8 @@ static void vc4_vec_encoder_disable(struct drm_encoder *encoder)
- 	drm_dev_exit(idx);
- }
- 
--static void vc4_vec_encoder_enable(struct drm_encoder *encoder)
-+static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
-+				   struct drm_atomic_state *state)
- {
- 	struct drm_device *drm = encoder->dev;
- 	struct vc4_vec *vec = encoder_to_vc4_vec(encoder);
-@@ -508,9 +510,9 @@ static int vc4_vec_encoder_atomic_check(struct drm_encoder *encoder,
- }
- 
- static const struct drm_encoder_helper_funcs vc4_vec_encoder_helper_funcs = {
--	.disable = vc4_vec_encoder_disable,
--	.enable = vc4_vec_encoder_enable,
- 	.atomic_check = vc4_vec_encoder_atomic_check,
-+	.atomic_disable = vc4_vec_encoder_disable,
-+	.atomic_enable = vc4_vec_encoder_enable,
- 	.atomic_mode_set = vc4_vec_encoder_atomic_mode_set,
+ struct vc4_vec_tv_mode {
+ 	const struct drm_display_mode *mode;
+-	void (*mode_set)(struct vc4_vec *vec);
++	u32 config0;
++	u32 config1;
++	u32 custom_freq;
  };
  
+ static const struct debugfs_reg32 vec_regs[] = {
+@@ -224,34 +226,6 @@ static const struct debugfs_reg32 vec_regs[] = {
+ 	VC4_REG32(VEC_DAC_MISC),
+ };
+ 
+-static void vc4_vec_ntsc_mode_set(struct vc4_vec *vec)
+-{
+-	struct drm_device *drm = vec->connector.dev;
+-	int idx;
+-
+-	if (!drm_dev_enter(drm, &idx))
+-		return;
+-
+-	VEC_WRITE(VEC_CONFIG0, VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN);
+-	VEC_WRITE(VEC_CONFIG1, VEC_CONFIG1_C_CVBS_CVBS);
+-
+-	drm_dev_exit(idx);
+-}
+-
+-static void vc4_vec_ntsc_j_mode_set(struct vc4_vec *vec)
+-{
+-	struct drm_device *drm = vec->connector.dev;
+-	int idx;
+-
+-	if (!drm_dev_enter(drm, &idx))
+-		return;
+-
+-	VEC_WRITE(VEC_CONFIG0, VEC_CONFIG0_NTSC_STD);
+-	VEC_WRITE(VEC_CONFIG1, VEC_CONFIG1_C_CVBS_CVBS);
+-
+-	drm_dev_exit(idx);
+-}
+-
+ static const struct drm_display_mode ntsc_mode = {
+ 	DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 13500,
+ 		 720, 720 + 14, 720 + 14 + 64, 720 + 14 + 64 + 60, 0,
+@@ -259,37 +233,6 @@ static const struct drm_display_mode ntsc_mode = {
+ 		 DRM_MODE_FLAG_INTERLACE)
+ };
+ 
+-static void vc4_vec_pal_mode_set(struct vc4_vec *vec)
+-{
+-	struct drm_device *drm = vec->connector.dev;
+-	int idx;
+-
+-	if (!drm_dev_enter(drm, &idx))
+-		return;
+-
+-	VEC_WRITE(VEC_CONFIG0, VEC_CONFIG0_PAL_BDGHI_STD);
+-	VEC_WRITE(VEC_CONFIG1, VEC_CONFIG1_C_CVBS_CVBS);
+-
+-	drm_dev_exit(idx);
+-}
+-
+-static void vc4_vec_pal_m_mode_set(struct vc4_vec *vec)
+-{
+-	struct drm_device *drm = vec->connector.dev;
+-	int idx;
+-
+-	if (!drm_dev_enter(drm, &idx))
+-		return;
+-
+-	VEC_WRITE(VEC_CONFIG0, VEC_CONFIG0_PAL_BDGHI_STD);
+-	VEC_WRITE(VEC_CONFIG1,
+-		  VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ);
+-	VEC_WRITE(VEC_FREQ3_2, 0x223b);
+-	VEC_WRITE(VEC_FREQ1_0, 0x61d1);
+-
+-	drm_dev_exit(idx);
+-}
+-
+ static const struct drm_display_mode pal_mode = {
+ 	DRM_MODE("720x576", DRM_MODE_TYPE_DRIVER, 13500,
+ 		 720, 720 + 20, 720 + 20 + 64, 720 + 20 + 64 + 60, 0,
+@@ -300,19 +243,24 @@ static const struct drm_display_mode pal_mode = {
+ static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
+ 	[VC4_VEC_TV_MODE_NTSC] = {
+ 		.mode = &ntsc_mode,
+-		.mode_set = vc4_vec_ntsc_mode_set,
++		.config0 = VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN,
++		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+ 	},
+ 	[VC4_VEC_TV_MODE_NTSC_J] = {
+ 		.mode = &ntsc_mode,
+-		.mode_set = vc4_vec_ntsc_j_mode_set,
++		.config0 = VEC_CONFIG0_NTSC_STD,
++		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+ 	},
+ 	[VC4_VEC_TV_MODE_PAL] = {
+ 		.mode = &pal_mode,
+-		.mode_set = vc4_vec_pal_mode_set,
++		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
++		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+ 	},
+ 	[VC4_VEC_TV_MODE_PAL_M] = {
+ 		.mode = &pal_mode,
+-		.mode_set = vc4_vec_pal_m_mode_set,
++		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
++		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
++		.custom_freq = 0x223b61d1,
+ 	},
+ };
+ 
+@@ -470,7 +418,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
+ 	/* Mask all interrupts. */
+ 	VEC_WRITE(VEC_MASK0, 0);
+ 
+-	vec->tv_mode->mode_set(vec);
++	VEC_WRITE(VEC_CONFIG0, vec->tv_mode->config0);
++	VEC_WRITE(VEC_CONFIG1, vec->tv_mode->config1);
++
++	if (vec->tv_mode->custom_freq != 0) {
++		VEC_WRITE(VEC_FREQ3_2,
++			  (vec->tv_mode->custom_freq >> 16) &
++			  0xffff);
++		VEC_WRITE(VEC_FREQ1_0,
++			  vec->tv_mode->custom_freq & 0xffff);
++	}
+ 
+ 	VEC_WRITE(VEC_DAC_MISC,
+ 		  VEC_DAC_MISC_VID_ACT | VEC_DAC_MISC_DAC_RST_N);
 
 -- 
 b4 0.10.0-dev-49460
