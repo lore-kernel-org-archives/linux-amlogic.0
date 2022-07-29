@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 284C5C00144
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 16:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D3B1C04A68
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 16:42:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n+UDSICfpxBGze83d38dE3y+2hkFyzwkSvU2P3j2kHg=; b=qnb1WK/MXGRPxJ
-	XEJov8IY2k7TdKlBw70m1Aqzo1BAEZfYRn+t/YV/ToHAW355pjX0TTkGaRR1VqQNMvlcC7DtH7IuW
-	ghaJN7FLbqR1AdbeexbRHZtscfCsLPhLJapAOgWjFtUFJ9Mx7UYP1w4Gc/OJAfyvMp+rDReeotG3K
-	L2jnJ7Ugqj8jSHG+L3VOBFtQSzxEqzUCMoVelfQGmTOy7MOJDkAlVhofXCnCxeKYiKtM+pk4dKDqs
-	nPRsiWNBhCmKYRqgBK+SpWe4sO9VOqsM8sWSGoTBprgiqNV2CGz+DHvv3qhK9DMOOvUzXYPjIjZK1
-	le21odtJ2nQk8oSEkARA==;
+	List-Owner; bh=317Fw1YkTicOZG3qIzJJXYMvlb1QjcQ04yWNNAAvwjM=; b=TnzFv/ITA7M2Ir
+	o/a29GpcabJ026FRt7oYACCVMi4PFw0TsS7BqxXgoCWOV0/cYMBCx+LJtIj8CnGccE8rRjc2dfHAS
+	Tjd2czI1EzI5WTSaEhgQTLcju/mRSpmWN0bklakIzbmAc1CSRQ5bEK4TXlskopOpMcvZZI31SuV7d
+	Cx1Iwf1MhOR6DaY9Vze3zTR4d8H7nTSbEvIwmTui7xJ0e8cS1bJi5LsLhDy2ouOUqha4H6eTpJJVO
+	zK6pcUW36WTdoVWkCN0QWCA6mdsgTpo6kDcVvaItCYJEORGNj5b9oKsmReHE9jNk8iw/qQ5rB9DTg
+	SOU3e7K+Adlhj6RKlRXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHT3Y-006VrW-Ie; Fri, 29 Jul 2022 16:41:44 +0000
+	id 1oHT4G-006WKt-0H; Fri, 29 Jul 2022 16:42:28 +0000
 Received: from new4-smtp.messagingengine.com ([66.111.4.230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHSy1-006S6J-51; Fri, 29 Jul 2022 16:36:03 +0000
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 6A46C58093D;
-	Fri, 29 Jul 2022 12:36:00 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Fri, 29 Jul 2022 12:36:00 -0400
+	id 1oHSy4-006S8h-AB; Fri, 29 Jul 2022 16:36:05 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 92AB1580940;
+	Fri, 29 Jul 2022 12:36:03 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Fri, 29 Jul 2022 12:36:03 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
 	:cc:content-transfer-encoding:content-type:date:date:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112560; x=
-	1659119760; bh=st2NK37KTfySqs+WWdYxjBL07hSVh6varfy6HltspJc=; b=r
-	dFEjrH53Yv87FiCgiK7WnA0uvSnLZ3ZRT8ZwaJcinNzyBTzUSg4dbLcYSVAsR5UO
-	x2hngPpmPwPKGdP6DW8u9/RX+nmNLHaCSggbVJ+F6po0QtBUk5sbR7eblJlzgmMc
-	8SV/xVsnszvlW3QHtZ41/7y6XPYlifM1kzPJ27qXSZy8oNkegEwlCJzwuWuS2Cvk
-	Kjx/XdbZqfw1vx2ke9RIzVn6jnI4EZzYbh5unk1j2VuePiwKjfBRN9jGpcoz4/A1
-	ajsXuIjjsCBkYkpr4ieQM/uhda30iyGsd8Q6JMujbF0bu1VLzxxGqTY4iHn2T9AL
-	hC6TT43I9cdruUMOKY6uw==
+	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112563; x=
+	1659119763; bh=e8w96O80jWmpbrCBw3kEkho0/4LLDZdkQsICNURykFA=; b=Q
+	nXF2tg/gQ3dK6BjE4qA2oH11e4jGyvmEpFUrjG5UdYRskaBHQFrJKfIvuePSNcTe
+	a5Pshnm2g9vxd1lUmWYK9xh58xFgOzqiQvoVB4lcbJy++00kxdbuNVCM+BAdlDUt
+	0t6mZLuYplbVVk3Koif/MQAwjhFH6J0OzCepa9iz59aU4t/FeNppHIwrbxhdrh38
+	Yxn5wJh+a0vlMsXK18U0zpo0aogCW2C/H7VnrD2OOgfhNtuB5mF9zkne5Tj2pJ6G
+	Sm4ohwmmyHVPAg5NXRe/XuVgrexFasfjDdkP5wV52mkAOF3xClomdDo3zyqWUXW6
+	yz/RRQ/tKzbCMxk5dHvWw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112560; x=
-	1659119760; bh=st2NK37KTfySqs+WWdYxjBL07hSVh6varfy6HltspJc=; b=y
-	5ZHinuWkTWspJfi/IPrezlrOZ5v5DBOq+BvMGGrotoC9RjPRRZ4a4DlDqGQWBEHs
-	hvFK/PicN7qqkUJDAoMEKbX3UwCH+GbHAuZxZd85eybIJ/gPZup7qd4xyxi/g4MZ
-	EK+yYiGTpEvyFLkxEQYKfR+ChSGPlYqNZWoCD8F+H3dC1Yupv/QViaRsOy/M8ltz
-	mpA5QLWjL/I+XjozTJrrlBoxcbLOWzSLvm+h06/IPk/YtofcZ2lYNJP9wZUJNVkR
-	8XenPK451CPGOMGkXrG+mSlrIi3H0zmamqFP2P3YVV5T9Dy5ql1BrjXe8SOCeW6k
-	svDNDJa6aEbtT5SsnDbfA==
-X-ME-Sender: <xms:cAzkYivwx_5XWGtQOxVGDmesa_L6NTlT4P8-qWu94dprvZ2gdMXRWw>
-    <xme:cAzkYncAghay4hmPG6ckgIp882ALCvK6K2MeJCK-1sdfpCqYVzkRaEGW4ukM9YYSU
-    naGHpJFDG8Oq_-LUnw>
-X-ME-Received: <xmr:cAzkYtx02fgFZp6gzPI4_twHQgNsXG8iHPjt85tLlio3J3wEjfEFhm3_pRbzf3emd-v8PkzkZPzr0ftiKDM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtgecutefuodetggdotefrod
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112563; x=
+	1659119763; bh=e8w96O80jWmpbrCBw3kEkho0/4LLDZdkQsICNURykFA=; b=F
+	tWdbMbwd8gGLz7Pgfb8eYqdd73EAP0ttC5XD+SSbs2AVxnza5/jbd4e0JD+OrZpM
+	6d3wubHYvGeqJjfI3rvCDI4rpO/e5zvX3888iAaY+UgsWStaTdjX3v0u7aLWPCIw
+	0mfBcd9fHF08UeFnzWntUeRTng0wwfDjnqDpL2uc67GUe6IW5Qm90Mgu/CzfPhSa
+	JFmlKqZjAPFXxssHue06CCjoLqyskdcpGGqDsAf7DDrmUYWRCgsAKj5YlKxrOnBf
+	gg2KN7Hg30Ivf4Fm/LqzlQSDg1AXg6qDfVdyS0mFcIBS9/qiS9oYzq6s5OUxrU2x
+	GGoZHOQaHUL0etfAa5eHw==
+X-ME-Sender: <xms:cwzkYtUh_sucbcxeqmDTCbveRxbhJiOfj0aR61JInJ25lBDMyVAqXA>
+    <xme:cwzkYtnh61u867QSxzM8DXGZBSRET4ersZWUKzxG_uXzOiJ8iBbF46ch7Tbe19__1
+    uVQoro0PFWpADqFbjE>
+X-ME-Received: <xmr:cwzkYpZ3xGnobEdUAQOyEb6ht31Pnb6XCpUZ85Z_CzE12w49Om5EMqRlVbSAULZHAjbIqbaTVdvEyXQUPdk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtfecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
     enucfjughrpefhvfevufffkffojghfgggtoffgsehtkeertdertdejnecuhfhrohhmpefo
     rgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecugg
     ftrfgrthhtvghrnhepgfffgfetffduudelhfevieffffduleevgfegkeeutefgffejheel
-    leekjeefhfejnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrh
+    leekjeefhfejnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehmrghilhhfrh
     homhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:cAzkYtPVRxs-feqqI2oYdKT_KPfdfWke3vB9U5tw9jvRgScc8p84CA>
-    <xmx:cAzkYi9heXywNUOjQ41T57EVqTDNBeRLoQfT5SiU3l-5ZWF6JR0Klg>
-    <xmx:cAzkYlU3OedLqxVomAwHTM38c2eBMGxjDfAr6TwgraB9yME7aKO9Jg>
-    <xmx:cAzkYgP1R3JfVlIyTl0TPFsGfsP_sHNwvtzs_FaoQ9UIDaVlDap3dw>
+X-ME-Proxy: <xmx:cwzkYgUbQyNxw6siDLaaM45nVkv8G5hbhjHp1iJlkl5__ZcNNt99Aw>
+    <xmx:cwzkYnnDuMjedRRcg0CJz-gu6pUvWu1130Omvd-sR97XsccAFGyhIw>
+    <xmx:cwzkYteMvBhHPqKqRpZ0BtIXuowijmNEjUVZ-HeDnD_epkXOjU6DDw>
+    <xmx:cwzkYr3cHP82AOz0OVoZp4DeNyzw-4dzH37RimerQgGDkVHpSFpTDg>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 29 Jul 2022 12:35:59 -0400 (EDT)
+ 29 Jul 2022 12:36:02 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -99,19 +99,20 @@ Cc: Maxime Ripard <maxime@cerno.tech>,
 	linux-amlogic@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	Dom Cobley <dom@raspberrypi.com>
-Subject: [PATCH v1 09/35] drm/modes: Move named modes parsing to a separate function
-Date: Fri, 29 Jul 2022 18:34:52 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v1-9-3d53ae722097@cerno.tech>
+Subject: [PATCH v1 10/35] drm/modes: Switch to named mode descriptors
+Date: Fri, 29 Jul 2022 18:34:53 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v1-10-3d53ae722097@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 MIME-Version: 1.0
 X-Mailer: b4 0.10.0-dev-49460
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2488; i=maxime@cerno.tech; h=from:subject:message-id; bh=jeXmsF+0yQoip9VjnXEGiKY2SAbOvZx7rBy39YwT/5A=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VHS9vnqUd56XL2tMM13vuv60m8Bjo5TH1s4Vey4rWKR uXVrRykLgzAHg6yYIst1wbd2fGFRbhE8HzbDzGFlAhnCwMUpABPRvMvI0CATOj3A4sK+03cCi5d1dR zpSLijNfHqhg2eAgkrXKzlJzMybDxbsn39K6/o+y41j2yXeeoIsn9tl5bkZvj5QbFAxKxGCwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1540; i=maxime@cerno.tech; h=from:subject:message-id; bh=7XZdQfRWjHdAHz8+TLk9cQGA52WaqvFzAKH3QklOSko=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VFScrT42N+ncm6dRG94xZ5Me7OwhzZJ3uduiUSph7zS FNrfUcrCIMzBICumyHJd8K0dX1iUWwTPh80wc1iZQIYwcHEKwET8PzIy/GypzfGVftPbOW3Z8+bNm4 s1J13O9fNZefvp8qvRub139RgZ9tawG7J2PrtYzTrV0V5P5+EP3t/LPx4oZ6g48b7oybecVQA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp; fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220729_093601_314186_501371A5 
-X-CRM114-Status: GOOD (  11.71  )
+X-CRM114-CacheID: sfid-20220729_093604_475047_A55F9157 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,80 +129,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The current construction of the named mode parsing doesn't allow to extend
-it easily. Let's move it to a separate function so we can add more
-parameters and modes.
+The current named mode parsing relies only the mode name, and doesn't allow
+to specify any other parameter.
+
+Let's convert that string list to an array of a custom structure that will
+hold the name and some additional parameters in the future.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-index 06a006e0b2e3..e85099df0326 100644
+index e85099df0326..1421e5da49e0 100644
 --- a/drivers/gpu/drm/drm_modes.c
 +++ b/drivers/gpu/drm/drm_modes.c
-@@ -1773,6 +1773,28 @@ static const char * const drm_named_modes_whitelist[] = {
- 	"PAL",
+@@ -1768,9 +1768,13 @@ static int drm_mode_parse_cmdline_options(const char *str,
+ 	return 0;
+ }
+ 
+-static const char * const drm_named_modes_whitelist[] = {
+-	"NTSC",
+-	"PAL",
++struct drm_named_mode {
++	const char *name;
++};
++
++static const struct drm_named_mode drm_named_modes[] = {
++	{ "NTSC", },
++	{ "PAL", },
  };
  
-+static bool drm_mode_parse_cmdline_named_mode(const char *name,
-+					      unsigned int name_end,
-+					      struct drm_cmdline_mode *cmdline_mode)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
-+		int ret;
-+
-+		ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
-+		if (ret != name_end)
-+			continue;
-+
-+		strcpy(cmdline_mode->name, drm_named_modes_whitelist[i]);
-+		cmdline_mode->specified = true;
-+
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
- /**
-  * drm_mode_parse_command_line_for_connector - parse command line modeline for connector
-  * @mode_option: optional per connector mode option
-@@ -1809,7 +1831,7 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
- 	const char *bpp_ptr = NULL, *refresh_ptr = NULL, *extra_ptr = NULL;
- 	const char *options_ptr = NULL;
- 	char *bpp_end_ptr = NULL, *refresh_end_ptr = NULL;
--	int i, len, ret;
-+	int len, ret;
+ static bool drm_mode_parse_cmdline_named_mode(const char *name,
+@@ -1779,14 +1783,15 @@ static bool drm_mode_parse_cmdline_named_mode(const char *name,
+ {
+ 	unsigned int i;
  
- 	memset(mode, 0, sizeof(*mode));
- 	mode->panel_orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
-@@ -1848,18 +1870,14 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
- 		parse_extras = true;
- 	}
- 
--	/* First check for a named mode */
 -	for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
++	for (i = 0; i < ARRAY_SIZE(drm_named_modes); i++) {
++		const struct drm_named_mode *mode = &drm_named_modes[i];
+ 		int ret;
+ 
 -		ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
--		if (ret == mode_end) {
--			if (refresh_ptr)
--				return false; /* named + refresh is invalid */
-+	/*
-+	 * Having a mode that starts by a letter (and thus is named) and
-+	 * an at-sign (used to specify a refresh rate) is disallowed.
-+	 */
-+	if (!isdigit(name[0]) && refresh_ptr)
-+		return false;
++		ret = str_has_prefix(name, mode->name);
+ 		if (ret != name_end)
+ 			continue;
  
--			strcpy(mode->name, drm_named_modes_whitelist[i]);
--			mode->specified = true;
--			break;
--		}
--	}
-+	drm_mode_parse_cmdline_named_mode(name, mode_end, mode);
+-		strcpy(cmdline_mode->name, drm_named_modes_whitelist[i]);
++		strcpy(cmdline_mode->name, mode->name);
+ 		cmdline_mode->specified = true;
  
- 	/* No named mode? Check for a normal mode argument, e.g. 1024x768 */
- 	if (!mode->specified && isdigit(name[0])) {
+ 		return true;
 
 -- 
 b4 0.10.0-dev-49460
