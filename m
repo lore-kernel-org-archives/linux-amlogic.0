@@ -4,72 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA7B4C00144
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 16:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F10D3C00144
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 16:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=lx7sM8S7etzWsKyLoAXvV4T3/rqXJdyqPOWAIaQQQQc=; b=S9arbk3yuwsyNA
-	LG0HtLbrZKGWrwXcg493RR5ti6xxmINDc/esBFy3Su/vTlHdDSXCiC46QT36pgXILcE7ZBTokMHPT
-	yIBWQW4kAaZzyfLacR0f5RIQAnizHX3TPI+ffxkaKcoHK5iIkNP6KnylJq1gAP2LVLwzZlGR+oH+t
-	EtZ+3F0RQydkDcS3B4Lya5/MR2zpt8xRiSgVsvb5IkXK9O+TwV7eGgAKXUu4RKYNK3dp3tNAbjri9
-	DF81YVLQFxjYxf0fBFF4t2LkpmgqhI8NHRBKtg27V6MsiWxL5UkAB/SOHdMutvFF9NMBAEamJ9z9e
-	NCP81auk7IDFsJI7QqbA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Be/xw4gmMNEEuSZzWay5+iO3GrYZvYCGVr6U9y4YU7o=; b=nInkkRXtxgmq5E
+	12tO78zbdcVAn2/XBeIYzE1WLFtl+A1RwWxTpiB41Lovm4cfQQKiuzNCSbuoz8Hb1y/8G5KfcOV7L
+	rW84cegl4b3/2IJpgjnf97oqqOU/mbYbvjaPalCYRVTXRUx6tWjS/zTIkj03Lkt7iXyWvNuw7s+3b
+	lXXjET1jeVeiP0GLUKS+/0wnVtVKs2fHv7LfLwt7K9oc4w7v05L9RqeUy1cT9kUSn6EsVODfsLRrl
+	iSGDipXXIm26euhebMMayMnfBNSR9oKMf75f7oamkvY2T/yIEczaVIEDqv47pchQx3D/R9LJ4O7k9
+	1MZB1oPBqs3mSr4GRvgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHSxc-006RpE-Nt; Fri, 29 Jul 2022 16:35:36 +0000
+	id 1oHSy9-006SDJ-Mm; Fri, 29 Jul 2022 16:36:09 +0000
 Received: from new4-smtp.messagingengine.com ([66.111.4.230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHSxY-006Rhr-5g; Fri, 29 Jul 2022 16:35:34 +0000
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 46506580897;
-	Fri, 29 Jul 2022 12:35:26 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Fri, 29 Jul 2022 12:35:26 -0400
+	id 1oHSxZ-006Rke-9L; Fri, 29 Jul 2022 16:35:36 +0000
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 94D405808FB;
+	Fri, 29 Jul 2022 12:35:30 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Fri, 29 Jul 2022 12:35:30 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
 	:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:sender:subject
-	:subject:to:to; s=fm2; t=1659112526; x=1659119726; bh=C+jYJd9Wl4
-	W0Bkfo1PkjL8TjpKm/fWgkUOf3TUKzFyM=; b=DdzWy2FJrRnhVSk2PuB20leyMs
-	LAJ0CpCpMV4sUP0q5x4VUToFQK4HcyKBIAAeUs/ea9oOEcS82Ux2npZLQE1krJ/J
-	c1pOHywZR+RXbbhIswbAXdVIi4A5XG9pr9lGtwD7QexmzWSCvu27D0N5SPj1/p6j
-	aQEmJS5W+SVu0izC/2lAHI9w9hUVfFX1IzkFQN0a1DP0tFNbf6eJD3ZCpI3aDKHt
-	ms0bcPom61SgjdE1zPJZvKzE4WJiH6/wDAYJK62M2i/7Aoe5rPeejYoR0podU/6y
-	wc98iFpiWyEtCK7CcyPj4qeU/mPNMKtf1YW2IZisoGxgPkkWuddQoQaURdDQ==
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112530; x=
+	1659119730; bh=rHszA6yTYdadm9FE2nCZkXzGtjsFgA60URB5qXutatY=; b=t
+	HevhV/aL4JbnO4YUhip09KVnzHeXZ5uMk0SmoPApJgCAw1qetKVzlKy8SvHSaAxd
+	zcHf4+ijP95IG0JNdzbEs7SMrXr2Fi+ZWoxTkzob2724jprkM/LdPidCxskleQC+
+	sb6v7+ST9oZZBsUWn2pm/gEDIIIVOfvxBvIcDxkdH7j9qsfCy2gufLOK610NxP/k
+	ERCKNhJQXS5MugMywsaMu63WX5/Q5E79miCZb24S4lghuvm8cq5pO87iA2/Fa86j
+	RZu/Wj4cEVweaHKq5OY3lfqTUuxnaJzzeAOgJ513/RWmHaVSNTPdUtfcaiwRV+AS
+	q9iNq4r88ETGaaOqfYKtw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm3; t=1659112526; x=1659119726; bh=C+jYJd9Wl4W0B
-	kfo1PkjL8TjpKm/fWgkUOf3TUKzFyM=; b=0hzRTYxuABZCCa2X82Xi4Cz2bz6xU
-	zmmuBf+0g7Ly80aNp15UxfXPqeVBCvX75o2xF1b9PTMx0LHVhrAqzWUjjnIb5LZW
-	sl0pVzRk9ZDi4pcLumRPdg3fUXIJIBjzjAOEjeVIsVlXuS8PKfkMdV9Pt3ds4RH+
-	D6ZTQbnkqzw3wHOIxXT2kIjzApYOPGeemxMBVTciO5g5l08EZUcZSh+SEJ2T1tgA
-	KakrCj2oiwmvOmah0CDfnS9S+sISl8a+qNrTY6h53nQhL6r3yJjblE9iT7RC0Wfe
-	P5NnmYVbH4TmG/HxDNRdLrg4UgBz8wIKvZ0Cy9Sc64ZJtTmixBtzTDCPw==
-X-ME-Sender: <xms:TAzkYk0_3v55mHGgA5q4a62N2Gwx8x5pPrnyfJxgdKUQtv4G5V4V-w>
-    <xme:TAzkYvE9cppfgymTw2A9YKGh7GomblLynNX8VSM2RUU4PwdbPsQeGJISCeYu06NFg
-    1A1L0d0wuGN_b7smmg>
-X-ME-Received: <xmr:TAzkYs4913WNJZR38mkvbq3dMYLlmaFBSNIKcWBAh5tZ4Ye-foZALbkvIfto7DIDg1bbXJC4mdouS2XgkJM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtfecutefuodetggdotefrod
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112530; x=
+	1659119730; bh=rHszA6yTYdadm9FE2nCZkXzGtjsFgA60URB5qXutatY=; b=S
+	+pzdQa4XXXBdex7hWuyCDHEzTEzn1vLNrXWbKGbey1v1OtBP/xcjt39YBUjfbBZl
+	8ZTu6V1GhEtIUqecwoWE8aKoD9+HMtaCq8+3tJH2BvJ905+p0AtG81h2yiSG+Qca
+	wISXfvplLouHH1A5Ncjldnc4/VE5e1bf4C7dTvYRAWhDbRygGFdfSHNDzr7M1Wl3
+	k8MoKSyd5da/4l1ooF2t2rwxh2ViLuUFe+R2+cNqtsNHAp/9ICprz2Qq7TuIstLU
+	myz0DeFU9sgauxFrRWQqjukYR4/kTu7IvnaCHR4IIIiilM4tgyZRRatxA2P3ZROJ
+	NJUz71nhpDhAv2uU1m+WQ==
+X-ME-Sender: <xms:UgzkYjHh0jsQboqLfAwCBX_4evynMkTFfHFj1G1vEEkMJbjCBr4UuQ>
+    <xme:UgzkYgUEPk5T4YsfXbrz42ZqArvJ62mfAhUQrjRyx5zS2CgnBafX9OhKkCfnO9iNR
+    A7Wk5oVoCRzWkNeZMI>
+X-ME-Received: <xmr:UgzkYlKMAAqA-b-ISQMxlJIacrFOLQZeNZqbC9IMOcI4EUi3gCSpBzB0JIjjQ0bE4ki0o_2awRK17RydS8k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtgecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffogggtoffgsehtkeertdertdejnecuhfhrohhmpeforgig
-    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
-    grthhtvghrnhepffekvddvteekuedujefhtdfgffevkefgvdevieejgfetgfefjefftddu
-    ueevkeehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:TAzkYt3Q93C_8U2ffTmsguxAQAdH1fGgWUBiaATjtkZu8mRZ5YEbpA>
-    <xmx:TAzkYnFAKi2aE4JGma4jdjyel1v83kDqVZeBlBs2tHHgMU3BLFNetQ>
-    <xmx:TAzkYm-S9Rd7JcsxGKV7LL2U0i8U1Wsv2Ff6iE7J8Ocn4zup7CvLBw>
-    <xmx:TgzkYvUe5z14LSmSdUkDBcj0Za7-KBUn43_60swCh265RngFZFwiag>
+    enucfjughrpefhvfevufffkffojghfgggtoffgsehtkeertdertdejnecuhfhrohhmpefo
+    rgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecugg
+    ftrfgrthhtvghrnhepgfduhffhkeeiteejledtieeuteehkeehieekgedugeffudekjedu
+    geffieethfeinecuffhomhgrihhnpehmrghrghhinhhsrdhtohhpnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhho
+    rdhtvggthh
+X-ME-Proxy: <xmx:UgzkYhHXyHzyEsijorJenWyJQRWYTQEi50NwDGP3HCHoKwbKYZViIA>
+    <xmx:UgzkYpWcrNCFCUeGt-AnHJWJ1TUgD6yhqXKDQyuVQ3kDM8Us4-xDJQ>
+    <xmx:UgzkYsMlb_65NvdyS_Ez9NIoLziTP-li7xWFzP8d3YIQ-pbYUYta6g>
+    <xmx:UgzkYnn_DfkCYzHymEMpsqvqLFMXyArN-BVKCgAtf84pDTCawQjNSQ>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 29 Jul 2022 12:35:23 -0400 (EDT)
+ 29 Jul 2022 12:35:29 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -97,17 +100,19 @@ Cc: Maxime Ripard <maxime@cerno.tech>,
 	linux-amlogic@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	Dom Cobley <dom@raspberrypi.com>
-Subject: [PATCH v1 00/35] drm: Analog TV Improvements
-Date: Fri, 29 Jul 2022 18:34:43 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+Subject: [PATCH v1 01/35] drm/atomic-helper: Rename drm_atomic_helper_connector_tv_reset to avoid ambiguity
+Date: Fri, 29 Jul 2022 18:34:44 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v1-1-3d53ae722097@cerno.tech>
 X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 MIME-Version: 1.0
 X-Mailer: b4 0.10.0-dev-49460
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6103; i=maxime@cerno.tech; h=from:subject:message-id; bh=oyH2EBYkTjIG+9yKJt/0byzyaDW2WxQwQX0bPCZ5n1g=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VH6F3vJp+Tlnxie3Zt/WM3udno3M/LmF8Mdp1UOPdQ4 VLNlR0cpC4MwB4OsmCLLdcG3dnxhUW4RPB82w8xhZQIZwsDFKQATCZvCyLBGP39fX0vEM13dpvbixx n74rtqrz+aedpzdp3OpHjfedwMf8Uqj5nuvHXi8ewLJ80T/D2k2beLCxRVFjs6sT09/TTk7nwA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4882; i=maxime@cerno.tech; h=from:subject:message-id; bh=3LO0aI1Yh755iBsOxkpa0oEMVEvSmtsQbweMjXCmxKE=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VFSYDLgbmbSKuGIuKvUeU9zUly2iUq0YMf2fuO3do4L WYU6SlkYhDkYZMUUWa4LvrXjC4tyi+D5sBlmDisTyBAGLk4BmEjXVIZ/2nLzX3sYL1SPSQi84JJS9T AjXuJIgUOIzylXoZcmjpOPM/yVcTD+v2TVn/paPre2zbU/YjI2Tak9v/JK0+9m+xSzV03FAA==
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp; fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220729_093533_014618_B36B93BB 
-X-CRM114-Status: GOOD (  18.00  )
+X-CRM114-CacheID: sfid-20220729_093533_431162_AEF1EEC7 
+X-CRM114-Status: GOOD (  12.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,116 +124,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpIZXJlJ3MgYSBzZXJpZXMgYWltaW5nIGF0IGltcHJvdmluZyB0aGUgY29tbWFuZCBsaW5l
-IG5hbWVkIG1vZGVzIHN1cHBvcnQsCmFuZCBtb3JlIGltcG9ydGFudGx5IGhvdyB3ZSBkZWFsIHdp
-dGggYWxsIHRoZSBhbmFsb2cgVFYgdmFyaWFudHMuCgpUaGUgbmFtZWQgbW9kZXMgc3VwcG9ydCB3
-ZXJlIGluaXRpYWxseSBpbnRyb2R1Y2VkIHRvIGFsbG93IHRvIHNwZWNpZnkgdGhlCmFuYWxvZyBU
-ViBtb2RlIHRvIGJlIHVzZWQuCgpIb3dldmVyLCB0aGlzIHdhcyBjYXVzaW5nIG11bHRpcGxlIGlz
-c3VlczoKCiAgKiBUaGUgbW9kZSBuYW1lIHBhcnNlZCBvbiB0aGUgY29tbWFuZCBsaW5lIHdhcyBw
-YXNzZWQgZGlyZWN0bHkgdG8gdGhlCiAgICBkcml2ZXIsIHdoaWNoIGhhZCB0byBmaWd1cmUgb3V0
-IHdoaWNoIG1vZGUgaXQgd2FzIHN1cHBvc2UgdG8gbWF0Y2g7CgogICogRmlndXJpbmcgdGhhdCBv
-dXQgd2Fzbid0IHJlYWxseSBlYXN5LCBzaW5jZSB0aGUgdmlkZW89IGFyZ3VtZW50IG9yIHdoYXQK
-ICAgIHRoZSB1c2Vyc3BhY2UgbWlnaHQgbm90IGV2ZW4gaGF2ZSBhIG5hbWUgaW4gdGhlIGZpcnN0
-IHBsYWNlLCBidXQKICAgIGluc3RlYWQgY291bGQgaGF2ZSBwYXNzZWQgYSBtb2RlIHdpdGggdGhl
-IHNhbWUgdGltaW5nczsKCiAgKiBUaGUgZmFsbGJhY2sgdG8gbWF0Y2hpbmcgb24gdGhlIHRpbWlu
-Z3Mgd2FzIG1vc3RseSB3b3JraW5nIGFzIGxvbmcgYXMKICAgIHdlIHdlcmUgc3VwcG9ydGluZyBv
-bmUgNTI1IGxpbmVzIChtb3N0IGxpa2VseSBOU1RDKSBhbmQgb25lIDYyNSBsaW5lcwogICAgKFBB
-TCksIGJ1dCBjb3VsZG4ndCBkaWZmZXJlbnRpYXRlIGJldHdlZW4gdHdvIG1vZGVzIHdpdGggdGhl
-IHNhbWUKICAgIHRpbWluZ3MgKE5UU0MgdnMgUEFMLU0gdnMgTlNUQy1KIGZvciBleGFtcGxlKTsg
-CgogICogVGhlcmUgd2FzIGFsc28gc29tZSBvdmVybGFwIHdpdGggdGhlIHR2IG1vZGUgcHJvcGVy
-dHkgcmVnaXN0ZXJlZCBieSAKICAgIGRybV9tb2RlX2NyZWF0ZV90dl9wcm9wZXJ0aWVzKCksIGJ1
-dCBuYW1lZCBtb2RlcyB3ZXJlbid0IGludGVyYWN0aW5nCiAgICB3aXRoIHRoYXQgcHJvcGVydHkg
-YXQgYWxsLgoKICAqIEV2ZW4gdGhvdWdoIHRoYXQgcHJvcGVydHkgd2FzIGdlbmVyaWMsIGl0cyBw
-b3NzaWJsZSB2YWx1ZXMgd2VyZQogICAgc3BlY2lmaWMgdG8gZWFjaCBkcml2ZXJzLCB3aGljaCBt
-YWRlIHNvbWUgZ2VuZXJpYyBzdXBwb3J0IGRpZmZpY3VsdC4KClRodXMsIEkgY2hvc2UgdG8gdGFj
-a2xlIGluIG11bHRpcGxlIHN0ZXBzOgoKICAqIEEgbmV3IFRWIG5vcm0gcHJvcGVydHkgd2FzIGlu
-dHJvZHVjZWQsIHdpdGggZ2VuZXJpYyB2YWx1ZXMsIGVhY2ggZHJpdmVyCiAgICByZXBvcnRpbmcg
-dGhyb3VnaCBhIGJpdG1hc2sgd2hhdCBzdGFuZGFyZCBpdCBzdXBwb3J0cyB0byB0aGUgdXNlcnNw
-YWNlOwoKICAqIFRoaXMgb3B0aW9uIHdhcyBhZGRlZCB0byB0aGUgY29tbWFuZCBsaW5lIHBhcnNp
-bmcgY29kZSB0byBiZSBhYmxlIHRvCiAgICBzcGVjaWZ5IGl0IG9uIHRoZSBrZXJuZWwgY29tbWFu
-ZCBsaW5lLCBhbmQgbmV3IGF0b21pY19jaGVjayBhbmQgcmVzZXQKICAgIGhlbHBlcnMgd2VyZSBj
-cmVhdGVkIHRvIGludGVncmF0ZSBwcm9wZXJseSBpbnRvIGF0b21pYyBLTVM7CgogICogVGhlIG5h
-bWVkIG1vZGUgcGFyc2luZyBjb2RlIGlzIG5vdyBjcmVhdGluZyBhIHByb3BlciBkaXNwbGF5IG1v
-ZGUgZm9yCiAgICB0aGUgZ2l2ZW4gbmFtZWQgbW9kZSwgYW5kIHRoZSBUViBzdGFuZGFyZCB3aWxs
-IHRodXMgYmUgcGFydCBvZiB0aGUKICAgIGNvbm5lY3RvciBzdGF0ZTsKCiAgKiBUd28gZHJpdmVy
-cyB3ZXJlIGNvbnZlcnRlZCBhbmQgdGVzdGVkIGZvciBub3cgKHZjNCBhbmQgc3VuNGkpLCB3aXRo
-CiAgICBzb21lIGJhY2t3YXJkIGNvbXBhdGliaWxpdHkgY29kZSB0byB0cmFuc2xhdGUgdGhlIG9s
-ZCBUViBtb2RlIHRvIHRoZQogICAgbmV3IFRWIG1vZGU7CgpVbml0IHRlc3RzIHdlcmUgY3JlYXRl
-ZCBhbG9uZyB0aGUgd2F5LiBOb3V2ZWF1LCBjaDcwMDYgYW5kIGd1ZCBhcmUKY3VycmVudGx5IGJy
-b2tlbiBmb3Igbm93IHNpbmNlIEkgZXhwZWN0IHRoYXQgd29yayB0byBiZSByZXdvcmtlZCBmYWly
-bHkKc2lnbmlmaWNhbnRseS4gSSdtIGFsc28gbm90IGVudGlyZWx5IHN1cmUgYWJvdXQgaG93IHRv
-IG1pZ3JhdGUgR1VEIHRvIHRoZQpuZXcgcHJvcGVydHkuCgpMZXQgbWUga25vdyB3aGF0IHlvdSB0
-aGluaywKTWF4aW1lCgpDYzogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9y
-Zz4KQ2M6ICJOb3JhbGYgVHLDuG5uZXMiIDxub3JhbGZAdHJvbm5lcy5vcmc+CkNjOiBEYXZlIFN0
-ZXZlbnNvbiA8ZGF2ZS5zdGV2ZW5zb25AcmFzcGJlcnJ5cGkuY29tPgpDYzogRG9tIENvYmxleSA8
-ZG9tQHJhc3BiZXJyeXBpLmNvbT4KQ2M6IFBoaWwgRWx3ZWxsIDxwaGlsQHJhc3BiZXJyeXBpLmNv
-bT4KQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5j
-b20+CkNjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6IERhbmll
-bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51
-eC5pZT4KQ2M6IDxkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgpTaWduZWQtb2ZmLWJ5
-OiBNYXhpbWUgUmlwYXJkIDxtYXhpbWVAY2Vybm8udGVjaD4KCi0tLQpNYXRldXN6IEt3aWF0a293
-c2tpICg1KToKICAgICAgZHJtL3ZjNDogdmVjOiBSZWZhY3RvciBWRUMgVFYgbW9kZSBzZXR0aW5n
-CiAgICAgIGRybS92YzQ6IHZlYzogUmVtb3ZlIHJlZHVuZGFudCBhdG9taWNfbW9kZV9zZXQKICAg
-ICAgZHJtL3ZjNDogdmVjOiBGaXggdGltaW5ncyBmb3IgVkVDIG1vZGVzCiAgICAgIGRybS92YzQ6
-IHZlYzogRml4IGRlZmluaXRpb24gb2YgUEFMLU0gbW9kZQogICAgICBkcm0vdmM0OiB2ZWM6IEFk
-ZCBzdXBwb3J0IGZvciBtb3JlIGFuYWxvZyBUViBzdGFuZGFyZHMKCk1heGltZSBSaXBhcmQgKDMw
-KToKICAgICAgZHJtL2F0b21pYy1oZWxwZXI6IFJlbmFtZSBkcm1fYXRvbWljX2hlbHBlcl9jb25u
-ZWN0b3JfdHZfcmVzZXQgdG8gYXZvaWQgYW1iaWd1aXR5CiAgICAgIGRybS9jb25uZWN0b3I6IFJl
-bmFtZSBzdWJjb25uZWN0b3Igc3RhdGUgdmFyaWFibGUKICAgICAgZHJtL2F0b21pYzogQWRkIFRW
-IHN1YmNvbm5lY3RvciBwcm9wZXJ0eSB0byBnZXQvc2V0X3Byb3BlcnR5CiAgICAgIGRybS9tb2Rl
-czogSW50cm9kdWNlIDQ4MGkgYW5kIDU3NmkgbW9kZXMKICAgICAgZHJtL2Nvbm5lY3RvcjogQWRk
-IFRWIHN0YW5kYXJkIHByb3BlcnR5CiAgICAgIGRybS9jb25uZWN0b3I6IE9ubHkgcmVnaXN0ZXIg
-VFYgbW9kZSBwcm9wZXJ0eSBpZiBwcmVzZW50CiAgICAgIGRybS9tb2RlczogT25seSBjb25zaWRl
-ciBicHAgYW5kIHJlZnJlc2ggYmVmb3JlIG9wdGlvbnMKICAgICAgZHJtL2NsaWVudDogQWRkIHNv
-bWUgdGVzdHMgZm9yIGRybV9jb25uZWN0b3JfcGlja19jbWRsaW5lX21vZGUoKQogICAgICBkcm0v
-bW9kZXM6IE1vdmUgbmFtZWQgbW9kZXMgcGFyc2luZyB0byBhIHNlcGFyYXRlIGZ1bmN0aW9uCiAg
-ICAgIGRybS9tb2RlczogU3dpdGNoIHRvIG5hbWVkIG1vZGUgZGVzY3JpcHRvcnMKICAgICAgZHJt
-L21vZGVzOiBGaWxsIGRybV9jbWRsaW5lIG1vZGUgZnJvbSBuYW1lZCBtb2RlcwogICAgICBkcm1p
-L21vZGVzOiBQcm9wZXJseSBnZW5lcmF0ZSBhIGRybV9kaXNwbGF5X21vZGUgZnJvbSBhIG5hbWVk
-IG1vZGUKICAgICAgZHJtL2F0b21pYy1oZWxwZXI6IEFkZCBhIFRWIHByb3BlcnRpZXMgcmVzZXQg
-aGVscGVyCiAgICAgIGRybS9hdG9taWMtaGVscGVyOiBBZGQgYW4gYW5hbG9nIFRWIGF0b21pY19j
-aGVjayBpbXBsZW1lbnRhdGlvbgogICAgICBkcm0vdmM0OiB2ZWM6IFJlbW92ZSBlbXB0eSBtb2Rl
-X2ZpeHVwCiAgICAgIGRybS92YzQ6IHZlYzogQ29udmVydCB0byBhdG9taWMgaGVscGVycwogICAg
-ICBkcm0vdmM0OiB2ZWM6IFN3aXRjaCBmb3IgY29tbW9uIG1vZGVzCiAgICAgIGRybS92YzQ6IHZl
-YzogVXNlIFRWIFJlc2V0IGltcGxlbWVudGF0aW9uCiAgICAgIGRybS92YzQ6IHZlYzogQ29udmVy
-dCB0byB0aGUgbmV3IFRWIG1vZGUgcHJvcGVydHkKICAgICAgZHJtL3N1bjRpOiB0djogUmVtb3Zl
-IHVudXNlZCBtb2RlX3ZhbGlkCiAgICAgIGRybS9zdW40aTogdHY6IENvbnZlcnQgdG8gYXRvbWlj
-IGhvb2tzCiAgICAgIGRybS9zdW40aTogdHY6IE1lcmdlIG1vZGVfc2V0IGludG8gYXRvbWljX2Vu
-YWJsZQogICAgICBkcm0vc3VuNGk6IHR2OiBSZW1vdmUgdXNlbGVzcyBmdW5jdGlvbgogICAgICBk
-cm0vc3VuNGk6IHR2OiBSZW1vdmUgdXNlbGVzcyBkZXN0cm95IGZ1bmN0aW9uCiAgICAgIGRybS9z
-dW40aTogdHY6IFJlbmFtZSBlcnJvciBsYWJlbAogICAgICBkcm0vc3VuNGk6IHR2OiBBZGQgbWlz
-c2luZyByZXNldCBhc3NlcnRpb24KICAgICAgZHJtL3N1bjRpOiB0djogQ29udmVydCB0byB0aGUg
-bmV3IFRWIG1vZGUgcHJvcGVydHkKICAgICAgZHJtL2Nvbm5lY3RvcjogUmVtb3ZlIFRWIG1vZGVz
-IHByb3BlcnR5CiAgICAgIGRybS9tb2RlczogSW50cm9kdWNlIHRoZSB0dl9tb2RlIHByb3BlcnR5
-IGFzIGEgY29tbWFuZC1saW5lIG9wdGlvbgogICAgICBkcm0vbW9kZXM6IEludHJvZHVjZSBtb3Jl
-IG5hbWVkIG1vZGVzCgogZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfc3RhdGVfaGVscGVyLmMg
-ICAgICAgfCAxNjYgKysrKysrKysrLQogZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfdWFwaS5j
-ICAgICAgICAgICAgICAgfCAgMTIgKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fY2xpZW50X21vZGVz
-ZXQuYyAgICAgICAgICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9kcm1fY29ubmVjdG9yLmMg
-ICAgICAgICAgICAgICAgIHwgIDQ2ICsrLQogZHJpdmVycy9ncHUvZHJtL2RybV9tb2Rlcy5jICAg
-ICAgICAgICAgICAgICAgICAgfCAxOTggKysrKysrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9ndWQv
-Z3VkX2Nvbm5lY3Rvci5jICAgICAgICAgICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbWVz
-b24vbWVzb25fZW5jb2Rlcl9jdmJzLmMgICAgICB8ICAxOCArLQogZHJpdmVycy9ncHUvZHJtL21l
-c29uL21lc29uX2VuY29kZXJfY3Zicy5oICAgICAgfCAgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9z
-dW40aS9zdW40aV90di5jICAgICAgICAgICAgICAgIHwgMTczICsrKy0tLS0tLS0KIGRyaXZlcnMv
-Z3B1L2RybS90ZXN0cy9kcm1fY21kbGluZV9wYXJzZXJfdGVzdC5jIHwgMjk1ICsrKysrKysrKysr
-KysrKysrCiBkcml2ZXJzL2dwdS9kcm0vdGVzdHMvZHJtX21vZGVfdGVzdC5jICAgICAgICAgICB8
-IDI1NSArKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2hkbWkuYyAgICAg
-ICAgICAgICAgICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF92ZWMuYyAgICAg
-ICAgICAgICAgICAgICB8IDQxOCArKysrKysrKysrKysrKysrLS0tLS0tLS0KIGluY2x1ZGUvZHJt
-L2RybV9hdG9taWNfc3RhdGVfaGVscGVyLmggICAgICAgICAgIHwgICA0ICsKIGluY2x1ZGUvZHJt
-L2RybV9jb25uZWN0b3IuaCAgICAgICAgICAgICAgICAgICAgIHwgIDQwICsrLQogaW5jbHVkZS9k
-cm0vZHJtX21vZGVfY29uZmlnLmggICAgICAgICAgICAgICAgICAgfCAgIDYgKwogaW5jbHVkZS9k
-cm0vZHJtX21vZGVzLmggICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDMgKwogMTcgZmlsZXMg
-Y2hhbmdlZCwgMTMxNCBpbnNlcnRpb25zKCspLCAzMzAgZGVsZXRpb25zKC0pCi0tLQpiYXNlLWNv
-bW1pdDogMzdiMzU1ZmRhZjMxZWUxOGJkYTlhOTNjMmE0MzhkYzFjYmY1N2VjOQpjaGFuZ2UtaWQ6
-IDIwMjIwNzI4LXJwaS1hbmFsb2ctdHYtcHJvcGVydGllcy0wOTE0ZGZjZWU0NjAKCkJlc3QgcmVn
-YXJkcywKLS0gCk1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+We currently have two sets of TV properties.
+
+The first one is there to deal with analog TV properties, creating
+properties such as the TV mode, subconnectors, saturation, hue and so on.
+It's created by calling the drm_mode_create_tv_properties() function.
+
+The second one is there to deal with properties that might be useful on a
+TV, creating the overscan margins for example. It's created by calling the
+drm_mode_create_tv_margin_properties().
+
+However, we also have a drm_atomic_helper_connector_tv_reset() function
+that will reset the TV margin properties to their default values, and thus
+is supposed to be called for the latter set. This creates an ambiguity due
+to the inconsistent naming.
+
+We can thus rename the drm_atomic_helper_connector_tv_reset() function to
+drm_atomic_helper_connector_tv_margins_reset() to remove that ambiguity
+and hopefully make it more obvious.
+
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+index bf31b9d92094..dfb57217253b 100644
+--- a/drivers/gpu/drm/drm_atomic_state_helper.c
++++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+@@ -464,12 +464,12 @@ void drm_atomic_helper_connector_reset(struct drm_connector *connector)
+ EXPORT_SYMBOL(drm_atomic_helper_connector_reset);
+ 
+ /**
+- * drm_atomic_helper_connector_tv_reset - Resets TV connector properties
++ * drm_atomic_helper_connector_tv_margins_reset - Resets TV connector properties
+  * @connector: DRM connector
+  *
+  * Resets the TV-related properties attached to a connector.
+  */
+-void drm_atomic_helper_connector_tv_reset(struct drm_connector *connector)
++void drm_atomic_helper_connector_tv_margins_reset(struct drm_connector *connector)
+ {
+ 	struct drm_cmdline_mode *cmdline = &connector->cmdline_mode;
+ 	struct drm_connector_state *state = connector->state;
+@@ -479,7 +479,7 @@ void drm_atomic_helper_connector_tv_reset(struct drm_connector *connector)
+ 	state->tv.margins.top = cmdline->tv_margins.top;
+ 	state->tv.margins.bottom = cmdline->tv_margins.bottom;
+ }
+-EXPORT_SYMBOL(drm_atomic_helper_connector_tv_reset);
++EXPORT_SYMBOL(drm_atomic_helper_connector_tv_margins_reset);
+ 
+ /**
+  * __drm_atomic_helper_connector_duplicate_state - copy atomic connector state
+diff --git a/drivers/gpu/drm/gud/gud_connector.c b/drivers/gpu/drm/gud/gud_connector.c
+index d0addd478815..fa636206f232 100644
+--- a/drivers/gpu/drm/gud/gud_connector.c
++++ b/drivers/gpu/drm/gud/gud_connector.c
+@@ -355,7 +355,7 @@ static void gud_connector_reset(struct drm_connector *connector)
+ 	drm_atomic_helper_connector_reset(connector);
+ 	connector->state->tv = gconn->initial_tv_state;
+ 	/* Set margins from command line */
+-	drm_atomic_helper_connector_tv_reset(connector);
++	drm_atomic_helper_connector_tv_margins_reset(connector);
+ 	if (gconn->initial_brightness >= 0)
+ 		connector->state->tv.brightness = gconn->initial_brightness;
+ }
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index 719a3c3b4ef6..66e38760d5aa 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -397,7 +397,7 @@ static void vc4_hdmi_connector_reset(struct drm_connector *connector)
+ 	new_state->base.max_bpc = 8;
+ 	new_state->base.max_requested_bpc = 8;
+ 	new_state->output_format = VC4_HDMI_OUTPUT_RGB;
+-	drm_atomic_helper_connector_tv_reset(connector);
++	drm_atomic_helper_connector_tv_margins_reset(connector);
+ }
+ 
+ static struct drm_connector_state *
+diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomic_state_helper.h
+index 3f8f1d627f7c..192766656b88 100644
+--- a/include/drm/drm_atomic_state_helper.h
++++ b/include/drm/drm_atomic_state_helper.h
+@@ -70,7 +70,7 @@ void __drm_atomic_helper_connector_state_reset(struct drm_connector_state *conn_
+ void __drm_atomic_helper_connector_reset(struct drm_connector *connector,
+ 					 struct drm_connector_state *conn_state);
+ void drm_atomic_helper_connector_reset(struct drm_connector *connector);
+-void drm_atomic_helper_connector_tv_reset(struct drm_connector *connector);
++void drm_atomic_helper_connector_tv_margins_reset(struct drm_connector *connector);
+ void
+ __drm_atomic_helper_connector_duplicate_state(struct drm_connector *connector,
+ 					   struct drm_connector_state *state);
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 2c6fa746efac..f185ad862cb1 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -671,7 +671,7 @@ struct drm_connector_tv_margins {
+ 
+ /**
+  * struct drm_tv_connector_state - TV connector related states
+- * @subconnector: selected subconnector
++ * @select_subconnector: selected subconnector
+  * @margins: TV margins
+  * @mode: TV mode
+  * @brightness: brightness in percent
+
+-- 
+b4 0.10.0-dev-49460
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
