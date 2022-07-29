@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B9EAC19F2A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 17:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43ECFC00144
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Jul 2022 17:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=za7B8sIN/rDDaHlgr8uYYhXxgxqv5p/pYr81eFxLpuo=; b=WtUlpvrfkEFOIs
-	+TDInR2UiJ1atLAzYnd078ksZdqRGNspXRfdkRtP8Cj5eF6C/KXJ4abJosJjZMB19/xa/K8zJhFDe
-	t3+qId5kvkpoJ8kfU0aJQfkJP5/g+U8r64j/oW3lBAd/3eE7vflzagJQMe8J3kz8cstJXL1AVwd3H
-	/GgDWYWh2LcpOjjHW4xfWF8IVS57peBNDgvHPHNDallWszje4+9HRnnomRgw6XpFOrt0ir6E0sglc
-	fagYHuGybVzgi9cTbehp+CMax4ilPWNAz3zYl1GOEL06e0yY8Xgvq84jJ8/MFnHrUwrcezsbS3Nyv
-	JGXojng6XszCz5DXEsUw==;
+	List-Owner; bh=iMOlDOoO004GF7jRCHFytsSdHWQYoYQNmtQw8dprZj8=; b=2MOCkEOxV8AH4k
+	jmcE6WkxoHYvVxBJZCZM2A+CyGC73XXQsBSmCxZlrhJOjT2CRC5BeTPCleerEpBeoCn7EEdyNy39M
+	8bUWcaB+9X1U0Z/GsnWp8IkbINc3rMqk7LUhOSZqoeh1mBh+PEvOAmKtGvQHAxF5A49XA+4sMgLNY
+	qodfFgbUjPfKucRZw/VY7YDLr3scdQ9VG5HV4nBqyUdpMyi9j7eW2daHsXuds9uX5VfghBXDseYCt
+	jubV2saK9kv4UITh4gSq95EL80kD+uVCogKPnJsusvtetKuxIx6dwl9h31rWci8/nLsLw/NVYx4j5
+	2kahosUQRq/JMGinS2Fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHTbp-007Wnw-DF; Fri, 29 Jul 2022 17:17:09 +0000
+	id 1oHTeD-007fww-G6; Fri, 29 Jul 2022 17:19:37 +0000
 Received: from new4-smtp.messagingengine.com ([66.111.4.230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHSz9-006Sui-Sk; Fri, 29 Jul 2022 16:37:14 +0000
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 2FD86580970;
-	Fri, 29 Jul 2022 12:37:11 -0400 (EDT)
+	id 1oHSzD-006Swo-O7; Fri, 29 Jul 2022 16:37:17 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 01DD4580994;
+	Fri, 29 Jul 2022 12:37:15 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Fri, 29 Jul 2022 12:37:11 -0400
+  by compute5.internal (MEProxy); Fri, 29 Jul 2022 12:37:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
 	:cc:content-transfer-encoding:content-type:date:date:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112631; x=
-	1659119831; bh=+5E38+xZJMqYKmGrfI9Nt4r8XFy7N2jsoRvZqx2cZ10=; b=r
-	BkenR+XksQHlSX/BAJw8y4H9rzdmqEcwi3Zm6ynYruJpbMytDehshtuhaofk6php
-	gUwZM90D23gF8NWtjhHFzrJQp7A1tYfgLLFvgxUMYUVW/0EVUMUCEoF/o9EIAGOC
-	ipZVNIAfdGNnkRHNU9s4qrgOdyukxZwQuhcnb7WTDMxOYNIlVXtRKegdUspasLK7
-	Nwd0FsFMdYAh+YuSwkraSgi1r8pImZt+2zaDYIxGD76x3gD1lq4AokYesPW3OQO7
-	iMeN3Y8wwWdq8N0FtS/9nYEQpdBoqfeZdUSe1TYAj+QxX6k/PxE3FtgSKB2UDx1K
-	4Kfj/9FXQeybOMP8nIsUw==
+	:reply-to:sender:subject:subject:to:to; s=fm2; t=1659112634; x=
+	1659119834; bh=rnDw7qj9bzanL0m4spGmvxCXU4AVDsUFtibuOfI5t5g=; b=x
+	LMtBqIKpJPh/Xqrx8TlylzaK9ihLIPsvyc/vUT85xmp+fKqq90uN0eZ0z1chdTyL
+	+6DRjN8CzF2WtdEJcHxjad/X23wQ6Fia+vpzh3w90+nOmVrPH5fl8+tV/6+c30Aj
+	KxbEN37X+6GuQJLr8+KFdHDtArn4JmqkB5HSr89AiB16RwfbtTJnMKef1C7ow7s1
+	aeXN8DFvBrZigFKCcOOoOSQZ/I3cVoc0FubCxllb4Rr3TV4Ds8i/4goEv9nABeX9
+	Ohc0E3lMS/GAeX7OdwJR8Idb2mWWd/3uCWKPnQsIUYZtJrLfNoVrZk46SAXIQRGB
+	6KFZ3RWzcaMsqk4walMGQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112631; x=
-	1659119831; bh=+5E38+xZJMqYKmGrfI9Nt4r8XFy7N2jsoRvZqx2cZ10=; b=g
-	nEIAYE8TviTyA201GDG+dm7FyhztchoT8Zu9rL9CMkGHY/3QZj46Ahkxmqj+k6Xl
-	0KWOxPLxGVVwwE4Rk+di2QZaXpC7e6URMnoy5RXDMZ5VunE5kLCxEQtbGBrVLpL1
-	oV5WuYF39FvSZo7fGDppd4mjvhKxLp3JZMH852yQcREjThxlWrOz6v+ORLU+h1cx
-	NRrok7OPAUn+TsFgr9T4lJZjwWwntroQsoyVPgCSjuNfWcIbzHRR7Mtk1O8n+rCr
-	gYcaNzKDxgTQTcsEzUhBRfr23CphG0Qn0pJ0IikRl98ppb3b41zrImBOYvUVG9B7
-	P2KxKEor8BJnamtOSUgww==
-X-ME-Sender: <xms:twzkYrMuM1H3ZFZonv0WFWL-HoXMwPvfB_SBc8fLdsUnS_1ciASmUw>
-    <xme:twzkYl_QuR0QVXanqdkezR1szSwCxV6Hh_Tl2DYLK6rR62bleqvauAWDRzuI2Z594
-    yhMq4zdBAvebJpMPq8>
-X-ME-Received: <xmr:twzkYqRqRwqu9mZufCv3KLMhM4xOzSmq01S5i8Y2oKVtEUHd5tuHVhXnj7elFV_PJso0xdKRs3QoKD8ZMbs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtgecutefuodetggdotefrod
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1659112634; x=
+	1659119834; bh=rnDw7qj9bzanL0m4spGmvxCXU4AVDsUFtibuOfI5t5g=; b=R
+	ynezzFo0PIqTm0FkFEc2j/jnUFy/VKp/jRLS7vrXwLM45hRfNx/7FQgYztG9BgQy
+	UcP0yRL71bliiEIw0TPTrajitkhCkkBErRjS8K0ZK2aiIra7h5qZgIYlMtgCuKF3
+	vd5rL7zAPWsGLdDljVCXw2CpHoB4C3W0NISz7CUpGNJCPga19JSLSL9Fl/9r2sEZ
+	gKE7UECv5QrOxvomXSyl9hLvPfcKEaH/dPGdJn7gSsSqjbJjRnvx4KNWLgzyv117
+	P9EUQWyIAvfwwE03j/PQ8gU7AWIBV2U1P33OcUqnoBQwHY81XX9EMwS+OzPckczx
+	/caGpmWRGLAiXV1DsPokA==
+X-ME-Sender: <xms:ugzkYn7H4wr8D7-dXT1F2zqjiOtmN_O0trQXRW0QsKhAL4mvJAs1xQ>
+    <xme:ugzkYs5AVby3NLBxspvuo5rUuDqLtSS3ZM0SoORvmL00EaAMqf9DYKhCm6RCbMaw-
+    o3ywQCQ0QR0FhA75Q0>
+X-ME-Received: <xmr:ugzkYucDziFe7r_LTf1ck6Xgfa1115jPfFG6z04GJU5RIbBGyFtZG6gDXBxsBiIpA1gy65heCMFlB_LJuPM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtfecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
     enucfjughrpefhvfevufffkffojghfgggtoffgsehtkeertdertdejnecuhfhrohhmpefo
@@ -65,13 +65,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddujedguddtgecutefuodetgg
     ftrfgrthhtvghrnhepgfffgfetffduudelhfevieffffduleevgfegkeeutefgffejheel
     leekjeefhfejnecuvehluhhsthgvrhfuihiivgepjeenucfrrghrrghmpehmrghilhhfrh
     homhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:twzkYvsrS1Yol3B2iXCkaS9btSxHBZxl_EWGgLCbjgEAicppKPF0qg>
-    <xmx:twzkYjcALbnjOIL2D9G84ykFQKX0dHnjr6xfNAsgkOL7wlDqPshTqw>
-    <xmx:twzkYr0d9atXIUHTF0CqMBQ7uc3FGD68_b1UnL_9hffDL5cfbKx1Rw>
-    <xmx:twzkYstuDCwRyBez-c3qXYvf5OtfDt1Be6XjAj_lMC-25Jr8rNaasg>
+X-ME-Proxy: <xmx:ugzkYoKfEKw1VVZXC6q5WyiMP0aJxYn-oCTU9mdu9XDTp7nC41L_uw>
+    <xmx:ugzkYrJ6fjYNR_4_h3tZQLyjGfx4gymIqjsAjnttj8Q8u-J88domZA>
+    <xmx:ugzkYhzGFM_tlZJbR1qQICSDnFxiRffwE-eTSTobHwQ6U6RxZogLtg>
+    <xmx:ugzkYo7l30tM7Z3vZmTgldqoocOVC4R49IOH4bd1SM5MXO6ghVGVkA>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 29 Jul 2022 12:37:09 -0400 (EDT)
+ 29 Jul 2022 12:37:13 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -99,19 +99,19 @@ Cc: Maxime Ripard <maxime@cerno.tech>,
 	linux-amlogic@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	Dom Cobley <dom@raspberrypi.com>
-Subject: [PATCH v1 28/35] drm/sun4i: tv: Remove useless function
-Date: Fri, 29 Jul 2022 18:35:11 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v1-28-3d53ae722097@cerno.tech>
+Subject: [PATCH v1 29/35] drm/sun4i: tv: Remove useless destroy function
+Date: Fri, 29 Jul 2022 18:35:12 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v1-29-3d53ae722097@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
 MIME-Version: 1.0
 X-Mailer: b4 0.10.0-dev-49460
-X-Developer-Signature: v=1; a=openpgp-sha256; l=761; i=maxime@cerno.tech; h=from:subject:message-id; bh=3TBhnmWcnMOIjFQ9wN7h7LBx+REzOKQhe2V3iuF2js0=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VEK2xdZHPRYpTL3Qf97rhcTp6zhmb9r7bzt64M7SvPS +LcydZSyMAhzMMiKKbJcF3xrxxcW5RbB82EzzBxWJpAhDFycAjARvlcMf4WfyB5WPrfr34tNPdpW5b 8uvpx4IUghMvV+nfEhH8b5JhUMf4Vaalo8H/MpnGNdMu934fsbPG/lXx92Xzat9M+Xtpq3PB8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1108; i=maxime@cerno.tech; h=from:subject:message-id; bh=pzXgXNTV1ygEPClHpqPRUksIVdy7cRIin6TQuXeU0ww=; b=owGbwMvMwCHc4XzqmfnC7acZT6slMSQ94VHKSPGrb3K+PLvZkOfMU5MFZh/Udgvvqpv91qdntZW0 ymLtjlIWBmEOBlkxRZbrgm/t+MKi3CJ4PmyGmcPKBDKEgYtTACbSYsfwT8XVzHn6NOk18QE1ywJeZ5 YvT5Mz0wpI5V3tckTVyO5ZP8Nfwe65zopnvOese16zbM+hoJaQJe4seUfO2djXprxd8vSTAQA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp; fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220729_093712_259642_9E58B5A9 
-X-CRM114-Status: UNSURE (   5.86  )
+X-CRM114-CacheID: sfid-20220729_093715_945004_B250AA7A 
+X-CRM114-Status: UNSURE (   6.11  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -129,29 +129,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The drm_connector_to_sun4i_tv() function isn't used anywhere in the driver,
-so let's remove it.
+Our destroy implementation is just calling the generic helper, so let's
+just remove our function and directly use the helper.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i/sun4i_tv.c
-index 3944da9a3c34..52bbba8f19dc 100644
+index 52bbba8f19dc..6d7e1d51569a 100644
 --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
 +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
-@@ -275,13 +275,6 @@ drm_encoder_to_sun4i_tv(struct drm_encoder *encoder)
- 			    encoder);
- }
+@@ -491,15 +491,9 @@ static const struct drm_connector_helper_funcs sun4i_tv_comp_connector_helper_fu
+ 	.get_modes	= sun4i_tv_comp_get_modes,
+ };
  
--static inline struct sun4i_tv *
--drm_connector_to_sun4i_tv(struct drm_connector *connector)
+-static void
+-sun4i_tv_comp_connector_destroy(struct drm_connector *connector)
 -{
--	return container_of(connector, struct sun4i_tv,
--			    connector);
+-	drm_connector_cleanup(connector);
 -}
 -
- /*
-  * FIXME: If only the drm_display_mode private field was usable, this
-  * could go away...
+ static const struct drm_connector_funcs sun4i_tv_comp_connector_funcs = {
+ 	.fill_modes		= drm_helper_probe_single_connector_modes,
+-	.destroy		= sun4i_tv_comp_connector_destroy,
++	.destroy		= drm_connector_cleanup,
+ 	.reset			= drm_atomic_helper_connector_reset,
+ 	.atomic_duplicate_state	= drm_atomic_helper_connector_duplicate_state,
+ 	.atomic_destroy_state	= drm_atomic_helper_connector_destroy_state,
 
 -- 
 b4 0.10.0-dev-49460
