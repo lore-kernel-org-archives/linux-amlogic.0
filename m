@@ -4,80 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EFA7C19F2A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Jul 2022 19:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF37C00140
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Jul 2022 07:18:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zZRNN0f3aZi7LQqFN4Q/z9Dw7UcupLU8uZ2Y3NwrobY=; b=uLrzi5xp7zqITW
-	It3NSRhglX7Um9SSGncfYnWyasxofog1ZCUNq48v7AayG9dMmEZhIkK3CuE/T/XBWbRy5MnPglMld
-	iVWBOYEY6tEaFFQlQc5TDxK+W15vnhoRWoNVsoRCPAQx2oehDHOMBuZ56OCGGz+AGDNv7N8isD06I
-	Byr6z59YiHgZLcOYWjZ5vNLKmT2vF7wTkRZJtg5QMd758F4qMDdhQvy+z/U+kALOkQV87TDhAJJgE
-	f67gnZLsetOdghY5brtbECPjR6R+1/rrQ6jkSbb5ss1UhCVGHM0chVag0CuQ8fvJ+fVdX4dHz1hgX
-	KM2BrBTsrTH3E0JQNXMQ==;
+	List-Owner; bh=9//sXDuKtxRNyddvZPBkrJ+vde4/1HbIC6lnoDXcTVE=; b=uuzWmbEtBqmFEy
+	nQOFdUBs75pQI97dWDpIaCLehXmLL/IamgQnP7CeDYPOMzijGZpSQ25PgCeO/05iQW/+wUkFecoLh
+	NkMKQexFBlG82/FBlNFd1M/bXQxCDtGO2XqTVBNMkD6MHjEyrGdCp1O+aSVFXL/02UJ+pr5rY9mC0
+	RDCniEkEno4KaolHjHZACLezMRs7JBaPrPuDzkEzKHoP1GQon3qVKhlwn5bpLzRMPOgmKBl3GmP8K
+	JEoQ5LglDlU8IzzjO/5EMDGYM9/kknw1dPFfMMY673IBMO64PX9oDn7jWh6Z7VBzObfGh/aunD+Ba
+	Ac6xk/Ge2xEEy5bWPB4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHsBC-003lZ0-NI; Sat, 30 Jul 2022 19:31:18 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1oI3DM-009LBu-Hd; Sun, 31 Jul 2022 07:18:16 +0000
+Received: from marcansoft.com ([212.63.210.85] helo=mail.marcansoft.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oHsB9-003lWj-TR; Sat, 30 Jul 2022 19:31:17 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id uj29so625374ejc.0;
-        Sat, 30 Jul 2022 12:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=IyGAUs/XewcJpkze6PPx60tftl/vExnGSdxM5ltgvok=;
-        b=DH9Egj9rvw3hIeuoTU4OD/zsK0GWATY3lkJ/19ic0aKtozTPHay6G7n4o5PILIEWwj
-         97bjmqu+FL/MsMbXzyIyxfhIKgpKmMiuTwsHV5lVVw0jzyLJDRoOpv9EFeAl7pC8xDoR
-         WOSpvJ/qoUQyUpfbtuR7dK4gHu/4hlzjX+Qsw2toPAKREbXtX8/EtHS9x5xzR1gy6C0Q
-         1YDFhTo7h+4ShF8+UjARjEUIonRSwCqJA087SnFOn9547AFNbkQm9pJFqcjLj25/Zm0C
-         41GW2Sp6hh6ORlwbrsx39ZD6tvM8qq0g8w5g2+efJdxFatxcRwB+d+3VbT4UEhJG9VVy
-         TsvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=IyGAUs/XewcJpkze6PPx60tftl/vExnGSdxM5ltgvok=;
-        b=6YN2tVSA6mCq7CEcPfJ5nanXkfBgf0yj6Gw5RdR5A0smAdpSCONaJJKoJpVGGT37tp
-         20aI26bmE2s7UzGHsrxgRLsUxI1BYQJ9QHs2To97PiLrANsOYAEpR981LY7MiO/zBbUG
-         0E2vWbeMfi7/2klCqzj16MScVnx3Uyv39f/IV0LYj7M0HxVB47RxtD2H3s2YeG1CbFH5
-         +znxTx/AVJ54q4+ltSLmz8v+v6K1a/ZP6WL+ibssDzDRwEtFyIRPOeDMIZvWXYOFFq7k
-         2UBZiMTecXTjDADnWnqhD53q7O1YfFp9gkGduGvxd5b53r/1PlNwG+6qnbWz2JftQzsa
-         7TOA==
-X-Gm-Message-State: AJIora8NAVGJBR/98uMyQ1wEoKn7MU1eNCKx2M3yE8UU9dfzXVnddpXk
-	yhIwn28yVco6svIoDDIbFbA=
-X-Google-Smtp-Source: AGRyM1t0HFkPzzWwYa/FYFGFkF9xd/BHdmhgs56/HijKFuMQ1e98bCVZP4ooKQJAg1sv8dqYqYBjrQ==
-X-Received: by 2002:a17:907:7b92:b0:72b:67fb:8985 with SMTP id ne18-20020a1709077b9200b0072b67fb8985mr6756364ejc.569.1659209473708;
-        Sat, 30 Jul 2022 12:31:13 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:b9c0:f700:d5b:898b:b7ca:1bf3? (dynamic-2a01-0c23-b9c0-f700-0d5b-898b-b7ca-1bf3.c23.pool.telefonica.de. [2a01:c23:b9c0:f700:d5b:898b:b7ca:1bf3])
-        by smtp.googlemail.com with ESMTPSA id f15-20020a17090631cf00b006feba31171bsm3255474ejf.11.2022.07.30.12.31.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Jul 2022 12:31:13 -0700 (PDT)
-Message-ID: <88d6ef05-f77a-57a2-f34a-e3998a8d70d4@gmail.com>
-Date: Sat, 30 Jul 2022 21:31:09 +0200
+	id 1oI3DJ-009L8y-Na; Sun, 31 Jul 2022 07:18:15 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: marcan@marcan.st)
+	by mail.marcansoft.com (Postfix) with ESMTPSA id 6236042597;
+	Sun, 31 Jul 2022 07:18:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+	t=1659251891; bh=kfVzooG27qyJrlBGaONv8AvOhI3FVvCdLGwZwOKwhbo=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=kUVkwqCkA7rnHeP4k1RTrP9kUKae5GjVXCA9K8P0mUZ87H1IYM+rB1KP9mTd8qfJT
+	 yz7D9vVK04L/HaxYwgX6BSjpnPVipbKQIBdGa8aVBCxJjyLl1Y/B5GCuRnqFVbumT2
+	 Pv+3eTWXl8tGsVW5innkrciJCh+9vZPFqhL41seTPT58y/bt18KC88yqCaQ9wKUU6q
+	 QBVLLjuP9X0XzxkFDynhihM7TfWnc6qv6z9UtaYZITIw0yKx1GidfScWmgp8fqifMn
+	 6YRxXl8yaDbpWSpivbfrNg3vCEMMcvmKitr7uLVzXoopnlxV1lx4si9oUENXILUCK7
+	 sv2v9iv8TJ4GQ==
+Message-ID: <f3941493-de9d-1a5f-af74-ced4708dd6ce@marcan.st>
+Date: Sun, 31 Jul 2022 16:17:59 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: Meson GXL and Rockchip PHY based on same IP?
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
-References: <ca9560eb-af9c-3cfa-c35e-388e7e71aab7@gmail.com>
- <CAFBinCCMinq1U2Pqn2LPjC9c+HqfHjvW81b1ENMxdoGmB6byEw@mail.gmail.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <CAFBinCCMinq1U2Pqn2LPjC9c+HqfHjvW81b1ENMxdoGmB6byEw@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/3] dt-bindings: power: drop quotes when not needed
+Content-Language: es-ES
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Sebastian Reichel <sre@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ David Lechner <david@lechnology.com>,
+ Iskren Chernev <iskren.chernev@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Matheus Castello <matheus@castello.eng.br>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, =?UTF-8?Q?Fern=c3=a1ndez_Rojas?=
+ <noltari@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Michael Klein <michael@fossekall.de>,
+ Dan Murphy <dmurphy@ti.com>, Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
+ =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>, "Andrew F. Davis"
+ <afd@ti.com>, Tony Lindgren <tony@atomide.com>,
+ Artur Rojek <contact@artur-rojek.eu>,
+ Mike Looijmans <mike.looijmans@topic.nl>,
+ Stephan Gerhold <stephan@gerhold.net>, David Heidelberg <david@ixit.cz>,
+ Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
+From: Hector Martin <marcan@marcan.st>
+In-Reply-To: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220730_123116_007798_9D0FAF97 
-X-CRM114-Status: GOOD (  14.03  )
+X-CRM114-CacheID: sfid-20220731_001813_969228_5EE2D102 
+X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,41 +100,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30.07.2022 19:06, Martin Blumenstingl wrote:
-> Hi Heiner,
+On 26/07/2022 20.57, Krzysztof Kozlowski wrote:
+> Id and schema fields do not need quotes.
 > 
-> On Sat, Jul 30, 2022 at 5:59 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>
->> Meson GXL and Rockchip ethernet PHY drivers have quite something in common.
->> They share a number of non-standard registers, using the same bits
->> and same bank handling. This makes me think they they may be using
->> the same IP. However they have different quirk handling. But this
->> doesn't rule out that actually they would need the same quirk handling.
-> You made me curious and I found the following public Microchip
-> LAN83C185 datasheet: [0]
-> Page 27 has a "SMI REGISTER MAPPING" which matches the definitions in
-> meson-gxl.c.
-> Also on page 33 the interrupt source bits are a 100% match with the
-> INTSRC_* marcos in meson-gxl.c
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 4 ++--
+>  .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 4 ++--
+>  .../devicetree/bindings/power/apple,pmgr-pwrstate.yaml        | 2 +-
+>  .../devicetree/bindings/power/brcm,bcm63xx-power.yaml         | 4 ++--
+>  Documentation/devicetree/bindings/power/renesas,apmu.yaml     | 4 ++--
+>  .../devicetree/bindings/power/renesas,rcar-sysc.yaml          | 4 ++--
+>  6 files changed, 11 insertions(+), 11 deletions(-)
 > 
-Great, thanks for investigating!
 
-> Whether this means that:
-> - Amlogic SoCs embed a LAN83C185
-> - LAN83C185 is based on the same IP core (possibly not even designed
-> by Amlogic or SMSC)
-> - the SMI interface design is something that one hardware engineer
-> brought from one company to another
-> - ...something else
-> is something I can't tell
-> 
-> 
-> Best regards,
-> Martin
-> 
-> 
-> [0] https://ww1.microchip.com/downloads/en/DeviceDoc/LAN83C185-Data-Sheet-DS00002808A.pdf
+For apple,pmgr-pwrstate:
 
+Reviewed-by: Hector Martin <marcan@marcan.st>
+
+- Hector
 
 _______________________________________________
 linux-amlogic mailing list
