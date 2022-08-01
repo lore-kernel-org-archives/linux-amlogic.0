@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E239C00144
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Aug 2022 06:02:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6EDAC00144
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Aug 2022 06:02:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EH4D0BDa0mEOBIMbsakwVrQLFfzJw8+Zl52/X2vD3cY=; b=xKPMA2nAvYmqZF
-	9XJOpIfi2t2IzrXGlTVozAFuNE6wo7Y+MKITfrDsg/DNlmE8K5GTX3o+y3oyJll8laHNT7FEqcatU
-	Nr/bmiVS2rZweVpx8j/QHADdrH4p1PBy5WT3MNEaxIeVZ+YgVCVkpxlStz3TD4aOp0posqJ5g2lgZ
-	QwhcQkV0ExMnwsaUNHowLJXhC7xo3Xq2xfx80cE/C29rSJEsP7BE8WTbikZAT5QB8FHYEzSELWDih
-	z8EmT4nyedMhr6e+gxLIMNFRWi7e9NTd/wkFgZPve5g5J4avEHB2lTpmDElhvI891TMp3DwCZGktU
-	8jKzb7VMnEroIHDljWvg==;
+	List-Owner; bh=ydNQJgq8EJN8CL40B2yxU4SeARFWY1zSjmvjca8zDRo=; b=w5d6Zi0ffud+2T
+	STU2EqlqR75IaLn8A30gS88nXG+y2QbpoOxs+aokLh/gzdc19EsQpYWQyJkEVTvDkI55jNBZzkgaY
+	zw/ywjzOIzQiecfmpHlu7dgfTLhDGky374cB6DNiZJ9U0Z8xb28tFp2C6kJKy/6nunbH2TMU2APRi
+	puqS5HJl3Jc/b9JWd1H04hz6Iv/JSyY/t17c5A5SPPyrwRl1XF/C0zznlgcQWfdJ5MQa9eF6q1wOm
+	CbLpmGodxIa6a/DvHGumbePTLAWJ3f5cq9eC9Q7xVZ0QI6p0DO942fW/VVsi0/oS81w9h80PHDgl2
+	MZ5myqrEP/k7TPse9aoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIOVA-002W0Z-4x; Mon, 01 Aug 2022 06:02:04 +0000
+	id 1oIOVS-002WGr-R6; Mon, 01 Aug 2022 06:02:23 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIOUN-002VA1-TQ; Mon, 01 Aug 2022 06:01:17 +0000
+	id 1oIOUP-002VA1-Pi; Mon, 01 Aug 2022 06:01:19 +0000
 Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.9; Mon, 1 Aug 2022
  14:00:57 +0800
@@ -36,18 +36,17 @@ CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chris Healy
 	<cphealy@gmail.com>, Jiucheng Xu <jiucheng.xu@amlogic.com>
-Subject: [PATCH v3 3/4] arm64: dts: meson: Add DDR PMU node
-Date: Mon, 1 Aug 2022 14:00:48 +0800
-Message-ID: <20220801060049.1655177-3-jiucheng.xu@amlogic.com>
+Subject: [PATCH v3 4/4] dt-binding: perf: Add Amlogic DDR PMU
+Date: Mon, 1 Aug 2022 14:00:49 +0800
+Message-ID: <20220801060049.1655177-4-jiucheng.xu@amlogic.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
 References: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.88.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220731_230115_983472_91C98904 
-X-CRM114-Status: UNSURE (   9.18  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220731_230117_861398_40EC89B6 
+X-CRM114-Status: GOOD (  13.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,78 +63,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add DDR PMU device node for G12 series SoC
+Add binding documentation for the Amlogic G12 series DDR
+performance monitor unit.
 
 Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
 ---
 Changes v2 -> v3:
-  - No change
+  - Remove oneOf
+  - Add descriptions
+  - Fix compiling warning
 
 Changes v1 -> v2:
-  - Remove model, dmc_nr, chann_nr properties
-  - Add g12a-ddr-pmu, g12b-ddr-pmu, sm1-ddr-pmu compatibles as
-    identifier
+  - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+  - Delete "model", "dmc_nr", "chann_nr" new properties
+  - Fix compiling error
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 7 +++++++
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi       | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 4 ++++
- 4 files changed, 19 insertions(+)
+ .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 51 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 45947c1031c4..7e556fe575be 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2146,6 +2146,13 @@ hdmi_tx_out: endpoint {
- 			};
- 		};
+diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+new file mode 100644
+index 000000000000..961656d4db6e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic G12 DDR performance monitor
++
++maintainers:
++  - Jiucheng Xu <jiucheng.xu@amlogic.com>
++
++description: |
++  Amlogic G12 series SoC integrate DDR bandwidth monitor.
++  A timer is inside and can generate interrupt when timeout.
++  The bandwidth is counted in the timer ISR.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - amlogic,g12b-ddr-pmu
++          - amlogic,g12a-ddr-pmu
++          - amlogic,sm1-ddr-pmu
++
++  reg:
++    items:
++      - description: Physical address of DMC bandwidth register
++          and size of the configuration address space.
++      - description: Physical address of DMC PLL register and
++          size of the configuration address space.
++
++  interrupts:
++    items:
++      - description: The IRQ of the inside timer timeout.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    ddr_pmu@ff638000 {
++        compatible = "amlogic,g12a-ddr-pmu";
++        reg = <0xff638000 0x100
++               0xff638c00 0x100>;
++        interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8ee68e699e6d..67c2c9e8c4ea 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1055,6 +1055,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
+ S:	Supported
+ W:	http://www.amlogic.com
+ F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
++F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+ F:	drivers/perf/amlogic/
+ F:	include/soc/amlogic/
  
-+		ddr_pmu: ddr_pmu@ff638000 {
-+			compatible = "amlogic,g12-ddr-pmu";
-+			reg = <0x0 0xff638000 0x0 0x100
-+			       0x0 0xff638c00 0x0 0x100>;
-+			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
- 		gic: interrupt-controller@ffc01000 {
- 			compatible = "arm,gic-400";
- 			reg = <0x0 0xffc01000 0 0x1000>,
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index fb0ab27d1f64..4a32e081e70e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -133,3 +133,7 @@ map1 {
- 		};
- 	};
- };
-+
-+&ddr_pmu {
-+	compatible = "amlogic,g12a-ddr-pmu";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-index ee8fcae9f9f0..d91eca5a9afc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -139,3 +139,7 @@ map1 {
- &mali {
- 	dma-coherent;
- };
-+
-+&ddr_pmu {
-+	compatible = "amlogic,g12b-ddr-pmu";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 80737731af3f..7d62c661fde5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -543,3 +543,7 @@ &vpu {
- &usb {
- 	power-domains = <&pwrc PWRC_SM1_USB_ID>;
- };
-+
-+&ddr_pmu {
-+	compatible = "amlogic,sm1-ddr-pmu";
-+};
 -- 
 2.25.1
 
