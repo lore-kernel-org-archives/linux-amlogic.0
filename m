@@ -4,78 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6241AC00140
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Aug 2022 13:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3995C19F2C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Aug 2022 14:16:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d5PKgCfymbWKD3KSnH/uwZsrYL+uc7gzlE3ddW9VLzk=; b=AAi7MHMfFv8pHs
-	eZyaROPevDmfCJz7Z5kD6Xbkm4G/btSXbiSbPk6G+sHY4OjNMelVRARllMge5+O3+cUL9O07JoVVJ
-	hqP4x4R+w6Ja0wkFDboiWCFAywn7lXe/OzIU2Qiop099ErLP/4hCNxvk6tDc+kGy0tT8qZI8d8+os
-	tlixqaR/y/rRSmuf/00RgBWXikduJM1sRbxLMt5HPp19x7Enbr+afzTwCKFS5T8vgaArp79DBt7Li
-	SqfqpsFpa8Ko7fqw24Q3YRDPeNWd8e/djfA1IADbFKKo1ltE6yILx5l1m3iJE8NTHkXVA+DNyZxtV
-	rn9a4nGRbnD9gAAWW6rA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oVc88B1wJWbiKJnq0n9iOyoCc8u4RR7WnlYKIIioGpA=; b=WuLJg6rqSPeWZfH3UuNSztYE2W
+	LaXfwNMlP4wAY2lFZ4bIoxuErauT+gAWkBi8fuiFFCDWN53I70aUzslIMZOi+d0bkSXNVfsftW7ES
+	8xZZUvMfSsnXLGmlzs/kDuz6sQiE6fa+nS1HmDfhMBPdgvT7rEazmcP80bwXLl2tHShloyzk4tOD8
+	N3X9aiDg4dSRJIvp2DwlhKF8G1Ovj7IlXvg4/k172nXN38mnm3pSh/C8xKB/V1pwEVRnn4LfgH1tY
+	nBnlRya6XZxFVr59c109JKFrUO5hZfL5FZmwDVJF31Hmtr+hihGGXnKgaHeU+wvn02lk4Z8kqQ5nk
+	4eBYb2hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIsQS-00EilO-Bc; Tue, 02 Aug 2022 13:59:12 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1oIshJ-00EsTy-TL; Tue, 02 Aug 2022 14:16:37 +0000
+Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIsQP-00Eigw-3H; Tue, 02 Aug 2022 13:59:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659448749; x=1690984749;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=JXaQKy9UvN4RoNFqHuqgOiDf4e31ilcdvl1X5DNMf8k=;
-  b=nHCneU7v0/hJdrE4rkmu22LDrgwyVLaUIbHlugtCW3r14N3V7SkceS5y
-   e1XzRG3pFFaC6Q9RUPqUQhg7CC7C1g/m6DfI3GWCI3JaTEwQWsR0k51Qh
-   V4nh9zQcCc8Gx81S+ZofKvkI7zVDJaulcxBWdn0GmGp6jUdL8ZpqEHaxJ
-   qpbdrbJBnCEg0K0A6m4l/82j8/v5e4Q8NkMz2NjFZplZrUXjK+6dT3IXO
-   Ev4dgSRv9WoP8Xcg3LfHuYZNDd65BHeZslXcbSVz8i49MYH7Bg+nc4j6E
-   qMOWdT94WNnGtbSxbW9mj2jDmGpIzDYWCZIAnrMLWtN10lSy7EzY1RLr8
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="351122543"
-X-IronPort-AV: E=Sophos;i="5.93,211,1654585200"; 
-   d="scan'208";a="351122543"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 06:59:02 -0700
-X-IronPort-AV: E=Sophos;i="5.93,211,1654585200"; 
-   d="scan'208";a="661633082"
-Received: from llaviniu-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.60.134])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 06:58:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Chen-Yu Tsai <wens@csie.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jerome Brunet
- <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>, Thomas
- Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>, Emma
- Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Noralf =?utf-8?Q?Tr=C3=B8n?=
- =?utf-8?Q?nes?=
- <noralf@tronnes.org>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
-Cc: Dom Cobley <dom@raspberrypi.com>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Mateusz Kwiatkowski
- <kfyatek+publicgit@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org
+	id 1oIshE-00EsPQ-2L; Tue, 02 Aug 2022 14:16:36 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 6C68620745;
+	Tue,  2 Aug 2022 14:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1659449790; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9hqIXXIjkzKIiChD1vib17RT/i1XXchs1//B4KS7QkY=;
+	b=Mwuz5FoSyqSTQwHu2+PwQOkK+FJcyvPSlXYzDn6Jq2QVY0+GsB3bFjzOK2weVuLao3zdo/
+	7z+nl0ZoJihowvIx3tFUsuztWW+uiBTrXqta9gCXw35HWiiNl4peJFiEmYXXtPTBc41N+7
+	bDy/SuLNwTLgI2fBfZRmyVa5AATcVAc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1659449790;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9hqIXXIjkzKIiChD1vib17RT/i1XXchs1//B4KS7QkY=;
+	b=J2BKW+RATkdWfndCmDHavB5dNB+jhFEZp3bi31waUMzdTjU1JsL5qGFOpIUuJ0ilFNMo9A
+	IxnHq/bDOuUNBYCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id DF80C13A8E;
+	Tue,  2 Aug 2022 14:16:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap2.suse-dmz.suse.de with ESMTPSA
+	id dpaUNb0x6WK/bwAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Tue, 02 Aug 2022 14:16:29 +0000
+Message-ID: <46871a84-3b17-5474-9608-cfbe7e6f4c7f@suse.de>
+Date: Tue, 2 Aug 2022 16:16:29 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
 Subject: Re: [PATCH v1 04/35] drm/modes: Introduce 480i and 576i modes
-In-Reply-To: <20220728-rpi-analog-tv-properties-v1-4-3d53ae722097@cerno.tech>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maxime Ripard <maxime@cerno.tech>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
  <20220728-rpi-analog-tv-properties-v1-4-3d53ae722097@cerno.tech>
-Date: Tue, 02 Aug 2022 16:58:53 +0300
-Message-ID: <8735eeg31e.fsf@intel.com>
-MIME-Version: 1.0
+ <8735eeg31e.fsf@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <8735eeg31e.fsf@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220802_065909_245957_F4DCBAE6 
-X-CRM114-Status: GOOD (  20.98  )
+X-CRM114-CacheID: sfid-20220802_071632_311971_1500296E 
+X-CRM114-Status: GOOD (  25.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,140 +101,183 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0337860082293115003=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 29 Jul 2022, Maxime Ripard <maxime@cerno.tech> wrote:
-> Multiple drivers (meson, vc4) define the analog TV 525-lines and 625-lines
-> modes in the drivers.
->
-> Since those modes are fairly standards, and that we'll need to use them in
-> more places in the future, let's move the meson definition into the
-> framework.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0337860082293115003==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------VnrWjhcWS3G28LQKelmyUyjm"
 
-I think you should always expose interfaces, not data. Data is not an
-interface, and I think this sets a bad example that will be cargo
-culted.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------VnrWjhcWS3G28LQKelmyUyjm
+Content-Type: multipart/mixed; boundary="------------m8yNS0SvmcSq6ivZZieDfWac";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maxime Ripard <maxime@cerno.tech>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Message-ID: <46871a84-3b17-5474-9608-cfbe7e6f4c7f@suse.de>
+Subject: Re: [PATCH v1 04/35] drm/modes: Introduce 480i and 576i modes
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-4-3d53ae722097@cerno.tech>
+ <8735eeg31e.fsf@intel.com>
+In-Reply-To: <8735eeg31e.fsf@intel.com>
+
+--------------m8yNS0SvmcSq6ivZZieDfWac
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+SGkNCg0KQW0gMDIuMDguMjIgdW0gMTU6NTggc2NocmllYiBKYW5pIE5pa3VsYToNCj4gT24g
+RnJpLCAyOSBKdWwgMjAyMiwgTWF4aW1lIFJpcGFyZCA8bWF4aW1lQGNlcm5vLnRlY2g+IHdy
+b3RlOg0KPj4gTXVsdGlwbGUgZHJpdmVycyAobWVzb24sIHZjNCkgZGVmaW5lIHRoZSBhbmFs
+b2cgVFYgNTI1LWxpbmVzIGFuZCA2MjUtbGluZXMNCj4+IG1vZGVzIGluIHRoZSBkcml2ZXJz
+Lg0KPj4NCj4+IFNpbmNlIHRob3NlIG1vZGVzIGFyZSBmYWlybHkgc3RhbmRhcmRzLCBhbmQg
+dGhhdCB3ZSdsbCBuZWVkIHRvIHVzZSB0aGVtIGluDQo+PiBtb3JlIHBsYWNlcyBpbiB0aGUg
+ZnV0dXJlLCBsZXQncyBtb3ZlIHRoZSBtZXNvbiBkZWZpbml0aW9uIGludG8gdGhlDQo+PiBm
+cmFtZXdvcmsuDQo+IA0KPiBJIHRoaW5rIHlvdSBzaG91bGQgYWx3YXlzIGV4cG9zZSBpbnRl
+cmZhY2VzLCBub3QgZGF0YS4gRGF0YSBpcyBub3QgYW4NCj4gaW50ZXJmYWNlLCBhbmQgSSB0
+aGluayB0aGlzIHNldHMgYSBiYWQgZXhhbXBsZSB0aGF0IHdpbGwgYmUgY2FyZ28NCj4gY3Vs
+dGVkLg0KDQpBbHRob3VnaCBJIHdyb3RlIHRoZSBvcHBvc2l0ZSB3cnQgcGF0Y2ggOCwgSSBh
+Z3JlZSB3aXRoIEphbmkgaGVyZSB3aGVuIA0KaXQgY29tZXMgdG8gJ29mZmljaWFsJyBpbnRl
+cmZhY2VzLiBUaGUgY2FzZXMgSSd2ZSBzZWVuIG9mIGV4cG9ydGVkIGRhdGEgDQpzdHJ1Y3R1
+cmVzIG9mdGVuIGxlYWQgdG8gaW50cmFuc3BhcmVudCBjb2RlLg0KDQpCZXN0IHJlZ2FyZHMN
+ClRob21hcw0KDQo+IA0KPiANCj4gQlIsDQo+IEphbmkuDQo+IA0KPj4NCj4+IFRoZSBtZXNv
+biBvbmUgd2FzIGNob3NlbiBiZWNhdXNlIHZjNCdzIGlzbid0IGFjY3VyYXRlIGFuZCBkb2Vz
+bid0IGFtb3VudCB0bw0KPj4gNTI1IGFuZCA2MjUgbGluZXMuDQo+Pg0KPj4gU2lnbmVkLW9m
+Zi1ieTogTWF4aW1lIFJpcGFyZCA8bWF4aW1lQGNlcm5vLnRlY2g+DQo+Pg0KPj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW9kZXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9k
+cm1fbW9kZXMuYw0KPj4gaW5kZXggMzA0MDA0ZmI4MGFhLi5hNGMxYmQ2ODgzMzggMTAwNjQ0
+DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX21vZGVzLmMNCj4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9kcm1fbW9kZXMuYw0KPj4gQEAgLTQ4LDYgKzQ4LDI0IEBADQo+PiAgIA0K
+Pj4gICAjaW5jbHVkZSAiZHJtX2NydGNfaW50ZXJuYWwuaCINCj4+ICAgDQo+PiArY29uc3Qg
+c3RydWN0IGRybV9kaXNwbGF5X21vZGUgZHJtX21vZGVfNDgwaSA9IHsNCj4+ICsJRFJNX01P
+REUoIjcyMHg0ODBpIiwgRFJNX01PREVfVFlQRV9EUklWRVIsIDEzNTAwLA0KPj4gKwkJIDcy
+MCwgNzM5LCA4MDEsIDg1OCwgMCwNCj4+ICsJCSA0ODAsIDQ4OCwgNDk0LCA1MjUsIDAsDQo+
+PiArCQkgRFJNX01PREVfRkxBR19JTlRFUkxBQ0UpLA0KPj4gKwkucGljdHVyZV9hc3BlY3Rf
+cmF0aW8gPSBIRE1JX1BJQ1RVUkVfQVNQRUNUXzRfMywNCj4+ICt9Ow0KPj4gK0VYUE9SVF9T
+WU1CT0xfR1BMKGRybV9tb2RlXzQ4MGkpOw0KPj4gKw0KPj4gK2NvbnN0IHN0cnVjdCBkcm1f
+ZGlzcGxheV9tb2RlIGRybV9tb2RlXzU3NmkgPSB7DQo+PiArCURSTV9NT0RFKCI3MjB4NTc2
+aSIsIERSTV9NT0RFX1RZUEVfRFJJVkVSLCAxMzUwMCwNCj4+ICsJCSA3MjAsIDczMiwgNzk1
+LCA4NjQsIDAsDQo+PiArCQkgNTc2LCA1ODAsIDU4NiwgNjI1LCAwLA0KPj4gKwkJIERSTV9N
+T0RFX0ZMQUdfSU5URVJMQUNFKSwNCj4+ICsJLnBpY3R1cmVfYXNwZWN0X3JhdGlvID0gSERN
+SV9QSUNUVVJFX0FTUEVDVF80XzMsDQo+PiArfTsNCj4+ICtFWFBPUlRfU1lNQk9MX0dQTChk
+cm1fbW9kZV81NzZpKTsNCj4+ICsNCj4+ICAgLyoqDQo+PiAgICAqIGRybV9tb2RlX2RlYnVn
+X3ByaW50bW9kZWxpbmUgLSBwcmludCBhIG1vZGUgdG8gZG1lc2cNCj4+ICAgICogQG1vZGU6
+IG1vZGUgdG8gcHJpbnQNCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24v
+bWVzb25fZW5jb2Rlcl9jdmJzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5j
+b2Rlcl9jdmJzLmMNCj4+IGluZGV4IDgxMTBhNmUzOTMyMC4uOThlYzNlNTYzMTU1IDEwMDY0
+NA0KPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2VuY29kZXJfY3Zicy5j
+DQo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9jdmJzLmMN
+Cj4+IEBAIC00NSwyMSArNDUsMTEgQEAgc3RydWN0IG1lc29uX2VuY29kZXJfY3ZicyB7DQo+
+PiAgIHN0cnVjdCBtZXNvbl9jdmJzX21vZGUgbWVzb25fY3Zic19tb2Rlc1tNRVNPTl9DVkJT
+X01PREVTX0NPVU5UXSA9IHsNCj4+ICAgCXsgLyogUEFMICovDQo+PiAgIAkJLmVuY2kgPSAm
+bWVzb25fY3Zic19lbmNpX3BhbCwNCj4+IC0JCS5tb2RlID0gew0KPj4gLQkJCURSTV9NT0RF
+KCI3MjB4NTc2aSIsIERSTV9NT0RFX1RZUEVfRFJJVkVSLCAxMzUwMCwNCj4+IC0JCQkJIDcy
+MCwgNzMyLCA3OTUsIDg2NCwgMCwgNTc2LCA1ODAsIDU4NiwgNjI1LCAwLA0KPj4gLQkJCQkg
+RFJNX01PREVfRkxBR19JTlRFUkxBQ0UpLA0KPj4gLQkJCS5waWN0dXJlX2FzcGVjdF9yYXRp
+byA9IEhETUlfUElDVFVSRV9BU1BFQ1RfNF8zLA0KPj4gLQkJfSwNCj4+ICsJCS5tb2RlID0g
+JmRybV9tb2RlXzU3NmksDQo+PiAgIAl9LA0KPj4gICAJeyAvKiBOVFNDICovDQo+PiAgIAkJ
+LmVuY2kgPSAmbWVzb25fY3Zic19lbmNpX250c2MsDQo+PiAtCQkubW9kZSA9IHsNCj4+IC0J
+CQlEUk1fTU9ERSgiNzIweDQ4MGkiLCBEUk1fTU9ERV9UWVBFX0RSSVZFUiwgMTM1MDAsDQo+
+PiAtCQkJCTcyMCwgNzM5LCA4MDEsIDg1OCwgMCwgNDgwLCA0ODgsIDQ5NCwgNTI1LCAwLA0K
+Pj4gLQkJCQlEUk1fTU9ERV9GTEFHX0lOVEVSTEFDRSksDQo+PiAtCQkJLnBpY3R1cmVfYXNw
+ZWN0X3JhdGlvID0gSERNSV9QSUNUVVJFX0FTUEVDVF80XzMsDQo+PiAtCQl9LA0KPj4gKwkJ
+Lm1vZGUgPSAmZHJtX21vZGVfNDgwaSwNCj4+ICAgCX0sDQo+PiAgIH07DQo+PiAgIA0KPj4g
+QEAgLTcxLDcgKzYxLDcgQEAgbWVzb25fY3Zic19nZXRfbW9kZShjb25zdCBzdHJ1Y3QgZHJt
+X2Rpc3BsYXlfbW9kZSAqcmVxX21vZGUpDQo+PiAgIAlmb3IgKGkgPSAwOyBpIDwgTUVTT05f
+Q1ZCU19NT0RFU19DT1VOVDsgKytpKSB7DQo+PiAgIAkJc3RydWN0IG1lc29uX2N2YnNfbW9k
+ZSAqbWVzb25fbW9kZSA9ICZtZXNvbl9jdmJzX21vZGVzW2ldOw0KPj4gICANCj4+IC0JCWlm
+IChkcm1fbW9kZV9tYXRjaChyZXFfbW9kZSwgJm1lc29uX21vZGUtPm1vZGUsDQo+PiArCQlp
+ZiAoZHJtX21vZGVfbWF0Y2gocmVxX21vZGUsIG1lc29uX21vZGUtPm1vZGUsDQo+PiAgIAkJ
+CQkgICBEUk1fTU9ERV9NQVRDSF9USU1JTkdTIHwNCj4+ICAgCQkJCSAgIERSTV9NT0RFX01B
+VENIX0NMT0NLIHwNCj4+ICAgCQkJCSAgIERSTV9NT0RFX01BVENIX0ZMQUdTIHwNCj4+IEBA
+IC0xMDQsNyArOTQsNyBAQCBzdGF0aWMgaW50IG1lc29uX2VuY29kZXJfY3Zic19nZXRfbW9k
+ZXMoc3RydWN0IGRybV9icmlkZ2UgKmJyaWRnZSwNCj4+ICAgCWZvciAoaSA9IDA7IGkgPCBN
+RVNPTl9DVkJTX01PREVTX0NPVU5UOyArK2kpIHsNCj4+ICAgCQlzdHJ1Y3QgbWVzb25fY3Zi
+c19tb2RlICptZXNvbl9tb2RlID0gJm1lc29uX2N2YnNfbW9kZXNbaV07DQo+PiAgIA0KPj4g
+LQkJbW9kZSA9IGRybV9tb2RlX2R1cGxpY2F0ZShwcml2LT5kcm0sICZtZXNvbl9tb2RlLT5t
+b2RlKTsNCj4+ICsJCW1vZGUgPSBkcm1fbW9kZV9kdXBsaWNhdGUocHJpdi0+ZHJtLCBtZXNv
+bl9tb2RlLT5tb2RlKTsNCj4+ICAgCQlpZiAoIW1vZGUpIHsNCj4+ICAgCQkJZGV2X2Vycihw
+cml2LT5kZXYsICJGYWlsZWQgdG8gY3JlYXRlIGEgbmV3IGRpc3BsYXkgbW9kZVxuIik7DQo+
+PiAgIAkJCXJldHVybiAwOw0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNv
+bi9tZXNvbl9lbmNvZGVyX2N2YnMuaCBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9l
+bmNvZGVyX2N2YnMuaA0KPj4gaW5kZXggNjFkOWQxODNjZTdmLi4yNmNlZmIyMDI5MjQgMTAw
+NjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9jdmJz
+LmgNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2N2YnMu
+aA0KPj4gQEAgLTE2LDcgKzE2LDcgQEANCj4+ICAgDQo+PiAgIHN0cnVjdCBtZXNvbl9jdmJz
+X21vZGUgew0KPj4gICAJc3RydWN0IG1lc29uX2N2YnNfZW5jaV9tb2RlICplbmNpOw0KPj4g
+LQlzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSBtb2RlOw0KPj4gKwljb25zdCBzdHJ1Y3QgZHJt
+X2Rpc3BsYXlfbW9kZSAqbW9kZTsNCj4+ICAgfTsNCj4+ICAgDQo+PiAgICNkZWZpbmUgTUVT
+T05fQ1ZCU19NT0RFU19DT1VOVAkyDQo+PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJt
+X21vZGVzLmggYi9pbmNsdWRlL2RybS9kcm1fbW9kZXMuaA0KPj4gaW5kZXggYTgwYWU5NjM5
+ZTk2Li5iNGE0NDBlMjY4OGMgMTAwNjQ0DQo+PiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fbW9k
+ZXMuaA0KPj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX21vZGVzLmgNCj4+IEBAIC0zOTQsNiAr
+Mzk0LDkgQEAgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgew0KPj4gICANCj4+ICAgfTsNCj4+
+ICAgDQo+PiArZXh0ZXJuIGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIGRybV9tb2Rl
+XzQ4MGk7DQo+PiArZXh0ZXJuIGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIGRybV9t
+b2RlXzU3Nmk7DQo+PiArDQo+PiAgIC8qKg0KPj4gICAgKiBEUk1fTU9ERV9GTVQgLSBwcmlu
+dGYgc3RyaW5nIGZvciAmc3RydWN0IGRybV9kaXNwbGF5X21vZGUNCj4+ICAgICovDQo+IA0K
+DQotLSANClRob21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpT
+VVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkw
+NDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2Vz
+Y2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
+
+--------------m8yNS0SvmcSq6ivZZieDfWac--
+
+--------------VnrWjhcWS3G28LQKelmyUyjm
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmLpMb0FAwAAAAAACgkQlh/E3EQov+A7
+RQ//evmPodG5l98UrQGfsW48jNwzYmL+4t4RwbRFnqptpQ0NaCGR55IU9gh4FmUT/oizL9kYp/mn
+BJ5EBQfV/ZzCnu0z9NowF2NMCbMbbZpWOkg1zNX6miVIca4s2T1Gz65Jbeu9/XNSeNUp+ITbEaRK
+qF4jFyRoZ7z5oXLvziZXWzaJRThN/swMOhQOmK5uo18B4/ZnR3XXtOYbyONOTw1+xf8TIefskpse
+x3zCW/W5Ko7AHK6TrBUcHoWLN5B81yFPgLYdvrkuxJRFlixWtZBXQXZmRxLcZRgSzsg8Ah0gWYsp
+MRM6XS6luDucRE0PG6wVgbQnOz4enBHk1n3X2EhgprxHBrcr8AdwyCPCssSDyqvpbxWXTws0tkdN
+TUKY0dn5yTlJZRY+A3/WtfNhoEgLBPFRch1zUY1RMkMcV8/AsDVWFkaxBIbMVzHG4AP/O6U//V/S
+Tx2V3S++lmbCoXmD9sSVW4cTr4drwwjzGCLwDs2skwOylXCOUFO5CXk8thF2bcanRNVE8mwseIbz
+aUS5qBS/YF8kHjUPKIvhF1V21gLj3xXxmNrJlAli+8kthB2JxqPUCJjFyJ7AW+Kj7MqMwnsbF17t
+HbPQZblhpVlcLoDkCZJm3e1YVO1354LiJPpNhmvA9i8P5bG6xQKLn5+kUAtA4114SXmcckaQP7S/
+wak=
+=kvU4
+-----END PGP SIGNATURE-----
+
+--------------VnrWjhcWS3G28LQKelmyUyjm--
 
 
-BR,
-Jani.
-
->
-> The meson one was chosen because vc4's isn't accurate and doesn't amount to
-> 525 and 625 lines.
->
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->
-> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> index 304004fb80aa..a4c1bd688338 100644
-> --- a/drivers/gpu/drm/drm_modes.c
-> +++ b/drivers/gpu/drm/drm_modes.c
-> @@ -48,6 +48,24 @@
->  
->  #include "drm_crtc_internal.h"
->  
-> +const struct drm_display_mode drm_mode_480i = {
-> +	DRM_MODE("720x480i", DRM_MODE_TYPE_DRIVER, 13500,
-> +		 720, 739, 801, 858, 0,
-> +		 480, 488, 494, 525, 0,
-> +		 DRM_MODE_FLAG_INTERLACE),
-> +	.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
-> +};
-> +EXPORT_SYMBOL_GPL(drm_mode_480i);
-> +
-> +const struct drm_display_mode drm_mode_576i = {
-> +	DRM_MODE("720x576i", DRM_MODE_TYPE_DRIVER, 13500,
-> +		 720, 732, 795, 864, 0,
-> +		 576, 580, 586, 625, 0,
-> +		 DRM_MODE_FLAG_INTERLACE),
-> +	.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
-> +};
-> +EXPORT_SYMBOL_GPL(drm_mode_576i);
-> +
->  /**
->   * drm_mode_debug_printmodeline - print a mode to dmesg
->   * @mode: mode to print
-> diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-> index 8110a6e39320..98ec3e563155 100644
-> --- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-> +++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-> @@ -45,21 +45,11 @@ struct meson_encoder_cvbs {
->  struct meson_cvbs_mode meson_cvbs_modes[MESON_CVBS_MODES_COUNT] = {
->  	{ /* PAL */
->  		.enci = &meson_cvbs_enci_pal,
-> -		.mode = {
-> -			DRM_MODE("720x576i", DRM_MODE_TYPE_DRIVER, 13500,
-> -				 720, 732, 795, 864, 0, 576, 580, 586, 625, 0,
-> -				 DRM_MODE_FLAG_INTERLACE),
-> -			.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
-> -		},
-> +		.mode = &drm_mode_576i,
->  	},
->  	{ /* NTSC */
->  		.enci = &meson_cvbs_enci_ntsc,
-> -		.mode = {
-> -			DRM_MODE("720x480i", DRM_MODE_TYPE_DRIVER, 13500,
-> -				720, 739, 801, 858, 0, 480, 488, 494, 525, 0,
-> -				DRM_MODE_FLAG_INTERLACE),
-> -			.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
-> -		},
-> +		.mode = &drm_mode_480i,
->  	},
->  };
->  
-> @@ -71,7 +61,7 @@ meson_cvbs_get_mode(const struct drm_display_mode *req_mode)
->  	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
->  		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
->  
-> -		if (drm_mode_match(req_mode, &meson_mode->mode,
-> +		if (drm_mode_match(req_mode, meson_mode->mode,
->  				   DRM_MODE_MATCH_TIMINGS |
->  				   DRM_MODE_MATCH_CLOCK |
->  				   DRM_MODE_MATCH_FLAGS |
-> @@ -104,7 +94,7 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
->  	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
->  		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
->  
-> -		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
-> +		mode = drm_mode_duplicate(priv->drm, meson_mode->mode);
->  		if (!mode) {
->  			dev_err(priv->dev, "Failed to create a new display mode\n");
->  			return 0;
-> diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.h b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-> index 61d9d183ce7f..26cefb202924 100644
-> --- a/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-> +++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-> @@ -16,7 +16,7 @@
->  
->  struct meson_cvbs_mode {
->  	struct meson_cvbs_enci_mode *enci;
-> -	struct drm_display_mode mode;
-> +	const struct drm_display_mode *mode;
->  };
->  
->  #define MESON_CVBS_MODES_COUNT	2
-> diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
-> index a80ae9639e96..b4a440e2688c 100644
-> --- a/include/drm/drm_modes.h
-> +++ b/include/drm/drm_modes.h
-> @@ -394,6 +394,9 @@ struct drm_display_mode {
->  
->  };
->  
-> +extern const struct drm_display_mode drm_mode_480i;
-> +extern const struct drm_display_mode drm_mode_576i;
-> +
->  /**
->   * DRM_MODE_FMT - printf string for &struct drm_display_mode
->   */
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--===============0337860082293115003==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0337860082293115003==--
+
