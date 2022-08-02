@@ -4,87 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F312C19F2C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Aug 2022 12:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6241AC00140
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Aug 2022 13:59:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RhYX37OI8CIqyLuXmZzjT0MdXlkBjAfvy1Ty8pu5Iv4=; b=hnNZVmIKbZ9AGi
-	mcGNs0TGtBna2No0E+UcIrPeG8KvSilvP5ZXnogfW6nwayiBWRP4f4yehmMim/vrDw+c/wf07MsoU
-	/HojyxqPHpJwHGOrm2CzSQJr9y5dUDX1CzTw83CxyUiMtXj0rFfdZkT5hkKfrh0ChmHkhp6ad0tHM
-	JzTuqBAT3WS8KsKdA/p15eJuRxkS6FXY2u46BaH0Z0gy+cDl6YaenFo02c4GDFN40KfJ1yAthIf5l
-	U0HiMYs3FHQOTyN8zdwUxg0eVJ5u/zeBJmcdfpF+iUNraccH5gLcksjS9Z+ijsIlqsKzUbF+I6B1P
-	QW3VKeQ4trKXWDX/YjeQ==;
+	List-Owner; bh=d5PKgCfymbWKD3KSnH/uwZsrYL+uc7gzlE3ddW9VLzk=; b=AAi7MHMfFv8pHs
+	eZyaROPevDmfCJz7Z5kD6Xbkm4G/btSXbiSbPk6G+sHY4OjNMelVRARllMge5+O3+cUL9O07JoVVJ
+	hqP4x4R+w6Ja0wkFDboiWCFAywn7lXe/OzIU2Qiop099ErLP/4hCNxvk6tDc+kGy0tT8qZI8d8+os
+	tlixqaR/y/rRSmuf/00RgBWXikduJM1sRbxLMt5HPp19x7Enbr+afzTwCKFS5T8vgaArp79DBt7Li
+	SqfqpsFpa8Ko7fqw24Q3YRDPeNWd8e/djfA1IADbFKKo1ltE6yILx5l1m3iJE8NTHkXVA+DNyZxtV
+	rn9a4nGRbnD9gAAWW6rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIqml-00Dp2U-Fr; Tue, 02 Aug 2022 12:14:07 +0000
-Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
+	id 1oIsQS-00EilO-Bc; Tue, 02 Aug 2022 13:59:12 +0000
+Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIqmU-00Doly-TM
-	for linux-amlogic@lists.infradead.org; Tue, 02 Aug 2022 12:13:53 +0000
-Received: by mail-lf1-x129.google.com with SMTP id c17so3154846lfb.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 02 Aug 2022 05:13:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wULxbsFCsO2mWrH1kUgZI39H39Fg7/Dp3JHxKstJL5w=;
-        b=EapWLVMYRopIPrmUKWyWH2kAktnoZuyQiFxSnUGnAm2RX/uVkzChEsKWao/PShY7/1
-         1vbrASNFKANYzAcRwdV7gqzkin//gHK2GmpDYsMVObW4YABwrCSpaINBp6kUdjP1afEZ
-         iI4P4akwdwJlZGu+K/t7+ysdcqDZn6iVwfrJTyDz53NLvY71711JxNxBa/h/3uxiRWL/
-         rM+AnmCR3pHa+FdKQzZPWysUqZEV5FGncWvveW49o1RXmVE0Aqybe422Xx2uVmJe7hBb
-         P2u4vSDYYfySTnJmYwYuinfDjcwDq5YTwIq/1LiuXyfBYg8XVBHUat36CWjmaAFJfm1P
-         ZnZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wULxbsFCsO2mWrH1kUgZI39H39Fg7/Dp3JHxKstJL5w=;
-        b=CUZm6E4P81tsyBsnr8y9nQNpRVaczF8q7XPSx4ahgytAixyAVNTyUbzxW+Anr6/TgV
-         4rfFJ7QLn1sG9nN5123lnlo462iJtYyvqe6M6epXlE0b0CJ9GBfe4hlL+yZ97rbyBVoA
-         UCrVFOjYxxSb8P/noqi/zHVv/3JDwEa2VMujXHiu8JZezW8lSLhH8kY5koq8U7ZzT1Ru
-         Rv0IzvRlKwrIyeJ7mPhJpjYOKjyUhy7oVcE9trycFo/HH6tXkhWZOWzEIpvbPmbVl7TB
-         kvnNUmpYNAtY0xKjdl7LSTvxuFJ3hGoarhfBT7NRTWgvgJzIAogzjNXl7pbh+g1YFOIm
-         IOHQ==
-X-Gm-Message-State: ACgBeo0Sdu8OYaHf198q7e9flKQjxAU7JjheOQ6iBJcruEZb8qdPim7W
-	CvLIvpst6TEeLW4myxcpkC0VPQ==
-X-Google-Smtp-Source: AA6agR4+VPCL3CF9Zzr8gFl9yGLK6jXfEOZBDb20OqWPvS8Z8zJbaesexcOruBvxvOr7AubCzNyF3g==
-X-Received: by 2002:a05:6512:3989:b0:48a:e4de:cc36 with SMTP id j9-20020a056512398900b0048ae4decc36mr6227240lfu.207.1659442425220;
-        Tue, 02 Aug 2022 05:13:45 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id f15-20020a05651232cf00b0048b17b0db44sm46652lfg.61.2022.08.02.05.13.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 05:13:44 -0700 (PDT)
-Message-ID: <64c9ffc1-6f4b-7ddb-01ab-1ddf9ba628db@linaro.org>
-Date: Tue, 2 Aug 2022 14:13:42 +0200
+	id 1oIsQP-00Eigw-3H; Tue, 02 Aug 2022 13:59:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659448749; x=1690984749;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=JXaQKy9UvN4RoNFqHuqgOiDf4e31ilcdvl1X5DNMf8k=;
+  b=nHCneU7v0/hJdrE4rkmu22LDrgwyVLaUIbHlugtCW3r14N3V7SkceS5y
+   e1XzRG3pFFaC6Q9RUPqUQhg7CC7C1g/m6DfI3GWCI3JaTEwQWsR0k51Qh
+   V4nh9zQcCc8Gx81S+ZofKvkI7zVDJaulcxBWdn0GmGp6jUdL8ZpqEHaxJ
+   qpbdrbJBnCEg0K0A6m4l/82j8/v5e4Q8NkMz2NjFZplZrUXjK+6dT3IXO
+   Ev4dgSRv9WoP8Xcg3LfHuYZNDd65BHeZslXcbSVz8i49MYH7Bg+nc4j6E
+   qMOWdT94WNnGtbSxbW9mj2jDmGpIzDYWCZIAnrMLWtN10lSy7EzY1RLr8
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="351122543"
+X-IronPort-AV: E=Sophos;i="5.93,211,1654585200"; 
+   d="scan'208";a="351122543"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 06:59:02 -0700
+X-IronPort-AV: E=Sophos;i="5.93,211,1654585200"; 
+   d="scan'208";a="661633082"
+Received: from llaviniu-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.60.134])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 06:58:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maxime Ripard <maxime@cerno.tech>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jerome Brunet
+ <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>, Thomas
+ Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>, Emma
+ Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Noralf =?utf-8?Q?Tr=C3=B8n?=
+ =?utf-8?Q?nes?=
+ <noralf@tronnes.org>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
+Cc: Dom Cobley <dom@raspberrypi.com>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Mateusz Kwiatkowski
+ <kfyatek+publicgit@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <maxime@cerno.tech>, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Phil Elwell <phil@raspberrypi.com>,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 04/35] drm/modes: Introduce 480i and 576i modes
+In-Reply-To: <20220728-rpi-analog-tv-properties-v1-4-3d53ae722097@cerno.tech>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-4-3d53ae722097@cerno.tech>
+Date: Tue, 02 Aug 2022 16:58:53 +0300
+Message-ID: <8735eeg31e.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 4/4] dt-binding: perf: Add Amlogic DDR PMU
-Content-Language: en-US
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>
-References: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
- <20220801060049.1655177-4-jiucheng.xu@amlogic.com>
- <0893fab6-a7e1-bfa7-2497-239e044cc7ed@linaro.org>
- <bafb824a-d450-b4d3-20a9-026dccaca2cd@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bafb824a-d450-b4d3-20a9-026dccaca2cd@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220802_051351_010487_727DF407 
-X-CRM114-Status: GOOD (  32.08  )
+X-CRM114-CacheID: sfid-20220802_065909_245957_F4DCBAE6 
+X-CRM114-Status: GOOD (  20.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,116 +92,133 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 02/08/2022 11:25, Jiucheng Xu wrote:
-> 
-> On 2022/8/2 16:04, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 01/08/2022 08:00, Jiucheng Xu wrote:
->>> Add binding documentation for the Amlogic G12 series DDR
->>> performance monitor unit.
->>>
->>> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
->>> ---
->>> Changes v2 -> v3:
->>>    - Remove oneOf
->>>    - Add descriptions
->>>    - Fix compiling warning
->>>
->>> Changes v1 -> v2:
->>>    - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
->>>    - Delete "model", "dmc_nr", "chann_nr" new properties
->>>    - Fix compiling error
->>> ---
->>>   .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 51 +++++++++++++++++++
->>>   MAINTAINERS                                   |  1 +
->>>   2 files changed, 52 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
->>> new file mode 100644
->>> index 000000000000..961656d4db6e
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
->>> @@ -0,0 +1,51 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
->> You still did not test the bindings...
->>
->> You received such comment (with instructions how to do it) and still
->> decided to send untested bindings.
->>
->> That's not how submission procces should look like.
->>
->> NAK, till you send something which you actually test.
->>
->>
->> Best regards,
->> Krzysztof
-> 
-> Hi Krzysztof,
-> 
-> 
-> Thanks for your time. I think I got a wrong understanding.
-> 
-> As the binding doc says, I run the following command to check:
-> 
-> # make dt_binding_check DT_SCHEMA_FILES=amlogic,g12_ddr_pmu.yaml ARCH=arm64
+On Fri, 29 Jul 2022, Maxime Ripard <maxime@cerno.tech> wrote:
+> Multiple drivers (meson, vc4) define the analog TV 525-lines and 625-lines
+> modes in the drivers.
+>
+> Since those modes are fairly standards, and that we'll need to use them in
+> more places in the future, let's move the meson definition into the
+> framework.
 
-Ah, cool, thanks.
-
-> 
-> I saw the warning/errors in v2 patch, and thanks to your comments let 
-> them gone.
-> 
-> But I didn't see any warning/errors keywords printing in v3 except the 
-> message as below:
-> 
-> "$id: relative path/filename doesn't match actual path or filename".
-> 
-> 
-> I admit I didn't understand this prompt. I found the doc in example says 
-> that:
-> 
-> # $id is a unique identifier based on the filename. There may or may not 
-> be a
-> # file present at the URL.
-> 
-> So I thought that was not warning/errors prompt.
-
-Unfortunately, it is and warning message. The final part of this ID is
-directory and filename - these must match real file path.
+I think you should always expose interfaces, not data. Data is not an
+interface, and I think this sets a bad example that will be cargo
+culted.
 
 
-> 
-> Today, I find the root cause of the warning/errors prompt.
-> 
-> I think I have fixed it and the building log is so quiet.
-> 
-> 
-> This is my first upstream patch, TBH I even didn't know what is binding 
-> before.
-> 
-> In order to upstream my driver, I try to learn how to write binding scheme.
-> 
-> It looks like I still did terribly.
-> 
-> I think my stupid misunderstanding get you angry. I'm sorry for wasting 
-> your time and comments.
+BR,
+Jani.
 
-Apologies for being harsh. We all make mistakes and hopefully learn from
-them.
+>
+> The meson one was chosen because vc4's isn't accurate and doesn't amount to
+> 525 and 625 lines.
+>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index 304004fb80aa..a4c1bd688338 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -48,6 +48,24 @@
+>  
+>  #include "drm_crtc_internal.h"
+>  
+> +const struct drm_display_mode drm_mode_480i = {
+> +	DRM_MODE("720x480i", DRM_MODE_TYPE_DRIVER, 13500,
+> +		 720, 739, 801, 858, 0,
+> +		 480, 488, 494, 525, 0,
+> +		 DRM_MODE_FLAG_INTERLACE),
+> +	.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
+> +};
+> +EXPORT_SYMBOL_GPL(drm_mode_480i);
+> +
+> +const struct drm_display_mode drm_mode_576i = {
+> +	DRM_MODE("720x576i", DRM_MODE_TYPE_DRIVER, 13500,
+> +		 720, 732, 795, 864, 0,
+> +		 576, 580, 586, 625, 0,
+> +		 DRM_MODE_FLAG_INTERLACE),
+> +	.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
+> +};
+> +EXPORT_SYMBOL_GPL(drm_mode_576i);
+> +
+>  /**
+>   * drm_mode_debug_printmodeline - print a mode to dmesg
+>   * @mode: mode to print
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> index 8110a6e39320..98ec3e563155 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> @@ -45,21 +45,11 @@ struct meson_encoder_cvbs {
+>  struct meson_cvbs_mode meson_cvbs_modes[MESON_CVBS_MODES_COUNT] = {
+>  	{ /* PAL */
+>  		.enci = &meson_cvbs_enci_pal,
+> -		.mode = {
+> -			DRM_MODE("720x576i", DRM_MODE_TYPE_DRIVER, 13500,
+> -				 720, 732, 795, 864, 0, 576, 580, 586, 625, 0,
+> -				 DRM_MODE_FLAG_INTERLACE),
+> -			.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
+> -		},
+> +		.mode = &drm_mode_576i,
+>  	},
+>  	{ /* NTSC */
+>  		.enci = &meson_cvbs_enci_ntsc,
+> -		.mode = {
+> -			DRM_MODE("720x480i", DRM_MODE_TYPE_DRIVER, 13500,
+> -				720, 739, 801, 858, 0, 480, 488, 494, 525, 0,
+> -				DRM_MODE_FLAG_INTERLACE),
+> -			.picture_aspect_ratio = HDMI_PICTURE_ASPECT_4_3,
+> -		},
+> +		.mode = &drm_mode_480i,
+>  	},
+>  };
+>  
+> @@ -71,7 +61,7 @@ meson_cvbs_get_mode(const struct drm_display_mode *req_mode)
+>  	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
+>  		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
+>  
+> -		if (drm_mode_match(req_mode, &meson_mode->mode,
+> +		if (drm_mode_match(req_mode, meson_mode->mode,
+>  				   DRM_MODE_MATCH_TIMINGS |
+>  				   DRM_MODE_MATCH_CLOCK |
+>  				   DRM_MODE_MATCH_FLAGS |
+> @@ -104,7 +94,7 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
+>  	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
+>  		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
+>  
+> -		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
+> +		mode = drm_mode_duplicate(priv->drm, meson_mode->mode);
+>  		if (!mode) {
+>  			dev_err(priv->dev, "Failed to create a new display mode\n");
+>  			return 0;
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.h b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
+> index 61d9d183ce7f..26cefb202924 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_cvbs.h
+> +++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
+> @@ -16,7 +16,7 @@
+>  
+>  struct meson_cvbs_mode {
+>  	struct meson_cvbs_enci_mode *enci;
+> -	struct drm_display_mode mode;
+> +	const struct drm_display_mode *mode;
+>  };
+>  
+>  #define MESON_CVBS_MODES_COUNT	2
+> diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
+> index a80ae9639e96..b4a440e2688c 100644
+> --- a/include/drm/drm_modes.h
+> +++ b/include/drm/drm_modes.h
+> @@ -394,6 +394,9 @@ struct drm_display_mode {
+>  
+>  };
+>  
+> +extern const struct drm_display_mode drm_mode_480i;
+> +extern const struct drm_display_mode drm_mode_576i;
+> +
+>  /**
+>   * DRM_MODE_FMT - printf string for &struct drm_display_mode
+>   */
 
-> 
-> I will re-submit v4 to fix it.
-> 
-
-Awesome, thank you!
-
-Best regards,
-Krzysztof
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 
 _______________________________________________
 linux-amlogic mailing list
