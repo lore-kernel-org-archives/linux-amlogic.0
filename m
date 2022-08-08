@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3769C25B0C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 07:52:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A76EC25B0C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 08:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/Pnr4RxfLbPtRHk/T2rlbNtFa/C0uTwvdfDK32Eojbs=; b=kIL6OmANQqaEm8
-	xjbFHA2p6j7sAXCMLGIfJ3bEm624VoUw5FvpYVi7sFviGwv1LMqUYAcz9oYbHtv3YD4NUAuhXURA/
-	442zE2qLczHuEG+I8nEGEku58nT0FRX9+7Uhm/cL/YVqhX//vo5mhIBLaWOCRNf5bSrU4r7W/okgo
-	a0MXdpOrTWLc+pFnhwher7WRdH3VbpF6uLOTVxgZqNZdkTfZ7TgfngFSS6tXGnovQ9SJfHqWJASwk
-	CJNhs9adcTXOEX2BmCxAiv93ta99AaSisTdRbdkBA/MY6/VjAe9g4JHiLazicnPcdykVjX2tWsmFJ
-	yn4KQ6ECKLRlNwB5imwQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=DAZHYy3ctAZ8Rlj/VBNSMk9FSnxJXDZxZlwX2EjBNb8=; b=EHW/TYkADneTfbmaoRI3tLocgS
+	gLskn6rUeVj9jsTBswOOaKYMRwb4IcK3bvykS+B4lCRHlAG1um/STCKIUHGvmzcNbGS9jC1awMniH
+	NkaBoH9Q33tWcaj8WfEpef2Zklpd085kuUcLXPI3GDQyOS6A6FAtWEUVGodclG/KwkotCiB+lT2dV
+	5dxgkUanamZrWff1f4LYQG+fvz4JRUK7Zd80ljP2oDqx7Tx5LHNJOOCMgmNLR1gZ8s/EY4QDpjhWf
+	I94PUS/xfYxYQHrNX3kIXh8A58Ti3AdXElhsuBd00VOAH1aLFOpR0by4SKLpfAD+xRpfIoYyBHi+P
+	3GrDigVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKxYg-00CFF5-PD; Mon, 08 Aug 2022 07:52:18 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1oKxnM-00CJLu-5W; Mon, 08 Aug 2022 08:07:28 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKxYf-00CFE5-2P
-	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 07:52:18 +0000
-Received: by mail-wr1-x432.google.com with SMTP id l22so9909725wrz.7
-        for <linux-amlogic@lists.infradead.org>; Mon, 08 Aug 2022 00:52:14 -0700 (PDT)
+	id 1oKxnI-00CJJT-I2
+	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 08:07:26 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id a18-20020a05600c349200b003a30de68697so5599968wmq.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 08 Aug 2022 01:07:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=IJ4kunP1J9pj2q4yZwyvQMf3KoEr+bUd77eXvDlFmvM=;
-        b=7OMB237UVNyaV3vNucxwikyrOugV6/sDg/hkJIzgLZlxDKoRTrlWNsFy9ct8cj0GJ2
-         wYTdnM/YrkU5DirkEzRF0fwQp3jy0S9aHtFrasiQyh+sbAriAHPHl3OdOyeN2RztfDPL
-         KmAlwZUHzY7GWyWPrJK0j6KN5cXgqkGgNW5PE93mkWprStUfJoZK4bHu+m3S+n6TqW+H
-         gH8Hu3AsiNveHsa/QRuEgfchKpxzHPy5gOz8FLkBdFsvy3pTjqnGl9/U75udYKZEO3eq
-         sYlJB7vN6yNz61aRqoPM8AglPF3cByra40plcjRuGSPciuVtQ60Pep1bcd7jdetq4TcN
-         cAKw==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=PV9WM4eNKKqpG2ekxx8fNamaeKEa49rWuU6gMD3fErE=;
+        b=47EEpt8HfNey33s26NW0mjmzun8WcLN9pJrL/M7KCLXWwJqCkDNnAH7RrGoXFKcU1X
+         ArX84kBX5c6+MkUKVX/o571qRD0WWB9AgxSVBQhWxMH2UZm+OHDys/0xX3AF23fucZMo
+         jEKikbUCQBH94aVMtL1U6xyPaOcuO1isIhjKdpwX6M9HMEMYClt4TC8abWFNDSp0gs1S
+         ChO5YJa0o5XvpIEXXVGjEFCSloFNnLFtiQdUUYhZgBjuF3KqCowQh2PiMQzxx3mRBi6u
+         p7a8fWuoVj0+sBGguxAZNqxCz9hFX0z+l8+tLCbz3xU9+hMFV72sRuDsJjJEmYxvjYWK
+         CGzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=IJ4kunP1J9pj2q4yZwyvQMf3KoEr+bUd77eXvDlFmvM=;
-        b=j5F0A+iRXAmNMBXr7qb+EQCrfMDO+XPgRdIK0ozp97gIPTKPcsr18/sn76q3w58Ir4
-         Gb5TQRBvYFX+uGnxxQX2OPxcKnHCFNtKbJ6oHg1qLhP8YcthtjARe9jTtXNPPh7LBzgi
-         QQOPUjyJwZkLVLKwB2SXoq4FVFPWQgpm6wSZGV8cIN5L8CVQKEZdYlZRQNSJSB60CTul
-         CAGoWX1b3EU2MRni3YepxIRpmWhfobuBdvUdwXybOsls2kkrct3+uTFFqwxEXq3c8ntU
-         Dwdcva3OkZZqsNm6QaxOuwU+zn2y5jpJCcjs0tZxn82iQG4imvvYLqsjV/HDd2FR7LDT
-         3QIA==
-X-Gm-Message-State: ACgBeo0F9MuWZoV3x5idWNgmEYqdomdL1XlUOturOTfqUFTUIPaLP0Un
-	a6PJDlNxNrmvFzUWHOp1BCC4BQ==
-X-Google-Smtp-Source: AA6agR43e+yqIlLSyJSG6dgGvsKXg5JEqdq3EVBg6TTrHBtXN12v7SlbDG3PCFvH0ktIrKBk8z9W5g==
-X-Received: by 2002:a05:6000:61c:b0:220:6425:c113 with SMTP id bn28-20020a056000061c00b002206425c113mr11149522wrb.612.1659945133528;
-        Mon, 08 Aug 2022 00:52:13 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:982:cbb0:1832:7d81:d0f6:dc4b])
-        by smtp.gmail.com with ESMTPSA id bi19-20020a05600c3d9300b003a342933727sm18480533wmb.3.2022.08.08.00.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 00:52:13 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: airlied@linux.ie,
-	martin.blumenstingl@googlemail.com,
-	linux-amlogic@lists.infradead.org,
-	jbrunet@baylibre.com,
-	dri-devel@lists.freedesktop.org,
-	Liang He <windhl@126.com>,
-	daniel@ffwll.ch,
-	khilman@baylibre.com
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] drm/meson: Fix refcount bugs in meson_vpu_has_available_connectors()
-Date: Mon,  8 Aug 2022 09:52:11 +0200
-Message-Id: <165994512091.16922.455382541518056728.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220726010722.1319416-1-windhl@126.com>
-References: <20220726010722.1319416-1-windhl@126.com>
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=PV9WM4eNKKqpG2ekxx8fNamaeKEa49rWuU6gMD3fErE=;
+        b=s11U9j50zufqWbfIjs0sxBCXHfpLyTcQmRZEKDhua36nWNIpFT3dwvcQOeUJhFg1y3
+         34eKdZRzt79WRBbLQzgYbCFETy3+7A+0rd5J+KxDtA03zyktZC7ZrXS5T9wwV5L+uUrv
+         bgPeToLw+/H/Brw2rWfyFaAQDHtvqVKow8Q0MXrvVRF2nSmztewliOpwiNolYrjZIuKd
+         HYxbs6weGWVl1lmArfFo3Ccvvl1bpYBqXeRhdy8oM9h2urtiM0iw3/qXGAZURk4r83zD
+         HUIWHY5pBc73Edc4qoHeCJzjtrl0lAJHdkcoKVB4XaZCpuaWmmIYuiVhJmglwpdMwPq3
+         M6bg==
+X-Gm-Message-State: ACgBeo1u86wNlHYhtPjaOz91Ft7rZ8KzKFQ5yX04zd4m7mboH3IeUKi7
+	JkbJp64XgNLE63UHuJKAgiCfbA==
+X-Google-Smtp-Source: AA6agR6JdumKVKZQaiyKSOrwaqiFUqUtMtVBnAJZufhob3AvsmkS5N5A+4grCdvnRikCqJY56xRC8w==
+X-Received: by 2002:a1c:ed05:0:b0:3a2:ebae:c5e7 with SMTP id l5-20020a1ced05000000b003a2ebaec5e7mr11463472wmh.78.1659946042037;
+        Mon, 08 Aug 2022 01:07:22 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1832:7d81:d0f6:dc4b? ([2a01:e0a:982:cbb0:1832:7d81:d0f6:dc4b])
+        by smtp.gmail.com with ESMTPSA id t18-20020a05600c199200b003a31c4f6f74sm19376214wmq.32.2022.08.08.01.07.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 01:07:21 -0700 (PDT)
+Message-ID: <5a2d281d-92c1-97e3-69a5-22a5d2942b52@baylibre.com>
+Date: Mon, 8 Aug 2022 10:07:20 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] soc: amlogic: meson-pwrc: Hold reference returned by
+ of_get_parent()
+Content-Language: en-US
+To: Liang He <windhl@126.com>, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, p.zabel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20220726073841.1320509-1-windhl@126.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220726073841.1320509-1-windhl@126.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220808_005217_126932_54DA0416 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220808_010724_641073_AFD666B7 
+X-CRM114-Status: GOOD (  15.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,30 +89,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Tue, 26 Jul 2022 09:07:22 +0800, Liang He wrote:
-> In this function, there are two refcount leak bugs:
-> (1) when breaking out of for_each_endpoint_of_node(), we need call
-> the of_node_put() for the 'ep';
-> (2) we should call of_node_put() for the reference returned by
-> of_graph_get_remote_port() when it is not used anymore.
+On 26/07/2022 09:38, Liang He wrote:
+> We should hold the reference returned by of_get_parent() and use
+> it to call of_node_put() for refcount balance.
 > 
+> Signed-off-by: Liang He <windhl@126.com>
+> ---
+>   drivers/soc/amlogic/meson-ee-pwrc.c     | 5 ++++-
+>   drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 5 ++++-
+>   2 files changed, 8 insertions(+), 2 deletions(-)
 > 
-> [...]
+> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+> index 2be3afe6c2e3..dd5f2a13ceb5 100644
+> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
+> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+> @@ -469,6 +469,7 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+>   {
+>   	const struct meson_ee_pwrc_domain_data *match;
+>   	struct regmap *regmap_ao, *regmap_hhi;
+> +	struct device_node *parent_np;
+>   	struct meson_ee_pwrc *pwrc;
+>   	int i, ret;
+>   
+> @@ -495,7 +496,9 @@ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+>   
+>   	pwrc->xlate.num_domains = match->count;
+>   
+> -	regmap_hhi = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
+> +	parent_np = of_get_parent(pdev->dev.of_node);
+> +	regmap_hhi = syscon_node_to_regmap(parent_np);
+> +	of_node_put(parent_np);
+>   	if (IS_ERR(regmap_hhi)) {
+>   		dev_err(&pdev->dev, "failed to get HHI regmap\n");
+>   		return PTR_ERR(regmap_hhi);
+> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> index b4615b288625..312fd9afccb0 100644
+> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> @@ -273,6 +273,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+>   	const struct meson_gx_pwrc_vpu *vpu_pd_match;
+>   	struct regmap *regmap_ao, *regmap_hhi;
+>   	struct meson_gx_pwrc_vpu *vpu_pd;
+> +	struct device_node *parent_np;
+>   	struct reset_control *rstc;
+>   	struct clk *vpu_clk;
+>   	struct clk *vapb_clk;
+> @@ -291,7 +292,9 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+>   
+>   	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
+>   
+> -	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
+> +	parent_np = of_get_parent(pdev->dev.of_node);
+> +	regmap_ao = syscon_node_to_regmap(parent_np);
+> +	of_node_put(parent_np);
+>   	if (IS_ERR(regmap_ao)) {
+>   		dev_err(&pdev->dev, "failed to get regmap\n");
+>   		return PTR_ERR(regmap_ao);
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
-
-[1/1] drm/meson: Fix refcount bugs in meson_vpu_has_available_connectors()
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=91b3c8dbe898df158fd2a84675f3a284ff6666f7
-
--- 
-Neil
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
