@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7628AC00140
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 06:17:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03683C00140
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 06:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uLUGZ2iwbUPFwLdBPCQ3sYBBpFAAiZQP7TmaxH/pFJA=; b=yoYjwtQZmwC4wg
-	qWSRk5688ymSXuQeOQd+LOcW6S3CwFpu2X4ItFp6RwS4KnKrh+IKtMqZ/zhFhBDYbK70pOii+dzIX
-	O4j822W2tem7/G1uO2OvJZeyuogJuVfpXc+p2y83D6yo3V/DaMc/YnuM59YbcwahAYpFJwvQyEKGZ
-	DEV2vRkLnlJjzIDi+DZxWNMVfXB5X859t5Z/eXeohNbsFVcFPkdx3LgXM1KHhwZMLLJq6eEiteTmh
-	HIDHubyslO50oq2M13LgyRNkEkxJ0jC9oWDM9qZ/HYJjXWBxquwAeiZ2QA6Up1dkdSycUBQkeWlzR
-	cwiirrJSXFfZFaztQelw==;
+	List-Owner; bh=U3rYRr+JCEhdM6MmpUiq/Zz26aMHGeCeRcqumBDCUBs=; b=PJe+CiEmeAVPG/
+	ike6mIk0Y3b5gdGW8zJaLx1oYUT511CqLHwvZw7KDoW0bqY4K8yf54LEeMyRgYgPzdZ71bQFLADRG
+	nt9Q6BbN33SHHUEWX10i4hSON94t63LyKhmxmbEKwNLP+tkoPy9ZQfVBoejQYtJtsuFDCNaS0J7B6
+	UftcKxzwNIChjQgD1DQxUlInMDgTYZHF3PL9VCZAtqsUmetil8EzPSLgPAXMdTXWx4E0VeH2OSEVT
+	9X459dCrEAs80rwy9lTA9pkamjP6vewM262X4dhvHBvVLP1EGgtoo1EMtLMwC2qZ1eGZMhhpoHlPc
+	LwG88+oQZRqpJtZNEvpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKw4P-00Bda3-Jv; Mon, 08 Aug 2022 06:16:57 +0000
-Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
+	id 1oKw4p-00Bdyy-9a; Mon, 08 Aug 2022 06:17:23 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKw4B-00BdMW-CL
-	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 06:16:45 +0000
-Received: by mail-lj1-x236.google.com with SMTP id l10so4168114lje.7
-        for <linux-amlogic@lists.infradead.org>; Sun, 07 Aug 2022 23:16:41 -0700 (PDT)
+	id 1oKw4l-00BdtR-UI
+	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 06:17:21 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id v2so2582959lfi.6
+        for <linux-amlogic@lists.infradead.org>; Sun, 07 Aug 2022 23:17:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=fciYAWSZMoQdWO6XEfsJh4SM4ZwutMpTVspkx/ExHXE=;
-        b=bk4Hper+0UryWZ+lPbB2cSDixGFoOcgSbcXAFwqlIywgvpLQ98GuypeYJ3VBpj2xfy
-         j7nEM0054ptCZ+KFUBB3GtBXRPKadXLk9wfpboDt1ZqwxcSUqKEdjK4zjGIiP8tZZZjE
-         U1uhlDjUnqiYX7ei/0WFkfaSTDzlmz6mFjnTUFZsUJLn0x4eCwuH9iogaQTgBL5hqpIn
-         lSQZZSch7OFAXDKMoobdNkGJqFgFiUAhE1VVW0amRv09HDQOHzDEcNCG1izdtY76rjJk
-         Ieet4gIcOBL9cEhVL2uMzMl9YEjpA5O4JLAJkqc42qV12FrdGle2xXQquZHu4Y8CevGi
-         Qv3Q==
+        bh=T8rNmdfGQpLyT9LR1PlSucPj1KAkeGsYwmxlQxDnSLI=;
+        b=n81MxZvnNSuI3qedxwTMbxCFELlr2YlwnyP2qLYqK1c/SiDxMXsTtUG3FtobrlPbYP
+         MqpGRBS7hjPRvy5ZbJcmxV3y+h4X55ggJZGQsx1ZzRI19tyuNRIp0m3YrIyb9gFIdECT
+         OwpOT7oR+kzjXXn1347GjVpsS9NpKCCLugjrkK8VCkbryi/Vg+dAD9nFbYB4y3yXoNEx
+         Xl0qk28VL2+ndU05Pa/NdmtNyu07O0NewSgFCMOQUvyH9vS1nvVj4LpzYKfnVqm2XQXB
+         EMZ+3RO9+IUyO7wZvyLdupA2MsUVmfwlaNY1ipTkBVGTW/AO6rlODxdELiXJM/y/Eoem
+         BhPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=fciYAWSZMoQdWO6XEfsJh4SM4ZwutMpTVspkx/ExHXE=;
-        b=sQWjCojOgrO4k+7N5+OCvpQXQnWCLlYkNVQTpAGfH088SzMZGP3oVIqSQO/w5+ECO1
-         wDf+7djy5zE7LA5Op9jE4sZnuRNyy9qWBDm8wyzTXB2H51s92TWIY1IhRDFxHS275/D6
-         zS5Lnl5fmVBkByN3paBpwQrcMya0JhJdyHXzUCvIrz7ZFHoFqcKePvj967rbDhSokzpx
-         WOB3OK4nQVZxZjw0O8XmF3snDw4ZV1FR9/cNxwEOgCz+SH29PK3UfIYAzHogjgqNUGBt
-         J7PTYF68RJuZ2zfd+RAr98L/4wOtiWm/VNrTpSGIKrng9z06qPNE3h2x8chrBcwG8w9m
-         PKng==
-X-Gm-Message-State: ACgBeo3G2WOXRJnR0iJTjVdMzz1CE5mKYDDR6gClLavFKyVZaullECzu
-	3+6EU8LJnKj1DE37835p9LxB6A==
-X-Google-Smtp-Source: AA6agR5vMHc+EuCiaOqe/h+2rKNhnqSu9yo7e+ImS+1K4uYlMyJij6BbOz3rr/MMTTXBK9Isto4CpQ==
-X-Received: by 2002:a2e:beaa:0:b0:25e:34d0:4d57 with SMTP id a42-20020a2ebeaa000000b0025e34d04d57mr5361387ljr.329.1659939399654;
-        Sun, 07 Aug 2022 23:16:39 -0700 (PDT)
+        bh=T8rNmdfGQpLyT9LR1PlSucPj1KAkeGsYwmxlQxDnSLI=;
+        b=52O9NRVw24LqJkQEjCb26LOJLHjR2UdOqPWIHdVfWssYlomBDEQy2drZaVlQ8CrWl1
+         tkfe8vLvlXtT+FmQWnHS+GTztujriAqrycEIFuDLEqNfYlMbWi/IsZnuHWmrz6nm7BmR
+         aj4gK9WCl5RQrwWkmAy9dAVCjlI+WC+0WtNU6SmK/X5jVanvYYOh5ZXpqi5G1Wl3trg5
+         FpQu12h+q845tEU9OzY2IuscCsTQxkpsaNBC8rL/D1WYA6kH0HerOd9Mor8Z2n8XB5sF
+         y85FXuPhLqYSCUWBLIrDuX6lflizA2TOa3Wh2XVjGCYJz8cDRYbwISwXfCT2ub7P/uIV
+         DIcg==
+X-Gm-Message-State: ACgBeo2ISaYfzmhpA1XbJjekLWN0VtRxnCP81GV5+igZdxtGBuqRSUvb
+	0bfcVXknCC0P6dF4Ih3adeuKwQ==
+X-Google-Smtp-Source: AA6agR6wuDSwNpJO7sX9bE+MUbq7BFPZE72HpVs62s7NS6I5udUt1KcwXlyjOTAa/6+TRhKTd/fxMA==
+X-Received: by 2002:ac2:43d4:0:b0:48a:f6bf:1185 with SMTP id u20-20020ac243d4000000b0048af6bf1185mr5938168lfl.197.1659939436119;
+        Sun, 07 Aug 2022 23:17:16 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id x9-20020a056512078900b0048a891e4d88sm1310468lfr.193.2022.08.07.23.16.38
+        by smtp.gmail.com with ESMTPSA id f12-20020a056512360c00b0047f77eb8f0csm1310277lfs.36.2022.08.07.23.17.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Aug 2022 23:16:39 -0700 (PDT)
-Message-ID: <e78f108d-ab29-1d92-d96e-07393aaf2a65@linaro.org>
-Date: Mon, 8 Aug 2022 09:16:37 +0300
+        Sun, 07 Aug 2022 23:17:15 -0700 (PDT)
+Message-ID: <fe04e8ab-f8de-2c03-17e8-8960e5b460af@linaro.org>
+Date: Mon, 8 Aug 2022 09:17:14 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V3 4/6] dt-bindings: clk: meson: add S4 SoC peripheral
- clock controller bindings
+Subject: Re: [PATCH V3 5/6] arm64: dts: meson: add S4 Soc Peripheral clock
+ controller in DT
 Content-Language: en-US
 To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -76,14 +76,15 @@ To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-5-yu.tu@amlogic.com>
- <562043e1-83d4-d4ab-2c18-20b770b02955@linaro.org>
- <4d923b9e-61d4-b4cc-906f-cb186a16e1f4@amlogic.com>
+ <20220805085716.5635-6-yu.tu@amlogic.com>
+ <60f30470-ca14-1e12-3ed2-7b34c7a93f8a@linaro.org>
+ <759c681e-ec03-4230-b34e-0b2ee67ac870@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4d923b9e-61d4-b4cc-906f-cb186a16e1f4@amlogic.com>
+In-Reply-To: <759c681e-ec03-4230-b34e-0b2ee67ac870@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220807_231643_490801_F6DA7751 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20220807_231720_045535_09A16116 
+X-CRM114-Status: UNSURE (   8.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,50 +101,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/08/2022 11:33, Yu Tu wrote:
-> Hi Krzysztof,
-> 	Thank you for your reply.
-> 
-> On 2022/8/5 17:15, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
+On 05/08/2022 11:36, Yu Tu wrote:
+>>> @@ -100,6 +102,30 @@ clkc_pll: pll-clock-controller@8000 {
+>>>   				#clock-cells = <1>;
+>>>   			};
+>>>   
+>>> +			clkc_periphs: periphs-clock-controller {
 >>
->> On 05/08/2022 10:57, Yu Tu wrote:
->>> Add peripheral clock controller compatible and dt-bindings header for
->>> the of the S4 SoC.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   .../bindings/clock/amlogic,s4-clkc.yaml       |  92 ++++++++++++
->>>   include/dt-bindings/clock/amlogic,s4-clkc.h   | 131 ++++++++++++++++++
->>>   2 files changed, 223 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-clkc.yaml
->>>   create mode 100644 include/dt-bindings/clock/amlogic,s4-clkc.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-clkc.yaml
->>> new file mode 100644
->>> index 000000000000..2471276afda9
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-clkc.yaml
+>> Node names should be generic, so "clock-controller"
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 >>
->> Filename should be based on compatible, so amlogic,s4-periphs-clkc.yaml
-> I will correct as you suggest in the next version.
->>
->>> @@ -0,0 +1,92 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-clkc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Amlogic Meson S serials Peripheral Clock Controller Device Tree Bindings
->>
->> s/Device Tree Bindings//
-> what's mean?
+>> You miss here unit address. Test your DTS with dtbs check and with
+>> regular compile with W=1.
+> I will change to clkc_periphs: clock-controller@0 {.
+> Is that okay?
 
-It's a expression (simplified not accurate) from many Linux tools, e.g.
-sed, vim etc
-s/SEARCH/REPLACE/
-so just drop that piece I wrote above.
+I cut the context, so if "0" was the value in reg, then it is OK.
 
 Best regards,
 Krzysztof
