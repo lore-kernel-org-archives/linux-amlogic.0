@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 110FBC00140
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 12:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66C24C00140
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 12:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jQR3H2pAI4fsMUYgglpxt4de79R/56BzrQQNcorW2ow=; b=fANQZU7Rdq5ds7
-	EmTMgHYy/S9j/EFm/W9EISvLND1qmnWNIu6otoxSoUiDL8hfy2z3LW3wmw9ky39Jf6AhELdcDj3lV
-	SNzpIEKCcTmXyxpn1BHn4uLWDq8e3XKDZcfTOmboObAwdG9OF2EdFQEcrFtjhbYYFwTCS5QB0aDJ0
-	LawUB85ph95WtJFpn6dInhaL5+uK8GxysyBYs3DbU0n4I1ntKVR1VTK+/YC0zxanu45cbgeMBweQO
-	vjvXoPlwmrNfWQ3p9KPhxqKcZ0BAsqrrbbaXJcJ+YbYjKtoAkh2D2xdem7XI+w/jAIQnC44Jkauwy
-	dt6Y3GujWQ+qIXxrK8LA==;
+	List-Owner; bh=utM+417L295K73N0bu8Lw+3lom2sj7D5tBMM0BU+mdA=; b=IC4Wu3Hq3aP8BN
+	seTAEYYbSqtelkqQgudcTEuHA1XFKumJlYqOdsauQev4ouaJM0ANHPh+WopJkud7b3yvVygZkprn3
+	F+PZZT+h/Az9/z4LyQdLi9B41wDfkIiqSqumTX/iGaLaEx0moxuduUJK5QH/oE6WlvHJ+tkpAc6Qw
+	z9Nyp3S0kUHEP3w4OyuVyhZ0wBsXWTpviYCEAi4kTt713AQUXvQPglllMiLu+lzvtjxTUrbQKUJqX
+	VpU8uOCXqq54gi8ILSV/vt46XBH5P8j72yL4zIRza4WdSUyTMYeGr9ngYs/pcrsVVaE6ZnAHGz9MZ
+	fa1oNM3PWqsbMBQtPMlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oL28C-00Do56-K6; Mon, 08 Aug 2022 12:45:16 +0000
+	id 1oL2CC-00Dpj2-QA; Mon, 08 Aug 2022 12:49:24 +0000
 Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oL280-00Do1F-6j; Mon, 08 Aug 2022 12:45:06 +0000
+	id 1oL2C1-00Dpfb-48; Mon, 08 Aug 2022 12:49:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
 	; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
 	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=eVaNvTPbtrqbti0QEgzFwYvEZyQFx7UXLCcnkU+Ng7E=; b=RSUfTgd18ifp4PFwxZ2PlyRRTx
-	R9OtWfmPNn19R3CYZDWBtFfvkoOpg9S5gcbM8c7Q3znVJr/P0CWlxdkl9vBC+RfhFUBh0H5aBUjA+
-	85tzWPvFxYHKU8NgvS4FuSd0WgrJZqmjzZIAvOAIl151lo0X9P2ua8vb5uzClBB34XiaEqVHcAzX3
-	cd78/FxpEtKJDF/GIbh3ymCEq/PSDjEzZ/JX4h9glSpnPD8bnBH5/MYzg1ZeRf/IziBemz+0F4tvl
-	OBCvCv6yOD3GkMMjOwkFY6Wzp3Mv8s+Ihw6upbwCSO9u7rPUHdD6zghUSnbRWHrbefPC7KhlScEkx
-	0a3lOlFQ==;
-Received: from [2a01:799:961:d200:fd91:af1e:9da7:f964] (port=64671)
+	bh=G3MaW7kSYZuMclka/Q3KdMVcnRc0tc/Et8yfYULCynQ=; b=iqw5Csu28VnoEc7vARcIhbwfqu
+	yMk2QZCnoa7Y+Nq1c4OYg/on/3g0JXfDfDVLkVT2gtS65R3lLIJjJhdlyn2NwE6tl6/gyCfDid9h4
+	oIxM+W1wXM2ysGLQkxbxjtCH4eD9j2zbJs96qAMuUGEl6tM0J2RrWRu7hNGpJYGyTTfkkolsJkQCz
+	NIFEpFgOiD9VVYG62zaxc+mn35nfaigoFiS4zh2ZrIhBTzBFyah/nnlJviuqjYXYv3SjClAAfMtAq
+	nITFsMIMI8UCuXYMcJjdvJAfgfbH14cvX/qrbI5IYd9pj1EpH/C9qok5onYfzdunbnNb5WbCuDH2e
+	krpv+m2w==;
+Received: from [2a01:799:961:d200:fd91:af1e:9da7:f964] (port=64771)
 	by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <noralf@tronnes.org>)
-	id 1oL27w-0003Ef-LB; Mon, 08 Aug 2022 14:45:00 +0200
-Message-ID: <9fdecae2-80ad-6212-0522-7dccf9fb57be@tronnes.org>
-Date: Mon, 8 Aug 2022 14:44:56 +0200
+	id 1oL2By-0006Tp-QU; Mon, 08 Aug 2022 14:49:10 +0200
+Message-ID: <d96df677-a1a7-ae49-bda6-abad025dc974@tronnes.org>
+Date: Mon, 8 Aug 2022 14:49:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
+Subject: Re: [PATCH v1 06/35] drm/connector: Only register TV mode property if
+ present
 To: Maxime Ripard <maxime@cerno.tech>,
  Jernej Skrabec <jernej.skrabec@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -66,12 +67,12 @@ Cc: linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
  Dom Cobley <dom@raspberrypi.com>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-6-3d53ae722097@cerno.tech>
 From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v1-6-3d53ae722097@cerno.tech>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220808_054504_446509_D000D5CB 
-X-CRM114-Status: GOOD (  24.29  )
+X-CRM114-CacheID: sfid-20220808_054913_182278_CC9DB3D2 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,218 +84,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-Den 29.07.2022 18.34, skrev Maxime Ripard:
-> The TV mode property has been around for a while now to select and get the
-> current TV mode output on an analog TV connector.
-> 
-> Despite that property name being generic, its content isn't and has been
-> driver-specific which makes it hard to build any generic behaviour on top
-> of it, both in kernel and user-space.
-> 
-> Let's create a new bitmask tv norm property, that can contain any of the
-> analog TV standards currently supported by kernel drivers. Each driver can
-> then pass in a bitmask of the modes it supports.
-> 
-> We'll then be able to phase out the older tv mode property.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-
-Please also update Documentation/gpu/kms-properties.csv
-
-Requirements for adding a new property is found in
-Documentation/gpu/drm-kms.rst
-
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index c06d0639d552..d7ff6c644c2f 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -700,6 +700,8 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
->  		state->tv.margins.bottom = val;
->  	} else if (property == config->tv_mode_property) {
->  		state->tv.mode = val;
-> +	} else if (property == config->tv_norm_property) {
-> +		state->tv.norm = val;
->  	} else if (property == config->tv_brightness_property) {
->  		state->tv.brightness = val;
->  	} else if (property == config->tv_contrast_property) {
-> @@ -810,6 +812,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
->  		*val = state->tv.margins.bottom;
->  	} else if (property == config->tv_mode_property) {
->  		*val = state->tv.mode;
-> +	} else if (property == config->tv_norm_property) {
-> +		*val = state->tv.norm;
->  	} else if (property == config->tv_brightness_property) {
->  		*val = state->tv.brightness;
->  	} else if (property == config->tv_contrast_property) {
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index e3142c8142b3..68a4e47f85a9 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1637,6 +1637,7 @@ EXPORT_SYMBOL(drm_mode_create_tv_margin_properties);
->  /**
->   * drm_mode_create_tv_properties - create TV specific connector properties
->   * @dev: DRM device
-> + * @supported_tv_norms: Bitmask of TV norms supported (See DRM_MODE_TV_NORM_*)
->   * @num_modes: number of different TV formats (modes) supported
->   * @modes: array of pointers to strings containing name of each format
->   *
-> @@ -1649,11 +1650,40 @@ EXPORT_SYMBOL(drm_mode_create_tv_margin_properties);
->   * 0 on success or a negative error code on failure.
->   */
->  int drm_mode_create_tv_properties(struct drm_device *dev,
-> +				  unsigned int supported_tv_norms,
->  				  unsigned int num_modes,
->  				  const char * const modes[])
->  {
-> +	static const struct drm_prop_enum_list tv_norm_values[] = {
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_443) - 1, "NTSC-443" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_J) - 1, "NTSC-J" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_M) - 1, "NTSC-M" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_60) - 1, "PAL-60" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_B) - 1, "PAL-B" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_D) - 1, "PAL-D" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_G) - 1, "PAL-G" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_H) - 1, "PAL-H" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_I) - 1, "PAL-I" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_M) - 1, "PAL-M" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_N) - 1, "PAL-N" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_NC) - 1, "PAL-Nc" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_60) - 1, "SECAM-60" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_B) - 1, "SECAM-B" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_D) - 1, "SECAM-D" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_G) - 1, "SECAM-G" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K) - 1, "SECAM-K" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K1) - 1, "SECAM-K1" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_L) - 1, "SECAM-L" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD480I) - 1, "hd480i" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD480P) - 1, "hd480p" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD576I) - 1, "hd576i" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD576P) - 1, "hd576p" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD720P) - 1, "hd720p" },
-> +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD1080I) - 1, "hd1080i" },
-> +	};
->  	struct drm_property *tv_selector;
->  	struct drm_property *tv_subconnector;
-> +	struct drm_property *tv_norm;
->  	unsigned int i;
->  
->  	if (dev->mode_config.tv_select_subconnector_property)
-> @@ -1686,6 +1716,13 @@ int drm_mode_create_tv_properties(struct drm_device *dev,
->  	if (drm_mode_create_tv_margin_properties(dev))
->  		goto nomem;
->  
-> +	tv_norm = drm_property_create_bitmask(dev, 0, "tv norm",
-> +					   tv_norm_values, ARRAY_SIZE(tv_norm_values),
-> +					   supported_tv_norms);
-
-I expected this to be an enum, why a bitmask? Userspace can set multiple
-bits in a bitmask.
-
-Noralf.
-
-> +	if (!tv_norm)
-> +		goto nomem;
-> +	dev->mode_config.tv_norm_property = tv_norm;
-> +
->  	dev->mode_config.tv_mode_property =
->  		drm_property_create(dev, DRM_MODE_PROP_ENUM,
->  				    "mode", num_modes);
-> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
-> index 4a788c1c9058..457529e5d857 100644
-> --- a/drivers/gpu/drm/vc4/vc4_vec.c
-> +++ b/drivers/gpu/drm/vc4/vc4_vec.c
-> @@ -573,7 +573,9 @@ static int vc4_vec_bind(struct device *dev, struct device *master, void *data)
->  	struct vc4_vec *vec;
->  	int ret;
->  
-> -	ret = drm_mode_create_tv_properties(drm, ARRAY_SIZE(tv_mode_names),
-> +	ret = drm_mode_create_tv_properties(drm,
-> +					    0,
-> +					    ARRAY_SIZE(tv_mode_names),
->  					    tv_mode_names);
->  	if (ret)
->  		return ret;
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 1e9996b33cc8..78275e68ff66 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -143,6 +143,32 @@ enum subpixel_order {
->  
->  };
->  
-> +#define DRM_MODE_TV_NORM_NTSC_443	(1 << 0)
-> +#define DRM_MODE_TV_NORM_NTSC_J		(1 << 1)
-> +#define DRM_MODE_TV_NORM_NTSC_M		(1 << 2)
-> +#define DRM_MODE_TV_NORM_PAL_60		(1 << 3)
-> +#define DRM_MODE_TV_NORM_PAL_B		(1 << 4)
-> +#define DRM_MODE_TV_NORM_PAL_D		(1 << 5)
-> +#define DRM_MODE_TV_NORM_PAL_G		(1 << 6)
-> +#define DRM_MODE_TV_NORM_PAL_H		(1 << 7)
-> +#define DRM_MODE_TV_NORM_PAL_I		(1 << 8)
-> +#define DRM_MODE_TV_NORM_PAL_M		(1 << 9)
-> +#define DRM_MODE_TV_NORM_PAL_N		(1 << 10)
-> +#define DRM_MODE_TV_NORM_PAL_NC		(1 << 11)
-> +#define DRM_MODE_TV_NORM_SECAM_60	(1 << 12)
-> +#define DRM_MODE_TV_NORM_SECAM_B	(1 << 13)
-> +#define DRM_MODE_TV_NORM_SECAM_D	(1 << 14)
-> +#define DRM_MODE_TV_NORM_SECAM_G	(1 << 15)
-> +#define DRM_MODE_TV_NORM_SECAM_K	(1 << 16)
-> +#define DRM_MODE_TV_NORM_SECAM_K1	(1 << 17)
-> +#define DRM_MODE_TV_NORM_SECAM_L	(1 << 18)
-> +#define DRM_MODE_TV_NORM_HD480I		(1 << 19)
-> +#define DRM_MODE_TV_NORM_HD480P		(1 << 20)
-> +#define DRM_MODE_TV_NORM_HD576I		(1 << 21)
-> +#define DRM_MODE_TV_NORM_HD576P		(1 << 22)
-> +#define DRM_MODE_TV_NORM_HD720P		(1 << 23)
-> +#define DRM_MODE_TV_NORM_HD1080I	(1 << 24)
-> +
->  /**
->   * struct drm_scrambling: sink's scrambling support.
->   */
-> @@ -687,6 +713,7 @@ struct drm_tv_connector_state {
->  	enum drm_mode_subconnector subconnector;
->  	struct drm_connector_tv_margins margins;
->  	unsigned int mode;
-> +	unsigned int norm;
->  	unsigned int brightness;
->  	unsigned int contrast;
->  	unsigned int flicker_reduction;
-> @@ -1779,6 +1806,7 @@ void drm_connector_attach_dp_subconnector_property(struct drm_connector *connect
->  
->  int drm_mode_create_tv_margin_properties(struct drm_device *dev);
->  int drm_mode_create_tv_properties(struct drm_device *dev,
-> +				  unsigned int supported_tv_norms,
->  				  unsigned int num_modes,
->  				  const char * const modes[]);
->  void drm_connector_attach_tv_margin_properties(struct drm_connector *conn);
-> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-> index 6b5e01295348..d9e79def8b92 100644
-> --- a/include/drm/drm_mode_config.h
-> +++ b/include/drm/drm_mode_config.h
-> @@ -704,6 +704,12 @@ struct drm_mode_config {
->  	 */
->  	struct drm_property *dp_subconnector_property;
->  
-> +	/**
-> +	 * @tv_norm_property: Optional TV property to select the TV
-> +	 * standard output on the connector.
-> +	 */
-> +	struct drm_property *tv_norm_property;
-> +
->  	/**
->  	 * @tv_subconnector_property: Optional TV property to differentiate
->  	 * between different TV connector types.
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpEZW4gMjkuMDcuMjAyMiAxOC4zNCwgc2tyZXYgTWF4aW1lIFJpcGFyZDoKPiBUaGUgZHJtX2Ny
+ZWF0ZV90dl9wcm9wZXJ0aWVzKCkgd2lsbCBjcmVhdGUgdGhlIFRWIG1vZGUgcHJvcGVydHkKPiB1
+bmNvbmRpdGlvbmFsbHkuCj4gCj4gSG93ZXZlciwgc2luY2Ugd2UnbGwgZ3JhZHVhbGx5IHBoYXNl
+IGl0IG91dCwgbGV0J3MgcmVnaXN0ZXIgaXQgb25seSBpZiB3ZQo+IGhhdmUgYSBsaXN0IHBhc3Nl
+ZCBhcyBhbiBhcmd1bWVudC4gVGhpcyB3aWxsIG1ha2UgdGhlIHRyYW5zaXRpb24gZWFzaWVyLgo+
+IAo+IFNpZ25lZC1vZmYtYnk6IE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPgo+IAoK
+SSBkb24ndCB1bmRlcnN0YW5kIHdoeSB0aGlzIG1ha2VzIHRoZSB0cmFuc2l0aW9uIGVhc2llciwg
+YnV0IGlmIHlvdQp0aGluayBzbzoKCkFja2VkLWJ5OiBOb3JhbGYgVHLDuG5uZXMgPG5vcmFsZkB0
+cm9ubmVzLm9yZz4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fY29ubmVjdG9y
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2Nvbm5lY3Rvci5jCj4gaW5kZXggNjhhNGU0N2Y4NWE5
+Li5kNzNhNjg3NjRiNmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0
+b3IuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY29ubmVjdG9yLmMKPiBAQCAtMTY4NCw3
+ICsxNjg0LDYgQEAgaW50IGRybV9tb2RlX2NyZWF0ZV90dl9wcm9wZXJ0aWVzKHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYsCj4gIAlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICp0dl9zZWxlY3RvcjsKPiAgCXN0
+cnVjdCBkcm1fcHJvcGVydHkgKnR2X3N1YmNvbm5lY3RvcjsKPiAgCXN0cnVjdCBkcm1fcHJvcGVy
+dHkgKnR2X25vcm07Cj4gLQl1bnNpZ25lZCBpbnQgaTsKPiAgCj4gIAlpZiAoZGV2LT5tb2RlX2Nv
+bmZpZy50dl9zZWxlY3Rfc3ViY29ubmVjdG9yX3Byb3BlcnR5KQo+ICAJCXJldHVybiAwOwo+IEBA
+IC0xNzIzLDE1ICsxNzIyLDE5IEBAIGludCBkcm1fbW9kZV9jcmVhdGVfdHZfcHJvcGVydGllcyhz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAJCWdvdG8gbm9tZW07Cj4gIAlkZXYtPm1vZGVfY29u
+ZmlnLnR2X25vcm1fcHJvcGVydHkgPSB0dl9ub3JtOwo+ICAKPiAtCWRldi0+bW9kZV9jb25maWcu
+dHZfbW9kZV9wcm9wZXJ0eSA9Cj4gLQkJZHJtX3Byb3BlcnR5X2NyZWF0ZShkZXYsIERSTV9NT0RF
+X1BST1BfRU5VTSwKPiAtCQkJCSAgICAibW9kZSIsIG51bV9tb2Rlcyk7Cj4gLQlpZiAoIWRldi0+
+bW9kZV9jb25maWcudHZfbW9kZV9wcm9wZXJ0eSkKPiAtCQlnb3RvIG5vbWVtOwo+ICsJaWYgKG51
+bV9tb2Rlcykgewo+ICsJCXVuc2lnbmVkIGludCBpOwo+ICAKPiAtCWZvciAoaSA9IDA7IGkgPCBu
+dW1fbW9kZXM7IGkrKykKPiAtCQlkcm1fcHJvcGVydHlfYWRkX2VudW0oZGV2LT5tb2RlX2NvbmZp
+Zy50dl9tb2RlX3Byb3BlcnR5LAo+IC0JCQkJICAgICAgaSwgbW9kZXNbaV0pOwo+ICsJCWRldi0+
+bW9kZV9jb25maWcudHZfbW9kZV9wcm9wZXJ0eSA9Cj4gKwkJCWRybV9wcm9wZXJ0eV9jcmVhdGUo
+ZGV2LCBEUk1fTU9ERV9QUk9QX0VOVU0sCj4gKwkJCQkJICAgICJtb2RlIiwgbnVtX21vZGVzKTsK
+PiArCQlpZiAoIWRldi0+bW9kZV9jb25maWcudHZfbW9kZV9wcm9wZXJ0eSkKPiArCQkJZ290byBu
+b21lbTsKPiArCj4gKwkJZm9yIChpID0gMDsgaSA8IG51bV9tb2RlczsgaSsrKQo+ICsJCQlkcm1f
+cHJvcGVydHlfYWRkX2VudW0oZGV2LT5tb2RlX2NvbmZpZy50dl9tb2RlX3Byb3BlcnR5LAo+ICsJ
+CQkJCSAgICAgIGksIG1vZGVzW2ldKTsKPiArCX0KPiAgCj4gIAlkZXYtPm1vZGVfY29uZmlnLnR2
+X2JyaWdodG5lc3NfcHJvcGVydHkgPQo+ICAJCWRybV9wcm9wZXJ0eV9jcmVhdGVfcmFuZ2UoZGV2
+LCAwLCAiYnJpZ2h0bmVzcyIsIDAsIDEwMCk7Cj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
