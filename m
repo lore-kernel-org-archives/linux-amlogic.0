@@ -4,68 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CB78C00140
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 05:43:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1839BC00140
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Aug 2022 06:14:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dSKwWj09Oo24b8ADJ+Wi8MsF72lPYukBGVGyCNWlB30=; b=P58YyI6ovdkp+q
-	jiNsIEoRS+0mOcrTcCCAzSR8p/CcdO7+R+F/Um4kQbjrUPuRr+2IsTRmZRYPnOxIqZ4SwSLbjsBwz
-	nlH3oyGQ67Gr4eHcJmWErbV+k7n3E8fctFQOh7JXtLwyW48nfELDmKGZg9BCrebEjPFQ2nymbsTCB
-	rmMdz7Ju9VGyJt/buLzp1oxkBBkFlU9dffdrctmfIWgx5kNS6aa8hXQKzmPzkjbclHojc/PFaVo2y
-	RkBoyGAjC29blYoQDRSiqbJqTxj7fNzXUtDRRNy43TXOyC3qNxHXqHxjtbOXKPN2FvunV+sI7V0pi
-	1TTfwNsyZyH++PcYGZhQ==;
+	List-Owner; bh=Hre6bARTbCy31ZXnFEG339yZGrF8FwadP3mxQCqrros=; b=1MsmDkoOAca8DP
+	jjyp2kpNZroS2HLOlzWGP1PPfIWILS8XB3ARS6fTE2s1pBzWmwYal922xDQjdgsNNOjL+G9HOSKRB
+	8aCN0M5fRjj+pmreGf1RWPgKw5LrAR1oBbQdBknR73LD6tqDHprJWzLfJRjoRz2U0ht9ZjPt43Uk/
+	YIlbJUxWoOyltvmr47FJgBRNNp5830cdo/M1hiIpbIg/GqDljzhAnsD6L1NE/9QCXGTSuUPtqqqnd
+	xDcGPaD2Ycyc2xCUAqMmNvy4G9rehZP/nVUv3Q7FSKAoV9eIW1sQhbZZWf31SqUyjxJWcav8qshmV
+	SlwMEV6X1kynE0JuqcjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKvXR-00B1DW-1z; Mon, 08 Aug 2022 05:42:53 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1oKw27-00BbCU-O1; Mon, 08 Aug 2022 06:14:35 +0000
+Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oKvXF-00B12d-S8
-	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 05:42:43 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id z6so3674363lfu.9
-        for <linux-amlogic@lists.infradead.org>; Sun, 07 Aug 2022 22:42:38 -0700 (PDT)
+	id 1oKw25-00Bb7Q-Cm
+	for linux-amlogic@lists.infradead.org; Mon, 08 Aug 2022 06:14:34 +0000
+Received: by mail-lf1-x132.google.com with SMTP id bq11so11223197lfb.5
+        for <linux-amlogic@lists.infradead.org>; Sun, 07 Aug 2022 23:14:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8K1ox/jV0U8nj81jXXePp8rlDteCuzxR7Q+od8bNCV8=;
-        b=plOy+iz7wRUwWnwhYqa/ufkw/Wbt6L0dQuP0xtjoDNQ3OfJF5Pu2fx0xmq6Z5rkFmC
-         82KGS9AX+PhcZVT7IhnXHrX6Hz5fnmcD6iqP6rJCFZi0N8FchcFZzC5zZMvpn0fPqqsL
-         zI+LvxdxNC2imAlN9V4R88YKxSIFMt3yZ8R6T+NfH9brk2W/+5oLcKdFyQMlgpjp/aw4
-         fht4+EHvG8P7R51rtGElVugX0Ne0b2cFi3RwVWKdRsO3eI0qUfJAX9YmxbrljzW5V2Pw
-         zjDLOc/WGAnyE4ijdiZusIrJHUXL0LckVxWAQYgpDtlrsMsBSN3cLWM1EBuRBFwy3z4C
-         bpYw==
+        bh=ompPcRph5SE2OcXFEkgWpzfcSKSgmCD4nTXnvDSGRVQ=;
+        b=TaGrVBJes0/24VTEqZsfwl5xn/6YdzpvB/VFk7wDHgZBZCAXJv3dPYovHNi28fUwj7
+         ySl+kIzkV5PcFebmdnCKE0BuUmAGA6ODFQj5b916U0+FmlkHoPgxog8bMqAm2L63oVPP
+         loitqUG9ShBRalABJifTs9mnABU4/4D2H2fZCnWYnUDYkzN5bCiVuOs+SGBQSuKxEi7T
+         RorieaqgkeFpJcjYzuqzeOb1/UxxqFG1eDgYy4FeYrBKetIMpi8DgM1wq9nHk1ahbLpe
+         PGJMatMmmRqjc5EEa4+wM79vPea+ty42i2VaXe+XqdUueZQE1jWynDaJ+GRrqMJhwSpa
+         Zh7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8K1ox/jV0U8nj81jXXePp8rlDteCuzxR7Q+od8bNCV8=;
-        b=S8GTUnGX7rT77cX2UaSdTTfoDuw89qe6vt6JtSDO3Dmvj3X8pk3aqfBKArg6h0skDn
-         47aXCEwKMoaMeV9ZKs7UIYsMKVzbgSs5cV+qkhBPrQeurmsxssuP+GvJxwUd/VA9LMvt
-         EbQbQQ0NDG4QQfLHhY0KbbUM5vEN+2ZqiNa53Yt7FVkzZSqjyzroKRSawdBfwSlfcK01
-         Vq4s3X8oD1szaKUjADdqnOda8l0xqgbA+U5S7YBrAKih3e6gBk+LAEl68+2LX0ZYSewo
-         QbdCQT4/bBDxO4Oxhele9OM6xCbNItbHb5jomX31oMtq8/Z1aP5iDLyIu1dAaoyr39Vo
-         sJ1Q==
-X-Gm-Message-State: ACgBeo1BNCC7J8LZK+Wu+fIDEBBPg+dk+Sn8zKErmdfhmU6UNm/Ehv8M
-	dOt45EYcabuYJ3o3T9lyNw5bjw==
-X-Google-Smtp-Source: AA6agR5GkCqH+omv0iLbVmZwmb1QVcZqCsjnJehLjyT2RmHFI1rH4HUOes1EsBGzfyrKVi3eGdEaqw==
-X-Received: by 2002:ac2:5cd9:0:b0:48b:18dd:c41f with SMTP id f25-20020ac25cd9000000b0048b18ddc41fmr6114318lfq.112.1659937357211;
-        Sun, 07 Aug 2022 22:42:37 -0700 (PDT)
+        bh=ompPcRph5SE2OcXFEkgWpzfcSKSgmCD4nTXnvDSGRVQ=;
+        b=6VSQrATBAQM1pd8PMQr19zDFsygQgbZL9e1c1z68JWM6IlKVJXaODqC9lXa+8dQNCf
+         okGT0+jVWgeEhJn73+GQmtiV6Y7tfrY9sLARf8b4Y8SUXmwHwR7SUwgIVQoP9zT7AMtu
+         YJTl61FWPK/XL1rLKfvgaR6+kvP5/xhYLCZlLO3PSIVYVVpsU96EOBn5qE89rI1RyuMR
+         fIOBnkC6QBcuJiqUuTe3RUa6shJEqI7jKyQFSH9mVZjCGqbXi9IwvUHfP9hzgmaWKPQI
+         1usW1iJ00d1iUCfCCMnfp0tB5/VHcQz54Z7bajxP4/rCoPMLK+T5rtre+rTIAabHYEXA
+         L1Lg==
+X-Gm-Message-State: ACgBeo0foMZPsw0aAiJ/ymFAJVSikajlkSi7PsJHsHf5gHKH4xwIZYuc
+	CgCGVs/kKDGi6bfODVmVdRMeTw==
+X-Google-Smtp-Source: AA6agR7Z/MOhjFXYhQRjYiTUo4lEsDfla2XkL+FYEksAUOVz/UdD8SVoCa6se2b2K6jZ//oPCmuuTA==
+X-Received: by 2002:ac2:5c02:0:b0:48b:29ed:6e1e with SMTP id r2-20020ac25c02000000b0048b29ed6e1emr5620328lfp.560.1659939270651;
+        Sun, 07 Aug 2022 23:14:30 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id q1-20020a2eb4a1000000b0025e6d665a3fsm1260107ljm.18.2022.08.07.22.42.35
+        by smtp.gmail.com with ESMTPSA id c6-20020a056512324600b0048b2245519asm1310057lfr.192.2022.08.07.23.14.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Aug 2022 22:42:36 -0700 (PDT)
-Message-ID: <eb153484-6216-c4bd-deb2-c25e177b2d59@linaro.org>
-Date: Mon, 8 Aug 2022 07:42:35 +0200
+        Sun, 07 Aug 2022 23:14:30 -0700 (PDT)
+Message-ID: <a02bd793-e2a4-6a46-4ab5-9bb8c5533df1@linaro.org>
+Date: Mon, 8 Aug 2022 09:14:28 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/4] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
+Subject: Re: [PATCH v4 3/4] arm64: dts: meson: Add DDR PMU node
 Content-Language: en-US
 To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -76,15 +75,17 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
  <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>, kernel test robot <lkp@intel.com>
+ Chris Healy <cphealy@gmail.com>
 References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
- <3597d068-2c44-9450-4a0c-4704f3639a37@linaro.org>
- <4119d339-0570-2132-3e9f-19ec45ef6e8d@amlogic.com>
+ <20220805071426.2598818-3-jiucheng.xu@amlogic.com>
+ <e963157e-5ff0-f0c1-2299-50528cf291c3@linaro.org>
+ <0fac4541-0d05-1076-487b-86a7b92da71e@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4119d339-0570-2132-3e9f-19ec45ef6e8d@amlogic.com>
+In-Reply-To: <0fac4541-0d05-1076-487b-86a7b92da71e@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220807_224241_971356_B9BB4785 
-X-CRM114-Status: GOOD (  31.71  )
+X-CRM114-CacheID: sfid-20220807_231433_526769_EA9BBEFB 
+X-CRM114-Status: UNSURE (   7.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,208 +102,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/08/2022 11:55, Jiucheng Xu wrote:
->>> +static int __init g12_ddr_pmu_probe(struct platform_device *pdev)
->>> +{
->>> +	struct ddr_pmu *pmu;
->>> +
->>> +	if (of_device_is_compatible(pdev->dev.of_node,
->>> +				    "amlogic,g12a-ddr-pmu")) {
->>> +		format_attr_nna.attr.mode = 0;
->>> +		format_attr_gdc.attr.mode = 0;
->>> +		format_attr_arm1.attr.mode = 0;
->>> +		format_attr_mipi_isp.attr.mode = 0;
->> No. That's not correct patter. You must use variant specific driver data.
-> 
-> Do you mean use of_device_id.data? Could your please give me an
-> 
-> example code in kernel source?
-
-90% of Linux kernel drivers?
-
-> 
->>
->>> +	} else if (of_device_is_compatible(pdev->dev.of_node,
->>> +					   "amlogic,sm1-ddr-pmu")) {
->>> +		format_attr_gdc.attr.mode = 0;
->>> +		format_attr_arm1.attr.mode = 0;
->>> +		format_attr_mipi_isp.attr.mode = 0;
->> No. That's not correct patter. You must use variant specific driver data.
->>
->>> +	}
->>> +
->>> +	pmu = devm_kzalloc(&pdev->dev, sizeof(struct ddr_pmu), GFP_KERNEL);
->>> +	if (!pmu)
->>> +		return -ENOMEM;
->>> +
->>> +	/*
->>> +	 * G12 series Soc have single dmc controller and
->>> +	 * 4x ddr bandwidth monitor channels
->>> +	 */
->>> +	pmu->info.dmc_nr = 1;
->>> +	pmu->info.chann_nr = 4;
->>> +	pmu->info.ops = &g12_ops;
->>> +	pmu->info.fmt_attr = g12_pmu_format_attrs;
->>> +
->>> +	return meson_ddr_pmu_create(pdev, pmu);
->>> +}
->>> +
->>> +static int __exit g12_ddr_pmu_remove(struct platform_device *pdev)
->>> +{
->>> +	meson_ddr_pmu_remove(pdev);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static const struct of_device_id meson_ddr_pmu_dt_match[] = {
->>> +	{
->>> +		.compatible = "amlogic,g12-ddr-pmu",
->> Undocumented compatible. Did you run checkpatch and fix all the errors?
-> 
-> Yes, I run "./scripts/checkpatch --strict *.patch", and no errors/warnings.
-> 
-> Any other options should be used to check strictly?
-> 
-> I think it could be removed.
-
-Either you document it or drop it. It anyway looks a bit odd -
-unspecific (neither for g12a, nor for g12b).
-
-> 
->>
->>> +	},
->>> +	{
->>> +		.compatible = "amlogic,g12a-ddr-pmu",
->>> +	},
->>> +	{
->>> +		.compatible = "amlogic,g12b-ddr-pmu",
->>> +	},
->>> +	{
->>> +		.compatible = "amlogic,sm1-ddr-pmu",
->> Why four different entries for the same devices without driver data?
->> This is confusing.
-> Do you mean use a common compatible and different driver data?
-
-What I meant is that current version this is useless and confusing.
-Different devices have different compatibles with different driver data.
-Same devices have just the same compatible (so same driver data). You
-mixed two different approaches.
-
->>
->>> +	},
->>> +	{}
+On 05/08/2022 11:57, Jiucheng Xu wrote:
+>>> +&ddr_pmu {
+>>> +	compatible = "amlogic,g12a-ddr-pmu";
 >>> +};
->>> +
->>> +static struct platform_driver g12_ddr_pmu_driver = {
->>> +	.driver = {
->>> +		.name = "amlogic,ddr-pmu",
->>> +		.of_match_table = meson_ddr_pmu_dt_match,
->>> +	},
->>> +	.remove = __exit_p(g12_ddr_pmu_remove),
->> You made the driver non-hotpluggable - why?
->> In the same time it is still unbindable, whis is a bit confusing. If you
->> can unbind it, you should be able to hot-unplug it.
-> Sorry, I couldn't know why the driver is non-hotpluggable. Could you 
-> tell the detail?
+>> Adding nodes at the end causes conflicts. They should be added in some
+>> order...
+> Is alphabetical order okay?
 
-You used module_platform_driver_probe, so the one with documentation:
- /* non-hotpluggable platform devices may use this so that probe() and
-
-  * its support may live in __init sections, conserving runtime memory.
-
-  */
-
-
-
->>> +};
->>> +
->>> +module_platform_driver_probe(g12_ddr_pmu_driver, g12_ddr_pmu_probe);
->>> +MODULE_AUTHOR("Jiucheng Xu");
->>> +MODULE_LICENSE("GPL");
->>> +MODULE_DESCRIPTION("Amlogic G12 series SoC DDR PMU");
->>> diff --git a/include/soc/amlogic/meson_ddr_pmu.h b/include/soc/amlogic/meson_ddr_pmu.h
->>> new file mode 100644
->>> index 000000000000..882efe3c2f58
->>> --- /dev/null
->>> +++ b/include/soc/amlogic/meson_ddr_pmu.h
->>> @@ -0,0 +1,76 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
->>> + */
->>> +
->>> +#ifndef __MESON_DDR_PMU_H__
->>> +#define __MESON_DDR_PMU_H__
->>> +
->>> +#define MAX_CHANNEL_NUM		8
->>> +
->>> +enum {
->>> +	ALL_CHAN_COUNTER_ID,
->>> +	CHAN1_COUNTER_ID,
->>> +	CHAN2_COUNTER_ID,
->>> +	CHAN3_COUNTER_ID,
->>> +	CHAN4_COUNTER_ID,
->>> +	CHAN5_COUNTER_ID,
->>> +	CHAN6_COUNTER_ID,
->>> +	CHAN7_COUNTER_ID,
->>> +	CHAN8_COUNTER_ID,
->>> +	COUNTER_MAX_ID,
->>> +};
->>> +
->>> +struct dmc_hw_info;
->>> +
->>> +struct dmc_counter {
->>> +	u64 all_cnt;	/* The count of all requests come in/out ddr controller */
->>> +	union {
->>> +		u64 all_req;
->>> +		struct {
->>> +			u64 all_idle_cnt;
->>> +			u64 all_16bit_cnt;
->>> +		};
->>> +	};
->>> +	u64 channel_cnt[MAX_CHANNEL_NUM]; /* To save a DMC bandwidth-monitor channel counter */
->>> +};
->>> +
->>> +struct dmc_pmu_hw_ops {
->>> +	void (*enable)(struct dmc_hw_info *info);
->>> +	void (*disable)(struct dmc_hw_info *info);
->>> +	/* Bind an axi line to a bandwidth-monitor channel */
->>> +	void (*config_axi_id)(struct dmc_hw_info *info, int axi_id, int chann);
->>> +	int (*irq_handler)(struct dmc_hw_info *info,
->>> +			   struct dmc_counter *counter);
->>> +	void (*get_counters)(struct dmc_hw_info *info,
->>> +			     struct dmc_counter *counter);
->>> +};
->>> +
->>> +struct dmc_hw_info {
->>> +	struct dmc_pmu_hw_ops *ops;
->>> +	void __iomem *ddr_reg[4];
->>> +	unsigned long timer_value;	/* Timer value in TIMER register */
->>> +	void __iomem *pll_reg;
->>> +	int irq_num;			/* irq vector number */
->>> +	int dmc_nr;			/* The number of dmc controller */
->>> +	int chann_nr;			/* The number of dmc bandwidth monitor channels */
->>> +	int id;				/* The number of supported channels */
->>> +	struct attribute **fmt_attr;
->>> +};
->>> +
->>> +struct ddr_pmu {
->>> +	struct pmu pmu;
->>> +	struct dmc_hw_info info;
->>> +	struct dmc_counter counters;	/* save counters from hw */
->>> +	bool pmu_enabled;
->>> +	struct device *dev;
->>> +	char *name;
->>> +	struct hlist_node node;
->>> +	enum cpuhp_state cpuhp_state;
->>> +	int cpu;			/* for cpu hotplug */
->>> +};
->> Linux-wide headers should not include your private data structures.
->> Entier header looks unused - should be made private.
-> Do you mean the header should be in driver dir, or the structures should 
-> be within .c file?
-
-This or that, up to you. Definitely not in include/linux/.
+Yes.
 
 
 Best regards,
