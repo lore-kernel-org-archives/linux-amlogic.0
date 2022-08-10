@@ -4,60 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C4EC00140
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Aug 2022 12:38:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01226C00140
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Aug 2022 13:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jhMNMa4A17uIKrfm8jv99UUfteW8Jaldz2EyqVR1+QI=; b=p9m+7mpyFktEedc1+exOzDvajk
-	05EqgriA9+Cnlin5MR/8N0wvuSDsUz4GeTxzgwvlwmYkvttjS3ws6clT2k50u2nUQHgmlPJk6xf7R
-	wwC2fDPQibx73pOkYN2XjZbEws+yISPY1l20DNQ4Gf36ugIoioaKVMJmgpEXyyh5galo0jLDynpfs
-	PetyKNkYkfg0LDgQGM1d6U2C8zm5J9z9B+zVMjhp1ubnzzENzXn/JRgqgu/c3sk4VCkk8HHY4TtHR
-	A0Yids0Pr5UY/ebhpfNcSeZgqxirP5Yfh8VG9cbklq9zTQqlu+6OYSoy4N1qULwFk9ZwOnXJY14Ub
-	UkegM5ng==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Wn/stz5RJu2CIRqr0Aq8bKcHHNBtmrwrNtCJKKO0t+Y=; b=iRzP/kLuEaYXEH
+	9rBzMS7s6Y/m9uJGWIUyuA/RHpG0sql4oIaNcmf1AAomZR4EV1L6U6a2ND3Fx1M5TTnXGJ1/6VT6g
+	KfRSuHPJB3pJkTzMNbO3GdYn7BT+vKV+UakuLo/NcNuyx8QKrcvucJVsHTXJk4IigP3R3h7vUXCpW
+	Y614uScMmBQpU8kVWy+PohB9yh1EhJ39nn6jHvzwSBEE0IeY6U5uk8R6Og51Zdf/ervpy3hGVFfXd
+	tGrlgdi9mVLt4owwXmIRqV/tRrxKGVcM3NSQ7r+MXvwclPt0F7adv2IAiVgBbKfl2WCFW6MRV/IW4
+	uz073GDQyN83ZtoAaFPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oLkyE-00Bo8I-2j; Wed, 10 Aug 2022 12:37:58 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1oLlsf-00C3e4-Ja; Wed, 10 Aug 2022 13:36:17 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oLkyB-00Bo79-NP; Wed, 10 Aug 2022 12:37:57 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 2A12161363;
-	Wed, 10 Aug 2022 12:37:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C7B5C433D6;
-	Wed, 10 Aug 2022 12:37:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1660135073;
-	bh=ROHaIZk75ZgJisF7nTMLDJS9o0AxLi1V/y+T67/KwWQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qg7V+bjI7lf3dzSN62yYr9g4pSgwDtQDJWcjI3dRgZRvMIoOD/bbKegaOJMO2MzWN
-	 SE+A3aKfjpe80HoF1s2lo5xVS6gIkpmA1DpXIUnW2aHmkkpf3RJ/y8dJotPeQecNET
-	 e5qc36Vnk3SFh2ixHl5EoVsn2FhJ3CmaaVXyK9sh5fVsJqfdHGFcit844ItnozYVb6
-	 CGZ4Ma5LOKbVbJtmpUwe4+JSb49OOdw677rfq2XdN3V5GeorsO5RJZw/LAVbThEAK4
-	 woyx4cJp5ybMTB/NJtCaI8FBAu4HmfiRtObEhNrpbt1GgSGGFejKux81LEpIDva+n8
-	 xCEk6z1CseItQ==
-Date: Wed, 10 Aug 2022 13:37:48 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Da Xue <da@libre.computer>
-Subject: Re: [PATCH] spi: meson-spicc: save pow2 datarate between messages
-Message-ID: <YvOmnDJA+ov49chC@sirena.org.uk>
-References: <20220809152019.461741-1-narmstrong@baylibre.com>
- <YvJ84qkuXdvVgXRm@sirena.org.uk>
- <39c2f53b-8f53-ceb1-ae0c-81e5e53d01aa@baylibre.com>
+	id 1oLlrx-00C3FN-7j
+	for linux-amlogic@lists.infradead.org; Wed, 10 Aug 2022 13:35:36 +0000
+Received: by mail-wr1-x435.google.com with SMTP id bv3so17761853wrb.5
+        for <linux-amlogic@lists.infradead.org>; Wed, 10 Aug 2022 06:35:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
+         :references:from:to:cc;
+        bh=J1VWGzexY5E6UsX9vQ6bQ6ebcpD459VexpuSjd0X1xk=;
+        b=vheOj5OqXAuJQuxThF4rG1C5oUbDBkg0eqaP81N1/zP/d2jZa9v1ALY9/A2MUhuEw9
+         smJunFTKU1AjT2aJIV80QHIj44qIjzbF8BiwJdd9175ExWaVpB2pQMQgB8P3sVxRoyyx
+         F2QHG8UKw3o9mEzmLhxDu40YuNFpnUMlTgd0wTwAuKQS5VftwnWN2itTX5Hlyztm1Da2
+         QDtIIhHm6SWFzmnEw+ab+XdPgrEo8qti39g1Uqje0M0IihYpePyJCqAgHrVQYLqT4iAa
+         iAQvZ6Mnj4DjnEcBRkd5Qjs2LZ9DlwccP2qwZLY04iUhgjojRWRH+4UYOf8Qm2Z1eUuG
+         g6hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
+         :references:x-gm-message-state:from:to:cc;
+        bh=J1VWGzexY5E6UsX9vQ6bQ6ebcpD459VexpuSjd0X1xk=;
+        b=6Ca5k9BxBO7j2A854pv7eUo6mr24wO51es5oJ4djmAoXLic342OHmzkDMb4JwqUO96
+         5iPJcKuJN8KOUJZcEUnrAuTUdUm4+QsrtP2zRzVNR2o+Vbr7+twzRW/hhmmQPAwOhujv
+         e0deneXTsVUHtm0g6sieiKPBMH81S90rUaZU0Soy4/QYrw22BH6NlV/mnjn7vMUscBL9
+         weY6J+fpA36g+CtSnz9jqbZJ9IugxdhKi6NVtAauFQ0ZE0kK2DfEMSrfBNL9GMJxGL3N
+         YSo0Ru08n7OrCezODR7F4uaIpy9ahsRpEshFwC1N1ERZv1+GV2RYVfPKjjUvxtC4C/kh
+         lisw==
+X-Gm-Message-State: ACgBeo0TY4SWIRIdyINaA7kKZ02Tbu4/yPGxv8+a2lPFK53KQna8xCFI
+	kiIQWEtI7OUpkjUjLRfhdmX2yg==
+X-Google-Smtp-Source: AA6agR7NHyGKRqIxWGpE5gY+PnqJiMudQi/uUaPx51qSYupKoqvqy+xNZdCloeF+K4jcJJQZh2S9sA==
+X-Received: by 2002:a5d:5a1a:0:b0:21f:a9b:62c6 with SMTP id bq26-20020a5d5a1a000000b0021f0a9b62c6mr16898673wrb.20.1660138531570;
+        Wed, 10 Aug 2022 06:35:31 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id bd26-20020a05600c1f1a00b003a2ed2a40e4sm89768wmb.17.2022.08.10.06.35.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 06:35:30 -0700 (PDT)
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-3-yu.tu@amlogic.com>
+ <19654574-bdc0-9fa5-6465-fc88b20e20c5@linaro.org>
+ <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 27.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Neil  Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
+  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V3 2/6] arm64: dts: meson: add S4 Soc PLL clock
+ controller in DT
+Date: Wed, 10 Aug 2022 15:32:08 +0200
+In-reply-to: <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
+Message-ID: <1jmtccz0f4.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <39c2f53b-8f53-ceb1-ae0c-81e5e53d01aa@baylibre.com>
-X-Cookie: First pull up, then pull down.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220810_053755_824429_A09FA8AD 
-X-CRM114-Status: GOOD (  19.16  )
+X-CRM114-CacheID: sfid-20220810_063533_532837_35118FDF 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,69 +93,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9020771252473592881=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============9020771252473592881==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2hd26sDiWQtv5ujx"
-Content-Disposition: inline
+On Fri 05 Aug 2022 at 17:39, Yu Tu <yu.tu@amlogic.com> wrote:
 
+> Hi Krzysztof,
+>     Thank you for your reply.
+>
+> On 2022/8/5 17:16, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>> On 05/08/2022 10:57, Yu Tu wrote:
+>>> Added information about the S4 SOC PLL Clock controller in DT.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> index ff213618a598..a816b1f7694b 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> @@ -92,6 +92,14 @@ apb4: apb4@fe000000 {
+>>>   			#size-cells = <2>;
+>>>   			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>>>   +			clkc_pll: pll-clock-controller@8000 {
+>> Node names should be generic - clock-controller.
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>> 
+> I will change to clkc_pll: clock-controller@8000, in next version.
 
---2hd26sDiWQtv5ujx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Same comment applies to the binding doc.
 
-On Wed, Aug 10, 2022 at 11:17:14AM +0200, Neil Armstrong wrote:
-> On 09/08/2022 17:27, Mark Brown wrote:
-> > On Tue, Aug 09, 2022 at 05:20:19PM +0200, Neil Armstrong wrote:
+Also it would be nice to split this in two series.
+Bindings and drivers in one, arm64 dt in the other. These changes goes
+in through different trees.
 
-> > When you say the value set by the clock framework does that mean that
-> > the clock driver is adjusting hardware inside the SPI controller IP
-> > block which is then getting reset by the SPI driver without the SPI
-> > driver knowing about it?  That seems like a bad idea as you're finding
-> > here.
+>> Best regards,
+>> Krzysztof
+>> .
 
-> The SPI driver is explicitely triggering a reset at the end of each message
-> to get back to a clean HW state, but it does reset the content of the "legacy"
-> registers containing the power of 2 divider value, the new registers configuring
-> the new clock divider path (only on newer SoCs) doesn't get cleared.
-
-Sure, but that doesn't really address the concern - is this something
-that the clk driver programmed or is this the driver forgetting to
-restore a register that it programmed itself?  The commit message sounds
-like the former which is a much bigger problem.
-
---2hd26sDiWQtv5ujx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLzppwACgkQJNaLcl1U
-h9CP8Qf/cMQYM72jnQkNExfj6dskX5IIOlwCnAVUEnsbYrFpv3QL6BNLxgKx4eqx
-cjDy+gszIhOd4rr7/ayE4siN6fjOo/hWNIuydrrCsRWKrjvKTUInWB16AnVv5NrK
-JAjl3RZ9vrkKp2UcN/dsaU11B5Xce59ko2nuniDhKYZhubO9F2uYxOPiBLvufQyU
-Q20TDeHIgYaClQvbbnVnIBpjkeOYaZxhkpAjZmw/Btip07mzspkcC4ASnTbTKs2j
-cCeDY+xkSNPqT+Pie+GxbV0bOeAjLdUOwP7QoXIsrP4BJRzuoHk/aXWC8GzXo13a
-3baxwuQr/bFzHeoJRT+a3zrpms9mLA==
-=yOBS
------END PGP SIGNATURE-----
-
---2hd26sDiWQtv5ujx--
-
-
---===============9020771252473592881==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============9020771252473592881==--
-
