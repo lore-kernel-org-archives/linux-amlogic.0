@@ -4,140 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1BA4C282E7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Aug 2022 09:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D2F0C00140
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Aug 2022 10:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:From:Subject:References:
-	Mime-Version:Message-Id:In-Reply-To:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=n/l3+9XqoAcgIXVCwBWK/JSGzzviLNJwvPsrStW/ZhE=; b=VEDTtHz/DBNz5yC3Z2EriYD4cB
-	vu56LsIvqrI4xbUdyhVUgKpQRywYaENYMkLwIvw8macAM1SCC3HJDad2GkCyeTrW2nkXGzNjKVI0j
-	NQy5iF0adR33pD30Yt4kNJyU81q7pOCQGeI+MHNU3cNeKHNjbB+qToohxv36JRpgvs00dmmWQ44Mo
-	/2Fkpwqr/YcrWtatRj9NltKsALBGVZJwDPrr2Rn6e7eeXthFCuP3N8Mo4uMjLUmLkoti/fYPAfRNH
-	o+EUin29qqpdev+C5iV6nBg8uhTu+4JPNhl8YaN/xEbazTAUhUO/TvCYaDnTdTA5lmVRhph10Xd/P
-	KdeOm1Ow==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=9oONdCXyC3/8C3T3WV/ajn4iv1QE4zdikPWBEVyWIGY=; b=GJ2
+	NU4XaWGuHkpn9C/o0fLL3/962lS9GZieqMW4rnNKvq6Z8LqpcskSb3qBKCrqzl399EGH4in6aU5u9
+	dXwwvwWqAELJB+b+dxnMdPDYIhqVzTuxbdVaMXz74tq+/b5dkZajS8AjxYc+zk7VTXteZw5Eyd0st
+	VWSlRL19AbWM3orO2YT2ieqmF+l70bW53hjZhT4DZ+AyI0fnTORhjnba6tPdQiZG8Zhg7NzruxWPX
+	yS9i6KrHSl4F8mUS9iDs9JWiQfbMME3xA+aYys3cNwoc3YuiIFxPNkoRQH9Mq1xAWRBkR+v3RtQBD
+	DtnwOaXGWmrof/9wtBY7Ba92uj4rTFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oMQd9-003SPI-6w; Fri, 12 Aug 2022 09:06:59 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1oMRb9-004gHP-R5; Fri, 12 Aug 2022 10:08:59 +0000
+Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o75RN-002HHZ-3b
-	for linux-amlogic@bombadil.infradead.org; Fri, 01 Jul 2022 01:27:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
-	References:Mime-Version:Message-Id:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=P5GBcxmPlZOqZ8uy2WSj5fp9rTKwIt9E6PYX/fxHUbA=; b=V/PCHDh5aZ5s8OQ4F/sKdK/YhV
-	MsUBBnvm7ajg3LjT3VI07n/dr247MJcIFeDy5u2AJdmIoCZa2aDwMJfRPyfEdAieBonlRqy6gxbH6
-	JjCNGAT3AJ52041HF+EHn49dWdssrHitYMommi/2TeSNCNe6ZTHzBDiemfn4q2xkNXj+f1zNb+cBF
-	UuoEUdSpZFRRlADFwVXFLu4mwo429OwVMcbyTUVtOo/KfD+OvIj4xhuJo158h3wTNG81S3Gj2NhtW
-	ai1WIK45l91yQK2EAlFpDnQg+oiSSdUtPmh6lGgvyhHgp/8HQiXSAn9V7C+nO2jM5cY39hVMqbtCi
-	YyhMMSCQ==;
-Received: from mail-yb1-xb49.google.com ([2607:f8b0:4864:20::b49])
-	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o75RF-00FUEB-Kw
-	for linux-amlogic@lists.infradead.org; Fri, 01 Jul 2022 01:27:22 +0000
-Received: by mail-yb1-xb49.google.com with SMTP id 130-20020a251288000000b0066c81091670so741191ybs.18
-        for <linux-amlogic@lists.infradead.org>; Thu, 30 Jun 2022 18:27:05 -0700 (PDT)
+	id 1oMRat-004f81-Tk; Fri, 12 Aug 2022 10:08:45 +0000
+Received: by mail-lj1-x229.google.com with SMTP id u6so477480ljk.8;
+        Fri, 12 Aug 2022 03:08:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=P5GBcxmPlZOqZ8uy2WSj5fp9rTKwIt9E6PYX/fxHUbA=;
-        b=T1ZPnZhy0JgnjE7F0xb2xchL7FyjNIZ7wkhQ1Kwk0zGoYlEvLlRnvHB0UYKex2CdZ1
-         fPVNsf0uzJiKHNUzrXdPuaV/482mqeS10bcfOCKWVucsPFgOW01j+qRicrr78rB0vW9J
-         izJ5/P+68a4f1XzmF5g8eIgKTFTjgXM+Wb6H967VV1ogQi/sy4spSQS/vMezo/aMfU3z
-         DGJEsljcDx98lRM4BowKfEW9lUm6p3wJIYlH6JOKkslPwluhoQoIglH2M3PVK7XpVbA/
-         TSN1MWIpJ0WDSNn9Tf58eTlOL+mgM21CE1EoJtMbJ31P5hOY95KJHprefXne63r1gg7j
-         tFtw==
+        d=gmail.com; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc;
+        bh=Lmz4Vp5Brwa2cnS1Itqbq4P7WlJbdn5Ij99xtrfTr8M=;
+        b=iEyjjw4/6LOvsqXXLJfKSDsKCPFS1lsCd3GFjln5BRbpEVK+IxPLTm7rcyG93QIZk+
+         88yi8KH6gvXJDvAT2iJmEEgic6e5xx0q1DKAArQr6IsDtfmi59kqWYa2UGaGfXS3VSaK
+         Ue1RRivzkHWRRntJf8Nj3UygycU591g7FvDbXXPISHrJl0pSI+iaxhQbKbKFIDo009Nx
+         YRbrQ96bnjJ32m+mQlKOnmdnhn9CdHqdOUXvvoSlLCe1vmnHBmTBp6k2Z+fdg9MFNnzG
+         j1uItRCaZ/Xq/eonFgQcwhzRDK2O+3EbVyX7YZw1+qPPUoViEfraU5/ALcyhG2omF8g+
+         Zsbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=P5GBcxmPlZOqZ8uy2WSj5fp9rTKwIt9E6PYX/fxHUbA=;
-        b=S76P6HvA+RBrUWlkZJIlNjwSxI9SCsvLkXsF3poe4bKwFdJ31zg7lcvTkWjh5xLA4Q
-         9KRYnbzz/wR6ENd4q8SUVn8mk+K/zpaqkmkZxJ7rUfF3bxz73b/bbItXzo8nozmmpLNJ
-         NyOYTlFyDx2GCECPo0OF+CBRIsGEq8/jOM0ehHLVlk1NPpW6QICFvsqvT5Gn+SVK9s5h
-         tpyc3f9w46CW3oAqRpx5Qrl1LNt6h+jKr54yo67KmX+ocd637nNinncRISx9HSS7t4Fo
-         kd97BIcQ3FPiTMCiRfFhu4n18oh4c59fSKNW9kcvZMF/yzwbGi+WXp/cFmMrlz09nFPR
-         DgRA==
-X-Gm-Message-State: AJIora943HvrzUC321nuHLv2pAdnNXSB4/eZS2BdyRuBCKRqU17L1Hnk
-	rBnSwJu1JBbbQ5aLd5eQwhUOOhr0JYzDHBw=
-X-Google-Smtp-Source: AGRyM1u0GFhYdjM5ZTmmqcZAJDNjOY3QL7RthLE+ZUfdK7kc6ADaI96Q+vj1XyHbAtvPc3Dj7bB9NcQLU1uMshU=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:3973:d0f0:34a8:bf61])
- (user=saravanak job=sendgmr) by 2002:a0d:db55:0:b0:31b:71d8:21af with SMTP id
- d82-20020a0ddb55000000b0031b71d821afmr14664392ywe.469.1656638823592; Thu, 30
- Jun 2022 18:27:03 -0700 (PDT)
-Date: Thu, 30 Jun 2022 18:26:40 -0700
-In-Reply-To: <20220701012647.2007122-1-saravanak@google.com>
-Message-Id: <20220701012647.2007122-3-saravanak@google.com>
-Mime-Version: 1.0
-References: <20220701012647.2007122-1-saravanak@google.com>
-X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
-Subject: [PATCH v2 2/2] serial: Set probe_no_timeout for all DT based drivers
-From: Saravana Kannan <saravanak@google.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
-	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
-	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
-	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
-	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
-	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
-	Michal Simek <michal.simek@xilinx.com>, Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh@kernel.org>, sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, 
-	kevin hilman <khilman@kernel.org>, ulf hansson <ulf.hansson@linaro.org>, 
-	len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, 
-	will deacon <will@kernel.org>, andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
-	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
-	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
-	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
-	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	sparclinux@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc;
+        bh=Lmz4Vp5Brwa2cnS1Itqbq4P7WlJbdn5Ij99xtrfTr8M=;
+        b=LqU4185E0VxgFN3WBoEPgIR+8NnBz6kh1LUndL/H3wBs0Ja8J1hmPgKoRqWTW0ltuC
+         abT62o0bh6pt3Xn2RwOI78RLsfK/vruz8H3eN05oPqw8uBrq+U8T44DgCW9vaf61yqKn
+         Ojpa2wFKaRNM3LM7uARQ2E5pwY2diIV2CMRX3vKBMndRLdBYLHYoQD0voiPT1su4QOQ1
+         Vsg7G9k+mvIrzlsY/1UMo2ZTv32bAfU12QV8Fz4K/b54KBJlLhkz8Yeck6juJbJfWRgM
+         Y9CgS77+KjRE/MA4cekWd4SUM55kpa3Ai0nLAIuHDGxO6tITSpMmx62QQ6lIN2zBXxll
+         jJ7w==
+X-Gm-Message-State: ACgBeo2TMMkLqsfxrufpB67xhcjrXX0SUPfgXwE9QIx8htaLPo49i/OL
+	b1iYgwqus7b0o/bmrD1ziyE=
+X-Google-Smtp-Source: AA6agR48G+sAfnTk456AdMmoWmwqiUxwIqWZm+aCORAI6x+9Wf6EMIhQ9lCGq1KjCDmWMsEc4se5Fg==
+X-Received: by 2002:a2e:7311:0:b0:25e:c66f:2be0 with SMTP id o17-20020a2e7311000000b0025ec66f2be0mr908055ljc.100.1660298919064;
+        Fri, 12 Aug 2022 03:08:39 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id k2-20020ac24562000000b0048a79e3dd6csm165585lfm.26.2022.08.12.03.08.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Aug 2022 03:08:38 -0700 (PDT)
+Date: Fri, 12 Aug 2022 13:08:17 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Robert Foss <robert.foss@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Alexandru Tachici <alexandru.tachici@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Alexandru Ardelean <aardelean@deviqon.com>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Miaoqian Lin <linmq006@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: [PATCH v2 0/7] Devm helpers for regulator get and enable
+Message-ID: <cover.1660292316.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220701_022719_103145_E94C102D 
-X-CRM114-Status: GOOD (  14.93  )
-X-Mailman-Approved-At: Fri, 12 Aug 2022 02:06:54 -0700
+X-CRM114-CacheID: sfid-20220812_030844_015635_C793A488 
+X-CRM114-Status: GOOD (  19.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,896 +113,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2148750987740960490=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-With commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by
-default") the probing of TTY consoles could get delayed if they have
-optional suppliers that are listed in DT, but those suppliers don't
-probe by the time kernel boot finishes. The console devices will probe
-eventually after driver_probe_timeout expires.
 
-However, since consoles are often used for debugging kernel issues, it
-does not make sense to delay their probe. So, set the newly added
-probe_no_timeout flag for all serial drivers that at DT based. This way,
-fw_devlink will know not to delay the probing of the consoles past
-kernel boot.
+--===============2148750987740960490==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="THWirS5KE0K9xFXH"
+Content-Disposition: inline
 
-Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
-Reported-by: Sascha Hauer <sha@pengutronix.de>
-Reported-by: Peng Fan <peng.fan@nxp.com>
-Reported-by: Fabio Estevam <festevam@gmail.com>
-Reported-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Tested-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
+
+--THWirS5KE0K9xFXH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Devm helpers for regulator get and enable
+
+First patch in the series is actually just a simple documentation fix
+which could be taken in as it is now.
+
+A few* drivers seem to use pattern demonstrated by pseudocode:
+
+- devm_regulator_get()
+- regulator_enable()
+- devm_add_action_or_reset(regulator_disable())
+
+Introducing devm helpers for this pattern would remove bunch of code from
+drivers. Typically following:
+
+- replace 3 calls (devm_regulator_get[_optional](), regulator_enable(),
+  devm_add_action_or_reset()) with just one
+  (devm_regulator_get_enable[_optional]()).
+- drop disable callback.
+- remove stored pointer to struct regulator - which can lead to problem
+  when an devm action for regulator_disable is used.
+
+I believe this simplifies things by removing some dublicated code.
+
+The suggested managed 'get_enable' APIs do not return the pointer to
+regulators for user because any call to regulator_disable()
+(or regulator_enable()) may easily lead to regulator enable count imbalance
+upon device detach. (Eg, if someone calls regulator_disable() and the
+device is then detached before user has re-enabled the regulator). Not
+returning the pointer to obtained regulator to caller is a good hint that
+the enable/disable should not be manually handled when these APIs are used.
+
+OTOH, not returning the pointer reduces the use-cases by not allowing
+the consumers to perform other regulator actions. For example request the
+voltages. A few drivers which used the "get, enable,
+devm_action_to_disable" did also query the voltages. The API does not suit
+needs of such users.
+
+This series reowrks only a few drivers as I am short of time. So, there is
+still plenty of fish in the sea for people who like to improve the code
+(or count the beans ;]).
+
+Finally - most of the converted drivers have not been tested (other than
+compile-tested) due to lack of HW. All reviews and testing is _highly_
+appreciated (as always!).
+
+Revision history:
+
+RFCv1 =3D> v2:
+	- Add devm_regulator_bulk_get_enable() and
+	  devm_regulator_bulk_put()
+	- Convert a couple of drivers to use the new
+	  devm_regulator_bulk_get_enable().
+	- Squash all IIO patches into one.
+
+Patch 1:
+	Fix docmentation (devres API list) for regulator APIs
+Patch 2:
+	The new devm helpers.
+Patch 3:
+	Add new devm-helper APIs to docs.
+Patch 4:
+	simplified CLK driver(s)
+Patch 5:
+	simplified GPU driver(s)
+Patch 6:
+	simplified hwmon driver(s)
+Patch 7:
+	simplified IIO driver(s)
+
 ---
- drivers/tty/ehv_bytechan.c                  | 1 +
- drivers/tty/goldfish.c                      | 1 +
- drivers/tty/hvc/hvc_opal.c                  | 1 +
- drivers/tty/serial/8250/8250_aspeed_vuart.c | 1 +
- drivers/tty/serial/8250/8250_bcm2835aux.c   | 1 +
- drivers/tty/serial/8250/8250_bcm7271.c      | 1 +
- drivers/tty/serial/8250/8250_dw.c           | 1 +
- drivers/tty/serial/8250/8250_em.c           | 1 +
- drivers/tty/serial/8250/8250_ingenic.c      | 1 +
- drivers/tty/serial/8250/8250_lpc18xx.c      | 1 +
- drivers/tty/serial/8250/8250_mtk.c          | 1 +
- drivers/tty/serial/8250/8250_of.c           | 1 +
- drivers/tty/serial/8250/8250_omap.c         | 1 +
- drivers/tty/serial/8250/8250_pxa.c          | 1 +
- drivers/tty/serial/8250/8250_tegra.c        | 1 +
- drivers/tty/serial/8250/8250_uniphier.c     | 1 +
- drivers/tty/serial/altera_jtaguart.c        | 1 +
- drivers/tty/serial/altera_uart.c            | 1 +
- drivers/tty/serial/amba-pl011.c             | 1 +
- drivers/tty/serial/apbuart.c                | 1 +
- drivers/tty/serial/ar933x_uart.c            | 1 +
- drivers/tty/serial/arc_uart.c               | 1 +
- drivers/tty/serial/atmel_serial.c           | 1 +
- drivers/tty/serial/bcm63xx_uart.c           | 1 +
- drivers/tty/serial/clps711x.c               | 1 +
- drivers/tty/serial/cpm_uart/cpm_uart_core.c | 1 +
- drivers/tty/serial/digicolor-usart.c        | 1 +
- drivers/tty/serial/fsl_linflexuart.c        | 1 +
- drivers/tty/serial/fsl_lpuart.c             | 1 +
- drivers/tty/serial/imx.c                    | 1 +
- drivers/tty/serial/lantiq.c                 | 1 +
- drivers/tty/serial/liteuart.c               | 1 +
- drivers/tty/serial/lpc32xx_hs.c             | 1 +
- drivers/tty/serial/max310x.c                | 1 +
- drivers/tty/serial/meson_uart.c             | 1 +
- drivers/tty/serial/milbeaut_usio.c          | 1 +
- drivers/tty/serial/mpc52xx_uart.c           | 1 +
- drivers/tty/serial/mps2-uart.c              | 1 +
- drivers/tty/serial/msm_serial.c             | 1 +
- drivers/tty/serial/mvebu-uart.c             | 1 +
- drivers/tty/serial/mxs-auart.c              | 1 +
- drivers/tty/serial/omap-serial.c            | 1 +
- drivers/tty/serial/owl-uart.c               | 1 +
- drivers/tty/serial/pic32_uart.c             | 1 +
- drivers/tty/serial/pmac_zilog.c             | 1 +
- drivers/tty/serial/pxa.c                    | 1 +
- drivers/tty/serial/qcom_geni_serial.c       | 1 +
- drivers/tty/serial/rda-uart.c               | 1 +
- drivers/tty/serial/samsung_tty.c            | 1 +
- drivers/tty/serial/sc16is7xx.c              | 1 +
- drivers/tty/serial/serial-tegra.c           | 1 +
- drivers/tty/serial/sh-sci.c                 | 1 +
- drivers/tty/serial/sifive.c                 | 1 +
- drivers/tty/serial/sprd_serial.c            | 1 +
- drivers/tty/serial/st-asc.c                 | 1 +
- drivers/tty/serial/stm32-usart.c            | 1 +
- drivers/tty/serial/sunhv.c                  | 1 +
- drivers/tty/serial/sunplus-uart.c           | 1 +
- drivers/tty/serial/sunsab.c                 | 1 +
- drivers/tty/serial/sunsu.c                  | 1 +
- drivers/tty/serial/sunzilog.c               | 1 +
- drivers/tty/serial/tegra-tcu.c              | 1 +
- drivers/tty/serial/uartlite.c               | 1 +
- drivers/tty/serial/ucc_uart.c               | 1 +
- drivers/tty/serial/vt8500_serial.c          | 1 +
- drivers/tty/serial/xilinx_uartps.c          | 1 +
- 66 files changed, 66 insertions(+)
 
-diff --git a/drivers/tty/ehv_bytechan.c b/drivers/tty/ehv_bytechan.c
-index 19d32cb6af84..6de710da99be 100644
---- a/drivers/tty/ehv_bytechan.c
-+++ b/drivers/tty/ehv_bytechan.c
-@@ -739,6 +739,7 @@ static struct platform_driver ehv_bc_tty_driver = {
- 	.driver = {
- 		.name = "ehv-bc",
- 		.of_match_table = ehv_bc_tty_of_ids,
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = true,
- 	},
- 	.probe		= ehv_bc_tty_probe,
-diff --git a/drivers/tty/goldfish.c b/drivers/tty/goldfish.c
-index c7968aecd870..f9760598c836 100644
---- a/drivers/tty/goldfish.c
-+++ b/drivers/tty/goldfish.c
-@@ -474,6 +474,7 @@ static struct platform_driver goldfish_tty_platform_driver = {
- 	.driver = {
- 		.name = "goldfish_tty",
- 		.of_match_table = goldfish_tty_of_match,
-+		.probe_no_timeout = true,
- 	}
- };
- 
-diff --git a/drivers/tty/hvc/hvc_opal.c b/drivers/tty/hvc/hvc_opal.c
-index 794c7b18aa06..08202c2f8ead 100644
---- a/drivers/tty/hvc/hvc_opal.c
-+++ b/drivers/tty/hvc/hvc_opal.c
-@@ -253,6 +253,7 @@ static struct platform_driver hvc_opal_driver = {
- 	.driver		= {
- 		.name	= hvc_opal_name,
- 		.of_match_table	= hvc_opal_match,
-+		.probe_no_timeout = true,
- 	}
- };
- 
-diff --git a/drivers/tty/serial/8250/8250_aspeed_vuart.c b/drivers/tty/serial/8250/8250_aspeed_vuart.c
-index 9d2a7856784f..ca4b89ae13a4 100644
---- a/drivers/tty/serial/8250/8250_aspeed_vuart.c
-+++ b/drivers/tty/serial/8250/8250_aspeed_vuart.c
-@@ -592,6 +592,7 @@ static struct platform_driver aspeed_vuart_driver = {
- 	.driver = {
- 		.name = "aspeed-vuart",
- 		.of_match_table = aspeed_vuart_table,
-+		.probe_no_timeout = true,
- 	},
- 	.probe = aspeed_vuart_probe,
- 	.remove = aspeed_vuart_remove,
-diff --git a/drivers/tty/serial/8250/8250_bcm2835aux.c b/drivers/tty/serial/8250/8250_bcm2835aux.c
-index 2a1226a78a0c..6c00ba7a123a 100644
---- a/drivers/tty/serial/8250/8250_bcm2835aux.c
-+++ b/drivers/tty/serial/8250/8250_bcm2835aux.c
-@@ -223,6 +223,7 @@ static struct platform_driver bcm2835aux_serial_driver = {
- 		.name = "bcm2835-aux-uart",
- 		.of_match_table = bcm2835aux_serial_match,
- 		.acpi_match_table = bcm2835aux_serial_acpi_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe  = bcm2835aux_serial_probe,
- 	.remove = bcm2835aux_serial_remove,
-diff --git a/drivers/tty/serial/8250/8250_bcm7271.c b/drivers/tty/serial/8250/8250_bcm7271.c
-index 9b878d023dac..7898dcbff07e 100644
---- a/drivers/tty/serial/8250/8250_bcm7271.c
-+++ b/drivers/tty/serial/8250/8250_bcm7271.c
-@@ -1193,6 +1193,7 @@ static struct platform_driver brcmuart_platform_driver = {
- 		.name	= "bcm7271-uart",
- 		.pm		= &brcmuart_dev_pm_ops,
- 		.of_match_table = brcmuart_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= brcmuart_probe,
- 	.remove		= brcmuart_remove,
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index f57bbd32ef11..616f5197378a 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -795,6 +795,7 @@ static struct platform_driver dw8250_platform_driver = {
- 		.pm		= &dw8250_pm_ops,
- 		.of_match_table	= dw8250_of_match,
- 		.acpi_match_table = dw8250_acpi_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe			= dw8250_probe,
- 	.remove			= dw8250_remove,
-diff --git a/drivers/tty/serial/8250/8250_em.c b/drivers/tty/serial/8250/8250_em.c
-index f8e99995eee9..0dc9a2e45cf2 100644
---- a/drivers/tty/serial/8250/8250_em.c
-+++ b/drivers/tty/serial/8250/8250_em.c
-@@ -151,6 +151,7 @@ static struct platform_driver serial8250_em_platform_driver = {
- 	.driver = {
- 		.name		= "serial8250-em",
- 		.of_match_table = serial8250_em_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- 	.probe			= serial8250_em_probe,
- 	.remove			= serial8250_em_remove,
-diff --git a/drivers/tty/serial/8250/8250_ingenic.c b/drivers/tty/serial/8250/8250_ingenic.c
-index cff91aa03f29..dc595a4a49a0 100644
---- a/drivers/tty/serial/8250/8250_ingenic.c
-+++ b/drivers/tty/serial/8250/8250_ingenic.c
-@@ -341,6 +341,7 @@ static struct platform_driver ingenic_uart_platform_driver = {
- 	.driver = {
- 		.name		= "ingenic-uart",
- 		.of_match_table	= of_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe			= ingenic_uart_probe,
- 	.remove			= ingenic_uart_remove,
-diff --git a/drivers/tty/serial/8250/8250_lpc18xx.c b/drivers/tty/serial/8250/8250_lpc18xx.c
-index 570e25d6f37e..d9c91c57331c 100644
---- a/drivers/tty/serial/8250/8250_lpc18xx.c
-+++ b/drivers/tty/serial/8250/8250_lpc18xx.c
-@@ -215,6 +215,7 @@ static struct platform_driver lpc18xx_serial_driver = {
- 	.driver = {
- 		.name = "lpc18xx-uart",
- 		.of_match_table = lpc18xx_serial_match,
-+		.probe_no_timeout = true,
- 	},
- };
- module_platform_driver(lpc18xx_serial_driver);
-diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-index 54051ec7b499..85e8a19c0929 100644
---- a/drivers/tty/serial/8250/8250_mtk.c
-+++ b/drivers/tty/serial/8250/8250_mtk.c
-@@ -671,6 +671,7 @@ static struct platform_driver mtk8250_platform_driver = {
- 		.name		= "mt6577-uart",
- 		.pm		= &mtk8250_pm_ops,
- 		.of_match_table	= mtk8250_of_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe			= mtk8250_probe,
- 	.remove			= mtk8250_remove,
-diff --git a/drivers/tty/serial/8250/8250_of.c b/drivers/tty/serial/8250/8250_of.c
-index 5a699a1aa79c..580abd22d3c6 100644
---- a/drivers/tty/serial/8250/8250_of.c
-+++ b/drivers/tty/serial/8250/8250_of.c
-@@ -343,6 +343,7 @@ static struct platform_driver of_platform_serial_driver = {
- 	.driver = {
- 		.name = "of_serial",
- 		.of_match_table = of_platform_serial_table,
-+		.probe_no_timeout = true,
- 		.pm = &of_serial_pm_ops,
- 	},
- 	.probe = of_platform_serial_probe,
-diff --git a/drivers/tty/serial/8250/8250_omap.c b/drivers/tty/serial/8250/8250_omap.c
-index ac8bfa042391..8d83597174b4 100644
---- a/drivers/tty/serial/8250/8250_omap.c
-+++ b/drivers/tty/serial/8250/8250_omap.c
-@@ -1694,6 +1694,7 @@ static struct platform_driver omap8250_platform_driver = {
- 		.name		= "omap8250",
- 		.pm		= &omap8250_dev_pm_ops,
- 		.of_match_table = omap8250_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- 	.probe			= omap8250_probe,
- 	.remove			= omap8250_remove,
-diff --git a/drivers/tty/serial/8250/8250_pxa.c b/drivers/tty/serial/8250/8250_pxa.c
-index 795e55142d4c..9f7bb52fabbe 100644
---- a/drivers/tty/serial/8250/8250_pxa.c
-+++ b/drivers/tty/serial/8250/8250_pxa.c
-@@ -165,6 +165,7 @@ static struct platform_driver serial_pxa_driver = {
- 		.name	= "pxa2xx-uart",
- 		.pm	= &serial_pxa_pm_ops,
- 		.of_match_table = serial_pxa_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/8250/8250_tegra.c b/drivers/tty/serial/8250/8250_tegra.c
-index e7cddeec9d8e..45630f7d9e98 100644
---- a/drivers/tty/serial/8250/8250_tegra.c
-+++ b/drivers/tty/serial/8250/8250_tegra.c
-@@ -187,6 +187,7 @@ static struct platform_driver tegra_uart_driver = {
- 		.pm = &tegra_uart_pm_ops,
- 		.of_match_table = tegra_uart_of_match,
- 		.acpi_match_table = ACPI_PTR(tegra_uart_acpi_match),
-+		.probe_no_timeout = true,
- 	},
- 	.probe = tegra_uart_probe,
- 	.remove = tegra_uart_remove,
-diff --git a/drivers/tty/serial/8250/8250_uniphier.c b/drivers/tty/serial/8250/8250_uniphier.c
-index a2978abab0db..7fdf45c4513d 100644
---- a/drivers/tty/serial/8250/8250_uniphier.c
-+++ b/drivers/tty/serial/8250/8250_uniphier.c
-@@ -297,6 +297,7 @@ static struct platform_driver uniphier_uart_platform_driver = {
- 	.driver = {
- 		.name	= "uniphier-uart",
- 		.of_match_table = uniphier_uart_match,
-+		.probe_no_timeout = true,
- 		.pm = &uniphier_uart_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/altera_jtaguart.c b/drivers/tty/serial/altera_jtaguart.c
-index cb791c5149a3..548934284691 100644
---- a/drivers/tty/serial/altera_jtaguart.c
-+++ b/drivers/tty/serial/altera_jtaguart.c
-@@ -493,6 +493,7 @@ static struct platform_driver altera_jtaguart_platform_driver = {
- 	.driver	= {
- 		.name		= DRV_NAME,
- 		.of_match_table	= of_match_ptr(altera_jtaguart_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/altera_uart.c b/drivers/tty/serial/altera_uart.c
-index 8b749ed557c6..25c834f900eb 100644
---- a/drivers/tty/serial/altera_uart.c
-+++ b/drivers/tty/serial/altera_uart.c
-@@ -645,6 +645,7 @@ static struct platform_driver altera_uart_platform_driver = {
- 	.driver	= {
- 		.name		= DRV_NAME,
- 		.of_match_table	= of_match_ptr(altera_uart_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-index 97ef41cb2721..eae866568f14 100644
---- a/drivers/tty/serial/amba-pl011.c
-+++ b/drivers/tty/serial/amba-pl011.c
-@@ -2912,6 +2912,7 @@ static struct platform_driver arm_sbsa_uart_platform_driver = {
- 		.pm	= &pl011_dev_pm_ops,
- 		.of_match_table = of_match_ptr(sbsa_uart_of_match),
- 		.acpi_match_table = ACPI_PTR(sbsa_uart_acpi_match),
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = IS_BUILTIN(CONFIG_SERIAL_AMBA_PL011),
- 	},
- };
-diff --git a/drivers/tty/serial/apbuart.c b/drivers/tty/serial/apbuart.c
-index 9ef82d870ff2..72c1b7884a3b 100644
---- a/drivers/tty/serial/apbuart.c
-+++ b/drivers/tty/serial/apbuart.c
-@@ -583,6 +583,7 @@ static struct platform_driver grlib_apbuart_of_driver = {
- 	.driver = {
- 		.name = "grlib-apbuart",
- 		.of_match_table = apbuart_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/ar933x_uart.c b/drivers/tty/serial/ar933x_uart.c
-index 6269dbf93546..f0013be1a7c7 100644
---- a/drivers/tty/serial/ar933x_uart.c
-+++ b/drivers/tty/serial/ar933x_uart.c
-@@ -842,6 +842,7 @@ static struct platform_driver ar933x_uart_platform_driver = {
- 	.driver		= {
- 		.name		= DRIVER_NAME,
- 		.of_match_table = of_match_ptr(ar933x_uart_of_ids),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/arc_uart.c b/drivers/tty/serial/arc_uart.c
-index 2a09e92ef9ed..7998c285fc6c 100644
---- a/drivers/tty/serial/arc_uart.c
-+++ b/drivers/tty/serial/arc_uart.c
-@@ -650,6 +650,7 @@ static struct platform_driver arc_platform_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table  = arc_uart_dt_ids,
-+		.probe_no_timeout = true,
- 	 },
- };
- 
-diff --git a/drivers/tty/serial/atmel_serial.c b/drivers/tty/serial/atmel_serial.c
-index dd1c7e4bd1c9..ff74ea97b305 100644
---- a/drivers/tty/serial/atmel_serial.c
-+++ b/drivers/tty/serial/atmel_serial.c
-@@ -3020,6 +3020,7 @@ static struct platform_driver atmel_serial_driver = {
- 	.driver		= {
- 		.name			= "atmel_usart_serial",
- 		.of_match_table		= of_match_ptr(atmel_serial_dt_ids),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/bcm63xx_uart.c b/drivers/tty/serial/bcm63xx_uart.c
-index 53b43174aa40..d91c49c50ac6 100644
---- a/drivers/tty/serial/bcm63xx_uart.c
-+++ b/drivers/tty/serial/bcm63xx_uart.c
-@@ -890,6 +890,7 @@ static struct platform_driver bcm_uart_platform_driver = {
- 	.driver	= {
- 		.name  = "bcm63xx_uart",
- 		.of_match_table = bcm63xx_of_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/clps711x.c b/drivers/tty/serial/clps711x.c
-index b9b66ad31a08..b81710802937 100644
---- a/drivers/tty/serial/clps711x.c
-+++ b/drivers/tty/serial/clps711x.c
-@@ -528,6 +528,7 @@ static struct platform_driver clps711x_uart_platform = {
- 	.driver = {
- 		.name		= "clps711x-uart",
- 		.of_match_table	= of_match_ptr(clps711x_uart_dt_ids),
-+		.probe_no_timeout = true,
- 	},
- 	.probe	= uart_clps711x_probe,
- 	.remove	= uart_clps711x_remove,
-diff --git a/drivers/tty/serial/cpm_uart/cpm_uart_core.c b/drivers/tty/serial/cpm_uart/cpm_uart_core.c
-index db07d6a5d764..ff269637bc28 100644
---- a/drivers/tty/serial/cpm_uart/cpm_uart_core.c
-+++ b/drivers/tty/serial/cpm_uart/cpm_uart_core.c
-@@ -1470,6 +1470,7 @@ static struct platform_driver cpm_uart_driver = {
- 	.driver = {
- 		.name = "cpm_uart",
- 		.of_match_table = cpm_uart_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe = cpm_uart_probe,
- 	.remove = cpm_uart_remove,
-diff --git a/drivers/tty/serial/digicolor-usart.c b/drivers/tty/serial/digicolor-usart.c
-index af951e6a2ef4..b2148b48d195 100644
---- a/drivers/tty/serial/digicolor-usart.c
-+++ b/drivers/tty/serial/digicolor-usart.c
-@@ -524,6 +524,7 @@ static struct platform_driver digicolor_uart_platform = {
- 	.driver = {
- 		.name		= "digicolor-usart",
- 		.of_match_table	= of_match_ptr(digicolor_uart_dt_ids),
-+		.probe_no_timeout = true,
- 	},
- 	.probe	= digicolor_uart_probe,
- 	.remove	= digicolor_uart_remove,
-diff --git a/drivers/tty/serial/fsl_linflexuart.c b/drivers/tty/serial/fsl_linflexuart.c
-index 98bb0c315e13..08514238af36 100644
---- a/drivers/tty/serial/fsl_linflexuart.c
-+++ b/drivers/tty/serial/fsl_linflexuart.c
-@@ -889,6 +889,7 @@ static struct platform_driver linflex_driver = {
- 	.driver		= {
- 		.name	= DRIVER_NAME,
- 		.of_match_table	= linflex_dt_ids,
-+		.probe_no_timeout = true,
- 		.pm	= &linflex_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/fsl_lpuart.c b/drivers/tty/serial/fsl_lpuart.c
-index 0d6e62f6bb07..64e969278c72 100644
---- a/drivers/tty/serial/fsl_lpuart.c
-+++ b/drivers/tty/serial/fsl_lpuart.c
-@@ -2857,6 +2857,7 @@ static struct platform_driver lpuart_driver = {
- 	.driver		= {
- 		.name	= "fsl-lpuart",
- 		.of_match_table = lpuart_dt_ids,
-+		.probe_no_timeout = true,
- 		.pm	= &lpuart_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/imx.c b/drivers/tty/serial/imx.c
-index 30edb35a6a15..deb2539d0fbc 100644
---- a/drivers/tty/serial/imx.c
-+++ b/drivers/tty/serial/imx.c
-@@ -2604,6 +2604,7 @@ static struct platform_driver imx_uart_platform_driver = {
- 	.driver = {
- 		.name = "imx-uart",
- 		.of_match_table = imx_uart_dt_ids,
-+		.probe_no_timeout = true,
- 		.pm = &imx_uart_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/lantiq.c b/drivers/tty/serial/lantiq.c
-index a3120c3347dd..279ee1ba6ae1 100644
---- a/drivers/tty/serial/lantiq.c
-+++ b/drivers/tty/serial/lantiq.c
-@@ -942,6 +942,7 @@ static struct platform_driver lqasc_driver = {
- 	.driver		= {
- 		.name	= DRVNAME,
- 		.of_match_table = ltq_asc_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/liteuart.c b/drivers/tty/serial/liteuart.c
-index 328b50521f14..e92cf2a1b4cc 100644
---- a/drivers/tty/serial/liteuart.c
-+++ b/drivers/tty/serial/liteuart.c
-@@ -324,6 +324,7 @@ static struct platform_driver liteuart_platform_driver = {
- 	.driver = {
- 		.name = "liteuart",
- 		.of_match_table = liteuart_of_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/lpc32xx_hs.c b/drivers/tty/serial/lpc32xx_hs.c
-index 93140cac1ca1..bb655bd7f678 100644
---- a/drivers/tty/serial/lpc32xx_hs.c
-+++ b/drivers/tty/serial/lpc32xx_hs.c
-@@ -727,6 +727,7 @@ static struct platform_driver serial_hs_lpc32xx_driver = {
- 	.driver		= {
- 		.name	= MODNAME,
- 		.of_match_table	= serial_hs_lpc32xx_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/max310x.c b/drivers/tty/serial/max310x.c
-index a0b6ea52d133..09e3cee4e0ce 100644
---- a/drivers/tty/serial/max310x.c
-+++ b/drivers/tty/serial/max310x.c
-@@ -1504,6 +1504,7 @@ static struct spi_driver max310x_spi_driver = {
- 	.driver = {
- 		.name		= MAX310X_NAME,
- 		.of_match_table	= max310x_dt_ids,
-+		.probe_no_timeout = true,
- 		.pm		= &max310x_pm_ops,
- 	},
- 	.probe		= max310x_spi_probe,
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 4869c0059c98..f0104d85484e 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -826,6 +826,7 @@ static  struct platform_driver meson_uart_platform_driver = {
- 	.driver		= {
- 		.name		= "meson_uart",
- 		.of_match_table	= meson_uart_dt_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/milbeaut_usio.c b/drivers/tty/serial/milbeaut_usio.c
-index 347088bb380e..e175e6e0e7c7 100644
---- a/drivers/tty/serial/milbeaut_usio.c
-+++ b/drivers/tty/serial/milbeaut_usio.c
-@@ -576,6 +576,7 @@ static struct platform_driver mlb_usio_driver = {
- 	.driver         = {
- 		.name   = USIO_NAME,
- 		.of_match_table = mlb_usio_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/mpc52xx_uart.c b/drivers/tty/serial/mpc52xx_uart.c
-index e50f069b5ebb..da9c60baf0ed 100644
---- a/drivers/tty/serial/mpc52xx_uart.c
-+++ b/drivers/tty/serial/mpc52xx_uart.c
-@@ -1885,6 +1885,7 @@ static struct platform_driver mpc52xx_uart_of_driver = {
- 	.driver = {
- 		.name = "mpc52xx-psc-uart",
- 		.of_match_table = mpc52xx_uart_of_match,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/mps2-uart.c b/drivers/tty/serial/mps2-uart.c
-index 5e9429dcc51f..4cb82ebe0ec7 100644
---- a/drivers/tty/serial/mps2-uart.c
-+++ b/drivers/tty/serial/mps2-uart.c
-@@ -634,6 +634,7 @@ static struct platform_driver mps2_serial_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = of_match_ptr(mps2_match),
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = true,
- 	},
- };
-diff --git a/drivers/tty/serial/msm_serial.c b/drivers/tty/serial/msm_serial.c
-index e676ec761f18..989a5cc8612c 100644
---- a/drivers/tty/serial/msm_serial.c
-+++ b/drivers/tty/serial/msm_serial.c
-@@ -1890,6 +1890,7 @@ static struct platform_driver msm_platform_driver = {
- 		.name = "msm_serial",
- 		.pm = &msm_serial_dev_pm_ops,
- 		.of_match_table = msm_match_table,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/mvebu-uart.c b/drivers/tty/serial/mvebu-uart.c
-index 0429c2a54290..b5b49773fcce 100644
---- a/drivers/tty/serial/mvebu-uart.c
-+++ b/drivers/tty/serial/mvebu-uart.c
-@@ -1049,6 +1049,7 @@ static struct platform_driver mvebu_uart_platform_driver = {
- 	.driver	= {
- 		.name  = "mvebu-uart",
- 		.of_match_table = of_match_ptr(mvebu_uart_of_match),
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = true,
- #if defined(CONFIG_PM)
- 		.pm	= &mvebu_uart_pm_ops,
-diff --git a/drivers/tty/serial/mxs-auart.c b/drivers/tty/serial/mxs-auart.c
-index 1944daf8593a..8bd871b5f263 100644
---- a/drivers/tty/serial/mxs-auart.c
-+++ b/drivers/tty/serial/mxs-auart.c
-@@ -1725,6 +1725,7 @@ static struct platform_driver mxs_auart_driver = {
- 	.driver = {
- 		.name = "mxs-auart",
- 		.of_match_table = mxs_auart_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/omap-serial.c b/drivers/tty/serial/omap-serial.c
-index 46f4d4cacb6e..2e61d9cbbecb 100644
---- a/drivers/tty/serial/omap-serial.c
-+++ b/drivers/tty/serial/omap-serial.c
-@@ -1834,6 +1834,7 @@ static struct platform_driver serial_omap_driver = {
- 		.name	= OMAP_SERIAL_DRIVER_NAME,
- 		.pm	= &serial_omap_dev_pm_ops,
- 		.of_match_table = of_match_ptr(omap_serial_of_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/owl-uart.c b/drivers/tty/serial/owl-uart.c
-index 44d20e5a7dd3..858223abab9d 100644
---- a/drivers/tty/serial/owl-uart.c
-+++ b/drivers/tty/serial/owl-uart.c
-@@ -766,6 +766,7 @@ static struct platform_driver owl_uart_platform_driver = {
- 	.driver = {
- 		.name = "owl-uart",
- 		.of_match_table = owl_uart_dt_matches,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/pic32_uart.c b/drivers/tty/serial/pic32_uart.c
-index b399aac530fe..3f08ac2f38b4 100644
---- a/drivers/tty/serial/pic32_uart.c
-+++ b/drivers/tty/serial/pic32_uart.c
-@@ -986,6 +986,7 @@ static struct platform_driver pic32_uart_platform_driver = {
- 	.driver		= {
- 		.name	= PIC32_DEV_NAME,
- 		.of_match_table	= of_match_ptr(pic32_serial_dt_ids),
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = IS_BUILTIN(CONFIG_SERIAL_PIC32),
- 	},
- };
-diff --git a/drivers/tty/serial/pmac_zilog.c b/drivers/tty/serial/pmac_zilog.c
-index 3133446e806c..552efe9eef7b 100644
---- a/drivers/tty/serial/pmac_zilog.c
-+++ b/drivers/tty/serial/pmac_zilog.c
-@@ -1790,6 +1790,7 @@ static struct macio_driver pmz_driver = {
- 		.name 		= "pmac_zilog",
- 		.owner		= THIS_MODULE,
- 		.of_match_table	= pmz_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= pmz_attach,
- 	.remove		= pmz_detach,
-diff --git a/drivers/tty/serial/pxa.c b/drivers/tty/serial/pxa.c
-index e80ba8e10407..b0b91f69b24c 100644
---- a/drivers/tty/serial/pxa.c
-+++ b/drivers/tty/serial/pxa.c
-@@ -910,6 +910,7 @@ static struct platform_driver serial_pxa_driver = {
- #endif
- 		.suppress_bind_attrs = true,
- 		.of_match_table = serial_pxa_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-index 4733a233bd0c..c47cfd4a5ea5 100644
---- a/drivers/tty/serial/qcom_geni_serial.c
-+++ b/drivers/tty/serial/qcom_geni_serial.c
-@@ -1541,6 +1541,7 @@ static struct platform_driver qcom_geni_serial_platform_driver = {
- 	.driver = {
- 		.name = "qcom_geni_serial",
- 		.of_match_table = qcom_geni_serial_match_table,
-+		.probe_no_timeout = true,
- 		.pm = &qcom_geni_serial_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/rda-uart.c b/drivers/tty/serial/rda-uart.c
-index f556b4955f59..9e7927de0972 100644
---- a/drivers/tty/serial/rda-uart.c
-+++ b/drivers/tty/serial/rda-uart.c
-@@ -797,6 +797,7 @@ static struct platform_driver rda_uart_platform_driver = {
- 	.driver = {
- 		.name = "rda-uart",
- 		.of_match_table = rda_uart_dt_matches,
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index d5ca904def34..e3d77bc2420f 100644
---- a/drivers/tty/serial/samsung_tty.c
-+++ b/drivers/tty/serial/samsung_tty.c
-@@ -2939,6 +2939,7 @@ static struct platform_driver samsung_serial_driver = {
- 		.name	= "samsung-uart",
- 		.pm	= SERIAL_SAMSUNG_PM_OPS,
- 		.of_match_table	= of_match_ptr(s3c24xx_uart_dt_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-index 8472bf70477c..dfc455850908 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -1652,6 +1652,7 @@ static struct spi_driver sc16is7xx_spi_uart_driver = {
- 	.driver = {
- 		.name		= SC16IS7XX_NAME,
- 		.of_match_table	= sc16is7xx_dt_ids,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= sc16is7xx_spi_probe,
- 	.remove		= sc16is7xx_spi_remove,
-diff --git a/drivers/tty/serial/serial-tegra.c b/drivers/tty/serial/serial-tegra.c
-index d942ab152f5a..240166a36569 100644
---- a/drivers/tty/serial/serial-tegra.c
-+++ b/drivers/tty/serial/serial-tegra.c
-@@ -1653,6 +1653,7 @@ static struct platform_driver tegra_uart_platform_driver = {
- 	.driver		= {
- 		.name	= "serial-tegra",
- 		.of_match_table = tegra_uart_of_match,
-+		.probe_no_timeout = true,
- 		.pm	= &tegra_uart_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 0075a1420005..ee90562c7e8d 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -3396,6 +3396,7 @@ static struct platform_driver sci_driver = {
- 		.name	= "sh-sci",
- 		.pm	= &sci_dev_pm_ops,
- 		.of_match_table = of_match_ptr(of_sci_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/sifive.c b/drivers/tty/serial/sifive.c
-index c0869b080cc3..a9f3a4562205 100644
---- a/drivers/tty/serial/sifive.c
-+++ b/drivers/tty/serial/sifive.c
-@@ -1066,6 +1066,7 @@ static struct platform_driver sifive_serial_platform_driver = {
- 	.driver		= {
- 		.name	= SIFIVE_SERIAL_NAME,
- 		.of_match_table = of_match_ptr(sifive_serial_of_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/sprd_serial.c b/drivers/tty/serial/sprd_serial.c
-index 4329b9c9cbf0..6c01e647bc4d 100644
---- a/drivers/tty/serial/sprd_serial.c
-+++ b/drivers/tty/serial/sprd_serial.c
-@@ -1278,6 +1278,7 @@ static struct platform_driver sprd_platform_driver = {
- 	.driver		= {
- 		.name	= "sprd_serial",
- 		.of_match_table = of_match_ptr(serial_ids),
-+		.probe_no_timeout = true,
- 		.pm	= &sprd_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/st-asc.c b/drivers/tty/serial/st-asc.c
-index 1b0da603ab54..a01c10522bb6 100644
---- a/drivers/tty/serial/st-asc.c
-+++ b/drivers/tty/serial/st-asc.c
-@@ -973,6 +973,7 @@ static struct platform_driver asc_serial_driver = {
- 		.name	= DRIVER_NAME,
- 		.pm	= &asc_serial_pm_ops,
- 		.of_match_table = of_match_ptr(asc_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-index b7b44f4050d4..5aa01cd6f24f 100644
---- a/drivers/tty/serial/stm32-usart.c
-+++ b/drivers/tty/serial/stm32-usart.c
-@@ -2019,6 +2019,7 @@ static struct platform_driver stm32_serial_driver = {
- 		.name	= DRIVER_NAME,
- 		.pm	= &stm32_serial_pm_ops,
- 		.of_match_table = of_match_ptr(stm32_match),
-+		.probe_no_timeout = true,
- 	},
- };
- 
-diff --git a/drivers/tty/serial/sunhv.c b/drivers/tty/serial/sunhv.c
-index eafada8fb6fa..05bf49af8328 100644
---- a/drivers/tty/serial/sunhv.c
-+++ b/drivers/tty/serial/sunhv.c
-@@ -630,6 +630,7 @@ static struct platform_driver hv_driver = {
- 	.driver = {
- 		.name = "hv",
- 		.of_match_table = hv_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= hv_probe,
- 	.remove		= hv_remove,
-diff --git a/drivers/tty/serial/sunplus-uart.c b/drivers/tty/serial/sunplus-uart.c
-index 60c73662f955..b5b09aedab9c 100644
---- a/drivers/tty/serial/sunplus-uart.c
-+++ b/drivers/tty/serial/sunplus-uart.c
-@@ -709,6 +709,7 @@ static struct platform_driver sunplus_uart_platform_driver = {
- 	.driver = {
- 		.name	= "sunplus_uart",
- 		.of_match_table = sp_uart_of_match,
-+		.probe_no_timeout = true,
- 		.pm     = &sunplus_uart_pm_ops,
- 	}
- };
-diff --git a/drivers/tty/serial/sunsab.c b/drivers/tty/serial/sunsab.c
-index 6ea52293d9f3..3d2eea131a67 100644
---- a/drivers/tty/serial/sunsab.c
-+++ b/drivers/tty/serial/sunsab.c
-@@ -1103,6 +1103,7 @@ static struct platform_driver sab_driver = {
- 	.driver = {
- 		.name = "sab",
- 		.of_match_table = sab_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= sab_probe,
- 	.remove		= sab_remove,
-diff --git a/drivers/tty/serial/sunsu.c b/drivers/tty/serial/sunsu.c
-index fff50b5b82eb..598691174e08 100644
---- a/drivers/tty/serial/sunsu.c
-+++ b/drivers/tty/serial/sunsu.c
-@@ -1566,6 +1566,7 @@ static struct platform_driver su_driver = {
- 	.driver = {
- 		.name = "su",
- 		.of_match_table = su_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= su_probe,
- 	.remove		= su_remove,
-diff --git a/drivers/tty/serial/sunzilog.c b/drivers/tty/serial/sunzilog.c
-index c14275d83b0b..15dc30f493d9 100644
---- a/drivers/tty/serial/sunzilog.c
-+++ b/drivers/tty/serial/sunzilog.c
-@@ -1541,6 +1541,7 @@ static struct platform_driver zs_driver = {
- 	.driver = {
- 		.name = "zs",
- 		.of_match_table = zs_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe		= zs_probe,
- 	.remove		= zs_remove,
-diff --git a/drivers/tty/serial/tegra-tcu.c b/drivers/tty/serial/tegra-tcu.c
-index 4877c54c613d..aa0ba869e590 100644
---- a/drivers/tty/serial/tegra-tcu.c
-+++ b/drivers/tty/serial/tegra-tcu.c
-@@ -292,6 +292,7 @@ static struct platform_driver tegra_tcu_driver = {
- 	.driver = {
- 		.name = "tegra-tcu",
- 		.of_match_table = tegra_tcu_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe = tegra_tcu_probe,
- 	.remove = tegra_tcu_remove,
-diff --git a/drivers/tty/serial/uartlite.c b/drivers/tty/serial/uartlite.c
-index 880e2afbb97b..a7f600e57a25 100644
---- a/drivers/tty/serial/uartlite.c
-+++ b/drivers/tty/serial/uartlite.c
-@@ -919,6 +919,7 @@ static struct platform_driver ulite_platform_driver = {
- 	.driver = {
- 		.name  = "uartlite",
- 		.of_match_table = of_match_ptr(ulite_of_match),
-+		.probe_no_timeout = true,
- 		.pm = &ulite_pm_ops,
- 	},
- };
-diff --git a/drivers/tty/serial/ucc_uart.c b/drivers/tty/serial/ucc_uart.c
-index 6000853973c1..a2e637876db0 100644
---- a/drivers/tty/serial/ucc_uart.c
-+++ b/drivers/tty/serial/ucc_uart.c
-@@ -1500,6 +1500,7 @@ static struct platform_driver ucc_uart_of_driver = {
- 	.driver = {
- 		.name = "ucc_uart",
- 		.of_match_table    = ucc_uart_match,
-+		.probe_no_timeout = true,
- 	},
- 	.probe  	= ucc_uart_probe,
- 	.remove 	= ucc_uart_remove,
-diff --git a/drivers/tty/serial/vt8500_serial.c b/drivers/tty/serial/vt8500_serial.c
-index 6f08136ce78a..074b4e8b61b6 100644
---- a/drivers/tty/serial/vt8500_serial.c
-+++ b/drivers/tty/serial/vt8500_serial.c
-@@ -722,6 +722,7 @@ static struct platform_driver vt8500_platform_driver = {
- 	.driver = {
- 		.name = "vt8500_serial",
- 		.of_match_table = wmt_dt_ids,
-+		.probe_no_timeout = true,
- 		.suppress_bind_attrs = true,
- 	},
- };
-diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
-index 9e01fe6c0ab8..7e941c7e819e 100644
---- a/drivers/tty/serial/xilinx_uartps.c
-+++ b/drivers/tty/serial/xilinx_uartps.c
-@@ -1656,6 +1656,7 @@ static struct platform_driver cdns_uart_platform_driver = {
- 	.driver  = {
- 		.name = CDNS_UART_NAME,
- 		.of_match_table = cdns_uart_of_match,
-+		.probe_no_timeout = true,
- 		.pm = &cdns_uart_dev_pm_ops,
- 		.suppress_bind_attrs = IS_BUILTIN(CONFIG_SERIAL_XILINX_PS_UART),
- 		},
--- 
-2.37.0.rc0.161.g10f37bed90-goog
+Matti Vaittinen (7):
+  docs: devres: regulator: Add missing devm_* functions to devres.rst
+  regulator: Add devm helpers for get and enable
+  docs: devres: regulator: Add new get_enable functions to devres.rst
+  clk: cdce925: simplify using devm_regulator_get_enable()
+  gpu: drm: simplify drivers using devm_regulator_*get_enable*()
+  hwmon: lm90: simplify using devm_regulator_get_enable()
+  iio: Simplify drivers using devm_regulator_*get_enable()
 
+ .../driver-api/driver-model/devres.rst        |  11 ++
+ drivers/clk/clk-cdce925.c                     |  21 +--
+ drivers/gpu/drm/bridge/sii902x.c              |  22 +--
+ drivers/gpu/drm/meson/meson_dw_hdmi.c         |  23 +--
+ drivers/hwmon/lm90.c                          |  21 +--
+ drivers/iio/adc/ad7192.c                      |  15 +-
+ drivers/iio/dac/ltc2688.c                     |  23 +--
+ drivers/iio/gyro/bmg160_core.c                |  24 +--
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       |   2 -
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  |  30 +---
+ drivers/regulator/devres.c                    | 164 ++++++++++++++++++
+ include/linux/regulator/consumer.h            |  27 +++
+ 12 files changed, 227 insertions(+), 156 deletions(-)
+
+--=20
+2.37.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--THWirS5KE0K9xFXH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmL2JpAACgkQeFA3/03a
+ocUSNQgAuAnEh7oW1oRPo5wLIiymBTMRDGKLvapsGYq8bT8IiRWVR/NN37Qd9GHU
+VgE85GmmR24A+GFaR7q+L+mQWvDaumb+BgzGbPbeXnm5Dveh1vORzNhM6TvAgGCM
+VpCgwcMRbSzCGEiYEvHcp5tiZ5Np7fUSmSuLz30BMES+TDdENIMbxGWb4Qa1pG3o
+/5DaGsNxfF2H/5tdaH4S8t9MSKBvCXn4BmrIAEjCVRGZj9+2kSMb8cwNnrp9RBES
+aePeoFBXuq8yiDwtJZn4vkzSle448d+Sg/VqDI0CFD/DBCa1/TAhQmuUM0f17KSD
+wsLBh7G8SRracLoYB+zXLFT7fBaIHg==
+=AV00
+-----END PGP SIGNATURE-----
+
+--THWirS5KE0K9xFXH--
+
+
+--===============2148750987740960490==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2148750987740960490==--
+
