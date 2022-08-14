@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5E7DC25B06
-	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 15:40:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4764CC25B06
+	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 15:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aqUq2U7nj7bvyfo9G7iGy5eDuqJyqawYDm96PQrTeBM=; b=adlk3eCj6O9fVl
-	YTJIbRIuWghNLmOTAfAES2Nf0HUe3Zw4qUzshZveiPUH+mvhe4r/tyB7uSDvxJfwMzzAoZK6taqTP
-	UAJs7S+9O0r9vB4ixRRActqUhTB4TAzgrSaiCd0GvftLbJSyg0RvBXWGsZFzMi2u7LziejvOSYB2B
-	NVDjY4uUSeX5DphfrJwtVQ06g9TcEg58iITvaD0gY/QBPRS4VZCG+1vZbohrd8iZNEbprEGMDseuO
-	IFB37BeqnIsp72oct2ja+iKpQOWF2eTUt+anylHS55zcELMd2jUI/OnawVc3Htw8U3wUNYvDdwJ9w
-	5raqeASmeUQkv3vUkKBw==;
+	List-Owner; bh=aqUq2U7nj7bvyfo9G7iGy5eDuqJyqawYDm96PQrTeBM=; b=JOiiFpyFetmfpr
+	Ov/fwLi5ISpKb0C6y4UbLgYzHmkhfjQ+yXwaIasnbHWgKcbEF8MOXpQV+PFutV08cIE2KRNUMSRuV
+	fBC0gP8QpxQYW6RkHflTGhCfzUTUEcykguUlyK4CzVlVuW/Qdy81H0bEQzrRkMzDaWkVnbXDJY+Yc
+	KkVdOXMrJkeb1YvIPSiTqGc6c7zvweOTKzotrQBx1ijoOFHiUjfLGZP9h7HBmPKoY396EIMHjXNJC
+	A5CiQiTakttJOABIbt2YZ0dpGgu1OAYenjdxfZ/Bs7cNIXV9hnk663wwqBQHv665jWZF8L/XVe4Mu
+	3C+rS+URSM8Yx/jZIymA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNFib-007VLB-6O; Sun, 14 Aug 2022 15:40:01 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oNFqQ-007aFY-KK; Sun, 14 Aug 2022 15:48:06 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNFbr-007Qta-Ac; Sun, 14 Aug 2022 15:33:05 +0000
+	id 1oNFdT-007S2M-9T; Sun, 14 Aug 2022 15:34:45 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id DDEA760D3A;
-	Sun, 14 Aug 2022 15:33:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C0CC4347C;
-	Sun, 14 Aug 2022 15:33:01 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id E5B4BB80B27;
+	Sun, 14 Aug 2022 15:34:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46901C43142;
+	Sun, 14 Aug 2022 15:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1660491182;
+	s=k20201202; t=1660491281;
 	bh=YA7qGjAoZ0w68jbN59Y8bWwXYBlkSuhDhVnrXYHcvq8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ertf7rlKBMi1CLJ8kEqV7aMNYFNcHzc3664Dc/cT0yNgOE52jf2h/mHUZhgcvwZlm
-	 oKpnkPC6aScqcRdoBmybnG41Q1pUjShs+wHOgoME0Np7Bc8ThWi1nEUYOps7joWKaT
-	 WYRdEMvP7+pRIVS0yies5ybBi4kIgd/fA5vZA7R1x5vuKWW1m6CMMDoeQvs7sK+ZFu
-	 o83UFrQBWXjcqzym5dy/Xwm0EkfuaOsCZl6RVA+xg0wdWEXN7+fbtlnWVQluAt5Zls
-	 MLEPURVHfKwqzUoiP2M+eR5wR9hS54ObloZ7G12xJMAecoEfJ/uIk2tmXTivFha/mi
-	 2R16Z2A7jF3PQ==
+	b=Gm4z/RmK99ADP92vAmkMgCQZWIqkJyKWbr7udGFL/53K3QjQazR0QiDYMmVx9PvHn
+	 ljity6+kBBgl5Y51Gz9PfErPP9qTA8jOuQF93aPVjVLZPrM6aiElKYRuCx+EL3qAdE
+	 d0i4YrWni1ykO+48ZRiAQt4lix4KZNLUuhwbpTZLClp/veho6HjbJ3yWIms6Di+tfh
+	 XrZGKmqyqf7UM5d0pLMHjPb+T/e4I4oGWjHi06+PvzDEcYKooVfO2hav7T4ggQPGwE
+	 aFqmtwEc8gn8CSVGg2oSJi/1H1miRlXGJx8Slq/iuszBF+wA3RWmuFABezfGdp41Wr
+	 Pa7Z9N1ELeF7Q==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -55,17 +55,17 @@ Cc: Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
 	dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 10/46] drm/meson: Fix overflow implicit truncation warnings
-Date: Sun, 14 Aug 2022 11:32:11 -0400
-Message-Id: <20220814153247.2378312-10-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 06/31] drm/meson: Fix overflow implicit truncation warnings
+Date: Sun, 14 Aug 2022 11:34:06 -0400
+Message-Id: <20220814153431.2379231-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220814153247.2378312-1-sashal@kernel.org>
-References: <20220814153247.2378312-1-sashal@kernel.org>
+In-Reply-To: <20220814153431.2379231-1-sashal@kernel.org>
+References: <20220814153431.2379231-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220814_083303_587980_5CEF594E 
+X-CRM114-CacheID: sfid-20220814_083443_655397_F804E4E1 
 X-CRM114-Status: GOOD (  11.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
