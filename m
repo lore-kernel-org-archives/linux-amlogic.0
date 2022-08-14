@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4764CC25B06
-	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 15:48:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2407C25B06
+	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 15:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aqUq2U7nj7bvyfo9G7iGy5eDuqJyqawYDm96PQrTeBM=; b=JOiiFpyFetmfpr
-	Ov/fwLi5ISpKb0C6y4UbLgYzHmkhfjQ+yXwaIasnbHWgKcbEF8MOXpQV+PFutV08cIE2KRNUMSRuV
-	fBC0gP8QpxQYW6RkHflTGhCfzUTUEcykguUlyK4CzVlVuW/Qdy81H0bEQzrRkMzDaWkVnbXDJY+Yc
-	KkVdOXMrJkeb1YvIPSiTqGc6c7zvweOTKzotrQBx1ijoOFHiUjfLGZP9h7HBmPKoY396EIMHjXNJC
-	A5CiQiTakttJOABIbt2YZ0dpGgu1OAYenjdxfZ/Bs7cNIXV9hnk663wwqBQHv665jWZF8L/XVe4Mu
-	3C+rS+URSM8Yx/jZIymA==;
+	List-Owner; bh=ohYh0wFvU31elFJbZHxVd283Lmd5sgEFTtpumADYKUs=; b=XCmpdvbcwJ7hhj
+	wqV/Scj5+rjTdYeazx0P6sx2mgg7EGxjjzOY780xSQqYA241t60Yb7jspPfhH7BTPmCuBODtKGXC+
+	F3+m/jwFs3Dmg6XF4JrRIFmmD32w+GBJ7IeEKti8nI5hZdXAPp9GeMEIbZNeeVfsnlBt1H86QTuZt
+	IoGWmAxBv7V23JvO5bx25q+VFJ+Obg86RS4z6YSSLu+EAkxaTaskASH3l3EC797cpVXWTcw60znbr
+	MvtWhi5pDQ/5LR6z+V3z5MKobOwdlnVOZIlGGi5viu3BsP3GNHWg6XNYsPV//aX3MBVZq4v3nI69q
+	v8AKI7hEsUT/qvbuIwkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNFqQ-007aFY-KK; Sun, 14 Aug 2022 15:48:06 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1oNFsx-007btC-NO; Sun, 14 Aug 2022 15:50:43 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNFdT-007S2M-9T; Sun, 14 Aug 2022 15:34:45 +0000
+	id 1oNFeP-007SdI-6O; Sun, 14 Aug 2022 15:35:42 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id E5B4BB80B27;
-	Sun, 14 Aug 2022 15:34:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46901C43142;
-	Sun, 14 Aug 2022 15:34:40 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7AC3C60CF1;
+	Sun, 14 Aug 2022 15:35:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAD8C43141;
+	Sun, 14 Aug 2022 15:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1660491281;
-	bh=YA7qGjAoZ0w68jbN59Y8bWwXYBlkSuhDhVnrXYHcvq8=;
+	s=k20201202; t=1660491339;
+	bh=lDreysDaux3KE/9sQ1RBGecbIuH1BLpw3sVQTIQLoC0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Gm4z/RmK99ADP92vAmkMgCQZWIqkJyKWbr7udGFL/53K3QjQazR0QiDYMmVx9PvHn
-	 ljity6+kBBgl5Y51Gz9PfErPP9qTA8jOuQF93aPVjVLZPrM6aiElKYRuCx+EL3qAdE
-	 d0i4YrWni1ykO+48ZRiAQt4lix4KZNLUuhwbpTZLClp/veho6HjbJ3yWIms6Di+tfh
-	 XrZGKmqyqf7UM5d0pLMHjPb+T/e4I4oGWjHi06+PvzDEcYKooVfO2hav7T4ggQPGwE
-	 aFqmtwEc8gn8CSVGg2oSJi/1H1miRlXGJx8Slq/iuszBF+wA3RWmuFABezfGdp41Wr
-	 Pa7Z9N1ELeF7Q==
+	b=VIyoyQG90qf6E2Qbbt7i2iUA2kVg8obiAjWKlvE1dTAapuP4KNKEUo80NqaitMgiU
+	 53RBWJglZSO0RPxQcMbq5bnsBU91vGxNtK+2dQFfGjDRe4ww04IBymjv0zxyJM2xkc
+	 GkGaK9eLrpcKNB+UYKfH7hZ899ZiPKhUT8lUoGV8m4RezNz0pk2P0A2lEb9tKjpi7f
+	 zlWTpL9Xrlhc701M0FFxCgJclzU+bkiQWxjZdnP/fO0qsZA7IxKyhX2ZRdP1uSPoF4
+	 ywjYtFqkEC6snT9D/+bAt2u5mwk1xu2l6c1vObB7ReemkrPNQhZg6gTYc2Xy6QdGaQ
+	 A5deUJf0mdPeg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -55,17 +55,17 @@ Cc: Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
 	dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 06/31] drm/meson: Fix overflow implicit truncation warnings
-Date: Sun, 14 Aug 2022 11:34:06 -0400
-Message-Id: <20220814153431.2379231-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 05/21] drm/meson: Fix overflow implicit truncation warnings
+Date: Sun, 14 Aug 2022 11:35:15 -0400
+Message-Id: <20220814153531.2379705-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220814153431.2379231-1-sashal@kernel.org>
-References: <20220814153431.2379231-1-sashal@kernel.org>
+In-Reply-To: <20220814153531.2379705-1-sashal@kernel.org>
+References: <20220814153531.2379705-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220814_083443_655397_F804E4E1 
+X-CRM114-CacheID: sfid-20220814_083541_476955_8981B90C 
 X-CRM114-Status: GOOD (  11.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,9 +107,9 @@ aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl92
 aXUuYyB8IDIyICsrKysrKysrKysrLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNl
 cnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
 bWVzb24vbWVzb25fdml1LmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fdml1LmMKaW5k
-ZXggMjU5ZjNlNmJlYzkwLi5iYjdlMTA5NTM0ZGUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+ZXggMzM2OTg4MTRjMDIyLi45OTkxZjBhNDNiMWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
 bS9tZXNvbi9tZXNvbl92aXUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fdml1
-LmMKQEAgLTQ2OSwxNyArNDY5LDE3IEBAIHZvaWQgbWVzb25fdml1X2luaXQoc3RydWN0IG1lc29u
+LmMKQEAgLTQwMCwxNyArNDAwLDE3IEBAIHZvaWQgbWVzb25fdml1X2luaXQoc3RydWN0IG1lc29u
 X2RybSAqcHJpdikKIAkJCXByaXYtPmlvX2Jhc2UgKyBfUkVHKFZEMl9JRjBfTFVNQV9GSUZPX1NJ
 WkUpKTsKIAogCWlmIChtZXNvbl92cHVfaXNfY29tcGF0aWJsZShwcml2LCBWUFVfQ09NUEFUSUJM
 RV9HMTJBKSkgewotCQl3cml0ZWxfcmVsYXhlZChWSVVfT1NEX0JMRU5EX1JFT1JERVIoMCwgMSkg
