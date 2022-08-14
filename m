@@ -4,79 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1CFEC25B06
-	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 21:29:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27FC0C25B06
+	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Aug 2022 21:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nOKQ6myN4ndjOynAd6WeQorwsVhVpvT+nQqd+3jQwL0=; b=puqYWPju5xSeWv
-	mzWrQMt1mGY3QfzXW00o7mGGlQRNhTQ3zfeLbPdva7Wj5vgM2XUfAZIpEXjHwZvWoVorVCTbdJ6Od
-	ooxFbQOzFG++tL2EL6NArEBe5VB9QJeFhRbIPz1K2ovHP1UlBm5rB8Pn5qC1fFJw+ly0Ph2WUdHUP
-	736FUn5odCJ38vqMNkBYzaLEh8+RxDgo6R1+bFumiKHyh7RE83H15oHmYnfxNVKyOR8oYdXmMqu69
-	+oMEXWyazcfrpN9VcZ8tU0kTnxlNCB7O4u6MYlP//dfT00RP1XZM9TmKcjXRFfLhGKv5qOtDi9KzK
-	xLd2Y+TvMYIWqiNAkwPA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=EhEIcaHcjLzHDxTsnICSyOdL647kR60OYfkQ55SjVSM=; b=wi7PQQHFYxAxQt
+	rQplQeWoGaP6Nl2IykkWvK/s5K0mJPlN+6kI7GFG229JDTlktMigTVFhhoj2fma65pU1PGD+7CZku
+	8kWmIqSKT0k6SZ2k9qpyCcxA0Dx94sI+1aebFd9VBnB5s9BMxF/CX4TmzutTUU9s1BTP11S/htZgz
+	GcWOx4SN5eckcgJ/sl3s+swMmntyvJgozmsafiCQpzwOl84gQ4YpTIezCfMQhlrUg4KqmI11q4Lqc
+	l/SFPj1LUoskB7FL/lOy8g8uHNWnmuO5y56aftxc/N3nrJeDGTm5Aqh3pjWdnoGDooXITBYqc7gKp
+	FoLkzfbaEwsPv/bxjglg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNLB3-009GNk-Sd; Sun, 14 Aug 2022 21:29:45 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1oNLOR-009Jz1-0N; Sun, 14 Aug 2022 21:43:35 +0000
+Received: from mail-qt1-f173.google.com ([209.85.160.173])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNLB1-009GM0-3J; Sun, 14 Aug 2022 21:29:44 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id f22so7487451edc.7;
-        Sun, 14 Aug 2022 14:29:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc;
-        bh=AqecQy6KL+dyrHbPbN0H6O069pqDD1q//SRpEmJs3Tk=;
-        b=ZV4rvAz8j4OiykMmfmEqslHAfRQi0/ErQS12ZPDLOugqNBJOO1Yl1VAOJVeIsa27LX
-         JZdPavEDOpXeBMxQ8aoOnRyrlgBPCh7qNWNBWtjJwfUgpk+WSZQDi1P0eo7AYTX4D3/t
-         V5i3Q1EV7JV9qE7Cr8wmUQlInqkmdFcSDaOvchlguj0E04zGkS76kpOz2peyPyFTSkFi
-         FciIn+XmJIRWhGwow82ujQ/Zbk1q2V0PgYBPB5m8qHfQXVf1/YTWjgHvy+DAwT3s1F5P
-         CsLRHQqSoojtlUYd1mP20OBf3B66ZduZLSHEfO4VYo1XG52/kLPRvewKRjA0BavDQ11m
-         BDCA==
+	id 1oNLOF-009Jwh-QE; Sun, 14 Aug 2022 21:43:24 +0000
+Received: by mail-qt1-f173.google.com with SMTP id w28so4412309qtc.7;
+        Sun, 14 Aug 2022 14:43:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc;
-        bh=AqecQy6KL+dyrHbPbN0H6O069pqDD1q//SRpEmJs3Tk=;
-        b=y35gHJZCD49QqxLe0Mz7AIPjWY9s98YLSuJHkUyr4gAP1m7ohg02r/h2jeLTMSHBHq
-         vn5QMlzPxcrNe9yImJ79rbGCz+4Kau+FeotzIX4eCPwIkRqLDnLhlUu/7k73fHxqZ6uC
-         hu1yyGWrsbrcWjdhLt6Js8R4M62tDhRKJ7+1lKPTTahXjBxo+8OMapsXZxpD6PEU94eC
-         8dUFnRsOBe4A5rB1vcZNLEuqFNrWQ6k8lEzu5RN6FejFkliE73EgU43JPoqVZOGoOW2z
-         GRz20E32q6jzMVgF0+mlm6crEsV5IC4RoUsORprPMShjb8pKXmErjyu5MaQBb1b0vXfK
-         qV4Q==
-X-Gm-Message-State: ACgBeo0ryrqYxZGX7jB7f2jSHMsc2T8xS36JJPGgp6N3/HwNKWrbBCxU
-	uKpr8AWRyfHYV8ylJ4yV390=
-X-Google-Smtp-Source: AA6agR4yRNP/AbhzJeM/gy+WgKeyWQZBV/HqoJ3i5RlhlPeywYgPQj8AjdauI0fnoGinAD4Vf/Dltg==
-X-Received: by 2002:a05:6402:42cb:b0:43d:bf29:cf89 with SMTP id i11-20020a05640242cb00b0043dbf29cf89mr11640068edc.400.1660512579811;
-        Sun, 14 Aug 2022 14:29:39 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c1a2:1a00:2049:10ba:dbb:6620? (dynamic-2a01-0c23-c1a2-1a00-2049-10ba-0dbb-6620.c23.pool.telefonica.de. [2a01:c23:c1a2:1a00:2049:10ba:dbb:6620])
-        by smtp.googlemail.com with ESMTPSA id gv11-20020a170906f10b00b0072af4af2f46sm3325740ejb.74.2022.08.14.14.29.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Aug 2022 14:29:39 -0700 (PDT)
-Message-ID: <22f1d799-a3bb-3d71-a3fd-f6128b205231@gmail.com>
-Date: Sun, 14 Aug 2022 23:29:31 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=gsvKZizMBPBqAoYqxHhYeaAnDMKudFEih3zhgTZgEKI=;
+        b=hJRZurwB0ByoU+6hnq7eDxFnozHopou2rPWHm1/CYJE1VP4EWMV/ixepwbL+Jo2iQM
+         8WaPOq27SecpaFvOyHOT5BIVp3U7f1rYnpdHTEC3Vb9AhKa+k3PUgqb32Yz+vZen3LMV
+         DKmR7QulM2H1gmINox11FWsalHd8G+0Tk+DqJyjvwPGvWTkgymOMP6gQIecrlsQZy+KX
+         LofOzpE5sBuYvOeBCeAWDBboTjKJl01+FBAsGS0NJIu1wLfuYlJLty/6NCkTkBxryCpt
+         90pEXLIjLRfq2CJ4UzHPIBzak0HNe0AipcOUZ/pD8cWo9xlW1rnct9fX7O00EUk0nTxW
+         uhtg==
+X-Gm-Message-State: ACgBeo1R2Z3LLlOTQbQcHGmt502kEn1sVDK6yIdEq+KVzDYiK1iKd5f+
+	j2eEzxTZrZYET1F+wfw6Hw==
+X-Google-Smtp-Source: AA6agR5vGKyXZeFoPtut0Cl2IDwYQJK1DsTfiQVEtUhzO4dX1YgRj3J4ywYCM2tynjSjhUKjQvEW2w==
+X-Received: by 2002:a05:622a:1707:b0:343:645e:333d with SMTP id h7-20020a05622a170700b00343645e333dmr11792887qtk.497.1660513402051;
+        Sun, 14 Aug 2022 14:43:22 -0700 (PDT)
+Received: from robh.at.kernel.org ([2607:fb90:ac9f:26d8:4b95:fcf4:6a60:b904])
+        by smtp.gmail.com with ESMTPSA id h17-20020ac85e11000000b003430589dd34sm6962150qtx.57.2022.08.14.14.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Aug 2022 14:43:21 -0700 (PDT)
+Received: (nullmailer pid 738164 invoked by uid 1000);
+	Sun, 14 Aug 2022 21:26:29 -0000
+Date: Sun, 14 Aug 2022 15:26:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Vyacheslav Bocharov <adeep@lexina.in>
+Cc: linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 2/2] dt-bindings: arm: amlogic: add bindings for Jethub
+ D1p (j110)
+Message-ID: <20220814212629.GA738114-robh@kernel.org>
+References: <20220811103113.3097868-1-adeep@lexina.in>
+ <20220811103113.3097868-3-adeep@lexina.in>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] clk: meson: pll: adjust timeout in meson_clk_pll_wait_lock()
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk@vger.kernel.org,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20220811103113.3097868-3-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220814_142943_272094_0C4B8336 
-X-CRM114-Status: GOOD (  10.37  )
+X-CRM114-CacheID: sfid-20220814_144323_870010_CE9E3C6E 
+X-CRM114-Status: UNSURE (   7.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,62 +80,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Currently we loop over meson_parm_read() up to 24mln times.
-This results in a unpredictable timeout period. In my case
-it's over 5s on a S905X4-based system. Make the timeout
-period predictable and set it to 100ms.
+On Thu, 11 Aug 2022 13:31:13 +0300, Vyacheslav Bocharov wrote:
+> JetHome JetHub D1p is a home automation controller, modification
+>  of JetHub D1 based on Amlogic A113X
+> 
+> Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Whilst we're at it: All callers of this function return -EIO
-in case of failure, therefore we can return this value directly
-in the timeout case.
-
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/clk/meson/clk-pll.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index daa025b6d..d70bee331 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -277,17 +277,17 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
--	int delay = 24000000;
-+	int delay = 5000;
- 
- 	do {
--		/* Is the clock locked now ? */
-+		/* Is the clock locked now ? Time out after 100ms. */
- 		if (meson_parm_read(clk->map, &pll->l))
- 			return 0;
- 
--		delay--;
--	} while (delay > 0);
-+		udelay(20);
-+	} while (--delay);
- 
--	return -ETIMEDOUT;
-+	return -EIO;
- }
- 
- static int meson_clk_pll_init(struct clk_hw *hw)
-@@ -350,10 +350,7 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 	/* Take the pll out reset */
- 	meson_parm_write(clk->map, &pll->rst, 0);
- 
--	if (meson_clk_pll_wait_lock(hw))
--		return -EIO;
--
--	return 0;
-+	return meson_clk_pll_wait_lock(hw);
- }
- 
- static void meson_clk_pll_disable(struct clk_hw *hw)
--- 
-2.37.2
-
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
