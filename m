@@ -4,107 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C6ABC00140
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Aug 2022 08:43:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81F88C00140
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Aug 2022 09:21:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=X++hfzGbWMJiacVYx9mcsE78C9Ip2ucZ834wOdiRZxY=; b=DRsKkWPBqCquBJy9oQaaYkIi51
-	h+xhZh1YxJ+MhkoW9rw0zH9qKspVxZXERi4xjDVIMjls/BrhnBSGjx4ZeXxtTpgJnrArXAW24zkF7
-	7MZI17UuXSC6wvCgLlfWODg3g6Vw/beDzXZj3yrsgviurcLYEr/Upz6+W/5gEGqg0XYLi6pGhVfer
-	u1J2muIe/b3bhJcIY0H+muhj6LAbUpr7N37Cen5MzgdUq+tpcUO+SIIALIhZG2zlK2bSMiDUJxw03
-	AtUcifv8u2AL5qo+6x80fna208+RP206jY+XwUuaBU/88gnYwtedqR/9Qqbs8iaEG4l8uKyMBC2XH
-	EFSRK/DA==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Z0SZoWBGv7TbVbuJXkqv7qNPUbfztxg+JC+Rlb0hVyY=; b=CHgHImm+fJdJSl
+	o3RgwA0DtVvcb8XCKkf9oCgChmiaxYbbvhxs63D/oHW+4jDFUBgFKqVOwnZnTh/YP8ne4meTLR8k4
+	uCm3iHG3Q3pulMWHShzEDhyKRDk4lYJ0HwHa+rrdINnVNoAj97zMf/beWP1eCLwq381KDcZlUTkgy
+	fV0azBHcZSRzNpc8YiG9IOCUeLZIw/2xK50OuoY7mpnpGZs2pPkmXFhLLrska8T5qOLRL2FFVj5c0
+	wY46pJoprWenTwnqiOc5xqZ4RHRJ7LqK0oxZ/RFDBiuomKLW2v5ab/s3xcuPKQrdmkgZWmSf7Iynb
+	bxyDKXw263om/rd3h42g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNVgs-00DJyT-0g; Mon, 15 Aug 2022 08:43:18 +0000
-Received: from new1-smtp.messagingengine.com ([66.111.4.221])
+	id 1oNWHZ-00DlF4-LT; Mon, 15 Aug 2022 09:21:13 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNVfs-00DJQE-Nh; Mon, 15 Aug 2022 08:42:22 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailnew.nyi.internal (Postfix) with ESMTP id C12EA58060D;
-	Mon, 15 Aug 2022 04:42:15 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 15 Aug 2022 04:42:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to; s=fm3; t=1660552935; x=1660560135; bh=jCLrmollLV
-	DyqBu3wvulbaV3RNTNZ05rEx9CXO/Wmng=; b=tKIVdEkVutMMGoXB1seo7kuBWK
-	mf+hhbPhGWrfbcicTvnvCvjVJk7gsTTkcvO8a106wcix/T3U60GBkelVJcHblTbP
-	OlBFZkWU2EEQ9q8mVomOeKdsnf5qzG7ufJMwoSRLUHs6/IDDMKf8hdhcS10QrW2r
-	OtRX4PKWtpr1AG8rtvul5sZfhOU7MBDY4JGWHQ29DuKN9BNurNR5L/35gONxPXTL
-	FV/NZ4JS9yrNQfGLZgzYL7lkQKod0tgoxzHc+aMxyDGXnKFw76HgjvDo9MffGLWh
-	o75gtZUrIH8e3F9VZY7sX7uHh+eEPceRz6M4BRPiMYE6VQzKRUEj9TyZI6oQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1660552935; x=1660560135; bh=jCLrmollLVDyqBu3wvulbaV3RNTN
-	Z05rEx9CXO/Wmng=; b=r1ZBLTTA0UF3TVxHv0Ro7SCOCq58S55oqD7QUtGH+vhH
-	FGGjdkz2apuLRHGUbfTBfOaZ1SRkrWh/MCb8cG02BHzJRI8qOp/HdK8sDw8+/WUf
-	RcDs+fVw41JmZ5hLjx62gFh0wfGAXuhlMoVEid7XevlykQNrwZ8VJ0wNEx/URmed
-	KZxkR3uPVUyzs1wEX3cSd5v+yCGMdrdiWtsYpKJSrfxcYiYXK4yGuuLHzFI2xKAR
-	kwWQqiwiednwZYFxhGuuEf5npdMC9lL/POObijvw4blQPMV8p53Gq7T5S6Qvksjf
-	arefGU1nLY9zXHruU/4mfeHhpQlO8j4HDCwI8tIbsg==
-X-ME-Sender: <xms:5wb6Yo6uSgy9V_wCTwDItSNLQkrgXOEpmEdqgG_K4Iwvepr-u03kaQ>
-    <xme:5wb6Yp4CfqtAPzj1R_h29As0lyTS2SHHjsCO0MloFD_PZ-pqVssBU0q32bdKbKGvU
-    hBaJofOAes3skdFwz4>
-X-ME-Received: <xmr:5wb6YndpCaCei1grbEclLb1z76cp0_KS9Y9WQ32nphaOQnceet5miPbMnaPJ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehvddgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpedtleekjeeiudefvdfhieffteelhfeivdeliefgieeugffhvdelieffjeei
-    geetjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
-    hh
-X-ME-Proxy: <xmx:5wb6YtI9WknQMrj9jETz1rq_OVBPpy146jAhGHFUkBIqYjxcIzZZzA>
-    <xmx:5wb6YsLC0qTtwe95dqHtzni0_Q6ernDecboPcKiNpK7oMP46sLY6oQ>
-    <xmx:5wb6YuzUddC4peJo4BV_M_Q6eIvx3xP67DLzL2HKiCS6D1ivqClffA>
-    <xmx:5wb6Ys4nsDgwW8o5Zj5KrVI64qTW7uISKFM-KZQW-CtfDFNW4jQhag>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 15 Aug 2022 04:42:14 -0400 (EDT)
-Date: Mon, 15 Aug 2022 10:42:13 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
-	David Airlie <airlied@linux.ie>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Dom Cobley <dom@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	Phil Elwell <phil@raspberrypi.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 08/35] drm/client: Add some tests for
- drm_connector_pick_cmdline_mode()
-Message-ID: <20220815084213.olcvp6qhmhhykz6t@houat>
-References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-8-3d53ae722097@cerno.tech>
- <14d698dc-172c-773f-7ea1-7101b9f5b77f@suse.de>
+	id 1oNW1d-00DYtl-7k; Mon, 15 Aug 2022 09:04:50 +0000
+Received: from [10.88.37.200] (10.88.37.200) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 15 Aug 2022
+ 17:04:28 +0800
+Message-ID: <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
+Date: Mon, 15 Aug 2022 17:04:28 +0800
 MIME-Version: 1.0
-In-Reply-To: <14d698dc-172c-773f-7ea1-7101b9f5b77f@suse.de>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v4 4/4] dt-binding: perf: Add Amlogic DDR PMU
+Content-Language: en-US
+From: Jiucheng Xu <jiucheng.xu@amlogic.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>, Mark
+ Rutland <mark.rutland@arm.com>, Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chris Healy
+	<cphealy@gmail.com>
+References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
+ <20220805071426.2598818-4-jiucheng.xu@amlogic.com>
+ <a3cd55ad-cec2-9570-2078-6724ab1d7300@linaro.org>
+ <880842a1-a769-f228-7c91-5402e6d9391e@amlogic.com>
+In-Reply-To: <880842a1-a769-f228-7c91-5402e6d9391e@amlogic.com>
+X-Originating-IP: [10.88.37.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220815_014217_280267_885DB2A0 
-X-CRM114-Status: GOOD (  22.28  )
+X-CRM114-CacheID: sfid-20220815_020445_983353_D350E796 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,110 +64,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7440872194854150164=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============7440872194854150164==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rlnnmrn6tqqsyh2j"
-Content-Disposition: inline
-
-
---rlnnmrn6tqqsyh2j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Thomas,
-
-On Tue, Aug 02, 2022 at 12:14:29PM +0200, Thomas Zimmermann wrote:
-> Am 29.07.22 um 18:34 schrieb Maxime Ripard:
-> > drm_connector_pick_cmdline_mode() is in charge of finding a proper
-> > drm_display_mode from the definition we got in the video=3D command line
-> > argument.
-> >=20
-> > Let's add some unit tests to make sure we're not getting any regressions
-> > there.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm=
-_client_modeset.c
-> > index bbc535cc50dd..ee6b8f193c24 100644
-> > --- a/drivers/gpu/drm/drm_client_modeset.c
-> > +++ b/drivers/gpu/drm/drm_client_modeset.c
-> > @@ -1237,3 +1237,7 @@ int drm_client_modeset_dpms(struct drm_client_dev=
- *client, int mode)
-> >   	return ret;
-> >   }
-> >   EXPORT_SYMBOL(drm_client_modeset_dpms);
-> > +
-> > +#ifdef CONFIG_DRM_KUNIT_TEST
-> > +#include "tests/drm_mode_test.c"
-> > +#endif
->=20
-> Including source files is somewhat ugly, prolongs compile times and could
-> even interfere with the actual source code. Can we do this in some other
-> way?
-
-Yeah, this irks me a bit as well, but it's the preferred way of doing it
-according to the kunit doc:
-https://www.kernel.org/doc/html/latest/dev-tools/kunit/usage.html#testing-s=
-tatic-functions
-
-> I suggest to add the tests here and export them for use in the test case.
-> Something like
->=20
-> #ifdef CONFIG_DRM_KUNIT_TEST
-> static drm_mode_res_1920_1080_60()
-> {
->   ...
-> }
->=20
-> struct kunit_case drm_mode_tests[] =3D {
->   drm_mode_res_1920_1080_60
-> };
-> EXPORT_SYMBOL(drm_mode_tests);
-> #endif
->=20
-> This would add the tests next to the tested code, but leave the test driv=
-er
-> in drm_mode_test.c.
-
-The test suite is fairly small for now, but if we end up with dozens of
-tests like what is there for the command line parser (which could happen
-for that kind of functions), I'm very afraid that the original source
-file will become unreadable, while this has the advantage to keep the
-original file readability.
-
-Maxime
-
---rlnnmrn6tqqsyh2j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvoG5QAKCRDj7w1vZxhR
-xc0mAQDuFbvOznqy7wPFfo7D22siO3vakpbi8JYCjof/aUhSWQEAh1/POG4ZPo9G
-5liKYUHEyb8jsiIsA5GvnKqbiUcWNQw=
-=hjzk
------END PGP SIGNATURE-----
-
---rlnnmrn6tqqsyh2j--
-
-
---===============7440872194854150164==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7440872194854150164==--
-
+Ck9uIDIwMjIvOC81IDE4OjAwLCBKaXVjaGVuZyBYdSB3cm90ZToKPgo+IE9uIDIwMjIvOC81IDE2
+OjIxLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOgo+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4K
+Pj4gT24gMDUvMDgvMjAyMiAwOToxNCwgSml1Y2hlbmcgWHUgd3JvdGU6Cj4+PiBBZGQgYmluZGlu
+ZyBkb2N1bWVudGF0aW9uIGZvciB0aGUgQW1sb2dpYyBHMTIgc2VyaWVzIEREUgo+Pj4gcGVyZm9y
+bWFuY2UgbW9uaXRvciB1bml0Lgo+Pj4KPj4gQmluZGluZ3MgZ28gZmlyc3QgaW4gdGhlIHNlcmll
+cywgYmVmb3JlIHRoZWlyIGltcGxlbWVudGF0aW9uLgo+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogSml1
+Y2hlbmcgWHUgPGppdWNoZW5nLnh1QGFtbG9naWMuY29tPgo+Pj4gLS0tCj4+PiBDaGFuZ2VzIHYz
+IC0+IHY0Ogo+Pj4gwqDCoCAtIEZpeCAiJGlkOiByZWxhdGl2ZSBwYXRoL2ZpbGVuYW1lIGRvZXNu
+J3QgbWF0Y2ggYWN0dWFsIHBhdGggb3IKPj4+IMKgwqDCoMKgIGZpbGVuYW1lIiB3YXJuaW5nCj4+
+Pgo+Pj4gQ2hhbmdlcyB2MiAtPiB2MzoKPj4+IMKgwqAgLSBSZW1vdmUgb25lT2YKPj4+IMKgwqAg
+LSBBZGQgZGVzY3JpcHRpb25zCj4+PiDCoMKgIC0gRml4IGNvbXBpbGluZyB3YXJuaW5nCj4+Pgo+
+Pj4gQ2hhbmdlcyB2MSAtPiB2MjoKPj4+IMKgwqAgLSBSZW5hbWUgZmlsZSwgZnJvbSBhbWxfZGRy
+X3BtdS55YW1sIHRvIGFtbG9naWMsZzEyX2Rkcl9wbXUueWFtbAo+Pj4gwqDCoCAtIERlbGV0ZSAi
+bW9kZWwiLCAiZG1jX25yIiwgImNoYW5uX25yIiBuZXcgcHJvcGVydGllcwo+Pj4gwqDCoCAtIEZp
+eCBjb21waWxpbmcgZXJyb3IKPj4+IC0tLQo+Pj4gwqAgLi4uL2JpbmRpbmdzL3BlcmYvYW1sb2dp
+YyxnMTItZGRyLXBtdS55YW1swqDCoMKgIHwgNTIgCj4+PiArKysrKysrKysrKysrKysrKysrCj4+
+PiDCoCBNQUlOVEFJTkVSU8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxICsKPj4+IMKgIDIgZmlsZXMgY2hhbmdl
+ZCwgNTMgaW5zZXJ0aW9ucygrKQo+Pj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0IAo+Pj4gRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BlcmYvYW1sb2dpYyxnMTItZGRyLXBtdS55YW1s
+Cj4+Pgo+Pj4gZGlmZiAtLWdpdCAKPj4+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3BlcmYvYW1sb2dpYyxnMTItZGRyLXBtdS55YW1sIAo+Pj4gYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvcGVyZi9hbWxvZ2ljLGcxMi1kZHItcG11LnlhbWwKPj4+IG5ldyBm
+aWxlIG1vZGUgMTAwNjQ0Cj4+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjRkMDE4NTc0ZmZkMQo+Pj4g
+LS0tIC9kZXYvbnVsbAo+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3BlcmYvYW1sb2dpYyxnMTItZGRyLXBtdS55YW1sCj4+PiBAQCAtMCwwICsxLDUyIEBACj4+PiAr
+IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2Up
+Cj4+PiArJVlBTUwgMS4yCj4+PiArLS0tCj4+PiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcv
+c2NoZW1hcy9wZXJmL2FtbG9naWMsZzEyLWRkci1wbXUueWFtbCMKPj4+ICskc2NoZW1hOiBodHRw
+Oi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKPj4+ICsKPj4+ICt0aXRs
+ZTogQW1sb2dpYyBHMTIgRERSIHBlcmZvcm1hbmNlIG1vbml0b3IKPj4+ICsKPj4+ICttYWludGFp
+bmVyczoKPj4+ICvCoCAtIEppdWNoZW5nIFh1IDxqaXVjaGVuZy54dUBhbWxvZ2ljLmNvbT4KPj4+
+ICsKPj4+ICtkZXNjcmlwdGlvbjogfAo+Pj4gK8KgIEFtbG9naWMgRzEyIHNlcmllcyBTb0MgaW50
+ZWdyYXRlIEREUiBiYW5kd2lkdGggbW9uaXRvci4KPj4+ICvCoCBBIHRpbWVyIGlzIGluc2lkZSBh
+bmQgY2FuIGdlbmVyYXRlIGludGVycnVwdCB3aGVuIHRpbWVvdXQuCj4+PiArwqAgVGhlIGJhbmR3
+aWR0aCBpcyBjb3VudGVkIGluIHRoZSB0aW1lciBJU1IuIERpZmZlcmVudCBwbGF0Zm9ybQo+Pj4g
+K8KgIGhhcyBkaWZmZXJlbnQgc3Vic2V0IG9mIGV2ZW50IGZvcm1hdCBhdHRyaWJ1dGUuCj4+PiAr
+Cj4+PiArcHJvcGVydGllczoKPj4+ICvCoCBjb21wYXRpYmxlOgo+Pj4gK8KgwqDCoCBpdGVtczoK
+Pj4gWW91IGhhdmUgb25seSBvbmUgaXRlbSwgc28gcmVtb3ZlICJpdGVtcyIuCgpIaSBLcnp5c3p0
+b2YsCgpJIGhhdmUgdHJpZWQgdG8gcmVtb3ZlICJpdGVtcyIsIGJ1dCBlcnJvciBjb21lcy4KCnBy
+b3BlcnRpZXM6CiDCoCBjb21wYXRpYmxlOgogwqDCoMKgIC0gZW51bToKIMKgwqDCoMKgwqAgLSBh
+bWxvZ2ljLGcxMmEtZGRyLXBtdQogwqDCoMKgwqDCoCAtIGFtbG9naWMsZzEyYi1kZHItcG11CiDC
+oMKgwqDCoMKgIC0gYW1sb2dpYyxzbTEtZGRyLXBtdQoKRG8gSSBnZXQgbWlzdW5kZXJzdGFuZD8g
+SSB0aGluayB0aGUgIml0ZW0iIGlzIG5lY2Vzc2FyeS4KCj4+Cj4+PiArwqDCoMKgwqDCoCAtIGVu
+dW06Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gYW1sb2dpYyxnMTJiLWRkci1wbXUKPj4+ICvC
+oMKgwqDCoMKgwqDCoMKgwqAgLSBhbWxvZ2ljLGcxMmEtZGRyLXBtdQo+Pj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoCAtIGFtbG9naWMsc20xLWRkci1wbXUKPj4+ICsKPj4+ICvCoCByZWc6Cj4+PiArwqDC
+oMKgIGl0ZW1zOgo+Pj4gK8KgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogUGh5c2ljYWwgYWRkcmVz
+cyBvZiBETUMgYmFuZHdpZHRoIHJlZ2lzdGVyCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIGFuZCBz
+aXplIG9mIHRoZSBjb25maWd1cmF0aW9uIGFkZHJlc3Mgc3BhY2UuCj4+IFNraXAgb2J2aW91cyBw
+aWVjZXMsIHNvIG9ubHk6Cj4+Cj4+IGRlc2NyaXB0aW9uOiBETUMgYmFuZHdpZHRoIHJlZ2lzdGVy
+IHNwYWNlCj4+Cj4+PiArwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBQaHlzaWNhbCBhZGRyZXNz
+IG9mIERNQyBQTEwgcmVnaXN0ZXIgYW5kCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIHNpemUgb2Yg
+dGhlIGNvbmZpZ3VyYXRpb24gYWRkcmVzcyBzcGFjZS4KPj4gZGVzY3JpcHRpb246IERNQyBQTEwg
+YmFuZHdpZHRoIHJlZ2lzdGVyIHNwYWNlCj4+Cj4+Cj4+PiArCj4+PiArwqAgaW50ZXJydXB0czoK
+Pj4+ICvCoMKgwqAgaXRlbXM6Cj4+PiArwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBUaGUgSVJR
+IG9mIHRoZSBpbnNpZGUgdGltZXIgdGltZW91dC4KPj4+ICsKPj4+ICtyZXF1aXJlZDoKPj4+ICvC
+oCAtIGNvbXBhdGlibGUKPj4+ICvCoCAtIHJlZwo+Pj4gK8KgIC0gaW50ZXJydXB0cwo+Pj4gKwo+
+Pj4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQo+Pj4gKwo+Pj4gK2V4YW1wbGVzOgo+Pj4g
+K8KgIC0gfAo+Pj4gK8KgwqDCoCAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRy
+b2xsZXIvYXJtLWdpYy5oPgo+Pj4gK8KgwqDCoCBkZHJfcG11QGZmNjM4MDAwIHsKPj4gTm8gdW5k
+ZXJzY29yZXMgaW4gbm9kZSBuYW1lcywgZ2VuZXJpYyBub2RlIG5hbWVzLCBzbyBqdXN0ICJwbXUi
+Lgo+PiBodHRwczovL2RldmljZXRyZWUtc3BlY2lmaWNhdGlvbi5yZWFkdGhlZG9jcy5pby9lbi9s
+YXRlc3QvY2hhcHRlcjItZGV2aWNldHJlZS1iYXNpY3MuaHRtbCNnZW5lcmljLW5hbWVzLXJlY29t
+bWVuZGF0aW9uIAo+Pgo+Pgo+Pj4gK8KgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYW1sb2dp
+YyxnMTJhLWRkci1wbXUiOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJlZyA9IDwweGZmNjM4MDAwIDB4
+MTAwCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGZmNjM4YzAwIDB4MTAwPjsK
+Pj4gVGhpcyBpcyBzdGlsbCBub3QgZml4ZWQuIEJpbmRpbmcgc2F5cyB5b3UgaGF2ZSB0d28gaXRl
+bXMsIGJ1dCB5b3UKPj4gZGVjbGFyZWQgaGVyZSBvbmx5IG9uZSBpdGVtLgo+Cj4gT2theSwgSSB3
+aWxsIGNoYW5nZSBpdCBhcyB5b3VyIGNvbW1lbnRzLgo+Cj4KPj4gQmVzdCByZWdhcmRzLAo+PiBL
+cnp5c3p0b2YKPj4KLS0gClRoYW5rcywKSml1Y2hlbmcKCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
