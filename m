@@ -4,109 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0C30C3F6B0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 04:56:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08603C19F2C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 05:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:To:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A1+4S3LvWglPyN1eBeJvajoE2AtMVncTemGf8sECQSA=; b=tUESJOLPOYsWoh
-	IDpPoqHxKePuzyNw61sXBuFng+MPy4OwRI4ce/y7O84d2vSDRMlLdHPqo8eiqyVijRFpAvMtQVKQD
-	OAuF08QAxZsrN7xyyuhh7HeWJLO2I5j7puRxONE1VsURPbu7s2zVvha3P7G7fjyE+No1FeMqowTfB
-	Dw6yimxVDyDw4KR/e5TSmaaRhLQqVX9JitiGrTOJUztA+TjxdIX/467Ft05a53jbgXqEj9Oww96ks
-	ta1K/TtN6nc5ZygTu5zvg7jaWwn3weSyjJTDFmYAuiPlHE+CBzd+7G+Cx9G6fzavs9k9dqUuIlgjK
-	P0uv8Yd8Ou7JUa4YUdjw==;
+	List-Owner; bh=YwiYb8MqG+/nrjbie8jXflq1I5O4y2Hw1rP+GdkJHUM=; b=LA4UpOBE3nrVc1
+	XF23M/mLUPJwwxBYp084sDCswe1T5XHWqilKsG0c/uK53NT/HSt1eRPr1LL+Ua5Yje51fAeTY4tIl
+	jMA3nA/Na0cl08RiOFFyv7tfu2KsPKvO6XQtAEkH291uY8awiq2aJw83Fk5hnJ94tQH4haQWr0yC7
+	6easowpenbkuYOLgnFpBDL+qG7eoudV+7SKVez9V0n93pBjVYqUnB6gWkXAgB/xMHvFPZ3HRhZ6UV
+	M9FYYaRVQZlgL4ALcR9JaFj5vF9eglAjViiBs7BxPTDVrvzltahvggo5pwdAZU2FfFnCTQsqPBhtu
+	IK0IwAhlecnzcLVs3aJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNoch-00B6kG-Q7; Tue, 16 Aug 2022 04:56:15 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1oNpaf-00CwpP-EP; Tue, 16 Aug 2022 05:58:13 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNocf-00B6gl-9O; Tue, 16 Aug 2022 04:56:14 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id l21so9557424ljj.2;
-        Mon, 15 Aug 2022 21:56:10 -0700 (PDT)
+	id 1oNpaZ-00CwKH-QV
+	for linux-amlogic@lists.infradead.org; Tue, 16 Aug 2022 05:58:09 +0000
+Received: by mail-lf1-x136.google.com with SMTP id x19so13418479lfq.7
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 Aug 2022 22:57:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc;
-        bh=lMyaBQ0fr/YKfcqNoaKSdb+50RM2Rxj1DLsmzLOg6p8=;
-        b=emj3c4qKkUjUv1uibUM0Ft8DTfEO05AQs/3Y741be7NMkNUqfjGZwGCKNZo9C6YjXp
-         T3u8ogp+Q7xyqUvWTbVxqcfKvlVXs+sCdEW176mhvN95YWDcTH1MCuzscHr20UM4t23y
-         efx6c0daYiXNg01uKsfggL1TIi4sG62wT7fq7xNMdYWmSyv0IojrLQ3X+x3JlfiYjCWI
-         ZGleJlTBA7imnc87Mtsd2wKxuRqiB4CfXoOM/VC02Ai37op0ZH3k+3vNM5TFazrPwDbX
-         I3K6wSQIq8cyMpVj2t+/iVXSTMsuGrDBGJEDknJ3KmY9XUsqIPVIorSVNOoEmEoQm85s
-         ld9A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
+        b=HbRzk/VSqzFdbWnSmSJYeONLMiDIX4eolFhsG+ovtUIrYQaEt4fOkjoEJEklJPfWAB
+         hCtkii2R/7FvDwsdApsi3VZBEdLZne1ZnDTzCRqDftnrYKUD52HjeIOx//p0e8J5jS/G
+         +0BsgvCxCyLK5ILdUXZdVnnYzzfd4HzpH4nuMgS9jiScfrd0v5sTuOmjgyl4sP4ls2Fj
+         LJzCTUrSbBmEF//F3bcwugnym76jL/d6xod76SEqG4tpMyPReYWiOb9c1bPCh80CKUUt
+         RotrAblPLD/bJQnlvo8zkzY3hH8+Nn1YP/OqkdB7xDZx9hkL0n0Z/3sFwEKwSyiWZxtl
+         4cKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=lMyaBQ0fr/YKfcqNoaKSdb+50RM2Rxj1DLsmzLOg6p8=;
-        b=8Dzuxc/LdXBSfc3IxBeqlNcQcQba+F8BxtnZOXwbt4AE6dn9DBcmKSsKf0pKle5ax+
-         u1VPXKOpjEMZl8z8mGwlXl8NbnidFQzmMnarqzIEtVwnIBKAzw9xE2m0wG42pcG9w9M4
-         Yl7kV6C3yuWwgSrg3OByS6p9P8QR3bL2J6Ebsmdf0QVoGV7t//QmoTSd0xxbK7rmkLbc
-         2yZH4m7a7Kh0KwdyJFBIIgUVU1+KVklHi1cpwKQJT5MHaZl2oydiWxRGz0TFPhbqiuhx
-         gpIxhs3PODDk8QXyhpR088n4ep9P7k/4T+ycbrEruCVaX5Ai/GjbXCX+K+NQDp+3xE2q
-         m6Kg==
-X-Gm-Message-State: ACgBeo1s3fzEmzIDJOU1TyVuYvcwzqpo4qKwcsqMKUP74sBiUQHwPXCn
-	YWcDk0WU46ipL9RzU3aqhTY=
-X-Google-Smtp-Source: AA6agR5Now0GlaC9p5MWRyZT/Uc6WkRd+5NRB4I7ljhPTH6IshCkE/HR/M28GX+goQncDQyVAAYQYQ==
-X-Received: by 2002:a05:651c:1241:b0:261:9313:9cb9 with SMTP id h1-20020a05651c124100b0026193139cb9mr1021791ljh.213.1660625769185;
-        Mon, 15 Aug 2022 21:56:09 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16ee:fa00::9? (dc73szyyyyyyyyyyyyyft-3.rev.dnainternet.fi. [2001:14ba:16ee:fa00::9])
-        by smtp.gmail.com with ESMTPSA id w9-20020ac24429000000b0048a7b1530cesm1254427lfl.284.2022.08.15.21.56.07
+        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
+        b=Kd4sWYd0C2RCarOyPU5XkJfE3RuQI8naVm6n70s+hBuyG7IKa9X41Xn6dc/3AMsytn
+         PR8INzxEOf300WEyTFYePJoFMQyW0FP+i87ahfDHW4T2ggeoAgQqOzO2xVUHswnBcjgH
+         hFONCkOjz9lZX0H4RjD8XCsiv0PL2OT0vfXQGnz368wIz+j6pJ4GlQ1bBYueWHcZscz7
+         Tj3lcLPHpSY2Kk6T54jPNaKsryh7EbwYW7ZYm9mRKlT0CQbXryAfSkYqZNEnvJ479b1g
+         yS3bbzkzcIxvTSgWt6cSmR+kEyWKKlAYr1v28bnp3LpoJydyoSHqmUPCXHS4GZ6bmPc1
+         89vg==
+X-Gm-Message-State: ACgBeo2Nl7oK2bXHjx1fW58kh9YuNA2A97W/vfnfvjUotKTE7m2auHIC
+	jhXj3Uq9gdh9SZQJdIiOA0b3+Q==
+X-Google-Smtp-Source: AA6agR6nWRLeZKfkfbcHhmb0twzixrU6OVenWmTfNeYj4Zbsb7EQ2O2nQhUNQ/z+EXIsHXvCkdP56w==
+X-Received: by 2002:a05:6512:3d8f:b0:48f:a80b:1872 with SMTP id k15-20020a0565123d8f00b0048fa80b1872mr5975131lfv.21.1660629478374;
+        Mon, 15 Aug 2022 22:57:58 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id h6-20020a2ea486000000b0025e57b40009sm1675557lji.89.2022.08.15.22.57.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Aug 2022 21:56:08 -0700 (PDT)
-Message-ID: <57c312b3-ca5b-6efb-6356-43b6513a0c88@gmail.com>
-Date: Tue, 16 Aug 2022 07:56:06 +0300
+        Mon, 15 Aug 2022 22:57:57 -0700 (PDT)
+Message-ID: <96e4a9f2-96a0-764e-8060-58f2c1b23a5b@linaro.org>
+Date: Tue, 16 Aug 2022 08:57:56 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
+Subject: Re: [PATCH v4 4/4] dt-binding: perf: Add Amlogic DDR PMU
 Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Stephen Boyd <sboyd@kernel.org>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- dri-devel@lists.freedesktop.org, Johan Hovold <johan+linaro@kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-amlogic@lists.infradead.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-doc@vger.kernel.org,
- Jonathan Cameron <jic23@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Miaoqian Lin <linmq006@gmail.com>, linux-arm-kernel@lists.infradead.org,
- Alexandru Tachici <alexandru.tachici@analog.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Guenter Roeck <linux@roeck-us.net>, Jonas Karlman <jonas@kwiboo.se>,
- Lorenzo Bianconi <lorenzo@kernel.org>,
- Michael Turq uette <mturquette@baylibre.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
+To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jean Delvare <jdelvare@suse.com>, Alexandru Ardelean
- <aardelean@deviqon.com>, linux-hwmon@vger.kernel.org,
- linux-clk@vger.kernel.org, =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
- Robert Foss <robert.foss@linaro.org>, Aswath Govindraju
- <a-govindraju@ti.com>, David Airlie <airlied@linux.ie>,
- linux-iio@vger.kernel.org
-References: <cover.1660292316.git.mazziesaccount@gmail.com>
- <166057828406.697572.228317501909350108.b4-ty@kernel.org>
- <YvpsRbguMXn74GhR@pendragon.ideasonboard.com>
- <Yvp1Qkuh7xfeb/B2@sirena.org.uk>
- <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com>
- <20220815205857.308B1C433D6@smtp.kernel.org>
- <Yvq33T+XCduoqv7Z@pendragon.ideasonboard.com>
- <YvrO+velKdYdGVve@sirena.org.uk>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: (subset) [PATCH v2 0/7] Devm helpers for regulator get and enable
-In-Reply-To: <YvrO+velKdYdGVve@sirena.org.uk>
+ Chris Healy <cphealy@gmail.com>
+References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
+ <20220805071426.2598818-4-jiucheng.xu@amlogic.com>
+ <a3cd55ad-cec2-9570-2078-6724ab1d7300@linaro.org>
+ <880842a1-a769-f228-7c91-5402e6d9391e@amlogic.com>
+ <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220815_215613_401365_5C757A00 
-X-CRM114-Status: GOOD (  34.70  )
+X-CRM114-CacheID: sfid-20220815_225807_984764_EB1FF2F8 
+X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,97 +99,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi dee Ho Mark, Laurent, Stephen, all
-
-On 8/16/22 01:55, Mark Brown wrote:
-> On Tue, Aug 16, 2022 at 12:17:17AM +0300, Laurent Pinchart wrote:
->> On Mon, Aug 15, 2022 at 01:58:55PM -0700, Stephen Boyd wrote:
-> 
->> You will very quickly see drivers doing this (either directly or
->> indirectly):
-> 
->> probe()
->> {
->> 	devm_clk_get_enabled();
->> 	devm_regulator_get_enable();
->> }
-> 
->> Without a devres-based get+enable API drivers can get the resources they
->> need in any order, possibly moving some of those resource acquisition
->> operations to different functions, and then have a clear block of code
->> that enables the resources in the right order.
-
-I agree. And I think that drivers which do that should stick with it. 
-Still, as you know the devm-unwinding is also done in well defined 
-order. I believe that instead of fighting against the devm we should try 
-educate people to pay attention in the order of unwinding (also when not 
-handled by the devm. Driver writers occasionally break things also w/o 
-devm for example by freeing resources needed by IRQ handlers prior 
-freeing the IRQ.)
-
-If "purging" must not be done in reverse order compared to the 
-aquisition - then one should not use devm. I know people have done 
-errors with devm - OTOH, I've seen devm also fixing bunch of errors.
-
->> These devres helpers give
->> a false sense of security to driver authors and they will end up
->> introducing problems, the same way that devm_kzalloc() makes it
->> outrageously easy to crash the kernel by disconnecting a device that is
->> in use.
-
-I think this is going a bit "off-topic" but I'd like to understand what 
-is behind this statement? From device-writer's perspective - I don't 
-know much better alternatives to free up the memory. I don't see how 
-freeing stuff at .remove would be any better? As far as I understand - 
-if someone is using driver's resources after the device has gone and the 
-driver is detached, then there is not much the driver could do to 
-free-up the stuff be it devm or not? This sounds like fundamentally 
-different problem (to me).
-
-> TBH I think the problem you have here is with devm not with this
-> particular function.
-
-I must say I kind of agree with Mark. If we stop for a second to think 
-what would the Laurent's example look like if there were no 
-devm_regulator_get_enable() provided. I bet the poor driver author could 
-have used devm_clk_get_enabled() - and then implemented a .remove for 
-disabling the regulator. That would be even worse, right?
-
-> That's a different conversation, and a totally
-> valid one especially when you start looking at things like implementing
-> userspace APIs which need to cope with hardware going away while still
-> visible to userspace.
-
-This is interesting. It's not easy for me to spot how devm changes 
-things here? If we consider some removable device - then I guess also 
-the .remove() is ran only after HW has already gone? Yes, devm might 
-make the time window when userspace can see hardware that has gone 
-longer but does it bring any new problem there? It seems to me devm can 
-make hitting the spot more likely - but I don't think it brings 
-completely new issues? (Well, I may be wrong here - wouldn't be the 
-first time :])
-
-> It's *probably* more of a subsystem conversation
-> than a driver one though, or at least I think subsystems should try to
-> arrange to make it so.
-
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
-Discuss - Estimate - Plan - Report and finally accomplish this:
-void do_work(int time) __attribute__ ((const));
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTUvMDgvMjAyMiAxMjowNCwgSml1Y2hlbmcgWHUgd3JvdGU6Cj4+Pj4gK3Byb3BlcnRpZXM6
+Cj4+Pj4gK8KgIGNvbXBhdGlibGU6Cj4+Pj4gK8KgwqDCoCBpdGVtczoKPj4+IFlvdSBoYXZlIG9u
+bHkgb25lIGl0ZW0sIHNvIHJlbW92ZSAiaXRlbXMiLgo+IAo+IEhpIEtyenlzenRvZiwKPiAKPiBJ
+IGhhdmUgdHJpZWQgdG8gcmVtb3ZlICJpdGVtcyIsIGJ1dCBlcnJvciBjb21lcy4KPiAKPiBwcm9w
+ZXJ0aWVzOgo+ICDCoCBjb21wYXRpYmxlOgo+ICDCoMKgwqAgLSBlbnVtOgo+ICDCoMKgwqDCoMKg
+IC0gYW1sb2dpYyxnMTJhLWRkci1wbXUKPiAgwqDCoMKgwqDCoCAtIGFtbG9naWMsZzEyYi1kZHIt
+cG11Cj4gIMKgwqDCoMKgwqAgLSBhbWxvZ2ljLHNtMS1kZHItcG11Cj4gCj4gRG8gSSBnZXQgbWlz
+dW5kZXJzdGFuZD8gSSB0aGluayB0aGUgIml0ZW0iIGlzIG5lY2Vzc2FyeS4KCkFuZCBob3cgb3Ro
+ZXIgYmluZGluZ3MgYXJlIGRvaW5nIGl0PwoKQmVzdCByZWdhcmRzLApLcnp5c3p0b2YKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
