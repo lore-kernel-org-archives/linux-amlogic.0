@@ -4,90 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08603C19F2C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 05:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B0FC32771
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 08:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YwiYb8MqG+/nrjbie8jXflq1I5O4y2Hw1rP+GdkJHUM=; b=LA4UpOBE3nrVc1
-	XF23M/mLUPJwwxBYp084sDCswe1T5XHWqilKsG0c/uK53NT/HSt1eRPr1LL+Ua5Yje51fAeTY4tIl
-	jMA3nA/Na0cl08RiOFFyv7tfu2KsPKvO6XQtAEkH291uY8awiq2aJw83Fk5hnJ94tQH4haQWr0yC7
-	6easowpenbkuYOLgnFpBDL+qG7eoudV+7SKVez9V0n93pBjVYqUnB6gWkXAgB/xMHvFPZ3HRhZ6UV
-	M9FYYaRVQZlgL4ALcR9JaFj5vF9eglAjViiBs7BxPTDVrvzltahvggo5pwdAZU2FfFnCTQsqPBhtu
-	IK0IwAhlecnzcLVs3aJA==;
+	List-Owner; bh=l73ie7+AotSSFhWG2nMgxmYR5w1nlj7ci4eRW05RZuk=; b=gyjjyil6zSFi+S
+	RkPRBjRG6thtPUNXXUUqAZiNHsliiiMHk32063jtmjBwSWGd1PU5da1zIOHIUSd8EWwjTKMFwn5Hz
+	TrwZwsYU83cFGZbHzHTuO/Iuk7amNgI/EMvJW1Ct8Jm3HIeFAiJ0NrEKCi6FqMYEQ+yIaI9WkqZvI
+	6TuFhPAiHVGFnuiRK8KkxGOVK9W4GphZ3xYI5OQUoZfxoZhaipsi6nqmzU5os0UtRQUhXR+gKhFG8
+	+mqj5ET0NM1NZF0AFrFDT1kFry1BeoJf7zf3N4lnvhYGs/K/tPCxIRnYG4s9SIEx0Orkh1VMiYKF4
+	TY8FZ4/YBOjNEQhx+OFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNpaf-00CwpP-EP; Tue, 16 Aug 2022 05:58:13 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1oNrrv-00GZhM-Ek; Tue, 16 Aug 2022 08:24:11 +0000
+Received: from mail-qt1-x832.google.com ([2607:f8b0:4864:20::832])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNpaZ-00CwKH-QV
-	for linux-amlogic@lists.infradead.org; Tue, 16 Aug 2022 05:58:09 +0000
-Received: by mail-lf1-x136.google.com with SMTP id x19so13418479lfq.7
-        for <linux-amlogic@lists.infradead.org>; Mon, 15 Aug 2022 22:57:59 -0700 (PDT)
+	id 1oNrrs-00GZeG-4u; Tue, 16 Aug 2022 08:24:09 +0000
+Received: by mail-qt1-x832.google.com with SMTP id e28so7616339qts.1;
+        Tue, 16 Aug 2022 01:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
-        b=HbRzk/VSqzFdbWnSmSJYeONLMiDIX4eolFhsG+ovtUIrYQaEt4fOkjoEJEklJPfWAB
-         hCtkii2R/7FvDwsdApsi3VZBEdLZne1ZnDTzCRqDftnrYKUD52HjeIOx//p0e8J5jS/G
-         +0BsgvCxCyLK5ILdUXZdVnnYzzfd4HzpH4nuMgS9jiScfrd0v5sTuOmjgyl4sP4ls2Fj
-         LJzCTUrSbBmEF//F3bcwugnym76jL/d6xod76SEqG4tpMyPReYWiOb9c1bPCh80CKUUt
-         RotrAblPLD/bJQnlvo8zkzY3hH8+Nn1YP/OqkdB7xDZx9hkL0n0Z/3sFwEKwSyiWZxtl
-         4cKQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=URNWhoG6Jht3PNpZTFjRMq9C2xuK/GPJGs5c4/qP8Qo=;
+        b=WMTSsJZCsuR2GWexgektS/N4A4uFwS5j+U4U9bXLj9a3L47qI380JV+vKz4DRgUo7m
+         JQ0ZPw6GRXuu40crI4HPnyfuU8Mwuj1qNeEIP4TcZGai2JWBghl1MLZHSVb55P06F6bx
+         B1nlcqlENsza+hf4Ohd1X2ICgnXG9gNZC7PGiYkFdA7ZFjkUfcc87MSd36YKblkLzxGa
+         2BnwA9oruaCFleVvpGTBbHY4dKpfAmqqekOjjv8m9YDssWVu8bRB/z5KMz8EGrrjZ7Sy
+         Eu4fOB4U87dlJ/FQykdL1H5XL0UdE1RlRY7jmsZJ10A3yVUtG2esLd0xOaEnLq9ua0pr
+         3xdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
-        b=Kd4sWYd0C2RCarOyPU5XkJfE3RuQI8naVm6n70s+hBuyG7IKa9X41Xn6dc/3AMsytn
-         PR8INzxEOf300WEyTFYePJoFMQyW0FP+i87ahfDHW4T2ggeoAgQqOzO2xVUHswnBcjgH
-         hFONCkOjz9lZX0H4RjD8XCsiv0PL2OT0vfXQGnz368wIz+j6pJ4GlQ1bBYueWHcZscz7
-         Tj3lcLPHpSY2Kk6T54jPNaKsryh7EbwYW7ZYm9mRKlT0CQbXryAfSkYqZNEnvJ479b1g
-         yS3bbzkzcIxvTSgWt6cSmR+kEyWKKlAYr1v28bnp3LpoJydyoSHqmUPCXHS4GZ6bmPc1
-         89vg==
-X-Gm-Message-State: ACgBeo2Nl7oK2bXHjx1fW58kh9YuNA2A97W/vfnfvjUotKTE7m2auHIC
-	jhXj3Uq9gdh9SZQJdIiOA0b3+Q==
-X-Google-Smtp-Source: AA6agR6nWRLeZKfkfbcHhmb0twzixrU6OVenWmTfNeYj4Zbsb7EQ2O2nQhUNQ/z+EXIsHXvCkdP56w==
-X-Received: by 2002:a05:6512:3d8f:b0:48f:a80b:1872 with SMTP id k15-20020a0565123d8f00b0048fa80b1872mr5975131lfv.21.1660629478374;
-        Mon, 15 Aug 2022 22:57:58 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id h6-20020a2ea486000000b0025e57b40009sm1675557lji.89.2022.08.15.22.57.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Aug 2022 22:57:57 -0700 (PDT)
-Message-ID: <96e4a9f2-96a0-764e-8060-58f2c1b23a5b@linaro.org>
-Date: Tue, 16 Aug 2022 08:57:56 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=URNWhoG6Jht3PNpZTFjRMq9C2xuK/GPJGs5c4/qP8Qo=;
+        b=EQvzvK434IM1+epSjYitpL4yPARGC9YtWtAa5E4rGCrxCCHBpMaEmfUYDiDOveEzmd
+         NODBjfjC3UiUI28UbshQp+5dfv8sTfi6gGQ7Bup73kvGVMdI+FP95fu+DnJ1PKAPCMAk
+         9wOm4i4rc4VH/rc7+uDhTTbCvTAyH5Y5pRfL72cgU9Ux/c/8bAdPhtHWHaRT2Z6qCPbP
+         aj8tHZE9zBvk+Al8gAbgBOuCUhB4X1Mzy2hVoe1bfDFCXC1x1uU2KjU8NZxvjLZIMkw5
+         diHiOxiLid9aZYTkrQRHYcRe9nCOwy58O+bGsoigf92SojXJNrjFf5oLxVvgX5+u7ldF
+         TEOA==
+X-Gm-Message-State: ACgBeo3YoOngYUf05AnJd4PywLoELAAcHSF9IJdx7XXa++DU+UAzwnI9
+	7QtQ8q0xUzdvrTVEtYMkNvBwgFL+SAaUAEsv+Gw=
+X-Google-Smtp-Source: AA6agR5pnQGi7oingWiXnnixDq3edlax9wsTNuhcRBi9pIKjuflZ8obEieyrcjYpsw/u/5tbgjY0kZ/rOVvlBmyXAN8=
+X-Received: by 2002:a05:622a:14cf:b0:343:5b6:68ca with SMTP id
+ u15-20020a05622a14cf00b0034305b668camr16705479qtx.195.1660638245828; Tue, 16
+ Aug 2022 01:24:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 4/4] dt-binding: perf: Add Amlogic DDR PMU
-Content-Language: en-US
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chris Healy <cphealy@gmail.com>
-References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
- <20220805071426.2598818-4-jiucheng.xu@amlogic.com>
- <a3cd55ad-cec2-9570-2078-6724ab1d7300@linaro.org>
- <880842a1-a769-f228-7c91-5402e6d9391e@amlogic.com>
- <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
+References: <cover.1660292316.git.mazziesaccount@gmail.com>
+ <166057828406.697572.228317501909350108.b4-ty@kernel.org> <YvpsRbguMXn74GhR@pendragon.ideasonboard.com>
+ <Yvp1Qkuh7xfeb/B2@sirena.org.uk> <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com>
+In-Reply-To: <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 16 Aug 2022 11:23:29 +0300
+Message-ID: <CAHp75VcAS2Km_aWOV-XhMe9JkLER-1DYbJbkM9pa-i9yhHqsFQ@mail.gmail.com>
+Subject: Re: (subset) [PATCH v2 0/7] Devm helpers for regulator get and enable
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mark Brown <broonie@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, 
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	dri-devel <dri-devel@lists.freedesktop.org>, Johan Hovold <johan+linaro@kernel.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
+	linux-amlogic <linux-amlogic@lists.infradead.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Linux Documentation List <linux-doc@vger.kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Miaoqian Lin <linmq006@gmail.com>, 
+	linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>, 
+	Alexandru Tachici <alexandru.tachici@analog.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Guenter Roeck <linux@roeck-us.net>, Jonas Karlman <jonas@kwiboo.se>, Stephen Boyd <sboyd@kernel.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jean Delvare <jdelvare@suse.com>, 
+	Alexandru Ardelean <aardelean@deviqon.com>, linux-hwmon@vger.kernel.org, 
+	linux-clk <linux-clk@vger.kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Robert Foss <robert.foss@linaro.org>, Aswath Govindraju <a-govindraju@ti.com>, 
+	David Airlie <airlied@linux.ie>, linux-iio <linux-iio@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220815_225807_984764_EB1FF2F8 
-X-CRM114-Status: UNSURE (   8.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220816_012408_266718_997D3EAB 
+X-CRM114-Status: GOOD (  10.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,20 +100,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTUvMDgvMjAyMiAxMjowNCwgSml1Y2hlbmcgWHUgd3JvdGU6Cj4+Pj4gK3Byb3BlcnRpZXM6
-Cj4+Pj4gK8KgIGNvbXBhdGlibGU6Cj4+Pj4gK8KgwqDCoCBpdGVtczoKPj4+IFlvdSBoYXZlIG9u
-bHkgb25lIGl0ZW0sIHNvIHJlbW92ZSAiaXRlbXMiLgo+IAo+IEhpIEtyenlzenRvZiwKPiAKPiBJ
-IGhhdmUgdHJpZWQgdG8gcmVtb3ZlICJpdGVtcyIsIGJ1dCBlcnJvciBjb21lcy4KPiAKPiBwcm9w
-ZXJ0aWVzOgo+ICDCoCBjb21wYXRpYmxlOgo+ICDCoMKgwqAgLSBlbnVtOgo+ICDCoMKgwqDCoMKg
-IC0gYW1sb2dpYyxnMTJhLWRkci1wbXUKPiAgwqDCoMKgwqDCoCAtIGFtbG9naWMsZzEyYi1kZHIt
-cG11Cj4gIMKgwqDCoMKgwqAgLSBhbWxvZ2ljLHNtMS1kZHItcG11Cj4gCj4gRG8gSSBnZXQgbWlz
-dW5kZXJzdGFuZD8gSSB0aGluayB0aGUgIml0ZW0iIGlzIG5lY2Vzc2FyeS4KCkFuZCBob3cgb3Ro
-ZXIgYmluZGluZ3MgYXJlIGRvaW5nIGl0PwoKQmVzdCByZWdhcmRzLApLcnp5c3p0b2YKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Mon, Aug 15, 2022 at 11:20 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Aug 15, 2022 at 05:33:06PM +0100, Mark Brown wrote:
+
+...
+
+> However, should a devm_clk_get_enable() or similar function be
+> implemented, we'll run into trouble.
+
+And in 5.19 we have devm_clk_get_enable(), are we already in trouble?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
