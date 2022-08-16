@@ -4,105 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB9FC2BB41
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 08:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDBFFC2BB41
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 08:43:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8IWhVGXTtZCf5ffjpMcEdr8NWcgkJgFdvfLM6SwU/jU=; b=A3f+7s0kl92V+As9NkGGEVIBNm
-	aY2qBU48BSOJ4cS4Lhfqd5Sml+TCFmCBsA0KTARGzdVCtDO9Yf0OzaWg2+GujmcrAplgBn5yzFsFz
-	/IX2Lda2BwkRfIIz3UwmPK2trVgewEzWMKcDv6TyOz8ZxKjv7/am6M/BeZN5tck6Pt79eMuPOJPJl
-	tXqsXg1MdjIrXtwc3e+RTg1jx/BmtuyY+QWk2BkOUdULmLsGjw1HBABHOt3Es/fDO/KlDPqA6xagM
-	/TN+cINOrVuBKbb9o0GlJEBeBaaXovHa1+bXKyIdZhV/y5eUFid2WBeksq7tqW/EAIwMsjQJqU2AN
-	XMwj5GWg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+3zdo1CZ6ep8W8m8inl0Fv3RBRts4SeOF9Z5iu9F0Kg=; b=AcrP/OT6dZnJT/
+	X5Dgqi5o9Ce7/iGb6I+atHQwi8pl4d+lQqFAnA+LFGTuWMuyR3aLyxGEgP5xEZsvQ8/twLJ7SkCda
+	mPqZ+RRQg22BqypfdAH7WdKtg4Vijiwi8othKOS1mFu7OkNzpVPTrxBk/C0YJ6rkE0nfyhWawnApC
+	6nKSx5s0auymvJSfbf4QveXswH7qy56hj8lZKF/zT4IsFkyf5Qm7FG4X97vTj/Lu0DMC4+P6a5+Tc
+	2Q87fnA8Rhu4FIiiTUPLLyvn/Ne5JNoQ07AyLgtA9VhhORb5N4H9dI4obRIPjsMPHPJ5oDYXNuZv1
+	ePE3v2vhO45tCAZtyIqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNruG-00GbT3-AV; Tue, 16 Aug 2022 08:26:36 +0000
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18])
+	id 1oNsA9-00Gv9c-Jf; Tue, 16 Aug 2022 08:43:01 +0000
+Received: from mail-qk1-x732.google.com ([2607:f8b0:4864:20::732])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNruA-00GbLN-3v; Tue, 16 Aug 2022 08:26:34 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailnew.west.internal (Postfix) with ESMTP id A6B992B059FC;
-	Tue, 16 Aug 2022 04:26:16 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 16 Aug 2022 04:26:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to; s=fm3; t=1660638376; x=1660645576; bh=xTCEULyzlO
-	wE/UY9fk17qyZAhuhH6B/PGBqSBiSepwQ=; b=rbwsGfchGHfn7nqA489Zik6UDL
-	7XNwiAvlu1sOBim9tyjtigNpwTCuUJDZBO0SPVG1qIKarjSzpE+ekMl8i3b8MZpS
-	JfVeAScG0BcSqSdCpLYjLGkCCXasZj0QNw5yjDxwTjtV9/LDwnZGUemEiIMXp6GD
-	rSQ8Ht0GD63o6uQBGIo2R3y7Kj6jUwC2zp9uFkiJA0SbBiBlFhC8rAnATSFjdz4G
-	k1dETmyQAubjJWrl6vgLNcX0KRVhmEY0QfffbtM5gD7oCnpD/R8Nt6cmgORdyZHw
-	GMWmFL7020pjPLlR9NVevrsbfYr0NX0sNvWzIt0qTCUnKRC/zFA89Of4eHBQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1660638376; x=1660645576; bh=xTCEULyzlOwE/UY9fk17qyZAhuhH
-	6B/PGBqSBiSepwQ=; b=osAXLH/Tri7LA6lBH8aa3aw8L8fxoOxibcLtQTkGg6uk
-	WbOkxnSfhKfZ9OoNLe7B3Eu0BB1n8F3EsvP88YzyK3XVW1aC0S/ShkqzIOr8EYUs
-	O5nMfICZD9HooaDPpC1i2l6ZFOz0ekPV66yyii+oRMy9PQnSqPPX5QCygHe6pUyJ
-	d3STzuVumZB7Hpz0QuV775ji7vDreR2KWLpWaKiXu4y3QodwccAQnjWDiUf5I5S1
-	+zWyKvI2W9/HeVuEjH+nk5KlN158b+V38GXaw99ctYHc91MOWbuFguWKnmR7sTwA
-	BvlDqYxfIGwWci48CYytMQnShso4/nbteMYCicwfJQ==
-X-ME-Sender: <xms:plT7YnVjVuZknf2kcyMAJN20f7GBzyjdOPlUZOQDtwfbDq7XDUfxPw>
-    <xme:plT7YvmS9R3CJClAGoemEPbvnNVuVkwcjhL_qjz3m3aiTCyFliQnS5QRdQqUNaTwl
-    Pz7JNQsMZ4-1LAsGtY>
-X-ME-Received: <xmr:plT7Yjaih8YTdQ26ggw3GOU0Vjx0rbPiGZOcEPO_WwfuQw6hdeQKCtbhqZs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehgedgtdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
-    ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:plT7YiUBKAZ9Z3FSVAVOFqhHxHWriY2vRa7L6cyWOsPg7tzkq8zK1A>
-    <xmx:plT7Yhl_b_C-XQsmq6wI9iZhjjDw5G-jUyjMZf4fflb3ZNaBAap4IA>
-    <xmx:plT7YvcvnOXo3v2b0bOAQJavstFCR5oeIdXzO7U77d8dMA29zHXhLA>
-    <xmx:qFT7YjVck8Ijurlme8u4oZU-wZ64Vk4qtklFMCg7SdGtv4nI05WtDzscqjM>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 16 Aug 2022 04:26:14 -0400 (EDT)
-Date: Tue, 16 Aug 2022 10:26:12 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
-	David Airlie <airlied@linux.ie>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Phil Elwell <phil@raspberrypi.com>,
-	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	Dom Cobley <dom@raspberrypi.com>
-Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
-Message-ID: <20220816082612.grebxql5ynnfnvfd@houat>
-References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
- <9fdecae2-80ad-6212-0522-7dccf9fb57be@tronnes.org>
+	id 1oNsA6-00Gv7N-Ta; Tue, 16 Aug 2022 08:43:00 +0000
+Received: by mail-qk1-x732.google.com with SMTP id h27so3200654qkk.9;
+        Tue, 16 Aug 2022 01:42:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=M8+zN5n51GohpbStdjKXmJWXHgqhXr7wmE0QoYJl1Tg=;
+        b=qLuGJVydbZapmuhh/ri/mPvYA5bm4nMtIaG76TKtA3Mvo/gBhkJK17beJcQl4lBkM0
+         iPBdZSSrCNgcezsRIABTJwp7UtgOhSIzqLsuYw6uKZIdWj2+EzGX4Ynvo2pcygJ3ES0H
+         rNv2bDiwY+8yFgEBX8y3Q+RZ0w+7z61uHWS67T1C+ZdmOf9xIz3+Ss494E0LnAKj62KJ
+         uuV7tjhnSgJ133uq7dK9dc8YkqzpGgSLl11+J0G8NNyLbKRknzb7wyR2X4f7YRD/3396
+         ChRcoJ8Z8tpfDVeQs7eHQAwLSDOEU4j8m9CRydpoEnGFQI0rjqmOED+9BOVCNq8moS5U
+         UQgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=M8+zN5n51GohpbStdjKXmJWXHgqhXr7wmE0QoYJl1Tg=;
+        b=R7EUxqr+sYYb61+h+fxkanNNGY0Nen/MJpuCp3oaF0dKdC183BHT7It4eENCOc0vKc
+         hUN2vBVRj3CNanX2cUhYyDzwlSPdScTDzqqf73JhS1Oo94rjtrL+AfgD8KQdCmy4pY0R
+         FZYLvP88tXlVqYC3ON9AXePE4m6YRogRytmiOWLxX+Z7LKVjhrev3hipgU4J+P0u2F3o
+         KaHlsmX+mDUa2z8cc34vg5V/qW5wWbps2389gL1y0sPPVnzeYOUvgmXJekfKvhDAL+Ag
+         n62J/gEWG0MntPn5W/a7yCkiqM2znFt8a673JcxYxPhqYleMvHjGjXhYGY4djNI2Wq+2
+         pQAw==
+X-Gm-Message-State: ACgBeo0y66W7rruh5TUXPPGmkMzuOmaKyBS8ltvGmSS2Oe7tEmuBOVzT
+	rhdFcazNSO887lllgDyiNQdUYK4lfXqonwBvWws=
+X-Google-Smtp-Source: AA6agR4R4lk0CDBQHZmGfGnS3MaEvTJE6k0Sqbe/jCHB+ee624GaEK+KH/pS5yDyRz1iFyVysOe/Lnz9Oes4idkTrfs=
+X-Received: by 2002:ae9:e311:0:b0:6ba:e711:fb27 with SMTP id
+ v17-20020ae9e311000000b006bae711fb27mr11131735qkf.320.1660639377250; Tue, 16
+ Aug 2022 01:42:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9fdecae2-80ad-6212-0522-7dccf9fb57be@tronnes.org>
+References: <cover.1660292316.git.mazziesaccount@gmail.com>
+ <166057828406.697572.228317501909350108.b4-ty@kernel.org> <YvpsRbguMXn74GhR@pendragon.ideasonboard.com>
+ <Yvp1Qkuh7xfeb/B2@sirena.org.uk> <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com>
+ <20220815205857.308B1C433D6@smtp.kernel.org> <Yvq33T+XCduoqv7Z@pendragon.ideasonboard.com>
+In-Reply-To: <Yvq33T+XCduoqv7Z@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 16 Aug 2022 11:42:20 +0300
+Message-ID: <CAHp75VefRphjAhSmrUVC8aaAhrwMD+9Jr=OROFU-0JuNhuFYDw@mail.gmail.com>
+Subject: Re: (subset) [PATCH v2 0/7] Devm helpers for regulator get and enable
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Matti Vaittinen <mazziesaccount@gmail.com>, 
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	dri-devel <dri-devel@lists.freedesktop.org>, Johan Hovold <johan+linaro@kernel.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
+	linux-amlogic <linux-amlogic@lists.infradead.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Linux Documentation List <linux-doc@vger.kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Miaoqian Lin <linmq006@gmail.com>, 
+	linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>, 
+	Alexandru Tachici <alexandru.tachici@analog.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Guenter Roeck <linux@roeck-us.net>, Jonas Karlman <jonas@kwiboo.se>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Michael Turq uette <mturquette@baylibre.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jean Delvare <jdelvare@suse.com>, 
+	Alexandru Ardelean <aardelean@deviqon.com>, linux-hwmon@vger.kernel.org, 
+	linux-clk <linux-clk@vger.kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Robert Foss <robert.foss@linaro.org>, Aswath Govindraju <a-govindraju@ti.com>, 
+	David Airlie <airlied@linux.ie>, linux-iio <linux-iio@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220816_012633_099514_891C6D2B 
-X-CRM114-Status: GOOD (  36.33  )
+X-CRM114-CacheID: sfid-20220816_014258_975268_70B019FF 
+X-CRM114-Status: GOOD (  32.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,203 +102,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4937280339184434155=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, Aug 16, 2022 at 8:37 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Aug 15, 2022 at 01:58:55PM -0700, Stephen Boyd wrote:
+> > Quoting Laurent Pinchart (2022-08-15 11:52:36)
+> > > On Mon, Aug 15, 2022 at 05:33:06PM +0100, Mark Brown wrote:
 
---===============4937280339184434155==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3hhom4iyskwekp7q"
-Content-Disposition: inline
+...
 
+> > > we'll run into trouble. Supplying active high input signals
+> > > to a device that is not powered can lead to latch-up, which tends to
+> > > only manifest after a statistically significant number of occurrences of
+> > > the condition, and can slowly damage the hardware over time. This is a
+> > > real concern as it will typically not be caught during early
+> > > development. I think we would still be better off with requiring drivers
+> > > to manually handle powering off the device until we provide a mechanism
+> > > that can do so safely in an automated way.
+> >
+> > Can you describe the error scenario further? I think it's driver author
+> > error that would lead to getting and enabling the regulator after
+> > getting and enabling a clk that drives out a clock signal on some pins
+> > that aren't powered yet. I'm not sure that's all that much easier to do
+> > with these sorts of devm APIs, but if it is then I'm concerned.
+>
+> You will very quickly see drivers doing this (either directly or
+> indirectly):
+>
+> probe()
+> {
+>         devm_clk_get_enabled();
+>         devm_regulator_get_enable();
+> }
 
---3hhom4iyskwekp7q
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+And how is it devm specific? If the author puts the same without devm
+the ordering would be wrong, correct? devm allows us to focus on
+ordering in a *single* place, which is a win. You seem to be proposing
+to make a high burden on a driver's author to focus on ordering in the
+*three* places. I disagree with that. Yet the driver author has to
+understand many issues with any tool they use. So the root cause of
+your whining is rather on the edge of documentation and education.
+(Yes, I have heard about issues with object lifetime in v4l2
+subdevices regarding to devm, but it seems irrelevant to devm
+mechanism itself.)
 
-Hi,
-
-On Mon, Aug 08, 2022 at 02:44:56PM +0200, Noralf Tr=F8nnes wrote:
-> Den 29.07.2022 18.34, skrev Maxime Ripard:
-> > The TV mode property has been around for a while now to select and get =
-the
-> > current TV mode output on an analog TV connector.
-> >=20
-> > Despite that property name being generic, its content isn't and has been
-> > driver-specific which makes it hard to build any generic behaviour on t=
-op
-> > of it, both in kernel and user-space.
-> >=20
-> > Let's create a new bitmask tv norm property, that can contain any of the
-> > analog TV standards currently supported by kernel drivers. Each driver =
-can
-> > then pass in a bitmask of the modes it supports.
-> >=20
-> > We'll then be able to phase out the older tv mode property.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
->=20
-> Please also update Documentation/gpu/kms-properties.csv
->=20
-> Requirements for adding a new property is found in
-> Documentation/gpu/drm-kms.rst
-
-I knew this was going to be raised at some point, so I'm glad it's that
-early :)
-
-I really don't know what to do there. If we stick by our usual rules,
-then we can't have any of that work merged.
-
-However, I think the status quo is not really satisfactory either.
-Indeed, we have a property, that doesn't follow those requirements
-either, with a driver-specific content, and that stands in the way of
-fixes and further improvements at both the core framework and driver
-levels.
-
-So having that new property still seems like a net improvement at the
-driver, framework and uAPI levels, even if it's not entirely following
-the requirements we have in place.
-
-Even more so since, realistically, those kind of interfaces will never
-get any new development on the user-space side of things, it's
-considered by everyone as legacy.
-
-This also is something we need to support at some point if we want to
-completely deprecate the fbdev drivers and provide decent alternatives
-in KMS.
-
-So yeah, strictly speaking, we would not qualify for our requirements
-there. I still think we have a strong case for an exception though.
-
-> > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_at=
-omic_uapi.c
-> > index c06d0639d552..d7ff6c644c2f 100644
-> > --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> > @@ -700,6 +700,8 @@ static int drm_atomic_connector_set_property(struct=
- drm_connector *connector,
-> >  		state->tv.margins.bottom =3D val;
-> >  	} else if (property =3D=3D config->tv_mode_property) {
-> >  		state->tv.mode =3D val;
-> > +	} else if (property =3D=3D config->tv_norm_property) {
-> > +		state->tv.norm =3D val;
-> >  	} else if (property =3D=3D config->tv_brightness_property) {
-> >  		state->tv.brightness =3D val;
-> >  	} else if (property =3D=3D config->tv_contrast_property) {
-> > @@ -810,6 +812,8 @@ drm_atomic_connector_get_property(struct drm_connec=
-tor *connector,
-> >  		*val =3D state->tv.margins.bottom;
-> >  	} else if (property =3D=3D config->tv_mode_property) {
-> >  		*val =3D state->tv.mode;
-> > +	} else if (property =3D=3D config->tv_norm_property) {
-> > +		*val =3D state->tv.norm;
-> >  	} else if (property =3D=3D config->tv_brightness_property) {
-> >  		*val =3D state->tv.brightness;
-> >  	} else if (property =3D=3D config->tv_contrast_property) {
-> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_conn=
-ector.c
-> > index e3142c8142b3..68a4e47f85a9 100644
-> > --- a/drivers/gpu/drm/drm_connector.c
-> > +++ b/drivers/gpu/drm/drm_connector.c
-> > @@ -1637,6 +1637,7 @@ EXPORT_SYMBOL(drm_mode_create_tv_margin_propertie=
-s);
-> >  /**
-> >   * drm_mode_create_tv_properties - create TV specific connector proper=
-ties
-> >   * @dev: DRM device
-> > + * @supported_tv_norms: Bitmask of TV norms supported (See DRM_MODE_TV=
-_NORM_*)
-> >   * @num_modes: number of different TV formats (modes) supported
-> >   * @modes: array of pointers to strings containing name of each format
-> >   *
-> > @@ -1649,11 +1650,40 @@ EXPORT_SYMBOL(drm_mode_create_tv_margin_propert=
-ies);
-> >   * 0 on success or a negative error code on failure.
-> >   */
-> >  int drm_mode_create_tv_properties(struct drm_device *dev,
-> > +				  unsigned int supported_tv_norms,
-> >  				  unsigned int num_modes,
-> >  				  const char * const modes[])
-> >  {
-> > +	static const struct drm_prop_enum_list tv_norm_values[] =3D {
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_443) - 1, "NTSC-443" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_J) - 1, "NTSC-J" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_NTSC_M) - 1, "NTSC-M" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_60) - 1, "PAL-60" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_B) - 1, "PAL-B" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_D) - 1, "PAL-D" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_G) - 1, "PAL-G" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_H) - 1, "PAL-H" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_I) - 1, "PAL-I" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_M) - 1, "PAL-M" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_N) - 1, "PAL-N" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_PAL_NC) - 1, "PAL-Nc" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_60) - 1, "SECAM-60" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_B) - 1, "SECAM-B" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_D) - 1, "SECAM-D" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_G) - 1, "SECAM-G" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K) - 1, "SECAM-K" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K1) - 1, "SECAM-K1" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_SECAM_L) - 1, "SECAM-L" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD480I) - 1, "hd480i" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD480P) - 1, "hd480p" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD576I) - 1, "hd576i" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD576P) - 1, "hd576p" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD720P) - 1, "hd720p" },
-> > +		{ __builtin_ffs(DRM_MODE_TV_NORM_HD1080I) - 1, "hd1080i" },
-> > +	};
-> >  	struct drm_property *tv_selector;
-> >  	struct drm_property *tv_subconnector;
-> > +	struct drm_property *tv_norm;
-> >  	unsigned int i;
-> > =20
-> >  	if (dev->mode_config.tv_select_subconnector_property)
-> > @@ -1686,6 +1716,13 @@ int drm_mode_create_tv_properties(struct drm_dev=
-ice *dev,
-> >  	if (drm_mode_create_tv_margin_properties(dev))
-> >  		goto nomem;
-> > =20
-> > +	tv_norm =3D drm_property_create_bitmask(dev, 0, "tv norm",
-> > +					   tv_norm_values, ARRAY_SIZE(tv_norm_values),
-> > +					   supported_tv_norms);
->=20
-> I expected this to be an enum, why a bitmask? Userspace can set multiple
-> bits in a bitmask.
-
-I went for a bitmask since it allowed to report the capabilities of a
-driver, but I just realised that you can do that with an enum too, like
-we do for color encodings.
-
-I'll switch for an enum, thanks!
-Maxime
-
---3hhom4iyskwekp7q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvtUpAAKCRDj7w1vZxhR
-xZfoAQC88sDanQdYkKbOW7CFB7CVfnGcKpWIJXqulm0ThhwhLAD+Ow27epX78Lu3
-zhK/iVL50Tvq00zxu4GIvhL7L791JQA=
-=cQh2
------END PGP SIGNATURE-----
-
---3hhom4iyskwekp7q--
+> Without a devres-based get+enable API drivers can get the resources they
+> need in any order, possibly moving some of those resource acquisition
+> operations to different functions, and then have a clear block of code
+> that enables the resources in the right order. These devres helpers give
+> a false sense of security to driver authors and they will end up
+> introducing problems, the same way that devm_kzalloc() makes it
+> outrageously easy to crash the kernel by disconnecting a device that is
+> in use.
 
 
---===============4937280339184434155==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4937280339184434155==--
-
