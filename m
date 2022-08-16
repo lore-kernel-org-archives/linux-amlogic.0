@@ -4,98 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B16C2BB41
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 09:57:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E79D2C2BB41
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 10:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EiUvS621ye9aU4K7JxQJNttzfUJFs8vdw07dEOLFH+Q=; b=QwOsmOnLY3gGur
-	Zl0ofuDYCgmei6JHM1QdG0cGutddgvfAY7jvR4QpxYLVA6dlohN5+9Ipb6Y9FOlMC/HVrVDHnJnFb
-	Nq4Si5z48IhXPfUIxmuENQsx2x1uvc/NcB4BEgQD3eOthU/V+KCpszIO7jQB4O1lra8nQ4EutLoB2
-	FhjzOeIC0Pbu/GviuUh6lA63uAoSu32inVw2fIdjrKX5oq2OWwOk+m7gz1hOq5YQr3ewIsIDo32lE
-	CDTjKhiCpfzsFdHFloKps1NeAn/QwVV9QhDSfb57JdmBmLP53bBWSzFhEMjNIYK9JaeI/RFRxECsp
-	3VmecPJh19tVissElmZg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Vo4JOd2Et0rENqFKOAXj35rRoXsCJXGjTIB0rCdax8U=; b=kRo1vuVhfIgr8G
+	yrOjx09Z1EnVkGQ02koPOMT8PiIjouRtsa5nkZwsQGltL46YivwD/HdBPjrymcwkuInlwUGwz2PSl
+	CuW/Fzr4rIfH237dlQavrTYhpLv8kh7xgj9G9q8rd3Zj9B37gkR+JVmP9x+ntXs+0ownXDCAoWDro
+	2LUhUHqhAtpCXmGlq+EFrl1nytpsDKe/GPZ0/4uxRFh9U3XbAE415uEh31Vb1QFbwqBrzfuB4Heow
+	sdISkbDQDfDNHxCzW/93WXcNCrsm30JJEgma+vB1DfbuHOzF1pJoUbcg/YmhHjt6+a07+lWMebw/G
+	qhgcs3wRw2OAlT8ZQlBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNtJe-000XxX-Qf; Tue, 16 Aug 2022 09:56:54 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1oNtMq-000ZW5-HV; Tue, 16 Aug 2022 10:00:12 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNtJM-000XiA-Ci
-	for linux-amlogic@lists.infradead.org; Tue, 16 Aug 2022 09:56:42 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id j26so2751010wms.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 16 Aug 2022 02:56:33 -0700 (PDT)
+	id 1oNtMc-000ZPd-TO
+	for linux-amlogic@lists.infradead.org; Tue, 16 Aug 2022 10:00:02 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id p12-20020a7bcc8c000000b003a5360f218fso9086741wma.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 16 Aug 2022 02:59:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=c7OVXjrnshlQAhDd3JMeAgzq9zhrvCnPPY2leZaul9E=;
-        b=sQDLODAmIgNV8pShx+tXdvf6RRWQjFZtQplGo1EB3m8ZZ0K2K8GslOR4Ck52XJEef9
-         aro4ek/xESOdqrrSHqJGcqVV+bDHg3g5/0mRqNy/XVBgz23D8FAobaVkVQDhHZMHELGb
-         sNbtHvwLE3l7v7NkGETw3YuLCC/ZEaXx8IOQz2T86y5mmS2ObNd1rn+GnBuZ9ufQEyQy
-         7CQsi6V4RIq5IhqBMMSur/bVYToGTccKaWZcCYmABQ+i5bo2bqSqmzWHOMu44KUjvCrv
-         w3SWhLb1H8CpX00CpQqbQRe/UM4eQGpH1R2cvPHpR9Ofpa04GX/DOdrxO3ViU0wGJG46
-         9PoA==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc;
+        bh=PnqklWL+RGF1i3CCCLxxKU2hE1X/c3n110YFpI0olb0=;
+        b=RTe1VVb/oV4hrVGJVXm9YA8nwupX2PMGKl+Pg3bUXFbY9jWWbffqHXxE76j8rNRouD
+         sbD96+X2iqcn6AIyC9rV5gIemvlQDVYh+uJ+Ym44t3Va9Qb+OqjZrzZJNKw/4QINWiDd
+         cp/d08ol2Ls5jKAMI1d/+AXvQJpcpyDbYz05Hpvj0qENv9DnlnTWtx3WGMWVmd803aOc
+         ZnQRvdDX/VEjVTSz6vJR2cnkArAMeB8j5Mai5k30GLi5SXDRWi/jZuEJ9mLI/up96aua
+         ZJx4ytUSSbgzGX/TGUKQa4O7tAXjnk4dh992fYzWNowAvk2wbkLrNHQnaPVtPeb4DE5s
+         /X+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=c7OVXjrnshlQAhDd3JMeAgzq9zhrvCnPPY2leZaul9E=;
-        b=0Af7XME5xRWlpxbaE2CaG+BRnyo9sebyA8rry46ck/6Ha8APFu73AGdbXK1fpAM5P2
-         eNjJDwaT8YsXag7ZTQsoV7whVHI5yxUgCQ0IxYHlAJ4DTbGAy82ejE+bv6mbeXIGds7j
-         iJp7Qp6yh4yp/IMLoWCkxgYhGaSPDVtT1wGONUNeoc4yfkB9+T3BHKGMy717tuc9vgUt
-         UXaBFWh0LrgkgWQxwGe4mr6t1dSj2f6gbeQcpRyu3lSuDajevPVAPVt/2nQhZg7GSnEs
-         b5uOjnwnQeHXOOIxKaf1w+dcsvGXjkqwGugmjzOYg3w1VD1czqDGkInjKHUAHhOmZ82T
-         UyTQ==
-X-Gm-Message-State: ACgBeo1GAKAKfbEhdlnyRRDGLZmp6/isleBl1BKIJJTcyHI4M2U6Fr9B
-	YEkl3VxiOgsbIYLEgc+D0UlF9A==
-X-Google-Smtp-Source: AA6agR5ObiKbUJrgfx3vVrmLVjAXOeoqvGv/WDJV0Y54gZafu1cjk8NPJY8M0EJk9zHIyLQUADbwUg==
-X-Received: by 2002:a05:600c:3c90:b0:3a3:8606:2df3 with SMTP id bg16-20020a05600c3c9000b003a386062df3mr18914335wmb.132.1660643792447;
-        Tue, 16 Aug 2022 02:56:32 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:982:cbb0:ef0b:d58b:b15c:96e6])
-        by smtp.gmail.com with ESMTPSA id p14-20020a5d4e0e000000b0020fff0ea0a3sm9630907wrt.116.2022.08.16.02.56.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 02:56:31 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	linux-i2c@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-crypto@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH] MAINTAINERS: Update email of Neil Armstrong
-Date: Tue, 16 Aug 2022 11:56:17 +0200
-Message-Id: <20220816095617.948678-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc;
+        bh=PnqklWL+RGF1i3CCCLxxKU2hE1X/c3n110YFpI0olb0=;
+        b=b4RHLAJtDIm5Py+51TfKT20oHDMYc4/ZAiaYmTFsPtZxTRbOUS6RkMxdOa7MKVp0Lf
+         X9UUMVMtEXG6oTs1xdWw/lFcw4tJ+I4/F995KuOykogqmjH9Lr5HncaeacJ2ndpkHHIL
+         btM3evNum7At5jnfzfJZMQxGeltkonTcjG5JjlurKCJ5sdUWmfqMQYlOBnl9gKmSS56c
+         d6fiCbTTiOfLyzblrY6rrojhK2K6byA1jq4HqhLx6bBlnfc/yYcFsccvtiG8lAjJGoGg
+         sO0NFAnYhgr9NNbby8PMqGvIjzDDmkKWKeRWWxv4AYoGNeh6i3cWwGeaKBz+NMza7O1G
+         SWaQ==
+X-Gm-Message-State: ACgBeo1KWr4/x56JJiAj6eIUNttcJjBEBG4k7o6s6MRlHsVXPDksXBpw
+	LKIgz9G32e93HOUWK9ksDR4YxpIg2yZTyA==
+X-Google-Smtp-Source: AA6agR42gKbh+SrSoKgSqr3CinU2WRqyL1DxHjFcjbYadmn44fp4m/4ugiMrKyH6xsboL5oVeeQjXw==
+X-Received: by 2002:a7b:cd0f:0:b0:3a5:ec59:daf0 with SMTP id f15-20020a7bcd0f000000b003a5ec59daf0mr6442194wmj.13.1660643996273;
+        Tue, 16 Aug 2022 02:59:56 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ef0b:d58b:b15c:96e6? ([2a01:e0a:982:cbb0:ef0b:d58b:b15c:96e6])
+        by smtp.gmail.com with ESMTPSA id j11-20020adfe50b000000b00224f67bfc95sm8623511wrm.62.2022.08.16.02.59.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 02:59:55 -0700 (PDT)
+Message-ID: <89777dae-34c5-3cb9-dd54-98230fd260e0@baylibre.com>
+Date: Tue, 16 Aug 2022 11:59:54 +0200
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=21959; i=narmstrong@baylibre.com;
- h=from:subject; bh=+W0noluQF8xU8yPAYe4ORzlUL4SYSseTznxGoxJg6fo=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBi+2ln22eMpGar5uXv5y91Wcrj0KsgszzZS/dV7q+T
- wvMUFzKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYvtpZwAKCRB33NvayMhJ0Q2RD/
- 9or+KgrKSQArJboSeq8/2+3LOyY+dSZ4GtKWzh0FQPFgPBKCVZ5iYfleaxqYsrBeSr03jzNscy+2Ly
- 8sQfktJVfLB6NUlAXgqyO9laLuPgAhuvLKbMajQBx0LpYyuGlZtSCxm/zDYrGgQ9AsxvChg11Z0r7x
- KeR1dN58U5D7bx4jCEcxeeDlhvgX4b9NpnT8YEc8MojWUjJ6vEmoCpPgg3MPLBePcV76jKlavoyrQb
- aXBmn+FdTYIDVKlvSWjAcbMnOH7Gh7JttiqPPTivuXXssGCEI5/RHUW+XqCMEbwzUT9ImcVQbV9W2u
- SFi30yk+getZvdAeRyZVfDFr7vVHT+r897ghB69guYt9Ljgs0KX1Gzyl6H3L4szHIA31opcQu/zwri
- aF5X9EbjihX3Nh3MoNhE0HyP7aNGF+igrW/N4x68/w7RvXg7fBHiCuOWHb4ea9YTWktxdrTosBOVv0
- xVXmT9Z+yjJVqJXFHo47UVYTf7FrHiKlTajfmhOJTO+CZQlfV89sh9Te2SkZcNUHDQACY46IpywddF
- DV6mZTYget/AR/E5eiRxe7HlWH2nZUGWXR45z0f8qZvz+GvdDVY356BWqXxAw0LGBC66LErBgWDs16
- RYtGFpeCaTZ2MffxA+jOfS3eUwlljFOTcLXKargSACQ27UfEbxgHGDZeN4kA==
-X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add support for JetHub D1p
+ (j110)
+Content-Language: en-US
+To: Vyacheslav Bocharov <adeep@lexina.in>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20220811103113.3097868-1-adeep@lexina.in>
+ <20220811103113.3097868-2-adeep@lexina.in>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220811103113.3097868-2-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220816_025636_518481_ECBC7695 
-X-CRM114-Status: GOOD (  10.70  )
+X-CRM114-CacheID: sfid-20220816_025959_000837_EFE75DF3 
+X-CRM114-Status: GOOD (  22.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,484 +91,873 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <neil.armstrong@linaro.org>
+On 11/08/2022 12:31, Vyacheslav Bocharov wrote:
+> - add support for JetHome JetHub D1p (https://jethome.ru/d1p) is a home
+> automation controller with the following features:
+>    - DIN Rail Mounting
+>    - Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
+>    - no video out
+>    - 1/2/4GB LPDDR4
+>    - 8/16/32GB eMMC flash
+>    - 1 x USB 2.0
+>    - 1 x 10/100Mbps ethernet
+>    - WiFi / Bluetooth Realtek 8822CS or similar IEEE 802.11a/b/g/n/ac
+>    - TI CC2652P1 Zigbee Wireless Module with up to 20dBm output power
+>      and Zigbee 3.0 support.
+>    - 2 x gpio LEDS
+>    - GPIO user Button
+>    - 1 x 1-Wire
+>    - 2 x RS-485
+>    - 4 x dry contact digital GPIO inputs
+>    - 3 x relay GPIO outputs
+>    - DC source with a voltage of 9 to 56 V / Active POE
+> 
+> - unify device tree files for JetHub D1/D1p devices
+> 
+> Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+> ---
+>   arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+>   .../amlogic/meson-axg-jethome-jethub-j100.dts | 338 +----------------
+>   .../meson-axg-jethome-jethub-j110-rev-2.dts   |  37 ++
+>   .../meson-axg-jethome-jethub-j110-rev-3.dts   |  27 ++
+>   .../meson-axg-jethome-jethub-j1xx.dtsi        | 351 ++++++++++++++++++
+>   5 files changed, 421 insertions(+), 334 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 8773211df50e..33e9c96af099 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -1,6 +1,8 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+> index 8b0d586aa84e..b2d6ba660914 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+> @@ -1,270 +1,29 @@
+>   // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>   /*
+> - * Copyright (c) 2021 Vyacheslav Bocharov <adeep@lexina.in>
+> - * Copyright (c) 2020 JetHome
+> - * Author: Aleksandr Kazantsev <ak@tvip.ru>
+> - * Author: Alexey Shevelkin <ash@tvip.ru>
+> + * Copyright (c) 2022 Vyacheslav Bocharov <adeep@lexina.in>
+> + * Copyright (c) 2022 JetHome
+>    * Author: Vyacheslav Bocharov <adeep@lexina.in>
+>    */
+>   
+>   /dts-v1/;
+>   
+> -#include "meson-axg.dtsi"
+> -#include <dt-bindings/input/input.h>
+> -#include <dt-bindings/thermal/thermal.h>
+> +#include "meson-axg-jethome-jethub-j1xx.dtsi"
+>   
+>   / {
+>   	compatible = "jethome,jethub-j100", "amlogic,a113d", "amlogic,meson-axg";
+> -	model = "JetHome JetHub J100";
+> -	aliases {
+> -		serial0 = &uart_AO;   /* Console */
+> -		serial2 = &uart_AO_B; /* External UART (Wireless Module) */
+> -		ethernet0 = &ethmac;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> +	model = "JetHome JetHub D1 (J100)";
+>   
+>   	/* 1024MB RAM */
+>   	memory@0 {
+>   		device_type = "memory";
+>   		reg = <0x0 0x0 0x0 0x40000000>;
+>   	};
+> -
+> -	reserved-memory {
+> -		linux,cma {
+> -			size = <0x0 0x400000>;
+> -		};
+> -	};
+> -
+> -	emmc_pwrseq: emmc-pwrseq {
+> -		compatible = "mmc-pwrseq-emmc";
+> -		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+> -	};
+> -
+> -	vcc_3v3: regulator-vcc_3v3 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VCC_3V3";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&vddao_3v3>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	vcc_5v: regulator-vcc_5v {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VCC5V";
+> -		regulator-min-microvolt = <5000000>;
+> -		regulator-max-microvolt = <5000000>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	vddao_3v3: regulator-vddao_3v3 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VDDAO_3V3";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&vcc_5v>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	vddio_ao18: regulator-vddio_ao18 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VDDIO_AO18";
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -		vin-supply = <&vddao_3v3>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	vddio_boot: regulator-vddio_boot {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VDDIO_BOOT";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&vddao_3v3>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	vccq_1v8: regulator-vccq_1v8 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "VCCQ_1V8";
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -		vin-supply = <&vddao_3v3>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	usb_pwr: regulator-usb_pwr {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "USB_PWR";
+> -		regulator-min-microvolt = <5000000>;
+> -		regulator-max-microvolt = <5000000>;
+> -		vin-supply = <&vcc_5v>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	sdio_pwrseq: sdio-pwrseq {
+> -		compatible = "mmc-pwrseq-simple";
+> -		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
+> -		clocks = <&wifi32k>;
+> -		clock-names = "ext_clock";
+> -	};
+> -
+> -	wifi32k: wifi32k {
+> -		compatible = "pwm-clock";
+> -		#clock-cells = <0>;
+> -		clock-frequency = <32768>;
+> -		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
+> -	};
+> -
+> -	thermal-zones {
+> -		cpu_thermal: cpu-thermal {
+> -			polling-delay-passive = <250>;
+> -			polling-delay = <1000>;
+> -			thermal-sensors = <&scpi_sensors 0>;
+> -			trips {
+> -				cpu_passive: cpu-passive {
+> -					temperature = <70000>; /* millicelsius */
+> -					hysteresis = <2000>; /* millicelsius */
+> -					type = "passive";
+> -				};
+> -
+> -				cpu_hot: cpu-hot {
+> -					temperature = <80000>; /* millicelsius */
+> -					hysteresis = <2000>; /* millicelsius */
+> -					type = "hot";
+> -				};
+> -
+> -				cpu_critical: cpu-critical {
+> -					temperature = <100000>; /* millicelsius */
+> -					hysteresis = <2000>; /* millicelsius */
+> -					type = "critical";
+> -				};
+> -			};
+> -
+> -			cpu_cooling_maps: cooling-maps {
+> -				map0 {
+> -					trip = <&cpu_passive>;
+> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> -				};
+> -
+> -				map1 {
+> -					trip = <&cpu_hot>;
+> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -
+> -	onewire {
+> -		compatible = "w1-gpio";
+> -		gpios = <&gpio GPIOA_14 GPIO_ACTIVE_HIGH>;
+> -		#gpio-cells = <1>;
+> -	};
+> -};
+> -
+> -&efuse {
+> -	sn: sn@32 {
+> -		reg = <0x32 0x20>;
+> -	};
+> -
+> -	eth_mac: eth_mac@0 {
+> -		reg = <0x0 0x6>;
+> -	};
+> -
+> -	bt_mac: bt_mac@6 {
+> -		reg = <0x6 0x6>;
+> -	};
+> -
+> -	wifi_mac: wifi_mac@c {
+> -		reg = <0xc 0x6>;
+> -	};
+> -
+> -	bid: bid@12 {
+> -		reg = <0x12 0x20>;
+> -	};
+> -};
+> -
+> -&ethmac {
+> -	status = "okay";
+> -	pinctrl-0 = <&eth_rmii_x_pins>;
+> -	pinctrl-names = "default";
+> -	phy-handle = <&eth_phy0>;
+> -	phy-mode = "rmii";
+> -
+> -	mdio {
+> -		compatible = "snps,dwmac-mdio";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		/* ICPlus IP101A/G Ethernet PHY (vendor_id=0x0243, model_id=0x0c54) */
+> -		eth_phy0: ethernet-phy@0 {
+> -			/* compatible = "ethernet-phy-id0243.0c54";*/
+> -			max-speed = <100>;
+> -			reg = <0>;
+> -
+> -			reset-assert-us = <10000>;
+> -			reset-deassert-us = <10000>;
+> -			reset-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_LOW>;
+> -		};
+> -	};
+> -};
+> -
+> -/* Internal I2C bus (on CPU module) */
+> -&i2c1 {
+> -	status = "okay";
+> -	pinctrl-0 = <&i2c1_z_pins>;
+> -	pinctrl-names = "default";
+> -
+> -	/* RTC */
+> -	pcf8563: pcf8563@51 {
+> -		compatible = "nxp,pcf8563";
+> -		reg = <0x51>;
+> -		status = "okay";
+> -	};
+>   };
+>   
+> -/* Peripheral I2C bus (on motherboard) */
+> -&i2c_AO {
+> -	status = "okay";
+> -	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+> -&pwm_ab {
+> -	status = "okay";
+> -	pinctrl-0 = <&pwm_a_x20_pins>;
+> -	pinctrl-names = "default";
+> -};
+>   
+>   /* wifi module */
+>   &sd_emmc_b {
+> -	status = "okay";
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -
+> -	pinctrl-0 = <&sdio_pins>;
+> -	pinctrl-1 = <&sdio_clk_gate_pins>;
+> -	pinctrl-names = "default", "clk-gate";
+> -
+> -	bus-width = <4>;
+> -	cap-sd-highspeed;
+> -	max-frequency = <50000000>;
+>   	non-removable;
+> -	disable-wp;
+> -
+> -	mmc-pwrseq = <&sdio_pwrseq>;
+> -
+> -	vmmc-supply = <&vddao_3v3>;
+> -	vqmmc-supply = <&vddio_boot>;
+>   
+>   	brcmf: wifi@1 {
+>   		reg = <1>;
+> @@ -272,99 +31,10 @@ brcmf: wifi@1 {
+>   	};
+>   };
+>   
+> -/* emmc storage */
+> -&sd_emmc_c {
+> -	status = "okay";
+> -	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
+> -	pinctrl-1 = <&emmc_clk_gate_pins>;
+> -	pinctrl-names = "default", "clk-gate";
+> -
+> -	bus-width = <8>;
+> -	cap-mmc-highspeed;
+> -	max-frequency = <200000000>;
+> -	non-removable;
+> -	disable-wp;
+> -	mmc-ddr-1_8v;
+> -	mmc-hs200-1_8v;
+> -
+> -	mmc-pwrseq = <&emmc_pwrseq>;
+> -
+> -	vmmc-supply = <&vcc_3v3>;
+> -	vqmmc-supply = <&vccq_1v8>;
+> -};
+> -
+>   /* UART Bluetooth */
+>   &uart_B {
+> -	status = "okay";
+> -	pinctrl-0 = <&uart_b_z_pins>, <&uart_b_z_cts_rts_pins>;
+> -	pinctrl-names = "default";
+> -	uart-has-rtscts;
+> -
+>   	bluetooth {
+>   		compatible = "brcm,bcm43438-bt";
+>   		shutdown-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
+>   	};
+>   };
+> -
+> -/* UART Console */
+> -&uart_AO {
+> -	status = "okay";
+> -	pinctrl-0 = <&uart_ao_a_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+> -/* UART Wireless module */
+> -&uart_AO_B {
+> -	status = "okay";
+> -	pinctrl-0 = <&uart_ao_b_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+> -&usb {
+> -	status = "okay";
+> -	phy-supply = <&usb_pwr>;
+> -};
+> -
+> -&spicc1 {
+> -	status = "okay";
+> -	pinctrl-0 = <&spi1_x_pins>, <&spi1_ss0_x_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+> -&gpio {
+> -	gpio-line-names =
+> -		"", "", "", "", "", // 0 - 4
+> -		"", "", "", "", "", // 5 - 9
+> -		"UserButton", "", "", "", "", // 10 - 14
+> -		"", "", "", "", "", // 15 - 19
+> -		"", "", "", "", "", // 20 - 24
+> -		"", "LedRed", "LedGreen", "Output3", "Output2", // 25 - 29
+> -		"Output1", "", "", "", "", // 30 - 34
+> -		"", "ZigBeeBOOT", "", "", "", // 35 - 39
+> -		"1Wire", "ZigBeeRESET", "", "Input4", "Input3", // 40 - 44
+> -		"Input2", "Input1", "", "", "", // 45 - 49
+> -		"", "", "", "", "", // 50 - 54
+> -		"", "", "", "", "", // 55 - 59
+> -		"", "", "", "", "", // 60 - 64
+> -		"", "", "", "", "", // 65 - 69
+> -		"", "", "", "", "", // 70 - 74
+> -		"", "", "", "", "", // 75 - 79
+> -		"", "", "", "", "", // 80 - 84
+> -		"", ""; // 85-86
+> -};
+> -
+> -&cpu0 {
+> -	#cooling-cells = <2>;
+> -};
+> -
+> -&cpu1 {
+> -	#cooling-cells = <2>;
+> -};
+> -
+> -&cpu2 {
+> -	#cooling-cells = <2>;
+> -};
+> -
+> -&cpu3 {
+> -	#cooling-cells = <2>;
+> -};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+> new file mode 100644
+> index 000000000000..0062667c4f65
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+> @@ -0,0 +1,37 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Vyacheslav Bocharov <adeep@lexina.in>
+> + * Copyright (c) 2022 JetHome
+> + * Author: Vyacheslav Bocharov <adeep@lexina.in>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-axg-jethome-jethub-j1xx.dtsi"
+> +
+> +/ {
+> +	compatible = "jethome,jethub-j110", "amlogic,a113d", "amlogic,meson-axg";
+> +	model = "JetHome JetHub D1p (J110) HW rev.2";
+> +
+> +	/* 2GiB or 4GiB RAM */
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +};
+> +
+> +
+> +/* wifi module */
+> +&sd_emmc_b {
+> +	broken-cd;/* cd-gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;*/
+> +};
+> +
+> +/* UART Bluetooth */
+> +&uart_B {
+> +	bluetooth {
+> +		compatible = "realtek,rtl8822cs-bt";
+> +		enable-gpios  = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
+> +		host-wake-gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_HIGH>;
+> +		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+> new file mode 100644
+> index 000000000000..c2d22b00c1cd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Vyacheslav Bocharov <adeep@lexina.in>
+> + * Copyright (c) 2022 JetHome
+> + * Author: Vyacheslav Bocharov <adeep@lexina.in>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-axg-jethome-jethub-j1xx.dtsi"
+> +
+> +/ {
+> +	compatible = "jethome,jethub-j110", "amlogic,a113d", "amlogic,meson-axg";
+> +	model = "JetHome JetHub D1p (J110) Hw rev.3";
+> +
+> +	/* 2GiB or 4GiB RAM */
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +};
+> +
+> +
+> +/* wifi module */
+> +&sd_emmc_b {
+> +	broken-cd;/* cd-gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;*/
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
+> new file mode 100644
+> index 000000000000..5836b0030931
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
+> @@ -0,0 +1,351 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Vyacheslav Bocharov <adeep@lexina.in>
+> + * Copyright (c) 2022 JetHome
+> + * Author: Vyacheslav Bocharov <adeep@lexina.in>
+> + * Author: Aleksandr Kazantsev <ak@tvip.ru>
+> + * Author: Alexey Shevelkin <ash@tvip.ru>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-axg.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +	aliases {
+> +		serial0 = &uart_AO;   /* Console */
+> +		serial2 = &uart_AO_B; /* External UART (Wireless Module) */
+> +		ethernet0 = &ethmac;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	reserved-memory {
+> +		linux,cma {
+> +			size = <0x0 0x400000>;
+> +		};
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	vcc_3v3: regulator-vcc_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_5v: regulator-vcc_5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC5V";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_5v>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_ao18: regulator-vddio_ao18 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_AO18";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_boot: regulator-vddio_boot {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_BOOT";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vccq_1v8: regulator-vccq_1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCCQ_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	usb_pwr: regulator-usb_pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB_PWR";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc_5v>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +
+> +	wifi32k: wifi32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
+> +	};
+> +
+> +	thermal-zones {
+> +		cpu_thermal: cpu-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&scpi_sensors 0>;
+> +			trips {
+> +				cpu_passive: cpu-passive {
+> +					temperature = <70000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "passive";
+> +				};
+> +
+> +				cpu_hot: cpu-hot {
+> +					temperature = <80000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "hot";
+> +				};
+> +
+> +				cpu_critical: cpu-critical {
+> +					temperature = <100000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cpu_cooling_maps: cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_passive>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +
+> +				map1 {
+> +					trip = <&cpu_hot>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	onewire {
+> +		compatible = "w1-gpio";
+> +		gpios = <&gpio GPIOA_14 GPIO_ACTIVE_HIGH>;
+> +		#gpio-cells = <1>;
+> +	};
+> +};
+> +
+> +&efuse {
+> +	sn: sn@32 {
+> +		reg = <0x32 0x20>;
+> +	};
+> +
+> +	eth_mac: eth_mac@0 {
+> +		reg = <0x0 0x6>;
+> +	};
+> +
+> +	bt_mac: bt_mac@6 {
+> +		reg = <0x6 0x6>;
+> +	};
+> +
+> +	wifi_mac: wifi_mac@c {
+> +		reg = <0xc 0x6>;
+> +	};
+> +
+> +	bid: bid@12 {
+> +		reg = <0x12 0x20>;
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	pinctrl-0 = <&eth_rmii_x_pins>;
+> +	pinctrl-names = "default";
+> +	phy-handle = <&eth_phy0>;
+> +	phy-mode = "rmii";
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* ICPlus IP101A/G Ethernet PHY (vendor_id=0x0243, model_id=0x0c54) */
+> +		eth_phy0: ethernet-phy@0 {
+> +			/* compatible = "ethernet-phy-id0243.0c54";*/
+> +			max-speed = <100>;
+> +			reg = <0>;
+> +
+> +			reset-assert-us = <10000>;
+> +			reset-deassert-us = <10000>;
+> +			reset-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +};
+> +
+> +/* Internal I2C bus (on CPU module) */
+> +&i2c1 {
+> +	status = "okay";
+> +	pinctrl-0 = <&i2c1_z_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	/* RTC */
+> +	pcf8563: pcf8563@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +/* Peripheral I2C bus (on motherboard) */
+> +&i2c_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&pwm_ab {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_a_x20_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +/* wifi module */
+> +&sd_emmc_b {
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-1 = <&sdio_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <50000000>;
+> +	disable-wp;
+> +
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* emmc storage */
+> +&sd_emmc_c {
+> +	status = "okay";
+> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
+> +	pinctrl-1 = <&emmc_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	max-frequency = <200000000>;
+> +	non-removable;
+> +	disable-wp;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +
+> +	mmc-pwrseq = <&emmc_pwrseq>;
+> +
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vccq_1v8>;
+> +};
+> +
+> +/* UART Bluetooth */
+> +&uart_B {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_b_z_pins>, <&uart_b_z_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +};
+> +
+> +/* UART Console */
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +/* UART Wireless module */
+> +&uart_AO_B {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_b_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&usb {
+> +	status = "okay";
+> +	phy-supply = <&usb_pwr>;
+> +};
+> +
+> +&spicc1 {
+> +	status = "okay";
+> +	pinctrl-0 = <&spi1_x_pins>, <&spi1_ss0_x_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&gpio {
+> +	gpio-line-names =
+> +		"", "", "", "", "", // 0 - 4
+> +		"", "", "", "", "", // 5 - 9
+> +		"UserButton", "", "", "", "", // 10 - 14
+> +		"", "", "", "", "", // 15 - 19
+> +		"", "", "", "", "", // 20 - 24
+> +		"", "LedRed", "LedGreen", "Output3", "Output2", // 25 - 29
+> +		"Output1", "", "", "", "", // 30 - 34
+> +		"", "ZigBeeBOOT", "", "", "", // 35 - 39
+> +		"1Wire", "ZigBeeRESET", "", "Input4", "Input3", // 40 - 44
+> +		"Input2", "Input1", "", "", "", // 45 - 49
+> +		"", "", "", "", "", // 50 - 54
+> +		"", "", "", "", "", // 55 - 59
+> +		"", "", "", "", "", // 60 - 64
+> +		"", "", "", "", "", // 65 - 69
+> +		"", "", "", "", "", // 70 - 74
+> +		"", "", "", "", "", // 75 - 79
+> +		"", "", "", "", "", // 80 - 84
+> +		"", ""; // 85-86
+> +};
+> +
+> +&cpu0 {
+> +	#cooling-cells = <2>;
+> +};
+> +
+> +&cpu1 {
+> +	#cooling-cells = <2>;
+> +};
+> +
+> +&cpu2 {
+> +	#cooling-cells = <2>;
+> +};
+> +
+> +&cpu3 {
+> +	#cooling-cells = <2>;
+> +};
 
-My professional e-mail will change and the BayLibre one will
-bounce after mid-september of 2022.
-
-This updates the MAINTAINERS file, the YAML bindings and adds an
-entry in the .mailmap file.
-
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .mailmap                                      |  1 +
- .../amlogic/amlogic,meson-gx-ao-secure.yaml   |  2 +-
- .../display/amlogic,meson-dw-hdmi.yaml        |  2 +-
- .../bindings/display/amlogic,meson-vpu.yaml   |  2 +-
- .../display/bridge/analogix,anx7814.yaml      |  2 +-
- .../bindings/display/bridge/ite,it66121.yaml  |  2 +-
- .../display/panel/sgd,gktw70sdae4se.yaml      |  2 +-
- .../bindings/i2c/amlogic,meson6-i2c.yaml      |  2 +-
- .../mailbox/amlogic,meson-gxbb-mhu.yaml       |  2 +-
- .../bindings/media/amlogic,axg-ge2d.yaml      |  2 +-
- .../bindings/media/amlogic,gx-vdec.yaml       |  2 +-
- .../media/amlogic,meson-gx-ao-cec.yaml        |  2 +-
- .../devicetree/bindings/mfd/khadas,mcu.yaml   |  2 +-
- .../bindings/net/amlogic,meson-dwmac.yaml     |  2 +-
- .../bindings/phy/amlogic,axg-mipi-dphy.yaml   |  2 +-
- .../phy/amlogic,meson-g12a-usb2-phy.yaml      |  2 +-
- .../phy/amlogic,meson-g12a-usb3-pcie-phy.yaml |  2 +-
- .../bindings/power/amlogic,meson-ee-pwrc.yaml |  2 +-
- .../bindings/reset/amlogic,meson-reset.yaml   |  2 +-
- .../bindings/rng/amlogic,meson-rng.yaml       |  2 +-
- .../bindings/serial/amlogic,meson-uart.yaml   |  2 +-
- .../bindings/soc/amlogic/amlogic,canvas.yaml  |  2 +-
- .../bindings/spi/amlogic,meson-gx-spicc.yaml  |  2 +-
- .../bindings/spi/amlogic,meson6-spifc.yaml    |  2 +-
- .../usb/amlogic,meson-g12a-usb-ctrl.yaml      |  2 +-
- .../watchdog/amlogic,meson-gxbb-wdt.yaml      |  2 +-
- MAINTAINERS                                   | 20 +++++++++----------
- 27 files changed, 36 insertions(+), 35 deletions(-)
-
-diff --git a/.mailmap b/.mailmap
-index 2ed1cf869175..04fb67be9b0b 100644
---- a/.mailmap
-+++ b/.mailmap
-@@ -303,6 +303,7 @@ Morten Welinder <welinder@troll.com>
- Mythri P K <mythripk@ti.com>
- Nadia Yvette Chambers <nyc@holomorphy.com> William Lee Irwin III <wli@holomorphy.com>
- Nathan Chancellor <nathan@kernel.org> <natechancellor@gmail.com>
-+Neil Armstrong <neil.armstrong@linaro.org> <narmstrong@baylibre.com>
- Nguyen Anh Quynh <aquynh@gmail.com>
- Nicholas Piggin <npiggin@gmail.com> <npiggen@suse.de>
- Nicholas Piggin <npiggin@gmail.com> <npiggin@kernel.dk>
-diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-index 6cc74523ebfd..1748f1605cc7 100644
---- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson Firmware registers Interface
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Meson SoCs have a register bank with status and data shared with the
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-index 2e208d2fc98f..7cdffdb131ac 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic specific extensions to the Synopsys Designware HDMI Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- allOf:
-   - $ref: /schemas/sound/name-prefix.yaml#
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-index 047fd69e0377..6655a93b1874 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson Display Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Amlogic Meson Display controller is composed of several components
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
-index bce96b5b0db0..4a5e5d9d6f90 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
-@@ -8,7 +8,7 @@ title: Analogix ANX7814 SlimPort (Full-HD Transmitter)
- 
- maintainers:
-   - Andrzej Hajda <andrzej.hajda@intel.com>
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Robert Foss <robert.foss@linaro.org>
- 
- properties:
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-index c6e81f532215..1b2185be92cd 100644
---- a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-@@ -8,7 +8,7 @@ title: ITE it66121 HDMI bridge Device Tree Bindings
- 
- maintainers:
-   - Phong LE <ple@baylibre.com>
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The IT66121 is a high-performance and low-power single channel HDMI
-diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-index 44e02decdf3a..2e75e3738ff0 100644
---- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Solomon Goldentek Display GKTW70SDAE4SE 7" WVGA LVDS Display Panel
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Thierry Reding <thierry.reding@gmail.com>
- 
- allOf:
-diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-index 6ecb0270d88d..199a354ccb97 100644
---- a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson I2C Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Beniamino Galvani <b.galvani@gmail.com>
- 
- allOf:
-diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-index ea06976fbbc7..dfd26b998189 100644
---- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson Message-Handling-Unit Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
-diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-index bee93bd84771..e551be5e680e 100644
---- a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic GE2D Acceleration Unit
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-index 5044c4bb94e0..b827edabcafa 100644
---- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Video Decoder
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Maxime Jourdan <mjourdan@baylibre.com>
- 
- description: |
-diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-index d93aea6a0258..8d844f4312d1 100644
---- a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson AO-CEC Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Amlogic Meson AO-CEC module is present is Amlogic SoCs and its purpose is
-diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-index a3b976f101e8..5750cc06e923 100644
---- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Khadas on-board Microcontroller Device Tree Bindings
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   Khadas embeds a microcontroller on their VIM and Edge boards adding some
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-index 608e1d62bed5..ddd5a073c3a8 100644
---- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson DWMAC Ethernet controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
- 
- # We need a select here so we don't match all nodes with 'snps,dwmac'
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-index be485f500887..5eddaed3d853 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic AXG MIPI D-PHY
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
-index 399ebde45409..f3a5fbabbbb5 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic G12A USB2 PHY
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
-index 453c083cf44c..868b4e6fde71 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic G12A USB3 + PCIE Combo PHY
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-index f005abac7079..683c191c4921 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson Everything-Else Power Domains
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |+
-   The Everything-Else Power Domains node should be the child of a syscon
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-index 494a454928ce..98db2aa74dc8 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson SoC Reset Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-index 444be32a8a29..09c6c906b1f9 100644
---- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-+++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson Random number generator
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 72e8868db3e0..7822705ad16c 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson SoC UART Serial Interface
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Amlogic Meson SoC UART Serial Interface is present on a large range
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
-index 17db87cb9dab..c3c599096353 100644
---- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
-+++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Canvas Video Lookup Table
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Maxime Jourdan <mjourdan@baylibre.com>
- 
- description: |
-diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-index 50de0da42c13..0c10f7678178 100644
---- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-+++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson SPI Communication Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- allOf:
-   - $ref: "spi-controller.yaml#"
-diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-index 8a9d526d06eb..ac3b2ec300ac 100644
---- a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-+++ b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson SPI Flash Controller
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- allOf:
-   - $ref: "spi-controller.yaml#"
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index e349fa5de606..daf2a859418d 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- description: |
-   The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
-diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-index c7459cf70e30..497d60408ea0 100644
---- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Meson GXBB SoCs Watchdog timer
- 
- maintainers:
--  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
- 
- allOf:
-   - $ref: watchdog.yaml#
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 66bffb24a348..dd319665232f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1769,7 +1769,7 @@ N:	sun[x456789]i
- N:	sun50i
- 
- ARM/Amlogic Meson SoC CLOCK FRAMEWORK
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- M:	Jerome Brunet <jbrunet@baylibre.com>
- L:	linux-amlogic@lists.infradead.org
- S:	Maintained
-@@ -1794,7 +1794,7 @@ F:	Documentation/devicetree/bindings/sound/amlogic*
- F:	sound/soc/meson/
- 
- ARM/Amlogic Meson SoC support
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- M:	Kevin Hilman <khilman@baylibre.com>
- R:	Jerome Brunet <jbrunet@baylibre.com>
- R:	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-@@ -2489,7 +2489,7 @@ W:	http://www.digriz.org.uk/ts78xx/kernel
- F:	arch/arm/mach-orion5x/ts78xx-*
- 
- ARM/OXNAS platform support
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-oxnas@groups.io (moderated for non-subscribers)
- S:	Maintained
-@@ -6618,7 +6618,7 @@ F:	Documentation/devicetree/bindings/display/allwinner*
- F:	drivers/gpu/drm/sun4i/
- 
- DRM DRIVERS FOR AMLOGIC SOCS
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	dri-devel@lists.freedesktop.org
- L:	linux-amlogic@lists.infradead.org
- S:	Supported
-@@ -6640,7 +6640,7 @@ F:	drivers/gpu/drm/atmel-hlcdc/
- 
- DRM DRIVERS FOR BRIDGE CHIPS
- M:	Andrzej Hajda <andrzej.hajda@intel.com>
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- M:	Robert Foss <robert.foss@linaro.org>
- R:	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
- R:	Jonas Karlman <jonas@kwiboo.se>
-@@ -10575,7 +10575,7 @@ F:	drivers/media/tuners/it913x*
- 
- ITE IT66121 HDMI BRIDGE DRIVER
- M:	Phong LE <ple@baylibre.com>
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- S:	Maintained
- T:	git git://anongit.freedesktop.org/drm/drm-misc
- F:	Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-@@ -11081,7 +11081,7 @@ F:	kernel/debug/
- F:	kernel/module/kdb.c
- 
- KHADAS MCU MFD DRIVER
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	linux-amlogic@lists.infradead.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-@@ -12951,7 +12951,7 @@ S:	Maintained
- F:	drivers/watchdog/menz69_wdt.c
- 
- MESON AO CEC DRIVER FOR AMLOGIC SOCS
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	linux-media@vger.kernel.org
- L:	linux-amlogic@lists.infradead.org
- S:	Supported
-@@ -12962,7 +12962,7 @@ F:	drivers/media/cec/platform/meson/ao-cec-g12a.c
- F:	drivers/media/cec/platform/meson/ao-cec.c
- 
- MESON GE2D DRIVER FOR AMLOGIC SOCS
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	linux-media@vger.kernel.org
- L:	linux-amlogic@lists.infradead.org
- S:	Supported
-@@ -12978,7 +12978,7 @@ F:	Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
- F:	drivers/mtd/nand/raw/meson_*
- 
- MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS
--M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Neil Armstrong <neil.armstrong@linaro.org>
- L:	linux-media@vger.kernel.org
- L:	linux-amlogic@lists.infradead.org
- S:	Supported
--- 
-2.25.1
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
