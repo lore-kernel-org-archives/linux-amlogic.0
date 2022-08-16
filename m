@@ -4,101 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A188C25B0E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 11:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C21C25B0E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 11:57:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=09wmJ55JPc3yEFTcJC/azqfGBJar1ruF957XQ89p+OM=; b=FGsfDsgVZX3/MjGz5eIxG0p77k
-	CHhZiRn50Mx/gs3n9RHDfmchvBSMuFLyCTv1POuPZthY+FuoNdtShpTNilgCd8kPPs5/YgEQoF22A
-	khRzhjSYhFyg9RhANIhKEks67kfMGqK6aYfFuqxT0jeobZ7tKG53jMnX+xyxyw7Ro659Vi+Xza2Ke
-	6k189/nWgKNQCsdKNzDORwA7cyIEf4rXmcIAQ7KHqoYrXwj1c+HAdUo+SIFauysbDWOZdoQNDge7d
-	H0BFp/GduTX28y7mToHAM1jkReYZPYhOVvtZ8X/dKUMQUW/bt98IBm4M4fSvCgWKAPLzA1K3FF45i
-	9POpI14g==;
+	bh=tt90Ei2MJfTx6SFVveBStuFwEmYzAubP5gxHVTBGhto=; b=TjYffVuysGCs42y9vq6X2FWsXZ
+	GxPlhAsgbFM4/WPFEY2pIK8BOko09bXDqvSwebKIKW1/Q1m7VrmOrGYZw23WoAPFdt+F2tOTvDCOP
+	gqxFri8cz/QsN8ee20c1wcId7uXMtWY7wyPjQk+6RqllAE4B77qq4kF8h2Qiu+fMKTm5tnNi7IHPl
+	ilg4+0pKgdhSOTb/jLAXQpwoh1luZ3CMQ+rWuCwX5Lnrmh7hcLH1s0gajwPXr69qKWSW7xYBod4CT
+	mkXYJb/NxaHdIdQds++9V0ywA7qCBIH0w7zluwOfGoJl8tUIy5QNyXDD8Ow6bLaxhoXCLseZSndjp
+	ER/MtL+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNunc-001auV-Sg; Tue, 16 Aug 2022 11:31:56 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1oNvCB-001n4q-DV; Tue, 16 Aug 2022 11:57:19 +0000
+Received: from wnew3-smtp.messagingengine.com ([64.147.123.17])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNunY-001aoj-OB; Tue, 16 Aug 2022 11:31:55 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id A4779CE17B9;
-	Tue, 16 Aug 2022 11:31:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9B8C433C1;
-	Tue, 16 Aug 2022 11:31:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1660649502;
-	bh=DNGxZGCzNE/W9SNa3AOcpRXwEUSzLHawjI4GPUOozEs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ibyaO5o/Nr/cFFgJEL7PPVekFs+0Q3USPuDu3QwvW87IXj9cmqYanCsbSmFkhICCI
-	 /bS/xCmD23/cb+FBxGnzpVz3kjeVAkO2lYjT75WQKNF5axNhVAwouihZTg6FbLvEAY
-	 J4D9uKaJlitqM9D4ZYgx+VikKjvj7peGJBkuhBXKCVwCi46fJVtOhi63JN8hMrZFCH
-	 UkfZ0SYPO3LlM1dZqhAEgMC/gX42n3x6mQYJi/OWry/0M9xvDVAnxC5iuOOswm5mZI
-	 QOIIYWVpSbd9EF5OhCbydJMADpl7C+bCAHQspCqNHYt9riKK17LZaBtj0TiuX1S5h2
-	 kfxfjwbz6D43A==
-Date: Tue, 16 Aug 2022 12:31:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Miaoqian Lin <linmq006@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Alexandru Tachici <alexandru.tachici@analog.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Guenter Roeck <linux@roeck-us.net>, Jonas Karlman <jonas@kwiboo.se>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Michael Turq uette <mturquette@baylibre.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	id 1oNvC8-001n2T-Nq; Tue, 16 Aug 2022 11:57:18 +0000
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailnew.west.internal (Postfix) with ESMTP id A0B622B05957;
+	Tue, 16 Aug 2022 07:57:10 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Tue, 16 Aug 2022 07:57:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1660651030; x=1660658230; bh=Bq03lVvJy5
+	RJk5H2jo3OulUHY8HxQaSHcH39oL5pRFM=; b=LWkNGdC+qKavdgb06LCYhhdfaH
+	EMilD3yNruebG4rdFpIEf/I4xnlrJyUn9xE6NIN3HxPA7FdOTeBHXU54ELxt9Vts
+	/TEy3DDaL05UnzuFbzp2mP5cLACMIbB1dNecnbiMUWk1IVGBETPJ+1uhAqwZPoDH
+	fqM7mZZE9VPgjTXmenP2OT8fEAzuk3AGPtUl/tpH1snsTs4n6xmjP7Fesne8J80k
+	wsGf/8lSANiEam48J/7VUsCDx0BsEiyQMAHoo61crP6hQEIMd4HTPwEXsyDhCTYE
+	LxurXivClkNnluoJqMoobh2U7tkI2YB30ImyM9+0Y7ar/9uTb7qZdpIGkfrQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1660651030; x=1660658230; bh=Bq03lVvJy5RJk5H2jo3OulUHY8Hx
+	QaSHcH39oL5pRFM=; b=tDtWMsyT9dCSohJZolo2mSo6j08so3UpgKj1hYIbmaXh
+	waSP51wOKEb5Ply3yvRQLIEphIKB83VIekklo1Qg/TXsSZCAWvOnDUIXDTBU4QB2
+	FAOPE4hIg/QY7GA3yfEmoohqHpKUcSg6M77BfxcAcAtIhbacAvt342Wn2sQQOm46
+	ZanJnKgviDsseWtZxoJ5yFxBoDH+20Yk2UOUPc0HvbY37a+ILT3NtK+gNtMi4brh
+	Ncrwgu7Xbhfd9ixEUFYDfskHcCyfm4NGgx6+skv/h1uZndqM+rTSTojNxZNWvCK4
+	2vl5n1fgGuZp4WIT/3lFjWUnTuaskSPGVcucu0vEFA==
+X-ME-Sender: <xms:FIb7YtLe5ycAPmkRukyv_usJsIdDUpXMX0U8k3o-2grPWxzl9iEOng>
+    <xme:FIb7YpKneB3U0bxY4so0ZLmmz4CiKpGDWJchVJ5ToOxJkXQ6B5yOoZgq6fg1eE-yM
+    XA14xtMLr9dBMUwt1c>
+X-ME-Received: <xmr:FIb7Ylvd5ADF_a-_o0ncybmn7ALYvjAn7FgHBrMsbfySC45HMtZHZIex8Mc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehgedggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:FIb7YuZtGT-7Iwe_2Xvy5OmK4cNcOxQIQw9CbOBLfM2KuGjmcGJVlg>
+    <xmx:FIb7YkYz3LYKkO8f9qGZmPgeLoU2sXhTt7x39ofcXq2X36YoDaM5mA>
+    <xmx:FIb7YiBVQSvOkGirQDAKVr4cCvKoB8kL1duQFv4bCXdB74SbkISo8A>
+    <xmx:Fob7YhLKnsHr-bCzG1ZaYbIxRvAUXlz15kZU_Da8CLH5AUU0BayaHVe_Bpo>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 16 Aug 2022 07:57:08 -0400 (EDT)
+Date: Tue, 16 Aug 2022 13:57:06 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Alexandru Ardelean <aardelean@deviqon.com>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Robert Foss <robert.foss@linaro.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
 	David Airlie <airlied@linux.ie>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: (subset) [PATCH v2 0/7] Devm helpers for regulator get and enable
-Message-ID: <YvuAE0Y3QbAf9Zh/@sirena.org.uk>
-References: <166057828406.697572.228317501909350108.b4-ty@kernel.org>
- <YvpsRbguMXn74GhR@pendragon.ideasonboard.com>
- <Yvp1Qkuh7xfeb/B2@sirena.org.uk>
- <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com>
- <20220815205857.308B1C433D6@smtp.kernel.org>
- <Yvq33T+XCduoqv7Z@pendragon.ideasonboard.com>
- <YvrO+velKdYdGVve@sirena.org.uk>
- <57c312b3-ca5b-6efb-6356-43b6513a0c88@gmail.com>
- <YvtzJw3jmocM0JFi@sirena.org.uk>
- <bb590e14-f99b-5bfb-414b-a45ca77045c2@fi.rohmeurope.com>
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Phil Elwell <phil@raspberrypi.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Dom Cobley <dom@raspberrypi.com>
+Subject: Re: [PATCH v1 20/35] drm/vc4: vec: Switch for common modes
+Message-ID: <20220816115706.nizhpgqi2gggvhtf@houat>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-20-3d53ae722097@cerno.tech>
+ <0e285cf5-6ef2-3484-9fb7-5eb55c0ca269@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <bb590e14-f99b-5bfb-414b-a45ca77045c2@fi.rohmeurope.com>
-X-Cookie: A bachelor is an unaltared male.
+In-Reply-To: <0e285cf5-6ef2-3484-9fb7-5eb55c0ca269@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220816_043153_896557_F45D6BB9 
-X-CRM114-Status: GOOD (  15.70  )
+X-CRM114-CacheID: sfid-20220816_045717_031761_E8ED7093 
+X-CRM114-Status: GOOD (  19.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,57 +114,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1622645979597086434=="
+Content-Type: multipart/mixed; boundary="===============3361612893669780073=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============1622645979597086434==
+--===============3361612893669780073==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GRi4H55EvexP+ViS"
+	protocol="application/pgp-signature"; boundary="6rmmsvytrn6spomv"
 Content-Disposition: inline
 
 
---GRi4H55EvexP+ViS
+--6rmmsvytrn6spomv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 16, 2022 at 11:06:21AM +0000, Vaittinen, Matti wrote:
+Hi,
 
-> I wonder if writing such 'release callbacks' is compulsory? I mean, if I=
-=20
-> was writing a driver to some new (to me) subsystem and was required to=20
-> write an explicit release-callback for a resource - then it'd surely=20
-> rang a bell about potentially double freeing stuff with devm. Especially=
-=20
-> if the doc stated the callback can be called after the driver has been=20
-> detached.
+On Fri, Jul 29, 2022 at 08:12:07PM +0200, Mateusz Kwiatkowski wrote:
+> I'm just noting that the modelines you defined in drm_modes.c are differe=
+nt
+> to the ones you're removing here.
+>=20
+> The horizontal sync differences probably doesn't matter too much, VC4 uses
+> those only as a hint anyway and generates sync autonomously, so the slight
+> differences will only cause the image to slightly shift horizontally.
+>=20
+> But you're also changing the 480i vertical sync (vsync_start is now 488
+> instead of 487, etc.). Are you sure that this won't break anything? This
+> will probably shift the image by 1 line (which for the 480i might actually
+> mean going out of spec), and I _think_ it might control the odd vs. even
+> field first modes on some drivers. I won't be able to test this before
+> Monday, but I'm just pointing out the potential issue.
 
-Generally yes, thoguh people can and do leave them blank and it's easy
-enough to do some cleanup in there that assumes that the device is still
-present and not think the device might've gone away especially if the
-hardware isn't practically hotpluggable.
+I didn't see any difference on both vc4 and sun4i, but you might be
+right about this.
 
---GRi4H55EvexP+ViS
+I didn't have much confidence in the vc4 modes since they were broken
+before your patches, but maybe I should have used yours still.
+
+> BTW, I've seen a similar thing in the sun4i driver changes (patch 32/35) =
+and
+> the differences in vertical sync are even more dramatic. It's entirely
+> possible that the current timings in sun4i are broken and the new ones are
+> correct (the new ones certainly look saner to me), but I'd double-check if
+> that driver does not have any quirks that would _require_ such weird
+> settings.
+
+The only thing sun4i requires from the new mode is the line number
+anyway, which stays the same.
+
+Maxime
+
+--6rmmsvytrn6spomv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmL7gBIACgkQJNaLcl1U
-h9AzDwf9HyzkouCr6DLxGa2jy+krXW2whkKczGUewYVjLonIovCKJI3OKOOMeqaZ
-rggHFUZDlyHpe4f23sQn190TBdngSGLYf1nrOt1WMUf3vCkLA05c7RcsGPCZdlGm
-TaL1HglUSxZ6Mce97JyRZ3k3Uw28ImBl0LWx3nunXvOqv6UUjs0cc0NdiGSD3JEA
-q7cLUiSYA4BzPVJg8bAXNNgXRdqY08D9aqih79uT+vgmcurosxM9InLGjKWb4xRw
-UlVPhgqtHOGKTfgLfNuPG7s+nSv91LUEf43AMjI0HE92IutdyHoYhleNfB5V7kAU
-vbqH3vEZToSso212DUSGKfURUbqHBg==
-=2bTO
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvuGEgAKCRDj7w1vZxhR
+xRHiAP9fE8CmBUW5DpGpBM8rlS+1m979Rf5KfhJkiXI4XgaLTQD7B6CwXU7vkS/6
+Zd1eWht5CPS1YtFPdcFpEpBIdg0jkQw=
+=VB11
 -----END PGP SIGNATURE-----
 
---GRi4H55EvexP+ViS--
+--6rmmsvytrn6spomv--
 
 
---===============1622645979597086434==
+--===============3361612893669780073==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,5 +192,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============1622645979597086434==--
+--===============3361612893669780073==--
 
