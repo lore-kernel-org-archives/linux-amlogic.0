@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57DCEC2BB41
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 14:44:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F2CC25B0E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 14:45:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qxqNM24y9DmsDpHa7WoMcdp26zarGOaBE8o2FLzuf/o=; b=jrGSbOm+vkQq/P
-	cvsSTVtVH8dRlGvJKOz5FoCLgALba0noKHkrFN28Apfv2NY/oqfp2+t6GV1k76RAKmnLsl+ZN5VE8
-	swU1Wh3snebGovzrnFki/vpDDWbkWSNNB/GMGzSqdk6J6lmVcWm7E6CZYtIioqejsI+tud9jGwrHW
-	ezvRlZr1J66G4DcyLVqo+rRYC2+rGhU06Z8UjGV1FQbcoc/Ks0ARfSajQOh0W0a04R+3Hw9812+2Y
-	0SWYLulQVgbkVaheq1WDBReD/Ju1eCf9Cd7XrAPKLd1FhxfO2ENKOfQ4r++wgqmsKOhfSdrWgjtIr
-	RY8JysX/FkIodC8Vl0KA==;
+	List-Owner; bh=xs4VyjRzIDD2OvI/2tzZFe341bUuteM60ovz+f+9ZmM=; b=EAWBgnEiqZL+Oy
+	llxtNmQKNhyfFmLyIAR4HDvdTMG1jCrGVgzaRbFm71DH9T5ujNN+i8i5ZgwlSyOS1COb8X7l1HsDl
+	+tuaWG8/78/la+TQ4ETyvk3VHWmy/3/rH6Lm7lwidBcmdIoSNEp0GqiUFNzeUaN+8DPoJgIPdj3jD
+	tjSeTqUb9H5O4L1jqF7wzgYEWhEXEkLW2/BUe4bzLRXsQRut87HuuOhKEtNIsw5amDuNP5kqJkXa9
+	3pEZ83hEvAZii3zghU7EUKgciCtXJ08KDSg9OCePbvbd8cxdf5Lr9cmJBNdQqeE+XKz8OFbnUXgS/
+	tSbOSHpT459kTvYffWeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNxng-003Yit-E9; Tue, 16 Aug 2022 14:44:12 +0000
-Received: from mail-qt1-f182.google.com ([209.85.160.182])
+	id 1oNxoR-003Z8z-SY; Tue, 16 Aug 2022 14:44:59 +0000
+Received: from mail-qk1-f176.google.com ([209.85.222.176])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oNxnU-003YcO-Da; Tue, 16 Aug 2022 14:44:02 +0000
-Received: by mail-qt1-f182.google.com with SMTP id c20so8248873qtw.8;
-        Tue, 16 Aug 2022 07:43:58 -0700 (PDT)
+	id 1oNxoE-003Yzx-CQ; Tue, 16 Aug 2022 14:44:48 +0000
+Received: by mail-qk1-f176.google.com with SMTP id n21so8257384qkk.3;
+        Tue, 16 Aug 2022 07:44:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=Glu8BOq83InxmgivOsliME3h0KPUgqBt+ApKY1f8Hz8=;
-        b=l1Mr5hDoddHEDW6Sszzmtkz2rurU2orjX5Ko1suMQZEKf2MP6XoPnovmjRJwWJzea0
-         mXF2Y5IVq5rkUch7eLDDiNiPn+NyGh6aLQH+KCmvPEB8y7T9Lxr6USRuVbiFZUxlAy1/
-         QadzbFwufsM8W08A3lLQoGjJQfQJANw9HmThnrkZTnupbduzNf4CdJP2Tpi/AeNfDZ6K
-         jynbxTyYcnqUDpNBsuEa4UHpGoDbOpewJmndFXIoR0fzVRh3kXAz9guU8weYDdsKwbTb
-         DEDlH6GqYON6ACo0EW6Rl5TsFAmrc8G8sUV9wkLTWtGO8MYajqS3BZsKz3bkgJULjGaM
-         UWbQ==
-X-Gm-Message-State: ACgBeo1n1vESuO+Lotc2ifjbBVhMTUXHnXOlFiRBv/+Tut83oVraIZbh
-	WgVHhs+RWeAT8dHQGTQa79ly2M1CUIS0lg==
-X-Google-Smtp-Source: AA6agR6QfgeGWsKgBASJWoOMSgkmhNH8MB0nGwDT3CxDsNfueZASDpKapP0CUjzi5KlDkWuBTDHCow==
-X-Received: by 2002:a05:622a:1015:b0:343:67ae:993a with SMTP id d21-20020a05622a101500b0034367ae993amr19113641qte.180.1660661037720;
-        Tue, 16 Aug 2022 07:43:57 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id y12-20020a05620a25cc00b006a793bde241sm11480682qko.63.2022.08.16.07.43.57
+        bh=tf29XLGj+1bd58LVE065Hm1nPqeAKMph377e+8mce68=;
+        b=7cf2j0/rgVEgfgOqs/TZfTGOIJuCm4Ehax8VVbjOCkF4jAIQ/sBHkmuLvEJtoCPpgu
+         LbqUchXSlV03q0zfyYHVJzRG6rOJtwhD1cMWf0ZGA5//l3jk6EJhT2rbMzZe8bCzUuJ5
+         usSdfdPk+QLiQ88HRNzXUkH7pOjh9FFJCxtCeDlagwOMHntgU5oAUk1099E7tNsFKAzy
+         Zs7lIFhIHoDwJ24YelJOoGQ+bhzUuI9P0olWwbfx0aArDD17GGshNpkAiC/p6uYc3psZ
+         21DEeHo6Eu94NcC6kNg79G2Toit+yI8AKkb1w3RnDMUYrIiA4ABBf7m279V5vBU/s84J
+         x50A==
+X-Gm-Message-State: ACgBeo3xKTM2uDg7s7A5DoMAkD11Kgc8PZDlSjq3m9Mi43lamVjCN7p1
+	yrxAjMiTiM1ymgXsHIKhYkyt+80ZJe2FMg==
+X-Google-Smtp-Source: AA6agR7n1GCjJKxEgr+Ue+kUgqsVG40khVhFeoTfUxd/dMTCY7F+PqJzhJ3MhDQ/yyc824Q7Pr9ZLw==
+X-Received: by 2002:a05:620a:21c1:b0:6bb:7ccf:6833 with SMTP id h1-20020a05620a21c100b006bb7ccf6833mr1038051qka.541.1660661083567;
+        Tue, 16 Aug 2022 07:44:43 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id t6-20020a05620a450600b006bb366779a4sm5477675qkp.6.2022.08.16.07.44.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 07:43:57 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-32fd97c199fso131915207b3.6;
-        Tue, 16 Aug 2022 07:43:57 -0700 (PDT)
-X-Received: by 2002:a81:658:0:b0:334:a23e:6caa with SMTP id
- 85-20020a810658000000b00334a23e6caamr31311ywg.283.1660661036761; Tue, 16 Aug
- 2022 07:43:56 -0700 (PDT)
+        Tue, 16 Aug 2022 07:44:42 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-32194238c77so157062867b3.4;
+        Tue, 16 Aug 2022 07:44:42 -0700 (PDT)
+X-Received: by 2002:a81:b812:0:b0:328:68e4:c886 with SMTP id
+ v18-20020a81b812000000b0032868e4c886mr16448315ywe.502.1660661082059; Tue, 16
+ Aug 2022 07:44:42 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
- <CAMuHMdWYo7M44uLNhTmJenGDreGALBZ9E48oyBDEeAuL=0h=dw@mail.gmail.com>
- <20220816132040.uwirtjm5yr6rdd3q@houat> <CAMuHMdWevP=3af=NneAJEDfOR+sz1thrQEhAQPNGrgitBtLjGA@mail.gmail.com>
- <20220816141116.5nuszmilqv2exdb3@houat>
-In-Reply-To: <20220816141116.5nuszmilqv2exdb3@houat>
+ <20220728-rpi-analog-tv-properties-v1-9-3d53ae722097@cerno.tech>
+ <CAMuHMdUiMEybnhgxgBXh1Cbv6syVe9iVU=sb17zHM72R8A2Dew@mail.gmail.com> <20220816134624.cmb5s6i6pkdhu3qj@houat>
+In-Reply-To: <20220816134624.cmb5s6i6pkdhu3qj@houat>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 16 Aug 2022 16:43:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXq_xGPx46bdnUFGDiG4kcgdxtXaRGTucFd3TRq8353dg@mail.gmail.com>
-Message-ID: <CAMuHMdXq_xGPx46bdnUFGDiG4kcgdxtXaRGTucFd3TRq8353dg@mail.gmail.com>
-Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
+Date: Tue, 16 Aug 2022 16:44:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWMMaGS_pEZ4OTdXn8jvFnx-Rx81qPseGUeGUcSBqys8A@mail.gmail.com>
+Message-ID: <CAMuHMdWMMaGS_pEZ4OTdXn8jvFnx-Rx81qPseGUeGUcSBqys8A@mail.gmail.com>
+Subject: Re: [PATCH v1 09/35] drm/modes: Move named modes parsing to a
+ separate function
 To: Maxime Ripard <maxime@cerno.tech>
 Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, 
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chen-Yu Tsai <wens@csie.org>, 
@@ -79,8 +78,8 @@ Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
 	DRI Development <dri-devel@lists.freedesktop.org>, Dom Cobley <dom@raspberrypi.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220816_074400_482648_3109FB99 
-X-CRM114-Status: GOOD (  47.57  )
+X-CRM114-CacheID: sfid-20220816_074446_529436_AE94B6C0 
+X-CRM114-Status: GOOD (  36.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,110 +98,67 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Maxime,
 
-On Tue, Aug 16, 2022 at 4:11 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> On Tue, Aug 16, 2022 at 03:29:07PM +0200, Geert Uytterhoeven wrote:
-> > On Tue, Aug 16, 2022 at 3:20 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > On Fri, Aug 12, 2022 at 03:25:18PM +0200, Geert Uytterhoeven wrote:
-> > > > > --- a/drivers/gpu/drm/drm_connector.c
-> > > > > +++ b/drivers/gpu/drm/drm_connector.c
-> > > > > @@ -1649,11 +1650,40 @@ EXPORT_SYMBOL(drm_mode_create_tv_margin_properties);
-> > > > >   * 0 on success or a negative error code on failure.
-> > > > >   */
-> > > > >  int drm_mode_create_tv_properties(struct drm_device *dev,
-> > > > > +                                 unsigned int supported_tv_norms,
-> > > > >                                   unsigned int num_modes,
-> > > > >                                   const char * const modes[])
-> > > > >  {
-> > > > > +       static const struct drm_prop_enum_list tv_norm_values[] = {
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_NTSC_443) - 1, "NTSC-443" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_NTSC_J) - 1, "NTSC-J" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_NTSC_M) - 1, "NTSC-M" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_60) - 1, "PAL-60" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_B) - 1, "PAL-B" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_D) - 1, "PAL-D" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_G) - 1, "PAL-G" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_H) - 1, "PAL-H" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_I) - 1, "PAL-I" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_M) - 1, "PAL-M" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_N) - 1, "PAL-N" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_PAL_NC) - 1, "PAL-Nc" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_60) - 1, "SECAM-60" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_B) - 1, "SECAM-B" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_D) - 1, "SECAM-D" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_G) - 1, "SECAM-G" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K) - 1, "SECAM-K" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_K1) - 1, "SECAM-K1" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_SECAM_L) - 1, "SECAM-L" },
-> > > >
-> > > > The above are analog standards, with a variable horizontal resolution.
-> > > >
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD480I) - 1, "hd480i" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD480P) - 1, "hd480p" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD576I) - 1, "hd576i" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD576P) - 1, "hd576p" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD720P) - 1, "hd720p" },
-> > > > > +               { __builtin_ffs(DRM_MODE_TV_NORM_HD1080I) - 1, "hd1080i" },
-> > > >
-> > > > The above are digital standards, with a fixed resolution.
+On Tue, Aug 16, 2022 at 3:46 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> On Fri, Aug 12, 2022 at 03:27:17PM +0200, Geert Uytterhoeven wrote:
+> > On Fri, Jul 29, 2022 at 6:36 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> > > The current construction of the named mode parsing doesn't allow to extend
+> > > it easily. Let's move it to a separate function so we can add more
+> > > parameters and modes.
 > > >
-> > > Are they?
-> > >
-> > > It's not clear to me from looking at nouveau, but I was under the
-> > > impression that they were modes for a component output, so CEA 770.3. I
-> > > don't have the spec though, so I can't check.
+> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > >
-> > Oh right, I forgot about analog HD over component, where you can use
-> > other pixel clocks than in the digital standard.
-> >
-> > > > You seem to have missed "hd1080p"?
-> > >
-> > > Nobody is using it. If we ever have a driver that uses it I think we can
-> > > add it.
-> >
-> > The PS3 supports 1080p over component
-> > https://manuals.playstation.net/document/en/ps3/current/settings/videooutput.html
+> > Thanks for your patch, which looks similar to my "[PATCH v2 2/5]
+> > drm/modes: Extract drm_mode_parse_cmdline_named_mode()"
+> > (https://lore.kernel.org/dri-devel/1371554419ae63cb54c2a377db0c1016fcf200bb.1657788997.git.geert@linux-m68k.org
+> > ;-)
 >
-> Yeah, and iirc the Xbox360 did too, but what I meant by nobody is using
-> it is that there's no driver using it currently.
+> Indeed, I forgot about that one, sorry :/
+>
+> I think I'd still prefer to have the check for refresh + named mode
+> outside of the function, since I see them as an "integration" issue, not
+> a parsing one.
+>
+> It's not the named mode parsing that fails, but the fact that we both
+> have a valid refresh and a valid named mode.
+>
+> >
+> > > --- a/drivers/gpu/drm/drm_modes.c
+> > > +++ b/drivers/gpu/drm/drm_modes.c
+> > > @@ -1773,6 +1773,28 @@ static const char * const drm_named_modes_whitelist[] = {
+> > >         "PAL",
+> > >  };
+> > >
+> > > +static bool drm_mode_parse_cmdline_named_mode(const char *name,
+> > > +                                             unsigned int name_end,
+> > > +                                             struct drm_cmdline_mode *cmdline_mode)
+> > > +{
+> > > +       unsigned int i;
+> > > +
+> > > +       for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
+> > > +               int ret;
+> > > +
+> > > +               ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
+> > > +               if (ret != name_end)
+> > > +                       continue;
+> > > +
+> > > +               strcpy(cmdline_mode->name, drm_named_modes_whitelist[i]);
+> > > +               cmdline_mode->specified = true;
+> > > +
+> > > +               return true;
+> > > +       }
+> > > +
+> > > +       return false;
+> >
+> > What's the point in returning a value, if it is never checked?
+> > Just make this function return void?
+>
+> Yeah, it's something I went back and forth to between the dev, and it's
+> an artifact.
+>
+> I'll drop that patch, take your version and move the refresh check to
+> drm_mode_parse_command_line_for_connector if that's alright for you?
 
-OK, it can be added later.
-
-> > > > In addition, "hd720p", "hd080i", and "hd1080p" are available in both 50
-> > > > and 60 (actually 59.94) Hz, while "hd1080p" can also use 24 or 25 Hz.
-> > >
-> > > It looks like nouveau only exposes modes for 480p at 59.94Hz, 576p at
-> > > 50Hz, 720p at 60Hz, 1080i at 30Hz.
-> >
-> > PS3 supports both 50 and 60 Hz (same link above).
->
-> I'm probably wary on this, but I'd rather stay at feature parity for
-> this series. There's already plenty of occasion to screw up something
-> that I'd rather not introduce new stuff I haven't been able to test :)
->
-> Provided we can easily extend it to support these additional features of
-> course :)
->
-> > > > Either you have to add them here (e.g. "hd720p50" and "hd720p60"), or
-> > > > handle them through "@<refresh>".  The latter would impact "[PATCH v1
-> > > > 09/35] drm/modes: Move named modes parsing to a separate function", as
-> > > > currently a named mode and a refresh rate can't be specified both.
-> > >
-> > > I think the former would make more sense. It simplifies a bit the
-> > > parser, and we're going to use a named mode anyway.
-> > >
-> > > > As "[PATCH v1 34/35] drm/modes: Introduce the tv_mode property as a
-> > > > command-line option" uses a separate "tv_mode" option, and not the main
-> > > > mode name, I think you want to add them here.
-> > >
-> > > It's a separate story I think, we could have a named mode hd720p50,
-> > > which would be equivalent to 1280x720,tv_mode=hd720p
-> >
-> > So where's the field rate in "1280x720,tv_mode=hd720p"?
->
-> Yeah, sorry I meant 1280x720@50,tv_mode=hd720p
-
-Above you said "I think the former would make more sense", so that
-should be "1280x720,tv_mode=hd720p50"?
+Fine for me.
 
 Gr{oetje,eeting}s,
 
