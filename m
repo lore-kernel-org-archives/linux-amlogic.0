@@ -4,78 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A0D1C25B0E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Aug 2022 19:36:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C509C25B08
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Aug 2022 07:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mup/ofL31F83qr3YAj0QO2m2MJegnen8BTRn2Ds99jY=; b=pyRRsuHvyDWfAr
-	sWiqvgMzH2u8bpQcJh4F3ccTGJ6/mclCGn3eDcn2fbUes9Y2JK/8QNHGQVQS7x4Z7NWcq0dWyBVeA
-	QMcovJtwNX3eBHzc/yFyw4hRJjL0qR2g620G8iTotwawXnsOHTdkHmja1DKzBSAPEOUta6L3lSMVy
-	kuGJy9W6OozsI6OurktER53nneZkXbFKVthf0HaNN7YY1DDKb+/Zv6QZu73ng+PV7bxmv9h+PZxiF
-	gKcxTrH6+CKkOBvGpSb+PFZT338hyG5kpS6F3gaT+Omc6DZzaY1oVznzUuqX4THkmLyJgpN0gmlze
-	JG7tVn9rgvN6m9mETACA==;
+	List-Owner; bh=rhAvlPhiu3GUpNPCznu52twIaMg9PwQLzt2Euq2Gj6g=; b=AQllGuS/hwTb3R
+	heHsrvsGHXL891hD65WYYIG38fGzjSV8OvwM9qHVB9VPRgOr1/YboeGsG3r3KrEXg6Xj41+wJ++md
+	uL4QXw+g9p9LwDiWmmAJmc9s4t/uTH/lOYdw+9nKhDilb8FwSRhR6rb0NAKXmFuYzZjyu8gsEqNLN
+	lu3+cPe1d6lsU1/j913aC068XYtoX04CGvZpOgQ7YaK2HneoSmEYcwkqCLDk3uJQlkJS2+Zu+y0wy
+	ySNvR23Z2LARRwostmtrQqbklGH2cBzJ5jW82w3vMpKC8lC3FcyLQxT0EoN/j2xDG8tekgkLVMJkA
+	iWgGdh++FxVA42vh7TMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oO2Ly-006TUV-1s; Tue, 16 Aug 2022 19:35:54 +0000
-Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
+	id 1oODXr-00DMP7-AK; Wed, 17 Aug 2022 07:32:55 +0000
+Received: from mail-qk1-f175.google.com ([209.85.222.175])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oO2Lj-006THs-Ev; Tue, 16 Aug 2022 19:35:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-	; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=N6mMsJ2BCoZ712tXYE1aSGPGNeJ3vya4PzRd0XZ/7z4=; b=mkdC9S+GC1GHSWx19K+4TdMmER
-	+j47uiu8lrqvMS5wURYrQe1KY/jjKtcogGtFftBAgONXOmNAHUEtcdni2lmlHFhBJdQgzfLotEXha
-	RzXlBd/j7Q4WkgCnDT+shmx64gOtYKWUW11GsVSizEDMn9k6FtAFz/KCbeRIlSQAypwwb26/zvrzw
-	iDpciw7w/M/mda8dsgDl4CyavM3ZIvj3a+oesW8ZNNe0PDIF8EYWx+Rz6B5VmqJcyqPtWSD1KfoHs
-	8Cb6a4zY6MlPYr5xGh7o7XQSDPTI3GUBIZ2DTdPlWWbASB/a1lz43G96gEpqdNVlRytGBDMguuINE
-	oaftHmJQ==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=58447)
-	by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <noralf@tronnes.org>)
-	id 1oO2Lb-00029A-Be; Tue, 16 Aug 2022 21:35:31 +0200
-Message-ID: <be9b6b71-fa2a-3290-2bce-901342e01981@tronnes.org>
-Date: Tue, 16 Aug 2022 21:35:24 +0200
+	id 1oODXc-00DLll-Ld; Wed, 17 Aug 2022 07:32:42 +0000
+Received: by mail-qk1-f175.google.com with SMTP id w18so4833667qki.8;
+        Wed, 17 Aug 2022 00:32:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=EmmYkaITTcx08DyrSAVVZyC+XHKGDlOn1xahJdmIIc4=;
+        b=GuoC+IFKP7Vay7o9q/u5hheQEydAjnc0tLytqJIc2dlHQn7r3OrJ8DrUGO+JkofuB8
+         cqR6vHEeFrwLhIfBguqrFUsWstOIRvOqx+ZIyL6HOmzLUyod28E0iCPEOkxLtzf3172N
+         G1btXRoxplxEteDfuwQzohcpDr99yvXrRGhs0ts1WiMCHgencNuuW+zS+USwuLXLya1e
+         roTT7WdGnRHCPqlKx6/VZ7Eyva1b4yt/dCwtAisz3H8Kd6XHcF5OqIcmgbPY+KdVjct7
+         2Vvy8wwM1tmG1sIZuTSh2+nBzlaehSMbry5sSRTu/Cxb6YHiA5jgeQ3hdp5if5rQTa1S
+         KJ7g==
+X-Gm-Message-State: ACgBeo3xq6WDUMVnWDppt5GA9aGc+5wkPwfVJoLRtn4QvZnk1P5vrT2I
+	kCYlWBohLYhyz8eU3vQo+nCINDTzeLQlpg==
+X-Google-Smtp-Source: AA6agR4dToz4YTe2TuarAlS+5WdRD8gxfdTcSdSd1GERJXbYE/eTBj/VdsjNBRy0/EaF6vGObWL1ew==
+X-Received: by 2002:a37:755:0:b0:6ba:fcb7:1949 with SMTP id 82-20020a370755000000b006bafcb71949mr12411769qkh.590.1660721553734;
+        Wed, 17 Aug 2022 00:32:33 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id b21-20020ae9eb15000000b006bb6c63114fsm2854479qkg.110.2022.08.17.00.32.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 00:32:33 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-335624d1e26so11173167b3.4;
+        Wed, 17 Aug 2022 00:32:32 -0700 (PDT)
+X-Received: by 2002:a5b:6c1:0:b0:669:a7c3:4c33 with SMTP id
+ r1-20020a5b06c1000000b00669a7c34c33mr18128602ybq.543.1660721552542; Wed, 17
+ Aug 2022 00:32:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Dom Cobley <dom@raspberrypi.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
- <noralf@tronnes.org>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
  <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
- <9fdecae2-80ad-6212-0522-7dccf9fb57be@tronnes.org>
- <20220816082612.grebxql5ynnfnvfd@houat>
- <ea6ebdda-f779-78af-1ffd-bd86d715077f@tronnes.org>
- <20220816094922.oqhrhefv327zo2ou@houat>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220816094922.oqhrhefv327zo2ou@houat>
+ <CAMuHMdWYo7M44uLNhTmJenGDreGALBZ9E48oyBDEeAuL=0h=dw@mail.gmail.com>
+ <20220816132040.uwirtjm5yr6rdd3q@houat> <CAMuHMdWevP=3af=NneAJEDfOR+sz1thrQEhAQPNGrgitBtLjGA@mail.gmail.com>
+ <20220816141116.5nuszmilqv2exdb3@houat> <CAMuHMdXq_xGPx46bdnUFGDiG4kcgdxtXaRGTucFd3TRq8353dg@mail.gmail.com>
+ <20220816154956.pkdpxmmw27mia5ix@houat> <CAMuHMdX0L6cO_jYXKZTv0sm9V39Eiy_STiknSkdRQG4k-9GJeg@mail.gmail.com>
+In-Reply-To: <CAMuHMdX0L6cO_jYXKZTv0sm9V39Eiy_STiknSkdRQG4k-9GJeg@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 17 Aug 2022 09:32:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWGwPjpsNZhcNwtCgjt9qYfPUb6eaX2q3fE2n0n8uYwhg@mail.gmail.com>
+Message-ID: <CAMuHMdWGwPjpsNZhcNwtCgjt9qYfPUb6eaX2q3fE2n0n8uYwhg@mail.gmail.com>
+Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Samuel Holland <samuel@sholland.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	linux-sunxi@lists.linux.dev, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Phil Elwell <phil@raspberrypi.com>, 
+	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, Dom Cobley <dom@raspberrypi.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220816_123539_718138_E0F3442C 
-X-CRM114-Status: GOOD (  28.41  )
+X-CRM114-CacheID: sfid-20220817_003240_745677_8AFD2B41 
+X-CRM114-Status: GOOD (  28.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,106 +93,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpEZW4gMTYuMDguMjAyMiAxMS40OSwgc2tyZXYgTWF4aW1lIFJpcGFyZDoKPiBPbiBUdWUsIEF1
-ZyAxNiwgMjAyMiBhdCAxMTo0MjoyMEFNICswMjAwLCBOb3JhbGYgVHLDuG5uZXMgd3JvdGU6Cj4+
-Cj4+Cj4+IERlbiAxNi4wOC4yMDIyIDEwLjI2LCBza3JldiBNYXhpbWUgUmlwYXJkOgo+Pj4gSGks
-Cj4+Pgo+Pj4gT24gTW9uLCBBdWcgMDgsIDIwMjIgYXQgMDI6NDQ6NTZQTSArMDIwMCwgTm9yYWxm
-IFRyw7hubmVzIHdyb3RlOgo+Pj4+IERlbiAyOS4wNy4yMDIyIDE4LjM0LCBza3JldiBNYXhpbWUg
-UmlwYXJkOgo+Pj4+PiBUaGUgVFYgbW9kZSBwcm9wZXJ0eSBoYXMgYmVlbiBhcm91bmQgZm9yIGEg
-d2hpbGUgbm93IHRvIHNlbGVjdCBhbmQgZ2V0IHRoZQo+Pj4+PiBjdXJyZW50IFRWIG1vZGUgb3V0
-cHV0IG9uIGFuIGFuYWxvZyBUViBjb25uZWN0b3IuCj4+Pj4+Cj4+Pj4+IERlc3BpdGUgdGhhdCBw
-cm9wZXJ0eSBuYW1lIGJlaW5nIGdlbmVyaWMsIGl0cyBjb250ZW50IGlzbid0IGFuZCBoYXMgYmVl
-bgo+Pj4+PiBkcml2ZXItc3BlY2lmaWMgd2hpY2ggbWFrZXMgaXQgaGFyZCB0byBidWlsZCBhbnkg
-Z2VuZXJpYyBiZWhhdmlvdXIgb24gdG9wCj4+Pj4+IG9mIGl0LCBib3RoIGluIGtlcm5lbCBhbmQg
-dXNlci1zcGFjZS4KPj4+Pj4KPj4+Pj4gTGV0J3MgY3JlYXRlIGEgbmV3IGJpdG1hc2sgdHYgbm9y
-bSBwcm9wZXJ0eSwgdGhhdCBjYW4gY29udGFpbiBhbnkgb2YgdGhlCj4+Pj4+IGFuYWxvZyBUViBz
-dGFuZGFyZHMgY3VycmVudGx5IHN1cHBvcnRlZCBieSBrZXJuZWwgZHJpdmVycy4gRWFjaCBkcml2
-ZXIgY2FuCj4+Pj4+IHRoZW4gcGFzcyBpbiBhIGJpdG1hc2sgb2YgdGhlIG1vZGVzIGl0IHN1cHBv
-cnRzLgo+Pj4+Pgo+Pj4+PiBXZSdsbCB0aGVuIGJlIGFibGUgdG8gcGhhc2Ugb3V0IHRoZSBvbGRl
-ciB0diBtb2RlIHByb3BlcnR5Lgo+Pj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBNYXhpbWUgUmlw
-YXJkIDxtYXhpbWVAY2Vybm8udGVjaD4KPj4+Pj4KPj4+Pgo+Pj4+IFBsZWFzZSBhbHNvIHVwZGF0
-ZSBEb2N1bWVudGF0aW9uL2dwdS9rbXMtcHJvcGVydGllcy5jc3YKPj4+Pgo+Pj4+IFJlcXVpcmVt
-ZW50cyBmb3IgYWRkaW5nIGEgbmV3IHByb3BlcnR5IGlzIGZvdW5kIGluCj4+Pj4gRG9jdW1lbnRh
-dGlvbi9ncHUvZHJtLWttcy5yc3QKPj4+Cj4+PiBJIGtuZXcgdGhpcyB3YXMgZ29pbmcgdG8gYmUg
-cmFpc2VkIGF0IHNvbWUgcG9pbnQsIHNvIEknbSBnbGFkIGl0J3MgdGhhdAo+Pj4gZWFybHkgOikK
-Pj4+Cj4+PiBJIHJlYWxseSBkb24ndCBrbm93IHdoYXQgdG8gZG8gdGhlcmUuIElmIHdlIHN0aWNr
-IGJ5IG91ciB1c3VhbCBydWxlcywKPj4+IHRoZW4gd2UgY2FuJ3QgaGF2ZSBhbnkgb2YgdGhhdCB3
-b3JrIG1lcmdlZC4KPj4+Cj4+PiBIb3dldmVyLCBJIHRoaW5rIHRoZSBzdGF0dXMgcXVvIGlzIG5v
-dCByZWFsbHkgc2F0aXNmYWN0b3J5IGVpdGhlci4KPj4+IEluZGVlZCwgd2UgaGF2ZSBhIHByb3Bl
-cnR5LCB0aGF0IGRvZXNuJ3QgZm9sbG93IHRob3NlIHJlcXVpcmVtZW50cwo+Pj4gZWl0aGVyLCB3
-aXRoIGEgZHJpdmVyLXNwZWNpZmljIGNvbnRlbnQsIGFuZCB0aGF0IHN0YW5kcyBpbiB0aGUgd2F5
-IG9mCj4+PiBmaXhlcyBhbmQgZnVydGhlciBpbXByb3ZlbWVudHMgYXQgYm90aCB0aGUgY29yZSBm
-cmFtZXdvcmsgYW5kIGRyaXZlcgo+Pj4gbGV2ZWxzLgo+Pj4KPj4+IFNvIGhhdmluZyB0aGF0IG5l
-dyBwcm9wZXJ0eSBzdGlsbCBzZWVtcyBsaWtlIGEgbmV0IGltcHJvdmVtZW50IGF0IHRoZQo+Pj4g
-ZHJpdmVyLCBmcmFtZXdvcmsgYW5kIHVBUEkgbGV2ZWxzLCBldmVuIGlmIGl0J3Mgbm90IGVudGly
-ZWx5IGZvbGxvd2luZwo+Pj4gdGhlIHJlcXVpcmVtZW50cyB3ZSBoYXZlIGluIHBsYWNlLgo+Pj4K
-Pj4+IEV2ZW4gbW9yZSBzbyBzaW5jZSwgcmVhbGlzdGljYWxseSwgdGhvc2Uga2luZCBvZiBpbnRl
-cmZhY2VzIHdpbGwgbmV2ZXIKPj4+IGdldCBhbnkgbmV3IGRldmVsb3BtZW50IG9uIHRoZSB1c2Vy
-LXNwYWNlIHNpZGUgb2YgdGhpbmdzLCBpdCdzCj4+PiBjb25zaWRlcmVkIGJ5IGV2ZXJ5b25lIGFz
-IGxlZ2FjeS4KPj4+Cj4+PiBUaGlzIGFsc28gaXMgc29tZXRoaW5nIHdlIG5lZWQgdG8gc3VwcG9y
-dCBhdCBzb21lIHBvaW50IGlmIHdlIHdhbnQgdG8KPj4+IGNvbXBsZXRlbHkgZGVwcmVjYXRlIHRo
-ZSBmYmRldiBkcml2ZXJzIGFuZCBwcm92aWRlIGRlY2VudCBhbHRlcm5hdGl2ZXMKPj4+IGluIEtN
-Uy4KPj4+Cj4+PiBTbyB5ZWFoLCBzdHJpY3RseSBzcGVha2luZywgd2Ugd291bGQgbm90IHF1YWxp
-ZnkgZm9yIG91ciByZXF1aXJlbWVudHMKPj4+IHRoZXJlLiBJIHN0aWxsIHRoaW5rIHdlIGhhdmUg
-YSBzdHJvbmcgY2FzZSBmb3IgYW4gZXhjZXB0aW9uIHRob3VnaC4KPj4KPj4gV2hpY2ggcmVxdWly
-ZW1lbnRzIHdvdWxkIHRoYXQgYmU/IFRoZSBvbmx5IG9uZSBJIGNhbiBzZWUgaXMgdGhlCj4+IGRv
-Y3VtZW50YXRpb24gYW5kIG1heWJlIGFuIElHVCB0ZXN0Lgo+IAo+IFRoaXMgaXMgdGhlIG9uZSBJ
-IGhhZCBpbiBtaW5kCj4gaHR0cHM6Ly9kcmkuZnJlZWRlc2t0b3Aub3JnL2RvY3MvZHJtL2dwdS9k
-cm0tdWFwaS5odG1sI29wZW4tc291cmNlLXVzZXJzcGFjZS1yZXF1aXJlbWVudHMKPiAKCk9oIHJp
-Z2h0LCBJIGhhZCBmb3Jnb3R0ZW4gYWJvdXQgdGhhdCBvbmUuCgpPbmUgYmVuZWZpdCBvZiBoYXZp
-bmcgYSB1c2Vyc3BhY2UgaW1wbGVtZW50YXRpb24gaXMgdGhhdCBpdCBpbmNyZWFzZXMKdGhlIGNo
-YW5jZSBvZiB3aWRlc3ByZWFkIGFkb3B0aW9uIGhhdmluZyBhIHdvcmtpbmcgaW1wbGVtZW50YXRp
-b24gdG8KbG9vayBhdC4gSSBkb24ndCB0aGluayB0aGUgcmVhc29uIHR2Lm1vZGUgaXMgbm90IHVz
-ZWQgYW55d2hlcmUgKHRoYXQgSQprbm93IG9mKSBpcyBiZWNhdXNlIHRoZSBkcml2ZXIgcGlja3Mg
-dGhlIGVudW0gdmFsdWVzIHJlc3VsdGluZyBpbiBubwpzdGFuZGFyZCBuYW1lcy4gSXQncyBhIG5p
-Y2hlIHRoaW5nIGFuZCB3YXkgZG93biBvbiB0aGUgdG9kbyBsaXN0Lgpub3V2ZWF1IGFuZCBjaDcw
-MDYgaGFzIGEgdHZfbm9ybSBtb2R1bGUgcGFyYW1ldGVyIHdoaWNoIGNlcnRhaW5seQpkb2Vzbid0
-IGhlbHAgaW4gbW92aW5nIHBlb3BsZS9wcm9qZWN0cyBvdmVyIHRvIHRoZSBEUk0gcHJvcGVydHkK
-KGRvd25zdHJlYW0gcnBpIGFsc28gaGFzIGl0IG5vdykuCgptcHZbMV0gaXMgYSBjb21tYW5kbGlu
-ZSBtZWRpYSBwbGF5ZXIgdGhhdCBhZnRlciBhIHF1aWNrIGxvb2sgbWlnaHQgYmUgYQpjYW5kaWRh
-dGUgZm9yIGltcGxlbWVudGluZyB0aGUgcHJvcGVydHkgd2l0aG91dCB0b28gbXVjaCBlZmZvcnQu
-CgpIb3cgZG8geW91IHRlc3QgdGhlIHByb3BlcnR5PyBJJ3ZlIHVzZWQgbW9kZXRlc3QgYnV0IEkg
-Y2FuIG9ubHkgY2hhbmdlCnRvIGEgdHYubW9kZSB0aGF0IG1hdGNoZXMgdGhlIGN1cnJlbnQgZGlz
-cGxheSBtb2RlLiBJIGNhbid0IHN3aXRjaCBmcm9tCm50c2MgdG8gcGFsIGZvciBpbnN0YW5jZS4K
-CkkgaGF2ZSB0cmllZCBjaGFuZ2luZyBtb2RlIG9uIHJwaS01LjE1ICh3aGljaCBJIHdpbGwgc3dp
-dGNoIHRvIGZvciB0aGUKZ3VkIGdhZGdldCksIGJ1dCBJIGFsd2F5cyBlbmQgdXAgd2l0aCBmbGlw
-IHRpbWVvdXRzIHdoZW4gY2hhbmdpbmcgdGhlIHZhbHVlOgoKJCBjYXQgL3Byb2MvY3B1aW5mbyB8
-IGdyZXAgTW9kZWwKTW9kZWwgICAgICAgICAgIDogUmFzcGJlcnJ5IFBpIDQgTW9kZWwgQiBSZXYg
-MS4xCiQgdW5hbWUgLWEKTGludXggcGk0dCA1LjE1LjU2LXY3bCsgIzE1NzUgU01QIEZyaSBKdWwg
-MjIgMjA6Mjk6NDYgQlNUIDIwMjIgYXJtdjdsCkdOVS9MaW51eAokIHN1ZG8gZG1lc2cgLUMKJCBt
-b2RldGVzdCAtTSB2YzQgLXMgNDU6NzIweDQ4MGkgLXcgNDU6bW9kZToxCnNldHRpbmcgbW9kZSA3
-MjB4NDgwaS0yOS45N0h6IG9uIGNvbm5lY3RvcnMgNDUsIGNydGMgNzMKZmFpbGVkIHRvIHNldCBn
-YW1tYTogRnVuY3Rpb24gbm90IGltcGxlbWVudGVkCgokIGRtZXNnCiQgbW9kZXRlc3QgLU0gdmM0
-IC1zIDQ1OjcyMHg0ODBpIC13IDQ1Om1vZGU6MApzZXR0aW5nIG1vZGUgNzIweDQ4MGktMjkuOTdI
-eiBvbiBjb25uZWN0b3JzIDQ1LCBjcnRjIDczCmZhaWxlZCB0byBzZXQgZ2FtbWE6IEZ1bmN0aW9u
-IG5vdCBpbXBsZW1lbnRlZAoKJCBkbWVzZwpbICAgOTUuMTkzMDU5XSBbZHJtOmRybV9hdG9taWNf
-aGVscGVyX3dhaXRfZm9yX2ZsaXBfZG9uZQpbZHJtX2ttc19oZWxwZXJdXSAqRVJST1IqIFtDUlRD
-OjczOmNydGMtMV0gZmxpcF9kb25lIHRpbWVkIG91dApbICAxMDUuNDMzMTEyXSBbZHJtOmRybV9j
-cnRjX2NvbW1pdF93YWl0IFtkcm1dXSAqRVJST1IqIGZsaXBfZG9uZSB0aW1lZCBvdXQKWyAgMTA1
-LjQzMzUxOV0gW2RybTpkcm1fYXRvbWljX2hlbHBlcl93YWl0X2Zvcl9kZXBlbmRlbmNpZXMKW2Ry
-bV9rbXNfaGVscGVyXV0gKkVSUk9SKiBbQ1JUQzo3MzpjcnRjLTFdIGNvbW1pdCB3YWl0IHRpbWVk
-IG91dApbICAxMTUuNjczMDk1XSBbZHJtOmRybV9jcnRjX2NvbW1pdF93YWl0IFtkcm1dXSAqRVJS
-T1IqIGZsaXBfZG9uZSB0aW1lZCBvdXQKWyAgMTE1LjY3MzQ5OF0gW2RybTpkcm1fYXRvbWljX2hl
-bHBlcl93YWl0X2Zvcl9kZXBlbmRlbmNpZXMKW2RybV9rbXNfaGVscGVyXV0gKkVSUk9SKiBbUExB
-TkU6NjM6cGxhbmUtMV0gY29tbWl0IHdhaXQgdGltZWQgb3V0ClsgIDEyNS45MTMxMDZdIFtkcm06
-ZHJtX2NydGNfY29tbWl0X3dhaXQgW2RybV1dICpFUlJPUiogZmxpcF9kb25lIHRpbWVkIG91dApb
-ICAxMjUuOTEzNTEwXSB2YzQtZHJtIGdwdTogW2RybV0gKkVSUk9SKiBUaW1lZCBvdXQgd2FpdGlu
-ZyBmb3IgY29tbWl0ClsgIDEzNi4xNTM0MTFdIFtkcm06ZHJtX2F0b21pY19oZWxwZXJfd2FpdF9m
-b3JfZmxpcF9kb25lCltkcm1fa21zX2hlbHBlcl1dICpFUlJPUiogW0NSVEM6NzM6Y3J0Yy0xXSBm
-bGlwX2RvbmUgdGltZWQgb3V0CgpJIGRvZXNuJ3QgaGVscCB0byByZWxvYWQgdmM0LCBJIGhhdmUg
-dG8gcmVib290IHRvIGdldCBpdCB3b3JraW5nIGFnYWluLgpJIGdldCB0aGlzIHdoZW4gcmVsb2Fk
-aW5nOgpbICA3NzYuNzk5Nzg0XSB2YzRfdmVjIGZlYzEzMDAwLnZlYzogVW5iYWxhbmNlZCBwbV9y
-dW50aW1lX2VuYWJsZSEKCkkga25vdyB0aGlzIHdhcyB3b3JraW5nIGluIHJwaS01LjEwIG9uIHRo
-ZSBQaSBaZXJvIChQaTQgdHZvdXQgdXNpbmcgdmM0CmRpZCBub3Qgd29yayBhdCBhbGwgd2hlbiBJ
-IHRyaWVkKS4KCgpOb3JhbGYuCgpbMV0gaHR0cHM6Ly9tcHYuaW8vCiAgICBodHRwczovL2dpdGh1
-Yi5jb20vbXB2LXBsYXllci9tcHYvYmxvYi9tYXN0ZXIvdmlkZW8vb3V0L2RybV9jb21tb24uYwog
-ICAgaHR0cHM6Ly9naXRodWIuY29tL21wdi1wbGF5ZXIvbXB2L2Jsb2IvbWFzdGVyL3ZpZGVvL291
-dC9kcm1fYXRvbWljLmMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+On Wed, Aug 17, 2022 at 9:31 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Tue, Aug 16, 2022 at 5:50 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> > On Tue, Aug 16, 2022 at 04:43:44PM +0200, Geert Uytterhoeven wrote:
+> > > > > > > Either you have to add them here (e.g. "hd720p50" and "hd720p60"), or
+> > > > > > > handle them through "@<refresh>".  The latter would impact "[PATCH v1
+> > > > > > > 09/35] drm/modes: Move named modes parsing to a separate function", as
+> > > > > > > currently a named mode and a refresh rate can't be specified both.
+> > > > > >
+> > > > > > I think the former would make more sense. It simplifies a bit the
+> > > > > > parser, and we're going to use a named mode anyway.
+> > > > > >
+> > > > > > > As "[PATCH v1 34/35] drm/modes: Introduce the tv_mode property as a
+> > > > > > > command-line option" uses a separate "tv_mode" option, and not the main
+> > > > > > > mode name, I think you want to add them here.
+> > > > > >
+> > > > > > It's a separate story I think, we could have a named mode hd720p50,
+> > > > > > which would be equivalent to 1280x720,tv_mode=hd720p
+> > > > >
+> > > > > So where's the field rate in "1280x720,tv_mode=hd720p"?
+> > > >
+> > > > Yeah, sorry I meant 1280x720@50,tv_mode=hd720p
+> > >
+> > > Above you said "I think the former would make more sense", so that
+> > > should be "1280x720,tv_mode=hd720p50"?
+> >
+> > No, 720p at 50Hz would be either hd720p50 or 1280x720@50,tv_mode=hd720p
+> > and 60Hz would be hd720p60 or 1280x720@60,tv_mode=hd720p
+>
+> I disagree: hd720p50 and hd720p60 are different TV modes.
+> Treating them the same would be similar to treating unmodulated (e.g.
+> component) PAL-N (25 frames/s) and PAL-M (30 frames/s) the same.
+
+IIRC from my PS3 -Linux days, not all HD(-Ready) TVs supported both
+hd720p50 and hd720p60.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
