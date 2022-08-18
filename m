@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5E22C00140
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 10:01:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D49C00140
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 10:13:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z6nLZfmz/Tspx0YREACEOy93TMTzh+8eAOH422WXl3s=; b=x+1YKgpCqbWTDE
-	Rkugie732R7nOsQbSw00Z0c7OoH8yqi1Jluh6UNNIHb3OerUf67A4BxghXZwLkWaaRlQjwljHweCt
-	8ALhHSSLXtcE2zShOUa2KLW/DPFbHzM7+G1e0Q24DtvaNJyL0tTkRsITw+AzIB2qz3ej19Uvenv13
-	+5j9Om3+GqrgT/LlGFW7Y9rpjvcbGTFaO548TXtdx1CTHaADm0UEGszrkRw0GiymOtrZZmPQbt2Wh
-	NDMIwCORQedZPLwKJUXPkYrxgWKYVruDaCdXEj7BY3WsY1PnSKk9wGirvPtm4b9Cn6rYQgr1aoAZF
-	Y2c6O58m51YBUY5bvneg==;
+	List-Owner; bh=gQHWii9UPNw5R2DRPBPDUCBcLuade2mdb92rAEVFuB0=; b=nWv0Wx+fASo1wO
+	SbDrhLDZ4hYCsLCEoDODINS32niHEVI463xmpjwAXkLZqbwXb5k0fc6HdFbcwvQzFNXsJYSP4D3KX
+	9uz+JnoeoHf7XC9OZGoCb283fQjN47VbgUUmmGWutYH1EZBuDDihP1MncyzM+hhQx9fhx3RCS5qXw
+	7F8ErQM+TGAiJMB0KP6eNSn+auNxgkF3hHfe/LMSHcfxeMlBBoU39yjjeT/A/FGYtWvSYU+NHKe9R
+	K9aRZyuOhscD/OXqbBnUu0LTuINgKE526L/VlK0fjuAwXiCON7BR77HU0y0vHp9Ijcy3+sGQvkTHk
+	eaHj2Ua20q2m5Mgm3YqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOcKh-001zUM-3M; Thu, 18 Aug 2022 10:00:59 +0000
-Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
+	id 1oOcWA-002Ko1-MA; Thu, 18 Aug 2022 10:12:50 +0000
+Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOcKT-001z9t-NC
-	for linux-amlogic@lists.infradead.org; Thu, 18 Aug 2022 10:00:47 +0000
-Received: by mail-lf1-x12c.google.com with SMTP id d14so1446948lfl.13
-        for <linux-amlogic@lists.infradead.org>; Thu, 18 Aug 2022 03:00:42 -0700 (PDT)
+	id 1oOcVz-002KYF-JH
+	for linux-amlogic@lists.infradead.org; Thu, 18 Aug 2022 10:12:41 +0000
+Received: by mail-lf1-x131.google.com with SMTP id i19so1497603lfr.10
+        for <linux-amlogic@lists.infradead.org>; Thu, 18 Aug 2022 03:12:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=am4N2i8J0slfYNbP4Y5irNrFkp7f2vhbyyojc5oOkVc=;
-        b=TPrDLt5KtyNy1pudUCCryCxIzvm07+yQhigqyWDz4pNxziJ4bI3XDV+1GyvnD+aImH
-         NbHWXjQ7YzWONRC8fYSn06UnnxwpPOaDGuLZKsXhsXVJNiy9WddpHzFa+NDAnK+PtUVD
-         WJks46hw71Y0FkTVmJRZHxP1q1+PC50BVW4SzPVgbBaAXzkZ09Lf3KKP3Ili8VEoElW5
-         E6JBnN/Vrvo63iu10E03HCOLIake8cCHDXfVySoD63sAcRWFtTWJ69zMuYzbxYVyh5NY
-         7Igb4P3OB1EnSOUh5NQrGNcGWiJXuDNCkY1/OznjhfXy5LNdczjicFZMfh4fwhCKHpYB
-         fWhQ==
+        bh=aSqfyo1hjDQ/mL8gzg+CsbVFofxrq8E+jgC4tCXbs7U=;
+        b=eCCH3OPo221NsZ7yRTe6jqXsgATPXRhQjWlp5KDhKQlDZTmgXxumsQI1w7N+Ux/SOk
+         rbDTxY1wIL0w7ojseSaa0yEg6MILHr6yMt1k7oADrTz/lsS3kbhQaJn7lVmcOmydeBrI
+         8ifoKEBhKQVC/XFZhNjZZ3kM0v7AP5CaeqE1FhWEF7uuwgy+IAWlzlEfMqEN7KTI4iIl
+         lBq7ttLJl2ZGMLSZSJ2Fay18gnvuITrCDLXBsNNWy0hpRuEwCeIxX6buNB+irPiTP7Mg
+         j7Gs+93juwnqrfu6TZZN3JwVJN9HvF2hfythqJcCFubEZfYYQrzqqxsBOfNLhVtVh0Kx
+         bWeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=am4N2i8J0slfYNbP4Y5irNrFkp7f2vhbyyojc5oOkVc=;
-        b=0TR6A510QLqZor+ivMZs+VGjXUzsuR0q/VmXoWF3JmLdDE42EVxzxOMY+M7iCIodWM
-         C9ehwCpw6C3lRjnJK8ZReohLtC3cofIugEf4AHGVFkZh6CIL8XaODYhUL8tFQt6bNYCq
-         llM6R/FPikqTQaJEN+ObhHBiaYQqlKlI6s/gNeERodsGB6RO6FuId04DRqCH0efFtKKO
-         baJwwN/u6oHsLEAQQp8Y2kfsV0AWLrg6Tnu/jmAv05++aZwxfpRD3W5oH9OH9nnOh2Nx
-         Gy+G0hslag5oURYQ03byBvFpIHGE9/Kg7M+M4BOqGL+Rw4PfhUWq21mKMaqo5lvigbZ+
-         ci4A==
-X-Gm-Message-State: ACgBeo1aT1ZLDrRyp6XF4ZhzPGXKrY9HTFHDS3T+5TWUKNJqRa53Arii
-	8zCdQdcsRvMP+yWyUwK/zpiywxvoeec9dL+nydsuow==
-X-Google-Smtp-Source: AA6agR7YRCgZymTmxcNOkeh9E+DKEKnw1L9b4lny4PIi2XqjBumJIDj+McCrb0+Vn39Fqxlpi4+oakhTqU45wl2z330=
-X-Received: by 2002:ac2:5324:0:b0:48b:9643:3838 with SMTP id
- f4-20020ac25324000000b0048b96433838mr763887lfh.373.1660816840975; Thu, 18 Aug
- 2022 03:00:40 -0700 (PDT)
+        bh=aSqfyo1hjDQ/mL8gzg+CsbVFofxrq8E+jgC4tCXbs7U=;
+        b=sOEssd9eNDLyv5Dcv9YTNmSO0+vLS40QmaI9bfcHdFDZ4nSTvGYm9fioGnB7dp/ZHx
+         tEF2BtmTIfHNYRK6WsGHqlmQNH8enNaVqM++jjjvWUeFPjSTTXJQ6VfsG0yRDXpWVnz8
+         ltCEqAasvabdtB4cCGVdQOCwV42hfI4rtucyY+csHHsiRvERyfJi0eWQ3hfgcry0F1wb
+         yD7hlaKij9fOpRru5nDEZHKO9qC6rctAW3yiuRtWh4v7O+fe5r1BbL4MfQ3zkzygqNlb
+         owLcokKWblf8YMRUyi3gU53MQEVcJ/9bBVJSQdlKT5rSyIMr5lfDT79bKCimVuibDPv8
+         J18g==
+X-Gm-Message-State: ACgBeo0qZfNopUgBmOuPr56GZsRbocB/LnU8oCkltgoe8ZHxzf+I0Xeu
+	9wiu+zaV1RITtK6fBtnTsqfwTo8cLOckl6RuHAUdrQ==
+X-Google-Smtp-Source: AA6agR7r8NwHcsgeAND4tQl4Cw25fRjUOUvdygbzJo6uOUi743+9TiDCWA3iNC/eGlYfTZsbxdWVa80ByX5BL2auSwQ=
+X-Received: by 2002:a05:6512:2306:b0:48b:2905:21a8 with SMTP id
+ o6-20020a056512230600b0048b290521a8mr817218lfu.167.1660817556914; Thu, 18 Aug
+ 2022 03:12:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <ecc229ad-c15a-2092-6568-f92e4507553e@gmail.com>
- <CAPDyKFoi70K9SBJbdvLZbseNpO2J4s-gZt-zpHMf-40wEyecYA@mail.gmail.com> <5030c495-e027-e900-0f79-e5343aa5777c@gmail.com>
-In-Reply-To: <5030c495-e027-e900-0f79-e5343aa5777c@gmail.com>
+ <CAPDyKFoi70K9SBJbdvLZbseNpO2J4s-gZt-zpHMf-40wEyecYA@mail.gmail.com> <af405e40-ea58-075a-e364-b3c1c4b1cc1a@gmail.com>
+In-Reply-To: <af405e40-ea58-075a-e364-b3c1c4b1cc1a@gmail.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 18 Aug 2022 12:00:04 +0200
-Message-ID: <CAPDyKFr-vyNBpwOZNp4MQXvR+G+Jt94F3rP=QXs91n0KGu2QHQ@mail.gmail.com>
+Date: Thu, 18 Aug 2022 12:11:59 +0200
+Message-ID: <CAPDyKFoJDhjLkajBHgW3zHasvYYri77NQoDpiW-BpKgkdjtOyg@mail.gmail.com>
 Subject: Re: [PATCH] mmc: meson-gx: add SDIO interrupt support
 To: Heiner Kallweit <hkallweit1@gmail.com>
 Cc: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
@@ -71,8 +71,8 @@ Cc: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
 	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220818_030045_805522_AF0D38B1 
-X-CRM114-Status: GOOD (  30.09  )
+X-CRM114-CacheID: sfid-20220818_031239_646380_078B4F42 
+X-CRM114-Status: GOOD (  33.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,7 +89,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 18 Aug 2022 at 07:54, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Thu, 18 Aug 2022 at 08:20, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 >
 > On 15.08.2022 20:20, Ulf Hansson wrote:
 > > On Sun, 14 Aug 2022 at 23:44, Heiner Kallweit <hkallweit1@gmail.com> wrote:
@@ -188,19 +188,36 @@ On Thu, 18 Aug 2022 at 07:54, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 > > to ask if there is something unclear.
 > >
 >
-> I switched to the new API and it works for me, will submit a v2.
+> One more question came to my mind:
 >
-> Just one question regarding core code:
-> The core defines sdio_irq_work as delayed work, but no caller sets a delay.
-> Then why not use a simple workqueue and schedule_work() instead of
-> queue_delayed_work()?
+> Typically host drivers disable the SDIO interrupt source before calling
+> sdio_signal_irq(), and re-enable it in ->ack_sdio_irq().
+>
+> In sdio_run_irqs() we have the following:
+>
+> if (!host->sdio_irq_pending)
+>         host->ops->ack_sdio_irq(host);
+>
+> In the middle of this code the host can't actively trigger a SDIO interrupt
+> because the interrupt source is still disabled. But some other host interrupt
+> could fire with also the SDIO interrupt source bit set.
 
-That should work, I think. I don't quite recall why that wasn't made
-in the original solution, probably just a mistake.
+It's the responsibility of the host driver to deal with this situation.
 
-One thing that I do recall, is that we may want to consider running
-our own workqueue in the future, if it turns out that we are
-overloading the system_wq. But so far, none have reported problems.
+> Then the hard irq handler would disable the SDIO interrupt source, and directly
+> after this ->ack_sdio_irq() would re-enable it.
+
+The host driver shouldn't signal a new irq, before it has acked the
+previous one via ->ack_sdio_irq().
+
+> This looks racy to me and we may need some protection.
+> Do you share this view or do I miss something?
+
+The protection the mmc core provides around this, includes the general
+host protection (mmc_claim|release_host()) in sdio_run_irqs() and by
+using the workqueue of course.
+
+Did that make sense?
 
 Kind regards
 Uffe
