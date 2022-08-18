@@ -4,84 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC840C32772
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 15:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C293BC00140
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 15:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ohlSiv+cJpzo/X/dQWniepORQ4F492Hir0A/0NsuniU=; b=wdC8qaHKOAVgOH
-	m03UPjQ4cCE1tcJcOJ/4XN+aGdIkcKgds+zjvC2DlXDJtalUMrXpcXZ1a9tkKlp89hmYezXnTctSN
-	9N5u53omnsXpnDNLWtdVeo1jKZ7C63McI6OcUN7nGJTJWPRLcN2JrkIVd9uuuZGZVuNO01LZOV6tj
-	aK0dpQHKW0n5LmIxJpKTnS0WEJmrx+mfjZHOvI9Y3qyrXWLmY+7fitnvCIZU8v+ELmvROqQIMlefv
-	WNDTRXBq01u69qzsrfNcE4aX6uppecANG94QPnGBnrv2cIX/oSQfwjm0zk20jvan6DUqyV8mabLCP
-	fcW3pvDboKooOwLHO34w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YhK2jQubwwXe2f/JWxgcu+6i7b25CQ70b8UvWqp2NzQ=; b=JhOiPMSifKGMNWpwteOO/CGqS0
+	RMdvwD/3A1PLHefe8SViVsnaeKqrbR4VAEK4q34GZn1IQRfbfYSyLke9OF9y9CIbjru2MmrPtGyCj
+	fy83lIsJsRsn2XiPOXbduSJw1YkBJwv8SzjeTrq/UZOJqLE5xoh1Zt6O9v6yrd+FwLUlU94RcxTEO
+	tTt/T1G1MPr+JkJ0rlkwmcyb99xt4Aad/vRkp+p2wfYtbhS0OXEkhddSnX4NotoTfIaa8vQY1iBxP
+	wys4vtT+4mhYaWalC2tCy74PqtlC4U8UvKYBnayQLcuFv6h7oFUJCSwPL4moZ87qzC5CvmsUzn77L
+	DkN+SRzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOhV0-006ehI-Le; Thu, 18 Aug 2022 15:31:58 +0000
-Received: from mail-ot1-f54.google.com ([209.85.210.54])
+	id 1oOhX7-006fxX-LA; Thu, 18 Aug 2022 15:34:09 +0000
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOhRd-006cuv-7p; Thu, 18 Aug 2022 15:28:30 +0000
-Received: by mail-ot1-f54.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so1338209otk.0;
-        Thu, 18 Aug 2022 08:28:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=T9A28BLo2B0nLzuZtZ0Ejl0zLIHzqGciO6GeX7JAOrM=;
-        b=uvoiYCIMdeG20he4sFjChp/qLNp5HAZTJzjwfyffOAZc1qr+/2xhI4W0r66JnEsf/5
-         EzmkwzvsRikToWTv5IAOmidOlPvAa1T7LcXe6mXIoT08HPqSyhBgYRn4f77EDLFm3zBM
-         zD8ONI6kBCwOCztf6mW2t8sj3cVNcbsxc/g11tIdCQx3nJhM8SVM9HB8MgPmW4Mvf11e
-         hBOvE382qdAUzQKr6k3Kd5RVKkUGq81EVtay7rMRPkUTqRNXZPZm7XksiOm5d3+nFgmM
-         UZ4UGsTZ4ytAvVgHXCcMJWHBSlSy2iQIx6wzwBty3mXWUbz0TMPfnW2RluUl3c0aw8iB
-         xezw==
-X-Gm-Message-State: ACgBeo0Yod8qnHXj3o6T3xNw/j+Lnsa4/nWpRpJzfC3Ta4I6eqfHUlA7
-	FvgfiiBX+7osmvtSpKv2t5pO31+KgSwaKA==
-X-Google-Smtp-Source: AA6agR6h8ABV530CS9S/Pv7gMEg2fAHD/0RsCHgk5ag0FP62YrwKbvaPyIi4NRQsAG9hL5b47MZmCw==
-X-Received: by 2002:a05:6830:448a:b0:638:cd7d:6575 with SMTP id r10-20020a056830448a00b00638cd7d6575mr1312832otv.282.1660836507626;
-        Thu, 18 Aug 2022 08:28:27 -0700 (PDT)
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com. [209.85.161.53])
-        by smtp.gmail.com with ESMTPSA id 15-20020a9d060f000000b00636cc9926dbsm481252otn.40.2022.08.18.08.28.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 08:28:27 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id d12-20020a4aeb8c000000b004214e709b72so410982ooj.6;
-        Thu, 18 Aug 2022 08:28:27 -0700 (PDT)
-X-Received: by 2002:a25:250b:0:b0:68f:425b:3ee0 with SMTP id
- l11-20020a25250b000000b0068f425b3ee0mr3357401ybl.89.1660836055065; Thu, 18
- Aug 2022 08:20:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220816141116.5nuszmilqv2exdb3@houat> <CAMuHMdXq_xGPx46bdnUFGDiG4kcgdxtXaRGTucFd3TRq8353dg@mail.gmail.com>
- <20220816154956.pkdpxmmw27mia5ix@houat> <CAMuHMdX0L6cO_jYXKZTv0sm9V39Eiy_STiknSkdRQG4k-9GJeg@mail.gmail.com>
- <20220817074710.w4c4xwj7edly2b5p@houat> <CAMuHMdXeBakWr6geOWGxnjQYaU9Pi4tRvVFFtubyMJZTT2nPnw@mail.gmail.com>
- <20220817111454.pn2iltvyo2drebq7@houat> <CAMuHMdU57g1rNoLo65jhLK8mk4YkNEbMz1E7XKWk2dnCxTr=gg@mail.gmail.com>
- <20220817131854.jwmhqvhfhp77bbr3@houat> <CAMuHMdXrfH9MArXesfNCvqayiq17u7XaqtSvXTNt4V10=obSHQ@mail.gmail.com>
- <20220818145436.vqojnhmvhjxdzooe@houat>
-In-Reply-To: <20220818145436.vqojnhmvhjxdzooe@houat>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 18 Aug 2022 17:20:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5kTUeg59fym7QxfN5oisTZHWbiAPeSYKJVShZWduJcA@mail.gmail.com>
-Message-ID: <CAMuHMdW5kTUeg59fym7QxfN5oisTZHWbiAPeSYKJVShZWduJcA@mail.gmail.com>
+	id 1oOhUC-006eNo-Cc; Thu, 18 Aug 2022 15:31:10 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailnew.west.internal (Postfix) with ESMTP id 9B5D92B05ADE;
+	Thu, 18 Aug 2022 11:31:05 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 18 Aug 2022 11:31:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1660836665; x=1660843865; bh=zsZN0+/dvw
+	oQ1eBJsmGkPBClTq6+A6mbZvTtkF8HBEY=; b=BMiP2oaAOwbNtZZLLkDUVMmYY0
+	RONK7KgiEuxuKSpy29xDAffJAjJ//MxoOfyJ7z1PgFPhtU5yaFfSLExBbFZiRSkT
+	mFwEIaB1C70toP9zCEJxKi7iIa6CeTw4nAkxOArZHavQLc1XsxBPgkX3+UvUbc6z
+	pZcYemBlWY12iE/uGW2O1DGwdPviDTDgDOTWMSCRpiLxI9g8s8LtUaGARWberwba
+	ZyOzY3rpaPkIC6ToN01G4p/005OMe0YIjBsGQ+/Fsq9Re5oygKLYA9y0E8tyuyOD
+	CNjL2nBgcT2neTJNUsh+g6VZK2mjTxPvcCI9Lukvqvxr+xJxM9q1gtu9BZGQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1660836665; x=1660843865; bh=zsZN0+/dvwoQ1eBJsmGkPBClTq6+
+	A6mbZvTtkF8HBEY=; b=wxtGJPeahDRmQybRntrvlGpL29icAnQ2KJUUR/750Dbj
+	RTpbASl5qveK0yvvFsPZ6PUdrQT9NVmCBI1Ez1yAHJXi/rjEDHiuCj+xcCNVg9On
+	arMZo1tw0FEhao2iyb2gWvlBB0QTtVYIaL69vHSsgEZ5ZNF/y8roJHvhAu09PBlP
+	lmAhz8WdhPVN9pjbb18dsGLY1UDq6O4nPa29UNltwcRXaTHEM8FAYy/1KsQmt4c7
+	NuLFwnfHAB7OoPm/W+r12dqzYe/UhergwWfAvZktZ/9KrJ2OfqLvMkLvhdeyij+w
+	Ts1fbl49nMfed+UFlxccB7JIToXT+R49JTtl28PaRg==
+X-ME-Sender: <xms:OFv-Yu62dxrUPmg8XCcF5vkBdZLfkKWRTWRMceuh4Vl3jYCNG5H6Pw>
+    <xme:OFv-Yn7TsCJLt_qf9gSXzBLKVG64_WoSf7DCT2ulkn9PQaxuUCdwXHYznUN4Jbcjf
+    o-IKO199x9giG7346k>
+X-ME-Received: <xmr:OFv-YteY1dY6O4ATQ96hfBGrkJ2o8UBdWlnoxhHjzH7PUUPiBgRkGDSQvA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehledgieegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeevuddthffgfeeiffejgfeghfeludegkedtgefgffejtdegtddvleduvdfh
+    teehveenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+    hh
+X-ME-Proxy: <xmx:OFv-YrKpWv2QM74J0-xWujbdUgcE3V56GmPDsPu8q3osVUebdxqsPw>
+    <xmx:OFv-YiLxa1wCF6AU95HNuaOQYlymPhHHcDpNseqE1P8hRDE5kqKS_g>
+    <xmx:OFv-YszT2JwRE0EKsOdHk8fGMEyVZQ1Ox2NB1FXHDNfzzewjIGhnFA>
+    <xmx:OVv-Yi7g6GJ7u7ml1Q6EnLVRN5lnPYqOwokiIL5aN8jHgi551F2z4v7DD8o>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 18 Aug 2022 11:31:03 -0400 (EDT)
+Date: Thu, 18 Aug 2022 17:31:01 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+	David Airlie <airlied@linux.ie>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Phil Elwell <phil@raspberrypi.com>,
+	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Dom Cobley <dom@raspberrypi.com>
 Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Samuel Holland <samuel@sholland.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	linux-sunxi@lists.linux.dev, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Phil Elwell <phil@raspberrypi.com>, 
-	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
-	DRI Development <dri-devel@lists.freedesktop.org>, Dom Cobley <dom@raspberrypi.com>
+Message-ID: <20220818153101.c25x33vkl6qboswe@houat>
+References: <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
+ <9fdecae2-80ad-6212-0522-7dccf9fb57be@tronnes.org>
+ <20220816082612.grebxql5ynnfnvfd@houat>
+ <ea6ebdda-f779-78af-1ffd-bd86d715077f@tronnes.org>
+ <20220816094922.oqhrhefv327zo2ou@houat>
+ <be9b6b71-fa2a-3290-2bce-901342e01981@tronnes.org>
+ <20220817114605.jpb3tlnoseyvf65d@houat>
+ <30f3005d-0acc-e5af-10ca-cf46f18b3478@tronnes.org>
+ <133c2a1d-0b4c-cef9-11fe-9ce9985253d6@tronnes.org>
+ <9daca9bf-838e-c3eb-51de-1cf5188a9341@tronnes.org>
+MIME-Version: 1.0
+In-Reply-To: <9daca9bf-838e-c3eb-51de-1cf5188a9341@tronnes.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220818_082829_328468_5AB6A4DE 
-X-CRM114-Status: GOOD (  40.94  )
+X-CRM114-CacheID: sfid-20220818_083108_525615_56809D3F 
+X-CRM114-Status: GOOD (  35.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,94 +122,155 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7170305866208511845=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
 
-On Thu, Aug 18, 2022 at 4:54 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> On Wed, Aug 17, 2022 at 04:04:24PM +0200, Geert Uytterhoeven wrote:
-> > On Wed, Aug 17, 2022 at 3:19 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > On Wed, Aug 17, 2022 at 03:05:52PM +0200, Geert Uytterhoeven wrote:
-> > > > On Wed, Aug 17, 2022 at 1:15 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > > On Wed, Aug 17, 2022 at 10:35:07AM +0200, Geert Uytterhoeven wrote:
-> > > > > > On Wed, Aug 17, 2022 at 9:47 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > > > > On Wed, Aug 17, 2022 at 09:31:18AM +0200, Geert Uytterhoeven wrote:
-> > > > > > > > On Tue, Aug 16, 2022 at 5:50 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > > > > > > On Tue, Aug 16, 2022 at 04:43:44PM +0200, Geert Uytterhoeven wrote:
-> > > > > > > > > > > > > > Either you have to add them here (e.g. "hd720p50" and "hd720p60"), or
-> > > > > > > > > > > > > > handle them through "@<refresh>".  The latter would impact "[PATCH v1
-> > > > > > > > > > > > > > 09/35] drm/modes: Move named modes parsing to a separate function", as
-> > > > > > > > > > > > > > currently a named mode and a refresh rate can't be specified both.
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > I think the former would make more sense. It simplifies a bit the
-> > > > > > > > > > > > > parser, and we're going to use a named mode anyway.
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > > As "[PATCH v1 34/35] drm/modes: Introduce the tv_mode property as a
-> > > > > > > > > > > > > > command-line option" uses a separate "tv_mode" option, and not the main
-> > > > > > > > > > > > > > mode name, I think you want to add them here.
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > It's a separate story I think, we could have a named mode hd720p50,
-> > > > > > > > > > > > > which would be equivalent to 1280x720,tv_mode=hd720p
-> > > > > > > > > > > >
-> > > > > > > > > > > > So where's the field rate in "1280x720,tv_mode=hd720p"?
-> > > > > > > > > > >
-> > > > > > > > > > > Yeah, sorry I meant 1280x720@50,tv_mode=hd720p
-> > > > > > > > > >
-> > > > > > > > > > Above you said "I think the former would make more sense", so that
-> > > > > > > > > > should be "1280x720,tv_mode=hd720p50"?
-> > > > > > > > >
-> > > > > > > > > No, 720p at 50Hz would be either hd720p50 or 1280x720@50,tv_mode=hd720p
-> > > > > > > > > and 60Hz would be hd720p60 or 1280x720@60,tv_mode=hd720p
-> > > > > > > >
-> > > > > > > > I disagree: hd720p50 and hd720p60 are different TV modes.
-> > > > > > >
-> > > > > > > I agree, and I don't see how that command-line doesn't express that?
-> > > > > >
-> > > > > > Oh, I see what you mean: yes, it expresses that.
-> > > > > > But it is inconsistent with the NTSC/PAL/SECAM/hd{480,576}[ip] modes,
-> > > > > > where the TV mode specifies both number of lines and frame rate.
-> > > > >
-> > > > > Only if we're using a named mode, and naming is hard :)
-> > > >
-> > > > That's not true: "640x480,tv_mode=PAL-N" would give me a mode with
-> > > > 625 lines and 25 frames/s, "640x480,tv_mode=PAL-M" would give me a
-> > > > mode with 525 lines and 30 frames/s.
-> > >
-> > > In that series, "640x480,tv_mode=PAL-N" would be rejected as invalid:
-> > >
-> > > https://lore.kernel.org/dri-devel/20220728-rpi-analog-tv-properties-v1-14-3d53ae722097@cerno.tech/
-> >
-> > It would become supported once the ideas from thread "[PATCH v1 04/35]
-> > drm/modes: Introduce 480i and 576i modes" are implemented...
->
-> Indeed, but I'm still not sure what your concern is here.
-> "640x480,tv_mode=PAL-N" and "640x480,tv_mode=PAL-M" are both fairly
-> obvious.
->
-> You were initially saying that you had concern over the inconsistency of
-> NTSC/PAL/SECAM where the TV mode would specify a number of lines and
-> frame rate, but hd720p50 also specifies a number of line and frame rate?
+--===============7170305866208511845==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="neorrh2qu6ghuw3r"
+Content-Disposition: inline
 
-My concern is that you want to call the TV mode "hd720p", which
-does not dictate the frame rate.
-I would like to have both "720p50" and "720p60", as they do dictate
-the frame rate, like all the non-hd modes.
 
-Gr{oetje,eeting}s,
+--neorrh2qu6ghuw3r
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-                        Geert
+On Thu, Aug 18, 2022 at 05:01:38PM +0200, Noralf Tr=F8nnes wrote:
+>=20
+>=20
+> Den 18.08.2022 01.23, skrev Noralf Tr=F8nnes:
+> >=20
+> >=20
+> > Den 17.08.2022 15.11, skrev Noralf Tr=F8nnes:
+> >>
+> >>
+> >> Den 17.08.2022 13.46, skrev Maxime Ripard:
+> >>> On Tue, Aug 16, 2022 at 09:35:24PM +0200, Noralf Tr=F8nnes wrote:
+> >>>> Den 16.08.2022 11.49, skrev Maxime Ripard:
+> >>>>> On Tue, Aug 16, 2022 at 11:42:20AM +0200, Noralf Tr=F8nnes wrote:
+> >>>>>> Den 16.08.2022 10.26, skrev Maxime Ripard:
+> >>>>>>> Hi,
+> >>>>>>>
+> >>>>>>> On Mon, Aug 08, 2022 at 02:44:56PM +0200, Noralf Tr=F8nnes wrote:
+> >>>>>>>> Den 29.07.2022 18.34, skrev Maxime Ripard:
+> >>>>>>>>> The TV mode property has been around for a while now to select =
+and get the
+> >>>>>>>>> current TV mode output on an analog TV connector.
+> >>>>>>>>>
+> >>>>>>>>> Despite that property name being generic, its content isn't and=
+ has been
+> >>>>>>>>> driver-specific which makes it hard to build any generic behavi=
+our on top
+> >>>>>>>>> of it, both in kernel and user-space.
+> >>>>>>>>>
+> >>>>>>>>> Let's create a new bitmask tv norm property, that can contain a=
+ny of the
+> >>>>>>>>> analog TV standards currently supported by kernel drivers. Each=
+ driver can
+> >>>>>>>>> then pass in a bitmask of the modes it supports.
+> >>>>>>>>>
+> >>>>>>>>> We'll then be able to phase out the older tv mode property.
+> >>>>>>>>>
+> >>>>>>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >>>>>>>>>
+> >=20
+> >>>> How do you test the property? I've used modetest but I can only chan=
+ge
+> >>>> to a tv.mode that matches the current display mode. I can't switch f=
+rom
+> >>>> ntsc to pal for instance.
+> >>>
+> >>> Yep, if you want to change from PAL to NTSC, it will require a new mo=
+de.
+> >>>
+> >>
+> >> So userspace has to check tv.mode first and then create a display mode
+> >> the driver will accept if switching to a different display mode is
+> >> necessary? In other words, userspace can't discover from the kernel
+> >> which display modes a certain tv.mode/norm provides before it is
+> >> selected? If so, maybe libdrm should have some function(s) to deal with
+> >> switching between modes that require a different display mode since
+> >> knowledge about which display modes a tv.mode supports is needed before
+> >> hand.
+> >>
+> >=20
+> > I haven't used vc4 on Pi4 in mainline before and have finally gotten it
+> > to work.
+> >=20
+> > I see that the connector reports 2 modes that together fit all tv.norms
+> > so userspace doesn't have to contruct a display mode, but it does need
+> > to know which display mode belongs to a certain tv.norm.
+> >=20
+> > When I try to use modetest I'm unable to set a mode:
+> >=20
+> > pi@pi4t:~ $ modetest -M vc4 -s 45:720x480i
+> > setting mode 720x480i-29.97Hz on connectors 45, crtc 68
+> > failed to set mode: Function not implemented
+> >=20
+> > The errno is misleading, modetest does a drmModeDirtyFB before checking
+> > the error returned by drmModeSetCrtc.
+> >=20
+> > Setting the property succeeds, but the modeset still fails:
+> >=20
+> > pi@pi4t:~ $ modetest -M vc4 -s 45:720x480i -w 45:"tv norm":2
+> > setting mode 720x480i-29.97Hz on connectors 45, crtc 68
+> > failed to set mode: Function not implemented
+> >=20
+> > pi@pi4t:~ $ modetest -M vc4 -c
+> >         37 tv norm:
+> >                 flags: bitmask
+> >                 values: NTSC-443=3D0x1 NTSC-J=3D0x2 NTSC-M=3D0x4 PAL-B=
+=3D0x10
+> > PAL-M=3D0x200 PAL-N=3D0x400 SECAM-B=3D0x2000
+> >                 value: 2
+> >=20
+> > Here's the log, can you see if there's anything obvious in there:
+> > https://gist.github.com/notro/a079498bf6b64327105752b2bafa8858
+> >=20
+>=20
+> I'm one step closer as I now have fbcon working, I had forgotten to add
+> enable_tvout=3D1 and I had disable_fw_kms_setup=3D1 which disables the
+> video=3D mode on the kernel commandline.
+>=20
+> modetest still fails though, after alot of printk sprinkling, I've
+> tracked it down to the drm_mode_equal test in
+> drm_atomic_helper_connector_tv_check(). The aspect ratios differ:
+>=20
+> [   61.336295] drm_atomic_helper_connector_tv_check:
+> mode->picture_aspect_ratio=3D1
+> [   61.336301] drm_atomic_helper_connector_tv_check:
+> &crtc_state->mode->picture_aspect_ratio=3D0
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I haven't seen this when testing, but I'll have a look, thanks!
+Maxime
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--neorrh2qu6ghuw3r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYv5bNQAKCRDj7w1vZxhR
+xdaLAQDfZ8rnYBDZfyN3qNMxZCR7YqMUNw8GId3H6w/a4n0wnwD9GeUKIJz3PUw0
+hmv+huFdsLIyqvj6T79wwzxtYJk+3gY=
+=PX5K
+-----END PGP SIGNATURE-----
+
+--neorrh2qu6ghuw3r--
+
+
+--===============7170305866208511845==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7170305866208511845==--
+
