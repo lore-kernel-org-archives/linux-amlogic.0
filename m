@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DB4EC00140
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 05:54:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65E92C00140
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 06:21:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
 	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VF0rUyjODxYh5Di7P6fCEDMLW3OombHcBMjYCuveLu8=; b=GYYy9ddULuxo6u
-	/xyEusuQNSNV90eBOlRQ96LY/Rp3Z8MB1DVOQoQCOZi+uueZrYg5IJAhKMPv7jczGO0eCEgK7+K94
-	T6zT1Jtzln9YmigytS8O0RiWzzuCUHYX8tURV//xm+C69iBPU+NxqyFiceBrStPxeOAK2/INQDVCC
-	HvldzUHW6hXmPZPUwh6hL0YxV+1RZwRFiCHnD88/BB8IOjcz3HgKNCHDo41fdDzpydaM/xJdsK1jc
-	uoNZMKpHe1OfJpIFVTQpjBP6gy8ZsFkzB1hyhqANmIE/YOl1IaM1i9MneF0nuIj8RVb5wgOR2Kktn
-	gMyss8bWeCPu2G9TdzyA==;
+	List-Owner; bh=BFcIEk8VyB/CcWp8OLUXDvADmCWpHLDeeb9SmAhYDH4=; b=Ib/ITVbhi0pfVZ
+	F/V9fD8df+jpec9h9dmxXzm+gybQWwDV+FaMe2Fg0WIix1C6+VUx5/U0qbc6qXwLOY0fIyxm90PRQ
+	plycnQRkGFGqnTFvid8heErXaIBLaRgU95u3UvfsVIpjzCx6JUyOiikjdCTQ/mO+NMs1GTK3Wh9h6
+	U134Y6z8BiPL/bAV6i0ILReLrtRgyCU6HdKeNXbN5dzO0hTEtWNchAitA7lzMpj/uFZCOvzHq299r
+	rKmNjsu3m8o/LMDT/bF0l6H02+wOJbqm3w61dlMtmfedX2RNp1ooid9iYtqB3eeiAYA5M7NYo1V9c
+	mv8H12tHKcpGgpEJ+kQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOYUC-00GPO3-3m; Thu, 18 Aug 2022 05:54:32 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1oOYts-00GxjJ-DY; Thu, 18 Aug 2022 06:21:04 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOYTz-00GOqI-UH; Thu, 18 Aug 2022 05:54:21 +0000
-Received: by mail-ej1-x635.google.com with SMTP id i14so1321464ejg.6;
-        Wed, 17 Aug 2022 22:54:16 -0700 (PDT)
+	id 1oOYtg-00GxSG-Qt; Thu, 18 Aug 2022 06:20:54 +0000
+Received: by mail-ej1-x632.google.com with SMTP id uj29so1491112ejc.0;
+        Wed, 17 Aug 2022 23:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id:from:to:cc;
-        bh=QAv3rLn5bLt/fWxgAqcMN5YqYdzhNtYErcOJxTXB1wk=;
-        b=YXJHZCJLTldxtnwTgFApWl5em9QGjb6cjLo7ipDDAmNU70f/ztjqYR0wOiD6fkMiFf
-         HjQOy1EPOF1/VPwpLx9wZXs1m+iGQrlIbx6nf8j0ss5BgX5y6MHt429VLmIbpZ5Ls8/+
-         Q5yBuSobeTIzrnhsB+6a30yyv8+XnlNFQTOxqFF6FWFRWARHcM5aN1xbKtaJ9v29X9P0
-         9frGHmcFleQGWLH9E/KI+Y5QT2Wt3xyNaL8ZHz1SLMKdL7vjDMCChhED+V0rGyquS4H1
-         r1ri2CejNPjyzLFLD4M5aI7Xr659bVAU7ISOoOzp68+w8wCPEqzbdQA2ghsBtIPkrNgu
-         HkPQ==
+        bh=cE40KzOAHgSsI3+yA6l4Fbr52ebb6r45dUqZKpm5LLw=;
+        b=drWEerl4127r+Ht3QRFCKOsppxqYE139Q+6U3XMYkgO0HjWQDgW+xcyEZKECC1Umsf
+         +n7yrVzExv6BST+ZK27Luoho33R5fDy7wD0u6Ptr8JToK/LGRScrrjqxRXMrGdGSbBqa
+         iSHSiGUZCzSR5SbN3BzDIqMaVJceOtnYdiVH5Mxel62afJedDhS5iIvjMdsuWXrLheb8
+         TwyBbzXFCCcrcqL9IukaqNTFK/g2pUYu7fUBXf0IJuG9KhWspNh6AJi70UNG3XYGOZxX
+         3E+plkYWJ4e3+lWFC084EkEdPTaPDCufKhc6BdbU9hKMdhIKnph3Vp3PcDOaDYYPzw+j
+         GNVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=QAv3rLn5bLt/fWxgAqcMN5YqYdzhNtYErcOJxTXB1wk=;
-        b=Por3fNU84URrTSbMT1a1e37Pkhs/IFLFCoI7KPAofui3sx4Lks5vh61Hm4x1OzXjux
-         dxZyXsp/71JcpP0ttUjkCvy2lVIKr4h90CAHBvK38TdkhVm22CynRfCJ6hsxqjCXo/Eo
-         ESoC/csra/kzvEqPM39J3KR/FcaQcWVl+PCt+60BreWBT0t2pf0tTKePCv3/FQIX4M+1
-         ByC3qePjJD66QMm4LEOGNxq/2MmQtYnNyjlQkA+312R94Gd+Zkm8E4+sXY1dwtOGH2Dc
-         CmVBYRWYILG8+ldc4ANqKegujIRSkdsY5c6JmCGW07MAXLMkMTVV9EUYWEmoILyWZpLR
-         cVmA==
-X-Gm-Message-State: ACgBeo1o1d7TvMCpU0uKYycyhdpTA+b+cjlR8wfZuwHxcwvcP8yWVAje
-	LnSb0RgkL5f/LHzyqfo/MrIuhRkrFK4=
-X-Google-Smtp-Source: AA6agR6tmkRbmUUxJBHemc7tmef2wlNa/hC363RS4IryW+nPyp07x0jQJf2vMZH6fmeN/A0/xTgGmg==
-X-Received: by 2002:a17:907:738a:b0:730:7537:848c with SMTP id er10-20020a170907738a00b007307537848cmr895158ejc.488.1660802055414;
-        Wed, 17 Aug 2022 22:54:15 -0700 (PDT)
+        bh=cE40KzOAHgSsI3+yA6l4Fbr52ebb6r45dUqZKpm5LLw=;
+        b=CaMXdxWxv/aYzpDHAQZ5ag5NyOn/Djsk13BDTXm0twHrIXXfqW/zC8oGiDCdgWXimW
+         Y3INSF7oMFIqYNfgayeSvlnc6OFKhdoDaKWQssc2Pn9HFnrdpdJw3GEjx3zy9z93VJCT
+         FH6eQMC9rMORwF9LqPRmCbd6aTDPwkfIhAnWLP70nefSmnTJ3hdfU2HTcdwp6C97u78c
+         VrH1+S0+qTYrqb30B0YiDzKVRJy0ST4zDu+OYEJb2SRNu5FSlITeiIZ4eenBb8KaPMQR
+         O1NZ0NspOyMXgt7WRlUZTulA8nCvObkXQ5jTIEDMTyK2ql1nPkv2FAUTKMxObxssw4Xk
+         flAw==
+X-Gm-Message-State: ACgBeo02Rdt80HZpoiizL6DU/RYRnn6QodLkKT01iKrKRTDCEHp/xCnc
+	K90+XKjhjFhTP4800UJhbU4=
+X-Google-Smtp-Source: AA6agR5SM1kCR6ZA2xPD4obyZAHIbd6m040hxAO9SVHTySXbjP5sn43H3Itv6iCHvcRMyP4/1SxbAg==
+X-Received: by 2002:a17:907:1c89:b0:734:d05c:582e with SMTP id nb9-20020a1709071c8900b00734d05c582emr988364ejc.282.1660803650447;
+        Wed, 17 Aug 2022 23:20:50 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:bdc7:a00:a1fc:6cca:3686:2302? (dynamic-2a01-0c23-bdc7-0a00-a1fc-6cca-3686-2302.c23.pool.telefonica.de. [2a01:c23:bdc7:a00:a1fc:6cca:3686:2302])
-        by smtp.googlemail.com with ESMTPSA id o26-20020a170906289a00b0071cbc7487e1sm330077ejd.69.2022.08.17.22.54.14
+        by smtp.googlemail.com with ESMTPSA id x19-20020aa7d6d3000000b00445e037345csm534784edr.14.2022.08.17.23.20.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 22:54:14 -0700 (PDT)
-Message-ID: <5030c495-e027-e900-0f79-e5343aa5777c@gmail.com>
-Date: Thu, 18 Aug 2022 07:54:09 +0200
+        Wed, 17 Aug 2022 23:20:49 -0700 (PDT)
+Message-ID: <af405e40-ea58-075a-e364-b3c1c4b1cc1a@gmail.com>
+Date: Thu, 18 Aug 2022 08:20:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
@@ -78,8 +78,8 @@ From: Heiner Kallweit <hkallweit1@gmail.com>
 Subject: Re: [PATCH] mmc: meson-gx: add SDIO interrupt support
 In-Reply-To: <CAPDyKFoi70K9SBJbdvLZbseNpO2J4s-gZt-zpHMf-40wEyecYA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220817_225420_050918_D737A6E9 
-X-CRM114-Status: GOOD (  22.48  )
+X-CRM114-CacheID: sfid-20220817_232052_937009_AAFDB104 
+X-CRM114-Status: GOOD (  23.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -193,12 +193,23 @@ On 15.08.2022 20:20, Ulf Hansson wrote:
 > to ask if there is something unclear.
 > 
 
-I switched to the new API and it works for me, will submit a v2.
+One more question came to my mind:
 
-Just one question regarding core code:
-The core defines sdio_irq_work as delayed work, but no caller sets a delay.
-Then why not use a simple workqueue and schedule_work() instead of
-queue_delayed_work()?
+Typically host drivers disable the SDIO interrupt source before calling
+sdio_signal_irq(), and re-enable it in ->ack_sdio_irq().
+
+In sdio_run_irqs() we have the following:
+
+if (!host->sdio_irq_pending)
+	host->ops->ack_sdio_irq(host);
+
+In the middle of this code the host can't actively trigger a SDIO interrupt
+because the interrupt source is still disabled. But some other host interrupt
+could fire with also the SDIO interrupt source bit set.
+Then the hard irq handler would disable the SDIO interrupt source, and directly
+after this ->ack_sdio_irq() would re-enable it.
+This looks racy to me and we may need some protection.
+Do you share this view or do I miss something?
 
 > [...]
 > 
