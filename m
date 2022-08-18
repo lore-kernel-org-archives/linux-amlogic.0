@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DD9FC25B0E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 07:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 786D3C00140
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Aug 2022 07:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=J8Px3/omBH8I0RPtwm64FxBDOSOI+xrPt0TgDRM7NC8=; b=FElKJ1dPEEVrDE
-	yLIR8cGhy1nY8ZR3/P1QBNGyzjRF4Rxk+VQ7FjlAqmWk5CBOrBIyJeCdwuM/Vx5bPThjHE4xxjOOX
-	Ds9tWaTYZRfb29w4J1ON8k4eFLFveqAymfWwPlebPiaGILD+8Dewn6jfBla2gLz92AF9ucN5EBklZ
-	aWFLAL43UtoxjmqThpdpZ9l6fykUsvw1NQk7aJ35BlXlsG1lWwQhRcGD411VBmRYhG633oIjm5v8Z
-	JmluEbcKG60FXTv3VF3VRnGR0v7LuTAsZ1zr+S7HzVMk+c1TnO9l+Ozy43facU4HJYNXE+up1ahth
-	fc6ZIrnvoebzpLV3qwBg==;
+	List-Owner; bh=wnvtgTrDW66gMTfirPJRol844zIW7DGbQubzWv+5gIk=; b=yNlJDsgHldLXH/
+	DrpO2CvNzmwjcSyIcdA1JTzKe4ecGqmVAJKc8l1zbAcw0MZb1CFyfrvNDPcO9YHxi5sNCDHSYk9TS
+	D38j19EuAyOmMQMr9BnDkHgHz+3H9oJh84S5E0kgMCMQu0TasOXaqaIVc0t03HKMlVL+LrbD6OfA+
+	Iq0LgY2koUtaOp1DpiAqr4MCVJbg/ylLHJdZcVXmOGrPH0KPfWEFN7LfpMg7kZVKaX7/DeqdMHx4d
+	NEwbUFjYhXbB81EtxFovcskkbgheyjCO/BYMC/SmOQ0r4hGQ8DcdbvhODqRlGS41kGBSRoKwylV3e
+	DqHrxqq1Z0fXLrzvKmDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOZWU-00HOy7-B0; Thu, 18 Aug 2022 07:00:58 +0000
-Received: from szxga01-in.huawei.com ([45.249.212.187])
+	id 1oOZsF-0002My-4F; Thu, 18 Aug 2022 07:23:27 +0000
+Received: from smtpbg154.qq.com ([15.184.224.54])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oOZWR-00HOrW-Fq; Thu, 18 Aug 2022 07:00:57 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.56])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4M7bM90WjFznTX6;
-	Thu, 18 Aug 2022 14:58:29 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemi500012.china.huawei.com
- (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 18 Aug
- 2022 15:00:40 +0800
-From: Xu Qiang <xuqiang36@huawei.com>
-To: <narmstrong@baylibre.com>, <mchehab@kernel.org>,
-	<gregkh@linuxfoundation.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <mjourdan@baylibre.com>,
-	<hverkuil-cisco@xs4all.nl>
-CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-staging@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <guohanjun@huawei.com>,
-	<weiyongjun1@huawei.com>, <xuqiang36@huawei.com>
-Subject: [PATCH -next] media: meson: vdec: add missing clk_disable_unprepare on error in vdec_hevc_start()
-Date: Thu, 18 Aug 2022 06:57:53 +0000
-Message-ID: <20220818065753.104050-1-xuqiang36@huawei.com>
-X-Mailer: git-send-email 2.17.1
+	id 1oOZsA-0001vk-KS; Thu, 18 Aug 2022 07:23:25 +0000
+X-QQ-mid: bizesmtp90t1660807358thkgk558
+Received: from localhost.localdomain ( [123.114.60.34])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 18 Aug 2022 15:22:36 +0800 (CST)
+X-QQ-SSF: 01400000002000D0U000B00A0000000
+X-QQ-FEAT: eCJvJF4ptHBiBmR9azarm3lgcJ4dN65tE+tjAFsTWkhYPsqr/69XgUGBD+grm
+	yR7HtMUrVdsfxz2r73Dl3qSc+ZIzIxF7xdtYffxYAUwW+v1GB93w9ae0izDtxWhoGpHfRgI
+	yyjhBmJb1PyglhGtlONaCLJEEKFFVDixfKO9hMEA9KNsIXHvOqiY9uwtJLukLTdD1Y2vkV2
+	u1bTHEohr7O9wO9llyQiSb/7nGsYSLa0o0JfFa8AiGyzrb8YLM3I49D+Imkehu68pVryty6
+	YGrvsfsXi8k0kxfekvlptbZDoO0riJcwg+IAHsYDVdMUeGn1OAi/xFvlFOk50fE32l+wthU
+	wtxq7ZE5iTdFNjs0z88xZpSMOR9V8WEj4wwUS2dLLIuRztK1aXx9if4iNPFew==
+X-QQ-GoodBg: 2
+From: zhaoxiao <zhaoxiao@uniontech.com>
+To: thierry.reding@gmail.com,
+	narmstrong@baylibre.com,
+	khilman@baylibre.com
+Cc: u.kleine-koenig@pengutronix.de,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-pwm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	zhaoxiao <zhaoxiao@uniontech.com>
+Subject: [PATCH] pwm: meson: Simplify probe function with dev_err_probe()
+Date: Thu, 18 Aug 2022 15:22:34 +0800
+Message-Id: <20220818072234.9640-1-zhaoxiao@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Originating-IP: [10.175.112.208]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemi500012.china.huawei.com (7.221.188.12)
-X-CFilter-Loop: Reflected
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvr:qybglogicsvr1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220818_000055_794311_4205FE9D 
-X-CRM114-Status: UNSURE (   7.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220818_002323_426486_E67E70F7 
+X-CRM114-Status: GOOD (  10.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,31 +69,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QWRkIHRoZSBtaXNzaW5nIGNsa19kaXNhYmxlX3VucHJlcGFyZSgpIGJlZm9yZSByZXR1cm4KZnJv
-bSB2ZGVjX2hldmNfc3RhcnQoKSBpbiB0aGUgZXJyb3IgaGFuZGxpbmcgY2FzZS4KCkZpeGVzOiA4
-MjNhNzMwMDM0MGUgKOKAnG1lZGlhOiBtZXNvbjogdmRlYzogYWRkIGNvbW1vbiBIRVZDIGRlY29k
-ZXIgc3VwcG9ydOKAnSkKU2lnbmVkLW9mZi1ieTogWHUgUWlhbmcgPHh1cWlhbmczNkBodWF3ZWku
-Y29tPgotLS0KIGRyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfaGV2Yy5jIHwg
-NiArKysrKy0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy92ZGVjX2hldmMu
-YyBiL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfaGV2Yy5jCmluZGV4IDk1
-MzBlNTgwZTU3YS4uYWZjZWQ0MzVjOTA3IDEwMDY0NAotLS0gYS9kcml2ZXJzL3N0YWdpbmcvbWVk
-aWEvbWVzb24vdmRlYy92ZGVjX2hldmMuYworKysgYi9kcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVz
-b24vdmRlYy92ZGVjX2hldmMuYwpAQCAtMTY3LDggKzE2NywxMiBAQCBzdGF0aWMgaW50IHZkZWNf
-aGV2Y19zdGFydChzdHJ1Y3QgYW12ZGVjX3Nlc3Npb24gKnNlc3MpCiAKIAljbGtfc2V0X3JhdGUo
-Y29yZS0+dmRlY19oZXZjX2NsaywgNjY2NjY2NjY2KTsKIAlyZXQgPSBjbGtfcHJlcGFyZV9lbmFi
-bGUoY29yZS0+dmRlY19oZXZjX2Nsayk7Ci0JaWYgKHJldCkKKwlpZiAocmV0KSB7CisJCWlmIChj
-b3JlLT5wbGF0Zm9ybS0+cmV2aXNpb24gPT0gVkRFQ19SRVZJU0lPTl9HMTJBIHx8CisJCSAgICBj
-b3JlLT5wbGF0Zm9ybS0+cmV2aXNpb24gPT0gVkRFQ19SRVZJU0lPTl9TTTEpCisJCQljbGtfZGlz
-YWJsZV91bnByZXBhcmUoY29yZS0+dmRlY19oZXZjZl9jbGspOwogCQlyZXR1cm4gcmV0OworCX0K
-IAogCWlmIChjb3JlLT5wbGF0Zm9ybS0+cmV2aXNpb24gPT0gVkRFQ19SRVZJU0lPTl9TTTEpCiAJ
-CXJlZ21hcF91cGRhdGVfYml0cyhjb3JlLT5yZWdtYXBfYW8sIEFPX1JUSV9HRU5fUFdSX1NMRUVQ
-MCwKLS0gCjIuMTcuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+Switch to dev_err_probe() to remove all dev_err() -> return repeated
+patterns, simplifying and shortening the probe function.
+
+Signed-off-by: zhaoxiao <zhaoxiao@uniontech.com>
+---
+ drivers/pwm/pwm-meson.c | 53 ++++++++++++++---------------------------
+ 1 file changed, 18 insertions(+), 35 deletions(-)
+
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 57112f438c6d..43ce8d9a33d2 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -126,20 +126,16 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+ 
+ 	if (channel->clk_parent) {
+ 		err = clk_set_parent(channel->clk, channel->clk_parent);
+-		if (err < 0) {
+-			dev_err(dev, "failed to set parent %s for %s: %d\n",
++		if (err < 0)
++			return dev_err_probe(dev, err, "failed to set parent %s for %s\n",
+ 				__clk_get_name(channel->clk_parent),
+-				__clk_get_name(channel->clk), err);
+-			return err;
+-		}
++				__clk_get_name(channel->clk));
+ 	}
+ 
+ 	err = clk_prepare_enable(channel->clk);
+-	if (err < 0) {
+-		dev_err(dev, "failed to enable clock %s: %d\n",
+-			__clk_get_name(channel->clk), err);
+-		return err;
+-	}
++	if (err < 0)
++		return dev_err_probe(dev, err, "failed to enable clock %s\n",
++			__clk_get_name(channel->clk));
+ 
+ 	return 0;
+ }
+@@ -166,24 +162,18 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+ 		duty = period - duty;
+ 
+ 	fin_freq = clk_get_rate(channel->clk);
+-	if (fin_freq == 0) {
+-		dev_err(meson->chip.dev, "invalid source clock frequency\n");
+-		return -EINVAL;
+-	}
++	if (fin_freq == 0)
++		return dev_err_probe(meson->chip.dev, -EINVAL, "invalid source clock frequency\n");
+ 
+ 	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
+ 
+ 	pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
+-	if (pre_div > MISC_CLK_DIV_MASK) {
+-		dev_err(meson->chip.dev, "unable to get period pre_div\n");
+-		return -EINVAL;
+-	}
++	if (pre_div > MISC_CLK_DIV_MASK)
++		return dev_err_probe(meson->chip.dev, -EINVAL, "unable to get period pre_div\n");
+ 
+ 	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * (pre_div + 1));
+-	if (cnt > 0xffff) {
+-		dev_err(meson->chip.dev, "unable to get period cnt\n");
+-		return -EINVAL;
+-	}
++	if (cnt > 0xffff)
++		return dev_err_probe(meson->chip.dev, -EINVAL, "unable to get period cnt\n");
+ 
+ 	dev_dbg(meson->chip.dev, "period=%u pre_div=%u cnt=%u\n", period,
+ 		pre_div, cnt);
+@@ -200,10 +190,8 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+ 		/* Then check is we can have the duty with the same pre_div */
+ 		duty_cnt = div64_u64(fin_freq * (u64)duty,
+ 				     NSEC_PER_SEC * (pre_div + 1));
+-		if (duty_cnt > 0xffff) {
+-			dev_err(meson->chip.dev, "unable to get duty cycle\n");
+-			return -EINVAL;
+-		}
++		if (duty_cnt > 0xffff)
++			return dev_err_probe(meson->chip.dev, -EINVAL, "unable to get duty cycle\n");
+ 
+ 		dev_dbg(meson->chip.dev, "duty=%u pre_div=%u duty_cnt=%u\n",
+ 			duty, pre_div, duty_cnt);
+@@ -509,11 +497,8 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+ 		channel->mux.hw.init = &init;
+ 
+ 		channel->clk = devm_clk_register(dev, &channel->mux.hw);
+-		if (IS_ERR(channel->clk)) {
+-			err = PTR_ERR(channel->clk);
+-			dev_err(dev, "failed to register %s: %d\n", name, err);
+-			return err;
+-		}
++		if (IS_ERR(channel->clk))
++			return dev_err_probe(dev, PTR_ERR(channel->clk), "failed to register %s\n", name);
+ 
+ 		snprintf(name, sizeof(name), "clkin%u", i);
+ 
+@@ -550,10 +535,8 @@ static int meson_pwm_probe(struct platform_device *pdev)
+ 		return err;
+ 
+ 	err = devm_pwmchip_add(&pdev->dev, &meson->chip);
+-	if (err < 0) {
+-		dev_err(&pdev->dev, "failed to register PWM chip: %d\n", err);
+-		return err;
+-	}
++	if (err < 0)
++		return dev_err_probe(&pdev->dev, err, "failed to register PWM chip\n");
+ 
+ 	return 0;
+ }
+-- 
+2.20.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
