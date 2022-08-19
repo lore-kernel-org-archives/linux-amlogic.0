@@ -4,67 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 031ECC32792
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Aug 2022 19:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4F9C32771
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Aug 2022 19:18:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=/lVxqaSlWpPv9rcCuSvfCDxDLftjbwJoTB+EY/DV7vY=; b=txX
-	YgHJrDZhVdqrDq5VLGj5b+tzbiD7nZiq/c+A4F08/J6H4lFA79/OdAvu4cXxIUAMEjmJcTupYZp+u
-	YGseRifBWTtbbGm5OMVLFdEeVyd9izxyHFCqfj/Ya/sjWSANBXy+GDmxl0Gd5MlrciespoBoSQ4un
-	lperUojsb6eOw3YIAujWOoDTagMj7kXBzOaG9Qe7K315uwjE8IoNWnpx0OpGvsYcas8nTevdt9l0e
-	a/F+codZAUdB1ViL8VsCBK+9TiHjwCNXVoUL+13mvxX516THCPMCno2uBzKekVK5cKSwRRfw7qIdz
-	Qw+82uiNgByzqLyepE1F5W+ourGCGvQ==;
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=GSAApKcYe29sQj/kNtAt19yF6AJtqkz17ywJuqIXEOA=; b=NqUaa+yWiVP9fisHjH4Y43G3ec
+	4s8pm57EU4VfUd9ICbiCkPBRPyF4FtVTriXlBS/WcEYkA+M2oslhyfcD0axJTJ+kBsVhnBbzNwKWS
+	W4pifh7gch3Y2sjV4hlK5GUrarMNoG1vsJ6VVmxCnV071CUDc/jCqwwAE6v7ciU7LT2ikd91VBAhp
+	rQ6Dxps7NzrOCmsy8OqXD/IXPmiUq7uNOd8oEjkFHh42ayAlwwPnQNq/26+/Wq5EamnwDYnwijTIh
+	bWHg1x9SJlG/FbG+zjHd+t+M2ytUdI/4trFNFidF5xEXR3tCFrq+1pbItgQMyHTAMblRt2Cx2dfMi
+	HUcE9t1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oP7Uc-00BWSo-BP; Fri, 19 Aug 2022 19:17:18 +0000
-Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
+	id 1oP7Ve-00BXAY-6A; Fri, 19 Aug 2022 19:18:22 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oP7UZ-00BWQS-7N; Fri, 19 Aug 2022 19:17:16 +0000
-Received: by mail-lf1-x134.google.com with SMTP id a9so7261019lfm.12;
-        Fri, 19 Aug 2022 12:17:14 -0700 (PDT)
+	id 1oP7Vb-00BX4J-40; Fri, 19 Aug 2022 19:18:20 +0000
+Received: by mail-lf1-x129.google.com with SMTP id e15so7349987lfs.0;
+        Fri, 19 Aug 2022 12:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc;
-        bh=9edAeyqaKV/eGnwpb24p/sONsQF5z28Zi5ENLBQsjis=;
-        b=h6ypV1yJJL0qgQWg/+xo1mrjVedomBmbMvZzcElTA/w5mp5AzC6W+u6FM9JDglXkIG
-         f0EFLHWGo01cUs200DNYrrE6L7hXnRJgrmsN3nxPtq0WRtbiVaWN0fK7/Bozw+co8ct3
-         N7jegGVnAPQ6/HVWGzefch1Xj7qjpj5QD9aeg6b/BAwEzRoHMSeCzqFpyzI7bt44XxEf
-         PkgVNQHotIjqfqbYWMSGqsZl1QgjFRS16rUzvyO+euq9YakFRFWR0EKnqy86MKW/Qf2G
-         +C/mu5/XgdOkFRaygzwDwmWhPYn3zHZ7r39kQU7pF39sfCqo+neujKXn6s0k1jENe6My
-         ngQw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=J9j7meaVAm+vqP6dy4QIMrPMWANh7sBEsLAJVix/pF8=;
+        b=YCkvbVMEYJILHDd9aj0bVTOW+rlDJaNmoH4e9urDxJtgY5ZyI2KtQ4Ty8MGdHbAYiD
+         ezIpkTuQUhi5gFRa9uzoal6sP1QOAsQgP94j7D4GNe7Y7fwDXYpmVPf5j5Qa6qPR5nWP
+         9Q8iFbIyKnim9Cgf7Q08aRf/ckJIFtkcBv/YK9iBsJbXWqRoda8f6kEAipUFD9di/DsV
+         w1XWklnT8etsfawiVMGzXB4Mrfb8qi+cQHoR3g6ElaUn3RL17XpGwad8R6kH1n9NK7sE
+         POkr6ufCQ7qXrstprGgSkcK4tAx7wjxfDDch0RjVS3UOKJrnGrGhzwaWi1lXtnpwNxS6
+         GlAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=9edAeyqaKV/eGnwpb24p/sONsQF5z28Zi5ENLBQsjis=;
-        b=eI2ifyHWNNhWZLDbr7MuE7d2yLP+GElWQ1NihCm/Un7RVHS68Tw9tqhSIDF/SAfwyp
-         ruum4AIL4vKkLVFDJ79RDvNkG01DBCm5FcGiJDBjls/K8xlTi+bolAP/u84i/A+UlU/R
-         qd/9bSdc/K8nhATyyg+NaV3MrkFhSuUqvVS7wVWmVOgBq++ogBfSwFxpJIEvUiqUpf18
-         TRxt1eOdo/VmnI8+aW3Xn8YURU0JNZQeZjo1Qy/LNCY/zTKRFI16xK0/kgOWjdWvkZ9f
-         edcOThTuaIhjDGQY01IVjuCuhJGtKup/KmO7hxlOgfYKe1RzZ3LHZrYB6UxjcLQRzNne
-         DOlw==
-X-Gm-Message-State: ACgBeo2WbH1NJJryen3HBPzIjnwuuuXkn8RHmYX6Wx1MrlepwL9WjYeq
-	X+oEMyin/wapm18Qs0nH8hs=
-X-Google-Smtp-Source: AA6agR6L/s1W7mzQnKhc+50x8bAWnpqHS1+yAXDPOhAZzl8NwA/GrakaeTQCnoodLt11WOWWYq+qjA==
-X-Received: by 2002:a05:6512:23a7:b0:492:b613:817 with SMTP id c39-20020a05651223a700b00492b6130817mr2872025lfv.492.1660936632748;
-        Fri, 19 Aug 2022 12:17:12 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=J9j7meaVAm+vqP6dy4QIMrPMWANh7sBEsLAJVix/pF8=;
+        b=ZdxBEoA1oQExc8XJTomK2Et+EesWHRc3EECicgzxsLZRfawsaHO0H+wpd/1ls0/HCS
+         U7pnh2uMwel0wXBzbJkP9qIw6K6pL7VDA01LWu0C96E5/f+weSvUwaZJ/Yzzel8v1jPG
+         lW4k1twFs5E0HYtCaW6lEZHxtq4b+yD2mHwhA0tpkFoAmWLtHVWyBrarhSSNX4b6cOhW
+         5FghIT83xHq2gzUDHfOaMhdDU4Z9Vna1Sqky1V7RzL4/GY5XvsGyn/pzkQ0/I/5e6c2y
+         iL/8BaM7qSDmEYxH1s3+LeCGsBwFYOUwB0jVTq1oXBOrvyXh4QeXod61KZ7MC1pHYqgn
+         YdLA==
+X-Gm-Message-State: ACgBeo164DNxYS2dcMIfva4Rddh9Wf8s4wbTs6DzmQuAbCFMbsHSw/pp
+	ZnoVDensKYLDgRVvr3f9vuI=
+X-Google-Smtp-Source: AA6agR5pAXdzRXNdKktnqNP44OTIXMqbCxtn7e2HF5YXdZ8lllMnF5gGhyW7vmAQsaqSExgX9L4CFg==
+X-Received: by 2002:a05:6512:3a86:b0:48c:fa29:65e with SMTP id q6-20020a0565123a8600b0048cfa29065emr2727422lfu.63.1660936695667;
+        Fri, 19 Aug 2022 12:18:15 -0700 (PDT)
 Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id u17-20020ac243d1000000b0048afeb4ea32sm737760lfl.100.2022.08.19.12.17.09
+        by smtp.gmail.com with ESMTPSA id f4-20020a056512360400b00492b7d7ee20sm738734lfs.87.2022.08.19.12.18.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Aug 2022 12:17:11 -0700 (PDT)
-Date: Fri, 19 Aug 2022 22:16:48 +0300
+        Fri, 19 Aug 2022 12:18:15 -0700 (PDT)
+Date: Fri, 19 Aug 2022 22:18:10 +0300
 From: Matti Vaittinen <mazziesaccount@gmail.com>
 To: Matti Vaittinen <mazziesaccount@gmail.com>,
 	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <narmstrong@baylibre.com>,
 	Robert Foss <robert.foss@linaro.org>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
@@ -74,36 +71,19 @@ Cc: Jonathan Corbet <corbet@lwn.net>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Alexandru Tachici <alexandru.tachici@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Peter Rosin <peda@axentia.se>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Alexandru Ardelean <aardelean@deviqon.com>,
-	Cai Huoqing <cai.huoqing@linux.dev>,
-	Alexandru Lazar <alazar@startmail.com>,
-	Miaoqian Lin <linmq006@gmail.com>,
-	Xiang wangx <wangxiang@cdjrlc.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: [PATCH v3 00/14] Use devm helpers for regulator get and enable
-Message-ID: <cover.1660934107.git.mazziesaccount@gmail.com>
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 03/14] gpu: drm: simplify drivers using
+ devm_regulator_*get_enable*()
+Message-ID: <3aacca7d9a0240d95dc3cf103d114b5c85392e71.1660934107.git.mazziesaccount@gmail.com>
+References: <cover.1660934107.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <cover.1660934107.git.mazziesaccount@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220819_121715_325735_D89DEBE5 
-X-CRM114-Status: GOOD (  15.13  )
+X-CRM114-CacheID: sfid-20220819_121819_192801_62753426 
+X-CRM114-Status: GOOD (  16.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,112 +95,159 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5877659711537485409=="
+Content-Type: multipart/mixed; boundary="===============4947270331374604642=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============5877659711537485409==
+--===============4947270331374604642==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+OPEAUCAFHQMa3jU"
+	protocol="application/pgp-signature"; boundary="uKWbmb48pgNIiD+I"
 Content-Disposition: inline
 
 
---+OPEAUCAFHQMa3jU
+--uKWbmb48pgNIiD+I
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Use devm helpers for regulator get and enable
+Simplify drivers using managed "regulator get and enable".
 
-NOTE: The series depends on commit
-ee94aff2628b ("Devm helpers for regulator get and enable")
-which currently sits in Mark's regulator/for-next
+meson:
+Use the devm_regulator_get_enable_optional(). Also drop the seemingly
+unused struct member 'hdmi_supply'.
 
-A few* drivers seem to pattern demonstrated by pseudocode:
+sii902x:
+Simplify using devm_regulator_bulk_get_enable()
 
-- devm_regulator_get()
-- regulator_enable()
-- devm_add_action_or_reset(regulator_disable())
-
-devm helpers for this pattern were added to remove bunch of code from
-drivers. Typically following:
-
-- replace 3 calls (devm_regulator_get[_optional](), regulator_enable(),
-  devm_add_action_or_reset()) with just one
-  (devm_regulator_get_enable[_optional]()).
-- drop disable callback.
-
-I believe this simplifies things by removing some dublicated code.
-
-This series reowrks a few drivers. There is still plenty of fish in the
-sea for people who like to improve the code (or count the beans ;]).
-
-Finally - most of the converted drivers have not been tested (other than
-compile-tested) due to lack of HW. All reviews and testing is _highly_
-appreciated (as always!).
-
-Revision history:
-
-v3:
-	- Drop already applied helper patches
-	- Add a few more drivers
-
-RFCv1 =3D> v2:
-	- Add devm_regulator_bulk_get_enable() and
-	  devm_regulator_bulk_put()
-	- Convert a couple of drivers to use the new
-	  devm_regulator_bulk_get_enable().
-	- Squash all IIO patches into one.
-
-Patch 1:
-	Add new devm-helper APIs to docs.
-Patch 2:
-	simplified CLK driver(s)
-Patch 3:
-	simplified GPU driver(s)
-Patch 4 - 5:
-	simplified hwmon driver(s)
-Patch 6 - 14:
-	simplified IIO driver(s)
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
 ---
+v2 =3D> v3:
+No changes
 
-Matti Vaittinen (14):
-  docs: devres: regulator: Add new get_enable functions to devres.rst
-  clk: cdce925: simplify using devm_regulator_get_enable()
-  gpu: drm: simplify drivers using devm_regulator_*get_enable*()
-  hwmon: lm90: simplify using devm_regulator_get_enable()
-  hwmon: adm1177: simplify using devm_regulator_get_enable()
-  iio: ad7192: Simplify using devm_regulator_get_enable()
-  iio: ltc2688: Simplify using devm_regulator_*get_enable()
-  iio: bmg160_core: Simplify using devm_regulator_*get_enable()
-  iio: st_lsm6dsx: Simplify using devm_regulator_*get_enable()
-  iio: ad7476: simplify using devm_regulator_get_enable()
-  iio: ad7606: simplify using devm_regulator_get_enable()
-  iio: max1241: simplify using devm_regulator_get_enable()
-  iio: max1363: simplify using devm_regulator_get_enable()
-  iio: hmc425a: simplify using devm_regulator_get_enable()
+RFCv1 =3D> v2:
+- Change also sii902x to use devm_regulator_bulk_get_enable()
 
- .../driver-api/driver-model/devres.rst        |  4 +++
- drivers/clk/clk-cdce925.c                     | 21 +++----------
- drivers/gpu/drm/bridge/sii902x.c              | 22 ++------------
- drivers/gpu/drm/meson/meson_dw_hdmi.c         | 23 ++------------
- drivers/hwmon/adm1177.c                       | 27 ++---------------
- drivers/hwmon/lm90.c                          | 15 ++--------
- drivers/iio/adc/ad7192.c                      | 15 ++--------
- drivers/iio/adc/ad7476.c                      | 11 +------
- drivers/iio/adc/ad7606.c                      | 22 ++------------
- drivers/iio/adc/ad7606.h                      |  1 -
- drivers/iio/adc/max1241.c                     | 28 ++---------------
- drivers/iio/adc/max1363.c                     | 11 +------
- drivers/iio/amplifiers/hmc425a.c              | 17 +----------
- drivers/iio/dac/ltc2688.c                     | 23 ++------------
- drivers/iio/gyro/bmg160_core.c                | 24 ++-------------
- drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       |  2 --
- drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  | 30 ++++---------------
- 17 files changed, 41 insertions(+), 255 deletions(-)
+Please note - this is only compile-tested due to the lack of HW. Careful
+review and testing is _highly_ appreciated.
+---
+ drivers/gpu/drm/bridge/sii902x.c      | 22 +++-------------------
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
+ 2 files changed, 6 insertions(+), 39 deletions(-)
 
+diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii9=
+02x.c
+index 7ab38d734ad6..162f9c87eeb2 100644
+--- a/drivers/gpu/drm/bridge/sii902x.c
++++ b/drivers/gpu/drm/bridge/sii902x.c
+@@ -171,7 +171,6 @@ struct sii902x {
+ 	struct drm_connector connector;
+ 	struct gpio_desc *reset_gpio;
+ 	struct i2c_mux_core *i2cmux;
+-	struct regulator_bulk_data supplies[2];
+ 	bool sink_is_hdmi;
+ 	/*
+ 	 * Mutex protects audio and video functions from interfering
+@@ -1072,6 +1071,7 @@ static int sii902x_probe(struct i2c_client *client,
+ 	struct device *dev =3D &client->dev;
+ 	struct device_node *endpoint;
+ 	struct sii902x *sii902x;
++	static const char * const supplies[] =3D {"iovcc", "cvcc12"};
+ 	int ret;
+=20
+ 	ret =3D i2c_check_functionality(client->adapter,
+@@ -1122,27 +1122,13 @@ static int sii902x_probe(struct i2c_client *client,
+=20
+ 	mutex_init(&sii902x->mutex);
+=20
+-	sii902x->supplies[0].supply =3D "iovcc";
+-	sii902x->supplies[1].supply =3D "cvcc12";
+-	ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(sii902x->supplies),
+-				      sii902x->supplies);
+-	if (ret < 0)
+-		return ret;
+-
+-	ret =3D regulator_bulk_enable(ARRAY_SIZE(sii902x->supplies),
+-				    sii902x->supplies);
++	ret =3D devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(supplies), supplie=
+s);
+ 	if (ret < 0) {
+ 		dev_err_probe(dev, ret, "Failed to enable supplies");
+ 		return ret;
+ 	}
+=20
+-	ret =3D sii902x_init(sii902x);
+-	if (ret < 0) {
+-		regulator_bulk_disable(ARRAY_SIZE(sii902x->supplies),
+-				       sii902x->supplies);
+-	}
+-
+-	return ret;
++	return sii902x_init(sii902x);
+ }
+=20
+ static int sii902x_remove(struct i2c_client *client)
+@@ -1152,8 +1138,6 @@ static int sii902x_remove(struct i2c_client *client)
+=20
+ 	i2c_mux_del_adapters(sii902x->i2cmux);
+ 	drm_bridge_remove(&sii902x->bridge);
+-	regulator_bulk_disable(ARRAY_SIZE(sii902x->supplies),
+-			       sii902x->supplies);
+=20
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/=
+meson_dw_hdmi.c
+index 5cd2b2ebbbd3..7642f740272b 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -140,7 +140,6 @@ struct meson_dw_hdmi {
+ 	struct reset_control *hdmitx_apb;
+ 	struct reset_control *hdmitx_ctrl;
+ 	struct reset_control *hdmitx_phy;
+-	struct regulator *hdmi_supply;
+ 	u32 irq_stat;
+ 	struct dw_hdmi *hdmi;
+ 	struct drm_bridge *bridge;
+@@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *m=
+eson_dw_hdmi)
+=20
+ }
+=20
+-static void meson_disable_regulator(void *data)
+-{
+-	regulator_disable(data);
+-}
+-
+ static void meson_disable_clk(void *data)
+ {
+ 	clk_disable_unprepare(data);
+@@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, stru=
+ct device *master,
+ 	meson_dw_hdmi->data =3D match;
+ 	dw_plat_data =3D &meson_dw_hdmi->dw_plat_data;
+=20
+-	meson_dw_hdmi->hdmi_supply =3D devm_regulator_get_optional(dev, "hdmi");
+-	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
+-		if (PTR_ERR(meson_dw_hdmi->hdmi_supply) =3D=3D -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-		meson_dw_hdmi->hdmi_supply =3D NULL;
+-	} else {
+-		ret =3D regulator_enable(meson_dw_hdmi->hdmi_supply);
+-		if (ret)
+-			return ret;
+-		ret =3D devm_add_action_or_reset(dev, meson_disable_regulator,
+-					       meson_dw_hdmi->hdmi_supply);
+-		if (ret)
+-			return ret;
+-	}
++	ret =3D devm_regulator_get_enable_optional(dev, "hdmi");
++	if (ret !=3D -ENODEV)
++		return ret;
+=20
+ 	meson_dw_hdmi->hdmitx_apb =3D devm_reset_control_get_exclusive(dev,
+ 						"hdmitx_apb");
 --=20
 2.37.1
 
@@ -237,25 +264,25 @@ Simon says - in Latin please.
 ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
 Thanks to Simon Glass for the translation =3D]=20
 
---+OPEAUCAFHQMa3jU
+--uKWbmb48pgNIiD+I
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmL/4ZsACgkQeFA3/03a
-ocX/Ggf7BfEmlDeq8mQqIXNuIXUyS1wDwJS/W6gY4qdxaESlklGTEbvGXSG+Ve1e
-6z2kt2sAFyfZgJSLaTDNzwzp2ddc6FvVVxzdvFlb1cbJdr3Js/Tl+HGFM327Qjl3
-lP8vDwi2tXXnaVyjY0/18mp6HkaziCMhzqN9LNBmF2XSs3F8pGfu5cs+EabMIo7Q
-EOF+5ZbFeXeL9I7Kk5Y17WDenMn+glY/1mQnPjkSYoNX7riqZLY5clklNTHzcxPT
-ADtFQBjEbRSgWzs2BApI3nDFMtjzqHewqo4iLodHgg1REBOoPDCP6PaKfKVDcArw
-9GdbTYiQd0lG5g9zBodvD9ZjaVpRlQ==
-=C7qu
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmL/4fIACgkQeFA3/03a
+ocWuBwf+Kq0reW1WZbOU6f9nkvnlfsW9rosrMD8+RLXxTRhbL4l4yGCS2p2x29/u
+3OD+Bx9ueraabFuNPcKu1w9QNczK+XwXChv5Kpz1OJtFUxfIunA+g8/6r4bOeWUk
++PcMuVkTM2Mh4v5waroS5GxgLYnHL8HpvU91NoDMcd6MrGFCOT/xTMICBkrzmcJk
+lCg4Ap3ZX2Eb2d/dQ3+xuKUmy3IETnfCY8boUZoRLxqakhD7jRvyn3FaPHNdDnEh
+/TK7bWYV0sVum54+k/2/3o09mAV6eRvt6f2cpJ1wxsDSZV0xdqROD+S3I1vat7s2
+BLi6N0T4uzNilm+gIHc6tPHCi42xzw==
+=Nhhc
 -----END PGP SIGNATURE-----
 
---+OPEAUCAFHQMa3jU--
+--uKWbmb48pgNIiD+I--
 
 
---===============5877659711537485409==
+--===============4947270331374604642==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -266,5 +293,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============5877659711537485409==--
+--===============4947270331374604642==--
 
