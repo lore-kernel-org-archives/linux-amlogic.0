@@ -4,76 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54BC0C25B08
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Aug 2022 17:23:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A698C25B08
+	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Aug 2022 17:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8ffgyk6tr43NWbFZRknXHPNoS6rd2eHIxHX2pcXGT0Y=; b=BkQWxbHSx3LTUP
-	XhQe0n716SoF4B+idhIQw70JpJHaEvKv62xjmbBpSEcVquuCavuDEDe7PRagMdRs3MxRXvafjsLZk
-	9U2p0E/JMOtCnrXO1xKOr2Ex/fBreeqp9L8Y1Zh1U1NYtxnL3l73uAcrKnw15IDlgn7J3Wor/zV41
-	WFf7KY/SrG7QsxdRF89NDyPtv9AcfXfDTzd3Voe8Ix091LT4cIGlDI/aK6BRdIbORrefEkWcfB9z0
-	bWwDB6keinOiHQX/DzCtAO2eU/FG97jx8K2KmFIh4X+mY+rfXNaZ42wCb1c3naTB7EpnO2NyMr/ub
-	vlVBXQ2EyiQjPhbBBVFw==;
+	List-Owner; bh=EMSsleGMzomWpG2DIGjRJjUyvP6meM2qmj2CEYAe2UM=; b=Z81PDRZDD0+h50
+	eRF9DDLJX17UNA2dI/PSc5RJF570rkEuntezOu+i8SB+sYWjkRii+yudvbKXBR8oFeAkNBw+K2YGq
+	cd2eF5WeM6hsT4gncYdZOhkHZeLILaZLpXrrJFnLhG1NuEh6g/la92+nYHlrIDQ7dQdKoYaAIKB+u
+	oVEhy0P4t+MnKIAdYwIYMjGBiN3ub1PxxedSmjmEUAmdrYEhuN7hIlMwPh3i9xxEdrVPj7mAOQOkO
+	jXs0xzFgeGE9UUk/YokkuxbbZCIYrogrdyrPNYHaCmmuz55Qqv8MID95KoJTEAGykf3AG7eqiFIU2
+	BjTPlWuHBSPZxlB04djw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPSBp-00BEkr-IS; Sat, 20 Aug 2022 17:23:17 +0000
-Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
+	id 1oPSEi-00BFmZ-OQ; Sat, 20 Aug 2022 17:26:16 +0000
+Received: from mail-yw1-x112f.google.com ([2607:f8b0:4864:20::112f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPSBd-00BEfy-Re; Sat, 20 Aug 2022 17:23:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-	; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=8BklGePlOGzlIbyB2AgDUWEPfUhqmEkqZKMYHVCAb3o=; b=N/8vyFTCNC0NQfLmopwfofzrMI
-	cxEchZwTKKEv3rOttPBJkoH3/az9oOr+CeJG2ofTnEKJBK4cTDNGj+5xWzB2Sp2I8HmKkoHZhMe6M
-	sbw5MdTw7QL2H6KTDimKuwPJsfTQM4vgCYA6U0HJdmnjP5gno5KQdcwR+uCvarfxd1kBAI1ydLdn6
-	O+uKEhq+KmwB0qKN+WjHHZxzCS4Gnp4j4HuHKP4AO4y/cZUwXAqi8Y4LjrpE8fmjtNRfZxAsoKwOF
-	L6c/nh1rdlDkw/ecDnLLBpRKG29oFbgNu/ilORvV+04iF7sdVDASM0SPQo9bW+jHsIKt1nvxVJuKp
-	KjU9Fxqg==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=55975)
-	by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <noralf@tronnes.org>)
-	id 1oPSBU-0001ci-DT; Sat, 20 Aug 2022 19:22:56 +0200
-Message-ID: <0255f7c6-0484-6456-350d-cf24f3fee5d6@tronnes.org>
-Date: Sat, 20 Aug 2022 19:22:48 +0200
+	id 1oPSEW-00BFgX-6d; Sat, 20 Aug 2022 17:26:05 +0000
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-3378303138bso155138887b3.9;
+        Sat, 20 Aug 2022 10:26:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Vcm63p9Ndo8w0eqrJk86Vp4em1l9XiIXzzzPibiG9xc=;
+        b=mpO5iswODoCzpwRmKE8RAg0r6YuSpgtO6RrGKttfrcnl2yfGAn+WnO5htJDrAie0fy
+         giQNwDD2rJTPB8wsYBQ8+zSgJ+UIb0wTAGa5GKeUb2wVeH9ugeCbDvfstVUpTDEgq09l
+         rjz03HGgjSIXYx1mXweYRTE5m4pD3YOdAohWIjU/9aMBXAUf5CdtoMgvgNnQHIogxVKp
+         l+FcpM8nsYHV7xKpf8m8mLhtf5nY7ly5ACKqMNkMEugeCaSFfAv1duxFAIBwgj9Q2/21
+         ormwuwjg84FSCn4CJ2jvKht94BfxOBUKvbSNIRv8XKLh7DGo5yeS6sjf/bBHjFbEJDI6
+         mCcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Vcm63p9Ndo8w0eqrJk86Vp4em1l9XiIXzzzPibiG9xc=;
+        b=fJXdkmDdT7XIXXtlxbtLZFIUtdSDr55f+ckrGD1IteG0EJX+sQv8NFmO/6isJikIcV
+         Ono3rpmzUAtdLkupsE4EqalrwuwfTnDjHA33EDw8qSXTMOkgR8gEd13f2kOoTpLeD8dR
+         rockDe3QxkICU+52G7gQyIF4gjLDKyDGfGzwOIXE9POYUn3z4i0FcGl7Kb1S9QLHnGhq
+         bhK0yRch8LZ0yiO9i9Ok7ggJA73kOQT8snNc/Blzz7EO8xWCcd5uDtgv4H3YYk3Akvwg
+         n2OgbpCS/OruQqrpRp7MRGwZZ6jDd1R27ozVIlCzErShsDO/RYR1o2XtB0ymdu6Nr96x
+         hw5g==
+X-Gm-Message-State: ACgBeo35vit2YWJd9b3x3qLEOriAQ6hXd87Me4FmeidTlp3NcUpL/24Z
+	ijFTMJm904/DcwDpvJY2EfD+bnJLel+4AV1BUuM=
+X-Google-Smtp-Source: AA6agR5TRgD/FnBNXaCrUTNJvvi3JQMLm90svy6f13lPPU4q6eUuunzGxFVgcIGvJ4uKIRiM8uS46Cmd3Px6UfZAn1o=
+X-Received: by 2002:a81:83c5:0:b0:334:a89b:1e5d with SMTP id
+ t188-20020a8183c5000000b00334a89b1e5dmr12036745ywf.178.1661016362743; Sat, 20
+ Aug 2022 10:26:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v1 23/35] drm/vc4: vec: Convert to the new TV mode
- property
-To: Maxime Ripard <maxime@cerno.tech>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Phil Elwell <phil@raspberrypi.com>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Dom Cobley <dom@raspberrypi.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
- <noralf@tronnes.org>
-References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-23-3d53ae722097@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v1-23-3d53ae722097@cerno.tech>
+References: <20220819060801.10443-1-jinpu.wang@ionos.com> <20220819060801.10443-18-jinpu.wang@ionos.com>
+In-Reply-To: <20220819060801.10443-18-jinpu.wang@ionos.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 20 Aug 2022 19:25:52 +0200
+Message-ID: <CAFBinCCbjF_mkV+EaOtC0g_YbtX9TzBEN5fRJ_MiPaie5hxCwQ@mail.gmail.com>
+Subject: Re: [PATCH v1 17/19] mmc: meson-mx-sdhc: Fix error check for dma_map_sg
+To: Jack Wang <jinpu.wang@ionos.com>
+Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220820_102305_964972_248839AE 
-X-CRM114-Status: GOOD (  11.71  )
+X-CRM114-CacheID: sfid-20220820_102604_280048_12F07A47 
+X-CRM114-Status: UNSURE (   7.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,47 +86,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello Jack,
+
+first of all: thank you for this patch!
+
+On Fri, Aug 19, 2022 at 8:08 AM Jack Wang <jinpu.wang@ionos.com> wrote:
+[...]
+> @@ -388,7 +388,7 @@ static int meson_mx_sdhc_map_dma(struct mmc_host *mmc, struct mmc_request *mrq)
+>
+>         dma_len = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len,
+Does it also make sense to change the type of the dma_len variable
+from (signed) int to "unsigned int" (a few lines above)?
 
 
-Den 29.07.2022 18.35, skrev Maxime Ripard:
-> Now that the core can deal fine with analog TV modes, let's convert the vc4
-> VEC driver to leverage those new features.
-> 
-> We've added some backward compatibility to support the old TV mode property
-> and translate it into the new TV norm property.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
-
->  static int vc4_vec_connector_get_modes(struct drm_connector *connector)
->  {
-> -	struct drm_connector_state *state = connector->state;
->  	struct drm_display_mode *mode;
->  
-> -	mode = drm_mode_duplicate(connector->dev,
-> -				  vc4_vec_tv_modes[state->tv.mode].mode);
-> +	mode = drm_mode_duplicate(connector->dev, &drm_mode_480i);
-> +	if (!mode) {
-> +		DRM_ERROR("Failed to create a new display mode\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	mode = drm_mode_duplicate(connector->dev, &drm_mode_576i);
-
-Maybe the mode that matches tv.norm should be marked as preferred so
-userspace knows which one to pick?
-
-Noralf.
-
->  	if (!mode) {
->  		DRM_ERROR("Failed to create a new display mode\n");
->  		return -ENOMEM;
-> @@ -277,21 +313,95 @@ static int vc4_vec_connector_get_modes(struct drm_connector *connector)
->  	return 1;
->  }
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
