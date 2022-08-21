@@ -4,63 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19AF2C00140
-	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Aug 2022 15:36:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4267AC00140
+	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Aug 2022 16:13:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0z8+zALwln+WZQY7d/Zj2x4Zho11y47lOCbWOIHiYzk=; b=Rb8+SqWGIZ4FjT
-	RoqOnRXV3FYEwm7SeeaMzv3Dow1BUBz6TA82MK3hEO3YcyYq43W3stxQIkiYm2uToIlo5DIZrczzT
-	eIbLdDbezZq9yUW51oFMjFH7qwrNDszfLp5saq4UQeXfQ3Vrml0zSCO7VayFxd4PhB0qBYOIGg0Kx
-	n9BT7BlsimNb0J1HZqr06uxTHKE2cyyQrzQf77+0WpUe2BwFlsP2kEV00YmhLnv4a5CdJqQ0aQ6De
-	BUhTcCH7joowlCMfudekNL28oJkrN2jys5ScqLM/Wyv6ZT4IbfpXo02N+uolahaU6nAyjq4xKy5ij
-	LKudoFEyUVGHZw9u5IXA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vmm8ZIE7J79ApyD4BYohKunwCiWFWKKWVysZZhQVn60=; b=J4TTw7FMKZ9Xxn
+	QC9+5rIHgq1wcvGrQhC17yDWP/TgLoN6yxq4AoCA+MHbLkRgQ0rHkK9KLrvJGb+Ecxil0jhXA6LWo
+	8LWIh+CK8g8BArTQWguJ9r8N1+Rgp/0xYz6pqDFNVznUaZa0K/QiWND+mvSZvtbq/Ryy8VnEvnhL9
+	uDRpYq7g+7qkzzVmT/9QaFp2ZZTO4tn9SZM1yYGI2fpfHkR6ak+vi4us/SWFLyYmUejZGSEMCjnWL
+	3bsaaGt/EJW/z8DQ4qlXyvVqdVi0QkOGG/oS6acMzBvtP3NbB56NpuffPhY17phWGsl7/jVkOuI4K
+	pkKiR0naClEsgOXq0zyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPn0C-00Btf8-US; Sun, 21 Aug 2022 15:36:40 +0000
-Received: from bg4.exmail.qq.com ([43.154.221.58] helo=bg5.exmail.qq.com)
+	id 1oPnZo-00CFij-Gc; Sun, 21 Aug 2022 16:13:28 +0000
+Received: from mail-yw1-x112c.google.com ([2607:f8b0:4864:20::112c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPn09-00BtWl-2Y; Sun, 21 Aug 2022 15:36:39 +0000
-X-QQ-mid: bizesmtp90t1661096165t374baa6
-Received: from localhost.localdomain ( [182.148.14.124])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 21 Aug 2022 23:36:03 +0800 (CST)
-X-QQ-SSF: 0100000000200020B000B00A0000000
-X-QQ-FEAT: DCPPvtqe8IzjFnN8vSMSGBUwANjnMiqsqhv9KSe9/xAj/mxepGoZuYvIWSMWS
-	4d1ypT1J91f6T7xsvIZpMyzvsz8jQ7HD9XhhtJKw8qtJ1qmZm9P/mMQ2bM5RTszDD0vBfSR
-	AaRrVkFzh/NWpLFn5rymWFvEcnfEq3XcdqwAnZ2BijNGUHiEHAodluCXCwdSj2k+WWj2VTA
-	mquAI/IiaeoweCAk4DRLFzIzfJBt8ZmZSzFDkfLMBdnPnixSzRq3foExNseKy/pNKVVReOr
-	iMr5EtKv9etj/PlXyWwNuu1Te4nFZ+pEoy8rNFVRRO2HdRmXav7og6yAksY8hPc6Gu7ZMms
-	19s5WGRwU78EUujABoNp34yPtxHAyr+JcaYxKGRmtXcL0XmP1FA4zX+MB6ZZA==
-X-QQ-GoodBg: 0
-From: wangjianli <wangjianli@cdjrlc.com>
-To: tglx@linutronix.de,
-	mingo@redhat.com,
-	bp@alien8.de,
-	dave.hansen@linux.intel.com,
-	narmstrong@baylibre.com,
-	jbrunet@baylibre.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	khilman@baylibre.com
-Cc: linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	wangjianli <wangjianli@cdjrlc.com>
-Subject: [PATCH] clk/meson: fix repeated words in comments
-Date: Sun, 21 Aug 2022 23:35:46 +0800
-Message-Id: <20220821153546.7358-1-wangjianli@cdjrlc.com>
-X-Mailer: git-send-email 2.36.1
+	id 1oPnZl-00CFgu-Kc; Sun, 21 Aug 2022 16:13:26 +0000
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-3321c2a8d4cso235215217b3.5;
+        Sun, 21 Aug 2022 09:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=4jWg3pa8oTEiXPQ4lpu76iaATY92QDHZb7IidOt0SyI=;
+        b=Hyw9U2ZJCY3p7yK7rox0xxNjkaiTWB1F5GdXRAPnPf2MWoFkGV6ORCHDkO1941iuSO
+         +/PnnYHK4rHyGhNkl/nJRgpcFb3KvTnGapYMU1YUOuZFrv8qA3fWIMMKf3kTaAhrPA25
+         auDQ2JtJP6oEcHceFMLGuuGg9zKj72qg7b4gMfo6u45suzU/ocu4ZR+trx63fBK7VCI3
+         K5WHgDi13KbTv61zvYAPbtJ9oxrhQhMBmBge6ZuxZuwzkJHv8tB+U0XtezStcgVSc5+3
+         YokCyHA/0qKvkvmLNKNB7L3S+Ht7xUi89861BIianntbkHP69pFUWsYoHLhFNhz9aIWv
+         uWpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=4jWg3pa8oTEiXPQ4lpu76iaATY92QDHZb7IidOt0SyI=;
+        b=GGzxqmO9QVrkDjtcT+K2/KEhoRUZd82UtxlMLs3xA81K9R4xeXO5q9YoX0SpJKxV24
+         ZgkC2dFOVC1uhv2AVaHPAfToLpJs9bKsib5dqAf9XQptPibpH+kjrziZwKa2KQhNeaik
+         JMeplJVGdTgPz6f3wTtmgfPwGNmKoaYi5xrui9yF5inUZcmF8IB6V2Y77iF9X3veTscz
+         wiDvc9XYOO69QUoHvu0+y8uFQxDZeVsHh8rroVlU8nS8ALc7cxE1rivLBBtMDoJkfi4u
+         RH+ed/RQERF3y8HaCH186ld20lf9TLQ1p1A11DIXo7oRQy9paS0Nc6enl7BLbaNjl4Kv
+         N3yQ==
+X-Gm-Message-State: ACgBeo2vobP/f1OFxSjQYk30UYYjAu5XvCpeB++caaIKlNs41oaEA2H7
+	XiVOL2iog6ms2XW8RjjEW4mLHQ6H3Ira04QR+vbBRp7T
+X-Google-Smtp-Source: AA6agR6p921NJbFG9woz8lz8NnF5oqa7HuAlDjs784eoChdosYBnVJWRG9lGJIGcdKLbM+FeEsFNg0dcrrNBcmMPAqE=
+X-Received: by 2002:a81:d543:0:b0:325:2240:ce5 with SMTP id
+ l3-20020a81d543000000b0032522400ce5mr16442058ywj.210.1661098404182; Sun, 21
+ Aug 2022 09:13:24 -0700 (PDT)
 MIME-Version: 1.0
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr7
+References: <20220821153546.7358-1-wangjianli@cdjrlc.com>
+In-Reply-To: <20220821153546.7358-1-wangjianli@cdjrlc.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 21 Aug 2022 18:13:13 +0200
+Message-ID: <CAFBinCCb-t2+F=EFBYc6QhPa8bL8SaXDcUBAQbW+WE9P0N=cHg@mail.gmail.com>
+Subject: Re: [PATCH] clk/meson: fix repeated words in comments
+To: wangjianli <wangjianli@cdjrlc.com>
+Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, 
+	dave.hansen@linux.intel.com, narmstrong@baylibre.com, jbrunet@baylibre.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, khilman@baylibre.com, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220821_083637_347905_15628F9B 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20220821_091325_727304_4574A107 
+X-CRM114-Status: UNSURE (   8.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,43 +87,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
- Delete the redundant word 'by'.
+Hello,
 
-Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
----
- arch/x86/tools/relocs.c        | 2 +-
- drivers/clk/meson/clk-regmap.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+On Sun, Aug 21, 2022 at 5:37 PM wangjianli <wangjianli@cdjrlc.com> wrote:
+>
+>  Delete the redundant word 'by'.
+>
+> Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
+> ---
+>  arch/x86/tools/relocs.c        | 2 +-
+>  drivers/clk/meson/clk-regmap.h | 2 +-
+The clk-regmap.h change is fine but it needs to be separated from the
+x86 change.
+Can you please send an updated patch?
 
-diff --git a/arch/x86/tools/relocs.c b/arch/x86/tools/relocs.c
-index e2c5b296120d..3f8ab8efb674 100644
---- a/arch/x86/tools/relocs.c
-+++ b/arch/x86/tools/relocs.c
-@@ -764,7 +764,7 @@ static void walk_relocs(int (*process)(struct section *sec, Elf_Rel *rel,
-  *	to the start of the per_cpu area that does not change).
-  *
-  *	Relocations that apply to the per_cpu area need to have their
-- *	offset adjusted by by the value of __per_cpu_load to make them
-+ *	offset adjusted by the value of __per_cpu_load to make them
-  *	point to the correct place in the loaded image (because the
-  *	virtual address of .data..percpu is 0).
-  *
-diff --git a/drivers/clk/meson/clk-regmap.h b/drivers/clk/meson/clk-regmap.h
-index e365312da54e..e08a9fa0cc36 100644
---- a/drivers/clk/meson/clk-regmap.h
-+++ b/drivers/clk/meson/clk-regmap.h
-@@ -18,7 +18,7 @@
-  * @data:	data specific to the clock type
-  *
-  * Clock which is controlled by regmap backed registers. The actual type of
-- * of the clock is controlled by the clock_ops and data.
-+ * the clock is controlled by the clock_ops and data.
-  */
- struct clk_regmap {
- 	struct clk_hw	hw;
--- 
-2.36.1
 
+Thank you and best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
