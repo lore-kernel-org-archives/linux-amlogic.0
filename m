@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C8B9C00140
-	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Aug 2022 16:33:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C7D3C28D13
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Aug 2022 05:16:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mXV9SNgk8rEMGSnsHLwy3+UtsbmHPWsk3Hh/Ls2h8bA=; b=cN0eELbMO8nl80
-	zsAPJ7M4YG5Tt9Y9P85n2rFuNw1pBKbosEU1DE4zvfoRAVxUVvzASso41GxVGq6V3NEEKxFfNEuvT
-	DeS5C+ZEJMSUeByY65FSD1OD38ETOhZUEOfaQLFWon3J04JGjG9Lxj07POHv+PbcNjPvXWmV8Y6nb
-	hKb2lAKepBfZdljMgxO0Q4+eTJ4eymLAw79X2qbQLZHCVrb2jYh0g3OvOPu1j3bShQkweKVgM1rH3
-	0XK+prhQZ59XpttvWBGaFNB7zqx/0vDoxziNUnNpZxCPa8KjmISmBRQ81nfqoeanMS/NUFB6hmrn0
-	idhRAD+JHqGRfeVciMGA==;
+	List-Owner; bh=LgOY/DLPZoFnSY/09ktBj9R4wYm/6z6uZITYCwTbF10=; b=c7W3KW5xW8vrGz
+	JAAzzHBrPErOBRKUmo8tJl95DSedqHMYfNWzUBOhQI9BZ13vvRViu9HTH6GTKdinf0DWsq1UclgPI
+	HaMGF8li5jByPJ0wMKmVSZe3uG3JHsfGW4ZuBQGWPpXuLBA0W1JIAUAnUh74lVpXut//1oqJEMz32
+	sk64YDLGjfftTU7lTUB2C4H/FDm3DjqAmR6iPfq9TxeOJf6MTCPtkxlue1prMlmK0bgFKUTMIkJ3K
+	OF2qAOVvo10217D9l0qzDrWqQDfjV76byg+4h1DgqhIevWHrVGtcYy7fIvlAKJMAm2e7lZC4qSglV
+	GfcT5L//grkqqzePEDdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPntE-00CPdR-Qr; Sun, 21 Aug 2022 16:33:32 +0000
-Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
+	id 1oPznJ-004wSf-7O; Mon, 22 Aug 2022 05:16:13 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oPnt1-00CPSh-2S; Sun, 21 Aug 2022 16:33:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-	; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=cK2+O3VjoIP+dBHuVJLTFqcdAxz4KQX5VWju7aZI310=; b=Z1EozxXmo9Qb2u1ChE243s0BYB
-	Pj0pgGlbPH6MlYUKB01Yz/YJIgGauKbAKX/1LEeEV638+i0xLqyt6UfvHNuNxfhHC4+zx2ML+K76n
-	RmL7BP3U23eMyj290TFVdJbQpuBeDEaPKQrpqxxFNC22KfONX0XYH3psnbLxsmAT8GY6LibqIyQLW
-	dLhOfhpooHFyjE2diYfifT/djb4VNH3IhtRWanrdEFszrDaN63SR3Q5tf9oD6pq342dtO/7NvDZvZ
-	+2UuUBq7bgyVS6+pRfkHBpmQlPNgjETA/Tn3mJH4lBIuMQ3+pVWQ3R3j/BrlSX+d/XjpeO79vjRs2
-	d2dJ4I3w==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=59050)
-	by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <noralf@tronnes.org>)
-	id 1oPnsy-0005ky-4O; Sun, 21 Aug 2022 18:33:16 +0200
-Message-ID: <987d6114-5fcb-d668-3b0d-ad6d8723dfdb@tronnes.org>
-Date: Sun, 21 Aug 2022 18:33:12 +0200
+	id 1oPznC-004wOT-VD
+	for linux-amlogic@lists.infradead.org; Mon, 22 Aug 2022 05:16:09 +0000
+Received: by mail-ed1-x530.google.com with SMTP id b16so12360950edd.4
+        for <linux-amlogic@lists.infradead.org>; Sun, 21 Aug 2022 22:16:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ionos.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=9XRquiKtczGZrdHPEqA6WSyvm81oF4bOEAQ+13HYerQ=;
+        b=SAiIxcHb4kUDUc3VEa2ho1tzuxThoNNZY/1Uy6ob5cxWpDMAgeWid7qhh1JGHzMGbM
+         adHSfp3pJPdwumkTe334GAsPu2EKY2zVf0ZgMGTJDuJ3SrI6UEqh91/qCHuGRXQw1snv
+         /1e79EhM6MjTf5SwV0uMLfQFrJ1HoFYfZpqvevvweqdEzjyYFlZtmV/EJfgjhfVj3EUi
+         0XsC/T4XkSWokdnUY+/CPOVzfVcr8ThORv6pb4680aMO7Op76cXl+fqJrMS3ioeO09hy
+         SzOT7E/D2WeM6kDvgcsmWkGn1PHym4wj8/UETx7DyE0Kmsc+CgU2T07R9NxHLpKuhXhA
+         8OYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=9XRquiKtczGZrdHPEqA6WSyvm81oF4bOEAQ+13HYerQ=;
+        b=MMZiyN+5I8QNU2f3B4sB5UVh4NZHQKxdCNoiV55JsBOXm+TxBLjCCie/EtE/5AZR8M
+         rvLMkiwUvdaGqtX1r9Un3ikPo+Xz7Xo7C3DxWtO2ZMveu0DgilkmCNwjSVHkxgG7goK3
+         /QRaX0p/7JEEr3hoLKS0deSE5oij70C20E57OgcrsR/bUgjHFoAfrXK6vCWx8UgoPlk5
+         Y1a32iZelWgFupvPhls/UZKH70YfgbVCdpM6g0J1w6FarB7xTXfthriBRAWUx9dPyhmb
+         Eu9ydxJbmvyrXpMlJzX77hIK2+v1ft5rsgedSTa6cUSRHIYUebe/Lt7IiNVYgl7VLXpJ
+         oRFQ==
+X-Gm-Message-State: ACgBeo3a8HaU9nwtoOYrSqZrPrbwlz45Fjskh1UO8Ikr6fSyBAjgcK9s
+	TKRjleNUAoRYT4LGtNWFhbhhq90ecWJnElKLgtbInw==
+X-Google-Smtp-Source: AA6agR6LybaPwlMMl65wRvlyq8H6WWQJz/BQN9DIdJiuMLxwbfIvJqdASIjHGPhvc2W10vBYnlWtHxkr+SF+OLGyRk4=
+X-Received: by 2002:a05:6402:42d3:b0:435:2c49:313d with SMTP id
+ i19-20020a05640242d300b004352c49313dmr14569874edc.86.1661145364525; Sun, 21
+ Aug 2022 22:16:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v1 00/35] drm: Analog TV Improvements
-To: Maxime Ripard <maxime@cerno.tech>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Phil Elwell <phil@raspberrypi.com>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Dom Cobley <dom@raspberrypi.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
- <noralf@tronnes.org>
-References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+References: <20220819060801.10443-1-jinpu.wang@ionos.com> <20220819060801.10443-18-jinpu.wang@ionos.com>
+ <CAFBinCCbjF_mkV+EaOtC0g_YbtX9TzBEN5fRJ_MiPaie5hxCwQ@mail.gmail.com>
+In-Reply-To: <CAFBinCCbjF_mkV+EaOtC0g_YbtX9TzBEN5fRJ_MiPaie5hxCwQ@mail.gmail.com>
+From: Jinpu Wang <jinpu.wang@ionos.com>
+Date: Mon, 22 Aug 2022 07:15:53 +0200
+Message-ID: <CAMGffEnmGPDyuPPhWN0vyTMOtCHzfOo-Je=dVJ6ed7494ekKgw@mail.gmail.com>
+Subject: Re: [PATCH v1 17/19] mmc: meson-mx-sdhc: Fix error check for dma_map_sg
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220821_093319_165608_74303706 
-X-CRM114-Status: GOOD (  24.79  )
+X-CRM114-CacheID: sfid-20220821_221607_423572_F7B6580B 
+X-CRM114-Status: GOOD (  12.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,94 +87,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-Den 29.07.2022 18.34, skrev Maxime Ripard:
-> Hi,
-> 
-> Here's a series aiming at improving the command line named modes support,
-> and more importantly how we deal with all the analog TV variants.
-> 
-> The named modes support were initially introduced to allow to specify the
-> analog TV mode to be used.
-> 
-> However, this was causing multiple issues:
-> 
->   * The mode name parsed on the command line was passed directly to the
->     driver, which had to figure out which mode it was suppose to match;
-> 
->   * Figuring that out wasn't really easy, since the video= argument or what
->     the userspace might not even have a name in the first place, but
->     instead could have passed a mode with the same timings;
-> 
->   * The fallback to matching on the timings was mostly working as long as
->     we were supporting one 525 lines (most likely NSTC) and one 625 lines
->     (PAL), but couldn't differentiate between two modes with the same
->     timings (NTSC vs PAL-M vs NSTC-J for example); 
-> 
->   * There was also some overlap with the tv mode property registered by 
->     drm_mode_create_tv_properties(), but named modes weren't interacting
->     with that property at all.
-> 
->   * Even though that property was generic, its possible values were
->     specific to each drivers, which made some generic support difficult.
-> 
-> Thus, I chose to tackle in multiple steps:
-> 
->   * A new TV norm property was introduced, with generic values, each driver
->     reporting through a bitmask what standard it supports to the userspace;
-> 
->   * This option was added to the command line parsing code to be able to
->     specify it on the kernel command line, and new atomic_check and reset
->     helpers were created to integrate properly into atomic KMS;
-> 
->   * The named mode parsing code is now creating a proper display mode for
->     the given named mode, and the TV standard will thus be part of the
->     connector state;
-> 
->   * Two drivers were converted and tested for now (vc4 and sun4i), with
->     some backward compatibility code to translate the old TV mode to the
->     new TV mode;
-> 
-> Unit tests were created along the way. Nouveau, ch7006 and gud are
-> currently broken for now since I expect that work to be reworked fairly
-> significantly. I'm also not entirely sure about how to migrate GUD to the
-> new property.
-> 
-> Let me know what you think,
-> Maxime
-> 
-
-I don't know if it's related to this patchset or not, but I do get this:
-
-pi@pi4t:~ $ sudo dmesg -C && sudo modprobe -r vc4 && sudo modprobe vc4
-&& dmesg
-[  430.066211] Console: switching to colour dummy device 80x30
-[  431.294788] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops [vc4])
-[  431.295115] vc4-drm gpu: bound fec13000.vec (ops vc4_vec_ops [vc4])
-[  431.295467] vc4-drm gpu: bound fe004000.txp (ops vc4_txp_ops [vc4])
-[  431.295804] vc4-drm gpu: bound fec12000.pixelvalve (ops vc4_crtc_ops
-[vc4])
-[  431.298895] [drm] Initialized vc4 0.0.0 20140616 for gpu on minor 0
-[  441.444250] vc4-drm gpu: [drm] *ERROR* [CRTC:68:crtc-1] flip_done
-timed out
-[  441.446529] Console: switching to colour frame buffer device 90x30
-[  451.684321] vc4-drm gpu: [drm] *ERROR* flip_done timed out
-[  451.684347] vc4-drm gpu: [drm] *ERROR* [CRTC:68:crtc-1] commit wait
-timed out
-[  461.924255] vc4-drm gpu: [drm] *ERROR* flip_done timed out
-[  461.924281] vc4-drm gpu: [drm] *ERROR* [CONNECTOR:45:Composite-1]
-commit wait timed out
-[  472.164006] vc4-drm gpu: [drm] *ERROR* flip_done timed out
-[  472.164031] vc4-drm gpu: [drm] *ERROR* [PLANE:61:plane-1] commit wait
-timed out
-[  482.403877] vc4-drm gpu: [drm] *ERROR* flip_done timed out
-[  482.403903] vc4-drm gpu: [drm] *ERROR* Timed out waiting for commit
-[  492.643799] vc4-drm gpu: [drm] *ERROR* [CRTC:68:crtc-1] flip_done
-timed out
-[  492.647073] vc4-drm gpu: [drm] fb0: vc4drmfb frame buffer device
-
-Noralf.
+Hi Martin,
+On Sat, Aug 20, 2022 at 7:26 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hello Jack,
+>
+> first of all: thank you for this patch!
+welcome.
+>
+> On Fri, Aug 19, 2022 at 8:08 AM Jack Wang <jinpu.wang@ionos.com> wrote:
+> [...]
+> > @@ -388,7 +388,7 @@ static int meson_mx_sdhc_map_dma(struct mmc_host *mmc, struct mmc_request *mrq)
+> >
+> >         dma_len = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len,
+> Does it also make sense to change the type of the dma_len variable
+> from (signed) int to "unsigned int" (a few lines above)?
+I double checked, it seems a good idea, I will do it in v2.
+>
+>
+> Best regards,
+> Martin
+Thx!
 
 _______________________________________________
 linux-amlogic mailing list
