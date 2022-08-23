@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DD05C28D13
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Aug 2022 02:28:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82964C28D13
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Aug 2022 02:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dm0Fsto6+hj7HiOwFvBPop3i9UsFndVFXyIDmCyfsaw=; b=XS0z1o8b4vq4x7
-	c9rS7FO0G8/EgAg621maDfKz8dlrT3VugJeCAmvqyRWW3a1Z/78h+L3ScUEZ4oTKa2nEnHIx6kFgm
-	UQIetns5L2wV25P9z+KY2HTe1lU82BiJe3z1CMO9aEp66cSNst1tosruijulvfcS5p8GuOSr5m86X
-	8smcgdHJqXwT/sm69V6FK0dLdQlVYyOhPR/UenFAu97noRhJhpE5NlJmPvnjkbAnO45kffYhG8nHi
-	J+ErSO/hfTH2eso0Aw/rP6QSxln2ASuEd9OZgM1dsbDDSDWetiwChwq7mKV9mIb+ScnCRa4zp0Vqc
-	iPxrMZ5c7exheN2G/zMw==;
+	List-Owner; bh=s7MpyHgYOH6zs3XP7cW4q5DW5IPhtTvk4uf2QeAqDrw=; b=jSnVpMQFvzg+VH
+	H6ceIHJLGR0qoAp2jUegE/DiyOvYOVaK3wfQB/KYPKtknuftFsIbgtUMOJKbq4WhGrVjW1McnkbKE
+	mxAfP+PEjF4ddrulEefyjX9HyKkXFT7gpyQeFfhl5O2m3eURGelap9+EVsUqBSgZCMG0wZoUJZmfa
+	eXBpXdWCa3YvYFQn0mO7PcSVC4WIEnNF34YTgvYjNLmk5aAOiY2VAqGnOOFH0H1f/GEyriV6FcmA2
+	TUUow8M8wMVDosRkzRZcKKeEsdmR6IQaVgoVn7cNC2F2azNKfKEABprRkl3qy8Xh/HNmZ2ihRk7Cf
+	YYHkYJN/452wnw/kiilQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQJeG-000Noi-Tx; Tue, 23 Aug 2022 02:28:12 +0000
+	id 1oQJeY-000O6V-8D; Tue, 23 Aug 2022 02:28:30 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQJdt-000NPt-2Q; Tue, 23 Aug 2022 02:27:50 +0000
+	id 1oQJdv-000NPt-8w; Tue, 23 Aug 2022 02:27:52 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.9; Tue, 23 Aug 2022
- 10:27:35 +0800
+ 10:27:38 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
@@ -37,17 +37,18 @@ To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
 	<martin.blumenstingl@googlemail.com>
 CC: Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH V4 1/6] dt-bindings: clock: meson: add S4 SoC PLL clock controller bindings
-Date: Tue, 23 Aug 2022 10:26:25 +0800
-Message-ID: <20220823022630.25007-2-yu.tu@amlogic.com>
+Subject: [PATCH V4 2/6] arm64: dts: meson: add S4 Soc PLL clock controller in DT
+Date: Tue, 23 Aug 2022 10:26:26 +0800
+Message-ID: <20220823022630.25007-3-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20220823022630.25007-1-yu.tu@amlogic.com>
 References: <20220823022630.25007-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220822_192749_181951_4987D432 
-X-CRM114-Status: GOOD (  12.46  )
+X-CRM114-CacheID: sfid-20220822_192751_366566_1458A3B4 
+X-CRM114-Status: UNSURE (   6.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,123 +65,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the documentation to support Amlogic S4 SoC PLL clock driver and
-add S4 SoC PLL clock controller bindings.
+Added information about the S4 SOC PLL Clock controller in DT.
 
 Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 ---
- .../bindings/clock/amlogic,s4-pll-clkc.yaml   | 51 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- .../dt-bindings/clock/amlogic,s4-pll-clkc.h   | 30 +++++++++++
- 3 files changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
- create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-new file mode 100644
-index 000000000000..fd517e8ef14f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson S serials PLL Clock Controller
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Yu Tu <yu.hu@amlogic.com>
-+
-+
-+properties:
-+  compatible:
-+    const: amlogic,s4-pll-clkc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: xtal
-+
-+  "#clock-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - "#clock-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clkc_pll: clock-controller@fe008000 {
-+      compatible = "amlogic,s4-pll-clkc";
-+      reg = <0xfe008000 0x1e8>;
-+      clocks = <&xtal>;
-+      clock-names = "xtal";
-+      #clock-cells = <1>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 64379c699903..b039cf953520 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1774,6 +1774,7 @@ L:	linux-amlogic@lists.infradead.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/clock/amlogic*
- F:	drivers/clk/meson/
-+F:	include/dt-bindings/clock/amlogic*
- F:	include/dt-bindings/clock/gxbb*
- F:	include/dt-bindings/clock/meson*
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index ff213618a598..e04c90da348f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -92,6 +92,14 @@ apb4: apb4@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
  
-diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-new file mode 100644
-index 000000000000..345f87023886
---- /dev/null
-+++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ * Author: Yu Tu <yu.tu@amlogic.com>
-+ */
++			clkc_pll: clock-controller@8000 {
++				compatible = "amlogic,s4-pll-clkc";
++				reg = <0x0 0x8000 0x0 0x1e8>;
++				clocks = <&xtal>;
++				clock-names = "xtal";
++				#clock-cells = <1>;
++			};
 +
-+#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-+#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-+
-+/*
-+ * CLKID index values
-+ */
-+
-+#define CLKID_FIXED_PLL			1
-+#define CLKID_FCLK_DIV2			3
-+#define CLKID_FCLK_DIV3			5
-+#define CLKID_FCLK_DIV4			7
-+#define CLKID_FCLK_DIV5			9
-+#define CLKID_FCLK_DIV7			11
-+#define CLKID_FCLK_DIV2P5		13
-+#define CLKID_GP0_PLL			15
-+#define CLKID_HIFI_PLL			17
-+#define CLKID_HDMI_PLL			20
-+#define CLKID_MPLL_50M			22
-+#define CLKID_MPLL0			25
-+#define CLKID_MPLL1			27
-+#define CLKID_MPLL2			29
-+#define CLKID_MPLL3			31
-+
-+#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H */
+ 			periphs_pinctrl: pinctrl@4000 {
+ 				compatible = "amlogic,meson-s4-periphs-pinctrl";
+ 				#address-cells = <2>;
 -- 
 2.33.1
 
