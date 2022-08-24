@@ -4,86 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 034ECC32796
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 13:38:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED1BBC32796
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 15:26:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ySQ8OYimCMqZLQ55rhKWTJSbN2wXUol2AQHwEV7R5uI=; b=2q4OLBmZOS8CuJ
-	hkHGKzuVBZhRINZqF47ZK5OOm4HLfdXpA+s/+tZteeNobSvcUPX96C5RuBwnuQkTuueCEaFG9gdMb
-	m60k2AjRJC9ky7QWJ3XcBaS9aYfEoJiV348wj5wQPsTA3qeD6su9UabDGAhVr/+AyUuoLtGWMLzv7
-	N0aCCD2u0FFbg/uoi/SYNaXgBB2u6Zs8vd6cYRl/Sfk1Bbj/IKRNJ3pylZFxkrx5gqUWCMxrm5YdM
-	YuVWTPbBUDtn5pUPqFcCHmYCxoRRCCm9uxdeKlhF3lmY6SYyjSWdQTuzBPchOz/7p3noysH1tcbGx
-	0GdPmUVh+JJcn1f+qGrw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fmZS4U6Zbn6Vx4WViKhVQeKILbcCTf/lsT5rBFxzJU0=; b=EWbk/2IUxmynkzLx3Qyghq18hQ
+	uXwgkdcAHTxLR4VCGFj6uEKz/Jh9pvQP2HDpeWbqVuXZq20dRUmQmSg/XZoyi6u/QMMdggCTKkqfX
+	waItEAHFM4wiScN+GAPOBb5u0SxcH3xP+NWjnmIriLQI1mI9JJJJi6G2a30f7PV+VjNeVnZGvunQ+
+	JtJz7IEg6muWO9ZtUzHfvWebtrXvFG3/QFbbrqyrdhZ1P3x8zFvx3sTI4T1b0eySVJ7XhHVJocP++
+	mgPvI14XBdaOuyJb/Ufug9Dg7IdvzQJBERq40JGUIYg68QUiBjyjXYazpm/x+zoRqIyqLxFt1u8lQ
+	VpiCmsZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQqZv-00DHoS-Sr; Wed, 24 Aug 2022 13:37:55 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1oQsH6-00E2RW-Md; Wed, 24 Aug 2022 15:26:36 +0000
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQqZt-00DHmi-29
-	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 13:37:54 +0000
-Received: by mail-lf1-x130.google.com with SMTP id m3so18351263lfg.10
-        for <linux-amlogic@lists.infradead.org>; Wed, 24 Aug 2022 06:37:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=FNnIJyZLA/DkTE9+Zpr6Ng3J1POb/zmR9BDJb09121Q=;
-        b=h6BdaQtrsWihUPz25ye52qmPW2BJdRf34tszfDgYIc54i4TMcnZJ/JvenaEIMRYjDZ
-         QUM5a3L1gNjDID5UjU0pq5tW23N5jHdQbD8KAItUKzFOwX9vx6pT+K364t3h0/tzoxjt
-         wJvmk/NyPj0GQR5dtiriZbkkW5uMLQmEx5S8ChFTSeNw0u7IMLUlVhIHsu7ZWeoe/AG5
-         8qo6ppqtNVcNZk18+mJ8rOfMhkXjNYH0UJK57wrPlQSU88H/lslZiUX9sLfsZOd4EQjR
-         /JY7RnDCDgg0aV8OiX1iM7xzv1KG3mmLnccyGTFVMVq8rDRx/GmWXi1Xl6mSB29RVGxc
-         9i4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=FNnIJyZLA/DkTE9+Zpr6Ng3J1POb/zmR9BDJb09121Q=;
-        b=ilaYTUtrv9ISKFY33kSCX7ffDombwbxqHihll0UGNeQak57JgcdFkCyGUIA72NNADk
-         1qwVGQBSe0Nv7RnvkTdkxjVTv74uuaZm8LIZ24kRZfOsY/gXahYBjzy/OUkY4vXsjKBa
-         LhaerMpQdyGI6v4JNl7luryxpENC8RZStMxr9WguWDn8cxSPonRPqsFKp67Mih8qZQCG
-         U1YzoMekGuNtzdMuJfHaDbK6GX0nfDaAf0rRqJZAOqxwWJxQa//iusYpLYVA2UhMKc+L
-         VBXYYZTUr2TemiIqTD+uMJ8ZUT94b0oHd2Mr1gR2uekEg8BsY8SKUnrR482JXMFAuPhz
-         hupg==
-X-Gm-Message-State: ACgBeo0OcgPO2Z6Gl59vQmF3/ODSTKA8Tj+YZXd+J++JWFOEJ9R+dW3P
-	cZ0h4TvkvaVacq81UbcIo31jxQ==
-X-Google-Smtp-Source: AA6agR5/XXVW1Gc7QE0nZt5Z1Bn77q2PqqOB2dPRp0AQNRayelqdqv1+ki+d/TSM2zjY+7pI4vB+Kw==
-X-Received: by 2002:a05:6512:b12:b0:492:daa9:75ea with SMTP id w18-20020a0565120b1200b00492daa975eamr7338464lfu.297.1661348271490;
-        Wed, 24 Aug 2022 06:37:51 -0700 (PDT)
-Received: from [10.243.4.185] (94-12-180-213.sta.estpak.ee. [213.180.12.94])
-        by smtp.gmail.com with ESMTPSA id 22-20020ac24856000000b0048a921664e8sm3033917lfy.37.2022.08.24.06.37.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 06:37:50 -0700 (PDT)
-Message-ID: <bf882a57-adaf-e093-fee0-39e197dbcda0@linaro.org>
-Date: Wed, 24 Aug 2022 16:37:48 +0300
+	id 1oQsH4-00E2O4-Gx; Wed, 24 Aug 2022 15:26:36 +0000
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailnew.west.internal (Postfix) with ESMTP id 9567D2B05F68;
+	Wed, 24 Aug 2022 11:26:24 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 24 Aug 2022 11:26:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1661354784; x=1661361984; bh=uVniGVlvs8
+	/VCkoClJeb3GLOoc5DfbVlVeAGhJHYCzs=; b=ZohUdrdOe6oHquhp58vsz1bBKW
+	7PpFcRZvPL5/30O13xXZ48fKIdvUtvG1UHo0EH0udeCa46ANWX4agHz7Hlw2ABGT
+	+y6ATFBQDrmjhbqhDXs1KzWTURdH+I+3335K1QvFAEqphvIn7LfEMwRq5JZzfRrx
+	7HbXlTKMvyZWvBYXr4Rj9wse/5oVSKL8xLfYnulgrEyyoJqRa9QkdgI12kTmoPz5
+	+2qmb9ao+VNVrwDGxjkPNigJ6InaXp2U/CMi/D6/Kh6JcQncYn/upOydSlOr6Rn3
+	ps5WU3KRW1mK7R6a91x9uZqjx8564kP6YWr6+pazwtun/+n3xPuKAJkP5eFg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1661354784; x=1661361984; bh=uVniGVlvs8/VCkoClJeb3GLOoc5D
+	fbVlVeAGhJHYCzs=; b=CRNsZc8gHQ+ZxkLfpS8/NSRYjUVZVWKX2CXvZ4lWxP2+
+	1We9Nm3TLIk9jbAQi/o4euGDgaGFMI07Hym7GVkcxJ86s916UPcq5uvETrct85lD
+	eclNGZwxOIwiaRaSPagxYjSgqJPVuhjTBOKQDyCFDpkO/r50+ZbcayVbZnf/o2i4
+	TQ+SS7HtgbmZmLKcIRhuX0SaVtQKOmUw0D8DoB+abdUttrA3khr/NFqaL2uRTeWW
+	k4FjjhLkPEEOXDL0FVTfVi2/vtw5O/8zLmTx5otNnOdWO7yuyY9cwFHrIuObc9Na
+	NY+ceIMklapWHCgXIbrqkETFeFowp0eyRomr3lnjPQ==
+X-ME-Sender: <xms:HkMGY8agO_-jhd4QU6iPe3aZHqTr6emyQdqVIRQy90KXIFbqP7BJrw>
+    <xme:HkMGY3Z0U3GE7huOj7noW7F0UAJeFHLV6_OouX2UTRaWQDvwwWnVSxsj59xsqDD4w
+    ZYa-W3438YmSKov2yo>
+X-ME-Received: <xmr:HkMGY2_yUuOCnekxGXtiJPXMeTKHxRqIaSfdRTw0OggrGbTaY13siGk56EOQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejuddgledtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+    ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HkMGY2pfWFVL7uoXenkx6Oc-CrvJOOHFiapBidIWT-bFPSNV3adPMA>
+    <xmx:HkMGY3qgVdqGXAr4tQgVDuDcQC9KWpZ90-1INqNikiUnT-3Var2vqQ>
+    <xmx:HkMGY0SMASJWYckG-Hnzj7JtOEAsG4lZVKe4bP7RyOTALmO0WM6R7g>
+    <xmx:IEMGYwaW3uSisxgPNxzG9eOSephDxqJrulTyfenRj7pLUPrvVsK3UHzwRQ8>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 24 Aug 2022 11:26:21 -0400 (EDT)
+Date: Wed, 24 Aug 2022 17:26:19 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+	David Airlie <airlied@linux.ie>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Phil Elwell <phil@raspberrypi.com>,
+	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Dom Cobley <dom@raspberrypi.com>
+Subject: Re: [PATCH v1 23/35] drm/vc4: vec: Convert to the new TV mode
+ property
+Message-ID: <20220824152619.5def5b2puj5b2a3o@houat>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-23-3d53ae722097@cerno.tech>
+ <0255f7c6-0484-6456-350d-cf24f3fee5d6@tronnes.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH V4 4/6] dt-bindings: clk: meson: add S4 SoC peripheral
- clock controller bindings
-Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220823022630.25007-1-yu.tu@amlogic.com>
- <20220823022630.25007-5-yu.tu@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823022630.25007-5-yu.tu@amlogic.com>
+In-Reply-To: <0255f7c6-0484-6456-350d-cf24f3fee5d6@tronnes.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220824_063753_130925_95AE2C19 
-X-CRM114-Status: UNSURE (   6.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220824_082634_953226_02CCE17F 
+X-CRM114-Status: GOOD (  18.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,26 +115,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1840696519546408343=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/08/2022 05:26, Yu Tu wrote:
-> Add peripheral clock controller compatible and dt-bindings header for
-> the of the S4 SoC.
-> 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
+
+--===============1840696519546408343==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="36wi22d63kleuedj"
+Content-Disposition: inline
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--36wi22d63kleuedj
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Sat, Aug 20, 2022 at 07:22:48PM +0200, Noralf Tr=F8nnes wrote:
+> Den 29.07.2022 18.35, skrev Maxime Ripard:
+> > Now that the core can deal fine with analog TV modes, let's convert the=
+ vc4
+> > VEC driver to leverage those new features.
+> >=20
+> > We've added some backward compatibility to support the old TV mode prop=
+erty
+> > and translate it into the new TV norm property.
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >=20
+> > diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_ve=
+c.c
+>=20
+> >  static int vc4_vec_connector_get_modes(struct drm_connector *connector)
+> >  {
+> > -	struct drm_connector_state *state =3D connector->state;
+> >  	struct drm_display_mode *mode;
+> > =20
+> > -	mode =3D drm_mode_duplicate(connector->dev,
+> > -				  vc4_vec_tv_modes[state->tv.mode].mode);
+> > +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_480i);
+> > +	if (!mode) {
+> > +		DRM_ERROR("Failed to create a new display mode\n");
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	drm_mode_probed_add(connector, mode);
+> > +
+> > +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_576i);
+>=20
+> Maybe the mode that matches tv.norm should be marked as preferred so
+> userspace knows which one to pick?
+
+I'm not sure how realistic that would be. Doing this based on the driver
+/ cmdline preference is going to be fairly easy, but then it's a
+property, it's going to be updated, and we probably don't want to mess
+around the mode flags based on new property values?
+
+Maxime
+
+--36wi22d63kleuedj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYwZDGwAKCRDj7w1vZxhR
+xe5DAP9Z+ZFY+aCR73/Vff7dgZ2qWrSVvFjPY8E7F+CacQmV8wEA7ngIetY5PT9h
+6Cpd1zevB5ugZR1rHGjakT3tMaM5Vgo=
+=YI0f
+-----END PGP SIGNATURE-----
+
+--36wi22d63kleuedj--
 
 
-Best regards,
-Krzysztof
+--===============1840696519546408343==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1840696519546408343==--
+
