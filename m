@@ -4,55 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE447C00140
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 08:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF8DC32796
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 12:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=/cEqBXdeLS8l+pHBjyH7sdd6xQzu/QL86cb65g1N5EM=; b=CNiknFfXNvlGI+
-	bF2xNo5YTDGMFkHKW/8Sau8jTpeM3lEQrQMe7Sb0xhdIlpT2L2IYXltSOyAXX667wb11t4XDHKwgz
-	0qBLMyaW+TuMrZpBeroP0kNeQJe3renB75czn6DNf4rCjPfp2FAdT1HgdNNFKxuzxMOANYM9hXHIu
-	PImI+rsPl4ZszbJt4b2rO7xv2R5k0KpO21oIl3si/hxW3uCZL8/QmhZL9Dq9CQhqmXo2TBV629GN8
-	bBMyrULGThC0+Clt2UJN3AtJVOLo4cdHMo9/2i4089X+K+3x6Lt7tgHE/wPIS3ihXVJKb4oqyEvM4
-	qeoRzkfdPEF+oKJ6DbqA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xgEsYSkG1FUtcjizewgzb3H7hYjeQXwBhxzbrT0NJ4w=; b=lmPMLeYBF0kBPD
+	gF91KWQrznZd3ZwSx1yiC6BD2iiW755IRfziut34DkLhOT500E9apD8ryr10S/bF3sSOgCs7KlaY/
+	rxZ1B+L65tEx2CUIy7SRuztdgrumjRfU86OfzyOqIKoajcfiRxYzUW7Fi55u5nrzMH/C4Bc5nZNPW
+	wrKvV1OtBPDKyG5z1WTswW7suE4xDQmi2JQ7mV+Z9Hy6Q5l9A/OUiRVtjqeCOvN/rRFTqgXwv7BAJ
+	VOZQXiNyv7ZlPMhKJVjU+7P4/kqlNbpgeD1WGqzDhQlgc0iolWbwdT6DCgsj8c41MOnZJLebQ5wJ8
+	UnMfDsxlGb3pn+kxJ5EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQlPP-00BNLs-9T; Wed, 24 Aug 2022 08:06:43 +0000
-Received: from smtp05.smtpout.orange.fr ([80.12.242.127] helo=smtp.smtpout.orange.fr)
+	id 1oQpxJ-00D18a-EW; Wed, 24 Aug 2022 12:58:01 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQlPL-00BNGO-Qc
-	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 08:06:42 +0000
-Received: from pop-os.home ([90.11.190.129])
-	by smtp.orange.fr with ESMTPA
-	id QlP5oD4V0XaejQlP5oyl50; Wed, 24 Aug 2022 10:06:26 +0200
-X-ME-Helo: pop-os.home
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Wed, 24 Aug 2022 10:06:26 +0200
-X-ME-IP: 90.11.190.129
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	linux-serial@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] tty: serial: meson: Use devm_clk_get_enabled() helper
-Date: Wed, 24 Aug 2022 10:06:21 +0200
-Message-Id: <3f18638cb3cf08ed8817addca1402ed5e3bd3602.1661328361.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.34.1
+	id 1oQpxA-00D0wi-Gi
+	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 12:57:54 +0000
+Received: by mail-lj1-x236.google.com with SMTP id bx38so16329600ljb.10
+        for <linux-amlogic@lists.infradead.org>; Wed, 24 Aug 2022 05:57:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Zwir3MR4BOrRicDqdLWr6mPyknpd50Z0LtdDob2k8rc=;
+        b=Biawws655SINj3Lxsps2bzQLQk08Cvlm+dCD6Eo6o8kAjFyXmbSosBgPSbDVMskZE7
+         P06NtluaxqGWgxokPRY/Dg5D2fs7aFRAXgRhf8cN6Ixe7i0tN7+hgMc+54Qv69MFLwcg
+         ulOq8l4GD6YDck7DfkBzfAWr4F8O4ymG/MSBr9BKPgSlMH3zdtm2100fFp1S64tF3EmT
+         WMvKr/yXGOw6hkK+0Cg6A/reu5iWP3/Cr3TkH7OvJ8Kw4DtDYO8FeVXYwfsXEoSwcsq9
+         xXKPIwYs13vvAK6gf88rjrz4VXyTxLG8BSZjDe2IywGyneOWQV/uKw6IQXxxuoRa1pff
+         BCTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Zwir3MR4BOrRicDqdLWr6mPyknpd50Z0LtdDob2k8rc=;
+        b=Os1IMpPbDx6PoAnVK0flBEmt4St0jd6VV2g0wBRNfFGMYiQhnJTVb9/ZHf/C6WxO+J
+         4cIBPToG3/wjxhpxqryaA1Kd8ZuFAOHEavgHqtg5BiRbkpf0f+kx2XzDB8dNfFIB2Dpd
+         7pqqOwpRYQSUfoEjNXdO0e9NNxNDvvfvCcKDiqlEF3UYxYeuVj7EeDiG9vVIDNhrXdm2
+         m2PVZA9+bMxg2TGCJvTXTRdeg86W9wTYotTX0KS/rEg6KiqbaxsTudF/YbGOBEnmdYnA
+         5IF+HYYq4aqRxbG9yHSfdgzIRkbzqyl3yTpeB7RQinSgEji8vd6NLYxaG18gxRfz6+Ex
+         8vSw==
+X-Gm-Message-State: ACgBeo0QAcvUtNQ+9guwLyjZfFSHEiEB7t3sYRcFKu80Q/go5ncI98Oi
+	pnBm8L0YIx2MsfytMsawpBa52dE/nYgNwARlEF/mtg==
+X-Google-Smtp-Source: AA6agR7LDaEDeZF1Qt6+xIBPrJFTUXejF7Y0DzZ65SPFwEi+Zlo2PlmT5sNePixLcFtmNID3Va8Ru2xdEZAF0hkB5w0=
+X-Received: by 2002:a2e:be2b:0:b0:261:c0d4:8264 with SMTP id
+ z43-20020a2ebe2b000000b00261c0d48264mr6019476ljq.16.1661345871117; Wed, 24
+ Aug 2022 05:57:51 -0700 (PDT)
 MIME-Version: 1.0
+References: <b94b7f5b-1095-33a5-b1a0-20a6e2281bce@gmail.com>
+ <a185b4e9-f238-c2e6-0847-79cd8265844a@gmail.com> <CAPDyKFopddPSU-cSdnfXGbg91zNWWEX5L9kvMmtVrvxumD0R3w@mail.gmail.com>
+ <8e827905-f318-4711-a995-80b59e296939@gmail.com>
+In-Reply-To: <8e827905-f318-4711-a995-80b59e296939@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 24 Aug 2022 14:57:14 +0200
+Message-ID: <CAPDyKFoameOb7d3cn8_ki1O6DbMEAFvkQh1uUsYp4S-Lkq41oQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: meson-gx: add SDIO interrupt support
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220824_010640_028550_EB3B1EEA 
-X-CRM114-Status: GOOD (  13.68  )
+X-CRM114-CacheID: sfid-20220824_055752_609733_1FC228E3 
+X-CRM114-Status: GOOD (  37.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,92 +90,232 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The devm_clk_get_enabled() helper:
-   - calls devm_clk_get()
-   - calls clk_prepare_enable() and registers what is needed in order to
-     call clk_disable_unprepare() when needed, as a managed resource.
+On Tue, 23 Aug 2022 at 20:16, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> On 22.08.2022 13:33, Ulf Hansson wrote:
+> > On Fri, 19 Aug 2022 at 23:14, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> >>
+> >> Add SDIO interrupt support. Successfully tested on a S905X4-based
+> >> system (V3 register layout) with a BRCM4334 SDIO wifi module
+> >> (brcmfmac driver). The implementation also considers the potential
+> >> race discussed in [0].
+> >>
+> >> [0] https://lore.kernel.org/linux-arm-kernel/CAPDyKFoJDhjLkajBHgW3zHasvYYri77NQoDpiW-BpKgkdjtOyg@mail.gmail.com/
+> >>
+> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> >> ---
+> >>  drivers/mmc/host/meson-gx-mmc.c | 76 ++++++++++++++++++++++++++++-----
+> >>  1 file changed, 66 insertions(+), 10 deletions(-)
+> >>
+> >> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> >> index 9a4da2544..58b7836a5 100644
+> >> --- a/drivers/mmc/host/meson-gx-mmc.c
+> >> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> >> @@ -41,14 +41,17 @@
+> >>  #define   CLK_V2_TX_DELAY_MASK GENMASK(19, 16)
+> >>  #define   CLK_V2_RX_DELAY_MASK GENMASK(23, 20)
+> >>  #define   CLK_V2_ALWAYS_ON BIT(24)
+> >> +#define   CLK_V2_IRQ_SDIO_SLEEP BIT(25)
+> >>
+> >>  #define   CLK_V3_TX_DELAY_MASK GENMASK(21, 16)
+> >>  #define   CLK_V3_RX_DELAY_MASK GENMASK(27, 22)
+> >>  #define   CLK_V3_ALWAYS_ON BIT(28)
+> >> +#define   CLK_V3_IRQ_SDIO_SLEEP BIT(29)
+> >>
+> >>  #define   CLK_TX_DELAY_MASK(h)         (h->data->tx_delay_mask)
+> >>  #define   CLK_RX_DELAY_MASK(h)         (h->data->rx_delay_mask)
+> >>  #define   CLK_ALWAYS_ON(h)             (h->data->always_on)
+> >> +#define   CLK_IRQ_SDIO_SLEEP(h)                (h->data->irq_sdio_sleep)
+> >>
+> >>  #define SD_EMMC_DELAY 0x4
+> >>  #define SD_EMMC_ADJUST 0x8
+> >> @@ -135,6 +138,7 @@ struct meson_mmc_data {
+> >>         unsigned int rx_delay_mask;
+> >>         unsigned int always_on;
+> >>         unsigned int adjust;
+> >> +       unsigned int irq_sdio_sleep;
+> >>  };
+> >>
+> >>  struct sd_emmc_desc {
+> >> @@ -174,6 +178,7 @@ struct meson_host {
+> >>         bool vqmmc_enabled;
+> >>         bool needs_pre_post_req;
+> >>
+> >> +       spinlock_t lock;
+> >>  };
+> >>
+> >>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
+> >> @@ -430,6 +435,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+> >>         clk_reg |= FIELD_PREP(CLK_CORE_PHASE_MASK, CLK_PHASE_180);
+> >>         clk_reg |= FIELD_PREP(CLK_TX_PHASE_MASK, CLK_PHASE_0);
+> >>         clk_reg |= FIELD_PREP(CLK_RX_PHASE_MASK, CLK_PHASE_0);
+> >> +       clk_reg |= CLK_IRQ_SDIO_SLEEP(host);
+> >>         writel(clk_reg, host->regs + SD_EMMC_CLOCK);
+> >>
+> >>         /* get the mux parents */
+> >> @@ -934,32 +940,54 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+> >>         }
+> >>  }
+> >>
+> >> +static void __meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+> >> +{
+> >> +       struct meson_host *host = mmc_priv(mmc);
+> >> +       u32 reg_irqen = IRQ_EN_MASK;
+> >> +
+> >> +       if (enable)
+> >> +               reg_irqen |= IRQ_SDIO;
+> >> +       writel(reg_irqen, host->regs + SD_EMMC_IRQ_EN);
+> >> +}
+> >> +
+> >>  static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+> >>  {
+> >>         struct meson_host *host = dev_id;
+> >>         struct mmc_command *cmd;
+> >> -       struct mmc_data *data;
+> >>         u32 status, raw_status;
+> >>         irqreturn_t ret = IRQ_NONE;
+> >>
+> >>         raw_status = readl(host->regs + SD_EMMC_STATUS);
+> >> -       status = raw_status & IRQ_EN_MASK;
+> >> +       status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
+> >>
+> >>         if (!status) {
+> >>                 dev_dbg(host->dev,
+> >>                         "Unexpected IRQ! irq_en 0x%08lx - status 0x%08x\n",
+> >> -                        IRQ_EN_MASK, raw_status);
+> >> +                        IRQ_EN_MASK | IRQ_SDIO, raw_status);
+> >>                 return IRQ_NONE;
+> >>         }
+> >>
+> >> -       if (WARN_ON(!host) || WARN_ON(!host->cmd))
+> >> +       if (WARN_ON(!host))
+> >>                 return IRQ_NONE;
+> >>
+> >>         /* ack all raised interrupts */
+> >>         writel(status, host->regs + SD_EMMC_STATUS);
+> >>
+> >>         cmd = host->cmd;
+> >> -       data = cmd->data;
+> >> +
+> >> +       if (status & IRQ_SDIO) {
+> >> +               spin_lock(&host->lock);
+> >> +               __meson_mmc_enable_sdio_irq(host->mmc, 0);
+> >> +               sdio_signal_irq(host->mmc);
+> >> +               spin_unlock(&host->lock);
+> >> +               status &= ~IRQ_SDIO;
+> >> +               if (!status)
+> >> +                       return IRQ_HANDLED;
+> >> +       }
+> >> +
+> >> +       if (WARN_ON(!cmd))
+> >> +               return IRQ_NONE;
+> >> +
+> >>         cmd->error = 0;
+> >>         if (status & IRQ_CRC_ERR) {
+> >>                 dev_dbg(host->dev, "CRC Error - status 0x%08x\n", status);
+> >> @@ -977,12 +1005,9 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+> >>
+> >>         meson_mmc_read_resp(host->mmc, cmd);
+> >>
+> >> -       if (status & IRQ_SDIO) {
+> >> -               dev_dbg(host->dev, "IRQ: SDIO TODO.\n");
+> >> -               ret = IRQ_HANDLED;
+> >> -       }
+> >> -
+> >>         if (status & (IRQ_END_OF_CHAIN | IRQ_RESP_STATUS)) {
+> >> +               struct mmc_data *data = cmd->data;
+> >> +
+> >>                 if (data && !cmd->error)
+> >>                         data->bytes_xfered = data->blksz * data->blocks;
+> >>                 if (meson_mmc_bounce_buf_read(data) ||
+> >> @@ -1125,6 +1150,27 @@ static int meson_mmc_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
+> >>         return -EINVAL;
+> >>  }
+> >>
+> >> +static void meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+> >> +{
+> >> +       struct meson_host *host = mmc_priv(mmc);
+> >> +       unsigned long flags;
+> >> +
+> >> +       spin_lock_irqsave(&host->lock, flags);
+> >> +       __meson_mmc_enable_sdio_irq(mmc, enable);
+> >> +       spin_unlock_irqrestore(&host->lock, flags);
+> >> +}
+> >> +
+> >> +static void meson_mmc_ack_sdio_irq(struct mmc_host *mmc)
+> >> +{
+> >> +       struct meson_host *host = mmc_priv(mmc);
+> >> +       unsigned long flags;
+> >> +
+> >> +       spin_lock_irqsave(&host->lock, flags);
+> >> +       if (!mmc->sdio_irq_pending)
+> >
+> > I am not quite sure I understand why you need to check this flag here.
+> >
+> > The point is, in meson_mmc_irq() you are doing things in the correct
+> > order, which means disabling the SDIO irq by calling
+> > __meson_mmc_enable_sdio_irq(host->mmc, 0) prior calling
+> > sdio_signal_irq(host->mmc) (which sets the flag).
+> >
+> > In this way, the host driver should be prevented from signaling
+> > another new SDIO irq, until it has acked (which means re-enabling the
+> > SDIO irqs) the current one to be processed.
+> >
+> > Or did I miss something?
+> >
+>
+> What could happen (at least based on the code):
+> Even though SDIO IRQ signalling is disabled we may receive another
+> interrupt that by chance has also the SDIO IRQ status bit set.
 
-This simplifies the code, the error handling paths and avoid the need of
-a dedicated function used with devm_add_action_or_reset().
+That sounds like a broken HW to me, but I get your point.
 
-That said, meson_uart_probe_clock() is now more or less the same as
-devm_clk_get_enabled(), so use this function directly instead.
+> And if the hard irq handler interrupts sdio_run_irqs() here then
+> we may have a problem.
+>
+> if (!host->sdio_irq_pending)
+>         host->ops->ack_sdio_irq(host);
+>
+> Therefore the additional check (because checking the flag and calling
+> __meson_mmc_enable_sdio_irq() is protected by the spinlock).
+> However that's a theoretical worst case scenario. It don't know enough
+> about SDIO interrupts to state whether it actually can happen.
 
-This also fixes an (unlikely) unchecked devm_add_action_or_reset() error.
+If you are worried about getting spurious IRQs with the SDIO IRQ
+status bit set, then I prefer that you use a meson host driver
+specific flag. The flag could indicate whether the IRQ_SDIO bit has
+been set in the IRQ_EN_MASK (__meson_mmc_enable_sdio_irq()) and then
+simply prevent (or postpone) signaling a new SDIO IRQ
+(sdio_signal_irq()).
 
-Based on my test with allyesconfig, this reduces the .o size from:
-   text	   data	    bss	    dec	    hex	filename
-   16350	   5016	    128	  21494	   53f6	drivers/tty/serial/meson_uart.o
-down to:
-   15415	   4784	    128	  20327	   4f67	drivers/tty/serial/meson_uart.o
+>
+> By the way: I'd also be reluctant to omit checking the SDIO IRQ status bit
+> if host->sdio_irq_pending is true because then we might miss a SDIO interrupt.
 
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
-devm_clk_get_enabled() is new and is part of 6.0-rc1
+Again, that sounds like a broken HW to me.
 
-If the message "couldn't enable clk\n" is of any use, it could be added
-in meson_uart_probe_clocks() with a dev_err_probe() call. It wouldn't be
-exactly the same meaning, but at least something would be logged.
----
- drivers/tty/serial/meson_uart.c | 29 +++--------------------------
- 1 file changed, 3 insertions(+), 26 deletions(-)
+If you are worried that we may miss an SDIO irq, then it's seems
+better to "cache" that additional SDIO IRQ in a state variable (from
+the irq handler) and then check that variable in ->ack_sdio_irq() to
+immediately signal a new SDIO irq (sdio_signal_irq()).
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 6c8db19fd572..26de08bf181e 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -667,29 +667,6 @@ static struct uart_driver meson_uart_driver = {
- 	.cons		= MESON_SERIAL_CONSOLE,
- };
- 
--static inline struct clk *meson_uart_probe_clock(struct device *dev,
--						 const char *id)
--{
--	struct clk *clk = NULL;
--	int ret;
--
--	clk = devm_clk_get(dev, id);
--	if (IS_ERR(clk))
--		return clk;
--
--	ret = clk_prepare_enable(clk);
--	if (ret) {
--		dev_err(dev, "couldn't enable clk\n");
--		return ERR_PTR(ret);
--	}
--
--	devm_add_action_or_reset(dev,
--			(void(*)(void *))clk_disable_unprepare,
--			clk);
--
--	return clk;
--}
--
- static int meson_uart_probe_clocks(struct platform_device *pdev,
- 				   struct uart_port *port)
- {
-@@ -697,15 +674,15 @@ static int meson_uart_probe_clocks(struct platform_device *pdev,
- 	struct clk *clk_pclk = NULL;
- 	struct clk *clk_baud = NULL;
- 
--	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
-+	clk_pclk = devm_clk_get_enabled(&pdev->dev, "pclk");
- 	if (IS_ERR(clk_pclk))
- 		return PTR_ERR(clk_pclk);
- 
--	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
-+	clk_xtal = devm_clk_get_enabled(&pdev->dev, "xtal");
- 	if (IS_ERR(clk_xtal))
- 		return PTR_ERR(clk_xtal);
- 
--	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
-+	clk_baud = devm_clk_get_enabled(&pdev->dev, "baud");
- 	if (IS_ERR(clk_baud))
- 		return PTR_ERR(clk_baud);
- 
--- 
-2.34.1
+>
+> But if you say it's not needed I'll remove the duplicated flag check.
 
+Let me put it like this, if the HW works as expected, the additional
+check/protection should not be needed. So in the end, this is your
+call.
+
+>
+> >> +               __meson_mmc_enable_sdio_irq(mmc, 1);
+> >> +       spin_unlock_irqrestore(&host->lock, flags);
+> >> +}
+> >>
+
+[...]
+
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
