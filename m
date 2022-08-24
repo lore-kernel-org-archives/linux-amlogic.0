@@ -4,76 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF8DC32796
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 12:58:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F3BC00140
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 13:37:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xgEsYSkG1FUtcjizewgzb3H7hYjeQXwBhxzbrT0NJ4w=; b=lmPMLeYBF0kBPD
-	gF91KWQrznZd3ZwSx1yiC6BD2iiW755IRfziut34DkLhOT500E9apD8ryr10S/bF3sSOgCs7KlaY/
-	rxZ1B+L65tEx2CUIy7SRuztdgrumjRfU86OfzyOqIKoajcfiRxYzUW7Fi55u5nrzMH/C4Bc5nZNPW
-	wrKvV1OtBPDKyG5z1WTswW7suE4xDQmi2JQ7mV+Z9Hy6Q5l9A/OUiRVtjqeCOvN/rRFTqgXwv7BAJ
-	VOZQXiNyv7ZlPMhKJVjU+7P4/kqlNbpgeD1WGqzDhQlgc0iolWbwdT6DCgsj8c41MOnZJLebQ5wJ8
-	UnMfDsxlGb3pn+kxJ5EQ==;
+	List-Owner; bh=0eK5k7PAAmT1btzdBN9M2tHGjmTf1UJ/o5k7DV14zkI=; b=HDLSiFGchLxFOQ
+	g8MN92xtlaE9ts2q0IVHHJdAtacanFS5/ex17Otuvi2Z6Nf8vXQPj1L4ZVjE+W6LWnxQUGKHyalO5
+	yqiHTOStq/WMpYOPDNsBiKa/nKxknJePV4gD2BGc4vaE701e34ZMz9aVKVaJ7PxjKyVif5OaakMsM
+	sFQjlKd3+N+hnBiC614OWaE3NCnDkAS61xW1i+pGnnFL16S14p1LyLZkZZCQrArsnURQ6bmNU04Dt
+	CuDwKKUHl+QCWpbyOEJceyQFX1E8TA7zuCoEIILneL87oEc5FtYTsRUHUp/SWQFxh2zumsBJ26iha
+	uXrS1ot3O/V9lRO2mycA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQpxJ-00D18a-EW; Wed, 24 Aug 2022 12:58:01 +0000
-Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
+	id 1oQqZM-00DHWn-0k; Wed, 24 Aug 2022 13:37:20 +0000
+Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQpxA-00D0wi-Gi
-	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 12:57:54 +0000
-Received: by mail-lj1-x236.google.com with SMTP id bx38so16329600ljb.10
-        for <linux-amlogic@lists.infradead.org>; Wed, 24 Aug 2022 05:57:51 -0700 (PDT)
+	id 1oQqZB-00DHSo-Es
+	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 13:37:10 +0000
+Received: by mail-lf1-x134.google.com with SMTP id l8so6506464lfc.12
+        for <linux-amlogic@lists.infradead.org>; Wed, 24 Aug 2022 06:37:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=Zwir3MR4BOrRicDqdLWr6mPyknpd50Z0LtdDob2k8rc=;
-        b=Biawws655SINj3Lxsps2bzQLQk08Cvlm+dCD6Eo6o8kAjFyXmbSosBgPSbDVMskZE7
-         P06NtluaxqGWgxokPRY/Dg5D2fs7aFRAXgRhf8cN6Ixe7i0tN7+hgMc+54Qv69MFLwcg
-         ulOq8l4GD6YDck7DfkBzfAWr4F8O4ymG/MSBr9BKPgSlMH3zdtm2100fFp1S64tF3EmT
-         WMvKr/yXGOw6hkK+0Cg6A/reu5iWP3/Cr3TkH7OvJ8Kw4DtDYO8FeVXYwfsXEoSwcsq9
-         xXKPIwYs13vvAK6gf88rjrz4VXyTxLG8BSZjDe2IywGyneOWQV/uKw6IQXxxuoRa1pff
-         BCTg==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=3OQC25wWN31BCwSbCduRMMv4rNNc0uP1j1+GX/KbrNs=;
+        b=wpEQNzNKOT3YdGIQFc9W5b5/EtVd8HmW0cSRtQ3McUNiI5LisGZjuU2uYAt2mKyQru
+         AzMBKiyOgm8/Q3bG8aYCqcpFdm9vkK4P3WehHpgPTlCHqL6yuPNdZVF7C8uNWKCYlINn
+         6+qUm2A6XD3U7BSDZ7Ou+pQ8uFQLnxaZ5xpm7Af3Es0Vkr2Ay4dmtnUkOdN3jXejV+nJ
+         1k89Tr5XCrXGp0N2FYyKADU9eQnhR3PcvV86MxfyI/Vz5kstDIweKPpOOTfzTbuVb95p
+         lpdUqQgEUOyHo3dBPAZfOOtruz07kPs1C7CdeE84Tq1nMu3TA4KnPpmaOAvqPJhPhf8v
+         F8Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=Zwir3MR4BOrRicDqdLWr6mPyknpd50Z0LtdDob2k8rc=;
-        b=Os1IMpPbDx6PoAnVK0flBEmt4St0jd6VV2g0wBRNfFGMYiQhnJTVb9/ZHf/C6WxO+J
-         4cIBPToG3/wjxhpxqryaA1Kd8ZuFAOHEavgHqtg5BiRbkpf0f+kx2XzDB8dNfFIB2Dpd
-         7pqqOwpRYQSUfoEjNXdO0e9NNxNDvvfvCcKDiqlEF3UYxYeuVj7EeDiG9vVIDNhrXdm2
-         m2PVZA9+bMxg2TGCJvTXTRdeg86W9wTYotTX0KS/rEg6KiqbaxsTudF/YbGOBEnmdYnA
-         5IF+HYYq4aqRxbG9yHSfdgzIRkbzqyl3yTpeB7RQinSgEji8vd6NLYxaG18gxRfz6+Ex
-         8vSw==
-X-Gm-Message-State: ACgBeo0QAcvUtNQ+9guwLyjZfFSHEiEB7t3sYRcFKu80Q/go5ncI98Oi
-	pnBm8L0YIx2MsfytMsawpBa52dE/nYgNwARlEF/mtg==
-X-Google-Smtp-Source: AA6agR7LDaEDeZF1Qt6+xIBPrJFTUXejF7Y0DzZ65SPFwEi+Zlo2PlmT5sNePixLcFtmNID3Va8Ru2xdEZAF0hkB5w0=
-X-Received: by 2002:a2e:be2b:0:b0:261:c0d4:8264 with SMTP id
- z43-20020a2ebe2b000000b00261c0d48264mr6019476ljq.16.1661345871117; Wed, 24
- Aug 2022 05:57:51 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=3OQC25wWN31BCwSbCduRMMv4rNNc0uP1j1+GX/KbrNs=;
+        b=Im+3LUJItFIG8UTWeJhPA34pqGtjYbMcAez2k/vkYlFoE+jq2R9Jf9OsnPnU1gaSlr
+         5Pmo2LMd+zoYJwmgTpsSQbfv4h1Z7BRm7ga8fm7/Rq27cxHiWdF5ruDZ3a8qNgZWIcW9
+         pEDyX7Cs6e3+g2+/R3EXWitNu4xYzqWEEjmyTPgphOfdyybmfFK9yqJlXhinqSy8Z0LY
+         OttQHo9fiRntc/JMBu9RPjYEUfqaSHU/hXrWJvO+OfAYSGcSa/BIRGnV6t1gA3EK6xar
+         EyhEze2LG4FHVZVg+sbOFz1xyEygLtu5hhXrQO7Br2irFwndHtC8ScSJWY1lVZgs4oJt
+         B85A==
+X-Gm-Message-State: ACgBeo0SAwVQwxayN851FZUbPDSdCpCFseAidZHYR91PRFJe+lbwmnp4
+	fSgVs+40cS8fEA4yvXYZDBvbnQ==
+X-Google-Smtp-Source: AA6agR5mW8yFmhKsYKo2N4/NXGAdRcP64LGKPZsWPykSgeE9dIVxYgh3zulrgO870O0ziP3kisYhfg==
+X-Received: by 2002:a05:6512:2385:b0:492:e4cc:17ca with SMTP id c5-20020a056512238500b00492e4cc17camr5102483lfv.132.1661348227725;
+        Wed, 24 Aug 2022 06:37:07 -0700 (PDT)
+Received: from [10.243.4.185] ([194.204.13.210])
+        by smtp.gmail.com with ESMTPSA id t17-20020a2e9c51000000b0025e4c49969fsm108927ljj.98.2022.08.24.06.37.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 06:37:07 -0700 (PDT)
+Message-ID: <c6826de7-591f-97f9-af44-35a6293d17ea@linaro.org>
+Date: Wed, 24 Aug 2022 16:37:05 +0300
 MIME-Version: 1.0
-References: <b94b7f5b-1095-33a5-b1a0-20a6e2281bce@gmail.com>
- <a185b4e9-f238-c2e6-0847-79cd8265844a@gmail.com> <CAPDyKFopddPSU-cSdnfXGbg91zNWWEX5L9kvMmtVrvxumD0R3w@mail.gmail.com>
- <8e827905-f318-4711-a995-80b59e296939@gmail.com>
-In-Reply-To: <8e827905-f318-4711-a995-80b59e296939@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 24 Aug 2022 14:57:14 +0200
-Message-ID: <CAPDyKFoameOb7d3cn8_ki1O6DbMEAFvkQh1uUsYp4S-Lkq41oQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: meson-gx: add SDIO interrupt support
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V4 1/6] dt-bindings: clock: meson: add S4 SoC PLL clock
+ controller bindings
+Content-Language: en-US
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220823022630.25007-1-yu.tu@amlogic.com>
+ <20220823022630.25007-2-yu.tu@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220823022630.25007-2-yu.tu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220824_055752_609733_1FC228E3 
-X-CRM114-Status: GOOD (  37.32  )
+X-CRM114-CacheID: sfid-20220824_063709_547315_C5F35CBB 
+X-CRM114-Status: UNSURE (   6.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,232 +100,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 23 Aug 2022 at 20:16, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On 22.08.2022 13:33, Ulf Hansson wrote:
-> > On Fri, 19 Aug 2022 at 23:14, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> >>
-> >> Add SDIO interrupt support. Successfully tested on a S905X4-based
-> >> system (V3 register layout) with a BRCM4334 SDIO wifi module
-> >> (brcmfmac driver). The implementation also considers the potential
-> >> race discussed in [0].
-> >>
-> >> [0] https://lore.kernel.org/linux-arm-kernel/CAPDyKFoJDhjLkajBHgW3zHasvYYri77NQoDpiW-BpKgkdjtOyg@mail.gmail.com/
-> >>
-> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >> ---
-> >>  drivers/mmc/host/meson-gx-mmc.c | 76 ++++++++++++++++++++++++++++-----
-> >>  1 file changed, 66 insertions(+), 10 deletions(-)
-> >>
-> >> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> >> index 9a4da2544..58b7836a5 100644
-> >> --- a/drivers/mmc/host/meson-gx-mmc.c
-> >> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> >> @@ -41,14 +41,17 @@
-> >>  #define   CLK_V2_TX_DELAY_MASK GENMASK(19, 16)
-> >>  #define   CLK_V2_RX_DELAY_MASK GENMASK(23, 20)
-> >>  #define   CLK_V2_ALWAYS_ON BIT(24)
-> >> +#define   CLK_V2_IRQ_SDIO_SLEEP BIT(25)
-> >>
-> >>  #define   CLK_V3_TX_DELAY_MASK GENMASK(21, 16)
-> >>  #define   CLK_V3_RX_DELAY_MASK GENMASK(27, 22)
-> >>  #define   CLK_V3_ALWAYS_ON BIT(28)
-> >> +#define   CLK_V3_IRQ_SDIO_SLEEP BIT(29)
-> >>
-> >>  #define   CLK_TX_DELAY_MASK(h)         (h->data->tx_delay_mask)
-> >>  #define   CLK_RX_DELAY_MASK(h)         (h->data->rx_delay_mask)
-> >>  #define   CLK_ALWAYS_ON(h)             (h->data->always_on)
-> >> +#define   CLK_IRQ_SDIO_SLEEP(h)                (h->data->irq_sdio_sleep)
-> >>
-> >>  #define SD_EMMC_DELAY 0x4
-> >>  #define SD_EMMC_ADJUST 0x8
-> >> @@ -135,6 +138,7 @@ struct meson_mmc_data {
-> >>         unsigned int rx_delay_mask;
-> >>         unsigned int always_on;
-> >>         unsigned int adjust;
-> >> +       unsigned int irq_sdio_sleep;
-> >>  };
-> >>
-> >>  struct sd_emmc_desc {
-> >> @@ -174,6 +178,7 @@ struct meson_host {
-> >>         bool vqmmc_enabled;
-> >>         bool needs_pre_post_req;
-> >>
-> >> +       spinlock_t lock;
-> >>  };
-> >>
-> >>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
-> >> @@ -430,6 +435,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
-> >>         clk_reg |= FIELD_PREP(CLK_CORE_PHASE_MASK, CLK_PHASE_180);
-> >>         clk_reg |= FIELD_PREP(CLK_TX_PHASE_MASK, CLK_PHASE_0);
-> >>         clk_reg |= FIELD_PREP(CLK_RX_PHASE_MASK, CLK_PHASE_0);
-> >> +       clk_reg |= CLK_IRQ_SDIO_SLEEP(host);
-> >>         writel(clk_reg, host->regs + SD_EMMC_CLOCK);
-> >>
-> >>         /* get the mux parents */
-> >> @@ -934,32 +940,54 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-> >>         }
-> >>  }
-> >>
-> >> +static void __meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
-> >> +{
-> >> +       struct meson_host *host = mmc_priv(mmc);
-> >> +       u32 reg_irqen = IRQ_EN_MASK;
-> >> +
-> >> +       if (enable)
-> >> +               reg_irqen |= IRQ_SDIO;
-> >> +       writel(reg_irqen, host->regs + SD_EMMC_IRQ_EN);
-> >> +}
-> >> +
-> >>  static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
-> >>  {
-> >>         struct meson_host *host = dev_id;
-> >>         struct mmc_command *cmd;
-> >> -       struct mmc_data *data;
-> >>         u32 status, raw_status;
-> >>         irqreturn_t ret = IRQ_NONE;
-> >>
-> >>         raw_status = readl(host->regs + SD_EMMC_STATUS);
-> >> -       status = raw_status & IRQ_EN_MASK;
-> >> +       status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
-> >>
-> >>         if (!status) {
-> >>                 dev_dbg(host->dev,
-> >>                         "Unexpected IRQ! irq_en 0x%08lx - status 0x%08x\n",
-> >> -                        IRQ_EN_MASK, raw_status);
-> >> +                        IRQ_EN_MASK | IRQ_SDIO, raw_status);
-> >>                 return IRQ_NONE;
-> >>         }
-> >>
-> >> -       if (WARN_ON(!host) || WARN_ON(!host->cmd))
-> >> +       if (WARN_ON(!host))
-> >>                 return IRQ_NONE;
-> >>
-> >>         /* ack all raised interrupts */
-> >>         writel(status, host->regs + SD_EMMC_STATUS);
-> >>
-> >>         cmd = host->cmd;
-> >> -       data = cmd->data;
-> >> +
-> >> +       if (status & IRQ_SDIO) {
-> >> +               spin_lock(&host->lock);
-> >> +               __meson_mmc_enable_sdio_irq(host->mmc, 0);
-> >> +               sdio_signal_irq(host->mmc);
-> >> +               spin_unlock(&host->lock);
-> >> +               status &= ~IRQ_SDIO;
-> >> +               if (!status)
-> >> +                       return IRQ_HANDLED;
-> >> +       }
-> >> +
-> >> +       if (WARN_ON(!cmd))
-> >> +               return IRQ_NONE;
-> >> +
-> >>         cmd->error = 0;
-> >>         if (status & IRQ_CRC_ERR) {
-> >>                 dev_dbg(host->dev, "CRC Error - status 0x%08x\n", status);
-> >> @@ -977,12 +1005,9 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
-> >>
-> >>         meson_mmc_read_resp(host->mmc, cmd);
-> >>
-> >> -       if (status & IRQ_SDIO) {
-> >> -               dev_dbg(host->dev, "IRQ: SDIO TODO.\n");
-> >> -               ret = IRQ_HANDLED;
-> >> -       }
-> >> -
-> >>         if (status & (IRQ_END_OF_CHAIN | IRQ_RESP_STATUS)) {
-> >> +               struct mmc_data *data = cmd->data;
-> >> +
-> >>                 if (data && !cmd->error)
-> >>                         data->bytes_xfered = data->blksz * data->blocks;
-> >>                 if (meson_mmc_bounce_buf_read(data) ||
-> >> @@ -1125,6 +1150,27 @@ static int meson_mmc_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
-> >>         return -EINVAL;
-> >>  }
-> >>
-> >> +static void meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
-> >> +{
-> >> +       struct meson_host *host = mmc_priv(mmc);
-> >> +       unsigned long flags;
-> >> +
-> >> +       spin_lock_irqsave(&host->lock, flags);
-> >> +       __meson_mmc_enable_sdio_irq(mmc, enable);
-> >> +       spin_unlock_irqrestore(&host->lock, flags);
-> >> +}
-> >> +
-> >> +static void meson_mmc_ack_sdio_irq(struct mmc_host *mmc)
-> >> +{
-> >> +       struct meson_host *host = mmc_priv(mmc);
-> >> +       unsigned long flags;
-> >> +
-> >> +       spin_lock_irqsave(&host->lock, flags);
-> >> +       if (!mmc->sdio_irq_pending)
-> >
-> > I am not quite sure I understand why you need to check this flag here.
-> >
-> > The point is, in meson_mmc_irq() you are doing things in the correct
-> > order, which means disabling the SDIO irq by calling
-> > __meson_mmc_enable_sdio_irq(host->mmc, 0) prior calling
-> > sdio_signal_irq(host->mmc) (which sets the flag).
-> >
-> > In this way, the host driver should be prevented from signaling
-> > another new SDIO irq, until it has acked (which means re-enabling the
-> > SDIO irqs) the current one to be processed.
-> >
-> > Or did I miss something?
-> >
->
-> What could happen (at least based on the code):
-> Even though SDIO IRQ signalling is disabled we may receive another
-> interrupt that by chance has also the SDIO IRQ status bit set.
+On 23/08/2022 05:26, Yu Tu wrote:
+> Add the documentation to support Amlogic S4 SoC PLL clock driver and
+> add S4 SoC PLL clock controller bindings.
+> 
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 
-That sounds like a broken HW to me, but I get your point.
 
-> And if the hard irq handler interrupts sdio_run_irqs() here then
-> we may have a problem.
->
-> if (!host->sdio_irq_pending)
->         host->ops->ack_sdio_irq(host);
->
-> Therefore the additional check (because checking the flag and calling
-> __meson_mmc_enable_sdio_irq() is protected by the spinlock).
-> However that's a theoretical worst case scenario. It don't know enough
-> about SDIO interrupts to state whether it actually can happen.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-If you are worried about getting spurious IRQs with the SDIO IRQ
-status bit set, then I prefer that you use a meson host driver
-specific flag. The flag could indicate whether the IRQ_SDIO bit has
-been set in the IRQ_EN_MASK (__meson_mmc_enable_sdio_irq()) and then
-simply prevent (or postpone) signaling a new SDIO IRQ
-(sdio_signal_irq()).
 
->
-> By the way: I'd also be reluctant to omit checking the SDIO IRQ status bit
-> if host->sdio_irq_pending is true because then we might miss a SDIO interrupt.
-
-Again, that sounds like a broken HW to me.
-
-If you are worried that we may miss an SDIO irq, then it's seems
-better to "cache" that additional SDIO IRQ in a state variable (from
-the irq handler) and then check that variable in ->ack_sdio_irq() to
-immediately signal a new SDIO irq (sdio_signal_irq()).
-
->
-> But if you say it's not needed I'll remove the duplicated flag check.
-
-Let me put it like this, if the HW works as expected, the additional
-check/protection should not be needed. So in the end, this is your
-call.
-
->
-> >> +               __meson_mmc_enable_sdio_irq(mmc, 1);
-> >> +       spin_unlock_irqrestore(&host->lock, flags);
-> >> +}
-> >>
-
-[...]
-
-Kind regards
-Uffe
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
