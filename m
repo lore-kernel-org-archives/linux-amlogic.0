@@ -4,53 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D7EECAAD2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Aug 2022 15:01:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A12AC0502A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Aug 2022 15:01:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:CC:To:Subject:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=s/h7HZr1vR/0MlCyYoMmUCdSi8bTt1T5TSs3Gf0gGFg=; b=LSyKjf5VakbatRvOnk24FGB3NR
-	uStIYy5czg98OE6fG9LXFujlns5EoP15bhR6I75TTZKZ1GFDYWST5F1AnN4Kw8Lf4pWQ8DVXk1MTM
-	YN8AM0nzhYoWYyH6OjEeqfuGITKqKLMUgD2mg0y/rhckQwtDXV/+CqePt+CMHDyQ0RLFQ3b1z+2h5
-	Q1eB9YwXdj4Mqpke4ppW6Ysp2rq1RrCcHaeFtUP3QQ5/OTPzJ7E4yxdspDIR1Ov1PzbfO6xnGAyVg
-	dHWCDEVTYJqCWECHD9H3eSNR2BfueXXTfEW5Y7aej1tC1NFP6+Wz8kCRS2cv2xa6Y5z5Y+1oAyZuy
-	5931zoDg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zkIfqaDEauf+I8QVBah4S0MBeOMU5LNJla+YjQTIqCw=; b=IGh+ETlxZ2RpxG
+	SLpiFU1AUt4Bx1NRkc3nzab2k6TYtPUOFWaERzN9i19gahxNtskCs4XTTFVogXnJinLoGoZV7SoW2
+	/udDElBJy/dFZBpiFsRIGG9mbBiSwNzHQ81J2T1r8QeKah+CZPlW4GBYFZQYwBZFhpH7YjuuQfGZa
+	+DwdpZA30zinE5e8iiowaQPz5SPP+mMtRtLbh3M1qDlYKVffQ7bc6CtXca06W2pE61ibCNNi313VI
+	u0rhEm6e5l9uMrHfJXY9f6cV7XMZL0qnVH9FOrPGjNceXmuOcFxMGUuyAJxwXtl7WxMO5yNusfQCG
+	G1M14fhtIb4bnMPdg3Ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSJnG-0006eT-GB; Sun, 28 Aug 2022 15:01:46 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1oSJnD-0006dY-WC; Sun, 28 Aug 2022 15:01:44 +0000
+Received: from mail-yw1-x1132.google.com ([2607:f8b0:4864:20::1132])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRXoS-0029bQ-9I; Fri, 26 Aug 2022 11:47:49 +0000
-Received: from [10.28.39.83] (10.28.39.83) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Aug
- 2022 19:32:37 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: Re: [PATCH] arm64: dts: meson-s4: include meson-s4-gpio.h
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<narmstrong@baylibre.com>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Message-ID: <e32a8c39-1e47-cad1-e093-2cabb2dd37a4@amlogic.com>
-Date: Fri, 26 Aug 2022 19:32:37 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+	id 1oQfHB-009qHI-Ev
+	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 01:33:50 +0000
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3378303138bso384224577b3.9
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Aug 2022 18:33:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=15+zFGICN73u7PZkuVftuGFAaRqO2hNiuUPbcuB/iDw=;
+        b=ammrl+ffQIbxpXELKnFxaurs3Fbe2bx9R/IRI2+J5pQAM/wfjFh1aSFzyWG/E1RD5I
+         rshOZlmvK+Bt4a2MNbUFbSpkCeSrrxRT3zaVTQqLRUMz4elzDZb4CyvIvtQzq4jGwi+1
+         HBILJXTenmBL8ezDV/XzSltMyRVW8N5pGLVc6ZMhlIDEvl+mrwxpUc5n+db5z5Pfve4k
+         jWbqAzYB3Hyg5oa2ZHgXfW73ElDNxOwcp7mMt28pojnFNBEyD2+0HttoLOb68bdPn3gz
+         h+F5uqyOw5Q9oI+0N52Nr3XEpZ0TzyQMzlW05rWkdP3Hj3nW89n+8r+x6EjcJTcjYaCu
+         dSgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=15+zFGICN73u7PZkuVftuGFAaRqO2hNiuUPbcuB/iDw=;
+        b=op4DBHU2UcQu2dM6lrPehaEFFpiczuZExqnICEmLjLftwzTUdx8DWeVVKGmwz7bA0l
+         ZZXZqc/fyjqtq0qnegF+I6xRr7cgF5KP95wQDNH51Tb49Ug9RPlLuYojB3xAI2Sv62W8
+         /0cWM6XOIVPzzPEvxWRmKcmLo3RPzmdzCEqzHJtPUD9U0J0YXPqsB6OImJHROSylm+me
+         Jfs5nIbVaBvCQnc6FX2c2qhxHqjCCAwnt3pmt/FEKY/3h1DWD1C7FGsfvsIA2/Az/f5D
+         n9RF3IgyFJaNHnLrU96hmYQx2bjyRIvnPotsO33UITFk4aQJXCaaAFg8DWosJszoEaGy
+         t4NA==
+X-Gm-Message-State: ACgBeo2ra5IAWXpmUDqKKzZTmyqcbnXacLJj0xeLY4nPc+85dFW6nS+5
+	4Bbh1q2T8uAcevDpQlBZiiDj36XmiCEK+m9QzxfxIg==
+X-Google-Smtp-Source: AA6agR5VUVZnLczkpHKFOKrnd+Tscg/SlOlcCZoOHfOkTvdY9LhPO1gaSJJ+tW/v5A56NSwT8mnZVrMApq5J4jdaQcY=
+X-Received: by 2002:a25:1546:0:b0:68f:8758:7348 with SMTP id
+ 67-20020a251546000000b0068f87587348mr24825887ybv.563.1661304824786; Tue, 23
+ Aug 2022 18:33:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
-X-Originating-IP: [10.28.39.83]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
-X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
+References: <20220701012647.2007122-1-saravanak@google.com> <YwS5J3effuHQJRZ5@kroah.com>
+In-Reply-To: <YwS5J3effuHQJRZ5@kroah.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 23 Aug 2022 18:33:07 -0700
+Message-ID: <CAGETcx8C_Hw588J_DsDELp2rS-UNnezpqqqvUixqGR7m2wDKaA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Fix console probe delay when stdout-path isn't set
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Laurentiu Tudor <laurentiu.tudor@nxp.com>, 
+	Jiri Slaby <jirislaby@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Paul Mackerras <paulus@samba.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
+	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
+	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
+	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
+	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
+	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
+	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
+	Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>, 
+	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>, 
+	ulf hansson <ulf.hansson@linaro.org>, len brown <len.brown@intel.com>, 
+	pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>, 
+	andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
+	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
+	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
+	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
+	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	sparclinux@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220826_044748_349489_51D670CD 
-X-CRM114-Status: UNSURE (   5.20  )
-X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Sun, 28 Aug 2022 08:01:42 -0700
+X-CRM114-CacheID: sfid-20220823_183349_521616_81743345 
+X-CRM114-Status: GOOD (  15.09  )
+X-Mailman-Approved-At: Sun, 28 Aug 2022 08:01:43 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,34 +133,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
+On Tue, Aug 23, 2022 at 4:25 AM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Thu, Jun 30, 2022 at 06:26:38PM -0700, Saravana Kannan wrote:
+> > These patches are on top of driver-core-next.
+> >
+> > Even if stdout-path isn't set in DT, this patch should take console
+> > probe times back to how they were before the deferred_probe_timeout
+> > clean up series[1].
+>
+> Now dropped from my queue due to lack of a response to other reviewer's
+> questions.
 
-On 2022/8/25 20:02, Krzysztof Kozlowski wrote:
-> Why? We can see what you did here, but commit msg should explain why you
-> do it...
+Sorry, I somehow missed those emails. I'll respond later today/tomorrow.
 
-Sorry, I didn't describe this commit message clearly.
-
-In the future, meson-s4.dtsi will have some nodes that need
-to use the meson-s4-gpio.h file.
-
-e.g.
-	(1) Bluetooth enable pin:
-		bt_en-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-	(2) Audio mute pin:
-		spk_mute-gpios = <&gpio GPIOH_8 GPIO_ACTIVE_LOW>;
-	(3) ...
-
-So, this patch was born.
-
-Best regards,
-Huqiang
-
+-Saravana
 
 _______________________________________________
 linux-amlogic mailing list
