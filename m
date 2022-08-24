@@ -4,69 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D125EC32772
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Aug 2022 18:50:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE447C00140
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Aug 2022 08:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AxY9tg0gZ7NTbL3tVtABl1gBOsToFseglGwl3Mw/XkU=; b=kqEfUj9yGc8M2n
-	vP6LDA78sQr+xXuPgBerf+h765iD1qzCoq9uGsZUP48G0PrZ98FVQBeFYkcJjt8OD2Fe0rqXkIbUQ
-	UM8RHJRB9vU5NBXI85N75AR30Mygm+DV0naK/vDZqvuE1xeui5ZPawfxqo+FSjH17fiMteBR+b6tM
-	EiKQe+N1tVLsyZLXM5EMeCII+DW14FZMLYO1LsSkyjZ5NC/lk9JUCtwTlwg1rMH+bjOETQU7pvIoI
-	0/fw2a2abHHsUmJyjQwdb4EcRJ55yEyLffA4xv8mYkGjYRk5+K9GFh/jgSkj7FCnWzJMOxoHKpoJt
-	rfxFgiQMOTc/YNpTwyoA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=/cEqBXdeLS8l+pHBjyH7sdd6xQzu/QL86cb65g1N5EM=; b=CNiknFfXNvlGI+
+	bF2xNo5YTDGMFkHKW/8Sau8jTpeM3lEQrQMe7Sb0xhdIlpT2L2IYXltSOyAXX667wb11t4XDHKwgz
+	0qBLMyaW+TuMrZpBeroP0kNeQJe3renB75czn6DNf4rCjPfp2FAdT1HgdNNFKxuzxMOANYM9hXHIu
+	PImI+rsPl4ZszbJt4b2rO7xv2R5k0KpO21oIl3si/hxW3uCZL8/QmhZL9Dq9CQhqmXo2TBV629GN8
+	bBMyrULGThC0+Clt2UJN3AtJVOLo4cdHMo9/2i4089X+K+3x6Lt7tgHE/wPIS3ihXVJKb4oqyEvM4
+	qeoRzkfdPEF+oKJ6DbqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQYz9-008I7h-Rn; Tue, 23 Aug 2022 18:50:47 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oQlPP-00BNLs-9T; Wed, 24 Aug 2022 08:06:43 +0000
+Received: from smtp05.smtpout.orange.fr ([80.12.242.127] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQYyt-008Hk4-Ml; Tue, 23 Aug 2022 18:50:33 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 358DB6171B;
-	Tue, 23 Aug 2022 18:50:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01422C433C1;
-	Tue, 23 Aug 2022 18:50:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1661280629;
-	bh=nmKhuu0H6Ctnqky5A5KnLiUKuE2JCD8f4yeVBOb27DY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=S+VkSR1lDtb3OUe5P9NME+KHmd4RosTBmqROo6DCvQltfgWMqXQG7Ie0M/UB4XHI/
-	 r73QsNGJ5oE7EmD1xjwOvWTqHWYpRfc024xt/P1gM0c2blZAKiviqdKyNFAvuy32nU
-	 xDNUizqGh3SfKJyyPqGJ1AlrWQndx8G224V5HWsBA100tCQhf+Twwy8CDB0ah+a6nm
-	 2i+P90YtBt1FHUWsmqOuhZC4AOefDVGtyesAYYy9WbD/44Y0WqvflVHA8vwc7hKfFV
-	 LGaZtsfIbKqI4FdZWpiNlir5zkowA80vbXDZtxX4ITLJXav4Uw+Dx9IuvfjWH1bIEf
-	 6cHtR3wmfaPUg==
-From: Mark Brown <broonie@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Miaoqian Lin <linmq006@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Nuno Sá <nuno.sa@analog.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Cameron <jic23@kernel.org>, Peter Rosin <peda@axentia.se>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Lorenzo Bianconi <lorenzo@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Xiang wangx <wangxiang@cdjrlc.com>, dri-devel@lists.freedesktop.org, Alexandru Ardelean <aardelean@deviqon.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <robert.foss@linaro.org>, Jean Delvare <jdelvare@suse.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Stephen Boyd <sboyd@kernel.org>, Cai Huoqing <cai.huoqing@linux.dev>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Alexandru Tachici <alexandru.tachici@analog.com>,
- linux-clk@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, Alexandru Lazar <alazar@startmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Lars-Peter Clausen <lars@metafoo.de>, Aswath Govindraju <a-govindraju@ti.com>,
- linux-iio@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <cover.1660934107.git.mazziesaccount@gmail.com>
-References: <cover.1660934107.git.mazziesaccount@gmail.com>
-Subject: Re: (subset) [PATCH v3 00/14] Use devm helpers for regulator get and enable
-Message-Id: <166128062169.1031899.17830320984922202786.b4-ty@kernel.org>
-Date: Tue, 23 Aug 2022 19:50:21 +0100
+	id 1oQlPL-00BNGO-Qc
+	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 08:06:42 +0000
+Received: from pop-os.home ([90.11.190.129])
+	by smtp.orange.fr with ESMTPA
+	id QlP5oD4V0XaejQlP5oyl50; Wed, 24 Aug 2022 10:06:26 +0200
+X-ME-Helo: pop-os.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Wed, 24 Aug 2022 10:06:26 +0200
+X-ME-IP: 90.11.190.129
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] tty: serial: meson: Use devm_clk_get_enabled() helper
+Date: Wed, 24 Aug 2022 10:06:21 +0200
+Message-Id: <3f18638cb3cf08ed8817addca1402ed5e3bd3602.1661328361.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Mailer: b4 0.10.0-dev-0c1df
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220823_115031_859925_EE1F66DB 
-X-CRM114-Status: GOOD (  13.70  )
+X-CRM114-CacheID: sfid-20220824_010640_028550_EB3B1EEA 
+X-CRM114-Status: GOOD (  13.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,44 +69,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 19 Aug 2022 22:16:48 +0300, Matti Vaittinen wrote:
-> Use devm helpers for regulator get and enable
-> 
-> NOTE: The series depends on commit
-> ee94aff2628b ("Devm helpers for regulator get and enable")
-> which currently sits in Mark's regulator/for-next
-> 
-> A few* drivers seem to pattern demonstrated by pseudocode:
-> 
-> [...]
+The devm_clk_get_enabled() helper:
+   - calls devm_clk_get()
+   - calls clk_prepare_enable() and registers what is needed in order to
+     call clk_disable_unprepare() when needed, as a managed resource.
 
-Applied to
+This simplifies the code, the error handling paths and avoid the need of
+a dedicated function used with devm_add_action_or_reset().
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+That said, meson_uart_probe_clock() is now more or less the same as
+devm_clk_get_enabled(), so use this function directly instead.
 
-Thanks!
+This also fixes an (unlikely) unchecked devm_add_action_or_reset() error.
 
-[01/14] docs: devres: regulator: Add new get_enable functions to devres.rst
-        commit: 9048b9912f767ea9609e520678def446af804771
+Based on my test with allyesconfig, this reduces the .o size from:
+   text	   data	    bss	    dec	    hex	filename
+   16350	   5016	    128	  21494	   53f6	drivers/tty/serial/meson_uart.o
+down to:
+   15415	   4784	    128	  20327	   4f67	drivers/tty/serial/meson_uart.o
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+devm_clk_get_enabled() is new and is part of 6.0-rc1
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+If the message "couldn't enable clk\n" is of any use, it could be added
+in meson_uart_probe_clocks() with a dev_err_probe() call. It wouldn't be
+exactly the same meaning, but at least something would be logged.
+---
+ drivers/tty/serial/meson_uart.c | 29 +++--------------------------
+ 1 file changed, 3 insertions(+), 26 deletions(-)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 6c8db19fd572..26de08bf181e 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -667,29 +667,6 @@ static struct uart_driver meson_uart_driver = {
+ 	.cons		= MESON_SERIAL_CONSOLE,
+ };
+ 
+-static inline struct clk *meson_uart_probe_clock(struct device *dev,
+-						 const char *id)
+-{
+-	struct clk *clk = NULL;
+-	int ret;
+-
+-	clk = devm_clk_get(dev, id);
+-	if (IS_ERR(clk))
+-		return clk;
+-
+-	ret = clk_prepare_enable(clk);
+-	if (ret) {
+-		dev_err(dev, "couldn't enable clk\n");
+-		return ERR_PTR(ret);
+-	}
+-
+-	devm_add_action_or_reset(dev,
+-			(void(*)(void *))clk_disable_unprepare,
+-			clk);
+-
+-	return clk;
+-}
+-
+ static int meson_uart_probe_clocks(struct platform_device *pdev,
+ 				   struct uart_port *port)
+ {
+@@ -697,15 +674,15 @@ static int meson_uart_probe_clocks(struct platform_device *pdev,
+ 	struct clk *clk_pclk = NULL;
+ 	struct clk *clk_baud = NULL;
+ 
+-	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
++	clk_pclk = devm_clk_get_enabled(&pdev->dev, "pclk");
+ 	if (IS_ERR(clk_pclk))
+ 		return PTR_ERR(clk_pclk);
+ 
+-	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
++	clk_xtal = devm_clk_get_enabled(&pdev->dev, "xtal");
+ 	if (IS_ERR(clk_xtal))
+ 		return PTR_ERR(clk_xtal);
+ 
+-	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
++	clk_baud = devm_clk_get_enabled(&pdev->dev, "baud");
+ 	if (IS_ERR(clk_baud))
+ 		return PTR_ERR(clk_baud);
+ 
+-- 
+2.34.1
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 _______________________________________________
 linux-amlogic mailing list
