@@ -4,107 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 850D8C28D13
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Aug 2022 15:55:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29DD2ECAA24
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Aug 2022 16:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=knWXKe9fja1HSVF6kTpGjEB8XcToolZr8kGJ53W/AoM=; b=RNPTsJfJtVp2d2Gf3VeEGKUbzh
-	BwSOfsrifh2Gxd4BK32n5bWt1HRD6pxJMQf94GppUKwMBnVlkDMskHfgWRMuMrx5IBip/k0uuD9X9
-	+K/RWPHFN0/pyzcB1RC5nMsoGaFyvArPO90OWBwcjBmlhk4Tai56d5HLEQQQaR17nVar9a2xETAvz
-	aK2dSoAYHhyGj1rvSot9vypIKAoFmD0Kr2X76R0mGtsZL3UKMmDvDJbiKCGVoOBUsT9sx/wJxaAow
-	yoJ84f54KG/Am7jgWUt20lgo7xQHKKUQxFT3D/OKkf+NhqOIpfLOuiCvIt+Dq321gdbzqepK9eIdF
-	k3GNWImQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2tVgHjSUEL493jpoRTjvkVhto6EXRkAaza3Ec/w4T4k=; b=Tj2EDG3G9qJp85
+	dPO24FRjHx/17xl+Hvl2iaLO0ls42XSc2dJeXqgXn7OkZPR+R6lSyvbDh0PG7noJTUA3HqlZrU+lH
+	hDh9TIxdmNrDbFSOpErWZPtn8UtzD3kuTDN06pDi2SJJfIYEMwTVf+SpLaO8P0i3yYJk51lMoTI2u
+	6v0IMKOPnxto4SXOcPXSg6GLe+pAhocpmTSShNd5e2RGViN12qkNcC82HjtvJ1yr20t2qxZlyEyJn
+	AAxsI0aNrpuyQB88zZNxsztYnk2T68IAyHx70blaTNsH+iy2wExSGzD5XW//QbIqGxgL3Yuz+Z3jh
+	rpmSMYEVstnsN8T1hm2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRFCV-00FuQy-DD; Thu, 25 Aug 2022 15:55:23 +0000
-Received: from new4-smtp.messagingengine.com ([66.111.4.230])
+	id 1oRFYb-00G9Mr-3Q; Thu, 25 Aug 2022 16:18:13 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRFCS-00FuHn-Cj; Thu, 25 Aug 2022 15:55:22 +0000
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 7263B5809BC;
-	Thu, 25 Aug 2022 11:55:11 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 25 Aug 2022 11:55:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to; s=fm3; t=1661442911; x=1661450111; bh=tqptnFbA7h
-	c7h/4TDLxF1PP/YGhchwUmCeAxXxdoHRo=; b=RFffi5cPCoCoz36n0Z8bN6eFVo
-	0sldhf8QeuR3gcVvDvDA14WK7m4PCGogEN5hgOGNhMxp86aHJmN5QCxoI6JEhCbF
-	SnB2daum5piCYP9HFE0Sk47iUU1dDYq//YjNQ1YzbKqsUgYdvCJfpJ8055ay/Zoy
-	FMOQIFumgNUTa9nWhOrV6SrtiQk6Vx/wi1GE+0qlZ72ReSlAXTkUCsNMzngMBrIu
-	cQbZV5YxB9MegL+jACYJqF8sbi9DrBrZ7Fqp6Mnigl3BL5c9bw0cXZ6XUZDK0Igc
-	d8M18gBNErH4jzQ0A0iITF6KOd+qvh7IhYLUrastuhlkXfXPkbAaIGAu91kA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1661442911; x=1661450111; bh=tqptnFbA7hc7h/4TDLxF1PP/YGhc
-	hwUmCeAxXxdoHRo=; b=E8A8tVJzDj9pu9GbygbxuEQP8MB41DMI91z2ueoX8nBy
-	zySUgxlsfCZSiTrHU5+aI3u6QnvYVuHp2kMEVivQlWk8zqcMXzuar6Xd0QNFm+hk
-	RyLc9PCRXMRyq7+RH2cxVzw2yFYT5JhNg6nCfs4t6MXRXpPCCSN2I/jj1EMN6Yr7
-	c5Hticfaet3zeUGcT5DDX95lN+/61APn8enJPVDcrmOcGUZM67WJ7NNUniFuqnCM
-	d9eiETS+xNIVxMbovGUiM5RwZoFKkGKeLL0fEU41xLpnhXxQF3yvKqadjfKoP8UY
-	YKG9dXlEP/QCRdsfcAIaiQgTDmAPobAl5xm48eFJFw==
-X-ME-Sender: <xms:XZsHY0xsv4iDhjXgedHZcaQ9BoeKJEsj0XKKPtURgGDvdVmCrAp2zQ>
-    <xme:XZsHY4SA0zrQVDzvrKCYS_108LKJSh88MN_v67-LfnsoEcx1f6Kgv43WwUTneaOfG
-    3Tt0KRWe6xuxjCpnkw>
-X-ME-Received: <xmr:XZsHY2WolPrgWEYiYyCgZ092JoyS0D-qIhr4rkuG2-slyMuUoj8dLuVefag>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejfedgledvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpefhkeehfedthfejfeejtdfhvddvueeigeejjeeuteegveffhfffgeffieeu
-    ueduvdenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
-    hh
-X-ME-Proxy: <xmx:XpsHYyjdlVhneiSB4ustS7xDJwI1mC6wv4gJhjpJXLF3JfdGi3cf1w>
-    <xmx:XpsHY2DepCkheOhxgh4cnsdJEgcwkyRqcq23RUfJ3SWuKnwJGa16kA>
-    <xmx:XpsHYzKLY5z2Qt95j_xLe_zMkehclF39eHC4SCWy3DliPelW2Vixjg>
-    <xmx:X5sHY4ycPKM8nQmjvA_fj97WxxkhwpA3jPTgoMqJP0U0Rk2ysCJr2A>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 25 Aug 2022 11:55:09 -0400 (EDT)
-Date: Thu, 25 Aug 2022 17:55:06 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Mateusz Kwiatkowski <kfyatek@gmail.com>
-Cc: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
-	David Airlie <airlied@linux.ie>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Phil Elwell <phil@raspberrypi.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	Dom Cobley <dom@raspberrypi.com>
+	id 1oRFYO-00G9Ek-17; Thu, 25 Aug 2022 16:18:01 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id bt10so15925039lfb.1;
+        Thu, 25 Aug 2022 09:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=b3UlTD9H49Yb98sjK5W5/C8aUP8qYfkMb4AST0yEJIw=;
+        b=RJQaploezQ64sQU0Ot6zPj8xVA+m7I0+MIlJYds5HBoULqJXc7p9yh24SdJBjERKH1
+         /G2S8P1E0T41DmocxAC14hvkpg53cM/qXp4Wm/pObVX9U/mITxz+4Z8iYlD2ScBXje8p
+         p1SHmf2LwMfvY9zCffDhWddepz3T1jkUAAwq2AeWRIuuW12G+OtVw0j7utFTYWVv7L0l
+         aTgz1abc3GTnxgWC45ygjbDRLmxYIvyY6C8MsSJtwb0o4A3K9UNKtz97pM9bktptfhLg
+         MUIUSyjpMXc362+1MySlwOAQ3ZlX1JjCHs8wMj+NzkAtU35Vhr/n4QFliSiSL9ZvOt/k
+         tuCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=b3UlTD9H49Yb98sjK5W5/C8aUP8qYfkMb4AST0yEJIw=;
+        b=ce6zILsM2i8+AOgJMb5Wee6phNIhyyJGTHQuZbF/FFLBO77bw1cMs6Ae0Vw+qod2sv
+         wuwIYRNYaTXSpu8tnkHy/7AeimVYVi0FqYa9GaDQX1AsZDyY11GR3b1mudbVYjrWLT0L
+         a8qjfbg7rUlAZGgKbU2k77U7yc0keG2VwU1SlyWPZ+uFKt1AKlpbfUCPn26WkHcV+qRd
+         jjyI3yS4elOL/kvEhfk1E5H2IgQFxGy/NaZWBunoG3DnLZVUhY3NVTzNiraCyKhJ1yFv
+         Oo8Umz4OOcQx5db9yHUa/RnZaamqZJxPtTfkUK9D/DNIUMmjuz3W5q7R5vChzY0YErYk
+         oWaA==
+X-Gm-Message-State: ACgBeo0UmzYDyPqWqUtnnXo6lLyF+kyLNMeWGFQYIp/vBPHNnggLFCIN
+	QyAgSuAKm1SrnKvj0+GbMi8=
+X-Google-Smtp-Source: AA6agR5laMtLRk7Pd92ffYg5nd9Khm1va5h/vwpwYSvwp25wKzThzGRCS5LT/uIn6MFQ4uf63wGXTA==
+X-Received: by 2002:a05:6512:692:b0:492:ece0:32e5 with SMTP id t18-20020a056512069200b00492ece032e5mr1522974lfe.636.1661444273058;
+        Thu, 25 Aug 2022 09:17:53 -0700 (PDT)
+Received: from [10.10.53.53] (81-18-220-16.static.chello.pl. [81.18.220.16])
+        by smtp.googlemail.com with ESMTPSA id u6-20020a05651206c600b00492e570e036sm573621lff.54.2022.08.25.09.17.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 09:17:52 -0700 (PDT)
+Message-ID: <18737c8a-78f4-5b9f-aea2-588bc65c13d9@gmail.com>
+Date: Thu, 25 Aug 2022 18:17:50 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
 Subject: Re: [PATCH v1 00/35] drm: Analog TV Improvements
-Message-ID: <20220825155506.wqurh5r752qfufqs@houat>
+Content-Language: en-US
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Dom Cobley <dom@raspberrypi.com>
 References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
  <987d6114-5fcb-d668-3b0d-ad6d8723dfdb@tronnes.org>
  <20220822074800.qzyctchqn5usr55g@houat>
  <9a15b1cf-692c-1b0d-02a6-316cbd954525@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <9a15b1cf-692c-1b0d-02a6-316cbd954525@gmail.com>
+ <20220825155506.wqurh5r752qfufqs@houat>
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+In-Reply-To: <20220825155506.wqurh5r752qfufqs@houat>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220825_085520_922314_397F0912 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20220825_091800_102155_F4E41552 
+X-CRM114-Status: GOOD (  22.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,81 +104,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4062417793253295447=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Maxime,
 
---===============4062417793253295447==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o2rxfoydvcfezv5r"
-Content-Disposition: inline
+W dniu 25.08.2022 o 17:55, Maxime Ripard pisze:
+> Hi Mateusz,
+>
+> On Mon, Aug 22, 2022 at 10:57:26AM +0200, Mateusz Kwiatkowski wrote:
+>> Hi Maxime,
+>>
+>> I tried testing and reviewing your changes properly over the last weekend, but
+>> ultimately ran into this ("flip_done timed out" etc.) issue and was unable to
+>> mitigate it, at least so far. This seems to pop up every time I try to change
+>> modes in any way (either change the TV norm, or just try doing
+>> "xrandr --output Composite-1 --off" followed by bringing it back on; it also
+>> means that the Pi goes unusable when the DE's screen saving routine kicks in).
+>>
+>> I'm using a Pi 4, and it works with the rpi-5.13.y branch
+>> https://github.com/raspberrypi/linux, but seemingly nothing newer.
+>> I specifically tried rpi-5.14.y, rpi-5.15.y and rpi-5.19.y - rpi-5.15.y,
+>> which is the current main branch in Raspberry Pi OS, seems to be broken since
+>> forever; at least since my patches (originally written for 5.10) landed there.
+>>
+>> I'll try identifying the issue further, possibly later today, and maybe check
+>> the rpi-6.0.y branch as well.
+>
+> I've tried it this, and I can't reproduce it here. But I'm curious, how
+> did you apply this series? rpi-5.13.y is probably full of conflicts
+> everywhere?
 
+I applied your patches onto rpi-5.15.y. There were conflicts, but they seemed
+relatively minor. I'm not sure if I did a good job at resolving them - I ran
+into various problems trying to test your changes, but I chose not to criticize
+you before making sure that it's really due to your changes, or without some
+remarks more constructive than "doesn't work" ;-)
 
---o2rxfoydvcfezv5r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I can push my rebase onto some Github fork if you're interested.
 
-Hi Mateusz,
+I was able to work around some of those problems, and also saw that some
+of them were already mentioned by other reviewers (such as the generic modes
+not matching due to the aspect ratio setting).
 
-On Mon, Aug 22, 2022 at 10:57:26AM +0200, Mateusz Kwiatkowski wrote:
-> Hi Maxime,
->=20
-> I tried testing and reviewing your changes properly over the last weekend=
-, but
-> ultimately ran into this ("flip_done timed out" etc.) issue and was unabl=
-e to
-> mitigate it, at least so far. This seems to pop up every time I try to ch=
-ange
-> modes in any way (either change the TV norm, or just try doing
-> "xrandr --output Composite-1 --off" followed by bringing it back on; it a=
-lso
-> means that the Pi goes unusable when the DE's screen saving routine kicks=
- in).
->=20
-> I'm using a Pi 4, and it works with the rpi-5.13.y branch
-> https://github.com/raspberrypi/linux, but seemingly nothing newer.
-> I specifically tried rpi-5.14.y, rpi-5.15.y and rpi-5.19.y - rpi-5.15.y,
-> which is the current main branch in Raspberry Pi OS, seems to be broken s=
-ince
-> forever; at least since my patches (originally written for 5.10) landed t=
-here.
->=20
-> I'll try identifying the issue further, possibly later today, and maybe c=
-heck
-> the rpi-6.0.y branch as well.
+Ultimately I got stuck on this bug, so I put testing this series on hold
+in favor of debugging the bigger issue. So far unfortunately no luck with it.
 
-I've tried it this, and I can't reproduce it here. But I'm curious, how
-did you apply this series? rpi-5.13.y is probably full of conflicts
-everywhere?
+I did not try rebasing your changes onto 5.13 or older.
 
-Maxime
+> Maxime
 
---o2rxfoydvcfezv5r
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYwebWgAKCRDj7w1vZxhR
-xWTZAQDwNGx7ING3Lb1EnLGPTAGR3tQpH/72q4zipEWhAbBLSwEAuSVMBrPHUOys
-oIi4MLhNS5Ak7DHUrbr+dgxHf4umjwA=
-=vOq0
------END PGP SIGNATURE-----
-
---o2rxfoydvcfezv5r--
-
-
---===============4062417793253295447==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Best regards,
+Mateusz Kwiatkowski
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4062417793253295447==--
-
