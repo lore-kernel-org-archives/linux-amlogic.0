@@ -4,124 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A12AC0502A
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Aug 2022 15:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844C7ECAAA2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Aug 2022 17:27:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zkIfqaDEauf+I8QVBah4S0MBeOMU5LNJla+YjQTIqCw=; b=IGh+ETlxZ2RpxG
-	SLpiFU1AUt4Bx1NRkc3nzab2k6TYtPUOFWaERzN9i19gahxNtskCs4XTTFVogXnJinLoGoZV7SoW2
-	/udDElBJy/dFZBpiFsRIGG9mbBiSwNzHQ81J2T1r8QeKah+CZPlW4GBYFZQYwBZFhpH7YjuuQfGZa
-	+DwdpZA30zinE5e8iiowaQPz5SPP+mMtRtLbh3M1qDlYKVffQ7bc6CtXca06W2pE61ibCNNi313VI
-	u0rhEm6e5l9uMrHfJXY9f6cV7XMZL0qnVH9FOrPGjNceXmuOcFxMGUuyAJxwXtl7WxMO5yNusfQCG
-	G1M14fhtIb4bnMPdg3Ow==;
+	List-Owner; bh=xgVClpIIk0VR91b+Wt0LnO2jRC/S3uteO4DbpHxLssE=; b=DTe9Da6UvENHvV
+	TtUPdkW9YlWU+aop6ipERdHxudNC54j7YkEZlD48W+TQmijHFWUEnJI8yQOyVLxiH0ot/s1jFK/hS
+	X3WD22RkBmYhVluCQboaErjgBl+X7RelMcvX6xzpGzs32QM2AhU+PcVw8t/yooToWsPDyiFrEbN7X
+	n+5ZbeVb9R7NolDTxRAExZ7EX/9K9FMWcZoxYvjndDGOmrA3JtgqwC3bP5W5K43Bt3A9wTWzqUXUQ
+	FDPHmQ7/VK6p7V4Wn6CnMydfia89P/otLpQ/UhDjc+qwNk+yKx480Br4WJxG2BMjsA0At1P6ajhx3
+	PGMiOooleEmR2JR1firQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSJnD-0006dY-WC; Sun, 28 Aug 2022 15:01:44 +0000
-Received: from mail-yw1-x1132.google.com ([2607:f8b0:4864:20::1132])
+	id 1oSM3s-000oFc-Gq; Sun, 28 Aug 2022 17:27:04 +0000
+Received: from smtp.domeneshop.no ([2a01:5b40:0:3005::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oQfHB-009qHI-Ev
-	for linux-amlogic@lists.infradead.org; Wed, 24 Aug 2022 01:33:50 +0000
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3378303138bso384224577b3.9
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Aug 2022 18:33:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=15+zFGICN73u7PZkuVftuGFAaRqO2hNiuUPbcuB/iDw=;
-        b=ammrl+ffQIbxpXELKnFxaurs3Fbe2bx9R/IRI2+J5pQAM/wfjFh1aSFzyWG/E1RD5I
-         rshOZlmvK+Bt4a2MNbUFbSpkCeSrrxRT3zaVTQqLRUMz4elzDZb4CyvIvtQzq4jGwi+1
-         HBILJXTenmBL8ezDV/XzSltMyRVW8N5pGLVc6ZMhlIDEvl+mrwxpUc5n+db5z5Pfve4k
-         jWbqAzYB3Hyg5oa2ZHgXfW73ElDNxOwcp7mMt28pojnFNBEyD2+0HttoLOb68bdPn3gz
-         h+F5uqyOw5Q9oI+0N52Nr3XEpZ0TzyQMzlW05rWkdP3Hj3nW89n+8r+x6EjcJTcjYaCu
-         dSgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=15+zFGICN73u7PZkuVftuGFAaRqO2hNiuUPbcuB/iDw=;
-        b=op4DBHU2UcQu2dM6lrPehaEFFpiczuZExqnICEmLjLftwzTUdx8DWeVVKGmwz7bA0l
-         ZZXZqc/fyjqtq0qnegF+I6xRr7cgF5KP95wQDNH51Tb49Ug9RPlLuYojB3xAI2Sv62W8
-         /0cWM6XOIVPzzPEvxWRmKcmLo3RPzmdzCEqzHJtPUD9U0J0YXPqsB6OImJHROSylm+me
-         Jfs5nIbVaBvCQnc6FX2c2qhxHqjCCAwnt3pmt/FEKY/3h1DWD1C7FGsfvsIA2/Az/f5D
-         n9RF3IgyFJaNHnLrU96hmYQx2bjyRIvnPotsO33UITFk4aQJXCaaAFg8DWosJszoEaGy
-         t4NA==
-X-Gm-Message-State: ACgBeo2ra5IAWXpmUDqKKzZTmyqcbnXacLJj0xeLY4nPc+85dFW6nS+5
-	4Bbh1q2T8uAcevDpQlBZiiDj36XmiCEK+m9QzxfxIg==
-X-Google-Smtp-Source: AA6agR5VUVZnLczkpHKFOKrnd+Tscg/SlOlcCZoOHfOkTvdY9LhPO1gaSJJ+tW/v5A56NSwT8mnZVrMApq5J4jdaQcY=
-X-Received: by 2002:a25:1546:0:b0:68f:8758:7348 with SMTP id
- 67-20020a251546000000b0068f87587348mr24825887ybv.563.1661304824786; Tue, 23
- Aug 2022 18:33:44 -0700 (PDT)
+	id 1oSLk6-000i05-2D; Sun, 28 Aug 2022 17:06:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+	; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=VB+iShHArjJp41BB5dqP4/59fbHxHAh8j4VWglqFn7E=; b=U1fK7sWUEHCoKWz84mzGfnRtEQ
+	UrW5fXCEBL4DXz/NpfWik98RVrmZoEVwrwKWPWqQ0D7qmdd5DmT5KDBvnK7BW36hkK2ZBwHN6yVBQ
+	add4aNGQ0gHcc64K2WMXXFCgY/ZT2ZWuJK7zFKRwTtuWXhz3HEcrGpvUxT3KW0F4xQSlzDG+x9qrb
+	a6lUJ/EOI1KyvNFg+KoWOfNGa4TOD9W0e1vfCMmejMqaO4B5WgI9T3oUX781k9Pz/ajsBNJwi/AkG
+	e6l5w3Yg/B8Vlc/dOtdyU30knuOvm5MIZcPp7eyelDP/khmC6e1nNYIFzqScoH8s7FpI/pgIDN42X
+	onXXhHAg==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=60461)
+	by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <noralf@tronnes.org>)
+	id 1oSLjq-0002PX-L9; Sun, 28 Aug 2022 19:06:22 +0200
+Message-ID: <3b6ec59d-4fad-52f9-e96a-55a25ff3cfb4@tronnes.org>
+Date: Sun, 28 Aug 2022 19:06:14 +0200
 MIME-Version: 1.0
-References: <20220701012647.2007122-1-saravanak@google.com> <YwS5J3effuHQJRZ5@kroah.com>
-In-Reply-To: <YwS5J3effuHQJRZ5@kroah.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 23 Aug 2022 18:33:07 -0700
-Message-ID: <CAGETcx8C_Hw588J_DsDELp2rS-UNnezpqqqvUixqGR7m2wDKaA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Fix console probe delay when stdout-path isn't set
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Laurentiu Tudor <laurentiu.tudor@nxp.com>, 
-	Jiri Slaby <jirislaby@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Paul Mackerras <paulus@samba.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
-	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
-	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
-	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
-	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
-	Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>, 
-	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>, 
-	ulf hansson <ulf.hansson@linaro.org>, len brown <len.brown@intel.com>, 
-	pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>, 
-	andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
-	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
-	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
-	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
-	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	sparclinux@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v1 34/35] drm/modes: Introduce the tv_mode property as a
+ command-line option
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jerome Brunet <jbrunet@baylibre.com>, Samuel Holland <samuel@sholland.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Dom Cobley <dom@raspberrypi.com>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
+ <noralf@tronnes.org>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-34-3d53ae722097@cerno.tech>
+ <eedb1a86-c1fb-cc76-2a43-4ed349d7d826@tronnes.org>
+ <20220824154543.bdtpz2evwzsjrdrz@houat>
+ <3cc08f9d-9f01-b771-c16f-ea95acd7e7cd@tronnes.org>
+ <20220826064646.ug2djacis7whybpd@houat>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220826064646.ug2djacis7whybpd@houat>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220823_183349_521616_81743345 
-X-CRM114-Status: GOOD (  15.09  )
-X-Mailman-Approved-At: Sun, 28 Aug 2022 08:01:43 -0700
+X-CRM114-CacheID: sfid-20220828_100638_673875_B727EE0D 
+X-CRM114-Status: GOOD (  12.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,29 +88,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Aug 23, 2022 at 4:25 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Thu, Jun 30, 2022 at 06:26:38PM -0700, Saravana Kannan wrote:
-> > These patches are on top of driver-core-next.
-> >
-> > Even if stdout-path isn't set in DT, this patch should take console
-> > probe times back to how they were before the deferred_probe_timeout
-> > clean up series[1].
->
-> Now dropped from my queue due to lack of a response to other reviewer's
-> questions.
-
-Sorry, I somehow missed those emails. I'll respond later today/tomorrow.
-
--Saravana
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpEZW4gMjYuMDguMjAyMiAwOC40Niwgc2tyZXYgTWF4aW1lIFJpcGFyZDoKPiBPbiBUaHUsIEF1
+ZyAyNSwgMjAyMiBhdCAwMjo0MToyN1BNICswMjAwLCBOb3JhbGYgVHLDuG5uZXMgd3JvdGU6Cj4+
+IERlbiAyNC4wOC4yMDIyIDE3LjQ1LCBza3JldiBNYXhpbWUgUmlwYXJkOgo+Pj4gSGkgTm9yYWxm
+LAo+Pj4KPj4+IE9uIFNhdCwgQXVnIDIwLCAyMDIyIGF0IDEwOjE4OjQ3UE0gKzAyMDAsIE5vcmFs
+ZiBUcsO4bm5lcyB3cm90ZToKPj4+PiBEZW4gMjkuMDcuMjAyMiAxOC4zNSwgc2tyZXYgTWF4aW1l
+IFJpcGFyZDoKPj4+Pj4gT3VyIG5ldyB0diBtb2RlIG9wdGlvbiBhbGxvd3MgdG8gc3BlY2lmeSB0
+aGUgVFYgbW9kZSBmcm9tIGEgcHJvcGVydHkuCj4+Pj4+IEhvd2V2ZXIsIGl0IGNhbiBzdGlsbCBi
+ZSB1c2VmdWwsIGZvciBleGFtcGxlIHRvIGF2b2lkIGFueSBib290IHRpbWUKPj4+Pj4gYXJ0aWZh
+Y3QsIHRvIHNldCB0aGF0IHByb3BlcnR5IGRpcmVjdGx5IGZyb20gdGhlIGtlcm5lbCBjb21tYW5k
+IGxpbmUuCj4+Pj4+Cj4+Pj4+IExldCdzIGFkZCBzb21lIGNvZGUgdG8gYWxsb3cgaXQsIGFuZCBz
+b21lIHVuaXQgdGVzdHMgdG8gZXhlcmNpc2UgdGhhdCBjb2RlLgo+Pj4+Pgo+Pj4+PiBTaWduZWQt
+b2ZmLWJ5OiBNYXhpbWUgUmlwYXJkIDxtYXhpbWVAY2Vybm8udGVjaD4KPj4+Pj4KPj4+Pgo+Pj4+
+IEluIHRoZSBzdWJqZWN0IGl0IHNheXMgInR2X21vZGUgcHJvcGVydHkiLCBidXQgdGhlIHByb3Bl
+cnR5IGlzIGNhbGxlZAo+Pj4+ICJ0diBub3JtIiwgc28gdGhlIG9wdGlvbiBzaG91bGQgYmUgdHZf
+bm9ybT8KPj4+Cj4+PiBZZWFoLi4uIEkgZG9uJ3Qga25vdy4gbW9kZSBpcyB0YWtlbiBidXQgaXQn
+cyBvYnZpb3VzbHkgdGhlIGJlc3QgbmFtZS4gU28KPj4+IEkgd2VudCB3aXRoIG5vcm0gdG8gYXZv
+aWQgdGhlIChpbnRlcm5hbCkgY29uZmxpY3QgYnV0IEkgbGVmdCBtb2RlIGZvcgo+Pj4gdGhlIHVz
+ZXIgZmFjaW5nIHByb3BlcnR5Lgo+Pj4KPj4+IEknbSBub3Qgc3VyZSB3aGF0J3MgYmVzdCBoZXJl
+LCBvciBtYXliZSB3ZSBjYW4gcGljayBhbm90aGVyIG5hbWUgZW50aXJlbHk/Cj4+Pgo+Pgo+PiBX
+aHkgbm90IGp1c3QgY2FsbCBpdCAidHYgbW9kZSIgb3IgZXZlbiBiZXR0ZXIgIlRWIE1vZGUiLiBU
+aGUgc3RhdGUKPj4gbWVtYmVyIGNhbiBiZSBjYWxsZWQgdHZfbW9kZSwgYnV0IHRoZSBtb2RlX2Nv
+bmZpZyBtZW1iZXIgd2lsbCBuZWVkIGEKPj4gdGVtcG9yYXJ5IG5hbWUgdW50aWwgdGhlICJtb2Rl
+IiBwcm9wZXJ0eSBpcyByZW1vdmVkLiB0dl90dl9tb2RlIG9yIG1heWJlCj4+IGNvbm5lY3Rvcl90
+dl9tb2RlPwo+IAo+IFllYWgsIHRoYXQgc2VlbXMgbGlrZSBhIGdvb2QgaWRlYS4gV291bGQgbGVn
+YWN5X3R2X21vZGUgd29yayBmb3IgeW91Pwo+IAoKT2ggeWVhaCwgcmVuYW1pbmcgdGhlICJtb2Rl
+IiBwcm9wZXJ0eSwgdGhhdCB3b3JrcyBmaW5lLgoKTm9yYWxmLgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
