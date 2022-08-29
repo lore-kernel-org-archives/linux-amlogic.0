@@ -4,77 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 574E4ECAAD2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 07:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A7A5ECAAD4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 08:32:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a43vVbkXyCA0JDc4nMsqSaTC0Nmtnb1KRjT17TZLQXg=; b=Zg/dLvqY5ezQiq
-	lV3S4DbVI2QQt6BDNxcmiHWGxcg1H4Nl7VznVLcu+E6YIihxBo9EZf/2nqkiASO6tukOjnhBH+KLk
-	hgkOW805Wy0wXnfV81HEiIcATANzjZISpBjR6FsFv7AOcm2FZF3A0QgErz3Sw1scOBTZ9+MPWahvm
-	ntUiz3BhF6Ytl3knjgK/+TrdV/t9nhEqLjZhNo8R4urIrPfpja8fGNaq/GGi3J4oNHcyN4D7TLPcD
-	oxs9OqUYRuxs+nC7O9rMGcZ8cSnTMm8Ad3A6r3rUxqblJ282tzL2k6+g+tpDiscCy7ZjcTevhcdL6
-	jQ8PpuG5/OZEzwql/4Jg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RFmJijabzlcRQRO19mmVWOIMfm5PEjzsgahj2TpiXhY=; b=xCe+PgQ8TBJ4zwZ8549YoaB8Wq
+	+Mj+tbaUiFgzYL/N9aXzzgN9pmAMj5nWOFzjErE8fmNyluiHJeDQ0Ttt1hJisHorZQi5kt1gNa7ch
+	F5DGu0yD3AEvq3Rls2MyIIlNtlIoMrDZ40M4bWDqr1z0UbJIarPwiG2o4h5XWXKxnY3utN/8Y1NUx
+	HnjqlTnlClpMD6u0f10h3k/X+HD6hzGTsva86Xljki4VpBpLLuvMFZX9pH7zYlHyMbVOB+Zj9ZdPk
+	bNj+jTIjz/0OAd5YCRMHjDnxKq//kew5d6IrHmkxdKOkASpJGRlEzQDXFX9g1rJ/bLDTb5Px5gfIM
+	ub3klYlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSZXr-005q15-4a; Mon, 29 Aug 2022 07:50:55 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1oSaBp-006Dob-AK; Mon, 29 Aug 2022 08:32:13 +0000
+Received: from new1-smtp.messagingengine.com ([66.111.4.221])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSZWp-005pT7-4u
-	for linux-amlogic@lists.infradead.org; Mon, 29 Aug 2022 07:49:56 +0000
-Received: by mail-wr1-x430.google.com with SMTP id b16so1453575wru.7
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 00:49:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=n2NE4QXm0+W3bOY1EadNeANDSpJMut2g9jYTggnpUw0=;
-        b=IyRssG71YCgbLKWf/87UdkR9e5crItNHD93AhHv9+iQyTXo01FuwMZyRpnBfTcCikk
-         nr+kWaLKB9lBLH4N6003ofv4UB40hcHA6/Of5YwcKQOfL333xggPjfBEaUScX2BbAtwz
-         spK3TAAF89sRXl9E90pWNcYkn1DtF7mu2L48F8lDDykZrDPC/0xFG+G9y0+Z8+mvtJ65
-         sYWJaAs6GKLyVPx0Fhs+vuLxbkT2alXxE1MsPL4TTu+JdqNTCPjPj6mzqksxKUi8EI6S
-         zVKVo6P/M2ViGPscs9wge7glaLTQT4ZS/AQdx0ztHgwgubkiW/16VUpMtY0zxYZiFo3B
-         9jwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=n2NE4QXm0+W3bOY1EadNeANDSpJMut2g9jYTggnpUw0=;
-        b=RwVtXqVufGGgpkpnaV7oSuYE95ETgg4GeBAI9DxxMTDuS5yGzoqIgg6JobXg8IeV6N
-         nJL8FdTAmXS/tJtnGiFp8ETmSocQilS26Tu0kPfSlpaIYFbNoLDRqMWMUJVsmhXmWkxE
-         kcw7RvBHhX9Nydoju3Y4wPcajHTG86tO3vVjopH5PbK1JmmIXdPMZKqqehrjFYuzFAIU
-         2o59jyy/EWIlEBX+R2rZrDHdjDq+WVQs6JDzGIlBhfpoazxwvocGmpv+E4vIsI07sY5y
-         K12fjUq1SA8+GXMyGMN/siXzRJ5zPHEXDkbi7saquTkjKHAaXK4w9xi0X4/ieBTfv+3X
-         zXBA==
-X-Gm-Message-State: ACgBeo0rbw8thxp+WykzeXa+/V1dv+AdQm4wGK8pUqkxQbZvyz70q9s+
-	1eP0vqPtpJZhCGcfhnlOpVMdrA==
-X-Google-Smtp-Source: AA6agR4tThWO9mcfcs4H13E20BaSP4QbrdwocE68e46fIYrBrjVy33JZpzJ0osReuetQZAVAHeA1rw==
-X-Received: by 2002:a5d:5350:0:b0:225:7560:8403 with SMTP id t16-20020a5d5350000000b0022575608403mr5245387wrv.507.1661759387447;
-        Mon, 29 Aug 2022 00:49:47 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:982:cbb0:6124:6b74:2847:d37b])
-        by smtp.gmail.com with ESMTPSA id n8-20020adff088000000b002258235bda3sm6179559wro.61.2022.08.29.00.49.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 00:49:47 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Fabio Estevam <festevam@denx.de>,
-	martin.blumenstingl@googlemail.com
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
-	khilman@baylibre.com,
+	id 1oSa81-006C0l-UA; Mon, 29 Aug 2022 08:28:28 +0000
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 21EDF58024B;
+	Mon, 29 Aug 2022 04:28:14 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 29 Aug 2022 04:28:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1661761694; x=1661768894; bh=WyDZXkUvNq
+	q4D0ys6jWjIG48RlHKq49MwSu6MMSlx50=; b=pcgQG1ej6+y0m7r6DiMBbYPc08
+	6Tg1eOTSepyvQmZxCSlULRt2iHE7knKMWeZvGrun29ZniyukW65rq740Ny8rdnvP
+	wM7up1mWPM7KSoF6ECLVmizsIegz9xc/3oShVa7yGTzcvTEfmg1LB5nJ91Farpn8
+	3kFvaC7hRprWxqGT+KZ8O8GUqQ86LD9ibCIDHuETLiH3hSJ/8JnRXXjyI7DCtIH2
+	FoFhHwd9AXJgrSiTL2p02R6D1YFV57MTMuPsJ6+zmaDVCCUAnNajGLNiNIMwdYxs
+	dDCFrPrA2MBCLvSLE6NMrO0JbjKA0WyyP8lAnwG7k/NOxiDCExp3VO4Jhduw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1661761694; x=1661768894; bh=WyDZXkUvNqq4D0ys6jWjIG48RlHK
+	q49MwSu6MMSlx50=; b=yH9L3dwU+BM7jqIUnUji3NTnNFQu0SshB8oh4lGV1/Qq
+	TDI1OhLZmFpTFW4X2DxH8tC66akwDO5+mf9GGIR0IWNq5I7WxVqQZd3U9dGOjAdH
+	yJS3gZzds7K6AtpJERpzRWG0sQ23BHyLauPzMWQAOCbe2zGYH/xuEjhQnZfT3HJ0
+	iIMOrzwHC06X83sO/b3RCOe4IUpL4Mvg82/gepUIdTIUad/Qxb0GBGu6XWNqC7gx
+	O2Lv5T/wRIFI+GKRoA6vDHl6NHbbHbgelR/zOXHNAnWBllu8ncLeb4rcIIMAmNgM
+	8jxbkr2jq+nGf7vAOyWZT6oIz90oHLSMSvzQ7CQHXg==
+X-ME-Sender: <xms:nHgMYxY2A4ykQGvsFzJnc35gPBn6FxisToBs3EdyCOE55OekURZCtA>
+    <xme:nHgMY4bnM7gY496bdnurVGht7a5AxE477IKpHVSnWAxEY1bX-xnPK2fm8BkaKzgD3
+    u2e2YG1Gi40zeacoXg>
+X-ME-Received: <xmr:nHgMYz9QBKsNgPrdI7VDRmqaBrhSGpHSbUXasZ593l-Zquaj1QqsLnn1F1ir>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgtdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeeljeeugfegveetleevkeetffegudevieetieeugeeugeeivddtjeejvdef
+    feetgfenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+    hh
+X-ME-Proxy: <xmx:nHgMY_ow5pHV0rSxiGc4MvEbrbiAc7aHw8xiJIUsZYCUkUWxmjh7tw>
+    <xmx:nHgMY8o6vx0u6-toU5HvO0BEQdVthR3WUvyc3QiQ_VtSdoWUEeC1Kw>
+    <xmx:nHgMY1QgXFj6sK1CpnQpdrPeODRxNP79qhr4DjFjqrVAt20ECAiE_A>
+    <xmx:nngMY1YTK8jVd5f_LplnVCWLcQMSRvqd2B2zxST_G1IQeJWOpau9XQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Aug 2022 04:28:11 -0400 (EDT)
+Date: Mon, 29 Aug 2022 10:28:09 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+	David Airlie <airlied@linux.ie>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Phil Elwell <phil@raspberrypi.com>,
+	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: meson-g12a: Remove 'enable-active-low'
-Date: Mon, 29 Aug 2022 09:49:45 +0200
-Message-Id: <166175938125.23737.7078517350794799355.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220827203813.1742715-1-festevam@denx.de>
-References: <20220827203813.1742715-1-festevam@denx.de>
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Dom Cobley <dom@raspberrypi.com>
+Subject: Re: [PATCH v1 05/35] drm/connector: Add TV standard property
+Message-ID: <20220829082809.6xhd4zzs7ootax2z@houat>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-5-3d53ae722097@cerno.tech>
+ <37a76651-a457-e50d-9a05-00ca9ed5d729@tronnes.org>
+ <20220825134408.dioj2lbycl7jm3ld@houat>
+ <863beb42-1012-b38a-0c3d-89b7e035aa82@tronnes.org>
 MIME-Version: 1.0
+In-Reply-To: <863beb42-1012-b38a-0c3d-89b7e035aa82@tronnes.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_004951_481023_BCE786B0 
-X-CRM114-Status: GOOD (  12.33  )
+X-CRM114-CacheID: sfid-20220829_012818_119317_0EDEA875 
+X-CRM114-Status: GOOD (  27.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,55 +117,130 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6864230404150745661=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Sat, 27 Aug 2022 17:38:12 -0300, Fabio Estevam wrote:
-> The 'enable-active-low' property is not a valid one.
-> 
-> Only 'enable-active-high' is valid, and when this property is absent
-> the gpio regulator will act as active low by default.
-> 
-> Remove the invalid 'enable-active-low' property.
-> 
-> [...]
+--===============6864230404150745661==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="75abns6ys2rry5o6"
+Content-Disposition: inline
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.1/dt64)
 
-[1/2] arm64: dts: meson-g12a: Remove 'enable-active-low'
-      https://git.kernel.org/amlogic/c/6b2592f087bb7e35fd0a6616bc92d87d9af63aab
-[2/2] arm64: dts: meson-sm1-sei610: Remove 'enable-active-low'
-      https://git.kernel.org/amlogic/c/fdfaefa831728110f591764c1dc274fb3739e5c1
+--75abns6ys2rry5o6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-These changes has been applied on the intermediate git tree [1].
+On Thu, Aug 25, 2022 at 05:13:29PM +0200, Noralf Tr=F8nnes wrote:
+>=20
+>=20
+> Den 25.08.2022 15.44, skrev Maxime Ripard:
+> > Hi,
+> >=20
+> > On Sat, Aug 20, 2022 at 10:12:46PM +0200, Noralf Tr=F8nnes wrote:
+> >>> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> >>> index 1e9996b33cc8..78275e68ff66 100644
+> >>> --- a/include/drm/drm_connector.h
+> >>> +++ b/include/drm/drm_connector.h
+> >>> @@ -143,6 +143,32 @@ enum subpixel_order {
+> >>> =20
+> >>>  };
+> >>> =20
+> >>> +#define DRM_MODE_TV_NORM_NTSC_443	(1 << 0)
+> >>> +#define DRM_MODE_TV_NORM_NTSC_J		(1 << 1)
+> >>> +#define DRM_MODE_TV_NORM_NTSC_M		(1 << 2)
+> >>> +#define DRM_MODE_TV_NORM_PAL_60		(1 << 3)
+> >>> +#define DRM_MODE_TV_NORM_PAL_B		(1 << 4)
+> >>> +#define DRM_MODE_TV_NORM_PAL_D		(1 << 5)
+> >>> +#define DRM_MODE_TV_NORM_PAL_G		(1 << 6)
+> >>> +#define DRM_MODE_TV_NORM_PAL_H		(1 << 7)
+> >>> +#define DRM_MODE_TV_NORM_PAL_I		(1 << 8)
+> >>> +#define DRM_MODE_TV_NORM_PAL_M		(1 << 9)
+> >>> +#define DRM_MODE_TV_NORM_PAL_N		(1 << 10)
+> >>> +#define DRM_MODE_TV_NORM_PAL_NC		(1 << 11)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_60	(1 << 12)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_B	(1 << 13)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_D	(1 << 14)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_G	(1 << 15)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_K	(1 << 16)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_K1	(1 << 17)
+> >>> +#define DRM_MODE_TV_NORM_SECAM_L	(1 << 18)
+> >>> +#define DRM_MODE_TV_NORM_HD480I		(1 << 19)
+> >>> +#define DRM_MODE_TV_NORM_HD480P		(1 << 20)
+> >>> +#define DRM_MODE_TV_NORM_HD576I		(1 << 21)
+> >>> +#define DRM_MODE_TV_NORM_HD576P		(1 << 22)
+> >>> +#define DRM_MODE_TV_NORM_HD720P		(1 << 23)
+> >>> +#define DRM_MODE_TV_NORM_HD1080I	(1 << 24)
+> >>> +
+> >>
+> >> This is an area where DRM overlaps with v4l2, see:
+> >> - include/dt-bindings/display/sdtv-standards.h
+> >> - v4l2_norm_to_name()
+> >>
+> >> Maybe we should follow suit, but if we do our own thing please mention
+> >> why in the commit message.
+> >=20
+> > Are you suggesting that we'd share that definition with v4l2?
+> >=20
+>=20
+> If possible, yes.
+>=20
+> > I've tried to share some code in the past between v4l2 and DRM, and it
+> > got completely shut down so it's not something I'd like to try again, if
+> > possible.
+> >=20
+>=20
+> But that is a good enough reason not to do so. I just got the impression
+> from some of Laurent's emails a while back that there was some
+> cooperativ atmosphere, but I might be mistaken in my reading/understandin=
+g.
 
-The v6.1/dt64 branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Here's the original thread:
+https://lore.kernel.org/lkml/cover.8ec406bf8f4f097e9dc909d5aac466556822f592=
+=2E1555487650.git-series.maxime.ripard@bootlin.com/
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+It ended up stalling completely, without any will from either DRM or
+v4l2 to get this through. So I will not work on anything like that until
+both maintainership teams have expressed that it's something they
+actually want.
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+> It is ofc possible to just copy the values from sdtv-standards.h, but I
+> see that hd* is missing from that list, so not sure if there's much
+> point if it has to be extended without changing the source.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+HD formats were dropped, so it's not a big deal. However, we are missing
+a few formats, but that were never used by either nouveau, i915 or any
+other driver. I'm not sure it's worth adding at that point, and we can
+always extend it later.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+Maxime
 
--- 
-Neil
+--75abns6ys2rry5o6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYwx4mQAKCRDj7w1vZxhR
+xYZDAQCtPJtDdO69aAVR+V32mB49Ic+bSm58hf0Ef9S43x8CQQEA6046rKs4GgON
+IjqfdYygrMMKGLb9fH70LvlsWbizSgA=
+=ydq5
+-----END PGP SIGNATURE-----
+
+--75abns6ys2rry5o6--
+
+
+--===============6864230404150745661==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6864230404150745661==--
+
