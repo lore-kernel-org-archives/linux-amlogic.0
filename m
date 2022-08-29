@@ -4,84 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9088ECAAD4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 09:52:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FF2AECAAD4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 09:54:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0lAlkhEkYc4PXjDKZUuUfKyuwylPV63irL9vA+gDSCk=; b=1cNt15EFJZIl51
-	sOW5z/EAxXbXesmwMgH0THnt9gX5VNfHpO93dH74bJQDe2Io0SVixyyCLC/GwGuwxnegQBT/6Fiw4
-	XbWrI8gQlVhwQvqoGCEuOi0kRozdLlQILFX0hcM6lnqjlCBxebPHE13wynWVOYAz8t9ym3kdzeus8
-	4HQqCe8MHxFA+ToZCy/jdgluFf41Eh3RqCtuQJtmWDXy6U2tVJD38mKzPf/vRNzEAw/fxXpVFKxiT
-	MfDrwN26OXtbkZE4LRAiDfonjkbszhSfttFW8+XoJRxCCIvWS0kw6dPofMHFrF/nPpbhbfyLxoXQh
-	sEYcRz0cRiM2pD7kt0TA==;
+	List-Owner; bh=0uFNHQDc6exzD7CQ7lPlZR0kvfHk51Zp2+x6s9bmtlM=; b=dMJQX6+coA/IDH
+	A86dbDp6/cokabUsFnT5kk7gJcVdhG7PsUXx6+vDwyyuiMuHG255sHP3JV2AkwyDpHW194u982zbw
+	0PAjRZ6Vws37O5mzOO+rYH9WoIIBhwpBk1521mCQ2gXA/zDvy9+nPfPFRmcw7SvuxL2cl9wYajmMJ
+	LBUKSLNKd9U6svo1KKTsk4O+gi1wD7Ic8VuJLUFRzR6Sd8Vb5TlEZ2ClYIOushPBO+0DfMn5371Tk
+	EIheMNA9hQBadcJ5CQPSvrGSRwOSYWeErbvdsxnIdgcCjy9MCrryYD/eCjp7pU+c7bTHX9F9dAtTF
+	VZ13joRsu8NpsO26JjqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSbRK-006yGR-6i; Mon, 29 Aug 2022 09:52:18 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1oSbSs-006zVu-2A; Mon, 29 Aug 2022 09:53:54 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSbQT-006xZ4-Rl
-	for linux-amlogic@lists.infradead.org; Mon, 29 Aug 2022 09:51:27 +0000
-Received: by mail-wm1-x329.google.com with SMTP id k17so3982207wmr.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 02:51:24 -0700 (PDT)
+	id 1oSbSN-006z8e-EJ
+	for linux-amlogic@lists.infradead.org; Mon, 29 Aug 2022 09:53:25 +0000
+Received: by mail-wr1-x434.google.com with SMTP id m16so9443303wru.9
+        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 02:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:from:to:cc;
-        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
-        b=RYKk0fDG8yPKxONFHoSpdDlNNVRBa8zF+ikdW+hDUIfh+D0dOUIanORctEiBjEypK8
-         gPTFoc9XdwBgOrXm1/IDyKsi/bdf+i8ThBebydsCJYVUngxxDUhhxQqFL9Yw5WqHE2Qr
-         VihDTL9zqrh2gbyVAic3nQ6VJY4525qfn+LE4e6Ffrok2xQ2wV0T6zykyENEKPcM3ZHB
-         tB4CYIkfgpRkfI8DIK4bHFVtI3oXP1A2ietFu9qDfyfw0S/owqfBFzXp9VfVxC9OBHS6
-         uX1KZG/3Ip8xcIoNrjSjnEmYP+Jgoh6GMpnh+/nj1MsXIrCUy0b0hNTUrOPtoAIwyzBb
-         jb0Q==
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc;
+        bh=Lzh/Ve7Auc5u8oHwvardUiFGbITEcNzSdf/E6GOkK+c=;
+        b=tqmgEwNXNLtJJzMDOXqOvHQ6b1z9DSKBg9Grb3dARLNdaKXjDaMlLfvXBp//Q3SwVI
+         9ns3q2bhM+/HJz3IQu0fPl5zRShnbbtcwfNa9lts/tnTNtB8D1G2EnE/iEjam4oPyC/f
+         XPLJPIUDgEUYkxgHtywLPeMIOs0dC2ZdJh6GJr/jWc1xsT34EqtzVaTIFyDTjk8WesuU
+         TU6WgS4cM/yr0PCjK+aAKQRGBXgrTYGEiK6djsv5gYv9sfkJerrFFTeL80gLuENGRkFx
+         vz06J1CMa9HV4kwA0QiCAidjQM47FjJoKJZFpJ5sLZX+ZXyAEIz/wTYWpSHFZgd63Cbt
+         juzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc;
-        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
-        b=2b63H0IxViQ9wau958ZlHw2WTPKqUvLQaxWG4MGDHWo0l+wmpa08bUcBrL5mXwFS6x
-         rUbEXKRnur6VHn0YL5h1vn0GgB4O+uLxowiCs/0j/uOkYlhNY0Pvxcc3ur+sM8V8xYY7
-         LWHYuhkoFBM54qCqfm1q0UAepocMphTKucIXvQr5cpnobSCiu91pAphAd3NajpkxpIXV
-         i5mdC+MZurm9nm+p6Cd8xLS891btU6MxwgP15mZlS8WqhZsk0gcMdUTiBa4tiAsjoUkE
-         uPcLj4DRCYFfji47iZea2tURphXAS28oteyol4xKdj0aozY5dmjMq/x9ZZLVSdU0P1gv
-         WMpA==
-X-Gm-Message-State: ACgBeo1FOL9YV50S1WMwO9sKhBjk43F4Vk24fv3r56GOtslc/fne2bf/
-	rF9tpzjKPaDQokil/FYXrM2wbA==
-X-Google-Smtp-Source: AA6agR64cwUPnhx/Tf1ejw/jlZS5h7uLh23KiCPqziDo8ptC4sx4Y1k3FIdRq0G7ItXcWgl0sii7YQ==
-X-Received: by 2002:a05:600c:1e1c:b0:3a5:b668:4e2 with SMTP id ay28-20020a05600c1e1c00b003a5b66804e2mr6401869wmb.112.1661766683496;
-        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc;
+        bh=Lzh/Ve7Auc5u8oHwvardUiFGbITEcNzSdf/E6GOkK+c=;
+        b=Q9Pz0THj+oHVUOEZD+4pcAvAy7CWNxEHVaVk5+cr2XZBAML4AlnajrIq2vNrTz35GV
+         qtS2htuJ8Tg8C1NkzZ9sgY+1V5+9pRQyATCrapXh/9/CM6uxejQCsN/KZXzG3FHO4Da0
+         CgXI4bA1T6W7dz1YdQKqFC/s+VNMgVTNPCBsXcdXXlglBwjJxYPWXmuFRefYA+DyyXj2
+         Blo+EyGMuJBjWlM2/7FW+tot+eU+mVpRoI9N9U0xShy/rZevilNNi7DGuoFfZz8YlkW3
+         cUArd6cPcQGEAAhC08X8owWP0RHzg3xqOAE3zUz0nmZQ6B6neGDgxmcEcQRMdWMxUdQP
+         y1lw==
+X-Gm-Message-State: ACgBeo3S0BzOA7Aozgl/DamqxItCzJAA4TwuJ7pyOawTNy71UDZuZwnJ
+	2EQEAS/MbhTBsJMO64PRhEFRMA==
+X-Google-Smtp-Source: AA6agR5QI/RlL+5E9EPzJxWVVMknB8GYGNT2HwSugiZa2lFsqRVLOS3WtEti45tEJAwRz+dl6Wqojg==
+X-Received: by 2002:a5d:588d:0:b0:225:6e1a:8696 with SMTP id n13-20020a5d588d000000b002256e1a8696mr5827570wrf.512.1661766800954;
+        Mon, 29 Aug 2022 02:53:20 -0700 (PDT)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e15-20020adffc4f000000b0021e51c039c5sm6498175wrs.80.2022.08.29.02.51.22
+        by smtp.gmail.com with ESMTPSA id ay41-20020a05600c1e2900b003a83ca67f73sm7700198wmb.3.2022.08.29.02.53.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-4-yu.tu@amlogic.com>
- <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
- <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
- <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+        Mon, 29 Aug 2022 02:53:20 -0700 (PDT)
+References: <22f1d799-a3bb-3d71-a3fd-f6128b205231@gmail.com>
 User-agent: mu4e 1.8.7; emacs 28.1
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen  Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Date: Mon, 29 Aug 2022 11:48:21 +0200
-In-reply-to: <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
-Message-ID: <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk@vger.kernel.org, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] clk: meson: pll: adjust timeout in
+ meson_clk_pll_wait_lock()
+Date: Mon, 29 Aug 2022 11:52:16 +0200
+In-reply-to: <22f1d799-a3bb-3d71-a3fd-f6128b205231@gmail.com>
+Message-ID: <1jo7w3tlyo.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_025126_034052_E45C6B83 
-X-CRM114-Status: GOOD (  10.91  )
+X-CRM114-CacheID: sfid-20220829_025323_618266_B98BDED0 
+X-CRM114-Status: GOOD (  19.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,57 +88,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-DQpPbiBNb24gMTUgQXVnIDIwMjIgYXQgMjE6MjAsIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4g
-d3JvdGU6DQoNCj4+Pj4gKw0KPj4+PiArc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIHM0X2hkbWlf
-cGxsX2RjbyA9IHsNCj4+Pj4gK8KgwqDCoCAuZGF0YSA9ICYoc3RydWN0IG1lc29uX2Nsa19wbGxf
-ZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZW4gPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMjgsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIC53aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIC5tID0gew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29m
-ZiA9IEFOQUNUUkxfSERNSVBMTF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-LnNoaWZ0wqDCoCA9IDAsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAg
-PSA4LA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5uID0g
-ew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERNSVBM
-TF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnNoaWZ0wqDCoCA9IDEwLA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gNSwNCj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgIH0sDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZnJhYyA9IHsNCj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgLnJlZ19vZmYgPSBBTkFDVFJMX0hETUlQTExfQ1RSTDEsDQo+Pj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAwLA0KPj4+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMTcsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCB9LA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmwgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAuc2hpZnTCoMKgID0gMzEsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53
-aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgIC5yc3QgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5B
-Q1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTC
-oMKgID0gMjksDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSAxLA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoCB9LA0KPj4+PiArwqDCoMKgIC5o
-dy5pbml0ID0gJihzdHJ1Y3QgY2xrX2luaXRfZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAu
-bmFtZSA9ICJoZG1pX3BsbF9kY28iLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgLm9wcyA9ICZtZXNv
-bl9jbGtfcGxsX3JvX29wcywNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5wYXJlbnRfZGF0YSA9IChj
-b25zdCBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIFtdKSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHsgLmZ3X25hbWUgPSAieHRhbCIsIH0NCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+
-Pj4+ICvCoMKgwqDCoMKgwqDCoCAubnVtX3BhcmVudHMgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKg
-wqAgLyoNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBEaXNwbGF5IGRpcmVjdGx5IGhhbmRsZSBo
-ZG1pIHBsbCByZWdpc3RlcnMgQVRNLCB3ZSBuZWVkDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICog
-Tk9DQUNIRSB0byBrZWVwIG91ciB2aWV3IG9mIHRoZSBjbG9jayBhcyBhY2N1cmF0ZSBhcw0KPj4+
-PiArwqDCoMKgwqDCoMKgwqDCoCAqIHBvc3NpYmxlDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICov
-DQo+Pj4NCj4+PiBJcyBpdCByZWFsbHkgPw0KPj4+DQo+Pj4gR2l2ZW4gdGhhdCBIRE1JIHN1cHBv
-cnQgZm9yIHRoZSBzNCBpcyB0aGVyZSB5ZXQsIHRoZQ0KPj4+IGFkZHJlc3NlcyBoYXZlIGNoYW5n
-ZXMgYW5kIHRoZSByZWdpb24gaXMgbm8gbG9uZ2VyIGEgc3lzY29uLCBpdCBpcyB0aW1lDQo+Pj4g
-Zm9yIHRoZSBIRE1JIGRyaXZlciB0byBnZXQgZml4ZWQuDQo+IFRoZSBIRE1JIFBMTCBpcyBjb25m
-aWd1cmVkIGluIHRoZSBVYm9vdCBwaGFzZSBhbmQgZG9lcyBub3QgY2hhbmdlIHRoZQ0KPiBmcmVx
-dWVuY3kgaW4gdGhlIGtlcm5lbCBwaGFzZS4gU28gd2UgdXNlIHRoZSBOT0NBQ0hFIGZsYWcgYW5k
-DQo+ICJyb19vcHMiLg0KDQpUaGF0J3Mgbm8gcmVhc29uIHRvIHB1dCBOT0NBQ0hFIG9yIHJvLW9w
-cw0KDQpJZiB5b3Ugd2FudCB0aGUgZnJlcXVlbmNpZXMgdG8gYmUgc3RhdGljYWxseSBhc3Npbmdl
-ZCwgdGhlIGNvcnJlY3Qgd2F5DQp3b3VsZCBiZSB0aHJvdWdoIGFzc2lnbmVkLXJhdGUgaW4gRFQg
-SSBndWVzcy4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+
+On Sun 14 Aug 2022 at 23:29, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+
+> Currently we loop over meson_parm_read() up to 24mln times.
+> This results in a unpredictable timeout period. In my case
+> it's over 5s on a S905X4-based system. Make the timeout
+> period predictable and set it to 100ms.
+>
+> Whilst we're at it: All callers of this function return -EIO
+> in case of failure, therefore we can return this value directly
+> in the timeout case.
+
+I'm okay with this change but I'd prefer if one change addressed a
+single topic. Please split this out.
+
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 15 ++++++---------
+>  1 file changed, 6 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index daa025b6d..d70bee331 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -277,17 +277,17 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
+>  {
+>  	struct clk_regmap *clk = to_clk_regmap(hw);
+>  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+> -	int delay = 24000000;
+> +	int delay = 5000;
+>  
+>  	do {
+> -		/* Is the clock locked now ? */
+> +		/* Is the clock locked now ? Time out after 100ms. */
+>  		if (meson_parm_read(clk->map, &pll->l))
+>  			return 0;
+>  
+> -		delay--;
+> -	} while (delay > 0);
+> +		udelay(20);
+> +	} while (--delay);
+>  
+> -	return -ETIMEDOUT;
+> +	return -EIO;
+>  }
+>  
+>  static int meson_clk_pll_init(struct clk_hw *hw)
+> @@ -350,10 +350,7 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+>  	/* Take the pll out reset */
+>  	meson_parm_write(clk->map, &pll->rst, 0);
+>  
+> -	if (meson_clk_pll_wait_lock(hw))
+> -		return -EIO;
+> -
+> -	return 0;
+> +	return meson_clk_pll_wait_lock(hw);
+>  }
+>  
+>  static void meson_clk_pll_disable(struct clk_hw *hw)
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
