@@ -4,108 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A95F4ECAAD4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 12:14:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EF23ECAAD2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 12:44:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jj7BfCgzmn1UoyAw4X2DKVFNpamWpz3LVDiKZAgC+MA=; b=jrqK2+x0W+ujkawlRfqERWQJ1w
-	Y+OUepzS9ncJ4IeAlOA8SIXQz7uDVK1razygzDXJ+L7DMjzVW7oUCAk0Ma/T96JeNcY5V50Jo3yoF
-	DTNZ22oT2KtQO6ZxeFMO5V6LOL2HKkPMmAWuhvajoZxv5fMHU1sp7jYHBBsB8XARrhhKgAAiGR76B
-	O+KwnUxdpGOl8OSDAVqiiw2On7O0shEzL3ULuIqbfE8mCteX6g+E7RwfnDT5fieB0nLErxo1mUu9Q
-	MK4EK+IlwFqbgvD4M6rARhhPJRh4y57DJHxpGx+GVf4r+6MJRM3U3/zHO6a/iox7/bn1sygihwdB5
-	PVcoLLog==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jsEOVqTJ7BIKTTXhIzcjoUSq2wakVntYGAe0bZI41qQ=; b=lIAlEaeY10WLlN
+	9UqeijxldnXdGCmVwTYrdDPUbI0eT6+L7eqLZeRpI5nGpJe+y4Bq5UWvQkaaV4YExWzFZ/+7Ntq+t
+	Rl0AchnOS+E06x0XJJ7Tbio3BJ9OUsdXLKlA78FtX49IiTra3M+D/WqslNBP6s1GmbAd2HRnZTMmo
+	oj52Y317ZrXeJfkqKu7Zv3F7ze9xmRuaHjT8KJKVFwSxCtRcCWrdVM9AR/vLz7X+rKQVPV6jy+F+U
+	tQXb4C9kPjW5qp1ARlaI/1bjSTrlwcdFo8GybxG8sAKtjaD415jUsEHIACyxbfpEvAYxD+2GMq6yo
+	Syb4C/zXSEq5HkP/+lJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSdei-008w9Z-R0; Mon, 29 Aug 2022 12:14:16 +0000
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27])
+	id 1oSe7V-009ju1-Ez; Mon, 29 Aug 2022 12:44:01 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSdea-008vUR-3O; Mon, 29 Aug 2022 12:14:14 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailnew.west.internal (Postfix) with ESMTP id A3DD12B05FEA;
-	Mon, 29 Aug 2022 08:13:59 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 29 Aug 2022 08:14:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to; s=fm3; t=1661775239; x=1661782439; bh=mTveQVWkV1
-	vZ4UHqLteArY1kTT3T3MkF8rU++sYP7DQ=; b=deQ85rmXbmk9EU5yPkeT4FeMzw
-	ajssLQD6g5oBcELNrx4UU+HbXmlm0HidRFe7oyKb3gVjx4SF4t96+MIvCiauIQZ6
-	VkkFblw4iMQtqKR/igP21fIjxUxTpIQfnZnlPmsa4tgUOnPjVK8+09gXQx+7MQEt
-	zSQiQ5nD50lpJNZh8MaEeJd35xziKHuU7RL5Vvt7nyWXtZNUFdUx2rHgY2DyKmIE
-	Y+WOVKYpJnJnkQDv1RvApX9WS4BCZm3hnvpngtlRdjEQ9jtGbbJFNAqGfmCBaoZ2
-	z0N8Wb1KccCN6URDL7oQ4kpCizVLnIffHfmYflWHSPkM9NOM4d5uJz+5Hfeg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1661775239; x=1661782439; bh=mTveQVWkV1vZ4UHqLteArY1kTT3T
-	3MkF8rU++sYP7DQ=; b=bWRLiPP6oKwtq6YNktjqK55u0c0PEav/PI4LGA7vm0G8
-	07eaFtMArYcfxlmNU+esxlAqtTOcqxEJI0B9bx8pqxdFLiRfSgxQX+Yocd9WBf7r
-	Dlqds0ZumsVLHaEYV2WspNGz7rFuvTHIhCSmH36loAiUCRMCRiL0ZDdNYI7CPnCI
-	WszS8SwUfmie0luDpSOU2HB4hpe6dvX9VlxVFvSmjzFuUedE8UdXp1r5anCg19xY
-	bYr+KTt8uMK5ml/ysZOohGMU+xc8NUkvF7qm3v0qHnXye+0teFqx71Bfi9X0Cz2K
-	jNTHsNaK//4NL7H6A2HqzDay85EaIA12z85Wsdnucg==
-X-ME-Sender: <xms:hK0MY_1QCn_R1BmmnxYAy3j6uhGZZygDu_p_2RHAd9ixYpyWWZDBYg>
-    <xme:hK0MY-HlWbNhRy8ItowbMFBHJYowZcmHAR7cDG8lci27-ILoQHCYfQpACwOByuu4h
-    ODelh2VwEKk9tlxOMo>
-X-ME-Received: <xmr:hK0MY_5emyLwnuAZIri9nU2E9eHtZ8jf_PfKI4qtJUXHtKg4gDXwPGKDjFzx>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
-    ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:hK0MY00Si24mBss2GM-eZAjZix3b0D2b_KyPBQEI4wgG0h4NRlPAUQ>
-    <xmx:hK0MYyG95-S3OtXNrTChJqHmDuTQb1Zt-u4id3SxS12uflby4kKVkQ>
-    <xmx:hK0MY1_J6SPLxOjfnCKxflyCvOm-NSPvpsuUVfgV9zIWAtJM4Nu1CQ>
-    <xmx:h60MY72ttPo2qpGntjgEJEHlcnFhBX1-UTwtzc4bhCAfQ3lAmDASOkWPUzA>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 08:13:56 -0400 (EDT)
-Date: Mon, 29 Aug 2022 14:13:53 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
-	David Airlie <airlied@linux.ie>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Phil Elwell <phil@raspberrypi.com>,
-	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	Dom Cobley <dom@raspberrypi.com>
-Subject: Re: [PATCH v1 23/35] drm/vc4: vec: Convert to the new TV mode
- property
-Message-ID: <20220829121353.kbgjmkmmcdtm5ujs@houat>
-References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
- <20220728-rpi-analog-tv-properties-v1-23-3d53ae722097@cerno.tech>
- <0255f7c6-0484-6456-350d-cf24f3fee5d6@tronnes.org>
- <20220824152619.5def5b2puj5b2a3o@houat>
- <7bdcc3c4-e04c-c2f3-5691-bcbdb158276f@tronnes.org>
+	id 1oSe75-009jNi-0u
+	for linux-amlogic@lists.infradead.org; Mon, 29 Aug 2022 12:43:38 +0000
+Received: by mail-wr1-x430.google.com with SMTP id c7so3358879wrp.11
+        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 05:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
+         :references:from:to:cc;
+        bh=NuDtPSZGsUB4/CSpCp0BYNq4Z61X61IoPrDP4sjDs8g=;
+        b=tVOpcOkvELJfESUge43zatRu60HyutEJwNjPUtTcK0b8tCXDTqoNHJzA+1GeV4GTAL
+         n2Yy22KIjn+ZL600oAvGIjSrYbnKF8r0GgofyQHExGN3EfCkWxgmRD15EzP+/uJRNWvl
+         hTiRvJvFDh+b4/TcaDF3QNmHPNSDMyGLa/mn+6okolljsh5ntht3lTYzZrr7kf399isW
+         8Ht4xRmPqcMZ6FUO0UMd2r1K4GF3bCG13akL+s8+PQWFsbX1gDEm79P9+nFgRpttaZjY
+         /ZLD4VD15lz0zukROxQF6NCkIgJXaQkQqO77sTESyfvICdWdsXDPelMjEQD0Q+z1S6ve
+         nauQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
+         :references:x-gm-message-state:from:to:cc;
+        bh=NuDtPSZGsUB4/CSpCp0BYNq4Z61X61IoPrDP4sjDs8g=;
+        b=4swD/pF+926jgz9CWkajqSxPeJg/JU6SeaDOzcXDLVCeSRo9wNXJoPHuFh6n5XoA23
+         8dZBilPc60mwl2vbIsBh07AVhHmr9DaIcZn7Owxpm1O4ZFK9vTdCgoIrBRKzbdXIVW2G
+         3Q1i4YC8V4ZX7X/VSCkhwoEKCm1XP6PYWebVlITC6lhTj1LPKwhWRyjoPbCkUXYcS/8x
+         n42kV7hLKBq0RyZApHg8cdbzJmJ0OASfIC37c9KEHJ9bYn1fcnlOeN/05nnNxngfnNdx
+         t2/YIL5yOvMy/9OnwWd2jb3evHrvRfwsYwmF4WAFs7mawUiBW5pcrOR4e8r4yn8L9ROx
+         Gq7g==
+X-Gm-Message-State: ACgBeo3ahRl+7pgcyFwjFEi8C7fL+xETSxHLOYuyBgiLm0/X9OK8IWy/
+	LGQMNXvttV2nb1x+TZYBEYPIXw==
+X-Google-Smtp-Source: AA6agR4g54C4i+JaM6ngjD20lfOuvr3Z3k/pbaJDJw1GAipj5i9NLSpSGO14T5zArba6MMO/CWoydw==
+X-Received: by 2002:adf:ce08:0:b0:226:d1ba:3e23 with SMTP id p8-20020adfce08000000b00226d1ba3e23mr5679234wrn.374.1661777010387;
+        Mon, 29 Aug 2022 05:43:30 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id v5-20020a5d59c5000000b002257fd37877sm7320643wry.6.2022.08.29.05.43.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Aug 2022 05:43:29 -0700 (PDT)
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-7-yu.tu@amlogic.com>
+ <1jedxlzxyz.fsf@starbuckisacylon.baylibre.com>
+ <8f40cb49-fdc5-20cd-343b-8ce50e5d6d97@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen  Boyd <sboyd@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V3 6/6] clk: meson: s4: add s4 SoC peripheral clock
+ controller driver
+Date: Mon, 29 Aug 2022 14:19:15 +0200
+In-reply-to: <8f40cb49-fdc5-20cd-343b-8ce50e5d6d97@amlogic.com>
+Message-ID: <1j7d2rte33.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <7bdcc3c4-e04c-c2f3-5691-bcbdb158276f@tronnes.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_051408_506951_DA7A8F88 
-X-CRM114-Status: GOOD (  31.41  )
+X-CRM114-CacheID: sfid-20220829_054335_104631_D9D55236 
+X-CRM114-Status: GOOD (  30.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,126 +92,348 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6667896064197977405=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============6667896064197977405==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uu4iphtbpnfop3qu"
-Content-Disposition: inline
+On Tue 16 Aug 2022 at 20:00, Yu Tu <yu.tu@amlogic.com> wrote:
+
+Please trim your replies 
+
+>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>> index f4244edc7b28..ec6beb9284d3 100644
+>>> --- a/drivers/clk/meson/Kconfig
+>>> +++ b/drivers/clk/meson/Kconfig
+>>> @@ -127,4 +127,17 @@ config COMMON_CLK_S4_PLL
+>>>   	  Support for the pll clock controller on Amlogic S805X2 and S905Y4 devices,
+>>>   	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>>   	  Say Y if you want peripherals and CPU frequency scaling to work.
+>>> +
+>>> +config COMMON_CLK_S4
+>>> +	tristate "S4 SoC Peripherals clock controllers support"
+>>> +	depends on ARM64
+>>> +	default y
+>>> +	select COMMON_CLK_MESON_REGMAP
+>>> +	select COMMON_CLK_MESON_DUALDIV
+>>> +	select COMMON_CLK_MESON_VID_PLL_DIV
+>>> +	select COMMON_CLK_S4_PLL
+>> Do you really this ? your driver does not even include the related
+>> header.
+> If the PLL driver is not turned on in DTS, will it not cause an error?
+>>
+
+I don't get the question.
+Kconfig list compile deps. S4 PLL is not a compile dep of the peripheral
+controller.
+
+If you really want to, you may use 'imply'.
+>> 
+>>> +static const struct clk_parent_data sys_ab_clk_parent_data[] = {
+>>> +	{ .fw_name = "xtal" },
+>>> +	{ .fw_name = "fclk_div2" },
+>>> +	{ .fw_name = "fclk_div3" },
+>>> +	{ .fw_name = "fclk_div4" },
+>>> +	{ .fw_name = "fclk_div5" },
+>>> +	{ .fw_name = "fclk_div7" },
+>>> +	{ .hw = &s4_rtc_clk.hw }
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_sysclk_b_sel = {
+>>> +	.data = &(struct clk_regmap_mux_data){
+>>> +		.offset = CLKCTRL_SYS_CLK_CTRL0,
+>>> +		.mask = 0x7,
+>>> +		.shift = 26,
+>>> +		.table = mux_table_sys_ab_clk_sel,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "sysclk_b_sel",
+>>> +		.ops = &clk_regmap_mux_ro_ops,
+>> Why is this using the RO ops ?
+> Sys_clk is initialized during the Uboot phase and is fixed at
+> 166.666MHz. So I'm going to change it to ro.
+
+That really much depends on the bootloader and is a pretty weak design.
+The bootloader deps should be kept as minimal as possible.
+
+I see no reason for RO. 
+
+You may cut rate propagation on the user if you need to and continue to
+whatever you want in your u-boot
+
+>> 
+>>> +		.parent_data = sys_ab_clk_parent_data,
+>>> +		.num_parents = ARRAY_SIZE(sys_ab_clk_parent_data),
+>>> +	},
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_sysclk_b_div = {
+>>> +	.data = &(struct clk_regmap_div_data){
+>>> +		.offset = CLKCTRL_SYS_CLK_CTRL0,
+>>> +		.shift = 16,
+>>> +		.width = 10,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "sysclk_b_div",
+>>> +		.ops = &clk_regmap_divider_ro_ops,
+>> Same here and for the rest of the sys part
+> Same above.
+
+We can play that game for a while
+
+>>> +
+>>> +/* Video Clocks */
+>>> +static struct clk_regmap s4_vid_pll_div = {
+>>> +	.data = &(struct meson_vid_pll_div_data){
+>>> +		.val = {
+>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>> +			.shift   = 0,
+>>> +			.width   = 15,
+>>> +		},
+>>> +		.sel = {
+>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>> +			.shift   = 16,
+>>> +			.width   = 2,
+>>> +		},
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data) {
+>>> +		.name = "vid_pll_div",
+>>> +		.ops = &meson_vid_pll_div_ro_ops,
+>> Why RO ? applies to the rest of the video part.
+> Because vid_pll_div parent is HDMI_PLL, and HDMI_PLL is a fixed
+> frequency. Flags is CLK_SET_RATE_PARENT. So we use RO.
+
+If the HDMI_PLL is fixed somehow, that is not reason for this clock to
+be RO
+
+> Can I remove RO and use CLK_SET_RATE_NO_REPARENT instead, which one do you
+> think is more reasonable?
+
+Neither. CLK_SET_RATE_NO_REPARENT makes no sense, it is not mux
+
+>
+>> 
+>>> +		.parent_data = (const struct clk_parent_data []) {
+>>> +			{ .fw_name = "hdmi_pll", }
+>>> +		},
+>>> +		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>> +	},
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_vid_pll_sel = {
+>>> +	.data = &(struct clk_regmap_mux_data){
+>>> +		.offset = CLKCTRL_VID_PLL_CLK_DIV,
+>>> +		.mask = 0x1,
+>>> +		.shift = 18,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "vid_pll_sel",
+>>> +		.ops = &clk_regmap_mux_ops,
+>>> +		/*
+>>> +		 * bit 18 selects from 2 possible parents:
+>>> +		 * vid_pll_div or hdmi_pll
+>>> +		 */
+>>> +		.parent_data = (const struct clk_parent_data []) {
+>>> +			{ .hw = &s4_vid_pll_div.hw },
+>>> +			{ .fw_name = "hdmi_pll", }
+>>> +		},
+>>> +		.num_parents = 2,
+>>> +		.flags = CLK_SET_RATE_NO_REPARENT,
+>> Why ? are you planning to DT assigned clocks to statically set this ?
+> Because vid_pll_sel one parent is HDMI_PLL, and HDMI_PLL is a fixed
+> frequency. To prevent modification, use CLK_SET_RATE_NO_REPARENT.
+
+Again, this makes no sense.
+
+>> 
+>>> +	},
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_vid_pll = {
+>>> +	.data = &(struct clk_regmap_gate_data){
+>>> +		.offset = CLKCTRL_VID_PLL_CLK_DIV,
+>>> +		.bit_idx = 19,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data) {
+>>> +		.name = "vid_pll",
+>>> +		.ops = &clk_regmap_gate_ops,
+>>> +		.parent_hws = (const struct clk_hw *[]) {
+>>> +			&s4_vid_pll_sel.hw
+>>> +		},
+>>> +		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>> +	},
+>>> +};
+>>> +
+>>> +static const struct clk_parent_data s4_vclk_parent_data[] = {
+>>> +	{ .hw = &s4_vid_pll.hw },
+>>> +	{ .fw_name = "gp0_pll", },
+>>> +	{ .fw_name = "hifi_pll", },
+>>> +	{ .fw_name = "mpll1", },
+>>> +	{ .fw_name = "fclk_div3", },
+>>> +	{ .fw_name = "fclk_div4", },
+>>> +	{ .fw_name = "fclk_div5", },
+>>> +	{ .fw_name = "fclk_div7", },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_vclk_sel = {
+>>> +	.data = &(struct clk_regmap_mux_data){
+>>> +		.offset = CLKCTRL_VID_CLK_CTRL,
+>>> +		.mask = 0x7,
+>>> +		.shift = 16,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "vclk_sel",
+>>> +		.ops = &clk_regmap_mux_ops,
+>>> +		.parent_data = s4_vclk_parent_data,
+>>> +		.num_parents = ARRAY_SIZE(s4_vclk_parent_data),
+>>> +		.flags = CLK_SET_RATE_NO_REPARENT,
+>> Same
+> Since fclk_div* is a fixed frequency value, mplL1 and hifi_pll and gp0_pll
+> are used by other specialized modules, vid_pll has CLK_SET_RATE_PARENT. The
+> parent of vid_pll is that vid_pll_sel uses CLK_SET_RATE_NO_REPARENT.
+
+Still not good.
+
+You don't have CLK_SET_RATE, propagation is stopped and parent clock
+will not changed. The best parent will be picked but not changed.
+
+If one parent MUST NOT be picked, just remove it from the list and add a
+explaining why
+
+[...]
+
+>>> +
+>>> +static struct clk_regmap s4_ts_clk_div = {
+>>> +	.data = &(struct clk_regmap_div_data){
+>>> +		.offset = CLKCTRL_TS_CLK_CTRL,
+>>> +		.shift = 0,
+>>> +		.width = 8,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "ts_clk_div",
+>>> +		.ops = &clk_regmap_divider_ops,
+>>> +		.parent_data = &(const struct clk_parent_data) {
+>>> +			.fw_name = "xtal",
+>>> +		},
+>>> +		.num_parents = 1,
+>> propagation stopped ?
+> Its parent is xtal, so I should use CLK_SET_RATE_NO_REPARENT.
+
+Still no. You seem to have problem with the meaning of
+CLK_SET_RATE_NO_REPARENT.
+
+* CLK_SET_RATE_NO_REPARENT: means the parent will no be changed, even if
+  selecting another parent would result in a closer rate to the
+  request. It makes sense only if the clock has several parents
+
+* CLK_SET_RATE_PARENT: means rate change may propagate the parent,
+  meaning the rate of the parent may change if it help the child achieve
+  a closer rate to the request
+
+>> 
+>>> +	},
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ts_clk_gate = {
+>>> +	.data = &(struct clk_regmap_gate_data){
+>>> +		.offset = CLKCTRL_TS_CLK_CTRL,
+>>> +		.bit_idx = 8,
+>>> +	},
+>>> +	.hw.init = &(struct clk_init_data){
+>>> +		.name = "ts_clk",
+>>> +		.ops = &clk_regmap_gate_ops,
+>>> +		.parent_hws = (const struct clk_hw *[]) {
+>>> +			&s4_ts_clk_div.hw
+>>> +		},
+>>> +		.num_parents = 1,
+>>> +	},
+>> propagation stopped ?
+> I will add CLK_SET_RATE_PARENT.
+
+[...]
+
+>>> +/* EMMC/NAND clock */
+>>> +
+>>> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
+>>> +	{ .fw_name = "xtal", },
+>>> +	{ .fw_name = "fclk_div2", },
+>>> +	{ .fw_name = "fclk_div3", },
+>>> +	{ .fw_name = "hifi_pll", },
+>>> +	{ .fw_name = "fclk_div2p5", },
+>>> +	/*
+>>> +	 * Following these parent clocks, we should also have had mpll2, mpll3
+>>> +	 * and gp0_pll but these clocks are too precious to be used here. All
+>>> +	 * the necessary rates for MMC and NAND operation can be acheived using
+>>> +	 * hifi_pll or fclk_div clocks
+>>> +	 */
+>> You don't want to list mplls but hifi_pll is fine ? seems dangerous.
+> hifi pll is for EMMC and NAND on this SoC.
+
+That deserve a better explanation.
+Why can't it use fdiv2 and xtal like the previous SoCs ?
+
+Which PLLs are you using for Audio then ?
+Typical operation on these SoCs usually require 3 PLLs to acheive all rates
+
+>>
 
 
---uu4iphtbpnfop3qu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>>> +/*
+>>> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
+>>> + * corresponding clock sources are not described in the clock tree, so they are skipped.
+>>> + */
+>> Still feels a bit light, don't you think ? Among all the clocks, can't
+>> you add a bit more parents here ? It would certainly help debug down the road
+> [16:12]	is gen_clk source select.All is:
+> 0: cts_oscin_clk
+> 1:cts_rtc_clk
+> 2:sys_pll_div16 (internal clock)
+> 3:ddr_pll_div32  (internal clock)
+> 4: vid_pll
+> 5: gp0_pll
+> 7: hifi_pll
+> 10:adc_dpll_clk_b3 (internal clock for debug)
+> 11:adc_dpll_intclk (internal clock for debug)
+> 12:clk_msr_src(select from all internal clock except PLLs);
+> 16: no used
+> 17: sys_cpu_clk_div16 (internal clock)
+> 19: fclk_div2
+> 20: fclk_div2p5
+> 21: fclk_div3
+> 22: fclk_div4
+> 23: fclk_div5
+> 24: fclk_div7
+> 25: mpll0
+> 26: mpll1
+> 27: mpll2
+> 28: mpll3
+> So i only added the clocks that will actually be used, and some debugging
+> clock peripherals will not be used.
 
-Hi Noralf,
+you may at least add vid_pll
 
-On Thu, Aug 25, 2022 at 03:14:01PM +0200, Noralf Tr=F8nnes wrote:
-> Den 24.08.2022 17.26, skrev Maxime Ripard:
-> > On Sat, Aug 20, 2022 at 07:22:48PM +0200, Noralf Tr=F8nnes wrote:
-> >> Den 29.07.2022 18.35, skrev Maxime Ripard:
-> >>> Now that the core can deal fine with analog TV modes, let's convert t=
-he vc4
-> >>> VEC driver to leverage those new features.
-> >>>
-> >>> We've added some backward compatibility to support the old TV mode pr=
-operty
-> >>> and translate it into the new TV norm property.
-> >>>
-> >>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >>>
-> >>> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_=
-vec.c
-> >>
-> >>>  static int vc4_vec_connector_get_modes(struct drm_connector *connect=
-or)
-> >>>  {
-> >>> -	struct drm_connector_state *state =3D connector->state;
-> >>>  	struct drm_display_mode *mode;
-> >>> =20
-> >>> -	mode =3D drm_mode_duplicate(connector->dev,
-> >>> -				  vc4_vec_tv_modes[state->tv.mode].mode);
-> >>> +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_480i);
-> >>> +	if (!mode) {
-> >>> +		DRM_ERROR("Failed to create a new display mode\n");
-> >>> +		return -ENOMEM;
-> >>> +	}
-> >>> +
-> >>> +	drm_mode_probed_add(connector, mode);
-> >>> +
-> >>> +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_576i);
-> >>
-> >> Maybe the mode that matches tv.norm should be marked as preferred so
-> >> userspace knows which one to pick?
-> >=20
-> > I'm not sure how realistic that would be. Doing this based on the driver
-> > / cmdline preference is going to be fairly easy, but then it's a
-> > property, it's going to be updated, and we probably don't want to mess
-> > around the mode flags based on new property values?
-> >=20
->=20
-> Strictly speaking we need to fire an event to userspace if the mode
-> changes, and this is probably not straightforward to do underneath
-> modeset locks, would probably need a worker.
-
-I'm not sure this would work in all cases. Kodi for example doesn't
-handle hotplug events at all, so we might end up in situations where the
-state is not consistent anymore.
-
-Even if we were to only expose one mode to the userspace, depending on
-the current TV mode, userspace could still end up trying to push a mode
-into KMS that isn't the one we expose anymore, so I'm not sure we can
-solve this entirely.
-
-> Clever userspace like GNOME will try to use the active mode, so it will
-> handle this that way. If someone has set up the pipeline first that is.
-> drm_client/fbdev and plymouth can do that because they honour userdef mod=
-es.
->=20
-> Other userspace that don't know the userdef flag will fallback to the
-> first mode which is NTSC which is also the default tvmode, so maybe this
-> is good enough. PAL users will have to specify the mode, or teach their
-> program about the userdef flag.
->=20
-> But ofc relying on the userdef flag depends on the fact that there's a
-> mode on the kernel command line, but maybe there's no way to avoid that
-> since much/most? userspace treat "unknown" connector status as
-> disconnected so many will have to force the connector to "connected"
-> anyway. At least I don't know any way to permanetly force the connector
-> status other than using video=3D.
-
-You can do it through sysfs as well, in .../status
-
-Maxime
-
---uu4iphtbpnfop3qu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYwytgQAKCRDj7w1vZxhR
-xdrUAP4k5/bAViOVsfkyqYMzYbFSqC3YumRaateY7yAcEsSePgEA8/P6xzOj3aWN
-v+oUtOVIlchXHuCettlv2W7y1xCzCgs=
-=mGM/
------END PGP SIGNATURE-----
-
---uu4iphtbpnfop3qu--
-
-
---===============6667896064197977405==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>> 
+>>> +static u32 s4_gen_clk_mux_table[] = { 0, 5, 7, 19, 21, 22,
+>>> +				      23, 24, 25, 26, 27, 28 };
+>>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
+>>> +	{ .fw_name = "xtal", },
+>>> +	{ .fw_name = "gp0_pll", },
+>>> +	{ .fw_name = "hifi_pll", },
+>>> +	{ .fw_name = "fclk_div2", },
+>>> +	{ .fw_name = "fclk_div3", },
+>>> +	{ .fw_name = "fclk_div4", },
+>>> +	{ .fw_name = "fclk_div5", },
+>>> +	{ .fw_name = "fclk_div7", },
+>>> +	{ .fw_name = "mpll0", },
+>>> +	{ .fw_name = "mpll1", },
+>>> +	{ .fw_name = "mpll2", },
+>>> +	{ .fw_name = "mpll3", },
+>>> +};
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6667896064197977405==--
-
