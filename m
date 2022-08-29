@@ -4,75 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565A3ECAAD2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 12:08:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A95F4ECAAD4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 12:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bw090QbO0ds7NtzdHkxTef/tqD449s/00daE1V2Zwi0=; b=iCA/2LNZ4Jn9dI
-	sYUGfkUmjU/A4rUKnF4PKaIQ7owGZdN44/h0dKQYhzunkmBHJd6onK2oCOJhcKcQZwQMCPV6ZAPBE
-	zOpzvhypcbKt8Hae2F5gv6cFuXj6yN/j4veojbN6zyRDLp8M8v81ZvSf75Bn+sKMwJzOL1dksd/HX
-	DQ1wE6rYrPEkg98KDo9qOBx2A6DDdzCuqqo91pRx+aCUJ7/3m7tocWjTITkuRgc3H3AR0nVRksj5o
-	E4fGkueetU8nQ0Bo53ccNg13Bep6YRwbr9A2kUV6418aTpbOAivWM7t+pMMSW24kxPO0kBvmskwMj
-	PpVY532qwew7fkjUETXQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jj7BfCgzmn1UoyAw4X2DKVFNpamWpz3LVDiKZAgC+MA=; b=jrqK2+x0W+ujkawlRfqERWQJ1w
+	Y+OUepzS9ncJ4IeAlOA8SIXQz7uDVK1razygzDXJ+L7DMjzVW7oUCAk0Ma/T96JeNcY5V50Jo3yoF
+	DTNZ22oT2KtQO6ZxeFMO5V6LOL2HKkPMmAWuhvajoZxv5fMHU1sp7jYHBBsB8XARrhhKgAAiGR76B
+	O+KwnUxdpGOl8OSDAVqiiw2On7O0shEzL3ULuIqbfE8mCteX6g+E7RwfnDT5fieB0nLErxo1mUu9Q
+	MK4EK+IlwFqbgvD4M6rARhhPJRh4y57DJHxpGx+GVf4r+6MJRM3U3/zHO6a/iox7/bn1sygihwdB5
+	PVcoLLog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSdZ1-008iXe-S2; Mon, 29 Aug 2022 12:08:23 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1oSdei-008w9Z-R0; Mon, 29 Aug 2022 12:14:16 +0000
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSdYv-008iM2-MP
-	for linux-amlogic@lists.infradead.org; Mon, 29 Aug 2022 12:08:21 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id x10so7817318ljq.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 05:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=qKsvNRH86aHNC8UItEtemRj4TbqiQ2+V87OtP5n+W9U=;
-        b=zHPi+7sXaz5JENCfXEQx7Yq5zfDdqNY45Hwj6On/9m+zjWpB2m8QoWkm+ufzkCCCF6
-         ZEA3TgJaIgwANSD3EOLByZLh50uz4gHUQFwyoadJsqSurnFETVhnIZTHUUqxHuArYOd3
-         pgP2kxhXR2CV0EUjm+Mz7zERQzUYfPbn6XXMBL1l/m7htLHT1Rb02q4ksHGwwSANgg9p
-         T+MhFyHldMWegzdUYRFbfG/H5wy5sN3xWbYOqGpEV8kkvRc88PiEukiGFeDz/tWSOtCz
-         scAmXLL2Q4K51pG3BBUys8tmbzvrl5fEMHD9dzuzQsl5IY31ZwM0Gzj+Td28LoCkjha6
-         tM/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=qKsvNRH86aHNC8UItEtemRj4TbqiQ2+V87OtP5n+W9U=;
-        b=rcpsJuVhvKOZk47K0gEovESj3dQpaPAObHGO9c5b9YnODQ/8ewnJ9ganvY4hgc+yfy
-         N51tbs+Q17qHpXJNzvIVJ0oV97ELngcgzIhiElzjUEWFX10qJIOsTYvDWA4XSydymJBo
-         EQEZ06EFMrctFQmLnRaClMDjYT8oDZz2maZoV+71Z+o9153Omi7lbL/K9QeLZACiLwOb
-         qlZE4DpiyOTeRIuO58DdpGEZaKjsH9+C4SinT1vNMDs/kjltX2z0zWW4EoAl+yGp+07t
-         gKGW2wnH3MYc2kpv80YdMVBXyJSs+GkzRf+Hf6E3p30/sulapm028MSaNGHA8Cw3F5x5
-         LYPw==
-X-Gm-Message-State: ACgBeo0UqSDB83Ql9Al+qPO4Kq1WRskARxGzXgeq5Gx9gHLCD0R/FV06
-	huIYxtQQoxBIIZPUd0bRTYcVVKduorR6k5jGQbZKfw==
-X-Google-Smtp-Source: AA6agR58Pd3QqgEFFfCQUNOIxS3mN6JInRUCJqFY4oKIWBp+p0J+d610owS1EoNj+kbjCQKDNsXeZfGpuE2gjrwhsWQ=
-X-Received: by 2002:a2e:9799:0:b0:261:e51d:8576 with SMTP id
- y25-20020a2e9799000000b00261e51d8576mr6068713lji.367.1661774891703; Mon, 29
- Aug 2022 05:08:11 -0700 (PDT)
+	id 1oSdea-008vUR-3O; Mon, 29 Aug 2022 12:14:14 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailnew.west.internal (Postfix) with ESMTP id A3DD12B05FEA;
+	Mon, 29 Aug 2022 08:13:59 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 29 Aug 2022 08:14:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1661775239; x=1661782439; bh=mTveQVWkV1
+	vZ4UHqLteArY1kTT3T3MkF8rU++sYP7DQ=; b=deQ85rmXbmk9EU5yPkeT4FeMzw
+	ajssLQD6g5oBcELNrx4UU+HbXmlm0HidRFe7oyKb3gVjx4SF4t96+MIvCiauIQZ6
+	VkkFblw4iMQtqKR/igP21fIjxUxTpIQfnZnlPmsa4tgUOnPjVK8+09gXQx+7MQEt
+	zSQiQ5nD50lpJNZh8MaEeJd35xziKHuU7RL5Vvt7nyWXtZNUFdUx2rHgY2DyKmIE
+	Y+WOVKYpJnJnkQDv1RvApX9WS4BCZm3hnvpngtlRdjEQ9jtGbbJFNAqGfmCBaoZ2
+	z0N8Wb1KccCN6URDL7oQ4kpCizVLnIffHfmYflWHSPkM9NOM4d5uJz+5Hfeg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1661775239; x=1661782439; bh=mTveQVWkV1vZ4UHqLteArY1kTT3T
+	3MkF8rU++sYP7DQ=; b=bWRLiPP6oKwtq6YNktjqK55u0c0PEav/PI4LGA7vm0G8
+	07eaFtMArYcfxlmNU+esxlAqtTOcqxEJI0B9bx8pqxdFLiRfSgxQX+Yocd9WBf7r
+	Dlqds0ZumsVLHaEYV2WspNGz7rFuvTHIhCSmH36loAiUCRMCRiL0ZDdNYI7CPnCI
+	WszS8SwUfmie0luDpSOU2HB4hpe6dvX9VlxVFvSmjzFuUedE8UdXp1r5anCg19xY
+	bYr+KTt8uMK5ml/ysZOohGMU+xc8NUkvF7qm3v0qHnXye+0teFqx71Bfi9X0Cz2K
+	jNTHsNaK//4NL7H6A2HqzDay85EaIA12z85Wsdnucg==
+X-ME-Sender: <xms:hK0MY_1QCn_R1BmmnxYAy3j6uhGZZygDu_p_2RHAd9ixYpyWWZDBYg>
+    <xme:hK0MY-HlWbNhRy8ItowbMFBHJYowZcmHAR7cDG8lci27-ILoQHCYfQpACwOByuu4h
+    ODelh2VwEKk9tlxOMo>
+X-ME-Received: <xmr:hK0MY_5emyLwnuAZIri9nU2E9eHtZ8jf_PfKI4qtJUXHtKg4gDXwPGKDjFzx>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgheduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+    ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:hK0MY00Si24mBss2GM-eZAjZix3b0D2b_KyPBQEI4wgG0h4NRlPAUQ>
+    <xmx:hK0MYyG95-S3OtXNrTChJqHmDuTQb1Zt-u4id3SxS12uflby4kKVkQ>
+    <xmx:hK0MY1_J6SPLxOjfnCKxflyCvOm-NSPvpsuUVfgV9zIWAtJM4Nu1CQ>
+    <xmx:h60MY72ttPo2qpGntjgEJEHlcnFhBX1-UTwtzc4bhCAfQ3lAmDASOkWPUzA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Aug 2022 08:13:56 -0400 (EDT)
+Date: Mon, 29 Aug 2022 14:13:53 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Daniel Vetter <daniel@ffwll.ch>, Emma Anholt <emma@anholt.net>,
+	David Airlie <airlied@linux.ie>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Phil Elwell <phil@raspberrypi.com>,
+	Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Dom Cobley <dom@raspberrypi.com>
+Subject: Re: [PATCH v1 23/35] drm/vc4: vec: Convert to the new TV mode
+ property
+Message-ID: <20220829121353.kbgjmkmmcdtm5ujs@houat>
+References: <20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v1-23-3d53ae722097@cerno.tech>
+ <0255f7c6-0484-6456-350d-cf24f3fee5d6@tronnes.org>
+ <20220824152619.5def5b2puj5b2a3o@houat>
+ <7bdcc3c4-e04c-c2f3-5691-bcbdb158276f@tronnes.org>
 MIME-Version: 1.0
-References: <72459a46-fd20-60d8-a7e7-076d8f321816@gmail.com>
- <CAPDyKFokmJr7e8=gvsYbBbdxceG6kCa57vbYy1tUT_b+B=8P8Q@mail.gmail.com> <e970e07d-9bb8-707d-1dc6-09fae2abbfff@baylibre.com>
-In-Reply-To: <e970e07d-9bb8-707d-1dc6-09fae2abbfff@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 29 Aug 2022 14:07:35 +0200
-Message-ID: <CAPDyKFqRm=RVn__3HJDk_0bBemudh_y7YEYPZe3W7iJCfP50fg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] mmc: meson-gx: add SDIO interrupt support
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+In-Reply-To: <7bdcc3c4-e04c-c2f3-5691-bcbdb158276f@tronnes.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_050817_822573_FFD3371F 
-X-CRM114-Status: GOOD (  15.86  )
+X-CRM114-CacheID: sfid-20220829_051408_506951_DA7A8F88 
+X-CRM114-Status: GOOD (  31.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,50 +117,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6667896064197977405=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 29 Aug 2022 at 09:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Uffe, Heiner,
->
-> On 26/08/2022 11:16, Ulf Hansson wrote:
-> > On Thu, 25 Aug 2022 at 21:52, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> >>
-> >> Add SDIO interrupt support. Successfully tested on a S905X4-based
-> >> system (V3 register layout) with a BRCM4334 SDIO wifi module
-> >> (brcmfmac driver).
-> >>
-> >> v2:
-> >> - use new SDIO interrupt API
-> >> v3:
-> >> - don't duplicate checking mmc->sdio_irq_pending
-> >>
-> >> Heiner Kallweit (2):
-> >>    mmc: meson: adjust and re-use constant IRQ_EN_MASK
-> >>    mmc: meson-gx: add SDIO interrupt support
-> >>
-> >>   drivers/mmc/host/meson-gx-mmc.c | 84 +++++++++++++++++++++++++--------
-> >>   1 file changed, 65 insertions(+), 19 deletions(-)
-> >>
-> >
-> > Applied for next, thanks!
->
-> Thanks for applying, but I was off (like many of reviewers) and I would have like
-> this patchset to be tested on earlier SoCs aswell, or only enabled on S4 for now.
 
-To actually make use of the new code, an update to the corresponding
-DTS files are needed to set the cap-sdio-irq property.
+--===============6667896064197977405==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uu4iphtbpnfop3qu"
+Content-Disposition: inline
 
-If that isn't sufficient, I prefer if we make a patch on top of the
-$subject series.
 
-Kind regards
-Uffe
+--uu4iphtbpnfop3qu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Noralf,
+
+On Thu, Aug 25, 2022 at 03:14:01PM +0200, Noralf Tr=F8nnes wrote:
+> Den 24.08.2022 17.26, skrev Maxime Ripard:
+> > On Sat, Aug 20, 2022 at 07:22:48PM +0200, Noralf Tr=F8nnes wrote:
+> >> Den 29.07.2022 18.35, skrev Maxime Ripard:
+> >>> Now that the core can deal fine with analog TV modes, let's convert t=
+he vc4
+> >>> VEC driver to leverage those new features.
+> >>>
+> >>> We've added some backward compatibility to support the old TV mode pr=
+operty
+> >>> and translate it into the new TV norm property.
+> >>>
+> >>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >>>
+> >>> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_=
+vec.c
+> >>
+> >>>  static int vc4_vec_connector_get_modes(struct drm_connector *connect=
+or)
+> >>>  {
+> >>> -	struct drm_connector_state *state =3D connector->state;
+> >>>  	struct drm_display_mode *mode;
+> >>> =20
+> >>> -	mode =3D drm_mode_duplicate(connector->dev,
+> >>> -				  vc4_vec_tv_modes[state->tv.mode].mode);
+> >>> +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_480i);
+> >>> +	if (!mode) {
+> >>> +		DRM_ERROR("Failed to create a new display mode\n");
+> >>> +		return -ENOMEM;
+> >>> +	}
+> >>> +
+> >>> +	drm_mode_probed_add(connector, mode);
+> >>> +
+> >>> +	mode =3D drm_mode_duplicate(connector->dev, &drm_mode_576i);
+> >>
+> >> Maybe the mode that matches tv.norm should be marked as preferred so
+> >> userspace knows which one to pick?
+> >=20
+> > I'm not sure how realistic that would be. Doing this based on the driver
+> > / cmdline preference is going to be fairly easy, but then it's a
+> > property, it's going to be updated, and we probably don't want to mess
+> > around the mode flags based on new property values?
+> >=20
+>=20
+> Strictly speaking we need to fire an event to userspace if the mode
+> changes, and this is probably not straightforward to do underneath
+> modeset locks, would probably need a worker.
+
+I'm not sure this would work in all cases. Kodi for example doesn't
+handle hotplug events at all, so we might end up in situations where the
+state is not consistent anymore.
+
+Even if we were to only expose one mode to the userspace, depending on
+the current TV mode, userspace could still end up trying to push a mode
+into KMS that isn't the one we expose anymore, so I'm not sure we can
+solve this entirely.
+
+> Clever userspace like GNOME will try to use the active mode, so it will
+> handle this that way. If someone has set up the pipeline first that is.
+> drm_client/fbdev and plymouth can do that because they honour userdef mod=
+es.
+>=20
+> Other userspace that don't know the userdef flag will fallback to the
+> first mode which is NTSC which is also the default tvmode, so maybe this
+> is good enough. PAL users will have to specify the mode, or teach their
+> program about the userdef flag.
+>=20
+> But ofc relying on the userdef flag depends on the fact that there's a
+> mode on the kernel command line, but maybe there's no way to avoid that
+> since much/most? userspace treat "unknown" connector status as
+> disconnected so many will have to force the connector to "connected"
+> anyway. At least I don't know any way to permanetly force the connector
+> status other than using video=3D.
+
+You can do it through sysfs as well, in .../status
+
+Maxime
+
+--uu4iphtbpnfop3qu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYwytgQAKCRDj7w1vZxhR
+xdrUAP4k5/bAViOVsfkyqYMzYbFSqC3YumRaateY7yAcEsSePgEA8/P6xzOj3aWN
+v+oUtOVIlchXHuCettlv2W7y1xCzCgs=
+=mGM/
+-----END PGP SIGNATURE-----
+
+--uu4iphtbpnfop3qu--
+
+
+--===============6667896064197977405==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6667896064197977405==--
+
