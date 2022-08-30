@@ -4,80 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3230EECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Aug 2022 17:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB1ADC0502A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Aug 2022 19:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Zl4v3nlRtCZBv69ogd2/HzV+mHSaHVoBZ9XYszV+QK8=; b=NdtA/vMP8NGiJf
-	9wrQRzu9o3tJMJ3QpZsIIYOaBrZyRbBE9eTYMZRlzbZLRWVmYfu45Qskr4nqMnqp/uATDXkTvp9Fz
-	PKWBR+sbMJ/X1t7wr7AFDk8Icq4uEkj7nIoXX+8+7E+XO3UvsdCpE6ASeTq5fQ3q1o7rxi4WeZ9Wf
-	C0EIvScwR04QTCCcc3o+8xLDhB2OnQEkO1xiSXJiASRCXr/LgObA50xiXFqG8NbivcaeqDU1MzVuM
-	77FrlvNQ6YZ0fgYbQv4nAaktvzg9V7Wk6q9cUUdTzdYhXP75ankpwKr5tuMy+8g+5rBLpQNWe3VcJ
-	Mt1AGStqS6p2K/cAsFQQ==;
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OAPWQGffJ6HEVTlgcr335h3XMeUK/YIzcG0lszAavBw=; b=V82uM9v4Xc95Rv
+	5e06UCZ7xFsXvk4TgcQkG3X0DLHQbmNNvV3vafFiiywdzdZ/p1oXOSFQkoIPgcOf9/EZT+Vr3LEy/
+	NgtSV2DQ3rHw0wq+pDGQbM0za4mfCZCiFUTeS1XilsyicZxZePipN/uOZ0hXBAPkS2pIBWBzdAwV4
+	JxRKOmdAhxZd5YUGIPRa/13MBn/zBcxvY8uVhPo2ZXp9GoowXU1+RUmS11UOFzrIwXw/KJb31VrXH
+	VwpTteHfJjKlZo/tKdvQUhXxapeYXWYRdKGjcfDsv6/BZyinvBCxkIj5LYyTQIHlAglCHFl13hblv
+	k9U11//559znKsACpqIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oT4qm-000kmS-FY; Tue, 30 Aug 2022 17:16:32 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1oT7BP-001Wq7-AE; Tue, 30 Aug 2022 19:45:59 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oT4qa-000kaU-Gu; Tue, 30 Aug 2022 17:16:21 +0000
-Received: by mail-wr1-x432.google.com with SMTP id s7so221308wro.2;
-        Tue, 30 Aug 2022 10:16:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc;
-        bh=aYslhMiebwj7+4K29cnHKNgB9pRwPd88BFhx8bY7ouM=;
-        b=QclIAbxg3S4UhOG46RtLaDjvT59WEIZr//Zghr1EHfcBN/aRLlnISCNhVjMJQW7PfI
-         9L+CnEdbVkf9c5jm8bDnwVxX+ku9D9HvbFjgzT/XfehjSCkUtR6ByNphMoiEXjWfcAMF
-         umLSP8zeW9Rm1tfjKLBhj4DDSGGPEnLi9tmTfQfNvVpV4qwmsrQ6GS57FhU+duRjTbWJ
-         Wda8DarGYonTi6v0XWlL1idY8otPBBSqtM9mIjknjqhyaywWE3C+aIidxN5yzy23KrnY
-         XRckdEAaKCxqz6azufVCUlztbKNUhkU0UOqaz5EPkhMDDZpFkOup7x+NUyRCYZzmXOA4
-         N6Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc;
-        bh=aYslhMiebwj7+4K29cnHKNgB9pRwPd88BFhx8bY7ouM=;
-        b=vsvdI0/cjtDUvtamGi6kkmKo3P4uQSrjlbGy7lQmIURrqW/Ugcdun5OMPQAjKPBfjc
-         BhVABCAD/wmRdLXwP9UF6Myb+5GQ6H6AQ6FQnBhl5UDtsBJwH/lgrB/QStcAarTDsZGr
-         JYs8uDy0wLW5nuUZE0fI+cA5PuHtwwC81HGQPT0eAKeWBKyyxb0B8aRZU/LR6pUJr20a
-         tyeVfDQYF7LwrvIRCzORij61hMW2bViPZgwp0bK/BtIbUe7gFCVki3OOSZO8i9TgGoHX
-         bv3S/FOEK2U1N7drjD4F4gX7DP8UY6xGChUH0Huskp7+YE7wJWP8xuZLBAbz/66admE0
-         a2TQ==
-X-Gm-Message-State: ACgBeo3YGCSm0qn6nWsCmXYb8yFYroajrI65xjOXZp4RrUjEobhbxzi0
-	Ik0KRKcltM3UKGWOdYYxVKw=
-X-Google-Smtp-Source: AA6agR7yhSuJYjzN6H3sQo9VVl3vOnuDoEKHCd3iysGHC95CwGJ/+8NKMi2iGatotF3XCNwDqvbtYA==
-X-Received: by 2002:a05:6000:258:b0:226:dc6e:9ef8 with SMTP id m24-20020a056000025800b00226dc6e9ef8mr5167855wrz.215.1661879778047;
-        Tue, 30 Aug 2022 10:16:18 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c143:e900:5d45:6499:bc12:87fc? (dynamic-2a01-0c23-c143-e900-5d45-6499-bc12-87fc.c23.pool.telefonica.de. [2a01:c23:c143:e900:5d45:6499:bc12:87fc])
-        by smtp.googlemail.com with ESMTPSA id u1-20020a05600c440100b003a31ca9dfb6sm13463745wmn.32.2022.08.30.10.16.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:16:17 -0700 (PDT)
-Message-ID: <9308a2a3-e828-bd9d-ab83-a68376aab5c3@gmail.com>
-Date: Tue, 30 Aug 2022 19:16:07 +0200
+	id 1oT78L-001VL6-Ce; Tue, 30 Aug 2022 19:42:51 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 8C5A961796;
+	Tue, 30 Aug 2022 19:42:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABA4C433D7;
+	Tue, 30 Aug 2022 19:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1661888565;
+	bh=+cGXZMI2oEXKgWxb9ZJXDzYjbbc2gJTCUd+EAG1qVPM=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=LYpYi+hA+j838eO7PaAlm6hujUBT/ozW55UwaoOz2+nwvC/lvCzYZchAfH2IlWFtx
+	 BL/C94gwh7XgqP5VAIgYmNDlAI0asdiWjkKXPxFY6f4AqPGlfEMR4ZL+SXXB4OtGOJ
+	 D3oPjR4HANLtqLoltwJZvh1+0UW9ey0vQ+GMDWL3Fn+Zd/Sn9GERIYCjMxXbQ38Z+j
+	 Tc1NH80aBwAE/KSjp+yQKJ8uuazJ5JsdnSJwk1PINDKVMjrkizHLfzcwKshkAbp8TA
+	 VnuSHSB6lcAQ0YUoHD8HLLF0mYhQ1MtyGV9Csn8H7mCqJih2C0sTv5L9JOT3k5/SRl
+	 E8CelWuDuqlTA==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: Kishon Vijay Abraham I <kishon@ti.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-phy@lists.infradead.org,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] phy: amlogic: use devm_clk_get_enabled() to simplify the code
+In-Reply-To: <YvrDp32/TknqV05t@sirena.org.uk>
+References: <cover.1660292316.git.mazziesaccount@gmail.com> <166057828406.697572.228317501909350108.b4-ty@kernel.org> <YvpsRbguMXn74GhR@pendragon.ideasonboard.com> <Yvp1Qkuh7xfeb/B2@sirena.org.uk> <YvqV9Mq6I3gXQaf2@pendragon.ideasonboard.com> <20220815205857.308B1C433D6@smtp.kernel.org> <YvrDp32/TknqV05t@sirena.org.uk>
+Subject: Re: (subset) [PATCH v2 0/7] Devm helpers for regulator get and enable
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, dri-devel@lists.freedesktop.org, Johan Hovold <johan+linaro@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, linux-amlogic@lists.infradead.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, Michael Hennerich <Michael.Hennerich@analog.com>, Miaoqian Lin <linmq006@gmail.com>, linux-arm-kernel@lists.infradead.org, Alexandru Tachici <alexandru.tachici@analog.com>, Jerome Brunet <jbrunet@baylibre.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Jonathan Corbet <corbet@lwn.net>, Guenter Roeck <linux@roeck-us.net>, Jonas Karlman <jonas@kwiboo.se
+ >, Lorenzo Bianconi <lorenzo@kernel.org>, Michael Turq uette <mturquette@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jean Delvare <jdelvare@suse.com>, Alexandru Ardelean <aardelean@deviqon.com>, linux-hwmon@vger.kernel.org, linux-clk@vger.kernel.org, Nuno =?utf-8?q?S=C3=A1?= <nuno.sa@analog.com>, Robert Foss <robert.foss@linaro.org>, Aswath Govindraju <a-govindraju@ti.com>, David Airlie <airlied@linux.ie>, linux-iio@vger.kernel.org
+To: Mark Brown <broonie@kernel.org>
+Date: Tue, 30 Aug 2022 12:42:42 -0700
+User-Agent: alot/0.10
+Message-Id: <20220830194244.DABA4C433D7@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220830_101620_595240_9EF2D960 
-X-CRM114-Status: UNSURE (   9.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220830_124249_554656_1A5113F7 
+X-CRM114-Status: GOOD (  47.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,78 +71,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Simplify the code by using devm_clk_get_enabled().
+Quoting Mark Brown (2022-08-15 15:07:35)
+> On Mon, Aug 15, 2022 at 01:58:55PM -0700, Stephen Boyd wrote:
+> 
+> > I think the main issue is that platform drivers are being asked to do
+> > too much. We've put the burden on platform driver authors to intimately
+> > understand how their devices are integrated, and as we all know they're
+> 
+> This is for the regulator API, it's mainly for off SoC devices so it's
+> not a question of understanding the integration of a device into a piece
+> of silicon, it's a question of understanding the integration of a chip
+> into a board which seems reasonably in scope for a chip driver and is
+> certainly the sort of thing that you'd be talking to your customers
+> about as a silicon vendor.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    | 32 ++++---------------
- 1 file changed, 6 insertions(+), 26 deletions(-)
+Right. I'm coming from the devm_clk_get_*() APIs angle when saying that
+platform drivers don't want to know everything.
 
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-index 54d65a6f0..d2a1da8d9 100644
---- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-+++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-@@ -388,7 +388,6 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
- 	struct phy_g12a_usb3_pcie_priv *priv;
- 	struct phy_provider *phy_provider;
- 	void __iomem *base;
--	int ret;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -408,43 +407,24 @@ static int phy_g12a_usb3_pcie_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->regmap_cr))
- 		return PTR_ERR(priv->regmap_cr);
- 
--	priv->clk_ref = devm_clk_get(dev, "ref_clk");
-+	priv->clk_ref = devm_clk_get_enabled(dev, "ref_clk");
- 	if (IS_ERR(priv->clk_ref))
- 		return PTR_ERR(priv->clk_ref);
- 
--	ret = clk_prepare_enable(priv->clk_ref);
--	if (ret)
--		return ret;
--
- 	priv->reset = devm_reset_control_array_get_exclusive(dev);
--	if (IS_ERR(priv->reset)) {
--		ret = PTR_ERR(priv->reset);
--		goto err_disable_clk_ref;
--	}
-+	if (IS_ERR(priv->reset))
-+		return PTR_ERR(priv->reset);
- 
- 	priv->phy = devm_phy_create(dev, np, &phy_g12a_usb3_pcie_ops);
--	if (IS_ERR(priv->phy)) {
--		ret = PTR_ERR(priv->phy);
--		dev_err_probe(dev, ret, "failed to create PHY\n");
--		goto err_disable_clk_ref;
--	}
-+	if (IS_ERR(priv->phy))
-+		return dev_err_probe(dev, PTR_ERR(priv->phy), "failed to create PHY\n");
- 
- 	phy_set_drvdata(priv->phy, priv);
- 	dev_set_drvdata(dev, priv);
- 
- 	phy_provider = devm_of_phy_provider_register(dev,
- 						     phy_g12a_usb3_pcie_xlate);
--	if (IS_ERR(phy_provider)) {
--		ret = PTR_ERR(phy_provider);
--		goto err_disable_clk_ref;
--	}
--
--	return 0;
--
--err_disable_clk_ref:
--	clk_disable_unprepare(priv->clk_ref);
--
--	return ret;
-+	return PTR_ERR_OR_ZERO(phy_provider);
- }
- 
- static const struct of_device_id phy_g12a_usb3_pcie_of_match[] = {
--- 
-2.37.2
+> 
+> > The basic idea is that drivers should be focused on what they're
+> > driving, not navigating the (sometimes) complex integration that's
+> > taking place around them. When a device driver probe function is called
+> > the device should already be powered on. When the driver is
+> > removed/unbound, the power should be removed after the driver's remove
+> > function is called. We're only going to be able to solve the power
+> > sequencing and ordering problem by taking away power control and
+> > sequencing from drivers.
+> 
+> That is a sensible approach for most on SoC things but for something
+> shipped as a separate driver there's little point in separating the
+> power and clocking domain driver from the device since there's typically
+> a 1:1 mapping.  Usually either it's extremely simple (eg, turn
+> everything on and remove reset) but some devices really need to manage
+> things.  There's obviously some edge cases in SoC integration as well
+> (eg, the need to manage card supplies for SD controllers, or knowing
+> exact clock rates for things like audio controllers) so you need some
+> flex.
 
+I think we're on the same page. The clk API bridges both on SoC and off
+SoC devices, but leans more towards on SoC devices so I'm coming from
+that angle. 
+
+I agree it doesn't make sense to rip out and move power management logic
+for off SoC devices (your chip driver), because then you get a driver
+that is split to two places. The hardware engineer for those types of
+devices has designed the chip to be more aware of the system integration
+and how their chip is powered, so that it can be easily integrated into
+various designs without their involvement. This allows it to be used on
+numerous boards and that's partly the reason why Linux doesn't have
+board files or board "drivers" because the combinatorial explosion is
+unmanageable, hence DTS and driver subsystems. The boundary of the
+combinations ends at the chip which is 1:1 with the platform driver.
+
+For on SoC devices, the hardware engineer typically isn't involved in
+the system integration at all. Instead they hand that task off to the
+SoC integrator who has to wire everything up (clks, power, resets) and
+layout the SoC. The combinatorial explosion isn't possible here, because
+only so many SoCs are ever created and customers can't rewire the
+internals of the SoC to change which clks go there (although I guess
+with FPGAs this may be possible). The boundary where the combinations
+exist is at the device level, not the SoC level, but we've encoded the
+SoC details into the compatible strings and the drivers to the point
+that the boundary is pushed to the SoC level.
+
+For these on SoC devices, we should extract and consolidate the power
+management logic away from the drivers, because we're spreading the SoC
+integration knowledge all around the drivers/ directory for every device
+class that exists in that SoC. I continue to see drivers that get
+another clk in the next SoC generation because there was some change to
+split a clk domain or they get another regulator because they split a
+power domain. The driver doesn't care, but it has to match a new
+compatible string and then get the proper list of clks or regulators
+even though it just wants to turn the thing on and get it running. This
+gunk needs to go. Runtime PM is a solution to part of the problem, but I
+think RPM ops should be about poking device registers for these on SoC
+devices, not about controlling yet another clk or regulator that got
+wired up this SoC generation.
+
+Probably we need to get away from having platform driver probe for on
+SoC devices get resources like clks, regulators, and interconnects at
+all. Instead, those should be managed by some "SoC" driver that knows
+the integration of the SoC and can make sure the proper power sequencing
+is followed. Hopefully we can do this largely via genpd and RPM, with a
+little bit of help from some SoC driver that registers genpds for
+devices under /soc. Of course there are exact clk frequencies required
+sometimes (audio rates, display link rates, serial baud rates, etc.) but
+those sorts of things could use a higher level of abstraction so that we
+don't get bogged down in the details of which clk needs to be used to
+set the clk frequency when this compatible is present. Maybe
+dev_pm_opp_set_rate() is the answer there, but then we have some drivers
+that call clk APIs like clk_round_rate() that we'll need to figure out
+how to manage.
+
+Long story short, there's a need for both approaches so that we can
+manage the combinatorial complexity at the place where it is. I hope the
+devm APIs are going to help us find that place so we can come up with a
+solution to the "drivers don't want to know" problem when we see that
+XYZ driver can use a genpd that turns on the power along with RPM to
+turn it off during suspend.
 
 _______________________________________________
 linux-amlogic mailing list
