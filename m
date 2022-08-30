@@ -4,80 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941B7ECAAD2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Aug 2022 18:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A75ECAAD1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Aug 2022 06:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=y+93suJ+oSOBcYbYD04w3PJKyFt9sIGTM7XAL7giSPY=; b=r4ARcr0PWAn221
-	DUUGxd5ETj7pRAoMUzNpbQHu16t8hY9+I+9y7jYHoiaoaxSOcJh1vOWhlWd9oTxQyXp8PkoJNcsKg
-	07E+h9mPm4FFQxaVKSULDOOkyCZbkvqQsSzHazVtgQgfhyBVKtkZ84dO60G+wtO4qaAZKIctaxabp
-	CSEdXpcGoIZ/AY8wI3jwpp/IpveZKnW93avj2ekEJwjqImn+ACyo5Y5dYghHiC23Zyi5tzjN3EEgW
-	+R1v30fbKDlagD4ESiCiGmK6T2WNZufy4F/q5vzTYVwsplqj0BtAlMQx0ZlxCuCNW5NgzVXdZHZ7M
-	Ikhiv8rOIGDCB1Abbtug==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7ks7R/iDD+4SQMM0VyYhWLdFRQ+JS2Io0lxO6nM1p68=; b=BshKHwMHnWRlS3MXtgaXZrKYQt
+	xR7GjIW2AYHem3ufPm7f1pArR7a9ls0souWiZAtbWpnTdcCWXj8V15eHc/2RQAWcT/Wx583kOq4Zp
+	4hA9JMBguBWUrqHHqGgtIQCJ4EOYzFpUBQDEvDt2n9dfP7UiiZ7v5LagBLbw3p93DdtOY4sD61z5U
+	xvw8jsQ/CzOavLf/KmK9Z5tpFpQNMXJ+d7kPNqFIBI8TYZ7xqZQkEi/4bV+kzq442PsY1tu+NK/Ly
+	cyoXCicmVvURu7O1b6+ifBj33wrJSWqD3K8pozFaCewsiJoCCxtcrWmWrW3/kEQiaRy4RTF7fDE9j
+	b3MxWC2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSjso-00CLtP-WB; Mon, 29 Aug 2022 18:53:15 +0000
-Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
+	id 1oSuNd-00EJiP-HY; Tue, 30 Aug 2022 06:05:45 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSjsj-00CLpI-4k; Mon, 29 Aug 2022 18:53:10 +0000
-Received: by mail-ej1-x62f.google.com with SMTP id cu2so17614319ejb.0;
-        Mon, 29 Aug 2022 11:53:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc;
-        bh=bilE99Eb8g6jOTqIlIz0GtHBknDbsLMQgwQJTTDAk+k=;
-        b=qc6rrlx85JJlXnN4/QMcUIuqn7m7I+JuinUIdf7FLnhCZNgaGuA8PpHLqE0MZ63oix
-         5Z0YI6iLfgkXEuo//Po6Mot5+EAh0Vbo/35DS4XL7B/28009T41XDe1UDcrh9ZCyrzbK
-         TaZphlHbqZaOlc8lsBtCa1mPyc2CycGKK4hN3hwr8kYeBZ8IqTv3wqht8J29X4o4Y0SW
-         qGX4OSP206+KW2hnol3z1gK7o2/rsOtmD8/0gVZmlfmkXdP1Har2ywnhSJf4kCKHV0Wq
-         nciunIX/ejj5q5Li4/6f2BJSfYKHkek3e4+63Y1ThHXzZfbZoRqr7WRsIMWBBh+lkA6e
-         gr2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc;
-        bh=bilE99Eb8g6jOTqIlIz0GtHBknDbsLMQgwQJTTDAk+k=;
-        b=Sr2Pm3lW4o2STvVGMBaPhQHaBThjb80cbfPBWo2RwIjWRqb0IZQYwZqyY5D4S0UVb5
-         MK/IM0BW0D9AW8tgVR0U6shhhNVyKZ2rarTTX7YJdWtjjU/96Xfa9f8z7YR3N3CAhEXV
-         702q7AHQERR4W8UTZoCu/1TX+Ca8klEXnctgwoGqg5i9VcCSJP6yxtXJsksj/9ZERFO/
-         /efiPLKmWWUKtqzgnE3QGiIRz4ma2o6NPB+8R/pP1LnJRjBIVNoTNcDzu+4gJOF+18FQ
-         kggn+Km8B9Qkcjz3XQd7lSOeDMUtRTH5UcYoq/xMAdLfUXbh/7IUUHfdIrOI9piKwXCu
-         TAEw==
-X-Gm-Message-State: ACgBeo3GabDQW7WJHo0u2CxahEovXwZZhdv5Mo/GnMeOilXAjIq6WqFl
-	Rt85CT72uDgczcbyTyINC/0=
-X-Google-Smtp-Source: AA6agR5mIoOyP3KHtsikmDLLgnbfSIOc8Wj4E+WeGpMCPSo/Yz/BsMARoy5kgZKhteqWbai5RFrBpA==
-X-Received: by 2002:a17:907:3f88:b0:73e:484d:9d6c with SMTP id hr8-20020a1709073f8800b0073e484d9d6cmr11571943ejc.283.1661799185511;
-        Mon, 29 Aug 2022 11:53:05 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:bd96:2400:287c:a714:9c3c:aa54? (dynamic-2a01-0c23-bd96-2400-287c-a714-9c3c-aa54.c23.pool.telefonica.de. [2a01:c23:bd96:2400:287c:a714:9c3c:aa54])
-        by smtp.googlemail.com with ESMTPSA id t23-20020a05640203d700b00440ced0e117sm6048138edw.58.2022.08.29.11.53.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Aug 2022 11:53:04 -0700 (PDT)
-Message-ID: <a801afc0-a8f2-a0a4-0f2b-a7201351d563@gmail.com>
-Date: Mon, 29 Aug 2022 20:52:59 +0200
+	id 1oSuNH-00EJZp-OF; Tue, 30 Aug 2022 06:05:25 +0000
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Tue, 30 Aug
+ 2022 14:05:11 +0800
+Message-ID: <72631035-58a6-23b5-1f7e-f1643b120432@amlogic.com>
+Date: Tue, 30 Aug 2022 14:05:11 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] clk: meson: pll: adjust timeout in
- meson_clk_pll_wait_lock()
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk@vger.kernel.org,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V3 2/6] arm64: dts: meson: add S4 Soc PLL clock controller
+ in DT
 Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>, <linux-clk@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+	<khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-3-yu.tu@amlogic.com>
+ <19654574-bdc0-9fa5-6465-fc88b20e20c5@linaro.org>
+ <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
+ <1jmtccz0f4.fsf@starbuckisacylon.baylibre.com>
+ <edc9b0bd-6c69-0562-05ca-db0496897cf1@amlogic.com>
+ <1j1qszv0wa.fsf@starbuckisacylon.baylibre.com>
+From: Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1j1qszv0wa.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_115309_264549_47060A7F 
-X-CRM114-Status: GOOD (  10.05  )
+X-CRM114-CacheID: sfid-20220829_230523_808927_287B005D 
+X-CRM114-Status: GOOD (  13.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,53 +71,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Currently we loop over meson_parm_read() up to 24mln times.
-This results in a unpredictable timeout period. In my case
-it's over 5s on a S905X4-based system. Make the timeout
-period predictable and set it to 100ms.
-
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- remove an unrelated change
----
- drivers/clk/meson/clk-pll.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index daa025b6d..53b8e17e4 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -277,15 +277,15 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
--	int delay = 24000000;
-+	int delay = 5000;
- 
- 	do {
--		/* Is the clock locked now ? */
-+		/* Is the clock locked now ? Time out after 100ms. */
- 		if (meson_parm_read(clk->map, &pll->l))
- 			return 0;
- 
--		delay--;
--	} while (delay > 0);
-+		udelay(20);
-+	} while (--delay);
- 
- 	return -ETIMEDOUT;
- }
--- 
-2.37.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMDIyLzgvMjkgMTc6NDMsIEplcm9tZSBCcnVuZXQgd3JvdGU6Cj4gWyBFWFRFUk5BTCBF
+TUFJTCBdCj4gCj4gCj4gT24gTW9uIDE1IEF1ZyAyMDIyIGF0IDE0OjE3LCBZdSBUdSA8eXUudHVA
+YW1sb2dpYy5jb20+IHdyb3RlOgo+IAo+PiBIaSBKZXJvbWXvvIwKPj4KPj4gT24gMjAyMi84LzEw
+IDIxOjMyLCBKZXJvbWUgQnJ1bmV0IHdyb3RlOgo+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+PiBP
+biBGcmkgMDUgQXVnIDIwMjIgYXQgMTc6MzksIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4gd3Jv
+dGU6Cj4+Pgo+Pj4+IEhpIEtyenlzenRvZiwKPj4+PiAgICAgICBUaGFuayB5b3UgZm9yIHlvdXIg
+cmVwbHkuCj4+Pj4KPj4+PiBPbiAyMDIyLzgvNSAxNzoxNiwgS3J6eXN6dG9mIEtvemxvd3NraSB3
+cm90ZToKPj4+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Pj4+IE9uIDA1LzA4LzIwMjIgMTA6NTcs
+IFl1IFR1IHdyb3RlOgo+Pj4+Pj4gQWRkZWQgaW5mb3JtYXRpb24gYWJvdXQgdGhlIFM0IFNPQyBQ
+TEwgQ2xvY2sgY29udHJvbGxlciBpbiBEVC4KPj4+Pj4+Cj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBZ
+dSBUdSA8eXUudHVAYW1sb2dpYy5jb20+Cj4+Pj4+PiAtLS0KPj4+Pj4+ICAgICBhcmNoL2FybTY0
+L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQuZHRzaSB8IDggKysrKysrKysKPj4+Pj4+ICAgICAx
+IGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspCj4+Pj4+Pgo+Pj4+Pj4gZGlmZiAtLWdpdCBh
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC5kdHNpIGIvYXJjaC9hcm02NC9i
+b290L2R0cy9hbWxvZ2ljL21lc29uLXM0LmR0c2kKPj4+Pj4+IGluZGV4IGZmMjEzNjE4YTU5OC4u
+YTgxNmIxZjc2OTRiIDEwMDY0NAo+Pj4+Pj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
+Z2ljL21lc29uLXM0LmR0c2kKPj4+Pj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dp
+Yy9tZXNvbi1zNC5kdHNpCj4+Pj4+PiBAQCAtOTIsNiArOTIsMTQgQEAgYXBiNDogYXBiNEBmZTAw
+MDAwMCB7Cj4+Pj4+PiAgICAgCQkJI3NpemUtY2VsbHMgPSA8Mj47Cj4+Pj4+PiAgICAgCQkJcmFu
+Z2VzID0gPDB4MCAweDAgMHgwIDB4ZmUwMDAwMDAgMHgwIDB4NDgwMDAwPjsKPj4+Pj4+ICAgICAr
+CQkJY2xrY19wbGw6IHBsbC1jbG9jay1jb250cm9sbGVyQDgwMDAgewo+Pj4+PiBOb2RlIG5hbWVz
+IHNob3VsZCBiZSBnZW5lcmljIC0gY2xvY2stY29udHJvbGxlci4KPj4+Pj4gaHR0cHM6Ly9kZXZp
+Y2V0cmVlLXNwZWNpZmljYXRpb24ucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2NoYXB0ZXIyLWRl
+dmljZXRyZWUtYmFzaWNzLmh0bWwjZ2VuZXJpYy1uYW1lcy1yZWNvbW1lbmRhdGlvbgo+Pj4+Pgo+
+Pj4+IEkgd2lsbCBjaGFuZ2UgdG8gY2xrY19wbGw6IGNsb2NrLWNvbnRyb2xsZXJAODAwMCwgaW4g
+bmV4dCB2ZXJzaW9uLgo+Pj4gU2FtZSBjb21tZW50IGFwcGxpZXMgdG8gdGhlIGJpbmRpbmcgZG9j
+Lgo+PiBPS2F5Lgo+Pj4gQWxzbyBpdCB3b3VsZCBiZSBuaWNlIHRvIHNwbGl0IHRoaXMgaW4gdHdv
+IHNlcmllcy4KPj4+IEJpbmRpbmdzIGFuZCBkcml2ZXJzIGluIG9uZSwgYXJtNjQgZHQgaW4gdGhl
+IG90aGVyLiBUaGVzZSBjaGFuZ2VzIGdvZXMKPj4+IGluIHRocm91Z2ggZGlmZmVyZW50IHRyZWVz
+Lgo+PiBBdCBwcmVzZW50LCBCaW5kaW5ncywgRFRTIGFuZCBkcml2ZXJzIGFyZSB0aHJlZSBzZXJp
+ZXMuIERvIHlvdSBtZWFuIHRvIHB1dAo+PiBCaW5kaW5ncyBhbmQgZHJpdmVycyB0b2dldGhlcj8g
+SWYgc28sIGNoZWNrcGF0Y2gucGwgd2lsbCByZXBvcnQgYSB3YXJuaW5nLgo+IAo+IFllcyBiZWNh
+dXNlIHBhdGNoZXMgYXJlIG5vdCBpbiB5ZXQgc28gdGhlcmUgaXMgYSBnb29kIHJlYXNvbiB0byBp
+Z25vcmUKPiB0aGUgd2FybmluZy4gV2FybmluZyB3aWxsIG5ldmVyIHNob3cgdXAgb24gdGhlIGFj
+dHVhbCB0cmVlIGlmIHRoZQo+IHBhdGNoZXMgYXJlIGNvcnJlY3RseSBvcmRlcmVkLgoKSSB0aGlu
+ayBCaW5kaW5nLCBEVFMgYW5kIGRyaXZlcnMgdXNlIHRocmVlIHNlcmllcyBhbmQgeW91IHNhaWQg
+dHdvIApzZXJpZXMgaXMgbm90IGEgYmlnIHByb2JsZW0uIFRocmVlIHNlcmllcyBhcmUgcmVjb21t
+ZW5kZWQgZm9yIApjaGVja3BhdGNoLnBsLCBJIHRoaW5rIGl0IHNob3VsZCBiZSBlYXN5IGZvciB0
+aGF0IHRvIHNlcGFyYXRlIGFuZCBtZXJnZeOAggoKSSd2ZSBzZW50IGl0IHRvIFY0LiBQbGVhc2Ug
+bG9vayBhdCBWNCBhbmQgZ2l2ZSBzb21lIGNvbW1lbnRzLgoKPiAKPj4KPj4+Cj4+Pj4+IEJlc3Qg
+cmVnYXJkcywKPj4+Pj4gS3J6eXN6dG9mCj4+Pj4+IC4KPj4+IC4KPiAKPiAuCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
+bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
