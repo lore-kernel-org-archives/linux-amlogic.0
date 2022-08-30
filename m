@@ -4,86 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82091ECAAD1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Aug 2022 06:47:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43402ECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Aug 2022 07:05:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8+7/Yb6OThCyAMjqI5/r9yRjd6vBTJ7dkfcdmSJRFk0=; b=yNOYMZ7nUMcsvu
-	9t90jerY0CPPSEN1vf4yibWVQl70DEgRQDTU83J2Ob+PgS/1MRmHEKJH7egWrCMw4ar6Wn3ppwZyo
-	UDJU1uaSSHRDWV4HZkzN4Lwr1rScNDWUSBWROX3brJyHhPaZ1ZmLSAk3AKbiDZ5tUD0JoLT64i7sQ
-	prNbcUOss7NWVzdXDQJwvVwonHXxwf/rMUAbIi2D0Sv6BvE5qJnhV5h5zal1PcTX+0Q68IL3a/mMw
-	HYK3oQDJwcphtFhAtM4P0Lu4rcPNFwdW9+10Iy+xz2T0oWloOHph7Hlq3KgQXFrm5HQIGC4GoAFgg
-	jKuE7VLVDqlp8oQ2SkEg==;
+	List-Owner; bh=0Yf3Ux/6HXeQZ1VvfiUxmpit6HuaU/9brt90twuh9HI=; b=US9s0sKNs7g2d2
+	5JoTLqH/CW1EHsUkSmnLW1mJiLKJo7Dqv84eS8nj6ig45VL0/Jx0mahIXrGmgO8v0GIa//y2MK05m
+	bTS9EfZYA3GWkZK2fibEz6Tv6bqITFfzBHmIOQm/TzZdOCeDC1bbK+0nQkO9h2rEAt+7hmvZLoY7v
+	3y+vylUDgb8OFv6L7wYnixj+SeFJmLusf4GEzRDmCy/4nO0x5dv3/Qyn0lcwvNnZjWXzfYhCVmUTB
+	lmIsuXWIm3sgBHFW5t6wRoa/A52dMjYDwooGOzirD8BR+2FhnFaskLB7DxYTlhijYeFsnskys63r6
+	+yjysqK4RqJj9y7wexdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSv1i-00EWpJ-G7; Tue, 30 Aug 2022 06:47:10 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1oSvJX-00Ees6-Kp; Tue, 30 Aug 2022 07:05:35 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSv1M-00EWdu-Ju
-	for linux-amlogic@lists.infradead.org; Tue, 30 Aug 2022 06:46:50 +0000
-Received: by mail-wr1-x430.google.com with SMTP id v16so10110814wrm.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Aug 2022 23:46:44 -0700 (PDT)
+	id 1oSvJ9-00EehA-QS; Tue, 30 Aug 2022 07:05:17 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id w8so5206290lft.12;
+        Tue, 30 Aug 2022 00:05:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:from:to:cc;
-        bh=uNEuHOAteazyIC1AyuG6gAPmQRuBflQgsrGFq90AkL8=;
-        b=xrxjzN84NNOAPVsknUJjhguvFY7Jm9nDNOw5SxQQrrR0IpFZtQ/cWzc1kLMxeTC9HB
-         WwbtoDMMgcs5u5vMMgt0F1OisV1DD7zW8KZR04rZdcF0PBypUgCyR+Cvjb6y4xZfeLur
-         v2HeMOnSAIpcdzquU4WAvSS6WCJUlR5j+DCeMrA80WllQzw//G/b97zPaNhct0+excqD
-         OZy+YpWX6WKUxsBEW8QCbZGdx5RmBtQ05ASdsiC6Qb9jIIQvRYhBi4re3uec/788bWTu
-         YE28suGbqmERGc/PP/nN1GwYKWta9h6uztrIIxJtsGg9SsYXhcqpFwXakLdwbZ+yi+2i
-         Y99Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=JVbQO8NaIJX9r2XXsX5JS1XPjDhaNVf/tZE3BTjyue8=;
+        b=aUvfBo7ge5wrT9PVdRa7n4WKc+KjoguCB0VGM5ArOYeVSOAtCGAZEIhVT1HktOBuXs
+         xVuo8JAqwWgOvbrNiXwuPoqNnTLm8bwbpdzBVdW1XBIGIvvAobm/5fUU1DaMZxhXYMt5
+         q9PRCAd0ycNSdCJ0SF3wM/sC/4Jv2wRlE5fJwmrsyHasgMrFm8hXCsm1aD90A+iBSqdp
+         JGIlgxplMRXcg90us2nijNq9XvpwRKJHtXnnWe7UD0HWPdTTVSw6af7IiSvj3TkZZcSl
+         I+qsTHUM5mofnppLxCg0Ch2lFK2+Sdu+1LslDLVXb/wyNEtQEALA7Ff4s3cbJgr4Eyrt
+         eXOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc;
-        bh=uNEuHOAteazyIC1AyuG6gAPmQRuBflQgsrGFq90AkL8=;
-        b=oJ/IWxl7oqe8LIA/bbsHYCxVqzBr8SFp6dWAibnoeqowx66uE8v5EidJPHpj8ZBHpO
-         hxXTvIJoUEB4UkplBiXo/PDZrf20xGcAvJ3lv52iFaauwTzElgkGsJZTZV8mQ+L2lyKf
-         0xIf7qzY9hXri0SfZ6LNdXFy8m1SHRAtxNa71MmZpAIpuRs+JS4alsUu1rttnfUTe6mo
-         jaU6DKBbolW89I0Dd4K+CdPuj3nqPJrzUXYO1LHg1ciuu8Bz0O1blFhf9zTObouoO+Vp
-         gpsakTY4W7eJ3FOkrOB4RAv8qbuo1A3dFPqrxNdOHU3CocaIgF3U8f+dR/Te1v+mLJib
-         pwTA==
-X-Gm-Message-State: ACgBeo1QEVwfZz1XF14NQ9/3rIVSDje1xdzzSkSWuYmYIxAPuafVTXa9
-	IFmkyIU5t6AfrOkkSBv3s/qy7A==
-X-Google-Smtp-Source: AA6agR4DWkxaJe99oAOEPXlrrxRopc/vUu//vwPgzIo0tcLsvHWV2Vq+65oUCUGF7bxEZ15aEUQTwA==
-X-Received: by 2002:a05:6000:18a2:b0:221:7db8:de02 with SMTP id b2-20020a05600018a200b002217db8de02mr8049189wri.132.1661842003316;
-        Mon, 29 Aug 2022 23:46:43 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id u6-20020a5d4346000000b0020fff0ea0a3sm8757749wrr.116.2022.08.29.23.46.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 23:46:42 -0700 (PDT)
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-4-yu.tu@amlogic.com>
- <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
- <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
- <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
- <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
- <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
-User-agent: mu4e 1.8.7; emacs 28.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen  Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Date: Tue, 30 Aug 2022 08:44:01 +0200
-In-reply-to: <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
-Message-ID: <1jtu5uz0ry.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=JVbQO8NaIJX9r2XXsX5JS1XPjDhaNVf/tZE3BTjyue8=;
+        b=1tmIfD7wF002ZvJm31IrXqLKEtgrP7H3Uh5D9q50RBildx/i5wVh3/M04K6tAO843I
+         N3Rw882kX994mGkYCSGcmyV8Udvpf9uHDYAAsD88PO7qsapajSkrF243rxMr8Hl5g+gA
+         dv8OalY7yTZiF44e37VgLChiszGbZ6ZhnEnf35WWJrGu15YtcXfpsQQk7N+e/jpDNguy
+         W8dKlgBHV2IpFF86QEcySi5FDDyN04GtXG5gDu7J4w5rxlIAFX5iflb9r0ei/ClMnsSy
+         tvnvkEXcCulsAIoYs0lYUT/yLwAsdpAfr9LExVmXkZpBT+Lszg+Ip+9t7mtBFrYD7gwo
+         C6FQ==
+X-Gm-Message-State: ACgBeo2dXEEedk0PkWLWMtMclVUe364ZJ6QkkGLWblvI9Q5SiYryDgaZ
+	IxyjdEczhY1r98XopzlQetU=
+X-Google-Smtp-Source: AA6agR5cFuxjTSbp2ILQnRmRzNd5Pjxhu1SWu2c7J9+e7QO7+oxCtHIczngbO2Ls5GyWNgJnT/iQrA==
+X-Received: by 2002:ac2:58d5:0:b0:48b:3a88:641 with SMTP id u21-20020ac258d5000000b0048b3a880641mr6784864lfo.421.1661843106574;
+        Tue, 30 Aug 2022 00:05:06 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id m20-20020a056512359400b00492d1eb41dfsm1506038lfr.240.2022.08.30.00.05.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 00:05:05 -0700 (PDT)
+Message-ID: <b5116f19-4b00-1717-a7ff-eac988bde4a4@gmail.com>
+Date: Tue, 30 Aug 2022 10:04:58 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 03/14] gpu: drm: simplify drivers using
+ devm_regulator_*get_enable*()
+Content-Language: en-US
+To: Robert Foss <robert.foss@linaro.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1660934107.git.mazziesaccount@gmail.com>
+ <3aacca7d9a0240d95dc3cf103d114b5c85392e71.1660934107.git.mazziesaccount@gmail.com>
+ <CAG3jFyvQc4ZxEt8yRtiP6VAnurvfBdWzD7640DRXun+F7vDHog@mail.gmail.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <CAG3jFyvQc4ZxEt8yRtiP6VAnurvfBdWzD7640DRXun+F7vDHog@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_234648_708611_DAAD8061 
-X-CRM114-Status: GOOD (  16.99  )
+X-CRM114-CacheID: sfid-20220830_000514_205799_F7ED0781 
+X-CRM114-Status: GOOD (  22.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,71 +98,132 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-DQpPbiBUdWUgMzAgQXVnIDIwMjIgYXQgMTQ6MTMsIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4g
-d3JvdGU6DQoNCj4gT24gMjAyMi84LzI5IDE3OjQ4LCBKZXJvbWUgQnJ1bmV0IHdyb3RlOg0KPj4g
-WyBFWFRFUk5BTCBFTUFJTCBdDQo+PiBPbiBNb24gMTUgQXVnIDIwMjIgYXQgMjE6MjAsIFl1IFR1
-IDx5dS50dUBhbWxvZ2ljLmNvbT4gd3JvdGU6DQo+PiANCj4+Pj4+PiArDQo+Pj4+Pj4gK3N0YXRp
-YyBzdHJ1Y3QgY2xrX3JlZ21hcCBzNF9oZG1pX3BsbF9kY28gPSB7DQo+Pj4+Pj4gK8KgwqDCoCAu
-ZGF0YSA9ICYoc3RydWN0IG1lc29uX2Nsa19wbGxfZGF0YSl7DQo+Pj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgIC5lbiA9IHsNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFO
-QUNUUkxfSERNSVBMTF9DVFJMMCwNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hp
-ZnTCoMKgID0gMjgsDQo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLndpZHRowqDCoCA9
-IDEsDQo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5t
-ID0gew0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9I
-RE1JUExMX0NUUkwwLA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAg
-PSAwLA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSA4LA0KPj4+
-Pj4+ICvCoMKgwqDCoMKgwqDCoCB9LA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAubiA9IHsNCj4+
-Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERNSVBMTF9D
-VFJMMCwNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMTAsDQo+
-Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLndpZHRowqDCoCA9IDUsDQo+Pj4+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIH0sDQo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5mcmFjID0gew0KPj4+Pj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwx
-LA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAwLA0KPj4+Pj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSAxNywNCj4+Pj4+PiArwqDCoMKg
-wqDCoMKgwqAgfSwNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmwgPSB7DQo+Pj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgLnJlZ19vZmYgPSBBTkFDVFJMX0hETUlQTExfQ1RSTDAsDQo+Pj4+
-Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnNoaWZ0wqDCoCA9IDMxLA0KPj4+Pj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSAxLA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDC
-oCB9LA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAucnN0ID0gew0KPj4+Pj4+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+Pj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAyOSwNCj4+Pj4+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMSwNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwN
-Cj4+Pj4+PiArwqDCoMKgIH0sDQo+Pj4+Pj4gK8KgwqDCoCAuaHcuaW5pdCA9ICYoc3RydWN0IGNs
-a19pbml0X2RhdGEpew0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAubmFtZSA9ICJoZG1pX3BsbF9k
-Y28iLA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAub3BzID0gJm1lc29uX2Nsa19wbGxfcm9fb3Bz
-LA0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAucGFyZW50X2RhdGEgPSAoY29uc3Qgc3RydWN0IGNs
-a19wYXJlbnRfZGF0YSBbXSkgew0KPj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHsgLmZ3
-X25hbWUgPSAieHRhbCIsIH0NCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4+PiArwqDC
-oMKgwqDCoMKgwqAgLm51bV9wYXJlbnRzID0gMSwNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLyoN
-Cj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoCAqIERpc3BsYXkgZGlyZWN0bHkgaGFuZGxlIGhkbWkg
-cGxsIHJlZ2lzdGVycyBBVE0sIHdlIG5lZWQNCj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoCAqIE5P
-Q0FDSEUgdG8ga2VlcCBvdXIgdmlldyBvZiB0aGUgY2xvY2sgYXMgYWNjdXJhdGUgYXMNCj4+Pj4+
-PiArwqDCoMKgwqDCoMKgwqDCoCAqIHBvc3NpYmxlDQo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAg
-Ki8NCj4+Pj4+DQo+Pj4+PiBJcyBpdCByZWFsbHkgPw0KPj4+Pj4NCj4+Pj4+IEdpdmVuIHRoYXQg
-SERNSSBzdXBwb3J0IGZvciB0aGUgczQgaXMgdGhlcmUgeWV0LCB0aGUNCj4+Pj4+IGFkZHJlc3Nl
-cyBoYXZlIGNoYW5nZXMgYW5kIHRoZSByZWdpb24gaXMgbm8gbG9uZ2VyIGEgc3lzY29uLCBpdCBp
-cyB0aW1lDQo+Pj4+PiBmb3IgdGhlIEhETUkgZHJpdmVyIHRvIGdldCBmaXhlZC4NCj4+PiBUaGUg
-SERNSSBQTEwgaXMgY29uZmlndXJlZCBpbiB0aGUgVWJvb3QgcGhhc2UgYW5kIGRvZXMgbm90IGNo
-YW5nZSB0aGUNCj4+PiBmcmVxdWVuY3kgaW4gdGhlIGtlcm5lbCBwaGFzZS4gU28gd2UgdXNlIHRo
-ZSBOT0NBQ0hFIGZsYWcgYW5kDQo+Pj4gInJvX29wcyIuDQo+PiBUaGF0J3Mgbm8gcmVhc29uIHRv
-IHB1dCBOT0NBQ0hFIG9yIHJvLW9wcw0KPj4gSWYgeW91IHdhbnQgdGhlIGZyZXF1ZW5jaWVzIHRv
-IGJlIHN0YXRpY2FsbHkgYXNzaW5nZWQsIHRoZSBjb3JyZWN0IHdheQ0KPj4gd291bGQgYmUgdGhy
-b3VnaCBhc3NpZ25lZC1yYXRlIGluIERUIEkgZ3Vlc3MuDQo+DQo+IE9rYXkuIFlvdSdyZSByaWdo
-dC4gSG93ZXZlciwgd2hlbiByZWdpc3RlcmluZyB3aXRoIE9QUywgSERNSSBQTEwgd2lsbCBiZQ0K
-PiByZXNldC4gSXQgdGFrZXMgdGltZSBmb3IgUExMIHRvIHN0YWJpbGl6ZSB0aGUgb3V0cHV0IGZy
-ZXF1ZW5jeSwgd2hpY2ggd2lsbA0KPiBsZWFkIHRvIHRoZSBzdGFydHVwIHNjcmVlbiBmbGFzaGlu
-Zy4NCj4NCj4gSSB3b3VsZCBsaWtlIHRvIGtub3cgaG93IHRvIHNvbHZlIHRoaXMgcHJvYmxlbSBp
-ZiBub3QgdXNpbmcgcm9fb3BzLg0KPg0KPj4gDQoNCllvdSBjYW4gYWRkIG5ldyBvcHMgb3IgdHdl
-YWsgdGhlIGN1cnJlbnQgaW5pdCBmdW5jdGlvbi4NCg0KU2FmZXN0IHdvdWxkIGJlIHRvIGRvIHRo
-ZSBmb2xsb3dpbmcgOg0KICogQ2hlY2sgaWYgdGhlIFBMTHMgaXMgYWxyZWFkeSBvbi4NCiAqIENo
-ZWNrIGlmIHRoZSAncGxsLT5pbml0X3JlZ3MnIG1hdGNoZXMgd2hhdCBpcyBhbHJlYWR5IHNldA0K
-ICAgLSBpZiBzbywgeW91IGNhbiBza2lwIHRoZSByZXNldA0KICAgLSBpZiBub3QsIHlvdSBuZWVk
-IHRvIHJlc2V0IGFzIHVzdWFsDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+On 8/29/22 17:25, Robert Foss wrote:
+
+Thanks for the review Robert.
+
+> Hi Matti,
+> 
+> On Fri, 19 Aug 2022 at 21:18, Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>
+>> Simplify drivers using managed "regulator get and enable".
+>>
+>> meson:
+>> Use the devm_regulator_get_enable_optional(). Also drop the seemingly
+>> unused struct member 'hdmi_supply'.
+>>
+>> sii902x:
+>> Simplify using devm_regulator_bulk_get_enable()
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> ---
+>> v2 => v3:
+>> No changes
+>>
+>> RFCv1 => v2:
+>> - Change also sii902x to use devm_regulator_bulk_get_enable()
+>>
+>> Please note - this is only compile-tested due to the lack of HW. Careful
+>> review and testing is _highly_ appreciated.
+>> ---
+>>   drivers/gpu/drm/bridge/sii902x.c      | 22 +++-------------------
+>>   drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
+>>   2 files changed, 6 insertions(+), 39 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+>> index 7ab38d734ad6..162f9c87eeb2 100644
+>> --- a/drivers/gpu/drm/bridge/sii902x.c
+>> +++ b/drivers/gpu/drm/bridge/sii902x.c
+>> @@ -171,7 +171,6 @@ struct sii902x {
+>>          struct drm_connector connector;
+>>          struct gpio_desc *reset_gpio;
+>>          struct i2c_mux_core *i2cmux;
+>> -       struct regulator_bulk_data supplies[2];
+>>          bool sink_is_hdmi;
+>>          /*
+>>           * Mutex protects audio and video functions from interfering
+>> @@ -1072,6 +1071,7 @@ static int sii902x_probe(struct i2c_client *client,
+>>          struct device *dev = &client->dev;
+>>          struct device_node *endpoint;
+>>          struct sii902x *sii902x;
+>> +       static const char * const supplies[] = {"iovcc", "cvcc12"};
+>>          int ret;
+>>
+>>          ret = i2c_check_functionality(client->adapter,
+>> @@ -1122,27 +1122,13 @@ static int sii902x_probe(struct i2c_client *client,
+>>
+>>          mutex_init(&sii902x->mutex);
+>>
+>> -       sii902x->supplies[0].supply = "iovcc";
+>> -       sii902x->supplies[1].supply = "cvcc12";
+>> -       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(sii902x->supplies),
+>> -                                     sii902x->supplies);
+>> -       if (ret < 0)
+>> -               return ret;
+>> -
+>> -       ret = regulator_bulk_enable(ARRAY_SIZE(sii902x->supplies),
+>> -                                   sii902x->supplies);
+>> +       ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(supplies), supplies);
+>>          if (ret < 0) {
+>>                  dev_err_probe(dev, ret, "Failed to enable supplies");
+>>                  return ret;
+>>          }
+>>
+>> -       ret = sii902x_init(sii902x);
+>> -       if (ret < 0) {
+>> -               regulator_bulk_disable(ARRAY_SIZE(sii902x->supplies),
+>> -                                      sii902x->supplies);
+>> -       }
+>> -
+>> -       return ret;
+>> +       return sii902x_init(sii902x);
+>>   }
+>>
+>>   static int sii902x_remove(struct i2c_client *client)
+>> @@ -1152,8 +1138,6 @@ static int sii902x_remove(struct i2c_client *client)
+>>
+>>          i2c_mux_del_adapters(sii902x->i2cmux);
+>>          drm_bridge_remove(&sii902x->bridge);
+>> -       regulator_bulk_disable(ARRAY_SIZE(sii902x->supplies),
+>> -                              sii902x->supplies);
+>>
+>>          return 0;
+>>   }
+> 
+> Ideally this patch would be split into two parts here, due to
+> maintainership boundaries.
+
+Ok. I will in any case respin this series when the dependency patches 
+from Mark's tree have been merged to the -rc1. I can split this to 
+patch/driver if it is preferred. I just though I'll decrease amount of 
+mails by squashing these almost trivial changes.
+
+> 
+> For the sii902x part, please add my r-b.
+> 
+> Reviewed-by: Robert Foss <robert.foss@linaro.org>
+Thanks.
+
+Best Regards
+  -- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
