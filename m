@@ -4,50 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE671ECAAD4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Sep 2022 02:46:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02D27C6FA81
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Sep 2022 04:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iYd+AZSWYMdrparSrelOOPK+56o2HvJEO3aMU1caXYs=; b=YzPtgmgW7J2UIN
-	AD65GtGOL6cABwkztOSg7XuKIF1EcbrYyc8/heHR4tphVhtY3B6DLnqLWNqk8RnZxqeOtpc1R+h3j
-	01bHtGiGdciDWlRVM726YCc8fO6WIE41JhQRhJEY33ZX+WA88QLyL/SaqrYJKZl4AqSRQV7QaK1qu
-	RkL8OMj6WUvuEI+K6y/sHDr4tZNNupoXD6SWkBkqBMuFywjDm8AG7jSd1iOYI+g8yBlsHj4chybLB
-	ATHuGc6EQjVUIUQ7+CQ5A0eFmyyWkkl+ZsisQcovHLcpWBE7w5qVCC9Ug8Vc+Blv7Sb7KI/MGSYqV
-	af10kBk5gbNC08yNzLAg==;
+	List-Owner; bh=R364KVs9y6aKA3IEFfsX2rKsXMp44AyxzyfVLvKrewc=; b=HI+Tj+cMmd1uQq
+	adhVXoJitf2SBJIiFEBvLMU2uIWlNa7g4GLprMlE7jSNO8yjiOcDHG+7ut2WBuUEOtgVJlg/VOTNk
+	ZjKqycfkvAtEThUr1l7nD06aSY70EJ6hOrHrFEX5Xm5GHDFV+KWtTe8S3FBx8rEhdzmfqJQbWGWu5
+	85FwyBMfqM49zs+ZrlAZJZMwqOiYI7raLvUa60LlUJ0iJOUUa4yFx1D7F7n9yKGp5KOuqUG7iSoYp
+	fuBCJciWbuhF1PoGBAtbqoS95IP2xiv95NEYJ+XX0aCoFvdAvp+wL5xyr+3ende4kmgwuyX+PTX4+
+	4SV4EDHMIGw2gfk4/9fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oTaE6-009FZp-KG; Thu, 01 Sep 2022 02:46:42 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1oTy0c-0001us-Rb; Fri, 02 Sep 2022 04:10:22 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oTaDX-009FIO-UG; Thu, 01 Sep 2022 02:46:09 +0000
-Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.9; Thu, 1 Sep 2022
- 10:45:47 +0800
-From: Jiucheng Xu <jiucheng.xu@amlogic.com>
-To: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>, Mark
- Rutland <mark.rutland@arm.com>, Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chris Healy
-	<cphealy@gmail.com>, Jiucheng Xu <jiucheng.xu@amlogic.com>
-Subject: [PATCH v6 4/4] arm64: dts: meson: Add DDR PMU node
-Date: Thu, 1 Sep 2022 10:45:26 +0800
-Message-ID: <20220901024526.2833232-4-jiucheng.xu@amlogic.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220901024526.2833232-1-jiucheng.xu@amlogic.com>
-References: <20220901024526.2833232-1-jiucheng.xu@amlogic.com>
+	id 1oTy0Z-0001rr-Sz; Fri, 02 Sep 2022 04:10:21 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 2AA68B829B5;
+	Fri,  2 Sep 2022 04:10:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B5ED8C433B5;
+	Fri,  2 Sep 2022 04:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1662091814;
+	bh=X6Sh1GLGzcjf5HWKApYGwzk9soYOj7EmNjdAbMqcZPY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=p4w5aRnBPArvF0i9Fm9aCMxhFms+bGwwIpLDaCO2TardEyK0pQQEjKHr6ixmHwLZM
+	 hSiwXq8SbwJVEGT2SAXUwdyS4Yzz8b+UhUn32cWdHmT02jud0Lc+44pcyfQiXW5wTb
+	 bK2LcW+1ZzRbkB7SgG6xsTL4lNV7cTKWlofdK8kuK/nHWpL60dnzJp6qlYZkMBZB5C
+	 a/g1dt5M4s3lbTB4qWAnOYPBft9dshGEeUgXHV9ScjitRYbYKhUbwJ85X337/ek/3x
+	 xzaeSFamgkaFmntJCYCtwKYxNJfAT8YAkJFyxlB4+bMeIkN9DybROQ4Av3ibA9lUXz
+	 bSDCA81gfD8MQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 977CEE924D6;
+	Fri,  2 Sep 2022 04:10:14 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.88.11.200]
+Subject: Re: [PATCH net] Revert "net: phy: meson-gxl: improve link-up behavior"
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id:  <166209181460.19149.17976066584717562078.git-patchwork-notify@kernel.org>
+Date: Fri, 02 Sep 2022 04:10:14 +0000
+References: <8deeeddc-6b71-129b-1918-495a12dc11e3@gmail.com>
+In-Reply-To: <8deeeddc-6b71-129b-1918-495a12dc11e3@gmail.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: kuba@kernel.org, davem@davemloft.net, edumazet@google.com,
+ pabeni@redhat.com, andrew@lunn.ch, linux@armlinux.org.uk,
+ narmstrong@baylibre.com, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220831_194607_998894_1455CE5F 
-X-CRM114-Status: UNSURE (   9.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220901_211020_102941_6E6A11BD 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,92 +76,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add DDR PMU device node for G12 series SoC
+Hello:
 
-Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
----
-Changes v6 -> v5:
-  - No change
+This patch was applied to netdev/net.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Changes v5 -> v4:
-  - Split reg into two items
-  - Alphabet order location
+On Wed, 31 Aug 2022 21:20:49 +0200 you wrote:
+> This reverts commit 2c87c6f9fbddc5b84d67b2fa3f432fcac6d99d93.
+> Meanwhile it turned out that the following commit is the proper
+> workaround for the issue that 2c87c6f9fbdd tries to address.
+> a3a57bf07de2 ("net: stmmac: work around sporadic tx issue on link-up")
+> It's nor clear why the to be reverted commit helped for one user,
+> for others it didn't make a difference.
+> 
+> [...]
 
-Changes v3 -> v4:
-  - No change
+Here is the summary with links:
+  - [net] Revert "net: phy: meson-gxl: improve link-up behavior"
+    https://git.kernel.org/netdev/net/c/7fdc77665f3d
 
-Changes v2 -> v3:
-  - No change
-
-Changes v1 -> v2:
-  - Remove model, dmc_nr, chann_nr properties
-  - Add g12a-ddr-pmu, g12b-ddr-pmu, sm1-ddr-pmu compatibles as
-    identifier
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi       | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 4 ++++
- 4 files changed, 18 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 45947c1031c4..9dbd50820b1c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1705,6 +1705,12 @@ internal_ephy: ethernet_phy@8 {
- 			};
- 		};
- 
-+		pmu: pmu@ff638000 {
-+			reg = <0x0 0xff638000 0x0 0x100>,
-+			      <0x0 0xff638c00 0x0 0x100>;
-+			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
- 		aobus: bus@ff800000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xff800000 0x0 0x100000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index fb0ab27d1f64..0e8b57283f31 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -133,3 +133,7 @@ map1 {
- 		};
- 	};
- };
-+
-+&pmu {
-+	compatible = "amlogic,g12a-ddr-pmu";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-index ee8fcae9f9f0..18791ef51f58 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -139,3 +139,7 @@ map1 {
- &mali {
- 	dma-coherent;
- };
-+
-+&pmu {
-+	compatible = "amlogic,g12b-ddr-pmu";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 80737731af3f..c307b34ccd72 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -520,6 +520,10 @@ &pcie {
- 	power-domains = <&pwrc PWRC_SM1_PCIE_ID>;
- };
- 
-+&pmu {
-+	compatible = "amlogic,sm1-ddr-pmu";
-+};
-+
- &pwrc {
- 	compatible = "amlogic,meson-sm1-pwrc";
- };
+You are awesome, thank you!
 -- 
-2.25.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
