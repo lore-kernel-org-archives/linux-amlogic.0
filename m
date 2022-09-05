@@ -4,89 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97892ECAAD5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Sep 2022 16:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA7BCECAAD3
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Sep 2022 16:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4OMSVikH2RVNnF3UWKqs8D4IODJPeb6RVgTPhYneHk4=; b=NjB0olGHcUa3TX
-	NgzbFf9t2yI4AN9uI+rxMuAZ2oiBwYLQUrx18Gsbys9zRzCQ26qTQsuRHvmVTHV33XYuHlfNzIsGb
-	fc2lgMWW9Qaf7GOVV+f0R82IYQkQHyUlhjGpUbpermjo6DAP14ydE9qDZbs4fAogrUTVt3SCJXJos
-	U97bHzZjtr56L8wlL660F8DKUj8ZWf7FIqHMu5kk/vyTut9Yi14EM8WfajNkpchjRJG+n1hFGf/yd
-	4UyiUuiG6uNcNUcpwe8R14yBVPwqzcOYFpBZdx21KFVEIFGjyc5fM/AK9T9KIRKn8vrH4SLyMAV3i
-	p6DY8wDmLd4nkON4G/ww==;
+	List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:Message-ID:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=WlJc6RS1XyPpJiydvYq09DhvsVRQrXRTujJlShlEy/s=; b=aTqQi24PPV4QxRXaz0NUoo5Avi
+	bdrmuLiqpLj1VfV4r7iEY8AUtHPFbj7sg8HwQStkx+qxIkiMaPVI4u/yAIL9rRD1qgCDx3Z1ST+b6
+	bd9Ve5vdqSacz8mdTBV7t2AIMSqvpe+VkMT6BHQ7AxDrPGoVwLaCEJ5Og94Tbb1njqjrYrPjY2phf
+	dLoJwXxjdaUBLxQjcpeNs669UZ+7O4B/43XZdYQNWBtJdlJ4tFL+4QVcj9bwgjUFia6V8Gk31McpO
+	namQPzi7XLnTc5ZVhxI2U3+VmbP+hB033fM4JcSxYAY4r3c3mTHEYNAooBMD1LAyH8DocdKWDHIAI
+	P+pycfPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVEjJ-006epR-OB; Mon, 05 Sep 2022 16:13:45 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1oVFFv-00746e-9A; Mon, 05 Sep 2022 16:47:27 +0000
+Received: from desiato.infradead.org ([90.155.92.199])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVBLo-002KwB-Ti
-	for linux-amlogic@lists.infradead.org; Mon, 05 Sep 2022 12:37:32 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id e20so11157939wri.13
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 Sep 2022 05:37:08 -0700 (PDT)
+	id 1oVCmr-004B56-KS
+	for linux-amlogic@bombadil.infradead.org; Mon, 05 Sep 2022 14:09:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:Subject:Cc:To:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=46nHfwcVM1dDNCdF68Lvdzc8m/qkXwrQBKqu1SebdGU=; b=iHzNV2n3V4it/W9D+XlCMBc0Q9
+	8mokyYpGgMxM9EqB8kDTYKOzvDNmIwvyV3RXUdqGsbmshQAcU3Np4oRmOaqiBrhRKN5LasTDqRHwa
+	S/6A5+Pii2l6tj5ZZS6wjy64srngVyJSTwhYZqcTC6CDz5VUNxCiAYNZ5Z5CcHcog3Q2a+DP/qcvf
+	hMVv8k32hS37Y3hCk1E79DfoxbrQO76ujnOdYZIkDlgw5/YkwZYCXyjN0BtN06OcWqS1r4V25Vzhn
+	cMjkPPjaRcNaon8tvMALN/J9QEPiDJKeUATx50/HVGtPNgTSPyA4iouTtDE8RPQtQD7qelcMhPDjm
+	86HvE/yA==;
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oVCaQ-009g9V-4D
+	for linux-amlogic@lists.infradead.org; Mon, 05 Sep 2022 13:56:28 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id h204-20020a1c21d5000000b003a5b467c3abso7844502wmh.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Sep 2022 06:56:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date;
-        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
-        b=q8nEcRgVsOrOU1VFDfPIB27R/2mM02Druvaoqf8Su3GfKhPcPrkLSfHnsjcdDg2AEw
-         uCRXvSP6hg0J2YFbFY1DY0nTlWo3ITvCkb7TB8zuOH+n90RKd+sYCl0D4mbSl1LP8ikZ
-         jFyFUQceu2hJK1saRg/ZufPdyRlFSCxMqO2HMOi0dGPQlyT/JUkKllKPc3AvwllhQLDs
-         jlPBfv5j4i1vkUOBdBE/6hIh1ZYAw2Uky3j86WKysmjH9XA76/gP5+LHecuVlHzzPwGJ
-         XPtgD5qKUEOX/atbh+5mmvgKuwfk0iQcfA6PHM5rf06SJgTV8VVFo3JM9qe+pt8Twi0e
-         O8/Q==
+        h=content-transfer-encoding:organization:content-language:subject:cc
+         :to:from:user-agent:mime-version:date:message-id:from:to:cc:subject
+         :date;
+        bh=46nHfwcVM1dDNCdF68Lvdzc8m/qkXwrQBKqu1SebdGU=;
+        b=ltzfA3Gd+3ClHYPACNX8TAyUi62J7/B9l8WmYYZc+JsvK8w0IByaJRegcReh5AwCy3
+         uJZ0+cQZ10HTp/d0EREkbggRncVZZzdLNfWH56MmzoMi5QMNNDua650zAklG9ektXBTV
+         vvrE7qt3nbUbJF1EFjsUkJOE0N7CmRlYyQ88gfBordGaBokmEZu7ltv89xbgdbYrDeWu
+         iPgtj7SflLR5sobYqJKl09V9y4JBsaCEgLJQleYs1g2Am7QpKaaUvqD1eCsBPLKiz4Pl
+         Y3OQ2ZwsR5tesezdEf+TgYriKIhlqcq3B4cjMMX/0W8u4VmzzwSssjobFqs/AAQfA2SW
+         fIgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
-        b=h1WVwuYDruRspss4LgfbToJbhEMZbZ2rUHoqCy/Pookztl09nTOuHxLsAnHeKguGKf
-         r3JLeu7/9OoIeTdLIq1lO6Ct+tck0MYv1R+xtj5fFl52AxdTA5mcy0vWITZRsI/mn5ET
-         xKhMX50ClK3ARLj3PLXvcU0zeUqsrt2pkSd0W/BmQgesjhScuyG5gpMPNy//2LLPR9gA
-         JD4eK/rzERu/NHOreIDNudoOtQikMSZhNGHDHGW3hFM6HnmXroHsWoy8XXgssM5R5JJm
-         v3WUZ/coHJ6WKlszrTglhoLsG4wLRrJ91CuJtDh+PMa8W7EA29B47d2QHzNTk82j07EC
-         suiw==
-X-Gm-Message-State: ACgBeo0LQwajq+waM2ba+Zm+zBRk3ecmv++lxv4jUiNpeEIglwPriKsd
-	7dBNVuCuSSYs1ISZoZHSRM/Bhw==
-X-Google-Smtp-Source: AA6agR7Fv8c2V+OgVGbhYzvF0iVD7ZtJgvDsUEj0Oadue3v7WJjZRCNM6ua7SGOrhlkYox4vxWdvrA==
-X-Received: by 2002:a5d:64cf:0:b0:220:6d8e:1db0 with SMTP id f15-20020a5d64cf000000b002206d8e1db0mr23297118wri.564.1662381427668;
-        Mon, 05 Sep 2022 05:37:07 -0700 (PDT)
+        h=content-transfer-encoding:organization:content-language:subject:cc
+         :to:from:user-agent:mime-version:date:message-id:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=46nHfwcVM1dDNCdF68Lvdzc8m/qkXwrQBKqu1SebdGU=;
+        b=iE1rG7Z6tPuVjJ/l2uYRF0wQ63fbBFcL9M1IRszNeznO4uvXQqE2IRtiMSEEnMWtdx
+         Cr4af8b/d7Z18p0Xe4grOcnx/Q9aK2tI0ND6OEfbd59KvmytbXA6lEN5SS3q2SoXgvZh
+         usc/T/0x3KCzAqRSi6sAH2d21Ylmj4lsRWZinq6ubdRy3ZUGpXmjqGvSOTrZ1My2/XZ7
+         u4XRToqR4ygzDQ0GrNWqf//UYtWd1lf50NtByKkUyU5w4krgkuwTfkzAfUPhuyoapXC0
+         dvZOaKjy1CTpuqSqk/lGMkwecW9I472uatjmF4TWh6XAQ4P4aR2LRBEWR4f19s6LZu0W
+         W/TA==
+X-Gm-Message-State: ACgBeo3Bsej7kwo1uDVLP0khsZYhVAIXNKi4R3avw2V+/5JUkExEtyUo
+	QnE9S9IRMiABLXGe0u6ug2Gy+g==
+X-Google-Smtp-Source: AA6agR5+RfLa+a1KzdIA7RtQhGcgSFgElRnEUw5hzLPm9OQeakg4mFNtRMzXb4uob/qFX1XtV1bXHA==
+X-Received: by 2002:a05:600c:600b:b0:3a5:b811:e7fc with SMTP id az11-20020a05600c600b00b003a5b811e7fcmr11412504wmb.190.1662386184598;
+        Mon, 05 Sep 2022 06:56:24 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f365:27e9:453c:4c15? ([2a01:e0a:982:cbb0:f365:27e9:453c:4c15])
-        by smtp.gmail.com with ESMTPSA id g26-20020a7bc4da000000b003a54f49c1c8sm10534879wmk.12.2022.09.05.05.37.06
+        by smtp.gmail.com with ESMTPSA id z15-20020a5d654f000000b002211fc70174sm10598832wrv.99.2022.09.05.06.56.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 05:37:06 -0700 (PDT)
-Message-ID: <b9886af8-8580-e553-13b4-d730d1113456@baylibre.com>
-Date: Mon, 5 Sep 2022 14:37:05 +0200
+        Mon, 05 Sep 2022 06:56:24 -0700 (PDT)
+Message-ID: <ea093c00-a4bb-fb80-3430-71916b2853f8@baylibre.com>
+Date: Mon, 5 Sep 2022 15:56:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH RESEND v8 0/5] fix the meson NFC clock
-Content-Language: en-US
-To: Liang Yang <liang.yang@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
-Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
- <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
- BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
- <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20220905075027.19114-1-liang.yang@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: [GIT PULL] amlogic Drivers updates for v6.1
+Content-Language: en-US
 Organization: Baylibre
-In-Reply-To: <20220905075027.19114-1-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220905_053726_674478_2A107234 
-X-CRM114-Status: GOOD (  20.39  )
+X-CRM114-CacheID: sfid-20220905_145626_257966_91046A0A 
+X-CRM114-Status: UNSURE (   7.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,80 +107,33 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 05/09/2022 09:50, Liang Yang wrote:
-> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
-> which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
-> the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
-> a common MMC and NAND sub-clock was discussed and planed to be implemented
-> as NFC clock provider, but now this series of patches of a common MMC and
-> NAND sub-clock are never being accepted and the current binding was never
-> valid. the reasons are:
-> 1. EMMC and NAND, which are mutually exclusive anyway
-> 2. coupling the EMMC and NAND.
-> 3. it seems that a common MMC and NAND sub-clock is over engineered.
-> and let us see the link for more information:
-> https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
-> so The meson nfc can't work now, let us rework the clock.
->
-> Changes since v7 [8]
->   - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
->     ARCH_MESON || COMPILE_TEST || COMMON_CLK.
->   - collect the review and ack
->
-> Changes since v6 [7]
->   - use COMMON_CLK instead of !HAVE_LEGACY_CLK
->
-> Changes since v5 [6]
->   - add change log for patch 3/5
->   - add patch 5/5 to fix the reporting error of test robot
->
-> Changes since v4 [5]
->   - split the dt binding patch into two patches, one for fixing,
->     clock, the other for coverting to yaml
->   - split the nfc driver patch into two patches, one for fixing
->     clock, the other for refining the get nfc resource.
->
-> Changes since v3 [4]
->   - use devm_platform_ioremap_resource_byname
->   - dt_binding_check for mtd/amlogic,meson-nand.yaml
->
-> Changes since v2 [3]
->   - use fw_name from dts, instead the wrong way using __clk_get_name
->   - reg resource size change to 0x800
->   - use reg-names
->
-> Changes since v1 [2]
->   - use clk_parent_data instead of parent_names
->   - define a reg resource instead of sd_emmc_c_clkc
->
-> [1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
->      https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
-> [2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
-> [3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
-> [4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
-> [5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
-> [6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
-> [7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
->
-> Liang Yang (5):
->    dt-bindings: nand: meson: fix meson nfc clock
->    mtd: rawnand: meson: fix the clock
->    mtd: rawnand: meson: refine resource getting in probe
->    dt-bindings: nand: meson: convert txt to yaml
->    mtd: rawnand: meson: not support legacy clock
->
->   .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
->   .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
->   drivers/mtd/nand/raw/Kconfig                  |  2 +-
->   drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
->   4 files changed, 131 insertions(+), 105 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->
-It seems you sent only patch 4
+Here's a Amlogic Drivers change for v6.1, with of_get_parent() refcount fixes for meson_pwrc drivers.
 
 Neil
 
+The following changes since commit 568035b01cfb107af8d2e4bd2fb9aea22cf5b868:
+
+   Linux 6.0-rc1 (2022-08-14 15:50:18 -0700)
+
+are available in the Git repository at:
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.1
+
+for you to fetch changes up to 9491cff16a4996aee578adf9f41acfb1bc483df9:
+
+   soc: amlogic: meson-pwrc: Hold reference returned by of_get_parent() (2022-09-05 09:23:54 +0200)
+
+----------------------------------------------------------------
+Amlogic Drivers changes for v6.1:
+- Hold reference returned by of_get_parent() in meson_pwrc
+
+----------------------------------------------------------------
+Liang He (1):
+       soc: amlogic: meson-pwrc: Hold reference returned by of_get_parent()
+
+  drivers/soc/amlogic/meson-ee-pwrc.c     | 5 ++++-
+  drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 5 ++++-
+  2 files changed, 8 insertions(+), 2 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
