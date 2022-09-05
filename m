@@ -4,53 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C98DECAAD3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Sep 2022 09:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97892ECAAD5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Sep 2022 16:14:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BaZ1D90pZWIZNJwRgeGdS2X7dIM9O7Yp3Cs3qB7DCeo=; b=w1fjs+nYJ3bDfo
-	oIKFVblZfWi38wcxfORTVPA+zr5+OvrHSKStm/w9F+tbv5pDnvw6wedHkHXy5hujJD6pGUnCBBdkl
-	bbW+prUt1ggyNATRTWBOyGtC0L5En9gq5/GiTJEzcXCo/I1ZGH8XRNhPdEaqGl+/uDSeE8kIWjiOU
-	py4tEZPVlgfed7G/JgRlidk55j/DOF9/R48Z5XL/nZ5qiJAQQ/qwxJJGLA93R4SJ55zFucYIhu/kT
-	bniFtyLfoevQHP80Bs1lbBzyUiSp0oaS7j/bp6P77c1A39a6rsa/c171L0bE5p/acsURU8TBwjaWb
-	aPNSmhsn6GqmsD2m8k7A==;
+	List-Owner; bh=4OMSVikH2RVNnF3UWKqs8D4IODJPeb6RVgTPhYneHk4=; b=NjB0olGHcUa3TX
+	NgzbFf9t2yI4AN9uI+rxMuAZ2oiBwYLQUrx18Gsbys9zRzCQ26qTQsuRHvmVTHV33XYuHlfNzIsGb
+	fc2lgMWW9Qaf7GOVV+f0R82IYQkQHyUlhjGpUbpermjo6DAP14ydE9qDZbs4fAogrUTVt3SCJXJos
+	U97bHzZjtr56L8wlL660F8DKUj8ZWf7FIqHMu5kk/vyTut9Yi14EM8WfajNkpchjRJG+n1hFGf/yd
+	4UyiUuiG6uNcNUcpwe8R14yBVPwqzcOYFpBZdx21KFVEIFGjyc5fM/AK9T9KIRKn8vrH4SLyMAV3i
+	p6DY8wDmLd4nkON4G/ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oV8cH-00GcFe-2W; Mon, 05 Sep 2022 09:42:05 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1oVEjJ-006epR-OB; Mon, 05 Sep 2022 16:13:45 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oV6su-00DfgJ-Kc; Mon, 05 Sep 2022 07:51:18 +0000
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 5 Sep 2022
- 15:50:51 +0800
-From: Liang Yang <liang.yang@amlogic.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
-CC: Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
-	<narmstrong@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
-	XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
-	<kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, "YongHui
- Yu" <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to yaml
-Date: Mon, 5 Sep 2022 15:50:27 +0800
-Message-ID: <20220905075027.19114-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220905075027.19114-1-liang.yang@amlogic.com>
-References: <20220905075027.19114-1-liang.yang@amlogic.com>
+	id 1oVBLo-002KwB-Ti
+	for linux-amlogic@lists.infradead.org; Mon, 05 Sep 2022 12:37:32 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id e20so11157939wri.13
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Sep 2022 05:37:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
+        b=q8nEcRgVsOrOU1VFDfPIB27R/2mM02Druvaoqf8Su3GfKhPcPrkLSfHnsjcdDg2AEw
+         uCRXvSP6hg0J2YFbFY1DY0nTlWo3ITvCkb7TB8zuOH+n90RKd+sYCl0D4mbSl1LP8ikZ
+         jFyFUQceu2hJK1saRg/ZufPdyRlFSCxMqO2HMOi0dGPQlyT/JUkKllKPc3AvwllhQLDs
+         jlPBfv5j4i1vkUOBdBE/6hIh1ZYAw2Uky3j86WKysmjH9XA76/gP5+LHecuVlHzzPwGJ
+         XPtgD5qKUEOX/atbh+5mmvgKuwfk0iQcfA6PHM5rf06SJgTV8VVFo3JM9qe+pt8Twi0e
+         O8/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
+        b=h1WVwuYDruRspss4LgfbToJbhEMZbZ2rUHoqCy/Pookztl09nTOuHxLsAnHeKguGKf
+         r3JLeu7/9OoIeTdLIq1lO6Ct+tck0MYv1R+xtj5fFl52AxdTA5mcy0vWITZRsI/mn5ET
+         xKhMX50ClK3ARLj3PLXvcU0zeUqsrt2pkSd0W/BmQgesjhScuyG5gpMPNy//2LLPR9gA
+         JD4eK/rzERu/NHOreIDNudoOtQikMSZhNGHDHGW3hFM6HnmXroHsWoy8XXgssM5R5JJm
+         v3WUZ/coHJ6WKlszrTglhoLsG4wLRrJ91CuJtDh+PMa8W7EA29B47d2QHzNTk82j07EC
+         suiw==
+X-Gm-Message-State: ACgBeo0LQwajq+waM2ba+Zm+zBRk3ecmv++lxv4jUiNpeEIglwPriKsd
+	7dBNVuCuSSYs1ISZoZHSRM/Bhw==
+X-Google-Smtp-Source: AA6agR7Fv8c2V+OgVGbhYzvF0iVD7ZtJgvDsUEj0Oadue3v7WJjZRCNM6ua7SGOrhlkYox4vxWdvrA==
+X-Received: by 2002:a5d:64cf:0:b0:220:6d8e:1db0 with SMTP id f15-20020a5d64cf000000b002206d8e1db0mr23297118wri.564.1662381427668;
+        Mon, 05 Sep 2022 05:37:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f365:27e9:453c:4c15? ([2a01:e0a:982:cbb0:f365:27e9:453c:4c15])
+        by smtp.gmail.com with ESMTPSA id g26-20020a7bc4da000000b003a54f49c1c8sm10534879wmk.12.2022.09.05.05.37.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 05:37:06 -0700 (PDT)
+Message-ID: <b9886af8-8580-e553-13b4-d730d1113456@baylibre.com>
+Date: Mon, 5 Sep 2022 14:37:05 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.21]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RESEND v8 0/5] fix the meson NFC clock
+Content-Language: en-US
+To: Liang Yang <liang.yang@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, XianWei Zhao
+ <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu
+ <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20220905075027.19114-1-liang.yang@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220905075027.19114-1-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220905_005109_142351_6BF0D6F5 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20220905_053726_674478_2A107234 
+X-CRM114-Status: GOOD (  20.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,178 +98,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
+Hi,
 
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
- .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
- 2 files changed, 88 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
- create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+On 05/09/2022 09:50, Liang Yang wrote:
+> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+> which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+> the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+> a common MMC and NAND sub-clock was discussed and planed to be implemented
+> as NFC clock provider, but now this series of patches of a common MMC and
+> NAND sub-clock are never being accepted and the current binding was never
+> valid. the reasons are:
+> 1. EMMC and NAND, which are mutually exclusive anyway
+> 2. coupling the EMMC and NAND.
+> 3. it seems that a common MMC and NAND sub-clock is over engineered.
+> and let us see the link for more information:
+> https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+> so The meson nfc can't work now, let us rework the clock.
+>
+> Changes since v7 [8]
+>   - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
+>     ARCH_MESON || COMPILE_TEST || COMMON_CLK.
+>   - collect the review and ack
+>
+> Changes since v6 [7]
+>   - use COMMON_CLK instead of !HAVE_LEGACY_CLK
+>
+> Changes since v5 [6]
+>   - add change log for patch 3/5
+>   - add patch 5/5 to fix the reporting error of test robot
+>
+> Changes since v4 [5]
+>   - split the dt binding patch into two patches, one for fixing,
+>     clock, the other for coverting to yaml
+>   - split the nfc driver patch into two patches, one for fixing
+>     clock, the other for refining the get nfc resource.
+>
+> Changes since v3 [4]
+>   - use devm_platform_ioremap_resource_byname
+>   - dt_binding_check for mtd/amlogic,meson-nand.yaml
+>
+> Changes since v2 [3]
+>   - use fw_name from dts, instead the wrong way using __clk_get_name
+>   - reg resource size change to 0x800
+>   - use reg-names
+>
+> Changes since v1 [2]
+>   - use clk_parent_data instead of parent_names
+>   - define a reg resource instead of sd_emmc_c_clkc
+>
+> [1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+>      https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+> [2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+> [3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+> [4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+> [5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+> [6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+> [7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
+>
+> Liang Yang (5):
+>    dt-bindings: nand: meson: fix meson nfc clock
+>    mtd: rawnand: meson: fix the clock
+>    mtd: rawnand: meson: refine resource getting in probe
+>    dt-bindings: nand: meson: convert txt to yaml
+>    mtd: rawnand: meson: not support legacy clock
+>
+>   .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+>   .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+>   drivers/mtd/nand/raw/Kconfig                  |  2 +-
+>   drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+>   4 files changed, 131 insertions(+), 105 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>
+It seems you sent only patch 4
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-deleted file mode 100644
-index 5d5cdfef417f..000000000000
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
--
--This file documents the properties in addition to those available in
--the MTD NAND bindings.
--
--Required properties:
--- compatible : contains one of:
--  - "amlogic,meson-gxl-nfc"
--  - "amlogic,meson-axg-nfc"
--
--- reg        : Offset and length of the register set
--
--- reg-names  : "nfc" is the register set for NFC controller and "emmc"
--		is the register set for MCI controller.
--
--- clocks     :
--	A list of phandle + clock-specifier pairs for the clocks listed
--	in clock-names.
--
--- clock-names: Should contain the following:
--	"core" - NFC module gate clock
--	"device" - parent clock for internal NFC
--
--Optional children nodes:
--Children nodes represent the available nand chips.
--
--Other properties:
--see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
--
--Example demonstrate on AXG SoC:
--
--	nand-controller@7800 {
--		compatible = "amlogic,meson-axg-nfc";
--		reg = <0x0 0x7800 0x0 0x100>,
--		      <0x0 0x7000 0x0 0x800>;
--		reg-names = "nfc", "emmc";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
--
--		clocks = <&clkc CLKID_SD_EMMC_C>,
--			 <&clkc CLKID_FCLK_DIV2>;
--		clock-names = "core", "device";
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&nand_pins>;
--
--		nand@0 {
--			reg = <0>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			nand-on-flash-bbt;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-new file mode 100644
-index 000000000000..42634e9c0d3c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/amlogic,meson-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-+
-+allOf:
-+  - $ref: "nand-controller.yaml"
-+
-+maintainers:
-+  - liang.yang@amlogic.com
-+
-+properties:
-+  compatible:
-+    enum:
-+      - "amlogic,meson-gxl-nfc"
-+      - "amlogic,meson-axg-nfc"
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: device
-+
-+patternProperties:
-+  "^nand@[0-7]$":
-+    type: object
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 1
-+
-+      nand-ecc-mode:
-+        const: hw
-+
-+      nand-ecc-step-size:
-+        const: 1024
-+
-+      nand-ecc-strength:
-+        enum: [8, 16, 24, 30, 40, 50, 60]
-+        description: |
-+          The ECC configurations that can be supported are as follows.
-+            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
-+            meson-axg-nfc 8
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/axg-clkc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    nand-controller@ffe07800 {
-+      compatible = "amlogic,meson-axg-nfc";
-+      reg = <0xffe07800 0x100>, <0xffe07000 0x800>;
-+      reg-names = "nfc", "emmc";
-+      interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-+      clocks = <&clkc CLKID_SD_EMMC_C>,  <&clkc CLKID_FCLK_DIV2>;
-+      clock-names = "core", "device";
-+
-+      pinctrl-0 = <&nand_pins>;
-+      pinctrl-names = "default";
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      nand@0 {
-+        reg = <0>;
-+      };
-+    };
-+
-+...
--- 
-2.34.1
+Neil
 
 
 _______________________________________________
