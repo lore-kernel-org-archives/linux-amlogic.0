@@ -4,53 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70A36ECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 06:03:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98F8AC38145
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 07:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Zfmg/t1hOwHxv5NkKLioUE+MzIeeoKZnaGhG0fNGsSE=; b=SeRApJSr+Ce1su
-	queToKGxYSne6zz+ZWvKh4jHeYvzYi8hFla4ULQy3HIKL8rFnYgCfBSPcd+07uZm6ZWhM/7G5owQ9
-	sXeUGz6qJPJkLxL8BjVo7eIQDP7pLraIhpXNCvrj7HWdq4LPC04Nn9/CLyiy5JuK9e0NlAwqMtkSU
-	ONSL6X7gWquel18Llf8NF2AnUbsBnlRHfWWnh2EPJJqJUISkMlytSuMlj8NwBknTWS07C5jstpEWI
-	27McG+dzthA/3Ls3zf/HiNN8PXRzHtupU+VjFeEZfwmBGr5XxBqGgbGf3tGtrRY2DfdpFVRxyOxYY
-	Fv/xq4XkytsG+pNXE2PA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=a/ZQvLmszlw03FylOtXR2+OZfjKZnZWdtQT8UBw1RLw=; b=lXnLaXqvbwuOho
+	ynu/5J3c+1srXr7l6CpaiaED8bvJEQXw33TVnKAPR86lv41ZBK2FhmdY12ECPUib4OHpuwDodE867
+	vva1W8u3Mu2Eq0vncdyPoosxpOmADWHDm+S1Sy3HT9LJZy/ibn18zvyJnMtq25JKJ8QWnQuCz0RAj
+	IFmLQroOPWhjbkHuujb2C+C7itzm2M1jTL8usrHyIZhqU8t+VWpfszeouIT7UWWLw24WvlYv9aymO
+	LG9NXBPo51emoHT0x2sMqanvlm1QpVeTjJNb0F0PKKEah16RIPB2Hn7iBoQHCQsTWjrO1TLSprcwh
+	qQ3UDAoNRa3tUXTFZL6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVRfh-00ADHt-SR; Tue, 06 Sep 2022 06:02:54 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1oVTIH-00AunA-DU; Tue, 06 Sep 2022 07:46:49 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVRer-00ACXs-Ii; Tue, 06 Sep 2022 06:02:05 +0000
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Tue, 6 Sep 2022
- 14:01:59 +0800
-From: Liang Yang <liang.yang@amlogic.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, <linux-mtd@lists.infradead.org>
-CC: Liang Yang <liang.yang@amlogic.com>, kernel test robot <lkp@intel.com>,
-	Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
-	XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang
-	<kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui
- Yu <yonghui.yu@amlogic.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH RESEND v8 5/5] mtd: rawnand: meson: not support legacy clock
-Date: Tue, 6 Sep 2022 14:00:33 +0800
-Message-ID: <20220906060034.2528-6-liang.yang@amlogic.com>
+	id 1oVTIE-00Auhz-MD; Tue, 06 Sep 2022 07:46:48 +0000
+Received: by mail-pl1-x643.google.com with SMTP id x23so10498730pll.7;
+        Tue, 06 Sep 2022 00:46:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=SCIfIiiq/yyzgkPopZpz5RfhutkNUE2O01+O5PYJujM=;
+        b=C0k5vt9j9FkkewR8ci4JPOODHwrNNGa4r6DSBf28d9sHkCrIfhiOvmM/yVAu3yv7YO
+         jPiuPTFIk8lD3nTokg4njPbUFRZrPFc1r9UJZb0akD/lT+xfF96UbZ5Kj0wBUCw5Hy7o
+         ZN/KLYRueo/p2NuOpICD7/kuf+OVSri78c0QxJFivRMvxpFg9MzaQgtM63mvKmasEBfW
+         IrNk49J0dkpexeMxLgAPIqfAHdJjnAEJxAFQR0HaNkzSQaYn4aVU3fOGeP6ETjvRiz3l
+         K70uDuALDAzeZv8516FHa16MObBRvKzdnFlGz10mu4S+bCgdfrd/uDrBq5sANyYdSFkV
+         II+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=SCIfIiiq/yyzgkPopZpz5RfhutkNUE2O01+O5PYJujM=;
+        b=GBEl8Ph4rTCc6n/LRBPUtIEgNjyQDUTffi/Ydc46DNBtxybChnM9/QUZpF2fVeyGEl
+         UWB0bxMfngAaAzWVZzYYvszJkK9N1NBN9VbPM+hU6T0M95cl78JQgF2+9gYlocDzGRVd
+         1DGi/w6IUVG0ROlUCiagR6rpB7BkFAClwqu7EcdO+jXztXjWpOaFe9zy4CsIdhknhusg
+         BjjtumuYmInaWgMqvhiGtVommmv6LVvVyDpo+zpxoB3D/NdQBSNCiDilKx96HHH6W6IM
+         6Em0gkdCVSWpZVIZhNoDK8iZ/mfmTJ5elJ+prindptsjuV7DUNxnxtvmVQ82XqEcSvVu
+         YpOw==
+X-Gm-Message-State: ACgBeo07kAa6o4ns9lZHbMDzGuIPR0pJ4cjBSVAXM4RYazrpj683W9YY
+	tuy4ihLIaR35TdVTFZpKPTs=
+X-Google-Smtp-Source: AA6agR75MPe4BTJ7xQ0L6D61Z4NNGMSJJtZlBcoUzwa1mbQDGNXmSb63h2KGTJtZ/zjJ7FwWon+EuQ==
+X-Received: by 2002:a17:90b:4c8d:b0:1f5:29ef:4a36 with SMTP id my13-20020a17090b4c8d00b001f529ef4a36mr24029428pjb.127.1662450404429;
+        Tue, 06 Sep 2022 00:46:44 -0700 (PDT)
+Received: from hbh25y.. ([129.227.150.140])
+        by smtp.gmail.com with ESMTPSA id j18-20020a170902759200b0016c50179b1esm8919604pll.152.2022.09.06.00.46.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 00:46:44 -0700 (PDT)
+From: Hangyu Hua <hbh25y@gmail.com>
+To: narmstrong@baylibre.com,
+	mchehab@kernel.org,
+	gregkh@linuxfoundation.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com
+Cc: linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Hangyu Hua <hbh25y@gmail.com>
+Subject: [PATCH] meson: vdec: fix possible refcount leak in vdec_probe()
+Date: Tue,  6 Sep 2022 15:46:30 +0800
+Message-Id: <20220906074630.35779-1-hbh25y@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220906060034.2528-1-liang.yang@amlogic.com>
-References: <20220906060034.2528-1-liang.yang@amlogic.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.21]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220905_230202_210376_687119AE 
-X-CRM114-Status: UNSURE (   8.94  )
+X-CRM114-CacheID: sfid-20220906_004646_814300_993523A0 
+X-CRM114-Status: UNSURE (   8.68  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,29 +95,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-meson NFC driver use common clock interfaces. so the test robot report
-some errors once using the legacy clock with HAVE_LEGACY_CLK on.
+v4l2_device_unregister need to be called to put the refount got by
+v4l2_device_register when vdec_probe fails or vdec_remove is called.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
 ---
- drivers/mtd/nand/raw/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/staging/media/meson/vdec/vdec.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-index 67b7cb67c030..c309cfeb74cd 100644
---- a/drivers/mtd/nand/raw/Kconfig
-+++ b/drivers/mtd/nand/raw/Kconfig
-@@ -395,7 +395,7 @@ config MTD_NAND_STM32_FMC2
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index 8549d95be0f2..52f224d8def1 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -1102,6 +1102,7 @@ static int vdec_probe(struct platform_device *pdev)
  
- config MTD_NAND_MESON
- 	tristate "Support for NAND controller on Amlogic's Meson SoCs"
--	depends on ARCH_MESON || COMPILE_TEST
-+	depends on COMMON_CLK && (ARCH_MESON || COMPILE_TEST)
- 	select MFD_SYSCON
- 	help
- 	  Enables support for NAND controller on Amlogic's Meson SoCs.
+ err_vdev_release:
+ 	video_device_release(vdev);
++	v4l2_device_unregister(&core->v4l2_dev);
+ 	return ret;
+ }
+ 
+@@ -1110,6 +1111,7 @@ static int vdec_remove(struct platform_device *pdev)
+ 	struct amvdec_core *core = platform_get_drvdata(pdev);
+ 
+ 	video_unregister_device(core->vdev_dec);
++	v4l2_device_unregister(&core->v4l2_dev);
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
