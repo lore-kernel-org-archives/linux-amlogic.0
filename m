@@ -4,65 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86909ECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 15:22:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 003EBECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 15:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wbw8CcG3XZBP8A4VM/zIhxsOkapSzNL7vwViUv8Nt+M=; b=pzrzMN+/535UHB
-	1h0AS45ApYzxHfx029vznBvxYr7BZ1vnid1hAMepGYZvZzzL9J4vUZ1A7vyEoMEEw+i18rXglXVgM
-	luAiLILQ6xWGcmC13r4IVAL4sCZxsH0j73NUzIAFgVUkFCHmWFVWJipvgA8pqWkQF+IvUnPIUV9Qb
-	Kv5EMDHkhMfbwSyaSWHQswWLgsqMDKINGSf9mhotG0zDibrVFIAUUv/+nMcqUxgtVOrrtmaW4gvdk
-	WNsF7V71x8kw0clxBb3RTLM3QCaFpuyV1lhoGubu/hKsp4Gfm/tyhM5Eiay93gBDjTgFZZIa6olEz
-	IeNaxPok264qmRnFClpQ==;
+	List-Owner; bh=cIt98nWNnUoJIJYcTfwqrgCMXEmbk8duCIIuRD1UuIM=; b=VMmLZi0ybQ/FdV
+	btBHPoAuyJ7odfX3eOEID7IbNzL6rRJYNElBRmxYhEQatpLOG3A5YXH/DbTPAwbNFo6yLUQrkbgP6
+	nqap/Yx0tQdmpgbR4Ysyf5GK86/agN/2hW4kG8QFwocQgQZyNTY5QuJ1NkLXXNGJ0ghdTib9AnO2O
+	sBhncpAbCnlVVgrthvwEF5BL08fKTYFnw24MkDGTKE+Pv7+0MMr0sX79n6hs6ovVPRriIGlZWGBL2
+	AL39gjgQycjKzfLCfZ/Tf1gcJlR2AhuizN91XLF1eofqTSwiu00CUe3txPavjZ/u2SKAsvEToGfpx
+	xAWEyWzAnNpl6v/9UByQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVaP7-00EjSh-4w; Tue, 06 Sep 2022 15:22:21 +0000
-Received: from mail-oa1-f54.google.com ([209.85.160.54])
+	id 1oVayb-00F7gl-DV; Tue, 06 Sep 2022 15:59:01 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVZas-00EJt1-Pv; Tue, 06 Sep 2022 14:30:28 +0000
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1274ec87ad5so13681940fac.0;
-        Tue, 06 Sep 2022 07:30:24 -0700 (PDT)
+	id 1oVaTx-00Emuy-LT
+	for linux-amlogic@lists.infradead.org; Tue, 06 Sep 2022 15:27:29 +0000
+Received: by mail-wr1-x432.google.com with SMTP id e13so16030167wrm.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 06 Sep 2022 08:27:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date;
+        bh=2ftVrhJ2ARmqdOZep9hKyjQ5LHRHmHjpAzPE66E9Y1A=;
+        b=EfkiMmAeB85b3QEHkmGHZq8s1UM0MyK/4EayEn/KsEOtPunLFWXfOncGuBK9OHESUZ
+         vAeOdVtn7K76Hbx9Fd4tn+MULEfKmzhtdBIyoIwGqjZQWjQg0Y+JxdqJ6XLPvpc+1GS2
+         U2clJjd80TldQNYjMTwCL97cXnvIYfW/8RyGorBLPhz+7rNeYOFeo1XZ2QBrcG7ek360
+         7EfVwmuEjFcFMB0rR0u/t/QsWAZiPVF4JxaiiD7U+8S2TCIoWFsEKcY9VPEh/p9A+6yo
+         uXPeNU7Z/gqf0w/f9VoXdXhF2R9M+KNNhrdeEJzTzfaKPGF0T37pzbixSN5YfjCJgEYU
+         zRvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Kvz3JZaluvKrbLtBoEI5XWsSUd5pzncK9jiRn5usyvY=;
-        b=YST9NxmyayMngJJ33e9cXG7zXNHfLQ9lfTt7B1cEe9Cl6KeDIp4p81W2eKxDRs/lC3
-         GtzaYMM/kTIeNlzUnzw5IdzjUZH3rKel3/qe1ZMud8176RkN1Oqwlb3W0CjzYw4YLCqP
-         hpagLGj2LgJgTXdOJUSvAXR6IdRGaWklsNGOoyphzfAXYhgJIHOGYrDTHtXoOUXePsN7
-         AZsrC7HSavxfos54o5u3gHpu/YUZ1o8TPrLrbWXWF/AQI6JMg1zFhFnttcKyQYS/5qaC
-         62FENb/UkqV77bQuEpEZm1hhqPVXh9XHEDxeabYbg6nZPvNuD8ZNDCSzDuW43VoEzJ5z
-         2tFw==
-X-Gm-Message-State: ACgBeo1u3rdg6azD82yLAnrJFYd1jcxXEQmYsiSUzF/W47XFvOkniIAf
-	bifRdHzpggaTFp41A158dQ==
-X-Google-Smtp-Source: AA6agR43AUBcRTnH2EnVkNSTDxBoJmwXP6jICsOo+4xmljoEm6BkouioCzUZ8nvJiOcT3vVuNYoAzQ==
-X-Received: by 2002:a05:6870:c386:b0:102:fcb:86cd with SMTP id g6-20020a056870c38600b001020fcb86cdmr11886020oao.296.1662474623287;
-        Tue, 06 Sep 2022 07:30:23 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f7-20020a9d5e87000000b00638cea5947esm6011078otl.25.2022.09.06.07.30.22
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date;
+        bh=2ftVrhJ2ARmqdOZep9hKyjQ5LHRHmHjpAzPE66E9Y1A=;
+        b=6FhkGatXIB8CuQzkY3gUf4bEUWQg4U6nEvhAhXtxmwTATRrrUeskEO1DdDVVMuzTWw
+         vp91j5Q/dPh0QsxuMvy74NubTBCF16YwOS8Dlo9rboPz3FsWnbrOCqKttWGDKgz8nM4w
+         Qghz8G4XGapNGZ4Z8a201RcHVWsBtW7vyUFHYIJXs/W/SdSDt6AXzTOfSJWs4e/jq+PQ
+         nmnuMmDpjsy8vHDMFyKSVPmRynH0hi2LbEGRIB5oRMgIcCQ0u0hrXtjbgOxEa/d2ox6v
+         iTPHh/vPBF7H0Y9ik7MY+QVwLdQkx5EXcuBGdvm/iMkP22UCVjxb31lBC1S0dl+7Ri3r
+         DZFg==
+X-Gm-Message-State: ACgBeo3DhQ2XpoC7nrHO38UTKI3Rj7qGOmkgp9PYhzqT69Q1KuT2P9w1
+	PwCY4xqlIlhqSmQRGM1vOMZJJg==
+X-Google-Smtp-Source: AA6agR5m+704HO1TtHOZMt8JRn6bP2bshBPTpy03cweYCsADjDWv6RkZUSP2p35bBrcnAqqtDsDiLw==
+X-Received: by 2002:a5d:6f19:0:b0:228:d8e8:3ac8 with SMTP id ay25-20020a5d6f19000000b00228d8e83ac8mr2301832wrb.101.1662478037738;
+        Tue, 06 Sep 2022 08:27:17 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id l20-20020a05600c089400b003a30fbde91dsm20501242wmp.20.2022.09.06.08.27.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 07:30:22 -0700 (PDT)
-Received: (nullmailer pid 444558 invoked by uid 1000);
-	Tue, 06 Sep 2022 14:30:21 -0000
-Date: Tue, 6 Sep 2022 09:30:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Liang Yang <liang.yang@amlogic.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>, Victor Wan <victor.wan@amlogic.com>, XianWei Zhao <xianwei.zhao@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, BiChao Zheng <bichao.zheng@amlogic.com>, YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to
- yaml
-Message-ID: <20220906143021.GA439874-robh@kernel.org>
-References: <20220906060034.2528-1-liang.yang@amlogic.com>
- <20220906060034.2528-5-liang.yang@amlogic.com>
+        Tue, 06 Sep 2022 08:27:17 -0700 (PDT)
+References: <cc80cda0-4dda-2e3e-3fc8-afa97717479b@gmail.com>
+ <1jk06rtlrv.fsf@starbuckisacylon.baylibre.com>
+ <09befaaf-b34a-aeda-5dd6-6bfae4b01163@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, Heiner Kallweit <hkallweit1@gmail.com>, Neil
+ Armstrong <narmstrong@baylibre.com>, Michael  Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin  Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Jianxin Pan
+ <jianxin.pan@amlogic.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk@vger.kernel.org, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH RESEND] clk: meson: pll: copy retry workaround from
+ vendor driver
+Date: Tue, 06 Sep 2022 17:21:10 +0200
+In-reply-to: <09befaaf-b34a-aeda-5dd6-6bfae4b01163@amlogic.com>
+Message-ID: <1jo7vswmjw.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220906060034.2528-5-liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220906_073027_000681_242896C5 
-X-CRM114-Status: GOOD (  21.92  )
+X-CRM114-CacheID: sfid-20220906_082721_979715_BBD7D6A4 
+X-CRM114-Status: GOOD (  18.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,182 +97,74 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 06, 2022 at 02:00:32PM +0800, Liang Yang wrote:
-> convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
->  .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
->  2 files changed, 88 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> deleted file mode 100644
-> index 5d5cdfef417f..000000000000
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> +++ /dev/null
-> @@ -1,55 +0,0 @@
-> -Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-> -
-> -This file documents the properties in addition to those available in
-> -the MTD NAND bindings.
-> -
-> -Required properties:
-> -- compatible : contains one of:
-> -  - "amlogic,meson-gxl-nfc"
-> -  - "amlogic,meson-axg-nfc"
-> -
-> -- reg        : Offset and length of the register set
-> -
-> -- reg-names  : "nfc" is the register set for NFC controller and "emmc"
-> -		is the register set for MCI controller.
-> -
-> -- clocks     :
-> -	A list of phandle + clock-specifier pairs for the clocks listed
-> -	in clock-names.
-> -
-> -- clock-names: Should contain the following:
-> -	"core" - NFC module gate clock
-> -	"device" - parent clock for internal NFC
-> -
-> -Optional children nodes:
-> -Children nodes represent the available nand chips.
-> -
-> -Other properties:
-> -see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
-> -
-> -Example demonstrate on AXG SoC:
-> -
-> -	nand-controller@7800 {
-> -		compatible = "amlogic,meson-axg-nfc";
-> -		reg = <0x0 0x7800 0x0 0x100>,
-> -		      <0x0 0x7000 0x0 0x800>;
-> -		reg-names = "nfc", "emmc";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-> -
-> -		clocks = <&clkc CLKID_SD_EMMC_C>,
-> -			 <&clkc CLKID_FCLK_DIV2>;
-> -		clock-names = "core", "device";
-> -
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&nand_pins>;
-> -
-> -		nand@0 {
-> -			reg = <0>;
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
-> -
-> -			nand-on-flash-bbt;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> new file mode 100644
-> index 000000000000..42634e9c0d3c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/amlogic,meson-nand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-> +
-> +allOf:
-> +  - $ref: "nand-controller.yaml"
 
-Don't need quotes
+On Tue 30 Aug 2022 at 14:33, Yu Tu <yu.tu@amlogic.com> wrote:
 
-> +
-> +maintainers:
-> +  - liang.yang@amlogic.com
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - "amlogic,meson-gxl-nfc"
-> +      - "amlogic,meson-axg-nfc"
+> On 2022/8/29 17:54, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>> On Sun 14 Aug 2022 at 23:25, Heiner Kallweit <hkallweit1@gmail.com>
+>> wrote:
+>> 
+>>> On a S905X4-based system this call fails randomly.
+>>> The vendor driver has a retry mechanism and on my system
+>>> the second attempt is successful always.
 
-Don't need quotes
+Heiner, ideally commit message should not be about 'your' system
+but describe what the system actually is. This would be more useful down
+the road.
 
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: device
-> +
-> +patternProperties:
-> +  "^nand@[0-7]$":
-> +    type: object
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +      nand-ecc-mode:
-> +        const: hw
-> +
-> +      nand-ecc-step-size:
-> +        const: 1024
-> +
-> +      nand-ecc-strength:
-> +        enum: [8, 16, 24, 30, 40, 50, 60]
-> +        description: |
-> +          The ECC configurations that can be supported are as follows.
-> +            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
-> +            meson-axg-nfc 8
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/axg-clkc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    nand-controller@ffe07800 {
-> +      compatible = "amlogic,meson-axg-nfc";
-> +      reg = <0xffe07800 0x100>, <0xffe07000 0x800>;
-> +      reg-names = "nfc", "emmc";
-> +      interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-> +      clocks = <&clkc CLKID_SD_EMMC_C>,  <&clkc CLKID_FCLK_DIV2>;
-> +      clock-names = "core", "device";
-> +
-> +      pinctrl-0 = <&nand_pins>;
-> +      pinctrl-names = "default";
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      nand@0 {
-> +        reg = <0>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.34.1
-> 
-> 
+Based on Yu Tu feedback I'd propose
+
+'
+The PCIe PLL locking may be unreliable under some circumstance, such as
+high or low temperature. If the PLL fails to lock, reset it a try again.
+
+This helps on the S905X4
+'
+
+If this is OK with you, I can amend the message before applying the
+patch, or you may resubmit. As you wish.
+
+>>>
+>> This reason looks a bit weak to me.
+>> I'd like AML team to comment on this PLL problem as I suspect it might
+>> relate to other PLL we have been seeing
+>
+> First of all, we've had this problem before. But the probability is very
+> low, most of the PLL will not lock when the chip is tested at high and low
+> temperature.
+>
+> Our actual code has retry mechanism to solve the above problem.
+>
+>> 
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>>   drivers/clk/meson/clk-pll.c | 12 ++++++++----
+>>>   1 file changed, 8 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+>>> index 9e55617bc..daa025b6d 100644
+>>> --- a/drivers/clk/meson/clk-pll.c
+>>> +++ b/drivers/clk/meson/clk-pll.c
+>>> @@ -320,12 +320,16 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+>>>     static int meson_clk_pcie_pll_enable(struct clk_hw *hw)
+>>>   {
+>>> -	meson_clk_pll_init(hw);
+>>> +	int retries = 10;
+>>>   -	if (meson_clk_pll_wait_lock(hw))
+>>> -		return -EIO;
+>>> +	do {
+>>> +		meson_clk_pll_init(hw);
+>>> +		if (!meson_clk_pll_wait_lock(hw))
+>>> +			return 0;
+>>> +		pr_info("Retry enabling PCIe PLL clock\n");
+>>> +	} while (--retries);
+>>>   -	return 0;
+>>> +	return -EIO;
+>>>   }
+>>>     static int meson_clk_pll_enable(struct clk_hw *hw)
+>> .
+
 
 _______________________________________________
 linux-amlogic mailing list
