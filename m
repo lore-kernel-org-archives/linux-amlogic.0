@@ -4,81 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2C8FC54EE9
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 12:22:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3AA3C6FA83
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Sep 2022 13:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HCvwq/2Ke3tuBlgmuot1NwMOo3lpFQyf00nDii6mFRk=; b=JFw9XQAvXs38To
-	xjUyjT4xzD8JMlYfn10UOXV6STQj2NPmYFUktbMqCK1bSMqNme15Zk0tG3naFPvp7WKb6pLTDW8kD
-	9qITBw3XBFnjjljf76+S/U1rsC6SAp3I+7JFBSr+iCkanLlArGTohgRK7MLBIMGlyGbV/JbQcJcY+
-	oieJbq/72psxfmBou3zQ6ZZ70jyMP45eERYU1sbEQHBzgTv72XbncHY4/j8m1RmdiwcOPXQCk6FYU
-	Qqc+tUjrF1O8LbaRklQvV5bWBXkugt6Lqyx2YsVV96UOljD0th/vrc2ktjg+bTDyNefn91gXZzRD3
-	20XtS2Q2mrHsqz9nxClw==;
+	List-Owner; bh=au1KCMTB1X5JpcqvL6dRhtrmEnZgoSPLRp/GKOjY8FY=; b=iIUIL8O6IorNbp
+	CF3eoMtGjSmG5ZHnzGXqY5vCk7NaoOiF15zY03iML7Wd6H3AhfEJJ3/qqqWo01n+804Y4VljJuNPJ
+	9ZbB/miLmV7VzhGRMh+SE+J40LJFrIJ4spawNo3CezdDZBGbN+QSzqanGB1jdGq6heSXY6jODDvLE
+	vmWq8l8aDOjbKyvYFWInBhA+gtEGdhwmCyx9jSPk0foyfUwPD/qdkqMi66Ky+kqnKc11iuAviDkwd
+	LXo/9qU4xNnzRNR52lK8xrAe8nmjHmsj3TWmTsk182zfi+NIT5J9bYHcTQeqJfGgoDOsJvQQLjTki
+	g4zYk5GKbuVflvVsXLyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVXb6-00DICP-SF; Tue, 06 Sep 2022 12:22:32 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1oVYq2-00DvJN-3q; Tue, 06 Sep 2022 13:42:02 +0000
+Received: from mail-ot1-f52.google.com ([209.85.210.52])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oVXat-00DI3n-Ky
-	for linux-amlogic@lists.infradead.org; Tue, 06 Sep 2022 12:22:21 +0000
-Received: by mail-wr1-x436.google.com with SMTP id c11so10954211wrp.11
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Sep 2022 05:22:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date;
-        bh=etRB1TES3HElT9FZpWWrbjBF4Hgq+Rpw7WzQMwgRKNE=;
-        b=kVixT+G6sAyrpaX+Jd8i/qmqWAcqP2A3HuzTN1EChZncqgmuKzSTWSFrblBcz5EAiM
-         X2IPpyBmI5kXEr8xKlGZOTxMWGyzwC+hfNtVSNpBYqNniW26uQbY8zwFEFkMKLWrEsCu
-         TZMJ7w0BXNIDIa453ocHAw1KTaoAcyvxFwZvE6Dnzr0o+kBE0C9mN8pZzOfGAm3vmfHZ
-         4uMDGOnoS9liSq0upmAI6Of8riDPaOq3l1rN3o/nj2CBSSx79jH49JzB7XAVSvcAeJjx
-         CseJy7IlPQ8siNDKZ6CasGBV4kcRhH+iosul04RbdS5Y0PEsEDagKQabqCQ13Sqe938P
-         XoAg==
+	id 1oVYot-00DuXr-7i; Tue, 06 Sep 2022 13:40:53 +0000
+Received: by mail-ot1-f52.google.com with SMTP id d18-20020a9d72d2000000b0063934f06268so8110949otk.0;
+        Tue, 06 Sep 2022 06:40:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date;
-        bh=etRB1TES3HElT9FZpWWrbjBF4Hgq+Rpw7WzQMwgRKNE=;
-        b=rSAHVE3sh2x16I51WhxdiNw53IDCVw7cGE214IoWb74Y8ziyR2arq1baY1wrd+wmh5
-         IDFpLLmPM+PiC2a6hD1VvNNIWjdvjSaL7xgF4BOZy1yBu02DaTQXGWP3vsK46x6XKSBg
-         +Dvnw/NZzsqvzrWltmjAYO+xc11Jw/gzDuevmKLCqm6DxAqPDa7ZQCjWxrRbzoQ0Xo+Y
-         C+jV0GJ9LrqLqvue5HoPZkCwd2soX5atJ/ZAg78xAuKdsw1ArkG4NncCSA4vsGnRtXn/
-         5nay88PGIa4izDmDHehcyV2ktNH5247+Dqf0hEYGOoMciBqEjsdW/wX7YxQONcsmbCnr
-         NJGw==
-X-Gm-Message-State: ACgBeo0N24VXIF8NtArl3eDVi9cyNLhMTSEDHsO6r1V9NSggZFJjFSm1
-	SW/DTjZ3iYuw0op5st2msvpb6Q==
-X-Google-Smtp-Source: AA6agR7cXoWdXaVb+PdspVN/tctRjn4oDvh3CI43TFmWbSs0DrYVCD8dkd/BVjD6tQpyPJhgsAmjjA==
-X-Received: by 2002:a5d:5143:0:b0:226:de76:be7b with SMTP id u3-20020a5d5143000000b00226de76be7bmr22345327wrt.308.1662466935841;
-        Tue, 06 Sep 2022 05:22:15 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05600c4f0600b003a3170a7af9sm15588545wmq.4.2022.09.06.05.22.15
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=9O7PzS9icEWvflax/sDIyoRvTTpAWAalNbCvjy/7uKY=;
+        b=mIEeo4oAwSGPao0XJuXzclspa4h7cgMu4utWGZS4jm4vop2u9vj1O00yYZoWybbLFm
+         /41WVBPIlBAhrAPRotg7tj74rcq0M7VXsXUMHgIy9FjTXvKGV28cbXuzQmXLCHtOiBXW
+         vbIDODZW0oxsRh/jYqgsI7S/RZTsIhLLv5LrScujDdM2jhQYZQ4zgx5KGlYH0MH7haSa
+         mvkcjBGwq3eV6U/xvx105r4aGEhiY75gYmFjj+JITQTLYf315wqYNa4gSAGmBdhUXTNS
+         Wqw5fMrRx47ZBqXiJHE1gzym3igCT8wpXkcwxLkCEvv9Xpv3ribszMfWmCdsVEBzGCsd
+         J0Yg==
+X-Gm-Message-State: ACgBeo1MpWH2uenfKbKxyvjJse+R/GBtYjwSAOlUAA/o5GoHNJyqgD+I
+	wTtmNXXxYIgy6mHFjTFpgw==
+X-Google-Smtp-Source: AA6agR7l+RC3By/UqrddRF5+IacRUXfeqCIuCYqKB3YKY7keBuvMZhDzLRaciOChnidIJTDSmhMq+w==
+X-Received: by 2002:a05:6830:2aa4:b0:637:1824:80f3 with SMTP id s36-20020a0568302aa400b00637182480f3mr22420142otu.330.1662471646640;
+        Tue, 06 Sep 2022 06:40:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l21-20020a9d7a95000000b00616d25dc933sm5852439otn.69.2022.09.06.06.40.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 05:22:15 -0700 (PDT)
-References: <20220801092150.4449-1-pboos@baylibre.com>
-User-agent: mu4e 1.8.7; emacs 28.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Philippe Boos <pboos@baylibre.com>, Wim Van Sebroeck
- <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Neil
- Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, "open list:WATCHDOG DEVICE DRIVERS"
- <linux-watchdog@vger.kernel.org>, "moderated list:ARM/Amlogic Meson SoC
- support" <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic
- Meson SoC support" <linux-amlogic@lists.infradead.org>, open list
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] watchdog: meson: keep running if already active
-Date: Tue, 06 Sep 2022 14:21:26 +0200
-In-reply-to: <20220801092150.4449-1-pboos@baylibre.com>
-Message-ID: <1jsfl4wv4a.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+        Tue, 06 Sep 2022 06:40:46 -0700 (PDT)
+Received: (nullmailer pid 360953 invoked by uid 1000);
+	Tue, 06 Sep 2022 13:40:45 -0000
+From: Rob Herring <robh@kernel.org>
+To: Liang Yang <liang.yang@amlogic.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, Richard Weinberger <richard@nod.at>, XianWei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, BiChao Zheng <bichao.zheng@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>, linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>, linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>, devicetree@vger.kernel.org, YongHui Yu <yonghui.yu@amlogic.com>, linux-arm-kernel@lists.infradead.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+In-Reply-To: <20220906060034.2528-5-liang.yang@amlogic.com>
+References: <20220906060034.2528-1-liang.yang@amlogic.com> <20220906060034.2528-5-liang.yang@amlogic.com>
+Subject: Re: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to yaml
+Date: Tue, 06 Sep 2022 08:40:45 -0500
+Message-Id: <1662471645.297810.360952.nullmailer@robh.at.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220906_052219_724441_D443C15C 
-X-CRM114-Status: UNSURE (   8.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220906_064051_324428_9C3D80DD 
+X-CRM114-Status: GOOD (  10.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,27 +70,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, 06 Sep 2022 14:00:32 +0800, Liang Yang wrote:
+> convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
+> 
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
+>  .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+>  2 files changed, 88 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> 
 
-On Mon 01 Aug 2022 at 11:21, Philippe Boos <pboos@baylibre.com> wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> If the watchdog is already running (e.g.: started by bootloader) then
-> the kernel driver should keep the watchdog active but the amlogic driver
-> turns it off.
->
-> Let the driver fix the clock rate if already active because we do not
-> know the previous timebase value. To avoid unintentional resetting we
-> temporarily set it to its maximum value.
->
-> Then keep the enable bit if is was previously active.
->
-> Signed-off-by: Philippe Boos <pboos@baylibre.com>
+yamllint warnings/errors:
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.example.dtb: nand-controller@ffe07800: Unevaluated properties are not allowed ('reg-names' was unexpected)
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
+doc reference errors (make refcheckdocs):
+MAINTAINERS: Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
 
 _______________________________________________
 linux-amlogic mailing list
