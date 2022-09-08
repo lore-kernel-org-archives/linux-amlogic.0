@@ -4,57 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A9E8C54EE9
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Sep 2022 14:25:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D4FC54EE9
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Sep 2022 15:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7LqbSJ12qVQWug7kixBmHidbgHtwskKUp9/Qvm9U/60=; b=AZ5pSr/NXjfpeF
-	T2OJtG2amC5fvaCkMVP1/AavugDL5ioJrbYOyQAaQlsKihmSOf9biPeAts3VGYHybwxCNJGTGBlb6
-	Bf4fEoBqxkl0mvGSDXK4es8xo1RY2DiimJ19dmnPUlhEIrtuMJBnUbX1PyKgYt3L2Ly1oIXgNDSZq
-	48EwO8sbgQ9xMIniLcd0LNh9eK0HGUAnyxRF5TTnIPZ59m7vVJV8tipL38Mbp/+pB/f3yWrxRF/aA
-	axnv8FoqiP6rYapCAxV+s82c55apNL0KJN8mGKsTPvMOUX+APSyHxLmBsm468WnakCoN+C/eTF6uN
-	V5LGiDrKqpRr+UaFDN/Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xL6v+YoEGHBEkkix3D7YpmNuUvp2GuRoK1KPsM+vrT8=; b=PIW4vZvf4ydCsu
+	ENOlAaKjb2QCRcvm2cwby99h6rRwlq0bZcCjtMAK/Oc2bEUVotZ7ymZjrkM/7+g7z4hbHxPdhGeBQ
+	X2Z64vSqfM9cU2o72OD/qJHUIVt9G2coP7gSqYZ4tuBJ92nadPjHPP7whXwbp7UEuvue6Kn0/LTVq
+	2Mvsue+dOH081UZKhdEAeSKqXMAgVYI3lQOguxW3Df0LTEIn2hEXMWJhO1YC5Nsw9P5ixDqDr99Ay
+	1owiOyosWwu6fw4gRjgUxF7g80z9POsCeQVJwQ9RVk7jmMr06uRYsfno4/AwBSjzBCBpFP2YRnMIx
+	EILq3ni+H/LDK/yruQyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWIT8-004dVg-05; Thu, 08 Sep 2022 14:25:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1oWJqX-005RVn-LD; Thu, 08 Sep 2022 15:53:41 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWIT5-004dO8-8J; Thu, 08 Sep 2022 14:25:24 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 6A9A961D10;
-	Thu,  8 Sep 2022 14:25:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B09C433D6;
-	Thu,  8 Sep 2022 14:25:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1662647121;
-	bh=GnXm3DasQPANuFBkOmVp81W6zikm6F2UaWae26C2T5g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=OWJQjCg131BkZfLerYXrBNn0mERHWwF9lUiU3wq5MR17jFYdpoUWmLJmQuU+EoAJ8
-	 T5fYdr6aKVdppfnCgoiUJlfRwIe7rd1nqus+m2TYnZvFx7xRqqoinfaEEGQpMZLeKj
-	 3yZZejBk3TjF5SYlg8nQKS7L2IYDidoduq0aCsD3NmnHwJA6jvgT1NESHkADBHQYTT
-	 ++qF2tPjxW8siFuV9Xf+fAScX0ufBnnQ88h/0NLRxtEuLOiGcPISqBp7kfbCwBmFPj
-	 w3X3h5U5I6sAI2ckm0km/NQywHcrHch48q1ec3ghld01we1rR3FAFkWziE+wl1lFcN
-	 nJn+Gm8VGr6Lw==
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
- Markus Schneider-Pargmann <msp@baylibre.com>, linux-kernel@vger.kernel.org
-In-Reply-To: <20220908121803.919943-1-narmstrong@baylibre.com>
-References: <20220908121803.919943-1-narmstrong@baylibre.com>
-Subject: Re: [PATCH] spi: meson-spicc: do not rely on busy flag in pow2 clk ops
-Message-Id: <166264712029.115040.727850066200274922.b4-ty@kernel.org>
-Date: Thu, 08 Sep 2022 15:25:20 +0100
+	id 1oWJoh-005QQN-F3
+	for linux-amlogic@lists.infradead.org; Thu, 08 Sep 2022 15:51:48 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id bq9so13920381wrb.4
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Sep 2022 08:51:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mathembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=6i8sqpqzLDL8z1p82sBsuGzvlqg3wk/6sNqlm7SzWbg=;
+        b=DK493E0OJVGhjk31WkmRNY3zFNxMDxWEfMSC0lGSw1w1dizFuuzBjjOrkF7rP2PDx9
+         RR6ksCsR9ELKcDlJ9bqRTW/R8/iTlG0pDRDVQNvc461cv8WvFuPY8BGh59buTt4FiFvq
+         Xqhdzhwzqk7VdPJwAEomB+xxG23EW3ztytKgbk4vAp/s/mNVgHBsQRPSM0GKHhoDHfJV
+         HCmVcPvJpR7jKM/eDAbR4IdL564/dKG7glZJDiWHSwdw7D722fIilfUHGDz9V1JaQE7e
+         2+9nuIYqeVwYD4mcRBCCRlT7z0gkfIrEoCGYedgX0FZM2I4/IjgRkr5QrI3avDqNfzAy
+         tATA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=6i8sqpqzLDL8z1p82sBsuGzvlqg3wk/6sNqlm7SzWbg=;
+        b=z87fYzA3zpnWU9mYtoasbrGiEHErApXFd8m4+g7bEvTBzSFHpM0SYsAm+wagN2w94e
+         5DK/wfny/5YkRCKp8UB+oLsjNY9eMQiF1HjmCQMumm3SEQdl4Fo3F+IcgkMJ2CdOD6LP
+         0bD3JWjszB5+AFOx8BrkL8p3Ze0yVnP79t92TFlhnM/ilIQXHxbxXGKjxqHSXFxpz+we
+         7m+QxuzTbsvpWC7kN/YuLxcZkn9not+q2wTNQ75ggfM/l1PLy4uIb2ruBHxyl43ZrJTP
+         yrIlIDJvBU6A+UEZTR4o9NkoRuIOL6F/TeSAlvZfauwIb3DWymk4pxUIJxrinDSAS3LD
+         Fo8Q==
+X-Gm-Message-State: ACgBeo3+zN5A4CPco6sdZD9qB9IdEpeCBo9gc+L00yjLFzRFskVs4yDy
+	NaGeo4stMxKqqOVGX+V1ATufdg==
+X-Google-Smtp-Source: AA6agR6bgnsCDBzOYU761DInMQ+pw4wgFXvohbx81dXRkLYwWXpge2AdJmnLw/yJL1zpFeg4JzyppQ==
+X-Received: by 2002:adf:e383:0:b0:228:9a53:612b with SMTP id e3-20020adfe383000000b002289a53612bmr5696394wrm.651.1662652302327;
+        Thu, 08 Sep 2022 08:51:42 -0700 (PDT)
+Received: from opal.home ([2a00:23c6:200d:d301:4971:140c:41b9:e178])
+        by smtp.gmail.com with ESMTPSA id f6-20020adff586000000b00228c375d81bsm14016761wro.2.2022.09.08.08.51.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 08:51:41 -0700 (PDT)
+From: Stuart Menefy <stuart.menefy@mathembedded.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org
+Cc: Stuart Menefy <stuart.menefy@mathembedded.com>
+Subject: [PATCH] drm/meson: Correct OSD1 global alpha value
+Date: Thu,  8 Sep 2022 16:51:03 +0100
+Message-Id: <20220908155103.686904-1-stuart.menefy@mathembedded.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-X-Mailer: b4 0.10.0-dev-fc921
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220908_072523_383307_071B2730 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20220908_085147_759213_B724A417 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,45 +87,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 8 Sep 2022 14:18:03 +0200, Neil Armstrong wrote:
-> Since [1], controller's busy flag isn't set anymore when the
-> __spi_transfer_message_noqueue() is used instead of the
-> __spi_pump_transfer_message() logic for spi_sync transfers.
-> 
-> Since the pow2 clock ops were limited to only be available when a
-> transfer is ongoing (between prepare_transfer_hardware and
-> unprepare_transfer_hardware callbacks), the only way to track this
-> down is to check for the controller cur_msg.
-> 
-> [...]
+VIU_OSD1_CTRL_STAT.GLOBAL_ALPHA is a 9 bit field, so the maximum
+value is 0x100 not 0xff.
 
-Applied to
+This matches the vendor kernel.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Signed-off-by: Stuart Menefy <stuart.menefy@mathembedded.com>
+---
+ drivers/gpu/drm/meson/meson_plane.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks!
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index d5cbc47..45088f0 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -163,7 +163,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+ 
+ 	/* Enable OSD and BLK0, set max global alpha */
+ 	priv->viu.osd1_ctrl_stat = OSD_ENABLE |
+-				   (0xFF << OSD_GLOBAL_ALPHA_SHIFT) |
++				   (0x100 << OSD_GLOBAL_ALPHA_SHIFT) |
+ 				   OSD_BLK0_ENABLE;
+ 
+ 	priv->viu.osd1_ctrl_stat2 = readl(priv->io_base +
+-- 
+2.7.4
 
-[1/1] spi: meson-spicc: do not rely on busy flag in pow2 clk ops
-      commit: 36acf80fc0c4b5ebe6fa010b524d442ee7f08fd3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 _______________________________________________
 linux-amlogic mailing list
