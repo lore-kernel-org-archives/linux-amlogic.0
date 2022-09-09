@@ -4,78 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B864CECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Sep 2022 11:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71ACBECAAD3
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Sep 2022 11:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6ZZS1hADpUH/Ex9ifeuStm2MHghyiInfGlz05QJf8h4=; b=k8n+/gQ/XF2fJ5d/IRog4mYQFR
-	ZCC/bHDXfN4V7kipnCjlZ9Nffr80hfejF9gwo9luoOyoDFK2lQYinALWJstc+iXhju7oWHBoSHy6h
-	OyY71T/Q9xgi0kMka47txcDypbuRlPSXJJRxa7BJo/1LwQ+rWqXaBksnsALZt47t31C86+7qwCD7J
-	0eSthH/1/tSyNq3A01ZUccVbm4c5p53rOIrQSjXMSa+hF202H/FEW92ZNOii+I+Zn8ZjBGYUz0YS4
-	wsu/gAbSmcmoIu0XbxkW3QxImG1qsivfT8tLm50gvJENQnlcEibl6qBjIZW1CYnOmEcfD3o7i5rgq
-	NNGdhMRg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=YPOf4/4GSdRjYbE465XrrksZvIM6uFeuLJ9gDl2NdQQ=; b=JaSMaNRek+v85r
+	mqudB4OeOsIwN/6wnghq9yMYHxYomzEfVJHGSMjw1e5KKWxfQ8gJf8pu4iFe1JVtnIeSF2vNK8uRj
+	Sf+VwVzMw2BrdR6UKuF5YpkjKFIMNMOSNXNfqgVnluaZyZc510bT8Jpip0CCNxL/IYWaRJH+rbXbY
+	HfC2HvW5aW1wrSZfc4Ghj7gmcG2yOvJ7Q6464wYGJpBD11xHybQXflI+K4yPNn3eerZaXH5K6xacu
+	7P01q5RiSKcORFQulceRaA/Zb54WFpladN48RsF1S5p6sTEWL9ImAvHroAYANJJ4DCjPnXOGPvCIv
+	W6XAeSntJx/2apT1d+WA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWcDq-00Fjnx-Rc; Fri, 09 Sep 2022 11:30:58 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1oWcJB-00FldN-J6; Fri, 09 Sep 2022 11:36:29 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWcDo-00Fjmf-K8
-	for linux-amlogic@lists.infradead.org; Fri, 09 Sep 2022 11:30:57 +0000
-Received: by mail-wm1-x329.google.com with SMTP id bd26-20020a05600c1f1a00b003a5e82a6474so1070643wmb.4
-        for <linux-amlogic@lists.infradead.org>; Fri, 09 Sep 2022 04:30:54 -0700 (PDT)
+	id 1oWcJ8-00Flbs-Iy
+	for linux-amlogic@lists.infradead.org; Fri, 09 Sep 2022 11:36:28 +0000
+Received: by mail-wm1-x330.google.com with SMTP id m17-20020a7bce11000000b003a5bedec07bso4279171wmc.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 09 Sep 2022 04:36:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=sIASLX0R2P23+j8OeRBs0Bj5TUjyqw9EM4B0ZPGTtVs=;
-        b=ZJBmHCv0f53AQHKe+rGmvzNG0HFlLBm8LmaLcJtQH1fuk/QUEIwjTEZHwO3toPEbqU
-         lS/I8A9XbjNw4En/m5MzZf2Z5cp+EAj7vLa2TI4DylJm4JDsrCNZZX1tmtZ5TeLzkoBu
-         EPAHO7R3Lzt5yfvX8sjecia1VoeMwl+vGNzPlFoQVmQwgwsV4HHyxD8Oqvtj80aBFow7
-         bOlZEQZ/Io5xREDlwoMagLj8OaBKa9jbFRQ7hbkPnxRJxHIJC+LgxZDqYmDcIMiLxWVa
-         Qz5FzwUOu29qxh2CNOmUnPQIzTxkswYrHSLvMsJIkhB2MxcspEWNkaVPtjw3VKbQ4sbi
-         QFIg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=eMfi4sj8sxdilltEjT3o0CYqu/07v37iL0oI9NwLuhQ=;
+        b=xXitpySp81/iq5mCHbx1NL8ZY6KlIzQ2Rm0uNjQizzQDLBQmsIKIH+CCmZJqYEV/aj
+         8VYnxt2C6ZjL/NTMjKjqNBjgyraFcIq4GJ6iuWoExRQlc8mVmFsDvlk+4ChybibvaJKw
+         Q1wK+sQ5Gqay66QK/o5X6z+W+xAhcOAFSRqKlG+0557aFl8BLOYLQAju9meHM+hi4BE9
+         abFHZTbce1cN+D998Mv3YYqrGmasXmFUbWtNpEBca3MTIqsqII8iYafZfe2rh5oGj+ht
+         VPbbb487QpqIHXE4u6/mROYOYVqnGx8Nnw4P2KtqOcRoeGswB2HFIYrUlAR6BEFOg6az
+         JHqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=sIASLX0R2P23+j8OeRBs0Bj5TUjyqw9EM4B0ZPGTtVs=;
-        b=cESRLQxNwNajrNdhOt7j4BrjRh/iOvP6ISFK4NFy0KJ1h/Og/Ilr8emoHKHoGiT8Xm
-         +DJ2cWocCRalzul+RyjN2+LoorTeuWMMZD1D8+G0zN8Nz3/sSm61ttTYB335BFT2AIm4
-         OFEQSnalA9vhpGNqT0dkDwanG5uf6VK4x9BeBfYgiOEX4zKOHPm5hGbbCUZ8HKA3779j
-         e1U0+xVI41XD1W3BL1mlBibbbXcd4wfgiX8fg5lTpqi/iqLPaaqaN7iDyuzWRJG6YbXx
-         EXFP0FSrdD/DchOYLeMWsWJrx/PQNMdov226q/ALe4r+2LxdoKAqnD+p6n/1Hb2pjrJT
-         p7hw==
-X-Gm-Message-State: ACgBeo2/zS6/L5kNF9u9Sn4L0BHWj400hwPBGv4+oD8JzBXVWlpLokrg
-	K1icUfnFeVZqy4oIsKmvUJjnntBbTWeY6mAm
-X-Google-Smtp-Source: AA6agR6z2m0ul1bIB7gX6941qTm3iNigFl3vuOxonibB7cnEPzY+zddV4FHmw39XAXbj5dHUq1cq9Q==
-X-Received: by 2002:a05:600c:35cc:b0:3a6:f08:9b1 with SMTP id r12-20020a05600c35cc00b003a60f0809b1mr5014747wmq.22.1662723052887;
-        Fri, 09 Sep 2022 04:30:52 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ca05:c15c:ee41:c8ab? ([2a01:e0a:982:cbb0:ca05:c15c:ee41:c8ab])
-        by smtp.gmail.com with ESMTPSA id r2-20020adfda42000000b002286231f479sm305722wrl.50.2022.09.09.04.30.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 04:30:52 -0700 (PDT)
-Message-ID: <326dedc2-0e83-55eb-fe74-84d10b7769ce@baylibre.com>
-Date: Fri, 9 Sep 2022 13:30:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] drm/meson: Fix OSD1 RGB to YCbCr coefficient
-Content-Language: en-US
-To: Stuart Menefy <stuart.menefy@mathembedded.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org
-References: <20220908155243.687143-1-stuart.menefy@mathembedded.com>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=eMfi4sj8sxdilltEjT3o0CYqu/07v37iL0oI9NwLuhQ=;
+        b=BgtUvq7cdlzLkyJS282FbWCdI1U3ybe9/Oik4ZmM6vfU3O69yhvXIYTHwJ9OgtoBpT
+         j4iasnmpE5h1biWGQK0NRfueO0aCw1jiCz+FaB7PUf0ifrk2ydAqiLUkACXBcFTxfYp5
+         4sCK725PmY6uEyrbFy2f1YGWQVPfZEZb400Y3BBs9tzl0YO4jjS7K5rTwyRb93f3w2s3
+         0Q34pny7u0FE8AO8S53mOmvKre02gALJpd+urNPAPW4Z6odMNTypR27QAeY4opeUbh9q
+         jamgGyPT/htDs8E92RtBH6Ge2XhEY8Auu8qCFOSUQeETTasQ8jrInJY4k17Mc3SJzhsh
+         CwDg==
+X-Gm-Message-State: ACgBeo1z/SjZjinxk3Ba5+oleUf/llYBidkTX9qxt4qKg5L6gR8+6kQQ
+	3SwHZr9HxF82dJVHfQ+WP7X8+8QFZTVPh+fx
+X-Google-Smtp-Source: AA6agR5Hz6kkduJeRFgp/DA6BwlkbNwFTw/nfrGwXvXISQa+66SCJbXRvxHYQfYYcMMhOCPKMIWT+w==
+X-Received: by 2002:a05:600c:4f53:b0:3a6:9d3c:47e9 with SMTP id m19-20020a05600c4f5300b003a69d3c47e9mr5330903wmq.116.1662723383738;
+        Fri, 09 Sep 2022 04:36:23 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:982:cbb0:ca05:c15c:ee41:c8ab])
+        by smtp.gmail.com with ESMTPSA id b14-20020a5d634e000000b00228da396f9dsm272862wrw.84.2022.09.09.04.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 04:36:23 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220908155243.687143-1-stuart.menefy@mathembedded.com>
+To: linux-amlogic@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	Stuart Menefy <stuart.menefy@mathembedded.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] drm/meson: Correct OSD1 global alpha value
+Date: Fri,  9 Sep 2022 13:36:21 +0200
+Message-Id: <166272336889.954213.3103687270457215628.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220908155103.686904-1-stuart.menefy@mathembedded.com>
+References: <20220908155103.686904-1-stuart.menefy@mathembedded.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220909_043056_693698_A0B4E6D7 
-X-CRM114-Status: GOOD (  19.11  )
+X-CRM114-CacheID: sfid-20220909_043626_639039_91B4588D 
+X-CRM114-Status: UNSURE (   7.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,54 +86,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi !
+Hi,
 
-On 08/09/2022 17:52, Stuart Menefy wrote:
-> VPP_WRAP_OSD1_MATRIX_COEF22.Coeff22 is documented as being bits 0-12,
-> not 16-28.
-
-Thanks, Good catch !
-
+On Thu, 8 Sep 2022 16:51:03 +0100, Stuart Menefy wrote:
+> VIU_OSD1_CTRL_STAT.GLOBAL_ALPHA is a 9 bit field, so the maximum
+> value is 0x100 not 0xff.
 > 
-> Without this the output tends to have a pink hue, changing it results
-> in better color accuracy.
-
-Indeed, it was a regular issue reported.
-
+> This matches the vendor kernel.
 > 
-> The vendor kernel doesn't use this register. However the code which
-> sets VIU2_OSD1_MATRIX_COEF22 also uses bits 0-12. There is a slightly
-> different style of registers for configuring some of the other matrices,
-> which do use bits 16-28 for this coefficient, but those have names
-> ending in MATRIX_COEF22_30, and this is not one of those.
 > 
 
-Fixes: 728883948b0d ("drm/meson: Add G12A Support for VIU setup")
-> Signed-off-by: Stuart Menefy <stuart.menefy@mathembedded.com>
-> ---
->   drivers/gpu/drm/meson/meson_viu.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
-> index 51df4de..876ffe0 100644
-> --- a/drivers/gpu/drm/meson/meson_viu.c
-> +++ b/drivers/gpu/drm/meson/meson_viu.c
-> @@ -94,7 +94,7 @@ static void meson_viu_set_g12a_osd1_matrix(struct meson_drm *priv,
->   		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF11_12));
->   	writel(((m[9] & 0x1fff) << 16) | (m[10] & 0x1fff),
->   		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF20_21));
-> -	writel((m[11] & 0x1fff) << 16,
-> +	writel((m[11] & 0x1fff),
->   		priv->io_base +	_REG(VPP_WRAP_OSD1_MATRIX_COEF22));
->   
->   	writel(((m[18] & 0xfff) << 16) | (m[19] & 0xfff),
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+[1/1] drm/meson: Correct OSD1 global alpha value
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=6836829c8ea453c9e3e518e61539e35881c8ed5f
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
