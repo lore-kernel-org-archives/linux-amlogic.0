@@ -4,77 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05AD5C6FA82
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Sep 2022 07:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5424C6FA86
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Sep 2022 08:43:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YZ0mOGqpDqmJwDmTSfNlx5xdJWEk9Fv48j9pp2d0eBc=; b=nNgxLOyrJbHDIN
-	kFv86UUKpx4PWMffsM4YwxlxGyVYmObehNgzQas9CauRVPj5ATEH0bOaeb+PLHV0FxrH+PV/hVZpl
-	KN8G5AJWG50GjTmaWRM0B+q+irr4Z3NWIEYJDzWLXvHPjPHrAYwkOIbIqLQ843mCAzbgtX7mpkazr
-	ZgGxLxTv5zsFYp1H74ckGz8p5cnR3BVIbw0zZ3rofYG15T+JkTvVNpziRqeL30/vXRmHPYrMufBBv
-	kWqHLZhN53WvNJXmW/BEP5GnOEYyarycQoeMoW++eNJsW4RcSmxuzcvV4dN5shFWpII9ks3WHEHzG
-	9kFgPCD84/SDXpjs3kXQ==;
+	List-Owner; bh=XlDiZ/4cgkbrWPQKDJTP0A4UyYfEQ3TlTe3QjzG3HL4=; b=PDyziLgiXqBbXd
+	Ezrbr2be+XsVfdA2kWb4GD/TzZwZoQu1TfEAmIbmTHuFHaSAVg9u1qW+G467eBD2vzLvt/wF5OwJs
+	9i2za9Avbi639qI6aIv5a8ViQ4zqggeNVxqveICGHjt4Ir67EIuFmsAm28o7lKLNN3+hWhqGyMVYb
+	nOlWEaiVZIizGC/v+xtZU8ajL9J3XsG4wTcv3Tp1PDUEspZySVWKy6h5MOexwzG661ksCnz1rpg0k
+	pr6tse5YQvKwz7uPVw8qexfjkz1Y7vUYoIo40aRoXawdUTSg5MYhRXSoIDzFRWWCUOAlEFzeyI2+l
+	hHVlf64/nq4QwGzNsCtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oY0mB-003r7z-2O; Tue, 13 Sep 2022 07:56:11 +0000
-Received: from mail-yb1-xb2e.google.com ([2607:f8b0:4864:20::b2e])
+	id 1oY1Vh-004YIZ-7H; Tue, 13 Sep 2022 08:43:13 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oY0m6-003r3C-A2
-	for linux-amlogic@lists.infradead.org; Tue, 13 Sep 2022 07:56:08 +0000
-Received: by mail-yb1-xb2e.google.com with SMTP id 202so16403715ybe.13
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Sep 2022 00:56:03 -0700 (PDT)
+	id 1oY1Un-004XMK-Nw
+	for linux-amlogic@lists.infradead.org; Tue, 13 Sep 2022 08:42:20 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id bd26-20020a05600c1f1a00b003a5e82a6474so8992061wmb.4
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Sep 2022 01:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=cLpbb86UrbdT6Fmy4lqyat3r0rgj69ADWnh5PWd/WeA=;
-        b=Nj+/nuQcfIknUGti4zXJEeziglp1/iJvtBvdYNeyVqEsJ5By9njKtfGlJBOOR8IQLV
-         q4K/oFuMhiGTt11Egdf6HPMlS/lMqPRvJj4Ks+BpEKzDFwuADOKLXOxtdMMOGigRxlQR
-         eXHrTwffRbxNKjrbpVCZtcx5ATMEwhNSP4a6pjOMMTR/ISP+8epFBSv+M2AdrAOx64XK
-         9ZnW/UQb6VO8R+6Qlwv/P0GeOTu0x9qhZicfiMqTcT+iXVH7JJveB3p3xnQcpAVRiDV9
-         SmjFX7g7ZhkLJKqKlwO7JqENZut5DQFC4/7YBzzrpHYWq+Nom+xIKfe8HhelApkgmcvI
-         fxZw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date;
+        bh=uHI+VOCSCW3ZSm7NbyJIsIOScib0Mbu91hSQOT5LSy0=;
+        b=eSoqJr59xHFMg2AJgVk4/HbOsxFWh/jZ/SJ45WAQwM8jwVBs34X3kBdtRzqWjx8Bwj
+         Nt19UhRQWlv/a24OhIbAUhRLhvfCF7OnE+eFRRag7CJnmgljdYN2rs0G9yAvzNfoSpBi
+         upLYcF2uSTm68WRBhmo27+El3PT4KIVimNltE3qgLw+pyRj9XwFFFZnuDFYt3rPa0IBk
+         rmvKdXzhucSd1JxFVBl0qQNqt7OYrKmZfs2rVylmSL8rel+D7X3iBqep/t++g3c3ZqbZ
+         WHZ9hW7uViUVY1pIm88fbiJ0EC/Fo3DPlVQbzv4HNYKjNoqPXkOWG9A8n3D1Mm2zHMP4
+         9tHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=cLpbb86UrbdT6Fmy4lqyat3r0rgj69ADWnh5PWd/WeA=;
-        b=sX2WeV8RxdWe/jhRxOes08Knxdr3rce6Mh0vKaX+r5UIngKxSKL6E41EFigeUvxCGi
-         kVIZkCIolW9Q6lyplkAMU7brsNDdiivs3K8jlZFJEJIr141sEA2IAnmFzyAnC+gzs9Pu
-         mC44iQW69Hc+07Y6cpSEj3yUPk78qVVqx26hjAZUQfJJVm+Fv/WtjEOXQ7qXiXxivkTE
-         0AuEQdOzafhWOWiwVAPttOjg/6kVGyaXbZqaVnUPiHnJ588/G+V76V4RneaEdudbuwRI
-         kCaUhC45tJtH8NK0fCtYsMe1a9apVo+FUQdzRqUrK2UkHfFUaBGN2HrFWw+kqVoraJ3k
-         F9dw==
-X-Gm-Message-State: ACgBeo1guVeUbPvjxe9IrnFRzgeHo88Wom2cE91ekJR1dQnMmDVIdCz9
-	czzwNSLbbVYNn4NndIJICKbZ/Skl9puM4QXqDvY=
-X-Google-Smtp-Source: AA6agR5tCkIemEq9F7BHd5gX7YHzj9YA4lfp0b/xqFnQt49xmGWGBv0Ee4/8dIvOwqxu4/ETWiTPNEnStCbHr2aXrT4=
-X-Received: by 2002:a25:8242:0:b0:6a9:1089:e68 with SMTP id
- d2-20020a258242000000b006a910890e68mr26634924ybn.452.1663055762369; Tue, 13
- Sep 2022 00:56:02 -0700 (PDT)
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date;
+        bh=uHI+VOCSCW3ZSm7NbyJIsIOScib0Mbu91hSQOT5LSy0=;
+        b=VgIFVPJFwVOCfSNp2g0Y2se5lCvDMPFeCwoIerfvdF0ODWIOKVjE8nRgMI/hhLpIsB
+         skytDBj4yk3ncuEa01FVevZzLSlanWAPoAniHUVNL8TLzWTgPAyQyDjDgFWWySo93cI5
+         vf3/PKyYz9Go7RevoKj5zhX+sNl68Lb5h3z25lgYv6c75eUrlASS86rfFYnFGxQ7nJ50
+         WIu313yBrhgSQIn0eZ0umVPgup3gMrByJBeuBd/nZERdA82JV4qu8Q6qKobZKe+HDoM2
+         o/QyPaNKbK5SxulUEU6wkVq6OHHC5BPjs3CUzQ+wv8VSj6BZXwvX4J9SpDMOSWMhxfhE
+         bQ4Q==
+X-Gm-Message-State: ACgBeo2pTiVdDjcQn/T3zaU1Ck5ozS0cz2JWGTM8pYjBtZhNRDswbsXn
+	zs/TgnEAufsvyhQzNAL79GPduA==
+X-Google-Smtp-Source: AA6agR5eeVrU4xs/t3Q0Lg2UG9Xin+2EdtdiWEL1NX1uRclOgWPZz0YnCK8lU4TbOhwQfAarcizn3A==
+X-Received: by 2002:a1c:6a09:0:b0:3b4:92fa:8b27 with SMTP id f9-20020a1c6a09000000b003b492fa8b27mr1510521wmc.115.1663058534486;
+        Tue, 13 Sep 2022 01:42:14 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id bw2-20020a0560001f8200b00228c483128dsm7085049wrb.90.2022.09.13.01.42.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 01:42:13 -0700 (PDT)
+References: <cc80cda0-4dda-2e3e-3fc8-afa97717479b@gmail.com>
+ <1jk06rtlrv.fsf@starbuckisacylon.baylibre.com>
+ <09befaaf-b34a-aeda-5dd6-6bfae4b01163@amlogic.com>
+ <1jo7vswmjw.fsf@starbuckisacylon.baylibre.com>
+ <52b07db2-7edb-0373-c6d2-df67917f4af7@gmail.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Yu Tu <yu.tu@amlogic.com>, Neil
+ Armstrong <narmstrong@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Jianxin Pan
+ <jianxin.pan@amlogic.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk@vger.kernel.org, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH RESEND] clk: meson: pll: copy retry workaround from
+ vendor driver
+Date: Tue, 13 Sep 2022 10:42:00 +0200
+In-reply-to: <52b07db2-7edb-0373-c6d2-df67917f4af7@gmail.com>
+Message-ID: <1jleqn3btm.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20220707101423.90106-1-jbrunet@baylibre.com> <00f1e968-c140-29b9-dc82-a6f831171d6f@gmail.com>
- <CACdvmAiyFQTUgEzkva9j8xYJYYBRXg_sfB562f3F515AHmkUoA@mail.gmail.com>
- <5c8f4cc4-9807-cfe5-7e0a-7961aef5057f@gmail.com> <1jfshftliz.fsf@starbuckisacylon.baylibre.com>
- <CAK4VdL0pWFga4V1jR8B4oHjXmbBm7dU6BB8pdh0Hymd2sAiqiw@mail.gmail.com> <99839201-6c30-b455-2f32-ea0f992427fc@gmail.com>
-In-Reply-To: <99839201-6c30-b455-2f32-ea0f992427fc@gmail.com>
-From: Erico Nunes <nunes.erico@gmail.com>
-Date: Tue, 13 Sep 2022 09:55:50 +0200
-Message-ID: <CAK4VdL2b+LjEsXtkDi=judJXj2gEjHL=6QxNFeiPjmdQq8NceQ@mail.gmail.com>
-Subject: Re: [RFC/RFT PATCH] net: stmmac: do not poke MAC_CTRL_REG twice on
- link up
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Da Xue <da@lessconfused.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
-	Neil Armstrong <narmstrong@baylibre.com>, Vyacheslav <adeep@lexina.in>, Qi Duan <qi.duan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220913_005606_368933_A2F94866 
-X-CRM114-Status: GOOD (  20.25  )
+X-CRM114-CacheID: sfid-20220913_014217_858202_3BA5DA56 
+X-CRM114-Status: GOOD (  12.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,39 +99,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Aug 29, 2022 at 8:25 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+
+On Tue 06 Sep 2022 at 20:29, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+
+> On 06.09.2022 17:21, Jerome Brunet wrote:
+>> 
+>> On Tue 30 Aug 2022 at 14:33, Yu Tu <yu.tu@amlogic.com> wrote:
+>> 
+>>> On 2022/8/29 17:54, Jerome Brunet wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>> On Sun 14 Aug 2022 at 23:25, Heiner Kallweit <hkallweit1@gmail.com>
+>>>> wrote:
+>>>>
+>>>>> On a S905X4-based system this call fails randomly.
+>>>>> The vendor driver has a retry mechanism and on my system
+>>>>> the second attempt is successful always.
+>> 
+>> Heiner, ideally commit message should not be about 'your' system
+>> but describe what the system actually is. This would be more useful down
+>> the road.
+>> 
+>> Based on Yu Tu feedback I'd propose
+>> 
+>> '
+>> The PCIe PLL locking may be unreliable under some circumstance, such as
+>> high or low temperature. If the PLL fails to lock, reset it a try again.
+>> 
+>> This helps on the S905X4
+>> '
+>> 
+>> If this is OK with you, I can amend the message before applying the
+>> patch, or you may resubmit. As you wish.
+>> 
 >
-> On 29.08.2022 12:29, Erico Nunes wrote:
-> > On Mon, Aug 29, 2022 at 12:02 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> >>>>> Jerome, can you confirm that after this commit the following is no longer needed?
-> >>>>> 2c87c6f9fbdd ("net: phy: meson-gxl: improve link-up behavior")
-> >>
-> >> This never had any meaningful impact for me. I have already reverted it
-> >> for testing.
-> >>
-> >> I'm all for reverting it
-> >>
-> >>>>>
-> >>>>> Then I'd revert it, referencing the successor workaround / fix in stmmac.
-> > If we are considering to revert that, I would like to trigger some
-> > tests on my S805X CI board farm as well, to ensure it won't regress
-> > later. That was one of the original reasons for that patch.
-> >
-> > Since there are some more changes referenced in this thread, can
-> > someone clarify what is the desired state to test? Just revert
-> > 2c87c6f9fbdd on top of linux-next, or also apply some other patch?
+> Yes, please amend the commit message as suggested.
+> Thanks for the review and follow-up.
 >
-> Yes, just revert 2c87c6f9fbdd on top of linux-next.
 
-I see that the revert is already applied.
-For what it's worth I ran have been running some test jobs on my CI
-farm with linux-next and the patch reverted and haven't reproduced the
-bug that originally prompted 2c87c6f9fbdd so far. So it seems to me
-that that patch is indeed no longer needed.
-
-Thanks
-
-Erico
+Applied, Thx
 
 _______________________________________________
 linux-amlogic mailing list
