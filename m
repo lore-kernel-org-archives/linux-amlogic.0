@@ -4,75 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED0C9C54EE9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Sep 2022 08:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD0DECAAD8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Sep 2022 09:01:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=06iSqRB+9WvhsPdElnPdSdsJak5mBE3iVoAZRChBuME=; b=aUoTZ+2Z27cJxE
-	qdtW+8vpYQlzLEeKlwhMAXdp0t46vLjdw+flfYatej/Pzza8bcS3HzumKcVV8HvUhRkS3hPypsO2z
-	yvV2NWAx23OaAwdF1uMJVf1s6R4Xc5G5OUCNA3c1MlSuIeahOJkESIc6Gdu7HozHrk6jXH6tyuyxB
-	npaY6ombM6FQ0w8jD1gYbz7O4QrHZ2cgsr6mchlBvRFowAUNQrBvwlZQ3MClUGhEzKi3dxUY2AQrW
-	QimaXbtOXfDga5ZufLckfH3vRnIWfAK0tiHmNal2LoyeDWqCf9rFmri0ZgNapAV78K1cFjoQdlmm7
-	QFO+jmukdai5usFKM4Cg==;
+	List-Owner; bh=BXeF/BeFTI0Jg0x+LzBn1fwegtmqelIekQ3hJsWJaj4=; b=IP9cE6F7kbUbov
+	Ha1UH6pVHuuQcpSyGmCY7iqhyiPbM1tqBvoFeUZn5+qPBr9a3a4q2rlH0T8R2mNPsKQ6fqs1D9C2i
+	70ZLy8BO0mM5X5VYm/FJqHK6cWdFdGC5MKGP5aJgh5HmtXGfMdubC+ZLqa07QoHQvl2chNjnf+Yze
+	5ErJ8C2511erwVt4ODxkKDq4grPgT0lAsuqmY385Dww5ZkhpFTrDd4UZcUis9941Qyh+2EzMwxeP1
+	+4P452W7CdIk+hG9RMzBwr5vGZVuvW80rqrXaBjynFT+UD+36Ky496QsLX9c1Uas9emiBqfe9epKS
+	s1G+VH77Y7b3Vxpm8INg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oaYjD-001sl2-S6; Tue, 20 Sep 2022 08:35:39 +0000
-Received: from relay4-d.mail.gandi.net ([217.70.183.196])
+	id 1oaZ7i-0028Xm-Ew; Tue, 20 Sep 2022 09:00:58 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oaYhF-001r49-MR; Tue, 20 Sep 2022 08:33:51 +0000
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 7C078E0018;
-	Tue, 20 Sep 2022 08:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1663662814;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GSLBEoilakHX+v3OduCSsrPTjI4oube0hzbmRNzZ1YM=;
-	b=cpXt22cKdbG7hebzLKDJ1nOdGAZzwpKb0moRRKTC9t12DtMS9OJpCrCUsUocgiTxXrHVmt
-	uQGeYCpVfPDWRn//jLWk32o8UKixEMXqb1Ez0cj5qbvBVbCmL81JhP+amJ2qWyjZn840rg
-	2jdCRVdo2r9DUwC8KEtrYwI+VkAsRCiIGEN4uWp4Y0EeGh88SKf91gu9ICcHthW67Wo0bk
-	EpFnTcYYeSjSSIJq8uB1v4m9iy5V5yl3wJno/Rlwg2O361Lh3QWzED6HKTBjDrNF7Og43s
-	3c52lKi1M6pZGcFi3s7SrzJ+W/SI+98A5uqW/4ziizGmheBME2Q4oq9Yg6coTQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-mtd@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>,
-	Victor Wan <victor.wan@amlogic.com>,
-	XianWei Zhao <xianwei.zhao@amlogic.com>,
-	Kelvin Zhang <kelvin.zhang@amlogic.com>,
-	BiChao Zheng <bichao.zheng@amlogic.com>,
-	YongHui Yu <yonghui.yu@amlogic.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 1/5] dt-bindings: nand: meson: fix meson nfc clock
-Date: Tue, 20 Sep 2022 10:33:32 +0200
-Message-Id: <20220920083332.600982-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220907080405.28240-2-liang.yang@amlogic.com>
-References: 
+	id 1oaPge-00G3iL-9a
+	for linux-amlogic@lists.infradead.org; Mon, 19 Sep 2022 22:56:27 +0000
+Received: by mail-ej1-x636.google.com with SMTP id y3so2148755ejc.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Sep 2022 15:56:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lixom-net.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=5S9VBftUHA8Ab+AfT1DhnDF/jWnQCvfphMhw9w+YVhc=;
+        b=pT3AVw/XaQKfMJa28M67X6CWfwalI0Uvo6unsRjOTD2Z+d/hMLJagRy91+fB9mWt/H
+         RvjlLsn+3FsNx74QkbruJHKtTQ+30w35PYmoN36zBZvRhmzaaut2t/ejO0VHEYQ77EDj
+         OXDYFEqkBBbGSPaGws21i+7eNFUtsVpC10Ocfp53V0C+AqpxtnC2gWLf09NvoZb8DNZe
+         nefkWz5Q2xpTnqPE/9sJZpmszdShkKibcjHKjjaL4N2+oQKOJucjE0sZV5m8l2gxJQLL
+         eUTG5Bs9Z5UoBJW4L2zlLkhjGsOc0HVn5guvp/vsJvOqjFnEQJHDOGaHy7aMupntX7WF
+         7vTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=5S9VBftUHA8Ab+AfT1DhnDF/jWnQCvfphMhw9w+YVhc=;
+        b=FHs+bFENfiwO5ns9zLQ7v2OLY8AOlwgp/DMrFjpQnQ8vuKf56rxjmjXV8kuU8X7oib
+         tpwxv0Q1tUQQXbL8rH1pVFBrqR3+1lKrlMxN2lg6joGTwt8/fF8/EHVFjxMu5gn1RWL4
+         DtAftodS490CTy/Qj3Lsqob1RsbONXdHvvdHfY+mMdINS8xI5BG1IYXmPFRSXpv9NZD1
+         ZSEgalwCRF4F4LvowkYR7cALEcjF8JUMnW8X/SsJ4EK9PMC+OS85+zaJeq5LWALEvOXK
+         e3PNiRM0GBwYMiT/sHMf3Zq8VFrvJskCTXGbmlvPJ4SPTUVg1yGA4aqe/dZi2Vxha475
+         3bhA==
+X-Gm-Message-State: ACrzQf02Mr/PzunmwjXKWFlItNAILq+XJ0BFjrHh0J9mpQSYxmxs3Ro1
+	51ufOfMk6SsRPbMqs6+iQMV9PJppsNk4QBj/mFx2Kw==
+X-Google-Smtp-Source: AMsMyM5kdxcAfNB78ChbidtnpNAMschNYMIGpvHRr7zgKTZ4CCEGx6bhJgHHTNr9SAgKH+LAmfDCBtvH2R9hQBackB8=
+X-Received: by 2002:a17:906:ef8c:b0:77c:8f77:330 with SMTP id
+ ze12-20020a170906ef8c00b0077c8f770330mr14503775ejb.604.1663628181793; Mon, 19
+ Sep 2022 15:56:21 -0700 (PDT)
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'4579bca2056840d60958bd33b68eef6123420111'
+References: <20220701012647.2007122-1-saravanak@google.com>
+ <YwS5J3effuHQJRZ5@kroah.com> <CAOesGMivJ5Q-jdeGKw32yhjmNiYctHjpEAnoMMRghYqWD2m2tw@mail.gmail.com>
+ <YygsEtxKz8dsEstc@kroah.com>
+In-Reply-To: <YygsEtxKz8dsEstc@kroah.com>
+From: Olof Johansson <olof@lixom.net>
+Date: Mon, 19 Sep 2022 15:56:09 -0700
+Message-ID: <CAOesGMh5GHCONTQ9M1Ro7zW-hkL_1F7Xt=xRV0vYSfPY=7LYkQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Fix console probe delay when stdout-path isn't set
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Saravana Kannan <saravanak@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
+	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
+	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
+	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
+	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
+	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
+	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
+	Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>, 
+	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>, 
+	ulf hansson <ulf.hansson@linaro.org>, len brown <len.brown@intel.com>, 
+	pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>, 
+	andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
+	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
+	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
+	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
+	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	sparclinux@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220920_013350_038037_E8223EA2 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20220919_155624_375399_B8F77798 
+X-CRM114-Status: GOOD (  38.94  )
+X-Mailman-Approved-At: Tue, 20 Sep 2022 02:00:56 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,27 +140,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2022-09-07 at 08:04:01 UTC, Liang Yang wrote:
-> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
-> which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
-> the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
-> a common MMC and NAND sub-clock was discussed and planed to be implemented
-> as NFC clock provider, but now this series of patches of a common MMC and
-> NAND sub-clock are never being accepted and the current binding was never
-> valid. the reasons for giving up are:
-> 1. EMMC and NAND, which are mutually exclusive anyway
-> 2. coupling the EMMC and NAND.
-> 3. it seems that a common MMC and NAND sub-clock is over engineered.
-> and let us see the link fot more information:
-> https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
-> so The meson nfc can't work now, let us rework the clock.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+On Mon, Sep 19, 2022 at 1:44 AM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Sun, Sep 18, 2022 at 08:44:27PM -0700, Olof Johansson wrote:
+> > On Tue, Aug 23, 2022 at 8:37 AM Greg Kroah-Hartman
+> > <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > On Thu, Jun 30, 2022 at 06:26:38PM -0700, Saravana Kannan wrote:
+> > > > These patches are on top of driver-core-next.
+> > > >
+> > > > Even if stdout-path isn't set in DT, this patch should take console
+> > > > probe times back to how they were before the deferred_probe_timeout
+> > > > clean up series[1].
+> > >
+> > > Now dropped from my queue due to lack of a response to other reviewer's
+> > > questions.
+> >
+> > What happened to this patch? I have a 10 second timeout on console
+> > probe on my SiFive Unmatched, and I don't see this flag being set for
+> > the serial driver. In fact, I don't see it anywhere in-tree. I can't
+> > seem to locate another patchset from Saravana around this though, so
+> > I'm not sure where to look for a missing piece for the sifive serial
+> > driver.
+> >
+> > This is the second boot time regression (this one not fatal, unlike
+> > the Layerscape PCIe one) from the fw_devlink patchset.
+> >
+> > Greg, can you revert the whole set for 6.0, please? It's obviously
+> > nowhere near tested enough to go in and I expect we'll see a bunch of
+> > -stable fixups due to this if we let it remain in.
+>
+> What exactly is "the whole set"?  I have the default option fix queued
+> up and will send that to Linus later this week (am traveling back from
+> Plumbers still), but have not heard any problems about any other issues
+> at all other than your report.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+I stand corrected in this case, the issue on the Hifive Unmatched was
+a regression due to a PWM clock change -- I just sent a patch for that
+(serial driver fix).
 
-Miquel
+So it seems like as long as the fw_devlink.strict=1 patch is reverted,
+things are back to a working state here.
+
+I still struggle with how the fw_devlink patchset is expected to work
+though, since DT is expected to describe the hardware configuration,
+and it has no knowledge of whether there are drivers that will be
+bound to any referenced supplier devnodes. It's not going to work well
+to assume that they will always be bound, and to add 10 second
+timeouts for those cases isn't a good solution. Seems like the number
+of special cases will keep adding up.
+
+The whole design feels like it's falling short, and it's been patched
+here and there to deal with the shortcomings, instead of revisiting
+the full solution. (The patches are the console one, and another to
+deal with nfsroot boots).
+
+As long as it doesn't keep regressing others, I suppose the work to
+redesign it can happen in-tree, but it's not usually how we try to do
+it for new functionality. Especially since it's still being iterated
+on (with active patch sets posted around -rc1 for improvements).
+
+Oh, and one more thing for the future -- the main patch that changes
+behavior due to dependency tracking is 2f8c3ae8288e, named "driver
+core: Add wait_for_init_devices_probe helper function". It's easy to
+overlook this when looking at a list of patches since it's said to
+just introduce a helper.
+
+
+-Olof
 
 _______________________________________________
 linux-amlogic mailing list
