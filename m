@@ -4,126 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD0DECAAD8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Sep 2022 09:01:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC70CC54EE9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Sep 2022 11:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BXeF/BeFTI0Jg0x+LzBn1fwegtmqelIekQ3hJsWJaj4=; b=IP9cE6F7kbUbov
-	Ha1UH6pVHuuQcpSyGmCY7iqhyiPbM1tqBvoFeUZn5+qPBr9a3a4q2rlH0T8R2mNPsKQ6fqs1D9C2i
-	70ZLy8BO0mM5X5VYm/FJqHK6cWdFdGC5MKGP5aJgh5HmtXGfMdubC+ZLqa07QoHQvl2chNjnf+Yze
-	5ErJ8C2511erwVt4ODxkKDq4grPgT0lAsuqmY385Dww5ZkhpFTrDd4UZcUis9941Qyh+2EzMwxeP1
-	+4P452W7CdIk+hG9RMzBwr5vGZVuvW80rqrXaBjynFT+UD+36Ky496QsLX9c1Uas9emiBqfe9epKS
-	s1G+VH77Y7b3Vxpm8INg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SWnrlg4YNAXxMzYW4xngZjG4yrN232ECGY1rRDt9j7Y=; b=c+Pz6w4K+5plnA
+	mM41pMMAclcpaOQZEL11fahHC3Licrm+nVmn9cpwDkqkA/nt4kIK+HPOBRNw4NFqFXvxKbz7Y0dKe
+	cwLSIGWDBMuCvb+bhrb6Ew2GxsPVg/uDp/GNizp0D4Z56W7jy/389FSjF5d6aAOnun3AcYjHn7LHS
+	ENngzKl+WClwvCBe4vuVVZuLQZX1COhP75eWMtvavQEGsR9x6Ezt9B6mF8NmNftCS0V1UcBu0nTl/
+	ot/VOzCTq/uEr/zoKLgyJQGHlWqSj7EqJFT6bTzq6K74r8W1YHLDJaZPWhg5W/uzXsb+S8SVSsTJj
+	ZNDOucXr8jJh2H7Vmstg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oaZ7i-0028Xm-Ew; Tue, 20 Sep 2022 09:00:58 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1oabQB-003I6b-EJ; Tue, 20 Sep 2022 11:28:11 +0000
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oaPge-00G3iL-9a
-	for linux-amlogic@lists.infradead.org; Mon, 19 Sep 2022 22:56:27 +0000
-Received: by mail-ej1-x636.google.com with SMTP id y3so2148755ejc.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Sep 2022 15:56:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=5S9VBftUHA8Ab+AfT1DhnDF/jWnQCvfphMhw9w+YVhc=;
-        b=pT3AVw/XaQKfMJa28M67X6CWfwalI0Uvo6unsRjOTD2Z+d/hMLJagRy91+fB9mWt/H
-         RvjlLsn+3FsNx74QkbruJHKtTQ+30w35PYmoN36zBZvRhmzaaut2t/ejO0VHEYQ77EDj
-         OXDYFEqkBBbGSPaGws21i+7eNFUtsVpC10Ocfp53V0C+AqpxtnC2gWLf09NvoZb8DNZe
-         nefkWz5Q2xpTnqPE/9sJZpmszdShkKibcjHKjjaL4N2+oQKOJucjE0sZV5m8l2gxJQLL
-         eUTG5Bs9Z5UoBJW4L2zlLkhjGsOc0HVn5guvp/vsJvOqjFnEQJHDOGaHy7aMupntX7WF
-         7vTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=5S9VBftUHA8Ab+AfT1DhnDF/jWnQCvfphMhw9w+YVhc=;
-        b=FHs+bFENfiwO5ns9zLQ7v2OLY8AOlwgp/DMrFjpQnQ8vuKf56rxjmjXV8kuU8X7oib
-         tpwxv0Q1tUQQXbL8rH1pVFBrqR3+1lKrlMxN2lg6joGTwt8/fF8/EHVFjxMu5gn1RWL4
-         DtAftodS490CTy/Qj3Lsqob1RsbONXdHvvdHfY+mMdINS8xI5BG1IYXmPFRSXpv9NZD1
-         ZSEgalwCRF4F4LvowkYR7cALEcjF8JUMnW8X/SsJ4EK9PMC+OS85+zaJeq5LWALEvOXK
-         e3PNiRM0GBwYMiT/sHMf3Zq8VFrvJskCTXGbmlvPJ4SPTUVg1yGA4aqe/dZi2Vxha475
-         3bhA==
-X-Gm-Message-State: ACrzQf02Mr/PzunmwjXKWFlItNAILq+XJ0BFjrHh0J9mpQSYxmxs3Ro1
-	51ufOfMk6SsRPbMqs6+iQMV9PJppsNk4QBj/mFx2Kw==
-X-Google-Smtp-Source: AMsMyM5kdxcAfNB78ChbidtnpNAMschNYMIGpvHRr7zgKTZ4CCEGx6bhJgHHTNr9SAgKH+LAmfDCBtvH2R9hQBackB8=
-X-Received: by 2002:a17:906:ef8c:b0:77c:8f77:330 with SMTP id
- ze12-20020a170906ef8c00b0077c8f770330mr14503775ejb.604.1663628181793; Mon, 19
- Sep 2022 15:56:21 -0700 (PDT)
+	id 1oabQ7-003I2e-1x; Tue, 20 Sep 2022 11:28:09 +0000
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28K81m58025096;
+	Tue, 20 Sep 2022 07:27:47 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jpn468r05-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Sep 2022 07:27:46 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 28KBRjx6060583
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Sep 2022 07:27:45 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 20 Sep 2022 07:27:44 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 20 Sep 2022 07:27:44 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 20 Sep 2022 07:27:44 -0400
+Received: from nsa.ad.analog.com ([10.44.3.57])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 28KBR4UM021723;
+	Tue, 20 Sep 2022 07:27:06 -0400
+From: =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To: <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-imx@nxp.com>,
+        <linux-iio@vger.kernel.org>
+CC: Chunyan Zhang <zhang.lyra@gmail.com>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Cixi Geng <cixi.geng1@unisoc.com>, Kevin Hilman <khilman@baylibre.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Pengutronix Kernel Team
+	<kernel@pengutronix.de>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        "Fabio
+ Estevam" <festevam@gmail.com>,
+        Andriy Tryshnivskyy
+	<andriy.tryshnivskyy@opensynergy.com>,
+        Haibo Chen <haibo.chen@nxp.com>, "Shawn Guo" <shawnguo@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jerome Brunet
+	<jbrunet@baylibre.com>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        Florian Boor
+	<florian.boor@kernelconcepts.de>,
+        Ciprian Regus <ciprian.regus@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko
+	<andy.shevchenko@gmail.com>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        Neil
+ Armstrong <narmstrong@baylibre.com>,
+        "Baolin Wang"
+	<baolin.wang@linux.alibaba.com>,
+        Jyoti Bhayana <jbhayana@google.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Chen-Yu Tsai
+	<wens@csie.org>, Orson Zhai <orsonzhai@gmail.com>
+Subject: [PATCH 00/15] Make 'mlock' really private
+Date: Tue, 20 Sep 2022 13:28:06 +0200
+Message-ID: <20220920112821.975359-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-References: <20220701012647.2007122-1-saravanak@google.com>
- <YwS5J3effuHQJRZ5@kroah.com> <CAOesGMivJ5Q-jdeGKw32yhjmNiYctHjpEAnoMMRghYqWD2m2tw@mail.gmail.com>
- <YygsEtxKz8dsEstc@kroah.com>
-In-Reply-To: <YygsEtxKz8dsEstc@kroah.com>
-From: Olof Johansson <olof@lixom.net>
-Date: Mon, 19 Sep 2022 15:56:09 -0700
-Message-ID: <CAOesGMh5GHCONTQ9M1Ro7zW-hkL_1F7Xt=xRV0vYSfPY=7LYkQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Fix console probe delay when stdout-path isn't set
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Saravana Kannan <saravanak@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Jiri Slaby <jirislaby@kernel.org>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
-	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Cercueil <paul@crapouillou.net>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Tobias Klauser <tklauser@distanz.ch>, Russell King <linux@armlinux.org.uk>, 
-	Vineet Gupta <vgupta@kernel.org>, Richard Genoud <richard.genoud@gmail.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Alexander Shiyan <shc_work@mail.ru>, 
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Karol Gugala <kgugala@antmicro.com>, Mateusz Holenko <mholenko@antmicro.com>, 
-	Gabriel Somlo <gsomlo@gmail.com>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Taichi Sugaya <sugaya.taichi@socionext.com>, Takao Orito <orito.takao@socionext.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@linaro.org>, Pali Rohar <pali@kernel.org>, 
-	Andreas Farber <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laxman Dewangan <ldewangan@nvidia.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S. Miller" <davem@davemloft.net>, 
-	Hammer Hsieh <hammerh0314@gmail.com>, Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>, 
-	Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>, 
-	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>, kevin hilman <khilman@kernel.org>, 
-	ulf hansson <ulf.hansson@linaro.org>, len brown <len.brown@intel.com>, 
-	pavel machek <pavel@ucw.cz>, joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>, 
-	andrew lunn <andrew@lunn.ch>, heiner kallweit <hkallweit1@gmail.com>, 
-	eric dumazet <edumazet@google.com>, jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>, 
-	linus walleij <linus.walleij@linaro.org>, hideaki yoshifuji <yoshfuji@linux-ipv6.org>, 
-	david ahern <dsahern@kernel.org>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org, 
-	linux-unisoc@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	sparclinux@vger.kernel.org
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: ctBCY4ybaJjBC-Xu6-vuJs0JpagJPQLg
+X-Proofpoint-GUID: ctBCY4ybaJjBC-Xu6-vuJs0JpagJPQLg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-20_02,2022-09-16_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ phishscore=0 clxscore=1011 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 mlxlogscore=524 adultscore=0
+ malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209200068
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220919_155624_375399_B8F77798 
-X-CRM114-Status: GOOD (  38.94  )
-X-Mailman-Approved-At: Tue, 20 Sep 2022 02:00:56 -0700
+X-CRM114-CacheID: sfid-20220920_042807_180135_BC488A4D 
+X-CRM114-Status: GOOD (  14.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,82 +120,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 19, 2022 at 1:44 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Sun, Sep 18, 2022 at 08:44:27PM -0700, Olof Johansson wrote:
-> > On Tue, Aug 23, 2022 at 8:37 AM Greg Kroah-Hartman
-> > <gregkh@linuxfoundation.org> wrote:
-> > >
-> > > On Thu, Jun 30, 2022 at 06:26:38PM -0700, Saravana Kannan wrote:
-> > > > These patches are on top of driver-core-next.
-> > > >
-> > > > Even if stdout-path isn't set in DT, this patch should take console
-> > > > probe times back to how they were before the deferred_probe_timeout
-> > > > clean up series[1].
-> > >
-> > > Now dropped from my queue due to lack of a response to other reviewer's
-> > > questions.
-> >
-> > What happened to this patch? I have a 10 second timeout on console
-> > probe on my SiFive Unmatched, and I don't see this flag being set for
-> > the serial driver. In fact, I don't see it anywhere in-tree. I can't
-> > seem to locate another patchset from Saravana around this though, so
-> > I'm not sure where to look for a missing piece for the sifive serial
-> > driver.
-> >
-> > This is the second boot time regression (this one not fatal, unlike
-> > the Layerscape PCIe one) from the fw_devlink patchset.
-> >
-> > Greg, can you revert the whole set for 6.0, please? It's obviously
-> > nowhere near tested enough to go in and I expect we'll see a bunch of
-> > -stable fixups due to this if we let it remain in.
->
-> What exactly is "the whole set"?  I have the default option fix queued
-> up and will send that to Linus later this week (am traveling back from
-> Plumbers still), but have not heard any problems about any other issues
-> at all other than your report.
-
-I stand corrected in this case, the issue on the Hifive Unmatched was
-a regression due to a PWM clock change -- I just sent a patch for that
-(serial driver fix).
-
-So it seems like as long as the fw_devlink.strict=1 patch is reverted,
-things are back to a working state here.
-
-I still struggle with how the fw_devlink patchset is expected to work
-though, since DT is expected to describe the hardware configuration,
-and it has no knowledge of whether there are drivers that will be
-bound to any referenced supplier devnodes. It's not going to work well
-to assume that they will always be bound, and to add 10 second
-timeouts for those cases isn't a good solution. Seems like the number
-of special cases will keep adding up.
-
-The whole design feels like it's falling short, and it's been patched
-here and there to deal with the shortcomings, instead of revisiting
-the full solution. (The patches are the console one, and another to
-deal with nfsroot boots).
-
-As long as it doesn't keep regressing others, I suppose the work to
-redesign it can happen in-tree, but it's not usually how we try to do
-it for new functionality. Especially since it's still being iterated
-on (with active patch sets posted around -rc1 for improvements).
-
-Oh, and one more thing for the future -- the main patch that changes
-behavior due to dependency tracking is 2f8c3ae8288e, named "driver
-core: Add wait_for_init_devices_probe helper function". It's easy to
-overlook this when looking at a list of patches since it's said to
-just introduce a helper.
-
-
--Olof
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhpcyBwYXRjaHNldCBjbGVhbnMgYWxsIHRoZSBkcml2ZXJzIGRpcmVjdGx5IHVzaW5nIHRoZSBp
+aW9fZGV2aWNlICdtbG9jaycuDQpUaGlzIGxvY2sgaXMgcHJpdmF0ZSBhbmQgc2hvdWxkIG5vdCBi
+ZSB1c2VkIG91dHNpZGUgdGhlIGNvcmUgKG9yIGJ5IHVzaW5nDQpwcm9wZXIgaGVscGVycykuDQoN
+Ck1vc3Qgb2YgdGhlIGNvbnZlcnNpb25zIHdoZXJlIHN0cmFpZ2h0LCBidXQgdGhlcmUgYXJlIHNv
+bWUgdGhhdCByZWFsbHkgbmVlZA0KZXh0cmEgbG9va2luZy4gTWFpbmx5IHBhdGNoZXMgWzEzLzE1
+XSBhbmQgWzE0LzE1XSB3ZXJlIGEgYml0IGhhY2t5IHNpbmNlDQppaW9fZGV2aWNlX2NsYWltX2Rp
+cmVjdF9tb2RlKCkgZG9lcyBub3QgZml0IDEwMCUuIFRoZSByZWFzb24gaXMgdGhhdCB3ZQ0Kd2Fu
+dCB0byBjaGVjayBpZiB0aGUgZGV2aWNlIGlzIGJ1ZmZlcmluZyBhbmQgZG8gc29tZXRoaW5nIGlm
+IGl0IGlzIChpbg0Kd2hpY2ggY2FzZSB0aGUgQVBJIHJldHVybiAtRUJVU1kgYW5kIHJlbGVhc2Vk
+IHRoZSBsb2NrLiBJIGp1c3QgdXNlZCBhDQpjb21iaW5hdGlvbnMgb2YgbG9ja3MgdG8gZ2V0IGFy
+b3VuZCB0aGlzIChob3BlZnVsbHkgSSBkaWQgbm90IG1lc3NlZCB1cCkuDQoNCkkgd2FzIGFsc28g
+bm90IHN1cmUgaWYgcGF0Y2ggWzEvMTVdIGRlc2VydmVzIGEgRml4ZXM6IHRhZyBidXQsIHRvIG1l
+LCBpdA0KaXMgcmVhbGx5IGZpeGluZyBhIHBvdGVudGlhbCByYWNlIHNvIEkgYWRkZWQgaXQuDQoN
+Ck5vdGUgdGhhdCB0aGlzIHNlcmllcyB3YXMgb25seSBjb21waWxlZCB0ZXN0ZWQgdXNpbmcgYWxs
+eWVzY29uZmlnIGZvcg0KQVJNLiBJIHJhbiAnZ2l0IGdyZXAnIHRvIG1ha2Ugc3VyZSB0aGVyZSB3
+ZXJlIG5vIG1vcmUgdXNlcnMgb2YgJ21sb2NrJy4NCkhvcGVmdWxseSBJIGNvdmVyZWQgdGhlbSBh
+bGwuLi4NCg0KTnVubyBTw6EgKDE1KToNCiAgaWlvOiBhZGM6IGFkX3NpZ21hX2RlbHRhOiBkbyBu
+b3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogYWQ3OTl4OiBkbyBub3Qg
+dXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogYXhwMjg4X2FkYzogZG8gbm90
+IHVzZSBpbnRlcm5hbCBpaW9fZGV2IGxvY2sNCiAgaWlvOiBhZGM6IGlteDdkX2FkYzogZG8gbm90
+IHVzZSBpbnRlcm5hbCBpaW9fZGV2IGxvY2sNCiAgaWlvOiBhZGM6IGxwYzMyeHhfYWRjOiBkbyBu
+b3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogbHRjMjk0Ny1jb3JlOiBk
+byBub3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogbWVzb25fc2FyYWRj
+OiBkbyBub3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogcm9ja2NoaXBf
+c2FyYWRjOiBkbyBub3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGFkYzogc2My
+N3h4X2FkYzogZG8gbm90IHVzZSBpbnRlcm5hbCBpaW9fZGV2IGxvY2sNCiAgaWlvOiBhZGM6IHZm
+NjEwX2FkYzogZG8gbm90IHVzZSBpbnRlcm5hbCBpaW9fZGV2IGxvY2sNCiAgaWlvOiBjb21tb246
+IHNjbWlfaWlvOiBkbyBub3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86IGZ5cm86
+IGl0ZzMyMDBfY29yZTogZG8gbm90IHVzZSBpbnRlcm5hbCBpaW9fZGV2IGxvY2sNCiAgaWlvOiBo
+ZWFsdGg6IG1heDMwMTAwOiBkbyBub3QgdXNlIGludGVybmFsIGlpb19kZXYgbG9jaw0KICBpaW86
+IGhlYWx0aDogbWF4MzAxMDI6IGRvIG5vdCB1c2UgaW50ZXJuYWwgaWlvX2RldiBsb2NrDQogIGlp
+bzogY29yZTogbW92ZSAnbWxvY2snIHRvICdzdHJ1Y3QgaWlvX2Rldl9vcGFxdWUnDQoNCiBkcml2
+ZXJzL2lpby9UT0RPICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMyAtLS0NCiBkcml2ZXJz
+L2lpby9hZGMvYWQ3OTl4LmMgICAgICAgICAgICAgICAgICAgfCAxOCArKysrKysrKy0tLS0tDQog
+ZHJpdmVycy9paW8vYWRjL2FkX3NpZ21hX2RlbHRhLmMgICAgICAgICAgIHwgIDggKysrLS0tDQog
+ZHJpdmVycy9paW8vYWRjL2F4cDI4OF9hZGMuYyAgICAgICAgICAgICAgIHwgIDggKysrKy0tDQog
+ZHJpdmVycy9paW8vYWRjL2lteDdkX2FkYy5jICAgICAgICAgICAgICAgIHwgMTMgKysrKysrLS0t
+LQ0KIGRyaXZlcnMvaWlvL2FkYy9scGMzMnh4X2FkYy5jICAgICAgICAgICAgICB8IDEwICsrKysr
+LS0tDQogZHJpdmVycy9paW8vYWRjL2x0YzI0OTctY29yZS5jICAgICAgICAgICAgIHwgIDcgKysr
+LS0NCiBkcml2ZXJzL2lpby9hZGMvbHRjMjQ5Ny5oICAgICAgICAgICAgICAgICAgfCAgMiArKw0K
+IGRyaXZlcnMvaWlvL2FkYy9tZXNvbl9zYXJhZGMuYyAgICAgICAgICAgICB8IDEwICsrKysrLS0t
+DQogZHJpdmVycy9paW8vYWRjL3JvY2tjaGlwX3NhcmFkYy5jICAgICAgICAgIHwgMTQgKysrKysr
+LS0tLQ0KIGRyaXZlcnMvaWlvL2FkYy9zYzI3eHhfYWRjLmMgICAgICAgICAgICAgICB8IDEyICsr
+KysrKy0tLQ0KIGRyaXZlcnMvaWlvL2FkYy92ZjYxMF9hZGMuYyAgICAgICAgICAgICAgICB8IDMw
+ICsrKysrKysrKysrKysrLS0tLS0tLS0NCiBkcml2ZXJzL2lpby9jb21tb24vc2NtaV9zZW5zb3Jz
+L3NjbWlfaWlvLmMgfCAgOSArKysrKy0tDQogZHJpdmVycy9paW8vZ3lyby9pdGczMjAwX2NvcmUu
+YyAgICAgICAgICAgIHwgIDkgKysrKy0tLQ0KIGRyaXZlcnMvaWlvL2hlYWx0aC9tYXgzMDEwMC5j
+ICAgICAgICAgICAgICB8IDI0ICsrKysrKysrKysrKy0tLS0tDQogZHJpdmVycy9paW8vaGVhbHRo
+L21heDMwMTAyLmMgICAgICAgICAgICAgIHwgMjUgKysrKysrKysrKysrKy0tLS0tDQogZHJpdmVy
+cy9paW8vaW5kdXN0cmlhbGlvLWJ1ZmZlci5jICAgICAgICAgIHwgMjkgKysrKysrKysrKysrLS0t
+LS0tLS0tDQogZHJpdmVycy9paW8vaW5kdXN0cmlhbGlvLWNvcmUuYyAgICAgICAgICAgIHwgMTgg
+KysrKysrKy0tLS0tLQ0KIGRyaXZlcnMvaWlvL2luZHVzdHJpYWxpby1ldmVudC5jICAgICAgICAg
+ICB8ICA0ICstLQ0KIGRyaXZlcnMvaWlvL2luZHVzdHJpYWxpby10cmlnZ2VyLmMgICAgICAgICB8
+IDEyICsrKystLS0tLQ0KIGluY2x1ZGUvbGludXgvaWlvL2d5cm8vaXRnMzIwMC5oICAgICAgICAg
+ICB8ICAyICsrDQogaW5jbHVkZS9saW51eC9paW8vaWlvLW9wYXF1ZS5oICAgICAgICAgICAgIHwg
+IDIgKysNCiBpbmNsdWRlL2xpbnV4L2lpby9paW8uaCAgICAgICAgICAgICAgICAgICAgfCAgMyAt
+LS0NCiAyMyBmaWxlcyBjaGFuZ2VkLCAxNzUgaW5zZXJ0aW9ucygrKSwgOTcgZGVsZXRpb25zKC0p
+DQoNCi0tIA0KMi4zNy4zDQoNCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
