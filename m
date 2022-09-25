@@ -4,77 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2559EC32771
-	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Sep 2022 15:56:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E10EC54EE9
+	for <linux-amlogic@archiver.kernel.org>; Sun, 25 Sep 2022 15:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ct+YMo2wj/a+Bm4AIuCDwS9ppEYhpGO2de/A09wIANI=; b=zbPaQ05dMxZiMP
-	y9a1Z3AfxIq14jQawU8vMavJMsKxNLB1SheQIPOweA1Y/9wiC3d8BzBmLUjypqbYhGSQHXMfuW9tt
-	s9kL4hkZ5EskhsVJOuPJhxp79pQgsJLwAmfZTqE5KF0cmLclU7jpQQJUoVMilLp0qvIbkWKiB1moC
-	UsOHn0yW2BWb8uoSR+q4+wr+v9PGZPFJvBvvzbCeK1C4MJWTws4zbDapfifsF98EP79XAHNEWeZDo
-	RNK0PBeJUk5MVXn2di7ho19DNNzJimUd2n/Yo2iTd0VIoZ8kkNpS6ih2O8Gcs7TNquQ3XFrIPEZR6
-	MO1oF27JnCEwd1AEw4zA==;
+	List-Owner; bh=oOmXkz2sbhUuqEeJ1na2XycgjBRU46Wms/oUmEtU9SE=; b=UQb339KH8zqbbJ
+	1WOQtLSlggyRz4kQx+X9i7XJF0gpN5YU0Mda6sv67n4mBI+nnFH5pmDzPFxZTVfdaS3ieEJgRL/2p
+	CZTH5OIqRqMlK4o8jcHZuhJVVriI90cCBf3Zjhx0vGwh7nW35eBS8M+wz5iH4Vs34Arp36QTIJCZp
+	U3IM/l1e9UVIDofTstotKl6yTNIu0rJNHHlrLUqUHB3+01PguOIwqLvoiK3MNhhQXE0Etp5kXaL6v
+	GSSqm0q43ULg6601RPaCqZGzG6GTpB4tZAUKUVwF0lxDWe/FqrA3QF5J4HEff/MgUoiYF5Oqzb5yO
+	ZvQ6ZiIELUCAkdm/cUOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oc7W8-007qEc-Jq; Sat, 24 Sep 2022 15:56:36 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1ocTkJ-00EYz9-Ti; Sun, 25 Sep 2022 15:40:44 +0000
+Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oc7W6-007qC9-5C; Sat, 24 Sep 2022 15:56:35 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id D05AFB80967;
-	Sat, 24 Sep 2022 15:56:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32749C433D6;
-	Sat, 24 Sep 2022 15:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1664034991;
-	bh=qTNlpHMISOV4KB0CLJWivSAEHSg4ucI5/yCwcRMQb9Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=U5SU6zfWEMemO2eUwr8AcRknz02mxUkWLX0GEjuaM6BJK5UPkwG8MOUbPUZkNfR6f
-	 qVtpLIVYRKOT/3KOLYSnsgUn7T574PZkUtYmGP7StoN6DdQ2OYZXioFFfgpBhnM5fL
-	 NwuMh4LiKHom3/wYu14i+wGNK3/n4W2hQxamwQIGZmUCmMza1YLNCwuyXwe79KPUD3
-	 EivzdII9szCi0vc9FVO3sPR1XbIfwUT6BlrMHtN6GPh4LO8kV93eN3QzIS/iLoD5PJ
-	 94vZLjMy8VlelkmOWYbCcvi6xilAP1WiZ/Lq5lv2tLPvEVsfRWWAvE15Zv3KO+L6sl
-	 xaKqRall014tA==
-Date: Sat, 24 Sep 2022 16:56:32 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
-Cc: <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
- <linux-imx@nxp.com>, <linux-iio@vger.kernel.org>, Chunyan Zhang
- <zhang.lyra@gmail.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Cixi Geng <cixi.geng1@unisoc.com>, Kevin Hilman
- <khilman@baylibre.com>, Vladimir Zapolskiy <vz@mleia.com>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Alexandru Ardelean
- <aardelean@deviqon.com>, "Fabio Estevam" <festevam@gmail.com>, Andriy
- Tryshnivskyy <andriy.tryshnivskyy@opensynergy.com>, Haibo Chen
- <haibo.chen@nxp.com>, "Shawn Guo" <shawnguo@kernel.org>, Hans de Goede
- <hdegoede@redhat.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Jerome
- Brunet <jbrunet@baylibre.com>, "Heiko Stuebner" <heiko@sntech.de>, Florian
- Boor <florian.boor@kernelconcepts.de>, Ciprian Regus
- <ciprian.regus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Andy
- Shevchenko <andy.shevchenko@gmail.com>, Neil Armstrong
- <narmstrong@baylibre.com>, "Baolin Wang" <baolin.wang@linux.alibaba.com>,
- Jyoti Bhayana <jbhayana@google.com>, Chen-Yu Tsai <wens@csie.org>, Orson
- Zhai <orsonzhai@gmail.com>
-Subject: Re: [PATCH 15/15] iio: core: move 'mlock' to 'struct
- iio_dev_opaque'
-Message-ID: <20220924165632.2641725f@jic23-huawei>
-In-Reply-To: <20220920112821.975359-16-nuno.sa@analog.com>
-References: <20220920112821.975359-1-nuno.sa@analog.com>
-	<20220920112821.975359-16-nuno.sa@analog.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+	id 1ocTk8-00EYsD-2j; Sun, 25 Sep 2022 15:40:33 +0000
+Received: by mail-pg1-x536.google.com with SMTP id c7so4506529pgt.11;
+        Sun, 25 Sep 2022 08:40:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
+        bh=ALf43tEt4uTY7t2ZG6Ao8BT7RErUJLGMqwWyM5uhgEc=;
+        b=hqwPnnM/ypNQfn1GAU6crVglBMh7NBmkOrRMeMKH0gXTqXMYa5DFjsjfRf5m+R6r/e
+         wjaP/7EpmEPJ61efUZ3KgwrZ6eKWxBBBmY8VPN9ctSySBRvtXpXd/WZeOHXChaTCjiDl
+         YS7ydQy/7kvk/NLQMuYRdiq9e0B/BL9l9JiyH4WAweuar2ZX1zY03K2ToY6sQWjMXL3Z
+         h7svrokrX4Rqm1Gf7QBy9+9GiOb9Lh5YqnJTQm3bcrXzQ6YeqiG3vxa9o4/ahkIolpzQ
+         xx4yjcBIoitEZaLR/2f3M8tOWDy86puakGnE7rOmCVA8xXiOJZNyoIcbEzMN4bK4+GFo
+         DrVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=ALf43tEt4uTY7t2ZG6Ao8BT7RErUJLGMqwWyM5uhgEc=;
+        b=L08wvSbCpKpjJRx01ke32wQp24Cmg/SJpgagwLOeX0vAdPRC7Z2g4NEt4PJh9thwIr
+         ijXFUBJ0+SmLE5VDUV8xv5XqXCjE7tZi+kLname2e9ID9zyNO2B7Z5Gm3HXry1Ml7gJz
+         o8WADO8rpV+ojU5XGu7V47kxDT331NGR3MX7ghHDwLNoKFt63wOecAK/Bkmpyn3luUEU
+         +wItIdh/gHcIvrFaWf3gcmTIcmyY42UXOOTjaYOgw7ABG8vR3ZPjfxM5P1oQKg3JN17R
+         TrjhSX2P7aUvR6FHl6Xbwi5uHdYHdbtj4Lh8jLXSqSuFpqOmLo6CmHokR1HEUerOMYci
+         eyww==
+X-Gm-Message-State: ACrzQf1FEFp+MvBDK8arpVeAEJDG2HjZ9+QRe4iJXRe5DEny28mUW3wY
+	uwgCxChU5AbHavBbw6aWfw8=
+X-Google-Smtp-Source: AMsMyM5qEgpsSBH0Cd3X5H1tJXymH6cgWhNuk88G9vgitj4eLEaGuYvD3kPzFZfzfeaTUToVZNfo8w==
+X-Received: by 2002:a63:191d:0:b0:434:4bb3:e016 with SMTP id z29-20020a63191d000000b004344bb3e016mr16522946pgl.133.1664120424520;
+        Sun, 25 Sep 2022 08:40:24 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id o67-20020a625a46000000b00554722eda37sm7790166pfb.0.2022.09.25.08.40.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Sep 2022 08:40:23 -0700 (PDT)
+Date: Sun, 25 Sep 2022 08:40:22 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Philippe Boos <pboos@baylibre.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	"open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] watchdog: meson: keep running if already active
+Message-ID: <20220925154022.GA1758351@roeck-us.net>
+References: <20220801092150.4449-1-pboos@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20220801092150.4449-1-pboos@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220924_085634_372478_3C231746 
-X-CRM114-Status: UNSURE (   8.46  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220925_084032_146758_761D9175 
+X-CRM114-Status: GOOD (  23.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,17 +90,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCAyMCBTZXAgMjAyMiAxMzoyODoyMSArMDIwMApOdW5vIFPDoSA8bnVuby5zYUBhbmFs
-b2cuY29tPiB3cm90ZToKCj4gTm93IHRoYXQgdGhlcmUgYXJlIG5vIG1vcmUgdXNlcnMgYWNjZXNz
-aW5nICdtbG9jaycgZGlyZWN0bHksIHdlIGNhbiBtb3ZlCj4gaXQgdG8gdGhlIGlpb19kZXYgcHJp
-dmF0ZSBzdHJ1Y3R1cmUuIEhlbmNlLCBpdCdzIG5vdyBleHBsaWNpdCB0aGF0IG5ldwo+IGRyaXZl
-cidzIHNob3VsZCBub3QgZGlyZWN0bHkgdGhpcyBsb2NrLgo+IAo+IFNpZ25lZC1vZmYtYnk6IE51
-bm8gU8OhIDxudW5vLnNhQGFuYWxvZy5jb20+CkxHVE0gIE5pY2Ugd29yawoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Mon, Aug 01, 2022 at 11:21:50AM +0200, Philippe Boos wrote:
+> If the watchdog is already running (e.g.: started by bootloader) then
+> the kernel driver should keep the watchdog active but the amlogic driver
+> turns it off.
+> 
+> Let the driver fix the clock rate if already active because we do not
+> know the previous timebase value. To avoid unintentional resetting we
+> temporarily set it to its maximum value.
+> 
+> Then keep the enable bit if is was previously active.
+> 
+> Signed-off-by: Philippe Boos <pboos@baylibre.com>
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
+> ---
+>  drivers/watchdog/meson_gxbb_wdt.c | 24 +++++++++++++++++++-----
+>  1 file changed, 19 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+> index 5a9ca10fbcfa..8be8fd9e5637 100644
+> --- a/drivers/watchdog/meson_gxbb_wdt.c
+> +++ b/drivers/watchdog/meson_gxbb_wdt.c
+> @@ -146,6 +146,7 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct meson_gxbb_wdt *data;
+>  	int ret;
+> +	u32 ctrl_reg;
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -177,13 +178,26 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+>  	data->wdt_dev.timeout = DEFAULT_TIMEOUT;
+>  	watchdog_set_drvdata(&data->wdt_dev, data);
+>  
+> +	ctrl_reg = readl(data->reg_base + GXBB_WDT_CTRL_REG) &
+> +				GXBB_WDT_CTRL_EN;
+> +
+> +	if (ctrl_reg) {
+> +		/* Watchdog is running - keep it running but extend timeout
+> +		 * to the maximum while setting the timebase
+> +		 */
+> +		set_bit(WDOG_HW_RUNNING, &data->wdt_dev.status);
+> +		meson_gxbb_wdt_set_timeout(&data->wdt_dev,
+> +				GXBB_WDT_TCNT_SETUP_MASK / 1000);
+> +	}
+> +
+>  	/* Setup with 1ms timebase */
+> -	writel(((clk_get_rate(data->clk) / 1000) & GXBB_WDT_CTRL_DIV_MASK) |
+> -		GXBB_WDT_CTRL_EE_RESET |
+> -		GXBB_WDT_CTRL_CLK_EN |
+> -		GXBB_WDT_CTRL_CLKDIV_EN,
+> -		data->reg_base + GXBB_WDT_CTRL_REG);
+> +	ctrl_reg |= ((clk_get_rate(data->clk) / 1000) &
+> +			GXBB_WDT_CTRL_DIV_MASK) |
+> +			GXBB_WDT_CTRL_EE_RESET |
+> +			GXBB_WDT_CTRL_CLK_EN |
+> +			GXBB_WDT_CTRL_CLKDIV_EN;
+>  
+> +	writel(ctrl_reg, data->reg_base + GXBB_WDT_CTRL_REG);
+>  	meson_gxbb_wdt_set_timeout(&data->wdt_dev, data->wdt_dev.timeout);
+>  
+>  	watchdog_stop_on_reboot(&data->wdt_dev);
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
