@@ -4,149 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 498DCC54EE9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Sep 2022 14:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2164C04A95
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Sep 2022 15:31:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pHn7fYINDnlW9usb9unD0DJdfDSa5Nh8eXpZIQnN+W8=; b=rM5TxbNULDAVhf
-	8sDkcccLsf1KvM3+uMAH/NtVP+tZSzzyvF0UippXT9isaL6EbZISDXncSqmHt7L7CrpRWZyD0GpRK
-	54RXpKZNVDFJFVicejuOYLJdC6/T7oQiGpkFjeQtlshjpLuDqGKVAIWE8ZvuWxEanWRbTxAElOAke
-	ZP4QiTduJmU1Nts7AujSrpcGVXOm8npj3foWricm89mSOMnwF8brYAYbrOvZCuQYDhN2dooS1Ck4+
-	w/TQS7r2ji5K+Me3UVNIwVV2z8yqUEIYXLssfC7HNinfufAxSKIThlXRvfEW0D1eEy40q+nTw/vBc
-	1Z6m371VgN9G8bkjATIQ==;
+	List-Owner; bh=pREU7zED5j7KK+YgXa5j+v0pVxPesYRVA3MnIb6Kybk=; b=h7ObqBqUGGDJr6
+	BSDvgzrp25ZOHEx3X7pyWFZ0MuIo+nkn+YJjhSbuY+GGuRehv3uo+/XgEP0CWWkJCBS5rH55nUzBO
+	oV+LFuy0gK0VVonxCLtwxW0z0JAALFFWouLsWY/PrSprI5SuBFWodRQipS1rUlmf267XZZJP9CM3p
+	MIQSUEIjNZMEyHvAQpv22Yq9vFuuwEBGf7CFqUbKt2MRu/LXkW+Uf9HBUFCmaI/8GF3VO5W5vWTQ9
+	MAVcgmVT1XCaJPPqMtK4ECwpm3XHVSQ7GeIBhnQ+JDyNIxW8Pi+ek/T5qdXmznyv+L06QypKCTeiw
+	yzfqyIQP91tkvQ8VzNtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odB7l-00B86O-JC; Tue, 27 Sep 2022 13:59:49 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1odZ25-00GumJ-7K; Wed, 28 Sep 2022 15:31:33 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1od9sX-00AXml-9Z; Tue, 27 Sep 2022 12:40:03 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 1EA876192C;
-	Tue, 27 Sep 2022 12:39:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15663C433C1;
-	Tue, 27 Sep 2022 12:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1664282397;
-	bh=37yDCTtTXKSMe/LNxUNskIHnOhgXH3MxP0BfzMXipSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oDLkAAZAK9fwuZt7LKXM8ftnzMYuqEX16TQ7tEzyFmrIv30ofSaafC4Y6LcrceyD7
-	 V+zHm07PGvSaenwVeBW7ozfKT0qc6eaS4RIQDezd00apiD/wzViERNkpjWxNMuSu3T
-	 TKNCo/J23ajBzpoO84jGyHvI9aryn0jwbsbvfsIQ=
-Date: Tue, 27 Sep 2022 14:39:53 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
-	Olof Johansson <olof@lixom.net>,
-	Saravana Kannan <saravanak@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Paul Mackerras <paulus@samba.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Al Cooper <alcooperx@gmail.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Tobias Klauser <tklauser@distanz.ch>,
-	Russell King <linux@armlinux.org.uk>,
-	Vineet Gupta <vgupta@kernel.org>,
-	Richard Genoud <richard.genoud@gmail.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Alexander Shiyan <shc_work@mail.ru>,
-	Baruch Siach <baruch@tkos.co.il>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Karol Gugala <kgugala@antmicro.com>,
-	Mateusz Holenko <mholenko@antmicro.com>,
-	Gabriel Somlo <gsomlo@gmail.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Takao Orito <orito.takao@socionext.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <bjorn.andersson@linaro.org>,
-	Pali Rohar <pali@kernel.org>, Andreas Farber <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Hammer Hsieh <hammerh0314@gmail.com>,
-	Peter Korsgaard <jacmet@sunsite.dk>, Timur Tabi <timur@kernel.org>,
-	Michal Simek <michal.simek@xilinx.com>,
-	sascha hauer <sha@pengutronix.de>, peng fan <peng.fan@nxp.com>,
-	kevin hilman <khilman@kernel.org>,
-	ulf hansson <ulf.hansson@linaro.org>,
-	len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
-	joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
-	andrew lunn <andrew@lunn.ch>,
-	heiner kallweit <hkallweit1@gmail.com>,
-	eric dumazet <edumazet@google.com>,
-	jakub kicinski <kuba@kernel.org>, paolo abeni <pabeni@redhat.com>,
-	linus walleij <linus.walleij@linaro.org>,
-	hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
-	david ahern <dsahern@kernel.org>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-tegra@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-actions@lists.infradead.org, linux-unisoc@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	sparclinux@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Fix console probe delay when stdout-path isn't set
-Message-ID: <YzLvGXjP8+W0X/1s@kroah.com>
-References: <20220701012647.2007122-1-saravanak@google.com>
- <YwS5J3effuHQJRZ5@kroah.com>
- <CAOesGMivJ5Q-jdeGKw32yhjmNiYctHjpEAnoMMRghYqWD2m2tw@mail.gmail.com>
- <YygsEtxKz8dsEstc@kroah.com>
- <CAOesGMh5GHCONTQ9M1Ro7zW-hkL_1F7Xt=xRV0vYSfPY=7LYkQ@mail.gmail.com>
- <CAL_JsqK7auA8coB3DCqSDKw1ept_yQihVs-Me3bvU923os23xg@mail.gmail.com>
- <YzLp9yXgoJmy5YU8@smile.fi.intel.com>
+	id 1odZ20-00Gul0-Op
+	for linux-amlogic@lists.infradead.org; Wed, 28 Sep 2022 15:31:31 +0000
+Received: by mail-wm1-x334.google.com with SMTP id o5so8779576wms.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 28 Sep 2022 08:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:from:to:cc:subject:date;
+        bh=kriaUEf4JEywb4Ib5jbgNEOAcF/BvPck0+JYhHyPu6g=;
+        b=J5+w5EspMByoHZe03InWfai3nhk/OV+j39WSMUjmATdmIpwH7qM6CKFo9BtoHSklD2
+         ejr5q69GRapkU+P/2M4khoigP7vN7vj9m0AlCh7gD3doBtkJv5jrCfqbnWsN4zhwr4PB
+         Eu+C/UDh1UkI3Hg0eA1UBk6gKI+IUO0eMCg5vFeMM8BdSGju5cZzV19vOwV8ur98XQgE
+         +uzEEYYchvXNgGOB9de2qMGAFP738L2YQJSlpHFZ2ECkVLI64j7lFFjMFC2jGsHDX3sS
+         BeW4tIXVqQAdq+xJDCfVkLyYSMz5qVWCo88ystnlZwWQADl9phDXaINO3FyNRZotcNqj
+         Q5IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=kriaUEf4JEywb4Ib5jbgNEOAcF/BvPck0+JYhHyPu6g=;
+        b=uttqotT2pJ1PkVc9DmfNUgxQhgkVCJdTEwpj04X5asCVqQmTFrxYhJs6sT/PnqITD6
+         +sXyyzTPY84K6Ys8QkQ9tzkLHiHca7J8CGxyNDn1Om5h/EUELok8Z84QXlr9+9wOD7u6
+         2ankP8kz2LBpEUtgvXq7zoq+Gvg6Lv26T9/Gwtp3bZPhmuRWE9X8uO6hQ2GFAnDbE5GY
+         HK5f8KLub14UAxJAVaFAiEy/sFmvrOo83/ZFmnHs9g2fb9PAUAnFe78rIkVukik5MQMH
+         5pfNFh59a6MOrwEAPAFd6P7lBeZrGJDpDFRWSMkEq7H863OFZh0yHPWRRpqzUlLY3KkK
+         BC3A==
+X-Gm-Message-State: ACrzQf3c+VC4Aukaoot9WJGUHQikoPSCxUNuvF7NcGA6TuVI1VCC6o7O
+	WAV+02BkfgXQPhYnIg+px2pAJA==
+X-Google-Smtp-Source: AMsMyM6UWDHYzfevSWZAOtA0vGyXDTwzRqc9tWhXsli4qp+wX94hkGdnUsaVdDb4E68WBlb6MhR1WA==
+X-Received: by 2002:a05:600c:114f:b0:3b4:9a0a:6204 with SMTP id z15-20020a05600c114f00b003b49a0a6204mr7322303wmz.132.1664379085731;
+        Wed, 28 Sep 2022 08:31:25 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n3-20020a5d4203000000b0022acb7195aesm4514561wrq.33.2022.09.28.08.31.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 08:31:24 -0700 (PDT)
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-4-yu.tu@amlogic.com>
+ <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
+ <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
+ <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+ <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
+ <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
+ <1jtu5uz0ry.fsf@starbuckisacylon.baylibre.com>
+ <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
+ <21e14cc1-6b34-e6b0-8da2-ad4b34dac149@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen  Boyd <sboyd@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
+ PLL clock driver
+Date: Wed, 28 Sep 2022 17:27:07 +0200
+In-reply-to: <21e14cc1-6b34-e6b0-8da2-ad4b34dac149@amlogic.com>
+Message-ID: <1jy1u3zfas.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YzLp9yXgoJmy5YU8@smile.fi.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220927_054001_434424_D2A89FA1 
-X-CRM114-Status: GOOD (  51.37  )
-X-Mailman-Approved-At: Tue, 27 Sep 2022 06:59:48 -0700
+X-CRM114-CacheID: sfid-20220928_083129_047291_D346A5E6 
+X-CRM114-Status: GOOD (  21.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,99 +99,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 27, 2022 at 03:17:59PM +0300, Andy Shevchenko wrote:
-> On Mon, Sep 26, 2022 at 01:25:05PM -0500, Rob Herring wrote:
-> > On Mon, Sep 19, 2022 at 5:56 PM Olof Johansson <olof@lixom.net> wrote:
-> > >
-> > > On Mon, Sep 19, 2022 at 1:44 AM Greg Kroah-Hartman
-> > > <gregkh@linuxfoundation.org> wrote:
-> > > >
-> > > > On Sun, Sep 18, 2022 at 08:44:27PM -0700, Olof Johansson wrote:
-> > > > > On Tue, Aug 23, 2022 at 8:37 AM Greg Kroah-Hartman
-> > > > > <gregkh@linuxfoundation.org> wrote:
-> > > > > >
-> > > > > > On Thu, Jun 30, 2022 at 06:26:38PM -0700, Saravana Kannan wrote:
-> > > > > > > These patches are on top of driver-core-next.
-> > > > > > >
-> > > > > > > Even if stdout-path isn't set in DT, this patch should take console
-> > > > > > > probe times back to how they were before the deferred_probe_timeout
-> > > > > > > clean up series[1].
-> > > > > >
-> > > > > > Now dropped from my queue due to lack of a response to other reviewer's
-> > > > > > questions.
-> > > > >
-> > > > > What happened to this patch? I have a 10 second timeout on console
-> > > > > probe on my SiFive Unmatched, and I don't see this flag being set for
-> > > > > the serial driver. In fact, I don't see it anywhere in-tree. I can't
-> > > > > seem to locate another patchset from Saravana around this though, so
-> > > > > I'm not sure where to look for a missing piece for the sifive serial
-> > > > > driver.
-> > > > >
-> > > > > This is the second boot time regression (this one not fatal, unlike
-> > > > > the Layerscape PCIe one) from the fw_devlink patchset.
-> > > > >
-> > > > > Greg, can you revert the whole set for 6.0, please? It's obviously
-> > > > > nowhere near tested enough to go in and I expect we'll see a bunch of
-> > > > > -stable fixups due to this if we let it remain in.
-> > > >
-> > > > What exactly is "the whole set"?  I have the default option fix queued
-> > > > up and will send that to Linus later this week (am traveling back from
-> > > > Plumbers still), but have not heard any problems about any other issues
-> > > > at all other than your report.
-> > >
-> > > I stand corrected in this case, the issue on the Hifive Unmatched was
-> > > a regression due to a PWM clock change -- I just sent a patch for that
-> > > (serial driver fix).
-> > >
-> > > So it seems like as long as the fw_devlink.strict=1 patch is reverted,
-> > > things are back to a working state here.
-> > >
-> > > I still struggle with how the fw_devlink patchset is expected to work
-> > > though, since DT is expected to describe the hardware configuration,
-> > > and it has no knowledge of whether there are drivers that will be
-> > > bound to any referenced supplier devnodes. It's not going to work well
-> > > to assume that they will always be bound, and to add 10 second
-> > > timeouts for those cases isn't a good solution. Seems like the number
-> > > of special cases will keep adding up.
-> > 
-> > Since the introduction of deferred probe, the kernel has always
-> > assumed if there is a device described, then there is or will be a
-> > driver for it. The result is you can't use new DTs (if they add
-> > providers) with older kernels.
-> > 
-> > We've ended up with a timeout because no one has come up with a better
-> > way to handle it. What the kernel needs is userspace saying "I'm done
-> > loading modules", but it's debatable whether that's a good solution
-> > too.
-> 
-> In my opinion the deferred probe is a big hack and that is the root
-> cause of the issues we have here and there. It has to be redesigned
-> to be mathematically robust. It was an attempt by Andrzej Hajda to
-> solve this [1].
-> 
-> [1]: https://events19.linuxfoundation.org/wp-content/uploads/2017/12/Deferred-Problem-Issues-With-Complex-Dependencies-Between-Devices-in-Linux-Kernel-Andrzej-Hajda-Samsung.pdf
-
-deferred probe has _ALWAYS_ been known to be a hack, way back when we
-accepted it, but it was the best hack we had to solve a real problem
-that we had, so it was accepted.
-
-It's been polished over the years, but yes, it does break down at times,
-due to the crazy complexity of hardware systems that we have no control
-over.
-
-If you have concrete solutions for how to solve the issue, wonderful,
-please submit patches :)
-
-thanks,
-
-greg k-h
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+DQpPbiBXZWQgMjEgU2VwIDIwMjIgYXQgMTY6NDAsIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4g
+d3JvdGU6DQoNCj4gSGkgSmVyb21l77yMDQo+DQo+IE9uIDIwMjIvOC8zMCAxNTozNywgWXUgVHUg
+d3JvdGU6DQo+PiBPbiAyMDIyLzgvMzAgMTQ6NDQsIEplcm9tZSBCcnVuZXQgd3JvdGU6DQo+Pj4g
+WyBFWFRFUk5BTCBFTUFJTCBdDQo+Pj4NCj4+Pg0KPj4+IE9uIFR1ZSAzMCBBdWcgMjAyMiBhdCAx
+NDoxMywgWXUgVHUgPHl1LnR1QGFtbG9naWMuY29tPiB3cm90ZToNCj4+Pg0KPj4+PiBPbiAyMDIy
+LzgvMjkgMTc6NDgsIEplcm9tZSBCcnVuZXQgd3JvdGU6DQo+Pj4+PiBbIEVYVEVSTkFMIEVNQUlM
+IF0NCj4+Pj4+IE9uIE1vbiAxNSBBdWcgMjAyMiBhdCAyMToyMCwgWXUgVHUgPHl1LnR1QGFtbG9n
+aWMuY29tPiB3cm90ZToNCj4+Pj4+DQo+Pj4+Pj4+Pj4gKw0KPj4+Pj4+Pj4+ICtzdGF0aWMgc3Ry
+dWN0IGNsa19yZWdtYXAgczRfaGRtaV9wbGxfZGNvID0gew0KPj4+Pj4+Pj4+ICvCoMKgwqAgLmRh
+dGEgPSAmKHN0cnVjdCBtZXNvbl9jbGtfcGxsX2RhdGEpew0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKg
+wqDCoCAuZW4gPSB7DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnJlZ19vZmYg
+PSBBTkFDVFJMX0hETUlQTExfQ1RSTDAsDQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgLnNoaWZ0wqDCoCA9IDI4LA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53
+aWR0aMKgwqAgPSAxLA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCB9LA0KPj4+Pj4+Pj4+ICvC
+oMKgwqDCoMKgwqDCoCAubSA9IHsNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAu
+cmVnX29mZiA9IEFOQUNUUkxfSERNSVBMTF9DVFJMMCwNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMCwNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAud2lkdGjCoMKgID0gOCwNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4+
+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLm4gPSB7DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgLnJlZ19vZmYgPSBBTkFDVFJMX0hETUlQTExfQ1RSTDAsDQo+Pj4+Pj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgLnNoaWZ0wqDCoCA9IDEwLA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSA1LA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCB9
+LA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZnJhYyA9IHsNCj4+Pj4+Pj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERNSVBMTF9DVFJMMSwNCj4+Pj4+
+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMCwNCj4+Pj4+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMTcsDQo+Pj4+Pj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIH0sDQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5sID0gew0KPj4+Pj4+Pj4+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkww
+LA0KPj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAzMSwNCj4+
+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMSwNCj4+Pj4+Pj4+
+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLnJzdCA9IHsN
+Cj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERN
+SVBMTF9DVFJMMCwNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKg
+ID0gMjksDQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLndpZHRowqDCoCA9IDEs
+DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+Pj4+Pj4+Pj4gK8KgwqDCoCB9LA0KPj4+
+Pj4+Pj4+ICvCoMKgwqAgLmh3LmluaXQgPSAmKHN0cnVjdCBjbGtfaW5pdF9kYXRhKXsNCj4+Pj4+
+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLm5hbWUgPSAiaGRtaV9wbGxfZGNvIiwNCj4+Pj4+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqAgLm9wcyA9ICZtZXNvbl9jbGtfcGxsX3JvX29wcywNCj4+Pj4+Pj4+PiAr
+wqDCoMKgwqDCoMKgwqAgLnBhcmVudF9kYXRhID0gKGNvbnN0IHN0cnVjdCBjbGtfcGFyZW50X2Rh
+dGEgW10pIHsNCj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB7IC5md19uYW1lID0g
+Inh0YWwiLCB9DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+Pj4+Pj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIC5udW1fcGFyZW50cyA9IDEsDQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC8q
+DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBEaXNwbGF5IGRpcmVjdGx5IGhhbmRsZSBo
+ZG1pIHBsbCByZWdpc3RlcnMgQVRNLCB3ZSBuZWVkDQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqAgKiBOT0NBQ0hFIHRvIGtlZXAgb3VyIHZpZXcgb2YgdGhlIGNsb2NrIGFzIGFjY3VyYXRlIGFz
+DQo+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBwb3NzaWJsZQ0KPj4+Pj4+Pj4+ICvCoMKg
+wqDCoMKgwqDCoMKgICovDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gSXMgaXQgcmVhbGx5ID8NCj4+Pj4+
+Pj4+DQo+Pj4+Pj4+PiBHaXZlbiB0aGF0IEhETUkgc3VwcG9ydCBmb3IgdGhlIHM0IGlzIHRoZXJl
+IHlldCwgdGhlDQo+Pj4+Pj4+PiBhZGRyZXNzZXMgaGF2ZSBjaGFuZ2VzIGFuZCB0aGUgcmVnaW9u
+IGlzIG5vIGxvbmdlciBhIHN5c2NvbiwgaXQgaXMNCj4+Pj4+Pj4+IHRpbWUNCj4+Pj4+Pj4+IGZv
+ciB0aGUgSERNSSBkcml2ZXIgdG8gZ2V0IGZpeGVkLg0KPj4+Pj4+IFRoZSBIRE1JIFBMTCBpcyBj
+b25maWd1cmVkIGluIHRoZSBVYm9vdCBwaGFzZSBhbmQgZG9lcyBub3QgY2hhbmdlIHRoZQ0KPj4+
+Pj4+IGZyZXF1ZW5jeSBpbiB0aGUga2VybmVsIHBoYXNlLiBTbyB3ZSB1c2UgdGhlIE5PQ0FDSEUg
+ZmxhZyBhbmQNCj4+Pj4+PiAicm9fb3BzIi4NCj4+Pj4+IFRoYXQncyBubyByZWFzb24gdG8gcHV0
+IE5PQ0FDSEUgb3Igcm8tb3BzDQo+Pj4+PiBJZiB5b3Ugd2FudCB0aGUgZnJlcXVlbmNpZXMgdG8g
+YmUgc3RhdGljYWxseSBhc3NpbmdlZCwgdGhlIGNvcnJlY3Qgd2F5DQo+Pj4+PiB3b3VsZCBiZSB0
+aHJvdWdoIGFzc2lnbmVkLXJhdGUgaW4gRFQgSSBndWVzcy4NCj4+Pj4NCj4+Pj4gT2theS4gWW91
+J3JlIHJpZ2h0LiBIb3dldmVyLCB3aGVuIHJlZ2lzdGVyaW5nIHdpdGggT1BTLCBIRE1JIFBMTCB3
+aWxsIGJlDQo+Pj4+IHJlc2V0LiBJdCB0YWtlcyB0aW1lIGZvciBQTEwgdG8gc3RhYmlsaXplIHRo
+ZSBvdXRwdXQgZnJlcXVlbmN5LCB3aGljaA0KPj4+PiB3aWxsDQo+Pj4+IGxlYWQgdG8gdGhlIHN0
+YXJ0dXAgc2NyZWVuIGZsYXNoaW5nLg0KPj4+Pg0KPj4+PiBJIHdvdWxkIGxpa2UgdG8ga25vdyBo
+b3cgdG8gc29sdmUgdGhpcyBwcm9ibGVtIGlmIG5vdCB1c2luZyByb19vcHMuDQo+Pj4+DQo+Pj4+
+Pg0KPj4+DQo+Pj4gWW91IGNhbiBhZGQgbmV3IG9wcyBvciB0d2VhayB0aGUgY3VycmVudCBpbml0
+IGZ1bmN0aW9uLg0KPj4gSERNSSBQTEwgaXMgbm90IGRpZmZlcmVudCBmcm9tIG90aGVyIFBMTFMs
+IHNvIEkgdGhpbmsgYWRkaW5nIE9QUyBpcw0KPj4gd2VpcmQuDQo+PiANCj4+Pg0KPj4+IFNhZmVz
+dCB3b3VsZCBiZSB0byBkbyB0aGUgZm9sbG93aW5nIDoNCj4+PiDCoCAqIENoZWNrIGlmIHRoZSBQ
+TExzIGlzIGFscmVhZHkgb24uDQo+Pj4gwqAgKiBDaGVjayBpZiB0aGUgJ3BsbC0+aW5pdF9yZWdz
+JyBtYXRjaGVzIHdoYXQgaXMgYWxyZWFkeSBzZXQNCj4+PiDCoMKgwqAgLSBpZiBzbywgeW91IGNh
+biBza2lwIHRoZSByZXNldA0KPj4+IMKgwqDCoCAtIGlmIG5vdCwgeW91IG5lZWQgdG8gcmVzZXQg
+YXMgdXN1YWwNCj4+IHN0YXRpYyBpbnQgbWVzb25fY2xrX3BsbF9pbml0KHN0cnVjdCBjbGtfaHcg
+Kmh3KQ0KPj4gew0KPj4gIMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBjbGtfcmVnbWFwICpjbGsgPSB0
+b19jbGtfcmVnbWFwKGh3KTsNCj4+ICDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgbWVzb25fY2xrX3Bs
+bF9kYXRhICpwbGwgPSBtZXNvbl9jbGtfcGxsX2RhdGEoY2xrKTsNCj4+ICDCoMKgwqDCoMKgwqDC
+oCBpZiAocGxsLT5pbml0X2NvdW50KSB7DQo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIG1lc29uX3Bhcm1fd3JpdGUoY2xrLT5tYXAsICZwbGwtPnJzdCwgMSk7DQo+PiAgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZ21hcF9tdWx0aV9yZWdfd3JpdGUoY2xrLT5tYXAs
+IHBsbC0+aW5pdF9yZWdzLA0KPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgIHBsbC0+aW5pdF9jb3VudCk7
+DQo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1lc29uX3Bhcm1fd3JpdGUoY2xr
+LT5tYXAsICZwbGwtPnJzdCwgMCk7DQo+PiAgwqDCoMKgwqDCoMKgwqAgfQ0KPj4gIMKgwqDCoMKg
+wqDCoMKgIHJldHVybiAwOw0KPj4gfQ0KPj4gQmVjYXVzZSB0aGUgaW5pdCBmdW5jdGlvbiBsb29r
+cyBsaWtlIHRoaXMuIFRoZXJlZm9yZSwgSERNSSBQTEwgaW5pdF9jb3VudA0KPj4gaXMgbm90IGdp
+dmVuLg0KDQpJIGRvbid0IGdldCB0aGUgcmVtYXJrLiBZb3UndmUgZ290IHBsbC0+aW5pdF9jb3Vu
+dCByaWdodCB0aGVyZS4NCg0KPj4gQ2FuIEkgY2hhbmdlIGl0IGxpa2UgdGhpcz8NCg0KV2hhdCBj
+aGFuZ2UgPyBUaGUgZnVuY3Rpb24gYWJvdmUgbG9va3MgYSBsb3QgbGlrZSAgbWVzb25fY2xrX3Bs
+bF9pbml0KCkNCmluIHRoZSBhY3R1YWwgc291cmNlDQoNCj4NCj4gSSBkb24ndCBrbm93IGlmIHRo
+aXMgY2hhbmdlIG1lZXRzIHlvdXIgcmVxdWlyZW1lbnRzPyBQbGVhc2UgZ2l2ZSB1cyB5b3VyDQo+
+IHZhbHVhYmxlIGFkdmljZS4NCg0KV2hhdCBjaGFuZ2UgPw0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
