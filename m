@@ -4,86 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB521C433F5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Oct 2022 11:12:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 097A3C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Oct 2022 13:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B2G8eaVcnQNJLMTpFqiBAnDehjZ3Ger6mSzd8BfgNlk=; b=cinNJCw7dCm+/f
-	ls1lOMzgSEDbvldxTyU3YT5GLBcKZC5YM0mfkhPNIj0dhqpfGkU2DollVAQ8PRxJb1yeBFrWWPZqE
-	8EE9W0Ir9bED7n8JTQGXa7XtW7ROoUPhrTo/yjEnlCOx1A+2qv6f4bkYcPcmtNtXgd4zdJySfAusQ
-	nkW0JHxbD3uDIYW7bswAwvDugYnuMYl1auWo9T9RjjcCjoGcJR2FvZcSz4WSWXoNwKoY7L4r998sO
-	4wZgHNbd/nFyQityWzQAKr3NZYS/P/2JKtxlOqoBA6KPdzz4JyTrlRZ7MAIL2SKXMLqmJYlmY7hfb
-	Aq+3nXvV2YNFcYA4YNMw==;
+	List-Owner; bh=wp751ALE4bmd2OByOSE710E7mrDq6tXOohbigyzWjYE=; b=QceGf1vqL6/tjZ
+	rfWJo5smK1MdYltOK8H/awX7ZXprvK2GKHt/uoT8bsM94BeqcCLlO/nMuEZ3bwDJSkJ4Gt0GMde1W
+	QJ1sFf8d3KB2wLBkCpugbggn3pdOj1eMdzWNuY/tsMnuXJK4ociZKFqEmjE6d1CAtezYaw7FnwBLe
+	zxv6qnhqpWRc41dGDB4ZN9wGteEd+Vxicb7XDL1C4KGERcK5rg6AJ366b4YlYeO+1vy/KBNu27fDv
+	WGPbPJuzeAuRRFbLTmNXdfJo6FBGzOllKGkgSHZjnMCI0tRo9gq8XOj2HtuejtoFlFR7rx5Dp8pwx
+	MmhG3ZuUtO6YrQ86iMGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1offqK-009TIL-BT; Tue, 04 Oct 2022 11:12:08 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1ofiIB-009lgx-SL; Tue, 04 Oct 2022 13:49:03 +0000
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1offpm-009Szc-Ha
-	for linux-amlogic@lists.infradead.org; Tue, 04 Oct 2022 11:11:37 +0000
-Received: by mail-wm1-x336.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso571949wma.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 04 Oct 2022 04:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9UJJeF3sZho4I3jRzyDgsCpW+xzw8EC4+Woo4EIRjhI=;
-        b=KHLlACe35Mt0YeI5e0xlhWAhl2sdUfS56qWu5smFZ4A68YYNa4E61YRaBQtFSrAEXY
-         yyh6xYRXK4APj0XRiQJvvhee9i1zHNJDqEtVZpZfDBd8lz52N7J2vk1GUeOYgjeP/2dn
-         wQuXDFJuH8zp9ujEVAB83+I1eTbBpsQYE/yB3U76hnYJdxYS6q+NCWRH76b6frzVzgQz
-         +k9UFPJSsLjax5MtvJuMlqz/4RPhQ2gVWaiCqFM1WltK9j9J+Tj5YdJx4QB9w7cvtlmF
-         1+k6bFa43fbpFS4vzjZWBHularItcdxR4osuQrkGJUV8ypb06XAX72nurvhEWZ8nHneq
-         Rx/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9UJJeF3sZho4I3jRzyDgsCpW+xzw8EC4+Woo4EIRjhI=;
-        b=uWEaSu7XloyK/E8NlsE+T2L2ARu9KYoxwJcOJ11ick7G7Aa6Yta2iI4YozhBhvB4tN
-         PliQR4PgzFid5GvDGJNURJhcqEmE0AmR5I5CUV0fdYjLxnGYijWjYg3hrzmNiRD+MBKp
-         L/UKBCOiWAgpzFi0MB8Jpoa7I5s2gZYTfquVozWxa7XtisfGrobFQtAce6NSqm1Pz2v9
-         sWhvQfmdWfFk44dJS0Xhrp10MLkjYU5p34beVtwbkV8Mm82rWv2pktnjXdH+Ffmx8alE
-         G0mfcxi0+64IA54R6VLWbUuy2/7aumcOSheBzNhaLPsnnGQw8ZJpDAxVeSHoOUg5yZxi
-         R+WA==
-X-Gm-Message-State: ACrzQf3th6sABr2l3tnjo/qLgzWl0OqBuUel51H395MQiHt/h7CXPao0
-	vqwb4+0nM+SEehpkdOsvcIREZw==
-X-Google-Smtp-Source: AMsMyM4lprZEpHTZymzZDyAyeL37GQbNRWZDIhkLoxsLstNxTH5VirriI4pGn0cdfLfduLDfEj2H3w==
-X-Received: by 2002:a05:600c:1f06:b0:3b4:86e8:bd21 with SMTP id bd6-20020a05600c1f0600b003b486e8bd21mr10028543wmb.7.1664881890873;
-        Tue, 04 Oct 2022 04:11:30 -0700 (PDT)
-Received: from [127.0.1.1] (210.145.15.109.rev.sfr.net. [109.15.145.210])
-        by smtp.googlemail.com with ESMTPSA id j2-20020adfd202000000b002285f73f11dsm15361698wrh.81.2022.10.04.04.11.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 04:11:30 -0700 (PDT)
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Date: Tue, 04 Oct 2022 13:10:37 +0200
-Subject: [PATCH v2 2/2] spi: meson-spicc: Use pinctrl to drive CLK line when idle
+	id 1ofiI0-009lbj-TV; Tue, 04 Oct 2022 13:48:54 +0000
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 294C9Ox8025012;
+	Tue, 4 Oct 2022 09:48:33 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jxjf733g6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Oct 2022 09:48:33 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 294DmWpP001531
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Oct 2022 09:48:32 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 4 Oct 2022
+ 09:48:31 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 4 Oct 2022 09:48:31 -0400
+Received: from nsa.ad.analog.com ([10.44.3.52])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 294DlkVY032663;
+	Tue, 4 Oct 2022 09:48:19 -0400
+From: =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To: <linux-amlogic@lists.infradead.org>, <linux-imx@nxp.com>,
+        <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>
+CC: Heiko Stuebner <heiko@sntech.de>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>,
+        Neil Armstrong
+	<narmstrong@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>,
+        Jyoti Bhayana <jbhayana@google.com>,
+        Hans de Goede
+	<hdegoede@redhat.com>,
+        Andriy Tryshnivskyy
+	<andriy.tryshnivskyy@opensynergy.com>,
+        Pengutronix Kernel Team
+	<kernel@pengutronix.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Cixi Geng
+	<cixi.geng1@unisoc.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Ciprian
+ Regus <ciprian.regus@analog.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Sascha Hauer
+	<s.hauer@pengutronix.de>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        Florian
+ Boor <florian.boor@kernelconcepts.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Orson Zhai <orsonzhai@gmail.com>, Chen-Yu
+ Tsai <wens@csie.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vladimir
+ Zapolskiy <vz@mleia.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jerome
+ Brunet <jbrunet@baylibre.com>, Haibo Chen <haibo.chen@nxp.com>,
+        Kevin Hilman
+	<khilman@baylibre.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: [PATCH v2 01/16] iio: adc: ad799x: do not use internal iio_dev lock
+Date: Tue, 4 Oct 2022 15:48:54 +0200
+Message-ID: <20221004134909.1692021-2-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221004134909.1692021-1-nuno.sa@analog.com>
+References: <20221004134909.1692021-1-nuno.sa@analog.com>
 MIME-Version: 1.0
-Message-Id: <20221004-up-aml-fix-spi-v2-2-3e8ae91a1925@baylibre.com>
-References: <20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com>
-In-Reply-To: <20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
- Amjad Ouled-Ameur <aouledameur@baylibre.com>, linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1664881888; l=4316;
- i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
- bh=nQpkgGjqWbrM00eFiyFqQsdlJkaQwuIgVz9GJtl+aH8=;
- b=l2gvdzyi3u1EecI5XIadzmWGWdV37GSawLpg4eQliIlv74HpWJ8aYWZjLW4I8iU8mgyE0FCBBwH3
- 7FR3jqPEDOVxf7WWD7pWTVmbV1IXXGNAk+3hjfEnoMJ/h/hKrZhS
-X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
- pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: SS5WqGEP61nJ1tXif6qOZQ3eX25vwLYQ
+X-Proofpoint-ORIG-GUID: SS5WqGEP61nJ1tXif6qOZQ3eX25vwLYQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-04_06,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ bulkscore=0 mlxscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210040089
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221004_041134_601213_9623E5D0 
-X-CRM114-Status: GOOD (  21.02  )
+X-CRM114-CacheID: sfid-20221004_064852_973858_14C4340D 
+X-CRM114-Status: GOOD (  17.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,148 +121,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Between SPI transactions, all SPI pins are in HiZ state. When using the SS
-signal from the SPICC controller it's not an issue because when the
-transaction resumes all pins come back to the right state at the same time
-as SS.
-
-The problem is when we use CS as a GPIO. In fact, between the GPIO CS
-state change and SPI pins state change from idle, you can have a missing or
-spurious clock transition.
-
-Set a bias on the clock depending on the clock polarity requested before CS
-goes active, by passing a special "idle-low" and "idle-high" pinctrl state
-and setting the right state at a start of a message
-
-Reported-by: Da Xue <da@libre.computer>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 14 +++++++++++
- drivers/spi/spi-meson-spicc.c              | 39 +++++++++++++++++++++++++++++-
- 2 files changed, 52 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index c3ac531c4f84..04e9d0f1bde0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -429,6 +429,20 @@ mux {
- 			};
- 		};
- 
-+		spi_idle_high_pins: spi-idle-high-pins {
-+			mux {
-+				groups = "spi_sclk";
-+				bias-pull-up;
-+			};
-+		};
-+
-+		spi_idle_low_pins: spi-idle-low-pins {
-+			mux {
-+				groups = "spi_sclk";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		spi_ss0_pins: spi-ss0 {
- 			mux {
- 				groups = "spi_ss0";
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index e4cb52e1fe26..de89577319ec 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -21,6 +21,7 @@
- #include <linux/types.h>
- #include <linux/interrupt.h>
- #include <linux/reset.h>
-+#include <linux/pinctrl/consumer.h>
- 
- /*
-  * The Meson SPICC controller could support DMA based transfers, but is not
-@@ -167,6 +168,9 @@ struct meson_spicc_device {
- 	unsigned long			tx_remain;
- 	unsigned long			rx_remain;
- 	unsigned long			xfer_remain;
-+	struct pinctrl			*pinctrl;
-+	struct pinctrl_state		*pins_idle_high;
-+	struct pinctrl_state		*pins_idle_low;
- };
- 
- #define pow2_clk_to_spicc(_div) container_of(_div, struct meson_spicc_device, pow2_div)
-@@ -175,8 +179,22 @@ static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
- {
- 	u32 conf;
- 
--	if (!spicc->data->has_oen)
-+	if (!spicc->data->has_oen) {
-+		/* Try to get pinctrl states for idle high/low */
-+		spicc->pins_idle_high = pinctrl_lookup_state(spicc->pinctrl,
-+							     "idle-high");
-+		if (IS_ERR(spicc->pins_idle_high)) {
-+			dev_warn(&spicc->pdev->dev, "can't get idle-high pinctrl\n");
-+			spicc->pins_idle_high = NULL;
-+		}
-+		spicc->pins_idle_low = pinctrl_lookup_state(spicc->pinctrl,
-+							     "idle-low");
-+		if (IS_ERR(spicc->pins_idle_low)) {
-+			dev_warn(&spicc->pdev->dev, "can't get idle-low pinctrl\n");
-+			spicc->pins_idle_low = NULL;
-+		}
- 		return;
-+	}
- 
- 	conf = readl_relaxed(spicc->base + SPICC_ENH_CTL0) |
- 		SPICC_ENH_MOSI_OEN | SPICC_ENH_CLK_OEN | SPICC_ENH_CS_OEN;
-@@ -441,6 +459,16 @@ static int meson_spicc_prepare_message(struct spi_master *master,
- 	else
- 		conf &= ~SPICC_POL;
- 
-+	if (!spicc->data->has_oen) {
-+		if (spi->mode & SPI_CPOL) {
-+			if (spicc->pins_idle_high)
-+				pinctrl_select_state(spicc->pinctrl, spicc->pins_idle_high);
-+		} else {
-+			if (spicc->pins_idle_low)
-+				pinctrl_select_state(spicc->pinctrl, spicc->pins_idle_low);
-+		}
-+	}
-+
- 	if (spi->mode & SPI_CPHA)
- 		conf |= SPICC_PHA;
- 	else
-@@ -487,6 +515,9 @@ static int meson_spicc_unprepare_transfer(struct spi_master *master)
- 	/* Set default configuration, keeping datarate field */
- 	writel_relaxed(conf, spicc->base + SPICC_CONREG);
- 
-+	if (!spicc->data->has_oen)
-+		pinctrl_select_default_state(&spicc->pdev->dev);
-+
- 	return 0;
- }
- 
-@@ -798,6 +829,12 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		goto out_core_clk;
- 	}
- 
-+	spicc->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (IS_ERR(spicc->pinctrl)) {
-+		ret = PTR_ERR(spicc->pinctrl);
-+		goto out_clk;
-+	}
-+
- 	device_reset_optional(&pdev->dev);
- 
- 	master->num_chipselect = 4;
-
--- 
-b4 0.10.1
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+J21sb2NrJyB3YXMgYmVpbmcgZ3JhYmJlZCB3aGVuIHNldHRpbmcgdGhlIGRldmljZSBmcmVxdWVu
+Y3kuIEluIG9yZGVyIHRvCm5vdCBpbnRyb2R1Y2UgYW55IGZ1bmN0aW9uYWwgY2hhbmdlIGEgbmV3
+IGxvY2sgaXMgYWRkZWQuIFdpdGggdGhhdCBpbgptaW5kLCB0aGUgbG9jayBhbHNvIG5lZWRzIHRv
+IGJlIGdyYWJiZWQgaW4gdGhlIHBsYWNlcyB3aGVyZSAnbWxvY2snIGlzCnNpbmNlIGl0IHdhcyBh
+bHNvIGJlaW5nIHVzZWQgdG8gcHJvdGVjdCBzdC0+Y29uZmlnIGFnYWluc3QgdGhlIGN1cnJlbnQK
+ZGV2aWNlIHN0YXRlLgoKT24gdGhlIG90aGVyIHBsYWNlcyB0aGUgbG9jayB3YXMgYmVpbmcgdXNl
+ZCwgd2UgY2FuIGp1c3QgZHJvcAppdCBzaW5jZSB3ZSBhcmUgb25seSBkb2luZyBvbmUgaTJjIGJ1
+cyByZWFkL3dyaXRlIHdoaWNoIGlzIGFscmVhZHkKc2FmZS4KCldoaWxlIGF0IGl0LCBwcm9wZXJs
+eSBpbmNsdWRlICJtdXRleC5oIiBmb3IgbXV0ZXggcmVsYXRlZCBBUElzLgoKU2lnbmVkLW9mZi1i
+eTogTnVubyBTw6EgPG51bm8uc2FAYW5hbG9nLmNvbT4KLS0tCiBkcml2ZXJzL2lpby9hZGMvYWQ3
+OTl4LmMgfCAyMCArKysrKysrKysrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE0IGluc2Vy
+dGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9paW8vYWRjL2Fk
+Nzk5eC5jIGIvZHJpdmVycy9paW8vYWRjL2FkNzk5eC5jCmluZGV4IDI2MmJkNzY2NWIzMy4uNDRm
+N2E4MGEwNzQ5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2lpby9hZGMvYWQ3OTl4LmMKKysrIGIvZHJp
+dmVycy9paW8vYWRjL2FkNzk5eC5jCkBAIC0yOCw2ICsyOCw3IEBACiAjaW5jbHVkZSA8bGludXgv
+dHlwZXMuaD4KICNpbmNsdWRlIDxsaW51eC9lcnIuaD4KICNpbmNsdWRlIDxsaW51eC9tb2R1bGUu
+aD4KKyNpbmNsdWRlIDxsaW51eC9tdXRleC5oPgogI2luY2x1ZGUgPGxpbnV4L2JpdG9wcy5oPgog
+CiAjaW5jbHVkZSA8bGludXgvaWlvL2lpby5oPgpAQCAtMTI1LDYgKzEyNiw4IEBAIHN0cnVjdCBh
+ZDc5OXhfc3RhdGUgewogCWNvbnN0IHN0cnVjdCBhZDc5OXhfY2hpcF9jb25maWcJKmNoaXBfY29u
+ZmlnOwogCXN0cnVjdCByZWd1bGF0b3IJCSpyZWc7CiAJc3RydWN0IHJlZ3VsYXRvcgkJKnZyZWY7
+CisJLyogbG9jayB0byBwcm90ZWN0IGFnYWluc3QgbXVsdGlwbGUgYWNjZXNzIHRvIHRoZSBkZXZp
+Y2UgKi8KKwlzdHJ1Y3QgbXV0ZXgJCQlsb2NrOwogCXVuc2lnbmVkCQkJaWQ7CiAJdTE2CQkJCWNv
+bmZpZzsKIApAQCAtMjkwLDcgKzI5Myw5IEBAIHN0YXRpYyBpbnQgYWQ3OTl4X3JlYWRfcmF3KHN0
+cnVjdCBpaW9fZGV2ICppbmRpb19kZXYsCiAJCXJldCA9IGlpb19kZXZpY2VfY2xhaW1fZGlyZWN0
+X21vZGUoaW5kaW9fZGV2KTsKIAkJaWYgKHJldCkKIAkJCXJldHVybiByZXQ7CisJCW11dGV4X2xv
+Y2soJnN0LT5sb2NrKTsKIAkJcmV0ID0gYWQ3OTl4X3NjYW5fZGlyZWN0KHN0LCBjaGFuLT5zY2Fu
+X2luZGV4KTsKKwkJbXV0ZXhfdW5sb2NrKCZzdC0+bG9jayk7CiAJCWlpb19kZXZpY2VfcmVsZWFz
+ZV9kaXJlY3RfbW9kZShpbmRpb19kZXYpOwogCiAJCWlmIChyZXQgPCAwKQpAQCAtMzUxLDcgKzM1
+Niw4IEBAIHN0YXRpYyBzc2l6ZV90IGFkNzk5eF93cml0ZV9mcmVxdWVuY3koc3RydWN0IGRldmlj
+ZSAqZGV2LAogCWlmIChyZXQpCiAJCXJldHVybiByZXQ7CiAKLQltdXRleF9sb2NrKCZpbmRpb19k
+ZXYtPm1sb2NrKTsKKwltdXRleF9sb2NrKCZzdC0+bG9jayk7CisKIAlyZXQgPSBpMmNfc21idXNf
+cmVhZF9ieXRlX2RhdGEoc3QtPmNsaWVudCwgQUQ3OTk4X0NZQ0xFX1RNUl9SRUcpOwogCWlmIChy
+ZXQgPCAwKQogCQlnb3RvIGVycm9yX3JldF9tdXRleDsKQEAgLTM3Myw3ICszNzksNyBAQCBzdGF0
+aWMgc3NpemVfdCBhZDc5OXhfd3JpdGVfZnJlcXVlbmN5KHN0cnVjdCBkZXZpY2UgKmRldiwKIAly
+ZXQgPSBsZW47CiAKIGVycm9yX3JldF9tdXRleDoKLQltdXRleF91bmxvY2soJmluZGlvX2Rldi0+
+bWxvY2spOworCW11dGV4X3VubG9jaygmc3QtPmxvY2spOwogCiAJcmV0dXJuIHJldDsKIH0KQEAg
+LTQwNyw2ICs0MTMsOCBAQCBzdGF0aWMgaW50IGFkNzk5eF93cml0ZV9ldmVudF9jb25maWcoc3Ry
+dWN0IGlpb19kZXYgKmluZGlvX2RldiwKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwogCisJbXV0
+ZXhfbG9jaygmc3QtPmxvY2spOworCiAJaWYgKHN0YXRlKQogCQlzdC0+Y29uZmlnIHw9IEJJVChj
+aGFuLT5zY2FuX2luZGV4KSA8PCBBRDc5OVhfQ0hBTk5FTF9TSElGVDsKIAllbHNlCkBAIC00MTgs
+NiArNDI2LDcgQEAgc3RhdGljIGludCBhZDc5OXhfd3JpdGVfZXZlbnRfY29uZmlnKHN0cnVjdCBp
+aW9fZGV2ICppbmRpb19kZXYsCiAJCXN0LT5jb25maWcgJj0gfkFENzk5OF9BTEVSVF9FTjsKIAog
+CXJldCA9IGFkNzk5eF93cml0ZV9jb25maWcoc3QsIHN0LT5jb25maWcpOworCW11dGV4X3VubG9j
+aygmc3QtPmxvY2spOwogCWlpb19kZXZpY2VfcmVsZWFzZV9kaXJlY3RfbW9kZShpbmRpb19kZXYp
+OwogCXJldHVybiByZXQ7CiB9CkBAIC00NTQsMTEgKzQ2Myw5IEBAIHN0YXRpYyBpbnQgYWQ3OTl4
+X3dyaXRlX2V2ZW50X3ZhbHVlKHN0cnVjdCBpaW9fZGV2ICppbmRpb19kZXYsCiAJaWYgKHZhbCA8
+IDAgfHwgdmFsID4gR0VOTUFTSyhjaGFuLT5zY2FuX3R5cGUucmVhbGJpdHMgLSAxLCAwKSkKIAkJ
+cmV0dXJuIC1FSU5WQUw7CiAKLQltdXRleF9sb2NrKCZpbmRpb19kZXYtPm1sb2NrKTsKIAlyZXQg
+PSBpMmNfc21idXNfd3JpdGVfd29yZF9zd2FwcGVkKHN0LT5jbGllbnQsCiAJCWFkNzk5eF90aHJl
+c2hvbGRfcmVnKGNoYW4sIGRpciwgaW5mbyksCiAJCXZhbCA8PCBjaGFuLT5zY2FuX3R5cGUuc2hp
+ZnQpOwotCW11dGV4X3VubG9jaygmaW5kaW9fZGV2LT5tbG9jayk7CiAKIAlyZXR1cm4gcmV0Owog
+fQpAQCAtNDczLDEwICs0ODAsOCBAQCBzdGF0aWMgaW50IGFkNzk5eF9yZWFkX2V2ZW50X3ZhbHVl
+KHN0cnVjdCBpaW9fZGV2ICppbmRpb19kZXYsCiAJaW50IHJldDsKIAlzdHJ1Y3QgYWQ3OTl4X3N0
+YXRlICpzdCA9IGlpb19wcml2KGluZGlvX2Rldik7CiAKLQltdXRleF9sb2NrKCZpbmRpb19kZXYt
+Pm1sb2NrKTsKIAlyZXQgPSBpMmNfc21idXNfcmVhZF93b3JkX3N3YXBwZWQoc3QtPmNsaWVudCwK
+IAkJYWQ3OTl4X3RocmVzaG9sZF9yZWcoY2hhbiwgZGlyLCBpbmZvKSk7Ci0JbXV0ZXhfdW5sb2Nr
+KCZpbmRpb19kZXYtPm1sb2NrKTsKIAlpZiAocmV0IDwgMCkKIAkJcmV0dXJuIHJldDsKIAkqdmFs
+ID0gKHJldCA+PiBjaGFuLT5zY2FuX3R5cGUuc2hpZnQpICYKQEAgLTg2Myw2ICs4NjgsOSBAQCBz
+dGF0aWMgaW50IGFkNzk5eF9wcm9iZShzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50LAogCQlpZiAo
+cmV0KQogCQkJZ290byBlcnJvcl9jbGVhbnVwX3Jpbmc7CiAJfQorCisJbXV0ZXhfaW5pdCgmc3Qt
+PmxvY2spOworCiAJcmV0ID0gaWlvX2RldmljZV9yZWdpc3RlcihpbmRpb19kZXYpOwogCWlmIChy
+ZXQpCiAJCWdvdG8gZXJyb3JfY2xlYW51cF9yaW5nOwotLSAKMi4zNy4zCgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
