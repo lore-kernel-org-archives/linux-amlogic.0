@@ -4,95 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F383FC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Oct 2022 07:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56DF4C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Oct 2022 15:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=avTiufS8WhRbo9WuCFK07r9m6bp6xh35qXztQipy5K0=; b=n2QzO8g1HJCswX
-	iyGEI3MVh5DaGW0BbXeBMnNdTQ2/mSLN+GSMEk9C7G9GiKdyh7m/UuHPJqvOcl/kPPx51reiTspbg
-	LOWwUejRkjymL8MBcY/qobxzg5sZzM3eHgaXzWPYw94Sn60bEtwXetcOwtMkyQexYwW3/vCwB8vFh
-	6+QM2sk70X81fbMCj+y31cFwkq4bcvU+kP5XzSfPCIXVGizKCnUdUr7w1nytiCoq3wxIQ4wOBPiHH
-	vfHDkOq3tDUeSSkEnoTBe3F+X0FfbXj5MEspyIRE8AIMg3cSitVLJFZwD/SGdhPqa7gs/x+M4Rnay
-	Q7a23G7PER22u+5j3Wdw==;
+	List-Owner; bh=/sWaBj04otjNtF7yKrD6/u63G9qiLHj2U+7aoGW1u4U=; b=urW2+QPcww0Xdr
+	PbXOoIYxcYQPFGfxL8GaxzW4UQCcoAxp/5LgLz24UVGv1HJLl0hDy7Mha5A4Ba3m9l0p7qIt7g2KC
+	Tl3nQ2sTbDUSgnK5J8XgtQ6qH4R9SlyGnrkeIuzkLMJYZYCIiGi8mEIjqx8dzbAOEtS8uosep+Uwk
+	TedI9hz03d+dstWHwhhrNvJ3G+H/K9Ng21HqSUCwKGvzAEOVregySQLX9vEXqDCB6DnWUQBFS0I5i
+	tUjUfL/Fomh6StvWylEcLS0e78YBfiJPrw2GGcMrsZTOPO08iOsSTJvX564eYPEVJohiN5fA3Q3Dn
+	qCscJoj7FcENtCKoWEdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ojF3t-00DsJ4-NA; Fri, 14 Oct 2022 07:24:53 +0000
-Received: from mail-qt1-x82d.google.com ([2607:f8b0:4864:20::82d])
+	id 1ojMVI-00FAEF-5p; Fri, 14 Oct 2022 15:21:40 +0000
+Received: from frasgout.his.huawei.com ([185.176.79.56])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ojF3j-00DsHu-Bd; Fri, 14 Oct 2022 07:24:44 +0000
-Received: by mail-qt1-x82d.google.com with SMTP id jr1so3197192qtb.0;
-        Fri, 14 Oct 2022 00:24:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=guXsNvunppVc9WWPiCDXMbZ55lmfscZRL3+k5ViV9No=;
-        b=oUsQIAOiDc9y41fuV+L7s+WM/p3Q61/2Dnxn688nE2CqTH0uCcstpSKfByFHA78F+d
-         l0Jd7Ibdy+zlNJ9yeUlf4hH/SWERQ8sQgro+Og9GEKOHGUQngTHQ2WK1apmXfj7luXjT
-         +kDSCGhGu+zDLhPTLA9zgsCRFVk2Jed+lW1baX+/+Td8OV+U/F63Cbdca8Ppv0QdLpuB
-         n5suh65nbDD7VRWarfniOC/sOA0qSy/BV5iFa2tYc7Y56cWhnzmR41oa3Qb97AhZknUD
-         wwmf8rEcni44ROfAJYeoJEOLJi6og1jxgMl2806+/aVLr5UpujCp42rxsno34UPDECIT
-         TWIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=guXsNvunppVc9WWPiCDXMbZ55lmfscZRL3+k5ViV9No=;
-        b=FmZ51zG0ywOQJQVjtC7Ggb7saHf+lsiJ1rTOJRaj5nWtBrhMGMWkPCvoI7jVFtrV4c
-         W0cvatPx/vnbgWfCzeYdUhwVFcZaO+B615ZUiwQVTGdQKx9Ugd1UrwIgqWHM2QcvkN0+
-         K7pYhcgPiin3JLMBFaHfMG9hyWqjm5HPi279WlbjjLdCqpNwqBTJP0VT4CZb2LFBj++8
-         PPAnGIBSgv2gHJAz9KB4yboKT9hDzvWdnWm2COAr6klVyZXf1A5rMyiVYUqCSprEQ84E
-         Bho8MBy0xU5U7leuucdQoAH0r1ADQtzEsyyzKifC+HKP7DKF3+/McURCaG1FAH06XPUD
-         5wrg==
-X-Gm-Message-State: ACrzQf1NnW3zhEXsrQG+KWccssiU6RjETxsPwulwCpTseMdfQ7pNj9yI
-	0+I5cDaoAuiFSnjCqc8NLLM=
-X-Google-Smtp-Source: AMsMyM7gMIH996fPil0I2eH6kEfzrcR7fJOfL5qMY+5BrnG0S7Swr4k4YGgxRpFyQLhQYDs/Z/bWVw==
-X-Received: by 2002:ac8:5cc3:0:b0:35c:e1b3:78c5 with SMTP id s3-20020ac85cc3000000b0035ce1b378c5mr3078874qta.228.1665732280128;
-        Fri, 14 Oct 2022 00:24:40 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id bs10-20020a05620a470a00b006b615cd8c13sm1711743qkb.106.2022.10.14.00.24.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 00:24:39 -0700 (PDT)
-Message-ID: <fccf3f41b32e881eb79ee78852fa40a62b134c00.camel@gmail.com>
+	id 1ojMVD-00FAAJ-S4; Fri, 14 Oct 2022 15:21:38 +0000
+Received: from fraeml714-chm.china.huawei.com (unknown [172.18.147.226])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MpqpB4bcPz67FSP;
+	Fri, 14 Oct 2022 23:20:34 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml714-chm.china.huawei.com (10.206.15.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 14 Oct 2022 17:21:25 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
+ 2022 16:21:24 +0100
+Date: Fri, 14 Oct 2022 16:21:23 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC: Miquel Raynal <miquel.raynal@bootlin.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-iio@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-rockchip@lists.infradead.org>, <linux-imx@nxp.com>, Chen-Yu Tsai
+	<wens@csie.org>, Andriy Tryshnivskyy <andriy.tryshnivskyy@opensynergy.com>,
+	Ciprian Regus <ciprian.regus@analog.com>, Vladimir Zapolskiy <vz@mleia.com>,
+	Cixi Geng <cixi.geng1@unisoc.com>, Neil Armstrong <narmstrong@baylibre.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+	Fabio Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, "Pengutronix Kernel
+ Team" <kernel@pengutronix.de>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Hans de Goede <hdegoede@redhat.com>, Alexandru Ardelean
+	<aardelean@deviqon.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
+	Haibo Chen <haibo.chen@nxp.com>, Lars-Peter Clausen <lars@metafoo.de>, "Jyoti
+ Bhayana" <jbhayana@google.com>, Jonathan Cameron <jic23@kernel.org>, "Andy
+ Shevchenko" <andy.shevchenko@gmail.com>, Florian Boor
+	<florian.boor@kernelconcepts.de>, Chunyan Zhang <zhang.lyra@gmail.com>,
+	"Orson Zhai" <orsonzhai@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Kevin
+ Hilman <khilman@baylibre.com>
 Subject: Re: [PATCH v3 3/4] iio: health: max30102: do not use internal
  iio_dev lock
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-imx@nxp.com, Chen-Yu Tsai <wens@csie.org>, Andriy Tryshnivskyy
- <andriy.tryshnivskyy@opensynergy.com>, Ciprian Regus
- <ciprian.regus@analog.com>,  Vladimir Zapolskiy <vz@mleia.com>, Cixi Geng
- <cixi.geng1@unisoc.com>, Neil Armstrong <narmstrong@baylibre.com>, Sascha
- Hauer <s.hauer@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Fabio
- Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Baolin Wang <baolin.wang@linux.alibaba.com>, Hans
- de Goede <hdegoede@redhat.com>,  Alexandru Ardelean
- <aardelean@deviqon.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Haibo Chen <haibo.chen@nxp.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Jyoti Bhayana <jbhayana@google.com>, Jonathan Cameron <jic23@kernel.org>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, Florian Boor
- <florian.boor@kernelconcepts.de>,  Chunyan Zhang <zhang.lyra@gmail.com>,
- Orson Zhai <orsonzhai@gmail.com>, Shawn Guo <shawnguo@kernel.org>,  Kevin
- Hilman <khilman@baylibre.com>
-Date: Fri, 14 Oct 2022 09:25:59 +0200
-In-Reply-To: <20221012204556.7648df2e@xps-13>
+Message-ID: <20221014162123.00000420@huawei.com>
+In-Reply-To: <fccf3f41b32e881eb79ee78852fa40a62b134c00.camel@gmail.com>
 References: <20221012151620.1725215-1-nuno.sa@analog.com>
-	 <20221012151620.1725215-4-nuno.sa@analog.com>
-	 <20221012204556.7648df2e@xps-13>
-User-Agent: Evolution 3.44.4 
+	<20221012151620.1725215-4-nuno.sa@analog.com>
+	<20221012204556.7648df2e@xps-13>
+	<fccf3f41b32e881eb79ee78852fa40a62b134c00.camel@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221014_002443_417650_0BE844B6 
-X-CRM114-Status: GOOD (  24.40  )
+X-CRM114-CacheID: sfid-20221014_082136_249684_6E6D0A75 
+X-CRM114-Status: GOOD (  31.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,51 +85,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCAyMDIyLTEwLTEyIGF0IDIwOjQ1ICswMjAwLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+
-IEhpIE51bm8sCj4gCj4gbnVuby5zYUBhbmFsb2cuY29twqB3cm90ZSBvbiBXZWQsIDEyIE9jdCAy
-MDIyIDE3OjE2OjE5ICswMjAwOgo+IAo+ID4gVGhlIHBhdHRlcm4gdXNlZCBpbiB0aGlzIGRldmlj
-ZSBkb2VzIG5vdCBxdWl0ZSBmaXQgaW4gdGhlCj4gPiBpaW9fZGV2aWNlX2NsYWltX2RpcmVjdF9t
-b2RlKCkgdHlwaWNhbCB1c2FnZS4gSW4gdGhpcyBjYXNlLCB3ZSB3YW50Cj4gPiB0bwo+ID4ga25v
-dyBpZiB3ZSBhcmUgaW4gYnVmZmVyZWQgbW9kZSBvciBub3QgdG8ga25vdyBpZiB0aGUgZGV2aWNl
-IGlzCj4gPiBwb3dlcmVkCj4gPiAoYnVmZmVyIG1vZGUpIG9yIG5vdC4gQW5kIGRlcGVuZGluZyBv
-biB0aGF0IG1heDMwMTAyX2dldF90ZW1wKCkKPiA+IHdpbGwKPiA+IHBvd2VyIG9uIHRoZSBkZXZp
-Y2UgaWYgbmVlZGVkLiBIZW5jZSwgaW4gb3JkZXIgdG8ga2VlcCB0aGUgc2FtZQo+ID4gZnVuY3Rp
-b25hbGl0eSwgd2UgdHJ5IHRvOgo+ID4gCj4gPiAxLiBDbGFpbSBCdWZmZXJlZCBtb2RlOwo+ID4g
-MjogSWYgMSkgc3VjY2VlZHMgY2FsbCBtYXgzMDEwMl9nZXRfdGVtcCgpIHdpdGhvdXQgcG93ZXJp
-bmcgb24gdGhlCj4gPiDCoMKgIGRldmljZTsKPiA+IDM6IFJlbGVhc2UgQnVmZmVyZWQgbW9kZTsK
-PiA+IDQ6IElmIDEpIGZhaWxzLCBDbGFpbSBEaXJlY3QgbW9kZTsKPiA+IDU6IElmIDQpIHN1Y2Nl
-ZWRzIGNhbGwgbWF4MzAxMDJfZ2V0X3RlbXAoKSB3aXRoIHBvd2VyaW5nIG9uIHRoZQo+ID4gZGV2
-aWNlOwo+ID4gNjogUmVsZWFzZSBEaXJlY3QgbW9kZTsKPiA+IDc6IElmIDQpIGZhaWxzLCBnb3Rv
-IHRvIDEpIGFuZCB0cnkgYWdhaW4uCj4gPiAKPiA+IFRoaXMgZGFuY2UgYmV0d2VlbiBidWZmZXJl
-ZCBhbmQgZGlyZWN0IG1vZGUgaXMgbm90IHBhcnRpY3VsYXJseQo+ID4gcHJldHR5Cj4gPiAoYXMg
-d2VsbCBhcyB0aGUgbG9vcCBpbnRyb2R1Y2VkIGJ5IHRoZSBnb3RvIHN0YXRlbWVudCkgYnV0IGl0
-IGRvZXMKPiA+IGFsbG93Cj4gPiB1cyB0byBnZXQgcmlkIG9mIHRoZSBtbG9jayB1c2FnZSB3aGls
-ZSBrZWVwaW5nIHRoZSBzYW1lIGJlaGF2aW9yLgo+IAo+IFdoYXQgYWJvdXQgYWRkaW5nIGEgVE9E
-TyBjb21tZW50IHNheWluZyBzb21ldGhpbmcgbGlrZTogInRoaXMgY29tZXMKPiBmcm9tIHN0YXRp
-YyBhbmFseXNpcyBhbmQgaGVscGVkIGRyb3BwaW5nIG1sb2NrIGFjY2VzcywgYnV0IHNvbWVvbmUK
-PiB3aXRoCj4gdGhlIGRldmljZSBuZWVkcyB0byBmaWd1cmUgb3V0IGlmIHdlIGNhbiBzaW1wbGlm
-eSB0aGlzIGRhbmNlIj8KPiBCZWNhdXNlCj4gdGhlIHJlYXNvbiBiZWhpbmQgYWxsIHRoaXMgaXMg
-dGhhdCB3ZSBkb24ndCB3YW50IHRvIHJpc2sgYnJlYWtpbmcgdGhlCj4gZHJpdmVyLCBidXQgcGVy
-aGFwcyBhIHNpbXBsZXIgYXBwcm9hY2ggd291bGQgd29yaywgcmlnaHQ/Cj4gCgpIaSBNaXF1ZWws
-CgpBRkFJVSwgZWl0aGVyIHRoZSBkZXZpY2UgaXMgcG93ZXJlZCAod2hlbiBidWZmZXIgbW9kZSBl
-bmFibGVkKSBhbmQgd2UKY2FuIGRvIHRoZSByZWFkaW5nIG9yIGl0J3Mgbm90IGFuZCB3ZSBuZWVk
-IHRvIHBvd2VyIGl0IG9uL29mZgoibWFudWFsbHkiIHdoaWxlIG1ha2luZyBzdXJlIHdlIGRvbid0
-IHJhY2UgYWdhaW5zdCBlbmFibGUvZGlzYWJsaW5nCmJ1ZmZlcnMuIFRoaXMgImRhbmNlIiBpcyBu
-ZWVkZWQgbWFpbmx5IHRvIG1ha2Ugc3VyZSB0aGF0IHdlIGdyYWIKJ21sb2NrJyBvbmUgd2F5IG9y
-IGFub3RoZXIuLi4gVGhlIG90aGVyIHdheSB3b3VsZCBiZSB0byB1c2Ugc29tZQpzcGVjaWZpYyBk
-ZXZpY2UgbG9jayB0b2dldGhlciB3aXRoIGEgZmxhZyAoYXMgZGlzY3Vzc2VkKSBidXQgYXMKZGlz
-Y3Vzc2VkIHdpdGggSm9uYXRoYW4gd2UgZGVjaWRlZCB0byBnbyBkb3duIHRoaXMgcm9hZC4uLiBT
-bywKaG9uZXN0bHksIEkgZG9uJ3QgcmVhbGx5IHNlZSB0aGUgbmVjZXNzaXR5IG9mICJtYXJraW5n
-IiB0aGlzIGNvZGUgd2l0aAphIFRPRE8gYnV0IG9mIGNvdXJzZSBpZiBzb21lb25lIGNvbWVzIGlu
-IHdpdGggc29tZXRoaW5nIHNpbXBsZXIsIGdyZWF0CjopLgoKQW55d2F5cywgYXMgSSBzYWlkLCBJ
-J20gbm90IHJlYWxseSBrZWVuIGluIHNwaW5uaW5nIGEgbmV3IHZlcnNpb24gdG8KYWRkIHRoaXMg
-Y29tbWVudCBzbyBJIHdpbGwgZGVmZXIgdGhlIGRlY2lzaW9uIHRvIEpvbmF0aGFuIDopICAKClRo
-YW5rcyBmb3IgdGhlIGhlbHAhCi0gTnVubyBTw6EKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, 14 Oct 2022 09:25:59 +0200
+Nuno S=E1 <noname.nuno@gmail.com> wrote:
+
+> On Wed, 2022-10-12 at 20:45 +0200, Miquel Raynal wrote:
+> > Hi Nuno,
+> > =
+
+> > nuno.sa@analog.com=A0wrote on Wed, 12 Oct 2022 17:16:19 +0200:
+> >   =
+
+> > > The pattern used in this device does not quite fit in the
+> > > iio_device_claim_direct_mode() typical usage. In this case, we want
+> > > to
+> > > know if we are in buffered mode or not to know if the device is
+> > > powered
+> > > (buffer mode) or not. And depending on that max30102_get_temp()
+> > > will
+> > > power on the device if needed. Hence, in order to keep the same
+> > > functionality, we try to:
+> > > =
+
+> > > 1. Claim Buffered mode;
+> > > 2: If 1) succeeds call max30102_get_temp() without powering on the
+> > > =A0=A0 device;
+> > > 3: Release Buffered mode;
+> > > 4: If 1) fails, Claim Direct mode;
+> > > 5: If 4) succeeds call max30102_get_temp() with powering on the
+> > > device;
+> > > 6: Release Direct mode;
+> > > 7: If 4) fails, goto to 1) and try again.
+> > > =
+
+> > > This dance between buffered and direct mode is not particularly
+> > > pretty
+> > > (as well as the loop introduced by the goto statement) but it does
+> > > allow
+> > > us to get rid of the mlock usage while keeping the same behavior.  =
+
+> > =
+
+> > What about adding a TODO comment saying something like: "this comes
+> > from static analysis and helped dropping mlock access, but someone
+> > with
+> > the device needs to figure out if we can simplify this dance"?
+> > Because
+> > the reason behind all this is that we don't want to risk breaking the
+> > driver, but perhaps a simpler approach would work, right?
+> >   =
+
+> =
+
+> Hi Miquel,
+> =
+
+> AFAIU, either the device is powered (when buffer mode enabled) and we
+> can do the reading or it's not and we need to power it on/off
+> "manually" while making sure we don't race against enable/disabling
+> buffers. This "dance" is needed mainly to make sure that we grab
+> 'mlock' one way or another... The other way would be to use some
+> specific device lock together with a flag (as discussed) but as
+> discussed with Jonathan we decided to go down this road... So,
+> honestly, I don't really see the necessity of "marking" this code with
+> a TODO but of course if someone comes in with something simpler, great
+> :).
+
+Agreed.  I don't expect to see any improvement in this in the future
+so a TODO would just be noise and might encourage people to propose
+the 'get the lock on it's own function' that we are going through this
+dance to avoid adding.
+
+Jonathan
+
+> =
+
+> Anyways, as I said, I'm not really keen in spinning a new version to
+> add this comment so I will defer the decision to Jonathan :)  =
+
+> =
+
+> Thanks for the help!
+> - Nuno S=E1
+> =
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
