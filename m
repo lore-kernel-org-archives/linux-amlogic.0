@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36175C43217
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39AA4C43219
 	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Oct 2022 17:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,60 +12,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e3XZnCqdfRt8FxvpIPfsA58Ff61m1+ntAiw8KRnn/tg=; b=B6yZ+HHDG678Hp
-	R3rskY3XMV39KRZLmIZt1C9GTtRWiBevDXjAx03t6ewI6ksKGezD0efJ24mfRaCeW6cTD8fXKsC5Y
-	2yDy4hYlPJgaVn1lte3r4zU6UlZX9H6TA7Rng/+ugLgX+lurPeyVvuSu13ftLVNpl+gDW/9DYCKHI
-	ErTc3xdavBXisDeph9iI0n8T1qRUoF+J7jMlx/MXp/qfZ53cxQ3Tp6gPcs+hu4SV3ZDlUB5AbBppn
-	27HLwCdxP8WaJMviHe7acjupKsBkQQmHtyQjxvIgQbs7y2Dwi8+UtWphR731kVadJ8JNm6Q7FoSIS
-	I441vEkpK47r4m/hrOeQ==;
+	List-Owner; bh=gil773kLSEXyVP+txmc2C1pgmdYeaGSDsDang3TxjSI=; b=LwNd62Ces5o4/+
+	N5FtQJXj4VWIen2fIncSGCuJui52mR5aBGAchnP0gYutN18FDrZRWuCDapwor/nHWow7AgMXJl475
+	+TwK4oVhkPeNhzMunbISw4PCDTonWnztdwU3mQKJmwHhmwebIVys8pjIoMi5qEgoz5evEvk2Vvsth
+	iQtFz5yBCJKUSfAus9oC4P80kb1ij1vlFtwF6AbvLd8E8GyDjR3VMrJlEJzYh5h+HTwX0PeejxZsW
+	7llq9sZ4eswQvpwPixq3Zm7NyDgTST1NvYBQWBXzbob71wDfMQLMH7pZYfVi8vnB0TXbOqBca2U4F
+	Amb54bQGi7HGbJ/ZJMRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1okqXB-009TB3-0Y; Tue, 18 Oct 2022 17:37:45 +0000
-Received: from mail-bn8nam12on2079.outbound.protection.outlook.com ([40.107.237.79] helo=NAM12-BN8-obe.outbound.protection.outlook.com)
+	id 1okqXC-009TC8-Mi; Tue, 18 Oct 2022 17:37:46 +0000
+Received: from mail-bn8nam11on2041.outbound.protection.outlook.com ([40.107.236.41] helo=NAM11-BN8-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1okP0I-00BR2B-NY; Mon, 17 Oct 2022 12:14:01 +0000
+	id 1okP1i-00BRxE-TK; Mon, 17 Oct 2022 12:15:28 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nEZc/8jJzNzifmvSZqdhCe0Idgl4aWtWPnpg7/LHlZpbEECKM+z51eM4XhtlefROsS18QyPWrLKX/+diyBruBC42Nm2nRpA7pBvZ8pxwvoKTE7H5cOqZtySL3200aJrVM0a3JMMsqhBzS+hHUWzigwEv5cJ5fc80CvG9iqGtojnG6upSL2Lvb5Ejd70nWMnL1t1SBfpkTULNVFVwsCvU9iDLN4sjC5qr+feLfd4EUx4VKq1whnX/OU+vm4hXPIrxY7eIFROjOriTDxjmP0nTborPxr2tfDE1mcePm4Pb3wFW7vMruatycpL6xPZ/5BGONAaloMeFV9S0E4nLDt5myw==
+ b=b7iOX1mgCWJUdTzscSMS17mPnkG6wNU1ZuhrEBABiaRuXqIirl2lmxeGrZtkZr+4TGFeIPCyEUzJkD770hF184YUBbZSgWqyLuG90jbRXA6D9pS3u55jZxc/F9eM5UgtjQlJHCeFyKzVD1EgzYt7Zy7m2g4tAMe+tuqbFBo1pTVlHaVGhZKoef7YHGH0u1JLF3nyI3wzyYSK5zU8EiSv34MWvYa/1Df/ieu4xd3kVn9BRABQpG1dzmaB/K6TWxGmDmBudI5ESC/Ww9OuImr0MdSrLqYkO8EAg77R0eJ2AFWEY7FH/dR/8N2KLNvKbUyCDcDm9zzXdpDe0SpavtB1Sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LwId1J15c1hZBHXG6yKzjqkYWAraBlf3PpvoSqI68t0=;
- b=Pb97qqNgfRhN8flA0BJcEoVuRWJgzFvF9gOIVwKw7++dKGxv17DIq0OpBY03+3oSAbvvLVKBsGUbu2DU1EM1rdL/8tp5j0aYwVeWRmrzlj/ctmoGPz1tJQZO9x4SlUeGWT6pMeRVEvc9F64ikbzt0azE83QQSjMtXuwz/myduzN+jCM28kP/REQnB46+K1TGbTPjg44akfZL7mgBuE35vxkXtIE8zRzZ/SKOIWf5qH41B37dXWKTVGHPFAGU/+uZ/4wEVqYGzwCGauhTi/f+g0f/uYclkyGknpE2KaeN5gS4Nizf1hVl9sGXPXiVGnvCyqjZopk6KxzPDl4H1mey+w==
+ bh=GR4ZrZBMZwZtiMXie34UcHhYI++CQN66d821m5/RpFI=;
+ b=avexfhBMY9HBJhGZSkDfHZ1H7+rLUbXhpeysbcbVPFQ2StFfcv7ruH3a4Gpgx/eBlEBhNxWTyvh2MD5UcUbPdn3UIg6hkD/WpuJzQxqicmFr2bQX7NrUcCzeMjosC4463lH79YrPdRAjiR1wk4tw7U8lbXMzl3gjkl3l1vLXJ3LPwIIf5w4rnUcPlT9+BFDrgw3sCUfL/8aQlSMGcfMCwXaLkt8/iUzc2/81VEPsoaKc3LLj3QWb0IuUJUMtdg15rf20QeE4OarHe0rk5Hg7pg5a94fDvZIqWElMzWb7e2dNjKCYEcNRP8Hu08yipKtfoQNY5AqWWcKoKm+tDDcXSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LwId1J15c1hZBHXG6yKzjqkYWAraBlf3PpvoSqI68t0=;
- b=osBm0NTQsopOKEAa+5DH6QWzAI0pMxaTLNWkmRPXYxmJl/sr8NB4YiylMxyfr0v4yZ3qVQt1cI1mycHwYOdxJdDBZLsdp23YDzfjGTN1D8cv+9HKdOYlJlM2KZU4I8U8u3VVHLn1xCZw9eY39BrE6JrNDaOCOnVWf4jUTwviBVA=
-Received: from CY5P221CA0117.NAMP221.PROD.OUTLOOK.COM (2603:10b6:930:1f::11)
- by DS7PR12MB6008.namprd12.prod.outlook.com (2603:10b6:8:7f::15) with
+ bh=GR4ZrZBMZwZtiMXie34UcHhYI++CQN66d821m5/RpFI=;
+ b=A5S7w6HOI+c6OHe3jjmJSTpsMaEKoxK7li9cozjJbgs1h5pkYNFXOA+fMc/qQ0WyE0POzQ5zQCYtGZio2CjrH7z33salmwKinf+WZYNBgXddLGxE7ych+OKtKKubjmHQkAdvirIeREZKaMnsubhtmluv0V7noWb7faO32Kx2lbs=
+Received: from MW2PR2101CA0016.namprd21.prod.outlook.com (2603:10b6:302:1::29)
+ by DM4PR12MB7645.namprd12.prod.outlook.com (2603:10b6:8:107::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Mon, 17 Oct
- 2022 12:13:53 +0000
-Received: from CY4PEPF0000B8E8.namprd05.prod.outlook.com
- (2603:10b6:930:1f:cafe::c5) by CY5P221CA0117.outlook.office365.com
- (2603:10b6:930:1f::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.31 via Frontend
- Transport; Mon, 17 Oct 2022 12:13:53 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.32; Mon, 17 Oct
+ 2022 12:15:22 +0000
+Received: from CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:302:1:cafe::22) by MW2PR2101CA0016.outlook.office365.com
+ (2603:10b6:302:1::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.6 via Frontend
+ Transport; Mon, 17 Oct 2022 12:15:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000B8E8.mail.protection.outlook.com (10.167.241.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Mon, 17 Oct 2022 12:13:52 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT077.mail.protection.outlook.com (10.13.175.55) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5723.20 via Frontend Transport; Mon, 17 Oct 2022 12:15:22 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 17 Oct
- 2022 07:13:48 -0500
+ 2022 07:15:21 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 17 Oct
+ 2022 05:15:20 -0700
 Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Mon, 17 Oct 2022 07:13:25 -0500
+ Transport; Mon, 17 Oct 2022 07:14:57 -0500
 From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 To: <broonie@kernel.org>, <sanju.mehta@amd.com>,
 	<chin-ting_kuo@aspeedtech.com>, <clg@kaod.org>, <kdasu.kdev@gmail.com>,
@@ -111,36 +115,37 @@ CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
 	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <akumarma@amd.com>,
 	<amitrkcian2002@gmail.com>, Amit Kumar Mahapatra
 	<amit.kumar-mahapatra@amd.com>
-Subject: [PATCH 01/10] spi: Add stacked memories support in SPI core
-Date: Mon, 17 Oct 2022 17:42:40 +0530
-Message-ID: <20221017121249.19061-2-amit.kumar-mahapatra@amd.com>
+Subject: [PATCH 05/10] iio: imu: Replace spi->chip_select references to spi->chip_select[0]
+Date: Mon, 17 Oct 2022 17:42:44 +0530
+Message-ID: <20221017121249.19061-6-amit.kumar-mahapatra@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20221017121249.19061-1-amit.kumar-mahapatra@amd.com>
 References: <20221017121249.19061-1-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8E8:EE_|DS7PR12MB6008:EE_
-X-MS-Office365-Filtering-Correlation-Id: 345be05d-2aac-465e-40f9-08dab0390ea9
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT077:EE_|DM4PR12MB7645:EE_
+X-MS-Office365-Filtering-Correlation-Id: b78af9a2-92fa-491c-4040-08dab03943c1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	xdSgCTQLbXmd8dFdQly8JOWii92tpvGOrJPxICvXEsnek460hrTFNDysSq/pn3O191qlDbQ5mm1QJ8ogN5IhdUeyYW3WGNX+WCDhVurLaNFuSXm5j8CNIhJCxVHPhQItLVkm6O47zR9SLHQ5icBLQAMkf9D3V/ZbjQxdDrQjUQcenGoTmymokqR67hsbsULLGAsLOInMEH7XRwEhLkKKud/f+Hs+Ox8qzpt3nrpiC1nqLtYmERcgx3tfU/VKIXPNslZ9WrfJ/xQhyLTFBGX2NL/18jlU70lRtVCyfe/morUEjaHxeEpB3O2B3NuJZTMjqHo1VvYUxr7N1dTBqFmDow2lrmfrlTBVi+7ovRej7eaM+bH/poPLwWQHxizS18kRfeSHDry/PT7r+rfYDRHqr8UxusykTBtrpwYSKSBkqKLhQ1qy8qvtUtFJKLYXky5aLgmZabVa/JlKSmLqd0+tRCBcdbwEZStw2XVKOQENaxTsjem1RJ3o9uCV6a9kPatkDuaa4RWs9bRWhrj6H9etqUsI6qulAxY3mmEOwqBU9aw/8zu/D1EaUdreOOplwkiOy6sMww9l6AWhOXmzxdWYWIv12byoLLAOlLNVRfGEfV9VFra63Ul9yeqiDjYLcDX16lf5H1hT2YAHCpq0dB55/QpAhvO2Hos5UZhD9XhfKasn0LcvoAErBf4lZ32VOawU0gebbhwCfRAHSNroPobuAQeFa/2A7TVT7Eeczqs9gqI8mFn90I5Z5GCN/B+YH2pqR3Qi2zVdz+t6vLx5JewxKBKDdI1jrleHjMkueCNDgn6DHhiBcB+bIXSvmf4cvsbKSmOpVMeMyDWsklnfEwc5LGIeQXriUByq2MgH0It6vvQgxPCS9xUhOQ2K3JPV19LMaA8AgL3JbG+1yVtI+7OukA==
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(346002)(376002)(396003)(451199015)(46966006)(36840700001)(40470700004)(86362001)(36756003)(36860700001)(921005)(40460700003)(82740400003)(356005)(81166007)(40480700001)(316002)(4326008)(70586007)(70206006)(8676002)(110136005)(54906003)(2906002)(41300700001)(426003)(7406005)(30864003)(7366002)(7336002)(8936002)(7416002)(5660300002)(47076005)(2616005)(336012)(1076003)(186003)(83380400001)(82310400005)(478600001)(6666004)(26005)(83996005)(41080700001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: 	gbNqnHIcDYOOSq/MVqFPrP1dtnh4ViEz8Y9E9eUYz98wpW90hXSIBBe4FjvCQCeNKOiRS0YK0KRFkIqqe+tCuQO+rF/Pt8YkUAIBOZYOdcRLMVQoLkxoNCzauEqvkVmv/g4oykyk8o5m04NRnwHWDeIXHoCKUNULes1mXWCg4E4eiOKknc+s3wjS0G5TeEjQPbFn/B3YZcWJQ3ROlmm9DVPrzv/pDbU7ueKlz7wyaonV1gozBgpTnYJmxS+oPzgAqfmo3SDESSqDLW8G969TUVhDVOTfyiFJVSuxwu84GuwdIbwtEwidnr79qwUDhf9ip43ufPsoqyNsKIsqvr1K2Qc+gSeJy7Fm+VMxVRifM0qfXQ9csKE3B5WwCkzE7m+CaCZN8nDlexUdxTZ+U57X0cLHQhx5TEPWFYmnkX7B+rAgN9bWPQpbM/relH33/ddPbudC3TtciCEntb0XUb+Nra4/qQGR1W1R3HhkErofiZNPXnUBhSYsTFOyoqS/hugpoQugVHKIrElIoM9FbTiSLoF4W+pE5aS7fZ5mMYde5mUqcUvQJZk6b6ZZNBJ/wK11PB1SyUyMggP7rXIKuAM9H7IJmeCZhsuhe3zDIatzRkU70aS2hYDwjtSb1qSsydph3x2LzGtODhqiykyL0Un/TIoza8mHo8Hm4EackjcBScbHkU/xwwPgz56oTNnQDaeJ0PqQCaLunC8gek6UMRxfTZ8VYqwrB5CA8FXgDCz53XX0Z+MuCdMkyQkxwNP/zvS9e6XL/BoF081G/qgnbyA6pq8u7eBgTalWBI/aWu/5EwiDyxgZFqzQlBZags2izOAtfbkAtM814Rqv2lsohEF3My+Ppf3POgKVBlvMn3nKlgVGBSsnDEwyVNKkBQbmp4VpqWYcIz31apdQJAvyA4fuUA==
+X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(376002)(396003)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(5660300002)(7416002)(7366002)(8936002)(7406005)(2906002)(4744005)(7336002)(70586007)(4326008)(8676002)(70206006)(41300700001)(86362001)(36756003)(186003)(356005)(81166007)(82740400003)(40460700003)(921005)(6666004)(2616005)(1076003)(336012)(426003)(47076005)(478600001)(26005)(110136005)(83380400001)(316002)(36860700001)(54906003)(40480700001)(82310400005)(41080700001)(83996005)(2101003)(36900700001);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2022 12:13:52.8662
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2022 12:15:22.0834
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 345be05d-2aac-465e-40f9-08dab0390ea9
+X-MS-Exchange-CrossTenant-Network-Message-Id: b78af9a2-92fa-491c-4040-08dab03943c1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	CY4PEPF0000B8E8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: 	CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6008
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7645
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221017_051358_931953_3BC66FDE 
-X-CRM114-Status: GOOD (  19.29  )
-X-Mailman-Approved-At: Tue, 18 Oct 2022 10:37:43 -0700
+X-CRM114-CacheID: sfid-20221017_051526_996021_B82BFEC1 
+X-CRM114-Status: UNSURE (   9.35  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Tue, 18 Oct 2022 10:37:44 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,316 +162,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-For supporting multiple CS the SPI device need to be aware of all the CS
-values. So, the "chip_select" member in the spi_device structure is now an
-array that holds all the CS values.
-
-spi_device structure now has a "cs_index_mask" member. This acts as an
-index to the chip_select array. If nth bit of spi->cs_index_mask is set
-then the driver would assert spi->chip_select[n].
-
-For supporting multiple CS via GPIO the cs_gpiod member of the spi_device
-structure is now an array that holds the gpio descriptor for each
-chipselect.
-
-Multi CS support using GPIO is not tested due to unavailability of
-necessary hardware setup.
+For adding multi CS support & to prevent any existing driver from
+breaking, replaced all spi->chip_select references to spi->chip_slect[0].
 
 Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 ---
- drivers/spi/spi.c       | 86 ++++++++++++++++++++++++-----------------
- include/linux/spi/spi.h | 16 +++++++-
- 2 files changed, 65 insertions(+), 37 deletions(-)
+ drivers/iio/imu/adis16400.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 8f97a3eacdea..1b1a891f4ccc 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -592,7 +592,7 @@ static void spi_dev_set_name(struct spi_device *spi)
+diff --git a/drivers/iio/imu/adis16400.c b/drivers/iio/imu/adis16400.c
+index 17bb0c40a149..aa7bfcee3510 100644
+--- a/drivers/iio/imu/adis16400.c
++++ b/drivers/iio/imu/adis16400.c
+@@ -466,7 +466,7 @@ static int adis16400_initial_setup(struct iio_dev *indio_dev)
+ 
+ 		dev_info(&indio_dev->dev, "%s: prod_id 0x%04x at CS%d (irq %d)\n",
+ 			indio_dev->name, prod_id,
+-			st->adis.spi->chip_select, st->adis.spi->irq);
++			st->adis.spi->chip_select[0], st->adis.spi->irq);
  	}
- 
- 	dev_set_name(&spi->dev, "%s.%u", dev_name(&spi->controller->dev),
--		     spi->chip_select);
-+		     spi->chip_select[0]);
- }
- 
- static int spi_dev_check(struct device *dev, void *data)
-@@ -601,7 +601,8 @@ static int spi_dev_check(struct device *dev, void *data)
- 	struct spi_device *new_spi = data;
- 
- 	if (spi->controller == new_spi->controller &&
--	    spi->chip_select == new_spi->chip_select)
-+	    spi->chip_select[0] == new_spi->chip_select[0] &&
-+	    spi->chip_select[1] == new_spi->chip_select[1])
- 		return -EBUSY;
- 	return 0;
- }
-@@ -616,7 +617,7 @@ static int __spi_add_device(struct spi_device *spi)
- {
- 	struct spi_controller *ctlr = spi->controller;
- 	struct device *dev = ctlr->dev.parent;
--	int status;
-+	int status, idx;
- 
- 	/*
- 	 * We need to make sure there's no other device with this
-@@ -626,7 +627,7 @@ static int __spi_add_device(struct spi_device *spi)
- 	status = bus_for_each_dev(&spi_bus_type, NULL, spi, spi_dev_check);
- 	if (status) {
- 		dev_err(dev, "chipselect %d already in use\n",
--				spi->chip_select);
-+				spi->chip_select[0]);
- 		return status;
- 	}
- 
-@@ -636,8 +637,10 @@ static int __spi_add_device(struct spi_device *spi)
- 		return -ENODEV;
- 	}
- 
--	if (ctlr->cs_gpiods)
--		spi->cs_gpiod = ctlr->cs_gpiods[spi->chip_select];
-+	if (ctlr->cs_gpiods) {
-+		for (idx = 0; idx < SPI_CS_CNT_MAX; idx++)
-+			spi->cs_gpiod[idx] = ctlr->cs_gpiods[spi->chip_select[idx]];
-+	}
- 
- 	/*
- 	 * Drivers may modify this initial i/o setup, but will
-@@ -677,13 +680,15 @@ int spi_add_device(struct spi_device *spi)
- {
- 	struct spi_controller *ctlr = spi->controller;
- 	struct device *dev = ctlr->dev.parent;
--	int status;
-+	int status, idx;
- 
--	/* Chipselects are numbered 0..max; validate. */
--	if (spi->chip_select >= ctlr->num_chipselect) {
--		dev_err(dev, "cs%d >= max %d\n", spi->chip_select,
--			ctlr->num_chipselect);
--		return -EINVAL;
-+	for (idx = 0; idx < SPI_CS_CNT_MAX; idx++) {
-+		/* Chipselects are numbered 0..max; validate. */
-+		if (spi->chip_select[idx] >= ctlr->num_chipselect) {
-+			dev_err(dev, "cs%d >= max %d\n", spi->chip_select[idx],
-+				ctlr->num_chipselect);
-+			return -EINVAL;
-+		}
- 	}
- 
- 	/* Set the bus ID string */
-@@ -700,12 +705,15 @@ static int spi_add_device_locked(struct spi_device *spi)
- {
- 	struct spi_controller *ctlr = spi->controller;
- 	struct device *dev = ctlr->dev.parent;
-+	int idx;
- 
--	/* Chipselects are numbered 0..max; validate. */
--	if (spi->chip_select >= ctlr->num_chipselect) {
--		dev_err(dev, "cs%d >= max %d\n", spi->chip_select,
--			ctlr->num_chipselect);
--		return -EINVAL;
-+	for (idx = 0; idx < SPI_CS_CNT_MAX; idx++) {
-+		/* Chipselects are numbered 0..max; validate. */
-+		if (spi->chip_select[idx] >= ctlr->num_chipselect) {
-+			dev_err(dev, "cs%d >= max %d\n", spi->chip_select[idx],
-+				ctlr->num_chipselect);
-+			return -EINVAL;
-+		}
- 	}
- 
- 	/* Set the bus ID string */
-@@ -749,7 +757,7 @@ struct spi_device *spi_new_device(struct spi_controller *ctlr,
- 
- 	WARN_ON(strlen(chip->modalias) >= sizeof(proxy->modalias));
- 
--	proxy->chip_select = chip->chip_select;
-+	proxy->chip_select[0] = chip->chip_select;
- 	proxy->max_speed_hz = chip->max_speed_hz;
- 	proxy->mode = chip->mode;
- 	proxy->irq = chip->irq;
-@@ -953,29 +961,32 @@ static void spi_res_release(struct spi_controller *ctlr, struct spi_message *mes
- static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
- {
- 	bool activate = enable;
-+	u32 cs_num = __ffs(spi->cs_index_mask);
-+	int idx;
- 
- 	/*
- 	 * Avoid calling into the driver (or doing delays) if the chip select
- 	 * isn't actually changing from the last time this was called.
- 	 */
--	if (!force && ((enable && spi->controller->last_cs == spi->chip_select) ||
--				(!enable && spi->controller->last_cs != spi->chip_select)) &&
-+	if (!force && ((enable &&
-+			spi->controller->last_cs == spi->chip_select[cs_num]) ||
-+		       (!enable &&
-+			spi->controller->last_cs != spi->chip_select[cs_num])) &&
- 	    (spi->controller->last_cs_mode_high == (spi->mode & SPI_CS_HIGH)))
- 		return;
- 
- 	trace_spi_set_cs(spi, activate);
- 
--	spi->controller->last_cs = enable ? spi->chip_select : -1;
-+	spi->controller->last_cs = enable ? spi->chip_select[cs_num] : -1;
- 	spi->controller->last_cs_mode_high = spi->mode & SPI_CS_HIGH;
- 
--	if ((spi->cs_gpiod || !spi->controller->set_cs_timing) && !activate) {
-+	if ((spi->cs_gpiod[cs_num] || !spi->controller->set_cs_timing) && !activate)
- 		spi_delay_exec(&spi->cs_hold, NULL);
--	}
- 
- 	if (spi->mode & SPI_CS_HIGH)
- 		enable = !enable;
- 
--	if (spi->cs_gpiod) {
-+	if (spi->cs_gpiod[cs_num]) {
- 		if (!(spi->mode & SPI_NO_CS)) {
- 			/*
- 			 * Historically ACPI has no means of the GPIO polarity and
-@@ -988,10 +999,10 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
- 			 * into account.
- 			 */
- 			if (has_acpi_companion(&spi->dev))
--				gpiod_set_value_cansleep(spi->cs_gpiod, !enable);
-+				gpiod_set_value_cansleep(spi->cs_gpiod[cs_num], !enable);
- 			else
- 				/* Polarity handled by GPIO library */
--				gpiod_set_value_cansleep(spi->cs_gpiod, activate);
-+				gpiod_set_value_cansleep(spi->cs_gpiod[cs_num], activate);
- 		}
- 		/* Some SPI masters need both GPIO CS & slave_select */
- 		if ((spi->controller->flags & SPI_MASTER_GPIO_SS) &&
-@@ -1001,7 +1012,7 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
- 		spi->controller->set_cs(spi, !enable);
- 	}
- 
--	if (spi->cs_gpiod || !spi->controller->set_cs_timing) {
-+	if (spi->cs_gpiod[cs_num] || !spi->controller->set_cs_timing) {
- 		if (activate)
- 			spi_delay_exec(&spi->cs_setup, NULL);
- 		else
-@@ -2139,8 +2150,8 @@ void spi_flush_queue(struct spi_controller *ctlr)
- static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
- 			   struct device_node *nc)
- {
--	u32 value;
--	int rc;
-+	u32 value, cs[SPI_CS_CNT_MAX] = {0};
-+	int rc, idx;
- 
- 	/* Mode (clock phase/polarity/etc.) */
- 	if (of_property_read_bool(nc, "spi-cpha"))
-@@ -2213,13 +2224,17 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
- 	}
- 
- 	/* Device address */
--	rc = of_property_read_u32(nc, "reg", &value);
--	if (rc) {
-+	rc = of_property_read_variable_u32_array(nc, "reg", &cs[0], 1,
-+						 SPI_CS_CNT_MAX);
-+	if (rc < 0 || rc > ctlr->num_chipselect) {
- 		dev_err(&ctlr->dev, "%pOF has no valid 'reg' property (%d)\n",
- 			nc, rc);
- 		return rc;
- 	}
--	spi->chip_select = value;
-+	for (idx = 0; idx < rc; idx++)
-+		spi->chip_select[idx] = cs[idx];
-+	/* By default set the spi->cs_index_mask as 1 */
-+	spi->cs_index_mask = 0x01;
- 
- 	/* Device speed */
- 	if (!of_property_read_u32(nc, "spi-max-frequency", &value))
-@@ -2333,7 +2348,7 @@ struct spi_device *spi_new_ancillary_device(struct spi_device *spi,
- 	strlcpy(ancillary->modalias, "dummy", sizeof(ancillary->modalias));
- 
- 	/* Use provided chip-select for ancillary device */
--	ancillary->chip_select = chip_select;
-+	ancillary->chip_select[0] = chip_select;
- 
- 	/* Take over SPI mode/speed from SPI main device */
- 	ancillary->max_speed_hz = spi->max_speed_hz;
-@@ -2580,7 +2595,7 @@ struct spi_device *acpi_spi_device_alloc(struct spi_controller *ctlr,
- 	spi->mode		|= lookup.mode;
- 	spi->irq		= lookup.irq;
- 	spi->bits_per_word	= lookup.bits_per_word;
--	spi->chip_select	= lookup.chip_select;
-+	spi->chip_select[0]	= lookup.chip_select;
- 
- 	return spi;
- }
-@@ -3687,6 +3702,7 @@ static int __spi_validate(struct spi_device *spi, struct spi_message *message)
- 	struct spi_controller *ctlr = spi->controller;
- 	struct spi_transfer *xfer;
- 	int w_size;
-+	u32 cs_num = __ffs(spi->cs_index_mask);
- 
- 	if (list_empty(&message->transfers))
- 		return -EINVAL;
-@@ -3699,7 +3715,7 @@ static int __spi_validate(struct spi_device *spi, struct spi_message *message)
- 	 * cs_change is set for each transfer.
- 	 */
- 	if ((spi->mode & SPI_CS_WORD) && (!(ctlr->mode_bits & SPI_CS_WORD) ||
--					  spi->cs_gpiod)) {
-+					  spi->cs_gpiod[cs_num])) {
- 		size_t maxsize;
- 		int ret;
- 
-diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-index e6c73d5ff1a8..a7c2efedcc4c 100644
---- a/include/linux/spi/spi.h
-+++ b/include/linux/spi/spi.h
-@@ -19,6 +19,9 @@
- #include <linux/acpi.h>
- #include <linux/u64_stats_sync.h>
- 
-+/* Max no. of CS supported per spi device */
-+#define SPI_CS_CNT_MAX 2
-+
- struct dma_chan;
- struct software_node;
- struct ptp_system_timestamp;
-@@ -163,6 +166,7 @@ extern int spi_delay_exec(struct spi_delay *_delay, struct spi_transfer *xfer);
-  *	deasserted. If @cs_change_delay is used from @spi_transfer, then the
-  *	two delays will be added up.
-  * @pcpu_statistics: statistics for the spi_device
-+ * @cs_index_mask: Bit mask of the active chipselect(s) in the chipselect array
-  *
-  * A @spi_device is used to interchange data between an SPI slave
-  * (usually a discrete chip) and CPU memory.
-@@ -178,7 +182,7 @@ struct spi_device {
- 	struct spi_controller	*controller;
- 	struct spi_controller	*master;	/* Compatibility layer */
- 	u32			max_speed_hz;
--	u8			chip_select;
-+	u8			chip_select[SPI_CS_CNT_MAX];
- 	u8			bits_per_word;
- 	bool			rt;
- #define SPI_NO_TX	BIT(31)		/* No transmit wire */
-@@ -199,7 +203,7 @@ struct spi_device {
- 	void			*controller_data;
- 	char			modalias[SPI_NAME_SIZE];
- 	const char		*driver_override;
--	struct gpio_desc	*cs_gpiod;	/* Chip select gpio desc */
-+	struct gpio_desc	*cs_gpiod[SPI_CS_CNT_MAX];	/* Chip select gpio desc */
- 	struct spi_delay	word_delay; /* Inter-word delay */
- 	/* CS delays */
- 	struct spi_delay	cs_setup;
-@@ -209,6 +213,14 @@ struct spi_device {
- 	/* The statistics */
- 	struct spi_statistics __percpu	*pcpu_statistics;
- 
-+	/*
-+	 * Bit mask of the chipselect(s) that the driver need to use from
-+	 * the chipselect array.When the controller is capable to handle
-+	 * multiple chip selects & memories are connected in parallel
-+	 * then more than one bit need to be set in cs_index_mask.
-+	 */
-+	u32			cs_index_mask : 2;
-+
- 	/*
- 	 * likely need more hooks for more protocol options affecting how
- 	 * the controller talks to each chip, like:
+ 	/* use high spi speed if possible */
+ 	if (st->variant->flags & ADIS16400_HAS_SLOW_MODE) {
 -- 
 2.17.1
 
