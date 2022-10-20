@@ -4,61 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4995C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Oct 2022 23:32:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80CC9C433FE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Oct 2022 08:15:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ul8AXtfca4bgilsdMB+TYvSsv0+6j286MhBsGhEtCNs=; b=wnwh+Us8k0U+5j
-	/6LI5MynhYUgwadBnohxbS2V/v8YELZ3l4PhYyYqP+NlI0nn2jnMj9Z+CwvyfpZfFEBsqkSdfABEH
-	c+HeUO5PG8aSPlqLQxfuRZWclnS6/zRsAIRNpM5KmYP6ectL26xTSfwBiuX0e29mCxSY3UEP+ateE
-	/pRnRwaApfj9V8F9nYjMuAYhsCNdnnBbcRYFm3NeVt+UQZWCpWPmUtKTnsWgOzWeByMjKk614uSve
-	4VIyNo7rb/+6WcE0ToSsBK43IDHdJVeJHtg7jd/U7piPsjRVMYG/cRgrN7shI+j34MOQXuUY5CCQI
-	jSbm7O3bfgtOMm7XHWWw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=m2IMTffaMkjCpAKZYPvNh+KBqZFCwHB8sgRKtDnwNXY=; b=s6IDTebz40ZA00gMx7bQNTUbIp
+	KxZD6ASNa7ooe7pIxHfc5XUbRefhVICNR7OhpdOpAPOIzRIxMB4VCntEdSqS/jHZnAYtGITlBLOdD
+	RzPcjOqTSyc7buDDc7OaYc3E/kg3c9wK4NKUN7hG8NmzQREUaCUleGe6PRIcqSRjZ8JNxlChCTqiI
+	GtNOwu+o4Op2sjiN2wVp5eizaijrEYh7HgvcVxsEpHXDzMiC4Wj1/m+qZeTen0Hq9raw8xw4vaYqj
+	iDSc8nzSFHQ850pQq7NNDgqjdAGxnA0jiNdC+45puv8Z3TSngZfelItGCt1QAFlWQFz+3vRO5f+B9
+	bF19378A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olIXb-005qay-3N; Wed, 19 Oct 2022 23:32:03 +0000
-Received: from mail-ot1-f51.google.com ([209.85.210.51])
+	id 1olQi5-00C77S-AX; Thu, 20 Oct 2022 08:15:25 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olIXX-005qWI-9f; Wed, 19 Oct 2022 23:32:00 +0000
-Received: by mail-ot1-f51.google.com with SMTP id t4-20020a9d7f84000000b00661c3d864f9so10429468otp.10;
-        Wed, 19 Oct 2022 16:31:57 -0700 (PDT)
+	id 1olQi2-00C76Q-Sj
+	for linux-amlogic@lists.infradead.org; Thu, 20 Oct 2022 08:15:24 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 186-20020a1c02c3000000b003c6c154d528so1712349wmc.4
+        for <linux-amlogic@lists.infradead.org>; Thu, 20 Oct 2022 01:15:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=mhEUUAx17h0AgHtxJMeCII0Aci1ZEeSL8jXNszOE9M4=;
+        b=SGMXowYozhs41yaXnsLn+6I8DWByS05nCpogBo/gSwiquuK9eqEsbVsWuQKQ+Q9KbU
+         Xvss5cdXVqIKC6wayAtZhK+eUKPYcyLjmj/OI2zfTMFSPCeIx+At6NyPkoCePWzDRv7R
+         V6y1pr2HzjZfkl0uSjYyyuVTnxTuLHekFSLJiZlRBO6wOWKPtJBmSxVjKeoC1Q+K4Z5Y
+         2DsaXTJQ6Fpp/TXwYnlXRmsgd57l07vJySEOZ4HahHdfHdqa5p/uC7p8dCBm1yH7KyQy
+         VYUDRgOWFYZA2CtSK+m0gjZ9fUym8nA8Rz5givWgXosqDLZHBAycT7Wvc6Xh5dFvtvUl
+         MeSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MS0VPgDd6DBW5Ti7Tsf3pJIozjZqn06guICmD2Kp4sM=;
-        b=dNQJKqMOh1DBoL/xFxQ6UqJMbRpqOJzr6GS9f9tymY60/EFaYsvk4oP7eTyeWzzAY1
-         CB78PajzpEcoIY4Z6Nybwhh8DT8qPGlqgNcXkedIHubMTjyjV3qZMS2cvmqn/upXYHsT
-         SNlZedFXDeJwVibPtJzPOx9RMAIP5l+R/g3nIOFSgfRab5CdVM7wlvT0Ad/5cORenUAI
-         ZjD8Pa3F4c5g7S4kWmlkRcagS4WpFkXYA2H42TNRfL8ID/KtUP/xWta14coeCh+bwdch
-         IalfrecUmiQBQTg+UfIm7WcOS7t3txfxRYWrjkQy7pLkJM5K/1IVTsPbUGt84RgjFo+z
-         s/lw==
-X-Gm-Message-State: ACrzQf3i+V12fNflQAwG2LQrdE7MlNM8Jd8jC/YtENg7WVxSnGMzEbfe
-	5STfOzpUg4MAyYWDQdg08A==
-X-Google-Smtp-Source: AMsMyM6licy+56vLBx+iqqslzytNI3UKFyi0/zd2kw7rkpCogv5TjVOaifRFEOt+ifDYFE23dsBvIA==
-X-Received: by 2002:a9d:6f02:0:b0:661:d432:fb52 with SMTP id n2-20020a9d6f02000000b00661d432fb52mr5498021otq.153.1666222317217;
-        Wed, 19 Oct 2022 16:31:57 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s17-20020a4ac811000000b00480dccc0c2asm2117891ooq.14.2022.10.19.16.31.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 16:31:56 -0700 (PDT)
-Received: (nullmailer pid 19942 invoked by uid 1000);
-	Wed, 19 Oct 2022 23:31:53 -0000
-From: Rob Herring <robh@kernel.org>
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Da Xue <da@libre.computer>
-In-Reply-To: <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com> <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-Message-Id: <166622204954.13100.10317615531856688163.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add pinctrl names for SPI signal states
-Date: Wed, 19 Oct 2022 18:31:53 -0500
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mhEUUAx17h0AgHtxJMeCII0Aci1ZEeSL8jXNszOE9M4=;
+        b=NAJDa9/Uy4IEOwYsCcuoIE+o1oexA7lgzY380OkZCdqHsOjyMYwJvyXEAF9VMXuZ6s
+         w6Omqe15gpazgYYnIxZOjVpM6RMGfFIIoOUbYfN8D5lEC4odXzccORSrA/EwDw7gmfX5
+         h3+4ApMGb0f2cXeJ3KPdquB9xIAP5W7Tck2M5z8TD4dWVsc60GqcbiC6kzQCrmHbBHAO
+         G+6+0tY0V/XReUJR8XS+ra9g4QRv1KWLfzN4p36il2E6yA6qBDE2L2+q1Bm44Qk8sNW5
+         QA+vW5RD6kZJEJnQWGtDL6omePKTpjGE+xy/O99rnJ0VwxT7M8RFQ/OnIhGZprOabMNY
+         xK7w==
+X-Gm-Message-State: ACrzQf19Ag+o8Fha6rB4iK2LbC0LACCXaAI142j4BdIPypQsGxVSna8a
+	HovM9leeWLCE4z2nAIhfr5MhWQ==
+X-Google-Smtp-Source: AMsMyM6+QEGDiYr4HnFQpx2CtydwueOIIFGgcqt8YVmO8d/ISMyk+foSu6EsTOXeeBSJYJr/u3e+Mg==
+X-Received: by 2002:a7b:c455:0:b0:3c6:bd0e:f9b0 with SMTP id l21-20020a7bc455000000b003c6bd0ef9b0mr29253450wmi.21.1666253719306;
+        Thu, 20 Oct 2022 01:15:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ef2:f28d:311f:c84b? ([2a01:e0a:982:cbb0:ef2:f28d:311f:c84b])
+        by smtp.gmail.com with ESMTPSA id q6-20020a7bce86000000b003b3365b38f9sm2127648wmj.10.2022.10.20.01.15.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 01:15:18 -0700 (PDT)
+Message-ID: <6696b644-bb9d-54e4-0b3b-e4897a881898@linaro.org>
+Date: Thu, 20 Oct 2022 10:15:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
+ Odroid N2/N2+
+Content-Language: en-US
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221018195122.8877-1-linux.amoon@gmail.com>
+ <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
+ <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
+ <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
+ <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org>
+ <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
+ <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221019_163159_391480_9F3C5B3F 
-X-CRM114-Status: GOOD (  12.80  )
+X-CRM114-CacheID: sfid-20221020_011522_976918_432D1FF8 
+X-CRM114-Status: GOOD (  15.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,58 +100,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 19 Oct 2022 16:01:03 +0200, Amjad Ouled-Ameur wrote:
-> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
-> pin biais when idle. Therefore define three pinctrl names:
-> - default: SPI pins are controlled by spi function.
-> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
-> by spi function.
-> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
-> by spi function.
+On 19/10/2022 22:40, Martin Blumenstingl wrote:
+> Hi Anand,
 > 
-> Reported-by: Da Xue <da@libre.computer>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> ---
->  .../bindings/spi/amlogic,meson-gx-spicc.yaml       | 67 ++++++++++++++--------
->  1 file changed, 42 insertions(+), 25 deletions(-)
+> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+>>>> +&pwm_AO_ab {
+>>>
+>>> &pwm_AO_cd not _ab
+>>>
+>> No it has a conflict with CPU_B (vddcpu_b) PWM
+> Uh, you're right. That's probably why the Hardkernel team uses a
+> software based PWM implementation: [0]
+> In hindsight they should have used a different pad either for VDDCPU_B
+> or the fan.
+> 
+> I think the most pragmatic approach (since the "GPIO PWM" driver is
+> not upstream and I don't know if something like that would be accepted
+> upstream) is to use a GPIO based fan as you did in your initial patch.
+> Not sure what others think though.
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Indeed I recall them using a SW pwm.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: [error] duplication of key "allOf" in mapping (key-duplicates)
+Yes it's perfectly ok to use a gpio-fan.
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml: ignoring, error parsing file
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.example.dts'
-Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+Anand, please fixup the ddr-active name and send a v2.
 
-doc reference errors (make refcheckdocs):
+Thanks,
+Neil
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+> 
+> Best regards,
+> Martin
+> 
+> 
+> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
 
 
 _______________________________________________
