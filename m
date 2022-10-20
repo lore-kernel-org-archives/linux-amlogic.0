@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15877C43217
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Oct 2022 11:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA492C43219
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Oct 2022 11:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GZnB5/yVelZeyGsCAndpsAShBgebhBk0/troFjmvoK0=; b=4kAdjCfPHlfd2I
-	JbxnH3QbFYHQBcH1FxLRo1ZKAoCyDoIGq9FLx16wSfucFFL8UAkm4gPSMyspFLLUb/GAIpeYh6VpK
-	S/Jo5x/zevBTN9IAdtXG+s/4Hz2HUryyHHG1/NOZs2lYhd1NCsvZ6F/4YsRYECCZHHNgDqwjy6CfO
-	mCs3qO+f9DGotILuMJ8ROhTS3rh9RJ/54mju6AdARTQ1SHVgqbRk56cfPpvnDyMTyV0nb8npSzn8Z
-	68MZgN7iGL3uLGu7i4JlaPDow5S5Bspnk1QZ8zKaUZSiLTGdjBniEgc9YxrFwn4ly+xXr0nYbC9m+
-	NIRRF4jJ1rPwGKZ898ag==;
+	List-Owner; bh=e8xdfi4faxsCeDDWtYGNxzRGBVUn+Uk3JL0voaJHfkM=; b=2h+ZWBMp/g6bW7
+	879UdG4O7Bl+A3wbTODBFhqtq+97P7rO8ruNiZgMZ6Euv8R+O3YmXvA9juE/k9ZIV1INvzkLIiSTq
+	CZZmwGTNr5efc2CmgizVy2ZeDjz6tw9XyQ26hvJv8mCiW7qdu8dzBcoANQzSVsldHZFewcNLdRXVn
+	dCoCQtgNI1XoIB7+7Js+4zn+J8/D53r9y9tmNQPRCAThV40YheEr/85fo5KakdiVLFs23bAn9R5aC
+	lXsvOWew+PyapWNtNHUsG/e7tLHgiV702v/DGgk8CaRTeMKJ2AC/5HCpuizkHtenHoYjSA8pvPmdL
+	DmBU+414e1y1EE8iJWLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olTg5-00E3CN-53; Thu, 20 Oct 2022 11:25:33 +0000
-Received: from smtp-out2.suse.de ([195.135.220.29])
+	id 1olTg2-00E3BI-Sn; Thu, 20 Oct 2022 11:25:30 +0000
+Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olSw8-00DeW2-Pz; Thu, 20 Oct 2022 10:38:08 +0000
+	id 1olSw8-00DeVi-P4; Thu, 20 Oct 2022 10:38:08 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 4D3251FA2F;
-	Thu, 20 Oct 2022 10:37:59 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id B7C181FA26;
+	Thu, 20 Oct 2022 10:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1666262279; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1666262277; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=sHEv3PMrKNnInemYrMBOWuesS2nTAxE1RBtBG3/fya4=;
-	b=A0Go8wc0pthGW821MuoZikUiXXtHq7ymZv2SSV9lTrmeXN1Yu4C7G6tnivAyJ9Sz9m6+AD
-	Zm6tr3TtXaNArHNJj+Sv9XmKhd3H7TiF+Os9Ff0MveRULnotL60eHIpU5X9rRPUBbPL1uL
-	Ft9F58IF15dCLP2XfZO4I3FgQoJUclY=
+	bh=Ro4+Kd0RltbjMdu4OrI2uib0ho5AqwGxOtBXY8dS7Qg=;
+	b=hTN4RHJE1PxuqFN5kOORkafwVSL1AHktl4otDV1rbos5DSJ5D0LXWxzf9Ke/RXxSVAMXJC
+	bbEyIjc/qFuqiBk6LPkyF317wUWc8k/1yIswUZHcgLxfE9QsfT+4CEKHPhrtDjJtG6VhFy
+	KPo1RuIGxz3LnsPOov3fRzdR4m8wnm8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1666262279;
+	s=susede2_ed25519; t=1666262277;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=sHEv3PMrKNnInemYrMBOWuesS2nTAxE1RBtBG3/fya4=;
-	b=p2UIJ75nTMOoxRtiGSi2fv0IHNabxHTRxzd/SuQjnaHbwL4gc3z2PuPKKPd6TeO/w7i8Fc
-	IFCKarlQzfPAwNCg==
+	bh=Ro4+Kd0RltbjMdu4OrI2uib0ho5AqwGxOtBXY8dS7Qg=;
+	b=WQRBhVwummZkW7YtUvgBUG6C4KPwGlTIFpcexjZJs8nWsclzJ/R0QWj5vc7b/l6wWQm5S1
+	usWIWm27yZzJJcBQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id CD72313AF5;
-	Thu, 20 Oct 2022 10:37:58 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4709113B72;
+	Thu, 20 Oct 2022 10:37:57 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id KDenMAYlUWPPYwAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Thu, 20 Oct 2022 10:37:58 +0000
+	id IHRqEAUlUWPPYwAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Thu, 20 Oct 2022 10:37:57 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch,
 	airlied@gmail.com,
@@ -88,16 +88,16 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-tegra@vger.kernel.org,
 	xen-devel@lists.xenproject.org,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 04/21] drm/komeda: Don't set struct drm_driver.lastclose
-Date: Thu, 20 Oct 2022 12:37:38 +0200
-Message-Id: <20221020103755.24058-5-tzimmermann@suse.de>
+Subject: [PATCH 01/21] drm/amdgpu: Don't set struct drm_driver.lastclose
+Date: Thu, 20 Oct 2022 12:37:35 +0200
+Message-Id: <20221020103755.24058-2-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221020103755.24058-1-tzimmermann@suse.de>
 References: <20221020103755.24058-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221020_033805_137093_0B3D1207 
-X-CRM114-Status: GOOD (  11.33  )
+X-CRM114-CacheID: sfid-20221020_033805_041842_912436E4 
+X-CRM114-Status: GOOD (  10.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,35 +115,48 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Don't set struct drm_driver.lastclose. It's used to restore the
-fbdev console. But as komeda uses generic fbdev emulation, the
+fbdev console. But as amdgpu uses generic fbdev emulation, the
 console is being restored by the DRM client helpers already. See
 the call to drm_client_dev_restore() in drm_lastclose().
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       | 1 -
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 --
+ 2 files changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-index 451746ebbe713..62dc64550793e 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_drv.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_managed.h>
-@@ -59,7 +58,6 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void *data)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 23998f727c7f9..fb7186c5ade2a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -1224,7 +1224,6 @@ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
  
- static const struct drm_driver komeda_kms_driver = {
- 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
--	.lastclose			= drm_fb_helper_lastclose,
- 	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_dma_dumb_create),
- 	.fops = &komeda_cma_fops,
- 	.name = "komeda",
+ const struct drm_mode_config_funcs amdgpu_mode_funcs = {
+ 	.fb_create = amdgpu_display_user_framebuffer_create,
+-	.output_poll_changed = drm_fb_helper_output_poll_changed,
+ };
+ 
+ static const struct drm_prop_enum_list amdgpu_underscan_enum_list[] =
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index f6a9e8fdd87d6..e9a28a5363b9a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -82,7 +82,6 @@
+ #include <drm/drm_atomic_uapi.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_blend.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_vblank.h>
+@@ -2810,7 +2809,6 @@ const struct amdgpu_ip_block_version dm_ip_block =
+ static const struct drm_mode_config_funcs amdgpu_dm_mode_funcs = {
+ 	.fb_create = amdgpu_display_user_framebuffer_create,
+ 	.get_format_info = amd_get_format_info,
+-	.output_poll_changed = drm_fb_helper_output_poll_changed,
+ 	.atomic_check = amdgpu_dm_atomic_check,
+ 	.atomic_commit = drm_atomic_helper_commit,
+ };
 -- 
 2.38.0
 
