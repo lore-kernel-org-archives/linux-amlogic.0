@@ -4,92 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F729C433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 08:39:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A01C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 12:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RtZGuDuqr2jGzgfr4Ew6j620XwKMDgpxmTK9vkWyjT4=; b=Q98SG9bhwuF5OvZFAGWkuFWDSa
-	mebCXULVgUSo9kBvCB826jUf2lRY4xA/1bXO6oS7j23NvBPcDKWtKsfMG2Bgl3KfwcNPgfqvpg4K8
-	Nx2mjT8mrPKvFpHrA3FLFnKcjf70+cXbwhFNjk5bPREDCc0UN4Oi5ZTR6u6KaZHc8KC/otzxck9Se
-	xsaOIVxzhN9/SQgsh1gIWgvo+vO9W0xaP6RxpKSiKlj8E3gQWUpX2TC0JbugT6BizHcEm1g6UrmLL
-	JTHCgRtzqRAkHQ8/3jOmLdEDPgWSqG7juuXXfpR+mfHoFlBn1FJajwInuHKoMAVASXNcp5AwR7yCX
-	skupfnGg==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=K18ZMCwbZwrT3PtoqQpx2wY+OC3BjsRKu8EzVNvNWS4=; b=a9e3bPE33BYfnK
+	6nOFw2lActWVdep6teOWP0e64K9wW/mw1mGXuzHbZDhYc2gvSsliFydVtjkbxFzCStPRf8Ut/Dz3V
+	EBCKpU0DHBc0OJ5vwMUgx1gvwdKNOFvX9uAeMr/EQHktzqbV/3B7O9m+YBQnognghRuKW2SE7Udql
+	5HJ6MNSihHBdAwP6Rp9T/b8EZrJIpyLYXxqfOMfTNio0CUQGe28VK8CvEtkI6XmfHDnDEcW+7olhQ
+	1OcQ7uBZuEk6WWbjoSCCskWInwvGZdFYpYj1EVqLaqkhCsA1AoihhkxaCnIwU7HlEqQehpJf/fv+G
+	p7YTXDkAN7g9CXRhLltA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olnYh-006Qr4-SN; Fri, 21 Oct 2022 08:39:15 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1olrXi-007jfZ-EU; Fri, 21 Oct 2022 12:54:30 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olnYL-006Qfd-9Y
-	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 08:38:55 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id v1so3670479wrt.11
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 01:38:51 -0700 (PDT)
+	id 1olrXV-007jb7-H1
+	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 12:54:19 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id az22-20020a05600c601600b003c6b72797fdso1890479wmb.5
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 05:54:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=sbUO6Dk9wacjXHXZ2vzksSa8OSWDNuLkK+4lOLdOmPc=;
-        b=NP/wWIdsBuvCI4fur1IEWKky461bIFRG7op7qLKecW2XkT8gvMZ2E0XgDk876FN01H
-         lxSBW4R2JRWQLFq2AZwXQyQMSu53ExurT5Ye+oIQSdX3Nxa9ZC3haROrivTZVDSzcUq2
-         TGF0AoTS+QXdfkmofuvn/CkNn6Kxs/xeiCDBLUDXMKOKlLS9dqtnqNmZIAtWjYdRW6WO
-         PL0QwIA3BgtRNED6BpJunhlO8VwL7GB0J5q0kfElsbDqVrstIklgg2k9Ahdlo2hTvf61
-         DhZb5IXpiBBEsnBu3cQuvJ2BJwXMrpSKANyDnxa3NZsolu6QgV6YhAlomRgIb1LNbJxd
-         gKkA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dcJ0BXzywjnrhti2p9MqhHIKm9sRkuR/9GbeUPAwfiI=;
+        b=wX+jp2ux54182Z8x2Qwm/qwDyhMnic5dnmOdyq4OJf4qq+urYKyfHlPxL/in0oa5oF
+         4qLB2JlpciF4ApNRMDcWA7A4cyvRRbOdo0Lc3VCE9MEJ5VvAeQgBhrh7agYl9OS1dIef
+         aj7xwk1SLPArT/0Nw7IMxsWhui2uWtgEl5krn5a38S3qeA4MPuGW1HrdF6BfPOJPQXgT
+         sl3UZgW1GejlPA1sde8euEY8rnngkUHgXYVI88BzrsfK71/jJZq0c7XYMmlfQAwuadSM
+         MalxMQBacmlBQDSQ7Y+5HuKVWIEb0gGqAUYGfWT0CM27tWmu1lMpCo53wxLxx3AQ0iEk
+         fwQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sbUO6Dk9wacjXHXZ2vzksSa8OSWDNuLkK+4lOLdOmPc=;
-        b=Wr3DUwRqPkCe5N0Lcj6y55SgpKhWS+EdDuTKInBXm56Ma2S1eAqWwmHu54QwDThbS4
-         o2KbjPPMz+o6VOK9FdRm1RfVsCMjU2KklhHr4RWEQblRV/ntJ1zMYbzmyYiXn1otMvgy
-         aeik/zo9TbLrm8JODc/DxO+MUcBWSuLGO/611RcESvxLp+B6qrvjuweEDf1DGtaPwNqA
-         xv/aBrhompRjHuT3u2tToyOtngOntCC5cu1A2SDIUDTilhjpx6bpBcYxCwzrn1kJay/B
-         xVAMEPqFeHCkbqne46IeUhCj9BvLovYMe4zCdf5LM/ZYEHnp2cxwi51pztLcMyWg7uuQ
-         cNeQ==
-X-Gm-Message-State: ACrzQf3VKEYjyWTV9w5axsoZbg/Vr3Y0TkmX5Rk+kLYUwSSVRL4R8C/d
-	p1wNW/kLaeulq3V5KH1CPCkcmw==
-X-Google-Smtp-Source: AMsMyM7k1nPOKOFdlc7vwxPWLFbFhF4RxUJr5xqjxVc0GYiDzbCYzF2K9vcTPnLs/uYo92+HPlMnzg==
-X-Received: by 2002:adf:d0c3:0:b0:22e:6ce8:f7a1 with SMTP id z3-20020adfd0c3000000b0022e6ce8f7a1mr11353672wrh.287.1666341529694;
-        Fri, 21 Oct 2022 01:38:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8104:adb4:5d77:2050? ([2a01:e0a:982:cbb0:8104:adb4:5d77:2050])
-        by smtp.gmail.com with ESMTPSA id i18-20020a5d5232000000b00236576c8eddsm329556wra.12.2022.10.21.01.38.48
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dcJ0BXzywjnrhti2p9MqhHIKm9sRkuR/9GbeUPAwfiI=;
+        b=erLIey2w/etDh1PIT8ixlaZUaVoWUI0xK0HpcyZcw6tU+v8usK8erioca9qUirwNao
+         KSY7+6Fe7aaYNzHiGjJdJKTY9abUJ9S8EZr9TAh/Zu9jwQYEDeE06hqaOuMa5Nj8gADE
+         7lEHLITthGt4uMSnKXlx8ksCLU73isfSD1Nv2+ZBqb84OgkJZYPWGhzE9f63mC4xH4WJ
+         pxK/l5FVB6lauPCx4fcfFH5r95tMDvjGySV4OaXYpaEg4gREx76Vz7yRNdraZ0a/u2EZ
+         4/7CFq7BpO7lObFHNoLSWh6MEhIx8WyV3AvUMV47/ZDyBDejMdcXho2boMXLZm3xfwLG
+         6Z0w==
+X-Gm-Message-State: ACrzQf1rFW3CaL5pmPnU+cW46j1whOd5izc0gfEWNq3hht8IgHapKPrD
+	Ib4lBKesnVcC/ci/vKDZ+PwP0A==
+X-Google-Smtp-Source: AMsMyM6kt3xg2Xdg1CINtQr1rmLE0ZAUwFgzhyCyK+jU6LLz4X4K28erCFd4qZOffTf1L/Q7a3BJYw==
+X-Received: by 2002:a05:600c:198d:b0:3b4:a62c:a085 with SMTP id t13-20020a05600c198d00b003b4a62ca085mr32345777wmq.140.1666356852156;
+        Fri, 21 Oct 2022 05:54:12 -0700 (PDT)
+Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003b4868eb6bbsm3033961wmc.23.2022.10.21.05.54.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 01:38:49 -0700 (PDT)
-Message-ID: <fcdbf59d-0512-1e35-b4fd-3317782c6e34@linaro.org>
-Date: Fri, 21 Oct 2022 10:38:48 +0200
+        Fri, 21 Oct 2022 05:54:11 -0700 (PDT)
+Message-ID: <df1895c8-aec6-cada-e208-ccda8042860d@baylibre.com>
+Date: Fri, 21 Oct 2022 14:54:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
-To: Anand Moon <linux.amoon@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221018195122.8877-1-linux.amoon@gmail.com>
- <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
- <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
- <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org>
- <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
- <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
- <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
 Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ neil.armstrong@linaro.org, Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>
+Cc: Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
+ <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
+ <d355ee40-5905-4d10-8300-81e9a63117ee@linaro.org>
+ <dc918114-8b89-441b-5ba1-aaf3ae084860@linaro.org>
+ <20c115e0-0acf-dac2-2a30-0f394fa513ab@linaro.org>
+From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <20c115e0-0acf-dac2-2a30-0f394fa513ab@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221021_013853_356002_A2790121 
-X-CRM114-Status: GOOD (  20.06  )
+X-CRM114-CacheID: sfid-20221021_055417_576393_05D71FD6 
+X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,101 +99,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/10/2022 07:07, Anand Moon wrote:
-> Hi Martin / Neil,
-> 
-> On Thu, 20 Oct 2022 at 02:10, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hi Anand,
->>
->> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
->> [...]
->>>>> +&pwm_AO_ab {
->>>>
->>>> &pwm_AO_cd not _ab
->>>>
->>> No it has a conflict with CPU_B (vddcpu_b) PWM
->> Uh, you're right. That's probably why the Hardkernel team uses a
->> software based PWM implementation: [0]
->> In hindsight they should have used a different pad either for VDDCPU_B
->> or the fan.
->>
->> I think the most pragmatic approach (since the "GPIO PWM" driver is
->> not upstream and I don't know if something like that would be accepted
->> upstream) is to use a GPIO based fan as you did in your initial patch.
->> Not sure what others think though.
->>
-> 
-> When I use gpio-fan  I get the following output with gpioinfo
-> Feature it woks as expected.
-> 
-> $ .sudo gpioinfo
-> ....
-> gpiochip1 - 15 lines:
->          line   0:      unnamed       unused   input  active-high
->          line   1:      unnamed       unused   input  active-high
->          line   2:      unnamed     "enable"  output  active-high [used]
->          line   3:      unnamed       unused   input  active-high
->          line   4:      unnamed       unused  output  active-high
->          line   5:      unnamed       unused   input  active-high
->          line   6:      unnamed       unused   input  active-high
->          line   7:      unnamed       unused   input  active-high
->          line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
->          line   9:      unnamed      "TF_IO"  output  active-high [used]
->          line  10:      unnamed   "gpio-fan"  output  active-high [used]
->          line  11:      unnamed    "n2:blue"  output  active-high [used]
->          line  12:      unnamed       unused   input  active-high
->          line  13:      unnamed       unused   input  active-high
->          line  14:      unnamed       unused   input  active-high
-> 
-> When I am using pwm-fan using *pwm_ao_d_10_pins* pin is not getting
-> registered below hence it is not working on my end.
-
-It's expected because it's not used as a GPIO but another function, you should look
-in the pinctrl debugfs files to see it.
-
-> 
-> $ .sudo gpioinfo
-> ....
-> gpiochip1 - 15 lines:
->          line   0:      unnamed       unused   input  active-high
->          line   1:      unnamed       unused   input  active-high
->          line   2:      unnamed     "enable"  output  active-high [used]
->          line   3:      unnamed       unused   input  active-high
->          line   4:      unnamed       unused  output  active-high
->          line   5:      unnamed       unused   input  active-high
->          line   6:      unnamed       unused   input  active-high
->          line   7:      unnamed       unused   input  active-high
->          line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
->          line   9:      unnamed      "TF_IO"  output  active-high [used]
->          line  10:      unnamed       unused  output  active-high
->          line  11:      unnamed    "n2:blue"  output  active-high [used]
->          line  12:      unnamed       unused   input  active-high
->          line  13:      unnamed       unused   input  active-high
->          line  14:      unnamed       unused   input  active-high
-> 
-> Thanks
-> -Anand
-> 
-> 
-> 
-> 
->>
->> Best regards,
->> Martin
->>
->>
->> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkKCk9uIDEwLzIwLzIyIDE0OjQ5LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOgo+Pj4+ICsg
+ICAgICBwcm9wZXJ0aWVzOgo+Pj4+ICsgICAgICAgIHBpbmN0cmwtbmFtZXM6Cj4+Pj4gKyAgICAg
+ICAgICBtaW5JdGVtczogMQo+Pj4+ICsgICAgICAgICAgaXRlbXM6Cj4+Pj4gKyAgICAgICAgICAg
+IC0gY29uc3Q6IGRlZmF1bHQKPj4+PiArICAgICAgICAgICAgLSBjb25zdDogaWRsZS1oaWdoCj4+
+Pj4gKyAgICAgICAgICAgIC0gY29uc3Q6IGlkbGUtbG93Cj4+PiBZb3Ugc2hvdWxkIGFsc28gZGVm
+aW5lIGluIHN1Y2ggY2FzZSBwaW5jdHJsLTAgYW5kIG90aGVycy4KPj4gT2sgSSB0aG91Z2h0IGl0
+IHdvdWxkIGJlIGNvdmVyZWQgYnkgdGhlIHBpbmN0cmwtY29uc3VtZXIueWFtbAo+PiBidXQgeWVh
+aCB3ZSBzaG91bGQgYWxsb3cgcGluY3RybC0xIGFuZCBwaW5jdHJsLTIgaGVyZSBhc3dlbGwgYnkg
+YWRkaW5nOgo+Pgo+PiAgICAgICAgICAgICAgIHBpbmN0cmwtMTogdHJ1ZQo+PiAgICAgICAgICAg
+ICAgIHBpbmN0cmwtMjogdHJ1ZQo+Pgo+PgpJbiBzdWNoIGNhc2UsIHNob3VsZCBJIGRlZmluZSBw
+aW5jdHJsLSBhcyBwYXJ0IG9mIHRoZSBpZiBzdGF0ZW1lbnQsIGFzIHNob3duIGJlbG93LAoKb3Ig
+YmVmb3JlIGFsbE9mID8KClsuLi5dCgogwqAgLSBpZjoKIMKgwqDCoMKgwqAgcHJvcGVydGllczoK
+IMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGU6CiDCoMKgwqDCoMKgwqDCoMKgwqAgY29udGFpbnM6
+CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudW06CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAtIGFtbG9naWMsbWVzb24tZ3gtc3BpY2MKCiDCoMKgwqAgdGhlbjoKIMKgwqDCoMKgwqAgcHJv
+cGVydGllczoKIMKgwqDCoMKgwqDCoMKgIHBpbmN0cmwtMDogdHJ1ZQogwqDCoMKgwqDCoMKgwqAg
+cGluY3RybC0xOiB0cnVlCiDCoMKgwqDCoMKgwqDCoCBwaW5jdHJsLTI6IHRydWUKCiDCoMKgwqDC
+oMKgwqDCoCBwaW5jdHJsLW5hbWVzOgogwqDCoMKgwqDCoMKgwqDCoMKgIG1pbkl0ZW1zOiAxCiDC
+oMKgwqDCoMKgwqDCoMKgwqAgaXRlbXM6CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6
+IGRlZmF1bHQKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogaWRsZS1oaWdoCiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGlkbGUtbG93CgpbLi4uXQoKUmVnYXJkcwoKQW1q
+YWQKCj4gWWVzLgo+Cj4gQmVzdCByZWdhcmRzLAo+IEtyenlzenRvZgo+CgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
+bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
