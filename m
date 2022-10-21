@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6780DFA373D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 17:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F3F7FA373D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 17:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K9Cch5Gk7NAKbFshKMtS3RYad/GupRVAdaaRcLb2WR8=; b=dvS8iyaN5LfRQ2
-	lrOsoiSy6WEgUNATKyXACkwdWbQJ39Z//LWqZh1NtPH3yKEc5Xnyco2qvC/ReYlogzs+I0clUTfLs
-	02FLyB6PZ1UROysssXCeUHeSwW2PcRcxhZy0D8QrLnc1zdMUYhlrdu20mVnuwSMRsz1cBVNjWkYJK
-	fzkupk43kB/6dhJ2o4ST8HgwSi0UV0qKLN7rm/99Mr53TcuUFHQSM1Jn7fLIsgW2ihKHp2tC930d5
-	p9AVM9btcJaIxrG4vP33bgjo9lTQYJMYZCToEb5PlbOgBq66TJBrDm4LHHDDa5eIj2ocahCknVSSD
-	ZpyVL1CTz30o4gorJMZA==;
+	List-Owner; bh=lKkNyfS8Z/QxiWun42hbOJU8mw1Ux5t9c0JEZlTbiI8=; b=e/ZdzsZpnvxOmF
+	Scq862rT/Q/9UM42POa+rJbcHJ/yhur6zpb2wzI30Wjh6uLBKQscTt0dDw7ICkTZcfA2GIuGK+8BA
+	xfG5P2ofKd6ZRk6TCV36TYL2mF1dYkko/28hDjDn9z3eqFA6VPXb5O00RB8wNAHPTq8raOVTz2huQ
+	Vi8wY7GS6+MUoLVbB3vyZQx4JBodmms1uu34SkMbZGPTfIUucS6uqkPsV6O2CguFs9cfpi8A1PNWv
+	us0J69dLdNdeudXb7x3HN1Fqp3Fz56RuA8yTJko3XZbcWCLb6WDmlDsezQwTLJQEZ3EUwCEwSf4jJ
+	7aZkC6fCaCk19yTEPjKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olviF-009AGU-0x; Fri, 21 Oct 2022 17:21:39 +0000
-Received: from mail-oi1-x231.google.com ([2607:f8b0:4864:20::231])
+	id 1olvjV-009AaG-Hc; Fri, 21 Oct 2022 17:22:57 +0000
+Received: from mail-oa1-x2e.google.com ([2001:4860:4864:20::2e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olviC-009AFW-3E; Fri, 21 Oct 2022 17:21:37 +0000
-Received: by mail-oi1-x231.google.com with SMTP id y67so3976451oiy.1;
-        Fri, 21 Oct 2022 10:21:34 -0700 (PDT)
+	id 1olvjT-009AYy-4y; Fri, 21 Oct 2022 17:22:56 +0000
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-13aeccf12fbso4318711fac.11;
+        Fri, 21 Oct 2022 10:22:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=A6BqgqIxQ+q3oABy/KVS7FxTx0acwuSVWX67BzMj1gk=;
-        b=f0nVmiNw0x2GGqQ57S0MHq3NjFd8sUe5YLfcPOwspvxvypgP+cCpLhpNjPq6N6+CXP
-         +Q0C/RoViUG+lyDIum7B7rwHu9/lqryapUDDBwzENKf051uyNXPT1Eu9fIgFQ1VFbqZf
-         6XkDVmSa9qwO0qiTxQaAgB+yJfoRh3noPTlNLizvy6WRHLxedoEXqVuTmx9ic2Ccaegy
-         HI0Xci1CnQUW7bVAVDIttvYeUfCyCf1jH5un9YxdPJlISULB2whXDSj9SPZRlE5Yolgh
-         tBAxGNaVZir22XaGDM8po83dHjz7yWQrhde0v7cPOVIvfPX54xGmHI+f6cYmRTkphONF
-         KyXg==
+        bh=zlHj7n3i5o3yXLa4ETHRTpxvwrBu3YafH8lL3TZQo7c=;
+        b=mfKFX0fSUZxTyWGet7HLjN5KSNIIKvyVtQYoZsLLgdG68Yakqkgp2WJCOVzeO5GHCh
+         yANi9hjw5ikEB67N8ZxxJKlfSvDFlB1pwODfttxygGfSi0EpBEzaL4U+q9EnKkXB8zM4
+         Kpy3knTJtufMaIDXCnTxfQ5ityhf0XE//ULX0EfgX5moVheH0+IlYH7rFaVYlw7h1IZC
+         f3hvRzN3Is7mdZ6SjqQK+HqlYEc7b/vJJi/DHEaOZ5SLMYgzInSE2cZqQCd6vFovU8W+
+         GC/OSC40v6iY2wHSha8o+Px7g7bYjOTCm+V4YkcfWMW6rmsOzqVXzjwkL/eK9USq23tn
+         RQKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=A6BqgqIxQ+q3oABy/KVS7FxTx0acwuSVWX67BzMj1gk=;
-        b=HA9scAeu4b/nonvz0oqMzJR+u7pk0pcycqcgXwReaRnl5SI0XaGVaok/SJTRmjAwfy
-         mhyp70McbkSkrXKq+UbY0rx/4KPj0SekAy28etcg5zNXo65As9xlvPu3CvnbmAPbxz2v
-         fseuIt14SIncC2H+3I7DHzMe0TiMrNqhFLPNmdspxxq54gfI2Ub3/LOkBOFmkyHBcRvm
-         gORuYOA0vZcijSYd29U2Z9/OOfmUCWlN97mWLy9QdtHrFsFMBusrMjsahFZYLgp+1UQz
-         mVESllD4TQQoyUDvRoTMTt8D5ByH5wn0zClSmSVpv86DyGBBodfc9oSfvFozF6J0Nzrw
-         GhIw==
-X-Gm-Message-State: ACrzQf393SKAczJAr5RW/4C9zfmK4VGBlHMZBZeFK2ag9j2RuujQi2SK
-	TkEyAEGRrnZ5AZfySoivPT4=
-X-Google-Smtp-Source: AMsMyM6MoqvyIyxliKOCqZiFkvP91AsjRQGjeNSwYlnxadYUwlrS7DJ88HFJP0uITquBRGXm8Nv8tQ==
-X-Received: by 2002:a05:6808:1994:b0:354:d97e:d4aa with SMTP id bj20-20020a056808199400b00354d97ed4aamr23292247oib.148.1666372894339;
-        Fri, 21 Oct 2022 10:21:34 -0700 (PDT)
+        bh=zlHj7n3i5o3yXLa4ETHRTpxvwrBu3YafH8lL3TZQo7c=;
+        b=ElqVWWrCrxR2aAc53vrBTvS1mFnFSwEa1MngyneLOofs6PqRkYl3n5Ss28uRiHQBmM
+         ZYos5/cD0BSFchb7vk13PubsT7PRxYYDV5TlGFgx7DTGcdjUcMyj5gY3YxymWAbfQ6K+
+         QmjHEFLUCGIRVgJvi3asV8ARWv+MTTC9yty1Gqw+1EX+vVjUZI4ucNqhvjbItTIxiRi8
+         9dSHmCbomGW/gmmSQ6ksSkevIJk73wp7Rd0fUB8SWoUS9z9OScF+AYygqvfYMF12mG4R
+         6to0m07OvS3gE5+TFLLgvY33Ir1OJZZkpwjJBJz8bm+m7KVDxJXt0t0LReTNgL1XrHxl
+         EbrA==
+X-Gm-Message-State: ACrzQf3c7gbrKwsCKfwyTKn0zhKJLn4b6D/lbJ4ITHhAcd4hUvylEnuP
+	5QVy4hct3YC5dPNVqaSzS2I=
+X-Google-Smtp-Source: AMsMyM6Gt5PNxUQH7m5Kz7f+QJp+blLH3aodobQDZ0VnhqQZBBrggpcw5I5WICKa7m1ONsnecjhzHg==
+X-Received: by 2002:a05:6870:2427:b0:13b:1f89:ab27 with SMTP id n39-20020a056870242700b0013b1f89ab27mr3799543oap.20.1666372973425;
+        Fri, 21 Oct 2022 10:22:53 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05680809a200b00350a8b0637asm1305671oig.47.2022.10.21.10.21.33
+        by smtp.gmail.com with ESMTPSA id em40-20020a0568705ba800b001226d2100f2sm10482749oab.33.2022.10.21.10.22.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 10:21:33 -0700 (PDT)
-Date: Fri, 21 Oct 2022 10:21:32 -0700
+        Fri, 21 Oct 2022 10:22:52 -0700 (PDT)
+Date: Fri, 21 Oct 2022 10:22:51 -0700
 From: Guenter Roeck <linux@roeck-us.net>
 To: Matti Vaittinen <mazziesaccount@gmail.com>
 Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
@@ -79,17 +79,17 @@ Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
 	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] hwmon: lm90: simplify using
+Subject: Re: [PATCH v4 4/4] hwmon: adm1177: simplify using
  devm_regulator_get_enable()
-Message-ID: <20221021172132.GA1890681@roeck-us.net>
+Message-ID: <20221021172251.GA1891003@roeck-us.net>
 References: <cover.1666357434.git.mazziesaccount@gmail.com>
- <a1fa4364cbb775de25478117dd22dda0742089e3.1666357434.git.mazziesaccount@gmail.com>
+ <7773541795f280db31dd981ffc21df8a630b794a.1666357434.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <a1fa4364cbb775de25478117dd22dda0742089e3.1666357434.git.mazziesaccount@gmail.com>
+In-Reply-To: <7773541795f280db31dd981ffc21df8a630b794a.1666357434.git.mazziesaccount@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221021_102136_184561_DA69B48B 
-X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-CacheID: sfid-20221021_102255_206911_1440E2B6 
+X-CRM114-Status: UNSURE (   9.33  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,10 +107,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 21, 2022 at 04:18:43PM +0300, Matti Vaittinen wrote:
+On Fri, Oct 21, 2022 at 04:19:04PM +0300, Matti Vaittinen wrote:
 > Drop open-coded pattern: 'devm_regulator_get(), regulator_enable(),
 > add_action_or_reset(regulator_disable)' and use the
-> devm_regulator_get_enable().
+> devm_regulator_get_enable() and drop the pointer to the regulator.
+> This simplifies code and makes it less tempting to add manual control
+> for the regulator which is also controlled by devm.
 > 
 > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 > Acked-by: Guenter Roeck <linux@roeck-us.net>
