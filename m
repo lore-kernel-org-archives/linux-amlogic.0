@@ -4,88 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8EDEC433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:44:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61CC7C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6wd1snJrSfu22A3gOfS5VEuTBCazTIZ2wp1SScTKz5U=; b=uSz8wCYzzV+9w7r7vXOtedQEM/
-	3GV1pY0IrhNpRPRiGXuHfR2VEMz0/v7Y9F/7MR+41szrq1pFqRmCjdKitVhIUDXrylg/rpvkNETCW
-	ojfSQ9J+V1A1xyYWe6m1gGNi+PBDi5Oj0Oi+6mkQogaOGIEqByJWVaW8lY9mv//nATn3ykLruFRVf
-	Vl93R9wE6Or7Z0ADetFWts9D/Gui9IwM5v5FxiqC6bF9OtRuqjXZ7SJJ/4PpMdy0dCRLPe5qwDrt/
-	WLzH4QYRK5t9bPNHduKx8ZqMl67JNygtJceKtc8EjpoCqhqNlop9puuBHybNR/BsGFgme4Ha1qnGa
-	uXBXcmCQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QkCtvuzzXV2c4szsWmhSJEQoAqSlz2Yji65xbYiOcsI=; b=tRdAiF8fDOw1xg
+	Mga1/cwj5fqAcfyubtjtH3P80E34zQDx2XS6j4ecZZF1hL/JeV6HYk15nLC0+NwNPq+COmxa3bye1
+	UmyCXMqmtpxKwM1kEiGrhW6BSl+9cmPWGfNMqkq/ZNLlYdMFKf+5ydzEIazek2IOPfze7/BD8VBwg
+	WMayZk8nImCiEsZL5l65BKun47MDDqcSSJbBMWyspQZL/F265CHsj/aJShtvRAdblhpIFuomI8PmS
+	cXyMf1PxMw27u1Ctg4cgIcPxCmL31jC6F3UkGCNfArt5BBf5bvLdYxXNxs6sIIvOCltjp8dvmGmQ2
+	mC731MkXRLYfuveyEu2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olsKC-0087Fn-C9; Fri, 21 Oct 2022 13:44:36 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1olsVd-008N5h-F3; Fri, 21 Oct 2022 13:56:25 +0000
+Received: from mail-qt1-x835.google.com ([2607:f8b0:4864:20::835])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olsJy-00872m-S9
-	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 13:44:24 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id v1so4861757wrt.11
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 06:44:18 -0700 (PDT)
+	id 1olsVD-008MIL-Qv
+	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 13:56:01 +0000
+Received: by mail-qt1-x835.google.com with SMTP id r19so1655092qtx.6
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 06:55:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZpaxMvmEuJPF3OgoDpXULb0R5XqV+uhtln4+RAmmd8=;
-        b=HOny0ruFI9g5TTzJ5ZH5qvGL6+UqA9BmO6SUTjvo8lyGP84OduwmM3imoX5TfLfQpX
-         ErIPWwPwtiBgh5+cGpZS4bF5gzGh7q4mp3WyPs05jgxYtWDaNdoTT/2RJl3Ma7kZkKeS
-         NURZRhHE7c0nbQqwVRSImTCopAdiYUQdWHovO/cJNQtOmeviI63EKOhJFOiZz4XPq8hT
-         L5tlfCsV4MNt4gIcoW+NcpqdQMjlmMK/cDQ2SgL+L4FmTvmOtkw9MoR5doYjmgnTSB7W
-         l+mBUrZgtjW38JdnhIB4wA/uCMpvxiW68VCkV/I/cmccE3nItp3GMRryTteLFGrfPvP1
-         yt3Q==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=atOz8/XRKPnbyJLTPMaDXLOO7wN9bymw4gIbszWubUs=;
+        b=UGaWLB6j8OxVe8dmmcIYNQnaOlpI+0eXu8BajNHD+ZMG4qzneObyu7rcUSIOi1ZUyv
+         dYZtPdUG3VVmdsaxuvlXK78Ywy3c7nDrO67d1tfVEv0zq0uzHe4C8c8T/vOlljUe5Osr
+         W050SZtwN9P7wkAea8/zllXsPavR27kWRVR8wC1dzNqXrqFOayIPUNPXWTn1SE8Dh/Ud
+         0IjrnoiwKi5Dvq1Fvo2hod6lQ1Yjaa3D15s5MRZDDV+7OKM11BzUm+CsTaUz5l941+jT
+         YPejLlRpQWjgJRMYEkyXEurngD0pP5Ok1BQU5chbCLayFYSBEb6M7l7Gu+ANz+k3j6EN
+         uutQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ZpaxMvmEuJPF3OgoDpXULb0R5XqV+uhtln4+RAmmd8=;
-        b=FtRyqpC+ejJESEpIaI/oMLIA8Cj6NBwudn7wEVRfYDUWVsOm5IDwh7vKCM0UBFmx0M
-         QyfUK+m17gJengplmmqmKKdyTxBWAK1Iab2N1KLqUHktkMG4Gt4Wf/etM5Lr/w8b7GHs
-         D16+6Kk4V7zrE5wgZz1MQXEo6TvCo8VimyJRzAUejDizmD/7+8V0oWYWpzk7vhwx6DFO
-         JNtgVG0Tji77CTGgRYNu1ZzVzCKCCA6XILQLouJYQzHd5iudmV6KBnAWbsANWtsnA47E
-         +tZoijfjjJvqPdxCAZe//OhJA9qUwKAs/J5+sYQxlbINX9BxNaspB5FNxf7NiMiGYx8/
-         2bMw==
-X-Gm-Message-State: ACrzQf3UsRdPMSWU/ByhJBY63FoIRW4oHz+tfPX00QMb1yijKq/WoLwb
-	AkeN8pEh6faxa3BljN+gpvdXlvJyTHDlfaXw
-X-Google-Smtp-Source: AMsMyM4nd+8JiG4Qbt3OaJ5WL7VTFhfdy3U2bhmHB12MxhIYrGqcodjTvuokWPVyjHYedie2uggWdQ==
-X-Received: by 2002:a5d:584a:0:b0:231:636c:de28 with SMTP id i10-20020a5d584a000000b00231636cde28mr12412891wrf.175.1666359857728;
-        Fri, 21 Oct 2022 06:44:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8104:adb4:5d77:2050? ([2a01:e0a:982:cbb0:8104:adb4:5d77:2050])
-        by smtp.gmail.com with ESMTPSA id h10-20020a5d504a000000b0022a9246c853sm19016553wrt.41.2022.10.21.06.44.16
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=atOz8/XRKPnbyJLTPMaDXLOO7wN9bymw4gIbszWubUs=;
+        b=vEFmLGlOBtusMKxwOk5Q1KpzYIpxZp65RehqR8okd5WTnwvMFs8B6TIauk0bNANfL3
+         BT60vDWl4VHXfo+WAP4vMIQJjW3B6VDwnIZYe3eY7/gisc5o24yxbHQMqL0kp42dg/IO
+         7nhQOAo/O0DElXuQmBm00guENNd3nVoHnF7OK6bFaU82QR2MeLvnr3BQqScgKlJWBNUf
+         FlcmCsLTbH22HSO+TOtwyKJdRwL4ucfWPs6WGCVI1uBlZPJnYfRmU2fpVG/KkTEvbI6P
+         xp26Bm5o0w1CDuq+ATMe0ktnNrfieWbChZ72u8IfifKSSkIWN+kuKYZNhMCeuwcVqRAi
+         mwbQ==
+X-Gm-Message-State: ACrzQf2yvfK0svJKPmXL+ygcZFHOv/lOx34WNPPRfM12gxQrzyQVput0
+	pSse+tSbpCJhtstsWLKoVZ2dbA==
+X-Google-Smtp-Source: AMsMyM7aTcTuZ74sxriHigv1CN8feEtvci/u09fLiaGKZ0olJSVSsi6r6gwV45XGCsHeYNqSA7mHww==
+X-Received: by 2002:ac8:578b:0:b0:39c:f006:3563 with SMTP id v11-20020ac8578b000000b0039cf0063563mr16081124qta.636.1666360556530;
+        Fri, 21 Oct 2022 06:55:56 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id y9-20020a05620a25c900b006ed61f18651sm9980834qko.16.2022.10.21.06.55.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:44:17 -0700 (PDT)
-Message-ID: <3bc7dfc1-3e26-926f-f55e-bc9e6531e04b@linaro.org>
-Date: Fri, 21 Oct 2022 15:44:16 +0200
+        Fri, 21 Oct 2022 06:55:55 -0700 (PDT)
+Message-ID: <7c6f47ea-5dc8-6662-eeed-81bb14ed3102@linaro.org>
+Date: Fri, 21 Oct 2022 09:55:53 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 4/4] arm64: dts: meson-gxbb: add SPI pinctrl nodes for
- CLK
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v4 1/4] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
 Content-Language: en-US
 To: Amjad Ouled-Ameur <aouledameur@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Rob Herring <robh+dt@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Mark Brown <broonie@kernel.org>
 Cc: linux-amlogic@lists.infradead.org, Da Xue <da@libre.computer>,
  linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com>
- <20221004-up-aml-fix-spi-v4-4-0342d8e10c49@baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221004-up-aml-fix-spi-v4-4-0342d8e10c49@baylibre.com>
+ <20221004-up-aml-fix-spi-v4-1-0342d8e10c49@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221004-up-aml-fix-spi-v4-1-0342d8e10c49@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221021_064422_938621_EA31CFDF 
-X-CRM114-Status: GOOD (  11.82  )
+X-CRM114-CacheID: sfid-20221021_065559_890797_AD8BEF8A 
+X-CRM114-Status: UNSURE (   7.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,50 +97,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/10/2022 15:31, Amjad Ouled-Ameur wrote:
-> Add SPICC Controller pin nodes for CLK line when idle for Amlogic GXBB
-> SoCs.
+On 21/10/2022 09:31, Amjad Ouled-Ameur wrote:
+> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
+> pin biais when idle. Therefore define three pinctrl names:
+> - default: SPI pins are controlled by spi function.
+> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
+> by spi function.
+> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
+> by spi function.
 > 
+> Reported-by: Da Xue <da@libre.computer>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 7c029f552a23..923d2d8bbb9c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -427,6 +427,20 @@ mux {
->   			};
->   		};
->   
-> +		spi_idle_high_pins: spi-idle-high-pins {
-> +			mux {
-> +				groups = "spi_sclk";
-> +				bias-pull-up;
-> +			};
-> +		};
-> +
-> +		spi_idle_low_pins: spi-idle-low-pins {
-> +			mux {
-> +				groups = "spi_sclk";
-> +				bias-pull-down;
-> +			};
-> +		};
-> +
->   		spi_ss0_pins: spi-ss0 {
->   			mux {
->   				groups = "spi_ss0";
-> 
 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
