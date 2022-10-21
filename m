@@ -4,93 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97A66C433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:25:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 508B8C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UyvG0a9bilvwv+wGO2/YWO6MFgzEFNKdsH8pWh2ifQw=; b=I16L3Do8LVp3avf5McOaDZ0c1q
-	YNqD9vKlt6sYmVwjBdoqx1VAcw+Ixqh40tS0NR2IopRNQhcxBqi8PikXcIulTTJFP7VI1AvNr87BS
-	NYVfqtUG7hkqh4ayoRjkvIN2S5ZxfdiEIOtXXFMtF4N81In1zfETcO4w9AaRnQxWdwDg3MXJKl5ZS
-	jS+/PtOAN79C4wtC8LMEHkaRbT3X66Gc1JCChrNe4LrA37lOGNTjJoqOv/i8gURNrIpeJe1ovmGtz
-	Kip/a0Rol3idvH44z9Cud0PkF2pR8LTqnTHRwzDKG/rMMiyx4W1FSaitEhmsrMaXCD0R2FL8X2Oyw
-	jmVkH46A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:Date:From:MIME-Version
+	:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UY4GaWyME8OpoFcZXlhxX2ecIQ/IiEqk4aolsRjlLf8=; b=uCZdlzDt6ZL9n/
+	8bKFNf/Xk4MFSxE5U2L5SA4eMKd6QX88b/e1h2iYlMk0dxDNXSVsmJtlPYSJ5LDLDVFsRPPaFZExD
+	N0+sGSKBT7Fz6v//CKu1DV6JZWbYc6cVGhdw9clCQ/YThUQK0eGFnSXmwhr0U1Fapn9L5cqyhKUim
+	uUNJaTE9180tPqasiDg/vjo2VbHze/g2nbPXtqiE6Ar8NnaHgUbb4SEWnO8BvnpXvi12Xus9l4DH5
+	xxr22RrNfKSrXMOfqf3mCMF+aM1RyzXpR1Wq4X1aBsgZf4czWjO1lhmBXjMLMi8PX/dzkJs1hWpZ5
+	rmz1Z9SRA5MJUfHbbdHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ols1Y-007vrL-1z; Fri, 21 Oct 2022 13:25:20 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1ols81-007zb8-Fx; Fri, 21 Oct 2022 13:32:01 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ols15-007vb7-GT
-	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 13:24:53 +0000
-Received: by mail-wr1-x436.google.com with SMTP id v1so4779432wrt.11
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 06:24:49 -0700 (PDT)
+	id 1ols7e-007z7D-My
+	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 13:31:41 +0000
+Received: by mail-wr1-x431.google.com with SMTP id a10so4364089wrm.12
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 06:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ihwjot/dYV8gpdncYn3dxDmC63eFQdqeYLHCPOfEipg=;
-        b=tm6RE9W9SJfdGyaDYoyiP6dvRI1bG01hT9T7vOUAR/6SCfAUIf/dniBAdoXacXYEO0
-         11+qXcvgk+8fXBxhGzAIz/Ztv2drf1js03K1OQyqi0cDxE29rgQEia7t8Rc9/dMnIkH+
-         8dizoYr25a77m9AqcCAkUJM+8SvOqmnt5hb9tWxS5GykyBx0Wy5M4fu2Zlmflyalycbi
-         RQ38cnfSgbNZn3Dmm2/VG0QUC21UpuoU5n0bu1e8yq16VxFFMN5QWyB3P2v8UIxbtGqw
-         svOBAC0rS06KAPBfApjJnSJZNnfnQVLOAFtN99nJSvIXm+nRUvSpdragj8RRAdPyocil
-         c65Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=i1C8rgUAGHf+jLqpE/CuMvEaAQwxa6V5+hxBqPwgUl4=;
+        b=VT5D5asWne9UXufhJlAhGa0EmSt5P0Hw6devsJJzR8+iofV3cA2BWJNKGMuFsN4Fqm
+         IcxrUgNFDdlniCIrLtHcj2X/aWeccarjVBhWGNRF3+ZiX7UCWzjuHQyC02aq8LPYOsjf
+         ZGE5hxa5G71mBHwZUBvVV25OqgTXv3Yl7zKW1SvuSkCQkS8PDUL2OHPIPe0rSDBHGiPW
+         O1dVAsqXIH9brG0AsAHQtaPtvqepSVJIynaIH37rTakT/6U2fYRn8zm/EVqYCqt5dvsy
+         siz+j4NbG8YUcKTzJjdaKZy4VDS/2VZdm7wyi+JVA7TSqXvRln6ioq+sJKYjgN+DqxRi
+         h3bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ihwjot/dYV8gpdncYn3dxDmC63eFQdqeYLHCPOfEipg=;
-        b=DlicxOKkrTzQ3JnYfgoA1KWPAXh9xaUg4hJuDlNKwQYzkHaLpaF0WVeGEVNbMLYtec
-         kPznZRX3Xpj1hvMSKYWiiSmOC7PpXQAP0eqqvOJEL/+hzvkk9FHLUTnopJ+hFbO1gsHw
-         ncrQ57WHzciXngf/8q7s9Alb06mjeQhpFJhQpqd/Ih7Jr1B+yMHjXU2xRO+uvTrd/5sz
-         ZfRJXs0XnnAPmgb2pdsCnwy00mna/Gay9zDsUklK4jrGbLNz+3mcUfn7y5Vv8pRMmq/y
-         XMbpwaJ9SMezYJsJFqm7gdGOE2xiJJaOtecl85ZlNXw4xKPI/mMcG+v+aWKTe4Vd04o1
-         hNwg==
-X-Gm-Message-State: ACrzQf1aRNdVpo5pjCeDCFgiqzohhXjyzhaLnvqgQfRHgIZNw1wOxk+f
-	3onZ7XcctgTlQBO9ohA1qMPcVQ==
-X-Google-Smtp-Source: AMsMyM5LAMpg+wQ8yeHpWlL27GjaAM7iPFACl30NQbSdsxzQ4u5vm8tvdXI3CordRzKGlvVAJRB2Bg==
-X-Received: by 2002:adf:e189:0:b0:22e:cbf4:1148 with SMTP id az9-20020adfe189000000b0022ecbf41148mr12173858wrb.47.1666358688360;
-        Fri, 21 Oct 2022 06:24:48 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8104:adb4:5d77:2050? ([2a01:e0a:982:cbb0:8104:adb4:5d77:2050])
-        by smtp.gmail.com with ESMTPSA id z23-20020a1cf417000000b003c6b874a0dfsm3132370wma.14.2022.10.21.06.24.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:24:48 -0700 (PDT)
-Message-ID: <21631637-6313-550e-dfd1-94b0c318a9ec@linaro.org>
-Date: Fri, 21 Oct 2022 15:24:47 +0200
+        bh=i1C8rgUAGHf+jLqpE/CuMvEaAQwxa6V5+hxBqPwgUl4=;
+        b=b1leFcu6W87i8mMdK7L0EPaoffjKDMuKR9dBTunOZZTug5ne34Qob0bSH+AoqmE8Ux
+         xmlqnwYmTsQshE7Ih/p+Cpggf9Vk3XGDlXwQBk1wvUkebpmZJMApgew82IY7E4jzb2QR
+         BaUdzrxaCQ7onGRErhpjePz5YNkMkjpBn33OQmgXDJViI+Ycjzm3rKOdE08NAni6hjYj
+         boQoYIS7QQFsIBYpQAUEyiJBvFqzcVN59rIGkrC2fPy3LN6l2aXKzaw7uwnIQ+cdcbu7
+         lsP48IqOrQ4I8VmCfxsYMdCpZ7yQ14km9LNTY8uuBd4Sf7V+bEyAwsg+7HNeS8JxP4hI
+         wm6Q==
+X-Gm-Message-State: ACrzQf3Dnz75/R6n1U85J8dmqPRBPTwf0c427bmyvaM+xX20YKJV7n5g
+	5uNAimR8Z4eM5h2EhSt0GJGM0w==
+X-Google-Smtp-Source: AMsMyM5qyI1cW3ggb8lP2/pXLZo9ZzZ8Tvd5w+92XYdbvWvWBG5C05J0jgsWEpZL+/L7Tqi/pOTWvA==
+X-Received: by 2002:a5d:5983:0:b0:22e:bb12:7041 with SMTP id n3-20020a5d5983000000b0022ebb127041mr12385502wri.645.1666359096510;
+        Fri, 21 Oct 2022 06:31:36 -0700 (PDT)
+Received: from [127.0.1.1] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.googlemail.com with ESMTPSA id j8-20020a05600c1c0800b003c6b7f5567csm10325280wms.0.2022.10.21.06.31.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Oct 2022 06:31:35 -0700 (PDT)
+Subject: [PATCH v4 0/4] spi: amlogic: meson-spicc: Use pinctrl to drive CLK line when idle
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 1/4] gpu: drm: meson: Use devm_regulator_*get_enable*()
-Content-Language: en-US
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Robert Foss <robert.foss@linaro.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-hwmon@vger.kernel.org
-References: <cover.1666357434.git.mazziesaccount@gmail.com>
- <c14058c4b7018556a78455ffef484a7ebe4d8ea2.1666357434.git.mazziesaccount@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <c14058c4b7018556a78455ffef484a7ebe4d8ea2.1666357434.git.mazziesaccount@gmail.com>
+X-b4-tracking: H4sIACyfUmMC/33NTQrCMBAF4KuUrB1JJrU/rryHuEjSqR2IbUlssJTe3eBS0NXwHrxvNhEpMEVxLj
+ YRKHHkacyhPBTCDWa8E3CXs0CJqKQsYZnBPDz0/II4Mzi0tqa6oUpqkUfWRAIbzOiGPBsX73M5cHxO
+ Yf08SZjP9aeXECRoagy1yqgWTxdrVs820NFND3HLWtL/BZ2Fpu1IYdV3qtJfwr7vb0sgc/P2AAAA
+From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date: Fri, 21 Oct 2022 15:31:24 +0200
+Message-Id: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>,
+ Amjad Ouled-Ameur <aouledameur@baylibre.com>, Da Xue <da@libre.computer>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1666359095; l=1850;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=uh9b1V5lppXzVxalMWZveFXtfZNKXVHWr9osZJQJmd8=;
+ b=0swTXrE+WS10AzArr7fM6CGstAbhVRX7nQSIOVPrQrbIfFk9podLHQ5iJt+C/00Nj7XVBVPwvjaG
+ BSHMkaSkDAQUMKq8yDVgWMXnURoaBsPi/EI1jLcB/9/tmwrPLfas
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221021_062451_595064_00D6E60F 
-X-CRM114-Status: GOOD (  17.94  )
+X-CRM114-CacheID: sfid-20221021_063138_775184_F8B0223A 
+X-CRM114-Status: GOOD (  11.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,82 +95,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/10/2022 15:18, Matti Vaittinen wrote:
-> Simplify using the devm_regulator_get_enable_optional(). Also drop the
-> seemingly unused struct member 'hdmi_supply'.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> ---
-> v3 => v4:
-> - split meson part to own patch
-> 
-> RFCv1 => v2:
-> - Change also sii902x to use devm_regulator_bulk_get_enable()
-> 
-> Please note - this is only compile-tested due to the lack of HW. Careful
-> review and testing is _highly_ appreciated.
-> ---
->   drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
->   1 file changed, 3 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 5cd2b2ebbbd3..7642f740272b 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -140,7 +140,6 @@ struct meson_dw_hdmi {
->   	struct reset_control *hdmitx_apb;
->   	struct reset_control *hdmitx_ctrl;
->   	struct reset_control *hdmitx_phy;
-> -	struct regulator *hdmi_supply;
->   	u32 irq_stat;
->   	struct dw_hdmi *hdmi;
->   	struct drm_bridge *bridge;
-> @@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->   
->   }
->   
-> -static void meson_disable_regulator(void *data)
-> -{
-> -	regulator_disable(data);
-> -}
-> -
->   static void meson_disable_clk(void *data)
->   {
->   	clk_disable_unprepare(data);
-> @@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->   	meson_dw_hdmi->data = match;
->   	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
->   
-> -	meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
-> -	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
-> -		if (PTR_ERR(meson_dw_hdmi->hdmi_supply) == -EPROBE_DEFER)
-> -			return -EPROBE_DEFER;
-> -		meson_dw_hdmi->hdmi_supply = NULL;
-> -	} else {
-> -		ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
-> -		if (ret)
-> -			return ret;
-> -		ret = devm_add_action_or_reset(dev, meson_disable_regulator,
-> -					       meson_dw_hdmi->hdmi_supply);
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	ret = devm_regulator_get_enable_optional(dev, "hdmi");
-> +	if (ret != -ENODEV)
-> +		return ret;
->   
->   	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
->   						"hdmitx_apb");
+Between SPI transactions, all SPI pins are in HiZ state. When using the SS
+signal from the SPICC controller it's not an issue because when the
+transaction resumes all pins come back to the right state at the same time
+as SS.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+The problem is when we use CS as a GPIO. In fact, between the GPIO CS
+state change and SPI pins state change from idle, you can have a missing or
+spurious clock transition.
 
+Set a bias on the clock depending on the clock polarity requested before CS
+goes active, by passing a special "idle-low" and "idle-high" pinctrl state
+and setting the right state at a start of a message.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+---
+Changes in v4:
+- Fixed documentation by defining pinctrl-x.
+- Link to v3: https://lore.kernel.org/r/20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com
+
+Changes in v3:
+- Fixed documentation by removing pinctrl states as they are not mandatory.
+- Link to v2: https://lore.kernel.org/r/20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com
+
+---
+Amjad Ouled-Ameur (4):
+      spi: dt-bindings: amlogic, meson-gx-spicc: Add pinctrl names for SPI signal states
+      spi: meson-spicc: Use pinctrl to drive CLK line when idle
+      arm64: dts: meson-gxl: add SPI pinctrl nodes for CLK
+      arm64: dts: meson-gxbb: add SPI pinctrl nodes for CLK
+
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml       | 75 ++++++++++++++--------
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 14 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 14 ++++
+ drivers/spi/spi-meson-spicc.c                      | 39 ++++++++++-
+ 4 files changed, 113 insertions(+), 29 deletions(-)
+---
+base-commit: e35184f321518acadb681928a016da21a9a20c13
+change-id: 20221004-up-aml-fix-spi-c2bb7e78e603
+
+Best regards,
+-- 
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
