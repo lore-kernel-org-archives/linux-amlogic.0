@@ -4,90 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91E90C43217
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:00:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B121EC43217
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Oct 2022 13:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LSFuTdUc+VWc6IlP7+eJurYlPlrzbdDS3/hxk9CoNQE=; b=iynD+DCwCtIcmT
-	+dRGHhq7GwiKwarsjZUj4Uhi/wuCFGLPOBnE7U7X3Vy+r9yzc0Ln21sKKUOqKsh1ryfsF2HNiRPgY
-	f4mT+j5KK/EylTutdAhJUgfIQSvdtOrW9dZ22v1VxKqjm0W4sr8xmukRkH2fnfyRcHTP4AQIq7y2H
-	ccZ8mgKs1be8CxVdo7y5GIe1nukTHzSKOTEFOCBseJtTT5gJsHM7DHTXzbl0xUkoSYZ1fQ4EKg9sI
-	cdwHzhpnKmSPtY3KukGlClFIyRzedwFe5prmcrpmV0zUZcsFUgNjZr6KyebGOcMN+7Wxn9aCX5qDA
-	/i20JHPxq8YK4sgvordg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=qkvwp2pAVYcJandbLz8n1LHOudJVPtO3K7C0csiYOq8=; b=GCA
+	ADz7VjfugNcT48qpCEeOa0aX+hOf8Sz1EzXJ/Ace0o4YGYU+F8733MEkswBcdQCjVeqS38Lx6Bun7
+	EFTp0os+mE80EHDMjsYKi22HGMWdayeYTsQjyzGDALfnIPWeAOp7EhY8fYNGFSptjRWUVjcIxSyz4
+	NLggSbivLLoOhjywgmnahIAkGvbqkWuKWHwpn4OlcRT+P8H37XA6xpNhSDpDdnowsspTrgFtf+hok
+	zMiZQQT0oZPZCLC782usIGI3E/3ARIsqhXyIK8ybsg3LOSp+Hva6pnDdIFiGeH1SVTUf5TzkZgWf2
+	Vit/SVXrTFJ88SD0H3b1NyzaLN5wGvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olrcy-007l0I-94; Fri, 21 Oct 2022 12:59:56 +0000
-Received: from mail-qv1-xf34.google.com ([2607:f8b0:4864:20::f34])
+	id 1olruW-007rP2-UH; Fri, 21 Oct 2022 13:18:04 +0000
+Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1olrcr-007kxc-OJ
-	for linux-amlogic@lists.infradead.org; Fri, 21 Oct 2022 12:59:51 +0000
-Received: by mail-qv1-xf34.google.com with SMTP id f14so1752120qvo.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Oct 2022 05:59:49 -0700 (PDT)
+	id 1olruV-007rFX-0o; Fri, 21 Oct 2022 13:18:04 +0000
+Received: by mail-lf1-x134.google.com with SMTP id j4so5168790lfk.0;
+        Fri, 21 Oct 2022 06:17:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xs86T8FYH3cxwsGgQStZ75SdWF5yjS9RigXMT2iDTuI=;
-        b=raelHNIqjAfNIduVyyhSmxlkeTmBDWI5M6eoHxEOrDyKvgNyTbqt/BRWMPAC4nyTU/
-         +RIcoIbxCOd1bCVzg0ez40BfCEH8TH5rbH/1bKbuWoMDp9xT+/XTptK0PvMHZJMCBOFo
-         tdhKqlH3KQJEvM5sQlNYiMBPzVTM4IIBtCbGm7COkFrpRtKe2PJ0lybfPAALCxS3bMia
-         DNJoHxnwgLylRFQfjoTP96dCa7nKWqblDqBC6IG/Fofgnzwn+v1y0EgrqueYHx+2FQX6
-         W45YOl3lHnGDZ3YWK12yIQL7vxtLoElGLygLUlaxImLD83SnzCSpERJZLHW0JoEs9BEl
-         JuXw==
+        bh=L6OsdhUjW7L1QAZe7IfDCMt4jC7eaRPds2f3xTvTcWM=;
+        b=NvXmRpLEwW15x4sHw8WsKT9UISkiiOEvlUYJsc3+jtM5BAz28eKD5C8fMmm2QEafXQ
+         i9Iymyq6iBLiS2ccEq8b6W4IZS+Fcyjh3rsbLHN8wSvQqAm0yVLSqzl/PEHgfYYRahJ3
+         +VHk7QCBW1774fIlJrdE4xfOUNzoRqGKay+NDBvJhMBd0RKK3fGvl+tJc6sde66KVPn6
+         COZB2dWm/yBfpCIsUh6m48vuO4BKIL6Her8uuHef5YkURs86J2WBWpDGrbC+sfsF5PgG
+         1pArS5cCtKAg/1z/HAdiHw6TnEj2cr/FKxFi/isKtdBv2owKM/6Bp7OR5xmT8lbSkgV0
+         vptw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xs86T8FYH3cxwsGgQStZ75SdWF5yjS9RigXMT2iDTuI=;
-        b=jxxJAZJ3MQ4D0OdC7G+5w4cRvUl6tSYhEsTvcn6QWz/2EZrpa/VPOF+E93fKJc3sdg
-         /SazH64hCMUNSDGv04ghOomkfUBW57oBg42MDgXPmpUzjz/+t7RZIT0KFuaEy820h3E2
-         VEjST8SAjCBO1weMd2ukmBq1SHEr+7AtDkBA0qO8CM4yX2sIkDCA+2DnHWeYjqbizKtb
-         ZxahQf3Q2PSeikU3dR4s5Xi19sfECVBBr1ZWqlYRAECCMouoRSnaLRzX7syw2Jl5BXIv
-         swRO9OMTx1QtNZP9FIjicNo2QN+lGglta3BD399e8qZZTLMLVMdGWOt72MRwkiSdg/GL
-         rK+g==
-X-Gm-Message-State: ACrzQf2u8Rox0SQVagA/+6GpbTA77uKKjU5/I7cFvj0AHVZgss15Ppme
-	4AbtV4epKBCQpExhIpqwSHE9YA==
-X-Google-Smtp-Source: AMsMyM4j88gzow5EGAxNNk2ntX3Dfj86V9wgcexSHaNsAvEEmqSEG+IUzLHqUnaYykHbSpgJR0l5pw==
-X-Received: by 2002:a05:6214:1c89:b0:4af:664e:553b with SMTP id ib9-20020a0562141c8900b004af664e553bmr16626198qvb.18.1666357188296;
-        Fri, 21 Oct 2022 05:59:48 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id bn4-20020a05622a1dc400b0039ccbf75f92sm7884973qtb.11.2022.10.21.05.59.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 05:59:47 -0700 (PDT)
-Message-ID: <4a0b2e54-e13c-d6e8-261a-a282f35c1a30@linaro.org>
-Date: Fri, 21 Oct 2022 08:59:46 -0400
+        bh=L6OsdhUjW7L1QAZe7IfDCMt4jC7eaRPds2f3xTvTcWM=;
+        b=Goz/yhP6jGtV7eRK3OeWhxXhRf/WbWg2Ug/k6s6GFCGtB1OGk0Yie+1cFcaaMmgWJ4
+         Yma8BC2O7XYtM817SlGu/Oj8ZgXJfGo7ROFmQPqcphGn/hCjiLwdPE+hYtRBVhAyampb
+         RcptfAVMlDmNxd9eG9+9FHGas05Qgu4EgMLO1O0yFU+iT3y11YrxzN6oJcTe9DFmLxGb
+         GlWQeaaBwkNRxB4dgGiOrQl9fjtUZLJUf/elAHMTNo3HtKezDGm0htSjlo/1zMmNxlfo
+         h26f7cLC0soWfelMNpV6fmaktPbBkOiHuESnRXzkGgH2RWmHBiOoMo8VH9TAtwYAU5Qz
+         jStg==
+X-Gm-Message-State: ACrzQf3mSBJNQoJZGlPHG3GxL73u8yZ1XGNJ4UsOxjvJ4R/SZoB7RdlA
+	tU1W4Ir3PcpgHKAaXL9ZAKc=
+X-Google-Smtp-Source: AMsMyM45sQCWIL00BKCqmckZv7XIyZNPhMuNPcqRjItA+8zp2cjZJgscTuO6QkpAf44MY1NK69uMIA==
+X-Received: by 2002:ac2:483b:0:b0:4a6:f5d3:dd07 with SMTP id 27-20020ac2483b000000b004a6f5d3dd07mr1723500lft.233.1666358266558;
+        Fri, 21 Oct 2022 06:17:46 -0700 (PDT)
+Received: from dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
+        by smtp.gmail.com with ESMTPSA id m7-20020a2e9107000000b0026fb4d20636sm3417298ljg.17.2022.10.21.06.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Oct 2022 06:17:45 -0700 (PDT)
+Date: Fri, 21 Oct 2022 16:17:37 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <robert.foss@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org
+Subject: [PATCH v4 0/4] Use devm helpers for regulator get and enable
+Message-ID: <cover.1666357434.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
- pinctrl names for SPI signal states
-Content-Language: en-US
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>, neil.armstrong@linaro.org,
- Mark Brown <broonie@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>
-Cc: Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
- <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
- <d355ee40-5905-4d10-8300-81e9a63117ee@linaro.org>
- <dc918114-8b89-441b-5ba1-aaf3ae084860@linaro.org>
- <20c115e0-0acf-dac2-2a30-0f394fa513ab@linaro.org>
- <df1895c8-aec6-cada-e208-ccda8042860d@baylibre.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <df1895c8-aec6-cada-e208-ccda8042860d@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221021_055949_823806_A52A22A2 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20221021_061803_086863_8B7839F2 
+X-CRM114-Status: GOOD (  13.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,35 +95,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8476725580629133509=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjEvMTAvMjAyMiAwODo1NCwgQW1qYWQgT3VsZWQtQW1ldXIgd3JvdGU6Cj4gSGkKPiAKPiBP
-biAxMC8yMC8yMiAxNDo0OSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPj4+Pj4gKyAgICAg
-IHByb3BlcnRpZXM6Cj4+Pj4+ICsgICAgICAgIHBpbmN0cmwtbmFtZXM6Cj4+Pj4+ICsgICAgICAg
-ICAgbWluSXRlbXM6IDEKPj4+Pj4gKyAgICAgICAgICBpdGVtczoKPj4+Pj4gKyAgICAgICAgICAg
-IC0gY29uc3Q6IGRlZmF1bHQKPj4+Pj4gKyAgICAgICAgICAgIC0gY29uc3Q6IGlkbGUtaGlnaAo+
-Pj4+PiArICAgICAgICAgICAgLSBjb25zdDogaWRsZS1sb3cKPj4+PiBZb3Ugc2hvdWxkIGFsc28g
-ZGVmaW5lIGluIHN1Y2ggY2FzZSBwaW5jdHJsLTAgYW5kIG90aGVycy4KPj4+IE9rIEkgdGhvdWdo
-dCBpdCB3b3VsZCBiZSBjb3ZlcmVkIGJ5IHRoZSBwaW5jdHJsLWNvbnN1bWVyLnlhbWwKPj4+IGJ1
-dCB5ZWFoIHdlIHNob3VsZCBhbGxvdyBwaW5jdHJsLTEgYW5kIHBpbmN0cmwtMiBoZXJlIGFzd2Vs
-bCBieSBhZGRpbmc6Cj4+Pgo+Pj4gICAgICAgICAgICAgICBwaW5jdHJsLTE6IHRydWUKPj4+ICAg
-ICAgICAgICAgICAgcGluY3RybC0yOiB0cnVlCj4+Pgo+Pj4KPiBJbiBzdWNoIGNhc2UsIHNob3Vs
-ZCBJIGRlZmluZSBwaW5jdHJsLSBhcyBwYXJ0IG9mIHRoZSBpZiBzdGF0ZW1lbnQsIGFzIHNob3du
-IGJlbG93LAo+IAo+IG9yIGJlZm9yZSBhbGxPZiA/CgpUaGUgc2FtZSBhcyBwaW5jdHJsLW5hbWVz
-LCBzbyBwYXJ0IG9mIGFsbE9mLgoKPiAKPiBbLi4uXQo+IAo+ICDCoCAtIGlmOgo+ICDCoMKgwqDC
-oMKgIHByb3BlcnRpZXM6Cj4gIMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGU6Cj4gIMKgwqDCoMKg
-wqDCoMKgwqDCoCBjb250YWluczoKPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbnVtOgo+ICDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGFtbG9naWMsbWVzb24tZ3gtc3BpY2MKPiAKPiAg
-wqDCoMKgIHRoZW46Cj4gIMKgwqDCoMKgwqAgcHJvcGVydGllczoKPiAgwqDCoMKgwqDCoMKgwqAg
-cGluY3RybC0wOiB0cnVlCj4gIMKgwqDCoMKgwqDCoMKgIHBpbmN0cmwtMTogdHJ1ZQo+ICDCoMKg
-wqDCoMKgwqDCoCBwaW5jdHJsLTI6IHRydWUKPiAKPiAgwqDCoMKgwqDCoMKgwqAgcGluY3RybC1u
-YW1lczoKPiAgwqDCoMKgwqDCoMKgwqDCoMKgIG1pbkl0ZW1zOiAxCj4gIMKgwqDCoMKgwqDCoMKg
-wqDCoCBpdGVtczoKPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBkZWZhdWx0Cj4g
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogaWRsZS1oaWdoCj4gIMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgLSBjb25zdDogaWRsZS1sb3cKCkJlc3QgcmVnYXJkcywKS3J6eXN6dG9mCgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============8476725580629133509==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uZtN7dB4zT5zFsmG"
+Content-Disposition: inline
+
+
+--uZtN7dB4zT5zFsmG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Simplify couple of drivers by using the new devm_regulator_*get_enable*()
+
+These patches were previously part of the series:
+https://lore.kernel.org/lkml/cover.1660934107.git.mazziesaccount@gmail.com/
+"Devm helpers for regulator get and enable". I did keep the patch series
+versioning even though I changed the series name (subject of this mail)
+to "Use devm helpers for regulator get and enable". Name was changed
+because the devm helpers are already in 6.1-rc1.
+
+Also, most of the patches in the series are already merged to subsystem
+trees so this series now contains only the patches that have not yet
+been merged. I hope they can be now directly taken sirectly into
+respective subsystem trees as the dependencies should be in v6.1-rc1.
+
+Please note that these changes are only compile-tested as I don't have
+the HW to do proper testing. Thus, reviewing / testing is highly
+appreciated.
+
+Revision history:
+
+v3 =3D> v4:
+	- Drop applied patches
+	- rewrite cover-letter
+	- rebase on v6.1-rc1
+	- split meson and sii902x into own patches as requested.
+	- slightly modify dev_err_probe() return in sii902x.
+
+---
+
+Matti Vaittinen (4):
+  gpu: drm: meson: Use devm_regulator_*get_enable*()
+  gpu: drm: sii902x: Use devm_regulator_bulk_get_enable()
+  hwmon: lm90: simplify using devm_regulator_get_enable()
+  hwmon: adm1177: simplify using devm_regulator_get_enable()
+
+ drivers/gpu/drm/bridge/sii902x.c      | 26 ++++----------------------
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
+ drivers/hwmon/adm1177.c               | 27 +++------------------------
+ drivers/hwmon/lm90.c                  | 20 ++------------------
+ 4 files changed, 12 insertions(+), 84 deletions(-)
+
+
+base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+--=20
+2.37.3
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--uZtN7dB4zT5zFsmG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmNSm+wACgkQeFA3/03a
+ocUk8wf9GPfjBtyvD9zhemcPtbAvMi1mDRXVTeferJLMfZOaxAHzotYu/L1BsSmr
+tHKDT7ApHkeVbmnnc9jzIb1g71n9qBPkNWj5fsXkYMLrwv8ngU9OVZjKSXj2du+n
+hpc3j+0OLO4v8KYQN7wcHo4vyINm/3xXwoiKDAm43IWja45PBti+r8V3WvtiVf1h
+GWPmS0ZiU2imPdmNSnOxVjh+1EtNDMQlFDu/Fv1dU2MYuLZAM6bkJfRs9gYmu1w9
+RvKW1HEEk2moacyue7LVlseaa2Y38togIUAYEy5Hz/h+MqZPEuE1KirPlrW7/6wP
+TVYakMaJuld2nhQS8hIce5Tuds4jsg==
+=wmbp
+-----END PGP SIGNATURE-----
+
+--uZtN7dB4zT5zFsmG--
+
+
+--===============8476725580629133509==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8476725580629133509==--
+
