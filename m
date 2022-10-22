@@ -4,76 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92BFC433FE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Oct 2022 11:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43442C433FE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Oct 2022 12:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pU2Bum76+sRoH3bZE3IuYtOMhNeenyppHFrL9J852z0=; b=I6G8EA9qeDX+9f
-	IWitUm4ed0pPYk/jkZF+hyIGjWU3anutbE+m6zRVAcF77BlSvjpJ/oPQWTPaI+9KU239BENVZPb3W
-	OjSMiBCAoELemqmFHy4dswkKj2k8iks4mi1mQjKhtWlbncb/PjBseEZezHKaIe2cl8odgaSgaeIoK
-	XsHfLK55BNfDAL0S15XUpiAEfVFDvrelT9XAkospTi3Fu2xKWYKwITB64x85d1gLB8xZDOx4excKz
-	Fx79BJdAiFEB4cYkXNukYHtWVnGbnglCfRyCZKI9mMGOOpgILcBKC15R5ib1W150uXK9qxy3m68Oy
-	HChRVA3f8iIBUJ8rxlow==;
+	List-Owner; bh=K29CIz2qSpnMpFVro/SCYxk/ARkfAOqljd78OeKFCI4=; b=AIgG/GLLJKrTAu
+	oQTFpwP5wNm8eFMvkQJUnAKD89rRlfM8ywrURYHutMW9Zzzvf/ZeIOTm+y5wJFP+Fto0mlYuXHBpn
+	UlYGFp+NZiZCr0z7bu7a3Jf6MPt3RuTxfS7PueKymAg9yTFRy0WEC5h5i6LWQTM5kyEfoD/TrVoyd
+	UGQ50SD2WMqvUMjGOQVOL+Zq72/9NQfD2y9F569eqkkykTrGupn1HELnZEsyWdKMMZ16fm0XzuSqK
+	xbFLprCTvi5bXjV7j2jku9lYDy0WErp982PlbLPq6+JTq2kAwhfBLDVChcDkO4dJ1PvqofD6QXUNE
+	dzIztF6+fAGodR0U3t2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omD3j-00CT7a-OC; Sat, 22 Oct 2022 11:52:59 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1omDNg-00CXfi-BC; Sat, 22 Oct 2022 12:13:36 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omD3Y-00CT3s-Jx; Sat, 22 Oct 2022 11:52:49 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id q19so14973991edd.10;
-        Sat, 22 Oct 2022 04:52:44 -0700 (PDT)
+	id 1omDNU-00CXcl-By
+	for linux-amlogic@lists.infradead.org; Sat, 22 Oct 2022 12:13:27 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id az22-20020a05600c601600b003c6b72797fdso3702380wmb.5
+        for <linux-amlogic@lists.infradead.org>; Sat, 22 Oct 2022 05:13:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrvz3xnxmWMFBldQvzy2ZgmI4h77t/gPKZnFb0toqjg=;
-        b=IkNUMBBK3F7G2PHSg4UUbh50Ru31YT5iLaRe+eXiX/kgyEVFRWM+EOsx8fOhmmHZYB
-         mpbIbh4q3vvwnGYurdPN4A+6370j/lx2BQ8nIWwsFsKx7Y9z3Heey5CL1lY0jPs9BmQs
-         phlDwix2DMjgdaGZx7K06usQjnaAJXxond0AzlVST6lU+BhY3YDU08cxFgsQ/dUXc2c7
-         LdYPI7IFyVT/b62MgoKyx+X6xWA8M1MoAde1RLXhSz1IYm4Xjv5RErUgw3uEISZC4QYx
-         hjKz433tB6OeY3mXTLp49KN3S9Tg+E2Z2NqOFJVPn3sVHkt0h8isq2wF9OnV5ADNL+8a
-         l+Vg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=iBk0CGw7WcuryOh9lQut8CkGKBWj+XFGwLE39Z2bst0=;
+        b=EGEGG1Yo/BHjquuWMlqmJkYHRFwkwO8NU7g+SNmbrFpSGZcbS/fDn01Ls+20OKwBfj
+         xgJaSh7rMBwRa8Nl6597V2ZzOvmFZ27WbGzHfqcCxH1R0R715V0z8870YKzGcTXHZqbq
+         Aj8RNo4+qWSrYtH2oqeoZE4KO+UPwcXvmq7VbYE/2GnRcXjyeU0W8/NTyvNF2RgcWWwb
+         ppNxAHAfl9kK6iNMUSjASoe/zI5HGOuJGY3mJGXqhlK7r2YKADbKRep38CJCAlHj4wF6
+         /SUwNFhdvi24Jv8EeZlk4cFLlB459Terd15hp6HL/Vb7hFDdP7fBFk61rbsMnErkeCuL
+         pqdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jrvz3xnxmWMFBldQvzy2ZgmI4h77t/gPKZnFb0toqjg=;
-        b=Wd0srDuOuyuiIiHZ0Q+kZm3lOnAUStXbVkoft1HGhtJ4j3cKdFUfLAlGBbNIcFeFCV
-         J5zTNY09HL1NOnWMgA39p8mpyYpFTWrjT/C6Sf945GYDiz8/OBUyntFR0aH3DS8pXyKV
-         bktuJ4BldfiGqvSxlPRnv7DOvlvEr/Z+/QUqSZc0lE5ifBXqmBAqWBQi+98GRl+KoGEJ
-         mjYJFEU1f+8WxophRyAo0yN1w7odOmQIhwY32g+us57c9x7cQbkT6nLOxLPDjBd/U8nh
-         xVIV9HfDx4alMNWcxDHzda8OtFSuyQuRdhwratCOQ849f1zmJCCFdzbE8w2eVSBsJV+t
-         AmeA==
-X-Gm-Message-State: ACrzQf3u+MSTeQg2WkVugpQ/5Rxvk9S4W5v0/8tMJWwf9wg3h7yN5EV2
-	4f8QElOMrKwdhdYg52WUXm4QVvidNVf8cCp8yyY=
-X-Google-Smtp-Source: AMsMyM6muR/RwsipWgBLxIPXio2nN5ILA/phMy0wSCb+hRGOvh2zvm54UfTCsw2MojaPvDmu/D2VNn3FDSPF1kaXgew=
-X-Received: by 2002:a17:907:7f92:b0:78d:ed9c:d86f with SMTP id
- qk18-20020a1709077f9200b0078ded9cd86fmr19695128ejc.251.1666439563373; Sat, 22
- Oct 2022 04:52:43 -0700 (PDT)
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iBk0CGw7WcuryOh9lQut8CkGKBWj+XFGwLE39Z2bst0=;
+        b=dmW5E54OO5zQ6QX2alOnrmzBpFKKqVUqXRaXxHUfxY4qCDhQu0nWF245y+nvR/cUWs
+         6Axvzk7GeQA6EBEASBoFW5dHDjiPRwkt028hj5tRPvHexvaZoT7li3pp0MvqzmDpuNHu
+         /DxgfNMVLBGAbU1sTvjl2bX3G42XwxaDqFMuRi+T5cpyhL6kJTD3fzNteyc2wjZcF2kr
+         vdicLiObochBmGYwGXDE/d7rc7niihEJB56s7Z/kcEcBc/xEp4OblKkXi07AdhpxVxm7
+         /0Pf41mysNc6FGftYaVT7NsM9gavxodAXAjwNgzCksSbiY40A/IdAwDfPb3QRe+PjHif
+         ldGA==
+X-Gm-Message-State: ACrzQf1Ag/LkbuuvEZGdAw/AK9qOT7V6ckV8bJh9ozSzGOyV/CHk3+nu
+	C6g4r6qDxbKk1wz9ApQgdeXlCg==
+X-Google-Smtp-Source: AMsMyM5jUUpIrRjDMyE7JXZxwWaYImTrE7gVStguHxI1uWoBSCuHSBbRFrCVQsOTFmJCl/arVFhQLQ==
+X-Received: by 2002:a1c:7407:0:b0:3c6:cc25:c02f with SMTP id p7-20020a1c7407000000b003c6cc25c02fmr16012584wmc.124.1666440801820;
+        Sat, 22 Oct 2022 05:13:21 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id y6-20020adff146000000b00228d67db06esm4604673wro.21.2022.10.22.05.13.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Oct 2022 05:13:21 -0700 (PDT)
+References: <a801afc0-a8f2-a0a4-0f2b-a7201351d563@gmail.com>
+ <32b218b0-b2cc-9401-8303-c09575ed5209@gmail.com>
+ <CAFBinCB=tuF-RW77w-iVVbzq82vcORisy1QwCW_Tk5SoCMwa+Q@mail.gmail.com>
+User-agent: mu4e 1.8.10; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Heiner
+ Kallweit <hkallweit1@gmail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, "open list:ARM/Amlogic Meson..."
+ <linux-amlogic@lists.infradead.org>, linux-clk@vger.kernel.org,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] clk: meson: pll: adjust timeout in
+ meson_clk_pll_wait_lock()
+Date: Sat, 22 Oct 2022 14:10:31 +0200
+In-reply-to: <CAFBinCB=tuF-RW77w-iVVbzq82vcORisy1QwCW_Tk5SoCMwa+Q@mail.gmail.com>
+Message-ID: <1j8rl8awf2.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20221022084737.1028-1-linux.amoon@gmail.com> <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
- <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
-In-Reply-To: <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 22 Oct 2022 13:52:32 +0200
-Message-ID: <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
-Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
- on Odroid N2/N2+
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221022_045248_696204_FCDEBEEB 
-X-CRM114-Status: GOOD (  17.16  )
+X-CRM114-CacheID: sfid-20221022_051324_646233_AB2AB477 
+X-CRM114-Status: GOOD (  13.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,45 +97,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
 
-On Sat, Oct 22, 2022 at 1:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> > > @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
-> > >                                                 mux {
-> > >                                                         groups = "pwm_ao_d_10";
-> > >                                                         function = "pwm_ao_d";
-> > > -                                                       bias-disable;
-> > &pwm_ao_d_10_pins is not referenced anywhere so it seems that this
-> > change has no impact on controlling the fan on Odroid-N2(+).
-> > How did you test this change?
-> >
-> Ok I felt these changes affect the behavior of the pinctrl
+On Sat 22 Oct 2022 at 13:21, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+
+> Hi Heiner,
 >
->   * @PIN_CONFIG_BIAS_DISABLE: disable any pin bias on the pin, a
->  *  transition from say pull-up to pull-down implies that you disable
->  *  pull-up in the process, this setting disables all biasing.
+> On Sat, Oct 22, 2022 at 1:17 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> [...]
+>> Hi Jerome,
+>> on Sep 6th you responded that the patch has been applied.
+>> https://patchwork.kernel.org/project/linux-amlogic/patch/a801afc0-a8f2-a0a4-0f2b-a7201351d563@gmail.com/
+>> However I still don't see it in linux-next. Is it pending in some other tree?
+> Jerome has merged both your patches and they are part of the linux-clk
+> pull request, see [0]
+> But it seems like that hasn't been merged by the clock maintainers
+> (Stephen) yet.
 >
-> I mapped this is linked in pinctrl driver, pwm_ao_d_10_pins GPIOAO_10 see below
-Yes, I understand this part.
-My concern is: &pwm_ao_d_10_pins settings only become active when this
-node is actively referenced. You can even see it in your output
-below...
+> Do you have that other mail in your inbox? If so, can you please ping
+> Stephen in that thread?
+>
 
-[...]
-> pin 10 (GPIOAO_10): (MUX UNCLAIMED) aobus-banks:1958
-This shows that it's used as a GPIO. If the &pwm_ao_d_10_pins setting
-was used then it would show "function pwm_ao_d group pwm_ao_d_10"
-(similar to what GPIOE_1 shows in your output)
+Indeed, It missed the merged window. I'll send it again soon
 
-If you want to know if a pull-up/down is enabled you can look at the output of:
-$ cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinconf-pins
-(I'm sure this can also be retrieved from some userspace tools, but I
-don't know how)
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://lore.kernel.org/linux-amlogic/1jh71b3asq.fsf@starbuckisacylon.baylibre.com/
 
-
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
