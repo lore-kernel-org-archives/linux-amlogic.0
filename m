@@ -4,74 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54803C04A95
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Oct 2022 10:14:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 851AFC04A95
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Oct 2022 10:18:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=syzXOpREsSyNtUj0Ccp8YC+LKJnarz+8HsQS8QLk8PA=; b=xomSzcRi6jhKkU
-	m7eZLtV0lSQ7gp+OFeaeRLH4cEn4iB7t9VcP8h62W05X8rYu2toPF5aelFBTlgUr+nCkGUiBA9bil
-	ACaSaFsESeQBafGRmja6JmBKl9ghRkWUiTRao+DP5q0kzZg3O71FHKA6fNrXSMjIMiTN20R0JplGg
-	qiGUNPT0wTnZhkIy0iiQYbwh7qv9dKibJnTElVi0JeMLLu01MMn2SepXNCoMedpOxuwlaGlHxSuOr
-	gzSYUNoQZpMv8gim9NieMG4RpqfJli/R9l2LqaeqBZmPdRib5uJIfSbG7UlSKo/4DX9DEiAg6hPQv
-	t0jjLHUc1Wc/fkNu49hA==;
+	List-Owner; bh=eQMGL6RmBcRJu3YoYw/BLJbcfLztlW7VPs7gZdRkZGM=; b=WrXSJgKAHUcSv+
+	oNtE8H7c4Gad/oQvo/C0yp3JYGqCptqjkPSdXY9GPBfnx7oRM7paujh/y0nvuCpAlymTTklS7jFsN
+	GYoNVwQiAlgId8YoDSQbTDSZ56X4621Wl6EHH6543jQLsgNMwdCYMQVJ1+YbvSja6IxARu6fEjxAe
+	5wrvPIoovz++VpX2XwGTukoaL5NS8/GEQ7HBGGCgQ9amHQxwE2aqvRC1I3A5+zoMtr9kp5opO6/p0
+	8pw0x/3a8NnT6iIjXFDxPTX+xq1ooHhqX7Og7styVJJ5XwBb5NTzVGtSVICgGz6J9x1dQ5fHjyfec
+	WjCkLP+TXTAOFl2sAp9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omBWZ-00C8lQ-89; Sat, 22 Oct 2022 10:14:39 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+	id 1omBZu-00CACk-5w; Sat, 22 Oct 2022 10:18:06 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omBWV-00C8gA-Jw; Sat, 22 Oct 2022 10:14:36 +0000
-Received: by mail-ed1-x533.google.com with SMTP id u21so14441908edi.9;
-        Sat, 22 Oct 2022 03:14:31 -0700 (PDT)
+	id 1omBZh-00CA7l-MA; Sat, 22 Oct 2022 10:17:54 +0000
+Received: by mail-ed1-x530.google.com with SMTP id m16so14357612edc.4;
+        Sat, 22 Oct 2022 03:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HRxA1wCfL0RgEilQ0nEOZlpZEZ5XChNDT1P0uuoGXtQ=;
-        b=YwPo+TMxhdFYaL4vjMP2doMRR8fiV0VoWpwn5nZQQwIfyDL8JeoFqv97TD/P0UkcEG
-         fvsEZEL7uEM5F6r0xtA6szfPMw+neybQ/XFz5Z3jmwFQ8owH2Hx40x6Uw8VxDC/xZAx/
-         3JmIH8Tkuwhn9KQwKQG38qW/YAexVvU1e2BS/CJ3c+EBYQ23TbKUtV2PU5sJBiypBKuj
-         IaAiK0DHFzqvhMMk5HCZIAYhQOH94rG0uYIdLePxny++FEVb+PoxJaFshpBOHi5JfORy
-         F4K0TGGLDCtwAUWCL5MfXPKU1vLgSKW2yWmBTnGx/5dHeVUN1K+eS6Cq4uKnOa3QuqCU
-         UnSQ==
+        bh=HdufI3Hje46oVXzKveQgMEHAhY/MYqQrs94ILdJz3ZY=;
+        b=eUU/j85w3dwp8X3qf7WPl93f2WYeebxlLlOoVDHLru0upvpUCyr3zNuvLppI5kmykg
+         sNToyeVPl4CxV90JHZBRA4wrtS2DzsZyOJfQxVcsRrQXgGRqVbe98Blh8wD6Bn8/TkHZ
+         2HA5tYLnPBacYbUpaxLKoIWBz2Rpz8cwkpCXUguPmd1jdfKAE2Wxgfdu54cIvARnQboe
+         zixa2tKRILmXErh6R3zMa4Yq3Oit0L9MjegqM+NPwQpjFgAMkqWajK++p+G9SPi5PKo6
+         LqaeqfEaGjigAd8JfIcWLf1fYGngssZax9f5ajPf2TADkDj5OHYJUNCBB2YYEnO6ataC
+         zPww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HRxA1wCfL0RgEilQ0nEOZlpZEZ5XChNDT1P0uuoGXtQ=;
-        b=mlsYtV1mq1n4CLC4Je00HUEu7elX52gE4mNcGuuQ3hiN2lGeFLsGiL6UaoENdTIfNu
-         LhiKi4BI3ujxc8fQuPJ91gxrxJwRjA+NjumZEth+0JhehyzEJ/bhM/y8eUV0C8/cww4n
-         cmZiuYB7O2VbkGEmZvKlitMiMddo/NGW94e8tROKIJ9vvAxQaydfCxR3Xf+ayPt/W/4F
-         ryub1Qg8ArOQGsZcTfiOphW5FHITPO6EX4gpvErsRU+f+JgcASTdvfOAjEn1N4GFR6bb
-         oE7A4tFv+kZ6s14NysMnCGuEqJ25YJJ2BI3ZMX6xBiSINNCF2wUb8XyD+spPEv7SdIPq
-         IAIA==
-X-Gm-Message-State: ACrzQf2a+FwcQ+0Js1Xg2cC1p5/G9zEBgNyMfeJa/in04Yp5RlxtBUkn
-	XY9U9RZIfzJIqta9iIToObkbSAeN2AHoxiwHnXQ=
-X-Google-Smtp-Source: AMsMyM6d73cg4d0wNQuMJiODAPL6zKNKjfXCGBbTlKTkeqI5Y6WOfEPAHw1TL16UWW/UIDYpbG+ENDd56IYLTXWR9CM=
-X-Received: by 2002:a17:907:2da5:b0:78e:1208:8783 with SMTP id
- gt37-20020a1709072da500b0078e12088783mr19641226ejc.743.1666433670312; Sat, 22
- Oct 2022 03:14:30 -0700 (PDT)
+        bh=HdufI3Hje46oVXzKveQgMEHAhY/MYqQrs94ILdJz3ZY=;
+        b=XHhSk+OZHeZMzNljykmLcFBsfVwzKUqtOu1foln+fr/npbItHoZB6okKC1ucCWO3Iv
+         Vg4R9ZN/jVtj514h0vq2FdEIHmbKQPVgJzB5NiLX2La7jbqGq3ZKWPlpcNRGhiv6LO3p
+         iv1f7Jc1h8vpx9xNLtKP1cKikV//ji745LtrWzaQ6ZVfxicbxEQrgRzGDMsauFAHAz5p
+         r4Wu/NGePWNrCSSUXc4e9tGowMOIqZ0m9KWd/vbqWBkp2zSsrORyc2bs5usYzmzPtf4g
+         O/RXkntUVfWoC0zIPp15GCKxek8pkp+g0+NCfyM1ZWp6V/eHj7EZ2oG9JJEqgHo+zLzw
+         xFvA==
+X-Gm-Message-State: ACrzQf15Jv8UXm+wA4rXK2SaOIM67VwE3s/+fr00c38bOZloo2IlfIwZ
+	ZqWzyWI3/XZI2JYc7taJT81/EJ5+1n5I+KAb868=
+X-Google-Smtp-Source: AMsMyM7gp0sIMAuA7hxNeVlUzuW0+59UJAqTcGRUXxnKjlIGK3qUU6iuED0glB4xpGjPuhGXVt0D9ns+7w3RCqY8KeA=
+X-Received: by 2002:a17:907:3c81:b0:77a:327a:815f with SMTP id
+ gl1-20020a1709073c8100b0077a327a815fmr19834118ejc.422.1666433872323; Sat, 22
+ Oct 2022 03:17:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com> <20221004-up-aml-fix-spi-v4-4-0342d8e10c49@baylibre.com>
-In-Reply-To: <20221004-up-aml-fix-spi-v4-4-0342d8e10c49@baylibre.com>
+References: <20221022084737.1028-1-linux.amoon@gmail.com>
+In-Reply-To: <20221022084737.1028-1-linux.amoon@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 22 Oct 2022 12:14:18 +0200
-Message-ID: <CAFBinCD63tjLKU0mSUhutb5beGOy1k7LHw0-WngB7yE2VaeJFQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: meson-gxbb: add SPI pinctrl nodes for CLK
-To: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Rob Herring <robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Mark Brown <broonie@kernel.org>, 
-	linux-amlogic@lists.infradead.org, Da Xue <da@libre.computer>, 
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date: Sat, 22 Oct 2022 12:17:41 +0200
+Message-ID: <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
+ on Odroid N2/N2+
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221022_031435_699313_C772E9CC 
-X-CRM114-Status: UNSURE (   7.33  )
+X-CRM114-CacheID: sfid-20221022_031753_745937_061C9031 
+X-CRM114-Status: UNSURE (   9.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,14 +90,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 21, 2022 at 3:31 PM Amjad Ouled-Ameur
-<aouledameur@baylibre.com> wrote:
+Hi Anand,
+
+On Sat, Oct 22, 2022 at 10:48 AM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Add SPICC Controller pin nodes for CLK line when idle for Amlogic GXBB
-> SoCs.
->
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Odroid N2/N2+ support active cooling via gpio-fan controller.
+> Add fan controls and tip point for cpu and ddr thermal sensor
+> on this boards. Drop bias-disable from set pwm_ao_d_10 the pin
+either use "on these boards" or "on this board"
+
+[...]
+> @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
+>                                                 mux {
+>                                                         groups = "pwm_ao_d_10";
+>                                                         function = "pwm_ao_d";
+> -                                                       bias-disable;
+&pwm_ao_d_10_pins is not referenced anywhere so it seems that this
+change has no impact on controlling the fan on Odroid-N2(+).
+How did you test this change?
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
