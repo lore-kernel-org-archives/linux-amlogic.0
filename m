@@ -4,72 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5956CFA373F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65944C38A2D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 20:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1HW9fyrTUinIJbG6dJl8htXfAHYCxaSEtUy2VpxX5Pw=; b=XEmbAqNGQjDXlY
-	d43KR/4sZqzhw5xK38fYc02L0o2UMSuKyZjbhH3eDfYwdkT4ITPxz67bpDAUVvyV1r2unMtKYhQak
-	GzBMXtUprR0+1/4BaNrAs8hDtVvgMrMXyNjXzrEJEBs9s9RuSOT/Glvj8vZwO2ofbrt4facHGmLyl
-	qASQ92lTTuKOEj8oVb0s8oV0ebVpj+se2svTKCuYdFGJT7RzJiudUVTfPbkeddia+aHGX8hg1yEXT
-	kNX7Kgw6PohXSiew7UyWQaSp+HjimJF6B9qXoX3aVpA2coqCZkZqjrPyivuASwuEjywW18wLSmISI
-	hGnFeOU4f5V/AOijRfVw==;
+	List-Owner; bh=A85GFkWtofK4ImnIR5SwOjCLlBP+p3A8XrkZrvH1uTQ=; b=2/aHs3MIWbgyzP
+	AQep1GuazH1wfbQEawwuPPhX8jSWfVMr8FSjTKpPbAQR5gvu2Io//nxjFWacq+weaQOvaDBrYpjzS
+	6rXJR1h9SNlmTtQXn/qg0+c5+pXdYBh6Ff8laWo2pAHE/mLNWi1LpFrPaA5QXvIejfg37sACvxyAP
+	c5Eo/qkyR2K478bKTGBxn0fQpSoRLPLz5C0G+H6M7Qa52LcvBPtqQusmWd9iJJbeMNNr92a+2e9n9
+	O8E+UG7JEaELoJFlnB+BZOAHYpp78L0dNb3jQPEOA+ZGlDJqYNtPeMGuw4utmnJ0cFhj2d9WuP9/R
+	UsMV7qsnUzbcIULzjrOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0kI-002OLx-Ln; Mon, 24 Oct 2022 16:56:14 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1on4VM-0031gF-Lz; Mon, 24 Oct 2022 20:57:04 +0000
+Received: from mail-qv1-xf2d.google.com ([2607:f8b0:4864:20::f2d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0k6-002O7h-5e; Mon, 24 Oct 2022 16:56:04 +0000
-Received: from jupiter.universe (dyndsl-091-096-059-109.ewe-ip-backbone.de [91.96.59.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 86827660283F;
-	Mon, 24 Oct 2022 17:55:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1666630558;
-	bh=4ZJL66e4uW0ZMfoXxSwlQ168x6AE5qji5g/hEVVVtNI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=U+ts7lMAMaWbjGgf47Fa/x8M9r74NDlhkJ23lZoQTUPGZwiHwGaAQaybJZy8O2Hur
-	 jffcrKCymXnnLhjBFBC9fFbniFal2QGpkWaFogWxTtyPldygP1pM3geMIGwXJGlJLG
-	 DlnFI6gUL7q7BF6Mr6b8QiLDTwGB7y7q7mRcASHcmcFlMH7xEwv2+EvE3JA5EMsUFe
-	 q/1sD+RcxAV0WnNumJaVxQno+zl6KgZ3outsIoCgoJ5wBFwXOaqGa3yvPC50gMVaKi
-	 PLVJs2F35RXXDuDFlNEftBEqtbDJQIJoo1oUFuRhZ+y0/QREx9L/ruy5bTJMDNLBy4
-	 Hz07fHHRzs9fg==
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 099CF480AF2; Mon, 24 Oct 2022 18:55:54 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
-Date: Mon, 24 Oct 2022 18:55:49 +0200
-Message-Id: <20221024165549.74574-7-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221024165549.74574-1-sebastian.reichel@collabora.com>
-References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+	id 1on4VK-0031ec-KC
+	for linux-amlogic@lists.infradead.org; Mon, 24 Oct 2022 20:57:03 +0000
+Received: by mail-qv1-xf2d.google.com with SMTP id e15so7163076qvo.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Oct 2022 13:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GgCiMRv4/zA0qfKFUypWEY5U/CHGoAGbHObmkG9bAjU=;
+        b=nI8mYyv168AhumzkCxoWILqL2HSCDNPlZXOLGgbH+tsFoUAG6CstXdbpn9kTGqLSXX
+         I7jJznF8AqNwuu/9zC4niHv3s29DeysGaYvQzKzLIhpSrW8LdEZjzxQxDo0C7VAxRBOP
+         rOmcUbjrQXSTr1h4Glx2Ia/Bn5PsGho3PIGKjrQ5qptZGIqlGmk6KrA9eOPo7Wbx4K9C
+         9x8JeVYnsCvUA7amY9rb7AMo+prVNMn0XHIHrb0XBVaxYnvriA0/kQ3AYYmjRKcJJCPh
+         u3gJvCyfUfwZ6D5+SKOfnHo5YfDcuVol/5+7a4UzXB4sZc7gjYUjOzocv49OEnLSakDP
+         r9bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GgCiMRv4/zA0qfKFUypWEY5U/CHGoAGbHObmkG9bAjU=;
+        b=ConxWriv7/Ip0oVjc1gVxjmeHxNwF9ajUVRSV17rSDI8rVqJzRmNDkUbKOVlfxxz4x
+         VsmfrUse30QUtqIAbWQYKnZWwKBiBQLwpetE5kdmFtnPZKX60/pU30py/X7VhzZcK08u
+         Q0UqMLyXEVKexnbkhuppWmBmgWgrwj9GuXPYhWbkNOGj17GV4blWR9pxrYeQi3jQyaWF
+         mfrnPQvygcTSfSScDCuJ9UrE3nXygK9nBuwz437XGMYN/pQ+eXrUxTZk3JopTz+jHyxL
+         G80EcXcWjTBrsb6cM/gkCiraXZzZJuIfbhNQ3xx57WKUGmB9iWbohP8M7ztrslKqEoN4
+         51hA==
+X-Gm-Message-State: ACrzQf18fJGIHQSA95FJASm2+OfbHuGQTE/CxbTQIF5rTcFAD1oT/djz
+	v4IVj+/4gIRCti96dFML1dXOTQ==
+X-Google-Smtp-Source: AMsMyM676vm0ry2ES6d7HLo9qrJwI5HY6Xf3UVXvmpUkNow7rbtrRLf/0gml2w0gx85djKs/FMJQCg==
+X-Received: by 2002:ad4:5ba1:0:b0:4b1:9a15:4766 with SMTP id 1-20020ad45ba1000000b004b19a154766mr29127446qvq.6.1666645013219;
+        Mon, 24 Oct 2022 13:56:53 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id w7-20020ac86b07000000b00398a7c860c2sm550226qts.4.2022.10.24.13.56.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 13:56:52 -0700 (PDT)
+Message-ID: <90bfa1ad-8404-2da9-4235-b7d87dbadbe3@linaro.org>
+Date: Mon, 24 Oct 2022 16:56:50 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to
+ json-schema
+Content-Language: en-US
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alessandro Zummo <a.zummo@towertech.it>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@collabora.com
+References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+ <20221024165549.74574-7-sebastian.reichel@collabora.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024165549.74574-7-sebastian.reichel@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221024_095602_383528_A1A52D79 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20221024_135702_692488_48406E9B 
+X-CRM114-Status: UNSURE (   5.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,117 +103,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
-Schema format.
+On 24/10/2022 12:55, Sebastian Reichel wrote:
+> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
+> Schema format.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
- .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
- 2 files changed, 56 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
 
-diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-deleted file mode 100644
-index a8934fe2ab4c..000000000000
---- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Haoyu Microelectronics HYM8563 Real Time Clock
--
--The HYM8563 provides basic rtc and alarm functionality
--as well as a clock output of up to 32kHz.
--
--Required properties:
--- compatible: should be: "haoyu,hym8563"
--- reg: i2c address
--- #clock-cells: the value should be 0
--
--Optional properties:
--- clock-output-names: From common clock binding
--- interrupts: rtc alarm/event interrupt
--
--Example:
--
--hym8563: hym8563@51 {
--	compatible = "haoyu,hym8563";
--	reg = <0x51>;
--
--	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
--
--	#clock-cells = <0>;
--};
--
--device {
--...
--	clocks = <&hym8563>;
--...
--};
-diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-new file mode 100644
-index 000000000000..0b9f39ef0edc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Haoyu Microelectronics HYM8563 RTC
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: haoyu,hym8563
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  clock-output-names:
-+    description: From common clock binding to override the default output clock name.
-+    maxItems: 1
-+
-+  wakeup-source:
-+    description: Enables wake up of host system on alarm.
-+
-+allOf:
-+  - $ref: rtc.yaml
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#clock-cells"
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@51 {
-+            compatible = "haoyu,hym8563";
-+            reg = <0x51>;
-+            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+            #clock-cells = <0>;
-+        };
-+    };
--- 
-2.35.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
