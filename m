@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C303AEB6466
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 11:21:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F6AAEB6467
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 11:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8+dHmziAsrzTjQ5E+QlPfX054BftB/xJX6TOE+o/koQ=; b=qjWNFTLC1aQoSG
-	xrbBUAWF5s1kknFn4WjcosQMoJhZeo975XKLPY/8gCNVeR7EDUOhrNp0iSwYM6dA7vBGVjrHt/r12
-	z87jQeg8AzlNB9S/k42WlRkrMkBFY7f4FLvmJ0U5JnGWG9YoBPxeOWCY2VFf/wdaeeuXYmhDlVIaf
-	jUxHvT0kM/ZeeKsvTJNnG6QHdHwtkgRjt7Gl48lWTWhA2Q5J7XYiaAurJqU9iyhoK0LKVImxKKUvq
-	ByzeUnqrdHz9XqysDu5qansxmhiPk9g4rutyMJmTm57/n+S4gFH+G2kYsIPW04RieKlCoJimGrCXA
-	ggrU8Y2fwtEzMqrsbtOQ==;
+	List-Owner; bh=YcU6GA7C517RiglzrRBTj2DhmD1ecMtNReXTkIuVf+g=; b=Y1SIGFIJiYK033
+	w+8IHT2X2fDYwnYr7B4WF//unWiK6mPCmSIgbJAlVbBEuj2ytarkW/z1Vwv4M8Po5Kpnxddo3clOe
+	Imn+rfbOoa3yPtXghFr9ihDzuaTiFOWx5I5/8JRwpyjZIb01qhPV6spi5Nthc7AqJEfnbVwQI+uPk
+	xSqgLxTsBruSZBTUUkuAHvwdwgLhNCzdfBTWdiVtinAK8aLdk79ZiocJhoZalupnm0FHGnhrnQ8tF
+	ifTSq/d6piYliiO7YaAlnQZn2BAYCA6a2alqLYW0XPRVTZ9IDWPLQ0leNqvYBp66D6vbe3lb+yccq
+	7ZjAidA5nQuf7pbe4zSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omvWB-000yPI-Ht; Mon, 24 Oct 2022 11:21:19 +0000
+	id 1omvWG-000yT0-Hm; Mon, 24 Oct 2022 11:21:24 +0000
 Received: from smtp-out1.suse.de ([195.135.220.28])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omvUx-000xXm-HO; Mon, 24 Oct 2022 11:20:06 +0000
+	id 1omvUz-000xa7-Di; Mon, 24 Oct 2022 11:20:08 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id ABA5D21E6C;
-	Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 2A99A21E9E;
+	Mon, 24 Oct 2022 11:20:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1666610401; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1666610404; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KzUh1CY9McKeyFVUe5+c2z/ffAcO2RMpJv1VeOGC9tQ=;
-	b=mJuvcbrCHArgybf76oDkRVpZgUITZFn7CovoyPGZ8Jtv/UeMegrPQvqhlC4gqPhmZXYyQ5
-	nyw2fxZM1NKfoLBbsIZoJA6WpSIpBCD/fHNYDvp53Aw0xc20byoQ6y7tqBRhoLy+x8gwzs
-	+x10SJ6gN4dZ8eoX6TqRc81bLJ3uHts=
+	bh=YkMHENyFsh6/3SjkSTuYRYMbHc7R5XzWBBCbrwJgYhc=;
+	b=UL0Xm/SZ/boCID7H9JNHrmtRrt3jufekwWgojpJwcDZDOUJLVFxOogJl2v0+1qP4CEAeGU
+	fRM0GF4CApRdd83X31cW2Rzd2aSdlQtJf4S4YZtJ5sXZLrj58aqT6Gv8ztwFTV2hZcAoSy
+	t9VQtHXjrBPan1liZ0sZc/2fCWmDYDA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1666610401;
+	s=susede2_ed25519; t=1666610404;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KzUh1CY9McKeyFVUe5+c2z/ffAcO2RMpJv1VeOGC9tQ=;
-	b=8g9D481esPMqcRBF31NMNzhU5N29eN97tkX3rl/iBf15e+H/kdGgypTXNXjKZ9RnTtjNHR
-	RKdSYVDZGZcV18Ag==
+	bh=YkMHENyFsh6/3SjkSTuYRYMbHc7R5XzWBBCbrwJgYhc=;
+	b=vDfrFs9N/fTxnSB8q3qlPxjXKDXlJR8QXIEAG/fSF+rYVJqcaIrdG6KxsnY74D6kAk8scf
+	1FIUDLCuQMoaGJDg==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3DADB13357;
-	Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A51C113357;
+	Mon, 24 Oct 2022 11:20:03 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id 6NJFDuF0VmOYMgAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:01 +0000
+	id MClwJ+N0VmOYMgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:03 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch,
 	airlied@gmail.com,
@@ -88,16 +88,17 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-tegra@vger.kernel.org,
 	xen-devel@lists.xenproject.org,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 06/21] drm/ingenic: Don't set struct drm_driver.output_poll_changed
-Date: Mon, 24 Oct 2022 13:19:38 +0200
-Message-Id: <20221024111953.24307-7-tzimmermann@suse.de>
+Subject: [PATCH v2 11/21] drm/fb-helper: Cleanup include statements in header file
+Date: Mon, 24 Oct 2022 13:19:43 +0200
+Message-Id: <20221024111953.24307-12-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
 References: <20221024111953.24307-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221024_042003_779797_B623A0CD 
-X-CRM114-Status: GOOD (  10.38  )
+X-CRM114-CacheID: sfid-20221024_042005_652265_13DF7DAB 
+X-CRM114-Status: UNSURE (   8.03  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,32 +115,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Don't set struct drm_driver.output_poll_changed. It's used to restore
-the fbdev console. But as ingenic uses generic fbdev emulation, the
-console is being restored by the DRM client helpers already. See the
-functions drm_kms_helper_hotplug_event() and
-drm_kms_helper_connector_hotplug_event() in drm_probe_helper.c.
-
-v2:
-	* fix commit description (Christian, Sergey)
+Only include what we have to.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 1 -
- 1 file changed, 1 deletion(-)
+ include/drm/drm_fb_helper.h | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-index ab0515d2c420a..99f86f1ba8bee 100644
---- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-+++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-@@ -1018,7 +1018,6 @@ static const struct drm_bridge_funcs ingenic_drm_bridge_funcs = {
+diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+index fddd0d1af6891..e923089522896 100644
+--- a/include/drm/drm_fb_helper.h
++++ b/include/drm/drm_fb_helper.h
+@@ -32,11 +32,9 @@
  
- static const struct drm_mode_config_funcs ingenic_drm_mode_config_funcs = {
- 	.fb_create		= ingenic_drm_gem_fb_create,
--	.output_poll_changed	= drm_fb_helper_output_poll_changed,
- 	.atomic_check		= drm_atomic_helper_check,
- 	.atomic_commit		= drm_atomic_helper_commit,
- };
+ struct drm_fb_helper;
+ 
+-#include <drm/drm_client.h>
+-#include <drm/drm_crtc.h>
+-#include <drm/drm_device.h>
+ #include <linux/fb.h>
+-#include <linux/kgdb.h>
++
++#include <drm/drm_client.h>
+ 
+ enum mode_set_atomic {
+ 	LEAVE_ATOMIC_MODE_SET,
 -- 
 2.38.0
 
