@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 296BBFA3745
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37C69ECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Gd4XrRR+FynM997fdEiTXOVZgjo+vMZxkViINDwX4Po=; b=NIMTO4bL122ny0
-	4MrXUEwXWMLI1YMD60efz6unGAwqn4Ia+gRYfQRA6P0RsJjp6zgQersiJ59dKftfSFu1oFR8UYHHR
-	J0KRCE18TRacZXvVkCqF+YNdX5PPfu4rf5l8hfGIPlV7gdCSQK8cdKXmgc6Fe2KWrbTCrZYS/EewO
-	iCRR2QNK8u7yXGemutLI58XJ5tdz7F4CD3HG2f2KbJBHka1J0dqhR1loH0w/A0kbVhBiL7p7LV+LM
-	Yiga6vqADBkocCECV6KUhz73yHqy+5mLPUbCRtOMwNNQUaQkEoXXkGIDoKuSjw4VWlXdqe0D5nWAD
-	ciZIZtNk3Mhcmn6Jf1kw==;
+	List-Owner; bh=4sath7zr+tmgSakhHEblDAK9XnjGc0Zk3USKgT4Qoh0=; b=W6si9mLTlNq5AE
+	+H83XNMk/2//C8KeT8LZPvwFsqxHyynXTXvZeKGP1T9ZrqoWeuF7//X0H6c2TqoC/ouaIp+kAVcjY
+	GbrE1DvWK63kWzMsX15tPNQXZA+SMPh8HDLdLZpmnJIBnxsfy/6CVgUZISXqIqwk4ohPQ7J8+v0NN
+	OQ/EqGtG08348uKKQYC7oA7k8aQP8Wj+++L5kkGClXg8dURGyWVGPZxgYCRxLO1GMuJe6HeTNKGDb
+	rKcMrCI1DDZyUVevh9bdYgapm9mJnVADpMNdXG1oJ3vla7y20XF0bsXi+Mzla7eEEH5hJoc1I+ga/
+	2L4MiJKHSFK9JIXcV3bA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0kF-002OJ8-Vi; Mon, 24 Oct 2022 16:56:11 +0000
+	id 1on0kH-002OKz-II; Mon, 24 Oct 2022 16:56:13 +0000
 Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0k3-002Nz8-7y; Mon, 24 Oct 2022 16:56:02 +0000
+	id 1on0k6-002O7i-7y; Mon, 24 Oct 2022 16:56:04 +0000
 Received: from jupiter.universe (dyndsl-091-096-059-109.ewe-ip-backbone.de [91.96.59.109])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id E68FF6602831;
-	Mon, 24 Oct 2022 17:55:55 +0100 (BST)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C741660283E;
+	Mon, 24 Oct 2022 17:55:58 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1666630556;
-	bh=IQfA/rjSC8iXKiLYxLYySHd/9TLQ9kJX50bPBRU+wQI=;
+	s=mail; t=1666630558;
+	bh=chfXMCDPsmDqagwc2SR6hcO4fr/H4GKIvfjgdqIxziY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=duef4a48j43UXRDooZFg5Tcx+c7cHP8CYaHz/I3gN3ng1rU7jHSNzOL/hHP40fJ3i
-	 gNsrEohcKR6z6xnBmvOB2yqzw/dKkmj5Sr2hhTIMn53Z+nHPVk9kKa5hDjCtBOBPNJ
-	 qLz//IwJQnK5No1loN2JbkyBlo6YeXlx0dfAQEWc2G1rsXevEFiRi0IQZuf7EOFB2N
-	 e3T5+5ln7bFV8fQPrOqPTomoy44YZcopKhKCGs64/N9A4mp9Z+GaMkmH5Ko0nYK5sh
-	 b8hjHERCtLiRaywWUXUjbAq44qf5cGYG1pq6TAgxS93SaIML4k7qI8n/977Iydr6fi
-	 cC6Ru2rV2M8sg==
+	b=SsYQPD7SBP6A2Kx+ofThUVlNZV4RDtQtLXAv63n605hpL87pXE0d1S9oxDg5G/S8R
+	 SXBp1rkBM2CZs/0lZBSzmrMLXCOjjM+XLqD3wqQy/7uOhUaJwaJsBwJn4EcWvtSdyJ
+	 L4oMDBclhrOwc+6xj5c92wMHh9vRRPiAru6F8wdUkgWbv0M2DqOpGYK8M6pPSQ685g
+	 MX2Gnn9WFBOQFewWQdieYFc5QgLF4Ht79gxxi7Qkq9NSrDYhzRIvzGAcHFaKdSV1f4
+	 9UzJqbrLej7FU+HBEhEKHCPhDuo4v4jJRFmdVS3NeobDXg65UxdPOdhfcQWDBruItP
+	 ulwfTNosIOp5A==
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id F38C3480AEE; Mon, 24 Oct 2022 18:55:53 +0200 (CEST)
+	id 07982480AF1; Mon, 24 Oct 2022 18:55:54 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Alessandro Zummo <a.zummo@towertech.it>,
@@ -60,16 +60,17 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org,
 	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	kernel@collabora.com
-Subject: [PATCHv2 2/6] arm64: dts: rockchip: remove clock-frequency from rtc
-Date: Mon, 24 Oct 2022 18:55:45 +0200
-Message-Id: <20221024165549.74574-3-sebastian.reichel@collabora.com>
+Subject: [PATCHv2 5/6] arm64: dts: meson: remove clock-frequency from rtc
+Date: Mon, 24 Oct 2022 18:55:48 +0200
+Message-Id: <20221024165549.74574-6-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221024165549.74574-1-sebastian.reichel@collabora.com>
 References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221024_095559_588110_0BCF5382 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20221024_095602_473432_81C98A76 
+X-CRM114-Status: UNSURE (   9.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,86 +92,47 @@ Linux driver.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts | 1 -
- arch/arm64/boot/dts/rockchip/rk3368-r88.dts            | 1 -
- arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts    | 1 -
- arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi  | 1 -
- arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts     | 1 -
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts        | 1 -
- 6 files changed, 6 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts      | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts    | 1 -
+ 3 files changed, 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-index 0e88e9592c1c..81d1064fdb21 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-@@ -212,7 +212,6 @@ hym8563: rtc@51 {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index 6ab1cc125b96..202deb4e2d63 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -140,7 +140,6 @@ rtc: rtc@51 {
  		compatible = "haoyu,hym8563";
  		reg = <0x51>;
  		#clock-cells = <0>;
 -		clock-frequency = <32768>;
  		clock-output-names = "xin32k";
- 		/* rtc_int is not connected */
  	};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-index e147d6f8b43e..5589f3db6b36 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-@@ -196,7 +196,6 @@ hym8563: rtc@51 {
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index f43c45daf7eb..b21172ece1fa 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -270,7 +270,6 @@ rtc: rtc@51 {
  		compatible = "haoyu,hym8563";
  		reg = <0x51>;
  		#clock-cells = <0>;
 -		clock-frequency = <32768>;
  		clock-output-names = "xin32k";
- 		/* rtc_int is not connected */
  	};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-index 18b5050c6cd3..7ba1c28f70a9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-@@ -104,7 +104,6 @@ hym8563: rtc@51 {
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PA5 IRQ_TYPE_EDGE_FALLING>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "xin32k";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hym8563_int>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-index 6c168566321b..bf9eb0405b62 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-@@ -301,7 +301,6 @@ hym8563: rtc@51 {
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+index b8ef3bd8b840..1703da3235ea 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+@@ -89,7 +89,6 @@ rtc: rtc@51 {
  		compatible = "haoyu,hym8563";
  		reg = <0x51>;
  		#clock-cells = <0>;
 -		clock-frequency = <32768>;
- 		clock-output-names = "hym8563";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hym8563_int>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index c282f6e79960..26d7fda275ed 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -500,7 +500,6 @@ hym8563: rtc@51 {
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PD3 IRQ_TYPE_EDGE_FALLING>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "rtcic_32kout";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hym8563_int>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index fb87a168fe96..539ef8cc7792 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -509,7 +509,6 @@ hym8563: rtc@51 {
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "rtcic_32kout";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hym8563_int>;
+ 		clock-output-names = "xin32k";
+ 		wakeup-source;
+ 	};
 -- 
 2.35.1
 
