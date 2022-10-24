@@ -4,83 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FDA6ECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 15:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF8CFA3740
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FCFUovOdE3Zj3TLWo5eugke5Le3UlOZ6lOyCduMpzcE=; b=wS3mh614SdgkMN
-	t2VanPfjmhUxBUFpiicmdlOjsE2i006l7jK91TEiSM9czT2uROxWsp1hndbVYzROqss7PH0QTCw11
-	Op+pIlDDN74+fjyarirWGA6I/Cu1hod+QI+PI7k2urDFIzG/GHfLLpk4WqEKXq6oOxFAWjHqbf9qI
-	XC1L6rRYNUk9wz6CaeBiEAsGR4LhxGIkTcNf9KOfm2728qQL3C4bEL9J0x0QKqb2r7onzH4Bsofat
-	klzt6zfKx+GWmmK+zUt5ivtqwS3IPXo7+VbC5VFF1+9VTNrdYn62fhFw6ohFJk5SG1K1TcF8b6DmK
-	A1MdzKcZVVwzzL1bhbvQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LXTKycDoBMzROQ0BNFvc2jiqOJaK8fuY/yXBPNdkSd0=; b=bF/K/Ru/EOY6tJ
+	7FnqRBeLwnR2+VJx8wFSoyruZYGt8rPpbZOrASYSmnbwtfxO0Zxdlc4v7ny9BoNZMekhjR67ToGPq
+	HlAkNmNI6KmDMqIBebUMBg6VqOdcU680ClLA0JaltbUVSAP2OD4RiuRFotQWKi3g/083liGF6UBFD
+	GExbF2vu/Yt5xaOffvwMSZ2XpL38TYHaCxjICSPPInwB+KwL7yTT7qBnx1a5OB/42mlqjpG3Bunwm
+	qL0dETS44fbcfYl2NduP3xm0CgHy+gFj2CRAPg8mldoAwfimpo3F7ckk785vjJdHpWzjyKeOK//ye
+	ENEwsRqVbroR031o4MZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omziK-002Blg-Ig; Mon, 24 Oct 2022 15:50:08 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1on0k8-002OCd-Be; Mon, 24 Oct 2022 16:56:04 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1omzg0-002AoL-7B
-	for linux-amlogic@lists.infradead.org; Mon, 24 Oct 2022 15:47:45 +0000
-Received: by mail-ej1-x635.google.com with SMTP id 13so6032179ejn.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Oct 2022 08:47:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k8cUhyF+iRbpVm7ZibvpxWN910TkG4qCMbi/DBVKQRg=;
-        b=QCCxpZW74bpelD0cNFpuKewanqSBjPB7XKJWDhBUTh84B2UhnfiEX7GS+upegiuLBN
-         GnCLEiGyh2+g1Kl3P0dDR8QNa8afxCSggYk5rMFobYArvjr6oqrzFOf9gS3aSWB4ZFda
-         Xp17BhKgvbvZPef2NqX9p2f5t6HDGFD00BTLbhbHBUEGa05KY6EZmP42uKlWCESxSQDU
-         2Kg9+7nk8CAJQD0XlnwOFeQBBR0e0NvmzklW0Yz6WsNRJ+5/iRgp2e+8v/YGH2Opus7Q
-         DrQdCkgbinCnYan3+pBpZfZw1E5RRsY1RLLRy1yybVUMPQ1b+5k/ni9Kr73H8v8XF5nd
-         2tYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k8cUhyF+iRbpVm7ZibvpxWN910TkG4qCMbi/DBVKQRg=;
-        b=iBFQ6lcaegLl/QgUqX55Nawymu1ZHanGDpFEm2qmVg5kb1bKE0owRkyjJyvQpE88mX
-         w/cZjGqxxgxUl+0zihky2OslDEDg+a+l1QG990pQ4Es+xSa2dIFdbXk6lgedPaxvFPsv
-         LbIF8+OkvW1MGR7GkiEDfco0fsWFuvYJOH0sUG0rrI0Ikx4GO/oa7/Y2RvHoLaiVNR3v
-         DVRJ3Q41D5J/hFCu7MhYNrqcikxNoAJSdrOFJ5bidx5JkSAK0+n0+WGxOqiIISaJcHPE
-         s7Y4tgapsKd35TJmG3YlFPbA6x+fght1d08kx0cS/HYFXDIHmQq+iE0d+R6zryTAU8ox
-         WLPw==
-X-Gm-Message-State: ACrzQf0JLs6TrhIX4S0QSrnJEL+2n6bvETdrzsR681bCuVT7QhlqGQMs
-	MZfp/PeI+oTvdrjcaJu6ppdzXW1G9F3mOLHVtDTciQ==
-X-Google-Smtp-Source: AMsMyM6eSCRZlQsr3x3MX2LJ8U7dR/Lcp1uuiIC6p0cWOh1wq3htWWGbxETJTk6iSILIXgvjOp4IhCLlxGinAjrVdY0=
-X-Received: by 2002:a17:907:5c2:b0:77e:def7:65d8 with SMTP id
- wg2-20020a17090705c200b0077edef765d8mr28634968ejb.487.1666626461004; Mon, 24
- Oct 2022 08:47:41 -0700 (PDT)
+	id 1on0k3-002Nz7-6l; Mon, 24 Oct 2022 16:56:00 +0000
+Received: from jupiter.universe (dyndsl-091-096-059-109.ewe-ip-backbone.de [91.96.59.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id DF4716602830;
+	Mon, 24 Oct 2022 17:55:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1666630556;
+	bh=7HmGEeUycu9JUOAzQUWsfe2Icu5JIRazyOm+DZSY+30=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jQ9R/puRhj5UJrIR+0rGBUm+ADPfk77O0r9TOrfMOfg+xjwVeaiMA2tf357DsmjVo
+	 b0yUD41zMqbrthlg4k/Lm6qrQxhdGxV3B0aHmbYFBCibv+FA/YyVfuq4361pZuSr6m
+	 4LYh0FZh+/xnmYmQSJ1OLGPXhM7JoxKpooFZQwrvaSJybjKIW88gHR6/WwgDmpSHBZ
+	 oIDeriLZQY6C2gN243+X+tIr8Z2qrjwlNX3JXwQ5I7eAkSravupCKl2/h0fcGSikfD
+	 VD7JUwx+wYIEn3oY2p2couV6ch6MRVIVNindJYWRoURfSzailfPhjvxQCcGxh8BzCZ
+	 Kagmzz5+sU2GA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id EE5C8480AEC; Mon, 24 Oct 2022 18:55:53 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCHv2 0/6] Convert HYM8563 RTC binding to YAML
+Date: Mon, 24 Oct 2022 18:55:43 +0200
+Message-Id: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <cover.1666357434.git.mazziesaccount@gmail.com>
- <1ed8351c2cb4911fcda21b97f7a7b089e955c301.1666357434.git.mazziesaccount@gmail.com>
- <d1ed9ab7-6d67-fd93-6a77-86ea029eedc5@gmail.com>
-In-Reply-To: <d1ed9ab7-6d67-fd93-6a77-86ea029eedc5@gmail.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Mon, 24 Oct 2022 17:47:29 +0200
-Message-ID: <CAG3jFyvveGsO6VW1q8-aK1psabze5gAN=wCn16+Q4A_KH=WuvA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] gpu: drm: sii902x: Use devm_regulator_bulk_get_enable()
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221024_084744_310772_C4E983EC 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20221024_095559_418688_10C38BDD 
+X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,44 +85,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 21 Oct 2022 at 15:24, Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->
-> On 10/21/22 16:18, Matti Vaittinen wrote:
-> > Simplify using devm_regulator_bulk_get_enable()
-> >
-> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > Reviewed-by: Robert Foss <robert.foss@linaro.org>
->
-> Robert, I did slightly modify the return from probe when using the
-> dev_err_probe(). I still decided to keep your RBT - please let me know
-> if you disagree.
+Hi,
 
-Not a problem. In fact, feel free to upgrade it to an acked-by, to
-simplify merging this series.
+This converts HYM8563 binding to YAML and fixes
+the existing DTs.
 
-Acked-by: Robert Foss <robert.foss@linaro.org>
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221021170605.85163-1-sebastian.reichel@collabora.com/
+ * Added patches fixing the existing devicetrees (Rob Herring)
+ * Dual licensed the binding (Krzysztof Kozlowski)
+ * Added maxItems for clock-output-names (Krzysztof Kozlowski)
 
->
-> Eg, this:
-> > -     if (ret < 0) {
-> > -             dev_err_probe(dev, ret, "Failed to enable supplies");
-> > -             return ret;
-> > -     }
->
-> was converted to:
->  >      if (ret < 0)
-> > +             return dev_err_probe(dev, ret, "Failed to enable supplies");
->
-> Yours
->         -- Matti
->
-> --
-> Matti Vaittinen
-> Linux kernel developer at ROHM Semiconductors
-> Oulu Finland
->
-> ~~ When things go utterly wrong vim users can always type :help! ~~
->
+-- Sebastian
+
+Sebastian Reichel (6):
+  arm64: dts: rockchip: fix node name for hym8563 rtc
+  arm64: dts: rockchip: remove clock-frequency from rtc
+  arm: dts: rockchip: fix node name for hym8563 rtc
+  arm: dts: rockchip: remove clock-frequency from rtc
+  arm64: dts: meson: remove clock-frequency from rtc
+  dt-bindings: rtc: convert hym8563 bindings to json-schema
+
+ .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+ .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
+ arch/arm/boot/dts/rk3036-evb.dts              |  3 +-
+ arch/arm/boot/dts/rk3288-evb-act8846.dts      |  2 +-
+ arch/arm/boot/dts/rk3288-firefly.dtsi         |  3 +-
+ arch/arm/boot/dts/rk3288-miqi.dts             |  3 +-
+ arch/arm/boot/dts/rk3288-rock2-square.dts     |  3 +-
+ arch/arm/boot/dts/rk3288-vmarc-som.dtsi       |  1 -
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  1 -
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  1 -
+ .../dts/amlogic/meson-gxm-minix-neo-u9h.dts   |  1 -
+ .../dts/rockchip/rk3368-orion-r68-meta.dts    |  3 +-
+ arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  3 +-
+ .../boot/dts/rockchip/rk3399-roc-pc-plus.dts  |  3 +-
+ .../dts/rockchip/rk3399pro-vmarc-som.dtsi     |  3 +-
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   |  1 -
+ .../boot/dts/rockchip/rk3568-rock-3a.dts      |  1 -
+ 17 files changed, 65 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+
+-- 
+2.35.1
+
 
 _______________________________________________
 linux-amlogic mailing list
