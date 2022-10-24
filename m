@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37C69ECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5956CFA373F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Oct 2022 16:56:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4sath7zr+tmgSakhHEblDAK9XnjGc0Zk3USKgT4Qoh0=; b=W6si9mLTlNq5AE
-	+H83XNMk/2//C8KeT8LZPvwFsqxHyynXTXvZeKGP1T9ZrqoWeuF7//X0H6c2TqoC/ouaIp+kAVcjY
-	GbrE1DvWK63kWzMsX15tPNQXZA+SMPh8HDLdLZpmnJIBnxsfy/6CVgUZISXqIqwk4ohPQ7J8+v0NN
-	OQ/EqGtG08348uKKQYC7oA7k8aQP8Wj+++L5kkGClXg8dURGyWVGPZxgYCRxLO1GMuJe6HeTNKGDb
-	rKcMrCI1DDZyUVevh9bdYgapm9mJnVADpMNdXG1oJ3vla7y20XF0bsXi+Mzla7eEEH5hJoc1I+ga/
-	2L4MiJKHSFK9JIXcV3bA==;
+	List-Owner; bh=1HW9fyrTUinIJbG6dJl8htXfAHYCxaSEtUy2VpxX5Pw=; b=XEmbAqNGQjDXlY
+	d43KR/4sZqzhw5xK38fYc02L0o2UMSuKyZjbhH3eDfYwdkT4ITPxz67bpDAUVvyV1r2unMtKYhQak
+	GzBMXtUprR0+1/4BaNrAs8hDtVvgMrMXyNjXzrEJEBs9s9RuSOT/Glvj8vZwO2ofbrt4facHGmLyl
+	qASQ92lTTuKOEj8oVb0s8oV0ebVpj+se2svTKCuYdFGJT7RzJiudUVTfPbkeddia+aHGX8hg1yEXT
+	kNX7Kgw6PohXSiew7UyWQaSp+HjimJF6B9qXoX3aVpA2coqCZkZqjrPyivuASwuEjywW18wLSmISI
+	hGnFeOU4f5V/AOijRfVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0kH-002OKz-II; Mon, 24 Oct 2022 16:56:13 +0000
+	id 1on0kI-002OLx-Ln; Mon, 24 Oct 2022 16:56:14 +0000
 Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1on0k6-002O7i-7y; Mon, 24 Oct 2022 16:56:04 +0000
+	id 1on0k6-002O7h-5e; Mon, 24 Oct 2022 16:56:04 +0000
 Received: from jupiter.universe (dyndsl-091-096-059-109.ewe-ip-backbone.de [91.96.59.109])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C741660283E;
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 86827660283F;
 	Mon, 24 Oct 2022 17:55:58 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1666630558;
-	bh=chfXMCDPsmDqagwc2SR6hcO4fr/H4GKIvfjgdqIxziY=;
+	bh=4ZJL66e4uW0ZMfoXxSwlQ168x6AE5qji5g/hEVVVtNI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SsYQPD7SBP6A2Kx+ofThUVlNZV4RDtQtLXAv63n605hpL87pXE0d1S9oxDg5G/S8R
-	 SXBp1rkBM2CZs/0lZBSzmrMLXCOjjM+XLqD3wqQy/7uOhUaJwaJsBwJn4EcWvtSdyJ
-	 L4oMDBclhrOwc+6xj5c92wMHh9vRRPiAru6F8wdUkgWbv0M2DqOpGYK8M6pPSQ685g
-	 MX2Gnn9WFBOQFewWQdieYFc5QgLF4Ht79gxxi7Qkq9NSrDYhzRIvzGAcHFaKdSV1f4
-	 9UzJqbrLej7FU+HBEhEKHCPhDuo4v4jJRFmdVS3NeobDXg65UxdPOdhfcQWDBruItP
-	 ulwfTNosIOp5A==
+	b=U+ts7lMAMaWbjGgf47Fa/x8M9r74NDlhkJ23lZoQTUPGZwiHwGaAQaybJZy8O2Hur
+	 jffcrKCymXnnLhjBFBC9fFbniFal2QGpkWaFogWxTtyPldygP1pM3geMIGwXJGlJLG
+	 DlnFI6gUL7q7BF6Mr6b8QiLDTwGB7y7q7mRcASHcmcFlMH7xEwv2+EvE3JA5EMsUFe
+	 q/1sD+RcxAV0WnNumJaVxQno+zl6KgZ3outsIoCgoJ5wBFwXOaqGa3yvPC50gMVaKi
+	 PLVJs2F35RXXDuDFlNEftBEqtbDJQIJoo1oUFuRhZ+y0/QREx9L/ruy5bTJMDNLBy4
+	 Hz07fHHRzs9fg==
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 07982480AF1; Mon, 24 Oct 2022 18:55:54 +0200 (CEST)
+	id 099CF480AF2; Mon, 24 Oct 2022 18:55:54 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Alessandro Zummo <a.zummo@towertech.it>,
@@ -60,17 +60,16 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org,
 	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	kernel@collabora.com
-Subject: [PATCHv2 5/6] arm64: dts: meson: remove clock-frequency from rtc
-Date: Mon, 24 Oct 2022 18:55:48 +0200
-Message-Id: <20221024165549.74574-6-sebastian.reichel@collabora.com>
+Subject: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
+Date: Mon, 24 Oct 2022 18:55:49 +0200
+Message-Id: <20221024165549.74574-7-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221024165549.74574-1-sebastian.reichel@collabora.com>
 References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221024_095602_473432_81C98A76 
-X-CRM114-Status: UNSURE (   9.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221024_095602_383528_A1A52D79 
+X-CRM114-Status: GOOD (  14.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,52 +86,115 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-'clock-frequency' is not part of the DT binding and not supported by the
-Linux driver.
+Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
+Schema format.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 1 -
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts      | 1 -
- arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts    | 1 -
- 3 files changed, 3 deletions(-)
+ .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+ .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
+ 2 files changed, 56 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 6ab1cc125b96..202deb4e2d63 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -140,7 +140,6 @@ rtc: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "xin32k";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index f43c45daf7eb..b21172ece1fa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -270,7 +270,6 @@ rtc: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "xin32k";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
-index b8ef3bd8b840..1703da3235ea 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
-@@ -89,7 +89,6 @@ rtc: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
--		clock-frequency = <32768>;
- 		clock-output-names = "xin32k";
- 		wakeup-source;
- 	};
+diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+deleted file mode 100644
+index a8934fe2ab4c..000000000000
+--- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Haoyu Microelectronics HYM8563 Real Time Clock
+-
+-The HYM8563 provides basic rtc and alarm functionality
+-as well as a clock output of up to 32kHz.
+-
+-Required properties:
+-- compatible: should be: "haoyu,hym8563"
+-- reg: i2c address
+-- #clock-cells: the value should be 0
+-
+-Optional properties:
+-- clock-output-names: From common clock binding
+-- interrupts: rtc alarm/event interrupt
+-
+-Example:
+-
+-hym8563: hym8563@51 {
+-	compatible = "haoyu,hym8563";
+-	reg = <0x51>;
+-
+-	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+-
+-	#clock-cells = <0>;
+-};
+-
+-device {
+-...
+-	clocks = <&hym8563>;
+-...
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+new file mode 100644
+index 000000000000..0b9f39ef0edc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Haoyu Microelectronics HYM8563 RTC
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++properties:
++  compatible:
++    const: haoyu,hym8563
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++  clock-output-names:
++    description: From common clock binding to override the default output clock name.
++    maxItems: 1
++
++  wakeup-source:
++    description: Enables wake up of host system on alarm.
++
++allOf:
++  - $ref: rtc.yaml
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@51 {
++            compatible = "haoyu,hym8563";
++            reg = <0x51>;
++            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++            #clock-cells = <0>;
++        };
++    };
 -- 
 2.35.1
 
