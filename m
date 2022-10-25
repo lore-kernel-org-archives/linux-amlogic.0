@@ -4,81 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46C46ECDFA1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Oct 2022 15:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E39EC04A95
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Oct 2022 15:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8kemp6ElPOYTA+zKIZ1W4y2vfOv1KTd//f+UzyWA9qE=; b=0jsjV0ahhJwPWE
-	XB0ecVoFakv+c8HqTcMHki9hSjfZV5LRzzNvc0ksvO3Z5j+D4FPQMnkSoXAsooKAjZtIzVA0BNt+N
-	KhPM/dQPXc1J178Gu6h5m4cHQs3PBHsMQEVbk8PC45jSodcXC0Jgi3JolToyBx0KBp0uAU6cykxwd
-	IAqbPzW54w6Motv6+veFxuAJS4XxkptqXk339McJrfjjzPCTuoahIrEKbDJniGcjHu/3mahvf6ovn
-	FyJqYdZQvdm+TVZeLyLbfzM+p/FitrOEKtV1HdW4IrWhGSbed1MXj2Jkwh6RuR/ibP+xKRBLnKt9x
-	EJU29NJpK3BuJo4eIbHA==;
+	List-Owner; bh=DSW9o8Hj6z0bieFysqZUWVhXF8ocCkFFaLGfWzYkOoU=; b=K+fKLkln9N4b1T
+	Q0UDQGEEvsYzLnrF0MAJCFG5LwtRhhKGnUmP2sSM/W3v8kz8FTGImoiSo0A4A0XsYqmxTYVX8RV9d
+	kDGUHFzU0jAUFW9Exg7xQnLhK7w7E429kwFrmSVEwQZRqCtLHwRcyJKGhc8Eh8HvGKaXRPb4qv7HS
+	R8B4YRXE7lBgo267/r7MmvKah3RDssvdyxiQHIA0LckEzTAGjfKfSO4I2Jfm+Iym3YOZuS2n6+89N
+	OXERexKhHVXv6n2qH5B9Db8Ycb6gRkCxKe0Jog7uohYNSbzkHODLYdP2IWnzc+i1d9Laux/79SPrL
+	JaZ0GNHZYBA92vtrlXGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onLWK-005zSN-SI; Tue, 25 Oct 2022 15:07:12 +0000
-Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
+	id 1onLfG-0062Im-3N; Tue, 25 Oct 2022 15:16:26 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onLWG-005zOA-3Q
-	for linux-amlogic@lists.infradead.org; Tue, 25 Oct 2022 15:07:11 +0000
-Received: by mail-qk1-x72b.google.com with SMTP id b25so8225521qkk.7
-        for <linux-amlogic@lists.infradead.org>; Tue, 25 Oct 2022 08:07:04 -0700 (PDT)
+	id 1onLfC-0062Hc-Ti
+	for linux-amlogic@lists.infradead.org; Tue, 25 Oct 2022 15:16:24 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id bp11so21093910wrb.9
+        for <linux-amlogic@lists.infradead.org>; Tue, 25 Oct 2022 08:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=21fm5EgPKmeOayQHxWYMU7Nefc1Ipf9I7LMbzYS7TPI=;
-        b=Qao3n6VBojqDPD+nyuHaNb8aRuC3dHiWWy2AGSGIeYcnvqBmtYGQkw0ZAnJFMbgl3b
-         YXIsxmYnbPg/gkeIi50KEfyRBdnGvB7rOyE6AKwAWbos4tmP+xf33xTqrKYAFctdgjEV
-         5bJSY6/fZwHsi070+kf0Dnmrd9VA6kpKF5vcsJbaF4KkD+ujQ6HfenyTPpf4q34P817v
-         Lw/cRjg8xI19gsnwTd7/9PilD6/WIP9eNa1DtNk+gWXZdxuCJP9myXKQJQF5gbDxLWVe
-         PS22WiRQZeD4cAN67FUE74f+0buJO7v71DQP6WC4ve5q5Ibyz3V9+9DvZel0/LU50VSx
-         rUZQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vlhclRXrpi15eP5veKrpsxoPmhuZ9sMxnY9PN21CLSo=;
+        b=K3CCs46NYW6swH5+Ru6/aJtLYjyFHpf2ZDucIc7NhHumD6YNIBmhk9AuLcWXtxZbvV
+         anRJbDUSyYYR1lxT/aRkPlD/atL4B49eb6l6DQ2L0PzvqbjGX7e81eZdWeA19GtWHYsZ
+         TmNKJhJwNE31bTSArzrEiJ5rPmzqnGQdq/20xzAUtc3DsUrAQOyXcrFGn7FKZMSmlFZT
+         8jrkfpoNVPomKCCp/3gTVslPoAjk2DMFmR3bJl9lxGhPl9kDf3nhSjZPuAYzXQObnoLe
+         +eMJ4Th8R5x83Xvv9wUC03uDE+nhAXiltR5bKbg1OpvPTq3yUMbPB/QIpZopi6egX0Lw
+         voLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=21fm5EgPKmeOayQHxWYMU7Nefc1Ipf9I7LMbzYS7TPI=;
-        b=VKnPRcDCuNNrzR8nrZTHdncmUjXqc+n7ILzXrE6nwhFEYv4K9u4zuVA7v8Dog6pWJf
-         AZWUbPJx6alRc4SoDrii7gRFpOkuqK2vYhZGMAU/pa1BUwCLresyti4JOLnijJS+kOkJ
-         ekJN6mjoxYHfsERN9vcCteyAe5OCEPBRkZNiWJq4bHpglZYWq///RCMGYXFUSbXUBxHH
-         JwtEHNMFurCYGTzBq4ZNhA1dbYtEqcey4qTHeE5wvQKQ/ozJPzVm20RTDg7FsOPfRI/o
-         DHyP3EOqdYa/zy9viqHDS8q3i2ge2Vtc2E28Ian61pGiMDODacnQC+ZTuRxzXM0WikPq
-         3n0A==
-X-Gm-Message-State: ACrzQf2aOMoNBE2NjQcGBf0OqerX4F/prkh6tjQHFc3KjlO3Ty3lr8U+
-	7Sxdpdx3QbnmHTZJxbNW3BEVVKb2hDgxHQPa1ujEzw==
-X-Google-Smtp-Source: AMsMyM5WxUziOboPsxC2N6qlers3FkCq6d6ddxCwWgeTeLHIKEFc0BoQutxorsr/ysGcAgO7sfY3nB5LJLrWXyNsPDs=
-X-Received: by 2002:a05:620a:25c8:b0:6ae:be73:86c6 with SMTP id
- y8-20020a05620a25c800b006aebe7386c6mr25824699qko.531.1666710423705; Tue, 25
- Oct 2022 08:07:03 -0700 (PDT)
+        bh=vlhclRXrpi15eP5veKrpsxoPmhuZ9sMxnY9PN21CLSo=;
+        b=daXHLKf5JYu3wWwC6IyUBtI+iZhi3DJ6n1ZGbRgMm1IzQ+44UZ37Wimx9XPHf5vH+k
+         wZ1jSzmmB5BDUO6kcGGr0fSgAVdu0RVecV+fz9+TbMk2ESh97Tlu86uJ/uTRGvzyEKJg
+         wCwcFQVr1TOM0CCU+jVsLiJXOqn/wTWeiiHwUaBbCgm/xkYjEz3MRXwLr/dPfezTzSPj
+         JegFYeBwQf7HYTxIPF4KCI6lQ+y39P2b2yH56ukYvHtoiVkJfbaaPfND1KhSk5JYgOjY
+         uU/oU+RypsyYWdleGwRX7woA2k5BQOT9ebDhkNnzChc+gfOHJJRj1lFbalRzbWrvhNn4
+         j5Dw==
+X-Gm-Message-State: ACrzQf1+6rpKgnd+2wgz6H7ml9xxt65Z+G30UJPU2WA+MmZd9m3WlGgn
+	GOpTVD1p3+hmSsyfzP2whw64ug==
+X-Google-Smtp-Source: AMsMyM6L6kpQndXeoqqxhDSBLPTTYSKha+j1IWyqcsW4prVtDN34/Z9ZUfHJ1RGt2LzWaviLDaPgGw==
+X-Received: by 2002:a5d:6f02:0:b0:22f:5fd3:f7c4 with SMTP id ay2-20020a5d6f02000000b0022f5fd3f7c4mr25314476wrb.423.1666710981011;
+        Tue, 25 Oct 2022 08:16:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id r13-20020a05600c458d00b003c6f3f6675bsm11577822wmo.26.2022.10.25.08.16.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Oct 2022 08:16:20 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: u-boot@lists.denx.de, linux-amlogic@lists.infradead.org, Christian Hewitt <christianshewitt@gmail.com>,
+ u-boot-amlogic@groups.io
+In-Reply-To: <20221025143205.14470-1-christianshewitt@gmail.com>
+References: <20221025143205.14470-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: nanopi-k2: readd PHY reset properties
+Message-Id: <166671098029.66253.1659888075300795635.b4-ty@linaro.org>
+Date: Tue, 25 Oct 2022 17:16:20 +0200
 MIME-Version: 1.0
-References: <20220829093141.45583-1-tomeu.vizoso@collabora.com>
- <20220909141528.5090-1-tomeu.vizoso@collabora.com> <CAPj87rMYW1xZdacZ1Y0qk+D9xpqsqE+cwbQ1j1nZ7S+RKpzOoQ@mail.gmail.com>
- <CAKMK7uGkFP1jSNQzv37PvSqvOtt1FnbfbNyYEf99WM=_2AszSw@mail.gmail.com>
-In-Reply-To: <CAKMK7uGkFP1jSNQzv37PvSqvOtt1FnbfbNyYEf99WM=_2AszSw@mail.gmail.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 25 Oct 2022 16:06:52 +0100
-Message-ID: <CAPj87rPTAhcqSnhzYPdDn93Kh9aGJtN9ZGVAYUP2Ke6w6frH5w@mail.gmail.com>
-Subject: Re: [PATCH v8] drm: Add initial ci/ subdirectory
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Tomeu Vizoso <tomeu.vizoso@collabora.com>, David Airlie <airlied@linux.ie>, 
-	Jonathan Corbet <corbet@lwn.net>, Carlo Caione <carlo@caione.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Rob Clark <robdclark@chromium.org>, dri-devel@lists.freedesktop.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	kernel@collabora.com, Neil Armstrong <narmstrong@baylibre.com>, 
-	Rob Clark <robdclark@gmail.com>
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221025_080708_408054_4E8CCB28 
-X-CRM114-Status: GOOD (  30.60  )
+X-CRM114-CacheID: sfid-20221025_081622_977961_0AE15394 
+X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,52 +90,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi all,
+Hi,
 
-On Tue, 25 Oct 2022 at 08:32, Daniel Vetter <daniel@ffwll.ch> wrote:
-> On Fri, 9 Sept 2022 at 19:18, Daniel Stone <daniel@fooishbar.org> wrote:
-> > But equally - and sorry for not jumping on the IRC (?) discussion as I was in the middle of other stuff when it came up - I'm don't think this is the right plan.
-> >
-> > Mesa having all its CI in-tree makes sense, because merges happen rapidly to a single canonical tree. If the scripts need to be changed for whatever reason, we can merge something in under an hour and everyone immediately gets it. DRM is quite different though, given the forest of trees we have and the long merge paths between them. I worry that merging the CI scripts in-tree - especially for our initial attempt at it, when we're likely to need to make quite a lot of changes before it settles down to become a stable system that works for everyone - is shooting ourselves in the foot by limiting our flexibility.
->
-> So the entire "we have multiple trees" is why I want at least the
-> gitlab-ci.yaml in tree, to force people to collaborate more on one
-> thing instead of everyone rolling their own fun and hacking stuff up.
-> And there's still tons of stuff outside in the separate repo, like the
-> lab status so Linus doesn't get a silly history of lab flapping.
->
-> Also wrt "developers don't get the update right away due to
-> backmerge/pull delays", that's why integration trees like drm-tip or
-> linux-next exist. So maybe initially we should make sure the ci
-> patches go in through drm-misc, to maximize how many people see it.
-> And even for mesa it's not fully automatic, you still have the rebase
-> your branch if you picked a bad one for development (but yeah marge
-> does that if the MR is ready). If you're doing kernel development on a
-> linear tree instead of an integration tree, you're doing it very
-> wrong.
->
-> What I think everyone agrees on is that we probably get the split
-> wrong and need to shuffle some files back&forth, and that's something
-> we need to warn Linus about I guess. But somewhere we do need a split
-> between internal and external stuff, and personally I'd like if at
-> least the pure sw testing (build and virtual stuff) could be all in
-> upstream.
->
-> > Given that it's currently very dependent on fd.o infrastructure (published ci-templates, the registry, the specific-tag runners for Collabora/CrOS DUTs, etc), there isn't much of a portability gain in bringing the scripts into the tree either. It's a good goal, but not where we are today.
->
-> I don't think there's huge chances for any non-fdo gitlab anytime
-> soon. Once we get there we might need to figure out how to standardize
-> the hw lab interfacing, and if we have all the sw targets in upstream
-> that should help with shuffling stuff around for a hypothetical LF
-> gitlab CI (or whatever it is).
+On Tue, 25 Oct 2022 14:32:05 +0000, Christian Hewitt wrote:
+> The sync of device-tree/bindings in 11a48a5a18c6 ("Linux 5.6-rc2") causes
+> Ethernet to break on some GXBB boards; the PHY seems to need proper reset
+> timing to function in u-boot and Linux. Re-add the old PHY reset binding
+> for dwmac until we support new bindings in the PHY node. This borrows the
+> same fix applied to the Odroid C2 board [0].
+> 
+> [0] https://lists.denx.de/pipermail/u-boot/2021-April/446658.html
+> 
+> [...]
 
-Yep, having talked through things on IRC, I'm happy with where we are;
-let's give it a go and find out.
+Thanks, Applied to https://source.denx.de/u-boot/custodians/u-boot-amlogic (u-boot-amlogic-test)
 
-Acked-by: Daniel Stone <daniels@collabora.com>
+[1/1] arm64: dts: meson: nanopi-k2: readd PHY reset properties
+      https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/7b70f68977578360d9c47bb25d6d1937075153b4
 
-Cheers,
-Daniel
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
