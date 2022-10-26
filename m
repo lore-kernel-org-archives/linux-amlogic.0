@@ -4,75 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 744FBC38A2D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Oct 2022 07:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B588C38A2D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Oct 2022 08:03:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=HfdJ7Xkg19upSLUGluZq9QDsbe7KRJyvLPEVjUFs5VI=; b=GINxoLzzprMZGF
-	xxvmkfsAdH1LiK9pRCJi9XMcV410rPUpmy73cLSBzbx4K5dpkvtbhtZLnWV98BYldIvlm/5gFgHaV
-	v/Z2R+rxO0/APCepWkx/l59nr+0q9Sk7iraaLJAwzAusphP6/lPuRoNa556reI8zFXeR/CmjIZHJm
-	osNspka6V+WSDjlgc60/rgFPL6pNEBKVUOqdzTW17c/r2nPdE/hap/gHg84/nNumZBgfjX0vM7ovn
-	V7PnbGZW4G60zbSIs9LTYtgJAieeiJ71x1DJ+vqLeuJ+hUuqcTWcud9zo/H1RARr+C8Deqy/TdFs1
-	pDOaEjJnIdsepf52XaYw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Spasb/z+GWc7PqkD4CPyF5v1kNCBvtAccDNR0WlAtcA=; b=aJCybcDnpA2yE0WhwG0ETeRpDU
+	ydXZwR3OIQR0Yn4as/lHnRegl3bX9Ly497taMy5KmCAmnlrhOjpNngKYIu/JOAPTl9BgVCfQbC5Mn
+	6fvrDNVly4HTK0yXEGbMafiBH+9ioESTzwcbUtLNPHOM88TB2vvWqUJ5OPikfOzanhW3xeuuwbt5Y
+	48WOjGGG0ZClDDiBpI8wn3EnPowK/nwdtvLCU0bb0ZnkqmJng7mnui060smorNCTVIN7O64h10Dfl
+	us1/93oTdfK27CAQuxQ9U90ZhnkQuuo75kjio23MpBPLpLoU9kPTL7slCRGb9Oz4Hd9dILwzRXQ6z
+	HrERqCwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onbJ8-008TCB-0m; Wed, 26 Oct 2022 07:58:38 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1onbNQ-008U84-VE; Wed, 26 Oct 2022 08:03:04 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onbJ5-008TBT-Lx
-	for linux-amlogic@lists.infradead.org; Wed, 26 Oct 2022 07:58:37 +0000
-Received: by mail-wm1-x329.google.com with SMTP id l16-20020a05600c4f1000b003c6c0d2a445so942593wmq.4
-        for <linux-amlogic@lists.infradead.org>; Wed, 26 Oct 2022 00:58:34 -0700 (PDT)
+	id 1onbNF-008U4N-3U
+	for linux-amlogic@lists.infradead.org; Wed, 26 Oct 2022 08:02:54 +0000
+Received: by mail-wr1-x431.google.com with SMTP id g12so12188676wrs.10
+        for <linux-amlogic@lists.infradead.org>; Wed, 26 Oct 2022 01:02:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+jyjrbZo+ELkTQHp1UO8qB1tgFnSatDzGs6yA5dAalk=;
-        b=D+lIzuFmmhNmptsvaY8BGQUNGKXCtzv9MHCJaBqvK9nBESL8oazEgpAqhXJVAJywpB
-         i0qxXytK2Dwz3lYx3b2byIBa7MjTi4+3R/V3Jt+8aDopFCPUPRQVDBddysrWAA0Phax+
-         GsYYY4ORqfBeJ0gh58fwYn4mOe9jZKXpaONekw+G4azlTm6jgFc3k+AqCucxptEumHuc
-         liQt7PiNML/sEXGIyXfUbanAFC9/tbEOA3DkJTRlKddeRB5fVya50nxVvbfV6LinPlC1
-         h3/iWju6Wi1Po0962nuxTwR6MKDELIciU2qzNQA7vRW34v/ASomx6+uoD/vRzRiOITSX
-         RO0g==
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=YyPwO7rl+gX39UNWAmiOxo6E2JYfZJtVX93jxGyGRgU=;
+        b=PuRDg6g8vE/Kmsy/HXW2aR4DBNamMoZxiJHU4GN0BUDeWEzc4IgxUwgy7Ixwjz4Ofw
+         8x3MXAzIIB3n1TmHVTwoTcdDMby6OcEsRQAmxt1/qpkoouMO71atWLSLm9ox614DP4Eu
+         x1lpKX834t/hf4dWr6qS8KhQgWWSxoxKQ1MUw+lJcx+pRJ6ayE7ig4zeUSub6t40aeMw
+         aArsBRynHmBpxkTCqYLCHORe/tqFJmciiSPRbm/jZ8grRTY78VSpj0dMhZfsDtlDLTSS
+         PIcMVWAHuqkSMu0ajNpolEaYdB/IqDFIUkZ6dM0z00AWTxdKduOtW5U8DHK9cxkw+M4z
+         mfrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+jyjrbZo+ELkTQHp1UO8qB1tgFnSatDzGs6yA5dAalk=;
-        b=5159LdPVhOAqKCDH8i3iQSZofp+Y/sdH4wi2P3siHJQ0kbFAAl9TRYyfyCDhpqGczU
-         TPuohDlknsQZ+Ei4VDA5B1VMU6Bwk22BZ2pREuH8HTjF3f46CwKpdZEJZJK3PL3Xy3zn
-         BGUq1VU3+lnElEGohBC66xrW6bk3VKFSMGxzI8JpxrzZtdIhgCVixkVeOO9yJqrOeG4Y
-         tntiSgBFIhoT58SbH2dS/ctJ0aWfA/inbX0rPJQ2Qm5B/lmpIvVeSeJLv6v7hgHfodz8
-         xbUnhlyay3sYpaZOAUod/eDjoO9UVnnPZsQqmpuIn4RswriX9350PrFdpUz70VcAN2j3
-         itoA==
-X-Gm-Message-State: ACrzQf0HgjGBzcWJM0L5vCHptZYc6hBaUUzDTi5WTdzjQ4lJAfIldlXS
-	WgkJXYHkU7dobj8KLWQWytlPog==
-X-Google-Smtp-Source: AMsMyM6biL997EUrBv+5AmVPUHlDggoRWcpPcDDG67spwOF+g8th63MEzdahrujErNWbC8OUcQgQOw==
-X-Received: by 2002:a05:600c:1e28:b0:3c6:e046:9da7 with SMTP id ay40-20020a05600c1e2800b003c6e0469da7mr1497424wmb.43.1666771113122;
-        Wed, 26 Oct 2022 00:58:33 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id k1-20020a5d6e81000000b0022cc3e67fc5sm4562593wrz.65.2022.10.26.00.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 00:58:32 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 26 Oct 2022 09:58:28 +0200
-Subject: [PATCH] spi: meson-spicc: move wait completion in driver to take
- bursts delay in account
+        bh=YyPwO7rl+gX39UNWAmiOxo6E2JYfZJtVX93jxGyGRgU=;
+        b=5l0rz57RaN+K0XKZS8sVVvLPZY2+KuTwISGfoLoZZNcJhrVdaOnlMpJZLv1fGY0rM2
+         Nwd2tU+1lZT1x/pxChpQucsalr4TN1qjYcdM40J/H1wSvrn9T6C4jUci6A563qOHbv7w
+         5ZqbMHs8PzM2f0PRmp/nVVEuHx4BFyS46A+nUUVY/oRQw3RzRvpwZ5gs8B41HIvvjbnL
+         cxgAyjMLd6MDOR+owrCFpz1q4yVC9M1qcQ6X8cuULNu/b4CcA2GL208jYSPBm7I1Wddo
+         IigT1NYDc4fhPkwZfvjyA+Xn7cG5vQQx0pxpuJROC93DG4gGzGEJz3yTyglROQxkBQlD
+         3+lA==
+X-Gm-Message-State: ACrzQf26tM0P77XheFVTRFgTpCerUbXapUkEnaxV6n4FfE+Bj+elx4y7
+	pXdTs4cnOVPUMQb359Y+VazDgA==
+X-Google-Smtp-Source: AMsMyM66kvpQWFo5u0OfUq/T3nHMOYZKy3o5Z+LNI+SLBAqxTTBw+3OHccmEWCRwfakgmYIBIojMlA==
+X-Received: by 2002:a5d:5f03:0:b0:22f:8ad4:bd46 with SMTP id cl3-20020a5d5f03000000b0022f8ad4bd46mr27097794wrb.120.1666771368745;
+        Wed, 26 Oct 2022 01:02:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ce41:a140:b67e:6c4b? ([2a01:e0a:982:cbb0:ce41:a140:b67e:6c4b])
+        by smtp.gmail.com with ESMTPSA id f12-20020a05600c4e8c00b003b95ed78275sm1201579wmq.20.2022.10.26.01.02.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 01:02:46 -0700 (PDT)
+Message-ID: <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
+Date: Wed, 26 Oct 2022 10:02:44 +0200
 MIME-Version: 1.0
-Message-Id: <20221026-spicc-burst-delay-v1-0-1be5ffb7051a@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-Cc: linux-arm-kernel@lists.infradead.org, Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>, linux-spi@vger.kernel.org
-X-Mailer: b4 0.10.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
+ on Odroid N2/N2+
+To: Anand Moon <linux.amoon@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20221022084737.1028-1-linux.amoon@gmail.com>
+ <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+ <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
+ <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
+ <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221026_005835_758406_E9F64852 
-X-CRM114-Status: GOOD (  15.85  )
+X-CRM114-CacheID: sfid-20221026_010253_216469_9EA1DFAB 
+X-CRM114-Status: GOOD (  25.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,109 +99,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Some delay occurs between each bursts, thus the default delay is wrong
-and a timeout will occur with big enough transfers.
+Hi,
 
-The solution is to handle the timeout management in the driver and
-add some delay for each bursts in the timeout calculation.
+On 25/10/2022 20:06, Anand Moon wrote:
+> Hi Martin,
+> 
+> On Sat, 22 Oct 2022 at 17:22, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>>
+>> Hi Anand,
+>>
+>> On Sat, Oct 22, 2022 at 1:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
+>> [...]
+>>>>> @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
+>>>>>                                                  mux {
+>>>>>                                                          groups = "pwm_ao_d_10";
+>>>>>                                                          function = "pwm_ao_d";
+>>>>> -                                                       bias-disable;
+>>>> &pwm_ao_d_10_pins is not referenced anywhere so it seems that this
+>>>> change has no impact on controlling the fan on Odroid-N2(+).
+>>>> How did you test this change?
+>>>>
+>>> Ok I felt these changes affect the behavior of the pinctrl
+>>>
+>>>    * @PIN_CONFIG_BIAS_DISABLE: disable any pin bias on the pin, a
+>>>   *  transition from say pull-up to pull-down implies that you disable
+>>>   *  pull-up in the process, this setting disables all biasing.
+>>>
+>>> I mapped this is linked in pinctrl driver, pwm_ao_d_10_pins GPIOAO_10 see below
+>> Yes, I understand this part.
+>> My concern is: &pwm_ao_d_10_pins settings only become active when this
+>> node is actively referenced. You can even see it in your output
+>> below...
+>>
+>> [...]
+>>> pin 10 (GPIOAO_10): (MUX UNCLAIMED) aobus-banks:1958
+>> This shows that it's used as a GPIO. If the &pwm_ao_d_10_pins setting
+>> was used then it would show "function pwm_ao_d group pwm_ao_d_10"
+>> (similar to what GPIOE_1 shows in your output)
+>>
+>> If you want to know if a pull-up/down is enabled you can look at the output of:
+>> $ cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinconf-pins
+>> (I'm sure this can also be retrieved from some userspace tools, but I
+>> don't know how)
+>>
+> 
+> I now switch using pwm-fan with the local changes I am able to link
+> pwm_ao_d_10_pins
+> but now the issue is fan keeps on spinning on boot-up and stays on.
+> 
+> I can manually turn on off by using
+> $ sudo gpioset gpiochip1 10=1   // fan on
+> $ sudo gpioset gpiochip1 10=0   // fan off
 
-Reported-by: Da Xue <da@libre.computer>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-To: Mark Brown <broonie@kernel.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/spi/spi-meson-spicc.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+By doing that actually override the PWM function of the pin and set it as a GPIO.
 
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index bad201510a99..52bffab18329 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -160,6 +160,7 @@ struct meson_spicc_device {
- 	struct clk			*clk;
- 	struct spi_message		*message;
- 	struct spi_transfer		*xfer;
-+	struct completion		done;
- 	const struct meson_spicc_data	*data;
- 	u8				*tx_buf;
- 	u8				*rx_buf;
-@@ -282,7 +283,7 @@ static irqreturn_t meson_spicc_irq(int irq, void *data)
- 		/* Disable all IRQs */
- 		writel(0, spicc->base + SPICC_INTREG);
- 
--		spi_finalize_current_transfer(spicc->master);
-+		complete(&spicc->done);
- 
- 		return IRQ_HANDLED;
- 	}
-@@ -386,6 +387,7 @@ static int meson_spicc_transfer_one(struct spi_master *master,
- 				    struct spi_transfer *xfer)
- {
- 	struct meson_spicc_device *spicc = spi_master_get_devdata(master);
-+	unsigned long timeout;
- 
- 	/* Store current transfer */
- 	spicc->xfer = xfer;
-@@ -410,13 +412,29 @@ static int meson_spicc_transfer_one(struct spi_master *master,
- 	/* Setup burst */
- 	meson_spicc_setup_burst(spicc);
- 
-+	/* Setup wait for completion */
-+	reinit_completion(&spicc->done);
-+
-+	/* For each byte we wait for 8 cycles of the SPI clock */
-+	timeout = 8LL * MSEC_PER_SEC * xfer->len;
-+	do_div(timeout, xfer->speed_hz);
-+
-+	/* Add 10us delay between each fifo bursts */
-+	timeout += ((xfer->len >> 4) * 10) / MSEC_PER_SEC;
-+
-+	/* Increase it twice and add 200 ms tolerance */
-+	timeout += timeout + 200;
-+
- 	/* Start burst */
- 	writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
- 
- 	/* Enable interrupts */
- 	writel_relaxed(SPICC_TC_EN, spicc->base + SPICC_INTREG);
- 
--	return 1;
-+	if (!wait_for_completion_timeout(&spicc->done, msecs_to_jiffies(timeout)))
-+		return -ETIMEDOUT;
-+
-+	return 0;
- }
- 
- static int meson_spicc_prepare_message(struct spi_master *master,
-@@ -743,6 +761,8 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	spicc->pdev = pdev;
- 	platform_set_drvdata(pdev, spicc);
- 
-+	init_completion(&spicc->done);
-+
- 	spicc->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(spicc->base)) {
- 		dev_err(&pdev->dev, "io resource mapping failed\n");
+> 
+> It is not controlled by the thermal tip as expected.
+> I feel some configuration is missing in pwm-meson driver.
+> Any input for me?
+> 
+> $ sudo cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinmux-pins
+> [sudo] password for alarm:
+> Pinmux settings per pin
+> Format: pin (name): mux_owner gpio_owner hog?
+> pin 0 (GPIOAO_0): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
+> group uart_ao_a_tx
+> pin 1 (GPIOAO_1): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
+> group uart_ao_a_rx
+> pin 2 (GPIOAO_2): (MUX UNCLAIMED) aobus-banks:1950
+> pin 3 (GPIOAO_3): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 4 (GPIOAO_4): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 5 (GPIOAO_5): ff808000.ir (GPIO UNCLAIMED) function
+> remote_ao_input group remote_ao_input
+> pin 6 (GPIOAO_6): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 7 (GPIOAO_7): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 8 (GPIOAO_8): (MUX UNCLAIMED) aobus-banks:1956
+> pin 9 (GPIOAO_9): (MUX UNCLAIMED) aobus-banks:1957
+> pin 10 (GPIOAO_10): ff807000.pwm (GPIO UNCLAIMED) function pwm_ao_d
+> group pwm_ao_d_10
+> pin 11 (GPIOAO_11): (MUX UNCLAIMED) aobus-banks:1959
+> pin 12 (GPIOE_0): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 13 (GPIOE_1): ff802000.pwm (GPIO UNCLAIMED) function pwm_ao_d
+> group pwm_ao_d_e
+> pin 14 (GPIOE_2): ffd1b000.pwm (GPIO UNCLAIMED) function pwm_a_e group pwm_a_e
+> 
+> $ sudo cat /sys/kernel/debug/pwm
+> platform/ffd1b000.pwm, 2 PWM devices
+>   pwm-0   (regulator-vddcpu-a  ): requested enabled period: 1250 ns
+> duty: 838 ns polarity: normal
+>   pwm-1   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
+> 
+> platform/ff807000.pwm, 2 PWM devices
+>   pwm-0   (pwm-fan             ): requested period: 1250 ns duty: 0 ns
+> polarity: normal
+>   pwm-1   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
 
----
-base-commit: 247f34f7b80357943234f93f247a1ae6b6c3a740
-change-id: 20221026-spicc-burst-delay-ea0526602760
+This should be on the pwm-1, hence the "pwm_AO_cd" name, "c" and "d" and the
+names of the outputs.
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+So you need to use 1 as first PWM phandle argument instead of 0.
+
+> 
+> platform/ff802000.pwm, 2 PWM devices
+>   pwm-0   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
+>   pwm-1   (regulator-vddcpu-b  ): requested enabled period: 1250 ns
+> duty: 1213 ns polarity: normal
+> 
+> I could observe a change in duty when we have stress testing the CPU.
+
+Can you share the complete change you did here ?
+
+> 
+> Thanks
+> 
+> -Anand
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
