@@ -4,80 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C3DBFA3740
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 12:49:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F0EECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 13:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ysn0xCIi+8muOv0/tLtkfpSG0+lJcyS0jmvHud3zgqI=; b=OLpwSd7oLz3PKXuKWsVLRkQb40
-	8lMGhEtU7YB+8Yp2JMhodiWcVL+DRjULwhmKV5djOpT3ltC9VGyylGVmM604nsyYoc6kboTzJI3ba
-	Szy9EroFhBg14Hmf+utqr5i8TZMBfyDgg57HkyBCkeVK/4MHgSA7LAimI/k/D1yQ71lVXnK+g3oij
-	hjz19gKH38GEEXd3PN/7L39oqlX2OX8adAxYb2Uz4lztbS58vaoUDrwjujlMreZJPXwSx+Rxj5ktr
-	hhigrHUbJHP+K/rkhVhnthe3EB1xdC1ybALIoNEW80WbQi1T2xq5NYXMGlWODHcZ+PTcAi81p7eo0
-	5n05vhMQ==;
+	bh=FAS7jV8D3KoGYcqjDtcanKyYUsi4mFopo0uvy9AyKJM=; b=UkQTR8sEDPEoo7gDe5IQe7aRB9
+	DR8qI6o2LmtCYtBgx6PVgcr/g8t2eQM17fg2hPrYTOBAu/PfoKfRPHGQwjdTiqsVUu5bQ/g5PddHv
+	fGW2PQiEptpSssICB93qUnuV4ceJPcG6xWxZcFtFbKNDOx3/UkNMV5dTzI70TWcEoVWR60/lhK2JX
+	oHMVhyLo3ahSnCMGJvMzXq3brzUuDcB9DORNwD+KRYBLRdcc+RzGFXvEqVfKMOXTfJr/LRbSiLrfd
+	Aw/CIQ6u8zTlnUvjNNIUCOnCs/goqjeuHCIbo2nJaZBW5Tnw3Kek6OyBRchjy8FslmClU2hHTzNFt
+	Vh+hZXhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo2K8-00DEDO-AK; Thu, 27 Oct 2022 12:49:28 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1oo2zN-00DXlB-Tg; Thu, 27 Oct 2022 13:32:05 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo2Jw-00DE9N-9X
-	for linux-amlogic@lists.infradead.org; Thu, 27 Oct 2022 12:49:17 +0000
-Received: by mail-wm1-x336.google.com with SMTP id c7-20020a05600c0ac700b003c6cad86f38so4106365wmr.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
+	id 1oo2k4-00DP2v-Kd
+	for linux-amlogic@lists.infradead.org; Thu, 27 Oct 2022 13:16:18 +0000
+Received: by mail-wr1-x436.google.com with SMTP id w14so2099839wru.8
+        for <linux-amlogic@lists.infradead.org>; Thu, 27 Oct 2022 06:16:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
-        b=OQyezL4cGU1S6Th8YVxCSmmKg8MDodYMD5HBV7ElzJz4DtRh+iegPU5J4dVfdCItuH
-         dH97BHd68JdE3Jo/G/zHfYvNNSReIHiHCRWAFXj8kofujxZxdQnVrTmj28ukfotkS3MN
-         HCvGo5DIIw9WZcsyGtfu66qsxa1g6nBLzRhprzhByHv8I7+eMkYkxlU1B5D3xq3I4KOf
-         /28vnmmORF0AvfXt4fvhe9ftj7JGy12h86+fvleBteEpTJrSSCwPNZW1SuahFhQyjGJu
-         Cv4MvPWxyx1NHB3qoqVJeBCgSm0DwTbCnQCRHfUpV2PaPjloUpfwAxtiC3iz5FqnGXB7
-         6YrA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ri47NCriRryQ3cMznl1OvuimF4hziCqwcvwHcUTsoiA=;
+        b=NhGPPiCGFh6Ij+wqSXOVeVkLIEO1atPal8IuT+5I27EFkQdkQnBgp0H+fVT9XUxtEP
+         vOb7Dx3fI0NRRFgHhFzanbU1nAIIQyL2/8ruBN6VP4kUb0g1TaWmIxqou9RHW51+BrUb
+         Bgwv6YEHTEmQdstdmSSZV/9itaS/mqbC2gAixP9zWmNvX9AHOJ+s4Hpf9Ai39FnKGS+F
+         WQld+yugTyeK4lUTtBBKibE1kxcFh4Dl+4+rulXlRFH9UWHp1F0M+8RY3x+liOmlbSch
+         C6khLLgaSDvpGo0jhH6MfbtLENxQPEY0Y1XEkjeYVbyLwDmAYP0fp/dQzpwF3vMalc7+
+         HOzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
-        b=VLoA34NiY35a2fZR0udBxF9E6yHrnPUgDBX6Q5wKi9oyDoPBCl11hRD3ORskm3a0/c
-         xfg4wU4BR847qgFG1TrGic8wscwH0YR2j55cJxhQPd/4nXaaVYsGDp8XIVareQneDCKG
-         Lk83g6prGFWC7U5mrSADwW0MQfgo8Hw9DbnIgjYm/NPSI3CZ6qPhx7dS+1bZoNEOBl32
-         4kcHzfU2qzFU7R5Ivk/8NUU9KbezcVnHunNzvcq881GvgVqxULhwp6LUSy7jPEzeGdes
-         bFqYd3MUjzeel8MgsFev3gOlb7z0l1JhR9WSRhV+5r8jYscDT6dANkXT0SCrwMjd04iV
-         8FEg==
-X-Gm-Message-State: ACrzQf0w4ldlFSBuJmleXhsC/76CKQnn46plzZ0nHHRv2Y+4oMlXNQQf
-	HlHoae1GTcAmNsw7RKr2nW76Kg==
-X-Google-Smtp-Source: AMsMyM7H83+TH22aHNQ6HRVyJaoDi39AW5Sf28cYzigPPM7qK21FcZrwDuemt/vdFqzRpl+/R7UhNg==
-X-Received: by 2002:a05:600c:4f45:b0:3c7:176b:2505 with SMTP id m5-20020a05600c4f4500b003c7176b2505mr5771448wmq.185.1666874954196;
-        Thu, 27 Oct 2022 05:49:14 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ri47NCriRryQ3cMznl1OvuimF4hziCqwcvwHcUTsoiA=;
+        b=tYJL8lcmoOoCPBhEStbVYl8qxiVnJdGLgmR+qmnCX15YToqVCyvzQ6Q0sjM4DYxksf
+         r7+++AQhgj1IAWstJ4k/rIC/xNhNuIRp40D+xMvjlYiqCBPg+bvpfYEsR7camOm5bT42
+         b4nDepkk9XofSg4ajcwIKxd2dxvJrnzV8KaWmVLJO+Os5KLKPoYHqXyn9y8u6L1LiqPz
+         rC0KHYvGc7LKJ+PgirnEI8TdaWHiBHUOq9aEMdRfYR/a5HSqt+Vxl2NSkgKiUmvSNODN
+         AUZZK3wBVqM/1dveRJxihMYwk6ScL1ragCEr9SWN8aYPL2NPLArf0rApo8LcNMRZINxe
+         nYug==
+X-Gm-Message-State: ACrzQf0xAPDAkLMvpZ7HT3+gBSBlOjarSxRFrfqfiZbGotC+7qFi0f2f
+	TCdi4s69EfK/je5uZ78bus+au6QTpTg=
+X-Google-Smtp-Source: AMsMyM7S8NesYWFWJHDjoLMyleGCBMwePgm/iWtxM3/N8QGx1Ok+pUv8jRLXXycwrkRIz/v9lJcyVg==
+X-Received: by 2002:a05:6000:1568:b0:22e:6691:57aa with SMTP id 8-20020a056000156800b0022e669157aamr31074058wrz.708.1666876574264;
+        Thu, 27 Oct 2022 06:16:14 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:898:f380:1cb7:f7ba:a36e:de10? ([2a01:e0a:898:f380:1cb7:f7ba:a36e:de10])
-        by smtp.gmail.com with ESMTPSA id bg33-20020a05600c3ca100b003b49bd61b19sm4977299wmb.15.2022.10.27.05.49.13
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c3b0800b003c6edc05159sm4693635wms.1.2022.10.27.06.16.13
+        for <linux-amlogic@lists.infradead.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 05:49:13 -0700 (PDT)
-Message-ID: <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
-Date: Thu, 27 Oct 2022 14:49:12 +0200
+        Thu, 27 Oct 2022 06:16:13 -0700 (PDT)
+Message-ID: <259950fa-5b26-77f0-7c49-84ca06cd6a6f@gmail.com>
+Date: Thu, 27 Oct 2022 15:16:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-From: neil.armstrong@linaro.org
 Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
  on Odroid N2/N2+
 Content-Language: en-US
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+To: linux-amlogic@lists.infradead.org
 References: <20221022084737.1028-1-linux.amoon@gmail.com>
  <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
  <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
@@ -85,11 +77,12 @@ References: <20221022084737.1028-1-linux.amoon@gmail.com>
  <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
  <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
  <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
+ <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
+From: Neil Armstrong <narmstrong.kernel@gmail.com>
+In-Reply-To: <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221027_054916_369757_F604440C 
-X-CRM114-Status: GOOD (  17.76  )
+X-CRM114-CacheID: sfid-20221027_061616_698571_B2A6B757 
+X-CRM114-Status: GOOD (  19.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,97 +94,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 26/10/2022 18:02, Anand Moon wrote:
-> Hi Neil,
-
-<snip>
-
-> 
-> When I try to use pwm_AO_cd,,
-> Either one of the PWM binds will fail to get the following error.
-> 
->   &pwm_AO_cd {
-> -       pinctrl-0 = <&pwm_ao_d_e_pins>;
-> +       pinctrl-0 = <&pwm_ao_d_e_pins>, <&pwm_ao_d_10_pins>;
->          pinctrl-names = "default";
->          clocks = <&xtal>;
->          clock-names = "clkin1";
-> 
-> [    3.941700] pwm-regulator regulator-vddcpu-b: error -EBUSY: Failed to get PWM
-> [    3.943198] pwm-regulator: probe of regulator-vddcpu-b failed with error -16
-> 
-> [    3.956356] pwm-fan pwm-fan: error -EBUSY: Could not get PWM
-> [    3.956396] pwm-fan: probe of pwm-fan failed with error -16
-
-Yeah because PWM "D" is already used by the "pwm_AO_ab" controller, so you can't use it for the FAN.
-
-> 
-> Below are my changes with  pwm_AO_ab
-> ---------------------------------------------------------------------------------------------
-> alarm@odroid-n2:~/linux-amlogic-5.y-devel$ git diff
-> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index fd3fa82e4c33..d038ba1e2453 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
->                  reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
->          };
-> 
-> +       fan: pwm-fan {
-> +               compatible = "pwm-fan";
-> +               pwms = <&pwm_AO_ab 1 1250 0>;
-
-Here you use the "B" PWM signal, not the D.
-
-> +               fan-supply = <&vcc_5v>;
-> +               #cooling-cells = <2>;
-> +               cooling-levels = <0 100 170 230>;
-> +       };
-> +
->          leds {
-
-<snip>
-
-> 
-> +&pwm_AO_ab {
-> +       pinctrl-0 = <&pwm_ao_d_10_pins>;
-
-The "pwm_AO_ab" controller only controls the PWM "A" & "B signals, not the "D" !
-
-This basically enables the PWM "D" pin function to GPIOAO_10, it doesn't assign it to the "pwm_AO_ab" controller.
-
-So by enabling this pinctrl, it will duplicate the pwm_ao_d_e_pins signal to pwm_ao_d_10_pins, this is why the FAN spins non-stop.
-
-> +       pinctrl-names = "default";
-> +       clocks = <&xtal>;
-> +       clock-names = "clkin1";
-> +       status = "okay";
-> +};
-> +
->   &pwm_AO_cd {
->          pinctrl-0 = <&pwm_ao_d_e_pins>;
->          pinctrl-names = "default";
-> -------------------------------------------------------------------------------------------
->>>
->>> Thanks
->>>
->>> -Anand
->>
->> Neil
-
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjcvMTAvMjAyMiAxNDo0OSwgbmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZyB3cm90ZToKPiBI
+aSwKPiAKPiBPbiAyNi8xMC8yMDIyIDE4OjAyLCBBbmFuZCBNb29uIHdyb3RlOgo+PiBIaSBOZWls
+LAo+IAo+IDxzbmlwPgo+IAo+Pgo+PiBXaGVuIEkgdHJ5IHRvIHVzZSBwd21fQU9fY2QsLAo+PiBF
+aXRoZXIgb25lIG9mIHRoZSBQV00gYmluZHMgd2lsbCBmYWlsIHRvIGdldCB0aGUgZm9sbG93aW5n
+IGVycm9yLgo+Pgo+PiDCoCAmcHdtX0FPX2NkIHsKPj4gLcKgwqDCoMKgwqDCoCBwaW5jdHJsLTAg
+PSA8JnB3bV9hb19kX2VfcGlucz47Cj4+ICvCoMKgwqDCoMKgwqAgcGluY3RybC0wID0gPCZwd21f
+YW9fZF9lX3BpbnM+LCA8JnB3bV9hb19kXzEwX3BpbnM+Owo+PiDCoMKgwqDCoMKgwqDCoMKgIHBp
+bmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4+IMKgwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZ4
+dGFsPjsKPj4gwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1uYW1lcyA9ICJjbGtpbjEiOwo+Pgo+PiBb
+wqDCoMKgIDMuOTQxNzAwXSBwd20tcmVndWxhdG9yIHJlZ3VsYXRvci12ZGRjcHUtYjogZXJyb3Ig
+LUVCVVNZOiBGYWlsZWQgdG8gZ2V0IFBXTQo+PiBbwqDCoMKgIDMuOTQzMTk4XSBwd20tcmVndWxh
+dG9yOiBwcm9iZSBvZiByZWd1bGF0b3ItdmRkY3B1LWIgZmFpbGVkIHdpdGggZXJyb3IgLTE2Cj4+
+Cj4+IFvCoMKgwqAgMy45NTYzNTZdIHB3bS1mYW4gcHdtLWZhbjogZXJyb3IgLUVCVVNZOiBDb3Vs
+ZCBub3QgZ2V0IFBXTQo+PiBbwqDCoMKgIDMuOTU2Mzk2XSBwd20tZmFuOiBwcm9iZSBvZiBwd20t
+ZmFuIGZhaWxlZCB3aXRoIGVycm9yIC0xNgo+IAo+IFllYWggYmVjYXVzZSBQV00gIkQiIGlzIGFs
+cmVhZHkgdXNlZCBieSB0aGUgInB3bV9BT19hYiIgY29udHJvbGxlciwgc28geW91IGNhbid0IHVz
+ZSBpdCBmb3IgdGhlIEZBTi4KCkkgd2FzIG1lYW5pbmcgcmVndWxhdG9yLXZkZGNwdS1iLgoKPiAK
+Pj4KPj4gQmVsb3cgYXJlIG15IGNoYW5nZXMgd2l0aMKgIHB3bV9BT19hYgo+PiAtLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPj4gYWxhcm1Ab2Ryb2lkLW4yOn4vbGludXgtYW1s
+b2dpYy01LnktZGV2ZWwkIGdpdCBkaWZmCj4+IGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9t
+ZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpCj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJvaWQtbjIuZHRzaQo+PiBiL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpCj4+IGluZGV4IGZkM2ZhODJl
+NGMzMy4uZDAzOGJhMWUyNDUzIDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Ft
+bG9naWMvbWVzb24tZzEyYi1vZHJvaWQtbjIuZHRzaQo+PiArKysgYi9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJvaWQtbjIuZHRzaQo+PiBAQCAtMzksNiArMzksMTQg
+QEAgZW1tY19wd3JzZXE6IGVtbWMtcHdyc2VxIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgcmVzZXQtZ3Bpb3MgPSA8JmdwaW8gQk9PVF8xMiBHUElPX0FDVElWRV9MT1c+Owo+
+PiDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+Cj4+ICvCoMKgwqDCoMKgwqAgZmFuOiBwd20tZmFuIHsK
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJwd20tZmFuIjsK
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHdtcyA9IDwmcHdtX0FPX2FiIDEgMTI1
+MCAwPjsKPiAKPiBIZXJlIHlvdSB1c2UgdGhlICJCIiBQV00gc2lnbmFsLCBub3QgdGhlIEQuCj4g
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZhbi1zdXBwbHkgPSA8JnZjY181dj47
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNjb29saW5nLWNlbGxzID0gPDI+Owo+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb29saW5nLWxldmVscyA9IDwwIDEwMCAx
+NzAgMjMwPjsKPj4gK8KgwqDCoMKgwqDCoCB9Owo+PiArCj4+IMKgwqDCoMKgwqDCoMKgwqAgbGVk
+cyB7Cj4gCj4gPHNuaXA+Cj4gCj4+Cj4+ICsmcHdtX0FPX2FiIHsKPj4gK8KgwqDCoMKgwqDCoCBw
+aW5jdHJsLTAgPSA8JnB3bV9hb19kXzEwX3BpbnM+Owo+IAo+IFRoZSAicHdtX0FPX2FiIiBjb250
+cm9sbGVyIG9ubHkgY29udHJvbHMgdGhlIFBXTSAiQSIgJiAiQiBzaWduYWxzLCBub3QgdGhlICJE
+IiAhCj4gCj4gVGhpcyBiYXNpY2FsbHkgZW5hYmxlcyB0aGUgUFdNICJEIiBwaW4gZnVuY3Rpb24g
+dG8gR1BJT0FPXzEwLCBpdCBkb2Vzbid0IGFzc2lnbiBpdCB0byB0aGUgInB3bV9BT19hYiIgY29u
+dHJvbGxlci4KPiAKPiBTbyBieSBlbmFibGluZyB0aGlzIHBpbmN0cmwsIGl0IHdpbGwgZHVwbGlj
+YXRlIHRoZSBwd21fYW9fZF9lX3BpbnMgc2lnbmFsIHRvIHB3bV9hb19kXzEwX3BpbnMsIHRoaXMg
+aXMgd2h5IHRoZSBGQU4gc3BpbnMgbm9uLXN0b3AuCj4gCj4+ICvCoMKgwqDCoMKgwqAgcGluY3Ry
+bC1uYW1lcyA9ICJkZWZhdWx0IjsKPj4gK8KgwqDCoMKgwqDCoCBjbG9ja3MgPSA8Jnh0YWw+Owo+
+PiArwqDCoMKgwqDCoMKgIGNsb2NrLW5hbWVzID0gImNsa2luMSI7Cj4+ICvCoMKgwqDCoMKgwqAg
+c3RhdHVzID0gIm9rYXkiOwo+PiArfTsKPj4gKwo+PiDCoCAmcHdtX0FPX2NkIHsKPj4gwqDCoMKg
+wqDCoMKgwqDCoCBwaW5jdHJsLTAgPSA8JnB3bV9hb19kX2VfcGlucz47Cj4+IMKgwqDCoMKgwqDC
+oMKgwqAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQo+Pj4+Cj4+Pj4gVGhhbmtzCj4+Pj4KPj4+PiAtQW5hbmQKPj4+Cj4+PiBO
+ZWlsCj4gCj4gTmVpbAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKPiBsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
