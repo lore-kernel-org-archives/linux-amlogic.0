@@ -4,58 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7761DC38A2D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Oct 2022 17:55:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C415C38A2D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 10:18:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gGS8BQtA4O8i1raFPciEGVijFBZ1JH7byLU65ZIFTp4=; b=SLPsW2bvg7QeN8
-	+E0mZ7NdcrX3AQwu/L4PM8ZPQOUcbNcis13l0o1jZLxe7GB2mTIQoFXFhjUvXgWs5uHDcYl8REDg8
-	9eNWaLkEbqbHo0PZ7+f1pjBdBZ9qHJ2fsTxvZv1W3bRmbQjuFdo0ue3GEtXUTtySkXAzsCnDFAkQD
-	l3LRi5TXhVvBLHA+YX7v4PP6ZWp/WyDhi+hdnym9Mu3j5JRjS0uuiQYiJF/nH3OaGaQQaAejU0m5p
-	UmI8EJJ6EnVBbRkWstZSA562oFct2YzQS6NjuZTtvQTEd8cdvxDc0RPaoG2cq6+Gu8AOT6bZ+xA2q
-	luH3QUTPiNN3xbhDNmDA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UqYAg2b4kG6wx8in00/wB3M6fgiYLapsmS8BYFuF/1Q=; b=aacnnaMYxdwdK1
+	pNTtbFNzUkr5ekjEF8ypavIcf5TNNd9sjk6jALgSe7I6yu9CKg2r2I3qsjz1n11VrFKNOfuZxCz76
+	4KWW5PnnEg418UVgTlGGyyqsE2baoLJmbScGrl2pLc3BDMu0L8at72ZRBsdH0OkbnjWf6+tvg+D3B
+	rwPBf7pAZE3DHY4bNqUMMRjPE0DA+JsL3unxXxI5cMv2mEcYTQd5+dmZe4nxqXbgxYIHgyyRot3j6
+	rqnbeQQD8a1I+8UiNp4yddrepw3V+DnX3ij7EN/pbkxCX3gyIOhrfLz0oNA8oWyiHWhmIPEZXv8C1
+	Ir+JxkynRbvBgM2G4vqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onkcB-00ASAQ-OZ; Wed, 26 Oct 2022 17:54:55 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1onzxR-00Cni0-AA; Thu, 27 Oct 2022 10:17:53 +0000
+Received: from mga14.intel.com ([192.55.52.115])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onkc8-00AS9E-N6; Wed, 26 Oct 2022 17:54:54 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id ED1EA62001;
-	Wed, 26 Oct 2022 17:54:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07A17C4314E;
-	Wed, 26 Oct 2022 17:54:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1666806891;
-	bh=1zMYOW4OGqV7CIj0igClXnh2UOdKvHi5CykJj1DT2RE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=XLqyn7YMuswnyGGt7j1DK4BhUt6nikzGyFyef7OeUi58Z3AN9F5DbDCp742WZVfBd
-	 i7QPJC01uRsTKKPUjKl2NTUFWPV8Fu9iIxQfexwvM4nkL9xxOyDntWwWitUnoDYdmN
-	 AFad8QNHSDUeY4+XEXJ4fe6vhBI+YPwt8PQO6K1lT1uXwX/GF/zZ62UV2S5c2L8dAI
-	 fOK0o636grFSLxbw7IfslXrO2usd1JU9ZE6RFp8rx1SPsxEE9vxipkb4t9NuEpUPhz
-	 pB8LijwQd7oWQn8Or2MBSsQ9/pMU2viz+xzkwUJ04jsg34XKonpx15lNI2fbbV+zRt
-	 ZXwMI5XFOhlTg==
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, Da Xue <da@libre.computer>,
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20221026-spicc-burst-delay-v1-0-1be5ffb7051a@linaro.org>
-References: <20221026-spicc-burst-delay-v1-0-1be5ffb7051a@linaro.org>
-Subject: Re: [PATCH] spi: meson-spicc: move wait completion in driver to take bursts delay in account
-Message-Id: <166680688974.833294.9389296907324181570.b4-ty@kernel.org>
-Date: Wed, 26 Oct 2022 18:54:49 +0100
+	id 1onzwb-00CnL9-Bg; Thu, 27 Oct 2022 10:17:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666865821; x=1698401821;
+  h=date:from:to:cc:subject:message-id:mime-version:
+   content-transfer-encoding;
+  bh=f2Zn1IV8GQzC2OYKDCVKPQX1UZnKU6dm8aCFoSi03LA=;
+  b=JatIowm2wnv2vNcsoEPEY/kzXCC1ICi7LVBus/rYwkj2yfhTWcgX8QVH
+   ElWWfbuTOSEsKEys7CR8ekIqKwsfIZX/2OIwPMnl25b+6vBtz3xFP7ANy
+   OlYUHrbo3rh8gaPew/bljLGD3kyABlUjWPenoPrVQuL2gDRQPZ2ZTtVrx
+   3rLYCRL2WJ78FdQchHMwA7ycjYJRUQGIr0Djqz6jbtpDn44581OY/Wcey
+   cLmfS6NysLw3vjZRSUPQX4Lw+ktFV1HUd8x4VKYa+n8Rx+6/28awTa0dO
+   InUtVB0/r7aRCDL/zZzcR/N8TX029/QmSldx5is3YTvU2pVKt/4sF3wD0
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="308178661"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="308178661"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 03:16:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="701291472"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="701291472"
+Received: from lkp-server02.sh.intel.com (HELO b6d29c1a0365) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 27 Oct 2022 03:16:56 -0700
+Received: from kbuild by b6d29c1a0365 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1onzwV-0008eI-26;
+	Thu, 27 Oct 2022 10:16:55 +0000
+Date: Thu, 27 Oct 2022 18:16:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ Linux Memory Management List <linux-mm@kvack.org>
+Subject: [linux-next:pending-fixes] BUILD SUCCESS
+ d9c5422a13a5b0923a295758e1302cac9a2eacbb
+Message-ID: <635a5a93.QxL3NzM8f7/eb3pJ%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-X-Mailer: b4 0.10.0-dev-fc921
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221026_105452_815006_4EC850DB 
-X-CRM114-Status: GOOD (  13.55  )
+X-CRM114-CacheID: sfid-20221027_031701_499663_B0A8CC00 
+X-CRM114-Status: UNSURE (   6.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,43 +83,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 26 Oct 2022 09:58:28 +0200, Neil Armstrong wrote:
-> Some delay occurs between each bursts, thus the default delay is wrong
-> and a timeout will occur with big enough transfers.
-> 
-> The solution is to handle the timeout management in the driver and
-> add some delay for each bursts in the timeout calculation.
-> 
-> 
-> [...]
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git pending-fixes
+branch HEAD: d9c5422a13a5b0923a295758e1302cac9a2eacbb  Merge branch 'for-linux-next-fixes' of git://anongit.freedesktop.org/drm/drm-misc
 
-Applied to
+elapsed time: 721m
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+configs tested: 59
+configs skipped: 2
 
-Thanks!
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-[1/1] spi: meson-spicc: move wait completion in driver to take bursts delay in account
-      commit: 04694e50020b62b10bd0d46ff9e9708a6e1c7eb3
+gcc tested configs:
+m68k                             allmodconfig
+arc                              allyesconfig
+alpha                            allyesconfig
+x86_64                              defconfig
+um                           x86_64_defconfig
+um                             i386_defconfig
+m68k                             allyesconfig
+i386                                defconfig
+arc                                 defconfig
+powerpc                           allnoconfig
+x86_64                               rhel-8.3
+riscv                randconfig-r042-20221026
+x86_64                        randconfig-a002
+x86_64                        randconfig-a013
+i386                          randconfig-a001
+arc                  randconfig-r043-20221026
+powerpc                          allmodconfig
+x86_64                           allyesconfig
+s390                             allmodconfig
+x86_64                           rhel-8.3-syz
+alpha                               defconfig
+i386                          randconfig-a003
+ia64                             allmodconfig
+x86_64                        randconfig-a011
+x86_64                          rhel-8.3-func
+s390                 randconfig-r044-20221026
+sh                               allmodconfig
+s390                                defconfig
+x86_64                        randconfig-a004
+mips                             allyesconfig
+x86_64                         rhel-8.3-kunit
+i386                             allyesconfig
+arm                                 defconfig
+x86_64                        randconfig-a006
+x86_64                           rhel-8.3-kvm
+x86_64                        randconfig-a015
+x86_64                    rhel-8.3-kselftests
+s390                             allyesconfig
+i386                          randconfig-a014
+i386                          randconfig-a005
+i386                          randconfig-a012
+i386                          randconfig-a016
+arm                              allyesconfig
+arm64                            allyesconfig
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+clang tested configs:
+hexagon              randconfig-r045-20221026
+hexagon              randconfig-r041-20221026
+x86_64                        randconfig-a001
+x86_64                        randconfig-a003
+x86_64                        randconfig-a016
+x86_64                        randconfig-a005
+x86_64                        randconfig-a012
+i386                          randconfig-a002
+i386                          randconfig-a013
+x86_64                        randconfig-a014
+i386                          randconfig-a011
+i386                          randconfig-a006
+i386                          randconfig-a004
+i386                          randconfig-a015
+x86_64                          rhel-8.3-rust
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
