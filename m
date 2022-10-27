@@ -4,74 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97585FA3743
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 12:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C3DBFA3740
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 12:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Hm4HiWjbxt8RnCQJl7NrFHIrjjPZWqo/m0cra+t2Xkg=; b=4THyUFCSUQpOPO
-	6YM6GB6pK8uosG1HR1TiPSGOEQrv1VYZFLKSY0WqOz2Vl95U6/z5RN3E7fnR9c7U5lYboYKheWc49
-	7wtSElxp0QLRMaFymBPyHSNtJvEWNG9RvkZ/DAuhfdWS0ETIEfDAAmq9Yux5YMLPwZuKziXVfg9Vf
-	lVBCMToS1Ox7LBmCQH8R7/dzW58vwe736Vnlq7Rs/QvJq72aLGMyv59WrIcWz2so86l1DGR/4Zoiz
-	pxisGgPFPUHH583mRjl41J78oa0bgXEiP5M/El77znnJeLiiGT8eTafVHVsPEl304csQAdfk1B/LQ
-	3eIvsZLVaSV1ZMI05UhA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Ysn0xCIi+8muOv0/tLtkfpSG0+lJcyS0jmvHud3zgqI=; b=OLpwSd7oLz3PKXuKWsVLRkQb40
+	8lMGhEtU7YB+8Yp2JMhodiWcVL+DRjULwhmKV5djOpT3ltC9VGyylGVmM604nsyYoc6kboTzJI3ba
+	Szy9EroFhBg14Hmf+utqr5i8TZMBfyDgg57HkyBCkeVK/4MHgSA7LAimI/k/D1yQ71lVXnK+g3oij
+	hjz19gKH38GEEXd3PN/7L39oqlX2OX8adAxYb2Uz4lztbS58vaoUDrwjujlMreZJPXwSx+Rxj5ktr
+	hhigrHUbJHP+K/rkhVhnthe3EB1xdC1ybALIoNEW80WbQi1T2xq5NYXMGlWODHcZ+PTcAi81p7eo0
+	5n05vhMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo1jj-00D8Up-9q; Thu, 27 Oct 2022 12:11:51 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1oo2K8-00DEDO-AK; Thu, 27 Oct 2022 12:49:28 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo1jg-00D8TY-RA
-	for linux-amlogic@lists.infradead.org; Thu, 27 Oct 2022 12:11:50 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id h9so1872978wrt.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 27 Oct 2022 05:11:46 -0700 (PDT)
+	id 1oo2Jw-00DE9N-9X
+	for linux-amlogic@lists.infradead.org; Thu, 27 Oct 2022 12:49:17 +0000
+Received: by mail-wm1-x336.google.com with SMTP id c7-20020a05600c0ac700b003c6cad86f38so4106365wmr.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3b8progjf6nTjlRNKVhfA6lVwhcFNvYGUFDNCKIgOA=;
-        b=hzJqchdz1nxotUABi97SVc6OkYYXbmXSBzNSLO4BfJWSlQ4E/TmdwAKsz5Y2AD2OYC
-         tuKmAdi7p9QjnjlY0bKS/VQzsLIb9FARhep7ETn0SVYxRexqgpn9jhEyusubgxgaL1dy
-         1fpOJUmwJlblJ+qKKfUHeBPhe8sCps2EGGtrTaoAT78+ZJhJRhePoMFPsqplGwCFABm6
-         x9guCDmak8TBfzmnyofI7noqI9/yBqNquKt+lzSBkye+s+bRcIDx0iuza+OA4qpaawMJ
-         ujGVCW3rJCAwVV9H6MieBouzPIbJyJgMpSpVtRRqi0X3RdzANId093CK5DhTMukf5s9M
-         UMzw==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
+        b=OQyezL4cGU1S6Th8YVxCSmmKg8MDodYMD5HBV7ElzJz4DtRh+iegPU5J4dVfdCItuH
+         dH97BHd68JdE3Jo/G/zHfYvNNSReIHiHCRWAFXj8kofujxZxdQnVrTmj28ukfotkS3MN
+         HCvGo5DIIw9WZcsyGtfu66qsxa1g6nBLzRhprzhByHv8I7+eMkYkxlU1B5D3xq3I4KOf
+         /28vnmmORF0AvfXt4fvhe9ftj7JGy12h86+fvleBteEpTJrSSCwPNZW1SuahFhQyjGJu
+         Cv4MvPWxyx1NHB3qoqVJeBCgSm0DwTbCnQCRHfUpV2PaPjloUpfwAxtiC3iz5FqnGXB7
+         6YrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w3b8progjf6nTjlRNKVhfA6lVwhcFNvYGUFDNCKIgOA=;
-        b=N85WwHSegnCudekKIXlPl8MlvvIyoB/hPL2G1wGiUZ07j+rDaT1zuF+TZQ2CnHhztd
-         F+hE9m+p1E3/1RiapVaTdck8W2F1NpJywbrRlOlb9zh9/pbQEjAGWbBblGSFualaUY19
-         67I6pCnRI+Lei68XQm2jOZqnZ9NpFctLqKU0+KOU/nNULF7z7sqjV1giFqMHJUUuA4mt
-         8uhtYr9x3adU/U965jVDXwwr3qrQIX1C9ibaYcgMOEjl3l6U5TrmHcE5fxtsbo8mHV5E
-         Wmzy9UedUPuABb6ytR3hqDTUocrPMrI/0ZY41eRnrUZVa7j2PwKRMVyZ65gYIZZCLfba
-         XsPg==
-X-Gm-Message-State: ACrzQf1I+uoW7h+6MnEaAs37v/b2eQs7tPdjGHCq+JwB6lfOZKxEDMTF
-	Rx0lxKcsx/JtkC4sL5b2L8ZDWg==
-X-Google-Smtp-Source: AMsMyM5rJoSQ6ICEDwXJ+doDHBP8h+Yz7A7uzCo72oHXSiDM3V7WEN6+2va2BAcuQ3qE+wUjWjLM7A==
-X-Received: by 2002:a5d:4944:0:b0:236:7f32:1ad5 with SMTP id r4-20020a5d4944000000b002367f321ad5mr8985028wrs.377.1666872705548;
-        Thu, 27 Oct 2022 05:11:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id bw28-20020a0560001f9c00b0022cd27bc8c1sm1414312wrb.9.2022.10.27.05.11.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 05:11:45 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 27 Oct 2022 14:11:43 +0200
-Subject: [PATCH] spi: meson-spicc: fix do_div build error on non-arm64
+        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
+        b=VLoA34NiY35a2fZR0udBxF9E6yHrnPUgDBX6Q5wKi9oyDoPBCl11hRD3ORskm3a0/c
+         xfg4wU4BR847qgFG1TrGic8wscwH0YR2j55cJxhQPd/4nXaaVYsGDp8XIVareQneDCKG
+         Lk83g6prGFWC7U5mrSADwW0MQfgo8Hw9DbnIgjYm/NPSI3CZ6qPhx7dS+1bZoNEOBl32
+         4kcHzfU2qzFU7R5Ivk/8NUU9KbezcVnHunNzvcq881GvgVqxULhwp6LUSy7jPEzeGdes
+         bFqYd3MUjzeel8MgsFev3gOlb7z0l1JhR9WSRhV+5r8jYscDT6dANkXT0SCrwMjd04iV
+         8FEg==
+X-Gm-Message-State: ACrzQf0w4ldlFSBuJmleXhsC/76CKQnn46plzZ0nHHRv2Y+4oMlXNQQf
+	HlHoae1GTcAmNsw7RKr2nW76Kg==
+X-Google-Smtp-Source: AMsMyM7H83+TH22aHNQ6HRVyJaoDi39AW5Sf28cYzigPPM7qK21FcZrwDuemt/vdFqzRpl+/R7UhNg==
+X-Received: by 2002:a05:600c:4f45:b0:3c7:176b:2505 with SMTP id m5-20020a05600c4f4500b003c7176b2505mr5771448wmq.185.1666874954196;
+        Thu, 27 Oct 2022 05:49:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:898:f380:1cb7:f7ba:a36e:de10? ([2a01:e0a:898:f380:1cb7:f7ba:a36e:de10])
+        by smtp.gmail.com with ESMTPSA id bg33-20020a05600c3ca100b003b49bd61b19sm4977299wmb.15.2022.10.27.05.49.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 05:49:13 -0700 (PDT)
+Message-ID: <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
+Date: Thu, 27 Oct 2022 14:49:12 +0200
 MIME-Version: 1.0
-Message-Id: <20221027-b4-spicc-burst-delay-fix-v1-0-5a6e9a88e54c@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-X-Mailer: b4 0.10.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
+ on Odroid N2/N2+
+Content-Language: en-US
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20221022084737.1028-1-linux.amoon@gmail.com>
+ <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+ <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
+ <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
+ <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
+ <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
+ <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221027_051148_911501_D09B5FCD 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20221027_054916_369757_F604440C 
+X-CRM114-Status: GOOD (  17.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,52 +101,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This fixes :
-error: passing argument 1 of '__div64_32' from incompatible pointer type
+Hi,
 
-By passing an uint64_t as first variable to do_div().
+On 26/10/2022 18:02, Anand Moon wrote:
+> Hi Neil,
 
-Fixes: 04694e50020b ("spi: meson-spicc: move wait completion in driver to take bursts delay in account")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-To: Neil Armstrong <narmstrong@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/spi/spi-meson-spicc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+<snip>
 
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 52bffab18329..1b4195c54ee2 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -387,7 +387,7 @@ static int meson_spicc_transfer_one(struct spi_master *master,
- 				    struct spi_transfer *xfer)
- {
- 	struct meson_spicc_device *spicc = spi_master_get_devdata(master);
--	unsigned long timeout;
-+	uint64_t timeout;
- 
- 	/* Store current transfer */
- 	spicc->xfer = xfer;
+> 
+> When I try to use pwm_AO_cd,,
+> Either one of the PWM binds will fail to get the following error.
+> 
+>   &pwm_AO_cd {
+> -       pinctrl-0 = <&pwm_ao_d_e_pins>;
+> +       pinctrl-0 = <&pwm_ao_d_e_pins>, <&pwm_ao_d_10_pins>;
+>          pinctrl-names = "default";
+>          clocks = <&xtal>;
+>          clock-names = "clkin1";
+> 
+> [    3.941700] pwm-regulator regulator-vddcpu-b: error -EBUSY: Failed to get PWM
+> [    3.943198] pwm-regulator: probe of regulator-vddcpu-b failed with error -16
+> 
+> [    3.956356] pwm-fan pwm-fan: error -EBUSY: Could not get PWM
+> [    3.956396] pwm-fan: probe of pwm-fan failed with error -16
 
----
-base-commit: 574f97ab96d6b153407161746bc127564e998b4f
-change-id: 20221027-b4-spicc-burst-delay-fix-a03004454876
+Yeah because PWM "D" is already used by the "pwm_AO_ab" controller, so you can't use it for the FAN.
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> Below are my changes with  pwm_AO_ab
+> ---------------------------------------------------------------------------------------------
+> alarm@odroid-n2:~/linux-amlogic-5.y-devel$ git diff
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> index fd3fa82e4c33..d038ba1e2453 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
+>                  reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+>          };
+> 
+> +       fan: pwm-fan {
+> +               compatible = "pwm-fan";
+> +               pwms = <&pwm_AO_ab 1 1250 0>;
+
+Here you use the "B" PWM signal, not the D.
+
+> +               fan-supply = <&vcc_5v>;
+> +               #cooling-cells = <2>;
+> +               cooling-levels = <0 100 170 230>;
+> +       };
+> +
+>          leds {
+
+<snip>
+
+> 
+> +&pwm_AO_ab {
+> +       pinctrl-0 = <&pwm_ao_d_10_pins>;
+
+The "pwm_AO_ab" controller only controls the PWM "A" & "B signals, not the "D" !
+
+This basically enables the PWM "D" pin function to GPIOAO_10, it doesn't assign it to the "pwm_AO_ab" controller.
+
+So by enabling this pinctrl, it will duplicate the pwm_ao_d_e_pins signal to pwm_ao_d_10_pins, this is why the FAN spins non-stop.
+
+> +       pinctrl-names = "default";
+> +       clocks = <&xtal>;
+> +       clock-names = "clkin1";
+> +       status = "okay";
+> +};
+> +
+>   &pwm_AO_cd {
+>          pinctrl-0 = <&pwm_ao_d_e_pins>;
+>          pinctrl-names = "default";
+> -------------------------------------------------------------------------------------------
+>>>
+>>> Thanks
+>>>
+>>> -Anand
+>>
+>> Neil
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
