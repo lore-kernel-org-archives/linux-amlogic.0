@@ -4,76 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C5CDECAAA1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Oct 2022 19:19:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25D05ECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Oct 2022 10:33:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=090mWjdQzl15k4pi/qyWvDQrFnnigmyReG3rrTWpGtA=; b=hI6dXPH0p0tUrk
-	oXAmFxs3o3hcqqeZneGAianFRe24/UuP5yTnsZRClRGchVHIB2uKz8vktgNz9MPkXC/Z8BwuzkT2u
-	d/CUqMM0abdFbL0xyDAEUsyF6g1qq3FHqMzJ8IMJKPhbJ8y6iAumreq7mfzXASM096ccJf+0msv95
-	hB+fIVYi6oJkUAgkDNdK5HLcAN2s4sSHpYROFhP7pqdWuWM5EOG4/0H6nFu8CfUrhN2a0TUsy0Yee
-	9B9BL8OdLg1f61KMZdLTut599nTq5TKAzuqJ3P+8oKcoZUHtijM7vsGEvilz/2dzwthgMCLfoQgnS
-	nj0JwRm89IciLV+SoURg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PT53PL8F0DGJ1FGSuXPzL7U7Pe1y7mEvaLg7neHWzHY=; b=t8JXl7Y8BykPxr
+	ILbtI7JAnQ9MNM4PeeSXf50MPJKNuD/WgeOzdVXoZc/RZU+RgLKubayWCG6Bto1/juYN4rssOaxzb
+	11EHhXqxtgfm31kUkeXoMdQvRUDFrCsq59vuMzdrKQhK9gK26iYhvWBVtLYhkkTzCrePXAYv0E/0G
+	nQYzTe5GL/v18E2C+pumrp5qho4C5nJXwkh+N+5x+UMc90/JHgUJ+Xub7mGuykEHxkxIrMeIKpjwS
+	M/zrx2zp34CfnFNET1hWrLOhhgg5SfvGnKQ8fFWToqQfGyY5X76QuDL1ffzmCFT+Pu6ZH486LlRvE
+	4Gu3brc6lXg3rcfd3fyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo8Ot-00EdnD-Ko; Thu, 27 Oct 2022 19:18:47 +0000
-Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
+	id 1ooMfT-00Gg1N-0T; Fri, 28 Oct 2022 10:32:51 +0000
+Received: from mga09.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oo8Op-00Edkw-Un
-	for linux-amlogic@lists.infradead.org; Thu, 27 Oct 2022 19:18:45 +0000
-Received: by mail-ej1-x62f.google.com with SMTP id ud5so7514519ejc.4
-        for <linux-amlogic@lists.infradead.org>; Thu, 27 Oct 2022 12:18:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KoFq6D957s20eRRq5tfkUreWJTtgbOHobIdPnV62his=;
-        b=L4fsf7c8XtxkClfta/LR45IhpnSkY8HIyxKvVplHeJ7xKdRuu1lr9ziYGCQva2ZeJ8
-         6CGw9oVQkTM4Phe8tnIL6T+AlXrnYamzRRAaF5OFtJyk5JAhVY+obvn/j5xBHycxkgZK
-         BEvZMMAKcgHonkSXsyJ31BKxSUe6R226EssMGRSn93RgB1QSSohJcOR07ftlt6QTnXBh
-         GyMYVZO4OD6uItfo1CGYpD8qKWvRBT/cn22jyM8VoceKY9oOsVbAkKv4DWKGbGrsMafB
-         btjUWYQv0EfUNqIemIgG3odOaZwBfBIrRJiRL9nzmIA+0LcyIyrMqs5ukZtmknJMpeCE
-         hZ5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KoFq6D957s20eRRq5tfkUreWJTtgbOHobIdPnV62his=;
-        b=Wr0SrXkRKedypN2RxMJhU6sZKKqK678QcveoHnV2jPr4R2UG+CSKMKdBvQhs0n+KJp
-         4auinTd/xY03WhHCnWAXLvsLK904tAC4GpBX8xVz5CB4kK/Qf377D7tncRHR/M/BQm3w
-         QzJ/ajVKHrT/kaK3ZJmXfDCbhC4feQI3xKqAVLCGHydcPZYkXMjttS6r+HNHrSDmFWD+
-         ktPNT0zsuDnqwHoXVo5B2fYjv2JB1TNzOLKo64q46t8M34QIqIBGTDFoOCg6lc4IJYxF
-         4gJUjHradUGEczXMPppTKIFHiUozgJ/CEau+KuwwnbRd+rfEYwDsdO+8f5EHB4RWvMvy
-         742w==
-X-Gm-Message-State: ACrzQf3QKPPNSI/fb/9uqGH54G0wBK6NKb/g9CSL5kL150f24C42ciM7
-	Xd2Rk3sxPHiXIqqJYdkdGx0LJSqf/nx2VPXBD1A=
-X-Google-Smtp-Source: AMsMyM6R6kYww9H/C/neaQxdOMyxAe8LizjfUMQxcGGK/NHxxXsmj1W2H8gQkR3zQiOuMrzxdqGgYoUHTAht1x4WiZ0=
-X-Received: by 2002:a17:906:8a6c:b0:7a8:2f09:d88d with SMTP id
- hy12-20020a1709068a6c00b007a82f09d88dmr20076999ejc.49.1666898319625; Thu, 27
- Oct 2022 12:18:39 -0700 (PDT)
+	id 1ooMfG-00Gfvq-27; Fri, 28 Oct 2022 10:32:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666953158; x=1698489158;
+  h=date:from:to:cc:subject:message-id:mime-version:
+   content-transfer-encoding;
+  bh=698GfGp5V3HFj2CgW32lGzxGGXR7YH54F1UnW4uslJM=;
+  b=QZ1TRgwMiwslScyUi6mL9xUrDaaVoptEvqF8QvNl9p98fEWjfhIjwBLF
+   GHrf6vnwOxrOIDsxvK4toNFGm7KJc9bO+JEM46M/YV+ouu1jST8EJJVFI
+   wWmS+sLe7KXmRicZyx6Ll4fMwmUR8STlMiVpSLIJmbjBqPi1xJlfLTxka
+   bq9IHbOX+KNoZ7Y+9BMHPYPOlr0feaYX4gHBV0thq+od8FBHKjddN5Pyk
+   vESZIQ4FLufV33+4rvUdL9AvroCDWDSvxDVdC0zTBZGJ2wX/aJ69yNPLr
+   TfDAsjnJDhElAtN4LK0VdCys/zGo0z5FcjEIPeS8ExlNDmSdXrjGGWdJ2
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="309553881"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; 
+   d="scan'208";a="309553881"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2022 03:32:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="701691643"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; 
+   d="scan'208";a="701691643"
+Received: from lkp-server02.sh.intel.com (HELO b6d29c1a0365) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 28 Oct 2022 03:32:33 -0700
+Received: from kbuild by b6d29c1a0365 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ooMfA-0009oD-1p;
+	Fri, 28 Oct 2022 10:32:32 +0000
+Date: Fri, 28 Oct 2022 18:31:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ Linux Memory Management List <linux-mm@kvack.org>
+Subject: [linux-next:pending-fixes] BUILD REGRESSION
+ 4fab0e8b2041211b9685de60f4767b1b27f8c588
+Message-ID: <635baf9b.QnR0CgKM/ZnCyLwX%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-References: <20221022084737.1028-1-linux.amoon@gmail.com> <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
- <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
- <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
- <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
- <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org> <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
- <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org> <259950fa-5b26-77f0-7c49-84ca06cd6a6f@gmail.com>
-In-Reply-To: <259950fa-5b26-77f0-7c49-84ca06cd6a6f@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 28 Oct 2022 00:48:23 +0530
-Message-ID: <CANAwSgST-mxeBzZ5ksrC0r8J6ctXZHyUAZEoQyf66xfiXnyNWQ@mail.gmail.com>
-Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
- on Odroid N2/N2+
-To: Neil Armstrong <narmstrong.kernel@gmail.com>
-Cc: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221027_121844_065142_41721C4D 
-X-CRM114-Status: GOOD (  23.61  )
+X-CRM114-CacheID: sfid-20221028_033238_180212_ADED2C51 
+X-CRM114-Status: UNSURE (   6.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,115 +83,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git pending-fixes
+branch HEAD: 4fab0e8b2041211b9685de60f4767b1b27f8c588  Merge branch 'for-linux-next-fixes' of git://anongit.freedesktop.org/drm/drm-misc
 
-On Thu, 27 Oct 2022 at 19:02, Neil Armstrong
-<narmstrong.kernel@gmail.com> wrote:
->
-> On 27/10/2022 14:49, neil.armstrong@linaro.org wrote:
-> > Hi,
-> >
-> > On 26/10/2022 18:02, Anand Moon wrote:
-> >> Hi Neil,
-> >
-> > <snip>
-> >
-> >>
-> >> When I try to use pwm_AO_cd,,
-> >> Either one of the PWM binds will fail to get the following error.
-> >>
-> >>   &pwm_AO_cd {
-> >> -       pinctrl-0 = <&pwm_ao_d_e_pins>;
-> >> +       pinctrl-0 = <&pwm_ao_d_e_pins>, <&pwm_ao_d_10_pins>;
-> >>          pinctrl-names = "default";
-> >>          clocks = <&xtal>;
-> >>          clock-names = "clkin1";
-> >>
-> >> [    3.941700] pwm-regulator regulator-vddcpu-b: error -EBUSY: Failed to get PWM
-> >> [    3.943198] pwm-regulator: probe of regulator-vddcpu-b failed with error -16
-> >>
-> >> [    3.956356] pwm-fan pwm-fan: error -EBUSY: Could not get PWM
-> >> [    3.956396] pwm-fan: probe of pwm-fan failed with error -16
-> >
-> > Yeah because PWM "D" is already used by the "pwm_AO_ab" controller, so you can't use it for the FAN.
->
-> I was meaning regulator-vddcpu-b.
->
-> >
-> >>
-> >> Below are my changes with  pwm_AO_ab
-> >> ---------------------------------------------------------------------------------------------
-> >> alarm@odroid-n2:~/linux-amlogic-5.y-devel$ git diff
-> >> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> >> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> >> index fd3fa82e4c33..d038ba1e2453 100644
-> >> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> >> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> >> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
-> >>                  reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-> >>          };
-> >>
-> >> +       fan: pwm-fan {
-> >> +               compatible = "pwm-fan";
-> >> +               pwms = <&pwm_AO_ab 1 1250 0>;
-> >
-> > Here you use the "B" PWM signal, not the D.
+Error/Warning: (recently discovered and may have been fixed)
 
-Thanks for your review comments, ok now I get better understand of PWM
-mux configuration
-so now I switch to use &pwm_cd, But still, the issue of the fan keeps
-spinning on start. persist.
+drivers/spi/spi-meson-spicc.c:420:2: error: incompatible pointer types passing 'unsigned long *' to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
+drivers/spi/spi-meson-spicc.c:420:2: warning: comparison of distinct pointer types ('typeof ((timeout)) *' (aka 'unsigned long *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
+drivers/spi/spi-meson-spicc.c:420:2: warning: shift count >= width of type [-Wshift-count-overflow]
 
-$ sudo cat /sys/kernel/debug/pwm
-platform/ffd1b000.pwm, 2 PWM devices
- pwm-0   (regulator-vddcpu-a  ): requested enabled period: 1250 ns
-duty: 963 ns polarity: normal
- pwm-1   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
+Error/Warning ids grouped by kconfigs:
 
-platform/ffd1a000.pwm, 2 PWM devices
- pwm-0   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
- pwm-1   (pwm-fan             ): requested period: 1250 ns duty: 0 ns
-polarity: normal
+clang_recent_errors
+|-- hexagon-randconfig-r004-20221026
+|   |-- drivers-spi-spi-meson-spicc.c:error:incompatible-pointer-types-passing-unsigned-long-to-parameter-of-type-uint64_t-(aka-unsigned-long-long-)-Werror-Wincompatible-pointer-types
+|   |-- drivers-spi-spi-meson-spicc.c:warning:comparison-of-distinct-pointer-types-(-typeof-((timeout))-(aka-unsigned-long-)-and-uint64_t-(aka-unsigned-long-long-))
+|   `-- drivers-spi-spi-meson-spicc.c:warning:shift-count-width-of-type
+|-- mips-randconfig-r025-20221026
+|   |-- drivers-spi-spi-meson-spicc.c:warning:comparison-of-distinct-pointer-types-(-typeof-((timeout))-(aka-unsigned-long-)-and-uint64_t-(aka-unsigned-long-long-))
+|   `-- drivers-spi-spi-meson-spicc.c:warning:shift-count-width-of-type
+`-- powerpc-randconfig-r002-20221026
+    |-- drivers-spi-spi-meson-spicc.c:error:incompatible-pointer-types-passing-unsigned-long-to-parameter-of-type-uint64_t-(aka-unsigned-long-long-)-Werror-Wincompatible-pointer-types
+    |-- drivers-spi-spi-meson-spicc.c:warning:comparison-of-distinct-pointer-types-(-typeof-((timeout))-(aka-unsigned-long-)-and-uint64_t-(aka-unsigned-long-long-))
+    `-- drivers-spi-spi-meson-spicc.c:warning:shift-count-width-of-type
 
-platform/ff802000.pwm, 2 PWM devices
- pwm-0   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
- pwm-1   (regulator-vddcpu-b  ): requested enabled period: 1250 ns
-duty: 88 ns polarity: normal
+elapsed time: 722m
 
-> >
-> >> +               fan-supply = <&vcc_5v>;
-> >> +               #cooling-cells = <2>;
-> >> +               cooling-levels = <0 100 170 230>;
-> >> +       };
-> >> +
-> >>          leds {
-> >
-> > <snip>
-> >
-> >>
-> >> +&pwm_AO_ab {
-> >> +       pinctrl-0 = <&pwm_ao_d_10_pins>;
-> >
-> > The "pwm_AO_ab" controller only controls the PWM "A" & "B signals, not the "D" !
-> >
-> > This basically enables the PWM "D" pin function to GPIOAO_10, it doesn't assign it to the "pwm_AO_ab" controller.
-> >
-> > So by enabling this pinctrl, it will duplicate the pwm_ao_d_e_pins signal to pwm_ao_d_10_pins, this is why the FAN spins non-stop.
-> >
-ok.
-> >> +       pinctrl-names = "default";
-> >> +       clocks = <&xtal>;
-> >> +       clock-names = "clkin1";
-> >> +       status = "okay";
-> >> +};
-> >> +
-> >>   &pwm_AO_cd {
-> >>          pinctrl-0 = <&pwm_ao_d_e_pins>;
-> >>          pinctrl-names = "default";
-> >> -------------------------------------------------------------------------------------------
-Thanks
--Anand
+configs tested: 62
+configs skipped: 2
+
+gcc tested configs:
+um                             i386_defconfig
+um                           x86_64_defconfig
+arc                                 defconfig
+s390                             allmodconfig
+alpha                               defconfig
+s390                                defconfig
+x86_64                              defconfig
+s390                             allyesconfig
+ia64                             allmodconfig
+x86_64                        randconfig-a004
+x86_64                        randconfig-a002
+x86_64                        randconfig-a015
+x86_64                               rhel-8.3
+x86_64                        randconfig-a013
+x86_64                        randconfig-a011
+x86_64                           rhel-8.3-syz
+x86_64                        randconfig-a006
+x86_64                         rhel-8.3-kunit
+x86_64                           rhel-8.3-kvm
+x86_64                    rhel-8.3-kselftests
+x86_64                          rhel-8.3-func
+x86_64                           allyesconfig
+powerpc                           allnoconfig
+powerpc                          allmodconfig
+mips                             allyesconfig
+i386                                defconfig
+i386                          randconfig-a001
+i386                          randconfig-a003
+i386                          randconfig-a005
+sh                               allmodconfig
+m68k                             allmodconfig
+arc                              allyesconfig
+riscv                randconfig-r042-20221026
+arm                                 defconfig
+arc                  randconfig-r043-20221026
+alpha                            allyesconfig
+s390                 randconfig-r044-20221026
+m68k                             allyesconfig
+i386                          randconfig-a014
+arm                              allyesconfig
+i386                          randconfig-a012
+i386                          randconfig-a016
+arm64                            allyesconfig
+i386                             allyesconfig
+arc                  randconfig-r043-20221028
+s390                 randconfig-r044-20221028
+riscv                randconfig-r042-20221028
+
+clang tested configs:
+x86_64                        randconfig-a001
+x86_64                        randconfig-a003
+x86_64                        randconfig-a014
+x86_64                        randconfig-a005
+x86_64                        randconfig-a016
+x86_64                        randconfig-a012
+i386                          randconfig-a002
+i386                          randconfig-a004
+hexagon              randconfig-r045-20221026
+hexagon              randconfig-r041-20221026
+i386                          randconfig-a006
+i386                          randconfig-a013
+i386                          randconfig-a011
+i386                          randconfig-a015
+x86_64                          rhel-8.3-rust
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
 _______________________________________________
 linux-amlogic mailing list
