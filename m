@@ -4,43 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB8BDFA3740
-	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Oct 2022 20:05:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65433ECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Oct 2022 20:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8xPWYbCBddxuwxStDhMrPQa9rRsRSX5DPStizD1o+dU=; b=APeLpUCj67XNBk
-	87e9043Xmv5I5A8JuVvpitjiGKeYT3WLoQr06LX3TucSr+F+Ln8yYPmYK5PLONcoKFsKgLta6Zv9Z
-	68QD8wH2PAZA+BDTUynDOJcSNhHptPn6ef335P125XOaIdSYyltXUkjFwAb2UaMvIIaCGTYaK43gQ
-	ywV29vkPjPETyD0GGInKapW3BijyX0I57Tc+BL3kaiCxLKRnm3gDgSfoRnkhQDdtx5rnOIIVzcBg9
-	LRLNM3QgmRsp1WMQ9qh+mPAvtEG1Vl22BLYX1ihtG3oiFtcvCNDd8JKtuvDVkGgsPenuozNdSxLnW
-	0kCYstaDPu+XrmW3M82g==;
+	List-Owner; bh=mZXjGVoX03NZhKYANhLDriRe6/YTEWO1y6BNXZKo0hE=; b=SIBFXWzI3viok0
+	KoYExQHh8BwQkls3vLqTQXdkmYoR3NDSzr1GTMlIKpXFLyKMNlloH2FplWxk2G64+3nNGQNLuKweK
+	qg0urQG08QjDOTiM7bJqPGijRiPTj3RiuJgJxmRoiITDI49M3iQN0UrePmWiy05JhKaPb1/BvypXK
+	JHBgO3STkXB4B6rs6e++o4vOMJ7DtnLo3z3CrjtF7djF2qjB8vrG2pViTq0EK1Vjqm5scB9/miF30
+	XU8nrsDXBb1WUh/voDVtFgbz0nJ0E6kUAwaEt6LeqTyMMKQCgg6SBq17q66+fbK3ujU5njy0yY6du
+	O0tOi6MweNH0Q7l0RNFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opEYp-002eac-7a; Sun, 30 Oct 2022 20:05:35 +0000
+	id 1opEbi-002gYw-Kt; Sun, 30 Oct 2022 20:08:34 +0000
 Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opEYl-002eWF-39; Sun, 30 Oct 2022 20:05:32 +0000
-Received: from [185.156.123.69] (helo=phil.localnet)
+	id 1opEbb-002gSV-Co; Sun, 30 Oct 2022 20:08:28 +0000
+Received: from [185.156.123.69] (helo=phil.sntech)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1opEYb-0005bW-Cr; Sun, 30 Oct 2022 21:05:21 +0100
+	id 1opEbX-0005ci-6p; Sun, 30 Oct 2022 21:08:23 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Alessandro Zummo <a.zummo@towertech.it>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
-Subject: Re: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
-Date: Sun, 30 Oct 2022 21:05:19 +0100
-Message-ID: <9218219.T7Z3S40VBb@phil>
-In-Reply-To: <20221024165549.74574-7-sebastian.reichel@collabora.com>
-References: <20221024165549.74574-1-sebastian.reichel@collabora.com> <20221024165549.74574-7-sebastian.reichel@collabora.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-rtc@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	kernel@collabora.com,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: (subset) [PATCHv2 0/6] Convert HYM8563 RTC binding to YAML
+Date: Sun, 30 Oct 2022 21:08:17 +0100
+Message-Id: <166716040330.1678541.8752121289367549859.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221030_130531_168322_21A7B142 
-X-CRM114-Status: GOOD (  17.07  )
+X-CRM114-CacheID: sfid-20221030_130827_455440_CF4F0774 
+X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,124 +73,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Montag, 24. Oktober 2022, 18:55:49 CET schrieb Sebastian Reichel:
-> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
-> Schema format.
+On Mon, 24 Oct 2022 18:55:43 +0200, Sebastian Reichel wrote:
+> This converts HYM8563 binding to YAML and fixes
+> the existing DTs.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> ---
->  .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
->  .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
->  2 files changed, 56 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> Changes since PATCHv1:
+>  * https://lore.kernel.org/all/20221021170605.85163-1-sebastian.reichel@collabora.com/
+>  * Added patches fixing the existing devicetrees (Rob Herring)
+>  * Dual licensed the binding (Krzysztof Kozlowski)
+>  * Added maxItems for clock-output-names (Krzysztof Kozlowski)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-> deleted file mode 100644
-> index a8934fe2ab4c..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -Haoyu Microelectronics HYM8563 Real Time Clock
-> -
-> -The HYM8563 provides basic rtc and alarm functionality
-> -as well as a clock output of up to 32kHz.
-> -
-> -Required properties:
-> -- compatible: should be: "haoyu,hym8563"
-> -- reg: i2c address
-> -- #clock-cells: the value should be 0
-> -
-> -Optional properties:
-> -- clock-output-names: From common clock binding
-> -- interrupts: rtc alarm/event interrupt
-> -
-> -Example:
-> -
-> -hym8563: hym8563@51 {
-> -	compatible = "haoyu,hym8563";
-> -	reg = <0x51>;
-> -
-> -	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> -
-> -	#clock-cells = <0>;
-> -};
-> -
-> -device {
-> -...
-> -	clocks = <&hym8563>;
-> -...
-> -};
-> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-> new file mode 100644
-> index 000000000000..0b9f39ef0edc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Haoyu Microelectronics HYM8563 RTC
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: haoyu,hym8563
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    description: From common clock binding to override the default output clock name.
-> +    maxItems: 1
-> +
-> +  wakeup-source:
-> +    description: Enables wake up of host system on alarm.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rtc@51 {
-> +            compatible = "haoyu,hym8563";
-> +            reg = <0x51>;
-> +            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> +            #clock-cells = <0>;
-> +        };
-> +    };
-> 
+> [...]
 
+Applied, thanks!
 
+[1/6] arm64: dts: rockchip: fix node name for hym8563 rtc
+      commit: 67a9aeef44e42b1ac2becf5e61eae0880f48d9db
+[2/6] arm64: dts: rockchip: remove clock-frequency from rtc
+      commit: 2af5bbe32f50d196dd680478a889d12429b3e8cf
+[3/6] arm: dts: rockchip: fix node name for hym8563 rtc
+      commit: 17b57beafccb4569accbfc8c11390744cf59c021
+[4/6] arm: dts: rockchip: remove clock-frequency from rtc
+      commit: 6122f3be70d90a1b2a1188d8910256fc218376a9
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
 _______________________________________________
 linux-amlogic mailing list
