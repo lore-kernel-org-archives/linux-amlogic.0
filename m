@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 162AEFA3740
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 12:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D4A8FA3742
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 12:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H3hhRxZH4h3EH9l4eaEOR6hEh+GY2EIWsU63x4VCf7c=; b=El+PLwCYy2nwGz
-	3pkER+0rdMGOAs3NFfVg1/+EXWfyaU5lC0zi168Jjrb7z+rPtvUrgomrxb5m59e+F4a121jlXpcFv
-	dV7maVp0oiogFWSS7h9nY4saV1rXlPP0g7Ieyq+du+TH9uQJrX/kpclYZseNhG0vdacSF6XE719N/
-	jfhrvksBp7+Rkl2H0a2B5KOIcpK1ZOEcATTbmppwmO+Qr9d7OkvipWjklH2dahXnq34D7nXhXK7Tc
-	NMIC4R1czf95G6L3CBtFVGHpiXc0l9nztEi3oTw+uqwtvp80OnFqoGCl7CUSWTv/6nQuR4t4y/0mG
-	XjTmgx88QEH3T72XPWMg==;
+	List-Owner; bh=a4lqeQpvn1JA8r7MJr3hlee2pO+ulgYec61l+pf1BK0=; b=P8dmcZm3xC5J4h
+	RZPOkr6CVfx8jChzy6p7GmdStXrS/MPUh4bXI+ci+bp9TOUveo/XsMQMBk13ZkNsawODTVcaHETSG
+	0JfwdP+WIYvEAdBSESK8jaL8GvDeBkalO+i4RAg2yOw3z/i65UPXkcLPh1QmtMrwycTyGg1fik1Fe
+	/IJ7YhjrX/HVfDRrWranKTgUq+CW6JuYsodjNygLTNDMugqyFANiI2OkQxnPepp/wHqxYoNiCV5i8
+	93T4NWJN+FqKTXh/j/y3j58xLjcZmK/0ff82ZzMLQlkkj80Tid4UJDY0BMG996HdVL4VxUVH5c4Pw
+	3i+wdt/99zQkxGWoXTKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opTar-00BXUo-OU; Mon, 31 Oct 2022 12:08:41 +0000
+	id 1opTfx-00BYgE-0U; Mon, 31 Oct 2022 12:13:57 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opTaY-00BXMq-Ae
-	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 12:08:24 +0000
+	id 1opTfk-00BYcX-Fs
+	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 12:13:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1667218101;
+	s=mimecast20190719; t=1667218423;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UzviKTRQBMSKwIl6kvNWZgMaFQwic4ec30sKv7m652k=;
-	b=HVwgxIFnTQWShJIbAp+p3yMHeOQrB6J5obh03OwUqlJlXbm90w49w/nPJiu98HKGScM9Uj
-	vcR2K1W6wwdh1fa05SHdk+3fuL31eun9CsHTnQBBPzXgM2GVsUWvjC59Qd/0aT4EbN9Vql
-	WRS4q8gCbvbwjjBXqhS0GpswFgCgaLQ=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=2H8Fq04+XbNugdc6Ty/YSDXQIs5WWNt9cW9u1MIkjOA=;
+	b=LyZfO8oK7WZg4YiS9L3p0sPvSDxJCNdr2Me/YfWcIWtG3BRFZltcOhxxLIrtskFui509hE
+	xsInseEH2yFmN84gB9WUs/gQuBrkKynCG9+fUX6R3pQXdXRJ3+3lDQY7Th6RTNKRybZc4i
+	Jd+OU8QSZF05D6AMylsox0LmSDOrFXE=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-401-8RjR_auMMjCaN0TTM4VLIg-1; Mon, 31 Oct 2022 08:08:19 -0400
-X-MC-Unique: 8RjR_auMMjCaN0TTM4VLIg-1
-Received: by mail-wr1-f69.google.com with SMTP id p7-20020adfba87000000b0022cc6f805b1so3012250wrg.21
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 05:08:19 -0700 (PDT)
+ us-mta-91-ngUODnJeN5ytiMRtENJQow-1; Mon, 31 Oct 2022 08:13:42 -0400
+X-MC-Unique: ngUODnJeN5ytiMRtENJQow-1
+Received: by mail-wr1-f71.google.com with SMTP id m24-20020adfa3d8000000b00236774fd74aso2971335wrb.8
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 05:13:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UzviKTRQBMSKwIl6kvNWZgMaFQwic4ec30sKv7m652k=;
-        b=QX2JIsTNCEdMNeYfSlgif++xT00+h4Vhl2cyJ2MZDF6LnY6T0WYHJKcTUgDgMcG3Qc
-         TIEKhAeMsqKKF4fEQEzaJppJF9ikO6F03z69bfw77mBUf1El+HbG+OjsFibhggJo5LJT
-         voOnZMcsDmfMy0A66npXNoXsXSn74VRyDWfLu1tGGflyRvdscsCpvrH2fx/jhyvAcgsl
-         c8pwqcnVce2bMBZrgydUjQJg8iIgxMol//N9Z18VJPYJfN8ta1y0xS+Z3odWswrhOPHV
-         TaVNDNhRuVEBZSfq1Zl4WrKK5Oy1D0LoOgI/3JfE3/A5/42fi1GsaEBOewqxSIibNMkm
-         Tzpw==
-X-Gm-Message-State: ACrzQf0yfSrIqCmcG1a0Mqsm5fKQORgu17/lHgFK7LIdg0c+UDoDL9+B
-	2GKNJbyydfEQOP3PNs+3abjPJ9+BM2hPC4FdzXIctfM6ksr1YZAbhEFGbYocApz7tt3zcRqI1Y/
-	//04hmlvEQyVWb4U7FV2zV9NO440JQfY=
-X-Received: by 2002:a05:6000:15cd:b0:236:9701:7939 with SMTP id y13-20020a05600015cd00b0023697017939mr7691202wry.248.1667218098876;
-        Mon, 31 Oct 2022 05:08:18 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6Xfc/ao13H30KX93ABjLq4iUJ6oQF+1EOXF8gvz+3LvWSBMjjIijdjEWsEsBBK0GpYNHL8UA==
-X-Received: by 2002:a05:6000:15cd:b0:236:9701:7939 with SMTP id y13-20020a05600015cd00b0023697017939mr7691171wry.248.1667218098682;
-        Mon, 31 Oct 2022 05:08:18 -0700 (PDT)
+        bh=2H8Fq04+XbNugdc6Ty/YSDXQIs5WWNt9cW9u1MIkjOA=;
+        b=5QAUDAW5yW3G0BW/9VJ5CQ+Mij2ovG0ABlnjUn5/GYzeKDXs8Iqju4fJH6baM7J2uu
+         uw7ygXU27Q5UuI3L56OJIWbphcUVb6ftFJqMhL5K8di0TI9s7eWY5DsZghHU7AYBJTpb
+         /L1kJOtM2Z8W4uPCu6jc//JVsDzoG3gMRqyE7Hd58hMZyz7XYy47up4YXNr3FFnNGjWZ
+         vrZSQYoR77d+vmSkShwaCKS1rcpztg0S5qJsM5IAdxrf9lOVwgnI7+Hna9FC03/1VHsV
+         P8PkK7E0k6rEFedQs+us1DjCtAcbjSGAN13bKto/Lyr3kSNS5gVgPjdpL+mGIboxxF/C
+         T8Ww==
+X-Gm-Message-State: ACrzQf3MT/JRNNW1pzFwpBXCdq7mKrCRxf+cC6Ckh+nnfx3cVzF2Gfzq
+	h7QU/+jjyRRaWCbHQm/CiQ07qJAjOk6wi+Ly8nkuxbJSAbJjiCv4O9SH3KM+sPx4wCITOY595tp
+	mMV1iU0GKleEI9YBIyfDbK9LBS/g9g5I=
+X-Received: by 2002:a5d:64cd:0:b0:236:6d1c:c1a2 with SMTP id f13-20020a5d64cd000000b002366d1cc1a2mr8196697wri.360.1667218420932;
+        Mon, 31 Oct 2022 05:13:40 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6+QX10ZDmjvc1IfL0XXmvBimtEQHEjFBrrHb50hNQes1zzurNnpW//og1SN1o9c/o5tX548g==
+X-Received: by 2002:a5d:64cd:0:b0:236:6d1c:c1a2 with SMTP id f13-20020a5d64cd000000b002366d1cc1a2mr8196664wri.360.1667218420692;
+        Mon, 31 Oct 2022 05:13:40 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id bn26-20020a056000061a00b0022cd0c8c696sm6948033wrb.103.2022.10.31.05.08.17
+        by smtp.gmail.com with ESMTPSA id az29-20020a05600c601d00b003cdf141f363sm7207444wmb.11.2022.10.31.05.13.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Oct 2022 05:08:18 -0700 (PDT)
-Message-ID: <fd53a4f9-34a8-f5f3-1b1f-baf4a456bcc9@redhat.com>
-Date: Mon, 31 Oct 2022 13:08:16 +0100
+        Mon, 31 Oct 2022 05:13:40 -0700 (PDT)
+Message-ID: <231be619-96b7-b725-0735-0275e07477d8@redhat.com>
+Date: Mon, 31 Oct 2022 13:13:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
@@ -96,8 +96,9 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221031_050822_475509_D8FFCB78 
-X-CRM114-Status: GOOD (  10.35  )
+X-CRM114-CacheID: sfid-20221031_051344_650365_FADF6D69 
+X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,13 +129,6 @@ On 10/24/22 13:19, Thomas Zimmermann wrote:
 > ---
 
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-Do you think that the fbdev helpers kernel doc has to be updated to mention
-that drm_fb_helper_lastclose() and drm_fb_helper_output_poll_changed() are
-not needed when generic fbdev emulation is used? Because by reading that is
-not clear that's the case:
-
-https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_fb_helper.c#L86
 
 -- 
 Best regards,
