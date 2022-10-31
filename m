@@ -4,75 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CCBFC38A02
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 12:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 007EDC38A02
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 12:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cs3u3QnEmgujwO+zEO4jecI79pJ4hOdn+MYo1EvcgyY=; b=jifBZyqlfjHqs1
-	BqQhP3aqml5vC6YX4t5hbxaPfn+31aqWPR7D3PLkUI/+1pYHE3P5Fsb3ozFuNFM2S0gCLrBttUsSb
-	AjDgEG098QD2x4Xk83IFh7TUxDwt9IffqxCmZqbfY68uJn4Gc6qeqZEHAdr4KDmSkudqgaMxmyMlk
-	3rTbG0v/3SKqwXpjGV1341Pg+1p1DKngIPTAn5o9+nfeop8zdqWwNg2G8ZOpz2p/r20JcAtUMmtdY
-	omTSZYkMQGc+ay5Vy+N3OPUXuVPxfkVK/c7oE1YiLnpnMFXlRTfoz8HfUoKUZxHaa6ejOdbuTHIKh
-	A6wXEeEvvczcukA+XOFg==;
+	List-Owner; bh=B7/LHhwWKOLmjCMGxVXo19eJmLy7KATbEvMR51Gp/xE=; b=gFIDnb6pmk6b9J
+	pTAJ9jDU9hxCTw8jNt+3heI+nDxVB6tjolluJbvyfsbszTuXNEaJeoO4x1qwFgRO66PC7pmargcVs
+	Yosb7OiXxMhzUTwumtXDBhiMnNzIPNbQKUq1W/4s/SxV8yG5SVCZY2JPeYb8tLF02dmfD+F4Vpxvp
+	sjdIJrH1xDW+XwAEoXW/jq4TUjv/Amix/lN7u5Sl15xjyhpp5GeomUUxNDGtuT6KNiNfUDjZApHB6
+	TuV8jp2AePLy6hcvhaz+KzE2PjWg0NZfJxOZySKEkX1JpJ/BuvWmfZUWM97TS977E3lhGioB5RagY
+	kAVYHHt7bpV/8Q6OKcrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opTTB-00BVa7-T2; Mon, 31 Oct 2022 12:00:45 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1opTTg-00BVuR-1P; Mon, 31 Oct 2022 12:01:16 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opTSu-00BVRt-NR
-	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 12:00:31 +0000
+	id 1opTTX-00BVoW-OL
+	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 12:01:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1667217627;
+	s=mimecast20190719; t=1667217666;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=NYUZwRg+lRYohe3+hrEekpmCQsb4LiBLuZ4BzJljYVc=;
-	b=acnwVq5jdQD8G0EIf3f2jFukYFyaazdWJOsYibV6Qu4otfloysbSMJacu1T9cOIbHRuooo
-	tJYpan30lFYXmFyUvPz2AmEPbdJ7nWrYNhOEMndIqTqKlQLzrDMez0rAALkQR+puUmw1V4
-	AD8SqnV+pc3brgTO+umsfzEjRepdkIE=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=ypYZqoZTsptEoKYiFoPm/p19rfXtb3oU3pAWnCNe+WI=;
+	b=Dsh8WvO9JJo0emLfcyb+Dq+YBK58iDdt01GG+JJIH1VsbyTY96Va/8YL+I9N0vxzSafRSO
+	g5imn9X+8WNES1Ia+R1VN5sLH/9TVxjXS3Yd4XWTtCrUqO4+cODPXmYZ8C5qVKAmrmSJnV
+	3ThNkGA/1DNrJfyVSq3/eOCIVujETiE=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-240-oBR24-p1N4WRwXiJ8F9OUA-1; Mon, 31 Oct 2022 07:58:52 -0400
-X-MC-Unique: oBR24-p1N4WRwXiJ8F9OUA-1
-Received: by mail-wm1-f72.google.com with SMTP id l1-20020a7bc341000000b003bfe1273d6cso2525033wmj.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 04:58:52 -0700 (PDT)
+ us-mta-607-gO_ZsDvgMtaUbQUx_hpWqw-1; Mon, 31 Oct 2022 07:59:38 -0400
+X-MC-Unique: gO_ZsDvgMtaUbQUx_hpWqw-1
+Received: by mail-wr1-f72.google.com with SMTP id h18-20020adfa4d2000000b00236584fc8c7so2940387wrb.7
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 04:59:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NYUZwRg+lRYohe3+hrEekpmCQsb4LiBLuZ4BzJljYVc=;
-        b=xbRUl6vd+DgsHaDZgnaMdBiTsWQM8TdudAMlkkcr2v5O2pPY573ONjrb7vnvpqE/f4
-         HLytWqraRfGkSLsLkMFD9mqQNCH+8hTyB3R1wx5FCll7lpx1JdlDUZz7F3VaKPyBiRSZ
-         H47zLvxaxoLwlz8Dw5spRW43HdrBVmW9EFz563d0URGSjAQROT6W7QyvsEbiwuHk5uiD
-         R7OwLbUYhxtJ1bKZMsAahyQv5GdT+FfAgItDng3c/kh9xjFnY+BP7z+nAL4wB/YLumHc
-         7O+OV+SWCKXfGCZ3UebUSlHq2R8CvZaQQdJDk9mEx6NI6NnInAxHIvN5k7iS7ywVvFPj
-         0AYw==
-X-Gm-Message-State: ACrzQf2kS+6+t1Kxs2P5BDs2rQiENcur/+hE5vgb96uIU24w7292LMsb
-	HjgXbCmUPTsaN6XrFBTAId7rjOlHwIwNVNSs60GuhAqbLc91/Fd6F2aFqtUQJFqCLoaRRlYcLNt
-	9339TrsuRCR7r7OLnFOyKfIWGVGjFpSQ=
-X-Received: by 2002:adf:ee46:0:b0:236:57e4:60d9 with SMTP id w6-20020adfee46000000b0023657e460d9mr7712418wro.208.1667217531293;
-        Mon, 31 Oct 2022 04:58:51 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5NlG/EcNgth7sygR/Y2wmF3YkVg5o1INpxQYpcg5X49eIhA0omsq50HY00GhqtS98H3T4hUQ==
-X-Received: by 2002:adf:ee46:0:b0:236:57e4:60d9 with SMTP id w6-20020adfee46000000b0023657e460d9mr7712386wro.208.1667217531117;
-        Mon, 31 Oct 2022 04:58:51 -0700 (PDT)
+        bh=ypYZqoZTsptEoKYiFoPm/p19rfXtb3oU3pAWnCNe+WI=;
+        b=YGYu3oGx9v4u3orXghD+7ba6o8Okr2HPcmczn4SzGzHiBWsWaVTw7+LGCOckC1clux
+         WVQD+NkpeG7COPs8Xadl7TiiOwSbvTOKu77wDUUsTanIfbQk3r9bV6l+LhU/xBQRNnYP
+         xk1lCJQsOlu1KfInEvpEM71RQMnM8QR7Te1m4Yqs3XY/Yevx/xE+Ihpk5xT020SyEIqT
+         9c7yD7PMQuoZXEyozNUIs33XK0RfPvefbO+u7v5JCpxFD4lB6ZuvqnDqhMYFpUWRHIhm
+         YwTWXQndhHJzc498081lrz/TXXqGIhmeQOSQtdzRrpvGi3iLqDstTEut1RRbvv1d3QjI
+         mBbg==
+X-Gm-Message-State: ACrzQf2Lj3Vu9fKmTZk8g6Ut07kkBdo4dT0XsvxZQN4dTKRPSS+Dj1pC
+	O4Ki2hPAhT54KI+XQEpToppEFOXHhqGG+XwyQBC4dd1MUN4xi6oMS4tykLzChngeOyiXrekWk9N
+	LxGBT4tCu6y5NpAPipkleAnr7tVJFe50=
+X-Received: by 2002:a05:600c:468e:b0:3c6:f510:735c with SMTP id p14-20020a05600c468e00b003c6f510735cmr7602929wmo.179.1667217577115;
+        Mon, 31 Oct 2022 04:59:37 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6EBETLSD4MBJxdnzTxR3FGu4hBbX2SQFUCrJloOPK1q2LF0w1HzUkYOXWVOI9w84+cugepvA==
+X-Received: by 2002:a05:600c:468e:b0:3c6:f510:735c with SMTP id p14-20020a05600c468e00b003c6f510735cmr7602924wmo.179.1667217576945;
+        Mon, 31 Oct 2022 04:59:36 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id cc14-20020a5d5c0e000000b00228d67db06esm7103664wrb.21.2022.10.31.04.58.49
+        by smtp.gmail.com with ESMTPSA id 123-20020a1c1981000000b003c6c182bef9sm7774720wmz.36.2022.10.31.04.59.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Oct 2022 04:58:50 -0700 (PDT)
-Message-ID: <365e1467-7dc2-42b4-b985-53323741dea8@redhat.com>
-Date: Mon, 31 Oct 2022 12:58:48 +0100
+        Mon, 31 Oct 2022 04:59:36 -0700 (PDT)
+Message-ID: <ae69e0c5-05ee-f0ef-a333-53bbaff5c3e8@redhat.com>
+Date: Mon, 31 Oct 2022 12:59:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v2 01/21] drm/komeda: Don't set struct
- drm_driver.lastclose
+Subject: Re: [PATCH v2 02/21] drm/mcde: Don't set struct drm_driver.lastclose
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com
@@ -89,14 +88,14 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
  linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
 References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-2-tzimmermann@suse.de>
+ <20221024111953.24307-3-tzimmermann@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20221024111953.24307-2-tzimmermann@suse.de>
+In-Reply-To: <20221024111953.24307-3-tzimmermann@suse.de>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221031_050028_890047_EE605CE9 
+X-CRM114-CacheID: sfid-20221031_050107_889885_61DA9349 
 X-CRM114-Status: UNSURE (   8.01  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -117,7 +116,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On 10/24/22 13:19, Thomas Zimmermann wrote:
 > Don't set struct drm_driver.lastclose. It's used to restore the
-> fbdev console. But as komeda uses generic fbdev emulation, the
+> fbdev console. But as mcde uses generic fbdev emulation, the
 > console is being restored by the DRM client helpers already. See
 > the call to drm_client_dev_restore() in drm_lastclose().
 > 
