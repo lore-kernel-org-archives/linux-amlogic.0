@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE2E8FA3741
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 16:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1531ECAAA1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Oct 2022 16:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UdcBuJKE/gJoK+wIPmuEHcw2wixQc01yfFZzsfdYiSA=; b=MTdLPgpFVjQ7bP
-	GEqF6KrtuYT4wcI/I69MO24k4dfknDu1bzpVa+xx5d70FF3gHrdUL0LEvNxtCQDI/QCj2VVALEDBn
-	cJRekZYDZllT9PkbJp5o3P8Kj69ULBKfYsiHMOWPpeQSSWqQ/n45+4vmkpvnuXkv+Lgux5TNtbTa5
-	vRasMHDHnry2FGCw4hgrUWqLeeEhjp0GIBEmZVWpkyW8Du83PRj7c6ayBP35qpH+/iRMk72iMyY7R
-	NI2QyFvSgZdHwAzd7Fj6/CGSMWsCH4sOebkWCZfERU8gAcaLNvre3fzgYGCjoelhVJ5DvVn83OOSw
-	Fnb4INT91xUPvP1jI0Lw==;
+	List-Owner; bh=ITQFdbnniICWZDz4sy5+YoHddz8ZDYKysOSLJmlu38U=; b=JCoB/oUH5BrO71
+	RWNm07Y0GAW/YekrWK5twJuIrH1/GLSGrBPWX0EPmsuFPUoA2bwRL65SMrIvHQf3AUm8+VV2B6/bV
+	VLQwLADnYEpp3Lb7gLI1WRXC4qFpyCr6LwfCwlgUnmTqKaE/37x8EauG+pMUHSoKlWwdepVMMUbmH
+	Llppa0sTGU1kqGJ9qHax+ZE1EMt7J4ANlRw0FZQ3Q06SWxLeKm9lXlYLKFJN/jpYNhLwSvpJ1SJng
+	hNRaAkTwdCXTx9gf7kbF0RkX3m1RgHg9x+fVMQEAV6xR7AVmJgTIXKNtFw+BS73I9BWYRq8FDYNfb
+	WgkkjWPI1axMQjyGiThg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opXwi-00D5UU-OT; Mon, 31 Oct 2022 16:47:32 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1opXx2-00D5as-TH; Mon, 31 Oct 2022 16:47:52 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1opXwg-00D5SS-2P
-	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 16:47:31 +0000
-Received: by mail-wr1-x434.google.com with SMTP id cl5so5159608wrb.9
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 09:47:29 -0700 (PDT)
+	id 1opXwh-00D5TL-Ns
+	for linux-amlogic@lists.infradead.org; Mon, 31 Oct 2022 16:47:33 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id bs21so16822678wrb.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Oct 2022 09:47:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NOvjAXevhTkIKEozXkDl99JqlY+Qi6ewDIiwMUqw+eI=;
-        b=qY2IeKDRG1F4poEQPiAWWwD+glIBmz2L95iZxZiagfOCWZPnnMTf3cBx/VNmUR3OSl
-         O2CLdUJ8mHfln5H75LZ1mzfbQ/cAL6C3oMFXSNSbbavXhhQNkMD2qQ897BCUKTSa+SHS
-         L4bV0YSEwLQQeIegTJV3MIJgFJSYs5K5tdIR8H2MRRYvESbxB8zqP7qdblVFmAIFgm5o
-         IycEid4/5BbtDlltxbKqLS9INDgq8xCg13tVBe+RaIVPMTe6gCdrWRLx8yjueLjRmeC+
-         JWLK42+UZHM2V5bL1ZYpVuUu1r3KY9BDCEn/a5Z1YyiuGrHONQQ2NKE7BnRGprS0Mqev
-         vV0Q==
+        bh=xErnWFgaDg+HEqwln9TpU02EEACDpfMaLjEESgcrepc=;
+        b=DnnOoSoK2AhVhQBp/Ch2lYXVTR7ui4LvICzoHKNz4sAnqC0sYU/1QnVYTwh8lVheLa
+         SOMreBchmy6gq5boDFswK5fLTpE3BIPhA4HE3oAYAe2EyroMSR0EQ9D023dGU+HlEPOn
+         ascKLRTN+V0/2aMCpOO14noYbzT6jMaA2zsUs8oxtlUpZECLih0Nr8SixehhZYYcK9rK
+         yaE3IeSeL43BFP7rY5YbrfwiCqpq3J7M6v51DUtrp1IloZgld2lAdAe5pa8xwwast+c5
+         kBdTiyrvrAIlWOFwh+OrxbO0+vsGjC3cgWMD7HES4Qf2cvE+FkG8HmGTtvtdfRWMgIOZ
+         uFiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NOvjAXevhTkIKEozXkDl99JqlY+Qi6ewDIiwMUqw+eI=;
-        b=q+nbYTL/jAH10Ti4H9Wp2IQrHSYxX8cSKigt7co3tFuDYQ/PE94e7x4nwXcmJZTfKo
-         REFE7tGM2PZsAmMpbNqTiDhvHvLKqKeig2kO1HHp59XAYasG5haWE09ljRag/HcTbU3Z
-         JOs/UPW1cPCKxiwZQ8aAo9havLnMfmI7itcvqXdv+QqA7nUOD4teBxhMmY1QGpQ5DstC
-         /9R5umGjpDkp+O2oUEbkJKDtTQiEBp62Olr9I+j1rAaXcoCW0EVI89Anl8W/z7p3ISC3
-         dikAIIZNfJ+Kv2y1GVLKL0XJ5qeRa5mn9Rf+BN5X7xrrCEYThIPQVYeWkfxXJD+7zR8L
-         vEug==
-X-Gm-Message-State: ACrzQf1k/fSc46XvYdy4I/KPQL0Tb+UyQ4LvrzSgjAMqvzOyS2STclMN
-	3LP3zHbBAadik46WItA73KTtbA==
-X-Google-Smtp-Source: AMsMyM70WHblAByJ4Qi+nU6doCl8thqDKuH5Zl1XoFQhfj9UxiE9dDkzhRNahah6ucvCPCN5k67C1Q==
-X-Received: by 2002:adf:da4f:0:b0:236:cdd4:4ce2 with SMTP id r15-20020adfda4f000000b00236cdd44ce2mr3330832wrl.626.1667234848824;
-        Mon, 31 Oct 2022 09:47:28 -0700 (PDT)
+        bh=xErnWFgaDg+HEqwln9TpU02EEACDpfMaLjEESgcrepc=;
+        b=fcUS8SzDF241J9AM5bcsY3i/H5PbDruqWfF0ueBd2XI7rgiMhUM1wdzYFdzQsAxB2i
+         k/Xi+7qE9k/FybHL0FrK6x5AYGTca2X9aZZYjg4JK5h1Xko7W8lhMKKVR3G40v4Xe+lq
+         fXHH/QVyQBF64yDcuzx/XqK5+jx0MNZiiodp8xjoCmAoqPjhem+vsSNezLVoKT3/rCO0
+         NOL05Z6ZAQ58PPHHHOWFVOnQpe3C6sYT06yAgKE9USaK9YeW+Afi4H6rtugFOXknFfhf
+         YEKvFtB8XoJMwhla1s187D1qMpA2qHz0CTzMe7s/YnOaPGUHGkyqsZw8HTJJzR5y6Il8
+         sNTA==
+X-Gm-Message-State: ACrzQf3lHYKlLLUSMhhx3CfMVtyyt5zfGeNzIyXGcZq8zXcsekz3IOTE
+	TD/vwjt5NZYlkB/cow/JzBv3NQ==
+X-Google-Smtp-Source: AMsMyM5duokxV3j72AD+s51mhGdvgvu5dn5e7ybRmwDvcGdv24bieBhGb5F6sULHYJrafLR9/yIy0g==
+X-Received: by 2002:a5d:6e8e:0:b0:220:5fa1:d508 with SMTP id k14-20020a5d6e8e000000b002205fa1d508mr9151987wrz.337.1667234849903;
+        Mon, 31 Oct 2022 09:47:29 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id q8-20020a05600c46c800b003b4868eb71bsm7488871wmo.25.2022.10.31.09.47.27
+        by smtp.gmail.com with ESMTPSA id q8-20020a05600c46c800b003b4868eb71bsm7488871wmo.25.2022.10.31.09.47.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 09:47:28 -0700 (PDT)
+        Mon, 31 Oct 2022 09:47:29 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 31 Oct 2022 17:47:25 +0100
-Subject: [PATCH 1/4] dt-bindings: reset: document Odroid Go Ultra power-off
+Date: Mon, 31 Oct 2022 17:47:26 +0100
+Subject: [PATCH 2/4] power: reset: add Odroid Go Ultra poweroff driver
 MIME-Version: 1.0
-Message-Id: <20221031-b4-odroid-go-ultra-initial-v1-1-42e3dbea86d5@linaro.org>
+Message-Id: <20221031-b4-odroid-go-ultra-initial-v1-2-42e3dbea86d5@linaro.org>
 References: <20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org>
 In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -74,8 +74,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, linux-kernel
  linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221031_094730_273530_0A0014D5 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20221031_094731_814573_69A224CC 
+X-CRM114-Status: GOOD (  17.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,62 +93,176 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
-to its two PMICs in order, this represents the poweroff scheme needed to complet
-a clean poeroff of the system.
+to its two PMICs in order, this represents the poweroff scheme needed to complete
+a clean poweroff of the system.
+
+This implement this scheme, and overrides the PSCI pm_power_off.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../reset/hardkernel,odroid-go-ultra-poweroff.yaml | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ drivers/power/reset/Kconfig                    |   7 ++
+ drivers/power/reset/Makefile                   |   1 +
+ drivers/power/reset/odroid-go-ultra-poweroff.c | 122 +++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml
+diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+index a8c46ba5878f..26860c2e05a9 100644
+--- a/drivers/power/reset/Kconfig
++++ b/drivers/power/reset/Kconfig
+@@ -141,6 +141,13 @@ config POWER_RESET_OCELOT_RESET
+ 	help
+ 	  This driver supports restart for Microsemi Ocelot SoC and similar.
+ 
++config POWER_RESET_ODROID_GO_ULTRA_POWEROFF
++	bool "Odroid Go Ultra power-off driver"
++	depends on ARCH_MESON || COMPILE_TEST
++	depends on MFD_RK808
++	help
++	  This driver supports Power off for Odroid Go Ultra device.
++
+ config POWER_RESET_OXNAS
+ 	bool "OXNAS SoC restart driver"
+ 	depends on ARCH_OXNAS
+diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+index 0a39424fc558..d763e6735ee3 100644
+--- a/drivers/power/reset/Makefile
++++ b/drivers/power/reset/Makefile
+@@ -17,6 +17,7 @@ obj-$(CONFIG_POWER_RESET_MT6323) += mt6323-poweroff.o
+ obj-$(CONFIG_POWER_RESET_OXNAS) += oxnas-restart.o
+ obj-$(CONFIG_POWER_RESET_QCOM_PON) += qcom-pon.o
+ obj-$(CONFIG_POWER_RESET_OCELOT_RESET) += ocelot-reset.o
++obj-$(CONFIG_POWER_RESET_ODROID_GO_ULTRA_POWEROFF) += odroid-go-ultra-poweroff.o
+ obj-$(CONFIG_POWER_RESET_PIIX4_POWEROFF) += piix4-poweroff.o
+ obj-$(CONFIG_POWER_RESET_LTC2952) += ltc2952-poweroff.o
+ obj-$(CONFIG_POWER_RESET_QNAP) += qnap-poweroff.o
+diff --git a/drivers/power/reset/odroid-go-ultra-poweroff.c b/drivers/power/reset/odroid-go-ultra-poweroff.c
 new file mode 100644
-index 000000000000..65e42258717c
+index 000000000000..89ae21790f65
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/power/reset/odroid-go-ultra-poweroff.c
+@@ -0,0 +1,122 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2022 Neil Armstrong <neil.armstrong@linaro.org>
++ */
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/platform_device.h>
++#include <linux/of_platform.h>
++#include <linux/mfd/rk808.h>
++#include <linux/regmap.h>
++#include <linux/module.h>
++#include <linux/i2c.h>
 +
-+title: Hardkernel Odroid Go Ultra poweroff
++static struct rk808 *rk817;
++static struct rk808 *rk818;
 +
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
++static void odroid_go_ultra_do_poweroff(void)
++{
++	int ret;
 +
-+description:
-+  The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
-+  to its two PMICs in order, this represents the poweroff scheme needed to complete
-+  a clean poeroff of the system.
++	BUG_ON(!rk817);
++	BUG_ON(!rk818);
 +
-+properties:
-+  compatible:
-+    const: hardkernel,odroid-go-ultra-poweroff
++	/* RK817 */
++	ret = regmap_update_bits(rk817->regmap, RK817_SYS_CFG(3), DEV_OFF, DEV_OFF);
++	if (ret)
++		pr_err("%s: failed to poweroff rk817\n", __func__);
 +
-+  hardkernel,rk817-pmic:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the RK817 PMIC node
++	/* RK818 */
++	ret = regmap_update_bits(rk818->regmap, RK818_DEVCTRL_REG, DEV_OFF, DEV_OFF);
++	if (ret)
++		pr_err("%s: failed to poweroff rk817\n", __func__);
 +
-+  hardkernel,rk818-pmic:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the RK818 PMIC node
++	WARN_ON(1);
++}
 +
-+required:
-+  - compatible
-+  - hardkernel,rk817-pmic
-+  - hardkernel,rk818-pmic
++static int odroid_go_ultra_poweroff_get_pmic_drvdata(struct platform_device *pdev,
++						     const char *property,
++						     struct rk808 **pmic)
++{
++	struct device_node *pmic_node;
++	struct i2c_client *pmic_client;
 +
-+additionalProperties: false
++	pmic_node = of_parse_phandle(pdev->dev.of_node, property, 0);
++	if (!pmic_node)
++		return -ENODEV;
 +
-+examples:
-+  - |
-+    poweroff {
-+        compatible = "hardkernel,odroid-go-ultra-poweroff";
-+        hardkernel,rk817-pmic = <&rk817>;
-+        hardkernel,rk818-pmic = <&rk818>;
-+    };
++	pmic_client = of_find_i2c_device_by_node(pmic_node);
++	of_node_put(pmic_node);
++	if (!pmic_client)
++		return -EPROBE_DEFER;
++
++	*pmic = i2c_get_clientdata(pmic_client);
++
++	put_device(&pmic_client->dev);
++
++	if (!*pmic)
++		return -EPROBE_DEFER;
++
++	return 0;
++}
++
++static int odroid_go_ultra_poweroff_probe(struct platform_device *pdev)
++{
++	int ret;
++
++	/* RK818 */
++	ret = odroid_go_ultra_poweroff_get_pmic_drvdata(pdev, "hardkernel,rk818-pmic", &rk818);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to get rk818 mfd data (%d)\n", ret);
++		return ret;
++	}
++
++	/* RK817 */
++	ret = odroid_go_ultra_poweroff_get_pmic_drvdata(pdev, "hardkernel,rk817-pmic", &rk817);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to get rk817 mfd data (%d)\n", ret);
++		return ret;
++	}
++
++	/* If a pm_power_off function has already been added, warn we're overriding */
++	if (pm_power_off != NULL)
++		dev_warn(&pdev->dev,
++			"%s: pm_power_off function already registered, overriding\n",
++		       __func__);
++
++	pm_power_off = odroid_go_ultra_do_poweroff;
++
++	return 0;
++}
++
++static int odroid_go_ultra_poweroff_remove(struct platform_device *pdev)
++{
++	if (pm_power_off == &odroid_go_ultra_do_poweroff)
++		pm_power_off = NULL;
++
++	rk817 = NULL;
++	rk818 = NULL;
++
++	return 0;
++}
++
++static const struct of_device_id of_odroid_go_ultra_poweroff_match[] = {
++	{ .compatible = "hardkernel,odroid-go-ultra-poweroff", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, of_odroid_go_ultra_poweroff_match);
++
++static struct platform_driver odroid_go_ultra_poweroff_driver = {
++	.probe = odroid_go_ultra_poweroff_probe,
++	.remove = odroid_go_ultra_poweroff_remove,
++	.driver = {
++		.name = "odroid-go-ultra-poweroff",
++		.of_match_table = of_odroid_go_ultra_poweroff_match,
++	},
++};
++
++module_platform_driver(odroid_go_ultra_poweroff_driver);
++
++MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
++MODULE_DESCRIPTION("Odroid Go Ultra poweroff driver");
++MODULE_LICENSE("GPL");
 
 -- 
 b4 0.10.1
