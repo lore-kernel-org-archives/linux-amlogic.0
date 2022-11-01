@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9142C433FE
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Nov 2022 11:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 633FFFA3745
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Nov 2022 11:38:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6hMe1A26f7lIhkCVoVHbLWswPtOXvi9YZD58FfmN7Pk=; b=og6C4S9WitrsWu
-	HE6caX10FDH90IkbrdV2Ov84HM79c+hsVRnx/U5rXTMxhEzoxwsUMAyPj8V3gf2BgZXnsx4JD3G+/
-	cwS+Thl8ZNqXo2WLIRxV5fpy+VJgjjLJ8BXUlSXMz2auapE8E8OrILCTLC43Y5g5DKvyZFRuUQ5yN
-	seQwNhV9GDau3Gxc1Y41OdbnfQ28NRaM59c4PANDS1/96YhHiVTq247efhTjb/+zck6Pg36ppLbpu
-	5Dn+MGEtGaglmG/JrHSpNiGS6PUT1bMQKRwxlDL5fQtvnKbFrh1GeIiclLmoqrBYcCSbsblF/RCSD
-	gisDXqiNTA6hNc8GQLcA==;
+	List-Owner; bh=eTW2s0bO2AtqoHgWzhwinywPkqFmpnmye5GBHBqRpn4=; b=MJPM+sR1lxoJlj
+	p2tGAyAwfW94SdT1u3+Joabj7593a3ryZhcIJG8Ha4I+AValCootqCM024jH9NsSIhCr6ea5nazDV
+	NjKR088XVLSYNeJuS5tVbwQsR2VU9ZaW1YuxevY1ZMm1QSjAq3P2AmKC6mPpw42WE4NwtgHxobUgV
+	nsk23/qCA7FPUMe5UNV06RyeYAzNLa7/tRqyXe+tf9QC7+KIau6p7CCkryPQqPzJ5oXPV72uiKtS5
+	tWKTd2CR90FvXmMkQYKbNjvVTmC3Gf5/uConJ72oC/YeQv7oLdZP5mfmCeEsoggrRFgHc7x5DMc+h
+	C+BBktvXElZHtTS7EH6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oppYN-004f9T-4q; Tue, 01 Nov 2022 11:35:35 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1oppb8-004gT4-O5; Tue, 01 Nov 2022 11:38:26 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oppTT-004cUv-ET; Tue, 01 Nov 2022 11:30:32 +0000
+	id 1oppU5-004cqV-P9; Tue, 01 Nov 2022 11:31:12 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id DF9E9B81CC1;
-	Tue,  1 Nov 2022 11:30:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B262C433D7;
-	Tue,  1 Nov 2022 11:30:27 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5ECBE615FE;
+	Tue,  1 Nov 2022 11:31:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BC6BC43140;
+	Tue,  1 Nov 2022 11:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1667302228;
-	bh=1+Gtk/lM3WWJOYb0UT2QDICBrYedhOEGI6VJvrirL4c=;
+	s=k20201202; t=1667302268;
+	bh=LD0hUez/+4eQ/JcqQmqxn2cEjEtVgr9CXGubJIH/Jtg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pRRWm956jbQ0SmXrIl9M+9wWIptHnhfgN0F2UdFWnydWP+3MGdmpUsUq0mMy7l+Ph
-	 IirGMmUln9wEdrjAtsaJHkhqnb/JXekpfwwJldiDvg6NmqBJ/CCK8WTCmr1z1fxm4P
-	 Z57FrBi1+zJaVn+b+1bov89eQZlzmmP4ZuugOTa5gcJl3ibmf7rEqwmtKH07t+kP1H
-	 oOMuq7FlJiUgPG13hGwCNOHkEgi3sHLDePgBvb7I7JKwVtOkgJ6g/bwi9BOmKwdsAI
-	 2Fu+548KBtPXfhfrm7hMqCFjuBRrVmRQqmTcC2gBsqM1JZDTVFpG7C9AIiENqRSZO9
-	 ewxLdKP6RkHZA==
+	b=lc1fFQmtZMJ5icOpHseNSqPWED6HhDZlhjctrN8SIkQKH736XGah+X5m0NGbunqwe
+	 D2IJ5nAf8pMqyPzpYk/5e7RedhWERwYn8RcIQ2Byzy6aaGerSuauUO3C+da4SJr9VX
+	 2AN67HJQnePNiRh/FSd7VXHJS997qxKOBCdDNcPQtupcGX57iS6ctr+JF+/YGkrJXu
+	 1a0vPyeU6AII2giOIJBs3ksFH9CTzCh7PN50S2alp3+biYQYGX9gOCC346BKC3xulU
+	 thwYzy7n/8Fw1fuNRQC5h4N75OCgQwiMZGBvrCq/G12PGFs7waDqJSWH0SzHk6W8MW
+	 SHuSh/4RkFwrg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -55,17 +55,17 @@ Cc: Hangyu Hua <hbh25y@gmail.com>,
 	linux-amlogic@lists.infradead.org,
 	linux-staging@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 06/14] media: meson: vdec: fix possible refcount leak in vdec_probe()
-Date: Tue,  1 Nov 2022 07:30:02 -0400
-Message-Id: <20221101113012.800271-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 4/8] media: meson: vdec: fix possible refcount leak in vdec_probe()
+Date: Tue,  1 Nov 2022 07:30:53 -0400
+Message-Id: <20221101113059.800777-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221101113012.800271-1-sashal@kernel.org>
-References: <20221101113012.800271-1-sashal@kernel.org>
+In-Reply-To: <20221101113059.800777-1-sashal@kernel.org>
+References: <20221101113059.800777-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221101_043031_644997_D191FFE9 
+X-CRM114-CacheID: sfid-20221101_043109_893920_3CCDEEB5 
 X-CRM114-Status: GOOD (  11.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,10 +99,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 5ccb3846c879..7a818ca15b37 100644
+index 8dd1396909d7..a242bbe23ba2 100644
 --- a/drivers/staging/media/meson/vdec/vdec.c
 +++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -1109,6 +1109,7 @@ static int vdec_probe(struct platform_device *pdev)
+@@ -1074,6 +1074,7 @@ static int vdec_probe(struct platform_device *pdev)
  
  err_vdev_release:
  	video_device_release(vdev);
@@ -110,7 +110,7 @@ index 5ccb3846c879..7a818ca15b37 100644
  	return ret;
  }
  
-@@ -1117,6 +1118,7 @@ static int vdec_remove(struct platform_device *pdev)
+@@ -1082,6 +1083,7 @@ static int vdec_remove(struct platform_device *pdev)
  	struct amvdec_core *core = platform_get_drvdata(pdev);
  
  	video_unregister_device(core->vdev_dec);
