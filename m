@@ -4,102 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EC48C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 10:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23A11C433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 14:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qgtQNupM3Y3n1oel9o2flyvxVgZuNawf5nc6To0QjCA=; b=fgdUka748z+Gp0
-	n6j8ngXly9NpI0psXsEnGdEcKEVkW7cEpHkTRHyJldq1UbKet/rVh2GeYkH0q7fTMfW4nZOKBFwHC
-	RlJVeJxB5efyNeha/OyCCNUUUdD6pahuEVIIOcclK703xRh4A6snGobr9D5s7vGvhndnubPxjNvS/
-	sEDDoZYuf/V3ugY4Gv3E+a5zh/t0SPnkxK95nbwTRb7dR7Z3kOt0NfF3HU8b2w9YZaKvBOWgFvRng
-	VciXekKE2LSG3aV5mXkmWBODX7o2hLJQdpCtioByw46QR8NNF/34F6SzKnUFrVESNXmIlRZHKGJ8y
-	kViv5zUfdGR/nvmzlOgQ==;
+	List-Owner; bh=t6BMKKKRohySZOLkvOxidY+VbsWOp8NrDVUkAvawIrs=; b=KYn8BsirB7aMxM
+	Ou1pAUj8gTw9CCfqsKOdwzrVnz/nZgB29Nv5JVVsB5v5pkCfucf8TOZ9a3VIG/3l8T85wVyGjXDCV
+	rdcMBjnCBfQyscpzHv3saDaAHqskd1J9cG7Ym1NaFw9UmzNKbynZBg/jco1YmYogA43/Ke2pMnZ5m
+	sUzuttgtxumeJJgQX+edQ79BZNynUzBJ8AsZQBN1HsGT1b9m4R8v006jKRuzqQpWdXNmoWIpDw8hY
+	hA/3NTFvQCFuTtxBz9Y6lvG0gbDdfkcPnM3Z4jgBmWM/iuMKPfKSA3Th05mHV30dRHJfwYruUeF0t
+	ngu53MVzmiOgNBF8xrlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqBGx-00Aa5K-6h; Wed, 02 Nov 2022 10:47:03 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1oqEmZ-00BWAq-Iu; Wed, 02 Nov 2022 14:31:55 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqBGk-00AZxU-EM
-	for linux-amlogic@lists.infradead.org; Wed, 02 Nov 2022 10:46:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1667386009;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iUJvEUx8gtjx3iaw6xY22YZZMkx+Fxj3A7QQSAUB80Y=;
-	b=T87IqFJZSlOlifCgmebXXRAT5ue7io3bE5fewotsIP+V771gj8/acEcwEsyaiTmn9SzYak
-	0nJN8s2T7jSU3itL3bwQIk/wTplB6GR0e18xorCpPkyKcxKCOS7zSdtYrwj9dfHPFW4wPA
-	1kHkzukDAUfnBMskJU31qpjuWafEGkc=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-36-zGxb9PKONyGYhrC3zwLWsA-1; Wed, 02 Nov 2022 06:46:46 -0400
-X-MC-Unique: zGxb9PKONyGYhrC3zwLWsA-1
-Received: by mail-wm1-f71.google.com with SMTP id c10-20020a7bc84a000000b003cf81c2d3efso335557wml.7
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Nov 2022 03:46:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iUJvEUx8gtjx3iaw6xY22YZZMkx+Fxj3A7QQSAUB80Y=;
-        b=s4tQ2i5oi0jyhlxsQcSmZ7b9iOlqdcXSs8AC89cwiSu0V+LfAagSpW6VuFTqIFnQzc
-         LMu/Oa6awTdglS1nEPBVcbcKPgHJdP9hVDy/KUqvfl/RBVg83DNZGN9YixoOTL8aExSF
-         kssy6yh4HOC5lyEdOjEQz1nfo/0MDBy7jcLm/ziPnQKWDFiBaziLIIuxXG292STW+emX
-         EYjgFsU/7VwoDOvNl9m7t2/AXpM1G0WOkXCHgRKPduWKZEoXrAhvIgPyvjG7yDGUl9hT
-         GJsSPFhd3sRYdj5OvSjS4wUIRyW9wGcdsJjNYya6Js2meAuFV3DkxfANS0ICdvRFYbeA
-         GS0A==
-X-Gm-Message-State: ACrzQf0oG+HdSPdfuBBx1R9EuqDDUeYW0WNgC1gtoJODY/ii3TdDuO6p
-	wmcwKU8ZCNzhTEvisdBRU1vShmz5iF1uduQn/uF/k2o4zsocR+mdxFPe+Hb8LNwTgT6EvMZxw4t
-	xyogUo5yUqmFPwyZ0/B6HEB0dFHuGsFw=
-X-Received: by 2002:a05:600c:3556:b0:3ca:771d:701a with SMTP id i22-20020a05600c355600b003ca771d701amr14652033wmq.61.1667386004927;
-        Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5jzv0egtLEIAVaxEN/tayyZgqvKvq+1qzahuWoTfzpPIfJE04AyAO6MvJnCllXJsp0I0J18w==
-X-Received: by 2002:a05:600c:3556:b0:3ca:771d:701a with SMTP id i22-20020a05600c355600b003ca771d701amr14651998wmq.61.1667386004691;
-        Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05600c0a5200b003b3365b38f9sm1701531wmq.10.2022.11.02.03.46.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-Message-ID: <5abf94d6-9a48-525e-c562-605529c5793a@redhat.com>
-Date: Wed, 2 Nov 2022 11:46:42 +0100
+	id 1oqEmW-00BW9v-5k; Wed, 02 Nov 2022 14:31:54 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B05BD619BF;
+	Wed,  2 Nov 2022 14:31:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21348C433B5;
+	Wed,  2 Nov 2022 14:31:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1667399510;
+	bh=pn4Onsc7GZIXH8zAj7BbT2KcypGggk8396m6IL8/CLY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=l9vTpgH+Bm5HpFsamvgWpvMdEi6LuNCfd/+08VDvSnxjbQ8mGuQfh13mWTwmbsltM
+	 ukUPe15dcsVQ2rUPoq4lMPgGAqHzhKcA48HgJix0GFXCwwRExW3yCkCXJ/yn8dXOWc
+	 R8794EQozOzZKnh244x7s8JxuvIHQX2eVrkzH1sJqx9w7BiG939oDcefd2JlRGL5g7
+	 FbZX47wisMNzYtrZ1S8uRMsKS9oVWTJfLCxkYZPIjDR4MRGpS60BtU9Cux3Hpr2TYF
+	 Ys4NMtt0yYZGCSEljh4NZKZF5S79FkZokITLBH7FvbvauCdu0ggcwQuzfSJJZCLXXN
+	 9XWN6QO/W4iBQ==
+Received: by mail-lf1-f50.google.com with SMTP id b2so28526834lfp.6;
+        Wed, 02 Nov 2022 07:31:50 -0700 (PDT)
+X-Gm-Message-State: ACrzQf0eQ/V2t01QsB91SdCBqGLBvlI4FetLo4W4Zo/Ehr3P4ywpKCgF
+	BxkDx1Vms8ggXyxNL1K+hCp83a4vhEV2URcjAg==
+X-Google-Smtp-Source: AMsMyM46H70Q6ilb5d7i2/vY+7lKHic4+n4KcEvasPFdEhFQD8mP+FYgt+mVXGv60R0ZlQXW5IBmlkKeM+9qvjro/QM=
+X-Received: by 2002:ac2:4c03:0:b0:4a2:2273:89c6 with SMTP id
+ t3-20020ac24c03000000b004a2227389c6mr8745771lfq.245.1667399508109; Wed, 02
+ Nov 2022 07:31:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v2 17/21] drm/fb-helper: Perform all fbdev I/O with the
- same implementation
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- etnaviv@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
-References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-18-tzimmermann@suse.de>
- <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
- <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
+References: <20221031091918.531607-1-pierre.gondois@arm.com>
+ <fac3eae5-687e-9eb0-ddfb-c659d3816d81@linaro.org> <3c54db0a-44fe-ee24-1833-7637e249ec79@arm.com>
+ <CAFBinCBi_xT-pgdMSROHyZUfyZZE33S2YXczr9ijE52AfQVYHQ@mail.gmail.com> <CAL_JsqJMxH9hFo7uXRJ6rFcqhZL0AUhedk7Fq1xMdKcSDe5ciQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJMxH9hFo7uXRJ6rFcqhZL0AUhedk7Fq1xMdKcSDe5ciQ@mail.gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 2 Nov 2022 09:31:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLnmDDPpFOcRSv9qEm5nphskhUvQFiKCFkZ6+KGtZLXJQ@mail.gmail.com>
+Message-ID: <CAL_JsqLnmDDPpFOcRSv9qEm5nphskhUvQFiKCFkZ6+KGtZLXJQ@mail.gmail.com>
+Subject: Re: [PATCH 02/20] arm64: dts: Update cache properties for amlogic
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Pierre Gondois <pierre.gondois@arm.com>, neil.armstrong@linaro.org, 
+	linux-kernel@vger.kernel.org, Rob.Herring@arm.com, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221102_034650_570339_A9EDFE0E 
-X-CRM114-Status: GOOD (  19.07  )
+X-CRM114-CacheID: sfid-20221102_073152_337142_52612980 
+X-CRM114-Status: GOOD (  19.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,54 +84,195 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/2/22 11:33, Thomas Zimmermann wrote:
-
-[...]
-
->>
->>> +static ssize_t __drm_fb_helper_write(struct fb_info *info, const char __user *buf, size_t count,
->>> +				     loff_t *ppos, drm_fb_helper_write_screen write_screen)
->>> +{
->>
->> [...]
->>
->>> +	/*
->>> +	 * Copy to framebuffer even if we already logged an error. Emulates
->>> +	 * the behavior of the original fbdev implementation.
->>> +	 */
->>> +	ret = write_screen(info, buf, count, pos);
->>> +	if (ret < 0)
->>> +		return ret; /* return last error, if any */
->>> +	else if (!ret)
->>> +		return err; /* return previous error, if any */
->>> +
->>> +	*ppos += ret;
->>> +
->>
->> Should *ppos be incremented even if the previous error is returned?
-> 
-> Yes. It emulates the original fbdev code at [1]. Further down in that 
-> function, the position is being updated even if an error occured. We 
-> only return the initial error if no bytes got written.
-> 
-> It could happen that some userspace program hits to error, but still 
-> relies on the output and position being updated. IIRC I even added 
-> validation of this behavior to the IGT fbdev tests.  I agree that this 
-> is somewhat bogus behavior, but changing it would change long-standing 
-> userspace semantics.
+On Mon, Oct 31, 2022 at 5:19 PM Rob Herring <robh+dt@kernel.org> wrote:
 >
+> On Mon, Oct 31, 2022 at 4:09 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> >
+> > Hi Pierre,
+> >
+> > On Mon, Oct 31, 2022 at 2:33 PM Pierre Gondois <pierre.gondois@arm.com> wrote:
+> > [...]
+> > > To avoid cc-ing people to DTs they are not related, the get_maintainers.pl
+> > > script was run on each patch individually. The cover-letter is at:
+> > > https://lore.kernel.org/all/20221031091848.530938-1-pierre.gondois@arm.com/
+> > I think Neil's question is the same as mine: is there a dt-bindings
+> > (yaml schema) change for this as well? The idea is to alert people (or
+> > let bots alert people) in future when adding a cache to a .dts{,i}
+> > where the cache-level property is missing.
+>
+> There's not one, but it's something to look at adding. I'm not sure
+> how we'd check for missing 'unified-cache' which is a common problem.
+> The challenge here is a lot of what needs to be checked is based on
+> the overall structure. This probably is better checked in dtc which is
+> better suited to do cross node checks.
 
-Thanks for the explanation, feel free then to also add to this patch:
+Now there is an improved binding:
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+https://github.com/robherring/dt-schema/tree/cache-rework
 
--- 
-Best regards,
+With that schema and this series applied, I get the following errors:
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: l2-cache:
+'cache-level' is a required property
+arch/arm64/boot/dts/mediatek/mt8186-evb.dtb: l2-cache0: 'cache-level'
+is a required property
+arch/arm64/boot/dts/mediatek/mt8186-evb.dtb: l2-cache1: 'cache-level'
+is a required property
+arch/arm64/boot/dts/mediatek/mt8186-evb.dtb: l3-cache: 'cache-level'
+is a required property
+arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb: l2-cache0:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld11-ref.dtb: l2-cache:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dtb: l2-cache0:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-akebi96.dtb: l2-cache1:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: l2-cache0:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: l2-cache1:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-ref.dtb: l2-cache0:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-ld20-ref.dtb: l2-cache1:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dtb: l2-cache:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dtb: l2-cache:
+'cache-level' is a required property
+arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dtb: l2-cache:
+'cache-level' is a required property
 
+Cases missing 'cache-unified':
+
+arch/arm64/boot/dts/amazon/alpine-v3-evp.dtb
+arch/arm64/boot/dts/arm/corstone1000-fvp.dtb
+arch/arm64/boot/dts/arm/corstone1000-mps3.dtb
+arch/arm64/boot/dts/arm/juno.dtb
+arch/arm64/boot/dts/arm/juno-r1.dtb
+arch/arm64/boot/dts/arm/juno-r1-scmi.dtb
+arch/arm64/boot/dts/arm/juno-r2.dtb
+arch/arm64/boot/dts/arm/juno-r2-scmi.dtb
+arch/arm64/boot/dts/arm/juno-scmi.dtb
+arch/arm64/boot/dts/broadcom/bcm2711-rpi-400.dtb
+arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb
+arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb
+arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dtb
+arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dtb
+arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
+arch/arm64/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dtb
+arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dtb
+arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb
+arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb
+arch/arm64/boot/dts/exynos/exynos7-espresso.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dtb
+arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dtb
+arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dtb
+arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dtb
+arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dtb
+arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dtb
+arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dtb
+arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dtb
+arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dtb
+arch/arm64/boot/dts/freescale/imx8mn-ddr3l-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mn-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dtb
+arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dtb
+arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dtb
+arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
+arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
+arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
+arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
+arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
+arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
+arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
+arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
+arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
+arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
+arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
+arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
+arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+arch/arm64/boot/dts/freescale/imx8qm-mek.dtb
+arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dtb
+arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtb
+arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb
+arch/arm64/boot/dts/marvell/armada-7040-db.dtb
+arch/arm64/boot/dts/marvell/armada-7040-mochabin.dtb
+arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb
+arch/arm64/boot/dts/marvell/armada-8040-db.dtb
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb
+arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb
+arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb
+arch/arm64/boot/dts/marvell/cn9130-crb-A.dtb
+arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb
+arch/arm64/boot/dts/marvell/cn9130-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9130-db.dtb
+arch/arm64/boot/dts/marvell/cn9131-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9131-db.dtb
+arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
+arch/arm64/boot/dts/marvell/cn9132-db.dtb
+arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dtb
+arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb
+arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dtb
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb
+arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb
+arch/arm64/boot/dts/tesla/fsd-evb.dtb
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb
+arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
+arch/arm64/boot/dts/ti/k3-am642-sk.dtb
+arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb
+arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb
+arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb
+arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb
+arch/arm64/boot/dts/ti/k3-am654-base-board.dtb
+arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dtb
+arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb
+arch/arm64/boot/dts/ti/k3-j721e-sk.dtb
+arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb
+
+
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
