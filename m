@@ -4,58 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE50C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 15:03:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E48A7C4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 15:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9/+5m78WuKOq+ERBvuzBVCp1uDJoVCU+NU0Zera6ZoQ=; b=YMkca9UfU1MQvU
-	xUgidadAS0OeDu5IHC6fqMfWsbAvpSt7gVXtCJ0N5RIxkNzbb24yLiczxwwhYPULSvMyc7+g9TWPa
-	kiuJKUYKS+wtH4plFPJ94OdbE3yXS09Bzjt5BFPZ9PU7MrR6UPAgMLYjOT5Cy2H9zBjfpdJSmzzsl
-	ofaXaka3nMTLYO4eURnSJwACiRR2RhOcEoLYlUThB0h7vODMcRmD4RC9hi92o9yzece8jJYNbZpUr
-	QS0NKzT4Kz1WGeHj9qYnFiCXGaKX+Q9JXq2noeZbFla7ymnaYacSwPUw31EZ0Bt4s+1UGCS97PEoX
-	E6oN4LCoYwARHiVTVI/Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=e0A4outEtbyu+P+nucLR4GWHzEHcCkMBk5XRGv+W0G4=; b=MppMLMag3j9WEZ
+	SunKE6QdZWJsd5Jpz/V8lVpdcepG8xbxOrj4tXzSaf7FDPo5ZLogA8PkEpmRrzeBlnpKpvhK0TZhD
+	/G6n9mppexelH5N8C5L2tUr7jGpOKaUnJr8rK6GShK2YGDJG/MaNS63dF0yPutpGNAq8p6WVBqvFh
+	fi0XKjej+vIQxPs1N72q8jGOxLc41V5KlnOJAi9lwLGRPoYN70AKGY8UErBTKBU6L/OIqPA578MvB
+	0ACobm/wLhmMtZlWBLONUo8SpCoqbOBHJ22AAmVIJkuNlO7oM+UNnP/r8TdBRe9xU7OcFTMwupFB2
+	1P3Asii2WbELmx8esraQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqFGX-00BeJ1-JE; Wed, 02 Nov 2022 15:02:53 +0000
+	id 1oqG3C-00BtMg-Vi; Wed, 02 Nov 2022 15:53:11 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqFGT-00BeGG-Jp; Wed, 02 Nov 2022 15:02:52 +0000
+	id 1oqG3A-00BtLF-Il
+	for linux-amlogic@lists.infradead.org; Wed, 02 Nov 2022 15:53:10 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 654C2619BA;
-	Wed,  2 Nov 2022 15:02:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18473C433D6;
-	Wed,  2 Nov 2022 15:02:44 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id D5F25618B3;
+	Wed,  2 Nov 2022 15:53:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A406CC433D7;
+	Wed,  2 Nov 2022 15:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1667401366;
-	bh=ySDnWLtgKmB4MsWkDhRm3ekTNs1QeMnC8N/ulBhv1O4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=uFAgba06loLQK4xeCO8L6yA1xDpNGCVUqS0F6XDlPaNvRw47cvnlE0yTRg1aWmZJX
-	 Fu+xOO+Rj99idT4VZ7z2PAkz9tqY7QppEk4mvh3BXh7SkYcM9BhU/YaPjmpvMB+lct
-	 3N2V/glp6DGf0z7z0CsXxXIKXVakb3R7tAJjp+ETSbZIwm3jY0HqvMuS3aMO6greDd
-	 fuYl11+ZtPng1WsxcnpQg9sfLkQpxyCMztoaSHT1HBco9e+ClOV3t2WC0TK/HNh54j
-	 QzJdE9l8NlIC0G+ZwRxhslXH8bBuF1JytES2U4t84R0lcOj/XtI0is46ful6PrRMiY
-	 fYl3Vt481po1g==
-From: Mark Brown <broonie@kernel.org>
-To:  Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel test robot <lkp@intel.com>, linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20221027-b4-spicc-burst-delay-fix-v2-0-8cc2bab3417a@linaro.org>
-References: <20221027-b4-spicc-burst-delay-fix-v2-0-8cc2bab3417a@linaro.org>
-Subject: Re: [PATCH v2] spi: meson-spicc: fix do_div build error on non-arm64
-Message-Id: <166740136480.261515.18042223753301117319.b4-ty@kernel.org>
-Date: Wed, 02 Nov 2022 15:02:44 +0000
+	s=k20201202; t=1667404387;
+	bh=1uIdbgrfwhx0R+OMdlVdLSgX+ISrJXXxfTiu3acQa9U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=sn5mQZD634YpH/ylGcaZeJgoWJjEt/rRHp//FwBRskERP9XMhH8hFrm67lq//pOEM
+	 wcFApNGwnNvxV+hegJzONrBrVjQscveyo5FeBV6T+0EaXzETciaFd1ISU4x7vYiOR2
+	 8WObpBaaOm/2XwUXwyK6oDPkhC0u2cfl6oJ+ws0JNrylnoMqbgldOX7l2WRGJEswdJ
+	 hq7YFTylOCYF2UCSE2XkHaPBhh4LZZpy4MpuAo70C7cXqG772kPuCObxo3WTgOz8+u
+	 74iZGfnj1dvgokxCwaLInnvheb2arkrj6caOhNXgPYAPqmuRffHz+9qi52hmIMzxl0
+	 XXOqBKxcCj5dw==
+From: Nathan Chancellor <nathan@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Tom Rix <trix@redhat.com>,
+	Kees Cook <keescook@chromium.org>,
+	Sami Tolvanen <samitolvanen@google.com>,
+	llvm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev,
+	Nathan Chancellor <nathan@kernel.org>
+Subject: [PATCH] drm/meson: Fix return type of meson_encoder_cvbs_mode_valid()
+Date: Wed,  2 Nov 2022 08:52:42 -0700
+Message-Id: <20221102155242.1927166-1-nathan@kernel.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-Mailer: b4 0.10.0-dev-fc921
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221102_080249_707642_580CA561 
-X-CRM114-Status: GOOD (  13.77  )
+X-CRM114-CacheID: sfid-20221102_085308_676372_4ABE5B4A 
+X-CRM114-Status: GOOD (  12.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,41 +78,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 02 Nov 2022 09:46:01 +0100, Neil Armstrong wrote:
-> This fixes :
-> error: passing argument 1 of '__div64_32' from incompatible pointer type
-> 
-> By passing an uint64_t as first variable to do_div().
-> 
-> 
+With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
+indirect call targets are validated against the expected function
+pointer prototype to make sure the call target is valid to help mitigate
+ROP attacks. If they are not identical, there is a failure at run time,
+which manifests as either a kernel panic or thread getting killed. A
+proposed warning in clang aims to catch these at compile time, which
+reveals:
 
-Applied to
+  drivers/gpu/drm/meson/meson_encoder_cvbs.c:211:16: error: incompatible function pointer types initializing 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' with an expression of type 'int (struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' [-Werror,-Wincompatible-function-pointer-types-strict]
+          .mode_valid = meson_encoder_cvbs_mode_valid,
+                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  1 error generated.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+->mode_valid() in 'struct drm_bridge_funcs' expects a return type of
+'enum drm_mode_status', not 'int'. Adjust the return type of
+meson_encoder_cvbs_mode_valid() to match the prototype's to resolve the
+warning and CFI failure.
 
-Thanks!
+Link: https://github.com/ClangBuiltLinux/linux/issues/1750
+Reported-by: Sami Tolvanen <samitolvanen@google.com>
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+---
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-[1/1] spi: meson-spicc: fix do_div build error on non-arm64
-      commit: 134af9aa88453aeb9224e407092530ebba366c6c
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index 5675bc2a92cf..3f73b211fa8e 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -116,9 +116,10 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
+ 	return i;
+ }
+ 
+-static int meson_encoder_cvbs_mode_valid(struct drm_bridge *bridge,
+-					const struct drm_display_info *display_info,
+-					const struct drm_display_mode *mode)
++static enum drm_mode_status
++meson_encoder_cvbs_mode_valid(struct drm_bridge *bridge,
++			      const struct drm_display_info *display_info,
++			      const struct drm_display_mode *mode)
+ {
+ 	if (meson_cvbs_get_mode(mode))
+ 		return MODE_OK;
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+-- 
+2.38.1
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 _______________________________________________
 linux-amlogic mailing list
