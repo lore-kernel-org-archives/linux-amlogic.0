@@ -4,74 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A31DC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 09:05:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7821CC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 09:33:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ntjQo9ihJ4r94n9FaX/fXtlA1/Yfze3PN4kMbqBfwUg=; b=M2wQhIEd/hOvvc
-	lViueK12WQOOUlbbq0G5x1kLMNiO2HajkxDUP6J/o57LLWD5PAgIm2r+GcYt8dWhLJQNJq6mbDrhI
-	fELYpOPf6NOcEjWIi6nLEwMBdNXIe3l/vJ1zIolO9XJg7F9pVhkXLIJO8qxN6rjYJTt0xWkzAYT0L
-	8XuidzI/TgPxfkvfXhPr4cTzhYhAtxw8gDW9mCkb713s4BwKJAT6Wx1bvgfK59XNyuQC1CQI6KPtQ
-	E/nfHUzJXgCPGETKK0Ee6YLVCNgNuqbq356mSWLWaWcLpF3/vnDb8l1sZof9X48g3R22i48zupT7C
-	DL3mj6f844sOvG4qvnew==;
+	List-Owner; bh=yz6VLxbtfUYN+/JqVYQSfZARQuZ6cmar5GZPOsBtACc=; b=v3paj47/mUP0lT
+	tgPygt4DyGUDi2BqFDRaP0dOpsde9tmDC9+RkgChQ4gQg4fzE0HNyp5ob9/Dui2XaQOPTn/Q05OUa
+	T54CzaM25H4Qnm0ML4BEuv1MD1lj7zDglCxgP/ruwg+Vr1skFLwejfp/jm4Q+2PS1KEaLY2DwERh+
+	UB0V84k/cV6exhxLVL/gvz9iiXsjibtShTwQ7mefeLfZFZr00Sa1r0EV+8ku/sXHIaUSo6iSm11G0
+	CTSCBONTig0tCulV5uXZu7taqR2f8BIB3z2vXusH0iTOiZfYQoKyKMo5hvE/nYYY/cfqK5wHUOYyo
+	onGSMlo/T0nRkxYNb8Qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oq9gb-009Ov4-H8; Wed, 02 Nov 2022 09:05:25 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1oqA7h-00AHJG-P2; Wed, 02 Nov 2022 09:33:25 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oq9gL-009OPh-R2
-	for linux-amlogic@lists.infradead.org; Wed, 02 Nov 2022 09:05:11 +0000
+	id 1oqA6d-00AGmf-Dh
+	for linux-amlogic@lists.infradead.org; Wed, 02 Nov 2022 09:32:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1667379909;
+	s=mimecast20190719; t=1667381538;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LpYqcUNkPgIA1fAPwB+EiO+Z9dq0ENSiM+RajxMrldI=;
-	b=QABVmfZToklNdvumxrtSd259Jj+oeLI5xV1YLK//PW4EDNnyJVGOuH8Kcta6DRkCdxiWYG
-	c7MV5QnmzSanxQBGKfqjkQS0ihPymcrU7b61Fv+rZPi7usBLTFoqRnfUgIkFOVYwZkN6jY
-	ly5+ihqZcTGjHX2Isj3K7FAWWznwcfU=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=qCDrX0xKXyu8erIDNjxDiJKuT0hxZZKKE3HXuUGBVDQ=;
+	b=gOVvVa96O5EjRk1UGNXS6akGr9XDQjQiqdmQBHCQa+tMXWjo4EGQzsrYKTW8LkCTjt8VaT
+	mOIldExhNaLbRlo5rI+VMLayI2ICD5dw1M0bM9yV2WHUb7xS2SyWZO6UVluK7IToeQE+dh
+	Q7CC5UGJ7LzJwPOaa/lrTnivgU+iW1I=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-256-kN-1h7eSPVSVUnftVNsNzQ-1; Wed, 02 Nov 2022 05:05:05 -0400
-X-MC-Unique: kN-1h7eSPVSVUnftVNsNzQ-1
-Received: by mail-wm1-f71.google.com with SMTP id x10-20020a05600c420a00b003cf4dbff2e4so793357wmh.8
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Nov 2022 02:05:05 -0700 (PDT)
+ us-mta-653-CuHl6AGYMWSeqJ4Zs-vwpA-1; Wed, 02 Nov 2022 05:32:15 -0400
+X-MC-Unique: CuHl6AGYMWSeqJ4Zs-vwpA-1
+Received: by mail-wm1-f70.google.com with SMTP id 1-20020a05600c028100b003cf7833293cso836885wmk.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Nov 2022 02:32:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LpYqcUNkPgIA1fAPwB+EiO+Z9dq0ENSiM+RajxMrldI=;
-        b=zqIjSowY6QyIa9uUt1AtpsOwCN2YVgPVNbzNrnM1l8Nk9BiK4h4OU7AyzjZUJxkLGt
-         4f/0zd5492EtlqtRNG59Bo8NXtplYrhMpc/YQdN9H2N+tweZnFjGyVDEV0Jv2yF4nO34
-         PaOER3EqepqMz/yLs2FtY4PvcceNkOtRpLsvKN2tJrYSvZo9fvsrMsXKowdO9dAdGzGu
-         G6SW1M5pcOkArtsGHuANBjeQrzS41rQfKBNLVL+vbN9EFYVuDfmxWYy0ISna+AeIEjh1
-         kKeXVnbaDdfL0Hpa9W+z0Lnr0yi9HXYZlHz1zkvK7Fd97o5EMeDXaVlyv6I1oEQ9PrAq
-         5+kQ==
-X-Gm-Message-State: ACrzQf30NYT6ZpceOMHqy7DJgQbxq4JFjzCZT45Kl2O5BqebezOSsGjK
-	xuZ/Gl+8cmMTlrnWUr3eswEAmZAOOVhlzkpPTQHfGp27D+6LBsOrzWrztRk24utMN7UPvniXKBu
-	OdNfMyRun1ZXy6vE0YjOtjLOqbpCF6Cw=
-X-Received: by 2002:a5d:6488:0:b0:22b:3b0b:5e72 with SMTP id o8-20020a5d6488000000b0022b3b0b5e72mr14464161wri.138.1667379904742;
-        Wed, 02 Nov 2022 02:05:04 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6Ug/7BR+PMLuqwC0wiYVRKEgerXkzKho5yFNKIDT0bC26SnYKpkqpAn1quqQ9FNF9E1JGkLg==
-X-Received: by 2002:a5d:6488:0:b0:22b:3b0b:5e72 with SMTP id o8-20020a5d6488000000b0022b3b0b5e72mr14464139wri.138.1667379904487;
-        Wed, 02 Nov 2022 02:05:04 -0700 (PDT)
+        bh=qCDrX0xKXyu8erIDNjxDiJKuT0hxZZKKE3HXuUGBVDQ=;
+        b=UP8BYp42IZ6jJbtaYwQl7vyr2epxz8bIIS7rnh7Cra9zmlj/5M82a5wPtWS9qlt9C7
+         sW9RwOAFh6mBGMqD4Cv3dDkv753lUHftF3X2eDxzUfadIKkdiybsTaEtss9kw4opntKX
+         3ptBnG1/y0TfQ+Iufpkcl8rKHDD7MMPIH+1dyKXRtg2NQ9VhXsw3THAQMrE+b3gKY91/
+         w1g2xbcygZm7bpwsZdYb4Wg1stG2SPLWbL5BUfO8Wl9LafAgnIoMkp+6gGPocsJzjJYK
+         XxqZmXHdHUy8RduOgSd9aHk8BfWuKObTSZrArAITwOjcW0KD6e0sNpJIkQj++MshzwYK
+         +7Tg==
+X-Gm-Message-State: ACrzQf0wtOl5ljsYPupdhERlKOJJWZV7sEP8enxBjQW1NUlR08xG9aOT
+	Jp4vTjr/prxc+8cCJZ4cjAf1dNAuD9qnCWQr+7lsTZhFDHRnBXJNzHg8zBKPKGQPLEk2ZwYsKCY
+	PjkP4EOB6EosBa+2qmorqBzykMsg9xow=
+X-Received: by 2002:a05:600c:6023:b0:3cf:7dc1:e08e with SMTP id az35-20020a05600c602300b003cf7dc1e08emr5443617wmb.154.1667381534284;
+        Wed, 02 Nov 2022 02:32:14 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7iks5yFnak5X2iZPcs6wSoPN4c8RmVdgyjVaQzUQOEwDY0j8GZM7MD/vLKrS0XyFefd22bEw==
+X-Received: by 2002:a05:600c:6023:b0:3cf:7dc1:e08e with SMTP id az35-20020a05600c602300b003cf7dc1e08emr5443583wmb.154.1667381533975;
+        Wed, 02 Nov 2022 02:32:13 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id p2-20020a5d4582000000b00228d52b935asm12402687wrq.71.2022.11.02.02.05.02
+        by smtp.gmail.com with ESMTPSA id x21-20020a1c7c15000000b003b492753826sm1361990wmc.43.2022.11.02.02.32.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 02:05:04 -0700 (PDT)
-Message-ID: <a96d57d8-486d-5a48-a00a-39df6275cbb5@redhat.com>
-Date: Wed, 2 Nov 2022 10:05:02 +0100
+        Wed, 02 Nov 2022 02:32:13 -0700 (PDT)
+Message-ID: <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
+Date: Wed, 2 Nov 2022 10:32:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v2 16/21] drm/fb-helper: Call fb_sync in I/O functions
+Subject: Re: [PATCH v2 17/21] drm/fb-helper: Perform all fbdev I/O with the
+ same implementation
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com
@@ -88,16 +89,15 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
  linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
 References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-17-tzimmermann@suse.de>
+ <20221024111953.24307-18-tzimmermann@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20221024111953.24307-17-tzimmermann@suse.de>
+In-Reply-To: <20221024111953.24307-18-tzimmermann@suse.de>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221102_020509_955628_1E7BD2A9 
-X-CRM114-Status: UNSURE (   8.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221102_023219_677548_6E42F818 
+X-CRM114-Status: GOOD (  25.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,16 +115,92 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 10/24/22 13:19, Thomas Zimmermann wrote:
-> Call struct fb_ops.fb_sync in drm_fbdev_{read,write}() to mimic the
-> behavior of fbdev. Fbdev implementations of fb_read and fb_write in
-> struct fb_ops invoke fb_sync to synchronize with outstanding operations
-> before I/O. Doing the same in DRM implementations will allow us to use
-> them throughout DRM drivers.
+> Implement the fbdev's read/write helpers with the same functions. Use
+> the generic fbdev's code as template. Convert all drivers.
+> 
+> DRM's fb helpers must implement regular I/O functionality in struct
+> fb_ops and possibly perform a damage update. Handle all this in the
+> same functions and convert drivers. The functionality has been used
+> as part of the generic fbdev code for some time. The drivers don't
+> set struct drm_fb_helper.fb_dirty, so they will not be affected by
+> damage handling.
+> 
+> For I/O memory, fb helpers now provide drm_fb_helper_cfb_read() and
+> drm_fb_helper_cfb_write(). Several drivers require these. Until now
+> tegra used I/O read and write, although the memory buffer appears to
+> be in system memory. So use _sys_ helpers now.
 > 
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+[...]
+
+> +static ssize_t __drm_fb_helper_write(struct fb_info *info, const char __user *buf, size_t count,
+> +				     loff_t *ppos, drm_fb_helper_write_screen write_screen)
+> +{
+
+[...]
+
+> +	/*
+> +	 * Copy to framebuffer even if we already logged an error. Emulates
+> +	 * the behavior of the original fbdev implementation.
+> +	 */
+> +	ret = write_screen(info, buf, count, pos);
+> +	if (ret < 0)
+> +		return ret; /* return last error, if any */
+> +	else if (!ret)
+> +		return err; /* return previous error, if any */
+> +
+> +	*ppos += ret;
+> +
+
+Should *ppos be incremented even if the previous error is returned?
+
+The write_screen() succeeded anyways, even when the count written was
+smaller than what the caller asked for.
+
+>  /**
+> - * drm_fb_helper_sys_read - wrapper around fb_sys_read
+> + * drm_fb_helper_sys_read - Implements struct &fb_ops.fb_read for system memory
+>   * @info: fb_info struct pointer
+>   * @buf: userspace buffer to read from framebuffer memory
+>   * @count: number of bytes to read from framebuffer memory
+>   * @ppos: read offset within framebuffer memory
+>   *
+> - * A wrapper around fb_sys_read implemented by fbdev core
+> + * Returns:
+> + * The number of read bytes on success, or an error code otherwise.
+>   */
+
+This sentence sounds a little bit off to me. Shouldn't be "number of bytes read"
+instead? I'm not a native English speaker though, so feel free to just ignore me.
+
+[...]
+
+>  
+> +static ssize_t fb_read_screen_base(struct fb_info *info, char __user *buf, size_t count,
+> +				   loff_t pos)
+> +{
+> +	const char __iomem *src = info->screen_base + pos;
+> +	size_t alloc_size = min_t(size_t, count, PAGE_SIZE);
+> +	ssize_t ret = 0;
+> +	int err = 0;
+
+Do you really need these two? AFAIK ssize_t is a signed type
+so you can just use the ret variable to store and return the
+errno value.
+
+[...]
+
+> +static ssize_t fb_write_screen_base(struct fb_info *info, const char __user *buf, size_t count,
+> +				    loff_t pos)
+> +{
+> +	char __iomem *dst = info->screen_base + pos;
+> +	size_t alloc_size = min_t(size_t, count, PAGE_SIZE);
+> +	ssize_t ret = 0;
+> +	int err = 0;
+
+Same here.
 
 -- 
 Best regards,
