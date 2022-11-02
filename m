@@ -4,69 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 429CFC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 17:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF6BCC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Nov 2022 19:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=eUqU/BF4xciMdzVt7iV7n6PBPBTMmkGWktZg+kPXLlg=; b=0jZBPROmlIEBsb
-	coshmPVRpvFnUebxnzSDAoZJOg2mnZdOd/FGQrAATb6W32V53pFuLae6+vknNXRooJVL5PPnKNiIO
-	yiilh9QLKIVaPd7jd1r+EfQJpnZZJUZ2t1aXF0b4bQeXfPC/sjkz3kYO+5JE34+1XOjhD8gDR3J2g
-	iVm9hmIsuJWQ6c60ntvl57nbsy4eMRcLxJ8EPIqQrZkyUtwmGcpctRujBMIs/BweXgYptYd20KyZa
-	m66HsODrPXJZrKZGTWTlCwWmyklXQ5+LKEr8YIqhorol7iyrids+JwF6J1RgV51yDJEECDnioQdJE
-	krNPN07tmBkt7xGjkNaw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yXam2m6tMgSXShSS+PRjrMON/hQVcbAjwJyvVreQm5g=; b=RSPOgr1IInuaG9
+	5CcduyID3GL4FS9u/ltCtcyY2XQ1dQg8X1iPOxKk41nnjXtXPFtQopQcfPRXwxseGQbll2HfSo38K
+	7E0Iya7TC2sSOFFiSmN31QdzE5lFW1GOTYQcQ0IbvTmNYs7xPJ/lsXlDwBFtqSSPm03Kc53wpRraw
+	rVW69hnmR0TnIiOmEfN5esoXPkEY/8v1XgO1c+BM99+oNntjs23neVc6JJ30k3yczCQEpegRxp2g5
+	Z9DmDGxi+g4lWk6iIZ3Vl0Di1l/A+Y9gFp/bp+yYn4r06e7J6fJZjPRka/fUAen5xsUknFSW6GpZE
+	vfqPWtFnIZ3Y9bWh7Q9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqHN2-00CThc-7v; Wed, 02 Nov 2022 17:17:44 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1oqJ63-00DUia-A5; Wed, 02 Nov 2022 19:08:19 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqHMl-00CTSx-4o; Wed, 02 Nov 2022 17:17:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1667409447; x=1698945447;
-  h=date:from:to:cc:subject:message-id:mime-version:
-   content-transfer-encoding;
-  bh=rSA4/BYA6+IHhAjE1liHjpWtETiY0Vvw3wJIvI31YQc=;
-  b=GTyvstS9srND7YJ4LjnIO8VUpT1OfxDNrbboRZGr2uuo85ReCtJyRSBb
-   XXd0ZuKvQ1L7IDY3OnJjOEy4v+kZaKH5y0kZGMsuV/yoVaBRU7Wwxioya
-   N8bB7BEaw/8LWWQKpSh4bY1DjuEDfR8SSM5QLCQNbClYehjKAtG71mfDW
-   lCg17z3WdEJJxX1ZNsuB8UFYDzJSFtXAQq3qdm+yuu6O/0MksjnY8sqpM
-   gSodDafUbLecBxO5qU1rsX/ZBJihNPBnWm9t8r476chiv9mMjAPnvG6QM
-   DcQwYcFcy6rmqoOEn4DkQh+itnxcIMR+ono7mOOjKo1NkSZvrISDtK1Xh
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="296919518"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; 
-   d="scan'208";a="296919518"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2022 10:17:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="585474786"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; 
-   d="scan'208";a="585474786"
-Received: from lkp-server02.sh.intel.com (HELO b6d29c1a0365) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 02 Nov 2022 10:17:11 -0700
-Received: from kbuild by b6d29c1a0365 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1oqHMP-000Exz-2M;
-	Wed, 02 Nov 2022 17:17:05 +0000
-Date: Thu, 03 Nov 2022 01:16:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-mm@kvack.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org,
- Linux Memory Management List <linux-mm@kvack.org>
-Subject: [linux-next:pending-fixes] BUILD REGRESSION
- 846aa7b143a35e32b50d04ecf2f40d8d778c7a44
-Message-ID: <6362a5dd.PdR9rjN3CFvIIoTw%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+	id 1oqJ4R-00DSiL-3y
+	for linux-amlogic@lists.infradead.org; Wed, 02 Nov 2022 19:06:40 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id y203so3110714pfb.4
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Nov 2022 12:06:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YLJw50A1K+KhusFBEa675+xxaU3caL5GDgA+x/6AGwQ=;
+        b=eanRVW/LBbSyQtTn8NWCZTTDAawhljklM58TSIe0LHlwW/gHbMD11JP3ckeaEe/msg
+         vmppBy0RmvOGmkJW6vTqFKB6oG4y+0rkYyOuCChrP4Sy/x03U/caHHgMIFnNNWlXRSYQ
+         MKBSw57TYyF6OcudfzZhtv+PDEccU/3X7mxRc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YLJw50A1K+KhusFBEa675+xxaU3caL5GDgA+x/6AGwQ=;
+        b=xb7XDsPvUvbh8S9/oynK9ZMJJOpV5FIGOGxkLplVyLO8LJh32dUeX7lvMXFmUIrkJ7
+         yaq50fKSP0oEJF/RcCOcZAIwROFHZfDdPMebrTEjhimoz8s/yF0BVuPxhJthubEAl5Mn
+         8kbqhw02BgGTxLyBta+rYf6TvjZk8ERrIMk5CKWR0Cfe0outV9h8qOUj62PDP/x/X8Of
+         WfDM07f8WJ3QYNPBN68Ga6keNN1ARZKtjcCJ/vBLgEbp7NdYG+8lAH917lhYX7T3IbqH
+         N29zUKhJNqGDbKwHmRY2U4kmIVWeXgXvlixMPATDkj3YaLpRKagPi/5LSpE1pLqyRsjK
+         fsVA==
+X-Gm-Message-State: ACrzQf0pbLi4agWTWquMFj7iQVA7inzXDUYzHzXYLHse2JF7SOh+oiQa
+	yKc31BoyUeaFJwMiGrWBPY0mvw==
+X-Google-Smtp-Source: AMsMyM5nOP7TB+tQ3IHpynS+a4tGqv36tuqeuJEkR1BO6kWK8sdX+uSJsUdso0ZtKCVhfl6YA8bm0g==
+X-Received: by 2002:a05:6a00:1688:b0:53b:4239:7c5c with SMTP id k8-20020a056a00168800b0053b42397c5cmr27219671pfc.81.1667415995509;
+        Wed, 02 Nov 2022 12:06:35 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id s17-20020a170902ea1100b00186727e5f5csm8710774plg.248.2022.11.02.12.06.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 12:06:35 -0700 (PDT)
+Date: Wed, 2 Nov 2022 12:06:34 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Tom Rix <trix@redhat.com>, Sami Tolvanen <samitolvanen@google.com>,
+	llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev
+Subject: Re: [PATCH] drm/meson: Fix return type of
+ meson_encoder_cvbs_mode_valid()
+Message-ID: <202211021206.F5C5954F66@keescook>
+References: <20221102155242.1927166-1-nathan@kernel.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20221102155242.1927166-1-nathan@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221102_101727_301829_11C61626 
-X-CRM114-Status: UNSURE (   7.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221102_120639_206228_401FDBE8 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,117 +91,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git pending-fixes
-branch HEAD: 846aa7b143a35e32b50d04ecf2f40d8d778c7a44  Merge branch 'for-linux-next-fixes' of git://anongit.freedesktop.org/drm/drm-misc
+On Wed, Nov 02, 2022 at 08:52:42AM -0700, Nathan Chancellor wrote:
+> With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
+> indirect call targets are validated against the expected function
+> pointer prototype to make sure the call target is valid to help mitigate
+> ROP attacks. If they are not identical, there is a failure at run time,
+> which manifests as either a kernel panic or thread getting killed. A
+> proposed warning in clang aims to catch these at compile time, which
+> reveals:
+> 
+>   drivers/gpu/drm/meson/meson_encoder_cvbs.c:211:16: error: incompatible function pointer types initializing 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' with an expression of type 'int (struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' [-Werror,-Wincompatible-function-pointer-types-strict]
+>           .mode_valid = meson_encoder_cvbs_mode_valid,
+>                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   1 error generated.
+> 
+> ->mode_valid() in 'struct drm_bridge_funcs' expects a return type of
+> 'enum drm_mode_status', not 'int'. Adjust the return type of
+> meson_encoder_cvbs_mode_valid() to match the prototype's to resolve the
+> warning and CFI failure.
+> 
+> Link: https://github.com/ClangBuiltLinux/linux/issues/1750
+> Reported-by: Sami Tolvanen <samitolvanen@google.com>
+> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
 
-Error/Warning: (recently discovered and may have been fixed)
-
-drivers/spi/spi-meson-spicc.c:420:2: error: incompatible pointer types passing 'unsigned long *' to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
-drivers/spi/spi-meson-spicc.c:420:2: warning: comparison of distinct pointer types ('typeof ((timeout)) *' (aka 'unsigned long *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
-drivers/spi/spi-meson-spicc.c:420:2: warning: shift count >= width of type [-Wshift-count-overflow]
-lib/test_maple_tree.c:453:12: warning: result of comparison of constant 4398046511104 with expression of type 'unsigned long' is always false [-Wtautological-constant-out-of-range-compare]
-
-Error/Warning ids grouped by kconfigs:
-
-clang_recent_errors
-|-- arm-randconfig-r026-20221102
-|   `-- lib-test_maple_tree.c:warning:result-of-comparison-of-constant-with-expression-of-type-unsigned-long-is-always-false
-|-- hexagon-randconfig-r041-20221101
-|   |-- drivers-spi-spi-meson-spicc.c:error:incompatible-pointer-types-passing-unsigned-long-to-parameter-of-type-uint64_t-(aka-unsigned-long-long-)-Werror-Wincompatible-pointer-types
-|   |-- drivers-spi-spi-meson-spicc.c:warning:comparison-of-distinct-pointer-types-(-typeof-((timeout))-(aka-unsigned-long-)-and-uint64_t-(aka-unsigned-long-long-))
-|   `-- drivers-spi-spi-meson-spicc.c:warning:shift-count-width-of-type
-`-- mips-randconfig-r022-20221102
-    `-- lib-test_maple_tree.c:warning:result-of-comparison-of-constant-with-expression-of-type-unsigned-long-is-always-false
-
-elapsed time: 721m
-
-configs tested: 77
-configs skipped: 3
-
-gcc tested configs:
-um                             i386_defconfig
-um                           x86_64_defconfig
-arc                                 defconfig
-arc                  randconfig-r043-20221101
-alpha                               defconfig
-x86_64                           rhel-8.3-syz
-x86_64                           rhel-8.3-kvm
-x86_64                        randconfig-a004
-x86_64                        randconfig-a002
-x86_64                         rhel-8.3-kunit
-x86_64                        randconfig-a006
-x86_64                        randconfig-a013
-x86_64                          rhel-8.3-func
-x86_64                        randconfig-a011
-x86_64                    rhel-8.3-kselftests
-x86_64                        randconfig-a015
-s390                             allmodconfig
-i386                          randconfig-a001
-i386                          randconfig-a003
-x86_64                              defconfig
-x86_64                               rhel-8.3
-s390                                defconfig
-i386                          randconfig-a005
-x86_64                           allyesconfig
-ia64                             allmodconfig
-powerpc                           allnoconfig
-s390                             allyesconfig
-powerpc                          allmodconfig
-i386                                defconfig
-mips                             allyesconfig
-i386                          randconfig-a014
-i386                          randconfig-a012
-i386                          randconfig-a016
-sh                               allmodconfig
-i386                             allyesconfig
-arm64                            allyesconfig
-arm                                 defconfig
-arm                              allyesconfig
-sh                           se7751_defconfig
-powerpc                    sam440ep_defconfig
-xtensa                          iss_defconfig
-i386                          randconfig-c001
-arm                       omap2plus_defconfig
-arm                         lubbock_defconfig
-sparc                       sparc32_defconfig
-microblaze                          defconfig
-arm                         assabet_defconfig
-sh                  sh7785lcr_32bit_defconfig
-arm                       multi_v4t_defconfig
-arc                              allyesconfig
-alpha                            allyesconfig
-m68k                             allyesconfig
-m68k                             allmodconfig
-sh                      rts7751r2d1_defconfig
-mips                             allmodconfig
-mips                    maltaup_xpa_defconfig
-
-clang tested configs:
-hexagon              randconfig-r041-20221101
-hexagon              randconfig-r045-20221101
-riscv                randconfig-r042-20221101
-s390                 randconfig-r044-20221101
-x86_64                        randconfig-a005
-x86_64                        randconfig-a001
-x86_64                        randconfig-a003
-x86_64                        randconfig-a016
-x86_64                        randconfig-a012
-x86_64                        randconfig-a014
-i386                          randconfig-a002
-i386                          randconfig-a004
-i386                          randconfig-a006
-i386                          randconfig-a013
-i386                          randconfig-a011
-i386                          randconfig-a015
-x86_64                        randconfig-k001
-riscv                randconfig-r042-20221103
-hexagon              randconfig-r041-20221103
-hexagon              randconfig-r045-20221103
-s390                 randconfig-r044-20221103
+Reviewed-by: Kees Cook <keescook@chromium.org>
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Kees Cook
 
 _______________________________________________
 linux-amlogic mailing list
