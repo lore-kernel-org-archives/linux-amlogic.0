@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2293C63717
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 15:15:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D358C43217
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 15:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ALCCL8qjiQaYcUPBzXSYjc71EUMhimhZ4pp3IwikAQ4=; b=Nb2KKzVkCfeRd2
-	U8czrgGHAn1Jgi2sX65fXdL4aFb81+9CYILXmq5rPQs3pd/xHDocIHFn5i8YFLc0cgnTPcimuYtee
-	rN0emc/MdH5N7BGBN3/1HMxdlyzCeMX4hsO3y2jF5sGKFMLkh9TJzbq8JqRAaUVPJyxr2BdrSA1S/
-	y8npaI03Iiopw8LbdnBS0S0dnB7ID9ybfopZyOX/8skN2RsKtPoIhv5R1F8+IEUkh5Dh3yBwvjySH
-	pkrqUeNNhjvd/Q49iqssg78DV6/V/fLAdOfB+On4Ym2IoNROdUy0ts+g10Nvq12HtZ4FW5uW49WTm
-	dSseDSzzO87cKh40Y4pA==;
+	List-Owner; bh=6GXIVieAlh4/n1KqciPQ1qfaD5HHzfMp8k2G54yPQow=; b=NuJUzOFApXWMi5
+	Ou7x1O4S41XyV5p8LAhbE9hSwD1mGFSK66BgAEiiRZvgjmJ6T7rAPkFW1zBjj8IDJyOx1kVc7ghoi
+	T6CrG6qC94hoNwcipgJDK7vYM/6o8ZFmj8TAA5TzAQjFmizFs2JiNcKO1I9PZ7T2wot57G8NeFrIx
+	xnOL5oW0wNI1ivDqO51itRI3+nX1EWfQK6uFOWCx3xhT8eh//uGKQ+AQWjN8SXF07/z1k972UvVFn
+	M+34+g49+cf1S/s2knKcEbOJpYnEPjMxGNlQHq+TnlrNN5U1H0+91F6synvZthN7LZ0Gl0kQOpU9r
+	zCcZtp4D5DhrZ9NQoapA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqbw1-000GI3-HI; Thu, 03 Nov 2022 15:15:13 +0000
-Received: from smtp-out1.suse.de ([195.135.220.28])
+	id 1oqbx0-000GsS-9I; Thu, 03 Nov 2022 15:16:14 +0000
+Received: from smtp-out2.suse.de ([195.135.220.29])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqbvt-000G9M-HJ; Thu, 03 Nov 2022 15:15:07 +0000
+	id 1oqbvt-000G9H-Ia; Thu, 03 Nov 2022 15:15:08 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 38AE621DD6;
-	Thu,  3 Nov 2022 15:14:52 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 0CAC91F88F;
+	Thu,  3 Nov 2022 15:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1667488492; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1667488490; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=g32cPPyLiHLtpD0q75pbEdOkYrw534GYboHCIoW0rMs=;
-	b=QQ0hGHL3lhq/lGKYmDP6NEUgfd53Y1VFgCWOLFm9U/8/eUbskpw4bwjHTgVqXafKVcIP9F
-	JIZtFqTcK+TpYG2kLbIBM3Y1jfy4SyVFn5J8iGczNOSSrCBF+KjaW8d6k4HjhFluVQea6q
-	/LLAbxDt0kknL2ARPDnwKRz220jQgXw=
+	bh=fXspxYMgjyOovtynN/zR0qyBvE5gyhdfPTPL365XZls=;
+	b=qIBvwbT+lwZMaA6sGyT9BtoBqRIyBjEzJYhvn1DFBIvY3BrM8D6bNqtaXfRjFnM8KTD/yD
+	Q6d+9YKtP2L/LaFLyM0ljPNq9k6kb0dW2V8Xrol1bNwEp3RlLE0M7WBFXktWDuVowjI8RK
+	iWnikur7XM9oFmJLjNsfE5LnvNtUNII=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1667488492;
+	s=susede2_ed25519; t=1667488490;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=g32cPPyLiHLtpD0q75pbEdOkYrw534GYboHCIoW0rMs=;
-	b=9P5ZPHB1OPm/aHZvD/wVzAtGZ8Phyk9xHD8qj4269kUc2NReoGQ2aYUZxcXmsInJVbUxVh
-	vLNFy1vjcWGI5eDA==
+	bh=fXspxYMgjyOovtynN/zR0qyBvE5gyhdfPTPL365XZls=;
+	b=dC2sWtRYBu/BU5h1G7EDnJGIO86fKJfOt8uxV5FkJNTaH/L+7yEV9bOlX/f9l4+3tIltY6
+	91lwwsVr4KJhbsAg==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B7AE613ADB;
-	Thu,  3 Nov 2022 15:14:51 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7D75213ADB;
+	Thu,  3 Nov 2022 15:14:49 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id KOLnK+vaY2PBGgAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:51 +0000
+	id sPW+HenaY2PBGgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:49 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch,
 	airlied@gmail.com,
@@ -80,9 +80,9 @@ Cc: "linux-hyperv@vger.kernel.orglinux-hyperv"@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 05/23] drm/imx/dcss: Don't set struct drm_driver.output_poll_changed
-Date: Thu,  3 Nov 2022 16:14:28 +0100
-Message-Id: <20221103151446.2638-6-tzimmermann@suse.de>
+Subject: [PATCH v3 01/23] drm/komeda: Don't set struct drm_driver.lastclose
+Date: Thu,  3 Nov 2022 16:14:24 +0100
+Message-Id: <20221103151446.2638-2-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
 References: <20221103151446.2638-1-tzimmermann@suse.de>
@@ -103,33 +103,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Don't set struct drm_driver.output_poll_changed. It's used to restore
-the fbdev console. But as DCSS uses generic fbdev emulation, the
-console is being restored by the DRM client helpers already. See the
-functions drm_kms_helper_hotplug_event() and
-drm_kms_helper_connector_hotplug_event() in drm_probe_helper.c.
-
-v2:
-	* fix commit description (Christian)
+Don't set struct drm_driver.lastclose. It's used to restore the
+fbdev console. But as komeda uses generic fbdev emulation, the
+console is being restored by the DRM client helpers already. See
+the call to drm_client_dev_restore() in drm_lastclose().
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/imx/dcss/dcss-kms.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/imx/dcss/dcss-kms.c b/drivers/gpu/drm/imx/dcss/dcss-kms.c
-index b4f82ebca5325..1defd6a40f11d 100644
---- a/drivers/gpu/drm/imx/dcss/dcss-kms.c
-+++ b/drivers/gpu/drm/imx/dcss/dcss-kms.c
-@@ -21,7 +21,6 @@ DEFINE_DRM_GEM_DMA_FOPS(dcss_cma_fops);
+diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+index 451746ebbe713..62dc64550793e 100644
+--- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
++++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+@@ -10,7 +10,6 @@
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_managed.h>
+@@ -59,7 +58,6 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void *data)
  
- static const struct drm_mode_config_funcs dcss_drm_mode_config_funcs = {
- 	.fb_create = drm_gem_fb_create,
--	.output_poll_changed = drm_fb_helper_output_poll_changed,
- 	.atomic_check = drm_atomic_helper_check,
- 	.atomic_commit = drm_atomic_helper_commit,
- };
+ static const struct drm_driver komeda_kms_driver = {
+ 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+-	.lastclose			= drm_fb_helper_lastclose,
+ 	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_dma_dumb_create),
+ 	.fops = &komeda_cma_fops,
+ 	.name = "komeda",
 -- 
 2.38.0
 
