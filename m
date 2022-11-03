@@ -4,78 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29349C433FE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 08:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5283C63714
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 15:15:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=79PiNtaLonlBfMq9ONNhgYbGuoaCTQDA9nt6Qawz1rc=; b=ldvmADQmCWBL7N
-	ev4Kvg1R62ZHWBRv1yka3Eq/CjEmoCbBzHj6evfKLSRfUKte3yIEF3a6j2JAyDwpIKAL1ilAOCPIn
-	Co+RVsdHilNm/uOw7fZ+pzkDKVjgMb/937c/F89dh1AWz1mKeCVotfJNX5vlcv0QwIG5pWksBQD5o
-	rwk8Iuo41bkq5+sIb+Gkc2ouBn88JvhqXf3vULDCgCWEAPkNkVgCKdAX6Y/ntEwoIj32s6WjKREtz
-	F07m5Ko3WTUrtbX0VnDwSMLeTqixj3DqDUxS7Jy+r+M81MSuJWoLmX6b3U3fm4ZPsTZCUsonOltBr
-	OohZqOfWKSa50j6Ns8jw==;
+	List-Owner; bh=mWYlC2/+Utrx2fXFQlV5MdmqVkQ/Qmmz1B7ztks73Xs=; b=IbmtYHpWsW9UNm
+	Qz9L2oSxMeHBDaMEgOUsF25CH5PXSkaJj8w5aQ2vpODVrAfvg7zAt4Wfu7hqSbqcBTulgB2K9QLPH
+	jAvwg6Tm1vHaHYyu9ndUSoUhvuffWO57AmHEsRyeyQYUwa0zKiDWf+XfC3P4aTd6CtCpNCYtJRTeZ
+	YpHm8GhDN5lpOPcpoJ9dFr/OUypOTFuvSvpXaNlpvGPwstKtIjCOz1bUHJ+psRicgDWCxAxVUHjMf
+	zKEFJFINmcqS7MQlB7wAeWD7K0bFJX1P+VC1ryBVywH52qmH0DoROw2Wu8TCqbsvSf6X6fDzpvxan
+	FgTnLf0qA2lUrEMem2CQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqVnI-00GkUT-8h; Thu, 03 Nov 2022 08:41:48 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1oqbvw-000GE9-KY; Thu, 03 Nov 2022 15:15:08 +0000
+Received: from smtp-out1.suse.de ([195.135.220.28])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqVnE-00GkRg-GL
-	for linux-amlogic@lists.infradead.org; Thu, 03 Nov 2022 08:41:47 +0000
-Received: by mail-wr1-x432.google.com with SMTP id l14so1573594wrw.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Nov 2022 01:41:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W9DytQ1lu/QgUtGO9mzgm9cxKNspCA3RpOmraCTiE/0=;
-        b=ihPXTyZfARlzx3zOeMgnhgDEhAPFQtxt1dh/8v6xYYs43Ecge13lHiGYkcUjZQKcJS
-         CDeRGSDlcKyd1uI4AgO4P9gq3fZ3SNRCBMA2TZEjJCqLXcDv3MEcWmJuVrulMa6b5HEX
-         lLQREkxj4BSVnbxmqIM5YHhXNpnGBG4egcSsybFwYgGBRhk+DlrVgFNqvq5gFelw5SD9
-         qSkT5x7/PLTP4wbL4yQeez8JMxmUKGGMYlwV5pVthv+ut4P9xGSsBH0w+iOW887dPP7U
-         vNUeeAqjOO0oBRa0HY2IYYnyPbzoJrVrNA6CAb4/6oSszx5tjSuroRv8mOQwks2K5bt3
-         8wLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W9DytQ1lu/QgUtGO9mzgm9cxKNspCA3RpOmraCTiE/0=;
-        b=AG7iJvVOe60XRxZ3nuL4cWxEx3F7ABrroEXyXqobLdyFJcuXGoRqGhufI/DicXyHMN
-         f6cx/bwparLOWuIwl6hX/QFa2BoZYPNASwXt80N7cOatxCFsRn1tlubpSOwtSrv7OtN5
-         H+U2xhibWVrQT6nmPmwWcLM681AXJbau7HK6+AAoyY7kJrWOuGDAg90DU+eFIh3Y7TX1
-         TPPZwbaOwnaeZ0M2edEy6PTbaOvRBvzYjOq8nI4iNH6LBnPkczIiDRAatK3ocCSOjM+O
-         BqUO46nSlq4chAAH9DIQVLRWwKItIMcXa9SMiSjf2Gw4c9bEj0DDePJFbS0jtmgidkEQ
-         hTiw==
-X-Gm-Message-State: ACrzQf0QNf+HhLOvjhCjLej6hL/pfLtRCpLYvFmwOvkFhBcVJNk6RRU4
-	w6Hgx+qvc0pmdWwAWxrmQK5j5Q==
-X-Google-Smtp-Source: AMsMyM7hD2iS4TPUK2fXFcCk74ymN/Esmn+RsmRn2QjdiPKVFaUKmnE6zQeDBpcdQb0f/AtWUQ4wSA==
-X-Received: by 2002:adf:eb51:0:b0:236:cfcc:76e4 with SMTP id u17-20020adfeb51000000b00236cfcc76e4mr12571984wrn.291.1667464901174;
-        Thu, 03 Nov 2022 01:41:41 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id c19-20020a05600c0a5300b003c21ba7d7d6sm504178wmq.44.2022.11.03.01.41.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 01:41:40 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Nathan Chancellor <nathan@kernel.org>
-Cc: patches@lists.linux.dev, dri-devel@lists.freedesktop.org, Kees Cook <keescook@chromium.org>, llvm@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Tom Rix <trix@redhat.com>,
- Sami Tolvanen <samitolvanen@google.com>, Nick Desaulniers <ndesaulniers@google.com>
-In-Reply-To: <20221102155242.1927166-1-nathan@kernel.org>
-References: <20221102155242.1927166-1-nathan@kernel.org>
-Subject: Re: [PATCH] drm/meson: Fix return type of meson_encoder_cvbs_mode_valid()
-Message-Id: <166746490033.1047451.8509801800691914580.b4-ty@linaro.org>
-Date: Thu, 03 Nov 2022 09:41:40 +0100
+	id 1oqbvt-000G9R-Hq; Thu, 03 Nov 2022 15:15:07 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 181AB21DE2;
+	Thu,  3 Nov 2022 15:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1667488494; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DAeMCwRCJM5hznGIXRhbDEzf9LOpLMgsqs12CnL2W3Y=;
+	b=zCzHweR6BnCedpkcTlfiK+JVAZLFhSUtaTciouOpNU3CvL1HPp1mHw+SNd0AEa0gpfc8Gd
+	dqd9mR7dMx4wPMwRBpSTBK10OvAW4U7cYCgkIYFln0/pKqhd/lWyqNF9/xv44+znJcgDcf
+	770aUvTU8jbIsmPqWEKZYQzdJNhMfds=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1667488494;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DAeMCwRCJM5hznGIXRhbDEzf9LOpLMgsqs12CnL2W3Y=;
+	b=paKS2cvRRwa0Vi1ztoK9HitUEgaOXprUJdSvgtBEQ8sBWSJSo8uFGwcFxNSL6ZS1xGodf8
+	3VE/OD++GHQfnYCQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A1AEE13ADB;
+	Thu,  3 Nov 2022 15:14:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap2.suse-dmz.suse.de with ESMTPSA
+	id UCGuJu3aY2PBGgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:53 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch,
+	airlied@gmail.com,
+	sam@ravnborg.org,
+	javierm@redhat.com,
+	mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com
+Cc: "linux-hyperv@vger.kernel.orglinux-hyperv"@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org,
+	virtualization@lists.linux-foundation.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-samsung-soc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org, xen-devel@lists.xenproject.org,
+	linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 09/23] drm/panel-ili9341: Include <linux/backlight.h>
+Date: Thu,  3 Nov 2022 16:14:32 +0100
+Message-Id: <20221103151446.2638-10-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.38.0
+In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
+References: <20221103151446.2638-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-X-Mailer: b4 0.10.1
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221103_014144_576093_31082928 
-X-CRM114-Status: UNSURE (   7.88  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,26 +103,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Include <linux/backlight.h> for devm_of_find_backlight().
 
-On Wed, 2 Nov 2022 08:52:42 -0700, Nathan Chancellor wrote:
-> With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
-> indirect call targets are validated against the expected function
-> pointer prototype to make sure the call target is valid to help mitigate
-> ROP attacks. If they are not identical, there is a failure at run time,
-> which manifests as either a kernel panic or thread getting killed. A
-> proposed warning in clang aims to catch these at compile time, which
-> reveals:
-> 
-> [...]
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+---
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
-
-[1/1] drm/meson: Fix return type of meson_encoder_cvbs_mode_valid()
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=6c4e4d35203301906afb53c6d1e1302d4c793c05
-
+diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9341.c b/drivers/gpu/drm/panel/panel-ilitek-ili9341.c
+index 39dc40cf681f0..b59472c29a40d 100644
+--- a/drivers/gpu/drm/panel/panel-ilitek-ili9341.c
++++ b/drivers/gpu/drm/panel/panel-ilitek-ili9341.c
+@@ -18,6 +18,7 @@
+  * Copyright 2018 David Lechner <david@lechnology.com>
+  */
+ 
++#include <linux/backlight.h>
+ #include <linux/bitops.h>
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
 -- 
-Neil
+2.38.0
+
 
 _______________________________________________
 linux-amlogic mailing list
