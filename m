@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD9ADC433FE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 15:25:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48DCAC4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 15:26:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lVRfmXHcIXwtVahkVlEFFDEeWdGQriZgc5UJVXy4eMg=; b=S2Rf9hrvFdLj6D
-	/TgYy1uU0UVjdpK2PuPKRa/xZJtrQhjoawX9C1wmSnAzgC+OlSiq4TAOHI+/oHDJbhGMH7pZaxmHJ
-	FaWed/fajky5jJwdh/3mZky+lYo1UAtgWK8YdFYc+e4vRBuqRWeBViQg65QD7Y46ZUltZe9B5/pNF
-	ulcfUNGAYxO3LLmVdRkNHz6RC65faBm2JvCMdzhtOgE6XlbHXBUfYJ2OCVVna9gNnQkt6Ts+M9p+q
-	p2dccBGZaO1KlSpgZZETTRWMO9Pjunrzl3/HIh91vSbSOZVhqKZxvE+w/Y5YUP+VDELYgeKDQcmIF
-	8IVuZsfuoRsN8sCjN7MA==;
+	List-Owner; bh=ckX0yUskw2hVm9QOzwNPcOV+7V8wCrxB/eOxPy1aI+A=; b=ma9EBB/2dOD3vC
+	LVtcPGo2Jcpown6dZFtC2c4mH/10jO6ajTUp65Cq4lRMg6nqxEzPUHOzGX29HhGFEAP0s6CkZCVXF
+	DKdK7MXgRCfXZuHE8gJO+VuZvex6itDDVksYeO9UJu9uKIDyzvicSZZBsg3FyXIh46JdW4krl3YLc
+	b8YnVjQI9cFVPto3/ZfeuJqRobFkMiq/BDjo5qYf/r3n3Lw4k62m5N40Ma891T5sCfE/ILySzmo8O
+	/Nw91G+IZx0OsUeDX/RncqTr0sVq2t5FCfhT/b8/c/ZVEC9fh5Z5rXY9hICd1tc+ADXncBLXPqxrY
+	H6496MDZsbESMty2jTtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqc5e-000Lq0-Al; Thu, 03 Nov 2022 15:25:10 +0000
+	id 1oqc6P-000MCJ-Im; Thu, 03 Nov 2022 15:25:57 +0000
 Received: from smtp-out2.suse.de ([195.135.220.29])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqbw0-000GGj-Hj; Thu, 03 Nov 2022 15:15:20 +0000
+	id 1oqbw0-000GGi-Hk; Thu, 03 Nov 2022 15:15:21 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 0FB361F8ED;
-	Thu,  3 Nov 2022 15:14:58 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 6986D1F8E8;
+	Thu,  3 Nov 2022 15:14:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1667488498; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1667488497; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=5Rdbs1K7PrH8FqVsteDFsz2Pg6HAnz17D2gSGEJwptg=;
-	b=1QzEPzAu/XO9DJ7+I1Ls8u6iVJBqVfE0RfLcCGHCvzFb6nbQG7y/8DBvVDIcFJv1lnC+hZ
-	VFTTseMsIGFGbvg8BElx17Rw50wWqUakn6xd0cxmAnfTlDeZZ0lw1h6Wt06aRSUVnZwveH
-	he9C374VbO9S3fUtNy62s5HXA9q9xCo=
+	bh=dABgwN8DHhdSFdmvQoS/APAuOZCTk1xcbptlf+la6g4=;
+	b=1fEWnQEjouTz99410aQ2anAaiojfO8tPz++OQGD4WLXZ5gUEs5b4vO3deaLmKA46XXR21y
+	avVCsHH1123TCT1exnwybLBw+OQiTgY5gGkb/lqMYcFAHHsfTGwI8isTWVnXcMxWET0zNW
+	1sq8yOCX9pqrrch+8QWsIixla0xuW8U=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1667488498;
+	s=susede2_ed25519; t=1667488497;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=5Rdbs1K7PrH8FqVsteDFsz2Pg6HAnz17D2gSGEJwptg=;
-	b=f8pZPqG9V3vdxDoWdtzuNcpX0gB4bZkuJ5Drjrd7WuBVLUdk/140+GTeZY398tPnBeuus7
-	WLY+csOh/CkEJuAA==
+	bh=dABgwN8DHhdSFdmvQoS/APAuOZCTk1xcbptlf+la6g4=;
+	b=ZokmNUdMSJRJ9i5LRSqQeKRvJ0QKrtIGSwBrmgjoRLTeTl63HGF+ZvAODGfQ3gcCi9x9A6
+	JkgPgPCVvycn0aDQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 6614913AAF;
-	Thu,  3 Nov 2022 15:14:57 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id C013E13ADB;
+	Thu,  3 Nov 2022 15:14:56 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id GBP+F/HaY2PBGgAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:57 +0000
+	id 6Br3LfDaY2PBGgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:56 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch,
 	airlied@gmail.com,
@@ -80,16 +80,16 @@ Cc: "linux-hyperv@vger.kernel.orglinux-hyperv"@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 16/23] drm/fb-helper: Call fb_sync in I/O functions
-Date: Thu,  3 Nov 2022 16:14:39 +0100
-Message-Id: <20221103151446.2638-17-tzimmermann@suse.de>
+Subject: [PATCH v3 15/23] drm/fb-helper: Disconnect damage worker from update logic
+Date: Thu,  3 Nov 2022 16:14:38 +0100
+Message-Id: <20221103151446.2638-16-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
 References: <20221103151446.2638-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221103_081512_831013_56E139FF 
-X-CRM114-Status: GOOD (  11.00  )
+X-CRM114-CacheID: sfid-20221103_081512_825160_5F4BC70A 
+X-CRM114-Status: GOOD (  19.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,42 +106,187 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Call struct fb_ops.fb_sync in drm_fbdev_{read,write}() to mimic the
-behavior of fbdev. Fbdev implementations of fb_read and fb_write in
-struct fb_ops invoke fb_sync to synchronize with outstanding operations
-before I/O. Doing the same in DRM implementations will allow us to use
-them throughout DRM drivers.
+The fbdev helpers implement a damage worker that forwards fbdev
+updates to the DRM driver. The worker's update logic depends on
+the generic fbdev emulation. Separate the two via function pointer.
+
+The generic fbdev emulation sets struct drm_fb_helper_funcs.fb_dirty,
+a new callback that hides the update logic from the damage worker.
+It's not possible to use the generic logic with other fbdev emulation,
+because it contains additional code for the shadow buffering that
+the generic emulation employs.
+
+DRM drivers with internal fbdev emulation can set fb_dirty to their
+own implementation if they require damage handling; although no such
+drivers currently exist.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/drm_fb_helper.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/drm_fb_helper.c | 75 ++++++++++++++++++++-------------
+ include/drm/drm_fb_helper.h     | 15 +++++++
+ 2 files changed, 61 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index f6d22cc4cd876..379e0d2f67198 100644
+index bfbb2af144060..f6d22cc4cd876 100644
 --- a/drivers/gpu/drm/drm_fb_helper.c
 +++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -2246,6 +2246,9 @@ static ssize_t drm_fbdev_fb_read(struct fb_info *info, char __user *buf,
- 	if (total_size - count < pos)
- 		count = total_size - pos;
+@@ -448,35 +448,24 @@ static int drm_fb_helper_damage_blit(struct drm_fb_helper *fb_helper,
  
-+	if (info->fbops->fb_sync)
-+		info->fbops->fb_sync(info);
-+
- 	if (drm_fbdev_use_iomem(info))
- 		ret = fb_read_screen_base(info, buf, count, pos);
- 	else
-@@ -2327,6 +2330,9 @@ static ssize_t drm_fbdev_fb_write(struct fb_info *info, const char __user *buf,
- 		count = total_size - pos;
- 	}
+ static void drm_fb_helper_damage_work(struct work_struct *work)
+ {
+-	struct drm_fb_helper *helper = container_of(work, struct drm_fb_helper,
+-						    damage_work);
+-	struct drm_device *dev = helper->dev;
++	struct drm_fb_helper *helper = container_of(work, struct drm_fb_helper, damage_work);
+ 	struct drm_clip_rect *clip = &helper->damage_clip;
+ 	struct drm_clip_rect clip_copy;
+ 	unsigned long flags;
+ 	int ret;
  
-+	if (info->fbops->fb_sync)
-+		info->fbops->fb_sync(info);
++	if (!helper->funcs->fb_dirty)
++		return;
 +
- 	/*
- 	 * Copy to framebuffer even if we already logged an error. Emulates
- 	 * the behavior of the original fbdev implementation.
+ 	spin_lock_irqsave(&helper->damage_lock, flags);
+ 	clip_copy = *clip;
+ 	clip->x1 = clip->y1 = ~0;
+ 	clip->x2 = clip->y2 = 0;
+ 	spin_unlock_irqrestore(&helper->damage_lock, flags);
+ 
+-	/* Call damage handlers only if necessary */
+-	if (!(clip_copy.x1 < clip_copy.x2 && clip_copy.y1 < clip_copy.y2))
+-		return;
+-
+-	if (helper->buffer) {
+-		ret = drm_fb_helper_damage_blit(helper, &clip_copy);
+-		if (drm_WARN_ONCE(dev, ret, "Damage blitter failed: ret=%d\n", ret))
+-			goto err;
+-	}
+-
+-	if (helper->fb->funcs->dirty) {
+-		ret = helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, &clip_copy, 1);
+-		if (drm_WARN_ONCE(dev, ret, "Dirty helper failed: ret=%d\n", ret))
+-			goto err;
+-	}
++	ret = helper->funcs->fb_dirty(helper, &clip_copy);
++	if (ret)
++		goto err;
+ 
+ 	return;
+ 
+@@ -670,16 +659,6 @@ void drm_fb_helper_fini(struct drm_fb_helper *fb_helper)
+ }
+ EXPORT_SYMBOL(drm_fb_helper_fini);
+ 
+-static bool drm_fbdev_use_shadow_fb(struct drm_fb_helper *fb_helper)
+-{
+-	struct drm_device *dev = fb_helper->dev;
+-	struct drm_framebuffer *fb = fb_helper->fb;
+-
+-	return dev->mode_config.prefer_shadow_fbdev ||
+-	       dev->mode_config.prefer_shadow ||
+-	       fb->funcs->dirty;
+-}
+-
+ static void drm_fb_helper_damage(struct fb_info *info, u32 x, u32 y,
+ 				 u32 width, u32 height)
+ {
+@@ -687,7 +666,7 @@ static void drm_fb_helper_damage(struct fb_info *info, u32 x, u32 y,
+ 	struct drm_clip_rect *clip = &helper->damage_clip;
+ 	unsigned long flags;
+ 
+-	if (!drm_fbdev_use_shadow_fb(helper))
++	if (!helper->funcs->fb_dirty)
+ 		return;
+ 
+ 	spin_lock_irqsave(&helper->damage_lock, flags);
+@@ -2111,6 +2090,16 @@ void drm_fb_helper_output_poll_changed(struct drm_device *dev)
+ }
+ EXPORT_SYMBOL(drm_fb_helper_output_poll_changed);
+ 
++static bool drm_fbdev_use_shadow_fb(struct drm_fb_helper *fb_helper)
++{
++	struct drm_device *dev = fb_helper->dev;
++	struct drm_framebuffer *fb = fb_helper->fb;
++
++	return dev->mode_config.prefer_shadow_fbdev ||
++	       dev->mode_config.prefer_shadow ||
++	       fb->funcs->dirty;
++}
++
+ /* @user: 1=userspace, 0=fbcon */
+ static int drm_fbdev_fb_open(struct fb_info *info, int user)
+ {
+@@ -2487,8 +2476,36 @@ static int drm_fb_helper_generic_probe(struct drm_fb_helper *fb_helper,
+ 	return 0;
+ }
+ 
++static int drm_fbdev_fb_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
++{
++	struct drm_device *dev = helper->dev;
++	int ret;
++
++	if (!drm_fbdev_use_shadow_fb(helper))
++		return 0;
++
++	/* Call damage handlers only if necessary */
++	if (!(clip->x1 < clip->x2 && clip->y1 < clip->y2))
++		return 0;
++
++	if (helper->buffer) {
++		ret = drm_fb_helper_damage_blit(helper, clip);
++		if (drm_WARN_ONCE(dev, ret, "Damage blitter failed: ret=%d\n", ret))
++			return ret;
++	}
++
++	if (helper->fb->funcs->dirty) {
++		ret = helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, clip, 1);
++		if (drm_WARN_ONCE(dev, ret, "Dirty helper failed: ret=%d\n", ret))
++			return ret;
++	}
++
++	return 0;
++}
++
+ static const struct drm_fb_helper_funcs drm_fb_helper_generic_funcs = {
+ 	.fb_probe = drm_fb_helper_generic_probe,
++	.fb_dirty = drm_fbdev_fb_dirty,
+ };
+ 
+ static void drm_fbdev_client_unregister(struct drm_client_dev *client)
+diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+index edc697a2fde24..3d7a3d68dab8a 100644
+--- a/include/drm/drm_fb_helper.h
++++ b/include/drm/drm_fb_helper.h
+@@ -30,6 +30,7 @@
+ #ifndef DRM_FB_HELPER_H
+ #define DRM_FB_HELPER_H
+ 
++struct drm_clip_rect;
+ struct drm_fb_helper;
+ 
+ #include <linux/fb.h>
+@@ -89,6 +90,20 @@ struct drm_fb_helper_funcs {
+ 	 */
+ 	int (*fb_probe)(struct drm_fb_helper *helper,
+ 			struct drm_fb_helper_surface_size *sizes);
++
++	/**
++	 * @fb_dirty:
++	 *
++	 * Driver callback to update the framebuffer memory. If set, fbdev
++	 * emulation will invoke this callback in regular intervals after
++	 * the framebuffer has been written.
++	 *
++	 * This callback is optional.
++	 *
++	 * Returns:
++	 * 0 on success, or an error code otherwise.
++	 */
++	int (*fb_dirty)(struct drm_fb_helper *helper, struct drm_clip_rect *clip);
+ };
+ 
+ /**
 -- 
 2.38.0
 
