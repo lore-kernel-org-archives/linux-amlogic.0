@@ -4,105 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FEE4C4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Nov 2022 16:28:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D499C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Nov 2022 10:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T1KiP4mKNNT/PGnw8010aC4ROP38I48Mz0NvEBilqp4=; b=uvlS+nEY5gxZRZ
-	TqkIdCVtBbEKBzWEMbdGB/6Ro9WoJf3WtvgKlzoU1m5K/BKzO7JZVt1kIyGHWZafmcGNTKjRXwc+z
-	vAzegQWQtxKgtHfFBFx0rVm8DiBDIlCNoJ5Oj1NGZA/axzVnOaOHUp2yeEXeecbm6j8QdEaR0Cn5D
-	yfH8+hQMDhN5R627isemk3rZHJ41A2m6+8So/U33NeOAwpXwwuCCANtq/mNLMSdKnhFbp2q1Uln2s
-	89c48qJYQH2Ne8RYXAUB6Cx7qeQI5fb2tDH0gQkvvUf3uqkF33LHHenh8QWu3v2MWUp9KkKCCNANp
-	uN8lTN8MmTIgC42N+zqQ==;
+	List-Owner; bh=lwf/kqgwijHEPr6Y064r92czgZhzErG0Lu9TsKVMDOw=; b=tJPgJFDMlPtmLG
+	+DttEdXfqIuBcgya1WA8LhfP3yk8newUTGrwNOhYF4gTRLKYlSAMeuCWfl8smDSiSMSDFP3sDAFLc
+	wX5DCkRaQpdLkN851s+IUSaao3y3P4/Uxz4mjAsmh0I88rK9z2156eZ/ncgYwB8I40vhm1vtuvG8x
+	M5sm8djLae65lE8bpIKImTV5OtLoSnb88rOwzgUUKuqf/hK1LPWXkqwexBSML8qx6us/xjnEXaedD
+	Gb4u7qJWVi8uPretTcQnI2yA7rsdeuBTKg7OdHVemY4TzSirmqZePUfWaGGzL6qcui/nwkwI6Qk39
+	w1L8D38ODNcutAK4xBOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqd4r-000gxJ-Ut; Thu, 03 Nov 2022 16:28:26 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1oqu4p-003Dp5-Dl; Fri, 04 Nov 2022 10:37:31 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqd4p-000gw1-5M; Thu, 03 Nov 2022 16:28:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=B4aPgzZZorCQLl3vAvSSMp+NdFC9o0tszL97E4EWDSk=; b=oKeQ0KXmGFH3uOYGAis1sZqDrf
-	nHfIItrqbboTsYgSWFSacFmDZzR28cp6ikC7TtizLJHh4kCb7LBvtcD/tgKm90ogF4yLQE04OJoyx
-	h0sUo+YxkKTzZ2A+VIdgZNYjrUDS+xHvZjOxmO98mKS5kaF07sfdUrRzLr64n5//OQVt2dBMXfkIY
-	nwIupppbQRH7eO17AHkxv//8KANo8JEJVXu34c/Tir3mwe10+ugkSbKiWD2hWDdjSuCHH9IWu+WVj
-	PKwlfnOuIWl3jFQUmQtW1lK5zWvKpBqafTmxwC81DCWnBlgfmBi7OcLBh0r7bUZck0sghS+C0UGcU
-	NC2W2qsw==;
-Received: from smtp-out2.suse.de ([195.135.220.29])
-	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqbw2-008i52-9N; Thu, 03 Nov 2022 15:15:16 +0000
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 27E9A1F8DC;
-	Thu,  3 Nov 2022 15:14:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1667488496; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
+	id 1oqu4k-003Dn4-Gt
+	for linux-amlogic@lists.infradead.org; Fri, 04 Nov 2022 10:37:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1667558243;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=B4aPgzZZorCQLl3vAvSSMp+NdFC9o0tszL97E4EWDSk=;
-	b=I/+haJyfr+gENHgrb5PmCYXiaIqSiRlc6gzw3E11wcwkELm+bxwmry634/+fD/O1hXtiY2
-	3IJ7AOUJ6wo0W34ZbqvRpJrStx6TtNCANoQzS4TIU++Nsq9eRFXG2AoxtzUM6gNEZmAxPn
-	xbFTzGILmwQadcevn2+sH38LPYW4QkY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1667488496;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=B4aPgzZZorCQLl3vAvSSMp+NdFC9o0tszL97E4EWDSk=;
-	b=JReK5h56PGHBX9lsa3CqhzBTgE6WBJBvk5ZBwQ5LfSS97qrXGbiVWzt/wN10p1acycBkLN
-	/04HGKYEusyunADA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AD01B13ADB;
-	Thu,  3 Nov 2022 15:14:55 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap2.suse-dmz.suse.de with ESMTPSA
-	id 8D5wKe/aY2PBGgAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:55 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch,
-	airlied@gmail.com,
-	sam@ravnborg.org,
-	javierm@redhat.com,
-	mripard@kernel.org,
-	maarten.lankhorst@linux.intel.com
-Cc: "linux-hyperv@vger.kernel.orglinux-hyperv"@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org,
-	virtualization@lists.linux-foundation.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-samsung-soc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org, xen-devel@lists.xenproject.org,
-	linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org,
-	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 13/23] drm/fb-helper: Rename drm_fb_helper_alloc_fbi() to use _info postfix
-Date: Thu,  3 Nov 2022 16:14:36 +0100
-Message-Id: <20221103151446.2638-14-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
-References: <20221103151446.2638-1-tzimmermann@suse.de>
+	bh=FvcSXdbTIY6j0RtoeMW2Oyvbsf0knEKyh2vmjeJsi+Y=;
+	b=fGFMEUbWy7xHDVgNskcS8xydZB7oGn4pcZS3kY484huL6CCiCMoROd9F5N1mGUhYTnUGZb
+	R0uTKfwjKVcdp9LhhvGflcDkst1z90jadSNcDRSkesWEknN7GA+LrIHK25DnmRhmbPd7nM
+	raMjwSADNPdsYvdjUHw4B3MXzkCCUTQ=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-480-BeTYHWOGNpi4vnpBv21fmQ-1; Fri, 04 Nov 2022 06:37:20 -0400
+X-MC-Unique: BeTYHWOGNpi4vnpBv21fmQ-1
+Received: by mail-wm1-f71.google.com with SMTP id ay19-20020a05600c1e1300b003cf758f1617so3285900wmb.5
+        for <linux-amlogic@lists.infradead.org>; Fri, 04 Nov 2022 03:37:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FvcSXdbTIY6j0RtoeMW2Oyvbsf0knEKyh2vmjeJsi+Y=;
+        b=Msped433dIDmm4/xfNz3WyMzEw1pOeWlTIzGOut0DEAs0dFMAEz2GqVC3PLMrDJYDM
+         nJnJ+/vM2C2+McjIyu02dQ+OWPIuxYV/r3miFQGk+b3F2OFA02U8schwPkaAZCadJUwa
+         dog5cRaQBxrwYQFQ/OMyXPi+X5ihXG92ro1KtKnSGH2xD86kjRuOY6hp1V+jJBfDnlbh
+         2iESIDznEYICutmwIsHKzGRZC3jypxGA9/oWUCNS72DEcjpMIGmPY4bq7G1p6UlsdAng
+         ekc/ZahFMVfNMxJnfqPFfNxtvEH+NPn/kVfGnOB1xF2kJNthhfb1cEh0jpZyrzM52djd
+         ktrw==
+X-Gm-Message-State: ACrzQf14qY9y7B5PrTiJL4LUbaeViLuxp8Ku5GiELnlXzkKcDVnA1oZQ
+	UMh8ymQVg1WvZfpK6ctPy3lEEfXd2NXDNSMgsl3TFdmfzTVKzFR+f4Oqo3t30g7ilmoDjQoJkqt
+	D0RygG/SXazmeGv7DlrcEaoNBZUccdYI=
+X-Received: by 2002:a05:600c:1e2a:b0:3c3:d770:1756 with SMTP id ay42-20020a05600c1e2a00b003c3d7701756mr23539596wmb.134.1667558239644;
+        Fri, 04 Nov 2022 03:37:19 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4LKXhwK5qh8ieFEkCSZgi7mblk9sJOfnr0awtpFbS+pIQGNE9IUSRaCOrs9CG3VpGFJY/xjQ==
+X-Received: by 2002:a05:600c:1e2a:b0:3c3:d770:1756 with SMTP id ay42-20020a05600c1e2a00b003c3d7701756mr23539569wmb.134.1667558239379;
+        Fri, 04 Nov 2022 03:37:19 -0700 (PDT)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id f15-20020a5d50cf000000b0022e36c1113fsm3031008wrt.13.2022.11.04.03.37.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 03:37:18 -0700 (PDT)
+Message-ID: <ab8358a9-8450-0d49-627f-26afe7ba4f9d@redhat.com>
+Date: Fri, 4 Nov 2022 11:37:17 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v3 20/23] drm/fb-helper: Set flag in struct drm_fb_helper
+ for leaking physical addresses
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com
+Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20221103151446.2638-1-tzimmermann@suse.de>
+ <20221103151446.2638-21-tzimmermann@suse.de>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20221103151446.2638-21-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221103_151514_662289_97A0E2CB 
-X-CRM114-Status: GOOD (  14.20  )
+X-CRM114-CacheID: sfid-20221104_033726_692738_7B924153 
+X-CRM114-Status: UNSURE (   8.34  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,207 +114,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rename drm_fb_helper_alloc_fbi() to drm_fb_helper_alloc_info() as
-part of unifying the naming within fbdev helpers. Adapt drivers. No
-functional changes.
+On 11/3/22 16:14, Thomas Zimmermann wrote:
+> Uncouple the parameter drm_leak_fbdev_smem from the implementation by
+> setting a flag in struct drm_fb_helper. This will help to move the
+> generic fbdev emulation into its own source file, while keeping the
+> parameter in drm_fb_helper.c. No functional changes.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
----
- drivers/gpu/drm/armada/armada_fbdev.c      | 2 +-
- drivers/gpu/drm/drm_fb_helper.c            | 8 ++++----
- drivers/gpu/drm/exynos/exynos_drm_fbdev.c  | 2 +-
- drivers/gpu/drm/gma500/framebuffer.c       | 2 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c | 2 +-
- drivers/gpu/drm/msm/msm_fbdev.c            | 2 +-
- drivers/gpu/drm/nouveau/nouveau_fbcon.c    | 2 +-
- drivers/gpu/drm/omapdrm/omap_fbdev.c       | 2 +-
- drivers/gpu/drm/radeon/radeon_fb.c         | 2 +-
- drivers/gpu/drm/tegra/fb.c                 | 2 +-
- include/drm/drm_fb_helper.h                | 4 ++--
- 11 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-index 38f5170c0fea6..eaae98d9377ae 100644
---- a/drivers/gpu/drm/armada/armada_fbdev.c
-+++ b/drivers/gpu/drm/armada/armada_fbdev.c
-@@ -72,7 +72,7 @@ static int armada_fbdev_create(struct drm_fb_helper *fbh,
- 	if (IS_ERR(dfb))
- 		return PTR_ERR(dfb);
- 
--	info = drm_fb_helper_alloc_fbi(fbh);
-+	info = drm_fb_helper_alloc_info(fbh);
- 	if (IS_ERR(info)) {
- 		ret = PTR_ERR(info);
- 		goto err_fballoc;
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 480bf4f568b7b..881e6a04fa706 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -558,7 +558,7 @@ int drm_fb_helper_init(struct drm_device *dev,
- EXPORT_SYMBOL(drm_fb_helper_init);
- 
- /**
-- * drm_fb_helper_alloc_fbi - allocate fb_info and some of its members
-+ * drm_fb_helper_alloc_info - allocate fb_info and some of its members
-  * @fb_helper: driver-allocated fbdev helper
-  *
-  * A helper to alloc fb_info and the members cmap and apertures. Called
-@@ -570,7 +570,7 @@ EXPORT_SYMBOL(drm_fb_helper_init);
-  * fb_info pointer if things went okay, pointer containing error code
-  * otherwise
-  */
--struct fb_info *drm_fb_helper_alloc_fbi(struct drm_fb_helper *fb_helper)
-+struct fb_info *drm_fb_helper_alloc_info(struct drm_fb_helper *fb_helper)
- {
- 	struct device *dev = fb_helper->dev->dev;
- 	struct fb_info *info;
-@@ -609,7 +609,7 @@ struct fb_info *drm_fb_helper_alloc_fbi(struct drm_fb_helper *fb_helper)
- 	framebuffer_release(info);
- 	return ERR_PTR(ret);
- }
--EXPORT_SYMBOL(drm_fb_helper_alloc_fbi);
-+EXPORT_SYMBOL(drm_fb_helper_alloc_info);
- 
- /**
-  * drm_fb_helper_unregister_fbi - unregister fb_info framebuffer device
-@@ -2440,7 +2440,7 @@ static int drm_fb_helper_generic_probe(struct drm_fb_helper *fb_helper,
- 	fb_helper->fb = buffer->fb;
- 	fb = buffer->fb;
- 
--	fbi = drm_fb_helper_alloc_fbi(fb_helper);
-+	fbi = drm_fb_helper_alloc_info(fb_helper);
- 	if (IS_ERR(fbi))
- 		return PTR_ERR(fbi);
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-index 767afd2bfa822..8741eb0b1b604 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-@@ -63,7 +63,7 @@ static int exynos_drm_fbdev_update(struct drm_fb_helper *helper,
- 	unsigned int size = fb->width * fb->height * fb->format->cpp[0];
- 	unsigned long offset;
- 
--	fbi = drm_fb_helper_alloc_fbi(helper);
-+	fbi = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(fbi)) {
- 		DRM_DEV_ERROR(to_dma_dev(helper->dev),
- 			      "failed to allocate fb info.\n");
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index 5f502a0048ab8..6d0e3bf6435ee 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -268,7 +268,7 @@ static int psbfb_create(struct drm_fb_helper *fb_helper,
- 
- 	memset(dev_priv->vram_addr + backing->offset, 0, size);
- 
--	info = drm_fb_helper_alloc_fbi(fb_helper);
-+	info = drm_fb_helper_alloc_info(fb_helper);
- 	if (IS_ERR(info)) {
- 		ret = PTR_ERR(info);
- 		goto err_drm_gem_object_put;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index d533ecd451025..05b841343ea3e 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -254,7 +254,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		goto out_unlock;
- 	}
- 
--	info = drm_fb_helper_alloc_fbi(helper);
-+	info = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(info)) {
- 		drm_err(&dev_priv->drm, "Failed to allocate fb_info (%pe)\n", info);
- 		ret = PTR_ERR(info);
-diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
-index b373e30003203..4d9a0fcbf95b6 100644
---- a/drivers/gpu/drm/msm/msm_fbdev.c
-+++ b/drivers/gpu/drm/msm/msm_fbdev.c
-@@ -93,7 +93,7 @@ static int msm_fbdev_create(struct drm_fb_helper *helper,
- 		goto fail;
- 	}
- 
--	fbi = drm_fb_helper_alloc_fbi(helper);
-+	fbi = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(fbi)) {
- 		DRM_DEV_ERROR(dev->dev, "failed to allocate fb info\n");
- 		ret = PTR_ERR(fbi);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index ac4bd529ae2e8..fca40124fc17c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -362,7 +362,7 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
- 		}
- 	}
- 
--	info = drm_fb_helper_alloc_fbi(helper);
-+	info = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(info)) {
- 		ret = PTR_ERR(info);
- 		goto out_unlock;
-diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-index 92d505be53e06..ab30c64e97043 100644
---- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
-+++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-@@ -161,7 +161,7 @@ static int omap_fbdev_create(struct drm_fb_helper *helper,
- 		goto fail;
- 	}
- 
--	fbi = drm_fb_helper_alloc_fbi(helper);
-+	fbi = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(fbi)) {
- 		dev_err(dev->dev, "failed to allocate fb info\n");
- 		ret = PTR_ERR(fbi);
-diff --git a/drivers/gpu/drm/radeon/radeon_fb.c b/drivers/gpu/drm/radeon/radeon_fb.c
-index cc6754d88b819..0c6a227929db2 100644
---- a/drivers/gpu/drm/radeon/radeon_fb.c
-+++ b/drivers/gpu/drm/radeon/radeon_fb.c
-@@ -243,7 +243,7 @@ static int radeonfb_create(struct drm_fb_helper *helper,
- 	rbo = gem_to_radeon_bo(gobj);
- 
- 	/* okay we have an object now allocate the framebuffer */
--	info = drm_fb_helper_alloc_fbi(helper);
-+	info = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(info)) {
- 		ret = PTR_ERR(info);
- 		goto out;
-diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
-index 6fe24535d0e43..a09c071f35120 100644
---- a/drivers/gpu/drm/tegra/fb.c
-+++ b/drivers/gpu/drm/tegra/fb.c
-@@ -243,7 +243,7 @@ static int tegra_fbdev_probe(struct drm_fb_helper *helper,
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
- 
--	info = drm_fb_helper_alloc_fbi(helper);
-+	info = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(info)) {
- 		dev_err(drm->dev, "failed to allocate framebuffer info\n");
- 		drm_gem_object_put(&bo->gem);
-diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
-index d83e2d8e92eb9..5ec9d9c68d144 100644
---- a/include/drm/drm_fb_helper.h
-+++ b/include/drm/drm_fb_helper.h
-@@ -222,7 +222,7 @@ int drm_fb_helper_check_var(struct fb_var_screeninfo *var,
- 
- int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb_helper);
- 
--struct fb_info *drm_fb_helper_alloc_fbi(struct drm_fb_helper *fb_helper);
-+struct fb_info *drm_fb_helper_alloc_info(struct drm_fb_helper *fb_helper);
- void drm_fb_helper_unregister_fbi(struct drm_fb_helper *fb_helper);
- void drm_fb_helper_fill_info(struct fb_info *info,
- 			     struct drm_fb_helper *fb_helper,
-@@ -320,7 +320,7 @@ drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb_helper)
- }
- 
- static inline struct fb_info *
--drm_fb_helper_alloc_fbi(struct drm_fb_helper *fb_helper)
-+drm_fb_helper_alloc_info(struct drm_fb_helper *fb_helper)
- {
- 	return NULL;
- }
 -- 
-2.38.0
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
 _______________________________________________
