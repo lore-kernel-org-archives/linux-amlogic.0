@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC789C43219
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F944C4321E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BaOd6cb7PxN9RQqTMafW2iwPjucNDGfZMvF3EMnuXek=; b=aMcHaWNokaSj2V
-	rISCMmSaSizJTqyA3Vqly+8XD6JXQdOJ2IkmkPJwfdBAQKsfk8lUwIIH9vMSG3JKh3J8UXCMoGY+j
-	f/QjDbDluHthwY/TyEUZCYk0CV5FvOg1C7f6Ms73KfwN46IOzuh3ZhuWA+NyBJNJjGHSJZsYdai2J
-	ntq80Bt+kQh14Bx8mERbyIGfvf9m4NimtgkfMqymWLw8MK67jLAjnjR7MWb5/b5lBIJLoJ/yZUNWC
-	QQoAMx6VWV3PgFm6LM8HCYcZLRlbtXVl1dzn4g1gIZhDgjuQ0neUFRXU8b4Zek62bFCg06MSRrwlR
-	Ru14r5zqKQkN4g/lKNYw==;
+	List-Owner; bh=a6iXtaVdyTM1ayNhPg3R2Pvtj4rCBf6ylz+qmVu3Y9g=; b=K0eWJw5Dz0nL/r
+	xPz5H6R6ndsB6jb29C3eZ2+rRt3KXUszRE1Dd6UdYPrK5OIM3Vva11lkXQFpHa40N3uRg7KvbJHrd
+	NYFCiFtnMP4IesXSyHW9gnIqPysO9xp3auGyoTgLz8vzWdra/lOMqMzyxffVHR/C+t/H8uoAfuyDp
+	PSjnVodz8uG2KzFbjXkMUAItxsgb8rdr1dALGJlLGZDJKPfO7sYQqEgDbtdS55BWeFTbmQdkfA/GS
+	84BozcQI/fFdhlrOqmAFGmQPXYi0xkAlFR+1pt0++nU5fKgyHrDORpllSfK+vhxanpsj+N7TRwXDF
+	1PXMKzVeOo9/MFscgWdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vG-00Gg9d-Ia; Mon, 07 Nov 2022 17:28:34 +0000
+	id 1os5vG-00Gg9o-Tz; Mon, 07 Nov 2022 17:28:34 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4dL-00G069-1N; Mon, 07 Nov 2022 16:06:00 +0000
+	id 1os4eb-00G0yM-OF; Mon, 07 Nov 2022 16:07:19 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B652DED1;
-	Mon,  7 Nov 2022 08:06:00 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14A64113E;
+	Mon,  7 Nov 2022 08:07:23 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 896EF3F534;
-	Mon,  7 Nov 2022 08:05:39 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id DE0053F534;
+	Mon,  7 Nov 2022 08:07:01 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -98,35 +98,36 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Ming Qian <ming.qian@nxp.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Adam Ford <aford173@gmail.com>,
+	Ming Qian <ming.qian@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>,
 	Tim Harvey <tharvey@gateworks.com>,
+	Adam Ford <aford173@gmail.com>,
 	Lucas Stach <l.stach@pengutronix.de>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Li Jun <jun.li@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
 	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
 	Liu Ying <victor.liu@nxp.com>,
 	Oliver Graute <oliver.graute@kococonnector.com>,
 	Dong Aisheng <aisheng.dong@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
 	Clark Wang <xiaoning.wang@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
+	Prathamesh Shete <pshete@nvidia.com>,
 	Mikko Perttunen <mperttunen@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
-	Prathamesh Shete <pshete@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
 	Ashish Mhetre <amhetre@nvidia.com>,
@@ -135,7 +136,6 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Arnd Bergmann <arnd@arndb.de>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -148,16 +148,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 01/23] arm64: dts: Update cache properties for amazon
-Date: Mon,  7 Nov 2022 16:56:54 +0100
-Message-Id: <20221107155825.1644604-2-pierre.gondois@arm.com>
+Subject: [PATCH v2 02/23] arm64: dts: Update cache properties for amd
+Date: Mon,  7 Nov 2022 16:56:55 +0100
+Message-Id: <20221107155825.1644604-3-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_080559_202162_AD961DFF 
-X-CRM114-Status: UNSURE (   9.40  )
+X-CRM114-CacheID: sfid-20221107_080717_911714_F82464A4 
+X-CRM114-Status: UNSURE (   8.57  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -186,45 +186,61 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/amazon/alpine-v3.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-index 73a352ea8fd5..ba7e56dc85db 100644
---- a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-+++ b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-@@ -246,6 +246,7 @@ cpu@303 {
+diff --git a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+index 93688a0b6820..9f2d983e082d 100644
+--- a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
++++ b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+@@ -163,38 +163,47 @@ CPU7: cpu@301 {
+ 	};
  
- 		cluster0_l2: cache@0 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
-@@ -254,6 +255,7 @@ cluster0_l2: cache@0 {
+ 	L2_0: l2-cache0 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
  
- 		cluster1_l2: cache@100 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
-@@ -262,6 +264,7 @@ cluster1_l2: cache@100 {
+ 	L2_1: l2-cache1 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
  
- 		cluster2_l2: cache@200 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
-@@ -270,6 +273,7 @@ cluster2_l2: cache@200 {
+ 	L2_2: l2-cache2 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
  
- 		cluster3_l2: cache@300 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
+ 	L2_3: l2-cache3 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
+ 
+ 	L3: l3-cache {
++		compatible = "cache";
+ 		cache-level = <3>;
+ 		cache-size = <0x800000>;
+ 		cache-line-size = <64>;
 -- 
 2.25.1
 
