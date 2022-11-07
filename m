@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61576C433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21555C43217
 	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,27 +12,28 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8gVADQ304LlEoHCzp8i7AH9koYRcjD7GG+E6u3OT904=; b=yNw18yqubwjbOG
-	Y3Wr3TR7XekfQE0FZBaOvr/hh8kaA6FEBcyPdIRFCfY4gLc7j8Wk/PaTmavLm1pyZRem1cazFB3pP
-	Y7/G6E6XyoIAZ4BuPzaCo+TlrIGx6Oc+DV4I2hkV8oe9wT3wKPzwcE8i51RkgscvbxwA4FEfmttwE
-	REB/Yp/XPKhv/t9d0N+uvaD5eb6ctkpkmPU/iMoh6DYOvG8fCBHdqRCLDAnwYaCZ8G3AO/hg19Zqh
-	iPwm26xzwksX/MoSjrieDyVAvHzqwuDweGYMhSqQenzwbRdcBQrIPY5/LovVOQV4nHJ+Zswowv3Hz
-	0UiK8wA/9MIUdgk2DDJA==;
+	List-Owner; bh=Eymxxc23D9/wBAbO2/acsQNQKfrgzEv917d5nRyYzss=; b=HYOmrN4XewMIgP
+	o8zd/taEaWbF+4egSGgUNXs0yiDEXkXPr2K0CXc5oYNE3jOWRkjvlw4frctQw2Xk5EEXE7bsutXrn
+	PTpoMwDvLQt2jhWd41o8ov4sVIwgYvKhFrssbr7ovtPeb9hp7wf5FhS//UGth1dCnF+oMld+deZLE
+	koj7qXQMhYaEUb43XH6vB9nEPQwY9JywW3mN3Mg08zTQgU6Df2o6bPZmeLCKM0Mi5KYfd50ZPJ/N4
+	Z5jv3UfUfW3bFIZwpcsM5olZQWbNicMb26366P/rA9qvmXqDta6MxosaTQcKjQgwIbtrptzs/c6gl
+	v7wUghwSPyYrBZ1S4Y+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vN-00GgD8-8y; Mon, 07 Nov 2022 17:28:41 +0000
+	id 1os5vM-00GgCg-JE; Mon, 07 Nov 2022 17:28:40 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4lP-00G4ik-7n; Mon, 07 Nov 2022 16:14:20 +0000
+	id 1os4k6-00G47y-6V; Mon, 07 Nov 2022 16:13:00 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E13F0113E;
-	Mon,  7 Nov 2022 08:14:23 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3ED79113E;
+	Mon,  7 Nov 2022 08:13:02 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7A2E33F534;
-	Mon,  7 Nov 2022 08:14:02 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 328D33F534;
+	Mon,  7 Nov 2022 08:12:41 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
+	William Zhang <william.zhang@broadcom.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Florian Fainelli <f.fainelli@gmail.com>,
@@ -52,7 +53,6 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Liviu Dudau <liviu.dudau@arm.com>,
 	Sudeep Holla <sudeep.holla@arm.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
 	Anand Gore <anand.gore@broadcom.com>,
 	Kursad Oney <kursad.oney@broadcom.com>,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
@@ -98,36 +98,33 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Shijie Qin <shijie.qin@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
-	Ming Qian <ming.qian@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Adam Ford <aford173@gmail.com>,
+	Ming Qian <ming.qian@nxp.com>,
 	Tim Harvey <tharvey@gateworks.com>,
+	Adam Ford <aford173@gmail.com>,
 	Lucas Stach <l.stach@pengutronix.de>,
 	Li Jun <jun.li@nxp.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
 	Marek Vasut <marex@denx.de>,
-	Marco Felsch <m.felsch@pengutronix.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
-	Oliver Graute <oliver.graute@kococonnector.com>,
 	Liu Ying <victor.liu@nxp.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>,
+	Oliver Graute <oliver.graute@kococonnector.com>,
 	Wei Fang <wei.fang@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
 	Mikko Perttunen <mperttunen@nvidia.com>,
-	Prathamesh Shete <pshete@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
+	Prathamesh Shete <pshete@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -137,7 +134,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Sriranjani P <sriranjani.p@samsung.com>,
+	Andi Shyti <andi@etezian.org>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -150,16 +147,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 07/23] arm64: dts: Update cache properties for exynos
-Date: Mon,  7 Nov 2022 16:57:00 +0100
-Message-Id: <20221107155825.1644604-8-pierre.gondois@arm.com>
+Subject: [PATCH v2 06/23] arm64: dts: Update cache properties for broadcom
+Date: Mon,  7 Nov 2022 16:56:59 +0100
+Message-Id: <20221107155825.1644604-7-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_081419_402985_52A9CC21 
-X-CRM114-Status: UNSURE (   9.73  )
+X-CRM114-CacheID: sfid-20221107_081258_368015_14C091C6 
+X-CRM114-Status: UNSURE (   9.20  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -187,46 +184,168 @@ properties for unified cache is present ('cache-size', ...).
 Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+Acked-by: William Zhang <william.zhang@broadcom.com>
 ---
- arch/arm64/boot/dts/exynos/exynos5433.dtsi | 4 ++++
- arch/arm64/boot/dts/exynos/exynos7.dtsi    | 2 ++
- 2 files changed, 6 insertions(+)
+ arch/arm/boot/dts/bcm2711.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm2837.dtsi                      | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi   | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi   | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 4 ++++
+ 11 files changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index bd6a354b9cb5..8619920da4b6 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -226,6 +226,8 @@ cpu7: cpu@3 {
+diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+index 941c4d16791b..c6104149f959 100644
+--- a/arch/arm/boot/dts/bcm2711.dtsi
++++ b/arch/arm/boot/dts/bcm2711.dtsi
+@@ -536,6 +536,7 @@ cpu3: cpu@3 {
+ 		 */
+ 		l2: l2-cache0 {
+ 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x100000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <1024>; // 1MiB(size)/64(line-size)=16384ways/16-way set
+diff --git a/arch/arm/boot/dts/bcm2837.dtsi b/arch/arm/boot/dts/bcm2837.dtsi
+index 5dbdebc46259..b352ac784af6 100644
+--- a/arch/arm/boot/dts/bcm2837.dtsi
++++ b/arch/arm/boot/dts/bcm2837.dtsi
+@@ -115,6 +115,7 @@ cpu3: cpu@3 {
+ 		 */
+ 		l2: l2-cache0 {
+ 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>; // 512KiB(size)/64(line-size)=8192ways/16-way set
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+index dac9d3b4e91d..996412ed52a0 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+@@ -63,6 +63,7 @@ cpu3: cpu@3 {
  
- 		cluster_a57_l2: l2-cache0 {
+ 		l2: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
-@@ -233,6 +235,8 @@ cluster_a57_l2: l2-cache0 {
+ 		};
+ 	};
  
- 		cluster_a53_l2: l2-cache1 {
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
+index 3d016c2ce675..d5bc31980f03 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
+@@ -51,6 +51,7 @@ B53_3: cpu@3 {
+ 
+ 		L2_0: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x40000>;
- 			cache-line-size = <64>;
- 			cache-sets = <256>;
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 1cd771c90b47..f378d8629d88 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -107,6 +107,8 @@ cpu_atlas3: cpu@3 {
+ 		};
+ 	};
  
- 		atlas_l2: l2-cache0 {
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
+index 04de96bd0a03..6f805266d3c9 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi
+@@ -35,6 +35,7 @@ B53_1: cpu@1 {
+ 
+ 		L2_0: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
+index 13629702f70b..b982249b80a2 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
+@@ -51,6 +51,7 @@ B53_3: cpu@3 {
+ 
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
+index c3e6197be808..a996d436e977 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi
+@@ -51,6 +51,7 @@ B53_3: cpu@3 {
+ 
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
+index 0bce6497219f..62c530d4b103 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
+@@ -35,6 +35,7 @@ B53_1: cpu@1 {
+ 
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
+index 29a880c6c858..ba3d5a98ccbc 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
+@@ -50,6 +50,7 @@ B53_3: cpu@3 {
+ 		};
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index fda97c47f4e9..18cdbc20f03f 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -79,6 +79,7 @@ A57_3: cpu@3 {
+ 
+ 		CLUSTER0_L2: l2-cache@0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index 8f8c25e51194..e05901abe957 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -108,18 +108,22 @@ cpu@301 {
+ 
+ 		CLUSTER0_L2: l2-cache@0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 
+ 		CLUSTER1_L2: l2-cache@100 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 
+ 		CLUSTER2_L2: l2-cache@200 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 
+ 		CLUSTER3_L2: l2-cache@300 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 		};
+ 	};
+ 
 -- 
 2.25.1
 
