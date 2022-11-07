@@ -4,35 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 491D5C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98B9BC4321E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UFl78fOx8ir65xpx42fumFKxnvzUXuSmyGwd53Q9SiU=; b=kO6Mt72FwcNusz
-	92acLQ4WCkEzpWL4uEkmqHoVLYOdudhqMh3sluhX+/hQP3FUTf8X6/MonvQf7wP0bZ8TWxoh/YsaW
-	9w3hTCR+6SGMiKaoX68rHHmTC7gqXKjvzQdngABRLou3l/EZ4toImbE573TBlBPGtI0ff+875RHLK
-	5nIhMKWfCccFutF1klBG6dqOxbQvimdhvlnQnK6J666BGnnbfD87wEVdW2866Qk2EAjSePq3rkcgJ
-	60RbGVdUAAXdsU6VXybQ4d1CRMuY8m/wvbRz8XL+Sf+pShMy8lq41aIQsKeHIAeW5DSojDB/ZiX3J
-	dDAF3eK9UTxpbSazSWwg==;
+	List-Owner; bh=2nka0vbvBMeYBU8TkQuKJLz0Ewk/vzvxRcF+nejewqE=; b=sWV/G+5UYPdftY
+	mN6WRFG4ZesIG3M9UKPFyWTlkD+yiowxO6FRz2QobUCwjfWEuZ5ODWbH5cKVJWnd6OQWBHOH6u6N+
+	2Vz5vEmqEW6rO/BfpFNrLXml6Q24M+pShXqytt6Kma65LOwIIKKRfUmfyp+o7/zwKuz8T6h2t/5ZB
+	OUNTGYMgKU16OjotB63ou2j3+J4+w7tdrh5+T18bTDXr01V7P708y+2eeG4oUKAva7khtL5ObkR7A
+	z52/PWyo8Yz5zF2UcReXBGiG6Jvkm1rANPva8KEOpm93/glFTcUhL2v7E28uT2Tl/kTgRFvwmgKJM
+	qSbYBSf+okf4MBALF6BQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vd-00GgUq-JJ; Mon, 07 Nov 2022 17:28:57 +0000
+	id 1os5vm-00Gge9-SW; Mon, 07 Nov 2022 17:29:06 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os52P-00GCn0-2e; Mon, 07 Nov 2022 16:31:55 +0000
+	id 1os55S-00GENa-GI; Mon, 07 Nov 2022 16:35:04 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1FC823A;
-	Mon,  7 Nov 2022 08:31:57 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C17F113E;
+	Mon,  7 Nov 2022 08:35:07 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 376173F534;
-	Mon,  7 Nov 2022 08:31:36 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C5A693F534;
+	Mon,  7 Nov 2022 08:34:45 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Florian Fainelli <f.fainelli@gmail.com>,
@@ -92,44 +93,45 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Heiko Stuebner <heiko@sntech.de>,
 	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
 	Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Shijie Qin <shijie.qin@nxp.com>,
-	Ming Qian <ming.qian@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Adam Ford <aford173@gmail.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
+	Ming Qian <ming.qian@nxp.com>,
 	Tim Harvey <tharvey@gateworks.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Adam Ford <aford173@gmail.com>,
 	Li Jun <jun.li@nxp.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
-	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
 	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Martin Kepplinger <martink@posteo.de>,
+	Joy Zou <joy.zou@nxp.com>,
 	David Heidelberg <david@ixit.cz>,
-	Oliver Graute <oliver.graute@kococonnector.com>,
 	Liu Ying <victor.liu@nxp.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Wei Fang <wei.fang@nxp.com>,
+	Oliver Graute <oliver.graute@kococonnector.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
+	Shijie Qin <shijie.qin@nxp.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
-	Prathamesh Shete <pshete@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
+	Prathamesh Shete <pshete@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
 	Vidya Sagar <vidyas@nvidia.com>,
 	Ashish Mhetre <amhetre@nvidia.com>,
 	Johan Jonker <jbx6244@gmail.com>,
@@ -137,7 +139,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Chandrasekar R <rcsekar@samsung.com>,
+	Andi Shyti <andi@etezian.org>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -150,16 +152,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 19/23] arm64: dts: Update cache properties for rockchip
-Date: Mon,  7 Nov 2022 16:57:12 +0100
-Message-Id: <20221107155825.1644604-20-pierre.gondois@arm.com>
+Subject: [PATCH v2 21/23] arm64: dts: Update cache properties for synaptics
+Date: Mon,  7 Nov 2022 16:57:14 +0100
+Message-Id: <20221107155825.1644604-22-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_083153_265780_83D8C1B0 
-X-CRM114-Status: UNSURE (   9.85  )
+X-CRM114-CacheID: sfid-20221107_083502_671139_2A59753C 
+X-CRM114-Status: UNSURE (   9.03  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -187,35 +189,23 @@ properties for unified cache is present ('cache-size', ...).
 Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3308.dtsi | 1 +
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+ arch/arm64/boot/dts/synaptics/berlin4ct.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-index 2dfa67f1cd67..dd228a256a32 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-@@ -96,6 +96,7 @@ CPU_SLEEP: cpu-sleep {
+diff --git a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
+index 0949acee4728..926da7e1a6ba 100644
+--- a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
++++ b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
+@@ -64,6 +64,7 @@ cpu3: cpu@3 {
  
- 		l2: l2-cache {
+ 		l2: cache {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
- 	};
  
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 49ae15708a0b..8741914cea44 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -102,6 +102,7 @@ CPU_SLEEP: cpu-sleep {
- 
- 		l2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
+ 		idle-states {
 -- 
 2.25.1
 
