@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4C8C4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26597C43217
 	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,24 +12,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r2zuDLReM3Io3TOcUS1fx4Xu/UL+gyKIMtleMknomA0=; b=Z/FgDHuI1qv+EJ
-	EaOVSY1BfE4LbHoEATmEI3NI5/2G70h8axUkTCZVtC4ZlxrmkDPKSPBkwQq8mlKPSNtMSHiObLuHR
-	vkWx2mlSRGcc9+DguN4aXzx2kSaH4/dEliFujvEm0Wyh1O5hp/Crpj4Dyl4WmSAqfj0JwpKiSvSQU
-	q9pMAvNiI3yfjfRkScDbSzOUVPMSfDxjVD80VEZ1nByMpX81vydD6fqmu3DclNKDcwyfgG46+liXx
-	I5YfDyaaYha0pQFMSxo6XVO0H58YZWXOGZq2NNP6FvN3btJJcrTC4Xb3kKuvGY8/QPGkQR2pc2Y3c
-	9vM6EAOOJdWA2g2zAV0Q==;
+	List-Owner; bh=jMTdh2lyFV6Ozej0cYSvKPoBiPc0IeenyC62VI9MImo=; b=v801WPqyXnYlE1
+	HJ2ayjP4pncwcTQDI7uVTrTZAn6pIexKYIbK2fJHed1eNx5U7FxAk2MJJ7XOTSpsyrS1FH1m8Et80
+	WFLfANj6/ig0GR/PFR2Rcw90vlJAZO7z74YJQN07FnT/izmvtFRw3N4CpFQ+blGiCEJUItWIJx3uX
+	qd/uG3hQz+19LY9zVRRqnV1yYtHh5KRMn8lgd3h4hlligICDWw2R2bCKC+JIs6ZZotlaUL5tGsd5i
+	VbcFjEBtQfvNomqa4C2x3zHXU4J2YSXTikLjDaiBtXkAyQADk8uJXcaCngzwaAjhifdv5pQO+CRNu
+	is77Nj2Hsb2hPnSUEF/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vU-00GgLJ-I3; Mon, 07 Nov 2022 17:28:48 +0000
+	id 1os5vS-00GgIC-OT; Mon, 07 Nov 2022 17:28:46 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4v0-00G9h9-1o; Mon, 07 Nov 2022 16:24:15 +0000
+	id 1os4sE-00G8Fh-Fr; Mon, 07 Nov 2022 16:21:24 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8EEAEED1;
-	Mon,  7 Nov 2022 08:24:17 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55027ED1;
+	Mon,  7 Nov 2022 08:21:26 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 5AB3E3F534;
-	Mon,  7 Nov 2022 08:23:56 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 251943F534;
+	Mon,  7 Nov 2022 08:21:05 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -98,34 +98,34 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Shijie Qin <shijie.qin@nxp.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
 	Ming Qian <ming.qian@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
 	Adam Ford <aford173@gmail.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Tim Harvey <tharvey@gateworks.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
 	Li Jun <jun.li@nxp.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
 	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Paul Elder <paul.elder@ideasonboard.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
-	Oliver Graute <oliver.graute@kococonnector.com>,
 	Liu Ying <victor.liu@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>,
+	Oliver Graute <oliver.graute@kococonnector.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
 	Clark Wang <xiaoning.wang@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
 	Prathamesh Shete <pshete@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -148,16 +148,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 14/23] arm64: dts: Update cache properties for nuvoton
-Date: Mon,  7 Nov 2022 16:57:07 +0100
-Message-Id: <20221107155825.1644604-15-pierre.gondois@arm.com>
+Subject: [PATCH v2 12/23] arm64: dts: Update cache properties for mediatek
+Date: Mon,  7 Nov 2022 16:57:05 +0100
+Message-Id: <20221107155825.1644604-13-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_082414_251530_4B9A6621 
-X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-CacheID: sfid-20221107_082122_660797_A5733CEA 
+X-CRM114-Status: UNSURE (   9.88  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -186,18 +186,80 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 3 +++
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 3 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 +++
+ 3 files changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-index 12118b75c0e6..4c196140634b 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-@@ -49,6 +49,7 @@ cpu3: cpu@3 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index 64693c17af9e..c326aeb33a10 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -198,16 +198,19 @@ cluster_off_b: cluster-off-b {
  
- 		l2: l2-cache {
+ 		l2_0: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l2_1: l2-cache1 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l3_0: l3-cache {
+ 			compatible = "cache";
++			cache-level = <3>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 6b20376191a7..424fc89cc6f7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -169,16 +169,19 @@ core3 {
+ 
+ 		l2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l2_1: l2-cache1 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l3_0: l3-cache {
+ 			compatible = "cache";
++			cache-level = <3>;
+ 		};
+ 
+ 		idle-states {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 905d1a90b406..cb74905cfbb8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -213,16 +213,19 @@ cluster_off_b: cluster-off-b {
+ 
+ 		l2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l2_1: l2-cache1 {
+ 			compatible = "cache";
++			cache-level = <2>;
+ 			next-level-cache = <&l3_0>;
+ 		};
+ 
+ 		l3_0: l3-cache {
+ 			compatible = "cache";
++			cache-level = <3>;
  		};
  	};
  
