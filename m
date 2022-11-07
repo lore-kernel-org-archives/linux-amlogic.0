@@ -4,35 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D823C4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49E00C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sQuTevj0SN1IBMVNOhukN7yEHQAGcg5c9TxoSsQpqFM=; b=lq7x8gN9FDfDhg
-	xKxxLa/5XtRXrtmyy52ojLpw6XU2YtxhDuF6tkD+QXaG6j/We9YlEpNaGuCIZR2DW9FFUXJ/dYhoT
-	VUx9bBFYCRHKwRoZgGJrj4SETz87ybZS3wj9B/3T/RvPB4J0+RKvhHOuNMasZ846Z9wUIBGYuG6FS
-	nSWDr6YiP44qV7kQHTF4Jl9jygAO82haIlA+8yCAL/pO677c0/uHVhYqk+KwJT2d4JBgWkNsPIojB
-	jbW6xuKXKmVbetrKElmvAXPecN83C7YtfHZTYIrDQV7pLW/viwRA+zd8fR2iPX3La8c3GAWRqfbhH
-	nBsFAVbmaxAP/N0Cw3PQ==;
+	List-Owner; bh=ctDyBmk/+qmbeNkeq3kSw6hWZihT/H/m/x0iUbcZQvw=; b=WGnU0fvM63mmQC
+	vxP3zIF0qmfNcmDx7WreWYYT+aIlP92a+SOXRTrc1Wh8XYucMmRoYwfnlXc86crUd2DUFMgwz3Tiz
+	tXoPNHTG4Rh+x4T7CGqju0B7yZzjPO/sQuqBbEjkdxKONafGq8fJ0OKK2rCudT+8ADvH8zyJ+O6Jo
+	7kcfMU4Ud2zcXOyIuD70t1tJFQ4+Ex7/sf2csd4w/eilDH6GFMYsVRzrMbGLpr42V/uUP4SscfTPB
+	MYYPbinEkRRHzZM5aTOhOmByHnBagC6uBmBYJwbExSszPP0rxgWJPFEuBfruKOld8Gr9gTgn06AgN
+	14vBUjykgCBCJdo8ZAHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vO-00GgEb-Pp; Mon, 07 Nov 2022 17:28:42 +0000
+	id 1os5vR-00GgGw-8E; Mon, 07 Nov 2022 17:28:45 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4o2-00G5yp-4B; Mon, 07 Nov 2022 16:17:03 +0000
+	id 1os4qg-00G7Dd-Cm; Mon, 07 Nov 2022 16:19:48 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 10AB223A;
-	Mon,  7 Nov 2022 08:17:07 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 965E01FB;
+	Mon,  7 Nov 2022 08:19:51 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D943E3F534;
-	Mon,  7 Nov 2022 08:16:45 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 4B0CB3F534;
+	Mon,  7 Nov 2022 08:19:30 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Florian Fainelli <f.fainelli@gmail.com>,
@@ -98,13 +99,12 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Ming Qian <ming.qian@nxp.com>,
-	Shijie Qin <shijie.qin@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Tim Harvey <tharvey@gateworks.com>,
+	Ming Qian <ming.qian@nxp.com>,
 	Lucas Stach <l.stach@pengutronix.de>,
 	Adam Ford <aford173@gmail.com>,
+	Tim Harvey <tharvey@gateworks.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Li Jun <jun.li@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
@@ -115,17 +115,18 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
-	Oliver Graute <oliver.graute@kococonnector.com>,
 	Liu Ying <victor.liu@nxp.com>,
+	Oliver Graute <oliver.graute@kococonnector.com>,
+	Shijie Qin <shijie.qin@nxp.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
 	Clark Wang <xiaoning.wang@nxp.com>,
-	Wei Fang <wei.fang@nxp.com>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
+	Prathamesh Shete <pshete@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
 	Mikko Perttunen <mperttunen@nvidia.com>,
-	Prathamesh Shete <pshete@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -135,7 +136,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Andi Shyti <andi@etezian.org>,
+	Bharat Uppal <bharat.uppal@samsung.com>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -148,16 +149,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 09/23] arm64: dts: Update cache properties for hisilicon
-Date: Mon,  7 Nov 2022 16:57:02 +0100
-Message-Id: <20221107155825.1644604-10-pierre.gondois@arm.com>
+Subject: [PATCH v2 11/23] arm64: dts: Update cache properties for marvell
+Date: Mon,  7 Nov 2022 16:57:04 +0100
+Message-Id: <20221107155825.1644604-12-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_081702_285469_E80305A9 
-X-CRM114-Status: UNSURE (   9.19  )
+X-CRM114-CacheID: sfid-20221107_081946_571726_8B7364DE 
+X-CRM114-Status: UNSURE (   9.75  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -185,189 +186,93 @@ properties for unified cache is present ('cache-size', ...).
 Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+For ac5-98dx25xx.dtsi:
+Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi |  2 ++
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi |  2 ++
- arch/arm64/boot/dts/hisilicon/hip05.dtsi  |  4 ++++
- arch/arm64/boot/dts/hisilicon/hip06.dtsi  |  4 ++++
- arch/arm64/boot/dts/hisilicon/hip07.dtsi  | 16 ++++++++++++++++
- 5 files changed, 28 insertions(+)
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi      | 1 +
+ arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi | 2 ++
+ arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi | 4 ++++
+ arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi | 4 ++++
+ 4 files changed, 11 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index 8343d0cedde3..a57f35eb5ef6 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -203,10 +203,12 @@ CLUSTER_SLEEP_1: cluster-sleep-1 {
+diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+index 44ed6f963b75..7308f7b6b22c 100644
+--- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+@@ -49,6 +49,7 @@ cpu1: cpu@1 {
  
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		A73_L2: l2-cache1 {
+ 		l2: l2-cache {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
  	};
  
-diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-index ae0a7cfeeb47..f6d3202b0d1a 100644
---- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-@@ -186,10 +186,12 @@ cpu7: cpu@103 {
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+index fcab5173fe67..6713b2ee50c9 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+@@ -48,9 +48,11 @@ cpu1: cpu@1 {
  
- 		CLUSTER0_L2: l2-cache0 {
+ 		l2: l2-cache {
  			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		CLUSTER1_L2: l2-cache1 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-index 7b2abd10d3d6..5b2b1bfd0d2a 100644
---- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-@@ -211,18 +211,22 @@ cpu15: cpu@20303 {
- 
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
 +			cache-level = <2>;
  		};
  	};
  
-diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-index 2f8b03b0d365..291c2ee38288 100644
---- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-@@ -211,18 +211,22 @@ cpu15: cpu@10303 {
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
+index 3db427122f9e..695c8f070dbc 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
+@@ -78,16 +78,20 @@ cpu3: cpu@101 {
  
- 		cluster0_l2: l2-cache0 {
+ 		l2_0: l2-cache0 {
  			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
 +			cache-level = <2>;
  		};
  
- 		cluster1_l2: l2-cache1 {
+ 		l2_1: l2-cache1 {
  			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-index 1a16662f8867..b8746fb959b5 100644
---- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-@@ -842,66 +842,82 @@ cpu63: cpu@70303 {
- 
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster4_l2: l2-cache4 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster5_l2: l2-cache5 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster6_l2: l2-cache6 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster7_l2: l2-cache7 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster8_l2: l2-cache8 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster9_l2: l2-cache9 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster10_l2: l2-cache10 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster11_l2: l2-cache11 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster12_l2: l2-cache12 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster13_l2: l2-cache13 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster14_l2: l2-cache14 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster15_l2: l2-cache15 {
- 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
 +			cache-level = <2>;
  		};
  	};
+ };
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
+index 68782f161f12..878d82bb1052 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
+@@ -78,16 +78,20 @@ cpu3: cpu@101 {
  
+ 		l2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 		};
+ 
+ 		l2_1: l2-cache1 {
+ 			compatible = "cache";
++			cache-unified;
+ 			cache-size = <0x80000>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 		};
+ 	};
+ };
 -- 
 2.25.1
 
