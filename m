@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5033FC4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABFCBC433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4muMkwfnEt0+pkgB2t4uPEnbpC9+ROx4NNA/aE9EGyc=; b=A9qpyJYd5aGb9g
-	+YuGknKnmw48hZMxD3KaWvmSFfyHgiFWQqYyZKUYLQLpnGbBk3dIzW7lHOp/WdiPZYMaKf45zYSuO
-	6W9IobDANNQDBt5YlLx/PNatOQ2G5sqzOJLtzv5DVsKzuSm/FWQPOuJ49z49jzS34HUyN3q+I4btp
-	HiL7y9HhUANgs3GgKRjRA7U4Y+IQWAU6KwXHJSnITPjcVH6KzT5vyh/w4MDKA/2G5eMSWaZWtyKUo
-	t9UAIwL0OFHKczEP4Kr6JFyzPZjIUc0IbRWQycjWlBhDQFvgRdVUmdwE0Sd66hnwsi5wbThHIY62K
-	+6eGSbEYV7g19S4nBDrg==;
+	List-Owner; bh=UMWS51ubSQ5c0Objnp9c6NQ7eLuDTJD32/f2Zik9H+g=; b=rxiTAtGcStlqgs
+	7ftL158JOHZLCoTPiQrTPzoqMRp6rfoGZAep/uVBsPO2iZFmZGaS3Z7+pwVxG6CVMsNKWLTuO6yN0
+	hIdgKl6kocVXeiizpKmUIZfCby0pjavgNmN5h4LMOu7XWL7jWgp+oLLD1SAhclUphIAPZ84xp1G35
+	mcIJURIVUKEJ5A4IpdpNObty0beBHFKQEZnFSahSyJWfiM6bp4U9uA093IeCXl1WvK4GtZWze4zA8
+	WrLA9BwG6LZTegwUN40DJZ5GELCnalPpAwiixGJn3a1TE5St3ErTMa5YGnAvv7/ZGHsnOaoyrixCT
+	CqlPnCnfgkcVLOwKn0gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vO-00GgDo-1y; Mon, 07 Nov 2022 17:28:42 +0000
+	id 1os5vP-00GgFU-SR; Mon, 07 Nov 2022 17:28:43 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4mo-00G5Xh-G6; Mon, 07 Nov 2022 16:15:48 +0000
+	id 1os4pI-00G6NX-FL; Mon, 07 Nov 2022 16:18:22 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4874F1FB;
-	Mon,  7 Nov 2022 08:15:51 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1CCEDED1;
+	Mon,  7 Nov 2022 08:18:23 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D2B393F534;
-	Mon,  7 Nov 2022 08:15:29 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6C1C13F534;
+	Mon,  7 Nov 2022 08:18:01 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -98,37 +98,39 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
 	Shijie Qin <shijie.qin@nxp.com>,
-	Ming Qian <ming.qian@nxp.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
+	Ming Qian <ming.qian@nxp.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
 	Adam Ford <aford173@gmail.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
 	Tim Harvey <tharvey@gateworks.com>,
-	Li Jun <jun.li@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
-	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Li Jun <jun.li@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
 	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Paul Elder <paul.elder@ideasonboard.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Joy Zou <joy.zou@nxp.com>,
 	David Heidelberg <david@ixit.cz>,
 	Liu Ying <victor.liu@nxp.com>,
 	Oliver Graute <oliver.graute@kococonnector.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Clark Wang <xiaoning.wang@nxp.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
-	Prathamesh Shete <pshete@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
+	Prathamesh Shete <pshete@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
 	Ashish Mhetre <amhetre@nvidia.com>,
@@ -137,7 +139,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Ajay Kumar <ajaykumar.rs@samsung.com>,
+	Bharat Uppal <bharat.uppal@samsung.com>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -150,17 +152,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 08/23] arm64: dts: Update cache properties for freescale
-Date: Mon,  7 Nov 2022 16:57:01 +0100
-Message-Id: <20221107155825.1644604-9-pierre.gondois@arm.com>
+Subject: [PATCH v2 10/23] arm64: dts: Update cache properties for lg
+Date: Mon,  7 Nov 2022 16:57:03 +0100
+Message-Id: <20221107155825.1644604-11-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_081546_658469_4627CEC9 
-X-CRM114-Status: UNSURE (   9.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221107_081820_621872_2975CEB7 
+X-CRM114-Status: GOOD (  10.15  )
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -188,315 +189,29 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
- arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 1 +
- arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
- arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 8 ++++++++
- arch/arm64/boot/dts/freescale/imx8dxl.dtsi     | 1 +
- arch/arm64/boot/dts/freescale/imx8mm.dtsi      | 1 +
- arch/arm64/boot/dts/freescale/imx8mn.dtsi      | 1 +
- arch/arm64/boot/dts/freescale/imx8mp.dtsi      | 1 +
- arch/arm64/boot/dts/freescale/imx8mq.dtsi      | 1 +
- arch/arm64/boot/dts/freescale/imx8qm.dtsi      | 2 ++
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi     | 1 +
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi     | 1 +
- arch/arm64/boot/dts/freescale/s32g2.dtsi       | 2 ++
- arch/arm64/boot/dts/freescale/s32v234.dtsi     | 2 ++
- 16 files changed, 32 insertions(+)
+ arch/arm64/boot/dts/lg/lg1312.dtsi | 1 +
+ arch/arm64/boot/dts/lg/lg1313.dtsi | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index ac1c3a7e5f7a..1b33cabb4e14 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -46,6 +46,7 @@ cpu1: cpu@1 {
- 
- 		l2: l2-cache {
+diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/lg1312.dtsi
+index 78ae73d0cf36..25ed9aeee2dc 100644
+--- a/arch/arm64/boot/dts/lg/lg1312.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+@@ -48,6 +48,7 @@ cpu3: cpu@3 {
+ 		};
+ 		L2_0: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
  	};
  
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-index 704f72caddd3..b9fd24cdc919 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-@@ -84,6 +84,7 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index 2173316573be..db82fd4cc759 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+@@ -48,6 +48,7 @@ cpu3: cpu@3 {
  		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-index 3d9e29824bb2..a01e3cfec77f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -79,6 +79,7 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-index a2cadf757148..1e5d76c4d83d 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-@@ -95,18 +95,22 @@ cpu7: cpu@301 {
- 
- 	cluster0_l2: l2-cache0 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster1_l2: l2-cache1 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster2_l2: l2-cache2 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster3_l2: l2-cache3 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	CPU_PW20: cpu-pw20 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
-index c3dc38188c17..c12c86915ec8 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
-@@ -95,18 +95,22 @@ cpu7: cpu@301 {
- 
- 	cluster0_l2: l2-cache0 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster1_l2: l2-cache1 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster2_l2: l2-cache2 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	cluster3_l2: l2-cache3 {
- 		compatible = "cache";
-+		cache-level = <2>;
- 	};
- 
- 	CPU_PW20: cpu-pw20 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 8c76d86cb756..50c19e8405d5 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -300,6 +300,7 @@ cpu701: cpu@701 {
- 
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -308,6 +309,7 @@ cluster0_l2: l2-cache0 {
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -316,6 +318,7 @@ cluster1_l2: l2-cache1 {
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -324,6 +327,7 @@ cluster2_l2: l2-cache2 {
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -332,6 +336,7 @@ cluster3_l2: l2-cache3 {
- 
- 		cluster4_l2: l2-cache4 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -340,6 +345,7 @@ cluster4_l2: l2-cache4 {
- 
- 		cluster5_l2: l2-cache5 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -348,6 +354,7 @@ cluster5_l2: l2-cache5 {
- 
- 		cluster6_l2: l2-cache6 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -356,6 +363,7 @@ cluster6_l2: l2-cache6 {
- 
- 		cluster7_l2: l2-cache7 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-index 5ddbda0b4def..9a7965a694a2 100644
---- a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-@@ -59,6 +59,7 @@ A35_1: cpu@1 {
- 
- 		A35_L2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index dabd94dc30c4..149b7af5349d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -139,6 +139,7 @@ A53_3: cpu@3 {
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x80000>;
- 			cache-line-size = <64>;
- 			cache-sets = <512>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index ad0b99adf691..12cc1a6c50c2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -139,6 +139,7 @@ A53_3: cpu@3 {
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x80000>;
- 			cache-line-size = <64>;
- 			cache-sets = <512>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index bb916a0948a8..e2a9ddbe4d40 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -123,6 +123,7 @@ A53_3: cpu@3 {
- 
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-level = <2>;
- 			cache-size = <0x80000>;
- 			cache-line-size = <64>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 19eaa523564d..1b7e7ac2750a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -179,6 +179,7 @@ A53_3: cpu@3 {
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-index c9c2b6536233..41ce8336f29e 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-@@ -136,6 +136,7 @@ A72_1: cpu@101 {
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-@@ -144,6 +145,7 @@ A53_L2: l2-cache0 {
- 		A72_L2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index f4ea18bb95ab..85c0b1d2bac5 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -127,6 +127,7 @@ A35_3: cpu@3 {
- 		A35_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 			cache-size = <0x80000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 06ce5f19aa8a..32193a43ff49 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -51,6 +51,7 @@ A35_1: cpu@1 {
- 
- 		A35_L2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 824d401e7a2c..d8c82da88ca0 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -52,10 +52,12 @@ cpu3: cpu@101 {
- 
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/s32v234.dtsi b/arch/arm64/boot/dts/freescale/s32v234.dtsi
-index ba0b5305d481..3e306218d533 100644
---- a/arch/arm64/boot/dts/freescale/s32v234.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32v234.dtsi
-@@ -61,10 +61,12 @@ cpu3: cpu@101 {
- 
- 		cluster0_l2_cache: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 
- 		cluster1_l2_cache: l2-cache1 {
+ 		L2_0: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
