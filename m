@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23B1FC43219
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1352DC433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9BZVDtGBJknUcY4/VInBHHCvFsn6YObByegDKOyKVHo=; b=adiqmoxymyL0av
-	SKflgiTAYb06S/SYrH9Oa4O3kB9uWdb3znUR3Qz3Quwf98xbAzDy7q801S7nDceAKmQnVFVPPW87P
-	vXaT0/rUbdD7evB1WLF2dUNsmVOyBqYzSwZwVItgbZIlgScp90XFdGZ4wu+wNprsH1RFgzpEs5ERQ
-	RhExcCKeTuF8Xo7R70JWrshI+0b7XDflH6RlE6jYRhvIvqoOtwgGvZDZM6jyXotxoibbKZ9f1NRQF
-	33WnJjBS2/wWgqFFSKc3f8ax5Q0hKgoqxbCV0Gs6oaR9RB3/tUs1myCrF8LB8wcU9RVhaojvRvdBW
-	VUOnFSxjozG+r5p6IHzg==;
+	List-Owner; bh=xcRiy6f8iIZjeyapycwn6iSV32newqx5ayITuUPbRI0=; b=FlqSXXkCHRG0AS
+	GKaLboL+AwsJZR7IU/+Lc/H75CCgSz+h2PwwTIw06FPtD4NpE0PAzEMsbyaLyaTOkjQz3wqe8wxEy
+	XnGcwoTqV4FiS+OlRJX2BSZuDNKiRsJ58Hir2bg0aU80tsd7O5h44YLGH+JMYk7FSfay6BR/XmvXE
+	T8a2jlx+AiqsnREVaf/9lODWSzkhy4SVJKQ3w9O5aXBS0rH0ExiksnNOvphdhRXvmE3mkGtGpYxjx
+	0ynO++a2/jB9uleoAodcXtL3Qz850aHKp26qgj8pN2h9nu97hoLlhA1pe5528jH8t8CxFGhVrHC3I
+	Jrw7Z8XK0SZ0TD7B8yQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vW-00GgOA-QV; Mon, 07 Nov 2022 17:28:50 +0000
+	id 1os5vV-00GgMK-Cf; Mon, 07 Nov 2022 17:28:49 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4zF-00GBQa-NW; Mon, 07 Nov 2022 16:28:40 +0000
+	id 1os4wZ-00GAM0-RW; Mon, 07 Nov 2022 16:25:54 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E01223A;
-	Mon,  7 Nov 2022 08:28:42 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E267EED1;
+	Mon,  7 Nov 2022 08:25:49 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 11F933F534;
-	Mon,  7 Nov 2022 08:28:20 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 768343F534;
+	Mon,  7 Nov 2022 08:25:28 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -99,34 +99,35 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
+	Shijie Qin <shijie.qin@nxp.com>,
 	Ming Qian <ming.qian@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
 	Tim Harvey <tharvey@gateworks.com>,
 	Adam Ford <aford173@gmail.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Li Jun <jun.li@nxp.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
-	Marek Vasut <marex@denx.de>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
 	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Paul Elder <paul.elder@ideasonboard.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
+	Joy Zou <joy.zou@nxp.com>,
 	David Heidelberg <david@ixit.cz>,
-	Liu Ying <victor.liu@nxp.com>,
 	Oliver Graute <oliver.graute@kococonnector.com>,
-	Shijie Qin <shijie.qin@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
 	Wei Fang <wei.fang@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Akhil R <akhilrajeev@nvidia.com>,
 	Prathamesh Shete <pshete@nvidia.com>,
+	Akhil R <akhilrajeev@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -136,7 +137,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Arjun K V <arjun.kv@samsung.com>,
+	Bharat Uppal <bharat.uppal@samsung.com>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -149,16 +150,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 17/23] arm64: dts: Update cache properties for realtek
-Date: Mon,  7 Nov 2022 16:57:10 +0100
-Message-Id: <20221107155825.1644604-18-pierre.gondois@arm.com>
+Subject: [PATCH v2 15/23] arm64: dts: Update cache properties for nvidia
+Date: Mon,  7 Nov 2022 16:57:08 +0100
+Message-Id: <20221107155825.1644604-16-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_082837_959792_0A5AD98D 
-X-CRM114-Status: UNSURE (   9.66  )
+X-CRM114-CacheID: sfid-20221107_082552_018872_7D91AFF0 
+X-CRM114-Status: UNSURE (   9.12  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -187,76 +188,230 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/realtek/rtd1293.dtsi | 1 +
- arch/arm64/boot/dts/realtek/rtd1295.dtsi | 1 +
- arch/arm64/boot/dts/realtek/rtd1296.dtsi | 1 +
- arch/arm64/boot/dts/realtek/rtd1395.dtsi | 1 +
- arch/arm64/boot/dts/realtek/rtd16xx.dtsi | 2 ++
- 5 files changed, 6 insertions(+)
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 15 +++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi |  1 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 33 ++++++++++++++++++++++++
+ 3 files changed, 49 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1293.dtsi b/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-index 2d92b56ac94d..0696b99fc40d 100644
---- a/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-@@ -30,6 +30,7 @@ cpu1: cpu@1 {
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index 41f3a7e188d0..ed2a534dcfd6 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -3029,36 +3029,51 @@ core1 {
+ 		};
  
- 		l2: l2-cache {
+ 		l2c_0: l2-cache0 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c>;
+ 		};
+ 
+ 		l2c_1: l2-cache1 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c>;
+ 		};
+ 
+ 		l2c_2: l2-cache2 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c>;
+ 		};
+ 
+ 		l2c_3: l2-cache3 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c>;
+ 		};
+ 
+ 		l3c: l3-cache {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <4194304>;
+ 			cache-line-size = <64>;
++			cache-level = <3>;
+ 			cache-sets = <4096>;
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 724e87450605..9474b0da0a3e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -2005,6 +2005,7 @@ CPU_SLEEP: cpu-sleep {
+ 
+ 		L2: l2-cache {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
  	};
  
-diff --git a/arch/arm64/boot/dts/realtek/rtd1295.dtsi b/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-index 1402abe80ea1..4ca322e420e6 100644
---- a/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-@@ -44,6 +44,7 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1296.dtsi b/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-index fb864a139c97..03fccd48f0c0 100644
---- a/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-@@ -44,6 +44,7 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1395.dtsi b/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-index 05c9216a87ee..94c0a8cf4953 100644
---- a/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-@@ -44,6 +44,7 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-index afba5f04c8ec..2ee9ba1ecdc1 100644
---- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-@@ -87,12 +87,14 @@ cpu5: cpu@500 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
- 			next-level-cache = <&l3>;
- 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 0170bfa8a467..583c12444124 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -2905,117 +2905,150 @@ core3 {
  		};
  
- 		l3: l3-cache {
- 			compatible = "cache";
+ 		l2c0_0: l2-cache00 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c0>;
+ 		};
+ 
+ 		l2c0_1: l2-cache01 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c0>;
+ 		};
+ 
+ 		l2c0_2: l2-cache02 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c0>;
+ 		};
+ 
+ 		l2c0_3: l2-cache03 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c0>;
+ 		};
+ 
+ 		l2c1_0: l2-cache10 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c1>;
+ 		};
+ 
+ 		l2c1_1: l2-cache11 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c1>;
+ 		};
+ 
+ 		l2c1_2: l2-cache12 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c1>;
+ 		};
+ 
+ 		l2c1_3: l2-cache13 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c1>;
+ 		};
+ 
+ 		l2c2_0: l2-cache20 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c2>;
+ 		};
+ 
+ 		l2c2_1: l2-cache21 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c2>;
+ 		};
+ 
+ 		l2c2_2: l2-cache22 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c2>;
+ 		};
+ 
+ 		l2c2_3: l2-cache23 {
++			compatible = "cache";
+ 			cache-size = <262144>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
+ 			cache-unified;
++			cache-level = <2>;
+ 			next-level-cache = <&l3c2>;
+ 		};
+ 
+ 		l3c0: l3-cache0 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <3>;
+ 		};
+ 
+ 		l3c1: l3-cache1 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
++			cache-level = <3>;
+ 		};
+ 
+ 		l3c2: l3-cache2 {
++			compatible = "cache";
++			cache-unified;
+ 			cache-size = <2097152>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <2048>;
 +			cache-level = <3>;
  		};
  	};
