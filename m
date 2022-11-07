@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E9FBC43219
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4C8C4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:29:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pmE56OPVu5raPzoK80P3hTixEfWt2EcGLYP5gct/z9Y=; b=EqFTq71TwAWSDR
-	WdpBVgmw2vi3hC56Oa5dEYqoT/OaJG/ot5uqzhbUq+XzzO9HIFYjDH544Uk78LlCeXbGTcGxQ/OQV
-	wmxI+h6jcLn6UNS94QAoFhABQw1Bain/LiOzk2/X1hJPHdlktFfLiiTPwrvRqTtOp323UiELAXRZ6
-	eV21Oalmp4e4k47fejvKrB7p+58KMKjibX9XZrDnWg3qmOKDSr6Kjr4TV5m8eu1ihdUSDg8PleiwB
-	WFWC7pRSkyppedYCIs2XonvCJSCbYOyRgAGnrHS0ESaP1P4WxEBUmKko2W1ALTcAYrGQ8ymDILPVk
-	kEpavLBTtJvg7XU7ChfA==;
+	List-Owner; bh=r2zuDLReM3Io3TOcUS1fx4Xu/UL+gyKIMtleMknomA0=; b=Z/FgDHuI1qv+EJ
+	EaOVSY1BfE4LbHoEATmEI3NI5/2G70h8axUkTCZVtC4ZlxrmkDPKSPBkwQq8mlKPSNtMSHiObLuHR
+	vkWx2mlSRGcc9+DguN4aXzx2kSaH4/dEliFujvEm0Wyh1O5hp/Crpj4Dyl4WmSAqfj0JwpKiSvSQU
+	q9pMAvNiI3yfjfRkScDbSzOUVPMSfDxjVD80VEZ1nByMpX81vydD6fqmu3DclNKDcwyfgG46+liXx
+	I5YfDyaaYha0pQFMSxo6XVO0H58YZWXOGZq2NNP6FvN3btJJcrTC4Xb3kKuvGY8/QPGkQR2pc2Y3c
+	9vM6EAOOJdWA2g2zAV0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vT-00GgKF-N2; Mon, 07 Nov 2022 17:28:47 +0000
+	id 1os5vU-00GgLJ-I3; Mon, 07 Nov 2022 17:28:48 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4td-00G92z-9r; Mon, 07 Nov 2022 16:22:53 +0000
+	id 1os4v0-00G9h9-1o; Mon, 07 Nov 2022 16:24:15 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EAE3FED1;
-	Mon,  7 Nov 2022 08:22:51 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8EEAEED1;
+	Mon,  7 Nov 2022 08:24:17 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 811213F534;
-	Mon,  7 Nov 2022 08:22:30 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 5AB3E3F534;
+	Mon,  7 Nov 2022 08:23:56 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -98,36 +98,34 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
+	Shijie Qin <shijie.qin@nxp.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
 	Ming Qian <ming.qian@nxp.com>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Adam Ford <aford173@gmail.com>,
 	Tim Harvey <tharvey@gateworks.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Li Jun <jun.li@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
 	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Marek Vasut <marex@denx.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
-	Joy Zou <joy.zou@nxp.com>,
 	Oliver Graute <oliver.graute@kococonnector.com>,
 	Liu Ying <victor.liu@nxp.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
-	Shijie Qin <shijie.qin@nxp.com>,
-	Wei Fang <wei.fang@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
 	Clark Wang <xiaoning.wang@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
-	Akhil R <akhilrajeev@nvidia.com>,
 	Mikko Perttunen <mperttunen@nvidia.com>,
 	Prathamesh Shete <pshete@nvidia.com>,
+	Akhil R <akhilrajeev@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -137,7 +135,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Arnd Bergmann <arnd@arndb.de>,
+	Bharat Uppal <bharat.uppal@samsung.com>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -150,16 +148,16 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 13/23] arm64: dts: Update cache properties for microchip
-Date: Mon,  7 Nov 2022 16:57:06 +0100
-Message-Id: <20221107155825.1644604-14-pierre.gondois@arm.com>
+Subject: [PATCH v2 14/23] arm64: dts: Update cache properties for nuvoton
+Date: Mon,  7 Nov 2022 16:57:07 +0100
+Message-Id: <20221107155825.1644604-15-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_082249_486036_AC628D03 
-X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-CacheID: sfid-20221107_082414_251530_4B9A6621 
+X-CRM114-Status: UNSURE (   9.11  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -188,16 +186,16 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 1 +
+ arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 2dd5e38820b1..c4bca23b96b9 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -52,6 +52,7 @@ cpu1: cpu@1 {
- 		};
- 		L2_0: l2-cache0 {
+diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
+index 12118b75c0e6..4c196140634b 100644
+--- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
+@@ -49,6 +49,7 @@ cpu3: cpu@3 {
+ 
+ 		l2: l2-cache {
  			compatible = "cache";
 +			cache-level = <2>;
  		};
