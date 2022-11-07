@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90190C4167D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61576C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 17:28:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ogrnpDa8hYdcLNokfbP7h4b9U71wMaJRXZaCfAHpVCI=; b=t5uw/g+mtk1WeX
-	oCd3OVO7ME+9Nzcd1mu3CDle/qLlZ7Lj+H5rtT4zjbFC1IhoYzSW6ANPtv2R9w8528PDmrtir5jw4
-	XigKccai3Y+cH9k/XKcnai7BS7vmVpGR2PKEAmhHvNaKqnnPFXXlL3WsKnM8bsk0j03ZP51CfcqOP
-	wzE68NxyrYn66QTu5dy6qDTqJPoB4v50aK76S3Z/sJHv+5nFaPS/eOvjLv3XsqfGCzK5hw9j1SpaK
-	/dIUPR4mB0fOc+aWDXdH59TqthBgRP6gA9D8HIZRTxsG4YkF5cvALs+6m3kBeGrrYyx0fYOg7vud3
-	acFMlur4/rXQMdSdU+Rg==;
+	List-Owner; bh=8gVADQ304LlEoHCzp8i7AH9koYRcjD7GG+E6u3OT904=; b=yNw18yqubwjbOG
+	Y3Wr3TR7XekfQE0FZBaOvr/hh8kaA6FEBcyPdIRFCfY4gLc7j8Wk/PaTmavLm1pyZRem1cazFB3pP
+	Y7/G6E6XyoIAZ4BuPzaCo+TlrIGx6Oc+DV4I2hkV8oe9wT3wKPzwcE8i51RkgscvbxwA4FEfmttwE
+	REB/Yp/XPKhv/t9d0N+uvaD5eb6ctkpkmPU/iMoh6DYOvG8fCBHdqRCLDAnwYaCZ8G3AO/hg19Zqh
+	iPwm26xzwksX/MoSjrieDyVAvHzqwuDweGYMhSqQenzwbRdcBQrIPY5/LovVOQV4nHJ+Zswowv3Hz
+	0UiK8wA/9MIUdgk2DDJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os5vK-00GgBT-88; Mon, 07 Nov 2022 17:28:38 +0000
+	id 1os5vN-00GgD8-8y; Mon, 07 Nov 2022 17:28:41 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os4ij-00G3TI-3f; Mon, 07 Nov 2022 16:11:35 +0000
+	id 1os4lP-00G4ik-7n; Mon, 07 Nov 2022 16:14:20 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7B29D1FB;
-	Mon,  7 Nov 2022 08:11:37 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E13F0113E;
+	Mon,  7 Nov 2022 08:14:23 -0800 (PST)
 Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 105343F534;
-	Mon,  7 Nov 2022 08:11:15 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7A2E33F534;
+	Mon,  7 Nov 2022 08:14:02 -0800 (PST)
 From: Pierre Gondois <pierre.gondois@arm.com>
 To: linux-kernel@vger.kernel.org
 Cc: Pierre Gondois <pierre.gondois@arm.com>,
@@ -98,36 +98,36 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Tero Kristo <kristo@kernel.org>,
 	Viorel Suman <viorel.suman@nxp.com>,
 	Abel Vesa <abelvesa@kernel.org>,
-	Zhou Peng <eagle.zhou@nxp.com>,
 	Shijie Qin <shijie.qin@nxp.com>,
-	Ming Qian <ming.qian@nxp.com>,
 	Peng Fan <peng.fan@nxp.com>,
+	Ming Qian <ming.qian@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
 	Adam Ford <aford173@gmail.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
 	Tim Harvey <tharvey@gateworks.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Li Jun <jun.li@nxp.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
 	Marek Vasut <marex@denx.de>,
+	Marco Felsch <m.felsch@pengutronix.de>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Joakim Zhang <qiangqing.zhang@nxp.com>,
 	Paul Elder <paul.elder@ideasonboard.com>,
 	Martin Kepplinger <martink@posteo.de>,
 	David Heidelberg <david@ixit.cz>,
-	Liu Ying <victor.liu@nxp.com>,
 	Oliver Graute <oliver.graute@kococonnector.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Liu Ying <victor.liu@nxp.com>,
+	Zhou Peng <eagle.zhou@nxp.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
 	Clark Wang <xiaoning.wang@nxp.com>,
 	Jacky Bai <ping.bai@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Vadym Kochan <vadym.kochan@plvision.eu>,
 	Sameer Pujar <spujar@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
 	Prathamesh Shete <pshete@nvidia.com>,
 	Akhil R <akhilrajeev@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
 	Sumit Gupta <sumitg@nvidia.com>,
 	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -137,7 +137,7 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
 	Aswani Reddy <aswani.reddy@samsung.com>,
 	Shashank Prashar <s.prashar@samsung.com>,
-	Arnd Bergmann <arnd@arndb.de>,
+	Sriranjani P <sriranjani.p@samsung.com>,
 	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -150,16 +150,17 @@ Cc: Pierre Gondois <pierre.gondois@arm.com>,
 	linux-realtek-soc@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 05/23] arm64: dts: Update cache properties for arm
-Date: Mon,  7 Nov 2022 16:56:58 +0100
-Message-Id: <20221107155825.1644604-6-pierre.gondois@arm.com>
+Subject: [PATCH v2 07/23] arm64: dts: Update cache properties for exynos
+Date: Mon,  7 Nov 2022 16:57:00 +0100
+Message-Id: <20221107155825.1644604-8-pierre.gondois@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
 References: <20221107155825.1644604-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_081133_272038_C7E0A04A 
-X-CRM114-Status: GOOD (  10.62  )
+X-CRM114-CacheID: sfid-20221107_081419_402985_52A9CC21 
+X-CRM114-Status: UNSURE (   9.73  )
+X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 07 Nov 2022 09:28:32 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -187,123 +188,45 @@ Update the Device Trees accordingly.
 
 Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 ---
- arch/arm64/boot/dts/arm/corstone1000.dtsi            | 1 +
- arch/arm64/boot/dts/arm/foundation-v8.dtsi           | 1 +
- arch/arm64/boot/dts/arm/juno-r1.dts                  | 2 ++
- arch/arm64/boot/dts/arm/juno-r2.dts                  | 2 ++
- arch/arm64/boot/dts/arm/juno.dts                     | 2 ++
- arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts           | 1 +
- arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts | 1 +
- 7 files changed, 10 insertions(+)
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi | 4 ++++
+ arch/arm64/boot/dts/exynos/exynos7.dtsi    | 2 ++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/arm/corstone1000.dtsi b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-index 4e46826f883a..21f1f952e985 100644
---- a/arch/arm64/boot/dts/arm/corstone1000.dtsi
-+++ b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-@@ -53,6 +53,7 @@ gic: interrupt-controller@1c000000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+index bd6a354b9cb5..8619920da4b6 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+@@ -226,6 +226,8 @@ cpu7: cpu@3 {
  
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
-+		cache-unified;
- 		cache-level = <2>;
- 		cache-size = <0x80000>;
- 		cache-line-size = <64>;
-diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-index 83e3e7e3984f..c8bd23b1a7ba 100644
---- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-+++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-@@ -58,6 +58,7 @@ cpu3: cpu@3 {
- 
- 		L2_0: l2-cache0 {
+ 		cluster_a57_l2: l2-cache0 {
  			compatible = "cache";
 +			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/arm/juno-r1.dts b/arch/arm64/boot/dts/arm/juno-r1.dts
-index 6451c62146fd..1d90eeebb37d 100644
---- a/arch/arm64/boot/dts/arm/juno-r1.dts
-+++ b/arch/arm64/boot/dts/arm/juno-r1.dts
-@@ -189,6 +189,7 @@ A53_3: cpu@103 {
- 
- 		A57_L2: l2-cache0 {
- 			compatible = "cache";
 +			cache-unified;
  			cache-size = <0x200000>;
  			cache-line-size = <64>;
  			cache-sets = <2048>;
-@@ -197,6 +198,7 @@ A57_L2: l2-cache0 {
+@@ -233,6 +235,8 @@ cluster_a57_l2: l2-cache0 {
  
- 		A53_L2: l2-cache1 {
+ 		cluster_a53_l2: l2-cache1 {
  			compatible = "cache";
++			cache-level = <2>;
 +			cache-unified;
- 			cache-size = <0x100000>;
+ 			cache-size = <0x40000>;
  			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/arm/juno-r2.dts b/arch/arm64/boot/dts/arm/juno-r2.dts
-index 438cd1ff4bd0..d2ada69b0a43 100644
---- a/arch/arm64/boot/dts/arm/juno-r2.dts
-+++ b/arch/arm64/boot/dts/arm/juno-r2.dts
-@@ -195,6 +195,7 @@ A53_3: cpu@103 {
+ 			cache-sets = <256>;
+diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+index 1cd771c90b47..f378d8629d88 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+@@ -107,6 +107,8 @@ cpu_atlas3: cpu@3 {
  
- 		A72_L2: l2-cache0 {
+ 		atlas_l2: l2-cache0 {
  			compatible = "cache";
++			cache-level = <2>;
 +			cache-unified;
  			cache-size = <0x200000>;
  			cache-line-size = <64>;
  			cache-sets = <2048>;
-@@ -203,6 +204,7 @@ A72_L2: l2-cache0 {
- 
- 		A53_L2: l2-cache1 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/arm/juno.dts b/arch/arm64/boot/dts/arm/juno.dts
-index cf4a58211399..5e48a01a5b9f 100644
---- a/arch/arm64/boot/dts/arm/juno.dts
-+++ b/arch/arm64/boot/dts/arm/juno.dts
-@@ -194,6 +194,7 @@ A53_3: cpu@103 {
- 
- 		A57_L2: l2-cache0 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x200000>;
- 			cache-line-size = <64>;
- 			cache-sets = <2048>;
-@@ -202,6 +203,7 @@ A57_L2: l2-cache0 {
- 
- 		A53_L2: l2-cache1 {
- 			compatible = "cache";
-+			cache-unified;
- 			cache-size = <0x100000>;
- 			cache-line-size = <64>;
- 			cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-index 258991ad7cc0..ef68f5aae7dd 100644
---- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-+++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-@@ -71,6 +71,7 @@ cpu@3 {
- 
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-index 5b6d9d8e934d..796cd7d02eb5 100644
---- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-+++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-@@ -57,6 +57,7 @@ cpu@1 {
- 
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
-+			cache-level = <2>;
- 		};
- 	};
- 
 -- 
 2.25.1
 
