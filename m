@@ -4,138 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 871BDC4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 18:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58953C4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 18:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nQAhPTATYK7+xehVos29IkWg259YV+CQKSPhWbbamTY=; b=iBrOYDX/oLtGry
-	EbigjuCHIGKKHecaKnUlFz0+yPmH7rPzmMcaTV4e1k8tKarvIRrXC2gA/ZMUhZgJk8cp+wTn5zBxw
-	kg5biCYahcrsxzkhbDVLkmrwY9DW5r2j3Y9Y4Q3zK0lojpWUNVbfllnLWukgDgbSSHo44L2h+GQlg
-	OxPKZR1V8ML1ptBgYz3VbZJpRX3z2gmKMop7nRvKwZEh6vcDsbyDyxlnHplXMZ9stNjIhbaChuRcH
-	wFPfQylpC0HeERQmEuCQM7nJlj0PxdM1z7b8p1zV3rAHpWKTEcHIDzeEKgr2kzntu5QeaETvzP10z
-	KOqKTe5sEtluNpvdhnYw==;
+	List-Owner; bh=9Xl4jkJ5enu0moropPXyirqx2/N2vZK97PQJG0w0xJg=; b=4RJAg8QS+qZkdr
+	bhabUUwuxMGDRUNh8Sd1VR29n4J0xT7SRgtY66dZ5wZCJf4DvrS1ykJsC/nzPqw2irO5s/cpf/+Vk
+	lAu12nTXEWiNk1t50f3ljbiGNVmf6V775yLPr2wvm6zkRt2hWnoxFJFcDZZwRfkAig7ECxiRTiOsJ
+	inQOeWF8XDFW+vBQ0VMq09Oqp/EjUvo9M+/bUAoa3eT2K2y38ZyUADRpy39U3zWDl+2o2MAI+pVSz
+	Z1ZBthVkjntfUBpeCHZOs14gxHrJoREd4Ajv0KcYch6y6+07iLEq6c3UCV/z29ayIcEnHcP/ywOb9
+	m5ASN77U95WBCHaWxHyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os6YJ-00H3et-Ak; Mon, 07 Nov 2022 18:08:55 +0000
-Received: from mail-lj1-x231.google.com ([2a00:1450:4864:20::231])
+	id 1os7KE-00HMaP-7o; Mon, 07 Nov 2022 18:58:26 +0000
+Received: from msg-1.mailo.com ([213.182.54.11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os6TV-00H1TT-Oy
-	for linux-amlogic@lists.infradead.org; Mon, 07 Nov 2022 18:04:01 +0000
-Received: by mail-lj1-x231.google.com with SMTP id d20so17492912ljc.12
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Nov 2022 10:03:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+ir96l+QDjXFux43KwFJhlNV7YT1OSh/8apFuqiZtho=;
-        b=nT3CgucQtQ1gVhgea+s6MbSPrlUCSZ6j43gzpB71/IhaN3vIRUyUQg9rFIOQ0EOSOI
-         l1p8KXfPEyVrbLHtZU/V0ENKGuD7OmI+eqRCHWED0EpxhpQrOr2ktf7eSoJ7kEhDVEG/
-         /VttDUEf6u71RNqAgu4GudNAz+jDgaxFKRVUWIX1Gaax+w43cwBjvhZg0rqSE+RUiNYL
-         tC+k2Snids+rFyic656eMYikt5iVJbJujpa4BR9hvfsVPuXxEqNU56ziemfweSeTJ7YY
-         r4HHT5C/KL/ROQtuTTbrXmkr8zNarexAeib+Ha6s4u+Wau8hhKauEXzK8HgyEh1HdIhG
-         JMNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ir96l+QDjXFux43KwFJhlNV7YT1OSh/8apFuqiZtho=;
-        b=DnH3qBWvVFPfgEb6fGiBIi/EscH6xgVGqggg+pchs6F8ojXM9O4c93uI40MeMNPuYq
-         FxgM9B+xPO2lP/WghqeJdgtHgPPLdr9zmHTBnp6Z5cxVWbuoopF4Voy2buWzSPxd/4Jh
-         gnvcbLPqkm0p9Ub9l9OoyuDOXoDRixyD3nkfg68Z50L/1VGePHgCVcfG+gvc/QxAORKH
-         gMkEktzUaWSIEsuMOEankZVGXk/zHONTIpVOWcfX8nsLlhkj3T9onjBq/UhuvYAAbXAu
-         qqFN3oucUPivQ0USO1OLM4dbCFmnvYkhnmZ6PEbIM8+AFSgwEJyl/mx0DU5trKGmHGNh
-         4nkg==
-X-Gm-Message-State: ACrzQf1xvSFOXNmZK/Dw7oz/n7DAKT7G38slY+eFLYdd6Tv0qQShkEdH
-	ldLQV6ruCzl/Sp8PlOG7GAt5Tw==
-X-Google-Smtp-Source: AMsMyM59MymaW14rwcCR//K6Z824DJsWuzy2Lj65+BM7fRjMmwmBrrErq2391fOQILS2QOeD1c70uA==
-X-Received: by 2002:a2e:2405:0:b0:277:524c:f83d with SMTP id k5-20020a2e2405000000b00277524cf83dmr5914462ljk.217.1667844232060;
-        Mon, 07 Nov 2022 10:03:52 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id z4-20020a056512376400b00499b1873d6dsm1353254lft.269.2022.11.07.10.03.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:03:51 -0800 (PST)
-Message-ID: <e6fbdee5-24b0-ef0f-9cff-1d77220d9d73@linaro.org>
-Date: Mon, 7 Nov 2022 19:03:48 +0100
+	id 1os7JR-00HLtk-9d; Mon, 07 Nov 2022 18:57:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+	t=1667847432; bh=k0P8ZE+uqQGVs6wL7Q7U7sf2vt2NmAe+s9GmSscWQ0c=;
+	h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:In-Reply-To;
+	b=eC9931eWOAk5D6YxDQdpohg9OWEYrmGecMyIJrZLxY2yaxzl/anSb3ebTj7ejMDgs
+	 R2VDj5avBMf4HqebeaDNc/39cJTs8lVTmC6KZ1qM8kGfRs1YHOoCWxUfKCvrTWc7nl
+	 j8atkUi9WqzVKfpAaso6Dl9riohSOImjHlqKpELM=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+	via ip-206.mailobj.net [213.182.55.206]
+	Mon,  7 Nov 2022 19:57:12 +0100 (CET)
+X-EA-Auth: uJYbcnbU7/Gnv/kEAbQmGdQCJ/olU5GTMJpo6jMiKW/YsivpNT2VbpYQVLnhqIqXLpu6xC/hldMuQtAOfKssKWdyCKfS7j0U
+Date: Tue, 8 Nov 2022 00:27:03 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: patches for staging:media drivers
+Message-ID: <Y2lU/78ZFoVElIp4@qemulion>
+References: <Y2eSCZJNWn6DzCUu@qemulion>
+ <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 00/23] Update cache properties for arm64 DTS
-Content-Language: en-US
-To: Pierre Gondois <pierre.gondois@arm.com>, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- Antoine Tenart <atenart@kernel.org>,
- Brijesh Singh <brijeshkumar.singh@amd.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Tom Lendacky <thomas.lendacky@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Khuong Dinh <khuong@os.amperecomputing.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Alim Akhtar <alim.akhtar@samsung.com>,
- Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Chester Lin <clin@suse.com>, =?UTF-8?Q?Andreas_F=c3=a4rber?=
- <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
- NXP S32 Linux Team <s32@nxp.com>, Wei Xu <xuwei5@hisilicon.com>,
- Chanho Min <chanho.min@lge.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Viorel Suman <viorel.suman@nxp.com>,
- Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Shenwei Wang <shenwei.wang@nxp.com>, Ming Qian <ming.qian@nxp.com>,
- Lucas Stach <l.stach@pengutronix.de>, Adam Ford <aford173@gmail.com>,
- Tim Harvey <tharvey@gateworks.com>, Richard Zhu <hongxing.zhu@nxp.com>,
- Li Jun <jun.li@nxp.com>, Joakim Zhang <qiangqing.zhang@nxp.com>,
- Markus Niebel <Markus.Niebel@ew.tq-group.com>,
- Marco Felsch <m.felsch@pengutronix.de>, Marek Vasut <marex@denx.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Arjun K V <arjun.kv@samsung.com>, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-realtek-soc@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20221107155825.1644604-1-pierre.gondois@arm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
+Content-Disposition: inline
+In-Reply-To: <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_100357_853859_3D8830BF 
-X-CRM114-Status: GOOD (  11.90  )
+X-CRM114-CacheID: sfid-20221107_105737_484882_CF80132D 
+X-CRM114-Status: GOOD (  18.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,39 +72,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/11/2022 16:56, Pierre Gondois wrote:
-> v2:
-> - Update/Add patches for missed cache properties requiring to be
->   updated for the following platforns: bcm, amazon, arm, exynos,
->   freescale, marvell, mediatek, nvidia, socinext, tesla, ti.
->   Missed cache properties were detected using Rob Herring's branch:
->   https://github.com/robherring/dt-schema/tree/cache-rework
-> - v1 of exynos, tesla were merged.
+On Mon, Nov 07, 2022 at 06:29:30PM +0100, Neil Armstrong wrote:
+> Hi,
+>
+> On 06/11/2022 11:52, Deepak R Varma wrote:
+> > Greetings to all.
+> > My name is Deepak R Varma and I was part of the recent Outreachy internship
+> > round. I learned during this program that patches for the media drivers were
+> > prohibited to be included in the Outreachy effort due to lack of bandwidth for
+> > the maintainers to respond on those.
+> >
+> > The Outreachy round is now over but I am continuing to work on code improvement
+> > and changes. I would like to know if it is okay for me to now identify
+> > opportunities in the media drivers and send patch proposal for your kind
+> > consideration. I intend to send couple of Coccinelle identified code
+> > improvements as patches.
+> >
+> > Please let me know.
+>
+> I won't say no but since the media maintainers will need to apply them,
+> the problem is the same.
 
-So you now duplicated the properties... You need to explicitly ask for a
-patch to be dropped.
+Hello Neil,
+Thank you for responding. I will send in the patches. I am sure they will be
+reviewed at an appropriate time and responded accordingly.
 
-This cannot be sent like this because it is unmanageable.
-1. Split the patchset per sub arch:
+Have a good day!
+./drv
 
-"Sending of the message failed.
-An error occurred while sending mail. The mail server responded:
-Your message has too many recipients. For more information regarding
-Google's sending limits, please visit:
- https://support.google.com/mail/?p=TooManyRecipientsError
-w8-20020ac24428000000b00492ea54beeasm1344368lfl.306 - gsmtp.
- Please check the message recipient "chris.obbard@collabora.com" and try
-again."
+>
+> Neil
+>
+> >
+> > Thank you,
+> > ./drv
+> >
+> >
+>
+>
 
-2. Ask explicitly for dropping already merged patches (I assume they are
-incorrect if you send v2 of them).
-
-3. Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-4. Send such patches only to interested parties, not as part of everything.
-
-Best regards,
-Krzysztof
 
 
 _______________________________________________
