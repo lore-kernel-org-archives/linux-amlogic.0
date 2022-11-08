@@ -4,56 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22FA2C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Nov 2022 19:13:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60C36C433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Nov 2022 08:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
-	:Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Krf6xYlrQrn6OJqmrI2foEw0i240HckiD4eB9ZSg4p0=; b=ufXk/ZW+bqGuB3
-	frPJlD1vV80vigSvthH2yfQuNm6c55drXkkvOchKRSeiJm3hgTh6T/TEH0kTO804XLGQ7JFrVUPO3
-	G3s8qK8MDPnzXG99xY75oRy5VDEXTXzjSrXDXqY/6WnsFVVWNMeg3y68mNK+3BFHy61j+JiR+d5Sh
-	X9hzSp1Id/XEcANhTYPPGvDQZOGWUhb0atj+B4YmcXAggOWeD3HditWtV/8zBNoQNtektbEB8Anm8
-	gKBWVSor8Q5VPpjWCEj2V1R0yybyLhL1vOy6tHJEbQVd/6SddOoJi/5QtJECeQCql/W22vyUeQMju
-	S0zlUBBQbOh+GldgkvTQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1k1KUtuSiIhBjoU6FwPajme9AzdplK/oMjcVCQC3oMY=; b=tGHhToR2DF+Pr5ju+USzFdUMr2
+	wZze1XUXHaFUZXR7BrIHOeoso5Qp2ycS73JQ3ilI2nMaElbm9+Q0uF5599Gkb+clSqO+HFjhCQzH8
+	vZEmDIaEqhS3Q8J4uXDdAwMWIdc/C9duoN/Ud4Gdic9caMim0PxzOORp7sYQByFnhE5THBKKgXCtF
+	7842LemxN4yT9pRRuI7n4Jqqcwoag4MFM3QQkZYKADpQOHneFZmeo8iFABypF3ki6SpfiZoywxH3d
+	InDbll3G6354VwWdd34hBy3CLOLQscjdZpeYubQtHUIv3fofD5EBHie9Cp+94DqVELwrBzNCqUp20
+	iOekrjRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os7YF-00HV0M-3h; Mon, 07 Nov 2022 19:12:55 +0000
-Received: from msg-4.mailo.com ([213.182.54.15])
+	id 1osJWv-003WPJ-U3; Tue, 08 Nov 2022 08:00:21 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os7X1-00HTkT-By; Mon, 07 Nov 2022 19:11:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
-	t=1667848286; bh=zWPAdToNUDwcfw6NFyLWvfacA3nb38cKYkYp0UwSEe0=;
-	h=X-EA-Auth:Date:From:To:Subject:Message-ID:MIME-Version:
-	 Content-Type;
-	b=e+EjilvWCDu3GYPl50nMRQcJ3YfC61qnAQ4TnVjjx9VnoXN24iJaw3EzlJducIw1D
-	 i6AEctOqf2gK+tJ9k+Xw0xko7kxtxBsfXFE4Mqpsf/K4wgZfi8KArDvWNiumosR/RJ
-	 5aviiZDV4Xa83JS+xV+AkT7XZEKbnnM39F4sAiAc=
-Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
-	via ip-206.mailobj.net [213.182.55.206]
-	Mon,  7 Nov 2022 20:11:26 +0100 (CET)
-X-EA-Auth: lhzqnxlKSukeYTArdeiVEjBhxUlWR9klVoDlFhWy14zVU6h0rU481r3lcJJeuxpO45fLMz+oj+pcg6mqQVqZdCkKc6VHGZrj
-Date: Tue, 8 Nov 2022 00:41:21 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] staging: media: meson: vdec: use min() for comparison and
- assignment
-Message-ID: <Y2lYWWKkDa73gcqm@qemulion>
+	id 1osJWj-003WI8-1A
+	for linux-amlogic@lists.infradead.org; Tue, 08 Nov 2022 08:00:10 +0000
+Received: by mail-wr1-x432.google.com with SMTP id k8so19671978wrh.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Nov 2022 00:00:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=fGYN+OrKT+Wc9wa2H+f4cBj9a1gnXGucm2/MFJDAUEc=;
+        b=KPJ+SqQRh8tNjrsB5SkSC9KV2x2xGFHIyLgZfEOJpdw3Yxoo9TtC6O+xjN83h5XPO4
+         ngNCAv2q7dq8xTKelxpfeeNVqwjNIyWc0LYFMi0RQV4BodG1UpieV07QKuLr9D+7u9MS
+         TxZ4xxEWfwqoJRwkmNAeUW1QA98LsovE4aSGMV4iHKZqikZQsl2LcmZ36SToHcRwvr8Z
+         epetrH3no1C2nkkZwdLIeICANve+uAXLdxAUf3cH1PgULUdLPH458ESTqagA7AFGuTq3
+         6Y6ZJIVSlDzHAhjKg8IXR90sYx6ou7iGXiRj286uSJr0MbDlVMHmAv+KKx6RV5PyoN82
+         ob+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fGYN+OrKT+Wc9wa2H+f4cBj9a1gnXGucm2/MFJDAUEc=;
+        b=K76EvbVQkCRZ02hSg1k6nHZ2mpuMWQl1Z7+nFS7p4Ptr3rFCwLSMcfP7+L8C9EJhc5
+         3FSgAf3u+kBm9r3aKpyqHDh4A3W5gZJadf5pVR++3XsUAZ5nYlSVglyzAUCEZcui5+uG
+         BgL5cu+hHrOLDqTV2ctrdVEbcNHvwyesdO78TL7LOD0Bxy/GEJXav9049M8do0RsjHq3
+         RgvqMdh8AKIYw8JIopsZ2M7JMh1j+NR+dhnTtEs+dDGDMfl4mFZwGRRKOSe8Evln6YqM
+         H+vivfrcRsopW50xY0300puV9geJYlgmHbnKglL06zEoYSfCQLcpCHoLmr0aiu5S951L
+         bVqg==
+X-Gm-Message-State: ACrzQf18Fqt02diiBqx7dyAQIhd3q6LiWmth2r2U5f6mK8O5rIkzaBsD
+	pyafvXh53k963pjwQ/LgQX2kxQ==
+X-Google-Smtp-Source: AMsMyM5rSN3xNF9uAe4ahnLY/NH+GZ4LiIgAn2zN32iu4O9cN0kCn8Gk1Tuj7s5Nxk6WIY9DJOxHNg==
+X-Received: by 2002:a5d:4ac8:0:b0:236:781a:8d2d with SMTP id y8-20020a5d4ac8000000b00236781a8d2dmr35171464wrs.715.1667894405980;
+        Tue, 08 Nov 2022 00:00:05 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:69c1:baa5:e978:60e9? ([2a01:e0a:982:cbb0:69c1:baa5:e978:60e9])
+        by smtp.gmail.com with ESMTPSA id h7-20020a05600c314700b003a1980d55c4sm14468146wmo.47.2022.11.08.00.00.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 00:00:05 -0800 (PST)
+Message-ID: <64cbcad7-0b71-3bbc-a6d2-08f1cefdfa5e@linaro.org>
+Date: Tue, 8 Nov 2022 09:00:02 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] staging: media: meson: vdec: use min() for comparison and
+ assignment
+Content-Language: en-US
+To: Deepak R Varma <drv@mailo.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <Y2lYWWKkDa73gcqm@qemulion>
+Organization: Linaro Developer Services
+In-Reply-To: <Y2lYWWKkDa73gcqm@qemulion>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_111139_566740_8FDB8AC5 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20221108_000009_147796_9C624D6A 
+X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,56 +95,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use of standard min() helper macro is preferred over using ternary
-operator for logical evaluation and value assignment. This issue is
-identified by coccicheck using the minmax.cocci file.
+On 07/11/2022 20:11, Deepak R Varma wrote:
+> Use of standard min() helper macro is preferred over using ternary
+> operator for logical evaluation and value assignment. This issue is
+> identified by coccicheck using the minmax.cocci file.
+> 
+> Signed-off-by: Deepak R Varma <drv@mailo.com>
+> ---
+>   drivers/staging/media/meson/vdec/codec_vp9.c | 7 +++----
+>   1 file changed, 3 insertions(+), 4 deletions(-)
 
-Signed-off-by: Deepak R Varma <drv@mailo.com>
----
- drivers/staging/media/meson/vdec/codec_vp9.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+<snip>
 
-diff --git a/drivers/staging/media/meson/vdec/codec_vp9.c b/drivers/staging/media/meson/vdec/codec_vp9.c
-index 897f5d7a6aad..da7265c8de37 100644
---- a/drivers/staging/media/meson/vdec/codec_vp9.c
-+++ b/drivers/staging/media/meson/vdec/codec_vp9.c
-@@ -1459,7 +1459,7 @@ static void vp9_tree_merge_probs(unsigned int *prev_prob,
- 	if (den == 0) {
- 		new_prob = pre_prob;
- 	} else {
--		m_count = den < MODE_MV_COUNT_SAT ? den : MODE_MV_COUNT_SAT;
-+		m_count = min(den, MODE_MV_COUNT_SAT);
- 		get_prob =
- 			clip_prob(div_r32(((int64_t)tree_left * 256 +
- 					   (den >> 1)),
-@@ -1513,7 +1513,7 @@ static void adapt_coef_probs_cxt(unsigned int *prev_prob,
- 			/* get binary prob */
- 			num = branch_ct[node][0];
- 			den = branch_ct[node][0] + branch_ct[node][1];
--			m_count = den < count_sat ? den : count_sat;
-+			m_count = min(den, count_sat);
-
- 			get_prob = (den == 0) ?
- 					128u :
-@@ -1664,8 +1664,7 @@ static void adapt_coef_probs(int prev_kf, int cur_kf, int pre_fc,
- 			if (den == 0) {
- 				new_prob = pre_prob;
- 			} else {
--				m_count = den < MODE_MV_COUNT_SAT ?
--						den : MODE_MV_COUNT_SAT;
-+				m_count = min(den, MODE_MV_COUNT_SAT);
- 				get_prob =
- 				clip_prob(div_r32(((int64_t)
- 					count[coef_count_node_start] * 256 +
---
-2.34.1
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
