@@ -4,55 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A895C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Nov 2022 12:36:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B190AC4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Nov 2022 20:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=A1WBZtwl1Kfk9zV+9NF9atwbXilrmVS269LQ88PMFIc=; b=GmJ135TCfhaHiu
-	n0KfoH1VR4X6riiDsPUPMVy5beWP4nzGY+9yewd9nkUVXdBMRoOJHc4By/7INsIFEPzyBvxyc7zYy
-	ZrDor1Lrmtl/mVxrbMgDQZP5pMWkn+5waLdhXKfooyL/HedIo/KdpujexXn53qtQD72fPLtjns3Fi
-	aOZUTNIk80iPm6M3YU8CP2wQ1AyHqXO193PEB+LR3seACo8UzKTaUoo9T8/wap8I+4sx9PUwsRJP1
-	afs3rUF3RALPi+D7HkeDQQj2dEX3onh5xGFsGwkVYzyAsPIISWyf/v6RyurrH/oDE6ZE+9reiwwPe
-	97ktr/HGn4F1r1TJVmYw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RsymM3pUdCtFT/puitrzb9Ndqk+6TTmo8ETvGMqXu/Y=; b=NOh5S41hEYG7Dx
+	wREWSOKw++cf42jVQSPcREVXNd8MAgqW6N8BPDgLJ2XRrO/D+Z3lP2iT4QFqpM2VgJAv5CBYpVTyo
+	IsScsCV7gUfzkt/o1cfVsUcHdkWCI+BLCziAyXgH0YU5DkhUdnhKJrt2zfnYDGcIYNdh0yD+75Bzn
+	ul8agtFiFcnQNcJgJlMwxF3R2NpyIsVpfoszXERtiu7m1jVVDnbgkAIa5Dj7E5BeHT+eC2X6UJ6Hs
+	nBk/Ls5WseHAkPC9U4kFEIY3pNySnG6XWq/SO4EAv0HkAiwBWEjtpmaY4OMzfnykFy+o04eiJ/dI7
+	HuD6bhv7VIXqoP3Fb8Cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1osNpg-005Fnm-5G; Tue, 08 Nov 2022 12:36:00 +0000
-Received: from szxga01-in.huawei.com ([45.249.212.187])
+	id 1osVCk-008B4F-8L; Tue, 08 Nov 2022 20:28:18 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1osNpc-005Flp-Hb
-	for linux-amlogic@lists.infradead.org; Tue, 08 Nov 2022 12:35:59 +0000
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.56])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4N66tH0FPKzpWDN;
-	Tue,  8 Nov 2022 20:32:07 +0800 (CST)
-Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 8 Nov 2022 20:35:46 +0800
-Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
- (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 8 Nov
- 2022 20:35:46 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <linux-mmc@vger.kernel.org>, <linux-amlogic@lists.infradead.org>
-CC: <ulf.hansson@linaro.org>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <yangyingliang@huawei.com>
-Subject: [PATCH] mmc: meson-gx: fix return value check of mmc_add_host()
-Date: Tue, 8 Nov 2022 20:34:17 +0800
-Message-ID: <20221108123417.479045-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+	id 1osVCi-008B3Z-1g; Tue, 08 Nov 2022 20:28:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cu/Nq8NSTxGmNeXXn7OeR7u1GCvrQSeqPMHwOJbQwEI=; b=pvB41jdPI6bkGA/24CTuwPpNuX
+	ynqPInOEv1yVnKKuAHtMi1nF9Oso4ySQCCD2LgaLeO5svhMvT/pylgBgB/FkuvFsVAACPv6QbD/J9
+	CcTR0JolyTtagPedXrnd3meQQsiyNbgD4KzDL9sKlgXG7PzT9tRyTI66iXB5tAT81ocg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1osVC0-001r2n-Aq; Tue, 08 Nov 2022 21:27:32 +0100
+Date: Tue, 8 Nov 2022 21:27:32 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Dan Carpenter <error27@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Deepak R Varma <drv@mailo.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: patches for staging:media drivers
+Message-ID: <Y2q7tFF7YeX16H20@lunn.ch>
+References: <Y2eSCZJNWn6DzCUu@qemulion>
+ <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
+ <Y2oO7fU4whKr+3hb@kadam>
 MIME-Version: 1.0
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500007.china.huawei.com (7.185.36.183)
-X-CFilter-Loop: Reflected
+Content-Disposition: inline
+In-Reply-To: <Y2oO7fU4whKr+3hb@kadam>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221108_043556_803074_93F79EFA 
-X-CRM114-Status: GOOD (  10.53  )
+X-CRM114-CacheID: sfid-20221108_122816_095875_2A976CB2 
+X-CRM114-Status: GOOD (  27.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,40 +75,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-mmc_add_host() may return error, if we ignore its return value,
-it will lead two issues:
-1. The memory that allocated in mmc_alloc_host() is leaked.
-2. In the remove() path, mmc_remove_host() will be called to
-   delete device, but it's not added yet, it will lead a kernel
-   crash because of null-ptr-deref in device_del().
+On Tue, Nov 08, 2022 at 11:10:21AM +0300, Dan Carpenter wrote:
+> On Mon, Nov 07, 2022 at 06:29:30PM +0100, Neil Armstrong wrote:
+> > Hi,
+> > 
+> > On 06/11/2022 11:52, Deepak R Varma wrote:
+> > > Greetings to all.
+> > > My name is Deepak R Varma and I was part of the recent Outreachy internship
+> > > round. I learned during this program that patches for the media drivers were
+> > > prohibited to be included in the Outreachy effort due to lack of bandwidth for
+> > > the maintainers to respond on those.
+> > > 
+> > > The Outreachy round is now over but I am continuing to work on code improvement
+> > > and changes. I would like to know if it is okay for me to now identify
+> > > opportunities in the media drivers and send patch proposal for your kind
+> > > consideration. I intend to send couple of Coccinelle identified code
+> > > improvements as patches.
+> > > 
+> > > Please let me know.
+> > 
+> > I won't say no but since the media maintainers will need to apply them,
+> > the problem is the same.
+> 
+> Yeah.  Me either.  Those rules are for Outreachy so they don't apply to
+> anyone else, but at the same time no one is going to Ack your patches
+> without seeing them and especially for a subsystem they don't maintain.
+> 
+> I always try to think about if maintainers will want my patches.  Like
+> I sometimes see people returning -1 instead of -ENOMEM but, you know,
+> unless it reaches user space it's not technically a bug.  You can't go
+> around fixing everyone's bad taste.  But everyone likes bug fixes.
 
-Fix this by checking the return value and goto error path which
-will call mmc_free_host().
+I cannot say anything about the media subsystem, but for networking
+patches, i will be much more willing to help somebody going from
+Outreach to being a full kernel developers if they decide to take on
+something more than just some Coccinelle changes. If it looks like you
+have the hardware and want to make it better, have a vision where the
+driver should go, then you are likely to get more help from me. So if
+media drivers are what you interested in, go buy some hardware which
+uses one of the drivers in staging, look at the TODO file, and submit
+bigger patches than just -1 to -ENOMEM.
 
-Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index df05e60bed9a..6e5ea0213b47 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1335,7 +1335,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	}
- 
- 	mmc->ops = &meson_mmc_ops;
--	mmc_add_host(mmc);
-+	ret = mmc_add_host(mmc);
-+	if (ret)
-+		goto err_free_irq;
- 
- 	return 0;
- 
--- 
-2.25.1
-
+     Andrew
 
 _______________________________________________
 linux-amlogic mailing list
