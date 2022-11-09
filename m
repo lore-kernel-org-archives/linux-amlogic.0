@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B2E4C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Nov 2022 01:59:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C360FC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Nov 2022 01:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jlUpbBbaysqgjBlwP6RQRNSvIWXesiaVVD+yRTZvYWI=; b=myb5tpv6yn2q53
-	YAaiMYRTmJdNjEVE3J5d4Hb/ygo/ohb3zvyf71XBGLnPkn6+H1lv/3/J8Lpxm94YC4WdLHlw180x5
-	8dddrZzfKWOol331Om7hJybfBXgXi4Zn3zFzddOizyOL8Va4dEBDk7cqDJMZGs95AUZOIpW0PxHCr
-	xS4X1mFJAWBCVF7dZ+GpYFU+83PgmlxD69MktMxGooGgZPI2W1dNb9T5InJ83Sy9Ho8QH/Zi5ihCA
-	MR7QM2w/W2kg4pgHVYSSxoRFrlQDqibob4uY1ZT2GT0rxwE5bYgIb3gZ7VJ0UcQ5l1baG9MzXMV03
-	6+hfcNjxkjZuyZOjtAwg==;
+	List-Owner; bh=yUnN6QhZuqC9iz3pgYzcJW1IJGjuwWl+B9nQimhVtlU=; b=MJLMuOwPuNyXY0
+	atfNbfRoxec5xefBX9AkzgXfov3APNGVw/0CJ6o7Xgmd0xZ7bOgoEjixeM69XR0YGLPMHf9nTBqC5
+	UDqUe3JvHdkkMIKjD63gK7yITF+50y7p6Ic7qY0oCMseaJnoNUPTyROpsSADijdCdBQAB8F2HuEvJ
+	kC+IhBbyADAwKD5W/d3cHMbLVzuJaUa/wIhDCaH9D46FbSBIPEWypcnLEJBspE7pKRk/OIt/tN1sV
+	DlVbo+jqVG99wed8cgztxtLsoHyONqJ2cz8QadmrduBtzrQxb47FCJRUj5ut7s//70o3sM4TNhEb8
+	qd6bO+txQKj4+jSqczmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1osaMm-009kry-BG; Wed, 09 Nov 2022 01:59:00 +0000
+	id 1osaMm-009ksF-KF; Wed, 09 Nov 2022 01:59:00 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1osaMU-009kn8-TM; Wed, 09 Nov 2022 01:58:44 +0000
+	id 1osaMX-009kn8-19; Wed, 09 Nov 2022 01:58:46 +0000
 Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 9 Nov 2022
- 09:58:31 +0800
+ 09:58:32 +0800
 From: Jiucheng Xu <jiucheng.xu@amlogic.com>
 To: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
@@ -36,18 +36,19 @@ CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chris Healy
 	<cphealy@gmail.com>, Jianxin Pan <jianxin.pan@amlogic.com>, Kelvin Zhang
-	<kelvin.zhang@amlogic.com>, Jiucheng Xu <jiucheng.xu@amlogic.com>
-Subject: [PATCH v9 2/4] docs/perf: Add documentation for the Amlogic G12 DDR PMU
-Date: Wed, 9 Nov 2022 09:58:16 +0800
-Message-ID: <20221109015818.194927-2-jiucheng.xu@amlogic.com>
+	<kelvin.zhang@amlogic.com>, Jiucheng Xu <jiucheng.xu@amlogic.com>, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v9 3/4] dt-binding: perf: Add Amlogic DDR PMU
+Date: Wed, 9 Nov 2022 09:58:17 +0800
+Message-ID: <20221109015818.194927-3-jiucheng.xu@amlogic.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
 References: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.88.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221108_175842_969089_B479B698 
-X-CRM114-Status: GOOD (  17.08  )
+X-CRM114-CacheID: sfid-20221108_175845_101553_E2CBA3F1 
+X-CRM114-Status: GOOD (  13.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,10 +65,11 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a user guide to show how to use DDR PMU to
-monitor DDR bandwidth on Amlogic G12 SoC
+Add binding documentation for the Amlogic G12 series DDR
+performance monitor unit.
 
 Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 Changes v8 -> v9:
   - No change
@@ -76,124 +78,106 @@ Changes v7 -> v8:
   - No change
 
 Changes v6 -> v7:
-  - Drop the Reported-by tag
-  - Fix spelling error
+  - No change
 
 Changes v5 -> v6:
-  - No change
+  - remove blank line
 
 Changes v4 -> v5:
-  - Fix building warning
-
+  - Remove "items" in compatible since have only one item
+  - Condense description of reg
+  - Rename node
+  - Split one reg into two reg items.
+  - Binding go first
+ 
 Changes v3 -> v4:
-  - No change
+  - Fix "$id: relative path/filename doesn't match actual path or
+    filename" warning
 
 Changes v2 -> v3:
-  - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
+  - Remove oneOf
+  - Add descriptions
+  - Fix compiling warning
 
 Changes v1 -> v2:
-  - Nothing was changed
+  - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+  - Delete "model", "dmc_nr", "chann_nr" new properties
+  - Fix compiling error
 ---
- Documentation/admin-guide/perf/index.rst      |  1 +
- .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+ .../bindings/perf/amlogic,g12-ddr-pmu.yaml    | 54 +++++++++++++++++++
  MAINTAINERS                                   |  1 +
- 3 files changed, 72 insertions(+)
- create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
+ 2 files changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
 
-diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
-index 69b23f087c05..997a28e156c1 100644
---- a/Documentation/admin-guide/perf/index.rst
-+++ b/Documentation/admin-guide/perf/index.rst
-@@ -17,3 +17,4 @@ Performance monitor support
-    xgene-pmu
-    arm_dsu_pmu
-    thunderx2-pmu
-+   meson-ddr-pmu
-diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
 new file mode 100644
-index 000000000000..15e93a751ced
+index 000000000000..50f46a6898b1
 --- /dev/null
-+++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
-@@ -0,0 +1,70 @@
-+.. SPDX-License-Identifier: GPL-2.0
++++ b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+===========================================================
-+Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
-+===========================================================
++title: Amlogic G12 DDR performance monitor
 +
-+There is a bandwidth monitor inside the DRAM controller. The monitor includes
-+4 channels which can count the read/write request of accessing DRAM individually.
-+It can be helpful to show if the performance bottleneck is on DDR bandwidth.
++maintainers:
++  - Jiucheng Xu <jiucheng.xu@amlogic.com>
 +
-+Currently, this driver supports the following 5 Perf events:
++description: |
++  Amlogic G12 series SoC integrate DDR bandwidth monitor.
++  A timer is inside and can generate interrupt when timeout.
++  The bandwidth is counted in the timer ISR. Different platform
++  has different subset of event format attribute.
 +
-++ meson_ddr_bw/total_rw_bytes/
-++ meson_ddr_bw/chan_1_rw_bytes/
-++ meson_ddr_bw/chan_2_rw_bytes/
-++ meson_ddr_bw/chan_3_rw_bytes/
-++ meson_ddr_bw/chan_4_rw_bytes/
++properties:
++  compatible:
++    enum:
++      - amlogic,g12a-ddr-pmu
++      - amlogic,g12b-ddr-pmu
++      - amlogic,sm1-ddr-pmu
 +
-+meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
-+Each channel support using keywords as filter, which can let the channel
-+to monitor the individual IP module in SoC.
++  reg:
++    items:
++      - description: DMC bandwidth register space.
++      - description: DMC PLL register space.
 +
-+The following keywords are the filter:
++  interrupts:
++    items:
++      - description: The IRQ of the inside timer timeout.
 +
-++ arm             - DDR access request from CPU
-++ vpu_read1       - DDR access request from OSD + VPP read
-++ gpu             - DDR access request from 3D GPU
-++ pcie            - DDR access request from PCIe controller
-++ hdcp            - DDR access request from HDCP controller
-++ hevc_front      - DDR access request from HEVC codec front end
-++ usb3_0          - DDR access request from USB3.0 controller
-++ hevc_back       - DDR access request from HEVC codec back end
-++ h265enc         - DDR access request from HEVC encoder
-++ vpu_read2       - DDR access request from DI read
-++ vpu_write1      - DDR access request from VDIN write
-++ vpu_write2      - DDR access request from di write
-++ vdec            - DDR access request from legacy codec video decoder
-++ hcodec          - DDR access request from H264 encoder
-++ ge2d            - DDR access request from ge2d
-++ spicc1          - DDR access request from SPI controller 1
-++ usb0            - DDR access request from USB2.0 controller 0
-++ dma             - DDR access request from system DMA controller 1
-++ arb0            - DDR access request from arb0
-++ sd_emmc_b       - DDR access request from SD eMMC b controller
-++ usb1            - DDR access request from USB2.0 controller 1
-++ audio           - DDR access request from Audio module
-++ sd_emmc_c       - DDR access request from SD eMMC c controller
-++ spicc2          - DDR access request from SPI controller 2
-++ ethernet        - DDR access request from Ethernet controller
++required:
++  - compatible
++  - reg
++  - interrupts
 +
++additionalProperties: false
 +
-+The following command is to show the total DDR bandwidth:
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pmu {
++        #address-cells=<2>;
++        #size-cells=<2>;
 +
-+  .. code-block:: bash
-+
-+      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
-+
-+This command will print the total DDR bandwidth per second.
-+
-+The following commands are to show how to use filter parameters:
-+
-+  .. code-block:: bash
-+
-+      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
-+      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
-+      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
-+
-+The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
-+The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
-+The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
++        pmu@ff638000 {
++            compatible = "amlogic,g12a-ddr-pmu";
++            reg = <0x0 0xff638000 0x0 0x100>,
++                  <0x0 0xff638c00 0x0 0x100>;
++            interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index eb63b9cbc149..5ed563368a48 100644
+index 5ed563368a48..b03e821a9e3c 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -1055,6 +1055,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
- L:	linux-amlogic@lists.infradead.org
+@@ -1056,6 +1056,7 @@ L:	linux-amlogic@lists.infradead.org
  S:	Supported
  W:	http://www.amlogic.com
-+F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
+ F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
++F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
  F:	drivers/perf/amlogic/
  F:	include/soc/amlogic/
  
