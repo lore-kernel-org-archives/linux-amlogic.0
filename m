@@ -4,62 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA021C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Nov 2022 06:41:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4766C4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Nov 2022 09:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/+iNPPvdNYxGQNchPVlvpHUSqPGgoRYEP4KSrfkxJE4=; b=xLCkF6X4atIGeE
-	HGHyQ3A6mb90wiEPB9DExDV6kf/7maIdx3LrhO40pBYgoOkiir6RTzO+brv9f2E9ha0FHwQqJXMw+
-	Z83Qpbcb6z/xyjTifAfdQfPUquAmYJm9ZVIUq7FMK3AgwQ9XdONTe4PLQ9+tXPLp02y0H66+SZcU2
-	TlREYRTTUJr0V3VBke5TBfinhEyGcBl9rK9kXMD634fIr65MWPLW9n2wcT1KV4xFV86qyinvaIMqu
-	PPiy3pQaUZcsgVAzA6fP7fJwwQITqluc0vx7FNhUyxY2CO5fLk8ATgkk56wpTCATFN4V65IfD4HuT
-	ZPfq9IqwPudINC+AzQPg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=M36S5pNr/7m0/QdxUUbG2z97ijH/+sIiaLlAwYGK3k4=; b=VWqzdoP6xtp6coJ9A+P4TUSq8e
+	iUQRtSKiHyXqgZiPlK0O3JGIIOZnLFpnXpfBKIMCIuGpEAkvHDGazvZCutaLABy4O3HoX3dXs5GCT
+	JEtuiQwYtxH9/v8dNVIDt3OlrN/6ITi38BwkjEHsV9NvMVXaELdOp8u7e5MDHRJUrj6XQMxKPefCM
+	qqTW87B0Suc3GRdoyMYHgKdZTUXNsTA7ZLNHTHRb3tIHCp1aCUI2/fMbfP6iLk3LARmAjbrenyA4m
+	UrKNXMnZzb69AM8qE2rB1kv6dSxVZsP9kefq9ZjnfFqX45ve2dlhDiwEz5QXr6F4ea1q/owTGpn0D
+	dktGXezQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1osem0-00BIVL-Cx; Wed, 09 Nov 2022 06:41:20 +0000
-Received: from msg-2.mailo.com ([213.182.54.12])
+	id 1oshfg-00CTuD-5E; Wed, 09 Nov 2022 09:47:00 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oselx-00BISE-Ru; Wed, 09 Nov 2022 06:41:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
-	t=1667976048; bh=s2xnc8dtE9RdQHld1qiAbNnZOdtNe2s+3N0KAhbpfss=;
-	h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:In-Reply-To;
-	b=ndkZyXusVJy9VW0jXi8vkuuV13fsCt/56qU728chMOc2JpCE9kTefADbxnUar/XZm
-	 57OMxk53j5ZQRPy0AU3esFAWUQt9a6H3neQoMExVrjFBs7oy9uf/3PvLMLckzXPBP6
-	 onkglGt2BakIfxgSo1wNSLgj/CmT09/K+yQFVt6k=
-Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
-	via ip-206.mailobj.net [213.182.55.206]
-	Wed,  9 Nov 2022 07:40:48 +0100 (CET)
-X-EA-Auth: F61TFAW5EIxTOLGMc0AqWx1vFt0VZ8WWn5l9nu0xUmZiOFCbHY9NJ+7ODh/iOVr28E2+bZFRA3PVvl3YE6fgdY81AlgJbShA
-Date: Wed, 9 Nov 2022 12:10:37 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Dan Carpenter <error27@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: patches for staging:media drivers
-Message-ID: <Y2tLZaPSUT45TF4f@qemulion>
-References: <Y2eSCZJNWn6DzCUu@qemulion>
- <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
- <Y2oO7fU4whKr+3hb@kadam>
- <Y2q7tFF7YeX16H20@lunn.ch>
+	id 1oshfe-00CTtI-3K
+	for linux-amlogic@lists.infradead.org; Wed, 09 Nov 2022 09:46:59 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id h9so24946933wrt.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 09 Nov 2022 01:46:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=SjAxgNVa5Iy7P1HQop4+LeiywcSnOALtrSCXa4yCO2s=;
+        b=mwsOvQxikY4BQ8qam13FHKX5DNYwgrq90MGapnaTlTrrN0vHqoxjTy0YqYOj7O80uo
+         JwBBMapqr/G0rK3he5L+pVR+r6CiQYE7SXyCRsmTdtoVnm2XVQQSYL5mYTP3tE4+ayJw
+         bNtQIrliaZuYxaR2QT7pRFfDwBrwz77XWpT7wJ7MBTLFs620Vcye/4GUmVnPpySkB3bV
+         /Koxz4qUvuxW0XgjFRVVRw2xL65XqRoblIdLpie23eLeV9kHeDn/ipg0M8mGS5Mm+YsX
+         lukmySDwqGY+/osGMxIe4RF4US5ECF3fzFEdXgxI/xMHHyY+pSAhRqAj5s0qsTRLGUsh
+         eBzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SjAxgNVa5Iy7P1HQop4+LeiywcSnOALtrSCXa4yCO2s=;
+        b=BxdU+V9TPXEqK2z54JmPSx+Sws8vYpDAm2+Y0nc/raUQtBat/8S9vqNRczLwBpRpgJ
+         2QeJ0NhpaDuylewB/IrhF0i4F+E5HSX8nDTxJ39/BX3pDTRfybX/e9ei3i+ZwhY4sbqp
+         a5ev/WNLUlxrWeL48X+HLXaNqKxFzkeNGzKGLyTXGL2X5sT/VycO1mH2ONmR4mIWDnfa
+         zPRn0MAI5DBJROW61alWl/1sxIaNmvU+SUTPrg0LUxGzpeMRCKzt1Ja59hNkof/gwRM4
+         bTYgvQIwjhS3GHfsc1iO1T0xt07T0EoHysZRFAXAYB8P40IIzYMk6L3qCZrq+Eku26EG
+         BVNg==
+X-Gm-Message-State: ACrzQf3Tmtg4OtYr4nBd3GWsXS7lczTNAgi70dmPG5DiBrzLqZZ1YeS6
+	t/zjkOQxATCLS3gqD+Iw3IVRiQ==
+X-Google-Smtp-Source: AMsMyM42vjoWHmtle3AuJ4DjbxcufaFgTYg2QBcGe4karhQ/6wycyzv9vc5rqjul6OZ02PdWuTXGpw==
+X-Received: by 2002:a5d:534b:0:b0:236:73ff:3605 with SMTP id t11-20020a5d534b000000b0023673ff3605mr36782817wrv.521.1667987211662;
+        Wed, 09 Nov 2022 01:46:51 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5e95:d543:1caf:4e60? ([2a01:e0a:982:cbb0:5e95:d543:1caf:4e60])
+        by smtp.gmail.com with ESMTPSA id n10-20020a5d420a000000b0023682011c1dsm12496766wrq.104.2022.11.09.01.46.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 01:46:51 -0800 (PST)
+Message-ID: <ac749b53-c768-0266-0173-9bdbf154be46@linaro.org>
+Date: Wed, 9 Nov 2022 10:46:50 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Y2q7tFF7YeX16H20@lunn.ch>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] mmc: meson-gx: fix return value check of mmc_add_host()
+Content-Language: en-US
+To: Yang Yingliang <yangyingliang@huawei.com>, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Cc: ulf.hansson@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+References: <20221108123417.479045-1-yangyingliang@huawei.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221108123417.479045-1-yangyingliang@huawei.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221108_224118_057239_665BD4F0 
-X-CRM114-Status: GOOD (  15.26  )
+X-CRM114-CacheID: sfid-20221109_014658_172002_3EEFD02A 
+X-CRM114-Status: GOOD (  17.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,43 +90,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Nov 08, 2022 at 09:27:32PM +0100, Andrew Lunn wrote:
-> On Tue, Nov 08, 2022 at 11:10:21AM +0300, Dan Carpenter wrote:
->
-> I cannot say anything about the media subsystem, but for networking
-> patches, i will be much more willing to help somebody going from
-> Outreach to being a full kernel developers if they decide to take on
-> something more than just some Coccinelle changes. If it looks like you
-> have the hardware and want to make it better, have a vision where the
-> driver should go, then you are likely to get more help from me. So if
-> media drivers are what you interested in, go buy some hardware which
-> uses one of the drivers in staging, look at the TODO file, and submit
-> bigger patches than just -1 to -ENOMEM.
+On 08/11/2022 13:34, Yang Yingliang wrote:
+> mmc_add_host() may return error, if we ignore its return value,
+> it will lead two issues:
+> 1. The memory that allocated in mmc_alloc_host() is leaked.
+> 2. In the remove() path, mmc_remove_host() will be called to
+>     delete device, but it's not added yet, it will lead a kernel
+>     crash because of null-ptr-deref in device_del().
+> 
+> Fix this by checking the return value and goto error path which
+> will call mmc_free_host().
+> 
+> Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
+> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+> ---
+>   drivers/mmc/host/meson-gx-mmc.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index df05e60bed9a..6e5ea0213b47 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -1335,7 +1335,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	mmc->ops = &meson_mmc_ops;
+> -	mmc_add_host(mmc);
+> +	ret = mmc_add_host(mmc);
+> +	if (ret)
+> +		goto err_free_irq;
+>   
+>   	return 0;
+>   
 
-Hello Andrew,
-Thank you so much for your kind advice and willingness to help a newbie
-become a valued kernel developer. I am committed to acquire necessary
-knowledge and skills to contribute more than current cleanup and minor
-correction patches. I am sure that the upcoming Coccinelle based project
-work [if I am shortlisted] will be much more complex and meaningful.
 
-I will explore the staging directory to identify a hardware I can afford.
-I would welcome suggestion on a driver that is not much expensive and
-complex to start with. Anything for the networking subsystem???
-
-Thank you once again!
-./drv
-
->
->      Andrew
->
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
