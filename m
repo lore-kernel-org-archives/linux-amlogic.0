@@ -4,63 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01090C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Nov 2022 13:50:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64977C43219
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Nov 2022 15:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v0Sd1P9/k9aExHdv1if2ATdbV05uH6VmUutEgSGcAIg=; b=A9NHDbyoxCLJXm
-	xvkcF3fEFrqG+i6PJ9KPNSSEmR48ugU1DxI5pCZ1YTkWLK01WrWJ59d3g9xYcQHzxI+knBUQJEHZ1
-	ctQZMHgqqH3GkzojWMD1STpZCvDgOKPxwtpzd0qlRI/zBqvxnD9zPzH1ABPKNb/in9UIACRwkt45K
-	AXeMl8q/sW8Ti0jFe8W/F4NsTS6v8/qfI5gcBx3eU4CRzULUYWJlzQF/lk0S2jH4v2sB88xWT3MeB
-	MKMBvsrzjwFg/N7/+X9ij1ClltP3mezKcSXPNzMrqy6rWk4SQzaAeWAoKLUPbPN7LQiCuznZmJTaR
-	KOqxTqeqNFmAjMXyJVYQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pcorzlYKbjvr/1oNuwdR5p3Ec1mF+64RbVCPuYnUbhE=; b=MrUq9CbayQxI9R
+	ykav/Fvn9FLzo08UQ+Weh82vzyLHilyalnIyrEX4lb1RmtCQa7jk//xIVnjdOadeBqTVDiYFhXJl/
+	MiBl4h4gDi//n5ia5QBWorI70rkbDxCzsVGoU3DPr5MBD55djzZRezsKbE3xN6ey5XsVnMWfNJgyj
+	gT3SkWjylcfkxr4WF+yE99TQdbmXpGw4oMtSIZfiloPa10gYXdAyzUbYcMk+sTw98WbVW2Es3bvqI
+	C/sOrVtmag8U8FondtH2mDnNq0Hh1oxwximHPcsbj+tlHMxl5LhgRsVoxGmXCI+p9dmwPg3HfyNjY
+	HBmD7FO1v/Xf7zLPUNJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oslTE-00Dx5e-EA; Wed, 09 Nov 2022 13:50:24 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1ot93a-006Z2h-Fg; Thu, 10 Nov 2022 15:01:30 +0000
+Received: from mx.msync.work ([185.250.0.168])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oslTB-00Dx0o-VH; Wed, 09 Nov 2022 13:50:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=VpdNtU3cb37xXzV9sTyynd43haU0/uQaTTIosl+w+Vs=; b=o5dKZ60fvsHa/8H7A+lpjtUyi8
-	O3+p9tUG4t4U8Cc/NAJF2UWn3hI4268wI8/fJP3UseE23YJLdfZ6id+pAiS3c5rzuZ+ZqrLUq+klV
-	xy+EzrlJROMxf/eEUI+JTzy59HIBzFjx/NnLbb1Wl3zywEHm2jaorffCXvfKu9UHEZ/w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1oslSJ-001v3D-Fu; Wed, 09 Nov 2022 14:49:27 +0100
-Date: Wed, 9 Nov 2022 14:49:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Deepak R Varma <drv@mailo.com>
-Cc: Dan Carpenter <error27@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	id 1ot93O-006YvN-Uu; Thu, 10 Nov 2022 15:01:20 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 990931231BE;
+	Thu, 10 Nov 2022 15:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1668092467; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding; bh=OTEcSrKbeEwGEfVJ7rDTBCJPtPYB3owKDL9ENQiVtws=;
+	b=r/vrCUS6kd2GZejTmbFjVRuqxeY+xmENmIllYtzTlrrpwlYS+FSTKH4+ZDcETN4KgJdwg5
+	pX47Cb4mQ4XvzAd8lmVJWw9xHd/sFGRZ/OBmS5aTUxPPpbIp3/JryjxXB5dEcKTLeyRseG
+	rqL/FX0NUI6ZGxSoezA17RxFnHI5AoYMqtr+5s8/w/FpVdb9ECdFP63lwBn6VbhKFPQoX5
+	iMBLrmPJLpr/L1S0ZnEHaLF/fcpHfHGpn3HlVf203H4rv8O/BEIQzDoIWjlcB3XWi30EgP
+	34m027fzMNaEIyZVWDROYiUS9ZvfJZEEzwIZHCkke6EIB/MPxzOD9dhKabUmeA==
+From: Vyacheslav Bocharov <adeep@lexina.in>
+To: linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: patches for staging:media drivers
-Message-ID: <Y2uv56k515cKTXU4@lunn.ch>
-References: <Y2eSCZJNWn6DzCUu@qemulion>
- <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
- <Y2oO7fU4whKr+3hb@kadam>
- <Y2q7tFF7YeX16H20@lunn.ch>
- <Y2tLZaPSUT45TF4f@qemulion>
+Subject: [PATCH 0/4] arm64: amlogic: mmc: meson-gx: Add core, tx, rx
+Date: Thu, 10 Nov 2022 18:00:31 +0300
+Message-Id: <20221110150035.2824580-1-adeep@lexina.in>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Y2tLZaPSUT45TF4f@qemulion>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221109_055022_017654_8703E3F9 
-X-CRM114-Status: GOOD (  21.57  )
+X-CRM114-CacheID: sfid-20221110_070119_170312_EDDBE4E0 
+X-CRM114-Status: UNSURE (   7.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,41 +65,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 09, 2022 at 12:10:37PM +0530, Deepak R Varma wrote:
-> On Tue, Nov 08, 2022 at 09:27:32PM +0100, Andrew Lunn wrote:
-> > On Tue, Nov 08, 2022 at 11:10:21AM +0300, Dan Carpenter wrote:
-> >
-> > I cannot say anything about the media subsystem, but for networking
-> > patches, i will be much more willing to help somebody going from
-> > Outreach to being a full kernel developers if they decide to take on
-> > something more than just some Coccinelle changes. If it looks like you
-> > have the hardware and want to make it better, have a vision where the
-> > driver should go, then you are likely to get more help from me. So if
-> > media drivers are what you interested in, go buy some hardware which
-> > uses one of the drivers in staging, look at the TODO file, and submit
-> > bigger patches than just -1 to -ENOMEM.
-> 
-> Hello Andrew,
-> Thank you so much for your kind advice and willingness to help a newbie
-> become a valued kernel developer. I am committed to acquire necessary
-> knowledge and skills to contribute more than current cleanup and minor
-> correction patches. I am sure that the upcoming Coccinelle based project
-> work [if I am shortlisted] will be much more complex and meaningful.
-> 
-> I will explore the staging directory to identify a hardware I can afford.
-> I would welcome suggestion on a driver that is not much expensive and
-> complex to start with. Anything for the networking subsystem???
+The mmc driver use the same phase values (core - 180, tx/rx - 0) for all
+meson64 platforms. However, some platforms (and even some boards) require
+different values (axg for example use 270 degree for core clock). This patch
+transfers the values from the code to the variables in the device-tree files.
+If not set in dts, use old default values.
 
-Staging drivers for network tend to be USB dongles for WiFi. Some of
-those drivers need throwing away and starting again, others need less
-work. If you are interested in that, i would suggest asking on
-linux-wireless@vger.kernel.org.
+Vyacheslav Bocharov (4):
+  arm64: amlogic: mmc: meson-gx: Add core, tx, rx eMMC/SD/SDIO phase
+    clock settings from devicetree data
+  arm64: amlogic: mmc: meson-gx: Add dts binding include for core, tx,
+    rx eMMC/SD/SDIO phase clock settings from devicetree data
+  arm64: amlogic: dts: meson: update meson-axg device-tree for new core,
+    tx, rx phase clock settings.
+  arm64: dts: docs: Update mmc meson-gx documentation for new config
+    option amlogic,mmc-phase
 
-Another option might be pi433? The problem with that is, i don't know
-how it fits into the rest of the network stack? Could it maybe fit
-under ieee802154? Or is it just unique and needs to do its own thing?
+ .../bindings/mmc/amlogic,meson-gx.txt         |  7 ++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  3 ++
+ drivers/mmc/host/meson-gx-mmc.c               | 18 +++++++---
+ include/dt-bindings/mmc/meson-gx-mmc.h        | 35 +++++++++++++++++++
+ 4 files changed, 58 insertions(+), 5 deletions(-)
+ create mode 100644 include/dt-bindings/mmc/meson-gx-mmc.h
 
-      Andrew
+-- 
+2.30.2
+
 
 _______________________________________________
 linux-amlogic mailing list
