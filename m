@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE961C43217
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Nov 2022 15:01:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCE2DC433FE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Nov 2022 15:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9ljoImq5QjdTyIwQUMkJOmSKwBz7yEdiCi8uU7OJw2s=; b=cXLHgdU4ZQ/jxC
-	j/A0Hy2Y2hksAaoIOF+5VkdYbB3J7YEH71xZACA1zWxMGg2pibDgoTvrFnJxPE2aiDFiGM3CrLlMH
-	OfvVYAUGfhZ5BHRdgN/Iz/3lkVpUYJwS+1PtfbABcXr4NNch4Oh66rxfjuq4+BfM2mJlgINIRw/FT
-	WU28NVeVEM7l6f4ynfbbKhqSR1Ave+AEghxAY79kSnek3PX6y5PY7BLJCXzeqUGWYkYcyElYTvEbj
-	1eGsahdjlTMWzQoVQiZmWUcoVu8hgsgtrPKzW80Ap9Cepo/YFGZ9a/lEh0fzDHHbjAOKuAMT5MH46
-	/oATXqr3q7Ec7Thms+6w==;
+	List-Owner; bh=n4W8vRRqzffUKber3l+cYPmEM6t4GvZIRh/BopN60uA=; b=2ZLfM/R1SinWbC
+	uQmtkPo4CnYPBvarW7TSoPkJZWv8lnuBqh3KCOeaAALOqQkUGBMYyJW2uGnf71H5Trw3o32ev4YSs
+	pw2YzhW/+BpbR61Bi9A9FKofl0FJfaayd7qMw9IxBjx2/75KW+hhF40vF+b1Jj7gPzAQWp5P2XmpG
+	sWH+CTLNhwSJSQDVUgjK6B4KCMErno1WhvMMyEgm8euzdCQD7Ho5zpov775LBRRhSuHoKQsNyfNd5
+	gR/uVJXLtO73W2vBbH4Z5NfhDRNf2JgvWb8cFRMIwNL4woGwEb9Ad7oBMg5WzvE2ndtFjmqpVw4X1
+	maK9OHgUBPOgVOLmc7jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ot93k-006Z7A-Fv; Thu, 10 Nov 2022 15:01:40 +0000
+	id 1ot93k-006Z7P-PJ; Thu, 10 Nov 2022 15:01:40 +0000
 Received: from mx.msync.work ([185.250.0.168])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ot93P-006Yw6-0X; Thu, 10 Nov 2022 15:01:21 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 34BBB123168;
-	Thu, 10 Nov 2022 15:01:08 +0000 (UTC)
+	id 1ot93O-006Yw2-W9; Thu, 10 Nov 2022 15:01:21 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E961B1231BF;
+	Thu, 10 Nov 2022 15:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
 	t=1668092468; h=from:subject:date:message-id:to:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Jf+vZoPV0FHlsn9qxpwdS7gnzfJHE2b58/441SOarFU=;
-	b=VQY69PSkBelUIGvZKCjlAd2YccpcG8fqZekly+G0yFZrF8r0ErEJ487D4XUuI9kD3H+VO9
-	J82upNxvAUq56+os5JMz3NM3WuXqVOWrzz5dX4r4I573Pe7/6oJ3UA5iLvp84r4ZdGBcTM
-	0DlTZViQHgjFDQDg1L00+K1BERqUT6ZuyrSVcLolrQ9xNxojOasoMMFJ+g0mpblzpqSt6X
-	1LuqhbRCsvk8d3k29GhcXCzzyx87FUJOykY8UwR2WkuSw+21iA8Yx9JF8Mom5u+s1ibnww
-	NPKlSy5JVdAL2JSt+aPxbmx3q+eMV42QBMU4J/GY4SlnXC2yff8Qm2Y/baufhw==
+	bh=1SsZIFbb2kZbNj0UZIQdbQ3Ryb9RW7TBdyeqOwWDSP8=;
+	b=Kcgutp29e8mIhN54VxuwUvbroBo4WK8m4eNhrhlJzw/isHYXIGIy0+z/Mn9Uxu5pG/p8MG
+	RoVPKrWlmAcR4eC7fA/qprLwh8TCN7p9NKqYUhF25AqUxKjm7HkjdKS4LAdtyHlMw2UNGH
+	eCrbkPSpeoVdGvezxtTQ4OWg3ChMIuwZakR7YGF+ZroxS66W5tzV+9QBEnLJf1Kmk8W4dh
+	LlUOtnkfzcKn3y4TQOz0OAQs/C4na6tkr9lW5Jw65ZFE10L6wwZPCvmDg4lYwIu8I8Gvqn
+	7lvG++NWulRBJygF1QRUbZu+RvG4koI+zpW1D9r4WaXqbr9W8mHJphHtCDqK5A==
 From: Vyacheslav Bocharov <adeep@lexina.in>
 To: linux-mmc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/4] arm64: amlogic: dts: meson: update meson-axg device-tree for new core, tx, rx phase clock settings.
-Date: Thu, 10 Nov 2022 18:00:34 +0300
-Message-Id: <20221110150035.2824580-4-adeep@lexina.in>
+Subject: [PATCH 2/4] arm64: amlogic: mmc: meson-gx: Add dts binding include for core, tx, rx eMMC/SD/SDIO phase clock settings from devicetree data
+Date: Thu, 10 Nov 2022 18:00:33 +0300
+Message-Id: <20221110150035.2824580-3-adeep@lexina.in>
 In-Reply-To: <20221110150035.2824580-1-adeep@lexina.in>
 References: <20221110150035.2824580-1-adeep@lexina.in>
 MIME-Version: 1.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221110_070119_259121_09FFF7A7 
-X-CRM114-Status: UNSURE (   5.90  )
+X-CRM114-CacheID: sfid-20221110_070119_251262_1EE67FFC 
+X-CRM114-Status: UNSURE (   8.72  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,39 +68,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use phase 270 for core MMC clock on axg meson boards.
-Tested on JetHub J100/110 devices.
+The mmc driver has the same phase values for all meson platforms. However,
+some platforms (and even some boards) require different values. This patch
+transfers the values from the set in the code to the variables in the
+device-tree file.
 
 Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 04f797b5a012..0af4784d84c7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -13,6 +13,7 @@
- #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
- #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
- #include <dt-bindings/power/meson-axg-power.h>
-+#include <dt-bindings/mmc/meson-gx-mmc.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -1891,6 +1892,7 @@ sd_emmc_b: sd@5000 {
- 					<&clkc CLKID_SD_EMMC_B_CLK0>,
- 					<&clkc CLKID_FCLK_DIV2>;
- 				clock-names = "core", "clkin0", "clkin1";
-+				amlogic,mmc-phase = <CLK_PHASE_270 CLK_PHASE_0 CLK_PHASE_0>;
- 				resets = <&reset RESET_SD_EMMC_B>;
- 			};
- 
-@@ -1904,6 +1906,7 @@ sd_emmc_c: mmc@7000 {
- 					<&clkc CLKID_FCLK_DIV2>;
- 				clock-names = "core", "clkin0", "clkin1";
- 				resets = <&reset RESET_SD_EMMC_C>;
-+				amlogic,mmc-phase = <CLK_PHASE_270 CLK_PHASE_0 CLK_PHASE_0>;
- 			};
- 
- 			usb2_phy1: phy@9020 {
+ create mode 100644 include/dt-bindings/mmc/meson-gx-mmc.h
+
+diff --git a/include/dt-bindings/mmc/meson-gx-mmc.h b/include/dt-bindings/mmc/meson-gx-mmc.h
+new file mode 100644
+index 000000000000..cfc4a9d75b2b
+--- /dev/null
++++ b/include/dt-bindings/mmc/meson-gx-mmc.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/*
++ * Copyright (c) 2022 JetHome, Vyacheslav Bocharov
++ * Author: Vyacheslav Bocharov <adeep@lexina.in>
++ */
++
++#ifndef _DT_BINDINGS_MESON_GX_MMC_H
++#define _DT_BINDINGS_MESON_GX_MMC_H
++
++/*
++ * Cfg_rx_phase: RX clock phase
++ * bits: 9:8 R/W
++ * default: 0
++ * Recommended value: 0
++ *
++ * Cfg_tx_phase: TX clock phase
++ * bits: 9:8 R/W
++ * default: 0
++ * Recommended value: 2
++ *
++ * Cfg_co_phase: Core clock phase
++ * bits: 9:8 R/W
++ * default: 0
++ * Recommended value: 2
++ *
++ * values: 0: 0 phase, 1: 90 phase, 2: 180 phase, 3: 270 phase.
++ */
++
++#define   CLK_PHASE_0 0
++#define   CLK_PHASE_90 1
++#define   CLK_PHASE_180 2
++#define   CLK_PHASE_270 3
++
++
++#endif
 -- 
 2.30.2
 
