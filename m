@@ -4,54 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 306AEC4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Nov 2022 15:01:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B65C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Nov 2022 17:11:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LsfoObwdwH/ene34FV0Y4c07OpVu0+qlNEW56iHly/A=; b=Mj/IXwpfuq0Vrm
-	hkEeYoHZCpqaEMeDnuXrZOhsR66fXnENiwH1GBf3QrkyOsnNavpanvYDM0PdeKemBj71oTd1UR2QU
-	WSyfhfaCI1VCIXUB74hDkaC6KEVxEocKcz5P/Uf7V+NcAQw5JbUbjYU6HLRHoW0y7ODQ7cTsK83wo
-	W4qZUtsuZ17d7DexzmBK7WcYWaM0K9j+wulI3+Fwpkp4DPlLJ9TZP186pNXD67O2lBiC5xcp0jZNQ
-	Lt35pfOWAX9/LzoVeHZgH3YnjaVzEFu6rWTB81CqqHB1YRwCTDCHdnnTxAp1KmzVwRyQdC1dHAVkd
-	rsvP06dP30QVS1knExKA==;
+	List-Owner; bh=GRpH5iP0X/fvwUCdX7V0QUEzot9FwyZR0+0XMMgph2g=; b=KqA+K7b37Mfl74
+	8SbGFRkyLjKX6HLShUf+6UujdaMd2XKAj78axW/oTTFZI/qAcoL8ATuBwz8IyQgC3svwtjGlf1SRa
+	Ue7StTT2C0sbrJJ4b58KjlD/jvUp3FZZd2PBVCBag8YwE+rXkkfC2Qgarr/mBZPu8Lqs7ZEpv0aGO
+	PqIHsN9x5SafJHK7QDul4x4e6HKJNJIaHe2smseQmhAxhCqoyXe7yykEnrFypbp5AiCngrR6A+a0l
+	z1QGciIXT55QS2k7r4O3prAT6ncE6rxHa4aMXLjWEAblnQJGwbkB5lwDmTFkFBfRsALwbpvvaSz0I
+	+aA3/47Z2Z1dW0iGNH5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ot93l-006Z82-6o; Thu, 10 Nov 2022 15:01:41 +0000
-Received: from mx.msync.work ([185.250.0.168])
+	id 1otXZ4-00H78S-D5; Fri, 11 Nov 2022 17:11:38 +0000
+Received: from msg-4.mailo.com ([213.182.54.15])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ot93O-006Yw7-WA; Thu, 10 Nov 2022 15:01:21 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F14AD123169;
-	Thu, 10 Nov 2022 15:01:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1668092469; h=from:subject:date:message-id:to:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=dONz83S/sl0lvYKGXEj7vcvWK71sD2+ztpm57yFpufg=;
-	b=OTavFoQLMbkEqY41c8FhiUtigQYo9tCEen8cj5clEkrfIdSs/a2eaDQC69VZY0uoB2otoN
-	++qyL00LAa2ymvVaLaAGYwr8PD0HNk97Qd40oz/Wl1PGUx/mTFQYYzZNFsM+UkwvhUlrPU
-	b59Au0227AfMxPCq0qq0vaLAwxlBWdoCxPooBnfsCwmAIjkZdp0SmUoosZ8e3TL2eAIvEx
-	ScisEvn3ghRTbEUg/EeAHFm1B9EHSvfiMT2mvvWYbLnEUc4EJitW3mJ6kCZPjRdFiVyV5x
-	lZmA9Y/zZoI+PQDDl0JNUuLKyemTzhFLZe/AfNsqGhBY8ukXMVPAJBg3rvGmPQ==
-From: Vyacheslav Bocharov <adeep@lexina.in>
-To: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
+	id 1otXZ0-00H73r-IQ; Fri, 11 Nov 2022 17:11:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+	t=1668186674; bh=1RIQ/IkEDUmv9IHs9QgFqfOSQHFRaOMUNJ4hAer8V7U=;
+	h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:In-Reply-To;
+	b=i7Ych6tATqnDt3txDGmf4tl2aOt6j5CZYTlZdYNIJWf5jIb9uQuKygWkgFAfZdqt/
+	 pYrneCIpfWlMV9VzuVz1ZdUqjO5895K1q/RDvnlQak9uzy2G+RuZRW4GNIOXG9pjr+
+	 /MEslRNG8FbBCpBUn7yCQyVWVglS7ckWx9LuL6Ws=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+	via ip-206.mailobj.net [213.182.55.206]
+	Fri, 11 Nov 2022 18:11:14 +0100 (CET)
+X-EA-Auth: V+drH4vY8UWXrgfnZZR7Hc2mA9wgmxew3GLoFUFYAmzIxO1+7Zdb/tpLl6NXQrz5gJPwo7XaSp0gWCF9ff8cCxjJDfF2L6q4
+Date: Fri, 11 Nov 2022 22:41:03 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Dan Carpenter <error27@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: docs: Update mmc meson-gx documentation for new config option amlogic,mmc-phase
-Date: Thu, 10 Nov 2022 18:00:35 +0300
-Message-Id: <20221110150035.2824580-5-adeep@lexina.in>
-In-Reply-To: <20221110150035.2824580-1-adeep@lexina.in>
-References: <20221110150035.2824580-1-adeep@lexina.in>
+Subject: Re: patches for staging:media drivers
+Message-ID: <Y26CJ9L52AmPBQYC@qemulion>
+References: <Y2eSCZJNWn6DzCUu@qemulion>
+ <48f4bda9-b5e3-9649-aab9-b529889bf110@linaro.org>
+ <Y2oO7fU4whKr+3hb@kadam>
+ <Y2q7tFF7YeX16H20@lunn.ch>
+ <Y2tLZaPSUT45TF4f@qemulion>
+ <Y2uv56k515cKTXU4@lunn.ch>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Disposition: inline
+In-Reply-To: <Y2uv56k515cKTXU4@lunn.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221110_070119_258047_DE9B8FEB 
-X-CRM114-Status: UNSURE (   5.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221111_091134_764383_D177EE66 
+X-CRM114-Status: GOOD (  12.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,41 +78,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx
-clock with values:
-	0: CLK_PHASE_0 - 0 phase
-	1: CLK_PHASE_90 - 90 phase
-	2: CLK_PHASE_180 - 180 phase
-	3: CLK_PHASE_270 - 270 phase
-By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
+On Wed, Nov 09, 2022 at 02:49:27PM +0100, Andrew Lunn wrote:
+> On Wed, Nov 09, 2022 at 12:10:37PM +0530, Deepak R Varma wrote:
+> > On Tue, Nov 08, 2022 at 09:27:32PM +0100, Andrew Lunn wrote:
+>
+> Staging drivers for network tend to be USB dongles for WiFi. Some of
+> those drivers need throwing away and starting again, others need less
+> work. If you are interested in that, i would suggest asking on
+> linux-wireless@vger.kernel.org.
+>
+> Another option might be pi433? The problem with that is, i don't know
+> how it fits into the rest of the network stack? Could it maybe fit
+> under ieee802154? Or is it just unique and needs to do its own thing?
 
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+Hello Andrew,
+I looked at the pi433 driver and it appears to be a good starting point. I have
+started studying more about the hardware, the RF technology etc. There is a TODO
+file with reasonable challenges.
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-index ccc5358db131..98c89c5b3455 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-@@ -25,6 +25,12 @@ Required properties:
- Optional properties:
- - amlogic,dram-access-quirk: set when controller's internal DMA engine cannot access the
-   DRAM memory, like on the G12A dedicated SDIO controller.
-+- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx clock with values:
-+	0: CLK_PHASE_0 - 0 phase
-+	1: CLK_PHASE_90 - 90 phase
-+	2: CLK_PHASE_180 - 180 phase
-+	3: CLK_PHASE_270 - 270 phase
-+  By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
- 
- Example:
- 
-@@ -36,4 +42,5 @@ Example:
- 		clock-names = "core", "clkin0", "clkin1";
- 		pinctrl-0 = <&emmc_pins>;
- 		resets = <&reset RESET_SD_EMMC_A>;
-+		amlogic,mmc-phases = <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0>;
- 	};
--- 
-2.30.2
+Thank you for the recommendation.
+
+Have a nice weekend!
+./drv
+
+>
+>       Andrew
+>
+
 
 
 _______________________________________________
