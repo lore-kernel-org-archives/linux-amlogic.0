@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 968E1C4332F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Nov 2022 23:00:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4A1C433FE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Nov 2022 23:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vlTwNct7JvEj0ZXSG/Mo8HntKG6C0vHm6OAiG9CVFlQ=; b=nJTZq3i9KjHuOT
-	K4OlV07KrIz0Q8wp1P6Od/obel2nYzVFH3zO/zv8fA/4stzSDOIXqFJ/OUn80v3NKhhBDfc0Qgv/A
-	0DHp8boydjSKvwICbvtX9sdaYbIPIXo84j4dTngDhbsjr1GgsOIIN2UFRjS8R4r4pTp9Ld34mPD+E
-	jtKw7KcSRzWhDQh9pVhpK0htMS+mu8yg23wom2cyo77Q2kcJLHTl8K1QSpvM6YpKa5otIPO8nHFxU
-	rlaA3HORYrKhTIS0PiM7ENVU4t7OkcXGCyEvmLGaCzWjORCpZ8Frvzmb1ycAa3yv1poKvquSewGhr
-	cx7Osoz01n7izAHSpeJw==;
+	List-Owner; bh=DBSUcIZ/MgtT8hn9L/D3hW8Fr7IHfmzKGcU6b5aLdys=; b=VBFTfH615IQ9G3
+	Tbn0Yt/Jzgd/0JVAPMNVFOXFlS9em3Jt0oIR0PTrMsQahH+joule+iLqg/ZtjyIXEtLaBVzhaYaW1
+	QWU/LpJd+iOimAuWmrSs9otkQh7Ec8WZKapzD5zUQd2qr3qH/0Re304+ow+E7M1fCNcOVu9CdZIhL
+	pHVJmSxN/uotsxd1pvBdDhznF6wWAQ6R9TlmTzTv9y1+OkfJPtwmaCZ4K+GyKhIduJKol3DT8WuGG
+	WrSEff11KtQQolsB50f86l21VHZ9OWgfuSZPRV3pu20pzb+hAjojboSav+07+CD2IR+QrRkj2WtUm
+	6JxfFub31cdwnvrJ5RfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1otzTm-008IjJ-HY; Sat, 12 Nov 2022 23:00:02 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1otzVe-008J1G-2H; Sat, 12 Nov 2022 23:01:58 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1otzTb-008Igw-DU; Sat, 12 Nov 2022 22:59:52 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id kt23so20214969ejc.7;
-        Sat, 12 Nov 2022 14:59:50 -0800 (PST)
+	id 1otzVT-008Iyh-6d; Sat, 12 Nov 2022 23:01:48 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id z18so12313190edb.9;
+        Sat, 12 Nov 2022 15:01:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fwUb/APyWuW1/kclxSS68ZW9lC0Hlt/bCdjo4FRubHc=;
-        b=bvLJAI/b1EMO5ZIviIHZQnMVUmbZ+2sW/NG8o7YlSOehG/WFae6ye6fILVMLqw9IgU
-         2+iLDiS70uWVF0RIEyONdL9a2RZ3DQK7lQO/j0ZowCKIt4i1JlsWDt9w9ZKxKpejg6ml
-         Ne5uayImLJ6TqOTTUUVofoOdC9Jg6R1FHBqKpifCPc7/7dMu7bsgmmpyKSEEnmlubGCl
-         yvEguVMk55xru0YBpXKG4sE6g1OTMwRnWvFdrSteX7IUcE4IqFaXJd78L5Jok0qUCa9+
-         respKjRT4RjHqc1+mS2ay69bWRhuJXd39XTAaKJtvQkCXcsWscm7FTWZUoq/xXK0I4su
-         MZSw==
+        bh=zTbt0a2xJBfSnRn2u4bWAXagh9TkCUBqkSMMFYc2JtM=;
+        b=p5AEsQfdKfMpFJhMp9ygeLOWB2CLmtACLTJbqsdS/KD2gw5yBHqFWqaaf549kFa0Pb
+         1yM3htcAbsJiemoZpQns8tVXsEOQpyKdAUwCkLSR7idEkuPl7UwELwzkGCZUdGR9N1o9
+         01sQworEj8hnwCMC/ZzL2jlrTTO0kFSj0on36SrA6s4QOilgG+Kd9Wu6IYKWYmpK5i18
+         NHi40mjySwSbA4qxiAhPRXePvbOGSd3fIrWKHPdGkKemcXoMcsey+1ZQpOE97OQAfywr
+         eGyPk5lN+ru6a9a4Lihsmpn7AS/qozFUWiTduCvbQCxMXQBEEZW43xGJv3KZqD3Jpf0S
+         35hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fwUb/APyWuW1/kclxSS68ZW9lC0Hlt/bCdjo4FRubHc=;
-        b=2xyF6DSAm/3OpyvNyQcHRln56whWyI+P9X6Bf9nRBLgStUVvvo5JFpaATNmT/p9orx
-         9XXMGZAXdkVNRsujxN08hOUvenh57Y3nC2VMLf8zNgUqMzNVnaEyHpU5mMYChJhS4sds
-         cnGXKm1IwKx7f/V6jZJtPiVTAVHuA1rl6pvCvwL4Vb2fo7d+demZE9UqqZFgj/ZocBN2
-         8E2geb+teKvJ3bsSixubO+Z19pd+N8VxODvVOpLOmFKhYXySluzDZTFgy2Cl1W9L8BK4
-         sXjlM/kl/g6kguDlbzIKga8vETOcx2F6hl4eO8FixiULHsPT0e05rIEQcYUFO0XEZToZ
-         tddA==
-X-Gm-Message-State: ANoB5pmpAeUdd1NiTbeGPTq0AJMVD3NL2LaVaMUfhZm1w/dju1LfQFX1
-	WKLPX6xJW/zbt3YanHARPkCc3Oz7CZg1evbnyehwpaYw
-X-Google-Smtp-Source: AA0mqf5hbdSoTmGDxzeKtYkuV8yK7LEKAQby4WPcWMwPXl2OjSCB76ngcb+yRGLGT9dr2qqCyLRrpIF2EJurN0P6y9c=
-X-Received: by 2002:a17:906:2ecf:b0:778:f9b6:6fc with SMTP id
- s15-20020a1709062ecf00b00778f9b606fcmr6409555eji.580.1668293989543; Sat, 12
- Nov 2022 14:59:49 -0800 (PST)
+        bh=zTbt0a2xJBfSnRn2u4bWAXagh9TkCUBqkSMMFYc2JtM=;
+        b=xOCOLUd7YMp3vMaOw+/HNtrZxkpVddB9WKsbTOOEvpRkW16aKzWVR1JKRJBCBt4nYq
+         N8tSUDx+Z3Nhd+gM/EktckePJkx79ORqCmsWeT2xgW3jqeUZjoT8YB88+e11z9SLNJU0
+         3YvQ1K2rqLCrzuZai8TxW6IGkk5yvU7/WZzrib/n7Ainwve0U+mi6u+myM1E2xCgDu/6
+         LDxdJILG0Z7Vd4Kk/in0PAFZ7czgUkLYyivux4GruzFUP70s6e+D4hbXEAB/UhOJMH5s
+         j4iGwDqQPVvky6zqCGQ1dilb+nRZ2bBYE07u28rqKpTjjMMEZqqYWvq2Qj5pTeJbT9Bq
+         zmbQ==
+X-Gm-Message-State: ANoB5pmQEfEFmP5CTUzYNK/U8mVmPp2AsSEiLOYUKMmmfJor05sYwshm
+	ZaNARbBIdAd8pIjD9kOjbaaGgHbKwSHDAl35IeM=
+X-Google-Smtp-Source: AA0mqf4emPWDsB0Q2Akmslx3fIfr+lkWa5caJWrUvj1LbBOb6Um4B99gTwlj5Q0yAIbFuMDaXuSEUBuyWRxPJOGvoB8=
+X-Received: by 2002:a05:6402:715:b0:461:9fe:6d8a with SMTP id
+ w21-20020a056402071500b0046109fe6d8amr6453263edx.4.1668294104583; Sat, 12 Nov
+ 2022 15:01:44 -0800 (PST)
 MIME-Version: 1.0
-References: <20221110150035.2824580-1-adeep@lexina.in> <20221110150035.2824580-3-adeep@lexina.in>
-In-Reply-To: <20221110150035.2824580-3-adeep@lexina.in>
+References: <20221110150035.2824580-1-adeep@lexina.in> <20221110150035.2824580-5-adeep@lexina.in>
+In-Reply-To: <20221110150035.2824580-5-adeep@lexina.in>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 12 Nov 2022 23:59:38 +0100
-Message-ID: <CAFBinCA1a_ZaG0Pb7z=oBgrvfYJ4oJ_uJ3SY-ddjAmzCSbGmVw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: amlogic: mmc: meson-gx: Add dts binding
- include for core, tx, rx eMMC/SD/SDIO phase clock settings from devicetree data
+Date: Sun, 13 Nov 2022 00:01:33 +0100
+Message-ID: <CAFBinCCch3RsJbnA602tH924umRVdbgr-20g2F3mYLWCDrkg4Q@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: docs: Update mmc meson-gx documentation
+ for new config option amlogic,mmc-phase
 To: Vyacheslav Bocharov <adeep@lexina.in>
 Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221112_145951_483879_6E479F6F 
-X-CRM114-Status: UNSURE (   8.98  )
+X-CRM114-CacheID: sfid-20221112_150147_262254_A5187317 
+X-CRM114-Status: UNSURE (   7.36  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,19 +89,21 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Vyacheslav,
 
-On Thu, Nov 10, 2022 at 4:02 PM Vyacheslav Bocharov <adeep@lexina.in> wrote:
+On Thu, Nov 10, 2022 at 4:01 PM Vyacheslav Bocharov <adeep@lexina.in> wrote:
 [...]
-> +/*
-> + * Cfg_rx_phase: RX clock phase
-> + * bits: 9:8 R/W
-Generally register values should not be part of the dt-bindings.
-If we need to make the phases configurable through device-tree then I
-suggest using the human readable values (0, 90, 180, 270) instead of
-these register bits.
+> +- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx clock with values:
+> +       0: CLK_PHASE_0 - 0 phase
+> +       1: CLK_PHASE_90 - 90 phase
+> +       2: CLK_PHASE_180 - 180 phase
+> +       3: CLK_PHASE_270 - 270 phase
+As mentioned in another patch: I'd go with the human readable values
+(0, 90, 180, 270) instead of the register bits.
 
-That said, if for whatever reason we need to have #defines for this
-then they should be added with the dt-bindings patch (and also carry
-the dt-bindings subject prefix) instead of a separate patch.
+[...]
+> +               amlogic,mmc-phases = <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0>;
+Also I *think* the format here is not correct, for an array of three
+u32 values this should be:
+  amlogic,mmc-phases = <CLK_PHASE_180>, <CLK_PHASE_0>, <CLK_PHASE_0>;
 
 
 Best regards,
