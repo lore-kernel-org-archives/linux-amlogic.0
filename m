@@ -4,70 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A52C4C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Nov 2022 12:08:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E49C433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Nov 2022 12:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8VQT6ACdnpnGXMgCvY69esxca0mI7clPCz1zPODeQu0=; b=xbYe67ggzaOYfj
-	Jy6n3gOBOfIoUUsR6/6OTlqg6x28quZwvbKy8cUjpsS12QIU3+6gvkK9W+yT66CQsFvCo4yEmcdoB
-	7O8E9+EG7gfTNZ+mqs8UhOlFBrYG2n5EFZZAyoDZDGTHQHZPglplSV0IJCJhfGMZ14GeDftUPX7MA
-	834hAca2pIgk1ckVESTl+gvAFYn2HN3ZRRUKsKZzpZ/ctbk4+FRfm6pavI0hOBOSjzVaINVbMUUSk
-	4JBgjkuW7AJB9gikIj5yTZO26IO0P8afOk1REJnD5fhpnRFz8F6uGyF7D0P3OUoE4dt4rvgN9Bt99
-	ZsVDujTW6id+vb6u/6iw==;
+	List-Owner; bh=JdKZYJY6jrkFL2YbovuTK5MdEVzbC8kHJPWf/dyf7M8=; b=Z/O4sSTxFZ4XfK
+	nRC4CMcZ73O9vMYYiwc03ib0/U9BIaKfoJL3PjUqdm53DaXoju6dsUQy4VCuIBDVx3Zcr2AY1xHK1
+	Mb8n+P6mkhtlGQgW4ziEbLqRAwjxCB/TGZab9RGN++FIcdKonr+VQ4QHrGoDS5ow343der3awUve0
+	TCPvR6dv/ZUgodUnBv+BR5AwdXHTAULUgM/h2SOU6oexITaF4Sm7hsQUEo2UIjxZj8pANNBmA+DtL
+	qSwcg2JSms7BLVMgiZ6GvOoFHP3OUOlTkyks5p6fN6oeEVBWfIcXcnd9gPFopLWthia7jjVTDeyK7
+	yzAJVv6w5EqKe74xkkng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ouujp-00AqRK-9Y; Tue, 15 Nov 2022 12:08:25 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1ouvKT-00BA6k-O5; Tue, 15 Nov 2022 12:46:17 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ouujn-00AqPn-1X; Tue, 15 Nov 2022 12:08:24 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 5D71FB81687;
-	Tue, 15 Nov 2022 12:08:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38644C433D6;
-	Tue, 15 Nov 2022 12:08:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1668514100;
-	bh=R61j7XvFsjKOIGH8lnB32pQtEXr+vA8qj1O0QUXEaRc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hx/O2XaWQYMEROQxzdBxuKSHYCYl34im56uhTkwbkT21OFS9IwoWQRYp1PmJY5HkB
-	 YR7MiU/850/8oDiOu9aVDg5JYBDly1HQIP9h/BTy4exS3wfQA1lZ3kEIQ/hVFCJMl5
-	 wyxkt6zwCd4D0d5biedQF78/hMGeYjESNsfD/Tn7rx6rbmudi60ALNz/U3NRMKenU6
-	 9cBHCsQJ5oqRYWWm2xQnEe2gTgPTNdM/jyOfggZgCmEgBwhBd3E/KGLnE+1SbhylOC
-	 MpiB1tPiI3u4JWe9N+A9Dpsn4hkaciDWC2fuMOnAegvb3VWbhI0khGYwa2GqEypvxK
-	 2zGJgQZfo1mRg==
-Date: Tue, 15 Nov 2022 12:08:13 +0000
-From: Will Deacon <will@kernel.org>
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Chris Healy <cphealy@gmail.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>,
-	Kelvin Zhang <kelvin.zhang@amlogic.com>,
-	Chris Healy <healych@amzon.com>
-Subject: Re: [PATCH v9 1/4] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
-Message-ID: <20221115120812.GF32523@willie-the-truck>
-References: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
-MIME-Version: 1.0
-Content-Disposition: inline
+	id 1ouvKI-00BA49-GX
+	for linux-amlogic@lists.infradead.org; Tue, 15 Nov 2022 12:46:07 +0000
+Received: by mail-wr1-x431.google.com with SMTP id w14so24049316wru.8
+        for <linux-amlogic@lists.infradead.org>; Tue, 15 Nov 2022 04:46:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mlZD0Z2uZ+ThYG4e4r6CMcbbN5g4YL6Nxz6PbfmS5NA=;
+        b=Yb7kmLhGhyYiM5Q8MgXeUnKQK4LE6+7zq57DqabdJ26qf7EizBpTbfxYyt6TRJRH7g
+         iMCvzoK2Hjfv9V7SD/2dgd+0NrOlZpVSIb+Zn3bOFrYEsCltvvivgOVnvZHW2Vddxaiv
+         yU0lMINmERm0Hi8UK3OClxCtltTXYgQXZ1argRqmb5aLQjZMBreAsiXddyMR/8RCYvBY
+         3fNB4/DBNErdX2p4BFu0nX1Vd777tDlL6VbsuFetwlpXVkLNDEN3bumcqizBZBBfFpIE
+         w3O/cx3oY8iFEFI1tbqApqu9NRxlKlB/MP05CIZN+Palc9NZo/G3fpcB0HUppPqPB/pz
+         hlVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mlZD0Z2uZ+ThYG4e4r6CMcbbN5g4YL6Nxz6PbfmS5NA=;
+        b=yxyGHTfjAVok9o9ofCf03FDq9mTvvUbM5B3LfBZNObFOXkmns3yOFqZtcZN2tUHqvV
+         SJwyC2bEp31SGA+r+7oKcGa/H/ceoMJCj96nzY+gRF7v0iNcoXCtxDvPiGjEbe1qIXMA
+         IY9JSkPjdYWHwYZXKNA6UuKuzq7i8o8hTtpTbF8KNGHgCoJdinHCtPJiMktEMHcyMImP
+         oIKHSjoapybg0vlQ0QVYtMj4yJ9ZSmOMTmpyshVUQolbOc4QGRjrJUXJNkBvB1LwIzaE
+         X6/2P/x68NitTVlBI5idCcaYeuxV07OkKBEm/+ya87gSdmUvR/Vn33F+Ie3TJF9UKhdm
+         Q7tw==
+X-Gm-Message-State: ANoB5pkLWY3BjxYLmIHtjpDsNZkICRGt1lDXbczEVQx0H3Uk1yYlUhbU
+	UFTlwGO3Kr5xocdIE+BSKlkDqA==
+X-Google-Smtp-Source: AA0mqf6vybVgZNApQBaGCsmb/WmoxQCxkT1rPljAJ3wbuzXcligL+cMP8YKndcURsBFb7hNRAA9EBg==
+X-Received: by 2002:adf:ec10:0:b0:22e:48ee:dc64 with SMTP id x16-20020adfec10000000b0022e48eedc64mr10465784wrn.319.1668516363574;
+        Tue, 15 Nov 2022 04:46:03 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id h5-20020a1ccc05000000b003cf7292c553sm15100857wmb.13.2022.11.15.04.46.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 04:46:03 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: linux-amlogic@lists.infradead.org, Jiucheng Xu <jiucheng.xu@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Jianxin Pan <jianxin.pan@amlogic.com>, Will Deacon <will@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chris Healy <healych@amzon.com>,
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>, Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Chris Healy <cphealy@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 In-Reply-To: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
+Subject: Re: (subset) [PATCH v9 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver
+Message-Id: <166851636240.2706970.5044622392336607391.b4-ty@linaro.org>
+Date: Tue, 15 Nov 2022 13:46:02 +0100
+MIME-Version: 1.0
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221115_040823_246482_87DBEC9E 
-X-CRM114-Status: GOOD (  13.32  )
+X-CRM114-CacheID: sfid-20221115_044606_555772_28F19525 
+X-CRM114-Status: GOOD (  13.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,21 +94,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 09, 2022 at 09:58:15AM +0800, Jiucheng Xu wrote:
+Hi,
+
+On Wed, 9 Nov 2022 09:58:15 +0800, Jiucheng Xu wrote:
 > This patch adds support Amlogic meson G12 series SoC
 > DDR bandwidth PMU driver framework and interfaces.
 > 
 > The PMU not only can monitor the total DDR bandwidth,
 > but also the bandwidth which is from individual IP module.
+> 
+> Example usage:
+> 
+> [...]
 
-This doesn't apply on top of 6.1-rc4.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
 
-Please can you send a rebased version for me to pick up, excluding the
-final .dts changes as they'll need to go via the respective SoC tree.
+[4/4] arm64: dts: meson: Add DDR PMU node
+      https://git.kernel.org/amlogic/c/90cf8e21016fa3864a311622f6162fde13aaaf23
 
-Cheers,
+These changes has been applied on the intermediate git tree [1].
 
-Will
+The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
