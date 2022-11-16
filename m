@@ -4,57 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD95C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 09:55:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F15B6C4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 12:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0F68AzVqqkApe51p6tDruVvpUzbpVRKQiA1thkhgfoc=; b=NCbqplGl5nL/JQ
-	9TLt+PFsk3echhagzgVvoKlWrA8Ugwhyg+4p/qq/rW8BeQuLzg45rgMtpGZ6RY1/ASlT6QJS2Wmr8
-	ubhjBcWk9LS74eX7crS7gn70CNusUg0IPDAyD2cr2lFa5EkO1EJCtNBRO0++Bs/4etRWxvLkjCXnT
-	g4bvS7PzlL6HtDQSa0WGWZJmrAHn66xWyggTuFGdi0nwLRJv3QUmbCP2b0p7uZYiLiZb8NelzqFi+
-	o/0idIM8B/Ioj8gY4Tl0boRNMN+bybe4aPWQ8QN/b1gul8gx0NvIL8reXKvQEkeTPcWNgg9Pn32aM
-	k6KMt2y1D55Kd1J075WQ==;
+	List-Owner; bh=lysmE51cRopMDccEyJLF1lWEjAMLOA7UJ9yYJr94kdk=; b=GAH3GbMoJfHEPW
+	F4ZENy/FrCRvBUi6VBqjXSYJAc+/JkoUHnZbr17dieZZlItP7O2JM1WhQOCpiMl7HTSQJPlsKBeho
+	4hnVNuhdp2l1GK4T6AMFs7LRfK4LMCXK77TzDh+xc6miYq2fm8wNXCDa1KwcxjP4YCwy2LyuCIHq6
+	vnfqHE0K/ahBVFZSeoK7TX+64fYMaWS2gkqxL52cj7v9wQy4bx3Lb/j/w1I6bDPmyfA5kXeMJwdz0
+	ZcMb7iufWkqiIgkZyM1daKkD0J6A7ZmjnVIQ05BAsfxLNKi8J9aU8NUgAOTlYH4cHMbIwrIdm+M0L
+	G5KhGE97/B+qnoNnuBjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovF8u-001zwq-Nx; Wed, 16 Nov 2022 09:55:40 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1ovH7n-003D5v-Dz; Wed, 16 Nov 2022 12:02:39 +0000
+Received: from mail-fr2deu01on2071a.outbound.protection.outlook.com ([2a01:111:f400:7e24::71a] helo=DEU01-FR2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovF8i-001znj-R2; Wed, 16 Nov 2022 09:55:30 +0000
-Received: from [10.88.19.158] (10.88.19.158) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 16 Nov 2022
- 17:55:26 +0800
-Message-ID: <7bb5e9ee-358b-ce6f-2cb5-a6b6b558c0a9@amlogic.com>
-Date: Wed, 16 Nov 2022 17:56:12 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v10 2/2] docs/perf: Add documentation for the Amlogic G12
- DDR PMU
+	id 1ovH7j-003D3h-P2; Wed, 16 Nov 2022 12:02:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jIyCknN4rvYVXm9Rw4qQ2ElsQPQWg08+Pkp/7kIBJe0obDNZl/J/mKXYCz2Rh7OuZ9W6i/1bIyJngrbLC7AjvdRE1XTWGiRlaCRU9JuoIH8qawFdq5IMNHkFlb+65TCwXsQliT2CZSD92ohtLDt0o4fn4S5dmkO2L9HZQBhjg2/hXt4R1zKwwJk2TmFAQB+TaldGHEDW+qrLAy3ENEnAEqQotjwOdAGrtDEVbO0UzZLE5Bzsm1KFUKY6anjRuAToXBo8bVDZInCRdYk8vuLnKt2x+tmU3tjxWUSQ1jOw0tlnfyxqSi4kOx93dxglS7RkqnOWgyY5VqZxf+c0QYtiDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bBYBNJIqoqg5yUVGcl1HE/4QMyyUw3tCVQKARDL4HUg=;
+ b=I+hd7F9uQIiwWS+RgpwyaTQFtyLVENcodp5YKwXKwWTTVBJPOiWUw/rASMHOLvUM5TEt8eAbUqA1xuz8FbMyXYb6Nk7Ber8DsvUDtzNLsLnfw1z9/6mE1ns4VbVewUCu2KkgrQuMwtEzgDZ4mXZUvz/FOw0PCnycCbl6Ny+KqN0W+0/RvNXyh6GexG6CDWPm9VeEOF5Szamci2fkPfi1FUBU0scU0HoG+3JYLiBnZQbRuU7Df3yvO39o0YRCdHFxZ+6xDtYsYIfhQQysC1XRhjFOWneSHRDugkzW6tT7old9Jd5IYnlBrMph65icFDKDRzrsLaJFkqGP/p2mV3H+2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rohmsemiconductor.onmicrosoft.com;
+ s=selector2-rohmsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bBYBNJIqoqg5yUVGcl1HE/4QMyyUw3tCVQKARDL4HUg=;
+ b=p0zG3Nn6BTjJl91eexhqeUbdp32yh6XZFFx6YnGW6FsoY0YxcP7Nn2dGwjaUrWX8cF2UePL94RO279/ZBOw/TsL97C3sUNR8KE6dum/mzZsutr53jUetEjsIjSib4axa+iWPGiaC2r1dsKQiZYeAiT/VMuJI5cVaYvrxn44phsQ=
+Received: from BEZP281MB2454.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10:59::10)
+ by BEZP281MB2597.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10:2a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Wed, 16 Nov
+ 2022 12:02:28 +0000
+Received: from BEZP281MB2454.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::33b1:3599:eb56:8fd2]) by BEZP281MB2454.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::33b1:3599:eb56:8fd2%4]) with mapi id 15.20.5813.017; Wed, 16 Nov 2022
+ 12:02:28 +0000
+From: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, Matti Vaittinen
+	<mazziesaccount@gmail.com>
+CC: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss
+	<robert.foss@linaro.org>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+	<jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Michael Hennerich
+	<Michael.Hennerich@analog.com>, Jean Delvare <jdelvare@suse.com>, Guenter
+ Roeck <linux@roeck-us.net>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-hwmon@vger.kernel.org"
+	<linux-hwmon@vger.kernel.org>
+Subject: Re: [PATCH v4 1/4] gpu: drm: meson: Use devm_regulator_*get_enable*()
+Thread-Topic: [PATCH v4 1/4] gpu: drm: meson: Use
+ devm_regulator_*get_enable*()
+Thread-Index: AQHY5U+UZr58xfb6e0C1JLs5PfsDA64Y8amAgAAHegCAKKLWAA==
+Date: Wed, 16 Nov 2022 12:02:28 +0000
+Message-ID: <12f645b5-2820-0618-1271-6c254425099c@fi.rohmeurope.com>
+References: <cover.1666357434.git.mazziesaccount@gmail.com>
+ <c14058c4b7018556a78455ffef484a7ebe4d8ea2.1666357434.git.mazziesaccount@gmail.com>
+ <Y1K0h4De8UsZJE7W@pendragon.ideasonboard.com>
+ <00d90039-c38a-ad8a-80a1-5a654a528756@linaro.org>
+In-Reply-To: <00d90039-c38a-ad8a-80a1-5a654a528756@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-CC: <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	Jonathan Corbet <corbet@lwn.net>, Will Deacon <will@kernel.org>, Mark Rutland
-	<mark.rutland@arm.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Shuai Xue
-	<xueshuai@linux.alibaba.com>, John Garry <john.garry@huawei.com>, Wan Jiabing
-	<wanjiabing@vivo.com>, Chris Healy <cphealy@gmail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, Chris
- Healy <healych@amazon.com>
-References: <20221116003133.1049346-1-jiucheng.xu@amlogic.com>
- <20221116003133.1049346-2-jiucheng.xu@amlogic.com>
- <Y3SwIPnDvEOlL+Mz@debian.me>
-From: Jiucheng Xu <jiucheng.xu@amlogic.com>
-In-Reply-To: <Y3SwIPnDvEOlL+Mz@debian.me>
-X-Originating-IP: [10.88.19.158]
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=fi.rohmeurope.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BEZP281MB2454:EE_|BEZP281MB2597:EE_
+x-ms-office365-filtering-correlation-id: da29ca80-fc7b-41db-5ff5-08dac7ca6f1d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:  Dr6wLHflEA3t8Zq0e9IZhHI8kpAvZWAd6o91A5Nga65ko+EnBUDKHWjUWC0GAdGBVADqzEi4w+vH3QaVQkhH5Kcy7EeWuM9PIb9o4eaQz0BriGziSRlpMoSQ6nN+xwx4gEBoS9EEI3OxTJwKjm8xSJJquQU+dqBIOjatsNIMaP2TEhQZUygBDMeadaURd7c8FhTGTFBjQqYzIQKI6uY8eMOwEAaHv9NRWeNDyedINKoDlKpeUxPmaXVQOqQipY2pC7seGtfTCfYmGBW3RN46SLyEw9YbhOz8ILqc3zw4XGE4fGD137rvqzwxTPbeN4mBdJvFtEyJabtXbGyRgfpTfk+EDI9p01CSNAfrB+/1TRudDBXyYWdBIMh7Ed71RwYyj13dmqB7Mtm+c3evdeDx7UJqKTzzpASeoAP28uq0IId3EltYr2VOzQ8pZ9JqfvC86g5XAeSSGIagKfKU4iWD8+RvAjD4dNyRGhU+j8OGi9PP1Y2yjBe1TQq+lPzNDWlsKrZVCdQTVYeEO42AJepBTTn1b792LEajXb7uNFkUcS74ZZhHi746f9/UQ1ihIeEyEYqnZvH1DQg5eedzjQqkgegU5Rt1gl10NuzGuBUzjZD1JZCqQ7Vp1EMUD4Kc2qkezBfcNkNOahPVIYzQRaJZ4G4ITi55EEYVuy8AS8eYsZ+VlJCjnJRgxuOVhS4V/7Oqj0AopCagVku3nELjBeBX21SIOjNK095ECIiaCdi4yXrX+iWMduq1fzdH951Lx2Wrt6DY6z3aZXZGSSFydUmahycsKz1wEHZUZDw3qf8urXc8rr+u/VfepqSCYCddMEth1jKHUrM+Q0Fty5ci8uvs4Q==
+x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BEZP281MB2454.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(366004)(39850400004)(396003)(346002)(451199015)(2906002)(31686004)(66556008)(66446008)(41300700001)(66946007)(76116006)(66476007)(31696002)(86362001)(83380400001)(2616005)(8936002)(38100700002)(53546011)(110136005)(54906003)(122000001)(38070700005)(6506007)(4326008)(64756008)(186003)(5660300002)(8676002)(91956017)(6486002)(478600001)(71200400001)(7416002)(6512007)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:  =?utf-8?B?Z0wxN21ESm1jNTd5aks1U1dIdS9zbS83S1JFazYxWkF2Vm8zVVVGMEJWcFdj?=
+ =?utf-8?B?RkVJaDZ1Q0FLS25XOVRqMHNucXZoV1lyU2lOV2IvZlhNemFka0RWSEM0U0tI?=
+ =?utf-8?B?cXhOaWJxcE9BdHV1dlhPMTY4R216T2RtZ2hBTW00dk5zTGdEbzVTbGgvUDla?=
+ =?utf-8?B?c29xejZTNzZZNFZiQmxmTWV5V045UnluWGZVK1l5eVNMNHBydm5ZcVk1cHFl?=
+ =?utf-8?B?MXo1ZVFMS3k3SHZZRFNiajdSWE1xOHh6b3dBVzNkTExtb2hXM09aejcvWVRq?=
+ =?utf-8?B?KzRUNEZQdCtyTGtHVVhHQmphdlBtTUlCYnc0aWc4OGFzcys0MkxyVkxFT1hu?=
+ =?utf-8?B?bzlZcUJ0VG9VMENxMTNRalZUbzI2RlQ5ODdmb1c2RW1qb0krM3BhcERNV2NQ?=
+ =?utf-8?B?ZmlYd01jYzVCSFJMZjlydlZ0SmNWbngyajhWSFNsZjFvNjVzb2YzTTZuS1F1?=
+ =?utf-8?B?VzdBYW0rQWJyNlVnUnBVaW1LUGxUSDRSRXZNTjN5dXRJVm9mcnVMTVV1Zi84?=
+ =?utf-8?B?YzZTTjVkcVdneWIxQmEzb3BPVDdndC9Ia2VIWmpOMDdyNFdtNXlZNGZic3JF?=
+ =?utf-8?B?cGdmenQ0bWw2SnJMWi8vMVhNcjR1L0ZqQzgyazl0bCtXcVY1N2JtVkRETXkx?=
+ =?utf-8?B?YzE0RWQzTlJ5dnAwbFZ6T29rdU1oK0s1NmtTSEJPbEhWdG0yOW5Yb3RwdzlW?=
+ =?utf-8?B?ZC9SaEZtYjdjTGN6MmUxQ1BHNG1rbytWTER6c0J3dVlucHdPN1BCKzVQYWNS?=
+ =?utf-8?B?VW9KRWttUHRzaVlaTlpHVEw0ZURLKzBuQnJKMTkvU0Q5eEVtTW5wK3FaTTdT?=
+ =?utf-8?B?Q3p4UTRkOGdQSnVxaDFvWThaMWdqZUE1ZWEvZFovdXJaekhsTmxnbHQ1Vk9w?=
+ =?utf-8?B?d3ZUZUYybVNpaVZvMTBFeDVpU1dhZzdwdG1ubW9QS3JvZXNPRjd6MUJ1YUNm?=
+ =?utf-8?B?MkJpZ2NrTWJPcGFzZVN4cGJsc2dRNmVWK2Y5QlptTit3aFRUVGRMTXRWTndp?=
+ =?utf-8?B?WCtWU0RzMlFTUzU2Y2pjRjNjcTBMemlzL1NVR2ZxNHdMWFVZQThSb3hQU0pt?=
+ =?utf-8?B?c1p1R0VHYmcxMXcrUzRPM1dqRUJ6SkhCZXVHdmFENmJucmJmWXhJM3ZibUZq?=
+ =?utf-8?B?bnhlbC81N3c4U0owYTRNVEhWRlIyOXRJazNBWVNLTHhTMG1lYU04R1gzMzBM?=
+ =?utf-8?B?K2NQSlBMaVJpRVdQVS8xWnFZL0QzdTJ0SjExRUw5ajZjUXNpVnU3aGg5eE1N?=
+ =?utf-8?B?bUxOM1kvV09aWFd3aCt4R0NIYk9MMWx4REJpQjB5NWpZTitPclIrbUcveHo3?=
+ =?utf-8?B?a1E5K3dsaTJOckZIVTA5RllPTnhDUjhFWVJyTmVVWjRiSkVTOUk4cFVsRDF6?=
+ =?utf-8?B?Uk1rQVB0Y0hKQzFncjdsYlJLeEkyVUYrM0grK1MzTnkxMFZQekVKeXlWbzNx?=
+ =?utf-8?B?WFpsR3lGemRBMGh5MVJlTmxVck9vaXRLdjZQSVpnYTc0WmhkajRLZmNYU0hL?=
+ =?utf-8?B?RmJGK3ArRW4yZnlIMEs5YzlNcnZ4OHkyMTB1aW40dlR1NHRWQ0ZFTkhqU0Ro?=
+ =?utf-8?B?M2wrMkhPVnNYcUUweGFSb2hsdVpqaFp0K1EzRmJveGNXdk5xVXBHSVZlemd0?=
+ =?utf-8?B?czAxY1FRTk1leFlIQnpncy9EbXlVTnYzbExlTlF0UFVIVmROdS9Rck0zOFJF?=
+ =?utf-8?B?MVYxYnBsTk1ENlFVcVJGTGIyVW9tRlgzeVRKb1ZPMTJJM2RwUmdOMUFXckdz?=
+ =?utf-8?B?cjV1U2puc010REJXcmNVRVRlbUdtUUM4ekVLMXExN2c3RElHZ09FMXQzVThI?=
+ =?utf-8?B?NlFaOHRiR0hyVDkvNEE2MC9BOTIwcGJIeUFtNUZ5YWNQaVpsT3VITWNoZlVV?=
+ =?utf-8?B?KzlPNTgzNHkvUStueUQxVzl3R0I4RHRkZFkyUEdtamVqc1loWjcyMGw4Z3Bt?=
+ =?utf-8?B?dGhRcThaVXlUb082MlZ0VExxaEk3dkVnVVlpZ2VBNkFNWFBjNmJ4TXFYR2Jr?=
+ =?utf-8?B?VFdWUlRkTklhazhLVURNdVlVci9SdmUrbEp6WFVZUUdYMk5PUUZsQlB3cmFx?=
+ =?utf-8?B?VWdjVElBUU01dzVNYmVORStWbEo0RlNPYkI5K0diQmlSL3U1S3I0d0dqdnNs?=
+ =?utf-8?B?STMvU1N2SGVTaWljUHFsVkYrRjB3ejREeThEMHZTeCtqMHN2TWVUUWdFaEpF?=
+ =?utf-8?Q?ihA8XxfyT3wvs/8oF9uLJuQ=3D?=
+Content-ID: <7F3226CC0BA211408FA67A235CDBF4CD@DEUP281.PROD.OUTLOOK.COM>
+MIME-Version: 1.0
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BEZP281MB2454.DEUP281.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: da29ca80-fc7b-41db-5ff5-08dac7ca6f1d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2022 12:02:28.7551
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b24d4f96-5b40-44b1-ac2e-2ed7fdbde1c7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dv22zdz6PaxIAQMwIiKX8KR/7EMCRUoWi111HEaz1mAlOIV4NWsLtZmaIg6Idw0PA23duhZYmPBVuInMb2PekJZkxp4zG23X/KfoCgy+Lj0/iStdfdV7j5kUNpETOtQN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BEZP281MB2597
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221116_015528_914551_2C18BA87 
-X-CRM114-Status: GOOD (  18.45  )
+X-CRM114-CacheID: sfid-20221116_040236_214161_B2FC92CC 
+X-CRM114-Status: GOOD (  21.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,150 +159,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Sorry for my poor English. Your writing looks very elegant. I will apply 
-your modification in next version.
-
-Thanks,
-
-Jiucheng
-
-On 2022/11/16 17:40, Bagas Sanjaya wrote:
->
-> The wordings are rather weird, so I need to improve the doc:
->
-> ---- >8 ----
->
-> diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
-> index 15e93a751ced8a..4a1fdb5aba4b24 100644
-> --- a/Documentation/admin-guide/perf/meson-ddr-pmu.rst
-> +++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
-> @@ -4,11 +4,12 @@
->   Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
->   ===========================================================
->   
-> -There is a bandwidth monitor inside the DRAM controller. The monitor includes
-> -4 channels which can count the read/write request of accessing DRAM individually.
-> -It can be helpful to show if the performance bottleneck is on DDR bandwidth.
-> +The Amlogic Meson G12 SoC contains a bandwidth monitor inside DRAM controller.
-> +The monitor includes 4 channels which can count the read/write request of
-> +individual DRAM. It can be helpful to show if the performance bottleneck is on
-> +DDR bandwidth.
->   
-> -Currently, this driver supports the following 5 Perf events:
-> +Currently, this driver supports the following 5 perf events:
->   
->   + meson_ddr_bw/total_rw_bytes/
->   + meson_ddr_bw/chan_1_rw_bytes/
-> @@ -16,55 +17,54 @@ Currently, this driver supports the following 5 Perf events:
->   + meson_ddr_bw/chan_3_rw_bytes/
->   + meson_ddr_bw/chan_4_rw_bytes/
->   
-> -meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
-> -Each channel support using keywords as filter, which can let the channel
-> -to monitor the individual IP module in SoC.
-> +meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are channel-specific events.
-> +Each channel support filtering, which can let the channel to monitor
-> +individual IP module in SoC.
->   
-> -The following keywords are the filter:
-> +Below are DDR access request event filter keywords:
->   
-> -+ arm             - DDR access request from CPU
-> -+ vpu_read1       - DDR access request from OSD + VPP read
-> -+ gpu             - DDR access request from 3D GPU
-> -+ pcie            - DDR access request from PCIe controller
-> -+ hdcp            - DDR access request from HDCP controller
-> -+ hevc_front      - DDR access request from HEVC codec front end
-> -+ usb3_0          - DDR access request from USB3.0 controller
-> -+ hevc_back       - DDR access request from HEVC codec back end
-> -+ h265enc         - DDR access request from HEVC encoder
-> -+ vpu_read2       - DDR access request from DI read
-> -+ vpu_write1      - DDR access request from VDIN write
-> -+ vpu_write2      - DDR access request from di write
-> -+ vdec            - DDR access request from legacy codec video decoder
-> -+ hcodec          - DDR access request from H264 encoder
-> -+ ge2d            - DDR access request from ge2d
-> -+ spicc1          - DDR access request from SPI controller 1
-> -+ usb0            - DDR access request from USB2.0 controller 0
-> -+ dma             - DDR access request from system DMA controller 1
-> -+ arb0            - DDR access request from arb0
-> -+ sd_emmc_b       - DDR access request from SD eMMC b controller
-> -+ usb1            - DDR access request from USB2.0 controller 1
-> -+ audio           - DDR access request from Audio module
-> -+ sd_emmc_c       - DDR access request from SD eMMC c controller
-> -+ spicc2          - DDR access request from SPI controller 2
-> -+ ethernet        - DDR access request from Ethernet controller
-> ++ arm             - from CPU
-> ++ vpu_read1       - from OSD + VPP read
-> ++ gpu             - from 3D GPU
-> ++ pcie            - from PCIe controller
-> ++ hdcp            - from HDCP controller
-> ++ hevc_front      - from HEVC codec front end
-> ++ usb3_0          - from USB3.0 controller
-> ++ hevc_back       - from HEVC codec back end
-> ++ h265enc         - from HEVC encoder
-> ++ vpu_read2       - from DI read
-> ++ vpu_write1      - from VDIN write
-> ++ vpu_write2      - from di write
-> ++ vdec            - from legacy codec video decoder
-> ++ hcodec          - from H264 encoder
-> ++ ge2d            - from ge2d
-> ++ spicc1          - from SPI controller 1
-> ++ usb0            - from USB2.0 controller 0
-> ++ dma             - from system DMA controller 1
-> ++ arb0            - from arb0
-> ++ sd_emmc_b       - from SD eMMC b controller
-> ++ usb1            - from USB2.0 controller 1
-> ++ audio           - from Audio module
-> ++ sd_emmc_c       - from SD eMMC c controller
-> ++ spicc2          - from SPI controller 2
-> ++ ethernet        - from Ethernet controller
->   
->   
-> -The following command is to show the total DDR bandwidth:
-> +Examples:
->   
-> -  .. code-block:: bash
-> +  + Show the total DDR bandwidth per seconds:
->   
-> -      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
-> +    .. code-block:: bash
->   
-> -This command will print the total DDR bandwidth per second.
-> +       perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
->   
-> -The following commands are to show how to use filter parameters:
->   
-> -  .. code-block:: bash
-> +  + Show individual DDR bandwidth from CPU and GPU respectively, as well as
-> +    sum of them:
->   
-> -      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
-> -      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
-> -      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
-> +    .. code-block:: bash
-> +
-> +       perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
-> +       perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
-> +       perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
->   
-> -The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
-> -The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
-> -The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
->
-> Thanks.
->
--- 
-Thanks,
-Jiucheng
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgZGVlIEhvIExhdXJlbnQgJiBBbGwsDQoNCk9uIDEwLzIxLzIyIDE4OjI5LCBOZWlsIEFybXN0
+cm9uZyB3cm90ZToNCj4gSGksDQo+IA0KPiBPbiAyMS8xMC8yMDIyIDE3OjAyLCBMYXVyZW50IFBp
+bmNoYXJ0IHdyb3RlOg0KPj4gSGkgTWF0dGksDQo+Pg0KPj4gT24gRnJpLCBPY3QgMjEsIDIwMjIg
+YXQgMDQ6MTg6MDFQTSArMDMwMCwgTWF0dGkgVmFpdHRpbmVuIHdyb3RlOg0KPj4+IFNpbXBsaWZ5
+IHVzaW5nIHRoZSBkZXZtX3JlZ3VsYXRvcl9nZXRfZW5hYmxlX29wdGlvbmFsKCkuIEFsc28gZHJv
+cCB0aGUNCj4+PiBzZWVtaW5nbHkgdW51c2VkIHN0cnVjdCBtZW1iZXIgJ2hkbWlfc3VwcGx5Jy4N
+Cj4+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IE1hdHRpIFZhaXR0aW5lbiA8bWF6emllc2FjY291bnRA
+Z21haWwuY29tPg0KPj4+DQo+Pj4gLS0tDQo+Pj4gdjMgPT4gdjQ6DQo+Pj4gLSBzcGxpdCBtZXNv
+biBwYXJ0IHRvIG93biBwYXRjaA0KPj4+DQo+Pj4gUkZDdjEgPT4gdjI6DQo+Pj4gLSBDaGFuZ2Ug
+YWxzbyBzaWk5MDJ4IHRvIHVzZSBkZXZtX3JlZ3VsYXRvcl9idWxrX2dldF9lbmFibGUoKQ0KPj4+
+DQo+Pj4gUGxlYXNlIG5vdGUgLSB0aGlzIGlzIG9ubHkgY29tcGlsZS10ZXN0ZWQgZHVlIHRvIHRo
+ZSBsYWNrIG9mIEhXLiBDYXJlZnVsDQo+Pj4gcmV2aWV3IGFuZCB0ZXN0aW5nIGlzIF9oaWdobHlf
+IGFwcHJlY2lhdGVkLg0KPj4+IC0tLQ0KPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNv
+bl9kd19oZG1pLmMgfCAyMyArKystLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+IMKgIDEgZmlsZSBj
+aGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDIwIGRlbGV0aW9ucygtKQ0KPj4+DQo+Pj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMgDQo+Pj4gYi9kcml2
+ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jDQo+Pj4gaW5kZXggNWNkMmIyZWJiYmQz
+Li43NjQyZjc0MDI3MmIgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21l
+c29uX2R3X2hkbWkuYw0KPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19o
+ZG1pLmMNCj4+PiBAQCAtMTQwLDcgKzE0MCw2IEBAIHN0cnVjdCBtZXNvbl9kd19oZG1pIHsNCj4+
+PiDCoMKgwqDCoMKgIHN0cnVjdCByZXNldF9jb250cm9sICpoZG1pdHhfYXBiOw0KPj4+IMKgwqDC
+oMKgwqAgc3RydWN0IHJlc2V0X2NvbnRyb2wgKmhkbWl0eF9jdHJsOw0KPj4+IMKgwqDCoMKgwqAg
+c3RydWN0IHJlc2V0X2NvbnRyb2wgKmhkbWl0eF9waHk7DQo+Pj4gLcKgwqDCoCBzdHJ1Y3QgcmVn
+dWxhdG9yICpoZG1pX3N1cHBseTsNCj4+PiDCoMKgwqDCoMKgIHUzMiBpcnFfc3RhdDsNCj4+PiDC
+oMKgwqDCoMKgIHN0cnVjdCBkd19oZG1pICpoZG1pOw0KPj4+IMKgwqDCoMKgwqAgc3RydWN0IGRy
+bV9icmlkZ2UgKmJyaWRnZTsNCj4+PiBAQCAtNjY1LDExICs2NjQsNiBAQCBzdGF0aWMgdm9pZCBt
+ZXNvbl9kd19oZG1pX2luaXQoc3RydWN0IA0KPj4+IG1lc29uX2R3X2hkbWkgKm1lc29uX2R3X2hk
+bWkpDQo+Pj4gwqAgfQ0KPj4+IC1zdGF0aWMgdm9pZCBtZXNvbl9kaXNhYmxlX3JlZ3VsYXRvcih2
+b2lkICpkYXRhKQ0KPj4+IC17DQo+Pj4gLcKgwqDCoCByZWd1bGF0b3JfZGlzYWJsZShkYXRhKTsN
+Cj4+PiAtfQ0KPj4+IC0NCj4+PiDCoCBzdGF0aWMgdm9pZCBtZXNvbl9kaXNhYmxlX2Nsayh2b2lk
+ICpkYXRhKQ0KPj4+IMKgIHsNCj4+PiDCoMKgwqDCoMKgIGNsa19kaXNhYmxlX3VucHJlcGFyZShk
+YXRhKTsNCj4+PiBAQCAtNzIzLDIwICs3MTcsOSBAQCBzdGF0aWMgaW50IG1lc29uX2R3X2hkbWlf
+YmluZChzdHJ1Y3QgZGV2aWNlIA0KPj4+ICpkZXYsIHN0cnVjdCBkZXZpY2UgKm1hc3RlciwNCj4+
+PiDCoMKgwqDCoMKgIG1lc29uX2R3X2hkbWktPmRhdGEgPSBtYXRjaDsNCj4+PiDCoMKgwqDCoMKg
+IGR3X3BsYXRfZGF0YSA9ICZtZXNvbl9kd19oZG1pLT5kd19wbGF0X2RhdGE7DQo+Pj4gLcKgwqDC
+oCBtZXNvbl9kd19oZG1pLT5oZG1pX3N1cHBseSA9IGRldm1fcmVndWxhdG9yX2dldF9vcHRpb25h
+bChkZXYsIA0KPj4+ICJoZG1pIik7DQo+Pj4gLcKgwqDCoCBpZiAoSVNfRVJSKG1lc29uX2R3X2hk
+bWktPmhkbWlfc3VwcGx5KSkgew0KPj4+IC3CoMKgwqDCoMKgwqDCoCBpZiAoUFRSX0VSUihtZXNv
+bl9kd19oZG1pLT5oZG1pX3N1cHBseSkgPT0gLUVQUk9CRV9ERUZFUikNCj4+PiAtwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCByZXR1cm4gLUVQUk9CRV9ERUZFUjsNCj4+PiAtwqDCoMKgwqDCoMKgwqAg
+bWVzb25fZHdfaGRtaS0+aGRtaV9zdXBwbHkgPSBOVUxMOw0KPj4+IC3CoMKgwqAgfSBlbHNlIHsN
+Cj4+PiAtwqDCoMKgwqDCoMKgwqAgcmV0ID0gcmVndWxhdG9yX2VuYWJsZShtZXNvbl9kd19oZG1p
+LT5oZG1pX3N1cHBseSk7DQo+Pj4gLcKgwqDCoMKgwqDCoMKgIGlmIChyZXQpDQo+Pj4gLcKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsNCj4+PiAtwqDCoMKgwqDCoMKgwqAgcmV0ID0g
+ZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGRldiwgbWVzb25fZGlzYWJsZV9yZWd1bGF0b3IsDQo+
+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+bWVzb25fZHdfaGRtaS0+aGRtaV9zdXBwbHkpOw0KPj4+IC3CoMKgwqDCoMKgwqDCoCBpZiAocmV0
+KQ0KPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7DQo+Pj4gLcKgwqDCoCB9
+DQo+Pj4gK8KgwqDCoCByZXQgPSBkZXZtX3JlZ3VsYXRvcl9nZXRfZW5hYmxlX29wdGlvbmFsKGRl
+diwgImhkbWkiKTsNCj4+PiArwqDCoMKgIGlmIChyZXQgIT0gLUVOT0RFVikNCj4+PiArwqDCoMKg
+wqDCoMKgwqAgcmV0dXJuIHJldDsNCj4+DQo+PiBBcyBub3RlZCBpbiB0aGUgcmV2aWV3IG9mIHRo
+ZSBzZXJpZXMgdGhhdCBpbnRyb2R1Y2VkDQo+PiBkZXZtX3JlZ3VsYXRvcl9nZXRfZW5hYmxlX29w
+dGlvbmFsKCksIHRoZSByaWdodCB0aGluZyB0byBkbyBpcyB0bw0KPj4gaW1wbGVtZW50IHJ1bnRp
+bWUgUE0gaW4gdGhpcyBkcml2ZXIgdG8gYXZvaWQgd2FzdGluZyBwb3dlci4NCj4gDQo+IFdoaWxl
+IEkgYWdyZWUsIGl0J3Mgbm90IHJlYWxseSB0aGUgc2FtZSBsZXZlbCBvZiBlZmZvcnQgYXMgdGhp
+cyBwYXRjaA0KPiBzaG91bGQgYmUgZnVuY3Rpb25hbGx5IGVxdWl2YWxlbnQuDQoNCldoaWxlIHdl
+IGFsbCBhZ3JlZSB0aGF0IHBvd2VyIHNhdmluZ3MgZ2FpbmVkIGJ5IHJ1bnRpbWUgUE0gd291bGQg
+YmUgDQpncmVhdCAtIEkgZG9uJ3QgdGhpbmsgd2Ugc2hvdWxkIHN0b3AgbWlub3IgaW1wcm92ZW1l
+bnRzIHdoaWxlIHdhaXRpbmcgDQpmb3IgdGhhdCB0byBtYWdpY2FsbHkgaGFwcGVuIDspDQoNCkkg
+bGlrZSB0aGUgc2F5aW5nIEkgZmlyc3QgaGVhcmQgZnJvbSBKb25hdGhhbiBDYW1lcm9uIC0gIkRv
+bid0IGxldCB0aGUgDQpwZXJmZWN0IGJlIGFuIGVuZW15IG9mIGdvb2QiLg0KDQpBZnRlciB0aGF0
+IGJlaW5nIHNhaWQsIHNob3VsZCBJIHJlLXNwaW4gdGhpcyBvciBqdXN0IGRyb3AgaXQ/IChJIGFt
+IA0KY2xlYW5pbmcgdXAgbXkgbG9jYWwgZ2l0IGZyb20gb2xkIHN0dWZmLCBhbmQgdGhlc2UgYXJl
+IGFib3V0IHRvIHZhbmlzaCANCmZyb20gbXkgYm9va3MpLg0KDQpZb3VycywNCgktLSBNYXR0aQ0K
+DQotLSANCk1hdHRpIFZhaXR0aW5lbg0KTGludXgga2VybmVsIGRldmVsb3BlciBhdCBST0hNIFNl
+bWljb25kdWN0b3JzDQpPdWx1IEZpbmxhbmQNCg0Kfn4gV2hlbiB0aGluZ3MgZ28gdXR0ZXJseSB3
+cm9uZyB2aW0gdXNlcnMgY2FuIGFsd2F5cyB0eXBlIDpoZWxwISB+fg0KDQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
+bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
