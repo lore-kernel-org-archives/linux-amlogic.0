@@ -4,83 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB0CC4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 14:36:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A5BC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 16:14:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=SLI6VoVxsUiMQR4r8YYAmD7SoaQEVUKXlOYe0cl5NhE=; b=jv3S6mjkZDBSDo
-	p1AHzy/jCP+JeGFpegkBW1T8RTEhMnXVedrp+uIolou6kAl8yc27AsHPL9/5JfdC6uSLUyKfzY5eX
-	fVWdho2NBi780X7e0WpDv5Q+lUHKv/PZE+66mv0HVU65py0R/WjPcJbm7Jxv9vlmXLxXiU/nrV6He
-	ZhCHRiy3CeevVH7BJzbmKdIONVtV9y25ZH76bccc9N7OFwecWgaFrTeJHTqcIEh1XRB430B2njYok
-	kM42cfTw4Ow/gqxoOm8tbAtCh6NTNrQfkThzF3oz2eoX8LmcBGxFkBsLvujxNgh92NqI7WjJuidj4
-	KifHU41VbNGVCFCduYFQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jJAczS/1mzpikrM6GB77N4X5vbdHkgrXptiVo/ijfe0=; b=Q1NraTQK2LvLu6
+	cLJpKcSTYh8VPYaB/a9cd3xr7DRGni98sVHEq3i0kiVHiuzsm6JVKkOBv4fIO8H8HJm/2U3ZVm2Jm
+	ftoRex6/yd6ioYgEkjqrK2VfftUfquvg/AFHJRoKw96+iBCx1rgF69dsSbjiB5q1qw3RdAlpHGf0w
+	pZacu7KzhrxVtltBz1MA7XuNz0Rkc6cAlniQwcEu6bER7B5e/o0gMjG8Nn19KI494J0hFoHTejB/o
+	2su6wL5757g72UygQGHr9fhwiKNrlDiylJVo4HPqyrm0Ifk7LgoWCxa2/1j7MZuz4QN/vmv3tnAdy
+	cxzaUFyGl0KxNWSlk0dg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovJW5-004ctU-Am; Wed, 16 Nov 2022 14:35:53 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1ovL35-005l07-Ec; Wed, 16 Nov 2022 16:14:03 +0000
+Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovJW2-004cpg-Sb
-	for linux-amlogic@lists.infradead.org; Wed, 16 Nov 2022 14:35:52 +0000
-Received: by mail-wr1-x433.google.com with SMTP id w14so30218452wru.8
-        for <linux-amlogic@lists.infradead.org>; Wed, 16 Nov 2022 06:35:46 -0800 (PST)
+	id 1ovL2s-005kuC-L7
+	for linux-amlogic@lists.infradead.org; Wed, 16 Nov 2022 16:13:52 +0000
+Received: by mail-pg1-x536.google.com with SMTP id 6so17085028pgm.6
+        for <linux-amlogic@lists.infradead.org>; Wed, 16 Nov 2022 08:13:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z8czfhSUs3mWHeIfFdLH5/G0a3Uk3RSmYGgvVFUZjxw=;
-        b=WGzXTljvZSs2p0IjXnKub2fXvs+by26DaMNPHNseJK45SXzjN2mpHV2nhd5fKcEzUd
-         FxuC7mCyzPTDLpcs9+NvZw/9f3yKf5aMMPfu8xZ0EooP3sadwjoKmJQIu4kflQL6CSHm
-         3mmk+vdddaNM8D7JGuOalFOsbuiiNyj8JYnY6upvijkpjzOqH6D3L5M+I87kCYmwj6Qr
-         PDHcRDHRBVD9EhBevRNBQXWcMgSIyBCz23/yjiEgPggheZs0hqVzZAVRSOxz++e8HEEe
-         su8WM+SnpCoQWwhJnDVoUmTLsNLqMz2pBd+0Ixw/wVgwV1Dj+Mcpr39k4ZwAjv2ULZR0
-         fVuw==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=z1rUWutKviuABCXhXY06evbTP8Qb/JN/vOssJGqNTh0=;
+        b=LoCqcxBb/0A4en6YJPudBTBwAugncPJfF4IIlmuptJxlJ3fqpW6s+jVYF7QTFC/tpz
+         MgbIKcER8u/5z0q3veC4zk5Ucxe4fY0jOdf3ukThvDpy7ZrNkn1y0zk6CxNLh/h8NWQw
+         cb5fhTthKZP5VLvgSjrnkYYCmMQM15HBDbfi+PqXrpr5E+kBIph24rd+iZ8AmHHR0c2p
+         Ir31S94fzoErmJVIr794nJtoXRNSTG0rLvKNPL9mOb3qiaF/LPoEPDKezCt5myXTS0bm
+         BmDC9yr6HbGAt1JLqg++DlYgGuepc4iGIbbHiA1t29PN8a+DvALjHVeLclVByZBAN/4S
+         WmAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z8czfhSUs3mWHeIfFdLH5/G0a3Uk3RSmYGgvVFUZjxw=;
-        b=rDbt7Nw3g7rczlRLBu6NG0s676TQb941/+OCbLXyqMGYgBFKkS9SYrcXisx0oEr2qs
-         yOZTfALVwuC7Zw4enDoAu/aceq0l7+2ddNmCNajo5c+Krn9iXWipimPFOsShAGcB+28v
-         0z0gIKjo7grTZgKHdAn7856qTvT4gx2VFz6W7cNF/Odcj6A+kq3p5t38FJr/MhEt7Swc
-         pRF22ojfKtiQS+DA8xfVNL6G8s8VjNKmQ257brjXPAcqhjBJcqniItLXU8Am9S9krJlV
-         vOBa+vYtpMeBKwawgq9eE7Ntb1c6pjfNTXqsvOCKxzXRf/9PhyQ+6gEQ3YRnpFI+o8+V
-         wqAQ==
-X-Gm-Message-State: ANoB5pnB3w3XXmAfj7oH8UGgiWJKyr1qGi8bkGy5EMk8+1iSHDR2BnIn
-	iXz+7GVDg+FDvKg00D1tjE8=
-X-Google-Smtp-Source: AA0mqf5598TxLDqy4tIWUpYjpY0aL3kt7HPLQgal2MvvcizUGXiBe1ztwx8Cofhygfbkrm1iEOsnCQ==
-X-Received: by 2002:a5d:658b:0:b0:22e:3397:2e96 with SMTP id q11-20020a5d658b000000b0022e33972e96mr13714180wru.535.1668609345451;
-        Wed, 16 Nov 2022 06:35:45 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e0a:5da:d460:bf85:51f8:ca78:20c2])
-        by smtp.googlemail.com with ESMTPSA id x11-20020a5d54cb000000b002415dd45320sm15152354wrv.112.2022.11.16.06.35.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 06:35:44 -0800 (PST)
-From: Guillaume BRUN <the.cheaterman@gmail.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <robert.foss@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Cc: Guillaume BRUN <the.cheaterman@gmail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] drm: bridge: dw_hdmi: fix preference of RGB modes over YUV420
-Date: Wed, 16 Nov 2022 15:35:23 +0100
-Message-Id: <20221116143523.2126-1-the.cheaterman@gmail.com>
-X-Mailer: git-send-email 2.37.3
+        bh=z1rUWutKviuABCXhXY06evbTP8Qb/JN/vOssJGqNTh0=;
+        b=o0Ga3KfWtfs9nH+1Gzy+Rf3p8H21iOfWaVMcPiPsF7XRp0xbVpNfPQ6kEzOnf+A/xO
+         Z0Y3rmfxfJajPuovz1G1eI7601yNdj/h1hxCAHN2RDoyr4SOh1FCM10ppzAYGup2UnaV
+         iAWDkKH4sUbWW9OjNEMeqZogGgjz9qTQ6c9DbR9HL/jBYSr4NWrRzy9c3ews3pauPQd/
+         vfbf2zTHqAxAzcpaifLQxE9XY/4SuCtu7SYYY4ZesZENhihZDkuJgoYdJJxPk1qJIJcE
+         Zmn2itWMYqhw0L/pnwUG37u3RtbnREvfhur13ccsi41Z73UrO6w+imTp2qCP4oliOxT4
+         kYKQ==
+X-Gm-Message-State: ANoB5pmycFgZMsfjHzWysMLmAzhMMyrf/dLYlpj0BH26wbjXLLX/hsCn
+	s8bi6HKVCaairszidJ9HYPe4WhKMzUxG5J5cvscqZw==
+X-Google-Smtp-Source: AA0mqf4KePcqF8TL0F8T8aM/T0G+4+eIDf4h7ns0C0M7LyQfmaH5u4OKNFGZsyldv/vno2rUNzTGP/NdiKCTjKDJDZw=
+X-Received: by 2002:a63:121f:0:b0:442:ee11:4894 with SMTP id
+ h31-20020a63121f000000b00442ee114894mr21639035pgl.595.1668615228512; Wed, 16
+ Nov 2022 08:13:48 -0800 (PST)
 MIME-Version: 1.0
+References: <20221114093857.491695-1-peter.suti@streamunlimited.com>
+In-Reply-To: <20221114093857.491695-1-peter.suti@streamunlimited.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 16 Nov 2022 17:13:11 +0100
+Message-ID: <CAPDyKFqrCCtY_A072WswEFa3Bnz7EfMp40MRYtr3G7Jbq_hbTw@mail.gmail.com>
+Subject: Re: [PATCH] mmc: meson-gx: fix SDIO interrupt handling
+To: Peter Suti <peter.suti@streamunlimited.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221116_063550_965087_D9E4E9A9 
-X-CRM114-Status: GOOD (  10.40  )
+X-CRM114-CacheID: sfid-20221116_081350_704490_051A4960 
+X-CRM114-Status: GOOD (  21.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,49 +88,91 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cheap monitors sometimes advertise YUV modes they don't really have
-(HDMI specification mandates YUV support so even monitors without actual
-support will often wrongfully advertise it) which results in YUV matches
-and user forum complaints of a red tint to light colour display areas in
-common desktop environments.
+On Mon, 14 Nov 2022 at 10:40, Peter Suti <peter.suti@streamunlimited.com> wrote:
+>
+> With the interrupt support introduced in commit 066ecde sometimes the
+> Marvell-8987 wifi chip entered a deadlock using the marvell-sd-uapsta-8987
+> vendor driver. The cause seems to be that sometimes the interrupt handler
+> handles 2 IRQs and one of them disables the interrupts which are not reenabled
+> when all interrupts are finished. To work around this, disable all interrupts
+> when we are in the IRQ context and reenable them when the current IRQ is handled.
+>
+> Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
+>
+> Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 6e5ea0213b47..972024d57d1c 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -950,6 +950,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>         struct mmc_command *cmd;
+>         u32 status, raw_status;
+>         irqreturn_t ret = IRQ_NONE;
+> +       unsigned long flags;
+> +
+> +       spin_lock_irqsave(&host->lock, flags);
+> +       __meson_mmc_enable_sdio_irq(host->mmc, 0);
+>
+>         raw_status = readl(host->regs + SD_EMMC_STATUS);
+>         status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
+> @@ -958,11 +962,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>                 dev_dbg(host->dev,
+>                         "Unexpected IRQ! irq_en 0x%08lx - status 0x%08x\n",
+>                          IRQ_EN_MASK | IRQ_SDIO, raw_status);
+> -               return IRQ_NONE;
+> +               goto out_unlock;
 
-Moving the default RGB fall-back before YUV selection results in RGB
-mode matching in most cases, reducing complaints.
+This may end up re-enabling the sdio irqs, even if it was not enabled
+to start with. This is probably not what we want.
 
-Fixes: 6c3c719936da ("drm/bridge: synopsys: dw-hdmi: add bus format negociation")
-Signed-off-by: Guillaume BRUN <the.cheaterman@gmail.com>
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+>         }
+>
+>         if (WARN_ON(!host))
+> -               return IRQ_NONE;
+> +               goto out_unlock;
+>
+>         /* ack all raised interrupts */
+>         writel(status, host->regs + SD_EMMC_STATUS);
+> @@ -970,17 +974,16 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>         cmd = host->cmd;
+>
+>         if (status & IRQ_SDIO) {
+> -               spin_lock(&host->lock);
+> -               __meson_mmc_enable_sdio_irq(host->mmc, 0);
+>                 sdio_signal_irq(host->mmc);
+> -               spin_unlock(&host->lock);
+>                 status &= ~IRQ_SDIO;
+> -               if (!status)
+> +               if (!status) {
+> +                       spin_unlock_irqrestore(&host->lock, flags);
+>                         return IRQ_HANDLED;
+> +               }
+>         }
+>
+>         if (WARN_ON(!cmd))
+> -               return IRQ_NONE;
+> +               goto out_unlock;
+>
+>         cmd->error = 0;
+>         if (status & IRQ_CRC_ERR) {
+> @@ -1023,6 +1026,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>         if (ret == IRQ_HANDLED)
+>                 meson_mmc_request_done(host->mmc, cmd->mrq);
+>
+> +out_unlock:
+> +       __meson_mmc_enable_sdio_irq(host->mmc, 1);
+> +       spin_unlock_irqrestore(&host->lock, flags);
+> +
+>         return ret;
+>  }
+>
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 40d8ca37f5bc..aa51c61a78c7 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2720,6 +2720,9 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
- 	 * if supported. In any case the default RGB888 format is added
- 	 */
- 
-+	/* Default 8bit RGB fallback */
-+	output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
-+
- 	if (max_bpc >= 16 && info->bpc == 16) {
- 		if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
- 			output_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
-@@ -2753,9 +2756,6 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
- 	if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
- 		output_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
- 
--	/* Default 8bit RGB fallback */
--	output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
--
- 	*num_output_fmts = i;
- 
- 	return output_fmts;
--- 
-2.37.3
-
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
