@@ -4,91 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A7A8C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 13:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB0CC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 14:36:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5TxUmzO0bKT0ZeAlD0hdQuj2nDTcN8ggeegRmf1oxVM=; b=0q4VgjMIgRggBJ
-	xwVqGrOBkUQDjv/oSUfhQtp+kzAfF/EmoTy8JzLJtmHuQ7LN6naOAwe/zORzL9Ky0fwSO3Tx6fYGx
-	Dn2qLuxMxdp5Q5Q5CpK8h0tWxArr7c+Uh8I/ATAmMMkl8l0u7BYNzoeP4jUYZqmL5+aZRAv7CfqZ2
-	vEL//LFbiGcRs+4iDnFchYg0mSxgouTsaiaoIIrWMhlKSxJ/BQ1ECRv0iu8GgDvM+/LjD9k5bsFtI
-	Mm/N+Rm/jxlzmUvWq5R6i2ZDR/zlGaqKphwFUXj56s1iK2DkqB52P+6Uf+YFs/65k+TmNR7WgMwzD
-	0ZMDVU9BSO+rjUm2z9eA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SLI6VoVxsUiMQR4r8YYAmD7SoaQEVUKXlOYe0cl5NhE=; b=jv3S6mjkZDBSDo
+	p1AHzy/jCP+JeGFpegkBW1T8RTEhMnXVedrp+uIolou6kAl8yc27AsHPL9/5JfdC6uSLUyKfzY5eX
+	fVWdho2NBi780X7e0WpDv5Q+lUHKv/PZE+66mv0HVU65py0R/WjPcJbm7Jxv9vlmXLxXiU/nrV6He
+	ZhCHRiy3CeevVH7BJzbmKdIONVtV9y25ZH76bccc9N7OFwecWgaFrTeJHTqcIEh1XRB430B2njYok
+	kM42cfTw4Ow/gqxoOm8tbAtCh6NTNrQfkThzF3oz2eoX8LmcBGxFkBsLvujxNgh92NqI7WjJuidj4
+	KifHU41VbNGVCFCduYFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovIfv-0047cT-B2; Wed, 16 Nov 2022 13:41:59 +0000
-Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	id 1ovJW5-004ctU-Am; Wed, 16 Nov 2022 14:35:53 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovIfs-0047Wr-VV; Wed, 16 Nov 2022 13:41:58 +0000
-Received: by mail-pj1-x1030.google.com with SMTP id d13-20020a17090a3b0d00b00213519dfe4aso2406925pjc.2;
-        Wed, 16 Nov 2022 05:41:55 -0800 (PST)
+	id 1ovJW2-004cpg-Sb
+	for linux-amlogic@lists.infradead.org; Wed, 16 Nov 2022 14:35:52 +0000
+Received: by mail-wr1-x433.google.com with SMTP id w14so30218452wru.8
+        for <linux-amlogic@lists.infradead.org>; Wed, 16 Nov 2022 06:35:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2oiJdwae1A1xSDrJX/8Ai0D9wMJGorNAzyo1cxFVuFg=;
-        b=IFOWVUc9Q//uV04jXe5blsnXnYmAjlTPYUbIt3GuANBVZYoyn9L72i8qNB+FhH+q5K
-         VDUc0Pj4/f1t7esAG/K3G4XAr1LbBQumraUNb6/7PQIHwT0Od1mQwuviBM8w1TQolzLI
-         2OeW3Fn/79WhkC525L+NoL3RZctlrNA7AXKCSB62vFwFFSyN90T8mp1fQ+VO04RLTV5/
-         wwR9Hi0EeO0juqed8omd+k1VRTIiVPZOV3UCkaZitKaXU0neFBFyWpHVEgzcWJuz1LyM
-         WTH99mMHSMVKqhyA9C57Udm1JBRAjNAd4eB+Dacel3RbqN2hNn+eSr8cNQSJZrBwBCt8
-         Y2EQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z8czfhSUs3mWHeIfFdLH5/G0a3Uk3RSmYGgvVFUZjxw=;
+        b=WGzXTljvZSs2p0IjXnKub2fXvs+by26DaMNPHNseJK45SXzjN2mpHV2nhd5fKcEzUd
+         FxuC7mCyzPTDLpcs9+NvZw/9f3yKf5aMMPfu8xZ0EooP3sadwjoKmJQIu4kflQL6CSHm
+         3mmk+vdddaNM8D7JGuOalFOsbuiiNyj8JYnY6upvijkpjzOqH6D3L5M+I87kCYmwj6Qr
+         PDHcRDHRBVD9EhBevRNBQXWcMgSIyBCz23/yjiEgPggheZs0hqVzZAVRSOxz++e8HEEe
+         su8WM+SnpCoQWwhJnDVoUmTLsNLqMz2pBd+0Ixw/wVgwV1Dj+Mcpr39k4ZwAjv2ULZR0
+         fVuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2oiJdwae1A1xSDrJX/8Ai0D9wMJGorNAzyo1cxFVuFg=;
-        b=g9CEFTjXxEl6xz/+vkh3b26moPHWfqhAMSgzdyOxN+a0LMnhmcDMYx6tAdXjW8SzXk
-         qvFTfMgncmZy5MNGbYjV9Iwxg/GxC6NTz7iMy8bbgnOGtAdsNobxVLxIW4SQ10ntEI6j
-         0Za+h1G74DdCleLamaT0X+tgqiXv6Iz7ytl4x2i+7XmLpryvRqfLtSHVoJHZntFtSQt6
-         tZ1Emi2qomVCDmCcvCBR/g5UpWLLa+InwifaF3WVvNoqiz0sDkddUoH+ZB/Rq1ininQx
-         HoeV5vIO8HrW7Et/B6o00gQE1VTja2E8PZiMGXaSeOmSAkBeLEVoQMbuYgE5C3XWFJvi
-         pqJw==
-X-Gm-Message-State: ANoB5pnRRs4ty37dsNiZ18K4hnlK8iijSZqA3lM75n9K/bymzR4QaQaS
-	T51OqTIY4mBeovpZ1JWbOIE=
-X-Google-Smtp-Source: AA0mqf6GQ+JgpcAi4UahQkWMET9Ne7221Qrmg0nhjTJLGJiDdR5oOO7WyKzI/O9+FGYQ2kysUAeE3g==
-X-Received: by 2002:a17:90a:aa11:b0:20a:cbb0:3c9b with SMTP id k17-20020a17090aaa1100b0020acbb03c9bmr3792530pjq.81.1668606115053;
-        Wed, 16 Nov 2022 05:41:55 -0800 (PST)
-Received: from [192.168.43.80] (subs02-180-214-232-84.three.co.id. [180.214.232.84])
-        by smtp.gmail.com with ESMTPSA id gi18-20020a17090b111200b00205db4ff6dfsm1560135pjb.46.2022.11.16.05.41.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 05:41:54 -0800 (PST)
-Message-ID: <cb64a153-9196-e7c4-14e0-bf623ef79850@gmail.com>
-Date: Wed, 16 Nov 2022 20:41:47 +0700
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z8czfhSUs3mWHeIfFdLH5/G0a3Uk3RSmYGgvVFUZjxw=;
+        b=rDbt7Nw3g7rczlRLBu6NG0s676TQb941/+OCbLXyqMGYgBFKkS9SYrcXisx0oEr2qs
+         yOZTfALVwuC7Zw4enDoAu/aceq0l7+2ddNmCNajo5c+Krn9iXWipimPFOsShAGcB+28v
+         0z0gIKjo7grTZgKHdAn7856qTvT4gx2VFz6W7cNF/Odcj6A+kq3p5t38FJr/MhEt7Swc
+         pRF22ojfKtiQS+DA8xfVNL6G8s8VjNKmQ257brjXPAcqhjBJcqniItLXU8Am9S9krJlV
+         vOBa+vYtpMeBKwawgq9eE7Ntb1c6pjfNTXqsvOCKxzXRf/9PhyQ+6gEQ3YRnpFI+o8+V
+         wqAQ==
+X-Gm-Message-State: ANoB5pnB3w3XXmAfj7oH8UGgiWJKyr1qGi8bkGy5EMk8+1iSHDR2BnIn
+	iXz+7GVDg+FDvKg00D1tjE8=
+X-Google-Smtp-Source: AA0mqf5598TxLDqy4tIWUpYjpY0aL3kt7HPLQgal2MvvcizUGXiBe1ztwx8Cofhygfbkrm1iEOsnCQ==
+X-Received: by 2002:a5d:658b:0:b0:22e:3397:2e96 with SMTP id q11-20020a5d658b000000b0022e33972e96mr13714180wru.535.1668609345451;
+        Wed, 16 Nov 2022 06:35:45 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:5da:d460:bf85:51f8:ca78:20c2])
+        by smtp.googlemail.com with ESMTPSA id x11-20020a5d54cb000000b002415dd45320sm15152354wrv.112.2022.11.16.06.35.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 06:35:44 -0800 (PST)
+From: Guillaume BRUN <the.cheaterman@gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <robert.foss@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Cc: Guillaume BRUN <the.cheaterman@gmail.com>,
+	Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] drm: bridge: dw_hdmi: fix preference of RGB modes over YUV420
+Date: Wed, 16 Nov 2022 15:35:23 +0100
+Message-Id: <20221116143523.2126-1-the.cheaterman@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v10 2/2] docs/perf: Add documentation for the Amlogic G12
- DDR PMU
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jonathan Corbet <corbet@lwn.net>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Shuai Xue <xueshuai@linux.alibaba.com>, John Garry <john.garry@huawei.com>,
- Wan Jiabing <wanjiabing@vivo.com>, Chris Healy <cphealy@gmail.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Kelvin Zhang <kelvin.zhang@amlogic.com>, Chris Healy <healych@amazon.com>
-References: <20221116003133.1049346-1-jiucheng.xu@amlogic.com>
- <20221116003133.1049346-2-jiucheng.xu@amlogic.com>
- <Y3SwIPnDvEOlL+Mz@debian.me>
- <7bb5e9ee-358b-ce6f-2cb5-a6b6b558c0a9@amlogic.com>
-Content-Language: en-US
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <7bb5e9ee-358b-ce6f-2cb5-a6b6b558c0a9@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221116_054157_040624_B076A457 
-X-CRM114-Status: UNSURE (   7.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221116_063550_965087_D9E4E9A9 
+X-CRM114-Status: GOOD (  10.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,19 +97,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/16/22 16:56, Jiucheng Xu wrote:
-> Sorry for my poor English. Your writing looks very elegant. I will apply your modification in next version.
-> 
+Cheap monitors sometimes advertise YUV modes they don't really have
+(HDMI specification mandates YUV support so even monitors without actual
+support will often wrongfully advertise it) which results in YUV matches
+and user forum complaints of a red tint to light colour display areas in
+common desktop environments.
 
-Please don't top-post, reply inline with appropriate context
-instead.
+Moving the default RGB fall-back before YUV selection results in RGB
+mode matching in most cases, reducing complaints.
 
-Also, wrap your message text within 72-80 characters.
+Fixes: 6c3c719936da ("drm/bridge: synopsys: dw-hdmi: add bus format negociation")
+Signed-off-by: Guillaume BRUN <the.cheaterman@gmail.com>
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Thanks.
-
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 40d8ca37f5bc..aa51c61a78c7 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2720,6 +2720,9 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+ 	 * if supported. In any case the default RGB888 format is added
+ 	 */
+ 
++	/* Default 8bit RGB fallback */
++	output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
++
+ 	if (max_bpc >= 16 && info->bpc == 16) {
+ 		if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
+ 			output_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
+@@ -2753,9 +2756,6 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+ 	if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
+ 		output_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
+ 
+-	/* Default 8bit RGB fallback */
+-	output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
+-
+ 	*num_output_fmts = i;
+ 
+ 	return output_fmts;
 -- 
-An old man doll... just what I always wanted! - Clara
+2.37.3
 
 
 _______________________________________________
