@@ -4,49 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E539AC433FE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Nov 2022 08:38:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C7EC43217
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Nov 2022 08:48:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S6r1xfgOOUDhncXm9CM0PvGl6Bo0A4D6O0XrTxof3Cg=; b=syUOq+XBz+g/HV
-	R9fQ5nOhbGPr0p3tG+WVJmIVtu/OYhOl5VIy/JjtFnDtTaiiKAIr3yyxDz9GtMKGgmYAz8ynfR+ds
-	Bi1zUxt1Rovt4ZLBN7AVeJ0kTVTqSHwniWmoDEF6KMxvGtiYjRGDOOe1Sp+oAi8QmH85YPR4b/MKz
-	1hkClYTP0610IFBYMzqUTsRK8kVdD1r4vYylxOTHi8SpoRfXepEFEZ+aDoqpefOvJ6Q10zAKAXYPd
-	4zTReUla9UEfmFVpxWzwdilRJkN7Ea6R3AqxL3I6kCgwD2L7AB/uJ408Qsiz59j5bckoxUbtqEN2X
-	XyT4OM905/EKRKULmm3w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:Date:From:MIME-Version
+	:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vs+z+CNFFqR18Uhb8IsYoTaY9PBLGLkEHZajwcrTntc=; b=B998mz/vM8oV/r
+	hUiwudledgxUMFiHgGTU1nG6bS9f2alE2LFOOP9fYUUXOF8xIZqDK8gz4JQumuXdLl3113/NCCB1Y
+	Y/kDhipVRsE5rjurYu+wgqzopVGJTFRYRFq6Cv4h3yOF6ts7H1/bpI/UjhLjsm26yBIZbg2xqHQby
+	KdkhpqRFLBbBTSzfIja0SNtuXFC7wSQl5Etemrm4heZonBS4R0MBarGMoehn1/SWaZ0Eij+4xnSqX
+	Kw0TyePiqigsjWp6lNA6JGHSC1OBYxrIkUsoq/JKoSX275/JL8mbvaC+4I/ni0phuweF/UfTkjaXy
+	RssNR9h8n/bjFmNzzcQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovaPA-00BgNQ-TC; Thu, 17 Nov 2022 08:37:52 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1ovaZ0-00BoJt-1Z; Thu, 17 Nov 2022 08:48:02 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovaP3-00BgFi-16; Thu, 17 Nov 2022 08:37:51 +0000
-Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 17 Nov 2022
- 16:37:42 +0800
-From: Jiucheng Xu <jiucheng.xu@amlogic.com>
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>, Will Deacon <will@kernel.org>, Mark
- Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jianxin Pan <jianxin.pan@amlogic.com>, Kelvin Zhang
-	<kelvin.zhang@amlogic.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v11 3/3] dt-binding: perf: Add Amlogic DDR PMU
-Date: Thu, 17 Nov 2022 16:34:17 +0800
-Message-ID: <20221117083419.2084264-3-jiucheng.xu@amlogic.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
-References: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
+	id 1ovaYv-00BoCW-Sm
+	for linux-amlogic@lists.infradead.org; Thu, 17 Nov 2022 08:48:00 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id s12so1536531edd.5
+        for <linux-amlogic@lists.infradead.org>; Thu, 17 Nov 2022 00:47:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=5sycVuNTi+/lWP5w5Y+7Py7HL44YtQg/RIL/+2UUkSY=;
+        b=LerjEkGDet8twDf7kawTGEK6yjpahMcCxhAgmIj+Uhp5Y2ToZA2vL105irqZLSsKfU
+         c+LQ37p+1ejyh2oDDCwlx+71iys9g+yYbxQOSVTdRIPpMZKMebD3L6vbY7xvoYTj2ysA
+         dA+1tq50hVlm9jtGhn6ygV7yQvatY5f62oJr0EllmSAhG1qR9mcE7PHFmrOHZLF2HrTe
+         NXS/KTJ2K6dBfbV5Zar4Nm8GSb5Ol6M2VVfam7vqizfUetbz5uvxzdbINt9a3yc7z/yl
+         RJqyEWRb93Q8tblau3bK9Yl/7ROUCkYlh+IeZDpHfHy3HSWP8vcLEJ/nu4cLNNs3gNDH
+         K6HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5sycVuNTi+/lWP5w5Y+7Py7HL44YtQg/RIL/+2UUkSY=;
+        b=GhwiQLgA0m1wNsRnxWs3MqMlNDgpd7/Al1K18rxH0h5tEplmo8+O70iUrulNRcxux+
+         hZGht+FFUr6cPUga0YsNuFrsdVtF9PUkMA68rZW4EHCy0GAUQ1uQP7sn8XzMJSHCbeEs
+         5mVwRFa0eDsiCWyp12M3ztuury50bYzePvCKSOsKG1gPqk4xJHvKoX4JUqjZ/az8fx0b
+         jj7CVzTpCQr6O3h+f5KkO5CGGDnhQThoPWPgP0sP/84BrHQ8/EieYlELOxJ90ouTos2i
+         s9+/lDPczLKjW0gr20rcv6/3heHNdPeNctXDagoyggR1T/7hqj2dSF8YxuCt4Tby9zo7
+         i2GQ==
+X-Gm-Message-State: ANoB5pljy7c9ZDWyB6z4k/tLazhya/uUPUQcCxUMJxfTfZ4EIOlHD1Qz
+	7xkuB6NKTxwQAdMVQwcjrKFhmA==
+X-Google-Smtp-Source: AA0mqf7JP9+5lVRU9EXpUjP4FKM/FMDReRATO9BwVt89A/oOf+IKkEbT+OEv6hzjSAn10BUJHykrPQ==
+X-Received: by 2002:a05:6402:3895:b0:468:15f1:54b5 with SMTP id fd21-20020a056402389500b0046815f154b5mr1306318edb.8.1668674871621;
+        Thu, 17 Nov 2022 00:47:51 -0800 (PST)
+Received: from [127.0.1.1] ([2a0e:41a:894f:0:7a60:27eb:954c:5ab1])
+        by smtp.gmail.com with ESMTPSA id s22-20020a1709067b9600b0077205dd15basm77332ejo.66.2022.11.17.00.47.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 00:47:51 -0800 (PST)
+Subject: [PATCH 0/3] Fix SPICC and ILI9486 drivers
 MIME-Version: 1.0
-X-Originating-IP: [10.88.11.200]
+X-b4-tracking: H4sIACr1dWMC/w3LSQqAMAwAwK9IzhZMXVA/I11SDZQqDYpQ/Ls9zmEKCGUmgbUpkOlh4TNVYNuAO0
+ zaSbGvBt1pjYiTkqUb300u3jjyMsyTMuTHIYTeWY1QnzVCymaT3FFnumP8vh/jeo0xaAAAAA==
+From: Carlo Caione <ccaione@baylibre.com>
+Date: Thu, 17 Nov 2022 09:47:38 +0100
+Message-Id: <20221116-s905x_spi_ili9486-v1-0-630401cb62d5@baylibre.com>
+To: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org, dri-devel@lists.freedesktop.org, Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221117_003745_117497_115F43AD 
-X-CRM114-Status: GOOD (  13.53  )
+X-CRM114-CacheID: sfid-20221117_004758_186240_013AFA50 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,130 +92,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add binding documentation for the Amlogic G12 series DDR
-performance monitor unit.
+This patchset is trying to fix problems seen on S905X boards when interfacing
+with an ILI9486 equipped SPI panel.
 
-Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The color corruption and the performance issues are actually due to two
+different problems in the SPICC driver and in the ILI9486 tiny DRM driver.
+
+We try to fix both in the same patcheset to be able to correctly use the SPI
+panel again.
+
+To: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Mark Brown <broonie@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-spi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+
 ---
-Changes v10 -> v11:
-  - No change
+Carlo Caione (3):
+      drm/tiny: rpi-lcd-35: Enable driver module autoloading
+      drm/tiny: ili9486: Do not assume 8-bit only SPI controllers
+      spi: meson-spicc: Lower CS between bursts
 
-Changes v9 -> v10:
-  - No change
-
-Changes v8 -> v9:
-  - No change
-
-Changes v7 -> v8:
-  - No change
-
-Changes v6 -> v7:
-  - No change
-
-Changes v5 -> v6:
-  - remove blank line
-
-Changes v4 -> v5:
-  - Remove "items" in compatible since have only one item
-  - Condense description of reg
-  - Rename node
-  - Split one reg into two reg items.
-  - Binding go first
- 
-Changes v3 -> v4:
-  - Fix "$id: relative path/filename doesn't match actual path or
-    filename" warning
-
-Changes v2 -> v3:
-  - Remove oneOf
-  - Add descriptions
-  - Fix compiling warning
-
-Changes v1 -> v2:
-  - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
-  - Delete "model", "dmc_nr", "chann_nr" new properties
-  - Fix compiling error
+ drivers/gpu/drm/tiny/ili9486.c | 14 ++++++++++----
+ drivers/spi/spi-meson-spicc.c  |  6 ++++++
+ 2 files changed, 16 insertions(+), 4 deletions(-)
 ---
- .../bindings/perf/amlogic,g12-ddr-pmu.yaml    | 54 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+base-commit: 15f3bff12cf6a888ec2ad39652828c60e6836b3d
+change-id: 20221116-s905x_spi_ili9486-aed54ff3cb21
 
-diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
-new file mode 100644
-index 000000000000..50f46a6898b1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic G12 DDR performance monitor
-+
-+maintainers:
-+  - Jiucheng Xu <jiucheng.xu@amlogic.com>
-+
-+description: |
-+  Amlogic G12 series SoC integrate DDR bandwidth monitor.
-+  A timer is inside and can generate interrupt when timeout.
-+  The bandwidth is counted in the timer ISR. Different platform
-+  has different subset of event format attribute.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,g12a-ddr-pmu
-+      - amlogic,g12b-ddr-pmu
-+      - amlogic,sm1-ddr-pmu
-+
-+  reg:
-+    items:
-+      - description: DMC bandwidth register space.
-+      - description: DMC PLL register space.
-+
-+  interrupts:
-+    items:
-+      - description: The IRQ of the inside timer timeout.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    pmu {
-+        #address-cells=<2>;
-+        #size-cells=<2>;
-+
-+        pmu@ff638000 {
-+            compatible = "amlogic,g12a-ddr-pmu";
-+            reg = <0x0 0xff638000 0x0 0x100>,
-+                  <0x0 0xff638c00 0x0 0x100>;
-+            interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b76c4deddf22..8b102a928081 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1099,6 +1099,7 @@ L:	linux-amlogic@lists.infradead.org
- S:	Supported
- W:	http://www.amlogic.com
- F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
-+F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
+Best regards,
 -- 
-2.25.1
+Carlo Caione
 
 
 _______________________________________________
