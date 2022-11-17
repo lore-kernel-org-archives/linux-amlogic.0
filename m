@@ -4,74 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A5BC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Nov 2022 16:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78764C4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Nov 2022 08:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jJAczS/1mzpikrM6GB77N4X5vbdHkgrXptiVo/ijfe0=; b=Q1NraTQK2LvLu6
-	cLJpKcSTYh8VPYaB/a9cd3xr7DRGni98sVHEq3i0kiVHiuzsm6JVKkOBv4fIO8H8HJm/2U3ZVm2Jm
-	ftoRex6/yd6ioYgEkjqrK2VfftUfquvg/AFHJRoKw96+iBCx1rgF69dsSbjiB5q1qw3RdAlpHGf0w
-	pZacu7KzhrxVtltBz1MA7XuNz0Rkc6cAlniQwcEu6bER7B5e/o0gMjG8Nn19KI494J0hFoHTejB/o
-	2su6wL5757g72UygQGHr9fhwiKNrlDiylJVo4HPqyrm0Ifk7LgoWCxa2/1j7MZuz4QN/vmv3tnAdy
-	cxzaUFyGl0KxNWSlk0dg==;
+	List-Owner; bh=c+t7tMxKE+EGB/RvGJZAhiYvMkVem0pYcqbQag2g0ik=; b=a8/pOZQvbke3+N
+	haqwa/zZ8yW4mqN9NjtWuXVvN9K0ndsXQCH6Qy5DiVO/dtf7HXodDkuvrQxeasnbpBAbHZzgxLzV3
+	vSshr/QmKHlNMks1/PchzZXVb+965J0rBJycSQAXMbS2o1MztIR3/6OdLeF3KjVAz2JBuqvaIsUuB
+	RDI2w3gLFg4wcMgfA/kLUY4wFTPU328BcJPE3NEyyjid1xMvjnsqAlz20hbEKXuRS5bmX+tqrw7/t
+	Xs9uTXxdKcOZTvaP/tG4sJE0LHxW+E/w9gh8FKFtUOehrGpDQW7IXVhQ3obAwEMlJn0UEDZftpKln
+	4JgbqFVlRQqzbL5GcO3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovL35-005l07-Ec; Wed, 16 Nov 2022 16:14:03 +0000
-Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
+	id 1ovaOi-00Bfw7-Jx; Thu, 17 Nov 2022 08:37:24 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovL2s-005kuC-L7
-	for linux-amlogic@lists.infradead.org; Wed, 16 Nov 2022 16:13:52 +0000
-Received: by mail-pg1-x536.google.com with SMTP id 6so17085028pgm.6
-        for <linux-amlogic@lists.infradead.org>; Wed, 16 Nov 2022 08:13:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1rUWutKviuABCXhXY06evbTP8Qb/JN/vOssJGqNTh0=;
-        b=LoCqcxBb/0A4en6YJPudBTBwAugncPJfF4IIlmuptJxlJ3fqpW6s+jVYF7QTFC/tpz
-         MgbIKcER8u/5z0q3veC4zk5Ucxe4fY0jOdf3ukThvDpy7ZrNkn1y0zk6CxNLh/h8NWQw
-         cb5fhTthKZP5VLvgSjrnkYYCmMQM15HBDbfi+PqXrpr5E+kBIph24rd+iZ8AmHHR0c2p
-         Ir31S94fzoErmJVIr794nJtoXRNSTG0rLvKNPL9mOb3qiaF/LPoEPDKezCt5myXTS0bm
-         BmDC9yr6HbGAt1JLqg++DlYgGuepc4iGIbbHiA1t29PN8a+DvALjHVeLclVByZBAN/4S
-         WmAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z1rUWutKviuABCXhXY06evbTP8Qb/JN/vOssJGqNTh0=;
-        b=o0Ga3KfWtfs9nH+1Gzy+Rf3p8H21iOfWaVMcPiPsF7XRp0xbVpNfPQ6kEzOnf+A/xO
-         Z0Y3rmfxfJajPuovz1G1eI7601yNdj/h1hxCAHN2RDoyr4SOh1FCM10ppzAYGup2UnaV
-         iAWDkKH4sUbWW9OjNEMeqZogGgjz9qTQ6c9DbR9HL/jBYSr4NWrRzy9c3ews3pauPQd/
-         vfbf2zTHqAxAzcpaifLQxE9XY/4SuCtu7SYYY4ZesZENhihZDkuJgoYdJJxPk1qJIJcE
-         Zmn2itWMYqhw0L/pnwUG37u3RtbnREvfhur13ccsi41Z73UrO6w+imTp2qCP4oliOxT4
-         kYKQ==
-X-Gm-Message-State: ANoB5pmycFgZMsfjHzWysMLmAzhMMyrf/dLYlpj0BH26wbjXLLX/hsCn
-	s8bi6HKVCaairszidJ9HYPe4WhKMzUxG5J5cvscqZw==
-X-Google-Smtp-Source: AA0mqf4KePcqF8TL0F8T8aM/T0G+4+eIDf4h7ns0C0M7LyQfmaH5u4OKNFGZsyldv/vno2rUNzTGP/NdiKCTjKDJDZw=
-X-Received: by 2002:a63:121f:0:b0:442:ee11:4894 with SMTP id
- h31-20020a63121f000000b00442ee114894mr21639035pgl.595.1668615228512; Wed, 16
- Nov 2022 08:13:48 -0800 (PST)
+	id 1ovaOa-00Bfnp-7I; Thu, 17 Nov 2022 08:37:17 +0000
+Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 17 Nov 2022
+ 16:37:13 +0800
+From: Jiucheng Xu <jiucheng.xu@amlogic.com>
+To: Jonathan Corbet <corbet@lwn.net>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: Jianxin Pan <jianxin.pan@amlogic.com>, Kelvin Zhang
+	<kelvin.zhang@amlogic.com>, Chris Healy <healych@amazon.com>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v11 2/3] docs/perf: Add documentation for the Amlogic G12 DDR PMU
+Date: Thu, 17 Nov 2022 16:34:16 +0800
+Message-ID: <20221117083419.2084264-2-jiucheng.xu@amlogic.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
+References: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
-References: <20221114093857.491695-1-peter.suti@streamunlimited.com>
-In-Reply-To: <20221114093857.491695-1-peter.suti@streamunlimited.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 16 Nov 2022 17:13:11 +0100
-Message-ID: <CAPDyKFqrCCtY_A072WswEFa3Bnz7EfMp40MRYtr3G7Jbq_hbTw@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-gx: fix SDIO interrupt handling
-To: Peter Suti <peter.suti@streamunlimited.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Originating-IP: [10.88.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221116_081350_704490_051A4960 
-X-CRM114-Status: GOOD (  21.71  )
+X-CRM114-CacheID: sfid-20221117_003716_298437_432B42D4 
+X-CRM114-Status: GOOD (  14.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,91 +63,150 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 14 Nov 2022 at 10:40, Peter Suti <peter.suti@streamunlimited.com> wrote:
->
-> With the interrupt support introduced in commit 066ecde sometimes the
-> Marvell-8987 wifi chip entered a deadlock using the marvell-sd-uapsta-8987
-> vendor driver. The cause seems to be that sometimes the interrupt handler
-> handles 2 IRQs and one of them disables the interrupts which are not reenabled
-> when all interrupts are finished. To work around this, disable all interrupts
-> when we are in the IRQ context and reenable them when the current IRQ is handled.
->
-> Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
->
-> Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 21 ++++++++++++++-------
->  1 file changed, 14 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 6e5ea0213b47..972024d57d1c 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -950,6 +950,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->         struct mmc_command *cmd;
->         u32 status, raw_status;
->         irqreturn_t ret = IRQ_NONE;
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&host->lock, flags);
-> +       __meson_mmc_enable_sdio_irq(host->mmc, 0);
->
->         raw_status = readl(host->regs + SD_EMMC_STATUS);
->         status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
-> @@ -958,11 +962,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->                 dev_dbg(host->dev,
->                         "Unexpected IRQ! irq_en 0x%08lx - status 0x%08x\n",
->                          IRQ_EN_MASK | IRQ_SDIO, raw_status);
-> -               return IRQ_NONE;
-> +               goto out_unlock;
+Add a user guide to show how to use DDR PMU to
+monitor DDR bandwidth on Amlogic G12 SoC
 
-This may end up re-enabling the sdio irqs, even if it was not enabled
-to start with. This is probably not what we want.
+Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Reviewed-by: Chris Healy <healych@amazon.com>
+---
+Changes v10 -> v11:
+  - Reword perf documentation
 
->         }
->
->         if (WARN_ON(!host))
-> -               return IRQ_NONE;
-> +               goto out_unlock;
->
->         /* ack all raised interrupts */
->         writel(status, host->regs + SD_EMMC_STATUS);
-> @@ -970,17 +974,16 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->         cmd = host->cmd;
->
->         if (status & IRQ_SDIO) {
-> -               spin_lock(&host->lock);
-> -               __meson_mmc_enable_sdio_irq(host->mmc, 0);
->                 sdio_signal_irq(host->mmc);
-> -               spin_unlock(&host->lock);
->                 status &= ~IRQ_SDIO;
-> -               if (!status)
-> +               if (!status) {
-> +                       spin_unlock_irqrestore(&host->lock, flags);
->                         return IRQ_HANDLED;
-> +               }
->         }
->
->         if (WARN_ON(!cmd))
-> -               return IRQ_NONE;
-> +               goto out_unlock;
->
->         cmd->error = 0;
->         if (status & IRQ_CRC_ERR) {
-> @@ -1023,6 +1026,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->         if (ret == IRQ_HANDLED)
->                 meson_mmc_request_done(host->mmc, cmd->mrq);
->
-> +out_unlock:
-> +       __meson_mmc_enable_sdio_irq(host->mmc, 1);
-> +       spin_unlock_irqrestore(&host->lock, flags);
-> +
->         return ret;
->  }
->
+Changes v9 -> v10:
+  - Rebase code
+  - Add "Reviewed-by" tag
 
-Kind regards
-Uffe
+Changes v8 -> v9:
+  - No change
+
+Changes v7 -> v8:
+  - No change
+
+Changes v6 -> v7:
+  - Drop the Reported-by tag
+  - Fix spelling error
+
+Changes v5 -> v6:
+  - No change
+
+Changes v4 -> v5:
+  - Fix building warning
+
+Changes v3 -> v4:
+  - No change
+
+Changes v2 -> v3:
+  - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
+
+Changes v1 -> v2:
+  - Nothing was changed
+---
+ Documentation/admin-guide/perf/index.rst      |  1 +
+ .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 72 insertions(+)
+ create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
+
+diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
+index 793e1970bc05..c767e03e4d34 100644
+--- a/Documentation/admin-guide/perf/index.rst
++++ b/Documentation/admin-guide/perf/index.rst
+@@ -19,3 +19,4 @@ Performance monitor support
+    arm_dsu_pmu
+    thunderx2-pmu
+    alibaba_pmu
++   meson-ddr-pmu
+diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+new file mode 100644
+index 000000000000..8e71be1d6346
+--- /dev/null
++++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+@@ -0,0 +1,70 @@
++.. SPDX-License-Identifier: GPL-2.0
++
++===========================================================
++Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
++===========================================================
++
++The Amlogic Meson G12 SoC contains a bandwidth monitor inside DRAM controller.
++The monitor includes 4 channels. Each channel can count the request accessing
++DRAM. The channel can count up to 3 AXI port simultaneously. It can be helpful
++to show if the performance bottleneck is on DDR bandwidth.
++
++Currently, this driver supports the following 5 perf events:
++
+++ meson_ddr_bw/total_rw_bytes/
+++ meson_ddr_bw/chan_1_rw_bytes/
+++ meson_ddr_bw/chan_2_rw_bytes/
+++ meson_ddr_bw/chan_3_rw_bytes/
+++ meson_ddr_bw/chan_4_rw_bytes/
++
++meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are channel-specific events.
++Each channel support filtering, which can let the channel to monitor
++individual IP module in SoC.
++
++Below are DDR access request event filter keywords:
++
+++ arm             - from CPU
+++ vpu_read1       - from OSD + VPP read
+++ gpu             - from 3D GPU
+++ pcie            - from PCIe controller
+++ hdcp            - from HDCP controller
+++ hevc_front      - from HEVC codec front end
+++ usb3_0          - from USB3.0 controller
+++ hevc_back       - from HEVC codec back end
+++ h265enc         - from HEVC encoder
+++ vpu_read2       - from DI read
+++ vpu_write1      - from VDIN write
+++ vpu_write2      - from di write
+++ vdec            - from legacy codec video decoder
+++ hcodec          - from H264 encoder
+++ ge2d            - from ge2d
+++ spicc1          - from SPI controller 1
+++ usb0            - from USB2.0 controller 0
+++ dma             - from system DMA controller 1
+++ arb0            - from arb0
+++ sd_emmc_b       - from SD eMMC b controller
+++ usb1            - from USB2.0 controller 1
+++ audio           - from Audio module
+++ sd_emmc_c       - from SD eMMC c controller
+++ spicc2          - from SPI controller 2
+++ ethernet        - from Ethernet controller
++
++
++Examples:
++
++  + Show the total DDR bandwidth per seconds:
++
++    .. code-block:: bash
++
++       perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
++
++
++  + Show individual DDR bandwidth from CPU and GPU respectively, as well as
++    sum of them:
++
++    .. code-block:: bash
++
++       perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
++       perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
++       perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 415eaa30c523..b76c4deddf22 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1098,6 +1098,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+ W:	http://www.amlogic.com
++F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
+ F:	drivers/perf/amlogic/
+ F:	include/soc/amlogic/
+ 
+-- 
+2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
