@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3B08C433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5DA3C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=II0HpR7iFdjUqq7or3SFQHhLMvR5F6Ri7eYFGFQ6G0g=; b=esH8/GBQ5XIaOa
-	7bPpl89rhPKDi4pnwdlz5+xvnZdpiWREF7n6Vqc/kdgRFWqX/jChC3Y8waqQVljjg3MyeIvWauboV
-	/BYQzWNSs70sSbf4io9BDteKZ29Rr2V7DsJLwahAEaI0+Yl0MXUHbLk+gFNmOq0rgtQg1+iZR6Jdt
-	zsWDdSkkq3/OZVRTvT5uPzOolmQ5IC6fwUQA0zzOUTdyaEtv4ubZPnBXO5rnJu7hXYiB1g6K7WoAV
-	qqV94nwUbciHO+aR/wolwBqSKXYM6ihd2ba5zMxvRmlqiw+/v1nIHmWJba1VP9ghMKKeGegu9d42l
-	ayeG0C6sLp7VESuLu9iA==;
+	List-Owner; bh=ccpT7053BWQ+JklF4fwuDwcnTf/QBSk0yTcL4ZP0G74=; b=zt6jPQWVCOeH8O
+	9CSTOJSh8gQYPB6UYEVw+MRkfbnW4gOyvM/8c3nj1WaFBrnTQXaCjM8J6mmy1h0fXj6dkv/4m/CLZ
+	MFBZFN1SEei4Y1sjPmdEIEP2dFqnom8Tq8+j6DIL79eaQ3CzavYC2qJnxr+J9WTxGmIk5H/WxEhR1
+	avRxVWrkAzMtLSCf/xtqsL55Ehb6KI26F5SIrmiBEO/l6J1Xb9wnz5IiYwM68nIF3YXQq23xE0z5Y
+	Ez5wcQH+QtaESBPBGDUP5JxdhGwcskb50yQSw2I0U/ig4nJz3Gf0aJ/X8EhuAnMuJEThRxwedIgQ6
+	UxIcsMhprr3db7I2P5XA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow3ZQ-0052Au-7L; Fri, 18 Nov 2022 15:46:24 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1ow3Zl-0052LX-8S; Fri, 18 Nov 2022 15:46:45 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow2Qw-004Tap-FV
-	for linux-amlogic@lists.infradead.org; Fri, 18 Nov 2022 14:33:38 +0000
-Received: by mail-wr1-x433.google.com with SMTP id j15so8859972wrq.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 18 Nov 2022 06:33:33 -0800 (PST)
+	id 1ow2R2-004TeD-Iy
+	for linux-amlogic@lists.infradead.org; Fri, 18 Nov 2022 14:33:44 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id t1so3741268wmi.4
+        for <linux-amlogic@lists.infradead.org>; Fri, 18 Nov 2022 06:33:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Y27Dxuej0JJOzYqREuZ7buGqEQSIRreRsNAzFXY30l0=;
-        b=or9xiwYvnOBoUw+/IBUWQko0HRB0n/YeH7CUxy44N4SxiFrHZnEJKIE2DPEbYWoUXk
-         ZZmCWNBh5KbAvGw90Y4UgrJcZc+UlXC2CPjxHgm0FkkqNmtWFEDa7u6qtTGVTpTnPfA9
-         ubG0wkELzgV2gRQCCool5kNX4GooCiy4HVWdtyXmtdcVUeXyXNYeQxIwiSIsIhxJRk9i
-         KZKoHyK25p+bVfA4TvjcWIxqNg3os2kNiaLU6I6sE27++JX5UWb7yU/HnZLEaJrP3a1w
-         I22lUfa6AUCe5UEAzemXMt83a7n/HSnGusArdBOYRU5BluvmOoDBpuBG4wiU2n3oF11M
-         RGFg==
+        bh=I8lUWDOeXjkH9UHmo38dtGs19w/rqs9Sy4VJSCBQlaI=;
+        b=oDWz/pVsf+cFAzOAOBv41AAAHEW5ljeCUEwzki0jVdZ1JNRLYDVZqUUxfbHny9q643
+         fO4ZpGeaHPCMjmBzrPADNC+gBiHTXx7m6eypZMNLgI27Ozc/hPzmnJKtuj7jyGu1effk
+         3H0eauS3fMm/TYNuSxfmDQ/DLUGxByrvAB1couqbfCMQOA39ujMBvf5e3W7Yxtz6qzj9
+         E1Qf3Ff9AT8I7Mr1E7zseEaF7WH75RqoMCMFUMCw2Tx5tKaSpOMneq3yhCrb/0OpRw/2
+         A1lhamyhxw/X19HDLcgQgqS27L4V3Cf+8/wuOdhrHgn6+txxa2lcydl91VSTbLk5Ip1r
+         3+OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Y27Dxuej0JJOzYqREuZ7buGqEQSIRreRsNAzFXY30l0=;
-        b=jj0fGlM1PlafodfSquNRh0vYr8j0NOXucLcV1gCjzLKKhmF4WZqApAOAOridI8HuRy
-         EhD9pQpSUaiVf7bixN2x9paP66qTOb2zEd9vl9qvBWG35EIOSqYMdgDMVUFKGDiTlmB6
-         GdoxUSe3c6mGdDWCYr9nm5jy9GQFPUj0gXGtBRLU6PIW0vNZd69g6XVAHeqalIcsBj06
-         UIT/ouAE/RyGjJ+7M5nodMIDXuAVurzDfstDUocCJDRNWn41HQ5EB7KPep9hLHUcNvaL
-         +ChGgcCem56YCB4+5lKvRJ9er86PBqRgkQDApUse6tMs0vt28XE0HEAMCSZXH4xXX3d4
-         +wlw==
-X-Gm-Message-State: ANoB5pkWyYe5uM4AH6e5ZzjakaOBRvI6p5gq9jYtz4dfullqIWZnTe58
-	yHHsbd5fUhN4Lw4RxgUQQL5gag==
-X-Google-Smtp-Source: AA0mqf7812T75JmU1RK3dUswEj+nSB6pF/2V/PIu/zIN4QQtJ/ZBP39Rfn1JU4+7LgOWa59FP8nB0w==
-X-Received: by 2002:a5d:56c2:0:b0:241:94bc:2796 with SMTP id m2-20020a5d56c2000000b0024194bc2796mr4281152wrw.184.1668782012260;
-        Fri, 18 Nov 2022 06:33:32 -0800 (PST)
+        bh=I8lUWDOeXjkH9UHmo38dtGs19w/rqs9Sy4VJSCBQlaI=;
+        b=sqEod+QWrxbfuqKKMGflN31FDS05KVk3llGGSmJykiXEiRftFX2O1scnq2PCaoZDk+
+         x5lfU6/MKVBThV8Md37mx6QzRVq2SckpYThbAzDNrCqWJhMspWikHnq1v/8R+xU6HAM3
+         YPgX2Vo981L59sta1tBY3MVH5vy+zILuQU0S3812JPJuoe+9s9G5XEnUpq3MbnT83FRD
+         x5EryvNyTeca/uc6nzMFDdMXPSfYwyu1yeUA8DTS1637TpC1vOlQP+vGXeBgTuiI/mDF
+         BPVMWp31Eb3AIIY5qAfl6th6/0lbl29zlKglLfvZ227pTuKJV9hf8TTPaetvHemZyFrY
+         Verg==
+X-Gm-Message-State: ANoB5plSPXRKsJjNkY0Gwml6H6rpxzMOhB57MRBptD8Bc6IUw4r416xW
+	jBOpbBbx/V7y8xU9RWryoifgCw==
+X-Google-Smtp-Source: AA0mqf58oHI/7To3+CZoBl7djIZXtAy//xIgmpt08lgvBcuLlZjN5W390xyBDOKkHM9CY2J0U3XElg==
+X-Received: by 2002:a7b:cd85:0:b0:3cf:931c:3cfa with SMTP id y5-20020a7bcd85000000b003cf931c3cfamr5085059wmj.203.1668782016660;
+        Fri, 18 Nov 2022 06:33:36 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j21-20020a05600c1c1500b003cfb7c02542sm5436726wms.11.2022.11.18.06.33.30
+        by smtp.gmail.com with ESMTPSA id j21-20020a05600c1c1500b003cfb7c02542sm5436726wms.11.2022.11.18.06.33.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 06:33:31 -0800 (PST)
+        Fri, 18 Nov 2022 06:33:36 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 18 Nov 2022 15:33:27 +0100
-Subject: [PATCH 01/12] dt-bindings: firmware: convert meson_sm.txt to dt-schema
+Date: Fri, 18 Nov 2022 15:33:30 +0100
+Subject: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
 MIME-Version: 1.0
-Message-Id: <20221117-b4-amlogic-bindings-convert-v1-1-3f025599b968@linaro.org>
+Message-Id: <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
 In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
 To: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
@@ -83,8 +83,8 @@ Cc: linux-media@vger.kernel.org, netdev@vger.kernel.org, linux-amlogic@lists.inf
  Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org
 X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_063334_611864_B5A06195 
-X-CRM114-Status: GOOD (  12.26  )
+X-CRM114-CacheID: sfid-20221118_063340_681525_BA7700A0 
+X-CRM114-Status: GOOD (  13.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,77 +101,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Secure Monitor bindings to dt-schema.
+Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/firmware/amlogic,meson-gxbb-sm.yaml   | 36 ++++++++++++++++++++++
- .../bindings/firmware/meson/meson_sm.txt           | 15 ---------
- 2 files changed, 36 insertions(+), 15 deletions(-)
+ .../bindings/watchdog/amlogic,meson6-wdt.yaml      | 39 ++++++++++++++++++++++
+ .../devicetree/bindings/watchdog/meson-wdt.txt     | 21 ------------
+ 2 files changed, 39 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
 new file mode 100644
-index 000000000000..33d1408610cf
+index 000000000000..4e33a5a9c23c
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
-@@ -0,0 +1,36 @@
++++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
+@@ -0,0 +1,39 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/firmware/amlogic,meson-gxbb-sm.yaml#
++$id: http://devicetree.org/schemas/watchdog/amlogic,meson6-wdt.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Secure Monitor (SM)
-+
-+description:
-+  In the Amlogic SoCs the Secure Monitor code is used to provide access to the
-+  NVMEM, enable JTAG, set USB boot, etc...
++title: Amlogic Meson6 SoCs Watchdog timer
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
 +
 +properties:
 +  compatible:
-+    const: amlogic,meson-gxbb-sm
++    enum:
++      - amlogic,meson6-wdt
++      - amlogic,meson8-wdt
++      - amlogic,meson8b-wdt
++      - amlogic,meson8m2-wdt
 +
-+patternProperties:
-+  "power-controller":
-+    type: object
-+    $ref: /schemas/power/amlogic,meson-sec-pwrc.yaml#
++  reg:
++    maxItems: 1
 +
 +required:
 +  - compatible
++  - reg
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    firmware {
-+        secure-monitor {
-+            compatible = "amlogic,meson-gxbb-sm";
-+        };
++    wdt: watchdog@c1109900 {
++        compatible = "amlogic,meson6-wdt";
++        reg = <0xc1109900 0x8>;
++        timeout-sec = <10>;
 +    };
-diff --git a/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt b/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+diff --git a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
 deleted file mode 100644
-index c248cd44f727..000000000000
---- a/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+index 7588cc3971bf..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
 +++ /dev/null
-@@ -1,15 +0,0 @@
--* Amlogic Secure Monitor
+@@ -1,21 +0,0 @@
+-Meson SoCs Watchdog timer
 -
--In the Amlogic SoCs the Secure Monitor code is used to provide access to the
--NVMEM, enable JTAG, set USB boot, etc...
+-Required properties:
 -
--Required properties for the secure monitor node:
--- compatible: Should be "amlogic,meson-gxbb-sm"
+-- compatible : depending on the SoC this should be one of:
+-	"amlogic,meson6-wdt" on Meson6 SoCs
+-	"amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
+-	"amlogic,meson8b-wdt" on Meson8b SoCs
+-	"amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
+-- reg : Specifies base physical address and size of the registers.
+-
+-Optional properties:
+-- timeout-sec: contains the watchdog timeout in seconds.
 -
 -Example:
 -
--	firmware {
--		sm: secure-monitor {
--			compatible = "amlogic,meson-gxbb-sm";
--		};
--	};
+-wdt: watchdog@c1109900 {
+-	compatible = "amlogic,meson6-wdt";
+-	reg = <0xc1109900 0x8>;
+-	timeout-sec = <10>;
+-};
 
 -- 
 b4 0.10.1
