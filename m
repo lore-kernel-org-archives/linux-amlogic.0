@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A127C4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 18:52:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B161C43219
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 18:53:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
 	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jaqPAd8h06xnyHXz05W0xqvXzzb+JqBC8KO9G2KpXyg=; b=ZeDxqLp1smpNm/
-	3/i5ueRcs0OExCfGm5/NQmKSF8F4kdeughqRgjwEhLPiJPEx2IZ3z+FNWu2BMqn/E4KU7V7GNIY8y
-	LHf69fUlT35xoI2hZVlo98NeMFBYGFf4//MZJGmtwRLbTt6Es/qDM5vm6FmCG9J8RgE++2YIYGKHG
-	OgbMWtWpdf9vB0lRGrdcCVgkPqrGNpBTU+zpdvZH+OE2j/Rqk5LO8N25PMnIb6jlOGqUjblnMp7jZ
-	SflT9hUlcMFp16oi6samm6kzoITBAIAioCGQ42snjiPGhrw5RJukQB794OR3ZRWZuzIh3cI0rw6hV
-	cCzRjEgNv+2Guy8N49Hw==;
+	List-Owner; bh=ID8oYAU5grq4WM2dFA881rtJ+Y6U0QhWyMMxmNpRKik=; b=wpiJllc39LZpfB
+	4SWGeSxdXbPGNhp5KNckVmGzLOmTgHjXphS6OazrTjO1CSNPveqdBgih8Rgs4x6Cfa9xFLX/bzTfa
+	/kFiBUyIaUM7gg7puMQ1wQvgW/PkRwRLj4n72qlgFCv4UaTpJPd5g2dZd/OoDqEbkiodWBTZmFa0B
+	py4j/fmphNFLrxJv9TTuq2EMxKu/ZMNZpCMSJlacTQe8HvUCNUoHF9+0Pmgj66ptP6K8i1Ecvq3lE
+	BtfbiY71s1CETl98QX9DvFPUqxxftqgLs/qVvBw2jWYkNJOtJ4pF83wLcn116K6Bett5ljp/NIfMt
+	Ej28S5Azxql7hVjoIuAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow6TJ-007Jwr-OW; Fri, 18 Nov 2022 18:52:17 +0000
-Received: from mail-oa1-f44.google.com ([209.85.160.44])
+	id 1ow6Tx-007KNf-3s; Fri, 18 Nov 2022 18:52:57 +0000
+Received: from mail-oa1-f41.google.com ([209.85.160.41])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow6SA-007JAV-2j; Fri, 18 Nov 2022 18:51:08 +0000
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-13c2cfd1126so6943857fac.10;
-        Fri, 18 Nov 2022 10:51:04 -0800 (PST)
+	id 1ow6SC-007JD3-6i; Fri, 18 Nov 2022 18:51:10 +0000
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-12c8312131fso6973271fac.4;
+        Fri, 18 Nov 2022 10:51:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=5NlWLy38iu9DEQjPL5DfDDJIEj5YAYn41KyZ0VWp/ac=;
-        b=0Mle0Q9cf2qW4sXLiRvBN33fNWhPa7mXEk8TExwHiV4HcXMAe309TakYhBPWKGflPi
-         2vEWZjkxPXg1LAk+B33gZvjGiH13yfY2HHxJu0y/DtxeF2ZJcB56kBcR4FAtVje9jCNb
-         em0cnVBWXpBxkY71JWx1WyVtGfIasguchKJJd23H7zQ/F2RJiplXco/4bDg0cuAkvoIR
-         NlCG+kuuSBTAypX5QWFU21MYki/9IBejHju+1ttNAKvjZLU/kXMsuAWtHzkYngad5Whr
-         dNxFYRL23XF1+pHR3BXAJGWyYnukbk8+65V1V0d2AHe0ySlgdlFFMwr6TypugsEw7geT
-         Q7Fw==
-X-Gm-Message-State: ANoB5plta57EOpVAgkxgZXha9cl8EBuvoEK5GtvCVRpi2bgY2oftt6MQ
-	1A/Ke9VtOfhkF2MHfuzlkw==
-X-Google-Smtp-Source: AA0mqf6SJBnBw15qXgvUDWmM1bjCXLZQkAvrQQOo2UnSm8bXcoCt3/PUBIdPYHa7xtjQRo6OAfkWzQ==
-X-Received: by 2002:a05:6870:24a5:b0:132:3de9:bdf with SMTP id s37-20020a05687024a500b001323de90bdfmr4796795oaq.188.1668797463849;
-        Fri, 18 Nov 2022 10:51:03 -0800 (PST)
+        bh=uuUisE6muQ2a8H+UFn8jxcAB9pjTtgR2YYMbLsdm6pE=;
+        b=XLpvS/pWGRi0WvDfxcpOukEREwt6x6vzZft0+ihGZsdrAYpS6mKVBYFoKLwxYxWr3U
+         WpAWZRNiFmHdI4sL4vzXS0Qm2oVfKbeuh/cmkLth3nyAMfMAHmojS2sNO2gJpG6LFVit
+         FeZomdHo6Plmi8jVooAXrJkk8gJreErqoH0lCdo4gEe01p74wdBNQyOLClXbahTGFwTF
+         +7S1z7Td16FPXQhULz78KYuWmY3IizKBDKb9EJ16N3j7tle3xliyGYdrmyVGjR8mU601
+         MLo5VLT5frroLQkm5SaBcHJnihJcJnWY9F/Z/MLrOY8x+e4JfsFZYAXo9CS7rZYSzH9R
+         AjLA==
+X-Gm-Message-State: ANoB5pkrSYzg7WqPlfJ9gdKQsuTMhttdCKmGlrxzVvYH5ooKIchj14Kc
+	t42hex6X3Rg3K9n/DwMiWw==
+X-Google-Smtp-Source: AA0mqf6bf2HY2HW6lGRmiXPWhAMZr4bJ2EvTFxkJh7esTNkKUL2fjgko3ZlpdrkN1JGLcX4aBxGgag==
+X-Received: by 2002:a05:6870:bf0b:b0:136:66d0:b853 with SMTP id qh11-20020a056870bf0b00b0013666d0b853mr4647233oab.161.1668797465890;
+        Fri, 18 Nov 2022 10:51:05 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y22-20020a056808061600b0035a64076e0bsm1651600oih.37.2022.11.18.10.51.02
+        by smtp.gmail.com with ESMTPSA id i25-20020a056871029900b0010c727a3c79sm2408247oae.26.2022.11.18.10.51.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 10:51:03 -0800 (PST)
-Received: (nullmailer pid 856963 invoked by uid 1000);
+        Fri, 18 Nov 2022 10:51:05 -0800 (PST)
+Received: (nullmailer pid 856961 invoked by uid 1000);
 	Fri, 18 Nov 2022 18:50:54 -0000
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Paolo Abeni <pabeni@redhat.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Eric Dumazet <edumazet@google.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org, 
-	Alessandro Zummo <a.zummo@towertech.it>, Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>, 
-	linux-media@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-watchdog@vger.kernel.org, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, 
-	netdev@vger.kernel.org, linux-mmc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	Russell King <linux@armlinux.org.uk>, linux-pci@vger.kernel.org, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, linux-kernel@vger.kernel.org, 
-	Bjorn Helgaas <bhelgaas@google.com>, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, "David S. Miller" <davem@davemloft.net>, linux-phy@lists.infradead.org, 
+Cc: Paolo Abeni <pabeni@redhat.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, linux-media@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	linux-amlogic@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+	Alessandro Zummo <a.zummo@towertech.it>, Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Guenter Roeck <linux@roeck-us.net>, netdev@vger.kernel.org, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-In-Reply-To:   <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-phy@lists.infradead.org, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, linux-arm-kernel@lists.infradead.org
+In-Reply-To:   <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
 References:  <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org> 
- <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
-Message-Id: <166879731405.851489.9192622607944111237.robh@kernel.org>
-Subject:  Re: [PATCH 05/12] dt-bindings: media: convert meson-ir.txt to dt-schema
+ <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
+Message-Id: <166879731312.851419.16320390143824776926.robh@kernel.org>
+Subject:  Re: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
 Date: Fri, 18 Nov 2022 12:50:54 -0600
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_105106_190104_F45E6855 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20221118_105108_266969_C0AAD07C 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,15 +95,14 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri, 18 Nov 2022 15:33:31 +0100, Neil Armstrong wrote:
-> Convert the Amlogic Meson IR remote control receiver bindings to
-> dt-schema.
+On Fri, 18 Nov 2022 15:33:30 +0100, Neil Armstrong wrote:
+> Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/media/amlogic,meson6-ir.yaml          | 43 ++++++++++++++++++++++
->  .../devicetree/bindings/media/meson-ir.txt         | 20 ----------
->  2 files changed, 43 insertions(+), 20 deletions(-)
+>  .../bindings/watchdog/amlogic,meson6-wdt.yaml      | 39 ++++++++++++++++++++++
+>  .../devicetree/bindings/watchdog/meson-wdt.txt     | 21 ------------
+>  2 files changed, 39 insertions(+), 21 deletions(-)
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -113,134 +112,21 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org
 
 
-ir@580: compatible:0: 'amlogic,meson-gx-ir' is not one of ['amlogic,meson6-ir', 'amlogic,meson8b-ir', 'amlogic,meson-gxbb-ir']
-	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-p281.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
+watchdog@9900: compatible: ['amlogic,meson8m2-wdt', 'amlogic,meson8b-wdt'] is too long
+	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
 
-ir@580: compatible: ['amlogic,meson-gx-ir', 'amlogic,meson-gxbb-ir'] is too long
-	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-p281.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
+watchdog@9900: Unevaluated properties are not allowed ('compatible', 'interrupts' were unexpected)
+	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
 
-ir@580: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-p281.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q200.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-q201.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
-	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
+watchdog@9900: Unevaluated properties are not allowed ('interrupts' was unexpected)
+	arch/arm/boot/dts/meson6-atv1200.dtb
+	arch/arm/boot/dts/meson8b-ec100.dtb
+	arch/arm/boot/dts/meson8b-mxq.dtb
+	arch/arm/boot/dts/meson8b-odroidc1.dtb
+	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
 
 
 _______________________________________________
