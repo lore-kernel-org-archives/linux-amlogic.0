@@ -4,71 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54671C433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:44:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4798C433FE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=s94x/Lm/WTjtc7KWtc0Tcx222Ebm9BDvRV4XgoWWWPg=; b=Luug9A91j6gYm+urdgkwqSX6l0
-	49wzZdpBIDi5beS959BCYEhObpiXQiQ3r42/NTYRD9bLYUvF6peLJl6xxKgAQZhvrc00aUZEltMlp
-	5Ygxq6wllt6A7gTg1Bgqo8fuqJ2ga6B8ZwQZzb5E4iMKVpFfxIalLB7lZmCxL+tNnu46RblZF6JJU
-	+Bp+uFKEU793W4xZP+YikcpcSwdEbCYCvfPNa8Rv370MPakqoHYLGxJ5DeQI0+t8Q8ZTJoYZzr7/g
-	UawVXaMSEbGEo4tvCfPGNYAIrFboDOqdp/2NNfWp+YOahERRR+WWgntIsIWko5D980gFmHAVaWjq/
-	3MaqKXkQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:Date:From:MIME-Version
+	:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=qpti4R/DB7tZs+FHIDUmYrSiUa2VGg2PPA1LE3eOTJA=; b=pj3Q/PxUqUv8yp
+	qiMKgQKfdm94EQ7EWgJvv5CGfe1hBTh+L8S2/RzgsXvFs+i65UbyBuLI3jK9id0YR7AJDNEu+EEGk
+	4hzXzUXC5vLMkEcRr9CrgqAtkFFvKMGEjYszIRiYMEjenJgYyVXzRxHh6/MFmGiGp++PmVtpgOU8s
+	AyqCJT5qd70i2LnLqnMQF7cJjcZ+n+J/fvgO7iyozbAp0i7KkQz3jdoXVys/WO8p8qm2MlA+Eni63
+	O7p4vkp3eSR38NNSJiq43vSFxksoqNGil0grkogM1Q6OVF2J3vkbUghI0NafvuV4VInw5GGsbH1jo
+	7nhih7k4dfNc/eKdKyTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow3Xm-0051HV-KG; Fri, 18 Nov 2022 15:44:42 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1ow3ZP-0052AI-Hk; Fri, 18 Nov 2022 15:46:23 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow3Xj-0051FM-IY; Fri, 18 Nov 2022 15:44:40 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 4C433B8244E;
-	Fri, 18 Nov 2022 15:44:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D62CC433D6;
-	Fri, 18 Nov 2022 15:44:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1668786277;
-	bh=lv3Ir6hqjWLfpj3JgMlunLddNrdnY2PDByb5xwuja2I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iznHYNViEZbwr2lnpESQWX8uHtsVjn4Jt1zlsrs+3aV5nwHAPVKwwrM/dLos7JdaZ
-	 BjH6T8H5sJXbOKtZFK64UqLjW7SOpDP7qu6pAQoBNrsg6JCo5N6/UhCGFGSgSVi6+1
-	 ZMwRUL4L4zXNJN21VljHkYflhgMvHvkQvQbUOMCFgTFJalMgr3QhZTMs48NGu6TA03
-	 SwlhqVXP4+G0Mafp0OY8RW6cAHytuAnvjQf0CZYWiUpYE5lEDd7QbwfUuYsR2dPCjz
-	 WqDDdbEjq4y++xLS2WhjL6xoBIzWHbCxE2GiO4NcjcPpMDFNAGZy7nSzaT7Vg0QR8S
-	 5jLXbt5JFCRDQ==
-Date: Fri, 18 Nov 2022 15:44:33 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Carlo Caione <carlo@caione.org>
-Cc: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	David Airlie <airlied@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/tiny: ili9486: Do not assume 8-bit only SPI
- controllers
-Message-ID: <Y3eoYTZRyRJnze1z@sirena.org.uk>
-References: <20221116-s905x_spi_ili9486-v1-0-630401cb62d5@baylibre.com>
- <20221116-s905x_spi_ili9486-v1-2-630401cb62d5@baylibre.com>
- <Y3YWdeTLfmDh7UyB@sirena.org.uk>
- <cd2d4d1e-f42a-da5b-e498-fbb32f792094@baylibre.com>
- <Y3ZMT4F3+3bjNXKo@sirena.org.uk>
- <e36142ec-6b7f-e667-7d6b-48234318c8cd@baylibre.com>
+	id 1ow2Qw-004Taa-FI
+	for linux-amlogic@lists.infradead.org; Fri, 18 Nov 2022 14:33:36 +0000
+Received: by mail-wr1-x432.google.com with SMTP id g12so9492327wrs.10
+        for <linux-amlogic@lists.infradead.org>; Fri, 18 Nov 2022 06:33:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=r1O9HZ8MX1IL7UJAa5JH+dfK6/alNEcaVbgB3wjs4gs=;
+        b=F/nX0fPsj2tPLUnIyGh9FdlQJm505Li4kv12GOJg/laM/BN4t1o7cDArjx/hBkOv/s
+         lgxBXsILzg3UqegTRvrMY/g/ferTWZJj8KFHeAe6h//THsif+i74kXuNhfuaPJqK8exE
+         9y6milsbhIokCYIrHGbaz1nj1kyh0MSZgbsSDAEFr5MZOCvT/UJv6yeq/5nn+Ix5zjsK
+         a1LXXpOF9E3Xn45knkRZG/88aQnBk+cXFXtEpf5IWdAnEFI8wisDqHs7j02Ijs0/N+F1
+         DIXH3nibBE4L2EWIZdFpN/w3XfzgOEkxsFitChKg+FNLGWp5Y6rSv4iWCqDKToriVsqN
+         75qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r1O9HZ8MX1IL7UJAa5JH+dfK6/alNEcaVbgB3wjs4gs=;
+        b=0YNHJc1htZhcRK/2tM+T1Ttbw0xzdx8oSAHE1DuFSM70hsv56pHHMFOX94d6VsvFl3
+         jm+zAalm2QbJStOJO95i3rUopSlcBSMKsYgXgB+JrMm6ptYlO0vzolAazsf2xNSR8IFn
+         araW14NRmK7OXu9ZfL/c0vrP0vkk3gxzq/bx/hQ2jLI4nLgUrdxgNkg6q2L2gAdtUxi2
+         LsmueG0yBJ8VF7myc3l7pJe0uiYn9WWSH2O4KluxevTbnOi15up6q27EBdh3nHxUhWDO
+         0JVGONGf/CIKfIsb54oXvyn7wmZgCh2QtRAp7Xv05U85ztrhI29VcHoPy2mwPH65JApc
+         0yrg==
+X-Gm-Message-State: ANoB5pmpXaq4jom2L4ekstQVFgaCmRXBnSE1HC4xs39KMfRwDQOkG4Zn
+	Whk86GRJEUHzgvkqoqzFmdiSxg==
+X-Google-Smtp-Source: AA0mqf6XKcHEDCl9rShqtBbR8Bxs5ZkAhKbK7DnnG5j7Xa9ZYop8ey+c8nEMBxbXJS6hVwShM9KRqA==
+X-Received: by 2002:a05:6000:18f:b0:241:a046:91ff with SMTP id p15-20020a056000018f00b00241a04691ffmr4433055wrx.23.1668782010856;
+        Fri, 18 Nov 2022 06:33:30 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id j21-20020a05600c1c1500b003cfb7c02542sm5436726wms.11.2022.11.18.06.33.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 06:33:30 -0800 (PST)
+Subject: [PATCH 00/12] dt-bindings: first batch of dt-schema conversions for Amlogic Meson bindings
 MIME-Version: 1.0
-In-Reply-To: <e36142ec-6b7f-e667-7d6b-48234318c8cd@baylibre.com>
-X-Cookie: Ego sum ens omnipotens.
+X-b4-tracking: H4sIALaXd2MC/w3MwQqDMAwA0F+RnBcwxenY37RNVgNdCs3mRfx3e3yXd4JLV3F4Tyd0OdS12QA9Js
+ h7tCKoPAxhDoGINkwLxm9tRTMmNVYrjrnZIf2HL/kQb09ewsowhhRdMPVoeR+H/Wu9rhu2AOmCcgAA AA==
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Fri, 18 Nov 2022 15:33:26 +0100
+Message-Id: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
+To: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Alessandro Zummo <a.zummo@towertech.it>, Eric Dumazet <edumazet@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Vinod Koul <vkoul@kernel.org>, Russell King <linux@armlinux.org.uk>, Thomas Gleixner <tglx@linutronix.de>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Paolo Abeni <pabeni@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Cc: linux-media@vger.kernel.org, netdev@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_074439_776060_6FE50F25 
-X-CRM114-Status: GOOD (  19.84  )
+X-CRM114-CacheID: sfid-20221118_063334_545485_B4BE86AF 
+X-CRM114-Status: GOOD (  12.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,71 +95,134 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3612907037696473760=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Batch conversion of the following bindings:
+- meson_sm.txt
+- amlogic-efuse.txt
+- amlogic-meson-mx-efuse.txt
+- meson-wdt.txt
+- meson-ir.txt
+- rtc-meson.txt
+- amlogic,meson6-timer.txt
+- meson-gxl-usb2-phy.txt
+- amlogic,meson-gx.txt
+- amlogic,meson-pcie.txt
+- mdio-mux-meson-g12a.txt
 
---===============3612907037696473760==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="REJnauToDoQdDoiz"
-Content-Disposition: inline
+The amlogic,meson-gx-pwrc.txt is removed since deprecated and unused 
+for a few releases now.
 
+Martin Blumenstingl was also added as bindings maintainer for Meson6/8/8b
+related bindings.
 
---REJnauToDoQdDoiz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Remaining conversions:
+- meson,pinctrl.txt
+- pwm-meson.txt
+- amlogic,meson-gpio-intc.txt
+- amlogic,meson-mx-sdio.txt
+- rtc-meson-vrtc.txt
+- amlogic,axg-sound-card.txt
+- amlogic,axg-fifo.txt
+- amlogic,axg-pdm.txt
+- amlogic,axg-spdifout.txt
+- amlogic,axg-tdm-formatters.txt
+- amlogic,axg-spdifin.txt
+- amlogic,axg-tdm-iface.txt
+- amlogic,g12a-tohdmitx.txt
+- amlogic,axg-audio-clkc.txt
+- amlogic,gxbb-clkc.txt
+- amlogic,gxbb-aoclkc.txt
+- amlogic,meson8b-clkc.txt
 
-On Fri, Nov 18, 2022 at 11:36:27AM +0100, Carlo Caione wrote:
-> On 17/11/2022 15:59, Mark Brown wrote:
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Guenter Roeck <linux@roeck-us.net>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: "David S. Miller" <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Andrew Lunn <andrew@lunn.ch>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-watchdog@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: linux-rtc@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: linux-mmc@vger.kernel.org
+Cc: linux-pci@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> > So this is an issue in the MIPI DBI code where the interpretation of the
-> > buffer passed in depends on both the a caller parameter and the
-> > capabilities of the underlying SPI controller, meaning that a driver can
-> > suddenly become buggy when used with a new controller?
+---
+Neil Armstrong (12):
+      dt-bindings: firmware: convert meson_sm.txt to dt-schema
+      dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
+      dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt to dt-schema
+      dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
+      dt-bindings: media: convert meson-ir.txt to dt-schema
+      dt-bindings: rtc: convert rtc-meson.txt to dt-schema
+      dt-bindings: power: remove deprecated amlogic,meson-gx-pwrc.txt bindings
+      dt-bindings: timer: convert timer/amlogic,meson7-timer.txt to dt-schema
+      dt-bindings: phy: convert meson-gxl-usb2-phy.txt to dt-schema
+      dt-bindings: mmc: convert amlogic,meson-gx.txt to dt-schema
+      dt-bindings: pcie: convert amlogic,meson-pcie.txt to dt-schema
+      dt-bindings: net: convert mdio-mux-meson-g12a.txt to dt-schema
 
-> The MIPI DBI code is fine, in fact it is doing the correct thing in the
-> mipi_dbi_typec3_command() function. The problem is that the ILI9486
-> driver is hijacking that function installing its own hook that is wrong.
+ .../bindings/firmware/amlogic,meson-gxbb-sm.yaml   |  36 ++++++
+ .../bindings/firmware/meson/meson_sm.txt           |  15 ---
+ .../bindings/media/amlogic,meson6-ir.yaml          |  43 +++++++
+ .../devicetree/bindings/media/meson-ir.txt         |  20 ----
+ .../bindings/mmc/amlogic,meson-gx-mmc.yaml         |  78 +++++++++++++
+ .../devicetree/bindings/mmc/amlogic,meson-gx.txt   |  39 -------
+ .../bindings/net/amlogic,g12a-mdio-mux.yaml        |  80 +++++++++++++
+ .../bindings/net/mdio-mux-meson-g12a.txt           |  48 --------
+ .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   |  52 +++++++++
+ .../bindings/nvmem/amlogic,meson6-efuse.yaml       |  64 ++++++++++
+ .../devicetree/bindings/nvmem/amlogic-efuse.txt    |  48 --------
+ .../bindings/nvmem/amlogic-meson-mx-efuse.txt      |  22 ----
+ .../devicetree/bindings/pci/amlogic,axg-pcie.yaml  | 129 +++++++++++++++++++++
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 -----------
+ .../bindings/phy/amlogic,meson-gxl-usb2-phy.yaml   |  56 +++++++++
+ .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  21 ----
+ .../bindings/power/amlogic,meson-gx-pwrc.txt       |  63 ----------
+ .../bindings/rtc/amlogic,meson6-rtc.yaml           |  62 ++++++++++
+ .../devicetree/bindings/rtc/rtc-meson.txt          |  35 ------
+ .../bindings/timer/amlogic,meson6-timer.txt        |  22 ----
+ .../bindings/timer/amlogic,meson6-timer.yaml       |  53 +++++++++
+ .../bindings/watchdog/amlogic,meson6-wdt.yaml      |  39 +++++++
+ .../devicetree/bindings/watchdog/meson-wdt.txt     |  21 ----
+ 23 files changed, 692 insertions(+), 424 deletions(-)
+---
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+change-id: 20221117-b4-amlogic-bindings-convert-8ef1d75d426d
 
-Ah, I see - it's causing confusion because it peers into the
-internals of the underlying code.
-
-> The problem arrives when your controller does support 16-bits, so your
-> data is not swapped, but you still put the data on the bus with 8-bit
-> transfers.
-
-Why would you need to use 8 bit transfers if the controller
-supports 16 bits?
-
---REJnauToDoQdDoiz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmN3qGAACgkQJNaLcl1U
-h9D2lAf+Ps2YiMRv04FkRIpnqcdeeVJ5f9fygu+kakEWfMNpqzc+qEbwovF9SZp6
-gU8YaTS6ipuPAbf5Zv8ziwDe4wgbRcBHnmegTOmSHj451Oc3q0TBvKkganCwxHFd
-K1bB0cJYMmmpt4Y4OR+pyLTLoOMxJ3ADQ+yxqAZTGF5llQXxHw0/8UPhGIXLCAn3
-0bTaruYqx9EATK199CVVj/oHzU31Ryj+H9pJOie8PoDBPO1eaykOAC5wiJHjU4M6
-qgT29nXAt6XJw/gHnWZoKVLP0uJnJJQDEdL9Mp4y5yWoIFIXLTow1Lg+ZyadiLCm
-/DtnT4366TwxKlbjqYPYdT28DOAmBA==
-=URfB
------END PGP SIGNATURE-----
-
---REJnauToDoQdDoiz--
-
-
---===============3612907037696473760==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3612907037696473760==--
-
