@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94F7FC433FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:28:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 153D0C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 15:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j6Aba1sdJy+OGSHW9dB2b4ikndiWH4XubLn4Bv2VVxw=; b=b28NeazbOMNDWV
-	yudgd6caTYoueuXfvu5zSM6IIKHtWrYYvgn6Mrc2JkBUaM6AUhOcMpAKWTN7Lr29HHiDpKFrLdENi
-	TQHeYbxp9msN/KW7R/jXUjvntcYaaT8HrJXb7L5sfIEWuLPTfCbhs3Y7SqCcmUXmOlTQ8D7f86k7E
-	6miGbFtwVaTH/ZqlSeMVjf1PeD8OyCOlayBLH9StGx7ww2AgNvuRCAMwPS9mmnwpNty778MqtM8o5
-	J85oXuiGA+upNQaOhrWZBtwXVx1BP7aCcNcQ21jODPU4wueaWkg1geZdip1cwdEeHo++vPHo4PEvp
-	BeWy6bJQpZcrYTEv/CpA==;
+	List-Owner; bh=321e3IBKA3DJ2SkGpd5fbT2WlhddtyQ0rMbLPpkUZU8=; b=pEPSo6OuCTHeLJ
+	4dJ6XYTXPLNKzWlw05sjs2eHsHlxmWwEXCwufnTlHJCCLgfprePfmtzIBSBJESmGOEYOcMR758ieM
+	CM53LaxpTvaaa/h9niVXGnmoTOlp0hm+0x41nKgEtbSc5lXzSB6pALShFUwyHXZRGDG02s6OCCZdw
+	zFcoAUcUvxdd1X/viC1hV2aedMNumfB+nBcWKjgOXL4m+yeb8XihMfMEdpyXjlKAPQ2JxDh9v+PMO
+	gvnOlKkF1f2y7cyF58phKK6CMDrpRHeAv6B1zqjatobKtTJy8GGeXfoh5fX/UB0bqvFrFrE/gXLqz
+	LWtVJwBndqax7057wZ3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow3Hn-004uEt-MP; Fri, 18 Nov 2022 15:28:11 +0000
+	id 1ow3I0-004uLE-6I; Fri, 18 Nov 2022 15:28:24 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow3HZ-004u09-D6
-	for linux-amlogic@bombadil.infradead.org; Fri, 18 Nov 2022 15:27:57 +0000
+	id 1ow3Ha-004u09-Bn
+	for linux-amlogic@bombadil.infradead.org; Fri, 18 Nov 2022 15:27:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=7Qzjak48onvnCHIqi2kskjNQJa4cnhoeUBqFHQSfxrw=; b=ozTvi1vBQj2lyVRBIFIj1i+Hrs
-	orBuLlOiNNBCr2u3f8B6L64pnacMAN/2K7YUGNW/pt5jkh1gMZMuFwKW/Jo4Q3pmKROimaw1gcYWe
-	30EjTISWd53g1G4F44OZMZA6X0qcfjmb3DyIdGEkT1bIjj76qF71Idnucuc9kgaHyHkgFtZ0EOE4U
-	q+8ouYOC3CWOJ1y92LmER4R/UyCUMEugNro9/1v/Ow8ruO8xlNcdnsgXLvCJ+oCOS15JT2R5JDlMN
-	krscDG/eJTX4zZlLdmVE03To3flpbjFcWOIyWHMialDF7AiZybFUqSLsrjhbdt1cQtNSYoEXmBDa0
-	77nvp87g==;
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	bh=09aY4u5C18C95IeW01R0+92XJvP4bpZqONCKdfc3+Xw=; b=UtZJR6VjlLleMFCSdDZg5jmQZY
+	H150ndN02bvky873+LeONmh4LQ0iRsdlWjgojWsmizfkj3ToZGiLf7AlfOOeGHwbmObcz/5ErcexJ
+	wZJVp4ZsTzwlKN78MW8PFEoiXEwlNHg1PacmPTzDQIzwdhXu1aMHozNk7EiRVGelG9IpEw8/pntzQ
+	Hh8D2htakIYSrJK8gMPPNGu0rVLUh5etqokxHYk5FSeux2vdCAO4RIpQHCRz8iL/G8yObPrDYqL/Y
+	CfuXZ88NOmN8iuKtlweVKwb4ei9unAWs2tt6MPG56MN3xdHMV49dU1VlOJS8m7qpbV2iuQBNrACXK
+	6mpo+/7w==;
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow2R1-0020x6-Ql
+	id 1ow2R3-0020y4-AH
 	for linux-amlogic@lists.infradead.org; Fri, 18 Nov 2022 14:33:44 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id t1so3741327wmi.4
-        for <linux-amlogic@lists.infradead.org>; Fri, 18 Nov 2022 06:33:39 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id r126-20020a1c4484000000b003cffd336e24so2956314wma.4
+        for <linux-amlogic@lists.infradead.org>; Fri, 18 Nov 2022 06:33:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7Qzjak48onvnCHIqi2kskjNQJa4cnhoeUBqFHQSfxrw=;
-        b=WoIxPZXaV2xmPmlsdcYMuy75e8wj7YxygEJDeyFJuRYvaSZuCo+BM+ZgIS6lptguED
-         6Q4DI+vXicHVpSH0ys0k0C+8ywXptFOovUmUq/F9p+OBHPJfLPJEpKCDtaz8TXQpANyn
-         Jh/6vwM+KlLzoOcyXuEzeCK4kOskJdb6cbXgmMhGA118MXTFvffnn9J1BLQwJWPESm8z
-         Oe/tZAVxiqB0gjMnr9DtoO4qxeMg1onsVy2xIqY7+hqxnrjoCr5DOJvn/8gd33vL+J0O
-         szb/LpAQHIKrF8BUAvLpJyd/DufPcGycjXI4MO4LvzlY41RAOXUCYU8E4vUYC8Q4VppJ
-         WKHQ==
+        bh=09aY4u5C18C95IeW01R0+92XJvP4bpZqONCKdfc3+Xw=;
+        b=Hz6QAFCl6u3Xg9aZpvQtddO3JKE/IgN/I5pDQoSPQf5cdZwtlhLKb8TgdVwLTtOq9C
+         UOycTp7N8Shc+QeRli8chI3ys0R3LIkynrk+6dbqocreNS22aR+fYFeMU5tnWDSnmlpM
+         NpWRroujyOa4rO1bPwEKyUy59P0eLFtFVqP0ESM63wHz/aZ3t64uAA7JhkOPKdGqgRvs
+         /IxKVbSoYISyxh72nb1/0zz0IIZJffX3c4bVbl4V3BZna6wHmeYqmvvOk1Iqil0d7y0J
+         ObPOjfJPfHyw0AJBcg3VjRPMRT4BHp9sagQl/tyfZjyy1ZtJIjw2Dgx89wRI7YoZ/4i4
+         jn6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7Qzjak48onvnCHIqi2kskjNQJa4cnhoeUBqFHQSfxrw=;
-        b=v/6tk0GQvw6QA/gvnk5dZMVGhU237Je+hHVb1rdaCQXp/k1oX4wPm2yPi9Vd2n38ha
-         LWgcgm9uSI3LRWxUBtsOnZ33FsQ9evGOW3/xcgD7hRqQlrMjokQlxmCXegJikoV3U2ny
-         gpy61kY/h0OcAE4smSL3B4BcNwpnsefrtYuqPWDdWBEyiJiLe/H9ZxM5DujvTzxKWqCy
-         +V0MHCrxS7V331QU1JfFoH6ugUCOEt5D+0lWPt7pAgNkzkTQsxiCEJtQRbhkeyi95J0j
-         0AtbFoz0g8YS/MaAM09r41CIhepvhVfdsmvVrja+uW9hlM3KhTQxDxy9rvMxMSf0ZzbE
-         1mpQ==
-X-Gm-Message-State: ANoB5pmKYPmPlr+8J47vBM/UkuUY97+91L6mjJsXHJS9H5Qn4ZYiXgC5
-	hiVh6af81Z4JGhVoQbJ49jmPeTkISnwvBA==
-X-Google-Smtp-Source: AA0mqf46pPv9j4tyn8Fg8etmwa/V9/hkHhhWrioukLTOudxO/l4ku0XMrj2N6O1HBZfXkOSSl4IeXQ==
-X-Received: by 2002:a1c:7208:0:b0:3cf:6198:dd2f with SMTP id n8-20020a1c7208000000b003cf6198dd2fmr5142239wmc.119.1668782018095;
-        Fri, 18 Nov 2022 06:33:38 -0800 (PST)
+        bh=09aY4u5C18C95IeW01R0+92XJvP4bpZqONCKdfc3+Xw=;
+        b=fOBOD5jSn3Ck4Q2IGNZa8KTAATaRUl9TSNccVOXPNzlKqph8xNP5XUcG/bibIpnIM5
+         khN0PG1XToBaEahYgj09DTik5JemEYo5rXVG3AWtQlNEuRfbZjZ/QNolZK7eCbi2+fxT
+         G6CYzWt/RJYClB0OBUW2UikXVfH+LGgLEMe6/7LNSFBtMRGq8i3uW1yRZ/b+AZFSAlMf
+         o/AtMGnrDJ3qnMH5c8uDUsQg3qLmG+m4mlaLbsV0XQGpGKjlfqpJbbEOJ/pXFr2dyjQj
+         cq6J1+BvsXK9eij6IEhbZDMbHVTzliwfysk5AIC++gt+q4l5c5+yH4ZPKS25qSAdVJ2v
+         1qlw==
+X-Gm-Message-State: ANoB5pm8WQWSV+P0Z9EV38S9soXSB896Xb9GF/u2KLCTyzoJvYFIp5UC
+	dgDY73kBnYHE9izq/g5jZKwfYg==
+X-Google-Smtp-Source: AA0mqf5j6wl5M3NRdgUjqO/lUfZMPosplhrqhTWjq9z76lGsnjGSOV4qyvFEj22qrrANUGlEr+SIfg==
+X-Received: by 2002:a05:600c:3109:b0:3cf:5731:53db with SMTP id g9-20020a05600c310900b003cf573153dbmr8846282wmo.85.1668782019560;
+        Fri, 18 Nov 2022 06:33:39 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j21-20020a05600c1c1500b003cfb7c02542sm5436726wms.11.2022.11.18.06.33.36
+        by smtp.gmail.com with ESMTPSA id j21-20020a05600c1c1500b003cfb7c02542sm5436726wms.11.2022.11.18.06.33.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 06:33:37 -0800 (PST)
+        Fri, 18 Nov 2022 06:33:39 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 18 Nov 2022 15:33:31 +0100
-Subject: [PATCH 05/12] dt-bindings: media: convert meson-ir.txt to dt-schema
+Date: Fri, 18 Nov 2022 15:33:32 +0100
+Subject: [PATCH 06/12] dt-bindings: rtc: convert rtc-meson.txt to dt-schema
 MIME-Version: 1.0
-Message-Id: <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
+Message-Id: <20221117-b4-amlogic-bindings-convert-v1-6-3f025599b968@linaro.org>
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
 In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
 To: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
@@ -97,8 +97,8 @@ Cc: linux-media@vger.kernel.org, netdev@vger.kernel.org, linux-amlogic@lists.inf
  Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org
 X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_143339_985765_C0484445 
-X-CRM114-Status: GOOD (  13.89  )
+X-CRM114-CacheID: sfid-20221118_143341_473791_41BED588 
+X-CRM114-Status: GOOD (  14.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,52 +115,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Meson IR remote control receiver bindings to
-dt-schema.
+Convert the Amlogic Meson6 RTC bindings to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/media/amlogic,meson6-ir.yaml          | 43 ++++++++++++++++++++++
- .../devicetree/bindings/media/meson-ir.txt         | 20 ----------
- 2 files changed, 43 insertions(+), 20 deletions(-)
+ .../bindings/rtc/amlogic,meson6-rtc.yaml           | 62 ++++++++++++++++++++++
+ .../devicetree/bindings/rtc/rtc-meson.txt          | 35 ------------
+ 2 files changed, 62 insertions(+), 35 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml b/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml
+diff --git a/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.yaml
 new file mode 100644
-index 000000000000..f8bc445b1f25
+index 000000000000..8bf7d3a9be98
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml
-@@ -0,0 +1,43 @@
++++ b/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.yaml
+@@ -0,0 +1,62 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/media/amlogic,meson6-ir.yaml#
++$id: http://devicetree.org/schemas/rtc/amlogic,meson6-rtc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson IR remote control receiver
++title: Amlogic Meson6, Meson8, Meson8b and Meson8m2 RTC
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 +
 +allOf:
-+  - $ref: rc.yaml#
++  - $ref: rtc.yaml#
++  - $ref: /schemas/nvmem/nvmem.yaml#
 +
 +properties:
 +  compatible:
 +    enum:
-+      - amlogic,meson6-ir
-+      - amlogic,meson8b-ir
-+      - amlogic,meson-gxbb-ir
++      - amlogic,meson6-rtc
++      - amlogic,meson8-rtc
++      - amlogic,meson8b-rtc
++      - amlogic,meson8m2-rtc
 +
 +  reg:
++    maxItems: 1
++
++  clocks:
 +    maxItems: 1
 +
 +  interrupts:
 +    maxItems: 1
 +
++  resets:
++    maxItems: 1
++
++  vdd-supply: true
++
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
 +
 +unevaluatedProperties: false
 +
@@ -168,36 +177,60 @@ index 000000000000..f8bc445b1f25
 +  - |
 +    #include <dt-bindings/interrupt-controller/irq.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    ir-receiver@c8100480 {
-+        compatible = "amlogic,meson6-ir";
-+        reg = <0xc8100480 0x20>;
-+        interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
++    rtc: rtc@740 {
++        compatible = "amlogic,meson6-rtc";
++        reg = <0x740 0x14>;
++        interrupts = <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>;
++        clocks = <&rtc32k_xtal>;
++        vdd-supply = <&rtc_vdd>;
++        resets = <&reset_rtc>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        mac@0 {
++            reg = <0 6>;
++        };
 +    };
-diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-meson.txt b/Documentation/devicetree/bindings/rtc/rtc-meson.txt
 deleted file mode 100644
-index efd9d29a8f10..000000000000
---- a/Documentation/devicetree/bindings/media/meson-ir.txt
+index e921fe66a362..000000000000
+--- a/Documentation/devicetree/bindings/rtc/rtc-meson.txt
 +++ /dev/null
-@@ -1,20 +0,0 @@
--* Amlogic Meson IR remote control receiver
+@@ -1,35 +0,0 @@
+-* Amlogic Meson6, Meson8, Meson8b and Meson8m2 RTC
 -
 -Required properties:
-- - compatible	: depending on the platform this should be one of:
--		  - "amlogic,meson6-ir"
--		  - "amlogic,meson8b-ir"
--		  - "amlogic,meson-gxbb-ir"
-- - reg		: physical base address and length of the device registers
-- - interrupts	: a single specifier for the interrupt from the device
+-- compatible: should be one of the following describing the hardware:
+-	* "amlogic,meson6-rtc"
+-	* "amlogic,meson8-rtc"
+-	* "amlogic,meson8b-rtc"
+-	* "amlogic,meson8m2-rtc"
 -
--Optional properties:
-- - linux,rc-map-name:	see rc.txt file in the same directory.
+-- reg: physical register space for the controller's memory mapped registers.
+-- interrupts: the interrupt line of the RTC block.
+-- clocks: reference to the external 32.768kHz crystal oscillator.
+-- vdd-supply: reference to the power supply of the RTC block.
+-- resets: reset controller reference to allow reset of the controller
+-
+-Optional properties for the battery-backed non-volatile memory:
+-- #address-cells: should be 1 to address the battery-backed non-volatile memory
+-- #size-cells: should be 1 to reference the battery-backed non-volatile memory
+-
+-Optional child nodes:
+-- see ../nvmem/nvmem.txt
 -
 -Example:
 -
--	ir-receiver@c8100480 {
--		compatible= "amlogic,meson6-ir";
--		reg = <0xc8100480 0x20>;
--		interrupts = <0 15 1>;
+-	rtc: rtc@740 {
+-		compatible = "amlogic,meson6-rtc";
+-		reg = <0x740 0x14>;
+-		interrupts = <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>;
+-		clocks = <&rtc32k_xtal>;
+-		vdd-supply = <&rtc_vdd>;
+-		resets = <&reset RESET_RTC>;
+-
+-		#address-cells = <1>;
+-		#size-cells = <1>;
 -	};
 
 -- 
