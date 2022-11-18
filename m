@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF5CC4321E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 18:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A127C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Nov 2022 18:52:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
 	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xWskmPfy3dii+qFh+QoU7e3V3Xduo/U21etpMpzlmXc=; b=kVZ4gYzmE87YL6
-	QcU3Kt0na2VtF9OFCXBWx7cPi/DWwlnPrdJjQsU1XcAGGJ23SszVQboKcQ22TdNUzxkS4HYPODHsa
-	cZh29rTIOVnhpc+Nisr1Wd9qjwqAF5GQugoQsPU3rcsHJCCFUuC9IXplef5nr8Ltu5t7gEJmAx9GW
-	sJJBdvhLqpGnVVLa2EwbDbnoB0vqaMoArWmsJ11sevbQbRXLr8EUM9aX+tsZ+JbpLPqRLSCzQNhSP
-	VObPyRdmsNolPX/OOHupWKKZoOqzv9287nTXhyj+WjSMOmJJapkRwi7nc/RA3iQuby1IQczUK3LNu
-	93jJmzo3VSYdHUR+X1xA==;
+	List-Owner; bh=jaqPAd8h06xnyHXz05W0xqvXzzb+JqBC8KO9G2KpXyg=; b=ZeDxqLp1smpNm/
+	3/i5ueRcs0OExCfGm5/NQmKSF8F4kdeughqRgjwEhLPiJPEx2IZ3z+FNWu2BMqn/E4KU7V7GNIY8y
+	LHf69fUlT35xoI2hZVlo98NeMFBYGFf4//MZJGmtwRLbTt6Es/qDM5vm6FmCG9J8RgE++2YIYGKHG
+	OgbMWtWpdf9vB0lRGrdcCVgkPqrGNpBTU+zpdvZH+OE2j/Rqk5LO8N25PMnIb6jlOGqUjblnMp7jZ
+	SflT9hUlcMFp16oi6samm6kzoITBAIAioCGQ42snjiPGhrw5RJukQB794OR3ZRWZuzIh3cI0rw6hV
+	cCzRjEgNv+2Guy8N49Hw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow6TH-007JuG-1C; Fri, 18 Nov 2022 18:52:15 +0000
-Received: from mail-oi1-f178.google.com ([209.85.167.178])
+	id 1ow6TJ-007Jwr-OW; Fri, 18 Nov 2022 18:52:17 +0000
+Received: from mail-oa1-f44.google.com ([209.85.160.44])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow6S7-007J8e-ON; Fri, 18 Nov 2022 18:51:06 +0000
-Received: by mail-oi1-f178.google.com with SMTP id c129so6348106oia.0;
-        Fri, 18 Nov 2022 10:51:02 -0800 (PST)
+	id 1ow6SA-007JAV-2j; Fri, 18 Nov 2022 18:51:08 +0000
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-13c2cfd1126so6943857fac.10;
+        Fri, 18 Nov 2022 10:51:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=WzS3WtV19uBm00dgl97OvXjcFQKpmz+VUthp+6QJwgA=;
-        b=YoC2q1vdYynU8CcmE3UUyb8qnyMSNCAChvr7YR0LISvkPiBCITHZfYr7EHxgxyaLy7
-         cQsJKkBQ8ZbMQd7ZH80k+49t90l48Qmgtv0kl98CX1EG5MOcnvWEjD6Ae1m7HLSh6864
-         E2XtigbnU639FJK2bsJCrEnsaTAuqSo23MjPYgiIw2IykXPZHfm0bMhzamduNI7Ij3QS
-         dgelFSYcGFmBiweJbovVYSBTqOUe0dmp9HyuoCTHr+DuqYrTN+rpgLz4vuld6jxQn2pj
-         OhLrxsQsNODvN2CpxTdLvzDKpxvUZDsLhwLkREkqGUxDJzMDPZdmG42KpK48MHP2qUP4
-         xcRg==
-X-Gm-Message-State: ANoB5pnEpeKrP5kEELY1R41wY7I72LyuYKTG2txGcgxoJZhWn4evkEo8
-	AOL17bQ4jwJJfpLB0wbQ6Q==
-X-Google-Smtp-Source: AA0mqf6ferzv+4GGZPDebben4TW1gUVW8/OSjdRsgVgscJgO6X2ZElGsRFpjyAIn/ZlSGOWa870QDA==
-X-Received: by 2002:aca:2809:0:b0:359:eb40:a3e3 with SMTP id 9-20020aca2809000000b00359eb40a3e3mr4098140oix.199.1668797461734;
-        Fri, 18 Nov 2022 10:51:01 -0800 (PST)
+        bh=5NlWLy38iu9DEQjPL5DfDDJIEj5YAYn41KyZ0VWp/ac=;
+        b=0Mle0Q9cf2qW4sXLiRvBN33fNWhPa7mXEk8TExwHiV4HcXMAe309TakYhBPWKGflPi
+         2vEWZjkxPXg1LAk+B33gZvjGiH13yfY2HHxJu0y/DtxeF2ZJcB56kBcR4FAtVje9jCNb
+         em0cnVBWXpBxkY71JWx1WyVtGfIasguchKJJd23H7zQ/F2RJiplXco/4bDg0cuAkvoIR
+         NlCG+kuuSBTAypX5QWFU21MYki/9IBejHju+1ttNAKvjZLU/kXMsuAWtHzkYngad5Whr
+         dNxFYRL23XF1+pHR3BXAJGWyYnukbk8+65V1V0d2AHe0ySlgdlFFMwr6TypugsEw7geT
+         Q7Fw==
+X-Gm-Message-State: ANoB5plta57EOpVAgkxgZXha9cl8EBuvoEK5GtvCVRpi2bgY2oftt6MQ
+	1A/Ke9VtOfhkF2MHfuzlkw==
+X-Google-Smtp-Source: AA0mqf6SJBnBw15qXgvUDWmM1bjCXLZQkAvrQQOo2UnSm8bXcoCt3/PUBIdPYHa7xtjQRo6OAfkWzQ==
+X-Received: by 2002:a05:6870:24a5:b0:132:3de9:bdf with SMTP id s37-20020a05687024a500b001323de90bdfmr4796795oaq.188.1668797463849;
+        Fri, 18 Nov 2022 10:51:03 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m11-20020a056808024b00b0035763a9a36csm1684492oie.44.2022.11.18.10.51.00
+        by smtp.gmail.com with ESMTPSA id y22-20020a056808061600b0035a64076e0bsm1651600oih.37.2022.11.18.10.51.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 10:51:01 -0800 (PST)
-Received: (nullmailer pid 856959 invoked by uid 1000);
+        Fri, 18 Nov 2022 10:51:03 -0800 (PST)
+Received: (nullmailer pid 856963 invoked by uid 1000);
 	Fri, 18 Nov 2022 18:50:54 -0000
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org, 
-	Andrew Lunn <andrew@lunn.ch>, Vinod Koul <vkoul@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Eric Dumazet <edumazet@google.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, devicetree@vger.kernel.org, 
-	Bjorn Helgaas <bhelgaas@google.com>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Russell King <linux@armlinux.org.uk>, Guenter Roeck <linux@roeck-us.net>, 
-	Paolo Abeni <pabeni@redhat.com>, linux-watchdog@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-media@vger.kernel.org, netdev@vger.kernel.org, 
-	Ulf Hansson <ulf.hansson@linaro.org>, "David S. Miller" <davem@davemloft.net>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org, 
-	Jakub Kicinski <kuba@kernel.org>, linux-phy@lists.infradead.org, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>
-In-Reply-To:   <20221117-b4-amlogic-bindings-convert-v1-2-3f025599b968@linaro.org>
+Cc: linux-amlogic@lists.infradead.org, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Paolo Abeni <pabeni@redhat.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Eric Dumazet <edumazet@google.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org, 
+	Alessandro Zummo <a.zummo@towertech.it>, Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>, 
+	linux-media@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-watchdog@vger.kernel.org, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, 
+	netdev@vger.kernel.org, linux-mmc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, linux-pci@vger.kernel.org, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, linux-kernel@vger.kernel.org, 
+	Bjorn Helgaas <bhelgaas@google.com>, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, "David S. Miller" <davem@davemloft.net>, linux-phy@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To:   <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
 References:  <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org> 
- <20221117-b4-amlogic-bindings-convert-v1-2-3f025599b968@linaro.org>
-Message-Id: <166879731144.850871.8899653807720274409.robh@kernel.org>
-Subject:  Re: [PATCH 02/12] dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
+ <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
+Message-Id: <166879731405.851489.9192622607944111237.robh@kernel.org>
+Subject:  Re: [PATCH 05/12] dt-bindings: media: convert meson-ir.txt to dt-schema
 Date: Fri, 18 Nov 2022 12:50:54 -0600
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_105103_841222_95DA56EC 
-X-CRM114-Status: GOOD (  11.49  )
+X-CRM114-CacheID: sfid-20221118_105106_190104_F45E6855 
+X-CRM114-Status: GOOD (  10.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,14 +95,15 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri, 18 Nov 2022 15:33:28 +0100, Neil Armstrong wrote:
-> Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
+On Fri, 18 Nov 2022 15:33:31 +0100, Neil Armstrong wrote:
+> Convert the Amlogic Meson IR remote control receiver bindings to
+> dt-schema.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 52 ++++++++++++++++++++++
->  .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 --------------------
->  2 files changed, 52 insertions(+), 48 deletions(-)
+>  .../bindings/media/amlogic,meson6-ir.yaml          | 43 ++++++++++++++++++++++
+>  .../devicetree/bindings/media/meson-ir.txt         | 20 ----------
+>  2 files changed, 43 insertions(+), 20 deletions(-)
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -112,10 +113,10 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221117-b4-amlogic-bindings-convert-v1-2-3f025599b968@linaro.org
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org
 
 
-efuse: compatible:0: 'amlogic,meson-gxbb-efuse' was expected
+ir@580: compatible:0: 'amlogic,meson-gx-ir' is not one of ['amlogic,meson6-ir', 'amlogic,meson8b-ir', 'amlogic,meson-gxbb-ir']
 	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
@@ -157,7 +158,7 @@ efuse: compatible:0: 'amlogic,meson-gxbb-efuse' was expected
 	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
 
-efuse: compatible: ['amlogic,meson-gx-efuse', 'amlogic,meson-gxbb-efuse'] is too long
+ir@580: compatible: ['amlogic,meson-gx-ir', 'amlogic,meson-gxbb-ir'] is too long
 	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
@@ -199,7 +200,7 @@ efuse: compatible: ['amlogic,meson-gx-efuse', 'amlogic,meson-gxbb-efuse'] is too
 	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
 
-efuse: Unevaluated properties are not allowed ('compatible' was unexpected)
+ir@580: Unevaluated properties are not allowed ('compatible' was unexpected)
 	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dtb
@@ -220,6 +221,7 @@ efuse: Unevaluated properties are not allowed ('compatible' was unexpected)
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-vero4k-plus.dtb
+	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-p281.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dtb
@@ -239,9 +241,6 @@ efuse: Unevaluated properties are not allowed ('compatible' was unexpected)
 	arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dtb
 	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dtb
-
-efuse: Unevaluated properties are not allowed ('compatible', 'wifi_mac@C' were unexpected)
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dtb
 
 
 _______________________________________________
