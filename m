@@ -4,65 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B75B1C433FE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Nov 2022 16:51:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D907C433FE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Nov 2022 19:36:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UxC2pRwdwQGq1tqEqyyqIwAEklH2NkelvH0HNY74AF4=; b=n0D+Jj3Y/k5Uhw
-	rtYnbLYI4EZKdsaSHTV9aXZzdDyzacfv2iKaIMFLNZJLSbr0pmkTLZzcoOkMimYj4/Kx+tE7Si8bK
-	eJQ+VWII4MtdRcpk46K6F7YcLrKpk01SfSqdEMfNoS+0ute0Us0KJrgMBAsAdC3/C9Yr7+yP4syZT
-	nLEagl3WZ+ovvYC4Wwz9pvyR2d5a9mmlWmc0tWk6EHpumeHfCEwuILcutREaqftPqWFLx71aYb7UK
-	M2UGQbmawlV/qDRocVqv9mU1kdx5O2aAaYye/xg/VTcHvSBlWn5OP1Bdle7T9FXNx3RQKGS1+I03C
-	VEGOqpeTBqeXoX3TJVCQ==;
+	List-Owner; bh=H+annsLwHtmLAsHgyT93qm+y5nmVOVmSnd+WJRahHbw=; b=mMoCWWiQhf3ws5
+	YARrQCUQZ0hscgED3fGpFbiSr2rrGTcbUYGO1B0uRVESpMrZBGz1LgkZImPRycyCHp7Cp7MH/3Di+
+	/QxB/EnHju4rTYP5PhE5otD24S5xaPFR0K5g+ugjdXHU1hj8J3hL/Zhi9tGYes3DRNf58/zSrdZT3
+	0ql+R4U2O0ZyxMXVJNyb8oU2vgVQoFVGlcFxtnmpM6fmkmkV7segPz6/ZZD2qN3/VKKULcWnG/Qbw
+	CuBnupNOqPy0mn2YZJqMIW9NeAkVa8KcbT+Qy7cXFzheHd+uExwjia76BkujqoJ3Gk/TRrJOO92qZ
+	z/Toqcpw66s/07uZVdIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxA16-00G6ek-E8; Mon, 21 Nov 2022 16:51:32 +0000
+	id 1oxCaD-00HHli-C1; Mon, 21 Nov 2022 19:35:57 +0000
 Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxA14-00G6dn-1g
-	for linux-amlogic@lists.infradead.org; Mon, 21 Nov 2022 16:51:31 +0000
+	id 1oxCaA-00HHkl-34; Mon, 21 Nov 2022 19:35:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id A919DB811FC;
-	Mon, 21 Nov 2022 16:51:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A02EBC433D6;
-	Mon, 21 Nov 2022 16:51:24 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 88461B81233;
+	Mon, 21 Nov 2022 19:35:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55530C433D6;
+	Mon, 21 Nov 2022 19:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669049487;
-	bh=H3MOV+zhDBog7YBuduJdC2EhLMPiAYaQkSwiFUKZo9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pSbxPlTV5pOA4HehPMNHk7I8oMAxpCcopMQO/hfAGAuDHjq+NrOJqgiucVhk8EY96
-	 Nmh949/Q5VwDmHOHA+q4v/+29dWAyvWacaPXUnH3l85AYf1NSyAX7GPHzLQ+Bg55Sk
-	 puAOqI7DORw/x2BO9U84jZI6gOi1HVyQ3DZDtd4V2TQVVBaQwMDNNV3vi1ixmu5h9r
-	 1FU5t3AJV++5EFOW00xkLDA30OjaE6twzfh32GTyZrMwplmKQssSgoOniQXeIQmUXI
-	 dmlVIhV8TrgaQv7d7UwOWroxLpf/b4F2cE3U1bOV3duM/JS0LHjPYReAQsqbHt9Me7
-	 PSZMNqb04c8cA==
-Date: Mon, 21 Nov 2022 16:51:21 +0000
-From: Lee Jones <lee@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>, linux-i2c@vger.kernel.org,
-	kernel@pengutronix.de, Grant Likely <grant.likely@linaro.org>,
-	linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH 431/606] mfd: khadas-mcu: Convert to i2c's .probe_new()
-Message-ID: <Y3usiUm1K+5xCWhY@google.com>
-References: <20221118224540.619276-1-uwe@kleine-koenig.org>
- <20221118224540.619276-432-uwe@kleine-koenig.org>
- <Y3tvypIDVdCYxAVB@google.com>
- <20221121150854.3mwczqtbusawho4m@pengutronix.de>
+	s=k20201202; t=1669059351;
+	bh=Ydai0dK5/lA9XsnNpEEKTSKHyWesOJQz+aHZGyTNcyQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=YkSlNMOfijh48oFzDf9jLR0k2E1O47vr+ZI0KV9FNZmEHbLxIE9oPkRvFqZAHEpUJ
+	 8SsBwuVn9j2PKIknKUs7G3kPiFDsIZTv9RHFVak3efCjvtfhyhCx/8LXNVh6VRPvhn
+	 /GYsGMwyLvExZnjXvasuVpdjLDeuNeIvxicZIrko287zZV6s8AkGu83wmRZMataxpY
+	 1IvXfEmJiwmGgp8tQz7S4GrnH8dWlfbj+6SutLBrPvtm4ehTOT/9VJ86ZZryuk9MUI
+	 3VjiXopqK+nV3D12H2MVQDebRJ048wGn2EjQLGTaAuZk7CDuG+LlHUwy8KjxWJHD86
+	 WyFQrTf8kwWRA==
+From: Will Deacon <will@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Jerome Brunet <jbrunet@baylibre.com>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Jianxin Pan <jianxin.pan@amlogic.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Chris Healy <cphealy@gmail.com>,
+	Chris Healy <healych@amazon.com>,
+	Kelvin Zhang <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH v12 1/3] perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver
+Date: Mon, 21 Nov 2022 19:35:13 +0000
+Message-Id: <166905532981.1405312.273554952969305840.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20221121021602.3306998-1-jiucheng.xu@amlogic.com>
+References: <20221121021602.3306998-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221121150854.3mwczqtbusawho4m@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_085130_252941_3FC41F98 
-X-CRM114-Status: GOOD (  20.50  )
+X-CRM114-CacheID: sfid-20221121_113554_295334_F20DB583 
+X-CRM114-Status: UNSURE (   9.03  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,34 +80,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCAyMSBOb3YgMjAyMiwgVXdlIEtsZWluZS1Lw7ZuaWcgd3JvdGU6Cgo+IEhlbGxvIExl
-ZSwKPiAKPiBPbiBNb24sIE5vdiAyMSwgMjAyMiBhdCAxMjozMjoxMFBNICswMDAwLCBMZWUgSm9u
-ZXMgd3JvdGU6Cj4gPiBPbiBGcmksIDE4IE5vdiAyMDIyLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90
-ZToKPiA+IAo+ID4gPiBGcm9tOiBVd2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBl
-bmd1dHJvbml4LmRlPgo+ID4gPiAKPiA+ID4gVGhlIHByb2JlIGZ1bmN0aW9uIGRvZXNuJ3QgbWFr
-ZSB1c2Ugb2YgdGhlIGkyY19kZXZpY2VfaWQgKiBwYXJhbWV0ZXIgc28gaXQKPiA+ID4gY2FuIGJl
-IHRyaXZpYWxseSBjb252ZXJ0ZWQuCj4gPiA+IAo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBVd2UgS2xl
-aW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgo+ID4gPiAtLS0KPiA+
-ID4gIGRyaXZlcnMvbWZkL2toYWRhcy1tY3UuYyB8IDUgKystLS0KPiA+ID4gIDEgZmlsZSBjaGFu
-Z2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4gPiAKPiA+IEFmdGVyIGEgd2Vl
-ayBvciBzbywgcGxlYXNlIGNvbGxlY3QtdXAgYWxsIHRoZSB0YWdzIHlvdSBoYXZlIHJlY2VpdmVk
-Cj4gPiBhbmQgc3VibWl0IGEgcGVyLXN1YnN5c3RlbSBzZXQgZm9yIG1lIHRvIGhvb3ZlciB1cCwg
-dGhhbmtzLgo+IAo+IEZvciBtZmQgSSdkIGRvOgo+IAo+IAlnaXQgY2hlY2tvdXQgbWZkL2Zvci1u
-ZXh0Cj4gCWI0IGFtIC1QIDQxMy00ODEgMjAyMjExMTgyMjQ1NDAuNjE5Mjc2LTEtdXdlQGtsZWlu
-ZS1rb2VuaWcub3JnCj4gCWdpdCBhbSAuLzIwMjIxMTE4X3V3ZV9pMmNfY29tcGxldGVfY29udmVy
-c2lvbl90b19pMmNfcHJvYmVfbmV3Lm1ieAo+IAlnaXQgc2VuZC1lbWFpbCAtLXRvIC4uLi4gLS1j
-YyAuLi4uIG1mZC9mb3ItbmV4dAoKVGhhdCdzIGp1c3QgY3JhenkgZW5vdWdoIHRvIHdvcmsuCgpU
-aGFua3MgZm9yIHRoZSB0aXAuCgo+IHRvIGFjY29tcGxpc2ggdGhhdC4gSSBjYW4gZG8gdGhhdCwg
-YnV0IGZlZWwgZnJlZSB0byBkbyBpdCB5b3Vyc2VsZiBhdCBhCj4gbW9tZW50IHRoYXQgc3VpdHMg
-eW91IChvZiBjb3Vyc2Ugd2l0aG91dCB0aGUgc2VuZC1lbWFpbCBwYXJ0IGFuZCBtYXliZQo+IGFk
-ZGluZyAtbCBhbmQgLXMgdG8gYjQgYW0pLgo+IAo+IEZvciBiYWNrbGlnaHQgdGhlIHBhdGNoIHJh
-bmdlIGlzIDU4NS01OTMuCj4gCj4gQ2hlZXJzLAo+IFV3ZQo+IAoKCgotLSAKTGVlIEpvbmVzIFvm
-nY7nkLzmlq9dCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+On Mon, 21 Nov 2022 10:15:58 +0800, Jiucheng Xu wrote:
+> Add support for Amlogic Meson G12 Series SOC - DDR bandwidth PMU driver
+> framework and interfaces. The PMU can not only monitor the total DDR
+> bandwidth, but also individual IP module bandwidth.
+> 
+> 
+
+Applied to will (for-next/perf), thanks!
+
+[1/3] perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver
+      https://git.kernel.org/will/c/2016e2113d35
+[2/3] docs/perf: Add documentation for the Amlogic G12 DDR PMU
+      https://git.kernel.org/will/c/537216e59f0c
+[3/3] dt-binding: perf: Add Amlogic DDR PMU
+      https://git.kernel.org/will/c/fd9678d3beaa
+
+Cheers,
+-- 
+Will
+
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
