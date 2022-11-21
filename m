@@ -4,81 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8EA1C4332F
-	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Nov 2022 19:44:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F253BC4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Nov 2022 02:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=u2fy6DLot5J89UtGDClc+/m5ZAilFmEZQLx8BzBO76w=; b=JmCXjktTdGOfqtkpNgMKM6RSTJ
-	NjQ3C6U8H7wbL6fJAveruJcX3C1GuSOYI615g9Wi2fS1UxpaCLveTBj8Wd/LtIPuNueiAWIGlgXVc
-	ovQtMGf3bEpwO7+5RxWdj/sc/o0oj3g8WjuAdlpNlsQcWqY2De+FDOl2Tk5KihB+ipkszBT8NbEI/
-	zX/mNzT1ZfMMzd973LtvtSPqLkPNI3gvu+5Gp/D7fYkqge3WNRQf0ySXgnTV7zhV84LK6WwUnFuoN
-	4mdFm9WjWxtWEeAgq0bI+EPSxPotwyx8LJ8indkSndXvZtr8zxk2C1stArLWvGcxW8647767p3ozW
-	nLNEyfFg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=T9zmTFGDXYImwgoIvQT7AAVfoZD/5Y0kBC5alhwVxis=; b=Icwme4QGFPcipu
+	5N/T1qwx6yColZHCGIZkIQYLwIYiQ7vsfO5hk27Boc9adzEKer9aMZavzh1jpsPtUYsSpd4XYYTSR
+	9/yz03BJEj4IbX9b0Ni9L1JjdBznASVJdHBGT0iKhWoCB2yNdCfdmlcW6jsaD7mC3qyLXj2T/W/R4
+	dk/28sL7jvBH4lpSU1OMX8XNasWG/xtTnt8fN7nLOGULFerv05Gsus7qK9ZACpxp04n29in5GmGk1
+	e4p4/x9ICBWmJxEnsd27EXiyPg2U3s1d7Y1T3v0EHyvKzUBnoBpHcV8xxL4/2Nf0JGJPqrDpsEVuc
+	XYo/zq8bVJPV6LsvG8Yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owqEN-006S1T-Q6; Sun, 20 Nov 2022 19:43:55 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1owwMT-008RzS-V5; Mon, 21 Nov 2022 02:16:41 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owqEJ-006S0Q-9j; Sun, 20 Nov 2022 19:43:53 +0000
-Received: from mercury (unknown [185.209.196.162])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 981D16602381;
-	Sun, 20 Nov 2022 19:43:45 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1668973425;
-	bh=T3nU7r4TDRBfUE21qBPtx6/vbbqNd5aTZrUhEKVEpe8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eTDOl2wCVRsu/tyZH+YPJZtqzX+lTk+zyDWIOt7B5OERtVQXV05JqgkECzvZaxhvq
-	 GWHynwzbAdTGjQc4EiizPb4JzuNJErOOA6MGMcIE1OOBJsR2nJxdyKqik4rZXW8I8S
-	 YL9hLYJH9B0qYNlv0ofE25pkedfO3Zr0ukRr6nTWoiYIF0ElBn0uG1ehB/KKpnJkB6
-	 LmHZCe95IKsjPugXIHsbUyR3TPbe/Uz/FTgEe5YV5fHfIiRZ+dwYB8lU4/MgAmu4vM
-	 BZjO4bgM9A0wAKu6Ub+wy7zE/lgrgtzyeA/1iFwakjmg/vd8UL0auYvToqpQCZqsxv
-	 +Bmg67/Ow+Rwg==
-Received: by mercury (Postfix, from userid 1000)
-	id 1C1D2106F223; Sun, 20 Nov 2022 20:43:43 +0100 (CET)
-Date: Sun, 20 Nov 2022 20:43:43 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-Cc: Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Lee Jones <lee.jones@linaro.org>,
-	Grant Likely <grant.likely@linaro.org>,
-	Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
-	kernel@pengutronix.de, linux-integrity@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-rpi-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
-	linux-input@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-leds@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-media@vger.kernel.org, patches@opensource.cirrus.com,
-	linux-actions@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
-	linux-omap@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-	linux-pm@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>,
-	linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	openipmi-developer@lists.sourceforge.net
-Subject: Re: [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
-Message-ID: <20221120194343.nnpzhgjapep7iwqk@mercury.elektranox.org>
-References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+	id 1owwMK-008Rvz-Dq; Mon, 21 Nov 2022 02:16:34 +0000
+Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 21 Nov 2022
+ 10:16:27 +0800
+From: Jiucheng Xu <jiucheng.xu@amlogic.com>
+To: Jonathan Corbet <corbet@lwn.net>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: Jianxin Pan <jianxin.pan@amlogic.com>, Kelvin Zhang
+	<kelvin.zhang@amlogic.com>, Chris Healy <cphealy@gmail.com>, Chris Healy
+	<healych@amazon.com>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v12 2/3] docs/perf: Add documentation for the Amlogic G12 DDR PMU
+Date: Mon, 21 Nov 2022 10:15:59 +0800
+Message-ID: <20221121021602.3306998-2-jiucheng.xu@amlogic.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221121021602.3306998-1-jiucheng.xu@amlogic.com>
+References: <20221121021602.3306998-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
+X-Originating-IP: [10.88.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221120_114351_723441_100BDE05 
-X-CRM114-Status: GOOD (  18.95  )
+X-CRM114-CacheID: sfid-20221120_181632_486820_47A3F7D6 
+X-CRM114-Status: GOOD (  15.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,123 +59,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0328204539583999157=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add a user guide to show how to use DDR PMU to
+monitor DDR bandwidth on Amlogic G12 SoC
 
---===============0328204539583999157==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wvm2z6appxwdd5fa"
-Content-Disposition: inline
+Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Reviewed-by: Chris Healy <healych@amazon.com>
+---
+Changes v11 -> v12:
+  - No change
 
+Changes v10 -> v11:
+  - Reword perf documentation
 
---wvm2z6appxwdd5fa
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes v9 -> v10:
+  - Rebase code
+  - Add "Reviewed-by" tag
 
-Hi,
+Changes v8 -> v9:
+  - No change
 
-On Fri, Nov 18, 2022 at 11:35:34PM +0100, Uwe Kleine-K=F6nig wrote:
-> Hello,
->=20
-> since commit b8a1a4cd5a98 ("i2c: Provide a temporary .probe_new()
-> call-back type") from 2016 there is a "temporary" alternative probe
-> callback for i2c drivers.
->=20
-> This series completes all drivers to this new callback (unless I missed
-> something). It's based on current next/master.
-> A part of the patches depend on commit 662233731d66 ("i2c: core:
-> Introduce i2c_client_get_device_id helper function"), there is a branch t=
-hat
-> you can pull into your tree to get it:
->=20
-> 	https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/client=
-_device_id_helper-immutable
->=20
-> I don't think it's feasable to apply this series in one go, so I ask the
-> maintainers of the changed files to apply via their tree. I guess it
-> will take a few kernel release iterations until all patch are in, but I
-> think a single tree creates too much conflicts.
->=20
-> The last patch changes i2c_driver::probe, all non-converted drivers will
-> fail to compile then. So I hope the build bots will tell me about any
-> driver I missed to convert. This patch is obviously not for application
-> now.
->=20
-> I dropped most individuals from the recipents of this mail to not
-> challenge the mail servers and mailing list filters too much. Sorry if
-> you had extra efforts to find this mail.
->=20
-> Best regards
-> Uwe
+Changes v7 -> v8:
+  - No change
 
-=2E..
+Changes v6 -> v7:
+  - Drop the Reported-by tag
+  - Fix spelling error
 
->   power: supply: adp5061: Convert to i2c's .probe_new()
->   power: supply: bq2415x: Convert to i2c's .probe_new()
->   power: supply: bq24190: Convert to i2c's .probe_new()
->   power: supply: bq24257: Convert to i2c's .probe_new()
->   power: supply: bq24735: Convert to i2c's .probe_new()
->   power: supply: bq2515x: Convert to i2c's .probe_new()
->   power: supply: bq256xx: Convert to i2c's .probe_new()
->   power: supply: bq25890: Convert to i2c's .probe_new()
->   power: supply: bq25980: Convert to i2c's .probe_new()
->   power: supply: bq27xxx: Convert to i2c's .probe_new()
->   power: supply: ds2782: Convert to i2c's .probe_new()
->   power: supply: lp8727: Convert to i2c's .probe_new()
->   power: supply: ltc2941: Convert to i2c's .probe_new()
->   power: supply: ltc4162-l: Convert to i2c's .probe_new()
->   power: supply: max14656: Convert to i2c's .probe_new()
->   power: supply: max17040: Convert to i2c's .probe_new()
->   power: supply: max17042_battery: Convert to i2c's .probe_new()
->   power: supply: rt5033_battery: Convert to i2c's .probe_new()
->   power: supply: rt9455: Convert to i2c's .probe_new()
->   power: supply: sbs: Convert to i2c's .probe_new()
->   power: supply: sbs-manager: Convert to i2c's .probe_new()
->   power: supply: smb347: Convert to i2c's .probe_new()
->   power: supply: ucs1002: Convert to i2c's .probe_new()
->   power: supply: z2_battery: Convert to i2c's .probe_new()
->   [...]
+Changes v5 -> v6:
+  - No change
 
-Thanks, I queued patches 513-536 to the power-supply subsystem.
+Changes v4 -> v5:
+  - Fix building warning
 
--- Sebastian
+Changes v3 -> v4:
+  - No change
 
---wvm2z6appxwdd5fa
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes v2 -> v3:
+  - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
 
------BEGIN PGP SIGNATURE-----
+Changes v1 -> v2:
+  - Nothing was changed
+---
+ Documentation/admin-guide/perf/index.rst      |  1 +
+ .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 72 insertions(+)
+ create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmN6g2YACgkQ2O7X88g7
-+pocPA/+MG7rp45xJuAH0zlIFTM8ovBviXnLvra0hpvK+vMB8SVdh4K8vRCAoeoT
-lxML9oRVfhraHzo/3X6+7V87cw+QzEx3GZbYsIasGqic46MoFYkbA2i3Q8s8hS5y
-qpAcKn/efXJaBtdIxWQnOc0xU0YCiteiIik8Idb9MjHFupUspLxtIjCzTAmvKQ0k
-hJ5u5cqv3d/MP6VpsOCUYPDet9nS9ByPeg8Kr9Ux1a0WEldPYUO+dU0ObqRdhliZ
-agftaEtCvFYkfO9k8ubBL/x00gTn002xOB7gp+5s0V0D3wKfT5EPVYOoUZbeYMIu
-QOZaLHkNkBtV85kGm18h7IFdQZQY9ahcaGTYZplyz/YzHlK/AlfjA2umKS1+rs5m
-A+DDqnAkuWw9fLg0MJ4dLSPwOSPX3VfgmVS3By3Do2gotQkCqXsRdhrG1cIoE1aL
-AZYpSwLTn2rAYF59poL3rgSqx/MhgrLwmKQOH3fjwZ3R7PIAWFhYP1We2UtKdCEM
-Gjpr7QfAUiOuXDKi5OrBbWr4m2eX26A4uifwR62OyldwH8pUWAq3umgkw3rotQAA
-hdwOOPM+cHTyLbtP8kaP1XSR6u0ybuTbw8OQE/XPDNVceoMqR4XxUSYbs0Q0UzY6
-fwljGfbakuGbaNlb7s2LBsy0ESZuiz64Za/0gfJhI5rP1eNRR1U=
-=Dh+o
------END PGP SIGNATURE-----
+diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
+index 793e1970bc05..c767e03e4d34 100644
+--- a/Documentation/admin-guide/perf/index.rst
++++ b/Documentation/admin-guide/perf/index.rst
+@@ -19,3 +19,4 @@ Performance monitor support
+    arm_dsu_pmu
+    thunderx2-pmu
+    alibaba_pmu
++   meson-ddr-pmu
+diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+new file mode 100644
+index 000000000000..8e71be1d6346
+--- /dev/null
++++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+@@ -0,0 +1,70 @@
++.. SPDX-License-Identifier: GPL-2.0
++
++===========================================================
++Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
++===========================================================
++
++The Amlogic Meson G12 SoC contains a bandwidth monitor inside DRAM controller.
++The monitor includes 4 channels. Each channel can count the request accessing
++DRAM. The channel can count up to 3 AXI port simultaneously. It can be helpful
++to show if the performance bottleneck is on DDR bandwidth.
++
++Currently, this driver supports the following 5 perf events:
++
+++ meson_ddr_bw/total_rw_bytes/
+++ meson_ddr_bw/chan_1_rw_bytes/
+++ meson_ddr_bw/chan_2_rw_bytes/
+++ meson_ddr_bw/chan_3_rw_bytes/
+++ meson_ddr_bw/chan_4_rw_bytes/
++
++meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are channel-specific events.
++Each channel support filtering, which can let the channel to monitor
++individual IP module in SoC.
++
++Below are DDR access request event filter keywords:
++
+++ arm             - from CPU
+++ vpu_read1       - from OSD + VPP read
+++ gpu             - from 3D GPU
+++ pcie            - from PCIe controller
+++ hdcp            - from HDCP controller
+++ hevc_front      - from HEVC codec front end
+++ usb3_0          - from USB3.0 controller
+++ hevc_back       - from HEVC codec back end
+++ h265enc         - from HEVC encoder
+++ vpu_read2       - from DI read
+++ vpu_write1      - from VDIN write
+++ vpu_write2      - from di write
+++ vdec            - from legacy codec video decoder
+++ hcodec          - from H264 encoder
+++ ge2d            - from ge2d
+++ spicc1          - from SPI controller 1
+++ usb0            - from USB2.0 controller 0
+++ dma             - from system DMA controller 1
+++ arb0            - from arb0
+++ sd_emmc_b       - from SD eMMC b controller
+++ usb1            - from USB2.0 controller 1
+++ audio           - from Audio module
+++ sd_emmc_c       - from SD eMMC c controller
+++ spicc2          - from SPI controller 2
+++ ethernet        - from Ethernet controller
++
++
++Examples:
++
++  + Show the total DDR bandwidth per seconds:
++
++    .. code-block:: bash
++
++       perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
++
++
++  + Show individual DDR bandwidth from CPU and GPU respectively, as well as
++    sum of them:
++
++    .. code-block:: bash
++
++       perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
++       perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
++       perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 415eaa30c523..b76c4deddf22 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1098,6 +1098,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+ W:	http://www.amlogic.com
++F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
+ F:	drivers/perf/amlogic/
+ F:	include/soc/amlogic/
+ 
+-- 
+2.25.1
 
---wvm2z6appxwdd5fa--
-
-
---===============0328204539583999157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0328204539583999157==--
-
