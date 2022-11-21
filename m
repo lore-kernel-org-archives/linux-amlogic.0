@@ -4,78 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8506DC4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Nov 2022 10:53:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4471BC4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Nov 2022 12:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2z1kM9yYjUF53j8cmnhXQ/G7baFy1ovSFeeg5kr8oUI=; b=DCT8CmK5rODNQT
-	+cylK71nsE3zH7SoiYYmw9uG8COQoxbp0nYuFZtzYf3opnHf79b8GICQ5rE/hGQs+PNz6Ep9abCSp
-	G4sfDynzhrU+Ibnkr1Rd22rprPlTO9JXA8d6/nC1Ddatha9L7mMXcXupMOOtcqGz66O38fJ9yE/Rs
-	+RRw5QcJyYvBaH6Jtci4FNDen2Ax/7/Ekrv/aNPfoj3dSlx6ACbHrjtkwb39+FV7YkLu5rm/T66+P
-	GCBEs+F+lVARS/q4aLhObQLb0+soT1DYUdil8AeblLNfHdcu5Jeq2bmuXQEiuADmGCnQf2j0haoUu
-	YgtBUrb4zWdeOueiDbnQ==;
+	List-Owner; bh=aNRtSybDtfX0SmWK55UlUnYjh9weMESaB8jI9IG6YT4=; b=Uvu3yW8GT0scAf
+	WAnWFkN8Mk7GTCojzdcY2WxzO4FxkH1GoC0419abpjJPo3+n5uHLrIFrMcXASDfN0zGubrQ4xC7ky
+	LVu0k9aiOF4lpzPrK3E1cfobXnozu5/700t7xFKk5DeBtDUr3o1cSTNzaBJxCgdnbf9ITqvKeG0dX
+	WQStWVBAK/D/d17buqrN1p/wJgf+4nU3zjaDMh8KTKo0MQQcptjwq8WNvGAmNVfkIDffUrsnF8Wne
+	yHdAWeSRGNMg0sUe87m6lmGmC8v0r0Z0ehaohK+2vJhZuxhz/aS8LEWmcRn9NsZlYkHVczQOfQdMG
+	8s3Syo6PwTWZaulyw3fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4Q5-00ChW2-3F; Mon, 21 Nov 2022 10:52:57 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1ox5yJ-00DXbC-15; Mon, 21 Nov 2022 12:32:23 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4Pt-00ChE0-Vp
-	for linux-amlogic@lists.infradead.org; Mon, 21 Nov 2022 10:52:47 +0000
-Received: by mail-wm1-x334.google.com with SMTP id r126-20020a1c4484000000b003cffd336e24so7736577wma.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 21 Nov 2022 02:52:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
-        b=nSAKPp9iT1tfGIkSlXmfAmD6MPcXsYYSG4wspAw3llD1/Df8G+BuHDkMTvqHL+Ou7k
-         BdMNJojv0ZkWbXFCsFg7d7OA4/6iPdyYm4WKe5lNtl4U7m6vEQm08L9Ms3ZmKPXqtpdx
-         I64b3oIqfZid2IGanRVuzxL3U/FfDQTek317Vcp9WljqMqy5DUAl7gdwh3PLfjHEUhkN
-         tJFIn9n/MGoRjCqHLTHIp/zAMjLbAOxMeYKQVxiOlibovRknkPM+XVoJMfdjpzzAXwlc
-         ud5Srn6WG1kuGnTHesZ1sV07MFHQ2uF1hXZbLaVPxmIq1lsmnqkr33HLgfephdLSU0j0
-         Iz1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
-        b=NthmUmSFDlnrwaYdtIYDldAkDukTR1krsBlTQIIWDpG+ZHK2GFgm7vJWA9RWQ0Ncup
-         ysY5G8ArjLxPfnxK7+NqDvuSx4oLTyivHx/VKLu9KbpkdogoQ3RX5bdZkma2A4CUEPSy
-         vENvOxDO1p3C7IjhvodB5BtQm8LYmy8P1xe/l0ssnvhlRxoHGiko5BF2JmyTfz+VwIyt
-         hMhaxE1rpIZ6flOnrwhjIUK0H8DzmZ4Y6/rc75HTOqp1l3+CQASkd0ekGCmJZ+duHHA6
-         h7DNT4xL7gxrLgpTgvLUialcW/FL3E7zeiiIsm3BM2nzUsDc2rU1cCDuYhn/NEhIL4NA
-         GbBQ==
-X-Gm-Message-State: ANoB5pkHCRn0dGWTHORp62qE/3apSbfgrRaVsHYwq6MmLDMnXDXFr1T8
-	ABY6oG49RdDecWhlwsLr2ZkApCAV66r2SQ==
-X-Google-Smtp-Source: AA0mqf5QSJ7OtroHLmnJdUzSWQwzpQbp01lD9Fe8uHseFbRLgx9H+XiLEeh83Dx4wJW6i6KniCCkYw==
-X-Received: by 2002:a1c:7409:0:b0:3cf:713a:c947 with SMTP id p9-20020a1c7409000000b003cf713ac947mr4678415wmc.40.1669027962284;
-        Mon, 21 Nov 2022 02:52:42 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k33-20020a05600c1ca100b003b3365b38f9sm14550303wms.10.2022.11.21.02.52.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 02:52:41 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Sebastian Reichel <sre@kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>
-In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
-References: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
-Subject: Re: [PATCH v2 0/2] arm64: amlogic: add initial Odroid Go Ultra DTS
-Message-Id: <166902796132.3866590.17335821749451892538.b4-ty@linaro.org>
-Date: Mon, 21 Nov 2022 11:52:41 +0100
+	id 1ox5yF-00DXZC-G0
+	for linux-amlogic@lists.infradead.org; Mon, 21 Nov 2022 12:32:20 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 2574DB80F00;
+	Mon, 21 Nov 2022 12:32:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45A1DC433D7;
+	Mon, 21 Nov 2022 12:32:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1669033936;
+	bh=nM/4PXXiiRvTy1GwbBTLsZNqf/mkb0cxsfzWdyrKLuw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nhZW6hE1AF39SD/Dtf7lp7mQBXmDsmnKxhwr0z7f382S8mkRk8YpZPhHtXIxQlpF4
+	 +wypXwBfaDSVKN3J/KEme3UycWecRQ+AB6ul2U7HFZ34nWkHYPKkLP0IaGjfIqjpzo
+	 f5G8fp+R5J9EY9QcSugkcTSERNFapiSi2LAZq6e0zuNo5Ea7ZiqNdi0PbXMKg2rdrK
+	 ifx+ST6Vtuscn6oEcRq446Vq/Av3hqC9OhQ1CacWEdkDV3T/OMUJ5bx/0mOKvLxxKC
+	 ml0a0cCcHtjm6tcYg5DvNBGg6mH88QHJNxuy1r9F859j4h69e3WSjdHg3jtOeUh/Ds
+	 ndw9gjAgV0yuw==
+Date: Mon, 21 Nov 2022 12:32:10 +0000
+From: Lee Jones <lee@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
+Cc: Angel Iglesias <ang.iglesiasg@gmail.com>,
+	Lee Jones <lee.jones@linaro.org>,
+	Grant Likely <grant.likely@linaro.org>,
+	Wolfram Sang <wsa@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-i2c@vger.kernel.org, kernel@pengutronix.de,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 431/606] mfd: khadas-mcu: Convert to i2c's .probe_new()
+Message-ID: <Y3tvypIDVdCYxAVB@google.com>
+References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+ <20221118224540.619276-432-uwe@kleine-koenig.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.10.1
+Content-Disposition: inline
+In-Reply-To: <20221118224540.619276-432-uwe@kleine-koenig.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_025246_029239_D9E4E05A 
-X-CRM114-Status: GOOD (  11.36  )
+X-CRM114-CacheID: sfid-20221121_043219_697352_F60EE8A2 
+X-CRM114-Status: GOOD (  11.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,42 +79,16 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiBGcmksIDE4IE5vdiAyMDIyIDE2OjUwOjA0ICswMTAwLCBOZWlsIEFybXN0cm9uZyB3
-cm90ZToKPiBUaGlzIGFkZHMgaW5pdGlhbCBzdXBwb3J0IGZvciB0aGUgSGFyZGtlcm5lbCBPZHJv
-aWQgR28gVWx0cmEuCj4gCj4gVGhlIE9kcm9pZCBHbyBVbHRyYSBpcyBhIHBvcnRhYmxlIGdhbWlu
-ZyBkZXZpY2Ugd2l0aCB0aGUgZm9sbG93aW5nCj4gY2hhcmFjdGVyaXN0aWNzOgo+IC0gQW1sb2dp
-YyBTOTIyWCBTb0MKPiAtIFJLODE3ICYgUks4MTggUE1JQ3MKPiAtIDJHaUIgTFBERFI0Cj4gLSBP
-biBib2FyZCAxNkdpQiBlTU1DCj4gLSBNaWNybyBTRCBDYXJkIHNsb3QKPiAtIDVpbmNoIDg1NMOX
-NDgwIE1JUEktRFNJIFRGVCBMQ0QKPiAtIEVhcnBob25lIHN0ZXJlbyBqYWNrLCAwLjVXYXR0IDjO
-qSBNb25vIHNwZWFrZXIKPiAtIExpLVBvbHltZXIgMy43Vi80MDAwbUFoIEJhdHRlcnkKPiAtIFVT
-Qi1BIDIuMCBIb3N0IENvbm5lY3Rvcgo+IC0geDE2IEdQSU8gSW5wdXQgQnV0dG9ucwo+IC0gMngg
-QURDIEFuYWxvZyBKb3lzdGlja3MKPiAtIFVTQi1DIFBvcnQgZm9yIFVTQjIgRGV2aWNlIGFuZCBD
-aGFyZ2luZwo+IAo+IFsuLi5dCgpUaGFua3MsIEFwcGxpZWQgdG8gaHR0cHM6Ly9naXQua2VybmVs
-Lm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvYW1sb2dpYy9saW51eC5naXQgKHY2LjIvYXJt
-NjQtZHQpCgpbMS8yXSBkdC1iaW5kaW5nczogYW1sb2dpYzogZG9jdW1lbnQgT2Ryb2lkIEdvIFVs
-dHJhIGNvbXBhdGlibGUKICAgICAgaHR0cHM6Ly9naXQua2VybmVsLm9yZy9hbWxvZ2ljL2MvNjZh
-ZjIxOGY4NjY5YTI2MmIxYmY4OWJhODBmMmFjZjFhM2JlNDI5YwpbMi8yXSBhcm02NDogZHRzOiBh
-bWxvZ2ljOiBhZGQgaW5pdGlhbCBPZHJvaWQgR28gVWx0cmEgRFRTCiAgICAgIGh0dHBzOi8vZ2l0
-Lmtlcm5lbC5vcmcvYW1sb2dpYy9jLzYyZTczZjAwMDY5NmNjNDFjZmQyMzdhMWFkOTBiMDAxYWQw
-Zjc2YzYKClRoZXNlIGNoYW5nZXMgaGFzIGJlZW4gYXBwbGllZCBvbiB0aGUgaW50ZXJtZWRpYXRl
-IGdpdCB0cmVlIFsxXS4KClRoZSB2Ni4yL2FybTY0LWR0IGJyYW5jaCB3aWxsIHRoZW4gYmUgc2Vu
-dCB2aWEgYSBmb3JtYWwgUHVsbCBSZXF1ZXN0IHRvIHRoZSBMaW51eCBTb0MgbWFpbnRhaW5lcnMK
-Zm9yIGluY2x1c2lvbiBpbiB0aGVpciBpbnRlcm1lZGlhdGUgZ2l0IGJyYW5jaGVzIGluIG9yZGVy
-IHRvIGJlIHNlbnQgdG8gTGludXMgZHVyaW5nCnRoZSBuZXh0IG1lcmdlIHdpbmRvdywgb3Igc29v
-bmVyIGlmIGl0J3MgYSBzZXQgb2YgZml4ZXMuCgpJbiB0aGUgY2FzZXMgb2YgZml4ZXMsIHRob3Nl
-IHdpbGwgYmUgbWVyZ2VkIGluIHRoZSBjdXJyZW50IHJlbGVhc2UgY2FuZGlkYXRlCmtlcm5lbCBh
-bmQgYXMgc29vbiB0aGV5IGFwcGVhciBvbiB0aGUgTGludXggbWFzdGVyIGJyYW5jaCB0aGV5IHdp
-bGwgYmUKYmFja3BvcnRlZCB0byB0aGUgcHJldmlvdXMgU3RhYmxlIGFuZCBMb25nLVN0YWJsZSBr
-ZXJuZWxzIFsyXS4KClRoZSBpbnRlcm1lZGlhdGUgZ2l0IGJyYW5jaGVzIGFyZSBtZXJnZWQgZGFp
-bHkgaW4gdGhlIGxpbnV4LW5leHQgdHJlZSBbM10sCnBlb3BsZSBhcmUgZW5jb3VyYWdlZCB0ZXN0
-aW5nIHRoZXNlIHByZS1yZWxlYXNlIGtlcm5lbHMgYW5kIHJlcG9ydCBpc3N1ZXMgb24gdGhlCnJl
-bGV2YW50IG1haWxpbmctbGlzdHMuCgpJZiBwcm9ibGVtcyBhcmUgZGlzY292ZXJlZCBvbiB0aG9z
-ZSBjaGFuZ2VzLCBwbGVhc2Ugc3VibWl0IGEgc2lnbmVkLW9mZi1ieSByZXZlcnQKcGF0Y2ggZm9s
-bG93ZWQgYnkgYSBjb3JyZWN0aXZlIGNoYW5nZXNldC4KClsxXSBodHRwczovL2dpdC5rZXJuZWwu
-b3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9hbWxvZ2ljL2xpbnV4LmdpdApbMl0gaHR0cHM6
-Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvc3RhYmxlL2xpbnV4Lmdp
-dApbM10gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvbmV4
-dC9saW51eC1uZXh0LmdpdAoKLS0gCk5laWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+T24gRnJpLCAxOCBOb3YgMjAyMiwgVXdlIEtsZWluZS1Lw7ZuaWcgd3JvdGU6Cgo+IEZyb206IFV3
+ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Cj4gCj4gVGhl
+IHByb2JlIGZ1bmN0aW9uIGRvZXNuJ3QgbWFrZSB1c2Ugb2YgdGhlIGkyY19kZXZpY2VfaWQgKiBw
+YXJhbWV0ZXIgc28gaXQKPiBjYW4gYmUgdHJpdmlhbGx5IGNvbnZlcnRlZC4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBVd2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRl
+Pgo+IC0tLQo+ICBkcml2ZXJzL21mZC9raGFkYXMtbWN1LmMgfCA1ICsrLS0tCj4gIDEgZmlsZSBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpBZnRlciBhIHdlZWsgb3Ig
+c28sIHBsZWFzZSBjb2xsZWN0LXVwIGFsbCB0aGUgdGFncyB5b3UgaGF2ZSByZWNlaXZlZAphbmQg
+c3VibWl0IGEgcGVyLXN1YnN5c3RlbSBzZXQgZm9yIG1lIHRvIGhvb3ZlciB1cCwgdGhhbmtzLgoK
+LS0gCkxlZSBKb25lcyBb5p2O55C85pavXQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
