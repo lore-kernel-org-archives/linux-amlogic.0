@@ -4,65 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 686B3C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 06:22:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9DDC4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 07:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1apuYTkxJCM3B3KhbR3EhCOQobYH9e77yAnEpboXhPc=; b=n6itiIQanmSL4F
-	GpY5xVCgGzPii1Gg68br0oQaWdFcrefWwWxWdCmWADj3yb1qxX/vtX25JyNX5fSM//SYDlS8kf4Xm
-	kE09R2omD/8/j171IYQ8qOFrmP+BaRB4CbbyaitMc669vYmlaV+IJ01Ulm75JYvU+4XQgvjltVne5
-	IYbOcd5nV227x7XgnETsd4fhHmQHSrBPKlgKKKdMTf9kCN/L3s1F8VU0vzmCbd2QIfKmSZbFeQ7OX
-	J9wNBWmD+7C7a+zu+Ot2vadOylumO857qcRWvD/w/+n89NNGxef2zmKrPJJFLpd5+GgQoKIddx2gc
-	g1ipYhHQDL3j4f0SNurQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=B1etCtuYvUOpM9++WU+lmwZKpwQY/pyVgwmtyy2/H+0=; b=JFsFlV1/pzVmzZ
+	Bd2gH4uWd4NDm0KvlzgUo99MaAKON/o96ang3YGGjNYcteq39EDyMH7AzO8J9F4IuJuJXLrJuElAw
+	WAw+A5IgdAC/8xXs//lhSQYUSv/75TMr5RWvz1CmBJtxwPGM7IRwtmY6IYFKKUP9DoGIwg0AGbgot
+	TSQ38W8Rg6E99CoD3QS91kGt0tJ817TqjsBTbZ4JOGuUL3xw7p/SLeDmKXI7mjlR3A11kTnSXpqS/
+	kT7NqB1TYf1OkhsZJT0fSyzbs5FactSaPXpieJWxSQXuXa4rWZQVYhFyhERr0ChjQECRw1hifDGYO
+	erePiqogMcs73hzGFVCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxMg9-004xBM-Nw; Tue, 22 Nov 2022 06:22:45 +0000
-Received: from smtp84.cstnet.cn ([159.226.251.84] helo=cstnet.cn)
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxMg6-004x85-LC
-	for linux-amlogic@lists.infradead.org; Tue, 22 Nov 2022 06:22:45 +0000
-Received: from localhost.localdomain (unknown [124.16.138.125])
-	by APP-05 (Coremail) with SMTP id zQCowADHzPSnanxjH8a_AA--.29968S2;
-	Tue, 22 Nov 2022 14:22:32 +0800 (CST)
-From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-To: clabbe@baylibre.com,
-	herbert@gondor.apana.org.au,
-	davem@davemloft.net
-Cc: linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jiasheng Jiang <jiasheng@iscas.ac.cn>
-Subject: [PATCH] crypto: amlogic - Add check for devm_kcalloc
-Date: Tue, 22 Nov 2022 14:22:30 +0800
-Message-Id: <20221122062230.22024-1-jiasheng@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	id 1oxNvd-005p6c-Ls; Tue, 22 Nov 2022 07:42:49 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1oxNvb-005ozL-20
+	for linux-amlogic@lists.infradead.org; Tue, 22 Nov 2022 07:42:48 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id v7so10110566wmn.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 21 Nov 2022 23:42:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QA8MIxpIapkC8rEFteuXA52vQ4uYeexAZXXoL3SYQDg=;
+        b=j9/erFQZhyBUbV56VTTVREPvqvvwUBRXSGqaVS/BckbFM00YyHGVlZJjQHBu66+Uhy
+         Nc8eyOJol/nhlpYY8ymw08M8wg8i/cPXaTrRdBvavolILqnQwLrveHQY61RbDm16JSP4
+         fCdjDGqu1vkVWbxNYrZl6mK0q0TGsNQRTl+mOVJ/XcqiCK2xS55uH58l54jhxwQpr7wa
+         z1vOHW4O9HVhinBazEUBY7ZIpq5pNTZiSbwPsAox4k82nVSithVEZl06lkHTOCu8mNvg
+         +yfMERxrxxgKPC5Uy/zQlAaw9yPyX1oqTIyRDq+AJsmGz24j7cEHHSqc889e51NvKmVf
+         9VJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=QA8MIxpIapkC8rEFteuXA52vQ4uYeexAZXXoL3SYQDg=;
+        b=BCzHS4oRORV00TAWx903PCAQz5CJm0ufuKWfpY5J943PGLbyIS9tccKVx74w+KQn/x
+         If6XDEy8UecQw6llyZjyJgymzP+N9ffXIxJZdR3hzYwQXeSOMqD87HYVhJ6Q16Mkhf9E
+         Fw/TKYaP7eVQPiVgmYuHLSWFP3Mu1R+BsCuJGlv3DhtaF48etdG0ONNa1F5T8hHLD2wf
+         bl3zqKAPNxxv2lfM7waJGCs/S1fEME57hAdCXnuHUbHy5AynV/4PPWk4lHm76CNCgpu6
+         xYP6GDI1iLOMLUtpH09kGffqfY2mDmPQ4JM/Gg4ujDq8eQynXevbHgePZa69a77AKsyU
+         Mq6w==
+X-Gm-Message-State: ANoB5pmnfRxOsztiF7V6AGSyWvCLigmfHEIrg9rh3T/jm6ycvtNceswG
+	QJCuJA6yxIHvwZJ/T+BWFaewag==
+X-Google-Smtp-Source: AA0mqf4Ei//KY2A6ZGaG99iMhX8fGi7uYrNGLNXKBpd4mjqaLK9ggmNUXVO9NMVN9iSmOxMHvtie8g==
+X-Received: by 2002:a1c:f006:0:b0:3cf:7b68:631 with SMTP id a6-20020a1cf006000000b003cf7b680631mr19316735wmb.55.1669102963360;
+        Mon, 21 Nov 2022 23:42:43 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6969:11a1:a2af:e8c0? ([2a01:e0a:982:cbb0:6969:11a1:a2af:e8c0])
+        by smtp.gmail.com with ESMTPSA id f8-20020a5d4dc8000000b002366c3eefccsm13187908wru.109.2022.11.21.23.42.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 23:42:42 -0800 (PST)
+Message-ID: <0df30bbf-3b7e-ed20-e316-41192bf3cc2b@linaro.org>
+Date: Tue, 22 Nov 2022 08:42:40 +0100
 MIME-Version: 1.0
-X-CM-TRANSID: zQCowADHzPSnanxjH8a_AA--.29968S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Gr1Utw1DCryDWryxArW5Wrg_yoWfZwb_Ca
-	97uFn7XFWrC34kJrW3JFy7CryFv3W5Wa4kWr4ftF1Sy3sFyryUuF1a9ws8urZ7CayUArsr
-	GFZFvrWYv34xZjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbwkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
-	Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxAIw28IcxkI7VAKI48J
-	MxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
-	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
-	0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4
-	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
-	xVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbd-PUUUUUU==
-X-Originating-IP: [124.16.138.125]
-X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] crypto: amlogic - Add check for devm_kcalloc
+To: Jiasheng Jiang <jiasheng@iscas.ac.cn>, clabbe@baylibre.com,
+ herbert@gondor.apana.org.au, davem@davemloft.net
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20221122062230.22024-1-jiasheng@iscas.ac.cn>
+Content-Language: en-US
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20221122062230.22024-1-jiasheng@iscas.ac.cn>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_222243_127499_55AED028 
-X-CRM114-Status: UNSURE (   9.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221121_234247_148465_58EE4434 
+X-CRM114-Status: GOOD (  17.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,38 +91,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-As the devm_kcalloc may return NULL pointer,
-it should be better to add check for the return
-value, as same as the others.
+On 22/11/2022 07:22, Jiasheng Jiang wrote:
+> As the devm_kcalloc may return NULL pointer,
+> it should be better to add check for the return
+> value, as same as the others.
+> 
+> Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
+> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+> ---
+>   drivers/crypto/amlogic/amlogic-gxl-core.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> index 6e7ae896717c..b243d6382664 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> @@ -238,6 +238,9 @@ static int meson_crypto_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	mc->irqs = devm_kcalloc(mc->dev, MAXFLOW, sizeof(int), GFP_KERNEL);
+> +	if (!mc->irqs)
+> +		return -ENOMEM;
+> +
+>   	for (i = 0; i < MAXFLOW; i++) {
+>   		mc->irqs[i] = platform_get_irq(pdev, i);
+>   		if (mc->irqs[i] < 0)
 
-Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
-Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
----
- drivers/crypto/amlogic/amlogic-gxl-core.c | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 6e7ae896717c..b243d6382664 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -238,6 +238,9 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 	}
- 
- 	mc->irqs = devm_kcalloc(mc->dev, MAXFLOW, sizeof(int), GFP_KERNEL);
-+	if (!mc->irqs)
-+		return -ENOMEM;
-+
- 	for (i = 0; i < MAXFLOW; i++) {
- 		mc->irqs[i] = platform_get_irq(pdev, i);
- 		if (mc->irqs[i] < 0)
--- 
-2.25.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
