@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7074FC4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 21:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB5BC433FE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 21:48:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
+	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iQOvc2p2xjivpifLkyJRrtOU5MrHKFgDyt6WOGtSObk=; b=bvy+AlNpS9cvDD
-	3AhMTh7up+YDeIKVUKX16SFhGRUYLOeAL2tBKCBYiWyqnX5xG5WVj/giu0ey9Erb5Tc2VE0i4Gs+Q
-	kSRmBr5Eb6n0fiSmMIn1RKmNxwYEbpadu3n3wMW8zGuk8UomJ7EmOu3irev8UkdaEkQ484dR9tZE7
-	+LceRmu5foWHtWse4yDBWrKFi+wtcttoqgfxrkwVrDZvthFPtrTTskS/oU2aNfV+flcdbJuK0fPrK
-	MZY2YgOAt9vzYim3r6xElL6cBsodR7vsWpO6FhEAfRGg0c76NeKgPlw4h/Ska0vYDcksWHLDM9v/k
-	0FISrCQbMSlsK6d0f+yg==;
+	List-Owner; bh=aYPBd8pctLlOa2I+g1z5HHnSZWiglt5sNFNmz4OZ6qs=; b=qaKG9EUKxQWn49
+	utl8NYanYMliwRbS8LcDSx7YpeWurk2Q6OZGvC086dezIl3GlT0OdjBu57NHxsg3Qh3AwWxOg10hs
+	s3oPVSIrCT2lxglCa+YdSbI9ETNwrTLUz+yv8jlcJ7ixM818HnHJT13Uk/v7OAe5zQ1TjQSVPPdI3
+	hcpewhpUFefB+r6ZO71V0HiZmcfG+C9qZdn5NKu/30NlpJJ5SS+u3/uoXU47yepFVfbRmhZG8A5Rx
+	OGyYxemM8Az2khKbMF7Vq/qIsIilMbb+blqzhFJD09Kb60p79gopRJ7+1mRM4oxAxWiw1rgm2CL8s
+	lKz1H1HId/v+2ibXtTxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxb1W-00C1f4-TF; Tue, 22 Nov 2022 21:41:46 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1oxb83-00C2hf-VX; Tue, 22 Nov 2022 21:48:32 +0000
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxb1M-00C1dq-9h; Tue, 22 Nov 2022 21:41:37 +0000
-Received: by mail-ej1-x636.google.com with SMTP id ft34so38635732ejc.12;
-        Tue, 22 Nov 2022 13:41:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rIlEqmzQ43h5mSij/yzLC0+0L3JCO/odjsG2ekPxh9U=;
-        b=h+9kdKFpd/hcmB9R34FN30DRJjEATOGghrxYQQa/sKXJh0OJ9nFB3xlb/rvMGCYIAT
-         kw1p6YABGept+dIP3PZKkZdSUa1xnQX3zHaSE3//HboVh/CFxZYfsWFZQ7rxp0eEr8MV
-         IMCYHW4Xe2IiiTd2j5W4VZfTawM7xQAjEp4UqsL2XSedaMUlYTruH/ehk5qz9YS1swAC
-         5Q5Pzy6SCOdnI0ZH3SYfq0pO/t6c2gJMUzigFwMCYREsa+9OO3SI0if4IBgbySosppuW
-         HSU7ymp+WDZzw4D4FtqZPzbvTdCNkr9rBtKVl5MFBtEfs5hxgNdwn6P9x1GdA69W6RXg
-         WU2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rIlEqmzQ43h5mSij/yzLC0+0L3JCO/odjsG2ekPxh9U=;
-        b=X2mzE6JfX9GF1zb+dGkqUwihVc4HqBb9EvWXMsudE00P9rB/nhiY1+LlHXuhWrE4OK
-         OdeSHeRH9xfgMYrMX9Ccd7P3yf5OSv+CTCkPduL9o1fBrrBe+ASvT7YgRFVL03fhqpcL
-         mqURYsG5u5qCsHWx6ky/qnTwxMFkeShKb/B/OTlyt9HMfgyiKOcMG8cROKTLLUVJDEEZ
-         AOY6YBA6Q0yvlrdqPsq1ZDS4+XdU1ddXD0YMHSNZmyO1whmtOXbueXBjgLy9dy0jCJY6
-         hE+NkgIpSZpjVlMiuNxxekHw0SNmy3uuwnDG74pymM1hE4ZMocVNJccqE5oFN+feD+tP
-         xOjQ==
-X-Gm-Message-State: ANoB5pnNHDmeqgBodH2T0xLDkrTml2rZQKAGvEmSOlFR1wRr2tGwIkAR
-	25HItoJIdlZ4px1fFEwICqI=
-X-Google-Smtp-Source: AA0mqf6TDlqWgJrmTLHSzauxMrhn5bqpuKWijJ37xhWA7M3zWQPKY2WbY6FtgxDKHxCv64P2E7/y8w==
-X-Received: by 2002:a17:906:810:b0:7ad:d7f9:1f96 with SMTP id e16-20020a170906081000b007add7f91f96mr5253604ejd.384.1669153291680;
-        Tue, 22 Nov 2022 13:41:31 -0800 (PST)
-Received: from ?IPV6:2a01:c23:b808:900:d439:ecf6:5870:6417? (dynamic-2a01-0c23-b808-0900-d439-ecf6-5870-6417.c23.pool.telefonica.de. [2a01:c23:b808:900:d439:ecf6:5870:6417])
-        by smtp.googlemail.com with ESMTPSA id d4-20020a056402400400b0046a0096bfdfsm722502eda.52.2022.11.22.13.41.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 13:41:31 -0800 (PST)
-Message-ID: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
-Date: Tue, 22 Nov 2022 22:41:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Peter Suti <peter.suti@streamunlimited.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <CAPDyKFqrCCtY_A072WswEFa3Bnz7EfMp40MRYtr3G7Jbq_hbTw@mail.gmail.com>
- <20221122132304.1482508-1-peter.suti@streamunlimited.com>
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2] mmc: meson-gx: fix SDIO interrupt handling
-In-Reply-To: <20221122132304.1482508-1-peter.suti@streamunlimited.com>
+	id 1oxb81-00C2gK-Ql; Tue, 22 Nov 2022 21:48:31 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 1BCEB3200906;
+	Tue, 22 Nov 2022 16:48:26 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Tue, 22 Nov 2022 16:48:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1669153705; x=1669240105; bh=KRhdDIwUkq
+	L9TxMQTwjLqCyv5U/Y3KfB4Ced1o1j6/4=; b=meCJ5J9mjOFTFePzgI112DeZ+W
+	k/N91ZsD7M/a55qov9nIGzypsrxHifSx/6OKi1IvTaW9r9UJ4KNpEhOKRgXh2yOH
+	5HQthxMMdZ1oupZ0WI8i+RlqMpNON3gqHhB/vEKCXM7xcc/6+G/nl4XhsW6E9HU+
+	u6pqULMyrWjXwvXUCmiVsUNnmQsub8UelaHeMlWWNGEWqcu6C774nA9i1EmADGmt
+	TOf1JEco3MJnPGWKNHAUyBXeUOwsMy24eubxZeuHXa5MAxI1PS2BWfnR4NCKuyR2
+	/jO/pc5eNKL1R1MnM89kEAzyV04g8q5wd/v9nkKTNvH9u3CUTDcFDm3YZsxQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1669153705; x=1669240105; bh=KRhdDIwUkqL9TxMQTwjLqCyv5U/Y
+	3KfB4Ced1o1j6/4=; b=C1+0V1hVZxzf92jB63CQp/VzZnsxPRAZ61JEw8wiGxDI
+	AUNlaY7/yuBvxz8WIE764hM3gI6cz1mSwr8vgID6Pa7S/dXS579IRrD70zalCOC3
+	CIlR7Hm2zUU0Z4Z7V4BF9zHuo+cN4nLfC5dubW5MVcWI2QgoKjRzq6S1cX4yz9ZQ
+	7yAgKXcxzGt7O2ivAqT0twvW5pfclStaV9S4obF+PtcU3bD2LFvCDvHiremw3WMb
+	furhn1iM1eky7bU2RCtB+hHOVA1IeCWzgsJygSBz+HUUqe1jIIH4vwoaCmHnaS09
+	ViGnmun7JtZpy1Qbyd7g+QC9Mph6xMcNauNLthZuSQ==
+X-ME-Sender: <xms:qUN9Y9Bc-hVN400L5os4xwlVC90Xgagjbd7hKh7qzpD5t3e9e63FlA>
+    <xme:qUN9Y7iAsoKkA7mtNxNH6XgXwZ3NL_VCGrYRvFAhAmK0xD-FRlsojQgDq0pkUbxmd
+    vMAflyKC6ZB6XTtC28>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrheelgdduvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:qUN9Y4l2pjbAfuUczFetc7mm1vfL8Hg4RE-4AmQxvz6ye2mHsYrt7A>
+    <xmx:qUN9Y3z6jizANd5TvOp2FCXbA1kXl1gSoyBcMY-i2VEHiU1M5k7Y_g>
+    <xmx:qUN9YyTTfxwOmr51BfewAE-SdFEHsd5q3WX2WADDf7tElHQP1kOfpg>
+    <xmx:qUN9Y9egnK34rc-s-mTYWv4UnWYKXbNDpuO1eoXum-7jzlcJL1U0rg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 7DB9AB60086; Tue, 22 Nov 2022 16:48:25 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <4a6b34ef-f5d2-4e56-a7f6-6a7c9cdda416@app.fastmail.com>
+In-Reply-To: <7d1ca7f4-b3ae-46df-5b9a-7cba8ac3e512@linaro.org>
+References: <7d1ca7f4-b3ae-46df-5b9a-7cba8ac3e512@linaro.org>
+Date: Tue, 22 Nov 2022 22:48:04 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Neil Armstrong" <neil.armstrong@linaro.org>, soc@kernel.org,
+ arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [GIT PULL] amlogic Drivers updates for v6.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221122_134136_383688_8A368FA2 
-X-CRM114-Status: GOOD (  26.05  )
+X-CRM114-CacheID: sfid-20221122_134829_924087_773FCFD0 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,122 +100,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22.11.2022 14:23, Peter Suti wrote:
-> With the interrupt support introduced in commit 066ecde sometimes the
-> Marvell-8987 wifi chip entered a deadlock using the marvell-sd-uapsta-8987
-> vendor driver. The cause seems to be that sometimes the interrupt handler
-> handles 2 IRQs and one of them disables the interrupts which are not reenabled
-> when all interrupts are finished. To work around this, disable all interrupts
-> when we are in the IRQ context and reenable them when the current IRQ is handled.
-> 
-To me it's still not clear what you mean with "handles 2 IRQs".
-Hard irq handlers aren't re-entrant. Can you provide the exact call sequence
-for the issue you're facing?
-Are SDIO interrupts handled on more than one CPU in your case?
-Are you concerned about the hard irq handler running in parallel on more than one CPU?
+On Tue, Nov 22, 2022, at 16:24, Neil Armstrong wrote:
+>
+> for you to fetch changes up to 7dc69c7d073e6004a281db8f7f15cf6ebf702ea0:
+>
+>    firmware: meson_sm: Fix memcpy vs iomem type warnings (2022-10-17 
+> 17:19:04 +0200)
+>
+> ----------------------------------------------------------------
+> Amlogic Drivers changes for v6.2:
+> - Fix memcpy vs iomem type warnings in meson_sm driver
+>
 
-The proposed patch looks hacky and somewhat bypasses the SDIO core logic
-by partially re-enabling SDIO interrupts in the hard irq handler.
+It looks like a trivial fix, but I think it's actually wrong:
+The real problem appears to be the use of the ioremap_cache()
+function in meson_sm_map_shmem(), which returns an __iomem
+token that is mapped cacheable on architectures that support
+this function, but behaves like normal ioremap on others.
 
-In the first review round I wrote the following but didn't see a feedback yet.
-Did you check the linked discussion whether it may be related to your issue?
+This is probably not what you want here, instead this should
+be converted to memremap(), with the __iomem annotation dropped.
+In the long run, we should try to kill off ioremap_cache
+entirely, and not introduce new ones.
 
--> IIRC I had a similar/same problem in mind when discussing the following:
--> https://lore.kernel.org/linux-arm-kernel/CAPDyKFoameOb7d3cn8_ki1O6DbMEAFvkQh1uUsYp4S-Lkq41oQ@mail.gmail.com/
--> Not sure though whether it's related to the issue you're facing.
-
-
-
-> Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
-> 
-> Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
-> ---
-> Changes in v2:
-> 	- use spin_lock instead of spin_lock_irqsave
-> 	- only reenable interrupts if they were enabled already
-> 
->  drivers/mmc/host/meson-gx-mmc.c | 30 +++++++++++++++++++++++-------
->  1 file changed, 23 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 6e5ea0213b47..0c95f8640b34 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -934,6 +934,13 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
->  	}
->  }
->  
-> +static bool __meson_mmc_sdio_irq_is_enabled(struct mmc_host *mmc)
-> +{
-> +	struct meson_host *host = mmc_priv(mmc);
-> +
-> +	return readl(host->regs + SD_EMMC_IRQ_EN) & IRQ_SDIO;
-> +}
-> +
->  static void __meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
->  {
->  	struct meson_host *host = mmc_priv(mmc);
-> @@ -950,6 +957,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->  	struct mmc_command *cmd;
->  	u32 status, raw_status;
->  	irqreturn_t ret = IRQ_NONE;
-> +	bool irq_enabled;
-> +
-> +	spin_lock(&host->lock);
-> +	irq_enabled = __meson_mmc_sdio_irq_is_enabled(host->mmc);
-> +	__meson_mmc_enable_sdio_irq(host->mmc, 0);
->  
->  	raw_status = readl(host->regs + SD_EMMC_STATUS);
->  	status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
-> @@ -958,11 +970,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->  		dev_dbg(host->dev,
->  			"Unexpected IRQ! irq_en 0x%08lx - status 0x%08x\n",
->  			 IRQ_EN_MASK | IRQ_SDIO, raw_status);
-> -		return IRQ_NONE;
-> +		goto out_unlock;
->  	}
->  
->  	if (WARN_ON(!host))
-> -		return IRQ_NONE;
-> +		goto out_unlock;
->  
->  	/* ack all raised interrupts */
->  	writel(status, host->regs + SD_EMMC_STATUS);
-> @@ -970,17 +982,16 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->  	cmd = host->cmd;
->  
->  	if (status & IRQ_SDIO) {
-> -		spin_lock(&host->lock);
-> -		__meson_mmc_enable_sdio_irq(host->mmc, 0);
->  		sdio_signal_irq(host->mmc);
-> -		spin_unlock(&host->lock);
->  		status &= ~IRQ_SDIO;
-> -		if (!status)
-> +		if (!status) {
-> +			spin_unlock(&host->lock);
->  			return IRQ_HANDLED;
-> +		}
->  	}
->  
->  	if (WARN_ON(!cmd))
-> -		return IRQ_NONE;
-> +		goto out_unlock;
->  
->  	cmd->error = 0;
->  	if (status & IRQ_CRC_ERR) {
-> @@ -1023,6 +1034,11 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->  	if (ret == IRQ_HANDLED)
->  		meson_mmc_request_done(host->mmc, cmd->mrq);
->  
-> +out_unlock:
-> +	if (irq_enabled)
-> +		__meson_mmc_enable_sdio_irq(host->mmc, 1);
-> +	spin_unlock(&host->lock);
-> +
->  	return ret;
->  }
->  
-
+     Arnd
 
 _______________________________________________
 linux-amlogic mailing list
