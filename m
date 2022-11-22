@@ -4,76 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5F75C433FE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 15:29:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EAD4C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 18:46:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZK5CYQj3TRTir8WgNClmMcZvtjQz/GhGrHe6OPfLeKU=; b=4dmfIdyT0Sg9P+
-	41Ij35m/o7kyRhf36VTIAfazDmh7tTjC4Fc/eP7EuaFbQMcQd2U/5xu4DTZ17OU/vKe5i536n428w
-	FrgLIbxnc5ZbhGARqs9cMSPYxv2G7111CgE2hob9cdxjDI//Iy7079h2kUrg7d9TLkvRCJVcyAauh
-	4HYSbhR18NBoSqgNwlkdSDM9tXl0tm54nX4NTkpvTP9YYYczAWFZSQriUAurhzh40S/Gc9QCfypmg
-	95Gic22VYD9v7MMoenJTGtJtQDUvfSdcK49s7dqhK/VGxg7qbo32Z8VrbcKr1gOrnfD19Xt5XFe//
-	SLTgercrcdNEehxN74FQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ON5BxK/KmSfeaxY438TS0ckwhVQhfnoax0qleY0JGMg=; b=SM4OCtJTbImREg
+	NDc13teFuHgPRVnrI62ZmDHitN74jnXgTnQfDmc6MFkibYZDaNwwg1EmaVG7w9Kvbdeby6NhppL10
+	6vsCQJlxm3SMfhF+gWVzeNErujgDUhD8w0M4ZSmCHGhW/YmNJMZKdjhCr1kUa1cHU90WaNtp2CIxs
+	NumWBWGQCuatn89z996USJrhfw+BMvGMhZTlQM8uOkhh1ERtyMFhRDfn7TIeiSZr788CCM3MF0Egz
+	8MxtJ6r+6h0bIK6YYsahK5hHosp9Tj/Fgdb3XcwrHvAvE0vrS4Cwwe9DcPrialtryyqweuO/CmTyD
+	tqdZZndbAGSLKtWxtBmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxVCj-00ALZQ-Dr; Tue, 22 Nov 2022 15:28:57 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1oxYHP-00BMm7-ID; Tue, 22 Nov 2022 18:45:59 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxVCa-00ALTg-Q2
-	for linux-amlogic@lists.infradead.org; Tue, 22 Nov 2022 15:28:56 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so11514951wma.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 22 Nov 2022 07:28:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:organization:reply-to:content-language:cc
-         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SzPOjMvl1wDV/XsfinABeMniFcH6xew9GepIKMGt1Q8=;
-        b=rcrExMNDawfXqiWUKKNEM9GpbkL/hVNidwXYd6GkEGBw23P8F1ho9G03+vz2AEU1YG
-         ZGyi71tPR6tf/a3qbjuPJsMdW2HdPoQEO/+Snv6M1mmB7r+5M/tYPMgYRPB6f7A15zCQ
-         hssruoM9kg0DEf+GpfVguyKgfHmPXZFrGxNhBPH3B0WBX9LKKq/d40EbDwbqO4T53Qs4
-         zpDN0B44x4lvVEIRpAbmMhHW9IcHMZIafpALE4MDrnfMjQGe2MCOqUMNo3NQQfo4ARAm
-         iuRoc5HdBOYee1IsVmMaZE2leZC3kgmRYpAt9Ew4nNQeSg/x76KciKv8Mv9Nv69cuxUp
-         Gzcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:organization:reply-to:content-language:cc
-         :to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SzPOjMvl1wDV/XsfinABeMniFcH6xew9GepIKMGt1Q8=;
-        b=YPB+HWidzFKP1bTYObv4jFXSATc++LuwehKELAkbnXq3wfcPUpDAE+T4pq6G8ii0C9
-         AvWHQ6t45IPsOqcpZJxbCgTWQcm3lPMFGZnj4gN3/lcKubOnkF6mBxv4fpmNGfyyzvZJ
-         Bp5sNZa14Ve3O6Qg/aY27Ib35R3y+6L/zuO/hfK/gw3L6GQJLemwe6RDVwuz4TvdB78v
-         UdQZBchqw9duNvhh5QQg5rG5MTJTwjQdwg0IO3Iz8o7kGUjYfp86ALlhxGL0chH6Ym9Y
-         m9kP8KmTw5YslGKGmHPg8toHhEXxF+qCdxPKtZ5sQhVTTenEKru+TMAHUP5FTFYDVz+O
-         jW5A==
-X-Gm-Message-State: ANoB5pnSdJd4rRpj326GbjXj8QpbcLd8KI6NzdYHmfnZg8cNwPYcds2N
-	GN9CFq59OoasJ0p3vhH8lfJ33g==
-X-Google-Smtp-Source: AA0mqf43OJPbvw69nuSE0Kzz1kX3i6bcYOxBk2CE/mqkRqFBjldEyD/25WaXuWrOn9cBWphF6yK0kg==
-X-Received: by 2002:a05:600c:4e4b:b0:3cf:7624:5fcd with SMTP id e11-20020a05600c4e4b00b003cf76245fcdmr16388380wmq.195.1669130927356;
-        Tue, 22 Nov 2022 07:28:47 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:6969:11a1:a2af:e8c0? ([2a01:e0a:982:cbb0:6969:11a1:a2af:e8c0])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05600c46ce00b003c6c182bef9sm27857871wmo.36.2022.11.22.07.28.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 07:28:46 -0800 (PST)
-Message-ID: <8faa1d3c-5a17-2c3f-92d1-f8fe3df74131@linaro.org>
-Date: Tue, 22 Nov 2022 16:28:46 +0100
+	id 1oxYHM-00BMk7-Mp; Tue, 22 Nov 2022 18:45:58 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 15F7C6164C;
+	Tue, 22 Nov 2022 18:45:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B47C433C1;
+	Tue, 22 Nov 2022 18:45:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1669142752;
+	bh=fqxt6my1VSa4mXhEYdIoCfXvdzW45n/iFIvfCGSEDwo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hhEERrBRIpsc+q9yO9csAlWHVhCaviR/WcBNWNuioF+tk6pV0ZhL7NiG1rd0mCAxq
+	 1szidsMiWWaFcDgeW9EGShTYklszbBWjIUflN4ZPlaCK62nJuyzjDBPZTppOU3jv4N
+	 8/hxDxIBUqAHSPgEChU749Xv+EuNTWQcC+6zplPAHN/Izkl+hvR/NDoy/ucWGRSQdw
+	 6okmEtteWfpDi+EH50bg96/6ZjPlAMMe5gMT1Fl+eoDaKbHg0REnL4BteXHVhuIHEj
+	 P64Js1Mq3YXxz372bDZyRlFZt9w4L3EsyIeqfNpZZSqs+lnqo+Nmvd9aWM/UsJjBvO
+	 sa1pYfX2CaTsw==
+Date: Tue, 22 Nov 2022 18:58:18 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <uwe@kleine-koenig.org>
+Cc: Angel Iglesias <ang.iglesiasg@gmail.com>, Lee Jones
+ <lee.jones@linaro.org>, Grant Likely <grant.likely@linaro.org>, Wolfram
+ Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org, kernel@pengutronix.de,
+ linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Broadcom internal kernel review list        
+ <bcm-kernel-feedback-list@broadcom.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
+ linux-input@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-leds@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
+ patches@opensource.cirrus.com, linux-actions@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ alsa-devel@alsa-project.org, linux-omap@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-mtd@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ chrome-platform@lists.linux.dev, linux-pm@vger.kernel.org, Purism Kernel
+ Team <kernel@puri.sm>, linux-pwm@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
+ gregkh@linuxfoundation.org
+Subject: Re: [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
+Message-ID: <20221122185818.3740200d@jic23-huawei>
+In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
+References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM64 DT updates for v6.2
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Language: en-US
-Organization: Linaro Developer Services
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221122_072849_535032_A595F7C6 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20221122_104556_876392_ABB065E1 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,86 +88,181 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-Here's a set of Amlogic ARM64 DT changes for v6.2, with 1 new board:
-- Support for SPI clk pullups on pre-G12A
-- Active cooling on Odroid N2/N2+
-- DDR PMU on G12A, G12B & SM1
-- Update cache properties in Amlogic DTs
-- remove clock-frequency from rtc in Amlogic DTs
-- Initial support of the new Portable Game Console from Hardkernel: Odroid Go Ultra
+Queued all of the below:
+with one tweaked as per your suggestion and the highlighted one dropped on basis
+I was already carrying the equivalent - as you pointed out.
 
-Neil
+I was already carrying the required dependency.
 
-The following changes since commit 9abf2313adc1ca1b6180c508c25f22f9395cc780:
+Includes the IIO ones in staging.
 
-   Linux 6.1-rc1 (2022-10-16 15:36:24 -0700)
+Thanks,
 
-are available in the Git repository at:
+Jonathan
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.2
+p.s. I perhaps foolishly did this in a highly manual way so as to
+also pick up Andy's RB.  So might have dropped one...
 
-for you to fetch changes up to 62e73f000696cc41cfd237a1ad90b001ad0f76c6:
+Definitely would have been better as one patch per subsystem with
+a cover letter suitable for replies like Andy's to be picked up
+by b4.
 
-   arm64: dts: amlogic: add initial Odroid Go Ultra DTS (2022-11-21 11:51:56 +0100)
 
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v6.2:
-- meson-gxl: add SPI pinctrl nodes for CLK
-- meson-gxbb: add SPI pinctrl nodes for CLK
-- Enable active coling using gpio-fan on Odroid N2/N2+
-- remove clock-frequency from rtc
-- Update cache properties for amlogic
-- Add DDR PMU node for G12 series SoC
-- document Odroid Go Ultra compatible
-- add initial Odroid Go Ultra DTS
+>   iio: accel: adxl372_i2c: Convert to i2c's .probe_new()
+>   iio: accel: bma180: Convert to i2c's .probe_new()
+>   iio: accel: bma400: Convert to i2c's .probe_new()
+>   iio: accel: bmc150: Convert to i2c's .probe_new()
+>   iio: accel: da280: Convert to i2c's .probe_new()
+>   iio: accel: kxcjk-1013: Convert to i2c's .probe_new()
+>   iio: accel: mma7455_i2c: Convert to i2c's .probe_new()
+>   iio: accel: mma8452: Convert to i2c's .probe_new()
+>   iio: accel: mma9551: Convert to i2c's .probe_new()
+>   iio: accel: mma9553: Convert to i2c's .probe_new()
+>   iio: adc: ad7091r5: Convert to i2c's .probe_new()
+>   iio: adc: ad7291: Convert to i2c's .probe_new()
+>   iio: adc: ad799x: Convert to i2c's .probe_new()
+>   iio: adc: ina2xx-adc: Convert to i2c's .probe_new()
+>   iio: adc: ltc2471: Convert to i2c's .probe_new()
+>   iio: adc: ltc2485: Convert to i2c's .probe_new()
+>   iio: adc: ltc2497: Convert to i2c's .probe_new()
+>   iio: adc: max1363: Convert to i2c's .probe_new()
+>   iio: adc: max9611: Convert to i2c's .probe_new()
+>   iio: adc: mcp3422: Convert to i2c's .probe_new()
+>   iio: adc: ti-adc081c: Convert to i2c's .probe_new()
+>   iio: adc: ti-ads1015: Convert to i2c's .probe_new()
+>   iio: cdc: ad7150: Convert to i2c's .probe_new()
+>   iio: cdc: ad7746: Convert to i2c's .probe_new()
+>   iio: chemical: ams-iaq-core: Convert to i2c's .probe_new()
+>   iio: chemical: atlas-ezo-sensor: Convert to i2c's .probe_new()
+>   iio: chemical: atlas-sensor: Convert to i2c's .probe_new()
+>   iio: chemical: bme680_i2c: Convert to i2c's .probe_new()
+>   iio: chemical: ccs811: Convert to i2c's .probe_new()
+>   iio: chemical: scd4x: Convert to i2c's .probe_new()
+>   iio: chemical: sgp30: Convert to i2c's .probe_new()
+>   iio: chemical: sgp40: Convert to i2c's .probe_new()
+>   iio: chemical: vz89x: Convert to i2c's .probe_new()
+>   iio: dac: ad5064: Convert to i2c's .probe_new()
+>   iio: dac: ad5380: Convert to i2c's .probe_new()
+>   iio: dac: ad5446: Convert to i2c's .probe_new()
+>   iio: dac: ad5593r: Convert to i2c's .probe_new()
+>   iio: dac: ad5696-i2c: Convert to i2c's .probe_new()
+>   iio: dac: ds4424: Convert to i2c's .probe_new()
+>   iio: dac: m62332: Convert to i2c's .probe_new()
+>   iio: dac: max517: Convert to i2c's .probe_new()
+>   iio: dac: max5821: Convert to i2c's .probe_new()
+>   iio: dac: mcp4725: Convert to i2c's .probe_new()
+>   iio: dac: ti-dac5571: Convert to i2c's .probe_new()
+>   iio: gyro: bmg160_i2c: Convert to i2c's .probe_new()
+>   iio: gyro: itg3200_core: Convert to i2c's .probe_new()
+>   iio: gyro: mpu3050-i2c: Convert to i2c's .probe_new()
+>   iio: gyro: st_gyro_i2c: Convert to i2c's .probe_new()
+>   iio: health: afe4404: Convert to i2c's .probe_new()
+>   iio: health: max30100: Convert to i2c's .probe_new()
+>   iio: health: max30102: Convert to i2c's .probe_new()
+>   iio: humidity: am2315: Convert to i2c's .probe_new()
+>   iio: humidity: hdc100x: Convert to i2c's .probe_new()
+>   iio: humidity: hdc2010: Convert to i2c's .probe_new()
+>   iio: humidity: hts221_i2c: Convert to i2c's .probe_new()
+>   iio: humidity: htu21: Convert to i2c's .probe_new()
+>   iio: humidity: si7005: Convert to i2c's .probe_new()
+>   iio: humidity: si7020: Convert to i2c's .probe_new()
+>   iio: imu: bmi160/bmi160_i2c: Convert to i2c's .probe_new()
+>   iio: imu: fxos8700_i2c: Convert to i2c's .probe_new()
+>   iio: imu: inv_mpu6050: Convert to i2c's .probe_new()
+>   iio: imu: kmx61: Convert to i2c's .probe_new()
+>   iio: imu: st_lsm6dsx: Convert to i2c's .probe_new()
+>   iio: light: adjd_s311: Convert to i2c's .probe_new()
+>   iio: light: adux1020: Convert to i2c's .probe_new()
+>   iio: light: al3010: Convert to i2c's .probe_new()
+>   iio: light: al3320a: Convert to i2c's .probe_new()
+>   iio: light: apds9300: Convert to i2c's .probe_new()
+>   iio: light: apds9960: Convert to i2c's .probe_new()
+>   iio: light: bh1750: Convert to i2c's .probe_new()
+>   iio: light: bh1780: Convert to i2c's .probe_new()
+>   iio: light: cm3232: Convert to i2c's .probe_new()
+>   iio: light: cm3323: Convert to i2c's .probe_new()
+>   iio: light: cm36651: Convert to i2c's .probe_new()
+>   iio: light: gp2ap002: Convert to i2c's .probe_new()
+>   iio: light: gp2ap020a00f: Convert to i2c's .probe_new()
+>   iio: light: isl29018: Convert to i2c's .probe_new()
+>   iio: light: isl29028: Convert to i2c's .probe_new()
+>   iio: light: isl29125: Convert to i2c's .probe_new()
+>   iio: light: jsa1212: Convert to i2c's .probe_new()
+>   iio: light: ltr501: Convert to i2c's .probe_new()
+>   iio: light: lv0104cs: Convert to i2c's .probe_new()
+>   iio: light: max44000: Convert to i2c's .probe_new()
+>   iio: light: max44009: Convert to i2c's .probe_new()
+>   iio: light: noa1305: Convert to i2c's .probe_new()
+>   iio: light: opt3001: Convert to i2c's .probe_new()
+>   iio: light: pa12203001: Convert to i2c's .probe_new()
+>   iio: light: rpr0521: Convert to i2c's .probe_new()
+>   iio: light: si1133: Convert to i2c's .probe_new()
+>   iio: light: si1145: Convert to i2c's .probe_new()
+>   iio: light: st_uvis25_i2c: Convert to i2c's .probe_new()
+>   iio: light: stk3310: Convert to i2c's .probe_new()
+>   iio: light: tcs3414: Convert to i2c's .probe_new()
+>   iio: light: tcs3472: Convert to i2c's .probe_new()
+>   iio: light: tsl2563: Convert to i2c's .probe_new()
+>   iio: light: tsl2583: Convert to i2c's .probe_new()
+>   iio: light: tsl2772: Convert to i2c's .probe_new()
+>   iio: light: tsl4531: Convert to i2c's .probe_new()
+>   iio: light: us5182d: Convert to i2c's .probe_new()
+>   iio: light: vcnl4000: Convert to i2c's .probe_new()
+>   iio: light: vcnl4035: Convert to i2c's .probe_new()
+>   iio: light: veml6030: Convert to i2c's .probe_new()
+>   iio: light: veml6070: Convert to i2c's .probe_new()
+>   iio: light: zopt2201: Convert to i2c's .probe_new()
+>   iio: magnetometer: ak8974: Convert to i2c's .probe_new()
+>   iio: magnetometer: ak8975: Convert to i2c's .probe_new()
+>   iio: magnetometer: bmc150_magn_i2c: Convert to i2c's .probe_new()
+>   iio: magnetometer: hmc5843: Convert to i2c's .probe_new()
+>   iio: magnetometer: mag3110: Convert to i2c's .probe_new()
+>   iio: magnetometer: mmc35240: Convert to i2c's .probe_new()
+>   iio: magnetometer: yamaha-yas530: Convert to i2c's .probe_new()
+>   iio: potentiometer: ad5272: Convert to i2c's .probe_new()
+>   iio: potentiometer: ds1803: Convert to i2c's .probe_new()
+>   iio: potentiometer: max5432: Convert to i2c's .probe_new()
+>   iio: potentiometer: tpl0102: Convert to i2c's .probe_new()
+>   iio: potentiostat: lmp91000: Convert to i2c's .probe_new()
+>   iio: pressure: abp060mg: Convert to i2c's .probe_new()
+Not this one > iio: pressure: bmp280-i2c: Convert to i2c's .probe_new()
+>   iio: pressure: dlhl60d: Convert to i2c's .probe_new()
+>   iio: pressure: dps310: Convert to i2c's .probe_new()
+>   iio: pressure: hp03: Convert to i2c's .probe_new()
+>   iio: pressure: hp206c: Convert to i2c's .probe_new()
+>   iio: pressure: icp10100: Convert to i2c's .probe_new()
+>   iio: pressure: mpl115_i2c: Convert to i2c's .probe_new()
+>   iio: pressure: mpl3115: Convert to i2c's .probe_new()
+>   iio: pressure: ms5611_i2c: Convert to i2c's .probe_new()
+>   iio: pressure: ms5637: Convert to i2c's .probe_new()
+>   iio: pressure: st_pressure_i2c: Convert to i2c's .probe_new()
+>   iio: pressure: t5403: Convert to i2c's .probe_new()
+>   iio: pressure: zpa2326_i2c: Convert to i2c's .probe_new()
+>   iio: proximity: isl29501: Convert to i2c's .probe_new()
+>   iio: proximity: mb1232: Convert to i2c's .probe_new()
+>   iio: proximity: pulsedlight-lidar-lite-v2: Convert to i2c's
+>     .probe_new()
+>   iio: proximity: rfd77402: Convert to i2c's .probe_new()
+>   iio: proximity: srf08: Convert to i2c's .probe_new()
+>   iio: proximity: sx9500: Convert to i2c's .probe_new()
+>   iio: temperature: mlx90614: Convert to i2c's .probe_new()
+>   iio: temperature: mlx90632: Convert to i2c's .probe_new()
+>   iio: temperature: tmp006: Convert to i2c's .probe_new()
+>   iio: temperature: tmp007: Convert to i2c's .probe_new()
+>   iio: temperature: tsys01: Convert to i2c's .probe_new()
+>   iio: temperature: tsys02d: Convert to i2c's .probe_new()
+...
 
-----------------------------------------------------------------
-Amjad Ouled-Ameur (2):
-       arm64: dts: meson-gxl: add SPI pinctrl nodes for CLK
-       arm64: dts: meson-gxbb: add SPI pinctrl nodes for CLK
-
-Anand Moon (1):
-       arm64: dts: meson: Enable active coling using gpio-fan on Odroid N2/N2+
-
-Jiucheng Xu (1):
-       arm64: dts: meson: Add DDR PMU node
-
-Neil Armstrong (2):
-       dt-bindings: amlogic: document Odroid Go Ultra compatible
-       arm64: dts: amlogic: add initial Odroid Go Ultra DTS
-
-Pierre Gondois (1):
-       arm64: dts: Update cache properties for amlogic
-
-Sebastian Reichel (1):
-       arm64: dts: meson: remove clock-frequency from rtc
-
-  Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
-  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
-  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   1 +
-  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |   1 +
-  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |   6 +
-  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi        |   5 +
-  .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     | 722 +++++++++++++++++++++
-  .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  42 ++
-  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi        |   5 +
-  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   1 +
-  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  14 +
-  .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     |   1 -
-  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  14 +
-  .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |   1 -
-  .../boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts   |   1 -
-  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |   5 +
-  16 files changed, 818 insertions(+), 3 deletions(-)
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
+>   staging: iio: adt7316: Convert to i2c's .probe_new()
+>   staging: iio: ad5933: Convert to i2c's .probe_new()
+>   staging: iio: ade7854: Convert to i2c's .probe_new()
+ 
 
 _______________________________________________
 linux-amlogic mailing list
