@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97C05C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 14:13:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A14EC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 14:14:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/K5u1Z0P9C29MgB27tnSkqTeNOWr9OASL46l/53EwTg=; b=1ALTcXn1pjgTMn
-	Gsjnb3U7OC9sv/pJWcHAZqtjvMH8YXwy5uxPRQkUgdgQ7wRx/yqq0xATiGrVK9I04jqlMlcq3Bv5Q
-	IRIWQwTHIrRcAa4X4Q/EDS1XSqJc+5Y3PgHdXm8jkPQ/oWugpLT98U/pxPyaUbIuYFM/HhyRrpBBL
-	OEq5pOZ/oCWJwbiWRhE3riVZb0IVyq20JboDbdy0rHedgVbh1amUWL/GrRpn8whRe9tuXtMkMCbms
-	2wpdVBVdAPokUN+S8aDlpgDu0yGpfCCrLEZgjvayARtk4VJaaW3VfEUgEE3fcSnHGHmkOaisoedCp
-	RHJ9yMYNADquiX0FjN2w==;
+	List-Owner; bh=EmD5yv49CpgpdSm21oxZewwMAKRk2DBsTIitZVx5GTo=; b=jSLLt55+69sPzf
+	9M/tInph6r9HR+jQIyrcI1THJQtrNyi4dXHJ3uUPEnhPi210WcyxcnYthe6+gCaq+YsL6jHsMEQXB
+	4THD/cfjBMQ3Dw6bd75lDSl3usq/Lgzg7KQOyf0lUQlchkqTmH8ELzjDFRQIFZdeexZ/1BDaAcekr
+	PKuxLcA9lTfxdI78aL5kKSB7LxSRUAqnEE3UOwreEvpi58PDDh3SpEroustR6RE4D2xot+cruHWwW
+	tFM3MQ1/PTX3edPlt1Zf3ma4oR+tcF5gh5AnL1JXtl1Ittztl+VbgRskoz3xsP8cANc+tvEsdBAd5
+	obwlx9XuNYWURBf0sGRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxqUf-00HWxb-48; Wed, 23 Nov 2022 14:12:53 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1oxqVT-00HXHg-TE; Wed, 23 Nov 2022 14:13:43 +0000
+Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxqUN-00HWp2-TO
-	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 14:12:40 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id be13so28340013lfb.4
-        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 06:12:28 -0800 (PST)
+	id 1oxqVF-00HXBB-Lx
+	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 14:13:31 +0000
+Received: by mail-lf1-x133.google.com with SMTP id d6so28309723lfs.10
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 06:13:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YpScT/PLZhW9m/mc8mS4KdOL1HgAD8oZWMFJX7jIr5M=;
-        b=dVw7XBd3kFmPkaiQVhTxkTxRTXfXPM2I5cBO1BHdipcu1xZUATDW3nqvCXHSJHNjkG
-         Saq4PQcGqWeTRcsEBw+SoTuEWDyarGTLZS7tyefqZMUT4tfAG9qNjBQPdJBzFFJY4zde
-         cq8lLYQqft+3Pp6JhU7YBgBAml7uUKP+8lhWRS2CHTvlFdzTn9QKPaEYPncuHSTY+0Ac
-         caMiN5HuJTr7cdk2bBZ+dfO+1kewrN6lfF/PGFTWzkY4N0mMTvZVvDnotGyjVaZ+DeUz
-         7jVx5CyB8Iq+8PCQgVa0WFVeihPaEtKsmTU7HmeJ02eGcdn3/yvIDo5oy20WEkfdX0LD
-         lVGg==
+        bh=8/Gp8oNJZw3cLXUYP8ks4PwvnFzrrxOR4KiPfsrpS5s=;
+        b=Eu4w0mKIlQN/48m6aFJ+zpEBptQk93sPQh9M8czvaTGBgj/obNFUppnhII4bHaL+t8
+         WDRLzC/3Bq9UVwLtv7GnkM96heFTdJivk2h6ne0AJWun7grt5tlGRIkzjFdSsrMuxmm9
+         fOEoOPvp1SOx/oesbnKiK5xb2kGivh5DafLvQPvRzONO+0HYgfFbCsn5INIWAqht3SWV
+         XGyvUJUdga+HZqaWOemqlq7N/FMRO9J5Gswx85kxcWL5ADEik4+K0/FZgRLrjRPkD6Cx
+         EIDe//PF9Abt7YL/j3jqsSf12pvXQUFX1J8fSacwR2zK+LGdDdBoE3fd3uPb87puxjNj
+         KbKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YpScT/PLZhW9m/mc8mS4KdOL1HgAD8oZWMFJX7jIr5M=;
-        b=3anfCfxPl7gZwYlkvg37+zldpmjxHC5lpjJ5UW2VxlbF9gdbwxL+SK5Fv9cHT48qTf
-         546iKHahWlvOlMf81jM8FlFx6RF3Ee7+Rz+sQ4BaUojFJbEUAeJc82OW6lLWgxqjDELo
-         ll/FLhwEV/Lictrk2gcgA+BmqBbAnGF3nJ0o/Q9iIQoJj3h1PNfGXQrGZfhoQEe9gE9Q
-         icYmMDNM1c+wiiX+GJqz0WrBtzgWE2ainiTZTKv7lkZBZ4f9J5lv2Z12g+qMW6CA0jHd
-         gVD1joVQoGuk2z1wcAfhTargVzjceqhvI0aENICrvl5Eafi/7DuQA44FGN9QrDHT/GyA
-         SnsQ==
-X-Gm-Message-State: ANoB5pnL6dcHhtP4ncKC/PjMSAjK6DgYnztV/sjySLWVFozV6JVNq54D
-	/rdKxbA8f0nd+qLI9jeEveGOeQ==
-X-Google-Smtp-Source: AA0mqf65irOcr+aB/hyQQfJeHM7Hq1+nPrF12N6FMB1oep9oKnjE/+MQX7mNMHiHEpGS4c3FQkZxMg==
-X-Received: by 2002:ac2:4209:0:b0:499:f8e4:6dd0 with SMTP id y9-20020ac24209000000b00499f8e46dd0mr9925093lfh.162.1669212746994;
-        Wed, 23 Nov 2022 06:12:26 -0800 (PST)
+        bh=8/Gp8oNJZw3cLXUYP8ks4PwvnFzrrxOR4KiPfsrpS5s=;
+        b=nCu/W2Wf4TNNksrKO+mb9MQA5FGJ6HRzkjN3CztL+d0P7iGs/Jeeuz247Yy/KkEOaF
+         tmW+hqVcD+9/aVJwlMwhOGonieyG1bBrhvc5zDg6O2dZvLZjn7FpqmX3Z1rt+IpMOGmn
+         ggWgE1Y+zsyVnZ7j3dGttIOzdMBNB5ukJyvWX0NV7YbbSDtlGSz3Z3sXLMTLVnchTASr
+         RFE0/CjkgyL4Gxq/sIdFyFXC9qdBbgus+4flMArbTlvrUSe8Ds8R7eUyTyJTFKm1f3rX
+         Q3lEzVHlzvHYhMICu6wYHf2+xW33fUySlX9SUfegaZD6+9DVvV30Yo1QrYPnlKuwron+
+         +OJg==
+X-Gm-Message-State: ANoB5pkgeNjq2gBVh2tV6TWVDrJzwWGfE9GdQ3NoIKPehvD1NZFNkYCe
+	AqntTyYRTBDFa3afC8wnFw++Cg==
+X-Google-Smtp-Source: AA0mqf5quQBr81TBL9QYOBAQk89wKtHmN891t6m5JcSES8bjEfXcUWIQE5L7V2X5rE6LA0yj51omnw==
+X-Received: by 2002:ac2:5f62:0:b0:4b4:6ca6:c669 with SMTP id c2-20020ac25f62000000b004b46ca6c669mr9176286lfc.338.1669212804830;
+        Wed, 23 Nov 2022 06:13:24 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s29-20020a19771d000000b004afeacffb84sm2899160lfc.98.2022.11.23.06.12.25
+        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004a2588520f5sm2893414lft.166.2022.11.23.06.13.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 06:12:26 -0800 (PST)
-Message-ID: <663d8e29-b47f-8135-8b4e-c95b68559367@linaro.org>
-Date: Wed, 23 Nov 2022 15:12:25 +0100
+        Wed, 23 Nov 2022 06:13:24 -0800 (PST)
+Message-ID: <7f3a34a0-a5b0-3a72-8e0e-00656bd77ff6@linaro.org>
+Date: Wed, 23 Nov 2022 15:13:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
 Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
  controller in DT
 Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
+To: neil.armstrong@linaro.org, Yu Tu <yu.tu@amlogic.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Neil Armstrong <narmstrong@linaro.org>, Jerome Brunet
+ <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
@@ -81,15 +81,12 @@ Cc: kelvin.zhang@amlogic.com
 References: <20221123021346.18136-1-yu.tu@amlogic.com>
  <20221123021346.18136-5-yu.tu@amlogic.com>
  <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
- <9858039f-e635-2749-80a2-75072d6e9cea@amlogic.com>
- <8dbb3ce2-c8d9-70be-d1de-ed875de0ea1b@linaro.org>
- <3bdaa648-c607-a79c-f6bb-c75baa1e8509@amlogic.com>
+ <9961d579-9463-c585-34a6-a3abcd4b3e52@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3bdaa648-c607-a79c-f6bb-c75baa1e8509@amlogic.com>
+In-Reply-To: <9961d579-9463-c585-34a6-a3abcd4b3e52@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221123_061235_958732_9453B24E 
-X-CRM114-Status: UNSURE (   8.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221123_061329_725808_2E000260 
+X-CRM114-Status: GOOD (  12.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,28 +103,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/11/2022 14:23, Yu Tu wrote:
->>> ../patch_clk_v5_1122/0004-arm64-dts-meson-add-S4-Soc-Peripheral-clock-controll.patch
->>> has no obvious style problems and is ready for submission.
+On 23/11/2022 14:27, Neil Armstrong wrote:
+> On 23/11/2022 11:10, Krzysztof Kozlowski wrote:
+>> On 23/11/2022 03:13, Yu Tu wrote:
+>>> Added information about the S4 SOC Peripheral Clock controller in DT.
 >>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
+>>>   1 file changed, 26 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> index bd9c2ef83314..e7fab6e400be 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> @@ -6,6 +6,8 @@
+>>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>   #include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+>>> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>   
+>>>   / {
+>>>   	cpus {
+>>> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
+>>>   				#clock-cells = <1>;
+>>>   			};
+>>>   
+>>> +			clkc_periphs: clock-controller {
+>>> +				compatible = "amlogic,s4-peripherals-clkc";
+>>> +				reg = <0x0 0x0 0x0 0x49c>;
 >>
->> This is a checkpatch output. I am talking about DTS broken. dtc should
->> warn you.
+>> This is broken... did you check for warnings?
 > 
-> Do you mean I will have wraning in compiling?
-> I actually compiled without warning.
-> ccf$ make ARCH=arm64 dtbs -j12
->    DTC     arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb
-> 
+> This is actually fine, the parent node has a ranges property:
+> https://github.com/torvalds/linux/blob/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/arch/arm64/boot/dts/amlogic/meson-s4.dtsi#L93
 
-Nope:
-
-../arch/arm64/boot/dts/amlogic/meson-s4.dtsi:105.35-127.6: Warning
-(unit_address_vs_reg): /soc/apb4@fe000000/clock-controller: node has a
-reg or ranges property, but no unit name
-
-Test your patches better before using reviewers time for trivial
-compile-time fixes. The same rules for C code apply for DTS.
+The parent ranges do not change here anything. You cannot have a reg
+without unit address and the tools report it. No need to use reviewers
+for this...
 
 Best regards,
 Krzysztof
