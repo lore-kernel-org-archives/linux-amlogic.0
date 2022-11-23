@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2309C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 10:09:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F4EC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 10:10:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S6EgP7K74ENs0R2D50wibmDGb+m/tQm19jqExMaCPmM=; b=FAD5PMv25Q5q56
-	utMbTUM4bfXD9/52uKJpCOLSEY3Lj1q2Dp3W52nHhDFyFnEV7f8DarDq48GPo7Q7WWBOR23VVgmCF
-	LZU+KH9kxd5AHPjEcUXzZfNzGz+UO1KogJ/tPHxgzF2Fdad2wXk+lmVfNpzkFNdqlQ2SLIl8GCKZu
-	1wyDgeOs7gRiMePS+jyt6Fmc+/RrWFyk8aRq69LUd+jiEPs/0hh3PGLLY/VaTJ0X5OG2RXEXofb6C
-	5ynZIKqIl9oUJjnA7K71lephcQlKiBdWeTESonbl6VefZ1iOvbTu9tzigwr8HKtHGbJvLMemXUdKQ
-	F8XMINekkt9L8SCdWW6A==;
+	List-Owner; bh=gVUV+681NyeJzg2uF1PdYaEHerKgVKvzM8KyP1euNIo=; b=Yyj01jso3vw8Gd
+	7OKwKWIWMV9sKP1Qc/ovSiTFSMfR5VYFzIv2rg8LfWA5MG3Z5wGtWjRI34AalHAC85wzwt+WOxEvK
+	Nt/ETN+R4qh8cWL0bkt7h+NzhR6L7HNOVO5M9/FK7YhL6Q1JKYkOsfTeu8Ll+a5ccLqOj2I9l5BuO
+	ISP9nybNFi+NGz8LvczVcJI4qtDw+1qSruESOC79wiBRRyOw7a6/S6mRSuMUQx+Hh868Z4pajsquM
+	n51EpoFKzOABoZVRk5CYAG23w2PzoOt01cQhhtkF65A1qy57h84I8AyDRFTJM2EC1Yk+kB4DKAy1/
+	vaR2YRIlW9+33ERZGtbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxmgT-00GFmv-Fs; Wed, 23 Nov 2022 10:08:49 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1oxmhe-00GGF3-El; Wed, 23 Nov 2022 10:10:02 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxmgE-00GFey-D0
-	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 10:08:36 +0000
-Received: by mail-lf1-x133.google.com with SMTP id g7so27475183lfv.5
-        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 02:08:32 -0800 (PST)
+	id 1oxmhc-00GGDa-4m
+	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 10:10:01 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id t10so20880353ljj.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 02:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/6KnfI+9/uy7ITylHecTvTbunNR+ZrgdbZvYW8L95tE=;
-        b=Z3GYxeYtlrpUJfiFGwuiU+qI838C6YNMSXBcHWKBD3OeHCuCpAlyNpJ8dlXJnsreT2
-         ZHoxcAjO1+dtsBH+otG8+/Eio4ekhaqXw5Pf86DXPzHPYVI9FqurhcQ1tFCeKdeVHMeq
-         HXZY1PF/BRopuElmeMKJ9v4BgMDgc7YOw3H/ofTFPFA9uadwEIdommTGe3+jGWihL9H6
-         TSRxyjHtgKYP1s8pNCrOLghvCh9R8k+MlrpX/HlNjPaspZBPXSG3oYzAGvkJ/tbUdjdK
-         DviI9Rv/n0Mik+Af52qds+pdsGXkSOY4Hp2Abdhx7PiTfKrygUxb6coVInzQhVxBrBKz
-         J6Cg==
+        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
+        b=LoDEChFlLgzRfgj2sVBMbstyjMSGKEC6XjMZqmuvucEVuveBIlMXgMMSiuI++6+IcQ
+         aS9bnxmzJlAaKE+MfOds2q1b+s9mvevdH7oyVKelyHFFwUitnM3B6hVK/Q4+dSUZML4m
+         Shqp7BNXicViAayytoxOzh5SIR1YozQRAcKIIho5gSGw7Yly/2XOiUkYyMnPzevrBxSO
+         9eKLGtlDGoav4GxFExmr0nsywKeoBzKpnkjYraQgBUnOY+M7H4qofnwhO41PkZw+vYzx
+         wXuLtPXV8ddWlwU8afXb2XTDejwM14uouwWAX0eYMVU2UOu7cuRnrakbiNz7eCLy607j
+         FcWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6KnfI+9/uy7ITylHecTvTbunNR+ZrgdbZvYW8L95tE=;
-        b=ED39RV0b43tZSzPDa+6GKkX/rxZYr2OTrt++IR0Ee+oZa0+VbbEY5pzZGBFK2EjBfT
-         n4nlwO9kcpReLoY7K0oju7pD5Gp6Ylimk5nje/Oig6z13KBhFGZi/rDXUefWhNAg8YPV
-         YQPQZ1Q0vi7+Zd607SCff2z0kZWt2RLWyBgV9llzaQ77gOmZfeC1KFKp4w52fweA6DMm
-         fAgBoPnLcX/05tF9Y6D6a2yNjfuV7xxDApffsrRBEe/5g1Le07puiRUTh0AWBy0rRoqq
-         SdSsSRV9C1zqvOUrypkeNG4wwM7zOlwIcAnsXburxLwJYbUw/gciW+Cio5jDMSVGQYiY
-         KhIQ==
-X-Gm-Message-State: ANoB5plYCLPfgpwNV+m9D+pwzJaz1MIABmFtC9rTpsc/DU//uJjentGs
-	qceMTROorWMNXL979ZaCYJm2DQ==
-X-Google-Smtp-Source: AA0mqf7ledULYqnBZnfQi9FuTJ2ZzfaNniMGFoQ0mm+yVXMomPygKM0YjBxAcGyJgZZx2qeB1bwHQw==
-X-Received: by 2002:ac2:58d9:0:b0:4b3:ccea:9b2e with SMTP id u25-20020ac258d9000000b004b3ccea9b2emr10307267lfo.379.1669198110899;
-        Wed, 23 Nov 2022 02:08:30 -0800 (PST)
+        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
+        b=6R5wYzyYlOMMpA4Otmve453H5QGncUY+g9I4dInZKmv+0SK/1iUfITCzPRBA+iPbCf
+         qOyolEQqE2V9Hqz43sSY6+FKjduSFLUppdiIBOAicSHtwOm4UcPSlrA6eoeIlxubDGUF
+         xlAuWySLft1eyTvmkQpPPjHPWVyVCtzNKL+nEl937X5UslP0WQLO8UXLsoYgHKvFJp2e
+         T7iRiw1rfAzShbW3/EcMjtD8l2nYqc37Z6dhwx7GLavDvZ0zmOhNmtOqKVHUp4ggB8u1
+         Khmi3wawJ0OSYGzMxg1yHlTYPVSdlVsX5zImE+0VH/7OOFiAvk4KPnSZ/iWwTCxZt7ac
+         lJMQ==
+X-Gm-Message-State: ANoB5pnqWLOk85gSI71UifcXbnbTBmpJ/xHrqtowvbXoudWGWL+JB5OF
+	bWKs+wq4PxwGYq8LvYwcq3bOXw==
+X-Google-Smtp-Source: AA0mqf5TV5txgsK0WFTA0l4gRjfGYwijM8avNcNq2kGWPcaw69fP3+7jectvC9FDgDMfpYRzpwNglg==
+X-Received: by 2002:a2e:8891:0:b0:277:a4e:98f2 with SMTP id k17-20020a2e8891000000b002770a4e98f2mr9186739lji.358.1669198197083;
+        Wed, 23 Nov 2022 02:09:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d18-20020a2e8912000000b002770eafaafbsm2199487lji.99.2022.11.23.02.08.29
+        by smtp.gmail.com with ESMTPSA id c28-20020a2ebf1c000000b0026b2094f6fcsm2141922ljr.73.2022.11.23.02.09.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 02:08:30 -0800 (PST)
-Message-ID: <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
-Date: Wed, 23 Nov 2022 11:08:29 +0100
+        Wed, 23 Nov 2022 02:09:56 -0800 (PST)
+Message-ID: <09a443b3-4e27-a751-ba2c-057d69363a13@linaro.org>
+Date: Wed, 23 Nov 2022 11:09:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver and bindings
+Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
+ controller driver and bindings
 Content-Language: en-US
 To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -78,12 +78,13 @@ To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: kelvin.zhang@amlogic.com
 References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-2-yu.tu@amlogic.com>
+ <20221123021346.18136-4-yu.tu@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123021346.18136-2-yu.tu@amlogic.com>
+In-Reply-To: <20221123021346.18136-4-yu.tu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221123_020834_484283_D8B5A283 
-X-CRM114-Status: GOOD (  15.96  )
+X-CRM114-CacheID: sfid-20221123_021000_218905_B30FF3F9 
+X-CRM114-Status: UNSURE (   7.10  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,119 +102,19 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 23/11/2022 03:13, Yu Tu wrote:
-> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
+> Add the peripherals clock controller found and bindings in the s4 SoC family.
 > 
 > Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > ---
->  .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
+>  .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
 
-This is v5 and still bindings are here? Bindings are always separate
-patches. Use subject prefixes matching the subsystem (git log --oneline
--- ...).
+No, this is total mess now.
 
-And this was split, wasn't it? What happened here?!?
+Additionally, you received a lot of feedback but your changelog says only:
+"V3 -> V4: change format and clock flags."
+so you ignored entire feedback?
 
-
->  MAINTAINERS                                   |   1 +
->  drivers/clk/meson/Kconfig                     |  13 +
->  drivers/clk/meson/Makefile                    |   1 +
->  drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
->  drivers/clk/meson/s4-pll.h                    |  88 ++
->  .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
->  7 files changed, 1059 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->  create mode 100644 drivers/clk/meson/s4-pll.c
->  create mode 100644 drivers/clk/meson/s4-pll.h
->  create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..fd517e8ef14f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson S serials PLL Clock Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Yu Tu <yu.hu@amlogic.com>
-> +
-One blank line.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-pll-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clkc_pll: clock-controller@fe008000 {
-> +      compatible = "amlogic,s4-pll-clkc";
-> +      reg = <0xfe008000 0x1e8>;
-> +      clocks = <&xtal>;
-> +      clock-names = "xtal";
-> +      #clock-cells = <1>;
-> +    };
-
-
-> +#endif /* __MESON_S4_PLL_H__ */
-> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-> new file mode 100644
-> index 000000000000..345f87023886
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-
-This belongs to bindings patch, not driver.
-
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + * Author: Yu Tu <yu.tu@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-> +
-> +/*
-> + * CLKID index values
-> + */
-> +
-> +#define CLKID_FIXED_PLL			1
-> +#define CLKID_FCLK_DIV2			3
-
-Indexes start from 0 and are incremented by 1. Not by 2.
-
-NAK.
+That's not the way to work with patches.
 
 Best regards,
 Krzysztof
