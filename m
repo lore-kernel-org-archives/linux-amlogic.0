@@ -4,56 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8A7FC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 01:52:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11AEEC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 02:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iMSXbd5OiEBDgfUiPqhGHws5eNsOVhz/xzMx9WhtGd0=; b=W+2p4BcyDE4mCy
-	qqMm0UjWA6KkzKpgZ1XL1ykPQ/4gyg0RH711SZMx+jvz8X1sjcD6pZnVG3Kkofz2ZFl5zmpY8/d9Q
-	iX9okUa+dYfj8b4yWq6aiRkWJww63svk7oGWrgcek9fo8FyQToTP9k1i46Mg/8BW+84le59A2h3lf
-	7ozZnGf3xyvh+QiOowhhwRSe7OYMo+sEdj/Gw/1Y5NHNGBqRjRPWNXD7JXWOhDjp89qEfZLL7+FiU
-	fCOXFYV/zYqR5dou5KdcluAo9ZnZcDzn3boy4dD6ZhkYl4WQN/dkjR/cHgveRpCK+SaH3n/w4o4SE
-	nj81qFibEJUQItCGxeVA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MsXDiFBrpD8TS4jV1RY0zjsdL/IRsniRmZtF7DMIq6s=; b=3ELfbkYdlOYhy8
+	Jdy9ILfn4T9aXt9+tkzIAcsxgmv+4T9iCtOq+XeieybG+hn1tlj086g4tVQ6LcKFGSVqpzhkv6vhr
+	ZU/rduCHQ1ZfzJYLY/eTSh8p3I6B1pMz3E6TLBe5bIH2Znu2ALVpBHxS2AyRI1Bh4Kh0ig1s1EJi9
+	RjDDTLYw+B8G2a8ftYDqwRu6zooPKEYV08yy6M5eHgUb4nPegsvGmL5ye05eC9IT4fPLxdFOYnrRf
+	w0UrMXzjM2ppdYIWsZHEJ8qPKdLl/KNuEFuleaWWD/crkHbJ05wgkKbBSX3y3+KBd+kf2MW6rsHEG
+	CB7uwu9INb1RPPW9wsGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxew9-00CmYs-ET; Wed, 23 Nov 2022 01:52:29 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1oxfJA-00CxOR-Ha; Wed, 23 Nov 2022 02:16:16 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxew7-00CmWk-DY; Wed, 23 Nov 2022 01:52:28 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id BDED1B81DDD;
-	Wed, 23 Nov 2022 01:52:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F839C433D6;
-	Wed, 23 Nov 2022 01:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669168344;
-	bh=dTA0Ua0yEjDRaEG6ZxMKIqle9mnBNl2ZpQuwd5Bx88g=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=mCyRDXCG9YB364voD4uLV7TbJ1zVps9MntGPHH4g0extA883uE4AEEcybirjSVbMD
-	 WxKOMzbtow5+8oSIO/ek7EPyZjf/9r9NembrNDsSWiOoHrfUNfvGmdWpFw8Yy30Jbg
-	 3iF1aVcThk3r6Lme3oVP+nzDpckIsLhEUdYt6YiMlwK8pKz+D59lax2WamQ4+6QSFB
-	 rL2FgQlgO9RcoYJ1drnyvlab7ra0sEDuijwS67m8SY0I+U9S02CW4PixRzg8ruY3sO
-	 uT3pXTqEzjaN0dQSEge6Is3l0T/ebPNORfo7KPMqSbs9KFmM8llwBLdPCo8YlQvxkH
-	 WpW1nwnRJj45g==
+	id 1oxfIw-00CxCm-Bq; Wed, 23 Nov 2022 02:16:03 +0000
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 23 Nov 2022
+ 10:15:41 +0800
+From: Yu Tu <yu.tu@amlogic.com>
+To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, Neil
+ Armstrong <narmstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <kelvin.zhang@amlogic.com>, Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH V5 0/4] Add S4 SoC PLL and Peripheral clock controller
+Date: Wed, 23 Nov 2022 10:13:42 +0800
+Message-ID: <20221123021346.18136-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <12dd5cb49efa7714f8e0389e4c7b3bc829e8a90e.1668289299.git.christophe.jaillet@wanadoo.fr>
-References: <12dd5cb49efa7714f8e0389e4c7b3bc829e8a90e.1668289299.git.christophe.jaillet@wanadoo.fr>
-Subject: Re: [PATCH] clk: Remove a useless include
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, Christophe JAILLET <christophe.jaillet@wanadoo.fr>, linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Heiko Stuebner <heiko@sntech.de>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 22 Nov 2022 17:52:22 -0800
-User-Agent: alot/0.10
-Message-Id: <20221123015224.6F839C433D6@smtp.kernel.org>
+X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221122_175227_655233_71C38707 
-X-CRM114-Status: UNSURE (   6.81  )
+X-CRM114-CacheID: sfid-20221122_181602_426708_4FF29A63 
+X-CRM114-Status: UNSURE (   6.83  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,14 +63,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Christophe JAILLET (2022-11-12 13:43:03)
-> <linux/rational.h> is not needed for these drivers. Remove the
-> corresponding #include.
-> 
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
+1. Add PLL and Peripheral clock controller driver for S4 SOC.
 
-Applied to clk-next
+Yu Tu (4):
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver and
+    bindings
+  arm64: dts: meson: add S4 Soc PLL clock controller in DT
+  clk: meson: s4: add s4 SoC peripheral clock controller driver and
+    bindings
+  arm64: dts: meson: add S4 Soc Peripheral clock controller in DT
+
+V4 -> V5: change format and clock flags and adjust the patch series as suggested
+by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/all/20220823022630.25007-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   51 +
+ MAINTAINERS                                   |    1 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   34 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3783 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |  218 +
+ drivers/clk/meson/s4-pll.c                    |  875 ++++
+ drivers/clk/meson/s4-pll.h                    |   88 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  131 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   30 +
+ 12 files changed, 5343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+
+
+base-commit: 5eeec1fd8360d57899d29a607ff81d0094e6cf59
+-- 
+2.33.1
+
 
 _______________________________________________
 linux-amlogic mailing list
