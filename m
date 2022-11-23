@@ -4,68 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E322C433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 12:12:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 777DBC433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 13:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JEW6Yl6l5pAPHlwUPw1wwf0LfM4lXCbR7oWGxjxFUs0=; b=LR/vW3iFtAjx9l
-	uQ2sEO8qJCOcy3OXxqIo2P2fPuXwg2opVYmL/YyV2XQKtXVem3rM9hHCz89fGYlu0KGmTxhqXKhJA
-	TGtZEwKzcehoAETdXMEu5mBIZAcxb5ciDSZuxuYwRoHKOXqco1TevRRkVacwSyM65Wl2cH5myUNDT
-	DGocNz6AFEzaEBbQD9Vpz05YAdPVHjssHr+877Ald/SU+W6s8pZnxeOlsjTGybqGXl9dc0ZZF8MfY
-	++WSIdmadiEH/wf1k/saEAYvVPe+21yYirWRDUjS1H5R6IK0o8SE65StMYQ3JVhsHYrRcVZzr7go8
-	PPmjCktikWaXZxznHIZw==;
+	List-Owner; bh=KNhb6oA9uh4BjhtvXLYlh17t7lOtuGOZ6g7ChBWtlNw=; b=CapfF1N4Rjj3uh
+	X/UMuZCBOuneWOw3ftuMbjXf3mnSq2QiD7DEtj18a00FyQKKKcqbqSB65dsVofXFnYWjpN6z/8On7
+	2gsC2kDIEYDejw7hQr//ZQLtzcWVZ2X3xgzhimu8Wo8zV10B0Bn8oURWq6mUFxIV8SFLaatX/8TtW
+	FqMGR8+vyOHGvRKdsSNZNyQ3QEUAG+JBW8MDlsgDfJwDOJnmCJYG+1sJAhXAqYb/tQXPNJ5RFx6Dv
+	ITDjabGrOHiyJWwd1wQbGUdNDzcUqOjspCv4YfMW3ijYXTOFlHWrcA4SUxVqL9ObBYv3Ongc0I33C
+	hMORqm1yiI4ANV0i3/mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxobX-00GqgV-6o; Wed, 23 Nov 2022 12:11:51 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1oxpOa-00H6Xk-To; Wed, 23 Nov 2022 13:02:32 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxobT-00Gqfp-8Y; Wed, 23 Nov 2022 12:11:49 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 2882CB81F1B;
-	Wed, 23 Nov 2022 12:11:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FC45C433B5;
-	Wed, 23 Nov 2022 12:11:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669205501;
-	bh=LVCS/9pspNUOtJim3pqK4CvI0blKDQrkaBc4pcfzuoI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=rj3QTsNVa7ZgOuhLfBy9tx18KCIlTIJMB4cSkte+RplU+eSl/lFO/EDez7bdjVFd9
-	 9fX+DaKr8ANAhizoOsbjkLgSttlC83xklILjmy49JcJ/UwvKoN7SQ7eR139VwePc6M
-	 Gfek6syflcEVKoSML/mJta2HjhsXv47WgeUfGOK/KJQ1oGPhZEsEp+xISfzHjYqXec
-	 stw+LHBzRC2ZFa54Xibl4uXodosL+xXoxv0Z1tmFct2dTM8wNNExw5hthuZ2IBYSZU
-	 Y6pqeJovtUL6HrNGLMCQs4x2+LJFh8jEtzGnS7s5OAFYw+0Z3KNg7FLhXUarYVeKWK
-	 Qwq1WYu1OFoqA==
-From: Mark Brown <broonie@kernel.org>
-To: Grant Likely <grant.likely@linaro.org>, Lee Jones <lee.jones@linaro.org>, Uwe Kleine-König <uwe@kleine-koenig.org>,
- Wolfram Sang <wsa@kernel.org>, Angel Iglesias <ang.iglesiasg@gmail.com>
-Cc: netdev@vger.kernel.org, alsa-devel@alsa-project.org, linux-i2c@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-mtd@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-fbdev@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-crypto@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, Purism Kernel Team <kernel@puri.sm>,
- linux-integrity@vger.kernel.org, linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-actions@lists.infradead.org, linux-pm@vger.kernel.org, linux-input@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-renesas-soc@vger.kernel.org,
- kernel@pengutronix.de, patches@opensource.cirrus.com, linux-omap@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, linux-media@vger.kernel.org
-In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
-References: <20221118224540.619276-1-uwe@kleine-koenig.org>
-Subject: Re: (subset) [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
-Message-Id: <166920549294.105268.4063772555451021149.b4-ty@kernel.org>
-Date: Wed, 23 Nov 2022 12:11:32 +0000
+	id 1oxpOY-00H6Uk-6o
+	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 13:02:31 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id b9so21302447ljr.5
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 05:02:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RUEe+xvo6A9bHKL3WK6VHdimu7vun/3ExSCGDYJweEg=;
+        b=y0sFuHh0+K0wq6VzFe3oKGdWnx5+CfVCg3XFcbMQz32cMMuXuO1TlrU1gJaCosrhLC
+         Ik8BY0drtu8PucxwsTRSYqdJM3F/oG31rbPMf9FgclXEojCyPO45fhVsPi9GOQkYxehW
+         S9qNwcGKbqEUTH1G/UVtMv+S8gOJlWf8UjEWtzzUCg2hHem8RR+ITe/aqynuahKqmxOj
+         A87gX0uXXhnYLWS2ZspJrGvVGeC9zRNkP2rzR4dk/NwEuj1kBhYRyDLM6s+YXc2qPSuf
+         5WTIvFBzZm20BOzLilDiZkewal5Mo31sfO2GWH5BXRHcVb6ZH5VsqLffaIypSiuMUKgP
+         k3SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RUEe+xvo6A9bHKL3WK6VHdimu7vun/3ExSCGDYJweEg=;
+        b=OIy9iSO/rdJzpyPJFWy2anH262Z5J3twEJDqPxQ87Yk16DRUigQ4wzzqPT6hiutO/E
+         U2+j/QypOKLEUz1Ac8WfQAEXIWWVxDOuKVoNsh7/LyU/bEgMnO9uBR9gdxraS2hxRcGi
+         gp6iLyJ6nhU1qnm5mnGBgPAWN5MGQ9w7vGp4FflKmyFbxf5LUqpjn1EM2OSEqGOkMntY
+         SbjvX2QVF5b5arXsZ1S8J+8Z2UpWGPpjvFt7oDIHrqoyoiTTbBo/CF7hCznHcummWfJe
+         7x/rvCFgjZDBw1AFokuHV9Tcg7iUYAHd/McrscGP1yfN2ssUM3pJoALVyhagQXI/WoDZ
+         822w==
+X-Gm-Message-State: ANoB5pmjhx6MalXI0MwSV5BaSWJf/j7BHFGyIBIppF/S7XMtvgeOY+fm
+	Ml0/kvvm2cxslZ/sA5HBS8hEsg==
+X-Google-Smtp-Source: AA0mqf70gL5arrMjHAnvTcCUxrJKMuIh2LzxlvsWO54zS2pI8ANGvVSfxKuPIAZ4LAMQafD4IQQ5Rg==
+X-Received: by 2002:a05:651c:1601:b0:277:3a1:e86d with SMTP id f1-20020a05651c160100b0027703a1e86dmr4179100ljq.152.1669208544042;
+        Wed, 23 Nov 2022 05:02:24 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k21-20020a05651239d500b00494618889c0sm2882886lfu.42.2022.11.23.05.02.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 05:02:23 -0800 (PST)
+Message-ID: <8dbb3ce2-c8d9-70be-d1de-ed875de0ea1b@linaro.org>
+Date: Wed, 23 Nov 2022 14:02:22 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.10.0-dev-fc921
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
+ controller in DT
+Content-Language: en-US
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: kelvin.zhang@amlogic.com
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-5-yu.tu@amlogic.com>
+ <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
+ <9858039f-e635-2749-80a2-75072d6e9cea@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9858039f-e635-2749-80a2-75072d6e9cea@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221123_041147_643875_D9534BFC 
-X-CRM114-Status: GOOD (  14.45  )
+X-CRM114-CacheID: sfid-20221123_050230_280053_52E60013 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,78 +98,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCAxOCBOb3YgMjAyMiAyMzozNTozNCArMDEwMCwgVXdlIEtsZWluZS1Lw7ZuaWcgd3Jv
-dGU6Cj4gc2luY2UgY29tbWl0IGI4YTFhNGNkNWE5OCAoImkyYzogUHJvdmlkZSBhIHRlbXBvcmFy
-eSAucHJvYmVfbmV3KCkKPiBjYWxsLWJhY2sgdHlwZSIpIGZyb20gMjAxNiB0aGVyZSBpcyBhICJ0
-ZW1wb3JhcnkiIGFsdGVybmF0aXZlIHByb2JlCj4gY2FsbGJhY2sgZm9yIGkyYyBkcml2ZXJzLgo+
-IAo+IFRoaXMgc2VyaWVzIGNvbXBsZXRlcyBhbGwgZHJpdmVycyB0byB0aGlzIG5ldyBjYWxsYmFj
-ayAodW5sZXNzIEkgbWlzc2VkCj4gc29tZXRoaW5nKS4gSXQncyBiYXNlZCBvbiBjdXJyZW50IG5l
-eHQvbWFzdGVyLgo+IEEgcGFydCBvZiB0aGUgcGF0Y2hlcyBkZXBlbmQgb24gY29tbWl0IDY2MjIz
-MzczMWQ2NiAoImkyYzogY29yZToKPiBJbnRyb2R1Y2UgaTJjX2NsaWVudF9nZXRfZGV2aWNlX2lk
-IGhlbHBlciBmdW5jdGlvbiIpLCB0aGVyZSBpcyBhIGJyYW5jaCB0aGF0Cj4geW91IGNhbiBwdWxs
-IGludG8geW91ciB0cmVlIHRvIGdldCBpdDoKPiAKPiBbLi4uXQoKQXBwbGllZCB0bwoKICAgaHR0
-cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvYnJvb25pZS9yZWd1
-bGF0b3IuZ2l0IGZvci1uZXh0CgpUaGFua3MhCgpbNTM4LzYwNl0gcmVndWxhdG9yOiBhY3Q4ODY1
-LXJlZ3VsYXRvcjogQ29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIChubyBj
-b21taXQgaW5mbykKWzUzOS82MDZdIHJlZ3VsYXRvcjogYWQ1Mzk4OiBDb252ZXJ0IHRvIGkyYydz
-IC5wcm9iZV9uZXcoKQogICAgICAgICAgKG5vIGNvbW1pdCBpbmZvKQpbNTQwLzYwNl0gcmVndWxh
-dG9yOiBkYTkxMjEtcmVndWxhdG9yOiBDb252ZXJ0IHRvIGkyYydzIC5wcm9iZV9uZXcoKQogICAg
-ICAgICAgY29tbWl0OiAwMjBjZjczYjQ3NDE0YTg0YjY2NmQzZTY3MzZhNmFlOTU3ZTI3ODQwCls1
-NDEvNjA2XSByZWd1bGF0b3I6IGZhbjUzNTU1OiBDb252ZXJ0IHRvIGkyYydzIC5wcm9iZV9uZXco
-KQogICAgICAgICAgKG5vIGNvbW1pdCBpbmZvKQpbNTQyLzYwNl0gcmVndWxhdG9yOiBpc2w2Mjcx
-YS1yZWd1bGF0b3I6IENvbnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCiAgICAgICAgICAobm8g
-Y29tbWl0IGluZm8pCls1NDMvNjA2XSByZWd1bGF0b3I6IGxwMzk3MjogQ29udmVydCB0byBpMmMn
-cyAucHJvYmVfbmV3KCkKICAgICAgICAgIGNvbW1pdDogMjUzMmQ1ZjhkNWMyMGQ1YTBhOGEwZDU3
-YTMxMWJjNWRmMDBkZWEwNApbNTQ0LzYwNl0gcmVndWxhdG9yOiBscDg3Mng6IENvbnZlcnQgdG8g
-aTJjJ3MgLnByb2JlX25ldygpCiAgICAgICAgICAobm8gY29tbWl0IGluZm8pCls1NDUvNjA2XSBy
-ZWd1bGF0b3I6IGxwODc1NTogQ29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAg
-IGNvbW1pdDogY2IyOGY3NGI0ODA5YTAwYjQwZmRmMGM0NGNjZjUxYWI5NTA1ODFkMwpbNTQ2LzYw
-Nl0gcmVndWxhdG9yOiBsdGMzNTg5OiBDb252ZXJ0IHRvIGkyYydzIC5wcm9iZV9uZXcoKQogICAg
-ICAgICAgKG5vIGNvbW1pdCBpbmZvKQpbNTQ3LzYwNl0gcmVndWxhdG9yOiBtYXgxNTg2OiBDb252
-ZXJ0IHRvIGkyYydzIC5wcm9iZV9uZXcoKQogICAgICAgICAgY29tbWl0OiAzZDU0ZjdiYTI0OGIw
-YWQxNzkxYmMzNTZlOWFkM2Q5MDIwYTFjNDcyCls1NDgvNjA2XSByZWd1bGF0b3I6IG1heDg2NDk6
-IENvbnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCiAgICAgICAgICBjb21taXQ6IDNjZjQ0MTcz
-ODVkMGFjOGYwMmYyMjg4OGUxMmE2ZDIxZDk3ZDg5ZmMKWzU0OS82MDZdIHJlZ3VsYXRvcjogbWF4
-ODY2MDogQ29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIChubyBjb21taXQg
-aW5mbykKWzU1MC82MDZdIHJlZ3VsYXRvcjogbWF4ODk1MjogQ29udmVydCB0byBpMmMncyAucHJv
-YmVfbmV3KCkKICAgICAgICAgIGNvbW1pdDogYzIwYzM2NzM1OTQ5YjNiNzk4NDY5MmZiYWIzZDky
-YjBlOGE4NDVlYwpbNTUxLzYwNl0gcmVndWxhdG9yOiBtYXg4OTczLXJlZ3VsYXRvcjogQ29udmVy
-dCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIChubyBjb21taXQgaW5mbykKWzU1Mi82
-MDZdIHJlZ3VsYXRvcjogcGNhOTQ1MC1yZWd1bGF0b3I6IENvbnZlcnQgdG8gaTJjJ3MgLnByb2Jl
-X25ldygpCiAgICAgICAgICBjb21taXQ6IGVkNTZmYTZlODA0Y2IxM2JiZTI5ZTkyMTQ3OTIzMDg4
-MTdmNmU1NTMKWzU1My82MDZdIHJlZ3VsYXRvcjogcGZ1emUxMDAtcmVndWxhdG9yOiBDb252ZXJ0
-IHRvIGkyYydzIC5wcm9iZV9uZXcoKQogICAgICAgICAgKG5vIGNvbW1pdCBpbmZvKQpbNTU0LzYw
-Nl0gcmVndWxhdG9yOiBwdjg4MDgwLXJlZ3VsYXRvcjogQ29udmVydCB0byBpMmMncyAucHJvYmVf
-bmV3KCkKICAgICAgICAgIChubyBjb21taXQgaW5mbykKWzU1NS82MDZdIHJlZ3VsYXRvcjogcnBp
-LXBhbmVsLWF0dGlueS1yZWd1bGF0b3I6IENvbnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCiAg
-ICAgICAgICBjb21taXQ6IGQ4NWQwMmQxN2E2MDhiNTU4ZDQ0NTEwZTk4MjQ2NjhjNWQ0ZmU1ZDgK
-WzU1Ni82MDZdIHJlZ3VsYXRvcjogdHBzNTE2MzItcmVndWxhdG9yOiBDb252ZXJ0IHRvIGkyYydz
-IC5wcm9iZV9uZXcoKQogICAgICAgICAgY29tbWl0OiBkNDg4NWYzMDYzMDRmZjI5ZWVjMDZiOWFk
-NWY1MjZhMTA5OWUwNDE4Cls1NTcvNjA2XSByZWd1bGF0b3I6IHRwczYyMzYwLXJlZ3VsYXRvcjog
-Q29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIChubyBjb21taXQgaW5mbykK
-WzU1OC82MDZdIHJlZ3VsYXRvcjogdHBzNjI4NngtcmVndWxhdG9yOiBDb252ZXJ0IHRvIGkyYydz
-IC5wcm9iZV9uZXcoKQogICAgICAgICAgY29tbWl0OiBlMzQ3ODIzMTYyODFjNzhjNTkxMWY4NmQ0
-Njk5ZDRmMzVhNjA3YzlkCls1NTkvNjA2XSByZWd1bGF0b3I6IHRwczY1MDIzLXJlZ3VsYXRvcjog
-Q29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIChubyBjb21taXQgaW5mbykK
-CkFsbCBiZWluZyB3ZWxsIHRoaXMgbWVhbnMgdGhhdCBpdCB3aWxsIGJlIGludGVncmF0ZWQgaW50
-byB0aGUgbGludXgtbmV4dAp0cmVlICh1c3VhbGx5IHNvbWV0aW1lIGluIHRoZSBuZXh0IDI0IGhv
-dXJzKSBhbmQgc2VudCB0byBMaW51cyBkdXJpbmcKdGhlIG5leHQgbWVyZ2Ugd2luZG93IChvciBz
-b29uZXIgaWYgaXQgaXMgYSBidWcgZml4KSwgaG93ZXZlciBpZgpwcm9ibGVtcyBhcmUgZGlzY292
-ZXJlZCB0aGVuIHRoZSBwYXRjaCBtYXkgYmUgZHJvcHBlZCBvciByZXZlcnRlZC4KCllvdSBtYXkg
-Z2V0IGZ1cnRoZXIgZS1tYWlscyByZXN1bHRpbmcgZnJvbSBhdXRvbWF0ZWQgb3IgbWFudWFsIHRl
-c3RpbmcKYW5kIHJldmlldyBvZiB0aGUgdHJlZSwgcGxlYXNlIGVuZ2FnZSB3aXRoIHBlb3BsZSBy
-ZXBvcnRpbmcgcHJvYmxlbXMgYW5kCnNlbmQgZm9sbG93dXAgcGF0Y2hlcyBhZGRyZXNzaW5nIGFu
-eSBpc3N1ZXMgdGhhdCBhcmUgcmVwb3J0ZWQgaWYgbmVlZGVkLgoKSWYgYW55IHVwZGF0ZXMgYXJl
-IHJlcXVpcmVkIG9yIHlvdSBhcmUgc3VibWl0dGluZyBmdXJ0aGVyIGNoYW5nZXMgdGhleQpzaG91
-bGQgYmUgc2VudCBhcyBpbmNyZW1lbnRhbCB1cGRhdGVzIGFnYWluc3QgY3VycmVudCBnaXQsIGV4
-aXN0aW5nCnBhdGNoZXMgd2lsbCBub3QgYmUgcmVwbGFjZWQuCgpQbGVhc2UgYWRkIGFueSByZWxl
-dmFudCBsaXN0cyBhbmQgbWFpbnRhaW5lcnMgdG8gdGhlIENDcyB3aGVuIHJlcGx5aW5nCnRvIHRo
-aXMgbWFpbC4KClRoYW5rcywKTWFyawoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+On 23/11/2022 12:27, Yu Tu wrote:
+> Hi Krzysztof,
+> 	
+> On 2022/11/23 18:10, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On 23/11/2022 03:13, Yu Tu wrote:
+>>> Added information about the S4 SOC Peripheral Clock controller in DT.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
+>>>   1 file changed, 26 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> index bd9c2ef83314..e7fab6e400be 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>> @@ -6,6 +6,8 @@
+>>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>   #include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+>>> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>   
+>>>   / {
+>>>   	cpus {
+>>> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
+>>>   				#clock-cells = <1>;
+>>>   			};
+>>>   
+>>> +			clkc_periphs: clock-controller {
+>>> +				compatible = "amlogic,s4-peripherals-clkc";
+>>> +				reg = <0x0 0x0 0x0 0x49c>;
+>>
+>> This is broken... did you check for warnings?
+> Yes, i do.
+> You can have a look at the results of my test, as follows.
+> 
+> total: 0 errors, 0 warnings, 0 checks, 38 lines checked
+> 
+> ../patch_clk_v5_1122/0004-arm64-dts-meson-add-S4-Soc-Peripheral-clock-controll.patch 
+> has no obvious style problems and is ready for submission.
+> 
+
+This is a checkpatch output. I am talking about DTS broken. dtc should
+warn you.
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
