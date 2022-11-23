@@ -4,54 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B218C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Nov 2022 22:36:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6B0BC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 00:04:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EN9dUQNMnxR/o7226omHkLWV+o3sxIWNa9PM78LjUgE=; b=4YTOodiF0/Qy3A
-	2Y9xh13OqmlP6mIoAnDhuA8oDSaui/wyzl2beoc9qpRaWdntODcljcXkEwbi3PdzwjY4KolSNGeTI
-	F7wQ9kvxeYv1oCe+YYmrbRmOsNm8YdjZXiMQMZ6ZXru2kirydyYEl2R/CK+Xf3Vl2towOZSf62tZL
-	pO7CMPNA7lBYqz+jhoaavwJYXNkT15/J9G/bfvhZos5oX419A4am5i3Fc0Zl0+HSIXe5qG6Li8CaJ
-	eXkjhB5KdDkRJE3AMqif53XfPs59ly9UQOxn4jr09Ft2bJ8TnJMyMeJk5rtnqwww52Ifrt21X6k57
-	7HY4igNYR5nNcRo5UGOQ==;
+	List-Owner; bh=6DKJzy9Awct7MDKGlkkFBpwsYM9HPLe8/osM4lTkCNI=; b=JHqFEQn8M3P7DZ
+	0JPSoG9CxWU+9biWaSBAwdhVOSrCzCE4qyiMW39dpK/RCSwtb9tZqy8CL4LLpCqBVvxNfTtaL0/FW
+	/9U9fVO9TDlI+Fa2xc0/ezzWljfHEKXae/gbL90I80RHOovN17uaAy1i/kk5I1KLOln58nvNUIYfg
+	QoqO7zzZKwZmUVL9V6+U4t8NDRfecX0aDOQ/wl5L9RVdDIs/mju1MrLVCsUOYg0NczQ4YRXtlryB+
+	XRnxnGbFUD7UW/3rR7JWItocu0la6BKKSdnTuxB7q9vA2buM5RLzsKWANXkCGURHNjvoV8ZjRFfiQ
+	4FUP65Y2WqKuRYCw+tow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxbsi-00CARA-4k; Tue, 22 Nov 2022 22:36:44 +0000
-Received: from smtp-28.smtpout.orange.fr ([80.12.242.28] helo=smtp.smtpout.orange.fr)
+	id 1oxdEz-00COxa-TB; Wed, 23 Nov 2022 00:03:49 +0000
+Received: from mx0b-002e3701.pphosted.com ([148.163.143.35])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxbsf-00CAPj-7k
-	for linux-amlogic@lists.infradead.org; Tue, 22 Nov 2022 22:36:42 +0000
-Received: from [192.168.1.18] ([86.243.100.34])
-	by smtp.orange.fr with ESMTPA
-	id xbsaozAnSpJKlxbsaorx22; Tue, 22 Nov 2022 23:36:38 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 22 Nov 2022 23:36:38 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <a83e5419-c19f-764f-9860-08385d7dd757@wanadoo.fr>
-Date: Tue, 22 Nov 2022 23:36:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] crypto: amlogic - Save a few bytes of memory
-Content-Language: fr, en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Corentin Labbe <clabbe@baylibre.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-amlogic@lists.infradead.org
+	id 1oxdEw-00COwN-RI
+	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 00:03:49 +0000
+Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AMNgLQN021966;
+	Wed, 23 Nov 2022 00:03:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pps0720;
+ bh=cBkL37Fq7Czcye11XWFiIjz/wQTvPTlqy4G6cF6B5+o=;
+ b=S9EGVpcqKCsiB2LuJtZu88JpqBtTJ5Ii3eQYUIKmOcdx2LoyLPc5R7mM6Sy+7lR0iy4q
+ cMWLZh2e0Mr2yWrMSo1W93kOS2eABUxixA5HYh4ueKOdBu7j8JeB9PDxVKL0TPJIKOkr
+ qbcgenvvyoWjEMazl4HGpzhLKneaz7drFc9XCileE+wooOgb1pVY5aIyrWT6eU0t35q4
+ AX7snKV1k2ag1geUYbGVMnkwyyhFKX3ROxOFfsB0t3aQtKFqmK37nU3Jco1bI9GNw4pb
+ algvhnJpLmcqRYLjghoq8B3N5wiREHBrFu2gZTmoX7XttTOUfSMh0RFz/KVQvkzcMWGU 4Q== 
+Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3m188wg4pb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Nov 2022 00:03:38 +0000
+Received: from p1wg14925.americas.hpqcorp.net (unknown [10.119.18.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by p1lg14879.it.hpe.com (Postfix) with ESMTPS id AD74C2FCD3;
+	Wed, 23 Nov 2022 00:03:36 +0000 (UTC)
+Received: from p1wg14924.americas.hpqcorp.net (10.119.18.113) by
+ p1wg14925.americas.hpqcorp.net (10.119.18.114) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 22 Nov 2022 12:03:30 -1200
+Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
+ p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15
+ via Frontend Transport; Tue, 22 Nov 2022 12:03:30 -1200
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (192.58.206.38)
+ by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 22 Nov 2022 12:03:30 -1200
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KNe+4ffZ6KjhZ3R0nX/CtN84f6QA2ej7bZq5eNyyGbnJ0YT7kYgWjBMSlDdGUR1wFqnANNNgTZMUd2utdmWXsHVmDAbQFuYoYIH8vzb2eGJUQUQt7H0thdk7zk1cYsyb74ktH7Ssrm/HEyUiG5MyE9DxV79p7K/mQu7ZV6RJ5UKQOFxNg5YYMW6GnKkQQzQ7GuYK3Ye1Oj/9KBWm4saVp/Cx6jN/hwewsmGmu+xxKbZNS+NWcDdJT0R5HJqH3MPBdx4GT8IBjWKp13CEaPrl7hT/uAALmPisEnL3/sUX0vXF6NzieuEFWRLnFyKzhObBhbfC+fwVBYxyFnHsqPNzqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cBkL37Fq7Czcye11XWFiIjz/wQTvPTlqy4G6cF6B5+o=;
+ b=lWCxUAJB2EX17xP6pVB6IY6PcGDTgpHqLtF8negBu4vFy/f0fP06briJv56f3eMbSOYhkCy6kj1ek962DrcD/GAx8lLQQW/jt4NK+WbXQgDZc6D/G6hBF9UjWhY7ZhlLFcmwunqKdJppWAGUQhEWO73alzjw6FxnP7uBvEJzNw4zjNLo9foaS8d9wrh77YeZyk/TAUwAElwGiHC6NUDQIkKepD5gWdOePbJfDjnWSm21oXCqlcAc9KkG7v0QtysZVx38o9CwZK6ewwY2JqpIsqo74rmzxj3nzaIZ0L1Q8ELrJL9YXtg8/j+MwG36pzktkwBXDQq9bld1632oQwzQ4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1c4::18)
+ by SJ0PR84MB1822.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:a03:434::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Wed, 23 Nov
+ 2022 00:03:29 +0000
+Received: from MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::5511:bd85:6961:816]) by MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::5511:bd85:6961:816%9]) with mapi id 15.20.5834.011; Wed, 23 Nov 2022
+ 00:03:29 +0000
+From: "Elliott, Robert (Servers)" <elliott@hpe.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: Corentin Labbe <clabbe@baylibre.com>,
+        Herbert Xu
+	<herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Subject: RE: [PATCH] crypto: amlogic - Save a few bytes of memory
+Thread-Topic: [PATCH] crypto: amlogic - Save a few bytes of memory
+Thread-Index: AQHY/r1Y6XZq176x5k28ODzKw0ibBa5Lfq0AgAAJmYCAABJxIA==
+Date: Wed, 23 Nov 2022 00:03:28 +0000
+Message-ID: <MW5PR84MB1842D71513C7F3B06323BF40AB0C9@MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM>
 References: <c797dc5e9248498918916a6eeedaa25de2196e8c.1669154149.git.christophe.jaillet@wanadoo.fr>
  <CAFBinCAEwYaEvmGjen_LPO52BcyUFD2EKtzzzfZ1rMuVuihEqA@mail.gmail.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <CAFBinCAEwYaEvmGjen_LPO52BcyUFD2EKtzzzfZ1rMuVuihEqA@mail.gmail.com>
+ <a83e5419-c19f-764f-9860-08385d7dd757@wanadoo.fr>
+In-Reply-To: <a83e5419-c19f-764f-9860-08385d7dd757@wanadoo.fr>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW5PR84MB1842:EE_|SJ0PR84MB1822:EE_
+x-ms-office365-filtering-correlation-id: 8711610f-5df4-4140-1e8e-08dacce626b1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wIxzhVLHHSBnXL1RqKVz7iaH1jOMm1Io7oX9ie3z3BXtZuAWfUIus568eOnEqt/KIeCDZInwgOmesnUrYwWe22Z47oQ1Dn9/sqW17Ca4c2H3Od3fViuv6Zo4clGIiPYPx4Oku2w06uSpyNEs/jhETQ+5A+Rcb2Him3Ho79XmhHcAY3o283q3h25ZJ4X4IKVaNhgJVsVwmTyAiL8u/3baNgTtzx3SbtBgEVN/w/JAmSI1ud8nGyYLrZ65hRC2bw0wZIdlZLZpY9sBDkN/43Aalq33ouWUtYr8m2npU1iM6Xx2hSuVhA6PEDBWPbn0SVC5u5IPrM4XAsOD/CRRjZZJ0WPp/IlApysklFykzVm+XLrIUIYXpVheGZVOCEKXeGg/VXjMXO5nt935fpTJ77F89Lf55r4RBfvE3mY6K+SjHNaynPUV51cSRNLPEz9gvHZWxK8J8AwNe+IwQNTsINSQRMPlAxhExc36T1bYCpGzLo4JoaCU7uas0bHrCFjcJWc1MzMVmhaHrLyTzzqkoLGq1s9qVSsQ2i1HIM1LLS+0ZF7zFip8tbcjJK1jsbpgRo0wKP/5RHFvZhIqZfepwqImmWvmrMRW5/oKRMyeTK+eTPqA4ZbT2P8mNI1pvcgnciG0XJPoVgJh34oJW9s5OMDnEao/knB7ccGh1Xwkx/Q1I3xpvwjOLfKm26SGzaHtoKWsQd0L2FZW5u3TW2VSPz2RxA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(39860400002)(396003)(366004)(136003)(376002)(346002)(451199015)(71200400001)(5660300002)(316002)(478600001)(8676002)(66446008)(66946007)(66476007)(33656002)(4326008)(66556008)(76116006)(64756008)(41300700001)(8936002)(186003)(52536014)(26005)(83380400001)(9686003)(2906002)(54906003)(82960400001)(7696005)(6506007)(53546011)(110136005)(86362001)(38070700005)(55016003)(38100700002)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WksxcExEQytvaHpxQS9VaU5Uclp0dVE4S09HbS9Xc01iSEs5K0tPOFlyYTJP?=
+ =?utf-8?B?eEY5VG1Bdm5EbStZWUUzNU1vQzlsdWNOVEVvalAxaFYzeHNNYm1oOHd2Yy9Z?=
+ =?utf-8?B?VjFnaXVLcnYwenpIbXVQK2kyK2dtVlpoa0JlaFp2L2RYUEFVemZiVlRxUzJD?=
+ =?utf-8?B?bmRoMVNub2V2SlM1UlBRdmlrWlE2aVJOdWhEK21ZOWNpQzJCc2lIa3FMaXlv?=
+ =?utf-8?B?Snh5WTlyZC9qcVp5MU1TeHorR05SWUpMUEhEMlZKVHl4K3A3SzJQWFN5K3hn?=
+ =?utf-8?B?VUlwaVdZU1BUVm5UeFcrVnFoeXZoK3UzK21RejFLQmw3cE9Qc2JkcloxbUx5?=
+ =?utf-8?B?UDlqSGpXZWlweXlNdW9PU05UY3MwemNkK0RRNk1tQlJqUkM5U0Qzd1A2bTF5?=
+ =?utf-8?B?cjloR2FOY1VhMy9EUzFmTHdpTjM1WXRGdVRMVDQ1MDViYkluNDlXQ0Zob21l?=
+ =?utf-8?B?ZDdPZzF5TFd5dEsrSHFwY2hsOGE3YzBQLzlxa3lSeVMwNHFzU2h3a1dHQU1H?=
+ =?utf-8?B?aDI0VUhHN2hOS2NNQ0hUVEZxU3d2UnAvM2VrazZkMG5qeHpYcmR0K1NCOHR4?=
+ =?utf-8?B?cEduUUZXVGRyanIwaGVkbyswK1o5SURVOTBzSlZGZ243bEJSaGFBR0szSGpj?=
+ =?utf-8?B?YThpcDVodWREZGRCL1RxQ3loZElyd1VyNHNxcHFnaFpyUkhmL25XcXpoL0JR?=
+ =?utf-8?B?UVVqTDh0c2hrNkxTQUUzYnRhVGpudm5JWFU2dWMzbDJEQTgxTUk3SEtHWllG?=
+ =?utf-8?B?UmJaWC85Nndqb05OSHg0aDJKalFEenQzN3FyZnVodHE0eWU4VENxQ2dRM3RN?=
+ =?utf-8?B?UERDWVoxTU5TakZZL21yY1hNV0xMUVVIUHI5cytFRmxRZWxMTWUzbExuUmEz?=
+ =?utf-8?B?SmZZZHZKSzdNM04vSm9sdjh3TmRVbUlOTUtDaUsxa0oyVVYvaDN4M3h2K1VE?=
+ =?utf-8?B?R1FTZ3Zvb1VUZEFxQ0szbC9tRldra1lGVmZzZHVFN2lVYmxLWWE2TUQ0NSs1?=
+ =?utf-8?B?amMzcUw0RDVGdVFvbHRLZ1hPWHlTQmdqa0pTQjZ6eDF3c2pXMnJIMWhOcmxL?=
+ =?utf-8?B?dEhjNStFUTZhbGw2S3lZcWErU1hXQm1GYWlUNVlmdTFjOXlXTDNBbVFETGpV?=
+ =?utf-8?B?MHBqaVBJVWFXNjhpUDRkUTEzT1pkR29UM2t0Ymt6TVVrUXVJb3V3NDRxUHVO?=
+ =?utf-8?B?SUtlQTJmaHluZUhtQUJENmZ3MnV1bUNnWGNhMUs0WnhudWFLa2tPWFBYM0xt?=
+ =?utf-8?B?RlBybHVnSWFNMERxWXdiZFNOUnlzUnVOVWhSQ0JtVXZPdURselFNQVdsajR0?=
+ =?utf-8?B?cmxJQlRDWDIwcjhhTSs1UHJlL0puWFNpdzk2KzZRbmtYNHBITDVwK2xCZDJB?=
+ =?utf-8?B?OUZqd1hmM3MxaFd2V3VPR2VXWmd4WUVuK21JZy9tQ2s0V0xvYWVORVlXWTJz?=
+ =?utf-8?B?Z0JNeWIrVEFyNVB1T1dPdnIzN01pbDJnZ2JqTTgyU2kzR1A5OWtTR2YxSFM0?=
+ =?utf-8?B?dmFIaGJ4LzNUTkIyYjdySlQ0TmQ2Q2IvR3lyaW0xaSt6ZDI0MFhnb1BMSElV?=
+ =?utf-8?B?RytHN1ZPQWJmTzh4OTZJRHZKR1hRWWpBY2dpc2ZjN2E2djdtdUtyMVFUcWgz?=
+ =?utf-8?B?SkdjRnFrSDVKRmI4aWF5R3dGVitaL01qNjZidHBpUzdxak1BQWhXd0J2aCtI?=
+ =?utf-8?B?RTBBWVZwalliYnhtVWFDUHdFSjhGa3FqUGFSMTFJeFRvNnVETnczVE1hYVUr?=
+ =?utf-8?B?c1JsNWlNb1lIaGNTYXVHRkFLMFVKQWlwclFwRWxuQ0xrR3FBeU5ET2F3NHlL?=
+ =?utf-8?B?aTZ6dFV4NzFyY0tsZzM4YVhhYmRLMTJqZEhobEZ0SE4rQmV6M0JNRjcrbHVO?=
+ =?utf-8?B?UDZ4ZW10THYrZ3Z0QjVMZGhSMjAyRUkxR0M4OVBrYm5kMUh2bHFuRnJ0Lzdm?=
+ =?utf-8?B?S3RxL1AwRzN3bnFQNmVCSnh4eFhxaU9wWlR5UmYvWTNkcWpsQXZxS1FsT3RX?=
+ =?utf-8?B?NVZnaXY2Q0dxSXpHbkdvTkJ6alF6VXgrQWxYL2JYbWd6cTgvdXR3QmxwbktZ?=
+ =?utf-8?B?SEp4bGhkbmxrdzBqTjU3UzcrYW9SVXEyd2ZFSktCZVQyeGVBREdaS3dyYVl5?=
+ =?utf-8?Q?Rz4o=3D?=
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8711610f-5df4-4140-1e8e-08dacce626b1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2022 00:03:28.9564
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 22EVMUw3D5sogbcYya4BE4Ui0Q3akSFGa/QKkrVhYQJx0eVdBno/GuSuLMG9Zp0B
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR84MB1822
+X-OriginatorOrg: hpe.com
+X-Proofpoint-GUID: PjQTKCmIRGPYAk15l8dDjVErajlEl6i5
+X-Proofpoint-ORIG-GUID: PjQTKCmIRGPYAk15l8dDjVErajlEl6i5
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-22_13,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
+ malwarescore=0 spamscore=0 adultscore=0 mlxlogscore=713 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211220181
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221122_143641_436770_CDF3EEA8 
-X-CRM114-Status: GOOD (  16.08  )
+X-CRM114-CacheID: sfid-20221122_160347_123363_3BD2833B 
+X-CRM114-Status: GOOD (  21.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,37 +184,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgMjIvMTEvMjAyMiDDoCAyMzowMiwgTWFydGluIEJsdW1lbnN0aW5nbCBhIMOpY3JpdMKgOgo+
-IE9uIFR1ZSwgTm92IDIyLCAyMDIyIGF0IDEwOjU3IFBNIENocmlzdG9waGUgSkFJTExFVAo+IDxj
-aHJpc3RvcGhlLmphaWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6Cj4+Cj4+IFRoZXJlIGlzIG5vIHJl
-YWwgcG9pbnQgaW4gYWxsb2NhdGluZyBkZWRpY2F0ZWQgbWVtb3J5IGZvciB0aGUgaXJxcyBhcnJh
-eS4KPj4gTUFYRkxPVyBpcyBvbmx5IDIsIHNvIGl0IGlzIGVhc2llciB0byBhbGxvY2F0ZWQgdGhl
-IG5lZWRlZCBzcGFjZQo+PiBkaXJlY3RseSB3aXRoaW4gdGhlICdtZXNvbl9kZXYnIHN0cnVjdHVy
-ZS4KPj4KPj4gVGhpcyBzYXZlcyBzb21lIG1lbW9yeSBhbGxvY2F0aW9uIGFuZCBhdm9pZHMgYW4g
-aW5kaXJlY3Rpb24gd2hlbiB1c2luZyB0aGUKPj4gaXJxcyBhcnJheS4KPiAuLmFuZCBpdCBldmVu
-IGZpeGVzIGEgbWlzc2luZyBkZXZtX2tjYWxsb2MgZXJyb3IgY2hlY2sKPiAKPiBQZXJzb25hbGx5
-IEkgcHJlZmVyIHRoaXMgYXBwcm9hY2ggb3ZlciBhIHBhdGNoIHRoYXQgd2FzIHNlbnQgZWFybGll
-ciB0b2RheTogWzBdCj4gQ29yZW50aW4sIENocmlzdG9waGUsIHdoYXQgZG8geW91IHRoaW5rPwo+
-IAo+IAo+IEJlc3QgcmVnYXJkcywKPiBNYXJ0aW4KPiAKPiAKPiBbMF0gaHR0cHM6Ly9sb3JlLmtl
-cm5lbC5vcmcvbGludXgtY3J5cHRvLzBkZjMwYmJmLTNiN2UtZWQyMC1lMzE2LTQxMTkyYmYzY2My
-YkBsaW5hcm8ub3JnL1QvI202YTQ1YjQ0MjA2YzI4MmYxMDZkMzc5YjAxZDE5MDI3ODIzYzVkNzli
-Cj4gCgpVbnJlbGF0ZWQsIGJ1dCBJIHRoaW5rIHRoYXQgbWVzb25faXJxX2hhbmRsZXIoKSBuZWVk
-cyBhIHNtYWxsIGFqdXN0ZW1lbnQgCnRvIGF2b2lkIHByaW50aW5nIGEgc3B1cmlvdXMgbWVzc2Fn
-ZSBpZiByZWFkbCgpIHJldHVybnMgMC4KCk1heWJlIHNvbWV0aGluZyBsaWtlIHRoYXQ/OgoKCkBA
-IC0zMyw5ICszMywxMCBAQCBzdGF0aWMgaXJxcmV0dXJuX3QgbWVzb25faXJxX2hhbmRsZXIoaW50
-IGlycSwgdm9pZCAqZGF0YSkKICAJCQkJd3JpdGVsX3JlbGF4ZWQoMHhGLCBtYy0+YmFzZSArICgo
-MHg0ICsgZmxvdykgPDwgMikpOwogIAkJCQltYy0+Y2hhbmxpc3RbZmxvd10uc3RhdHVzID0gMTsK
-ICAJCQkJY29tcGxldGUoJm1jLT5jaGFubGlzdFtmbG93XS5jb21wbGV0ZSk7Ci0JCQkJcmV0dXJu
-IElSUV9IQU5ETEVEOworCQkJfSBlbHNlIHsKKwkJCQlkZXZfZXJyKG1jLT5kZXYsICIlcyAlZCBH
-b3QgaXJxIGZvciBmbG93ICVkIGJ1dCBjdHJsIGlzIGVtcHR5XG4iLCAKX19mdW5jX18sIGlycSwg
-Zmxvdyk7CiAgCQkJfQotCQkJZGV2X2VycihtYy0+ZGV2LCAiJXMgJWQgR290IGlycSBmb3IgZmxv
-dyAlZCBidXQgY3RybCBpcyBlbXB0eVxuIiwgCl9fZnVuY19fLCBpcnEsIGZsb3cpOworCQkJcmV0
-dXJuIElSUV9IQU5ETEVEOwogIAkJfQogIAl9CgoKQ0oKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
-LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+
+> -----Original Message-----
+> From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> Sent: Tuesday, November 22, 2022 4:37 PM
+> Subject: Re: [PATCH] crypto: amlogic - Save a few bytes of memory
+
+
+...
+> Unrelated, but I think that meson_irq_handler() needs a small ajustement
+> to avoid printing a spurious message if readl() returns 0.
+> 
+> Maybe something like that?:
+> 
+> @@ -33,9 +33,10 @@ static irqreturn_t meson_irq_handler(int irq, void
+> *data)
+>   				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+>   				mc->chanlist[flow].status = 1;
+>   				complete(&mc->chanlist[flow].complete);
+> -				return IRQ_HANDLED;
+> +			} else {
+> +				dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
+>   			}
+> -			dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
+> +			return IRQ_HANDLED;
+>   		}
+>   	}
+
+You might want to reconsider allowing this irq handler to do any prints.
+80 characters take 5 ms to print on a 115 kbps serial port, which can
+lead to RCU stalls, soft lockups, etc.
+
+If kept, dev_err_ratelimited would be a little safer.
+
+In some systems "spurious interrupts" are routine and are not really a
+problem unless you overreact to them.
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
