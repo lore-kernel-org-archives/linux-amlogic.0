@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9502CC433FE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 13:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F81C4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Nov 2022 13:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QvrxXGDOPMd2ggTlgzyzCy1VTpvo5MwQZLjf6H55J3Q=; b=LWfvcZW7LcEDME
-	OFx1yVD+/TmGpcKF5js95opLHgDpyNjR/7xnfCQeypiM1yQy6OUJWjtVqZDBUeoP2I3jWrrgt1zsv
-	bRaTuggxR8mJeqqYmFWhXyyYvFlkY4OH4UeLFKzPVbHQQcJp6O0APLnPItWw5EM1ETBc6IcY6RyqH
-	Ae/Sq9dStUH6mM5y4ndQd/H+l/oRmhECBO3Z0hywMlray4f6LAHhS4PbJT6unYaxWDMlPF52V9n++
-	ZhmMzQ8AvCiM0VWfOc5ZL5wU+nXP5Xm3NEz+csx9hucZRS6suxIkBzZwg6wmuj34MZiWJsAqLXvQY
-	GZfc+ydjLpzOFK9Ai7mQ==;
+	List-Owner; bh=dIfvzmbBRtVgEEqAjIdo54YKIUE7UnDVx4GI/pDvqhI=; b=lcw3NrZqjl/sfE
+	liLYzqLViBjUjVv0lf8YdY41Iv6Lx0Ri/zg6jtKSqWghKXbVBbeF3c4w7DOKe+Ftyc0yltkYXyPpZ
+	JhBUljHCO1EpeSSaJfa1cVIdmLNA2u3vHMe1lCGLj+Qwl0GOeqKS/TzekPvp/lVX/neQBpf/fjKWe
+	ET3sn8biBxa0yNKMxOeqRNWvnxLY1MTtEHUHOtJmMiCXKZzKfIoAP5bi4dakjytRi2b1hCZbzJ77H
+	UrEN78jNYrH/wMviTaoX/rIv8NyzEIecsf9mtYCbDJea068FU33c2x7KCgUyIH1oXesqRMs2hBPnZ
+	h/kjyqLgAUaUE62pfjrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxpRi-00H7dY-Qr; Wed, 23 Nov 2022 13:05:46 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1oxpT1-00H84H-Fd; Wed, 23 Nov 2022 13:07:07 +0000
+Received: from mail-lj1-x234.google.com ([2a00:1450:4864:20::234])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxpRU-00H7X4-ES
-	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 13:05:34 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id s24so21268967ljs.11
-        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 05:05:30 -0800 (PST)
+	id 1oxpSz-00H81x-6d
+	for linux-amlogic@lists.infradead.org; Wed, 23 Nov 2022 13:07:06 +0000
+Received: by mail-lj1-x234.google.com with SMTP id z4so4405277ljq.6
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Nov 2022 05:07:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M6G1EumI7FZLI8e5i3/vnjgK7flMtfRUkVTQawLF8ZY=;
-        b=vnjhnZcYZOSnL800CVahuhYmBNc7/C4VM+zLXePAG9oZ557PbOQaCNT/qd9DM5rd0X
-         7jQFCm/KOFIiQSdRAOA8Hs2Sq5AEmg7uK4Xf0KfNwxTAAMkZ12EGDNfo/MOrNSVV7ZgA
-         Pv7aNS7LXiNVZ/+EwFVmMWxHICksLY9CFyrlC1vTxs1AetYHpjQtWvTTnVXAfeKnRXfW
-         kWH7Ns2l/A6+bQcb3k9ZVUvrupxwLJMxwN16xa6LR4aDMsizEcT0Mk8FvXPu8wd5SVKD
-         wvzJUmmqFGQHA3L8Oo0QFzuHel/LnawDOozqRGTBQLtPV5XuzzXcR8DsGGj3gE7xvWIv
-         T0GA==
+        bh=0ccqh3dfGzML1aBGj7t/YrqY2QT7pR2uNL+e7DNuF1s=;
+        b=NTz8FoNtJ/3ZrpELLvCYWVTs1l2QYVefQOUUa43xmopc3UEmPvePHMJSVKHqy/sqJ5
+         qY92VBAkQjFaYJngeKZGTzNUNHJvkBkLJC8lisKE8S/bv/zckV1tg3G7HrQG8steUfvq
+         VelhR4nq3DQHY0mQNijfoW149T5Dvz06H48Qhsnq9ajy6PhnZv7jFc0I1hbnGoVHr3QH
+         uqccIGYC5o1uugg7zDi5pr1imEa3DLPyPzXFpFhBh/XLh0CCLoelejWsd3ZHd3X6MAbf
+         7MHD/5U0VZKi8R7jNpJ/MW7o77ATRMQAfsxc+nfY7XAnOoyh8RCAfBC4hDZbYH8vXgQF
+         KiFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M6G1EumI7FZLI8e5i3/vnjgK7flMtfRUkVTQawLF8ZY=;
-        b=qpnwgZSSmYsS/dqmVGtyVisdDo/EEzZuqIWUOLVFUZqXpHuqHWN+nAKZrekaJrcymB
-         OD/XKwO/mR8AyK9lo/0JMwhaLp9b2bkYHpcNtVlyL0XQpulfOV8xYKg2YhkWmzrA6n6x
-         HX6Ip/t1ZOZqlrpjicoTPpa+fTtDROXnN16Qv00JBdlJnNDE5xCAFFksd/NZXzPr0Pll
-         YdxzINBgQOueVFXtxmVsziy8/O3o5Vs1hjvx/CNwJ7spSZW6b0ytslbHQdtqtdtg+Z9d
-         wr1C/Mxy9IjUq45LiccJOsh4b+TEHVb3pfNfDq3f8xNrrfMeocu9/nXCirJs0C+ghrwU
-         rhnQ==
-X-Gm-Message-State: ANoB5pneSW1aSQNgaWiI1wYJ5TSJoHmgRQl9WoWQYmWrLyD8Moz4KBzy
-	oaavQG5OU2vOrL0SRjor3w7YEA==
-X-Google-Smtp-Source: AA0mqf6n/fSR8MwVcDjqufCotAGGQFmimX9GhxJ8X6nI8RJNkuZVynASdsA/m+MunzeilINIsiuhJw==
-X-Received: by 2002:a05:651c:2123:b0:277:328:affb with SMTP id a35-20020a05651c212300b002770328affbmr4326766ljq.376.1669208728764;
-        Wed, 23 Nov 2022 05:05:28 -0800 (PST)
+        bh=0ccqh3dfGzML1aBGj7t/YrqY2QT7pR2uNL+e7DNuF1s=;
+        b=z25CEQJFny8Mn8iP9eII3/kU1/8f4C+lK7YwgDBaUq9Zb14EIs4jS9wnRy2O/Yj71q
+         Yq33iW1LuaEcHUL7qlQIMdGTQcxzgS28FxwTzpO3oOwVNGsKR+X7w4v80YSv+MOQsB9p
+         EFvpAykwXSWU0mxsDDTfwyWcTI54pRLcOpjuFm4b8JRmC4Gu3NyB2EFU1iX0wDITB/Ih
+         dMRkKi027qTZfS59CLoyFuB6OrYdKRb6hKZAGLFvXgyas11UAxvll1cSf89DY+6FInm2
+         RRxiatYmroyY1gbrk67js0NO8zAp8rJpIR9L3vEQ6pizRxyqXc4QGO5WDH3nfwsTMbiL
+         qkng==
+X-Gm-Message-State: ANoB5pn8ewF9Pn9c4zcFSFIRsm43gTp3i89eCYuvZmAJLnuCMJAsalr/
+	zO715ztnqh3oNS/kaeZIG1bQYA==
+X-Google-Smtp-Source: AA0mqf5NaHTNZWztbivNnH1bVjzcoFbgIS8edaP6RX+ZaLqm31IxoNIMjBsE8vCZBviPdnlqNqQTNQ==
+X-Received: by 2002:a2e:bd17:0:b0:277:50a:bd5c with SMTP id n23-20020a2ebd17000000b00277050abd5cmr8965045ljq.6.1669208821202;
+        Wed, 23 Nov 2022 05:07:01 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y25-20020a2e7d19000000b0026dd4be2290sm2181049ljc.90.2022.11.23.05.05.27
+        by smtp.gmail.com with ESMTPSA id j23-20020ac253b7000000b004a62ff61b3dsm2904375lfh.252.2022.11.23.05.06.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 05:05:28 -0800 (PST)
-Message-ID: <06fa6b50-bd69-c118-4c82-89d153fe049e@linaro.org>
-Date: Wed, 23 Nov 2022 14:05:27 +0100
+        Wed, 23 Nov 2022 05:07:00 -0800 (PST)
+Message-ID: <2418f79c-ae56-9e4e-46e2-f1ca757642ee@linaro.org>
+Date: Wed, 23 Nov 2022 14:06:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver and bindings
+Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
+ controller driver and bindings
 Content-Language: en-US
 To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -79,14 +79,14 @@ To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: kelvin.zhang@amlogic.com
 References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-2-yu.tu@amlogic.com>
- <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
- <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
+ <20221123021346.18136-4-yu.tu@amlogic.com>
+ <09a443b3-4e27-a751-ba2c-057d69363a13@linaro.org>
+ <cf7295c7-3ec6-3017-0c21-167da06e3214@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
+In-Reply-To: <cf7295c7-3ec6-3017-0c21-167da06e3214@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221123_050532_497842_1623FB28 
-X-CRM114-Status: GOOD (  17.20  )
+X-CRM114-CacheID: sfid-20221123_050705_271173_196DC24D 
+X-CRM114-Status: GOOD (  13.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,114 +103,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/11/2022 12:16, Yu Tu wrote:
-> Hi Krzysztof,
-> 	Thank you for your reply.
+On 23/11/2022 12:22, Yu Tu wrote:
 > 
-> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
+> 
+> On 2022/11/23 18:09, Krzysztof Kozlowski wrote:
 >> [ EXTERNAL EMAIL ]
 >>
 >> On 23/11/2022 03:13, Yu Tu wrote:
->>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
+>>> Add the peripherals clock controller found and bindings in the s4 SoC family.
 >>>
 >>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 >>> ---
->>>   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
+>>>   .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
 >>
->> This is v5 and still bindings are here? Bindings are always separate
->> patches. Use subject prefixes matching the subsystem (git log --oneline
->> -- ...).
+>> No, this is total mess now.
 >>
->> And this was split, wasn't it? What happened here?!?
+>> Additionally, you received a lot of feedback but your changelog says only:
+>> "V3 -> V4: change format and clock flags."
+>> so you ignored entire feedback?
+>>
+>> That's not the way to work with patches.
 > 
-> Put bindings and clock driver patch together from Jerome. Maybe you can 
-> read this chat history.
-> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
+> Hi Krzysztof,
+> 	You can check the previous email reply. Now I don't know who to follow 
+> your advice or Jerome's. I'm confused. Maybe you need to come to a 
+> conclusion. So I can change it in the next patch.
 
-Link does not explain me anything. It mentions series, which is totally
-different than mixing it one patch!
-
-Anyway you should have warnings from checkpatch.
-
-Bindings are always separate patches.
-
-(...)
-
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: amlogic,s4-pll-clkc
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: xtal
->>> +
->>> +  "#clock-cells":
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - clock-names
->>> +  - "#clock-cells"
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    clkc_pll: clock-controller@fe008000 {
->>> +      compatible = "amlogic,s4-pll-clkc";
->>> +      reg = <0xfe008000 0x1e8>;
->>> +      clocks = <&xtal>;
->>> +      clock-names = "xtal";
->>> +      #clock-cells = <1>;
->>> +    };
->>
->>
->>> +#endif /* __MESON_S4_PLL_H__ */
->>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>> new file mode 100644
->>> index 000000000000..345f87023886
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>
->> This belongs to bindings patch, not driver.
->>
->>> @@ -0,0 +1,30 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>> +/*
->>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->>> + * Author: Yu Tu <yu.tu@amlogic.com>
->>> + */
->>> +
->>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>> +
->>> +/*
->>> + * CLKID index values
->>> + */
->>> +
->>> +#define CLKID_FIXED_PLL			1
->>> +#define CLKID_FCLK_DIV2			3
->>
->> Indexes start from 0 and are incremented by 1. Not by 2.
->>
->> NAK.
-> 
-> I remember Jerome discussing this with you.You can look at this 
-> submission history.
-> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-
-You pointed to my arguments, so what is this proving? That you ignored
-feedback? Or was there some other mail?
+I don't understand your comment. You received a lot of things to change
+for your v3. You said here "change format and clock flagS", so all other
+feedbacks from me were ignored? They were not contradicting to Jerome's
+comments, so either you implement them and mention this in changelog, or
+you keep discussing.
 
 Best regards,
 Krzysztof
