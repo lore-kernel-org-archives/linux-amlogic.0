@@ -4,69 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FCC9C433FE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Nov 2022 14:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E9FC43217
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Nov 2022 15:16:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sn8DgJXSizs2fxC7yyOGGhfQUP7mLb2YqmtsBAVOozY=; b=EuZ/0wF2/86Cbx
-	MPIUfWu3rmzAx7hIbd5pI4ZFg1ww/Ucrq+ydPHoc7QAaggqt58lZcQAONIkvWH7fPcP7yPlPjMKkE
-	you4lzSaRIn0PBvWKAF6QNpsCzDaPGWZUPygum3yjw0lEyJFfw60ChbGHxSFzkpMDVmu2Hk5o+qQ4
-	J0hPEUUPPKGBXM+b9mKe8P3TKnsvVm1qoEs4/OX304fG9sJXaXyNSRfZB26cZ4M/F4kI3Vzmk851l
-	o1xetfTG5J/IbJYZM8BTwQ3pYNpMVy3psEEZs0+cRDFI9eg9wtEjl6DpiXL3ssqZztXBDpMgke7d6
-	osr5eG7ETmjTm6ut3Ghw==;
+	List-Owner; bh=sn8DgJXSizs2fxC7yyOGGhfQUP7mLb2YqmtsBAVOozY=; b=ghkqniKdaJHGdb
+	2fzljwUrk4AitoCvrYagrKvhJZk+y2zDOoSDbhCOWzOKrmyh53x14NW+kUNg2w2uOonzwGHtJwi7T
+	3BxbdjtN59rpDCMyFecxjLjZVg3yAeQzeXCxIgQ3F2gjTOMOaSlDIPAJP/BvjlJYZZdf9esZD1PDp
+	RBsHcJ/Tc4RwdHnxPfHhK7at9aUIIdVL176Fg4xaea26NBTdswRwRsKaNFbyeqzUdzj22HVPmFTOy
+	EgIWZQx6JprM7vn/7Hs8d/tJ3ie/5/wsMbxDDu6Gz1HkBzmsjkahttyX8N6Wx9a6pTSfo9qkCLFy3
+	LkRyrjERJW1NWOzxhFrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyDDd-009Iya-Va; Thu, 24 Nov 2022 14:28:50 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oyDxC-009cHI-CM; Thu, 24 Nov 2022 15:15:54 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyDDa-009Iwj-7F; Thu, 24 Nov 2022 14:28:47 +0000
+	id 1oyDx9-009cFx-GT; Thu, 24 Nov 2022 15:15:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 92F026216D;
-	Thu, 24 Nov 2022 14:28:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2079CC433D6;
-	Thu, 24 Nov 2022 14:28:36 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 168F2B827FF;
+	Thu, 24 Nov 2022 15:15:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7997C433B5;
+	Thu, 24 Nov 2022 15:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669300124;
+	s=k20201202; t=1669302948;
 	bh=vSDY92xmrOtkiq1FJrC4dGUzlqSkjlYU9twgxHBDx1E=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KTze8bCUgXVbYusj8LQGIka1dvsWB2I+DkxRW3Bbcfc8fJfFo5dmxKpg3PKgAjpOn
-	 9avnZIur+o74XnCh3gVsMyELrZAQdXd6HCNoIUgHIirXltRyICOLVj51DmDrx0f04w
-	 1AGD2KJyVMrzfgVJIQqdI4TdGPyqtrMb3yZ5g1UXHX19YLP72lEiTCyPJzQ9GIumj3
-	 G3fEEXxlkAwuCO4fSjFARpiJpt2qdApa9WD0+DjEZ9l7DrBoB8kOlNXSTVKeBIgAoU
-	 YJdQi+vG0JQnptu7goXssC91yOy/6Nbeg2WpJcQ9bEaBSQmawOISfd+9Ye4sBXr523
-	 UQ93Sgymq7UOw==
+	b=Hj/R3teuOXbJhLjEIKPLLmxWhHXMEkNOCI4I9RXPi/XTt4vMZrFGydSQJM0ezsZF9
+	 Nxj+vqwZHpMqzpD2iag7xptGV4JRAHMc3ZH46iKcSjFd7EfWld1E2A9XinKZQkAjiB
+	 QqfvAJ8suINRFJhVSqMgvd01DMQV66gS+F12NkyYtQlVkYidZWz6L6Y9MLHeRoBnXC
+	 0f9bBJyncxgdLEszUPwu0zrPWZKDQgHePX69owXUuSUyznysSXXCezmfLBD7isQVS8
+	 B0cy0JQcjKfLTsmclzYm/qT8INcIwd++GHyXkr6Jq9Z0HNE7iwTaoPmYUN3CJBx0mw
+	 eW6ADSX0FfZ2w==
 From: Mark Brown <broonie@kernel.org>
-To: Wolfram Sang <wsa@kernel.org>, Lee Jones <lee.jones@linaro.org>, Angel Iglesias <ang.iglesiasg@gmail.com>,
- Grant Likely <grant.likely@linaro.org>, Uwe Kleine-König <uwe@kleine-koenig.org>
-Cc: linux-pwm@vger.kernel.org, linux-pm@vger.kernel.org, kernel@pengutronix.de, linux-rtc@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-media@vger.kernel.org, linux-fbdev@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, chrome-platform@lists.linux.dev, alsa-devel@alsa-project.org,
- linux-gpio@vger.kernel.org, patches@opensource.cirrus.com, linux-integrity@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- Purism Kernel Team <kernel@puri.sm>, linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- platform-driver-x86@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-leds@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-serial@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-actions@lists.infradead.org, linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, linux-omap@vger.kernel.org, linux-watchdog@vger.kernel.org,
- linux-spi@vger.kernel.org, netdev@vger.kernel.org
+To: Angel Iglesias <ang.iglesiasg@gmail.com>, Grant Likely <grant.likely@linaro.org>, Lee Jones <lee.jones@linaro.org>,
+ Uwe Kleine-König <uwe@kleine-koenig.org>, Wolfram Sang <wsa@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, linux-i2c@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-integrity@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, openipmi-developer@lists.sourceforge.net, linux-amlogic@lists.infradead.org,
+ patches@opensource.cirrus.com, Purism Kernel Team <kernel@puri.sm>, netdev@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-actions@lists.infradead.org, linux-pwm@vger.kernel.org, linux-crypto@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linux-serial@vger.kernel.org, linux-pm@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-iio@vger.kernel.org, chrome-platform@lists.linux.dev, linux-fbdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, kernel@pengutronix.de,
+ linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, linux-mtd@lists.infradead.org
 In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
 References: <20221118224540.619276-1-uwe@kleine-koenig.org>
 Subject: Re: (subset) [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
-Message-Id: <166930011683.316126.16580193554056109830.b4-ty@kernel.org>
-Date: Thu, 24 Nov 2022 14:28:36 +0000
+Message-Id: <166930294048.380009.2445779534079023591.b4-ty@kernel.org>
+Date: Thu, 24 Nov 2022 15:15:40 +0000
 MIME-Version: 1.0
 X-Mailer: b4 0.10.0-dev-fc921
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221124_062846_346771_B3715F3B 
-X-CRM114-Status: GOOD (  14.22  )
+X-CRM114-CacheID: sfid-20221124_071551_855503_C12BDDBE 
+X-CRM114-Status: GOOD (  14.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
