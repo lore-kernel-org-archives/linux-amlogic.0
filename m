@@ -4,79 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF9D4C4167B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 11:28:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C239C4167B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 12:54:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:To:From:References:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=097QGdMKVwoG0eCbU7JWIOjxtQT355Gjs9ELmRwo7tg=; b=jH03W0+W0PRJJt
-	Ir8XAVOGdwRUhQT3zkbOGir4w823p+W/yS8eSNzxwlFrcyL3pV8WyRUfnAmhChW4VS+kNispPE7tZ
-	fH0zAMTJhIHeD4gSKfFSJehvG+qBO3tIOaxw7hnPny0Cvsf1DvLJKKYO/Kc4RmyrKg2ZBzO7Mc4SW
-	burvFUJOcVqW/dU9YKOBT5uildpDFjb9cK+gBx4TBsSaV8bITUuJ8wITDqwi3xssuHsJXCQTDo1mk
-	OcYNwiu+OteeqwjgCobbFVwNqjqYr0HMpZ1nbN2wDDXWsgS+vn1RGFUgV8ebg+JPMWeQ0fplimOfv
-	etyYfy8vc8Y51kZbYThA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Yhe/kEqiwKhhAjHrwyPPYC5x3jNS1HbSTrMwBV0TyY4=; b=YdOxpGedEKKIshSY6LGctMjgY2
+	+TwGmrnRMdvHvQGscpcuhxaTxsr8e8UntmoDe3UNKGVBAa6vKRdMPBGQLD8fNxgmdV8vSBZ8/+n6E
+	cPlTM7BePBSSRzQJpVGi0qhSIR5bb+1kjhlXn4MOxMW4n+QnrKo767AmBn9kNlfo0hDEq6hrANeMi
+	8X6etGlhefzMNEE2Ivpc3mGxnJZh4qBwb9eNW90Kb/KJdsc678JCsi0YgUFSEv7tXYSoXIL4LUyso
+	eTOffs04//fzFiR1Y0f6Q0fZOxL7FDCaHI6Z2wBzZfEmRf4H+oLwMtozG34KwuT7ByvAZlESaEQYW
+	GORBfecw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyWst-00G69U-5T; Fri, 25 Nov 2022 11:28:43 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1oyYDv-00GX1u-Eb; Fri, 25 Nov 2022 12:54:31 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyWnC-00G3JX-AO
-	for linux-amlogic@lists.infradead.org; Fri, 25 Nov 2022 11:22:53 +0000
-Received: by mail-wr1-x433.google.com with SMTP id bs21so6289874wrb.4
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Nov 2022 03:22:47 -0800 (PST)
+	id 1oyYDc-00GWtg-Qz
+	for linux-amlogic@lists.infradead.org; Fri, 25 Nov 2022 12:54:14 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 83-20020a1c0256000000b003d03017c6efso5449424wmc.4
+        for <linux-amlogic@lists.infradead.org>; Fri, 25 Nov 2022 04:54:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=pn54IrAg9BvGdpbmlmTu4g2JeVdd9hbFtNrFP2BoA2s=;
-        b=CxcXVjwjK4O53Xsx4YzgKeQEGBU2MaHahr/zOMhAdXq/sVnoZdb23QDoGDzacEdWZ6
-         Rlwbs2pHtNvE2W1+dPnxWGWL59DGt9iH4oZfc0sztwVn2bWaWVWwpbhBOvhnlQWpEcDW
-         wBpQ4rj5BtaEqJ8B8Hc2MS94pFz6y8zsNBfwg1gGawhTj2B7gTb12UBAqjJW7Ux3Wn7N
-         hJskj2x+HOGvCgjRHN7pFl3gbdx8vQi4J6ilaqAmNkx3tj8DTdJZ+55G40uRnTt8M/6O
-         i5ZMbjBjoZldLlzQZfmHVKIbBnyhFPQnPyROsi3B7TgVR/xprXdMqdFhrTNXGg6Jub2+
-         Q1zg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+L0OH+CqCrtKGjPWmm+w9b2BzfAcQ+LiOOKvg/k27GY=;
+        b=wvDY0pWbo6THktZFD4aifCIxFvHXKL7viQcPE/adaQ5CNQZoa9l46JTneVViRi4V7T
+         k0ufBv95R6X4aAwvhyQE2YLpaHAJk+qGibfFnH0zfvL3JLrffCfLvVcMj4IROGSh2C1V
+         yZ7UTNPpOWRz1ounE6CfNLUoutWq7ACVTXSI5biIYCf+vKbT9JyeKsuYo1789XPxkfY3
+         Ci2Ib87jwCrw3S4Eo/4RL3W0IkmAK0t6JRJutc1ari90thY1oYKbfrkBh57TcxlqS0Uw
+         /5p4BglUyjLt7Z8CtZZ1V/URUEOz963ya0LmUYU36jTqwRNLNAcc3Mr52dnoW5iTQyfW
+         42ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pn54IrAg9BvGdpbmlmTu4g2JeVdd9hbFtNrFP2BoA2s=;
-        b=xEfjfn8oauCXFVFluPDffLu+kp2BPHpyJvYdK82G8Z/GHO0ynNuQPP01BtWuTayuBL
-         pWeAJoupoaiTnvYkw8VEmnkqsGUHilC/3ivzLS1JCd5tjROE+4HYDey6BU6ZtYfBiGDS
-         AX1nhJy59L3fRSnxx9KRozuOY+Etxj+dtY6XG0GRWdjOvVBWSAMz3FUWtVI0nl0vPLdd
-         LzVDLp/vBBdojt5ydGDecc/H/z3w3O68uGr05Htq96RQ+dhawePCe5DJJPAzSuwvsD2D
-         RMESjsLXjjuy7dzDvwM8mc3gDVlrlT5ttCxNKCZpmpluMtCHSSlD8wCa1v+Uc/phGyfG
-         /TbQ==
-X-Gm-Message-State: ANoB5pnAkErjrZuPnKy9IVVAYUQOmb9BlPhvaUMjUQ/ZOc0C7CqBRghk
-	HFgoQW9IAzu+xkVnSPVh4dD+MQ==
-X-Google-Smtp-Source: AA0mqf5J1upCR0wwX6epG9BvfBXsPDWbg7ZhxcnvLJ7dj4mY2ZQicjacNyBf2f6pOKtwDPhaumPn2A==
-X-Received: by 2002:a05:6000:1088:b0:22e:4a4e:b890 with SMTP id y8-20020a056000108800b0022e4a4eb890mr14732078wrw.554.1669375366508;
-        Fri, 25 Nov 2022 03:22:46 -0800 (PST)
-Received: from localhost (253.35.17.109.rev.sfr.net. [109.17.35.253])
-        by smtp.gmail.com with ESMTPSA id m6-20020adfc586000000b002366fb99cdasm3538269wrg.50.2022.11.25.03.22.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 03:22:45 -0800 (PST)
-References: <20221110150035.2824580-1-adeep@lexina.in>
- <1jk03y37vs.fsf@starbuckisacylon.baylibre.com>
- <c31cc8a3-8adc-3e93-f6fe-73cd7482429d@lexina.in>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Vyacheslav <adeep@lexina.in>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/4] arm64: amlogic: mmc: meson-gx: Add core, tx, rx
-Date: Fri, 25 Nov 2022 11:28:17 +0100
-In-reply-to: <c31cc8a3-8adc-3e93-f6fe-73cd7482429d@lexina.in>
-Message-ID: <1j7czj2s8r.fsf@starbuckisacylon.baylibre.com>
+        bh=+L0OH+CqCrtKGjPWmm+w9b2BzfAcQ+LiOOKvg/k27GY=;
+        b=PXaQCTrjxAcHXFQuI+9sKGKcMcyv1aTf6bSwoDLcEv4AETGWBXTu58uiu6gwMSLoJs
+         nnzAB2f7+tPgCsSG9pkRZO099CkoPo5fL8LthL7XpTKB2Fe3F10iqgRlubh1Wo67SskP
+         gJXnddrxqH2VzxP5FBSPkPIOlpeqM0d6KIySC6FvpakRK0D/VfWIOEXDWMqLdldF4UCt
+         isecQlRI9uA8X7JYKXcNCzJjgRKO7RU86SJSe+N/BlznMD9bI6OLC2WUXGib5JkA/Y0P
+         xnp3D48cVCFS0FsNfoqCBQ/xx9XwjB/Ef0Ystn11y6ZJntmqZ5+aZzwJ8fWJlamwqb0s
+         AiBw==
+X-Gm-Message-State: ANoB5pmb/lNUaywLDNSd2BiTfZGfBdci8Wok9o1Qa/mqLBU6CkNMhnYH
+	cfrDWEoCds/iLwF9PNkYXgUQFA==
+X-Google-Smtp-Source: AA0mqf6QaUOeyJHGelkdGQQDqg9Cr3tOC9ZY97MzYk83EKyrbG639t0bn4eiUyXQ/Mg/djl5bTpecg==
+X-Received: by 2002:a05:600c:5113:b0:3cf:77c0:48ea with SMTP id o19-20020a05600c511300b003cf77c048eamr30706150wms.130.1669380849331;
+        Fri, 25 Nov 2022 04:54:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
+        by smtp.gmail.com with ESMTPSA id m24-20020a05600c3b1800b003cf47556f21sm10620871wms.2.2022.11.25.04.54.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 04:54:08 -0800 (PST)
+Message-ID: <84c685c5-9205-237d-588c-57d33f956325@linaro.org>
+Date: Fri, 25 Nov 2022 13:54:08 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/6] dt-bindings: reset: meson-g12a: Add missing NNA reset
+Content-Language: en-US
+To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Amlogic Meson SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
+References: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
+ <20221125111921.37261-2-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221125111921.37261-2-tomeu.vizoso@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_032250_436208_4D376DDE 
-X-CRM114-Status: GOOD (  49.47  )
+X-CRM114-CacheID: sfid-20221125_045412_881210_9F760A90 
+X-CRM114-Status: GOOD (  13.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,181 +98,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 25/11/2022 12:19, Tomeu Vizoso wrote:
+> Doesn't appear in the TRM I have, but it is used by the downstream
+> galcore driver.
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> ---
+>   include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> index 6d487c5eba2c..45f6b8a951d0 100644
+> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> @@ -69,7 +69,9 @@
+>   #define RESET_PARSER_FETCH		72
+>   #define RESET_CTL			73
+>   #define RESET_PARSER_TOP		74
+> -/*					75-77	*/
+> +/*					75	*/
+> +#define RESET_NNA			76
+> +/*					77	*/
+>   #define RESET_DVALIN			78
+>   #define RESET_HDMITX			79
+>   /*					80-95	*/
 
-On Thu 24 Nov 2022 at 09:22, Vyacheslav <adeep@lexina.in> wrote:
 
-> Hi!
-> Thanks for reply. Sorry for delay.
->
->
-> 13.11.2022 23:06, Jerome Brunet wrote:
->> On Thu 10 Nov 2022 at 18:00, Vyacheslav Bocharov <adeep@lexina.in> wrote:
->> 
->>> The mmc driver use the same phase values (core - 180, tx/rx - 0) for all
->>> meson64 platforms. However, some platforms (and even some boards) require
->>> different values
->> Where does it stops ? Trying to solve the instabilities of this
->> IP/driver by tweaking the phase has proven to be dead-end.
->
-> As a result, there is now a stalemate and various real-world operating
-> system projects use patches to change clock phases.
->
 
-The current setting has seen its fair share of "real world"
-testing too, before being applied. 
-
-It does need more work, sure. It does not make what is proposed here
-appropriate.
-
->
->> Soon, you'll end up tweaking these settings depending on the on
->> particular version of the device because it ships with a different eMMC
->> manufacturer. Then comes multi sourcing, sdio modules, sdcards ...
->> 
->>> (axg for example use 270 degree for core clock).
->> Where ? Upstream linux does not
->
-> Armbian/Home Assistant OS use core phase 270 for axg/g12/sm1 boards
-> (patches by Neil). On JetHub devices phase 270 is need with eMMC more than
-> 16Gb size.
-
-Size has nothing to do with this. Few boards electing to do something
-else does justify making this a DT config. It just shows the controller
-still need work.
-
->
->> u-boot does something of the sort for sm1 and I'm not entirely sure this
->> appropriate either.
->
-> U-boot in Armbian/HAOS use same phase 270 or/and force low speed mode for
-> eMMC (limit clock freq).
->
->> IMO, this setting has more to do with the mode the mmc device is
->> operating at - not the platform or board.
->> We had some discussions with the HW designers at AML and they recommended
->> to keep a phase shift of 180 between the Core and Tx. They also
->> recommended to leave Rx alone (actually, starting from the v3, the Rx
->> field has no effect. It is not even wired to actual HW)
->
-> I do not have access to AML engineers :)
-> I can only test settings on several different boards. And it seems that the
-> phase settings depend not only on the board layout, but also on the eMMC
-> chip used.
-
-What are you going to do when a manufacturer does multi-sourcing then
-? Make one DT per PCB/eMMC chip combination ? It is wrong and does not scale.
-
-> What to do about this (if not to use the magic of the driver
-> from AML) other than providing the ability to change the value in
-> devicetree for each board I can't think of yet.
->
->> Funnily, that is not what the vendor driver does. It also does A LOT of
->> extremely complex and 'debatable' things, which mostly mask how much the
->> driver is unstable.
->
-> As far as I understand they just go through all possible values until the
-> first successful attempt to initialize the device.
-> What do you think of the idea to implement such a variant for the meson-gx
-> driver?
-
-What the amlogic driver does are overly complex computation to get a tuning
-value, which is then contiously cycled (in the IRQ handler!!) while silently
-retrying failed transaction behind MMC core's back
-
-That's far from being desirable.
-
->
->> With the upstream drivers, modes up to SDR50 and HS200 have been stable
->> lately. SDR104 and DDR modes (DDR52 or HS400) remains problematic.
->
-> I have troubles with HS200, for example:
-> Card Type [CARD_TYPE: 0x57]
->  HS200 Single Data Rate eMMC @200MHz 1.8VI/O
->  HS Dual Data Rate eMMC @52MHz 1.8V or 3VI/O
->  HS eMMC @52MHz - at rated device voltage(s)
->  HS eMMC @26MHz - at rated device voltage(s)
->
-
-That does not says with which mode or at which stage the problem occurs
-
->> Changing the settings further would require more discussion with AML.
->> Blindly poking these value until you get something stablish for 1
->> particular use case is a recipe for disaster.
->
-> I assumed the idea that the dts are edited by the maintainers or the board
-> developers and will be able to choose the values themselves.
->
-
-And eventually, we'll end-up telling people to adjust the phases
-depending of the sdcard they insert ... This does not work for me.
-
-I understand the will to get this working at full speed. I've spent A
-LOT more time than would have wanted in this driver, trying to do
-exactly that. There is quite an history about that on this list
-detailing why changes have been made.
-
-It was stable(ish) for while. Now we are getting more reports of
-problems. This (again) shows this need more work. It also shows there
-are still things we don't know about this controller and this where it
-gets tricky because there is high risk of causing regressions with each
-change.
-
-Let's leave Rx (which has no effect) and Tx out for now.
-
-My guess is the core phase might need to be adapted depending on
-* Mode: It seems the DDR modes are done by making the controller run
-  faster then diving the output clock by 2. This divider might
-  mess up the phase shift needed.
-* Speed: Maybe there is delay contraint between the input clock and the
-  core and we need at adapting the phase shift depending on the rate ?
-
-I think what could be tried - with a LOOONG RFT giving a chance people
-to report regressions - is:
-* Defaulting the Core phase to 270: Despite AML HW engineer
-  recommendation, this is what the vendor code does. Maybe this will help
-  with board that seems to require 270 to start.
-  I know if stays for all modes, it will cause problems
-1) Set 180 when switching to DDR modes
-2) Wether switching to 180 for high speed SDR modes (UHS, HS200) is
-   required, or not, is a bit unclear. If the problem is the internal
-   divider, it should not be required. If the problem is the delay,
-   maybe it is.
-
->
->> 
->>> This patch
->>> transfers the values from the code to the variables in the device-tree files.
->>> If not set in dts, use old default values.
->> I think going that way is opening a big can of worms.
->> I don't think this should be applied
->> 
->>>
->>> Vyacheslav Bocharov (4):
->>>    arm64: amlogic: mmc: meson-gx: Add core, tx, rx eMMC/SD/SDIO phase
->>>      clock settings from devicetree data
->>>    arm64: amlogic: mmc: meson-gx: Add dts binding include for core, tx,
->>>      rx eMMC/SD/SDIO phase clock settings from devicetree data
->>>    arm64: amlogic: dts: meson: update meson-axg device-tree for new core,
->>>      tx, rx phase clock settings.
->>>    arm64: dts: docs: Update mmc meson-gx documentation for new config
->>>      option amlogic,mmc-phase
->>>
->>>   .../bindings/mmc/amlogic,meson-gx.txt         |  7 ++++
->>>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  3 ++
->>>   drivers/mmc/host/meson-gx-mmc.c               | 18 +++++++---
->>>   include/dt-bindings/mmc/meson-gx-mmc.h        | 35 +++++++++++++++++++
->>>   4 files changed, 58 insertions(+), 5 deletions(-)
->>>   create mode 100644 include/dt-bindings/mmc/meson-gx-mmc.h
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
