@@ -4,95 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23A5CC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 14:59:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46888C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 17:16:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=tCz+OBI5EUsPTepZPK2qx3lSmq3xUycYzuXzy1QeUrw=; b=SD21cI2ZJ9ROBz
-	55E5KPmrmZWKAM5viawiBbCXlgdBMf39tDsLRIb70oQg/BR+D82ehKiCi1TXec2kRbSPKa/YbiAVt
-	Xp+FzPDph9wXCHII+bh4NIvRb63Jd7PjNWrpkYTI14XRA+U7fKxGnbmkQ8Hca7zg5m62UEJMCjDRE
-	oy+NvRfiJMSkvryBNcrWcYatftC66l7LDifsGLyZC/twaF6NL1SAsd1JCeYTH5VBLvi11xuV6CL3S
-	P6ZyByE9m3mZz4Epwyg5MOF1t/n3sx8vcdetdWX26qCfclf/7LgkDCCeYJrluP9WZV7x0nN1XH1Wh
-	j8SfT+MkzAtdk5HabDNw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VQChOu5ccMFeJU0l6bHXJYBHU34w5hMeMbZriahUZ3s=; b=ymH8G9tiTJf+S0+1j/+2WNOEw0
+	KZpqqYL//gwUObcR9AcgRC62YgLF+aqa3QCYBfLRXRhsKd68YEJbXP9Zqy4b/aHnERvOkLftw+NFx
+	Bp6yprmtpKa4f/rPBE6yiKM7JM7pVbU73PNNdiUzVKJtDkDLTAmN0dfZoExh9jXklf6EZyMZ1wqI3
+	hDU5vxVNtmkKGI7wSuav46RW/NJUahz6q2ni+vKheHcSb0s7nE8VzqYl96BAF4BXXf1YuadLiyikB
+	gpJK/DtzfOhdEMfmUhYvb+urxWptbCzOBmASJu+0O7Guj1BiProkhbuoLl4V1JjM+8cQzYKSzg8v+
+	17u1SpRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyaB3-00HHCh-53; Fri, 25 Nov 2022 14:59:41 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1oycJH-000hTT-Fg; Fri, 25 Nov 2022 17:16:19 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oya1q-00HCSl-Ik
-	for linux-amlogic@bombadil.infradead.org; Fri, 25 Nov 2022 14:50:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=Z/5v6IfA/ubg2nJLOKQQG234MZiHjjc5dgAnhVX0L/s=; b=kxK7iq2slaWVnuKu1rcWgAXBjV
-	bunl0JfPLdLLhAkbolMq9FDL1oKb7UXE/5RS5qft0okESnIqdnn5x8xk9klHZ/yduxx3GtpBE6shh
-	I794n77/V4GV0+9kLJ14ViHUOlbItwVl5vN0HWNxqhLCzOnYFdpsRxbjFmuA9pHY00LwpOHflj5kU
-	QSiCZo0d12zQcuTi6rXALHGunP7z36XycqQhhYi60hhRagA0b8jAYDnhCYxQMDMiw+7drPz7Ex3Te
-	9qCy9m05Hzw/c0aUsp6cerrmZj9wJYGdAELz5eE0cAZ0x1ffpgGML92CyY7Id4tDkmtzz8S2FG3II
-	Vdf76SXQ==;
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
-	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyZti-004YDs-M1
-	for linux-amlogic@lists.infradead.org; Fri, 25 Nov 2022 14:41:48 +0000
-Received: by mail-lf1-x130.google.com with SMTP id p8so7185022lfu.11
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Nov 2022 06:41:45 -0800 (PST)
+	id 1oycJF-000hQw-DZ
+	for linux-amlogic@lists.infradead.org; Fri, 25 Nov 2022 17:16:18 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id cl5so7701704wrb.9
+        for <linux-amlogic@lists.infradead.org>; Fri, 25 Nov 2022 09:16:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/5v6IfA/ubg2nJLOKQQG234MZiHjjc5dgAnhVX0L/s=;
-        b=v73NYCBjG/HomZkRNgmtOXhKv9cDQF46tMMBfqYc9ma2DNFgUChhr1kRR4/N5cNR78
-         lv/CTaeOxTdpJopTBlfwwU1FQKFo5Dr+k6DSfMB/vP0q2JVfU327ncYXBGyzuSSe0ioA
-         xCh3szZ4Ju2wPRvEw3heXC2hkaEwhkGjfPWhcDiOYN+WyM44YzdVli4uW9OJnUdJYbE1
-         J1e0fqamTsPgRgUXqeg++Q/NAx8x4+nipbaopQXn5McLgoDkJk5udBz0lfVzDay7z4dp
-         LZsfO7Gu4co2UDIyarq+s8o1/UEBYd0iOXpx5vUvDEp7IF7Z3mScOD40ZFG66FGU2Xtr
-         PJfg==
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=D5t5pk/Tw2Avo20xT44DfzVJuCpgbHlNJ6TbleqnB8c=;
+        b=nIX/RrPlgp/BOtELVRhcFd6OE1QFdwbFsoHrePhw1cx9839H3Ixo+BgSJFMGF+jzO7
+         TOo8dOoN798NqveINmFSHegz/B7bGBM5mkNQlCPyrc4/Gf87XRVv21qPPSOxfJSdpgEM
+         2qe0v+t43jzB0fXsBfd0jGTYProEBC9XYQzywO37nclhh9o+aItgx/NTsSbn0Ydo7NN8
+         DIDKRUyTUJsRQ/EKC3LnCTX+R5z2vcPGK5M7UxYkQHgEYSaTfaFpLqV6Roh2wtj/Q7Yg
+         MQeu89ncHiSTtHfogJ2nW2SYe6HfsRyp8Qwst4nc6gTj1lq+Z5vHNZ42ujPmwk+a64P9
+         TysQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z/5v6IfA/ubg2nJLOKQQG234MZiHjjc5dgAnhVX0L/s=;
-        b=mjVHqDPnvmyE4QHSHAuKzKr1mCLIFmpLYvupnpcQ8Dd6Xe1Mbr5FodsZlgTjtSC05O
-         9Z2w2z1nSvPlb8Acl1J0L3bTlJCjF+Z2DZyNYKaplCtqq69Ilf0ZGhqeHJswEUa6Q5mh
-         EqOwHaF4R5WKUuIGWa0aDnHTRJqSjHoj1CbmG04t6EMnOFkqN0Yj/7cf3UspxLIdaYrj
-         x0GcEcZ8vn9Sm/U+n6D05rKpEuOYg7/fO9gizffq1DftvxPjMpxSgSFpmdavZYivEHLZ
-         E2UblHUDz87gD3xu7Ggemtl6UwdkeHTDr1nV9PVMwCa0qj2zZGRwN+3kucZl5S2woNa8
-         kZ2w==
-X-Gm-Message-State: ANoB5plenDXGGeajBZmbI7J0hOYKjHqnxnREiwGCsCalUTKkQqjxxmYD
-	4TzUFbWsURYbb/0nEjZEKwTI9g==
-X-Google-Smtp-Source: AA0mqf7XBjlNHsnGinQ/ZJ5ekm8hErX7jb3UzC0AoUVOflTI2G0Ga0tLnzkPrVnr4q3TRO4R7Dlq4A==
-X-Received: by 2002:a19:791c:0:b0:4b4:dd9:1880 with SMTP id u28-20020a19791c000000b004b40dd91880mr7436620lfc.289.1669387303294;
-        Fri, 25 Nov 2022 06:41:43 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i20-20020a2ea234000000b0027738fd1eb6sm384995ljm.110.2022.11.25.06.41.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 06:41:42 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
-Date: Fri, 25 Nov 2022 15:41:41 +0100
-Message-Id: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=D5t5pk/Tw2Avo20xT44DfzVJuCpgbHlNJ6TbleqnB8c=;
+        b=vKpVN4TnbW+5lVynEx61w+qzC2o9+4wXFJyMcw+D8oaqrES8DBlKsqGhuMPZv9jaS3
+         t7tCNqV6MYGCNSXrPd22zfvocUsIf01hAsilnu68IhluTFbo+t8jEgA2JkZULI74Le8W
+         qcB/XFf/EbTI46JmvY0WMrglRpaKHFWX1mAjD83AuPFScC/0Phc7PKSIyEjwznMmgghu
+         onfJNAHVOihUokJrewIuQmo/9GbZSkwz/8VhrvLOphQOAt+dZa2kBHs1d5n13keixOLP
+         pmxldF3vbPwUprgiCTT9weYHbmWHrnAPYzbKeS0uidymH/H8orKq7pkyUB1ZJr9hQCmb
+         pPXw==
+X-Gm-Message-State: ANoB5pni7wgvE7k6Dpw+BCEYYXuwdIsxAwAAka/NiiUlX9l+hti8FOnB
+	FdLg77zehkb+VvkUYoaronH8HA==
+X-Google-Smtp-Source: AA0mqf7Rcx3H1sfAYSftgETBIQmzgTPqE79fmZWHKA/WNteq3AkzMFTo1swYpB3H3F1/pas4fOKOhg==
+X-Received: by 2002:a5d:5b19:0:b0:241:dea3:ad48 with SMTP id bx25-20020a5d5b19000000b00241dea3ad48mr14423755wrb.357.1669396573516;
+        Fri, 25 Nov 2022 09:16:13 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b003c6f8d30e40sm10667777wmq.31.2022.11.25.09.16.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 09:16:13 -0800 (PST)
+Message-ID: <c8d9e319-238c-8c33-f146-90d292cf63d5@linaro.org>
+Date: Fri, 25 Nov 2022 18:16:12 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] ARM: dts: meson: align LED node names with dtschema
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_144146_876080_02311557 
-X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-CacheID: sfid-20221125_091617_517789_F4FA5175 
+X-CRM114-Status: UNSURE (   9.05  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,42 +94,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The node names should be generic and DT schema expects certain pattern:
+On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern:
+> 
+>    meson8-minix-neo-x8.dtb: gpio-leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm/boot/dts/meson8-minix-neo-x8.dts | 2 +-
+>   arch/arm/boot/dts/meson8b-ec100.dts       | 2 +-
+>   arch/arm/boot/dts/meson8b-odroidc1.dts    | 2 +-
+>   3 files changed, 3 insertions(+), 3 deletions(-)
+> 
 
-  amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+<snip>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-index cadba194b149..028220ed45ad 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-@@ -81,13 +81,13 @@ hdmi_connector_in: endpoint {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		green {
-+		led-green {
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_STATUS;
- 			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
- 		};
- 
--		blue {
-+		led-blue {
- 			color = <LED_COLOR_ID_BLUE>;
- 			function = LED_FUNCTION_STATUS;
- 			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_LOW>;
--- 
-2.34.1
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
