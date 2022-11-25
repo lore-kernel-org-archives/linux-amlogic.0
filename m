@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6D2C43217
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:25:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CEDCC43217
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:33:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WTc6x0JdZ+dfCfwqQ6JedCDgI0ueSbqmdbYM16BI7zc=; b=yMLBS+EwsNlaPy
-	oEOqiz44pyOyPz9RptL9Eg614lA/KUvDA2VCAe+MDMlV1/W4z9JPrEOSQAgdUTDbWIGyCRxNnhhty
-	SdVucFlSYvQtY6+gmqvdg8dKLUOJqrMqMjlB/7RhdeIWyhARewH1fmhFl+irAWrY64yiwM02Btnu3
-	xINKNHewJJ7I/tdTc3kZxhswcmgYpE/Y4qqjWWfsxqhfHjA5L0WUMHV8FmElMWtGmmn2ivMOXwEdN
-	T9+RKtUaZyosL8GjdsKrdX9VNQtgMVyjG9TDqhwWOGlnEDgCaX61TbMQXCYLz498dbJsEsrt7QuGY
-	X1CXOXbLB5T+71n9tV1A==;
+	List-Owner; bh=4Fver7wqTj4plTGq4WkLohDiy3Beo+RJvlRh5bTv2Rc=; b=C8J2Ryr4g+BOaf
+	QAggRlEhW90C2/dIkjdRfMiO0gkD50o+Qxxv8pg6RIcTgsr4L41U1Ro6cpozsbKmb0sPAqblZyvUw
+	MzrRVO+ntA4xS9+O34f2frw1eVvWIr6XRpZcTwjZCCd4W0qIUHYjQxDNJp0rsPKaH2XrGGLk5b+hx
+	qEpbT4/iAlwZDzVwN3ujpRl14wHc0e5VWN4ijPQtpL3yTZUS3FsC/l6jb2xHTa1pnXXFgdGMOybxJ
+	xfB7gaWcHctobzAKaf32PRCEVKgbZq2qR6Q6Ru0gXvj7J7BAgoszMY8ov4RWdn/L2pDbDOCiYCbAS
+	9UREFVkoOaTp7uTemWgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyi4b-002oGj-U3; Fri, 25 Nov 2022 23:25:33 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+	id 1oyiBx-002qXT-QS; Fri, 25 Nov 2022 23:33:09 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyi4Z-002oEe-08; Fri, 25 Nov 2022 23:25:32 +0000
-Received: by mail-ej1-x631.google.com with SMTP id e27so13190782ejc.12;
-        Fri, 25 Nov 2022 15:25:29 -0800 (PST)
+	id 1oyiBv-002qQC-Fc; Fri, 25 Nov 2022 23:33:08 +0000
+Received: by mail-ed1-x532.google.com with SMTP id z20so8161586edc.13;
+        Fri, 25 Nov 2022 15:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tCTtF6fAWhMLt7sZbiPuunRpHFkZ2q0bqUFL/SjTMsw=;
-        b=XO5fYO1oOwtpueIZWfSn0cCi0laQdhB3hXs3PtHdd4OHe23GYCorc0y8Plc2H8qhYv
-         LH9Um4yafmwcg0CwYKDPPynP/ma2fvcmVr/dI+jLh3VXEEYqfRxf55tsTOHgkANnUVdk
-         YYNgNvWH9oeYbutAzNf78VU2xm5n8CzkJQ1sYSm06g9m7ahaQFRQtoF8zTjxoIptgdRX
-         GFvQGOfDC6UouP3xpg6y8h18RDmHkGu6d6J42lQritKDbeS4o5k1bR5+NSYQVUYvst69
-         CT0ftvSz4BZ3AvUuRXFcsEitCTsNAlvScg9LFgPAGVyOscN277hzZtrcGIP99iABJqXZ
-         1zyg==
+        bh=ul41aLivPpoStmBIkSe3PwxjiFmKEfN8civiUwQkxa0=;
+        b=TsTP7xsKiWaL4D0DEw5NERyXETDLlo76uN/V9q+MEzuJornm/EOwKNzZhQq73S9955
+         o8QCJhKYktAb++vUDJVobm7vqLP487mpTmUv5onvf0U9k7xDb1mZmMMmB4LH9Q0LuHDE
+         eN2XwwIwocdxmZgm3YZGIIQt7kbNoQe0LIyIPk7B4vsvRs+vSgqORcDt/P+hjTxKeBtA
+         lvPrf+XjMkFNPwZNHHNLysXxG3Nn8CZp9A/B0ZxbbSPuVCbKxpdxpmY3taLw27V4g7uT
+         tqa0ulf6ccJUIzp8j7nHUHCqmkMiUcWnbIkpzrx5DON5WiCnhXQv1E52fFDeGGn8I5qE
+         dcWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tCTtF6fAWhMLt7sZbiPuunRpHFkZ2q0bqUFL/SjTMsw=;
-        b=rETkbJyz6rTZ0r1x8lDhBOE4alzfT38TZbBCm0tBo7T60yGL4kV7Anowy6+AKWCLqT
-         c3YC0RKObe5Mh/bY3RdbDakB/qZdTuZ1vLE1uuNcPfCCfkakvZVeY9ULA/Y3vu2Jdx6Q
-         HwZX9hcUJ11iltf5QOm4pew26ladEqD8LqBDLJdc0NitBaY+frAo4s/7oKtDTgidlgjL
-         ghAGHuFep7POzgtCu1vBdzrrnwjbJvfQokOvkOoSkLceh9i18oQGpUYHI3rcdqzVr+1G
-         uCXwXi3OWuEkqk2Z/iINhYetJSC3gaCRWweHyOPOnUNRF1RHMGKqpe2s+NATv4QW5jk9
-         FEvw==
-X-Gm-Message-State: ANoB5pkicUVjrWjFbLliJT8nm0meCSwsnISYAb0rz8ltZSC5Q5AlS301
-	M16cMYQO8e8dE2iaF6zgxxMxd0rddzNUMnHXrdA=
-X-Google-Smtp-Source: AA0mqf6r8ZGoAmftNYWkAPDE8cV+ClfDfHNDigYfV7F4RFfaaXo6kES5wXG//eSV5jPV/Jc+P7ogrsCm0bmN17yrNT4=
-X-Received: by 2002:a17:906:6bd8:b0:78b:a8d:e76a with SMTP id
- t24-20020a1709066bd800b0078b0a8de76amr35243355ejs.725.1669418728706; Fri, 25
- Nov 2022 15:25:28 -0800 (PST)
+        bh=ul41aLivPpoStmBIkSe3PwxjiFmKEfN8civiUwQkxa0=;
+        b=bSN03GNHYkxyo18yxdw6Q36hwgZSBZjKGKA0kkAQoM1mx9zDfrGZQowL/Oanrkedxt
+         lJ+mGHdwANiQ+6HuC1KsWkuYmBgHZR604bCUHhyENphcGsJR1M7zLnWsdbOivPl14CnJ
+         3pc61WEKuqyQM7yNs4b6RReKC5arghs05ZXAr21fTG7hcPoiv9+sf3K7t8r8g9oW1bxb
+         Its2CzBvOI2IT0met9j74HHuAMoWeANhheSVP17pOjy1POBv+QIDz/ziicXKA0VZU0Rl
+         QEAY1N+JPXTdf7A4Z3vxK23GvhbQo9lfTRHWfZHnsF3cMsqPR+j16f/53xXodyDC6dKG
+         kMsw==
+X-Gm-Message-State: ANoB5pkKR2apQJ4YcR9OgqaZzjGoNigtv+iaOGzz69Ss6ucmn8G+MI6J
+	4FVBEbZjJIJWYMmzQonB5s9w0xvBPqx30lEqk/s=
+X-Google-Smtp-Source: AA0mqf5un8E+VJYr8xkakEy/VtUbHh82LR9urvSYcLJYttWK02ci8Lrk7k46XZMqWxXRiTAywc/PrXQ5qe1vMXdN+kw=
+X-Received: by 2002:a05:6402:2404:b0:467:67e1:ca61 with SMTP id
+ t4-20020a056402240400b0046767e1ca61mr4218659eda.27.1669419186903; Fri, 25 Nov
+ 2022 15:33:06 -0800 (PST)
 MIME-Version: 1.0
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 26 Nov 2022 00:25:17 +0100
-Message-ID: <CAFBinCC_hGBNTwAfLAZmyNz7vjedWyQ0vhPT_vAKXQ5LKhA3Tg@mail.gmail.com>
-Subject: Re: [PATCH 05/12] dt-bindings: media: convert meson-ir.txt to dt-schema
+Date: Sat, 26 Nov 2022 00:32:55 +0100
+Message-ID: <CAFBinCDNqyb+AydSyN19ddJsUMo3RXKVJh=8sZgy3nYEc+vcxQ@mail.gmail.com>
+Subject: Re: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
 	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -82,9 +82,8 @@ Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
 	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_152531_096561_E6379388 
-X-CRM114-Status: UNSURE (   8.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221125_153307_560274_B5FA4415 
+X-CRM114-Status: GOOD (  13.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,16 +104,26 @@ Hi Neil,
 
 On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
->
-> Convert the Amlogic Meson IR remote control receiver bindings to
-> dt-schema.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+[...]
+> +unevaluatedProperties: false
+Could you please also add an "interrupts" property?
+This watchdog IP can generate an interrupt instead of resetting the
+SoC. We don't support this in the driver yet, but still it's w
+Somehow the interrupt made it into the .dtsi but not the bindings.
 
-Before this is applied we need an additional patch removing the
-un-documented "amlogic,meson-gx-ir" compatible string from
-arch/arm64/boot/dts/amlogic/meson-gx.dtsi though.
+[...]
+> -- compatible : depending on the SoC this should be one of:
+> -       "amlogic,meson6-wdt" on Meson6 SoCs
+> -       "amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
+> -       "amlogic,meson8b-wdt" on Meson8b SoCs
+> -       "amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
+The last part did not quite make it into the new schema.
+arch/arm/boot/dts/meson8m2.dtsi currently has:
+  compatible = "amlogic,meson8m2-wdt", "amlogic,meson8b-wdt";
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
