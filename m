@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CEDCC43217
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50159C43217
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4Fver7wqTj4plTGq4WkLohDiy3Beo+RJvlRh5bTv2Rc=; b=C8J2Ryr4g+BOaf
-	QAggRlEhW90C2/dIkjdRfMiO0gkD50o+Qxxv8pg6RIcTgsr4L41U1Ro6cpozsbKmb0sPAqblZyvUw
-	MzrRVO+ntA4xS9+O34f2frw1eVvWIr6XRpZcTwjZCCd4W0qIUHYjQxDNJp0rsPKaH2XrGGLk5b+hx
-	qEpbT4/iAlwZDzVwN3ujpRl14wHc0e5VWN4ijPQtpL3yTZUS3FsC/l6jb2xHTa1pnXXFgdGMOybxJ
-	xfB7gaWcHctobzAKaf32PRCEVKgbZq2qR6Q6Ru0gXvj7J7BAgoszMY8ov4RWdn/L2pDbDOCiYCbAS
-	9UREFVkoOaTp7uTemWgQ==;
+	List-Owner; bh=pM6NRoWrlaoPtcHFXiTJzN7fP4TDiGzqN9qew+nESpw=; b=jzzIzTcLlu3Gnx
+	2wW9ciWYYlAOF/gHSw7qMhuQX8IcylT+5sP6bUNhMwNNyiBBdo3x+IC9w3lrWpAYRnD7N8GNBUvZk
+	RM7OsNkBDBUNrHpfAuQ5qTKtHTfcietbhsvkQ8c5mLHH7u9Il0b4fPsIke/b7Yr8YM91+YNSdN2nl
+	lRfxqkA+id6jrNMcVfX0jn5LoAicB+F9a4O25MUNCMDiV6vCv5B5auB5DieE4zfA/ZtgexUek5S2O
+	j7avBSe3+M3doA1k9TfI3GxZ/P2EHCIEXg55hYMErP2NW6DPXr4pFzufqiXKcCZi7v4u2d1Mx3sut
+	OWls6W9lq4PC+YfxIhjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyiBx-002qXT-QS; Fri, 25 Nov 2022 23:33:09 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1oyiFX-002rqe-BN; Fri, 25 Nov 2022 23:36:51 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyiBv-002qQC-Fc; Fri, 25 Nov 2022 23:33:08 +0000
-Received: by mail-ed1-x532.google.com with SMTP id z20so8161586edc.13;
-        Fri, 25 Nov 2022 15:33:07 -0800 (PST)
+	id 1oyiFU-002rnh-MX; Fri, 25 Nov 2022 23:36:49 +0000
+Received: by mail-ej1-x633.google.com with SMTP id ho10so13303419ejc.1;
+        Fri, 25 Nov 2022 15:36:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ul41aLivPpoStmBIkSe3PwxjiFmKEfN8civiUwQkxa0=;
-        b=TsTP7xsKiWaL4D0DEw5NERyXETDLlo76uN/V9q+MEzuJornm/EOwKNzZhQq73S9955
-         o8QCJhKYktAb++vUDJVobm7vqLP487mpTmUv5onvf0U9k7xDb1mZmMMmB4LH9Q0LuHDE
-         eN2XwwIwocdxmZgm3YZGIIQt7kbNoQe0LIyIPk7B4vsvRs+vSgqORcDt/P+hjTxKeBtA
-         lvPrf+XjMkFNPwZNHHNLysXxG3Nn8CZp9A/B0ZxbbSPuVCbKxpdxpmY3taLw27V4g7uT
-         tqa0ulf6ccJUIzp8j7nHUHCqmkMiUcWnbIkpzrx5DON5WiCnhXQv1E52fFDeGGn8I5qE
-         dcWQ==
+        bh=53pASLo6U2zzYHdiGPJru2sei7EMeIsybEcbugHJMGw=;
+        b=aNmO4iy1jEBOxe4hLQffwUBwh9RXL7ogbj5yuKyKDk+Xzpa9rmxmLXt65tfNv5wpIX
+         zCIgP3UXxPHLUlvesV043w+pnVAvv6aeeguf3WSjGGxzBGh+aGFCYvAO2eYViSso1InR
+         eOGZh6VgaeO+Dmvu0OMjrZ0zg4rQqCRarVo3050M4z3zqJJCa0+ynj6CUT3S+u+xB6b0
+         vn0mNPQGaf68AAHuzsCi7zOUJm60aMjynS55gdF+ou7JUayNoM4xyAM+nJwCMhQWg9XQ
+         JoCTXbY/uWDqaBgF7oYHso/i7h9fojytw30ODsNPAnbkRuWDT8FHy4rdPIF3rXMBPTMf
+         AFlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ul41aLivPpoStmBIkSe3PwxjiFmKEfN8civiUwQkxa0=;
-        b=bSN03GNHYkxyo18yxdw6Q36hwgZSBZjKGKA0kkAQoM1mx9zDfrGZQowL/Oanrkedxt
-         lJ+mGHdwANiQ+6HuC1KsWkuYmBgHZR604bCUHhyENphcGsJR1M7zLnWsdbOivPl14CnJ
-         3pc61WEKuqyQM7yNs4b6RReKC5arghs05ZXAr21fTG7hcPoiv9+sf3K7t8r8g9oW1bxb
-         Its2CzBvOI2IT0met9j74HHuAMoWeANhheSVP17pOjy1POBv+QIDz/ziicXKA0VZU0Rl
-         QEAY1N+JPXTdf7A4Z3vxK23GvhbQo9lfTRHWfZHnsF3cMsqPR+j16f/53xXodyDC6dKG
-         kMsw==
-X-Gm-Message-State: ANoB5pkKR2apQJ4YcR9OgqaZzjGoNigtv+iaOGzz69Ss6ucmn8G+MI6J
-	4FVBEbZjJIJWYMmzQonB5s9w0xvBPqx30lEqk/s=
-X-Google-Smtp-Source: AA0mqf5un8E+VJYr8xkakEy/VtUbHh82LR9urvSYcLJYttWK02ci8Lrk7k46XZMqWxXRiTAywc/PrXQ5qe1vMXdN+kw=
-X-Received: by 2002:a05:6402:2404:b0:467:67e1:ca61 with SMTP id
- t4-20020a056402240400b0046767e1ca61mr4218659eda.27.1669419186903; Fri, 25 Nov
- 2022 15:33:06 -0800 (PST)
+        bh=53pASLo6U2zzYHdiGPJru2sei7EMeIsybEcbugHJMGw=;
+        b=k1QVb7k2VRA34kxaZ2OgSrtkX9NOnikOdsNFs0sKw4q5hp7ixasqA9nCYoYAEqV7Os
+         0GN9zfBpkRZkMA2C3nxCsKSO2pgN4DPsdylmvp5CpCP3fwWf/2KP8d9+/iDN4nd4/UB2
+         Qr5JGLKgitXFDEi0Fqfv17P9Je0QQzEhbOgYoG1iNXjJjorof97zl0HTc3K+AJatlq9x
+         wVDm85BcFb8dPhaQ4a4/kkX8+QUbie3Ps7+Gve20v63xGs1FI33BypJKZnlLJjQSVKIf
+         Sz3gdSHMcOQ883C59oK7vZnvy4DKKK9zR7CMRX68uN4SQBU9cuTJOVNVcymTDN5ldEAK
+         ttXQ==
+X-Gm-Message-State: ANoB5pmgqt+Ee0cqqJh8ek0c+b97xkyUMCFtzv0wBvxmVq2kWuYU2FAb
+	0BubOrMpSgSFqsAqh+MdOSJFd2wIJmqihsbzEdI=
+X-Google-Smtp-Source: AA0mqf45bdEJiOxhbUnLhIigBT0GjU47GsHYZmyiWPQnPoGEsgOfGs0TvhtmfqACF3pOoGPbacknnLPg3TD8cSTM64A=
+X-Received: by 2002:a17:907:a709:b0:79f:cd7c:e861 with SMTP id
+ vw9-20020a170907a70900b0079fcd7ce861mr33399680ejc.339.1669419406346; Fri, 25
+ Nov 2022 15:36:46 -0800 (PST)
 MIME-Version: 1.0
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-6-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-6-3f025599b968@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 26 Nov 2022 00:32:55 +0100
-Message-ID: <CAFBinCDNqyb+AydSyN19ddJsUMo3RXKVJh=8sZgy3nYEc+vcxQ@mail.gmail.com>
-Subject: Re: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
+Date: Sat, 26 Nov 2022 00:36:35 +0100
+Message-ID: <CAFBinCAmV7wuPq8y+g0YKxZ0W1G8_=WgY+E3OT9WT62eDkxXqw@mail.gmail.com>
+Subject: Re: [PATCH 06/12] dt-bindings: rtc: convert rtc-meson.txt to dt-schema
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
 	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -82,8 +82,8 @@ Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
 	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_153307_560274_B5FA4415 
-X-CRM114-Status: GOOD (  13.01  )
+X-CRM114-CacheID: sfid-20221125_153648_753242_D697FDD5 
+X-CRM114-Status: GOOD (  10.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,22 +104,24 @@ Hi Neil,
 
 On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
-[...]
-> +unevaluatedProperties: false
-Could you please also add an "interrupts" property?
-This watchdog IP can generate an interrupt instead of resetting the
-SoC. We don't support this in the driver yet, but still it's w
-Somehow the interrupt made it into the .dtsi but not the bindings.
+>
+> Convert the Amlogic Meson6 RTC bindings to dt-schema.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+With the comment below addressed please add my:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 [...]
-> -- compatible : depending on the SoC this should be one of:
-> -       "amlogic,meson6-wdt" on Meson6 SoCs
-> -       "amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
-> -       "amlogic,meson8b-wdt" on Meson8b SoCs
-> -       "amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
-The last part did not quite make it into the new schema.
-arch/arm/boot/dts/meson8m2.dtsi currently has:
-  compatible = "amlogic,meson8m2-wdt", "amlogic,meson8b-wdt";
+> +        mac@0 {
+> +            reg = <0 6>;
+> +        };
+My understanding is that here you want to showcase the nvmem integration.
+This IP block only supports 4 bytes of NVMEM. Instead of using MAC
+(which is not what's stored here, the suspend firmware uses it
+instead) I'd just use something like:
+data@0 {
+  reg = <0x0 4>;
+};
 
 
 Best regards,
