@@ -4,83 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B25FDC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 20:18:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F6FAC4167B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 22:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wqbtBT9WwaymIPxMNNPN2ePm+s9wn4wRmgmcYTX1/gA=; b=enwUXrYP4NYqzC
-	bf0BIvOyl+Np1m9vRaRYcqP3xKD35/wg/WJ5Q1nNZxbmLedembCmluw9Jk/sT2zc9aijwCrnz2uco
-	EWNFmcloUEaLHxvqNVgEb5Xn2qotfP6jj2IbEZadiu/6qAaHP842QNqBMbw9nOhTmO9W1wkYHWkoH
-	kQppG8Bo4L3Hk5GEGlmtjNUMmKMWiQksHdea9pGBiIfp2hA0C3LVPE5yWD9WKT1PZQ6Lemw8jmgWc
-	69cFc98hq8irf67ykSn3iqYCM0e+uvfRntxeppNmri/GUrxf8dzJmjCXQbOSchL5qvnnYHGz/QyGs
-	qBwYPz8tufZaagCLqGbQ==;
+	List-Owner; bh=v9yFt089Fy9lSC8AIt2jGxkJ5hW0L4whMfgUeSpxBfk=; b=g821bDHA8q38oq
+	Za+qYkwZyL0mXFfwtQ4kk3vHq7MMjsbf+jHSgfTPxxkvQ6/rrDvL0fwanRoeCEYsryKMkDOb2smjj
+	4H8q6XLb0v0ASPKlsPLwRQ4l6YjZnHwwrmMvTZ4D7aQvH3u2rcyNeni62Zs3lE2WWCjYKX0yWOMKA
+	F0f3HaycMNM9L4nIZLM5pCn26eNAr3yZuKMeuufnHHsBuVYiMI9vAkfiaXlYgjE5h2y/aEdht4Cye
+	feOpeAYfHNAObjEEPpq2uuTRzmB0Oj8p6bZVe6oD+9Pw6osRyjlugwxCwIuq7h8s/l+cWVvtG2TO7
+	2xBnwWg4dftWXGRBZzSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyf9T-001zxG-NF; Fri, 25 Nov 2022 20:18:23 +0000
-Received: from mail-qt1-x832.google.com ([2607:f8b0:4864:20::832])
+	id 1oyhbV-002bjp-VC; Fri, 25 Nov 2022 22:55:29 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyf9Q-001zvb-N9
-	for linux-amlogic@lists.infradead.org; Fri, 25 Nov 2022 20:18:22 +0000
-Received: by mail-qt1-x832.google.com with SMTP id c15so3120805qtw.8
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Nov 2022 12:18:20 -0800 (PST)
+	id 1oyhbL-002bfl-8l; Fri, 25 Nov 2022 22:55:20 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id n20so13245010ejh.0;
+        Fri, 25 Nov 2022 14:55:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ZSTiRuRI06TOhxoFYQqmDv6+abbfogCNsszYj5jDKOA=;
-        b=jz7dOfy3kSV390xTmbsxq8OVKph6kV4B1GUS62uX8AMaLz9Vmpv20Ju/pH63AEDaH1
-         pXDa3sPYxxm6Fij1jRsq9Ca1NkxWIQB3RI/HA3IO+V5jCCzEw45m2rPIKWkm1Ny9+Eb4
-         AyER7qyxHWaeLPjZAhNNhL9kdkjne/WvO2Yo331coGRImXVfP2QrqMaqPZqEU0rAbzkd
-         c5W6gnMNcqNGwsNa6DcS1DGwmS6uwq3o59dj4e2OCJPvWYfcC21lMOyzAxdVxPMutmYh
-         6TSapGXLwxtarNQvdwNt5BpgOsnZVcaPd1es7arvMPx0B5dNNpDNDOjfbIEusM1v8mjh
-         jqhg==
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=r8n7cTPNZg+gBSjW3LwUxqp6QcotcNdrtpswWKit6NQ=;
+        b=QsjwIiL2BKGfbrsY6iWFH3OeV9uUQl+VFQ1BL5HfO86NuuAIbUlAbesa/Pt2nw0oKR
+         BqowAmt0Nlt0PxhYXl8aLfYr0M0V4owkPDTOQuZ2TVG89WfD9LFfEsAB/p2T9sAycinE
+         FsSxJMo8v9MrTnkLZFMoLGEhNCMEXLnhASamLwb4F/tJkKvx0Kmj/8P3bKGjB7R7Ojgu
+         NWt0QGr9f2lnvIBOx6T7qmwQEvKjlaiITm1Bnxkzq81YJXv00hpfbnEhyp5+/OFZCB65
+         MlkO3VS/WOxz3rELIQksXxtJsTf4AI2qSrmXsey3LQPE19A7qp46SXs6JvTM0kDnrC0I
+         XknQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSTiRuRI06TOhxoFYQqmDv6+abbfogCNsszYj5jDKOA=;
-        b=jtfaT1171CNMbj6GvK3b+Y60gY+hgczeCtO+9byqn8xdkjQPI2u+3NWtFNAFxQU/b5
-         wK8/IzGIx2eEyUfjt39u+PxRxJsDstugLa91i1MdIBDQQZEc16U4CNcrfLX/HejzHf/f
-         lI0/XlA3NciptAc4BvYTtQYSGZzp03x9ZbhBVtAjeZFCvnYSCyvCh0PCQF1TAo4u79w6
-         wTA3HweEWjqJeo9Drk852yPxWijPEO+xRWTPaZqqkxvjZgrfN8qOgNzTBzVSYsMt5ZEP
-         HrBPFzUbxbCJuO25TOwkg/yB3TrtCCGKQZ9g7ahXKVucqF2p5y/0DhOQ6trGNNTqrux1
-         5tVA==
-X-Gm-Message-State: ANoB5plLokyQpb1lQYFE6YFqvGoiDc+aC8NHiPVyF5cdqob8WArHiu5M
-	yrkFM1tt0WpvQ6VdNDXu3Z93+w==
-X-Google-Smtp-Source: AA0mqf48jVxmakZdn6axSd1lKtJcu73ds9O8bWEdIHympGZG1PjmH2cdWfrtyPb94LllVYiymUXREg==
-X-Received: by 2002:ac8:5ece:0:b0:3a5:6f39:4bd8 with SMTP id s14-20020ac85ece000000b003a56f394bd8mr37639589qtx.228.1669407498320;
-        Fri, 25 Nov 2022 12:18:18 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id de16-20020a05620a371000b006b615cd8c13sm3333344qkb.106.2022.11.25.12.18.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 12:18:18 -0800 (PST)
-Message-ID: <7e979311cb5199c4ba9dbf1b0aad027e25563614.camel@ndufresne.ca>
-Subject: Re: [PATCH v11 1/3] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Will Deacon <will@kernel.org>, Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Jianxin Pan
- <jianxin.pan@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, Chris
- Healy <healych@amzon.com>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Date: Fri, 25 Nov 2022 15:18:16 -0500
-In-Reply-To: <20221118164157.GA4802@willie-the-truck>
-References: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
-	 <20221118164157.GA4802@willie-the-truck>
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r8n7cTPNZg+gBSjW3LwUxqp6QcotcNdrtpswWKit6NQ=;
+        b=K8xiJ/Hz5Z1VEvdKU+B6/O8Ei39lydYVB3YU5q5b9A8Rq2S94ulUcGajeDfwBS/LRD
+         2XsZxrSw6N1XvhByWnPS8b9Qb6HeThlpDNMKHpvnhSr3nCddwGoQX5RZlXNvpGv8cSn1
+         KBwQw+wT3oKwqBWbw1d6JtvtCGCJ6Xo3eQbBlQ1sTFiO+a9l1mhxKYGNuu9AADqGxbIm
+         BT5Bqp+8116cmTKkj510PHfLRsF5d3BX7FidBoqPd3X++uXJU3D7B/w0KI+BCS177lTz
+         lRl15Pgp0p1IAm166GWRwaP+DR4NGBzyDYWaGA61Wq1Zjs4gbTLIwGqDZBgdvtng7pCm
+         yuFA==
+X-Gm-Message-State: ANoB5plz0iRTywXGvGXFerVelwqqebORDuQhcEWx4av+1J3Dg0RHds/N
+	bFpZp25GNtxi4jTOxJsebHNiNZZnRENb2brh8hhVBhoLMfg=
+X-Google-Smtp-Source: AA0mqf7rDupHIfq5Tr1gc/4+5fP9g3XcKelMvrs7nNr+BWKZQ9m5y1L0sEKlG1FfvRuY97ZSi1hyufQKetoBfSLHjQU=
+X-Received: by 2002:a17:906:6bd8:b0:78b:a8d:e76a with SMTP id
+ t24-20020a1709066bd800b0078b0a8de76amr35145152ejs.725.1669416915294; Fri, 25
+ Nov 2022 14:55:15 -0800 (PST)
 MIME-Version: 1.0
+References: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 25 Nov 2022 23:55:04 +0100
+Message-ID: <CAFBinCCD5pTUre_QpMqW0KY8PLLhgBbaRkx9XSZq-8b5etpRHA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: meson: align LED node names with dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_121821_170073_96CC4323 
-X-CRM114-Status: GOOD (  14.16  )
+X-CRM114-CacheID: sfid-20221125_145519_339643_340C2289 
+X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,40 +84,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgdmVuZHJlZGkgMTggbm92ZW1icmUgMjAyMiDDoCAxNjo0MSArMDAwMCwgV2lsbCBEZWFjb24g
-YSDDqWNyaXTCoDoKPiBPbiBUaHUsIE5vdiAxNywgMjAyMiBhdCAwNDozNDoxNVBNICswODAwLCBK
-aXVjaGVuZyBYdSB3cm90ZToKPiA+IEFkZCBzdXBwb3J0IGZvciBBbWxvZ2ljIE1lc29uIEcxMiBT
-ZXJpZXMgU09DIC0gRERSIGJhbmR3aWR0aCBQTVUgZHJpdmVyCj4gPiBmcmFtZXdvcmsgYW5kIGlu
-dGVyZmFjZXMuIFRoZSBQTVUgY2FuIG5vdCBvbmx5IG1vbml0b3IgdGhlIHRvdGFsIEREUgo+ID4g
-YmFuZHdpZHRoLCBidXQgYWxzbyBpbmRpdmlkdWFsIElQIG1vZHVsZSBiYW5kd2lkdGguCj4gPiAK
-PiA+IFNpZ25lZC1vZmYtYnk6IEppdWNoZW5nIFh1IDxqaXVjaGVuZy54dUBhbWxvZ2ljLmNvbT4K
-PiA+IFRlc3RlZC1ieTogQ2hyaXMgSGVhbHkgPGhlYWx5Y2hAYW16b24uY29tPgo+IAo+IGFtem9u
-LmNvbT8KPiAKPiA+ICtzdGF0aWMgdW1vZGVfdCBtZXNvbl9kZHJfcGVyZl9mb3JtYXRfYXR0cl92
-aXNpYmxlKHN0cnVjdCBrb2JqZWN0ICprb2JqLAo+ID4gKwkJCQkJCSAgc3RydWN0IGF0dHJpYnV0
-ZSAqYXR0ciwKPiA+ICsJCQkJCQkgIGludCBuKQo+ID4gK3sKPiA+ICsJc3RydWN0IHBtdSAqcG11
-ID0gZGV2X2dldF9kcnZkYXRhKGtvYmpfdG9fZGV2KGtvYmopKTsKPiA+ICsJc3RydWN0IGRkcl9w
-bXUgKmRkcl9wbXUgPSB0b19kZHJfcG11KHBtdSk7Cj4gPiArCWNvbnN0IHU2NCAqY2FwYWJpbGl0
-eSA9IGRkcl9wbXUtPmluZm8uaHdfaW5mby0+Y2FwYWJpbGl0eTsKPiA+ICsJc3RydWN0IGRldmlj
-ZV9hdHRyaWJ1dGUgKmRldl9hdHRyOwo+ID4gKwlpbnQgaWQ7Cj4gPiArCWNoYXIgdmFsdWVbMjBd
-OyAvLyBjb25maWcxOnh4eCwgMjAgaXMgZW5vdWdoCj4gPiArCj4gPiArCWRldl9hdHRyID0gY29u
-dGFpbmVyX29mKGF0dHIsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlLCBhdHRyKTsKPiA+ICsJZGV2
-X2F0dHItPnNob3coTlVMTCwgTlVMTCwgdmFsdWUpOwo+ID4gKwo+ID4gKwlpZiAoc3NjYW5mKHZh
-bHVlLCAiY29uZmlnMTolZCIsICZpZCkgPT0gMSkKPiA+ICsJCXJldHVybiBjYXBhYmlsaXR5WzBd
-ICYgKDEgPDwgaWQpID8gYXR0ci0+bW9kZSA6IDA7Cj4gPiArCj4gPiArCWlmIChzc2NhbmYodmFs
-dWUsICJjb25maWcyOiVkIiwgJmlkKSA9PSAxKQo+ID4gKwkJcmV0dXJuIGNhcGFiaWxpdHlbMV0g
-JiAoMSA8PCBpZCkgPyBhdHRyLT5tb2RlIDogMDsKPiAKPiBTaG91bGQgdGhlc2UgYmUgJygxVUxM
-IDw8IGlkKScgdG8gYXZvaWQgc2hpZnRpbmcgYmV5b25kIHRoZSBzaWRlIG9mIHRoZQo+IDMyLWJp
-dCB0eXBlPwoKRm91bmQ6CiAgdHlwZWRlZiB1bnNpZ25lZCBzaG9ydAkJdW1vZGVfdDsKCkknZCBz
-dWdnZXN0IHRoZSBCSVQoKSBtYWNybyB0aGVuLCB2ZXJ5IGVhc3kgdG8gcmVhZCBhbmQgc2hvdWxk
-IHdvcmsgZm9yIHRoaXMKY2FzZS4KCj4gCj4gV2lsbAo+IAo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-PiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMKCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, Nov 25, 2022 at 3:41 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The node names should be generic and DT schema expects certain pattern:
+>
+>   meson8-minix-neo-x8.dtb: gpio-leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thank you for this patch! It's:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
