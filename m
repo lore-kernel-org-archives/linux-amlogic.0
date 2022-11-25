@@ -4,76 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CE2DC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 22:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D462CC4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:05:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZMykYKhEUmpRW0Npz0BfvyYMAn1gAc8glzv5tZ6v7uw=; b=yGn/Mr6au4G23X
-	Yr1FpU5KqAUAF20WFBIGOABRMYFQTWx6x/YtiYXthlSn+iVh13hGGCSOeS1/gBVDQjFfXtRHv6IxG
-	8/92BAQcIu9+iYvwjI1ikPDMUU+iUE4L/ULHh9gqcVGlR+ZNnnOLyJ8eD6+SlpfQvGerVDJhzmskr
-	tZl06TBtcVtfei5qFnJ3KkzdD3X/4McZGMTqYqqXtLlI+3qRdlINqoEBezmIStEbzGa5h1o0AS6Aq
-	8z3oXcXgKnh2wGUqCbM3KP8CjSy0DJ1Ou550j5xjYbUXH+Msp4sGosV4Bnmqy78ChT1oLyLdS4M8U
-	/z3AGNFo0jj7Uxy88c5g==;
+	List-Owner; bh=2srqMdUYE5gEYdHr2ru5/IlLgDkmJ8WRNOLOg1UGMn0=; b=07pt14aXP1lTls
+	8UlUSt7/wIuy3LYb1w6FmFwKov1ngMw+XUMJ746AbQ1KsirhKq9YI70qphsVd85mDMDrfo328yttq
+	WYj5gmHQ2TGBarTWpdnhl6Re0WS2pvUwBbQftngHrWq3Ju/L4jA7zSQIW9tfBpP1ABVXHmBmy0/Kk
+	nUWTOzVmoT5h+wTF58SGd+gyou+5KI8TTb9EJFRjKdwKvwEK7KQYX0s2vpU5GcSsYGMOAr0JNBgv7
+	Yk9D3sOYQYySZ8Bp8/rHwhUIXKOrvQV7gheA8c9egvgk9Lja06XJih4BolHq2V0zHhr0FPvgz3zfL
+	HPaK5+bzymOxF9rVhWXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyhes-002d9q-1f; Fri, 25 Nov 2022 22:58:58 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1oyhko-002fIr-5y; Fri, 25 Nov 2022 23:05:06 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyheo-002d8m-Qc; Fri, 25 Nov 2022 22:58:55 +0000
-Received: by mail-ed1-x530.google.com with SMTP id z63so8122799ede.1;
-        Fri, 25 Nov 2022 14:58:54 -0800 (PST)
+	id 1oyhkl-002fGf-GH; Fri, 25 Nov 2022 23:05:04 +0000
+Received: by mail-ed1-x534.google.com with SMTP id f7so8126175edc.6;
+        Fri, 25 Nov 2022 15:05:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrh33fKX0AFIpQoDMHBkz3JckH2DUhXrvzHY5NCN5no=;
-        b=mQdoKuKnzMEl3ts3gcoDtpsH6y8L7YdGJz9PaUC6jCAz9+M7NZkUnA6V6SqAhznP7Y
-         tSFx861pQR1oB+THa/q9XGELxGpmBvcUQmUyvfoFAlMjWclqOJDRddY3FyBqzZQmhMpV
-         9pefcrcTsPH40Gman4KI9NLTs6tpUVgF3+lfJMMavgurXtira3YpuBzgwsJINgNYY00x
-         1WIvktfNncDKhZXOODC7yW2xvwJBbrpRLNYGcIi5mTstd789NPUD4Y9hgC90cjfFgssJ
-         wUTe7DcnjEEwXUvKfzW3MBmGThfDDE04xy3diEaIcefXRqYa7/FREMt7YIEu4h9XvocU
-         GEaA==
+        bh=SrTRFSS/x4t6+IVdYOMgEeoJ308qI/cUd08WWdG+ebA=;
+        b=bsrCkPS7FyV3HCb4+fg+Qg08H/NUS8Fj7Q0hEixpV+cYoGxhfTbZ8MZCtDdquHpioj
+         we7k2tDT7sUow8SX8+UDZ3BHUFOI2RqHFQER+e+NeFQ7wccSpwcvvtvzPTJheDUsRp3l
+         kSzCi2BFiNnjAAGyybdy6ZhCqP4bLeVfsUg2gfqhE9thjPwwCClGF414PEF3gaaaOVHr
+         0DkloM4FXRV7XHh0SMZjYop6Pn2STK64kgXjzEmke6lDts3uSTDombG7A9RTYcDPDX40
+         eFXLCiPrRIZIBHqWlmOvSAPeWTSMrwi/LaZVmnRmTiuAv9Zcxy7+P57twERnlgdvGpNN
+         ls4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zrh33fKX0AFIpQoDMHBkz3JckH2DUhXrvzHY5NCN5no=;
-        b=FBgtduDYhS3xvIP778WABClPXyCxZmdcmXODrwuHWJ8rdXm13v/yUJnQ7RqQuAl3IJ
-         Axnxr4QWPpZbmfLc7hcj0Bp7GirIYvjUYAIlniMDjb6JDFUp1cPWf38Tsu5Ycb2Fy2BJ
-         3JQK+td/6mr0omqWVxQpHnlaIS0klNLViU70QY8Ajcjl7S0nsONL7fQ81PryCQG39bI2
-         kKVEc6kWwJExwUrWF/mPwojDgd1gKVKV9LmUdfeAEQpjrVrulxLw0DWjOt7ETMhS8Ieo
-         LeyT5FHEiN+U4BDsRxsj4mpxkUoOBiOQJ9OZNQuzfFlhfp01QqG7lR9jzC7ifPF96fTQ
-         mTEQ==
-X-Gm-Message-State: ANoB5pkjnYSl/xotKv136r5Tw0xaPoSd5e+6q60rWg/Y1/IS9P9AVyL3
-	ir3W4RA0Hya69bjkaM2553L7Bn2MMmM/gsT9RqY=
-X-Google-Smtp-Source: AA0mqf4qEx0qk48E7n/igXoN/8ITAy2dKB3urhN+QYQA7vj8vY/aA7c4YoItihhZk+R2xjYeYeLMIUoiVHRlbku+l4c=
-X-Received: by 2002:a05:6402:3893:b0:461:b033:90ac with SMTP id
- fd19-20020a056402389300b00461b03390acmr25787621edb.257.1669417132710; Fri, 25
- Nov 2022 14:58:52 -0800 (PST)
+        bh=SrTRFSS/x4t6+IVdYOMgEeoJ308qI/cUd08WWdG+ebA=;
+        b=SoCTIDaoaCwQ9RZueTBT8XU+VpxJlz6cxqrvDar++ja5Cx3+ySCK5qEwoW7nHeKPbM
+         FffDDDuq+KrkNJ6Ilvx7SYnqrvOxNj/bd44zlmaKhOC4JhlPTcBMZLpCClUvnORHCwGE
+         aa9yurlrZFQHZ7F14miBr8vqkUIEOkaAeTAF32GbBOqJfL1a2mLbRm1L/aagzzj6M0Se
+         k6FVIS8G3ZLzp0PHCVD16R0SEM55hYOg5es+IJmRqO9ICTh7nZna+Edfw2I0e+RUgXTb
+         nvUPotx+IHr8wilObAyadjImr8pDZjUJVGplXm1FQnklDcBjJ+bmSr55WGaolyGImnXv
+         f6Uw==
+X-Gm-Message-State: ANoB5pnkLw5St0Tg+yGZlbkrtyrluVaYzEXyz2lwwsSIEY5eEIu4tNaN
+	rFpX0Wt7SaPlu/PH+n0a4lV9pDfENWOlJ2dWNgsPLjCmFz8=
+X-Google-Smtp-Source: AA0mqf7oYYnOUvxYJelBH+ZCQeIchQJlARoJQwAnQuoPWecqswsfj8HILcbdy2jSsZv7bqLG10yyurKQ2U9QeGAVcvw=
+X-Received: by 2002:a05:6402:2404:b0:467:67e1:ca61 with SMTP id
+ t4-20020a056402240400b0046767e1ca61mr4120477eda.27.1669417499790; Fri, 25 Nov
+ 2022 15:04:59 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1668602942.git.mazziesaccount@gmail.com> <a2f0835e8d3b5f5768d887ce47a1575ae11b19f0.1668602942.git.mazziesaccount@gmail.com>
-In-Reply-To: <a2f0835e8d3b5f5768d887ce47a1575ae11b19f0.1668602942.git.mazziesaccount@gmail.com>
+References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-3-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-3-3f025599b968@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 25 Nov 2022 23:58:41 +0100
-Message-ID: <CAFBinCAxL1WapkjHo6B_FNj_r3Y0jZ6P7qmXPjWfGK-ivuT5+w@mail.gmail.com>
-Subject: Re: [PATCH RESEND v4 2/2] gpu: drm: meson: Use devm_regulator_*get_enable*()
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+Date: Sat, 26 Nov 2022 00:04:48 +0100
+Message-ID: <CAFBinCANM=AOw1bbGCheFy20mqQ1ym_maK0C1sYpjceoNH-dNQ@mail.gmail.com>
+Subject: Re: [PATCH 03/12] dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt
+ to dt-schema
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Alessandro Zummo <a.zummo@towertech.it>, 
+	Eric Dumazet <edumazet@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Thomas Gleixner <tglx@linutronix.de>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Paolo Abeni <pabeni@redhat.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, "David S. Miller" <davem@davemloft.net>, linux-media@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-mmc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_145854_882326_F57ECA1E 
-X-CRM114-Status: UNSURE (   6.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221125_150503_585703_92802754 
+X-CRM114-Status: GOOD (  11.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,16 +101,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 16, 2022 at 2:03 PM Matti Vaittinen
-<mazziesaccount@gmail.com> wrote:
->
-> Simplify using the devm_regulator_get_enable_optional(). Also drop the
-> seemingly unused struct member 'hdmi_supply'.
-Personally I'd replace "seemingly" with "now" because hdmi_supply was
-used before (although only in this one function, which makes it a bit
-pointless).
-This is minor enough. So with or without that change this gets my:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil,
+
+thanks for your work on this!
+
+On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+[...]
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        sn: sn@14 {
+> +            reg = <0x14 0x10>;
+> +        };
+> +
+> +        eth_mac: mac@34 {
+> +            reg = <0x34 0x10>;
+> +        };
+> +
+> +        bid: bid@46 {
+> +            reg = <0x46 0x30>;
+> +        };
+I assume you took these examples from the newer, GX eFuse?
+Unfortunately on boards with these older SoCs the serial number and
+MAC address are often not stored in the eFuse.
+This is just an example, so I won't be sad if we keep them. To avoid
+confusion I suggest switching to different examples:
+  ethernet_mac_address: mac@1b4 {
+    reg = <0x1b4 0x6>;
+  };
+  temperature_calib: calib@1f4 {
+     reg = <0x1f4 0x4>;
+  };
+
+What do you think?
+
+
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
