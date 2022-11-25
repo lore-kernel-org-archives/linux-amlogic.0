@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B405BC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8FC8C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UMxrCeWDTA21TqTwQb9yhdTz6wU//mUeaSLhZHljK1c=; b=r6lpt8H7SPMNg7
-	0DLMK6vgi0THIqBM3qZePtocx8dUEWKRFzXxRHdBV+A0sV9yAPd92p2ODh1dNun6MBvlu+StZOlOs
-	jDZ7FIlAif61ZMnuFyF1pOGZynla16W3NlkF1yS7itaUVdudCeW57U1r1Zr/Yqtse3jbG2jBXsqbk
-	PKUfEb2MmplSj40WiGqeXOZr3amGep7u+sEAnTT0mHxLMkByp/eewTaWpR3E3UAl6m+2ub/ulx2Zb
-	lApYeRFqUQqA04TGtHSOMS6Pp9hKq2I4GEXu48oG89mPWLG9d3x5E83JnHEQO6TXtLgTkz/VD2thc
-	rS+ybaGsHVxh02/Nwhow==;
+	List-Owner; bh=mkIFIiaXUzzqRT9VIlePsSeeBDtnzl+v2AmWYGyunEM=; b=17z9vZrpWsRA7B
+	64oWP6LW9fXlUwMnf+j7syQH6ajj9DbKccDu0ua7pqN6uGrbrvlPlvZZXnIC41MsFvj2Ov5JwkvSc
+	H0reJ3viIuAm4k8JcTEuW/TLR1thQlLIzlM1eA6dzwtW3k5dBkKW+u4geFWorsFx9eNAstUXE8/Bx
+	QGWfwNr9g1YNMKEWgfbAYI2XVNlww9W2rdwcfygTagtXXSANkKKiRnXV2L3OAaRMU1+bC0l93A5xp
+	iJkRTbkYBWXUSZY341LGLkNQaCoyAcar9r3vbjyGqXn+kb2q5XFI/DjF1IDgaABVM0pRUPgZDmr4b
+	S69PKKjGOEoqM22qBaIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyhqY-002htZ-CO; Fri, 25 Nov 2022 23:11:02 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1oyhsZ-002j73-JK; Fri, 25 Nov 2022 23:13:07 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyhqV-002hr7-Sz; Fri, 25 Nov 2022 23:11:01 +0000
-Received: by mail-ej1-x636.google.com with SMTP id bj12so13115290ejb.13;
-        Fri, 25 Nov 2022 15:10:57 -0800 (PST)
+	id 1oyhsX-002j4h-C7; Fri, 25 Nov 2022 23:13:06 +0000
+Received: by mail-ed1-x534.google.com with SMTP id m19so6904351edj.8;
+        Fri, 25 Nov 2022 15:13:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q7U7G5CiQhnzMThzAFGcx2s+uHerZTRaEXypLXgixeA=;
-        b=UVMyss+7rEYxSPmb8p82Mv6D8rx8V5naJGOde7hXp+cosnBNL9xoyXahQ1mQYKYnNd
-         Lua1xFxAK17/ooO492vC49X+luSzix/pD+lVfTH2ZK+c5u+IK34+v7gvt/Gh/vGINusx
-         2jxFPSUsb2U4kcU5SkxVPIuki3NalU3fcOHSzoM2QDNCbTs2WLohr8vDm6HLl9GjBMmI
-         Pl8IQrfN7F93OROvLZjI1vbx+ClSjlx2dEQIyhxhXEvmRIOxHN0wXhJWdDYp+jKFQW4O
-         O0ZItoUA0e4H4dX6/MjXpenaKHNs9WOF5SYidalNj8S367LHiqHHRo4NucIfStWJ+G+W
-         Z9mw==
+        bh=YRXgY3Jj45tR352JHVnAGEWNDK4+LNF88JlctEC+BmA=;
+        b=j3YfXXi2BK/0UmIyMEYU4Gb2t3KZRjWodKFfA0jiYv1dUB5lmqNn0PDEGb4yYPU93g
+         pOnB9z7lPCqSCmdIDRrz7HPfJM+Pmllr7qI1szglZRA6i+NorVrK5ayHVx3EdC+JQ9dW
+         q34It7p07BHIvQ1PqQSW/o5aYE7AKR7bi9USit5/aXNEB/0QLnz7dG7sr98f53TlP4W/
+         RC3Ae2ve6tReSFOXusxBgVMtqNG9oae4pkLWd3JM9V7JOkTO7ojuFe66esG6PJZa7KUi
+         +sHUexpTzevypIqqnWkuVjqyYrDP3kkAN0IEYD1aDEyBRuKfvKyWrTdHMBalPS2vGkHR
+         Wuow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Q7U7G5CiQhnzMThzAFGcx2s+uHerZTRaEXypLXgixeA=;
-        b=KwqqKzlXzvwSubRr1CM35N2Yju8ymIelL69ceTo68fWGZH3T01R3n0IC/6ew6oxNlg
-         v3dKuRfhEz5BARfb1N9ZqFVE+dLYLgxmLBRnhacg0GTh/JqltYmKWK4chmcDUOulwQTt
-         XRPIYBxO0oXKJZfPBgMf0JXtsRaZtqzfLCJvc9PB6sgXlv0juj7gMYHIrXGdtgrYg+zw
-         gl1kC3JwDVmCIBhmBktyAkIbsSqxS97urrv5z4A06LZC/79FuuRzGIPrjDYUJfeEfPmj
-         iF1hmCnfZcNW4/a3TRmRTOXvEz2pzI7ox95o1enjLD4ajdjTKu7MmJ5zw3suzC43Vw5J
-         ewCw==
-X-Gm-Message-State: ANoB5pnw9Dvc66tZt7PtIsNhlh1WeDR/U37EMTk1zhXXilZEf10R5WQz
-	mrM1PG5u8oBlH8SuDAi41+S2vj8O265iSX/Kah7quDvNKhDd6w==
-X-Google-Smtp-Source: AA0mqf4eckeBj0/Wph7U7qMN8zegn2m4M80Mi8LIoBZHcXLcZcwyhvtCy2QiSp7o9N+U4CA/QRN9W/V0xDqjX61QtAY=
-X-Received: by 2002:a17:906:6bd8:b0:78b:a8d:e76a with SMTP id
- t24-20020a1709066bd800b0078b0a8de76amr35199024ejs.725.1669417856212; Fri, 25
- Nov 2022 15:10:56 -0800 (PST)
+        bh=YRXgY3Jj45tR352JHVnAGEWNDK4+LNF88JlctEC+BmA=;
+        b=XLbaTkUAX5AtFNDUU8HnLx7YfQp2b+PzmfIPRNMSV+UTzbMvTRyOkIp7mxdnJoCP9T
+         oKPWY13iKXzsUkKRDZ8lS2ZJV3PVpl/34TfAq8hAt/SA5zfVpHtOyuEGGE3W0QytuVgY
+         ElEf+VU0JkxVWknKJzceizwHd4wWLFAdLQId61T3R12OoN9OFuk2IR8ZbL8adAhoBG+9
+         4+gHZjH4KFM2rrNmwxZ21ltG20Q5OtAQOcM8DEpD2A6XzeXlxqGc+JxkfVTsaP6dbx7Z
+         ijrtadyEBFqsD8zorvpGMsJWwvRSkOermG9+/vqAQBEsLEScaXTnzWd0qDKBcLP+tjnD
+         EdGQ==
+X-Gm-Message-State: ANoB5pnjV/a8M3yXRzBB+4x4OSIIEjh+BgYJuFUdRKBRicj7Da0/UuIj
+	M/7yZewfjtEyr+cSN9glytf11vhua+2lww/WDQc=
+X-Google-Smtp-Source: AA0mqf6z19L+80cdJdpiBrZekD7zi3b7v//rvam5MbPAwZbpIOcjE6QLP7tSIYyKnEp307OqAF+z+mpMYDtlI5ZbDxA=
+X-Received: by 2002:a05:6402:3893:b0:461:b033:90ac with SMTP id
+ fd19-20020a056402389300b00461b03390acmr25846123edb.257.1669417983555; Fri, 25
+ Nov 2022 15:13:03 -0800 (PST)
 MIME-Version: 1.0
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-9-3f025599b968@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-9-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-12-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-12-3f025599b968@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 26 Nov 2022 00:10:45 +0100
-Message-ID: <CAFBinCBQi21vKuT_eScmswTx2rP1DsH_uEL=+Lp9a5EfgfFUTQ@mail.gmail.com>
-Subject: Re: [PATCH 09/12] dt-bindings: phy: convert meson-gxl-usb2-phy.txt to dt-schema
+Date: Sat, 26 Nov 2022 00:12:52 +0100
+Message-ID: <CAFBinCC+v-301V2DV5TCMEOW8_q2-+NJCvY+4vCg-05ki+ETUQ@mail.gmail.com>
+Subject: Re: [PATCH 12/12] dt-bindings: net: convert mdio-mux-meson-g12a.txt
+ to dt-schema
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
 	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -82,8 +83,8 @@ Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
 	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_151059_972055_EFDD3CD6 
-X-CRM114-Status: UNSURE (   8.00  )
+X-CRM114-CacheID: sfid-20221125_151305_429475_E30838AF 
+X-CRM114-Status: UNSURE (   7.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,7 +105,8 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
 >
-> Convert the Amlogic Meson GXL USB2 PHY bindings to dt-schema.
+> Convert MDIO bus multiplexer/glue of Amlogic G12a SoC family bindings
+> to dt-schema.
 >
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
