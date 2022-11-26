@@ -4,85 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50159C43217
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Nov 2022 23:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 598EAC4321E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Nov 2022 14:17:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pM6NRoWrlaoPtcHFXiTJzN7fP4TDiGzqN9qew+nESpw=; b=jzzIzTcLlu3Gnx
-	2wW9ciWYYlAOF/gHSw7qMhuQX8IcylT+5sP6bUNhMwNNyiBBdo3x+IC9w3lrWpAYRnD7N8GNBUvZk
-	RM7OsNkBDBUNrHpfAuQ5qTKtHTfcietbhsvkQ8c5mLHH7u9Il0b4fPsIke/b7Yr8YM91+YNSdN2nl
-	lRfxqkA+id6jrNMcVfX0jn5LoAicB+F9a4O25MUNCMDiV6vCv5B5auB5DieE4zfA/ZtgexUek5S2O
-	j7avBSe3+M3doA1k9TfI3GxZ/P2EHCIEXg55hYMErP2NW6DPXr4pFzufqiXKcCZi7v4u2d1Mx3sut
-	OWls6W9lq4PC+YfxIhjA==;
+	List-Owner; bh=xNLRAXXsC0ZHTYrsPKYWFS1S7gYfCDVOYDZwdW3cgJ8=; b=IjOLQ730DNIdcl
+	z+7Bobe/CpMYJk+UhcSbLry1kMqPL3FV5z9LdnsVS5m4ReraSisabKwgo96Bst91lO26x1LQaTsKL
+	Kkf+zkS09NGruSrL0WhZ/sK3XWlYe1phcTg4RjOB6peuAkDgqfSA0NGZtWc4QA51VAHTdDoWRQTDy
+	R4UUHldRJiy4cban/6EdHeg14py/dtPqipmsct70d45QRpP6Tmf4DhjuL3PhQqN0FZazncP4P6+1s
+	4VXUcbKzXdDWUndTF5i7LajARTYXqR6jvwYrL+GXRlOuMDMAXA4Qv7VUf9haYgChYY1brH5rz9ra5
+	GTSnpl8KCTTCa11QAftA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyiFX-002rqe-BN; Fri, 25 Nov 2022 23:36:51 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1oyvzN-006X6Q-21; Sat, 26 Nov 2022 14:17:05 +0000
+Received: from mail-lj1-x233.google.com ([2a00:1450:4864:20::233])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyiFU-002rnh-MX; Fri, 25 Nov 2022 23:36:49 +0000
-Received: by mail-ej1-x633.google.com with SMTP id ho10so13303419ejc.1;
-        Fri, 25 Nov 2022 15:36:47 -0800 (PST)
+	id 1oyvz9-006X0A-0B
+	for linux-amlogic@lists.infradead.org; Sat, 26 Nov 2022 14:16:52 +0000
+Received: by mail-lj1-x233.google.com with SMTP id n1so3455869ljg.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 26 Nov 2022 06:16:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=53pASLo6U2zzYHdiGPJru2sei7EMeIsybEcbugHJMGw=;
-        b=aNmO4iy1jEBOxe4hLQffwUBwh9RXL7ogbj5yuKyKDk+Xzpa9rmxmLXt65tfNv5wpIX
-         zCIgP3UXxPHLUlvesV043w+pnVAvv6aeeguf3WSjGGxzBGh+aGFCYvAO2eYViSso1InR
-         eOGZh6VgaeO+Dmvu0OMjrZ0zg4rQqCRarVo3050M4z3zqJJCa0+ynj6CUT3S+u+xB6b0
-         vn0mNPQGaf68AAHuzsCi7zOUJm60aMjynS55gdF+ou7JUayNoM4xyAM+nJwCMhQWg9XQ
-         JoCTXbY/uWDqaBgF7oYHso/i7h9fojytw30ODsNPAnbkRuWDT8FHy4rdPIF3rXMBPTMf
-         AFlw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OIMZD3XxyhT7mbxN3+O9EeY+atM1x1y6l6xsxzVqKFo=;
+        b=EaWjhKBu2mujx7WpVfhmDydUuW6097k7tvxgB0dRAxOdIx9bgLU8TrRCshsOeT+QK1
+         XzPvkNlUTDHmw4gVb8cv1ECC8SoDuKnMw1eewAV6BPfcDf75JWjqaPks0JEQvn+HRCzf
+         S0WtiSbG7ZUzZ53Nkxx2I8jfouvXyF89NqZQopIXIMNqqAX66cJJ6hA1vQC3zZ5zZMZM
+         8Xm8u/OChrurt+aZglid7hOhSQVQiNUC6HFKCCpQX/GXQkFL1jnuCoH/6YWHSFoRvxx/
+         MWwE6RnM7oKH7E6gxwqcKb1THTmDmJlApDNJ+BZcM5bTQM4CCrGPafqDQWSoy63K3zpT
+         9Irw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=53pASLo6U2zzYHdiGPJru2sei7EMeIsybEcbugHJMGw=;
-        b=k1QVb7k2VRA34kxaZ2OgSrtkX9NOnikOdsNFs0sKw4q5hp7ixasqA9nCYoYAEqV7Os
-         0GN9zfBpkRZkMA2C3nxCsKSO2pgN4DPsdylmvp5CpCP3fwWf/2KP8d9+/iDN4nd4/UB2
-         Qr5JGLKgitXFDEi0Fqfv17P9Je0QQzEhbOgYoG1iNXjJjorof97zl0HTc3K+AJatlq9x
-         wVDm85BcFb8dPhaQ4a4/kkX8+QUbie3Ps7+Gve20v63xGs1FI33BypJKZnlLJjQSVKIf
-         Sz3gdSHMcOQ883C59oK7vZnvy4DKKK9zR7CMRX68uN4SQBU9cuTJOVNVcymTDN5ldEAK
-         ttXQ==
-X-Gm-Message-State: ANoB5pmgqt+Ee0cqqJh8ek0c+b97xkyUMCFtzv0wBvxmVq2kWuYU2FAb
-	0BubOrMpSgSFqsAqh+MdOSJFd2wIJmqihsbzEdI=
-X-Google-Smtp-Source: AA0mqf45bdEJiOxhbUnLhIigBT0GjU47GsHYZmyiWPQnPoGEsgOfGs0TvhtmfqACF3pOoGPbacknnLPg3TD8cSTM64A=
-X-Received: by 2002:a17:907:a709:b0:79f:cd7c:e861 with SMTP id
- vw9-20020a170907a70900b0079fcd7ce861mr33399680ejc.339.1669419406346; Fri, 25
- Nov 2022 15:36:46 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OIMZD3XxyhT7mbxN3+O9EeY+atM1x1y6l6xsxzVqKFo=;
+        b=lGLKUy/314bH7Z41dAsu9xyiYhJ2hjxfWpr/4mvGAhXQJYGFGInGh/n5pnhJOygKQH
+         UG82EtFf4v74dYUw4FG14pjXugmbl9rO/Jk3YddLaqGoRw+3uoI4eLRxWBqOI8omkLcJ
+         sdbW0Z74QzYPr+l36tkIuIaeigtbbP4HHGDNUI7f+XjWClkb52i67f7Y8nYUsYJmjc+Y
+         5tPNznJ/aZsRMO1b1mP2Xu+V5QNt+1x6CVS3EVcUo6MOJO8Let0RCaORKVkyuXxkhhwM
+         IXyY0ku4Mdu7ta7nUrI44NbTIVbBX4T7IWW/kyaoNV8A7tC50KTrLZ9VMlHFDePFL+dN
+         sbDw==
+X-Gm-Message-State: ANoB5plZOPD4NRd0nJWoch6NYav0PMSN5pazwfiUpPZ45g/bVFjB3wyO
+	Vb1HYceO39LR8n+iDdsQsygGng==
+X-Google-Smtp-Source: AA0mqf7U2YqAOIaKV8TxXn235bn6cK6igkK9AUjLBApqru9timelSNmL19AoXsWnLnrcyURNL9pwCg==
+X-Received: by 2002:a2e:be28:0:b0:278:f1a5:a361 with SMTP id z40-20020a2ebe28000000b00278f1a5a361mr8073946ljq.124.1669472209423;
+        Sat, 26 Nov 2022 06:16:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 2-20020ac24822000000b004a22599c4ddsm930015lft.268.2022.11.26.06.16.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Nov 2022 06:16:48 -0800 (PST)
+Message-ID: <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
+Date: Sat, 26 Nov 2022 15:16:47 +0100
 MIME-Version: 1.0
-References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-6-3f025599b968@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-6-3f025599b968@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 26 Nov 2022 00:36:35 +0100
-Message-ID: <CAFBinCAmV7wuPq8y+g0YKxZ0W1G8_=WgY+E3OT9WT62eDkxXqw@mail.gmail.com>
-Subject: Re: [PATCH 06/12] dt-bindings: rtc: convert rtc-meson.txt to dt-schema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jakub Kicinski <kuba@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Andrew Lunn <andrew@lunn.ch>, Alessandro Zummo <a.zummo@towertech.it>, 
-	Eric Dumazet <edumazet@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Thomas Gleixner <tglx@linutronix.de>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Paolo Abeni <pabeni@redhat.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, "David S. Miller" <davem@davemloft.net>, linux-media@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-mmc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
+Content-Language: en-US
+To: neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+ <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221125_153648_753242_D697FDD5 
+X-CRM114-CacheID: sfid-20221126_061651_072099_818F52A9 
 X-CRM114-Status: GOOD (  10.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,32 +96,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+On 25/11/2022 18:16, Neil Armstrong wrote:
+> On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
+>> The node names should be generic and DT schema expects certain pattern:
+>>
+>>    amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+> 
+> 
+> <snip>
+> 
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> Convert the Amlogic Meson6 RTC bindings to dt-schema.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-With the comment below addressed please add my:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-[...]
-> +        mac@0 {
-> +            reg = <0 6>;
-> +        };
-My understanding is that here you want to showcase the nvmem integration.
-This IP block only supports 4 bytes of NVMEM. Instead of using MAC
-(which is not what's stored here, the suspend firmware uses it
-instead) I'd just use something like:
-data@0 {
-  reg = <0x0 4>;
-};
-
+Aren't you maintainer of the platform? This means I should take care of
+this patch?
 
 Best regards,
-Martin
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
