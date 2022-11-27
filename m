@@ -4,77 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A95C4321E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Nov 2022 16:04:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A53BCC4321E
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Nov 2022 12:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZP0Ox3AOYir0afCj0KyY/jCK3zMsrehiw6dXnchsciE=; b=bHPrfXTmqXFZli
-	zCotm+aOHYGMA7jYbBCa6wcobtJw5gsmcHSTblYiwZ2OZXOnPIXML2yARKVtSR27JEZU8ZP8QJsen
-	v54G14cl7+B1L7ZPPyRHBpRFNzoXpMBehPLZsKbdatDAJVaKc86bTrkdvdRxSedVcHgfX9LPh9Rtj
-	Cbq7XXXo6FULECGoKVqAxX1VhPoWIwVNKKsiWENUkJHCPxg7iYwMtLM3PQK2EIGwHEdWlWIaMtp9w
-	Ep9jFtfJQlLCmHKLTYqoZO7gPxbJm9J9ZZNDs/2UeNcKgpyFlGMI3VjsLIXug5pHi8INYc7/GJyeW
-	OzE80xChSlXEbWZx/JpQ==;
+	List-Owner; bh=YzZXAffEYw4G3s0RUshcV6muYD4Of/C2p/HojxCJe6o=; b=0E3jNWsCIBa3om
+	2KyBQ7rDOxViAkgtWLZlISOg+h6uTIlAqwTZpo9EgtO/QmD7spSCzJr2U8BA6AcaJP4MQeezNsszB
+	x4shljTFdo3hYras8ruDElZJUHqaeikTdFaVJ9kNcIfur5JjqQCbwi/z64HiU4uFZaW14gcycWIrk
+	ggi5rCaOkAN5RA0RFje5XN9CiFckyT8mj3cZR1CpWwntNhN61Fv8ZFciwHPowNX3QzngtLZyyG9GI
+	9WlaEThbch9jtyiBVEHSXV1hm5toQRzBwPLsGGNN4vp7uBgIBBsIPVJJn+06BBGTS4WLNMP58htjq
+	ySrUX0cPwKh5zAwFN/Ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyxeu-0072k1-5i; Sat, 26 Nov 2022 16:04:04 +0000
-Received: from mail-yb1-xb36.google.com ([2607:f8b0:4864:20::b36])
+	id 1ozGjU-00BCV4-L1; Sun, 27 Nov 2022 12:26:04 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oyxek-0072dW-T0
-	for linux-amlogic@lists.infradead.org; Sat, 26 Nov 2022 16:03:56 +0000
-Received: by mail-yb1-xb36.google.com with SMTP id l67so8404946ybl.1
-        for <linux-amlogic@lists.infradead.org>; Sat, 26 Nov 2022 08:03:51 -0800 (PST)
+	id 1ozGjI-00BCRV-NJ
+	for linux-amlogic@lists.infradead.org; Sun, 27 Nov 2022 12:25:54 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id j16so13438982lfe.12
+        for <linux-amlogic@lists.infradead.org>; Sun, 27 Nov 2022 04:25:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oPI4AZ2eAdf9dpFkRgyi9VOqBdgUQo1/pANTi1uI3pg=;
-        b=qb5b/2eXX4lPgYmeza0r1fNs84UXtLmZSNW4snW99vNTkKqz8V51lyk6Xtm+CAmEFl
-         x33Ecu160iOmJS5UcAezKA6sjS7lkrnxtgxjqTurCKvvjnfJyzWXA60T6vokaYPZr0Cz
-         PwNKTT2jlBga46ujI5OOamevM4GfwPQSpg2eslJK9BGIF2amBN5CbGONjDfNU622sBAq
-         TijvaxYrvE8pLH+pFR7JtUNGccqDlLcdkRFfov158Nm5hX596DQPKTS1AhfqNftdEblb
-         su+vD1lRSuyszk8v8ipoLQFlRa1lh2H23gXn9jo1ApbAvrGz+00SuSJ1qTmXahHlpLFU
-         tJkg==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZmGgJvzXq1iMGVJs1Dm2uF1Desk7wBIQ6ArKFGrdEHI=;
+        b=GtAMlbEdFqyigsatSCsNUpWfqAGSoc0bWwSSqIWTsi4xr0sp4TRd+Q1zekwv4OvpNY
+         9wLLC2pyXUCHZMruC/YpwC13ftJoph9ZXnWFrjBkh8cYvoCkcl31GCVQ27CXA8EkDh2y
+         4b0UHyJsqgVCtl+NyOmfMZN9JbPpUH2L8MJcf555LMg3ocq4MJ4HBVHaAralSO+zLGEf
+         IW8w+7EGLPLwlTAyvOhWRR1baJg9up3psFa/hzEhbYxNRkMc4Zo9hplxy6K2jV5/b0Dv
+         g7OJldU02/4UmoY5mMWFmMDsjfQ9jhnQW2x7jlULcOiRxUTWoFgjLg6u5saMkUPhCQWa
+         g4Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oPI4AZ2eAdf9dpFkRgyi9VOqBdgUQo1/pANTi1uI3pg=;
-        b=SZhQooee9XdCG/fCcxA8Nub+5xy97JU3rk7do2MiNHUUbk62s0mOi8Wa1tjEIO4qVt
-         mCBR6K3xGshN2KfRisb2eCPMNo1Znlekr7I9rBrwIDYMnoDOfYvPPo0tHDo0cbzwTWNF
-         K8n4dbNhN2LgnNbeA+XSmdVcbO+T6aYWzlQuO+5mZPM0rQQg3heEFP6XiqjthgpW8sMC
-         1KCbb+hz5b6mHr2xrmXYvBpTfjSJHR0U7Xtkvgi/A5e71ZrPDxjILYCjHlEIQSVtV2Yb
-         7hZHa020jMo8PuzaYQ+OGvr+AM4F+ze/hmiel7OTO8CF1p2SaxByjQ7WOjcdqgYFI8fq
-         lZdg==
-X-Gm-Message-State: ANoB5pmwC52k8ya6BLlnAY+FY0a0C7ACvK+FEGqUjq8Jp6YuVbKiQLl2
-	AHw1jPBihOMyTgUc6YGwHR3OXdgYzMnTplcxb90Ulw==
-X-Google-Smtp-Source: AA0mqf7hvcnOUxnzNtLIoGMAMAsp39IkIkzo1prQTdpWorNW60u6DsujeEGHp6iwBrCpbf4h0RTRClHXC0VgntqE92g=
-X-Received: by 2002:a25:3c82:0:b0:6e7:39db:aeb5 with SMTP id
- j124-20020a253c82000000b006e739dbaeb5mr24048591yba.304.1669478630995; Sat, 26
- Nov 2022 08:03:50 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZmGgJvzXq1iMGVJs1Dm2uF1Desk7wBIQ6ArKFGrdEHI=;
+        b=4aKkcNDsy7dDoELCuv1Vt9ELuHYRWgGF0IPczO69ee5Uuvdr/8B2VbsnJZhyosDjCQ
+         hQFwbB+xCc3413etfKCS2j9oiFK1hZTKZORe1PhIbqP/semlyUCRScF+4y422NizD/La
+         1DWoTvspm0RVS8r2Ph1ObWsH5oZ4PuEEBOEkhK3CoO5M8YTyH/MtGQwyIcV9zwc19OBv
+         mms7hcY5MrHqo9pQ95oL6vgISyjHHauikCk4i7OPak7NJXGXRSeEae+ZCCyJQ4pfM5na
+         3QjmLu4T6VM8YD92JK3tmCQGyfss1fac7sDLHigYIoYbZRAQcXDC2DElgwFnrJ5gN6HI
+         rabw==
+X-Gm-Message-State: ANoB5plJzQC/lSrhZlG6Dx11pfRItwikRyzzkDRKegLvx46vR2RgN8n1
+	smjHVBDy1fc1OShZ45l5LLrKjA==
+X-Google-Smtp-Source: AA0mqf5RM62IIWyqFgLtB7beWOBoZ6lEksUgu/JYJFO1T3PGJ9hrVnfHE7diWd3Ldd2pQphlHHhG3w==
+X-Received: by 2002:a19:f716:0:b0:4b4:b5da:ea56 with SMTP id z22-20020a19f716000000b004b4b5daea56mr15557224lfe.547.1669551949494;
+        Sun, 27 Nov 2022 04:25:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t27-20020a2e8e7b000000b0026fbac7468bsm873347ljk.103.2022.11.27.04.25.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Nov 2022 04:25:48 -0800 (PST)
+Message-ID: <615eb86b-a00a-56bc-ae1a-9f0e4e86f77c@linaro.org>
+Date: Sun, 27 Nov 2022 13:25:47 +0100
 MIME-Version: 1.0
-References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
- <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org> <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
- <54f500cb-d7d0-8af1-eb58-99fbe71791a5@linaro.org>
-In-Reply-To: <54f500cb-d7d0-8af1-eb58-99fbe71791a5@linaro.org>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Sat, 26 Nov 2022 17:03:39 +0100
-Message-ID: <CAB6niQ4808JEgdQEvRvaYqq8YmFCGo_YLnxXo+rjpSgxQxu+7g@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
 Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+ <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
+ <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
+ <54f500cb-d7d0-8af1-eb58-99fbe71791a5@linaro.org>
+ <CAB6niQ4808JEgdQEvRvaYqq8YmFCGo_YLnxXo+rjpSgxQxu+7g@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAB6niQ4808JEgdQEvRvaYqq8YmFCGo_YLnxXo+rjpSgxQxu+7g@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221126_080354_960851_3A8943CB 
-X-CRM114-Status: GOOD (  13.73  )
+X-CRM114-CacheID: sfid-20221127_042552_770585_C877AE6E 
+X-CRM114-Status: UNSURE (   8.89  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,43 +101,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 26 Nov 2022 at 15:24, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/11/2022 15:16, Krzysztof Kozlowski wrote:
-> > On 25/11/2022 18:16, Neil Armstrong wrote:
-> >> On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
-> >>> The node names should be generic and DT schema expects certain pattern:
-> >>>
-> >>>    amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-> >>>
-> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> ---
-> >>>   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
-> >>>   1 file changed, 2 insertions(+), 2 deletions(-)
-> >>>
-> >>
-> >>
-> >> <snip>
-> >>
-> >>
-> >> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> >
-> > Aren't you maintainer of the platform? This means I should take care of
-> > this patch?
->
-> Ah, this will be picked up by Kevin or Jerome? So this tag means only
-> Reviewer's statement of oversight, right?
+On 26/11/2022 17:03, Neil Armstrong wrote:
+>>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>
+>>> Aren't you maintainer of the platform? This means I should take care of
+>>> this patch?
+>>
+>> Ah, this will be picked up by Kevin or Jerome? So this tag means only
+>> Reviewer's statement of oversight, right?
+> 
+> Of course I'll pick it.
+> 
 
-Of course I'll pick it.
+So that's confusing to see Review which does not mean review, but
+maintainer pick...
 
-Neil
+Reviewed-by means, I should take your tag and add to v2 or the
+maintainer will add it when picking up.
 
+Best regards,
+Krzysztof
 
->
-> Best regards,
-> Krzysztof
->
 
 _______________________________________________
 linux-amlogic mailing list
