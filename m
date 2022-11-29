@@ -4,85 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51268C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 08:53:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1DC4C4321E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 11:09:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8Cs9ZhblCC3MgRelf3K83NYuqWOEeaXuf4iyrN5H0Xc=; b=pHtCHkVbythj4G
-	rG25+U6D9+iziROGAD/QyTaR9+41Rbcaf6Vp5sK7+7ZahQ6LEL93ko0w6y86lN3trL1x3bGWycy+s
-	5ARz7w0Lx9yhO6DumkCDVupl8ZKwQ3ip5j1DpW2w3ZjMimNAi2qLmLcM17SII3R20HON2Yt4QH6zn
-	wPhv7VrDqTX5nUe/6XbIwVVnYbKCq0kd0+hQjmHyWoa1VJX02VziwmwuIk5Qj/HHJhge2Z1zvIlRV
-	OsX3h2C6VcKTR5pxU6ehYPMA5Pf5N2ezU+D1zAKv7fibFXEreFGMKfLylPvALUib4yuzsliYkkIQ8
-	tlUn0mqsm3PQirXwIhug==;
+	List-Owner; bh=T6Kk6YNnP9aG13Eozf8+Zmx5BjwlklV1jOZGvfWUZM4=; b=fjown4NkwDX1tx
+	xpBIB7a9VOxqt6jtYTt4q4u3PVE3rC/+HizZlM85+BLhcEEGDtpyg1XF4hOVM5tRbOz4Rg69guLwn
+	29lX8T2NMrJIHhRwmIpO/Y4+b+x/KSemMmhCRB/fi9gTqjZRkR8kvNdapTEZeb4ZIDaKN8ssd+n47
+	Q0Xo6L47P1/i3RgCxlLYGW8KxBF6PUPTjsBqzJACTar9dWGRDlfnuSFN5Ux7y15masHlkyoMCdboi
+	v3Vj/KOC9FEv4oXvvf9v3R7m3pdjDGNDqIHCn7O0yOEaJjzYQXukRNYGxxqo35N+Va65QmESKEGof
+	gkQzuOEhBEjfyjyfQ/ag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozwMH-007YQm-3j; Tue, 29 Nov 2022 08:52:53 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1ozyUd-008POe-P2; Tue, 29 Nov 2022 11:09:39 +0000
+Received: from mail-oi1-x234.google.com ([2607:f8b0:4864:20::234])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozwKo-007Xka-0G; Tue, 29 Nov 2022 08:51:23 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id gu23so13842628ejb.10;
-        Tue, 29 Nov 2022 00:51:19 -0800 (PST)
+	id 1ozyUb-008PLQ-9h
+	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 11:09:38 +0000
+Received: by mail-oi1-x234.google.com with SMTP id m204so14775055oib.6
+        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 03:09:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
-        b=nhKapcQ66LsxA85JQdzV2oZbWTII+lECh4PRQcH4mDiqEm4ojDHv7H95e1Yu9UhPbu
-         qgXFEJe5IBj9/8AlpNKHmA92xYsyC4SZqZLvK6OLaPMuyeq4lmmUx9S6AraqRskOLIc0
-         sqDRTVS1XH6eQTpbbz2NXSWwHn2MgMncpfuDlJlmwa1XYivMD6NL9zGnWYa6ijPckc7c
-         c2mkdLJpg7sVYVQgFSS+T86beZvtahhhakiO/RCC/l6JEGECGPLz+RSYnW7Oegj286j8
-         zPENNFHaBXDfvD0DIMp2vnBNikzzZAbi0CqXctM2F2ra4pGsxVa61JCC589gAilD2WC6
-         ju6w==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cf9n2jaa6cYTVOklMuNk4qObbBfb+M49DmHuLPAMaG8=;
+        b=EQGj1OluD1poCYCp847EqljBv2Ad7K/1G88aFPNPKXsuhiJcjMGoVE4O/IpTOi6grs
+         DqYZyeMry7IkWAxmOVsObvHrdr/u4CHzPmyaVR8QTymd3X6LWpY0Dsxs/yLDVDP1VhaP
+         tp0sWFghX2mKmvsrtbfPRU8FGxdMLOhH/VuekVTXfdKSaPfa9ZuHJakPCobD31IXWdp4
+         +BqClWFUs/lL6XEYozaaPgS+KbkB5k3abcZ8TgF8IvK/p2du9FDw8FXQNZaIfLD9s93T
+         2FlZyEzDBvaZtz6FcmRkxwdCpMNAMLiNpNr518cQA9GbdBTia3NupXIlr8ygDt2EeL6l
+         ITAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
-        b=deq/afvqaKLavGoEc3RZYTpLdjq5Yybg4/456jOw/iaxQxcdD8gKAKLZAFDHWaLt+E
-         CURR2vixs5q+cIyATckCjDzCU/4gIVCREZ4Kwvi5WvJvPDbJMYn3EbGY1Y98VPqtf9bA
-         qlG8Zpd61TtjWcKdJhmpiGrD+qck3oNl2eoD+N5HGwH9+gOYWD8Yz8af0K7PUELlA1i/
-         QR03kF1zINlvbE5rqb++CPsFnNSELHqUZj+4NWfozC3611ddI8pM0aT/ZnIIbityFDcq
-         zlC1gD/hB1b7ni7QY1pXpu5SH/yf5PHfh420uhmJOewjTyS3DPyOSaEtHr5Tzt63N+KZ
-         kLGA==
-X-Gm-Message-State: ANoB5pk3HxwnMfw6PeaWRY8fEP6wASXCqZf2oIlK0j4zgN3RONtpf8f0
-	LA196BlzaO/g1Q9G+8U/L14=
-X-Google-Smtp-Source: AA0mqf6g0V291RCuJE/6a7lckAJbDgRfo/msdIC8flyucHI+AJKI3XL0ggAyX2RdNHUyh2wH0hgteQ==
-X-Received: by 2002:a17:906:ca18:b0:781:c97c:84d1 with SMTP id jt24-20020a170906ca1800b00781c97c84d1mr46678807ejb.147.1669711878319;
-        Tue, 29 Nov 2022 00:51:18 -0800 (PST)
-Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id kz1-20020a17090777c100b0078de26f66b9sm5873219ejc.114.2022.11.29.00.51.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 00:51:17 -0800 (PST)
-From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-To: 
-Cc: italonicola@collabora.com,
-	Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 4/5] arm64: dts: Add DT node for the VIPNano-QI on the A311D
-Date: Tue, 29 Nov 2022 09:50:44 +0100
-Message-Id: <20221129085047.49813-5-tomeu.vizoso@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
-References: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cf9n2jaa6cYTVOklMuNk4qObbBfb+M49DmHuLPAMaG8=;
+        b=DUVHam48EUrCsp1qSHgPZivqviGR1lcCJK48hyvyGsBjx6FwcFh8lvU5qO9NDf8y70
+         9ChOHurVxwBgfCbXHQOkJ0Zx2aYT/slomoxUPIE/Kyx08el+Z9EzPhEC2Wi2YXaWs+Rc
+         r4rZAqEK1haJF9ZxJNk+cN7+Pp1O2hmKJPclerd6fJPbk5e3ubsYFrOrt0qx2DbrXnuU
+         xAhlzVgBu3A1zYRznKBgLlQ1KrHc9Fc4ub34yWk3jRHi25Zop9ujwsbuZTrka1lDdUqi
+         hKzw+t4kNQrQcn3vkTANUcGMLr4RhgpxaNDoergV2uxEaD2n0IyFGP4XmbCN9XpE5ssF
+         ulUA==
+X-Gm-Message-State: ANoB5pkrIoeztKl2Ssik8KLD/GueQNkSjJWPTq4DC0lD5v5l15KFW++Y
+	ZqwMCBRYI9zh2wBzOMEMf/02bTOLEPG66slmU2UG8A==
+X-Google-Smtp-Source: AA0mqf5fbP4ZbObgYQ/PNpZohM7nKX0Xg43wC7ljqPSKkxNSoLuBv0Tby+XmsYnndNx6Rfpcz+xVv2PD+1lW35gFnFY=
+X-Received: by 2002:aca:5bc4:0:b0:35a:7056:4f9c with SMTP id
+ p187-20020aca5bc4000000b0035a70564f9cmr30858789oib.72.1669720170072; Tue, 29
+ Nov 2022 03:09:30 -0800 (PST)
 MIME-Version: 1.0
+References: <20221116143523.2126-1-the.cheaterman@gmail.com>
+In-Reply-To: <20221116143523.2126-1-the.cheaterman@gmail.com>
+From: Robert Foss <robert.foss@linaro.org>
+Date: Tue, 29 Nov 2022 12:09:19 +0100
+Message-ID: <CAG3jFytyzmRnpj8pzSUitLhAHQM9b0zhkc2cbfVmgKStfHpwVA@mail.gmail.com>
+Subject: Re: [PATCH] drm: bridge: dw_hdmi: fix preference of RGB modes over YUV420
+To: Guillaume BRUN <the.cheaterman@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	Christian Hewitt <christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221129_005122_107493_5DA30D11 
-X-CRM114-Status: GOOD (  10.39  )
+X-CRM114-CacheID: sfid-20221129_030937_349211_CDD29571 
+X-CRM114-Status: GOOD (  16.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,64 +89,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-with it with just a few small changes.
+On Wed, 16 Nov 2022 at 15:35, Guillaume BRUN <the.cheaterman@gmail.com> wrote:
+>
+> Cheap monitors sometimes advertise YUV modes they don't really have
+> (HDMI specification mandates YUV support so even monitors without actual
+> support will often wrongfully advertise it) which results in YUV matches
+> and user forum complaints of a red tint to light colour display areas in
+> common desktop environments.
+>
+> Moving the default RGB fall-back before YUV selection results in RGB
+> mode matching in most cases, reducing complaints.
+>
+> Fixes: 6c3c719936da ("drm/bridge: synopsys: dw-hdmi: add bus format negociation")
+> Signed-off-by: Guillaume BRUN <the.cheaterman@gmail.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 40d8ca37f5bc..aa51c61a78c7 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -2720,6 +2720,9 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+>          * if supported. In any case the default RGB888 format is added
+>          */
+>
+> +       /* Default 8bit RGB fallback */
+> +       output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
+> +
+>         if (max_bpc >= 16 && info->bpc == 16) {
+>                 if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
+>                         output_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
+> @@ -2753,9 +2756,6 @@ static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+>         if (info->color_formats & DRM_COLOR_FORMAT_YCBCR444)
+>                 output_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
+>
+> -       /* Default 8bit RGB fallback */
+> -       output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
+> -
+>         *num_output_fmts = i;
+>
+>         return output_fmts;
+> --
+> 2.37.3
+>
 
-v2: Add reference to RESET_NNA (Neil)
-v3: Fix indentation (Neil)
-
-Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
- .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
- 2 files changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 45947c1031c4..61c8461df614 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/power/meson-g12a-power.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -2484,4 +2485,14 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	npu: npu@ff100000 {
-+		compatible = "vivante,gc";
-+		reg = <0x0 0xff100000 0x0 0x20000>;
-+		interrupts = <0 147 4>;
-+		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-+			 <&clkc CLKID_NNA_AXI_CLK>;
-+		clock-names = "core", "bus";
-+		resets = <&reset RESET_NNA>;
-+		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 124a80901084..73f3d87dcefd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -15,6 +15,10 @@ / {
- 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- /*
-  * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
-  * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
--- 
-2.38.1
-
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
