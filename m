@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDB72C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 08:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 812B7C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 08:41:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=v5jwMoXMpsAXkFa5gYFZk3x2jRPe7NTa/N7h4Cti95s=; b=HLmMP3eEnir9bC+2/pchQEbf9w
-	bjRqj0EUhFSCOqskeDA5guVGKkjlhR8i+XOuSajndh09u3APZigokTYYKS0BWtGvfb8LpzciAON4N
-	WfQ+KvStZ3vShnMV9F2txHh9Lc1rkNdZYIA1RP8wSXYmmJqvcJehWE18FQEZwBxtlYu61nRYXSJvL
-	6kZ2X/S8UbuuNmObQcQAPwvh79QCLMsy9CkHLUhRdyZl8IixjPuZFdFuiTbWqmTVnryyAOa1BaCth
-	twfPfkXPooieRKd1PIeh5XpeC8Iw898rl1+LwV7Fga3nV49PdNH0r6+kD7kfX3H/4eejRx8ruFL7E
-	5vlm+OMQ==;
+	bh=QJIQeTF7rGbX+Sed1MqHjz3hsJH7f1PbHKleSGMMRC0=; b=EXzwWeAIvzlQD3xTOIXGqsKzhL
+	g1K7DVFZCtrYjMH1EsgHO+JqFpBAUv55aoPD87n38LkEEt+10WAKGt/I/LamSCalmncBKLVc5yxEL
+	ea1iJVSXjso1++c20mtUgxgvMWeBcioxeE845gB/zGrlKU9xiyEH8q+qXM70UrH+O9K439d3Z+4rm
+	6aM9MQiRQs5dRsGS3ndFzTIT0L+D6bIEQuUhVCTTKKtg/uDj0pcWUN4IL1Aet/grk6JfvVcnP7GES
+	6GfyWAKmO1HjMYGcjKSdL/P56EyDShkV0Ci3CygL5DMD+G+pg/P9o1egogIMNH94ODLLa3KocXf1S
+	S+zIRjGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozw8c-007QmJ-Ab; Tue, 29 Nov 2022 08:38:46 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1ozwB0-007S3K-N1; Tue, 29 Nov 2022 08:41:14 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozw8Z-007Qj2-IG
-	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 08:38:45 +0000
-Received: by mail-wm1-x332.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so13742353wma.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 00:38:42 -0800 (PST)
+	id 1ozwAy-007S1e-CZ
+	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 08:41:13 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id o7-20020a05600c510700b003cffc0b3374so10246812wms.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 00:41:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=XgU2Me36pWpv5WapeJ4LPJ3zFhHMt8NlKreZ17SiFYI=;
-        b=eSdL13nPAAE9KfbRzj2fCIepGM6/yyMJRSpSbtV+qTcW929EIa4OABn8vS5yE4KwVN
-         dhRF4IKu30cR5LMLlmnwFaoBLqN6SL02TGXbzQ2W5eSrWzlbUg6YlFcsxI9lNfHS/059
-         DZ0ZaUVAH7k73aSGu7vA0WjbHCO04rV1d4G6qVx6TAu1tcGB1lDkzpb8Ie3s2i5OUilh
-         H+NL5OQ7fZAfnVi55MvfEYE8R+DjKIxT//YNB2CU6jdZ8SAnvQ2mY4+OlXalRpVC3gKm
-         xyOx2am5t9bgULDwET1sl91wGzsVBZ4U2AUWsm8RyNtTa+xfK1h0uQa6JROUKj9i6fjJ
-         jhdA==
+        bh=b8jAZNW2iOrLRrd89DhxXzx+Yq1CmREwG3nJKgbZlYM=;
+        b=HgRHogOxcbeptq7RdOpeE8mcOwl1JyZNgPIEwFYHa49N2cJBwZIixiVeHMT3EPsacS
+         00qm3C6yORFC3DBXXt9z2ncLXW0RJR0QPQjYp0WdlQKDr9Aw59PCAXHPKFSh8IPzmXgs
+         yI2qU/PgLouCiwpBMTTUz2jvWaueGSPp2rRFb+LSiG9tPW5mKcMQEYHLpkwbBMlnaieZ
+         TXc1+eBaRrceP3qTGERv4lbbMHtHVNINkN96Xr+JNgIg9jMXPMlZbyJdgGPOwmNiUyGd
+         edtXf1ZHIaWKLWXTs68cklQv3HWJiR6oyO9pxSwuT3H1CYecI1Xee97h3gEwzqhULQSx
+         Y48w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XgU2Me36pWpv5WapeJ4LPJ3zFhHMt8NlKreZ17SiFYI=;
-        b=Ucahhtm9RwReYwIPuYNgpWMNMhvC2PN2x2kw1kfhUsvmHrtv94VNALAzjY4Ai8VUcr
-         zJ1vZNGoAyeg9hvwYtcnqLcaoPDl9B96RzZ6hzQUmzHfiUrg9TNWN8yY2che7F+FNqRF
-         cDC9d9E0lnfahHaX/uy4wiHJvVLz5/BzgjRrFc6iApWlgQtPZooR56iJ8f/6mCHoKxGl
-         OPUhEYTLfWEn6tjUcPeds9GtManSmQgn2l9ky87yKRQHNh+56Z9dWhEAgZ0/R12Uz+3q
-         xhm60pxWsh8g3bvNRKTlBmfsCrDus2aFua5F9hR4BfWJ+GqNGhBngWteIFxxf7l+Vuc5
-         8fhw==
-X-Gm-Message-State: ANoB5pkRp6SI/5dfnSvztFiV2cyTopTrflqBpYneRy1jaOFP9NOFu5c+
-	Z5b6lp2IRiHe9egDp4Eu25O0NQ==
-X-Google-Smtp-Source: AA0mqf6OAhXAHg9j5+BXVKjL+Xc8gtMngAEKoiv4eF9a4BzThu69gyqxyX8YzEQPD1iPsmDy+DbTAg==
-X-Received: by 2002:a7b:c00a:0:b0:3cf:e8f0:ad11 with SMTP id c10-20020a7bc00a000000b003cfe8f0ad11mr44668145wmb.65.1669711120927;
-        Tue, 29 Nov 2022 00:38:40 -0800 (PST)
+        bh=b8jAZNW2iOrLRrd89DhxXzx+Yq1CmREwG3nJKgbZlYM=;
+        b=X9b0gSmV4F+ZiVwC8yPUwyAdwYL9YYgg67cphb2T1LW5yd+DhmLhOu7Jo/PMuwvWhJ
+         lOPZdhyuS0ll/vGrroUJrrqQl0kUvMWVgOER3El/QUWUu8KRKniQA5Gp5Kn+Rm+TofqU
+         Jbi9QW9l/OBT4yH/eTLIgJVxXpZ7m7sG0MYmGsr3tnnFavwnJ4ahvgVntRK9e0TL8llX
+         O5kx7ymSqEpzUG35/kKkI2i/jO5gm57QIA4qU11bjnA9Xz3OK0BnQic0MDIrCRTFWVr9
+         YXWVgILSepNvX0AYb3NA6sXvGlwU4+kmvip/C6OmRa4k/PJ1d8WYOs+TYXqDeVP2IL7D
+         IzuQ==
+X-Gm-Message-State: ANoB5pmNlJVyX2l45oC+ZRPIQy84YfEQXZzTKXqUVbe9CKl91aGpF+N/
+	58RSvZwvjF9jChP/doIyXvstPg==
+X-Google-Smtp-Source: AA0mqf7YTNMTlGF7UPjXTQ7a9Xy432X20Jg5O2T11AKVzsSOE9h3KXWpsSiHCxHF5JkDuBZpndPs4w==
+X-Received: by 2002:a05:600c:3d1b:b0:3cf:670e:63cc with SMTP id bh27-20020a05600c3d1b00b003cf670e63ccmr45587752wmb.150.1669711270809;
+        Tue, 29 Nov 2022 00:41:10 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2? ([2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2])
-        by smtp.gmail.com with ESMTPSA id p7-20020a5d4587000000b0022ae0965a8asm12835842wrq.24.2022.11.29.00.38.40
+        by smtp.gmail.com with ESMTPSA id j5-20020a5d5645000000b00225307f43fbsm13038696wrw.44.2022.11.29.00.41.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:38:40 -0800 (PST)
-Message-ID: <fbe945cb-036f-b405-901f-0d625e8bfcbd@linaro.org>
-Date: Tue, 29 Nov 2022 09:38:41 +0100
+        Tue, 29 Nov 2022 00:41:10 -0800 (PST)
+Message-ID: <81e5bd05-b081-8072-b09d-30e32834163e@linaro.org>
+Date: Tue, 29 Nov 2022 09:41:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] drm/tiny: rpi-lcd-35: Enable driver module
- autoloading
+Subject: Re: [PATCH v2 2/2] drm/tiny: ili9486: Do not assume 8-bit only SPI
+ controllers
 Content-Language: en-US
 To: Carlo Caione <ccaione@baylibre.com>, Mark Brown <broonie@kernel.org>,
  Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
@@ -79,12 +79,12 @@ To: Carlo Caione <ccaione@baylibre.com>, Mark Brown <broonie@kernel.org>,
 Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20221116-s905x_spi_ili9486-v2-0-084c6e3cd930@baylibre.com>
- <20221116-s905x_spi_ili9486-v2-1-084c6e3cd930@baylibre.com>
+ <20221116-s905x_spi_ili9486-v2-2-084c6e3cd930@baylibre.com>
 Organization: Linaro Developer Services
-In-Reply-To: <20221116-s905x_spi_ili9486-v2-1-084c6e3cd930@baylibre.com>
+In-Reply-To: <20221116-s905x_spi_ili9486-v2-2-084c6e3cd930@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221129_003843_642707_99FCA8ED 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20221129_004112_458351_4EFD210C 
+X-CRM114-Status: GOOD (  30.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,38 +103,78 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 21/11/2022 10:42, Carlo Caione wrote:
-> SPI devices use the spi_device_id for module autoloading even on
-> systems using device tree.
+> The pixel data for the ILI9486 is always 16-bits wide and it must be
+> sent over the SPI bus. When the controller is only able to deal with
+> 8-bit transfers, this 16-bits data needs to be swapped before the
+> sending to account for the big endian bus, this is on the contrary not
+> needed when the SPI controller already supports 16-bits transfers.
 > 
-> Add the spi_device_id entry to enable autoloading for the 3.5inch RPi
-> Display (rpi-lcd-35).
+> The decision about swapping the pixel data or not is taken in the MIPI
+> DBI code by probing the controller capabilities: if the controller only
+> suppors 8-bit transfers the data is swapped, otherwise it is not.
+> 
+> This swapping/non-swapping is relying on the assumption that when the
+> controller does support 16-bit transactions then the data is sent
+> unswapped in 16-bits-per-word over SPI.
+> 
+> The problem with the ILI9486 driver is that it is forcing 8-bit
+> transactions also for controllers supporting 16-bits, violating the
+> assumption and corrupting the pixel data.
+> 
+> Align the driver to what is done in the MIPI DBI code by adjusting the
+> tranfer size to the maximum allowed by the SPI controller.
 > 
 > Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 > ---
->   drivers/gpu/drm/tiny/ili9486.c | 1 +
->   1 file changed, 1 insertion(+)
+>   drivers/gpu/drm/tiny/ili9486.c | 13 +++++++++----
+>   1 file changed, 9 insertions(+), 4 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
-> index 1bb847466b10..bd37dfe8dd05 100644
+> index bd37dfe8dd05..4d80a413338f 100644
 > --- a/drivers/gpu/drm/tiny/ili9486.c
 > +++ b/drivers/gpu/drm/tiny/ili9486.c
-> @@ -183,6 +183,7 @@ MODULE_DEVICE_TABLE(of, ili9486_of_match);
+> @@ -43,6 +43,7 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
+>   			     size_t num)
+>   {
+>   	struct spi_device *spi = mipi->spi;
+> +	unsigned int bpw = 8;
+>   	void *data = par;
+>   	u32 speed_hz;
+>   	int i, ret;
+> @@ -56,8 +57,6 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
+>   	 * The displays are Raspberry Pi HATs and connected to the 8-bit only
+>   	 * SPI controller, so 16-bit command and parameters need byte swapping
+>   	 * before being transferred as 8-bit on the big endian SPI bus.
+> -	 * Pixel data bytes have already been swapped before this function is
+> -	 * called.
+>   	 */
+>   	buf[0] = cpu_to_be16(*cmd);
+>   	gpiod_set_value_cansleep(mipi->dc, 0);
+> @@ -71,12 +70,18 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
+>   		for (i = 0; i < num; i++)
+>   			buf[i] = cpu_to_be16(par[i]);
+>   		num *= 2;
+> -		speed_hz = mipi_dbi_spi_cmd_max_speed(spi, num);
+>   		data = buf;
+>   	}
 >   
->   static const struct spi_device_id ili9486_id[] = {
->   	{ "ili9486", 0 },
-> +	{ "rpi-lcd-35", 0 },
-
-It should also contain "piscreen" then.
-
-Anyway:
+> +	/*
+> +	 * Check whether pixel data bytes needs to be swapped or not
+> +	 */
+> +	if (*cmd == MIPI_DCS_WRITE_MEMORY_START && !mipi->swap_bytes)
+> +		bpw = 16;
+> +
+>   	gpiod_set_value_cansleep(mipi->dc, 1);
+> -	ret = mipi_dbi_spi_transfer(spi, speed_hz, 8, data, num);
+> +	speed_hz = mipi_dbi_spi_cmd_max_speed(spi, num);
+> +	ret = mipi_dbi_spi_transfer(spi, speed_hz, bpw, data, num);
+>    free:
+>   	kfree(buf);
+>   
+> Looks fine, but should somehow be tested on an RPi first
+to check if the 8bit fallback still works.
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(spi, ili9486_id);
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
