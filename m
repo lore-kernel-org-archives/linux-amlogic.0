@@ -4,90 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03089C4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 08:35:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDB72C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 08:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SJktawtklbFSeMAWbjJLlDQlEqKpnt4wwN96jAdS5h8=; b=UAytPXF8dD/LT71WIUSjkpAUpF
-	FbAq8fi7QY2vKl7h4jZFy5xlT3DP98laNhJ36tP+myhKtcvijcxpcTfMaKpEt+RrAhvSPqtgQMm+3
-	KAjyBNXH5eCTYx4ya5o17cdah/abGYBY4R6XoEanxdbtmP5akOL4Olgv1fk64ipIz613MYj0nUpJ9
-	6ycQv58BFj6YvIkEi8c0d3klbatamVbkwtC35Fp+PoZjbpXu2+jeE4zE3UuVL17ogf2iuP3fpiW+1
-	XuH8nR3y0vsFnssMC/m/8cFrzuHcuV1x3ihowX+oMpFdN1JmUcgg49jtV5s479+NkMZys7sFURNFG
-	nAhseJNA==;
+	bh=v5jwMoXMpsAXkFa5gYFZk3x2jRPe7NTa/N7h4Cti95s=; b=HLmMP3eEnir9bC+2/pchQEbf9w
+	bjRqj0EUhFSCOqskeDA5guVGKkjlhR8i+XOuSajndh09u3APZigokTYYKS0BWtGvfb8LpzciAON4N
+	WfQ+KvStZ3vShnMV9F2txHh9Lc1rkNdZYIA1RP8wSXYmmJqvcJehWE18FQEZwBxtlYu61nRYXSJvL
+	6kZ2X/S8UbuuNmObQcQAPwvh79QCLMsy9CkHLUhRdyZl8IixjPuZFdFuiTbWqmTVnryyAOa1BaCth
+	twfPfkXPooieRKd1PIeh5XpeC8Iw898rl1+LwV7Fga3nV49PdNH0r6+kD7kfX3H/4eejRx8ruFL7E
+	5vlm+OMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozw5R-007P4r-I1; Tue, 29 Nov 2022 08:35:29 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1ozw8c-007QmJ-Ab; Tue, 29 Nov 2022 08:38:46 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozw5O-007P1y-DY
-	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 08:35:27 +0000
-Received: by mail-wm1-x335.google.com with SMTP id r66-20020a1c4445000000b003d05a3775d4so4253827wma.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 00:35:25 -0800 (PST)
+	id 1ozw8Z-007Qj2-IG
+	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 08:38:45 +0000
+Received: by mail-wm1-x332.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so13742353wma.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 00:38:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nFrj+28YyuR0eqY1nguFSdC/SUrYraG5B7QZglg6iPA=;
-        b=ujNxPiyJBK+27e2UV5LExF7tASbXCmHBTpWP/RH/a2N/b3EbR9zCXcPRw52zCramKL
-         b/T14DR90xpGsLypzyiwFS893323AO+s3BlDak017FuHP1E51BRm/s8it43KHe/NbzLs
-         xP68JSc3OFe1G6cJbjNX6RS/H7GQY++kVDMsWV2im6N2hRffagou4am1CWRJjm1UXIKF
-         zw73TChC5bnKS0T1X1yY9lpTfZC61L9sbGFGa9moVTvwEz0BvVm2hd8PCnNbbV9rk8P2
-         x0ymg/G3bsDoAuLeRon5Ch9+Ts1z7i682/9cNO5HD8k/cBOM5fUSocVgZUoUT3WQakmZ
-         Kbaw==
+        bh=XgU2Me36pWpv5WapeJ4LPJ3zFhHMt8NlKreZ17SiFYI=;
+        b=eSdL13nPAAE9KfbRzj2fCIepGM6/yyMJRSpSbtV+qTcW929EIa4OABn8vS5yE4KwVN
+         dhRF4IKu30cR5LMLlmnwFaoBLqN6SL02TGXbzQ2W5eSrWzlbUg6YlFcsxI9lNfHS/059
+         DZ0ZaUVAH7k73aSGu7vA0WjbHCO04rV1d4G6qVx6TAu1tcGB1lDkzpb8Ie3s2i5OUilh
+         H+NL5OQ7fZAfnVi55MvfEYE8R+DjKIxT//YNB2CU6jdZ8SAnvQ2mY4+OlXalRpVC3gKm
+         xyOx2am5t9bgULDwET1sl91wGzsVBZ4U2AUWsm8RyNtTa+xfK1h0uQa6JROUKj9i6fjJ
+         jhdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nFrj+28YyuR0eqY1nguFSdC/SUrYraG5B7QZglg6iPA=;
-        b=sJjs5Yq+2kADSFR3b4iJU2RAD459ojKNh+aJmbtkhHqcXFftM6ZhenjZ3vqeiDb+S4
-         D3lLOFyoPT0uyce/FVBdjxL2RB79RIYAWhRiNhTDNgvckTftWkxrbui1geFR5/Ui7jzk
-         Mu1cIT+YYNBI3CUfPw3jNETUN9D2vOifhe8nPdoe9PVbpuQ9NrUJ0l/UqW+RF/CWj1v+
-         kVga669g2hdOChAzoZsGjZdULBTP+MecQdZFyGVHOO3QCAwlvrfzaK133g0FE8AmpoFe
-         yj6csqQM1rfLD7RUbU/MlZGxoYkKOB0H0Nxz2rqJnPD7nWg0TOLIxS31+itbJbHBoJDg
-         5gFA==
-X-Gm-Message-State: ANoB5pnNZpuooUQVG+pimxw4sMiiScXmy01KCFpJSsxswa8Tj0iJLt9R
-	9e29Lo5XlFx1ZL/e20uWh5cZ8w==
-X-Google-Smtp-Source: AA0mqf5jyfHXkfUmC+Gip38Uos2hKiuERdUVeokOAKcyV7egdfjw73V5ejHd9sGDUqNPJniods1eLg==
-X-Received: by 2002:a05:600c:2302:b0:3cf:a3c4:59b3 with SMTP id 2-20020a05600c230200b003cfa3c459b3mr33009149wmo.198.1669710923877;
-        Tue, 29 Nov 2022 00:35:23 -0800 (PST)
+        bh=XgU2Me36pWpv5WapeJ4LPJ3zFhHMt8NlKreZ17SiFYI=;
+        b=Ucahhtm9RwReYwIPuYNgpWMNMhvC2PN2x2kw1kfhUsvmHrtv94VNALAzjY4Ai8VUcr
+         zJ1vZNGoAyeg9hvwYtcnqLcaoPDl9B96RzZ6hzQUmzHfiUrg9TNWN8yY2che7F+FNqRF
+         cDC9d9E0lnfahHaX/uy4wiHJvVLz5/BzgjRrFc6iApWlgQtPZooR56iJ8f/6mCHoKxGl
+         OPUhEYTLfWEn6tjUcPeds9GtManSmQgn2l9ky87yKRQHNh+56Z9dWhEAgZ0/R12Uz+3q
+         xhm60pxWsh8g3bvNRKTlBmfsCrDus2aFua5F9hR4BfWJ+GqNGhBngWteIFxxf7l+Vuc5
+         8fhw==
+X-Gm-Message-State: ANoB5pkRp6SI/5dfnSvztFiV2cyTopTrflqBpYneRy1jaOFP9NOFu5c+
+	Z5b6lp2IRiHe9egDp4Eu25O0NQ==
+X-Google-Smtp-Source: AA0mqf6OAhXAHg9j5+BXVKjL+Xc8gtMngAEKoiv4eF9a4BzThu69gyqxyX8YzEQPD1iPsmDy+DbTAg==
+X-Received: by 2002:a7b:c00a:0:b0:3cf:e8f0:ad11 with SMTP id c10-20020a7bc00a000000b003cfe8f0ad11mr44668145wmb.65.1669711120927;
+        Tue, 29 Nov 2022 00:38:40 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2? ([2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2])
-        by smtp.gmail.com with ESMTPSA id w13-20020adfec4d000000b00241dd5de644sm12981186wrn.97.2022.11.29.00.35.23
+        by smtp.gmail.com with ESMTPSA id p7-20020a5d4587000000b0022ae0965a8asm12835842wrq.24.2022.11.29.00.38.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:35:23 -0800 (PST)
-Message-ID: <f69c9db1-6274-6caa-e3bd-92ae4a7bff19@linaro.org>
-Date: Tue, 29 Nov 2022 09:35:24 +0100
+        Tue, 29 Nov 2022 00:38:40 -0800 (PST)
+Message-ID: <fbe945cb-036f-b405-901f-0d625e8bfcbd@linaro.org>
+Date: Tue, 29 Nov 2022 09:38:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 4/5] arm64: dts: Add DT node for the VIPNano-QI on the
- A311D
+Subject: Re: [PATCH v2 1/2] drm/tiny: rpi-lcd-35: Enable driver module
+ autoloading
 Content-Language: en-US
-To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc: italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+To: Carlo Caione <ccaione@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson SoC support"
- <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
-References: <20221128111740.39003-1-tomeu.vizoso@collabora.com>
- <20221128111740.39003-5-tomeu.vizoso@collabora.com>
+ Kevin Hilman <khilman@baylibre.com>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221116-s905x_spi_ili9486-v2-0-084c6e3cd930@baylibre.com>
+ <20221116-s905x_spi_ili9486-v2-1-084c6e3cd930@baylibre.com>
 Organization: Linaro Developer Services
-In-Reply-To: <20221128111740.39003-5-tomeu.vizoso@collabora.com>
+In-Reply-To: <20221116-s905x_spi_ili9486-v2-1-084c6e3cd930@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221129_003526_495790_44829DCC 
-X-CRM114-Status: GOOD (  16.42  )
+X-CRM114-CacheID: sfid-20221129_003843_642707_99FCA8ED 
+X-CRM114-Status: GOOD (  14.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,66 +102,39 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28/11/2022 12:17, Tomeu Vizoso wrote:
-> This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-> with it with just a few small changes.
+On 21/11/2022 10:42, Carlo Caione wrote:
+> SPI devices use the spi_device_id for module autoloading even on
+> systems using device tree.
 > 
-> v2: Add reference to RESET_NNA (Neil)
+> Add the spi_device_id entry to enable autoloading for the 3.5inch RPi
+> Display (rpi-lcd-35).
 > 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
->   .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
->   2 files changed, 15 insertions(+)
+>   drivers/gpu/drm/tiny/ili9486.c | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 45947c1031c4..aaa629816e41 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -11,6 +11,7 @@
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
->   #include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/power/meson-g12a-power.h>
+> diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
+> index 1bb847466b10..bd37dfe8dd05 100644
+> --- a/drivers/gpu/drm/tiny/ili9486.c
+> +++ b/drivers/gpu/drm/tiny/ili9486.c
+> @@ -183,6 +183,7 @@ MODULE_DEVICE_TABLE(of, ili9486_of_match);
 >   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -2484,4 +2485,14 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> +	npu: npu@ff100000 {
-> +		compatible = "vivante,gc";
-> +		reg = <0x0 0xff100000 0x0 0x20000>;
-> +		interrupts = <0 147 4>;
-> +		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-> +			<&clkc CLKID_NNA_AXI_CLK>;
+>   static const struct spi_device_id ili9486_id[] = {
+>   	{ "ili9486", 0 },
+> +	{ "rpi-lcd-35", 0 },
 
-Nit pick, but this should be aligned.
+It should also contain "piscreen" then.
 
-> +		clock-names = "core", "bus";
-> +		resets = <&reset RESET_NNA>;
-> +		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> index 124a80901084..73f3d87dcefd 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> @@ -15,6 +15,10 @@ / {
->   	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
->   };
->   
-> +&npu {
-> +	status = "okay";
-> +};
-> +
->   /*
->    * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
->    * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+Anyway:
 
-With that fixed:
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(spi, ili9486_id);
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
