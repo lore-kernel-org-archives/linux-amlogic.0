@@ -4,76 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1A20C433FE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Nov 2022 16:54:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45CFFC4321E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Nov 2022 09:22:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YJDWvSyTAZfHjLJpxcZnvQ3ZJSXU6jNcvXT84nShLQc=; b=21Dl1Xlu5SE1Zo
-	u39p/5GIo7jpUlT0KgKmEqFJ3Id/TTxyadAVBBqN7AvGehsn3r9vYZqBG8EGd5MZFsd6nhU0mPbVO
-	tfDIpSFR+T+6w8PEXrzt0QHe7NTAWjYnE0H/oANEtcjAf1Jd6BH5DIPRGKS85a56Erah7R7mZySAG
-	Oq+/nP+n0L6Veb0Phfau4yH4MTx95/PVYivBlUmAG+J+koSV6gjXm0bYCyZ3wACcCEOq3g7pXElWB
-	JODjiikKxsi9cO6ElzjiCLlna6ZmEjuXonoN3Uv1+rai8qw6FzH/zQc7VPzaM2ZXioVqnyNBZpDIZ
-	iUO3GxDN/DAMTxz928DA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=ekVlVGN7WhZa2G3XlrXit+g+6GRORWAa8uL80B00Jls=; b=mVO
+	bReaeik7ai+1GhOjHWR8If8VgA0ixO3oAw/myhWH6n0/tewDxSP+qoJSWA6XHwWGxfhbCDfOs6Qrh
+	yzXvSR+Bkucep64y3X2sjvHBETrIHaDChgIK5WOjzEobmFVkcFAEYspYSCg/QcfPB6eGvzgaKaMxD
+	aM/KETRhXRB6gcmbg0T6EYjlmo69hnU25k9wvniw6nsZ73nj9eO45+7q9Koye42a15tiEXVGWe4Zu
+	PqmQ2/ZonmxKd43DSoxcT5oLzOpM4cRS72g9O2onvp9oTKVutBjcGkYyQCg6XugqIiC9+XF3gb1Ql
+	PIpbMq02LwiSbtiRmr28EfhH6ZDkyyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p03rq-00AINl-EN; Tue, 29 Nov 2022 16:53:58 +0000
-Received: from mail-oi1-x231.google.com ([2607:f8b0:4864:20::231])
+	id 1p0JIU-00EyBU-Sx; Wed, 30 Nov 2022 09:22:30 +0000
+Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p03rP-00AIB2-BM
-	for linux-amlogic@lists.infradead.org; Tue, 29 Nov 2022 16:53:34 +0000
-Received: by mail-oi1-x231.google.com with SMTP id c129so15891998oia.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 29 Nov 2022 08:53:30 -0800 (PST)
+	id 1p0JIG-00Ey4f-Px; Wed, 30 Nov 2022 09:22:18 +0000
+Received: by mail-lj1-x232.google.com with SMTP id z4so20200215ljq.6;
+        Wed, 30 Nov 2022 01:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nX3XDw+aJWbqG71jNK2XOm8EYBY4nRDO50tiBkk6nzE=;
-        b=eZGUMebShf+nYBcnZ7+qSuog/s1H+Yimyzp9jVbMHDnUyBIOtfdsnqOmKxJgXhilUd
-         kCXBn7Yj1M1Lji4/kmPp22ZbV8L2bYAvIcl9J+UYTD9d7jjjdIF6ZBGC1sYmCukK7y+w
-         6aFYnilDbD+HyK8J/Y4o/PtDq/xStFYCLkAEVDmMwchKt2sw+M0T+CCo68KLN2fjES/t
-         VWiWU7c/hgJb8sW+E/qFU6bABXcp+OnEMRzS53qibSrm9O5I+6nRBFva891L6ph/KSbC
-         zyuy1HPdFjuz3+iSiKFzARg/85GaMyGxDMYRiciqzd8wWdWoOd2TFNu1zf1zYgSkvH80
-         ShBQ==
+        d=gmail.com; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YrYQxj8rjyddDjRsu3FuqRZBUQ9RMmMk5gv8riRQFOM=;
+        b=Q8M4gPDYB4jwdz4f2CMBq+WCzhqoJPnVSqxDPcnPj237ydBotlIL0qg+XZelvewFI4
+         OYBGVoLIpcRmD/dWxXTigKma4q45VwiPVPD7Nlvw6ph0ziLAIl8p1blWCCHtUDHwt2e6
+         Ia5q8KfFnpMt58kN67cQiP9MuNYK1hyJRvZjnci9KBUH7BNWct8m1a8cHJFQ6o84G/zw
+         Oiu/1nOmQ3vkdqPk547uJSzTRtywI/gbFpbJzLKiqkES5ZTXHp9/XAK1l77tq2Zu4JLb
+         wTbUAPIfwhT4Xz9Eeuym5sC72XZBR3tzQbYnxinYcZDlj0xUPdzobKS7vbmthCRfNLq9
+         ly4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nX3XDw+aJWbqG71jNK2XOm8EYBY4nRDO50tiBkk6nzE=;
-        b=2tujhgyC9ToM1lUf43LrWV0R37tLNQ6lX+S7N0as2kEMaP0U4Uj6MKXiMd53wC3T7L
-         gAhwcGYaQ+2DQcA2mB/MRBohN1jz582EYMqJoIq/mBo3B6l5HYZ6+K/YTyZun/ndZNVx
-         2Ri7MXqwCsIb+U0sNGR7P48Ln/IIthaUEOOp/OAeciAkTZoqi/oD+CHoijxn/KLU9UAy
-         x8DtKkxedXDAq6DrglGD5wmPR9r9S8clsDGScnrswQkOcVS5x6wh+G9Zu6poagCLeGHK
-         bQDtMyedllYYwd+8a30OeqyeBk8hG2l3pq8rIOMRogxLwx44Z74mdAVW+6hQTPWeguKM
-         C2MQ==
-X-Gm-Message-State: ANoB5pm6slW3O80ITS7aHpGXUBgbUSVyj8lZtnTzVc6vfLNnA5s+qlju
-	aXpnVX0cuoXERTo3Qg3vVFqIT/s0OwDDWBzFdjGq1A==
-X-Google-Smtp-Source: AA0mqf5IXY8LzctaU4Fl4SjDm7702lMsmNWFfYQL6NXNStETLNdQMSdiKZ9Qj80YpnL+BWAZoUuLwX40hFVJgAK67OI=
-X-Received: by 2002:aca:2801:0:b0:35a:13f4:d875 with SMTP id
- 1-20020aca2801000000b0035a13f4d875mr30406072oix.190.1669740809533; Tue, 29
- Nov 2022 08:53:29 -0800 (PST)
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YrYQxj8rjyddDjRsu3FuqRZBUQ9RMmMk5gv8riRQFOM=;
+        b=BBhVSpQQayuSlmtnFQhxNMh3bluYDrOV38fn+/nqkLdpwFN951XaLVodgy4om6Rs2G
+         UwxXRm7aGCTFMl58pIiVb+8Y3BPoo9Y+Xk4gbHid3CNWW+mUl1Izy97/txzQZmJ3SrhG
+         iubQHePj7ZLviMDTCTzMuuCKM/bagDIp19EUOR80nagi0uHJmamEHQUj5x3ukzQrcEwS
+         Fv3Z/o5ckwmJ8NTmtUt/K9WjgyleyI1icP8XyovpMgQsbxY2yPWpX7D7iAj4qEWl1v7v
+         YykhJNAyXzJ3iyTxKS24rrUobxJVqs3LhQVxJFV4rdnv0/tJR9PEec+U7nSajaFvQ4W4
+         oihw==
+X-Gm-Message-State: ANoB5pkxN7TgFLkbxd7LqUrkgNd8QhENd/9h82uuASh1e5mWEdOtl69u
+	cGY0kNebw6l3w7eCODMXjd8=
+X-Google-Smtp-Source: AA0mqf4Rchr13o2XY80vRF849S2N11ziLsgahYBib0CNIMQAIIbfLZwyHl7Mga5wg7zBXockjzBaDg==
+X-Received: by 2002:a05:651c:158c:b0:26c:90f:f8fe with SMTP id h12-20020a05651c158c00b0026c090ff8femr20464441ljq.2.1669800132086;
+        Wed, 30 Nov 2022 01:22:12 -0800 (PST)
+Received: from dc75zzyyyyyyyyyyyyygt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyygt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::b])
+        by smtp.gmail.com with ESMTPSA id u20-20020ac258d4000000b004b5241dc8cfsm190594lfo.10.2022.11.30.01.22.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 01:22:11 -0800 (PST)
+Date: Wed, 30 Nov 2022 11:21:51 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Robert Foss <robert.foss@linaro.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	David Airlie <airlied@gmail.com>
+Subject: [PATCH RESEND2 v4 0/2] Use devm helpers for regulator get and enable
+Message-ID: <cover.1669799805.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
-References: <cover.1668602942.git.mazziesaccount@gmail.com> <a2f0835e8d3b5f5768d887ce47a1575ae11b19f0.1668602942.git.mazziesaccount@gmail.com>
-In-Reply-To: <a2f0835e8d3b5f5768d887ce47a1575ae11b19f0.1668602942.git.mazziesaccount@gmail.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Tue, 29 Nov 2022 17:53:18 +0100
-Message-ID: <CAG3jFytRrhzWj+ka+fSK=cQfhg83pK9ZJAH4u5aRGnCmzJAZqg@mail.gmail.com>
-Subject: Re: [PATCH RESEND v4 2/2] gpu: drm: meson: Use devm_regulator_*get_enable*()
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221129_085331_437025_7FD268DE 
-X-CRM114-Status: GOOD (  20.55  )
+X-CRM114-CacheID: sfid-20221130_012216_903506_A9A9C45E 
+X-CRM114-Status: GOOD (  14.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,94 +93,113 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3299434464785018049=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The prefix to the commit title is a new one, let's use an existing one:
-- drm/meson: dw-hdmi:
-- drm: meson: dw-hdmi:
 
-On Wed, 16 Nov 2022 at 14:04, Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->
-> Simplify using the devm_regulator_get_enable_optional(). Also drop the
-> seemingly unused struct member 'hdmi_supply'.
->
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->
-> ---
-> I am doing a clean-up for my local git and encountered this one.
-> Respinning as it seems this one fell through the cracks.
-> ---
->  drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
->  1 file changed, 3 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 5cd2b2ebbbd3..7642f740272b 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -140,7 +140,6 @@ struct meson_dw_hdmi {
->         struct reset_control *hdmitx_apb;
->         struct reset_control *hdmitx_ctrl;
->         struct reset_control *hdmitx_phy;
-> -       struct regulator *hdmi_supply;
->         u32 irq_stat;
->         struct dw_hdmi *hdmi;
->         struct drm_bridge *bridge;
-> @@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->
->  }
->
-> -static void meson_disable_regulator(void *data)
-> -{
-> -       regulator_disable(data);
-> -}
-> -
->  static void meson_disable_clk(void *data)
->  {
->         clk_disable_unprepare(data);
-> @@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->         meson_dw_hdmi->data = match;
->         dw_plat_data = &meson_dw_hdmi->dw_plat_data;
->
-> -       meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
-> -       if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
-> -               if (PTR_ERR(meson_dw_hdmi->hdmi_supply) == -EPROBE_DEFER)
-> -                       return -EPROBE_DEFER;
-> -               meson_dw_hdmi->hdmi_supply = NULL;
-> -       } else {
-> -               ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
-> -               if (ret)
-> -                       return ret;
-> -               ret = devm_add_action_or_reset(dev, meson_disable_regulator,
-> -                                              meson_dw_hdmi->hdmi_supply);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> +       ret = devm_regulator_get_enable_optional(dev, "hdmi");
-> +       if (ret != -ENODEV)
-> +               return ret;
->
->         meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
->                                                 "hdmitx_apb");
-> --
-> 2.38.1
->
->
-> --
-> Matti Vaittinen, Linux device drivers
-> ROHM Semiconductors, Finland SWDC
-> Kiviharjunlenkki 1E
-> 90220 OULU
-> FINLAND
->
-> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-> Simon says - in Latin please.
-> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-> Thanks to Simon Glass for the translation =]
+--===============3299434464785018049==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wDEAM8gkULDvl3zl"
+Content-Disposition: inline
+
+
+--wDEAM8gkULDvl3zl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Simplify couple of drivers by using the new devm_regulator_*get_enable*()
+
+These patches were previously part of the series:
+https://lore.kernel.org/lkml/cover.1660934107.git.mazziesaccount@gmail.com/
+"Devm helpers for regulator get and enable". I did keep the patch series
+versioning even though I changed the series name (subject of this mail)
+to "Use devm helpers for regulator get and enable". Name was changed
+because the devm helpers are already in 6.1-rc1.
+
+Also, most of the patches in the series are already merged to subsystem
+trees so this series now contains only the patches that have not yet
+been merged. I hope they can be now directly taken sirectly into
+respective subsystem trees as the dependencies should be in v6.1-rc1.
+
+Please note that these changes are only compile-tested as I don't have
+the HW to do proper testing. Thus, reviewing / testing is highly
+appreciated.
+
+Revision history:
+
+v4: RESEND2:
+	- resend code unchanged. Commit titles and and commit messages
+	  improved.
+
+v4: RESEND:
+	- resend only the drm patches - others have been applied
+
+v3 =3D> v4:
+	- Drop applied patches
+	- rewrite cover-letter
+	- rebase on v6.1-rc1
+	- split meson and sii902x into own patches as requested.
+	- slightly modify dev_err_probe() return in sii902x.
+
+---
+
+
+Matti Vaittinen (2):
+  drm/bridge: sii902x: Use devm_regulator_bulk_get_enable()
+  drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()
+
+ drivers/gpu/drm/bridge/sii902x.c      | 26 ++++----------------------
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
+ 2 files changed, 7 insertions(+), 42 deletions(-)
+
+
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+--=20
+2.38.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--wDEAM8gkULDvl3zl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmOHIKIACgkQeFA3/03a
+ocXYwAf+KjfV0msgFQZGZRTYzXQoNbPiRpwjEi03SryY+FAWtPZVLMI0VkM97vbS
+eHNUOroZCLa8tqllqsFAbqc2/6PC7pS4hmU4HoFFgFnVhscCECxtJJ6F/MOYb++Y
+cHAcMhAXrKbaCcyGHR+y+oW0SktYYIC3nEVwxaR3G3JE3Te4moZWO/0X3B6/WH11
+Pg6XPTaclOeTWtw4sqLWDIAjjeGEkjtA16yze+GdPlo4SiS1vem6M/Z0cAWi6jiG
+9GzEE8SwWcRSqqdFgMwSX1PIZgQgim6h0fDfhrj43pws4reeUXRP4bcGqUeKCVrf
+uyIJN40u03Upe82WPq+z9D6aDrotYA==
+=c7ic
+-----END PGP SIGNATURE-----
+
+--wDEAM8gkULDvl3zl--
+
+
+--===============3299434464785018049==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3299434464785018049==--
+
