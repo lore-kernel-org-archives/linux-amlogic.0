@@ -4,84 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45CFFC4321E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Nov 2022 09:22:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457C9C433FE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Nov 2022 09:24:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=ekVlVGN7WhZa2G3XlrXit+g+6GRORWAa8uL80B00Jls=; b=mVO
-	bReaeik7ai+1GhOjHWR8If8VgA0ixO3oAw/myhWH6n0/tewDxSP+qoJSWA6XHwWGxfhbCDfOs6Qrh
-	yzXvSR+Bkucep64y3X2sjvHBETrIHaDChgIK5WOjzEobmFVkcFAEYspYSCg/QcfPB6eGvzgaKaMxD
-	aM/KETRhXRB6gcmbg0T6EYjlmo69hnU25k9wvniw6nsZ73nj9eO45+7q9Koye42a15tiEXVGWe4Zu
-	PqmQ2/ZonmxKd43DSoxcT5oLzOpM4cRS72g9O2onvp9oTKVutBjcGkYyQCg6XugqIiC9+XF3gb1Ql
-	PIpbMq02LwiSbtiRmr28EfhH6ZDkyyQ==;
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Uoid08ZewfYRONCwFQD784nb4eEpR0IGvffH8wIV54g=; b=b0A0k661aDV2UdazgTQEatJW+j
+	0e/8zs3ynljiKDj0mVD/N4VLZk+OsrJkKWMstapLGIpm+aL9CghzT9HjCIKolsGen2lAf9IsGdC3G
+	bbbWWdPeL0Z9ZBVPlGTrT1drK91jB27UfsLALrdv3FmpgCi2Zw25VcrmLpI+W/YAWusvyQry3s2rB
+	Ov56Gr/7p5o2QlUl49lyxtMmzOD8GOFxHku7I8fFg/Rf9+F0FgirEs5Kw9ZsDJ2NgqTifPKIa5/Pn
+	ZszVKxImTuow7d9NzUCjw077m8UbK+d7rHS/1mVlHdBGq4dEh3TOib8M01NBv6u5EYSNugAJoaiBM
+	VpQ3SWvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0JIU-00EyBU-Sx; Wed, 30 Nov 2022 09:22:30 +0000
-Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
+	id 1p0JKY-00Ez5Q-SJ; Wed, 30 Nov 2022 09:24:39 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0JIG-00Ey4f-Px; Wed, 30 Nov 2022 09:22:18 +0000
-Received: by mail-lj1-x232.google.com with SMTP id z4so20200215ljq.6;
-        Wed, 30 Nov 2022 01:22:13 -0800 (PST)
+	id 1p0JJ7-00EyTH-Q1; Wed, 30 Nov 2022 09:23:11 +0000
+Received: by mail-lj1-x230.google.com with SMTP id q7so20169430ljp.9;
+        Wed, 30 Nov 2022 01:23:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YrYQxj8rjyddDjRsu3FuqRZBUQ9RMmMk5gv8riRQFOM=;
-        b=Q8M4gPDYB4jwdz4f2CMBq+WCzhqoJPnVSqxDPcnPj237ydBotlIL0qg+XZelvewFI4
-         OYBGVoLIpcRmD/dWxXTigKma4q45VwiPVPD7Nlvw6ph0ziLAIl8p1blWCCHtUDHwt2e6
-         Ia5q8KfFnpMt58kN67cQiP9MuNYK1hyJRvZjnci9KBUH7BNWct8m1a8cHJFQ6o84G/zw
-         Oiu/1nOmQ3vkdqPk547uJSzTRtywI/gbFpbJzLKiqkES5ZTXHp9/XAK1l77tq2Zu4JLb
-         wTbUAPIfwhT4Xz9Eeuym5sC72XZBR3tzQbYnxinYcZDlj0xUPdzobKS7vbmthCRfNLq9
-         ly4g==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yGai96t0pVD49z2Oe24kTckJ4TAh6OnuSc06LTgbBHs=;
+        b=go472kIN5B1Uc+NA0wAic0hCbPCGr8DEEK4Ux8xipfXkD91wky5WY40pHPX1jcHOI5
+         JhBAR8KL+7g1Q5ubS7962T/ToIxdQA9IZoFbZknAOflR3Mm6ojHloqIGWj4FTEBLkIdt
+         p47glaUsIVE69a/LkSVoX2BZ6IlIQICilLCIP1p61fedXPHQP8u4UK0+J7AcuXsP4kbB
+         msDLcrBd+bY/I1IOMpPpO0C3sM2YKO2GwqzJ7bkaBUEfFo4rsIq5aU4/eBh94ip1fiOR
+         /NiCJFfXEE1uS6WJf2oi3KxHZ+p9jU4B/t9g2NIW0kLQAUKAir2ezlU1w9DvKsAhuGFr
+         C9FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YrYQxj8rjyddDjRsu3FuqRZBUQ9RMmMk5gv8riRQFOM=;
-        b=BBhVSpQQayuSlmtnFQhxNMh3bluYDrOV38fn+/nqkLdpwFN951XaLVodgy4om6Rs2G
-         UwxXRm7aGCTFMl58pIiVb+8Y3BPoo9Y+Xk4gbHid3CNWW+mUl1Izy97/txzQZmJ3SrhG
-         iubQHePj7ZLviMDTCTzMuuCKM/bagDIp19EUOR80nagi0uHJmamEHQUj5x3ukzQrcEwS
-         Fv3Z/o5ckwmJ8NTmtUt/K9WjgyleyI1icP8XyovpMgQsbxY2yPWpX7D7iAj4qEWl1v7v
-         YykhJNAyXzJ3iyTxKS24rrUobxJVqs3LhQVxJFV4rdnv0/tJR9PEec+U7nSajaFvQ4W4
-         oihw==
-X-Gm-Message-State: ANoB5pkxN7TgFLkbxd7LqUrkgNd8QhENd/9h82uuASh1e5mWEdOtl69u
-	cGY0kNebw6l3w7eCODMXjd8=
-X-Google-Smtp-Source: AA0mqf4Rchr13o2XY80vRF849S2N11ziLsgahYBib0CNIMQAIIbfLZwyHl7Mga5wg7zBXockjzBaDg==
-X-Received: by 2002:a05:651c:158c:b0:26c:90f:f8fe with SMTP id h12-20020a05651c158c00b0026c090ff8femr20464441ljq.2.1669800132086;
-        Wed, 30 Nov 2022 01:22:12 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yGai96t0pVD49z2Oe24kTckJ4TAh6OnuSc06LTgbBHs=;
+        b=efoYI2/E1cVHo2Fg7O3oXNvdBUMJHToGOKpSI70Ka88U5w1ZOy2pEAA/j4pTA8pRRR
+         l2WcOcuW2hd81rHBWepvvpQG3BvonoVpV321XQnvaehcvvPUBvgyYBloDO3aewqVGGuN
+         sUKdGth1VB+vtMF4vweh1fxkLJO3PYK8cczeAhafRs1C4gIA4GYgtO9VW2gpeuARd9xL
+         gsGtuzjoJVVvroeOM0X5jJjXjk08fX1SsiGfOfDcjXe9FR5C3tJupJ8L2prtAhAcJNMv
+         tY8It7TOSYd+4lbsQYoAJogAyUJL7svaOgBQGhWCS7lP0XEa2UYQdO3gVeCZTzhfm/jL
+         QKCA==
+X-Gm-Message-State: ANoB5pmd32U8hsBMiTqusjttoKgqls31sA/hOUERsB2WoHKF/4LvdKkA
+	0Vgrsgn0cOR+A3+ds2bWqDg=
+X-Google-Smtp-Source: AA0mqf6QzfIZXii01B5TmgIaVGOx8hXf2IofQ7Fvz/NTck20aLOkGH6AnMjK33uAlAASv3csnyEC7Q==
+X-Received: by 2002:a2e:8750:0:b0:279:9466:9355 with SMTP id q16-20020a2e8750000000b0027994669355mr7804106ljj.253.1669800185798;
+        Wed, 30 Nov 2022 01:23:05 -0800 (PST)
 Received: from dc75zzyyyyyyyyyyyyygt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyygt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::b])
-        by smtp.gmail.com with ESMTPSA id u20-20020ac258d4000000b004b5241dc8cfsm190594lfo.10.2022.11.30.01.22.10
+        by smtp.gmail.com with ESMTPSA id t27-20020ac2549b000000b0049a4862966fsm182793lfk.146.2022.11.30.01.23.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 01:22:11 -0800 (PST)
-Date: Wed, 30 Nov 2022 11:21:51 +0200
+        Wed, 30 Nov 2022 01:23:04 -0800 (PST)
+Date: Wed, 30 Nov 2022 11:23:00 +0200
 From: Matti Vaittinen <mazziesaccount@gmail.com>
 To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
 	Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Robert Foss <robert.foss@linaro.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
 	Liam Girdwood <lgirdwood@gmail.com>,
-	David Airlie <airlied@gmail.com>
-Subject: [PATCH RESEND2 v4 0/2] Use devm helpers for regulator get and enable
-Message-ID: <cover.1669799805.git.mazziesaccount@gmail.com>
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND2 v4 2/2] drm/meson: dw-hdmi: Use
+ devm_regulator_*get_enable*()
+Message-ID: <df0096b5aea2a18d1540cde379c5abf589ccd7c4.1669799805.git.mazziesaccount@gmail.com>
+References: <cover.1669799805.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <cover.1669799805.git.mazziesaccount@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221130_012216_903506_A9A9C45E 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20221130_012309_892222_D9707AE4 
+X-CRM114-Status: GOOD (  15.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,69 +91,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3299434464785018049=="
+Content-Type: multipart/mixed; boundary="===============3555588582058539442=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============3299434464785018049==
+--===============3555588582058539442==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wDEAM8gkULDvl3zl"
+	protocol="application/pgp-signature"; boundary="+FpHG9ThwonLOArJ"
 Content-Disposition: inline
 
 
---wDEAM8gkULDvl3zl
+--+FpHG9ThwonLOArJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Simplify couple of drivers by using the new devm_regulator_*get_enable*()
+Simplify using the devm_regulator_get_enable_optional(). Also drop the
+now unused struct member 'hdmi_supply'.
 
-These patches were previously part of the series:
-https://lore.kernel.org/lkml/cover.1660934107.git.mazziesaccount@gmail.com/
-"Devm helpers for regulator get and enable". I did keep the patch series
-versioning even though I changed the series name (subject of this mail)
-to "Use devm helpers for regulator get and enable". Name was changed
-because the devm helpers are already in 6.1-rc1.
-
-Also, most of the patches in the series are already merged to subsystem
-trees so this series now contains only the patches that have not yet
-been merged. I hope they can be now directly taken sirectly into
-respective subsystem trees as the dependencies should be in v6.1-rc1.
-
-Please note that these changes are only compile-tested as I don't have
-the HW to do proper testing. Thus, reviewing / testing is highly
-appreciated.
-
-Revision history:
-
-v4: RESEND2:
-	- resend code unchanged. Commit titles and and commit messages
-	  improved.
-
-v4: RESEND:
-	- resend only the drm patches - others have been applied
-
-v3 =3D> v4:
-	- Drop applied patches
-	- rewrite cover-letter
-	- rebase on v6.1-rc1
-	- split meson and sii902x into own patches as requested.
-	- slightly modify dev_err_probe() return in sii902x.
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 ---
+v4 resend 2:
+Respinning unchanged code with the commit title changed as wa suggested
+by Robert Foss and commit message changed as was suggested by Martin.
 
-
-Matti Vaittinen (2):
-  drm/bridge: sii902x: Use devm_regulator_bulk_get_enable()
-  drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()
-
- drivers/gpu/drm/bridge/sii902x.c      | 26 ++++----------------------
+I am doing a clean-up for my local git and encountered this one.
+Respinning as it seems this one fell through the cracks.
+---
  drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
- 2 files changed, 7 insertions(+), 42 deletions(-)
+ 1 file changed, 3 insertions(+), 20 deletions(-)
 
-
-base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/=
+meson_dw_hdmi.c
+index 5cd2b2ebbbd3..7642f740272b 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -140,7 +140,6 @@ struct meson_dw_hdmi {
+ 	struct reset_control *hdmitx_apb;
+ 	struct reset_control *hdmitx_ctrl;
+ 	struct reset_control *hdmitx_phy;
+-	struct regulator *hdmi_supply;
+ 	u32 irq_stat;
+ 	struct dw_hdmi *hdmi;
+ 	struct drm_bridge *bridge;
+@@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *m=
+eson_dw_hdmi)
+=20
+ }
+=20
+-static void meson_disable_regulator(void *data)
+-{
+-	regulator_disable(data);
+-}
+-
+ static void meson_disable_clk(void *data)
+ {
+ 	clk_disable_unprepare(data);
+@@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, stru=
+ct device *master,
+ 	meson_dw_hdmi->data =3D match;
+ 	dw_plat_data =3D &meson_dw_hdmi->dw_plat_data;
+=20
+-	meson_dw_hdmi->hdmi_supply =3D devm_regulator_get_optional(dev, "hdmi");
+-	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
+-		if (PTR_ERR(meson_dw_hdmi->hdmi_supply) =3D=3D -EPROBE_DEFER)
+-			return -EPROBE_DEFER;
+-		meson_dw_hdmi->hdmi_supply =3D NULL;
+-	} else {
+-		ret =3D regulator_enable(meson_dw_hdmi->hdmi_supply);
+-		if (ret)
+-			return ret;
+-		ret =3D devm_add_action_or_reset(dev, meson_disable_regulator,
+-					       meson_dw_hdmi->hdmi_supply);
+-		if (ret)
+-			return ret;
+-	}
++	ret =3D devm_regulator_get_enable_optional(dev, "hdmi");
++	if (ret !=3D -ENODEV)
++		return ret;
+=20
+ 	meson_dw_hdmi->hdmitx_apb =3D devm_reset_control_get_exclusive(dev,
+ 						"hdmitx_apb");
 --=20
 2.38.1
 
@@ -172,25 +191,25 @@ Simon says - in Latin please.
 ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
 Thanks to Simon Glass for the translation =3D]=20
 
---wDEAM8gkULDvl3zl
+--+FpHG9ThwonLOArJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmOHIKIACgkQeFA3/03a
-ocXYwAf+KjfV0msgFQZGZRTYzXQoNbPiRpwjEi03SryY+FAWtPZVLMI0VkM97vbS
-eHNUOroZCLa8tqllqsFAbqc2/6PC7pS4hmU4HoFFgFnVhscCECxtJJ6F/MOYb++Y
-cHAcMhAXrKbaCcyGHR+y+oW0SktYYIC3nEVwxaR3G3JE3Te4moZWO/0X3B6/WH11
-Pg6XPTaclOeTWtw4sqLWDIAjjeGEkjtA16yze+GdPlo4SiS1vem6M/Z0cAWi6jiG
-9GzEE8SwWcRSqqdFgMwSX1PIZgQgim6h0fDfhrj43pws4reeUXRP4bcGqUeKCVrf
-uyIJN40u03Upe82WPq+z9D6aDrotYA==
-=c7ic
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmOHIPMACgkQeFA3/03a
+ocWCtwf/SqqXk1TmF3RIampIzoVrQFshZ9dfdQ6qZa4jPxhDGGo8ciDcfn5T85on
+kokvVj+hJXDVO4y7RdOCkAHgrpsfpkeP/D0lpuweheJI4D+vQamC7w4IXawx+A1R
+4/ep6+L1m/e9IvNDN5wjzonI0tHiiLk/9hevkphEa6ub4+SQJth/D8Lki+MthGn5
+7WZlwzG9uZe2dfZBCZf/AlimWeiZffPO4MpG5qDWoX8Ww5c0522DTk9Ve5uDXGzY
+B5mi24ZGT7drjnC+tma7tIC11wnFSzm5146qoGIdLN4WM4D9kYFjzNooDHGcGIvG
+too31/Cs5RBF1g4dMEGRL1lbeuTMcw==
+=cZNk
 -----END PGP SIGNATURE-----
 
---wDEAM8gkULDvl3zl--
+--+FpHG9ThwonLOArJ--
 
 
---===============3299434464785018049==
+--===============3555588582058539442==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -201,5 +220,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============3299434464785018049==--
+--===============3555588582058539442==--
 
