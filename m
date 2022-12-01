@@ -4,91 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A755C4708C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Dec 2022 12:32:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C15CFC43217
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Dec 2022 13:17:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JcqI4LSSCUYKWmsIByxz0JMuFxSTX8VWwSPbATd9380=; b=VV2t+4KxVclMLLLl78g951YHcP
-	g7E8wkecSIh1Ix2LWKLf+SipgZM9KaoBfhqKQaijkYFVRvs4surXYKVsnL4PF/uS99Zv842J0Imsg
-	axImQG0Fvn5PTe4wrAuS7j/++lVG5wVaSVWZrpWibUtLrcFeHXdcfDwNfonLU9mTu9EGKU8Ld1lK5
-	ziZmPSqviwDDnK8C62g29gy2ivRVK7sCRSDTDIoXbj7rdBon0+9jT+0FdtZy17ZPi7CV0x1C5yqDW
-	YU4Y5bmI3li9B0/HJuO8I/aYoIYvWuN6g97qmaVivXoTKC2DlNXr9qlY3JVozX1UPtEOxMR6qsk8X
-	nMAi7cUA==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YC/K5zjhQNaTnj5OXFgloLoUYiTmf0hoY4gCOnn+0so=; b=XRyNrhAv5yKxy6K0JF9//4FQLs
+	QShKjFToUkhIroh5Dq8k+/mbWetfAsbxSc+4zYbAKcMtcigJ3z78r4fS8FeREjy+as9Nr8uxTKxLc
+	b+1FkERWGUZTym8E0yg/G8noW/KCjj2zdHhAlnTAPtaXN281rav4LC3UgWG3BPKT19b1pfs7WdB2w
+	v5LjQF1lkB/qL8gNsESBw2CJdpv6ORGyv3Uqk3ptDKZNvjmI5sHkwwc5b0XifXhnHcEsLMwre0DQj
+	XmL67IfEpM16LIhR6PwAHwBXpeHHnKSbFQSyYYZgQa1//SaSvLWsmwHEeZhtXNtH5yCoE9kIgOqIQ
+	FBD8g1KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0ijk-007K1W-NT; Thu, 01 Dec 2022 12:32:20 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1p0jRE-007eIc-D0; Thu, 01 Dec 2022 13:17:16 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0ijg-007Jz4-8t
-	for linux-amlogic@lists.infradead.org; Thu, 01 Dec 2022 12:32:19 +0000
-Received: by mail-wr1-x429.google.com with SMTP id m14so2455997wrh.7
-        for <linux-amlogic@lists.infradead.org>; Thu, 01 Dec 2022 04:32:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxqmNG8QVZimK11GUSa3uC8aKzXNCTd3Uy233UpMikw=;
-        b=brwGJiSQB2PgNAjfjeVDu2Lw4MXR3s7nddenvTEzsUvZVZpSThxWO2TuzR83KNl5fK
-         whfr1WCo/41xOH9uRtOu3NhP+0vGJRGnHwE2Uv0J1RCcKN6TGIu+NjJLgTaHypV56Khj
-         0nRxGt1XUJ4gZ5GabHNRrhqdzdEZW4Nhht0C0necxV2EM588kqp5SDnqTLHokxCfu1Uu
-         cWIaH6d5iPBdWQviZ7in2WlrvUPYEgpoQi1NQNeGhESO79KEqc9AhlCB6RKu40EzchSQ
-         4kOLf0xfYhxQtja1gXaPHrrP87i1EK5Y6aX43uwLnst81HsBGT5vTYBkf1Ryo/bT3Y8k
-         ISCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oxqmNG8QVZimK11GUSa3uC8aKzXNCTd3Uy233UpMikw=;
-        b=rmhe+xU34JUgsWFkF56G7Ho8lD79Wpff45+7bIYRcmmKBVlXpGuzOcthmRcFcyS1GI
-         M+VhqLxo3DKFwpf141bfsCPgKI3AFxyhowAa7xleu5i+AE1/j7Cd4kC1Cc8L21YTZaYx
-         /8240o5411Yj4Jd56qEjuK9AR402UaJo326A0OJawj1qWL1E68iarqhCAtDc1IqHv+9c
-         nt2RhaoQgxMHltZ7eR76TBjM3HSfWey/D7QoJBgHI1Q7aIgk9birbaIJC7A2tJD/EzOJ
-         Sygj5AoeAtKoFZru6RmN3aXld8/DOGd1BfNhVLmEHumZ0qSiqXJAvQSkCNu4Ka/oPVGH
-         3MUQ==
-X-Gm-Message-State: ANoB5pk0H4UkCAos2Kmd0R9yPl3kGW4xHCyS7xJRz+yZWokLF8301hjI
-	zqxLu3fB+1a3hMBFqn12KdKRMw==
-X-Google-Smtp-Source: AA0mqf4Nr9iAQ6o9/0h2mpgVlskb2Nt6UNuURrnkxoah0H1FYMkvfzCFRPuJEr+vCGMNJGkDcVSSQw==
-X-Received: by 2002:adf:ea0a:0:b0:241:fcd5:6b94 with SMTP id q10-20020adfea0a000000b00241fcd56b94mr22579342wrm.592.1669897933467;
-        Thu, 01 Dec 2022 04:32:13 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bec0:73a:70e1:228f? ([2a01:e0a:982:cbb0:bec0:73a:70e1:228f])
-        by smtp.gmail.com with ESMTPSA id l5-20020a5d5605000000b002367ad808a9sm4316424wrv.30.2022.12.01.04.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 04:32:13 -0800 (PST)
-Message-ID: <16642605-2842-2210-440e-44f37cf06783@linaro.org>
-Date: Thu, 1 Dec 2022 13:32:12 +0100
+	id 1p0jRA-007eFm-MA
+	for linux-amlogic@lists.infradead.org; Thu, 01 Dec 2022 13:17:14 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p0jQF-0005k0-SY; Thu, 01 Dec 2022 14:16:15 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p0jQ4-001aku-EN; Thu, 01 Dec 2022 14:16:05 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p0jQ4-001nfp-Ga; Thu, 01 Dec 2022 14:16:04 +0100
+Date: Thu, 1 Dec 2022 14:16:04 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	dri-devel@lists.freedesktop.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	Pavel Machek <pavel@ucw.cz>, Guenter Roeck <groeck@chromium.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Fabio Estevam <festevam@gmail.com>, linux-riscv@lists.infradead.org,
+	linux-leds@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+	chrome-platform@lists.linux.dev,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Michal Simek <michal.simek@xilinx.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Hammer Hsieh <hammerh0314@gmail.com>,
+	linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Orson Zhai <orsonzhai@gmail.com>, linux-sunxi@lists.linux.dev,
+	linux-pwm@vger.kernel.org,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Ray Jui <rjui@broadcom.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Stephen Boyd <swboyd@chromium.org>, linux-gpio@vger.kernel.org,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	linux-mediatek@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-amlogic@lists.infradead.org,
+	Benson Leung <bleung@chromium.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Scott Branden <sbranden@broadcom.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Michael Walle <michael@walle.cc>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: Re: [PATCH v2 01/11] pwm: Make .get_state() callback return an error
+ code
+Message-ID: <20221201131604.beq4l22d42tjy6dm@pengutronix.de>
+References: <20221130152148.2769768-1-u.kleine-koenig@pengutronix.de>
+ <20221130152148.2769768-2-u.kleine-koenig@pengutronix.de>
+ <20221201102252.52ace284@donnerap.cambridge.arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 1/7] dt-bindings: reset: meson-g12a: Add missing NNA
- reset
-Content-Language: en-US
-To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc: italonicola@collabora.com, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson SoC support"
- <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
-References: <20221201103026.53234-1-tomeu.vizoso@collabora.com>
- <20221201103026.53234-2-tomeu.vizoso@collabora.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221201103026.53234-2-tomeu.vizoso@collabora.com>
+In-Reply-To: <20221201102252.52ace284@donnerap.cambridge.arm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221201_043216_363384_C39FC79F 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20221201_051712_743411_33D5F22F 
+X-CRM114-Status: GOOD (  15.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,47 +116,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============7103065779372548931=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/12/2022 11:30, Tomeu Vizoso wrote:
-> Doesn't appear in the TRM I have, but it is used by the downstream
-> galcore driver.
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> index 6d487c5eba2c..45f6b8a951d0 100644
-> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> @@ -69,7 +69,9 @@
->   #define RESET_PARSER_FETCH		72
->   #define RESET_CTL			73
->   #define RESET_PARSER_TOP		74
-> -/*					75-77	*/
-> +/*					75	*/
-> +#define RESET_NNA			76
-> +/*					77	*/
->   #define RESET_DVALIN			78
->   #define RESET_HDMITX			79
->   /*					80-95	*/
 
-Missing from https://lore.kernel.org/all/98517f65e600cddf585e53d1ca98cbb7b0b43aee.camel@pengutronix.de/ :
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+--===============7103065779372548931==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ohce74rjo6dhumlo"
+Content-Disposition: inline
 
-No need to send to send a v6 for that, I'll add it while applying after next rc1.
 
-Neil
+--ohce74rjo6dhumlo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello Andre,
+
+On Thu, Dec 01, 2022 at 10:22:52AM +0000, Andre Przywara wrote:
+> Just one comment: I don't see a sunxi specific patch later in the series,
+> though it seems we have at least one error error exit (see prescaler =3D=
+=3D 0
+> above). Plus potentially another exit if clk_get_rate() (at the very
+> beginning) fails.
+> Shall I send a patch for that?
+
+That would we very welcome. I mentioned that shortly in the cover
+letter, I wasn't entirely sure how to handle that prescaler =3D 0 case.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ohce74rjo6dhumlo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOIqREACgkQwfwUeK3K
+7Anj8wf/RTNhxYSv59Ka1mlJPxXTgymtejOcjGY7Mbrq9aaYBt0Hmzz6T20Siom0
+QSRZvBBJxLeC6sMsbo0Fz9qdDLt4Y9eWczlHASjdcke40fNWNcUpjo7GqJ8hMfD9
+/aBk/LIrTHuSJDWkLiUxCXgg/mPhVdSfgltE3xCWRU/+rQxWvEnKjFCDDnQvwGlJ
+XDzUeAMWwhWAOAeq69ypA0qbVXlCnpA7rRbuNpgviLuXPg8B8sCx+fEPtsGCAwh1
+W/lWgOdahAH40o8lldqWf0S/1Bb95qmDKjx/yI1gsCQpycDwDEgQeueUPRTMz912
+rL27K8cypWE75vkt7PMvSDMIkNan0w==
+=aHcT
+-----END PGP SIGNATURE-----
+
+--ohce74rjo6dhumlo--
+
+
+--===============7103065779372548931==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7103065779372548931==--
+
