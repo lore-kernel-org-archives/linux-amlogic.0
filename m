@@ -4,43 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8A4C4708A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Nov 2022 18:38:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8248AC4321E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Dec 2022 01:18:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lic+8xBPZ99wKGM24wpNcbf02dGsqNPqc8KvkHaNERo=; b=pbCkpLuPdgbQug
-	hoAVywy7UyVPpUjsOFvSDGKxVuSio29IPJRC7n0KToGdzyZRZi+bdIS1XND7asDoJATcL/qzL/873
-	Tcn7uuab/QuEiOYdEsoVjDoQT7NLcjWTyIeHo21d2zr+BY1SpDRzumj9ckrdQlgxxLCMvSEMmbtKe
-	KuGyDj45vXI1l/8/LQRCC7cCBry0YXKPKc6ahOs3N6DkRnvs1w8M0fFqpdevHGPa6B8iQwgt1EYTK
-	S4yXiTBx/NOxNiIZNV0L1ckuo/yqKfzs8hbw4q72rWuJnOa8JhFIiYg4KBuN5i/9QGiqb5QKlxX7w
-	eGNkZsE5CX0NURm0HtHw==;
+	List-Owner; bh=vRuOOVwa3eefqmeFolJ0VgQxeVhKsSjARbGNypV3A/A=; b=alOdo4kc7IRs2D
+	fm2i8m+gnceLEj2j1O+aHNDMt6juh+mVPDrTtmzGtu7rAyzqL+olmQA4zSOwx+H1cx5Rq72gSdnpF
+	XMVEvBtxUkpYm+Dil8JxqGXEXxECWkbp90WOAOSVD5R2JOx1qT5Pf3E/o43j3VEmivRrwDlD0pxh/
+	fTNHbXUVxgzFEuEaLT1COtLBsHJEW+A4deiFovEfzfnoseMPwi1qM01fLj63UoqJlcCe97gJqop98
+	1AhLyq0Eh7AUZ8T4PRspFGAIZqddeEaraYBeejg5IzB3k7S3INPzBcp9A9/A4Zcmrm1Vnvy0uE+8/
+	t7FyHJ7Vjdy9jEByHMdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0RyR-001fC1-0B; Wed, 30 Nov 2022 18:38:23 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1p0YCt-003lLk-FO; Thu, 01 Dec 2022 01:17:43 +0000
+Received: from out30-57.freemail.mail.aliyun.com ([115.124.30.57])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0RxT-001ecQ-Bg; Wed, 30 Nov 2022 18:37:24 +0000
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1p0Rwv-0003tW-CD; Wed, 30 Nov 2022 19:36:49 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Thierry Reding <thierry.reding@gmail.com>, Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Douglas Anderson <dianders@chromium.org>, Pavel Machek <pavel@ucw.cz>, Claudiu Beznea <claudiu.beznea@microchip.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger <matthias.bgg@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Michael Walle <michael@walle.cc>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Hammer Hsieh <hammerh0314@gmail.com>, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Sean Anderson <sean.anderson@seco.com>, Michal Simek <michal.simek@xilinx.com>, Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <swboyd@chromium.org>, Matthias Kaehlcke <mka@chromium.org>, Satya Priya <quic_c_skakit@quicinc.com>, linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org, chrome-platform@lists.linux.dev, linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 01/11] pwm: Make .get_state() callback return an error code
-Date: Wed, 30 Nov 2022 19:36:47 +0100
-Message-ID: <3943768.iZASKD2KPV@diego>
-In-Reply-To: <20221130152148.2769768-2-u.kleine-koenig@pengutronix.de>
-References: <20221130152148.2769768-1-u.kleine-koenig@pengutronix.de> <20221130152148.2769768-2-u.kleine-koenig@pengutronix.de>
+	id 1p0YCp-003lJf-R1; Thu, 01 Dec 2022 01:17:42 +0000
+X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R251e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=ay29a033018045168;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=57;SR=0;TI=SMTPD_---0VW5-8b9_1669857445;
+Received: from 30.97.48.64(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0VW5-8b9_1669857445)
+          by smtp.aliyun-inc.com;
+          Thu, 01 Dec 2022 09:17:29 +0800
+Message-ID: <a7e61ce5-b5e6-384a-3c89-ebde63340678@linux.alibaba.com>
+Date: Thu, 1 Dec 2022 09:17:30 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 01/11] pwm: Make .get_state() callback return an error
+ code
+To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Thierry Reding <thierry.reding@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Douglas Anderson <dianders@chromium.org>,
+ Pavel Machek <pavel@ucw.cz>, Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Benson Leung <bleung@chromium.org>,
+ Guenter Roeck <groeck@chromium.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Michael Walle <michael@walle.cc>,
+ Orson Zhai <orsonzhai@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, Chen-Yu Tsai
+ <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Hammer Hsieh <hammerh0314@gmail.com>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Sean Anderson <sean.anderson@seco.com>,
+ Michal Simek <michal.simek@xilinx.com>,
+ Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+ Matthias Kaehlcke <mka@chromium.org>, Satya Priya
+ <quic_c_skakit@quicinc.com>, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ chrome-platform@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
+References: <20221130152148.2769768-1-u.kleine-koenig@pengutronix.de>
+ <20221130152148.2769768-2-u.kleine-koenig@pengutronix.de>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <20221130152148.2769768-2-u.kleine-koenig@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221130_103723_488902_F6FA11A9 
-X-CRM114-Status: GOOD (  15.83  )
+X-CRM114-CacheID: sfid-20221130_171740_087966_543CE07A 
+X-CRM114-Status: GOOD (  11.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -52,56 +92,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> diff --git a/drivers/pwm/pwm-rockchip.c b/drivers/pwm/pwm-rockchip.c
-> index a5af859217c1..3ec7d1756903 100644
-> --- a/drivers/pwm/pwm-rockchip.c
-> +++ b/drivers/pwm/pwm-rockchip.c
-> @@ -57,9 +57,9 @@ static inline struct rockchip_pwm_chip *to_rockchip_pwm_chip(struct pwm_chip *c)
->  	return container_of(c, struct rockchip_pwm_chip, chip);
->  }
->  
-> -static void rockchip_pwm_get_state(struct pwm_chip *chip,
-> -				   struct pwm_device *pwm,
-> -				   struct pwm_state *state)
-> +static int rockchip_pwm_get_state(struct pwm_chip *chip,
-> +				  struct pwm_device *pwm,
-> +				  struct pwm_state *state)
->  {
->  	struct rockchip_pwm_chip *pc = to_rockchip_pwm_chip(chip);
->  	u32 enable_conf = pc->data->enable_conf;
-> @@ -70,11 +70,11 @@ static void rockchip_pwm_get_state(struct pwm_chip *chip,
->  
->  	ret = clk_enable(pc->pclk);
->  	if (ret)
-> -		return;
-> +		return 0;
->  
->  	ret = clk_enable(pc->clk);
->  	if (ret)
-> -		return;
-> +		return 0;
->  
->  	clk_rate = clk_get_rate(pc->clk);
->  
-> @@ -96,6 +96,8 @@ static void rockchip_pwm_get_state(struct pwm_chip *chip,
->  
->  	clk_disable(pc->clk);
->  	clk_disable(pc->pclk);
-> +
-> +	return 0;
->  }
-
-for the Rockchip-part:
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAxMS8zMC8yMDIyIDExOjIxIFBNLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToKPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9wd20vcHdtLXNwcmQuYyBiL2RyaXZlcnMvcHdtL3B3bS1zcHJkLmMK
+PiBpbmRleCA3MDA0ZjU1YmJmMTEuLmJkYThiYzVhZjk3NiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L3B3bS9wd20tc3ByZC5jCj4gKysrIGIvZHJpdmVycy9wd20vcHdtLXNwcmQuYwo+IEBAIC02NSw4
+ICs2NSw4IEBAIHN0YXRpYyB2b2lkIHNwcmRfcHdtX3dyaXRlKHN0cnVjdCBzcHJkX3B3bV9jaGlw
+ICpzcGMsIHUzMiBod2lkLAo+ICAgCXdyaXRlbF9yZWxheGVkKHZhbCwgc3BjLT5iYXNlICsgb2Zm
+c2V0KTsKPiAgIH0KPiAgIAo+IC1zdGF0aWMgdm9pZCBzcHJkX3B3bV9nZXRfc3RhdGUoc3RydWN0
+IHB3bV9jaGlwICpjaGlwLCBzdHJ1Y3QgcHdtX2RldmljZSAqcHdtLAo+IC0JCQkgICAgICAgc3Ry
+dWN0IHB3bV9zdGF0ZSAqc3RhdGUpCj4gK3N0YXRpYyBpbnQgc3ByZF9wd21fZ2V0X3N0YXRlKHN0
+cnVjdCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKPiArCQkJICAgICAg
+c3RydWN0IHB3bV9zdGF0ZSAqc3RhdGUpCj4gICB7Cj4gICAJc3RydWN0IHNwcmRfcHdtX2NoaXAg
+KnNwYyA9Cj4gICAJCWNvbnRhaW5lcl9vZihjaGlwLCBzdHJ1Y3Qgc3ByZF9wd21fY2hpcCwgY2hp
+cCk7Cj4gQEAgLTgzLDcgKzgzLDcgQEAgc3RhdGljIHZvaWQgc3ByZF9wd21fZ2V0X3N0YXRlKHN0
+cnVjdCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKPiAgIAlpZiAocmV0
+KSB7Cj4gICAJCWRldl9lcnIoc3BjLT5kZXYsICJmYWlsZWQgdG8gZW5hYmxlIHB3bSV1IGNsb2Nr
+c1xuIiwKPiAgIAkJCXB3bS0+aHdwd20pOwo+IC0JCXJldHVybjsKPiArCQlyZXR1cm4gMDsKPiAg
+IAl9Cj4gICAKPiAgIAl2YWwgPSBzcHJkX3B3bV9yZWFkKHNwYywgcHdtLT5od3B3bSwgU1BSRF9Q
+V01fRU5BQkxFKTsKPiBAQCAtMTEzLDYgKzExMyw4IEBAIHN0YXRpYyB2b2lkIHNwcmRfcHdtX2dl
+dF9zdGF0ZShzdHJ1Y3QgcHdtX2NoaXAgKmNoaXAsIHN0cnVjdCBwd21fZGV2aWNlICpwd20sCj4g
+ICAJLyogRGlzYWJsZSBQV00gY2xvY2tzIGlmIHRoZSBQV00gY2hhbm5lbCBpcyBub3QgaW4gZW5h
+YmxlIHN0YXRlLiAqLwo+ICAgCWlmICghc3RhdGUtPmVuYWJsZWQpCj4gICAJCWNsa19idWxrX2Rp
+c2FibGVfdW5wcmVwYXJlKFNQUkRfUFdNX0NITl9DTEtTX05VTSwgY2huLT5jbGtzKTsKPiArCj4g
+KwlyZXR1cm4gMDsKPiAgIH0KPiAgIAo+ICAgc3RhdGljIGludCBzcHJkX3B3bV9jb25maWcoc3Ry
+dWN0IHNwcmRfcHdtX2NoaXAgKnNwYywgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKCkZvciBzcHJk
+IHB3bSBwYXJ0czoKUmV2aWV3ZWQtYnk6IEJhb2xpbiBXYW5nIDxiYW9saW4ud2FuZ0BsaW51eC5h
+bGliYWJhLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
