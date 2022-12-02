@@ -4,88 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FEEEC4321E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 13:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2DA9C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 18:21:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PvtGyWcNDj9KHN5WFs3X0LFsZiUOxMWs86ByhJ1+bgU=; b=sb3KZKwdZhtd/RMKlGfREfsjUQ
-	kRL+fZUVQbUWnLpzDeWpQQXnLhDTw8C5/n93zrjjVQxaR0yIt0wHhcH30lgU1iXqywYZzcIUKdh8D
-	ar4MTrpqcme0F8GYhKoZEcW3QDa2NAKCj2E3gGvyzjxAMRyamFfXLIUvgwl5OrjO6fkETCPleDWFh
-	fWjssuBWdIKxq07ZHx2c9PW5i1wPWAU/8slfz8ksoucZIYzFKE3Ho6nlw36XM6VBxlcMm8SZWRbKJ
-	l3E4oeM1WEA12678KdyrAymm6hpB5NFPo4DDiy4FX5EnNaj24GCM74nSisuEM9G7HzRJSBnPz6Rai
-	36Djy59w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ztkTHEaYU0of0jau0rq94ENeXc4Z0JjLsgZSAUjX0V0=; b=sa4XsTkVPy8cVy
+	4cq9vVvQ6RK7SG+Ed0gWTPC6nPutqj+HUGzJlQW+Mojia+gytoib5LRWz6ae/zGdBu0Sym4aOOH4G
+	wwqgAH1hXfCXc9CVuB1KAQlvt3C1q3wXavsFHguSIsV3qttHFQvayB1IEsQK57vagK6BrUwNAsksd
+	bvR/Mtbsws145DZA6J3/J1jssoQptA+qpS8F6yLSvujX4abvdRdahGx1hVfSFYdKTBGkcrQ+ZMjov
+	3Q7q5syIDErWxTOY9ABCiGubuirmGCg7NHo9o966kG7qecTxu5aK+VxkdvK4LaOgaIpdjEfFZIGmg
+	KiKEPX3HRti7W4AyPs4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p16Eq-00GeKM-8u; Fri, 02 Dec 2022 13:38:00 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1p1Aeh-000bma-I2; Fri, 02 Dec 2022 18:20:59 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p16En-00GeCx-Vf
-	for linux-amlogic@lists.infradead.org; Fri, 02 Dec 2022 13:37:59 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id ay27-20020a05600c1e1b00b003d070f4060bso4287941wmb.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 02 Dec 2022 05:37:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QlnSVyeNJBQ8zK66UIaHiEDYVNMWbpzHfG8l8D5rLsg=;
-        b=N45ciQYnHxOkUVsrs81RcyjRL8lTXLnrCIzyNfU4Mg6zbWfU49CRo+PqHjsVIKBoXT
-         o67vBMVFPcjPEa6uLCxzEX/3nODc9VzaI2/0L5ZMoLgVx3/YYyxlkt9BbeKrivOgIBY9
-         FrN1XaYYbW7ryAFxm7WhDYKRVhyCrDVpgxu0a91ruf/k4f8k3qqQ6Pkn7kiVFWJnJmzk
-         tlg+xqNuv845UMmYNayu9JRIWC9zUioWCeVpdjHEryy2gimAcMFW4riHu7L1HrLQWg92
-         rXvkQYqvR7jcYjdubRJOF/X9nI0GamMU0015SCD1QWjXOs3aExEUAhg+DYFWWqApo4MP
-         OuGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QlnSVyeNJBQ8zK66UIaHiEDYVNMWbpzHfG8l8D5rLsg=;
-        b=KBF8kDkJYztpffmojvJYOKfBiPKcM/qR/igFH06Mia+PfH/PSaYnDZ3SBwhT7Yr//h
-         hMgt79Yra8PMCzpHkfxdwNuVqoleBbVcHirAn/BX3SCWOeqzHJDOVBfvWke+djRn/gti
-         P4alARrdSL0NCjlno4IC+4T3vis9Qi37Rf6kHyi8LIRs2t98Y8CX5pJBO0hi/8ZaTUJg
-         KM2BevNNuwFReg2qTdykqAn3pve55j7tiA96SwV28yQEnDQfNrIKZJVkHWZkn/kRxgaH
-         JMjq2n8x7rfG5SCK8wSTMxzVH67rUa5dpdNgmYZEXrMfEP8oJN6XuNMbHuCzTakLwJ1r
-         t2jg==
-X-Gm-Message-State: ANoB5pmjC6TUDQHmAOoMAdxF84cENwMd8n3bIPqH4qiYJN+ZFnsAQKae
-	shKOWAMgfXpGznbc/IrJRcpAqQ==
-X-Google-Smtp-Source: AA0mqf6OqpNKEm+sXTPS3e9MaetKH8+YfTL0xVUNaCagbT7KYStNnsov4FfzoOxwxySoBKlrDnQTTQ==
-X-Received: by 2002:a05:600c:3108:b0:3cf:8058:43b8 with SMTP id g8-20020a05600c310800b003cf805843b8mr39657323wmo.95.1669988274183;
-        Fri, 02 Dec 2022 05:37:54 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c6e:eb0:b551:55ee? ([2a01:e0a:982:cbb0:c6e:eb0:b551:55ee])
-        by smtp.gmail.com with ESMTPSA id q128-20020a1c4386000000b003c71358a42dsm16811398wma.18.2022.12.02.05.37.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 05:37:53 -0800 (PST)
-Message-ID: <10ac1cc2-a4cc-3d00-9d6a-550f2d5e4d9d@linaro.org>
-Date: Fri, 2 Dec 2022 14:37:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v8 11/11] arm64: dts: meson: a1: introduce PLL and
- Peripherals clk controllers
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com
-Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+	id 1p1Aee-000biN-2b; Fri, 02 Dec 2022 18:20:58 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 5817B5FD0D;
+	Fri,  2 Dec 2022 21:20:36 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1670005236;
+	bh=lVVo71weIt+vHXOc869oAd9D4/vmfPmKx3pWAnQt/xg=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=p+oPvJLLQDOGLCV4iYf4YWo0zMZunaoOlSvH81gnDYYC4jIjzrByi3bK4OqLvBhr1
+	 nyRWpXFcYHWT85OdnUVyjddx2TIzgJkZn1gdgFWQv/S6UqPyHgbwnHw85whKrsuqOX
+	 NU7w+Tn0zd2uygvXv4xxVQR/qVdXRLDjWFNcTxUOyW2KCdriFxoIB2qSbyviKq7b8L
+	 BKxXUUPZw1oxASaI5957UxLHVsK0dNwJw9ivb9ITp6WFuhMPU070JRUZosG9BQ0Fau
+	 kK3hmvXaJ8459jWe/96LOMZc4HBjPC0gLYsCbsosMiSbkvr4wPNu8mMXLmktBQQ424
+	 LWWFepozlDlGQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Fri,  2 Dec 2022 21:20:35 +0300 (MSK)
+Date: Fri, 2 Dec 2022 21:20:35 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v8 07/11] clk: meson: a1: redesign Amlogic A1 PLL clock
+ controller
+Message-ID: <20221202182035.radbnv4eiuiekiqc@CAB-WSD-L081021>
 References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-12-ddrokosov@sberdevices.ru>
- <1jlenq6mc7.fsf@starbuckisacylon.baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <1jlenq6mc7.fsf@starbuckisacylon.baylibre.com>
+ <20221201225703.6507-8-ddrokosov@sberdevices.ru>
+ <1jtu2e6mn5.fsf@starbuckisacylon.baylibre.com>
+ <20221202124730.uckax232hnjqg26a@CAB-WSD-L081021>
+ <1jh6ye6js6.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1jh6ye6js6.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 14:06:00 #20638022
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221202_053758_059646_76C63857 
-X-CRM114-Status: GOOD (  19.17  )
+X-CRM114-CacheID: sfid-20221202_102056_496177_8F5D7FE5 
+X-CRM114-Status: GOOD (  27.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,104 +87,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 02/12/2022 13:03, Jerome Brunet wrote:
-> 
-> On Fri 02 Dec 2022 at 01:57, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> 
->> This patch adds clkc_periphs and clkc_pll dts nodes to A1 SoC main dtsi.
->> The first one clk controller is responsible for all SoC peripherals
->> clocks excluding audio clocks. The second one clk controller is used by
->> A1 SoC PLLs. Actually, there are two different APB heads, so we have two
->> different drivers.
-> 
-> Please send this change through a separate patcheset.
-> 
-> One patcheset/series for clk (and bindings)
-> Another one for the DTS (usually sent after the first one is accepted)
+...
 
-Yes please split out the DT in a separate patchset, but only send then once
-the bindings are fully reviewed and accepted.
+> >> > +static int meson_a1_pll_init(struct clk_hw *hw)
+> >> > +{
+> >> > +	struct clk_regmap *clk = to_clk_regmap(hw);
+> >> > +	struct meson_a1_pll_data *pll = meson_a1_pll_data(clk);
+> >> > +
+> >> > +	regmap_multi_reg_write(clk->map, pll->base.init_regs,
+> >> > +			       pll->base.init_count);
+> >> > +
+> >> > +	return 0;
+> >> 
+> >> Looks the the default init mostly
+> >> 
+> >> Looks like you are trying the handle the absence of the rst bit.
+> >> I'm pretty sure the hifi PLL of the SoC as one but you really don't want
+> >> to poke, this can be in the generic driver, with MESON_PARM_APPLICABLE()
+> >> test.
+> >> 
+> >> No need to redefine this
+> >> 
+> >
+> > I've redefined it, because in the previous v7 you mentioned that's
+> > not acceptable to mix init/enable/disable sequences between a1 pll and clk
+> > common pll driver:
+> >
+> > https://lore.kernel.org/linux-amlogic/1jd0ac5kpk.fsf@starbuckisacylon.baylibre.com/
+> >
+> > Hmmm, looks like I've made a mistake. You meant only enable/disable
+> > callbacks...
+> >
+> > Anyway, it doesn't matter to me. I think both approaches are okay:
+> >     * clk-pll customization using MESON_PARM_APPLICABLE()
+> >     * custom callbacks implementation for some clk_ops like implemented in
+> >       this patchset.
+> >
+> > Please advise what's the best from you point of view?
+> 
+> It is a balance.
+> 
+> Everytime a new PLL comes up, it tends to treaded as a new ip block but,
+> most of the time after some digging and rework, we learn new things and
+> it ends up being compatible with the previous ones.
+> 
+> From what I see here
+> * You are trying to make rst optional, that's fine. Do it with
+>   MESON_PARM_APPLICABLE() in the main driver. Still I would recommend to
+>   thorougly for this bit. I'm pretty sure the hifi pll has one.
+> 
+> * You add a new feature called current self-adaptation.
+>   This can be made optional too in the enable sequence.
+>   I would not be surprised to find out more PLL have that, even on
+>   earlier SoC.
 
-Start from v1 for the DT patchset, no need to continue the current numbering.
+Okay, I see.
+I will try to modify clk-pll driver in accurate way to support rst
+optional bit and current self-adaptation optional IP.
 
-Thanks,
-Neil
+...
 
-> 
->>
->> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 27 ++++++++++++++++++++++-
->>   1 file changed, 26 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> index b4000cf65a9a..38e6517c603c 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> @@ -6,6 +6,8 @@
->>   #include <dt-bindings/interrupt-controller/irq.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/gpio/meson-a1-gpio.h>
->> +#include <dt-bindings/clock/a1-pll-clkc.h>
->> +#include <dt-bindings/clock/a1-clkc.h>
->>   
->>   / {
->>   	compatible = "amlogic,a1";
->> @@ -81,7 +83,6 @@ apb: bus@fe000000 {
->>   			#size-cells = <2>;
->>   			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
->>   
->> -
->>   			reset: reset-controller@0 {
->>   				compatible = "amlogic,meson-a1-reset";
->>   				reg = <0x0 0x0 0x0 0x8c>;
->> @@ -124,6 +125,30 @@ uart_AO_B: serial@2000 {
->>   				clock-names = "xtal", "pclk", "baud";
->>   				status = "disabled";
->>   			};
->> +
->> +			clkc_periphs: periphs-clock-controller@800 {
-> 
-> device name should be generic so
-> 
-> clkc_periphs: clock-controller@800 would be better
-> 
->> +				compatible = "amlogic,a1-periphs-clkc";
->> +				reg = <0 0x800 0 0x104>;
->> +				#clock-cells = <1>;
->> +				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
->> +					 <&clkc_pll CLKID_FCLK_DIV3>,
->> +					 <&clkc_pll CLKID_FCLK_DIV5>,
->> +					 <&clkc_pll CLKID_FCLK_DIV7>,
->> +					 <&clkc_pll CLKID_HIFI_PLL>,
->> +					 <&xtal>;
->> +				clock-names = "fclk_div2", "fclk_div3",
->> +					      "fclk_div5", "fclk_div7",
->> +					      "hifi_pll", "xtal";
->> +			};
->> +
->> +			clkc_pll: pll-clock-controller@7c80 {
-> 
-> Same here
-> 
->> +				compatible = "amlogic,a1-pll-clkc";
->> +				reg = <0 0x7c80 0 0x18c>;
->> +				#clock-cells = <1>;
->> +				clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
->> +					 <&clkc_periphs CLKID_XTAL_HIFIPLL>;
->> +				clock-names = "xtal_fixpll", "xtal_hifipll";
->> +			};
->>   		};
->>   
->>   		gic: interrupt-controller@ff901000 {
-> 
-
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
