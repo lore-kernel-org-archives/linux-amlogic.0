@@ -4,82 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84146C4321E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 11:41:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA2DC4321E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 11:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Bag6rmytVuDIDhC4JlJHenVvj++Ic+4x1B2NMUEmJew=; b=EpIdicFs0MXxEM
-	XdIv0Vj2TNalgYEiimUpIMTje7ieDzaMHPWKSSkiDvmkrwLftDkLRRCSyzQxkmHJsVdaBimRbfN5E
-	prHrI4nH0IlX3hp8N1yT9xxRaYdfZn09280I70xKX92PczMfKFstvgS3xO0O2x0Eku3qMxPA+pPyd
-	0tIB2UDO31eCrHcFqndKJSbpI8t4BAdeuUNpYWaPrtrUGHvfYWNVhqx+CCqBUhSFbORV9c7lJ0NdU
-	YVzK1WpA0Yx4wdWGnJdGk1+onfbtxUfz07RjssrvmkKxpucjcL9FvWjUFe9HMlqyPyFwOGB75SLCK
-	fwIEj0aB9dVcfvpgNxVw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zsIl7K/F46e5iSFvuxhnS+d7me5od4zZdaYOMrZAA1s=; b=I0x4ojUMVkHICX
+	WesfFt4OntDJm4m7vAmbixR8u7XvIy1pn8yo2JUUaCTNX+tEebuUncHww/ov0+SkpOJNXz5sQero1
+	mLqOg03A2yYOehwFPE4ibatcf6l+Y2LWGmpzXe8UJn1PyH/89tAHx3OIiY9gNnuQT+Vk0fT+D0x4B
+	xJ47Zu2brcJCuK4pCff63sX6mnQIoZVo2NNvvbi5WlnxlXlSnf5pwSulAj/IMuvUrF3rYoz86gZK0
+	sQQLyYRAXMdVhAs0gsjGB+TCYcHsLqlcvZc3dipZ5ekoDwgbpXUAwrLE5wK16IEDU4gFRNKn0H8hY
+	MvM0ZdqaDTbpfOBJcLNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p14Q1-00G3yS-Ks; Fri, 02 Dec 2022 11:41:25 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1p14au-00G6HN-G0; Fri, 02 Dec 2022 11:52:40 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p14Pr-00G3u1-AG
-	for linux-amlogic@lists.infradead.org; Fri, 02 Dec 2022 11:41:16 +0000
-Received: by mail-wm1-x331.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so6290658wma.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 02 Dec 2022 03:41:12 -0800 (PST)
+	id 1p14ar-00G6Gb-K1; Fri, 02 Dec 2022 11:52:39 +0000
+Received: by mail-ed1-x534.google.com with SMTP id z92so6205270ede.1;
+        Fri, 02 Dec 2022 03:52:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=U4oz8SSnE2zH+GohF5+iQafg1aGfg/iY/5Nv8cvrkb4=;
-        b=aP1kbEov8QRDX8CAf0EiKIgSjoR9E59RSNGByUUnbzuCe5ru95AQQZhUmETCxsJAdF
-         AWYfsLOpV7WDn5Dm53BiK5EXZpqOTUSj8STjci6i185es4QllvkolJ53m/mB7gIUPLZY
-         uwklyYypa5zI+6TabQjjd1GLvNoQ3UvEW76sAl8RqAf4L6wHqeEN+JY2Tfy4HunyesXI
-         gnBmQOlX595zGMJoHtwDDTNkdUl8L0GmNvY34NglMgZef7k1qEhKl7Ff7Qm+mxZuZeXN
-         85yBSRaRHMg0JYQyN0U2IOsITzL6XDTSLnq8uGU6YJ8Hqr5TN3R/Azd+cNJuTSEQTrep
-         7Fkg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=V7DGE39pLfDtpE6nfiaaKVKzntw4VUS/Inc+Ohx4WpQ=;
+        b=SwYGBT2S6+aQVfMDUC6h/9BMQR7Aa/rv/nZKofiHLvTU/0Q4vEdenr2xH0AK90Iu3N
+         Q3c4Rzoy1RPYQPbuhxIHjA2D6XXPWzkdpKFqM8lSRvv9+Ts7pEVAbvC0ujDR3hSQ5ZxN
+         vD3uurUCf7q8gTLZVVLJ+a+GBp5jmkXigxdaU6jT1DHYEUuZHb5oDdpzCP5CgF6Z7B5O
+         u7NAxl3AwQzRLkzS/byhochh/uO28yZGlEcUMh6vQnzjLqxrytmc3WlVT4i235L7vWAd
+         0gGeloQm/h47sHWQc73VFtu7SAPAB5bpqEY5keAo9pYSeCsiCSyH8qJzZFh0BdC5Wlh+
+         A8gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U4oz8SSnE2zH+GohF5+iQafg1aGfg/iY/5Nv8cvrkb4=;
-        b=kOaFno5ldqr09XxQyHB+igte9fQCTZNIQMv/LctDv71zmtuAVlMVHQRhFBxJYPr2/o
-         7OuZT1cSD1zzMJvq6sBdh8BWbuC3xY7Obl9mBRnsDpJCUtrb8/SHiFM+ds05zpdsPHyN
-         KGNzCHYmwR3o/XFpjbSRYnSR1jOFBRtavmVttxbSrEa3Ja0aaJ2H8vpl6seR4U4DSPWS
-         mbG7Wvj7Uf3IvHEnKmdXR50NIwzvG1TVlIt54p+X4x5THGvv5hMxgrcVYhgULl7/0zIx
-         WBN0wAU4hTaOMWZPpfLhe1S2p6DFYSmwLMrn9VXoEcoNBr2lTd2Op1ToUY679kcjegId
-         UcLw==
-X-Gm-Message-State: ANoB5plku5cpIPsrfluolvRJfEizYdL6abAqgzInR5A80mSKv7ghvrtY
-	FTSrh7HEcOGFfqdR2SHmfDIkXw==
-X-Google-Smtp-Source: AA0mqf7sJS6oRW+XfXeDsK6+elCMZNU62vpBmLcePkew8oXw+ClGBjbQ2rPmqjjQkhYcIVYNKacaUQ==
-X-Received: by 2002:a05:600c:a56:b0:3cf:77a6:2c2e with SMTP id c22-20020a05600c0a5600b003cf77a62c2emr37078202wmq.179.1669981271603;
-        Fri, 02 Dec 2022 03:41:11 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n14-20020a05600c4f8e00b003c6f3f6675bsm13381928wmq.26.2022.12.02.03.41.10
+        bh=V7DGE39pLfDtpE6nfiaaKVKzntw4VUS/Inc+Ohx4WpQ=;
+        b=5AQi0XQsidWQSAOFgGKvxhKu7tcBfmQywPHDpg5vNRFxqe7xOT1kOo9c9aYko3BNBa
+         Ni/EeqN83zBOaf4X0LuNOu3wsEsfSv2DK6oaFn/N7avoOtyXcjcdLfHmK6W6oYndSKBn
+         WM+V6NBCN7otN+aWN19gohwfP0qX4bllL1tOCSrATJiEtbRiSi/mZTHZnJPxZIpiwP+U
+         FeyKNxMlQKWNJBiSPtNHZ4GHpt1JlPVy75rKtXM/IZDyOScSMk4u5Ufse8Hk/A3iZMX3
+         O0qrtS0i0+FC0qC0lbwBi88hfqX7N+HGjJPq9TQ7sceVEa0STyWRjNifEfMdvh6pHKe1
+         480g==
+X-Gm-Message-State: ANoB5pm5r0cCS4+aJgFLQwUenujkfxq4OMfk7hWx+eFo66LPFOTeaIOV
+	0NrAUhfhmsjkuUntkjioUgA=
+X-Google-Smtp-Source: AA0mqf4pKF+GIFOv0aOMCQp58IrKzGzJId6KW1UCp0ZSXlFh3tlc5fcL6ng1NZL1EdK19TM8zWr5uA==
+X-Received: by 2002:a05:6402:24a0:b0:458:ad54:20d5 with SMTP id q32-20020a05640224a000b00458ad5420d5mr62176585eda.86.1669981954534;
+        Fri, 02 Dec 2022 03:52:34 -0800 (PST)
+Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
+        by smtp.gmail.com with ESMTPSA id ha7-20020a170906a88700b007c0bb571da5sm1206762ejb.41.2022.12.02.03.52.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 03:41:11 -0800 (PST)
-References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-7-ddrokosov@sberdevices.ru>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, neil.armstrong@linaro.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 06/11] clk: meson: introduce a1-clkc common driver
- for all A1 clock controllers
-Date: Fri, 02 Dec 2022 12:36:50 +0100
-In-reply-to: <20221201225703.6507-7-ddrokosov@sberdevices.ru>
-Message-ID: <1jy1rq6nje.fsf@starbuckisacylon.baylibre.com>
+        Fri, 02 Dec 2022 03:52:33 -0800 (PST)
+From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+To: 
+Cc: italonicola@collabora.com,
+	Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+	Christian Gmeiner <christian.gmeiner@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR VIVANTE GPU IP),
+	etnaviv@lists.freedesktop.org (moderated list:DRM DRIVERS FOR VIVANTE GPU IP),
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list),
+	Lucas Stach <l.stach@pengutronix.de>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Russell King <linux+etnaviv@armlinux.org.uk>
+Subject: [PATCH v6 0/8] Support for the NPU in Vim3
+Date: Fri,  2 Dec 2022 12:52:12 +0100
+Message-Id: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221202_034115_361448_97C394C5 
-X-CRM114-Status: GOOD (  27.79  )
+X-CRM114-CacheID: sfid-20221202_035237_693621_A5D2A59C 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,164 +104,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
-On Fri 02 Dec 2022 at 01:56, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+This series adds support for the Verisilicon VIPNano-QI NPU in the A311D
+as in the VIM3 board.
 
-> Generally, A1 SoC has four clock controllers on the board: PLL,
-> Peripherals, CPU, and Audio. The audio clock controller is different
-> from others, but the rest are very similar from a functional and regmap
-> point of view. So a it's good idea to generalize some routines for all
-> of them. Exactly, meson-a1-clkc driver contains the common probe() flow.
->
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+The IP is very closely based on previous Vivante GPUs, so the etnaviv
+kernel driver works basically unchanged.
 
-I think you should leave this out for the initial submission. It makes
-harder to review.
+The userspace part of the driver is being reviewed at:
 
-In some case, these factorizations actually the maitenance harder.
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18986
 
-There is also the s4 that is coming up. It looks similar to the A1 as
-well.
+v2: Move reference to RESET_NNA to npu node (Neil)
+v3: Fix indentation mistake (Neil)
+v4: Add warning when etnaviv probes on a NPU (Lucas)
+v5: Reorder HWDB commit to be the last (Lucas)
+v6: Add patch to move the power domain to the SoC-specific dtsi (Neil)
 
-Let's wait for both them to land, see how it goes and then we'll decide
-if a factorization is appropriate.
+Regards,
 
-> ---
->  drivers/clk/meson/Kconfig         |  4 ++
->  drivers/clk/meson/Makefile        |  1 +
->  drivers/clk/meson/meson-a1-clkc.c | 63 +++++++++++++++++++++++++++++++
->  drivers/clk/meson/meson-a1-clkc.h | 25 ++++++++++++
->  4 files changed, 93 insertions(+)
->  create mode 100644 drivers/clk/meson/meson-a1-clkc.c
->  create mode 100644 drivers/clk/meson/meson-a1-clkc.h
->
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index bd44ba47200e..1c885541c3a9 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -43,6 +43,10 @@ config COMMON_CLK_MESON_CPU_DYNDIV
->  	tristate
->  	select COMMON_CLK_MESON_REGMAP
->  
-> +config COMMON_CLK_MESON_A1_CLKC
-> +	tristate
-> +	select COMMON_CLK_MESON_REGMAP
-> +
->  config COMMON_CLK_MESON8B
->  	bool "Meson8 SoC Clock controller support"
->  	depends on ARM
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 0e6f293c05d4..15136d861a65 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
->  obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
->  obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
->  obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_A1_CLKC) += meson-a1-clkc.o
->  
->  # Amlogic Clock controllers
->  
-> diff --git a/drivers/clk/meson/meson-a1-clkc.c b/drivers/clk/meson/meson-a1-clkc.c
-> new file mode 100644
-> index 000000000000..2fe320a0e16e
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-a1-clkc.c
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Amlogic Meson-A1 Clock Controller Driver
-> + *
-> + * Copyright (c) 2022, SberDevices. All Rights Reserved.
-> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> + */
-> +
-> +#include <linux/of_device.h>
-> +#include "meson-a1-clkc.h"
-> +
-> +static struct regmap_config clkc_regmap_config = {
-> +	.reg_bits   = 32,
-> +	.val_bits   = 32,
-> +	.reg_stride = 4,
-> +};
-> +
-> +int meson_a1_clkc_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_a1_clkc_data *clkc;
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +	struct regmap *map;
-> +	int clkid, i, err;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res)
-> +		return dev_err_probe(dev, -ENXIO, "can't get IO resource\n");
-> +
-> +	base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(base))
-> +		return dev_err_probe(dev, PTR_ERR(base),
-> +				     "can't ioremap resource %pr\n", res);
-> +
-> +	map = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
-> +	if (IS_ERR(map))
-> +		return dev_err_probe(dev, PTR_ERR(map),
-> +				     "can't init regmap mmio region\n");
-> +
-> +	clkc = (struct meson_a1_clkc_data *)of_device_get_match_data(dev);
-> +	if (!clkc)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "can't get A1 clkc driver data\n");
-> +
-> +	/* Populate regmap for the regmap backed clocks */
-> +	for (i = 0; i < clkc->num_regs; i++)
-> +		clkc->regs[i]->map = map;
-> +
-> +	for (clkid = 0; clkid < clkc->hw->num; clkid++) {
-> +		err = devm_clk_hw_register(dev, clkc->hw->hws[clkid]);
-> +		if (err)
-> +			return dev_err_probe(dev, err,
-> +					     "clock registration failed\n");
-> +	}
-> +
-> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> +					   (void *)clkc->hw);
-> +}
-> +EXPORT_SYMBOL_GPL(meson_a1_clkc_probe);
-> +
-> +MODULE_AUTHOR("Dmitry Rokosov <ddrokosov@sberdevices.ru>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/clk/meson/meson-a1-clkc.h b/drivers/clk/meson/meson-a1-clkc.h
-> new file mode 100644
-> index 000000000000..503eca0f6cb5
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-a1-clkc.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Amlogic Meson-A1 Clock Controller driver
-> + *
-> + * Copyright (c) 2022, SberDevices. All Rights Reserved.
-> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> + */
-> +
-> +#ifndef __MESON_A1_CLKC_H__
-> +#define __MESON_A1_CLKC_H__
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "clk-regmap.h"
-> +
-> +struct meson_a1_clkc_data {
-> +	const struct clk_hw_onecell_data *hw;
-> +	struct clk_regmap *const *regs;
-> +	size_t num_regs;
-> +};
-> +
-> +int meson_a1_clkc_probe(struct platform_device *pdev);
-> +#endif
+Tomeu
+
+Tomeu Vizoso (8):
+  dt-bindings: reset: meson-g12a: Add missing NNA reset
+  dt-bindings: power: Add G12A NNA power domain
+  soc: amlogic: meson-pwrc: Add NNA power domain for A311D
+  arm64: dts: Add DT node for the VIPNano-QI on the A311D
+  drm/etnaviv: Add nn_core_count to chip feature struct
+  drm/etnaviv: Warn when probing on NPUs
+  drm/etnaviv: add HWDB entry for VIPNano-QI.7120.0055
+  arm64: dts: Fix NPU power domain references in Amlogic G12-based SoCs
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  9 +++++
+ .../amlogic/meson-g12b-a311d-khadas-vim3.dts  |  4 +++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  4 +++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  4 +++
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  4 +++
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.h         |  3 ++
+ drivers/gpu/drm/etnaviv/etnaviv_hwdb.c        | 35 +++++++++++++++++++
+ drivers/soc/amlogic/meson-ee-pwrc.c           | 17 +++++++++
+ include/dt-bindings/power/meson-g12a-power.h  |  1 +
+ .../reset/amlogic,meson-g12a-reset.h          |  4 ++-
+ 10 files changed, 84 insertions(+), 1 deletion(-)
+
+-- 
+2.38.1
 
 
 _______________________________________________
