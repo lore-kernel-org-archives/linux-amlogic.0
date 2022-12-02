@@ -4,77 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B67E8C4321E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 10:58:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E13C6C4321E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Dec 2022 11:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3/uBa9YrLF8GmkT1K5fJ27hIauBik+R0mF1jU27wELs=; b=v+QGjrnPK58yrM
-	kknvivzGSj1db/bena95uS0NqlMU9MSuUOsHmOCMBy1k2tfsIGJBuCha5uDx/gFdfd+qrTLuQthbX
-	TPl2Ly/7p7U1O35c6haX5dAxRKaDZez52XwS3GWcVCLZP3yi0ONBwOc9OsXzdSzQe60CaaBSRQp3Y
-	qOTquoibOndDeghSXkKYRsBv5elLSBxd42gLr9dbyPtk2ukfdkX46YD81fLMk4z8EHte0ZdAsT/GT
-	fWkzdlJu0lpquZvQ+orlDrQm5aG+O1TRWCbgrBaztEP3KhwcKO2WfaLL85Mnn2Sc7wtwML/gRSo4g
-	fXZePO9pLD+VdmBmD7Ew==;
+	List-Owner; bh=lYDWC27JObHlx/y4yQCdsMjCojvRs1T1SCgMydN2l6M=; b=PPaiMEZnVnXg4p
+	i26Piwj5INAxXf/fB4XRjsIJoCOT/YpDPqTfgTGuHLjz9RXaRk1SG+OJLhtYW2BJziB0tWNf83eqQ
+	O23eH+NcVuyi6iMbUErR3KxzNHgQch4+6ajmEoEAJvgckhcoEdKqsQebyYllMB7ZGNBf96GJQcQWY
+	zjw11IJJC/z0y+joBNFODhc8lI5WxVcIM3/ARu5o025yeYy5/dZ5hX1mIT0VsfpJ31JoT1oNcezd2
+	PBRQddoXelf+AtYTVS9OeqqGONMkchX3w+/0cHs5dIaQYTRd7ckYuvBYq9bN/tGSzhqBsAX1yUNJw
+	ufsBnAuDFcM8Ri9rXmtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p13kj-00FndQ-Ky; Fri, 02 Dec 2022 10:58:45 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1p13xS-00FtAr-TG; Fri, 02 Dec 2022 11:11:54 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p13ke-00FnZg-QZ; Fri, 02 Dec 2022 10:58:43 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id CB99C5FD0B;
-	Fri,  2 Dec 2022 13:58:35 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1669978715;
-	bh=bmtQOp0MHFjIRwhVsuo8y6uKrcRollt9lDuoEi9K2Ns=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=sDgpn/xX2RPFtFDVGuLMmeVg7uLVdiBcZaROU6x3DAGgZM0FchEFeCx3JRUpYdwY9
-	 y0yN84dSkfMyxuZZx5BqNzh6pjlUzcngmgoy7o3gSei2fdiZaCs5SqM1MiSuh8ENyr
-	 4Q9BGy/bvHKtkCPe7M+FE2HhijT3NzguM1r8bkpMBxuUn6oTb13fzxElpr6Z+ihNdV
-	 Si1fMikx9d8XNdgMs5pwxrKkmv/S6Y8nd2pIjbIHKLXOO4BCi17f5m7qlR9lQNN8gJ
-	 QU0PJlCJ7QtMAGiuJKKIh9fzjGqMACArv3WmsnL7QrIZdZBOGAbqvVkBYxf+aXuCrG
-	 nVZ6pfv+kampw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  2 Dec 2022 13:58:35 +0300 (MSK)
-Date: Fri, 2 Dec 2022 13:58:34 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Rob Herring <robh@kernel.org>, <martin.blumenstingl@googlemail.com>,
-	<linux-arm-kernel@lists.infradead.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<khilman@baylibre.com>, <jian.hu@amlogic.com>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <rockosov@gmail.com>, <kernel@sberdevices.ru>,
-	<neil.armstrong@linaro.org>, <robh+dt@kernel.org>, <sboyd@kernel.org>
-Subject: Re: [PATCH v8 03/11] dt-bindings: clock: meson: add A1 peripheral
- clock controller bindings
-Message-ID: <20221202105834.4avip2trjbm3tpn7@CAB-WSD-L081021>
+	id 1p13xG-00Ft5M-4U
+	for linux-amlogic@lists.infradead.org; Fri, 02 Dec 2022 11:11:44 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id d1so7255044wrs.12
+        for <linux-amlogic@lists.infradead.org>; Fri, 02 Dec 2022 03:11:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=zPFY6FywBKVj+Q58Yw/8slS+YqsfBvqMM52HPpLV7Yg=;
+        b=PK8M1saJytpZlmaXb3XWJFyS5hZ3aAlrzHUwrN6PU6ZaeGcR7pPz4JuaiUSCVdPF6y
+         PcAIYFZfibtHJZDGbvk3wIlQ1dKWdMMrlXlQ7DZQ+HTXVPCwSTc+RQUHp8Hj1RDgjGlZ
+         On3vt7uwklxoeMeYWvOAjbpUGwmpMzFPPzX7oibG5vs5V3gQneg1WbQi+AZUpwuv0VPb
+         3yIYyUI/Qm0upcz1kwIeZAbzZoLUmsyuLMQqAT7WjLaUpU55M8W82UHK8RixmCfbRDkT
+         Jg+TxM//BNrTccnwgm5hD2KCkmSSr7ddCsMoCsvm/bkcAepwwVyBSOBE7w97k+btGteg
+         vTVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zPFY6FywBKVj+Q58Yw/8slS+YqsfBvqMM52HPpLV7Yg=;
+        b=4tOPn744L1ILvIXalCEQPdUJ1PmxAw/E7J5U6z+6JPfKdmqSF5JFluHGaHpimUb7co
+         7K76Kgkyh5nJWHyDAJ7yyIMExwXPtUUl2emuAqcG0Qk4RtFw2PyNWN6ukEktyLMAPnC2
+         oKLRSnHKs6M/WDjnxGxeKYqGFZfp5Ct0wh0c6K+3oVjsimofSZdg1Fs1akxx51Ve8VFT
+         kEdWJgLgKnlIdV26pFw0mdgGUKGNLsOokALYbI68VLC/QRxvJsONw2cvSkaliV3KyHff
+         soM0gTf9cU1+yaGpQCLZD/EJ811s2K096fInCEFCFC0Zb1ZvKS4OrRRORHpg9cIFjKfU
+         Jt8Q==
+X-Gm-Message-State: ANoB5pkYYtZgL5p4V3TLmQbLlTGo3cCxi1KJWS/gtJEuaZksxtvJB9J+
+	Qp4Z3K+sXLS/ldePWpZqRkblpA==
+X-Google-Smtp-Source: AA0mqf4ecV5sn0MU3WIXansYGgAefGMmGfieNqDEHYX8GlRHU+otVXVZ8ZQgQ62Qiq3SOe//i8WZ+Q==
+X-Received: by 2002:a5d:58d5:0:b0:242:1ff2:eeb4 with SMTP id o21-20020a5d58d5000000b002421ff2eeb4mr11630176wrf.419.1669979498869;
+        Fri, 02 Dec 2022 03:11:38 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id b16-20020a5d4b90000000b002422202fa7fsm4038995wrt.39.2022.12.02.03.11.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Dec 2022 03:11:38 -0800 (PST)
 References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-4-ddrokosov@sberdevices.ru>
- <166995398331.2089708.18189499743713568568.robh@kernel.org>
- <20221202094940.elhjbz7tbgxesr52@CAB-WSD-L081021>
- <640ad325-91c4-109a-5ccd-05ac653a29bb@linaro.org>
+ <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+ <166995398251.2089685.16059995540663317860.robh@kernel.org>
+ <20221202095124.4ecpfqhtzf34lwbf@CAB-WSD-L081021>
+ <cea3cdd4-3d36-1439-b211-047091c05a0f@linaro.org>
+User-agent: mu4e 1.8.10; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Dmitry Rokosov
+ <ddrokosov@sberdevices.ru>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, sboyd@kernel.org, khilman@baylibre.com,
+ kernel@sberdevices.ru, robh+dt@kernel.org,
+ martin.blumenstingl@googlemail.com, linux-arm-kernel@lists.infradead.org,
+ jian.hu@amlogic.com, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-amlogic@lists.infradead.org,
+ rockosov@gmail.com, mturquette@baylibre.com, linux-clk@vger.kernel.org,
+ neil.armstrong@linaro.org
+Subject: Re: [PATCH v8 01/11] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Date: Fri, 02 Dec 2022 12:04:51 +0100
+In-reply-to: <cea3cdd4-3d36-1439-b211-047091c05a0f@linaro.org>
+Message-ID: <1jfsdy83h3.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <640ad325-91c4-109a-5ccd-05ac653a29bb@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 07:44:00 #20636821
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221202_025841_587640_48434421 
-X-CRM114-Status: GOOD (  24.71  )
+X-CRM114-CacheID: sfid-20221202_031142_184752_1D0A0693 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,91 +100,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Krzysztof,
 
-Thank you for quick review. Let me explain you why I sent Jian broken
-patches and applied my fixup patches above.
+On Fri 02 Dec 2022 at 11:39, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-I've found several versions of A1 clkc drivers from Jian Hu Amlogic engineer,
-the last one version was a couple years ago.
-I've reworked the last (v7) version and didn't know the correct way to apply
-all fixes.
+> On 02/12/2022 10:51, Dmitry Rokosov wrote:
+>> On Thu, Dec 01, 2022 at 10:10:04PM -0600, Rob Herring wrote:
+>>>
+>>> On Fri, 02 Dec 2022 01:56:53 +0300, Dmitry Rokosov wrote:
+>>>> From: Jian Hu <jian.hu@amlogic.com>
+>>>>
+>>>> Add the documentation to support Amlogic A1 PLL clock driver,
+>>>> and add A1 PLL clock controller bindings.
+>>>>
+>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>>>> ---
+>>>>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+>>>>  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+>>>>  2 files changed, 68 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>>>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>>>>
+>>>
+>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>
+>>> yamllint warnings/errors:
+>>> ./Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml:26:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> ./Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml: $id: relative path/filename doesn't match actual path or filename
+>>> 	expected: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
+>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.example.dtb: pll-clock-controller@7c80: reg: [[0, 31872], [0, 396]] is too long
+>>> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>>
+>>> doc reference errors (make refcheckdocs):
+>>>
+>>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221201225703.6507-2-ddrokosov@sberdevices.ru
+>>>
+>>> The base for the series is generally the latest rc1. A different dependency
+>>> should be noted in *this* patch.
+>>>
+>>> If you already ran 'make dt_binding_check' and didn't see the above
+>>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>>> date:
+>>>
+>>> pip3 install dtschema --upgrade
+>>>
+>>> Please check and re-submit after running the above command yourself. Note
+>>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>>> your schema. However, it must be unset to test all examples with your schema.
+>>>
+>> 
+>> Please find all fixes of above warnings and errors in the my patch
+>> located at the link:
+>> 
+>> https://lore.kernel.org/linux-amlogic/20221201225703.6507-9-ddrokosov@sberdevices.ru/
+>
+> Why? This patch here is broken and it should be fixed. Don't apply
+> broken patches...
 
-From my point of view I thought about two options:
-1) Merge all my changes with Jian Hu patches and leave Jian Hu SoB
-2) Don't touch Jian Hu v7 patches and apply my changes above.
+Dmitry is ressurecting a series that is several years old and not his to
+begin with.
 
-I have chosen the second option, because it looks like respect Jian Hu's
-effort. I don't want to "stealing" his patches, just want to fix all
-broken things.
+He was unsure about take the code of somebody else.
+To be fair, he even asked for advice on IRC about to proceed.
 
-So I'm sorry for misunderstanding here and please correct
-me what's right workflow in such situation.
+Dmitry, as you may have guessed, for next revision, please fix Jian Hu
+original patches in place, not with fixup patches.
 
-On Fri, Dec 02, 2022 at 11:39:47AM +0100, Krzysztof Kozlowski wrote:
-> On 02/12/2022 10:49, Dmitry Rokosov wrote:
-> > On Thu, Dec 01, 2022 at 10:10:04PM -0600, Rob Herring wrote:
-> >>
-> >> On Fri, 02 Dec 2022 01:56:55 +0300, Dmitry Rokosov wrote:
-> >>> From: Jian Hu <jian.hu@amlogic.com>
-> >>>
-> >>> Add the documentation to support Amlogic A1 peripheral clock driver,
-> >>> and add A1 peripheral clock controller bindings.
-> >>>
-> >>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> >>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> >>> ---
-> >>>  .../bindings/clock/amlogic,a1-clkc.yaml       | 65 ++++++++++++
-> >>>  include/dt-bindings/clock/a1-clkc.h           | 98 +++++++++++++++++++
-> >>>  2 files changed, 163 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> >>>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> ./Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml: $id: relative path/filename doesn't match actual path or filename
-> >> 	expected: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
-> >> Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:18.48-30.11: Warning (unit_address_vs_reg): /example-0/periphs-clock-controller: node has a reg or ranges property, but no unit name
-> >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dtb: periphs-clock-controller: reg: [[0, 2048], [0, 260]] is too long
-> >> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> >>
-> >> doc reference errors (make refcheckdocs):
-> >>
-> >> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221201225703.6507-4-ddrokosov@sberdevices.ru
-> >>
-> >> The base for the series is generally the latest rc1. A different dependency
-> >> should be noted in *this* patch.
-> >>
-> >> If you already ran 'make dt_binding_check' and didn't see the above
-> >> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> >> date:
-> >>
-> >> pip3 install dtschema --upgrade
-> >>
-> >> Please check and re-submit after running the above command yourself. Note
-> >> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> >> your schema. However, it must be unset to test all examples with your schema.
-> >>
-> > 
-> > That's totally right warnings and errors. All of them are fixed in the
-> > my "fixup" patch of Jian's original dt_binding schema:
-> > 
-> > https://lore.kernel.org/linux-amlogic/20221201225703.6507-11-ddrokosov@sberdevices.ru/
-> 
-> No, this patch must be fixed. It's not correct.
-> 
+If your fixes are minor (not complete rewrite), please keep the original
+author and add your SoB
+
+>
 > Best regards,
 > Krzysztof
-> 
 
--- 
-Thank you,
-Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
