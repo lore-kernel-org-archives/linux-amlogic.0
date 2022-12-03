@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 134DAC4708E
-	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Dec 2022 16:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D955C47088
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Dec 2022 16:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=XhKGSdGd2HfjoZSZc/8HQRvdrtp0qJfiYs3kFGNHh98=; b=dKLvGvS3UApLRB
-	RxHmLxCoYTx59Np1Ixd4HkuUojPYWvkis7lFRTTuI0rNE3rl22CqVSypRcmlDR/IJvoaC2I/96DVV
-	+zCjaI+L2prke35BQNiioytWH7QReBCKMrh64RRySG8sNJVYLw27S5EDm6AeUF9srWrhW+nJuDpU0
-	uQlak5URAnpb0IH58/M65EWXhiljI9ZZEJqC2Rt4o0IZlYB2ZqMFkBLcrrIl4/elKUEH6ZiqVe3tO
-	5dE8+bBxgW2Egu2RSeqkVZS7ggV6tzOZeUa/WqiIq2vCNhwML7HwauM27/csDp0yg3NYoh6fsmVbO
-	c/DhQEgjuR8yiMyXewAw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=76kEW4Lw84lQr5G6/idNRsrujpRRTiq+tnK6rJjX2gA=; b=3ORPeClnXAdSrj
+	Tm2gvcaq1wnIUbQJ1FUDCttRO6LCQ+rChn3nb8/xKWHmJTWww12JXDEyEKs5izdre5dmYh5QA/8PX
+	tGQOSQvs2svASNm8Oia5BtH2tl9ztAjiOd4JelCUQ95KkfGFMaAkY232E/+gdvWVopPB3mHQ5Kndq
+	v+/wVQ6bOxsPwqhlt2jp/bo1w6n4pIg+tdPO3uz9XVKg2Vmz+9qYL0Gnfyb4YMLs+ev2gDiilDPon
+	wHXHJp0eOoS/Gq78E2HihNgQx/x3vqgRR3IUayPaEhJrJ7kNEnQfYo9KW640+ciYqxYQmzzm4UiKF
+	fdRPNWpLM0QmiUfLWK7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1V0i-0042Pf-9u; Sat, 03 Dec 2022 16:05:04 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1p1V0u-0042V5-0i; Sat, 03 Dec 2022 16:05:16 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1V0d-0042Nt-Bh
-	for linux-amlogic@lists.infradead.org; Sat, 03 Dec 2022 16:05:01 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id q7so8646057ljp.9
-        for <linux-amlogic@lists.infradead.org>; Sat, 03 Dec 2022 08:04:58 -0800 (PST)
+	id 1p1V0q-0042SD-86
+	for linux-amlogic@lists.infradead.org; Sat, 03 Dec 2022 16:05:14 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id cf42so6173650lfb.1
+        for <linux-amlogic@lists.infradead.org>; Sat, 03 Dec 2022 08:05:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p8s/BzOwhxQIlxHUBYJ4oHPfR09CSoSGvGG+JpoNTu0=;
-        b=eYIi4hgooxDpD1NV+FF5vfQnUmip7fWcTWuPt0CGhwIp8KwLS7xeamBNDwWwgN03vr
-         5wgdGYEHoboyRIn6Q/MD4DWaFkqNdjiGEXIxe8QWen38kp/9aWEOXf7ntp+ccDma818H
-         Y8JBT5raTEYbfbY8M8973YIvB+7cnSk/+zVt+x5KrZuOrOXlWxF0FlAxB/Wj23NJnVx4
-         OMRCV5AZ5jvZhNwxl9fCpj87LlJnHV6+YkjA2BbZIG1fPfypXiHIaUCDed1LCpA4+IwU
-         ejnTcI9E/mMSDFmRH5fCGyvt21ERzet1j4+J5VW9NOajXMmv7hvv/eOz1tOR+cgE+sbm
-         WYgw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xQQgA2B6JuQCl9Sn47gIOr5BLct1XCSVPgZ5wpqRd04=;
+        b=Kj4DNPgsIyL3BIhG4CqIcBbcV1s+qCWiZr8CGSJQs9OvpzKtotQ465N2CNEnsvvZ1A
+         3QpfbS43IgnSlXlDAYeRa7K+Olx/mZUocnOqdyDFZreb57z32+RvduL2PrG9zQHtbDcu
+         73pdpp0PHB80Rl1+seCpOf9SYbLR7mNG159IaxkTLXTzFv0jxrgyezAxeLnjtcx5F1dn
+         Hjf1PA4M8aFbQaCLterflhYSLXdvYo0sjQcKB4h4jgHBH+FrTaO+QAaCw4JQ96x0JYNW
+         Wc28txwTUMBoRrciXidG353d4zSfbOpNnvzJODZQMCT+ey5IySIBHDdnwMUbIHqSVzBS
+         Kq5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p8s/BzOwhxQIlxHUBYJ4oHPfR09CSoSGvGG+JpoNTu0=;
-        b=thQjjIDAKVJM+z62HIhPUDvaa+AHILtg/gaoxl59TfZpLnmblhNPmmHzNxz2jUUFmP
-         iatgCW0odt2d5P/5HLVbDLFEPa4Z7l3dvKCq0wiY8rOeZTCNa331toP7GhnsljcNPf45
-         jT6HNbXw84dFHL0QoJ9KQyNr6SHJYYFzd/ncnrqNANlBleYlY5gl3jM17cfiBZ+qmCdF
-         iAuz1lwvX92/Z8tT4GgiyjmupUKP/yZ+PksNM4p3zNXTo86V6YL9oIEuPIiWToK5yE9Q
-         dC+trATPaMRqs/Mw5Iappmd4vX6QvuFFhyRz9WrVrL7gdFYVaGW21mak09Ueu7sbG9cU
-         AfLA==
-X-Gm-Message-State: ANoB5pkfaqrBZrw+60MlJqAKdZVTk1Lqo+jC5U0ezTEMuaF79jK7h0Qo
-	eFr/UiwSruB6DsmFeyXxgLqXSA==
-X-Google-Smtp-Source: AA0mqf58/79Rqg4yRCVG1xawZLwuCnaSB+HmPh+D7DumMA2xgZArvwb0/P7UWd6mDLsK8wlUOJjcvw==
-X-Received: by 2002:a05:651c:1788:b0:277:4e4:d21a with SMTP id bn8-20020a05651c178800b0027704e4d21amr17825924ljb.196.1670083496599;
-        Sat, 03 Dec 2022 08:04:56 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xQQgA2B6JuQCl9Sn47gIOr5BLct1XCSVPgZ5wpqRd04=;
+        b=UrGN9KHtfTsOXFsUH6K2J0EBzmupc3jcrN812l5cFnjORqK1Z0pkCBzu1rcqeemnAC
+         OEbpwp54yzt8VhClYi0yVzBlf5chF1pypzFEac0UIf0AJv6lV10MsHrm71Hql5uVFVme
+         DN97ux6HaWZaHulESN9oebjPfuLVe5tL8fP064YrZL5FjFwp5KObRBAJMs/DqpRrUpDh
+         MxWns/z2KsRMXft7bLZeTOKG+q9dc2LnZeV7m9XKZzWX0e6NEBlJTyN4IxPEEzQfkvpf
+         QCGcvqPxkC2VFvvLCuOVgFo/uXUANns9OXQRmaV8ONzWKs0TvH6/hLp3S3J4Q4KH6VXO
+         0TUQ==
+X-Gm-Message-State: ANoB5pmD3HRMhXa0LbXQBKb88Xqz2TVjU4TX0kwmlv4fbQbA5GvutOr3
+	0n5ssTpjOXu8PWq0rR79U3yGWQ==
+X-Google-Smtp-Source: AA0mqf72BVKnpn+MA5xJGVYlL5SnIsGDKLeZoYK756z5Q92VunWvwd331oN9TV1SKnOL4zeD/GFMxg==
+X-Received: by 2002:ac2:4310:0:b0:4a2:3e6c:a32b with SMTP id l16-20020ac24310000000b004a23e6ca32bmr24364674lfh.54.1670083510167;
+        Sat, 03 Dec 2022 08:05:10 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d11-20020ac2544b000000b004946bb30469sm1441320lfn.82.2022.12.03.08.04.45
+        by smtp.gmail.com with ESMTPSA id d11-20020ac2544b000000b004946bb30469sm1441320lfn.82.2022.12.03.08.05.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Dec 2022 08:04:51 -0800 (PST)
+        Sat, 03 Dec 2022 08:05:05 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	David Airlie <airlied@gmail.com>,
@@ -148,14 +149,16 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] ASoC: dt-bindings: Extend name-prefix.yaml into common DAI properties
-Date: Sat,  3 Dec 2022 17:04:40 +0100
-Message-Id: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] ASoC: dt-bindings: maxim,max98357a: Convert to DT schema
+Date: Sat,  3 Dec 2022 17:04:42 +0100
+Message-Id: <20221203160442.69594-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
+References: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221203_080459_444113_1FA95FB1 
-X-CRM114-Status: GOOD (  13.06  )
+X-CRM114-CacheID: sfid-20221203_080512_304938_598115CF 
+X-CRM114-Status: GOOD (  17.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -172,357 +175,115 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rename name-prefix.yaml into common DAI schema and document
-'#sound-dai-cells' for completeness.  The '#sound-dai-cells' cannot be
-really constrained, as there are users with value of 0, 1 and 2, but at
-least it brings definition to one common place.
+Convert the Maxim Integrated MAX98357A/MAX98360A amplifier bindings to
+DT schema.  Add missing properties ('#sound-dai-cells' and
+'sound-name-prefix' from common DAI properties).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-This is an output of discussion here:
-https://lore.kernel.org/all/Y255C+TGNVJ9fs8A@sirena.org.uk/
+As a maintainer I added recent contributor to this driver/bindings:
+Tzung-Bi Shih.  Please ack if you agree to keep an eye on the bindings.
 ---
- .../devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml  | 2 +-
- Documentation/devicetree/bindings/sound/amlogic,aiu.yaml    | 2 +-
- .../devicetree/bindings/sound/amlogic,g12a-toacodec.yaml    | 2 +-
- Documentation/devicetree/bindings/sound/amlogic,t9015.yaml  | 2 +-
- Documentation/devicetree/bindings/sound/awinic,aw8738.yaml  | 2 +-
- .../bindings/sound/{name-prefix.yaml => dai-common.yaml}    | 6 ++++--
- Documentation/devicetree/bindings/sound/dmic-codec.yaml     | 2 +-
- .../devicetree/bindings/sound/linux,spdif-dit.yaml          | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra186-asrc.yaml     | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra186-dspk.yaml     | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-adx.yaml      | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-amx.yaml      | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-dmic.yaml     | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-i2s.yaml      | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-mixer.yaml    | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-mvc.yaml      | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-ope.yaml      | 2 +-
- .../devicetree/bindings/sound/nvidia,tegra210-sfc.yaml      | 2 +-
- Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml    | 2 +-
- Documentation/devicetree/bindings/sound/rt5659.txt          | 2 +-
- .../devicetree/bindings/sound/simple-audio-amplifier.yaml   | 2 +-
- .../devicetree/bindings/sound/simple-audio-mux.yaml         | 2 +-
- Documentation/devicetree/bindings/sound/ti,src4xxx.yaml     | 2 +-
- 23 files changed, 26 insertions(+), 24 deletions(-)
- rename Documentation/devicetree/bindings/sound/{name-prefix.yaml => dai-common.yaml} (81%)
+ .../devicetree/bindings/sound/max98357a.txt   | 28 ----------
+ .../bindings/sound/maxim,max98357a.yaml       | 52 +++++++++++++++++++
+ 2 files changed, 52 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/max98357a.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-index 7cdffdb131ac..74cefdf1b843 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-@@ -11,7 +11,7 @@ maintainers:
-   - Neil Armstrong <neil.armstrong@linaro.org>
- 
- allOf:
--  - $ref: /schemas/sound/name-prefix.yaml#
-+  - $ref: /schemas/sound/dai-common.yaml#
- 
- description: |
-   The Amlogic Meson Synopsys Designware Integration is composed of
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-index 0705f91199a0..6350dfc0a926 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-index 77469a45bb7a..23f82bb89750 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-index 580a3d040abc..5f5cccdbeb34 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml b/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
-index dce86dafe382..bc6c6b172238 100644
---- a/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
-+++ b/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
-@@ -15,7 +15,7 @@ description:
-   function (primarily the power limit for the amplifier).
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/name-prefix.yaml b/Documentation/devicetree/bindings/sound/dai-common.yaml
-similarity index 81%
-rename from Documentation/devicetree/bindings/sound/name-prefix.yaml
-rename to Documentation/devicetree/bindings/sound/dai-common.yaml
-index 2fe57f87ac52..d858eea73ed7 100644
---- a/Documentation/devicetree/bindings/sound/name-prefix.yaml
-+++ b/Documentation/devicetree/bindings/sound/dai-common.yaml
-@@ -1,10 +1,10 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/sound/name-prefix.yaml#
-+$id: http://devicetree.org/schemas/sound/dai-common.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Component sound name prefix
-+title: Digital Audio Interface Common Properties
- 
- maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
-@@ -18,4 +18,6 @@ properties:
-       sink/source names may use this property to prepend the name of their
-       sinks/sources with the provided string.
- 
-+  '#sound-dai-cells': true
+diff --git a/Documentation/devicetree/bindings/sound/max98357a.txt b/Documentation/devicetree/bindings/sound/max98357a.txt
+deleted file mode 100644
+index 75db84d06240..000000000000
+--- a/Documentation/devicetree/bindings/sound/max98357a.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-Maxim MAX98357A/MAX98360A audio DAC
+-
+-This node models the Maxim MAX98357A/MAX98360A DAC.
+-
+-Required properties:
+-- compatible   : "maxim,max98357a" for MAX98357A.
+-                 "maxim,max98360a" for MAX98360A.
+-
+-Optional properties:
+-- sdmode-gpios : GPIO specifier for the chip's SD_MODE pin.
+-        If this option is not specified then driver does not manage
+-        the pin state (e.g. chip is always on).
+-- sdmode-delay : specify delay time for SD_MODE pin.
+-        If this option is specified, which means it's required i2s clocks
+-        ready before SD_MODE is unmuted in order to avoid the speaker pop noise.
+-        It's observed that 5ms is sufficient.
+-
+-Example:
+-
+-max98357a {
+-	compatible = "maxim,max98357a";
+-	sdmode-gpios = <&qcom_pinmux 25 0>;
+-};
+-
+-max98360a {
+-	compatible = "maxim,max98360a";
+-	sdmode-gpios = <&qcom_pinmux 25 0>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml b/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
+new file mode 100644
+index 000000000000..83ba8666fbb4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98357a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/sound/dmic-codec.yaml b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-index bba27c985996..59ef0cf6b6e5 100644
---- a/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-+++ b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
++title: Maxim Integrated MAX98357A/MAX98360A amplifier
++
++maintainers:
++  - Tzung-Bi Shih <tzungbi@kernel.org>
++
++description:
++  Maxim Integrated MAX98357A/MAX98360A is a digital pulse-code modulation (PCM)
++  input Class D amplifier.
++
++allOf:
 +  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml b/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-index 808f6d2736c7..fe5f0756af2f 100644
---- a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-+++ b/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Mark Brown <broonie@kernel.org>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-asrc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-asrc.yaml
-index d82415c21271..e15f387c4c29 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-asrc.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-asrc.yaml
-@@ -23,7 +23,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-index 3d538df878ea..e1362c77472b 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-@@ -18,7 +18,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
-index ea0dc0ece1bc..e4c871797fa6 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
-@@ -19,7 +19,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
-index 1aff61f072bb..021b72546ba4 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
-@@ -18,7 +18,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-index 0f9d2b461e02..bff551c35da7 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-@@ -17,7 +17,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-index 12cd17eede99..a82f11fb6c9a 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-@@ -17,7 +17,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
-index 570b03282aeb..049898f02e85 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
-@@ -17,7 +17,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
-index 4aecbc847b98..d0280d8aa3af 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
-@@ -20,7 +20,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml
-index 9dc9ba590fa3..5fc03b8771b1 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml
-@@ -17,7 +17,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
-index 694f890d6305..185ca0be4f02 100644
---- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
-+++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
-@@ -17,7 +17,7 @@ maintainers:
-   - Sameer Pujar <spujar@nvidia.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   $nodename:
-diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-index 7f2e68ff6d34..fd2415e231eb 100644
---- a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-+++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Stephan Gerhold <stephan@gerhold.net>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
-index 013f534fa059..8f3f62c0226a 100644
---- a/Documentation/devicetree/bindings/sound/rt5659.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5659.txt
-@@ -42,7 +42,7 @@ Optional properties:
- - realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_EN pin.
- - realtek,reset-gpios : The GPIO that controls the CODEC's RESET pin.
- 
--- sound-name-prefix: Please refer to name-prefix.yaml
-+- sound-name-prefix: Please refer to dai-common.yaml
- 
- - ports: A Codec may have a single or multiple I2S interfaces. These
-   interfaces on Codec side can be described under 'ports' or 'port'.
-diff --git a/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml b/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
-index 5428ba9e23a6..5db1f989d050 100644
---- a/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
-+++ b/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-index b5fc35ee9b65..9f319caf3db7 100644
---- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-+++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-@@ -14,7 +14,7 @@ description: |
-   their input line is connected to the output line.
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/ti,src4xxx.yaml b/Documentation/devicetree/bindings/sound/ti,src4xxx.yaml
-index 9681b72b4918..988ce8d8028f 100644
---- a/Documentation/devicetree/bindings/sound/ti,src4xxx.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,src4xxx.yaml
-@@ -14,7 +14,7 @@ maintainers:
-   - Matt Flax <flatmax@flatmax.com>
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
- 
- properties:
-   compatible:
++
++properties:
++  compatible:
++    enum:
++      - maxim,max98357a
++      - maxim,max98360a
++
++  '#sound-dai-cells':
++    const: 0
++
++  sdmode-gpios:
++    maxItems: 1
++    description:
++      Chip's SD_MODE pin.  If missing the chip is always on.
++
++  sdmode-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Delay time for SD_MODE pin changes intended to make I2S clocks ready
++      before SD_MODE is unmuted in order to avoid the speaker pop noise.
++
++required:
++  - compatible
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    amplifier {
++        compatible = "maxim,max98360a";
++        #sound-dai-cells = <0>;
++        sdmode-gpios = <&qcom_pinmux 25 GPIO_ACTIVE_HIGH>;
++    };
 -- 
 2.34.1
 
