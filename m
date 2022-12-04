@@ -4,113 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927AAC4321E
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F1D7C4321E
+	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:39:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=51+/NwPdSzhqogOu+ned/D149eMiBUQllrlNKDITjKk=; b=MKUNScfrxdfSNU
-	LifrZj9s+km0VQB8KgWJtWQ8voP0GhyrNnULo9LGUKABNo+vkSX9HkbiA4Q1Tb7qqwr0tyZ5u7jjQ
-	EMqRxnWrnFES/u9e5LLBnf4pjY7xpHxu3TATwX8G91oMXkkj8wiDVK8r/WXziKUiXz6CheVh2UKBm
-	N9WlnZJBEGqPRs9kCm4VAbla8TeXmb+93PDC/w7Jgsb9QURS4hdc+lSFsaja+tZ3QJyOF3+5/31AW
-	p+Tb8KC2qg+O7gz3R9PiFHXk3//M+2mm/VcXNzVR3HiANrAj2E0NO4eqqiSOMvc5GsR/5F7S75Q6R
-	AmToPO9o0G4w51HXViNw==;
+	List-Owner; bh=Aa423UQAabSvWyU1IlNIsdq5XfxNeQrein+Oiz6pLDw=; b=hC7yXpUmXkfQP+
+	c0EZ4zBsjTivvLbsy3kLfRp24ZNJi+X/O+xp1NGsWWkW2iz8jy0bqJ1sAAIDIcAIFrTWhj3zrvMHv
+	G/k7hVhR6Il8u0nOUMqfRj+ySX6HPE06PXT9TcFxibnzF/y5E519BucMjbM5MGbStqEivf3apRpP2
+	nRlrwph1MCTwcjEVDpuuHnqgEQYl43jXcTrs/ztJL+4bbw/LfhDXENed/lsFOP5zkduQ9o4XkwX/y
+	fv2ZrpSQBAi7ihN2ch9TXutCXVf3xoNCnQLyM4IDg04atk/9x7T0ueT2tTmYM7mOl0wVMJARNpQ7O
+	RUSyezZQ+zJr9SlovQUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tog-00ANKB-CO; Sun, 04 Dec 2022 18:34:18 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1p1tt3-00AO9P-F7; Sun, 04 Dec 2022 18:38:49 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tkY-00AMQb-Aj
-	for linux-amlogic@bombadil.infradead.org; Sun, 04 Dec 2022 18:30:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=; b=JVceUxphNiFOOCNM5vfBe6yKmt
-	CT8Dq+TfzvDB7A+QgPuzSc+5L4FVgo6//koP/J8evQiQoUZb3lhBbrANvKunU6HRReWr7RACRiy4M
-	z6FjE4zN2zEGmGM0KHM+d7HqMxanYIdmhFIPun4MIYGEaMqk6JnZYzZTczYShnBv6f6lSjumtxFOB
-	nukWIAb7tl9ElckD9m5iWaGGMR8o2H+nmC5M82/36kdn3zhqNPJ5Jbkkn3vuHZKyvhXZlJZw2om0t
-	dotZWHBvNuhLUqdD73jtESueqdMB/+tsahiW6InJJoEYG/7C/etBWjstgrEmZ+iEYv6AQVv0mLome
-	Ux6eqkKg==;
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
-	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tkE-007NOR-2K
-	for linux-amlogic@lists.infradead.org; Sun, 04 Dec 2022 18:29:57 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id b3so15352904lfv.2
-        for <linux-amlogic@lists.infradead.org>; Sun, 04 Dec 2022 10:29:33 -0800 (PST)
+	id 1p1tmx-00AMh9-I4; Sun, 04 Dec 2022 18:32:33 +0000
+Received: by mail-wm1-x329.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so10281865wma.1;
+        Sun, 04 Dec 2022 10:32:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
-        b=sSRku4Abu4TUaaSejWrqY4U2E+YKf38PkhQg7Na1Bm47oQYnpZAGAQbDgfOtnzbwxI
-         trEp6uS5wDke6RK9pH9vquIxLjo7Kc1apCRrqGlSaFBDZ52Oo4kCD6nwxjIH6fY9g/bv
-         4PXYVD3QKo8J+qGvu42EvRRoEUKgvNbwl+7ntPkS3NzXisMxcbXzrOv2mMEj3cskeKK4
-         B/+cblGTNaXQRS7ZNl4BbMgdp0m9I9nfbmRsz7NfCjtnJZ/mCLAd8RjqXB/saPPkp4OI
-         nYJecI7/PDqQVLpEJHktPEJfXLiB73KDmAvPxBH1CmxHhQJ+7aPVgeyZFp4pyBCQqoaG
-         M6Lw==
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cT6XsFeikKqtH1/hCcOrW6pF6YKm2yjZrCCnG8JeZLE=;
+        b=YY31dTp15ts/Sd2mG4d4Znp5cd0G0qqvDj3IRWl0XuNT9Yto3NXrjJS5gszXn7RWHn
+         RpjCotoEVSlLlonPHNwJP1TCiJRRkkKAcGEZ8EfBRcsG6yvbfZB1inHPervKq6osS7xm
+         NJIx2owTgSqNCsFpFYl9tQejPnYMEDG2FBAY3KJnV+ZLsPiVQ4zahlOuWLRbRj4EcxRl
+         6U9NUiY070rRU3dQeHmHym3VcILeTFk1q21u8fCl630Atust2KqldbbvqZwRlvHqft27
+         J5n1jMlZ2Cmg94qlkwYAUJ5lo/Thj627DGaQuxdxtNNouDyvDo4QcPZbYLhaGDYxMLAh
+         btNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
-        b=ac3oSKFGEJX+xClNECPqmGCILbFSZW8iPz79FAG6b4IDB+/6hNI0gi3ycQRprckftw
-         gKlktfT/NYjsxYvhmWRGMhTHQ/OcJxBQPuGFLhdf3ZtsWC4fYwLK6++rmLFK5ZrIDELK
-         aQzCIwtd9Q7gA3xTMzlFEuyxm3UjzW7fPEJ9lUw+c0WLVIgDpGgnzkmDV/qj+qJryrOp
-         F6tO4lsucmqbbRWELbgxHh9R6/a16f+eqjXttmlKr8oKDZvyrEozHHVAjel3AELFfhY2
-         K+cdQM8EdW607IPGo8xBn1d9plJi46YXKh34TLOD9SwveFQVKfxjn3bpLPzNkhq/Aa8b
-         6QhA==
-X-Gm-Message-State: ANoB5pkj8kjA71gCi/uPlW6M2r3y1rwaJ1yUvS4aSU90SsNVsrMRUzek
-	z0RNd4r58hw+HPL0iQYBtlPToQ==
-X-Google-Smtp-Source: AA0mqf7mde+fLncLGsqsu74oY7mom6NfLqupJzr3yJpn1m89tEjsfinULx30yTOV4PY+XU3wyD2ilw==
-X-Received: by 2002:a05:6512:16a4:b0:4b2:5c79:ae9c with SMTP id bu36-20020a05651216a400b004b25c79ae9cmr25280095lfb.619.1670178570118;
-        Sun, 04 Dec 2022 10:29:30 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.28
+        bh=cT6XsFeikKqtH1/hCcOrW6pF6YKm2yjZrCCnG8JeZLE=;
+        b=EWtnrAOSOrGyP6XWMTNll465raRWQB4gWjWmj/9t1sPRk4QxHQ4UnOw1vqsU4hfcgW
+         33jkfOsbK3ayq7RMshS3WXBbJw7Cohe8IJZDv4uPmHgwYtHHUfVfKYIkOiZWraLQ/VXQ
+         EvbKr+8uy1iXahIbQCjGJa2lLES95YK5dgiiKFgQQScfyADDb2m8lIum0ovRkfJWFVil
+         hge8kj0bHpeN7qKm4tda3dRTlQB6aubcJHRSOmhl9rsp56tBM57ZxcKqz/7T00xONUiS
+         hHbSjuc+0LMUWq7zgTs6CP527LlvxI3RFlDp6wtPyvI1UqY0kFJ1af9vV5i6vqtk6WIX
+         BH6A==
+X-Gm-Message-State: ANoB5pmP+aL9O+Y7xQWpYoAUqrRw9tEO3Looxy+MxYniGLM9zQ5zLxhQ
+	KNAsaqhW/l/0BIxrTaBcP1I=
+X-Google-Smtp-Source: AA0mqf5w9S5gt2nyROsIJ/KepCdghxD2S5KWJ22n53ipvP7a98YVBzA2u2fA7xIwo0AsFvdt9OTByA==
+X-Received: by 2002:a05:600c:3590:b0:3d0:1489:78c4 with SMTP id p16-20020a05600c359000b003d0148978c4mr47437513wmq.167.1670178749708;
+        Sun, 04 Dec 2022 10:32:29 -0800 (PST)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id i2-20020adff302000000b002421a8f4fa6sm12120806wro.92.2022.12.04.10.32.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 10:29:29 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Joe Tessler <jrt@google.com>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Jeff Chase <jnchase@google.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 9/9] media: dt-bindings: st,stih-cec: convert to DT schema
-Date: Sun,  4 Dec 2022 19:29:08 +0100
-Message-Id: <20221204182908.138910-9-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
-References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+        Sun, 04 Dec 2022 10:32:29 -0800 (PST)
+From: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Ban Tao <fengzheng923@gmail.com>, =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+	James Schulman <james.schulman@cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
+	Lucas Tanure <tanureal@opensource.cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>, Cheng-Yi Chiang <cychiang@chromium.org>, 
+	Tzung-Bi Shih <tzungbi@kernel.org>, Guenter Roeck <groeck@chromium.org>, 
+	Benson Leung <bleung@chromium.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Stephan Gerhold <stephan@gerhold.net>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Fabio Estevam <festevam@gmail.com>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
+	Masami Hiramatsu <mhiramat@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.om>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Bogdan Togorean <bogdan.togorean@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Vincent Knecht <vincent.knecht@mailoo.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Maxime Ripard <mripard@kernel.org>, 
+	Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>, - <patches@opensource.cirrus.com>, 
+	Jayesh Choudhary <j-choudhary@ti.com>, Daniel Drake <drake@endlessm.com>, 
+	Katsuhiro Suzuki <katsuhiro@katsuster.net>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+	Paul Cercueil <paul@crapouillou.net>, Jee Heng <jee.heng.sia@intel.com>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Codrin Ciubotariu <codrin.ciubotariu@microchip.com>, 
+	Mohan Kumar <mkumard@nvidia.com>, Sameer Pujar <spujar@nvidia.com>, 
+	Rohit kumar <rohitkr@codeaurora.org>, Derek Fang <derek.fang@realtek.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, ChiYuan Huang <cy_huang@richtek.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Andrew Davis <afd@ti.com>, Shi Fu <shifu0704@thundersoft.com>, 
+	Shenghao Ding <shenghao-ding@ti.com>, Matt Flax <flatmax@flatmax.com>, 
+	Ricard Wanderlof <ricardw@axis.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
+	linux-sunxi@lists.linux.dev, asahi@lists.linux.dev, 
+	chrome-platform@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: Reference common DAI properties
+Date: Sun, 04 Dec 2022 19:32:26 +0100
+Message-ID: <13951589.OODuZ4BQiV@archbook>
+In-Reply-To: <7c258f71-23d0-36bd-8abf-b227d2522267@linaro.org>
+References: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org> <2251607.XGVbBG2WQu@archbook> <7c258f71-23d0-36bd-8abf-b227d2522267@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221204_182954_103851_06684DAC 
-X-CRM114-Status: GOOD (  17.30  )
+X-CRM114-CacheID: sfid-20221204_103231_651668_99F1659C 
+X-CRM114-Status: GOOD (  18.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,137 +131,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert ST STIH4xx HDMI CEC bindings to DT schema.
+On Sonntag, 4. Dezember 2022 17:47:05 CET Krzysztof Kozlowski wrote:
+> On 04/12/2022 17:09, Nicolas Frattaroli wrote:
+> > On Samstag, 3. Dezember 2022 17:04:41 CET Krzysztof Kozlowski wrote:
+> >> Reference in all sound components which have '#sound-dai-cells' the
+> >> dai-common.yaml schema, which allows to use 'sound-name-prefix'
+> >> property.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> ---
+> >>
+> >> This is an output of discussion here:
+> >> https://lore.kernel.org/all/Y255C+TGNVJ9fs8A@sirena.org.uk/
+> >>
+> >> This patch supersedes previous WSA883x one.
+> >> ---
+> > 
+> > Hello,
+> > 
+> > for rockchip,i2s-tdm, we get some (new?) warnings with W=1:
+> > 
+> >     /home/fratti/Projekte/linux/arch/arm64/boot/dts/rockchip/rk3566-pinenote-v1.1.dtb: i2s@fe420000: reset-names:0: 'm' is not one of ['tx-m', 'rx-m']
+> >             From schema: /home/fratti/Projekte/linux/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+> 
+> I did not touch reset names, so are you sure these are not old warnings?
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/media/cec/st,stih-cec.yaml       | 66 +++++++++++++++++++
- .../devicetree/bindings/media/stih-cec.txt    | 27 --------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 67 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/stih-cec.txt
+You are correct, these aren't new, I thought they were due to it now
+actually checking reset-names or something. However, checking with
+linux-next/master shows that these were already there. Apologies for
+the noise.
 
-diff --git a/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
-new file mode 100644
-index 000000000000..aeddf16ed339
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/cec/st,stih-cec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STIH4xx HDMI CEC
-+
-+maintainers:
-+  - Alain Volmat <alain.volmat@foss.st.com>
-+
-+allOf:
-+  - $ref: cec-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: st,stih-cec
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: cec-clk
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: cec-irq
-+
-+  resets:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - hdmi-phandle
-+  - interrupts
-+  - resets
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/stih407-resets.h>
-+
-+    cec@94a087c {
-+        compatible = "st,stih-cec";
-+        reg = <0x94a087c 0x64>;
-+
-+        clocks = <&clk_sysin>;
-+        clock-names = "cec-clk";
-+        hdmi-phandle = <&sti_hdmi>;
-+        interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "cec-irq";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_cec0_default>;
-+        resets = <&softreset STIH407_LPM_SOFTRESET>;
-+    };
-diff --git a/Documentation/devicetree/bindings/media/stih-cec.txt b/Documentation/devicetree/bindings/media/stih-cec.txt
-deleted file mode 100644
-index ece0832fdeaf..000000000000
---- a/Documentation/devicetree/bindings/media/stih-cec.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--STMicroelectronics STIH4xx HDMI CEC driver
--
--Required properties:
-- - compatible : value should be "st,stih-cec"
-- - reg : Physical base address of the IP registers and length of memory
--	 mapped region.
-- - clocks : from common clock binding: handle to HDMI CEC clock
-- - interrupts : HDMI CEC interrupt number to the CPU.
-- - pinctrl-names: Contains only one value - "default"
-- - pinctrl-0: Specifies the pin control groups used for CEC hardware.
-- - resets: Reference to a reset controller
-- - hdmi-phandle: Phandle to the HDMI controller, see also cec.txt.
--
--Example for STIH407:
--
--sti-cec@94a087c {
--	compatible = "st,stih-cec";
--	reg = <0x94a087c 0x64>;
--	clocks = <&clk_sysin>;
--	clock-names = "cec-clk";
--	interrupts = <GIC_SPI 140 IRQ_TYPE_NONE>;
--	interrupt-names = "cec-irq";
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_cec0_default>;
--	resets = <&softreset STIH407_LPM_SOFTRESET>;
--	hdmi-phandle = <&hdmi>;
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dee3f776be32..5bf8879b4a59 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19924,7 +19924,7 @@ F:	sound/soc/sti/
- STI CEC DRIVER
- M:	Alain Volmat <alain.volmat@foss.st.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/stih-cec.txt
-+F:	Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
- F:	drivers/media/cec/platform/sti/
- 
- STK1160 USB VIDEO CAPTURE DRIVER
--- 
-2.34.1
+For rockchip,i2s-tdm:
+
+Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+
+Kind regards,
+Nicolas Frattaroli
+
 
 
 _______________________________________________
