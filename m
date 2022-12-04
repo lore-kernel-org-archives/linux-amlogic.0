@@ -4,62 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9681FC3A5A7
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:33:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927AAC4321E
+	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3NecsH7HONxpqpCPpsSmYK2CkuJuqoUIEgkut6bmlcw=; b=sfvoFOfJQaQham
-	ecE0v1EZ56z+A6NxmA90uZfqUWDpzYX1rPGOLpr5HIR84q7eb0R10d09/rwQWY8uuB3p6k8avyyMh
-	Sm8UzSBir0HfB5QRWNXwgtBMzK0MZCjMy+DuouDIx1KqAcECef4r1k0/honYwb7IUb8PzVnplxIA7
-	TGGrUG4LaB5+0MdGqsZucTDngMsKVCxdQzsuNV7EbIAzIzljfzf1IVGAIo3H20mQL72L5jUMD0S/t
-	fj2wKrLFatM2/hUO6tc66rr+xjIlPP8oGxzwl762COgCNGy1N6+HvHO0tmvl5tph5mcodPJVXcFM9
-	DmUlfiTferuAFT6COAGA==;
+	List-Owner; bh=51+/NwPdSzhqogOu+ned/D149eMiBUQllrlNKDITjKk=; b=MKUNScfrxdfSNU
+	LifrZj9s+km0VQB8KgWJtWQ8voP0GhyrNnULo9LGUKABNo+vkSX9HkbiA4Q1Tb7qqwr0tyZ5u7jjQ
+	EMqRxnWrnFES/u9e5LLBnf4pjY7xpHxu3TATwX8G91oMXkkj8wiDVK8r/WXziKUiXz6CheVh2UKBm
+	N9WlnZJBEGqPRs9kCm4VAbla8TeXmb+93PDC/w7Jgsb9QURS4hdc+lSFsaja+tZ3QJyOF3+5/31AW
+	p+Tb8KC2qg+O7gz3R9PiFHXk3//M+2mm/VcXNzVR3HiANrAj2E0NO4eqqiSOMvc5GsR/5F7S75Q6R
+	AmToPO9o0G4w51HXViNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1toB-00AMwf-11; Sun, 04 Dec 2022 18:33:47 +0000
-Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
+	id 1p1tog-00ANKB-CO; Sun, 04 Dec 2022 18:34:18 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tk1-00AMGC-1R
-	for linux-amlogic@lists.infradead.org; Sun, 04 Dec 2022 18:29:35 +0000
-Received: by mail-lf1-x12b.google.com with SMTP id p36so10992382lfa.12
-        for <linux-amlogic@lists.infradead.org>; Sun, 04 Dec 2022 10:29:28 -0800 (PST)
+	id 1p1tkY-00AMQb-Aj
+	for linux-amlogic@bombadil.infradead.org; Sun, 04 Dec 2022 18:30:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=; b=JVceUxphNiFOOCNM5vfBe6yKmt
+	CT8Dq+TfzvDB7A+QgPuzSc+5L4FVgo6//koP/J8evQiQoUZb3lhBbrANvKunU6HRReWr7RACRiy4M
+	z6FjE4zN2zEGmGM0KHM+d7HqMxanYIdmhFIPun4MIYGEaMqk6JnZYzZTczYShnBv6f6lSjumtxFOB
+	nukWIAb7tl9ElckD9m5iWaGGMR8o2H+nmC5M82/36kdn3zhqNPJ5Jbkkn3vuHZKyvhXZlJZw2om0t
+	dotZWHBvNuhLUqdD73jtESueqdMB/+tsahiW6InJJoEYG/7C/etBWjstgrEmZ+iEYv6AQVv0mLome
+	Ux6eqkKg==;
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1p1tkE-007NOR-2K
+	for linux-amlogic@lists.infradead.org; Sun, 04 Dec 2022 18:29:57 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id b3so15352904lfv.2
+        for <linux-amlogic@lists.infradead.org>; Sun, 04 Dec 2022 10:29:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cfEljQl4EQnYkf8QlT89AMte2GMs3c8lv3oMt/y+GaM=;
-        b=RzOP2wIm9bCZ5ESuvwDuHywgx5HU0X8Hi4roafacV4qFdB0j4u+7UHp7eXTTV85PrX
-         o71gYyStglO3NPs9SY/YW81rvDwchWHXgOc1Ss3OtNNQv2ThPsNTKb+FBcX71juysNau
-         ky9X+Q24/xKE+usvEYdonDkgwwQvLfOG9WWdZIXnxuJGzDTcXRUMo8u16Un7RNGIwVxC
-         FDrvFudqI6fNoFolPuNKd2rGIotUDucKkwyCjJ1AW2k9SzaLcYUaRlB5g3xZMLvbNRoU
-         1LgHBn9No1SLUBXq8MgMGy4sTZwavgfWvH2ii7i9OjISMt/UVXkrsxkxoxUr3R+akxoM
-         8yEg==
+        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
+        b=sSRku4Abu4TUaaSejWrqY4U2E+YKf38PkhQg7Na1Bm47oQYnpZAGAQbDgfOtnzbwxI
+         trEp6uS5wDke6RK9pH9vquIxLjo7Kc1apCRrqGlSaFBDZ52Oo4kCD6nwxjIH6fY9g/bv
+         4PXYVD3QKo8J+qGvu42EvRRoEUKgvNbwl+7ntPkS3NzXisMxcbXzrOv2mMEj3cskeKK4
+         B/+cblGTNaXQRS7ZNl4BbMgdp0m9I9nfbmRsz7NfCjtnJZ/mCLAd8RjqXB/saPPkp4OI
+         nYJecI7/PDqQVLpEJHktPEJfXLiB73KDmAvPxBH1CmxHhQJ+7aPVgeyZFp4pyBCQqoaG
+         M6Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cfEljQl4EQnYkf8QlT89AMte2GMs3c8lv3oMt/y+GaM=;
-        b=STQcYsG1OfW3WFtTSU6IZNQ7SDUyl/RmVG7pvfrVAALhdaknHBNExjulOgGsidtMyR
-         P96W4WrJ5/DYgPS+RxvCkiLyCBWYNgGsjN+kUZLVAirZOh38MC/I1smR9I05VTyXORh4
-         hpX3c6+fwBBPSdi1Vb90W9ZkAW+ymjv6bH0HFBUp3ghoJ+1Wl/5Zxp/ao0GMVHnPuwjW
-         +nt5Eg6jOlOBtatVvzEQFPj7XUnPi4RuVimh8kJHg3UsmHtO35/cxj3llXk506/BvNa6
-         bA0KeTHN3qSvlgkcdqBFEj1kRq2PokDyycs0WORmDUVyg/+D4DXd1/hMBjtPLSlYaFdc
-         +wyw==
-X-Gm-Message-State: ANoB5pkkX5pTkd/AvJGX3J7EZSRB2aJGnFLjYYrNHIby2HG7kMnsPhVz
-	M4Q0AO8bN/cZFRvqcnKsitcpHQ==
-X-Google-Smtp-Source: AA0mqf6EB/f2PuewaiyadZR8vlg31H/jIll4F9UXujfurMGL7HWkJBitZjA8igFxRkKDNKACaLAVow==
-X-Received: by 2002:a19:4901:0:b0:4b4:e3b8:c6af with SMTP id w1-20020a194901000000b004b4e3b8c6afmr21611090lfa.291.1670178567147;
-        Sun, 04 Dec 2022 10:29:27 -0800 (PST)
+        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
+        b=ac3oSKFGEJX+xClNECPqmGCILbFSZW8iPz79FAG6b4IDB+/6hNI0gi3ycQRprckftw
+         gKlktfT/NYjsxYvhmWRGMhTHQ/OcJxBQPuGFLhdf3ZtsWC4fYwLK6++rmLFK5ZrIDELK
+         aQzCIwtd9Q7gA3xTMzlFEuyxm3UjzW7fPEJ9lUw+c0WLVIgDpGgnzkmDV/qj+qJryrOp
+         F6tO4lsucmqbbRWELbgxHh9R6/a16f+eqjXttmlKr8oKDZvyrEozHHVAjel3AELFfhY2
+         K+cdQM8EdW607IPGo8xBn1d9plJi46YXKh34TLOD9SwveFQVKfxjn3bpLPzNkhq/Aa8b
+         6QhA==
+X-Gm-Message-State: ANoB5pkj8kjA71gCi/uPlW6M2r3y1rwaJ1yUvS4aSU90SsNVsrMRUzek
+	z0RNd4r58hw+HPL0iQYBtlPToQ==
+X-Google-Smtp-Source: AA0mqf7mde+fLncLGsqsu74oY7mom6NfLqupJzr3yJpn1m89tEjsfinULx30yTOV4PY+XU3wyD2ilw==
+X-Received: by 2002:a05:6512:16a4:b0:4b2:5c79:ae9c with SMTP id bu36-20020a05651216a400b004b25c79ae9cmr25280095lfb.619.1670178570118;
+        Sun, 04 Dec 2022 10:29:30 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.25
+        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 10:29:26 -0800 (PST)
+        Sun, 04 Dec 2022 10:29:29 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -87,16 +101,16 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 7/9] media: dt-bindings: cec-gpio: convert to DT schema
-Date: Sun,  4 Dec 2022 19:29:06 +0100
-Message-Id: <20221204182908.138910-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 9/9] media: dt-bindings: st,stih-cec: convert to DT schema
+Date: Sun,  4 Dec 2022 19:29:08 +0100
+Message-Id: <20221204182908.138910-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
 References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221204_102930_106476_A5E71BC7 
-X-CRM114-Status: GOOD (  20.07  )
+X-CRM114-CacheID: sfid-20221204_182954_103851_06684DAC 
+X-CRM114-Status: GOOD (  17.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,157 +127,135 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert HDMI CEC GPIO bindings to DT schema.
+Convert ST STIH4xx HDMI CEC bindings to DT schema.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/media/cec-gpio.txt    | 42 -----------
- .../bindings/media/cec/cec-gpio.yaml          | 73 +++++++++++++++++++
+ .../bindings/media/cec/st,stih-cec.yaml       | 66 +++++++++++++++++++
+ .../devicetree/bindings/media/stih-cec.txt    | 27 --------
  MAINTAINERS                                   |  2 +-
- 3 files changed, 74 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/cec-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/media/cec/cec-gpio.yaml
+ 3 files changed, 67 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/stih-cec.txt
 
-diff --git a/Documentation/devicetree/bindings/media/cec-gpio.txt b/Documentation/devicetree/bindings/media/cec-gpio.txt
-deleted file mode 100644
-index 47e8d73d32a3..000000000000
---- a/Documentation/devicetree/bindings/media/cec-gpio.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* HDMI CEC GPIO driver
--
--The HDMI CEC GPIO module supports CEC implementations where the CEC line
--is hooked up to a pull-up GPIO line and - optionally - the HPD line is
--hooked up to another GPIO line.
--
--Please note: the maximum voltage for the CEC line is 3.63V, for the HPD and
--5V lines it is 5.3V. So you may need some sort of level conversion circuitry
--when connecting them to a GPIO line.
--
--Required properties:
--  - compatible: value must be "cec-gpio".
--  - cec-gpios: gpio that the CEC line is connected to. The line should be
--    tagged as open drain.
--
--If the CEC line is associated with an HDMI receiver/transmitter, then the
--following property is also required:
--
--  - hdmi-phandle - phandle to the HDMI controller, see also cec.txt.
--
--If the CEC line is not associated with an HDMI receiver/transmitter, then
--the following property is optional and can be used for debugging HPD changes:
--
--  - hpd-gpios: gpio that the HPD line is connected to.
--
--This property is optional and can be used for debugging changes on the 5V line:
--
--  - v5-gpios: gpio that the 5V line is connected to.
--
--Example for the Raspberry Pi 3 where the CEC line is connected to
--pin 26 aka BCM7 aka CE1 on the GPIO pin header, the HPD line is
--connected to pin 11 aka BCM17 and the 5V line is connected to pin
--15 aka BCM22 (some level shifter is needed for the HPD and 5V lines!):
--
--#include <dt-bindings/gpio/gpio.h>
--
--cec-gpio {
--	compatible = "cec-gpio";
--	cec-gpios = <&gpio 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
--	hpd-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
--	v5-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
--};
-diff --git a/Documentation/devicetree/bindings/media/cec/cec-gpio.yaml b/Documentation/devicetree/bindings/media/cec/cec-gpio.yaml
+diff --git a/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
 new file mode 100644
-index 000000000000..19169d58316a
+index 000000000000..aeddf16ed339
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/media/cec/cec-gpio.yaml
-@@ -0,0 +1,73 @@
++++ b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/media/cec/cec-gpio.yaml#
++$id: http://devicetree.org/schemas/media/cec/st,stih-cec.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: HDMI CEC GPIO
++title: STMicroelectronics STIH4xx HDMI CEC
 +
 +maintainers:
-+  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
-+
-+description: |
-+  The HDMI CEC GPIO module supports CEC implementations where the CEC line is
-+  hooked up to a pull-up GPIO line and - optionally - the HPD line is hooked up
-+  to another GPIO line.
-+
-+  Please note:: the maximum voltage for the CEC line is 3.63V, for the HPD and
-+  5V lines it is 5.3V. So you may need some sort of level conversion
-+  circuitry when connecting them to a GPIO line.
-+
-+properties:
-+  compatible:
-+    const: cec-gpio
-+
-+  cec-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO that the CEC line is connected to. The line should be tagged as open
-+      drain.
-+
-+  hpd-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO that the HPD line is connected to.  Used for debugging HPD changes
-+      when the CEC line is not associated with an HDMI receiver/transmitter.
-+
-+  v5-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO that the 5V line is connected to.  Used for debugging changes on the
-+      5V line.
-+
-+required:
-+  - compatible
-+  - cec-gpios
++  - Alain Volmat <alain.volmat@foss.st.com>
 +
 +allOf:
 +  - $ref: cec-common.yaml#
-+  - if:
-+      required:
-+        - hdmi-phandle
-+    then:
-+      properties:
-+        hpd-gpios: false
 +
-+  - if:
-+      required:
-+        - hpd-gpios
-+    then:
-+      properties:
-+        hdmi-phandle: false
++properties:
++  compatible:
++    const: st,stih-cec
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: cec-clk
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    items:
++      - const: cec-irq
++
++  resets:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - hdmi-phandle
++  - interrupts
++  - resets
++  - reg
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/stih407-resets.h>
 +
-+    cec {
-+        compatible = "cec-gpio";
-+        cec-gpios = <&gpio 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+        hpd-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
-+        v5-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
++    cec@94a087c {
++        compatible = "st,stih-cec";
++        reg = <0x94a087c 0x64>;
++
++        clocks = <&clk_sysin>;
++        clock-names = "cec-clk";
++        hdmi-phandle = <&sti_hdmi>;
++        interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "cec-irq";
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_cec0_default>;
++        resets = <&softreset STIH407_LPM_SOFTRESET>;
 +    };
+diff --git a/Documentation/devicetree/bindings/media/stih-cec.txt b/Documentation/devicetree/bindings/media/stih-cec.txt
+deleted file mode 100644
+index ece0832fdeaf..000000000000
+--- a/Documentation/devicetree/bindings/media/stih-cec.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-STMicroelectronics STIH4xx HDMI CEC driver
+-
+-Required properties:
+- - compatible : value should be "st,stih-cec"
+- - reg : Physical base address of the IP registers and length of memory
+-	 mapped region.
+- - clocks : from common clock binding: handle to HDMI CEC clock
+- - interrupts : HDMI CEC interrupt number to the CPU.
+- - pinctrl-names: Contains only one value - "default"
+- - pinctrl-0: Specifies the pin control groups used for CEC hardware.
+- - resets: Reference to a reset controller
+- - hdmi-phandle: Phandle to the HDMI controller, see also cec.txt.
+-
+-Example for STIH407:
+-
+-sti-cec@94a087c {
+-	compatible = "st,stih-cec";
+-	reg = <0x94a087c 0x64>;
+-	clocks = <&clk_sysin>;
+-	clock-names = "cec-clk";
+-	interrupts = <GIC_SPI 140 IRQ_TYPE_NONE>;
+-	interrupt-names = "cec-irq";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_cec0_default>;
+-	resets = <&softreset STIH407_LPM_SOFTRESET>;
+-	hdmi-phandle = <&hdmi>;
+-};
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 05acbaecef52..197351d3bb57 100644
+index dee3f776be32..5bf8879b4a59 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4848,7 +4848,7 @@ L:	linux-media@vger.kernel.org
- S:	Supported
- W:	http://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
--F:	Documentation/devicetree/bindings/media/cec-gpio.txt
-+F:	Documentation/devicetree/bindings/media/cec/cec-gpio.yaml
- F:	drivers/media/cec/platform/cec-gpio/
+@@ -19924,7 +19924,7 @@ F:	sound/soc/sti/
+ STI CEC DRIVER
+ M:	Alain Volmat <alain.volmat@foss.st.com>
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/media/stih-cec.txt
++F:	Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
+ F:	drivers/media/cec/platform/sti/
  
- CELL BROADBAND ENGINE ARCHITECTURE
+ STK1160 USB VIDEO CAPTURE DRIVER
 -- 
 2.34.1
 
