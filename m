@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E84CC47089
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31CAFC4321E
+	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Dec 2022 18:33:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2WmpXKgNW2Ho2Sp6W87I5utWdjIhwdSih/ryubC3UKk=; b=HmqSEVPWSMtuaw
-	XHfq/81bLakTkgvOe5PY4d16b8EvfTqicLGUT8jz0xvchIKgqmZ03iRYAi5xM6PMtdnyyZkT7O5eq
-	kwd1/NnrDGEDv9Dr00KjLCopeb/3QfPc7wlGMUkiWVEJjvQ+btwBGNhMNAVS6nQ/1C/R1S/O965SK
-	vYj5tATbARC23aW/Cny7P4ZcwmmHVuDNjDeZEvdnFwoQqYUL3jC0ZoJKCX8o6SbURlnK/w98Kvfzn
-	3hm7tiiT+pAFK0/6Datw6udODMsd6vms4BWiyO2eEt9PW06a3YkZPkXOvM/fnZtlZgEf1rRjLnoNR
-	+mcChNqWiZFXPxgwUsKQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FdlsRBewToVxPGytmcwPnql5DmXYGShbCS1QAVr1IyM=; b=xcqU7CTtw2YtjO
+	/isaW3bTMqNBML6NRMOSVSbq03t3/ExBZa8LcaiZEFocwYh+3TOt4Zuj1npsBFQ/nd8SMabYuxo/L
+	7b8RMIVDHzvle1czukZ5lX7j++jQAiTiKiMP/hiZr7kyJyp47QLVA0CzogBmgMWNQYq0kTg7J11k9
+	SOtEuMVOyhTT1ioj8wst23kdltl3ldlu2vU/u94ORYUPu8jP55FKGCRxSaFjbYmvn2Y9O+pLEd509
+	dK+mwmK1c+DTuDU5ca5Dr8wF5MdWpjThCozv3zO0nT+PRx2EMWPBP/eKI0UzvwLwyJ9vcmjvaMg4E
+	7TXC/dQIN/Isv1Md5mCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tnT-00AMkb-DU; Sun, 04 Dec 2022 18:33:03 +0000
+	id 1p1tne-00AMlw-PN; Sun, 04 Dec 2022 18:33:14 +0000
 Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1tjs-00AMF9-M4
-	for linux-amlogic@lists.infradead.org; Sun, 04 Dec 2022 18:29:31 +0000
-Received: by mail-lf1-x130.google.com with SMTP id f13so15339233lfa.6
-        for <linux-amlogic@lists.infradead.org>; Sun, 04 Dec 2022 10:29:19 -0800 (PST)
+	id 1p1tjx-00AMFe-D3
+	for linux-amlogic@lists.infradead.org; Sun, 04 Dec 2022 18:29:33 +0000
+Received: by mail-lf1-x130.google.com with SMTP id p8so15322931lfu.11
+        for <linux-amlogic@lists.infradead.org>; Sun, 04 Dec 2022 10:29:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=w4/E18WmIhglr3OIlvmjkp6vFsJUZQRrJVlXhfNxPYU=;
-        b=y/MaX5ZO0cE3OPHHfY0RQC5DkkHWNuMMXBloy+HhZpTftpttNLVdUyeJCINV3JvSkm
-         IdODTo8/NmOen8XdIXzlS0GtqzXABocwgPL3d+RjX5sR47e8NTLJ/k1dbZHCN+qlHVxd
-         OC9V/4qHfEOsdWeD9/qOd18cdKxMNCIVXF1Dz7govCRYD+x19nqUWDnfosZQJVaZYTxM
-         /fyJR7+ngzf8VaQQm00Zmu8g/HCSbRQuNSxSm8BeJcJvvnkeJQXfZFPx+DNGQTANvzrE
-         G6c0LoOryyUOWlWAxf7Nz3mRqCfY6YcwQWEoF75Tsvv6wR1PG8xatDFL9W22KjKaUZdy
-         HYfQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ryJoqPUtDVrF6ZMuGugpVvxdT6Olzct3tNuDLcoDxHw=;
+        b=IfFkxwrP2J1yEUneey53OCR0QJMYN7AzZLeaCBqufcp2eaE4MYqTHjtFVJYQhKFAGq
+         CS5dL2cp1T0WrQl2ZmyrY4UhTGKIs8hm+R0sw5rumVaswUPmoSGfp0NQFUxwtbllt8+u
+         XAhbonsl8ib/T9GefJ6b3q0xb4S01g2gXehEpQmFcSkH4vBfvn8ZJHlcQDxiK+oGxepR
+         hBk+Mujnls2YCaYsqvN2Ek9vwuGtD5hq5RsXRKpKtof3vu0oYVgTI95GbFK/sc43hlzC
+         ErsbXezeV//52O9fCKNc1nCaUNLbGlbWEc1N3D/Q3Ughd6BS7soYqwCOWSulvuIJ507h
+         qRYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w4/E18WmIhglr3OIlvmjkp6vFsJUZQRrJVlXhfNxPYU=;
-        b=ayz5rarF94ckH0mRubtMCEJRZYvkFB24dq+4lmIH/nbILBOJJcuyeb5ccM3pZuvJ0e
-         u4C9+HZUJuYZ/9We7yQMV+xxxQt5HM0dfT0fciPU5aVhyQuA5Ye6p1oEuo3blAj8ulf7
-         LqqXC+zwo/tuS7ZMYxuxhvXWyf0oY07EIJM7mQO6Qargwj85AkHfyAhdZ/InbZw88L53
-         eHjsA0lchsOxWNj3DnAE3MMowmIhmPsgAvh2PqQ+iGoLrxI4XeoRfmv2KMJy9d1SPKrI
-         ayg0Yazd3SIt3dYO19oMQ4FyZ3W02A/xqA5jcOxCzppDuSIca30ZNc9KZd5DM5ISUn+g
-         L80Q==
-X-Gm-Message-State: ANoB5plFnwE0CJe0Wu7mDM8eaBiIm8kYSvCpSQXgiz4SDzwyMsBzfO78
-	l51XqLmhop9Ftf48ZDDZLKwS4A==
-X-Google-Smtp-Source: AA0mqf6WLTN3NKvWlgv+itL2kG62uh3gZCbmqZYxman9U/9BXTDFucax3P9rqr2IYUaQ3fk0bdiMVQ==
-X-Received: by 2002:a19:3817:0:b0:4b4:e61f:16c8 with SMTP id f23-20020a193817000000b004b4e61f16c8mr21126378lfa.377.1670178558338;
-        Sun, 04 Dec 2022 10:29:18 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ryJoqPUtDVrF6ZMuGugpVvxdT6Olzct3tNuDLcoDxHw=;
+        b=JsBv6W3dgpSmvTfL3GQ8zLp8g0BblApOHPU+UUH2vHW4n61nZbxA7+3TOdTPgZvQzb
+         80L/N3dgYqLVlfStZXHpBy2PWd+RRoIdn70AtmOecEYSGzc748AvMCZ5AscCMh6YwrE/
+         Ix8P7eg6LmZkrYouRCDBekIzeddIkeadY+lFfTSXfxvyLmlT40S4FPdyHKUt0QAwptl2
+         CCzCFoZlDxmjNwRZupZNofibL3ci37kh0tuB+EXFbWCSthtPAHOjUpSpXUiHqlV1SqJO
+         ULUTAWY8GpGNycEcIaxcrD9/vnPiNGKy462EbQCzD+wc80RqJHZLvYPHwGb9N5Dhlz5s
+         duNg==
+X-Gm-Message-State: ANoB5pk5VI/EElvRzLU2azRpUzws91gXgjCdZTUO8hxqO9YaiIMXubfe
+	WPW0FlfTtkALbjTn0VPdIpGXTg==
+X-Google-Smtp-Source: AA0mqf7nxPRzYRU2hJOcxiFhlwNOAUgO8BwHiwE2ub621XQoE8wygLtenUJp9XS49uHrcaozZgRRpg==
+X-Received: by 2002:a19:6903:0:b0:499:8e29:2763 with SMTP id e3-20020a196903000000b004998e292763mr29560291lfc.137.1670178564112;
+        Sun, 04 Dec 2022 10:29:24 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.16
+        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 10:29:17 -0800 (PST)
+        Sun, 04 Dec 2022 10:29:23 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -86,15 +87,16 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/9] media: dt-bindings: amlogic,meson-gx-ao-cec: move to cec subfolder
-Date: Sun,  4 Dec 2022 19:29:00 +0100
-Message-Id: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/9] media: dt-bindings: chrontel,ch7322: reference common CEC properties
+Date: Sun,  4 Dec 2022 19:29:04 +0100
+Message-Id: <20221204182908.138910-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221204_102930_006066_478128E7 
-X-CRM114-Status: UNSURE (   9.14  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221204_102930_054546_D5E5969E 
+X-CRM114-Status: GOOD (  10.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,47 +113,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Move amlogic,meson-gx-ao-cec.yaml bindings to cec subfolder and drop
-unneeded quotes.
+Reference common HDMI CEC adapter properties to simplify the binding and
+have only one place of definition for common properties.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml     | 4 ++--
- MAINTAINERS                                                   | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
- rename Documentation/devicetree/bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml (93%)
+ .../devicetree/bindings/media/i2c/chrontel,ch7322.yaml   | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
-similarity index 93%
-rename from Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-rename to Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
-index 8d844f4312d1..f65c9681a9f7 100644
---- a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-+++ b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
-@@ -2,8 +2,8 @@
- # Copyright 2019 BayLibre, SAS
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/media/amlogic,meson-gx-ao-cec.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/media/cec/amlogic,meson-gx-ao-cec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml b/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+index 63e5b89d2e0b..50937bf5ebda 100644
+--- a/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+@@ -13,6 +13,9 @@ description:
+   The Chrontel CH7322 is a discrete HDMI-CEC controller. It is
+   programmable through I2C and drives a single CEC line.
  
- title: Amlogic Meson AO-CEC Controller
++allOf:
++  - $ref: /schemas/media/cec/cec-common.yaml#
++
+ properties:
+   compatible:
+     const: chrontel,ch7322
+@@ -40,16 +43,12 @@ properties:
+       if in auto mode.
+     maxItems: 1
  
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e3f3c3e53f77..07cb85cac4c3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13553,7 +13553,7 @@ L:	linux-amlogic@lists.infradead.org
- S:	Supported
- W:	http://linux-meson.com/
- T:	git git://linuxtv.org/media_tree.git
--F:	Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-+F:	Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
- F:	drivers/media/cec/platform/meson/ao-cec-g12a.c
- F:	drivers/media/cec/platform/meson/ao-cec.c
+-  # see ../cec.txt
+-  hdmi-phandle:
+-    description: phandle to the HDMI controller
+-
+ required:
+   - compatible
+   - reg
+   - interrupts
  
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.34.1
 
