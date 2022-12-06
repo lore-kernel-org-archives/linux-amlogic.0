@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C76FC47090
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 13:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0316BC4708C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 13:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4KL2pJqrkwyBV1NEPafwSLjPnVPiIXBdQKwIZSa0ivU=; b=cjBUmCet3O4zX1
-	abDAE7OXihLCvq4AbzuQNhN1SPbwGT0oPYzvAu80uNQWtBOnpzhcecYfP1w775pDIc1xlZ8OhfvAo
-	ERxe4IEUNHuEjIq6Nm8PKQifAfSOovrTlyA9GlcwOHPrAi80aa/vFs79utbORwDGx/ohx9TMvLzK4
-	rHJ3/ipDMnexsTyKfSYRQH5xHeGL5GvSZRuBu+9CSfvX61YeQHV3+tr6z7T+oBNfE+4sBp2IYASy6
-	CI9g5YPSkMsz82N90f8MwqYcBFklxvBJusWfm0R/ybScKdns+syx0mTZ2dsPwgtxKLnT3TGVARCeC
-	TT90lyTiZUiJRO8VY9wg==;
+	List-Owner; bh=Cp6qlYBSm8KEeF6N/VfJeO6LongMwAiUiift8J9mvKo=; b=MJX2jOV5oxrLlw
+	SPfL4+Kmc0GMnKfsYshKl4SeJfMBL45cdFlLREOtuPG493DWlYBA9ZPYr3byBBc70/3herb/b8FZJ
+	75PmneCiPjsOoSlBwptPsrOY9hWHA9Gm0gbl/GBboYwFHvkvxhjFmcGFARnjo6bXd0Fw6837BE+b9
+	dhWkhprprKANY1ipkELu7GtSZs2+mi6WL3k+2dkbOeR+XoMuQmPctdeC6ffHULI+krGCL71fq/J1q
+	pCTa6bnMzc+bauhi1R2RAkKE37TYoZueQQzN+nIIxEbq+hw7jk6Qa/Ufp4hg6LMxokfg6n28CBZZe
+	tf707cd/k4jmobZgzzuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2XaR-009Txx-HI; Tue, 06 Dec 2022 13:02:15 +0000
-Received: from mail-ot1-f43.google.com ([209.85.210.43])
+	id 1p2Xb3-009UGj-9x; Tue, 06 Dec 2022 13:02:53 +0000
+Received: from mail-oo1-f41.google.com ([209.85.161.41])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2XaD-009TrW-L4; Tue, 06 Dec 2022 13:02:04 +0000
-Received: by mail-ot1-f43.google.com with SMTP id q18-20020a056830441200b006704633f258so2840358otv.0;
-        Tue, 06 Dec 2022 05:01:59 -0800 (PST)
+	id 1p2Xax-009UCm-9a; Tue, 06 Dec 2022 13:02:51 +0000
+Received: by mail-oo1-f41.google.com with SMTP id f7-20020a4a8907000000b004a0cb08d0afso762359ooi.8;
+        Tue, 06 Dec 2022 05:02:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nxyzSpVUM6V4RTMjWwsFrePRYZPHGH5eY9Ph8J0tqOI=;
-        b=gTnOVjCHoxq8eqLdixr8HrqxmSPVlTE4c5+IExsSg/bQS1ZoDtP1Oukp+UKgVAgGoP
-         9tbXPyFtPEkL57tkBKG/x08mQ+86CfEZk55VDWL74U6YYCwJa5S24JOwgBSrN1D7a0XB
-         x0n3nRZtJHAoa0ddCxAEE563vmxh0UOMcUBPqQrI1TCURqlEfjrZujygQ1rtQHVDL44w
-         wbhBDzRPigoBtLJsNR4qLjHZdrppS1K6NuJXbFyWFsz0lnd1sbU1wfWlNPSxTKvI1+P1
-         fL+De0SGrKzrIeXr2gGc5gUigxCZrKcSrbBbrwiaT3cOO9/HXXh5L2CWaFUpIvdQ9UU+
-         8v+w==
-X-Gm-Message-State: ANoB5plrk5mR1XrZSip0XG5Wt8JjYZN+1IY6Qx/Px3q8siovT+A54403
-	UCA3aVqrfEC8irjtjPRcMQ==
-X-Google-Smtp-Source: AA0mqf5JtrErllTMHorfM6i5uxzu4uWCVJfdLClwhU/c9p+zrauUfEIH4B6EJ8k4ODNVyVX99wU39Q==
-X-Received: by 2002:a9d:6c10:0:b0:661:94ac:a555 with SMTP id f16-20020a9d6c10000000b0066194aca555mr31883302otq.291.1670331718884;
-        Tue, 06 Dec 2022 05:01:58 -0800 (PST)
+        bh=A4xw/+ywJXT3DJB58fwNh/xTT90tKd1q3hEDbHNq8ZI=;
+        b=sxR/+9lMGU+5Kv+mYe0xSJwo+S2y66wrlHtVNTzqQU5PShaI2cW5Z9mb2ERXnBRX5A
+         NLA4asJtHuB2x51NrDSnU5JS8eGnhs7nJ4G8J1R/8Hbl7VAdJ+gkw+AjVb/Pqo/xK1e+
+         XYFycJ+LE+0s1J/FE+ML9iFU+KLtHSSForNzmW0nVsDoLUi2cKYaP2H9pBbXgC6CQrqv
+         W69UvdvYE4d6Fus7a4ShW8uXZ8Mw5PiwC6n10LccSPuDOu3bz5f1zTWi8dpt+wA08gdY
+         PRZWDfG7yAb1J23f46PSuueNvcbyh5Vs5V3L6025oFBATExqVUCmmjo+jNoT67D4Piv1
+         MW5Q==
+X-Gm-Message-State: ANoB5pl/4ruTFQOXuE7DkDj4g3HoNbtRj3JvN1tlT7sUQL7O/YNfpsFl
+	KHfUlP8ek2zaHRx7cJKYvw==
+X-Google-Smtp-Source: AA0mqf43zncrSVF/3luC/HIGUW+nK43yAhxSLf/Tk1XAQeHQa4RnY5NNOQwlENA38AbtEYq7O7vwjw==
+X-Received: by 2002:a4a:ad49:0:b0:49b:c0e:3d5f with SMTP id s9-20020a4aad49000000b0049b0c0e3d5fmr36865349oon.69.1670331764762;
+        Tue, 06 Dec 2022 05:02:44 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y35-20020a056870b02300b0013bc95650c8sm10618089oae.54.2022.12.06.05.01.57
+        by smtp.gmail.com with ESMTPSA id s11-20020a4ac10b000000b00499527def25sm1547158oop.47.2022.12.06.05.02.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 05:01:58 -0800 (PST)
-Received: (nullmailer pid 224573 invoked by uid 1000);
-	Tue, 06 Dec 2022 13:01:57 -0000
-Date: Tue, 6 Dec 2022 07:01:57 -0600
+        Tue, 06 Dec 2022 05:02:43 -0800 (PST)
+Received: (nullmailer pid 225694 invoked by uid 1000);
+	Tue, 06 Dec 2022 13:02:42 -0000
+Date: Tue, 6 Dec 2022 07:02:42 -0600
 From: Rob Herring <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org, Alain Volmat <alain.volmat@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-tegra@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Yannick Fertre <yannick.fertre@foss.st.com>, Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, Jeff Chase <jnchase@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Thierry Reding <thierry.reding@gmail.com>, linux-samsung-soc@vger.kernel.org, Jonathan Hunter <jonathanh@nvidia.com>, linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/9] media: dt-bindings: st,stm32-cec: move to cec
- subfolder
-Message-ID: <167033171648.224515.10474001869932196398.robh@kernel.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Alain Volmat <alain.volmat@foss.st.com>, linux-samsung-soc@vger.kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>, Marek Szyprowski <m.szyprowski@samsung.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, linux-tegra@vger.kernel.org, linux-media@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, linux-stm32@st-md-mailman.stormreply.com, linux-amlogic@lists.infradead.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>, devicetree@vger.kernel.org, Jeff Chase <jnchase@google.com>, Thierry Reding <thierry.reding@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Yannick Fertre <yannick.fertre@foss.st.com>, Jonathan Hunter <jonathanh@nvidia.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, Joe Tessler <jrt@google.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+Subject: Re: [PATCH v2 3/9] media: dt-bindings: cec: convert common CEC
+ properties to DT schema
+Message-ID: <167033176212.225636.18251903992063817307.robh@kernel.org>
 References: <20221205151845.21618-1-krzysztof.kozlowski@linaro.org>
- <20221205151845.21618-3-krzysztof.kozlowski@linaro.org>
+ <20221205151845.21618-4-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20221205151845.21618-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221205151845.21618-4-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221206_050201_708540_3704D3F2 
-X-CRM114-Status: UNSURE (   9.72  )
+X-CRM114-CacheID: sfid-20221206_050247_350972_A63E6616 
+X-CRM114-Status: UNSURE (   9.51  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,18 +82,21 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon, 05 Dec 2022 16:18:38 +0100, Krzysztof Kozlowski wrote:
-> Move st,stm32-cec.yaml bindings to cec subfolder and drop unneeded
-> "bindings" in the title.
+On Mon, 05 Dec 2022 16:18:39 +0100, Krzysztof Kozlowski wrote:
+> Convert common HDMI CEC adapter bindings to DT schema.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 > ---
->  .../devicetree/bindings/media/{ => cec}/st,stm32-cec.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/media/{ => cec}/st,stm32-cec.yaml (89%)
+>  .../devicetree/bindings/media/cec.txt         |  8 ------
+>  .../bindings/media/cec/cec-common.yaml        | 28 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 29 insertions(+), 9 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/cec.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/cec/cec-common.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
