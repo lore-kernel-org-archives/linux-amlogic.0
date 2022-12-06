@@ -4,86 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A9B2C352A1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 09:41:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D63CC352A1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 09:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0Bx4jiGdUY1bbcCMCF0dcHrKd4cDwW0uPI/5lc3YvPw=; b=nrIps3JqjrgfDom9NcWNwpNX0l
-	e/M+lo6TtxHyM2nDUTDYQ9c/FSwGOTLB/Jn9NRHR76Ll3xQ+4aEa6K5W57HA9Se/n3d/NspnjapcU
-	Zk8g1ttRFXTePwG8SNHQGDs90IPR0Sae+Xhf9OFiyHkJMCSQ7iJ16340qhIxU5+Q5T4fkHo6MST+4
-	8eX0cWWo00a2EwyE+kBz3RsFn0M8FnkFchWhJAxf0My6sVnHgrF0gakrXyqqq69oiWEiIQ/q0gMqq
-	53FoirFT6aW4kOOdRy2WAQ7JikLzXZ5aq/tfngNweaN7vPLzj1zlfw87aRF/RDi01qPzPSeh+t1cN
-	Pc/9vwkA==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=a6UXo8qnjXjJwTwmUnCLgiouBDEmJduopO+RIbaXM5c=; b=mzn4dRfXhPvhcET79BhawUk0/6
+	4jGgLSnLX64JptWTqQPapQA5t8jEKNG3EXU/EtCbfJgtHukhBHRrwLA0h+jHHFAk7yRAEA3kn0pqm
+	ump2Fk9GJ8HL06mLU0PBRo4ONQI/YYWkEE8Pvxlgie3a1M7mytJthFT9GDZ8RHZZniaY8E8ZDv5Up
+	wR2LkZzHRteBqkAsu/gI5JEd6YaQqRsMNodWQudTKRNQVeELKtYNz3N2JxEabZ6pQGyLuv4L02ONB
+	3tHVTdX5F7RidCNkjgfxCV/DjR8BHMdovx8ftYss51PMhlRseZkBNb6SBvkekU0jDGosh+67to5AF
+	CErQ9lcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2US2-006IAW-PT; Tue, 06 Dec 2022 09:41:22 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1p2Ufj-006Wt0-JF; Tue, 06 Dec 2022 09:55:31 +0000
+Received: from smtp-out1.suse.de ([2001:67c:2178:6::1c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2URz-006HsN-Lw
-	for linux-amlogic@lists.infradead.org; Tue, 06 Dec 2022 09:41:21 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id n9-20020a05600c3b8900b003d0944dba41so7550953wms.4
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Dec 2022 01:41:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=FxokdyaSTsdEUZeAO0dhrrdDTQh5fW0PAMkusaqbnNI=;
-        b=hgKt/N5djRerT1RlOcMWnFpuJQ4bX2M6JA9wzFXO6HtaVliekexNJE17RJ88EUN4MZ
-         UZg9sFwVIJoZfDmb70Y6nemKwx9p1fMrZV5ncdr3oqCWRxndOEuHEWbWgASwXIIVLK2t
-         +SENYm0ShHRRBGfZ3bQ9AD38zn1H/nB4cWJJSRrlBDfKWLVMEmJ/3QOKGLf0+NnMB3UW
-         uXr7RihODsoehrFECd7vfHFmevEritm/0bpC64hgwRM10Wn4C8Pd2Ab7WVvUdlwNQY0C
-         YvNUV6RdF5gEXafU4GOCRKbDOr8V8g61KBmLFIP9u0yJxT/Bk7tMIdxidPvx66yYGFHX
-         zQMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FxokdyaSTsdEUZeAO0dhrrdDTQh5fW0PAMkusaqbnNI=;
-        b=JyljcENzbCdAiL65ooNdpVws35nBE6y0POvRCskp1Pk5Xgex+dj/Bd9HNo87vxCszR
-         0Ft6zcdDatzA47XFpxe/7e21s8HtMahlwXLSzOczW+0dS5JBEV7mGAg7kuybtuxfWAqm
-         0uwcIlT/tB6HLiphB15yRLaAXpyVTwWY7hSr0M7XnrqBqCGtFvANJNe5aAxTEHIqypxb
-         4ipMuoE6IcrkHOL702H7jz/rVZPWieM7bciFinvwZv3DokTMwSR6hn4DBYZdb6kVvYt7
-         MZL/Q/2c2UNA6g0HYW3yaRwrwFoGOa8nbHZf8Anlr9JK/biOvfNv8ntYMpVaamTuH64n
-         PlTg==
-X-Gm-Message-State: ANoB5pn2FQA+qcUQP/vfdKiARilYu7pRKKcyDJ6TiGFAdYK/bAXYB1gf
-	7ZogEEnUOFCrQsfAV5GnPK6LmA==
-X-Google-Smtp-Source: AA0mqf4shAeXN1wG69orKehuFKdhFboW8rWmjTs2IHUubgXM5BC17QT0CVMzYAocd2isflrozlyBYA==
-X-Received: by 2002:a7b:c00f:0:b0:3cf:7066:cf53 with SMTP id c15-20020a7bc00f000000b003cf7066cf53mr49237478wmb.135.1670319674510;
-        Tue, 06 Dec 2022 01:41:14 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2d5b:61d6:a067:f8e9? ([2a01:e0a:982:cbb0:2d5b:61d6:a067:f8e9])
-        by smtp.gmail.com with ESMTPSA id l9-20020a05600c1d0900b003cf878c4468sm27382120wms.5.2022.12.06.01.41.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 01:41:14 -0800 (PST)
-Message-ID: <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
-Date: Tue, 6 Dec 2022 10:41:13 +0100
+	id 1p2Uct-006UxW-NU; Tue, 06 Dec 2022 09:52:37 +0000
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 9F22421C2C;
+	Tue,  6 Dec 2022 09:52:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1670320350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m7Dn6UT7jVflO53hPVdqEHAf+UEuhC24fEP0CYlmrBo=;
+	b=UGThJCHIvt4gmr7gOqfEI71Bj1wUwVEnY+6oVlf3FiMjJ195PviRYtiN0SM2UvLgCCs+4Z
+	nIzAscpCshUP45mUDi8fwWfyAFXt6sf9U1GeGFdTvw0mZZt2Jq1D/I1UpwVk7Pvd/FInz3
+	m1VoK2A8XWEd/lKR+94n2o7UQjqYWvc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1670320350;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m7Dn6UT7jVflO53hPVdqEHAf+UEuhC24fEP0CYlmrBo=;
+	b=GDyopmm9SUcw7fgf03rrKaB+UItKHchNIv0ZGR8tq6BfCRU1JRzzYPSArx9P7cEfLsW/LZ
+	1NzwKWADTEXs4GAQ==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 6061413326;
+	Tue,  6 Dec 2022 09:52:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap1.suse-dmz.suse.de with ESMTPSA
+	id srOrFt4Qj2O0GgAAGKfGzw
+	(envelope-from <tzimmermann@suse.de>); Tue, 06 Dec 2022 09:52:30 +0000
+Message-ID: <c460bbda-6e9d-24e8-eb73-2e7207958deb@suse.de>
+Date: Tue, 6 Dec 2022 10:52:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From: Neil Armstrong <neil.armstrong@linaro.org>
+ Thunderbird/102.5.1
 Subject: Re: [PATCH v3 3/3] drm/tiny: ili9486: remove conflicting framebuffers
 Content-Language: en-US
-To: Carlo Caione <ccaione@baylibre.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@gmail.com>,
+To: neil.armstrong@linaro.org, Carlo Caione <ccaione@baylibre.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jerome Brunet <jbrunet@baylibre.com>,
+ David Airlie <airlied@gmail.com>,
  Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
  Mark Brown <broonie@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20221116-s905x_spi_ili9486-v3-0-59c6b58cbfe3@baylibre.com>
  <20221116-s905x_spi_ili9486-v3-3-59c6b58cbfe3@baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221116-s905x_spi_ili9486-v3-3-59c6b58cbfe3@baylibre.com>
+ <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221206_014119_800098_B768E50C 
-X-CRM114-Status: GOOD (  13.47  )
+X-CRM114-CacheID: sfid-20221206_015235_988546_D56754BC 
+X-CRM114-Status: GOOD (  18.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,58 +91,113 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============4730927817257150985=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Carlo,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============4730927817257150985==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------SEO4ZkEGGScUgy32BleGjVla"
 
-On 06/12/2022 09:34, Carlo Caione wrote:
-> For platforms using simplefb / efifb, call
-> drm_aperture_remove_framebuffers() to remove the conflicting
-> framebuffer.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------SEO4ZkEGGScUgy32BleGjVla
+Content-Type: multipart/mixed; boundary="------------pCTPooQV0m10lXNIDNpaW0YE";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: neil.armstrong@linaro.org, Carlo Caione <ccaione@baylibre.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jerome Brunet <jbrunet@baylibre.com>,
+ David Airlie <airlied@gmail.com>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-ID: <c460bbda-6e9d-24e8-eb73-2e7207958deb@suse.de>
+Subject: Re: [PATCH v3 3/3] drm/tiny: ili9486: remove conflicting framebuffers
+References: <20221116-s905x_spi_ili9486-v3-0-59c6b58cbfe3@baylibre.com>
+ <20221116-s905x_spi_ili9486-v3-3-59c6b58cbfe3@baylibre.com>
+ <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
+In-Reply-To: <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
 
-Conflicting framebuffer on the SPI display ? How is that possible ?
+--------------pCTPooQV0m10lXNIDNpaW0YE
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-The meson_drm should already do this, no ?
+SGkNCg0KQW0gMDYuMTIuMjIgdW0gMTA6NDEgc2NocmllYiBOZWlsIEFybXN0cm9uZzoNCj4g
+SGkgQ2FybG8sDQo+IA0KPiBPbiAwNi8xMi8yMDIyIDA5OjM0LCBDYXJsbyBDYWlvbmUgd3Jv
+dGU6DQo+PiBGb3IgcGxhdGZvcm1zIHVzaW5nIHNpbXBsZWZiIC8gZWZpZmIsIGNhbGwNCj4+
+IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKCkgdG8gcmVtb3ZlIHRoZSBjb25m
+bGljdGluZw0KPj4gZnJhbWVidWZmZXIuDQo+IA0KPiBDb25mbGljdGluZyBmcmFtZWJ1ZmZl
+ciBvbiB0aGUgU1BJIGRpc3BsYXkgPyBIb3cgaXMgdGhhdCBwb3NzaWJsZSA/DQoNCkNhbGxp
+bmcgZHJtX2FwZXJ0dXJlX3JlbW92ZV9mcmFtZWJ1ZmZlcnMoKSBpcyBvbmx5IHJlcXVpcmVk
+IGlmIHRoZSANCmdyYXBoaWNzIGNhcmQgbWF5IGhhdmUgYmVlbiBwcmUtaW5pdGlhbGl6ZWQg
+YnkgdGhlIHN5c3RlbSwgc3VjaCBhcyBhIA0KVkdBLWNvbXBhdGlibGUgY2FyZCBvbiBhIFBD
+Lg0KDQpDb3VsZCB0aGUgU1BJIGRpc3BsYXkgaGF2ZSBiZWVuIGluaXRpYWxpemVkIGJ5IHRo
+ZSBmaXJtd2FyZT8gSWYgbm90LCB0aGUgDQpjYWxsIHNob3VsZCBiZSBsZWZ0IG91dC4NCg0K
+QmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiANCj4gVGhlIG1lc29uX2RybSBzaG91bGQgYWxy
+ZWFkeSBkbyB0aGlzLCBubyA/DQo+IA0KPiBOZWlsDQo+IA0KPj4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IENhcmxvIENhaW9uZSA8Y2NhaW9uZUBiYXlsaWJyZS5jb20+DQo+PiAtLS0NCj4+IMKg
+IGRyaXZlcnMvZ3B1L2RybS90aW55L2lsaTk0ODYuYyB8IDUgKysrKysNCj4+IMKgIDEgZmls
+ZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL3RpbnkvaWxpOTQ4Ni5jIA0KPj4gYi9kcml2ZXJzL2dwdS9kcm0vdGlueS9p
+bGk5NDg2LmMNCj4+IGluZGV4IDE0YTllNmFkMmQxNS4uNmZkNGQ0MjQzN2ZkIDEwMDY0NA0K
+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3RpbnkvaWxpOTQ4Ni5jDQo+PiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vdGlueS9pbGk5NDg2LmMNCj4+IEBAIC0xNCw2ICsxNCw3IEBADQo+PiDC
+oCAjaW5jbHVkZSA8dmlkZW8vbWlwaV9kaXNwbGF5Lmg+DQo+PiArI2luY2x1ZGUgPGRybS9k
+cm1fYXBlcnR1cmUuaD4NCj4+IMKgICNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY19oZWxwZXIu
+aD4NCj4+IMKgICNpbmNsdWRlIDxkcm0vZHJtX2Rydi5oPg0KPj4gwqAgI2luY2x1ZGUgPGRy
+bS9kcm1fZmJfaGVscGVyLmg+DQo+PiBAQCAtMjM4LDYgKzIzOSwxMCBAQCBzdGF0aWMgaW50
+IGlsaTk0ODZfcHJvYmUoc3RydWN0IHNwaV9kZXZpY2UgKnNwaSkNCj4+IMKgwqDCoMKgwqAg
+aWYgKHJldCkNCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Ow0KPj4gK8KgwqDC
+oCByZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2ZyYW1lYnVmZmVycyhmYWxzZSwgJmlsaTk0
+ODZfZHJpdmVyKTsNCj4+ICvCoMKgwqAgaWYgKHJldCkNCj4+ICvCoMKgwqDCoMKgwqDCoCBy
+ZXR1cm4gcmV0Ow0KPj4gKw0KPj4gwqDCoMKgwqDCoCBkcm1fbW9kZV9jb25maWdfcmVzZXQo
+ZHJtKTsNCj4+IMKgwqDCoMKgwqAgcmV0ID0gZHJtX2Rldl9yZWdpc3Rlcihkcm0sIDApOw0K
+Pj4NCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZl
+bG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0
+ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJl
+cmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
 
-Neil
+--------------pCTPooQV0m10lXNIDNpaW0YE--
 
-> 
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> ---
->   drivers/gpu/drm/tiny/ili9486.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
-> index 14a9e6ad2d15..6fd4d42437fd 100644
-> --- a/drivers/gpu/drm/tiny/ili9486.c
-> +++ b/drivers/gpu/drm/tiny/ili9486.c
-> @@ -14,6 +14,7 @@
->   
->   #include <video/mipi_display.h>
->   
-> +#include <drm/drm_aperture.h>
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_fb_helper.h>
-> @@ -238,6 +239,10 @@ static int ili9486_probe(struct spi_device *spi)
->   	if (ret)
->   		return ret;
->   
-> +	ret = drm_aperture_remove_framebuffers(false, &ili9486_driver);
-> +	if (ret)
-> +		return ret;
-> +
->   	drm_mode_config_reset(drm);
->   
->   	ret = drm_dev_register(drm, 0);
-> 
+--------------SEO4ZkEGGScUgy32BleGjVla
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmOPEN0FAwAAAAAACgkQlh/E3EQov+Ay
+DRAAqZNThRPO9KC+zdLqJvMZthooj1R1FF4CuBtG0gVkrjf5E80dRyNt+uaGBt9uXB7B0AekaQiz
+SO7VHZ6g3gz6hLbY8tgFZz0su0Xqke+T14bdQ0CjIPphmw1CD2sZK8lfkl5DwW05QdimehLOG5L9
+X/Fo3F64NGrVyY9iR6LmcdGX7G/ujueO5cciTeWvnvkLXq4xaH+UbSSg7dfQRm4PnN+tbfSIdg9u
+RZFNNjFLp1Tiunh6OlCzgBhdGELdHBPDtz/punSwr53XMsaufe5rTWvxs/336UXtSo7KmCPLvpob
+LlZaBV7ImE1cCKKAkGQw8lHICFv+vipqGdE57qh7OMmEchycOgqygKdkLySjSvCRYY7AfGDNqVK+
+N5UpxIfTuvY45/IcDGLeCXj5rBoNgxEFqbr7224XotWsEwiHoH8376pM1EPT4yZD9aqmzApIB68S
++AVNX8qwcBKasmPfi+cEjlw9R7nLey6EL0nWEjoMorCaIu9nIfFjdhXhyoklJAA/FQK6sp5Twe+8
++dbt/26dM+ZprMFaPCGrsmiBzglCvLeFMADASpcnqRbKpa3i6ZTFD+2gz/b2QOV1yoA8lXUw4Mfn
+XkE3h19o7WYq0ogSoy8l/EFkcZQlxtsGRHIgNcfWTySomdSb/pM1hbHEP1lLsk2AWamLu7iDJA5Q
+QWM=
+=sUgH
+-----END PGP SIGNATURE-----
+
+--------------SEO4ZkEGGScUgy32BleGjVla--
+
+
+--===============4730927817257150985==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4730927817257150985==--
+
