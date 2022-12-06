@@ -4,82 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D63CC352A1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 09:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2DF6C352A1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Dec 2022 10:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=a6UXo8qnjXjJwTwmUnCLgiouBDEmJduopO+RIbaXM5c=; b=mzn4dRfXhPvhcET79BhawUk0/6
-	4jGgLSnLX64JptWTqQPapQA5t8jEKNG3EXU/EtCbfJgtHukhBHRrwLA0h+jHHFAk7yRAEA3kn0pqm
-	ump2Fk9GJ8HL06mLU0PBRo4ONQI/YYWkEE8Pvxlgie3a1M7mytJthFT9GDZ8RHZZniaY8E8ZDv5Up
-	wR2LkZzHRteBqkAsu/gI5JEd6YaQqRsMNodWQudTKRNQVeELKtYNz3N2JxEabZ6pQGyLuv4L02ONB
-	3tHVTdX5F7RidCNkjgfxCV/DjR8BHMdovx8ftYss51PMhlRseZkBNb6SBvkekU0jDGosh+67to5AF
-	CErQ9lcQ==;
+	bh=VJcSU2q7/ve4AleLp7Go8/PoN88PBQE+ADji4mnKauE=; b=BzdxkHazO5Wt5AhQYqDYlmdV8A
+	1FSqnACM3GwOUGsS+6SUYfHnWcGU9yyzUfMhGY42Nvk67EL6CKAwf7r+wBOMD1n5w5FlcH7+4sM1i
+	buhH1f2/DzBAbeFZqIV3Pz159kwbjtSnDCM8NQCeyV/yHPXqC2wvQBocPDE2TQPMkxtBTfFADpIJv
+	z5cS/+3PMlEYKFl6dZH7bGlf/PEXbWchw4Maqw0kjhr+al499czuSszFYg+YeotmDkc4OjP8OFZ/B
+	ZyID8tr+i4oew59fkpGbM2AOm44yOWxjw7XSTlQ/p8HJuWKIPOUqn8z5oXSXFYYg0wrw74YZUMUqt
+	z5oljGXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2Ufj-006Wt0-JF; Tue, 06 Dec 2022 09:55:31 +0000
-Received: from smtp-out1.suse.de ([2001:67c:2178:6::1c])
+	id 1p2Vfa-007u4U-Nv; Tue, 06 Dec 2022 10:59:26 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2Uct-006UxW-NU; Tue, 06 Dec 2022 09:52:37 +0000
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 9F22421C2C;
-	Tue,  6 Dec 2022 09:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1670320350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m7Dn6UT7jVflO53hPVdqEHAf+UEuhC24fEP0CYlmrBo=;
-	b=UGThJCHIvt4gmr7gOqfEI71Bj1wUwVEnY+6oVlf3FiMjJ195PviRYtiN0SM2UvLgCCs+4Z
-	nIzAscpCshUP45mUDi8fwWfyAFXt6sf9U1GeGFdTvw0mZZt2Jq1D/I1UpwVk7Pvd/FInz3
-	m1VoK2A8XWEd/lKR+94n2o7UQjqYWvc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1670320350;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m7Dn6UT7jVflO53hPVdqEHAf+UEuhC24fEP0CYlmrBo=;
-	b=GDyopmm9SUcw7fgf03rrKaB+UItKHchNIv0ZGR8tq6BfCRU1JRzzYPSArx9P7cEfLsW/LZ
-	1NzwKWADTEXs4GAQ==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 6061413326;
-	Tue,  6 Dec 2022 09:52:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap1.suse-dmz.suse.de with ESMTPSA
-	id srOrFt4Qj2O0GgAAGKfGzw
-	(envelope-from <tzimmermann@suse.de>); Tue, 06 Dec 2022 09:52:30 +0000
-Message-ID: <c460bbda-6e9d-24e8-eb73-2e7207958deb@suse.de>
-Date: Tue, 6 Dec 2022 10:52:29 +0100
+	id 1p2VfY-007tuQ-3k
+	for linux-amlogic@lists.infradead.org; Tue, 06 Dec 2022 10:59:25 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p2VfK-0005ym-O2; Tue, 06 Dec 2022 11:59:10 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p2VfJ-002fzi-29; Tue, 06 Dec 2022 11:59:09 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1p2VfI-0030Pn-WD; Tue, 06 Dec 2022 11:59:09 +0100
+Date: Tue, 6 Dec 2022 11:59:08 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Lee Jones <lee@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+	linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+	Angel Iglesias <ang.iglesiasg@gmail.com>, linux-i2c@vger.kernel.org,
+	kernel@pengutronix.de, Grant Likely <grant.likely@linaro.org>,
+	linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH 431/606] mfd: khadas-mcu: Convert to i2c's .probe_new()
+Message-ID: <20221206105908.jzcdnast3yw22eel@pengutronix.de>
+References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+ <20221118224540.619276-432-uwe@kleine-koenig.org>
+ <Y3tvypIDVdCYxAVB@google.com>
+ <20221121150854.3mwczqtbusawho4m@pengutronix.de>
+ <Y3usiUm1K+5xCWhY@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 3/3] drm/tiny: ili9486: remove conflicting framebuffers
-Content-Language: en-US
-To: neil.armstrong@linaro.org, Carlo Caione <ccaione@baylibre.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jerome Brunet <jbrunet@baylibre.com>,
- David Airlie <airlied@gmail.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221116-s905x_spi_ili9486-v3-0-59c6b58cbfe3@baylibre.com>
- <20221116-s905x_spi_ili9486-v3-3-59c6b58cbfe3@baylibre.com>
- <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
+In-Reply-To: <Y3usiUm1K+5xCWhY@google.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221206_015235_988546_D56754BC 
-X-CRM114-Status: GOOD (  18.14  )
+X-CRM114-CacheID: sfid-20221206_025924_179192_F1D698EF 
+X-CRM114-Status: GOOD (  20.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,104 +73,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4730927817257150985=="
+Content-Type: multipart/mixed; boundary="===============3474347971892153084=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============4730927817257150985==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------SEO4ZkEGGScUgy32BleGjVla"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------SEO4ZkEGGScUgy32BleGjVla
-Content-Type: multipart/mixed; boundary="------------pCTPooQV0m10lXNIDNpaW0YE";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: neil.armstrong@linaro.org, Carlo Caione <ccaione@baylibre.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jerome Brunet <jbrunet@baylibre.com>,
- David Airlie <airlied@gmail.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Message-ID: <c460bbda-6e9d-24e8-eb73-2e7207958deb@suse.de>
-Subject: Re: [PATCH v3 3/3] drm/tiny: ili9486: remove conflicting framebuffers
-References: <20221116-s905x_spi_ili9486-v3-0-59c6b58cbfe3@baylibre.com>
- <20221116-s905x_spi_ili9486-v3-3-59c6b58cbfe3@baylibre.com>
- <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
-In-Reply-To: <14e5c4e4-30dd-8efd-81e4-d680664ab04a@linaro.org>
+--===============3474347971892153084==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hvvxc4ne753xzl2h"
+Content-Disposition: inline
 
---------------pCTPooQV0m10lXNIDNpaW0YE
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
 
-SGkNCg0KQW0gMDYuMTIuMjIgdW0gMTA6NDEgc2NocmllYiBOZWlsIEFybXN0cm9uZzoNCj4g
-SGkgQ2FybG8sDQo+IA0KPiBPbiAwNi8xMi8yMDIyIDA5OjM0LCBDYXJsbyBDYWlvbmUgd3Jv
-dGU6DQo+PiBGb3IgcGxhdGZvcm1zIHVzaW5nIHNpbXBsZWZiIC8gZWZpZmIsIGNhbGwNCj4+
-IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKCkgdG8gcmVtb3ZlIHRoZSBjb25m
-bGljdGluZw0KPj4gZnJhbWVidWZmZXIuDQo+IA0KPiBDb25mbGljdGluZyBmcmFtZWJ1ZmZl
-ciBvbiB0aGUgU1BJIGRpc3BsYXkgPyBIb3cgaXMgdGhhdCBwb3NzaWJsZSA/DQoNCkNhbGxp
-bmcgZHJtX2FwZXJ0dXJlX3JlbW92ZV9mcmFtZWJ1ZmZlcnMoKSBpcyBvbmx5IHJlcXVpcmVk
-IGlmIHRoZSANCmdyYXBoaWNzIGNhcmQgbWF5IGhhdmUgYmVlbiBwcmUtaW5pdGlhbGl6ZWQg
-YnkgdGhlIHN5c3RlbSwgc3VjaCBhcyBhIA0KVkdBLWNvbXBhdGlibGUgY2FyZCBvbiBhIFBD
-Lg0KDQpDb3VsZCB0aGUgU1BJIGRpc3BsYXkgaGF2ZSBiZWVuIGluaXRpYWxpemVkIGJ5IHRo
-ZSBmaXJtd2FyZT8gSWYgbm90LCB0aGUgDQpjYWxsIHNob3VsZCBiZSBsZWZ0IG91dC4NCg0K
-QmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiANCj4gVGhlIG1lc29uX2RybSBzaG91bGQgYWxy
-ZWFkeSBkbyB0aGlzLCBubyA/DQo+IA0KPiBOZWlsDQo+IA0KPj4NCj4+IFNpZ25lZC1vZmYt
-Ynk6IENhcmxvIENhaW9uZSA8Y2NhaW9uZUBiYXlsaWJyZS5jb20+DQo+PiAtLS0NCj4+IMKg
-IGRyaXZlcnMvZ3B1L2RybS90aW55L2lsaTk0ODYuYyB8IDUgKysrKysNCj4+IMKgIDEgZmls
-ZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3RpbnkvaWxpOTQ4Ni5jIA0KPj4gYi9kcml2ZXJzL2dwdS9kcm0vdGlueS9p
-bGk5NDg2LmMNCj4+IGluZGV4IDE0YTllNmFkMmQxNS4uNmZkNGQ0MjQzN2ZkIDEwMDY0NA0K
-Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3RpbnkvaWxpOTQ4Ni5jDQo+PiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vdGlueS9pbGk5NDg2LmMNCj4+IEBAIC0xNCw2ICsxNCw3IEBADQo+PiDC
-oCAjaW5jbHVkZSA8dmlkZW8vbWlwaV9kaXNwbGF5Lmg+DQo+PiArI2luY2x1ZGUgPGRybS9k
-cm1fYXBlcnR1cmUuaD4NCj4+IMKgICNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY19oZWxwZXIu
-aD4NCj4+IMKgICNpbmNsdWRlIDxkcm0vZHJtX2Rydi5oPg0KPj4gwqAgI2luY2x1ZGUgPGRy
-bS9kcm1fZmJfaGVscGVyLmg+DQo+PiBAQCAtMjM4LDYgKzIzOSwxMCBAQCBzdGF0aWMgaW50
-IGlsaTk0ODZfcHJvYmUoc3RydWN0IHNwaV9kZXZpY2UgKnNwaSkNCj4+IMKgwqDCoMKgwqAg
-aWYgKHJldCkNCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Ow0KPj4gK8KgwqDC
-oCByZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2ZyYW1lYnVmZmVycyhmYWxzZSwgJmlsaTk0
-ODZfZHJpdmVyKTsNCj4+ICvCoMKgwqAgaWYgKHJldCkNCj4+ICvCoMKgwqDCoMKgwqDCoCBy
-ZXR1cm4gcmV0Ow0KPj4gKw0KPj4gwqDCoMKgwqDCoCBkcm1fbW9kZV9jb25maWdfcmVzZXQo
-ZHJtKTsNCj4+IMKgwqDCoMKgwqAgcmV0ID0gZHJtX2Rldl9yZWdpc3Rlcihkcm0sIDApOw0K
-Pj4NCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZl
-bG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0
-ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJl
-cmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+--hvvxc4ne753xzl2h
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
---------------pCTPooQV0m10lXNIDNpaW0YE--
+Hey Lee,
 
---------------SEO4ZkEGGScUgy32BleGjVla
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+On Mon, Nov 21, 2022 at 04:51:21PM +0000, Lee Jones wrote:
+> On Mon, 21 Nov 2022, Uwe Kleine-K=F6nig wrote:
+>=20
+> > Hello Lee,
+> >=20
+> > On Mon, Nov 21, 2022 at 12:32:10PM +0000, Lee Jones wrote:
+> > > On Fri, 18 Nov 2022, Uwe Kleine-K=F6nig wrote:
+> > >=20
+> > > > From: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > >=20
+> > > > The probe function doesn't make use of the i2c_device_id * paramete=
+r so it
+> > > > can be trivially converted.
+> > > >=20
+> > > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > > ---
+> > > >  drivers/mfd/khadas-mcu.c | 5 ++---
+> > > >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > >=20
+> > > After a week or so, please collect-up all the tags you have received
+> > > and submit a per-subsystem set for me to hoover up, thanks.
+> >=20
+> > For mfd I'd do:
+> >=20
+> > 	git checkout mfd/for-next
+> > 	b4 am -P 413-481 20221118224540.619276-1-uwe@kleine-koenig.org
+> > 	git am ./20221118_uwe_i2c_complete_conversion_to_i2c_probe_new.mbx
+> > 	git send-email --to .... --cc .... mfd/for-next
+>=20
+> That's just crazy enough to work.
+>=20
+> Thanks for the tip.
+
+On irc you said you'd care for application of these patches ("I plan to
+attempt the b4 solution"), they didn't land in next yet. Do you need a
+reminder? Something else?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--hvvxc4ne753xzl2h
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmOPEN0FAwAAAAAACgkQlh/E3EQov+Ay
-DRAAqZNThRPO9KC+zdLqJvMZthooj1R1FF4CuBtG0gVkrjf5E80dRyNt+uaGBt9uXB7B0AekaQiz
-SO7VHZ6g3gz6hLbY8tgFZz0su0Xqke+T14bdQ0CjIPphmw1CD2sZK8lfkl5DwW05QdimehLOG5L9
-X/Fo3F64NGrVyY9iR6LmcdGX7G/ujueO5cciTeWvnvkLXq4xaH+UbSSg7dfQRm4PnN+tbfSIdg9u
-RZFNNjFLp1Tiunh6OlCzgBhdGELdHBPDtz/punSwr53XMsaufe5rTWvxs/336UXtSo7KmCPLvpob
-LlZaBV7ImE1cCKKAkGQw8lHICFv+vipqGdE57qh7OMmEchycOgqygKdkLySjSvCRYY7AfGDNqVK+
-N5UpxIfTuvY45/IcDGLeCXj5rBoNgxEFqbr7224XotWsEwiHoH8376pM1EPT4yZD9aqmzApIB68S
-+AVNX8qwcBKasmPfi+cEjlw9R7nLey6EL0nWEjoMorCaIu9nIfFjdhXhyoklJAA/FQK6sp5Twe+8
-+dbt/26dM+ZprMFaPCGrsmiBzglCvLeFMADASpcnqRbKpa3i6ZTFD+2gz/b2QOV1yoA8lXUw4Mfn
-XkE3h19o7WYq0ogSoy8l/EFkcZQlxtsGRHIgNcfWTySomdSb/pM1hbHEP1lLsk2AWamLu7iDJA5Q
-QWM=
-=sUgH
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOPIHkACgkQwfwUeK3K
+7AmjoQf/R+Cz88Y6JYJaJNiuO2BsSVbordLmmvYb2tbJ7oPvvlbQHPNrsbAJM5Tj
+w3pD7D1b1cWANAudg2jXWP62kOP2TSisMBDipdXp0WpCMx2iCCd4cb6FbRCNu9Us
+hgqJY/MjNglBbmo3fYVt/aA+k4IJDN/LywG5ADmHA/tWpGrSNcDv79dnoG06FD83
+4GLB+Pap3eaS5iYD7x7g/JKBi6SFlyYv0zs7tFTJ4E3+M80gYqMKrqE9rWsJ6HQN
+whwLW1MXg5hXyZgx3zrBahCCtoMclmMamZYo6YCsK5NsJlFd3RmrD0oAmTN9+Ukw
+h1V49+VNTFz/84aK29CnYgi82dZmuA==
+=uRDQ
 -----END PGP SIGNATURE-----
 
---------------SEO4ZkEGGScUgy32BleGjVla--
+--hvvxc4ne753xzl2h--
 
 
---===============4730927817257150985==
+--===============3474347971892153084==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -199,5 +164,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============4730927817257150985==--
+--===============3474347971892153084==--
 
