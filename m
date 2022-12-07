@@ -4,50 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F776C352A1
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Dec 2022 11:02:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F380C4708E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Dec 2022 11:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2L+9pemYESODi7ZdjHEiNNdjjycI8JPM017bLnM4sGg=; b=yQNVAYh/6rVP7b3waE8YgueCpn
-	ZMIVoMkKmDILBIGQG0l93yCuzukexfvbJWdTr7lGhdOcxx+1QzRlxT8za3DF7qD1YsyZWY3pCHD5b
-	IIfgiHH+goOgHlX/rRbVdwxGQiFXr+uNnle8JcNm+EKkuNz2L0ZTCpE9f/8kmZxyCtZ2ptqHTRbMC
-	nOE2XMyRJx3+lIrFc6YpeNpQ1YjSoo0ToSnGZ44FH+YFKATsaxOFEfqtHTvuun3SD0+hufFQZGm3L
-	3VcW3XkCAcdbqU8i5sjlCAsXNTil8M1VGdU823cmRe0olUJHYgdsZSahzI3ursZyC115wzZvSrior
-	3fC0W3iw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qpzo5GnpcaI41g4vRu3GsxJtQChi1DOby7AXs8gxuYM=; b=mGlZBYTXYkzQwG
+	eK1NAJ/Je7Tug6SFma7r4CmY+2CGVD6WTG5h84oZp+MJh2GauSSLZvgbpdfsZoPgsQJ+dGxq++0Zl
+	hTaNPM2Fp/dVDf4w1W4KwTFDkuojOAgy0XlLmZ53RRhR1/gvUsEST3ov4NT3wLeAsbI+eL52bwZKZ
+	5myDA0UzJH6Sh9COkMIKtx1dP3J7YlWQcCw/HGcRA8p5bI4NVE0oE/JkPr8dsSr79OYG9ux5oIFYp
+	11SRIHJOZ7uV9pZDERMj1ZzP4m7GqKKGIaEmx4z1fC5ebOlXcQc/EIu8nU783DMJumHboEgCCTgGN
+	LO5Eton2w0kYORiAnlmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2sBT-000MGQ-GF; Wed, 07 Dec 2022 11:01:51 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1p2sWL-000fnp-L1; Wed, 07 Dec 2022 11:23:25 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2sA7-000Kfc-CI
-	for linux-amlogic@lists.infradead.org; Wed, 07 Dec 2022 11:00:29 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2s9u-0008Pa-3n; Wed, 07 Dec 2022 12:00:14 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2s9r-002tug-O9; Wed, 07 Dec 2022 12:00:12 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2s9o-003GNG-TY; Wed, 07 Dec 2022 12:00:09 +0100
-Date: Wed, 7 Dec 2022 12:00:07 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Lee Jones <lee@kernel.org>
+	id 1p2sWH-000fgI-H6
+	for linux-amlogic@lists.infradead.org; Wed, 07 Dec 2022 11:23:23 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id CFFE9612ED;
+	Wed,  7 Dec 2022 11:23:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B2CC433C1;
+	Wed,  7 Dec 2022 11:23:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1670412200;
+	bh=3YU23InXjthWpJou6I3gazjFEz+Ws5zTsuXi0q/CsUM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Plkgpwfny3LEbsm2Fa+F3Ljxa1i1Uu77HCkLB0BG7NOMe+JqQJ5F0SIqba9k1zNzy
+	 Swo/kz4a2zc9dfWAiFSs2YEtK/rjckxS+VoHKr9cs6poavIsPhCN1+sW1qVG9Nmv/V
+	 2VJOueAD2vIAq2klZqd24stHG96WkgEWlNtLBYkzWH1vwJHVPWRQpYLSK7vvnzIQrT
+	 t6KfqqK6Qp19nEPwx0IUR+sudZ+MGH0AFo6SwdN6E2Y80fCPpkTBpe+FIkBzFdAkg/
+	 QL6DG9tWzTjnYVmZmB3XI6Y7pMZ/qaPB3ebPleu1Z01dtM7n0g0kdldED3xHy9z1tS
+	 vA1mA1Sj9fvcQ==
+Date: Wed, 7 Dec 2022 11:23:14 +0000
+From: Lee Jones <lee@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
 	linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
 	Angel Iglesias <ang.iglesiasg@gmail.com>, linux-i2c@vger.kernel.org,
 	kernel@pengutronix.de, Grant Likely <grant.likely@linaro.org>,
 	linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>
 Subject: Re: [PATCH 431/606] mfd: khadas-mcu: Convert to i2c's .probe_new()
-Message-ID: <20221207110007.yfjfiakmh4ma3sfo@pengutronix.de>
+Message-ID: <Y5B3otGG06QCjldc@google.com>
 References: <20221118224540.619276-1-uwe@kleine-koenig.org>
  <20221118224540.619276-432-uwe@kleine-koenig.org>
  <Y3tvypIDVdCYxAVB@google.com>
@@ -57,15 +62,13 @@ References: <20221118224540.619276-1-uwe@kleine-koenig.org>
  <Y49pi54DKsvLOzvb@google.com>
  <20221206163516.i6rzewxts7do75y5@pengutronix.de>
  <Y490W6k4N8iBxLHf@google.com>
+ <20221207110007.yfjfiakmh4ma3sfo@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <Y490W6k4N8iBxLHf@google.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <20221207110007.yfjfiakmh4ma3sfo@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221207_030027_469378_43EDA408 
-X-CRM114-Status: GOOD (  30.03  )
+X-CRM114-CacheID: sfid-20221207_032321_689196_381578F1 
+X-CRM114-Status: GOOD (  31.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,153 +80,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6642169541726532832=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============6642169541726532832==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hofgvycto33rels6"
-Content-Disposition: inline
-
-
---hofgvycto33rels6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Lee,
-
-On Tue, Dec 06, 2022 at 04:56:59PM +0000, Lee Jones wrote:
-> > On Tue, Dec 06, 2022 at 04:10:51PM +0000, Lee Jones wrote:
-> > > On Tue, 06 Dec 2022, Uwe Kleine-K=F6nig wrote:
-> > >=20
-> > > > Hey Lee,
-> > > >=20
-> > > > On Mon, Nov 21, 2022 at 04:51:21PM +0000, Lee Jones wrote:
-> > > > > On Mon, 21 Nov 2022, Uwe Kleine-K=F6nig wrote:
-> > > > >=20
-> > > > > > Hello Lee,
-> > > > > >=20
-> > > > > > On Mon, Nov 21, 2022 at 12:32:10PM +0000, Lee Jones wrote:
-> > > > > > > On Fri, 18 Nov 2022, Uwe Kleine-K=F6nig wrote:
-> > > > > > >=20
-> > > > > > > > From: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> > > > > > > >=20
-> > > > > > > > The probe function doesn't make use of the i2c_device_id * =
-parameter so it
-> > > > > > > > can be trivially converted.
-> > > > > > > >=20
-> > > > > > > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
-nix.de>
-> > > > > > > > ---
-> > > > > > > >  drivers/mfd/khadas-mcu.c | 5 ++---
-> > > > > > > >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > > > > > >=20
-> > > > > > > After a week or so, please collect-up all the tags you have r=
-eceived
-> > > > > > > and submit a per-subsystem set for me to hoover up, thanks.
-> > > > > >=20
-> > > > > > For mfd I'd do:
-> > > > > >=20
-> > > > > > 	git checkout mfd/for-next
-> > > > > > 	b4 am -P 413-481 20221118224540.619276-1-uwe@kleine-koenig.org
-> > > > > > 	git am ./20221118_uwe_i2c_complete_conversion_to_i2c_probe_new=
-=2Embx
-> > > > > > 	git send-email --to .... --cc .... mfd/for-next
-> > > > >=20
-> > > > > That's just crazy enough to work.
-> > > > >=20
-> > > > > Thanks for the tip.
-> > > >=20
-> > > > On irc you said you'd care for application of these patches ("I pla=
-n to
-> > > > attempt the b4 solution"), they didn't land in next yet. Do you nee=
-d a
-> > > > reminder? Something else?
-> > >=20
-> > > I applied them, but they fail to build and I haven't had time to
-> > > investigate.  I guess they depend on some patches that have been
-> > > accepted into another (input?) and are now in -next.  Any idea if they
-> > > are available on some immutable branch that I can pull from?
-> >=20
-> > If in your tree i2c_client_get_device_id() is missing, you want to pull
-> >=20
-> > 	https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/clie=
-nt_device_id_helper-immutable
->=20
-> Ideal, thanks.
-
-I see you added my commits to your tree now, however there is a problem:
-
-  $ git log --oneline --graph --boundary linus/master..FETCH_HEAD
-  ...
-  *   7281458f4396 Merge branches 'ib-i2c-mfd-client_dev_id_helper-6.2' and=
- 'ib-mfd-uwes-i2c-probe_new-6.2' into ibs-for-mfd-merged
-  |\ =20
-  | * c066a1632bc3 mfd: wm8994-core: Convert to i2c's .probe_new()
-  | * 0f22cf00762d mfd: wm8400-core: Convert to i2c's .probe_new()
-  | * 090f49b250ee mfd: wm8350-i2c: Convert to i2c's .probe_new()
-  | * 7174af1be41d mfd: wm831x-i2c: Convert to i2c's .probe_new()
-  | ...
-  | * 63909fec136e mfd: adp5520: Convert to i2c's .probe_new()
-  | * 549d4f3207f8 mfd: act8945a: Convert to i2c's .probe_new()
-  | * 623f79babaf1 mfd: aat2870-core: Convert to i2c's .probe_new()
-  | * ce41e4ae7cac mfd: 88pm805: Convert to i2c's .probe_new()
-  | * 02aa483f1f98 mfd: 88pm800: Convert to i2c's .probe_new()
-  * | 662233731d66 i2c: core: Introduce i2c_client_get_device_id helper fun=
-ction
-  |/
-  o 9abf2313adc1 (tag: v6.1-rc1) Linux 6.1-rc1
-
-That means that the commit introducing i2c_client_get_device_id() isn't
-an ancestor of the commits that make use of the new function. So
-63909fec136e (which is the first commit making use of the new function)
-likely won't compile:
-
-	$ git grep i2c_client_get_device_id 63909fec136e
-	63909fec136e:drivers/mfd/adp5520.c:     const struct i2c_device_id *id =3D=
- i2c_client_get_device_id(client);
-
-Starting with 7281458f4396 everything is fine again, but still this
-hurts a bisection.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---hofgvycto33rels6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOQcjQACgkQwfwUeK3K
-7AmnXQf+JBTwXlgudhX4rD9hpZef8Y+s9wI4l1NLyop37v2yPigu+AkHwxhMfsvy
-N7SGBQpXPMkg0FQywv8X81E8b4RrkotvSb2TUg4r1FwUM7XRs/lQeHqf03knyLjC
-W63dQsLq98w6wurqNl64JrKsi2dYQOZHg4wEkwBV/ZDUA5C0ybLS8JEr0L9HpbC5
-dZ9s0y/GhqO7YERH0P/ldTWNT5J2+eLdUKraL23O4jNFZi2HX6eLNJIoozZsADSB
-C+fXjval/tCqNUKSP0tGsvKCVbYkZrQoM9uuaF/5V6dWBDoIzEHaM7oJuE9V1LAX
-39MwM/ogCq1L1RHs85PtuRVPwZpG+A==
-=IN5C
------END PGP SIGNATURE-----
-
---hofgvycto33rels6--
-
-
---===============6642169541726532832==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6642169541726532832==--
-
+T24gV2VkLCAwNyBEZWMgMjAyMiwgVXdlIEtsZWluZS1Lw7ZuaWcgd3JvdGU6Cgo+IEhlbGxvIExl
+ZSwKPiAKPiBPbiBUdWUsIERlYyAwNiwgMjAyMiBhdCAwNDo1Njo1OVBNICswMDAwLCBMZWUgSm9u
+ZXMgd3JvdGU6Cj4gPiA+IE9uIFR1ZSwgRGVjIDA2LCAyMDIyIGF0IDA0OjEwOjUxUE0gKzAwMDAs
+IExlZSBKb25lcyB3cm90ZToKPiA+ID4gPiBPbiBUdWUsIDA2IERlYyAyMDIyLCBVd2UgS2xlaW5l
+LUvDtm5pZyB3cm90ZToKPiA+ID4gPiAKPiA+ID4gPiA+IEhleSBMZWUsCj4gPiA+ID4gPiAKPiA+
+ID4gPiA+IE9uIE1vbiwgTm92IDIxLCAyMDIyIGF0IDA0OjUxOjIxUE0gKzAwMDAsIExlZSBKb25l
+cyB3cm90ZToKPiA+ID4gPiA+ID4gT24gTW9uLCAyMSBOb3YgMjAyMiwgVXdlIEtsZWluZS1Lw7Zu
+aWcgd3JvdGU6Cj4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+IEhlbGxvIExlZSwKPiA+ID4gPiA+
+ID4gPiAKPiA+ID4gPiA+ID4gPiBPbiBNb24sIE5vdiAyMSwgMjAyMiBhdCAxMjozMjoxMFBNICsw
+MDAwLCBMZWUgSm9uZXMgd3JvdGU6Cj4gPiA+ID4gPiA+ID4gPiBPbiBGcmksIDE4IE5vdiAyMDIy
+LCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToKPiA+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+
+ID4gPiBGcm9tOiBVd2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4
+LmRlPgo+ID4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+ID4gVGhlIHByb2JlIGZ1bmN0
+aW9uIGRvZXNuJ3QgbWFrZSB1c2Ugb2YgdGhlIGkyY19kZXZpY2VfaWQgKiBwYXJhbWV0ZXIgc28g
+aXQKPiA+ID4gPiA+ID4gPiA+ID4gY2FuIGJlIHRyaXZpYWxseSBjb252ZXJ0ZWQuCj4gPiA+ID4g
+PiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBVd2UgS2xlaW5lLUvD
+tm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgo+ID4gPiA+ID4gPiA+ID4gPiAt
+LS0KPiA+ID4gPiA+ID4gPiA+ID4gIGRyaXZlcnMvbWZkL2toYWRhcy1tY3UuYyB8IDUgKystLS0K
+PiA+ID4gPiA+ID4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVs
+ZXRpb25zKC0pCj4gPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gPiA+IEFmdGVyIGEgd2VlayBv
+ciBzbywgcGxlYXNlIGNvbGxlY3QtdXAgYWxsIHRoZSB0YWdzIHlvdSBoYXZlIHJlY2VpdmVkCj4g
+PiA+ID4gPiA+ID4gPiBhbmQgc3VibWl0IGEgcGVyLXN1YnN5c3RlbSBzZXQgZm9yIG1lIHRvIGhv
+b3ZlciB1cCwgdGhhbmtzLgo+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+IEZvciBtZmQgSSdk
+IGRvOgo+ID4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiA+IAlnaXQgY2hlY2tvdXQgbWZkL2Zvci1u
+ZXh0Cj4gPiA+ID4gPiA+ID4gCWI0IGFtIC1QIDQxMy00ODEgMjAyMjExMTgyMjQ1NDAuNjE5Mjc2
+LTEtdXdlQGtsZWluZS1rb2VuaWcub3JnCj4gPiA+ID4gPiA+ID4gCWdpdCBhbSAuLzIwMjIxMTE4
+X3V3ZV9pMmNfY29tcGxldGVfY29udmVyc2lvbl90b19pMmNfcHJvYmVfbmV3Lm1ieAo+ID4gPiA+
+ID4gPiA+IAlnaXQgc2VuZC1lbWFpbCAtLXRvIC4uLi4gLS1jYyAuLi4uIG1mZC9mb3ItbmV4dAo+
+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gVGhhdCdzIGp1c3QgY3JhenkgZW5vdWdoIHRvIHdvcmsu
+Cj4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiBUaGFua3MgZm9yIHRoZSB0aXAuCj4gPiA+ID4gPiAK
+PiA+ID4gPiA+IE9uIGlyYyB5b3Ugc2FpZCB5b3UnZCBjYXJlIGZvciBhcHBsaWNhdGlvbiBvZiB0
+aGVzZSBwYXRjaGVzICgiSSBwbGFuIHRvCj4gPiA+ID4gPiBhdHRlbXB0IHRoZSBiNCBzb2x1dGlv
+biIpLCB0aGV5IGRpZG4ndCBsYW5kIGluIG5leHQgeWV0LiBEbyB5b3UgbmVlZCBhCj4gPiA+ID4g
+PiByZW1pbmRlcj8gU29tZXRoaW5nIGVsc2U/Cj4gPiA+ID4gCj4gPiA+ID4gSSBhcHBsaWVkIHRo
+ZW0sIGJ1dCB0aGV5IGZhaWwgdG8gYnVpbGQgYW5kIEkgaGF2ZW4ndCBoYWQgdGltZSB0bwo+ID4g
+PiA+IGludmVzdGlnYXRlLiAgSSBndWVzcyB0aGV5IGRlcGVuZCBvbiBzb21lIHBhdGNoZXMgdGhh
+dCBoYXZlIGJlZW4KPiA+ID4gPiBhY2NlcHRlZCBpbnRvIGFub3RoZXIgKGlucHV0PykgYW5kIGFy
+ZSBub3cgaW4gLW5leHQuICBBbnkgaWRlYSBpZiB0aGV5Cj4gPiA+ID4gYXJlIGF2YWlsYWJsZSBv
+biBzb21lIGltbXV0YWJsZSBicmFuY2ggdGhhdCBJIGNhbiBwdWxsIGZyb20/Cj4gPiA+IAo+ID4g
+PiBJZiBpbiB5b3VyIHRyZWUgaTJjX2NsaWVudF9nZXRfZGV2aWNlX2lkKCkgaXMgbWlzc2luZywg
+eW91IHdhbnQgdG8gcHVsbAo+ID4gPiAKPiA+ID4gCWh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHVi
+L3NjbS9saW51eC9rZXJuZWwvZ2l0L3dzYS9saW51eC5naXQgaTJjL2NsaWVudF9kZXZpY2VfaWRf
+aGVscGVyLWltbXV0YWJsZQo+ID4gCj4gPiBJZGVhbCwgdGhhbmtzLgo+IAo+IEkgc2VlIHlvdSBh
+ZGRlZCBteSBjb21taXRzIHRvIHlvdXIgdHJlZSBub3csIGhvd2V2ZXIgdGhlcmUgaXMgYSBwcm9i
+bGVtOgo+IAo+ICAgJCBnaXQgbG9nIC0tb25lbGluZSAtLWdyYXBoIC0tYm91bmRhcnkgbGludXMv
+bWFzdGVyLi5GRVRDSF9IRUFECj4gICAuLi4KPiAgICogICA3MjgxNDU4ZjQzOTYgTWVyZ2UgYnJh
+bmNoZXMgJ2liLWkyYy1tZmQtY2xpZW50X2Rldl9pZF9oZWxwZXItNi4yJyBhbmQgJ2liLW1mZC11
+d2VzLWkyYy1wcm9iZV9uZXctNi4yJyBpbnRvIGlicy1mb3ItbWZkLW1lcmdlZAo+ICAgfFwgIAo+
+ICAgfCAqIGMwNjZhMTYzMmJjMyBtZmQ6IHdtODk5NC1jb3JlOiBDb252ZXJ0IHRvIGkyYydzIC5w
+cm9iZV9uZXcoKQo+ICAgfCAqIDBmMjJjZjAwNzYyZCBtZmQ6IHdtODQwMC1jb3JlOiBDb252ZXJ0
+IHRvIGkyYydzIC5wcm9iZV9uZXcoKQo+ICAgfCAqIDA5MGY0OWIyNTBlZSBtZmQ6IHdtODM1MC1p
+MmM6IENvbnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCj4gICB8ICogNzE3NGFmMWJlNDFkIG1m
+ZDogd204MzF4LWkyYzogQ29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKPiAgIHwgLi4uCj4g
+ICB8ICogNjM5MDlmZWMxMzZlIG1mZDogYWRwNTUyMDogQ29udmVydCB0byBpMmMncyAucHJvYmVf
+bmV3KCkKPiAgIHwgKiA1NDlkNGYzMjA3ZjggbWZkOiBhY3Q4OTQ1YTogQ29udmVydCB0byBpMmMn
+cyAucHJvYmVfbmV3KCkKPiAgIHwgKiA2MjNmNzliYWJhZjEgbWZkOiBhYXQyODcwLWNvcmU6IENv
+bnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCj4gICB8ICogY2U0MWU0YWU3Y2FjIG1mZDogODhw
+bTgwNTogQ29udmVydCB0byBpMmMncyAucHJvYmVfbmV3KCkKPiAgIHwgKiAwMmFhNDgzZjFmOTgg
+bWZkOiA4OHBtODAwOiBDb252ZXJ0IHRvIGkyYydzIC5wcm9iZV9uZXcoKQo+ICAgKiB8IDY2MjIz
+MzczMWQ2NiBpMmM6IGNvcmU6IEludHJvZHVjZSBpMmNfY2xpZW50X2dldF9kZXZpY2VfaWQgaGVs
+cGVyIGZ1bmN0aW9uCj4gICB8Lwo+ICAgbyA5YWJmMjMxM2FkYzEgKHRhZzogdjYuMS1yYzEpIExp
+bnV4IDYuMS1yYzEKPiAKPiBUaGF0IG1lYW5zIHRoYXQgdGhlIGNvbW1pdCBpbnRyb2R1Y2luZyBp
+MmNfY2xpZW50X2dldF9kZXZpY2VfaWQoKSBpc24ndAo+IGFuIGFuY2VzdG9yIG9mIHRoZSBjb21t
+aXRzIHRoYXQgbWFrZSB1c2Ugb2YgdGhlIG5ldyBmdW5jdGlvbi4gU28KPiA2MzkwOWZlYzEzNmUg
+KHdoaWNoIGlzIHRoZSBmaXJzdCBjb21taXQgbWFraW5nIHVzZSBvZiB0aGUgbmV3IGZ1bmN0aW9u
+KQo+IGxpa2VseSB3b24ndCBjb21waWxlOgo+IAo+IAkkIGdpdCBncmVwIGkyY19jbGllbnRfZ2V0
+X2RldmljZV9pZCA2MzkwOWZlYzEzNmUKPiAJNjM5MDlmZWMxMzZlOmRyaXZlcnMvbWZkL2FkcDU1
+MjAuYzogICAgIGNvbnN0IHN0cnVjdCBpMmNfZGV2aWNlX2lkICppZCA9IGkyY19jbGllbnRfZ2V0
+X2RldmljZV9pZChjbGllbnQpOwo+IAo+IFN0YXJ0aW5nIHdpdGggNzI4MTQ1OGY0Mzk2IGV2ZXJ5
+dGhpbmcgaXMgZmluZSBhZ2FpbiwgYnV0IHN0aWxsIHRoaXMKPiBodXJ0cyBhIGJpc2VjdGlvbi4K
+CkZhaXIgcG9pbnQgLSBJJ2xsIHJlYmFzZSB0aGUgbXkgdG9waWMgYnJhbmNoIG9uIHRvcCBvZiBX
+b2xmcmFtJ3MuCgotLSAKTGVlIEpvbmVzIFvmnY7nkLzmlq9dCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
