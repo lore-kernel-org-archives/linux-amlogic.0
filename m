@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC5EC4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Dec 2022 10:34:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A8FDC3A5A7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Dec 2022 10:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lvrh2hmMTR1vyW2i3mfbWvbJen1uOdQ3cimhrOAY0oU=; b=vUEyyVzo7b5tto
-	reo/1ZHMb1rxG1UClsH7dswm1wfbQrUH2CsaQAQpA66sWU8MUEY2UN6BtqJE67bOC5y4+VdgXBdlQ
-	W5820lRyhs541ObN6YoyoJhxl4ihUi6oOlOtnu26rUgx6LCmtVw0cLjCELzC11BRyxLUyzRcxCnV6
-	fdG62FjGQiba+8f0ftOnQx2RiQBj/qq3Cpqu+z48Yt5qOBQ3GnznkKd7kJjRMRRe5ckBny35oebUB
-	OOZMSsRlN9YZIRonn9abebNPM41lRHhcSyHpB+r/FtjKksnP8LBgRx5u+q657kg2M2kNBGTFsKTd3
-	mFlA/31oYEMNKfIx1L4A==;
+	List-Owner; bh=iaIWXFC9LMmg3F4Vuf+UG6qYuxe8CeELJA6SLU6wyiE=; b=cxmDVTn4TcjofL
+	EXBaJOyeGjP2GROGExr5csEHGBcpwBauM4JDgxa7NRadYgl0jnNyKMpqwHfFlhsyxuPSJehHKt8n2
+	4DJTVzhoigvtc+2CcGLQKD4tqDZhSx1Orj3WlzKv2moRfBUQLhzURh7GkDG3BRW5LxFIkRIqYw8FS
+	Ps+caDD8nq7KgOQK4HRLJCNdpDnma6Zbur/99FPJFXz3c7NXU5jkLQhJksRI4oKgXJR4+mXvIIei7
+	pCGpt2k/6xNVjYxYE93wEdbytVbiP08aeJZSSkdhQjkOlKqwvqFpxXnfjRN/QfDvkufV6B5KFlvms
+	C4FSIO+VqZnFC3MADzNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3EDw-00CeEg-HH; Thu, 08 Dec 2022 10:33:52 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1p3EFQ-00Cg3j-9u; Thu, 08 Dec 2022 10:35:24 +0000
+Received: from mail-lj1-x231.google.com ([2a00:1450:4864:20::231])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3EBm-00CbEv-T8
-	for linux-amlogic@lists.infradead.org; Thu, 08 Dec 2022 10:31:47 +0000
-Received: by mail-lf1-x131.google.com with SMTP id bp15so1336021lfb.13
-        for <linux-amlogic@lists.infradead.org>; Thu, 08 Dec 2022 02:31:37 -0800 (PST)
+	id 1p3EBq-00CbI8-8L
+	for linux-amlogic@lists.infradead.org; Thu, 08 Dec 2022 10:31:49 +0000
+Received: by mail-lj1-x231.google.com with SMTP id q7so1076599ljp.9
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Dec 2022 02:31:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=d5ptnyM8tU9KK9vuHrqJhLp9kBHzmtP8NOjNL98W6O0=;
-        b=Zqdk9FLKb1U+056szYPwGwZZOCtduYqr9pYvnZ70agJ8neRKwJbE/0KXoVf9PGud/3
-         WUUDU/fEZhoXXFg7hf9+IhzSsBiP64yONaa7u5T8aNsgIJdYGPQuba+HXXhMaeC6D5H1
-         Rzilnv2cjG1wKqajm+kC9DBF9p2SAL4WDD6JNKqCfElln9GeZVsjaVwzyTVyYJgeipEM
-         Csnc1Cy9CHiwtzHyu5sOypvruVbwF4Dckt6L8lOKrui5Ts4xiBE0rlgNDnP/yJ71x/Ep
-         QUzxoCtns51f5ylw3SjAEvbdbMCGK16oDkOSKEiYp88amzXcDBhw+o3cDnWsXTLx/n5r
-         A1dg==
+        bh=4WOjKBqSX/bJNurWawr9UIxOhCwY9AfTE5WBw0ZvK0s=;
+        b=kJQb28YflwpK3NESU5gQU95yRGilk9HUL2yuzHgwREaj29yOLuHsU1d+muWxXj9JTc
+         4ZasRdRWBXFHtROhwYT2c2SjDKJMQK3264B5F5pUDnUkphXf/ypIYtHzl7Sa8PcmUdp7
+         S885N8LUQ42hBZRbT6oapU7ac9R6jr8mx8xbWWr6p4yIOGoUM8DyaLr5+vU1IP/WpxKO
+         C5oaZYvN9LD+kCoGXXnlCmz/tgHA2Ns6gldZsRNy4N8DoNgJwCwTPn0vMTsP8OuoFEg0
+         HDRQ8H9oDJr/pTe7BE6ED/A2Kyxc9aNg6Km7ePO2VH50qDmv/MGiMhjpkw/y/Vzw507M
+         c63w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=d5ptnyM8tU9KK9vuHrqJhLp9kBHzmtP8NOjNL98W6O0=;
-        b=QD15s1h0KOy/UkTp/li5LyUbWI+Lq6F1eTubSKQG9WPKxAZ/Ze5FGDFR+Gx8V10qMU
-         Yy05pVdrL3MOPrgXMa1wGxQHQUdCNkPj2yyJwzZRnePl37ov5dW22+zNRtzipVjMOKEM
-         2/38gDegRK6zTT6KP1cXQJCHGmHqlrCSAMqvKj378Ccwc7VVs0Wbn99SJsXJI8XvOTZh
-         S0MBfahGKaE1Oj0JZUhBq16F8DF2HMXunEuWLgkmD6vKo5HBhjY9XtbzSoW1UAmA7QIf
-         LjZDecdq66amUHaQ/kCtYY1fGfOnKaGObrXGfCHv1fxpUAYU/abOquQmY7pCH83634fJ
-         kdug==
-X-Gm-Message-State: ANoB5pnFdbogGRJfAo/T2yY17yevBoJ7uXtCWJDeRhte+twPBz8TVF6G
-	qEyyE/zJFqrqkB18whjnkarIsQ==
-X-Google-Smtp-Source: AA0mqf5tpHiPpZHCEhpkHs1cV3jMDIzMzb1k+nZXnOkFjY2FhmuCd2fWYcDhxvNhmKNesC4O0TZ6CA==
-X-Received: by 2002:ac2:4acc:0:b0:4b4:10ca:5240 with SMTP id m12-20020ac24acc000000b004b410ca5240mr34308930lfp.482.1670495495875;
-        Thu, 08 Dec 2022 02:31:35 -0800 (PST)
+        bh=4WOjKBqSX/bJNurWawr9UIxOhCwY9AfTE5WBw0ZvK0s=;
+        b=1mVxkQFjostoWU8nhPMQHKqZT30oPmXPoSKo7ZCUiZj9o5aJhYiKnuHnWc+gv3+3C+
+         ApsvPIAeGsZopmXtxMGgoHzUeE+FU4NGRtBf6prrexhKvfdwnPRaTOCo2y6WfLwoz2uB
+         DkaX4/ia95tjG2QPQ7L0wXecaa/lClQWAHBXfjTLVFCKZ6MrJ1oqoqODIRuFcj9ZoD5c
+         IzUabLskOQZGNkpXush18BK2RcVzlbJYZeebw/MJfd3T3rTRbgTxZPkLQ4XzFlGqPRl+
+         2G/tiYXAJKaW6P8FfDE/YU3+HN+HRuYSIja2pYRNplDNj8YT0DgemCwAj+C02XogbJJe
+         Prbg==
+X-Gm-Message-State: ANoB5plbBoDJnAnlwDVtOktFd4ixsrabOszBRt6GHWxSrOdpOKJ6sLAV
+	xSL8Z1D/2UVbzOgszw2JTljHuA==
+X-Google-Smtp-Source: AA0mqf6m4mBUWnejewtw0czAsyfVH1o6wdUJZLZZZH/Uv9O0p48as/hiEsZvE9q4V5RCh7+GTk8YYw==
+X-Received: by 2002:a05:651c:2388:b0:279:d60:ee7f with SMTP id bk8-20020a05651c238800b002790d60ee7fmr31670490ljb.404.1670495498246;
+        Thu, 08 Dec 2022 02:31:38 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.34
+        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Dec 2022 02:31:35 -0800 (PST)
+        Thu, 08 Dec 2022 02:31:37 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -88,16 +88,16 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 5/9] media: dt-bindings: chrontel,ch7322: reference common CEC properties
-Date: Thu,  8 Dec 2022 11:31:11 +0100
-Message-Id: <20221208103115.25512-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 6/9] media: dt-bindings: samsung,s5p-cec: convert to DT schema
+Date: Thu,  8 Dec 2022 11:31:12 +0100
+Message-Id: <20221208103115.25512-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
 References: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221208_023142_849192_19654EAE 
-X-CRM114-Status: GOOD (  10.08  )
+X-CRM114-CacheID: sfid-20221208_023143_049367_D6587AC2 
+X-CRM114-Status: GOOD (  18.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,62 +114,145 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reference common HDMI CEC adapter properties to simplify the binding and
-have only one place of definition for common properties.  The common CEC
-binding expects also node name to be 'cec'.
+Convert Samsung S5P HDMI CEC adapter bindings to DT schema.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
-
 ---
+ .../bindings/media/cec/samsung,s5p-cec.yaml   | 66 +++++++++++++++++++
+ .../devicetree/bindings/media/s5p-cec.txt     | 36 ----------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 67 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/s5p-cec.txt
 
-Changes since v1:
-1. Fix node name to cec.
----
- .../bindings/media/i2c/chrontel,ch7322.yaml           | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml b/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
-index 63e5b89d2e0b..af8ada55b3f2 100644
---- a/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
-@@ -13,6 +13,9 @@ description:
-   The Chrontel CH7322 is a discrete HDMI-CEC controller. It is
-   programmable through I2C and drives a single CEC line.
- 
-+allOf:
-+  - $ref: /schemas/media/cec/cec-common.yaml#
+diff --git a/Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml b/Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml
+new file mode 100644
+index 000000000000..016c8a77c1a6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/cec/samsung,s5p-cec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- properties:
-   compatible:
-     const: chrontel,ch7322
-@@ -40,16 +43,12 @@ properties:
-       if in auto mode.
-     maxItems: 1
- 
--  # see ../cec.txt
--  hdmi-phandle:
--    description: phandle to the HDMI controller
--
- required:
-   - compatible
-   - reg
-   - interrupts
- 
--additionalProperties: false
++title: Samsung S5PV210 and Exynos HDMI CEC
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Marek Szyprowski <m.szyprowski@samsung.com>
++
++allOf:
++  - $ref: cec-common.yaml#
++
++properties:
++  compatible:
++    const: samsung,s5p-cec
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: hdmicec
++
++  interrupts:
++    maxItems: 1
++
++  samsung,syscon-phandle:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to PMU system controller interface
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - hdmi-phandle
++  - interrupts
++  - samsung,syscon-phandle
++  - reg
++
 +unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5420.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    cec@101b0000 {
++        compatible = "samsung,s5p-cec";
++        reg = <0x101B0000 0x200>;
++
++        clocks = <&clock CLK_HDMI_CEC>;
++        clock-names = "hdmicec";
++        interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
++        hdmi-phandle = <&hdmi>;
++        needs-hpd;
++        pinctrl-names = "default";
++        pinctrl-0 = <&hdmi_cec>;
++        samsung,syscon-phandle = <&pmu_system_controller>;
++    };
+diff --git a/Documentation/devicetree/bindings/media/s5p-cec.txt b/Documentation/devicetree/bindings/media/s5p-cec.txt
+deleted file mode 100644
+index e847291d4aff..000000000000
+--- a/Documentation/devicetree/bindings/media/s5p-cec.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-* Samsung HDMI CEC driver
+-
+-The HDMI CEC module is present is Samsung SoCs and its purpose is to
+-handle communication between HDMI connected devices over the CEC bus.
+-
+-Required properties:
+-  - compatible : value should be following
+-	"samsung,s5p-cec"
+-
+-  - reg : Physical base address of the IP registers and length of memory
+-	  mapped region.
+-
+-  - interrupts : HDMI CEC interrupt number to the CPU.
+-  - clocks : from common clock binding: handle to HDMI CEC clock.
+-  - clock-names : from common clock binding: must contain "hdmicec",
+-		  corresponding to entry in the clocks property.
+-  - samsung,syscon-phandle - phandle to the PMU system controller
+-  - hdmi-phandle - phandle to the HDMI controller, see also cec.txt.
+-
+-Optional:
+-  - needs-hpd : if present the CEC support is only available when the HPD
+-		is high. See cec.txt for more details.
+-
+-Example:
+-
+-hdmicec: cec@100b0000 {
+-	compatible = "samsung,s5p-cec";
+-	reg = <0x100B0000 0x200>;
+-	interrupts = <0 114 0>;
+-	clocks = <&clock CLK_HDMI_CEC>;
+-	clock-names = "hdmicec";
+-	samsung,syscon-phandle = <&pmu_system_controller>;
+-	hdmi-phandle = <&hdmi>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&hdmi_cec>;
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 45402e03cda5..05acbaecef52 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2866,7 +2866,7 @@ M:	Marek Szyprowski <m.szyprowski@samsung.com>
+ L:	linux-samsung-soc@vger.kernel.org
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/media/s5p-cec.txt
++F:	Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml
+ F:	drivers/media/cec/platform/s5p/
  
- examples:
-   - |
-@@ -58,7 +57,7 @@ examples:
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      ch7322@75 {
-+      cec@75 {
-         compatible = "chrontel,ch7322";
-         reg = <0x75>;
-         interrupts = <47 IRQ_TYPE_EDGE_RISING>;
+ ARM/SAMSUNG S5P SERIES JPEG CODEC SUPPORT
 -- 
 2.34.1
 
