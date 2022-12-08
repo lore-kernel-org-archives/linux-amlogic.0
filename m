@@ -4,69 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26C16C352A1
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Dec 2022 13:57:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E32FC4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Dec 2022 10:32:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6KFLlC3SXey9BQ4iOA09mEcrkF42yZ0k4KWWiBtDrTA=; b=ZkDFabPmA931LgufGwXHJ9ziL7
-	R0ZqB2qy61CCueX9+PScRzw8m9u9VY8B/exJq9rGO7PzXKiL9q7CYAXO2Gh6NR50EwqJfRh8ofbAq
-	D7UQTxglH1H5ploqE+PSBTB/cFAXl8NpBHpO+01pR2zzP29AjLGOSH9H+8J/JXMu50Gs48ntAw4aW
-	2MqFD5V3cg9mjuZagOfUPJFvjfarNr+wpu07VR5HDjMwVDUDe0bdQ9Vc73C+Leu9Q7qNRG3YKaSjn
-	4AlRMWWosYQJiMDVdrRTj7QQIt48SnMlvqzFgRS8pfWDO5bmglID1Su8VeM7cy26R9Wi+n9vQS7OE
-	T6g+sEeA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=XMIJm7JHKTSfXHV11TqZjnipC6oWoG4LqtHdhwCtlQg=; b=SaLi+rabb4eNba
+	EaKvK8foytR48UrP5TMgkwSot9TVU3ubr7rUnTvOJC4x8qX4mvSkrQliK9HgsZju4TNB14b4F7lhc
+	JKy8Xez7tTdwwGod50N47cfVrivm0NIFm4kUf1dyHhrNuKKRbUPPJdVHnG2/qBNWBboyHQZnQ8npN
+	W8upDuCKtMSzoxODi+CxlI5aUWfLDyWQFBjsliGM6Vm4A8i7EsT4RpvqnmadKoO1h1FaSmTSvEhnG
+	X4fALNDeB9KUfsnUVzcKUJxpk1tYQ56gryYWWopIOPXIu7LoQ4pZ7gwmhLEGoeObS4lR7cML3hHOe
+	maSjkCitol1rY+hygQ0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2uvM-004JqV-Rw; Wed, 07 Dec 2022 13:57:24 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1p3EC0-00CbVN-PJ; Thu, 08 Dec 2022 10:31:52 +0000
+Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2uvJ-004Jcj-0d
-	for linux-amlogic@lists.infradead.org; Wed, 07 Dec 2022 13:57:22 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2uv4-0007VL-LE; Wed, 07 Dec 2022 14:57:06 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2uv2-002vut-QL; Wed, 07 Dec 2022 14:57:05 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1p2uv2-003I87-Ta; Wed, 07 Dec 2022 14:57:04 +0100
-Date: Wed, 7 Dec 2022 14:57:04 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Lee Jones <lee@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>, linux-i2c@vger.kernel.org,
-	kernel@pengutronix.de, Grant Likely <grant.likely@linaro.org>,
-	linux-amlogic@lists.infradead.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH 431/606] mfd: khadas-mcu: Convert to i2c's .probe_new()
-Message-ID: <20221207135704.oxyu2gfm6wrns5t4@pengutronix.de>
-References: <Y3tvypIDVdCYxAVB@google.com>
- <20221121150854.3mwczqtbusawho4m@pengutronix.de>
- <Y3usiUm1K+5xCWhY@google.com>
- <20221206105908.jzcdnast3yw22eel@pengutronix.de>
- <Y49pi54DKsvLOzvb@google.com>
- <20221206163516.i6rzewxts7do75y5@pengutronix.de>
- <Y490W6k4N8iBxLHf@google.com>
- <20221207110007.yfjfiakmh4ma3sfo@pengutronix.de>
- <Y5B3otGG06QCjldc@google.com>
- <Y5CWSZpndGi4mU5e@google.com>
+	id 1p3EBh-00Cb23-Ei
+	for linux-amlogic@lists.infradead.org; Thu, 08 Dec 2022 10:31:36 +0000
+Received: by mail-lj1-x22d.google.com with SMTP id x6so1070617lji.10
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Dec 2022 02:31:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/AxgtdSHYHP1YbbzJqlPfT18aEYuRk09InbeSd0JHNg=;
+        b=vRC/imatoHVwHYY/xYn/XxRuhvdx+OB/SREDy14/PgQFlvrcB0EQ4id+Ayn//84QYK
+         arsf1sF22Nuv9HYLsJZwEdrxi758C5vfm5ZOaHEJtq0l7mSlFY73m118j5bw0eEzZpEK
+         7Xp9QuvafRfPFLxYttCVahNoYSTwtOcU9Os+EwRSUZK6QgYONFNQPqmoIef+Gc5FzOsc
+         r2hrYVDys42CmHewFWsn4iF/mp6c9uznU3JcXO2DwcMrSWsM+fELE3+Zlg43ltpAOqxZ
+         8O12HQw3aOU4Pykni54J7as2y1Pkb1ySFTZzA6k4V5WwMbs8gf2/A9CzcxP9jWEnF5gq
+         rHWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/AxgtdSHYHP1YbbzJqlPfT18aEYuRk09InbeSd0JHNg=;
+        b=aiav3S/OFV2mPVBAxnesQb9s7Zjdke0P8udVWwk5CYjOmC/EpcuQnHHo1+UrxQd+m8
+         +E1iL3fiGjF9wfTWEsmAVaMw00L6aeh3kvZ6wJR28V+KYgAzOd7cCLuah06emDXsVEWm
+         P+hla1jY2cAMIjEapJvtFa9fIPpeNuinRBZfJbJnRAlqcWe8TKJJsIa3wnfLbOzxzyj8
+         O+hg7lMDzFqqTOniTrlmfjTkoObNvGbq7KPqZ8Q6KfxNkdKXmmfO0GJL+s5+uo/rU1cJ
+         nXxDdLyjc6Qz8g6kXPw1ZXBA865FTFFyGHJi2TA5/Zkl1KaqYmHlPauIdwEMpYFphFMK
+         Cphw==
+X-Gm-Message-State: ANoB5pnRGMggb8NZrZ4Yg7leXKOgsIXc9bkSyC0S6w0Def4sgNNsxh90
+	KUYrHkDUFycVcIzAWZ2SeJz2Tw==
+X-Google-Smtp-Source: AA0mqf4r+c/Cu2q8bu68UEJNNYlGepHPtzLV4IoukgbIUFguwupiwwM2w6EmGx8lDIrN2xvRWlHB6w==
+X-Received: by 2002:a2e:2c15:0:b0:27a:773:7054 with SMTP id s21-20020a2e2c15000000b0027a07737054mr3931835ljs.169.1670495487827;
+        Thu, 08 Dec 2022 02:31:27 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Dec 2022 02:31:27 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Joe Tessler <jrt@google.com>,
+	Yannick Fertre <yannick.fertre@foss.st.com>,
+	Jeff Chase <jnchase@google.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/9] media: dt-bindings: amlogic,meson-gx-ao-cec: move to cec subfolder
+Date: Thu,  8 Dec 2022 11:31:07 +0100
+Message-Id: <20221208103115.25512-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
+References: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <Y5CWSZpndGi4mU5e@google.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221207_055721_076642_DCC9A26F 
-X-CRM114-Status: GOOD (  16.63  )
+X-CRM114-CacheID: sfid-20221208_023133_532381_33A0B1AA 
+X-CRM114-Status: UNSURE (   9.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,86 +110,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5486701769566432047=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Move amlogic,meson-gx-ao-cec.yaml bindings to cec subfolder and drop
+unneeded quotes.
 
---===============5486701769566432047==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="444ob3jqs3mc3uhm"
-Content-Disposition: inline
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml     | 4 ++--
+ MAINTAINERS                                                   | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ rename Documentation/devicetree/bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml (93%)
 
+diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+similarity index 93%
+rename from Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
+rename to Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+index 8d844f4312d1..f65c9681a9f7 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
++++ b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 BayLibre, SAS
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/media/amlogic,meson-gx-ao-cec.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/media/cec/amlogic,meson-gx-ao-cec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Amlogic Meson AO-CEC Controller
+ 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e3f3c3e53f77..07cb85cac4c3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13553,7 +13553,7 @@ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+ W:	http://linux-meson.com/
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
++F:	Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+ F:	drivers/media/cec/platform/meson/ao-cec-g12a.c
+ F:	drivers/media/cec/platform/meson/ao-cec.c
+ 
+-- 
+2.34.1
 
---444ob3jqs3mc3uhm
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Lee,
-
-On Wed, Dec 07, 2022 at 01:34:01PM +0000, Lee Jones wrote:
-> On Wed, 07 Dec 2022, Lee Jones wrote:
-> > On Wed, 07 Dec 2022, Uwe Kleine-K=F6nig wrote:
-> > > I see you added my commits to your tree now, however there is a probl=
-em:
-> > >=20
-> > >   [...]
-> > >=20
-> > > That means that the commit introducing i2c_client_get_device_id() isn=
-'t
-> > > an ancestor of the commits that make use of the new function. So
-> > > 63909fec136e (which is the first commit making use of the new functio=
-n)
-> > > likely won't compile:
-> > >=20
-> > > 	$ git grep i2c_client_get_device_id 63909fec136e
-> > > 	63909fec136e:drivers/mfd/adp5520.c:     const struct i2c_device_id *=
-id =3D i2c_client_get_device_id(client);
-> > >=20
-> > > Starting with 7281458f4396 everything is fine again, but still this
-> > > hurts a bisection.
-> >=20
-> > Fair point - I'll rebase the my topic branch on top of Wolfram's.
->=20
-> Okay, try now.
-
-Looks good now, thanks!
-
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---444ob3jqs3mc3uhm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOQm60ACgkQwfwUeK3K
-7AnwYwf7BJNhpOShM+y1sPNPmv1EtCLVMQ5BRS5kTzzqK8U3WDaJ4h+0gqiakqR6
-q/SUJSzkLtGDo3uzt3CxEeUXk++AyWt6izQKjYIRoGGM6/aIEKJGoNvthphjH5C3
-ex7x4QUrSZIApKlQmiHa4yUhogpGjD8p/WJsw6kO6VlIsK4gyn0UVdwP1XuReucA
-mY/MnyLv4X/IE4JFwfKeyxgUmhzKUSi2zl4JuZP0RCNK+uV9ZknKs+9wnqxF1JJ4
-xXr/1Ft9OLfs3dnEmyKyIOCgac5BHQL8jEE6LF10qWxlsX4N6sf9Uv5A3B/rXCLL
-IdHOr0s6H4PFD7LBaA0Mrl3QPcs5Uw==
-=JuPy
------END PGP SIGNATURE-----
-
---444ob3jqs3mc3uhm--
-
-
---===============5486701769566432047==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5486701769566432047==--
-
