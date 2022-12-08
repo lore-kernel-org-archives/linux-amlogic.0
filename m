@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5538EC4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Dec 2022 10:32:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E428C3A5A7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Dec 2022 10:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YSi8SHJbZaCPEb42oqrGPcxYwPUpUqnHpWAq0ir61Os=; b=Rh32I5c8JXUd20
-	kAgB/KFUmOZuQOeUnupFZP8xG+xIJ7ukIpMmptlapWodtwW1Jb+gjJaJSujuYM6yXGU9B/4OZYiMI
-	FXUAw6TJLHOwW+OUKxtlNvvpEQJ9m9b2ewNYGHPgKX9WuNHn3I0g1bNijPJogrkU2J2CDYqbtvGdC
-	i7614fwYovshFDqsG9FFfY/onCBwPuqe6tXg9+zUNXhrmRKXDiHXgO5ZdLYe19OgzQBejsvydOafA
-	inNKTY0ZV4QfSr9FAay1jvwsIk9NPeTjStGiGn1t7vjyh0KXp9th59yv9w9w7sxO0QtTcSvkXl5i4
-	Z77m9luj2ucMsaOwPYVA==;
+	List-Owner; bh=VzIYQZpolCuIuJC/kPBlTVx27iF3N2jjN+rSh/hOflg=; b=kNdYPx4KpY9320
+	wL1DYB8Vw4YAHNSLsrZ+Zx3r608FMBp7xq5JrpdHlj6eRxMwRclJbgfJCy+DOmpsY/+MtzIJLzFR4
+	hNTyLx1UNnB5H2SJCNBAvRDGI4JPqWEc9NE+4V6w562/3ZrlqxcAfzQO4bpCZ4r6WqEEbu6e3YalJ
+	LNojGYS+MKduF/qmXbsERkf1pKuMxDaMlSQxzcTuegcVsLqOqg5D7l1Vrs4QYShuQH4mJugneYjXG
+	HhuoE69D5qS9iBbmyMLBCCtrI1+lF2NGYFCB897wIx7iiGT8z/pAcbFlztYlDmS6hZw/dTtv5Lsx1
+	2QvrQMmaNrHvhWRaR7pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3ECr-00CcvI-Aq; Thu, 08 Dec 2022 10:32:45 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1p3ECv-00Ccyi-57; Thu, 08 Dec 2022 10:32:49 +0000
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3EBk-00CbAr-0E
-	for linux-amlogic@lists.infradead.org; Thu, 08 Dec 2022 10:31:38 +0000
-Received: by mail-lf1-x130.google.com with SMTP id j4so1422915lfk.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 08 Dec 2022 02:31:33 -0800 (PST)
+	id 1p3EBm-00CbDY-4C
+	for linux-amlogic@lists.infradead.org; Thu, 08 Dec 2022 10:31:39 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id g7so1374489lfv.5
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Dec 2022 02:31:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ftjSB9JJ8yBkXE+8vCPq7doIFKzD/Pbisdda5DVy8ec=;
-        b=dbfh3g3XU/oJm/3BLec2LP+qdKfwx3FxgxohCpre6Ghy/mZbm681ARz0qOr+DO9taR
-         9CRIzs33N0WRZuTnzWLQJ3cPZoRfoCnzVkgwHIS/HwZpYdFOw7RlpP2MOBJWgEx8XGIt
-         qDOxAzSs8lOFyeP1vp3kETNwQSg0ZjkvQi+LzXcfh0oiqQ9zZkFz+OaQNVlNjQNckQ/3
-         1P9Z87L/E3KnjRGP9hO612DdRCn4R41dqucH4woOZZr5DiBXaaIxUUb1ClsUkVoxSsp2
-         M8UwR8CrF5sKT6QaMtDTU/3Ecl5SKGcfgg6ZV7uwnZ5l0iP4N5IkLmyPWZYrMMCMvaQ1
-         PGQQ==
+        bh=NxOwaXNbTiEohgYyBqos3ms0rULNHpJBLRwyMfOuuH0=;
+        b=SNdyGSv85VbVAi3pneX2JkKUEzvN0PW4W9IL5g4DRhHvrBMOeni6Z+pOOEUpcInHC4
+         8Oe7zRj7yqve48LHxc9nGSZ8mjyRRCvJpCF3Z+HStSkQrZAQaWw7GQJclRQO/E9VVVfd
+         Buw7kNckTMw6llktH1TFtA8zYKuFyKlQfBHRHR2N0gMd5aCUYKIQZHVTqSpTEg/De5ZJ
+         /7DYMHhSqyEC4K8AQQoiej8iBaSgPHsLttayPnDRwNPyQdAbC6HBdlCjQciE5QjQ2mgc
+         Vx23NFx3NOCox+iJMxdZPi1LNdtRivWrNNhADRl2USslYsznJEGxEtTQac8m8oo5Up8r
+         ayQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ftjSB9JJ8yBkXE+8vCPq7doIFKzD/Pbisdda5DVy8ec=;
-        b=uo0EYXAltWXHbOs+g0/wq0c/6m8ZuV0J0I7a6GBa1AAScnHjExKRlD1yRFgjGBsCiC
-         zmZd3o26fFpIqbXfUKLS1FbKJPUqA3qKigbaXQet3IUOnSS069BQyTfJmU+EqZzs0q7o
-         s0FrzAqun0yMbB4k+5KZWvMNmnwc3q8trdu37lijxFTodzCD3QydWgQ9UXv2v9mS1Gx+
-         BRRmRt5Tu/SdjCFnea1tjfjdP45EsS+yNXAqQbTJ/bYEJOCvRiHN9LpOZjB162ctd1B/
-         m87AYGZeBi6zy8cyaQ8eforNcCVAi+XcAZXa1mwz3AgqaetX2CHjHUD8sNv2sW2cAQ01
-         MGvA==
-X-Gm-Message-State: ANoB5pmvzQQldxVg0ToCjDb/MqAQVbFSEJTlOmQhwGSs6mpHqO7rDmZf
-	xryCUJhBmNkrskxptMStxl1cRg==
-X-Google-Smtp-Source: AA0mqf7mJ7hPTjTyDYOTCN/aOz4Q4Nmpm1b3/sJOmvJy3YMAcQdtmB8QWjRiPE44lHuTnqxw5QeA2A==
-X-Received: by 2002:ac2:4219:0:b0:4a2:2701:7d29 with SMTP id y25-20020ac24219000000b004a227017d29mr33808284lfh.322.1670495492059;
-        Thu, 08 Dec 2022 02:31:32 -0800 (PST)
+        bh=NxOwaXNbTiEohgYyBqos3ms0rULNHpJBLRwyMfOuuH0=;
+        b=1DfUO5uJuYuTA/00toz2l6wtarjgj2Vlbpa1ypuvvgmbDCRtEy55+FiSDUWjIaXC6B
+         2y6qLFX/IAuMxVYhCkEEBz9/ue+x3kRCMiKVgqIpQmV7oZJWz4OiN2oshNrphvRtoJYk
+         5sb0+R764rllKp/tH1IG8Eyun0XesulZF0XU6LAGO7DipYgtCmmfIGx9va3vzMXpPIux
+         3LQSRnQgOgmkheqOOx6va/xiv/J9fr0IsMwTPeZudtgHqy/9KK4SdCaT4tv9CG8mVEbM
+         IxO0fAvqhutJqBgcQyJMj+mWfXbVAPejayxm5jBO88xD5fPaSR+kOo9pMh9KPfyRGNo4
+         JuPQ==
+X-Gm-Message-State: ANoB5pmqh0b2/vNBZzzRm+zg2ZzkT2mFlj/mfw++k0qvjGRH1o8AF3z/
+	F7q+nERwoKRycajhOOIWBVeBbA==
+X-Google-Smtp-Source: AA0mqf4diiVxd7W4vZQ0KqLCAk/r4Pm72qA2Aa2aQQA5cwubEv5SXUy9nz5yQdu/ga1nWqYYYtXzrw==
+X-Received: by 2002:a05:6512:3a96:b0:4b4:f5da:fb28 with SMTP id q22-20020a0565123a9600b004b4f5dafb28mr20618283lfu.169.1670495494230;
+        Thu, 08 Dec 2022 02:31:34 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.30
+        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Dec 2022 02:31:31 -0800 (PST)
+        Thu, 08 Dec 2022 02:31:33 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -88,16 +88,17 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 3/9] media: dt-bindings: cec: convert common CEC properties to DT schema
-Date: Thu,  8 Dec 2022 11:31:09 +0100
-Message-Id: <20221208103115.25512-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 4/9] media: dt-bindings: amlogic,meson-gx-ao-cec: reference common CEC properties
+Date: Thu,  8 Dec 2022 11:31:10 +0100
+Message-Id: <20221208103115.25512-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
 References: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221208_023136_059764_00F73EDF 
-X-CRM114-Status: GOOD (  17.45  )
+X-CRM114-CacheID: sfid-20221208_023138_243475_075A8D68 
+X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,80 +115,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert common HDMI CEC adapter bindings to DT schema.
+Reference common HDMI CEC adapter properties to simplify the binding and
+have only one place of definition for common properties.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/media/cec.txt         |  8 ------
- .../bindings/media/cec/cec-common.yaml        | 28 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 29 insertions(+), 9 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/cec.txt
- create mode 100644 Documentation/devicetree/bindings/media/cec/cec-common.yaml
+ .../bindings/media/cec/amlogic,meson-gx-ao-cec.yaml        | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/cec.txt b/Documentation/devicetree/bindings/media/cec.txt
-deleted file mode 100644
-index 22d7aae3d3d7..000000000000
---- a/Documentation/devicetree/bindings/media/cec.txt
-+++ /dev/null
-@@ -1,8 +0,0 @@
--Common bindings for HDMI CEC adapters
+diff --git a/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+index f65c9681a9f7..b1fab53418f9 100644
+--- a/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
++++ b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+@@ -33,11 +33,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  hdmi-phandle:
+-    description: phandle to the HDMI controller
+-    $ref: /schemas/types.yaml#/definitions/phandle
 -
--- hdmi-phandle: phandle to the HDMI controller.
--
--- needs-hpd: if present the CEC support is only available when the HPD
--  is high. Some boards only let the CEC pin through if the HPD is high,
--  for example if there is a level converter that uses the HPD to power
--  up or down.
-diff --git a/Documentation/devicetree/bindings/media/cec/cec-common.yaml b/Documentation/devicetree/bindings/media/cec/cec-common.yaml
-new file mode 100644
-index 000000000000..af6ee5f1c73f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/cec/cec-common.yaml
-@@ -0,0 +1,28 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/cec/cec-common.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDMI CEC Adapters Common Properties
-+
-+maintainers:
-+  - Hans Verkuil <hverkuil@xs4all.nl>
-+
-+properties:
-+  $nodename:
-+    pattern: "^cec(@[0-9a-f]+|-[0-9]+)?$"
-+
-+  hdmi-phandle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the HDMI controller.
-+
-+  needs-hpd:
-+    type: boolean
-+    description:
-+      The CEC support is only available when the HPD is high. Some boards only
-+      let the CEC pin through if the HPD is high, for example if there is a
-+      level converter that uses the HPD to power up or down.
-+
-+additionalProperties: true
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 07cb85cac4c3..45402e03cda5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4832,7 +4832,7 @@ S:	Supported
- W:	http://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/ABI/testing/debugfs-cec-error-inj
--F:	Documentation/devicetree/bindings/media/cec.txt
-+F:	Documentation/devicetree/bindings/media/cec/cec-common.yaml
- F:	Documentation/driver-api/media/cec-core.rst
- F:	Documentation/userspace-api/media/cec
- F:	drivers/media/cec/
+ allOf:
++  - $ref: cec-common.yaml#
+   - if:
+       properties:
+         compatible:
+@@ -81,7 +78,7 @@ required:
+   - clocks
+   - clock-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.34.1
 
