@@ -4,117 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03E5EC001B2
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Dec 2022 00:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27DEDC4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Dec 2022 00:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jueCV60eYeu26ihb+qKsK5TrxHtmrD7K/bYV5D4ZT9k=; b=gVyFiwxZilA5E2
-	+GBgsPWkFY2L+GmXXndLTZPzZUzOOl75VD6PRGyXg0xS7vzP+MD04fBrzU8PtXL0v/6y+o3xikwgG
-	wSuFvBZrBw+/KiGF3pND21VpYuFoDW7EL0fy04bKtLzZUkW/AVes4s7Ja33UvxXnVncELsaR729Yo
-	v0ab7XKjylZ/KCOCFMfOO6/1dN9+8Bla1EZuOssgCA5nrHckbeJPw7XKhvaq6gfOxUDYocIKfD1Wn
-	EDRhuGx6i/xStSgId/05dpLT7lcK9hvqPU2jYr/+KAi5u+3hGbDg/Zpe2TQljZHt+/jgMoQChFKpP
-	qQQCYy7XgKhj6zQ+LxVQ==;
+	List-Owner; bh=rnRFVaWvjC9HG29QehT9EoZlA8ztNxvXevQFoeJepco=; b=ZPQGifSSQ9xUvj
+	tQ6sf1d+z8TceVUSnxnaq12750hawE8wFU2mFLWRVo60JcPBaa9UMRpvPEySac0tA38ho7UH5SmdH
+	31r8jYowTtL4s1p+09gGXL88ZiHu5UobDZBPYeHJ5R9wYB4v+G5LVYeegHPSQ1buuz2IREXOCaUWY
+	5BDjiVB4RUevjZlqs0l2PvTJM/H8ozONugwVH5pj8v8MFCN4qMfMpZoUVW0B2ByzkUmorQcppkYmV
+	NWyGtohdY40zn3c6axSiUFzImrFHnbVubuyTUF5NocQjkfpL7+Cuzxhq1cMXfObumWNq1vF4d2O0D
+	fBkd1NnwG3w4aQQ/IKWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3REA-00GQJP-1P; Fri, 09 Dec 2022 00:26:58 +0000
-Received: from mail-os0jpn01olkn2060.outbound.protection.outlook.com ([40.92.98.60] helo=JPN01-OS0-obe.outbound.protection.outlook.com)
+	id 1p3RWC-00GvGh-4C; Fri, 09 Dec 2022 00:45:36 +0000
+Received: from mail-tycjpn01olkn2057.outbound.protection.outlook.com ([40.92.99.57] helo=JPN01-TYC-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3RE7-00GQG8-Bv
-	for linux-amlogic@lists.infradead.org; Fri, 09 Dec 2022 00:26:56 +0000
+	id 1p3RW9-00GvC6-Q9
+	for linux-amlogic@lists.infradead.org; Fri, 09 Dec 2022 00:45:35 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aa4SlzFTjngdGXKr4z0EK7axI8pC068hHjm4dI95bXk5Ut5LnWQTuZdCNDYJMJIIppFqnZ5YfLBwCmwkNBbV387TRTsnb2TvYAU1CwbgDhiCVqD3C1BdXixRT3hk9To9EbBrrtE8oHaOGFvrWIWb64ZILyTU2LForBn9OaC/zkC/WcnCSjtx3e6yHLosgVTpSqIdfE5+PpDeIQyYcMITkCoyGmzvTYhim30ZCsqaSdWiTVM8owLadyFZLb7VKw4B+a0ARUB0DzTngx4mEMxu1ic9755VKT6M3nYcDyxiuKmc6N7U0xuSeFqpD2ID3XOiC7t3Q8hkGoo/Iub56i7sTQ==
+ b=M8oR+BC0cvN1J4Zs74ZKHJmvMJoInhh7YnJWHZrpYVqluwVy6UeN85mfQdhBKusaugWD1cQnY3sA6vnDEb9kMy8hohkv7yhnl+4Cjalq5gDKPf6LSWPu/yXGOut4DCdIFv/zceExY/e46LYQefKorVt4yqX0TKHe29czyxXYaIIS2ZhC5gBNuRdzGMHDkRfDUpNX9x9jf4/ST4Ra2wYF0QpPdnFgfxpdiqtFns6EcVHTA1IXnusnXDxJUy5d365r3sx55HZSRHtukWCQiCNRnq0yjnezNHK/ud2GevfLRhpA23tr1YrGoHkOd3Y0whFymbnf/pyLcvXrQTZwhnPmIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3xhSXLNXRiRLIPcDi+KwimlATpWPAEv+NHKTd7Sdxv8=;
- b=WyOh6OmiR+ybSbP9DAYuiYBzgHlQuTgnEB/pR/Bnfcitne5W61T+SmjcQRR7PwJ1j9RUfUPbRygDVa5DbMy69SDDn7I0rMlsGqtzRV2r5+3yexZuBUb8mBLN1iDGIduo78R6lROQT2JXEqHWB4l4n/CMg7Vc8gVzh3J5yM32isJcfmgFWIIUs1Y6gtfAVSBuVgHD5aojtRtUa6m+ATOCeCuyousY3oSyN9LihftL02wMMji9AvXzT8lwSQ0mcHO93THMQSRkP/t7Qd4go7QbSUMx+NbLgEUCZTOrC/ZTwAvfOtsc0v6IO2H1b5xRndrvOGygupeG7dhfu0HzTbkF5w==
+ bh=iYIUk0469vEYS3QRYkBTX5fsKY2NjmiZVbWVcWk4APg=;
+ b=W3RjWays4rb4REoYD+AT8B/ykmnYDR8kHbR/XvbveuGFasEqdoaiDPt1jJ618VG4C9TKJbUu8vPPnzsXGPV8XP97lRgynsqfeHQuUAlzO3YFm5nTU0DI7RTO2Td7YiYfCTAW3QvmDJBmUxhmtSKkguy+WfbbrCZ/NJV5o2l+stTlhba8GuCUjF9je+YcCzfZE9ghEQKw6wk4+vc3gjlj8dpzBaompBjajf31rfW4poZGgqSmG1CHU3DipGp15TuWbnpM3ERRTt1M2exEaix1YP06tkaOjaoaplOsyyMuNmRiUs8wjC1gs3gJpLOrpby5QJhLf4jwcojWfgwK/2R9FQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3xhSXLNXRiRLIPcDi+KwimlATpWPAEv+NHKTd7Sdxv8=;
- b=iLp5NIJqUzMR4P0ZOL2e4uJ54+dqEmg3XRcm31Prdue3w3eqyMw65LOCdwnMhNeOeqDwOKCzkhUVVsrz9TDC8My2XSWserUrdO2UYvIlofmUfFFCQ+7AnZo17CvyypcU+6ECRUcETHHxpbcfhybT+kb1Tu7tRqUr74yztPRL6sKKGYd/EtaBJ3UVs/5a+nFbOO16baQjds2q6UFM9ErirXJC5KGJOW5cTogLeEnYvEemDi2jZT/LV701ejmxtkG6Po4XkitAv3BoDSehLQi5H2P+N5av1Pd998QFkintbpjvjRxdTuH/RdFrMXHJlx5Y3JWoRzHlcUwkU6i9rRSeeQ==
+ bh=iYIUk0469vEYS3QRYkBTX5fsKY2NjmiZVbWVcWk4APg=;
+ b=lZfSr44nCOIl9iSyzZm6DZabpkKQAQzj0ScsC0DurBdwNkholQxY+aXdhVSjYuNoZ6E+dBOI7prhV86Jvth0EaEZgRUmKYuUlwucpA6h39XgTh+DLbSK7YH1zGHl0hcA2AzEtY19UYzHyFDNOur3npKKghEoYFD4Z+YyP3iNPUXvGN+8woCyrrjd7WzNVESS5x1ft7ka41BDZdOjomwR6DA+1hdI0hQK6LnEAYSc7ph0M13NU6Gzzc8LF3V4zgy9RevC326HPrS5GuJ6YdPMwNhXIFvI1NPmWpvm/er9TY75A7/a1Su4+4fLa8GJcRWms6CUVuwwPzt6JNr+61uszw==
 Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:cb::10)
- by TY3P286MB2689.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:254::8) with
+ by OS3P286MB2680.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:1ff::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Fri, 9 Dec
- 2022 00:26:51 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 9 Dec
+ 2022 00:45:26 +0000
 Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
  ([fe80::4b3c:7c0f:6f27:5d46]) by OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
  ([fe80::4b3c:7c0f:6f27:5d46%3]) with mapi id 15.20.5880.016; Fri, 9 Dec 2022
- 00:26:51 +0000
-Date: Fri, 9 Dec 2022 08:26:46 +0800
+ 00:45:26 +0000
+Date: Fri, 9 Dec 2022 08:45:20 +0800
 From: Zhang Ning <zhangn1985@outlook.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	nick@khadas.com
 Cc: linux-amlogic@lists.infradead.org
 Subject: Re: VIM1's wifi doesn't work after update to Linux 6.1
-Message-ID:  <OS0P286MB064194AD6CC5D88C4D7ABFC0CD1C9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+Message-ID:  <OS0P286MB06415F3F763BEDC6870313A8CD1C9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
 References: <OS0P286MB0641C7CE54DE2CFD928AD1ADCD1D9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
  <CAFBinCAa3C4KcOm8jLwcNGc_btUXUXUDGD+6yqVivxc+DDA5TQ@mail.gmail.com>
+ <Y5KAxhvFzvoNYL2j@orangepipc>
 Content-Disposition: inline
-In-Reply-To: <CAFBinCAa3C4KcOm8jLwcNGc_btUXUXUDGD+6yqVivxc+DDA5TQ@mail.gmail.com>
-X-TMN: [j2m9vSaBa8YEZ/O/cDmtkhsKpcx+deLdfWbXABXVgs4rUY6ldpqnQAvpwaiOBVb+]
-X-ClientProxiedBy: SG2PR06CA0244.apcprd06.prod.outlook.com
- (2603:1096:4:ac::28) To OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+In-Reply-To: <Y5KAxhvFzvoNYL2j@orangepipc>
+X-TMN: [SFt+b7VYsaBgVbcAplYBxV9Qy81fJAD8nfkS6H8KXRdOG2UBbKAhwjfXhTKDANk7]
+X-ClientProxiedBy: SI2P153CA0021.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:190::20) To OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
  (2603:1096:604:cb::10)
-X-Microsoft-Original-Message-ID: <Y5KAxhvFzvoNYL2j@orangepipc>
+X-Microsoft-Original-Message-ID: <Y5KFIA0yxvU+Kw2r@orangepipc>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS0P286MB0641:EE_|TY3P286MB2689:EE_
-X-MS-Office365-Filtering-Correlation-Id: b580f58d-67a5-44d5-a9b1-08dad97c10f9
+X-MS-TrafficTypeDiagnostic: OS0P286MB0641:EE_|OS3P286MB2680:EE_
+X-MS-Office365-Filtering-Correlation-Id: 468a9995-f2f8-401a-4e9c-08dad97ea9b4
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	RFYl7oyyHolsx1gXmx1/9TdhbKd7wpArgvZKVD0hG7pIcLnQY2gAyK+IeU4IRu/IHZU7n/jx8UvIIFP1KZ7zRG3eNXtlxuRrplXP2Om0Iw/hTcY8WWjC6bRGDBMhPr2PSIeMnYytngO2xK0Dt3yL6fFF6ITbqoNtp7fftmlKMeGVxx/ZpmUA5OCWxLTGAm1KlxbHqLNH7+Gg16QEfqoUP0Punts5B3J/dBpyYygrs+NPOQib4AXWmqNaBNk0REwW53aDfufBoy4bLt/2Eoas1jWcM8uyzsRouBUH+As8VSkLjf4ld6gWTi2DTgStBfIPX/wp47TdwFUfFtAFNypvrvzEAZv79mltAJvkK4q5btQb07L8IF9YNHmPYTlyQUTm7ILVVrw2+qL85ECjBqava/Nko06WBmmBVf1M+LuEHUKcZvYN/ff8aTLuhHvEzKOzolsaVk/U58wnaBkLgU8lb0Q8qGiYSVKG0jsMV8NiGteMtlSAzYIwHE16OSYbMp79uH9Mh9GCEm+iHOGPogAeHmGUauoqgVqKjxTtJev/KMDLN8rh6AHcu7kv8bJS6W8WzQbX0Lhxpauv2G9DVy2oQB12xtB4bMR1vZbFJRh/Gy6blBJiTh8LG4krb9kLoTASNLAFofEgrAGeNvTREX7uVw==
+X-Microsoft-Antispam-Message-Info: 	pBhyuD1oplGQZK1ubyCreCKrBE9DC1xfN0g+mR7AwpT2VQNkRRpEYYF94B9CmPIt+hS2PoqRYfSiapbmHvqHCXzDOT1dHKVokTuVQyD2t4nF2QWbs1AQJuWb7bf2MfQJtuOrP3jWDR4PWBvX4n+wiTC86EG00sPwA4Sf8wtnemk1rq1FaX3mczAuvI6n1sK04GmtGqy4/LArCJmTW9KcL3JidrBMBt2Xsv7Ud9T1+lcFy/nzwcsQTnUdT5Hh17tEpFwJ9jZSYtKwSGlRI8u7EdFjck1a1PpQ5M31LE5bw9Jc7fAdU4X1qhVqDTlyg+4Xlbj+9jMxUUTki/fREZto190hHt5ynKmRP0DGYsCJMni/+T3ncNpWAA4/1yOjuhG46euxdluOfrzVbxhB8U9Hi5dKlbTDvhh0ePyaHTYc3NcpoGSWjlRTWFs3Ki5wvdHkqKchZlbxdlw8xKy7Xp9jJwSXfCL2BtUF3iGaFaDoE3LTTUMX1eJj5iZFVho7Off6LbtMEFSVlBCPnFLt0CBti+GXZL4DU99COqpIn4UFce1LExSSyun6aSzjDTRINVqeJenXiWleiY8bN1GTZ7SVA4RfBp/zaG+CrPwFE0P1Eviehyp9pQX8yr7amUOpMqbJiNpDXGhPo296vb6/mPab8w==
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?MnBBcHg0RDJ2Tmc4QUNHTEg5Y1hBTE5STEw4cE4xN3VMOG9WOUdFaUt5Mjc1?=
- =?utf-8?B?UnBUOEdWdWNrNU40c3FDcWx0VWQ5cENsMVlmVGJYdE5MRlM1bHRuVWNNRDd5?=
- =?utf-8?B?UFUzYi8xSGorZjRnS001c1FzaTllaEFQTWJFSCtBV0ZYck4yYUZiek9XRGhi?=
- =?utf-8?B?WUl0MW9LbFl1enVlNFc0QUI2aEN6QmlhNitraGZwNlU2YndVYUdqK1hPZWhu?=
- =?utf-8?B?L3hGTll6cjhzeFM3YkluWUhMM3FVSHNZRGl1em9Eb0N3djc1bE4vcmdzRGRC?=
- =?utf-8?B?cEJVV1AxcFNWLzV1UENkWXFUVi9uN2g2Q05wY3NsQXRZOTJRVy9wM1UrNk9E?=
- =?utf-8?B?Qk1qMDYyaitTczJ4cW5EYm5LUjJQVmtTMlVPbGNPYm9qUnRjb2YrOGZVM0lV?=
- =?utf-8?B?QjJmV1FINHNiUkJDcDZDVXYwZXcyc1gydjlUbVNUaEozQWZSZlMxSnJoSEJn?=
- =?utf-8?B?ZGc1K0cxUG5FOVExSElmKzdzOXlVRmd1QTYrbUw0U0IxQW9aN0NCb1pMbXdh?=
- =?utf-8?B?MyswazA1TlBXZGFwK2d5dDVTMG1ENkx4ZFdwelVKN0dLSzUwSEkwTi9lOE44?=
- =?utf-8?B?RzEvZVFyMjUzRHc4R2NLYi9wVU1Rd25nTHRweE9URzZYT01YdU4zTlJkRkZE?=
- =?utf-8?B?YllKRm5vZDVNejN2T0hVeWh4R3lyNzF4SU1lTGtSRTNwek9ISGFkU0tObkJh?=
- =?utf-8?B?NWFkTktkbVMwRC9KRzBCako5MW9yYWpBbWwrcFhNSkxoN2M4L2VkdkZPcjkr?=
- =?utf-8?B?ZHZkaEJjUURvMzM3T2dPa1BrZS8wUGM2MDBrSVc4cXM1cUJqLzB0dVNPWHZp?=
- =?utf-8?B?RmNXMkllYnk4bytiVU1VT0lQREdmRGhCK1A5QTlhT0pnY3VONE02RnVSTkVH?=
- =?utf-8?B?OGhFOWZKSUF0SmZhbWp5YUhrZ2srUmxBSkN0RVJGYkhxRElvU0dIa3NRazhO?=
- =?utf-8?B?c0xQR05yL0lyT0xmZHc5VkJyN2tVSUIzRi9CQ2NLbzVYakZKUGdETDlyR1Q1?=
- =?utf-8?B?Uk1OY2JYSHAzTHRNVG9ya1ZrVjF0QjFaejRxenFISTNLbHJVY3hkVHFrVnpv?=
- =?utf-8?B?VjBXRkVPSHlmK09LMG1LTjJ1cjFKaytXMzVKeEYwaWpkakhGa3ZQakJBNENy?=
- =?utf-8?B?QVFDUTUzQWZveWZEYzY4N0ZtV1ZHQURxcHZiYXhvN09CL21sbWI4VGd1cGFz?=
- =?utf-8?B?SVdFRFY3YlA4RzZuKzViRmlzdVltVTlJbXkzbCtjNU9qYWEwekZGVC9pdmZk?=
- =?utf-8?B?WkV6RTc2THVjSWhrWDd0Qy9zR1RROXFuV1BmWUJ6K1dTelRQc256eFRRamdv?=
- =?utf-8?B?TlZtSFY5Kzk4MWFlNXZURUZHVGFBelNBSTg3Q2ZEbnBwZWw3ZjFLL3Y0akY1?=
- =?utf-8?B?cU5jTlI5TUdqVjI5eVVhRkJjRDVPcVV1VFArYVJ1eExpYjE4bndZWWdCTURa?=
- =?utf-8?B?NE9NQlJubnh6R3BYVnh1N3ZmU2pJOU5ITE5uZEZtUXZhNFRMMmR3SlFDb3VK?=
- =?utf-8?B?Wkd4Ym4zdGNiN0hpZ2I1ODlNclZFbnBCWWJ1Mkh1bmgzNEViRVcyajJuY09k?=
- =?utf-8?B?dzFjbzlrN0V3NXVRdkxJRXdiRU5MT2NoazZNb083anFTZkRHaktSSnZBRmUr?=
- =?utf-8?B?RkU1MmJaRno3VEtMLzVlb1p3WDdKV3NUczZWblZUZTY2aXRKaWFhTmhkUHZR?=
- =?utf-8?B?VjJHMlExOURmekZQTkpJOVFTQ0ozcmpZWitKek9lLzBiUWducXpPd2dkSnRM?=
- =?utf-8?B?bGhNcnE2NnAxSjNaSlByV0NLVVA1cDFkNWNnMTlRNEhtSUFIYjlnQUhUUDl1?=
- =?utf-8?B?Q1NJNFpXSXB1TVhYRzFEdz09?=
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?WXBCREE4eVVTY0ZheE15Rm5sTmhhWDVRdU1ZKytLSHB0YlRNSlhrKzNSU3hY?=
+ =?utf-8?B?L2dIUUREcnBDY2RaUVBwMFlNMzZZMGdsOG96d00zdWV2aUFnbkhHL0tuMmRq?=
+ =?utf-8?B?YStLUGNKeFJxblFFZFRPQUhaL2tnYlNZVGorYnB1SEEwTFVwZjkzd29lMWov?=
+ =?utf-8?B?bW45TGp2Z0FSRkdkeHZMeFZlcERZTjV4aDJUUE9SekNSNGd4Y0F6SUluMmE0?=
+ =?utf-8?B?QWExcmVtNkluMmo4WWZIZDlGQUFBbXhxYlZKQ2FXVWF1VUJXRUcvTDJ2Mzdn?=
+ =?utf-8?B?eUZlY3BWa0hRWXpya2s3dk1LSmtQOG5GVTAwNTg1OUpwS1VUU2lWdVBtRXBP?=
+ =?utf-8?B?RXdTN21ROHhmb3B3NVZZMTVybExlL0laamFrRWx2U2o0bGdtOGJvV1JpS1ox?=
+ =?utf-8?B?ak9rYlZMK3RtN25VUmVySCtFU2NnZlBONWVZTkdkRVhkTUc4K2F2QVFxWWh1?=
+ =?utf-8?B?T091RTIrZW5CUG50L1BNY0pBem1QMVBzbXl0dkpaNzlwTU02K0xFMGFqS1dn?=
+ =?utf-8?B?dC82VjdEMmdHWkpJUmMrOEpvTUxOQ1ZJSnplV0VkWTFjRDhmMzNIR1UwZktl?=
+ =?utf-8?B?NFNxekRONWJ6THM0WGNiNHc5aUhoS3JKaFhZNW02RGs1V1kzVVFVQVJuSlVO?=
+ =?utf-8?B?dGVZM1Jvb1lUMVVPVWxtMTdDSGE1ZUZKcFM4U3UwMnlTZzRqS0VaVGNlMFBp?=
+ =?utf-8?B?YmhFMzU4TG5UMmZ0OFpXOU5jRkpqbWcyWkNNbWdZS0g1ZnR5Y0J0ZFY3cmNj?=
+ =?utf-8?B?T0lTQTZiVzFvNDFQS2dIaEIwYytvRThGQmxiUmNIZ2xKZzdHNHdZZHRSZDhZ?=
+ =?utf-8?B?SFY3Vnhublk5dWlQWmZhdklvZUJsdHVPSVJ4R08rUVdhbzhaeXRQZk1abll1?=
+ =?utf-8?B?eXdNUTVEcnBuRkUra2dOMUluMnlsWjI0Y2RGcnl6blZ4Ujl2S1ZsY3ZSQ0ZY?=
+ =?utf-8?B?Q2dMWHEwTjFIbUpxditiVTlzTE51VEQvdEVreGVqSlR0M2hpVWJaTVpoT1RS?=
+ =?utf-8?B?ek5iSndYd1JZa0N5cWZuY2R1VEptMnU5a0o5M2d5RFgxczk1c1A5M1hUdzRs?=
+ =?utf-8?B?UkYzeko2d0x2dnF2VExtcGNzR2psUzlmQ1BCSFp5ejhhYlJNWVVqUEtXTEYx?=
+ =?utf-8?B?dlN0ZDFMZVNjRFA3MW1pR1NId2xjOVZ3ZUIzODF6cFU5RDdndlpCZ3Z1YXcx?=
+ =?utf-8?B?c2YvZCsxVFgyUEx0Q0xOWE9qd05MZzNPaUdqdm1vR0FGeSsrZ0RUakhLWi9V?=
+ =?utf-8?B?UExvUC84V0tLeE1JemFsSzVuRU1FMkROOWR0S1dnTnZmZWEyL1VFbmVHT1Fl?=
+ =?utf-8?B?bTlQYzFiWStvWDRQb05tdnF6UjNxQk90UXJoSFJneHplT1h1cUNYTzlvUUNB?=
+ =?utf-8?B?WXlWRXc3WWpmbURETVcyZktwVTFNeC9iK0hDTVliZUZKWkE0bUY3WmxvVE5L?=
+ =?utf-8?B?WDZqT2s0T3J4aWZTb2ppNUpkWTBYeXM0OVZ1akFrSTZmQ25lVzJmOGY0NkRx?=
+ =?utf-8?B?UHBMaXBoTTVZbC9la1NxTmNMcksyeE5BOE5GVSsvVzUxZk1BMk9rS05FaU9m?=
+ =?utf-8?B?bi85UkFBS0V6WlhIRHpJNDdudTZKWXNZOEhnQmtPakswNUVjRFRTNlpzTmVE?=
+ =?utf-8?B?b3lHd1lqWGN0aXVaNStqUHVvZitMUjE4Q0cwR3ljd3YrQ1lWMnAzVVpCU0kz?=
+ =?utf-8?B?K3VTY1MvR3hxb2s4ZWxuMFVWazJ0WFUyWkhVUDdxbzV2Qzl6aU1iZlFDR1l0?=
+ =?utf-8?B?aHZtT3FzaXY0L2ZDbTVkUUtHR1RjL2xGVFRJMmZQejVCczZnQ1dDZlBNeUQ3?=
+ =?utf-8?B?WURJTzJzdmNTaHB2dHRGZz09?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b580f58d-67a5-44d5-a9b1-08dad97c10f9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 468a9995-f2f8-401a-4e9c-08dad97ea9b4
 X-MS-Exchange-CrossTenant-AuthSource: OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 00:26:51.3127
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 00:45:26.4650
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB2689
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3P286MB2680
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221208_162655_437350_C5051C6F 
-X-CRM114-Status: GOOD (  11.72  )
+X-CRM114-CacheID: sfid-20221208_164533_910333_36EF136E 
+X-CRM114-Status: GOOD (  17.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,33 +133,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 08, 2022 at 10:40:26PM +0100, Martin Blumenstingl wrote:
-> Hello Ning,
-> 
-> On Thu, Dec 8, 2022 at 2:02 PM Zhang Ning <zhangn1985@outlook.com> wrote:
-> > After update khadas VIM1's kernel to 6.1-rc7, WIFI stop working, with
-> > below log:
-> [...]
-> That's unfortunate. Have you tried reverting commit 066ecde6d826b4
-> "mmc: meson-gx: add SDIO interrupt support"? I'm not saying that
-> reverting that patch is the correct way to fix this issue. It's one of
-> the few recent driver changes though, so at least it's a starting
-> point.
-> 
-> > I applied "WIP-arm64-dts-meson-set-p212-p23x-q20x-SDIO-to-100MH.patch"
-> > to VIM1's kernel 6.1.0-rc7, is it related?
-> Have you tried without that patch as well?
+I find a issue in linux-wireless:
+https://www.spinics.net/lists/linux-wireless/msg229742.html
+same timeout, but it says brcm firmware crash.
 
-I have tried revert 066ecde6d826b4, and remove SDIO-to-100MH.patch,
-rebuild meson_gx_mmc and dtb, replace original, this issue still
-happens.
+but I don't see any firmware crash log, (I don't know whether crash log
+would goto linux console)
+
+@Nick, do you have time to try this issue in your side, and is it
+possible to ask your supplier for newer firmware?
 
 BR.
 Ning.
+
+On Fri, Dec 09, 2022 at 08:26:51AM +0800, Zhang Ning wrote:
+> On Thu, Dec 08, 2022 at 10:40:26PM +0100, Martin Blumenstingl wrote:
+> > Hello Ning,
+> > 
+> > On Thu, Dec 8, 2022 at 2:02 PM Zhang Ning <zhangn1985@outlook.com> wrote:
+> > > After update khadas VIM1's kernel to 6.1-rc7, WIFI stop working, with
+> > > below log:
+> > [...]
+> > That's unfortunate. Have you tried reverting commit 066ecde6d826b4
+> > "mmc: meson-gx: add SDIO interrupt support"? I'm not saying that
+> > reverting that patch is the correct way to fix this issue. It's one of
+> > the few recent driver changes though, so at least it's a starting
+> > point.
+> > 
+> > > I applied "WIP-arm64-dts-meson-set-p212-p23x-q20x-SDIO-to-100MH.patch"
+> > > to VIM1's kernel 6.1.0-rc7, is it related?
+> > Have you tried without that patch as well?
 > 
+> I have tried revert 066ecde6d826b4, and remove SDIO-to-100MH.patch,
+> rebuild meson_gx_mmc and dtb, replace original, this issue still
+> happens.
 > 
-> Best regards,
-> Martin
+> BR.
+> Ning.
+> > 
+> > 
+> > Best regards,
+> > Martin
 
 _______________________________________________
 linux-amlogic mailing list
