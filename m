@@ -4,73 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D58FBC4332F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Dec 2022 20:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E185C4332F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Dec 2022 20:57:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NfUii2p7kZOQTuKAMVa0N6do3gaJcYlXXU+r3xYVWmg=; b=Ec7vpNMO2hQZ1o
-	ZdCkmRkRZ+f3y1tYVsAlYk8465XhDQsqE1eU13BOxuUnjeFLDsGufmVR87XJYzmn2WCM16eIScrSQ
-	zGLq7mn3IBYeK0CBx/Mbd8U4UHqGiaAe2MDhb8h8a4h86+pUNa/P/qxf+A5+QmcHZioK8i1XDd/Yb
-	JBj6jERmYcLWT1gHW/A0vGGoNJQFfafmtDYaV+/adSwuSriSo7wMFF0UwwUmb0iwyr/Vqkksa4LRI
-	Seh9HR+XVTjM8rUF+/2H/mfcsrvp4QIViq1xcggIidwynxSkFTtWYYLxD2J7W9V1TfLz8WvfXga22
-	vYjcwRo5FKJKUNxqlarw==;
+	List-Owner; bh=Ll20B7Yxveiyg65Sd0RBRrS+KNs28PPwJ7KbI183+hI=; b=IaF9pA/DNU0UjV
+	jz5XorUnP42a6scN8UCUbxVXu2Nmx400HYmx/xgDvYAkjJtSzgM7hfFCw1w+X0ZBaWpxdfDV3DozT
+	fJ7H+kiJk8Q9OxGKsPUq1z3OhFc4v9aWdS9ln0SI7KL9JUu75dk7Dt2iJO8v2UbE3rQSaGqmvXy0b
+	Pulw1iZ+iYvfV+C4kymxNANR2aP6kDmya9SmkAxI+hvfMKQJUmq3a7RzPCutHjbm4uZ/B0SxNIkhf
+	pkjtBdW/FJoJgxZ3Vy2xOu6spu1WbWGMFbTUnBoDgvhlhEYnoiNERxd+ftNfyV6WTwdaSNW97zSdQ
+	+K83/kNP45r91hCovdig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p46l1-005FGb-7s; Sat, 10 Dec 2022 20:47:39 +0000
-Received: from mail-qv1-xf31.google.com ([2607:f8b0:4864:20::f31])
+	id 1p46uf-005Lhb-2J; Sat, 10 Dec 2022 20:57:37 +0000
+Received: from mga11.intel.com ([192.55.52.93])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p46ko-005F81-O1; Sat, 10 Dec 2022 20:47:28 +0000
-Received: by mail-qv1-xf31.google.com with SMTP id o12so5564457qvn.3;
-        Sat, 10 Dec 2022 12:47:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CEKDlkVHglW99KqRbYgf1kkkoJ7bs9WkvbGtzTesMCs=;
-        b=hwC5B2Bgy2YVuZuCIuWyBobOEB0Fe1BJpWJkSIc4oQwwNvQsHqnsFDkYfFz2xJg/P8
-         KyDos3k7Ukf7s5O9TUgyvWEiFEkj48jNTv3JBjNNV73hqsqiQLrriLriz4KkLZDk0dl5
-         KwC56ngev8pyOYgI1TwGdv/aQ4JedTsClDKuUpKnjTZs6QfzCgyggCRqIH4tWKI2Waxf
-         hU7dZwT8YJYsR6L70zml9KojkBtwJi/hU7NH1JWVNcq3QNhFuJI4JQ3FEjk+mBsnaQ8/
-         0RN5lUIhJG/9ePxr6E0U0WJwjQsLRP+UfUUzQ/jivadqgHfFYQmiXTP91rw36oZLjBWy
-         u2uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CEKDlkVHglW99KqRbYgf1kkkoJ7bs9WkvbGtzTesMCs=;
-        b=IrwWgO72b9VzL1ttN3utnrTlX30Dg2yiwU07Kly7W9KgT9TOGev4jmfV1catLp7boW
-         7trLxFWbH8TzKTg1qYXb8Qv2Trr3C+/RWiVcII41+qPzWn/w0RAojWIttLB1LLsZK46y
-         NWpP1ElF4i1+An9uOKChjtZ2t4UvgQNBL7lfLW4761xFJCvMhffGM05q6Pjvtou2tOfI
-         wbawC/aXstBuQsmZRxyiN6T96m8Ha8pUC7m05mODVYB66sS+VDtuvneEUoc7wMomSRn1
-         KKNgWJyJ12xkg/1D8W3yPfhD7/tsZbF8MUr3EtJPXBhfxwxKE8BF5IiB/9qpGkfWDzaj
-         9DCg==
-X-Gm-Message-State: ANoB5pn78L7etuUcmJ2GOVD3nZwytV8lRwjr/RgTxjkKPgfDanyOBlSl
-	MVwRXQ0sGwrDtA656VzuXXSGkHD/pV9X4n9z84I=
-X-Google-Smtp-Source: AA0mqf4JTJfe7jmmA7m3FjSkVUtgmodjbVf1DUnU0IQstXdpNbVdR2cLfJKeSgJLRqc8cS7xZkvdLPapsgCpdzuloPU=
-X-Received: by 2002:a05:6214:c5:b0:4c6:f93f:1cfd with SMTP id
- f5-20020a05621400c500b004c6f93f1cfdmr45555224qvs.35.1670705244513; Sat, 10
- Dec 2022 12:47:24 -0800 (PST)
+	id 1p46uT-005LaT-0L; Sat, 10 Dec 2022 20:57:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1670705845; x=1702241845;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=8tRXcUKxGagfde91ZdUSDF88p8/b8+3NQn8nn2kaumc=;
+  b=Z8FRauK1i0+pKl0yATc+E/NGcYNXoq/grKMGZ8aBNhcj2zQBZviMwQvM
+   JKTKkydjjrfdd88qIDhnFhVWVD6hX38j3rzs3dvmQRFNEvpUbds5gNfHv
+   QVoSZ/MC8o/OOOEYRXDl6/PYdXxqqcyJKpADPlHEvs40Z2ioban1YAGOp
+   QLuYd0SApjC2GQ8k1H9kKgfUf06LbHlziSQ1WNXpANEyxupG23qcznL7s
+   ME80wd5FoowGzUAyWZgwH6UNrnXM25SvbjOHS8+yjqM7G7rQwsBc7YnZq
+   lomfMZNbAAvmVC3CRS3ByThlCbc82bwu/kh1l5VLRNo3RZZFMPVrugfzx
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10557"; a="315286168"
+X-IronPort-AV: E=Sophos;i="5.96,235,1665471600"; 
+   d="scan'208";a="315286168"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2022 12:57:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10557"; a="678489946"
+X-IronPort-AV: E=Sophos;i="5.96,234,1665471600"; 
+   d="scan'208";a="678489946"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008.jf.intel.com with ESMTP; 10 Dec 2022 12:57:18 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1p46uK-007g2g-33;
+	Sat, 10 Dec 2022 22:57:16 +0200
+Date: Sat, 10 Dec 2022 22:57:16 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Thierry Reding <thierry.reding@gmail.com>, linux-pwm@vger.kernel.org,
+	linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	chrome-platform@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 00/11] pwm: Allow .get_state to fail
+Message-ID: <Y5TyrO5maz5VYic3@smile.fi.intel.com>
+References: <20221130152148.2769768-1-u.kleine-koenig@pengutronix.de>
+ <Y5OtCjQOQjjltGPa@smile.fi.intel.com>
+ <20221210091833.vdfir63nq4kpj5cm@pengutronix.de>
 MIME-Version: 1.0
-References: <20221204043530.1673752-1-jiucheng.xu@amlogic.com> <6e0dcfa8-6855-cc80-5e23-443d44cae07b@linaro.org>
-In-Reply-To: <6e0dcfa8-6855-cc80-5e23-443d44cae07b@linaro.org>
-From: Chris Healy <cphealy@gmail.com>
-Date: Sat, 10 Dec 2022 12:47:13 -0800
-Message-ID: <CAFXsbZr8yLOy2MnhX2SaCECY38DHcfpS1pOu3tZvt3xNBuH6HQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: defconfig: Add Meson DDR PMU as module
-To: neil.armstrong@linaro.org
-Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>, 
-	Kelvin Zhang <kelvin.zhang@amlogic.com>, Chris Healy <healych@amazon.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Content-Disposition: inline
+In-Reply-To: <20221210091833.vdfir63nq4kpj5cm@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221210_124726_840507_C0BC8B1A 
-X-CRM114-Status: GOOD (  12.63  )
+X-CRM114-CacheID: sfid-20221210_125725_103248_1B20FD6E 
+X-CRM114-Status: GOOD (  12.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,42 +87,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 5, 2022 at 12:40 AM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> +CC linux-amlogic@lists.infradead.org
->
-> On 04/12/2022 05:35, Jiucheng Xu wrote:
-> > Add Meson DDR PMU to defconfig so that build errors are caught.
-> >
-> > Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-> > ---
-> >   arch/arm64/configs/defconfig | 1 +
-> >   1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > index 0b6af3348e79..f2324b54a6ba 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -1265,6 +1265,7 @@ CONFIG_ARM_DMC620_PMU=m
-> >   CONFIG_QCOM_L2_PMU=y
-> >   CONFIG_QCOM_L3_PMU=y
-> >   CONFIG_HISI_PMU=y
-> > +CONFIG_MESON_DDR_PMU=m
+On Sat, Dec 10, 2022 at 10:18:33AM +0100, Uwe Kleine-K=F6nig wrote:
+> On Fri, Dec 09, 2022 at 11:47:54PM +0200, Andy Shevchenko wrote:
+> > On Wed, Nov 30, 2022 at 04:21:37PM +0100, Uwe Kleine-K=F6nig wrote:
 
-Given that the other vendor specific PMU counter drivers are being
-configured as built-in, perhaps it makes more sense to do the same
-with the new MESON DDR PMU driver and also set it to "y"?
+...
 
-> >   CONFIG_NVMEM_IMX_OCOTP=y
-> >   CONFIG_NVMEM_IMX_OCOTP_SCU=y
-> >   CONFIG_NVMEM_MTK_EFUSE=y
->
+> > I'm wondering why we didn't see a compiler warning about mistyped funct=
+ion
+> > prototypes in some drivers.
+> =
+
+> I don't understand where you expected a warning. Care to elaborate?
+
+intel-lpss.c has the prototype that returns an int. IIRC it was like this
+before your patches. Now the above wondering passage...
+
+-- =
+
+With Best Regards,
+Andy Shevchenko
+
+
 
 _______________________________________________
 linux-amlogic mailing list
