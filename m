@@ -4,118 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14FB3C4332F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Dec 2022 16:38:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 501DAC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Dec 2022 13:48:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UA/jZvqwRjJ3tRbzjJnMaF2fr7NqbJj9mVg+X4hDRWE=; b=kFwtxsvW6IiA+6
-	8SJfTcQ/MJw0FIuFKVxG4VrYB0xBCNYcIXUvkc9AMgqdBI1woW8zDfBpl/XiqSCHGCHszD14vRedC
-	pvqRvxSa8pzGVPHrmwlQVjc6FbKqll9q/CVpoNic5OLtGluhUFfE3xRO/HBHnyryuRGDp657zqSgW
-	sLa3c5yiwVB2/0JokkX6ZTvUKFk9x2MjOolBZbWBxpdk2a9TeuKkCedL3LCgjeT2mueTtLqhu0xBV
-	U2vNa/pJzdWjWERNLhUxcVJmvWz15fyhI58REsOFcp0e/+8qNrRUTm7MS6DrP0IvgHKOym/zYxf2s
-	EmDOSbVgzR/AfTLmwYRw==;
+	List-Owner; bh=ZtosITu9wG+KFCB1qGpToRiyZ7AjosewagVXo0Y3iSI=; b=AZ43JN4vLWRQY3
+	2kIKfOvixMTcHp0Ka9XIdNvpXQqKqWELUhHY/4HyowOU5tlOJyPWDqbb2VDN/yV2MsI8y/XoISKf+
+	vYvFMx6WxNSoBpn7f40J7VWrdEUg3IO+PnXKKNc7KS9tz+lC2EqAcghGmY0yjc2bKofo/zx0LiX/Y
+	+vX8Y/AnjUjIT54FD7GfHXUYJpHcXF0UTHhC0T6B7OlrgpIInTQC3LRWYOpvf4GA8xkNU1085yhen
+	ebZuYiKEE611L2curDsS60iBoDp1HCNThQ9o4Ot7K3nTzycTG5vRy1Q3gYxZByp3jwLyJaOi19Gh8
+	xH+7wcr2zYOCffxZNt2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p4loY-002BbJ-Mf; Mon, 12 Dec 2022 16:38:02 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1p5S7F-00GxYf-QJ; Wed, 14 Dec 2022 13:48:09 +0000
+Received: from mail-yb1-xb2a.google.com ([2607:f8b0:4864:20::b2a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p4lnc-002AX6-Ib
-	for linux-amlogic@lists.infradead.org; Mon, 12 Dec 2022 16:37:07 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id f7so13664329edc.6
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Dec 2022 08:37:01 -0800 (PST)
+	id 1p5S7C-00GxUX-Vf
+	for linux-amlogic@lists.infradead.org; Wed, 14 Dec 2022 13:48:08 +0000
+Received: by mail-yb1-xb2a.google.com with SMTP id 186so3078883ybe.8
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Dec 2022 05:48:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=streamunlimited.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lvYON1Uq6UT3Qph7OPPr0NH47G6rUYR8O1BO9MFwJow=;
-        b=lIFXcScE+1mmzH1SBNLfPzmU2yyZ22FDa7zo6/O0Bw9aIOxDeXxYkEVfus52JWuhda
-         4ouELocZnEhmnwFppolEYq4c3c7RHYAqD4pax4M3unQDLONiM/9+ejXSM9E2FE+Z0v02
-         plxbNMhSLCExfq6g58BwEJLatQLzpt/xLWOhKWfMwSgaHbhPuPfGnoShEU2Q/8V0GhBe
-         I8mO/6POKEHTvHhiQrSmT3i/DlcfyH1o4pAMtSuNXvNoHj+mOy3GKKCsRTSQGVPFd3Z7
-         AQYI0FN6wamo3RnZf0VXDCwVvMRjPWjYDkKYXDeP5o/vQIFIn9FanCQzU/XNFNQHrfWF
-         2geA==
+        bh=rduJSBHNOfADwB39FsLCzXunOBvEcaJu6tUh95KODL4=;
+        b=fdwnhavsGqlgQt7e1eaz36uYU8Z77IBoLK4pevJAqvSoZWgxTQUVZ6VtElmj0yFLJF
+         Ufo+Nsy/BTv1p3N4pQUL4uYYI8A3yXLzI6rGOnVNy7F45EiZT39czJ9slCdQnpiP4cXz
+         PUbm5mvjGFiV7BXlDC5zbiTWA9nhEzN8QR1gM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lvYON1Uq6UT3Qph7OPPr0NH47G6rUYR8O1BO9MFwJow=;
-        b=qysrjvpykIniPvuKLSYkCpdEMOAuj0xgt095gLmf7GG3gTGa7TW4UgJzFF58gvyCfP
-         Q4Xe1Cpn9ff2yfpoYVYJxo9dSxmN4vz+g7B711TGqHpdxM1nWU7oXaWZlso4a8fML6ZW
-         ohVwRQzpOP7wl0o+0Zyyda+DaMDx37ZwKO9qkav+CmBGDDUfh9K6LPWX37g7u0qqO9Vj
-         N/Q6UDZrdEsu42IxL1mDdNwH+0yDgvIaW2NMWIEtm+r+PAu1nxknKKINtuhIQ4aANsFw
-         EW8ejLcd37TLEMXNzjs7U84oigjl667uez3Q3rH28AB9Inu/puEurA6elRpJZHqXr2L+
-         v3Wg==
-X-Gm-Message-State: ANoB5pmp6DAt+IexIm8aJJvFZaa09T7BBGOYGCcOWdmyamfd7Ad/gQag
-	Ishh63/p/fjeDUik0Toz/yM5ew==
-X-Google-Smtp-Source: AA0mqf5ppTTyM6N0bPOAfBX//eKXVRPakyRimeYdkY/8NocUbAvjnOSiYLmQOcD2W7tmhBu2XO410g==
-X-Received: by 2002:a05:6402:702:b0:46f:68d0:76 with SMTP id w2-20020a056402070200b0046f68d00076mr10093614edx.34.1670863020790;
-        Mon, 12 Dec 2022 08:37:00 -0800 (PST)
-Received: from prec5560.. ([2001:bf7:830:a7a8:ff97:7d8d:1f2e:ffaa])
-        by smtp.gmail.com with ESMTPSA id m15-20020a50930f000000b00463597d2c25sm4051979eda.74.2022.12.12.08.36.58
+        bh=rduJSBHNOfADwB39FsLCzXunOBvEcaJu6tUh95KODL4=;
+        b=0liAZeuEE2xRa2HkCAV8iwNneShFXCA1b0QSeN33GJhfPKjv1AQt2n8n6cCgXTQxWF
+         UrZOB5E2OdJdLIpVjvPE+n3V3iI/DKC4biDyCvuYTX4SPsyzkikHLCY8PwbaYW1LLV7b
+         5Ti/dFQke5wrsWLFgnEzbHHjMFDbYfLT0DZRkpxyv5/X8737e2zzmVzlgyMXrsNMey/c
+         An54rmekph/nuqKYlfLocopWnb7a9vpTu026gGHnaMq1wQbVaiqCZc0676lyVAXVG4ll
+         UQrQhQeY1UZ3QNzAECU4NkYwxpy+wtG5QH3WE1G5wBcQil7GT7MAtMY/tsPgrwinELLY
+         STjQ==
+X-Gm-Message-State: ANoB5pnrosv4xRuDo4ulaDN4iTxk0KfRWGg2lx6VwZI/24Yvy9rNKshV
+	KGDw6LBMfBkMzU//ZRW2hvwnVg==
+X-Google-Smtp-Source: AA0mqf5CDWDQUpYOHhb4MnlcEthGXqB5EMVH+jnlo0LHvdsh2lxNCgqVkA31Re7Rk3wPzDy53O2N/g==
+X-Received: by 2002:a05:6902:147:b0:724:6d18:6c36 with SMTP id p7-20020a056902014700b007246d186c36mr11589008ybh.23.1671025683021;
+        Wed, 14 Dec 2022 05:48:03 -0800 (PST)
+Received: from localhost.localdomain (vpn.streamunlimited.com. [91.114.0.140])
+        by smtp.gmail.com with ESMTPSA id f10-20020a05620a408a00b006eeb3165565sm10139602qko.80.2022.12.14.05.48.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 08:37:00 -0800 (PST)
-From: Robert Foss <robert.foss@linaro.org>
-To: Lee Jones <lee.jones@linaro.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Grant Likely <grant.likely@linaro.org>
-Cc: Robert Foss <robert.foss@linaro.org>,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-actions@lists.infradead.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-crypto@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-input@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-integrity@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	Purism Kernel Team <kernel@puri.sm>,
-	linux-staging@lists.linux.dev,
-	alsa-devel@alsa-project.org,
-	linux-watchdog@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	patches@opensource.cirrus.com,
-	linux-mtd@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	kernel@pengutronix.de,
-	netdev@vger.kernel.org,
+        Wed, 14 Dec 2022 05:48:02 -0800 (PST)
+From: Peter Suti <peter.suti@streamunlimited.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Peter Suti <peter.suti@streamunlimited.com>,
+	linux-mmc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	openipmi-developer@lists.sourceforge.net,
-	linux-fbdev@vger.kernel.org
-Subject: Re: (subset) [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
-Date: Mon, 12 Dec 2022 17:36:51 +0100
-Message-Id: <167086288411.3041259.17824406556561546642.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
-References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3] mmc: meson-gx: fix SDIO interrupt handling
+Date: Wed, 14 Dec 2022 14:46:21 +0100
+Message-Id: <20221214134620.3028726-1-peter.suti@streamunlimited.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
+References: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221212_083704_655363_E6990DAD 
-X-CRM114-Status: UNSURE (   7.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221214_054807_348067_9EE4911A 
+X-CRM114-Status: GOOD (  15.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,29 +92,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCAxOCBOb3YgMjAyMiAyMzozNTozNCArMDEwMCwgVXdlIEtsZWluZS1Lw7ZuaWcgd3Jv
-dGU6Cj4gc2luY2UgY29tbWl0IGI4YTFhNGNkNWE5OCAoImkyYzogUHJvdmlkZSBhIHRlbXBvcmFy
-eSAucHJvYmVfbmV3KCkKPiBjYWxsLWJhY2sgdHlwZSIpIGZyb20gMjAxNiB0aGVyZSBpcyBhICJ0
-ZW1wb3JhcnkiIGFsdGVybmF0aXZlIHByb2JlCj4gY2FsbGJhY2sgZm9yIGkyYyBkcml2ZXJzLgo+
-IAo+IFRoaXMgc2VyaWVzIGNvbXBsZXRlcyBhbGwgZHJpdmVycyB0byB0aGlzIG5ldyBjYWxsYmFj
-ayAodW5sZXNzIEkgbWlzc2VkCj4gc29tZXRoaW5nKS4gSXQncyBiYXNlZCBvbiBjdXJyZW50IG5l
-eHQvbWFzdGVyLgo+IEEgcGFydCBvZiB0aGUgcGF0Y2hlcyBkZXBlbmQgb24gY29tbWl0IDY2MjIz
-MzczMWQ2NiAoImkyYzogY29yZToKPiBJbnRyb2R1Y2UgaTJjX2NsaWVudF9nZXRfZGV2aWNlX2lk
-IGhlbHBlciBmdW5jdGlvbiIpLCB0aGVyZSBpcyBhIGJyYW5jaCB0aGF0Cj4geW91IGNhbiBwdWxs
-IGludG8geW91ciB0cmVlIHRvIGdldCBpdDoKPiAKPiBbLi4uXQoKQXBwbGllZCwgdGhhbmtzIQoK
-UmVwbzogaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLW1pc2MvCgoKWzAxNC82
-MDZdIGRybS9icmlkZ2U6IGFkdjc1MTE6IENvbnZlcnQgdG8gaTJjJ3MgLnByb2JlX25ldygpCiAg
-ICAgICAgICBjb21taXQ6IDFjNTQ2ODk0ZmY4MmY4YjdjMDcwOTk4YzAzZjliMTVhMzQ5OWYzMjYK
-WzAyOC82MDZdIGRybS9icmlkZ2U6IHBhcmFkZS1wczg2MjI6IENvbnZlcnQgdG8gaTJjJ3MgLnBy
-b2JlX25ldygpCiAgICAgICAgICBjb21taXQ6IGQ2YjUyMmU5YmJiMGNjYTFhZWFlNGVmNjE4ODgw
-MDUzNDc5NDgzNmYKWzAzNS82MDZdIGRybS9icmlkZ2U6IHRpLXNuNjVkc2k4MzogQ29udmVydCB0
-byBpMmMncyAucHJvYmVfbmV3KCkKICAgICAgICAgIGNvbW1pdDogMGY2NTQ4ODA3ZmE3N2U4N2Ji
-YzM3OTY0YzZiMWVkOWJhNmUxMTU1ZAoKCgpyb2IKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+With the interrupt support introduced in commit 066ecde sometimes the
+Marvell-8987 wifi chip got stuck using the marvell-sd-uapsta-8987
+vendor driver. The cause seems to be that after sending ack to all interrupts
+the IRQ_SDIO still happens, but it is ignored.
+
+To work around this, recheck the IRQ_SDIO after meson_mmc_request_done().
+
+Inspired by 9e2582e ("mmc: mediatek: fix SDIO irq issue") which used a
+similar fix to handle lost interrupts.
+
+Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
+
+Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
+---
+Changes in v2:
+	- use spin_lock instead of spin_lock_irqsave
+	- only reenable interrupts if they were enabled already
+
+Changes in v3:
+	- Rework the patch based on feedback from Heiner Kallweit.
+		The IRQ does not happen on 2 CPUs and the hard IRQ is not re-entrant.
+		But still one SDIO IRQ is lost without this change.
+		After the ack, reading the SD_EMMC_STATUS BIT(15) is set, but 
+		meson_mmc_irq() is never called again.
+
+		The fix is similar to Mediatek msdc_recheck_sdio_irq().
+		That platform also loses an IRQ in some cases it seems.
+
+ drivers/mmc/host/meson-gx-mmc.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 6e5ea0213b47..7d3ee2f9a7f6 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1023,6 +1023,22 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
++	/*
++	* Sometimes after we ack all raised interrupts,
++	* an IRQ_SDIO can still be pending, which can get lost.
++	*
++	* To prevent this, recheck the IRQ_SDIO here and schedule
++	* it to be processed.
++	*/
++	raw_status = readl(host->regs + SD_EMMC_STATUS);
++	status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
++	if (status & IRQ_SDIO) {
++		spin_lock(&host->lock);
++		__meson_mmc_enable_sdio_irq(host->mmc, 0);
++		sdio_signal_irq(host->mmc);
++		spin_unlock(&host->lock);
++	}
++
+ 	return ret;
+ }
+ 
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
