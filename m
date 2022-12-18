@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE731C3DA79
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Dec 2022 16:03:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91CA1C4332F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Dec 2022 16:09:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qa8aoGKxMiIAbNQ00Pwt2liIlieivqO9Cd9JWOQVBDI=; b=iNN2/A1Zwcfhgi
-	k0ZJMmpN4nExID2Yyxgro16UbemsnK8YhfuqVP34blzW/s4zdorYsJ1CI95GOWHPFynbjf+Iluclo
-	G36AB2xvBzkEFQYc7LErIIBh0hYUG20tWDPmk5JJ8ANNBphSfHIW11ljG2MdKRpEtO65gZ2cvkksG
-	14coWSzjpvQ6yQi/IWhXuEqNgHXyt/KXzzMMRl3N2ybLYUd6HZjkHMlAhHsze2axuUMv3ryL6BAeU
-	IW1NSVHF3GonqU0HpO5B2T1q/wvgDlWhpb4yTBhtauyOAPC6LGdkW7ifT9dZ7keFz+T9R6AOsJTxN
-	cawu6m+fjm/ukRX8em4w==;
+	List-Owner; bh=Qa8aoGKxMiIAbNQ00Pwt2liIlieivqO9Cd9JWOQVBDI=; b=DVmoc1J4oK6rcp
+	aoqTQzHj99qwU589LEHBPLRaK0ZznxgbkylYqSN+Fs7wDzYHEWJPSulPb78pVuSdTCmgP7IeRdbuW
+	yhRcjNkzyFcjg6XLq2O5TSKGuoLMB/dk0ZIhVHtSfrUOgDGKQGR9LbvmMQ0RTi3mPX2wrSD9Q/C3S
+	aMom5qF4VSLcMlY2KDdkD2S3EHcYZ3DSCJwOiVaPvZ7MFX6gQo7pxK3XZ7RiWyGeNOB7FuHUzsFhL
+	rY6JJuyhh9ExCqKL0K9YTKjiHb1s95fFjgSwzuS36MoDNrrodoUROkxdpp1OR3KRAWqrpiZ77v2li
+	1MJSGTFBvpzIySVxZCrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p6w8C-002mf1-07; Sun, 18 Dec 2022 16:03:16 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1p6wEC-002qt6-En; Sun, 18 Dec 2022 16:09:28 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p6w87-002mcI-Aj; Sun, 18 Dec 2022 16:03:13 +0000
+	id 1p6wDf-002qLU-6G; Sun, 18 Dec 2022 16:08:57 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 00C40B803F1;
-	Sun, 18 Dec 2022 16:03:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53521C433EF;
-	Sun, 18 Dec 2022 16:03:07 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 528A260DCB;
+	Sun, 18 Dec 2022 16:08:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D82C433F1;
+	Sun, 18 Dec 2022 16:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1671379388;
+	s=k20201202; t=1671379733;
 	bh=UGuOnxnM7GPmefNXCCPZBE0jOJo+3GsKpHYT1te8Qhc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oP+8czzkgNR8RJkxPdHfE59EGgDaEgZY2xbsylV6QCHyRRG12WIjdwlcS1Mb/NLn9
-	 kNwXZe79rnMp4LoyyaA1IwLonHTtSNBgO+hhVhQz/bdkGAMDUBO/ufySp0SsQyUQmr
-	 HdqlUDpt0ha7uS7lZ16Hv5Jnab5iYbYVStThD15sbkLDOG6lIMlF8egaqAV/pHQc3M
-	 grSg5RH8vurSUIu6xGE88RKnCAevnFPlN2ISfziYxCeuPyoRrmOlWfpcL+EMcAdCuA
-	 IxclxO15vlBuIKhJGW50mZ2C6B+4svb6tUX1/A53hH2HNEnsIDYJCQQFLbhUIKWKP9
-	 B2VOvrqOA/QcQ==
+	b=HyfG32YZ2ijPt9WgmxTBVckSijquXQd/wuDBzMV2o0VI0mUD1sHJi2yDkjHotes5A
+	 gbFuMY78leL59StXSS10edq0i2eF2CckkJctoGtsiCPHQ6u3m4keW8EDwzrW+mf8ju
+	 BtZBIA9h37l1XEslu7hKTO6DLs4uueC92xxKAx9tDGpi0JbExOh+wwLImDV1DBkQPz
+	 AS01+eAjIIV2sqWRiEjxvmP3XMO5sYUrzED9P7d2a6WCqoG5o8AruwCi3ZeJCJWdOt
+	 VvCfKO8jx0+e8RIn0tL5wOKZLAM7HFoMG7OW8cSE184jpJFLTcBHVAcS+rGnZWxY0V
+	 dNyoUu4ghmr3A==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -57,18 +57,18 @@ Cc: Nathan Chancellor <nathan@kernel.org>,
 	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	llvm@lists.linux.dev
-Subject: [PATCH AUTOSEL 6.1 22/85] drm/meson: Fix return type of meson_encoder_cvbs_mode_valid()
-Date: Sun, 18 Dec 2022 11:00:39 -0500
-Message-Id: <20221218160142.925394-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.0 19/73] drm/meson: Fix return type of meson_encoder_cvbs_mode_valid()
+Date: Sun, 18 Dec 2022 11:06:47 -0500
+Message-Id: <20221218160741.927862-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221218160142.925394-1-sashal@kernel.org>
-References: <20221218160142.925394-1-sashal@kernel.org>
+In-Reply-To: <20221218160741.927862-1-sashal@kernel.org>
+References: <20221218160741.927862-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221218_080312_099676_3A801CFD 
-X-CRM114-Status: GOOD (  12.51  )
+X-CRM114-CacheID: sfid-20221218_080855_329736_B9567EA1 
+X-CRM114-Status: GOOD (  12.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
