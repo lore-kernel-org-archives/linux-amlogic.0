@@ -4,79 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE239C10F1B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Dec 2022 09:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 339CCC4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Dec 2022 11:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6BvI492TZEYdVnowJbZBICYC8UOrEUPKDWNJ7BjvDfs=; b=TfHPhN/aD7VQio
-	Dcycvyl6dmfNyx80ikkKt7w8QRCiae1mjVlF6maDdX6ozV6CwrLPHtRrsIGnJpFAHjaHuD3tc/Xva
-	NPzFGEAMXIi4eOh+Cb0RR6mR7+bZ0UXvEZIKjgWrQ/fv7+9AHnCU0AXerwSpXLk+U6d7mAj2vzV/W
-	WzqSJSU8nhVujTcG5+Vg5wFeuj82PsQqKfN0iQuOY2XFy2pHX2BvVd4bsLErK9IL402MjxmLM7sac
-	+wcAWZ2LDiv83gbWJhspFFulVNX8I/gKLAInWuCBVMMLQspWwYA6kSECITcqWDWA8SjPCTeH6Bsly
-	U1X8u+MOtKRzJLNZR/dA==;
+	List-Owner; bh=7mwneh0sLcSpVQqmECAan6FmD1xmKxsPRoXPVKrP7HQ=; b=EDMtZFnkRmeyNt
+	o3+9Ze6LvZelMWagZos1X31RLdcy2Q7sUg+6rWFcyMvfzv2raLMD46vJyvjjTsFjDGexRbWNXh2Nw
+	AlJHIBM3ixQZTX0ie3F6naO8GW3ynD+/nrvgqMink1xp3i+J9NC6/iZn7aSxyvO6W783A/dlGfykh
+	mysRqdT8qOezMfPhKh1iO5DEq2DROARMd7xxDh8EV69kI99QCrLZmeTHFT2cvgUsFYwINNZYeDVl+
+	9lR7N9lgLWKOQNErjsbAbgy9iLjrzBb53d77SMEN+xqAZN9QRzmdSZQ0WLRizBmp2w4gkQdY2fXFw
+	zU7FEO92SqPReLYT6Z+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7C52-00AzDI-88; Mon, 19 Dec 2022 09:05:05 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1p7Dsp-00CHCC-7a; Mon, 19 Dec 2022 11:00:35 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7C2y-00Axyj-Bs
-	for linux-amlogic@lists.infradead.org; Mon, 19 Dec 2022 09:02:59 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id fc4so19759048ejc.12
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Dec 2022 01:02:52 -0800 (PST)
+	id 1p7Dsm-00CH64-9H; Mon, 19 Dec 2022 11:00:33 +0000
+Received: by mail-ed1-x536.google.com with SMTP id r26so12259215edc.10;
+        Mon, 19 Dec 2022 03:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lqYmIYoxTMMpoYQgw16ovQhh+oEOozpYMDvGaahlUYc=;
-        b=TQKO3zLxYXBYDTiW46AltPoen3RSbIyB8k2VaIuFnkph0BiNvBuGnifXGOY+zKrLEI
-         LO5sFtmIdDq2PxEMYgnOvt2kONxeu0CuvZRF7RG/Gb6oTqzzUuJb9rGcEoDCqV3AfH8D
-         qAURFDAeigb5FUW7znBFd1NHo9RBqP5xErBkXZNwvBgtXINDIsMZb8RgnpocJwD+jkf2
-         VUdQamL9R5duw9muX5u3+cYEnVdypu8N/js/a0YoywML0zu71Y0/HOQnRBi/T3dGWZ2F
-         Bj5NawWiidI5fAUlI1sNlIVVeHkSlVpIpZHKEllff2+QyHvAPo0tSDNC02X/hcvuvfUF
-         NETA==
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iuCRAFVT/WKlH/y5prSBpJD3SqynK7xQGXEcEcRTyec=;
+        b=Bl+FBOtkl3TIJreEdb1w5tp9wF7vjZAEZN2mCn8qBr6bOR7eYJSh7G/1tL/e5C757l
+         +By4uVqs9vRPMrTwxcKs6clHXPr4H53i4ILsMV2qdduSiJrp5gCN8V3cNTYQNOFaEsr0
+         aA5oveWy4U2XBiqyEhtfUfGGOKm2lc4gWTVkk0FKWHxy7nKtsjFWb8on+rH/oxlGP6Uv
+         nHei7CBOJKphzTStw2wi2vT+E/+11Sin7ItVJfjS1kA8ZR/1RGl2ilPeI8zZzmw+3aNR
+         R3HYK6/iX9sYWHOYWElZLiy/m0HvAR9qPPQ8K7W1pus0ETAKy+Qsi14txsICXBMfuDMl
+         ceXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lqYmIYoxTMMpoYQgw16ovQhh+oEOozpYMDvGaahlUYc=;
-        b=CQ9IdIxUA4RM7oOss6vhwxwFN2b3tbeIs8QEJgYJ9BJvL356xH9C3LHRh3aidK6Pbm
-         KJLh7g+hcy/nsEtfTsmtgo3TYeLs3uvDpm3OSxIBRlgA7mrZ3i9x8w/dwZrnLML9NUb7
-         GKlplt+Ft1hjMjtcW5Xy2+506Y4UUpP6gpzBSuLCezOruNFi9Hval0pQkkAkjxliEZfR
-         +lld+umKzCtSInJr7Xx7J/aWky3W1osB32TjUVuercYQYRmrJDCBbAMZ6GrPACR+jQth
-         tvPF3QCyjFcwTvjqoKI2lVgdMNRNuaJbD/UiYjQf5MmUcVxX9VW0Sta/DDRiWKrZfpzx
-         I0aw==
-X-Gm-Message-State: ANoB5pkFxr+Oqme2x/kHT80g85e8SpOXGpzclOCKvRTZJnrdGcOjArsK
-	pcZ0FtKXsAxSPRNLFErG4ZbCVQ==
-X-Google-Smtp-Source: AA0mqf4NSk7Yw/HcS1h8rMvyHtywLl/r5oAAdXCCDdnKAMEYPX1/1IxBA282Q7E2z2acv/RmzDLBFw==
-X-Received: by 2002:a17:907:910b:b0:7c1:1c5:c7cd with SMTP id p11-20020a170907910b00b007c101c5c7cdmr28846533ejq.5.1671440571173;
-        Mon, 19 Dec 2022 01:02:51 -0800 (PST)
-Received: from [127.0.1.1] ([2001:b07:5d39:f336:a0ba:cfa5:2107:c2c4])
-        by smtp.gmail.com with ESMTPSA id u11-20020a170906b10b00b00781dbdb292asm4082721ejy.155.2022.12.19.01.02.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Dec 2022 01:02:50 -0800 (PST)
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Mon, 19 Dec 2022 10:02:38 +0100
-Subject: [PATCH v4 2/2] drm/tiny: ili9486: Do not assume 8-bit only SPI controllers
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iuCRAFVT/WKlH/y5prSBpJD3SqynK7xQGXEcEcRTyec=;
+        b=YP76MffmIHa5nmaX0Vur9ynd9QNlL5IoFoh3UN7oHqPphNEbq1391TGOQyy0DEY7OR
+         YTyqkRm9WQhDMK7DaBmO5I7lZP8LqBpBoFoP7Ho0tUm7dsyUz2W5uk6vFCSrXHaHQ/ym
+         9tnOhrM8Z31yZf1b4VroPxnTWGu/9ehNhDxypwoCdeT0PHkbnlze33skIgqoiITBUsWq
+         13/hXIZhmN+FKdtdzkyNk1toPk5+Lm6jg9uULGRrGTAlOxw1FxCoS8/LyDeMeMywHPoj
+         Y4SL0QdVDAhsx8ngkJvtEqWP/1wbSMc/bG5+j+6HWZ2IQorCxjCE5HzzgeIVtG2sIdlz
+         guJA==
+X-Gm-Message-State: ANoB5plMYoxQEs8OvAJukpUCm0OVp0fXqiSKszyR1IPhjN8Xjn8uSJUw
+	eJg0Ac0BcvFt/nySXGr6clQ/texD4Ey5rilKcL0=
+X-Google-Smtp-Source: AA0mqf4PgOFZhk8kk0KOvHCW2ZZP8Y019U4xA8Etf86NHLJZ6BISof2bR97ocHW80jvc1aiWRPU+HPdZW+4EhHZeqmY=
+X-Received: by 2002:aa7:c38d:0:b0:46c:fa25:f03d with SMTP id
+ k13-20020aa7c38d000000b0046cfa25f03dmr16124267edq.291.1671447626791; Mon, 19
+ Dec 2022 03:00:26 -0800 (PST)
 MIME-Version: 1.0
-Message-Id: <20221116-s905x_spi_ili9486-v4-2-f86b4463b9e4@baylibre.com>
-References: <20221116-s905x_spi_ili9486-v4-0-f86b4463b9e4@baylibre.com>
-In-Reply-To: <20221116-s905x_spi_ili9486-v4-0-f86b4463b9e4@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, Carlo Caione <ccaione@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-X-Mailer: b4 0.10.1
+References: <20221216-afbc_s905x-v1-0-033bebf780d9@baylibre.com>
+In-Reply-To: <20221216-afbc_s905x-v1-0-033bebf780d9@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 19 Dec 2022 12:00:15 +0100
+Message-ID: <CAFBinCAfF-=776E3k=NnhaG+rMCp3b=WbjkN=RKGG8vM3Cn-3Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/meson: Reduce the FIFO lines held when AFBC is not used
+To: Carlo Caione <ccaione@baylibre.com>
+Cc: David Airlie <airlied@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-amlogic@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221219_010256_513487_F120DB7C 
-X-CRM114-Status: GOOD (  19.22  )
+X-CRM114-CacheID: sfid-20221219_030032_404625_61ACF076 
+X-CRM114-Status: GOOD (  11.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,78 +87,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The pixel data for the ILI9486 is always 16-bits wide and it must be
-sent over the SPI bus. When the controller is only able to deal with
-8-bit transfers, this 16-bits data needs to be swapped before the
-sending to account for the big endian bus, this is on the contrary not
-needed when the SPI controller already supports 16-bits transfers.
+Hi Carlo,
 
-The decision about swapping the pixel data or not is taken in the MIPI
-DBI code by probing the controller capabilities: if the controller only
-suppors 8-bit transfers the data is swapped, otherwise it is not.
+On Mon, Dec 19, 2022 at 9:43 AM Carlo Caione <ccaione@baylibre.com> wrote:
+>
+> Having a bigger number of FIFO lines held after vsync is only useful to
+> SoCs using AFBC to give time to the AFBC decoder to be reset, configured
+> and enabled again.
+>
+> For SoCs not using AFBC this, on the contrary, is causing on some
+> displays issues and a few pixels vertical offset in the displayed image.
+On the 32-bit SoCs (for which VPU support is not upstream yet) it has
+caused screen tearing instead of shifting the image.
 
-This swapping/non-swapping is relying on the assumption that when the
-controller does support 16-bit transactions then the data is sent
-unswapped in 16-bits-per-word over SPI.
+> Conditionally increase the number of lines held after vsync only for
+> SoCs using AFBC, leaving the default value for all the others.
+That was also my approach (for a not-yet-upstream patch).
+Since it's affecting already supported SoCs I suggest adding
+"Fixed-by: 24e0d4058eff ..." (maybe Neil can do so when he agrees and
+is applying the patch).
 
-The problem with the ILI9486 driver is that it is forcing 8-bit
-transactions also for controllers supporting 16-bits, violating the
-assumption and corrupting the pixel data.
-
-Align the driver to what is done in the MIPI DBI code by adjusting the
-transfer size to the maximum allowed by the SPI controller.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
- drivers/gpu/drm/tiny/ili9486.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
-index 8bf0dca0b05d..6f03531175bd 100644
---- a/drivers/gpu/drm/tiny/ili9486.c
-+++ b/drivers/gpu/drm/tiny/ili9486.c
-@@ -43,6 +43,7 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
- 			     size_t num)
- {
- 	struct spi_device *spi = mipi->spi;
-+	unsigned int bpw = 8;
- 	void *data = par;
- 	u32 speed_hz;
- 	int i, ret;
-@@ -56,8 +57,6 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
- 	 * The displays are Raspberry Pi HATs and connected to the 8-bit only
- 	 * SPI controller, so 16-bit command and parameters need byte swapping
- 	 * before being transferred as 8-bit on the big endian SPI bus.
--	 * Pixel data bytes have already been swapped before this function is
--	 * called.
- 	 */
- 	buf[0] = cpu_to_be16(*cmd);
- 	gpiod_set_value_cansleep(mipi->dc, 0);
-@@ -71,12 +70,18 @@ static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par,
- 		for (i = 0; i < num; i++)
- 			buf[i] = cpu_to_be16(par[i]);
- 		num *= 2;
--		speed_hz = mipi_dbi_spi_cmd_max_speed(spi, num);
- 		data = buf;
- 	}
- 
-+	/*
-+	 * Check whether pixel data bytes needs to be swapped or not
-+	 */
-+	if (*cmd == MIPI_DCS_WRITE_MEMORY_START && !mipi->swap_bytes)
-+		bpw = 16;
-+
- 	gpiod_set_value_cansleep(mipi->dc, 1);
--	ret = mipi_dbi_spi_transfer(spi, speed_hz, 8, data, num);
-+	speed_hz = mipi_dbi_spi_cmd_max_speed(spi, num);
-+	ret = mipi_dbi_spi_transfer(spi, speed_hz, bpw, data, num);
-  free:
- 	kfree(buf);
- 
-
--- 
-b4 0.10.1
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
