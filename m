@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8CE2C4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Dec 2022 03:32:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C274C3DA79
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Dec 2022 03:41:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
 	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VhW8fhGsBwkP/ZtuUJwzE4MgMfUEzfNRSoSKEinqwBM=; b=VS3ZrFXzG2pSub
-	bBLMeDzN5kuCU/sxtmrNeaCpj8SUJSA8mJio+PP8X/aH0VNAu0m2YsukrM+fnrJNI6s6zAAtyNjRJ
-	OFU0gpA3ynqvNy6f2Vmo6HrbN5j5mFRFOCXKY2JkR8RnPgWF74GXixa0rJbZNl3Y5eQMbq1sSGfu5
-	4laPftob2RG44icnRpkcopky015x7Z/fcPvTNP2r3Lc9uYWKvlIwT0T7+oLO3x0qUHfbelhUEMpZw
-	JN4XSrmulHVty2bCEDWdts57XEqCKCIZvGlRQ/3BQZcoy6xIycFy1gJC/vF+NPpZWjNpAtQZnQMga
-	+JxjV74X0TtiDAz/sXBA==;
+	List-Owner; bh=J1r8owMdFDr/ObWTnbG0zUfbKZctPZgCa5ACUiOZDfE=; b=U7UsjFGcLvQAzr
+	7sDYe6nAXfunho1BzQXV9BUAzU4o6zKKMXuyEIZ1Ir1HKOmSAWXbYN7GFmuXOB+luZPpqfG7CQjGG
+	r2uQhSrmlXYTdu9SbKOwUCDKhh4iJBWhcB+J6bun0wS4J6oSMB9tfQXhDyuHB0U1R9cPzIxbEdvhr
+	qOPx/dQwQGp0NdW0Hx+QB/R+CYSvh9XGrEaapQ7GjdC5QRAOR5TpN68yaJsL4wqOM/16znbGVb7nL
+	HoYng6S+VAypcLbRXmGnOL1spCv7WwPTBFzqHy2olfGfUPlU2GZFY9qmEIJvcSeOPnZvLQkGcYR7I
+	bs85mSGJ5CaKbVAPbLgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p9eE8-001L5x-Va; Mon, 26 Dec 2022 03:32:37 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1p9eMt-001NTD-BC; Mon, 26 Dec 2022 03:41:39 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p9eE5-001L3g-Av
-	for linux-amlogic@lists.infradead.org; Mon, 26 Dec 2022 03:32:34 +0000
+	id 1p9eMp-001NQM-JD
+	for linux-amlogic@lists.infradead.org; Mon, 26 Dec 2022 03:41:38 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 5169360C61;
-	Mon, 26 Dec 2022 03:32:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8EFC9C433D2;
-	Mon, 26 Dec 2022 03:32:29 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id BD5FDB80BE7;
+	Mon, 26 Dec 2022 03:41:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 725BFC433D2;
+	Mon, 26 Dec 2022 03:41:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1672025549;
-	bh=s3Txn3CCYMAINuVdaMFj5eS3c7GT6CDWa/bWGWX49pc=;
+	s=k20201202; t=1672026091;
+	bh=zmtqhXQv7hiPZDJGmROKlujPmTGm2oRNxnDcUz2K1XA=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=ZXx064i5rzq++NFOg11/wWaYl1fWBWbUUVMfNobuX1gR6W+hSC5ZaIT6xMvUkTbzq
-	 uKsKmPlP0Osoqt3ugX6Jfs12ItSnAT2NYH7dk2L+o+0+q2TEXpuxPP+n517ttUD3B5
-	 qERgwZvw07+bg0wqawChHt9pmtSu0jNWxxTY4ZiIJYITZEI0pf/eE3E2hOO32H/1pi
-	 kRFc6KGtABB/2V9Bn76V1EKJYHbpXbJgtJ4cicnkkjfmrqdOYoYYZdUWhIIjno3hJF
-	 AKMqe2WqeZ/Z/UT0sDmee/HfVbq9AKYnEqjtJVTpIEQ4+UAzbfm79swmY7Zbv+nhP1
-	 /yZj5hZlsSzMg==
+	b=aFP63n6aR/0rsvyekq2AImCT+Ltsl9Jl7dPzbNYHhoyZYHDH6lK2bZrhlcgunmhld
+	 RgMVPID00zacoRWh6/2WcYeqqfuXii7bfwtJk5lxNcH9sYhs6uYZ65sHxjCjvHVJGC
+	 jU2sooTMKGRe+SFmEQSyRrM2Z5Ebr4Jv8ipoN7FtPVN5x7rUbCF4ahlzEUcQHuzwgS
+	 dPZnfjIrxijvQKXa4OnPsL5xX8faKU1LhwAeeoNrFyIvTCF3+ednhZDVur/h1/X3jD
+	 E41cCnOUXtPEk1kFVfqyh2f9D9ufm9IlqPIid1pjLmSc0vc0NcK4CEzAwGC3ktCoTG
+	 JD3TuvTuDV3ew==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 69A72E5250A;
-	Mon, 26 Dec 2022 03:32:29 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4CBF2E50D66;
+	Mon, 26 Dec 2022 03:41:31 +0000 (UTC)
 MIME-Version: 1.0
 Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Extend name-prefix.yaml into common
  DAI properties
 From: patchwork-bot+chrome-platform@kernel.org
-Message-Id:  <167202554942.9518.4179971549708682531.git-patchwork-notify@kernel.org>
-Date: Mon, 26 Dec 2022 03:32:29 +0000
+Message-Id:  <167202609130.9518.10337988666912704066.git-patchwork-notify@kernel.org>
+Date: Mon, 26 Dec 2022 03:41:31 +0000
 References: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
 In-Reply-To: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
@@ -89,8 +89,8 @@ Cc: neil.armstrong@linaro.org, airlied@gmail.com, daniel@ffwll.ch,
  linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221225_193233_493194_DDB277EA 
-X-CRM114-Status: GOOD (  10.79  )
+X-CRM114-CacheID: sfid-20221225_194136_537675_926D645A 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,7 +109,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello:
 
-This series was applied to chrome-platform/linux.git (for-kernelci)
+This series was applied to chrome-platform/linux.git (for-next)
 by Mark Brown <broonie@kernel.org>:
 
 On Sat,  3 Dec 2022 17:04:40 +0100 you wrote:
