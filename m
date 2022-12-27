@@ -4,65 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA30C3DA79
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Dec 2022 22:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 706F6C4167B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Dec 2022 04:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
+	:Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9Ng74j3Uh7WhWzJ2ec1tVTSXfOlTyZyFFkSPXPirpc8=; b=JTYVXEdqjnIV88
-	rXqbMoG9LIPuXdGjPhcMmfF14BlzBubpRTc6Jv+BKOP2WAWqvsJ5tFd4psxRTTnLxrlvD0SiNltwN
-	29XCE0FmqhiHjGL4JavLiV4+xtjBumb0Bxqye5uAj4Qc5iN4SB0e3IWW++RuzZ3kKtUy0xpjmogIG
-	JiYYkEabZLvySn76h/lqdxndemif/1R2Pg3/yp1Yo23jHvatbr9Ks8imV0mM5qPl06Oo7VINDDtL1
-	kLmwCprVOVmzdMaRhfMV990ZSPvy9wvLL8z2L6g2GT1Qo5b+dgv9rJKOmEf03s5T1vQUla7kEjKyv
-	HoKQzQ+c7ahZawQmAO1Q==;
+	List-Owner; bh=Etm9q6QLDmcmZDOmbXr0z9YWDHm7M1psuO/SeyRk5rs=; b=GECKI4t87sFeX/
+	IkHabtG7ftuImdtGIm8nlmsQTv/Q3OZHlSaX9JqmOvs38ru0iZ9czmAZE2ZFLY03XvIGn8rtuFAhX
+	3t43TD/R+UHqskI0KQ57Jxv/VCshIVahSPjUDCAErXS8YtTF0XPt3Jlqj6E7OSbbTMWNZoUNRxTsW
+	e/pK2YXMyz6DLcyaYPKDR9g6qgLH/ja9n9qv7zxFY5umSAldfFy1IJJT5fZAJ3W4c9sivbsZ1RiK2
+	9798IsoxhKltO3XPTsPnJB8Dw/7kWquyhEYjZ0/TJxuRuTdLxdo0+PRUyNaHZucPVoVmT0zJZPx44
+	J5y39Y5JBx7q4X8vtAXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p9wGa-0081WO-53; Mon, 26 Dec 2022 22:48:20 +0000
-Received: from djehouty.pomail.fr ([2001:910:13cf:ffff::1])
+	id 1pA1TX-009vlw-Hm; Tue, 27 Dec 2022 04:22:03 +0000
+Received: from mail-tycjpn01olkn2061.outbound.protection.outlook.com ([40.92.99.61] helo=JPN01-TYC-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p9wGU-0081Rt-LK; Mon, 26 Dec 2022 22:48:18 +0000
-Received: from nout.ra.nemunai.re (82-64-151-41.subs.proxad.net [82.64.151.41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by djehouty.pomail.fr (Postfix) with ESMTPS id D6DDF3F7DD;
-	Mon, 26 Dec 2022 23:48:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nemunai.re; s=thot;
-	t=1672094883; bh=c+3OU9wn+8NKzC1KnsLAGtOBdtgvS/WXl4HPdn/7aQ8=;
-	h=Date:From:To:Cc:Subject;
-	b=i6NVm9glPTlBr8oix7ceiGgO4wBW4UsDe1n2d2AgiVj5/m3Pa6vvd8jl3cl89AmVP
-	 jwupnnc+Jc5GkD6cqvKxcHnbwtsU9L5LiL55+Mg3iW4UxllmqmZuou7+29I6YItOfE
-	 t+QW+qKt1qrrtMIywDF4NGig+hErJoQSo1HcEL58Wi/a4/EOuyutFhuknvOQUHookJ
-	 Dvf2+wS62ZjAqcTOhtpQPfzhugYTdSIQX7L3Y7m3m631rbnYFPHYew+UA0CoQVoMV0
-	 CiMRuPo+M6thiIMw/kr7405ddDxA5JVbZh344QMN0oh7tZ+c91hRBQnteH4BFcPkRl
-	 QaU45NLyavqs76BZtuqGfWU6IoZHYX8YUyWGinLcDGH+O89Ob2wb/1QNh9rRjhN85q
-	 TQicnCQp8JdrDrrqqWhgnqYLpCWFg4L+Z6q2K2p98VUNS0cpsKYcVjAzLwYER0bvbo
-	 H6qfjTo2bxeFp6rs9uHQ//sLKhP+/ntXE/RE0lR2rUMdvqp49gsAfYKOvRHCDc1oVx
-	 dcVlkc0pDnW9olLzZ0xwjd2sZkzjUQH5HdRnC8Z7uXSYxhIWVEkCvTZzUE1f10zvnx
-	 gmAZoJBDMwJazE22FbZsIGZ37uHgso+sAygUMaknqz/QuqP91M9NpyLo7jaJS3xbS0
-	 kMld1/hn0FRTT85Bu+Q1EYgo=
-Received: from nemunai.re (oupaout.ra.nemunai.re [IPv6:2a01:e0a:518:830::d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nemunaire)
-	by nout.ra.nemunai.re (Postfix) with ESMTPSA id DDA8D20326;
-	Mon, 26 Dec 2022 22:48:02 +0000 (-00)
-Date: Mon, 26 Dec 2022 23:48:01 +0100
-From: Pierre-Olivier Mercier <nemunaire@nemunai.re>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: [BISECTED] arm64: dts: meson-sm1-odroid-hc4: USB not working
-Message-ID: <Y6okoXpwF/LZewhv@nemunai.re>
-MIME-Version: 1.0
+	id 1pA1TT-009vii-QV
+	for linux-amlogic@lists.infradead.org; Tue, 27 Dec 2022 04:22:01 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SdSd1QPR2gbE2GwLESsWZekgWDhpzc/RoUPL3d2pGWjIjACPLVlU5bd4urxP2rtaCO3ZGJY4Y3Wdp/mR9B6exKOnW8usZw5JeNXiHzmFxZeXuYda/0oT68gEC5WP6BK159Is1H81JKxkts5CE2c6j78K+7bwGxK6ZQLQT1cURooeGbHzBNelhC9uyukVMc8o7FLXmQ7KwYIKkszI0e8jtx/92E1pUm2zpF0NESiz8XoJ4Y9sfBCZIxdBeHsDr6NuY4bFBRVS49aAl0AjwyZP+ogEpXOh2tDsSKQ7R61B3SQ9ExvMEUmL2M7hTWQ3GVJLFeO1TWgJ/1/XezhDnZvZ8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zs0fAIzPaoZOCDe/mT08Otnm8BAaPxxXSHy8UouQ23s=;
+ b=VUHisAt5wg2+mv8n7G7qLKSmJFLARBq7a6O5dBRXJx6zUbfu+vPx7j7Md8DvUqeRQW9Zb1L9/Yv08SMEnGcC6D7r4YyYX2tAVXtJhr7UXyH7brB3gEFX/KHpPGi+EW7l97RYSYUX1RszW6UXpm+8604lRgtSCDyyuQpj5d7WtccOcsfOZhIUcZYLdlnQYWbtemyc/oALhVt16AUfLYWxYWak7GXg9/P/Wq5lbcuTW0cuU9/eqG+natMxFSwgjl25lQiINZ4rs/YShNjIOs0VGlMGEU49tr4jiskEdVLzIP7tJcP0zQ60dChkraUayGbW1jdP6153aL81AdAVSFab6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zs0fAIzPaoZOCDe/mT08Otnm8BAaPxxXSHy8UouQ23s=;
+ b=MQySGyS21vBZyPGsXEJlMpQd/+R0+PyxhyxQPp12RvX4WBNOlVwAboUA1G16cuhQAbOokXK0tJHVFFDRNOOCpwll4IG5WGmM96nDvGHRdr4ixR3lncHvLm2szdLq5FfV6mOjDSEvqVw9FVx2WKiIsWXMMfB+YvsJ5AP2rONht/xg0YKTGnFPB8tooiR9QfIqeYJO7bv/VmiWmuiIp1TDNc+eoLJLDUvpYjtNsTLuN2f/ZBHbWZdMuOFRbc+VNHTfyWkrI1e/d+pHYY8qWcyX6jxv4mlNHUH1aA3vGqrTMj7uRprHEmom7PCZfoqWr52VaK7TT2VamgkZzdXvJihAwg==
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:cb::10)
+ by OSZP286MB1773.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:1b9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.17; Tue, 27 Dec
+ 2022 04:21:51 +0000
+Received: from OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::4b3c:7c0f:6f27:5d46]) by OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::4b3c:7c0f:6f27:5d46%3]) with mapi id 15.20.5944.016; Tue, 27 Dec 2022
+ 04:21:51 +0000
+Date: Tue, 27 Dec 2022 12:21:45 +0800
+From: Zhang Ning <zhangn1985@outlook.com>
+To: tomeu.vizoso@collabora.com, linux-amlogic@lists.infradead.org
+Subject: failed to start gnome/gdm3 wayland session after apply NPU patches
+Message-ID:  <OS0P286MB0641E5D5C1CF9D1E100EFFB6CDED9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
 Content-Disposition: inline
+X-TMN: [I+UMYaWjawJ1/Qa8yiMpdUGO0wmL+/h22BYDfonHze8GNH8VNB9mZQcny63+bz6N]
+X-ClientProxiedBy: SI2PR02CA0007.apcprd02.prod.outlook.com
+ (2603:1096:4:194::23) To OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:604:cb::10)
+X-Microsoft-Original-Message-ID: <Y6py2ZlfS4cq0FE9@orangepipc>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS0P286MB0641:EE_|OSZP286MB1773:EE_
+X-MS-Office365-Filtering-Correlation-Id: b042b8ad-0c32-4717-c36c-08dae7c1e058
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	noFGNe9wuYNp7Y9+aYPU5iCvHDIw3mFttDYn86h4yLZnfCl2eL2Omu7Mod9ZQ4/aoIOmL94Vg1kVWBceyiMVo7XfJbfbU7pimezvHYNfjLhmPb0GAXngcOlhzzqIuasUHhtd7ZHF2bYDsHZo9/dEoRbDFwVUJkZwSfNMaWbhGFBm8XfUe6miYONnH/g6bT1YYQhhw4ViT0TfHLk7hjFmCacnGAcW1Ai66/LyaFnRL20yZDt9XuQWBGoxfyQDepwk/xXVPRqai83IwC19jtteMt1x94ex66vuchoE9ocvmowgkWugJ7dy0aVB5JTq6781pii0VHy/W/Fu88uPpp3LcfBqrtQdDsONnJcO+1aKpn9wHPrnIt0QViGJS9goG1j9BeC3AqzYkjwdU3YpGMlOZVqPxkiUcnTSa71GHc6eJXitvQcNg1quuX6Cstqvt1RSEjyL6Wy+KMZed/mxRwq9Q1Tj5HkpAxkwFiP5KWGQIFgryIPWiZtNCrUbeipN0M0Vk+YIILUh/5QPvg6ba2CyRzjKqi/cKSObu5grqKysdNo91KZWO8iqGX2YP4R4sus8S1YwYMXXoHgIa0KPDwU8Vg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?NVhZWlVWL1h0d0JpYm1yYlNlWDFsajhBSUpPQ29ENUd5SCtiUURaM3VYYW82?=
+ =?utf-8?B?OEtUVWtJbGdCc3hJKzRFQldZeCtUL3pvb0ZDeHF3Q29DTmtPaDJ5ZGZFSTkr?=
+ =?utf-8?B?OUhTb3V4TFFxdHd1STN5RTJlUEVNbkEvenZHLzhoWmNaVWJnWERPYkZpcW9z?=
+ =?utf-8?B?MlBIOWZ3c0lNN2w0NGpTV2RzYms0KzFsb1ZicDJZcTBpWHNaSUk4UFN6d2Js?=
+ =?utf-8?B?bERLL2ZNcTdWNTNjUzBFS1JsY042ZnNVbHRNUFhKaE1pMWZnSTVnOWxnOTFl?=
+ =?utf-8?B?S0tidENidFdZYk5wdmRqNkk4bkg0S1NWeUxjY01nVTJWQ3dTU0VzWjNzcWFy?=
+ =?utf-8?B?MFNlY2FQNkVoZUNEY0o0blVmUE9OY2xNdmUwN3Vucy9KVDR4bmNjK3VWT3VF?=
+ =?utf-8?B?Tnl2MDdsYUw3YXFVQUxxQnVmQzgzRzBrL3JhK2t3L3Z0VE8wRWhNcjJvejhm?=
+ =?utf-8?B?Y1F1bVEzN2ZMc283WmVtU1dGa3dVaU96eVJCSWJ6cjdPZ3dQUjhqVW1SUEFI?=
+ =?utf-8?B?S25sZFZadnlwQnp0a0ErTW1CUjBJRTNmZmh5ZHl0Rnh1Zm1BYVJQbDZ3aTdM?=
+ =?utf-8?B?dXRvbHlTcjFIRmMxSnJIQys4KytVT2RPclJUMDYwOXhHV0FsSTFRS3dERFht?=
+ =?utf-8?B?MUFyc0dVdUV2REhET0ljSFExL3MvaTROazIrWlZPMHFiUUtFTXFPT0Fkdk5q?=
+ =?utf-8?B?SE5mYWhPckJINDJEcEtiekIxcXQ5ekRDdzJCUjIxa1ZLdzFQK0VQWEh0SkNo?=
+ =?utf-8?B?blo0VGFiblhvcmMvV0hmSERjUXlrQmd3M2FrNEN2SXRyUGxOZC91TCs1ZHRl?=
+ =?utf-8?B?VkRkYi9xWDd0S1djOGlEeXZYd0FHK1hOYms0MUNJbEtPbkZSSy9uazhsNWsr?=
+ =?utf-8?B?U1c0cGF5ODF3bGVzS0MyVTNXekM1MnVPOEc3S0xUU3g3anlCd0RxcUg3U01s?=
+ =?utf-8?B?RVNlUnAzbGF0WS9aT04vVGpBWFVQek9BSmtmL3FXWW14bk0xSHpVQjJaMmlv?=
+ =?utf-8?B?VFRaMGp6M3V2cjJNYkc5aUNoK1BFUnpZRTVTOTBZY0ErVlF3MlRqa3lKOEpQ?=
+ =?utf-8?B?enJad2gyUERvWTdqNmlpYnB1ckJsQXdZeUhMMkVpR2dscGl4WjVsRHVkQ3BM?=
+ =?utf-8?B?UURCNW1vQ2FwdE01eWF1UTV4RElwbVdUcTZDTGhiaWhUVnhNOUZEbElnK2xV?=
+ =?utf-8?B?R2JBTUlONklwMmkvb1lUSTFkV2dIeUsycXZNYTdPQVdmaURKZzFaZUkySlQ4?=
+ =?utf-8?B?V1Q3TFRKenVhQzQySWJVb1hkbUlGYnlyeGJCRXppUzFZZWg0WVFUN1NyUUl2?=
+ =?utf-8?B?YkxlbWFEWUE4dG0rUHR1dnlEZWR1K3EwNGtGR0kyS1RhQkNSc0g3c1A5Z2xy?=
+ =?utf-8?B?TGlwaUx2TzlmQ0k1UmhQNzBETW8rclFzVEN4cUhQdjJvTi9DUmFDMkhuUnBq?=
+ =?utf-8?B?YVEwQUNHS1ovQWY2V1lMSm8xQTg2d1FiQnJZL0VIOVlTNytGNCtrVzkxZHhE?=
+ =?utf-8?B?VTFva0duRHpJZWlaZWVYMTAwbVM3ZGNvRXlaYllmNjFqN0tOcEpPVWUzSysy?=
+ =?utf-8?B?emFWTzV4QXh1V3B1MzNxa0lRM091OW5FcXVzMEtnWTFaelhPUUh1a1Fyb2po?=
+ =?utf-8?B?MHpqTzlubnVNUHIxTXliK0JNVXhzanEwdWd5U09CelU5T05jWjkyb1JZNDBT?=
+ =?utf-8?B?eVZGeG5aY21YcW96RXRQVy8yNzMraWtCd1d4bW8vcjRDRGJMcXhudWV0cE5V?=
+ =?utf-8?B?Y0FEemVEYTZvOXhVZDBCelM3cjQyaTQrZFdmZEozem8wcmVDMS9NOFJiM2o3?=
+ =?utf-8?B?SmZXTmwwUjZXK1dOQzAyUT09?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b042b8ad-0c32-4717-c36c-08dae7c1e058
+X-MS-Exchange-CrossTenant-AuthSource: OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Dec 2022 04:21:50.9318
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZP286MB1773
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221226_144816_746840_54ABC8DB 
-X-CRM114-Status: UNSURE (   8.10  )
+X-CRM114-CacheID: sfid-20221226_202159_998514_28BEBE15 
+X-CRM114-Status: UNSURE (   1.36  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,92 +128,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi, Tomeu
 
-On my Odroid-HC4, the USB 2.0 port (the only one available) was not
-working. While it seems I was not the only one in that case[1], after
-some experiments, I found that by reverting the following commit:
+after apply your NPU patches:
+http://lists.infradead.org/pipermail/linux-amlogic/2022-December/014428.html
 
-703e84d6615a4 arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0
+VIM3 failed to start gnome/gdm3 wayland session.
 
-it solves the issue: USB is working on latest stable (6.1.1) with this
-only patch reverted, while it doesn't with vanilla dtb (with same
-config otherwise).
+before:
 
+VIM3:~$ ls /dev/dri/by-path/ -l
+total 0
+lrwxrwxrwx 1 root root  8 Dec 27 04:06 platform-ff900000.vpu-card -> ../card0
+lrwxrwxrwx 1 root root  8 Dec 27 04:06 platform-ffe40000.gpu-card -> ../card1
+lrwxrwxrwx 1 root root 13 Dec 27 04:06 platform-ffe40000.gpu-render -> ../renderD128
 
-Here are the logs with the patch untouched:
+after:
 
-[    1.422947] dwc3-meson-g12a ffe09000.usb: USB2 ports: 1
-[    1.426394] dwc3-meson-g12a ffe09000.usb: USB3 ports: 0
-[    1.433413] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
-[    1.438739] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
-[    1.445913] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
-[    1.453859] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[    1.458153] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
-[    1.465848] xhci-hcd xhci-hcd.1.auto: hcc params 0x0228fe64 hci version 0x110 quirks 0x0000000000010010
-[    1.475062] xhci-hcd xhci-hcd.1.auto: irq 18, io mem 0xff500000
-[    1.481028] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[    1.486333] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
-[    1.493931] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[    1.500710] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.01
-[    1.508616] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-[    1.515736] usb usb1: Product: xHCI Host Controller
-[    1.520563] usb usb1: Manufacturer: Linux 6.1.1-nemunaire xhci-hcd
-[    1.526687] usb usb1: SerialNumber: xhci-hcd.1.auto
-[    1.531973] hub 1-0:1.0: USB hub found
-[    1.540413] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-[    1.547374] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.01
-[    1.555417] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-[    1.562588] usb usb2: Product: xHCI Host Controller
-[    1.567397] usb usb2: Manufacturer: Linux 6.1.1-nemunaire xhci-hcd
-[    1.573520] usb usb2: SerialNumber: xhci-hcd.1.auto
-[    1.578780] hub 2-0:1.0: USB hub found
-[    4.565412] usb usb1-port2: connect-debounce failed
+VIM3:~$ ls /dev/dri/by-path/ -l
+total 0
+lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-etnaviv-card -> ../card0
+lrwxrwxrwx 1 root root 13 Dec 27 04:10 platform-etnaviv-render -> ../renderD128
+lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-ff900000.vpu-card -> ../card1
+lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-ffe40000.gpu-card -> ../card2
+lrwxrwxrwx 1 root root 13 Dec 27 04:10 platform-ffe40000.gpu-render -> ../renderD129
 
+the fail log:
+Dec 27 04:10:42 VIM3 gnome-shell[673]: g_hash_table_destroy: assertion 'hash_table != NULL' failed
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to open gpu '/dev/dri/card0': No suitable mode setting backend found
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Added device '/dev/dri/card1' (meson) using atomic mode setting.
+Dec 27 04:10:42 VIM3 gnome-shell[673]: g_hash_table_destroy: assertion 'hash_table != NULL' failed
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to open gpu '/dev/dri/card2': No suitable mode setting backend found
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: No matching EGL configs
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Created gbm renderer for '/dev/dri/card1'
+Dec 27 04:10:42 VIM3 gnome-shell[673]: Integrated GPU /dev/dri/card1 selected as primary
 
-With the patch reverted:
+how to configure system to boot to gui with npu enabled?
 
-[    1.432476] dwc3-meson-g12a ffe09000.usb: USB2 ports: 2
-[    1.435820] dwc3-meson-g12a ffe09000.usb: USB3 ports: 0
-[    1.443953] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
-[    1.448187] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
-[    1.455361] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
-[    1.463273] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[    1.467576] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
-[    1.475268] xhci-hcd xhci-hcd.1.auto: hcc params 0x0228fe64 hci version 0x110 quirks 0x0000000000010010
-[    1.484508] xhci-hcd xhci-hcd.1.auto: irq 18, io mem 0xff500000
-[    1.490451] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[    1.495756] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
-[    1.503345] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[    1.510032] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.01
-[    1.518009] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-[    1.525160] usb usb1: Product: xHCI Host Controller
-[    1.529987] usb usb1: Manufacturer: Linux 6.1.1-nemunaire xhci-hcd
-[    1.536111] usb usb1: SerialNumber: xhci-hcd.1.auto
-[    1.541393] hub 1-0:1.0: USB hub found
-[    1.549091] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-[    1.556810] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.01
-[    1.564844] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-[    1.571996] usb usb2: Product: xHCI Host Controller
-[    1.576821] usb usb2: Manufacturer: Linux 6.1.1-nemunaire xhci-hcd
-[    1.582945] usb usb2: SerialNumber: xhci-hcd.1.auto
-[    1.588238] hub 2-0:1.0: USB hub found
-[    1.806067] usb 1-2: new full-speed USB device number 2 using xhci-hcd
-[    1.982226] usb 1-2: New USB device found, idVendor=9e88, idProduct=9e8f, bcdDevice= 5.00
-[    1.984769] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
-[...]
-
-
-I didn't read the specs, but I also tried to inverse the patch (disable
-usb2_phy1 intead of usb2_phy0) and it didn't work neither. Apparently
-usb2_phy0 and usb2_phy1 are both required for some reason...
-
-Could you reconsider this dts change?
-
-[1]: https://www.reddit.com/r/ODroid/comments/wcrdeq/usb_port_not_working_on_hc4/ 
-
--- 
-Pierre-Olivier "nemunaire" Mercier
+BR.
+Ning.
 
 _______________________________________________
 linux-amlogic mailing list
