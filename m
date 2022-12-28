@@ -4,76 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F37C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Dec 2022 14:45:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24509C4167B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Dec 2022 15:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tUmvDVpQs+G13IpKNKswlM2k1eLeycnpud0vyZLKdw4=; b=nWVdZrKxj5/RPj
-	+h0IpELhndwwFzKLF/fIpOpUUShM3DF8KipJ4hWhpDV5dSABwil9ENC8c0JaehSc/2p/LO3vaxTCl
-	uCBT22vqOaJY7jQfKS/ILWhxutWTSkLmF0GVAAXU3gt/GcvQnjarEYO5+Phq9BBuwxIe1UTAmOHrg
-	wCwOOzswH4KA5lJRuNRLYfPhY8wxwvhsiZnWrzXAG+58rURERDK1wQqdBiUxravu6crxdV9c4YkMd
-	mW5FyqWfVMIT5yZSmTpcKMrV5gs10n1BcQjNLAu5TEt+F6DQOTVE04fVAFaFqo6XiTOw/GxfGGBoo
-	Pg0fNRSDJTyH0o+vWJ4g==;
+	List-Owner; bh=I8RGk8UCnokf486gKR3fsNPg+vpBPsOiKs1Cm6fidDQ=; b=mo6fzlNeyutOYS
+	qA/2/wyNJAPo1iCDcOh4RTf7OnLSpOtz9pnNSPOKs5MPyrDBL/5B9Uy06UjhRiXd8lmfvJLuTeLy1
+	+c91FiRbR+RyZGtt7IPcz6wwt4bk1D+uyZmO/W1e5Y0BmeLoAIqdc152AWNJlNEKFDnyb1CpvoU2w
+	UtMhOHeFVb61RHSLdhTRhiH54OmaSy6nGIzXyxYfENXCz7bPNOOY40V+6192wLHqDjzcAFC9SmSA0
+	ywqFeEIjLHFpg31oJ3N90cwiNI25j8FDzvL6mtQrCjGlbd3pI69mRBJCRamfiHvzVxaS+JMzcduNs
+	gR3eC5+eIxFNIaE9UYUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAXfi-005fAj-CN; Wed, 28 Dec 2022 14:44:46 +0000
-Received: from mail-vk1-xa2f.google.com ([2607:f8b0:4864:20::a2f])
+	id 1pAY2V-005obm-Ei; Wed, 28 Dec 2022 15:08:19 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAXff-005f8t-EB; Wed, 28 Dec 2022 14:44:45 +0000
-Received: by mail-vk1-xa2f.google.com with SMTP id bi24so238142vkb.6;
-        Wed, 28 Dec 2022 06:44:42 -0800 (PST)
+	id 1pAY2T-005oXu-7q
+	for linux-amlogic@lists.infradead.org; Wed, 28 Dec 2022 15:08:18 +0000
+Received: by mail-lf1-x129.google.com with SMTP id bf43so23980987lfb.6
+        for <linux-amlogic@lists.infradead.org>; Wed, 28 Dec 2022 07:08:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nWly6CS117lh6W/pWnUHNuJLnc15iy3WKMaFGfN+hgI=;
-        b=bC2m3zrfa87ubxBUOud/XnpoJ6JRQtIp5AvFP+Dg/RAfR3vLc3p3BbBnNuHMaFMkei
-         wBdlTKZYONWbZWmgtF80/Od4Gw2vptTCDBS2qOKfrjzlwz4nObQZXJIu/K/woxvOyUHL
-         gwAKm/jeYk5ljndDFPSMualoMn2J6ZmAu66QNS4n6mzyGS6hlJq0hF/UIm4R9Uk4Twq2
-         DsLXuCnICp2OMF48mttlcnLUy0LSASlzfARftklE8BhyNiGwVDmFwd9jK1OzACUUCm3s
-         olYwbfI1R9iaZEIYOL+Au9daFjixBBJSwM47bm1z45J4NFutuytYsdawrsRBhigy6MJO
-         3ixA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uvoaUVlI285DJxXau3dNL+g6kLRhbJT4y1ScX7i8GqI=;
+        b=KRz1ugeTeE5shFPwKo2/mZX2HG1BAXYV25vlDoxH61FV1a/byeKAmLbT85OUcTwEnI
+         k7a1z6tqBbOVHm+L4kEBUi4VkXVwLDpsFtaEHHX+aog84SzM9uL4e2j7XVD2z3Xdo/9c
+         KSNgtASrBFziQzgpxKYn8Mz1YXG9odRbiAQkcLr/E4lGZEZZ5khszA3Ln9RBhIj1ZzAf
+         0AVjtaWLRqHqDhroXTQxPfBq7u+mUDPZuGb8F5y90djUHG2cbxTg0oRLo24uhVvWJoG9
+         ML95E3ivHoe+NCam7PKsWdV6qVc5QV2KMHl1h4kZTbUWivmlONKdUS5UgItgkscJrSXV
+         lBuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nWly6CS117lh6W/pWnUHNuJLnc15iy3WKMaFGfN+hgI=;
-        b=VcYW8lh1yibz2T406ExNMa4f9v74SKRXzEFTG+5lDv/90918O6Sk2dGoY//0hzDYhr
-         Gr6gntdOL0b/cVT7N0rcNn1AaQ23pruZuO27ow/MSidg89stKzQpPgwFx1p5jXN+WqaI
-         jO+vTDeUtsvA5uZGCCeOKX3oMt7xpDuhSPMabQeVEYIWZSC3ydCzK6d6+GZuYhk1t+z9
-         MFQBG5egPLUP52dTZyfPqHHMV6Z/6ldyX8AkMRtw+HsHkwZieWPO6PT5MEqbase/j2d9
-         M4Qy/u+hLT0iB/K/KMN8cbxLFEuvxZO69IgkPLqitX10MR7+V3suE8eJZpFlaVg71L+1
-         gJ4g==
-X-Gm-Message-State: AFqh2kpm143Qdgk6i3DoG+NnjXIXJMafWjajQ/EW0q6CF8buj08wSL2P
-	7XWRdnyph28HUxC5ubJJFRH4JCWwirUDFj3ud7w=
-X-Google-Smtp-Source: AMrXdXvufFe8mF9LmkJ38VB3Th1R8eAghiEZYOYmoZ632g02xmiJBzLZcs2CNmlAkxfTxs9jvjt4E0bKNvbqBXn1tGc=
-X-Received: by 2002:a1f:2189:0:b0:3d5:8603:a96f with SMTP id
- h131-20020a1f2189000000b003d58603a96fmr191769vkh.22.1672238681977; Wed, 28
- Dec 2022 06:44:41 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uvoaUVlI285DJxXau3dNL+g6kLRhbJT4y1ScX7i8GqI=;
+        b=MAP3TQ8s0EO8LOB2BuyK2pVGUtQ6EZhcAmPAShAjYAHITuyyC/Z2lblK6iW/w39lAH
+         65E5YoNjRL95tWQ+EHi0dA+/2Tl1I6Y6QVQgrAtGd9Cs2Nuwo8YtBL/T9zg8Syylefb8
+         C7mreZ018vBt/qv66FQkRc6DCWSb6NxujDsqNyYBwddfUVZzauNfxSCw3D5fC1CH66JJ
+         widDM3e5tl5lu/Y3Ro5zHLX2WPKr+4YqWBusbHuw0GJCWihgVX55S+byaVdCx56EdB3N
+         easoilHrd4uVjHm7WbguZB8EPjmk831NSXLDgo+80yP3aa+Pgm6BV3gtWHKr0OpTuycD
+         aguA==
+X-Gm-Message-State: AFqh2kpcYFSw8F1N6uyzumryCnnz9L3/HRzqIq4XBF/bfcXi4fEqQy4C
+	yIX/Sh4ZczjJlaIjlxUdHgC50g==
+X-Google-Smtp-Source: AMrXdXsyazxH9ayip6OwOKWlEqFs9prb83uyZtAy6fABC4Qtj1GpnFuz0aWl3a2VV3M1BIZoYotubQ==
+X-Received: by 2002:a05:6512:2356:b0:4b5:6417:43bb with SMTP id p22-20020a056512235600b004b5641743bbmr9430166lfu.51.1672240090961;
+        Wed, 28 Dec 2022 07:08:10 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p1-20020ac24ec1000000b004b15bc0ff63sm2671305lfr.277.2022.12.28.07.08.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 07:08:10 -0800 (PST)
+Message-ID: <d0127811-6be1-4f1c-c138-1e8b0c69aaeb@linaro.org>
+Date: Wed, 28 Dec 2022 16:08:09 +0100
 MIME-Version: 1.0
-References: <20221228100321.15949-1-linux.amoon@gmail.com> <20221228100321.15949-4-linux.amoon@gmail.com>
- <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
-In-Reply-To: <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 28 Dec 2022 20:14:26 +0530
-Message-ID: <CANAwSgTS+j_oRrckwmi60afX6-D=OP0oy05m3eQga_gEZJJ_mg@mail.gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 01/11] dt-bindings: usb: Add device id for Genesys
+ Logic hub controller
+Content-Language: en-US
+To: Anand Moon <linux.amoon@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Icenowy Zheng <uwu@icenowy.me>
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221228100321.15949-1-linux.amoon@gmail.com>
+ <20221228100321.15949-2-linux.amoon@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221228100321.15949-2-linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221228_064443_599143_CBD5D89E 
-X-CRM114-Status: GOOD (  24.10  )
+X-CRM114-CacheID: sfid-20221228_070817_322331_35ACAD55 
+X-CRM114-Status: GOOD (  12.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,68 +98,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On 28/12/2022 11:03, Anand Moon wrote:
+> Add usb hub device id for Genesys Logic, Inc. GL852G-OHG Hub USB 2.0
+> root hub and Genesys Logic, Inc. GL3523-QFN76 USB 3.1 root hub.
+> 
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index a9f831448cca..db009f3ef438 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -16,6 +16,8 @@ properties:
+>    compatible:
+>      enum:
+>        - usb5e3,608
+> +      - genesys,usb5e3,610
+> +      - genesys,usb5e3,620
 
-On Wed, 28 Dec 2022 at 18:21, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-Thanks for your review comments.
+This does not look like correct compatible. Did you test the bindings
+and DTS? This should fail.
 
-> thank you for working on this topic!
->
-> On Wed, Dec 28, 2022 at 11:05 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > +       usb {
-> > +               dr_mode = "host";
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               hub@1 {
-> > +                       /* Genesys Logic GL852G-OHG usb hub */
-> > +                       compatible = "genesys,usb5e3,610";
-> > +                       reg = <1>;
-> > +                       vdd-supply = <&usb_otg_pwr>;
-> > +                       reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +       };
-> My understanding is that the hub@1 node should be part of the
-> corresponding USB controller node, not a new node.
-> In this case hub@1 should go into the existing &usb1 node. That way we
-> describe the way the hardware is set up (meaning: hub@1 is connected
-> to &usb1).
->
+Best regards,
+Krzysztof
 
-Ok, I will move this code under &usb0 and &usb1 nodes.
-
-onboard_usb_hub module just assists in usb hub reset.
-so these changes are meant to replace the gpio-hog.
-
-$ dmesg | grep onboard
-[    5.405558] usbcore: registered new device driver onboard-usb-hub
-[    6.383428] onboard-usb-hub 1-1: reset high-speed USB device number
-2 using dwc2
-
-Here is the boot log of the odroid c2 [0] https://pastebin.com/PFy5waPb
-
-> In case hub@1 is not detected within &usb1 then you may need something
-> like [0] (not tested for your use-case).
-> If that helps: feel free to include that patch in your series.
->
-
-Thanks, will check if this is needed in this case. As of now it just
-reinitializes the hub.
-
->
-> Best regards,
-> Martin
->
->
-> [0] https://github.com/xdarklight/linux/commit/d8b96e5bc9c20ab2585194e0e59580c3b062c431
-
-Thanks
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
