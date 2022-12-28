@@ -4,84 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F26C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Dec 2022 15:09:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EE6FC3DA7A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Dec 2022 15:12:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5giyQYWg/dploj8SonqTSEOrluf+vpH07gr0kTqIv50=; b=XNeoZqVDxRTuGj
-	2HkvkKtMwAjyNcghksewL7YXqYTnnvRvv3MXxjUXBQFy6EqFt8F+2lt8BZDGq8BbcE1L2ZfZjE3Ge
-	3j2/NQAgEEDZp0GGjAfzTaQNMM2Nj6s4ZF6qKK1qFq0562yHQlzJ9JPd7VERVUFFAW/2/Z5UxLHK5
-	TzQXEcR4uZImwfL67B4Cqd9K6P94GZINrYbenWGRw3E258VY4mHZAiffXyYY91NK8DseJV/NzihZ/
-	MNy978j5Q4kQ3NkbPeHLbp3Pjdf40Hb+0gbw1gqynMbjtzFqQEqsRHx8ZbEyroZTC9H+nu3bEQgwa
-	pcnk8OWOKW3yR/zgtGZw==;
+	List-Owner; bh=veWpD2iwHnQqJZWYFe6o5QlkeGxiTzUjxByrWkfDjjI=; b=pkPcxiS040v9g1
+	410SmuVSdBgFXT3moUx6BTEOWOneoFcLhpCyB6feT6TFnPktWcpYQ+ajoVkQPOp2rCoOLSRRYnxVp
+	60YPomCIIgLFEMnVHKOKSH285EV2KPBP3HDUMcnVVo1+/8QB1nOA58TePWvE7iR9SOBcHYNk11U4b
+	oKBpzjODIOmoDgARdkMZCSsrJTWyD/E0S7Qd3rHopg1D6LR0xi12Obzw+aCJsaYwS60olmKEtkVGI
+	GlgMrWm0GvtN5R1egFabLrBWwWOZvqlYkLSGj4Y58+uC9+YShKsbtLpTVbQ4uwV/TTp+DPJP6Mbqi
+	4d0pEGKFbQOwd0vaKJug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAY3H-005ouZ-0g; Wed, 28 Dec 2022 15:09:07 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1pAY5z-005qFc-Db; Wed, 28 Dec 2022 15:11:55 +0000
+Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAY3D-005os0-Ub
-	for linux-amlogic@lists.infradead.org; Wed, 28 Dec 2022 15:09:05 +0000
-Received: by mail-lf1-x132.google.com with SMTP id f34so23953385lfv.10
-        for <linux-amlogic@lists.infradead.org>; Wed, 28 Dec 2022 07:09:01 -0800 (PST)
+	id 1pAY5w-005qCB-C9
+	for linux-amlogic@lists.infradead.org; Wed, 28 Dec 2022 15:11:53 +0000
+Received: by mail-lj1-x22e.google.com with SMTP id v23so6643192ljj.9
+        for <linux-amlogic@lists.infradead.org>; Wed, 28 Dec 2022 07:11:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gmtzdmo2KThie2rygVM6gP58Xp8wt3BXaHi7Yl4AiAo=;
-        b=aIEQthuYYFP2u5JfqSwCIwrX6pmtwHj4uKu/TPmyjwKjHetmAFuw1XODvI1ksigK6G
-         lz4x4V1+LYWrS69Y7O4l7UAptRwq8w54nAbS3h4FHQU60AdvnHf5zIHeMwDi2Hl8tzIY
-         8BD6fwiT1k3PCDLPgDc0TTRJsFUy9jE9qZ3KsBOaY0BuqnIvtYZar456VJkxwhR14T9C
-         r+QfzJY/nYQ1YPRC/chI+6lsVhqlvOY+unQY3iiY/CDbz/PJ32LxMjdPrpKdpcpcqeEJ
-         /gVcMA3swWTHHi8wD7MCjpw2nnZVBNrwNGQkM3unZSatZm2JCRD6kGqJVggh70z6FKUC
-         mqKA==
+        bh=ubYwZeaZS68YtABRDEYXGkCnGRePf9F31/jYHcMocpw=;
+        b=L4DA9N9QVywBhf5U3AMOC+UzziT2R6n3W9DLQ8MzZPa7EEEG4W4ir3fgTeVvOLmfN6
+         85/nu/j4zvTff3gFFKCYOaRDBmEN64lg4Z74ngBhxMMy7jKP8ZVRIZlJw0hRLPhvjO0G
+         VwLuZZs0SkODzHTzRRjeWW2BBDXYlnXWzoNC2tL8gjrkMRbytiQdk0A+QKXwj2FQEDFS
+         qrW6x5NhOYfl/OCRccROhrzV67paQqzS9xl7AUTQcYiVf2gsREkxogZE+oetRig8suGr
+         Eq3ZOemLNjjDXVkXtZ9kBmI+XDCVoA7p9oo2BVafT81FJten/eEo11S7fhL0dMGJwGwL
+         vfOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gmtzdmo2KThie2rygVM6gP58Xp8wt3BXaHi7Yl4AiAo=;
-        b=GAZO6tyL0BsgMnbVfMJqbVVc8WNPvaXu94nn6lqpHKKyt5f8W74GarkEkPcgKI9dUn
-         epz5xkHVz1UgzQIMg8SIVGe6jozGjlD0PR5lPQ0lwDNRuWaUAP3bjCrjUcTx10woCBbv
-         lq53VWq38pS0S0mCX1YL+uniSiYHvbnhg25cWiIMAnkRiew/z0JN91n/2YSx4CLo0sTJ
-         pFc//Q3bGL3wg5AHuj5KrByBgeR8vizrq2zBlZjaG/wM9vrlFnZtFDMqltSS/LTIgB3b
-         ded9nUSsqgVv2SqzA6WERe3lapc0vvlCeQ6kz6RxUitZk4wMPsHPjxkp3L2LglFO/xMN
-         418g==
-X-Gm-Message-State: AFqh2kq+Yg/9pU56dwCYbmaM3dOyqI2XEUaW8g2BlqeJ1ZR0tD9HmBxZ
-	jdxQX6u1wiRpERTf5yXjgUc2TA==
-X-Google-Smtp-Source: AMrXdXtpRI5PKCqyRot0pgpuz1wAaTYR67+7gZgy3rUY+4sjGmfy+SH5CBZzaltjcR2FFjL39uNMfw==
-X-Received: by 2002:a05:6512:2008:b0:4b6:ed8b:4f17 with SMTP id a8-20020a056512200800b004b6ed8b4f17mr6598667lfb.51.1672240140575;
-        Wed, 28 Dec 2022 07:09:00 -0800 (PST)
+        bh=ubYwZeaZS68YtABRDEYXGkCnGRePf9F31/jYHcMocpw=;
+        b=3Tjsss0CiDX23gBQovUxubX4rtSRVvP48WA4CtwzFsUIMjG+5L+bAPw7B6W7yZRv2t
+         mfU78UbIOEK6MLsgia+8qQf3dl8mPke17FdZGGxpB0KIFpR4ejQ2/F3YCszXGBBGTH7a
+         LX08qTzBcRlVKpZSnc3h1+vL5G6Qq0IgEcLou+EnpJBYkhj6mX0dttVGt2UZ/R1y/bTK
+         mL9u3TMCvkZrBfqfMzhyWM9y0V77+o9Ra0QPR0J5CTtiD2Ul0nzA0JYLx2QChbalQ9yf
+         tf9M17Ig5n7+wEM5FTA9RFqt3opX9YBQh/2SIY6W43fCBuwzk7fKn5SsvFUsxz2vxYKE
+         EpfA==
+X-Gm-Message-State: AFqh2kprFA7x9RnpS4HI5+ZxDQw4aSFyPrhAgfeknVkjUibjTk1y9HpW
+	+2d56Um1k/7cZRqSe5d/03eBlg==
+X-Google-Smtp-Source: AMrXdXvIcY/heKHIPnpMU96K2aJammSqLAViET3DK30IyVf7ZggpP+EjutDQlr2EUBzwxhyhYVPm4g==
+X-Received: by 2002:a2e:99cd:0:b0:27f:ac85:2b6a with SMTP id l13-20020a2e99cd000000b0027fac852b6amr5512348ljj.1.1672240308530;
+        Wed, 28 Dec 2022 07:11:48 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p9-20020ac24ec9000000b004caffc90c29sm232333lfr.55.2022.12.28.07.08.59
+        by smtp.gmail.com with ESMTPSA id i14-20020a2ea36e000000b0026fc822c264sm1973119ljn.87.2022.12.28.07.11.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 07:09:00 -0800 (PST)
-Message-ID: <c5b0e7e3-7e74-308f-a64b-f472acd670eb@linaro.org>
-Date: Wed, 28 Dec 2022 16:08:59 +0100
+        Wed, 28 Dec 2022 07:11:47 -0800 (PST)
+Message-ID: <f42a5b1e-922b-22d2-2f95-cac0be47d6b2@linaro.org>
+Date: Wed, 28 Dec 2022 16:11:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 02/11] ARM: dts: amlogic: Used onboard usb hub reset to
- enable usb hub
+Subject: Re: [PATCH v1 07/11] vendor-prefixes: Add VIA Labs, Inc.
 Content-Language: en-US
 To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-3-linux.amoon@gmail.com>
+ <20221228100321.15949-8-linux.amoon@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221228100321.15949-3-linux.amoon@gmail.com>
+In-Reply-To: <20221228100321.15949-8-linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221228_070904_033996_09BE2DCA 
-X-CRM114-Status: GOOD (  15.15  )
+X-CRM114-CacheID: sfid-20221228_071152_524875_A62D3BF8 
+X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,49 +96,12 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 28/12/2022 11:03, Anand Moon wrote:
-> On Odroid c1 previously use gpio-hog to reset the usb hub,
-> switch to used on board usb hub reset to enable the usb hub
-> and enable power to usb hub.
-> 
-> Add usb hub regulator as per the schematic.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  arch/arm/boot/dts/meson8b-odroidc1.dts | 40 +++++++++++++++++---------
->  1 file changed, 27 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> index 04356bc639fa..3b29169aac43 100644
-> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> @@ -185,6 +185,33 @@ vdd_rtc: regulator-vdd-rtc {
->  
->  		vin-supply = <&vcc_3v3>;
->  	};
-> +
-> +	usb_otg_pwr: regulator-usb-pwrs {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "USB_OTG_PWR";
-> +
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +
-> +		/* signal name from schematics: PWREN */
-> +		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		vin-supply = <&p5v0>;
-> +	};
-> +
-> +	usb {
-> +		dr_mode = "host";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		hub@1 {
-> +			/* Genesys Logic GL852G-OHG usb hub */
-> +			compatible = "genesys,usb5e3,610";
+> Add the vendor prefix for VIA Labs, Inc. (VLI) is a leading supplier
 
-Wrong compatible. Does not match pattern in usb-device.yaml.
+Drop marketing, so without "leading".
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
