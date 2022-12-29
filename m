@@ -4,73 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71EEC3DA7A
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Jan 2023 20:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A66ECC3DA7A
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Jan 2023 20:37:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Date:Message-Id:Subject:Mime-Version
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5vMBA4WbyDfwzMYYHxfFrjVBetcwnOWxDU5uCTtBOhY=; b=qU4acK4QWn3fxy
-	0St+NSI4MZQt8ZLfEMAp+FfZL3tFAB18Qr2/dSFJ5qf8E74kFn5atH0GlEWv3EdDGcDOvTfGP9LcI
-	AVrLr7BmyhOzpkaEgfY5OJwIJUQJnjr6HRaN8IVvcfaFDFZsb7cSxPJdv559/H/FswXMEt7EsgD+Z
-	VxxZmolxyB9UxtQOQqXIQNe776qCIC455VOR6+44APoXVsX8SJ+xQWfDk8QjAigRqe2zyyGnyj3NI
-	/TPzjcEVnxFTPSeKbg322x+rErMveWGR79OZb8v5Lp5lYPGAAyEY18qFE/Pt/exSH09jNLNI0PgmD
-	yTC+n0CF7wErdEAAJerQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Uf26ydCJcKtjAY1arCo3//grnZ83CAXIZqQIRThnK7U=; b=kheYkkwvq/QQ/m
+	UO4JKheNQfUUoO7raRey1w/KrHYft8DjEpmWeAxVrBIyn4Qm/FbBdG1Ssj7rsKdcvey+YxJ06zpuX
+	Qd/7WhjYIPof3nmZdzyO2KCbZzNdh6WiSfnxRjD9iPJfc1UcOWdc3C8TEpQwK0KJjEYpuyNzBdPPa
+	b967zkJRl9igbYEV5GhsqAHeCuEUthp8SY1nSfldhlwjjEiMJddUDk3y9Rd7YWQyZWmQT1DqSKa7v
+	aCsbb6KjfO16WUJd5d4UjlPzoUiHHqgcqkV/ADJVc+Qn1xR2iEIUnCbBBe7BWddLhLBeTvPKVUOxf
+	8nnTVsgMQRKErp1z9JMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDWzO-00EdAn-89; Thu, 05 Jan 2023 20:37:26 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1pDWzP-00EdBI-4P; Thu, 05 Jan 2023 20:37:27 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3b4e-006wKP-Fb
-	for linux-amlogic@lists.infradead.org; Fri, 09 Dec 2022 10:57:49 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id m14so4807234wrh.7
-        for <linux-amlogic@lists.infradead.org>; Fri, 09 Dec 2022 02:57:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:date:message-id:subject:mime-version:content-transfer-encoding
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Xnhtnmg7jy2vioId7lE2F/yN+DAnsbwHsMyglO9wxM=;
-        b=GJT51gq62lDju11G743mbN3vnF7hgzvIHO5evgojxDdrjSqjP/AO6huyn8mm+49xgA
-         Gu1mi+ZDRrNlSspotbVXhwfOnoQ1WUurUnHhf7AQsockxFaWihSIkJRN2yWT+vWTZIQe
-         vMYm7lneioQ+fG4LqI2dFjKcr65uUr1LyscHJ2Xua+jtkq4cmE6WrbZh6aQIDy0L9Wzw
-         b/G9IP9jI+2TobPCcnJesNxdULA2eT0d6MlOaoox6SztptMYrK0mV/0Om06seBRIbiPW
-         Pf+WbA0y4zueO0DxwPsCOw0bkc7ggbn+faQC1qptCePhDOt/oVyrWo0TDdVwenC4CvLZ
-         mikA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:date:message-id:subject:mime-version:content-transfer-encoding
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Xnhtnmg7jy2vioId7lE2F/yN+DAnsbwHsMyglO9wxM=;
-        b=UNeWYE2LJYYoDtYF2Oj4ChMzUh6NEcSUMhXGo0Fxgj+8ZJmyed2GyHbR2xtiLbCa3p
-         QA3MiytivcX3//lUv4L4UxU+vo3Plq91oxbiczbGL9O1q4UxF5pC102RfU85WvUI5BNj
-         4+YwEXhPtuTfIkPIv6v/HhU3ntn4PHZBv+tMXpL2DTl9qoZ+sE5nOJf381BzJ6iD002w
-         POpVdJjaQMa2cA6Jf2rw/nm3SbxuYPC8kER0pgYk0vLXjTwKwwJwaeE1VvUd6oaSXayZ
-         5By/BiisFinXtZkXx777mmbs4O4v/OAUGDQmCArptqBea/UbieMR9lNVypvgCb0QNxZl
-         iIDA==
-X-Gm-Message-State: ANoB5plgjwndAdK55uKOivUegbIdwyA6f5sfgv++Dbcka6Uuz129QfXz
-	PFj9/W5s6USGqh9zIuZK8bzsFbZuJxJpKrfK
-X-Google-Smtp-Source: AA0mqf6BcyV6yZetirViW+kTPlfCFT0g8buZS0Y0lk/t750w5BBok5p7hgZSeAuIRSaD/UjaXC4QwA==
-X-Received: by 2002:a5d:5187:0:b0:242:9e8:84b6 with SMTP id k7-20020a5d5187000000b0024209e884b6mr3280416wrv.13.1670583463261;
-        Fri, 09 Dec 2022 02:57:43 -0800 (PST)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id bt4-20020a056000080400b002365cd93d05sm1085118wrb.102.2022.12.09.02.57.41
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Dec 2022 02:57:42 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: RE: VIM1's wifi doesn't work after update to Linux 6.1
-Message-Id: <33E05D5D-E8C8-4493-B269-E3020D98740C@gmail.com>
-Date: Fri, 9 Dec 2022 14:57:40 +0400
-To: linux-amlogic <linux-amlogic@lists.infradead.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Zhang Ning <zhangn1985@outlook.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
+	id 1pAwdc-000IkB-6k; Thu, 29 Dec 2022 17:24:20 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id A432FB81A1D;
+	Thu, 29 Dec 2022 17:24:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D196C433EF;
+	Thu, 29 Dec 2022 17:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1672334654;
+	bh=m9HPREp2BBaXTvbpQHx2WQprM9b37LXlFfRjZD2pPbc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=qt7/hxQDBIvlE+UOhExIE+gpA1yr2Ytl6cD8uXTtl6jgmBiTsoa9S2hzoepP7nwKs
+	 hhpc3+xHFhXVHpJMCUop4bill7ozLgMzwQO9LA8YMAFtxiODZoV/t6jq0Emw7Vrcpc
+	 e3wDGuhBEwoBzI4P7WQzE+OVPLDTQ1V36xIiwX6Tdlhhavqpe87KM/WVAf3FA/niGn
+	 Ujoi3sHXiSMn5Y2NVbd6ytWoXoohJM3TaDA3JajgPrNoErUXxWekYOsYNjAIXlTMEQ
+	 vMYOqfDifnyfUtz3zYMqXx6dcSELIGyAql3swkh8gUSPi1+mCzcYJTnQt6naxTJBRV
+	 xmQpIqRdURmSg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	pierre.gondois@arm.com
+Cc: linux-realtek-soc@lists.infradead.org,
+	alim.akhtar@samsung.com,
+	clin@suse.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	tmaimon77@gmail.com,
+	chris.obbard@collabora.com,
+	ming.qian@nxp.com,
+	william.zhang@broadcom.com,
+	linux-arm-kernel@lists.infradead.org,
+	Markus.Niebel@ew.tq-group.com,
+	m.felsch@pengutronix.de,
+	jszhang@kernel.org,
+	viorel.suman@nxp.com,
+	liviu.dudau@arm.com,
+	openbmc@lists.ozlabs.org,
+	agross@kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	xiaoning.wang@nxp.com,
+	mbrugger@suse.com,
+	hayashi.kunihiko@socionext.com,
+	aswani.reddy@samsung.com,
+	linux-arm-msm@vger.kernel.org,
+	s32@nxp.com,
+	mhiramat@kernel.org,
+	marex@denx.de,
+	Steen.Hegelund@microchip.com,
+	anand.gore@broadcom.com,
+	thomas.lendacky@amd.com,
+	pshete@nvidia.com,
+	benjaminfair@google.com,
+	diogo.ivo@tecnico.ulisboa.pt,
+	jbx6244@gmail.com,
+	heiko@sntech.de,
+	tharvey@gateworks.com,
+	vigneshr@ti.com,
+	linux-rpi-kernel@lists.infradead.org,
+	afaerber@suse.de,
+	jun.li@nxp.com,
+	victor.liu@nxp.com,
+	linux-mediatek@lists.infradead.org,
+	mperttunen@nvidia.com,
+	peng.fan@nxp.com,
+	abelvesa@kernel.org,
+	chris.packham@alliedtelesis.co.nz,
+	lpieralisi@kernel.org,
+	laurent.pinchart@ideasonboard.com,
+	ezequiel@vanguardiasur.com.ar,
+	rafal@milecki.pl,
+	jonathanh@nvidia.com,
+	konrad.dybcio@somainline.org,
+	UNGLinuxDriver@microchip.com,
+	martin.blumenstingl@googlemail.com,
+	linux-rockchip@lists.infradead.org,
+	kernel@pengutronix.de,
+	qiangqing.zhang@nxp.com,
+	amhetre@nvidia.com,
+	linux-tegra@vger.kernel.org,
+	andrew@lunn.ch,
+	kristo@kernel.org,
+	nm@ti.com,
+	spujar@nvidia.com,
+	leoyang.li@nxp.com,
+	vadym.kochan@plvision.eu,
+	daniel.machon@microchip.com,
+	paul.elder@ideasonboard.com,
+	khilman@baylibre.com,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	linux-samsung-soc@vger.kernel.org,
+	robh+dt@kernel.org,
+	alexander.stein@ew.tq-group.com,
+	festevam@gmail.com,
+	brijeshkumar.singh@amd.com,
+	oliver.graute@kococonnector.com,
+	martink@posteo.de,
+	shenwei.wang@nxp.com,
+	f.fainelli@gmail.com,
+	sumitg@nvidia.com,
+	devicetree@vger.kernel.org,
+	eagle.zhou@nxp.com,
+	sebastian.hesselbarth@gmail.com,
+	atenart@kernel.org,
+	l.stach@pengutronix.de,
+	xuwei5@hisilicon.com,
+	tsahee@annapurnalabs.com,
+	ping.bai@nxp.com,
+	shawnguo@kernel.org,
+	linux-amlogic@lists.infradead.org,
+	jbrunet@baylibre.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	neil.armstrong@linaro.org,
+	suravee.suthikulpanit@amd.com,
+	thierry.reding@gmail.com,
+	rjui@broadcom.com,
+	lars.povlsen@microchip.com,
+	magnus.damm@gmail.com,
+	geert+renesas@glider.be,
+	wei.fang@nxp.com,
+	linux-imx@nxp.com,
+	gregory.clement@bootlin.com,
+	yuenn@google.com,
+	vidyas@nvidia.com,
+	chanho.min@lge.com,
+	david@ixit.cz,
+	aford173@gmail.com,
+	s.prashar@samsung.com,
+	khuong@os.amperecomputing.com,
+	sudeep.holla@arm.com,
+	sbranden@broadcom.com,
+	shijie.qin@nxp.com,
+	venture@google.com,
+	kursad.oney@broadcom.com,
+	linux-renesas-soc@vger.kernel.org,
+	hongxing.zhu@nxp.com,
+	akhilrajeev@nvidia.com
+Subject: Re: (subset) [PATCH v2 16/23] arm64: dts: Update cache properties for qcom
+Date: Thu, 29 Dec 2022 11:23:41 -0600
+Message-Id: <167233461757.1099840.14261373049741719746.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221107155825.1644604-17-pierre.gondois@arm.com>
+References: <20221107155825.1644604-1-pierre.gondois@arm.com> <20221107155825.1644604-17-pierre.gondois@arm.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221209_025748_544672_9DEE85DE 
-X-CRM114-Status: UNSURE (   9.08  )
+X-CRM114-CacheID: sfid-20221229_092419_190335_5B88A323 
+X-CRM114-Status: UNSURE (   9.84  )
 X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Thu, 05 Jan 2023 09:50:53 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -84,42 +182,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-W3NuaXBdCgpIZWxsbyBaaGFuZywKCknigJl2ZSB0ZXN0LWJvb3RlZCBhIFZJTTEgdXNpbmcgbXkg
-Y3VycmVudCBhbWxvZ2ljLTYuMS55IGJyYW5jaCAoYmFzZWQgb24gcmM4KSBhbmQgSSBkb27igJl0
-IHNlZSBhbiBpc3N1ZSB3aXRoIFdpRmk6CgpodHRwOi8vaXguaW8vNGk3TQoKSGVyZeKAmXMgdGhl
-IGtlcm5lbCBzb3VyY2UgYW5kIGRlZmNvbmZpZzoKCmh0dHBzOi8vZ2l0aHViLmNvbS9jaGV3aXR0
-L2xpbnV4L2NvbW1pdHMvYW1sb2dpYy02LjEueQpodHRwczovL2dpdGh1Yi5jb20vY2hld2l0dC9M
-aWJyZUVMRUMudHYvYmxvYi9hbWxvZ2ljL3Byb2plY3RzL0FtbG9naWMvbGludXgvbGludXguYWFy
-Y2g2NC5jb25mCgpJbiB0aGUgTEUgaW1hZ2UgSSBoYXZlIHdsYW4wIGFuZCBjb25ubWFuIGlzIGxp
-c3Rpbmcgc2VydmljZXM6CgpWSU0xOn4gIyBpZmNvbmZpZwpldGgwICAgICAgTGluayBlbmNhcDpF
-dGhlcm5ldCAgSFdhZGRyIDE2OkE3Ojc5OjkzOkJFOkVCICAKICAgICAgICAgaW5ldCBhZGRyOjE5
-Mi4xNjguMjAuMTIgIEJjYXN0OjE5Mi4xNjguMjAuMjU1ICBNYXNrOjI1NS4yNTUuMjU1LjAKICAg
-ICAgICAgVVAgQlJPQURDQVNUIFJVTk5JTkcgTVVMVElDQVNUICBNVFU6MTUwMCAgTWV0cmljOjEK
-ICAgICAgICAgUlggcGFja2V0czoxMDM2IGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowIGZy
-YW1lOjAKICAgICAgICAgVFggcGFja2V0czozMDggZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5z
-OjAgY2FycmllcjowCiAgICAgICAgIGNvbGxpc2lvbnM6MCB0eHF1ZXVlbGVuOjEwMDAgCiAgICAg
-ICAgIFJYIGJ5dGVzOjI1MjQ3MyAoMjQ2LjUgS2lCKSAgVFggYnl0ZXM6MTM0MTg5ICgxMzEuMCBL
-aUIpCiAgICAgICAgIEludGVycnVwdDozMiAKLi4uCgp3bGFuMCAgICAgTGluayBlbmNhcDpFdGhl
-cm5ldCAgSFdhZGRyIENDOkI4OkE4OkI1OjlGOjg2ICAKICAgICAgICAgVVAgQlJPQURDQVNUIE1V
-TFRJQ0FTVCAgTVRVOjE1MDAgIE1ldHJpYzoxCiAgICAgICAgIFJYIHBhY2tldHM6MCBlcnJvcnM6
-MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBmcmFtZTowCiAgICAgICAgIFRYIHBhY2tldHM6MCBlcnJv
-cnM6MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBjYXJyaWVyOjAKICAgICAgICAgY29sbGlzaW9uczow
-IHR4cXVldWVsZW46MTAwMCAKICAgICAgICAgUlggYnl0ZXM6MCAoMC4wIEIpICBUWCBieXRlczow
-ICgwLjAgQikKClZJTTE6fiAjIGNvbm5tYW5jdGwgc2VydmljZXMKKkFPIFdpcmVkICAgICAgICAg
-ICAgICAgIGV0aGVybmV0XzE2YTc3OTkzYmVlYl9jYWJsZQoqQSAgQ0lSQ09MT0NPICAgICAgICAg
-ICAgd2lmaV9jY2I4YThiNTlmODZfNDM0OTUyNDM0ZjRjNGY0MzRmX21hbmFnZWRfcHNrCgpJ4oCZ
-dmUgcHVzaGVkIGFuIHVwZGF0ZWQgVklNMSBpbWFnZSB3aXRoIHRoYXQga2VybmVsIGhlcmU6Cgpo
-dHRwczovL2NoZXdpdHQubGlicmVlbGVjLnR2L3Rlc3RpbmcvTGlicmVFTEVDLUFNTEdYLmFybS0x
-MC44NS4wLWtoYWRhcy12aW0uaW1nLmd6CgpUaGVyZSBhcmUgYSBjb3VwbGUgb2YgcGF0Y2hlcyB0
-aGF0IHR3ZWFrIFNESU8gc3BlZWRzIGluIG15IHRyZWUsIGJ1dCBub25lIG9mIHRoZW0gYXJlIG5l
-dy4KCkFzIGl0IGxvb2tzIGxpa2UgeW91IGhhdmUgc29tZSBvZiBteSBwYXRjaGVzIGFscmVhZHk7
-IHBlcmhhcHMgYmlzZWN0IG15IGZ1bGwgcGF0Y2hzZXQgYWdhaW5zdCBkZWZhdWx0IDYuMS1yYzgg
-dG8gc2VlIGlmIHRoZXJl4oCZcyBhIOKAmGZpeGluZ+KAmSBjaGFuZ2U/CgpDaHJpc3RpYW4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Mon, 7 Nov 2022 16:57:09 +0100, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> The 'cache-unified' property should be present if one of the
+> properties for unified cache is present ('cache-size', ...).
+> 
+> Update the Device Trees accordingly.
+> 
+> [...]
+
+Applied, thanks!
+
+[16/23] arm64: dts: Update cache properties for qcom
+        commit: 9435294c6517dc70bb608505b79097a58ea7c6a3
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
