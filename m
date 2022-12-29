@@ -4,66 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07182C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Dec 2022 17:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC866C4708E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Dec 2022 12:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3SaoqvsDNRQCHa0t0T48nDvw4JzFhKcuSiOW1mp16N8=; b=gJx186mOFd62Bb
-	Pg5Q2x8crJZPe4eP1799xxpe5dBlGTSq8wKB2fMB5Y5p6MWGZQ+4P/GUkGnbM4MVvhhjDC8n1FoW1
-	IXEY1CDC1hoYc2XsS7NPRO/i50n8CTfNRngFDE3jhaE1YmqRuoHIf/3Y+YNge3AzzMVD9QyXJTQh3
-	tK3IwFLIoaT3Tiz+yGKpHGXvQSAVmS7x6/Q4D2LeQ+7kBFdVVVZaSEuS0EtOSAc/MvgiulBEKhVTo
-	yreV9NUqyQ9c/hNIkM4YX6C4NqTklbCCy+rGEqOVIi6yC/J5ynT/LNmxl5d8NCX5Tk7ycohPoFSa3
-	c+L/4HrKykmj8JGKRONQ==;
+	List-Owner; bh=DAvkbnP85QkErsKXxEx14gDABzfP/4cIosfGN2O7aWM=; b=J4cUo9VOlbLces
+	rxGBdRMqwwDEYcMjY5h/yPEOEfRLRrmVe6N8CazbJt1XSvP/YDs9ayDsbeSBTNRAKnSmAGINHBxZ/
+	nhMxCA+xiLjtpzBH8ZbmF7zOCpDzx3VHeXcZ01mvamyxkcs20n8yRhZtgrl2ntQIf88lbu/TKzPzu
+	4zRzR3Eddtrsq3NKiDGVAeNrwaAHyuId+dowpQqjdyV9av7tuuWM9v0Hui7IyrTYC1k+zV5jEUXjs
+	GnICTlkY/ZpsRu+hAjDK3V1qYNS+h4JWRs6kOPQp4nj4EHmIGnQd+UvJasbRSLNrzNOFn0hR77FSG
+	PaMZzW7FD7Z2fadKtG6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAa3J-006lCu-Iq; Wed, 28 Dec 2022 17:17:17 +0000
-Received: from mail-il1-f174.google.com ([209.85.166.174])
+	id 1pAsJz-00Fls6-V6; Thu, 29 Dec 2022 12:47:44 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAa2s-006kus-Iv
-	for linux-amlogic@lists.infradead.org; Wed, 28 Dec 2022 17:16:52 +0000
-Received: by mail-il1-f174.google.com with SMTP id u8so8437691ilq.13
-        for <linux-amlogic@lists.infradead.org>; Wed, 28 Dec 2022 09:16:46 -0800 (PST)
+	id 1pAsJW-00FlZL-AE
+	for linux-amlogic@lists.infradead.org; Thu, 29 Dec 2022 12:47:16 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id s22so19283764ljp.5
+        for <linux-amlogic@lists.infradead.org>; Thu, 29 Dec 2022 04:47:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rwlHQh/HrIzNcutcWsMZeEMw0aP4F5M3XhGtMBD6WXM=;
+        b=pAqZmGU4P85yvDEF63iAQS+tfhpveUvau9apwt4AMUIum53eci+ip3O+KP1vYexcHy
+         mJcA1BiaLWRgbnmWoLQx6B4qF8rNcqOMoy/VMC+0SLVocbT7b/2Lwnsd5CxCOHEgtCcK
+         rCCT57Pfl5ec/7feP3UZx5AjV4/pCozbBQrb9AHeZowZC4bB2aUKxOl0N7rgq95mfVr6
+         bG8nEWFPfn7UHFKbLvTJG1PG4wsb2ulqAXiWfMqrFeNO8l3Vp+FdTlDBCQeLHDItinYq
+         esww68BbuNKzXodV6kUgYKlIcxc7VUxDlbMg/7vQ7syaL1b4aq0Ak49Jw7/9yXJodDKY
+         TnQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GtsNziqtosk5fGA4iQynew9CXVas2xeRqJXm3p7E/xg=;
-        b=AHlm0EiItryeDT1MCkHICaXx4H1oUqwdONacuILxthNY47NrjyJWk2w3PMuzhYCbiL
-         hKGrxslaRyTVZ3RpW+loiwm6gcdIo4FtF5JmZVyuckLc3hp8aW/I4N3UdpYYdoyFzEXf
-         H4tLk7OQagUcOaB78kNN8jiwRzUMj4elsCXaKEAvBgvLy2fHT0tnAJiPU/G6Onv+ZGLP
-         v5IWiRi1rNIVuJT+hey3f/mV+/r9d1NiyWjHeNDK4ub26q87zISWsxPdUyoeh/GR1qgM
-         RzyCrYtY0NzFXddKFxqourGxOIWMTwwQBlAgEFzgaSR+aoh4NtoaNqqISkxG1kHn7wsX
-         Sb4w==
-X-Gm-Message-State: AFqh2krV3CSc2KiL9sCJh0YpV9iMx0rjkTHi2XcRB8p1t5UOAlKjcLba
-	l1xwR6/SNtfl62TfqTm+Bw==
-X-Google-Smtp-Source: AMrXdXvqv/LDMIFwAHIsqBV/YKVKwU0ASsP/hpfrlmxnnqj/Tb1UjRUMXdmHtr2gPuHf0d0UPxuEhQ==
-X-Received: by 2002:a05:6e02:218d:b0:30c:2266:cfca with SMTP id j13-20020a056e02218d00b0030c2266cfcamr1939780ila.9.1672247805656;
-        Wed, 28 Dec 2022 09:16:45 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f27-20020a056638329b00b003758bcba4b5sm5184514jav.153.2022.12.28.09.16.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 09:16:45 -0800 (PST)
-Received: (nullmailer pid 1928458 invoked by uid 1000);
-	Wed, 28 Dec 2022 17:16:44 -0000
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rwlHQh/HrIzNcutcWsMZeEMw0aP4F5M3XhGtMBD6WXM=;
+        b=dqv82kN/NgDQWA4MTjJIDfGxwBumTxeHBuXlOBpjlZEAzTnrbJv+toNCgOaD28GiT8
+         37ujk5aHINA2MlcAhBdxKQ5YWyb9eq3CpztFlkZK72K16Je50KvxcaNTSoyNezAmfYvh
+         So0PS0PGRCJ1mXkjC3fCtl5vpLE5I5e+MkmM+9g6O7uVfApNN/C8E8fhvN4ykxHiTAwM
+         B11PuLz9OBHa/thbskHGmJ9XjeJcr+4pNqj1x0w8/kBBY1lUNLTpBmvHBfypJCaBzY3B
+         U0kRKsoKmAoWQ75FquCRqaV3K4+fd3nMROvYcMyHxW4CUrjWHBqekuv+FzBHuql4SBye
+         2LEw==
+X-Gm-Message-State: AFqh2krKfVxjx1sPpHgxFExx9xWkBXmM/XW/MbYod+1OCo0RktslOFfu
+	wIn0RMe0az4G83XKDbj4X7WUfA==
+X-Google-Smtp-Source: AMrXdXudCbA5TUDJ9hNmgsbZrXxH4udzwLP/bRirbMXWHixMbxhSfP9j7YQEq7ObViYmABuCHTPgqA==
+X-Received: by 2002:a2e:3c09:0:b0:27a:189f:5716 with SMTP id j9-20020a2e3c09000000b0027a189f5716mr7402647lja.14.1672318028996;
+        Thu, 29 Dec 2022 04:47:08 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y26-20020a2e95da000000b0027fcbcc3bedsm792616ljh.51.2022.12.29.04.47.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 04:47:08 -0800 (PST)
+Message-ID: <7b04573f-8f54-8e38-83ab-f5865da81b88@linaro.org>
+Date: Thu, 29 Dec 2022 13:47:05 +0100
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org
-In-Reply-To: <20221228100321.15949-9-linux.amoon@gmail.com>
-References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-9-linux.amoon@gmail.com>
-Message-Id: <167224753802.1921489.221143833426610237.robh@kernel.org>
-Subject: Re: [PATCH v1 08/11] dt-bindings: usb: Add binding for Via lab
- VL817Q7 hub controller
-Date: Wed, 28 Dec 2022 11:16:44 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 16/23] arm64: dts: Update cache properties for qcom
+Content-Language: en-US
+To: Pierre Gondois <pierre.gondois@arm.com>, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+ Antoine Tenart <atenart@kernel.org>,
+ Brijesh Singh <brijeshkumar.singh@amd.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Khuong Dinh <khuong@os.amperecomputing.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Chester Lin <clin@suse.com>, =?UTF-8?Q?Andreas_F=c3=a4rber?=
+ <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Wei Xu <xuwei5@hisilicon.com>,
+ Chanho Min <chanho.min@lge.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-realtek-soc@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-17-pierre.gondois@arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221107155825.1644604-17-pierre.gondois@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221228_091650_696428_AD529730 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20221229_044714_495238_9511E113 
+X-CRM114-Status: GOOD (  10.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,54 +140,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Wed, 28 Dec 2022 10:03:17 +0000, Anand Moon wrote:
-> The VIA Lab VL817-Q7 is a USB 3.1 Gen 1 4-Port hub controller that
-> features 4 downstream ports, an internal 5V regulator and has
-> external reset pin.
+On 07/11/2022 16:57, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> The 'cache-unified' property should be present if one of the
+> properties for unified cache is present ('cache-size', ...).
 > 
-> Add a device tree binding for its USB protocol part.
-> The internal LDO is not covered by this and can just be modelled
-> as a fixed regulator.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  .../bindings/usb/vialab,vl817q7.yaml          | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml
-> 
+> Update the Device Trees accordingly.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Any progress on this? Pierre, are you going to resend to target specific
+maintainers or SoC?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml: '$id' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-Error: Documentation/devicetree/bindings/usb/vialab,vl817q7.example.dts:26.17-18 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/usb/vialab,vl817q7.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1508: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221228100321.15949-9-linux.amoon@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
 _______________________________________________
