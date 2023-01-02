@@ -4,82 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59637C46467
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 09:54:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E36CDC3DA7A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 09:59:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=I07dG9QvsYoccPYLMWjOMIXmqBrdCGHOXoNlld71Cdc=; b=IJUAP1SM8lyltPOVnSxnE44suw
-	RXesS2JlwA33r1HuBmw/aD2l9wK0rcwGw88FOuXogm8RDaBDT/wD/XQ2Q3OYjEhYl2Gs34xTNCLQX
-	fAzzAItgZyC0EvXq6WX7ZTNeM0Fv3cfkoI8eBX94DS/bwUTc5n240OzdeK8BN5j4iigpMzhUfc9SU
-	B0n/OgHJ43B8KOcilsF1QBYF1qOZqzcdf6qKwVLWfBOADSNlWXxe4iFNLkxV1XveceJNW7k2y/yag
-	n4ZxBWdh5uEEbel+q1Tnk4siql33UWH5MqETSo8Ne4hIMMGbV/ZwJpPtpbDcrxoZvKjcDv3rLWghv
-	bcZ3P/vA==;
+	bh=IHU9KjvI3AYJ9wQS288eu7ffk2QvfFi9lorlaVlZaj8=; b=u45q6nKCAWxKcpcYrTFaEFQ/6Y
+	ALGlO2FJT2HqxghHyOx320jT7hGuhqR5iQbgBkpuekrBBD18RWlwPUTnMNPGQbLXC3UmNcWvZSlhJ
+	EqM+Aehcc+g+SXI1rigkArB4g/naToLvdA6FJDjMw/luSA0LeVVxFpBYqF3pbjolzYYqp5yaPKktr
+	glci6pf0cU3Ssb/2eJuPqk7RFyYgXqmBn6XFSPZTCOh1X85PjwPHW10q1dL+8hWjwVAe5zITvbVD6
+	MMoA9p1Kn709O1MUij7FNHfexhrF6PAKLSoiXQC4IaV28aPXYeUpRB85H1vFSNtMxDRLfHdwAMHR5
+	QoKZtYSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHVx-00A7IK-4S; Mon, 02 Jan 2023 09:53:54 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1pCHb7-00AAS2-9l; Mon, 02 Jan 2023 09:59:13 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHSs-00A533-5f
-	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 09:50:45 +0000
-Received: by mail-wr1-x432.google.com with SMTP id bn26so6413801wrb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 01:50:41 -0800 (PST)
+	id 1pCHW0-00A7Kg-WE
+	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 09:54:03 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id y8so25839212wrl.13
+        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 01:53:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=SVGCJCOgwVXnepdI5F+GDeNjGWyoSNAibXazSusOve8=;
-        b=cYCiEFOkxtQuNftnx+aWiSeGSQB/C3Ynf97/eIUNkHpG/2odU6qH8xEQANpUOAG2OK
-         jYtYwhCm9x+6Ge/nYwoWr3zn9VK/V3w3e9XOnRrOQGJmM0dgnw/fYQQuW+1uXQeKiEhI
-         97Wa6Wg3IDA7O2KnsP27Qgw4rSFmCFIW+9J49Z6yxlegpKo3yIRGCZXwFVwALWh1R6Tt
-         mbjrLbJgGcK0bj5PJgmclefqM/OkgmywOU+8RkegMgLfk84QVg/MO14fg2cJu4Z0B72B
-         PuV3FG0mWixq3ZHxP8XYCsX5G3aHy33vzZOsKYuu83YVeabXT9dXRsuplMZMAA/Hm8Wu
-         p0Sw==
+        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
+        b=uPhtFfxGx1PHn79fSh6g5TqdHIc5I+mE0Euh7ayeA62uFN0W6iPkzaWlzJnjAOukBz
+         YfTAaMZrv/XYHR+FPBk6IC6fQGfKNloz0/DcMXvE0M8iym3aErj+VFJTJplo6xEQhhwj
+         X2VsICQEDqqMAnRfyKKDBEqK53hNPGmvuMyd6J3ywo5JXTln8+F5DrD82ISz2vPvUMhg
+         TZMnew8tvPBwYC180/DivQ/V5vLziCsxisWQqgayu94oVA/34OzPyq0aV5FwYarYoVq3
+         PJi0ddgIO7PJtNkl/0Bgp4nFHVI69CSHNESYzCGn1MRNFLPFHdhX5dSyuGFYN/ezPVH+
+         2ieQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SVGCJCOgwVXnepdI5F+GDeNjGWyoSNAibXazSusOve8=;
-        b=71pHPxiYYIdoMsv5jtJfbflsR4Kp8krHGWbJIOMloWTooX/Jbl+lXAtg7H6qH8srTO
-         UlafriTb5LjlXFRkihf2CVB/ET/z7UXeUZd8wPK2iLyNXbOQ3yJdFuUJ4uZWHtDNBAl8
-         Zy602r8ujOJ1/KU40NXW2SbUK79wK9SYHlBUOFbvsgvobvRggRgrxfJI2M75pDM55LI1
-         1t8E3kddJ2GWuBdBhu3TVXiDjVTYktG8H7ZTte1wwBVyTDCeLqrMn3GteVKFdLNlTNxq
-         HmIARX3OKJxDrbyzt9IsqWrt8CY98zMCGFFXYnsda/XpYC05LB2LpyJSacKmN3eNYIDE
-         /E4w==
-X-Gm-Message-State: AFqh2krl9WZ3yoMMDGSmFJEdRnLUmYjhfJtd661dTqmPNv7mmyuzed/H
-	eZQgCRgszemtl7y64Ft3oGee9Q==
-X-Google-Smtp-Source: AMrXdXv0V7TARizcOXFUXhSwtsqBzc81OLl7ef/oEJkEnnyyloWkkCEcKnkVEXr16yGJgW5U+igz5A==
-X-Received: by 2002:adf:e6d1:0:b0:27c:dcf5:ad52 with SMTP id y17-20020adfe6d1000000b0027cdcf5ad52mr19361604wrm.11.1672653040289;
-        Mon, 02 Jan 2023 01:50:40 -0800 (PST)
+        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
+        b=NNOsHCQczj7I4i8x8ThMgbIz6No8zrO4DYx8LFpQ8pXLNJbK/ysbmAuzgOAINwTdpM
+         BYROD9h3pYA9KGiGtihizjAZVpTNXpSzXxJlrNdyNRFmJ95A0Odi/PAK9BrD56m0Dh5P
+         PyhDUWfa72U/RH6R8cUz8MDPED7bDDJVGF6DTKxtOd4O5shde6M+la3L4T0ThsOGJUd7
+         1fAhY5JqnJ39N1701Jou7YusGX62BsyavrIPeXK1ImzpIjW777SP4Z0a5vP3xsDLFqEy
+         FuMaP/w5+huu7BckljsvtY6fKlMZjrWV9CUyNBy6VmfrNacvV7lg2KixoRq7Owr8GgmR
+         joKQ==
+X-Gm-Message-State: AFqh2koYaJRo7APVoJyE55eiBjiPex1jhOlZplVIE9CQu9jYAVUBSfjy
+	4fjeMqhtMS5e3iymFMMYDsdjfQ==
+X-Google-Smtp-Source: AMrXdXtn8MnvQhXsoUddUydMeU25/PmnIRF88UjZXtcC/hZzFGziSqo12v8zKsIJJzFrTNvZ08M9YQ==
+X-Received: by 2002:adf:ee83:0:b0:270:213a:b53d with SMTP id b3-20020adfee83000000b00270213ab53dmr23568623wro.33.1672653234797;
+        Mon, 02 Jan 2023 01:53:54 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4f32:f70:35be:acf9? ([2a01:e0a:982:cbb0:4f32:f70:35be:acf9])
-        by smtp.gmail.com with ESMTPSA id c17-20020adffb51000000b0027cb20605e3sm20358728wrs.105.2023.01.02.01.50.39
+        by smtp.gmail.com with ESMTPSA id u13-20020a5d468d000000b00275970a85f4sm25889021wrq.74.2023.01.02.01.53.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 01:50:39 -0800 (PST)
-Message-ID: <b7dba825-3e39-fbf1-a73f-7e80a0d1bb5c@linaro.org>
-Date: Mon, 2 Jan 2023 10:50:38 +0100
+        Mon, 02 Jan 2023 01:53:53 -0800 (PST)
+Message-ID: <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
+Date: Mon, 2 Jan 2023 10:53:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [BISECTED] arm64: dts: meson-sm1-odroid-hc4: USB not working
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Pierre-Olivier Mercier <nemunaire@nemunai.re>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <Y6okoXpwF/LZewhv@nemunai.re>
- <CAFBinCBaLLxO0ox9LJKS+LaQs4eqmtH_6Sbcv70rTLZz3b2qZg@mail.gmail.com>
+Subject: Re: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the
+ A311D
 Content-Language: en-US
+To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc: italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Amlogic Meson SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
+References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
+ <20221202115223.39051-5-tomeu.vizoso@collabora.com>
 Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCBaLLxO0ox9LJKS+LaQs4eqmtH_6Sbcv70rTLZz3b2qZg@mail.gmail.com>
+In-Reply-To: <20221202115223.39051-5-tomeu.vizoso@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230102_015042_349202_D3F23C41 
-X-CRM114-Status: GOOD (  28.89  )
+X-CRM114-CacheID: sfid-20230102_015359_160228_0511AF22 
+X-CRM114-Status: GOOD (  17.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,71 +105,73 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/12/2022 11:43, Martin Blumenstingl wrote:
-> Hi Pierre-Olivier, Hi Neil,
+On 02/12/2022 12:52, Tomeu Vizoso wrote:
+> This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
+> with it with just a few small changes.
 > 
-> On Mon, Dec 26, 2022 at 11:48 PM Pierre-Olivier Mercier
-> <nemunaire@nemunai.re> wrote:
->>
->> Hi,
->>
->> On my Odroid-HC4, the USB 2.0 port (the only one available) was not
->> working. While it seems I was not the only one in that case[1], after
->> some experiments, I found that by reverting the following commit:
->>
->> 703e84d6615a4 arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0
-> Thank you for bisecting the commit!
+> v2: Add reference to RESET_NNA (Neil)
+> v3: Fix indentation (Neil)
 > 
->> it solves the issue: USB is working on latest stable (6.1.1) with this
->> only patch reverted, while it doesn't with vanilla dtb (with same
->> config otherwise).
-> [...]
->> I didn't read the specs, but I also tried to inverse the patch (disable
->> usb2_phy1 intead of usb2_phy0) and it didn't work neither. Apparently
->> usb2_phy0 and usb2_phy1 are both required for some reason...
-> After reading this mail yesterday I could not make much sense of it.
-> Now, while re-reading it I remembered the time when I worked on GXL
-> USB support and wrote the following comment: [0]
->    All USB2 PHYs (which are internally "connected" to the dwc3 roothub)
->    need to be powered on, otherwise USB devices cannot be
->    enumerated (even if just one PHY is disabled and if the device is
->    plugged into another, enabled port)
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
+>   .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
+>   2 files changed, 15 insertions(+)
 > 
-> This is probably also the reason why I left all USB PHYs enabled by
-> default in meson-{gxl,gxm}.dtsi (and so did we in
-> meson-g12-common.dtsi). Instead we're disabling the &usb node by
-> default (and enabling it for boards that have USB ports).
-> For readers not familiar with the default enabled/disabled: typically
-> we disable the nodes for IP blocks in the .dtsi and then each
-> board.dts enables them on demand.
-> 
-> Neil, what do you think about this?
-> Should Pierre-Olivier send a formal revert (with the problem being
-> described as part of the git commit message, such as in [1])?
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 45947c1031c4..61c8461df614 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -11,6 +11,7 @@
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+>   #include <dt-bindings/thermal/thermal.h>
+> +#include <dt-bindings/power/meson-g12a-power.h>
+>   
+>   / {
+>   	interrupt-parent = <&gic>;
+> @@ -2484,4 +2485,14 @@ xtal: xtal-clk {
+>   		#clock-cells = <0>;
+>   	};
+>   
+> +	npu: npu@ff100000 {
+> +		compatible = "vivante,gc";
+> +		reg = <0x0 0xff100000 0x0 0x20000>;
+> +		interrupts = <0 147 4>;
+> +		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+> +			 <&clkc CLKID_NNA_AXI_CLK>;
+> +		clock-names = "core", "bus";
+> +		resets = <&reset RESET_NNA>;
+> +		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
 
-It's true I haven't tested with only a single USB2 phy enabled, but
-since the USB design is a derivative from GXL both USB2 PHYs should be
-powered on for USB to work.
+A status = "disable" is missing here.
 
-Pierre-Olivier, can you send a proper revert patch so I can apply it
-to fixes and send it asap ?
+> +	};
+>   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> index 124a80901084..73f3d87dcefd 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> @@ -15,6 +15,10 @@ / {
+>   	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
+>   };
+>   
+> +&npu {
+> +	status = "okay";
 
-Thanks for the report !
+Tomeu, I think until the user-space stack is clean this should be removed
+and left disabled.
+
+I can fix this while applying if you want,
 
 Neil
 
-> 
-> 
-> PS: Neil has probably taken some days off, so please give him more
-> than usual time to reply.
-> 
-> 
-> Best regards,
-> Martin
-> 
-> 
-> [0] https://lore.kernel.org/all/20170814224542.18257-1-martin.blumenstingl@googlemail.com/T/
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=47722220660cfb935e27e62d385959ecc296cddb
+> +};
+> +
+>   /*
+>    * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>    * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
 
 
 _______________________________________________
