@@ -4,78 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE9BBC3DA7A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 09:48:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A16F8C5479D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 09:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3AqOc5AmfK7MX33BsSnbQW27Ki834hhvL2tdUigtaiI=; b=slss4q07RB3Oko
-	Zaemi8TDyC8KEVd+ZzCiQZJHwxQjDwg/ext1fmNeSjiW4KlnushU+7wtvHHcCRykSq3r12QxuF2AH
-	aPIWZ58MXHN7369mHLdbDup4NWtmOXwoxy7q+nPBcfZMauxC26zJV1ikPh32ikKhRSHtRhVrpVCaj
-	BD/mRM2Ga+BHXSX1GjY3yRiprgXyWDd8J75z/XDNCxdTa0Vn6bo3JHAd61TrO+X2Dqusmo2ewJotH
-	Ak0gMcKlsMIvf25o/jAkmThxHlKFZhTq+7w8SjgNhac0oK8jhpX+N+7c8maa7Eg/nDp7naauR4Dyc
-	iWFxT4WzbO4oh0OUitnw==;
+	List-Owner; bh=fGhT1Y2/uhfILrSqIVC3MZOjyFfivbSuz8xjFnUctJs=; b=xOMrVgeViqAD8d
+	a5youVsq62fQ0QI/KrrJ9kWGoKgJuqRsxb2g+NDv+71q1oq9XbWHZERg7jxj9XHnHvz3FX6+bu1uV
+	lRWKgC68qYb8BvMGQAU/gMjMA1zd7gwsl2Kgijq9R7QmeNcYLvlmXfM2i5/mRCBM5P8PpxXBV3mE+
+	q19vF3VrXv5jpUtSHy4NRILrQ1qA3yWdIdRa/cS6lOoImOxS2goLb6KUGd5mF81Q0wYCkMGXqlSOk
+	rt52mClbubByZePoa2qJJtft0yjZGwItEvCv01seNvtCY+f8dadtieLATreizlcnymBPkRE6NL7nX
+	azEH6z0DPC++by8lUzBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHQD-00A3XU-Vi; Mon, 02 Jan 2023 09:47:58 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pCHQK-00A3am-I1; Mon, 02 Jan 2023 09:48:04 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHNm-00A2et-QP
-	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 09:45:32 +0000
-Received: by mail-wm1-x335.google.com with SMTP id ay2-20020a05600c1e0200b003d22e3e796dso20252110wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 01:45:24 -0800 (PST)
+	id 1pCHOD-00A2zV-Sd
+	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 09:46:01 +0000
+Received: by mail-wr1-x436.google.com with SMTP id bn26so6404668wrb.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 01:45:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0LrOzQPa8gD5g9L4P3t7SIyp2Mv9DEJkOptQ3B3iXV8=;
-        b=BafktxLPHJuCW6QiDiEOMJh2F3XBEG/ttPYufCQmdjkjvw8Kd8B1JCbLPJDbtv81Pb
-         lfTkbJrgND0waoiT9qaArWhLT/I5XmtLFeVKGdJhmL72GkJ9N2Lkl96CNeF3ZiCCshCd
-         NxFbz9fF7a7SKsW37+qGDsDp0EcWAAOLd1SFtEnzBYdiC/enBNJqbNhsEFCskSlF5DE2
-         CePuOlCKvNn1OyUnhUKJUWckxPiapr8lAFHp5+3TRU53Q/1tYiKdz3ELzttdmexcNhTV
-         sRYhWvnVT2Ot38IjeqGUh02oV5ZNSXyWRPXLQVMN4ZBKsAvk5flxeMdK89r/eBB5kayG
-         oEsA==
+        bh=WUhOJ4IoESrQwEIJSXhHd8/46+wScNtzOgrodDR1Dto=;
+        b=oo6SENSI5d9/g3PhqgDoHzVbQ5cD6rh1VWKeuXQn3vlANcOrokLilbxnAxyM5UlHXl
+         NW96zGRIUmun6vb9ckp49ZgwikZ7sZrboZyRRiThuBBn9y5xWmfBykLHIu1IdnLnGQ3a
+         9nNvpcfClWaP5z7dQId8GeiFQqpTeE/gx76JytQgkGu7Yd0h4R7X/j8S+UWVkeETOr16
+         fDJ1asbSbKq83gH+RH+7IpxCHymaTtY19T46BhFSd1ADz39WGC+tB1djzJWwk/oc843O
+         atp+7Jz6bLGqPL1DgOZZnJd4hvobHrwXD6n9OqRfAQRvR87meShvntxl7ysot1dEMKzp
+         XKHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0LrOzQPa8gD5g9L4P3t7SIyp2Mv9DEJkOptQ3B3iXV8=;
-        b=qP7RoAlniUmjaeowrCg+SInsVGSqAU6rFcFVkqUdjr+1fMD6WjLqzTffbky6AnwPK7
-         t1bgw5L4H8875uKrnqw1kEqc4ySL8IeNd1aZoSGhSdDmWCNIVVAIKNWoydyt0WXd13NA
-         5GFzkIIocUxsCzoFAQK3A6Th0Vt4h+NzO8oIiCmcu+/v/QTyCiCfKfDkRCEa2T2kQMcr
-         ULtTtF05QwElgsQ+f+45JBuzHnuI0fZ10NZnLf+dcmmIs9HtNMgKT2m9qE0orCqizPBy
-         89ddNHhxc8NZ8b/j1t7fSmIdFhuS5v+pMlQy/x75bbdma0lbvLJHjRV84ukcjai17NhD
-         IYJg==
-X-Gm-Message-State: AFqh2kpSawwst0ahl1mHUbta0aam4VKdUlCXakf+beDkjNwFYk/Cmo1l
-	WYSgjgF1aVWDS8rOmic8PXNOqg==
-X-Google-Smtp-Source: AMrXdXuN+K1vBJMRelJpQcZd+lJtspet80eKKFN6LeiLPG1BkFP4jO4WEIszB8YePk86AM6y94MHAA==
-X-Received: by 2002:a05:600c:4f48:b0:3d6:8570:1239 with SMTP id m8-20020a05600c4f4800b003d685701239mr35213480wmq.16.1672652721945;
-        Mon, 02 Jan 2023 01:45:21 -0800 (PST)
+        bh=WUhOJ4IoESrQwEIJSXhHd8/46+wScNtzOgrodDR1Dto=;
+        b=EHUWhHB7X/GJNLY9IhhD5PIzqDsNH2avBlzYVaRjCSgPyKZbeJa9aIl6+msFUGJE4J
+         cMr3J69nd8If3m4hX+02X63tjyC1kSTLO2QrFxmEqTxMKYLoSEYcanL1uVCWTU5+Smxy
+         k/OG5uDbFAFOcbL6m0MqTL6cPm7UjAr4vz+ewOxkPUdZbLnsoiCCsg+PcXLotF0qC8oR
+         /QKqeQyqM3boyTnjRSBn8lZUH52zpKBwnQtXaHbxP/drkJfySldvWKlc36f8j5ki5PQC
+         0/GE1XEh1y9/JRQT1lzV+uuvG2c5YfVwcHi3MRQPnW1H/B+SB8j90tgLS8Z/EbwSpLLL
+         Ha+A==
+X-Gm-Message-State: AFqh2kofuDMIRvYtsKaYncteIQ1ihnaL2yuvNYPqbXcr3ummlvwslEvy
+	ycQVNDh2N614QS3ARapoao0DmpgJ2c+rs3Gw
+X-Google-Smtp-Source: AMrXdXuba2JBxmozJhuTBAIpVh1ksFcfIJoDILKrHE0lEw6Hh/gGocGCnufZZbFqajhZ7nbidMvIlg==
+X-Received: by 2002:a5d:620f:0:b0:242:9e3:72b8 with SMTP id y15-20020a5d620f000000b0024209e372b8mr28311651wru.31.1672652751312;
+        Mon, 02 Jan 2023 01:45:51 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m1-20020a7bca41000000b003d1de805de5sm37458526wml.16.2023.01.02.01.45.21
+        by smtp.gmail.com with ESMTPSA id y6-20020adfdf06000000b002879c013b8asm14413840wrl.42.2023.01.02.01.45.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 01:45:21 -0800 (PST)
+        Mon, 02 Jan 2023 01:45:50 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
-References: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ARM: dts: meson: align LED node names with dtschema
-Message-Id: <167265272108.284515.8939989113770770752.b4-ty@linaro.org>
-Date: Mon, 02 Jan 2023 10:45:21 +0100
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
+Message-Id: <167265275027.299493.747557222929331927.b4-ty@linaro.org>
+Date: Mon, 02 Jan 2023 10:45:50 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230102_014527_060346_BD1C6575 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20230102_014554_761383_BF8D4FAA 
+X-CRM114-Status: GOOD (  10.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,21 +93,21 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Fri, 25 Nov 2022 15:41:20 +0100, Krzysztof Kozlowski wrote:
+On Fri, 25 Nov 2022 15:41:41 +0100, Krzysztof Kozlowski wrote:
 > The node names should be generic and DT schema expects certain pattern:
 > 
->   meson8-minix-neo-x8.dtb: gpio-leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>   amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
 > 
 > 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[1/1] ARM: dts: meson: align LED node names with dtschema
-      https://git.kernel.org/amlogic/c/efccf602b37fc1064214e6b5fdfa9e77879a9bca
+[1/1] arm64: dts: amlogic: align LED node names with dtschema
+      https://git.kernel.org/amlogic/c/ac7f40c28bce2fd1a771e634531ca4b0dd9576f7
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.3/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
