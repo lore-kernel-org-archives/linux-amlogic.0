@@ -4,80 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ADD2C5479D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 10:04:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C740EC46467
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 10:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2OQaQUkN5s8e+FEZpEbZwrch9tzFKt+28jZYMvZ4jvI=; b=b2Os+YIW+IXi30
-	udxzeh7V+eLCPjljWmefEAUdOzA3jedDhSecvaHFnzWyJVDc6F9ruY+ausrK94LSelUidRPLC4uZH
-	UOhNqJKTT2Xf4J0qfQt7X/CdqpFFG4O+0jBhpM4cHQGJyd9gU6BykYRVZTOG7IHSuncaiVhNfPz2Z
-	KEC378Uz1/VhT4pK+4O27RSm+6Juycnk46kJX5jWvGPwBoFhFWkjsoCWtcElF9OOdC6EmfPZ64ig0
-	HjdGYPCtJgQHlu6v79/7vmBk/L2wsVmTevmGRQBeCYiCj1/9oeV0L3stZRN94k56li01TUuWQ8SkI
-	4n6X9F5DJiVW3wV5YqJg==;
+	List-Owner; bh=KJxh5jjBlzIGhQzjVh3xdkY5Jqi3cBdZCo+B05Cxrng=; b=RCxjPXVw0MNIh9
+	AwJAiCN9pl+fpX96ghEpgefOy21MsDWJK0L8FWHO3j1Jl+SZkeoUeZXK4Ypm9Gq/XcMpLurXRhpCG
+	tZgBLBfV5IXrRzv6w1AXvdjFZGPICUt09+EcIJ3KdJbnMEGq2S+3F5s5RON5pBqiJ70PH7Y/rABuL
+	E9vO4YLqi3vYbzN+bMz5HEPKB2IfUR94B7jtQFR119MH5rbYWDB0ZXMo113nYchVGg2MS/97PdlmU
+	u44Zex/nYwK7NITNJCAyePQRsbUv019FInssFvCHhzT5uOZeJt4RpyvV5B/nx/PxuXWQHHeiMN6CT
+	cs8g2ysYR25Zq699jtDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHgJ-00ADHY-9H; Mon, 02 Jan 2023 10:04:36 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1pCHsc-00AIXS-QL; Mon, 02 Jan 2023 10:17:19 +0000
+Received: from madras.collabora.co.uk ([46.235.227.172])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHfc-00ACkz-Lb
-	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 10:04:01 +0000
-Received: by mail-wm1-x333.google.com with SMTP id m8-20020a05600c3b0800b003d96f801c48so18102935wms.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 02:03:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1A/c903RG4DRD/KA4H0kqMsL+9GohbLG+0ZnJrSJAlQ=;
-        b=D+1k9L0qY0P1Ji/qNFpRhC5aixsA7eIu6QVRV9pnRf2ULMiRuUt+m8lZKp9TX8qR3g
-         E1pklVDK9x3S+rMDlU4lfVWM7Yyj9Cz+R/r/8Tbn1MJ5cAHVkU2RIu9Gaau1OnaFifHX
-         kFpJXKaGvnSY2xQwmwS0B7u1yOdSRk7dCwM7V9a2GEPsWkMAUWJQRR7KtleUM119053u
-         DMYyMTz5Q4ZLYs7glMovTp5NAV1QL0J7seK3+rhzmDxX+L/XSwkMgPBZkKpa0Jz3JLiP
-         AHXjoPl2MY1Qx05Rs34jAbqQhv3phgF7lSO7jSXb/Ghm/P/Qzaj23bzSMpIYIo2SsLpB
-         nBKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1A/c903RG4DRD/KA4H0kqMsL+9GohbLG+0ZnJrSJAlQ=;
-        b=R3lH6jbjv4Z1HJLvvNIazsibCf7/ZFsj3qn6ESIBcisL4l095U1V4eto0t4lDyBKXW
-         gOOibc/IEIATeISlR3XlQixI8aPPv8zfJ4wmG2hLfwdxQlvJxofjk/1YDh9XwCkFvmGE
-         d9hhWeizavv+6mdxOo/IebLYf6HP6oXcowq5gT21RwVqlNgwgidgL/B+8e4ON/VRAUPD
-         iXxRj9NvfEZdFtdHTl+ZatmFL+dbdOpqoHG3lQuKrN4oSfSeOJzQBvkHxrV1xtC/zWvD
-         Pyo80CuUhEEHvWuZhW57LEND9F6e7hoA+MkD20aIsqAMEXjdClE4sHdfj7F6hJ2H5yAQ
-         dqsg==
-X-Gm-Message-State: AFqh2kq1/TuY4HOJ69uxWcv2T8lqYnJhkFs/P0By5yRg/KyUdobmbuXU
-	DcQYiuxqRypPc3x6kTxARihBUg==
-X-Google-Smtp-Source: AMrXdXt0Bh9wmwk3RF4bAotZJsEsotBcms18Id+jqLzrnyIEkrT9a0ZIrdm1+6Wcvuc6QGNHjinrCg==
-X-Received: by 2002:a7b:cbd4:0:b0:3d3:3d51:7d44 with SMTP id n20-20020a7bcbd4000000b003d33d517d44mr28810985wmi.33.1672653830942;
-        Mon, 02 Jan 2023 02:03:50 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id i25-20020a1c5419000000b003c6c182bef9sm50636137wmb.36.2023.01.02.02.03.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 02:03:50 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Daniel Vetter <daniel@ffwll.ch>, Mark Brown <broonie@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Carlo Caione <ccaione@baylibre.com>, Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- David Airlie <airlied@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20221116-s905x_spi_ili9486-v4-0-f86b4463b9e4@baylibre.com>
-References: <20221116-s905x_spi_ili9486-v4-0-f86b4463b9e4@baylibre.com>
-Subject: Re: [PATCH v4 0/2] Make ILI9486 driver working with 16-bits SPI controllers
-Message-Id: <167265383013.332488.18055553575413500835.b4-ty@linaro.org>
-Date: Mon, 02 Jan 2023 11:03:50 +0100
+	id 1pCHsV-00AIUg-63; Mon, 02 Jan 2023 10:17:16 +0000
+Received: from [192.168.1.22] (cst-prg-44-69.cust.vodafone.cz [46.135.44.69])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: tomeu)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 297726602CC1;
+	Mon,  2 Jan 2023 10:17:05 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1672654625;
+	bh=UKxDeH1K51ACF0O8y96Cck/rYbvF8NIxVYbACECak6Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LrlZI2puL6mGNOLF2of8embHNkndRivYQ6iU07VV5uWc+WZuX3EZ350ZQ+Ber/rz3
+	 QRIzJkH5rG++FIZ3VQj8XP45T5G3xNjIoxoM9pntjKF+OpPb91iDof1q4JGJGNrXlF
+	 mOqYHM/67IPG5udaxMu3BuwRax17mB6/jkNqa2ubBc5c5CgjNfHWVk+cfb4fS2j64j
+	 Pv1NDmi9aEnYZK4Zr+EifkExxbeLzpMA6ucN9LtMvT+vTO1vnidDta4hrd1UNXVono
+	 VmSfu26P4q4xdEGInSZZZiUOyLweaBZHZ6tlzJsgedCk/OhcE9vEzFJaCaur1YgmKB
+	 2ewvgJQyfZUNw==
+Message-ID: <8cfe8595-79de-5980-d503-36847069940f@collabora.com>
+Date: Mon, 2 Jan 2023 11:17:02 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.10.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the
+ A311D
+To: neil.armstrong@linaro.org
+Cc: italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Amlogic Meson SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
+References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
+ <20221202115223.39051-5-tomeu.vizoso@collabora.com>
+ <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
+Content-Language: en-US
+From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+In-Reply-To: <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230102_020357_810029_00914FB1 
-X-CRM114-Status: UNSURE (   6.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230102_021711_623258_39F19583 
+X-CRM114-Status: GOOD (  17.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,30 +79,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Mon, 19 Dec 2022 10:02:36 +0100, Carlo Caione wrote:
-> This patchset is trying to fix problems seen on S905X boards when interfacing
-> with an ILI9486 equipped SPI panel.
-> 
-> 
-
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
-
-[1/2] drm/tiny: ili9486: Enable driver module autoloading
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e9c7cfe7b71d26ee4a9f17192632f3d0ff246001
-[2/2] drm/tiny: ili9486: Do not assume 8-bit only SPI controllers
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=77772e607522daa61f3af74df018559db75c43d6
-
--- 
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMS8yLzIzIDEwOjUzLCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBPbiAwMi8xMi8yMDIyIDEy
+OjUyLCBUb21ldSBWaXpvc28gd3JvdGU6Cj4+IFRoaXMgIk5QVSIgaXMgdmVyeSBzaW1pbGFyIHRv
+IHRoZSBWaXZhbnRlIEdQVXMgYW5kIEV0bmF2aXYgd29ya3Mgd2VsbAo+PiB3aXRoIGl0IHdpdGgg
+anVzdCBhIGZldyBzbWFsbCBjaGFuZ2VzLgo+Pgo+PiB2MjogQWRkIHJlZmVyZW5jZSB0byBSRVNF
+VF9OTkEgKE5laWwpCj4+IHYzOiBGaXggaW5kZW50YXRpb24gKE5laWwpCj4+Cj4+IFNpZ25lZC1v
+ZmYtYnk6IFRvbWV1IFZpem9zbyA8dG9tZXUudml6b3NvQGNvbGxhYm9yYS5jb20+Cj4+IFJldmll
+d2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPj4gLS0t
+Cj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2nC
+oMKgwqDCoCB8IDExICsrKysrKysrKysrCj4+IMKgIC4uLi9ib290L2R0cy9hbWxvZ2ljL21lc29u
+LWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzIHzCoCA0ICsrKysKPj4gwqAgMiBmaWxlcyBjaGFu
+Z2VkLCAxNSBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpIAo+PiBiL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2kKPj4gaW5kZXggNDU5NDdjMTAzMWM0Li42
+MWM4NDYxZGY2MTQgMTAwNjQ0Cj4+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9t
+ZXNvbi1nMTItY29tbW9uLmR0c2kKPj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2lj
+L21lc29uLWcxMi1jb21tb24uZHRzaQo+PiBAQCAtMTEsNiArMTEsNyBAQAo+PiDCoCAjaW5jbHVk
+ZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPgo+PiDCoCAjaW5j
+bHVkZSA8ZHQtYmluZGluZ3MvcmVzZXQvYW1sb2dpYyxtZXNvbi1nMTJhLXJlc2V0Lmg+Cj4+IMKg
+ICNpbmNsdWRlIDxkdC1iaW5kaW5ncy90aGVybWFsL3RoZXJtYWwuaD4KPj4gKyNpbmNsdWRlIDxk
+dC1iaW5kaW5ncy9wb3dlci9tZXNvbi1nMTJhLXBvd2VyLmg+Cj4+IMKgIC8gewo+PiDCoMKgwqDC
+oMKgIGludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47Cj4+IEBAIC0yNDg0LDQgKzI0ODUsMTQgQEAg
+eHRhbDogeHRhbC1jbGsgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nsb2NrLWNlbGxzID0gPDA+
+Owo+PiDCoMKgwqDCoMKgIH07Cj4+ICvCoMKgwqAgbnB1OiBucHVAZmYxMDAwMDAgewo+PiArwqDC
+oMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJ2aXZhbnRlLGdjIjsKPj4gK8KgwqDCoMKgwqDCoMKg
+IHJlZyA9IDwweDAgMHhmZjEwMDAwMCAweDAgMHgyMDAwMD47Cj4+ICvCoMKgwqDCoMKgwqDCoCBp
+bnRlcnJ1cHRzID0gPDAgMTQ3IDQ+Owo+PiArwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZjbGtj
+IENMS0lEX05OQV9DT1JFX0NMSz4sCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjbGtj
+IENMS0lEX05OQV9BWElfQ0xLPjsKPj4gK8KgwqDCoMKgwqDCoMKgIGNsb2NrLW5hbWVzID0gImNv
+cmUiLCAiYnVzIjsKPj4gK8KgwqDCoMKgwqDCoMKgIHJlc2V0cyA9IDwmcmVzZXQgUkVTRVRfTk5B
+PjsKPj4gK8KgwqDCoMKgwqDCoMKgIHBvd2VyLWRvbWFpbnMgPSA8JnB3cmMgUFdSQ19HMTJBX05O
+QV9JRD47Cj4gCj4gQSBzdGF0dXMgPSAiZGlzYWJsZSIgaXMgbWlzc2luZyBoZXJlLgo+IAo+PiAr
+wqDCoMKgIH07Cj4+IMKgIH07Cj4+IGRpZmYgLS1naXQgCj4+IGEvYXJjaC9hcm02NC9ib290L2R0
+cy9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzIAo+PiBiL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12aW0zLmR0cwo+PiBp
+bmRleCAxMjRhODA5MDEwODQuLjczZjNkODdkY2VmZCAxMDA2NDQKPj4gLS0tIGEvYXJjaC9hcm02
+NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzCj4+ICsr
+KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12
+aW0zLmR0cwo+PiBAQCAtMTUsNiArMTUsMTAgQEAgLyB7Cj4+IMKgwqDCoMKgwqAgY29tcGF0aWJs
+ZSA9ICJraGFkYXMsdmltMyIsICJhbWxvZ2ljLGEzMTFkIiwgImFtbG9naWMsZzEyYiI7Cj4+IMKg
+IH07Cj4+ICsmbnB1IHsKPj4gK8KgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gCj4gVG9tZXUsIEkg
+dGhpbmsgdW50aWwgdGhlIHVzZXItc3BhY2Ugc3RhY2sgaXMgY2xlYW4gdGhpcyBzaG91bGQgYmUg
+cmVtb3ZlZAo+IGFuZCBsZWZ0IGRpc2FibGVkLgoKU291bmRzIGdvb2QgdG8gbWUsIHdlIGNhbiBl
+YXNpbHkgY2FycnkgYSBwYXRjaCBpbiBNZXNhIENJIGluIHRoZSBtZWFudGltZS4KCj4gSSBjYW4g
+Zml4IHRoaXMgd2hpbGUgYXBwbHlpbmcgaWYgeW91IHdhbnQsCgpJIHdvdWxkIGFwcHJlY2lhdGUg
+aXQsIHRoYW5rcyEKClRvbWV1Cgo+IE5laWwKPiAKPj4gK307Cj4+ICsKPj4gwqAgLyoKPj4gwqDC
+oCAqIFRoZSBWSU0zIG9uLWJvYXJkwqAgTUNVIGNhbiBtdXggdGhlIFBDSWUvVVNCMy4wIHNoYXJl
+ZCBkaWZmZXJlbnRpYWwKPj4gwqDCoCAqIGxpbmVzIHVzaW5nIGEgRlVTQjM0MFRNWCBVU0IgMy4x
+IFN1cGVyU3BlZWQgRGF0YSBTd2l0Y2ggYmV0d2Vlbgo+IAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
