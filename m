@@ -4,70 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C740EC46467
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 10:17:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFED8C46467
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 10:30:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KJxh5jjBlzIGhQzjVh3xdkY5Jqi3cBdZCo+B05Cxrng=; b=RCxjPXVw0MNIh9
-	AwJAiCN9pl+fpX96ghEpgefOy21MsDWJK0L8FWHO3j1Jl+SZkeoUeZXK4Ypm9Gq/XcMpLurXRhpCG
-	tZgBLBfV5IXrRzv6w1AXvdjFZGPICUt09+EcIJ3KdJbnMEGq2S+3F5s5RON5pBqiJ70PH7Y/rABuL
-	E9vO4YLqi3vYbzN+bMz5HEPKB2IfUR94B7jtQFR119MH5rbYWDB0ZXMo113nYchVGg2MS/97PdlmU
-	u44Zex/nYwK7NITNJCAyePQRsbUv019FInssFvCHhzT5uOZeJt4RpyvV5B/nx/PxuXWQHHeiMN6CT
-	cs8g2ysYR25Zq699jtDQ==;
+	List-Owner; bh=TWSQuVc/VCEj6q33FxaZTd/Yc7RbaXVzgdMvf85Ia8g=; b=lT31RkhNQ5ee20
+	11nboBfiHRI2wJukA+p+Z4m/YG3tYaHz4Pdceb40pDL78XMRSCEelq8N34CqGKLYpNbhNSITuDQbS
+	Xyd3zpLNBwO44qldP3vfLm0o74E3vhCi+u6/Agi+j+I/HIpRtJ4jY/Q+Yewbq/3QDbss0ll8Hj4Uk
+	xQXN2UHKcLYadf7cX92Yv76Ix7WO013+VRHBXtGIvmPOmuUG7xRN84rP1htkhut+El4skUpGFHej5
+	EAYdBE7FsQfG5KO6AoZ6N6lZR7x2qPbWLIl21SfvTXL8F6qa+33HiXzbtLepDfJJuwhUBIz8v7ULJ
+	ZMcPN7ax1gJbc5T9198Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHsc-00AIXS-QL; Mon, 02 Jan 2023 10:17:19 +0000
-Received: from madras.collabora.co.uk ([46.235.227.172])
+	id 1pCI5U-00ANOy-35; Mon, 02 Jan 2023 10:30:36 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCHsV-00AIUg-63; Mon, 02 Jan 2023 10:17:16 +0000
-Received: from [192.168.1.22] (cst-prg-44-69.cust.vodafone.cz [46.135.44.69])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: tomeu)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 297726602CC1;
-	Mon,  2 Jan 2023 10:17:05 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1672654625;
-	bh=UKxDeH1K51ACF0O8y96Cck/rYbvF8NIxVYbACECak6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LrlZI2puL6mGNOLF2of8embHNkndRivYQ6iU07VV5uWc+WZuX3EZ350ZQ+Ber/rz3
-	 QRIzJkH5rG++FIZ3VQj8XP45T5G3xNjIoxoM9pntjKF+OpPb91iDof1q4JGJGNrXlF
-	 mOqYHM/67IPG5udaxMu3BuwRax17mB6/jkNqa2ubBc5c5CgjNfHWVk+cfb4fS2j64j
-	 Pv1NDmi9aEnYZK4Zr+EifkExxbeLzpMA6ucN9LtMvT+vTO1vnidDta4hrd1UNXVono
-	 VmSfu26P4q4xdEGInSZZZiUOyLweaBZHZ6tlzJsgedCk/OhcE9vEzFJaCaur1YgmKB
-	 2ewvgJQyfZUNw==
-Message-ID: <8cfe8595-79de-5980-d503-36847069940f@collabora.com>
-Date: Mon, 2 Jan 2023 11:17:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the
- A311D
-To: neil.armstrong@linaro.org
-Cc: italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson SoC support"
- <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
+	id 1pCI52-00ANFV-LI
+	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 10:30:13 +0000
+Received: by mail-wr1-x436.google.com with SMTP id az7so1533390wrb.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 02:30:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o3pnp00fAFbCsjrwHeYydTcNOrlFzBbyWXdERp2QJas=;
+        b=nDp7cO36WKjes1Izcci1OZT/KlGLELLQ9Al9dmcUPZK1X1kRSyE+4XNsVd+fPNdoo6
+         Q2753XPoSR3z6VUXYvNp1a0u5NLVEQayrD4YTdAtQVE3iT9+VXEqV4/OUY5s515JHQlp
+         IpFIZLQ4VSKcorsvXHH+dTvXyOHYHSRpzXwkuvZPpL071MfrczEg+55sFkN8o59Ico3J
+         PAfoWUI60jYkusOv0KBtsrok/CgbzkUQ9zTXcYXjrfEilpy8+aqkc4fMfrBE237c9DVb
+         g5rieZWGpAk3GUNI7momneQNCf54Vq67nrXds/J4B1QFHqd1b3wI2mSYUKEHAdfJGXlZ
+         8JwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o3pnp00fAFbCsjrwHeYydTcNOrlFzBbyWXdERp2QJas=;
+        b=O8lQkrHQraqBmCYlJyeT6UcwdiqYgJn6YsKRbBZxqX/Iz+9vJKQf6krX7SaikGwz20
+         JGHDEBporu++QdFsO5cx3y324gKwCZKLXLszwDyfjd5/rst6oXuC14MXwOlm2n3EutkK
+         VSkUkq9p++WlTjWjYWPytofOJJa+4o2VCf87/MWEdxyJ77JLNUxiPOZ/VC/vhIGQjHW7
+         F059Hk4p5VlrxC+/sYXfoNVjp2MPs9pqEaYBgfGCPWhkIkL/js8s/wuv+bmIezCpAhY5
+         ru9jJXnz/WHynsD+wnl4QWtrfKRbntC/J56Hce43YuuxHf1ku3v4OGC1XArm+Vdo0frT
+         5dqQ==
+X-Gm-Message-State: AFqh2kqzkI/zdshB+enk/DFq6whtMQt6GRYZ3+PfRELCh3GV1k0n0Fmd
+	jaY3l4h+ABIQkFvCsKik6CAfQhhpTnjCXxDm
+X-Google-Smtp-Source: AMrXdXu3JhHyb5jnLxTpAVovV90esQPMUhxrIbYN2ov3dmss4CzYWAETVnJ3KJrM+Cv2iPnI6yfXUA==
+X-Received: by 2002:a5d:624d:0:b0:242:4d70:7882 with SMTP id m13-20020a5d624d000000b002424d707882mr24814292wrv.15.1672655407012;
+        Mon, 02 Jan 2023 02:30:07 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id e10-20020a5d594a000000b0028663fc8f4csm15263318wri.30.2023.01.02.02.30.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jan 2023 02:30:06 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc: "moderated list:DRM DRIVERS FOR VIVANTE GPU IP" <etnaviv@lists.freedesktop.org>, David Airlie <airlied@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
+ italonicola@collabora.com, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+ "open list:DRM DRIVERS FOR VIVANTE GPU IP" <dri-devel@lists.freedesktop.org>,
+ "moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Daniel Vetter <daniel@ffwll.ch>, Russell King <linux+etnaviv@armlinux.org.uk>, Jerome Brunet <jbrunet@baylibre.com>,
+ open list <linux-kernel@vger.kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
 References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
- <20221202115223.39051-5-tomeu.vizoso@collabora.com>
- <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
-Content-Language: en-US
-From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-In-Reply-To: <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
+Subject: Re: (subset) [PATCH v6 0/8] Support for the NPU in Vim3
+Message-Id: <167265540588.368935.8530142567394825177.b4-ty@linaro.org>
+Date: Mon, 02 Jan 2023 11:30:05 +0100
+MIME-Version: 1.0
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230102_021711_623258_39F19583 
-X-CRM114-Status: GOOD (  17.32  )
+X-CRM114-CacheID: sfid-20230102_023008_826636_5361DEA3 
+X-CRM114-Status: GOOD (  14.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,59 +92,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMS8yLzIzIDEwOjUzLCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBPbiAwMi8xMi8yMDIyIDEy
-OjUyLCBUb21ldSBWaXpvc28gd3JvdGU6Cj4+IFRoaXMgIk5QVSIgaXMgdmVyeSBzaW1pbGFyIHRv
-IHRoZSBWaXZhbnRlIEdQVXMgYW5kIEV0bmF2aXYgd29ya3Mgd2VsbAo+PiB3aXRoIGl0IHdpdGgg
-anVzdCBhIGZldyBzbWFsbCBjaGFuZ2VzLgo+Pgo+PiB2MjogQWRkIHJlZmVyZW5jZSB0byBSRVNF
-VF9OTkEgKE5laWwpCj4+IHYzOiBGaXggaW5kZW50YXRpb24gKE5laWwpCj4+Cj4+IFNpZ25lZC1v
-ZmYtYnk6IFRvbWV1IFZpem9zbyA8dG9tZXUudml6b3NvQGNvbGxhYm9yYS5jb20+Cj4+IFJldmll
-d2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPj4gLS0t
-Cj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2nC
-oMKgwqDCoCB8IDExICsrKysrKysrKysrCj4+IMKgIC4uLi9ib290L2R0cy9hbWxvZ2ljL21lc29u
-LWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzIHzCoCA0ICsrKysKPj4gwqAgMiBmaWxlcyBjaGFu
-Z2VkLCAxNSBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3Qv
-ZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpIAo+PiBiL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2kKPj4gaW5kZXggNDU5NDdjMTAzMWM0Li42
-MWM4NDYxZGY2MTQgMTAwNjQ0Cj4+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9t
-ZXNvbi1nMTItY29tbW9uLmR0c2kKPj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2lj
-L21lc29uLWcxMi1jb21tb24uZHRzaQo+PiBAQCAtMTEsNiArMTEsNyBAQAo+PiDCoCAjaW5jbHVk
-ZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPgo+PiDCoCAjaW5j
-bHVkZSA8ZHQtYmluZGluZ3MvcmVzZXQvYW1sb2dpYyxtZXNvbi1nMTJhLXJlc2V0Lmg+Cj4+IMKg
-ICNpbmNsdWRlIDxkdC1iaW5kaW5ncy90aGVybWFsL3RoZXJtYWwuaD4KPj4gKyNpbmNsdWRlIDxk
-dC1iaW5kaW5ncy9wb3dlci9tZXNvbi1nMTJhLXBvd2VyLmg+Cj4+IMKgIC8gewo+PiDCoMKgwqDC
-oMKgIGludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47Cj4+IEBAIC0yNDg0LDQgKzI0ODUsMTQgQEAg
-eHRhbDogeHRhbC1jbGsgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nsb2NrLWNlbGxzID0gPDA+
-Owo+PiDCoMKgwqDCoMKgIH07Cj4+ICvCoMKgwqAgbnB1OiBucHVAZmYxMDAwMDAgewo+PiArwqDC
-oMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJ2aXZhbnRlLGdjIjsKPj4gK8KgwqDCoMKgwqDCoMKg
-IHJlZyA9IDwweDAgMHhmZjEwMDAwMCAweDAgMHgyMDAwMD47Cj4+ICvCoMKgwqDCoMKgwqDCoCBp
-bnRlcnJ1cHRzID0gPDAgMTQ3IDQ+Owo+PiArwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZjbGtj
-IENMS0lEX05OQV9DT1JFX0NMSz4sCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjbGtj
-IENMS0lEX05OQV9BWElfQ0xLPjsKPj4gK8KgwqDCoMKgwqDCoMKgIGNsb2NrLW5hbWVzID0gImNv
-cmUiLCAiYnVzIjsKPj4gK8KgwqDCoMKgwqDCoMKgIHJlc2V0cyA9IDwmcmVzZXQgUkVTRVRfTk5B
-PjsKPj4gK8KgwqDCoMKgwqDCoMKgIHBvd2VyLWRvbWFpbnMgPSA8JnB3cmMgUFdSQ19HMTJBX05O
-QV9JRD47Cj4gCj4gQSBzdGF0dXMgPSAiZGlzYWJsZSIgaXMgbWlzc2luZyBoZXJlLgo+IAo+PiAr
-wqDCoMKgIH07Cj4+IMKgIH07Cj4+IGRpZmYgLS1naXQgCj4+IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzIAo+PiBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12aW0zLmR0cwo+PiBp
-bmRleCAxMjRhODA5MDEwODQuLjczZjNkODdkY2VmZCAxMDA2NDQKPj4gLS0tIGEvYXJjaC9hcm02
-NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzCj4+ICsr
-KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12
-aW0zLmR0cwo+PiBAQCAtMTUsNiArMTUsMTAgQEAgLyB7Cj4+IMKgwqDCoMKgwqAgY29tcGF0aWJs
-ZSA9ICJraGFkYXMsdmltMyIsICJhbWxvZ2ljLGEzMTFkIiwgImFtbG9naWMsZzEyYiI7Cj4+IMKg
-IH07Cj4+ICsmbnB1IHsKPj4gK8KgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gCj4gVG9tZXUsIEkg
-dGhpbmsgdW50aWwgdGhlIHVzZXItc3BhY2Ugc3RhY2sgaXMgY2xlYW4gdGhpcyBzaG91bGQgYmUg
-cmVtb3ZlZAo+IGFuZCBsZWZ0IGRpc2FibGVkLgoKU291bmRzIGdvb2QgdG8gbWUsIHdlIGNhbiBl
-YXNpbHkgY2FycnkgYSBwYXRjaCBpbiBNZXNhIENJIGluIHRoZSBtZWFudGltZS4KCj4gSSBjYW4g
-Zml4IHRoaXMgd2hpbGUgYXBwbHlpbmcgaWYgeW91IHdhbnQsCgpJIHdvdWxkIGFwcHJlY2lhdGUg
-aXQsIHRoYW5rcyEKClRvbWV1Cgo+IE5laWwKPiAKPj4gK307Cj4+ICsKPj4gwqAgLyoKPj4gwqDC
-oCAqIFRoZSBWSU0zIG9uLWJvYXJkwqAgTUNVIGNhbiBtdXggdGhlIFBDSWUvVVNCMy4wIHNoYXJl
-ZCBkaWZmZXJlbnRpYWwKPj4gwqDCoCAqIGxpbmVzIHVzaW5nIGEgRlVTQjM0MFRNWCBVU0IgMy4x
-IFN1cGVyU3BlZWQgRGF0YSBTd2l0Y2ggYmV0d2Vlbgo+IAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi,
+
+On Fri, 2 Dec 2022 12:52:12 +0100, Tomeu Vizoso wrote:
+> This series adds support for the Verisilicon VIPNano-QI NPU in the A311D
+> as in the VIM3 board.
+> 
+> The IP is very closely based on previous Vivante GPUs, so the etnaviv
+> kernel driver works basically unchanged.
+> 
+> The userspace part of the driver is being reviewed at:
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/bindings)
+
+[1/8] dt-bindings: reset: meson-g12a: Add missing NNA reset
+      https://git.kernel.org/amlogic/c/a439267609f9d57b15991c55550956d7cc5404d8
+[2/8] dt-bindings: power: Add G12A NNA power domain
+      https://git.kernel.org/amlogic/c/340ea839b4306335bd627fe0dd6789df803aef58
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.3/bindings branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
