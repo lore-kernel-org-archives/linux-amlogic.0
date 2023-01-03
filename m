@@ -4,85 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C536C46467
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Jan 2023 10:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8194C3DA7D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jan 2023 17:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SecOfTW2KKI4qhuk2Jk4k8+UacpGr8Buw/E+NSvEhLE=; b=h20MiroFK3Kbxw
-	8LpvqwXPhHyGJTF0OGHzF1UprHxvg5TMazOt6oUp46qtY9CoBf7GJBCxUR7XwLnuSniR++kve7j+6
-	l2bjr8U9QB96eQL4eLiIpYhadHKToCpTQPy3dyfEKRCVr37g4EbkY0UCqxGJM0uTtShCRgK8piW2Z
-	Od9vT4wzjd8BmSUqX2YEWwXTYEpOMg9JgzwMIDi9RoSHOioA7gdQIVlmI89MXREmt/P8RKBJD7EGf
-	EJUcPGc5XaDZ8lQDpRW7yTNFmflG+xnMF1G0M7MU9dN6NFahoUJB5vljOvgH3cN9iNYGq4U5NM0+v
-	41ReuPtFdG0HKUaG5W5g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=azSxmhvy57rll/cTJRNX+ztAOis6y1EHUJ2g0uMKIZE=; b=ZWYqRk3ssNBQ3+R1JCOcCKzpUs
+	vfKdkyqV4oegwdI8q44GIfIw9jmv+AY55kFxuMM6Yra/CVu/8dCcjx1XsIxlYig34MwV9M8+p+lbn
+	PjpQbSF3ehfMq4g6/b8D9ItVeJHCNOT5uhkssQkz4MPIQoMMGJzKkng9+N4P8YjhymnqsNsQ23pj3
+	wtz/YdvDF+X1mei2SdmCQBlnS7Iuv+e/Vs2w6y/TDCRwenijRDiLIJIrWiDcHtaUksksEjUYY7kNq
+	OZ5jlcAzpy9LJwr4OgMRFhLKgnHAS7qmxu4++5Q4+fqqQhkv9iDC67aIWT9YcXpEMsmJfAKO8myVJ
+	HHaFV11Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCIEY-00AQhH-5A; Mon, 02 Jan 2023 10:40:11 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1pCl4Q-003Ova-7A; Tue, 03 Jan 2023 17:27:26 +0000
+Received: from madras.collabora.co.uk ([46.235.227.172])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pCIEO-00AQbu-Fp
-	for linux-amlogic@lists.infradead.org; Mon, 02 Jan 2023 10:39:53 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id y8so25930920wrl.13
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Jan 2023 02:39:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TN3FpV1I7tFu/Kpha9CDnNvHD7KVpRjqtfkjCmVPUO0=;
-        b=CakuEVBcyWpVCHtq/gK0WL8H5kopdxqYu/fVo/dM+vHh1V8sZ+azV8nsGYLtljTXD/
-         Jan0bb1u2z6DBTbYgWOe3F3oWRQkEXTN7ztpNDX9uesOCbQwTs9b9Gy1XnACehMALSO9
-         epAapZem3wE9CprqWtC4EIdMuPaKyykdTAI9wvrGR8ecRb9OdNyNT5dW/mHVs/l8/LEX
-         vzsBl2x2BPr3Ifx3ZZcZZBGkUw1+odEJ4t+2weznXeuIh+RfNJcTOzij+gzqWzQ3DqQR
-         wh88hwAqkaRW9U7tYi3O+oxdt5Q5UAigMXZtSxG5GVpOOl3XSzR82YsrFvWlDDt7UISs
-         7Yvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TN3FpV1I7tFu/Kpha9CDnNvHD7KVpRjqtfkjCmVPUO0=;
-        b=yau3ir2zTOdSg02rwkxyQJIRSIz0vhaFx8pYdHj5TF7xOkf+nLW4zFOacyoJkUP+Zv
-         X2gMm8dd6c4k/8LxvEx3tTgBilLUScIXre1Z9v7VhmosZqKZPYb/O6UlogK+eX25LfpJ
-         UvTw2ez54f7APVMJm/5uT4XjGhNCzzAf7TGjy/wbs33Hlssmdfsfl35y240okbp6aVeS
-         Kg/wF/h1BVXKaEHy2QuVSJshBEfTUJM/2zZY6MTSv0IqfFltEEZ48IKTNCT0tImAOeAt
-         1AzHdYZx5FMWwR03munGxJigXtnpbKuzvM8iVdMM0NzpjMd8DWW4j07oZekDujiTMQSj
-         8nAQ==
-X-Gm-Message-State: AFqh2kq3qfsFwGgiM6Nqxt/gJUrj51+JAVCE04H1LW/eP59ONi+mU4Ir
-	2zodT79ueNFNXqkzUxjJ0Wlbug==
-X-Google-Smtp-Source: AMrXdXvJmLCCviOiLhVE2Fn/tGQ7qfOD6ZJjjx6/aj9+9AjFtmpkJtNmUE2jJpa+634KcFkd2p2Kuw==
-X-Received: by 2002:adf:f243:0:b0:26d:798f:ab8a with SMTP id b3-20020adff243000000b0026d798fab8amr22489628wrp.68.1672655986705;
-        Mon, 02 Jan 2023 02:39:46 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id r14-20020a5d4e4e000000b002549b649b62sm27810881wrt.50.2023.01.02.02.39.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 02:39:46 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
- "moderated list:DRM DRIVERS FOR VIVANTE GPU IP" <etnaviv@lists.freedesktop.org>, Kevin Hilman <khilman@baylibre.com>,
- "moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>,
- "open list:DRM DRIVERS FOR VIVANTE GPU IP" <dri-devel@lists.freedesktop.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, italonicola@collabora.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, David Airlie <airlied@gmail.com>,
- Lucas Stach <l.stach@pengutronix.de>, Daniel Vetter <daniel@ffwll.ch>, Christian Gmeiner <christian.gmeiner@gmail.com>,
- Russell King <linux+etnaviv@armlinux.org.uk>
-In-Reply-To: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
-References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
-Subject: Re: (subset) [PATCH v6 0/8] Support for the NPU in Vim3
-Message-Id: <167265598564.387036.9948295692448105822.b4-ty@linaro.org>
-Date: Mon, 02 Jan 2023 11:39:45 +0100
+	id 1pCiYK-0026dG-Fd
+	for linux-amlogic@lists.infradead.org; Tue, 03 Jan 2023 14:46:12 +0000
+Received: from [192.168.1.27] (cst-prg-44-69.cust.vodafone.cz [46.135.44.69])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: tomeu)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 95AEF6602CDE;
+	Tue,  3 Jan 2023 14:46:02 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1672757162;
+	bh=zzK/4X9HwMsb8vU6i7RiJAcbQSco76cw3wX9BR3S8rw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ikdqdwJAXTSAsS6NqQ/7bDCXXN/P8OEQ30sEio/4fVbND6oGE/7Gcm0ezDkLamSNL
+	 1p0S0E1qrlh5uuf6G4ZzfJQA8Y9RSwZayUj2IHnpaTgbMpR/znggdDmthX1We0PFoW
+	 vFxlexN+Mgky+8JTlz773AJPdsSxFqvHva4tJajcdEbZX/gPTG3jSEbD+KOpeyWwlN
+	 yQ/AFZTaHtAmiQw4jed1rMSIkh7+cP4mRqqiyX6NMgWEvbd3tPNKFEmL/06MiV5Ifg
+	 L3dv64XiRqUPBERotOjamn+qWjSV8elux+Jm1tVPMepdT4xnS+MKSf3PJGpneXZYUj
+	 X+7mZ3MLbMg9g==
+Message-ID: <c8322c28-656a-64cc-58fe-668026723821@collabora.com>
+Date: Tue, 3 Jan 2023 15:46:00 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.10.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: failed to start gnome/gdm3 wayland session after apply NPU
+ patches
+Content-Language: en-US
+To: Zhang Ning <zhangn1985@outlook.com>, linux-amlogic@lists.infradead.org
+References: <OS0P286MB0641E5D5C1CF9D1E100EFFB6CDED9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
+From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+In-Reply-To: <OS0P286MB0641E5D5C1CF9D1E100EFFB6CDED9@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230102_023951_083158_06664013 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20230103_064609_847170_229091C8 
+X-CRM114-Status: UNSURE (   8.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,54 +69,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Ning,
 
-On Fri, 2 Dec 2022 12:52:12 +0100, Tomeu Vizoso wrote:
-> This series adds support for the Verisilicon VIPNano-QI NPU in the A311D
-> as in the VIM3 board.
+On 12/27/22 05:21, Zhang Ning wrote:
+> Hi, Tomeu
 > 
-> The IP is very closely based on previous Vivante GPUs, so the etnaviv
-> kernel driver works basically unchanged.
+> after apply your NPU patches:
+> http://lists.infradead.org/pipermail/linux-amlogic/2022-December/014428.html
 > 
-> The userspace part of the driver is being reviewed at:
+> VIM3 failed to start gnome/gdm3 wayland session.
 > 
-> [...]
+> before:
+> 
+> VIM3:~$ ls /dev/dri/by-path/ -l
+> total 0
+> lrwxrwxrwx 1 root root  8 Dec 27 04:06 platform-ff900000.vpu-card -> ../card0
+> lrwxrwxrwx 1 root root  8 Dec 27 04:06 platform-ffe40000.gpu-card -> ../card1
+> lrwxrwxrwx 1 root root 13 Dec 27 04:06 platform-ffe40000.gpu-render -> ../renderD128
+> 
+> after:
+> 
+> VIM3:~$ ls /dev/dri/by-path/ -l
+> total 0
+> lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-etnaviv-card -> ../card0
+> lrwxrwxrwx 1 root root 13 Dec 27 04:10 platform-etnaviv-render -> ../renderD128
+> lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-ff900000.vpu-card -> ../card1
+> lrwxrwxrwx 1 root root  8 Dec 27 04:10 platform-ffe40000.gpu-card -> ../card2
+> lrwxrwxrwx 1 root root 13 Dec 27 04:10 platform-ffe40000.gpu-render -> ../renderD129
+> 
+> the fail log:
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: g_hash_table_destroy: assertion 'hash_table != NULL' failed
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to open gpu '/dev/dri/card0': No suitable mode setting backend found
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Added device '/dev/dri/card1' (meson) using atomic mode setting.
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: g_hash_table_destroy: assertion 'hash_table != NULL' failed
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to open gpu '/dev/dri/card2': No suitable mode setting backend found
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: No matching EGL configs
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Created gbm renderer for '/dev/dri/card1'
+> Dec 27 04:10:42 VIM3 gnome-shell[673]: Integrated GPU /dev/dri/card1 selected as primary
+> 
+> how to configure system to boot to gui with npu enabled?
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
+Maybe you can do that by setting the "mutter-device-preferred-primary" 
+udev tag for card2?
 
-[4/8] arm64: dts: Add DT node for the VIPNano-QI on the A311D
-      https://git.kernel.org/amlogic/c/18b542e544d3bd00e55d7135ee673b34dbfdb9b9
-[8/8] arm64: dts: Fix NPU power domain references in Amlogic G12-based SoCs
-      (no commit info)
+https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1562
 
-These changes has been applied on the intermediate git tree [1].
+Regards,
 
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Tomeu
 
 _______________________________________________
 linux-amlogic mailing list
