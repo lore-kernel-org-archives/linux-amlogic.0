@@ -4,76 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AAE2C46467
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Jan 2023 20:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C46C46467
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Jan 2023 23:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=224RjPWHVJgaaiFLvmm/z4/tIHnGsI+6myRAvySWWn4=; b=OBbbjoEAjh/Oul
-	m/PbkSNLxLaW2Uw0ocr4RVw/LFe2VZ9X+tP6kdpa+p4sljhMv3dOkD7G187mLFvO1hWWyssAzGZrI
-	euSomvOMkFl9PQaarhG6LRbBPQfSuS/lv2yrrHavDZ3R4vQk8Jd/7Q9Qu5+RDMjrUNwGoIyhExFRU
-	p8QbOpSuI9UbQbU3JoDtIXLINjIr2qpInmuI75a7rXJQztCmS4rsc3OU6MtVjqrCuljjjNhb1oPc6
-	Sij/Ny+dednCKHP/Yt6KBMVBqqOSa4jhfqAKJRZ91vK8KqIhNPMSds/eSgUR0FaCZMf94osDVFD0r
-	U/bOQ/Gs00UK+FaMezmw==;
+	List-Owner; bh=qeS3+zGSLp01J3AVQdQqRzJ7GbzXLUAAL5tzTB82FSw=; b=ffa9Ky3bDAVbqi
+	xVBLm6UBPj70mgbYgQschxFSD5pZA2RviM2x02Fl4TljEEkVYj9dMx31PKPLhXoA7l/CdsOQtCWaa
+	I8WTdu2Ta22J6SEqD7z6ylxhpepxWQMzG0R/BGorXVDWNYlTFvuYvcZ/HACX26TtwFItlyViLjO8V
+	Bq/j41vNqdUmZOLYShKqbiT4pFEBkJVfzDuPTAyz77TN2kvt+6J6V26BWdNiM5bHg9oBndSmuZYfn
+	05arKZZdczzdglhcQWTClWpLQ9zQtJ7eWPwQI04m/vWgHa52C2tTPwGMEV40RqYXqBhbI0MecrTJq
+	+FbSfdDA+/GnUFjkxdZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDAl1-00C08j-77; Wed, 04 Jan 2023 20:53:07 +0000
-Received: from mail-il1-x12f.google.com ([2607:f8b0:4864:20::12f])
+	id 1pDCzz-00DNo0-CS; Wed, 04 Jan 2023 23:16:43 +0000
+Received: from mail-il1-x12b.google.com ([2607:f8b0:4864:20::12b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDAky-00C07m-Ju
-	for linux-amlogic@lists.infradead.org; Wed, 04 Jan 2023 20:53:05 +0000
-Received: by mail-il1-x12f.google.com with SMTP id a9so7767106ilk.6
-        for <linux-amlogic@lists.infradead.org>; Wed, 04 Jan 2023 12:53:03 -0800 (PST)
+	id 1pDCOV-00CjKd-K5
+	for linux-amlogic@lists.infradead.org; Wed, 04 Jan 2023 22:38:01 +0000
+Received: by mail-il1-x12b.google.com with SMTP id bp26so5611150ilb.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 04 Jan 2023 14:37:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VvPBmhnK4Q9HxzeQD/MDc8OKkrjpvJu9PsbKOMLRVCY=;
-        b=apfUpUE2RvS7EjOZFtrYAW0yRTMG0bsW1XpF8htHBA0KyqAtCEuH625OtLnkI5Q2mb
-         /SKBvQ49ge1I9Ynf7k4QIDPQWPQ3UJ7OIhcXi0qgkGR9q7QEe9goF11NPUFHWgCYKLYF
-         U8xRmH7vmHiD9pVgtiY+W6lW6WxolyoaLsjX0=
+        bh=YcNoql4sxZAAG0Z9x382x27f16j/NJH8gvjDj7DBfeY=;
+        b=ohe7m4zraaZuCG6StlOr3NDElGbtNTt/AgB57cgRJ7fR/62RRKlU/4Kkq1hw+ths9X
+         H+IwFo9T4WLorbzXH15hXAuWYP0qA7UDgvG6zA0vgTCHsVQaPXB9tzFAp3rNEU/pjGFP
+         Aj6X4ML3gX7K7csd049yNiopXlnTHatPghoj0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VvPBmhnK4Q9HxzeQD/MDc8OKkrjpvJu9PsbKOMLRVCY=;
-        b=upJ3XY40etW/3PS4xZAvWNiJz59h5OXA6IDOyE3UHSez8bcrVeCOGjBngaoqUB85nc
-         gcHA0tFolAUF0Y+FeyMKmQ31X4ItjjN1PxUNzUEH329KEGJQENAePMUs0NChmDVKOGjr
-         MqB1l+i2nF91Lxo1E50Tc9QXUunGF8tedTjJniKkcKffhWdDD8GzEDz0+n3byz7oQcx+
-         NydCSN1muj9QoXJNdBT4Yr8zvH2BSzbuiE+klV1ULtzdxEgP005JQmvadUf6bWaCiMj6
-         HS1lZSi9DnMNHwD8EcgIcm0CMmSaRPc4fzrmreT7p/wrUDX7XeAZs7c2SpU4Q0wTxs3X
-         m1RA==
-X-Gm-Message-State: AFqh2konBoh4aHWgjFPanx2JCSukjbz/G6ryRzNfZ/HptBU9aNHdtuAv
-	cKbHMZVkleq/WiSxvsdOTByNjQ==
-X-Google-Smtp-Source: AMrXdXuiVXIyPMuGV80wVV0FEy5DR2Fndb+zQsxWmkdLzfYvfBdyxmNScdXxPiSBV7teuXTX45TGjQ==
-X-Received: by 2002:a05:6e02:1ba9:b0:30b:fdb5:bd07 with SMTP id n9-20020a056e021ba900b0030bfdb5bd07mr30415134ili.1.1672865582405;
-        Wed, 04 Jan 2023 12:53:02 -0800 (PST)
+        bh=YcNoql4sxZAAG0Z9x382x27f16j/NJH8gvjDj7DBfeY=;
+        b=0+yxbjRJN4AY670J+zjXdoeoHfNWwkpc2ftAa5+dJ/WIS0YhjZl+ni1VP2R0fzgH+c
+         a/vbggk0xQtJqSuw6QYZirXYS9DPf1rlmNvax9LOMoUHkeeWHXs0oEATaczFWRnUiBML
+         diW91MLZiPF/A0DRvxQD5X4PDAchNn+a/KWd34Xbo4iZzOopIqNcATN5QGZck5FZbMXE
+         SDOnleJ98CW70y/2pZZq4Ud+IFCae3kSoXlP5MVd2BPUkFSu0VYO5/J0UgaufyRX7MKD
+         SbzXlOP1/O+TWkxCtfdpnsvoRdVCXPYugHGQwtJvPkncO1/g1Z1yAyuO5W/YYGEn0kEo
+         U6DQ==
+X-Gm-Message-State: AFqh2kp7lSal7h6QViPO0aYGdq52E7TGKz1J2+IJw2ejS+kVgGTPNCQk
+	7ksF4EfP3qPODnI4RB6tl1jBpw==
+X-Google-Smtp-Source: AMrXdXsnV5WKBO3y2D9jF6L7JkTbhKxnOGOhp02IPb09JTYoS/rGNOwzeyl6ujdBGNOViFzaAqfhkA==
+X-Received: by 2002:a05:6e02:b2c:b0:304:c95e:8c36 with SMTP id e12-20020a056e020b2c00b00304c95e8c36mr39114239ilu.14.1672871878123;
+        Wed, 04 Jan 2023 14:37:58 -0800 (PST)
 Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id c7-20020a023307000000b0038a6ae38ceasm11404660jae.26.2023.01.04.12.53.01
+        by smtp.gmail.com with UTF8SMTPSA id r22-20020a02b116000000b00363ec4dcaacsm11304062jah.22.2023.01.04.14.37.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jan 2023 12:53:02 -0800 (PST)
-Date: Wed, 4 Jan 2023 20:53:01 +0000
+        Wed, 04 Jan 2023 14:37:57 -0800 (PST)
+Date: Wed, 4 Jan 2023 22:37:57 +0000
 From: Matthias Kaehlcke <mka@chromium.org>
 To: Anand Moon <linux.amoon@gmail.com>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 05/11] usb: misc: onboard_usb_hub: add Genesys Logic
- GL852G-OHG hub support
-Message-ID: <Y7XnLYbHxfADz7gk@google.com>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 08/11] dt-bindings: usb: Add binding for Via lab
+ VL817Q7 hub controller
+Message-ID: <Y7X/xadXIA2f9lHz@google.com>
 References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-6-linux.amoon@gmail.com>
- <Y7XhYm0nvBsSS8MN@google.com>
+ <20221228100321.15949-9-linux.amoon@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <Y7XhYm0nvBsSS8MN@google.com>
+In-Reply-To: <20221228100321.15949-9-linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230104_125304_695324_AD76711B 
-X-CRM114-Status: GOOD (  20.66  )
+X-CRM114-CacheID: sfid-20230104_143759_926007_39820154 
+X-CRM114-Status: GOOD (  21.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,57 +91,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 04, 2023 at 08:28:18PM +0000, Matthias Kaehlcke wrote:
-> On Wed, Dec 28, 2022 at 10:03:14AM +0000, Anand Moon wrote:
-> > Genesys Logic GL852G-OHG is a 4-port USB 2.0 STT hub that has a reset pin to
-> > toggle and a 5.0V core supply exported though an integrated LDO is
-> > available for powering it.
-> > 
-> > Add the support for this hub, for controlling the reset pin and the core
-> > power supply.
-> > 
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  drivers/usb/misc/onboard_usb_hub.c | 1 +
-> >  drivers/usb/misc/onboard_usb_hub.h | 1 +
-> >  2 files changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-> > index 94e7966e199d..c0e8e6f4ec0a 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > @@ -409,6 +409,7 @@ static void onboard_hub_usbdev_disconnect(struct usb_device *udev)
-> >  
-> >  static const struct usb_device_id onboard_hub_id_table[] = {
-> >  	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 */
-> > +	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0610) }, /* Genesys Logic GL852G-OHG USB 2.0 */
-
-Do you happen to know what '-OHG' stands for? The Genesys website only
-mentions a GL852G with different package types (none of them 'OHG').
-Unless there is an 'OHG' variant with a different product id I'd say
-let's drop the suffix.
-
-> >  	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2514) }, /* USB2514B USB 2.0 */
-> >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1 */
-> >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
-> > index 62129a6a1ba5..2ee1b0032d23 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.h
-> > +++ b/drivers/usb/misc/onboard_usb_hub.h
-> > @@ -31,6 +31,7 @@ static const struct of_device_id onboard_hub_match[] = {
-> >  	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
-> >  	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
-> >  	{ .compatible = "usb5e3,608", .data = &genesys_gl850g_data, },
-> > +	{ .compatible = "genesys,usb5e3,610", .data = &genesys_gl850g_data, },
+On Wed, Dec 28, 2022 at 10:03:17AM +0000, Anand Moon wrote:
+> The VIA Lab VL817-Q7 is a USB 3.1 Gen 1 4-Port hub controller that
+> features 4 downstream ports, an internal 5V regulator and has
+> external reset pin.
 > 
-> s/genesys,//
+> Add a device tree binding for its USB protocol part.
+> The internal LDO is not covered by this and can just be modelled
+> as a fixed regulator.
 > 
-> >  	{ .compatible = "usbbda,411", .data = &realtek_rts5411_data, },
-> >  	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
-> >  	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
-> > -- 
-> > 2.38.1
-> > 
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  .../bindings/usb/vialab,vl817q7.yaml          | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml
+> new file mode 100644
+> index 000000000000..4ae995160fd5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/vialab,vl817q7.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Via labs VL817Q7 USB 3.1 hub controller
+
+nit: VIA Labs VL817-Q7
+
+> +
+> +maintainers:
+> +  - Anand Moon <linux.amoon@gmail.com>
+> +
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - vialab,usb2109
+
+This is not a valid compatible string as Johan already noted.
+
+Besides that the VL817-Q7 provides both a 3.1 and a 2.0 USB hub, which
+are enumerated separately. Please also add a compatible string for the
+2.0 hub (assuming 0x2109 is the 3.1 hub).
+
+> +
+> +  reg: true
+> +
+> +  reset-gpios:
+> +    description: GPIO controlling the RESET# pin.
+> +
+> +  vdd-supply:
+> +    description:
+> +      the regulator that provides 5.0V core power to the hub.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    usb {
+> +        dr_mode = "host";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hub: hub@1 {
+> +            compatible = "vialab,usb2109"
+> +            reg = <1>;
+> +            reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+> +        };
+
+Please also add a node for the other hub and link the two nodes with
+each other through the 'peer-hub' property. See realtek,rts5411.yaml
+for reference.
 
 _______________________________________________
 linux-amlogic mailing list
