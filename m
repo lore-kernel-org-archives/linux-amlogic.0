@@ -4,173 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A66ECC3DA7A
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Jan 2023 20:37:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F6BC4708E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Jan 2023 20:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Uf26ydCJcKtjAY1arCo3//grnZ83CAXIZqQIRThnK7U=; b=kheYkkwvq/QQ/m
-	UO4JKheNQfUUoO7raRey1w/KrHYft8DjEpmWeAxVrBIyn4Qm/FbBdG1Ssj7rsKdcvey+YxJ06zpuX
-	Qd/7WhjYIPof3nmZdzyO2KCbZzNdh6WiSfnxRjD9iPJfc1UcOWdc3C8TEpQwK0KJjEYpuyNzBdPPa
-	b967zkJRl9igbYEV5GhsqAHeCuEUthp8SY1nSfldhlwjjEiMJddUDk3y9Rd7YWQyZWmQT1DqSKa7v
-	aCsbb6KjfO16WUJd5d4UjlPzoUiHHqgcqkV/ADJVc+Qn1xR2iEIUnCbBBe7BWddLhLBeTvPKVUOxf
-	8nnTVsgMQRKErp1z9JMA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=aRNM2UYyVvcNTiJw79umc8PRcfh7wMMv2gVF9uPVz48=; b=NwAErAOdlbFx9pljowUYD5EbqH
+	6tx4WDsBn4FkT4Zlg5QHxW93NwYzUjeTtFWL+0nUUQTvmNesxjN3oX5UN/kDxgDzNeCLuwoiF2Cwv
+	teKX9kJ9cy16ueDeA8YYVBMEeMvoGr93/P5qPJLSRCQN2OS3rlDej8WC3knwPoIn06Mg0w1fWItOw
+	vGpA/wFIW9up6pFbsHL1pnWHfWuz4BEzPgABGWPf7KcqQxoUO3bTmyl3dPfOgFt/bIRuhQE/oKOAg
+	kJ/7Jsv+Olscw3lfGoZ9GbgAWgJuEN3gR3PyZUvyfvlLt4ICnjTTBUMDsouyVLxehSD5dUMLc4SeR
+	ifEpvh6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDWzP-00EdBI-4P; Thu, 05 Jan 2023 20:37:27 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pDX8V-00EjFL-8R; Thu, 05 Jan 2023 20:46:51 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pAwdc-000IkB-6k; Thu, 29 Dec 2022 17:24:20 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id A432FB81A1D;
-	Thu, 29 Dec 2022 17:24:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D196C433EF;
-	Thu, 29 Dec 2022 17:24:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1672334654;
-	bh=m9HPREp2BBaXTvbpQHx2WQprM9b37LXlFfRjZD2pPbc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qt7/hxQDBIvlE+UOhExIE+gpA1yr2Ytl6cD8uXTtl6jgmBiTsoa9S2hzoepP7nwKs
-	 hhpc3+xHFhXVHpJMCUop4bill7ozLgMzwQO9LA8YMAFtxiODZoV/t6jq0Emw7Vrcpc
-	 e3wDGuhBEwoBzI4P7WQzE+OVPLDTQ1V36xIiwX6Tdlhhavqpe87KM/WVAf3FA/niGn
-	 Ujoi3sHXiSMn5Y2NVbd6ytWoXoohJM3TaDA3JajgPrNoErUXxWekYOsYNjAIXlTMEQ
-	 vMYOqfDifnyfUtz3zYMqXx6dcSELIGyAql3swkh8gUSPi1+mCzcYJTnQt6naxTJBRV
-	 xmQpIqRdURmSg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	pierre.gondois@arm.com
-Cc: linux-realtek-soc@lists.infradead.org,
-	alim.akhtar@samsung.com,
-	clin@suse.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	tmaimon77@gmail.com,
-	chris.obbard@collabora.com,
-	ming.qian@nxp.com,
-	william.zhang@broadcom.com,
-	linux-arm-kernel@lists.infradead.org,
-	Markus.Niebel@ew.tq-group.com,
-	m.felsch@pengutronix.de,
-	jszhang@kernel.org,
-	viorel.suman@nxp.com,
-	liviu.dudau@arm.com,
-	openbmc@lists.ozlabs.org,
-	agross@kernel.org,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	xiaoning.wang@nxp.com,
-	mbrugger@suse.com,
-	hayashi.kunihiko@socionext.com,
-	aswani.reddy@samsung.com,
-	linux-arm-msm@vger.kernel.org,
-	s32@nxp.com,
-	mhiramat@kernel.org,
-	marex@denx.de,
-	Steen.Hegelund@microchip.com,
-	anand.gore@broadcom.com,
-	thomas.lendacky@amd.com,
-	pshete@nvidia.com,
-	benjaminfair@google.com,
-	diogo.ivo@tecnico.ulisboa.pt,
-	jbx6244@gmail.com,
-	heiko@sntech.de,
-	tharvey@gateworks.com,
-	vigneshr@ti.com,
-	linux-rpi-kernel@lists.infradead.org,
-	afaerber@suse.de,
-	jun.li@nxp.com,
-	victor.liu@nxp.com,
-	linux-mediatek@lists.infradead.org,
-	mperttunen@nvidia.com,
-	peng.fan@nxp.com,
-	abelvesa@kernel.org,
-	chris.packham@alliedtelesis.co.nz,
-	lpieralisi@kernel.org,
-	laurent.pinchart@ideasonboard.com,
-	ezequiel@vanguardiasur.com.ar,
-	rafal@milecki.pl,
-	jonathanh@nvidia.com,
-	konrad.dybcio@somainline.org,
-	UNGLinuxDriver@microchip.com,
-	martin.blumenstingl@googlemail.com,
-	linux-rockchip@lists.infradead.org,
-	kernel@pengutronix.de,
-	qiangqing.zhang@nxp.com,
-	amhetre@nvidia.com,
-	linux-tegra@vger.kernel.org,
-	andrew@lunn.ch,
-	kristo@kernel.org,
-	nm@ti.com,
-	spujar@nvidia.com,
-	leoyang.li@nxp.com,
-	vadym.kochan@plvision.eu,
-	daniel.machon@microchip.com,
-	paul.elder@ideasonboard.com,
-	khilman@baylibre.com,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	linux-samsung-soc@vger.kernel.org,
-	robh+dt@kernel.org,
-	alexander.stein@ew.tq-group.com,
-	festevam@gmail.com,
-	brijeshkumar.singh@amd.com,
-	oliver.graute@kococonnector.com,
-	martink@posteo.de,
-	shenwei.wang@nxp.com,
-	f.fainelli@gmail.com,
-	sumitg@nvidia.com,
-	devicetree@vger.kernel.org,
-	eagle.zhou@nxp.com,
-	sebastian.hesselbarth@gmail.com,
-	atenart@kernel.org,
-	l.stach@pengutronix.de,
-	xuwei5@hisilicon.com,
-	tsahee@annapurnalabs.com,
-	ping.bai@nxp.com,
-	shawnguo@kernel.org,
-	linux-amlogic@lists.infradead.org,
-	jbrunet@baylibre.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	neil.armstrong@linaro.org,
-	suravee.suthikulpanit@amd.com,
-	thierry.reding@gmail.com,
-	rjui@broadcom.com,
-	lars.povlsen@microchip.com,
-	magnus.damm@gmail.com,
-	geert+renesas@glider.be,
-	wei.fang@nxp.com,
-	linux-imx@nxp.com,
-	gregory.clement@bootlin.com,
-	yuenn@google.com,
-	vidyas@nvidia.com,
-	chanho.min@lge.com,
-	david@ixit.cz,
-	aford173@gmail.com,
-	s.prashar@samsung.com,
-	khuong@os.amperecomputing.com,
-	sudeep.holla@arm.com,
-	sbranden@broadcom.com,
-	shijie.qin@nxp.com,
-	venture@google.com,
-	kursad.oney@broadcom.com,
-	linux-renesas-soc@vger.kernel.org,
-	hongxing.zhu@nxp.com,
-	akhilrajeev@nvidia.com
-Subject: Re: (subset) [PATCH v2 16/23] arm64: dts: Update cache properties for qcom
-Date: Thu, 29 Dec 2022 11:23:41 -0600
-Message-Id: <167233461757.1099840.14261373049741719746.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221107155825.1644604-17-pierre.gondois@arm.com>
-References: <20221107155825.1644604-1-pierre.gondois@arm.com> <20221107155825.1644604-17-pierre.gondois@arm.com>
+	id 1pDUPS-00DBfM-7y
+	for linux-amlogic@lists.infradead.org; Thu, 05 Jan 2023 17:52:11 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id ay40so28622510wmb.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Jan 2023 09:52:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ugr2yYVEUhL+xkEGPRO9/xBDZ9Vd+/x5fCQ9KXy3m2E=;
+        b=vjrKb8gr1GNWhaEsR8vtdCuj+l4nmILb2jFYIjfNwldA22cPEziHxmn9t5kqBis9Mb
+         6sRcvJTfcFTB5kI5IPjIakUDt5PEMbiu6ISxELHK78NkhOKwAksmHQsv2kedVQypR51X
+         tUIP7bTyV5JKj0R9WEKCdnZ/86IR34jOZgjo9FMrfrLxsaHoBHhWVuCMlbmgLgRyBo/r
+         f8eKbbBnq9MuEIlVHwyqGWK8R63+rLJvewGCfbHKNZ4HI4ecYZlD6DgWyrzJunKTMP5L
+         fLUuPVFhw+v2hoM2Sqe2pk7K8P/epZAXQzHmEaLfH0T9+FsZ5f/7LIdwt9kT/69dQ1Gx
+         YsPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ugr2yYVEUhL+xkEGPRO9/xBDZ9Vd+/x5fCQ9KXy3m2E=;
+        b=5Oj8D+guu++Rm4btM6MgaC9yf2WZBPDEBfSl/lXrNQDm0TvidZue39G8mg+kif4pBo
+         2KsAIBsNasqE+FxK9bDWCbhVZy7HRwCOFxZC0tMjlC+jzLWWtypGs7B67WlidOywqAZZ
+         N+Ka3tbk+opVb0U0v5E5xAkTRoFS16EKdiaK1ZF5g9sQsP+l2V9BuSamRFnHKulRncX1
+         6fWc73RG8/cmOgOiNKXkBvQXpNbW7fLFv2IqOiEL1zVA5ZvMLnWjH3sP0b6fG9Afp8JR
+         neafwcdBvpJkgFeHhih/LOIo3tguwCDTem4BSP7VyA38C0/rkE5NK5HlxBZbeAn56+6Y
+         y54A==
+X-Gm-Message-State: AFqh2ko3u2NX2/1js68Ck3fVPDixUUDPmkCw33E5MMANm1mYYwe3yLRG
+	PLhhYH5yxDUm3v/FS5v+z59AAoyPd6OaofEY
+X-Google-Smtp-Source: AMrXdXtefjBL135tyA/Oehot/lGv32IcBWL8OeOsnwIqPYi/ZQIFrgw0b7A0dsB9gPi1lYRzQrejng==
+X-Received: by 2002:a05:600c:1c81:b0:3d1:e907:17cb with SMTP id k1-20020a05600c1c8100b003d1e90717cbmr37039812wms.1.1672941121805;
+        Thu, 05 Jan 2023 09:52:01 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1e12:c16d:1898:607c? ([2a01:e0a:982:cbb0:1e12:c16d:1898:607c])
+        by smtp.gmail.com with ESMTPSA id n14-20020a05600c3b8e00b003b49bd61b19sm3595941wms.15.2023.01.05.09.52.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jan 2023 09:52:01 -0800 (PST)
+Message-ID: <dfeff261-53cf-54b5-b3dd-dc0ce0d1e6a0@linaro.org>
+Date: Thu, 5 Jan 2023 18:52:00 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2] Revert "arm64: dts: meson-sm1-odroid-hc4: disable
+ unused USB PHY0"
+Content-Language: en-US
+To: Pierre-Olivier Mercier <nemunaire@nemunai.re>,
+ martin.blumenstingl@googlemail.com
+Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230104140608.28432-1-nemunaire@nemunai.re>
+ <20230105120206.28964-1-nemunaire@nemunai.re>
+Organization: Linaro Developer Services
+In-Reply-To: <20230105120206.28964-1-nemunaire@nemunai.re>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221229_092419_190335_5B88A323 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Thu, 05 Jan 2023 09:50:53 -0800
+X-CRM114-CacheID: sfid-20230105_095210_330766_38D73F90 
+X-CRM114-Status: GOOD (  13.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -182,30 +92,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 7 Nov 2022 16:57:09 +0100, Pierre Gondois wrote:
-> The DeviceTree Specification v0.3 specifies that the cache node
-> 'compatible' and 'cache-level' properties are 'required'. Cf.
-> s3.8 Multi-level and Shared Cache Nodes
-> The 'cache-unified' property should be present if one of the
-> properties for unified cache is present ('cache-size', ...).
+On 05/01/2023 13:02, Pierre-Olivier Mercier wrote:
+> This reverts commit 703e84d6615a4a95fb504c8f2e4c9426b86f3930.
 > 
-> Update the Device Trees accordingly.
+> USB device enumeration was not working on Odroid HC4 as both USB2 PHYs
+> need to be enabled. This is inherited from the GLX USB design [1].
 > 
-> [...]
+> [1]: https://lore.kernel.org/all/20170814224542.18257-1-martin.blumenstingl@googlemail.com/T/
+> 
+> Signed-off-by: Pierre-Olivier Mercier <nemunaire@nemunai.re>
+> ---
+> v2:
+>   - Fix commit log
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 8 ++------
+>   1 file changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> index e3486f60645a..a1f0c38ccadd 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> @@ -131,10 +131,6 @@ flash@0 {
+>   };
+>   
+>   &usb {
+> -	phys = <&usb2_phy1>;
+> -	phy-names = "usb2-phy1";
+> -};
+> -
+> -&usb2_phy0 {
+> -	status = "disabled";
+> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+> +	phy-names = "usb2-phy0", "usb2-phy1";
+>   };
 
-Applied, thanks!
+OK weird, this email doesn't appear on any mailing-lists archive, neither our replies !
 
-[16/23] arm64: dts: Update cache properties for qcom
-        commit: 9435294c6517dc70bb608505b79097a58ea7c6a3
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
