@@ -4,77 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8215AC3DA7A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Jan 2023 08:12:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93355C5479D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Jan 2023 08:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uMESsOUdprtxHU0uVf89aAPNB2pbaYI1kysDIylP/eU=; b=cDE9NnmskEdIkG
-	q9IraJ3xR6wOy1LI55hQxrqehfx6nXtUSW/5pS7PZh6bV7fixAs4s3zjtVo1k6OjZUsTiy0qZnap0
-	6Fg4ZWUS/lHEGfJVTCVhWKvoKtDWn7hRODWgOgQp0gaikiqwdk8YUdEp+vcwLQX653b8bDdhlP9WV
-	tATiiARaPkeRdphWSDgWa2AezLnhqXmQgd8dHr3HbaFB3LAJtADabbR4hZXYm3+IX9mX9ktGwewVF
-	unf4Y/cK5Dwmc0SMaHkfbbhxVp/j6uxBVD2+PvkZ/5FUk/lK98QiNmwMyEHw95GGop9N8RG2S7XmH
-	2tlevuy2DfUcegjMaL1A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=s5xNmRSeFvs2lhf9Tnvk0UAD8WqDZclO5a4vG+gV4sE=; b=eao4zRF4uT3Z+3
+	O4h2He2OJ5Zknodz+9/lD6NF1vNLIQRbC6PhzP0k6guQqQaBqtwUpYprueLXOpbpqaXTN9IhciJmD
+	3uZ5QIbgCjYsF45JocI0xIWQoOJK65mL7GGlge0nXiSK7pkFHH/n6jEc1uHz6y/6sx7vXRoMXxX2r
+	4uAJ67l7AEwgp5ywQJBUII5v5U8c/VgM/+8A/7kVxt2noHi56GErurjsDRnG6PS6KnI9W2Gntlmi3
+	lJzNSPYff1pkUQtmFW9I9+y/8yVUXnjE1Qel6AvQfYYH3/qpRuI5oJjRI7N5bYj7VvbPubes27dF/
+	7F1/iuJx0OH7qCt++vcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDhqG-006W1K-F0; Fri, 06 Jan 2023 08:12:44 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1pDhrg-006WTZ-JZ; Fri, 06 Jan 2023 08:14:12 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDhq3-006Vxg-S0
-	for linux-amlogic@lists.infradead.org; Fri, 06 Jan 2023 08:12:34 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id ja17so547955wmb.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Jan 2023 00:12:30 -0800 (PST)
+	id 1pDhrW-006WQ2-Sm
+	for linux-amlogic@lists.infradead.org; Fri, 06 Jan 2023 08:14:04 +0000
+Received: by mail-wm1-x334.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so3021799wmb.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Jan 2023 00:14:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:organization:reply-to:content-language:cc
-         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GyfJFZdIdRh2RsiYptrx5CNUd4d9thwSYOnDDNRq4ac=;
-        b=QbXT+24yt8nEeOm0EF1IRu5b7CIQIFHS4PUlvHMQM0VYS0Z0T2pC5sqNPGEiN56jqq
-         jRKQL1lnyNNlFTwoxsJWrNJ6UDN3wGhA/XWAqvzETE8KS0cl3vP0W0qkd0VkEoR5xfp9
-         Q9h6uaLV9W12L2jVLlSPpSXvO1/jmyeOINlqRMDnWnwvDOVGGMQyKpI/BNZzG9wlFXW0
-         1Y3MNJjZAuPvhBhXmalfuuXsBmeW212mfkzgakOX+nULKenaRgrYeuN3Kn4FL81/v5f2
-         aI4sV1RJxJ9wCQgPVsMalUwEAGZHtJpMrV/illsAGJyodCETn6yXJEWI++BLuol0tHZF
-         vvow==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :from:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LgfaxQBxMkYdezPSKlR6TiaF4qemCs5BgQKFqSeUefE=;
+        b=ii1382cFov7OVo7cz9Xy6m8b+mLMopI5ciXgUlgPZBpB/ncWlw4LJWgIKFYP+n+0ZT
+         T/E5Z2LCrRgRy0KojdKrdEcXrOS55g51w4PXpUCNk5cfwlX9+Sr9WDtIrnakTLvWICbF
+         tY3PZ8J2t/+ID+swfPsAAK9McWCQzWUiaTueSG1ONPbllzc214J+A6B6f53IltsKVhWB
+         pi8vO1Ccp/iQjsOeic0rZf48hcc13kaV4mFdqW8icw8LDlTEsM0ijQ6XkHQ0R19zPv4h
+         fVWhDbDTejBpPBjmxyxPgVq/wqNR/Z+AyOhZo8W84b8CVeDmlEGeNCB8hclU9tQrH7IW
+         dabw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:organization:reply-to:content-language:cc
-         :to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GyfJFZdIdRh2RsiYptrx5CNUd4d9thwSYOnDDNRq4ac=;
-        b=O2ACYkpCW3HS0/hhjLavc8UqNukgnLvaAAl2KxjMDvRbIwQqyRei21culG2BH9/HdT
-         vg2tzSrzD4+Y/HzUFtlEk09Um11vXdcP2xvS9kX61c9Ue2T4GorWqiOmt8DP2WPBoIey
-         5kC8TLodiE2zkZ7J0PBiMtNNxG8Zz9KOrcAg+y3TY7b/X66AymjX8x6HD3KzchZuGCsQ
-         3tyAkNrNxtKPv0yysoGjdgnF69au/2hLg7IDiIhwNBt6++Pg9udlwSvhlbXF3wibGfAv
-         ZlHGHi/9dSLLV3m2U/8swK8VCCHz/YYdsUHcafECwvOaw3QHbIKsK6JNU6sFhLhv/W9i
-         ofvw==
-X-Gm-Message-State: AFqh2kr5Np4PXTRc9EPM8o3NScx48/Pe+HXn5hac7I6/bYbAIuixhtWl
-	FohoHdqu9/r94IJpmEpzPrnsPELP78BvQFdY
-X-Google-Smtp-Source: AMrXdXs+7AhCAtGKN3vokaxcoula6Zun3EwFm23Nv2khgIVWsTKJES4Z+Fvpg/IJXBOyIU7AokfuGg==
-X-Received: by 2002:a05:600c:798:b0:3d3:5737:3b0f with SMTP id z24-20020a05600c079800b003d357373b0fmr47485848wmo.36.1672992749604;
-        Fri, 06 Jan 2023 00:12:29 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :from:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LgfaxQBxMkYdezPSKlR6TiaF4qemCs5BgQKFqSeUefE=;
+        b=2mdLnbKSMgbk0TbkH4Z5F2dTyJXLjKHM+Zltb8m7e7HHjLjk4Vl+xNbBpbcfFltgok
+         UiAfp4lirwmk1u4B4f6y+0GGwgVt+B2r3/beio3sptwNGFDYUXtL/UqEO4Az+zzxtOOc
+         ukTKp5JrXcWwYgbCwu3fMKHiVogbVWr17Q56Ys1I8yARGw9dhIThFnOb2B81LTlZOtUt
+         JBrc5xAe4uzMA3WevNcVMuxSb0uFvHnMnBbBp+OMydMuOwObof85WEdWSxXAyvfcbiQJ
+         pH8xzwNSrJu5WATNpr+c0wGQ4k/gtZ04XXsipizJwVQtuP3KPq/4cdXFVxGuyhjqS4lS
+         7Yiw==
+X-Gm-Message-State: AFqh2koyQw6wf50vnkrub0Xi0Hag1RSW03PDFD8gzDK5Q3HEGr/SjVpK
+	VyrmH6jAfyRkxCT2v4FVaKS9yWFurFvNQFcn
+X-Google-Smtp-Source: AMrXdXvDBz8Fo5guGIVo2bfZgAb8qBNJG9qwCKL7+3+Xy1Izugnwq+tLFWLDeETQ9Quvf0OYucTyQg==
+X-Received: by 2002:a1c:4b14:0:b0:3d3:5ade:4317 with SMTP id y20-20020a1c4b14000000b003d35ade4317mr37629711wma.8.1672992840668;
+        Fri, 06 Jan 2023 00:14:00 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:a0ba:a5f3:d9f1:7e25? ([2a01:e0a:982:cbb0:a0ba:a5f3:d9f1:7e25])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05600c510900b003c6f8d30e40sm6034506wms.31.2023.01.06.00.12.28
+        by smtp.gmail.com with ESMTPSA id t12-20020a05600c198c00b003d9de0c39fasm569137wmq.36.2023.01.06.00.13.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 00:12:29 -0800 (PST)
-Message-ID: <7915c3f8-57bc-25e2-0314-c78af7a79d6a@linaro.org>
-Date: Fri, 6 Jan 2023 09:12:28 +0100
+        Fri, 06 Jan 2023 00:14:00 -0800 (PST)
+Message-ID: <af9de47d-ade9-0fa4-5b37-5a05308cc2e8@linaro.org>
+Date: Fri, 6 Jan 2023 09:13:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic fixes for v6.2-rc
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] Revert "arm64: dts: meson-sm1-odroid-hc4: disable
+ unused USB PHY0"
 Content-Language: en-US
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Pierre-Olivier Mercier <nemunaire@nemunai.re>,
+ martin.blumenstingl@googlemail.com
+Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230104140608.28432-1-nemunaire@nemunai.re>
+ <20230105120206.28964-1-nemunaire@nemunai.re>
+ <dfeff261-53cf-54b5-b3dd-dc0ce0d1e6a0@linaro.org>
 Organization: Linaro Developer Services
+In-Reply-To: <dfeff261-53cf-54b5-b3dd-dc0ce0d1e6a0@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230106_001233_362309_999A562B 
-X-CRM114-Status: UNSURE (   6.18  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230106_001402_934678_36EDFF04 
+X-CRM114-Status: GOOD (  11.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,42 +94,37 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-Here's a DT revert for v6.2-rc1 which fixes USB on Odroid-HC4, having both USB2 PHYs
-enabled is necessary to have functional USB on Amlogic SoCs, even if one port is unused.
-
-Neil
-
-The following changes since commit 1b929c02afd37871d5afb9d498426f83432e71c2:
-
-   Linux 6.2-rc1 (2022-12-25 13:41:39 -0800)
-
-are available in the Git repository at:
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-fixes-v6.2-rc
-
-for you to fetch changes up to c45219cba101f32853d011da2ba46a1b2338dc4c:
-
-   Revert "arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0" (2023-01-06 09:02:40 +0100)
-
-----------------------------------------------------------------
-Amlogic fixes for v6.2-rc:
-- Revert "arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0" which breaks whole USB on Odroid-HC4
-
-----------------------------------------------------------------
-Pierre-Olivier Mercier (1):
-       Revert "arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0"
-
-  arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 8 ++------
-  1 file changed, 2 insertions(+), 6 deletions(-)
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMDUvMDEvMjAyMyAxODo1MiwgbmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZyB3cm90ZToKPiBP
+biAwNS8wMS8yMDIzIDEzOjAyLCBQaWVycmUtT2xpdmllciBNZXJjaWVyIHdyb3RlOgo+PiBUaGlz
+IHJldmVydHMgY29tbWl0IDcwM2U4NGQ2NjE1YTRhOTVmYjUwNGM4ZjJlNGM5NDI2Yjg2ZjM5MzAu
+Cj4+Cj4+IFVTQiBkZXZpY2UgZW51bWVyYXRpb24gd2FzIG5vdCB3b3JraW5nIG9uIE9kcm9pZCBI
+QzQgYXMgYm90aCBVU0IyIFBIWXMKPj4gbmVlZCB0byBiZSBlbmFibGVkLiBUaGlzIGlzIGluaGVy
+aXRlZCBmcm9tIHRoZSBHTFggVVNCIGRlc2lnbiBbMV0uCj4+Cj4+IFsxXTogaHR0cHM6Ly9sb3Jl
+Lmtlcm5lbC5vcmcvYWxsLzIwMTcwODE0MjI0NTQyLjE4MjU3LTEtbWFydGluLmJsdW1lbnN0aW5n
+bEBnb29nbGVtYWlsLmNvbS9ULwo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBQaWVycmUtT2xpdmllciBN
+ZXJjaWVyIDxuZW11bmFpcmVAbmVtdW5haS5yZT4KPj4gLS0tCj4+IHYyOgo+PiDCoCAtIEZpeCBj
+b21taXQgbG9nCj4+IC0tLQo+PiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24t
+c20xLW9kcm9pZC1oYzQuZHRzIHwgOCArKy0tLS0tLQo+PiDCoCAxIGZpbGUgY2hhbmdlZCwgMiBp
+bnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02
+NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXNtMS1vZHJvaWQtaGM0LmR0cyBiL2FyY2gvYXJtNjQv
+Ym9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zbTEtb2Ryb2lkLWhjNC5kdHMKPj4gaW5kZXggZTM0ODZm
+NjA2NDVhLi5hMWYwYzM4Y2NhZGQgMTAwNjQ0Cj4+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+YW1sb2dpYy9tZXNvbi1zbTEtb2Ryb2lkLWhjNC5kdHMKPj4gKysrIGIvYXJjaC9hcm02NC9ib290
+L2R0cy9hbWxvZ2ljL21lc29uLXNtMS1vZHJvaWQtaGM0LmR0cwo+PiBAQCAtMTMxLDEwICsxMzEs
+NiBAQCBmbGFzaEAwIHsKPj4gwqAgfTsKPj4gwqAgJnVzYiB7Cj4+IC3CoMKgwqAgcGh5cyA9IDwm
+dXNiMl9waHkxPjsKPj4gLcKgwqDCoCBwaHktbmFtZXMgPSAidXNiMi1waHkxIjsKPj4gLX07Cj4+
+IC0KPj4gLSZ1c2IyX3BoeTAgewo+PiAtwqDCoMKgIHN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4+ICvC
+oMKgwqAgcGh5cyA9IDwmdXNiMl9waHkwPiwgPCZ1c2IyX3BoeTE+Owo+PiArwqDCoMKgIHBoeS1u
+YW1lcyA9ICJ1c2IyLXBoeTAiLCAidXNiMi1waHkxIjsKPj4gwqAgfTsKPiAKPiBPSyB3ZWlyZCwg
+dGhpcyBlbWFpbCBkb2Vzbid0IGFwcGVhciBvbiBhbnkgbWFpbGluZy1saXN0cyBhcmNoaXZlLCBu
+ZWl0aGVyIG91ciByZXBsaWVzICEKClNlZW1zIGluZnJhZGVhZCB3YXMgc3RydWdnbGluZyB5ZXN0
+ZXJkYXksIGV2ZXJ5dGhpbmcgaXMgYmFjayB0byBub3JtYWwgYW5kIHJldmVydCBpcyBzZW50IHRv
+IFNvQyBtYWludGFpbmVycy4KCj4gCj4gTmVpbAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
