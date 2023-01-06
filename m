@@ -4,84 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99095C4708E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Jan 2023 22:43:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 928C6C3DA7A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Jan 2023 08:03:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yDf5aQvKvc9GsimbOUTJJXHKl4OC0WBzLN84KsW46Qk=; b=mVwWz6Sk99ELLw
-	jdnV7B4NGk+DotdUNB/jFdZIWq4tl/kiBNNUYGfL7+pdvr5vgC5kxUCyuWn8rDvppkTz7AtDBGQ/V
-	MVORI034mhbPFkbN2PuQKUQnbAW+yYGvI3YrC8Qlbtf0CoTeX1zpKjDOJtztFWdysifIQBUWf1M3U
-	VR3hUqabX/wLI79fFWtfxgV6PgomvIhS3IDfAsvLN+SL0UcR+mUDbcE4vu5EPJ0BBXxPKgVpPtxXd
-	CDSHd2q4eKpdUTPTmm4ZjVJ2cqXbf2pzWF7z5SQwYIFOsmc/LibTrYHw4/6soFzswSS1fDTSTi8Lr
-	MF5uhBrkXN2WqvZOnIUQ==;
+	List-Owner; bh=Xv2qrZF0Pwtd50qOS30nl+SBO+38bjOPXk6whUAYaTs=; b=oHqzKItLNjm9Bn
+	klCqUlvYtSJ+vDhlzoScbGDoMGVb0R5WIklKEVU4Qtx0C/AEh0rgSHyNXi3Cb8NuIEzxObOeGGg5q
+	ThBMVVVHj3MecMQSIfjvRffH1CueKlUexYx7lMID3UGzSXESzpACWm7BbZO1tPcE6oq1DNmA0dJxU
+	zUsfTlHXjevsXtmcAiDqh9khc83jhWWuNMU2lZ56d7lo1vJEcZHFCSeGqf4dcFkiNgICRvKUlIZOJ
+	3S3da1e7fDjoir/txIv6hTFeE5xa+0x6/rMsxzjCUTADMwNPuwLwCAXxh+lh+aJwq+dHJ0LyKpNoz
+	NG/cwXS+BmHAubkydCxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDYwk-00FipK-Qk; Thu, 05 Jan 2023 22:42:50 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pDhhC-006TsT-KV; Fri, 06 Jan 2023 08:03:22 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDVLN-00Dqi9-24; Thu, 05 Jan 2023 18:52:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=r5bHjQn0y/uV05AqhRvRvF0f0Uwh0AHPN8n40wIUTmk=; b=Tvt5AczRL5yvBupRJoD/RZIBwr
-	5AXHoT+RWAXlb9WhbT6IqJgC8lUuMF9oMu0DlCwA2eL6wmXlK64syZLZ1FFHThD8YTCvuUlfZY1M7
-	IHoKKbo+krV50Li4+vCsZbh2dA371oBSTHkk7J3UqgSI+4jYrd66MdKX5CWiPs5sK2UYqxgtIA15m
-	VPpFjV4EkKctaIHA+qG6N0BaiXcYfWiFdJmguc6GZkZ2zwfGuoGkyguJ/5ZnKYlHeK0yzwFeUzu4k
-	nyvnxdqZk3akfikeM8VSpU2+G4So27M+xeVF0qKuDNwVw9eCIie0mP9bUcyBOiyYwC3JCfzcDLyrL
-	+a2A202g==;
-Received: from djehouty.pomail.fr ([80.67.179.207])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pDP0m-001Inf-2d;
-	Thu, 05 Jan 2023 12:06:23 +0000
-Received: from nout.ra.nemunai.re (82-64-151-41.subs.proxad.net [82.64.151.41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by djehouty.pomail.fr (Postfix) with ESMTPS id 787FB3FE51;
-	Thu,  5 Jan 2023 13:06:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nemunai.re; s=thot;
-	t=1672920375; bh=xMc2q7h7Gua0SVdV8D7xgEcfHISSaa/b06krzVch9d0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ELxo5ErcxNVkClGKAnyZzj8xRh4SNCRybCZDw9FcsYWbRC94XY6EUr7sA+GnW1zEB
-	 44wnZgNlt8qM1zlPS1PqAPdjoOLVEoLit/aZDnGOzaujDY8NBGJGT4OcDgG+gwK0V/
-	 JqzthPbi9E8t9wLHhbFiYj2kVktPzt6s26qbxICHOuskdF7YTI076siGtOL1CzjRRi
-	 d0nVGOPIbkxXa1aqaCjsU9P2GkFeZbtE3uDngqazY2xv/pFS7p5JNeHKl4CTxqY5KU
-	 /IY9cHJW3fsJELJZpWnRRIeYEo4t+0f1rAx289CvNGdO0ytVwf8j6PycUqNGMQjINT
-	 tg2IYqzQeyqb6HIpy3Dy7FPU2zKVWf0gvoLzaNFvFQp/I3UKV6bsbiAF4VQGf54k2k
-	 XqR1g0UskzT7UcNvrTUPTXKyompNIrbzG030l6y6t52G7d6kDMY+hiV821YjlVnXtY
-	 O/sH56sQsb07ozOG3LbRvV6E8e9CcCoo1c9XeNx/q9NZQaD/FjAAU/eGPexLAa75zt
-	 tnOj+gA+JIzsNkoqb5KuCyP0saDRwMNPhCrFfQRwol2LfpzAP4AGFDnwXZw26JxAde
-	 oZzFIUNSlHcdkOF+UBrqwt2zvq9dk1pLak4xSdToiEkMhHHPsc0XborWip+ThFIB5Z
-	 q5laEOX5P0vJylR5dDFLoPPk=
-Received: from khonsou.ra.nemunai.re (unknown [IPv6:2a01:e0a:518:830:24ba:f302:d390:49c2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nemunaire)
-	by nout.ra.nemunai.re (Postfix) with ESMTPSA id 9B33121DC7;
-	Thu,  5 Jan 2023 12:06:14 +0000 (-00)
-From: Pierre-Olivier Mercier <nemunaire@nemunai.re>
-To: neil.armstrong@linaro.org,
-	martin.blumenstingl@googlemail.com
-Cc: khilman@baylibre.com,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Pierre-Olivier Mercier <nemunaire@nemunai.re>
-Subject: [PATCH v2] Revert "arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0"
-Date: Thu,  5 Jan 2023 13:02:08 +0100
-Message-Id: <20230105120206.28964-1-nemunaire@nemunai.re>
-X-Mailer: git-send-email 2.38.2
-In-Reply-To: <20230104140608.28432-1-nemunaire@nemunai.re>
+	id 1pDhh8-006TqW-Or
+	for linux-amlogic@lists.infradead.org; Fri, 06 Jan 2023 08:03:21 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id m7so565258wrn.10
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Jan 2023 00:03:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GdTbp5+s19z6xOIrGSm0AWNlvSPdQoT3fgQBRHWynZ8=;
+        b=HdtgxDtcp+qmhtunvVEa4krxdhE1bD2D9V1brJd4//YASJasdkFXxzozQDq+TSP+p2
+         PchoOTLpb4uG2V+Fh8VsTla7hs9JVwxHv8zHEFGXjOj9+vp2BGOi7Zq86GIagkS7lqK0
+         vkpJTLOk+t2O1lv4Mq76zj/ER6kGOBrRZrmFy8GaJQbCEhKsvoi3H0FS75GsMfQDQKkJ
+         tRMOvCMmWtErFgHoEcWVpPu9gupJCNUc+OxJG7+CQLAVXMXPXw4zGA/K8OxUyxEja9Bu
+         sRdmQq14ZCMOuySmQCZHDw4MwXHF+nz6i9joutVIvSwPJwM/zdpCBAvhBwiRvr2G9i0g
+         xmxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GdTbp5+s19z6xOIrGSm0AWNlvSPdQoT3fgQBRHWynZ8=;
+        b=MM8JgKkh1gkRCTaGnYFfyEbl317yjfZNQvtxQgUm/3ahs1Ec2SPLT/TbKfWLSSZk2J
+         D51qmM2ETxJrKF6Cn4CiOPecDSlUlVsSU5S+lX10cEBQIIb6jhMeNZyNvDFqxa2J3Jn3
+         MaaF+0KP2d1KhKuBjNyuZMjBfkjLPMNsxVUT2+yFuZy0xpr/8/O4Pe0rF56MSfGGq37+
+         eFc2Z+boE//btVgdvHp2W6cLcc225YOOtHrmER7funRToD/oRmi4j8zdbZgZ8c5XUhgH
+         aQETQK/2Rj4w7d9QYW4ZHC80tA2k29+9UbzDZy1bSQYSYh3M5LE7C6LlP+soJniflo5Y
+         0aVg==
+X-Gm-Message-State: AFqh2krto7Uu/HPptwoVowinXK6QliSvueoq+sYQvqtll8Ml71+ZsAK8
+	DF72wuD75dD2i20GTcwBT7DR/w==
+X-Google-Smtp-Source: AMrXdXva7LAs7z+WBybbYgUkHs7KwAk0ersLzso70vDxDbG/S+oIJrflPqC8jAshxU8h7O7/03cBGg==
+X-Received: by 2002:adf:e383:0:b0:267:b8df:932b with SMTP id e3-20020adfe383000000b00267b8df932bmr42520006wrm.23.1672992196622;
+        Fri, 06 Jan 2023 00:03:16 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id j11-20020adfd20b000000b0024207478de3sm418101wrh.93.2023.01.06.00.03.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 00:03:16 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: martin.blumenstingl@googlemail.com,
+ Pierre-Olivier Mercier <nemunaire@nemunai.re>
+Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20230105120206.28964-1-nemunaire@nemunai.re>
 References: <20230104140608.28432-1-nemunaire@nemunai.re>
+ <20230105120206.28964-1-nemunaire@nemunai.re>
+Subject: Re: [PATCH v2] Revert "arm64: dts: meson-sm1-odroid-hc4: disable
+ unused USB PHY0"
+Message-Id: <167299219593.1508873.12756902119978009095.b4-ty@linaro.org>
+Date: Fri, 06 Jan 2023 09:03:15 +0100
 MIME-Version: 1.0
+X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230105_120621_636841_8D9C4563 
-X-CRM114-Status: UNSURE (   9.63  )
+X-CRM114-CacheID: sfid-20230106_000318_882284_9C6592CF 
+X-CRM114-Status: UNSURE (   9.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,41 +94,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This reverts commit 703e84d6615a4a95fb504c8f2e4c9426b86f3930.
+Hi,
 
-USB device enumeration was not working on Odroid HC4 as both USB2 PHYs
-need to be enabled. This is inherited from the GLX USB design [1].
+On Thu, 05 Jan 2023 13:02:08 +0100, Pierre-Olivier Mercier wrote:
+> This reverts commit 703e84d6615a4a95fb504c8f2e4c9426b86f3930.
+> 
+> USB device enumeration was not working on Odroid HC4 as both USB2 PHYs
+> need to be enabled. This is inherited from the GLX USB design [1].
+> 
+> [1]: https://lore.kernel.org/all/20170814224542.18257-1-martin.blumenstingl@googlemail.com/T/
+> 
+> [...]
 
-[1]: https://lore.kernel.org/all/20170814224542.18257-1-martin.blumenstingl@googlemail.com/T/
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/fixes)
 
-Signed-off-by: Pierre-Olivier Mercier <nemunaire@nemunai.re>
----
-v2:
- - Fix commit log
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+[1/1] Revert "arm64: dts: meson-sm1-odroid-hc4: disable unused USB PHY0"
+      https://git.kernel.org/amlogic/c/c45219cba101f32853d011da2ba46a1b2338dc4c
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-index e3486f60645a..a1f0c38ccadd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-@@ -131,10 +131,6 @@ flash@0 {
- };
- 
- &usb {
--	phys = <&usb2_phy1>;
--	phy-names = "usb2-phy1";
--};
--
--&usb2_phy0 {
--	status = "disabled";
-+	phys = <&usb2_phy0>, <&usb2_phy1>;
-+	phy-names = "usb2-phy0", "usb2-phy1";
- };
+These changes has been applied on the intermediate git tree [1].
+
+The v6.2/fixes branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.38.2
-
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
