@@ -4,76 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA79C46467
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Jan 2023 14:57:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83E59C54EBC
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Jan 2023 14:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZVT6+y/5KgkOAQUPFw6h8IbIRDsJxS1z0vw9QRr8+lI=; b=ebn4qA7/6ZmdV8
-	0HbAmtsKQL6PvVvkYG9PnZEPdS9ODuMykekNyLMg6LssVsJCGSzgYMufHc60ZXqYbttl490fFljGX
-	0vYikv7QeC6Iou4Vp7WUWErCBg4NzwavHnibDp88kTedCUNhADX8HxA71ZMKMU4wxfWXfVitVZjyO
-	jmQ/0NxGPyaTqXhiKt/AHYbYRq4V111GH0ftHkdlTTtNiA/UrigJ30pI/K8yxn11K4083C3NEfaeV
-	0vLZ567ygoMMx9GX1ieG2sLCplqmudbcXOOOhet5ON78cGj2136Ggd7jcj3ZnHs6J3pjZ+a2mD4DO
-	RpkUd0dR0M2Kkp0erkTQ==;
+	List-Owner; bh=OdsT5m1nHjZ67dthdoawPuMmS0Dm3tb0Aoef8o9+S/s=; b=yiezmz30hZswHh
+	zJW3ACGRZKnIee0CwmMtb9ez9R92KXVBjGjPV1xeeiNPHRtltWYPRO5rQlz0krnyEpik6Y2P4oGpw
+	sGAIurT9w8Dv1Npnl0GgVBZTZC6EuMscgmZrEG61Pb467w5VLThxjMqcV2/zTIS/SYjoLsQrPJjev
+	PGKHTxK0/vOn4g/iGOECE2qsJxPjhf3yNA0Yl6ZlDsdFPh0xx31mfV+qr53OAwHYFbI5OjABGjf1s
+	MDmwEWeNQuf2gyB/L9DDMmxYrpdHaaOSLGKzyVns2R2lmeB8jFmEBSldd5Z13kI6kxy9JZVu4HNEI
+	l2ba0LdZNc+by4JHeMtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEAcl-007QuO-J7; Sat, 07 Jan 2023 14:56:43 +0000
-Received: from mail-vs1-xe35.google.com ([2607:f8b0:4864:20::e35])
+	id 1pEAcx-007Qwt-VW; Sat, 07 Jan 2023 14:56:55 +0000
+Received: from mail-vs1-xe2e.google.com ([2607:f8b0:4864:20::e2e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEAcX-007Qs8-HQ; Sat, 07 Jan 2023 14:56:31 +0000
-Received: by mail-vs1-xe35.google.com with SMTP id i185so4333763vsc.6;
-        Sat, 07 Jan 2023 06:56:26 -0800 (PST)
+	id 1pEAcv-007Qva-LA
+	for linux-amlogic@lists.infradead.org; Sat, 07 Jan 2023 14:56:55 +0000
+Received: by mail-vs1-xe2e.google.com with SMTP id s127so4335700vsb.5
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Jan 2023 06:56:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dFyLUIx8VXvv71DzGWZEEjL5hj6rPhYAH4n7XJ6OnbU=;
-        b=ooXLw1zSzyjR8WV8a1SL5uV4hNdB567FCOLxUPAvYIu0IbfF79B+FPKP+QNnAKaeCE
-         /xJuOTC+4evgPpENIFNGaFn3ZnfBToFYoUZwF+5kabwSTs0c4mr1czfBj0fmtdxBthPX
-         LXwXbsYVB1oqJ0sBOxV+GVQkosHX+xogHXy+RJaKx8lQyVrr795FbJmRVfr6a22wt40C
-         0XGkyuWl+O0kXoLzPAQZuxWnZTjjH51h640x0m0fUSnPhDti0efpZChBfAsSt0TUb9CX
-         KGbATst2J89nrnZP45Jj/0BmcRvYhY3vZRIP9/5Ixc+97q8qgMPjkrTMoXLY/RWUTRu3
-         ht9g==
+        bh=3swf10ZLFW6qNCeoSiTN3mu6SiPLmmuQ4t5ZCg5wVZA=;
+        b=QBFARmrXyHI5HZM3Q0ihwFQxWbcR6kBOXFFassyzG9LexAUhsmCax3azLn0lf3vdDw
+         XMyngcRVcPPsTTtN2l8PbXRbZMiiWyn2geSUPcHzqkninsdMSMJwFRLhE1Pq7apbKSYW
+         QOxzVWD58or5FB+ZiUHzxpDVWRR0psjq/ayYoJComGPHdiadelsckVVbigwc904xbluM
+         RHpbG30eOb4PMBTrcVENkWjhtYHJw0XQ0JqHyMnxn1tPNNL8biRQ9piErW0g0MDnz3r9
+         pc5RJfgMQ5UvUTAHEsiYoN/ARrYg5oXlmHv5lJODgtkTIHQuBgMotF8W3nL/bZL3TEpn
+         FlhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dFyLUIx8VXvv71DzGWZEEjL5hj6rPhYAH4n7XJ6OnbU=;
-        b=HbWD4gS7tJ6zv8/ivrsshdbhyOX2WXapEXuoLS9SRiEw1jLjIZ9Ic/XUyuLzsvEHka
-         tnKq5bYC08GQ4ifUxnV8wxPUkftq5WCSWYZQDLfCLdQncUOpQk65QEe7fZXZ/x9FigG4
-         GZ58H93Wc79ew3ZLpK0o/+obXNSgK1p6igdmy1HL0MYj+mwRpu/t21yPTyTpGM5DmGDc
-         mXkDE6SGRmB73BhTDAf9oGybXvpbRfD7e2uk9zvwnpquYwOTpPPREmwpAMvI9OhyL/DB
-         wyo3qwb/gPrXPEOgqAZC5H5tg1w7xLziiejK5ByJJeGfxDWbf9qJZGXeXQm5SucnzEVL
-         30xw==
-X-Gm-Message-State: AFqh2krbNldSr8d5XVQChPxdJ+DJMOk6TMd2efK03WA05cNYn8I7vakQ
-	Bk88xvSv2e7cVML3q51fQCuW8uzCkFqPM3cxj0Q=
-X-Google-Smtp-Source: AMrXdXtwgQnBccAmp5deA8Qb6NaBwtu2mLi/Xeu599Y9cfSvJcQOgMPGlzs0i9INqGyGNOHhdAp7Q/uoH2RT3ShqOaU=
-X-Received: by 2002:a67:5c03:0:b0:3ce:a7c5:3757 with SMTP id
- q3-20020a675c03000000b003cea7c53757mr2460727vsb.63.1673103386173; Sat, 07 Jan
- 2023 06:56:26 -0800 (PST)
+        bh=3swf10ZLFW6qNCeoSiTN3mu6SiPLmmuQ4t5ZCg5wVZA=;
+        b=IXZ/JVuP2ZMUz/Jm98W9oAixuUzpwPCjhYxovXmfxKppSXgZ43R+lQXbEvaMPtFz0R
+         j/4JinsYo2gH7wHk26PDGwqosV14G/4tmzM4KKCV+FipB67Vrn35MQspZNW0NKzUOwHu
+         zh0H+1TV0rHUzVLDbq3PNz4Kp6+BFaqlyLSaFMHebNsK8GLmQgwcQtGiWnAjdyhu5NgK
+         ceQZouZyoOoA51i2eHOyTFt4MFt6AGH4s+cQL1RhzuLDfAGXdy28gW9hAdUxYpGg2Q+B
+         vMeel0v8inza4SQ7s78H7sB/inxLa5lF9/eWnGHmAqTaUgp2BuAeeLCY4g1XpnUj4Bpe
+         nI6Q==
+X-Gm-Message-State: AFqh2korTuyUJYn97UFHOdgMC96itikCWXCe6suL5s0dRRsaFuLBg22W
+	sZZoKLK8MMJIfm/IxJLoFodSQtXzMZFuupaHCK4=
+X-Google-Smtp-Source: AMrXdXvs9T8wmAXwlDyiXHkA86ONHle7RLbgEv6JwSPgfa031J28MbXvqQlbUJyjGi5C2k0Uc+4Gs3X0//SJWYY0fYE=
+X-Received: by 2002:a05:6102:510e:b0:3b1:2b83:1861 with SMTP id
+ bm14-20020a056102510e00b003b12b831861mr7199612vsb.10.1673103410149; Sat, 07
+ Jan 2023 06:56:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20221228100321.15949-1-linux.amoon@gmail.com> <CANAwSgTS+j_oRrckwmi60afX6-D=OP0oy05m3eQga_gEZJJ_mg@mail.gmail.com>
- <CANAwSgTc=uGyZ0H_-ZckYoKztMB--DRfx7apBtP9zAbAU1XTvA@mail.gmail.com> <2188024.ZfL8zNpBrT@steina-w>
-In-Reply-To: <2188024.ZfL8zNpBrT@steina-w>
+References: <20221228100321.15949-1-linux.amoon@gmail.com> <20221228100321.15949-6-linux.amoon@gmail.com>
+ <Y7XhYm0nvBsSS8MN@google.com> <Y7XnLYbHxfADz7gk@google.com>
+In-Reply-To: <Y7XnLYbHxfADz7gk@google.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 7 Jan 2023 20:26:09 +0530
-Message-ID: <CANAwSgT1xo1Nt84p2ruXBQ+Aq+aAr62VL8Gf8iRU8u_09y8BaA@mail.gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Sat, 7 Jan 2023 20:26:34 +0530
+Message-ID: <CANAwSgQbABi9QxO7eEZ5rKQY-2d5QZ+bUTOyv9sBWV8+4LGU8Q@mail.gmail.com>
+Subject: Re: [PATCH v1 05/11] usb: misc: onboard_usb_hub: add Genesys Logic
+ GL852G-OHG hub support
+To: Matthias Kaehlcke <mka@chromium.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-amlogic@lists.infradead.org, 
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230107_065629_643592_5BC66FC4 
-X-CRM114-Status: GOOD (  32.73  )
+X-CRM114-CacheID: sfid-20230107_065653_715528_0B3459B1 
+X-CRM114-Status: GOOD (  21.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,129 +87,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alexander,
+Hi Matthias
 
-Thanks for your review comments.
-
-On Wed, 4 Jan 2023 at 15:06, Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
+On Thu, 5 Jan 2023 at 02:23, Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> Am Mittwoch, 4. Januar 2023, 09:13:21 CET schrieb Anand Moon:
-> > Hi Martin,
-> >
-> > On Wed, 28 Dec 2022 at 20:14, Anand Moon <linux.amoon@gmail.com> wrote:
-> > > Hi Martin,
+> On Wed, Jan 04, 2023 at 08:28:18PM +0000, Matthias Kaehlcke wrote:
+> > On Wed, Dec 28, 2022 at 10:03:14AM +0000, Anand Moon wrote:
+> > > Genesys Logic GL852G-OHG is a 4-port USB 2.0 STT hub that has a reset pin to
+> > > toggle and a 5.0V core supply exported through an integrated LDO is
+> > > available for powering it.
 > > >
-> > > On Wed, 28 Dec 2022 at 18:21, Martin Blumenstingl
+> > > Add the support for this hub, for controlling the reset pin and the core
+> > > power supply.
 > > >
-> > > <martin.blumenstingl@googlemail.com> wrote:
-> > > > Hi Anand,
+> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > ---
+> > >  drivers/usb/misc/onboard_usb_hub.c | 1 +
+> > >  drivers/usb/misc/onboard_usb_hub.h | 1 +
+> > >  2 files changed, 2 insertions(+)
 > > >
-> > > Thanks for your review comments.
+> > > diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> > > index 94e7966e199d..c0e8e6f4ec0a 100644
+> > > --- a/drivers/usb/misc/onboard_usb_hub.c
+> > > +++ b/drivers/usb/misc/onboard_usb_hub.c
+> > > @@ -409,6 +409,7 @@ static void onboard_hub_usbdev_disconnect(struct usb_device *udev)
 > > >
-> > > > thank you for working on this topic!
-> > > >
-> > > > On Wed, Dec 28, 2022 at 11:05 AM Anand Moon <linux.amoon@gmail.com>
-> > > > wrote:
-> > > > [...]
-> > > >
-> > > > > +       usb {
-> > > > > +               dr_mode = "host";
-> > > > > +               #address-cells = <1>;
-> > > > > +               #size-cells = <0>;
-> > > > > +
-> > > > > +               hub@1 {
-> > > > > +                       /* Genesys Logic GL852G-OHG usb hub */
-> > > > > +                       compatible = "genesys,usb5e3,610";
-> > > > > +                       reg = <1>;
-> > > > > +                       vdd-supply = <&usb_otg_pwr>;
-> > > > > +                       reset-gpio = <&gpio_ao GPIOAO_4
-> > > > > GPIO_ACTIVE_LOW>;
-> > > > > +               };
-> > > > > +       };
-> > > >
-> > > > My understanding is that the hub@1 node should be part of the
-> > > > corresponding USB controller node, not a new node.
-> > > > In this case hub@1 should go into the existing &usb1 node. That way we
-> > > > describe the way the hardware is set up (meaning: hub@1 is connected
-> > > > to &usb1).
-> > >
-> > > Ok, I will move this code under &usb0 and &usb1 nodes.
-> > >
-> > > onboard_usb_hub module just assists in usb hub reset.
-> > > so these changes are meant to replace the gpio-hog.
-> > >
-> > > $ dmesg | grep onboard
-> > > [    5.405558] usbcore: registered new device driver onboard-usb-hub
-> > > [    6.383428] onboard-usb-hub 1-1: reset high-speed USB device number
-> > > 2 using dwc2
-> > >
-> > > Here is the boot log of the odroid c2 [0] https://pastebin.com/PFy5waPb
-> >
-> > Moving the usb hub into usb subnode usb0 or usb1 does not work
-> > on Odroid n2 and c4, we have a combo phys of usb 2.0 and usb 3.0
-> > so the onboard usb hub reset does not get initialized until both the PHY
-> > and USB nodes are brought up by the drivers.
-> >
-> > # On Odroid n2 has a combo hub
-> > alarm@odroid-n2:~$ lsusb -tv
-> > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
-> >     ID 1d6b:0003 Linux Foundation 3.0 root hub
-> >
-> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
-> >
-> >         ID 05e3:0620 Genesys Logic, Inc. GL3523 Hub
-> >
-> >         |__ Port 1: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage,
-> >         |5000M
-> >
-> >             ID 174c:5106 ASMedia Technology Inc. ASM1051 SATA 3Gb/s bridge
-> > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
-> >     ID 1d6b:0002 Linux Foundation 2.0 root hub
-> >
-> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-> >
-> >         ID 05e3:0610 Genesys Logic, Inc. Hub
-> >
-> >         |__ Port 2: Dev 4, If 0, Class=Vendor Specific Class,
-> >
-> > Driver=ax88179_178a, 480M
-> >             ID 0b95:1790 ASIX Electronics Corp. AX88179 Gigabit Ethernet
-> >
-> > # Odroid C4 also has a combo hub
-> >
-> > alarm@odroid-c4:~$ lsusb -tv
-> > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
-> >     ID 1d6b:0003 Linux Foundation 3.0 root hub
-> >
-> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
-> >
-> >         ID 2109:0817 VIA Labs, Inc.
-> > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
-> >     ID 1d6b:0002 Linux Foundation 2.0 root hub
-> >
-> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-> >
-> >         ID 2109:2817 VIA Labs, Inc.
-> >
-> > So I will continue to work with this usb hub node to do a proper reset
-> > of the USB hub.
+> > >  static const struct usb_device_id onboard_hub_id_table[] = {
+> > >     { USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 */
+> > > +   { USB_DEVICE(VENDOR_ID_GENESYS, 0x0610) }, /* Genesys Logic GL852G-OHG USB 2.0 */
 >
-> If your USB hub does both USB2.0 and USB3.0 you need to add both devices in DT
-> and reference them using 'peer-hub'property. See ca69b6c78d5d ("arm64: dts:
-> tqma8mpql: add support for 2nd USB (host) interface") for a reference.
+> Do you happen to know what '-OHG' stands for? The Genesys website only
+> mentions a GL852G with different package types (none of them 'OHG').
+> Unless there is an 'OHG' variant with a different product id I'd say
+> let's drop the suffix.
+
+Ok, done.
+
+
 >
-
-Yes, I have updated the DTS example for using peer-hub for both devices.
-
-> Best regards,
-> Alexander
->
-Thanks
-
-
-
--Anand
+> > >     { USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2514) }, /* USB2514B USB 2.0 */
+> > >     { USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1 */
+> > >     { USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
+> > > diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> > > index 62129a6a1ba5..2ee1b0032d23 100644
+> > > --- a/drivers/usb/misc/onboard_usb_hub.h
+> > > +++ b/drivers/usb/misc/onboard_usb_hub.h
+> > > @@ -31,6 +31,7 @@ static const struct of_device_id onboard_hub_match[] = {
+> > >     { .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
+> > >     { .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
+> > >     { .compatible = "usb5e3,608", .data = &genesys_gl850g_data, },
+> > > +   { .compatible = "genesys,usb5e3,610", .data = &genesys_gl850g_data, },
+> >
+> > s/genesys,//
+> >
+> > >     { .compatible = "usbbda,411", .data = &realtek_rts5411_data, },
+> > >     { .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
+> > >     { .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
+> > > --
+> > > 2.38.1
+> > >
 
 _______________________________________________
 linux-amlogic mailing list
