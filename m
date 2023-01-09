@@ -4,73 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB927C54EBE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 11:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 370F0C63797
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 12:54:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=24ZUnXtgjO7ovBOxLyj+viMNZO4AguzTyqr1cQdTcyk=; b=fAdBErjnkSngNP
-	skwY25gf2ZS9eEyx0T3GzlDE3Wtl3zGGLIOeBR4hIRL7E19feuwW/EV0XNpcODuC/BsNDWYK2vS+Q
-	CUOJBUisPkv13iF7jcwOj5/kUqpCUbhy/xC0GOFOg0G+iejCNhJEtlyUP4kmr1z281pMKXCQKwuOB
-	lEyef4GloF+pdkt1HFHUne6Pyc4HFSlJSyZYMYwV7Rfwu+yTlEZtLo+OGWYppTTA+IDfjdaZqEIlk
-	gunoAmzP4TDfMjuMjcpSxpY/F7hlSYM+L3vTZW0XzbQF3fxlhGUEMJ1j0A2xGIx5PJ94gq4TqdOms
-	hS/sntO9hSLt/DGI0gzw==;
+	List-Owner; bh=ihBuldDTlknT9kEsVdsx3mkFLQ+R52JRE//4ZrZ9u7Q=; b=Kv80uVt+qa2BCK
+	B9iXa0ubkIZrB4rQkLAApGrqkjxAcL/k/IlOIVYN9aoA2taN6eStM50WPYYEXLNqcflm0mK7ij7Td
+	zLWoDWGznn8rU9eRBLTSkIMi5zs1cYBsFsw1u7k048dDKkgPTlEsncdZ+vuO34E8wcSt0ztvOyZko
+	sCCcRs8BvttpNkOkHTtyx7K1qN4C/NBrPjS+1ZMJvWMqgllb5UNL63yoZXmM/dLp0OZ3WZ9z3L3F/
+	6VSPA3T8hMk7O5zi5NxkyA8ohXGhuXcR8RIsvO/o0VlJ0GcqtvUkzBMJqTMSxg2z0bJBHP4b+gyXh
+	fvDzkuQWMn8J1DvFskhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEqhg-0016e1-9a; Mon, 09 Jan 2023 11:52:36 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1pEreu-001LTp-Cz; Mon, 09 Jan 2023 12:53:48 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEqhT-0016Xg-2M
-	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 11:52:25 +0000
-Received: by mail-ed1-x536.google.com with SMTP id s5so12080759edc.12
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 03:52:20 -0800 (PST)
+	id 1pErei-001LK2-SC
+	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 12:53:44 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id m26-20020a05600c3b1a00b003d9811fcaafso6619741wms.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=streamunlimited.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aj54tILATw6IjxGXVi89331IRiw4NYazC/2sU/ZkN+Y=;
-        b=BCCCQEKmZL84Juhc7zGZCXjtK4wyyaCN4hfIM+xbNBfxo2cKpGp5cR4DCifuTkUzdJ
-         jhxXnBeM3XShSj/wMrYO9jfOrTHerhq4Vlf73TjgoH7s5JZVtNkCYE2WPHJrhaTcXe6z
-         CG+cq6MEKS/MALB+m8YJxvYIHuuPd6kDIx5CA=
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P70q56eNDzQKtjG8UahCST8YP9ABVa7yjoZzTsjOKTI=;
+        b=NgEM+iKgQTUk9x5DB4Z3ckdZHOZXp7O7teK4MUsgUq8xj4WlYqUG2NB5o57NFyPFH0
+         8FJMj+UdTMeNkNknlyMGv6/2x9pSF3KS9XKLTUtJNcxM+w3EgCBLhtlNJZc/jAIwJD1R
+         QvTW5vS5ONI4kIaP5WYhKGhzVxvCZXkHK7/1s56pi5Yg4oGxH/Y6rr5HYKxrX1LfKe6j
+         RaIcGswikv/Jjv1Eq7eMfmhWoR5hA/Ei1O9tv2IHA0jt4hJYtx5CnZHoNDpO/wcHhfae
+         cgyqyy+kuF26SkpdzuHhRztWb28NFk5W9238qVMF0ay8qzlM9E3MzPg6kpIPZP8Uy0up
+         CsSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aj54tILATw6IjxGXVi89331IRiw4NYazC/2sU/ZkN+Y=;
-        b=nek580sbfvEFXC1UxMsguNixNmVGFfx3rdX1j9pMYQMdhniVvULeBroPbW7SFnXEKc
-         +FkOh/FWJlylBKQwdweRCyA6/t1/Tq6QiBXXMipDr2XX0B3YvUBEbhyRHDtgDWnwejf8
-         K+VQQRGSv/Fv3BRnLCDZuLkN+CowejNxFmgNBC9+/bUMj42zaxoEy69ACQYEE85BVqSs
-         qa9NRFo69mkBHkXfpVen3IMmAqfW6WmN3VFqInWPzY5X6kpEBZ9iH5Eggks/q8XB6770
-         HPBqumdQMhYy094EtaDr72KhqKObU3z+1vKDwZwoavJ6jTDX3PHYKMXC224qs2+N836I
-         R13A==
-X-Gm-Message-State: AFqh2kphYBBIlkbCzQsA9hh7o99HCCQzkWNs3QMhyhLwR9PxcsBhYteA
-	YUmYuvkJlHy9vvfW2fIIvVdihpeGeJZEwxMcyUgRyA==
-X-Google-Smtp-Source: AMrXdXvN+Ats8ThNe0Wauwq+5AC+Xtplphn3hZTaZBEbiZru8LtYPLmG1d5frTknSfPmN1CM7v2/wz2UX19/OcnHhq4=
-X-Received: by 2002:a05:6402:a49:b0:48c:974b:cffd with SMTP id
- bt9-20020a0564020a4900b0048c974bcffdmr2271764edb.83.1673265139305; Mon, 09
- Jan 2023 03:52:19 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P70q56eNDzQKtjG8UahCST8YP9ABVa7yjoZzTsjOKTI=;
+        b=H/yCccBhTn8Z4TjlFl7ZS6IVUWdYZfilpiwHv4xns5JvaDM/SfpIcywpJHzKn+HiIT
+         PHpR3yCkQuoNkleoSGVv/A8mYvHCM+8+H+NtHXa2txYz3FVmL/c8eWz79juvRInBEAl/
+         ey7agItwQuMtgIMGCsluMBLpTdaJhQsKVojRWQvulkDOTtiQwdrHZDOga6u3ypXfdeRC
+         A3DMJYDmtxJXYWbWfipsl44ejrygb+Jl7RLTPZ1eGaaN0x0WFCClPqKvDighH56YWRBw
+         w7Fe0Gzu3Byuwa9DtoPvt6Vg6k6STHvZchdPjxIoNTKPYWgIls9PfryLTnBjRwux9boh
+         46VQ==
+X-Gm-Message-State: AFqh2krUMTJniRDBx0VVGy3FAQF4SbYKHiQvulGV+c1yhnsB+CMDPNQv
+	GEDv7VC+/z13UOjcsCL0ospRog==
+X-Google-Smtp-Source: AMrXdXsgPXH/K+jt/hCla1kkUxNQKdd+iFBNHNeGB4uwy54V+5FNMEZx+cjJj5KMZDjRxccpKGp/Ag==
+X-Received: by 2002:a05:600c:54eb:b0:3c6:e63e:89aa with SMTP id jb11-20020a05600c54eb00b003c6e63e89aamr45854935wmb.6.1673268813559;
+        Mon, 09 Jan 2023 04:53:33 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 04:53:33 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Mon, 09 Jan 2023 13:53:26 +0100
+Subject:  [PATCH v2 02/11] dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
 MIME-Version: 1.0
-References: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
- <20221214134620.3028726-1-peter.suti@streamunlimited.com> <c6863a3e-8855-50fe-25cb-0b38bc3a05e0@gmail.com>
-In-Reply-To: <c6863a3e-8855-50fe-25cb-0b38bc3a05e0@gmail.com>
-From: Peter Suti <peter.suti@streamunlimited.com>
-Date: Mon, 9 Jan 2023 12:52:08 +0100
-Message-ID: <CACMGZgZY4Zb+3vHUDAS0+3r55K4_J40dtbsTPTFZMd6duBikpQ@mail.gmail.com>
-Subject: Re: [PATCH v3] mmc: meson-gx: fix SDIO interrupt handling
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, linux-mmc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
+References:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+In-Reply-To:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_035223_260336_EBB86EDA 
-X-CRM114-Status: GOOD (  39.77  )
+X-CRM114-CacheID: sfid-20230109_045336_970703_CE3D43C8 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,103 +111,136 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 14, 2022 at 10:33 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On 14.12.2022 14:46, Peter Suti wrote:
-> > With the interrupt support introduced in commit 066ecde sometimes the
-> > Marvell-8987 wifi chip got stuck using the marvell-sd-uapsta-8987
-> > vendor driver. The cause seems to be that after sending ack to all interrupts
-> > the IRQ_SDIO still happens, but it is ignored.
-> >
-> > To work around this, recheck the IRQ_SDIO after meson_mmc_request_done().
-> >
-> > Inspired by 9e2582e ("mmc: mediatek: fix SDIO irq issue") which used a
-> > similar fix to handle lost interrupts.
-> >
-> The commit description of the referenced fix isn't clear with regard to
-> who's fault it is that an interrupt can be lost. I'd interpret it being
-> a silicon bug rather than a kernel/driver bug.
-Unfortunately I can't confirm that the referenced bug is in the
-silicon for the original commit either.
-However a similar workaround works in this case too which is why I
-referenced that commit.
+Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
 
-> Not sure whether it's the case, but it's possible that both vendors use
-> at least parts of the same IP in the MMC block, and therefore the issue
-> pops up here too.
->
-> > Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
-> >
-> > Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
-> > ---
-> > Changes in v2:
-> >       - use spin_lock instead of spin_lock_irqsave
-> >       - only reenable interrupts if they were enabled already
-> >
-> > Changes in v3:
-> >       - Rework the patch based on feedback from Heiner Kallweit.
-> >               The IRQ does not happen on 2 CPUs and the hard IRQ is not re-entrant.
-> >               But still one SDIO IRQ is lost without this change.
-> >               After the ack, reading the SD_EMMC_STATUS BIT(15) is set, but
-> >               meson_mmc_irq() is never called again.
-> >
-> >               The fix is similar to Mediatek msdc_recheck_sdio_irq().
-> >               That platform also loses an IRQ in some cases it seems.
-> >
-> >  drivers/mmc/host/meson-gx-mmc.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> > index 6e5ea0213b47..7d3ee2f9a7f6 100644
-> > --- a/drivers/mmc/host/meson-gx-mmc.c
-> > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> > @@ -1023,6 +1023,22 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
-> >       if (ret == IRQ_HANDLED)
-> >               meson_mmc_request_done(host->mmc, cmd->mrq);
-> >
-> > +     /*
-> > +     * Sometimes after we ack all raised interrupts,
-> > +     * an IRQ_SDIO can still be pending, which can get lost.
-> > +     *
->
-> A reader may scratch his head here and wonder how the interrupt can get lost,
-> and why adding a workaround instead of eliminating the root cause for losing
-> the interrupt. If you can't provide an explanation why the root cause for
-> losing the interrupt can't be fixed, presumably you would have to say that
-> you're adding a workaround for a suspected silicon bug.
-After talking to the manufacturer, we got the following explanation
-for this situation:
-"wifi may have dat1 interrupt coming in, without this the dat1
-interrupt would be missed"
-Supposedly this is fixed in their codebase.
-Unfortunately we were not able to find out more and can't prepare a
-patch with a proper explanation.
-Thank you for reviewing.
->
-> > +     * To prevent this, recheck the IRQ_SDIO here and schedule
-> > +     * it to be processed.
-> > +     */
-> > +     raw_status = readl(host->regs + SD_EMMC_STATUS);
-> > +     status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
->
-> This isn't needed here. Why not simply:
->
-> status = readl(host->regs + SD_EMMC_STATUS);
-> if (status & IRQ_SDIO)
->   ...
->
->
-> > +     if (status & IRQ_SDIO) {
-> > +             spin_lock(&host->lock);
-> > +             __meson_mmc_enable_sdio_irq(host->mmc, 0);
-> > +             sdio_signal_irq(host->mmc);
-> > +             spin_unlock(&host->lock);
-> > +     }
-> > +
-> >       return ret;
-> >  }
-> >
->
+Take in account the used variant with amlogic,meson-gx-efuse.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 57 ++++++++++++++++++++++
+ .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 ------------------
+ 2 files changed, 57 insertions(+), 48 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+new file mode 100644
+index 000000000000..e49c2754ff55
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/amlogic,meson-gxbb-efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson GX eFuse
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: nvmem.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: amlogic,meson-gxbb-efuse
++      - items:
++          - const: amlogic,meson-gx-efuse
++          - const: amlogic,meson-gxbb-efuse
++
++  clocks:
++    maxItems: 1
++
++  secure-monitor:
++    description: phandle to the secure-monitor node
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - clocks
++  - secure-monitor
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse: efuse {
++        compatible = "amlogic,meson-gxbb-efuse";
++        clocks = <&clk_efuse>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        secure-monitor = <&sm>;
++
++        sn: sn@14 {
++            reg = <0x14 0x10>;
++        };
++
++        eth_mac: mac@34 {
++            reg = <0x34 0x10>;
++        };
++
++        bid: bid@46 {
++            reg = <0x46 0x30>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+deleted file mode 100644
+index f7b3ed74db54..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
++++ /dev/null
+@@ -1,48 +0,0 @@
+-= Amlogic Meson GX eFuse device tree bindings =
+-
+-Required properties:
+-- compatible: should be "amlogic,meson-gxbb-efuse"
+-- clocks: phandle to the efuse peripheral clock provided by the
+-	  clock controller.
+-- secure-monitor: phandle to the secure-monitor node
+-
+-= Data cells =
+-Are child nodes of eFuse, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	efuse: efuse {
+-		compatible = "amlogic,meson-gxbb-efuse";
+-		clocks = <&clkc CLKID_EFUSE>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		secure-monitor = <&sm>;
+-
+-		sn: sn@14 {
+-			reg = <0x14 0x10>;
+-		};
+-
+-		eth_mac: eth_mac@34 {
+-			reg = <0x34 0x10>;
+-		};
+-
+-		bid: bid@46 {
+-			reg = <0x46 0x30>;
+-		};
+-	};
+-
+-	sm: secure-monitor {
+-		compatible = "amlogic,meson-gxbb-sm";
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-For example:
+-
+-	eth_mac {
+-		...
+-		nvmem-cells = <&eth_mac>;
+-		nvmem-cell-names = "eth_mac";
+-	};
+
+-- 
+2.34.1
 
 _______________________________________________
 linux-amlogic mailing list
