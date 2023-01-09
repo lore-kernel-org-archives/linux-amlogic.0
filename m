@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 370F0C63797
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 12:54:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 918D2C54EBD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 12:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ihBuldDTlknT9kEsVdsx3mkFLQ+R52JRE//4ZrZ9u7Q=; b=Kv80uVt+qa2BCK
-	B9iXa0ubkIZrB4rQkLAApGrqkjxAcL/k/IlOIVYN9aoA2taN6eStM50WPYYEXLNqcflm0mK7ij7Td
-	zLWoDWGznn8rU9eRBLTSkIMi5zs1cYBsFsw1u7k048dDKkgPTlEsncdZ+vuO34E8wcSt0ztvOyZko
-	sCCcRs8BvttpNkOkHTtyx7K1qN4C/NBrPjS+1ZMJvWMqgllb5UNL63yoZXmM/dLp0OZ3WZ9z3L3F/
-	6VSPA3T8hMk7O5zi5NxkyA8ohXGhuXcR8RIsvO/o0VlJ0GcqtvUkzBMJqTMSxg2z0bJBHP4b+gyXh
-	fvDzkuQWMn8J1DvFskhg==;
+	List-Owner; bh=8oe+hZ9aYs/WaDMSXBL2rnV25GlidbxSBYeEjPPjd2o=; b=YcloWInVeehG3v
+	VGIZKZHLWyjDnAgvz2mFMkh8vcdWrLzeYr423L8evPai1QqrrrZjALqbMVF8+lTjUMqApUVFpr4ns
+	2VxxmgdJ6y5jccmRKlPaYWWuscBSHXge06j+RFNyxnDSWepPcSn5r66oLe4wyzH5xc0ZDN4iAB2vj
+	wzZk1NcyA7PGuJdI557TLihu5OIsAzoz7QeDRVn6BHGD+jEDoHsRexLvuFfu5BEWhz9ZRZPJut7Sd
+	93825JCWqlATfdFW59fsqU0asQ+TwPf8hi+/kSFpnNFIGZh7KNMm0m4gsoYn0S5E/a8q0rOYc9awz
+	w9TUsGGQ/6qcXVvR6dEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEreu-001LTp-Cz; Mon, 09 Jan 2023 12:53:48 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pErgb-001MSl-G3; Mon, 09 Jan 2023 12:55:33 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pErei-001LK2-SC
-	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 12:53:44 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id m26-20020a05600c3b1a00b003d9811fcaafso6619741wms.5
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:34 -0800 (PST)
+	id 1pEreu-001LLy-Iy
+	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 12:53:52 +0000
+Received: by mail-wm1-x332.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so8931653wmb.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P70q56eNDzQKtjG8UahCST8YP9ABVa7yjoZzTsjOKTI=;
-        b=NgEM+iKgQTUk9x5DB4Z3ckdZHOZXp7O7teK4MUsgUq8xj4WlYqUG2NB5o57NFyPFH0
-         8FJMj+UdTMeNkNknlyMGv6/2x9pSF3KS9XKLTUtJNcxM+w3EgCBLhtlNJZc/jAIwJD1R
-         QvTW5vS5ONI4kIaP5WYhKGhzVxvCZXkHK7/1s56pi5Yg4oGxH/Y6rr5HYKxrX1LfKe6j
-         RaIcGswikv/Jjv1Eq7eMfmhWoR5hA/Ei1O9tv2IHA0jt4hJYtx5CnZHoNDpO/wcHhfae
-         cgyqyy+kuF26SkpdzuHhRztWb28NFk5W9238qVMF0ay8qzlM9E3MzPg6kpIPZP8Uy0up
-         CsSQ==
+        bh=apTdb92AzNQ96d3ETxccHyv95HLA5cv6Przk0hO/8h8=;
+        b=EsPXoXoYQiEGXrVW2y08Jw63MOaSE7K82Wa7hO1KkMnIEV1GsOeInOf2/7FEhX/x7g
+         HfnceNCBdr4d2qFy48gJokuywZ0DFfHh0/lc/FmPU0BXvkVj9BFzr1QCZvHVnekASNRd
+         aPw+24RSxuSQfYvMPvyZSrIfntYA8LQV2+LMWjudIVGoj4nSTJSzSCjcsOWb0FLx8nFN
+         xbVGV/sNMT1pUIX7L/fyYV/wbCR02VLtIk0oHdwVzjN3iPjNggr+OOwIH2odCBxfsO1u
+         docmtVsMF/TOvbNWwV0XUaNuyxB4deNMoTK7R1YJc93cZ59tTYI9Mmn1E7mEnyNg6eIC
+         kKIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P70q56eNDzQKtjG8UahCST8YP9ABVa7yjoZzTsjOKTI=;
-        b=H/yCccBhTn8Z4TjlFl7ZS6IVUWdYZfilpiwHv4xns5JvaDM/SfpIcywpJHzKn+HiIT
-         PHpR3yCkQuoNkleoSGVv/A8mYvHCM+8+H+NtHXa2txYz3FVmL/c8eWz79juvRInBEAl/
-         ey7agItwQuMtgIMGCsluMBLpTdaJhQsKVojRWQvulkDOTtiQwdrHZDOga6u3ypXfdeRC
-         A3DMJYDmtxJXYWbWfipsl44ejrygb+Jl7RLTPZ1eGaaN0x0WFCClPqKvDighH56YWRBw
-         w7Fe0Gzu3Byuwa9DtoPvt6Vg6k6STHvZchdPjxIoNTKPYWgIls9PfryLTnBjRwux9boh
-         46VQ==
-X-Gm-Message-State: AFqh2krUMTJniRDBx0VVGy3FAQF4SbYKHiQvulGV+c1yhnsB+CMDPNQv
-	GEDv7VC+/z13UOjcsCL0ospRog==
-X-Google-Smtp-Source: AMrXdXsgPXH/K+jt/hCla1kkUxNQKdd+iFBNHNeGB4uwy54V+5FNMEZx+cjJj5KMZDjRxccpKGp/Ag==
-X-Received: by 2002:a05:600c:54eb:b0:3c6:e63e:89aa with SMTP id jb11-20020a05600c54eb00b003c6e63e89aamr45854935wmb.6.1673268813559;
-        Mon, 09 Jan 2023 04:53:33 -0800 (PST)
+        bh=apTdb92AzNQ96d3ETxccHyv95HLA5cv6Przk0hO/8h8=;
+        b=arq2MS0WO8bFBy8lNy20kywtfn56NnDQHqFIF1ITpdlEbBAGBMZuMz7GG8LvnuAJT/
+         78wyRkDPgq0o5QDLOoy6Wdn6kcvISW+W3rIhvGqSUd/lQBsknABSwvIw2cd4M3JQ+kwa
+         07OkXmqIgnfosxN2VC9c1U3KQ8nSkHk/fIYfhnq2L/IGgJUyamH763vGAI1aOmD2VOSC
+         qZZiLXBh8FenTRx4BWBKyMTdADjR2/iIaI2Pqx9a2k/JV/RUozMOXJP8lyu5AGWBltCe
+         m67JvSMh+peOJ+6Sx3FAryOnqHUtl4DQFTq867rBeOSV9WyIw9kjpBXFz8u1RmraT9WC
+         HwYA==
+X-Gm-Message-State: AFqh2kqTsjca7XxyfWoHP1KsosNLScVnTdAOlXDtY6tUiO3JK/dwEnFw
+	lcs2I6J7+9Td3Wk6Fc8CWjTHPQ==
+X-Google-Smtp-Source: AMrXdXtAapEnKxQpOhIkltcToEX8T5OnPnIqchFzqGnfuLYUoCHcU94+sp3J+/xrNs805/CeyL0VSw==
+X-Received: by 2002:a05:600c:1e1d:b0:3cf:b07a:cd2f with SMTP id ay29-20020a05600c1e1d00b003cfb07acd2fmr45391761wmb.37.1673268828090;
+        Mon, 09 Jan 2023 04:53:48 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.31
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 04:53:33 -0800 (PST)
+        Mon, 09 Jan 2023 04:53:47 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 09 Jan 2023 13:53:26 +0100
-Subject:  [PATCH v2 02/11] dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
+Date: Mon, 09 Jan 2023 13:53:35 +0100
+Subject: [PATCH v2 11/11] dt-bindings: net: convert mdio-mux-meson-g12a.txt to
+ dt-schema
 MIME-Version: 1.0
-Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
+Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-11-36ad050bb625@linaro.org>
 References:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 In-Reply-To:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -93,8 +94,8 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_045336_970703_CE3D43C8 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20230109_045348_714221_70E0B28F 
+X-CRM114-Status: GOOD (  15.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,133 +112,157 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
+Convert MDIO bus multiplexer/glue of Amlogic G12a SoC family bindings
+to dt-schema.
 
-Take in account the used variant with amlogic,meson-gx-efuse.
-
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 57 ++++++++++++++++++++++
- .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 ------------------
- 2 files changed, 57 insertions(+), 48 deletions(-)
+ .../bindings/net/amlogic,g12a-mdio-mux.yaml        | 80 ++++++++++++++++++++++
+ .../bindings/net/mdio-mux-meson-g12a.txt           | 48 -------------
+ 2 files changed, 80 insertions(+), 48 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+diff --git a/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
 new file mode 100644
-index 000000000000..e49c2754ff55
+index 000000000000..ec5c038ce6a0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
-@@ -0,0 +1,57 @@
++++ b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
+@@ -0,0 +1,80 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/nvmem/amlogic,meson-gxbb-efuse.yaml#
++$id: http://devicetree.org/schemas/net/amlogic,g12a-mdio-mux.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson GX eFuse
++title: MDIO bus multiplexer/glue of Amlogic G12a SoC family
++
++description:
++  This is a special case of a MDIO bus multiplexer. It allows to choose between
++  the internal mdio bus leading to the embedded 10/100 PHY or the external
++  MDIO bus.
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
 +
 +allOf:
-+  - $ref: nvmem.yaml#
++  - $ref: mdio-mux.yaml#
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - const: amlogic,meson-gxbb-efuse
-+      - items:
-+          - const: amlogic,meson-gx-efuse
-+          - const: amlogic,meson-gxbb-efuse
++    const: amlogic,g12a-mdio-mux
 +
-+  clocks:
++  reg:
 +    maxItems: 1
 +
-+  secure-monitor:
-+    description: phandle to the secure-monitor node
-+    $ref: /schemas/types.yaml#/definitions/phandle
++  clocks:
++    items:
++      - description: peripheral clock
++      - description: platform crytal
++      - description: SoC 50MHz MPLL
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: clkin0
++      - const: clkin1
 +
 +required:
 +  - compatible
++  - reg
 +  - clocks
-+  - secure-monitor
++  - clock-names
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    efuse: efuse {
-+        compatible = "amlogic,meson-gxbb-efuse";
-+        clocks = <&clk_efuse>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mdio-multiplexer@4c000 {
++        compatible = "amlogic,g12a-mdio-mux";
++        reg = <0x4c000 0xa4>;
++        clocks = <&clkc_eth_phy>, <&xtal>, <&clkc_mpll>;
++        clock-names = "pclk", "clkin0", "clkin1";
++        mdio-parent-bus = <&mdio0>;
 +        #address-cells = <1>;
-+        #size-cells = <1>;
-+        secure-monitor = <&sm>;
++        #size-cells = <0>;
 +
-+        sn: sn@14 {
-+            reg = <0x14 0x10>;
++        mdio@0 {
++            reg = <0>;
++            #address-cells = <1>;
++            #size-cells = <0>;
 +        };
 +
-+        eth_mac: mac@34 {
-+            reg = <0x34 0x10>;
-+        };
++        mdio@1 {
++            reg = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
 +
-+        bid: bid@46 {
-+            reg = <0x46 0x30>;
++            ethernet-phy@8 {
++                compatible = "ethernet-phy-id0180.3301",
++                             "ethernet-phy-ieee802.3-c22";
++                interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
++                reg = <8>;
++                max-speed = <100>;
++            };
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
++...
+diff --git a/Documentation/devicetree/bindings/net/mdio-mux-meson-g12a.txt b/Documentation/devicetree/bindings/net/mdio-mux-meson-g12a.txt
 deleted file mode 100644
-index f7b3ed74db54..000000000000
---- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+index 3a96cbed9294..000000000000
+--- a/Documentation/devicetree/bindings/net/mdio-mux-meson-g12a.txt
 +++ /dev/null
 @@ -1,48 +0,0 @@
--= Amlogic Meson GX eFuse device tree bindings =
+-Properties for the MDIO bus multiplexer/glue of Amlogic G12a SoC family.
 -
--Required properties:
--- compatible: should be "amlogic,meson-gxbb-efuse"
--- clocks: phandle to the efuse peripheral clock provided by the
--	  clock controller.
--- secure-monitor: phandle to the secure-monitor node
+-This is a special case of a MDIO bus multiplexer. It allows to choose between
+-the internal mdio bus leading to the embedded 10/100 PHY or the external
+-MDIO bus.
 -
--= Data cells =
--Are child nodes of eFuse, bindings of which as described in
--bindings/nvmem/nvmem.txt
+-Required properties in addition to the generic multiplexer properties:
+-- compatible : amlogic,g12a-mdio-mux
+-- reg: physical address and length of the multiplexer/glue registers
+-- clocks: list of clock phandle, one for each entry clock-names.
+-- clock-names: should contain the following:
+-  * "pclk"   : peripheral clock.
+-  * "clkin0" : platform crytal
+-  * "clkin1" : SoC 50MHz MPLL
 -
--Example:
+-Example :
 -
--	efuse: efuse {
--		compatible = "amlogic,meson-gxbb-efuse";
--		clocks = <&clkc CLKID_EFUSE>;
+-mdio_mux: mdio-multiplexer@4c000 {
+-	compatible = "amlogic,g12a-mdio-mux";
+-	reg = <0x0 0x4c000 0x0 0xa4>;
+-	clocks = <&clkc CLKID_ETH_PHY>,
+-		 <&xtal>,
+-		 <&clkc CLKID_MPLL_5OM>;
+-	clock-names = "pclk", "clkin0", "clkin1";
+-	mdio-parent-bus = <&mdio0>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	ext_mdio: mdio@0 {
+-		reg = <0>;
 -		#address-cells = <1>;
--		#size-cells = <1>;
--		secure-monitor = <&sm>;
--
--		sn: sn@14 {
--			reg = <0x14 0x10>;
--		};
--
--		eth_mac: eth_mac@34 {
--			reg = <0x34 0x10>;
--		};
--
--		bid: bid@46 {
--			reg = <0x46 0x30>;
--		};
+-		#size-cells = <0>;
 -	};
 -
--	sm: secure-monitor {
--		compatible = "amlogic,meson-gxbb-sm";
+-	int_mdio: mdio@1 {
+-		reg = <1>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		internal_ephy: ethernet-phy@8 {
+-			compatible = "ethernet-phy-id0180.3301",
+-				     "ethernet-phy-ieee802.3-c22";
+-			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+-			reg = <8>;
+-			max-speed = <100>;
+-		};
 -	};
--
--= Data consumers =
--Are device nodes which consume nvmem data cells.
--
--For example:
--
--	eth_mac {
--		...
--		nvmem-cells = <&eth_mac>;
--		nvmem-cell-names = "eth_mac";
--	};
+-};
 
 -- 
 2.34.1
