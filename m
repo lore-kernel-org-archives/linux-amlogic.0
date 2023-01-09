@@ -4,123 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 031A6C5479D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 14:01:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5354DC54EBD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 14:06:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=M8lJfAZj17+eOQXFsXrwqz5B9wfJeYYJ/SEZIfgbiAs=; b=pxfjZ5qJWwPQRH
-	uxoNFqoTXPZz2y206vn6UH03uzXXa+qrMXU+hSlhtpmi3mVRO+AORdQSlDsR50Gisd3qfmlXpP1UX
-	ikahUZuLL5bYr3WHdJkpRX/V9YoTX4Zq4bGYp3AjGQxT/bHuVCUblbofGGlvbSvhan/wEvu9V6+nG
-	YeAC6964mVeeCSNYh9febZSF5eqPAyW1Uu2VqI/Wv8fS45LF61L4QRCmB1Pnc4B6IlhIfK3mN1/Vk
-	a4B2KEV0fMsoiVOitIRg+/S6p37k4LTktunX51PpSlAq/ZS0pLdkMZRpCyihZswjUUh1H27lyHy6h
-	whXXm3rn+B+lU9pRR4nA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TUGKJN4TXb+F8/AHmtnCSmTvTr3Xq2pglWJv35f4t6s=; b=3r63VLtyLlIfg3
+	nsl6+1ST0R4kaU/BeNf2Sr34jJnyPD10gCqvM2HJzuQSNnwY3OATd21cZrmYr1O2sB0UgdoLZpJoP
+	JKUe1/ur6AEzCrLSZKpxFIvG4diVrZU6CAUS37dVLIFW1cZIGxXqOY9F254x4RGW18fSc62SWSz+E
+	PWulMcpE2l+Wz4amjNFXPaaZ3fWX0osqKl2tPAA9GNDWVL973KaMN+8H9ALc5xFouspYcxNSaCiba
+	i9HNf/BlkX1Mn2r/OKC8ZPEWjQTD80tzdUvd3OvFDp/k6RbR1kgZoHKBGIRYFPFHX4/F25h8lfCb0
+	jnn++qoJpj7FJowBM09A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEsiP-001mxk-8U; Mon, 09 Jan 2023 14:01:29 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1pEsmn-001oSQ-JS; Mon, 09 Jan 2023 14:06:01 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEsUG-001hk6-4w
-	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 13:46:56 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230109134647euoutp0143f90339da1b738d28c65401c312c922~4qAZxPJ501653416534euoutp01X
-	for <linux-amlogic@lists.infradead.org>; Mon,  9 Jan 2023 13:46:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230109134647euoutp0143f90339da1b738d28c65401c312c922~4qAZxPJ501653416534euoutp01X
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1673272007;
-	bh=0nwkwv/Rw0/gOSHiBDWJzOYYgdsO4mbdAhH0BIWIEsM=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=ZpMQdlE+rZ4RiykOwHOQIZ28A/ktqDt5NlA3gEw7w/syJcgl8HL9tSOxWYJe4bH+C
-	 wqm28M4hJWvTh4ECenuav1VCxkdmD4I+TGmYIQOPTzpryGvB88Ayk+JHwIYB25Onf+
-	 40p8V0IdYvM2gf4428Zcu+0bxUVKKD5YFvqUeG3E=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20230109134646eucas1p1e9146c0edaa99ab48cf13e1e27e712c7~4qAZjFLms0769807698eucas1p1g;
-	Mon,  9 Jan 2023 13:46:46 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id CB.1F.43884.6CA1CB36; Mon,  9
-	Jan 2023 13:46:46 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83~4qAZANu6f2042520425eucas1p1p;
-	Mon,  9 Jan 2023 13:46:46 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20230109134646eusmtrp260122d9ff5535c5e6238658f3e998993~4qAY-ej8R0582105821eusmtrp2j;
-	Mon,  9 Jan 2023 13:46:46 +0000 (GMT)
-X-AuditID: cbfec7f5-25bff7000000ab6c-7d-63bc1ac6d7ee
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id A0.10.23420.6CA1CB36; Mon,  9
-	Jan 2023 13:46:46 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20230109134645eusmtip20ab292f975ca377bab1cc28ed2389967~4qAYSybTE0962109621eusmtip2P;
-	Mon,  9 Jan 2023 13:46:45 +0000 (GMT)
-Message-ID: <6c865dd8-b6c3-4491-48ca-df3e3fa45a2d@samsung.com>
-Date: Mon, 9 Jan 2023 14:46:45 +0100
+	id 1pEref-001LIZ-D4
+	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 12:53:35 +0000
+Received: by mail-wm1-x333.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso3662026wmq.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ETbCko9qvHlQPPwFTCR8+/m7LxLG307onSAOdNo242Q=;
+        b=Qyz1Z0LIS2Jjd0OfSqrclssV2XihZGsbKAIMXdraJ4UGqC8prh3IzWrrMraz6FKtlO
+         h1+gsufUj33b4wMU/wDPXNt4nWGKA5DuS0x8K1Syb6jMnem0JN74Nkxv9ql8KNEMvFp5
+         TvBvXC6Sf89Jtnb11VzSXs37YUAVOGeUHUm4pbmco0duMZDB42EaHwneYbe0p7ei0J0k
+         WadqQP/xlKYM1KU9KdCkBDclMsnJc0AyLOtbHmh80W616whqVHD1xuVytTlyiPxF+l+U
+         xcGo+5ELgdNp5uWfv1JAf0CZlctSd4tACHyL/yir8zYzU1hwZ+iBjzkrkGK0tw6Fa7u6
+         oIVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ETbCko9qvHlQPPwFTCR8+/m7LxLG307onSAOdNo242Q=;
+        b=GIic9Sk9l//HZo8tTRedkxPWS9998T6cVNg8IVW1lZ5lopW2YUv6Z2q80MYT4BkQPX
+         G2Y+uGPZvz99xkOWxkbXkCuRixuC66RpN2xt9Uk2GZkIV8LodcpTNV3fE+zHJ42cNiBx
+         6d59ErRDBI2kJZl6BLynVArr+z5Jqk38hD4lDJ5QwkmgPlyWVCqkH5FDcU9lQ8FpQ30a
+         QjBfA9E7KhrWD+37TSDegbqqof8T2dCw0k0GzqZ4D0etbj+KbaeawBGVM4HEVIuM94TF
+         1M6xrCQIBphsvquEmhO9o9/SxfGoShP+KSokLTvZceFB+c2GdMWBg8gCGO3czCchymeb
+         uySA==
+X-Gm-Message-State: AFqh2koEewbscJXIL8cWY7ctPFX5dhtgJeVFjqUwD2oXmaFl/J20yNBR
+	vCfogMWkuZIHNQb04pT0cQng4A==
+X-Google-Smtp-Source: AMrXdXtFjNw0AODLPqkFELj3Dfl8HXIbCZr81K/+a33HvQyZvXTG1A9oQwKgopu8UN2gnYr6Gscf7w==
+X-Received: by 2002:a05:600c:3509:b0:3c6:e60f:3f6f with SMTP id h9-20020a05600c350900b003c6e60f3f6fmr45593896wmq.38.1673268810220;
+        Mon, 09 Jan 2023 04:53:30 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 04:53:29 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 00/11] dt-bindings: first batch of dt-schema conversions
+ for Amlogic Meson bindings
+Date: Mon, 09 Jan 2023 13:53:25 +0100
+Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
-	Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [RESEND2,v4,2/2] drm/meson: dw-hdmi: Use
- devm_regulator_*get_enable*()
-Content-Language: en-US
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
-	<matti.vaittinen@fi.rohmeurope.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	Jerome Brunet <jbrunet@baylibre.com>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <df0096b5aea2a18d1540cde379c5abf589ccd7c4.1669799805.git.mazziesaccount@gmail.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsWy7djPc7rHpPYkG8w/bmQx9eETNosrX9+z
-	Wbx5dITZ4mf7FiaLb1c6mCwWzOa22PT4GqvF5V1z2CyOLTrJYrH92yM2izlLT7BYvN95i9GB
-	x+P9jVZ2j99HH7N77Jx1l93j6YTJ7B6bVnWyedy5tofN4373cSaPzUvqPT5vkgvgjOKySUnN
-	ySxLLdK3S+DKuL7AuWC6WMXWyfvZGhj/CHYxcnJICJhIvJ2xl7mLkYtDSGAFo8SHdddYIZwv
-	jBI3GnezQzifGSWaJh9jgWmZsec2I0RiOaPE5RetUP0fGSXOrnoAVsUrYCfx9P8RNhCbRUBF
-	4vfJxewQcUGJkzOfANVwcIgKpEhs+lMGEhYWCJXY9vAdWDmzgLjErSfzmUBsEYFUibuzz0LF
-	u5kl7l2QArHZBAwlut52sYGM4RSIl7jywwiiRF5i+9s5YOdICMzmlHh5/iMTxNEuElc/PICy
-	hSVeHd/CDmHLSPzfCbILpKGdUWLB7/tQzgRGiYbntxghqqwl7pz7BbaNWUBTYv0ufRBTQsBR
-	4sNifgiTT+LGW0GIG/gkJm2bzgwR5pXoaBOCmKEmMev4OritBy9cYp7AqDQLKUxmIXl+FpJv
-	ZiGsXcDIsopRPLW0ODc9tdg4L7Vcrzgxt7g0L10vOT93EyMwqZ3+d/zrDsYVrz7qHWJk4mA8
-	xCjBwawkwruSc0+yEG9KYmVValF+fFFpTmrxIUZpDhYlcd4ZW+cnCwmkJ5akZqemFqQWwWSZ
-	ODilGpj838Y/nfzb/93VLuUTfp71i99P9y7+H1aZKim35FCCyWWZBXzM+lLFvFWZDF9/8HsY
-	BktcV5dfcntXzOKpRzxEuv+/T9vFsSvp2PYQ45eT5/N/rjw/mX/7sUeTN09tvrPbkDmDyXyJ
-	gL78/Tu/Shed37XnXWK3ROyWZTmaR/7fXFLhpf7ReIPyYf7lRwp9a9Ly57NszpnOeeY1i3fm
-	rtZq1tjNWkaP3r3bIfdowv4Hcu84Ja9zNpT0/3qsUL277lHP3jkquvN8N3gtC28RPx2+cWeq
-	gJ/o5ep3N/eJrLnqxW2c/t1kq52qK+OmmeZXb3yc51TI8/6VrtF9z9uOP173a6/7FnuBzaWx
-	Vm3nR8FOJZbijERDLeai4kQAW8SEvNkDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJIsWRmVeSWpSXmKPExsVy+t/xe7rHpPYkG9xcwGsx9eETNosrX9+z
-	Wbx5dITZ4mf7FiaLb1c6mCwWzOa22PT4GqvF5V1z2CyOLTrJYrH92yM2izlLT7BYvN95i9GB
-	x+P9jVZ2j99HH7N77Jx1l93j6YTJ7B6bVnWyedy5tofN4373cSaPzUvqPT5vkgvgjNKzKcov
-	LUlVyMgvLrFVija0MNIztLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DLuL7AuWC6WMXW
-	yfvZGhj/CHYxcnJICJhIzNhzm7GLkYtDSGApo8SbZy/ZIRIyEienNbBC2MISf651sUEUvWeU
-	+DZ9BViCV8BO4un/I2wgNouAisTvk4vZIeKCEidnPmEBsUUFUiSan58EqxcWCJXY9vAdWD2z
-	gLjErSfzmUBsEYFUiY8L9zBDxLuZJa68yQWxhQTiJBZ3nAabwyZgKNH1FuQIDg5OgXiJKz+M
-	IMrNJLq2djFC2PIS29/OYZ7AKDQLyRWzkGybhaRlFpKWBYwsqxhFUkuLc9Nziw31ihNzi0vz
-	0vWS83M3MQLjeNuxn5t3MM579VHvECMTB+MhRgkOZiUR3pWce5KFeFMSK6tSi/Lji0pzUosP
-	MZoCg2Iis5Rocj4wkeSVxBuaGZgamphZGphamhkrifN6FnQkCgmkJ5akZqemFqQWwfQxcXBK
-	NTCxWMxkXZnRFaw2z2YL538jtcIfTRsOSnAu3+RrbJrxyrfwROt3o9w1O9OTX/FtbNNZmCiz
-	/OOPWZ0LUuLWZ9UvZl2jl1ySPrOlkv9Lz68MkVCeY39zbLxU2RlPp3n52Pv4d/c53plxdqb3
-	uX+XzdoNF66MY7DU7vh+bo6OtWl9NQv/SZZiQ42u1DPyatYnHn5YO2l9+i2PAy435jbczLzh
-	Nymj4WTiC4dZ88+vuz/3/PJi25OqpycE/9vEULnyearL8RMmS3dsVDY68ePR7BcTkzj+ib7h
-	strRKfhk960DFx3eCTu4GgekXTuSrGTwsGL5L7mVnk9SPjmdTV6R+HL606jUWs87D816Du+e
-	dGyCEktxRqKhFnNRcSIApjGZ0mwDAAA=
-X-CMS-MailID: 20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83
-X-Msg-Generator: CA
-X-RootMTR: 20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83
-References: <df0096b5aea2a18d1540cde379c5abf589ccd7c4.1669799805.git.mazziesaccount@gmail.com>
-	<CGME20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83@eucas1p1.samsung.com>
+X-B4-Tracking: v=1; b=H4sIAEYOvGMC/42NOwrDMBAFr2JUZ4Ol+F/lHiGFfpYXlBWsHEEwv
+ ntETpDqMa+YOUT2jD6LpTkE+4IZE1VQl0bYTVPwgK6yUK1SUsoRTAf6FVNACwbJIYUMNlHxvMPk
+ V+nG3nVqcKIajM4eDGuyW3XQO8Z6bpj3xJ9fscg6j//kRUILt7VVfT/PZh6me0TSnK6Jg3ie5/k
+ FLFBWF8wAAAA=
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_054652_615155_CF757582 
-X-CRM114-Status: GOOD (  21.73  )
+X-CRM114-CacheID: sfid-20230109_045333_542282_6D8384E2 
+X-CRM114-Status: GOOD (  16.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,86 +113,141 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Matti,
+Batch conversion of the following bindings:
+- meson_sm.txt
+- amlogic-efuse.txt
+- amlogic-meson-mx-efuse.txt
+- meson-wdt.txt
+- meson-ir.txt
+- rtc-meson.txt
+- amlogic,meson6-timer.txt
+- meson-gxl-usb2-phy.txt
+- amlogic,meson-gx.txt
+- amlogic,meson-pcie.txt
+- mdio-mux-meson-g12a.txt
 
-On 30.11.2022 10:23, Matti Vaittinen wrote:
-> Simplify using the devm_regulator_get_enable_optional(). Also drop the
-> now unused struct member 'hdmi_supply'.
->
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> v4 resend 2:
-> Respinning unchanged code with the commit title changed as wa suggested
-> by Robert Foss and commit message changed as was suggested by Martin.
->
-> I am doing a clean-up for my local git and encountered this one.
-> Respinning as it seems this one fell through the cracks.
-> ---
->   drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
->   1 file changed, 3 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 5cd2b2ebbbd3..7642f740272b 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -140,7 +140,6 @@ struct meson_dw_hdmi {
->   	struct reset_control *hdmitx_apb;
->   	struct reset_control *hdmitx_ctrl;
->   	struct reset_control *hdmitx_phy;
-> -	struct regulator *hdmi_supply;
->   	u32 irq_stat;
->   	struct dw_hdmi *hdmi;
->   	struct drm_bridge *bridge;
-> @@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->   
->   }
->   
-> -static void meson_disable_regulator(void *data)
-> -{
-> -	regulator_disable(data);
-> -}
-> -
->   static void meson_disable_clk(void *data)
->   {
->   	clk_disable_unprepare(data);
-> @@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->   	meson_dw_hdmi->data = match;
->   	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
->   
-> -	meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
-> -	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
-> -		if (PTR_ERR(meson_dw_hdmi->hdmi_supply) == -EPROBE_DEFER)
-> -			return -EPROBE_DEFER;
-> -		meson_dw_hdmi->hdmi_supply = NULL;
-> -	} else {
-> -		ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
-> -		if (ret)
-> -			return ret;
-> -		ret = devm_add_action_or_reset(dev, meson_disable_regulator,
-> -					       meson_dw_hdmi->hdmi_supply);
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	ret = devm_regulator_get_enable_optional(dev, "hdmi");
-> +	if (ret != -ENODEV)
+The amlogic,meson-gx-pwrc.txt is removed since deprecated and unused 
+for a few releases now.
 
-The above line should be "if (ret < 0)", otherwise it breaks hdmi support.
+Martin Blumenstingl was also added as bindings maintainer for Meson6/8/8b
+related bindings.
 
-I've noticed this once this change has been merged to linux-next and all 
-my Amlogic Meson based boards failed to initialize HDMI. Is it possible 
-to fix this in drm tree or do I need to send the incremental fixup?
+Remaining conversions:
+- meson,pinctrl.txt
+- pwm-meson.txt
+- amlogic,meson-gpio-intc.txt
+- amlogic,meson-mx-sdio.txt
+- rtc-meson-vrtc.txt
+- amlogic,axg-sound-card.txt
+- amlogic,axg-fifo.txt
+- amlogic,axg-pdm.txt
+- amlogic,axg-spdifout.txt
+- amlogic,axg-tdm-formatters.txt
+- amlogic,axg-spdifin.txt
+- amlogic,axg-tdm-iface.txt
+- amlogic,g12a-tohdmitx.txt
+- amlogic,axg-audio-clkc.txt
+- amlogic,gxbb-clkc.txt
+- amlogic,gxbb-aoclkc.txt
+- amlogic,meson8b-clkc.txt
 
-> +		return ret;
->   
->   	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
->   						"hdmitx_apb");
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Guenter Roeck <linux@roeck-us.net>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: "David S. Miller" <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Andrew Lunn <andrew@lunn.ch>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-watchdog@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: linux-rtc@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: linux-mmc@vger.kernel.org
+Cc: linux-pci@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Best regards
+---
+Changes in v2:
+- rebased on v6.2-rc1
+- patch 1: fixed power-controller, added const: amlogic,meson-gx-sm
+- patch 2: added const: amlogic,meson-gx-efuse, fixed secure-monitor type
+- patch 3: updated example subnodes to match reality
+- patch 4: added reviewed-by, added interrupts, added const: amlogic,meson8m2-wdt
+- patch 5: added reviewed-by, added const: amlogic,meson-gx-ir
+- patch 6: dropped applied
+- patch 7: dropped patch, replaced with deprecated in the title of the TXt bindings
+- patch 8: fixed title, added reviewed-by, added interrupt description
+- patch 9: fixed example indent, added reviewed-by
+- patch 10: fixed const: amlogic,meson-gx-mmc case, fixed indentation
+- patch 11: added reviewed-by, fixed title, fixed bindings after rebase, added clocks/clock-names as required
+- patch 12: added reviewed-by
+- Link to v1: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org
+
+---
+Neil Armstrong (11):
+      dt-bindings: firmware: convert meson_sm.txt to dt-schema
+      dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
+      dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt to dt-schema
+      dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
+      dt-bindings: media: convert meson-ir.txt to dt-schema
+      dt-bindings: power: amlogic,meson-gx-pwrc: mark bindings as deprecated
+      dt-bindings: timer: convert timer/amlogic,meson6-timer.txt to dt-schema
+      dt-bindings: phy: convert meson-gxl-usb2-phy.txt to dt-schema
+      dt-bindings: mmc: convert amlogic,meson-gx.txt to dt-schema
+      dt-bindings: PCI: convert amlogic,meson-pcie.txt to dt-schema
+      dt-bindings: net: convert mdio-mux-meson-g12a.txt to dt-schema
+
+ .../bindings/firmware/amlogic,meson-gxbb-sm.yaml   |  39 ++++++
+ .../bindings/firmware/meson/meson_sm.txt           |  15 ---
+ .../bindings/media/amlogic,meson6-ir.yaml          |  47 ++++++++
+ .../devicetree/bindings/media/meson-ir.txt         |  20 ---
+ .../bindings/mmc/amlogic,meson-gx-mmc.yaml         |  75 ++++++++++++
+ .../devicetree/bindings/mmc/amlogic,meson-gx.txt   |  39 ------
+ .../bindings/net/amlogic,g12a-mdio-mux.yaml        |  80 ++++++++++++
+ .../bindings/net/mdio-mux-meson-g12a.txt           |  48 --------
+ .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   |  57 +++++++++
+ .../bindings/nvmem/amlogic,meson6-efuse.yaml       |  60 +++++++++
+ .../devicetree/bindings/nvmem/amlogic-efuse.txt    |  48 --------
+ .../bindings/nvmem/amlogic-meson-mx-efuse.txt      |  22 ----
+ .../devicetree/bindings/pci/amlogic,axg-pcie.yaml  | 134 +++++++++++++++++++++
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 -----------
+ .../bindings/phy/amlogic,meson-gxl-usb2-phy.yaml   |  56 +++++++++
+ .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  21 ----
+ .../bindings/power/amlogic,meson-gx-pwrc.txt       |   4 +-
+ .../bindings/timer/amlogic,meson6-timer.txt        |  22 ----
+ .../bindings/timer/amlogic,meson6-timer.yaml       |  54 +++++++++
+ .../bindings/watchdog/amlogic,meson6-wdt.yaml      |  50 ++++++++
+ .../devicetree/bindings/watchdog/meson-wdt.txt     |  21 ----
+ 21 files changed, 654 insertions(+), 328 deletions(-)
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20221117-b4-amlogic-bindings-convert-8ef1d75d426d
+
+Best regards,
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
