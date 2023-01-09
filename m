@@ -4,68 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6798DC54EBE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 12:55:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 249D3C54EBD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 13:14:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YoqYbGH2zHcLyQ4dyktxHJvTBakqoVVS5sfnRe2wVWw=; b=th1URm24v0y58m
-	RRnTRMQGF40rREoywhF0JH30lDJSuqC+iOrFtUt70ULX6MhGBh9vIOFS41JdcHWl34x/rP7n+ycg9
-	hYZWdYrQ1tZPkEEFWomxSwLuy/lHWJJYiWMZKw/4HsMae+cRGWgyQw5T2lf+K99FLWMnLGz/YpIsk
-	sZTZMwdET3plhZSC29TDL9yrpIMhERNcv1/qdCGWdx2L7lN0cC4LWsyhVTgkwNufb6QPi9DnoT5kB
-	/o444OyAcdCP3PbJE1tTGE2ch3Snsm1/5TFtuWxyXdRdhm2xTcOd57krGXuGm00KXEr3WGt2ebzds
-	SjoKuprTp9cX1upG3SVg==;
+	List-Owner; bh=FqIWlizS+5cWB0xpptDs0eG1IL7qD8TzkEW+pEC5MwU=; b=SvmXLXqjrLyvGq
+	dM3Ruv9oHP9+ypudRVsVI1Ov6cBrmQ8B17k1hKHAoSzdLd+emAsJ/YVSvMMQeQH29lfZNAmn8BCuN
+	ss0vKQ7ILGuqk3xFDx88IPKJTE6hC9r03tOltPjY9dxut2SkKqPpfK66/YfN/yz3XvoOZmuIwURHu
+	43iRXBlymcgk/knKjTko3kQU8/XfuzYEC9mHCkUZ6Dc5o7V4IpAm3LC7NvBL8NEPOIXnqftrGiCdw
+	iaWFdJL5ciZcIna6uY5XwtSE1iAV6hhu9fxS02/o6NaL2pmMHH3hPgLwfzDiqw8uUp2req+JQo1J1
+	lr0WCgCyYpCLhTjIbjIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pErgW-001MPG-Qr; Mon, 09 Jan 2023 12:55:28 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pEryu-001UJK-EO; Mon, 09 Jan 2023 13:14:28 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pErep-001LIa-Sv
-	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 12:53:49 +0000
-Received: by mail-wm1-x332.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so4094516wma.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:43 -0800 (PST)
+	id 1pEryW-001U9d-Uj
+	for linux-amlogic@bombadil.infradead.org; Mon, 09 Jan 2023 13:14:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=qRoLsjyY/qf2Mb569g+NlHCALe/agKv6TWaWZecCXbM=; b=hY2S2TulTdp9I/hVUvFxosenfM
+	LXrTBxqtdMIbdxCPH2tNy0ESAXZFxypWV9SIxkGk1RPlyVOHf9lR7VJTut08DgpO25u+xUulxYGHk
+	9zsus4hQigyqxIUnyGIqzX+LTnpU82oxooNL/hy/UF/vUyCsd3wT09HfndmJ/4b1OfaHrQQEI8N/E
+	QdOTCJ4Z/ZdASfQYRqBZxga3nBn6AD0lPUnUH0KpyFmFDuPTgqSgw78H4Gbca3ZOocKg3O9/Dk3WE
+	S+BIAVigBQELCX63gHlM9AAfAtS23rG0zrzmAAJVy7Ns7WWgOyl5Q8e2dhAvz8MGQOwt6KpGdrAia
+	UbIMmaXg==;
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pEreg-002jDk-1f
+	for linux-amlogic@lists.infradead.org;
+	Mon, 09 Jan 2023 12:53:55 +0000
+Received: by mail-wm1-x331.google.com with SMTP id ja17so6180148wmb.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Tquvwj2kpJM2Ju/UAJGs8M9lyCJgcUVyQS/lXUiEhkI=;
-        b=j4WnyX0OrhV3Tl4dXLdREy6trUYPvtp6GUEeJ7GPOcr73tsXoa4iOdeDXWB502uqCb
-         L8UokGsnT4o4qVlJsUCzo/J4Gx6YpBCaStpX8O2/AfvVVoCCWuOV6iFQdxiWGFhCM7pr
-         eBwl3cWeK751NdGbRKATht+u7uei9a51RSkVcEAxkFTpHBB7n4BU97L6gu+R591cFEc6
-         wrZPz6ROTTgyq5NNhr3BhFw/WQJVusUfgPQ6SFLl23+qT0Me5yjaHsxlb2fyXlliEoz4
-         gtb5vBBw0hqWuV9GYsAWdnIcxSuWq0N4fHT6PY0U8ME5pivWgx1xfJq+6oR1s6KvA+97
-         69Sg==
+        bh=qRoLsjyY/qf2Mb569g+NlHCALe/agKv6TWaWZecCXbM=;
+        b=PtAZ9sogJ7D4ak5aTWeShdIBpAojseUr1St7O+JcXvW9KypuHN2Tf5W1eVB8HsoPF5
+         Qc5AYGcZBGHgvHxrR3P6gpgTinKrkUnuy5LEDPE03vAR78m1vUv3J7o9Zs8EkLiokWFG
+         C5+WI1eABYMDkQ5QEoKydR/Me0T2WGlkuMYQfCLahG/XOli4iTy+Rn+agbzFJXwgJjhY
+         fQR1MEQz3dhs6YPpglpZflbvBSoAWJOLMZKoVKR9KOP9UnbpyVI8cbcw38XnxxrIevb5
+         gAPqB1nL5xVr+w5BIPh5+EWDCP9351eyJjxkEPdFQmPvKJPhGUQwh+0uzz7LAv35bZsI
+         uYtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Tquvwj2kpJM2Ju/UAJGs8M9lyCJgcUVyQS/lXUiEhkI=;
-        b=SG5Kj4+he47kZHirpL4Tt7qckknCNCLFdCqhv791XH/y0+3CjGpnKgR2anEaPvLOhE
-         7FsUbDiVrmV8nXtdvFmhzYWlu0HRB9XsSkKNSl3LHwjQbXgacLZBdsgZuy71Dh+bBESK
-         PWpXU5SSjbIcYCe9oODRxF+4xox+9LX9+u4n/1FSPtVBPKr/IlzlX5xiUv+mhjGndHRw
-         n+1AANl1lM7UQl/AqAE1SWuQUORE0P2DabQPZiVc9GgLd+xkWFmrVF2s5xU4S5TpTmBZ
-         kyqm/pWQZuBRGd20LOA7uQibhJ7R8l0MGz6Ua5jxKXWQlo15owhTY+Glc4+yH85VhMEh
-         Wupg==
-X-Gm-Message-State: AFqh2krRqG8nA8xv7sv4kWbZ58IV6gJlTZX3NRBbMTA039WKOWo7QE/F
-	IjEpAeLmLxzItYpR9ADQ8m137A==
-X-Google-Smtp-Source: AMrXdXuDMWMWyAxYhduaA0kIz0hDTTIZak6lv6S7NHGoYj5aNSpW7iiMBldGLNyII8nQkPvLHAq60w==
-X-Received: by 2002:a05:600c:3b16:b0:3d5:365b:7749 with SMTP id m22-20020a05600c3b1600b003d5365b7749mr46672260wms.16.1673268823250;
-        Mon, 09 Jan 2023 04:53:43 -0800 (PST)
+        bh=qRoLsjyY/qf2Mb569g+NlHCALe/agKv6TWaWZecCXbM=;
+        b=4ewSgbRSGo8giQhnpfDLLY5HSYTvxMCGs6n0ngcsla6S6fwSIMpOeccmsUN0dm+jpg
+         QjV4i5XhI5Pif+MyzYD4fCmDxIMkXrkHI8bzn5jcjK54qO3sSZ7DckoEDhsMlDKsujZV
+         fGkHHSFb/BHGiRn1/D47fiwVu+SPOm/gEuZDj1Wwp4eX/oZWB0u64D/OViJgb4rAZ4MJ
+         1H1vml2ML4soVyxI1BIxJbg+Ja3MFxi30DQlQJoJUPlbSkf/tbOEMjDT+yuBSQPpVDHy
+         2x1f7AlsCc2/1H1T38YsXAEE+Ro6eOVMn/vo/kfkWOBC9QIy0XlpR0vusNROAGheJD74
+         gDNQ==
+X-Gm-Message-State: AFqh2kp9SVR1D+ZHcGPd5ZHdH32f/LoTKDbcGMiE6ZntfjM2t+CVcOPV
+	3Cku7uAa1BlN60G21tBh2Ev1Jw==
+X-Google-Smtp-Source: AMrXdXv0Bdf0Epz6SrHpPBay5WK9tEtRPRH405V8jHfx2VRO9KsOFVi+7uQvyzocCrT86ySajHKxRw==
+X-Received: by 2002:a05:600c:d2:b0:3d2:2b70:f2fd with SMTP id u18-20020a05600c00d200b003d22b70f2fdmr47240724wmm.21.1673268816880;
+        Mon, 09 Jan 2023 04:53:36 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.41
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 04:53:42 -0800 (PST)
+        Mon, 09 Jan 2023 04:53:36 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 09 Jan 2023 13:53:32 +0100
-Subject: [PATCH v2 08/11] dt-bindings: phy: convert meson-gxl-usb2-phy.txt to
- dt-schema
+Date: Mon, 09 Jan 2023 13:53:28 +0100
+Subject:  [PATCH v2 04/11] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
 MIME-Version: 1.0
-Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-8-36ad050bb625@linaro.org>
+Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-4-36ad050bb625@linaro.org>
 References:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 In-Reply-To:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -94,8 +108,8 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_045343_995095_CB2389AB 
-X-CRM114-Status: GOOD (  15.59  )
+X-CRM114-CacheID: sfid-20230109_125334_669332_90598EB0 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,105 +126,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Meson GXL USB2 PHY bindings to dt-schema.
+Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
+
+Take in account the used interrupts property.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/phy/amlogic,meson-gxl-usb2-phy.yaml   | 56 ++++++++++++++++++++++
- .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt | 21 --------
- 2 files changed, 56 insertions(+), 21 deletions(-)
+ .../bindings/watchdog/amlogic,meson6-wdt.yaml      | 50 ++++++++++++++++++++++
+ .../devicetree/bindings/watchdog/meson-wdt.txt     | 21 ---------
+ 2 files changed, 50 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-gxl-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-gxl-usb2-phy.yaml
+diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
 new file mode 100644
-index 000000000000..c2f5c9d2fce6
+index 000000000000..84732cb58ec4
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/amlogic,meson-gxl-usb2-phy.yaml
-@@ -0,0 +1,56 @@
++++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
+@@ -0,0 +1,50 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/phy/amlogic,meson-gxl-usb2-phy.yaml#
++$id: http://devicetree.org/schemas/watchdog/amlogic,meson6-wdt.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson GXL USB2 PHY
++title: Amlogic Meson6 SoCs Watchdog timer
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
 +
 +properties:
 +  compatible:
-+    const: amlogic,meson-gxl-usb2-phy
++    oneOf:
++      - enum:
++          - amlogic,meson6-wdt
++          - amlogic,meson8-wdt
++          - amlogic,meson8b-wdt
++      - items:
++          - const: amlogic,meson8m2-wdt
++          - const: amlogic,meson8b-wdt
++
++  interrupts:
++    maxItems: 1
 +
 +  reg:
 +    maxItems: 1
 +
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: phy
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  phy-supply: true
-+
 +required:
 +  - compatible
++  - interrupts
 +  - reg
-+  - "#phy-cells"
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    phy@78000 {
-+        compatible = "amlogic,meson-gxl-usb2-phy";
-+        reg = <0x78000 0x20>;
-+        clocks = <&xtal>;
-+        clock-names = "phy";
-+        resets = <&phy_reset>;
-+        reset-names = "phy";
-+        #phy-cells = <0>;
-+        phy-supply = <&usb2_supply>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    wdt: watchdog@c1109900 {
++        compatible = "amlogic,meson6-wdt";
++        reg = <0xc1109900 0x8>;
++        interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
++        timeout-sec = <10>;
 +    };
-diff --git a/Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
+diff --git a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
 deleted file mode 100644
-index b84a02ebffdf..000000000000
---- a/Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
+index 7588cc3971bf..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
 +++ /dev/null
 @@ -1,21 +0,0 @@
--* Amlogic Meson GXL and GXM USB2 PHY binding
+-Meson SoCs Watchdog timer
 -
 -Required properties:
--- compatible:	Should be "amlogic,meson-gxl-usb2-phy"
--- reg:		The base address and length of the registers
--- #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
+-
+-- compatible : depending on the SoC this should be one of:
+-	"amlogic,meson6-wdt" on Meson6 SoCs
+-	"amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
+-	"amlogic,meson8b-wdt" on Meson8b SoCs
+-	"amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
+-- reg : Specifies base physical address and size of the registers.
 -
 -Optional properties:
--- clocks:	a phandle to the clock of this PHY
--- clock-names:	must be "phy"
--- resets:	a phandle to the reset line of this PHY
--- reset-names:	must be "phy"
--- phy-supply:	see phy-bindings.txt in this directory
--
+-- timeout-sec: contains the watchdog timeout in seconds.
 -
 -Example:
--	usb2_phy0: phy@78000 {
--		compatible = "amlogic,meson-gxl-usb2-phy";
--		#phy-cells = <0>;
--		reg = <0x0 0x78000 0x0 0x20>;
--	};
+-
+-wdt: watchdog@c1109900 {
+-	compatible = "amlogic,meson6-wdt";
+-	reg = <0xc1109900 0x8>;
+-	timeout-sec = <10>;
+-};
 
 -- 
 2.34.1
