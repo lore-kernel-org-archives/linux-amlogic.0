@@ -4,83 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B001C54EBD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 13:14:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6573FC5479D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 13:15:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KqUuJqVC8eW+u6t/HiHTYujK24HE85ADVLC59/Xvf7E=; b=fgvqQQQUuivz0Y
-	RE1vKH3sqI3OXme8lyeZhJsSdo6fW36PusQE0GNKsE8b3ryaut9VMMCtJqpc1wV0N451H+5228CNh
-	QLkDyXrFL6CvrRh4/n6tXlp/RpeS6Rr+teyDef2KRvHe3L3wyKDd0xY97NYuI4llMJ/yREjRW6ZAE
-	rwfAFxlXIy5G6XS1p6SszXucYkwra1Gqj6jageNvbjQgybEmhtMyNwJmi5zHZZWJ0e7Qnhb0ODngJ
-	nDnxEBRX8pWIT1Kc4ji2PtcKEyY23te2QkrTP5OGZjrnaOmqmFEWplXq4g8LJLvW877Wk/IzyNSXw
-	4KapfTKasKRfEqAJ5Ocg==;
+	List-Owner; bh=IjwWMsNunjErb7ixLsBgb3jHFfajOvnim4edRhqTMR4=; b=fb4hJwKypjn01c
+	NTAGl3LvVRMFq8//3CmYMWVAjynbYJffgen482rJp/dLU8pyyN+K1bqk/fu0TwegmfHskS296tB2L
+	/Fjj7WZx7QivohD+yzxOPr6P9xIvQiAR+4xM0c1X06ml6Fuy0m4LBjWqbYDI3czrjNdTiqPe8ac8f
+	4fVi0bSZsK6rBXreV7B9vCXnpILjnZ5tfq0C/qonSSBFSKSjQDgcUamzz+AD2C0KGQegvubF04AmZ
+	HBuYGrK9/WywqFGg42HrGL/oOPYjo3YEksjjp+mNAEzYu3BznSAEgb8tlvlejFjyQXzXy48ECJ8ZU
+	/kZCppEd6z3f3Iuk0m4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pErz9-001UQK-1a; Mon, 09 Jan 2023 13:14:43 +0000
+	id 1pErzk-001UkD-0t; Mon, 09 Jan 2023 13:15:20 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEryY-001U9d-35
-	for linux-amlogic@bombadil.infradead.org; Mon, 09 Jan 2023 13:14:06 +0000
+	id 1pEryY-001U9d-Ug
+	for linux-amlogic@bombadil.infradead.org; Mon, 09 Jan 2023 13:14:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=eHeD4/5Q26ruqFmP/If/k2xNMCXAhjZeCMYfTgUbKRU=; b=aefMcy7+PZRvhcj2Kt56bDP0ag
-	M5EXH3zAK0CQwEc6P3HzN7pCqcTiOqk+eNn2edwUTpujNNH3S/BZodtQ2Nv2vVusTcp1qO4aTIjbC
-	p/4yPWe+SlJeuaXYqydTIaf+rP+VQOxU2BDj5T4zJJ8oMSNLVQPVodqP5rczQdqTeEwMeOypEmVLA
-	YySvDYRZTKZkie4t8WkIs1tBqurDaSf4hBnXvZwTl5wGLwT6EzKnzV0YWu42qs8cUhocK4oESmtyC
-	ThrOeQbsHeQ9Hf2VNsc7Au4wod4ozfMotvC5ap6ftK/mxr1TwrXxyH8/YlRyRP4f3GiOhRZzTqu++
-	lETZYB3A==;
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	bh=GGsfIAFzoH7ggFb2voxRa7ZKIwz9PZMg5nKhBB1/kDo=; b=KApakorou64LXcBaSpVNHhzn8w
+	t11oWXfqDnjy0PuGNRzZ/3T+7VlIjmnaCRIHxaEnziFu+YRmjxturP8x83livpkfqfQE6CVImPg1q
+	pWA8bmcNR4R0BZicUXN7KgSL5ee3FJ25HsMw+4wE6Z8WiNXsITKAuWdN6OeXFzy/WyevshZV8j20l
+	ZA9NGb5/P5aIlGps1U1OQvHsncb89lrGXwwUEKzrz9hVJ61DTWQkWqzh3CPfGag2T4PPoZgXtRnsG
+	9hPuov2uE7c5WSdFxtSbgXF8P5AKngodIEnXHx5wtE/zMjvAn8dSp8m7EXADknKujbiN/IrPHvSso
+	jDv3NGQw==;
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pEreg-002jE1-2B
+	id 1pEreg-002jDs-1F
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Jan 2023 12:53:41 +0000
-Received: by mail-wm1-x333.google.com with SMTP id ay40so6190471wmb.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:41 -0800 (PST)
+	Mon, 09 Jan 2023 12:53:39 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id l26so6178926wme.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jan 2023 04:53:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eHeD4/5Q26ruqFmP/If/k2xNMCXAhjZeCMYfTgUbKRU=;
-        b=ST+d6exv+eSO89qaxYEHQlIUZjwGyGwBJ4xr+vru1zfL5TKvPyAhqO8Pkx0pwPrsz+
-         jgw4926gADuQo43X4dvIXEFVEX+2jkFCW71Ibl6xlz8rEKH4KDOuwPJavaTNh6Xc5P0A
-         AjwReWC2HFTNu9qYXgDmUygMPt7ZAvBkFipkWakWAcAxMsf5vwA9wpujm+DSd3CLhQ62
-         Fm9K10aodqGSrxbo5Zu0m7mpFDY6eTc0BH5igwv8WsKfuWKKBwQ+/tSlmb8JcRvYv2nf
-         gApIKGwFDwKoKVFmWMoGxExR8BxoEEnI+UkTInipxpBoGPl/IFugqltGY0B5Ddf6azXK
-         M/8A==
+        bh=GGsfIAFzoH7ggFb2voxRa7ZKIwz9PZMg5nKhBB1/kDo=;
+        b=z5gNcqLJBYobEGNLqbeCjCAoRvI6N0EkNGB7H6G1yD1PxLGCRCMLm4Gz4V/FT3amV1
+         q9EUbcnvEt9hP4RrjbiTOVAEnxtKfBOvaecmIDRaAIXlDFQRh19h/cHXbyZ2afMEScqP
+         oKknYvdvQVzjfVxOiHVO/YOGsDGKTMeE3NZ2X5W1QjixQWr8tB1hHsI9XN6CHZe7NLDA
+         t8KHchtoA4WwY3HJHXRLpCDhSTwu3DQQXqCDsgOASjyEz7KWxIyiU8NwLvL5oHBgRQT1
+         HwK+ONcxqvC7BNRHCTC5o+J55xpWYHpSMmmbMufee+LcKHs89mmysgfObw+DfeC1aBB3
+         oZ8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eHeD4/5Q26ruqFmP/If/k2xNMCXAhjZeCMYfTgUbKRU=;
-        b=MzV0/O7M9Ofhv1RePViEdgdSIQMtinjcj19EYuP3bxEHUsAJBf/j0vZuvH+JMQe4C+
-         k4eaeEdChAIiQ7GkGg9mE5CRokITNn2uw7mTR+EGKi4s2V3P4aK6Pwns3ZOzwWkQEXMR
-         hOaYPG0369UHRxBGyS7fNea3EcLGDnjsyMynyidIVwjD6OPdfok9onWm7b+9tyfyrkOt
-         9mEUCxFLmE75yCtsHsOWfsDWqZsfN6l3qDiH7unEXYekZlDh4dDbTiPEEmDFLZYZeH0u
-         myxsKLVXEdTEA81veE8uNXuDZT1QUFqRzOja/V4CvcksNSeemViSdFWPNSwkYK7SWsbL
-         sDiw==
-X-Gm-Message-State: AFqh2kqyuVKffwH451kU7OYGiFvQxmPs/oyrSXwsU5Q7WEecJWrnku2P
-	Fe339BXAASCaewdekfs1xwIHkA==
-X-Google-Smtp-Source: AMrXdXsaurQF4EtQDAHouXVvSJBqCu54hP/k4K5wC/jqtSrGfESg6vwwkM/iQm8oVMP1uuBrED7e8A==
-X-Received: by 2002:a05:600c:3d05:b0:3d3:5c21:dd94 with SMTP id bh5-20020a05600c3d0500b003d35c21dd94mr48020557wmb.9.1673268820053;
-        Mon, 09 Jan 2023 04:53:40 -0800 (PST)
+        bh=GGsfIAFzoH7ggFb2voxRa7ZKIwz9PZMg5nKhBB1/kDo=;
+        b=lt159kCwCFlxv3YygwTuph3E2zrRzp2mCeupXVJeR1PA1qi0qc9aJzXGmCXoFWptqT
+         MbN8MoFw6bjiss0vvHZFYhNEcNQmkmQqqqd90xqLBjZxRgvLcSqx9COBw9W6FT4XKFmd
+         jS0l+DnX+gNZ/9r/9MWPQuUuujcxUqvIXDHdkIo0dfs7EGO58jy8rAjjcK+lQd+uOoXv
+         4Q7gvrJY0+dIZBnUnLhS/upHC3YxnUxUKG17GD3tAUStUu9515R6h2p4/pqQMjvgHYcQ
+         F0DPQxTtdaGP7SUUemMF6e7YcxZT+niiSCrE5APneT/MbcVHgo1Q0H/dzHeCKbHTf2tE
+         ryzw==
+X-Gm-Message-State: AFqh2koYk8I8+uDbrmigVGFwrfOdeeVjeHdJpjv7HrlhO6GLL/w+z02n
+	z/BkErV4IPov+3lpCfM3JzKmag==
+X-Google-Smtp-Source: AMrXdXtdPYhHUaCl+iEvPcgDarKLArcUin1VypOwrhRsxqtGFwclSBHHlL5WVmJxrAa2H2QuyV3s6A==
+X-Received: by 2002:a05:600c:354b:b0:3d0:4993:d45b with SMTP id i11-20020a05600c354b00b003d04993d45bmr47720065wmq.4.1673268818448;
+        Mon, 09 Jan 2023 04:53:38 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.38
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 04:53:39 -0800 (PST)
+        Mon, 09 Jan 2023 04:53:38 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 09 Jan 2023 13:53:30 +0100
-Subject: [PATCH v2 06/11] dt-bindings: power: amlogic,meson-gx-pwrc: mark
- bindings as deprecated
+Date: Mon, 09 Jan 2023 13:53:29 +0100
+Subject:  [PATCH v2 05/11] dt-bindings: media: convert meson-ir.txt to dt-schema
 MIME-Version: 1.0
-Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-6-36ad050bb625@linaro.org>
+Message-Id:  <20221117-b4-amlogic-bindings-convert-v2-5-36ad050bb625@linaro.org>
 References:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 In-Reply-To:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -109,8 +108,8 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_125335_037675_3B27CBCC 
-X-CRM114-Status: GOOD (  12.32  )
+X-CRM114-CacheID: sfid-20230109_125334_515144_940DB978 
+X-CRM114-Status: GOOD (  15.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,30 +126,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The amlogic,meson-gx-pwrc-vpu compatible isn't used anymore since [1]
-was merged in v5.8-rc1 and amlogic,meson-g12a-pwrc-vpu either since [2]
-was merged in v5.3-rc1.
+Convert the Amlogic Meson IR remote control receiver bindings to
+dt-schema.
 
-[1] commit 5273d6cacc06 ("arm64: dts: meson-gx: Switch to the meson-ee-pwrc bindings")
-[2] commit f4f1c8d9ace7 ("arm64: dts: meson-g12: add Everything-Else power domain controller")
+Take in account the used variant with amlogic,meson-gx-ir.
 
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/media/amlogic,meson6-ir.yaml          | 47 ++++++++++++++++++++++
+ .../devicetree/bindings/media/meson-ir.txt         | 20 ---------
+ 2 files changed, 47 insertions(+), 20 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
-index 99b5b10cda31..ba5865ae6bfe 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
-@@ -1,5 +1,5 @@
--Amlogic Meson Power Controller
--==============================
-+Amlogic Meson Power Controller (deprecated)
-+===========================================
- 
- The Amlogic Meson SoCs embeds an internal Power domain controller.
- 
+diff --git a/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml b/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml
+new file mode 100644
+index 000000000000..3f9fa92703bb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/amlogic,meson6-ir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson IR remote control receiver
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: rc.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - amlogic,meson6-ir
++          - amlogic,meson8b-ir
++          - amlogic,meson-gxbb-ir
++      - items:
++          - const: amlogic,meson-gx-ir
++          - const: amlogic,meson-gxbb-ir
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    ir-receiver@c8100480 {
++        compatible = "amlogic,meson6-ir";
++        reg = <0xc8100480 0x20>;
++        interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
++    };
+diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+deleted file mode 100644
+index efd9d29a8f10..000000000000
+--- a/Documentation/devicetree/bindings/media/meson-ir.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Amlogic Meson IR remote control receiver
+-
+-Required properties:
+- - compatible	: depending on the platform this should be one of:
+-		  - "amlogic,meson6-ir"
+-		  - "amlogic,meson8b-ir"
+-		  - "amlogic,meson-gxbb-ir"
+- - reg		: physical base address and length of the device registers
+- - interrupts	: a single specifier for the interrupt from the device
+-
+-Optional properties:
+- - linux,rc-map-name:	see rc.txt file in the same directory.
+-
+-Example:
+-
+-	ir-receiver@c8100480 {
+-		compatible= "amlogic,meson6-ir";
+-		reg = <0xc8100480 0x20>;
+-		interrupts = <0 15 1>;
+-	};
 
 -- 
 2.34.1
