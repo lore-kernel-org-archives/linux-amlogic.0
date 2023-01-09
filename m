@@ -4,77 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F5FC54EBD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 18:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8B93C54EBD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jan 2023 22:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2mGhgygDP/rugsMGapQ/aqftJPFAujMHz9j72S/qB48=; b=PI9Q3Mv/asbWrc
-	700FfBkOK4M/q9U0BGMk7akFKUODSCDtEXX5i6gSk1Rwp6FU/faCnTLcGfHS1xUWtyqiwKL/o2WJH
-	StNIsBpJwOgX+842KIZyj3Vgd7SIAleDS1A4f8aM2uFJohjUxp0dNJ3bcqDX5slMADhg7hunxHfnD
-	f4NXRnEJF1jQCsTHI7NUzYj1Ktcq3SEVPgMBHXwBi5MELM1IhETGyWtjMGZPgC/9AToLHAZ8emQ8x
-	/gqTj997L0ZQlWgXgouDcQV9MnesKhBxZ6Y+cSfXGb0M/HhwZhebqVy6OCnUmItJBMNvbRMpUmzdh
-	Ea3A+3dtWXfTYWJyIouQ==;
+	List-Archive:List-Unsubscribe:List-Id:References:MIME-Version:Message-Id:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	List-Owner; bh=J7sco4pfTUgrhUyHcZ9dIFaK7nFh/u8NnKCjq++uirM=; b=WMGA3BYWAk1xEk
+	Bdm9Mg/9Pahbrliv7GAiuwHjZgv6WxkzyG96Mme1P7fFhWAtZdt8NjseovUDmelZ3R6SCPrzrXVT2
+	VF/GXeBXxlU4u9WH/TV29v+UnarnOixId/2wsmS8yMBf6L68kbdS2tBzyy7xqGezvgfNrJuo56GQW
+	dcfaXXZrT4SpaSq2LvrzcBIJPrstOCv+u3DjSkHWJdScq6bTf/JsLeXjiWMEWBZqFDfUQY8uxLq12
+	yccBN6GDQUIKg73UwKfsQqUQw7mKqgk12h12bT4KDJ74K4TqcoNxLAGzXXvx14T/vy47zdt0BKlUh
+	+BqHP28rBHfqNgoHyXMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEx5l-003NeV-Kl; Mon, 09 Jan 2023 18:41:53 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1pF0Dd-004Pki-KW; Mon, 09 Jan 2023 22:02:13 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEwvM-003JC0-FE; Mon, 09 Jan 2023 18:31:10 +0000
-Received: by mail-wr1-x429.google.com with SMTP id bn26so9164745wrb.0;
-        Mon, 09 Jan 2023 10:31:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SXXAJ3DUbtkoovXuYo+KyTb41EHZPfFvK143Ru7TRh0=;
-        b=Y3YgV25OfF4n3rHemKxGZcfAeio40Dp6qtvOjQWf913+9nWH4KqVyHdHIkMkUsAwXG
-         93CXGcSSc6sfg5XBZJ59/TRBU/9vyU3+m6ECVJFZliFy4OOw37gA/swtHHzS46FmyYtO
-         2kaPopgHHI8DZIFkD2sqHY1FZhHGfgeF5u92IDOtcoCrKiefVUZAgBDI7o2pQOXPJ+Xb
-         cqUX0qfSTCRgoGVFyPlYlbRY7FDuwtfqCKa4UCJgkJurzhyAOsCefsf/nt8FXdd5/qqS
-         r4jRzTw9IGfuVnNp06Bqd6jb//rWFYDqTkSPfYnfcZDZh8Hbtc1hN3JevPbwvxiTs25I
-         2c4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SXXAJ3DUbtkoovXuYo+KyTb41EHZPfFvK143Ru7TRh0=;
-        b=lP0HHlrqeCdtC4Ji568wh3qi0I22zdEVNCUJxOwu0CaSDaQTofyl2Ss1jMwvJlbAck
-         Z3WHqUxuvBbyoF38QD+zytSrZMc2S5eo9B2dhNuEvC5XrAbySzTsU+dL/e3cS+0CgXAS
-         YZRrStR8IPGx3UsE6f/nvlT/SKkHeiFgdciH4Zq8yMzp9IHKEzD7zuxLeu5dYCKHSZmN
-         GKMS5VO85qsS71wZB4yA0H8Kacsz2k/UD6YWxEAO+zZ1eZhJUMa++g1+mRDJGK1Ffuqz
-         fQFift+/YcpM5mPU20STE4yFOeeEt004YLLmJ5Y9Lte/L5sSvCCzqo5v9J/eCiZG6p+d
-         VSUg==
-X-Gm-Message-State: AFqh2kpdpjNzMI5qOFIg687eh07joztGTu9OVCFzUlNeCu03SM8uBjgZ
-	2tIzCszRpyOVLP9sFvOTy8g2TIF3TH7BBqBYlzQ=
-X-Google-Smtp-Source: AMrXdXscfKc2XlHhJGkSUt354hzYjXoSXX7udzIPMG3m4dLRRzySFvVOTt7lnZdOtk3U1hQBc413+xKD/FpirX0yc24=
-X-Received: by 2002:a5d:6451:0:b0:28b:905d:a0b5 with SMTP id
- d17-20020a5d6451000000b0028b905da0b5mr1043980wrw.451.1673289065282; Mon, 09
- Jan 2023 10:31:05 -0800 (PST)
+	id 1pF0CX-004PJa-Ci
+	for linux-amlogic@lists.infradead.org; Mon, 09 Jan 2023 22:01:14 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20230109220058euoutp027b48f7a3d18d1be9019b1bb0d71f183c~4wv4lioAl0528905289euoutp02G
+	for <linux-amlogic@lists.infradead.org>; Mon,  9 Jan 2023 22:00:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20230109220058euoutp027b48f7a3d18d1be9019b1bb0d71f183c~4wv4lioAl0528905289euoutp02G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1673301658;
+	bh=oNj316/wrNXkPWQOOqvZpTUN5bmBqJu7fq2iwsgnbTg=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=dHk3FqVcHjrbPUwPI2I480gxsqwA4b7jYk/Qsn/Sxc4+RPwcSVVTJRfhlo1mBGhHb
+	 8fa/L+cCVPq6i50rK1klJ1w9+tJkQo1WgAOanTbTM2rxfpy0IrS9hUHicsNIujyvp4
+	 YTrSOGuZrIOXIrT8ubMb6YzafE/tiVMG1eWrVNGw=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20230109220057eucas1p2eb238fa66cb3680d4e7d521e74686cfc~4wv3cfFBN1519015190eucas1p2b;
+	Mon,  9 Jan 2023 22:00:57 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id D4.9B.56180.99E8CB36; Mon,  9
+	Jan 2023 22:00:57 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20230109220056eucas1p26418012878272961a3a21a365192ef60~4wv3IR-ox1575115751eucas1p2Y;
+	Mon,  9 Jan 2023 22:00:56 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20230109220056eusmtrp2954b769b5f4561fa8c26d06a2e61f62f~4wv3Hrl2E3272032720eusmtrp2L;
+	Mon,  9 Jan 2023 22:00:56 +0000 (GMT)
+X-AuditID: cbfec7f2-acbff7000000db74-fd-63bc8e998d31
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 0C.AA.52424.89E8CB36; Mon,  9
+	Jan 2023 22:00:56 +0000 (GMT)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20230109220056eusmtip1f48eb352646e98805ed365f88d9d33e0~4wv2iZxCr1488214882eusmtip1U;
+	Mon,  9 Jan 2023 22:00:56 +0000 (GMT)
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+To: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Matti Vaittinen
+	<mazziesaccount@gmail.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+	<jbrunet@baylibre.com>
+Subject: [PATCH] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*()
+ conversion
+Date: Mon,  9 Jan 2023 23:00:33 +0100
+Message-Id: <20230109220033.31202-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <df0096b5aea2a18d1540cde379c5abf589ccd7c4.1669799805.git.mazziesaccount@gmail.com>
- <CGME20230109134646eucas1p17c7fbd379b0301b8429278ff289f2e83@eucas1p1.samsung.com>
- <6c865dd8-b6c3-4491-48ca-df3e3fa45a2d@samsung.com> <0ef85cba-fa9b-6d72-ca44-48c4d6cf2752@linaro.org>
-In-Reply-To: <0ef85cba-fa9b-6d72-ca44-48c4d6cf2752@linaro.org>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Date: Mon, 9 Jan 2023 20:30:54 +0200
-Message-ID: <CANhJrGPbFo=v=G-HbbpHgCkT2fSmFTE43o4OzoVSOK66e5ZLrg@mail.gmail.com>
-Subject: Re: [RESEND2,v4,2/2] drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()
-To: neil.armstrong@linaro.org
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Jerome Brunet <jbrunet@baylibre.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLKsWRmVeSWpSXmKPExsWy7djPc7oz+/YkG/xdxGZx4voiJov/2yYy
+	W1z5+p7N4s2jI8wWP9u3MFksmM1tsfbIXXaLY4tOsljMWXqCxeL9zluMDlwe72+0snvs/baA
+	xWPnrLvsHk8nTGb3uHNtD5vH/e7jTB6bl9R79G1ZxRjAEcVlk5Kak1mWWqRvl8CVseLqBOaC
+	PewV/057NTBuZ+ti5OSQEDCRuLL8I0sXIxeHkMAKRolPXddYQRJCAl8YJbq/B0AkPjNKzFjU
+	xgjTMan9NlTHckaJPQfPsUI4QB1PVx5jBqliEzCU6HrbBbZDRMBN4seByYwgRcwCN5kkjnx/
+	xgSSEBYIlng+fy5QgoODRUBVYuNjbpAwr4CtxIOjD1kgtslLtD7fygoRF5Q4OfMJWJwZKN68
+	dTYzyEwJgTMcEp/+3mSCaHCR2PP/DtRzwhKvjm9hh7BlJP7vnM8E0dDOKLHg930oZwKjRMPz
+	W1DPWUvcOfeLDeQiZgFNifW79EFMCQFHiQkzCiFMPokbbwUhbuCTmLRtOjNEmFeio00IYoaa
+	xKzj6+C2HrxwiRnC9pA4Mn8tCyR0YyXOrOlknMCoMAvJZ7OQfDYL4YQFjMyrGMVTS4tz01OL
+	DfNSy/WKE3OLS/PS9ZLzczcxAlPU6X/HP+1gnPvqo94hRiYOxkOMEhzMSiK8Kzn3JAvxpiRW
+	VqUW5ccXleakFh9ilOZgURLnnbF1frKQQHpiSWp2ampBahFMlomDU6qByUrUaf/vJJOKr75O
+	vprnO3jtrYWfK9T4uS3/Vpygb5hY5n1218+dpm0u32pU7vktX1oj/uodQ9ma+lt1zzzN7NS9
+	g0vV/NQfHUhLCrqSd3fpU/nV9j90i/gnvtpw3e6live0aqfcJI53l7M3CUnf+rL02Y4ehTSj
+	K1K9Mx9ukNm18IWlhqf3856HQSuPx37sVhR951tu7GWyKzc/93bjysJ3ocW7i93mvroTdGap
+	9dS4F0vuMn3seFO8zqVonrrdqSTu6JBEJ2ObHofTxlllaWr/39dMLtevSxcufDPjV+rXjmuG
+	XGcKOee8YXkqfiDy7Dcru58WvO3GXiEpVbL/GN13sD2c6agafNggdqUSS3FGoqEWc1FxIgBo
+	MqbVwAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphkeLIzCtJLcpLzFFi42I5/e/4Xd0ZfXuSDaZv0rY4cX0Rk8X/bROZ
+	La58fc9m8ebREWaLn+1bmCwWzOa2WHvkLrvFsUUnWSzmLD3BYvF+5y1GBy6P9zda2T32flvA
+	4rFz1l12j6cTJrN73Lm2h83jfvdxJo/NS+o9+rasYgzgiNKzKcovLUlVyMgvLrFVija0MNIz
+	tLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DLWHF1AnPBHvaKf6e9Ghi3s3UxcnJICJhI
+	TGq/zdLFyMUhJLCUUWL6ts+MEAkZiZPTGlghbGGJP9e62CCKPjFKLG1fxgKSYBMwlOh62wU2
+	SUTAQ+Li6wawImaBu0wSR+7+YAZJCAsESizdvYy9i5GDg0VAVWLjY26QMK+ArcSDow9ZIBbI
+	S7Q+38oKEReUODnzCVicGSjevHU28wRGvllIUrOQpBYwMq1iFEktLc5Nzy020itOzC0uzUvX
+	S87P3cQIjI5tx35u2cG48tVHvUOMTByMhxglOJiVRHhXcu5JFuJNSaysSi3Kjy8qzUktPsRo
+	CnTeRGYp0eR8YHzmlcQbmhmYGpqYWRqYWpoZK4nzehZ0JAoJpCeWpGanphakFsH0MXFwSjUw
+	zTz0a1mYQ/LMtQwsBy7PV4vrnb1K7ZzIL7ZL3+LCG3aeuKV9+1KlXp/PfHlHh89vV+26mecw
+	i+9TZJRAAxfn1hWT+ivmmz9T3Biqe0O/X0VJ9GCU2NYZuw17FKptd7Grt0udLe0ovDhdXFQx
+	X6D0HKPxqR9Wn3n8Z1nVCdcLC259E/bt4ck+UWFfudu3nJ6KmVZYMdguEI3WUKk6cP7TZfs3
+	91pf82g5z+d0bC157jMh+U2DrFW9xbcetxnvP6llPOlaeHttbbWE7SI++/m7fpx9IXH41Nw7
+	obYBTZe86m5ZV4b/+S2r19cfxv1D91W+0TbFoiX7XBRXsTfmtlyyrvl1fWOqWNB5aa5Fy28o
+	sRRnJBpqMRcVJwIAsoAqARcDAAA=
+X-CMS-MailID: 20230109220056eucas1p26418012878272961a3a21a365192ef60
+X-Msg-Generator: CA
+X-RootMTR: 20230109220056eucas1p26418012878272961a3a21a365192ef60
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230109220056eucas1p26418012878272961a3a21a365192ef60
+References: <CGME20230109220056eucas1p26418012878272961a3a21a365192ef60@eucas1p2.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_103108_641387_9E93EA33 
-X-CRM114-Status: GOOD (  26.26  )
+X-CRM114-CacheID: sfid-20230109_140109_728789_C5169DC6 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,109 +131,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Marek & All,
+devm_regulator_get_enable_optional() function returns 0 on success, so
+use it for the check if function succeded instead of the -ENODEV value.
 
-ma 9. tammik. 2023 klo 17.23 Neil Armstrong
-(neil.armstrong@linaro.org) kirjoitti:
->
-> On 09/01/2023 14:46, Marek Szyprowski wrote:
-> > Hi Matti,
-> >
-> > On 30.11.2022 10:23, Matti Vaittinen wrote:
-> >> Simplify using the devm_regulator_get_enable_optional(). Also drop the
-> >> now unused struct member 'hdmi_supply'.
-> >>
-> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >> Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> ---
-> >> v4 resend 2:
-> >> Respinning unchanged code with the commit title changed as wa suggested
-> >> by Robert Foss and commit message changed as was suggested by Martin.
-> >>
-> >> I am doing a clean-up for my local git and encountered this one.
-> >> Respinning as it seems this one fell through the cracks.
-> >> ---
-> >>    drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++--------------------
-> >>    1 file changed, 3 insertions(+), 20 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> >> index 5cd2b2ebbbd3..7642f740272b 100644
-> >> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> >> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> >> @@ -140,7 +140,6 @@ struct meson_dw_hdmi {
-> >>      struct reset_control *hdmitx_apb;
-> >>      struct reset_control *hdmitx_ctrl;
-> >>      struct reset_control *hdmitx_phy;
-> >> -    struct regulator *hdmi_supply;
-> >>      u32 irq_stat;
-> >>      struct dw_hdmi *hdmi;
-> >>      struct drm_bridge *bridge;
-> >> @@ -665,11 +664,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
-> >>
-> >>    }
-> >>
-> >> -static void meson_disable_regulator(void *data)
-> >> -{
-> >> -    regulator_disable(data);
-> >> -}
-> >> -
-> >>    static void meson_disable_clk(void *data)
-> >>    {
-> >>      clk_disable_unprepare(data);
-> >> @@ -723,20 +717,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
-> >>      meson_dw_hdmi->data = match;
-> >>      dw_plat_data = &meson_dw_hdmi->dw_plat_data;
-> >>
-> >> -    meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
-> >> -    if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
-> >> -            if (PTR_ERR(meson_dw_hdmi->hdmi_supply) == -EPROBE_DEFER)
-> >> -                    return -EPROBE_DEFER;
-> >> -            meson_dw_hdmi->hdmi_supply = NULL;
-> >> -    } else {
-> >> -            ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
-> >> -            if (ret)
-> >> -                    return ret;
-> >> -            ret = devm_add_action_or_reset(dev, meson_disable_regulator,
-> >> -                                           meson_dw_hdmi->hdmi_supply);
-> >> -            if (ret)
-> >> -                    return ret;
-> >> -    }
-> >> +    ret = devm_regulator_get_enable_optional(dev, "hdmi");
-> >> +    if (ret != -ENODEV)
-> >
-> > The above line should be "if (ret < 0)", otherwise it breaks hdmi support.
-> >
+Fixes: 429e87063661 ("drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()")
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sorry for the trouble and thanks for pointing this out! I believe the
-condition I was looking for was
-if (ret && ret != -ENODEV).
-
-At least in my eyes the use of regulator_get_optional() sounds like
-the -ENODEV should not be treated as an error. The obvious mistake is
-regarding return value 0 as such. Thanks for spotting this!
-
-> > I've noticed this once this change has been merged to linux-next and all
-> > my Amlogic Meson based boards failed to initialize HDMI. Is it possible
-> > to fix this in drm tree or do I need to send the incremental fixup?
->
-> Nop, please send an incremental fix and I'll apply it asap.
-
-Thanks for cleaning-up the mess I caused Marek! Please, let me know if
-you want me to cook the fix.
-
-Yours,
-- -Matti
-
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 7642f740272b..534621a13a34 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -718,7 +718,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
+ 
+ 	ret = devm_regulator_get_enable_optional(dev, "hdmi");
+-	if (ret != -ENODEV)
++	if (ret < 0)
+ 		return ret;
+ 
+ 	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
 -- 
+2.39.0
 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
-Discuss - Estimate - Plan - Report and finally accomplish this:
-void do_work(int time) __attribute__ ((const));
 
 _______________________________________________
 linux-amlogic mailing list
