@@ -4,98 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D58C54EBC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 14:21:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E73DDC46467
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 14:21:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZPC1Eqb0L/UiCkyzrTp6ffJsZ8nzRQc7lxPxZKXgmb0=; b=wh7QZCksvEXwXv
-	sNt0358w2oMZtsXK0IxEBYAMOyk8BNJ57YrOmBgXYOUpQV1e36HTX6spbN2Z2UJ0LIfD56N5CZmbD
-	oxYqBqylGPg4YOXivAkVmbqCJn4PGaibjA73m+U2UVemuFnPqZeu1x0xIs5fW6GUbVsugIbkV665h
-	PMvMv7KKtsvHT7KowUdLlTDgENnpy3tsi2koCLisZBSsBUxXTDNniKGovj6/ktWlimo+DiHI2r7h7
-	cI++9dUWMWwJdgGSxxhI5I41eiUrb78pSG/hFulVXcRWWspEIhzUNlD2L8FmbLH+P2184Zh6Znze/
-	YAN6Dm06ZULXL/rLmRUg==;
+	List-Owner; bh=XRbfDNUEcYnQkh3fAeobOW3ed4oBuHam4NhdbK579NU=; b=d1c53qE3dNMopa
+	iWmxLIdlDw9f62jAKpzSto5QsnfhM3vO3HRUSmSPAwvvhZjoopPzJLTlZxRaaxPvTXMoRsykuup3E
+	LMN/fbgmLj+jEFr+Nj8mbzyYvY9qzxdEZy7HIOvlEMqLX1JOn/65k1ieClzHemNocRWpMiTDhDUnH
+	X5B2d2r0YxRYU5Ngro71v1W28TvK8F7cPHB/QP0Wd8tvQ53IS4QPoSmtXCy0q0yBCUKmeYUI/zfXN
+	Np+/Z1Dn+kKEoIivjEz334SrvNXjIQ4ho6d2i1sclN1MsNoqMKAlndzylzwFpmkklPM1bBC4VuWKW
+	RnOvJX4dRr8h39xDMGCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFFV1-007HDC-Lw; Tue, 10 Jan 2023 14:21:11 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1pFFVB-007HGK-BP; Tue, 10 Jan 2023 14:21:21 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFFUq-007H9B-78
-	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 14:21:03 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id z5so10857734wrt.6
-        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 06:20:59 -0800 (PST)
+	id 1pFFV8-007HEr-LJ
+	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 14:21:20 +0000
+Received: by mail-wm1-x335.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso5714751wms.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 06:21:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8wOlYhsSTVgaYdm2eFZoziUvSeaqxeeC4ypm2ZU+u8E=;
-        b=kszY69SppzG5Jtt72RWEpPxfZlA++8X+pe4zSpoGzWxZpDO7QjiSUYnre1WyViXAY7
-         1iiWRER6HTf6S2w06VNjW9Ek+hfRQxFAU+/IYMI4W4YWwDhrsDtawi7DyBoI6gmGKm1Q
-         0+M2MSORAbu8Ba6hwMxISTSe0WTxhTarMF2tgaST8lj4/7xgaDp2/UaXzPEnYNOvOUij
-         EPtqNQR2mhoWaHmxONo3dIvRyX7TdO2y6b3ggnCU0qrh6EVfI1aR/JngbZyGd/hTd9+p
-         fp43ISUfXPVH4FIk9xYvMeXzZgYFgvbb1N8ezsuiPAXvtlpEWMj2ixCYsKm1FqG4HLpU
-         Mvug==
+        bh=liyTD8kZN+VJiroRLr8l9K3r5/CB+eOjRyoY0GEnNto=;
+        b=Es3Z1g+oh8f+c06foHQ1GV+ZKr97m8fGyY0/oPZpjfwDZQrLcUp0vyNSMLxjekUuej
+         T3bgHP+pM/83eBnqgMUR/PtbGhXWm7rHW/KJ0vEtEOtnG7C/cglsv3d/QNIuYkgEjm7i
+         evHiyk0pYU/RSuLDP2DZ29SM2JwWGTKzgN6fGyuIgViqeJB0dGwoX+KWu7sDFnVvEmtb
+         jcpTOXerKhAZBWG92EccZBbshvXP1Ch7fGPcRb1WksetqOLl0aIa6wBbceaqiFZSG4GD
+         jrygSV+g5ggEEot9jbCbgcJxyfTyJUhzSMfo+h44AN/y3+R0cxa6pdUGVgozEuxqY4Q4
+         BtOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8wOlYhsSTVgaYdm2eFZoziUvSeaqxeeC4ypm2ZU+u8E=;
-        b=Or+KfDdF5k1FqrFm3kDMTgkVv4ue0bqDdB7kdrZhtPV39g4mZIWiQ6qoVsU+U5Ucc1
-         4OskDbLgdLXhyvl6ppKNjDixz2WCCOSy6RMARpv4LIrEGDQkkpd1CjwOxZdZWAPNTt4W
-         i+OtJg6Kw0P56Qm1nRkdODDvt1aIEDbe0lI7pyxFNUHFLyiDydJZEit7fj7t+tZDBEJn
-         XchwuvlXc5UAchdswV+WQ7g9p6YMhJnb/1Kn+FD2/4wBfjNY9538Ph/sJmmQ420mivHd
-         ggEaoSZylBHliODHOj9pkhsNV79y71fXXNkBwNZTOKIC0t0pei+ZIMAz12TwVJRC71j7
-         5KeQ==
-X-Gm-Message-State: AFqh2krASHmh0wbuRD69yVxYJJjs+4Mh9I1i2KpTOrKm20HNlnimZEjX
-	jSSUd1nBXcYmy1MKosHw+L5O9g==
-X-Google-Smtp-Source: AMrXdXsGPm+Lqm6jdep1fxgzxJDhDVBWyqAyOyD8u4pWy8z+Ow8K31O4z7YtMI4EBCBZ0cS02zAcVQ==
-X-Received: by 2002:a5d:4bc9:0:b0:2bb:ebaa:7ae1 with SMTP id l9-20020a5d4bc9000000b002bbebaa7ae1mr6343276wrt.50.1673360457917;
-        Tue, 10 Jan 2023 06:20:57 -0800 (PST)
+        bh=liyTD8kZN+VJiroRLr8l9K3r5/CB+eOjRyoY0GEnNto=;
+        b=vylpwEyo/3HOySkmP91BnIApwZWVXKhLBeTomMs90xoHGqzF4GPwKe8dhEzmRYjo26
+         dOaBDeuVmTbrr/UpbyscrCHNeUd+pZ2i3ErSOhsTL8SnuZBtbtJx4lQqotH4Q7SVQYyx
+         XDTL+Q4wrh5GpiWt5RyLi08ac+17OLRuJdxY4hpFXJMGaOv8jwy9p9W0ZcN/TjfH1EF8
+         3rNF7raE78wyhtzysd0+Oun1T+t/di9ZgPoI3QU6cIdYLPfRixmqnxpp0A2hKqkkre5H
+         w5a6IiRXPoWgq6uhWt+3mQvGsH9q2mohh0WGMsJqZu78aDz8DUZstFrMqzyJxQlnFNjR
+         u07g==
+X-Gm-Message-State: AFqh2kqYcMuIJ0NmJg8zj6vGBjpEU/uCGdrXB1cX9eYp3pi90HzqoM4U
+	2DeUu5a7ZgqE4DZiYRwBc41Y6uyuljPlAbnZ
+X-Google-Smtp-Source: AMrXdXuNjH+i9dFOXqBb7TEvhlDjx16HuNabSp7vHXWViPs7mGvrXmbrr8HmiRDwYR0s3uQkiCY93Q==
+X-Received: by 2002:a05:600c:2844:b0:3da:4e:8dfe with SMTP id r4-20020a05600c284400b003da004e8dfemr183826wmb.38.1673360477384;
+        Tue, 10 Jan 2023 06:21:17 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d6402000000b00297dcfdc90fsm11284992wru.24.2023.01.10.06.20.56
+        by smtp.gmail.com with ESMTPSA id f15-20020a7bcd0f000000b003d9a71ee54dsm14640561wmj.36.2023.01.10.06.21.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 06:20:57 -0800 (PST)
+        Tue, 10 Jan 2023 06:21:16 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
-References:  <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
-Subject: Re: (subset) [PATCH v2 00/11] dt-bindings: first batch of dt-schema
- conversions for Amlogic Meson bindings
-Message-Id: <167336045651.1961204.1502592666018702430.b4-ty@linaro.org>
-Date: Tue, 10 Jan 2023 15:20:56 +0100
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Miles Chen <miles.chen@mediatek.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20230110031242.4917-1-miles.chen@mediatek.com>
+References: <20230110031242.4917-1-miles.chen@mediatek.com>
+Subject: Re: [PATCH] firmware: meson_sm: stop using 0 as NULL pointer
+Message-Id: <167336047652.1961574.14299477052580291272.b4-ty@linaro.org>
+Date: Tue, 10 Jan 2023 15:21:16 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230110_062100_267639_4D4FF29B 
-X-CRM114-Status: GOOD (  13.12  )
+X-CRM114-CacheID: sfid-20230110_062118_729911_86D0CBB0 
+X-CRM114-Status: GOOD (  10.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,28 +95,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 09 Jan 2023 13:53:25 +0100, Neil Armstrong wrote:
-> Batch conversion of the following bindings:
-> - meson_sm.txt
-> - amlogic-efuse.txt
-> - amlogic-meson-mx-efuse.txt
-> - meson-wdt.txt
-> - meson-ir.txt
-> - rtc-meson.txt
-> - amlogic,meson6-timer.txt
-> - meson-gxl-usb2-phy.txt
-> - amlogic,meson-gx.txt
-> - amlogic,meson-pcie.txt
-> - mdio-mux-meson-g12a.txt
+On Tue, 10 Jan 2023 11:12:42 +0800, Miles Chen wrote:
+> Use NULL for NULL pointer to fix the following sparse warning:
+> drivers/firmware/meson/meson_sm.c:85:24: sparse: warning: Using plain integer as NULL pointer
 > 
-> [...]
+> 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/drivers)
 
-[01/11] dt-bindings: firmware: convert meson_sm.txt to dt-schema
-        https://git.kernel.org/amlogic/c/658a8ef679435959f550a45f7312afaebb9e20a8
-[06/11] dt-bindings: power: amlogic,meson-gx-pwrc: mark bindings as deprecated
-        https://git.kernel.org/amlogic/c/bc5998b92b9ee8818cc0f7fe02604751389a154e
+[1/1] firmware: meson_sm: stop using 0 as NULL pointer
+      https://git.kernel.org/amlogic/c/fcdc53aceed413dce3ef1d0166a8e9348d5a9c94
 
 These changes has been applied on the intermediate git tree [1].
 
