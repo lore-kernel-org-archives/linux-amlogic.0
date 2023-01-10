@@ -4,81 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54B7CC46467
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 08:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1F74C54EBC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 10:14:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ql/bWOQfORkmCJ5UPtHSdDx1G56FIzmIPxMhwsNNEAQ=; b=27NFd99QgiwwwM
-	dsEMCS0WdpLhF02ke3stQBsDMu/xSuUB0CKTJdRvpb6JS0GMoqKkc7tHege68zyshrgz+9FVD59Zg
-	6hEcrhlHV9YyCc+vxMLsUsFKXSo+2JAQGyhF3ii7YgljzT6Pn/VzKZDq0MuTNKp2T8MITQH7tEA3f
-	vALBqpZtl9sEh7sbz4Iox5PIC4PkDXixCk+binD2LQlfMy2LblyFGI4dKvTxoQX3BE9OseXDqMoNT
-	/lyGr+q9/tvMvbcufIY4mkLdUbYeF+jLZy+gqSZuSp4KnPM2fFKtMMfzqv0pM1e42GxJ/psDoadyP
-	BpnRQ/6e9hPdJGTZz9+g==;
+	List-Owner; bh=YTHn3GkfybmOX8CmikPKkmFR+OjWFxT+Bj6Bi3IRUlI=; b=GrU2dLaaq7HXhU
+	F0VrGxaxAmpGHkRvc0wNQ/uL8JlRh1bk5sKlDgubVZMz5EDlTCzE0D7wQQCnlwcNSDvfda2Cr8B6W
+	1Pvk1aoyQdS3TsKPoy/wIWxJ3ZAey/1XF+GJ4U8RojjTmzxEk0EMEn+3XJM5wq/c5EBmZB6J3r70V
+	WJy7HWALADUsx2WLpFl4ArM55MuhTp4KDqdwU6Q3I3iVtYU2fV06nrF3tzxX7soBooGUdNm0dAcwf
+	4qW/AbZA9l+EmNbkgTV2HHpdUrDzZAhe380rPFSKo46LZGVLmRPtEdLLRZS7JD5/qJKEq0SsfQLmW
+	+J4NpJgGR1JCaXLNWszg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFA3u-005p4y-KX; Tue, 10 Jan 2023 08:32:50 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1pFBdx-006I9t-Li; Tue, 10 Jan 2023 10:14:09 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFA3s-005p44-Ey
-	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 08:32:49 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id p3-20020a05600c1d8300b003d9ee5f125bso4689995wms.4
-        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 00:32:48 -0800 (PST)
+	id 1pFBdv-006I8D-4U
+	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 10:14:08 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id v2so169923wrw.10
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 02:14:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g1TFzsY4F93uzkv4BoveW/h5a+CswnlNdRYqVKav/z4=;
-        b=wF14M3NRFIJcAUCJ9WSchD86R1xCWLy5PM/NQha35AibDoCaZaKSzgUyYIFC+iV3IJ
-         pWYadodEjs69CjVtSmVWZpFvyvqw3REG1PjtyVYSr2eLyClgwVYTfQhwYhZ8MEgBQJhV
-         u07wZgKALblLiykMpV6PxcrIuY1nOSqK4ryjno01xPrx+qV83zh4L6keZJLNlWmCRiJo
-         rSsU4G5dLk0+TejjxxrzaMv4QWxzDlnckGFyyl49YsdFnLNlyucKqVulDwA9nmePWRhq
-         IWGdEYG4TPH66eIs9/o6p+Y5tq4VvErlL4VQJ6FfKqRCIy87amszNdvVpE3DOKTWr3Hk
-         tNJg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
+        b=bbhb/M2Tbo7P6JQFLKz1c0s92pip1LUY/qoQtVnezlvmXlve3kgyeNba8+WtmX4t2D
+         Dqs5HvWz9j8ad8G7zjQAKt2OUhJ5oPpmAugq792ubXvNuvlNgx12r2eNxoiWtfJtAgkc
+         ln8dRvw1xf/0keWdYbSaNriNWp27rABFZucUCHjhkgOSv2oYBu+gDWHpRQmu7nuZYux/
+         Ch1A4NbCcbmL1JAXJRKL58l8adrR3ecbI+lYW+4ObQNnSVJc2XVqhStvYLd1MguXeStw
+         ks3SHXuek07nXLDarhxwAioHsl5xyI708nCoT8Z6Vdq/Uf2JhdoccDoTWgGesRpg8BQ0
+         zb0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g1TFzsY4F93uzkv4BoveW/h5a+CswnlNdRYqVKav/z4=;
-        b=FG3cGSagZNxoyjYfEvqRN9cUIRlfrhkwlmAhWO0AbfTMvQ5OgNCJx4IpfWwTQt4Mn5
-         HuWHK7nDrKIPY0uSgC4leSwZOFqNtCfr+lRz8MwfVrz3wUfpLvDU4HOoJE5lAcS2547c
-         cR6gmoA2MESpxTVKXFyOS2XbLtECDkYsLxddAoPFBVmaLndOvVaTI1fDD30nFbKtJJjl
-         AV9Kw/sC6f2EN32UvjSHSYfIOQtIXdLRJHpSJ93zwvaIMA3GE9iuhGBcuxCL34LR7uXl
-         CF3GMT/X6Xo5nizRgPSi0gCDdpI6CUvQmfz+XBJNQpwxqo/U22axVS/b8QVISQ9PBhWr
-         d83g==
-X-Gm-Message-State: AFqh2kratqXQK9sII+91mJpNpcALI4JEwuz/eoHeOBotAVP4xvpb0NDT
-	MMQsS3Hny18qTonLRMadTOQPqA==
-X-Google-Smtp-Source: AMrXdXtjr5ownIMXxWxHFKAnFJWMeJytFZmJg9YqzEHYXQ8XXn2K+W/Xt8g5sNChDMdyDG1/pl+XPA==
-X-Received: by 2002:a7b:ca4f:0:b0:3c6:edc0:5170 with SMTP id m15-20020a7bca4f000000b003c6edc05170mr47689049wml.25.1673339566974;
-        Tue, 10 Jan 2023 00:32:46 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b003cf894dbc4fsm15032112wmq.25.2023.01.10.00.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 00:32:46 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20230109220033.31202-1-m.szyprowski@samsung.com>
-References: =?utf-8?q?=3CCGME20230109220056eucas1p26418012878272961a3a21a365?=
- =?utf-8?q?192ef60=40eucas1p2=2Esamsung=2Ecom=3E?=
- <20230109220033.31202-1-m.szyprowski@samsung.com>
-Subject:  Re: [PATCH] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-Message-Id: <167333956612.1584080.3967652630228708272.b4-ty@linaro.org>
-Date: Tue, 10 Jan 2023 09:32:46 +0100
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
+        b=5WAV71zeu9QB2XKJfGQYYoY60ayNbffdKILqwh0ybmVqqBDLbNzvFDC8+ekbEEgZ98
+         7CIhWt8G18jgBKhIqaPOx2FikeG5Sq146cnPxhpqaStyDxCcpepN1AuQN4qkHqCI+awr
+         CYgcHSykldTqK0IEpuynDcQDOaCFSti40ZKJiTIWU/gJy2h9JL2V9OTIauEiSn76UCst
+         jX3LMMf/ArBnuFQJw3UVJ/8YNJ2iGvKVeFmHyG3Z55YzHmmFdyV1i7TYjW2vf0o3VdAz
+         Cuj3rp/+n8ZQelG61kn0/fFjqDsBQn+Nw5e2nWjkJ21Yvytq1HQH1q2QTJgCuaav9QYf
+         9J8Q==
+X-Gm-Message-State: AFqh2kqN17iJX1kQz99N/0rwxtXSaEvUUCdPwNvs9CTIbTEZGTwGN5pE
+	XzRjxCkwr2TOB6J9TKGuEI6ojQ==
+X-Google-Smtp-Source: AMrXdXsns+wODkeVA+eyVg6DWDP7h4ZsUK2KoND8WPXo2OLQMg/ZUcoSsqQ0z3Y2wBq+9Yj/x0NG4A==
+X-Received: by 2002:a05:6000:16cb:b0:242:1b0d:9c58 with SMTP id h11-20020a05600016cb00b002421b0d9c58mr50376842wrf.69.1673345645653;
+        Tue, 10 Jan 2023 02:14:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id a10-20020adfdd0a000000b002bb6b45ab57sm8867372wrm.85.2023.01.10.02.14.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 02:14:04 -0800 (PST)
+Message-ID: <6044f85b-93f2-fe2e-68b5-9912836f4a38@linaro.org>
+Date: Tue, 10 Jan 2023 11:14:01 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.11.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 01/11] dt-bindings: firmware: convert meson_sm.txt to
+ dt-schema
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org
+References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230110_003248_537002_2C7A057A 
-X-CRM114-Status: UNSURE (   6.31  )
+X-CRM114-CacheID: sfid-20230110_021407_211850_E74D7406 
+X-CRM114-Status: UNSURE (   9.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,21 +115,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Mon, 09 Jan 2023 23:00:33 +0100, Marek Szyprowski wrote:
-> devm_regulator_get_enable_optional() function returns 0 on success, so
-> use it for the check if function succeded instead of the -ENODEV value.
+On 09/01/2023 13:53, Neil Armstrong wrote:
+> Convert the Amlogic Secure Monitor bindings to dt-schema.
 > 
+> Take in account usage the used variant with amlogic,meson-gx-sm.
 > 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[1/1] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=67d0a30128c9f644595dfe67ac0fb941a716a6c9
+Best regards,
+Krzysztof
 
--- 
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
