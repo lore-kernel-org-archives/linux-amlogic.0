@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F7E6C46467
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 10:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A45C46467
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 10:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Uookd0Ry6DjJkzoohCxnRMX/HzbeBv/kYWZrgu6m7O0=; b=VySd8QO5E6y+Eb
-	ggoz4evyqrbKkzNrFswYuuH/48e8oSDonhljR77u65NJAxevslf5BE+PbZehXmu6Dwftb1s9reIkn
-	eLjskb+mhbKoNDLkiB60i9wdJesZrRPzrzl+FZMuWiPKiB18D2DNzuTrmk2bAU5mhusMw3OF+mYM6
-	Wl67b5nAKrwoKr1rp1aK9tFDUYEG9apjPOGHwf8HL6gyE4EaPxaelJl9s530Z+slt8URnxQvRQ8gz
-	gl5O5emhdPiUEGYbrcaMViUohaedNVPAZJoOx5WkPNobWdHCDMkOJ0jUXB/T3uz51n0No3BaEgE5n
-	qVFqiM/ZX7AofnYTglCw==;
+	List-Owner; bh=OwPKYfH0+f6Rwta62niSSkoyQggWM/WpaOI4fVxfx8w=; b=liptBS5A0VW87v
+	RKebFQIbRpVYLw3VO+aiTF4IE+rZe3gWcklB3Fki6EKI4RuROzVa/Yenl+5I77eAEFxOAVvoBkLsZ
+	FdpZJ3xrLDKqaKEMtO0kCs5FlYhgDtzsncEaBMgdrk0GriW09CEqjEExeyFuNTzyXQWSAInayKdMC
+	3Z2RoUYNiRUz0pUJcvFiocpc2dVGdyx7mJLVCDe9e035uzZzJlvcsPH1tJy2/2zD8Pq3/Lgx4uzVD
+	K9qaQIks41wWqtKKT2m3VWzu3/oT5oXTkp8nSNUPqZkGe567UIUIB6a48eh7akRWnbN88TSi3hret
+	IND+0KgIiF0Mn9YXHMMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFBgN-006JC0-GM; Tue, 10 Jan 2023 10:16:39 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pFBhy-006K7e-KW; Tue, 10 Jan 2023 10:18:18 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFBg9-006J2l-E3
-	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 10:16:26 +0000
-Received: by mail-wm1-x335.google.com with SMTP id p3-20020a05600c1d8300b003d9ee5f125bso4916320wms.4
-        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 02:16:22 -0800 (PST)
+	id 1pFBhl-006Jq7-BH
+	for linux-amlogic@lists.infradead.org; Tue, 10 Jan 2023 10:18:07 +0000
+Received: by mail-wm1-x330.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso5091845wms.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jan 2023 02:18:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3L27Tq0zbzDL8sJQqF4D7IRFPQYRZAeU4qqoSPa895w=;
-        b=u+x71yWS7I4oEXf8ozRcyFMecHvQvUknvdG2mG0PJAu04pG9XXthULtoY1W0q94kCT
-         d7DlnxcZ3zXHjz3tCvR+V7R0vGgabFih7QQ0ZICKmNK25Xx2KCBWdHBglGa2TtcHvYCw
-         i1PHi3FscBHvdfF7v25N/FENMcx3/FGjIcJPuxqpp59Gwq+y/MyNXqKi9sWENqwmpXxK
-         3BgfTBvTCcEcYxPkKgaNIsrgcjekdnRmViT/flYASi8HCn7wPiReR5wTM6Y4C1n9IE+9
-         Lo/Ham7HrbuO9nRWnGB1VygmYL7yBAlKmKoLq0hm1fTGQcolWwK9CMshzO2w8/ekD6g2
-         shmw==
+        bh=PM3i+83BPLCvCkjcHeSsVRsAE5H2Nw7gtRNrJCRY2Ks=;
+        b=dCctDUIS0wC58/aHLK5o+YpcliPRN6sleu5Xkbclt/zqSjkzezo8juF4OGzlLsvyGf
+         tUK3Rkiu727qQvxILep6HVoaAKnbkXRJxXvgarWY5BU8gAhVnxynCpG6cAqFAtwFfQan
+         3pwJ3RN0AT5mFJYR+byVFD9HC1x7kN8/SimGHmYJMdTQmmPWlFJml+nBX3qwrwOyQ0L2
+         UvUktrvtRBUHh2RAj9it+AGiFB2eOiNTbZqual4iMCHAWr+CVeoF7M3ea+Zyeosp0P2O
+         Fta/A301YwGUtq0CiX/gKZAwpIxyloMcGasDLKovqyrb3C28XcQSXdlOKbYVcLBa90Gh
+         bQdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3L27Tq0zbzDL8sJQqF4D7IRFPQYRZAeU4qqoSPa895w=;
-        b=LeZF2TVc+iefEtt+qebWKBOdKAty1H5wZygc6QeEvpHT0jvHqydw0xQA3qmhUAbTpU
-         7EyJMSupT8Z3Y+JttieF2rP8C0bhq1Yg1xJ5OhCH21+Nk67bGSaoX0JoCixP6JcEYLki
-         8g0nllV4xqlAK+b2WzNKzWM3SifVypcSABQA0YI0VTtzoKdrFnhEIlfR2xsdFMoegFLB
-         9248Pp3f5OpHDnnD3tte6cVKr5gvXo44iYjquc+pvQEgAyAn9vmVuUE+gm3pgNWPSzUY
-         uhSmJCzI7gNKO/YTF2LFZ4/VTTYxHb/a3F7aK4khjlgJjsmlufHD07oUTjxAv0wwVgb+
-         wCAQ==
-X-Gm-Message-State: AFqh2krgdtOyDUZ6zSgEfGIpAIA4bhmh3tOOBUTJgzEpjAfmMuFGaoDO
-	xgrPSA/4kKgejBiHBDOv8us2cQ==
-X-Google-Smtp-Source: AMrXdXuMfssSJSDgb250kz9/lLtQ3vu6O7DHG+aAwgcWVuQ1GLx8a400gxZwi0nru+BFE3w6dTyBEQ==
-X-Received: by 2002:a1c:4c0e:0:b0:3d9:f836:3728 with SMTP id z14-20020a1c4c0e000000b003d9f8363728mr1386982wmf.11.1673345781647;
-        Tue, 10 Jan 2023 02:16:21 -0800 (PST)
+        bh=PM3i+83BPLCvCkjcHeSsVRsAE5H2Nw7gtRNrJCRY2Ks=;
+        b=hBdUUZBlv8c2J03a002GLP3CjeHHadCVz/dSbGc/2tF7DUX0qP+IZLXFR3JH1E06eT
+         UlH7Fpmkx55jmVYwdsFDQXXiZVWYVgfppNoXp6Gg1YrEvB7q5jobPkH7BWPBEcdPnXt1
+         3kpkq9Wsq/NR1EZKjWZZurRdqcI3NzXKSlwSUA1Y+7wOfCDHrdF8+siMuRzpIIsMyd/v
+         9FglFdxe6P6Bg3H3d1yz557xbc56Ln4F57C5DwZrijco1xlAGdezWnxHvbaiuI8WaJs4
+         LywWwwmmF4aw45p85R+AGN1jcau8lIkDxwbScvrKylkNIQYMlarxCf6NbwjS4nN+cXov
+         hs5g==
+X-Gm-Message-State: AFqh2ko28hFHulSERNobfh9OIk9Q4uFbJUMbqe78dJw3NCbHp9Y9rlQI
+	3eKr4uxS96SeAIhOxly84lcqWg==
+X-Google-Smtp-Source: AMrXdXvxClrR4BtCis3ALpFrfvnnBH5INQXfgVxgssgGc8gS8VU+28Qjf2O0/5xOZ+1CSwryJpUEpQ==
+X-Received: by 2002:a05:600c:48a1:b0:3d1:f270:a81e with SMTP id j33-20020a05600c48a100b003d1f270a81emr48836013wmp.17.1673345883348;
+        Tue, 10 Jan 2023 02:18:03 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l14-20020a05600c4f0e00b003d96c811d6dsm20468474wmq.30.2023.01.10.02.16.18
+        by smtp.gmail.com with ESMTPSA id z9-20020a7bc7c9000000b003d9ef37ec1bsm8484251wmk.5.2023.01.10.02.17.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:16:21 -0800 (PST)
-Message-ID: <39bf0a6f-6e43-c7e1-07c2-c5c5113c1e50@linaro.org>
-Date: Tue, 10 Jan 2023 11:16:17 +0100
+        Tue, 10 Jan 2023 02:18:02 -0800 (PST)
+Message-ID: <e3d32fe1-9f2b-09fb-d7e0-2c8f42e5365c@linaro.org>
+Date: Tue, 10 Jan 2023 11:17:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 06/11] dt-bindings: power: amlogic,meson-gx-pwrc: mark
- bindings as deprecated
+Subject: Re: [PATCH v2 09/11] dt-bindings: mmc: convert amlogic,meson-gx.txt
+ to dt-schema
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -92,12 +92,12 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
  linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org
 References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-6-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-9-36ad050bb625@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-6-36ad050bb625@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-9-36ad050bb625@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230110_021625_506232_862D0716 
-X-CRM114-Status: GOOD (  11.28  )
+X-CRM114-CacheID: sfid-20230110_021805_408851_86525885 
+X-CRM114-Status: GOOD (  18.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,18 +115,54 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 09/01/2023 13:53, Neil Armstrong wrote:
-> The amlogic,meson-gx-pwrc-vpu compatible isn't used anymore since [1]
-> was merged in v5.8-rc1 and amlogic,meson-g12a-pwrc-vpu either since [2]
-> was merged in v5.3-rc1.
+> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
+> to dt-schema.
 > 
-> [1] commit 5273d6cacc06 ("arm64: dts: meson-gx: Switch to the meson-ee-pwrc bindings")
-> [2] commit f4f1c8d9ace7 ("arm64: dts: meson-g12: add Everything-Else power domain controller")
+> Take in account the used variant with amlogic,meson-gx-mmc.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt | 4 ++--
+>  .../bindings/mmc/amlogic,meson-gx-mmc.yaml         | 75 ++++++++++++++++++++++
+>  .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 39 -----------
+>  2 files changed, 75 insertions(+), 39 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> new file mode 100644
+> index 000000000000..30228964fd9c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic SD / eMMC controller for S905/GXBB family SoCs
+> +
+> +description:
+> +  The MMC 5.1 compliant host controller on Amlogic provides the
+> +  interface for SD, eMMC and SDIO devices
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - amlogic,meson-gx-mmc
+> +          - amlogic,meson-axg-mmc
+> +      - items:
+> +          - const: amlogic,meson-gx-mmc
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This does not look correct. Either gx is alone (not compatible with
+gxbb) or it is compatible with gxbb. Cannot be both.
+
+
 
 Best regards,
 Krzysztof
