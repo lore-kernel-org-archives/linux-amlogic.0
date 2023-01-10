@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21C01C46467
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 22:02:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C74BC54EBC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jan 2023 22:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0lRMIt0b+ST/e/ZyO5lu9eR0tKM8Lrzs6t+PuqxYtSE=; b=fsVw/mMiM/XIYS
-	Kd9QbdAWhaPeIi2GWomc1HX1lC/zztrELvji7/mSCm23KKsnJ8OoKv+TMGRnXfQHYdrjT0TCs42rN
-	bSLV3iLHZSmaCw0UC3CInX15HAHuc9dvDQ7gXLYUG9GPCyxhRAnjtfgEaplUcHCIaMfb2FHSKICdc
-	0lF8b8TMRP9iAvaAmQ29nFT7qlO6RjJ4G1OGQ/qET2idt9BhnGJAQ4N6MdFf4uYPMUBAh1N6hPnHN
-	/d195yoqO/KsDf97d5IMxy0Xfui1sjTySKEZJYak4CPJbPy+vEYW+txd5CDKQxe1GNFGdxVTCT9Qu
-	pXactU7XwVcHHaXdvSgA==;
+	List-Owner; bh=JC1J4RjUQ/YHekcJjkGAkXa3oJhiNgJwdSVd1Eo7P0E=; b=atyye78zQ/s3Uc
+	k0LZ48eX3h2bHZGuulENw+yCO3kSsN2GkxIOObN1+qerCtXbot9+SJuZCz+KbYohQhT77y63KNBqc
+	9IsiliGLT9hW7GYwW27wRuGZsnoohPuRqBQuiB1kF6bjF81GtukbNFdLY8aNawV9m/qroPR5EMv/N
+	HiUV33isAiAERcPEL+VN/mT/fUIRSW7j5w/bI1pnIfxHb6HqbOXxHQ9EIq1TJBBdK79M2h3SEOOr7
+	muAKYeON89lc465G6YmKa/ZFe0jCDkDOeRHKYmX5HC301/wcRIKNWKxlzdxP/u73RqOGFDc1j8ySb
+	P7E9aiPhxb1Y/mJqJDbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFMgn-008hyi-Bq; Tue, 10 Jan 2023 22:01:49 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1pFMkE-008iia-QR; Tue, 10 Jan 2023 22:05:22 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFMgc-008hvm-GN; Tue, 10 Jan 2023 22:01:39 +0000
-Received: by mail-ed1-x536.google.com with SMTP id v30so19670093edb.9;
-        Tue, 10 Jan 2023 14:01:35 -0800 (PST)
+	id 1pFMk3-008ieF-Jj; Tue, 10 Jan 2023 22:05:12 +0000
+Received: by mail-ed1-x535.google.com with SMTP id v6so19655734edd.6;
+        Tue, 10 Jan 2023 14:05:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1zojtUlTJ41SuWrZfC5EvKnzTTlRKFzqNeYYEkay3v4=;
-        b=cddZySA12Yq1swNWNYpIqK5JVInCajEv34dtVRX5iLyqxr5N3PemsxVXbnYOYIAGnr
-         gKqEW06tcOHsUR8VcFS7DQXlbibMgWFmmH7wYHUh2NL0DKearGTJxtoM93CdEr7jbMDa
-         O9ctWwjV5w20+4FuPz2Hrf6A4e+2EkHV+2R1k7gHfAtogBaDtnsVgEfWmQRtkix/YR5s
-         5XEKKjiSszvnbWScuBp9OOtkHUJmcyyUHP0ylIIYBERyQsHDrotlg+UBh5g0M8HCQsQV
-         oDCEclTpfv1WZWvEXDWC9pZsmAAQIsOWKCMhRAz34wryF5FxONHePBLWOopXe29o2SPe
-         Ybkg==
+        bh=WrKmlWHDUV61DahQUIaVkiL3+243B01IgkXVVlGEa8Y=;
+        b=IU6f2FJsgTYlQlUxPC3SgJJ3nHFscGea08quQshVivr8hFfTaCsq0s0LtncJiE9VM6
+         3mP91XMs097IQMqGrGDeR9Q+Nn9BKmtDOAQCWiDZ2Q8eVwcQryoz9SH1KeWnpPHN45c3
+         rPkRe1EqQB8QmpZv3Xy+dztrHgOb2VFHNMCQaPsGirHXniNzQLu5bPySZcqFWzYtaPmq
+         5A2dtC34COH9kL8iMQXmAHCiJ4F7MQp47VlpgBt+vNEbw1EwcfbsX8aGYfoKUM8gt1hz
+         GDPLFshOAOL8YRSF/7Z9ozAVNX/9vQQ2R1X1DLFRvX0Cj+ub7mHHtQz157FGqOyEOaRD
+         YtfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1zojtUlTJ41SuWrZfC5EvKnzTTlRKFzqNeYYEkay3v4=;
-        b=K5JrmHg1F2G8qjavIynTvrkYrxvQgM0OxrCot8EitbM49e3Y4WgLgM0T6Vr7E0FGfc
-         LfkACwbYtta63ulrxDwdAEQ2n0Z8/FaPEjg8NWRLs/WpIxh3LdtHoHs2HU+hKFrAPxIe
-         wJeUoxi9W0T6d3XY3549tndmwUTcvAe/MGqyNKOFR6blOxQnULSJoYxdtRY5ukunKQZp
-         P9xAPt5BM+U/JtJrU9QxtbNPxiNzNJOihaHtiCZg5WIs6J84zgnJ0WFpnZDluJH7PycD
-         yrjHdJfy+397vASWFPGrdbHwGpEvp2EiZBzjskCEjpe+wA7YQcoY82K8Txtxae4L4DGE
-         3JhA==
-X-Gm-Message-State: AFqh2kpHLYLxxq9kSdRBK05xp8isLn7VloDKoqzTsFO1rKoWDPYuRTFc
-	nn+JqV9HdA+w0f/aCldVA1MZsP6m8WKbe4RxBgE=
-X-Google-Smtp-Source: AMrXdXs/xAROFlmP1Z6gsP4nU76Fz9ohlobY7nC70UqqJ6A94oT0iQ6simlwUiEPavrP8bBYALj6XMxx0kprOzT+6D8=
-X-Received: by 2002:a05:6402:4290:b0:498:61f5:5734 with SMTP id
- g16-20020a056402429000b0049861f55734mr1027278edc.238.1673388094576; Tue, 10
- Jan 2023 14:01:34 -0800 (PST)
+        bh=WrKmlWHDUV61DahQUIaVkiL3+243B01IgkXVVlGEa8Y=;
+        b=RsTAX+hQUWaGbTPQYb50FH7igqf6hnF6ipAaDc4qeuGoxNttgIWZcqwJ4aZwzgkoNC
+         sCl7n8tTj2KeZ2OoRyxUj5CAL2tlNMm7KZxWFZ6oKj0GLqtKJbWAEBGMYrNP26fe28wG
+         wmzy8RjTQSx4skZY4/oAqY58pRwUD6bmTKN1fA/tPX6iljV7Kwo/lEP6ziRr1cWeM8i8
+         wgGCr+ImiFcyifkUguKAslqVVFaATcLzcxCs64+mF4nTCwhS+U82hUNadqhIpKJD5wWS
+         3+HaqdCmqjCfYmhdHBy96VoFHYhDtkUXY2JOk64eGpetPW2aOKNwseIXhhz4AOykrvrW
+         G9Ww==
+X-Gm-Message-State: AFqh2ko3VpVQSB4791/k22KteLPq3BYSGiyUghq6xiNJ5kMFeJgTOXAD
+	BjGhU1g8WAe47xocm24sanwcaqC2vxideIrLgrM=
+X-Google-Smtp-Source: AMrXdXslMt+extOJ67lNrPk/gzoVhLdRWwj56JScPZGQacLbHpwmoFzQ7g3CAvQIElO72fbF6+niQAf0El2SmKxOxfk=
+X-Received: by 2002:a05:6402:78b:b0:494:cb79:1ff3 with SMTP id
+ d11-20020a056402078b00b00494cb791ff3mr2392529edy.291.1673388309924; Tue, 10
+ Jan 2023 14:05:09 -0800 (PST)
 MIME-Version: 1.0
 References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-3-36ad050bb625@linaro.org> <5c59d432-3785-8eaa-af77-03fee09b5fd3@linaro.org>
+In-Reply-To: <5c59d432-3785-8eaa-af77-03fee09b5fd3@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 10 Jan 2023 23:01:23 +0100
-Message-ID: <CAFBinCCP7xyFEa9GhRQ3NBhfSkn1WSP_qyoLKfaMPpqUTe11bA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
+Date: Tue, 10 Jan 2023 23:04:58 +0100
+Message-ID: <CAFBinCCjDLN5owiD1x5UNcBiE7P6czkS1wrSYKn-bBPCHQxT9Q@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt
+ to dt-schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
 	Jerome Brunet <jbrunet@baylibre.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
 	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
@@ -80,11 +81,10 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
 	linux-media@vger.kernel.org, linux-rtc@vger.kernel.org, 
 	linux-phy@lists.infradead.org, linux-mmc@vger.kernel.org, 
-	linux-pci@vger.kernel.org, netdev@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	linux-pci@vger.kernel.org, netdev@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230110_140138_566787_47F3F4FA 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20230110_140511_689116_90FFE0A4 
+X-CRM114-Status: GOOD (  11.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,26 +101,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 9, 2023 at 1:53 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
->
-> Take in account the used variant with amlogic,meson-gx-efuse.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil, Hi Krzysztof,
 
-This will cause a warning in
-arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
-though (which is an existing issue, this patch just makes it visible).
-I sent a fix for that: [0]
+On Tue, Jan 10, 2023 at 11:15 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+[...]
+> > +  secure-monitor:
+> > +    description: phandle to the secure-monitor node
+>
+> Missing $ref
+Actually this IP does not connect to a secure-monitor. So the
+secure-monitor property can be removed.
 
 
 Best regards,
 Martin
-
-
-[0] https://lore.kernel.org/linux-amlogic/20230110215926.1296650-1-martin.blumenstingl@googlemail.com/T/#u
 
 _______________________________________________
 linux-amlogic mailing list
