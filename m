@@ -4,89 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED762C46467
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 10:34:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20444C5479D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 12:29:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=L1EzuEl7piSe+iBRq7+kYRi+feifE5DPsyEP7nzEu3s=; b=4WaW8/8ppCSFoa0x1DeHZTDdI9
-	FST3EDNNULlTsEOS8YoL8yrHbCxmv2s93ie6gMJOVobXxX6a3t3KDUdjvyKtvZlT/hM39jYh8cGfe
-	bkINd1Xqv/dfPAUqbNaorrEZPTlUEUtWcMitIQ32eH4ujRzZKzqVQEM4UEyvoHcbxF1FezHkEzO0W
-	nr8ZVISfF3lrniP9pKpec8YBS2zlFZDjJJOdvaLvSapi4bhZiEn3Wl2i6g4p5dxVKw7UEGXSc4lwY
-	qOav1KyqsQ1GbtnNPXkXG/qCP6T9/rP/9M+BGKMeIqDyX8rhvZc+NnSpIScmqCyTvmvl0G7X1qixO
-	RoTw2R/g==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0mqR4BYrx3Fx1mo4Qksg/SCumczLxfhpy8GV+kHdcKU=; b=qZy2uBL7zwkGNSbHcy0j5P6TyO
+	ZZpcm2RkQ4zaMNsGalg0NMsbLQGv9RIjdsRlM9yr+TstkLfnwvNiqS63JV0tqLApeD1RVtjOD7/bJ
+	oP6ZdokybZlsgF1XAzzRX11t3Hdq4HpgrnWA0K811J4bJOdDpB1zirYAIYcPfbkQXK93Y8ihwHf91
+	0SwBB7RNZBzmiLHWRYmpY+aPud0+WIowQXdRRwM1WGrujXzw0gi1iWPKLGZLmpMjVYdCp8qCjdf0L
+	y53On6O5JS5ksulWh7iyPWHUjtoL7bIidlBpK3w8Crw/9/cb0HgswjCAg8VLtSarrQ4cEdnJIC7u5
+	fzZFIiAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFYRS-00ApHE-VO; Wed, 11 Jan 2023 10:34:47 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1pFaE8-00BGNb-Bp; Wed, 11 Jan 2023 12:29:08 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFYRQ-00ApGC-1m
-	for linux-amlogic@lists.infradead.org; Wed, 11 Jan 2023 10:34:45 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so14021820wmb.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 11 Jan 2023 02:34:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3KqGObhsHrRbnSdUxruE0y4nmn0w6bjS57+0xuPZcw=;
-        b=nGcDPPgC2WNOGZZX/rmF0U0iF7x/ue7sd1UMOIHUj1uob1tYj7ae2czwU/aivZKVgX
-         IPIeb1sYJVOH+GBZc53rnGhZ98KHkGnJCjQZLswPLSyZR1q66lGzwNETb3tII+ZGZFQ4
-         /V4ZPz+uwruLwi2sll7x7vFuPNuIec0MYiGCriDXfiQHgUdOJWVSUzHxvGYQ4DLv63pC
-         1Vwlbgp0Z3v52gJLbVaP5fbwtGMjOjt62iOUEj323zu6uX45OGXisPUgNxsJSQdJTzEk
-         hqUzwMxsuVh0xJz+aseAYFCe6L2pdUefKpb+oAwgL4D3VgaPro/O25YRfIKWirwtz/o9
-         ltLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s3KqGObhsHrRbnSdUxruE0y4nmn0w6bjS57+0xuPZcw=;
-        b=Oqxauw3apS6bJ97kfPWWzLhBLuTfqW02iNYw1itgtVCeRwVW5rf837SgnLO5a/ziQ6
-         +PDbNlpCZXe2l5UiGmrFmq2ur2vAmeTbtKe9PI5Fg8HiaF+wFZY6EFqgyIHzZG4zkswb
-         JT369UL+WVhUFphhOO21sZmstfVD/LjuiL9u2iomeerAYveq8V9cM9DY06w1m2Sg4ozh
-         bgafjcBYl9wSTIf1ob2J5ToV+KEZ15yI72FsUUlEJXHFAe4ANYXxjZAjpTPavrnpPmsi
-         OC2prnn+ml017E6Rq2XVsR4o4CxUv2I+eoYwtSmi7OPoMNDMOLKwNwmtF07FiEQ5sYqx
-         mnrQ==
-X-Gm-Message-State: AFqh2kpCGgQ4VL9WXL0G7tcOrN3IhFtjsMQIpp66BfB10etsyHrTTR7q
-	TX2zfDug2zSiwiaHiRq4u9PTbA==
-X-Google-Smtp-Source: AMrXdXsiVT2Ik4PaTpMH4v3+Fd28GSMuNrgLUSmkBeKKRGAbgp7CrBXwz6c9B180jCrYSRemQSQTXw==
-X-Received: by 2002:a05:600c:3506:b0:3cf:803b:d7cc with SMTP id h6-20020a05600c350600b003cf803bd7ccmr55084313wmq.33.1673433282477;
-        Wed, 11 Jan 2023 02:34:42 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:d95d:43b7:d6a9:39a5? ([2a01:e0a:982:cbb0:d95d:43b7:d6a9:39a5])
-        by smtp.gmail.com with ESMTPSA id n14-20020a05600c3b8e00b003b49bd61b19sm25394292wms.15.2023.01.11.02.34.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 02:34:42 -0800 (PST)
-Message-ID: <19423616-79d4-9478-c6df-4f226f87a27f@linaro.org>
-Date: Wed, 11 Jan 2023 11:34:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
+	id 1pFaE5-00BGMv-VL; Wed, 11 Jan 2023 12:29:07 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 49C6B61CC6;
+	Wed, 11 Jan 2023 12:29:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7004FC433D2;
+	Wed, 11 Jan 2023 12:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1673440144;
+	bh=Zscbi5g8KaLoxtqKTYTy4v+bGIgrfP5nEZUwDmWu4fk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q/JK1rDKHYHvhajygf8w2mRW7bMgVgUH371tQZ88bFcNbixMBZAxLFSALrT2UDs3U
+	 6K8/8oxZLnMz3x7nh2jq3/MZ+CUaRUaFJYW7Q7lH0eSBnQdanynH3q02mFxJ4y/Xpx
+	 ddxMtPWrOJGgLsZ1UMh0wbHwaEKw69eDLBaHEDQ+X8jpgLHTK5qyboL8RW79Ymp+sV
+	 p3BzBmpCthJfVLY02wHyti3OQ7na5Y027dZ+vDHqN9gNq0te3IBkBl1g1bStQgJVCi
+	 j/NyxJqDNJm2CSXGEcHXG8wj7sWDGcPdnotZZkDNhNtg6vHzuhzisPWlGNUUFasEoj
+	 BAwxQQCCLgU9g==
+Date: Wed, 11 Jan 2023 12:28:58 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Naresh Kamboju <naresh.kamboju@linaro.org>,
+	linux-next <linux-next@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Linux ARM <linux-arm-kernel@lists.infradead.org>,
+	lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
+	Will Deacon <will@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Aishwarya TCV <aishwarya.tcv@arm.com>,
+	Anders Roxell <anders.roxell@linaro.org>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-amlogic@lists.infradead.org
 Subject: Re: next-20230110: arm64: defconfig+kselftest config boot failed -
  Unable to handle kernel paging request at virtual address fffffffffffffff8
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>, Naresh Kamboju
- <naresh.kamboju@linaro.org>, linux-next <linux-next@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- lkft-triage@lists.linaro.org, regressions@lists.linux.dev
-Cc: Mark Brown <broonie@kernel.org>, Will Deacon <will@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Mark Rutland <mark.rutland@arm.com>, Aishwarya TCV <aishwarya.tcv@arm.com>,
- Anders Roxell <anders.roxell@linaro.org>, Ard Biesheuvel <ardb@kernel.org>,
- linux-amlogic@lists.infradead.org
+Message-ID: <Y76rijHJ3KAZ6D9C@sirena.org.uk>
 References: <CA+G9fYsns3krivbPSjQ1c1EQpVyd-bkW84MaUvqMTQr9c=iEaw@mail.gmail.com>
  <77342621-d67f-4d47-a33b-6f721576bf9d@app.fastmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <77342621-d67f-4d47-a33b-6f721576bf9d@app.fastmail.com>
+ <19423616-79d4-9478-c6df-4f226f87a27f@linaro.org>
+MIME-Version: 1.0
+In-Reply-To: <19423616-79d4-9478-c6df-4f226f87a27f@linaro.org>
+X-Cookie: Life is not for everyone.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230111_023444_129042_3DA37F9E 
-X-CRM114-Status: GOOD (  27.04  )
+X-CRM114-CacheID: sfid-20230111_042906_103895_F2B84664 
+X-CRM114-Status: GOOD (  16.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,138 +80,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============6353322448183877769=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On 10/01/2023 17:41, Arnd Bergmann wrote:
-> On Tue, Jan 10, 2023, at 17:14, Naresh Kamboju wrote:
->> [ please ignore this email if this regression already reported ]
->>
->> Today's Linux next tag next-20230110 boot passes with defconfig but
->> boot fails with
->> defconfig + kselftest merge config on arm64 devices and qemu-arm64.
->>
->> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
->>
->> We are bisecting this problem and get back to you shortly.
->>
->> GOOD: next-20230109  (defconfig + kselftests configs)
->> BAD: next-20230110 (defconfig + kselftests configs)
->>
->> kernel crash log [1]:
->>
->> [   15.302140] Unable to handle kernel paging request at virtual
->> address fffffffffffffff8
->> [   15.309906] Mem abort info:
->> [   15.312659]   ESR = 0x0000000096000004
->> [   15.316365]   EC = 0x25: DABT (current EL), IL = 32 bits
->> [   15.321626]   SET = 0, FnV = 0
->> [   15.324644]   EA = 0, S1PTW = 0
->> [   15.327744]   FSC = 0x04: level 0 translation fault
->> [   15.332619] Data abort info:
->> [   15.335422]   ISV = 0, ISS = 0x00000004
->> [   15.339226]   CM = 0, WnR = 0
->> [   15.342154] swapper pgtable: 4k pages, 48-bit VAs, pgdp=000000001496c000
->> [   15.348795] [fffffffffffffff8] pgd=0000000000000000, p4d=0000000000000000
->> [   15.355524] Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
->> [   15.361729] Modules linked in: meson_gxl dwmac_generic
->> snd_soc_meson_gx_sound_card snd_soc_meson_card_utils lima gpu_sched
->> drm_shmem_helper meson_drm drm_dma_helper crct10dif_ce meson_ir
->> rc_core meson_dw_hdmi dw_hdmi meson_canvas dwmac_meson8b
->> stmmac_platform meson_rng stmmac rng_core cec meson_gxbb_wdt
->> drm_display_helper snd_soc_meson_aiu snd_soc_meson_codec_glue pcs_xpcs
->> snd_soc_meson_t9015 amlogic_gxl_crypto crypto_engine display_connector
->> snd_soc_simple_amplifier drm_kms_helper drm nvmem_meson_efuse
->> [   15.405976] CPU: 1 PID: 9 Comm: kworker/u8:0 Not tainted
->> 6.2.0-rc3-next-20230110 #1
->> [   15.413563] Hardware name: Libre Computer AML-S905X-CC (DT)
->> [   15.419086] Workqueue: events_unbound deferred_probe_work_func
->> [   15.424863] pstate: 00000005 (nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->> [   15.431762] pc : of_drm_find_bridge+0x38/0x70 [drm]
->> [   15.436594] lr : of_drm_find_bridge+0x20/0x70 [drm]
-> 
-> The line is
-> 
-> drivers/gpu/drm/drm_bridge.c:1310:      if (bridge->of_node == np) {
-> 
-> The list_head here is a NULL pointer, so ->of_node points
-> to address negative 8, i.e. fffffffffffffff8
-> 
-> This is linked list corruption, which typically happens as
-> part of a use-after-free, and could be the result of a
-> failed registration causing an object to be freed after
-> it is added to the list.
-> 
-> Unfortunately, there are no patches to this file between
-> next-20230109 and next-20230110, so the bug probably is
-> not actually in this file.
-> 
->> [   15.515426] Call trace:
->> [   15.517863] Insufficient stack space to handle exception!
->> [   15.517867] ESR: 0x0000000096000047 -- DABT (current EL)
->> [   15.517871] FAR: 0xffff80000a047ff0
->> [   15.517873] Task stack:     [0xffff80000a048000..0xffff80000a04c000]
->> [   15.517877] IRQ stack:      [0xffff800008008000..0xffff80000800c000]
->> [   15.517880] Overflow stack: [0xffff00007d9c1320..0xffff00007d9c2320]
->> [   15.517884] CPU: 1 PID: 9 Comm: kworker/u8:0 Not tainted
->> 6.2.0-rc3-next-20230110 #1
->> [   15.517890] Hardware name: Libre Computer AML-S905X-CC (DT)
->> [   15.517895] Workqueue: events_unbound deferred_probe_work_func
->> [   15.517915] pstate: 800003c5 (Nzcv DAIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->> [   15.517923] pc : el1_abort+0x4/0x5c
->> [   15.517932] lr : el1h_64_sync_handler+0x60/0xac
->> [   15.517939] sp : ffff80000a048020
-> 
-> Not sure about the missing stack trace: I can see that the stack
-> pointer is on a task stack, which is reported as having overflown,
-> but I don't see why it's unable to print the stack while running
-> from the overflow stack.
-> 
-> A stack overflow is often caused by unbounded recursion, which
-> can happen when a device driver binds itself to a device that it
-> has just created. The log does look a bit suspicious here,
-> with multiple registrations for c883a000.hdmi-tx:
-> 
->    986 08:02:56.487871  [   15.141218] meson-drm d0100000.vpu: Queued 2 outputs on vpu
->    987 08:02:56.493572  [   15.141615] meson8b-dwmac c9410000.ethernet: Ring mode enabled
->    988 08:02:56.504769  [   15.150744] meson-drm d0100000.vpu: bound c883a000.hdmi-tx (ops meson_dw_hdmi_ops [meson_dw_hdmi])
->    989 08:02:56.515743  [   15.154970] meson8b-dwmac c9410000.ethernet: Enable RX Mitigation via HW Watchdog Timer
->    990 08:02:56.521531  [   15.159175] lima d00c0000.gpu: pp0 - mali450 version major 0 minor 0
->    991 08:02:56.526718  [   15.161436] meson-drm d0100000.vpu: Failed to find HDMI transceiver bridge
->    992 08:02:56.532417  [   15.168933] lima d00c0000.gpu: pp1 - mali450 version major 0 minor 0
->    993 08:02:56.537747  [   15.206102] meson-drm d0100000.vpu: Queued 2 outputs on vpu
->    994 08:02:56.543435  [   15.209608] lima d00c0000.gpu: pp2 - mali450 version major 0 minor 0
->    995 08:02:56.554307  [   15.217027] meson-drm d0100000.vpu: bound c883a000.hdmi-tx (ops meson_dw_hdmi_ops [meson_dw_hdmi])
->    996 08:02:56.559929  [   15.221169] lima d00c0000.gpu: l2 cache 8K, 4-way, 64byte cache line, 128bit external bus
->    997 08:02:56.565229  [   15.231561] meson-drm d0100000.vpu: Failed to find HDMI transceiver bridge
->    998 08:02:56.576490  [   15.238133] lima d00c0000.gpu: l2 cache 64K, 4-way, 64byte cache line, 128bit external bus
->    999 08:02:56.581759  [   15.253879] lima d00c0000.gpu: bus rate = 166666667
->   1000 08:02:56.587248  [   15.257128] lima d00c0000.gpu: mod rate = 24000000
->   1001 08:02:56.593344  [   15.261862] lima d00c0000.gpu: error -ENODEV: _opp_set_regulators: no regulator (mali) found
->   1002 08:02:56.612809  [   15.286143] [drm] Initialized lima 1.1.0 20191231 for d00c0000.gpu on minor 1
->   1003 08:02:56.618428  [   15.292259] meson-drm d0100000.vpu: Queued 2 outputs on vpu
->   1004 08:02:56.623866  [   15.293715] meson-drm d0100000.vpu: bound c883a000.hdmi-tx (ops meson_dw_hdmi_ops [meson_dw_hdmi])
->   1005 08:02:56.634771  [   15.302140] Unable to handle kernel paging request at virtual address fffffffffffffff8
-> 
-> Again, I don't see any recent changes in that driver or the
-> corresponding dts file.
+--===============6353322448183877769==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="OZN5I8D63BKoaTA7"
+Content-Disposition: inline
 
-I merged a fix that could be related: https://lore.kernel.org/all/20230109220033.31202-1-m.szyprowski@samsung.com/
 
-This could make the driver to return from probe while not totally probed, and explain such error.
+--OZN5I8D63BKoaTA7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Neil
+On Wed, Jan 11, 2023 at 11:34:41AM +0100, Neil Armstrong wrote:
 
-> 
->        Arnd
+> I merged a fix that could be related: https://lore.kernel.org/all/20230109220033.31202-1-m.szyprowski@samsung.com/
 
+> This could make the driver to return from probe while not totally probed, and explain such error.
+
+We're seeing issues in all configs on meson-gxl-s905x-libretech-cc
+today, not just with the kselftest fragment.  The initial failuire seems
+to be:
+
+[   17.337253] WARNING: CPU: 3 PID: 123 at drivers/gpu/drm/drm_bridge.c:1257 drm_bridge_hpd_enable+0x8c/0x94 [drm]
+
+full log at:
+
+   https://storage.kernelci.org/next/master/next-20230111/arm64/defconfig/gcc-10/lab-broonie/baseline-meson-gxl-s905x-libretech-cc.txt
+
+and links to other logs at:
+
+  https://linux.kernelci.org/test/job/next/branch/master/kernel/next-20230111/plan/baseline/
+
+Today's -next does have that fix in it so it's not fixing whatever the
+original issue was, I suspect it might even be exposing other issues.
+We are however still seeing the stack filling up, even with a GCC 10
+defconfig build.
+
+--OZN5I8D63BKoaTA7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO+q4kACgkQJNaLcl1U
+h9Dk9ggAgiyNXp8FESi8ST8bCJzfxxMvylBdG+Z+1Q2//2usTBZ89jQ94M9CVgZr
+AHSsut/qzDLYBEQQ9VnLXutGV1MEWqwl+K0vILqKKTV2+uwAcbpWOENJwnbGzN7+
+fz8MtV05xlt9M1K7qtQnRb01xgt7zXr0lY1HVOpQyJzInoCypdlp9laV/nsQDYh+
+X5WPh12TqUbzc1LBqHBV1xpOZ8C+NNptsRuyLM3IJex6Am6xcNTnH4OcEL1vAuWp
+ASrh9a7w1rxfYBYVUMJIhdCNHZZmaj+NuB2hAEJNnQ7NNGPeaCYMvpe8S5DE4/Uz
+owLmp0WY+mpnbwzg6IPpQHjNeFiqJA==
+=gr7z
+-----END PGP SIGNATURE-----
+
+--OZN5I8D63BKoaTA7--
+
+
+--===============6353322448183877769==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6353322448183877769==--
+
