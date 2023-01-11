@@ -4,74 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13006C5479D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 18:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D6B6C5479D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 21:14:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2KRtfAVOBx2uuPNbYoI5jCe1EILaqN/PqgmSoU/ABwM=; b=p9KPEnS/ycbdC6
-	S0dZdSUzizpAOC+OEsaM83G21IULSIUa3BkdUM3mRw7tpfLIHr/Wpp3q3cMUoQeMSzsP7aBhZKCX2
-	+zSyhJjLZSog/liPXxe9lcsk32/3W1Q47YV6W2JUCFVrdfT7L/N+o4LqdLc2eq98Rx34csD5Qb9Mc
-	UA3yP1QL3riYEXMLWtZRFptg3NxrnIXv8b0T/Q3YSWZYnaZPBTqZBHglxnG6zHcxsfNCxSCumSStT
-	cfmG/SmOWviA9Hj06J+LETyzIqE5qPo6aW9QNaC+Ipn72D5fRPIxEQ8rxqIxfvvkW0PWd8AjeTH/g
-	NRDkRNo7V7fZp+X74T7Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Pzhd77y7E+nu1u4nNxvUBf+Uc+QvZdbLtQrlqjqP6Vs=; b=Yup/t6K/K5prx4
+	hGYbU5sQVzd0tj0MvpwfnwR0+zHxKfs7wSrwsL11TRxrWdlQ/+l3jbtyTXuDwKORisBRpnbyGTJml
+	DDErc2W3vt55xrprKStA7HPvJEX7l2euuWdqLQLd6nkxAVg2QOwdc/GUzPRmnVECfATypSUvsEn3j
+	PfEFuLGWvlg4mSqxZ4AVa9DC317tPOVOPv+JWlbQt+sDC/NTQlnFKQ6ivZO46KD6vv6rGOphDzaNF
+	qBTljQ1M53JmhbTGGk9fvvvzW2JAX70SdZuQMrX9QdhcDMjOspgFQ6xPyCEXBS1Dm2/QUR/4QGiqj
+	XJjyhuhWcHv5CW+pKH4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFg1Q-00Cepq-Ue; Wed, 11 Jan 2023 18:40:24 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pFiQL-00Cvsw-RD; Wed, 11 Jan 2023 21:14:17 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFg1N-00Ceow-HB; Wed, 11 Jan 2023 18:40:23 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 06543B81CA2;
-	Wed, 11 Jan 2023 18:40:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 92F2BC433EF;
-	Wed, 11 Jan 2023 18:40:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1673462418;
-	bh=ZEmryboLk5mj+5TUuTuCS6naNIRPhdyWhLOCWdpU+D0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=iSyIQ2yyoC3B0GBCDQJdd/AjVnQhPtqHCRIbEkSrrHdUq7RF962QX/zB0ITIfYfSA
-	 3/D81YsFoplAuk07q+rs1ROy+hGaHCuTObSwnYmfwqifrJljRKGWDsoz836weNNaBo
-	 GLiDiGuqi20c1B+V3/gbU/jYToaZNaxVHsO2SJoqO/g+pt2hlJVfs4yRYd7BquKLHK
-	 W8sVu6wNviooo9e/w3eIH25eRm9LQVQdVsIfozC5UJQ6yZtvHf7HBHp7sWyPjsPLkg
-	 drRe9DoPTVOOD655oQch1MEgH31f/rE7CuAFGxVIDiUEFzzr0TtWcqwswEQUzSoFCV
-	 dpRICWt9nlOEw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6DDAFE4D025;
-	Wed, 11 Jan 2023 18:40:18 +0000 (UTC)
+	id 1pFiQI-00Cvqb-Tv; Wed, 11 Jan 2023 21:14:16 +0000
+Received: by mail-ed1-x531.google.com with SMTP id v10so23003605edi.8;
+        Wed, 11 Jan 2023 13:14:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QhmFViFxYeXhPBfMdH2JMXAQJizOCgQmv4Ir0VlAq7k=;
+        b=HyZ869rcIlQC9PV2d6dlnTequSI6pDi7seqna8LRb3bYGHrQezFLCor2NUvqXrJUZQ
+         2BVT0sPQ7LZrPMDCy8t3xIh0NsqdqBM0tFSxR+tGUpguo8Sf+qIEnygLHIERZTZ18mhr
+         eFWZwHML3h1kcbK7E2JnYvc1iv9pYzCIwAs5kN+n4anX82hzxboTCcwlRwhVLakq65H1
+         qD8PUngCAVr82wIcThbnz8RUKvbF+A/EpeeOhQdP4nhoCsfdsUk/nWUJMI5IXiFGBHYX
+         yKiML8Zu6rGagpiOSb/oo0aXPlVKTPGFy3ZyEroZkzLnNz7WDEi0+vn36YcaPPUNtO+m
+         eYpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QhmFViFxYeXhPBfMdH2JMXAQJizOCgQmv4Ir0VlAq7k=;
+        b=ajkKQvLxIykKzL9DSxVk+VPH4F3T3knsoAURXpYUEaghGM62JEFV5SbLK2oFvOHQrG
+         3YsFXvuH5PN+LWN9Xyucn91mtUn5lx+sxmOHkxRxUBpK6tOC9UJvLGZKkKXBcdB00rqC
+         XYTGt1UjnQvuwimgPa1Zw+SJ9EDzoLo+SFU4fANeJyqI3OQnHgsz/liW4b1NEipru5rE
+         Nld9DNpo85/zgmW/b3LyQ48k/QlmA2EqeY7AMrfWMcXLWgZdKWL2Xtm5hpsYz8gjkOW6
+         Q19u5BBQnJ9R9GYu+Pdp/6x5NDIaR9k07I9HAzGgjc/HnJ7feDrVLQ02XdRHem8Z9QUx
+         A4Ng==
+X-Gm-Message-State: AFqh2kqPi5DwybQIPI1pLLen4wdUQl3IcNrioMQEgZw4TWYLdnCNJ6KW
+	0cJE9bBhkCgQlseFPjNNSkBU6ebbEu4=
+X-Google-Smtp-Source: AMrXdXuscaZmFnnTyBmB93xjcQuSnIeoJuHRy82sUhdhqEsMXDlcXIaeoOQrADX1xMXThD9aJrj61g==
+X-Received: by 2002:a05:6402:390b:b0:465:f6a9:cb7b with SMTP id fe11-20020a056402390b00b00465f6a9cb7bmr64883391edb.12.1673471647478;
+        Wed, 11 Jan 2023 13:14:07 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c22-7325-0300-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7325:300::e63])
+        by smtp.googlemail.com with ESMTPSA id l4-20020a056402344400b004822681a671sm6485079edc.37.2023.01.11.13.14.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jan 2023 13:14:06 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	khilman@baylibre.com,
+	neil.armstrong@linaro.org,
+	jbrunet@baylibre.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 0/6] arm64: dts: small .dts fixes
+Date: Wed, 11 Jan 2023 22:13:44 +0100
+Message-Id: <20230111211350.1461860-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 00/11] dt-bindings: first batch of dt-schema conversions
- for Amlogic Meson bindings
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id:  <167346241843.19883.15310921170918729898.git-patchwork-notify@kernel.org>
-Date: Wed, 11 Jan 2023 18:40:18 +0000
-References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, srinivas.kandagatla@linaro.org,
- wim@linux-watchdog.org, linux@roeck-us.net, mchehab@kernel.org,
- a.zummo@towertech.it, alexandre.belloni@bootlin.com,
- daniel.lezcano@linaro.org, tglx@linutronix.de, vkoul@kernel.org,
- kishon@kernel.org, ulf.hansson@linaro.org, bhelgaas@google.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, netdev@vger.kernel.org,
- krzysztof.kozlowski@linaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230111_104021_861133_9AC973A1 
-X-CRM114-Status: UNSURE (   8.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230111_131415_007644_0B1B1A75 
+X-CRM114-Status: GOOD (  10.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,56 +93,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
+This series contains a few .dts fixes which were found during review of
+[0] (which is now the first patch in this series).
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
 
-On Mon, 09 Jan 2023 13:53:25 +0100 you wrote:
-> Batch conversion of the following bindings:
-> - meson_sm.txt
-> - amlogic-efuse.txt
-> - amlogic-meson-mx-efuse.txt
-> - meson-wdt.txt
-> - meson-ir.txt
-> - rtc-meson.txt
-> - amlogic,meson6-timer.txt
-> - meson-gxl-usb2-phy.txt
-> - amlogic,meson-gx.txt
-> - amlogic,meson-pcie.txt
-> - mdio-mux-meson-g12a.txt
-> 
-> [...]
 
-Here is the summary with links:
-  - [v2,01/11] dt-bindings: firmware: convert meson_sm.txt to dt-schema
-    (no matching commit)
-  - [v2,02/11] dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
-    (no matching commit)
-  - [v2,03/11] dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt to dt-schema
-    (no matching commit)
-  - [v2,04/11] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
-    (no matching commit)
-  - [v2,05/11] dt-bindings: media: convert meson-ir.txt to dt-schema
-    (no matching commit)
-  - [v2,06/11] dt-bindings: power: amlogic,meson-gx-pwrc: mark bindings as deprecated
-    (no matching commit)
-  - [v2,07/11] dt-bindings: timer: convert timer/amlogic,meson6-timer.txt to dt-schema
-    (no matching commit)
-  - [v2,08/11] dt-bindings: phy: convert meson-gxl-usb2-phy.txt to dt-schema
-    (no matching commit)
-  - [v2,09/11] dt-bindings: mmc: convert amlogic,meson-gx.txt to dt-schema
-    (no matching commit)
-  - [v2,10/11] dt-bindings: PCI: convert amlogic,meson-pcie.txt to dt-schema
-    (no matching commit)
-  - [v2,11/11] dt-bindings: net: convert mdio-mux-meson-g12a.txt to dt-schema
-    https://git.kernel.org/netdev/net-next/c/82fc0f87cd2c
+[0] https://lore.kernel.org/linux-amlogic/20230110215926.1296650-1-martin.blumenstingl@googlemail.com/
 
-You are awesome, thank you!
+
+Martin Blumenstingl (6):
+  arm64: dts: meson-gxl: jethub-j80: Fix WiFi MAC address node
+  arm64: dts: meson-gxl: jethub-j80: Fix Bluetooth MAC node name
+  arm64: dts: meson-axg: jethub-j1xx: Fix MAC address node names
+  arm64: dts: meson-gx: Fix Ethernet MAC address unit name
+  arm64: dts: meson-g12a: Fix internal Ethernet PHY unit name
+  arm64: dts: meson-gx: Fix the SCPI DVFS node name and unit address
+
+ .../boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi     | 6 +++---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi           | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi                   | 4 ++--
+ .../boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts | 4 ++--
+ 4 files changed, 8 insertions(+), 8 deletions(-)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.39.0
 
 
 _______________________________________________
