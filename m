@@ -4,72 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F05C5479D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 14:53:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28F04C46467
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jan 2023 15:41:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5JefggayPCnrHC+p5m+g61UYpxfMJNQT+A16PDZSgiI=; b=BTrUbVImai5PpD02ggEVBIwHHG
-	VSPzAmI2dlIgkUsKRczLVKr//dzycu5GxHt0ezZOLioM5xELw4RT9eRzpHlYkX9igajO/8vK6T3DO
-	ox4+ip/M6/udoFQhe5DD1FUNIHlyaxPJfDwPba4CPlGwTVbL0JhmD3cidkz6IOVR/oCj9ViiPQjfR
-	17DvhRck9PlwiOO93tMczwfw+LthzPJ/MlTBdWgMokornVbjtFiNRy93wcipIRZR3rL8SXZrzzD5p
-	KvFz3niuMLfrSaNKFsR8Y82qX+V3JYmPS7CvdbBTsLAlAFmdkKkqjQa4uQbZmLd4isND+1jF9Bsjd
-	OcrAMDFw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Rt6bknrAMSL5736dBdiJx1m5gGWNF3RqBBGJM1UTtSI=; b=fQWSSC1fxgO87X
+	oLlVu4oIBRPe8vfgI7a6g6y9vMZxxxJvhz5yVaDJpPm8Xjn1RCxRcMQLFdsMyQ2vphNxHXhIVFw+L
+	FKuKTlzV+5XpbsJ/twkR7qjfC7xBVgiGVHv9uB92GW6Nf0st2FzYeK/sc/iaaDDtwIqZdp7CXDXzh
+	sHyjQvacGRAj2FtZWUGPYDSld1Y/fN/46jEs7FPhpwSh2Dvt7JhPmpFZi9XRwMiDQ1iiaJdvHXxHP
+	lOkaQ50+LUdXYGHUxt6K1d8efxojsJj7D/bChnx5z4KCVPrdWxIe/J6nJjbgPvSBP6XBVlX7rNCZx
+	czHAi54ISbZbPg0EOv8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFcU7-00BsLy-0r; Wed, 11 Jan 2023 14:53:47 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1pFdEP-00C2GO-OS; Wed, 11 Jan 2023 15:41:37 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFcU4-00BsKi-Fh; Wed, 11 Jan 2023 14:53:46 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 2B101B81BF9;
-	Wed, 11 Jan 2023 14:53:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F16C433EF;
-	Wed, 11 Jan 2023 14:53:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1673448821;
-	bh=l7h8mYJZuBhMPhN7LKosUL1aDMOSgDxgaeg5YFv9Bu0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ktliF64bXUV/uUQ51zJ3jzem+3h4Q7TxUMIOfZb1j/6hyoNhdE2flmwqFqrmcAFkR
-	 m2X3D7VNyrPbO8jrGYX9dJgElhxlK0uqRiid/TX18hBF8+mRjQkPPlWcWN1UBmYLac
-	 xjLq3ckuxBLIB/0HuaB6Oq0YwrS384j7HMwXeLfAgNO6hEZrLMsvLZz0IN4Di+5Y4b
-	 x7PjRUnn9q3X9Pc5ERSgidOob5M50C6l1g1J4PttZBzuMkPQRV4pDc2UDk8RvMxMAX
-	 1rAet2ojt3SwUJhgQzXAW4wJ9NhjmA2GifaxYQFk5HSOXDtq8pQAA3Me3ysXo+Vjc6
-	 +bFU5pLaD/ljg==
-Date: Wed, 11 Jan 2023 14:53:35 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Naresh Kamboju <naresh.kamboju@linaro.org>,
-	linux-next <linux-next@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	Linux ARM <linux-arm-kernel@lists.infradead.org>,
-	lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
-	Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Aishwarya TCV <aishwarya.tcv@arm.com>,
-	Anders Roxell <anders.roxell@linaro.org>,
-	Ard Biesheuvel <ardb@kernel.org>, linux-amlogic@lists.infradead.org
-Subject: Re: next-20230110: arm64: defconfig+kselftest config boot failed -
- Unable to handle kernel paging request at virtual address fffffffffffffff8
-Message-ID: <Y77Nb7SJzd6sSB5/@sirena.org.uk>
-References: <CA+G9fYsns3krivbPSjQ1c1EQpVyd-bkW84MaUvqMTQr9c=iEaw@mail.gmail.com>
- <77342621-d67f-4d47-a33b-6f721576bf9d@app.fastmail.com>
- <19423616-79d4-9478-c6df-4f226f87a27f@linaro.org>
- <Y76rijHJ3KAZ6D9C@sirena.org.uk>
+	id 1pFdEJ-00C29x-A8
+	for linux-amlogic@lists.infradead.org; Wed, 11 Jan 2023 15:41:35 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id p3-20020a05600c1d8300b003d9ee5f125bso8173943wms.4
+        for <linux-amlogic@lists.infradead.org>; Wed, 11 Jan 2023 07:41:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fiMQ8+piQ8nAgiaXcZRE7LWfuFHPuL/LU3O06mzJvSM=;
+        b=Iqzt7IQv9xkXzUobpL7j4FC6H3jn7vKZFofcLajEyVyyq/l3TjSTkDPJ7LQPaPPDVt
+         DntP9I7yBTDr40b9uovHZl3T7CjuutDn8i98wswT9A6TAH/6BuhCaihmhopNbBlY+BL0
+         AFmkupIYCR64BDSjc1bNduosHCeaOjzn2kdCg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fiMQ8+piQ8nAgiaXcZRE7LWfuFHPuL/LU3O06mzJvSM=;
+        b=zZKFqUG6TS9WfI/noRqPHbmcB8E/8Grpk8Ytj4IPg20uTCo/GyhvSu+etb4fm6munY
+         4IXOEbkDeD7jBZ1SRB9SydEtXBKb5xOsPaAGAj8i5+SoLq1OOAlaqUNcjEe4AoT27Ev5
+         FRifxK6UXWC1XNt2JVreclNA/wov+tnXzz/Cf3cVFh2py3/vr2+Cs2B092FXraGjnC86
+         Gh7Ed6XVzVtjPNexJczwfWL/TOH8tIDmyWrZAgGCcP/pPGVSxfQzZEthgN89/jGonAtk
+         ED+sHtnR2HNIO9o3AvZXhsI/IbKAvois9lpk9wihY5foMIrv8rqC7sCSGEZFgPU147UQ
+         br7w==
+X-Gm-Message-State: AFqh2krcqtvUKt0F3zo6IqFr+a/Wen4BNWH8CfhEkyqNgutIEtK0Bv54
+	ciJf5QiFtA52SHm8GEMxm5liPQ==
+X-Google-Smtp-Source: AMrXdXu3UeZctJ8MnxWU/fsHLCSabTz80sVbl+2h0N8DpYvBCpXYEeKLv628G0HDyhB9RlzPqXUboQ==
+X-Received: by 2002:a05:600c:4496:b0:3d3:47b7:569e with SMTP id e22-20020a05600c449600b003d347b7569emr51728355wmo.2.1673451684207;
+        Wed, 11 Jan 2023 07:41:24 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b003d9e74dd9b2sm15936149wmq.9.2023.01.11.07.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jan 2023 07:41:23 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Daniel Vetter <daniel.vetter@ffwll.ch>,
+	Daniel Vetter <daniel.vetter@intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Deepak Rawat <drawat.floss@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Emma Anholt <emma@anholt.net>,
+	Helge Deller <deller@gmx.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	linux-hyperv@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: [PATCH 03/11] drm/aperture: Remove primary argument
+Date: Wed, 11 Jan 2023 16:41:04 +0100
+Message-Id: <20230111154112.90575-3-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-In-Reply-To: <Y76rijHJ3KAZ6D9C@sirena.org.uk>
-X-Cookie: I am NOMAD!
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230111_065344_846991_B1852C53 
-X-CRM114-Status: GOOD (  17.72  )
+X-CRM114-CacheID: sfid-20230111_074131_384948_D34990C7 
+X-CRM114-Status: GOOD (  18.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,114 +104,264 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6791240116257212823=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Only really pci devices have a business setting this - it's for
+figuring out whether the legacy vga stuff should be nuked too. And
+with the preceeding two patches those are all using the pci version of
+this.
 
---===============6791240116257212823==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NyJhWMMx1H0jFDH9"
-Content-Disposition: inline
+Which means for all other callers primary == false and we can remove
+it now.
 
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Deepak Rawat <drawat.floss@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Emma Anholt <emma@anholt.net>
+Cc: Helge Deller <deller@gmx.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: linux-hyperv@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: linux-fbdev@vger.kernel.org
+---
+ drivers/gpu/drm/arm/hdlcd_drv.c             |  2 +-
+ drivers/gpu/drm/armada/armada_drv.c         |  2 +-
+ drivers/gpu/drm/drm_aperture.c              | 11 +++--------
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c     |  1 -
+ drivers/gpu/drm/meson/meson_drv.c           |  2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c             |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c |  2 +-
+ drivers/gpu/drm/stm/drv.c                   |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c           |  2 +-
+ drivers/gpu/drm/tegra/drm.c                 |  2 +-
+ drivers/gpu/drm/vc4/vc4_drv.c               |  2 +-
+ include/drm/drm_aperture.h                  |  7 +++----
+ 12 files changed, 15 insertions(+), 22 deletions(-)
 
---NyJhWMMx1H0jFDH9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
+index 7043d1c9ed8f..98267e355918 100644
+--- a/drivers/gpu/drm/arm/hdlcd_drv.c
++++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+@@ -297,7 +297,7 @@ static int hdlcd_drm_bind(struct device *dev)
+ 	 */
+ 	if (hdlcd_read(hdlcd, HDLCD_REG_COMMAND)) {
+ 		hdlcd_write(hdlcd, HDLCD_REG_COMMAND, 0);
+-		drm_aperture_remove_framebuffers(false, &hdlcd_driver);
++		drm_aperture_remove_framebuffers(&hdlcd_driver);
+ 	}
+ 
+ 	drm_mode_config_reset(drm);
+diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+index 0643887800b4..c99ec7078301 100644
+--- a/drivers/gpu/drm/armada/armada_drv.c
++++ b/drivers/gpu/drm/armada/armada_drv.c
+@@ -95,7 +95,7 @@ static int armada_drm_bind(struct device *dev)
+ 	}
+ 
+ 	/* Remove early framebuffers */
+-	ret = drm_aperture_remove_framebuffers(false, &armada_drm_driver);
++	ret = drm_aperture_remove_framebuffers(&armada_drm_driver);
+ 	if (ret) {
+ 		dev_err(dev, "[" DRM_NAME ":%s] can't kick out simple-fb: %d\n",
+ 			__func__, ret);
+diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_aperture.c
+index 3b8fdeeafd53..697cffbfd603 100644
+--- a/drivers/gpu/drm/drm_aperture.c
++++ b/drivers/gpu/drm/drm_aperture.c
+@@ -32,17 +32,13 @@
+  *
+  *	static int remove_conflicting_framebuffers(struct pci_dev *pdev)
+  *	{
+- *		bool primary = false;
+  *		resource_size_t base, size;
+  *		int ret;
+  *
+  *		base = pci_resource_start(pdev, 0);
+  *		size = pci_resource_len(pdev, 0);
+- *	#ifdef CONFIG_X86
+- *		primary = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
+- *	#endif
+  *
+- *		return drm_aperture_remove_conflicting_framebuffers(base, size, primary,
++ *		return drm_aperture_remove_conflicting_framebuffers(base, size,
+  *		                                                    &example_driver);
+  *	}
+  *
+@@ -161,7 +157,6 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
+  * drm_aperture_remove_conflicting_framebuffers - remove existing framebuffers in the given range
+  * @base: the aperture's base address in physical memory
+  * @size: aperture size in bytes
+- * @primary: also kick vga16fb if present
+  * @req_driver: requesting DRM driver
+  *
+  * This function removes graphics device drivers which use the memory range described by
+@@ -171,9 +166,9 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
+  * 0 on success, or a negative errno code otherwise
+  */
+ int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
+-						 bool primary, const struct drm_driver *req_driver)
++						 const struct drm_driver *req_driver)
+ {
+-	return aperture_remove_conflicting_devices(base, size, primary, req_driver->name);
++	return aperture_remove_conflicting_devices(base, size, false, req_driver->name);
+ }
+ EXPORT_SYMBOL(drm_aperture_remove_conflicting_framebuffers);
+ 
+diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+index 427c20ba3404..7e81d58c083f 100644
+--- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
++++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+@@ -74,7 +74,6 @@ static int hyperv_setup_vram(struct hyperv_drm_device *hv,
+ 
+ 	drm_aperture_remove_conflicting_framebuffers(screen_info.lfb_base,
+ 						     screen_info.lfb_size,
+-						     false,
+ 						     &hyperv_driver);
+ 
+ 	hv->fb_size = (unsigned long)hv->mmio_megabytes * 1024 * 1024;
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 79bfe3938d3c..c8d39809d897 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -285,7 +285,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
+ 	 * located anywhere in RAM
+ 	 */
+-	ret = drm_aperture_remove_framebuffers(false, &meson_driver);
++	ret = drm_aperture_remove_framebuffers(&meson_driver);
+ 	if (ret)
+ 		goto free_drm;
+ 
+diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+index 31e1e30cb52a..84dfbccb6912 100644
+--- a/drivers/gpu/drm/msm/msm_fbdev.c
++++ b/drivers/gpu/drm/msm/msm_fbdev.c
+@@ -155,7 +155,7 @@ struct drm_fb_helper *msm_fbdev_init(struct drm_device *dev)
+ 	}
+ 
+ 	/* the fw fb could be anywhere in memory */
+-	ret = drm_aperture_remove_framebuffers(false, dev->driver);
++	ret = drm_aperture_remove_framebuffers(dev->driver);
+ 	if (ret)
+ 		goto fini;
+ 
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index 6e0788d14c10..d97f2edc646b 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -140,7 +140,7 @@ static int rockchip_drm_bind(struct device *dev)
+ 	int ret;
+ 
+ 	/* Remove existing drivers that may own the framebuffer memory. */
+-	ret = drm_aperture_remove_framebuffers(false, &rockchip_drm_driver);
++	ret = drm_aperture_remove_framebuffers(&rockchip_drm_driver);
+ 	if (ret) {
+ 		DRM_DEV_ERROR(dev,
+ 			      "Failed to remove existing framebuffers - %d.\n",
+diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+index 50410bd99dfe..354349c6e085 100644
+--- a/drivers/gpu/drm/stm/drv.c
++++ b/drivers/gpu/drm/stm/drv.c
+@@ -185,7 +185,7 @@ static int stm_drm_platform_probe(struct platform_device *pdev)
+ 
+ 	DRM_DEBUG("%s\n", __func__);
+ 
+-	ret = drm_aperture_remove_framebuffers(false, &drv_driver);
++	ret = drm_aperture_remove_framebuffers(&drv_driver);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4i/sun4i_drv.c
+index cc94efbbf2d4..6367b89cbab1 100644
+--- a/drivers/gpu/drm/sun4i/sun4i_drv.c
++++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
+@@ -98,7 +98,7 @@ static int sun4i_drv_bind(struct device *dev)
+ 		goto cleanup_mode_config;
+ 
+ 	/* Remove early framebuffers (ie. simplefb) */
+-	ret = drm_aperture_remove_framebuffers(false, &sun4i_drv_driver);
++	ret = drm_aperture_remove_framebuffers(&sun4i_drv_driver);
+ 	if (ret)
+ 		goto cleanup_mode_config;
+ 
+diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+index 7bd2e65c2a16..d2ff527cf6d7 100644
+--- a/drivers/gpu/drm/tegra/drm.c
++++ b/drivers/gpu/drm/tegra/drm.c
+@@ -1252,7 +1252,7 @@ static int host1x_drm_probe(struct host1x_device *dev)
+ 
+ 	drm_mode_config_reset(drm);
+ 
+-	err = drm_aperture_remove_framebuffers(false, &tegra_drm_driver);
++	err = drm_aperture_remove_framebuffers(&tegra_drm_driver);
+ 	if (err < 0)
+ 		goto hub;
+ 
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+index 0ccaee57fe9a..0a9e922636b1 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.c
++++ b/drivers/gpu/drm/vc4/vc4_drv.c
+@@ -350,7 +350,7 @@ static int vc4_drm_bind(struct device *dev)
+ 			return -EPROBE_DEFER;
+ 	}
+ 
+-	ret = drm_aperture_remove_framebuffers(false, driver);
++	ret = drm_aperture_remove_framebuffers(driver);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h
+index 7096703c3949..cbe33b49fd5d 100644
+--- a/include/drm/drm_aperture.h
++++ b/include/drm/drm_aperture.h
+@@ -13,14 +13,13 @@ int devm_aperture_acquire_from_firmware(struct drm_device *dev, resource_size_t
+ 					resource_size_t size);
+ 
+ int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
+-						 bool primary, const struct drm_driver *req_driver);
++						 const struct drm_driver *req_driver);
+ 
+ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
+ 						     const struct drm_driver *req_driver);
+ 
+ /**
+  * drm_aperture_remove_framebuffers - remove all existing framebuffers
+- * @primary: also kick vga16fb if present
+  * @req_driver: requesting DRM driver
+  *
+  * This function removes all graphics device drivers. Use this function on systems
+@@ -30,9 +29,9 @@ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
+  * 0 on success, or a negative errno code otherwise
+  */
+ static inline int
+-drm_aperture_remove_framebuffers(bool primary, const struct drm_driver *req_driver)
++drm_aperture_remove_framebuffers(const struct drm_driver *req_driver)
+ {
+-	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1, primary,
++	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1,
+ 							    req_driver);
+ }
+ 
+-- 
+2.39.0
 
-On Wed, Jan 11, 2023 at 12:29:04PM +0000, Mark Brown wrote:
-
-> We're seeing issues in all configs on meson-gxl-s905x-libretech-cc
-> today, not just with the kselftest fragment.  The initial failuire seems
-> to be:
-
-> [   17.337253] WARNING: CPU: 3 PID: 123 at drivers/gpu/drm/drm_bridge.c:1257 drm_bridge_hpd_enable+0x8c/0x94 [drm]
-
-> full log at:
-
->    https://storage.kernelci.org/next/master/next-20230111/arm64/defconfig/gcc-10/lab-broonie/baseline-meson-gxl-s905x-libretech-cc.txt
-
-> and links to other logs at:
-
->   https://linux.kernelci.org/test/job/next/branch/master/kernel/next-20230111/plan/baseline/
-
-> Today's -next does have that fix in it so it's not fixing whatever the
-> original issue was, I suspect it might even be exposing other issues.
-> We are however still seeing the stack filling up, even with a GCC 10
-> defconfig build.
-
-A bisect landed on 0e4dcffd331fa7d ("drm/panel: raspberrypi-touchscreen:
-Convert to i2c's .probe_new()") which is obviously not credible.  I
-suspect that what's happening here is that the fix you applied is making
-an issue somewhere else visible in defconfig and is as a result
-confusing the bisect.  Ard mentioned an issue with non-EFI biits
-introduced by EFI changes here:
-
-https://lore.kernel.org/linux-arm-kernel/CAMj1kXGFa=Zriyp_mS7bbQr0wiwikt0ObjOKUSNGpJtFvLmnkg@mail.gmail.com/
-
-which seems like a plausible culprit,
-
-bisect log:
-
-git bisect start
-# bad: [c9e9cdd8bdcc3e1ea330d49ea587ec71884dd0f5] Add linux-next specific files for 20230111
-git bisect bad c9e9cdd8bdcc3e1ea330d49ea587ec71884dd0f5
-# good: [7dd4b804e08041ff56c88bdd8da742d14b17ed25] Merge tag 'nfsd-6.2-3' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
-git bisect good 7dd4b804e08041ff56c88bdd8da742d14b17ed25
-# good: [ecf8827ab7dd5731813f90146d9936165b170f32] Merge branch 'drm-next' of git://git.freedesktop.org/git/drm/drm.git
-git bisect good ecf8827ab7dd5731813f90146d9936165b170f32
-# bad: [64208e4940ede76709f1ff5b01d1b78efc2951cf] Merge branch 'rcu/next' of git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git
-git bisect bad 64208e4940ede76709f1ff5b01d1b78efc2951cf
-# bad: [1077dd31ba60b39a231560beec24b97eadf8bd8f] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
-git bisect bad 1077dd31ba60b39a231560beec24b97eadf8bd8f
-# bad: [1577a2c2aad943fbc6a5e959ae83c4ef8bc3d4de] Merge branch 'drm-next' of https://gitlab.freedesktop.org/agd5f/linux
-git bisect bad 1577a2c2aad943fbc6a5e959ae83c4ef8bc3d4de
-# good: [ec787deb2ddffc6cd6afe0e2fbbbd490ddc383ed] drm/amd: Use `amdgpu_ucode_*` helpers for GFX9
-git bisect good ec787deb2ddffc6cd6afe0e2fbbbd490ddc383ed
-# bad: [0e4dcffd331fa7d2a6ae628b51a7f418dfa90367] drm/panel: raspberrypi-touchscreen: Convert to i2c's .probe_new()
-git bisect bad 0e4dcffd331fa7d2a6ae628b51a7f418dfa90367
-# good: [c702545e19ebb6113d607f2a30ba2ee6cf881a3a] drm/gud: use new debugfs device-centered functions
-git bisect good c702545e19ebb6113d607f2a30ba2ee6cf881a3a
-# good: [977374cf481d3bea916b2775e6ecc682b9689550] drm/vc4: plane: Add 3:3:2 and 4:4:4:4 RGB/RGBX/RGBA formats
-git bisect good 977374cf481d3bea916b2775e6ecc682b9689550
-# good: [67d0a30128c9f644595dfe67ac0fb941a716a6c9] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-git bisect good 67d0a30128c9f644595dfe67ac0fb941a716a6c9
-# good: [29ef7605e2fd44038a70df0f46b7821464081b22] drm/i2c/sil164: Convert to i2c's .probe_new()
-git bisect good 29ef7605e2fd44038a70df0f46b7821464081b22
-# good: [307259952625798fbea89b04aebbc5106ff18c68] drm/i2c/tda998x: Convert to i2c's .probe_new()
-git bisect good 307259952625798fbea89b04aebbc5106ff18c68
-# good: [446757576a646eba6fae085396bdfbd74245ff28] drm/panel: olimex-lcd-olinuxino: Convert to i2c's .probe_new()
-git bisect good 446757576a646eba6fae085396bdfbd74245ff28
-# first bad commit: [0e4dcffd331fa7d2a6ae628b51a7f418dfa90367] drm/panel: raspberrypi-touchscreen: Convert to i2c's .probe_new()
-
---NyJhWMMx1H0jFDH9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO+zW4ACgkQJNaLcl1U
-h9AHxwf7BIatpjLOKRRwSZ6vH/lCXj5Af5JfwhejQkMbMaJQjABJCa1CkiRZ3sPX
-J3gj8vQg98ni2fWKtuCgQMH+9Zz342rciBN0A82EON8QDeRAlyDgnrapkvDxxEvD
-yEHbC+Uc7jer377/QGxkzbYYuoY6H74OAFjnM7wYwuy3o8e/SKZgUgxk/H9+VWzP
-f/VBTWJNmU9gFRoh/SnHgDu90V4Aa6HzkNQyaDvlK33fMpHO+4tuRKDPHWg2vQyJ
-h5CthYdC5GnTAvwh6Kjhasv7GBuqSp0Cc9Xv4DPGb8sYv6meszd2gCMb6hczoxsJ
-XNR+frbS/QAt7PFbucr+amCmHxgodA==
-=l6iC
------END PGP SIGNATURE-----
-
---NyJhWMMx1H0jFDH9--
-
-
---===============6791240116257212823==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6791240116257212823==--
-
