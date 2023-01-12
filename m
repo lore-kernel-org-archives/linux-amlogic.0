@@ -4,85 +4,204 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C971CC46467
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 08:42:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 793DCC678D6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 08:43:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=l21lwFts/7OqZGTl0U+5H09+eP62szWMdSrlXFxDess=; b=UrC3nplFuGT5S5kO2aygOanPkW
-	VchCRv/wtzp4OzU60D1iTg+YZKA2Xi7Y5I6JCDJ7v11b3UaJHMRLa6SIc5dQW4Ql11xHrVPacnlED
-	mgTrFz5+CW+1+HsaVD5KR9uKbLnt3K4h9nuQgex9R4xdYqG9cmQWDraA6MfCQqM+AA67BpaqD8V1/
-	szbiy46UQwlOFgHjgbZXpLIlBAvb1A27DEcN/C44BDfAWjlwx5vA43GXSEPe2+dpBOtA8647dsND7
-	n0lOFRldOq+GvSRJj6spv+2wTn3NVd6pzzkE77p0vtCE5dANAvqWiSZebrqLtPqazWH7SL8DW/ZU9
-	ApB1KJ3g==;
+	bh=KF/EydoYQJFibAsmk90grUCF7hE6veXP8c92SYQoaBc=; b=OJejgICD8gMMUgXN/i2tnnwxrQ
+	a9TIqZXv18QJdV2ih2QXLKBh2c34Dav0fdDvr/bRHa2HpGAwFMxOCxIS2wMsNlF3kUQw7dxjwQeWc
+	9AKkQxHKCFLIcBXPyX/3U2la8wrJpk7r2t5n6WV0nZnpS4rr3d9KI8giYXJFusksVKiHytdrCMXVS
+	P6rpY7Bzw9/eiWXSOWlrgQ0/+uKUGrYwHzqGT9wgH5lVBxM/87GNcFP0iHZ4iBNOo/iWD+dy1DMQu
+	5MbnxdOzJbXL0Pora5qPRPJJMdEYaa5nqT9RZwJ0NZSQ1iV7ZuE8kFFXOLi1jY7Bn62ZpdwyEsOba
+	nYjz5f5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHL4Q-009CXo-U3; Mon, 16 Jan 2023 08:42:22 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1pHL4z-009CkD-E9; Mon, 16 Jan 2023 08:42:57 +0000
+Received: from mail-mw2nam12on2066.outbound.protection.outlook.com ([40.107.244.66] helo=NAM12-MW2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHL4G-009CTQ-55
-	for linux-amlogic@lists.infradead.org; Mon, 16 Jan 2023 08:42:13 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so1939360wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 16 Jan 2023 00:42:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gy8r/XGV5pMj1f/4dlMw9jlqDPonmABteOtgzy9gqww=;
-        b=NHF3i33RtqpINbCSpEn0Gs8D19DH9R3yMZHJPF0AvAuU/6Cb7q40TdudgGCnnGCG61
-         Q55C2/BeVj/MpDywV+yT3/cPF/6+Eagzt4dn5bDU1Lgzj3l64uySK5DcYjEa3WhZ2hly
-         J2QOWqFapRJfLeXCHOv0IuHVZCpRCWlm9iyxDky/zTXgDCla4aFGTuMfrisc9GqHWEhl
-         QhJQF4fx4pZS3tBNRf60/ZFalTu6KdcQop+AIasb5b6zfvmiZnM1YB+8/zpbCvBv45rm
-         FpM8Po/Hld3jRclo6tMzzOiNLPPHrObjoe/ASNZdUycKgt7h4+qOpjQOg5imgsBGl6XN
-         dYhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gy8r/XGV5pMj1f/4dlMw9jlqDPonmABteOtgzy9gqww=;
-        b=rfr43+a6j+Revc+sJQiTUn4pLXFewbbuSbH+57kDCJM4VlP3O8tyYVX1nsJ2rzLYeg
-         2b5N/CF3n4/NKDqS3bqhv+E0Hdr337pIGV00kqK8K0FrRTunonVNRYfF4JZo2hOYFI6n
-         caZUu5LKGVBAVNW+Ve+aM21x3QlcdYCuaa4fCwx9BW1JHKqvgn3k/9YzJptGeiCQtstu
-         lxHyz81x55ejyPqUT+i61HpyCmH3eV0tk/hmjpSJ4x6REA+t5ePvPKPAn99Fz6ybkxc8
-         yxzjmI0IEAj7Bb6q/T64fI1VRYIC+BQCrPoG4MEAX+vDWUtO16o/8+6grl8vl0EYspQ5
-         7htg==
-X-Gm-Message-State: AFqh2kpk28KwuEh8pEDDqsppAf5Eyj/a0185+Mq7DKGthQaMY26kTC2m
-	efSMvyPVEBIo1GhD3r5EBjHmIg==
-X-Google-Smtp-Source: AMrXdXvAZ+hk5ddhA7tn66k45ix5+nWhGUYqykFtKnYu5cdQ6ATBLtnGx2FCWbj4navEhF7QBDMW4Q==
-X-Received: by 2002:a05:600c:1c21:b0:3d2:2043:9cb7 with SMTP id j33-20020a05600c1c2100b003d220439cb7mr64768652wms.5.1673858528481;
-        Mon, 16 Jan 2023 00:42:08 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id i18-20020a1c5412000000b003db01178b62sm645802wmb.40.2023.01.16.00.42.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 00:42:08 -0800 (PST)
-Message-ID: <1a0431ab-0e98-605b-25d9-60b052c399fa@linaro.org>
-Date: Mon, 16 Jan 2023 09:42:07 +0100
-MIME-Version: 1.0
+	id 1pFzYg-00FfkP-Bc; Thu, 12 Jan 2023 15:32:04 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hUejrCYtQMknSTe3GlwcGOgTw7j3lgsrdhRckBC/pIcBAXccMefDBf9HhAyJgspWk0GCpbP2RdkZJyx6CzCSJAY2kNE4A2FbjIAPVp/Rhhl+jQbA4TfwN+YZvfan+thws6PQIk+NF2QDnqcmuP7Ty+a2RcAeJ0P6XgARV4Fk8R+oQf7bOj3CScHPwBZFon+tIH4NPhcKkxA92gAZoKiNmPxIQu4gtQR3aYmanhmq6b0oPhlPGSBFPfbADFYmYYI/orBUkPwuw14NvGIIAcxxzCwBHjMvI5HdZojvW/wQA2OC6X+nmIZdL9gHU2f97YaKOgf0GBQC4p11D8jaIIMVmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3ypVkPRINook+yraif37jJjjkLxdxcUoPnMic3Y5bsI=;
+ b=EUf5qk0F9H6Bph94QXHGptvcoOZawL9o0gwXDQEzy/mDD8ysHket/DWbI1raCbO4ayoTrUcQi7WdAb7sun+wWoxBA6lMGiILCd3v81HX2wRc2QHDgBCyXPkNaTyaP8xk1l7Bn92xp+5BVDS7oikIiprjfWE5+URhYr8P5LRQr5nxggxYpLLrBQReWnRhHp9O92xdULicuh4PCspzOeH5hj3Cg2RIhN84qnfTnjrwqA3bfM5GxjT22l8U1PR4zdjQCmOXivw9kuw0yaR0K/z+JukklUJHYznC5MAY7KAlJRit0f4TAblRnCGP9D+33SEYeK/17IdPXd7VtOBkLo+3CQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3ypVkPRINook+yraif37jJjjkLxdxcUoPnMic3Y5bsI=;
+ b=Wd/89GCB0taZXs9L9Q6N/sJ2XE9ouATh1yvD/J4gIO/osU9Si1Jfn52tzSyvMQ0JX39gLso8E9eqHU+8qU1e5uvuERhpwGgeut8raUjhZyY79FNo6Vr2lDsNhDRKcyjhmDfEh7HXwtgNDZcGfHqhsMpIDHRcYTqzYNdOGazcxQs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5229.namprd12.prod.outlook.com (2603:10b6:5:398::12)
+ by IA1PR12MB6211.namprd12.prod.outlook.com (2603:10b6:208:3e5::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
+ 2023 15:31:52 +0000
+Received: from DM4PR12MB5229.namprd12.prod.outlook.com
+ ([fe80::8200:4042:8db4:63d7]) by DM4PR12MB5229.namprd12.prod.outlook.com
+ ([fe80::8200:4042:8db4:63d7%3]) with mapi id 15.20.6002.013; Thu, 12 Jan 2023
+ 15:31:52 +0000
+Message-ID: <7b7cd84a-e9ff-b2c1-4bf0-0ed05cca76bd@amd.com>
+Date: Thu, 12 Jan 2023 09:31:43 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH resend] MAINTAINERS: add PHY-related files to Amlogic SoC
- file list
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <38f87b22-d9a8-b8d8-ba7b-a2c2d7311b04@gmail.com>
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 02/23] arm64: dts: Update cache properties for amd
 Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <38f87b22-d9a8-b8d8-ba7b-a2c2d7311b04@gmail.com>
+To: Pierre Gondois <pierre.gondois@arm.com>, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+ Antoine Tenart <atenart@kernel.org>,
+ Brijesh Singh <brijeshkumar.singh@amd.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Khuong Dinh <khuong@os.amperecomputing.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Chester Lin <clin@suse.com>, =?UTF-8?Q?Andreas_F=c3=a4rber?=
+ <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Wei Xu <xuwei5@hisilicon.com>,
+ Chanho Min <chanho.min@lge.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Viorel Suman <viorel.suman@nxp.com>,
+ Abel Vesa <abelvesa@kernel.org>, Zhou Peng <eagle.zhou@nxp.com>,
+ Shenwei Wang <shenwei.wang@nxp.com>, Ming Qian <ming.qian@nxp.com>,
+ Peng Fan <peng.fan@nxp.com>, Tim Harvey <tharvey@gateworks.com>,
+ Adam Ford <aford173@gmail.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Richard Zhu <hongxing.zhu@nxp.com>, Li Jun <jun.li@nxp.com>,
+ Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+ Joakim Zhang <qiangqing.zhang@nxp.com>, Marek Vasut <marex@denx.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Martin Kepplinger <martink@posteo.de>, David Heidelberg <david@ixit.cz>,
+ Liu Ying <victor.liu@nxp.com>,
+ Oliver Graute <oliver.graute@kococonnector.com>,
+ Dong Aisheng <aisheng.dong@nxp.com>, Wei Fang <wei.fang@nxp.com>,
+ Clark Wang <xiaoning.wang@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Vadym Kochan <vadym.kochan@plvision.eu>, Sameer Pujar <spujar@nvidia.com>,
+ Prathamesh Shete <pshete@nvidia.com>, Mikko Perttunen
+ <mperttunen@nvidia.com>, Akhil R <akhilrajeev@nvidia.com>,
+ Sumit Gupta <sumitg@nvidia.com>, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+ Vidya Sagar <vidyas@nvidia.com>, Ashish Mhetre <amhetre@nvidia.com>,
+ Johan Jonker <jbx6244@gmail.com>,
+ Christopher Obbard <chris.obbard@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Aswani Reddy <aswani.reddy@samsung.com>,
+ Shashank Prashar <s.prashar@samsung.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-realtek-soc@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-3-pierre.gondois@arm.com>
+From: Tom Lendacky <thomas.lendacky@amd.com>
+In-Reply-To: <20221107155825.1644604-3-pierre.gondois@arm.com>
+X-ClientProxiedBy: CH0PR13CA0005.namprd13.prod.outlook.com
+ (2603:10b6:610:b1::10) To DM4PR12MB5229.namprd12.prod.outlook.com
+ (2603:10b6:5:398::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5229:EE_|IA1PR12MB6211:EE_
+X-MS-Office365-Filtering-Correlation-Id: a062c05d-9055-44e5-402e-08daf4b220e0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	8TUH8PsIFKnGxIVf0IAQD6kX28An3Y3E4vLgq7qyZZZHWKQCZ5s6QgaeBmo7vqHsEC3SRvcTfb+gDNtUK2Ko7Hyp7Yg5XIjzzlFzXqLBAgXt0snPUPYaxpSQCytm66e5UqhxWKC+TU1crs1HXZZ5oSpLxFVwY3Br9DUtf10sefl/hN9NoRH41nGjnKizTsQH+U3SDDNW7QgZfIlSXJkOqBPYRJfW48dQyWfNM+yow48r1vW9GQM1FWW1L1JUIsiAizx6v98ulKHj14vwRLRIdtMJt/bT7nIZFwV2K2ZKRj40JRCl29HeFFNl/z8nWHvMbCR/aSEi8Xf4EgCPwk2fBokUsfd0cnpvVWB2vlaq7X/nkyDT/cIEOH1Na7KV68cCqB8xsIZ3jVT41tc1nBuMT3SNfpTD3RE8jWXBdCJooT8izwF3qLbnk2Fzaca1t6QdY1WEvbpocnzcHXjDsMN8vvwojdcs4UoWSDngtX+IWMvZwNP6ono6+iJf+kUAjqnPtBhun2b7idwpH4cYgP9WFqMYmftugqB5r39brHpnZMQx+W9ByFd+ky5rZ8JRHKzs/EcgZK+08jkiyEkyIADW2EfiXtyWnk4OtABuATeA4LDzFf9pqjPklsJC/VwTzDv3ImUIi0xzphkUW5rpq7KYd1qvutD5PhDiWMVF5NJT4L+egWeyhThg0ojkuem+kbA0Dgq1cgS0t/7bodxTvYPfuPK7ZcCBGgxC2+wtFEDsaJQ=
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5229.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(396003)(136003)(376002)(346002)(451199015)(53546011)(2906002)(15650500001)(6506007)(6486002)(6666004)(26005)(478600001)(6512007)(186003)(31686004)(316002)(54906003)(4326008)(36756003)(8676002)(66946007)(7406005)(66476007)(2616005)(66556008)(41300700001)(8936002)(83380400001)(5660300002)(38100700002)(7416002)(7276002)(7366002)(7336002)(86362001)(31696002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?Y3VOZGFsM3V0OCs4VjcyZERYUWZtZ0NORndQL1k0MzlWRzY2dlJnQ0NWc2ht?=
+ =?utf-8?B?VHQ5L1V5YU1VUnZFRC8wRTB3N0h5L1BtaUJXc28yZGtzQlk2NWtNaUNEQ0Z1?=
+ =?utf-8?B?R2ZHa1Z0aUl4eE5Yd1VBeWgxb2plVGoySU1BN1FIVndZMnpZei9kQit4bEwz?=
+ =?utf-8?B?Z1RhLzZYejhGSFVueVd5a0pwVzBOTk1YNDZQR3RCcnc2VW9MTGRFdjh3V01y?=
+ =?utf-8?B?cFBEeW0vT0REVG5UM2I2U2N4ZHZPNzhqNjFaaU1iRkhZRXpZNWh6em9VZVM2?=
+ =?utf-8?B?elhlTTJ2QUI3end1SmVtN2EyUFVQKytDLzdxRjQ0eWI2SC9IUXMwUk1idEcz?=
+ =?utf-8?B?d2F5RmpTNGV5Y28yMmtRNDE4N2NXYzZHNGR3UVd1K29sN0Vjc3dFRFhlZHpB?=
+ =?utf-8?B?ZUpJc1JINUtoQW82cVUzOGZLRjRHdllxQWtiMTdjc09GcXNPT2xVUVVSUTY4?=
+ =?utf-8?B?bmxLN3FKZ1hBdUNzTERHL0RiNWpPS2xIODJ5VXE0eXBqRkwzaGJhdTNxd01s?=
+ =?utf-8?B?VE1nKzVwTElVUHJmOXY3YjZRSVZXcjc3a2xjekRRWWM5ZWUxMlNQSVVkNzAx?=
+ =?utf-8?B?TmdQQm9zS3lRelF4ajBOYlRvVk02Q25JYmNoSWREVm5SYVk3aTFDbnBzMk1n?=
+ =?utf-8?B?a0luVEFnVmRWaFhmWE96OS9NY3R6R2ErZ21FWlRZL1dlTE1uU1V6bUplSlpT?=
+ =?utf-8?B?YjZ5dC93NHVlZUJvMjJiejg0THhLWDRXeThxbXFtVGo4dnU4c3dvLzJ0ZGN4?=
+ =?utf-8?B?SEd0R1ZpbmFPMWJFb055S0hvYzRzeWNHSDN1YkdqMVJBZnZwYngwR2RCZlI2?=
+ =?utf-8?B?QTBzU2pXWDIvZ1VLaFJhd1hmQk9POTk0OUpGYndXMWtpVU9NNUpBNVhVOE84?=
+ =?utf-8?B?cWY2U2VRb3pZdmJyTmZoRW1zbkpjaGNjVUhGK20zUDVDQUxUWHNKM2hRUE14?=
+ =?utf-8?B?WFFqaHhwdHRZZVlSVVRjVUd3TDhXOEdVV2ZkazlrU0JtZC9zQzhRWk1SMFVF?=
+ =?utf-8?B?T3dXZURyVGtiaVBONmsvYjdQWUFGMjVFNGErUzg3S1IzbFhGdVUvK2xPZFRK?=
+ =?utf-8?B?dyt1b2xBTXBhZU1QSG1CR04xQkNlUFFiQW1ianE0TWF3WDZMM1ZOS2o2MTE2?=
+ =?utf-8?B?Sk92clo3TnY1YnNqMDJXNjkzY1d2S2hFbjlXOU9UN2tRVTJwTWhiSDJuTFFt?=
+ =?utf-8?B?K3d1S3hLTjcwSGlWaDRkN1FzZDN6SXZ1Y2VBT1NlKzQ2clBlMnFxVWFkbHB3?=
+ =?utf-8?B?TURuaG4yY1RxUmZvR0tEQlp3VUwwZnVrdEVOR1FqNEVycmtndjk2VTAzK0o0?=
+ =?utf-8?B?MHVPZVVFanNMSy83SnRIM2toUmhURzFaT3A1RFF5SDB2Rm1tYlhPazJHQkJj?=
+ =?utf-8?B?VTN0MmNXOEhzajg3N09ETkpZTFY5RHoxWkF2bnkxYWFmNEpIUXhTbkJJOTRG?=
+ =?utf-8?B?ZEVOMU9BTk51QjVLRDRvZHYwbW9DN05zeTlhTlNKU3I5VkUrdWpReldxbCs0?=
+ =?utf-8?B?dlhBU1M4VjgrYTN1cnl5NUpyVDRRZGhkRG1vZEsxUDZjR2FCckRrQkgxNks0?=
+ =?utf-8?B?NkRvM1FVbnVQSHNxRUU0czV0enNoaTliZ0JjZFVqYlhsMTJXZ1NwV0hCZmM4?=
+ =?utf-8?B?bjZDbDBXZmZpL2xwZXN3Wi9qOFFic2p3MnY4UE4zcmdlTWtBcDlLWmNwR251?=
+ =?utf-8?B?Nm9wVktvZGJnR2ZQSk5jNjVhb3hHQmdxa3NXeHovTUF4NVBxSkJjaTVlK2RY?=
+ =?utf-8?B?QURxSGk3U3pyWWVXTzVZMktIdXB6a3FCNTNCclAwUThzcmhMd1FmZWFOcFkv?=
+ =?utf-8?B?L3g1RTg2OEpUa0Z6SGJlekhSbDZwWjF6UFlnWU1vRnhLR254VWZlZmZxSEtN?=
+ =?utf-8?B?RWVFcnc1VWpGdU14bWRRTGNCSGNoV2szQkZZN3BBektrVkszeW9ySTBmYjZz?=
+ =?utf-8?B?TnBFV1Bnakk2TkZhcjhweWFRK0tyWi9zNEhuWHlmUDBWUW1TYjlkRjVlaXBT?=
+ =?utf-8?B?bVZrbGdZSzF3UVZIWC83OHVlUHYrWU5VcGgwR1hNL3pFTXJZSWMvaTF4b1hW?=
+ =?utf-8?B?L2NSWUF1OTRsNlZrUU1RMzFRenMzcVhLZkFyRU11R3JrTjFpS0hYL1oxZ1J6?=
+ =?utf-8?Q?B5ax5vAtZ862qfhM6klYHG0aD?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a062c05d-9055-44e5-402e-08daf4b220e0
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5229.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 15:31:52.2863
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7t/eEDE3kMlj1iHqlQjkoQmkkqShsVxCkGHmhayI6j7xw63i+GnEkqsmI7aUCgFaoBdqh213mqUwtvEhO1vyxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6211
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230116_004212_201171_A57AA345 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20230112_073202_474088_042511D8 
+X-CRM114-Status: GOOD (  16.75  )
+X-Mailman-Approved-At: Mon, 16 Jan 2023 00:42:56 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,40 +213,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/01/2023 15:26, Heiner Kallweit wrote:
-> Add PHY-related files to the Amlogic SoC file list.
+On 11/7/22 09:56, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> The 'cache-unified' property should be present if one of the
+> properties for unified cache is present ('cache-size', ...).
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Update the Device Trees accordingly.
+> 
+> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+
+Acked-by: Tom Lendacky <thomas.lendacky@amd.com>
+
 > ---
->   MAINTAINERS | 2 ++
->   1 file changed, 2 insertions(+)
+>   arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi | 9 +++++++++
+>   1 file changed, 9 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 1c83c26e9..428d88195 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1909,10 +1909,12 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->   L:	linux-amlogic@lists.infradead.org
->   S:	Maintained
->   W:	http://linux-meson.com/
-> +F:	Documentation/devicetree/bindings/phy/amlogic*
->   F:	arch/arm/boot/dts/meson*
->   F:	arch/arm/mach-meson/
->   F:	arch/arm64/boot/dts/amlogic/
->   F:	drivers/mmc/host/meson*
-> +F:	drivers/phy/amlogic/
->   F:	drivers/pinctrl/meson/
->   F:	drivers/rtc/rtc-meson*
->   F:	drivers/soc/amlogic/
-
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> diff --git a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+> index 93688a0b6820..9f2d983e082d 100644
+> --- a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+> +++ b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+> @@ -163,38 +163,47 @@ CPU7: cpu@301 {
+>   	};
+>   
+>   	L2_0: l2-cache0 {
+> +		compatible = "cache";
+>   		cache-size = <0x100000>;
+>   		cache-line-size = <64>;
+>   		cache-sets = <1024>;
+>   		cache-unified;
+> +		cache-level = <2>;
+>   		next-level-cache = <&L3>;
+>   	};
+>   
+>   	L2_1: l2-cache1 {
+> +		compatible = "cache";
+>   		cache-size = <0x100000>;
+>   		cache-line-size = <64>;
+>   		cache-sets = <1024>;
+>   		cache-unified;
+> +		cache-level = <2>;
+>   		next-level-cache = <&L3>;
+>   	};
+>   
+>   	L2_2: l2-cache2 {
+> +		compatible = "cache";
+>   		cache-size = <0x100000>;
+>   		cache-line-size = <64>;
+>   		cache-sets = <1024>;
+>   		cache-unified;
+> +		cache-level = <2>;
+>   		next-level-cache = <&L3>;
+>   	};
+>   
+>   	L2_3: l2-cache3 {
+> +		compatible = "cache";
+>   		cache-size = <0x100000>;
+>   		cache-line-size = <64>;
+>   		cache-sets = <1024>;
+>   		cache-unified;
+> +		cache-level = <2>;
+>   		next-level-cache = <&L3>;
+>   	};
+>   
+>   	L3: l3-cache {
+> +		compatible = "cache";
+>   		cache-level = <3>;
+>   		cache-size = <0x800000>;
+>   		cache-line-size = <64>;
 
 _______________________________________________
 linux-amlogic mailing list
