@@ -4,76 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFFF1C54EBE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Jan 2023 14:40:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B6DC54EBD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Jan 2023 18:30:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3dJ1Uigsp6PClnE5k+HWUS1VGreqQaoEYt8rlBQvjU8=; b=X/g5sWmOBMgn9e
-	7Tl/8r9OpLZtohAhJ9noxUAAdxEOOZbSm+TXGav6sSKfVPWtNikjK0tnKKdysJ7Ragz6pwfOMsWEv
-	8e7ZyCHP4OUSjmZn1xHSSuokZLCECSezTq3nUS6Mi++S/clH5yki/7ShDJiwjqqi/LsxcxMkwL2Kk
-	udUoQRdX7bb1jYHdRJRZ/+Vw8eK7NtuDmdyPGn+VjUDgJKPfBmckhC14PIxCYgLNUFv4D/2ZTCnx2
-	RpBZTR9QpGXUQt5qfnjz2QRNyAEUh4nJfKgVD952KwQSvtj0kYDHINVmfo96458fQrrZZjPEdTuwX
-	dPtlb0C71smHdqspgohQ==;
+	List-Owner; bh=Vfyu3ZAjA+ssJ3++HoH94L7NyUdAsS81H8YMeV1KnSI=; b=YlNwjlHJdwMhof
+	piapp8Y9mHwNnCksUmlQSH2WBA/NYgGxkdrzDzWEgwjO4IEEXe+jnD5/9wluBceDGrSVJVIGQfPmn
+	vBScRJd711Q9Top5JFSqFvJomX6mBDWgKzebvBPBftLC5/oWAYxYId68knG862JKqzbV4HpWKvXLS
+	meYRkOY9q2s4fi8lJVX97iQZKIoXmPijwrkZN8Us/kmg/A4McAH4lxL8K8ze3mR3Zfizja9KYdXGv
+	CwQQ7gJjfe9Zco9eDpBBW10r0LrmuA83tfByFPYF3guz1WrkjcQbt5aBuGI0qWc60f+hCxqPEBueo
+	DAmuq5BSEaS31vsMyqmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGLDm-0030BA-9z; Fri, 13 Jan 2023 14:39:54 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1pGOow-0043EP-QC; Fri, 13 Jan 2023 18:30:30 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGLCS-002zVd-0T
-	for linux-amlogic@lists.infradead.org; Fri, 13 Jan 2023 14:38:36 +0000
-Received: by mail-wr1-x434.google.com with SMTP id b5so101004wrn.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 13 Jan 2023 06:38:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=2ejaSnB1iatZ6NYDeZgR8Ys8saXOivDL9OIRxuhbO4g=;
-        b=1FED3wJOiUsiU/4XBOp+Iew/qsd5F05j1dL4ieFLIRSoAOucms+VIRY2TkWLYK1/Mo
-         C000/abxcNXlJFgYoGeAnOw0EwHqZFJsXd/o7NxdpZiGFQ2D83/R2vP1Iwy/J7zyAQZO
-         /Bz7mwDgzMDdXXTn2BoE2+7ZtHpBsoFWonZ+c4ujuSzkiwdZUeSCnzDtobGpxyGIryFs
-         QdWiQUOxIby/1P9JP7YAGrjvzaqWTLxXSThxMGjV4e/u2y9bqo0FywWIdYhe7bRo3/+v
-         lkkwmp/VNJumPVcTUnlF651Rqb6QGfB8vQlHVhlJYaWKl8KOqfJt5TMKaunqMKYKXYu1
-         AGqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2ejaSnB1iatZ6NYDeZgR8Ys8saXOivDL9OIRxuhbO4g=;
-        b=s5kdnWw96+8WH6g9mTISeY+CnFDSZ3RPLA7KPp0Yp7VyR/OUsFDTgpBcZo4Weufry9
-         YxuNixNCSJyM+zmxmcimno/EJgO8E5zqXaXQoGBSK6hxUsvpcyL+42DBnuYgb02gvj6M
-         BRfGTSKEw5YrWYfwc4qZxOOEB2oHbnY+FIvToBDog2lmgz6+XyMSW0mzB8QZU4ge0HSd
-         5M4uF/6+jMW8FfVSK0w1CoZtFyK8Y3VLy7O3YN/xIR8mNVK5FjdN+80qJnTBCM01FDSp
-         adXyRFRly9z037ygbNv7+jhTrFXOnr++amIWiMbql/ZjX3dMQSv8bxwCtPAALdddXeOQ
-         znWg==
-X-Gm-Message-State: AFqh2kqL1OdPc/oNNavhqBu+dzN3wWPvIauTL47nMjIrcjltE45GUUuW
-	IMygfUIKU+XKOB6k9I79REZKJA==
-X-Google-Smtp-Source: AMrXdXs6wVwbGhncvBdLaUdQtZ76sjJkpM7KXwjIMOaf1uFHHJunxBWWY6eu8hoiKtY2O5CNHxNT6Q==
-X-Received: by 2002:adf:da50:0:b0:242:6777:bfa0 with SMTP id r16-20020adfda50000000b002426777bfa0mr54038944wrl.53.1673620709705;
-        Fri, 13 Jan 2023 06:38:29 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id q4-20020adfdfc4000000b002bc6c180738sm14721156wrn.90.2023.01.13.06.38.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 06:38:29 -0800 (PST)
-References: <20221225212632.2760126-1-martin.blumenstingl@googlemail.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/4] clk: meson: switch from .round_rate to
- .determine_rate
-Date: Fri, 13 Jan 2023 15:37:55 +0100
-In-reply-to: <20221225212632.2760126-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1jzgamcxej.fsf@starbuckisacylon.baylibre.com>
+	id 1pGOou-0043DX-QU; Fri, 13 Jan 2023 18:30:30 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 46793622E2;
+	Fri, 13 Jan 2023 18:30:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1073C433D2;
+	Fri, 13 Jan 2023 18:30:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1673634627;
+	bh=ToSg+pXn4myckS7D915n3Oz7BkfcPSm3uUn+TErDm54=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VUjubtgM79eXnRDgPch1IO1TtGwmcdJT1BD6Ls8VauaJd4ZRCoBIIIsXYPkp8zMyE
+	 xA+SxE0Nzkh/amOddNn5M5UrYkKLcskCcNqcSV0ngLeF8n9a7LxQnoig+WGks5ztcU
+	 SDpK7bjsE3RIXBNUOL6poMPujzFmpi6rwnwsEljsZTv3WRKybXAMUpJ4dLYZ9eytHc
+	 nC+A9fpscDhsDpknRMMYgKKSXFvAN8VKa/GhI4vV9Tk9GXk8rdzojOqmoWkIJUfaOA
+	 L3o+R2+xRucBbneNNyXRMdivl49jIyrwFZb0BM8/dAEowSMl0YtXYqJi3lofDPG6Gp
+	 f6c2UdMmj1pvQ==
+Date: Sat, 14 Jan 2023 00:00:23 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 08/11] dt-bindings: phy: convert
+ meson-gxl-usb2-phy.txt to dt-schema
+Message-ID: <Y8GjP14i+/Q3L1d6@matsya>
+References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-8-36ad050bb625@linaro.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-8-36ad050bb625@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230113_063832_080899_3F1D6A02 
-X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-CacheID: sfid-20230113_103028_913367_7D9D80C4 
+X-CRM114-Status: UNSURE (   9.34  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,34 +101,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 09-01-23, 13:53, Neil Armstrong wrote:
+> Convert the Amlogic Meson GXL USB2 PHY bindings to dt-schema.
 
-On Sun 25 Dec 2022 at 22:26, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Applied, thanks
 
-> The goal of this series is to switch the meson sub-drivers to use
-> clk_ops.determine_rate instead of clk_ops.round_rate. The former has
-> lower precision (2^31 instead of 2^32 on 32-bit systems). Also the idea
-> of the .determine_rate callback is that is replaces .round_rate so the
-> latter can be removed at some point.
->
-> No functional changes (apart from the 2^31 to 2^32 difference mentioned
-> bove) intended.
-
-Applied. Thx Martin.
-
->
->
-> Martin Blumenstingl (4):
->   clk: meson: mpll: Switch from .round_rate to .determine_rate
->   clk: meson: dualdiv: switch from .round_rate to .determine_rate
->   clk: meson: sclk-div: switch from .round_rate to .determine_rate
->   clk: meson: clk-cpu-dyndiv: switch from .round_rate to .determine_rate
->
->  drivers/clk/meson/clk-cpu-dyndiv.c |  9 ++++-----
->  drivers/clk/meson/clk-dualdiv.c    | 21 +++++++++++++--------
->  drivers/clk/meson/clk-mpll.c       | 20 +++++++++++++-------
->  drivers/clk/meson/sclk-div.c       | 11 ++++++-----
->  4 files changed, 36 insertions(+), 25 deletions(-)
-
+-- 
+~Vinod
 
 _______________________________________________
 linux-amlogic mailing list
