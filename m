@@ -4,85 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70E50C54EBE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Jan 2023 21:28:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5954C54EBE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Jan 2023 00:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/pY0oo7ZdoS3eqV3T8+vlCP9fZ6nHe7YlnXzax0XqxQ=; b=FINyRRQzIjY1/Y
-	Vl48lsNxuWsfYd4WCsu+KlRPzHzFkRJdcuoVA98H2/O2QRcKHA22EpyYrFfWIKqKIKb8dkLQAFWmW
-	1iibBahu8ND9z24xnyeokiC5SOFI4NKGblGb3zFY8zrml672rsErdU8U33+ejlBEsOBjTLkVtU3Bs
-	kIcYwsQf4Q8q1wwUAawP15WrRvZfjQr5BuHUzTo/CHb6HE1GilPtyD2pXaaJQN9RFAK5DscuOPm4G
-	4evd+nFQNf0yyehwHtSTxenmIhsgstchAGi0DCWgsE9ONH44D18D4f3WHYX36eXKYDGJD37+otDFZ
-	JHsjwAOgOdY2C/YSEs0A==;
+	List-Owner; bh=joBryb3TPu5ObrIFxkJK6eyjwN7oSkDX3Qe8PoP7LS4=; b=jxrdq2KsELkOIg
+	NL+BJUQLmhbvljkW9bxyUzwc/AtdG6CpVfVFT84UVpP+GFfNhoMhstpbasRaKjBJDDLx0bHDEoPYg
+	+kY50vlxIBWp4DbNQfCN5f4PrK5szMCEmDwyQLMhDmplMCZDAidDocdFw66J4xGIRRtv/9xF7MQQR
+	yA1m/U3Q1K2LULbrwOwXAYqeP4Xg/4EdjsIpJtkNOeYt5XZr59lNZeZrdqb5EgDV1RQ8q1FUjdScC
+	bU0iDtQQnUfSHo3XRB3fJOSfqT6an2uWCboQ/kkoMTWAhIjUfWCJ9xxTREr6BpI4ZlzhYJcZEwELx
+	ASmPf5fg5yvfwiQ/zq1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pG57F-00H8Xm-8S; Thu, 12 Jan 2023 21:28:05 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pG7zv-00HaPn-GC; Fri, 13 Jan 2023 00:32:43 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pG574-00H8VT-3p; Thu, 12 Jan 2023 21:27:55 +0000
-Received: by mail-wm1-x335.google.com with SMTP id bi26-20020a05600c3d9a00b003d3404a89faso53818wmb.1;
-        Thu, 12 Jan 2023 13:27:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EQ1D5UHr4tggTsAIC/Qawu9eWnHs++i/i+4IgFLa5Fw=;
-        b=hktHdGS8fjL/kAij+ShBbKkzIj2DX4IeZwG+91HsnQGKf9BjwXH25fl46yt6QgbcEZ
-         dmfTzOcDhAiTRS+DOw8t0NNS7o2z3LWT2EQVCDBQXjryxipoiYYUFSMUoRPrsu8Bjw68
-         7oTIyZXFzZ1z4eQ+R3ziNiRiprFldf6k9DDL3XVIZE7p7R+DaIWlF5741UZf3zeb60kE
-         gOTVWs1qky+rvf2lIvNEUzIPpOVFL5VVni7fh9hxWUB1/JSkeEdgsd0lBAfyylezmWve
-         QZoodcGMs9F+rrl//E8U8si+5AMME2dFINVfuQHSXJYbjgTdZEJC7Z4wONm8skVmr1L3
-         Aw7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EQ1D5UHr4tggTsAIC/Qawu9eWnHs++i/i+4IgFLa5Fw=;
-        b=gN41KY0jy1j3Vj8kJYTBmJZJthnTTh7Qb8h/gvDZKkxa/jYZ3AXhQlHbcTi1KlR3nb
-         NA9CeNAxv4u95ccEfAoknLWgaFhGCmbHP+QJwm+/3QwEX6mloZWtjgyVbVsyHyY8teAj
-         UVlRnKlhND5PFeEOI2S1SaGu0CPGA9GEKMPXaTmWsVju3WcEMoESC7WjnooQ0J1mHNcv
-         fTqBC3dscrTUuicTFn26qwWlJ9+eCaDV/1B4VZtStN3Oh7rqmx/LxGgRf04PAxEEzikp
-         9DbJXcf7ARswxZnP4AtIrfNDFD2OBroBc3ROLSJW0GXmUVmXRCHLTIC23ihaWwzelOB7
-         KL+g==
-X-Gm-Message-State: AFqh2krCdA48aZRrP88E9ZHvnKrOBbHVS/aiyqW2Jzz4GIq6poFAeCuH
-	0wq47mUCR5aYh26UHuOvsQE=
-X-Google-Smtp-Source: AMrXdXtQnJrnUij3Vwfvj8mzp6AXzARTTmYdUixlVR2SbeVZiq8jg1v6Uj2Hnt2dBY2MkArqeey85Q==
-X-Received: by 2002:a05:600c:601b:b0:3d3:56ce:5693 with SMTP id az27-20020a05600c601b00b003d356ce5693mr55607798wmb.17.1673558869896;
-        Thu, 12 Jan 2023 13:27:49 -0800 (PST)
-Received: from ?IPV6:2a01:c22:76ef:5d00:a043:7bec:4d7a:60ff? (dynamic-2a01-0c22-76ef-5d00-a043-7bec-4d7a-60ff.c22.pool.telefonica.de. [2a01:c22:76ef:5d00:a043:7bec:4d7a:60ff])
-        by smtp.googlemail.com with ESMTPSA id u2-20020a05600c210200b003d98f92692fsm1101375wml.17.2023.01.12.13.27.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 13:27:49 -0800 (PST)
-Message-ID: <7c4aa0d2-d8e9-416b-b2ad-f5c3c8ea33de@gmail.com>
-Date: Thu, 12 Jan 2023 22:27:44 +0100
+	id 1pG7zs-00HaP6-Bz
+	for linux-amlogic@lists.infradead.org; Fri, 13 Jan 2023 00:32:41 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id B0513B815FA;
+	Fri, 13 Jan 2023 00:32:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5939BC433D2;
+	Fri, 13 Jan 2023 00:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1673569957;
+	bh=D+CLx71N7hh+aMCrNFwner/r2ssmRTSXXThuDIxd478=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=jY0ccoL8B48ZokoTeh5+PEtKN6kWxbJxS0xC7fk4NF+f0OyUPiKiZYDK/nOD14oid
+	 tLz7NLzF3Tx0Xwg9MEZaKi2SudIgyVHThZJfATddeqtW/zbtKYZKlEdKnn/oKOUiWO
+	 R/pgDXxWBTAeDYOJCK2j2rGbe+UOwXa26bbjOPXoTF2KxBtke+2UnxsnRHhmKn9O17
+	 uiBWTtjprisS5+XIq8dEjy4bdTZInkEdsQTnAWM9QBXTFwkd5z57v4Opxh/A9QzWx+
+	 y+TxrCELwlTHXPeWWjKpVnjYDdYmORSIanvLI1oB6z0tfPEy1vZIzjGuWMvCSydUIJ
+	 WnrJCnWZMKtkg==
+Message-ID: <b19614d43df2dbd3614b9241d2c3cfc1.sboyd@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-To: Peter Suti <peter.suti@streamunlimited.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-mmc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
- <20221214134620.3028726-1-peter.suti@streamunlimited.com>
- <c6863a3e-8855-50fe-25cb-0b38bc3a05e0@gmail.com>
- <CACMGZgZY4Zb+3vHUDAS0+3r55K4_J40dtbsTPTFZMd6duBikpQ@mail.gmail.com>
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v3] mmc: meson-gx: fix SDIO interrupt handling
-In-Reply-To: <CACMGZgZY4Zb+3vHUDAS0+3r55K4_J40dtbsTPTFZMd6duBikpQ@mail.gmail.com>
+In-Reply-To: <20221225212632.2760126-1-martin.blumenstingl@googlemail.com>
+References: <20221225212632.2760126-1-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v1 0/4] clk: meson: switch from .round_rate to .determine_rate
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, jbrunet@baylibre.com, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
+Date: Thu, 12 Jan 2023 16:32:35 -0800
+User-Agent: alot/0.10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230112_132754_211918_59512CCC 
-X-CRM114-Status: GOOD (  30.09  )
+X-CRM114-CacheID: sfid-20230112_163240_573397_C34C35ED 
+X-CRM114-Status: UNSURE (   8.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,119 +72,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09.01.2023 12:52, Peter Suti wrote:
-> On Wed, Dec 14, 2022 at 10:33 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>
->> On 14.12.2022 14:46, Peter Suti wrote:
->>> With the interrupt support introduced in commit 066ecde sometimes the
->>> Marvell-8987 wifi chip got stuck using the marvell-sd-uapsta-8987
->>> vendor driver. The cause seems to be that after sending ack to all interrupts
->>> the IRQ_SDIO still happens, but it is ignored.
->>>
->>> To work around this, recheck the IRQ_SDIO after meson_mmc_request_done().
->>>
->>> Inspired by 9e2582e ("mmc: mediatek: fix SDIO irq issue") which used a
->>> similar fix to handle lost interrupts.
->>>
->> The commit description of the referenced fix isn't clear with regard to
->> who's fault it is that an interrupt can be lost. I'd interpret it being
->> a silicon bug rather than a kernel/driver bug.
-> Unfortunately I can't confirm that the referenced bug is in the
-> silicon for the original commit either.
-> However a similar workaround works in this case too which is why I
-> referenced that commit.
+Quoting Martin Blumenstingl (2022-12-25 13:26:28)
+> The goal of this series is to switch the meson sub-drivers to use
+> clk_ops.determine_rate instead of clk_ops.round_rate. The former has
+> lower precision (2^31 instead of 2^32 on 32-bit systems). Also the idea
+> of the .determine_rate callback is that is replaces .round_rate so the
+> latter can be removed at some point.
 > 
->> Not sure whether it's the case, but it's possible that both vendors use
->> at least parts of the same IP in the MMC block, and therefore the issue
->> pops up here too.
->>
->>> Fixes: 066ecde ("mmc: meson-gx: add SDIO interrupt support")
->>>
->>> Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
->>> ---
->>> Changes in v2:
->>>       - use spin_lock instead of spin_lock_irqsave
->>>       - only reenable interrupts if they were enabled already
->>>
->>> Changes in v3:
->>>       - Rework the patch based on feedback from Heiner Kallweit.
->>>               The IRQ does not happen on 2 CPUs and the hard IRQ is not re-entrant.
->>>               But still one SDIO IRQ is lost without this change.
->>>               After the ack, reading the SD_EMMC_STATUS BIT(15) is set, but
->>>               meson_mmc_irq() is never called again.
->>>
->>>               The fix is similar to Mediatek msdc_recheck_sdio_irq().
->>>               That platform also loses an IRQ in some cases it seems.
->>>
->>>  drivers/mmc/host/meson-gx-mmc.c | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>
->>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->>> index 6e5ea0213b47..7d3ee2f9a7f6 100644
->>> --- a/drivers/mmc/host/meson-gx-mmc.c
->>> +++ b/drivers/mmc/host/meson-gx-mmc.c
->>> @@ -1023,6 +1023,22 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->>>       if (ret == IRQ_HANDLED)
->>>               meson_mmc_request_done(host->mmc, cmd->mrq);
->>>
->>> +     /*
->>> +     * Sometimes after we ack all raised interrupts,
->>> +     * an IRQ_SDIO can still be pending, which can get lost.
->>> +     *
->>
->> A reader may scratch his head here and wonder how the interrupt can get lost,
->> and why adding a workaround instead of eliminating the root cause for losing
->> the interrupt. If you can't provide an explanation why the root cause for
->> losing the interrupt can't be fixed, presumably you would have to say that
->> you're adding a workaround for a suspected silicon bug.
-> After talking to the manufacturer, we got the following explanation
-> for this situation:
+> No functional changes (apart from the 2^31 to 2^32 difference mentioned
+> bove) intended.
+> 
+> 
+> Martin Blumenstingl (4):
+>   clk: meson: mpll: Switch from .round_rate to .determine_rate
+>   clk: meson: dualdiv: switch from .round_rate to .determine_rate
+>   clk: meson: sclk-div: switch from .round_rate to .determine_rate
+>   clk: meson: clk-cpu-dyndiv: switch from .round_rate to .determine_rate
+> 
 
-To which manufacturer did you talk, Marvell or Amlogic?
-
-> "wifi may have dat1 interrupt coming in, without this the dat1
-> interrupt would be missed"
-
-I don't understand this sentence. W/o the interrupt coming in
-the interrupt would be missed? Can you explain it?
-
-> Supposedly this is fixed in their codebase.
-
-Which codebase do you mean? A specific vendor driver? Or firmware?
-
-> Unfortunately we were not able to find out more and can't prepare a
-> patch with a proper explanation.
-
-The workaround is rather simple, so we should add it.
-It's just unfortunate that we have no idea about the root cause of the issue.
-
-> Thank you for reviewing.
->>
->>> +     * To prevent this, recheck the IRQ_SDIO here and schedule
->>> +     * it to be processed.
->>> +     */
->>> +     raw_status = readl(host->regs + SD_EMMC_STATUS);
->>> +     status = raw_status & (IRQ_EN_MASK | IRQ_SDIO);
->>
->> This isn't needed here. Why not simply:
->>
->> status = readl(host->regs + SD_EMMC_STATUS);
->> if (status & IRQ_SDIO)
->>   ...
->>
->>
->>> +     if (status & IRQ_SDIO) {
->>> +             spin_lock(&host->lock);
->>> +             __meson_mmc_enable_sdio_irq(host->mmc, 0);
->>> +             sdio_signal_irq(host->mmc);
->>> +             spin_unlock(&host->lock);
->>> +     }
->>> +
->>>       return ret;
->>>  }
->>>
->>
-
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
