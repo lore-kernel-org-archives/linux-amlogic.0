@@ -4,87 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B6DC54EBD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Jan 2023 18:30:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3569C46467
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Jan 2023 23:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vfyu3ZAjA+ssJ3++HoH94L7NyUdAsS81H8YMeV1KnSI=; b=YlNwjlHJdwMhof
-	piapp8Y9mHwNnCksUmlQSH2WBA/NYgGxkdrzDzWEgwjO4IEEXe+jnD5/9wluBceDGrSVJVIGQfPmn
-	vBScRJd711Q9Top5JFSqFvJomX6mBDWgKzebvBPBftLC5/oWAYxYId68knG862JKqzbV4HpWKvXLS
-	meYRkOY9q2s4fi8lJVX97iQZKIoXmPijwrkZN8Us/kmg/A4McAH4lxL8K8ze3mR3Zfizja9KYdXGv
-	CwQQ7gJjfe9Zco9eDpBBW10r0LrmuA83tfByFPYF3guz1WrkjcQbt5aBuGI0qWc60f+hCxqPEBueo
-	DAmuq5BSEaS31vsMyqmg==;
+	List-Owner; bh=O6ONAiR65gLaATUfFP3zNkfg2JOWDeR/eAk+MfBK6nQ=; b=3EMb2TAxvBSFrO
+	1YlJIw2KIoAk3hozZWj4EB6qy5u7FpHJAOSQOVmqhzJTy3x9Au4mtWeW82nhJAxnJRfbGn05SHHux
+	YkEkqEb5uKzDnp5+3r5Fonn+q8Lssx2kazQ5mDT7gpgtL0BeTgIY6Sih1vOtVTF6TZhXGRheY+jwF
+	5BO8IAHy2HQ3QsfJ+gQdsA+ZVAp1gxHBfA9O9FyS+dP+2k4roHAcFfhd97znZmfXnOaca0vs57W/b
+	vo+JUXcegx9TLRF53WIkWyxfKbhJIgOMmgg/kZpBYQH2P8jRwGV1J3QwUUn5uulaR9bpE/rgPgTXf
+	VSacZTRIH79Ks22NtB8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGOow-0043EP-QC; Fri, 13 Jan 2023 18:30:30 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pGq3L-006dYC-EH; Sat, 14 Jan 2023 23:35:11 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGOou-0043DX-QU; Fri, 13 Jan 2023 18:30:30 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 46793622E2;
-	Fri, 13 Jan 2023 18:30:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1073C433D2;
-	Fri, 13 Jan 2023 18:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1673634627;
-	bh=ToSg+pXn4myckS7D915n3Oz7BkfcPSm3uUn+TErDm54=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VUjubtgM79eXnRDgPch1IO1TtGwmcdJT1BD6Ls8VauaJd4ZRCoBIIIsXYPkp8zMyE
-	 xA+SxE0Nzkh/amOddNn5M5UrYkKLcskCcNqcSV0ngLeF8n9a7LxQnoig+WGks5ztcU
-	 SDpK7bjsE3RIXBNUOL6poMPujzFmpi6rwnwsEljsZTv3WRKybXAMUpJ4dLYZ9eytHc
-	 nC+A9fpscDhsDpknRMMYgKKSXFvAN8VKa/GhI4vV9Tk9GXk8rdzojOqmoWkIJUfaOA
-	 L3o+R2+xRucBbneNNyXRMdivl49jIyrwFZb0BM8/dAEowSMl0YtXYqJi3lofDPG6Gp
-	 f6c2UdMmj1pvQ==
-Date: Sat, 14 Jan 2023 00:00:23 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	id 1pGq3I-006dWu-K1; Sat, 14 Jan 2023 23:35:09 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id v10so34875054edi.8;
+        Sat, 14 Jan 2023 15:35:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0cotKAnGSNZR0YjZladix62jgHe5lpxQaAFYHqTe708=;
+        b=miszWXtcuJ9nwlWcBSR6eUN++o6TN2IEYVGNjKGUWW7U/vkco4/E7qAAZJV4gui0LJ
+         RCG+s2EaElkr5cLHuw2acuAg7TcZTdsNVUsDTVuJq7QlH+BU1EftXJiWku2fIyoAHJdx
+         4iNI7kdRrLAe0PIJw+YvPX5KUECJ2/VFX++/fVUMaXMQ7L8xNFLYyNjwM1n8sWx9FdzQ
+         1IIpstVtSySd37cCXjsb7VGui+lGDblP9QmGrpNO5GVzDfbEhYUE8YrY2rX0tHAduJtg
+         g1VXRpso7v/oIHp2BbaYx8WqK5oMkVDAdNbtRHUNwfjm1E7wVOkWlYgnk5rK/bIDXNdX
+         Fd2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0cotKAnGSNZR0YjZladix62jgHe5lpxQaAFYHqTe708=;
+        b=xZDEPN1FBO3m31VyNKDRjUoyhC64fg4zCZ8rk6xsry65iW/pSoJZ5NKoi1tkz9ldOL
+         S+ySb2CT4FXtG2Cd+Xb7MRcduna9uxM6WLqWoGWuetRejGuOE6i5fKcnk0eYiskVkIID
+         rOxCZM/1mXIVGc9vRxUQZPNrjwmSWR49lRQAH+wuM8VVO2YsCkS+Jn69hEaHK9G/7S99
+         v3hQrFykz9u7F/sWsZti8NMkuB7mVStb+4mik7cPdTRWSOpUXf2otlfOOhkQ7D8fxdEP
+         5xFsh3Y764d+nqQdnRN8SknCjzj8exK6OS5zwAEMoRLyQZdllXd//1WyTfVP3huYt3B6
+         bnbA==
+X-Gm-Message-State: AFqh2kpNamtqWuVMX7Ltvg4T/jksjjhFzkcxjq3vBUhfpbG8tN50lrvg
+	ROJR74BrtX+nxwmt+PjIS5TmjQKQ1Wk=
+X-Google-Smtp-Source: AMrXdXvjzrQIUaW9aQ28BVLrEo7vqBPKaOk9o0w8kM1k7NSj1rkSEEloX49EAX9JaTySf29E4nUQUQ==
+X-Received: by 2002:aa7:cd18:0:b0:49d:f700:b225 with SMTP id b24-20020aa7cd18000000b0049df700b225mr2417077edw.28.1673739305032;
+        Sat, 14 Jan 2023 15:35:05 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c22-7ae1-c100-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7ae1:c100::e63])
+        by smtp.googlemail.com with ESMTPSA id d7-20020a50fb07000000b0049cbd334b13sm1967620edq.29.2023.01.14.15.35.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Jan 2023 15:35:04 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 08/11] dt-bindings: phy: convert
- meson-gxl-usb2-phy.txt to dt-schema
-Message-ID: <Y8GjP14i+/Q3L1d6@matsya>
-References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-8-36ad050bb625@linaro.org>
+	neil.armstrong@linaro.org,
+	devicetree@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 1/2] ARM: dts: meson8: Add more L2 (PL310) cache properties
+Date: Sun, 15 Jan 2023 00:34:54 +0100
+Message-Id: <20230114233455.2005047-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
+References: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-8-36ad050bb625@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230113_103028_913367_7D9D80C4 
-X-CRM114-Status: UNSURE (   9.34  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230114_153508_692502_0E8BDF1C 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,13 +92,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09-01-23, 13:53, Neil Armstrong wrote:
-> Convert the Amlogic Meson GXL USB2 PHY bindings to dt-schema.
+Add more L2 cache properties which are used by the 3.10 vendor kernel
+but have not made it upstream yet.
 
-Applied, thanks
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson8.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index 0f8bac8bac8b..a86f6afb8f87 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -651,6 +651,9 @@ &L2 {
+ 	arm,filter-ranges = <0x100000 0xc0000000>;
+ 	prefetch-data = <1>;
+ 	prefetch-instr = <1>;
++	arm,prefetch-offset = <7>;
++	arm,double-linefill = <1>;
++	arm,prefetch-drop = <1>;
+ 	arm,shared-override;
+ };
+ 
 -- 
-~Vinod
+2.39.0
+
 
 _______________________________________________
 linux-amlogic mailing list
