@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34BDAC46467
-	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Jan 2023 14:24:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DB86C3DA78
+	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Jan 2023 14:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=E4qJytwijjSa+mJrFI1IyPCMQpq3Rp4oBp5hOA3Z9P4=; b=Jdl+zwvguRJBrx
-	h39467J7Ra8SQ2hgAD+1Sj9RrJMWyYRruqN/WjHo2ctlbcGivjNBJqrgmZR/eVSm1R0Kct9F0bRT+
-	vmRQKygDkcWH9o0qjz5oMUB1wMa7jEBj0b9ThUEapqDoyGM/EURvzlX5cDwhu0LMTve2dXHzLMnZo
-	8rGhc0GIjYUdw0lmMzrxMNaY7d4ymSzZVyl3gbE3SYEcfx0SAFdi8upT5Tp/YHYzyC5DEKn3SrvUJ
-	y8E/jwhmcVDm5KZqRTFvRkDTSysUqVKbb6zbh4dsRKEWwGT1rvbEBupJzr1MlmFlMuHpkfWbH3aBI
-	X1PvWIHJ5H2E2XqGi6iQ==;
+	List-Owner; bh=Jv3ajbsY+okVd4Bhb3Q7MD/Q40jow+NHmB1TfJb0j58=; b=w/WfN7JMFcT9Ga
+	WXQMP/4LGHomPAcutMa5V8ZWKolS6+vSGhFDtDpaQuGK560b20dRifHQwFRWYbMPegdEXKLg1Vti9
+	5O305pnSCtaULj7/ID/Rw8qiM8UiUwenK3PIdeX+jaWNchj6Yfd07k89GHM5lHlwzQnDTGVsBAzHx
+	aMqQKqOErz9cPxCTpIgpXjXw3njxG8/PgY/oaorJKY51Kb30uCvvAVUyRuLFZksGE0pXJjyq2OR/K
+	pb9CTD9K7a1WwTa8fCUIV+bxiFstCS6fpH+8uHnQT9KNBUVgrJLwB6noR7mKXrMbGVMjF+JFiQ+wZ
+	WwKTMdtdgOivAFZMzUww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pH3w2-007RSi-7u; Sun, 15 Jan 2023 14:24:34 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1pH3wA-007RUW-JH; Sun, 15 Jan 2023 14:24:42 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pH3vq-007RQu-PX; Sun, 15 Jan 2023 14:24:24 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id z8-20020a05600c220800b003d33b0bda11so2820720wml.0;
-        Sun, 15 Jan 2023 06:24:22 -0800 (PST)
+	id 1pH3vt-007RRE-My; Sun, 15 Jan 2023 14:24:27 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so20414038wms.2;
+        Sun, 15 Jan 2023 06:24:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:content-language:cc:to:subject:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
-        b=p16Cx1eLPV5Q9j8Bf/WMOcz2U66PM1w/fra68F60TnFnXzJ4vZQJgZYY3RSU/fCM7A
-         CQKRFtbL0/F1WRCL2h035+w8yYHtHLTcFAvYoTLgqyKZykntxaAl/uB/O63id+MOFQ5D
-         W6jQNnMjIAwDyj5b4ntxWIE7FeniUlyW2a6JiRiKSXRg5Y0T9n+H6GbyZ9/SoluX+Mib
-         vSJRGESJt4fpkew78EQnBUb4CQhSFri5JAwj5LBxxNBrz18xCt3oy7h/+iduNoU+4OyO
-         JmFvlCeLe1w3r8auSl/+rV/SjSXUZ9VyiDjZhtjRp0XgK5lbc2Khhfk0+D1C3rB1aa8N
-         ouKA==
+        bh=JHgEcx/XwJQID9tOV3WWoFHFMS7waVTn73QAL3PQ/7k=;
+        b=bDGt4Lm0T2Gs4Ah7GRiIyTBqGAt8/dprIrtIbvc01ccYMEdIJ0v4Dnb/Y6ilH43Ody
+         isMytpc+ZqyUMLL+LsN9+YuMGCq0kDLYEod/uqfE94UTO8rjPjfsw8V9hV1OYn7nkdc/
+         8236rY+Ln90XDZRsaKuY6dfI2TC4p/dScNNHBlyecPKuG4qrkzM3IMJOcUc7K3lxUC8V
+         8ObAbU0v9lIaBEpsZMoZSz4tQn6Bgekou7/bZ5pnLm5QdDMp8d9jdn5POyQVz+F4TRBA
+         dmSG4V8k3nKfmqz5trc+grnM365lkf22fmQFyojz/OJrtHhzFyYiExhi6ovvk4Qpxshl
+         /JXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:content-language:cc:to:subject:from
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
-        b=DO7c1c7VQPDymlY909aklbrOKqUHc1nVpmAmQAs1OzjOelSqUaXjzMYWK9oWtnwwk8
-         tXgqLJa/vJyzHCiUC9iLCDasgEwMBaXOZ8sSOErbld38V1bnFDXnxAadxSUXyBSZum6G
-         xIoWtfrnOzdc1aEpWZ1LoFVZaMM7r2OYtGkwwzaeVkm68jxTaxEp2z4P4GiVA+79n1LS
-         Hb3eTnZqhLJALHjAOyw4JofiBzeORMep3e7yrDyXFxmiGTo59+oLp8/6a62wOXEj5X1l
-         uobVvXZZqCYUo4WgEBiHunZSROLqTPtmHOXv39DsS5aU7RYnpmRGO6B+U1W3dfLISXFe
-         nbgw==
-X-Gm-Message-State: AFqh2kpEFRmOTbpUmbupTSOvvE32j12O7AyT8LGZP8XNHX4yuW+Xn1lt
-	BbrxAmLCt736u4Sre34cUAWVRX2wuC0=
-X-Google-Smtp-Source: AMrXdXsmQNYKO1JhaPJuv6ZlUsDcHrE/7WIDXiMd0eEr5+aDL7G2VdCUVsIMrhS22a+F0WvvkF4wHg==
-X-Received: by 2002:a05:600c:a4f:b0:3d2:196c:270c with SMTP id c15-20020a05600c0a4f00b003d2196c270cmr67053230wmq.31.1673792661012;
-        Sun, 15 Jan 2023 06:24:21 -0800 (PST)
+        bh=JHgEcx/XwJQID9tOV3WWoFHFMS7waVTn73QAL3PQ/7k=;
+        b=7otzX3M8nM13hFOrC0OTYLs57iC7HIlitsFGhoLN+/I/wKbiGk4uamkMgPhXpnUuan
+         EopmoXqyw3mmjpD4KK5SNf1qfKWhT3SjGjPUcpAnnthP3to1LLV89/oTXV933JtVBmPO
+         l9nWQYFAfDYuxBsRg4lugn+PUTQ9ApZDTIuLc1eJ1OXAEz/T2b5izNCQILvZDZb6IyK3
+         HzawgyBmnu16VSqAfy1NeKrtlpp+hwTugeSpg37tEm1TxZ4JIJK1waMYkZmnT/+aUGNv
+         GaUvBRBXSdPy1qCzMAniigRxumCc4ZxgidKThCYJCtFswc293BcXcY8sjr9VgXp8E/YV
+         n4sg==
+X-Gm-Message-State: AFqh2kpt2y5HYWPjRm8UOCZZXnsxXSYEBwG104pc6EA7YocjrUdTrsmq
+	Z/J559LdH87au7dzwTGIeJ4=
+X-Google-Smtp-Source: AMrXdXsc60WQPmfEOgM0V8OVCMS6uFoIYxBdTIEc4MIHjZ0nMeiiUMEOLlzJdioX9+eswYdLa8VWew==
+X-Received: by 2002:a05:600c:3c8a:b0:3d9:cc40:a8dc with SMTP id bg10-20020a05600c3c8a00b003d9cc40a8dcmr31909443wmb.27.1673792662637;
+        Sun, 15 Jan 2023 06:24:22 -0800 (PST)
 Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
-        by smtp.googlemail.com with ESMTPSA id o14-20020a5d58ce000000b002879c013b8asm23699826wrf.42.2023.01.15.06.24.20
+        by smtp.googlemail.com with ESMTPSA id q6-20020a05600c46c600b003d1f3e9df3csm37936797wmo.7.2023.01.15.06.24.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 06:24:20 -0800 (PST)
-Message-ID: <fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com>
-Date: Sun, 15 Jan 2023 15:19:31 +0100
+        Sun, 15 Jan 2023 06:24:22 -0800 (PST)
+Message-ID: <8f1b2db3-f17d-f192-c28e-cb34dfcaf63d@gmail.com>
+Date: Sun, 15 Jan 2023 15:24:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] dt-bindings: phy: g12a-usb2-phy: fix compatible string
+Subject: [PATCH] dt-bindings: phy: g12a-usb3-pcie-phy: fix compatible string
  documentation
 To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
  <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -80,8 +80,8 @@ Cc: linux-phy@lists.infradead.org,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230115_062422_882750_CDF864DD 
-X-CRM114-Status: UNSURE (   7.07  )
+X-CRM114-CacheID: sfid-20230115_062425_830788_5D14611A 
+X-CRM114-Status: UNSURE (   7.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,47 +99,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The compatible strings in the driver don't have the meson prefix.
+The compatible string in the driver doesn't have the meson prefix.
 Fix this in the documentation and rename the file accordingly.
 
-Fixes: da86d286cce8 ("dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml")
+Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
 Cc: stable@vger.kernel.org
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- ...,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} (91%)
+ ...12a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} (90%)
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
-similarity index 91%
-rename from Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
-rename to Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
-index f3a5fbabb..19a0ddab0 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
-@@ -13,8 +13,8 @@ maintainers:
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
+similarity index 90%
+rename from Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
+rename to Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
+index 868b4e6fd..821d37218 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
+@@ -13,7 +13,7 @@ maintainers:
  properties:
    compatible:
      enum:
--      - amlogic,meson-g12a-usb2-phy
--      - amlogic,meson-a1-usb2-phy
-+      - amlogic,g12a-usb2-phy
-+      - amlogic,a1-usb2-phy
+-      - amlogic,meson-g12a-usb3-pcie-phy
++      - amlogic,g12a-usb3-pcie-phy
  
    reg:
      maxItems: 1
-@@ -68,7 +68,7 @@ additionalProperties: false
+@@ -49,7 +49,7 @@ additionalProperties: false
  examples:
    - |
-     phy@36000 {
--          compatible = "amlogic,meson-g12a-usb2-phy";
-+          compatible = "amlogic,g12a-usb2-phy";
-           reg = <0x36000 0x2000>;
-           clocks = <&xtal>;
-           clock-names = "xtal";
+     phy@46000 {
+-          compatible = "amlogic,meson-g12a-usb3-pcie-phy";
++          compatible = "amlogic,g12a-usb3-pcie-phy";
+           reg = <0x46000 0x2000>;
+           clocks = <&ref_clk>;
+           clock-names = "ref_clk";
 -- 
 2.39.0
-
 
 
 _______________________________________________
