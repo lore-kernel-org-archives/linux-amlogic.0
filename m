@@ -4,72 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA44DC3DA78
-	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Jan 2023 17:10:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 595C7C3DA78
+	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Jan 2023 18:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hKyt77ebMw/QSxx7KHMPpb/16r/YbAk8eHxCoZtDC+U=; b=WrWN4tMPt6Uh+T
-	y+ZYed5FfOIyTKp5c3J6cDP4kIxpX4iDeBsyzrulC9uI93UwcoSpqubjg5PukRDLfkNmuP+S7G4eN
-	wGd6/m1Pg/d5zIJPa85aKUzWk5x/cMHxLXG4LnvQpOTPf7+sa1DbhDlZP0CANfrq0igQ+SiQ21mGP
-	GW6iQdyhTYNl58S6shRqRd7ldHzOccIp8enFshlW4QTxV6mJhLepoigY9C2eLasMX8wSoH0OFpAk/
-	kLDC3txkOrl5S4apXkLaqZZqiFLs8Kj0QFpsR4xbEofnP276RWqo1D6d7p9BFuh8ZV98KDm8ZaPj/
-	N95qeEVxQPWu0U0CXuLQ==;
+	List-Owner; bh=TkF6RCWFQoa5OvX3yqSd0Bib/9KKJQWGkJ6qF1QHU0w=; b=Yr8Igpf89LqNzH
+	+VBg5oYthsejmSgWl+EpxO2xY+zpDxgK6NRkpgTyoDuVFZ4RWF/D6asMfKTfbMNr8oZHMYpeiHnt2
+	WvM8Qo/OtSAtgX4kPbjalTHAKswX2wB+Qa1Y9mcdJoFdURyFMq1gXkU/welwmuMe/v9MF76uC1uSz
+	IdxtCWzeeIf7/jGACURuWgB0aCT2O3Xi5xOJpiFgetX9Noj1dpe6QRgqENeGoP0f6DJ1YR8DcH4jj
+	w7+NaBwh1Qe8OxgSqTHHR47xH6JWSEFoB7pFaI9M0f6oMU+6iB7xTEEfz9pHv9lV6yO4Dct2EVv2y
+	ON3gV1n2d19DFWEPklDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pH6Vv-007iDr-VQ; Sun, 15 Jan 2023 17:09:47 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1pH7z1-007oMD-Lo; Sun, 15 Jan 2023 18:43:55 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pH6Vi-007iCQ-Me; Sun, 15 Jan 2023 17:09:37 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id bs20so25438510wrb.3;
-        Sun, 15 Jan 2023 09:09:29 -0800 (PST)
+	id 1pH7yy-007oL1-2Y
+	for linux-amlogic@lists.infradead.org; Sun, 15 Jan 2023 18:43:53 +0000
+Received: by mail-wr1-x436.google.com with SMTP id d2so5431712wrp.8
+        for <linux-amlogic@lists.infradead.org>; Sun, 15 Jan 2023 10:43:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w4GbAtoP62CKRZQ5YvzhQGV21nLCzrKZf6UMHAQ7R6c=;
-        b=Qs0TzHwISeaa+WuDsKBjv50JXQ0sW2dd7xFzal9LKEP2JauK10Flyvnok32oDzL7eE
-         EMAOjheyxs3J1B4yjrWrIjpNnyU9LE23jrKirfgpc5YP4Shs4ziYRL+gKFckJ+Tc+HtE
-         x/Xz3d68nEBza5/h6JcxIBhaEVfVKqIodGC5OLY+Y9U7Zu+jkJX5T31RQtdxXnfGHjbZ
-         ksS9jbmSSP1G9EKDLvJ3p0CxFgvST/a/ALE7YV1c2YZP0ftSI2EccL77Y6l3H019nJ//
-         HKsseal/G97fdOhlV3BegoyW0KK7qjGjmD3262SmDtXKL5UYndU9nhR1bZn18CYrJEEo
-         w2Fw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OqNu4z7pVUpJTWUrkJ4U/d2KgKBc21hr1i/mBhqreCk=;
+        b=ssNzrq3Nd7XNJkmahlyQ/9J04sU0fcIOPhxzHYzuYvM2pCHS6fgOsJ2LOimWTSdtxr
+         D7anbkV4JFp5UmWsUcIxXttg86WIosZXTExsjaf+5rWgA360zZm8ZJnbci2XVzzXqp6+
+         y78SUhkTdrvmrjThgpC0S/qsonCFsQI6uLz/OshG2euGHBsg7CbAnyICXkUMC/78VxFO
+         rhQE3sobOrjK+vmdeBtPM7/GlayvqMlwOOkhevykQ9u3aJyVkys3GYUV3+JQAX/06qPj
+         45mDsUzGvV+e38YMSlAqzybxfK3WNrFNYV6EirX2ekrT3WeidS3oRIsSrhJId9EF48Kt
+         NIeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w4GbAtoP62CKRZQ5YvzhQGV21nLCzrKZf6UMHAQ7R6c=;
-        b=Qrw2mtit5EaAwdQmDLTbCLT15SRRXE/xK7NTQo3okKn9r6VZrMD6Uia1EOd9WfINIr
-         ghQana3H65C2O/3SQLODzSS6xjMOXI5lpx9ukXD6KqAf+ehcsMnSzc2ZusuCbgDPVhZ5
-         emm/7MOt8pKGWlI54XFG0RuCR76UsIriq653oIrsRXBptG8OHBhN1sQirSFswP7rYxzh
-         QkhUNBkurWOSlmUkTQxuUAUny+5xy4tmIGGUHZ/XZufutTUg3StmQv07exzP2kkQPnr8
-         +lQVRQ7bPicvN0/oR6Hi1w/xtGQsh9S/y9xzYp88qW35vtIQ2ZMh51QZ2WMSE4tJncri
-         dsnQ==
-X-Gm-Message-State: AFqh2ko+kV3++rR4s9o+XfIzMOztv0Ovhp3uwKW9Zt6WkUDQBCFrnbWi
-	2VfhOPFjoV5+ROvUQheyaNs=
-X-Google-Smtp-Source: AMrXdXs7vx3SPHsW1PelQFTJn9+Sy2O6IpmYQHTlnDdC0LBH10nr5JVcbl4fGABESGPY8w+pE3omkw==
-X-Received: by 2002:a05:6000:1e08:b0:2bb:6c04:4598 with SMTP id bj8-20020a0560001e0800b002bb6c044598mr23683323wrb.67.1673802568012;
-        Sun, 15 Jan 2023 09:09:28 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
-        by smtp.googlemail.com with ESMTPSA id b16-20020adff910000000b002bdf8dd6a8bsm2172869wrr.80.2023.01.15.09.09.27
+        bh=OqNu4z7pVUpJTWUrkJ4U/d2KgKBc21hr1i/mBhqreCk=;
+        b=1yj8ELMVL+WiT39tCUanu1fTYzP3jf2hbDCASSoGggzuxH4QtY/PtRwBqdqsvRyfpI
+         FDqOEOgf5/DSpM4sTT0+J2/8ZqAsvTRCQDbZAz0mYlNJT7jaVVo5Sc9cGscUjUE18KCK
+         aax4YAenyJXuwMwm9fVZB26614eTNfNJQo2eYUhML5XQCmSuDaL0qNJ60IDSMuUg/QRH
+         mdP87PJTT0PqdNMPOcNsE4SCxuhmMt8LDnv2UqlfGntQCa6RojEYHFhBlASnIpycXCp3
+         KKbVhk9eBzxib1kTEfCo7yRZPX9CS5uSyM36fMQxHdaFLAc7UyQ7er6CNDYa3Yof9JiT
+         uvNA==
+X-Gm-Message-State: AFqh2krfhfR/EmnMfu0jJdhFaP0MTdhuVSy3y4XvBPIyMXP7dPJqgxPV
+	RSup2rVwNbNLVROtuo9RyUlzSA==
+X-Google-Smtp-Source: AMrXdXuFIbJ8sgk1dRCGGcgp21liwHrqT6eDQwJqp2Z4Sm3pYqyagyRd8SylbdZooVuIL08uhVraYQ==
+X-Received: by 2002:adf:e587:0:b0:2bd:c2ce:dd58 with SMTP id l7-20020adfe587000000b002bdc2cedd58mr13399941wrm.18.1673808228849;
+        Sun, 15 Jan 2023 10:43:48 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3095:3ab6:8d3f:21f? ([2a01:e0a:982:cbb0:3095:3ab6:8d3f:21f])
+        by smtp.gmail.com with ESMTPSA id t14-20020adfeb8e000000b002baa780f0fasm24089794wrn.111.2023.01.15.10.43.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 09:09:27 -0800 (PST)
-Message-ID: <03ea260e-f03c-d9d7-6f5f-ff72836f5739@gmail.com>
-Date: Sun, 15 Jan 2023 18:09:26 +0100
+        Sun, 15 Jan 2023 10:43:48 -0800 (PST)
+Message-ID: <51abd8ca-8172-edfa-1c18-b1e48231f316@linaro.org>
+Date: Sun, 15 Jan 2023 19:43:47 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.6.1
+Subject: Re: [PATCH net-next] net: phy: meson-gxl: support more G12A-internal
+ PHY versions
+Content-Language: fr
+To: Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>
 Cc: Russell King - ARM Linux <linux@armlinux.org.uk>,
  David Miller <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
@@ -77,14 +79,12 @@ Cc: Russell King - ARM Linux <linux@armlinux.org.uk>,
  <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 References: <d75ef7df-a645-7fdd-491a-f89f70dbea01@gmail.com>
- <Y8Qwk5H8Yd7qiN0j@lunn.ch>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH net-next] net: phy: meson-gxl: support more G12A-internal
- PHY versions
-In-Reply-To: <Y8Qwk5H8Yd7qiN0j@lunn.ch>
+ <Y8Qwk5H8Yd7qiN0j@lunn.ch> <03ea260e-f03c-d9d7-6f5f-ff72836f5739@gmail.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <03ea260e-f03c-d9d7-6f5f-ff72836f5739@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230115_090934_790549_BBBEA79B 
-X-CRM114-Status: GOOD (  16.98  )
+X-CRM114-CacheID: sfid-20230115_104352_203723_FF2FA4FC 
+X-CRM114-Status: GOOD (  19.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,41 +96,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15.01.2023 17:57, Andrew Lunn wrote:
-> On Sun, Jan 15, 2023 at 04:19:37PM +0100, Heiner Kallweit wrote:
->> On my SC2-based system the genphy driver was used because the PHY
->> identifies as 0x01803300. It works normal with the meson g12a
->> driver after this change.
->> Switch to PHY_ID_MATCH_MODEL to cover the different sub-versions.
-> 
-> Hi Heiner
-> 
-> Are there any datasheets for these devices? Anything which documents
-> the lower nibble really is a revision?
-> 
-> I'm just trying to avoid future problems where we find it is actually
-> a different PHY, needs its own MATCH_EXACT entry, and then we find we
-> break devices using 0x01803302 which we had no idea exists, but got
-> covered by this change.
-> 
-The SC2 platform inherited a lot from G12A, therefore it's plausible
-that it's the same PHY. Also the vendor driver for SC2 gives a hint
-as it has the following compatible for the PHY:
-
-compatible = "ethernet-phy-id0180.3301", "ethernet-phy-ieee802.3-c22";
-
-But you're right, I can't say for sure as I don't have the datasheets.
-
-> 	Andrew
-
-Heiner
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSGVpbmVyLAoKTGUgMTUvMDEvMjAyMyDDoCAxODowOSwgSGVpbmVyIEthbGx3ZWl0IGEgw6lj
+cml0wqA6Cj4gT24gMTUuMDEuMjAyMyAxNzo1NywgQW5kcmV3IEx1bm4gd3JvdGU6Cj4+IE9uIFN1
+biwgSmFuIDE1LCAyMDIzIGF0IDA0OjE5OjM3UE0gKzAxMDAsIEhlaW5lciBLYWxsd2VpdCB3cm90
+ZToKPj4+IE9uIG15IFNDMi1iYXNlZCBzeXN0ZW0gdGhlIGdlbnBoeSBkcml2ZXIgd2FzIHVzZWQg
+YmVjYXVzZSB0aGUgUEhZCj4+PiBpZGVudGlmaWVzIGFzIDB4MDE4MDMzMDAuIEl0IHdvcmtzIG5v
+cm1hbCB3aXRoIHRoZSBtZXNvbiBnMTJhCj4+PiBkcml2ZXIgYWZ0ZXIgdGhpcyBjaGFuZ2UuCj4+
+PiBTd2l0Y2ggdG8gUEhZX0lEX01BVENIX01PREVMIHRvIGNvdmVyIHRoZSBkaWZmZXJlbnQgc3Vi
+LXZlcnNpb25zLgo+Pgo+PiBIaSBIZWluZXIKPj4KPj4gQXJlIHRoZXJlIGFueSBkYXRhc2hlZXRz
+IGZvciB0aGVzZSBkZXZpY2VzPyBBbnl0aGluZyB3aGljaCBkb2N1bWVudHMKPj4gdGhlIGxvd2Vy
+IG5pYmJsZSByZWFsbHkgaXMgYSByZXZpc2lvbj8KPj4KPj4gSSdtIGp1c3QgdHJ5aW5nIHRvIGF2
+b2lkIGZ1dHVyZSBwcm9ibGVtcyB3aGVyZSB3ZSBmaW5kIGl0IGlzIGFjdHVhbGx5Cj4+IGEgZGlm
+ZmVyZW50IFBIWSwgbmVlZHMgaXRzIG93biBNQVRDSF9FWEFDVCBlbnRyeSwgYW5kIHRoZW4gd2Ug
+ZmluZCB3ZQo+PiBicmVhayBkZXZpY2VzIHVzaW5nIDB4MDE4MDMzMDIgd2hpY2ggd2UgaGFkIG5v
+IGlkZWEgZXhpc3RzLCBidXQgZ290Cj4+IGNvdmVyZWQgYnkgdGhpcyBjaGFuZ2UuCj4+Cj4gVGhl
+IFNDMiBwbGF0Zm9ybSBpbmhlcml0ZWQgYSBsb3QgZnJvbSBHMTJBLCB0aGVyZWZvcmUgaXQncyBw
+bGF1c2libGUKPiB0aGF0IGl0J3MgdGhlIHNhbWUgUEhZLiBBbHNvIHRoZSB2ZW5kb3IgZHJpdmVy
+IGZvciBTQzIgZ2l2ZXMgYSBoaW50Cj4gYXMgaXQgaGFzIHRoZSBmb2xsb3dpbmcgY29tcGF0aWJs
+ZSBmb3IgdGhlIFBIWToKPiAKPiBjb21wYXRpYmxlID0gImV0aGVybmV0LXBoeS1pZDAxODAuMzMw
+MSIsICJldGhlcm5ldC1waHktaWVlZTgwMi4zLWMyMiI7Cj4gCj4gQnV0IHlvdSdyZSByaWdodCwg
+SSBjYW4ndCBzYXkgZm9yIHN1cmUgYXMgSSBkb24ndCBoYXZlIHRoZSBkYXRhc2hlZXRzLgoKT24g
+RzEyQSAoJiBHWEwpLCB0aGUgUEhZIElEIGlzIHNldCBpbiB0aGUgTURJTyBNVVggcmVnaXN0ZXJz
+LApwbGVhc2Ugc2VlOgpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC9sYXRlc3Qvc291
+cmNlL2RyaXZlcnMvbmV0L21kaW8vbWRpby1tdXgtbWVzb24tZzEyYS5jI0wzNgoKU28geW91IHNo
+b3VsZCBlaXRoZXIgYWRkIHN1cHBvcnQgZm9yIHRoZSBQSFkgbXV4IGluIFNDMiBvciBjaGVjawp3
+aGF0IGlzIGluIHRoZSBFVEhfUEhZX0NOVEwwIHJlZ2lzdGVyLgoKTmVpbAoKPiAKPj4gCUFuZHJl
+dwo+IAo+IEhlaW5lcgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
