@@ -4,78 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7E77C678D6
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Jan 2023 23:35:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34BDAC46467
+	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Jan 2023 14:24:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5mehkCaqOvgHum6uFEySRexBSnmV/+YOl2t6ga4DwVU=; b=i9bPMkgQRHozgy
-	IkhskhlwTcjV2t9BTLrlzyvfrIXRHhN5QqUZe1C19eQs7A5PA4QNTlUDX254qdfEC1Dv53UtD76l4
-	Bdh79k8B/24VwSKriEcfzTfJQP0GuE60OBqZRcFO4l3UcGCFo+/C9hnNXX9k5VJ54DWdahyrPZt9f
-	wirxVVgS47j2bRhfPMIXEN5jstsmIDPR8aE5q4TT4c9suLs+67G6kyfJG8On0DRct/0vh/T9g3c8W
-	PsxkK5nTTe8RNMmg6txDweqFxqrhGZzIWeSWvzmo2o1Db1/S/ra4CioZvXp/qS3MAMwZr/EHU4Y6a
-	4j5pApJff02AlobNvuGQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=E4qJytwijjSa+mJrFI1IyPCMQpq3Rp4oBp5hOA3Z9P4=; b=Jdl+zwvguRJBrx
+	h39467J7Ra8SQ2hgAD+1Sj9RrJMWyYRruqN/WjHo2ctlbcGivjNBJqrgmZR/eVSm1R0Kct9F0bRT+
+	vmRQKygDkcWH9o0qjz5oMUB1wMa7jEBj0b9ThUEapqDoyGM/EURvzlX5cDwhu0LMTve2dXHzLMnZo
+	8rGhc0GIjYUdw0lmMzrxMNaY7d4ymSzZVyl3gbE3SYEcfx0SAFdi8upT5Tp/YHYzyC5DEKn3SrvUJ
+	y8E/jwhmcVDm5KZqRTFvRkDTSysUqVKbb6zbh4dsRKEWwGT1rvbEBupJzr1MlmFlMuHpkfWbH3aBI
+	X1PvWIHJ5H2E2XqGi6iQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGq3L-006dYP-PS; Sat, 14 Jan 2023 23:35:11 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1pH3w2-007RSi-7u; Sun, 15 Jan 2023 14:24:34 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pGq3I-006dWx-KJ; Sat, 14 Jan 2023 23:35:09 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id v30so36091632edb.9;
-        Sat, 14 Jan 2023 15:35:07 -0800 (PST)
+	id 1pH3vq-007RQu-PX; Sun, 15 Jan 2023 14:24:24 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id z8-20020a05600c220800b003d33b0bda11so2820720wml.0;
+        Sun, 15 Jan 2023 06:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GWVrESddhMcKV9qP+Dkj74fkQan5eC2qiWVTWYlr+WE=;
-        b=aSpgkeU/VZC36HH2IOCrApSC6/dnJxHVVhk/EP4hS7lxvlqwG8haUfghF65tQrDYRM
-         bd90WFiY6wgmjeUadxvJRKvRuEKPd4aiNxIT5U/ERvXOpzsNzvMHVfapgUNRI7/rlntv
-         7eXneQ577hZthSj4JsI3XGgQrKAsGZQbuBshsyKJPEEYolvoJ/BjgjC0vvhlkWlF+BXf
-         vWRO7Dw87Vvap0MZCKCheSMarlo+SqyrU9lpsPABprq5aAgQDbBcWEZUsb1I7Afj4NI4
-         X0emxf2gFSLoMKG9/ZLrIiTvqA7OHeRlT35JXqqei8VjHO7sQON83giV9fMVGvVFanQt
-         s5iQ==
+        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
+        b=p16Cx1eLPV5Q9j8Bf/WMOcz2U66PM1w/fra68F60TnFnXzJ4vZQJgZYY3RSU/fCM7A
+         CQKRFtbL0/F1WRCL2h035+w8yYHtHLTcFAvYoTLgqyKZykntxaAl/uB/O63id+MOFQ5D
+         W6jQNnMjIAwDyj5b4ntxWIE7FeniUlyW2a6JiRiKSXRg5Y0T9n+H6GbyZ9/SoluX+Mib
+         vSJRGESJt4fpkew78EQnBUb4CQhSFri5JAwj5LBxxNBrz18xCt3oy7h/+iduNoU+4OyO
+         JmFvlCeLe1w3r8auSl/+rV/SjSXUZ9VyiDjZhtjRp0XgK5lbc2Khhfk0+D1C3rB1aa8N
+         ouKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GWVrESddhMcKV9qP+Dkj74fkQan5eC2qiWVTWYlr+WE=;
-        b=VmHwW+2azTXNxyfOlyHPBIbstQw2gqv8g/lkEEh8lR29wTJoPqT4JIFSGLVExKzY4g
-         Wxq3h9lpthZVskHsQG68OuRPRfxoHrro/4PMsHeWvU/wuwaIlBgDhYehUVIKSEsDdipg
-         io6ofbaodfivASVuUHpvG26M8TP+q9y0styCBRhAh8uzWAV81CPWRCPeHjb2ZV9g7CJn
-         MUxh8qE/Yn9s51oXMqmnlDleGIGJnJ4mZcMPJ4RB1hztQA+Q4AokB7MsrnP7bK4k4QJ7
-         /FIhscOwkodHDM8FY+RxHbz1GTkQtbmUDJkXn1XbuQThvvsd5GrlhCa5WEyMrzpDXzgp
-         dZXw==
-X-Gm-Message-State: AFqh2kr6gcGLM1OcQ946SeBNiRS/nTMsaQJvZrPvllMNEK0kHkyzTO22
-	1qI2Tug2gUzsgfUT85L29q4WmNELzms=
-X-Google-Smtp-Source: AMrXdXuSopPP0FVI3dTqxvJnvWR//Ng9ic9FQLSlfUHndfsNGtoMtLC4QGI5TgHARiRWhJ0kzZHNGA==
-X-Received: by 2002:a05:6402:2d9:b0:499:d0e3:7745 with SMTP id b25-20020a05640202d900b00499d0e37745mr14991236edx.14.1673739305751;
-        Sat, 14 Jan 2023 15:35:05 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c22-7ae1-c100-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7ae1:c100::e63])
-        by smtp.googlemail.com with ESMTPSA id d7-20020a50fb07000000b0049cbd334b13sm1967620edq.29.2023.01.14.15.35.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Jan 2023 15:35:05 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	neil.armstrong@linaro.org,
-	devicetree@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 2/2] ARM: dts: meson8b: Add more L2 (PL310) cache properties
-Date: Sun, 15 Jan 2023 00:34:55 +0100
-Message-Id: <20230114233455.2005047-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
-References: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
+        b=DO7c1c7VQPDymlY909aklbrOKqUHc1nVpmAmQAs1OzjOelSqUaXjzMYWK9oWtnwwk8
+         tXgqLJa/vJyzHCiUC9iLCDasgEwMBaXOZ8sSOErbld38V1bnFDXnxAadxSUXyBSZum6G
+         xIoWtfrnOzdc1aEpWZ1LoFVZaMM7r2OYtGkwwzaeVkm68jxTaxEp2z4P4GiVA+79n1LS
+         Hb3eTnZqhLJALHjAOyw4JofiBzeORMep3e7yrDyXFxmiGTo59+oLp8/6a62wOXEj5X1l
+         uobVvXZZqCYUo4WgEBiHunZSROLqTPtmHOXv39DsS5aU7RYnpmRGO6B+U1W3dfLISXFe
+         nbgw==
+X-Gm-Message-State: AFqh2kpEFRmOTbpUmbupTSOvvE32j12O7AyT8LGZP8XNHX4yuW+Xn1lt
+	BbrxAmLCt736u4Sre34cUAWVRX2wuC0=
+X-Google-Smtp-Source: AMrXdXsmQNYKO1JhaPJuv6ZlUsDcHrE/7WIDXiMd0eEr5+aDL7G2VdCUVsIMrhS22a+F0WvvkF4wHg==
+X-Received: by 2002:a05:600c:a4f:b0:3d2:196c:270c with SMTP id c15-20020a05600c0a4f00b003d2196c270cmr67053230wmq.31.1673792661012;
+        Sun, 15 Jan 2023 06:24:21 -0800 (PST)
+Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
+        by smtp.googlemail.com with ESMTPSA id o14-20020a5d58ce000000b002879c013b8asm23699826wrf.42.2023.01.15.06.24.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jan 2023 06:24:20 -0800 (PST)
+Message-ID: <fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com>
+Date: Sun, 15 Jan 2023 15:19:31 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] dt-bindings: phy: g12a-usb2-phy: fix compatible string
+ documentation
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-phy@lists.infradead.org,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230114_153508_693175_4EB43F21 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20230115_062422_882750_CDF864DD 
+X-CRM114-Status: UNSURE (   7.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,30 +99,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add more L2 cache properties which are used by the 3.10 vendor kernel
-but have not made it upstream yet.
+The compatible strings in the driver don't have the meson prefix.
+Fix this in the documentation and rename the file accordingly.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Fixes: da86d286cce8 ("dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml")
+Cc: stable@vger.kernel.org
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ ...,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} (91%)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index cf9c04a61ba3..2d80c009bdfa 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -643,6 +643,9 @@ &L2 {
- 	arm,filter-ranges = <0x100000 0xc0000000>;
- 	prefetch-data = <1>;
- 	prefetch-instr = <1>;
-+	arm,prefetch-offset = <7>;
-+	arm,double-linefill = <1>;
-+	arm,prefetch-drop = <1>;
- 	arm,shared-override;
- };
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+similarity index 91%
+rename from Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+rename to Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+index f3a5fbabb..19a0ddab0 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+@@ -13,8 +13,8 @@ maintainers:
+ properties:
+   compatible:
+     enum:
+-      - amlogic,meson-g12a-usb2-phy
+-      - amlogic,meson-a1-usb2-phy
++      - amlogic,g12a-usb2-phy
++      - amlogic,a1-usb2-phy
  
+   reg:
+     maxItems: 1
+@@ -68,7 +68,7 @@ additionalProperties: false
+ examples:
+   - |
+     phy@36000 {
+-          compatible = "amlogic,meson-g12a-usb2-phy";
++          compatible = "amlogic,g12a-usb2-phy";
+           reg = <0x36000 0x2000>;
+           clocks = <&xtal>;
+           clock-names = "xtal";
 -- 
 2.39.0
+
 
 
 _______________________________________________
