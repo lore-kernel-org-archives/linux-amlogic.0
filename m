@@ -4,60 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66042C46467
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 09:32:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2681BC54EBE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 12:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iXk0rxbsyYISlEvCHevT2dWJrlsaXUEYV1q73+9gXus=; b=RTSf2igzXRuL3W
-	3YTyzskjOQNGa04zIub0vjJtH0evR9P6x+T0jcoVt4je/WxpwGmvtXahNcIM+f/c2uooyfklWigGD
-	kHqwerW7YU481FsJX0ab9ikP3gVC+reEI9Biatb0vGBfAmN7V3+r0MsRgg+R+ev9gWeh9z9KaUbgV
-	RCsRVgi/gOoz45NeBKvCPGLGpjZA/ahdH2gua4C5fl0I5pcy8eNKHmGoeHDOf+FpwP25CDNljPbnn
-	UsubHPwpYyqrYw2vUIPe07YsTbUGDtr2g2Th4zcaWKX+YIuhLT8KNfxiuLhn/ovo4x3VTZ3/DiMfe
-	zF4/4KMwuhK6jtOyOGLg==;
+	List-Owner; bh=bKPLwiwt2dfWUuI52kzn3xk4cjMi7aPaAZXnPY34SLo=; b=29HhSNt1N8XRBs
+	iBMGhN+UllgFAD8IizJ64W0BJv9nqw1WsIIyhLTyjH0kHnodfZIhxyEm94f46r0mt2Rcc47Y1F3sm
+	UxUUzhphaApt+yvJY6l9CFr5NnqV2n6D/mrUl8QsfP4xMKERE+lX6J3oPP3BnX+rOo3JwHIMmo1rN
+	TfNkd5mmiJPJDTEPIQWYpLKkafUCCX4V6g4j/ZtuXYyhSpl4H+LYNdpayni8wl+Y9Ili9BiAfTR6R
+	peCldi45R+XujJhx0BFJ8sYbTFdmvZx2HcYvy905WCy0CZAHHFWu7bB+WDP+6KAwPq4aX+qO8Dck5
+	n2+u/bMY6tpov9JlUYtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHLqa-009Mhn-UE; Mon, 16 Jan 2023 09:32:08 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1pHOKd-00A2yo-4q; Mon, 16 Jan 2023 12:11:19 +0000
+Received: from mail-dm6nam11on2104.outbound.protection.outlook.com ([40.107.223.104] helo=NAM11-DM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHLqM-009Maq-41; Mon, 16 Jan 2023 09:31:56 +0000
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 16 Jan
- 2023 17:31:44 +0800
-Message-ID: <7c0133a2-ea4d-645e-3df2-2bb832bbd498@amlogic.com>
-Date: Mon, 16 Jan 2023 17:31:44 +0800
+	id 1pHOKZ-00A2xN-HW
+	for linux-amlogic@lists.infradead.org; Mon, 16 Jan 2023 12:11:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YwGCRPtLEo11GWvmvy3guAPoIRQSFmYVtlVWYJfeevk64mmDv5nevjZHfgaKF66OjiGynMjhzVc8dOTWn0fgkEfTWJuTvhV6ubSFduc6KYqPYav/nDBH8hlMpTnhvCgBAMPgbOtwqceQ7i3715e5ZMIHB2Mmx6pXUoFGUQT22b4rsphznDUjx2OoF1rwFeK7NQWprJ1igZKuTu0Ya5/F8/cafv5A4/kZ93HOi/X6/saZFr7WRauoExw8K/Qt33pq19FuR4RC1UyDJPdKADzy7e+UPdqoxLne+aVVWDQ9gvhGYKq5wnHe/BcpYwTppkcjAd2BaIaM2ETzsdi5I1L8dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IbT3v03wVtxq5WyMY9pRfGgDNkulkQWqHmFn1Dyz0mI=;
+ b=UxudDfUfIaJllvSsNs9GisnSNQND8Sd+yA8v7imTVvoHh0f0jI2yax1K1nP+CoIjnMi4IBtbBJdh61QspGxWh9LlvbIhZtPzYxFXP31wTS3OKf2oeyp+YlbM5NOGVx6ZdQsgImP/CgzBYaGvPoEfXbaZ36t3Ri020lYexzWT5ZE3ym15edxeobXHAgy2VCAYGf5QpGBLKBRxCZCSFN6nH1LedmXCsfpoEbr5IXVHLRGElP3Er87Nt6gHCobSYlHBgjtjJsXR7Yso+vpo5pU4ugTScIB7eCntV5XqNZC/iriovlDOv16j5U5oLUb2m042iZbAd1TkdJ8Rl0QQ0bC35A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IbT3v03wVtxq5WyMY9pRfGgDNkulkQWqHmFn1Dyz0mI=;
+ b=ngXEpyz2o4Ny1cf34HiDJKCyu5W9h0ERQJaTezLKt18537beDUzm2HGcSftk6bUbkJpF10SEx0uniY0XBDJ+56CrTK2pYSoA8usRQSXF/ZSPLeK4EMTBHbgQfwUwVeJDxyxmXh8moPK6jbikhTq1Ekc+mZajmIPpjk/dpbhB28Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from BY3PR13MB4834.namprd13.prod.outlook.com (2603:10b6:a03:36b::10)
+ by BN0PR13MB5230.namprd13.prod.outlook.com (2603:10b6:408:159::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Mon, 16 Jan
+ 2023 12:11:09 +0000
+Received: from BY3PR13MB4834.namprd13.prod.outlook.com
+ ([fe80::1cd0:5238:2916:882]) by BY3PR13MB4834.namprd13.prod.outlook.com
+ ([fe80::1cd0:5238:2916:882%5]) with mapi id 15.20.5986.023; Mon, 16 Jan 2023
+ 12:11:08 +0000
+Date: Mon, 16 Jan 2023 13:11:02 +0100
+From: Simon Horman <simon.horman@corigine.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	linux-amlogic@lists.infradead.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
+Message-ID: <Y8U+1ta6bmt86htm@corigine.com>
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <20230116091637.272923-3-jbrunet@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <20230116091637.272923-3-jbrunet@baylibre.com>
+X-ClientProxiedBy: AM0PR03CA0081.eurprd03.prod.outlook.com
+ (2603:10a6:208:69::22) To BY3PR13MB4834.namprd13.prod.outlook.com
+ (2603:10b6:a03:36b::10)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL &
- peripheral clock controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: "kelvin . zhang" <Kelvin.Zhang@amlogic.com>, "qi . duan"
-	<qi.duan@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-2-yu.tu@amlogic.com>
- <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
-Content-Language: en-US
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY3PR13MB4834:EE_|BN0PR13MB5230:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ed052fd-3587-44bd-677b-08daf7babfc5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	RptjIrTqiNqxBd7CS8ZOaLer39/MxPABMYPEpYJN19gKF+M+qvTSpRfrThIKeKdzoJYk41F55Pp9mwpFaDtFLo7K7JEMYguP7axev63gvhn+YamNvDIG6mqREcKmF+cCKNDxe01GbBrWH6F3vz4TYZKA6lmYFktGY39qMOaV788zZI3WSkOQWSzUH9Zm+VYM8cfss5IINKk7SSGl/5tCHLSyk3MI8CKhUxmWw8yGBuRBpja37DsG3jT/lghBA2ZzJ1YoeZVak3vJptXzNoLTWuCRMIfFveBXbbTSEgz48PURhCQi+NxCEKwO4Mxihx2kh1m7wgvAgxpctqrY5eorNk3NxCrOBxnYztWAc0xgqPKQlk5rl7CGe1xBQjSExw4RM5qAZpVwGEhk7E5uq2zufzyqFejfOJw/fH/s7vzNMXPXGHmXt3Wu1FAGB6SMfgKvJ4jh/zPmOnladrncW+CB7PpsqGyeQ3BW41lBFOeI2+487BQq8MYgeSbgO5kPIWxud0LP9gcyqCnsBO8oNGNuznuiZrBG9qPnf3lrKXaHTceuz6WhbEQPxGUAUCidGnZMDZkG6YPjkwpN013VCPF8HUUoIiYHFTGBqFyUrmN85T6uFGUQ+hijwkpiRoi6ENQUq2YVQ+yCGt7ncWFAUKjixcJtIDVccp38jqUqL+DeVpj93/6jb9h3mdxP8ozgsECg
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR13MB4834.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(346002)(366004)(376002)(39840400004)(451199015)(36756003)(2906002)(6506007)(6666004)(5660300002)(8676002)(44832011)(4326008)(8936002)(6916009)(38100700002)(6512007)(478600001)(41300700001)(6486002)(186003)(66476007)(66946007)(66556008)(2616005)(86362001)(54906003)(316002)(67856001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?/7ukMpQa1kdgmXwOZzhilXFYbbn1D6B8qDYTX+Qhj68TcznBWvrtivCAOGIs?=
+ =?us-ascii?Q?uPA+fT+xrXSg2vr3zMdzB4HYVG3FyysCgKj14YN9Cz4uTrkO97OJ5X+26M4v?=
+ =?us-ascii?Q?2jKxrv1K3OH3oDuTCgm050xG0YeTEbWSWH8U7m9Kjk5g+1sQNeLhPMerF2lv?=
+ =?us-ascii?Q?1ThxYx36Js72eeI4rzngkIfJRQ/hw+mpg7gkMtQjdiC9uByx8mJortXymalP?=
+ =?us-ascii?Q?8vpobK9XIDk34ibAciC6LwvGbVKkyoHxUCc6VslAzBYKdEmhyRQSFjvI82s5?=
+ =?us-ascii?Q?oyAxs7gw0r4oStuksn1GixvEyv6iPF2Zvi2VcBjVShUJ2t5bi/VIaNXYKIM1?=
+ =?us-ascii?Q?IK3zRSeCEDumnuvTiBX3kh4LEHy0RF28DFVFH7MAIri5Z5PJ2AbfC2A4V7f4?=
+ =?us-ascii?Q?Ig7F/Xa/7JgeLtmh4rJ5bXyA+fDsvrtlEfGX/90i0kHM69o27uONAuLPBk7L?=
+ =?us-ascii?Q?kcuse7WyiuNAZKteDYASxUgoFD/x9cb3rHnExrwO8FWIH7VxZp39zWZw2q/0?=
+ =?us-ascii?Q?3lsL9KVWyL1uKeOdyVqcYRppTAEkL+N+ZCUjkyvJdtoFiZHdsITW+Usg3Lo2?=
+ =?us-ascii?Q?/YGwpK/qB/FDDzJxw7k1wGR75bQanhNjBi6/+8oxPZ/nEne/rBIiSOHdkYCY?=
+ =?us-ascii?Q?DSbZkZt/W37lxCP8yfC2oeMQEo0y/yHWp8FC44BWyQABHvvNetFLcit/2ZHo?=
+ =?us-ascii?Q?B/xgAJ6E6oDMrME+TKWFhBg9NEK6AxPeJgXTOv0bcNHzGQyr/d+6nw06KRfZ?=
+ =?us-ascii?Q?AJY8y/vcFQssov6oxFp10OyjywGsSIkLCc6QNQbX5AcQyx1W94TWMZNmTMad?=
+ =?us-ascii?Q?4C3giq/DyXRzw04LHHwHEKCMGcKtw+9AHZ4qSWWJyIXayuQYcFYCMU8/68qj?=
+ =?us-ascii?Q?y6F7owKd358GsGbqb29Tc2mvjgcL1iVyqXUJ27b//MFilrcBXGOCcuTC9oHr?=
+ =?us-ascii?Q?Yp7mRO3NWvTsdolJemLXp81n+++WRz1VDlWMDkkNe189hhYni1JrdsBOj2Kj?=
+ =?us-ascii?Q?RdTDbz5yoWHG3Lmg0GeA0PkQMAREecyDSBe+LKdfVgJqDeHFNAF+9a8pogxZ?=
+ =?us-ascii?Q?CFljJwExdJTkepnhaxYJtg0gVArtm9/69bIzobbHnhX8zZQVxQW2KFv6pvy3?=
+ =?us-ascii?Q?/UDba8QADA5LDahSxP95p8wd99CLnbwJ+ihFokHFEJYvHvrAxLi5dTfmvjvS?=
+ =?us-ascii?Q?X+BMmU6KSKwfieRKXtDLkh200DQclLMGuH6S9tNlS+bxH7qA6+CWDWUGYdhE?=
+ =?us-ascii?Q?lw7Z/MkM2sPmHEV8NC8b0DKRMyzvSyjk8wT1puQbIws3gh3BfR7X/iBOPvpp?=
+ =?us-ascii?Q?VjTYByg6+AZaYnzaJc5/GuiFXMK0XSb8QHlcb0rl+qIW8XOUMNH/3o7xR9O6?=
+ =?us-ascii?Q?x+ZsOajyt7PeFNPwzbROmZdmepy1UtYWiTWZ7Du7WekXnsH4G8JMIMmPst2l?=
+ =?us-ascii?Q?zJOl4V7Z43jKnA2ZPf6l3+xpGQ2SAjLZ3lNRrsvHYF3Qgo/OQNBXeyL2vjbY?=
+ =?us-ascii?Q?8yZ3+JKZnixpZeVWxu0NMMLlclxUQ2hPvcU+QVwPbwgC5KLXIKztGNB5W2VD?=
+ =?us-ascii?Q?XvsZhnaIQXDcJGDv2xQxLEaNAkgNeb9OnnmobnT+V/rt8yipHQIgXVRvVj+r?=
+ =?us-ascii?Q?XjSfT7Ktc1Oqa/ozusll6IuUORGbEAiJXDN4psH06g24oNSQYTsk1NtV0dSc?=
+ =?us-ascii?Q?jt6QhA=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed052fd-3587-44bd-677b-08daf7babfc5
+X-MS-Exchange-CrossTenant-AuthSource: BY3PR13MB4834.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 12:11:08.4708
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c+20h9rANB9rvDQjw6apKfzudvxUX9stvYaFTSn6Y1b4vFoZSM5BBjg6qKJiaf2coOmYDZrl349BvJIqZpeUt6AKPn4BbsysDcb11A+XCPE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR13MB5230
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230116_013154_208281_A8FCC56B 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20230116_041115_822440_E454A331 
+X-CRM114-Status: GOOD (  17.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,237 +133,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
-	Thank you for your quick reply.
+On Mon, Jan 16, 2023 at 10:16:36AM +0100, Jerome Brunet wrote:
+> Add support for the mdio mux and internal phy glue of the GXL SoC
+> family
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/net/mdio/Kconfig              |  11 ++
+>  drivers/net/mdio/Makefile             |   1 +
+>  drivers/net/mdio/mdio-mux-meson-gxl.c | 160 ++++++++++++++++++++++++++
+>  3 files changed, 172 insertions(+)
+>  create mode 100644 drivers/net/mdio/mdio-mux-meson-gxl.c
 
-On 2023/1/16 16:29, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 16/01/2023 08:42, Yu Tu wrote:
->> Add the S4 PLL & peripheral clock controller dt-bindings in the s4 SoC
->> family.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->> ---
->>   .../clock/amlogic,s4-peripherals-clkc.yaml    | 104 ++++++++++++++
->>   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  50 +++++++
->>   MAINTAINERS                                   |   1 +
->>   .../clock/amlogic,s4-peripherals-clkc.h       | 131 ++++++++++++++++++
->>   .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 ++++
->>   5 files changed, 316 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>   create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>   create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->> new file mode 100644
->> index 000000000000..2deeff497754
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->> @@ -0,0 +1,104 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic Meson S serials Peripherals Clock Controller
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +  - Yu Tu <yu.tu@amlogic.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,s4-peripherals-clkc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: input fixed pll div2
->> +      - description: input fixed pll div2p5
->> +      - description: input fixed pll div3
->> +      - description: input fixed pll div4
->> +      - description: input fixed pll div5
->> +      - description: input fixed pll div7
->> +      - description: input hifi pll
->> +      - description: input gp0 pll
->> +      - description: input mpll0
->> +      - description: input mpll1
->> +      - description: input mpll2
->> +      - description: input mpll3
->> +      - description: input hdmi pll
->> +      - description: input oscillator (usually at 24MHz)
->> +      - description: input external 32kHz reference (optional)
->> +
->> +  clock-names:
->> +    items:
->> +      - const: fclk_div2
->> +      - const: fclk_div2p5
->> +      - const: fclk_div3
->> +      - const: fclk_div4
->> +      - const: fclk_div5
->> +      - const: fclk_div7
->> +      - const: hifi_pll
->> +      - const: gp0_pll
->> +      - const: mpll0
->> +      - const: mpll1
->> +      - const: mpll2
->> +      - const: mpll3
->> +      - const: hdmi_pll
->> +      - const: xtal
->> +      - const: ext_32k
->> +
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - "#clock-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->> +
->> +    /* 32KHz reference crystal */
->> +    ext_32k: ref32k {
->> +        compatible = "fixed-clock";
->> +        #clock-cells = <0>;
->> +        clock-frequency = <32000>;
->> +    };
-> 
-> This wasn't here before. Drop it. It is trivial and it is not needed to
-> illustrate your device bindings. All clock bindings use it...
-> 
+Hi Jerome,
 
-I'm fine with that. I don't know if Jerome agrees with that. Wait for 
-him. See what he says.
+please run this patch through checkpatch.
 
->> +
->> +    clkc_periphs: clock-controller@fe000000 {
->> +      compatible = "amlogic,s4-peripherals-clkc";
->> +      reg = <0xfe000000 0x49c>;
->> +      clocks = <&clkc_pll 3>,
->> +              <&clkc_pll 13>,
->> +              <&clkc_pll 5>,
->> +              <&clkc_pll 7>,
->> +              <&clkc_pll 9>,
->> +              <&clkc_pll 11>,
->> +              <&clkc_pll 17>,
->> +              <&clkc_pll 15>,
->> +              <&clkc_pll 25>,
->> +              <&clkc_pll 27>,
->> +              <&clkc_pll 29>,
->> +              <&clkc_pll 31>,
->> +              <&clkc_pll 20>,
->> +              <&xtal>,
->> +              <&ext_32k>;
->> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
->> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
->> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
->> +                    "ext_32k";
->> +      #clock-cells = <1>;
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->> new file mode 100644
->> index 000000000000..aeda4861cebe
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->> @@ -0,0 +1,50 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic Meson S serials PLL Clock Controller
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +  - Yu Tu <yu.tu@amlogic.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,s4-pll-clkc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xtal
->> +
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - "#clock-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clkc_pll: clock-controller@fe008000 {
->> +      compatible = "amlogic,s4-pll-clkc";
->> +      reg = <0xfe008000 0x1e8>;
->> +      clocks = <&xtal>;
->> +      clock-names = "xtal";
->> +      #clock-cells = <1>;
->> +    };
->> +
->> +...
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index f61eb221415b..26c82beeffda 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1897,6 +1897,7 @@ L:	linux-amlogic@lists.infradead.org
->>   S:	Maintained
->>   F:	Documentation/devicetree/bindings/clock/amlogic*
->>   F:	drivers/clk/meson/
->> +F:	include/dt-bindings/clock/amlogic*
->>   F:	include/dt-bindings/clock/gxbb*
->>   F:	include/dt-bindings/clock/meson*
->>   
->> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->> new file mode 100644
->> index 000000000000..bbec5094d5c3
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->> @@ -0,0 +1,131 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> 
-> Unusual license... are you sure to license the bindings under GPLv4 or
-> GPLv5? Fine by me.
-> 
+...
 
-Yes.
+> diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
+> new file mode 100644
+> index 000000000000..205095d845ea
+> --- /dev/null
+> +++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
 
-> Best regards,
-> Krzysztof
-> 
+...
+
+> +static int gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
+> +{
+
+nit: I think void would be a more appropriate return type for this
+     function. Likewise gxl_enable_external_mdio()
+
+...
+
+> +static int gxl_mdio_mux_probe(struct platform_device *pdev){
+
+nit: '{' should be at the beginning of a new line
+
+> +	struct device *dev = &pdev->dev;
+> +	struct clk *rclk;
+> +	struct gxl_mdio_mux *priv;
+
+nit: reverse xmas tree for local variable declarations.
+
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+
+nit: may be it is nicer to use dev_err_probe() here for consistency.
+
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->regs))
+> +		return PTR_ERR(priv->regs);
+
+And here.
+
+...
 
 _______________________________________________
 linux-amlogic mailing list
