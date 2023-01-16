@@ -4,126 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF048C46467
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 14:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D778FC677F1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 16:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xHkG57uHDNYTH0vq8Lhw9ZzZYykLz4DJH0CQY0KK8GQ=; b=MIn2JE/8hdwiqW
-	GUAuZBGCNm9bP/OSaMkq7JVCaAaqXWxTFTweCOJ0YuRrkXjkk6lJ4wegqIrDusRiJZGdhCRyCPWBQ
-	qg2A2Qtalbr4E/jggACB/V6D692jGOQ32RneWkPP3tfoc/0ZHMR8Xj1ySKOn7mp7BEEh/+JYCZulp
-	qhVzCbc5KnEk56/rNce1ORLso9GUf5X8ZNdzW5Ei4e2ADx2lqSYo4mV4d65BEQWgg9dojaomSaIj/
-	sxeL2pJ+NtJhGHdlF2b+8xLOq5dW/1LePlZf1yeiUcgHzTxT92mF8GLt3L1z1Dp0Vk1+OrHwdOtKe
-	SHN3WJcgU0j8+o3jHl5A==;
+	List-Owner; bh=iP2DMbRe239H3bEXEHSBdiNcjhWrER/n+//2IGt7u6I=; b=BFDNEGagPC+Kn+
+	KX2ra4EaDuYF+oo8dNF164LqEYWn9zStzpd2ijW/nQOtmGn3VnfLhKoqiEtZTQCnM87ydxw3CguFA
+	iwaNCAvkgrKGt/5x8zKmKSnQj9UdT6W+GwiLgs/FFh5uxgO/HT67GFk+nC5WXScye9hf8czy4rKGg
+	4CetZZ2mSpgSDJAhqHD++SHTaB/Wb0PsUzp8ip/MHtxntSJzzIRg2aNpqRU+/TmqKsOkw5XNesTdN
+	tp1jVSfYvOtY6I9BKIQGSqZQ5+5kBj+dFthk1AdFdRV6qWZ4/E+NCMkOkhRg0EirfPVfUsO/CvAfB
+	/yCFTL/2dJIV8ytZ7CUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHQ2q-00Ag1q-SK; Mon, 16 Jan 2023 14:01:04 +0000
-Received: from mail-co1nam11on2121.outbound.protection.outlook.com ([40.107.220.121] helo=NAM11-CO1-obe.outbound.protection.outlook.com)
+	id 1pHST7-00BOjv-5W; Mon, 16 Jan 2023 16:36:21 +0000
+Received: from mail-oi1-f175.google.com ([209.85.167.175])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHPtc-00AbRK-1F
-	for linux-amlogic@lists.infradead.org; Mon, 16 Jan 2023 13:51:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dLLWbf8sYJ7G45G3S4bTaSeqQnx30GtgTd/gNDNsjvEubmwCtTmfckyheD5z4LNRBGZ9kMLY9O6sZ14x9iusgXlD/bcUG0IZnZLOmzgLkmH8EekoVKwUT0eHBWzQw2dpvPQYdNmaiJE0BCnx8LRdTLERql/yZnuBQepoTdr1ZgoUj6vF7sMsYZsVj6/P5Ap4mUQXERXN/npq3kTOoY1YngxwbKoTxL6CODX2szzkQEpsmeoZJs6AixcKb8RuC8OaDJzHUwv63jsJtVcVOc/cSPoALkwqtmB7160cW8vvhiU/p+d4y0CT9fAowUojnkQg8qbetH8pXzJdV7oDCXrfPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Dd399+7Jevdfe4GmwFZOsb6kLJk1u2JylDxRrDuzK+Y=;
- b=WI2bbvQ1Jtrqxb0EjCXVl2U88kpOh9ycrCvH19TKUlDzHo13I4afkFeVTLOHhGt8ZvHcMApxVvm3vndFuCrEyBoQ2KdOjbywS+I8cltbWNSb2LEu3sFYDBL9eiPvo3QdSv4ePUYzUF3mWdMSmYOUgkbgiWRauzEX2CgsryWLLyTOrW5PuYAVvwz26xnqQNjMqwbIZOt0p6t72V/mcp10XfE+P23z8/OjLi+4noLwBqyH0esrNqfTiuzj4ZN5Ut/XInqe9Mgje10cdywxlsS/VUjvxgO4IcpV34wJ5ADY67pOXzjf+qfRFqkIp6TTHXOOP563kqZ/BkMocvtujgXmDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Dd399+7Jevdfe4GmwFZOsb6kLJk1u2JylDxRrDuzK+Y=;
- b=X5jiGq9TnXsB+OespKKkuX4ZA4K78Y+rAnvwdexn8hhTIu1JMSNucLLGdqcJj+UvCBx/WLtMVjjvx100qFuWXr7Xwj9NTV87vK6gDH7q0pG7yw7Nu5KXI9Mnh0HhNy+ReGNmGJMojMikeMu1FESqGziz2jy7wenua3q/hi62vCA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from BY3PR13MB4834.namprd13.prod.outlook.com (2603:10b6:a03:36b::10)
- by MN2PR13MB3678.namprd13.prod.outlook.com (2603:10b6:208:1e2::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Mon, 16 Jan
- 2023 13:51:28 +0000
-Received: from BY3PR13MB4834.namprd13.prod.outlook.com
- ([fe80::1cd0:5238:2916:882]) by BY3PR13MB4834.namprd13.prod.outlook.com
- ([fe80::1cd0:5238:2916:882%5]) with mapi id 15.20.5986.023; Mon, 16 Jan 2023
- 13:51:28 +0000
-Date: Mon, 16 Jan 2023 14:51:20 +0100
-From: Simon Horman <simon.horman@corigine.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
-Message-ID: <Y8VWWP53ZysENI7/@corigine.com>
-References: <20230116091637.272923-1-jbrunet@baylibre.com>
- <20230116091637.272923-3-jbrunet@baylibre.com>
- <Y8U+1ta6bmt86htm@corigine.com>
- <1jk01mhaeg.fsf@starbuckisacylon.baylibre.com>
-Content-Disposition: inline
-In-Reply-To: <1jk01mhaeg.fsf@starbuckisacylon.baylibre.com>
-X-ClientProxiedBy: AS4P195CA0017.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d6::8) To BY3PR13MB4834.namprd13.prod.outlook.com
- (2603:10b6:a03:36b::10)
+	id 1pHST4-00BOhm-1l; Mon, 16 Jan 2023 16:36:19 +0000
+Received: by mail-oi1-f175.google.com with SMTP id i5so5582519oih.11;
+        Mon, 16 Jan 2023 08:36:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0hnUZ60mVRJhXUg94NvWH4Vacuvk8BAE/8ADy6vgTsQ=;
+        b=1/S9IdzQwATZ4y5YW9xLka5ZqpuqycWFE/OMcJhGxyMhP4eOewTvfkl8UfM9NODPVM
+         oYkRQtptYf1KkjQT/RcwQxceB619rxK057sT8TdwTs4QPEcb3mbrwrsU6OlG4Azy14nj
+         Vop5uM/nafx+BpRAdUxawIVmg9/Znok60KWX4Htk0tfFB4UWuArLJWp61J2Z3021QYB4
+         dDdo5GDFQSDfMSjBInyWPctBYSq3AtvGtuAR7/xg9a5fWU1N9nKm/18zwZgpLpgaINlB
+         eyiwYlT4Sm3UOR27SVNlzKUbLNxPPXVsqWQ2IcSUSPPyN+6T6WmupHkp6/AfxO/7NW8F
+         VxRw==
+X-Gm-Message-State: AFqh2kojsinpRvvIvjH7q1hPvGxBYD44NiGWTuEcBsXCIK9K5hdm14gP
+	OA1gLGWOTrKm6a4mUC4L3L7EHyqdMQ==
+X-Google-Smtp-Source: AMrXdXuK0z8g2M52j0b3QBVJOrcC5GBevcSNZ828P23dAscXDIb9r3LrG8OccvrQIzRmTnN3zLnsAQ==
+X-Received: by 2002:a05:6808:ec6:b0:35e:df32:64b1 with SMTP id q6-20020a0568080ec600b0035edf3264b1mr12091899oiv.21.1673886973800;
+        Mon, 16 Jan 2023 08:36:13 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e26-20020a0568301f3a00b006770e855c61sm5535920oth.31.2023.01.16.08.36.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 08:36:13 -0800 (PST)
+Received: (nullmailer pid 606179 invoked by uid 1000);
+	Mon, 16 Jan 2023 16:36:12 -0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY3PR13MB4834:EE_|MN2PR13MB3678:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f7c6429-9834-4bbf-5acc-08daf7c8c40a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	EuFoUhMLNAhcJO1tYdGNFhmaLG2spK8smI4d9Cr839Vw+JbtJpjHn54TEw3cFc4P+YIS6NOOkhhOdbbQoNttvmuMt66tmg3jFnV58NPkBlgYLpJJiZcfPhZxsQ+937gpTXkE6ZwBgJLJZkjwdG0D6mhJgsc2hPgkoYCxvFPdnNNCdE1ZWLKNOftiLOCM1kxo/mKCG8BTAhPaiprDbuSwmvY3I4i5zqnsBL7P2HxjIdHh508zZ1hp/rgavqyTgUs5sDL4uWk2/c2gG7qTB0kGX7Fs2Q0tl5Ck4bOuTNMnzxZEyh2ordLdulACvNTS4yyHcgIxPT4fC3EwxpQTjO/HN6bodYADTDysDcKpuLYTzHfc46/f1w9UYWWcBMAeVRSv+sK4yBGMeERn6U7UAGeyeplcw2nH305JqbTfIDoz+RMNymKFQo5GMeJ/JT2VGNcyxRhGv3bC9PTl9lq8aIaVAXwF/C5dg0VQrsM3hh3aW8Kh4GXmY84vmk9/U9GbMlQYatZvZGPX7t/49qdF20RDXbrYn3m4HuepuCyzq9o/tYbZY0k2HX8l7CCFKPqgBO4vTf4KRqPPs9zcf/AXAyU7kyV8Pow1SJPR7jICnbotGoEOwLmJFaNfk3+dJ9jya/ha15zbkHNjX6YoABC/126SmdA2QLBu8MF3WtBEkLmDjUAmAk+BJyLgM+wFv1saHkcf
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR13MB4834.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39840400004)(136003)(396003)(366004)(451199015)(66946007)(66556008)(41300700001)(2616005)(66476007)(186003)(6512007)(8676002)(4326008)(6916009)(86362001)(36756003)(5660300002)(8936002)(54906003)(6666004)(478600001)(6506007)(316002)(38100700002)(2906002)(6486002)(44832011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?3kvSIHVBKo+InUQ352tB26eTcnylKSm1xLRz3qLcVUDVxKi+Ke1etQwJlBEj?=
- =?us-ascii?Q?U+uR+CJVgS1+vDQjGNVahIUxa2VuTkhMSZQ67AdrIxHLYsOsitytZfoZMopx?=
- =?us-ascii?Q?D8IH3T2juWpHsbVIHaoBrDh1+Z/0TjiHkBwtw57Y92hxP0Unvbqy8PL50LDy?=
- =?us-ascii?Q?VPt4ugkKZ/mXNF+W4bt7LiZpkA+oAQ2Ybm36jC/O5C5yRNYFLtZjXn+7ciYP?=
- =?us-ascii?Q?5jM3GSNcuBDTYOERI+V1PE9R6R7ETdxIOzRCyZrqktFNgEw4m5nJOqb3YkGs?=
- =?us-ascii?Q?5Wuf7/S/Tk3ueSxyyIatcf1Pw5Kob486hXX/rS8PIIXQtTqyxgmeBZjCMVtH?=
- =?us-ascii?Q?2/F3jzMl9JgMFB3DWJ52GUcFk340u6vQriwRCLyM0ZFI7+G+Sq2ca76YLvyu?=
- =?us-ascii?Q?fGccy95KnE2UZtP1e+4HMJv5+JoPz6oT2HbVXDna52Lsg8h7GLTYVwFa2ext?=
- =?us-ascii?Q?FD7zw7TsGxbwE2EeUm3CvkaV2Dw62C0gvYFCt9wFVoB4VOP1fyKBT5XSvFLp?=
- =?us-ascii?Q?uqbdGAPL2oqA2hwG2pDO9LQv8w4J1C8vMObPMiLa+MPnSbrKxqp0/k6uoTxv?=
- =?us-ascii?Q?f/0L5ijOp7jabD8s+er0NwAjEGrYabbw8CoNxGE4JUY/ydJmkS+iEA1KnBLt?=
- =?us-ascii?Q?GtUk5dsSePaAmbzEyHoXnWsPd+26fHLteWQH/j9CCm/3+SwmEILFGcNMZby4?=
- =?us-ascii?Q?TdQSm1GEBCKCfR2O5XRvIJxyzU8J6HaRVk8wJzfPyJAWDYCZKJuC4dASd6ru?=
- =?us-ascii?Q?BpY8A3MWnlJOYNHQDFn3UzqmWAs2VyVzLzHrkmMFk2SDPSCEbsFOjjX/E83q?=
- =?us-ascii?Q?VgU9LWvqwRDW5HKkUfPH6H6cL2aagl1eIYRlTJoki6i4a0jRufWDLNF9t5eO?=
- =?us-ascii?Q?nArT7QMZ6sJxGfFkAXcvW9tM1LPQrWiZnb+q2SF7/rzXH9Ez7d52TUxKBnsF?=
- =?us-ascii?Q?LJ6hru5vEazGTmJ6zXLkutLiXEDcESquWvjKeAyuSQKANacGeNHUjKH8hWck?=
- =?us-ascii?Q?oDJdauqnlUGWIeMFZOjzUnCNrtcUe3FUjYbUIGk2AGEMIH0M1mrXYDbq+hMu?=
- =?us-ascii?Q?uE0xNMdpcY3Jl+x8FQlxzPcqEtLGRrPQKE/YXWuq5IIsXJ8eujOKZUwILC1d?=
- =?us-ascii?Q?gvs3WIAVfXVIt3QIEB1mYD+1GxltF818ztnHk0V0zhPusSLBXKHfcbmVQMcs?=
- =?us-ascii?Q?9f19BmmkeV7hLxDovDqUb0i4GrhB9e1oWPgq8hIcZWbwALtm0LwjheRzrMCM?=
- =?us-ascii?Q?h+DMj9UwpOSwCnAAQzXitWnTdyy71bbX8Zs7FBG8vWrDI4fGeLYDhZc/Noax?=
- =?us-ascii?Q?VKnFRyxta3sRAnieickFfo68z3clqalCv5osBUkmG5LWCjH4uJNYeY74aMSD?=
- =?us-ascii?Q?1QP05cdz/J+ZNKpizWb/WFEX4wm7QpzjvZYesvd3p/PVGZSDm6yVrGEcutsJ?=
- =?us-ascii?Q?Lbf+eDdgOdXY3LmLqCG38A9H4JM4eaZ/yTHh5NAeg6Nsvt8fjDAmyxB8k9e5?=
- =?us-ascii?Q?z+s3RSJ5pksblbk4dyiE8hfR6OsNEh8q8X9xRH0lzNYBca9SRywXqht3CMY6?=
- =?us-ascii?Q?W0beV5lcOQwRQp1NhDeJnrK/NVDDi1BtSfqQTrsuj2p6P39Ka8G15R8n1iEA?=
- =?us-ascii?Q?gu+gR4rjLpIjnCZ4F+7ZtLtd6SMhpA985pXQEq377tx09kyRTre+EFaWgyGb?=
- =?us-ascii?Q?b7VQEw=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f7c6429-9834-4bbf-5acc-08daf7c8c40a
-X-MS-Exchange-CrossTenant-AuthSource: BY3PR13MB4834.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 13:51:28.3066
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2cSiZ/yYrssCBYa14oq3ZIsmBq991BoGhsg6XlhI/45anRqJ0B6Gv0wxQfW+6wzTBkYQKQT57EhAVBydecMJMxFeiC4tlGsgGkc+w1LaxZI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR13MB3678
+From: Rob Herring <robh@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, Kevin Hilman <khilman@baylibre.com>, linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kishon Vijay Abraham I <kishon@kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+In-Reply-To: <fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com>
+References: <fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com>
+Message-Id: <167388663660.594049.3734030156353623535.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: phy: g12a-usb2-phy: fix compatible string
+ documentation
+Date: Mon, 16 Jan 2023 10:36:12 -0600
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230116_055132_318092_DD8F7836 
-X-CRM114-Status: GOOD (  25.38  )
+X-CRM114-CacheID: sfid-20230116_083618_110404_04606EA3 
+X-CRM114-Status: GOOD (  13.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,84 +78,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 16, 2023 at 02:27:57PM +0100, Jerome Brunet wrote:
-> 
-> On Mon 16 Jan 2023 at 13:11, Simon Horman <simon.horman@corigine.com> wrote:
-> 
-> > On Mon, Jan 16, 2023 at 10:16:36AM +0100, Jerome Brunet wrote:
-> >> Add support for the mdio mux and internal phy glue of the GXL SoC
-> >> family
-> >> 
-> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> >> ---
-> >>  drivers/net/mdio/Kconfig              |  11 ++
-> >>  drivers/net/mdio/Makefile             |   1 +
-> >>  drivers/net/mdio/mdio-mux-meson-gxl.c | 160 ++++++++++++++++++++++++++
-> >>  3 files changed, 172 insertions(+)
-> >>  create mode 100644 drivers/net/mdio/mdio-mux-meson-gxl.c
-> >
-> > Hi Jerome,
-> >
-> > please run this patch through checkpatch.
-> 
-> Shame ... I really thought I did, but I forgot indeed.
-> I am really sorry for this. I'll fix everything.
 
-No problem, it happens.
-
-> > ...
-> >
-> >> diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
-> >> new file mode 100644
-> >> index 000000000000..205095d845ea
-> >> --- /dev/null
-> >> +++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
-> >
-> > ...
-> >
-> >> +static int gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
-> >> +{
-> >
-> > nit: I think void would be a more appropriate return type for this
-> >      function. Likewise gxl_enable_external_mdio()
-> >
-> > ...
-> >
-> >> +static int gxl_mdio_mux_probe(struct platform_device *pdev){
-> >
-> > nit: '{' should be at the beginning of a new line
-> >
-> >> +	struct device *dev = &pdev->dev;
-> >> +	struct clk *rclk;
-> >> +	struct gxl_mdio_mux *priv;
-> >
-> > nit: reverse xmas tree for local variable declarations.
-> >
-> >> +	int ret;
-> >> +
-> >> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> >> +	if (!priv)
-> >> +		return -ENOMEM;
-> >
-> > nit: may be it is nicer to use dev_err_probe() here for consistency.
+On Sun, 15 Jan 2023 15:19:31 +0100, Heiner Kallweit wrote:
+> The compatible strings in the driver don't have the meson prefix.
+> Fix this in the documentation and rename the file accordingly.
 > 
-> That was on purpose. I only use the `dev_err_probe()` when the probe may
-> defer, which I don't expect here.
+> Fixes: da86d286cce8 ("dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  ...,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>  rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} (91%)
 > 
-> I don't mind changing if you prefer it this way.
 
-I have no strong opinion on this :)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> >> +	platform_set_drvdata(pdev, priv);
-> >> +
-> >> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-> >> +	if (IS_ERR(priv->regs))
-> >> +		return PTR_ERR(priv->regs);
-> >
-> > And here.
-> >
-> > ...
-> 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/phy/amlogic,g12a-usb2-phy.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
 _______________________________________________
 linux-amlogic mailing list
