@@ -4,147 +4,196 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00193C636D7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 16:04:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B487C38142
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 16:04:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=tF2nooqvNtdsyfsrq5vY1K/JbZ7Z6ndgUn5NChdvgt0=; b=jiC/gyUOwZvyNK
-	Kh2NEDSB0ThcfPLzUwtdj7TAQGIbh56qerBKty6qS8WvidXYBbnOp9oSJaUiYMdsrqwmypg3lEIeP
-	FsiLjKTEiiRyrJnidVi7cUHTJW+JdLC4+BWToWau/1odZBHw+5NIVWxAXQi5HMU7b+JJNHVnYspMD
-	fZHccB5XwPVWnmUTsDTGqidh3A91/qiWE0zs+mHq/S6HNX+NXXYzfOh0eRuGFkrC2ScwTfEzebcqG
-	EDWv/8fgaxpMWENAD/M8H6qhRKSOUIAdxqp/YXuzuREDPCl4wLX1RR0SQRB3U3YVmlHmUoueLit7a
-	/jgW3XaX++Igt7hU7PkQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oPHp7ZguJ6KEYAHWuaE7iNf6C30pFYi3yYctcOGSQUE=; b=jtjHCLGBv9KjGD
+	JFXHZo8Rj+kBhS4rW0WB114Y5unFLelrFvj7dN0lKVZWBOMZG024kStC+MYDEINs5zXr/ruRtsOw+
+	KcWaOGbuNoYgm+Fz6EBp/O5B6KYDJZK1/15n7V1Z4fjBVJRKASkvyUELNj1Ft5u4Zrtf/CMhOUhTt
+	9Za98aibuf5om68pC8tk67BWSJl/PhZJ/QzeqsfX+MLE9Z+6JuEHL30TbFMOXY9PDcBaJeRQBQyfw
+	KzMNebRG4mRiJy6/O0e/ne3ywJetzvg192Q2UlQd4NRREUAsjhHmKaopztaDe+82kjvL0FpP506uj
+	/ekMkTTk/toSGFhWCeGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNFai-00CiA1-Dj; Wed, 01 Feb 2023 16:04:08 +0000
-Received: from mail-bn8nam12on2071.outbound.protection.outlook.com ([40.107.237.71] helo=NAM12-BN8-obe.outbound.protection.outlook.com)
+	id 1pNFah-00Ci9o-Q5; Wed, 01 Feb 2023 16:04:07 +0000
+Received: from lelv0142.ext.ti.com ([198.47.23.249])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIa3J-006gJD-IA; Thu, 19 Jan 2023 18:54:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XI4A8Q8VbnUZx7yap4wx18lmLRCUOCTnWTI8omh0h1rPcSSGRfH2FXulNiADKtzbdMY3Bochpl+UyPCaMTyxaoO/qVVno93v3FkQYCfJYwbIkaD6R4O7PzmHjfT/PKMXURCV0KML9v6N8AL1TFo185fCGNo00rnZ2fiBNaUKbf9IhWrCysQVcc+R67X9SDXda6BKAmrRsQomCPaGkpIFV4LKebdB+ymoNB9TAroBhqL+vku10Z7b/USyO7gRojr2V/SfU3oMYy0eEfyy5jitokKY0Szs6+JjYwtzbi6PckaA1NW2Is/pV2G5LU2sik5nQ4gEpEacvAI3eN+QBDI2gw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1b8ygK4l4t9D1VUmNx5SCNMOort3UV1hUcI4VTpZAvs=;
- b=SuLVdS0mgOeJGmpkaUxhUzd/jnjSvWA8OSMmzi9iizfIsPcjmuRXGsZY4DljIWpGn2oZZYzJ3C/pWhkSvIpq7FqyVuVU+goAwNhEL5FPRSPXgtehSNgQDO5VmVvH7tB3DXv+WeNQWgprcXJGhMF3Exq5jGdvDPlnuIu5NDMoyEwqoRrUrVxElDht/Zlm7faecFSCfSQfVMopTzzWJaJO0ZHu3iislJmw+laFaGWpgReBIf+EsNvqxEmDQuraN0hc+WUJzSVUGNU5X2iOufzCo3pBx3Mj+PT+VCDT7CmavQUA2aAyhygxnWcySot0L/sLPvZ7KcDWeQOs+iwFm5gO9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1b8ygK4l4t9D1VUmNx5SCNMOort3UV1hUcI4VTpZAvs=;
- b=f+GL3+VyYV9gl5oLGwNzGT3/GTaxesOefL1+VtGAPaop9d5JWPsmdQvXZtbPescvr8OIocxf9L7BbC51grVUmIVt4FBXlz/HdMl08tAB8/MQ4H+yQ/p5rT8U63WQ8O+XvLMXcGQfuCBi1uPkZOeMsdCo4MnQZSajHAEq3BO3oqg=
-Received: from SJ0PR13CA0113.namprd13.prod.outlook.com (2603:10b6:a03:2c5::28)
- by IA1PR12MB6483.namprd12.prod.outlook.com (2603:10b6:208:3a8::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.25; Thu, 19 Jan
- 2023 18:54:14 +0000
-Received: from CO1PEPF00001A5E.namprd05.prod.outlook.com
- (2603:10b6:a03:2c5:cafe::16) by SJ0PR13CA0113.outlook.office365.com
- (2603:10b6:a03:2c5::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6023.16 via Frontend
- Transport; Thu, 19 Jan 2023 18:54:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF00001A5E.mail.protection.outlook.com (10.167.241.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.11 via Frontend Transport; Thu, 19 Jan 2023 18:54:12 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 19 Jan
- 2023 12:54:09 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 19 Jan
- 2023 10:54:08 -0800
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Thu, 19 Jan 2023 12:53:43 -0600
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
-	<pratyush@kernel.org>, <sanju.mehta@amd.com>, <chin-ting_kuo@aspeedtech.com>,
-	<clg@kaod.org>, <kdasu.kdev@gmail.com>, <f.fainelli@gmail.com>,
-	<rjui@broadcom.com>, <sbranden@broadcom.com>, <eajames@linux.ibm.com>,
-	<olteanv@gmail.com>, <han.xu@nxp.com>, <john.garry@huawei.com>,
-	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <narmstrong@baylibre.com>,
-	<khilman@baylibre.com>, <matthias.bgg@gmail.com>, <haibo.chen@nxp.com>,
-	<linus.walleij@linaro.org>, <daniel@zonque.org>, <haojian.zhuang@gmail.com>,
-	<robert.jarzmik@free.fr>, <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-	<heiko@sntech.de>, <krzysztof.kozlowski@linaro.org>, <andi@etezian.org>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
-	<jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-	<masahisa.kojima@linaro.org>, <jaswinder.singh@linaro.org>,
-	<rostedt@goodmis.org>, <mingo@redhat.com>, <l.stelmach@samsung.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <alex.aring@gmail.com>, <stefan@datenfreihafen.org>,
-	<kvalo@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<skomatineni@nvidia.com>, <sumit.semwal@linaro.org>,
-	<christian.koenig@amd.com>, <j.neuschaefer@gmx.net>, <vireshk@kernel.org>,
-	<rmfrfs@gmail.com>, <johan@kernel.org>, <elder@kernel.org>,
-	<gregkh@linuxfoundation.org>
-CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-	<radu_nicolae.pirea@upb.ro>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<yogeshgaur.83@gmail.com>, <konrad.dybcio@somainline.org>,
-	<alim.akhtar@samsung.com>, <ldewangan@nvidia.com>, <michal.simek@amd.com>,
-	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
-	<linux-tegra@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-wpan@vger.kernel.org>, <libertas-dev@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <palmer@dabbelt.com>,
-	<linux-riscv@lists.infradead.org>, <linux-media@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <greybus-dev@lists.linaro.org>,
-	<linux-staging@lists.linux.dev>, <amitrkcian2002@gmail.com>
-Subject: [PATCH v2 00/13] spi: Add support for stacked/parallel memories
-Date: Fri, 20 Jan 2023 00:23:29 +0530
-Message-ID: <20230119185342.2093323-1-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.25.1
+	id 1pHmDf-00EPyH-2W; Tue, 17 Jan 2023 13:41:44 +0000
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30HDfg9Q043905;
+	Tue, 17 Jan 2023 07:41:42 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1673962902;
+	bh=8tzcj7YcBvmsXG1Iqf3XfpgVaGKs2epzXYS+rFPxnuU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=nl1+B6EplvVzZA15QZJmQnV0YdsSFFGL1wr8SRISR+q9H9TiP1ZqN85q/gNU2qBdv
+	 zNMgyU0UiBgblxBGfzA/wut5xt/feiJ9bD01HeFvMnc3ieIWAVaWt6ztcrzvYEKyWa
+	 GyKdUF/kYV5RCxvXO6tawJu2Duq9hvEqPPXSXWzk=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30HDfg2n112619
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 17 Jan 2023 07:41:42 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 17
+ Jan 2023 07:41:41 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 17 Jan 2023 07:41:41 -0600
+Received: from [10.250.235.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30HDfBu1083638;
+	Tue, 17 Jan 2023 07:41:12 -0600
+Message-ID: <5c888a22-aa56-6d94-2d56-ac5c224f8565@ti.com>
+Date: Tue, 17 Jan 2023 19:11:10 +0530
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF00001A5E:EE_|IA1PR12MB6483:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77f1653e-d41a-46eb-9623-08dafa4e8e37
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	ZDBpCSjbv/cRfsFYckWfcw1Z4CytZfw/jR+0nWB/4pW//twXGEJkmy8CRkAsXJi0lT/cYNYlWPxVYBKj0S2fIu1yVqJSYng2+66kg1E4wmEW1OrLGlIRtBlHPVdHBv6AXwpV+Br+K1Khlbi9z2VUEQfOOHAdTK27pvwNWwC7jkFMdrsq7nmYvAy9BtdCxPpLTwVPNB1Wq7rTatpfNOirKmYLhVo3hxQcxU5rBFf6fK1Ip9cXymRZJbfsALQ2Av8GONJNNbSsMPiaEWXa0jpTq2qy6wsdDeaZ+98CB1uzVI5++7K6QbwzabKCwRU6kab5c+zOEl2AbHdtkNACxeKlZMsAup9+2MTKbT7dwsSANlkge5BGPOJXCmo8b1GoZKsmrQLILWGxzjEdbhYo+QrIVDXH1upsQ74MljxaJ34OcHyXmUo6NVOjna1EjAW7To9QzyVgoClN6s9K0j0NjdnmZNlnPBfFcq+d7htFn8DuuwAdxXaBW++B/hh1qbQhVxsho8HxVf2BczpEDEm2Qy13GgQKzxgcnTu+ImZDRsygMsB/LXG3eH9LIX3pN0zPq/lIvg2bsa0mTOtXV3ZhXafaP5U4LZxyKf8F/oasjplokXxf5Rw4B+kDZM8iZKsmTn6kRQQ7yX6vOFNqvdvBDAfTQQS42+1f6ekK5+pArUvoo4hrrQOzM/cZCfGu64QdupIlTkg+UEvkfLInCcQBPYDwfpzyGy0D87tbtou4OaF7mlI8/rvwXnCAMuktFe9aIeikJST27/4UgxtB4ji6/qpdltnwiFkUbmrVriDZMsfrpDXxcc32yy8cF+RK1vDPwyTD5Pk277ckkva50D3r+sRuzZH6Jx1WSHNhWzdmsl0StoA=
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(376002)(396003)(136003)(451199015)(36840700001)(46966006)(40470700004)(86362001)(40460700003)(36756003)(6666004)(478600001)(8936002)(316002)(5660300002)(40480700001)(82740400003)(7406005)(70586007)(70206006)(4326008)(7276002)(7336002)(7366002)(8676002)(7416002)(41300700001)(36860700001)(921005)(26005)(356005)(186003)(2616005)(82310400005)(1191002)(83380400001)(2906002)(81166007)(54906003)(110136005)(47076005)(426003)(336012)(1076003)(83996005)(84006005)(2101003)(41080700001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 18:54:12.3778
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77f1653e-d41a-46eb-9623-08dafa4e8e37
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	CO1PEPF00001A5E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6483
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: (subset) [PATCH v2 23/23] arm64: dts: Update cache properties for
+ ti
+To: Pierre Gondois <pierre.gondois@arm.com>, <linux-kernel@vger.kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Tsahee
+ Zidenberg <tsahee@annapurnalabs.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Brijesh Singh <brijeshkumar.singh@amd.com>,
+        Suravee Suthikulpanit
+	<suravee.suthikulpanit@amd.com>,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Neil
+ Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>,
+        Khuong Dinh
+	<khuong@os.amperecomputing.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep
+ Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore
+	<anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Alim Akhtar
+	<alim.akhtar@samsung.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang
+	<leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix
+ Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP
+ Linux Team <linux-imx@nxp.com>, Chester Lin <clin@suse.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Matthias Brugger
+	<mbrugger@suse.com>,
+        NXP S32 Linux Team <s32@nxp.com>, Wei Xu
+	<xuwei5@hisilicon.com>,
+        Chanho Min <chanho.min@lge.com>, Andrew Lunn
+	<andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Lars Povlsen
+	<lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter
+	<jonathanh@nvidia.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Geert
+ Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Kunihiko Hayashi
+	<hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, Viorel Suman <viorel.suman@nxp.com>,
+        Abel Vesa
+	<abelvesa@kernel.org>, Zhou Peng <eagle.zhou@nxp.com>,
+        Shenwei Wang
+	<shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Ming Qian
+	<ming.qian@nxp.com>, Tim Harvey <tharvey@gateworks.com>,
+        Adam Ford
+	<aford173@gmail.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Li Jun
+	<jun.li@nxp.com>, Richard Zhu <hongxing.zhu@nxp.com>,
+        Markus Niebel
+	<Markus.Niebel@ew.tq-group.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>, Marek Vasut <marex@denx.de>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Alexander Stein
+	<alexander.stein@ew.tq-group.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Martin Kepplinger <martink@posteo.de>,
+        David Heidelberg <david@ixit.cz>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Liu Ying
+	<victor.liu@nxp.com>, Wei Fang <wei.fang@nxp.com>,
+        Clark Wang
+	<xiaoning.wang@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Chris Packham
+	<chris.packham@alliedtelesis.co.nz>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>, Akhil R <akhilrajeev@nvidia.com>,
+        Sumit
+ Gupta <sumitg@nvidia.com>,
+        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+        Vidya
+ Sagar <vidyas@nvidia.com>, Ashish Mhetre <amhetre@nvidia.com>,
+        Johan Jonker
+	<jbx6244@gmail.com>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Aswani Reddy
+	<aswani.reddy@samsung.com>,
+        Shashank Prashar <s.prashar@samsung.com>,
+        Arjun K
+ V <arjun.kv@samsung.com>, <devicetree@vger.kernel.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <openbmc@lists.ozlabs.org>,
+        <linux-tegra@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-realtek-soc@lists.infradead.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-24-pierre.gondois@arm.com>
+Content-Language: en-US
+From: "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <20221107155825.1644604-24-pierre.gondois@arm.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230119_105423_871075_AA151BF4 
-X-CRM114-Status: GOOD (  12.03  )
+X-CRM114-CacheID: sfid-20230117_054143_233543_73F722D2 
+X-CRM114-Status: GOOD (  12.41  )
 X-Mailman-Approved-At: Wed, 01 Feb 2023 08:04:04 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -162,173 +211,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch is in the continuation to the discussions which happened on
-'commit f89504300e94 ("spi: Stacked/parallel memories bindings")' for
-adding dt-binding support for stacked/parallel memories.
+Hi Pierre Gondois,
 
-This patch series updated the spi-nor, spi core and the spi drivers
-to add stacked and parallel memories support.
----
-BRANCH: mtd/next
+On 11/7/2022 9:27 PM, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> The 'cache-unified' property should be present if one of the
+> properties for unified cache is present ('cache-size', ...).
+> 
+> Update the Device Trees accordingly.
 
-Changes in v2:
-- Rebased the patches on top of v6.2-rc1 
-- Created separate patch to add get & set APIs for spi->chip_select & 
-  spi->cs_gpiod, and replaced all spi->chip_select and spi->cs_gpiod 
-  references with the API calls.
-- Created separate patch to add get & set APIs for nor->params.
----
-Amit Kumar Mahapatra (13):
-  spi: Add APIs in spi core to set/get spi->chip_select and
-    spi->cs_gpiod
-  spi: Replace all spi->chip_select and spi->cs_gpiod references with
-    function call
-  net: Replace all spi->chip_select and spi->cs_gpiod references with
-    function call
-  iio: imu: Replace all spi->chip_select and spi->cs_gpiod references
-    with function call
-  mtd: devices: Replace all spi->chip_select and spi->cs_gpiod
-    references with function call
-  staging: Replace all spi->chip_select and spi->cs_gpiod references
-    with function call
-  platform/x86: serial-multi-instantiate: Replace all spi->chip_select
-    and spi->cs_gpiod references with function call
-  spi: Add stacked and parallel memories support in SPI core
-  mtd: spi-nor: Add APIs to set/get nor->params
-  mtd: spi-nor: Add stacked memories support in spi-nor
-  spi: spi-zynqmp-gqspi: Add stacked memories support in GQSPI driver
-  mtd: spi-nor: Add parallel memories support in spi-nor
-  spi: spi-zynqmp-gqspi: Add parallel memories support in GQSPI driver
+[...]
 
- drivers/iio/imu/adis16400.c                   |   2 +-
- drivers/mtd/devices/mtd_dataflash.c           |   2 +-
- drivers/mtd/spi-nor/atmel.c                   |  17 +-
- drivers/mtd/spi-nor/core.c                    | 665 +++++++++++++++---
- drivers/mtd/spi-nor/core.h                    |   8 +
- drivers/mtd/spi-nor/debugfs.c                 |   4 +-
- drivers/mtd/spi-nor/gigadevice.c              |   4 +-
- drivers/mtd/spi-nor/issi.c                    |  11 +-
- drivers/mtd/spi-nor/macronix.c                |   6 +-
- drivers/mtd/spi-nor/micron-st.c               |  39 +-
- drivers/mtd/spi-nor/otp.c                     |  25 +-
- drivers/mtd/spi-nor/sfdp.c                    |  29 +-
- drivers/mtd/spi-nor/spansion.c                |  50 +-
- drivers/mtd/spi-nor/sst.c                     |   7 +-
- drivers/mtd/spi-nor/swp.c                     |  22 +-
- drivers/mtd/spi-nor/winbond.c                 |  10 +-
- drivers/mtd/spi-nor/xilinx.c                  |  18 +-
- drivers/net/ethernet/adi/adin1110.c           |   2 +-
- drivers/net/ethernet/asix/ax88796c_main.c     |   2 +-
- drivers/net/ethernet/davicom/dm9051.c         |   2 +-
- drivers/net/ethernet/qualcomm/qca_debug.c     |   2 +-
- drivers/net/ieee802154/ca8210.c               |   2 +-
- drivers/net/wan/slic_ds26522.c                |   2 +-
- .../net/wireless/marvell/libertas/if_spi.c    |   2 +-
- drivers/net/wireless/silabs/wfx/bus_spi.c     |   2 +-
- drivers/net/wireless/st/cw1200/cw1200_spi.c   |   2 +-
- .../platform/x86/serial-multi-instantiate.c   |   3 +-
- drivers/spi/spi-altera-core.c                 |   2 +-
- drivers/spi/spi-amd.c                         |   4 +-
- drivers/spi/spi-ar934x.c                      |   2 +-
- drivers/spi/spi-armada-3700.c                 |   4 +-
- drivers/spi/spi-aspeed-smc.c                  |  13 +-
- drivers/spi/spi-at91-usart.c                  |   2 +-
- drivers/spi/spi-ath79.c                       |   4 +-
- drivers/spi/spi-atmel.c                       |  26 +-
- drivers/spi/spi-au1550.c                      |   4 +-
- drivers/spi/spi-axi-spi-engine.c              |   2 +-
- drivers/spi/spi-bcm-qspi.c                    |  10 +-
- drivers/spi/spi-bcm2835.c                     |  19 +-
- drivers/spi/spi-bcm2835aux.c                  |   4 +-
- drivers/spi/spi-bcm63xx-hsspi.c               |  22 +-
- drivers/spi/spi-bcm63xx.c                     |   2 +-
- drivers/spi/spi-cadence-quadspi.c             |   5 +-
- drivers/spi/spi-cadence-xspi.c                |   4 +-
- drivers/spi/spi-cadence.c                     |   4 +-
- drivers/spi/spi-cavium.c                      |   8 +-
- drivers/spi/spi-coldfire-qspi.c               |   8 +-
- drivers/spi/spi-davinci.c                     |  18 +-
- drivers/spi/spi-dln2.c                        |   6 +-
- drivers/spi/spi-dw-core.c                     |   2 +-
- drivers/spi/spi-dw-mmio.c                     |   4 +-
- drivers/spi/spi-falcon.c                      |   2 +-
- drivers/spi/spi-fsi.c                         |   2 +-
- drivers/spi/spi-fsl-dspi.c                    |  16 +-
- drivers/spi/spi-fsl-espi.c                    |   6 +-
- drivers/spi/spi-fsl-lpspi.c                   |   2 +-
- drivers/spi/spi-fsl-qspi.c                    |   6 +-
- drivers/spi/spi-fsl-spi.c                     |   2 +-
- drivers/spi/spi-geni-qcom.c                   |   6 +-
- drivers/spi/spi-gpio.c                        |   4 +-
- drivers/spi/spi-gxp.c                         |   4 +-
- drivers/spi/spi-hisi-sfc-v3xx.c               |   2 +-
- drivers/spi/spi-img-spfi.c                    |  14 +-
- drivers/spi/spi-imx.c                         |  30 +-
- drivers/spi/spi-ingenic.c                     |   4 +-
- drivers/spi/spi-intel.c                       |   2 +-
- drivers/spi/spi-jcore.c                       |   4 +-
- drivers/spi/spi-lantiq-ssc.c                  |   6 +-
- drivers/spi/spi-mem.c                         |   4 +-
- drivers/spi/spi-meson-spicc.c                 |   2 +-
- drivers/spi/spi-microchip-core.c              |   6 +-
- drivers/spi/spi-mpc512x-psc.c                 |   8 +-
- drivers/spi/spi-mpc52xx.c                     |   2 +-
- drivers/spi/spi-mt65xx.c                      |   6 +-
- drivers/spi/spi-mt7621.c                      |   2 +-
- drivers/spi/spi-mux.c                         |   8 +-
- drivers/spi/spi-mxic.c                        |  10 +-
- drivers/spi/spi-mxs.c                         |   2 +-
- drivers/spi/spi-npcm-fiu.c                    |  20 +-
- drivers/spi/spi-nxp-fspi.c                    |  10 +-
- drivers/spi/spi-omap-100k.c                   |   2 +-
- drivers/spi/spi-omap-uwire.c                  |   8 +-
- drivers/spi/spi-omap2-mcspi.c                 |  24 +-
- drivers/spi/spi-orion.c                       |   4 +-
- drivers/spi/spi-pci1xxxx.c                    |   4 +-
- drivers/spi/spi-pic32-sqi.c                   |   2 +-
- drivers/spi/spi-pic32.c                       |   4 +-
- drivers/spi/spi-pl022.c                       |   4 +-
- drivers/spi/spi-pxa2xx.c                      |   6 +-
- drivers/spi/spi-qcom-qspi.c                   |   2 +-
- drivers/spi/spi-rb4xx.c                       |   2 +-
- drivers/spi/spi-rockchip-sfc.c                |   2 +-
- drivers/spi/spi-rockchip.c                    |  26 +-
- drivers/spi/spi-rspi.c                        |  10 +-
- drivers/spi/spi-s3c64xx.c                     |   2 +-
- drivers/spi/spi-sc18is602.c                   |   4 +-
- drivers/spi/spi-sh-msiof.c                    |   6 +-
- drivers/spi/spi-sh-sci.c                      |   2 +-
- drivers/spi/spi-sifive.c                      |   6 +-
- drivers/spi/spi-sn-f-ospi.c                   |   2 +-
- drivers/spi/spi-st-ssc4.c                     |   2 +-
- drivers/spi/spi-stm32-qspi.c                  |  12 +-
- drivers/spi/spi-sun4i.c                       |   2 +-
- drivers/spi/spi-sun6i.c                       |   2 +-
- drivers/spi/spi-synquacer.c                   |   6 +-
- drivers/spi/spi-tegra114.c                    |  28 +-
- drivers/spi/spi-tegra20-sflash.c              |   2 +-
- drivers/spi/spi-tegra20-slink.c               |   6 +-
- drivers/spi/spi-tegra210-quad.c               |   8 +-
- drivers/spi/spi-ti-qspi.c                     |  16 +-
- drivers/spi/spi-topcliff-pch.c                |   4 +-
- drivers/spi/spi-wpcm-fiu.c                    |  12 +-
- drivers/spi/spi-xcomm.c                       |   2 +-
- drivers/spi/spi-xilinx.c                      |   6 +-
- drivers/spi/spi-xlp.c                         |   4 +-
- drivers/spi/spi-zynq-qspi.c                   |   2 +-
- drivers/spi/spi-zynqmp-gqspi.c                |  58 +-
- drivers/spi/spi.c                             | 224 ++++--
- drivers/spi/spidev.c                          |   6 +-
- drivers/staging/fbtft/fbtft-core.c            |   2 +-
- drivers/staging/greybus/spilib.c              |   2 +-
- include/linux/mtd/spi-nor.h                   |  18 +-
- include/linux/spi/spi.h                       |  46 +-
- include/trace/events/spi.h                    |  10 +-
- 124 files changed, 1319 insertions(+), 594 deletions(-)
+[23/23] arm64: dts: Update cache properties for ti
+        commit: 880932e657ffc677c1b053a947afa87ffed1b29d
 
--- 
-2.17.1
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain
+during the next merge window (or sooner if it is a relevant bug fix),
+however if problems are discovered then the patch may be dropped or
+reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
+
+[...]
 
 _______________________________________________
 linux-amlogic mailing list
