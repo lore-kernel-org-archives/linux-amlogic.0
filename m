@@ -4,129 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B712C32793
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Jan 2023 12:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E3C9C32793
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Jan 2023 13:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aqPoOgnGFMiDaUsYxVcFFB/fhIHXbCd/cC2hwF/OaMM=; b=b40XftvLTwnuQZ
-	VQmXn8+9IfY90HYIbvArkaTvgrPqyRiiv2PStNjoS0HY3MCeA7OiC2SInKl3NNE6WJdAzoUuNPW6x
-	d81VvUM9dJjuGrkoJNIScBbOaaJzriMWzISN8iiCEs1QZ77VrhRbZvfxBtTfjjqHlM8D45AtVtHWB
-	XKstgst0j73LUuHpAN3MNP5gH27f6R5qQdZ9bII4sSr+TJFvFIiRMSe31xrtA1oRDmyE+2VABAJQ6
-	KVASyHXlnaadgRjl3U9QqKI0ol4rc2FjNj/t38FxfoQ8dGIUJfa7TFJbvGe3+wYuTwjHwFLFrtSde
-	RTfAk9n+jXhYxEkQpuKw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=V25nbk8yIuOA5OOms5I2Zxhz/iI66pkW5HMi2R2Ho2U=; b=iddNhMyHCXmFzmGEz966uzXZvR
+	w7QNKwxTC2X8S4xa1MCt5uwuL1k8O9v4Mtd94eIFg4jZpi51RTA2BVYDqe6ThJxF5Nkn9PIU+BBQd
+	2seP9XEGuscTF8QwLUgjTvpJ6DqqFewQYutpyI6CMISB+eQNNdHy7zZsafdR0uXWiHWAGInemaqys
+	phI8jLIVkQ1tzIycXDq84MLTaxoPfLpOh5ASBd9hV8Ukp5ZFZKZOxNxYt57NLoB0fhO+39hXUvS9Q
+	MiU7GkiUb/lHL7zglReP5ziF4xiUyJfrov7NLjHnFdlXWuHLQP0N1CWaPcawcEUrFjaxdC68I4T/c
+	Nx269omA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pI7o8-000vb2-QX; Wed, 18 Jan 2023 12:44:48 +0000
-Received: from mail-dm6nam11on2105.outbound.protection.outlook.com ([40.107.223.105] helo=NAM11-DM6-obe.outbound.protection.outlook.com)
+	id 1pI8QO-0017gf-QP; Wed, 18 Jan 2023 13:24:20 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pI7kt-000u1P-SK
-	for linux-amlogic@lists.infradead.org; Wed, 18 Jan 2023 12:41:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mMtugwptNk6Ov9YYiOVgs/GPD2HAcEHvCP2a00zY8j6bEV36tnZXCRMDrN8L1AwOz66OBIZi8soU5zhB7ZXsZWnkWxvSFn0XJNlB3xm647O9PknNO8Do1SSqK4nnxCI/PaWhoVIsI3Drko8sWzgw9gOM+7OGgydaCQGrHtFC48hUsD+c9hFebo793jcK5alAOCbuYghXDh0oF1Rxi6wzVRzMfDbUVpcDv/2GxNCND2NVA7/bH5Ui8XbryTq+BDA9jX7vH2rIrfzSK2R49bymfEHNxc8LfQfvDTFAPuVatF3MoSasj/0Hn3iFAyjRAP9z4fDZ0Qr8yOjSRBmsQ8RLqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9TgtbKWvGOfqp3LG1vmnP+VHWZMgYBokvTLUSB/Nnss=;
- b=HySOPlupEcbtf7Uts9b9kc6rNEONX6IBnHXgN4c8q4oF09bTk8MH/h2QNr7NOywigt/bl/oFgSyWEDeuU1bd3iP+lFB+4QhVO2ChMCDztzSxM179W8Bp5QYjmUkms2yPUHnTpGgvdcJnkFXfjZj3E1FSkkxJ+86Zh/8MxSh5lq+WTldyCh0gF81HrhIX8PpHJ5BrmqCdkK1S4Wpsw2+3UaLPZiAgdunQar5SqpDZ/kG27Lr6nfPi7j8vd3ZHOGd/OqDj1LfUpdeNaBfH+2JEfFKxUzHLyW9eQUZDLARLU5zMVWMaCsLKnSug7A0w2VeJ5Ck1dQnROwrTGY1jaBFhOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+	id 1pI8QF-0017d7-8V
+	for linux-amlogic@lists.infradead.org; Wed, 18 Jan 2023 13:24:13 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id h16so33903726wrz.12
+        for <linux-amlogic@lists.infradead.org>; Wed, 18 Jan 2023 05:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9TgtbKWvGOfqp3LG1vmnP+VHWZMgYBokvTLUSB/Nnss=;
- b=RObiTAJQyht3JNMoGsZ+PG692E4gqMUh0BlULmrNk33iuwUNVY/P2d165TKMSPKGKg5X4nTc+ozoBeB5e+PpLkoISYoLogbbkuBJWu1gedB7GPpjujfOg7aRxzALl2kufLxKnVEQdvJge8huiHSjbLA80ZU0dmiF3zOInwSmqts=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by SJ0PR13MB5659.namprd13.prod.outlook.com (2603:10b6:a03:402::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Wed, 18 Jan
- 2023 12:41:21 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65%7]) with mapi id 15.20.6002.024; Wed, 18 Jan 2023
- 12:41:21 +0000
-Date: Wed, 18 Jan 2023 13:41:14 +0100
-From: Simon Horman <simon.horman@corigine.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
-Message-ID: <Y8fo6qx7LnXsJN4o@corigine.com>
-References: <20230116091637.272923-1-jbrunet@baylibre.com>
- <20230116091637.272923-3-jbrunet@baylibre.com>
- <Y8U+1ta6bmt86htm@corigine.com>
- <1jk01mhaeg.fsf@starbuckisacylon.baylibre.com>
- <Y8VWWP53ZysENI7/@corigine.com>
- <Y8df4LRfPN34lvP8@lunn.ch>
-Content-Disposition: inline
-In-Reply-To: <Y8df4LRfPN34lvP8@lunn.ch>
-X-ClientProxiedBy: AM0PR01CA0121.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:168::26) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aGtX6Xomvv0Zvw2ChFFYcesiMxlqQe3xiNuEHsKpSTI=;
+        b=aYMOE6r2RwGDo2+O3pCFAAAp4eGo7OmMUWFbRB3a77/fVjwokTqPn9kXh30jyVeMox
+         Hzmcc4N81HICUURefsIZFdfr6BFiYFGIxA3ij0PboFjTieLvkrWfzSb0h0ArvWRlvTk6
+         K0AagclJyek/0P62wwX5dxm1g8SDWefXV85XdUTC4ZDFBQ/ZkLdALrSJJHQEPqNGAwst
+         6BQwR4Y235nywAmhdYqBK51yE3NQzkHe2Eudk3ODs2xXc6N7znk2rHPD/zTBsJN7YBVJ
+         axnmE9tuSNVrjXUn0Q0euvj3Hr01NfVrIPvF/uyCo474SVyfPqZPNEzt8XLuhS0dKJP7
+         p2jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aGtX6Xomvv0Zvw2ChFFYcesiMxlqQe3xiNuEHsKpSTI=;
+        b=RI/2uyHo2qVQm3cmScYuinlW5GZo0Us7ehT4XoRY9Wh8yJVnFEHufp22Jd43ukJx2b
+         HMfY25+orv0MaWkZVqEKRK2tU4MOh4abwPTqOONgJ0yS38bHVjiFmJR01gDF3ZH/U3n6
+         PsFpYPx8vhsdahQcrT+7lJROcXei1BGGGgbN+TTP5d5OX8b3EkhUCuxLrEZ/n9QXvJgc
+         igTyzclABCvNrdZzzVr9rg+Bo9weH9hHi6OQm5WT/RbAmXQtg+2HyalrigL/ZFYygEJs
+         NS4pGylgkIFD6fLGhAYIju1wXj5DdouzTKKyykIimrS7vgQvjjWiyW6lZOF8VcbBkVki
+         QA3A==
+X-Gm-Message-State: AFqh2krdb+IrH2TVXe7S7CAjuDGQ7NxSTEivqz9vfv0O194CkUpTVe6d
+	GdfkTbX+4tA4/eJWR3NWn6lW/Q==
+X-Google-Smtp-Source: AMrXdXsdPNHbsnLa957TyAPdquE49R/mFl4FzMmguPl+EyrKQ+vdLmzBBsVjlm87ZzA5gtRrAd6iEA==
+X-Received: by 2002:a5d:6952:0:b0:242:1415:ab02 with SMTP id r18-20020a5d6952000000b002421415ab02mr5805169wrw.9.1674048245943;
+        Wed, 18 Jan 2023 05:24:05 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:37dc:5071:959c:93e4? ([2a01:e0a:982:cbb0:37dc:5071:959c:93e4])
+        by smtp.gmail.com with ESMTPSA id b16-20020adff910000000b002bdf8dd6a8bsm9289920wrr.80.2023.01.18.05.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 05:24:05 -0800 (PST)
+Message-ID: <0dbefaec-e1de-fc3f-54f2-c5fe75a28c7c@linaro.org>
+Date: Wed, 18 Jan 2023 14:24:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SJ0PR13MB5659:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3374fa1c-8ffc-480b-99c0-08daf9514d16
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	atA7GDXMmt/4MQviFpEabMZduD2/3t1kfWArZEKmeuLuY/QZW/Zli5L0z8q/atiUzyTZY6zXge7JimIp/ShMyTM0KvyuDclG3/xQd2mBr9lruehxqN2dpyyXOX8ID5DJwwWuMx5BXOBHWA1gFGeyHDhH+tNI1uhPDfHy4AxOgMxmSKqPzKFEooaqXovRyWP6eOo8lHe7vF09bohcqpf+pCJDTr26SF0PyE4nWgsmpJxfgVVqmxRRqtXqgEScbgfRZ7XnqKf4XcnTXckavX3gWi0vMJxHfIyy7PckDl0WpWZpR4sGtHDYn98rV55vXQkr25oyGfxtMDlSJ0WDJB7nEjcQG4TORmkXIxmpqMPr2xfKkuvjQ3Qagko55iB6QEL2sc+tNVbyPn/0SqWbhvlaQFz39mqmKUDr96v4vL1EdVqUFBswi/0IxnL/AhO/ll39yKajji0+gw2owcNd+b6Eg1Yxws031U6oHc8YNn2c9gZ6NNoB/dXPbeJQORel3CX8i9IM5Dk1c5PnZQS1k13nNfXLHtXrGM5eEr0Gq2supkCU8r/W+FTbxwrLTTcmWMhZiGHbAnLNFucty64zu0HpeiN7Vr2apbq3dfKMmo7QnAYHXLv78KTkSEE4ukgpGEIxH/jD/i6RTJrEXgnRpzCCfw==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(346002)(376002)(39840400004)(396003)(451199015)(86362001)(44832011)(66946007)(4744005)(66556008)(7416002)(2906002)(8936002)(5660300002)(66476007)(38100700002)(316002)(54906003)(6666004)(6486002)(6506007)(478600001)(36756003)(8676002)(4326008)(41300700001)(186003)(6512007)(6916009)(2616005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?O1tTq+ye9ukHlwP16vBqLsFgDMQFMYw3+MFRKr+LEUYvUtaT5AqWxGolhP4i?=
- =?us-ascii?Q?dXlM0Q/HJgO4gJa5+4ntIzDUozJOYSoG6Pb8IlMs1UDHXsV647oWGVewsmTh?=
- =?us-ascii?Q?leVrvlibE6B/IkWPy0VZZ5jSO0CNq/QcP5UxIlEovVI6nomc/Tkxn7f8JJE5?=
- =?us-ascii?Q?iZL3W3wBNiGlb9QkCGXOEFncm8KAes9sQg2ZzIqnVp4ahpdCxpuFzKGeWEFG?=
- =?us-ascii?Q?Flq7ZEST9VX0RaK5L7+PsKPFDAUuRYqcGkQgdJfXshxLq2ZKj2p9MOE3JeJC?=
- =?us-ascii?Q?gVx6H1VZmQfOj9D6cHA7BmId5gmZu5xLDP80YpeodaIRUfFitOhT3jq9rx8S?=
- =?us-ascii?Q?JDL5wkUh1R79L8br8fn92nUYLQUFXJBqsQEKLty8w1H6vYjq9Cre4O1HfRp2?=
- =?us-ascii?Q?haEitAIzy528IVRdAtipPru1HqU401sopmIcU95gwo96nwWrg8QlHbtOll+A?=
- =?us-ascii?Q?juA5dzOg7iViX189E31F50ula/ds5RcUBO2nbbdFTYRwBp0LpT+LRvTDBDmk?=
- =?us-ascii?Q?Mu3WAOnYmH8weiQhJ0pBWrWh0jkN1rIGHPfAyIgF76zjtCjKn3qz5Y7tNFnF?=
- =?us-ascii?Q?EeIGCYmC4d5TD4a8lRvcr8Sd69QHw79ZvlrIxZeaoPBEKVcwVA0ievaTNoIY?=
- =?us-ascii?Q?xP/cqDkoUlePfJIsQDOSPFDcQBibmNk2E6KC8gChIx38XPXQTZJ1hWPirqiE?=
- =?us-ascii?Q?2qYVFgYqV0V4JOkJDPt0hjL+RHdGS78oJ1ypukKGeBGmz4JZJKDK6ADnP0fs?=
- =?us-ascii?Q?OTkSOmx1yPs4dN1vhEqJuyhvboIcGPER0KLU5JTYdTmS7CWD4NnkB4ZGjYM1?=
- =?us-ascii?Q?P5GqcyJYhGcMgQSJC1BsZZACqotBO9M8lJUrB37A64QHtgKjKC4mQD3U06IR?=
- =?us-ascii?Q?WnlPAHlQw5IVEhvx/nGsegKrBJQBfGYPYfIg29VRgZFYm/ni3Y0+etvEaslp?=
- =?us-ascii?Q?27Go7/43laEEbbV2ZfZ4V5ZapEaIGhqFFWl3W7eSNHXwDvQ81rJilQ5c26XZ?=
- =?us-ascii?Q?/xu2IUPPyw1ytwFo5pe6wgZ4HgdTmkE19QO0STrDWOBGEOkDuZKv++Q8lDcO?=
- =?us-ascii?Q?icuErJDgDjgqnN6bUwAJ7limHHm8D99w2YE02Pyxejby0mkcVxBa4ZGQ2inX?=
- =?us-ascii?Q?eXRF5A11j497PXKEAj4pzDr7a21LZVpAxA++HyU8RTQ+tyzVK47i4ue6Sy6r?=
- =?us-ascii?Q?w5eZ9/yfoT6Vs23DfiDS6amyjP1CVUfeH6GR65ccLyWjPcQhsxHKr1uJju6y?=
- =?us-ascii?Q?Y1sqf+d3aN791wSz/P71BMaolX5hCperHYaYDyHiiALD5lbcgnjeRycyU+IK?=
- =?us-ascii?Q?5WAa02bUZus/IgFFRd+8SCFUpoqGJrpN2MhaPJyw7lNPk39Sdb4zXXjqYTV7?=
- =?us-ascii?Q?31umLQ2i8r179z+6+2cICLOndI6z9tsCvyvXgBIqzsIJ73bSSwRIAijWio7J?=
- =?us-ascii?Q?94F9BG/m2izc5LuhhbyzRYjfZAx2X7ZLwn2HcgDIixaBDq+rHN3rMdHcozWr?=
- =?us-ascii?Q?ZB1ZCf/P7pOViQvbud7nfMVXxexaXJWv7rXj4WC9aC5ytQMN4hbxu0SZwxvS?=
- =?us-ascii?Q?R6p8pgq3qCFLVDlkxM4ZmwjXt3nqj2WAQVZRF0lB6GDieECOBPbVGbzcgkcn?=
- =?us-ascii?Q?NIx7kub8jsXC7GjM7sSKZ8yr9m+JQgatyvnZzhptV8Sfqi5AjfLy0QoIMnEY?=
- =?us-ascii?Q?V4JEkw=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3374fa1c-8ffc-480b-99c0-08daf9514d16
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 12:41:20.9371
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IEd/OgkS94qsK8qfO2kmww3hy9cWUVraSrn1L4SlNbslvAX0JO6PNqs9pXve2AT18LmbrGaJCD2x/jLvQCUk548r//cHs4mqW9OTfFV6gBU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR13MB5659
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 7/9] arm64: dts: amlogic: Used onboard usb hub reset on
+ odroid c4
+Content-Language: en-US
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Matthias Kaehlcke <mka@chromium.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230118044418.875-1-linux.amoon@gmail.com>
+ <20230118044418.875-8-linux.amoon@gmail.com>
+ <b112ee8e-93ab-2c30-ced3-82ff858884b4@linaro.org>
+ <CANAwSgQ1b8vj+HCBS0ARnNqOwKHU8VzzsB7htL3L4Sr_v6Y=VQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CANAwSgQ1b8vj+HCBS0ARnNqOwKHU8VzzsB7htL3L4Sr_v6Y=VQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_044128_182203_F3B950BC 
-X-CRM114-Status: GOOD (  15.76  )
+X-CRM114-CacheID: sfid-20230118_052411_308995_9CD17FFB 
+X-CRM114-Status: GOOD (  24.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,35 +99,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 18, 2023 at 03:56:32AM +0100, Andrew Lunn wrote:
-> > > >> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > > >> +	if (!priv)
-> > > >> +		return -ENOMEM;
-> > > >
-> > > > nit: may be it is nicer to use dev_err_probe() here for consistency.
-> > > 
-> > > That was on purpose. I only use the `dev_err_probe()` when the probe may
-> > > defer, which I don't expect here.
-> > > 
-> > > I don't mind changing if you prefer it this way.
-> > 
-> > I have no strong opinion on this :)
+On 18/01/2023 12:55, Anand Moon wrote:
+> Hi Neil,
 > 
-> dev_err_probe() does not apply here, because devm_kzalloc does not
-> return an error code. Hence it cannot be EPROBE_DEFFER, which is what
-> dev_err_probe() is looking for.
+> Thanks for your review comments.
+> 
+> On Wed, 18 Jan 2023 at 13:59, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> On 18/01/2023 05:44, Anand Moon wrote:
+>>> On Odroid c4 previously use gpio-hog to reset the usb hub,
+>>> switch to used on-board usb hub reset to enable the usb hub
+>>> and enable power to hub.
+>>>
+>>> USB hub is combination of USB 2.0 and USB 3.0 root hub so
+>>> use peer-hub node to link then.
+>>>
+>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>>> ---
+>>> v2: - fix the compatible string.
+>>>       - Fix the hub node to use peer-hub to link the usb 2.0 and usb 3.0.
+>>> ---
+>>>    .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 36 ++++++++++++-------
+>>>    1 file changed, 23 insertions(+), 13 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+>>> index 8c30ce63686e..d04768a66bfe 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+>>> @@ -26,20 +26,30 @@ led-blue {
+>>>        sound {
+>>>                model = "ODROID-C4";
+>>>        };
+>>> -};
+>>>
+>>> -&gpio {
+>>> -     /*
+>>> -      * WARNING: The USB Hub on the Odroid-C4 needs a reset signal
+>>> -      * to be turned high in order to be detected by the USB Controller
+>>> -      * This signal should be handled by a USB specific power sequence
+>>> -      * in order to reset the Hub when USB bus is powered down.
+>>> -      */
+>>> -     hog-0 {
+>>> -             gpio-hog;
+>>> -             gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
+>>> -             output-high;
+>>> -             line-name = "usb-hub-reset";
+>>> +     /* USB hub supports both USB 2.0 and USB 3.0 root hub */
+>>> +     usb-hub {
+>>> +             dr_mode = "host";
+>>
+>> Is this really needed ?
+>>
+> I got carried forward from the other device tree binding,
+> If not needed I will drop this.
+> 
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <0>;
+>>> +
+>>> +             /* 2.0 hub on port 1 */
+>>> +             hub_2_0: hub@1 {
+>>> +                     compatible = "usb2109,2817";
+>>> +                     reg = <1>;
+>>> +                     peer-hub = <&hub_3_0>;
+>>> +                     reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>> +                     vdd-supply = <&vcc_5v>;
+>>> +             };
+>>> +
+>>> +             /* 3.1 hub on port 4 */
+>>> +             hub_3_0: hub@2 {
+>>> +                     compatible = "usb2109,817";
+>>> +                     reg = <2>;
+>>> +                     peer-hub = <&hub_2_0>;
+>>> +                     reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>> +                     vdd-supply = <&vcc_5v>;
+>>> +             };
+>>
+>> The final discussion in v1 was to drop this /usb-hub node and move the
+>> hub_2_0 & hub_3_0 node under the dwc3 node.
+>>
+> 
+> Yes, but It did not work back then, since these are two different events
+> USB node will try to bring the PHY and dwc2 and dwc2 nodes up.
+> USB hub supports the reset of the USB hub and links the power supply
+> to the ports.
+> This works on this board.
 
-Sure, there is no EPROBE_DEFFER.
+Forget the dwc2 node, the dwc2 since GXL is device mode only, so you need to put both
+nodes in the dwc3 node which is host-only.
 
-But, FWIIW, my reading of the documentation for dev_err_probe()
-is that it's use in such cases is acceptable.
+Neil
 
-Anyway, let's pass on my suggestion.
+> 
+>> Neil
+>>
+> Thanks
+> 
+> -Anand
+
 
 _______________________________________________
 linux-amlogic mailing list
