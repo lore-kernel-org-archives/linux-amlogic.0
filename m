@@ -4,78 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F209CC00A5A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Jan 2023 07:27:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A79B4C38142
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Jan 2023 07:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5pMDq8TnJ2B4MTHGWmRrtHZArP0WH//HgOQVKQdCqoE=; b=xgLdJUVvFNA7V4
-	RlsXOSLS5xFXil2jMpW3z4VjClSShg7uRaPd3SwZMr95q6MKZnWdEc24z8CW/i+yllShskoHeGoTs
-	sojC/I/qU9t+6RWAN8xHDh8za+E6L73KTs7GSJJ+bAua5m1OwHVfNSxIOSYXyQXwIEa4mQcNxHGjn
-	6BgAYeqwm49Zmie/V0QqB9svE5sppCbyWWxauo9XTenlvqJnHJ1OacY0da5oXsdcD0wZxSLhVzYcl
-	Q2grW1FYfm9RRHN8JIGMvC8KqEJigZYqyx6lHxRtP27qWPcivK8oPnF7w3LbeGcMmwzMBxPrFh2Fd
-	RFL6eDJkgzEBdR2c20QA==;
+	List-Owner; bh=gjWWcQnCpZng01bRPw2ms5qXrUZdvsMFflWH+6QEqp0=; b=FIAVSV6Ps/+EUV
+	e4HrxBYJh+Y/0zABjZQn+RsOd5dRHA1oWG1V3dqZpZnmIpHx8FADAz6pvuYnHyL94KUPihPn8BGpx
+	oJMrFHNYBIVknzOrWk0rBvbXL6s9907J1KXvK+0sZ4C8DFtBzTKHpUmzebAY5EAl22aWgEgA+2fFf
+	4e8cumokq4bNYjLJwt5QEzLXbogxNxwOATkvo0NoZRSTPtTcg7ngkrm/NJnnqtK07gni/BGtdY1DB
+	A/V5g1u/OS1dm+gKhkb2sb/WMbFbBHNeOtr+0YUFoJupDq8TZ5JVN2Q6bPh+jT0W9m+Ps4xmVBgtD
+	quCdpaK8R42WT6J5TnnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPK9-003qVu-2s; Thu, 19 Jan 2023 07:27:01 +0000
-Received: from mail-vk1-xa32.google.com ([2607:f8b0:4864:20::a32])
+	id 1pIPcP-003urj-Bb; Thu, 19 Jan 2023 07:45:53 +0000
+Received: from mx08-00178001.pphosted.com ([91.207.212.93] helo=mx07-00178001.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPK5-003qUj-LN; Thu, 19 Jan 2023 07:26:59 +0000
-Received: by mail-vk1-xa32.google.com with SMTP id 12so507969vkj.12;
-        Wed, 18 Jan 2023 23:26:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5eBlM9S6kPg63OsVYn1WA2umDAvRg38VWyYh3hm2sLE=;
-        b=JpWmIbOb6gGkwcWmUgDpSSEQv1xzP2/Tl2mmQx9xNr4nPJ8p3Bd7lSIDluXGUftiKL
-         Dm1DvmGDZIgwZMy8Nx1ZqhpjgP0ArRFW4LU2092czG2wECa/3EoDu22/iXR6nRZnnaXa
-         2yUUN9KGbOny7TSpcSMvmM4l4AFUrzNn4syiebiOzyaq3MdDU6HA8lhiMEZpmW8heIGp
-         2vDY4aMpBK/dn+qE+7htDMBPYH4aq5ZJ/bc85OZb+OIVzkTHw5ZNNHc1+abyXPkyXBAe
-         vdQZTQKOwUGUFyTIJFNM+KQnEg+DYliyXexND5P2GPJBCIoHToc+IEhZPIXZAO/J9j0r
-         NgBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5eBlM9S6kPg63OsVYn1WA2umDAvRg38VWyYh3hm2sLE=;
-        b=OSnm5oMQWzCK1ySQPvzjHiQC9k1606wtAIdtkG3T+bIFi+yvtHyN0uVVCCpPM0DWXW
-         PiJBSTqZMVnPXKRjN/eGplJPefzz9E+Ae/lvlaMnuuBaGO3McCG5VfmXz+zgGffYtfRD
-         7GItVAm1eukQ2ll+eNCsbok8gcgLfnmp46/u5Us+LjNmaY/ROjy3Tnc/dxau+j564WS8
-         0qfsoKh/iaIK+48Po3f+fyIRJrjtkV8PnRsOTjJRI/C5HuXvudsNGfOCx6+2s6mXlCVs
-         ZBc0Aht3fQ/3xZqcVg9VDh8gXvtwhIvsTZDizOvvCDNE4Y2ai1pXzItzfQ68bbWiingK
-         YRaQ==
-X-Gm-Message-State: AFqh2kqAaCLxNr7A4sJB7FMa+VCWgoyXOgPW90kR7thZnqmjdSa2MtwF
-	Xffux6ETBHCRazA/dxg8RB+1Nsyb6jUOWmdS4rM=
-X-Google-Smtp-Source: AMrXdXuSvgPxqgmv5vUfpRjUazPZC3WTcKs4WtJls/xAktAXsSGvHC5Wi7Qhm1/UVmUM73HjQTo8e3s3Dv9BMhuUjUk=
-X-Received: by 2002:ac5:c917:0:b0:3d5:542b:7857 with SMTP id
- t23-20020ac5c917000000b003d5542b7857mr1385848vkl.29.1674113213928; Wed, 18
- Jan 2023 23:26:53 -0800 (PST)
+	id 1pIPZi-003tWG-0t; Thu, 19 Jan 2023 07:43:07 +0000
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30J4AmBm002246;
+	Thu, 19 Jan 2023 08:41:47 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=jL/MbEBfkVAq5ZMy1e9+noLbvk1MZWNuOQ2c+Fz8nz0=;
+ b=BX5ioQOOwo8TiUALeHu96ZUvFqNIHMHC983BbAfFTiaXFGm04nFWgpxOs1Q7wy8bd1tT
+ iacyKZPEi3RiNxjrVN23olXkUMvfN1LPcgEkOJgqBS13VE4H31+IPZjKsZJYTAOAlkMT
+ wVL+gSSJR/+ua+zPPFyqR+rcwK/c8ePcyJhBfcKCqe7NVkmg0bsxcWYHrl5vTZSYL8jJ
+ tM9o3ECjI5clfhz0HeAB4Gu+1cmmSklmH4q2DKtaUl+ZfNNyWLjnc2/8bm5Gj8t00Toz
+ vt5LmHTqJz6oq9ZHq4VnRcItZY7fnlvBIqaAKdyh8+tU4QSDXG7WCok/Mg8ZAujzrnsd Aw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n3m5qd4je-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Jan 2023 08:41:47 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C88C4100034;
+	Thu, 19 Jan 2023 08:41:39 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 22EC520F562;
+	Thu, 19 Jan 2023 08:41:39 +0100 (CET)
+Received: from [10.201.21.26] (10.201.21.26) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Thu, 19 Jan
+ 2023 08:41:36 +0100
+Message-ID: <39af6fac-3e8e-4929-43b3-eb0b7af0ab30@foss.st.com>
+Date: Thu, 19 Jan 2023 08:41:36 +0100
 MIME-Version: 1.0
-References: <20230118044418.875-1-linux.amoon@gmail.com> <20230118044418.875-8-linux.amoon@gmail.com>
- <b112ee8e-93ab-2c30-ced3-82ff858884b4@linaro.org> <CANAwSgQ1b8vj+HCBS0ARnNqOwKHU8VzzsB7htL3L4Sr_v6Y=VQ@mail.gmail.com>
- <0dbefaec-e1de-fc3f-54f2-c5fe75a28c7c@linaro.org>
-In-Reply-To: <0dbefaec-e1de-fc3f-54f2-c5fe75a28c7c@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 19 Jan 2023 12:56:37 +0530
-Message-ID: <CANAwSgRFGrVePVVWRQHHt_HvanBTVGfhej9MbNHh84+6eqypUA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/9] arm64: dts: amlogic: Used onboard usb hub reset on
- odroid c4
-To: neil.armstrong@linaro.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
-	Matthias Kaehlcke <mka@chromium.org>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] spi: dt-bindings: drop unneeded quotes
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown
+	<broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej
+ Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman
+	<khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chin-Ting Kuo
+	<chin-ting_kuo@aspeedtech.com>,
+        =?UTF-8?Q?C=c3=a9dric_Le_Goat?=
+ =?UTF-8?Q?er?= <clg@kaod.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@aj.id.au>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Broadcom internal
+ kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Han Xu
+	<han.xu@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer
+	<s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding
+	<thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Andy
+ Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad
+ Dybcio <konrad.dybcio@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Linus
+ Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>, Palmer
+ Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang
+	<baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Vaishnav Achath
+	<vaishnav.a@ti.com>,
+        Parshuram Thombare <pthombar@cadence.com>,
+        Leilk Liu
+	<leilk.liu@mediatek.com>, Gabor Juhos <juhosg@openwrt.org>,
+        Bert Vermeulen
+	<bert@biot.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Marek Vasut
+	<marex@denx.de>, Birger Koblitz <mail@birger-koblitz.de>,
+        Geert Uytterhoeven
+	<geert+renesas@glider.be>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Chris Packham
+	<chris.packham@alliedtelesis.co.nz>,
+        Kuldeep Singh
+	<singh.kuldeep87k@gmail.com>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Erwan Leray
+	<erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-tegra@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+        <linux-riscv@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
+X-Originating-IP: [10.201.21.26]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_232657_743722_EA922950 
-X-CRM114-Status: GOOD (  31.16  )
+X-CRM114-CacheID: sfid-20230118_234306_453667_CB7063E7 
+X-CRM114-Status: GOOD (  14.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,107 +173,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+Hi Krzysztof
 
-On Wed, 18 Jan 2023 at 18:54, <neil.armstrong@linaro.org> wrote:
->
-> On 18/01/2023 12:55, Anand Moon wrote:
-> > Hi Neil,
-> >
-> > Thanks for your review comments.
-> >
-> > On Wed, 18 Jan 2023 at 13:59, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> >>
-> >> On 18/01/2023 05:44, Anand Moon wrote:
-> >>> On Odroid c4 previously use gpio-hog to reset the usb hub,
-> >>> switch to used on-board usb hub reset to enable the usb hub
-> >>> and enable power to hub.
-> >>>
-> >>> USB hub is combination of USB 2.0 and USB 3.0 root hub so
-> >>> use peer-hub node to link then.
-> >>>
-> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>> ---
-> >>> v2: - fix the compatible string.
-> >>>       - Fix the hub node to use peer-hub to link the usb 2.0 and usb 3.0.
-> >>> ---
-> >>>    .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 36 ++++++++++++-------
-> >>>    1 file changed, 23 insertions(+), 13 deletions(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
-> >>> index 8c30ce63686e..d04768a66bfe 100644
-> >>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
-> >>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
-> >>> @@ -26,20 +26,30 @@ led-blue {
-> >>>        sound {
-> >>>                model = "ODROID-C4";
-> >>>        };
-> >>> -};
-> >>>
-> >>> -&gpio {
-> >>> -     /*
-> >>> -      * WARNING: The USB Hub on the Odroid-C4 needs a reset signal
-> >>> -      * to be turned high in order to be detected by the USB Controller
-> >>> -      * This signal should be handled by a USB specific power sequence
-> >>> -      * in order to reset the Hub when USB bus is powered down.
-> >>> -      */
-> >>> -     hog-0 {
-> >>> -             gpio-hog;
-> >>> -             gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-> >>> -             output-high;
-> >>> -             line-name = "usb-hub-reset";
-> >>> +     /* USB hub supports both USB 2.0 and USB 3.0 root hub */
-> >>> +     usb-hub {
-> >>> +             dr_mode = "host";
-> >>
-> >> Is this really needed ?
-> >>
-> > I got carried forward from the other device tree binding,
-> > If not needed I will drop this.
-> >
-> >>> +             #address-cells = <1>;
-> >>> +             #size-cells = <0>;
-> >>> +
-> >>> +             /* 2.0 hub on port 1 */
-> >>> +             hub_2_0: hub@1 {
-> >>> +                     compatible = "usb2109,2817";
-> >>> +                     reg = <1>;
-> >>> +                     peer-hub = <&hub_3_0>;
-> >>> +                     reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> >>> +                     vdd-supply = <&vcc_5v>;
-> >>> +             };
-> >>> +
-> >>> +             /* 3.1 hub on port 4 */
-> >>> +             hub_3_0: hub@2 {
-> >>> +                     compatible = "usb2109,817";
-> >>> +                     reg = <2>;
-> >>> +                     peer-hub = <&hub_2_0>;
-> >>> +                     reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> >>> +                     vdd-supply = <&vcc_5v>;
-> >>> +             };
-> >>
-> >> The final discussion in v1 was to drop this /usb-hub node and move the
-> >> hub_2_0 & hub_3_0 node under the dwc3 node.
-> >>
-> >
-> > Yes, but It did not work back then, since these are two different events
-> > USB node will try to bring the PHY and dwc2 and dwc2 nodes up.
-> > USB hub supports the reset of the USB hub and links the power supply
-> > to the ports.
-> > This works on this board.
->
-> Forget the dwc2 node, the dwc2 since GXL is device mode only, so you need to put both
-> nodes in the dwc3 node which is host-only.
->
-> Neil
->
-Ok, I will move this node under dwc3 node, in the next version.
+On 1/18/23 18:39, Krzysztof Kozlowski wrote:
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-> >
-> >> Neil
+[...]
+
+> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> index 1eb17f7a4d86..8bba965a9ae6 100644
+> --- a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> @@ -11,7 +11,7 @@ maintainers:
+>    - Patrice Chotard <patrice.chotard@foss.st.com>
+>  
+>  allOf:
+> -  - $ref: "spi-controller.yaml#"
+> +  - $ref: spi-controller.yaml#
+>  
+>  properties:
+>    compatible:
+
+
+For stm32-qspi 
+Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
 Thanks
--Anand
+Patrice
 
 _______________________________________________
 linux-amlogic mailing list
