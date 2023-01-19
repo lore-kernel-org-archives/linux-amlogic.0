@@ -4,77 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91C7EC54EBE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Jan 2023 08:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA90DC00A5A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Jan 2023 16:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=g9iS45kP3JoV+77puKUKyTV4XkGc1n3ZZdEwVVQQ01k=; b=IGfkdMTY//UWZ6
-	AUH0ZErRBMh5efXMON0FsdlUJ/BpjtsogPMlrVFO+fhhe7XA8Gc6GkGnyUVs4T5vPNMNyZKU1eLAy
-	eFSke30Tw9LArUuGYJ91QG5LvKlDU7kUQVyi381bwZSeaOyHcUg2bxBmCXnN3XZEYNv25QERoSbTA
-	iSAQ2cPinoO9Mjgq76VAzRszWBao4sv7VuM5H0cUKugL8iqXGe/Vs3Rnw+WLUt3CsIuH2HF+r3yBr
-	mBqjCHZIqj+M3c6eNh+Y/0jh7yu8xR3TIHyQjaskggSmRKJSDEJpuer5x6HekXZ5LjsWZdqHGGfrM
-	QZJRbrlaUAylG8lETX+g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=StPuEVyj6L0A2toLtSClntAzCSC8OTj0dGwg4jbichM=; b=P8l5PY/P5ap150
+	n1ImTpneuJhIhYkZcwMksPjSQgmOYm5I4eNXQjPexeD8xjT/dTqPCYjLMH//zx22gZ0lzfLm0YVOh
+	BZVKZh107wfVJskEIt0CKBt0FGFcnGDjE/xZSsyNWjRmbxFvMQ3hv5mLgQIBw8QT+NvnVXrkPAnG1
+	Dp9fLmKIKp/00udo5riEEUpIE9ju1PceGodty39hUTbLgWyxz7ty8zcuVEyMx9DgN4BsyJwkQ3kbU
+	CdkHf+IcrVF3lrtxP2jAcaHb6pSuKqjuo5tLqM7rqOBXr0UHDashBcDbPWwIEFJATKIKD/EMlw511
+	6t2AeWckeCxxOV0pJYoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pHL4z-009CkO-UD; Mon, 16 Jan 2023 08:42:57 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1pIXjT-005xXG-7X; Thu, 19 Jan 2023 16:25:43 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pH3j2-007QMz-Ut; Sun, 15 Jan 2023 14:11:10 +0000
-Received: by mail-wm1-x333.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so21877445wmb.2;
-        Sun, 15 Jan 2023 06:11:07 -0800 (PST)
+	id 1pIXiR-005wxT-7N; Thu, 19 Jan 2023 16:24:40 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id bp15so3939886lfb.13;
+        Thu, 19 Jan 2023 08:24:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TLQqIynPN/pT84DVC6KpLTcAe3g0Vq4uxVa23539u9M=;
-        b=G/gBi/0jKEHW5nAR/z/nlj9Bpa6CPim6q2mv8Q0/YLw0HzlC2Zm76NPtS0KIdsrXKw
-         SK76NnemoNHV1ZTx7trelb8U2iYQRZhlnTjqu+RG4HgR1OsEC9jtYsHCB4zNty0VVXp0
-         fTFe8RTUoEc22zkpR75p+MpC/wlsNXTZcYEMvwvLz/oRX0YjU4bSiRWykL05saz445M9
-         o9+0Aq+9b8fw/1SRLMaFwiWaLvUrptahLa4qWmkos5dz2mSObmbVWtibZnK8ZNhL0CxT
-         BC0QD+og9hhtfx9coY3tpXm/lO1vfcB7LnnmlZJRgng9AQN7XZUfnqhmYwRvO62qZNx+
-         koWQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8lVOvMoIQ2x2Wf6zy8frHnpB0eXV9ve1xBd2DqHKd8Y=;
+        b=a/g9O4xy606aS7gTGUOYByXG9qF6KTMWOZA30DBpya3y/ma8wWSWbZ0GhEnw/5Dd56
+         SwWKUvve09j1o3F73iD1XSqxXcz9bXivs5oPpAd58vaExY7Ut/gg8J5SySYtOKeJp85Y
+         xmSrmvNHPLNYd+qGYEno2szmpyk9kL3REN4AGFML0pKUuvB9xnBoYaDYyqhUn2RKO/PI
+         lFHQZLGbsqrirm06txrQIW/ebbIiz59ba6eAsRY5KjrWXIZ73jywqljunaP/ghJHB5A9
+         uKyEtu3Zvgig66EC5x+MjGQiTGePO5AKzyatccaZUr2ktzAcgc0H0B/UBMut22jZ1DsG
+         EBCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TLQqIynPN/pT84DVC6KpLTcAe3g0Vq4uxVa23539u9M=;
-        b=sVWDJSXps/hC9lLLvUS11wCfodBXcBFjWnM5o8UInnlthJP7ckjWMWsvKz+k8hBKb3
-         w38ONq5uLh8DAw3REEU1GQsQ3SFHrucdrAoUZ/SFUqgg2fe65QkvLyZHvLoTwQ40srXf
-         lSVTHO4LEKemebOJc0nIyJO3lfLPOVITaH9H3NgY9bfjP7ZeNexd4f6NTYunI7MmsQ6H
-         BaQojnZ9dKt9Ab9hfntLCXUjX0hipwT9Rbavdn4XeouEMw5D5QHD172k+mehB4i9oXbM
-         TPEYFLRlFfm6vIoB66RCzLbhCXYTMNIVDu+Ahd966i0T8i50HQ3HoXATdoSfXVNOe4BP
-         YD6g==
-X-Gm-Message-State: AFqh2krkBj4XczwORYbR2etV6k5JTtYjVHGKIfS3yoTWaDtMlIak2qAR
-	iG4utXVYioYS9NtsioCW+ezkC++Ir40=
-X-Google-Smtp-Source: AMrXdXuEWfpqCHwgbx+VudW4fpmSHxIYaWeJEdsTgwcbgOsIhdU39TONH2ANX5TnuWYcU2xWX+sVVA==
-X-Received: by 2002:a05:600c:3596:b0:3d2:3b8d:21e5 with SMTP id p22-20020a05600c359600b003d23b8d21e5mr63073219wmq.14.1673791866372;
-        Sun, 15 Jan 2023 06:11:06 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
-        by smtp.googlemail.com with ESMTPSA id l36-20020a05600c1d2400b003d9fb59c16fsm19547251wms.11.2023.01.15.06.11.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 06:11:05 -0800 (PST)
-Message-ID: <e7b660ff-b887-fe4b-46a5-b698c0e5142a@gmail.com>
-Date: Sun, 15 Jan 2023 15:10:59 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8lVOvMoIQ2x2Wf6zy8frHnpB0eXV9ve1xBd2DqHKd8Y=;
+        b=Oi2w/VVeQVpiliNeSeOsz/ngHEi3vU+7ZJOxfuF8DEtt5tJDLsTt80bgu4bualRz6q
+         N/fIUfXNsngz9a/sQyseiY4GKNkHow85OBJgy6L5waFnGezWtyk81d5OLtnb9UWCs5f1
+         EhlLzUzP9jxdvL7/gVrwsNVlLM7i5rZNqwRB6QMGcEc3tELULIlhOz/N1/g0eVSCn1Z2
+         4WQ9rSVpMaJ6LFOIn2rgR/+fWwnE5ZbsTEJ7uLlpTCcA57IlEBVXCvcLEazNosvBQZPR
+         hmnkgx0gu6CM/bv6c+Qg8eTm0F9treByelgep/EnxgB55MLe/Xt4KE4Lj57nXDONppv7
+         xaYA==
+X-Gm-Message-State: AFqh2koUOPUXr2v/GzqcxnyyHh/ZbZVv7JWyUTKgTB9kv0YiRb1wx3Mz
+	qR3Z+SVYpvxBigPRr/0fK40=
+X-Google-Smtp-Source: AMrXdXv7/blNpjVnMJiMaPKfEdqpiTFTh3jtjnRI+SUuGsVsK9TsgKmt9RRC03LAK7v7xiQAHH0RHA==
+X-Received: by 2002:a05:6512:25a5:b0:4b5:7338:e2c7 with SMTP id bf37-20020a05651225a500b004b57338e2c7mr3358360lfb.53.1674145476128;
+        Thu, 19 Jan 2023 08:24:36 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id s9-20020ac24649000000b004cb41b43c25sm5884147lfo.197.2023.01.19.08.24.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 08:24:35 -0800 (PST)
+Date: Thu, 19 Jan 2023 19:24:31 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+	=?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>,
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+	Kamal Dasu <kdasu.kdev@gmail.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Han Xu <han.xu@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Yogesh Gaur <yogeshgaur.83@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Li-hao Kuo <lhjeff911@gmail.com>,
+	Michal Simek <michal.simek@xilinx.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	=?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+	Vaishnav Achath <vaishnav.a@ti.com>,
+	Parshuram Thombare <pthombar@cadence.com>,
+	Leilk Liu <leilk.liu@mediatek.com>,
+	Gabor Juhos <juhosg@openwrt.org>, Bert Vermeulen <bert@biot.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Marek Vasut <marex@denx.de>,
+	Birger Koblitz <mail@birger-koblitz.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Anson Huang <Anson.Huang@nxp.com>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+	Pragnesh Patel <pragnesh.patel@sifive.com>,
+	Christophe Kerello <christophe.kerello@foss.st.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Erwan Leray <erwan.leray@foss.st.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 1/2] spi: dt-bindings: drop unneeded quotes
+Message-ID: <20230119162431.mepdze3xibqjgwsi@mobilestation>
+References: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] MAINTAINERS: add PHY-related files to Amlogic SoC file list
+Content-Disposition: inline
+In-Reply-To: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230115_061109_065434_93DCB892 
-X-CRM114-Status: UNSURE (   6.81  )
-X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Mon, 16 Jan 2023 00:42:56 -0800
+X-CRM114-CacheID: sfid-20230119_082439_472900_58AD33CD 
+X-CRM114-Status: GOOD (  13.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,32 +150,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add PHY-related files to the Amlogic SoC file list.
+On Wed, Jan 18, 2023 at 06:39:31PM +0100, Krzysztof Kozlowski wrote:
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+[nip]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1c83c26e9..428d88195 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1909,10 +1909,12 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-amlogic@lists.infradead.org
- S:	Maintained
- W:	http://linux-meson.com/
-+F:	Documentation/devicetree/bindings/phy/amlogic*
- F:	arch/arm/boot/dts/meson*
- F:	arch/arm/mach-meson/
- F:	arch/arm64/boot/dts/amlogic/
- F:	drivers/mmc/host/meson*
-+F:	drivers/phy/amlogic/
- F:	drivers/pinctrl/meson/
- F:	drivers/rtc/rtc-meson*
- F:	drivers/soc/amlogic/
--- 
-2.39.0
+>  .../bindings/spi/snps,dw-apb-ssi.yaml          |  2 +-
+
+[nip]
+
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index d33b72fabc5d..a132b5fc56e0 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -10,7 +10,7 @@ maintainers:
+>    - Mark Brown <broonie@kernel.org>
+>  
+>  allOf:
+> -  - $ref: "spi-controller.yaml#"
+> +  - $ref: spi-controller.yaml#
+>    - if:
+>        properties:
+>          compatible:
+
+For the Synopsys DW SSI bindings:
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+
+Thanks
+-Serge(y)
 
 
 _______________________________________________
