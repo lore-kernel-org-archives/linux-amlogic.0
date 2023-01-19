@@ -4,87 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E749C38142
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Jan 2023 07:55:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85DC0C38142
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Jan 2023 07:58:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1+0NGgIFDBDl1iu6ggCxnDzeGsF+ZAQX+jjzmZwR05A=; b=y/gqWJongspIRC
-	UNDhy6ukq+V1jw2oC6+TZnO28Vh98SC4QB4D3H2eWOS2DOl/YuBozVb0kwrIcF2ivrNYAfwouncIs
-	nXpp3T/0X3XXY0ROcGAvX6N1zDgG7dixUs/jVgMPtFmaOwx+kA2jLvGISX+QwZKqmtokCvseebuLI
-	QDLvsnF9NFQwwaBrlkluvdlqkntmb7ZkJnuXoMCoWYZ03X/+jhfa0mO6WOs6jb7Dzh0FcyuMvSpZA
-	+xiPHCQVFAYktP3VE2nmCss58nq55Bf8Ia4sttS3DBflEW2tfUyS+fxBCf/M+NeblBaVLvcZ9Enjq
-	LMafYBEm0Wr+b9ApeWJg==;
+	List-Owner; bh=ooDwfmcrUBb4SMkiCjpZpv2sxy1OMcGpmdtBDh1eEDQ=; b=XPxeHKJIvUbJIW
+	s4dFuxrjRyIU20t3gKbgwaUcTuscghtaUjJBtdRp1ZEidAt/Kwkawnd1PIxdUtReF8krbhk8e4wKy
+	Z6ZrzfqVJpM1Fn0fUXrgciRypyC/JPUyFMMRDVC6dJhrGm9ef6W10/ziDBNmvAzPtZKpcmqblJ2K5
+	8Ooegh/EMF8O4Ap5SCdtWF4zCryrxuinr6m6qGGZdPWjzDm4Zj2PpqanzR9Bgku6fr32OG3XHSycl
+	x193ITqiw/fL9fbjFP8iR7jSCRKKcc90Mu/ibGTaOrup+sqnHkuih1Oxh9o0pT2RR+ytFohMdA2uE
+	hEOC6QoHIe76FhXyabxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPly-003yeb-J3; Thu, 19 Jan 2023 07:55:46 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1pIPoL-003zb5-6k; Thu, 19 Jan 2023 07:58:13 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPk2-003y0Q-KH; Thu, 19 Jan 2023 07:53:48 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 18so1799994edw.7;
-        Wed, 18 Jan 2023 23:53:44 -0800 (PST)
+	id 1pIPoG-003zXz-DP
+	for linux-amlogic@lists.infradead.org; Thu, 19 Jan 2023 07:58:10 +0000
+Received: by mail-wm1-x329.google.com with SMTP id j17so857472wms.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 18 Jan 2023 23:58:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EWviBnBumLa3lo5dwVP+uotrksiLTeP+2ci/rlH33Ks=;
-        b=T5UxcrAvnlPwErYlYjaaCYCHK0tvutr+16i5q64bp4X1NZwevZYx+vreTJhv2pUhE3
-         PBP/12VMv1h5nn0IC9NZwOoC2SlFQ5Ure1efJaReQ3zkyaNSv8H3Mxy00iTKb/L2KkKW
-         VO3KEXIunNHVjNryMqxlAuWlaDnkaKJGRQ3QmqxpchlyrjhDS17RaG43TIcNHtrC3fT3
-         pxBvPHF1CPX4M3m6U8ZfDk8wN+Xu2L0FyiF9cj9FctU2yX42yXY9NpH8bQvTDSBnrPuo
-         PAtxU836CAuLPcgCcC7FNUgQ0UA6g9JtcKOlNHkPGv1/J1zQlJVJLuUQAox1zNmUjDTJ
-         Vgrw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ij8SMr+vXbA/AZuiMltivscr4/Z1+1DiXSChaaWBJLA=;
+        b=jNvClj4Hgs3XtM8osi2wmiQMtbXX9Pmtcv550+503yOGAXBRa9d6VoF6cZTm2h6Gjv
+         vqqmXwxeBDQDNJFNBGX319WcRnTcclvjKfxqDfdIS30rx6KVsgnwyMEWlTKXRyc0Sm1S
+         mT6WXhFENhT0S469DnFce32rQRt/pYYaIYOUIfZhQsd/6CIV99iyCTx6nLFqzlNgInrS
+         cCvHfjWbI+6EBPHsRh6f0fBLcwDK9wLvu5FAYXYqrEVrL2EqadlKhKiQGZ+7HNMzwxLc
+         oPDSOBQB00PBTJJ3qmuUvqX3Bv44IPfj9wYpGqyMB8IaWS9L0X8YL8/ELk/0dd9wpVwy
+         2cYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EWviBnBumLa3lo5dwVP+uotrksiLTeP+2ci/rlH33Ks=;
-        b=OVqxLHKVqJjQlUjvWivlz4V0p9qfQa7EmcVUs5XGvJU4tm1jEkqH6hqNN3RFiJjlyv
-         UA83iWAHPoH51qI/fdfQ3Wc8PPWqblYNxOSgmSL15Khkyc5dCAHKP9hpGozBSr4X/84R
-         lM2gIj5D/epeO5LPyQBTrxI96bM6BRIRC7/0z2hkSfhWqrJ7IWj15JDoEozFIL7Wm8Gy
-         2he2HmQftb48SnSkeMdw4s7pWaFGhhLc1HkyJi6/8CLvSTA/WE7rlAbF+9/MxEd23G5g
-         +T0Vyi6RVAlHsGl2t02is3cr0LHwkI8Auw01UU/lcEnp3XWWrnhDRseXHk1zck8XBqh4
-         6jzA==
-X-Gm-Message-State: AFqh2kqJm08n+5ULMSWxJEnA3+MR5KnqLutRb3pPXzXcL+Dak2vg/ufE
-	YikXX8vKFOiGWl4iNWWG5nhO7Cda7UM=
-X-Google-Smtp-Source: AMrXdXtC1FhLxOa5uddlJTrPG2c8t/oFYkLbKvmlT6Q60PgvJzzurTbjwq5gdVLJM7BwN/R3/hD20A==
-X-Received: by 2002:aa7:c44d:0:b0:46c:b919:997f with SMTP id n13-20020aa7c44d000000b0046cb919997fmr870882edr.17.1674114823272;
-        Wed, 18 Jan 2023 23:53:43 -0800 (PST)
-Received: from ?IPV6:2a01:c23:c477:4300:6902:d630:fe6:8186? (dynamic-2a01-0c23-c477-4300-6902-d630-0fe6-8186.c23.pool.telefonica.de. [2a01:c23:c477:4300:6902:d630:fe6:8186])
-        by smtp.googlemail.com with ESMTPSA id w1-20020aa7dcc1000000b0047a3a407b49sm15278976edu.43.2023.01.18.23.53.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 23:53:42 -0800 (PST)
-Message-ID: <e40f8fec-58b0-cb93-7858-6ac143b83747@gmail.com>
-Date: Thu, 19 Jan 2023 08:53:29 +0100
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ij8SMr+vXbA/AZuiMltivscr4/Z1+1DiXSChaaWBJLA=;
+        b=F83H4spWEos9VqrxJH99VlL931vGRbm+BjdNAc+560+7szea/VQkz1iOA7a9PhM+ey
+         zNftlPCZsUGgVSkg2bPXdtjSjMcvorFIg8kh+Ij/nY+lGMJW6IZrA0QHHLUe0oI1RH2o
+         6aKZfvVVbHxgDChgG2tjPPUGBXye3/QAguy8hJhn39Ubl3XyrJVBpzTusRDzwIGDUv/F
+         cmOXVHKCosJWX6EZOkQvJ+gVS4QAi3YYm/wycek7O54qCyfR5KawHm1HXJ7Ar2rEm75l
+         gvWNRVJafSiTMWVPr5juIZHQ9kYDoQuROD3Jo7hnfkEV+/YGdIOaHFt5SerCoNu9PytN
+         qPgA==
+X-Gm-Message-State: AFqh2kqvqGPZ/srX5ZL+I/5NkDhJbOv3BL5enyjl4fmO9PD0LXYabuYd
+	y0pB4wZZGXL2OVpJS2LreD6Spw==
+X-Google-Smtp-Source: AMrXdXvJcNubzirilufX37J3RKkYIRh76X2L8Sjqd3Dsl7pC4Q5esy4zyFFYuUszjgUWfmEGPa2dtA==
+X-Received: by 2002:a1c:4c0a:0:b0:3db:210:6a24 with SMTP id z10-20020a1c4c0a000000b003db02106a24mr9024938wmf.8.1674115084639;
+        Wed, 18 Jan 2023 23:58:04 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id p15-20020a05600c468f00b003d9b87296a9sm4115776wmo.25.2023.01.18.23.58.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 23:58:04 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: linux-amlogic@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+In-Reply-To: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
+References: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
+Subject:  Re: [PATCH v1 0/2] ARM: dts: meson: Add more L2 (PL310) cache properties
+Message-Id: <167411508395.294260.17502522944795124544.b4-ty@linaro.org>
+Date: Thu, 19 Jan 2023 08:58:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Peter Suti <peter.suti@streamunlimited.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-mmc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <52861a84-0fe2-37f0-d66a-145f2ebe1d79@gmail.com>
- <20221214134620.3028726-1-peter.suti@streamunlimited.com>
- <c6863a3e-8855-50fe-25cb-0b38bc3a05e0@gmail.com>
- <CACMGZgZY4Zb+3vHUDAS0+3r55K4_J40dtbsTPTFZMd6duBikpQ@mail.gmail.com>
- <7c4aa0d2-d8e9-416b-b2ad-f5c3c8ea33de@gmail.com>
- <CACMGZgaS7z2YoViA3jV-gVBvASSq1maiGj_6hfrJQ3zr69esgQ@mail.gmail.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v3] mmc: meson-gx: fix SDIO interrupt handling
-In-Reply-To: <CACMGZgaS7z2YoViA3jV-gVBvASSq1maiGj_6hfrJQ3zr69esgQ@mail.gmail.com>
+X-Mailer: b4 0.11.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_235346_731867_0269BB91 
-X-CRM114-Status: GOOD (  30.94  )
+X-CRM114-CacheID: sfid-20230118_235808_512982_A0C102DC 
+X-CRM114-Status: GOOD (  12.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,111 +91,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18.01.2023 14:32, Peter Suti wrote:
-> On Thu, Jan 12, 2023 at 10:27 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>
->> On 09.01.2023 12:52, Peter Suti wrote:
->>> On Wed, Dec 14, 2022 at 10:33 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>>>
->>>> On 14.12.2022 14:46, Peter Suti wrote:
->>>>>
->>>>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->>>>> index 6e5ea0213b47..7d3ee2f9a7f6 100644
->>>>> --- a/drivers/mmc/host/meson-gx-mmc.c
->>>>> +++ b/drivers/mmc/host/meson-gx-mmc.c
->>>>> @@ -1023,6 +1023,22 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->>>>>       if (ret == IRQ_HANDLED)
->>>>>               meson_mmc_request_done(host->mmc, cmd->mrq);
->>>>>
->>>>> +     /*
->>>>> +     * Sometimes after we ack all raised interrupts,
->>>>> +     * an IRQ_SDIO can still be pending, which can get lost.
->>>>> +     *
->>>>
->>>> A reader may scratch his head here and wonder how the interrupt can get lost,
->>>> and why adding a workaround instead of eliminating the root cause for losing
->>>> the interrupt. If you can't provide an explanation why the root cause for
->>>> losing the interrupt can't be fixed, presumably you would have to say that
->>>> you're adding a workaround for a suspected silicon bug.
->>> After talking to the manufacturer, we got the following explanation
->>> for this situation:
->>
->> To which manufacturer did you talk, Marvell or Amlogic?
+Hi,
+
+On Sun, 15 Jan 2023 00:34:53 +0100, Martin Blumenstingl wrote:
+> I had these patches in my testing tree for a while now. The vendor
+> kernel uses the same configuration, so it probably makes sense to
+> use them upstream as well.
 > 
-> Amlogic
 > 
->>
->>> "wifi may have dat1 interrupt coming in, without this the dat1
->>> interrupt would be missed"
->>
->> I don't understand this sentence. W/o the interrupt coming in
->> the interrupt would be missed? Can you explain it?
+> Martin Blumenstingl (2):
+>   ARM: dts: meson8: Add more L2 (PL310) cache properties
+>   ARM: dts: meson8b: Add more L2 (PL310) cache properties
 > 
-> So the "without this" part of that sentence referred to the patch.
-> Which means that without the patch, the interrupt can be missed.
-> 
+> [...]
 
-Did you ask Amlogic for the root cause of the problem? Silicon bug?
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
 
->>
->>> Supposedly this is fixed in their codebase.
->>
->> Which codebase do you mean? A specific vendor driver? Or firmware?
-> 
-> The vendor driver from openlinux2.amlogic.com handles SDIO interrupts
-> a bit differently. It uses mmc_signal_sdio_irq()
-> 
-This is the legacy API for SDIO irq.
+[1/2] ARM: dts: meson8: Add more L2 (PL310) cache properties
+      https://git.kernel.org/amlogic/c/12cdc236cf83eb55560f52dd378f05d5798452ba
+[2/2] ARM: dts: meson8b: Add more L2 (PL310) cache properties
+      https://git.kernel.org/amlogic/c/46f73c1c037eed8e5fd61cc39c77b0988148b50b
 
->>
->>> Unfortunately we were not able to find out more and can't prepare a
->>> patch with a proper explanation.
->>
->> The workaround is rather simple, so we should add it.
->> It's just unfortunate that we have no idea about the root cause of the issue.
-> 
-> After doing a more long term stress test, it was revealed that this
-> patch is still not sufficient, but only masks the underlying problem
-> better. Reverting 066ecde fixes the issue fully for us (verified
-> overnight with iperf).
-> v1 and v2 also fix the issue, but v3 does not correct the bug when
-> WiFi is stressed for a longer time. And therefore it should not be
-> used.
-> Could you please give us some advice on how to investigate this further?
+These changes has been applied on the intermediate git tree [1].
 
-When talking about v2 of the patch, it includes a number of actual changes:
+The for-next branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-- hold lock from start to end of interrupt handler
-- if SDIO irq was disabled when entering the irq handler I see no change
-- if SDIO irq was enabled
-  - disable SDIO irq at start of irq handler, no matter which type of interrupt was received
-    -> means disable SDIO irq during irq handler even if some other interrupt was received
-  - if SDIO and another interrupt source flag is set, leave irq handler with SDIO irq enabled.
-    Not sure whether that's intentional, you can use the small patch listed below on top of v2
-    to check whether SDIO irq still works ok or not.
-    
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
-At least to me it's not clear which (or all?) of the changes are needed to work
-around the problem. So you could check whether SDIO irq still works fine if you
-remove a single change from the patch.
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index f4b102b85..711431706 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -994,6 +994,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 			spin_unlock(&host->lock);
- 			return IRQ_HANDLED;
- 		}
-+		irq_enabled = false;
- 	}
- 
- 	if (WARN_ON(!cmd))
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.39.0
-
-
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
