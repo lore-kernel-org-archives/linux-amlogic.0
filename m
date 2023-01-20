@@ -4,77 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D90C05027
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Jan 2023 09:57:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F46DC05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Jan 2023 10:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+50rA76qpltNpC3k/cflz3kqYJpl6DaJP2RWt+7Gj+0=; b=cYdiuysHmehUfJubhs9zvW5fVH
-	NTOt4MOyBXYMyq2PsQcsgPSq09kcE0CTC5aVHnmDsfl9obrRxB1SuFmf43kVTkJmTT5GFm7i/YmEq
-	WldTCilr4ZomOPD3P65TMATnylNYD4bFKXX8RopvGWEF97YSZrFfwHfrTw85bFIPmtzzmmg2s65n3
-	igl36Kxgaz5/lnIc52RKyz7BCFB+Bjigazg14nTXdmAAF23Rf6D9alE0WgEFwgIqtCEvj5xTMMiHL
-	96hRIQiZLPTv0qJl2IitweRUIacfnDDEWNc/H6SEFQkiRTc5QP91IIr3N29ZaEafDai+m1rOxqsDj
-	fmeYU0aw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eh/vfYtEYMzNTjrvWAtONoSaNbo6LQRxTdhRKyXRkrg=; b=bhOpGU8DYz4LtC
+	i+nTbaw7rSQXZIHqWya9FJYNHWQrti1UHru5h6kgPf3tEbHeWLtnig+Gx1KklK6sfsxt54UCpxrOg
+	UKzPdtFJ1zJlu5AnemvhRE/+dqaF7uRL69dQqu2/5/y4TfRIzND7sYhGPERioY92e0zkW8GgKmgFo
+	v7EDbWGy72FGpFn+GuZVIAz5mmUaalcuvDLHlaeCcaf+1LlIo23zHQa9L+N8aaVJDhqkb7br++QDw
+	Wnn09PTPwNalAPMr5ks+uVcsVgmku81fLxvZPcIHjmfJgE9rdLcqml0YV/fr4b4qGR6XZsNSJtyEu
+	KRxqd2340wvCinhuNOcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIo9L-009awQ-1d; Fri, 20 Jan 2023 09:57:31 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pIoDk-009dAL-HB; Fri, 20 Jan 2023 10:02:04 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pInkk-009OXY-Uq
-	for linux-amlogic@lists.infradead.org; Fri, 20 Jan 2023 09:32:08 +0000
-Received: by mail-wm1-x332.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so5419319wmb.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 20 Jan 2023 01:32:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kwcNWOJu++BSeRCaBZOYmzH+VNI6xbZXZZDxdGPdiVw=;
-        b=ZddLHJ21L6LvL+VLyEVw2qy8taGHe0iy5tPJiiKRZ6ceveVeMciYO1lkRYca8zUfIo
-         pQDIbKbCkEWsezy5rY/WocrhWzECr6gQ7tow9OPVuQqlbBmX9kq4YdCYZTt1TOvGf2fQ
-         9dFelVP29QGMMjT+jAKE2VR0bimyBY8J1sFTLdqMAWH2GYzl6KGwMVglH6JfqCf/TLoC
-         ANiolyMquW/5EUvTgFaKQnvQjnlrh9D4+gqX3aBoDgJCcgSSPa259laF5iaDZBk9TULD
-         cfrKp7gPIA2r24+1q/p/1zubwJlaZ7AmXNbP/0l4B471FzNmngl/mlU6AMtOFRvd1aTK
-         Ulkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kwcNWOJu++BSeRCaBZOYmzH+VNI6xbZXZZDxdGPdiVw=;
-        b=ZCajWtoXZ5hGI/8pI341GA0Cozt6wDCHa+eo52xeCyyrvJmXtkj9/NgxqYq7+N4UmX
-         qDqxArTp2SMGirfD2lvIFeI6J2HkYBQF+Ai/ZnjhGKdzkvd374blMVXG7C0EI8BAUmpc
-         6eVJsa6P7Aa3ZuRHiT8Of63spMAA84ctPvG8rWfaQQqfVsXWTeK1sdBoQ+TfMzBqjfaj
-         SRTDmVPNbBvK/VvLJb3tbhcaWacvsdj30hcLEVkde7wZq7qO0woBL+eExTo/30FoFyUa
-         bgvMzZ6meujuL3zHe6tbbG+jUc35FlEKFMfePhjHJEqhRTrpcpU0ZQWprj5WkIva574U
-         ZVvA==
-X-Gm-Message-State: AFqh2kr54QOnKz/thaX68WSg3ugJLUrYR/tkHWXaLAZWHJFOF0h30Ggl
-	YWEzGB2CqxYHMbE/TuVuLoNpfQ==
-X-Google-Smtp-Source: AMrXdXskA1O2lr97eO1VtkYEVuAeFE+zfo7K+thpsW39zCg4BoBdphV/Sl932BgLu6aezuBUgbBlXg==
-X-Received: by 2002:a05:600c:684:b0:3cf:5d41:b748 with SMTP id a4-20020a05600c068400b003cf5d41b748mr21784793wmn.36.1674207121229;
-        Fri, 20 Jan 2023 01:32:01 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:39d8:cbee:30fb:cdaa? ([2a01:e0a:982:cbb0:39d8:cbee:30fb:cdaa])
-        by smtp.gmail.com with ESMTPSA id q7-20020a05600c46c700b003c6bbe910fdsm2259681wmo.9.2023.01.20.01.31.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 01:32:00 -0800 (PST)
-Message-ID: <770fb64a-b844-79ae-8cd7-bb80cf49b408@linaro.org>
-Date: Fri, 20 Jan 2023 10:31:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: drop unneeded quotes
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	id 1pInrX-009RyS-QH; Fri, 20 Jan 2023 09:39:09 +0000
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1pInrA-0002gP-SZ; Fri, 20 Jan 2023 10:38:44 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -83,9 +44,10 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Steen Hegelund <Steen.Hegelund@microchip.com>,
  Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
  Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, =?UTF-8?Q?Andreas_F=c3=a4rber?=
- <afaerber@suse.de>, Manivannan Sadhasivam <mani@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
  Tony Huang <tonyhuang.sunplus@gmail.com>, Li-hao Kuo <lhjeff911@gmail.com>,
  Maxime Ripard <mripard@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
  Masahiro Yamada <yamada.masahiro@socionext.com>,
@@ -96,13 +58,19 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org,
  linux-actions@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20230120085722.171965-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230120085722.171965-1-krzysztof.kozlowski@linaro.org>
+ linux-samsung-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/2] dt-bindings: mmc: correct pwrseq node names
+Date: Fri, 20 Jan 2023 10:38:43 +0100
+Message-ID: <2138388.Mh6RI2rZIc@diego>
+In-Reply-To: <20230120085722.171965-2-krzysztof.kozlowski@linaro.org>
+References:  <20230120085722.171965-1-krzysztof.kozlowski@linaro.org>
+ <20230120085722.171965-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230120_013207_040626_25461DC6 
-X-CRM114-Status: GOOD (  12.38  )
+X-CRM114-CacheID: sfid-20230120_013907_997625_D5C7B6D1 
+X-CRM114-Status: GOOD (  18.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,59 +82,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/01/2023 09:57, Krzysztof Kozlowski wrote:
-> Cleanup by removing unneeded quotes from refs and redundant blank lines.
-> No functional impact except adjusting to preferred coding style.
+Am Freitag, 20. Januar 2023, 09:57:22 CET schrieb Krzysztof Kozlowski:
+> Node names should be generic and should not contain underscores.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   .../bindings/mmc/allwinner,sun4i-a10-mmc.yaml |  2 +-
->   .../bindings/mmc/amlogic,meson-mx-sdhc.yaml   |  2 +-
+>  Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml   | 2 +-
+>  Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml | 2 +-
+>  Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+> index 911a5996e099..588be73168fa 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-emmc.yaml
+> @@ -41,7 +41,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> -    sdhci0_pwrseq {
+> +    pwrseq {
 
-For Amlogic part:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+[applicable for all 3 examples]
 
->   .../devicetree/bindings/mmc/arasan,sdhci.yaml |  6 ++--
->   .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 22 ++++++------
->   .../bindings/mmc/fsl-imx-esdhc.yaml           |  4 +--
->   .../devicetree/bindings/mmc/fsl-imx-mmc.yaml  |  2 +-
->   .../mmc/microchip,dw-sparx5-sdhci.yaml        |  4 +--
->   .../devicetree/bindings/mmc/mmc-spi-slot.yaml |  2 +-
->   .../devicetree/bindings/mmc/mxs-mmc.yaml      |  2 +-
->   .../bindings/mmc/nvidia,tegra20-sdhci.yaml    | 36 +++++++++----------
->   .../devicetree/bindings/mmc/owl-mmc.yaml      |  2 +-
->   .../bindings/mmc/renesas,mmcif.yaml           |  2 +-
->   .../devicetree/bindings/mmc/renesas,sdhi.yaml |  6 ++--
->   .../bindings/mmc/rockchip-dw-mshc.yaml        |  2 +-
->   .../bindings/mmc/samsung,exynos-dw-mshc.yaml  |  2 +-
->   .../devicetree/bindings/mmc/sunplus,mmc.yaml  |  2 +-
->   .../bindings/mmc/synopsys-dw-mshc-common.yaml |  2 +-
->   17 files changed, 50 insertions(+), 50 deletions(-)
+hmm, power-sequences are not necessarily tied to an address and I guess
+it will be very much a common case to have multiple ones on a system.
+
+So might it be better to follow other patterns (like leds) to number them
+or suggest a "foo-pwrseq" / "pwrseq-foo"?
+
+
+Heiko
+
+
+>        compatible = "mmc-pwrseq-emmc";
+>        reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+>      };
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+> index 3397dbff88c2..b35e00e8c65e 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml
+> @@ -35,7 +35,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> -    wifi_pwrseq: wifi_pwrseq {
+> +    pwrseq {
+>        compatible = "mmc-pwrseq-sd8787";
+>        powerdown-gpios = <&twl_gpio 0 GPIO_ACTIVE_LOW>;
+>        reset-gpios = <&twl_gpio 1 GPIO_ACTIVE_LOW>;
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> index 64e3644eefeb..00feaafc1063 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> @@ -55,7 +55,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> -    sdhci0_pwrseq {
+> +    pwrseq {
+>        compatible = "mmc-pwrseq-simple";
+>        reset-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+>        clocks = <&clk_32768_ck>;
 > 
 
-<snip>
 
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
-> index 1c391bec43dc..1a6cda82f296 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: Amlogic Meson SDHC controller
->   
->   allOf:
-> -  - $ref: "mmc-controller.yaml"
-> +  - $ref: mmc-controller.yaml
->   
->   maintainers:
->     - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-<snip>
 
 
 _______________________________________________
