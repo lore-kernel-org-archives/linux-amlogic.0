@@ -4,59 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9867C38159
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Jan 2023 03:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77A07C38159
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Jan 2023 07:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kd33q+xeAlKUG7euOz9DEhMFFFe/K5/bu62PsHwZP0Q=; b=zPe6mSotBOnH4h
-	hqeMoegtcHJteiSPlO9r0/lw9catpNToMxXWKvqr08QaxG3USh2Tgk4CtVwIomPfke90vMvgMZisS
-	/viBKV7g7Hq2uNCDZi6hqcxmf+zmt4Pu2DhCsg06XhXD0uUu50XLRODvINQ8vvDWPNvxeIs9jGnH6
-	yBk3mcYQ3RtLM6EzRn7VIITK2gJBS2nfRhIXTR4XApv4HsT291636O40+/s9mf7vTHo4oC7ccQbV1
-	NDIW0kldta33wZJy8/poFpvB6vEo+jI5VnGx8IOW4qiLaqNZ1sUS5Kyj/EwuJGtbyEuoajsAo8RaC
-	mKDk8+9HJApPAgG7uKyg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=yi7Fb9frMvstCiFjVY0KiIOoX/MaXffS8NwNnJcF4Ic=; b=x2+8tZQ38eUJlx
+	YzeQe2D9C8oXo1KsfS/wWmv/st6TBRlKDaPF4MUgSCDMNM7HMQZJVOH7zeluZ9AZraMV8RKdivZOm
+	Y3LPik2joKcoV89glJ3DXGzNQ/ExNLv66n947ECdEQq3K2cHtwdLbIh4c/oORzgEiyfOM1EsQDeks
+	fDVcaRjQHeDeXb2cLxgUOdUwTgwom3yle6noLtvSGBddSn5pK5e3r76nXQ3eLMKRIzuTsu5mN6Sup
+	tncV6ZIqMZRhVkDdklzi/IwadWA2XFxlIdaI+0vfg/eoUFxaazviIQDCAI9j+JPAl4cWqTwA/eXbG
+	aThcqtsR7NoDnc2vk1BQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIiAO-008Em5-Cv; Fri, 20 Jan 2023 03:34:12 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1pIli9-008m7n-Kf; Fri, 20 Jan 2023 07:21:17 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIiAD-008Ejo-H9; Fri, 20 Jan 2023 03:34:03 +0000
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Fri, 20 Jan
- 2023 11:33:52 +0800
-Message-ID: <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
-Date: Fri, 20 Jan 2023 11:33:52 +0800
+	id 1pIli6-008m5X-C0
+	for linux-amlogic@lists.infradead.org; Fri, 20 Jan 2023 07:21:15 +0000
+Received: by mail-wm1-x330.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so5181327wml.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 19 Jan 2023 23:21:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hVHXPzXDL0ZUaDjICr6uj4+3YokmdQhzS8TpEvET9ys=;
+        b=Wbwo6hfOo+QtTvcqKg66lwaGee3aBFBkGhsPdRVEP/8ZbhN4rKJIUBIe9GJNEQRXA9
+         F1xqtyPLBaWcoA/RHQfCRRn2lIqExe/GXZus7DZMmHckphsYuYVPXZujdQ6uKVqnDEZL
+         kyKUepdJACoESV0Abc0th+KgD++j8xGnNqaKeYAQbPKK2g8IP6NWakk+qgvbBnCMmtz+
+         +tLeYQLHrkgWsm2a3A0nnnNC4zAsXmG3PuBEyhqCyAm8R5Zo8iqM4GVihs0fEp6wmCFe
+         N02GM8dy/ikFBvIDp3/64Q52BTzp9SzSf/QU8LCHIixSaGzyFJ+7C257Eh6RSblu1kHP
+         f0/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hVHXPzXDL0ZUaDjICr6uj4+3YokmdQhzS8TpEvET9ys=;
+        b=duY763g2a4tJpsluS1uKl0JEn2eda95keM5se8tCaE77jGqCOJ7f3oMxJAPZ4WG/kI
+         8Tj/0wE5yNnXnTZuaDXDzH1ruXjYLhcr2/a8WswPSA+bH28HA20WT33RLEnfDh3QoflL
+         2eSQoJErJ7V93h4HZro3Yo/pvlFF9/9x/LS46bk/6M9+hiPKnwWHmaQ4FMcjAvhI3Czh
+         DfCOBx8ViHV/tSatMjv2Sfg6CxYgNGg0M/d+9Nd8VosuWLdjBZC2qhFIr6Aib9PlySCF
+         nzs29t/c4V10/FISfN9GBeBFq75bG6tpL/ulfO7ZCsPIa/8lkmUpRsfAiWIiaUUkf0EY
+         V9zw==
+X-Gm-Message-State: AFqh2kqK6cdZXU/7gcOAy2EdoLTbaUtcUmmS90UeC66eGJ6ZPepYLcRi
+	XxDXo/yTFboQTcA5L9YY+HycDQ==
+X-Google-Smtp-Source: AMrXdXtLoNnrgvTr3aqNRCV/l9H5kHoEJbwmmrCL3/rmSQDAc9qj22wHQjPz2sWFlIhVdV4MZ3gYhQ==
+X-Received: by 2002:a05:600c:687:b0:3d9:73fb:8aaa with SMTP id a7-20020a05600c068700b003d973fb8aaamr13116878wmn.8.1674199270385;
+        Thu, 19 Jan 2023 23:21:10 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o21-20020a05600c4fd500b003c6f8d30e40sm1470246wmq.31.2023.01.19.23.21.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 23:21:10 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: meson8: align OPP table names with DT schema
+Date: Fri, 20 Jan 2023 08:21:08 +0100
+Message-Id: <20230120072108.138598-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: "kelvin . zhang" <Kelvin.Zhang@amlogic.com>, "qi . duan"
-	<qi.duan@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-4-yu.tu@amlogic.com>
- <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
-From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230119_193401_629652_1BC6D19B 
-X-CRM114-Status: GOOD (  32.68  )
+X-CRM114-CacheID: sfid-20230119_232114_447719_E6103289 
+X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,308 +91,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+DT schema expects names of operating points tables to match certain
+pattern:
 
-Hi
-On 2023/1/19 19:37, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Add the peripherals clock controller driver in the s4 SoC family.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> 
-> [...]
-> 
->> +
->> +/* Video Clocks */
->> +static struct clk_regmap s4_vid_pll_div = {
->> +	.data = &(struct meson_vid_pll_div_data){
->> +		.val = {
->> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->> +			.shift   = 0,
->> +			.width   = 15,
->> +		},
->> +		.sel = {
->> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->> +			.shift   = 16,
->> +			.width   = 2,
->> +		},
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "vid_pll_div",
->> +		/*
->> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
->> +		 * clock is the default value of this register. When designing the
->> +		 * video module of the chip, a default value that can meet the
->> +		 * requirements of the video module will be solidified according
->> +		 * to the usage requirements of the chip, so as to facilitate chip
->> +		 * simulation. So this is ro_ops.
->> +		 * It is important to note that this clock is not used on this
->> +		 * chip and is described only for the integrity of the clock tree.
->> +		 */
-> 
-> If it is reset value and will be applicable to all the design, regarless
-> of the use-case, then yes RO ops is OK
-> 
->>From what I understand here, the value will depend on the use-case requirements.
-> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
+  meson8-minix-neo-x8.dtb: gpu-opp-table: $nodename:0: 'gpu-opp-table' does not match '^opp-table(-[a-z0-9]+)?$'
 
-Check the previous chip history, the actual scene is not used at all, 
-basically is used in simulation. So the previous SOC was "ro_ops" 
-without any problems.  This S4 SOC is not actually useful either.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/meson8.dtsi  | 2 +-
+ arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-So when you were upstream, you had no problem making "ro_ops". I wonder 
-if I could delete this useless clock, so you don't have to worry about it.
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index 0f8bac8bac8b..974ef041ff02 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -133,7 +133,7 @@ opp-1992000000 {
+ 		};
+ 	};
+ 
+-	gpu_opp_table: gpu-opp-table {
++	gpu_opp_table: opp-table-gpu {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-182142857 {
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index cf9c04a61ba3..d7c0491383be 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -125,7 +125,7 @@ opp-1536000000 {
+ 		};
+ 	};
+ 
+-	gpu_opp_table: gpu-opp-table {
++	gpu_opp_table: opp-table-gpu {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-255000000 {
+-- 
+2.34.1
 
-> 
->> +		.ops = &meson_vid_pll_div_ro_ops,
->> +		.parent_data = (const struct clk_parent_data []) {
->> +			{ .fw_name = "hdmi_pll", }
->> +		},
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
->> +
->> +/* VDEC clocks */
->> +static const struct clk_parent_data s4_dec_parent_data[] = {
->> +	{ .fw_name = "fclk_div2p5", },
->> +	{ .fw_name = "fclk_div3", },
->> +	{ .fw_name = "fclk_div4", },
->> +	{ .fw_name = "fclk_div5", },
->> +	{ .fw_name = "fclk_div7", },
->> +	{ .fw_name = "hifi_pll", },
->> +	{ .fw_name = "gp0_pll", },
->> +	{ .fw_name = "xtal", }
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p0_mux = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = CLKCTRL_VDEC_CLK_CTRL,
->> +		.mask = 0x7,
->> +		.shift = 9,
->> +		.flags = CLK_MUX_ROUND_CLOSEST,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "vdec_p0_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = s4_dec_parent_data,
->> +		.num_parents = ARRAY_SIZE(s4_dec_parent_data),
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
-> 
-> s/patent/parent ?
-> s/he wants/it requires ?
-
-Okay.
-
-> 
->> +		 */
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
-> [...]
-> 
->> +static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
->> +	{ .fw_name = "fclk_div4", },
->> +	{ .fw_name = "fclk_div3", },
->> +	{ .fw_name = "fclk_div5", },
->> +	{ .fw_name = "fclk_div7", },
->> +	{ .fw_name = "mpll1", },
->> +	{ .hw = &s4_vid_pll.hw },
->> +	{ .fw_name = "mpll2", },
->> +	{ .fw_name = "gp0_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p0_mux  = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = CLKCTRL_VPU_CLKC_CTRL,
->> +		.mask = 0x7,
->> +		.shift = 9,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "vpu_clkc_p0_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = s4_vpu_clkc_parent_data,
->> +		.num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
->> +		 */
-> 
-> That's quite a lot of occurences of the same comment.
-> At the same time, other clocks with the same flag have no comment.
-> 
-> Please make general comment, before the Video/VPU section, explaining
-> which clocks needs on a use-case basis (through DT) and possibly how it
-> should be set, what should drive the choices.
-> 
-
-The owner of the corresponding driver module wants to have a fixed 
-clock, but I can't explain every specific reason. So I'm going to change 
-it all to.flags = CLK_SET_RATE_PARENT in the next version. Let CCF 
-choose the appropriate clock as you suggested. If there is a 
-corresponding module you want to change, ask him to give you a specific 
-explanation. Do you think that's all right?
-
-I will not reply to you below.
-
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
->> +
->> +/* EMMC/NAND clock */
->> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
->> +	{ .fw_name = "xtal", },
->> +	{ .fw_name = "fclk_div2", },
->> +	{ .fw_name = "fclk_div3", },
->> +	{ .fw_name = "hifi_pll", },
->> +	{ .fw_name = "fclk_div2p5", },
->> +	{ .fw_name = "mpll2", },
->> +	{ .fw_name = "mpll3", },
->> +	{ .fw_name = "gp0_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_c_clk0_sel = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = CLKCTRL_NAND_CLK_CTRL,
->> +		.mask = 0x7,
->> +		.shift = 9,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "sd_emmc_c_clk0_sel",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = s4_sd_emmc_clk0_parent_data,
->> +		.num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
->> +		 */
-> 
-> I'm getting a bit suspicious about the use (and abuse ...) of this flag.
-> I don't quite get how selecting the base PLL for MMC should be done on
-> use-case basis and should be up the board DT ...
-> 
-> Other SoC have all used fdiv2 so far. Do you expect this setting to be
-> part of the dtsi SoC file ?
-> 
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
->> +
->> +/* SPICC Clock */
->> +static const struct clk_parent_data s4_spicc_parent_data[] = {
->> +	{ .fw_name = "xtal", },
->> +	{ .hw = &s4_sys_clk.hw },
->> +	{ .fw_name = "fclk_div4", },
->> +	{ .fw_name = "fclk_div3", },
->> +	{ .fw_name = "fclk_div2", },
->> +	{ .fw_name = "fclk_div5", },
->> +	{ .fw_name = "fclk_div7", },
->> +};
->> +
->> +static struct clk_regmap s4_spicc0_mux = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = CLKCTRL_SPICC_CLK_CTRL,
->> +		.mask = 0x7,
->> +		.shift = 7,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "spicc0_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = s4_spicc_parent_data,
->> +		.num_parents = ARRAY_SIZE(s4_spicc_parent_data),
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
->> +		 */
-> 
-> This is getting too far. All the parent clocks are fixed.
-> Let CCF do the job of picking the most adequate clock for the job
-> instead of manually settings things
-> 
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
-> 
->> +
->> +/* PWM Clock */
->> +static const struct clk_parent_data s4_pwm_parent_data[] = {
->> +	{ .fw_name = "xtal", },
->> +	{ .hw = &s4_vid_pll.hw },
->> +	{ .fw_name = "fclk_div4", },
->> +	{ .fw_name = "fclk_div3", },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_a_mux = {
->> +	.data = &(struct clk_regmap_mux_data) {
->> +		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +		.mask = 0x3,
->> +		.shift = 9,
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pwm_a_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = s4_pwm_parent_data,
->> +		.num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
->> +		 */
-> 
-> Same here ... this is really going to far.
-> 
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
-> 
->> +
->> +static struct clk_regmap s4_saradc_mux = {
->> +	.data = &(struct clk_regmap_mux_data) {
->> +		.offset = CLKCTRL_SAR_CLK_CTRL,
->> +		.mask = 0x3,
->> +		.shift = 9,
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "saradc_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_data = (const struct clk_parent_data []) {
->> +			{ .fw_name = "xtal", },
->> +			{ .hw = &s4_sys_clk.hw },
->> +		},
->> +		.num_parents = 2,
->> +		/*
->> +		 * When the driver uses this clock, needs to specify the patent clock
->> +		 * he wants in the dts.
->> +		 */
-> 
-> For each clock type, if this flag is going to be used, I'd like a clear
-> explanation about why it is use-case dependent and why you need manual
-> control over this. Same applies to all the occurence.
-> 
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->> +	},
->> +};
-> 
 
 _______________________________________________
 linux-amlogic mailing list
