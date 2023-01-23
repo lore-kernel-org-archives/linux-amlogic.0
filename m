@@ -4,104 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33BA4C25B50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 20:18:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EF6C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 21:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IuP8/Alr4987LMtfNsljkEU2mZSgnDFp6I29o8wkz24=; b=SQCZjlfUrL+szA
-	eboUt12G3ndAsZT1iPasSRH/3rvWfKkT/S8spuAsm3gevJeTteHm7KMhImiC0DBAwqf2slFUgBB1f
-	Ygd5TGTkBhUmYisLYiPQ4qu8/Q4+bLra7HCaiRd5EGnyEwrtD4sDd1x8EtDaAyd1JR/TR7Xtza0On
-	zFqdYxzuVzMgxIFmpAb2SkNMCDiOATKk5t5x2KIeAihvHoI36VC+BSrQXlDPFVpX8i/lqNYeJo+51
-	uSr5+Y5/FSUbvDmBR2jqdgTR8dUjqdsUFVd2wniYMn7ZfsGto4Aja75P23uvJKzqueHcyNUrTYyGD
-	NMzPvwqYtWUm+LYr9LPA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=oPQ0auzwe0SJwFgdORt1SZS0ECjwbwZOfpcQy1EooM4=; b=cxrJWACUiqDTJq
+	JOKI2UavpUyCpLqQXg6rJE/J6uz90gBt4gj0BqElZwIY07YjygDNzKz/DroCk1AuzWu2H9rradIp2
+	IGGtO1Up4b+YTm0Kw7g9eq72yF0fklcUy8wrEIY0n0D2GNHW4AwZxTlRbvZ1hxeRyMbK6BnQiOZpo
+	D4Ypl0ubdG7OgN5FuzyM5+Ba4v/1e5hvZsQF1v8uTfSHzH4YPkI4b6j1dYUbWyGC24J6qRTchYGTD
+	tJDWXWjP2uItE03ewETk6w7cqKEmbLS7vkuQwQ886rExlUwKU3SBjfO9Enpqa/7LylK1Euv99+NDK
+	QmwT2qgvdyd7nxjycAjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK3GW-001I5z-8J; Mon, 23 Jan 2023 20:18:04 +0000
-Received: from mail-oi1-f182.google.com ([209.85.167.182])
+	id 1pK4H4-001UkX-6y; Mon, 23 Jan 2023 21:22:42 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK3GQ-001I47-QQ; Mon, 23 Jan 2023 20:18:02 +0000
-Received: by mail-oi1-f182.google.com with SMTP id s66so11422828oib.7;
-        Mon, 23 Jan 2023 12:17:55 -0800 (PST)
+	id 1pK4Gt-001Uhe-Gj; Mon, 23 Jan 2023 21:22:32 +0000
+Received: by mail-ed1-x530.google.com with SMTP id w14so16216136edi.5;
+        Mon, 23 Jan 2023 13:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O/m9fxwpEbZpN8X/D6lwA+MFLaC8U37ezUMxtxmuH1s=;
+        b=nHYnC2veAbsrTjlHDQZR0BhSSYSQHFBMBLaA06XtKf/JcBy5o8Qo7rR09XYFpWbUEQ
+         zUOF/c0nEFw/jpxdxY0TfQt3XGGuupq5k+GM3BFNMVNokLyG6Kk1IjtfDSXvHP48ZG13
+         jdOgZSqvN3oJXcHwsBtb9UDARHudBrRRed8l6Isn9nuA4nQuuylTDdPnfDcXiZqSEILN
+         gWO7GzisBtbyiAwsbduiUw3652oAUhn8vy/MxZKL9AZXx0cbkrVRsYgm9na9wU7vZ5Fs
+         WThJGOxnqxCx06877AWz0wv5I7DlCBeQVyGjt7IoWTH2E3KUbvDlkObUuIZjI+xI/qTV
+         YVpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EY7We4I2hSyd2pZ0VulkHT4dyOP0LEqk/GnlS4AQK4k=;
-        b=W7UOJ7ZUtwEzzdtiLHWQNkZCAz6zJkPBhDKLQNPIS59r6x7bEhnBSj0vMdWYxgQ1He
-         W+F6jkSWRhOJfiF+to0nPvziurj1MqHjsKQhwx4AoXIeUDSy2p/FfThl1kdpUx/ovKGm
-         vmjZICOkySg+NGw6ii0uOhtI8ac3fL+sosnkCEFDXcvA02FQMVFBUuW950DxrQZcQAIt
-         Wp0x8AdhZydrKhni6+uFPo855DY6mC6DQfGNrFbs/s9R8Y9gmKrVeZOA4QJreKlwZdqP
-         f83sBmY/B/3kfs948co/wJ/eQCW1MV5VOvQ80PwOHJHWRnppHg9Kot53k/SMRGqPWq6t
-         t6hw==
-X-Gm-Message-State: AFqh2kpa9rV+YyvT+0XH03WPMRx1HuADQVe7/t66pbaFTCKNea5OFH8a
-	u9I0z0y6/52/8igi1HBEnA==
-X-Google-Smtp-Source: AMrXdXuvPUKWyC8RGNKpvhdFpfXGmbs7xnQ1zVyMxDHfPRH77j6ghKDaBa0O8cM4huncdcgY7ZWv7g==
-X-Received: by 2002:a05:6808:f14:b0:364:e9f4:9dd with SMTP id m20-20020a0568080f1400b00364e9f409ddmr15059505oiw.47.1674505074502;
-        Mon, 23 Jan 2023 12:17:54 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i11-20020aca2b0b000000b00369a721732asm124660oik.41.2023.01.23.12.17.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 12:17:54 -0800 (PST)
-Received: (nullmailer pid 2454148 invoked by uid 1000);
-	Mon, 23 Jan 2023 20:17:51 -0000
-Date: Mon, 23 Jan 2023 14:17:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>, =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Han Xu <han.xu@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Serge Semin <fancer.lancer@gmail.com>, 
-	Haibo Chen <haibo.chen@nxp.com>, Yogesh Gaur <yogeshgaur.83@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Li-hao Kuo <lhjeff911@gmail.com>, Michal Simek <michal.simek@xilinx.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Maxime Ripard <mripard@kernel.org>, 
-	=?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>, 
-	Vaishnav Achath <vaishnav.a@ti.com>, Parshuram Thombare <pthombar@cadence.com>, 
-	Leilk Liu <leilk.liu@mediatek.com>, Gabor Juhos <juhosg@openwrt.org>, 
-	Bert Vermeulen <bert@biot.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Marek Vasut <marex@denx.de>, 
-	Birger Koblitz <mail@birger-koblitz.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Anson Huang <Anson.Huang@nxp.com>, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	Kuldeep Singh <singh.kuldeep87k@gmail.com>, Pragnesh Patel <pragnesh.patel@sifive.com>, 
-	Christophe Kerello <christophe.kerello@foss.st.com>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Erwan Leray <erwan.leray@foss.st.com>, 
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org, 
-	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/2] spi: dt-bindings: cleanup examples - indentation,
- lowercase hex
-Message-ID: <20230123201751.GA2450665-robh@kernel.org>
-References: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
- <20230118173932.358153-2-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=O/m9fxwpEbZpN8X/D6lwA+MFLaC8U37ezUMxtxmuH1s=;
+        b=OTu+CiB+skwm7lMvihxkwsAMmPkk+DpdyQduhSkl7nZc3By59lHy90n8J87Mg9yqw0
+         1aqJihfrF24wPaurjQJ/kOpIkHVKvaC92tt7duPk5f8qo6PTkjQ8PuMS8rBO3XDIkKve
+         NO0G6N0wmu5YnhLMyEcNJsZIcPCdtHlt7LH3jdk7rp5UrjXpV2lvKFkqgw3pEEPUyJzX
+         wWBmvG4q9A+amgbzhWCjfCvAk/uRFIAsGOrxF6XcnkHn/E+AqjbS/4plSVloVT8EO+to
+         j7kjn6tgYKwI5Kj+GykV8n2VfXtfhWJT6/saRCinSvktT1SGizIVu8Y2ev7mYaO+L+Bo
+         wXpA==
+X-Gm-Message-State: AFqh2koXiOZil22IR+DlzHTkoxhP/OtmCBqzkUENrZzJUD2aRfsU23lx
+	yUII9TCOSTBx6xSIgLseuYk=
+X-Google-Smtp-Source: AMrXdXsecJ0Lmw0T6hteu5NgTW5sF1ad5h25d+1oE8fDr0Fwmliz4MOIjn5MfXF/7fkBbotfYHdm0g==
+X-Received: by 2002:a05:6402:5296:b0:49c:3cf4:d9ed with SMTP id en22-20020a056402529600b0049c3cf4d9edmr30260243edb.23.1674508945276;
+        Mon, 23 Jan 2023 13:22:25 -0800 (PST)
+Received: from ?IPV6:2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7? (dynamic-2a01-0c23-bc5b-9400-dc4c-6fb7-47b2-beb7.c23.pool.telefonica.de. [2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7])
+        by smtp.googlemail.com with ESMTPSA id cm28-20020a0564020c9c00b0049e9fe9abcasm213409edb.44.2023.01.23.13.22.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 13:22:24 -0800 (PST)
+Message-ID: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Date: Mon, 23 Jan 2023 22:22:15 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230118173932.358153-2-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH 0/8] soc: amlogic: switch bindings to yaml and adjust some
+ dtbs's
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_121800_769419_00999FE8 
-X-CRM114-Status: GOOD (  16.13  )
+X-CRM114-CacheID: sfid-20230123_132231_583882_76D73799 
+X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,48 +105,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 18, 2023 at 06:39:32PM +0100, Krzysztof Kozlowski wrote:
-> Cleanup examples:
->  - use 4-space indentation (for cases when it is neither 4 not 2 space),
->  - drop redundant blank lines,
->  - use lowercase hex.
-> 
-> No functional impact except adjusting to preferred coding style.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/spi/amlogic,meson-gx-spicc.yaml  |  26 +--
->  .../bindings/spi/amlogic,meson6-spifc.yaml    |  22 +--
->  .../bindings/spi/aspeed,ast2600-fmc.yaml      |  24 +--
->  .../bindings/spi/brcm,spi-bcm-qspi.yaml       | 156 +++++++++---------
->  .../bindings/spi/cdns,qspi-nor.yaml           |   4 +-
->  .../bindings/spi/nvidia,tegra210-quad.yaml    |  42 ++---
->  .../bindings/spi/qcom,spi-qcom-qspi.yaml      |   1 -
->  .../devicetree/bindings/spi/renesas,rspi.yaml |  22 +--
->  .../bindings/spi/spi-sunplus-sp7021.yaml      |   4 +-
->  .../devicetree/bindings/spi/st,stm32-spi.yaml |   1 -
->  10 files changed, 150 insertions(+), 152 deletions(-)
+At first adjust some existing dtbs's so that they pass dtbs_check
+after switching bindings to yaml.
 
-[...]
+Then switch further Amlogic Meson bindings to yaml.
+Tested with make targets dt_binding_check and dtbs_check.
 
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> index d35c6f7e2dd5..18afdaab946d 100644
-> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> @@ -95,7 +95,6 @@ examples:
->               <&dmamux1 1 40 0x400 0x05>;
->        dma-names = "rx", "tx";
->        cs-gpios = <&gpioa 11 0>;
+Heiner Kallweit (8):
+  arm64: dts: meson-gx: Remove invalid pwm compatible
+  arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
+  arm64: dts: meson-gx: Set only one compatible string for mmc
+  arm64: dts: amlogic: Remove invalid compatible string
+    amlogic,meson-gpio-intc
+  dt-bindings: rtc: Add Amlogic Meson vrtc controller binding
+  dt-bindings: pwm: Add Amlogic Meson PWM binding
+  dt-bindings: interrupt-controller: Add Amlogic Meson GPIO interrupt
+    controller binding
+  dt-bindings: pinctrl: Add Amlogic Meson pinctrl binding
 
-Looks like the indentation needs adjusting here.
+ .../amlogic,meson-gpio-intc.txt               |  38 ------
+ .../amlogic,meson-gpio-intc.yaml              |  72 +++++++++++
+ .../pinctrl/amlogic,meson-pinctrl.yaml        | 121 ++++++++++++++++++
+ .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  |  61 +++++++++
+ .../devicetree/bindings/pwm/pwm-meson.txt     |  29 -----
+ .../bindings/rtc/amlogic,meson-vrtc.yaml      |  50 ++++++++
+ .../bindings/rtc/rtc-meson-vrtc.txt           |  22 ----
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   5 +-
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +-
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  15 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |   3 +-
+ 15 files changed, 320 insertions(+), 206 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt
 
-> -
->      };
->  
->  ...
-> -- 
-> 2.34.1
-> 
+-- 
+2.39.1
+
 
 _______________________________________________
 linux-amlogic mailing list
