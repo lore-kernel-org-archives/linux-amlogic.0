@@ -4,66 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6837C05027
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 21:31:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257BAC25B50
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 21:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:References:Cc:To:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H/sAErqk3UPUZyWIp8xPhdhymsdx26l3Hez5l7uFLXU=; b=qDT5vLV7DvIVWY
-	lJJzkUj5CfqC9wmnafDsouF6eKEme7cPZ+ZmAKoeIjSJGofuOucPwwRxCWdh0FZiM/WIhlIQEJDpa
-	LacXWy0rEBjcC9VY72hbNNVKDhjq57k771XXrLcLBAFlZ4YfhElY7YK9fyMLtDrJfCdEi3VgZOtLw
-	dJGjeEphEbMCgNQe0S6rciv6zfGZow8W3qiQdVCWmwfnoOpeZ/i5+ulBd47nIU+Xa49jsP37Bv8Ue
-	aak2GuMI8I63OVBQwRStATYpPBvB2Tb7CpT1aq5BoGZPDQ2eamdGymVoOJVoT8yEGkssGx9Gw2DpX
-	00G7oOGMJGENz5y2cP8Q==;
+	List-Owner; bh=uTKL+6Mp7ShVlPJYP4Ygwin9NjpZg1LsO6r4MVidPhc=; b=jvbLR9z6wn6aoq
+	PnzydicH19AAvNJ7nAu3GxTpqmfmFrOoE8WSyIsVHtKj7aAc2qValao7/6Sd8yiiAymq1Wvu5QWk/
+	fEr2yiP5ucymNOTjg8waJR/9kaf8MTLBP6aFFIJFqEOzD75Njy91hcs+mcxA7AlhxzAmc425e0UK1
+	vS/TRzJ9v0hxML8L9S2hEUkotfXepQBkE7EnUfeSIvObgly/1/ne7otvYrRQyvdJhk77Zq+mGNI5Q
+	4ANih0mY0wCnxoFDkAH/b0eHLDOzp5v80+Zud9SFClyTLC4QWHWGzdDbuZunllZS+VTGhuRAkQ5Yr
+	c8hQnFHeieyxvrY8Rl1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK4PY-001WJU-HR; Mon, 23 Jan 2023 21:31:28 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1pK4Po-001WPM-FM; Mon, 23 Jan 2023 21:31:44 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK4PC-001WCm-Pk; Mon, 23 Jan 2023 21:31:08 +0000
-Received: by mail-ed1-x532.google.com with SMTP id x36so16176669ede.13;
-        Mon, 23 Jan 2023 13:31:05 -0800 (PST)
+	id 1pK4PF-001WDC-7T; Mon, 23 Jan 2023 21:31:10 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id kt14so34131628ejc.3;
+        Mon, 23 Jan 2023 13:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:references:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Az6/+eS6ijz6i/CMKCOR2HNf4utXJX9P0GxQzD5Ytps=;
-        b=BR34zr7979WtSxuJfQQmHhscCCpGpa4wPeRndQwBkQf1VMoF+o36ZcPm8SB67r8Iau
-         OlRhq8rzcHbAgK4GsQ0khz1LmHmM5fdLW/03hzQjHmSGXTTGxvadi2faCaI6RTs4NOJN
-         UTsrTFgx4/+2MIXmcbagLLCCtIES4Q2P57BgUi6XW1GUyJMm+xQmjW1tvauwtms1RlhF
-         zDdPmb1JGtdbtZ9B1kNQFJ7dfS2wwwpGIpbkSpoT/1UlS3NjLfx3/V8tI3AFRXFLFtDI
-         bXvNTw4kGgPOH3sR6UiEIv1ldSZ6bUq0AO2K0Qw27LLovvjOX6AWtZFIAEZTnnC4zoTl
-         Hcjw==
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fMrJ0puhHaYAGR7cm+2T4ZLMvI2HK00WmCCvIJxL5IA=;
+        b=gFPn1gofsTEjfe5fmlsW5Inpoe4DwFbR95+i+S45tZmbAqXCaIjowyMwdc7gtxurxj
+         mVQQJqa44VSh6iilow0gQCQ/FYMyt3u+buBnsHB0gX8D3fgT6qLfTmJMId+HaODJgjre
+         2JDfNd2yiadPaJ2Kdydvt9vua3v20MXod6AOVxzRWhay3knzW8AwJdK+HZ3eoDhsaAxy
+         3afI7s87SbJXTffE+tzx8ZsGdWAI3wvaXNuDGWE3UwsuQEMLp+cWUM2Ug5co5BHaT3tX
+         ZfZahSAmxm0Ur/oZAwFfHCb9Q5QTeXjy/47cnd0UoUUd/NYJ4zbgx8i1ktNh9WRmAx46
+         x0OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:references:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Az6/+eS6ijz6i/CMKCOR2HNf4utXJX9P0GxQzD5Ytps=;
-        b=alrF6r7naXGNnPhiV2aPTuv+CE1SIb8bBJAjRlr+mSklTdGdPM/fnweL0ZwzrzwtPE
-         kAlF8fk0BaPYe9ZZnZ7JZIGdq+V2Y3XYO4Fkp8tSrvupSprYz3zP2yG5g9w3DJviiqN8
-         yuINwoh4qCW5IcVIKMAXDMs/2GIeeAWuO0M0nYl8XuetBfeokljjSBdd6jV+5Bcr2Ejr
-         zfBbanFDlCUE0+80pCpMVX7RWqypaK0lAC4JQjzQsB8MWk+WFLsXv7xAnjLVEQ3c4EqC
-         r4RaTfsjh0r8K3+3wK9doimXyOr1NhTmuK077LbhkhAM3pJdFd2K5VEUoBVcXUHBtqyy
-         esqA==
-X-Gm-Message-State: AFqh2krPhCq12B6ccFwrl4rViEF+gH76JkAEGRcrF2BRDNTIs7+D1SoP
-	AJw7gyk7dNK+GV+4DQ37+GGivi1Es5I=
-X-Google-Smtp-Source: AMrXdXvBhhFAnlGDpShjqyTOqXfCsXipvqGMLgY5DjYtYmmrUoMO9uh7PEYOVRplnKyaHNRjwS9RZQ==
-X-Received: by 2002:a05:6402:388c:b0:49a:6a2:6f2f with SMTP id fd12-20020a056402388c00b0049a06a26f2fmr31501205edb.4.1674509464518;
-        Mon, 23 Jan 2023 13:31:04 -0800 (PST)
+        bh=fMrJ0puhHaYAGR7cm+2T4ZLMvI2HK00WmCCvIJxL5IA=;
+        b=wRqnU/xX0mpf8a/T9cM4o2vP5vCmjEWiEQydUcwtrzd/yvzm+IUuCdYRmaR7N8uHvv
+         fnA0Z/u+WCfTpGWfogZfr44XakuDbag58QnFG78UbquSQaC3QFcMPyuZc2ju9KFmSLYj
+         WJzV2LGZmDM2l8vWg7FONFpNwaIH9O8TghP+wpXtJelW7sH9IurddhgfVweOXhOvRgU8
+         KxOjnfyhi/po2V5OvD3UpxfwaTfb6LqNTaZyoDvIyVGSFIUa/SNkmOEma8k9BVVbyiY9
+         LUAzPBojb8xOm0W5+SJhYmvvKrP0upZrB7i9mvMfIn1UIIoQ6sht62wPFeNm9B4yTASX
+         hrfw==
+X-Gm-Message-State: AFqh2koSmj1m5WckAM4kA7zv/R6ZSgvxFm3wEkrPcAwASnXUoPCj7UZh
+	Rs0Y8Hn2wuC3WvgiQeYrl0s=
+X-Google-Smtp-Source: AMrXdXsuUDGL/8bnnpTryWjO06y2FoaJUV1fwx1U6RARROXcXxnInatXg6PO9RTMoNTQoqMwU57JHg==
+X-Received: by 2002:a17:907:80c7:b0:84c:eca0:5f67 with SMTP id io7-20020a17090780c700b0084ceca05f67mr28344950ejc.54.1674509466752;
+        Mon, 23 Jan 2023 13:31:06 -0800 (PST)
 Received: from ?IPV6:2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7? (dynamic-2a01-0c23-bc5b-9400-dc4c-6fb7-47b2-beb7.c23.pool.telefonica.de. [2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7])
-        by smtp.googlemail.com with ESMTPSA id u16-20020aa7d550000000b004873927780bsm228573edr.20.2023.01.23.13.31.03
+        by smtp.googlemail.com with ESMTPSA id kz16-20020a17090777d000b00877961fbaffsm5888982ejc.15.2023.01.23.13.31.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 13:31:04 -0800 (PST)
-Message-ID: <55c53e8d-6b30-51bf-edf6-b5b67887bd0a@gmail.com>
-Date: Mon, 23 Jan 2023 22:24:40 +0100
+        Mon, 23 Jan 2023 13:31:06 -0800 (PST)
+Message-ID: <25708b33-6f58-bde0-2fa7-089e6d89b552@gmail.com>
+Date: Mon, 23 Jan 2023 22:25:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
+Subject: [PATCH 3/8] arm64: dts: meson-gx: Set only one compatible string for
+ mmc
 Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -84,11 +86,11 @@ Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
  "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
 References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Subject: [PATCH 2/8] arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
 In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_133106_860002_0D3D5F94 
-X-CRM114-Status: GOOD (  10.81  )
+X-CRM114-CacheID: sfid-20230123_133109_311000_1A475D30 
+X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,51 +107,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-mmc-controller.yaml defines "^mmc(@.*)?$" as node name pattern.
-In preparation of adding schema-based validation fix the node name
-in two affected files.
+In preparation of schema-based validation use one compatible string only.
+Both are aliases anyway.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 +-
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 1648e67af..ed895fb32 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1883,7 +1883,7 @@ apb: bus@ffe00000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x200000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 75d35dcfe..c0a311da4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -601,21 +601,21 @@ apb: apb@d0000000 {
+ 			ranges = <0x0 0x0 0x0 0xd0000000 0x0 0x200000>;
  
--			sd_emmc_b: sd@5000 {
-+			sd_emmc_b: mmc@5000 {
- 				compatible = "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x5000 0x0 0x800>;
- 				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1a931d5c2..80d82f739 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2321,7 +2321,7 @@ uart_A: serial@24000 {
+ 			sd_emmc_a: mmc@70000 {
+-				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
++				compatible = "amlogic,meson-gx-mmc";
+ 				reg = <0x0 0x70000 0x0 0x800>;
+ 				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
  			};
- 		};
  
--		sd_emmc_a: sd@ffe03000 {
-+		sd_emmc_a: mmc@ffe03000 {
- 			compatible = "amlogic,meson-axg-mmc";
- 			reg = <0x0 0xffe03000 0x0 0x800>;
- 			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-@@ -2333,7 +2333,7 @@ sd_emmc_a: sd@ffe03000 {
- 			resets = <&reset RESET_SD_EMMC_A>;
- 		};
+ 			sd_emmc_b: mmc@72000 {
+-				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
++				compatible = "amlogic,meson-gx-mmc";
+ 				reg = <0x0 0x72000 0x0 0x800>;
+ 				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
  
--		sd_emmc_b: sd@ffe05000 {
-+		sd_emmc_b: mmc@ffe05000 {
- 			compatible = "amlogic,meson-axg-mmc";
- 			reg = <0x0 0xffe05000 0x0 0x800>;
- 			interrupts = <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>;
+ 			sd_emmc_c: mmc@74000 {
+-				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
++				compatible = "amlogic,meson-gx-mmc";
+ 				reg = <0x0 0x74000 0x0 0x800>;
+ 				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
 -- 
 2.39.1
 
