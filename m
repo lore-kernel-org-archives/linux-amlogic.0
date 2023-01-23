@@ -4,123 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80230C05027
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 16:22:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AE08C38142
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 16:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BG9Kl3D18g4eaI6k5W+wrS9oMIwsYa1OZbVyV/BnRro=; b=Soab1m+RNYtCi7
-	++2F99BInsFQw1f5TxFS+qFwm08Y2C3sL5uHFT9kr/P66Cyo1yITWhcqfljDABU17OxmIw2k6lR/B
-	84mAiJBzXp6h/QWhewE7GPqh8p40oerIhFrCkSqoVCqJdkDPE17aQxWiqI/Cbi6WAOsh7UqoE7l3S
-	q3DsUIIQevxdLDI/LEfR6DxRXabcFQoKHM2PEtg5gU7AB4CjgMS1nhPT7bg5JRpaYI/EO3aWpCuN4
-	gEgo/WT+eLUrOqKe3kQDcPuJrDfxLpX0lPd3ROZHsfIWh0/+7Ze6xbkFd3hJLzULnDAqh3k2YyoLa
-	Tg21JGFRi9JJZx34Ejzw==;
+	List-Owner; bh=+dyHWBTYHp+tPBaKVafTTwW1zFricLEU21BIWwYcgsE=; b=gqecsL/ygiiAIf
+	mtGrFPegfQwcbXZWlhtSMA/Pu3VdoGTjDaso2tRA9V4bQFXB+z+tvVV+c9CJ2SoJilo3vmXhuAQO4
+	YYdd7dhsLrT8pDLX+PTQF85n4Pn5lXSD1/s8q10fTu5hSc5SqeckgFcG3YrLHDCPbs5icc0t375cg
+	JoiodTEzA/BkAtvqM9lrZKrppJBGwChjb3K/alQ27GA+34vQUsmrkQdcZaxhVEfTfZpTiWQb+QYut
+	Ih/xsSgyrIMje1H0bmAaHIosJYS5s0m/kBCSMRpSGJYKvpdExqdLZPsV+U11eEzjYc4iXr4/uWjS2
+	IUy+aFDtXmfGbSsqobFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJzaj-000Ve4-Qh; Mon, 23 Jan 2023 16:22:41 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pJzlW-000ZjU-87; Mon, 23 Jan 2023 16:33:50 +0000
+Received: from mga09.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJzHS-000Oqv-Rp
-	for linux-amlogic@bombadil.infradead.org; Mon, 23 Jan 2023 16:02:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=b5LLyL4NM9RFy872x3bTzHa5dSLMasbi37/mYNx6DCA=; b=la7zdeoOEirTN3JVOg2OX3wjI+
-	V8daxDboi0xEwKy7Fl8d3SNfEhBJwI4c5Bp8pZ3K21wptk6Td4YLOUTYG588Z6E54qqM7nUkDG6Td
-	/wkfXQkMkAOJpGpjUuwJ+lsrJOSh58xvzeNOV5ks9W5uZ8oAbcbvSFf58YILy2px28CI6vC15N04f
-	abZxsTiOlE5cRIVyPbcC+LJuhCW6J+rTs7XNFIyZrabbxBlKaiR8e6L72eZRrISc9IoxCYQRjArOt
-	cBaMyvkcfpK8B0IwoMd0UPVHnO4ulMOS5/zbtq7MxSPUoJk6DqjrNcB9MQrrHLimAgfeW5906ecmv
-	Ul7bmAjw==;
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pJyV8-001ZDK-1f
-	for linux-amlogic@lists.infradead.org;
-	Mon, 23 Jan 2023 15:13:23 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id r9so11123067wrw.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 07:13:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b5LLyL4NM9RFy872x3bTzHa5dSLMasbi37/mYNx6DCA=;
-        b=YNHH8XRTX/01S31iQXYst52wcTTzbNbPtyQX8SbuGG5qAnPY1IAqJCxowByc5NAiIj
-         EVn8g39hWWoxqwFSvp+seTBUawYQXnNdYFG80ce8+U59d80Q9psruK3xc4Ch80Q9YQ2K
-         7nLXo8JaD+hoq87mrhJnw9b9r2JkD5hpoExRj3QchU725f9quBfOmlP3QFCp1yrmlIh+
-         yN0fT+2BIch3oSwCfldxTIrUFhydcgT/dWrzIQtWy5fZU5RDfkbqSugyevH04iBrUfo4
-         KkH+FZ5UVdtouXOh29sg6LYwdfy4Y6E8tyFQT+bxnvnvq0tiMvWZprOXXi1+E/vda0cB
-         kxKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b5LLyL4NM9RFy872x3bTzHa5dSLMasbi37/mYNx6DCA=;
-        b=u4aYcIsWBLwbwawAhbXM0W745hTBHcXVfWAbZ8z26eRlvm+cLS1rVDXCTnZ2ZnOtZ3
-         VmDKsZJAoOPXzp3vEP6+n2J1kAXue609B0K0t8pUSk8AbXzL9OQVwEnJQk+qTg48jLaS
-         TU/znTqahfIoxxztJi25oUVDc/7cVORw9rxvYd69qFblMpiKs+cGGK63mY7r+wEgKGAX
-         DJGdgIhAM9wflbKM46LhnM2XGQvYz9wo6krQBiYA32xCNxdF3ffsEs5y//fUyXIKBueC
-         f5l0CvnSD8knrTQvEW2YyaYIT0Mx6CeQCCP9kGsdVm/ZRxm7Ey3rS9um/snsfIKwzjQO
-         pdOA==
-X-Gm-Message-State: AFqh2koX4g2XI+DAc5HVFgCEiGiy/YSNQTx2G70EwDsQib6zm8s9x2O0
-	6TlhbwQPUx63+762of33ekLdGLw672K8S4Dk
-X-Google-Smtp-Source: AMrXdXsQsitf8BzeJXaPtKrY+OeCwfG0Ax0tXdx3cyfdOVAR+FOLMjW3bN2wF/BNgF4woch/VT2ctg==
-X-Received: by 2002:adf:ce90:0:b0:2bb:edc7:504 with SMTP id r16-20020adfce90000000b002bbedc70504mr23324176wrn.26.1674486798260;
-        Mon, 23 Jan 2023 07:13:18 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:13:17 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	id 1pJzXY-000Uc7-JV; Mon, 23 Jan 2023 16:19:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674490764; x=1706026764;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lmu2v7OpTbu6dqk7bQ9CsXmK8c+nQata6XlQ8c9vCME=;
+  b=QZKaX3sdlGqa3vF1NBaIswr7IUkHusRbPvvLpGkSapvxctg9paYRcyad
+   eejwH9pUTEH/93vJNVRXzcvjn4seVKR0pvB/RiMeCZC3goq1QJyPsKhc0
+   TVI7eTxuN/pJOb6RHKNOXmD5iJFZzUt57zFwiNI2OdWD/EhyId3eAd3Kr
+   fkrhIyWu9DwwpGQ4VKGqp7PLNSobETHhf4Wc4dvPLeopsxUAn8BDzUOu1
+   sUvF/5mWBqZIcrlT/Jw12ZFemMRivHzE/ZKoBnTaLMvKuB/XHMNPx8g+d
+   mIgWT/4oKNMZ5hBlEIQyb/W/RSIVPBVQ/m8cyA+0WG3WvvNtFqggupgRU
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="327340450"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; 
+   d="scan'208";a="327340450"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2023 08:19:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="663690168"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; 
+   d="scan'208";a="663690168"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 23 Jan 2023 08:19:17 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1pJzXN-0005lU-1V;
+	Mon, 23 Jan 2023 16:19:13 +0000
+Date: Tue, 24 Jan 2023 00:18:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Hewitt <christianshewitt@gmail.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	- <devicetree@vger.kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Michal Simek <michal.simek@xilinx.com>,
-	Chester Lin <clin@suse.com>,
-	Fugang Duan <fugang.duan@nxp.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Pragnesh Patel <pragnesh.patel@sifive.com>,
-	Le Ray <erwan.leray@foss.st.com>,
-	Peter Korsgaard <jacmet@sunsite.dk>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	linux-serial@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 04/13] dt-bindings: serial: correct ref to serial.yaml
-Date: Mon, 23 Jan 2023 16:12:53 +0100
-Message-Id: <20230123151302.368277-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
-References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
+	linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: meson: vdec: add HEVC decode codec
+Message-ID: <202301240007.NkZA19qq-lkp@intel.com>
+References: <20230123133113.3254659-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230123133113.3254659-3-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_151251_245968_1CE91751 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20230123_081924_767203_AFEDE20B 
+X-CRM114-Status: GOOD (  13.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,54 +83,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-media@vger.kernel.org, Benjamin Roszak <benjamin545@gmail.com>, oe-kbuild-all@lists.linux.dev
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The serial bindings should reference the local (in kernel) serial.yaml,
-not the /schemas/serial.yaml.  The latter comes from dtschema package
-and is a small subset of serial bindings.
+Hi Christian,
 
-Usage of the local serial.yaml allows typical properties and children:
+Thank you for the patch! Perhaps something to improve:
 
-  xilinx/avnet-ultra96-rev1.dtb: serial@ff000000: Unevaluated properties are not allowed ('bluetooth' were unexpected)
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on linus/master v6.2-rc5 next-20230123]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/serial/cdns,uart.yaml         | 2 +-
- Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/media-meson-vdec-implement-10bit-bitstream-handling/20230123-213323
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230123133113.3254659-3-christianshewitt%40gmail.com
+patch subject: [PATCH 2/2] media: meson: vdec: add HEVC decode codec
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230124/202301240007.NkZA19qq-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/498d420e9c7cdc6e694be643c47ee69c8b5b2142
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-Hewitt/media-meson-vdec-implement-10bit-bitstream-handling/20230123-213323
+        git checkout 498d420e9c7cdc6e694be643c47ee69c8b5b2142
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/staging/
 
-diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-index 876b8cf1cafb..0c118d5336cc 100644
---- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Michal Simek <michal.simek@xilinx.com>
- 
- allOf:
--  - $ref: /schemas/serial.yaml#
-+  - $ref: serial.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-index 2f4390e8d4e8..6f65e9a81c29 100644
---- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-+++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-@@ -63,7 +63,7 @@ required:
-   - xlnx,use-parity
- 
- allOf:
--  - $ref: /schemas/serial.yaml#
-+  - $ref: serial.yaml#
-   - if:
-       properties:
-         xlnx,use-parity:
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/staging/media/meson/vdec/codec_hevc.c: In function 'codec_hevc_set_mpred_mv':
+>> drivers/staging/media/meson/vdec/codec_hevc.c:1002:13: warning: variable 'val' set but not used [-Wunused-but-set-variable]
+    1002 |         u32 val;
+         |             ^~~
+
+
+vim +/val +1002 drivers/staging/media/meson/vdec/codec_hevc.c
+
+   990	
+   991	static void codec_hevc_set_mpred_mv(struct amvdec_core *core,
+   992					    struct codec_hevc *hevc,
+   993					    struct hevc_frame *frame,
+   994					    struct hevc_frame *col_frame)
+   995	{
+   996		union rpm_param *param = &hevc->rpm_param;
+   997		u32 lcu_size_log2 = ilog2(hevc->lcu_size);
+   998		u32 mv_mem_unit = lcu_size_log2 == 6 ? 0x200 :
+   999				  lcu_size_log2 == 5 ? 0x80 : 0x20;
+  1000		dma_addr_t col_mv_rd_start_addr, col_mv_rd_ptr, col_mv_rd_end_addr;
+  1001		dma_addr_t mpred_mv_wr_ptr;
+> 1002		u32 val;
+  1003	
+  1004		val = amvdec_read_dos(core, HEVC_MPRED_CURR_LCU);
+  1005	
+  1006		col_mv_rd_start_addr = codec_hevc_get_frame_mv_paddr(hevc, col_frame);
+  1007		mpred_mv_wr_ptr = codec_hevc_get_frame_mv_paddr(hevc, frame) +
+  1008				  (hevc->slice_addr * mv_mem_unit);
+  1009		col_mv_rd_ptr = col_mv_rd_start_addr +
+  1010				(hevc->slice_addr * mv_mem_unit);
+  1011		col_mv_rd_end_addr = col_mv_rd_start_addr +
+  1012				     (hevc->lcu_total * mv_mem_unit);
+  1013	
+  1014		amvdec_write_dos(core, HEVC_MPRED_MV_WR_START_ADDR,
+  1015				 codec_hevc_get_frame_mv_paddr(hevc, frame));
+  1016		amvdec_write_dos(core, HEVC_MPRED_MV_RD_START_ADDR,
+  1017				 col_mv_rd_start_addr);
+  1018	
+  1019		if (param->p.slice_segment_address == 0) {
+  1020			amvdec_write_dos(core, HEVC_MPRED_ABV_START_ADDR,
+  1021					 hevc->workspace_paddr + MPRED_ABV_OFFSET);
+  1022			amvdec_write_dos(core, HEVC_MPRED_MV_WPTR, mpred_mv_wr_ptr);
+  1023			amvdec_write_dos(core, HEVC_MPRED_MV_RPTR,
+  1024					 col_mv_rd_start_addr);
+  1025		} else {
+  1026			amvdec_write_dos(core, HEVC_MPRED_MV_RPTR, col_mv_rd_ptr);
+  1027		}
+  1028	
+  1029		amvdec_write_dos(core, HEVC_MPRED_MV_RD_END_ADDR, col_mv_rd_end_addr);
+  1030	}
+  1031	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
 
 _______________________________________________
 linux-amlogic mailing list
