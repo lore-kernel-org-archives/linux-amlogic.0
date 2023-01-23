@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 542F9C54EAA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 08:51:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AACF6C38142
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 08:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NPSxn77LhdUkuiV8ohs9GoBxJ+gr6gsheDGX9lFCtIA=; b=mop5asumFmaZ0PPAYGVeRnVpBG
-	K+A/l5fYOnnhcq/upKm7igN719Wwhqg+GGk4XnzkL8ay6Sw1As1YUsucNd1BLvcR/6EMwF+DO/6zu
-	KTjUh7zfaJOJzm9lGC9lJkB3DQn/u0/K1TYRjVVWC1prg1cQCJ5dhhaQaqcOdTKOp/Jj7z8B3dudK
-	TN4FvHYpHfKFhVDjGhGmeSHk7RyLD0lJsbAsxwnRoF2mSyxhUonoT0pk/O8fFjelyMWLJyw0hX7DH
-	RgroOFwrsj7+DF8pMCMiLLbGdcK3Lf+W7IvEIvTVjdm525fPNy8I/w1THQxyrT8duvEd4Qb4H/DI4
-	tm0/lGaA==;
+	bh=CqNjeXAhN4l7QHTJNGfQXelVKP4oEzqOesSum9dsSK4=; b=T7cYybeSSAoytLJgn4xwdYeRjl
+	yAiZEIg1DjjSDqcB23fcIO0b/xDjtQlNdkUXKi2ARRQgRcpRTrMjHvdQrRyU6AFoGbccTDSpCvymd
+	a7wGVJtlPyj2XjaESoERzq6zR0+t92RgOJkhHJl90Gd3VbUPLJdZOTs6ww9XC+ogtrjhWpgKFqV+9
+	MQZqv7bNAtRSF30HVKu6Yy6oq9ishtGGmE/iO+vKdtRlTJpy7H0XD/avyGdi+sHfM/wbx+WUcVKLK
+	kXaSY7vLPzE8n2f4kaeoPVT/BUdNlhKG7VlrvnlIbckOna3V/PRs5UpAbzAaRavaYwB+xd+c0jxE5
+	fOBeLn3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJsY6-00GPbe-7r; Mon, 23 Jan 2023 08:51:30 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1pJsZO-00GQ5V-44; Mon, 23 Jan 2023 08:52:50 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJsXy-00GPXp-22
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 08:51:23 +0000
-Received: by mail-wr1-x432.google.com with SMTP id t5so10078062wrq.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 00:51:18 -0800 (PST)
+	id 1pJsZC-00GPzd-QE
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 08:52:40 +0000
+Received: by mail-wm1-x333.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso8547129wmn.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 00:52:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=22HbhFCoP/frzw0LVOteI3i5o4+fgnftSyLobiyZhNE=;
-        b=eoShBrh/9aB0bPJOSCkRoDde/OWXqyhD5G0g66X73uztztr4wIWSQHk+G/M1MkVdbm
-         g4X0B3an1wNMhxFqzo42yVy22m0jGXQTezsYcf9uYuP3hac7gLc6MVwMdw9Fx6VfmXAo
-         SvbIKdW9mRQ4MlPXpYVzVAQDIrsRb1ABVOcsC20fpdijc8YpfQYRX/OqhWV6ZkGxNDFl
-         u0N06Mx8Ib1FFU4QZ90moGpu2KyayhwcHejtmkX9/UGC3loe59U+S0lq2u8gjMtIdskP
-         wLLG/+ABG+pbQ2q0+1JGu66kxOcaGt0+dpp5NN5ODR9mhEFV6UCwdmAR36QHgvMOfN6z
-         XFvg==
+        bh=Jr7vqvJVlpxRui+FUTfQy19pwuzQyDWhmumOiFPc8HU=;
+        b=qNh+xE+SKgb/0+aKHDKMwJKLe0v70rfrsroEg6aJ6Wh/HJq+xIRcmt67mxWq/f78GJ
+         60yfbe6sd3TwEZzvll039+oQJXQfvgxNehZajtXkxOOqE2HIsMp8yZXKRXrgMZZUPQwP
+         GPHKGr8N5CodfZwiJiy6KLHXF10gJ3ZRowZDe0QPj4wqwmwkCG3gN1WITOsdmwNQu1FW
+         22lNMT3635c6DxsDHOmC1Df5oMWO7YpvkofaY+zT9Bg8nSEzMcuc2truGIBby3BNA2GN
+         WByd87iq9Lk6yuhX77fIi24IxQqJxOJIP+6zAJNN+v//AEO06m0PdangexrnhH0Ghgpy
+         tefw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=22HbhFCoP/frzw0LVOteI3i5o4+fgnftSyLobiyZhNE=;
-        b=2kxobm691cVQaXnVtJvJopkeEvMSJLFBCOtZNvy+v+DCJvXQarzJ5dLDW5sjQ8wIyy
-         +Co8zKR7mEYZM7kw+eShwjRQYafxwPsgPvK1EIRJyGQwpvkIEe+jwST20g6FKqpGeSVa
-         lYDdVDXOUbfXzA2y/+gcDVFOLV0DTVSeP4VtoRzwzHKR0p26VqbXsUeWlXxneqnb6eQc
-         banVd8Hr/rsFT5fIdOwfezSNjdidQ6XtN6NG8KxRxAXt1xWvYfRILVLGTo9ClcLksCNv
-         hU6IOSDp7BuoB5Y7wElxBWKd07SJ34FL1jAe5mvQoevX01JHbSiKZoE41T35eTpGtUkg
-         VPUw==
-X-Gm-Message-State: AFqh2kqGXHC736dS+4cNr8OJb6b72P5utirBibiCQbYSc9SyvxoPbCa4
-	TjAWKwude/Kj86ihLYlC5sXXpg==
-X-Google-Smtp-Source: AMrXdXsAepFLtbRVd+PBmYG7G51lmeEvUiXA6wUuX0LKhS3sXpHPXAq6vL/HS4qOr8J52dS23f7KDw==
-X-Received: by 2002:adf:de04:0:b0:2a9:89e:2b53 with SMTP id b4-20020adfde04000000b002a9089e2b53mr20177577wrm.45.1674463877565;
-        Mon, 23 Jan 2023 00:51:17 -0800 (PST)
+        bh=Jr7vqvJVlpxRui+FUTfQy19pwuzQyDWhmumOiFPc8HU=;
+        b=tDtUqSM16jH3TTPfRhGcErvevOLBJyfTuEwvzz5mDQEhHx0Mygl8qkIiuSHvFFP4JI
+         VuEXMTlxNaZbquv3TBM7Jo3dDfhvpBS3ujaD8woToA+FgkiNXtPc8A18Y5SgahDLa1Sx
+         jEV7nvr15hls7zS6tCcGIaFq1es9Iw4HtcggASdKyJ8oHysomN5NWX17XKysolKiwFBZ
+         czB1WF1/LJwLunefJOv00CY40+rb6mkYdILlgynw/GWTpk0iVaBw8cL+JIXnYsGPBICm
+         gC3ewSPtAAGugL3hQcLCYFZLA5SmUjcCAOGzmedI2wUIGL1Xes1naHOZ3PAKvzK8Mgmd
+         7/1g==
+X-Gm-Message-State: AFqh2kpPpG1VLrq11YAY5jKMkwPh3ic/8rQql2ZWjo9PC2BJfJDeCRNn
+	UmT90SSZilOU1DQieZ/KuAmmvQ==
+X-Google-Smtp-Source: AMrXdXsuae/e8VvvaHB4ifPigkBADdadOBuacj2j0C3Qi498flwkbacYg4v6ep4izvFrr8mLm/GwVA==
+X-Received: by 2002:a05:600c:3b1e:b0:3cf:497c:c4f5 with SMTP id m30-20020a05600c3b1e00b003cf497cc4f5mr23381074wms.13.1674463954095;
+        Mon, 23 Jan 2023 00:52:34 -0800 (PST)
 Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id b11-20020a05600018ab00b002be2279f100sm17261066wri.96.2023.01.23.00.51.16
+        by smtp.gmail.com with ESMTPSA id n9-20020adf8b09000000b00241d21d4652sm3875418wra.21.2023.01.23.00.52.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 00:51:17 -0800 (PST)
-Message-ID: <5e7bd89e-36a5-d52a-382b-16ee28cc937f@linaro.org>
-Date: Mon, 23 Jan 2023 09:51:16 +0100
+        Mon, 23 Jan 2023 00:52:33 -0800 (PST)
+Message-ID: <42bbccf4-0ebe-ddfd-69c4-9cf26dce3ccb@linaro.org>
+Date: Mon, 23 Jan 2023 09:52:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
+Subject: Re: [PATCH 3/3] arm64: dts: meson: remove WiFi/BT nodes from Khadas
+ VIM1
 Content-Language: en-US
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
@@ -77,12 +78,12 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230123065504.2669769-1-christianshewitt@gmail.com>
- <20230123065504.2669769-2-christianshewitt@gmail.com>
+ <20230123065504.2669769-4-christianshewitt@gmail.com>
 Organization: Linaro Developer Services
-In-Reply-To: <20230123065504.2669769-2-christianshewitt@gmail.com>
+In-Reply-To: <20230123065504.2669769-4-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_005122_120359_680269F7 
-X-CRM114-Status: GOOD (  12.92  )
+X-CRM114-CacheID: sfid-20230123_005238_881270_AE1C8110 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,30 +102,40 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 23/01/2023 07:55, Christian Hewitt wrote:
-> The P212 has a combined WiFi/BT module. The BT side is already enabled
-> in the dtsi but the WiFi side is not. Let's enable the WiFi module.
+> The Broadcom WiFi/BT SDIO nodes are now inherited from the P212 common dtsi
+> so we can remove them from the VIM1 board dts.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
+>   .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts    | 15 ---------------
+>   1 file changed, 15 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> index 05cb2f5e5c36..7055057d7942 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> @@ -125,6 +125,11 @@ &sd_emmc_a {
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> index bee51e29015b..2f88f78de5b7 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> @@ -220,21 +220,6 @@ &pwm_ef {
 >   
->   	vmmc-supply = <&vddao_3v3>;
->   	vqmmc-supply = <&vddio_boot>;
-> +
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
+>   &sd_emmc_a {
+>   	max-frequency = <100000000>;
+> -
+> -	brcmf: wifi@1 {
+> -		reg = <1>;
+> -		compatible = "brcm,bcm4329-fmac";
+> -	};
+> -};
+> -
+> -&uart_A {
+> -	bluetooth {
+> -		compatible = "brcm,bcm43438-bt";
+> -		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+> -		max-speed = <2000000>;
+> -		clocks = <&wifi32k>;
+> -		clock-names = "lpo";
+> -	};
 >   };
 >   
->   /* SD card */
+>   /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
