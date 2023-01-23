@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41D2FC38142
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 08:51:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 542F9C54EAA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 08:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=anhlEWelcHFieked/Fqrs1t3YJRTDBvNkLTgqBpsOmE=; b=u2sH+OTVAuHA6400R8jH92HLaL
-	HbCFhR+r9MUxGuYFLvEF/piyqTHMrF/WwH55vrVJZCuYtwqKHiYIqBzwJr946kZC016gQvkJ77DpY
-	AG0+p/JXq6cCCA3uRDjg5LHLaR54rm3VehUMy/bshTxRJU8Ssmi4q85elfgIqZh/tShvsoO5rE6Jl
-	Fxyb6LXZFy9w77ZEUGiMbwifNXFUzeZU7GTDk/FMFnHIeO4t9W/gFkBbR4laQU6LrzZCnZTUJltqM
-	96yYQLkcSTawjfSM/MvkaZUcaSSadcZp7fQ8Frqz2HtdS7zRa+ConumSIYxuO5xZQYM9AR3Dzfwyc
-	5yxNLkqQ==;
+	bh=NPSxn77LhdUkuiV8ohs9GoBxJ+gr6gsheDGX9lFCtIA=; b=mop5asumFmaZ0PPAYGVeRnVpBG
+	K+A/l5fYOnnhcq/upKm7igN719Wwhqg+GGk4XnzkL8ay6Sw1As1YUsucNd1BLvcR/6EMwF+DO/6zu
+	KTjUh7zfaJOJzm9lGC9lJkB3DQn/u0/K1TYRjVVWC1prg1cQCJ5dhhaQaqcOdTKOp/Jj7z8B3dudK
+	TN4FvHYpHfKFhVDjGhGmeSHk7RyLD0lJsbAsxwnRoF2mSyxhUonoT0pk/O8fFjelyMWLJyw0hX7DH
+	RgroOFwrsj7+DF8pMCMiLLbGdcK3Lf+W7IvEIvTVjdm525fPNy8I/w1THQxyrT8duvEd4Qb4H/DI4
+	tm0/lGaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJsY8-00GPdK-UC; Mon, 23 Jan 2023 08:51:32 +0000
+	id 1pJsY6-00GPbe-7r; Mon, 23 Jan 2023 08:51:30 +0000
 Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJsY6-00GPXp-0G
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 08:51:31 +0000
-Received: by mail-wr1-x432.google.com with SMTP id t5so10078593wrq.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 00:51:29 -0800 (PST)
+	id 1pJsXy-00GPXp-22
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 08:51:23 +0000
+Received: by mail-wr1-x432.google.com with SMTP id t5so10078062wrq.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 00:51:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wq4oxC5buz2E+s+BroZ/0SZWCgxAdvbZS0s80EVNBbM=;
-        b=VAMN1A4mAJsh1F+t2xlr3cE95+Gexl9o2e++SHfnnifZaIYwcO/AHR4vLQ1sjZcLtE
-         c3M//falD105XaFKZvknfn7UuRlNcIb0SRJRpLOWK1sKGJvcgt8QZoiFUDGSczgbyltd
-         18pa5lbRon1N8+2K0tDCOe4BjoNcoua7SKoOfNdMcSm+MoRE51qKwU2brxbGr730htkC
-         4rM5cBuzo7tkFUsZDmngeR03BA7Scu0yjYJzEViHymHqIpC0mzF/bJlHmIUG2iSOpvQr
-         VkRfevIlfRs3zEMlwPSfIUspfSodAHT3r1xoSwBZsWlijQbEbinAi4YViGeQ4FSLbB6x
-         zBYQ==
+        bh=22HbhFCoP/frzw0LVOteI3i5o4+fgnftSyLobiyZhNE=;
+        b=eoShBrh/9aB0bPJOSCkRoDde/OWXqyhD5G0g66X73uztztr4wIWSQHk+G/M1MkVdbm
+         g4X0B3an1wNMhxFqzo42yVy22m0jGXQTezsYcf9uYuP3hac7gLc6MVwMdw9Fx6VfmXAo
+         SvbIKdW9mRQ4MlPXpYVzVAQDIrsRb1ABVOcsC20fpdijc8YpfQYRX/OqhWV6ZkGxNDFl
+         u0N06Mx8Ib1FFU4QZ90moGpu2KyayhwcHejtmkX9/UGC3loe59U+S0lq2u8gjMtIdskP
+         wLLG/+ABG+pbQ2q0+1JGu66kxOcaGt0+dpp5NN5ODR9mhEFV6UCwdmAR36QHgvMOfN6z
+         XFvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wq4oxC5buz2E+s+BroZ/0SZWCgxAdvbZS0s80EVNBbM=;
-        b=2wpQKlpDvtUGQU8JijZ9ebpUqOmM10gKLM4zctGEgmchJCWrUW5jSKdp3bGmsMH0F8
-         5cvHClyZhb2hd0XKy9iG8MLLQfkYcnsQy92LjSYhRFix0Q8ZSKGTTl3CijnmqrVgGoQ5
-         dMVN2lCHRyjhkNVHCfs1EE/hYuPt/0kSoUYWA2No6YN0xgQmTLZHNPqcFXeG9QUeEh4s
-         rg0hhDI1El17DHH/c5D/32zZDv3fIhd6C3ClvpthAJMKhmSg9i0lBpFHPpOgkk/tqW3D
-         yHxVTc/wAyHNzND4oW0QTf+fRp/EzY1ZiePglwJknlIQxzbMP7TiImrtQ/L3VsoFE5xt
-         3D6w==
-X-Gm-Message-State: AFqh2krbch7X6Tm9cND6fqCku/NdG0D+8lRVE53w5CYyBoVuDW2w9UTC
-	24bvdUiA9qG1OiHSArcvgsoLPN1bYSov+KB8Nj4=
-X-Google-Smtp-Source: AMrXdXsdQgWZCpS1AtJWPqX/KLIQrSbqDRbAfeCYmmt51Clnv9Byjawpk1DpexppmgpYN7AFmSYRJQ==
-X-Received: by 2002:adf:ee10:0:b0:2bd:d5f5:8820 with SMTP id y16-20020adfee10000000b002bdd5f58820mr20537410wrn.27.1674463889449;
-        Mon, 23 Jan 2023 00:51:29 -0800 (PST)
+        bh=22HbhFCoP/frzw0LVOteI3i5o4+fgnftSyLobiyZhNE=;
+        b=2kxobm691cVQaXnVtJvJopkeEvMSJLFBCOtZNvy+v+DCJvXQarzJ5dLDW5sjQ8wIyy
+         +Co8zKR7mEYZM7kw+eShwjRQYafxwPsgPvK1EIRJyGQwpvkIEe+jwST20g6FKqpGeSVa
+         lYDdVDXOUbfXzA2y/+gcDVFOLV0DTVSeP4VtoRzwzHKR0p26VqbXsUeWlXxneqnb6eQc
+         banVd8Hr/rsFT5fIdOwfezSNjdidQ6XtN6NG8KxRxAXt1xWvYfRILVLGTo9ClcLksCNv
+         hU6IOSDp7BuoB5Y7wElxBWKd07SJ34FL1jAe5mvQoevX01JHbSiKZoE41T35eTpGtUkg
+         VPUw==
+X-Gm-Message-State: AFqh2kqGXHC736dS+4cNr8OJb6b72P5utirBibiCQbYSc9SyvxoPbCa4
+	TjAWKwude/Kj86ihLYlC5sXXpg==
+X-Google-Smtp-Source: AMrXdXsAepFLtbRVd+PBmYG7G51lmeEvUiXA6wUuX0LKhS3sXpHPXAq6vL/HS4qOr8J52dS23f7KDw==
+X-Received: by 2002:adf:de04:0:b0:2a9:89e:2b53 with SMTP id b4-20020adfde04000000b002a9089e2b53mr20177577wrm.45.1674463877565;
+        Mon, 23 Jan 2023 00:51:17 -0800 (PST)
 Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id n8-20020a5d6608000000b002423dc3b1a9sm3649553wru.52.2023.01.23.00.51.28
+        by smtp.gmail.com with ESMTPSA id b11-20020a05600018ab00b002be2279f100sm17261066wri.96.2023.01.23.00.51.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 00:51:29 -0800 (PST)
-Message-ID: <c58e70ab-da4d-3045-debb-49e31c383999@linaro.org>
-Date: Mon, 23 Jan 2023 09:51:28 +0100
+        Mon, 23 Jan 2023 00:51:17 -0800 (PST)
+Message-ID: <5e7bd89e-36a5-d52a-382b-16ee28cc937f@linaro.org>
+Date: Mon, 23 Jan 2023 09:51:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
+Subject: Re: [PATCH 1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
 Content-Language: en-US
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
@@ -77,12 +77,12 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230123065504.2669769-1-christianshewitt@gmail.com>
- <20230123065504.2669769-3-christianshewitt@gmail.com>
+ <20230123065504.2669769-2-christianshewitt@gmail.com>
 Organization: Linaro Developer Services
-In-Reply-To: <20230123065504.2669769-3-christianshewitt@gmail.com>
+In-Reply-To: <20230123065504.2669769-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_005130_073044_87130CD9 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20230123_005122_120359_680269F7 
+X-CRM114-Status: GOOD (  12.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,47 +101,30 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 23/01/2023 07:55, Christian Hewitt wrote:
-> Cosmetic-only change to alpha-sort the pwm_ef node.
+> The P212 has a combined WiFi/BT module. The BT side is already enabled
+> in the dtsi but the WiFi side is not. Let's enable the WiFi module.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->   .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi   | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
+>   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> index 7055057d7942..a150cc0e18ff 100644
+> index 05cb2f5e5c36..7055057d7942 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> @@ -97,6 +97,14 @@ &ir {
->   	pinctrl-names = "default";
->   };
+> @@ -125,6 +125,11 @@ &sd_emmc_a {
 >   
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&clkc CLKID_FCLK_DIV4>;
-> +	clock-names = "clkin0";
-> +};
-> +
->   &saradc {
->   	status = "okay";
->   	vref-supply = <&vddio_ao18>;
-> @@ -170,14 +178,6 @@ &sd_emmc_c {
+>   	vmmc-supply = <&vddao_3v3>;
 >   	vqmmc-supply = <&vddio_boot>;
+> +
+> +	brcmf: wifi@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
 >   };
 >   
-> -&pwm_ef {
-> -	status = "okay";
-> -	pinctrl-0 = <&pwm_e_pins>;
-> -	pinctrl-names = "default";
-> -	clocks = <&clkc CLKID_FCLK_DIV4>;
-> -	clock-names = "clkin0";
-> -};
-> -
->   /* This is connected to the Bluetooth module: */
->   &uart_A {
->   	status = "okay";
+>   /* SD card */
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
