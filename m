@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68850C25B50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 10:20:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A86C25B50
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 10:21:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RXn6QkBCcfMFtmjixKXh5sugjhPKqLIFIfEyw5xxYfA=; b=xdwtUPyVt/8NK+
-	WoIj3Ro238TfzrYLbtKmI5OD9w2g9YC3JfRD/WiTxaIo7x/BnXuwxBwXBdrj6goRssAlxnBEPTJFU
-	63KiCG4cVHjT7Vc92i9lTIWUu4zVta5IpybNqp5BA3kfy01+VxRaWNnkGKTw0zVJuNRSJQaRp8mpa
-	C6cn1uLk5AycSRYcwqpG/YeR0c6o87VDSaak9jzyMYSvhlhApSJv7IB11PxUbR2u5HIJ+vrSxTnfj
-	7WZSOmIi2nMY+2OjklwTzc7m2zTk9uOleIySWO6bIYJPTt8ZIlUqf3Z/2s8ATaKkj4OwcoFWvJH2I
-	Bp/Mu9spq+/XaqgLLzIg==;
+	List-Owner; bh=l5YJKMHDME7rdIDmjr1SBRKkaKT1z7OkJwcHEVhKZ08=; b=HF5pNc1n4tAHeR
+	EWvi3AolB3xTpxjk2QtGuVXt3hr5kQIbtZkJ9QRRpc/Ri7eG6S8crhKA4aZQPVfGIIF6E/sflXgnM
+	Sf7N9C5/Cg4+if8vNBuyzs9Jo2pChJDJT7KyowbPMqTzsFMao1uKp+FOx5FfO384dLF+cjlZ39rcA
+	FthnXrH17V0R3Lzc7zdCXaaekQAGFkJR107HB5zhBU5SGAoOHXeLAnPZUOcSH/CzzED4ldSetfOrs
+	feioiS48Mfk+NCixkUzlOZ5qnI1kTc+3fiWbTOXJWVd+bXcfIQ/F/M1+ahcGxFxs/Ac3LQmiDMN0x
+	IJoMimXEt9NbU2bvAqdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJtvx-00Glcu-D9; Mon, 23 Jan 2023 10:20:13 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1pJtwm-00Glzk-CC; Mon, 23 Jan 2023 10:21:04 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJtm8-00GhP0-PV
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 10:10:07 +0000
-Received: by mail-wr1-x434.google.com with SMTP id z5so10255625wrt.6
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 02:10:03 -0800 (PST)
+	id 1pJtmB-00GhPk-Jk
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 10:10:09 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id b7so10267370wrt.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 02:10:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lmEi8wNJscjPO+bec5z+80AcbDQKdl+RtO68ZSQp6ss=;
-        b=ndSG6YwuKGUm1NBBI5B2jrBEPmsadx3GhgXVtdQLFuTTIKzv3a+092eRqnmoizygnu
-         6K2WY8xrHmMdhe1zjHYD5rxceTGCddHjU0Uutwbumopsv2JgOzB+sftmjkobCnwRGKNS
-         yOUEaWRKRbcpFUh1Kp57/juCnhSaxbjSjYdoeasNcT16mGwH14TDfXipkSPrZcjiQCdP
-         7mklc2riDlU3X+rN5zPycg2zIZ4+k5+Ss5EnCYwyZq3AGZaN56GtxGg0/z71+dFOLAhB
-         fRYExkqmJuM63t2yQxToWbBPMz6lTGD3lZEFd+F7oO2FV0baGA6f44+gmDl4TSjB7Jsy
-         Hjvg==
+        bh=Vk3/4zGC4vaP3JAISpcs7adXGbsqb5n1p++8mkCPqRs=;
+        b=MMPgOtfoI2j+ih+wcRxk5PFgCEJn/T+1p4w/72XLAt6gLMnjYIUTq6ZY0iKWnnEtvL
+         L2f1u5tV27sJIuMPP4IJFqfvXBJspspnQP7lnfBqaylFPQmzp5xy7zSBadyGILWRqQqx
+         CFu8wgExZsMHN1YqRLpStNy1TBS+NTFvo9SdUY94ttWU1UNG2SmBCOqzTbit5BgD2o88
+         l2zQY6mmbeLVq+VEFbJoMjmSHlNjcP3DwPenlhJC1eyvwvYr1gRBRzDLHPqcR+DV84TO
+         Tp/dBxlIDCGl3PvlGqeHj+N0DHQe2Lp0cGO8aj+4XcI870TCZODQ1uoE+34YiXzbjXz/
+         EF7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lmEi8wNJscjPO+bec5z+80AcbDQKdl+RtO68ZSQp6ss=;
-        b=Nfa8WdNtld+Cv5L57x1w0Mz8yjRFQdoPgiScWrEnqCHbXkdmVph7Pdhl2n9Dzrb2S6
-         /yCFObUKMQhs7bR7NSm73No4/PV0o7rh3grGusPIKBNwVg9tzOhc9LCUTnuth8anpgPY
-         0ZLtNWG6zxULAdW4HqU4gWnkO9JxXz8J6jTAMFEnABhtPGLi47Z1YUPQRC9ynVIWqOph
-         6XN7xLw1xK9xTxMNDMvlIxq27e9F2RfgD1KaJuf0MXdeKdL/6/Acrc+VVRWrq2Fwmfno
-         CbdgYLLsCIg3PBspuwHmKOvl2mYULo0pPtAkLhWQAP7or638iD/4ZTD92YU8GzST64Zq
-         Mg7g==
-X-Gm-Message-State: AFqh2krGAEWW1RAERVKGcBzNHdCXzwO9O9kcY5c5xKVqMdzSoJW67ErT
-	NNWVPw0Uu8uMN5/2kmuACvup4w==
-X-Google-Smtp-Source: AMrXdXvD0HP5hamztDDRdNXHMoglhMKY7c9LQN2DMC1tyUK9QXhaL4t4ntooZHJ90+r2HEQwbTQcdg==
-X-Received: by 2002:a5d:4e04:0:b0:2bb:31dc:2d62 with SMTP id p4-20020a5d4e04000000b002bb31dc2d62mr19830641wrt.67.1674468601723;
-        Mon, 23 Jan 2023 02:10:01 -0800 (PST)
+        bh=Vk3/4zGC4vaP3JAISpcs7adXGbsqb5n1p++8mkCPqRs=;
+        b=QC3GR8Go3wcpPyf4B0Xgy6RTYTD2ReKrn4jInOteWqxQfdhC7O4WVVJs17iJuDobDI
+         A93sH3KRWjoyBxSZ9Wd4pQGhJuv8l3czVy2ye8/ATDpKqFX2CfXdNBKfX3OxYX8HKxsI
+         E/CwYNczrQ6bjgeXbvi08GPdniM1pIRyPc8s9srmnnYNgto0hLfpsB5ltHxmF4gkqEEG
+         nbSBfRolQBTkXlmILeiKLYhGJg78fWws/FWOHunJ6y76NGFZV7YdTb8UD6SkHiwhbSD2
+         B/hn9EYgkPdibkpVi9Je/vpqOSOCxXr9hGzqUQcewYJmT58uOMWKyF3civLwOOHOXzhK
+         uNmQ==
+X-Gm-Message-State: AFqh2kpynEdsOrLUKnWz8NayfhGCy6zGOODfZFiYPRY5YqMa30InzNym
+	waUHNzOxngO0D7uRqJqc1IrBKg==
+X-Google-Smtp-Source: AMrXdXv5n6gQQPpGitCuhpTioRST8hVeitfmO5EXEg2uiFHqkKOrVye2NrLcVnE/rL1MFgPzkBUkng==
+X-Received: by 2002:adf:f150:0:b0:2bf:963e:f9ac with SMTP id y16-20020adff150000000b002bf963ef9acmr8918210wro.18.1674468603610;
+        Mon, 23 Jan 2023 02:10:03 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m9-20020a056000024900b002bdec340a1csm22670403wrz.110.2023.01.23.02.10.00
+        by smtp.gmail.com with ESMTPSA id m9-20020a056000024900b002bdec340a1csm22670403wrz.110.2023.01.23.02.10.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 02:10:01 -0800 (PST)
+        Mon, 23 Jan 2023 02:10:02 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 23 Jan 2023 11:09:58 +0100
-Subject: [PATCH v3 1/7] dt-bindings: nvmem: convert amlogic-efuse.txt to
- dt-schema
+Date: Mon, 23 Jan 2023 11:09:59 +0100
+Subject: [PATCH v3 2/7] dt-bindings: nvmem: convert
+ amlogic-meson-mx-efuse.txt to dt-schema
 MIME-Version: 1.0
-Message-Id: <20221117-b4-amlogic-bindings-convert-v3-1-e28dd31e3bed@linaro.org>
+Message-Id: <20221117-b4-amlogic-bindings-convert-v3-2-e28dd31e3bed@linaro.org>
 References: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
 In-Reply-To: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -85,12 +85,11 @@ To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org
 X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_021004_964845_77DC6F5C 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20230123_021007_730957_F4ACB2A6 
+X-CRM114-Status: GOOD (  13.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,134 +106,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
+Convert the Amlogic Meson6 eFuse bindings to dt-schema.
 
-Take in account the used variant with amlogic,meson-gx-efuse.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 57 ++++++++++++++++++++++
- .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 ------------------
- 2 files changed, 57 insertions(+), 48 deletions(-)
+ .../bindings/nvmem/amlogic,meson6-efuse.yaml       | 57 ++++++++++++++++++++++
+ .../bindings/nvmem/amlogic-meson-mx-efuse.txt      | 22 ---------
+ 2 files changed, 57 insertions(+), 22 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson6-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson6-efuse.yaml
 new file mode 100644
-index 000000000000..e49c2754ff55
+index 000000000000..84b3dfd21e09
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
++++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson6-efuse.yaml
 @@ -0,0 +1,57 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/nvmem/amlogic,meson-gxbb-efuse.yaml#
++$id: http://devicetree.org/schemas/nvmem/amlogic,meson6-efuse.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson GX eFuse
++title: Amlogic Meson6 eFuse
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 +
 +allOf:
 +  - $ref: nvmem.yaml#
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - const: amlogic,meson-gxbb-efuse
-+      - items:
-+          - const: amlogic,meson-gx-efuse
-+          - const: amlogic,meson-gxbb-efuse
++    enum:
++      - amlogic,meson6-efuse
++      - amlogic,meson8-efuse
++      - amlogic,meson8b-efuse
++
++  reg:
++    maxItems: 1
 +
 +  clocks:
 +    maxItems: 1
 +
-+  secure-monitor:
-+    description: phandle to the secure-monitor node
-+    $ref: /schemas/types.yaml#/definitions/phandle
++  clock-names:
++    const: core
 +
 +required:
 +  - compatible
++  - reg
 +  - clocks
-+  - secure-monitor
++  - clock-names
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    efuse: efuse {
-+        compatible = "amlogic,meson-gxbb-efuse";
++    efuse: efuse@0 {
++        compatible = "amlogic,meson6-efuse";
++        reg = <0x0 0x2000>;
 +        clocks = <&clk_efuse>;
++        clock-names = "core";
 +        #address-cells = <1>;
 +        #size-cells = <1>;
-+        secure-monitor = <&sm>;
 +
-+        sn: sn@14 {
-+            reg = <0x14 0x10>;
++        ethernet_mac_address: mac@1b4 {
++            reg = <0x1b4 0x6>;
 +        };
 +
-+        eth_mac: mac@34 {
-+            reg = <0x34 0x10>;
-+        };
-+
-+        bid: bid@46 {
-+            reg = <0x46 0x30>;
++        temperature_calib: calib@1f4 {
++             reg = <0x1f4 0x4>;
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-meson-mx-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-meson-mx-efuse.txt
 deleted file mode 100644
-index f7b3ed74db54..000000000000
---- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+index a3c63954a1a4..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/amlogic-meson-mx-efuse.txt
 +++ /dev/null
-@@ -1,48 +0,0 @@
--= Amlogic Meson GX eFuse device tree bindings =
+@@ -1,22 +0,0 @@
+-Amlogic Meson6/Meson8/Meson8b efuse
 -
--Required properties:
--- compatible: should be "amlogic,meson-gxbb-efuse"
--- clocks: phandle to the efuse peripheral clock provided by the
--	  clock controller.
--- secure-monitor: phandle to the secure-monitor node
+-Required Properties:
+-- compatible: depending on the SoC this should be one of:
+-	- "amlogic,meson6-efuse"
+-	- "amlogic,meson8-efuse"
+-	- "amlogic,meson8b-efuse"
+-- reg: base address and size of the efuse registers
+-- clocks: a reference to the efuse core gate clock
+-- clock-names: must be "core"
 -
--= Data cells =
--Are child nodes of eFuse, bindings of which as described in
--bindings/nvmem/nvmem.txt
+-All properties and sub-nodes as well as the consumer bindings
+-defined in nvmem.txt in this directory are also supported.
+-
 -
 -Example:
--
--	efuse: efuse {
--		compatible = "amlogic,meson-gxbb-efuse";
+-	efuse: nvmem@0 {
+-		compatible = "amlogic,meson8-efuse";
+-		reg = <0x0 0x2000>;
 -		clocks = <&clkc CLKID_EFUSE>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		secure-monitor = <&sm>;
--
--		sn: sn@14 {
--			reg = <0x14 0x10>;
--		};
--
--		eth_mac: eth_mac@34 {
--			reg = <0x34 0x10>;
--		};
--
--		bid: bid@46 {
--			reg = <0x46 0x30>;
--		};
--	};
--
--	sm: secure-monitor {
--		compatible = "amlogic,meson-gxbb-sm";
--	};
--
--= Data consumers =
--Are device nodes which consume nvmem data cells.
--
--For example:
--
--	eth_mac {
--		...
--		nvmem-cells = <&eth_mac>;
--		nvmem-cell-names = "eth_mac";
+-		clock-names = "core";
 -	};
 
 -- 
