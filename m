@@ -4,121 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6CCFC05027
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 15:59:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B01B0C54E94
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 16:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HSlAlHlev0CZtG+wV54yRZwIxnVMpW96rQoF/3vppK0=; b=TrE30jJoEaULM5vF+j2xnLta4U
-	7u6zlea3iqu3b+e8U9zfFhONNi3zDi9wLhh3xfNkmLo4ZOZk8ApeaG+bCi+AjfQ4bHLiiAoKECQYE
-	3poxFt9vKEPNg7/bWIYxbdwWfzu9TsaGdjYJtyDaeyP6dKwYUMVtTDuuIt6YgFhUZLrQHZDR2hXn1
-	hC4PkLpv3abZMGyMVFlN71yazc8OLAdBRHVFilEnSfnJukWuVpdalIW3HulGDwPXnsGOUGpMg/uYb
-	nETG/j3gqClqwKh6FhLQovxjpYsBXC5nNL2jIL9RlTLl6fBjBXLPb97KW04iiCJ3PAcx6EGJh2qMY
-	PXTw3BsA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hPGMEnTNCB1fYW4vMmKpaZH0B0lHeyqeubTlAcBVB4Q=; b=MySlgI8mDX+6ny
+	vpns5JsiZV4VER8g7dqodqpsCg+Hgv1g1USheNaAdnIeexpavZT9OWVjV6IhEgHT9yMIByF0oEKjU
+	MZzurqrXcoYRQgBaWZEtj2uv0kSx6vrUi7ky+vhyk3iW9BDuEVpULyITs84kCtOs42wCg61QSXiVr
+	NsLX8wXftYVcWzYNglmugdKTnRH8j7PwL0acMk6MgK++NmrKbHtOqCd2Z7i1x3CbJ3w2QTTWWMSP5
+	tl7iRo4N/YKRrWVipDxB7UZT5sR8zxdqTP2UkPdhm/jR54dGZLNrC9LwioK4oBl9785rIx3QJpfGw
+	/1KMzx/XOC/SQhfG5dTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJzEA-000NVf-6z; Mon, 23 Jan 2023 15:59:22 +0000
-Received: from mail-bn7nam10on2058.outbound.protection.outlook.com ([40.107.92.58] helo=NAM10-BN7-obe.outbound.protection.outlook.com)
+	id 1pJzFJ-000NxF-SR; Mon, 23 Jan 2023 16:00:33 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJyva-000GGX-D6; Mon, 23 Jan 2023 15:40:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AlrUtUDruVMa+c6o8hwS5EByM1TE+9asbbahCJ23YgRWSpGL/YdjYffDHozvoeXhUSPfcApXcD5lxtetBgqnTUWZZAggv6ScQEFAH/vi6ydGTx+0EkX5E9plTKJHtFvy+9hYsItLB7AZHTMwAbjVvSiziC/uLyibcjXJzBGdFdLwtrDahrs/oBWtkg0TCOtzCVGa3rqcslbMHw+JnOH79vzuQwCVmtq+dUfJzye60w/Ws5er/ppQNOTYWm7ulQBartAYYJdgrbgoaDdq0amZgmJLHXZAAhAnuagufwOY3DbeUCVFKmnaOX3DETn1jT3ZIH0n7O7IUG7Tj14x1zR+VA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dUNe64xNpB4cYgaY3MqqeEcRelyg9kF+dCZEJ7hRJ5A=;
- b=HXlm0Jewh4Ixjq9ZSYpUnGpbYi7BAk51BYITCt0W40J0Y4bpkeihy0TbrIxIQidHvLHf5ae65mNVXfx+own7DffRDStewF0IYzS3R5opUtJrXS/V7WTsuU8Zovcgq6585FNZEN1187Oiz47rMjLu9ApHq3kjNWgmmr+Kspwa7PhLoAr0lKUnOIzTxd53XMqv3YofmbKcroWKqXXS+BlPvy27SqAIppxotRNRP4Q3Ff8McunteLHpspLslRQ5PRWljnOR5ogBKiLhosq+2p4Ba3oqa7BdLM+umwW/8CWxG7Ti11+dRW3wzNO/ZoeeiTyrDog+YKGT296hcGZ0GB7oOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dUNe64xNpB4cYgaY3MqqeEcRelyg9kF+dCZEJ7hRJ5A=;
- b=nd0tdyyQDq78G9dcjE++g+BdJzqqkoJko+5JIQswxt+UB51sS9O5BPkVXOgamMw2x7hKi5XlGYYGZPTsSN5o0GFTSuTPYIE94Iq5H3aqyUsFQIxhzaEP8Sm1luYdSY/iVxQTf4DTndr7Mry43eO7P1kY3reA3mLNmTEsL0AaFkg=
-Received: from BLAPR03CA0113.namprd03.prod.outlook.com (2603:10b6:208:32a::28)
- by PH7PR12MB8154.namprd12.prod.outlook.com (2603:10b6:510:2b9::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
- 2023 15:40:03 +0000
-Received: from BL02EPF0000EE3D.namprd05.prod.outlook.com
- (2603:10b6:208:32a:cafe::57) by BLAPR03CA0113.outlook.office365.com
- (2603:10b6:208:32a::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
- Transport; Mon, 23 Jan 2023 15:40:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0000EE3D.mail.protection.outlook.com (10.167.241.134) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.13 via Frontend Transport; Mon, 23 Jan 2023 15:40:03 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 23 Jan
- 2023 09:39:53 -0600
-Message-ID: <26046a72-27e6-213f-6b69-5cb82367dcf9@amd.com>
-Date: Mon, 23 Jan 2023 16:39:51 +0100
+	id 1pJywR-000GZN-BC
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 15:41:07 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id r2so11192586wrv.7
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 07:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TXCK8+4pwBoN/PPZdEC5uZ0441SKSjWCGzz9sOXF4WA=;
+        b=Gq7N/5f/dm907S2s95WddCgz2SPDJqx3jdQjw63tObNUotX8A1a2nwEQTIW8zLc0Bc
+         32Ow2LueltQlPmFD27f3FiTg8+gy4lXPOTAEvCKMwLykk+YnCH9QOPqg6FhyXWijJtyZ
+         59H0hdbLitzR0OuveGHOcXUhmgTDyZyFM/3dDMhwD/n/qKdf2a5hnTxCVGlDG9vTT5gs
+         /b0iXquNdt1ZvKxoABL9FXeZCEIVBbk6AyNHp3Dg4Koa4FZ0febLMj6lvtWb1+cVQmtL
+         9BjCADRSb0hhSHj1ZZzacokBiYCtFXPOe0KP/odN2uNCoOC5+H9t75lUAcHxQKzcSQgi
+         4RsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXCK8+4pwBoN/PPZdEC5uZ0441SKSjWCGzz9sOXF4WA=;
+        b=bjAZVa45Zt1ZMBiBignTarwrShU6qnJEUXqnB0zZWj72yMdk9ufN+yK0rAkz4muAV9
+         wBzMbWbHScMhY8Ds8pfZZopefKsP29fOq/N/mUxybddgouRt6iKyMwe1k1ESRoKqFjFH
+         k4Zh9XPwmbpJ6OmvwsxzRe6MV67oJRjtoHgz+u0vrN8XVWRnd8RqFkAU9JY0nTiT6Q/H
+         3qNPnMP3lH+OSh3I6OLGFTOY9SAse/RFYzGzXPENT+vj/8rxJueWFJvXNk5oKvIdAckk
+         ZUmeKIqMbIEgPHjnMs8pvjSgF9mb5goDbvsxFDGIcScnOwX5tNpUlBKOD6JaBMEXGIOZ
+         iAbA==
+X-Gm-Message-State: AFqh2kpeqj2bgcDtriCHNM9HIJ70dsY4TUstaJHmJ2mq+h0wZceAKdWE
+	K+7CDG/0iyuONthrV+W2h2t7fA==
+X-Google-Smtp-Source: AMrXdXuBoUwMvAd/YfOcifByrJaMm2ho3lHEp8fql+PNjdwlzRsoBXxTm0E+49t+J2WwjGL6pXs8KQ==
+X-Received: by 2002:a5d:63c4:0:b0:2a5:3a52:a034 with SMTP id c4-20020a5d63c4000000b002a53a52a034mr19494443wrw.35.1674488461847;
+        Mon, 23 Jan 2023 07:41:01 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n9-20020adf8b09000000b00241d21d4652sm4602308wra.21.2023.01.23.07.40.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 07:41:01 -0800 (PST)
+Message-ID: <9000e022-69be-3324-1e6c-a255d56a1dd8@linaro.org>
+Date: Mon, 23 Jan 2023 16:40:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+ Thunderbird/102.7.0
 Subject: Re: [PATCH 05/13] dt-bindings: serial: cdsn,uart: add power-domains
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team
-	<linux-imx@nxp.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Lubomir Rintel
-	<lkundrak@v3.sk>, - <devicetree@vger.kernel.org>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Michal Simek <michal.simek@xilinx.com>, Chester Lin
-	<clin@suse.com>, Fugang Duan <fugang.duan@nxp.com>, Magnus Damm
-	<magnus.damm@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	Pragnesh Patel <pragnesh.patel@sifive.com>, Le Ray <erwan.leray@foss.st.com>,
-	Peter Korsgaard <jacmet@sunsite.dk>, Tomer Maimon <tmaimon77@gmail.com>,
-	<linux-serial@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-riscv@lists.infradead.org>, <linux-stm32@st-md-mailman.stormreply.com>
+To: Michal Simek <michal.simek@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Lubomir Rintel <lkundrak@v3.sk>, - <devicetree@vger.kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Michal Simek
+ <michal.simek@xilinx.com>, Chester Lin <clin@suse.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Magnus Damm <magnus.damm@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Pragnesh Patel <pragnesh.patel@sifive.com>, Le Ray
+ <erwan.leray@foss.st.com>, Peter Korsgaard <jacmet@sunsite.dk>,
+ Tomer Maimon <tmaimon77@gmail.com>, linux-serial@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com
 References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
  <20230123151302.368277-5-krzysztof.kozlowski@linaro.org>
-From: Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20230123151302.368277-5-krzysztof.kozlowski@linaro.org>
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000EE3D:EE_|PH7PR12MB8154:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd1cc4e6-6526-47d3-6a0f-08dafd58185f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	JkJXSlrBL4JdptHeal1btJHgn9MxkrTfrsdBEFvbeg+/rEdIghy3eizRPGLM2GbmpwEAzhJjm23A50M586MU3S0EaZlL0wdn1wXtNHgtopq9LgCNvAuxWiGnXelxXI3FklJIxPtrfjXRRWk4WSRuypgZEnVZGltRidTk4XxwN8l0ECwoh6CfHqjGeoHPaxc+OSH0Yc/6xuzB3VpBKkktF7leaAdra7UXwnDIxGBPEj/AUW4IhoZ4CNhYnMspJ+Ss/WDGjLxKQWI1EPbv17rTGR+l4Ru1MSeXVDLbw6J3OcqhJiejJfwUSObiWbw3NQ47LDYvvcJLgxMTkM0jlDUo1Dty1ci8/mKc/HkIWHAtgfEVCQFVETTaA9+IiiaKEopyssmJWROxWbw2aYUurkK/JhF8JpLQCZ418esygJeQJqtJmPUGSI0E6iFHqM5sN51r3iadXeXLGIz93fvJHI4G1hsLXc89R5Tzy3QRCG6R1yLXh18hy/DSVKrEe058EJNBxcQQ39S9xUdT+xZEL9tbnPD35DXx4AOi84h1mEK1S/5gymHs7MBQ9wAdD3Vx156u0jS6n1RKMwmlW02ENf7JrDj7pPiYxcZ6INwY9A1jkXvpnwGkVYV+YmJMD1kFoV9XWjB+yCXCihux8vVSfg2kEEdYPRRveSvw4Qaar8fAZ/Ov8Flr5B3ejRiyhTqLWTIcMq5/i2yvnIK0jIxmuokv+HOmNSJ85Ae5RUdAmS1CRxZ9bcmE7Wzco6H7A8ooht1d98IMAUOgvfr3aKncA06EDImmK4yiY3CUbwXMhYfXQ4AryMdLE2LHljnNgJp7dxJQN/1yv50ZIuXD62HbVRcVhg==
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(136003)(346002)(376002)(451199015)(36840700001)(40470700004)(46966006)(36860700001)(83380400001)(921005)(82740400003)(7416002)(41300700001)(31696002)(86362001)(356005)(81166007)(44832011)(2906002)(8936002)(5660300002)(7406005)(82310400005)(40460700003)(40480700001)(26005)(8676002)(16526019)(53546011)(186003)(47076005)(426003)(336012)(316002)(70586007)(16576012)(70206006)(2616005)(478600001)(110136005)(31686004)(36756003)(43740500002)(2101003)(83996005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 15:40:03.3577
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd1cc4e6-6526-47d3-6a0f-08dafd58185f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	BL02EPF0000EE3D.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8154
+ <26046a72-27e6-213f-6b69-5cb82367dcf9@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <26046a72-27e6-213f-6b69-5cb82367dcf9@amd.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_074010_559490_4C485B55 
-X-CRM114-Status: GOOD (  15.99  )
+X-CRM114-CacheID: sfid-20230123_074103_477868_DD3669FB 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,78 +111,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 23/01/2023 16:39, Michal Simek wrote:
+>>
+>>   examples:
+>> --
+>> 2.34.1
+>>
+> 
+> Reviewed-by: Michal Simek <michal.simek@amd.com>
+> 
+> btw: I was running it and I have seen that properties are checked only on nodes 
+> which have status property okay. On disabled nodes properties are not checked. 
+> Is this standard behavior/setting?
 
+Yes, because disabled nodes might be missing several properties (e.g.
+clocks or supplies).
 
-On 1/23/23 16:12, Krzysztof Kozlowski wrote:
-> 
-> Few Xilinx DTS have power domains in serial node:
-> 
->    zynqmp-zc1232-revA.dtb: serial@ff000000: Unevaluated properties are not allowed ('power-domains' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../devicetree/bindings/serial/cdns,uart.yaml   | 17 ++++++++++++++---
->   1 file changed, 14 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> index 0c118d5336cc..38925b79cb38 100644
-> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> @@ -9,9 +9,6 @@ title: Cadence UART Controller
->   maintainers:
->     - Michal Simek <michal.simek@xilinx.com>
-> 
-> -allOf:
-> -  - $ref: serial.yaml#
-> -
->   properties:
->     compatible:
->       oneOf:
-> @@ -46,6 +43,9 @@ properties:
->         port does not use this pin.
->       type: boolean
-> 
-> +  power-domains:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
-> @@ -53,6 +53,17 @@ required:
->     - clocks
->     - clock-names
-> 
-> +allOf:
-> +  - $ref: serial.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: cdns,uart-r1p8
-> +    then:
-> +      properties:
-> +        power-domains: false
-> +
->   unevaluatedProperties: false
-> 
->   examples:
-> --
-> 2.34.1
-> 
+Best regards,
+Krzysztof
 
-Reviewed-by: Michal Simek <michal.simek@amd.com>
-
-btw: I was running it and I have seen that properties are checked only on nodes 
-which have status property okay. On disabled nodes properties are not checked. 
-Is this standard behavior/setting?
-
-Thanks,
-Michal
 
 _______________________________________________
 linux-amlogic mailing list
