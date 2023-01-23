@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5AAAC38142
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 06:56:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05F01C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 06:59:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=haS+nBV1pwTMf3ELUNU9ZcNBI0AanaNsh+hsjW/HhSE=; b=ne3ZPrJpEQuY0N
-	X9iRtc/hHNDxTabDG6JD9dk0eEb5AJONBZ7NxQ6co7w3YdSGm0SsRvaHc2tVBz4eTg0+z/LAav3v0
-	l1WZvBpQOjmO1fY9ICv4H/3hWsldHWliSCaUScVwS9Fw/aZytimgnAh66gYn7lt6sN0Py6OlUmeKJ
-	IzlHR81NmlVKphmSV1O9W53I8nw/HnmTeMPaBoBMEV1HxBgXX5tDH1vj+RNniK6aamIdq1Nk4Q8ed
-	FakDixmdP90BZglrNuVG/pAlRDVz2hXXceOkBeo8NlGmLSzbv2ro5xPR870VtMAs05PAgeTKUokFZ
-	6dxqvsjKxVMBEyScpvqg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ctKDk4VBz5Lt8n6yl7S9PvZcw3JKA9EFQ9wsn7kdhMA=; b=yeszD7aNRqQYmb
+	A9CztOSRJ1d1b8+SbgfaB0b9Yzb5xMJp7R804Btqfd7fIiFxcbirb7cGqd4xOrQzCfX/K6b+9eJCw
+	0h4pkAt2wTsjFJAkMAiYk4GQnCHv0om2g7biBTmkKef2U7eg3bFJUGovJSOF/xf/f2OBaL1HYSJ8l
+	z/NeYYV1A5bP5Z41Xf11lahq6KYBMuJkQVHdJL8Eem5MtgjqsgUE4gE/418vNZMtSBms1N7+9ApOM
+	DvRCUWts0ND3sS1HPHIcNu13txpiDMn/o60s4YsQp+tMMNNw2S0Q7QYdprwhAUvP5gHdC7jcdG9Xt
+	K7wKCBXpjhYR2G2PLKcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJqkE-00G7xM-QX; Mon, 23 Jan 2023 06:55:54 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1pJqn8-00G8rS-3g; Mon, 23 Jan 2023 06:58:54 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJqje-00G7hH-NA; Mon, 23 Jan 2023 06:55:20 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id r2so9797281wrv.7;
-        Sun, 22 Jan 2023 22:55:17 -0800 (PST)
+	id 1pJqmv-00G8o2-GF; Mon, 23 Jan 2023 06:58:42 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so9890306wmb.0;
+        Sun, 22 Jan 2023 22:58:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3OYHf6uBdRg2Pv0Tc1k0a2GUSIrlYLxSnMEevum5bpY=;
-        b=KGpeEul2xiba3v1KsjCN8fEMjddcL2wnjP4/BtjA3jfdyeBt10wnp3ntC1kLE8Pxo1
-         pI+R/Gl49zXS/ULo6Ell/He88LvhBbXjs1uViXCx8ul+XcyZqRVEYjz592at9ufWB2W6
-         VUpKR7pDTkwr5wdj7kimOft3mfu9WugNfdvjM0QNZ6IGZE4TAuG92RCCh0QMrUuLVv3t
-         Ztj9A1OkzS3sTNXa6yXUe8lsyIBWbvPqsbMnTY0ucPFg44jA11AMax6Z679wMP4j4v8s
-         8rrTN6/RsAQX3YVMRPl6aKBUz6cjdHV00x4gD2b80+ZtMdToHwjXxD/xv9pGgSD5xbhJ
-         wGag==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
+        b=aW2LoBd/6dqWV6Ju41BCj8IXkH30jX61wgv6knKyFecFONSzz6ZsA+irtg4Jf1lMg+
+         xXAWr4BxOkSZ/gtX1sEYckJsuZ460KcFp7uvVAH8V/XYxa7q1bNhs36hO81/ym7xvm3g
+         OEbwvnuNJy9+m4/2MmhDihlAeZYN/sxfeIPTLcqcqcXf7OTNo22ekQNybY1uytHm/H0k
+         kU5P3TRIGJv60LiIzPivj8JWJyBFyMSngmnymllNkYQaqpWrweQdsyYhummuclai1ntp
+         ri6O/buuRfcperivsxICXjkiSq+qumXLflQY0meRljysgTSjlPaamsSfZNYYx2erLEi/
+         VgPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3OYHf6uBdRg2Pv0Tc1k0a2GUSIrlYLxSnMEevum5bpY=;
-        b=Dtx/shP4zXSfi5YNFGWuBnM+7XgZTjGK5gTsAkoAKZfFwXMZEZLjJ7JJHUqNdNpXJ0
-         uaY4imYNa9C3h0G41EiX2RWN2z4h2E1cztE6dgddtJ69B+Aag817jcSQnbL9m8WoM2u3
-         aJu9pDrF7tyFjoQ+Gy9Zcy83353NLJnu9yQ0/ZvoT/q5T2m8RBWsWGuvdm0ZSyIJlRGP
-         V5K/+n6QPtUAl76cicztmWBDYN2KRDri5zzXUjdoQMnD1Po6BEz7ajeDe7SIT+ZS9/iL
-         I4GKk8KG2rkZORTE2RXMHxwdJ4g6cEFIqTRxNOJ8Omg2aeJJnIpLh6ByzJdzXZ0HwCdh
-         QgXQ==
-X-Gm-Message-State: AFqh2kraEx6LXULLWfjwnk0WfYbunS+byoqv3T2qKV3TMZHof/NlTbpK
-	wJ2pJ2QhPfK/Q1LCE/XYX50OkNY1C1XULg==
-X-Google-Smtp-Source: AMrXdXsvxNmWMyKXfXak1lyV5JX7ANjEeRxt2fZqd75eEp91UqyI/xjA5bU7YPFAtl3LpapusGTfCw==
-X-Received: by 2002:a5d:6e8b:0:b0:2bd:d9b5:8191 with SMTP id k11-20020a5d6e8b000000b002bdd9b58191mr20903324wrz.61.1674456916457;
-        Sun, 22 Jan 2023 22:55:16 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
+        b=g8ts2Jf2afBlIyaSTG4/8o6oWraAdI+9mROxYeU8g6wg5T7unt6Nd9LnIc8jqGD4cw
+         j4DzRMjsw7Y7HKtq2YjyXSW5Q34+dXHCOSNxXp3rCa3XGJAbXvvti6G5VSwrOImezSMz
+         XdCZaU+/Zxts56wHk9RTmzsc9fU9aLm0dMJCnhz54jbWm9+V7Z7VzEl2kyPQfQBYrGkm
+         dqKzwzwezS8pWDVD+ooAi3o5Se8BfYX5lV1fDXdMm4IGS+kmBv2k27YnRUUMInaKpjsu
+         f6Xj6DiRV0lM/88fVbxnfFO4ctISpQu+gAVujIA6LQZv52rGwyb6qnLNIWXhhIffEg9T
+         CrAA==
+X-Gm-Message-State: AFqh2kqd461JfX1xYHAf/3B2wwPcoX8YHFcEho3f/QfiyAmiVel2XQyA
+	BxQ40mjRye+4wn4ibFtbzzE=
+X-Google-Smtp-Source: AMrXdXvZ0o4+Uavz11cmkN1mn0HBaFEV/CsnWMmmt45ArHZ+GJ1XMu5eTnT79iN6DN64MsXPnT4Ivg==
+X-Received: by 2002:a7b:cc14:0:b0:3da:50b0:e96a with SMTP id f20-20020a7bcc14000000b003da50b0e96amr22923957wmh.29.1674457119128;
+        Sun, 22 Jan 2023 22:58:39 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id az22-20020adfe196000000b002bddaea7a0bsm25948365wrb.57.2023.01.22.22.55.14
+        by smtp.gmail.com with ESMTPSA id hg8-20020a05600c538800b003d974076f13sm9710625wmb.3.2023.01.22.22.58.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 22:55:16 -0800 (PST)
+        Sun, 22 Jan 2023 22:58:38 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -70,16 +69,14 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
-Date: Mon, 23 Jan 2023 06:55:04 +0000
-Message-Id: <20230123065504.2669769-4-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to S905X-P212 dts
+Date: Mon, 23 Jan 2023 06:58:34 +0000
+Message-Id: <20230123065834.2670125-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123065504.2669769-1-christianshewitt@gmail.com>
-References: <20230123065504.2669769-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230122_225518_809304_8563C230 
-X-CRM114-Status: UNSURE (   8.91  )
+X-CRM114-CacheID: sfid-20230122_225841_580070_004DAD5C 
+X-CRM114-Status: UNSURE (   8.62  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,40 +94,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Broadcom WiFi/BT SDIO nodes are now inherited from the P212 common dtsi
-so we can remove them from the VIM1 board dts.
+Add initial support for the HDMI and Analogue i2s audio outputs.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts    | 15 ---------------
- 1 file changed, 15 deletions(-)
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index bee51e29015b..2f88f78de5b7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -220,21 +220,6 @@ &pwm_ef {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+index 2602940c2077..c2bc7cec476d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+@@ -7,11 +7,19 @@
+ /dts-v1/;
  
- &sd_emmc_a {
- 	max-frequency = <100000000>;
--
--	brcmf: wifi@1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--	};
--};
--
--&uart_A {
--	bluetooth {
--		compatible = "brcm,bcm43438-bt";
--		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
--		max-speed = <2000000>;
--		clocks = <&wifi32k>;
--		clock-names = "lpo";
--	};
+ #include "meson-gxl-s905x-p212.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
+ 	model = "Amlogic Meson GXL (S905X) P212 Development Board";
+ 
++	dio2133: analog-amplifier {
++		compatible = "simple-audio-amplifier";
++		sound-name-prefix = "AU2";
++		VCC-supply = <&hdmi_5v>;
++		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	cvbs-connector {
+ 		compatible = "composite-video-connector";
+ 
+@@ -32,6 +40,68 @@ hdmi_connector_in: endpoint {
+ 			};
+ 		};
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "S905X-P212";
++		audio-aux-devs = <&dio2133>;
++		audio-widgets = "Line", "Lineout";
++		audio-routing = "AU2 INL", "ACODEC LOLN",
++				"AU2 INR", "ACODEC LORN",
++				"Lineout", "AU2 OUTL",
++				"Lineout", "AU2 OUTR";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++
++			codec-1 {
++				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
++			};
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&acodec>;
++			};
++		};
++	};
++};
++
++&acodec {
++	AVDD-supply = <&vddio_ao18>;
++	status = "okay";
++};
++
++&aiu {
++	status = "okay";
  };
  
- /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
+ &cec_AO {
 -- 
 2.34.1
 
