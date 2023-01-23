@@ -4,95 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21B1DC05027
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 18:57:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 116CDC05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 20:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mxvrLjdjvMNWj7uRdIj0Q9I0LVJ4gAzJVW+YnygxkUs=; b=O4M+nftueYCrd/
-	7bJQ63u9l6PUbokprfDVluaT4Oqqh1pr2+P2wOBY6tUVJmT1+K5ibJrdONNjzj3PiLxPI0LVEN0n7
-	d88xMoejzwoNhsbfAJDkGUNnNVExnAayDXybyxBr2zgkS3Oa3nqwhjrbJbVWy0pj/3ce9yzD65lZg
-	nMRuvMsuTWlLRsx0mZkaCjR79J1ryBH/3OGOTSeT/aarVhuLm5c295s73jyeuW0MmSircAxywahHA
-	5G8b1J8FbcuegflGNwHdEuhq/gsfcnrLNkZfCUiXxuUZscPmAhQVrKtgntc80ezS99ev1iaOKPzRR
-	bfPU/PVnOPSTqAeE5rng==;
+	List-Owner; bh=FcD9gQFqb9zw0jbiYUpP90DUuFBNvEWDLT4t4iOAHbs=; b=qkmeAtWrgV58mf
+	dyxOLa/y5mtPbmcOOI59qefyqZ0tLoGIPa6EB++hBlmUkByw85y/s3WyDZIE/iVIvSumQ1D6ok+eX
+	cpNFYRVa551JJm8ILQBdvx70XTgRqrEXhXOQu2vcUALxVM4BRfpC984AGPPvCqh3mF6aQ5/LlsC3p
+	4WWct40C7UVhS6Ny+9HGwItnY5MpRWNu48QjMcLpMzTE36fC9ft3YVtPiMMyn7hDwVJkXrX+9/Db8
+	jx+fMSS7HDYik3mJQkDfSUqeeXjjWj/n9UF8TGh6mzUjeM9yx+1SdIOzDage+cPtTGpMKO6zRABlz
+	aF5xH9HPje5SzxmgLgtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK20h-0015BB-4i; Mon, 23 Jan 2023 18:57:39 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pK3Dt-001HkK-8v; Mon, 23 Jan 2023 20:15:21 +0000
+Received: from mail-oa1-f43.google.com ([209.85.160.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK20f-0015A7-1z
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 18:57:38 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so11334356wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 10:57:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ll7ZSjIpeSB6NE1hddkkSIG+LMmQi7hyj3TClP8BAtI=;
-        b=te6qDaYUyo8TM8PT/tzMinlXhKN4bn75eXTu94yYWaIrKgvzLqWIwQmhL9Uw8SdWln
-         CSGPyNRzoyl6j2EbrVkn+dxiwFyt1cnC4mG1+RWPzrYJTJBQjGfH6oKxpsOyhiU1fHV0
-         1PqtgEzQrIJDqOfMvFRxm73G/9W1SiM52wxQEIGt7yZrvHxki9/Pz3P1MTbAg4V7xijK
-         LD00SwMuu6ykgrkeZrIj4MRQ2SJXFy4zdE/1FGrwayN3Dis5HA8C5nU8T0za4UPZ9cZ4
-         yL3ycNfYot+rtlCrs3++iYHo7UdY4RZ+VauPlRmMxmD+RlPZ4w+6ti27PYN8WidKYbHa
-         niaA==
+	id 1pK3Dm-001Hi4-BL; Mon, 23 Jan 2023 20:15:15 +0000
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-15fe106c7c7so9212145fac.8;
+        Mon, 23 Jan 2023 12:15:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ll7ZSjIpeSB6NE1hddkkSIG+LMmQi7hyj3TClP8BAtI=;
-        b=HoA9F/5Q8z22vrAOjq2WPjznDtrSS8gdo70Ky8zf7ZsbZ5FtDFZXOu2JcDt/32xr16
-         pyBpm7DWRaIVMw14fGoh8l9eHISIyK2D09TzoLbVSsXLYQKE3THWYAKoX/bOCPLPOj/F
-         bO6h9Runcicq6ueIo/xRhhSra3mPkS8DYoYlqU78hnovO31IaBL0We5xmD79qQjbT4Jo
-         AFSMHjE9q6I/Niap6BvX3j2PQcGnPXPwbO+4LB6OMqs6ugJ24ymKxjBa8MKX4eV1t9yF
-         aBMlrVFf2DyeC67clmxkZ/VgqmTVGD/jo0S0WW3P/pcRCHBre8KUwvHsy9/bCnLJvpnM
-         KWyg==
-X-Gm-Message-State: AFqh2kpsIE2r9nPt5ELviT2L/MPIuGj3F72ov3VLUF3+dzfl1pbAfw0O
-	/+C+dPWsvTXtcB0xxRShj7PrUw==
-X-Google-Smtp-Source: AMrXdXvMpQT8hbdH3MYWCPRRes/tEObpS3tZubj0KJ2yKnFHSPQcLLM7GWtcB3sGoxQk43qdNi299Q==
-X-Received: by 2002:a05:600c:4f06:b0:3da:f671:eded with SMTP id l6-20020a05600c4f0600b003daf671ededmr25257158wmq.12.1674500255502;
-        Mon, 23 Jan 2023 10:57:35 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05600c359000b003da105437besm12283570wmq.29.2023.01.23.10.57.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 10:57:35 -0800 (PST)
-Message-ID: <04adfb17-5d66-1c24-19c5-c9f12ec7f9df@linaro.org>
-Date: Mon, 23 Jan 2023 19:57:32 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W9JOc294Un2/0rB0FUKryYqic16naXseJPC92bOtRF0=;
+        b=g/+DDpT84iZfFj0fqmHtvSzVJl1CIwD3Ak9m+AGQULd0VMLg+dAZU3C8L93JlaIz8i
+         HQtnYSVLTHYWAyPM5pw5GMnMoNZsQpKqCtGp1ndeZMXjJVVF3gVmCfdb8pN3wCY5QSqt
+         Kzy1yhdGQFN4xhd/VwilchI+HXoWJzdibe7osVyf4wl16goi4ASQRUGLV4yx95modL1a
+         ov4/M3XG9wX/Mh4hPQos7jxRFHdMeFL5i1EdsG9YU0KAMurmfV1fmSI/6pBCaVLCC4og
+         VcCdYt5tWyrClb3uTcF3AJ7whHfyybqFwrCUfzQSAygoM0qlYrJJv0yiTko+Dq1pCYR7
+         Qecg==
+X-Gm-Message-State: AFqh2kpMgoHfY7P38xFATzAUch2LOUTcDjgjssSBBLbJXhFmT54rZiOF
+	om8NQkq4QF62R4IhOnbyFAKTagK2BQ==
+X-Google-Smtp-Source: AMrXdXv7/0UWYAVSm7F28zXqx2erH3WvlYts86KO/fBElTBfrToCx8V4nVQwijpoo96jnpY39d8zVA==
+X-Received: by 2002:a05:6871:4506:b0:154:988a:d32d with SMTP id nj6-20020a056871450600b00154988ad32dmr14480326oab.27.1674504910165;
+        Mon, 23 Jan 2023 12:15:10 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b10-20020a056870390a00b001435fe636f2sm25818920oap.53.2023.01.23.12.15.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 12:15:09 -0800 (PST)
+Received: (nullmailer pid 2450508 invoked by uid 1000);
+	Mon, 23 Jan 2023 20:15:07 -0000
+Date: Mon, 23 Jan 2023 14:15:07 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Yogesh Gaur <yogeshgaur.83@gmail.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Leilk Liu <leilk.liu@mediatek.com>, Bert Vermeulen <bert@biot.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-arm-kernel@lists.infradead.org, 
+	Jerome Brunet <jbrunet@baylibre.com>, =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>, 
+	Samuel Holland <samuel@sholland.org>, linux-rockchip@lists.infradead.org, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Anson Huang <Anson.Huang@nxp.com>, 
+	Kamal Dasu <kdasu.kdev@gmail.com>, linux-sunxi@lists.linux.dev, 
+	Palmer Dabbelt <palmer@dabbelt.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Han Xu <han.xu@nxp.com>, 
+	Birger Koblitz <mail@birger-koblitz.de>, Andy Gross <agross@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-riscv@lists.infradead.org, 
+	Kevin Hilman <khilman@baylibre.com>, Joel Stanley <joel@jms.id.au>, 
+	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>, openbmc@lists.ozlabs.org, 
+	linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org, 
+	Andrew Jeffery <andrew@aj.id.au>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Fabio Estevam <festevam@gmail.com>, 
+	Li-hao Kuo <lhjeff911@gmail.com>, Michal Simek <michal.simek@xilinx.com>, 
+	Chris Packham <chris.packham@alliedtelesis.co.nz>, Erwan Leray <erwan.leray@foss.st.com>, 
+	Marek Vasut <marex@denx.de>, Paul Walmsley <paul.walmsley@sifive.com>, linux-aspeed@lists.ozlabs.org, 
+	Parshuram Thombare <pthombar@cadence.com>, linux-amlogic@lists.infradead.org, 
+	Serge Semin <fancer.lancer@gmail.com>, linux-tegra@vger.kernel.org, 
+	Haibo Chen <haibo.chen@nxp.com>, Gabor Juhos <juhosg@openwrt.org>, 
+	Christophe Kerello <christophe.kerello@foss.st.com>, Maxime Ripard <mripard@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Pragnesh Patel <pragnesh.patel@sifive.com>, 
+	Kuldeep Singh <singh.kuldeep87k@gmail.com>, linux-stm32@st-md-mailman.stormreply.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Mark Brown <broonie@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: drop unneeded quotes
+Message-ID: <167450490674.2450465.12158974323906034097.robh@kernel.org>
+References: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v3 6/7] dt-bindings: mmc: convert amlogic,meson-gx.txt to
- dt-schema
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ulf Hansson <ulf.hansson@linaro.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org
-References: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v3-6-e28dd31e3bed@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v3-6-e28dd31e3bed@linaro.org>
+Content-Disposition: inline
+In-Reply-To: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_105737_127271_7361BD07 
-X-CRM114-Status: UNSURE (   8.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230123_121514_413970_1244798D 
+X-CRM114-Status: GOOD (  12.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,20 +116,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/01/2023 11:10, Neil Armstrong wrote:
-> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> to dt-schema.
+
+On Wed, 18 Jan 2023 18:39:31 +0100, Krzysztof Kozlowski wrote:
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
 > 
-> Take in account the used variant with amlogic,meson-gx-mmc.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  .../bindings/spi/allwinner,sun4i-a10-spi.yaml  |  2 +-
+>  .../bindings/spi/allwinner,sun6i-a31-spi.yaml  |  2 +-
+>  .../bindings/spi/amlogic,meson-gx-spicc.yaml   |  6 +++---
+>  .../bindings/spi/amlogic,meson6-spifc.yaml     |  6 +++---
+>  .../bindings/spi/aspeed,ast2600-fmc.yaml       |  2 +-
+>  .../devicetree/bindings/spi/cdns,qspi-nor.yaml |  2 +-
+>  .../devicetree/bindings/spi/cdns,xspi.yaml     |  6 +++---
+>  .../bindings/spi/fsl,spi-fsl-qspi.yaml         |  2 +-
+>  .../devicetree/bindings/spi/fsl-imx-cspi.yaml  |  2 +-
+>  .../bindings/spi/mediatek,spi-mt65xx.yaml      |  2 +-
+>  .../spi/mediatek,spi-slave-mt27xx.yaml         |  2 +-
+>  .../bindings/spi/mikrotik,rb4xx-spi.yaml       |  2 +-
+>  .../bindings/spi/mxicy,mx25f0a-spi.yaml        |  2 +-
+>  .../devicetree/bindings/spi/mxs-spi.yaml       |  2 +-
+>  .../bindings/spi/nvidia,tegra210-quad.yaml     |  2 +-
+>  .../bindings/spi/qcom,spi-qcom-qspi.yaml       |  5 ++---
+>  .../bindings/spi/realtek,rtl-spi.yaml          |  2 +-
+>  .../bindings/spi/snps,dw-apb-ssi.yaml          |  2 +-
+>  .../devicetree/bindings/spi/spi-cadence.yaml   |  2 +-
+>  .../devicetree/bindings/spi/spi-fsl-lpspi.yaml |  2 +-
+>  .../devicetree/bindings/spi/spi-gpio.yaml      |  4 ++--
+>  .../devicetree/bindings/spi/spi-mux.yaml       |  4 ++--
+>  .../devicetree/bindings/spi/spi-nxp-fspi.yaml  |  2 +-
+>  .../devicetree/bindings/spi/spi-pl022.yaml     | 18 +++++++++---------
+>  .../devicetree/bindings/spi/spi-rockchip.yaml  |  2 +-
+>  .../devicetree/bindings/spi/spi-sifive.yaml    |  6 +++---
+>  .../bindings/spi/spi-sunplus-sp7021.yaml       |  2 +-
+>  .../devicetree/bindings/spi/spi-xilinx.yaml    |  2 +-
+>  .../bindings/spi/spi-zynqmp-qspi.yaml          |  2 +-
+>  .../devicetree/bindings/spi/sprd,spi-adi.yaml  |  5 ++---
+>  .../devicetree/bindings/spi/st,stm32-qspi.yaml |  2 +-
+>  .../devicetree/bindings/spi/st,stm32-spi.yaml  |  2 +-
+>  .../bindings/spi/xlnx,zynq-qspi.yaml           |  2 +-
+>  33 files changed, 53 insertions(+), 55 deletions(-)
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
