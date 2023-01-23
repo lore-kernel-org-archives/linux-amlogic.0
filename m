@@ -4,87 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4175C25B50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 09:48:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01080C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 10:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+PDQQ+5pw+j/7Jo+KKdxyFg+aTrckAt7iguJPGny6ak=; b=Avzg8PoF0WTQoYT8sQDBfhLfaj
-	BYSbdiHcjfMGV9qnGB6x94vIex/OVcvEvbQbOPWRexc7jCu3BKp6vYRHvQwyrTiz6PTIeqoiF/MoD
-	Zh5kyDs5hngtG/kJmjzUykKFC1dBQOt4dzxZ9vZfH8G4vpzSePErCt088TP4BP6z77Kuf/WyelJWl
-	V5RVDY8IWipY969Q4Igk/1+htwmQfHn0KaVsUEhxrpKJ5qUCDZq6tLHXXmm+QN6hd2NVZtne51v3o
-	7kafoKV39rRBZEj7i7NAnPz1rIciWG1Ny9iXp3z4cEH76n+qO8L9sV//V13DeITcrIKPrD4BGTDiQ
-	+F8zE2qg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YPvDdebEnlrI7luFWMyWrQur+vjTD2xiQlM88kCU+Y4=; b=ekPsgYNpILDP0P
+	GfF+VHUjcWjHCLfysbvBsX9SIUFbSulG0N3az/0hiHZO98/WsUASAmjWc1OEb3XxVFy31KSm/RUj5
+	fW/nVNDciWJnKtGSCe2fu/CSp+XuIBZVUYOueopccHfslzQnKnLYBY1SGjqUycNfRUYBfDSIznMoE
+	SAcn2433eR7SCA76MKmbAIkvRtze3w41m5/2CrOknY7rRvsTwv6t9OFoVZ+gXkzSZeSVZ1v3fkIiF
+	2BUgYy/yAaXBaXppbQH5jIdm/sUiEBmURZsymX6VAg4TJNpR2U91cUWErLp3sPR2011gXPSLsf2Zj
+	kBUidDdUsTeiZwTgef+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJtQn-00GZqM-MB; Mon, 23 Jan 2023 09:48:01 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1pJtvJ-00GlJf-M7; Mon, 23 Jan 2023 10:19:33 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJtQl-00GZpd-IY
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 09:48:00 +0000
-Received: by mail-wm1-x333.google.com with SMTP id o17-20020a05600c511100b003db021ef437so8062304wms.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 01:47:59 -0800 (PST)
+	id 1pJtm6-00GhO3-NS
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 10:10:06 +0000
+Received: by mail-wm1-x332.google.com with SMTP id m15so8552346wms.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 02:10:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=iIfSs1QU1y62hh19vUyf32vrywpZMGQTYBDrvO1iiAw=;
-        b=SgDrQSwGjXxTU2UClar2sLKGiAclP9O53rWoeJS/htmHdHmj221R1PfCZvV6sxhIoM
-         scZnK8u5Fdu++gqz0qBCFSrK8mAAy5IlNSbApeKcNbbBtydSs8h0XPMlMdR2wQ9fc327
-         smRhFO1m+aKBuYbA6906CKaewlaoExJxuRrJazRjmq9evys+5Hx+KZchZKGmuP4zZfJs
-         BhHGYp3fXsjvdZiCRuOrLUYAOdC4UHUtnpmCoknonMdD7vDSaYQnxYWTegPJ0bA+xSNN
-         BQjVmTifXvQoK6mmzJFGaRTQS79LcU0U8KO7DZW0pfEYqd5MCg/Wz4tjHkO1bVkQMiO5
-         bCpA==
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wEW/8zJog5ASK2qRbXljjSIfTx60QJ93vwtD14+LGbY=;
+        b=Xi9NoL7ue+FLAFSSGnI/2XAjpQ+UTVRx5qe4KqcY34Z1YHDu82IcObWaJKWB8hLoU1
+         CbkbOAozjA4dyfKE3PtQiBsJUsoxmASJdVGDkJhqajjCrBOk8L4VG974dtfoMtgXTWm8
+         zzd+YAd8BBpcnr/qhqWr9ZVYkgJcT/TAKRuGqrXJFsvGrUIh3kTu/8O9gh25pMVy8QpD
+         yYQ9x7PJAkayDMFdSJugqjSvv0yEZB1od1P+cFP5AA5UxYnN6opD+NNbpIMPCtMRljry
+         T5kcX+TKSkpLdjGwLtapshYOVrknkUPVJsy1RF02C2ABfPDUmuqzb/lQboOi227gc7F7
+         Up6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iIfSs1QU1y62hh19vUyf32vrywpZMGQTYBDrvO1iiAw=;
-        b=IJlNgUsXIyrCdNX5NNVwtTUo2t+7xqYSYoUMVPrrBVwB8L7axxv647sPjWrWAwRWVQ
-         mzqLok77rTSghcMGANj2Oz8WdjkEs5b5TXcvGn/gCJGv7+STo2zPvnxgflOPxp3X9I7p
-         QlyXClYWnMGmRfXwngSpWCAne7rkvoZ/ZrQYV8rOxwcfM9B/3pF9kry4kBrQv8w9cIbn
-         ziSKdASMuJCAovKDdwnQF0Nm43ezqxfLhPn9bCCctJ2iPMuVKf5SI3DQ1eO/QpL7y84y
-         TvhzWFjGkZ0XclnSQfkwZh1rIOrkNGxjF1demSrA9nhPVBcrz3T5D5DszuAg/BONwtOF
-         eD3w==
-X-Gm-Message-State: AFqh2kpsQooe3TDc/dzkTYYQ8262dQKqN/kFtPIeG7fiSO/wghvy3c7v
-	X23MnL3tq0ukOxMQ27DXP41SdA==
-X-Google-Smtp-Source: AMrXdXstCCqiov4SnLO9YPRF6ilbaVnOwBM7iOZselENPe8gfNIr7OzYice+0ciH9jM+ocDeKZ2tgA==
-X-Received: by 2002:a05:600c:21c4:b0:3da:fcf1:d4cc with SMTP id x4-20020a05600c21c400b003dafcf1d4ccmr23134268wmj.30.1674467278075;
-        Mon, 23 Jan 2023 01:47:58 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id ba9-20020a0560001c0900b002b57bae7174sm4078111wrb.5.2023.01.23.01.47.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 01:47:57 -0800 (PST)
-Message-ID: <3a3d9fc5-0f61-8da7-dc4c-7b57b0272230@linaro.org>
-Date: Mon, 23 Jan 2023 10:47:56 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
+        bh=wEW/8zJog5ASK2qRbXljjSIfTx60QJ93vwtD14+LGbY=;
+        b=DK214qN5klGlyQo8js2VcEwdAK3lAW/Rx/a8axZrFyZxm9BdiuVV59EaSlqGnfRc7W
+         qAJEn/0b72xRWKy6D+ayDk0JTpen0g85K1XheIg0QFGAjOI5M105PNEI0e1bp0sRZlu8
+         FC/H4e6rGl45KxszSufCNBZGYde5VYbfx58rQhwphuU09rv0ryKEQXTI1choWxViOuji
+         4P2bzc+ZR7VgedUUvtMzN4Brju7To0jW76dDlHynHUYF4LpYdbDLOF//WtlWTAVnYEYS
+         URNpbOMECRrkxonypvb4FqPkY+49bCvxkUbCWpNOG/IpJpyaSVo16khByNfDeYozxSiq
+         hHiw==
+X-Gm-Message-State: AFqh2krSsj/BzTHFr0LI9Cwk0SrrsF2ayd7u1Uz0FWebjL+4aZxWwG0a
+	mR/KibkwNxn/zXA6TBjqX2QfsA==
+X-Google-Smtp-Source: AMrXdXvOLzdEZ+5tsjlSq6NFgEVoE9bw28HxzSxeJSvTcruIKayc/Hq3oGuybhxXiJbtg0VDk9DhNQ==
+X-Received: by 2002:a05:600c:1e21:b0:3d0:7fee:8a70 with SMTP id ay33-20020a05600c1e2100b003d07fee8a70mr23729461wmb.19.1674468600579;
+        Mon, 23 Jan 2023 02:10:00 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m9-20020a056000024900b002bdec340a1csm22670403wrz.110.2023.01.23.02.09.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 02:10:00 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] media: meson: vdec: esparser: check parsing state with
- hardware write pointer
-Content-Language: en-US
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-References: <20230123094300.2816812-1-christianshewitt@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230123094300.2816812-1-christianshewitt@gmail.com>
+Subject: [PATCH v3 0/7] dt-bindings: first batch of dt-schema conversions
+ for Amlogic Meson bindings
+Date: Mon, 23 Jan 2023 11:09:57 +0100
+Message-Id: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
+MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAPVczmMC/5XNTQ7CIBQE4KsY1j4DtNDWlfcwLvgrfQlCApXEN
+ L276M6driYzi282UlxGV8j5sJHsKhZMsZXueCBmUdE7QNs64ZRzxtgAugd1D8mjAY3RYvQFTIr
+ V5RVGNzM7CNtzaUkTtCoOdFbRLM2IjxDauGBZU35+Hitrcf0NrwwodDPlQkyTnuR4CRhVTqeUP
+ bk1uPI/MP7GpLJUUK0lF1/Yvu8vs7aotRkBAAA=
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_014759_661567_C4A823B1 
-X-CRM114-Status: GOOD (  15.73  )
+X-CRM114-CacheID: sfid-20230123_021002_838164_80F109DC 
+X-CRM114-Status: GOOD (  10.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,69 +103,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/01/2023 10:43, Christian Hewitt wrote:
-> From: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Also check the hardware write pointer to check if ES Parser has stalled.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   drivers/staging/media/meson/vdec/esparser.c | 15 +++++++++++----
->   1 file changed, 11 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
-> index df5956c6141d..41b705f999b2 100644
-> --- a/drivers/staging/media/meson/vdec/esparser.c
-> +++ b/drivers/staging/media/meson/vdec/esparser.c
-> @@ -300,6 +300,7 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
->   	u32 num_dst_bufs = 0;
->   	u32 offset;
->   	u32 pad_size;
-> +	u32 wp, wp2;
->   
->   	/*
->   	 * When max ref frame is held by VP9, this should be -= 3 to prevent a
-> @@ -354,15 +355,21 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
->   	}
->   
->   	pad_size = esparser_pad_start_code(core, vb, payload_size);
-> +	wp = amvdec_read_parser(core, PARSER_VIDEO_WP);
->   	ret = esparser_write_data(core, phy, payload_size + pad_size);
-> +	wp2 = amvdec_read_parser(core, PARSER_VIDEO_WP);
->   
->   	if (ret <= 0) {
-> -		dev_warn(core->dev, "esparser: input parsing error\n");
-> -		amvdec_remove_ts(sess, vb->timestamp);
-> -		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
->   		amvdec_write_parser(core, PARSER_FETCH_CMD, 0);
->   
-> -		return 0;
-> +		if (ret < 0 || wp2 == wp) {
-> +			dev_err(core->dev, "esparser: input parsing error ret %d (%x <=> %x)\n",
-> +				ret, wp, wp2);
-> +			amvdec_remove_ts(sess, vb->timestamp);
-> +			v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
-> +
-> +			return 0;
-> +		}
->   	}
->   
->   	atomic_inc(&sess->esparser_queued_bufs);
+Batch conversion of the following bindings:
+- amlogic-efuse.txt
+- amlogic-meson-mx-efuse.txt
+- meson-wdt.txt
+- meson-ir.txt
+- rtc-meson.txt
+- amlogic,meson6-timer.txt
+- amlogic,meson-gx.txt
+- amlogic,meson-pcie.txt
 
-It's weird, but:
+Martin Blumenstingl was also added as bindings maintainer for Meson6/8/8b
+related bindings.
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+Remaining conversions:
+- meson,pinctrl.txt
+- pwm-meson.txt
+- amlogic,meson-gpio-intc.txt
+- amlogic,meson-mx-sdio.txt
+- rtc-meson-vrtc.txt
+- amlogic,axg-sound-card.txt
+- amlogic,axg-fifo.txt
+- amlogic,axg-pdm.txt
+- amlogic,axg-spdifout.txt
+- amlogic,axg-tdm-formatters.txt
+- amlogic,axg-spdifin.txt
+- amlogic,axg-tdm-iface.txt
+- amlogic,g12a-tohdmitx.txt
+- amlogic,axg-audio-clkc.txt
+- amlogic,gxbb-clkc.txt
+- amlogic,gxbb-aoclkc.txt
+- amlogic,meson8b-clkc.txt
 
-Thanks Christian for handling those changes
+---
+Changes in v3:
+- Dropped applied patches
+- Added acked/reviewed-by tags
+- patch 3: removed invalid secure-monitor property
+- patch 4: added a note on the commit message about the meson8 compatible
+- patch 9: fixed mmc compatible bindings
+- patch 1-: unified PCIe instead on PCIE + PCIe
+- Link to v2: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org
 
-Neil
+Changes in v2:
+- rebased on v6.2-rc1
+- patch 1: fixed power-controller, added const: amlogic,meson-gx-sm
+- patch 2: added const: amlogic,meson-gx-efuse, fixed secure-monitor type
+- patch 3: updated example subnodes to match reality
+- patch 4: added reviewed-by, added interrupts, added const: amlogic,meson8m2-wdt
+- patch 5: added reviewed-by, added const: amlogic,meson-gx-ir
+- patch 6: dropped applied
+- patch 7: dropped patch, replaced with deprecated in the title of the TXt bindings
+- patch 8: fixed title, added reviewed-by, added interrupt description
+- patch 9: fixed example indent, added reviewed-by
+- patch 10: fixed const: amlogic,meson-gx-mmc case, fixed indentation
+- patch 11: added reviewed-by, fixed title, fixed bindings after rebase, added clocks/clock-names as required
+- patch 12: added reviewed-by
+- Link to v1: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org
+
+---
+Neil Armstrong (7):
+      dt-bindings: nvmem: convert amlogic-efuse.txt to dt-schema
+      dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt to dt-schema
+      dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
+      dt-bindings: media: convert meson-ir.txt to dt-schema
+      dt-bindings: timer: convert timer/amlogic,meson6-timer.txt to dt-schema
+      dt-bindings: mmc: convert amlogic,meson-gx.txt to dt-schema
+      dt-bindings: PCI: convert amlogic,meson-pcie.txt to dt-schema
+
+ .../bindings/media/amlogic,meson6-ir.yaml          |  47 ++++++++
+ .../devicetree/bindings/media/meson-ir.txt         |  20 ---
+ .../bindings/mmc/amlogic,meson-gx-mmc.yaml         |  73 +++++++++++
+ .../devicetree/bindings/mmc/amlogic,meson-gx.txt   |  39 ------
+ .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   |  57 +++++++++
+ .../bindings/nvmem/amlogic,meson6-efuse.yaml       |  57 +++++++++
+ .../devicetree/bindings/nvmem/amlogic-efuse.txt    |  48 --------
+ .../bindings/nvmem/amlogic-meson-mx-efuse.txt      |  22 ----
+ .../devicetree/bindings/pci/amlogic,axg-pcie.yaml  | 134 +++++++++++++++++++++
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 -----------
+ .../bindings/timer/amlogic,meson6-timer.txt        |  22 ----
+ .../bindings/timer/amlogic,meson6-timer.yaml       |  54 +++++++++
+ .../bindings/watchdog/amlogic,meson6-wdt.yaml      |  50 ++++++++
+ .../devicetree/bindings/watchdog/meson-wdt.txt     |  21 ----
+ 14 files changed, 472 insertions(+), 242 deletions(-)
+---
+base-commit: afb812b3dddfcc711bf2d8a1a8a61378b3af4f8b
+change-id: 20221117-b4-amlogic-bindings-convert-8ef1d75d426d
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
