@@ -4,120 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C66DAC38142
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 16:00:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA65C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 16:20:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Nu7qYZdEfAWyH+/ko0AuSoDo5RmZb8WDUj2iZRqN1R0=; b=aFkw+534PAxcRgstEE0HKFrNnB
-	jj8kDzotMgL5lmCFZBHUxIr7LHmWRAkxcZfHQ8M0vq13G2tGv4Ftd5jibG4ePGDIXvW2Tg9PuVLHm
-	hS9G6AdQrxZgzj/wMDzI4FSsD+0piHJHgY53kvlwSycNwyAC+aOnJ/QTMJUGt2VMazgEgulQxR/vd
-	CW9Hkz2WxW+bSNkRfK0Pq1k+I+OehkEISDRphGIa2kjIfhE2taf2F3JswdYRYqzWGD5+WMmlrHZr0
-	5xj7Xt08UppgnKDCsXlOi1vgxihj9+5GDCN9SfQWv+4fw55Oc1rLI8QtcIB1DZljc6ZjzsJOqCpnD
-	m+MMLpGQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=E+CyaseK37/Fk2AS7GyAhWILGgp2hAePIL3tHWMzAoY=; b=g+oiW1HRwKNRBr
+	HzrzIVnnbR3hjkHv/Tq8o4At9pC2OP+Tzs4mDGsty+gpxAxs6292+wsxU3rwmi+Dm+kIO6P24OIfl
+	hjYWGs+8pIa5oipQ4urvS4hg61Rcs+6EOiH6CapAFi+CBYw5oY/6M7L8Z9ZPPcEh4R+JoLXPC49FI
+	y59l/KOaHJGIHsu9xbFANQDbPtcRUuzAc0JOlxI7UceWa91qGMIk0vKwcGFYLZDwJetBaOdCjzmSg
+	rvZSVENcW1GAHelTpTTMW9nuY+N+IkYnlSi4iTnzJx3JZQmaaI0VIkuxePYdci3tx1j1QM69Mrff/
+	FV/3/9poh62LggUQD7gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJzFH-000NwW-Ti; Mon, 23 Jan 2023 16:00:31 +0000
-Received: from mail-bn7nam10on2078.outbound.protection.outlook.com ([40.107.92.78] helo=NAM10-BN7-obe.outbound.protection.outlook.com)
+	id 1pJzYM-000Usv-UZ; Mon, 23 Jan 2023 16:20:15 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJyvv-000GNS-Cs; Mon, 23 Jan 2023 15:40:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fMu4decx/MA9rlgArBdAUAn5dJsCsMVAx+S2/zZX+Ap0G41Sk5p+/n7pRuygYsH7CWemyUzd1/AouKXSWaNW5YzbtVoj5nct2jEsaAArgHdtnNCB6HGwewPlJxsP7z8m9S7hue9o4l7RrLd28HHBv4qk7OMUvIlf1YGRRPtqlpbkweUVgaLqB523YV+xgkbaJbg878BDfNqNI13BeyZBJP+lv9If8WYvmCihIn5RZp0dWDAp2F4zlDSzPC9k4YlAyvZ2b4DHN5EF+eyDod55bFMlayeT9DMmxMkkVb1Sdv1MMW+LX0TW2MMywrFWmrbwUf2k7hNuHR1Uuiw8HIi1rw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zwVPy3tfDWSTyZtggwhPv4VcayJKldCUePhPLpC0I+A=;
- b=A8dyMLOVP2wET85rBYr1YP4S55qpWKayVpBzgZqyAvcVt93meEveuRNaFUrzGhDghYOJlC3dr/sWC4LWjvrpXwPfdhZ5Nm4gDZwYE4hop0nTKHH5KJTucPV+ZWqfkFfiBhfMXUrkcVWL/zBfBV27KKqLGm1p6rF6rvYFaVafuQH0G1qjpY84FoLWdV5dKmhol/H+zHL1t2wtoYRgupu2LfkL2aLqrJCaZgH9dlkV9IZDYIA3SJ+Mvlarj7D+jIFHDeL0h4BkeKvYDt52xzuftedgYikrsKhe0vLWNBf67zZNISRDrL5wpmhraPzK88KiOdrVlLiNUTuGtqJYlbccgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zwVPy3tfDWSTyZtggwhPv4VcayJKldCUePhPLpC0I+A=;
- b=cBIyb+u3ho7TKfVfwQ5O6FY7g60W7RD4V/f031mACXDPFfdSw2vBvtOux9mpfvMXL2fTIHK3OKWLGiL1nhMacXXR66OGtONHLod2IoDZNNYx4ujGK/HDI8draNDYggBe2bLEwQ+MIl8mT8T0Xl1ZysIStp7E5jAxEwxTvITaAtE=
-Received: from MN2PR01CA0029.prod.exchangelabs.com (2603:10b6:208:10c::42) by
- IA1PR12MB6017.namprd12.prod.outlook.com (2603:10b6:208:3d7::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.33; Mon, 23 Jan 2023 15:40:26 +0000
-Received: from BL02EPF0000EE3C.namprd05.prod.outlook.com
- (2603:10b6:208:10c:cafe::7e) by MN2PR01CA0029.outlook.office365.com
- (2603:10b6:208:10c::42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
- Transport; Mon, 23 Jan 2023 15:40:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0000EE3C.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.10 via Frontend Transport; Mon, 23 Jan 2023 15:40:26 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 23 Jan
- 2023 09:40:16 -0600
-Message-ID: <108eb19b-7e20-4a1d-17db-10370f088a08@amd.com>
-Date: Mon, 23 Jan 2023 16:40:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 04/13] dt-bindings: serial: correct ref to serial.yaml
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team
-	<linux-imx@nxp.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Lubomir Rintel
-	<lkundrak@v3.sk>, - <devicetree@vger.kernel.org>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Michal Simek <michal.simek@xilinx.com>, Chester Lin
-	<clin@suse.com>, Fugang Duan <fugang.duan@nxp.com>, Magnus Damm
-	<magnus.damm@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	Pragnesh Patel <pragnesh.patel@sifive.com>, Le Ray <erwan.leray@foss.st.com>,
-	Peter Korsgaard <jacmet@sunsite.dk>, Tomer Maimon <tmaimon77@gmail.com>,
-	<linux-serial@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-riscv@lists.infradead.org>, <linux-stm32@st-md-mailman.stormreply.com>
+	id 1pJzHL-000Onw-IE
+	for linux-amlogic@bombadil.infradead.org; Mon, 23 Jan 2023 16:02:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=43A1eeWrpE679NQnTX4HGXlIW2NbDWo9ZcYcCEyQGv8=; b=ea8AeUIYD3By6X2dOeM/G3Eh8g
+	oOsAh9hCUYzSjTKYYTAHhH1kApdPhjUISFiQml9AoY1zfFTJZCUUNRXYLyrnbAD2Zr/k0pgR89nAk
+	RvysKcgCDXF5MGpJzvgMrwndehNw9E+5eVbYmUI/OzbmTmQ+KpSxH6PAPeQ84xL43N03JfdZ1VEV0
+	BS9LVMSbVN4tViKdtun0U34NzM7mHcNls/6xFv1ueRj7Mkx9fuD28HSP6OQDiB84cAKYm4gaF4tTd
+	vX/Z01q/kJ0sVwzAI9FabEdML/mZldQb3FFk0ZRyT+WRCx1yQf/jRDJoE9Pt2pNI3Z8noM7nbT+TB
+	NB26Qojw==;
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pJyV6-001ZCc-0S
+	for linux-amlogic@lists.infradead.org;
+	Mon, 23 Jan 2023 15:13:23 +0000
+Received: by mail-wr1-x430.google.com with SMTP id bk16so11100356wrb.11
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 07:13:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=43A1eeWrpE679NQnTX4HGXlIW2NbDWo9ZcYcCEyQGv8=;
+        b=FbKY5x7kOocmY+G15u1Rybl6N5c7s5hINmWMLLUIbiX/Ia7UVazwL9ZlxHQPrvzNe0
+         hmTthuzRAT/WvX5fVZYCvGgbezljFwp4yEHJf/7w0iWxS3KE22I3LPlX5YWIKd5EZY3P
+         NwyQCoxNJQxTUzsgP37xTwwuxTNRiYeM+5Kl2bv84O+8PY4QJxP0qjtbyqXL+BoD54ue
+         GmriCtjqim4n05LitBhAPlA5IsdCIQ8OfYkbsLvk7ijkAi7eUJ51rjKr/zDQRqpI6yXZ
+         ligCskz7bKRdcY2CX+Lj/O1lLGNoGiZp0YCls3ydkJtQdpsBLTnb3UecqVDiGxN/CHsx
+         fegQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=43A1eeWrpE679NQnTX4HGXlIW2NbDWo9ZcYcCEyQGv8=;
+        b=MEkVeoyKFQvmfb3Fp6YnKLgsddZ0ZuW9rtM1UceJi1dPWVtnJvu/EKIgUsUFLOmaZm
+         MlP0nbtRhoYvDdYP81grzl+PrZ2jc0KLF/Trp1O6K7frr3jj0pfmpS/YoodvjAeJzvLg
+         uMxOI7B3LEv1ycdX/NqV0MiUYxD6UwaaUFmH0hYJBs4x1/cA6jE9uXwTIRo8YAXjZ4uy
+         LEELdKFSSIT7NoeHSdsmms9XhP1D/Vy35QgGGOi9I3089jdB86rRBwJRxIupqfWkUw4y
+         6VdwEoOONRqQDh244EDRNoK62UfyTsabOgDEBxW0rWo/lmydvVxMftCfZ0O1/QzlxUOq
+         qJIA==
+X-Gm-Message-State: AFqh2kr1DPw7i8hVwrgRsEjuuXTFL07OYBzvDy7Kpyv1uPw84qvO4LPT
+	4+a2+Km/WrsDvjUceg+Jq8nrBg==
+X-Google-Smtp-Source: AMrXdXv89Fdo1L5qZYdd8EVxzoXYPQmn3ECLVZ91hGdnIDdEE5C27DGKNmJUU86YLBT9uYnmMZ2p9g==
+X-Received: by 2002:a05:6000:1f14:b0:2ac:5b46:9c85 with SMTP id bv20-20020a0560001f1400b002ac5b469c85mr21246802wrb.68.1674486795939;
+        Mon, 23 Jan 2023 07:13:15 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 07:13:15 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Lubomir Rintel <lkundrak@v3.sk>,
+	- <devicetree@vger.kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Michal Simek <michal.simek@xilinx.com>,
+	Chester Lin <clin@suse.com>,
+	Fugang Duan <fugang.duan@nxp.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Pragnesh Patel <pragnesh.patel@sifive.com>,
+	Le Ray <erwan.leray@foss.st.com>,
+	Peter Korsgaard <jacmet@sunsite.dk>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 03/13] dt-bindings: serial: pl011: allow ARM Primecell properties
+Date: Mon, 23 Jan 2023 16:12:52 +0100
+Message-Id: <20230123151302.368277-3-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
 References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
- <20230123151302.368277-4-krzysztof.kozlowski@linaro.org>
-From: Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20230123151302.368277-4-krzysztof.kozlowski@linaro.org>
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000EE3C:EE_|IA1PR12MB6017:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7bdd5619-1978-4fd1-6f61-08dafd582621
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	J9RLUVTKYnrMwsQx5MD7AUOdRy7r3D+deq/Oc6puUglYNio+V1517z5NdGcTK7O8ycB4AjzgVU8i1F5BhYU74vPJinCvifg4nIvQ4xDGCEOdD8tp6HFLBaF+530itw/WF8YsGKQAqoHD0rqeZ1pWvvdB2KKsEbVarQiHtBiS38mLZmZzgNGIPnZX5zSXV2CyHq2FQs2d1P+ZD0OqxY+ngbghOOahtRdxqN3YUAkSzoBbIXmAA461wZe96VXEdb54mJe5IdZyXYX/iT594fiBpR+0Ft4zhlMX8JhL3Uq4HyMVTBHnJ29b5yiY8aOxz07WR74G5kJFGI5idbDRXKkTX2vef98N1wk+tk8zEavLNCXFrXwnXhXy5EsrEwfFJOTzN1/MkFDRBY1Mz92QJdxYEabcet5n+JdJXr5oUjdK4P4nzUFDEg0F8aVFTkVPADz3MVO/3Dnh9ioDnkd0H1H5RdOZ26/8BP19ZYL2jpe3gAvSroBvKl/PUU9LLZyvqGuBBJzUz3HgY6HaccM755H5n6aL9BMUuj7WEU+O978hb0sEsuxdcDBF9hafP5turmXBgviCjV07pShdj232+IscKvKtVHm4LpQ9P85xB4f5KT6WJ4AMsqbnULmZ6KJZSiaVVt0fgASq6d+HWdf6GFvMdgbs3M/5D6qA5tyZ7IUoqaz3T5R9NZLGEOXPVYLW7BBt+E0aJy+k/pgece2VeITnO+7JbfWtyjZ3ryA6zyVSoxLbF3XkImzvAiZCLvI8N517ySijGkPf08ikPzqgaxEjP/lm60KNEAxrMqfxYsKM3xraJ4mfQCKT4Lwe3te533nrVua0BZ1V+kMHQNxlmyPhhg==
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(346002)(376002)(136003)(451199015)(46966006)(40470700004)(36840700001)(36860700001)(316002)(16576012)(86362001)(70206006)(70586007)(8676002)(36756003)(110136005)(186003)(26005)(16526019)(40480700001)(53546011)(83380400001)(356005)(921005)(478600001)(2616005)(81166007)(336012)(31686004)(7416002)(7406005)(5660300002)(40460700003)(44832011)(47076005)(8936002)(41300700001)(426003)(82740400003)(2906002)(31696002)(82310400005)(36900700001)(43740500002)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 15:40:26.4240
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7bdd5619-1978-4fd1-6f61-08dafd582621
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	BL02EPF0000EE3C.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6017
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_074031_513246_9F7E2D78 
-X-CRM114-Status: GOOD (  17.44  )
+X-CRM114-CacheID: sfid-20230123_151248_321574_3E991723 
+X-CRM114-Status: UNSURE (   9.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,65 +133,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Reference ARM Primecell bindings to allow typical Primecell device node properties:
 
+  broadcom/bcm2711-rpi-400.dtb: serial@7e201000: Unevaluated properties are not allowed ('arm,primecell-periphid' was unexpected)
 
-On 1/23/23 16:12, Krzysztof Kozlowski wrote:
-> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
-> 
-> 
-> The serial bindings should reference the local (in kernel) serial.yaml,
-> not the /schemas/serial.yaml.  The latter comes from dtschema package
-> and is a small subset of serial bindings.
-> 
-> Usage of the local serial.yaml allows typical properties and children:
-> 
->    xilinx/avnet-ultra96-rev1.dtb: serial@ff000000: Unevaluated properties are not allowed ('bluetooth' were unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   Documentation/devicetree/bindings/serial/cdns,uart.yaml         | 2 +-
->   Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> index 876b8cf1cafb..0c118d5336cc 100644
-> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> @@ -10,7 +10,7 @@ maintainers:
->     - Michal Simek <michal.simek@xilinx.com>
-> 
->   allOf:
-> -  - $ref: /schemas/serial.yaml#
-> +  - $ref: serial.yaml#
-> 
->   properties:
->     compatible:
-> diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-> index 2f4390e8d4e8..6f65e9a81c29 100644
-> --- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-> +++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-> @@ -63,7 +63,7 @@ required:
->     - xlnx,use-parity
-> 
->   allOf:
-> -  - $ref: /schemas/serial.yaml#
-> +  - $ref: serial.yaml#
->     - if:
->         properties:
->           xlnx,use-parity:
-> --
-> 2.34.1
-> 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/serial/pl011.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Acked-by: Michal Simek <michal.simek@amd.com>
+diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
+index 80af72859876..9571041030b7 100644
+--- a/Documentation/devicetree/bindings/serial/pl011.yaml
++++ b/Documentation/devicetree/bindings/serial/pl011.yaml
+@@ -10,6 +10,7 @@ maintainers:
+   - Rob Herring <robh@kernel.org>
+ 
+ allOf:
++  - $ref: /schemas/arm/primecell.yaml#
+   - $ref: serial.yaml#
+ 
+ # Need a custom select here or 'arm,primecell' will match on lots of nodes
+-- 
+2.34.1
 
-Thanks,
-Michal
 
 _______________________________________________
 linux-amlogic mailing list
