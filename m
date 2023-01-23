@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257BAC25B50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 21:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8857C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 21:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uTKL+6Mp7ShVlPJYP4Ygwin9NjpZg1LsO6r4MVidPhc=; b=jvbLR9z6wn6aoq
-	PnzydicH19AAvNJ7nAu3GxTpqmfmFrOoE8WSyIsVHtKj7aAc2qValao7/6Sd8yiiAymq1Wvu5QWk/
-	fEr2yiP5ucymNOTjg8waJR/9kaf8MTLBP6aFFIJFqEOzD75Njy91hcs+mcxA7AlhxzAmc425e0UK1
-	vS/TRzJ9v0hxML8L9S2hEUkotfXepQBkE7EnUfeSIvObgly/1/ne7otvYrRQyvdJhk77Zq+mGNI5Q
-	4ANih0mY0wCnxoFDkAH/b0eHLDOzp5v80+Zud9SFClyTLC4QWHWGzdDbuZunllZS+VTGhuRAkQ5Yr
-	c8hQnFHeieyxvrY8Rl1Q==;
+	List-Owner; bh=WZVaRyHEEKclT+QtzXAfFOvaS+vg9bi7AOpaiReGZvg=; b=lO/fXZTelTw+gL
+	puzt8dyZfn/BhD+gssH7zA0WGzIfLvKzjziavI8vAuLNlheSjJgd6id6bBT1X3NE+J2CCewujkM59
+	fAtroZnfOQ9Jr0YdkLHe7tZgEroSDLDMe7YKcVuREu2dlMRQ7LmkM4ekn7LnalzEsmx5JARXVCCRV
+	kP1U4NbxcsZHcNnTINS8az1BgcWytSGwU/WVu8SjYzfTTflQSTliaTIPSStqXmJ7AP6jCn4eZBMNn
+	t8eKG4smdQQiQVSeuXvIc9vmT0ql6BYq2bTTvogfjFU3Gphl9nAJZQ2UcZeZ3Ho08k3ltm/ET5o4W
+	vkeeC2421LVfHkeqeBAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK4Po-001WPM-FM; Mon, 23 Jan 2023 21:31:44 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1pK4QB-001WYN-V8; Mon, 23 Jan 2023 21:32:08 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK4PF-001WDC-7T; Mon, 23 Jan 2023 21:31:10 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id kt14so34131628ejc.3;
-        Mon, 23 Jan 2023 13:31:08 -0800 (PST)
+	id 1pK4PH-001WDs-49; Mon, 23 Jan 2023 21:31:12 +0000
+Received: by mail-ej1-x634.google.com with SMTP id u19so34064790ejm.8;
+        Mon, 23 Jan 2023 13:31:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fMrJ0puhHaYAGR7cm+2T4ZLMvI2HK00WmCCvIJxL5IA=;
-        b=gFPn1gofsTEjfe5fmlsW5Inpoe4DwFbR95+i+S45tZmbAqXCaIjowyMwdc7gtxurxj
-         mVQQJqa44VSh6iilow0gQCQ/FYMyt3u+buBnsHB0gX8D3fgT6qLfTmJMId+HaODJgjre
-         2JDfNd2yiadPaJ2Kdydvt9vua3v20MXod6AOVxzRWhay3knzW8AwJdK+HZ3eoDhsaAxy
-         3afI7s87SbJXTffE+tzx8ZsGdWAI3wvaXNuDGWE3UwsuQEMLp+cWUM2Ug5co5BHaT3tX
-         ZfZahSAmxm0Ur/oZAwFfHCb9Q5QTeXjy/47cnd0UoUUd/NYJ4zbgx8i1ktNh9WRmAx46
-         x0OQ==
+        bh=Un1aIXb/s/PKugP8//FCoRiSMsC8Vbj0OkVggBYv44k=;
+        b=BQHQ15sjD9Zmxq9li4qWVrQODpoioHmp69SIDBclES3TT9To/vQdfkNCiegiY9ois3
+         dD0Ww/ODn3YhaQK7qZWBlS6oxG9BMNef2WTc7zyVWEs9+CrgyCSP4O5eVzvBla95n+5y
+         UoIIQq/BzGNojbEYzDMq3nniVGJvHaQLvGQf8Qc5RmgkcA5l9/LKKmLeN45tOYXfKCLE
+         Piujtfx7tyNjIeyPpE/GBeLDxb9YWfbO2Gv+RvvtWDlpPQc5hxy5zsCJwBJ3f3WfjOFi
+         gMyEFWeO008QTwGSbGMpR6ZFDR+ikh1XL6+G1zNdtxmAU5ZHYGL7sgtzt711/t53g7sG
+         QYOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fMrJ0puhHaYAGR7cm+2T4ZLMvI2HK00WmCCvIJxL5IA=;
-        b=wRqnU/xX0mpf8a/T9cM4o2vP5vCmjEWiEQydUcwtrzd/yvzm+IUuCdYRmaR7N8uHvv
-         fnA0Z/u+WCfTpGWfogZfr44XakuDbag58QnFG78UbquSQaC3QFcMPyuZc2ju9KFmSLYj
-         WJzV2LGZmDM2l8vWg7FONFpNwaIH9O8TghP+wpXtJelW7sH9IurddhgfVweOXhOvRgU8
-         KxOjnfyhi/po2V5OvD3UpxfwaTfb6LqNTaZyoDvIyVGSFIUa/SNkmOEma8k9BVVbyiY9
-         LUAzPBojb8xOm0W5+SJhYmvvKrP0upZrB7i9mvMfIn1UIIoQ6sht62wPFeNm9B4yTASX
-         hrfw==
-X-Gm-Message-State: AFqh2koSmj1m5WckAM4kA7zv/R6ZSgvxFm3wEkrPcAwASnXUoPCj7UZh
-	Rs0Y8Hn2wuC3WvgiQeYrl0s=
-X-Google-Smtp-Source: AMrXdXsuUDGL/8bnnpTryWjO06y2FoaJUV1fwx1U6RARROXcXxnInatXg6PO9RTMoNTQoqMwU57JHg==
-X-Received: by 2002:a17:907:80c7:b0:84c:eca0:5f67 with SMTP id io7-20020a17090780c700b0084ceca05f67mr28344950ejc.54.1674509466752;
-        Mon, 23 Jan 2023 13:31:06 -0800 (PST)
+        bh=Un1aIXb/s/PKugP8//FCoRiSMsC8Vbj0OkVggBYv44k=;
+        b=5usDn1m1KFd5rzQNQzxftVemZeuS0Ezk2STckrmmABD5rp/88VfEjJpKJGP3aYqc07
+         0JQ23RRSPeSbYwt13EKUmdBqnF78epYOdQzlHDHV8qbRbhLQGbKUSiefFzNoaLzZ73qg
+         qFRUNB7VTKiX7Vn0wDbYQJydnIdrR12NBGXiTudha+GIIZUb3sCApW4ZwZjtHBMJCn0D
+         z4Y45UNZG2HWtn5gIQTgi/DDCbBKTDzvXdBW0xzF1JSNtcEoWEYgLmWkcER750v8k1rq
+         YavKXwxv/Z51nfmp5WUjmJMAmAmWxxVOKZRvmYrHUbesY54wM5Cg18VIiJLF6boxF+82
+         V1+A==
+X-Gm-Message-State: AFqh2krgb9jqbc5OP7pyPBypgthyBRt8qarQ8/Ob3NLCZzl24YLOjYQf
+	OVEFg2LXXysJBEyDflDtJFs=
+X-Google-Smtp-Source: AMrXdXtI5ruDD8b/KqLojtAaBvBuKJTVK0yaBb/og4Phc7X+C2pczX+2Q0VDDWtNn/t03TMBMa5qig==
+X-Received: by 2002:a17:906:a88c:b0:7c1:5098:907a with SMTP id ha12-20020a170906a88c00b007c15098907amr27264241ejb.35.1674509468773;
+        Mon, 23 Jan 2023 13:31:08 -0800 (PST)
 Received: from ?IPV6:2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7? (dynamic-2a01-0c23-bc5b-9400-dc4c-6fb7-47b2-beb7.c23.pool.telefonica.de. [2a01:c23:bc5b:9400:dc4c:6fb7:47b2:beb7])
-        by smtp.googlemail.com with ESMTPSA id kz16-20020a17090777d000b00877961fbaffsm5888982ejc.15.2023.01.23.13.31.05
+        by smtp.googlemail.com with ESMTPSA id ss17-20020a170907039100b0084debc3fdadsm19245354ejb.188.2023.01.23.13.31.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 13:31:06 -0800 (PST)
-Message-ID: <25708b33-6f58-bde0-2fa7-089e6d89b552@gmail.com>
-Date: Mon, 23 Jan 2023 22:25:20 +0100
+        Mon, 23 Jan 2023 13:31:08 -0800 (PST)
+Message-ID: <94431754-d187-aad5-c374-67af70fcf982@gmail.com>
+Date: Mon, 23 Jan 2023 22:27:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: [PATCH 3/8] arm64: dts: meson-gx: Set only one compatible string for
- mmc
+Subject: [PATCH 4/8] arm64: dts: amlogic: Remove invalid compatible string
+ amlogic,meson-gpio-intc
 Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -88,9 +88,8 @@ Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
 References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_133109_311000_1A475D30 
-X-CRM114-Status: UNSURE (   9.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230123_133111_206556_39C101BF 
+X-CRM114-Status: GOOD (  10.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,43 +106,116 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In preparation of schema-based validation use one compatible string only.
-Both are aliases anyway.
+Remove invalid compatible string amlogic,meson-gpio-intc.
+See drivers/irqchip/irq-meson-gpio.c
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 3 +--
+ 7 files changed, 6 insertions(+), 13 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index ed895fb32..4ee4d0089 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -1761,8 +1761,7 @@ reset: reset-controller@1004 {
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@f080 {
+-				compatible = "amlogic,meson-axg-gpio-intc",
+-					     "amlogic,meson-gpio-intc";
++				compatible = "amlogic,meson-axg-gpio-intc";
+ 				reg = <0x0 0xf080 0x0 0x10>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 80d82f739..9bf81e51e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2179,8 +2179,7 @@ reset: reset-controller@1004 {
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@f080 {
+-				compatible = "amlogic,meson-g12a-gpio-intc",
+-					     "amlogic,meson-gpio-intc";
++				compatible = "amlogic,meson-g12a-gpio-intc";
+ 				reg = <0x0 0xf080 0x0 0x10>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 75d35dcfe..c0a311da4 100644
+index c0a311da4..86865daf7 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -601,21 +601,21 @@ apb: apb@d0000000 {
- 			ranges = <0x0 0x0 0x0 0xd0000000 0x0 0x200000>;
+@@ -278,7 +278,6 @@ cbus: bus@c1100000 {
+ 			ranges = <0x0 0x0 0x0 0xc1100000 0x0 0x100000>;
  
- 			sd_emmc_a: mmc@70000 {
--				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
-+				compatible = "amlogic,meson-gx-mmc";
- 				reg = <0x0 0x70000 0x0 0x800>;
- 				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
+ 			gpio_intc: interrupt-controller@9880 {
+-				compatible = "amlogic,meson-gpio-intc";
+ 				reg = <0x0 0x9880 0x0 0x10>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 923d2d8bb..8d8fdad6a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -300,8 +300,7 @@ &ethmac {
+ };
+ 
+ &gpio_intc {
+-	compatible = "amlogic,meson-gpio-intc",
+-		     "amlogic,meson-gxbb-gpio-intc";
++	compatible = "amlogic,meson-gxbb-gpio-intc";
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 04e9d0f1b..5a8f47313 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -312,8 +312,7 @@ &clkc_AO {
+ };
+ 
+ &gpio_intc {
+-	compatible = "amlogic,meson-gpio-intc",
+-		     "amlogic,meson-gxl-gpio-intc";
++	compatible = "amlogic,meson-gxl-gpio-intc";
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index ad50cba42..6b74a6995 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -109,8 +109,7 @@ gpio: bank@4000 {
  			};
  
- 			sd_emmc_b: mmc@72000 {
--				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
-+				compatible = "amlogic,meson-gx-mmc";
- 				reg = <0x0 0x72000 0x0 0x800>;
- 				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
+ 			gpio_intc: interrupt-controller@4080 {
+-				compatible = "amlogic,meson-s4-gpio-intc",
+-					     "amlogic,meson-gpio-intc";
++				compatible = "amlogic,meson-s4-gpio-intc";
+ 				reg = <0x0 0x4080 0x0 0x20>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index 617d322af..733a5d578 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -513,8 +513,7 @@ &ethmac {
+ };
  
- 			sd_emmc_c: mmc@74000 {
--				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
-+				compatible = "amlogic,meson-gx-mmc";
- 				reg = <0x0 0x74000 0x0 0x800>;
- 				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
+ &gpio_intc {
+-	compatible = "amlogic,meson-sm1-gpio-intc",
+-		     "amlogic,meson-gpio-intc";
++	compatible = "amlogic,meson-sm1-gpio-intc";
+ };
+ 
+ &pcie {
 -- 
 2.39.1
 
