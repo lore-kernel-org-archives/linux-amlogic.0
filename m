@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B94BC38142
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 13:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8216CC38142
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 14:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=lem3PQVB+zjCh4gKRox8D1NDJdqVIkkNr6vKk46o/yM=; b=3ev+L7pL4i1x8t
-	q2W5MhLDvZoz2P3uWKUdnHIymp2mkCYX/00dowSl85QueXrBRbrZ/uw84gEXfAEW718b6iByToiAj
-	o9ImNFGBi+2tGff3DaF84xa6GxTIP6SNfgnxwCQbUwR7L4Jnl7ez2BQDW3X2o+nPF0yXSw7lJL8lG
-	NMp95ymOrljsPW3sCRWXVgxj2zxSOYUCZfObFGjHY6rvIzK6/wtOvw5LSTgpByUN6KDVj7whQ/t+V
-	HP5e6ZLpsnhJpL6UurmOxhQlT/SZPrPKzNhM44dtdLXeIRc7Bgjz5Ely3UCwEAATYbidCXDckuecY
-	vEDDuhDV/MEjVQ9OaQHg==;
+	List-Owner; bh=hgA/l/FoT8GLlKbprtBpXXJYZ2805Yjpzi8Pq7SsN8Q=; b=UNG7x3xal9R87q
+	c7EgAHQ75TndAW++vVn7sDz07GPKFLtJ2en1KkDtbHwXNDKSZwNjEGeBQlJbIJZCbPpoLSo4WU+jH
+	HVp27Eyt0S0vXHyRlAT1/p+prm5wfiuQvk8IZ75Bk/4kaT09pWCiYazH1QCOX1BbETlugrq96Nq6R
+	7bXsCOg/upfITJ1FfyMgkM0fmEGKYqfr8Tt+BpesL/7+yTgP2s4sfyG/K6j7P1tGXSQUUua2XjSVg
+	bUkdbiBoOEbwhpRTUFWYM7kW+Ng1emOwegMYxJ8Q+3ProuW1Ojt/9B3Tj/RzM7AVry8pbPc1KAHTq
+	VS+6ZH6vh1/G/YUjEPwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJxEU-00HRee-Ld; Mon, 23 Jan 2023 13:51:34 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1pJxTt-00HVs8-Ve; Mon, 23 Jan 2023 14:07:30 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJxEP-00HRa6-MC
-	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 13:51:32 +0000
-Received: by mail-wr1-x436.google.com with SMTP id r9so10877229wrw.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 05:51:27 -0800 (PST)
+	id 1pJxTq-00HVor-Br
+	for linux-amlogic@lists.infradead.org; Mon, 23 Jan 2023 14:07:27 +0000
+Received: by mail-wm1-x332.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso8632416wmq.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Jan 2023 06:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S/aPgVYxytvHxJllto1N4mW/e7BZnp3Uj+u6VxCc02s=;
-        b=pnUkWpGE8BU1Q/ZnWNSy8A1mAVzk+vB6belwCcQ6B3j2xskVbgg7rpB5MpSX2SvCod
-         hjJZoCIBz6pNKwMd/S23aQh0SZm7CmwLVYWvz4VvtrflwdI1VXMsl+ipBvlXgIkfxvdw
-         FqtyjR6NeU8usGBc7JIuBatSjTiyxuZ4xt85B7jdU+Bp16JDPY1WTnoMoj1qOxP0LcXd
-         AD8f6IYPWsO4/HPjUdV+u4djT89UWS+8+B6w8aIot0x8uJfN8unsaLVpqT0Ry+Cml5Lb
-         Wm/uO+BAOF7QLUrrRBRPT1lrV4zgIBErh6WT/dvdtHActXqkSXNFOIwa0U/2KOjfoMfH
-         bH3w==
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fMK/+RMwR61EzRWy37zhx+HZF9yxvaCOnadqFz7PJVw=;
+        b=CM0oF444X+aiG/eAAfU0knzXf6q2ftR8sHRJ8V0RejWsFpHX3FCCyzj01HX+1++CZV
+         uNmAr8rUeVhaMPUXrwAOg9d+0sKIiMh16Fc3wSZrUEeORQztIpm89kg+mKWmqrAKSkE7
+         0CRqR/f2W6z2MY4kxFhF1RWweemt9/0Zx7TU3ru5FL7ycTSe5WLYgpH9A2vs0+YKMiLJ
+         Mb3ZRCHEf9XFbu+aQzUhrn8lUwEZFXylevywtMKfzXm7cZT6lpE0v2IqXufMVyBNa0UG
+         6P3mzHiGL6qgA63HBybmQQFA1TOZlZGa6RnKf3wFscxfL1rBl1baf9Kdl5DAqyczAsKH
+         /IAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=S/aPgVYxytvHxJllto1N4mW/e7BZnp3Uj+u6VxCc02s=;
-        b=jfKN3Y3GU6FR7WhWNtVrnNVLp7BOERSkgOPPfhsjRCb4fgZK7JYghtNiN3VWP7gAsk
-         yvtbuviFVwii1lSMXf40/7pCzdH5FiMKgy/eQXesQnPK1JXFMRLqc5SHp9ihEgT86OoC
-         1zVcewZCT/3QkYVb9Bxu14KFFTknBmUmMXeuy9rJTw3Gzv2e6K0iifvka+id0JfQGfa0
-         4mQbSuDlULlQI9ZChw6vQaoSQ3HlSIZPXMjjR9ko0xWiisNDq8a76pqEI5B+d26rdCEU
-         tDELOlefSjgxaog5mfT9O+NNaxEVg03bqHxJuoNACQiRblOadQdkUXnsx6rQH1ONEDqd
-         PM1Q==
-X-Gm-Message-State: AFqh2krrUE7TuFjqaA07Ql0U2UMr5Pl2nahk5B6fvYE4mBLvlM10zcAL
-	aMlwCB6gt046vHpuaVHaYA8PdA==
-X-Google-Smtp-Source: AMrXdXu8LYL65Syg8VeA91+RRN/vtoihzlCknkCIPZF3kK+2V4F+Fo/u29x7IHbFhomd/NYSoXD74w==
-X-Received: by 2002:adf:fc4c:0:b0:2bd:dbbb:e7e2 with SMTP id e12-20020adffc4c000000b002bddbbbe7e2mr20364277wrs.60.1674481885872;
-        Mon, 23 Jan 2023 05:51:25 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z12-20020adfd0cc000000b002bdff778d87sm19412230wrh.34.2023.01.23.05.51.24
+        bh=fMK/+RMwR61EzRWy37zhx+HZF9yxvaCOnadqFz7PJVw=;
+        b=dYeLskwIVOhSsOv0NXjbybMj/PaeaSH4Z+/I1YvwyLQ5IIt3vU/Ajo9FdPmXjT4VCu
+         Qe1/Ys+GbjBPg1xv85PSN0sOoR6XhLDTPx4jMmGWNgX/gRpixdQ68JLihtl/B41TvcQz
+         QA7QWMDyuB0zuvUKHcPT/oPwCumyvZ2QwDh57wXiRaHHbMPN2cnOUTp7nc0ScmVp/RIO
+         vzZRVtoDa9v2I8Ci8bMP/9bREER4iBTf8XK9oUd45IlOj/qYAxbpfZHi0ws5llM5l7Ai
+         w2wN1pfSGZ6MZApK00T6m5nN9Ur9LRMB/ISuclReJqoejEyR6D0B+HlrbzMyfhb7jhnS
+         xIOg==
+X-Gm-Message-State: AFqh2kpLI0J6r0d4156xhJJtyYNk8QszB0A/UjCkbPoyGrEhrEM9SH8r
+	kX8GpyjYCYgg44q7RxuJSpFwTw==
+X-Google-Smtp-Source: AMrXdXtJfkW4hbK0327mqFk53zxLlnRblI0rDrk+cXT98CF5YwUFKDniiT98vVncOHdBgU0uXWowvg==
+X-Received: by 2002:a05:600c:4f45:b0:3cf:68d3:3047 with SMTP id m5-20020a05600c4f4500b003cf68d33047mr24275228wmq.41.1674482842339;
+        Mon, 23 Jan 2023 06:07:22 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id q7-20020a05600c46c700b003c6bbe910fdsm13841655wmo.9.2023.01.23.06.07.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 05:51:25 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Qi Duan <qi.duan@amlogic.com>
-Subject: [PATCH net] net: mdio-mux-meson-g12a: force internal PHY off on mux switch
-Date: Mon, 23 Jan 2023 14:50:37 +0100
-Message-Id: <20230123135037.195157-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.0
+        Mon, 23 Jan 2023 06:07:21 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/3] arm64: meson-g12b: add initial support for Odroid-N2L
+Date: Mon, 23 Jan 2023 15:07:15 +0100
+Message-Id: <20230122-topic-odroid-n2l-upstream-initial-v1-0-1ce5e08039d0@linaro.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+X-B4-Tracking: v=1; b=H4sIAJOUzmMC/x2NQQqDMBAAvyJ77oLZCrb9SukhJmtdSDeyiVIQ/
+ 97Q48xh5oDCJlzg0R1gvEuRrA3cpYOweH0zSmwM1NO1d0RY8yoBc7QsEZUSbmupxv6DolLFJ7z
+ xMI+DG+8UHLTO5AvjZF7D0kq6pdTkajzL9z9+vs7zB8agXNiIAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Dongjin Kim <tobetter@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_055130_016241_32EFBD65 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20230123_060726_484099_32B513D2 
+X-CRM114-Status: GOOD (  10.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,77 +95,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Force the internal PHY off then on when switching to the internal path.
-This fixes problems where the PHY ID is not properly set.
+ODROID-N2L is a variant SBC in small form factor and some peripherals
+are removed from ODROID-N2PLUS based on S922X SoC.
 
-Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
-Suggested-by: Qi Duan <qi.duan@amlogic.com>
-Co-developed-by: Heiner Kallweit <hkallweit1@gmail.com>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+- On-board ethernet is removed      
+- On-board RTC is removed        
+- USB 3.0 hub is removed, so one USB 2.0 and one USB 3.0 host ports
+are available                                                                               
+- Huge heatsink is replaced with 40x40mm heatsink, 5V active heatsink
+is recommended or a tall passive sink is optional                  
+- 3.5mm earjack is removed                                                                  
+- IR remote receiver is removed                                                             
+- MIPI DSI port is added
+
+So achieve this the current odroid-n2 dtsi is moved as odroid.dtsi
+and only the N2/N2+ changes are kept in the odroid-n2.
+With this only a minimal changes are needed to support the Odroid-N2L.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
+Neil Armstrong (3):
+      dt-bindings: arm: amlogic: document Odroid-N2L
+      arm64: dts: meson-g12b: move common node into new odroid.dtsi
+      arm64: dts: meson-g12b-odroid: Add initial support for Hardkernel ODROID-N2L
 
-The initial discussion about this change can be found here:
-https://lore.kernel.org/all/1j4jslwen5.fsf@starbuckisacylon.baylibre.com/
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     | 448 +--------------------
+ .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     | 125 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi | 445 ++++++++++++++++++++
+ 5 files changed, 581 insertions(+), 439 deletions(-)
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20230122-topic-odroid-n2l-upstream-initial-8e4f741792c1
 
- drivers/net/mdio/mdio-mux-meson-g12a.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
-index 4a2e94faf57e..da61f00a6666 100644
---- a/drivers/net/mdio/mdio-mux-meson-g12a.c
-+++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/bitfield.h>
-+#include <linux/delay.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/device.h>
-@@ -151,6 +152,7 @@ static const struct clk_ops g12a_ephy_pll_ops = {
- static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- {
- 	int ret;
-+	u32 value;
- 
- 	/* Enable the phy clock */
- 	if (!priv->pll_is_enabled) {
-@@ -163,18 +165,25 @@ static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- 
- 	/* Initialize ephy control */
- 	writel(EPHY_G12A_ID, priv->regs + ETH_PHY_CNTL0);
--	writel(FIELD_PREP(PHY_CNTL1_ST_MODE, 3) |
--	       FIELD_PREP(PHY_CNTL1_ST_PHYADD, EPHY_DFLT_ADD) |
--	       FIELD_PREP(PHY_CNTL1_MII_MODE, EPHY_MODE_RMII) |
--	       PHY_CNTL1_CLK_EN |
--	       PHY_CNTL1_CLKFREQ |
--	       PHY_CNTL1_PHY_ENB,
--	       priv->regs + ETH_PHY_CNTL1);
-+
-+	/* Make sure we get a 0 -> 1 transition on the enable bit */
-+	value = FIELD_PREP(PHY_CNTL1_ST_MODE, 3) |
-+		FIELD_PREP(PHY_CNTL1_ST_PHYADD, EPHY_DFLT_ADD) |
-+		FIELD_PREP(PHY_CNTL1_MII_MODE, EPHY_MODE_RMII) |
-+		PHY_CNTL1_CLK_EN |
-+		PHY_CNTL1_CLKFREQ;
-+	writel(value, priv->regs + ETH_PHY_CNTL1);
- 	writel(PHY_CNTL2_USE_INTERNAL |
- 	       PHY_CNTL2_SMI_SRC_MAC |
- 	       PHY_CNTL2_RX_CLK_EPHY,
- 	       priv->regs + ETH_PHY_CNTL2);
- 
-+	value |= PHY_CNTL1_PHY_ENB;
-+	writel(value, priv->regs + ETH_PHY_CNTL1);
-+
-+	/* The phy needs a bit of time to power up */
-+	mdelay(10);
-+
- 	return 0;
- }
- 
+Best regards,
 -- 
-2.39.0
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
