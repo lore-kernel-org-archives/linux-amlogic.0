@@ -4,76 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB784C38142
-	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Jan 2023 16:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF33C05027
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 06:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yy5+GgQ9MqzOlJRlxXR/QBeEeJpvsS01yIydZovJVz4=; b=w8wSQR7agwaNcT
-	+jDs2j190vcjPpLh3b0cOu/UDSSoUmLLEmTZYlTs4KW7r+p8njpzsmaVcdNLdQOIjfgj5n56ETDZK
-	zsfS5pSjdo/BbYASzwq9q4Ib/LrXVS1NMo44Ux35qCDy9wK/8no5PKEp1lRW9iHc3jYVMj5SDEhWl
-	yrOuHLZZ12jSY7VTKd6MMVVwZgeWlmlKd1pZeX1V0Plr8P1zpqTVhqgf5iYCGRsWMXTtCjjMbj5l/
-	nI+hKimZujq4Kz1ijR0YMnyAQJyBe80IQEbOA2YHtC6IyEp5GKFJPJpIp1Bmx2tCMOkKZ6SV2KL8D
-	W+XgqoiHwrfIRxjCT+nA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=O8A3T/ZM7h5KQFytXqa12caSYfKHQ6u3aM0qD0NKu1U=; b=sNBc5GzJlDGQ2T
+	afSap7gmA3RVkYCNdYcux0c/XnmlbPIup8Xy4ZEKClc02pp0CLVm1RiUTVxrPi9zCRJRMYpE5iVE2
+	l4C1lR6pYtn0GRJZtLFlLP0U+7mSEHxlstyVqQ+Mhfv4U0EKviHdEwz6MykXefwKoKhYZq9On3iDB
+	KCDIFmsjQtgXQ7FwOdPMLy9RaVO8Qa4wgNunIsn4zTe+8dQEmnTwZIyzUicGjJK7431I/SzoMnBtQ
+	PGTb9mXN/8lieC2sAq6xN1nIlUEgo8PH5ofDQpqe1L9ylYFW1/72AvBkEqOdO9FgYx53elGP8YPR1
+	8N8l9ujxuZ9zJc+FiT9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJdN7-00FY10-2E; Sun, 22 Jan 2023 16:39:09 +0000
-Received: from mail-vs1-xe2c.google.com ([2607:f8b0:4864:20::e2c])
+	id 1pJqji-00G7ig-NY; Mon, 23 Jan 2023 06:55:22 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJdN4-00FY08-Rv
-	for linux-amlogic@lists.infradead.org; Sun, 22 Jan 2023 16:39:08 +0000
-Received: by mail-vs1-xe2c.google.com with SMTP id l125so10619842vsc.2
-        for <linux-amlogic@lists.infradead.org>; Sun, 22 Jan 2023 08:39:03 -0800 (PST)
+	id 1pJqjY-00G7fB-6a; Mon, 23 Jan 2023 06:55:13 +0000
+Received: by mail-wm1-x330.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso7753606wmq.5;
+        Sun, 22 Jan 2023 22:55:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
-        b=jJdJqLIc+y4MZw9WOKgOIdA8RdCtfAyAC4ly6O+FiaPwA6i9Vkj6mOnl7k0Nid0rin
-         vUWH1uUMl96R8SgK/deZTF8bEAmms9Nlqbdz/TqRNyH/n8LkH0+FUYwEqxlIEhBl2UaO
-         e3C4TFeYyqsO46rVZHVBRMjOJeJQ7Ces6Woo+UX2sZJG7T3RmJ+erLJK5cdvVFz9qcLq
-         TjvZVcQEhCXfFKSNPapz+4oBkNleg/HQVrykDvKhs0V1kciTCYEsLoe9n86Vm3UqjEgn
-         bApLH9Pjo2Jj82mMMZm1CfXu9qfcTDbem4SSaMcmxZzZOQ/uIp0lXWdwvusE3CcjAraJ
-         l9Iw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DJ7pZzP7l4POQysOuFD6RXLwFmeQ64kf4EXzL/9/vCM=;
+        b=SZB5f+BslCr+6rnD0bGuhWHfYC/po5PbklRCKScbGHMO0v/+I0mDslXhXkgAcZmBnH
+         72IEMHTBkvjUwP93/p28l8dU0+rVyWttiSgV5PpcNryp+ZTeaLSONqb5ZlBKP79CwMeg
+         5ZS+6HdQEJyGFviao39g0tKfGHu5gz5yrD23BvA/VaxZCl05v0d/efDW9xjrfSGioF/j
+         dOErQb/eVijdT0UGYROqjN7uwaAAYjnfXYkmX+dbCzei+x8MDEubZi2vqyb4HqTcLWW0
+         galk8SpP/h/Ofb/i7stpeFlE1NGhVhBfRe0z5lStBk6ntYjKZ4OEYG5lxYO5nVbLRauf
+         uTQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
-        b=6OXxlOmZyyEcTqJYpHNWwuyHJ7r9D9220OYyyF+y1usfH1j3jAGd/8TLE3atXh+4nH
-         5iuM31IU40hFb4r2kN6uSQ7LgO7Svhd2x+x4VkWs6r1Ha5MtNX2hJD7rN8wbuW9V/t43
-         Cc5iCFG/DIvHl9uaZQMtrQFREIysERT+M1oyU7cnof/hiv93vxd3Cg7MqApIJAHZzXsW
-         uyFZFvxayV7vmawJLvXOH1I1e3+0I2G5zRY+B5Sw67I7XehJny9o6aPz+HakGfB/aMro
-         PgSSQWt3e2acgEf5oaA9JGlwgbnF0h/WO7fqmRRBgkGHboR52ZDNNNlddQbP+jFQsYgc
-         KpWw==
-X-Gm-Message-State: AFqh2krHx6cE+B/1P5Ie1pjPiZ6ZGvzXjndX/SoSMLE1zbbk3bRwWwQz
-	i1UtEFGI72sE9yD9LYlh5TAmgYjc9mb4aYTND2g=
-X-Google-Smtp-Source: AMrXdXsCmLpwa6AXzrh9D8riQ0Uxyadw4wR/THSg7SpKGBjdHUSxiY3O2+LwgCKTZeAjUn4YRFUUtNU3XJBaid5WnCg=
-X-Received: by 2002:a67:d097:0:b0:3d0:cb3d:ad47 with SMTP id
- s23-20020a67d097000000b003d0cb3dad47mr3416403vsi.76.1674405542264; Sun, 22
- Jan 2023 08:39:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20230121175639.12818-1-linux.amoon@gmail.com> <20230121175639.12818-6-linux.amoon@gmail.com>
- <d0bdc8f9-5ea8-5c77-3193-a2932c87156a@linaro.org> <CANAwSgT4P544a2MeybV_hXkDfc_HXiO4Rnxt4qG3RM1-X-KCEQ@mail.gmail.com>
- <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
-In-Reply-To: <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 22 Jan 2023 22:08:47 +0530
-Message-ID: <CANAwSgSxasuEsqvwE-DLzjh8wBt3cRuWkHQv6aaWeXEgrvkRjQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/9] vendor-prefixes: Add VIA Labs, Inc.
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, 
-	Matthias Kaehlcke <mka@chromium.org>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+        bh=DJ7pZzP7l4POQysOuFD6RXLwFmeQ64kf4EXzL/9/vCM=;
+        b=bcdDxLSgDq3mFEI09EcOfQh9acO3t0kpuYSR4nUB7V3KJ3V5tFFVkIQ5u5uK37L8QA
+         Nks9cO4phXF0rvP2B5LojwGYai1VFhDiW+Jd0LPVIq4zB1/6J05OZ0Bw8Q5E5K3iycDZ
+         PQ0AK0E5Cgn8QnCorM8uy1gwXLhTEf7Ysk2nM6TqRme66zy+qemzFpEpHqHIPPm9XOB6
+         FJX3UPg9iqN5D7rY7D3++ASIkoE3CQs8Y4KTNYPuYCIF0RFLpwXJuOaEubAlBvT7HjH5
+         vr6kM9yMS48vOgVM4RV+fbjDtMwgrWI0GjGOGeNVxM/zYvfp6N3F7IRhq5uzBHLMW1wC
+         mzsA==
+X-Gm-Message-State: AFqh2kq3j6lopm7bahBPmSwbVkuPJROQcPkM10ECa7NXCLnyZt8ttaWA
+	73/7q0bn8VE05iqdJKW/EpQbIbvZESOHzw==
+X-Google-Smtp-Source: AMrXdXsRjRl9GgZhb5JHClnfyLweMYqjELAUA0MevSUcuGPjcWZEwb2kQp0JOjfWeEDMV8jXZ95J8w==
+X-Received: by 2002:a7b:c4d0:0:b0:3d1:f6b3:2ce3 with SMTP id g16-20020a7bc4d0000000b003d1f6b32ce3mr23724781wmk.35.1674456909143;
+        Sun, 22 Jan 2023 22:55:09 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id az22-20020adfe196000000b002bddaea7a0bsm25948365wrb.57.2023.01.22.22.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Jan 2023 22:55:08 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: meson: add WiFi to P212 and cleanup VIM1
+Date: Mon, 23 Jan 2023 06:55:01 +0000
+Message-Id: <20230123065504.2669769-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230122_083906_938183_EDD723BD 
-X-CRM114-Status: GOOD (  17.38  )
+X-CRM114-CacheID: sfid-20230122_225512_284137_362D0857 
+X-CRM114-Status: UNSURE (   6.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,50 +94,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
+This small series adds WiFi support to the P212 dtsi then removes the
+corresponding node from the VIM1 dts (as it's now inherited). Also
+move the pwm_ef node in the dtsi to alpha-sort correctly.
 
-On Sun, 22 Jan 2023 at 15:06, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/01/2023 08:04, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > On Sun, 22 Jan 2023 at 00:21, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 21/01/2023 18:56, Anand Moon wrote:
-> >>> Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
-> >>> of USB and USB Power Delivery controllers for multi-functional devices
-> >>> and platforms.
-> >>>
-> >>> Website: https://www.via-labs.com/
-> >>>
-> >>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>> ---
-> >>> v3: - None
-> >>> V2: - drop Drop marketing, so without "leading".
-> >>
-> >> Wasn't this merged? Didn't you get email?
-> >>
-> >
-> > Yes, it was merged into USB testing branch.
-> > I have rebased it on Linux master 6.2-rc5,
-> > I hope this series picks up again.
->
-> No, that's not how it works. If patch was picked up, you must drop it.
-> Otherwise you might mislead maintainers (e.g. other maintainer) to pick
-> it up again.
->
+Christian Hewitt (3):
+  arm64: dts: meson: add Broadcom WiFi to P212 dtsi
+  arm64: dts: meson: move pwm_ef node in P212 dtsi
+  arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
 
-Ok I will keep this in my mind for the future.
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 15 -------------
+ .../dts/amlogic/meson-gxl-s905x-p212.dtsi     | 21 ++++++++++++-------
+ 2 files changed, 13 insertions(+), 23 deletions(-)
 
->
-> Best regards,
-> Krzysztof
->
-Thanks
--Anand
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
