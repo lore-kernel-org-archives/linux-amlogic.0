@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05F01C05027
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 06:59:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B4F0C38142
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jan 2023 07:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ctKDk4VBz5Lt8n6yl7S9PvZcw3JKA9EFQ9wsn7kdhMA=; b=yeszD7aNRqQYmb
-	A9CztOSRJ1d1b8+SbgfaB0b9Yzb5xMJp7R804Btqfd7fIiFxcbirb7cGqd4xOrQzCfX/K6b+9eJCw
-	0h4pkAt2wTsjFJAkMAiYk4GQnCHv0om2g7biBTmkKef2U7eg3bFJUGovJSOF/xf/f2OBaL1HYSJ8l
-	z/NeYYV1A5bP5Z41Xf11lahq6KYBMuJkQVHdJL8Eem5MtgjqsgUE4gE/418vNZMtSBms1N7+9ApOM
-	DvRCUWts0ND3sS1HPHIcNu13txpiDMn/o60s4YsQp+tMMNNw2S0Q7QYdprwhAUvP5gHdC7jcdG9Xt
-	K7wKCBXpjhYR2G2PLKcA==;
+	List-Owner; bh=LRJ3IjadKYm4gUkEzfwn1mLHKOkx4/Zw20QbinF1ZXY=; b=DnSIC0s3QBHji0
+	eQw8mjRdc857SPnxJMmPIm8kz9oTil7FvJ/HCFjKkwwegP6IutwGGVfC25pywbS5136Xmit80/o/l
+	WA7PRbbSeohQf8KUAhKJvVFT3Wcn7Ygf4vZfI0GURelVS13BJdTHgJvh4L7IEOf+azJRstlBX/UlG
+	9WStv1TncKw1GQzI2ZllrfeFLxzYqG5V1J+VXpycsZ+od+P24csVzK9U1NYJf9JTzOxWRYG3BdOFt
+	dQqdve86WMBJzBL/RFH7ZtRARM0cdqygGd2w0xnGLnSp7WXwFSTGKx/qtrD3Ht7YyX2aEuG3qtaT1
+	W3W/xCvmw/uYdKChqOyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJqn8-00G8rS-3g; Mon, 23 Jan 2023 06:58:54 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1pJr4v-00GArA-UB; Mon, 23 Jan 2023 07:17:17 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJqmv-00G8o2-GF; Mon, 23 Jan 2023 06:58:42 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so9890306wmb.0;
-        Sun, 22 Jan 2023 22:58:40 -0800 (PST)
+	id 1pJr4s-00GAqT-Ks; Mon, 23 Jan 2023 07:17:15 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id bk16so9825808wrb.11;
+        Sun, 22 Jan 2023 23:17:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
-        b=aW2LoBd/6dqWV6Ju41BCj8IXkH30jX61wgv6knKyFecFONSzz6ZsA+irtg4Jf1lMg+
-         xXAWr4BxOkSZ/gtX1sEYckJsuZ460KcFp7uvVAH8V/XYxa7q1bNhs36hO81/ym7xvm3g
-         OEbwvnuNJy9+m4/2MmhDihlAeZYN/sxfeIPTLcqcqcXf7OTNo22ekQNybY1uytHm/H0k
-         kU5P3TRIGJv60LiIzPivj8JWJyBFyMSngmnymllNkYQaqpWrweQdsyYhummuclai1ntp
-         ri6O/buuRfcperivsxICXjkiSq+qumXLflQY0meRljysgTSjlPaamsSfZNYYx2erLEi/
-         VgPg==
+        bh=orgUUcijT9HAApybCZNzBbAQbGQJs54lfazjlNmvor4=;
+        b=WRCsLiXIOEL4Z1N86sUMV6M5XLpBKylpzBAmHT2JzYCDncyvy3j/2S4bjMMfg7qFKA
+         0t/8RMvcLyZ7Hm9n96j07NCQiO0W+kmPVRWXVr+h89ghY/sTHrxYPc+OS8d29zTk5YkL
+         R2V99J6yTedGvuffOXjjSPdOzMpw3ulfv1FGRRhKw+rs9DPPR/2HHXTGbaAE8VEord0k
+         L1jrrYxn0HpQiAaH7N57dxlP7Mota1QnShp2jTLcf6hdindbQiKhv+eA9iTK69PNKT6+
+         1Tc1h4oL75lIoqP1tBYZeVCtVO81vEHJyaCuYYKfsOCbx7toPCmVdZmurYF1CZhOdZGC
+         XtgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
-        b=g8ts2Jf2afBlIyaSTG4/8o6oWraAdI+9mROxYeU8g6wg5T7unt6Nd9LnIc8jqGD4cw
-         j4DzRMjsw7Y7HKtq2YjyXSW5Q34+dXHCOSNxXp3rCa3XGJAbXvvti6G5VSwrOImezSMz
-         XdCZaU+/Zxts56wHk9RTmzsc9fU9aLm0dMJCnhz54jbWm9+V7Z7VzEl2kyPQfQBYrGkm
-         dqKzwzwezS8pWDVD+ooAi3o5Se8BfYX5lV1fDXdMm4IGS+kmBv2k27YnRUUMInaKpjsu
-         f6Xj6DiRV0lM/88fVbxnfFO4ctISpQu+gAVujIA6LQZv52rGwyb6qnLNIWXhhIffEg9T
-         CrAA==
-X-Gm-Message-State: AFqh2kqd461JfX1xYHAf/3B2wwPcoX8YHFcEho3f/QfiyAmiVel2XQyA
-	BxQ40mjRye+4wn4ibFtbzzE=
-X-Google-Smtp-Source: AMrXdXvZ0o4+Uavz11cmkN1mn0HBaFEV/CsnWMmmt45ArHZ+GJ1XMu5eTnT79iN6DN64MsXPnT4Ivg==
-X-Received: by 2002:a7b:cc14:0:b0:3da:50b0:e96a with SMTP id f20-20020a7bcc14000000b003da50b0e96amr22923957wmh.29.1674457119128;
-        Sun, 22 Jan 2023 22:58:39 -0800 (PST)
+        bh=orgUUcijT9HAApybCZNzBbAQbGQJs54lfazjlNmvor4=;
+        b=z2qq6l692smNEs24onR0IYlMH0zpW63vU/01oLdo3pupva/Aun1t20MqGt1tAA2JLS
+         drNUuWrQrfNsmUILIs/A/B9S8Z4hDfALEOc9ZYvmKPm2zqUWeH7zUgs7uRe82znmjui3
+         KiHIbGFzplpVqVRwepLyihmMCBv+5s5HROqpaiocWG3E5S2rvovikbH3DoQNpiW2X4rL
+         mBN0WW6TGsuYB+zSU37np/nue2tkPdjZdxoSoP2Y0kGhZarZtWweBJpb7xSzTczc4A/M
+         oH7/yBALG+Biw5QwCT3XRQ93IiHlnUnpSHb0oO4CcOWBWeKxJbxIV9IX4i9jQ/hQ5gBg
+         iBDw==
+X-Gm-Message-State: AFqh2kp0zQu9y9mB/ELFD1DbLynRbMoFtniO8hbXkFzPZzxDgjSckRDq
+	VKL445OogrJ9FzdT4wWMUaMLvWZJoENqlI3/
+X-Google-Smtp-Source: AMrXdXvWh4N79aN3+Zbpk2+4tvBaV8mZGbORgIeWR2mMNB6qANbMFGt0GeFzVFZKjCoaUSqoZ0vkbg==
+X-Received: by 2002:adf:f790:0:b0:2bd:ebc0:6f79 with SMTP id q16-20020adff790000000b002bdebc06f79mr20538950wrp.46.1674458232520;
+        Sun, 22 Jan 2023 23:17:12 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id hg8-20020a05600c538800b003d974076f13sm9710625wmb.3.2023.01.22.22.58.36
+        by smtp.gmail.com with ESMTPSA id f2-20020adff982000000b002bde537721dsm23713801wrr.20.2023.01.22.23.17.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 22:58:38 -0800 (PST)
+        Sun, 22 Jan 2023 23:17:12 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	linux-media@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: add audio playback to S905X-P212 dts
-Date: Mon, 23 Jan 2023 06:58:34 +0000
-Message-Id: <20230123065834.2670125-1-christianshewitt@gmail.com>
+Subject: [PATCH] media: meson: vdec: remove redundant if statement
+Date: Mon, 23 Jan 2023 07:17:08 +0000
+Message-Id: <20230123071708.2670751-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230122_225841_580070_004DAD5C 
-X-CRM114-Status: UNSURE (   8.62  )
+X-CRM114-CacheID: sfid-20230122_231714_744973_795ACEE7 
+X-CRM114-Status: UNSURE (   9.09  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,111 +90,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Benjamin Roszak <benjamin545@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial support for the HDMI and Analogue i2s audio outputs.
+From: Benjamin Roszak <benjamin545@gmail.com>
 
+Checking if sess->fmt_out->pixfmt is V4L2_PIX_FMT_VP9 was already done as a
+condition to enter the if statement where this additional check is made.
+
+Signed-off-by: Benjamin Roszak <benjamin545@gmail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
+ drivers/staging/media/meson/vdec/esparser.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-index 2602940c2077..c2bc7cec476d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-@@ -7,11 +7,19 @@
- /dts-v1/;
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index 86ccc8937afc..7b15fc54efe4 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -314,8 +314,7 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+ 			num_dst_bufs = codec_ops->num_pending_bufs(sess);
  
- #include "meson-gxl-s905x-p212.dtsi"
-+#include <dt-bindings/sound/meson-aiu.h>
+ 		num_dst_bufs += v4l2_m2m_num_dst_bufs_ready(sess->m2m_ctx);
+-		if (sess->fmt_out->pixfmt == V4L2_PIX_FMT_VP9)
+-			num_dst_bufs -= 3;
++		num_dst_bufs -= 3;
  
- / {
- 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
- 	model = "Amlogic Meson GXL (S905X) P212 Development Board";
- 
-+	dio2133: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&hdmi_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	cvbs-connector {
- 		compatible = "composite-video-connector";
- 
-@@ -32,6 +40,68 @@ hdmi_connector_in: endpoint {
- 			};
- 		};
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "S905X-P212";
-+		audio-aux-devs = <&dio2133>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
- };
- 
- &cec_AO {
+ 		if (esparser_vififo_get_free_space(sess) < payload_size ||
+ 		    atomic_read(&sess->esparser_queued_bufs) >= num_dst_bufs)
 -- 
 2.34.1
 
