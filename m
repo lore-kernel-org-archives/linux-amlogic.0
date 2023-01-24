@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52A8DC54EB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 09:20:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51D2FC25B4E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 09:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ofeekAeXF5gCGOVc9WHQJN+7QY0vMaFqtSW7EjG1g+U=; b=akLxf9AtrRFeJi
-	Lt7EbtVqNuvm8x/qSFYTG2JxarzPPyyhX2yIvlw7O8RTWN6JdkxyzMPJgIaSjpurJ0tBgorZ6b+a6
-	wlgDeGHwcVONGXH7mAwGkrkbBoBAzRjjDp7OopxDGy34a6BrGik4+d6MzYQbjPt+bJg6zWzO/Mrgg
-	fOurokeHserCwaLm9eSj6uvKL70ZAFnahHHDDf5vpuWYg3W+AdJ0BlwvKe3sJvB/syelpbJ5jtGbO
-	pEEuhP1+iNNmnc+CLDdmp0VP6I+VnsrannfmtJX4S+PgNan6It5fxujuyJfnSXTUMttGnzsJ2DlSE
-	PAMTUIoVsmDDErtzKv1w==;
+	List-Owner; bh=koJIQPIH/fKU2ZG1VL8Gr6mjrK4FCJCFZphwz6cOhyA=; b=GPaT3BrVKIef1Z
+	fJIsltQJl/pjBKHw+WF3NHLz52gVgW7rnUMAurtyj+tfZ/edgCRTltLHpW2fDyGXbrNKqYd6by9Oe
+	uxlMvLPY6ddFug3sPw26HmdVwRWhW/Xmuv0Ae0JiduBj44KiypBT/2gjqPGwPKoK5IcbakQJccqOr
+	V4GEpxhmGsS4TdNph2SE2GflcphrBwLeMPiCtwffH+ZfbknZiLGlVBT0uOSqW+5F8ZJWW96ipvIn6
+	q6nyhC6M89/1loLHJhcTPWP87u3mnW4GRntxzd+R9QIkmaApnW3izSt1e8ZcR9fFDPJ9Oru6gPqn0
+	mr/RwF/R23YTgNmxJmkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKFTv-002rnU-M9; Tue, 24 Jan 2023 09:20:43 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1pKFV4-002sKM-MF; Tue, 24 Jan 2023 09:21:54 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKFT5-002rFc-3f
-	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 09:19:52 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so10412714wmc.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 01:19:51 -0800 (PST)
+	id 1pKFTC-002rMH-2J
+	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 09:19:59 +0000
+Received: by mail-wm1-x332.google.com with SMTP id g10so10916168wmo.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 01:19:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
-        b=gyaMQF7LxN91BqAUGGwqgwsMO2hEdoTGvJ1VHPth0Vl8RgAka5nDpZvB74rufyb+Z0
-         xV00CuvPEWQEr09/BVy1JzwjLcVogjv11FrOZXW+ugvwl0cfQHBRj3Bfa0yC15GWAl1t
-         jXdQs2B6bMEn/Y1LezZLuXMYjROjGQRcLXxatD01tROgJfIaE5vqoJBuPDvdnubUBmHM
-         uG17LU+D1qCJqe3hjfo9MtGoUGnnwKLsjTJUeCxXC2tNvX/cvNTUmEDgAPXYS0cmUL3i
-         gTnni68xV+zWuVbwacWcJZ8jbWYQ5xcswPnGiChiZ+46OlyTOlunUIshv6Q7wrqIN36n
-         NQcw==
+        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
+        b=BfLinym/cklYezWvUdj/D3yAkf3NS77r92L10AME1y3JOtClKrEyZemZUji43xEfmE
+         1CTGJHL8LxpGTSF3AkvFqeVNgE+wNerxDjURu1GcsX8rSNVpDps+fEwxFUsL1xhzvIiB
+         +JmwNDp9o2c47v+qoJpdwZjZjMOt18r0Fc2C4iVYdDxnRsFioUSNzd9hAO5fdSylxvpr
+         UUpTk957V2QsLmu9PRjgqzFHSbSzImHl6JKpF9omsRIvzHfPuFAVkaXEXwuO1hzWJOBA
+         0yl9HepBj47QjGkby3EUe8AYOG4bhg7R8UD5AgoB/ADnPyyfeGIxtjSl3t1dXmFoRS3j
+         T0zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
-        b=sTJ4phmKM/OIQVh+larqO8wadWTaL/FRH65FGQ5fo5KaG6psdvCXzLiVR0d9fCE47B
-         0nm+rc322WqoYt/ymEilMNCkDzaE15AejscZOaQSMJ9ey7S5bL25DlNQE/tqy7RJIgwt
-         TSJomqTGIUWHuZllHBSGa8l1c8VqFJsTIu7cQZwbfNO5UcYmk5ZLqO9cYpUz2VMUzJT0
-         okzQq76pKrwB20v6KFzkEpBVLe9Euf0+/pGFdJYI1tkcr9ELiOXUOcQSvGpAXxcAyqWT
-         xDD6+rjImDdl0BirpgUwoCtkw+EJ0+fZt+1IMX5uGczMKAkYYhTNM/Kij/kVrJePn91v
-         QHQw==
-X-Gm-Message-State: AFqh2kq9w1VGuJnqOIaL8Ki/cFFxMtIGCP/QAbux/UXj4NGga/3fR4z7
-	0dWFb4o6S0VUN7qvhyMc5SHUXw==
-X-Google-Smtp-Source: AMrXdXsuCK5QkrJAsWUR9ETP50ULGZWTSxGw8meu3uy8bzB1kS3qzFWy3OBucmJfla4MOZzaKSjqcA==
-X-Received: by 2002:a05:600c:6001:b0:3da:f80a:5e85 with SMTP id az1-20020a05600c600100b003daf80a5e85mr26600878wmb.26.1674551990693;
-        Tue, 24 Jan 2023 01:19:50 -0800 (PST)
+        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
+        b=g9sIZgRrcTdAYt5+R3M4JY349Lbs1FC5XTE1Sxtfy+CKEgdrO/czNMRtilFubj9g5+
+         lSnL8LK3OliZlLPA/WLsaZxk6mBJbk6gFPzFsAV4IX3TnZeNe2Hvn5nzvRZ41yEvme7/
+         pJS1vz8eARY3Io79zzyXXrxi677h72WNUcrwJqpzkSCyZUlL0NkuYtS15wc7uckN26Ni
+         62/qzXhxvq8whIsG7Wbe/aUBZD08nLG26cBFr2oM7cooBLYc/Ll0eQU+TNAO6pnBCc/2
+         Eelu0X/XF5csHLl4W7XVBpGS9KhZSjXXwveBBKwD1zR/1KBohHQr7ammOLt0Kjln2l4B
+         bdvw==
+X-Gm-Message-State: AFqh2koASLOTsPsVkE2lTwHwQfjI1prxr8yNUixPXa/AwglOyL4wj4AH
+	xaiCk8wc61zqlifNRJumyZDgcR2Lb+9ZS6nC
+X-Google-Smtp-Source: AMrXdXs6ofs80YXfseUtI8imesuJyhITR5jNUBCkTkhOsWQiGBk4hZUL16Iu0n0uoxEvTPx24lzRdw==
+X-Received: by 2002:a05:600c:540a:b0:3db:a3a:45ac with SMTP id he10-20020a05600c540a00b003db0a3a45acmr26791047wmb.32.1674551994306;
+        Tue, 24 Jan 2023 01:19:54 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.47
+        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 01:19:50 -0800 (PST)
+        Tue, 24 Jan 2023 01:19:53 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -96,16 +96,16 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-riscv@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 06/12] dt-bindings: serial: 8250_omap: drop rs485 properties
-Date: Tue, 24 Jan 2023 10:19:10 +0100
-Message-Id: <20230124091916.45054-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 07/12] dt-bindings: serial: fsl-imx-uart: drop common properties
+Date: Tue, 24 Jan 2023 10:19:11 +0100
+Message-Id: <20230124091916.45054-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_011951_196033_FE7DCA56 
-X-CRM114-Status: UNSURE (   9.17  )
+X-CRM114-CacheID: sfid-20230124_011958_129010_9B7E9984 
+X-CRM114-Status: UNSURE (   9.56  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,30 +123,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The binding references rs485 schema, so there is no need to list its
-properties.  Simplify a bit by removing unneeded entries.
+The binding references serial and rs485 schemas, so there is no need to
+list their properties.  Simplify a bit by removing unneeded entries.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/serial/8250_omap.yaml | 5 -----
- 1 file changed, 5 deletions(-)
+ Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-index 53dc1212ad2e..7db8e5477b03 100644
---- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-@@ -70,11 +70,6 @@ properties:
-   dsr-gpios: true
-   rng-gpios: true
-   dcd-gpios: true
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index 9d949296a142..b431a0d1cd6b 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -83,13 +83,6 @@ properties:
+       are sensible for most use cases. If you need low latency processing on
+       slow connections this needs to be configured appropriately.
+ 
+-  uart-has-rtscts: true
+-
 -  rs485-rts-delay: true
 -  rs485-rts-active-low: true
 -  rs485-rx-during-tx: true
--  rs485-rts-active-high: true
 -  linux,rs485-enabled-at-boot-time: true
-   rts-gpio: true
-   power-domains: true
-   clock-frequency: true
+-
+ required:
+   - compatible
+   - reg
 -- 
 2.34.1
 
