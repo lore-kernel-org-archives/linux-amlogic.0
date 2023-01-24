@@ -4,81 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79B3EC38142
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 10:15:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18709C25B4E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 11:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Uxul+TVcBKEM3ZJPgQdgOJm2N8Z3j5JdPrEivKvZGxM=; b=0uQkhrc7oybHc2
-	BsafuP0HfAp53uw0ffl0B2O8Ev733UF5m2IhHgM+ywMEK61YuQqa5cKIswZgJXmkTv2LLz/kLjCgJ
-	FACzULt8rMwFIkYOLBrPqY5eXn5VMY/LiOjiRjrY1s2kRSLaYLNnOBqFlH5UEHcA4xZHoThKtcdvQ
-	FIEZ1lLLFRQUKLPCIY/iNP1udjVgoPnC+tt8riQD1lRQDzlDpFqBvMR1AZXZ7JXeg6ClCD73co2G5
-	lYo6XQm/FRgflJ217C0RwUUbwQ1soMlLj1RKyaP+kNNvfdYl6gGDm5HHE13VL9KhT82IHirNQ/4k7
-	K06ay8C6GuqbV8fyEUkQ==;
+	List-Owner; bh=1xyXLo9iKaL65i+W7QGp1OJhQ/wh8LuoaCpI+d5LWd0=; b=HF2MXS5b/3iU94
+	0AqAsRr4LEblFOc8HpGgBlW+6rFSYQA+qy14WkUGCtdS5q0GBkCyN6MNLmOrq44rE6Ytyj+QZDmT9
+	9oxOFinUim3irfs5gQYKitLgt5o8IJ+dyvI/u0oLMbI3t77Bh/duIGJrLo1uqr2DiWGS3zxaxwtgS
+	qgujI4t+4Cgl+FzSA8HqjAjiyPsfUzW4rFDp2UTKNud3/SuFnNR1jSJJb3eY+nuCHRSzXKiW7U8P1
+	8OfA908IxMts8+2yPu+fn5himhWoD6PMZpn/DUS1YogXw6g0ql1vZzwEOBzH2kC7qYuViAUnJsWzJ
+	y3VHW0JjfTRh7PcrNq2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKGKR-0034UN-4l; Tue, 24 Jan 2023 10:14:59 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1pKHe9-003Ttv-SZ; Tue, 24 Jan 2023 11:39:25 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKGJ9-0033e6-9T
-	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 10:13:41 +0000
-Received: by mail-wr1-x429.google.com with SMTP id d14so9665222wrr.9
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 02:13:35 -0800 (PST)
+	id 1pKHdz-003Toh-Bu
+	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 11:39:16 +0000
+Received: by mail-wr1-x430.google.com with SMTP id r9so13576816wrw.4
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 03:39:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S8taYkiDRhxwSj2khSrYXtScgLWDxF1GD5X3Ip5sSGs=;
-        b=LLp84wiadrhwgCkt5Iy//WkgeSBuROH6t0YeHNNNAtMvdohLlAiDAEDkQPNjfHsmOa
-         SnQ0Hqj7fFh3RIR5ryXAvuJ0MXz2o3AGYojvwuFBQduvyX/fuU/CEGjXqQfOeXvm+B2N
-         38hUhIMVdjhF5Nde8peUn0fcZMHn89MyndOYvmVILwVapZkIIxp9Y/31L8hlcaXu1c3D
-         FVnhP2FqR8jz8PfwwArxgb2uEFfXPo+3gwiHeIxg6C4RfRd9K8uhnGtl99WC50CBqpI2
-         fUKxyd6/aSmt4uHQl5nWmHv218zWtiUOPfENRl1AQNL9E5m3KmwTPCG21C6QBzfoRdtL
-         t/wQ==
+        d=linaro.org; s=google;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pO0gnmqvMi8936RpUesIY7OLCwa7UX2sbv4nhIVFZOo=;
+        b=qrraxzm55ZKdMTAZAllssEM+P/T7uUUYIArvwS0NOTYcEbnttpPOODv55uihgxbUpl
+         vfe57htQgJFyoaldmcIqg7GYdvDhb2IDwH9rraMn2iy9wP8rPlUiVmIz4TEENGmHndIQ
+         RE0G6xQcpSShL4ncExiHb9xKzaMSNgm+QxqV8Si8xauzbtQVgBIzUiI4HZmBl2xp5VRL
+         UG0QUuAtnkDG/YCHMbp1lkKya28onrwDEqDrnDJmN+Rve2R4Sk2vk5qz9VGZ3C9UcHcv
+         0qmxFdYYBULW1NcuKBeTxFmZPKuU76FEcRFlZKDzYj6xEv50CGm/EjpFSDRX5hQATVmQ
+         WK9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=S8taYkiDRhxwSj2khSrYXtScgLWDxF1GD5X3Ip5sSGs=;
-        b=B5+NgZdHlonVudC9MrBBjFB+aCtj18BBrZf7+EHZm7CZCgTp7UOwfI90beKGA4ueym
-         4V3T/LiAJYTO5jSwOC9DqPxuHtrj3lFkoRtEor9y+vE0OX+h8V1VwxeGUfG43B0Y98gS
-         1CnK/6pFs0JX+NHgHK7FUe/4q+uziwSBSnVSIxv0y2lLAjCkkPF01f/Kkqtri8XuDAG5
-         90YdtsobFdGlx7WHd9G6pr/u22UvHZUhZfCIt5wEGR7Dua5vc4poa5f7p4LMbCxwt0RJ
-         L7GVjr8qjFZz/o/wYzzCfrILog8dAInJU5+TjoDmZSOSwtSVYc5yHBtgrRjnAOnsefit
-         tGqw==
-X-Gm-Message-State: AO0yUKXSYHWhlN97m2cqGO71Z7xy9sG9XPIgdZhnuqJtjhORtOx8h0JK
-	ECKQm5pB/R0ku/tDxMdlq5IFAg==
-X-Google-Smtp-Source: AK7set+aTxPF4ny5RRAONgayCfTl2kwcaYwdQh9zSQY+aRfErh7XOu1AKwZIhC13TWp5Gcty+g3RPQ==
-X-Received: by 2002:adf:fa09:0:b0:2bf:ac2c:4489 with SMTP id m9-20020adffa09000000b002bfac2c4489mr2351847wrr.54.1674555214568;
-        Tue, 24 Jan 2023 02:13:34 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id r1-20020a0560001b8100b002bfae16ee2fsm1452595wru.111.2023.01.24.02.13.33
+        bh=pO0gnmqvMi8936RpUesIY7OLCwa7UX2sbv4nhIVFZOo=;
+        b=Ygq6fqfHLXNiBavthM34qvV7LcSjPjpRFwqvR8HpkKIOmBfLuoj3cYAMb26q1LxH9q
+         ooVchlRCKoAiAaQ7JCnDrROeU+mh9R7/rxuHIbPTBUm75pTGJe4vbE9yy+a50BtpibEx
+         tE8tHMyK5/5fLnEPxvuPUr/YrwFDKAui2Vbu7dHSUf7i+KQ6YxX4NvV9Q1AE3XG7I1hc
+         Vu3L4f11PRqdjeEukR/1PqYNiZPAWDc350Efp23JW9niwNKAj2zO3SVft72LE1+T+UT9
+         pTgipg4yLh6s0Ww42W6muUIRR/+iEJl6xJ6ZFRoWTpYW5Z5AsuU0+4HfgEHg6OuHjXnf
+         hQkQ==
+X-Gm-Message-State: AO0yUKUohwps98pzDqi4ZE9AEsTjT0TXhBQ710JoLTt4SKg/u3V3h+/K
+	ayN7I6NaI0DIAaxlTQK5WIJ05g==
+X-Google-Smtp-Source: AK7set8MJPdBctzje+F7wc+VYwjJ28N0Us/KhM9TGGZSY0l7Zl1LQJhfGgUFqg/uPmMzuFP/eaWrwg==
+X-Received: by 2002:adf:f345:0:b0:2bf:aee3:394b with SMTP id e5-20020adff345000000b002bfaee3394bmr1935520wrp.50.1674560349695;
+        Tue, 24 Jan 2023 03:39:09 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id i9-20020a5d5849000000b002bddac15b3dsm1006482wrf.33.2023.01.24.03.39.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:13:34 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Qi Duan <qi.duan@amlogic.com>
-Subject: [PATCH v2 net] net: mdio-mux-meson-g12a: force internal PHY off on mux switch
-Date: Tue, 24 Jan 2023 11:11:57 +0100
-Message-Id: <20230124101157.232234-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.0
+        Tue, 24 Jan 2023 03:39:09 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 24 Jan 2023 12:39:08 +0100
+Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: fix active fan
+ thermal trip
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Message-Id: <20230124-topic-odroid-hc4-upstream-fix-fan-trip-v1-1-b0c6aa355d93@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAFvDz2MC/x2NQQrDIBBFrxJcd0BNuulVShc6TupAqjKaUAi5e
+ 4cu34P//mk6CVM3j+k0Qgd3rkXB3SaDOZQ3ASdl462frfMLjNoYoSapnCDjAnvrQyh8YOUvrKH
+ AEG5gnb1HdIhz9EZjMXSCKKFg1lzZt01lE9LR//35uq4fJRsyfo0AAAA=
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ricardo Pardini <ricardo@pardini.net>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_021339_360890_655B76C0 
-X-CRM114-Status: GOOD (  15.30  )
+X-CRM114-CacheID: sfid-20230124_033915_435172_FF57414E 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,80 +97,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Force the internal PHY off then on when switching to the internal path.
-This fixes problems where the PHY ID is not properly set.
+Add an active trip tied to the on-board fan cooling device, which is better
+than describing it along the passive cooling maps.
 
-Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
-Suggested-by: Qi Duan <qi.duan@amlogic.com>
-Co-developed-by: Heiner Kallweit <hkallweit1@gmail.com>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Fixes: 33b14f663df8 ("arm64: dts: meson: add initial device-tree for ODROID-HC4")
+Reported-by: Ricardo Pardini <ricardo@pardini.net>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-Changes since v1:
- - Fix variable position for reverse Xmas tree requirement.
-
-The initial discussion about this change can be found here:
-https://lore.kernel.org/all/1j4jslwen5.fsf@starbuckisacylon.baylibre.com/
-
- drivers/net/mdio/mdio-mux-meson-g12a.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
-index 4a2e94faf57e..c4542ecf5623 100644
---- a/drivers/net/mdio/mdio-mux-meson-g12a.c
-+++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
-@@ -4,6 +4,7 @@
-  */
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+index a1f0c38ccadd..74088e7280fe 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+@@ -76,9 +76,17 @@ sound {
+ };
  
- #include <linux/bitfield.h>
-+#include <linux/delay.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/device.h>
-@@ -150,6 +151,7 @@ static const struct clk_ops g12a_ephy_pll_ops = {
- 
- static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- {
-+	u32 value;
- 	int ret;
- 
- 	/* Enable the phy clock */
-@@ -163,18 +165,25 @@ static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- 
- 	/* Initialize ephy control */
- 	writel(EPHY_G12A_ID, priv->regs + ETH_PHY_CNTL0);
--	writel(FIELD_PREP(PHY_CNTL1_ST_MODE, 3) |
--	       FIELD_PREP(PHY_CNTL1_ST_PHYADD, EPHY_DFLT_ADD) |
--	       FIELD_PREP(PHY_CNTL1_MII_MODE, EPHY_MODE_RMII) |
--	       PHY_CNTL1_CLK_EN |
--	       PHY_CNTL1_CLKFREQ |
--	       PHY_CNTL1_PHY_ENB,
--	       priv->regs + ETH_PHY_CNTL1);
+ &cpu_thermal {
++	trips {
++		cpu_active: cpu-active {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
 +
-+	/* Make sure we get a 0 -> 1 transition on the enable bit */
-+	value = FIELD_PREP(PHY_CNTL1_ST_MODE, 3) |
-+		FIELD_PREP(PHY_CNTL1_ST_PHYADD, EPHY_DFLT_ADD) |
-+		FIELD_PREP(PHY_CNTL1_MII_MODE, EPHY_MODE_RMII) |
-+		PHY_CNTL1_CLK_EN |
-+		PHY_CNTL1_CLKFREQ;
-+	writel(value, priv->regs + ETH_PHY_CNTL1);
- 	writel(PHY_CNTL2_USE_INTERNAL |
- 	       PHY_CNTL2_SMI_SRC_MAC |
- 	       PHY_CNTL2_RX_CLK_EPHY,
- 	       priv->regs + ETH_PHY_CNTL2);
- 
-+	value |= PHY_CNTL1_PHY_ENB;
-+	writel(value, priv->regs + ETH_PHY_CNTL1);
-+
-+	/* The phy needs a bit of time to power up */
-+	mdelay(10);
-+
- 	return 0;
- }
- 
+ 	cooling-maps {
+ 		map {
+-			trip = <&cpu_passive>;
++			trip = <&cpu_active>;
+ 			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 		};
+ 	};
+
+---
+base-commit: 7bf70dbb18820b37406fdfa2aaf14c2f5c71a11a
+change-id: 20230124-topic-odroid-hc4-upstream-fix-fan-trip-0105bc1cc3b2
+
+Best regards,
 -- 
-2.39.0
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
