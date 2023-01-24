@@ -4,96 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBECC25B4E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 13:11:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F576C38142
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 14:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7pS5t3cXcEM8ag7ccZ7sWIgG7URGuQrYK50ZFVLSkXs=; b=HmhLf4YN1PUe9I
-	gzQ500yRghATheoPNkdNwJHEa0Fsq26eLO1aqr57tVjpq9CFTp9FWK+fwzRYrflB5vRuSlOPFxAFP
-	XvxHwI9Dm72XmBzjGiQkZ8GLRvxPxZeBXVrqXJGf6f723mIIbPXLFg1amtZIIYhtxNhWa16SVooj3
-	8fLpBQHLi5GONmellwTMjHjTrM6mYUEN3BCze35Dky0fz17zoOzovv+QuvNTKvSGx4wGAwhpOMEry
-	kSEJf4rfz4hKiUCMNw1OOaDGkQwATeTZWQ50byBBqDYgB7Xkq9uY53VnAvwtFnTONF73/Z0pexFFU
-	idWmZubN8MU1RAJH2/ZA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hKE0AItrcLiWq/T1YMPpeX/DYVxT95aMBCmc5OZSeJ8=; b=g3xg+KCAcVW/Da
+	YgCx/v/WIxIBTkalvOLapEeDuMUf6I58yiWtXcXDhMOLw6BjQIOWVcgBLJGTtV1uf65kp1j9YNg0c
+	0apcJ+q9qoczxqeS20TrUZFqOQI/9YFZDco88eJxBqZC7KEgX+QIrZhyj+STPBeSVL8aV1Zk/10cK
+	zYCAUcyctcX07OhoKjo5SmeaMIV3wUHvd3OQej39knT13fIToUjMPWBPdCnCxOvIaX61Oh4xFDFbO
+	CLLvF+Ks45B+n+YqDYyWVMmWhJirlfNRp15eURTMcEWT0FyVFiKnGpxdu/ITy3JGoVyraxVNp4O1Y
+	DNR6ia8BEBfkjnISGbjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKJ5K-003t5b-QN; Tue, 24 Jan 2023 13:11:34 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pKKU6-004MxC-Bk; Tue, 24 Jan 2023 14:41:14 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKIyU-003qA9-H1
-	for linux-amlogic@bombadil.infradead.org; Tue, 24 Jan 2023 13:04:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=kf92k+BW04Wt2vsFzZg0r4ZmptHsw49XtqGj3I0e/gc=; b=S2GwZEgeHQPnwJR9KAKAvGAY5+
-	nr7BV8UooYZYXljGf3JKxyXiEvs3MMg/i8P4FFv+0Nck+sW/opP2wGsx75Wq3uXrvBEHWOkHgVp5N
-	e5oJmf/cvskChDGmMNJ5oOJ2vvAU3mB095cC2VUQXKnuOlruqg9hClnzoq5iBWnXHSuYG125IvomZ
-	/zSP3KvKbVJcHoNqRl+ZAN4qh/G68cUTOhZAhs+9OoWPczvLWS9V5H2ktX/Qzc15dDB+0IPsT2cg7
-	UcddAWPIrLZ0WrLSfLJi9fhZhone2cM8n6VlOfPTq+hCWvpJnnLTbLwgdCaviFZaVSq4oFyoJsT+w
-	4qVgdgpQ==;
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pKGcv-001mra-0g
-	for linux-amlogic@lists.infradead.org;
-	Tue, 24 Jan 2023 10:34:08 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id bk16so13385786wrb.11
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 02:34:31 -0800 (PST)
+	id 1pKKU3-004MvR-8R
+	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 14:41:12 +0000
+Received: by mail-pl1-x631.google.com with SMTP id z13so14914290plg.6
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 06:41:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kf92k+BW04Wt2vsFzZg0r4ZmptHsw49XtqGj3I0e/gc=;
-        b=jvsJwzM/WIeTejyhikwsX5mpm0TVybiCfIxP/71kr1GZMc7/ezpjsa8XUhFkGX7puh
-         ZMuOv/5ZiCFMtAZ1uZzgmWt97VxMfRXWPhJO9VfNifWHv1ifJiOywmu4Av3NhB2km6xZ
-         3ur6XeX2eyxBZ37FC2jeyuLFWTWBVe4adkx8cAyQ0+VwndjrT+2Yt/hUNVq3aU2285w2
-         7k73fV6TapSmRZ2hXupU75EVU/NHjMkyPgrVz8qp4Rv+lLZSDvYmdrRwFIy4ZVTeAvQJ
-         nLa7Xw21MO+kfVmP+QRWYqc4bvknfe7A6JFUnFPGXKzGtXfaPpIuVz5iA/TsQTpuxn1X
-         CxmA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wtuOzmIjX4z4XOJTxg5rHrWEGaMvNm9LHx30Z3RJuGE=;
+        b=bR6Z0GqwX97vTn5NUTSP1fsszZZ0zyiGotGFuJvFXSwecPc9AWRVbQjvlfyllK+t5e
+         KUp9+uIzwCEQwjMksYr1GoBWQCpqiaYEYtwWu+d3H2p/x72coqRL523jAGiV5mQSZRMA
+         23rgXK8ud0Wu3iAveCOvz81qfDd8MhJul+ZHZ+fSQb88eNimSMNWlvEmCUgHgyPkO5vY
+         5Vgs/LUdjGOcG+WFEFK2/PUVEGOMRGrCwQdUFFep0oJ+yh2RIW8eS3i7HqQiUiVWGBmU
+         iQyG+ot72nPpPvA33XBmPl8K6bSnie9S5tDF5hHZ1hwP0/bnx2cPW1ItPRK4F5iT//c+
+         Kvww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kf92k+BW04Wt2vsFzZg0r4ZmptHsw49XtqGj3I0e/gc=;
-        b=g14ylNOS+tTQI6icPF9Vhm4rshuaCXU6AZwwz7LpIEzBKZU1GzyrnN53VNcHzEaAjk
-         hu0e8+2iEdP1dUDDcDUNaWL4pcT4gXZHzxUYRvmZbtif79TBrKme+VP+zCnAjMzNfU4a
-         UubBrxSnMRcxwe9iR52DaYiWXk6jF6Uhe3eVnN1UExnpQQiOOejfWkP9qHmtJlavx1Jw
-         +HMIw5EmqVqsqT5L6C5Q+wbqOzftgyzvJ/yGwGrGsVon+4JyEMShf6PX3CnpCeEquQlJ
-         3lRL4SW/Ym81/41/y4RJJT/l7ayghxEcaIIO0RoSDffXepkMSJ4xc/Bm/ClVBqGvwLju
-         ff9w==
-X-Gm-Message-State: AFqh2kpMOFvHeP3wbplsC5tFL9Q6w/Kw6UhM0F76Aw+67RBLT9DhVzMn
-	mSYvTt3jPTWLb/TLoBDOeEU6XQ==
-X-Google-Smtp-Source: AMrXdXtFdlMAU+HvZRltbYof9inRjog/t9q6bI6+HheCM54YOdhqSLbC4id1iR0wJiRra4F20MtkCw==
-X-Received: by 2002:adf:f3cd:0:b0:2be:c5d:3564 with SMTP id g13-20020adff3cd000000b002be0c5d3564mr25812727wrp.19.1674556470022;
-        Tue, 24 Jan 2023 02:34:30 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm1551889wrj.102.2023.01.24.02.34.29
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wtuOzmIjX4z4XOJTxg5rHrWEGaMvNm9LHx30Z3RJuGE=;
+        b=f7um8VWRYzggQkWF4CE1esSpv/7rRzn7Nnd92UVV9vPMT5ATpbFqe1zJIKV3YdSqyh
+         VroWu0b66zvn9xtsYLQncJYr/sSpY1EYf4hvrle8h48wTAhvxAWG5uRTRQKRH2Ku6RfB
+         1rh3PTPLBh+WiZFb/j3qmhp6jrDr7zSVE5EUOADMd/FjvcvyUYksbv1Dm39VmYgU8JuV
+         q3KuMkrlSEaqepnN39ZXygdhmRQVh9HljF2iwBIQSPJSsYN0l5ifnCtyOyTyGkTS/sVo
+         ZLPZg9PhoJwvsWbEAomAbq82aTxDyICQsg+A4b2+07vneIqYj1ahPOAIA6JJbLlfbhkm
+         19aQ==
+X-Gm-Message-State: AFqh2krNikvv6hToGaA2qf6rur1XDCtD+r0LZvQ4nP6JBNiorWGHRX+8
+	Cut53ouwEp8v4Sa9eJ7edJR5JE9XxQY=
+X-Google-Smtp-Source: AMrXdXuW8/hUEdtv9P0YUdiSD/jFROvmPB/t+RDZVt9jBThscLhtdzLRTLvZKgzmnskbP5WbBDaZfQ==
+X-Received: by 2002:a17:903:2487:b0:194:9874:5e07 with SMTP id p7-20020a170903248700b0019498745e07mr28716168plw.18.1674571266738;
+        Tue, 24 Jan 2023 06:41:06 -0800 (PST)
+Received: from localhost.localdomain ([45.112.3.15])
+        by smtp.gmail.com with ESMTPSA id b21-20020a170902d31500b0019602dd914csm1747865plc.180.2023.01.24.06.41.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:34:29 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 24 Jan 2023 11:34:27 +0100
-Subject: [PATCH 06/14] arm64: dts: amlogic: meson-gx: add missing unit
- address to rng node name
+        Tue, 24 Jan 2023 06:41:06 -0800 (PST)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-amlogic@lists.infradead.org
+Subject: [PATCH linux-next v4 0/4] Used onboard HUB to reset and add power to hub
+Date: Tue, 24 Jan 2023 14:40:49 +0000
+Message-Id: <20230124144054.13556-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Message-Id: <20230124-b4-amlogic-bindings-fixups-v1-6-44351528957e@linaro.org>
-References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_103405_519693_86A78594 
-X-CRM114-Status: GOOD (  10.46  )
+X-CRM114-CacheID: sfid-20230124_064111_314734_8BED0F61 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,30 +86,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fixes:
-bus@c8834000: rng: {...} should not be valid under {'type': 'object'}
+Amlogic board use gpio-hog to reset the USB hub.
+so using onboard hub we could reset the USB hub and
+also enable power to the USB hub.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v4: rebased on linux-next
+    Fixed some small changes.
+    Dropped the merge patches.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 11f3b3a4df97..1f9cfbf4fa0e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -532,7 +532,7 @@ periphs: bus@c8834000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xc8834000 0x0 0x2000>;
- 
--			hwrng: rng {
-+			hwrng: rng@0 {
- 				compatible = "amlogic,meson-rng";
- 				reg = <0x0 0x0 0x0 0x4>;
- 			};
+v3: Fix some small changes in $subject
+    address the input from Neil
+    fix the vialab device tree binding as per Krzysztof inputs.
+
+[2] https://lore.kernel.org/all/20230121175639.12818-2-linux.amoon@gmail.com
+
+v2: Odroid C1 / C2 : usb hub reset working as expected.
+    Odroid N2 : dropped usb hub changes, since my board USB hub
+                is hitting regression.
+    Odroid C4 : Fix the device tree binding and used peer-hub for
+                usb2.0 and usb3.0 hub.
+[1] https://lore.kernel.org/all/20230118044418.875-10-linux.amoon@gmail.com
+
+v1: Odroid C1 / C2 : were not working as expected.
+    Odroid N2 : used single USB 3.0 hub reset.
+    Odroid C4 : used single USB 3.0 hub reset.
+
+[0] https://patchwork.kernel.org/project/linux-amlogic/list/?series=707292
+
+Any inputs for these changes ?
+
+Thanks
+-Anand
+
+Anand Moon (4):
+  ARM: dts: amlogic: Drop superfluous dr_mode in usb node on odroid C1
+  arm64: dts: amlogic: Drop superfluous dr_mode in usb node on odroid c2
+  arm64: dts: meson: move usb-hub node under dwc3 node on Odroid C4
+  dt-bindings: usb: Fix device tree binding for VL817 hub controller
+
+ .../devicetree/bindings/usb/vialab,vl817.yaml | 18 ++++----
+ arch/arm/boot/dts/meson8b-odroidc1.dts        |  1 -
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  1 -
+ .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 41 +++++++++----------
+ 4 files changed, 30 insertions(+), 31 deletions(-)
 
 -- 
-2.34.1
+2.38.1
 
 
 _______________________________________________
