@@ -4,83 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B245CC25B4E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 12:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F55C25B4E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 13:03:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UFVhfZH8+A4NNDEKsURykWGuXDsnZBSUfiEwYNgVsv4=; b=u4pphxyARqoJMv
-	RFTlD7aYQajpSZFrpbidgFhZ2Qvrlqiy44iqS9vHcXI5FgWz5KdUJ6y0oTh0BQ9x4m+X34jw5xXIv
-	oMWtM+DvqLN7RvnJ73hlCfizYhqGfP8cR0RmOoKhtSJcIE665sP54rQjb0KaKkiuRMYzDVEmDGlUe
-	CCrrepyJw3MzsloLD0Rrz0vPqpODCbM3SrYjIQG/XzCGpSGYCf1w3J6awRZ/Hio+oeNwj9/ZmtdmH
-	jay2uao8NQC+HWXTZJsJEDuIgNuRFq1Eb0iO/CsCHahpse66gEUAIEwMzO1cLHrJ2lGTouCY++AFU
-	+Z30E6rZRbA6j0Nsy0RQ==;
+	List-Owner; bh=6NCa1PXW7StlXywkRmF2EtIKPmen8tv5zttIDSrxBv4=; b=OVbYtDuZiFoIJn
+	AuU60OpPQBHAy7gtpuCJhbACqJNfTu/Ad99nQayoAcjpQP9qXaF3KUfY5xo/AzKHLEFgQfPqUZsCW
+	4bE2Cq+dQwTJZbOv4/5fnupClN1IvkZkZELNzQ4H9ZpSWQiDPg6bUwq1e9X4WHvUX4/tXcJsB8PGk
+	kZH8b+0b1o9f5p3+0DBDB7pW83cK9txbGCPQC2rfo5sWOS64yTmGE+hgMMFhwPry2bgXtoC5d2HNv
+	NLFxk2F3nM+lIb2uhfzyemhBleH8rUJkyRcczf4YUADs9CPLvMZXsQvAv1Fg0BPp7R8EC0vYfEfDr
+	6PuOK6ydVEiqbTGy2K5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKIsO-003oI3-Qh; Tue, 24 Jan 2023 12:58:12 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1pKIwv-003pQN-Qa; Tue, 24 Jan 2023 13:02:53 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKIs5-003o8I-5o
-	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 12:57:58 +0000
-Received: by mail-pl1-x629.google.com with SMTP id a18so2075920plm.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 04:57:51 -0800 (PST)
+	id 1pKIwZ-003pJ3-75
+	for linux-amlogic@bombadil.infradead.org; Tue, 24 Jan 2023 13:02:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=hJzShneJHj4d3JT3cYeiVzniHQ2E8HFG5vVm0+RLFIk=; b=Kag7Cs3WEea/HTdQfMbM5cPwLc
+	opavkqS6UhzRTdJLzIbZq1ltBlxm/S6pxtvNB3bTSgQD1uRfjyAm7bJ1T6vEAVraPudNIYy9H8C90
+	CtnjDRZQ09SP+FXuvftSKFP0tlLvUx2PSYG5vuZrD9++KqZd50bTbsEa60BPp+WQDPbLoy9sJcXGr
+	Ak5+bTGwfJXzo20MPLwKjsFChK+KLFdWkkaiDjrjnWGE7NSgH8a+CURq43ErAkTstUYNfqlQ+YK02
+	0ray7HtyA+O/pU2w6Ko9OfchvFnQSmVLxWjDuohS+tIAumLsRkHW/V7naaz6Clp0397iSF8nya26O
+	bIXBdzew==;
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pKGcs-001mrY-01
+	for linux-amlogic@lists.infradead.org;
+	Tue, 24 Jan 2023 10:34:04 +0000
+Received: by mail-wr1-x432.google.com with SMTP id h16so13384469wrz.12
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 02:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lbga1PekNQG7Wr08X5AD8bYyGj914Yhe8xMoadj6ep8=;
-        b=Wkgvt7M/3VLY+FML2DA+LVjnEPI6mopPmwB+jdxBTvY1cW+hfiTbvwPmfPCRqxGI/5
-         U3eRsnTqOG/OKrTOaCjpI+jKcytHrjhZx6z39hTcQlghqpfQlhf29szyk26EOPQ81aqv
-         RvwwXVDt+PD6CF73FMYrpZEPqnV75wK6k25xYKamIq9l28L6Gp65toSLr+8cLL6q0TLO
-         ccCO/h/ArwS/JoxxHnTzcPk2iEfgeIx30Ctb7nPpqPE37BtQA8X64Bv2FTfaU609ago/
-         JAZdxoMS/9mYTNvfvzHD4f1RyngBXoDNWTOYRxudbM0n2u2AKtqYXULrUqbNAOiL/GbG
-         s51Q==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hJzShneJHj4d3JT3cYeiVzniHQ2E8HFG5vVm0+RLFIk=;
+        b=u/YCRj3z6AWBMk1F2CzVe+9Y8Vf/OpLiJTIOIl3dZO0Xr1kBEfcuTgQT2vqYrBaxnj
+         PC7x4Ck+DnbsT4S8+94xTWDU2fml1QrMM5De4CIgnA8/iW00NYmJAMLKNZFr+R7U1QlL
+         3v+hY0eRAqK0RJd7Yw775tRZg5HZrgzU+9tb9zpvrGMznLvYxmbetFNVBRt5eILtTaIt
+         zAyOUTMnj/e4Bmh9UbTDVGsJ8pZDvdJeIvs7s0m/HzqGY4TwAlPkOnHQA5hv+qWlLiXn
+         7KUmftvnvCX2rYgD0kPXYjBUn64lyduK5mRqdZ4N+NJ9F9hpWX+71oxY2U7XhVnVVXWk
+         m0RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lbga1PekNQG7Wr08X5AD8bYyGj914Yhe8xMoadj6ep8=;
-        b=V0vefPzpZmQlTXtaj5CflphCuAlwOEMfx7O/1/1IPEzPN3YqPUP74a9bPWQQQbHfhM
-         Cg4Eo0bdCrLnF4In7dmn+nK/BgmsscxBhAEsGFTvMD37SVyK9fOia7SygOwmPeTPptU8
-         v9R1ppgC//tIxEkhNAN0dtx78035ILM9z3lqWTuGQVBaI2q8YcaeO3aunev4iGAVm8Ng
-         4gqQBtCu2HaTOGks3sBqnUDeG46/Uc7XLwc8lR6O/pkgb3e851sx3w/1yPeEMBH1KiwM
-         xN3yKb794E6mRVn0OwwEjh5VqpHaWjmfJmOFXj9+zoGLP0F7+oG0jZ2UuHgqHvjGqklz
-         CedA==
-X-Gm-Message-State: AFqh2koZCkP9ktugsfVL/+YBmXsnlR2wyU2yuoxkJ14XlWpUlZSHh5Ub
-	IvQlNiPW+8HoDM91nPXxBNjQi7KIFwbb5nd1k9VbSQ==
-X-Google-Smtp-Source: AMrXdXtCakx+gDCZWxcq7+x+5SmE+6G1+2IncnakyeXGIZcRncfenaixWLy34xEgyDCGALWUs3tkMTZmGb6hw3x1WUo=
-X-Received: by 2002:a17:90a:1d07:b0:228:f08f:a9b3 with SMTP id
- c7-20020a17090a1d0700b00228f08fa9b3mr3625899pjd.202.1674565070644; Tue, 24
- Jan 2023 04:57:50 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hJzShneJHj4d3JT3cYeiVzniHQ2E8HFG5vVm0+RLFIk=;
+        b=pEkdZUbrNWOQXm40uqklKBEUAGz2NFcFB34HXLpFCBdWdDcu4spvaCnyhy0lNTgfLS
+         oylGGyAFysS7ay/EAxS6O/k/2bybGl7nmIQdMQ+ivvmhfYsKCLtt4Xcyx79F70c/GfLo
+         0NIgUokl5t4TNmMdjyHIyIJ3Cx6cX7Z6qEvT4N369lkRrLtKrdurVPgdib7Wc5Mun/QR
+         5l1ggZxgxKyTLVLXuNRcpRvnjdgl0/ywkzElBUcJQ5M3GBkqXm5NyCqhoBbMhjN2faoH
+         mXTQ0u2KIppHNwT02gMcyf70063OWkZy2nPBtIDNxHHf14ILoBavp+495TdWWjslEZah
+         QJBA==
+X-Gm-Message-State: AFqh2koIi0X+sqM+Zvye54Hm+sci8mEy7TGlGL9oHfTZgaliQuJiAzSF
+	AB/1hIIwKwzG+y3ggn7ybnke4w==
+X-Google-Smtp-Source: AMrXdXtD+WCyaBwihNaXexTggR1I5lmQccmj0wuEIaZSvJRfJaNM/WI7ebqOHeI0sDgUHmzGTH/TIw==
+X-Received: by 2002:a05:6000:16ce:b0:2bd:d9cc:920a with SMTP id h14-20020a05600016ce00b002bdd9cc920amr29464286wrf.45.1674556468121;
+        Tue, 24 Jan 2023 02:34:28 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm1551889wrj.102.2023.01.24.02.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 02:34:27 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 24 Jan 2023 11:34:25 +0100
+Subject: [PATCH 04/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx:
+ fix supply name of USB controller node
 MIME-Version: 1.0
-References: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v3-6-e28dd31e3bed@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v3-6-e28dd31e3bed@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 24 Jan 2023 13:57:14 +0100
-Message-ID: <CAPDyKFrRN-+fhvWQNmQfD2u-0+2iqP-iONaKx61K685ZqcrZOg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: mmc: convert amlogic,meson-gx.txt to dt-schema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org
+Message-Id: <20230124-b4-amlogic-bindings-fixups-v1-4-44351528957e@linaro.org>
+References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
+In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_045753_278987_E3B1D229 
-X-CRM114-Status: GOOD (  23.33  )
+X-CRM114-CacheID: sfid-20230124_103402_377488_88DDB6D1 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,154 +110,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 23 Jan 2023 at 11:10, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> to dt-schema.
->
-> Take in account the used variant with amlogic,meson-gx-mmc.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Fixes:
+usb@ffe09080: 'phy-supply' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
-Applied for next, thanks!
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Kind regards
-Uffe
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
+index 22fd43b5fd73..1916c007cba5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j1xx.dtsi
+@@ -303,7 +303,7 @@ &uart_AO_B {
+ 
+ &usb {
+ 	status = "okay";
+-	phy-supply = <&usb_pwr>;
++	vbus-supply = <&usb_pwr>;
+ };
+ 
+ &spicc1 {
 
+-- 
+2.34.1
 
-> ---
->  .../bindings/mmc/amlogic,meson-gx-mmc.yaml         | 73 ++++++++++++++++++++++
->  .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 39 ------------
->  2 files changed, 73 insertions(+), 39 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> new file mode 100644
-> index 000000000000..46e235bf228b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> +
-> +description:
-> +  The MMC 5.1 compliant host controller on Amlogic provides the
-> +  interface for SD, eMMC and SDIO devices
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: amlogic,meson-axg-mmc
-> +      - items:
-> +          - const: amlogic,meson-gx-mmc
-> +          - const: amlogic,meson-gxbb-mmc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: clkin0
-> +      - const: clkin1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  amlogic,dram-access-quirk:
-> +    type: boolean
-> +    description:
-> +      set when controller's internal DMA engine cannot access the DRAM memory,
-> +      like on the G12A dedicated SDIO controller.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mmc@70000 {
-> +        compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
-> +        reg = <0x70000 0x2000>;
-> +        interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> +        clocks = <&clk_mmc>, <&xtal>, <&clk_div>;
-> +        clock-names = "core", "clkin0", "clkin1";
-> +        pinctrl-0 = <&emm_pins>;
-> +        resets = <&reset_mmc>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> deleted file mode 100644
-> index ccc5358db131..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> +++ /dev/null
-> @@ -1,39 +0,0 @@
-> -Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> -
-> -The MMC 5.1 compliant host controller on Amlogic provides the
-> -interface for SD, eMMC and SDIO devices.
-> -
-> -This file documents the properties in addition to those available in
-> -the MMC core bindings, documented by mmc.txt.
-> -
-> -Required properties:
-> -- compatible : contains one of:
-> -  - "amlogic,meson-gx-mmc"
-> -  - "amlogic,meson-gxbb-mmc"
-> -  - "amlogic,meson-gxl-mmc"
-> -  - "amlogic,meson-gxm-mmc"
-> -  - "amlogic,meson-axg-mmc"
-> -- clocks     : A list of phandle + clock-specifier pairs for the clocks listed in clock-names.
-> -- clock-names: Should contain the following:
-> -       "core" - Main peripheral bus clock
-> -       "clkin0" - Parent clock of internal mux
-> -       "clkin1" - Other parent clock of internal mux
-> -  The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
-> -  clock rate requested by the MMC core.
-> -- resets     : phandle of the internal reset line
-> -
-> -Optional properties:
-> -- amlogic,dram-access-quirk: set when controller's internal DMA engine cannot access the
-> -  DRAM memory, like on the G12A dedicated SDIO controller.
-> -
-> -Example:
-> -
-> -       sd_emmc_a: mmc@70000 {
-> -               compatible = "amlogic,meson-gxbb-mmc";
-> -               reg = <0x0 0x70000 0x0 0x2000>;
-> -               interrupts = < GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> -               clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
-> -               clock-names = "core", "clkin0", "clkin1";
-> -               pinctrl-0 = <&emmc_pins>;
-> -               resets = <&reset RESET_SD_EMMC_A>;
-> -       };
->
-> --
-> 2.34.1
->
 
 _______________________________________________
 linux-amlogic mailing list
