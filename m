@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87816C25B4E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 09:19:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C539BC54EAA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 09:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E+CyaseK37/Fk2AS7GyAhWILGgp2hAePIL3tHWMzAoY=; b=wBA3UmvLsfggw5
-	7qL5k0B4GmFcl16P3O4oeQkXfFl5FsKYn/gNxwgReYM4sWqwLSppL74Aa7rOegLUlqp+WbF3SITGV
-	nJFEj5Hibi1Fh6gBaQEZFZZEfs73qTcWUzfP3lkDHTeszYvHp5Ft9p5JMNA7KhNRvbfxox/gFtcDP
-	RqMy/Mmx3kEG6tx218Er6JXrxxj1h0E1XhD3O4cXRedrloKAf9Tf7g0SyoP4NPH7NVKiYqpnzAg4Y
-	O9XsOX5QSsmmgKIQyM6n3o6cm98kE/3zbUYiL8DP/Uz6DG+BX/um85APTFp3k6TGLTotu8WsQGXQ9
-	e/2Va45d0stgS3fpa6gw==;
+	List-Owner; bh=pAkyo7dAfUSQsqxVKedvhglP4ddi8GFsoR1rcbUJFfQ=; b=sw+bKsS49oBCyT
+	Jkt50wQ0L3EHcaTFTNF8H0UmG5c+OyKFgKT+oYFCr2/6XbgL/Wo/x5PnYt0IrnIdzwVe9PQeAsDlm
+	++xCe2d+BPOn0txb7pVGL0VvOmAjcVO7USWgCvk2DXqSc9ul0r3QLHRj2KYkfi//v0h6NJrS69bd0
+	2cqLi7WcJB/9pC8mrW6NeYqFYlugcuF7cM1CUzbqDnrcEw+MSFXWXz1ctEOTl679QMDD5iHkM+1Sc
+	lvbr99+a5fLDdu0/JqHwRMqGEnD7cV1N1O9UqM3zupXLTh9xzHaFrv9Ii3K1Ga2OKegVQDYF0MLmS
+	Gv5k+uJ/y9ZIGnHElFjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKFSk-002rAP-A0; Tue, 24 Jan 2023 09:19:30 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1pKFT6-002rKD-74; Tue, 24 Jan 2023 09:19:52 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKFSg-002r7b-Bp
-	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 09:19:27 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id b7so13215929wrt.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 01:19:23 -0800 (PST)
+	id 1pKFT1-002rFd-5H
+	for linux-amlogic@lists.infradead.org; Tue, 24 Jan 2023 09:19:48 +0000
+Received: by mail-wm1-x334.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso742101wmb.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Jan 2023 01:19:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=43A1eeWrpE679NQnTX4HGXlIW2NbDWo9ZcYcCEyQGv8=;
-        b=ONjezc3uRXZlJmtLiPWC5mw58yms5cO1PTcTCwcnTPM7f+VvICxnFSBl4X/nLpZfmY
-         aFmZ3dz8KHuvPhnMycUrIU/wfcpj8N8tsdpFu5yuGNIbgryu8ovn89HtaD4MKOiJKEDX
-         szOT9ZhlzqEDlnnFaMRhnlVV5qYKwvhQwI3JN7baJMOGma2Qj4R0RJVNKqfbbQMGyvKQ
-         Tip/5m94Y2UniXLOdCInty6j5cE1B0Bn5OkDlTQr+FOLfGUpyhQQlBlj7sINgWJ53+VX
-         1JUDRoNwSdUHX6CRdmFB63SsqOSneNpY5t3UXCyF/IZuzsgGFD/JuD03wzIN/9nfsVus
-         YW/A==
+        bh=nb5CwN4fN4XTwRx3Tj+I+Ommhby0lGr2iuTrQcxIb/0=;
+        b=Erz+EhOmyjtVC8y8TD1tzEzfeEI+tUpI6auPlhOS+L8rFcrpspoGstb2EvkLgGuuAp
+         DpKD+EnP0qVzHF5BpeHg6bzd83CFhVrmFGWodo0QhT85JTbjUDY9rlI2F2q9CqFUqE8H
+         Mo/TmRVuwZRoWTTKcd5YrFHbXefcW6Vjg15ub+DUMbZ5/zXbGi+oynGVNw7VL8aiHpzk
+         yRUkxDf57i6EJjuOmrAQh0V5XQ3cJSG/q6lOFE89YcI0jNM4Yd9chTApm8BS3Tp2Lz0c
+         ytWEkYuRtJnN5GvA0nQYxCJPky8Tviyyop+mibt4vI/EKUDqf+YKvXMhb1EO2OGo3A4D
+         EEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=43A1eeWrpE679NQnTX4HGXlIW2NbDWo9ZcYcCEyQGv8=;
-        b=MVHTjJg/Y+LO/JTIhDtMqwybL0XrBz3L8TeS2gUgbJf1qhgUHKRy6tjQq5mvD0QXpK
-         C9xkAJE9qogxolHNFqkywh51PLPUJuhVoOhiAsxpREfZBHbW9DwzyGCic6zNv8NPfBW+
-         UiCweoYZcYtBHOfsKVnDtJkQeXEzjDuogH39cwQpZzUI+lWXtwSQ00sRglxMsE6ZXQ+/
-         0hXF/UC9UdYs6YsUh7agZwJ+0/Gpbz8NHN7wg525lRCmchN9DNkIgoDfF4LGRzJVcD2y
-         fqUwaCSZc1aebx3eEizdBUKoJ6hV5EYoOdmLcLhTzeeTCorCfwtYoVANBCvzDvr9VoTl
-         t2oQ==
-X-Gm-Message-State: AFqh2kqXaX9bVrFz+rGHYDiBVs5tFzK5/7dNpQlhz/zqavVX07Lbmf4s
-	vMNKa/1bGaw9wcu062sVlaxvNg==
-X-Google-Smtp-Source: AMrXdXtDeqK3bf9pLkBQmMDNhFtINAt86Lm3kD2eTMHoeuC73VR+7IfQ6qYkFopm1Ln3EMVZmWg2kw==
-X-Received: by 2002:a05:6000:1706:b0:2bd:dfbe:c17f with SMTP id n6-20020a056000170600b002bddfbec17fmr28359868wrc.58.1674551961808;
-        Tue, 24 Jan 2023 01:19:21 -0800 (PST)
+        bh=nb5CwN4fN4XTwRx3Tj+I+Ommhby0lGr2iuTrQcxIb/0=;
+        b=WUvvZQZ97JZwNPR6Jn6EFiRh+4+KFn+ysAzAaw3t5puTAcu6XhCwjLkuHxJzZYiSJ9
+         59Vh/YvqrP8eFnaRp1YKUanEsbHxsc6vnxVzHSwZwhAGIf/Uy2gSYgHug4eMMW6MVc4e
+         M9jgWhYmSv4X5W8OJOGcZYU3aUB6nsORTll4Rxp/jwFuWc/fLHKvj5781nsI3sWK0ilk
+         4y5Ziy9oZjJJ0muhaYQmqGUomDFq9k5KQyw1YVW9vF5YC3YMf9nBnn2mn24uRKpkpWPu
+         SocOWEtAfuCTClNXyMOLthElCBkG9O7WoCVIdSUqda9aKL2/2ex20bFXLRRRYLpk8DiF
+         sVgQ==
+X-Gm-Message-State: AFqh2krS/xEtVqzyMelqawT3pSwiyk8MV4afGejZaoYBvXj1b8V6Sljk
+	uyU2+zT3T2BSzhC0z1+2hq6gJw==
+X-Google-Smtp-Source: AMrXdXtDAh7QFXNJKNHeXnVkYsOgnO5HNUP0pkqugffnYolM/QSylK27RP72alQg+Wi0pRiLhcw4xg==
+X-Received: by 2002:a05:600c:4928:b0:3da:909f:1f6b with SMTP id f40-20020a05600c492800b003da909f1f6bmr27413613wmp.1.1674551983490;
+        Tue, 24 Jan 2023 01:19:43 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.18
+        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 01:19:21 -0800 (PST)
+        Tue, 24 Jan 2023 01:19:42 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -95,18 +95,18 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-amlogic@lists.infradead.org,
 	linux-riscv@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 03/12] dt-bindings: serial: pl011: allow ARM Primecell properties
-Date: Tue, 24 Jan 2023 10:19:07 +0100
-Message-Id: <20230124091916.45054-1-krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Michal Simek <michal.simek@amd.com>
+Subject: [PATCH v2 04/12] dt-bindings: serial: correct ref to serial.yaml
+Date: Tue, 24 Jan 2023 10:19:08 +0100
+Message-Id: <20230124091916.45054-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_011926_425081_76674A80 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230124_011947_251399_70D06F17 
+X-CRM114-Status: GOOD (  11.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,27 +123,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reference ARM Primecell bindings to allow typical Primecell device node properties:
+The serial bindings should reference the local (in kernel) serial.yaml,
+not the /schemas/serial.yaml.  The latter comes from dtschema package
+and is a small subset of serial bindings.
 
-  broadcom/bcm2711-rpi-400.dtb: serial@7e201000: Unevaluated properties are not allowed ('arm,primecell-periphid' was unexpected)
+Usage of the local serial.yaml allows typical properties and children:
+
+  xilinx/avnet-ultra96-rev1.dtb: serial@ff000000: Unevaluated properties are not allowed ('bluetooth' were unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Michal Simek <michal.simek@amd.com>
 ---
- Documentation/devicetree/bindings/serial/pl011.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/serial/cdns,uart.yaml         | 2 +-
+ Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
-index 80af72859876..9571041030b7 100644
---- a/Documentation/devicetree/bindings/serial/pl011.yaml
-+++ b/Documentation/devicetree/bindings/serial/pl011.yaml
-@@ -10,6 +10,7 @@ maintainers:
-   - Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+index 876b8cf1cafb..0c118d5336cc 100644
+--- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Michal Simek <michal.simek@xilinx.com>
  
  allOf:
-+  - $ref: /schemas/arm/primecell.yaml#
-   - $ref: serial.yaml#
+-  - $ref: /schemas/serial.yaml#
++  - $ref: serial.yaml#
  
- # Need a custom select here or 'arm,primecell' will match on lots of nodes
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+index 2f4390e8d4e8..6f65e9a81c29 100644
+--- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
++++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+@@ -63,7 +63,7 @@ required:
+   - xlnx,use-parity
+ 
+ allOf:
+-  - $ref: /schemas/serial.yaml#
++  - $ref: serial.yaml#
+   - if:
+       properties:
+         xlnx,use-parity:
 -- 
 2.34.1
 
