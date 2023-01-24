@@ -4,116 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 894A8C25B50
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 02:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CBCC25B50
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jan 2023 03:41:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:Cc:References
-	:In-Reply-To:To:From:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=snN4wJ8TAzOyiBn1iujSA3rM5TSe46eh69RXAa4TaA8=; b=xeCqbu07dOHWPw
-	6Yza0xPSHHLg1mZTqwuHj2I8I1HlG4T8aTQhqAd5yV/L09QvyhmnoG6heDTft/wmTYG/pEpsBLBxV
-	yDT0qQ6iWKj8aktD6w7iQP7h8SP5Fc3DA+95J0fDoOR6UvHurb6SlWx7bOJIVQUvmXpA2ZZsSubdd
-	PfpYyDW9cMpZmZiCk+vyyNVEoD45dSwRvTFUWSFBZEFe3InZ8StJLPsnS0TGbuvZ/+GeG3DyJbsCk
-	D4JQSl0VV5hlqHnLy4QcorJAOVikuFc/tvn2cPsvQWa2vCGpJG/I7eY5uySZfv5Lupdpl9HhKm0hI
-	gFjuLX6kn/LCsRO1eXww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HFD24YUKRkMmQztDO6Ewfh6peu8HvVp+3mQwUHw7Ne4=; b=f4H9fSujuY1OS5
+	5Q0832PHO24SpI/J9B6Rli+BdiZF8ugZ4zi8Z4JA46/0kRkCwOxLSExYEn+0ddLdlhrA384s5AAAX
+	mFrOzGgJYd0FQGFZHi+pJJAGg6/t3eSzQDY+8ibTvapQjdExkXumU2wUddsF3dMmibZ/vWG01AoWn
+	r1gRGan2/sLHXXEgW/Kw67UMuNVvW8yF+eROrIQB9E+0ePB4ctJrbjMvl0echkOGVEFf24agJp4Qi
+	nZeOlTsFGii2S+yYyrNK9rAFa44OvTyjeeZ056ergeC7q0/uPgLO7oHjGLNGjS1mvObbqNgkuDFQJ
+	xN16442iLMMP49ZrY+Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK8oW-0025QM-A4; Tue, 24 Jan 2023 02:13:32 +0000
-Received: from mail-os0jpn01on2094.outbound.protection.outlook.com ([40.107.113.94] helo=JPN01-OS0-obe.outbound.protection.outlook.com)
+	id 1pKABN-002BMH-Gx; Tue, 24 Jan 2023 03:41:13 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pK8oK-0025Mm-BZ; Tue, 24 Jan 2023 02:13:22 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D62z9bekzSviaQdcgUtt0Cje0ToC8p9pHlguBXArhhFdT6n6FtOVpE8hk1TF5BIgDEDXOEEI2ltrz2O0mS/4Lx8GOxDOBGBHNCw3MJ5lW+l/wrxW4hHaBe7Lgf6xSt2vOK8COYo1fixDZYxncmbl2X1SVbr/C/TrhJ9rw2ADfEMM/I1SbfECNhnOYgTGJ/uQ+e1tvLW0nmPz6WkmWrCnhaeCnRNpH6m2a9lBIqE4TRUEx/aWeepJ7gVD98Kgm3knmIuQzSX0mnSr1o3vHJWAT5PoQIBR4vhm1NIEJMXML+EvLsLu3XxQ+OpRiMTaFz89xMpN1bdsyDzkoo2oh9eVhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=abCmlxjTeJUpbD23/u/q8Igmh45AfePycqqbck2s2Hg=;
- b=DR0XWnuA8FwWW1P+SBacc1u3wafkJA5xsxTpf6zmEA61WdtejupRt9oDU45U0UwHG+4E8Q1CA0IRo2Di2VB7GJUy5N+Tp8TVzpEajYx9VQGZo3TgV8VPREnhklGwA1glCiqSgfmNQdAzKaE03nX1p6UlvlVuCyAnYQwbf8gneam70MIh8qkt1YIpSzT5ARykO5MCOF0z62XFWWiPkyaKcZPtip/t6x9qYJwNE4+1+SMJx2N/1bIyXcqHjQtzNpHma4pdxGSNLhHoZhDSkF3jHEPKPcRuh0fS3JUNpewbvEH+3o+SUvxqAtQJSueElYowYaL/hHEj5PDh2nw8bJzSUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=abCmlxjTeJUpbD23/u/q8Igmh45AfePycqqbck2s2Hg=;
- b=ZCNjedEnSbzMMEh13lFy1uMLM22N/PzxNRfT0R7DE9zFi0dwndu3CdscNoDhImGh1xDeSL7Was28GxoBOu7dMeyS5ezboiGIc6X6du0NwZsAya5F/hhMCyJMOkwwryEUUWk3letakSRv1tkZVEHkY4CfAzGUEIvv4+pXg35EFWw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by TYCPR01MB11127.jpnprd01.prod.outlook.com (2603:1096:400:362::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 02:13:13 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae%6]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 02:13:13 +0000
-Message-ID: <87cz74u1c7.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Mark Brown <broonie@kernel.org>
-In-Reply-To: <87y1psu1m1.wl-kuninori.morimoto.gx@renesas.com>
-References: <87y1psu1m1.wl-kuninori.morimoto.gx@renesas.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 15/25] ASoC: meson: use helper function
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Date: Tue, 24 Jan 2023 02:13:13 +0000
-X-ClientProxiedBy: TYCPR01CA0116.jpnprd01.prod.outlook.com
- (2603:1096:405:4::32) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+	id 1pKABH-002BKt-Qx; Tue, 24 Jan 2023 03:41:11 +0000
+Received: by mail-wm1-x336.google.com with SMTP id g10so10477199wmo.1;
+        Mon, 23 Jan 2023 19:41:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YW+j1R20ctI265KRNSOjTxDVRq8qUoJJnec9sKEjc5I=;
+        b=QacssvAIDku6BBhYk5HElUe/kzNss/+aIhsXY8hmtP+KEGGe0qI7X/+MARPfamJwAG
+         XTJv6wtwpO728nUqacxcsgC6T+eb6lhvHJ0CYT6lueg7SxxPxerA5cUQpG2bW1Z0gUtc
+         cvoSwfAwwTV4aj6AoRr2U0gHPXzOD4uU1zzA4lMS4oPxChIMfV10Sjiolq4gWqJlMYjw
+         Z3OjZAB8PT0sG0yaVwhd3wvFQhTrZLyGXcoG5WLLngsfV294biZZN1UwZ49JONXK2110
+         y+M9mg2tjE/kX+UF9AhnUHty3WbhGl2dtlY5PainLNb1LsDhn2HGMt5MUmor3rYFKEza
+         q0eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YW+j1R20ctI265KRNSOjTxDVRq8qUoJJnec9sKEjc5I=;
+        b=KGfXCdnwRLM7D64P+rgnWO3BKiw0qwQr9p3mM37tqfA/rqwToJQQbp7BZ5oMSq3BuY
+         KM657q23UQklviJJCejsuKA2dQVUPauoFdpdSAjk79F3iMFDoc+I5w1hH6dNeBQBz352
+         /NGdaERTrDxHiIA3E/ThcHfTPuI18y/JNIqBHeijWcgGAzr9ezmWwVLWQvdqTpTrO/lN
+         g7bzyH2iToqfY7WApBbDrtz+1G9+PewI2dDxBa8LX4whodBvoZ/1CI8Lo18Fr+5ZaTTW
+         UBLzFIfDnIRgpcrM+kDxtqEgGq2w7/QFlijCiAAZPHerADkw5xeyRJw4qLW+lWvmX9Uu
+         GsuA==
+X-Gm-Message-State: AFqh2kpj841j5bl1W9fr9yY4J/UQBepEtZpZqBgLMFKExvEHnJCgh4Kj
+	0mR9B/e8+n/L6VyeEc575S8=
+X-Google-Smtp-Source: AMrXdXtpg88sRjLNXZmZB6PBI4TM0NJziEBJ3T2qGyFoH8GRcylSlT26sY+YVnwuzJOACkipiigiEA==
+X-Received: by 2002:a05:600c:ad4:b0:3db:11d0:21e2 with SMTP id c20-20020a05600c0ad400b003db11d021e2mr22920790wmr.29.1674531663179;
+        Mon, 23 Jan 2023 19:41:03 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm1085132wmo.2.2023.01.23.19.41.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 19:41:02 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] media: meson: vdec: add HEVC decode codec
+Date: Tue, 24 Jan 2023 03:40:56 +0000
+Message-Id: <20230124034058.3407235-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYCPR01MB11127:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4135f367-b573-448d-6c39-08dafdb08c3d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	SrMiyDvWpw9bMymVu9Jg0mvtvGZ3U3A96UOLnVvr0wEtsYZxNLc/S16TDMXU5U9ziZBjLpBr6AweEzDfT1+oSgjJFisUORSKVv5x4/JqedrhwgNfDyjGBxeBtwPqZKBlso+I8OPKlH59mqjHPrpAUQBqmrE41FER71Vp3N9c/BcQwfxZOIKawM4kMWL0KSywQs8/7EIY+IdsSZH+NLYjuogLhIEmMD0mX4ZOp17PX/mwfSB6HR+fx5zQMVLzVlGh7pwW9RC3cOHGwJiIEP9k8k9THJS0Yfi5beKL/7227A+Mabi18JzSN2YsPvB0SgBNDKPwxx/uxQW9aiHixHPlscR2vuHSTGrVLjzYDg8Xdsen+ne+QUE9H18/TrsCiDgk18wfMpb8oMunPpBQgMST2inJRb/dY+j2XfiZitOUL6jJ9RECx21SSCyTzVOTtCDwWPLAiikRsMLHhq0KHTTyp0H8t8bW5M/9aeF5DszgqvCD8dMPkr8dKn8t2nJOJLNHq2dGqfhbdKRljDAWxvcfoGSWtLgzYc+yjkVrVYRGnAtnwMu/xXP5F4YBKKM/zGsEsTOu+1LBrPZahxtXgHf2015y0C1rWip3yTi3J3tBZYtnRBvsnq/5Hv1k8+toAqjHCJ8MkNLmCAqHLNO8Jw3Uqa+NXC7vn5cL81dRw8APMANizs7KYaAqP4d4e56l6PUsHZ3oMOdIAxQbJCH93PJhBg==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39860400002)(136003)(396003)(366004)(451199015)(8676002)(54906003)(316002)(86362001)(2906002)(36756003)(4326008)(5660300002)(66476007)(66946007)(66556008)(6916009)(41300700001)(478600001)(6506007)(83380400001)(6486002)(8936002)(38350700002)(52116002)(6512007)(38100700002)(2616005)(186003)(26005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?q83T1PT9C2M7zEDMgL5NWlEMcnc1yCVTr6gVv8dzuTcQ/E/GIUDK7j9b3SX/?=
- =?us-ascii?Q?v33lqV6cCSFANEZAnhSqioRtH2w9a6yvMrp0t+sPsItFVNpvWFZYgv6/bzgQ?=
- =?us-ascii?Q?YfFzVLoNWfsGhBBxHktGogmYSoAi5ykt4y/A5T5bZ0N0WFLBaVrd8Fy+yWnH?=
- =?us-ascii?Q?mVCG/3/hIkYBNgsVHmSC/9ADVWqXRNUcWE1Vd9fe6Zt1omYX/SGY/hguzqgN?=
- =?us-ascii?Q?cFaWIxh+iXaTT1okrSTcAbN2BdqLTRQVbWfbDHSJ57Xf9X+/MLoIYrPxX4ye?=
- =?us-ascii?Q?DJ7MXsgn+r/Wcb/Icq+Qt/cTUvNhhBP78bAMS64QOXPQSoUondH1u08U4fV3?=
- =?us-ascii?Q?CaIYFUdYNB/12HvHFClv78rEdfNM74MNQrs6DyHfKLKCc6Qf994Ra3rQEhH3?=
- =?us-ascii?Q?RUQQoeqBmbNnIH83a8nR6jM/6nHv2flMOq+ojVzu9OsNUB181xrbGgSC0XvN?=
- =?us-ascii?Q?3ugcY6TmA2Q25qZk6sPQLgnB52Xwa9lK6aRmFe9X8wfjr2xBCCGeMpphhQSw?=
- =?us-ascii?Q?2RvRyudA0DNAFYxlm9xsUN5GNE22rDBHqA2Utd4G6uMhxPpLZKP/SeoBV9h7?=
- =?us-ascii?Q?DkF6agokvfHjdTWTGau9m471FTkFNRXyPNVrMQxjc17OEqYb080q0/GopcTT?=
- =?us-ascii?Q?nS2GlauVQ5ScHu+Cwae/98hrhkPpXSIBDAZKb8mz6+++E7ljzv7jKmRAHI5I?=
- =?us-ascii?Q?SLmrldGDom6qaTa+Zif+pXl/nwOg+xrUyXBQwGdP+XidTd0gA3n8tsEpD2KT?=
- =?us-ascii?Q?VXVkyZDwWG5NY7z3cmcRCJF0bKL3MWWiLaHRy0PC9JRBCY+B66IAz00fxb6q?=
- =?us-ascii?Q?q3yrqAfmk5PxT1tzNmRtPdGSo+ciWOBI93XVx7iFX0t+DaPnQfuMHZL6bsyP?=
- =?us-ascii?Q?GjtF7fMriGCVD8gPlJaoAHH+kST8+SGYbPV3oaBngYIbfY3lo+Gc1zgIxicW?=
- =?us-ascii?Q?hfieyYQOC6REHAt1+ygSi3mCalshyQciVe973vN4RSk9lNzA4hZcAFcdQEiy?=
- =?us-ascii?Q?ODkcBlgLkuIIP+Fu7fA51KRJ9BQ8KRzEFhDruywzUC+m/8wucCHZZc6P14ry?=
- =?us-ascii?Q?Nk3B+Tk3cCFeH7cvqG9nZ9UWCNVIl7TWlSzcHjJCnGQtNYysRuIftUq+wKY4?=
- =?us-ascii?Q?CodDV2eZe3CRllifErsGv56VI5UzHoH4/g8aMZZjrFWSdLm1wVSa+hmII2xX?=
- =?us-ascii?Q?xUuHE5Zvk+DXIlTXhAmCGCOCx5E+OubpHk9xoPzjnb/YnIlWNdaGH4bSxitw?=
- =?us-ascii?Q?1JJVUKAAu8YB+0Y0S+s6m/dBZjefDbxs0COq4jx/Z5LEO/45GKANa4UCgm2G?=
- =?us-ascii?Q?8oS//h9YUGH3kDf60J+pF5bvpLVemjPtm49aid2oE5GUIbtwKegJ56wlnTf2?=
- =?us-ascii?Q?/kFnN7c1DcGFpvJlIE8F865Wd3LaxSI1vf641QQ0bozXi3PMYmQhNbiIC8Hy?=
- =?us-ascii?Q?oU/ig+LpfWaaSet7c61uTDjogleSChdfx3fGMP0VRB2nH2keiJgnABwoi4sW?=
- =?us-ascii?Q?ndP3Jg5Nk4zdeH7+baPd/ysBktZ0s47eIwNyl3a4UMzIWu8eWXeVg3U1i4aS?=
- =?us-ascii?Q?ooFDl1tj/yB4UrLe2NqBqShmAScGWOTmQnKKj/JR6E/0ICy5tyJuDR8SU7Ml?=
- =?us-ascii?Q?0fHdHVNXAvuGOJ91XY9lhGU=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4135f367-b573-448d-6c39-08dafdb08c3d
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 02:13:13.6659
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cRPp7stQVQCpAox1uEk1R0dSvyLD2p13n+ZdBHUt/LGoXWWcIH6d12NmDCLiRlBalARefWk7rkIwKBBW6a/VMrVCO7070BGPrVMLNRl9Y1J5qCu6QNWSmzU/3lwa1jrf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11127
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230123_181320_549431_331B7042 
-X-CRM114-Status: GOOD (  16.06  )
+X-CRM114-CacheID: sfid-20230123_194107_913183_5E545335 
+X-CRM114-Status: GOOD (  13.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,269 +94,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This mini-series adds support for HEVC decoding. It combines the original codec
+work done by Maxime Jourdan in 2019 [0] and improvements by Benjamin Roszak in
+2021 [1]. Only GXBB/GXL/GXM are enabled as decoding currently crashes on G12A
+and later SoCs when trying to decode a 10-bit HEVC stream.
 
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+The goal of upstreaming the driver in its current state is to encourage greater
+community contribution towards adding missing features, and fixing the bugs and
+conformance issues necessary to get out of staging.
 
-Current ASoC has many helper function.
-This patch use it.
+The HEVC codec presented here is generally partnered with FFMpeg sources that
+are being maintained by the Raspberry Pi Foundation [2] and [3] that contain
+numerous improvements to v4l2_m2m (and v4l2_request) support. There is active
+work in progress to refine the changeset and send it upstream.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- sound/soc/meson/aiu-fifo-i2s.c      |  4 ++--
- sound/soc/meson/aiu-fifo-spdif.c    |  2 +-
- sound/soc/meson/aiu-fifo.c          | 21 +++++++++---------
- sound/soc/meson/axg-tdm-interface.c | 34 +++++++++++++++--------------
- sound/soc/meson/axg-tdmin.c         |  2 +-
- sound/soc/meson/axg-tdmout.c        |  2 +-
- sound/soc/meson/meson-codec-glue.c  |  8 +++----
- 7 files changed, 38 insertions(+), 35 deletions(-)
+Christian
 
-diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
-index 57e6e7160d2f..59e00a74b5f8 100644
---- a/sound/soc/meson/aiu-fifo-i2s.c
-+++ b/sound/soc/meson/aiu-fifo-i2s.c
-@@ -88,7 +88,7 @@ static int aiu_fifo_i2s_hw_params(struct snd_pcm_substream *substream,
- 				  struct snd_soc_dai *dai)
- {
- 	struct snd_soc_component *component = dai->component;
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	unsigned int val;
- 	int ret;
- 
-@@ -158,7 +158,7 @@ int aiu_fifo_i2s_dai_probe(struct snd_soc_dai *dai)
- 	if (ret)
- 		return ret;
- 
--	fifo = dai->playback_dma_data;
-+	fifo = snd_soc_dai_dma_data_get_playback(dai);
- 
- 	fifo->pcm = &fifo_i2s_pcm;
- 	fifo->mem_offset = AIU_MEM_I2S_START;
-diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-spdif.c
-index 2fb30f89bf7a..ddbd2fc40185 100644
---- a/sound/soc/meson/aiu-fifo-spdif.c
-+++ b/sound/soc/meson/aiu-fifo-spdif.c
-@@ -173,7 +173,7 @@ int aiu_fifo_spdif_dai_probe(struct snd_soc_dai *dai)
- 	if (ret)
- 		return ret;
- 
--	fifo = dai->playback_dma_data;
-+	fifo = snd_soc_dai_dma_data_get_playback(dai);
- 
- 	fifo->pcm = &fifo_spdif_pcm;
- 	fifo->mem_offset = AIU_MEM_IEC958_START;
-diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
-index d67ff4cdabd5..543d41856c12 100644
---- a/sound/soc/meson/aiu-fifo.c
-+++ b/sound/soc/meson/aiu-fifo.c
-@@ -34,7 +34,7 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
- 				   struct snd_pcm_substream *substream)
- {
- 	struct snd_soc_dai *dai = aiu_fifo_dai(substream);
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	struct snd_pcm_runtime *runtime = substream->runtime;
- 	unsigned int addr;
- 
-@@ -46,7 +46,7 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
- static void aiu_fifo_enable(struct snd_soc_dai *dai, bool enable)
- {
- 	struct snd_soc_component *component = dai->component;
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	unsigned int en_mask = (AIU_MEM_CONTROL_FILL_EN |
- 				AIU_MEM_CONTROL_EMPTY_EN);
- 
-@@ -80,7 +80,7 @@ int aiu_fifo_prepare(struct snd_pcm_substream *substream,
- 		     struct snd_soc_dai *dai)
- {
- 	struct snd_soc_component *component = dai->component;
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 
- 	snd_soc_component_update_bits(component,
- 				      fifo->mem_offset + AIU_MEM_CONTROL,
-@@ -98,7 +98,7 @@ int aiu_fifo_hw_params(struct snd_pcm_substream *substream,
- {
- 	struct snd_pcm_runtime *runtime = substream->runtime;
- 	struct snd_soc_component *component = dai->component;
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	dma_addr_t end;
- 
- 	/* Setup the fifo boundaries */
-@@ -132,7 +132,7 @@ static irqreturn_t aiu_fifo_isr(int irq, void *dev_id)
- int aiu_fifo_startup(struct snd_pcm_substream *substream,
- 		     struct snd_soc_dai *dai)
- {
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	int ret;
- 
- 	snd_soc_set_runtime_hwparams(substream, fifo->pcm);
-@@ -168,7 +168,7 @@ int aiu_fifo_startup(struct snd_pcm_substream *substream,
- void aiu_fifo_shutdown(struct snd_pcm_substream *substream,
- 		       struct snd_soc_dai *dai)
- {
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 
- 	free_irq(fifo->irq, substream);
- 	clk_disable_unprepare(fifo->pclk);
-@@ -178,7 +178,7 @@ int aiu_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd,
- 		     struct snd_soc_dai *dai)
- {
- 	struct snd_card *card = rtd->card->snd_card;
--	struct aiu_fifo *fifo = dai->playback_dma_data;
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
- 	size_t size = fifo->pcm->buffer_bytes_max;
- 	int ret;
- 
-@@ -200,15 +200,16 @@ int aiu_fifo_dai_probe(struct snd_soc_dai *dai)
- 	if (!fifo)
- 		return -ENOMEM;
- 
--	dai->playback_dma_data = fifo;
-+	snd_soc_dai_dma_data_set_playback(dai, fifo);
- 
- 	return 0;
- }
- 
- int aiu_fifo_dai_remove(struct snd_soc_dai *dai)
- {
--	kfree(dai->playback_dma_data);
-+	struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
-+
-+	kfree(fifo);
- 
- 	return 0;
- }
--
-diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
-index c040c83637e0..7624aafe9009 100644
---- a/sound/soc/meson/axg-tdm-interface.c
-+++ b/sound/soc/meson/axg-tdm-interface.c
-@@ -37,10 +37,8 @@ int axg_tdm_set_tdm_slots(struct snd_soc_dai *dai, u32 *tx_mask,
- 			  unsigned int slot_width)
- {
- 	struct axg_tdm_iface *iface = snd_soc_dai_get_drvdata(dai);
--	struct axg_tdm_stream *tx = (struct axg_tdm_stream *)
--		dai->playback_dma_data;
--	struct axg_tdm_stream *rx = (struct axg_tdm_stream *)
--		dai->capture_dma_data;
-+	struct axg_tdm_stream *tx = snd_soc_dai_dma_data_get_playback(dai);
-+	struct axg_tdm_stream *rx = snd_soc_dai_dma_data_get_capture(dai);
- 	unsigned int tx_slots, rx_slots;
- 	unsigned int fmt = 0;
- 
-@@ -362,11 +360,14 @@ static int axg_tdm_iface_prepare(struct snd_pcm_substream *substream,
- 
- static int axg_tdm_iface_remove_dai(struct snd_soc_dai *dai)
- {
--	if (dai->capture_dma_data)
--		axg_tdm_stream_free(dai->capture_dma_data);
-+	int stream;
- 
--	if (dai->playback_dma_data)
--		axg_tdm_stream_free(dai->playback_dma_data);
-+	for_each_pcm_streams(stream) {
-+		struct axg_tdm_stream *ts = snd_soc_dai_dma_data_get(dai, stream);
-+
-+		if (ts)
-+			axg_tdm_stream_free(ts);
-+	}
- 
- 	return 0;
- }
-@@ -374,19 +375,20 @@ static int axg_tdm_iface_remove_dai(struct snd_soc_dai *dai)
- static int axg_tdm_iface_probe_dai(struct snd_soc_dai *dai)
- {
- 	struct axg_tdm_iface *iface = snd_soc_dai_get_drvdata(dai);
-+	int stream;
- 
--	if (dai->capture_widget) {
--		dai->capture_dma_data = axg_tdm_stream_alloc(iface);
--		if (!dai->capture_dma_data)
--			return -ENOMEM;
--	}
-+	for_each_pcm_streams(stream) {
-+		struct axg_tdm_stream *ts;
-+
-+		if (!snd_soc_dai_get_widget(dai, stream))
-+			continue;
- 
--	if (dai->playback_widget) {
--		dai->playback_dma_data = axg_tdm_stream_alloc(iface);
--		if (!dai->playback_dma_data) {
-+		ts = axg_tdm_stream_alloc(iface);
-+		if (!ts) {
- 			axg_tdm_iface_remove_dai(dai);
- 			return -ENOMEM;
- 		}
-+		snd_soc_dai_dma_data_set(dai, stream, ts);
- 	}
- 
- 	return 0;
-diff --git a/sound/soc/meson/axg-tdmin.c b/sound/soc/meson/axg-tdmin.c
-index 49b613a1faf2..c8f6ea24ae78 100644
---- a/sound/soc/meson/axg-tdmin.c
-+++ b/sound/soc/meson/axg-tdmin.c
-@@ -83,7 +83,7 @@ axg_tdmin_get_tdm_stream(struct snd_soc_dapm_widget *w)
- 	if (!be)
- 		return NULL;
- 
--	return be->capture_dma_data;
-+	return snd_soc_dai_dma_data_get_capture(be);
- }
- 
- static void axg_tdmin_enable(struct regmap *map)
-diff --git a/sound/soc/meson/axg-tdmout.c b/sound/soc/meson/axg-tdmout.c
-index 22d519fc07b2..c4039e4f0847 100644
---- a/sound/soc/meson/axg-tdmout.c
-+++ b/sound/soc/meson/axg-tdmout.c
-@@ -81,7 +81,7 @@ axg_tdmout_get_tdm_stream(struct snd_soc_dapm_widget *w)
- 	if (!be)
- 		return NULL;
- 
--	return be->playback_dma_data;
-+	return snd_soc_dai_dma_data_get_playback(be);
- }
- 
- static void axg_tdmout_enable(struct regmap *map)
-diff --git a/sound/soc/meson/meson-codec-glue.c b/sound/soc/meson/meson-codec-glue.c
-index 80c5ed196961..5913486c43ab 100644
---- a/sound/soc/meson/meson-codec-glue.c
-+++ b/sound/soc/meson/meson-codec-glue.c
-@@ -39,13 +39,13 @@ meson_codec_glue_get_input(struct snd_soc_dapm_widget *w)
- static void meson_codec_glue_input_set_data(struct snd_soc_dai *dai,
- 					    struct meson_codec_glue_input *data)
- {
--	dai->playback_dma_data = data;
-+	snd_soc_dai_dma_data_set_playback(dai, data);
- }
- 
- struct meson_codec_glue_input *
- meson_codec_glue_input_get_data(struct snd_soc_dai *dai)
- {
--	return dai->playback_dma_data;
-+	return snd_soc_dai_dma_data_get_playback(dai);
- }
- EXPORT_SYMBOL_GPL(meson_codec_glue_input_get_data);
- 
-@@ -99,8 +99,8 @@ int meson_codec_glue_output_startup(struct snd_pcm_substream *substream,
- 				    struct snd_soc_dai *dai)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
--	struct meson_codec_glue_input *in_data =
--		meson_codec_glue_output_get_input_data(dai->capture_widget);
-+	struct snd_soc_dapm_widget *w = snd_soc_dai_get_widget_capture(dai);
-+	struct meson_codec_glue_input *in_data = meson_codec_glue_output_get_input_data(w);
- 
- 	if (!in_data)
- 		return -ENODEV;
+[0] https://github.com/Elyotna/linux/commits/4.20/v4l2-m2m-pr
+[1] https://gitlab.com/benjamin545/linux-amlogic/-/commits/aml-hevc
+[2] https://github.com/jc-kynesim/rpi-ffmpeg/commits/release/4.4/rpi_import_1
+[3] https://github.com/jc-kynesim/rpi-ffmpeg/tree/dev/5.1.2/rpi_import_1
+
+Changes from v1:
+- Fix unused val warning reported by kernel test robot <lkp@intel.com>
+
+Benjamin Roszak (1):
+  media: meson: vdec: implement 10bit bitstream handling
+
+Maxime Jourdan (1):
+  media: meson: vdec: add HEVC decode codec
+
+ drivers/staging/media/meson/vdec/Makefile     |    2 +-
+ drivers/staging/media/meson/vdec/codec_h264.c |    3 +-
+ drivers/staging/media/meson/vdec/codec_hevc.c | 1462 +++++++++++++++++
+ drivers/staging/media/meson/vdec/codec_hevc.h |   13 +
+ .../media/meson/vdec/codec_hevc_common.c      |  161 +-
+ .../media/meson/vdec/codec_hevc_common.h      |    3 +-
+ drivers/staging/media/meson/vdec/codec_vp9.c  |   35 +-
+ drivers/staging/media/meson/vdec/esparser.c   |    4 +-
+ drivers/staging/media/meson/vdec/hevc_regs.h  |    1 +
+ drivers/staging/media/meson/vdec/vdec.h       |    1 +
+ .../staging/media/meson/vdec/vdec_helpers.c   |   44 +-
+ .../staging/media/meson/vdec/vdec_helpers.h   |   10 +-
+ .../staging/media/meson/vdec/vdec_platform.c  |   37 +
+ 13 files changed, 1677 insertions(+), 99 deletions(-)
+ create mode 100644 drivers/staging/media/meson/vdec/codec_hevc.c
+ create mode 100644 drivers/staging/media/meson/vdec/codec_hevc.h
+
 -- 
-2.25.1
+2.34.1
 
 
 _______________________________________________
