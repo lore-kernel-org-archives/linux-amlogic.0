@@ -4,79 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D90C54E94
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 16:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 445F6C61D9D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 17:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u7tDpQMP0rc5Fv5zf9OQfDuutKUIbimwu2/06//3k1U=; b=tCvf7XLFC72aQ5
-	VItEq2en/09riteasAx/ZOr8RxzStelPGT224bUGP4ZZbdbmLIAhuEN1U6pEol2PdEanCVb4PFilH
-	wMQ0fDjre4Wc0WzImgQuxfezJDoMwBcsVKJ6gRRltv+I+XlAbNPS1gp8j13Pa2KFprTFwIHhr8y9j
-	9kaESAA5A6tgrlTM9n/RY2xsqld1h16DJrWxSPj0icdGe2eJOAGZR+GJIm0Ca3fY4YbANR1M9Sg8E
-	Pasj3OFe1h7dUlQix+lbimoMVS/UCdyAj+jj2t4dBLapdAIk7kDR6lz7kAIHQRRjtc8TEiM/pL5C4
-	/tO5kL88WoF94JhosxmQ==;
+	List-Owner; bh=mHVLG1diN4ga+EjjWpYfh28SJJmPNDdlsfehiVHY2HY=; b=styCxW9LobPMv4
+	X11NfWCHIVRZz6Q8RaRiDDyZKVqUAiRRqodLn1S6PHnZg2NZAXpg7h1nL2KuCW4RNiCciOx/pkIfD
+	h5XzMc0x7uSAHKYXODRKbUu83ZE0tch6+Jk+PtuhYe/a0IBOY1QpLv8gQRAq+zYreyz3Y1A4Q9nXm
+	/Flc3Gtvbcvqv7tUjNEiy3NhZLLp1sEY+nXhZM0KPduVgtshAOVAKL+RvhAZkQiHz6/dAbPLYIuvQ
+	HBNElozKdPQRkMJkQcJbUicB6AwD5uGiP4DuUTsLMoQpILNyfvxmKhy52D5lbE/lEWg/TNlAuJa3X
+	cjgjhw3DAdVgP+psky/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKiv4-0082P1-Dq; Wed, 25 Jan 2023 16:46:42 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pKjJI-0089Fk-9G; Wed, 25 Jan 2023 17:11:44 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKiv0-0082Lr-0u; Wed, 25 Jan 2023 16:46:39 +0000
+	id 1pKjJF-0089Ew-CN; Wed, 25 Jan 2023 17:11:43 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E6E0061226;
-	Wed, 25 Jan 2023 16:46:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E62EC433A8;
-	Wed, 25 Jan 2023 16:46:35 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 0CD56B81B4F;
+	Wed, 25 Jan 2023 17:11:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95BFFC433B0;
+	Wed, 25 Jan 2023 17:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1674665195;
-	bh=xfla28zJBRsWQXlBseFrkXF56zvwRirAY/10+O6Gusg=;
+	s=k20201202; t=1674666697;
+	bh=RetSZbgsPvYqvv6AGDmz0Y2yuG9iulSs8DCbaH8Bt78=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Dlm6sDlROFpggiDg+SA67d6opXGecZCzhdxg7YeK/ToJXgpYMtPrjPZnPNswbiNQO
-	 RU3i9whhAz/orOrH/Z4Xhfgiu7svabkuoqJJVe1CZPd/YtzbF3Sf3JwH5fz+1Lprny
-	 IECDs6KubJB6cjehtcbUdoveg5kLh++iTN88G+VafS9z9QzecwVqV/O9lIbT71yZ/O
-	 1W2efdb1/nLx8hsKhQWusZmyC+4ymleM7BeWWBXD0PKd5r6CvzX6tK34fPYZWJfhoM
-	 HNHspSWjR/GPEKJ/iHfjDgV3Eji7kG6zPNztQO9g2YsyMR8LOqzu+gNxwDKD3FLm5I
-	 YmOW1D8PfpcDg==
-Received: by mail-vs1-f48.google.com with SMTP id i188so20334540vsi.8;
-        Wed, 25 Jan 2023 08:46:35 -0800 (PST)
-X-Gm-Message-State: AFqh2kq1Kmjtp58tK2hyQqFiBEZ4N8SsGaNgKyXPZNNvk0xh8FYgUf/2
-	68sAYIQzoVqh0WNenFLVcOVsiWQyAPQiJDBEFw==
-X-Google-Smtp-Source: AMrXdXukkClxVJmORCFGUtNIYT840ix5e1Pd5Glna3rS2gUNazjUpgsHwDnIQtt7qoedMPCgyP02fjS7IrIEoFB0Z1Y=
-X-Received: by 2002:a67:f506:0:b0:3d3:c767:4570 with SMTP id
- u6-20020a67f506000000b003d3c7674570mr4933608vsn.85.1674665194514; Wed, 25 Jan
- 2023 08:46:34 -0800 (PST)
+	b=CEyaH+bgf2lcwko+f741pV+QMy0dxz2Olo9d9xTL1WwCP+bkqbbWyzTq6ffTKyPzZ
+	 jFa3v1SPmDrBKh1SjsBi9LXYHRY+V77bNQ9rpqapfki/MThO8gURNUYAvpZIc3T57B
+	 nUkcF5ONSO62yv/l10IYayHhb+xuxx2mgi4/RZQ4H2132SpJtXoQvVtPOWqyN+hSwG
+	 oDpuewCjY0y3xKp4316s6VrfZge3SajjG03VP7LDYyyYsViAhfr7a39/wNTBe5nlZj
+	 ThtqLDUK8oBlq2rUD3m4Mr4MFat46rPa/t1vxd8iXs3K8CXLSDbNTnG6SbfEIcVrm8
+	 ZRTGUn67f9crw==
+Received: by mail-ua1-f54.google.com with SMTP id e18so4830764uam.9;
+        Wed, 25 Jan 2023 09:11:37 -0800 (PST)
+X-Gm-Message-State: AFqh2kqAiyII8fyeKKQolFNIEzc7QRxPCMK6IycafW9NfVtZZWlr1Tc7
+	r21+C0xv53Lfd2udJkLldGafI3U0emrU+8aNqg==
+X-Google-Smtp-Source: AMrXdXvkBeNWibWQ7iPb1UKnLnMwCQw9G4I7LpDrOPCqvmhVcacTBEc2M+BHEtbF4izLYj2eXZV0gKgfipYxi1WDLuQ=
+X-Received: by 2002:ab0:5bda:0:b0:444:2123:f8df with SMTP id
+ z26-20020ab05bda000000b004442123f8dfmr3758761uae.86.1674666696257; Wed, 25
+ Jan 2023 09:11:36 -0800 (PST)
 MIME-Version: 1.0
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <06289641-18b1-320d-6162-7ae176452f31@gmail.com> <167452325371.3118653.16373677195744392136.robh@kernel.org>
- <d8f0a5a9-5a16-1f63-8444-86434ff52e34@gmail.com>
-In-Reply-To: <d8f0a5a9-5a16-1f63-8444-86434ff52e34@gmail.com>
+References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
+ <20230123151302.368277-11-krzysztof.kozlowski@linaro.org> <167451486467.2795286.1299932821783618559.robh@kernel.org>
+ <71fd9674-63a7-9887-d602-1f57ae3982aa@linaro.org>
+In-Reply-To: <71fd9674-63a7-9887-d602-1f57ae3982aa@linaro.org>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 25 Jan 2023 10:46:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKgo65fiE8+dzMHNRu3XJ8eBm43w8MoQdCwwm2zvxJeFA@mail.gmail.com>
-Message-ID: <CAL_JsqKgo65fiE8+dzMHNRu3XJ8eBm43w8MoQdCwwm2zvxJeFA@mail.gmail.com>
-Subject: Re: [PATCH 7/8] dt-bindings: interrupt-controller: Add Amlogic Meson
- GPIO interrupt controller binding
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, linux-pwm@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-rtc@vger.kernel.org, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Alessandro Zummo <a.zummo@towertech.it>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 25 Jan 2023 11:11:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK7ZYe+PMXZ34WG746JzgGvaLanRpwF2x3sSGdsA7PCSA@mail.gmail.com>
+Message-ID: <CAL_JsqK7ZYe+PMXZ34WG746JzgGvaLanRpwF2x3sSGdsA7PCSA@mail.gmail.com>
+Subject: Re: [PATCH 11/13] dt-bindings: serial: restrict possible child node names
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: - <devicetree@vger.kernel.org>, linux-riscv@lists.infradead.org, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Tomer Maimon <tmaimon77@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Peter Korsgaard <jacmet@sunsite.dk>, Chester Lin <clin@suse.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	linux-stm32@st-md-mailman.stormreply.com, Kevin Hilman <khilman@baylibre.com>, 
+	linux-kernel@vger.kernel.org, Fugang Duan <fugang.duan@nxp.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	linux-serial@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Fabio Estevam <festevam@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Le Ray <erwan.leray@foss.st.com>, Michal Simek <michal.simek@xilinx.com>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Pragnesh Patel <pragnesh.patel@sifive.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, 
+	NXP Linux Team <linux-imx@nxp.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230125_084638_196573_C1015835 
-X-CRM114-Status: GOOD (  24.23  )
+X-CRM114-CacheID: sfid-20230125_091141_721237_A7DFEC56 
+X-CRM114-Status: GOOD (  24.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,45 +97,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 24, 2023 at 1:04 AM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Tue, Jan 24, 2023 at 3:05 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 24.01.2023 02:22, Rob Herring wrote:
+> On 24/01/2023 00:05, Rob Herring wrote:
 > >
-> > On Mon, 23 Jan 2023 22:30:08 +0100, Heiner Kallweit wrote:
-> >> Add Amlogic Meson GPIO interrupt controller binding.
-> >> Tested with make targets dt_binding_check and dtbs_check.
+> > On Mon, 23 Jan 2023 16:13:00 +0100, Krzysztof Kozlowski wrote:
+> >> The re-usable serial.yaml schema matches every property with ".*"
+> >> pattern, thus any other schema referencing it will not report unknown
+> >> (unevaluated) properties.  This hides several wrong properties.  It is
+> >> a limitation of dtschema, thus provide a simple workaround: expect
+> >> children to be only of few names matching upstream usage (Bluetooth,
+> >> GNSS, GPS and MCU).
 > >>
-> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > >> ---
-> >>  .../amlogic,meson-gpio-intc.txt               | 38 ----------
-> >>  .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
-> >>  2 files changed, 72 insertions(+), 38 deletions(-)
-> >>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-> >>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> >>  Documentation/devicetree/bindings/serial/serial.yaml | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
 > >>
 > >
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.example.dtb: serial@1,0: Unevaluated properties are not allowed ('intel,ixp4xx-eb-byte-access', 'intel,ixp4xx-eb-cycle-type', 'intel,ixp4xx-eb-t3', 'intel,ixp4xx-eb-write-enable' were unexpected)
+> >       From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/8250.yaml
 >
-> Patch 4 of the series fixes these warnings.
+> Eh, this is not trivial to solve. The
+> "intel,ixp4xx-expansion-bus-controller.yaml" bindings add properties to
+> children nodes, just like spi-peripheral-props:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml?h=v6.2-rc5#n147
 
-Then you can ignore them.
+Yep, those properties probably need to go into mc-peripheral-props.yaml.
 
-You did change the binding somewhat and that should be detailed in the
-commit message. Granted, the original details on 'compatible' seem to
-have a typo and are ambiguous on the order of entries.
+> Any node can be there:
+> 1. serial, which was broken since beginning but errors not visible,
 
-> Did you apply the full series?
+8250 only in all likelyhood.
 
-No, because patchwork doesn't get the full series nor do I see the
-full thread when reviewing these bot emails before sending them. If I
-see a conversion and warnings that look like the schema should be
-fixed rather than the dts files, then you get this email. Though on
-further review, dropping 'amlogic,meson-gpio-intc' seems fine given it
-is often in the wrong spot (it should be last as it is least
-specific).
+> 2. flash, which work fine just because mtd-physmap.yaml allows it,
+> 3. more?
+
+I guess it is *only* external parallel bus devices...
+
+>
+> Existing DTS of this ixp4xx controller have different nodes, for example:
+> flash, shared-dma-pool, ns8250, arcom,vulcan-gpio, maxim,max6369:
+
+'shared-dma-pool' is odd.
+
+So is max6369. Looks like that h/w was creatively attached.
+
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/intel-ixp42x-arcom-vulcan.dts?h=v6.2-rc5#n40
+>
+> Probably we need expansion-bus-controller-peripheral-props.yaml and
+> include it in every possible child. Does it sound reasonable?
+
+What's the difference to mc-peripheral-props.yaml?
+
+Honestly, this stuff is somewhat rare that I'd rather worry about it
+later. Maybe ixp4xx will be removed by then... We could just comment
+out the problematic parts of the example for now.
 
 Rob
 
