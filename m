@@ -4,86 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA542C54E94
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 20:02:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF285C54E94
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 20:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5qITLtxRGFmLf7n1Sq7DQ2JN4k1VhleDWanEWt64Das=; b=xyFuO/o8nZlkyt
-	z8yQ77A4RPeHrXMhvCZ0/t+VU1jj5Zi952bpQZu4BjZHBQ9MiEH+o+d9BFVSyrbldjGwWTpRn8ajU
-	QLdrhe/ppZQdhzAFyCVVyQ5PSmxd1emCFGmhG9huc+x7cbVDd7iqiUsbvhgU1vTw3ZQXdOJSj1d4d
-	o9YQWkMskDGMOpm09AWXjgh5LZUoCAWdI6VE8bGwdFtPKDnBVLYivbGAJa01yWlyZl6UTHcgFluUT
-	RuSzGvfxAFGzRvARRTRlUErmBtzZqVVg0XN7CAAqESN21v+h6L/MHjp4rrrr5F7dcn1aedQ6sRu6U
-	2PKfIHr8cmn/5xLkOlaw==;
+	List-Owner; bh=19IzyVPfa3fwagll5/zirv/f76qDEP9uU35LtxTJ92M=; b=m/sYtNhVUoPlX6
+	YYWqRV5fvqsm7vPo81G+6GXFcT+1Veogau9Y+ZWfokUSL3y8HoQr8MoEou61xqmDBvVHsSYxTApn4
+	vDpAN/f0DsYHE9sySfLZFYXwZfzx4/CGu8MaGTIzBDdwRbBace48WoC8shXcrBsxWrGlpK7yxtKzT
+	gZB8PITXsc7xXWjsuhg4RWCphzAzpEJ9KPR3xf4DqFSVJDOsAYwXeh4xkoerh0uU2X6ohtq4/dwmQ
+	VomU5ARc/n0izT9oS4BjLOybOawM7jH/NrHxhdTkDYySrOaTGIHmKjD/c7kaSVQ0ZBHakoDZ9wLYV
+	SXg/w2ghTwyhkKf6Wkfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKlyX-008XZL-MT; Wed, 25 Jan 2023 20:02:29 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1pKm5G-008aT2-B7; Wed, 25 Jan 2023 20:09:26 +0000
+Received: from mail-oa1-f47.google.com ([209.85.160.47])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKlyK-008XVP-RO; Wed, 25 Jan 2023 20:02:18 +0000
-Received: by mail-wr1-x429.google.com with SMTP id d14so14506878wrr.9;
-        Wed, 25 Jan 2023 12:02:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zpQiYKewfM75LgZx2CGS8jz1svX6UbmzP2z2lvxLxDE=;
-        b=a5gQiL4vwHYxarBjINRBH4tzxGyOCLnWp00lqjv6prz+avlW5QmltN37SqMs6H6G76
-         7yr+HvlMna6Lwt91idASeao21M+zT/erDeevNbMeBTkcCZk/RCApZNvwSsllOyaDFvf/
-         Nxm1WTO9e1XXMbXeWXgit3BikzxvAkyJeGNMIdytZ4BERFOF5+2IuzI9ZLG6ts4lOUZg
-         zLRA52zdgjro2Dz1nrfv2RTvvUTOTq56zBe7Rsal4WyGh6SzRlioCyFf+tMJ+EboS+Qj
-         ZaKztZopavHkJgvUT6sl6s4yAhKHN+9UGyG/4+4VrsT96ArkybfgjqpyjG3KRHtyPM3q
-         Cb/w==
+	id 1pKm1g-008YrJ-Lt; Wed, 25 Jan 2023 20:05:46 +0000
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-16332831ed0so3121567fac.10;
+        Wed, 25 Jan 2023 12:05:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zpQiYKewfM75LgZx2CGS8jz1svX6UbmzP2z2lvxLxDE=;
-        b=j+tllp/OXBX85L9RHEHWjzEpMM4kvI8aS3+qvyXVG33U1leDzQHmHrTS9fd67pP4x6
-         2AxrcprcRBeenm7HN5qr6eMJTbAOVozrFfljxteusHPEsZoAP5N9tEnH/ctM+GDhEhRg
-         E18EFdVtj0D7mZoLMr5qJi354O+s/OeawT0oci0NIoFLFUiwodZKaIr2YmFsRvBe80uQ
-         zjCPMJwxNRkWuPvqaOAjt1HVxPrMdZdHGLxT3eAYlf4mGOn8BIstp/us25m374FZntrK
-         f/Wtl532AA356tY2CJql1UDgoBjaSVKzfQZAyXyU/wIUuovzbV3qojindzwHmXKUvyLe
-         /IYA==
-X-Gm-Message-State: AO0yUKWTGmmrzASnPlN1kOFM9LVW7WXSDeE7j8DxNe5im1+UAwYR9Vh3
-	LlDP/Os29ONz7hTZd24mHiU=
-X-Google-Smtp-Source: AK7set+VtmsiILSUq/hTnS3Nys6aOIhGVTP/Z/nn8sy5cMhxWx3fajxSdyNs1ZNSBzu8v5j7t+dtvQ==
-X-Received: by 2002:a5d:5a87:0:b0:2bf:b7ca:8ae2 with SMTP id bp7-20020a5d5a87000000b002bfb7ca8ae2mr3822237wrb.15.1674676932918;
-        Wed, 25 Jan 2023 12:02:12 -0800 (PST)
-Received: from ?IPV6:2a01:c22:720f:5a00:b1aa:59d6:6587:3051? (dynamic-2a01-0c22-720f-5a00-b1aa-59d6-6587-3051.c22.pool.telefonica.de. [2a01:c22:720f:5a00:b1aa:59d6:6587:3051])
-        by smtp.googlemail.com with ESMTPSA id h18-20020adffd52000000b002bfc24e1c55sm303748wrs.78.2023.01.25.12.02.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 12:02:12 -0800 (PST)
-Message-ID: <0f702de6-91f8-f01f-2ea5-6b1d9ab325e2@gmail.com>
-Date: Wed, 25 Jan 2023 21:02:05 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8kqCnvG5HfBYMdFzmIrllsGYjZVwDWefqF05Cmky4HA=;
+        b=lLN+jQRntNFZo/uR+GKt5yunH0FQKe7Wl6ejhVITuSKSfkqRsBj6hWkglvDFuqOaaO
+         lyVeYpK2gTTxOtcXi6stg0ltGBwSyvGeY/QNGjMFYitMA1vBYTkjkOrEcNQhbRbIvpN+
+         KtZBlN4PQSNsXwAXc1k7o4oph6hONtwU6PHkDWWBSYjDShtrYzZfS7k1zNpiMGxSqzpF
+         qqloLAuQmDMqxIlS3yIyHl4sOA946Ervkbknj0aFJknjdhUeBrt7RFjfowAaOBkHidsI
+         Pev5+eX7dp+AdVPmj3XLqguRlbHjBTFEUja78sN4V6Tr5EptNLWi0kl/eYnuDEihfzOi
+         QaPg==
+X-Gm-Message-State: AO0yUKUN1Qp3aIdpdcy9L90m2FKHnrBhZK4I0EV1fY0Z27fkfQjVHBmR
+	DDcPZVf0GRSi7AU4tFF1bw==
+X-Google-Smtp-Source: AK7set+KlYA9hOhKxY3yXbw1+jJFui+axb/K8qUGpNYSrXD6fL93Qjufe/ZRHNh9bIxZbHxYbUPr4A==
+X-Received: by 2002:a05:6870:14d5:b0:163:45a2:e276 with SMTP id l21-20020a05687014d500b0016345a2e276mr684576oab.9.1674677142691;
+        Wed, 25 Jan 2023 12:05:42 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n20-20020a056870559400b0010d7242b623sm2325869oao.21.2023.01.25.12.05.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 12:05:42 -0800 (PST)
+Received: (nullmailer pid 2768672 invoked by uid 1000);
+	Wed, 25 Jan 2023 20:05:39 -0000
+Date: Wed, 25 Jan 2023 14:05:39 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-sunxi@lists.linux.dev, openbmc@lists.ozlabs.org, 
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Michal Simek <michal.simek@xilinx.com>, 
+	Li-hao Kuo <lhjeff911@gmail.com>, Han Xu <han.xu@nxp.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Yogesh Gaur <yogeshgaur.83@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Birger Koblitz <mail@birger-koblitz.de>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	", Bert Vermeulen" <bert@biot.com>, Marek Vasut <marex@denx.de>, linux-mediatek@lists.infradead.org, 
+	linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Palmer Dabbelt <palmer@dabbelt.com>, 
+	", Christophe Kerello" <christophe.kerello@foss.st.com>, linux-arm-kernel@lists.infradead.org, 
+	Haibo Chen <haibo.chen@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Kamal Dasu <kdasu.kdev@gmail.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	linux-arm-msm@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
+	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>, Rob Herring <robh+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	=?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	", Broadcom internal kernel review list" <bcm-kernel-feedback-list@broadcom.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Andy Gross <agross@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Andrew Jeffery <andrew@aj.id.au>, linux-spi@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, Bjorn Andersson <andersson@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Pragnesh Patel <pragnesh.patel@sifive.com>, 
+	linux-riscv@lists.infradead.org, Leilk Liu <leilk.liu@mediatek.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, devicetree@vger.kernel.org, 
+	Joel Stanley <joel@jms.id.au>, Shawn Guo <shawnguo@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>, 
+	Serge Semin <fancer.lancer@gmail.com>, linux-aspeed@lists.ozlabs.org, 
+	Gabor Juhos <juhosg@openwrt.org>, Anson Huang <Anson.Huang@nxp.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Erwan Leray <erwan.leray@foss.st.com>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, 
+	Chris Packham <chris.packham@alliedtelesis.co.nz>, 
+	Kuldeep Singh <singh.kuldeep87k@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Maxime Ripard <mripard@kernel.org>, Parshuram Thombare <pthombar@cadence.com>, 
+	", Fabio Estevam" <festevam@gmail.com>, Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 2/2] spi: dt-bindings: cleanup examples - indentation,
+ lowercase hex
+Message-ID: <167467713905.2768614.7865748447151198568.robh@kernel.org>
+References: <20230124083342.34869-1-krzysztof.kozlowski@linaro.org>
+ <20230124083342.34869-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Fix SDIO interrupt and make it
- level-sensitive
-To: Peter Suti <peter.suti@streamunlimited.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <d9b72573-a59f-989f-a752-1aa8517cf8dc@gmail.com>
- <CACMGZgbtX7zgy2USO5O0qY54tGW+d2cZ6qcUUbb-uOFAtfqOVw@mail.gmail.com>
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <CACMGZgbtX7zgy2USO5O0qY54tGW+d2cZ6qcUUbb-uOFAtfqOVw@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20230124083342.34869-2-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230125_120216_951721_CE531EFA 
-X-CRM114-Status: GOOD (  18.86  )
+X-CRM114-CacheID: sfid-20230125_120544_760910_16A33F1D 
+X-CRM114-Status: GOOD (  13.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,85 +120,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25.01.2023 09:30, Peter Suti wrote:
-> On Wed, Jan 25, 2023 at 8:00 AM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>
->> SDIO specification defines that the interrupt is level-sensitive.
->> Fix the interrupt trigger type for emmc_a accordingly.
->> See comment at beginning of the file wrt which is the SDIO port.
->> mmc2 = &sd_emmc_a; /* SDIO */
->>
->> The usage of edge-triggered interrupts lead to lost interrupts under load,
->> see [0]. This was confirmed to be fixed by using level-triggered
->> interrupts.
->>
->> Note:
->> SDIO interrupt support was added in Linux just recently, however other
->> users of this dts may be affected too.
->>
->> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
->>
->> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
->> Reported-by: Peter Suti <peter.suti@streamunlimited.com>
->> Tested-by: Peter Suti <peter.suti@streamunlimited.com>
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->> v2:
->> - rebase considering recent node name change sd -> mmc for sd_emmc_a
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
->>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
->>  2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> index 1a931d5c2..c09eb9f6f 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> @@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
->>                 sd_emmc_a: mmc@ffe03000 {
->>                         compatible = "amlogic,meson-axg-mmc";
->>                         reg = <0x0 0xffe03000 0x0 0x800>;
->> -                       interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
->> +                       interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
->>                         status = "disabled";
->>                         clocks = <&clkc CLKID_SD_EMMC_A>,
->>                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> index a79a35e84..ae1a5a568 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> @@ -603,7 +603,7 @@ apb: apb@d0000000 {
->>                         sd_emmc_a: mmc@70000 {
->>                                 compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
->>                                 reg = <0x0 0x70000 0x0 0x800>;
->> -                               interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
->> +                               interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
->>                                 status = "disabled";
->>                         };
->>
->> --
->> 2.39.1
->>
+
+On Tue, 24 Jan 2023 09:33:42 +0100, Krzysztof Kozlowski wrote:
+> Cleanup examples:
+>  - use 4-space indentation (for cases when it is neither 4 not 2 space),
+>  - drop redundant blank lines,
+>  - use lowercase hex.
 > 
-> Please also change arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> sd_emmc_b because it was tested on that platform.
+> No functional impact except adjusting to preferred coding style.
 > 
-I'm not sure whether sd_emmc_b is used as SDIO port on all axg systems.
-Maybe one of the maintainers can comment on it.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be> # renesas
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au> # aspeed
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> # meson
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Adjust indentation in two more examples (cdns,qspi-nor, st,stm32-spi)
+> 2. Add tags
+> ---
+>  .../bindings/spi/amlogic,meson-gx-spicc.yaml  |  26 +--
+>  .../bindings/spi/amlogic,meson6-spifc.yaml    |  22 +--
+>  .../bindings/spi/aspeed,ast2600-fmc.yaml      |  24 +--
+>  .../bindings/spi/brcm,spi-bcm-qspi.yaml       | 156 +++++++++---------
+>  .../bindings/spi/cdns,qspi-nor.yaml           |  34 ++--
+>  .../bindings/spi/nvidia,tegra210-quad.yaml    |  42 ++---
+>  .../bindings/spi/qcom,spi-qcom-qspi.yaml      |   1 -
+>  .../devicetree/bindings/spi/renesas,rspi.yaml |  22 +--
+>  .../bindings/spi/spi-sunplus-sp7021.yaml      |   4 +-
+>  .../devicetree/bindings/spi/st,stm32-spi.yaml |  23 ++-
+>  10 files changed, 176 insertions(+), 178 deletions(-)
+> 
 
-If systems may use sd_emmc_b differently, then overriding the interrupt
-trigger type should be done in the respective board file that includes
-meson-axg.dtsi.
-
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
->>
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
