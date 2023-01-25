@@ -4,76 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 280F6C54E94
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 14:25:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1E1CC61D97
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 14:34:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jXvBZh4x7PpUS79U7Y3Fi1bL7Imub9rwdIHQEguwbzU=; b=4vHw+QLmNyTMTp
-	5++TpjWNlUSjTekoHDfCP6HsxnSSa4YRYprrhzQ9HQEkFs+x0FpokE582Fd9e7OHjihg9a2AELsTw
-	l7AWwS5FWDb7nkUdqMzfsu+fhjoHqxnXSUD+QBQ8SpaDFLjXNPijxcsZzQv3T8SaH507dEOnPJ/Wd
-	MHb3B2CS2TlHSnnxs9GYYJc+LbOfbTzo8n51loNyX3gdsw+IGueBODORkVGNRyLkB4AUFbDPMxPNO
-	8Q/KcwCxJXyzHWU50YEvuuBJDzd4kHG/c6Nl+l/rB5Oel76G2HpQCsS9Oi1TQY9/jhWvHkFaKHB67
-	l6d57yhBrJKy/avrUaMg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=q8arQW3JBBiKPQb/hGBgfSREVoFA+Hvu6CjZhXDMQEg=; b=hQEZsAsOhnOah2
+	TQ7A4mlMouOJ7AgoId/INqN3AEP4Oa9/KosWqTiEAqWtnqcpA8JnujzSRaYGU86aMVnUU7MJ2cD8x
+	voLG9SYhrMaw5o6Zt+uZd0PGVXV9plPfMQVo18SBev1vn3OiB+eS520FleQm+sJFjHZEUjZh8DyI8
+	/tYcuEzU+sh/UHLSg98ZShqHx8WL8YZkp2OuxF9d0opOe7z2LL+L79b2+fVDNwC/3EudFJtoGg1yf
+	dKShIbFfltdQkBfyjp7wAs0HQOyjDWnJl44EkEqYMxtj3cetri7v5dKatPcJHn0+QgeqHiX3rD9CN
+	ildJpvc6OpRWhYy5zz/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKghs-007Wxn-RJ; Wed, 25 Jan 2023 14:24:56 +0000
-Received: from mail-vs1-xe2d.google.com ([2607:f8b0:4864:20::e2d])
+	id 1pKgqz-007Z1p-Qz; Wed, 25 Jan 2023 14:34:21 +0000
+Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKghq-007Wvs-Ej
-	for linux-amlogic@lists.infradead.org; Wed, 25 Jan 2023 14:24:55 +0000
-Received: by mail-vs1-xe2d.google.com with SMTP id j185so19862169vsc.13
-        for <linux-amlogic@lists.infradead.org>; Wed, 25 Jan 2023 06:24:51 -0800 (PST)
+	id 1pKgqw-007Z0l-UI
+	for linux-amlogic@lists.infradead.org; Wed, 25 Jan 2023 14:34:20 +0000
+Received: by mail-pl1-x630.google.com with SMTP id k13so18105347plg.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 25 Jan 2023 06:34:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MUqrk3GP/3DhSmWkuOs8ye3NG8xp7aQ+gekfrX4lQc0=;
-        b=ZdftSwjj1akDmWaqauSggV71jW2O+HXguAfnqr6NnF30jtnzzC1QbrFAJEAxUiPUC2
-         2EwQgfL9avUaF/FtKblPe7764ZyUIxLYHv0Ujvu8Reailrj99ot/mgUfGb4JG+v+cjR4
-         0SImZT+cU08V9+a3xPMyJcCz1utBX6387Ol+k6GkHKtU7qt2s1EUL5cyxY60aQxvl5PP
-         NTajtuHRDbtB+MutOWPhxu48bOLX/7lEAGsvYdGQG6IChaxsLzMCRDLMl6IfJwMZhk2k
-         X2oYHLmyalFzic/odZzxSnfPTqtwyXgzb5ywVXsjjqXFZIGwDRlVlf/79YqGj3LiA/01
-         nFng==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRGU3Y0mw2H+4CP9C18Vwb5nAjyH4vOHqzjvCDnBh7s=;
+        b=nR/aKMcfWq2H7FTAmxRuIzKUexQwH9e1qvzJTyK8yJES/VrvqhN/JGeLgi0rvfwkyE
+         /oqxRUohUo7HDJCjCuxUSgF7YWp7/tiefl4xZtjp0qpDE5IXRTenXL64lDWUlf8NpXVL
+         MgRtX8zaXagUL7FjpL8i98PkPL2u7MDhQQG3BccLSrJHnDuRhO0WY8UGOTqdxPpCSA0y
+         Z7soG3reIn6il+RiXo89vQG7KhAZJZjWSpdCCrs9g3nvNrdzVhqe0REZHxHoQbFSZpjg
+         lsszfNQD2p1CmTt+ojO3a8SZwDqpKLw88jLXqopnd6DKHTW/dce7rw7AtAUaF7n/LyZN
+         sqdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MUqrk3GP/3DhSmWkuOs8ye3NG8xp7aQ+gekfrX4lQc0=;
-        b=iOynGhxHLSslx58TNAIWQbmyO/x/oGGxyqXaedaf0+9sJD/Wab/m44pa7/TSF9aOh9
-         o1u3VYZCLBnILwi5YkagIHCv56oolXyBV9TP6KraWgSWmkws0pj5o7GkhKyccxe3P4JO
-         cxn/6OS9DGdovygcSECYhi8ST2nrq2dAuAfJeHJDu9EyCwKtP4aZvNcrGth1/XV3gbIU
-         qX/+ZRvUWJ339JZHGmgZzBjesWT3+pYJOc10vJ6G2WaCw+7fcrrNDeHs0RPCoi9BUvXJ
-         UBQqsDn5Y7/F4hQW9gMwy4Sa2xinK5KzX0C30tas176XlFGjpE3O2MTTJNMsRJnk+GvY
-         zYXw==
-X-Gm-Message-State: AFqh2kp9hpUw8lQEokPTnjtV6G+ytXKccNz0frTn5ohcmZqR/bRamJcO
-	88cvrfZ8BJcmebXO8UQo4WJTuT4ZbejRd7/DQog=
-X-Google-Smtp-Source: AMrXdXtp+1+l0V7eBzDbpTKwsXlca8z4HTN//sBpr4Dtwdc6Xx/uxZgT00JsWeAYoFgKAlb6wawZbQI7lVXyFEiKCm4=
-X-Received: by 2002:a67:d097:0:b0:3d0:cb3d:ad47 with SMTP id
- s23-20020a67d097000000b003d0cb3dad47mr5095413vsi.76.1674656691211; Wed, 25
- Jan 2023 06:24:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20230125072605.1121-1-linux.amoon@gmail.com> <20230125072605.1121-5-linux.amoon@gmail.com>
- <bd29cba9-fb1c-051e-e10e-cb3e73ec5ff9@linaro.org> <CANAwSgRWVPghhEwvQgzQicJHcjgAv_d5nYfE0Ni90butc5ouSQ@mail.gmail.com>
- <d2ce0dce-eaa0-12e9-e250-bf948d2ce9e1@linaro.org>
-In-Reply-To: <d2ce0dce-eaa0-12e9-e250-bf948d2ce9e1@linaro.org>
+        bh=tRGU3Y0mw2H+4CP9C18Vwb5nAjyH4vOHqzjvCDnBh7s=;
+        b=0O7iJSL3WakISranHvE7kZWwXhs7JpyfXwjPXR/3wXHZh+8aQhgjP5DkcqqKjveyaz
+         vo0OUhwFFG5G9263tcXL/o7DbBpydNWy0sYlNGUwuN3SSTkESoHpC2gQ5rAj+QDKqeuQ
+         WlC7Mxvud9rpfjr/heZ36OOC8NfZ3w5gLluAbXZcogRAgOi2ptexIF5iMlI/nU+BdIqU
+         2SY4RdgS54XXKCoPDQe+i63otoE6fbJnzf3xdVjcL65DDEtXH/+vZ/F4VCHXxJTdvv5X
+         zzl/55akmzzL2g73exkcvcC7g3tET2BZEI3ZbRXMC7GAx6ZJTEifTFLmWTNzQUe2YZM6
+         muXQ==
+X-Gm-Message-State: AFqh2kpKoSM5eWhP+0ITHXr4TB/iCLLAH8xZ7RE/1KAPCmr86N1pZb4p
+	0EVviJyCUhzsfef6DdzAjEQduhFu9hc=
+X-Google-Smtp-Source: AMrXdXvIJzYykAxuOgJ0S+n3ygYmDHyX0c92I44khsCBLPvkLo39t52TD0S/Mc+LBogQMTJPKcbiww==
+X-Received: by 2002:a17:90a:428c:b0:223:b920:28df with SMTP id p12-20020a17090a428c00b00223b92028dfmr33323770pjg.29.1674657256980;
+        Wed, 25 Jan 2023 06:34:16 -0800 (PST)
+Received: from localhost.localdomain ([45.112.3.15])
+        by smtp.gmail.com with ESMTPSA id c2-20020a17090a1d0200b0022c033f501asm1671465pjd.41.2023.01.25.06.34.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 06:34:16 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 25 Jan 2023 19:54:33 +0530
-Message-ID: <CANAwSgRDM87oHsVSkxieD6C-+eAV__TKL8e2P22ucQ+iJEooZQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND linux-next v4 4/4] dt-bindings: usb: Fix properties
- for VL817 hub controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-amlogic@lists.infradead.org
+Subject: [PATCH RESEND linux-next v4.1 0/4] Used onboard HUB to reset and add power to hub 
+Date: Wed, 25 Jan 2023 14:33:59 +0000
+Message-Id: <20230125143404.1424-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230125_062454_514146_880B0151 
-X-CRM114-Status: GOOD (  16.17  )
+X-CRM114-CacheID: sfid-20230125_063418_996275_94C3CDB2 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,43 +86,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
+Amlogic board use gpio-hog to reset the USB hub.
+so using onboard hub we could reset the USB hub and
+also enable power to the USB hub.
 
-On Wed, 25 Jan 2023 at 15:27, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 25/01/2023 10:43, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > On Wed, 25 Jan 2023 at 13:10, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 25/01/2023 08:26, Anand Moon wrote:
-> >>> Cleanup by removing unneeded quotes from refs and
-> >>> add maxItems to reset-gpios and fix the required list.
-> >>>
-> >>> Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> NAK.
-> >>
-> >> You ignored my feedback. Please help me understand how my tag appeared here.
-> >>
-> > I have followed your feedback and modified the below patch
-> > I thought you review these changes see below.
-> >
-> > [0] https://lore.kernel.org/all/df1c8545-01d0-3821-0c19-07a369e40472@linaro.org/
->
-> This was entirely different patch. You cannot take reviews from
-> something else and apply to other patch.
->
-> Best regards,
-> Krzysztof
->
-ok, I will keep this in my mind.
+v4: rebased on linux-next
+    Fixed some small changes like the subject.
+    Dropped the merge patches.
 
- Thanks
+v3: Fix some small changes in $subject
+    address the input from Neil
+    fix the vialab device tree binding as per Krzysztof inputs.
+
+[2] https://lore.kernel.org/all/20230121175639.12818-2-linux.amoon@gmail.com
+
+v2: Odroid C1 / C2 : usb hub reset working as expected.
+    Odroid N2 : dropped usb hub changes, since my board USB hub
+                is hitting regression.
+    Odroid C4 : Fix the device tree binding and used peer-hub for
+                usb2.0 and usb3.0 hub.
+[1] https://lore.kernel.org/all/20230118044418.875-10-linux.amoon@gmail.com
+
+v1: Odroid C1 / C2 : were not working as expected.
+    Odroid N2 : used single USB 3.0 hub reset.
+    Odroid C4 : used single USB 3.0 hub reset.
+
+[0] https://patchwork.kernel.org/project/linux-amlogic/list/?series=707292
+
+Any inputs for these changes ?
+
+Thanks
 -Anand
+
+Anand Moon (4):
+  ARM: dts: amlogic: Drop superfluous dr_mode in usb node on odroid C1
+  arm64: dts: amlogic: Drop superfluous dr_mode in usb node on odroid c2
+  arm64: dts: meson: move usb-hub node under dwc3 node on Odroid C4
+  dt-bindings: usb: Fix properties for VL817 hub controller
+
+ .../devicetree/bindings/usb/vialab,vl817.yaml | 18 ++++----
+ arch/arm/boot/dts/meson8b-odroidc1.dts        |  1 -
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  1 -
+ .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 41 +++++++++----------
+ 4 files changed, 30 insertions(+), 31 deletions(-)
+
+-- 
+2.38.1
+
 
 _______________________________________________
 linux-amlogic mailing list
