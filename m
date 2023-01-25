@@ -4,65 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFEE8C27C76
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 19:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA542C54E94
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jan 2023 20:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=za7/VORtlw3wllEwI8G0YIHG8wOM0t+Xv1M1c/v/QU4=; b=H/MadfvH5ZuWFI
-	xfqGc9qWNPOkKLZ76nfQsdpiLNuodg84yEKp8kqo7OK92E5ANdJdOXwqyVKEJcLmoLnjGIipHdNo5
-	k0ZQnqkhoQS53Pp5jjRSF3rHy3Dk1OgvfS7VG6C6wPih+aQAV9lZz43fjxi1OIjfnuO8W7rINxr3L
-	pEUkG+zLrYQfZ7fyw34ba5s7Af6QRjfPQOqS273sx+WItvB0tBW4zAuLLnw0dBTiFrroMROOx+qUL
-	k37Hyv9uFey3Cok+3yZdvnzrwLpzMty+GqeGQT09d+HUes0tz+IzYyCjGoQd9VtrZQETIPaiVJYO9
-	2RkSgqcIgI+TPKNEYLSg==;
+	List-Owner; bh=5qITLtxRGFmLf7n1Sq7DQ2JN4k1VhleDWanEWt64Das=; b=xyFuO/o8nZlkyt
+	z8yQ77A4RPeHrXMhvCZ0/t+VU1jj5Zi952bpQZu4BjZHBQ9MiEH+o+d9BFVSyrbldjGwWTpRn8ajU
+	QLdrhe/ppZQdhzAFyCVVyQ5PSmxd1emCFGmhG9huc+x7cbVDd7iqiUsbvhgU1vTw3ZQXdOJSj1d4d
+	o9YQWkMskDGMOpm09AWXjgh5LZUoCAWdI6VE8bGwdFtPKDnBVLYivbGAJa01yWlyZl6UTHcgFluUT
+	RuSzGvfxAFGzRvARRTRlUErmBtzZqVVg0XN7CAAqESN21v+h6L/MHjp4rrrr5F7dcn1aedQ6sRu6U
+	2PKfIHr8cmn/5xLkOlaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKlLl-008STr-DA; Wed, 25 Jan 2023 19:22:25 +0000
-Received: from mail-oi1-f173.google.com ([209.85.167.173])
+	id 1pKlyX-008XZL-MT; Wed, 25 Jan 2023 20:02:29 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKlLX-008SLL-Dv; Wed, 25 Jan 2023 19:22:14 +0000
-Received: by mail-oi1-f173.google.com with SMTP id bm8so1903685oib.0;
-        Wed, 25 Jan 2023 11:22:09 -0800 (PST)
+	id 1pKlyK-008XVP-RO; Wed, 25 Jan 2023 20:02:18 +0000
+Received: by mail-wr1-x429.google.com with SMTP id d14so14506878wrr.9;
+        Wed, 25 Jan 2023 12:02:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zpQiYKewfM75LgZx2CGS8jz1svX6UbmzP2z2lvxLxDE=;
+        b=a5gQiL4vwHYxarBjINRBH4tzxGyOCLnWp00lqjv6prz+avlW5QmltN37SqMs6H6G76
+         7yr+HvlMna6Lwt91idASeao21M+zT/erDeevNbMeBTkcCZk/RCApZNvwSsllOyaDFvf/
+         Nxm1WTO9e1XXMbXeWXgit3BikzxvAkyJeGNMIdytZ4BERFOF5+2IuzI9ZLG6ts4lOUZg
+         zLRA52zdgjro2Dz1nrfv2RTvvUTOTq56zBe7Rsal4WyGh6SzRlioCyFf+tMJ+EboS+Qj
+         ZaKztZopavHkJgvUT6sl6s4yAhKHN+9UGyG/4+4VrsT96ArkybfgjqpyjG3KRHtyPM3q
+         Cb/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9PVEqBCzfLUzY4IompNf+WDKcAK9eA2hdVNa/dgEZEM=;
-        b=tAxoeIbCO/mBpXUmdAuOd082ZP8mbmw9mG6XKfX5w/6f/F4yvVdKJo4hjwe/1ty9yR
-         BGwj+iIUrrJkhmwoYuQZzF4V1viSpr10PoRe2VYsGwtwEXAOwDZi4yKTF8xzEoJibkk+
-         CJQoY57WerLP8jRchRKAAqE2kWARmrl5BllmvJSVl1pZv4/yrLt9ongd6TuLX4HINsDE
-         SelspfbOcnZHSacGFHEbeE5elq5JYDOa7UlU1JEb+FwsyhdGuYf6PRGfknF1Rcms/cHU
-         PL+UqcqaxqTL58VJLGbthhO4BqXtWlrUn/9xMqNxZdcuRYAflBfitcxere9Dkg4wA/lq
-         5UcA==
-X-Gm-Message-State: AFqh2koxTRezRSny86x3LlBb3tvIOFDj3HcBLCKBSwaCGBqX1GAuCywU
-	P5MvR78abb48fwCePOELdQ==
-X-Google-Smtp-Source: AMrXdXtSGTGKDZXApqdn1BokhZuqhAW4CWOl6Q8yAt6sCWvdBefTWfX8VBhMIBueSOmJDZQTrHxWyA==
-X-Received: by 2002:a05:6808:2015:b0:36c:e058:9cc with SMTP id q21-20020a056808201500b0036ce05809ccmr16173734oiw.7.1674674529265;
-        Wed, 25 Jan 2023 11:22:09 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m24-20020a05680806d800b0035ec1384c9esm2396349oih.23.2023.01.25.11.22.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 11:22:08 -0800 (PST)
-Received: (nullmailer pid 2716000 invoked by uid 1000);
-	Wed, 25 Jan 2023 19:22:08 -0000
-Date: Wed, 25 Jan 2023 13:22:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Thierry Reding <thierry.reding@gmail.com>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org, "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 6/8] dt-bindings: pwm: Add Amlogic Meson PWM binding
-Message-ID: <20230125192208.GA2713777-robh@kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <0d492f0e-abb3-33f6-3ee9-09e1440a9015@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zpQiYKewfM75LgZx2CGS8jz1svX6UbmzP2z2lvxLxDE=;
+        b=j+tllp/OXBX85L9RHEHWjzEpMM4kvI8aS3+qvyXVG33U1leDzQHmHrTS9fd67pP4x6
+         2AxrcprcRBeenm7HN5qr6eMJTbAOVozrFfljxteusHPEsZoAP5N9tEnH/ctM+GDhEhRg
+         E18EFdVtj0D7mZoLMr5qJi354O+s/OeawT0oci0NIoFLFUiwodZKaIr2YmFsRvBe80uQ
+         zjCPMJwxNRkWuPvqaOAjt1HVxPrMdZdHGLxT3eAYlf4mGOn8BIstp/us25m374FZntrK
+         f/Wtl532AA356tY2CJql1UDgoBjaSVKzfQZAyXyU/wIUuovzbV3qojindzwHmXKUvyLe
+         /IYA==
+X-Gm-Message-State: AO0yUKWTGmmrzASnPlN1kOFM9LVW7WXSDeE7j8DxNe5im1+UAwYR9Vh3
+	LlDP/Os29ONz7hTZd24mHiU=
+X-Google-Smtp-Source: AK7set+VtmsiILSUq/hTnS3Nys6aOIhGVTP/Z/nn8sy5cMhxWx3fajxSdyNs1ZNSBzu8v5j7t+dtvQ==
+X-Received: by 2002:a5d:5a87:0:b0:2bf:b7ca:8ae2 with SMTP id bp7-20020a5d5a87000000b002bfb7ca8ae2mr3822237wrb.15.1674676932918;
+        Wed, 25 Jan 2023 12:02:12 -0800 (PST)
+Received: from ?IPV6:2a01:c22:720f:5a00:b1aa:59d6:6587:3051? (dynamic-2a01-0c22-720f-5a00-b1aa-59d6-6587-3051.c22.pool.telefonica.de. [2a01:c22:720f:5a00:b1aa:59d6:6587:3051])
+        by smtp.googlemail.com with ESMTPSA id h18-20020adffd52000000b002bfc24e1c55sm303748wrs.78.2023.01.25.12.02.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 12:02:12 -0800 (PST)
+Message-ID: <0f702de6-91f8-f01f-2ea5-6b1d9ab325e2@gmail.com>
+Date: Wed, 25 Jan 2023 21:02:05 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0d492f0e-abb3-33f6-3ee9-09e1440a9015@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Fix SDIO interrupt and make it
+ level-sensitive
+To: Peter Suti <peter.suti@streamunlimited.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <d9b72573-a59f-989f-a752-1aa8517cf8dc@gmail.com>
+ <CACMGZgbtX7zgy2USO5O0qY54tGW+d2cZ6qcUUbb-uOFAtfqOVw@mail.gmail.com>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <CACMGZgbtX7zgy2USO5O0qY54tGW+d2cZ6qcUUbb-uOFAtfqOVw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230125_112211_491673_81404CE1 
-X-CRM114-Status: GOOD (  20.08  )
+X-CRM114-CacheID: sfid-20230125_120216_951721_CE531EFA 
+X-CRM114-Status: GOOD (  18.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,131 +100,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 23, 2023 at 10:29:27PM +0100, Heiner Kallweit wrote:
-> Add Amlogic Meson PWM binding.
-> Tested with make targets dt_binding_check and dtbs_check.
+On 25.01.2023 09:30, Peter Suti wrote:
+> On Wed, Jan 25, 2023 at 8:00 AM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>
+>> SDIO specification defines that the interrupt is level-sensitive.
+>> Fix the interrupt trigger type for emmc_a accordingly.
+>> See comment at beginning of the file wrt which is the SDIO port.
+>> mmc2 = &sd_emmc_a; /* SDIO */
+>>
+>> The usage of edge-triggered interrupts lead to lost interrupts under load,
+>> see [0]. This was confirmed to be fixed by using level-triggered
+>> interrupts.
+>>
+>> Note:
+>> SDIO interrupt support was added in Linux just recently, however other
+>> users of this dts may be affected too.
+>>
+>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+>>
+>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
+>> Reported-by: Peter Suti <peter.suti@streamunlimited.com>
+>> Tested-by: Peter Suti <peter.suti@streamunlimited.com>
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>> v2:
+>> - rebase considering recent node name change sd -> mmc for sd_emmc_a
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
+>>  2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> index 1a931d5c2..c09eb9f6f 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> @@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
+>>                 sd_emmc_a: mmc@ffe03000 {
+>>                         compatible = "amlogic,meson-axg-mmc";
+>>                         reg = <0x0 0xffe03000 0x0 0x800>;
+>> -                       interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+>> +                       interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+>>                         status = "disabled";
+>>                         clocks = <&clkc CLKID_SD_EMMC_A>,
+>>                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> index a79a35e84..ae1a5a568 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> @@ -603,7 +603,7 @@ apb: apb@d0000000 {
+>>                         sd_emmc_a: mmc@70000 {
+>>                                 compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
+>>                                 reg = <0x0 0x70000 0x0 0x800>;
+>> -                               interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
+>> +                               interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+>>                                 status = "disabled";
+>>                         };
+>>
+>> --
+>> 2.39.1
+>>
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 61 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 ---------
->  2 files changed, 61 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+> Please also change arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> sd_emmc_b because it was tested on that platform.
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> new file mode 100644
-> index 000000000..443ff4e5b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic PWM
-> +
-> +maintainers:
-> +  - Heiner Kallweit <hkallweit1@gmail.com>
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson8b-pwm
-> +      - amlogic,meson-gxbb-pwm
-> +      - amlogic,meson-gxbb-ao-pwm
-> +      - amlogic,meson-axg-ee-pwm
-> +      - amlogic,meson-axg-ao-pwm
-> +      - amlogic,meson-g12a-ee-pwm
-> +      - amlogic,meson-g12a-ao-pwm-ab
-> +      - amlogic,meson-g12a-ao-pwm-cd
-> +      - amlogic,meson-s4-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+I'm not sure whether sd_emmc_b is used as SDIO port on all axg systems.
+Maybe one of the maintainers can comment on it.
 
-No need for a type, 'clocks' already has one. You need how many and what 
-each one is when more than 1.
+If systems may use sd_emmc_b differently, then overriding the interrupt
+trigger type should be done in the respective board file that includes
+meson-axg.dtsi.
 
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 2
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>
+>>
 
-Need the exact names here.
-
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    apb@fe000000 {
-> +      reg = <0x0 0xfe000000 0x0 0x480000>;
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      pwm@8550 {
-> +        compatible = "amlogic,meson-gxbb-pwm";
-> +        reg = <0x0 0x08550 0x0 0x10>;
-> +        clocks = <&xtal>, <&xtal>;
-> +        clock-names = "clkin0", "clkin1";
-> +        #pwm-cells = <3>;
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> deleted file mode 100644
-> index bd02b0a14..000000000
-> --- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -Amlogic Meson PWM Controller
-> -============================
-> -
-> -Required properties:
-> -- compatible: Shall contain "amlogic,meson8b-pwm"
-> -                         or "amlogic,meson-gxbb-pwm"
-> -                         or "amlogic,meson-gxbb-ao-pwm"
-> -                         or "amlogic,meson-axg-ee-pwm"
-> -                         or "amlogic,meson-axg-ao-pwm"
-> -                         or "amlogic,meson-g12a-ee-pwm"
-> -                         or "amlogic,meson-g12a-ao-pwm-ab"
-> -                         or "amlogic,meson-g12a-ao-pwm-cd"
-> -- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
-> -  the cells format.
-> -
-> -Optional properties:
-> -- clocks: Could contain one or two parents clocks phandle for each of the two
-> -  PWM channels.
-> -- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
-> -
-> -Example:
-> -
-> -	pwm_ab: pwm@8550 {
-> -		compatible = "amlogic,meson-gxbb-pwm";
-> -		reg = <0x0 0x08550 0x0 0x10>;
-> -		#pwm-cells = <3>;
-> -		clocks = <&xtal>, <&xtal>;
-> -		clock-names = "clkin0", "clkin1";
-> -	}
-> -- 
-> 2.39.1
-> 
-> 
 
 _______________________________________________
 linux-amlogic mailing list
