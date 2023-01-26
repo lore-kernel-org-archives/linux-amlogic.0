@@ -4,93 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E35C05027
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 10:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 626A0C54E94
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 11:40:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pl7ZNUQNlHga0lACY57VK0PH+vhVtZyTfEHbxZWeMVk=; b=mHOT0rKTvNYSXm
-	BmMXrdg61+whnxTZGLXTKTXAgE/svkdNcDbzxgqjQBa1Da2UJPcnLrieJwK2gUT9YEgNI7EHPn+S4
-	qP0uNEcWzRmUPQXr8y2klZg1gU96bx1eDCEjoZ01qWujHqMMX8YIGU7KzH88Ic1DWiSEJJ93oxgFh
-	GnE5gQPtdaG5pSJGGRzmrQ9RA/93W1g00d9vWJZZ93B9EWtL/Zr5d5remsDLIuUD/yXWPHrMOaZwO
-	Fy0qwOYuTznZoS7lz4IEJkr7YCNK7AQo2l2y4+XUQw5UG7BcvWdCXei3/X0RY+U9LVsb7SzecxhXB
-	aSFdK86rQJ0pqj7xkBfw==;
+	List-Owner; bh=h9CAWvqeq2TyBv/qoonzM4I+JASXTItKNMZuM5f+f4c=; b=BUKXFpp2Y4CLjN
+	VWS+9KfW2mb4WSSXJCY+Xd821nWKQR70DsOOpzFe3Fzr5AwjR5TxTuuB6iAUOymUPtzbwwWLFUT4t
+	ee8ZMLw3L9EJRjr5Gk6GlrJAd+6wv2ykpJUJfj26B6CWql2DfsBxVxPH64f6Fx1qR74cWL9mxrMtc
+	hSdBRxGbJz2yCQkkWCCJHCM9eB7jU/iICtPqsMpHHUA/pYg6uQn5GL1ht4hkLRE/OAjv5TV/I/siy
+	4le03Vp4/VZeZ/SMMd4Y/qkL4PVCa0H6xrSxb3e89P76SvR6Fvwz1ivu2AGMTDHXCycQz5TURKYrm
+	eBYAio1U3z2mmQTJkWcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKz3K-00AM3t-Nd; Thu, 26 Jan 2023 10:00:18 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pL0cC-00AknT-V5; Thu, 26 Jan 2023 11:40:24 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKz3H-00AM1f-KX
-	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 10:00:17 +0000
-Received: by mail-wm1-x332.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so2899545wml.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 02:00:13 -0800 (PST)
+	id 1pL0cA-00AkmQ-Pw
+	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 11:40:24 +0000
+Received: by mail-wm1-x333.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so3077048wma.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 03:40:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from
-         :content-language:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rRgVXPw5t6QVo2geW3WNhb1rgDC2iA39PRv/GAVQDio=;
-        b=vTcMGyXsf39j1Pv1ktHj9xKL5iJq2HfVCB7ZDr/oA7PxzZWC46OtUb07mNAD5yZMBO
-         p9nPr3PZWB5lLNVS8lpvd2ZQVWNh+1zlHNlyByHZmrUIawF9kgeiP+xG7IzbRNDfUT/U
-         U5Amgws9CsWnwBI7AoThUbiVUETnMsJ8ohSjOHmT0yqvv06GEYytAk00/wIMElspB0UT
-         t0MzSBWCHGNE9Hpgx1H6tJyNRGPTNOSHHf1ObB2SZUx9QcQYbFbVoK0LfbSJHwpzviUf
-         d0SjDF8XGuaKcgz66eQrykR9AALBDeCquTKiYuvUoDMKJeGJliInGycAIpQzTMVaLt9R
-         s/1A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=79I3qX7WorpnGCtocTNXJGOFGCxWkI/DAjgFGqY8pmw=;
+        b=zi7czjMCjCY1Xwlr1W4/Dno+Dsq8poXwf5ka+JeXV99URT+aO7gJYo8UWmCw5/0upw
+         jjR4cuLSnmOn7OvlIHObd/SGn4atIsevM/auK6vxoULiXLTtBfQIP9dHl6198xM0CixY
+         DgUVE6gllYqWh5KTedizqP4EstmQ9G23b1ATccR4zR0btlbaIq6QWdpJf0U/4rDw7QQ1
+         4uWVV3r4MLxzuzZijYskvwHlZCZSqdgRqD0cr7V0Pu/15IfdZYLpbXnH8uXh6jwc8Dkc
+         CjOB0FUpL/SF/g/rBvmZiBQTt2Z01ee5tnikI7jid4DKNBzoXjlOuth0AjawOrk59+xW
+         7MCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from
-         :content-language:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rRgVXPw5t6QVo2geW3WNhb1rgDC2iA39PRv/GAVQDio=;
-        b=aHeU7ZWzlGjwxU+WI0W7RMiC/C4/Ffju1qv3plRcnXI6kKu1xvHgff+ijuY9xRtLO3
-         r5Ex6oIiRnMw9bdodCv0GhGoRhs9d9iqg+GkrJ6eHkyRVU13ySUj44vuxoldFykhM8Hc
-         imS+PCSIwNPFeSOlPct3aR2hqTNpAI2XjcAUn6BswYXXX8dO6CQqL16052VPZV2L4SW3
-         1Xm6VWWO2W/xTHK/TFA4WX9j1HqyqsXX4w/o4TYWCGd6mtLfrHSpCx2rtwijaAp0Pdoh
-         Vq9KOE3Pf8GpdWJdlS34QGU0AR8JiT9YE535b2sDhrik9BdmrdPrCOvftlstSWw+FUr4
-         2pmg==
-X-Gm-Message-State: AO0yUKUTrNZIsmteMOXf24kpxPAjAGRD6Cvnq3ZZWPj44qaBzaE5Vohc
-	WQEL3FgQ6kiP/8V2Q8GMg8kmoA==
-X-Google-Smtp-Source: AK7set/aZLK6a4J5BP5py17o2vPlMYEYYqGkUd/mG6BXhAEOu/N3E4T9mGZDkPE1RSRpaEXhZnwoVQ==
-X-Received: by 2002:a05:600c:3512:b0:3dc:2c7c:6616 with SMTP id h18-20020a05600c351200b003dc2c7c6616mr210993wmq.21.1674727211804;
-        Thu, 26 Jan 2023 02:00:11 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:aa89:e801:e296:9b7c? ([2a01:e0a:982:cbb0:aa89:e801:e296:9b7c])
-        by smtp.gmail.com with ESMTPSA id k20-20020a05600c479400b003da119d7251sm985242wmo.21.2023.01.26.02.00.07
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=79I3qX7WorpnGCtocTNXJGOFGCxWkI/DAjgFGqY8pmw=;
+        b=mwFj47tDaBQnVpnoRUPvbSNol96jfV950Ytsfn+dSqclQUzplBQFRTOV+aotCbfQ8v
+         0hVrbOT+UryewfVoyiLBs+PnROPc36ZhWh8v4qVqfnQQHHv/BT8pApy9kVCb0n/00RHz
+         HWHr+ZJZCLr+6hv1ORBjYWZAVfEVb6hojhGvwSB5+VLef8FndvSYT4C7l8EbXFdvZ2SL
+         b15LbUVgi6LHF2hw2wOfWDF8gM1JJzlfOYRbqaqENjG32LjNpltYhn8AKxiSPSkLZFKh
+         RSjhUsPq8vBHujYT1YrwAxEN9cqXzM32NC3FoC5RMDK8o3PnwxsisOzgVDaslO4aIYFx
+         tUoQ==
+X-Gm-Message-State: AFqh2kpZw54hX7uyWKx4JlYkcCwJcDyjji37ZIsr9wGr5DEx3vCZdR5s
+	TVZpeiq4W8PZ2XhMMQn6lFQWkA==
+X-Google-Smtp-Source: AMrXdXuz1X8Z3gE5ArmKdSE9D4XLRnuS5VaeED9k+4FDG6W8uGSdgLX4avRth74OO3so9yFpLw+A7g==
+X-Received: by 2002:a05:600c:3d10:b0:3da:e4c:2a3c with SMTP id bh16-20020a05600c3d1000b003da0e4c2a3cmr35452487wmb.41.1674733218565;
+        Thu, 26 Jan 2023 03:40:18 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d1-20020adfe2c1000000b002bfba730b0fsm1069898wrj.65.2023.01.26.03.40.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 02:00:09 -0800 (PST)
-Message-ID: <6d304884-9e54-6eba-1e2e-882fa6c5b983@linaro.org>
-Date: Thu, 26 Jan 2023 11:00:06 +0100
+        Thu, 26 Jan 2023 03:40:18 -0800 (PST)
+Message-ID: <e404760c-6442-7406-c46f-48354adda2e5@linaro.org>
+Date: Thu, 26 Jan 2023 12:40:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: make dts use gpio-fan matrix instead
- of array
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Heidelberg <david@ixit.cz>
-Cc: Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Heiko Stuebner <heiko@sntech.de>, ~okias/devicetree@lists.sr.ht,
- phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20211029114948.41841-1-david@ixit.cz>
- <20211029114948.41841-2-david@ixit.cz>
- <CAFBinCBVXNYG62jKABhJJt0m61+vQKqEyC4Mk5Ljg7htN-brTA@mail.gmail.com>
+ Thunderbird/102.7.0
+Subject: Re: [PATCH RESEND linux-next v4.1 4/4] dt-bindings: usb: Fix
+ properties for VL817 hub controller
 Content-Language: en-US
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCBVXNYG62jKABhJJt0m61+vQKqEyC4Mk5Ljg7htN-brTA@mail.gmail.com>
+To: Anand Moon <linux.amoon@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230125143404.1424-1-linux.amoon@gmail.com>
+ <20230125143404.1424-5-linux.amoon@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230125143404.1424-5-linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230126_020015_681497_7071C002 
-X-CRM114-Status: GOOD (  10.84  )
+X-CRM114-CacheID: sfid-20230126_034022_877005_8FDD28B6 
+X-CRM114-Status: UNSURE (   7.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,32 +93,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi David,
+On 25/01/2023 15:34, Anand Moon wrote:
+> Cleanup by removing unneeded quotes from refs and
+> add maxItems to reset-gpios and fix the required list.
+> 
+> Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 
-On 31/10/2021 20:39, Martin Blumenstingl wrote:
-> On Sun, Oct 31, 2021 at 5:51 PM David Heidelberg <david@ixit.cz> wrote:
->>
->> No functional changes.
->>
->> Adjust to comply with dt-schema requirements
->> and make possible to validate values.
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 9 +++++----
-> for meson-gxm-khadas-vim2.dts:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Now it's correct.
 
-Would be great if you could re-spin this change but only for the meson-gxm-khadas-vim2.dts file.
 
-Thanks
-Neil
+> ---
+
+Subject: dt-bindings: usb: vialab,vl817: Cleanup compatible, reset-gpios
+and required
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
