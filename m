@@ -4,80 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE5F2C05027
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 08:39:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99853C54E94
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 08:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GLB07a2aBKL8uMznEBpfCEjzmEaGOG74Ck6oPxzVdWM=; b=pixoNnFw3yoHza
-	6szfb+YNmanMjSUqkh49wGl6RBrZEV/Fo+GuGWs3z5VXw+D+/aKvt0Bt+JM8AIFW49Ko8ULTctzwd
-	dHGoMm1HLviIWMv+pp1nrbnlS65qAEe3vNU8wkUe+/UKEFT8XSLw8Yag6acNBAgW1fJt+AKOm6LgR
-	N5l4GwTisZ9cB1p0lxTKe/aM/aPw0bq1qLO/LHcayjazKJRUqUDdkdeAtf7crvX8kx0Okbxr4c6J5
-	o+dISx0cLQvUPDRSsrG4tb+7qBPZxc187buzxYV9Y82UnuV9Zkrdjwut+RU5h8aFcxb+0c/bAD3k/
-	Gk1A90b3KzKAH4DamnCA==;
+	List-Owner; bh=EvI5EfqLS3huSxVwmitBPZSaJhy8/YowtUbl6Tz42IA=; b=chyxYiAelmtxA7
+	oTvaN/SX/isJ0i/ji0yirCML55mvJK6yqfGqD0FutChnpgo6+0JmOl3Y4Ugunt0CktUCTm4NwqEcV
+	hbncMCakW2QPGTL+78dFgQZfzZR99jL+MUXjbF2Qdn21WHHmrIfETeIryQv/080KfGQLZ48G9517X
+	4Q2SFPe+bpIxeetwxpl7YxkY0CVEutNnZIVwR+betMf+G9AMi8wvAlzGqtFkZ45LXZU+8LpteCg8l
+	i2IpWiLFB/O8kOg+0uzlejI38PNbVAy+8xzkZTDSlKgLsY8bWK0AKXz6yY1Q+YXS2MdV2BT7DThFC
+	0IAWW/XgkoK/bWkdwXRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKxmc-00A26O-Hn; Thu, 26 Jan 2023 08:38:58 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1pKxoj-00A32h-R7; Thu, 26 Jan 2023 08:41:09 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKxhp-009zlM-NO
-	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 08:34:03 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id m14so507360wrg.13
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 00:34:01 -0800 (PST)
+	id 1pKxht-009znk-HU
+	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 08:34:08 +0000
+Received: by mail-wm1-x336.google.com with SMTP id fl24so617781wmb.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 00:34:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
-        b=F9+ov4mncbiNtHgLPztkYJ4XH8nsjAvNgkanwZuNh10EX5zuoi756weIdsxKMLGJgj
-         xtLXLXWr7k6np6eXfCdVdBSrEK1jbru/hPzALeCbGZmwTswYLkYeKvWJMpFD0XyZfYkz
-         nblGty+oTnk7J3QTi0Cai6jB7XGu+CggxNktAFa4wiHK5Ie134MFt3JpNENKzKLI7TDa
-         bgA84SV3BvWciZ5I1z5tEx98gfX1cfeGdI23QAzV+hILWzzyE4UonQsDYu3dl069zEqT
-         OFJXW0HPVtDQ1aiTNuKZe25e0B6kxma07EkP99B2lnoEAKVZ1pF+cbXtdJmcGc91Uedd
-         +myQ==
+        bh=Wy4JH/8Y4BIAqhpj+kNbuq2a/U7ZJXTkwi3YphKX6wA=;
+        b=zlsDK5voMRPUM4nKKt8QdmuD/57HzrklVqIviWeVdmAUDSQHHG9qHKk6moGlFoJSU+
+         W3mNtyLXv/QFP3lq2iEDvU9aN6z39Y5Zz897R3RctRM0tSX2AUgj1APgIFfO2bKt9ut5
+         K59U68pcfApeOVdflYbF7J/W0eBWiRh2e0WWuOWDyc5dMaGu0Dd3zkruR/Ou/c/PuZoJ
+         OdSLzHfPtqrEJQCU5W2x4meDJjm8wsxRp7FudyzwrY/4wS4ZoW8M5WDJ1MzPQet8vPT9
+         /2FKWXPwkDb2N3vLIce6gzppJPYKl6svm92TSv0p3c/5kLv4TZYY8YdNgdd8Km+BeFFe
+         +z7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
-        b=OMTbvxZsyC+F/qi574BUV20kjjCdC0RfKAeg41H/PnUpIoXlG6yO7tjQOAfywl8EPw
-         sti3Z3ORGkQXz4JQw6s4FbDx2ECjAYhk/LftMIC2Uz4BJidKKrei7Cv8KdxsL5isLt0Q
-         7UKJXbYmz9VbJCyBYIZJ2xmaikckplRtDFaYF98BujGuBeJuFSbjUeqznWpf3M1R3peQ
-         WinqdWyQTBUcbNu7u+HCmOMarBzdmavdoAU5pyvL5r4tzW0NDZt41ogZIdsGPd0oSW5a
-         hsK5mjMTnrIqXPWufh2A9yzraLr45U6ENFqhZNrMK+HW2gpe91Q823hDrESsLQDG+6y6
-         lV7A==
-X-Gm-Message-State: AO0yUKXNAcO5PDWs853hdsePc9i2p5j7jXEdMoWlfTxMLDQOngt6Jvyr
-	z7XVWb/Cn3JyFDPnYq1W1jMvPVjhpS90sKGCY6c=
-X-Google-Smtp-Source: AK7set+xHB6a7B1HespUte5I/SZh/YUocrutxsx/3SykXNry9Wqg5Bt6sYFifeuZxs9o029TLj8Mvg==
-X-Received: by 2002:a05:6000:104a:b0:2bf:ae18:34dd with SMTP id c10-20020a056000104a00b002bfae1834ddmr8506123wrx.56.1674722040060;
-        Thu, 26 Jan 2023 00:34:00 -0800 (PST)
+        bh=Wy4JH/8Y4BIAqhpj+kNbuq2a/U7ZJXTkwi3YphKX6wA=;
+        b=Fj1A+vA1yK/MJNfnpwIiHFqspzE6cYB5ElFh1MH4pJtiuyqaHCluA0nNRUh3n8q+I0
+         Vk3t2xOV97FuYGh03N09tHVWIGq4CzuzokX7Sncph90HdjS/ppEyjSMllntpajyqeJu/
+         MV0F4zgNkPaH8xq4+SOdCELDjsrJLTcpzzr3pTteK3nJNfAOOHyKmQCcM9cSnvSq4jOK
+         1Y4U/N+JkXPWTGO79jzkC8dHi2gWVaQI8uAtuaZW6UOETeGZoHWqE3W0lEcO8RxH3uHD
+         UDs+hUpVobe8DdEMTR6TIzozcvgUuTQBfHpAo0fY+4agdpLtDeH4fvkjXYyyNtoV/s7c
+         KzOQ==
+X-Gm-Message-State: AFqh2kqv3QcHinGxqwnYa8DpSBdoDsdJwXbe39T3EYxyFF/6+qcAkPR0
+	WIq+4ONYLNL4ATZOL/n/7bOMZRLjsLHqYPxfARg=
+X-Google-Smtp-Source: AMrXdXvspuhNLwRUh/Je30Th3z3ZFJPNoD133B5ZmcSE3V09vHaqsUnF+CdOZNBK74w+4MfPzJhCgw==
+X-Received: by 2002:a05:600c:3556:b0:3db:331b:bd2d with SMTP id i22-20020a05600c355600b003db331bbd2dmr23729081wmq.18.1674722043741;
+        Thu, 26 Jan 2023 00:34:03 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.33.59
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 00:33:59 -0800 (PST)
+        Thu, 26 Jan 2023 00:34:03 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-Subject: Re: [PATCH 00/14] arm64: meson: bunch of DT fixes
-Message-Id: <167472203923.456104.10228308469675767029.b4-ty@linaro.org>
-Date: Thu, 26 Jan 2023 09:33:59 +0100
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Dongjin Kim <tobetter@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
+References: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
+Subject: Re: [PATCH v2 0/3] arm64: meson-g12b: add initial support for
+ Odroid-N2L
+Message-Id: <167472204279.456104.140123192066740782.b4-ty@linaro.org>
+Date: Thu, 26 Jan 2023 09:34:02 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230126_003401_945809_5EA37F3B 
-X-CRM114-Status: GOOD (  12.61  )
+X-CRM114-CacheID: sfid-20230126_003405_686212_527ED6D5 
+X-CRM114-Status: GOOD (  15.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,47 +99,30 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Tue, 24 Jan 2023 11:34:21 +0100, Neil Armstrong wrote:
-> This is a bunch of fixes against the current applied and reviewed bindings.
+On Wed, 25 Jan 2023 09:18:36 +0100, Neil Armstrong wrote:
+> ODROID-N2L is a variant SBC in small form factor and some peripherals
+> are removed from ODROID-N2PLUS based on S922X SoC.
 > 
-> It takes in account the following bindings conversions:
-> [1] https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org
-> [2] https://lore.kernel.org/r/20230124091602.44027-1-krzysztof.kozlowski@linaro.org
-> 
-> Remaining fixes will require a complete TXT to dt-schema transition.
+> - On-board ethernet is removed
+> - On-board RTC is removed
+> - USB 3.0 hub is removed, so one USB 2.0 and one USB 3.0 host ports
+> are available
+> - Huge heatsink is replaced with 40x40mm heatsink, 5V active heatsink
+> is recommended or a tall passive sink is optional
+> - 3.5mm earjack is removed
+> - IR remote receiver is removed
+> - MIPI DSI port is added
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[01/14] arm64: dts: amlogic: meson-gx: fix SCPI clock dvfs node name
-        https://git.kernel.org/amlogic/c/127f79212b07c5d9a6657a87e3eafdd889335814
-[02/14] arm64: dts: amlogic: meson-axg: fix SCPI clock dvfs node name
-        https://git.kernel.org/amlogic/c/5b7069d72f03c92a0ab919725017394ebce03a81
-[03/14] arm64: dts: amlogic: meson-gx: add missing SCPI sensors compatible
-        https://git.kernel.org/amlogic/c/2ff650051493d5bdb6dd09d4c2850bb37db6be31
-[04/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix supply name of USB controller node
-        https://git.kernel.org/amlogic/c/a69cb1042cea840bc7b60fea1c26a6b259e68bf2
-[05/14] arm64: dts: amlogic: meson-gxl-s905d-sml5442tw: drop invalid clock-names property
-        https://git.kernel.org/amlogic/c/e3bd275ccbacf5eb18eaa311cea39f8bf8655feb
-[06/14] arm64: dts: amlogic: meson-gx: add missing unit address to rng node name
-        https://git.kernel.org/amlogic/c/61ff70708b98a85516eccb3755084ac97b42cf48
-[07/14] arm64: dts: amlogic: meson-gxl-s905w-jethome-jethub-j80: fix invalid rtc node name
-        https://git.kernel.org/amlogic/c/11172a97c092eaeb0a65c6434df0fc73f886a495
-[08/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix invalid rtc node name
-        https://git.kernel.org/amlogic/c/956f52025c5dd92c80c12e31c99c854086a6fc55
-[09/14] arm64: dts: amlogic: meson-gxl: add missing unit address to eth-phy-mux node name
-        https://git.kernel.org/amlogic/c/d19189f70ba596798ea49166d2d1ef36a8df5289
-[10/14] arm64: dts: amlogic: meson-gx-libretech-pc: fix update button name
-        https://git.kernel.org/amlogic/c/6bb506ed36968207a8832f0143ebc127f0770eef
-[11/14] arm64: dts: amlogic: meson-sm1-bananapi-m5: fix adc keys node names
-        https://git.kernel.org/amlogic/c/d519a73332b6c3d14e15f8fd20d7c6f29ed13d41
-[12/14] arm64: dts: amlogic: meson-gxl-s905d-phicomm-n1: fix led node name
-        https://git.kernel.org/amlogic/c/eee64d8fbbdaab72bbab3e462f3a7b742d20c8c2
-[13/14] arm64: dts: amlogic: meson-gxbb-kii-pro: fix led node name
-        https://git.kernel.org/amlogic/c/afdef3b188c934f79ad4b0a7bd8c692742f9b5af
-[14/14] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: fix rk818 pmic properties
-        https://git.kernel.org/amlogic/c/ce9999722656f2433af9029571bc2b99448dda74
+[1/3] dt-bindings: arm: amlogic: document Odroid-N2L
+      https://git.kernel.org/amlogic/c/8280a4ea1d7dd1d635c1ecdb9375b156e83358b9
+[2/3] arm64: dts: meson-g12b: move common node into new odroid.dtsi
+      https://git.kernel.org/amlogic/c/379ae64609c7a3301b60483eb65bd8bc78f76328
+[3/3] arm64: dts: meson-g12b-odroid: Add initial support for Hardkernel ODROID-N2L
+      https://git.kernel.org/amlogic/c/f1193c5c09b1bb6e214c804c7dd1c7fb07046631
 
 These changes has been applied on the intermediate git tree [1].
 
