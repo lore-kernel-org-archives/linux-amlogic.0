@@ -4,81 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14B5DC05027
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 08:41:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE94DC54E94
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Jan 2023 08:41:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GDlQNSQPuKbmjTykP+4jbDy8+VsMMBkIQkEDkEpH5RU=; b=P/Si6iX0eWBLxF
-	9jJKD5hqmIcrqJLBnHNMzCT7sSMgW0kXfxEDhp1ufuc6IK7xz/hxcx26GoFMt3YalmGDgdcuqvna/
-	YXEFBBY/PWHHW7AVbNIh2YtRJekOGFiYnxJRCebZ2sZye7cjtG/tSt9zIoyv29RZb9LUj8obtfVcR
-	EmUbc3SfCu8RvOPI9Z8Df9r0/KBf/tsmII8pB8Oh5retjFm8cT3h6JW+92EDdUmkt+s2/ZHiQwWna
-	D9irM0Oo85xfd1I74Ku/oRl7p3YRtEPyRBpE7gep/UYJnrjEja+Ohp3t887jbcMkofCCVb1bTvtDP
-	HD7GWPIoxeo95NjHz5wg==;
+	List-Owner; bh=qLqwy9AkGQGej9w3wVYd8QmzVnVQYoqzqZJ+yGqx4vo=; b=ZZ+RBLG5VfreIv
+	iBLpx3ISgCV3v6NDxdF/RgR5zVD0rJVZSkJBDSBDo/kxrauP2q9pWdDFOQkmllxyCtIL0rn0fMHY2
+	cldchKNdIw/vTgm3w90EuJfUZsr+ZVgbDROdP6p5vHwB1210lkbnbeZrIub0IpbXAYhVRVgzecCwb
+	Vb4eCt9020MKCX1ISYHPSix+7PeK1uibkKiQfIaFQ2uUnDcGMueKYdzVmXb2lSc1qp56ce+1N0Xll
+	zim8CcPWLPx4el4n+eZa9i06fiFXZeIvuZO2kdN74uK/Byk//m7FBb8Rqo9L3xh21qM0QR713eSeD
+	O0faIAw9VktZs7snLgxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKxoi-00A32D-P3; Thu, 26 Jan 2023 08:41:08 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1pKxon-00A34b-95; Thu, 26 Jan 2023 08:41:13 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKxhs-009zln-Pv
-	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 08:34:09 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so625635wmq.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 00:34:02 -0800 (PST)
+	id 1pKxht-009zn0-Vq
+	for linux-amlogic@lists.infradead.org; Thu, 26 Jan 2023 08:34:10 +0000
+Received: by mail-wm1-x334.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so2791088wmb.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Jan 2023 00:34:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r9Aqz9ow0096NYVpMVct4LsgcvHoqSMpUjeGW88ptQc=;
-        b=vHPTMynsbnrZC9C3R+6zY5NRfqAAcSsw2x5wvGFFqW5V/vJAWxG6YRjJxYnfqDHh1G
-         wqXLMz15+Z5PE1OsIuAINaxSivTkC3bv02/vzVoHj3RgGaB6uHTbHtM9g7gHXMaU+fQE
-         qHXzi6KLYhBH1Dtnb/8yFhgaXUQzH+us19ZVZzfmA4EA93yZTbmmnjls7QhqaEJ6JJ2N
-         AKXadY0YvPzbEoOn7hp9fdFi0F/ukl4BGpd4IBX6AMDZ+xbuU9BZ/VrcDouL7tVapNGw
-         IeiF9Nx5j2iiVe1PGujtdCJ/aB05Ryc5/Nw7ja/HqthGCIGedXpHTji8658+h8cI3xkm
-         RnPg==
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W8K+2b6qYGhmrfMApP1JL3olzeZ2YP6lL+7+ixOQ9ZM=;
+        b=wZTc+VS63T54L++Dg9SWngu8T2SVoeTNy0W/Z1PzOO9b5RxByDYJDJ+us87HIOHZXC
+         jgZ+02pGdY55M73FZVGymHp0dYwN/nrKcl8lS+VjEaqg8wTxGe/vodlxnCik0u26DS2P
+         iih6YNSyAXU02uf1bV3gd/5hWFK80QxMO0JivFc99xWDhFloJlc/TKKRHaG/S4L62xpq
+         bMq6klHfhm6xopM8BFklBsnDyDjasKwqXxpv801JhSUQ819QQZnopjsB24uTf9j04I+m
+         6YUM9JX+/yh9WA1+loY4wxQCeQFy0nq+0+59xqYMrohoIUDVHG2DYAbjCAt/UOqxGIPy
+         hrDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=r9Aqz9ow0096NYVpMVct4LsgcvHoqSMpUjeGW88ptQc=;
-        b=q4COWxurlebiXce+e2NYqlOU5kg/FfUYu/p1dlNFxSI1Vi3aNCSoV7F7qjTQG/W4Ti
-         fSDVG4gndqXTri04quRecoHhbjKoi4/129SLZu2dscT8j2UHtMJS5miJZJpQzpIzi1XP
-         JJQe9uHrvqPDDlf/8euMT42i/ITpRTWAWJvCwgnVqYG2W3nrEHMo7EfO2kZ8Am7EqN5U
-         u2Yj6mwPBLgl+cxFxY+FT4rmKWdlNo7qu/Xr2ovdKUCje3YSN3PBkv4zyuH4sFoG97dF
-         sutMg95cRYwldxnmHYK9IcdkhztrXYi6lYuDRi95/dQ1BCmLSXJwdKsS3mJwg8tlVnat
-         46iw==
-X-Gm-Message-State: AFqh2koVdCO6QYhzO75RnnghCLZ1+81cWP8TbpDapWo4d0sWYTRHxWxZ
-	rhKRYkiCuYuiPCRPVqXuTViILLgVLjWwl/Uo5Zg=
-X-Google-Smtp-Source: AMrXdXtdHWb1Hu57UY2Fx3spWKuK8REEt5FDqslm9OxT4gnSFLkU+EulXG8ozOVLCNMOe1Bz0s4SAw==
-X-Received: by 2002:a05:600c:4347:b0:3da:fc2c:cda8 with SMTP id r7-20020a05600c434700b003dafc2ccda8mr35154325wme.6.1674722040962;
-        Thu, 26 Jan 2023 00:34:00 -0800 (PST)
+        bh=W8K+2b6qYGhmrfMApP1JL3olzeZ2YP6lL+7+ixOQ9ZM=;
+        b=gFN3DM+1zwAorsJcGmgZcZhETf8b2LVu1W856tgX79V2tYmhTwuDfzaVaAQfU4alpd
+         sBXeWqNIuhD44BfCNWJXL0FXm1y5DLFl9evHBCFK+ojtoEQy/2qMRckMtSOSr81EjStu
+         qcMs9KVkV8aDwUzHkwwHJwMDjqiafuOAOvF3eWrpmL1NiwnPbc1hNScmEA36rAleL50m
+         p6UiGSMj+PGC3XHM3e3mUrNWyGZVDjHkZ3XKhNl3wPMoSPQZYugx/vhQsbmeeOTs+5fL
+         /0Oec1E9q4/M3c9BtDtc05f0zzGJ99rssWaVvW/qxzmIXJ+yYwRYzyKRzHkPWTGNXL0X
+         8I+w==
+X-Gm-Message-State: AFqh2ko/WPQ3nXreQ8kkjEWgdfSKskGEJtOpCNJLmZaKePjQ65uj9BQh
+	R4A0y5R5PtfeTwZt2oTUMshgtm/uWztz78nqTpc=
+X-Google-Smtp-Source: AMrXdXvUlBtNOqLtKPqGUlEcp3fxlZ8HEpJE7yzJc6lt9UmTN/nHDTyQna7hQ9xXWwN3B4tf6G3DSg==
+X-Received: by 2002:a05:600c:6014:b0:3da:2032:6c0f with SMTP id az20-20020a05600c601400b003da20326c0fmr41886222wmb.31.1674722042720;
+        Thu, 26 Jan 2023 00:34:02 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.00
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 00:34:00 -0800 (PST)
+        Thu, 26 Jan 2023 00:34:02 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Christian Hewitt <christianshewitt@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230123065504.2669769-1-christianshewitt@gmail.com>
-References: <20230123065504.2669769-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add WiFi to P212 and cleanup
- VIM1
-Message-Id: <167472204014.456104.18412997475456067152.b4-ty@linaro.org>
-Date: Thu, 26 Jan 2023 09:34:00 +0100
+ Ricardo Pardini <ricardo@pardini.net>
+In-Reply-To: <20230124-topic-odroid-hc4-upstream-fix-fan-trip-v1-1-b0c6aa355d93@linaro.org>
+References: <20230124-topic-odroid-hc4-upstream-fix-fan-trip-v1-1-b0c6aa355d93@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: fix active
+ fan thermal trip
+Message-Id: <167472204189.456104.2228463020906844378.b4-ty@linaro.org>
+Date: Thu, 26 Jan 2023 09:34:01 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230126_003404_868835_1A5A4D1F 
-X-CRM114-Status: GOOD (  11.42  )
+X-CRM114-CacheID: sfid-20230126_003406_167731_2B334ECB 
+X-CRM114-Status: GOOD (  10.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,26 +99,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 23 Jan 2023 06:55:01 +0000, Christian Hewitt wrote:
-> This small series adds WiFi support to the P212 dtsi then removes the
-> corresponding node from the VIM1 dts (as it's now inherited). Also
-> move the pwm_ef node in the dtsi to alpha-sort correctly.
+On Tue, 24 Jan 2023 12:39:08 +0100, Neil Armstrong wrote:
+> Add an active trip tied to the on-board fan cooling device, which is better
+> than describing it along the passive cooling maps.
 > 
-> Christian Hewitt (3):
->   arm64: dts: meson: add Broadcom WiFi to P212 dtsi
->   arm64: dts: meson: move pwm_ef node in P212 dtsi
->   arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
 > 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
-      https://git.kernel.org/amlogic/c/ac714d0925b4fae6a2a8c03da743a91d559f2b5c
-[2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
-      https://git.kernel.org/amlogic/c/81351d2f0b006302a72310c95203a767cf68631e
-[3/3] arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
-      https://git.kernel.org/amlogic/c/3384645fb6cf31542650b89ecabe1fb04d0662fd
+[1/1] arm64: dts: amlogic: meson-sm1-odroid-hc4: fix active fan thermal trip
+      https://git.kernel.org/amlogic/c/1d2f14117aa7773efff50f832b85fc7779e586e0
 
 These changes has been applied on the intermediate git tree [1].
 
