@@ -4,83 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5697AC54EAA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 15:10:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB15AC38142
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 16:24:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BgPtkgr5ejnVZFUeSs5O94wGjXIsXtxwS4d46hlknKM=; b=Tp0Ha1/gl35YpU
-	IeZE9niH4qF0hLKf8bakGmq0c2N/tdWp4NbeqyxEXt9Hdjf/k8xCVl2I78fs+1WhrM+YjiMUFuudk
-	OsAkcL0PNtjOGR2lVtjglOXmHjn6ffhSXnzaYqK32rRgxbvzDyYj5bfBVfzj9WgBAHHCEYnFfvzF+
-	Rkn0TOh71omijArU6+fa3RgHWWGHhGv6yOYlmCZqXGqlHgQOV2A/alEMmQnhZqjuopy7jVCnmuHR1
-	7QLX9vNH0CHl8Moyffdnr3xVXKZOPS0H4f1WGQ1nBknm9Fqwx37rG1zDmWHceEeo0AKeLahqpmJI0
-	kbzxxPv42eOi75Ac65gw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AfQ88Ch4QmJnjw321BH/ywnjx4q39Hx5Ueh91lI6kQg=; b=xFPwcURvJyTcTjDcC1zNfC+9HH
+	B0cotEX1cOMZv+b9G/WmoHaxrI38GLFODBHb6bNgWkA2/FW2sO/TbzIXuREYHPpp8amOP+eXd9PJA
+	ldtdcUKPlkzbSFUt+yqUWGwV5Fl5YJFCv4kP8dYdy0kjLd0G2ryr/7Bp7WOPX5J7zzI9R3EeAo856
+	I1rAJ5OKYhSTNZ7LJAXpbrHSsy11oN7azPxq0W2JEtX6q3FpIvL7+SrBgN+r5fyfzqZNSosU/zQRy
+	65r/MFQ1QggkClBPSSGNeA++UzdVppQAF35aKOCpABklMAg2BFUdwxrskcgefFl1DHz4AB324s/S3
+	bsrilfDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLQMc-00FPOp-Jq; Fri, 27 Jan 2023 15:10:02 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1pLRWm-00FfNl-5Q; Fri, 27 Jan 2023 16:24:36 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLQMS-00FPLQ-7d
-	for linux-amlogic@lists.infradead.org; Fri, 27 Jan 2023 15:09:53 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id q8so3662327wmo.5
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Jan 2023 07:09:48 -0800 (PST)
+	id 1pLRW0-00Ff3q-BE
+	for linux-amlogic@lists.infradead.org; Fri, 27 Jan 2023 16:23:50 +0000
+Received: by mail-wr1-x436.google.com with SMTP id q5so5482533wrv.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 27 Jan 2023 08:23:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=j0jUJd/CQgzPDX6Ls8mFyzSk5wGnBIKAgAJn2GoiB5c=;
-        b=EsG1Yau5s86uf5Ulabx6P3CgJcroBj5L1+yXU2rOTX6T6obuNJVyO3mLuOcPgRzwRI
-         Xn4IPKbxm9rSE6EWFu1zJK9LynxTkTCIQUqbrFIFNFZFP0zHQE3lJ3rFcZqsyBby1nPg
-         v+ihsEYBHXY0S2pZ2UTj41bQeV/JqXfziJ249veltvl42p3QhwRbKwlFWfq8Ec79GdxI
-         VJU4w1yegGnYKrYeQoYkCtCQKL87/H7JzN3XND6acqj/R4C666EHVBJFUxv6PHr7nVHB
-         K04vZvrCqNeubA7MkGrOeiurIOA1U/pEDqQ9AJ3/UWdsCbwpceilCKcBHRx1ECh5T3MO
-         X2sg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=OFZ/BTQfLUI4AMEOvHlW0oDJVdmzbciPT1PhvmheSG0=;
+        b=Xijd+vNgyTj7S9rsA6yloLjWak7DQEZFGDKEiucPfNb0lKVu1UOC8FarbM8rq7Sp1H
+         aIYWoVjWfDmhzIZqWFkHuc2jUBEXbBr9B8+Dlsdf1hENmYvdo5h3AJmz/r27Iu/aLrMc
+         CZ5cDNSEiKVRainkE+lLmXjLvucyi1FzR91rmOtY0vDV5JMV67rYTHJoWRlpKwq6IFXH
+         xlzlRMgD4Wypwux38lHdNS6BR0wrQ/pjATJrqLCSFHGA9nE5R2zRlZyn+T7XSxCDNruq
+         RYgF7+KF+YCyBkKVthnqoiizKTOev/UJf7Pr82LImqGPGKqpjr/NDzooqPUvh/p6GN1O
+         ys/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j0jUJd/CQgzPDX6Ls8mFyzSk5wGnBIKAgAJn2GoiB5c=;
-        b=Pw7ykxzXzwuNzLvMm7CfVHUo4zmdP3qJ6dASFUsiNbWk5ynRrrNUeN+UXPo39qtSLl
-         GFo1z2a2G8SvwtAWlWbIN7MosDMQLkLkWpIcLtiCzf9PcAv0fi0cdTXddHIHhN28MEti
-         SpJWX8X3ze9QddxMWYfDq7bFzkifAP2oNyZw6EgDfKXXJPYoYD3L3cfHUaJLWSs3Q8NC
-         G6J6a/Ynd45PXZ6EE+t4mpc07Q/5sPQAJWXywAP1EE3H1jL+5FImloR2amIYmY5JKiUp
-         gwM8RHbPPvnidxgOQphy52T0GfyPr4IKoCtm4SeZ9NTgxmcUnikCpWVKnHAmADEQ++xP
-         05WA==
-X-Gm-Message-State: AFqh2kpwBvTjYqDol8LcptevY5nUYNWxdvmKSEHo0WhJDpIJTZPHI2rw
-	R7VQ8MtEOb7qj9pnrUT7MGO/ZA==
-X-Google-Smtp-Source: AMrXdXvkozPcTq7K2B7cKlRZyJSMVi1PkLFesIeEaZ9HL9hfOA6tXuYja9JC6RtWsDqBbTpWHfSg7g==
-X-Received: by 2002:a05:600c:684:b0:3cf:5d41:b748 with SMTP id a4-20020a05600c068400b003cf5d41b748mr47180244wmn.36.1674832187400;
-        Fri, 27 Jan 2023 07:09:47 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id hg6-20020a05600c538600b003dafbd859a6sm8012395wmb.43.2023.01.27.07.09.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 07:09:46 -0800 (PST)
-References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
- <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org>
- <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>, neil.armstrong@linaro.org, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
- interrupts level-sensitive
-Date: Fri, 27 Jan 2023 16:04:29 +0100
-In-reply-to: <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
-Message-ID: <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OFZ/BTQfLUI4AMEOvHlW0oDJVdmzbciPT1PhvmheSG0=;
+        b=pL56EFXJWPYNV/cyeKm3RoD6yn8sU50fdPlARk2k8q9Ii9boxvrTrzrkV2zCjRNvZH
+         bBEdaMQnvuP74x3HIOBsbMIo2tZDu8hH7C2CtnDv5epueoyTFclmXsSDoGqQ6H/Bkc0P
+         szR51T+ZaFIBY3RaGCfRNYZjKnLmrhOCu23lh0O3e02JfED1bnVwDMeVDhau86sjN0Kn
+         AuiY/jnRPMMvwILkvDtnmMscQjutHHO8ZvsOuIjKTFvc+U3MxLhBTvVgfUJt55PGQ70C
+         GTKvUJCJLoa/lmRn0k67Pf6K8lCamCeov9M729KILyEsl83D7MkJ/cZq0Nhobc3LAaU0
+         8wXQ==
+X-Gm-Message-State: AFqh2kqQ5LIicdu+IdyEx/3/arhnaO6g8KG9syUt/qiIiwPK+v44/5E8
+	BsVkWZXyVSbPKkrhAZiWCPH11Anbc3sroa90aBI=
+X-Google-Smtp-Source: AMrXdXsICGx9XFP2osGdhhQ2tv0Rnw7eemSj1jTTYkvE8MHdg+ouYA9RBSEukdfnlM1B1j1yOMEHwg==
+X-Received: by 2002:adf:e0c5:0:b0:2bc:8074:b702 with SMTP id m5-20020adfe0c5000000b002bc8074b702mr36680743wri.19.1674836625714;
+        Fri, 27 Jan 2023 08:23:45 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6? ([2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6])
+        by smtp.gmail.com with ESMTPSA id f12-20020adfdb4c000000b002bfb1de74absm4466462wrj.114.2023.01.27.08.23.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 08:23:45 -0800 (PST)
+Message-ID: <24c7e160-762d-61f9-1745-4d91a29ff0d6@linaro.org>
+Date: Fri, 27 Jan 2023 17:23:44 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 1/5] arm64: dts: meson: bananapi-m5: switch VDDIO_C pin
+ to OPEN_DRAIN
+Content-Language: en-US
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230127142221.3718184-1-christianshewitt@gmail.com>
+ <20230127142221.3718184-2-christianshewitt@gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230127142221.3718184-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230127_070952_285520_5139FE58 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20230127_082348_581127_10FDF44D 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,53 +95,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 27/01/2023 15:22, Christian Hewitt wrote:
+> For proper warm (re)boot from SD card the BPI-M5 board requires TFLASH_VDD_EN
+> and VDDIO_C pins to be switched to high impedance mode. This can be achieved
+> using OPEN_DRAIN instead of ACTIVE_HIGH to leave the GPIO pins in input mode
+> and retain high state (pin has the pull-up).
+> 
+> This change is inspired by meson-sm1-odroid.dtsi where OPEN_DRAIN has been
+> used to resolve similar problems with the Odroid C4 board (TF_IO in the C4
+> dts is the equivalent regulator).
+> 
+> Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
+> Suggested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> index 028220ed45ad..3c1267a7ffef 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> @@ -123,7 +123,7 @@ vddio_c: regulator-vddio_c {
+>   		regulator-min-microvolt = <1800000>;
+>   		regulator-max-microvolt = <3300000>;
+>   
+> -		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
+> +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
+>   		enable-active-high;
+>   		regulator-always-on;
+>   
 
-On Fri 27 Jan 2023 at 14:02, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-
-> On 27.01.2023 08:59, Neil Armstrong wrote:
->> Hi,
->> 
->> On 26/01/2023 15:03, Heiner Kallweit wrote:
->>> The usage of edge-triggered interrupts lead to lost interrupts under load,
->>> see [0]. This was confirmed to be fixed by using level-triggered
->>> interrupts.
->>> The report was about SDIO. However, as the host controller is the same
->>> for SD and MMC, apply the change to all mmc controller instances.
->> 
->> Thanks, I applied it in for-next so it runs on the CI tests.
->> 
->>>
->>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
->>>
->>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
->> 
->> I think we should find a better Fixes or perhaps split in 3 so it targets the
->> right commit adding the nodes for each family.
->> 
-> This would be the cleanest option, right. Practically it shouldn't make
-> much of a difference. The chosen commit is from 2019, SDIO interrupt
-> support has been added just recently, and regarding MMC/SD it seems no
-> problems caused by edge-triggered interrupts are known.
-
-... Well, I wonder is this might be linked to instabilities seen with
-very high speed mode (such as SDR104) and DDR modes. We have seen quite
-a lot of those over the years. In any case, if it helps stabilize the
-MMC on amlogic, it would be great if it can be picked up by stable.
-
->
->> If the test doesn't report any breakage, I'll probably ask you that.
->> 
-> Sure.
->
->> Neil
->> 
-> Heiner
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
