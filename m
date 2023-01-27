@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 136D5C38142
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 10:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D18FCC54EAA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 11:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kwpdPtebVuF6erlQyoxhGxWFJHaRLwjeDE8FRd+uJ/U=; b=kU7a8masy7j4xZ
-	35QjkBZl99bt7kTVUBhx6znIEh6W+olIS7JYq5rq8UlsU0CV9nma4iHYrvF57K//obChMEb6aQtZn
-	djE09m+AoXBaAgOWECwAUSUrB59EQuL0rbpqnqL24ZCG2S3DqzJUZscHkIEXX35eKV1goGz25PKU0
-	V9vKe6qycVMj2xLY96r68SqQh0gyzZD8FP1aWTX5QZ41VhJf+IBCxP6hiJLM1oNoZkhouz3uG/uCV
-	S5zHqILY+1Al38zY4aiNXFz4i7MBPd8osIVHQM6CrklmsVOi7mqBksKbKj/X77FOFAWQM5C9ZqYh7
-	fdQ1KqGD+jLyyckkWPzA==;
+	List-Owner; bh=tJgKCg57U0z3MI5IHpwn/2F3S4W1G5PlXZD+YcPcSk4=; b=Ma2uW6OGgZEY2I
+	9Op8hBtu/PQ6oLw8jGo+KM3ppbjnhy+/LwblsrJ7utVyrnALjHdvLYQ7+sghYm/VBUEYjb7ixDM7o
+	c7kLZH1zF1YsdW4BikhQ8q0BFlkrVyAiYfWErOw+JmWwGg1A5mifIQ/1dpaRBlsmPWQpt5E9jyqtK
+	uWtR2EzgoIQgcg28iY1EDj6Fc4PydGlYFdP9y3iJnbxrHAD/0itheOc8szyQ1mh5253FffukWOP40
+	JREIlv7NR0/eBZdbG89iqTCEVKyl7c81/rFTubPEGq3AHOFLjcNfel0jgMfRIgEPfgIqSYm9dOCO2
+	Qyf2f2yRLuGyNXeFoUTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLM8s-00DyBu-ST; Fri, 27 Jan 2023 10:39:34 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pLMc7-00E4Jo-MU; Fri, 27 Jan 2023 11:09:47 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLM8e-00Dy8p-DI; Fri, 27 Jan 2023 10:39:22 +0000
-Received: by mail-wm1-x335.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so3128706wms.2;
-        Fri, 27 Jan 2023 02:39:19 -0800 (PST)
+	id 1pLMbx-00E4H2-2Z; Fri, 27 Jan 2023 11:09:38 +0000
+Received: by mail-wr1-x434.google.com with SMTP id h12so4622041wrv.10;
+        Fri, 27 Jan 2023 03:09:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cdeNu2rBUonzxoRF7BM3W3tfmDx0o1jZ8hpPYfrDac=;
-        b=DAc5fdvudmdCacf9+7vec558W+yzremTGjoG3Ptit4ATrUwdmQPHKnS0Jq969HMQAh
-         aZQ+puLj0KKKZ88tsd9PPzXPeqgMTd+OJLHh2t7abbXBj1AzH1xzfhJv4BX5XsShqGoa
-         ql4GDehOUm603Qx8w6ZhsbOneUVUm7UEmzlgppiODmDcjSOQAw6I/O4Efo3JIzo4U97w
-         iFRxj9iGP098x/YXH7avsdu+xwOER1m2CfyGAlD3oAQOcRMP452aAAdjHmxf2TKbHn8z
-         KAXnXVdEZ6vLyI5GASrSclvclBbyd4dNkePSpB7ql85fVt2VM4fkbeNW5NujarJey+qa
-         c2mQ==
+        bh=isAaPgBeDdcHxcgXON9D9sIMsPD5VNAr8JbS+XxPvnw=;
+        b=onA6YQq5/uVWw7YaxNEnf5K6JGQj0hA2+dIlYS8+OPNSL6lqXdTMos5iOw/I3W4ltO
+         /nrrafXlkDxBlkKtUnWX7ZRyr9NfujL6IzZNaH5wu/87HKtZhE6kABZ4HoquwOKJ8R36
+         SUFixppOFQvMviZkPNSfhOGV+e8dJMlFSqFDrs/3AayDPvzAjDuMZlMj/70RsWwmuJ4h
+         NiFyBiDEjib87eg5ZqOK+EovtXvxIGBtXZns8uu2AEe5pMmZfi8cb2oB6/nPTK3LXYEZ
+         gkI9QkeIj84hy2kGCu1SV0IwlNEqWCFI4YjMYCIYK+DGQEx9obvdfz8ZIJo/GEtrV0Qq
+         FUUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9cdeNu2rBUonzxoRF7BM3W3tfmDx0o1jZ8hpPYfrDac=;
-        b=mOZ6Y0a6ntxgvQMtHzbdCN/fsCmK3zVDAkMllPbYVCx5oUl8CVAsu1/I/9KV0T88Mk
-         YMciT4/VRDb0OpprBVBd1dBXHFxW34iQ2UDtEJdoFFpVng3cLI+zWglPdvwEvB8PNCvZ
-         ydNaXgyJwuaEGxKYLZYYRxl0WHgOFFcVfSEgqo1hYPn+UDaFteEnwtsXhiBzUz9iC20Z
-         cCMGJWVXocC90y6yUDtQhHfteMM1lHY5NIRyRHVINDfZOcEjQnYQLLYIJj2aW4g3BNjs
-         /qqUMnAd965Xc3dRJ5piwAiFh953SPZzYj3vNKkSmj+3aAcQLOl5UhpG3aes2/7gsRM5
-         pJog==
-X-Gm-Message-State: AFqh2koIcuvKnKibY+cq7FeGbOT8YUoMrb+mcvDsofjcGmvZd+sggxTr
-	UppHQ+0KoDfUMGt+LIvbERA=
-X-Google-Smtp-Source: AMrXdXvWPeCgMkd5bkB8/625YuYyvbABWLybVbF249vAUw4sIA1kElnWmwvbpBrWh7Il/OVvdZCPhw==
-X-Received: by 2002:a05:600c:3d98:b0:3d6:ecc4:6279 with SMTP id bi24-20020a05600c3d9800b003d6ecc46279mr36100281wmb.27.1674815958374;
-        Fri, 27 Jan 2023 02:39:18 -0800 (PST)
+        bh=isAaPgBeDdcHxcgXON9D9sIMsPD5VNAr8JbS+XxPvnw=;
+        b=x/NAPvY/KGyAU/hAkIEYqn8hxuWVTib2HaLH7S2E6iBQSDxKlYXKaDL0bIL1J481a3
+         T0JCt/DhZ4IQogKtQTF9zex/kka381f5wgmhqi/fRLlY/SGIqNy9lmIFMYUVhg3PRkaX
+         Ei5G2j3MdWtcUNnjanp7/Xb7Kw/TBnsLo+V8QzG28UAvvahAcSpVlN1PvECTKiamTt9q
+         neQe4ZymuFydtLATY3Y7fJYxFcjHCvb6sdbPua11RpKFqmcCJydwjuse/4j88+6IobFw
+         k/2Rh4MYwyMP9NXwOMYkyGl40DhgCHfhL4NfDaeuwYfhmvaUhlhvB7zi8fN1C+8PxRBP
+         xs+Q==
+X-Gm-Message-State: AFqh2kpEf2TdsCI55LzC2AlIApbZSny8azRqsDM2VjT9AmLmtz2QbtPv
+	ZVwUof+nfqD8ooOCKUSP7WE=
+X-Google-Smtp-Source: AMrXdXsDpz6xvjzOlbveXGOY9ueHKhX8OWw+Xd0swYVWFPnwkqCcjGgjSJiOH9ZpVy79L/lK7SUb+Q==
+X-Received: by 2002:a5d:5c07:0:b0:2bd:fa1d:5291 with SMTP id cc7-20020a5d5c07000000b002bdfa1d5291mr38022885wrb.67.1674817773386;
+        Fri, 27 Jan 2023 03:09:33 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id j2-20020a5d4482000000b002be063f6820sm4348243wrq.81.2023.01.27.02.39.15
+        by smtp.gmail.com with ESMTPSA id d7-20020a056000114700b00241fab5a296sm3662106wrx.40.2023.01.27.03.09.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 02:39:17 -0800 (PST)
+        Fri, 27 Jan 2023 03:09:32 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -69,14 +69,14 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: radxa-zero: allow usb otg mode
-Date: Fri, 27 Jan 2023 10:39:13 +0000
-Message-Id: <20230127103913.3386435-1-christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
+Date: Fri, 27 Jan 2023 11:09:27 +0000
+Message-Id: <20230127110928.3387654-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230127_023921_479398_E3EACD99 
-X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-CacheID: sfid-20230127_030937_151123_44847FB1 
+X-CRM114-Status: UNSURE (   7.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,24 +94,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Setting dr_mode to "host" prevents otg which can be useful on a board
-with limited connectivity options. So don't force host mode.
+The Radxa Zero2 is a small form-factor SBC using the Amlogic
+A311D chip.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts | 1 -
- 1 file changed, 1 deletion(-)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-index e3bb6df42ff3..cf0a9be83fc4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-@@ -401,5 +401,4 @@ &uart_AO {
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 8aa6b6a92c29..6e3cb5a0d879 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -154,6 +154,7 @@ properties:
+         items:
+           - enum:
+               - khadas,vim3
++              - radxa,zero2
+           - const: amlogic,a311d
+           - const: amlogic,g12b
  
- &usb {
- 	status = "okay";
--	dr_mode = "host";
- };
 -- 
 2.34.1
 
