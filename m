@@ -4,82 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 993BDC38142
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 17:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBABEC54EAA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Jan 2023 21:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xHk0gH3CZwYsSyYV9rX5LHitS/WpwQg0uRUffOy3nJ4=; b=OuVHBSOYAs9tep
-	/Y0Nven9m6qJRjAYuYZG2+t3v5RtCXkxvCfsisx+hr9jDoEoFmXgcneSx71/Hm7DQebLV2MYFoRQI
-	e+EJ3eEUEPaR2mElHaTf7ZZvkERlxcHJDtkqvIYbRTbhksBd7KcZ7bEEOKRP6ARO0x81kjUi9AwZO
-	t4egdT/i8fpY3LX3+mD7NYVFpAc4m9fHAB1yn22X6E8MOG8fDqW9IIjNbCBRqSjAos3WX/wBEx4xh
-	1+HBS0aqP0bkdjaUGVCcSrG0dTGl9ZKnBi8jLFb6Gl5RYNyak2qeUvZpmDf/j8DWjYDfYQlA6zZem
-	a7y11Bw8u+y/FFFgsvlQ==;
+	List-Owner; bh=qi0pXEp1UPwGXeQptbsyCH1iBjZJCBHUjB2DkMpQ554=; b=a7pC3DZimkmyly
+	9HmRh6pDFul6n8mJ7Hh6nIWDQjhbpOZbr0I5lUI0rgpadj6C+hwFqV5nYa20KSeiNQcikxzw1Fj1O
+	mvHo66uFzHdk8VP/Fj28TbBcdQHitvzz5dxKJ5NiyVMPcsBYfc+BFNpzC3QuSho6F5YP8xHA1yeJ7
+	PXO2chKdreUgznjfOj9cFxP0uoNfWf7I5HwSxa4XtszAVYPACScqKX5ZI9ztKELul3naF40aW9cnf
+	SCLSJr3V1g5zEE4QLKj8TSkqton7p1CWNnAv8TkbzGpsKiCsUD/Oiy1B6ctMEINFMk0WP8AgGQq0j
+	a9bvU07BLYBcAvtG5a5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLS7u-00FrdJ-Vt; Fri, 27 Jan 2023 17:02:59 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1pLW64-00GVYU-Dd; Fri, 27 Jan 2023 21:17:20 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLS7W-00FrUX-TD
-	for linux-amlogic@lists.infradead.org; Fri, 27 Jan 2023 17:02:37 +0000
-Received: by mail-wm1-x330.google.com with SMTP id j17so3939019wms.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Jan 2023 09:02:32 -0800 (PST)
+	id 1pLW5k-00GVQG-VS; Fri, 27 Jan 2023 21:17:03 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id cw4so726156edb.13;
+        Fri, 27 Jan 2023 13:17:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
-        b=ZYqzKu5blklwUObA1H3gAkwCboO6R1adMPHjlKADOpoynUElxQHWl2yhz5fmMJ6/OC
-         2nzf1af85r9C5QwP4LdAALucQ0GJBKLp9Fc7M0AxBfPmo4zHYq1dLUyHbWOh2U+NM1uk
-         pDccnDz9SDYqiePHluMiOQypB7bl+tRkOzl31LQiaCkIJWj3RHd4BP0dS4he+VRiqu0W
-         b6vyXb9jET2cF6MJXg4WQkSifFOwnXSbZ9p/ogX/DXyGRLg5epYZ/2i4hjnIK/d+ES7a
-         9u9eLkpvlzjN9eiRcqUcmx74E1ZgC5+yt4Dz+/J3EFtI5q/P0UiM4sAHAQaa8mDJU5vL
-         TsGQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=N8zYuIc1ynpH62qboQuvd9b+HC4M1D7TmFYg5HThk5M=;
+        b=QcmwD2ziXuO0pMehgnVejred/OFP4vXNUdcWuN1Yk1XzxuBXUVASz2AyhdreJ+NZBM
+         I7P76uiVlDx4yLJg6HWCxWw/wfNMJKnv+DK1Jal3S0/dPwJu9odLnWtlcGzq1X1US5BU
+         8tVb23mpe1qfKPsSE3cCU2WheYRMn8/KplJ1ZpXpJ7b0CwYfYLtuk43eCAOxQysuHq4e
+         C/LxCy65jVV1Sw+ul4c4wtZXosF0ruWBSfOXpUTHBEHJECn8MXjEPV/un9IeAwGK4jhh
+         wuDc7ZZe1ejpyFUSm9KW/QX+Omcd1zsR50k7Td2kVPIkB0abfyrqCMvI39dxQPc6bALU
+         pvqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
-        b=mR9ryK/Q8jaCDkYk8C8Qe6i2rlrYnjWrK/LfH4Dyee9iS9t/kcIzZNWReCXlabP0KD
-         2wBGPk+s8S05hYe0aWsleIIzJRf6e7u2yPl4Y0MMHU2jLCbbSENLCH4c7MLX/volMky9
-         r7IE9rc+GqwPdtm2XAtQjJ+tlzt3mTP4ZsNbnVbYrJo3n2ldvnW87V2mFvGacB+lEXCp
-         XW5ne15/joUXW1GIj724aKX4JyM1y1uqrN7mqhLDkt7nGXVbyZWPBYX8wPstlJm7Ty2p
-         D22wSJ8ymXs0OVe7CkQpVUdhOsF/JQGZc8EhjG9gmcsiuCyf0BvT1/uGvtfOUCAUX2r9
-         zuxQ==
-X-Gm-Message-State: AO0yUKW+Zh/i1jzAAJCsR1b8kM5p0g7q4c0HGHdcUpyFjhXfsS11Gar1
-	8AgjsISlibf+3LKrqfyA5f+Q/E9U343Gs8RCa3Y=
-X-Google-Smtp-Source: AK7set8nKe1EwJJz5qSh/iMOOjsbaKe0SVJ6gB0BYq3Td23vOrRiaDhe0P7jCeUxIxn6ZPoBJ0Fjww==
-X-Received: by 2002:a05:600c:2189:b0:3dc:4334:22e3 with SMTP id e9-20020a05600c218900b003dc433422e3mr790979wme.17.1674838951034;
-        Fri, 27 Jan 2023 09:02:31 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c12ca00b003d9df9e59c4sm7925935wmd.37.2023.01.27.09.02.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 09:02:30 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Christian Hewitt <christianshewitt@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127150536.3719090-1-christianshewitt@gmail.com>
-References: <20230127150536.3719090-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for
- Radxa Zero2
-Message-Id: <167483894978.2238401.2111173691502093407.b4-ty@linaro.org>
-Date: Fri, 27 Jan 2023 18:02:29 +0100
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N8zYuIc1ynpH62qboQuvd9b+HC4M1D7TmFYg5HThk5M=;
+        b=olXJajXIX95dHt4dohBLrlnq5GQ02EQEZuCwboWvFByJEMLubSLZloggJHrCIvqUw7
+         i0eDobZBAuUrMpwIVXHWrurZ4RsgbhpS9JCVYhsEvaDX7kwY4n5uLGu327zzF8WHTWyV
+         +C9YEXK+mgQiObD3eubrchy3zwWhYPE/LQghTZ7EF5bFNVqN6FrUiZ2qMgqyqZaLnGeZ
+         Evp7Xama3URCps+68quNYFkuPI3iehloxzC3MT5HbHoAGQ0Z6wlQyF042Q7etfgQHkoy
+         a+/i1Bhr+DuxM9rZrpAxfxT0g+X2A1Kohmmz2c3Omz7JNAQIe+0zrga9bAmenpTQB+ba
+         hMCg==
+X-Gm-Message-State: AO0yUKUvz052E1enrY8gdEGPPqSB3a/j3wabztMdfqO5zwgAEExB7eii
+	e7OZLpsx7VsZulPgJI7nUsA=
+X-Google-Smtp-Source: AK7set/ToLQy7QUtN+dt0sryt50ryl+BKZxIWdj6M5wulKONZ8WPf3NL+uyX+HQ/2rGxvM5grTiTJA==
+X-Received: by 2002:a05:6402:378:b0:4a0:e442:5df8 with SMTP id s24-20020a056402037800b004a0e4425df8mr6213630edw.18.1674854218824;
+        Fri, 27 Jan 2023 13:16:58 -0800 (PST)
+Received: from ?IPV6:2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3? (dynamic-2a01-0c22-6e0f-9000-c8f2-6e21-84ed-c3a3.c22.pool.telefonica.de. [2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3])
+        by smtp.googlemail.com with ESMTPSA id d1-20020aa7d681000000b0049be07c9ff5sm2930871edr.4.2023.01.27.13.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 13:16:58 -0800 (PST)
+Message-ID: <48aba515-c8c7-45fd-c361-6c235cd605c8@gmail.com>
+Date: Fri, 27 Jan 2023 22:14:11 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.12.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic Meson
+ GPIO interrupt controller binding
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Content-Language: en-US
+In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230127_090235_544625_E88B4EF0 
-X-CRM114-Status: GOOD (  10.50  )
+X-CRM114-CacheID: sfid-20230127_131701_133283_D82AFFA1 
+X-CRM114-Status: GOOD (  17.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,44 +99,159 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Convert Amlogic Meson GPIO interrupt controller binding to yaml.
 
-On Fri, 27 Jan 2023 15:05:35 +0000, Christian Hewitt wrote:
-> The Radxa Zero2 is a small form-factor SBC using the Amlogic
-> A311D chip.
-> 
-> 
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- consider that more than one compatible may be set
+- remove bus part from example
+---
+ .../amlogic,meson-gpio-intc.txt               | 38 --------
+ .../amlogic,meson-gpio-intc.yaml              | 86 +++++++++++++++++++
+ 2 files changed, 86 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
-
-[1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
-      https://git.kernel.org/amlogic/c/229cfc6b16ccedfcae1ee10dc1aed04e7a85ed32
-[2/2] arm64: dts: meson: add support for Radxa Zero2
-      https://git.kernel.org/amlogic/c/d747e7f76a5fa6e3deb4c419df768f9ee49c2161
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+deleted file mode 100644
+index bde63f8f0..000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-Amlogic meson GPIO interrupt controller
+-
+-Meson SoCs contains an interrupt controller which is able to watch the SoC
+-pads and generate an interrupt on edge or level. The controller is essentially
+-a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
+-or level and polarity. It does not expose all 256 mux inputs because the
+-documentation shows that the upper part is not mapped to any pad. The actual
+-number of interrupt exposed depends on the SoC.
+-
+-Required properties:
+-
+-- compatible : must have "amlogic,meson8-gpio-intc" and either
+-    "amlogic,meson8-gpio-intc" for meson8 SoCs (S802) or
+-    "amlogic,meson8b-gpio-intc" for meson8b SoCs (S805) or
+-    "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
+-    "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
+-    "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
+-    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
+-    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
+-    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
+-    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
+-- reg : Specifies base physical address and size of the registers.
+-- interrupt-controller : Identifies the node as an interrupt controller.
+-- #interrupt-cells : Specifies the number of cells needed to encode an
+-   interrupt source. The value must be 2.
+-- meson,channel-interrupts: Array with the 8 upstream hwirq numbers. These
+-   are the hwirqs used on the parent interrupt controller.
+-
+-Example:
+-
+-gpio_interrupt: interrupt-controller@9880 {
+-	compatible = "amlogic,meson-gxbb-gpio-intc",
+-		     "amlogic,meson-gpio-intc";
+-	reg = <0x0 0x9880 0x0 0x10>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-	meson,channel-interrupts = <64 65 66 67 68 69 70 71>;
+-};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+new file mode 100644
+index 000000000..801f9db02
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson GPIO interrupt controller
++
++maintainers:
++  - Heiner Kallweit <hkallweit1@gmail.com>
++
++description: |
++  Meson SoCs contains an interrupt controller which is able to watch the SoC
++  pads and generate an interrupt on edge or level. The controller is essentially
++  a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
++  or level and polarity. It does not expose all 256 mux inputs because the
++  documentation shows that the upper part is not mapped to any pad. The actual
++  number of interrupt exposed depends on the SoC.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    minItems: 1
++    maxItems: 2
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson-gpio-intc
++              - amlogic,meson8-gpio-intc
++              - amlogic,meson8b-gpio-intc
++              - amlogic,meson-gxbb-gpio-intc
++              - amlogic,meson-gxl-gpio-intc
++              - amlogic,meson-axg-gpio-intc
++              - amlogic,meson-g12a-gpio-intc
++              - amlogic,meson-sm1-gpio-intc
++              - amlogic,meson-a1-gpio-intc
++              - amlogic,meson-s4-gpio-intc
++      - items:
++          - enum:
++              - amlogic,meson8-gpio-intc
++              - amlogic,meson-axg-gpio-intc
++              - amlogic,meson-g12a-gpio-intc
++              - amlogic,meson-sm1-gpio-intc
++              - amlogic,meson-s4-gpio-intc
++          - const: amlogic,meson-gpio-intc
++      - items:
++          - const: amlogic,meson-gpio-intc
++          - enum:
++              - amlogic,meson8b-gpio-intc
++              - amlogic,meson-gxbb-gpio-intc
++              - amlogic,meson-gxl-gpio-intc
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  amlogic,channel-interrupts:
++    description: Array with the upstream hwirq numbers
++    minItems: 8
++    maxItems: 12
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++  - amlogic,channel-interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@9880 {
++      compatible = "amlogic,meson-gxbb-gpio-intc";
++      reg = <0x9880 0x10>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++      amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
++    };
 -- 
-Neil
+2.39.1
+
 
 
 _______________________________________________
