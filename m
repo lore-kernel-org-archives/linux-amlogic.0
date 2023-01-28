@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0347C38142
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Jan 2023 08:20:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5DE6C38142
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Jan 2023 08:23:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zI5mHLUn5MDzBp/weYCovoegAgRGXVU0Vr0ZwHAxfbQ=; b=0K+2akvTxsn2kf
-	DrSTS8thfdYkB99fjmTW6dpbQEmcZ332lTwVMzdM5WX0rhyH5WKv//9W+VHuuo1irrFLtfLqt6Z73
-	myB7wFbEQiVpyywbTCmRFZcjTN2hFTHSmDTfq5o+1xtX/ZMlGmmwFrDx95YGkBBWZ2h6bzW7wwnZa
-	DSQymb6dYikUOtXJ5JKh0kSq1AncJXBGjGGoSXFCodr5ORZ4JAbCav/q1VfobRMBho7/QCUPv4D0C
-	18CD5QZzHMbw04cN/u8BTAU39XFNdWspghPvlW/csp1dsGy9oDnTzkRHKwrqUH4wHGVmLmGbH2+YD
-	421odSDHf+SdaNe0Gx9w==;
+	List-Owner; bh=GgQ8Ib0JtzRyXCBkwV8NuNkrXp8BN5B1FgbA6HDD5/E=; b=kXPahy0yrNdOjC
+	G3VwS4p5xsWY+knos2X1uhui76GA7HO/AYsVQTscNrUbocyYCpHXo5zP8vf8gpkodemPYVdsJ0Prb
+	TundRc41JYgXYG7kcfPdGqTVMNoufweb0ft3u/lc/uqrPxZ0ObxOXnEBBPMDnaPpAJ8DagGWTkiec
+	fSERsI61mrBpt1GRf0Sc8/snPHfQazCWTH1A2QBWdwcYx11EE100lLV2Z61y9FJs4ukFBNEVVNqdG
+	bgpzok+MZK9pBaU6hIma3o43ayiV4h+EqxHxB1C+wd1rKvg8qyfb5/ElLehMkvvv00wOjrJoVyS70
+	Dy99IBInYULwdbvjEfUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLgRV-00HSIg-2x; Sat, 28 Jan 2023 08:20:09 +0000
+	id 1pLgUe-00HSkH-2E; Sat, 28 Jan 2023 08:23:24 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pLgRI-00HSFH-Ge; Sat, 28 Jan 2023 08:19:57 +0000
+	id 1pLgUT-00HSjC-VM; Sat, 28 Jan 2023 08:23:15 +0000
 Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Sat, 28 Jan
- 2023 16:19:38 +0800
-Message-ID: <709ea82e-1835-01be-1376-0899c2ba5655@amlogic.com>
-Date: Sat, 28 Jan 2023 16:19:38 +0800
+ 2023 16:23:11 +0800
+Message-ID: <410a5215-a819-1f06-91c7-2d74df5b254d@amlogic.com>
+Date: Sat, 28 Jan 2023 16:23:11 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Subject: Re: [PATCH V6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL &
  peripheral clock controller
 Content-Language: en-US
-To: Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski
+To: Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
 	<krzysztof.kozlowski@linaro.org>, <linux-clk@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Jerome
- Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
 	<martin.blumenstingl@googlemail.com>
@@ -51,18 +51,15 @@ References: <20230116074214.2326-1-yu.tu@amlogic.com>
  <20230116074214.2326-2-yu.tu@amlogic.com>
  <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
  <7c0133a2-ea4d-645e-3df2-2bb832bbd498@amlogic.com>
- <7hwn5jqrxf.fsf@baylibre.com>
- <9c34a8fc-de76-4beb-8841-9bcfd1a55cd1@amlogic.com>
- <7ho7qnh33v.fsf@baylibre.com>
+ <1j5yd1y22r.fsf@starbuckisacylon.baylibre.com>
 From: Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <7ho7qnh33v.fsf@baylibre.com>
+In-Reply-To: <1j5yd1y22r.fsf@starbuckisacylon.baylibre.com>
 X-Originating-IP: [10.18.29.47]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230128_001956_599323_0F60B3E8 
-X-CRM114-Status: UNSURE (   8.56  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230128_002314_048065_2A1BF317 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,58 +78,246 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 
-On 2023/1/25 8:25, Kevin Hilman wrote:
+On 2023/1/20 17:37, Jerome Brunet wrote:
 > [ EXTERNAL EMAIL ]
 > 
-> Yu Tu <yu.tu@amlogic.com> writes:
 > 
->> Hi Kevin,
+> On Mon 16 Jan 2023 at 17:31, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> Hi Krzysztof,
+>> 	Thank you for your quick reply.
 >>
->> On 2023/1/19 8:38, Kevin Hilman wrote:
+>> On 2023/1/16 16:29, Krzysztof Kozlowski wrote:
 >>> [ EXTERNAL EMAIL ]
->>>
->>> Yu Tu <yu.tu@amlogic.com> writes:
->>>
->>>> On 2023/1/16 16:29, Krzysztof Kozlowski wrote:
->>>
->>> [...]
->>>
->>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>>>> new file mode 100644
->>>>>> index 000000000000..bbec5094d5c3
->>>>>> --- /dev/null
->>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>>>> @@ -0,0 +1,131 @@
->>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>>>>
->>>>> Unusual license... are you sure to license the bindings under GPLv4 or
->>>>> GPLv5? Fine by me.
->>>>>
+>>> On 16/01/2023 08:42, Yu Tu wrote:
+>>>> Add the S4 PLL & peripheral clock controller dt-bindings in the s4 SoC
+>>>> family.
 >>>>
->>>> Yes.
->>>
->>> The rest of the bindings for Amlogic SoCs are GPL-2.0 (without the '+').
->>> Adding the dual-license for MIT seems fine, but adding the '+' is
->>> curious.
->>>
->>> It would be helpful if you could please explain why you'd like these
->>> bindings to be licensed differently than the rest of the SoC family.
+>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>> ---
+>>>>    .../clock/amlogic,s4-peripherals-clkc.yaml    | 104 ++++++++++++++
+>>>>    .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  50 +++++++
+>>>>    MAINTAINERS                                   |   1 +
+>>>>    .../clock/amlogic,s4-peripherals-clkc.h       | 131 ++++++++++++++++++
+>>>>    .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 ++++
+>>>>    5 files changed, 316 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..2deeff497754
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> @@ -0,0 +1,104 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Amlogic Meson S serials Peripherals Clock Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>>>> +  - Yu Tu <yu.tu@amlogic.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: amlogic,s4-peripherals-clkc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: input fixed pll div2
+>>>> +      - description: input fixed pll div2p5
+>>>> +      - description: input fixed pll div3
+>>>> +      - description: input fixed pll div4
+>>>> +      - description: input fixed pll div5
+>>>> +      - description: input fixed pll div7
+>>>> +      - description: input hifi pll
+>>>> +      - description: input gp0 pll
+>>>> +      - description: input mpll0
+>>>> +      - description: input mpll1
+>>>> +      - description: input mpll2
+>>>> +      - description: input mpll3
+>>>> +      - description: input hdmi pll
+>>>> +      - description: input oscillator (usually at 24MHz)
+>>>> +      - description: input external 32kHz reference (optional)
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: fclk_div2
+>>>> +      - const: fclk_div2p5
+>>>> +      - const: fclk_div3
+>>>> +      - const: fclk_div4
+>>>> +      - const: fclk_div5
+>>>> +      - const: fclk_div7
+>>>> +      - const: hifi_pll
+>>>> +      - const: gp0_pll
+>>>> +      - const: mpll0
+>>>> +      - const: mpll1
+>>>> +      - const: mpll2
+>>>> +      - const: mpll3
+>>>> +      - const: hdmi_pll
+>>>> +      - const: xtal
+>>>> +      - const: ext_32k
+>>>> +
+>>>> +  "#clock-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - "#clock-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>> +
+>>>> +    /* 32KHz reference crystal */
+>>>> +    ext_32k: ref32k {
+>>>> +        compatible = "fixed-clock";
+>>>> +        #clock-cells = <0>;
+>>>> +        clock-frequency = <32000>;
+>>>> +    };
+>>> This wasn't here before. Drop it. It is trivial and it is not needed to
+>>> illustrate your device bindings. All clock bindings use it...
 >>>
 >>
->> I actually refer to the previous g12a Soc.
->> https://elixir.bootlin.com/linux/v6.2-rc4/source/include/dt-bindings/clock/g12a-clkc.h
->> https://elixir.bootlin.com/linux/v6.2-rc4/source/include/dt-bindings/clock/axg-clkc.h
->> [...]
+>> I'm fine with that. I don't know if Jerome agrees with that. Wait for
+>> him. See what he says.
+> 
+> This is a simple change related to your binding example.
+> Krzysztof is one of the DT maintainer. Please follow his recommendation.
+
+Okay. Got it.
+
+> 
 >>
->> So if you think it is not necessary, I will delete the '+' as you
->> suggested. Don't know what you choose?
-> 
-> Drop the `+`
-
-Okay.
-
-> 
-> Kevin
+>>>> +
+>>>> +    clkc_periphs: clock-controller@fe000000 {
+>>>> +      compatible = "amlogic,s4-peripherals-clkc";
+>>>> +      reg = <0xfe000000 0x49c>;
+>>>> +      clocks = <&clkc_pll 3>,
+>>>> +              <&clkc_pll 13>,
+>>>> +              <&clkc_pll 5>,
+>>>> +              <&clkc_pll 7>,
+>>>> +              <&clkc_pll 9>,
+>>>> +              <&clkc_pll 11>,
+>>>> +              <&clkc_pll 17>,
+>>>> +              <&clkc_pll 15>,
+>>>> +              <&clkc_pll 25>,
+>>>> +              <&clkc_pll 27>,
+>>>> +              <&clkc_pll 29>,
+>>>> +              <&clkc_pll 31>,
+>>>> +              <&clkc_pll 20>,
+>>>> +              <&xtal>,
+>>>> +              <&ext_32k>;
+>>>> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
+>>>> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
+>>>> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
+>>>> +                    "ext_32k";
+>>>> +      #clock-cells = <1>;
+>>>> +    };
+>>>> +...
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>> b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..aeda4861cebe
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>> @@ -0,0 +1,50 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Amlogic Meson S serials PLL Clock Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>>>> +  - Yu Tu <yu.tu@amlogic.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: amlogic,s4-pll-clkc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: xtal
+>>>> +
+>>>> +  "#clock-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - "#clock-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    clkc_pll: clock-controller@fe008000 {
+>>>> +      compatible = "amlogic,s4-pll-clkc";
+>>>> +      reg = <0xfe008000 0x1e8>;
+>>>> +      clocks = <&xtal>;
+>>>> +      clock-names = "xtal";
+>>>> +      #clock-cells = <1>;
+>>>> +    };
+>>>> +
+>>>> +...
+>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>> index f61eb221415b..26c82beeffda 100644
+>>>> --- a/MAINTAINERS
+>>>> +++ b/MAINTAINERS
+>>>> @@ -1897,6 +1897,7 @@ L:	linux-amlogic@lists.infradead.org
+>>>>    S:	Maintained
+>>>>    F:	Documentation/devicetree/bindings/clock/amlogic*
+>>>>    F:	drivers/clk/meson/
+>>>> +F:	include/dt-bindings/clock/amlogic*
+>>>>    F:	include/dt-bindings/clock/gxbb*
+>>>>    F:	include/dt-bindings/clock/meson*
+>>>>    diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> new file mode 100644
+>>>> index 000000000000..bbec5094d5c3
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> @@ -0,0 +1,131 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>> Unusual license... are you sure to license the bindings under GPLv4 or
+>>> GPLv5? Fine by me.
+>>>
+>>
+>> Yes.
+>>
+>>> Best regards,
+>>> Krzysztof
+>>>
 > 
 
 _______________________________________________
