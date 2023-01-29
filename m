@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4E6C05027
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Jan 2023 21:26:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAA8DC54EED
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Jan 2023 21:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kvl1vCyzwOw+n4V3tMMTSRcLZe5m8TZJBhnQZL2WiJA=; b=JGMlqHF6ux2JGn
-	UiBQhp1BFMGnYOnW+a15XbRoxvEIu0pSKNkbPulBqbwL5tYEqVF3azHJgKNTgis6v24VfgAL+Erdr
-	c3ezW6FQXZODMpoQKcplAmvmCOgZ9xAHb8RVsXFgp1WEJ0Um3c/zDcjdp36jXEypyJueUyUDYvT7V
-	39DA6SIuepXeM/HroyazQrMpSWVi1cm3DNNEGeOLv+BF6RbIBdsqzGNGwVvcfiO/KBEL++uYwlEJw
-	14y6vO3LNuwSazDh5TTWi4hP4rbqKc9NXDpjrVOb2iI2f4TsXDjCz+wzm4M0ZWaroGPgLMbkaHfXz
-	6T3Oa7IhmN2wPdTiYGpA==;
+	List-Owner; bh=9VshprW5ije9O7KaW+G1ngxblck5kqZwD/6NsVu9sa0=; b=dkTvubDzWBpnze
+	V5wUNeXX69h8CZcIs//qNA2nN1TPfB34lrsAasGnnXKQ/2cVAgbvIMt4apNypE/4+geVxYn0MBuMJ
+	CAZ/B3H7mJYnADdYbZrFF2LBlbuPtpJ4AzZrhD+DWfGguAHjVro6hlQkw4XSvA04mBgDqrHd1jaZ6
+	kEKd9Zqbi56PgUuG6XZA+wsqR/6LVProS0koZW8okBJcBq2EFhd0MBQ5PLJqIsIifFzR1Nsc5WcGd
+	0cUlZ+14cf5rVAAAsPjLerss4QFpPw+I+VxM7U+p8vBoN1u8Cq6a9woG3VlgLHmPDEw15epYKAAII
+	ZJYYUUWr0U3vxDJ0Nymw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMFBv-001uUo-44; Sun, 29 Jan 2023 21:26:23 +0000
-Received: from mail-qv1-xf29.google.com ([2607:f8b0:4864:20::f29])
+	id 1pMFE3-001ufi-CY; Sun, 29 Jan 2023 21:28:35 +0000
+Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMFBj-001uTc-J5; Sun, 29 Jan 2023 21:26:13 +0000
-Received: by mail-qv1-xf29.google.com with SMTP id i12so7753313qvs.2;
-        Sun, 29 Jan 2023 13:26:10 -0800 (PST)
+	id 1pMFDs-001udu-Et; Sun, 29 Jan 2023 21:28:25 +0000
+Received: by mail-qt1-x834.google.com with SMTP id d3so8528583qte.8;
+        Sun, 29 Jan 2023 13:28:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=R+r5oWkcynWYgf6TrWUFBbgZPP925TAZRGhYeApXIos=;
-        b=TODJo6tvZAiA3If5Qd5RPqZ3AfjHSEDACjuzxV9aGVNfNt/n2DG5rZP9fZTufoWxyO
-         c3A9+ytFzygidz15K/tk7rEamQJnTB2FXMwUUmwf3o0P/qZeyaC+8r4PRyMAzvcCrSK9
-         yHNH0+u0ugEtO74TdHq9jMRfmj18VlCU2u8dlXZRmWa0ibjpU8mxpZqzJO5a40Ns5ZgU
-         yUxeYUqLdrXuWu4E2aAuLI+RdypfWL4Y0ohzuvlCWjWsrsR8a4qFKCljlff0x/Usfbq/
-         kg+clBC0LxjiX8r+rnwea2N/K1MYily+d7L1DGgOzyyePj9i6nfmOylTR3VBF5lsI6uV
-         Xs2w==
+        bh=vvsETFyAWEBQowq6cfHTnP7Iio5EX4ZyEImdco3L9U4=;
+        b=e1K8fFc++/gRpxtRWLurMWIVlKZ44/MaW68q2jyzT1NJlIBjCu4+T3u38nxuZ1pyif
+         TBKMcxVW9YYszG0sCmnBtzCDiiAiW8JTZmhkRyEH1L/aP2IWS+L+8OnRMkxoOUaaWfUx
+         DPgQdgHPMVNrNLACCstxyv2uoAf75HFOlVbiesVGWFOhl9xLHrSMI+nboqVzyTfVtpPQ
+         e5Qzd8rsoHXekX5D0d9rkzm5HHJ66I+/rrvCZzDcPCf2yI6k/5z+aVF5cN29D0mw0ZaG
+         mCapxaCBWcyPU92yzgTlzM3gX+/0tAOeYHJDTmIAWKLAjqY1hZND45M5M3FEbFw1ERGb
+         tqbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=R+r5oWkcynWYgf6TrWUFBbgZPP925TAZRGhYeApXIos=;
-        b=DYVKldRN26d7ObICs8LsOQkEYKArl0VTKy19CPmJUPQslBV2B3eqSwwVEUsbirCxig
-         l3m2WXc5aorg76KkiMMzm5bIw67AXFVBXmC5i6qSNox7zCZKzHUI0aZWZ/IOpfiPqItq
-         mgPOWDwkdxHs+EVyyT5Iibkq2vJ+I/zKz4tWOgIlzddoZGsh4ZXp69+nNBw3PeBXvrJK
-         TW6Xi5IfRk+6tw2AbfixQDdQnyuL7e4+ezdHzFaN6SbCTK+cGzgzdC9EO6aFuTszA04U
-         Lkc0eqFG2+fufyAjdaehH5hqs4Sdr7fCCG4ck6mZ7DefsHFJyflMmIuJYbAmJnjlURZe
-         H7Jg==
-X-Gm-Message-State: AO0yUKUtU/MFbNwU1ghIxgqP/lnav1yEQ8Xj3UCycjyQKInSDRCqr3Hu
-	SfVAIbo/7UXDd1tz/YgLR42wckapt9qrrRkPH1A=
-X-Google-Smtp-Source: AK7set/hDwAEIAnJPugzpkbNIMt6/2wCZgBGxHBdvkjSr0gEYM8NjutI4pzZ7M4BPGW2CVN4XbTn5+vgubNcChjm3mc=
-X-Received: by 2002:a0c:fe07:0:b0:53b:c24d:d224 with SMTP id
- x7-20020a0cfe07000000b0053bc24dd224mr132949qvr.56.1675027570017; Sun, 29 Jan
- 2023 13:26:10 -0800 (PST)
+        bh=vvsETFyAWEBQowq6cfHTnP7Iio5EX4ZyEImdco3L9U4=;
+        b=lzCVXu/5QR0NJJGM3rgH9HEW0hyoZRkIJW5rcgMulhHnMEGTw1b3E90rrBtAo8dwcO
+         GPeljokT0yFYtNQCenH2TY5YrgSg7TVsvwg3CjOvWyWY49jS07Y1NGWr3WMnUA9fnViU
+         b6+tcHvh6ikLQGCvtuyOr6nWqDx7LQXPFNzGj7Sde+q7OUjbIp0X+o3nJqksHcQoEU8i
+         yBvh/MhgHXYBfT5eWC4UDjVQ1NK1Y8MHTjQPnIRL478MUPKmuXzAoHEfn4esPzNRiMJO
+         HtHN+0GDPe9zonpKQAz99XFHNOqEmxtvzVCCB3Kzl/Gd0EADq9xGnne9Dbv2bOa65T1E
+         U1kw==
+X-Gm-Message-State: AFqh2koJ/DI4Coj/A8SD+CcdEBNknEf/0C2hee6CB9NFejz3MBS5S9Ek
+	+NkUMzflsWgtJgWrvAJTaMw7qxE1qwaDgsrRylM4utlmyNc=
+X-Google-Smtp-Source: AMrXdXtvz+/bcPwRJPRwHRp/fsg+vFrqOVg9xu75imb1lMxdG5Up9Mi1ulKxVQevv+9KfeGbTcwUQL4wWCEkIW6yf78=
+X-Received: by 2002:a05:622a:183:b0:3b1:c62b:c140 with SMTP id
+ s3-20020a05622a018300b003b1c62bc140mr2510656qtw.313.1675027703027; Sun, 29
+ Jan 2023 13:28:23 -0800 (PST)
 MIME-Version: 1.0
-References: <20230129022615.379711-1-cphealy@gmail.com> <76e0aeea-2c15-528e-da21-4ad1f9281a13@gmail.com>
-In-Reply-To: <76e0aeea-2c15-528e-da21-4ad1f9281a13@gmail.com>
+References: <20230129022615.379711-1-cphealy@gmail.com> <Y9akLWJfigajMuQP@lunn.ch>
+In-Reply-To: <Y9akLWJfigajMuQP@lunn.ch>
 From: Chris Healy <cphealy@gmail.com>
-Date: Sun, 29 Jan 2023 13:25:59 -0800
-Message-ID: <CAFXsbZo-dHvNyxLHLP2+55S=iTzDV3TUKb9=7O88yFRYW80HZw@mail.gmail.com>
+Date: Sun, 29 Jan 2023 13:28:12 -0800
+Message-ID: <CAFXsbZppb5tDxR9tO7RN76=rt04MdAUU16HhyNizJBtAXtq+fg@mail.gmail.com>
 Subject: Re: [PATCH 1/1] net: phy: meson-gxl: Add generic dummy stubs for MMD
  register access
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: andrew@lunn.ch, linux@armlinux.org.uk, davem@davemloft.net, 
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net, 
 	neil.armstrong@linaro.org, khilman@baylibre.com, netdev@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	linux-kernel@vger.kernel.org, jeremy.wang@amlogic.com, 
 	Chris Healy <healych@amazon.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230129_132611_691838_AE9F61E7 
-X-CRM114-Status: GOOD (  23.46  )
+X-CRM114-CacheID: sfid-20230129_132824_516230_579E628A 
+X-CRM114-Status: GOOD (  17.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,83 +88,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jan 29, 2023 at 2:26 AM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Sun, Jan 29, 2023 at 8:52 AM Andrew Lunn <andrew@lunn.ch> wrote:
 >
-> On 29.01.2023 03:26, Chris Healy wrote:
+> On Sat, Jan 28, 2023 at 06:26:15PM -0800, Chris Healy wrote:
 > > From: Chris Healy <healych@amazon.com>
 > >
-> Hi Chris,
->
 > > The Meson G12A Internal PHY does not support standard IEEE MMD extended
 > > register access, therefore add generic dummy stubs to fail the read and
 > > write MMD calls. This is necessary to prevent the core PHY code from
 > > erroneously believing that EEE is supported by this PHY even though this
 > > PHY does not support EEE, as MMD register access returns all FFFFs.
-> >
-> > Signed-off-by: Chris Healy <healych@amazon.com>
-> > ---
-> >  drivers/net/phy/meson-gxl.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-> > index c49062ad72c6..5e41658b1e2f 100644
-> > --- a/drivers/net/phy/meson-gxl.c
-> > +++ b/drivers/net/phy/meson-gxl.c
-> > @@ -271,6 +271,8 @@ static struct phy_driver meson_gxl_phy[] = {
-> >               .handle_interrupt = meson_gxl_handle_interrupt,
-> >               .suspend        = genphy_suspend,
-> >               .resume         = genphy_resume,
-> > +             .read_mmd       = genphy_read_mmd_unsupported,
-> > +             .write_mmd      = genphy_write_mmd_unsupported,
-> >       },
-> >  };
-> >
 >
-> thanks for catching this. The same issue we may have for the GXL-internal PHY.
-> Did you check this?
+> Hi Chris
+>
+> This change in itself makes sense. But i wounder if we should also
+> change phy_init_eee(). It reads the EEE Ability register. The 2018
+> version of the standard indicates the top two bits are reserved and
+> should be zero. We also don't have any PHY which supports 100GBase-R
+> through to 100Base-TX. So a read of 0xffff suggests the PHY does not
+> support EEE and returning -EPROTONOSUPPORT would be good.
+>
+This seems like a good change to make in phy_init_eee().  I should be
+able to do this.  Can this be done in a subsequent patch or does this
+need to be present to land this meson specific PHY patch?
 
-I do not have HW with GXL-internal PHY so I cannot test it and don't
-feel comfortable making the change for that PHY ID without someone
-providing the necessary feedback.  If someone can confirm the same all
-FFFFs with the MMD registers, I'd be happy to add the read/write MMD
-callbacks for that PHY in v2.
-
->
-> One result of the issue is the invalid ethtool --show-eee output given below.
-> Therefore the patch should go to stable, please annotate it as [PATCH net].
->
-> Fixes tag should be:
-> 5c3407abb338 ("net: phy: meson-gxl: add g12a support")
-
-Yep, looking at the ethtool --show-eee output is what got me looking
-at this in the first place.  I was hoping to enable EEE... ;-)
-
-I'll add the fixes tag in v2.
-
->
->
-> EEE settings for eth0:
->         EEE status: enabled - active
->         Tx LPI: 1000000 (us)
->         Supported EEE link modes:  100baseT/Full
->                                    1000baseT/Full
->                                    10000baseT/Full
->                                    1000baseKX/Full
->                                    10000baseKX4/Full
->                                    10000baseKR/Full
->         Advertised EEE link modes:  100baseT/Full
->                                     1000baseT/Full
->                                     10000baseT/Full
->                                     1000baseKX/Full
->                                     10000baseKX4/Full
->                                     10000baseKR/Full
->         Link partner advertised EEE link modes:  100baseT/Full
->                                                  1000baseT/Full
->                                                  10000baseT/Full
->                                                  1000baseKX/Full
->                                                  10000baseKX4/Full
->                                                  10000baseKR/Full
->
+>         Andrew
 
 _______________________________________________
 linux-amlogic mailing list
