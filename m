@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94C46C54EAA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 17:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE83C54EAA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 17:26:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t2CTnJBMy9e9uiDcHlQb7UA4Qedgecw2EVk+x5xwgN0=; b=3zi0OLTv4r8zhz
-	gBGPdmJCajO7on2O+5G3m+RW0TEIKnuqC5j8p9ExSLGr5kYJpZahdWh8kwsQsB8UwLyFzEv3u4iKL
-	yXZszM7DO9zaw0cuzD1jng0Pe05M1NSwU5/0cdFlJ5r70sJi4g/9nICqfEDGtPfHGons2H8+sYk8u
-	uYIXAua1vfrNpbqGZk5yiAmjFRJZhwgpfGJ4h0Y56+O1kZPqJge9wFxOI+vq/cjcanrypE3k2GT36
-	GILP8cS1yQrFWjnVe8C39N7NDrcqMnigFJ1mS9pzdcoRiW4n9Pd3w3Pa5xkSnBIewHPxM6yA4OFqH
-	xT+I2ckcmSBuVQVaxjZQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+/6SjWBHeZeSp1OLzMfnaCOLlsCYccM7KNq4F1yKK6g=; b=MKNFfAJrk03K9MhU97jzj5JmkD
+	jnWGJdnTeVCTA7D58s+56r90FB+dcmFOeLAkbr/h86cGsqu8ZsebNFz3GbgRZpkQGEshNvxAmoNbO
+	R1vxP0DZLLG7qQ/we3fTjGkRtUKCumQs7nECGyHHPBu0U6a7jaJveQMJmDdMN/iBYrWkMnx/Cwozc
+	EPXuZkmJmPRCOKkQlvUU05teGCS4nkfEBQ1TIAHDOf6fPbgP3l3MNfhuPiDjyExI27G4YVFyEXxPP
+	VQF1zCWYGqnRzfsXM/VsZ+NzfW1HrFFVmPbW3yEEslGDW14xr8HfGBmwEFeWaDD8ZXUkpGLNAW5TO
+	vYEozidw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMXna-004THo-TS; Mon, 30 Jan 2023 17:18:30 +0000
-Received: from mail-oa1-f47.google.com ([209.85.160.47])
+	id 1pMXvR-004XIy-4x; Mon, 30 Jan 2023 17:26:37 +0000
+Received: from madras.collabora.co.uk ([46.235.227.172])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMXlV-004Sgd-UW; Mon, 30 Jan 2023 17:16:23 +0000
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1631b928691so15851239fac.11;
-        Mon, 30 Jan 2023 09:16:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EFbZYokXDaufN+nrw5U+tk54eaumBdk6Eaj/TYXiSlc=;
-        b=wyGsCyImHvCz60z+jjOHeIMLl0XKEcG5S7tVP7hdv5/qwhgAZ6cLC5kKKcCTuOpAl8
-         qCDgCVmlCuVAJHHb2ygHyPeQJwycUX/880zXYtzQBAUT4ELFMRGtN5HioTBbNNfkAcy9
-         QwhJMmOnmhw9IIIFDtlrK8lPwK0okeP064ziUBvMOKAe+bkUouckTyF0Kol2iIhCxGYQ
-         lrSsty+WDU/4KN6JE8Hx2e8n53JxssSjmJm1HzC5dd4Nk2287yyYMhggb07k9Jwsez8w
-         GlGWC678v/xg8O1WwHiZ4oTvkZhExcTi4TYIJpR9bPA+YBqltc5mhQU191j9yukALGmt
-         LVSA==
-X-Gm-Message-State: AO0yUKXiWYhqpHCPQlnd6IZllp2txsLNI28ci9x0agNJlTXMdJGeQMf0
-	PDX3fvjHZxWB6vai5HMYXQ==
-X-Google-Smtp-Source: AK7set9D9gvZqo/95yXNlorY/OCGBOTG2wadwkpOFSNQvhHBMxofZPVeWjr0GxvAfHf2ukHGXSr36Q==
-X-Received: by 2002:a05:6870:42d2:b0:163:290f:9ef4 with SMTP id z18-20020a05687042d200b00163290f9ef4mr12449174oah.6.1675098980670;
-        Mon, 30 Jan 2023 09:16:20 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id et10-20020a0568705cca00b00163263f84dasm5335195oab.12.2023.01.30.09.16.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 09:16:20 -0800 (PST)
-Received: (nullmailer pid 2929331 invoked by uid 1000);
-	Mon, 30 Jan 2023 17:16:19 -0000
-Date: Mon, 30 Jan 2023 11:16:19 -0600
-From: Rob Herring <robh@kernel.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Thierry Reding <thierry.reding@gmail.com>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-Message-ID: <20230130171619.GA2851045-robh@kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <d37fb6a3-f94e-224a-8829-80cf47412fce@gmail.com>
+	id 1pMXs2-004VOG-0t
+	for linux-amlogic@lists.infradead.org; Mon, 30 Jan 2023 17:23:08 +0000
+Received: from mercury (unknown [185.209.196.162])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D50D56600869;
+	Sun, 29 Jan 2023 23:47:07 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1675036027;
+	bh=wVdCDbX//15XU9SAoM/QArO9BYUKf7pmj9SJ+DPb7EY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jsq3ArveKi07WigNpRneAJWQ0F0xAr5dvfhqyWsesBpPfjfYw7+nrbY9/74XGxesR
+	 hbApfcnCiUx1Ul0rbZ9DyinxgvpEcuLt+UFZ1FNDsDK1wVY/+CF8Ih6Ax2DzB+7iAE
+	 2T5WKKqfo4VxVRSzmPy/qyK8YO+X1FoLDFn6u44wQFLtUt1h9DV7uXkKsI+LvadpWh
+	 +Snqy4Sz/OZr2W4HQZN5BA6XOkgb768m8JaHZb1rnKmEKDGFiBpOl9BWnrKzmAUs3J
+	 adbYVVUBvDTKq7TdKsyxuBIg2guMPg0xKKG9vTx+DeDywn9nqpN63bfxeGYkz3EFEx
+	 Bo26KI8jj2fSA==
+Received: by mercury (Postfix, from userid 1000)
+	id 2F0831060A24; Mon, 30 Jan 2023 00:47:05 +0100 (CET)
+Date: Mon, 30 Jan 2023 00:47:05 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2] power: reset: add Odroid Go Ultra poweroff driver
+Message-ID: <20230129234705.djmoir4wsshoptwo@mercury.elektranox.org>
+References: <20230126-b4-odroid-go-ultra-poweroff-v2-1-a8c50866f4ac@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <d37fb6a3-f94e-224a-8829-80cf47412fce@gmail.com>
+In-Reply-To: <20230126-b4-odroid-go-ultra-poweroff-v2-1-a8c50866f4ac@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_091622_008616_7D223AF8 
-X-CRM114-Status: GOOD (  19.17  )
+X-CRM114-CacheID: sfid-20230130_092306_451891_58F7E8C5 
+X-CRM114-Status: GOOD (  36.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,154 +68,322 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4568126838593136464=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 25, 2023 at 11:28:17PM +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson PWM binding to yaml.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+
+--===============4568126838593136464==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bv2xur4blb3a3f77"
+Content-Disposition: inline
+
+
+--bv2xur4blb3a3f77
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Thu, Jan 26, 2023 at 06:11:21PM +0100, Neil Armstrong wrote:
+> The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a powe=
+roff
+> to its two PMICs in order, this represents the poweroff scheme needed to =
+complete
+> a clean poweroff of the system.
+>=20
+> This implement this scheme by implementing a self registering driver to p=
+ermit
+> using probe defer until both pmics are finally probed.
+>=20
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> v2:
-> - fix clocks and clock-names
-> - consider that more than one compatible may be set
+> Previous submission was at [1], but I converted it to an independent
+> platform device with device auto registration to permit waiting for
+> both the PMICs drivers to probe.
+>=20
+> [1] https://lore.kernel.org/all/20221031-b4-odroid-go-ultra-initial-v1-2-=
+42e3dbea86d5@linaro.org/
 > ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 73 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
->  2 files changed, 73 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> Changes in v2:
+> - Switched to devm_register_sys_off_handler()
+> - Link to v1: https://lore.kernel.org/r/20221031-b4-odroid-go-ultra-initi=
+al-v1-2-42e3dbea86d5@linaro.org
+> ---
+>  drivers/power/reset/Kconfig                    |   7 ++
+>  drivers/power/reset/Makefile                   |   1 +
+>  drivers/power/reset/odroid-go-ultra-poweroff.c | 151 +++++++++++++++++++=
+++++++
+>  3 files changed, 159 insertions(+)
+>=20
+> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+> index a8c46ba5878f..26860c2e05a9 100644
+> --- a/drivers/power/reset/Kconfig
+> +++ b/drivers/power/reset/Kconfig
+> @@ -141,6 +141,13 @@ config POWER_RESET_OCELOT_RESET
+>  	help
+>  	  This driver supports restart for Microsemi Ocelot SoC and similar.
+> =20
+> +config POWER_RESET_ODROID_GO_ULTRA_POWEROFF
+> +	bool "Odroid Go Ultra power-off driver"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	depends on MFD_RK808
+
+You are not accessing any symbols from the MFD driver, so you can
+append "|| COMPILE_TEST".
+
+It will be fun to coordinate the merging, because of my series
+renaming it to MFD_RK8XX :/
+
+https://lore.kernel.org/all/20230127181244.160887-1-sebastian.reichel@colla=
+bora.com/
+
+> +	help
+> +	  This driver supports Power off for Odroid Go Ultra device.
+> +
+>  config POWER_RESET_OXNAS
+>  	bool "OXNAS SoC restart driver"
+>  	depends on ARCH_OXNAS
+> diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+> index 0a39424fc558..d763e6735ee3 100644
+> --- a/drivers/power/reset/Makefile
+> +++ b/drivers/power/reset/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_POWER_RESET_MT6323) +=3D mt6323-poweroff.o
+>  obj-$(CONFIG_POWER_RESET_OXNAS) +=3D oxnas-restart.o
+>  obj-$(CONFIG_POWER_RESET_QCOM_PON) +=3D qcom-pon.o
+>  obj-$(CONFIG_POWER_RESET_OCELOT_RESET) +=3D ocelot-reset.o
+> +obj-$(CONFIG_POWER_RESET_ODROID_GO_ULTRA_POWEROFF) +=3D odroid-go-ultra-=
+poweroff.o
+>  obj-$(CONFIG_POWER_RESET_PIIX4_POWEROFF) +=3D piix4-poweroff.o
+>  obj-$(CONFIG_POWER_RESET_LTC2952) +=3D ltc2952-poweroff.o
+>  obj-$(CONFIG_POWER_RESET_QNAP) +=3D qnap-poweroff.o
+> diff --git a/drivers/power/reset/odroid-go-ultra-poweroff.c b/drivers/pow=
+er/reset/odroid-go-ultra-poweroff.c
 > new file mode 100644
-> index 000000000..871b24bc2
+> index 000000000000..51f54e65c927
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/power/reset/odroid-go-ultra-poweroff.c
+> @@ -0,0 +1,151 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +#include <linux/kernel.h>
+> +#include <linux/init.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/mfd/rk808.h>
+> +#include <linux/regmap.h>
+> +#include <linux/module.h>
+> +#include <linux/reboot.h>
+> +#include <linux/i2c.h>
 > +
-> +title: Amlogic PWM
+> +/*
+> + * The Odroid Go Ultra has 2 PMICs:
+> + * - RK818 (manages the battery and USB-C power supply)
+> + * - RK817
+> + * Both PMICs feeds power to the S922X SoC, so they must be powered-off =
+in sequence.
+> + * Vendor does power-off the RK817 first, then the RK818 so here we foll=
+ow this sequence.
+> + */
 > +
-> +maintainers:
-> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +struct odroid_go_ultra_poweroff_data {
+> +	struct device *dev;
+> +	struct rk808 *rk817;
+> +	struct rk808 *rk818;
+> +};
 > +
-> +allOf:
-> +  - $ref: pwm.yaml#
+> +static int odroid_go_ultra_poweroff_prepare(struct sys_off_data *data)
+> +{
+> +	struct odroid_go_ultra_poweroff_data *poweroff_data =3D data->cb_data;
+> +	int ret;
 > +
-> +properties:
-> +  compatible:
-> +    minItems: 1
-> +    maxItems: 2
+> +	dev_info(poweroff_data->dev, "Setting PMICs for power off");
+> +
+> +	/* RK817 */
+> +	ret =3D regmap_update_bits(poweroff_data->rk817->regmap, RK817_SYS_CFG(=
+3), DEV_OFF, DEV_OFF);
+> +	if (ret) {
+> +		dev_err(poweroff_data->dev, "failed to poweroff rk817\n");
+> +		return notifier_from_errno(ret);
+> +	}
+> +
+> +	/* RK818 */
+> +	ret =3D regmap_update_bits(poweroff_data->rk818->regmap, RK818_DEVCTRL_=
+REG, DEV_OFF, DEV_OFF);
+> +	if (ret) {
+> +		dev_err(poweroff_data->dev, "failed to poweroff rk818\n");
+> +		return notifier_from_errno(ret);
+> +	}
+> +
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static int odroid_go_ultra_poweroff_get_pmic_drvdata(const char *compati=
+ble, struct rk808 **pmic)
+> +{
+> +	struct device_node *pmic_node;
+> +	struct i2c_client *pmic_client;
+> +
+> +	pmic_node =3D of_find_compatible_node(NULL, NULL, compatible);
+> +	if (!pmic_node)
+> +		return -ENODEV;
+> +
+> +	pmic_client =3D of_find_i2c_device_by_node(pmic_node);
+> +	of_node_put(pmic_node);
+> +	if (!pmic_client)
+> +		return -EPROBE_DEFER;
+> +
+> +	*pmic =3D i2c_get_clientdata(pmic_client);
 
-A fallback compatible shouldn't be optional. This makes 
-'amlogic,meson-gx-pwm' alone valid, for example.
+You are only using the regmap, so you can skip the rk808 struct step
+and directly get and store the regmap:
 
-Though probably the dtschema processing will add minItems/maxItems on 
-each oneOf entry to prevent that anyways. So just drop the 
-minItems/maxItems here.
+*pmic =3D dev_get_regmap(&pmic_client->dev, NULL);
 
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - amlogic,meson8b-pwm
-> +              - amlogic,meson-gxbb-pwm
-> +              - amlogic,meson-gxbb-ao-pwm
-> +              - amlogic,meson-axg-ee-pwm
-> +              - amlogic,meson-axg-ao-pwm
-> +              - amlogic,meson-g12a-ee-pwm
-> +              - amlogic,meson-g12a-ao-pwm-ab
-> +              - amlogic,meson-g12a-ao-pwm-cd
-> +              - amlogic,meson-s4-pwm
-> +      - items:
-> +          - const: amlogic,meson-gx-pwm
-> +          - const: amlogic,meson-gxbb-pwm
-> +      - items:
-> +          - const: amlogic,meson-gx-ao-pwm
-> +          - const: amlogic,meson-gxbb-ao-pwm
-> +      - items:
-> +          - const: amlogic,meson8-pwm
-> +          - const: amlogic,meson8b-pwm
+> +	put_device(&pmic_client->dev);
+
+Technically this allows releasing the PMIC device with the poweroff
+driver still probed. I guess it's mostly a theoretical thing in this
+case, but people tend to cargo copy. I suggest to store the struct
+device handle in odroid_go_ultra_poweroff_data and then use
+dev_get_regmap() in the poweroff handler. Finally add a put_device()
+via devm_add_action_or_reset().
+
+> +	if (!*pmic)
+> +		return -EPROBE_DEFER;
 > +
-> +  reg:
-> +    maxItems: 1
+> +	return 0;
+> +}
 > +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
+> +static int odroid_go_ultra_poweroff_probe(struct platform_device *pdev)
+> +{
+> +	struct odroid_go_ultra_poweroff_data *poweroff_data;
+> +	int ret;
 > +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - enum: [clkin0, clkin1]
-> +      - items:
-> +          - const: clkin0
-> +          - const: clkin1
+> +	poweroff_data =3D devm_kzalloc(&pdev->dev, sizeof(*poweroff_data), GFP_=
+KERNEL);
+> +	if (!poweroff_data)
+> +		return -ENOMEM;
 > +
-> +  "#pwm-cells":
-> +    const: 3
+> +	dev_set_drvdata(&pdev->dev, poweroff_data);
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +	/* RK818 */
+> +	ret =3D odroid_go_ultra_poweroff_get_pmic_drvdata("rockchip,rk818",
+> +							&poweroff_data->rk818);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to get rk818 mfd data\n"=
+);
 > +
-> +additionalProperties: false
+> +	/* RK817 */
+> +	ret =3D odroid_go_ultra_poweroff_get_pmic_drvdata("rockchip,rk817",
+> +							&poweroff_data->rk817);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to get rk817 mfd data\n"=
+);
 > +
-> +examples:
-> +  - |
-> +    pwm@8550 {
-> +      compatible = "amlogic,meson-gxbb-pwm";
-> +      reg = <0x08550 0x10>;
-> +      clocks = <&xtal>, <&xtal>;
-> +      clock-names = "clkin0", "clkin1";
-> +      #pwm-cells = <3>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> deleted file mode 100644
-> index bd02b0a14..000000000
-> --- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -Amlogic Meson PWM Controller
-> -============================
-> -
-> -Required properties:
-> -- compatible: Shall contain "amlogic,meson8b-pwm"
-> -                         or "amlogic,meson-gxbb-pwm"
-> -                         or "amlogic,meson-gxbb-ao-pwm"
-> -                         or "amlogic,meson-axg-ee-pwm"
-> -                         or "amlogic,meson-axg-ao-pwm"
-> -                         or "amlogic,meson-g12a-ee-pwm"
-> -                         or "amlogic,meson-g12a-ao-pwm-ab"
-> -                         or "amlogic,meson-g12a-ao-pwm-cd"
-> -- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
-> -  the cells format.
-> -
-> -Optional properties:
-> -- clocks: Could contain one or two parents clocks phandle for each of the two
-> -  PWM channels.
-> -- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
-> -
-> -Example:
-> -
-> -	pwm_ab: pwm@8550 {
-> -		compatible = "amlogic,meson-gxbb-pwm";
-> -		reg = <0x0 0x08550 0x0 0x10>;
-> -		#pwm-cells = <3>;
-> -		clocks = <&xtal>, <&xtal>;
-> -		clock-names = "clkin0", "clkin1";
-> -	}
-> -- 
-> 2.39.1
-> 
-> 
+> +	/* Register as SYS_OFF_MODE_POWER_OFF_PREPARE because regmap_update_bit=
+s may sleep */
+> +	ret =3D devm_register_sys_off_handler(&pdev->dev,
+> +					    SYS_OFF_MODE_POWER_OFF_PREPARE,
+> +					    SYS_OFF_PRIO_DEFAULT,
+> +					    odroid_go_ultra_poweroff_prepare,
+> +					    poweroff_data);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to register sys-off hand=
+ler\n");
+> +
+> +	dev_info(&pdev->dev, "Registered Power-Off handler\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_device *pdev;
+> +
+> +static struct platform_driver odroid_go_ultra_poweroff_driver =3D {
+> +	.driver =3D {
+> +		.name	=3D "odroid-go-ultra-poweroff",
+> +	},
+> +	.probe =3D odroid_go_ultra_poweroff_probe,
+> +};
+> +
+> +static int __init odroid_go_ultra_poweroff_init(void)
+> +{
+> +	int ret;
+> +
+> +	/* Only create when running on the Odroid Go Ultra device */
+> +	if (!of_device_is_compatible(of_root, "hardkernel,odroid-go-ultra"))
+> +		return -ENODEV;
+> +
+> +	ret =3D platform_driver_register(&odroid_go_ultra_poweroff_driver);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pdev =3D platform_device_register_resndata(NULL, "odroid-go-ultra-power=
+off", -1,
+> +						 NULL, 0, NULL, 0);
+> +
+> +	return PTR_ERR_OR_ZERO(pdev);
+
+This is missing platform_driver_unregister() in the error path.
+
+> +}
+> +
+> +static void __exit odroid_go_ultra_poweroff_exit(void)
+> +{
+
+if (!of_device_is_compatible(of_root, "hardkernel,odroid-go-ultra"))
+		return;
+
+> +	platform_device_unregister(pdev);
+> +	platform_driver_unregister(&odroid_go_ultra_poweroff_driver);
+> +}
+> +
+> +module_init(odroid_go_ultra_poweroff_init);
+> +module_exit(odroid_go_ultra_poweroff_exit);
+> +
+> +MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
+> +MODULE_DESCRIPTION("Odroid Go Ultra poweroff driver");
+> +MODULE_LICENSE("GPL");
+
+Thanks,
+
+-- Sebastian
+
+--bv2xur4blb3a3f77
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPXBW0ACgkQ2O7X88g7
++pp/XxAAirA9/9utQHFjr+MqxNOEj+6O8473x58ks602hPEY9x+HjY9AOhUyowYG
+B3IUWaW3lLItIiMzNmmCU3oy7L5Px2Lg3WsL52AKHBTSFRX34MDMKekA6D+sgfkn
+eB4G0bVthOlI9OZrnUicbmS4KY2fgcAf5o1ccoNsUmK382la/c9Dh2SFA8SIacUE
+gHR7LwHDSx1S9T43JU3mnY92n/KrDwHZVPMze+rsCwbAYsy9RrHmbbRQg39/p2/b
+VeBbhqdrD8XJ8iBJxQS3byUxxPqad3Vb0Y0tdN30gCvFWWHheDXVE4L42cTbmSoQ
+xoDeDNB761YId0K8YuOxw3hbtx0q7Q1v5/ezJT1ky+vMSs0fnLhQOd7QqJfkKGiJ
+5rPCl63B7pECxI0Pei8RSL3DfPI32uLbe3ub/CPIo512r6zGBT4jNwvM4hcKMPP6
+0ZpeH0S4B6uaVgvBrJXlVPYOS2II9nT0IfpiAuIscqh7QNTTHa7uGa51F7ObDYhr
+jEix1vVHfUIYqsM3hPRY/6EOrV3OnEWjluDyfFmswMle+E4/D+tRZokTHAUDL9iM
+aHgHTT3FK3CrqPEkw71623wdSs3+QYwTngN3O9iABdirM+OEz7Edyf0xuJ1kknhS
+NAmNiQf6UHd2dm+LWIdYQcaNzxv6H3/uSDykb3CWZHWvDoH9jr8=
+=MaHe
+-----END PGP SIGNATURE-----
+
+--bv2xur4blb3a3f77--
+
+
+--===============4568126838593136464==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4568126838593136464==--
+
