@@ -4,86 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44AA1C636CD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:35:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75BC3C54EAA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3mkcb4LjtWHz8Ef++QTMxLZhCCn4YmFQ+mSitVA+n6g=; b=0B2NAvBee9sNam
-	jp75V8IvX6/JSbOKaDsu/zysj7VETQwenrKZYBFLdSRj9hu/V+PgBtxLMyVMwHggkb4tAoiRS94v2
-	BvAxWTnhwuKqhf1fqDsE55r5UidOg07V1b+2fVzgRvuQIUSirYy53CY8EqOFftBOuqEOQHAau/CCQ
-	xXAg7r1bIDwiPW2BeaeGp+60wSsycg88EfF5l9mvY36vjNWb+owqTLLi10Z4VO+S9gfr7XCkhiL5U
-	lrRdj1IsD/2FK5aWx1BBCLvXikuds/0Q1DOIXZ+OIDdTv+edCADLGi+BIEpu6c4EB+GZTfdvwicVk
-	+0LN4wKQLMOr1I0WeTig==;
+	List-Owner; bh=67P73lRR0yHK3gf7rW1sMB8ZuDZrUta/QOIzEElwJjA=; b=MnVXOB6ZU//feG
+	SnyBAW/A3zrEbv9QtuQxQzx6kc6aTtI1EjvadhdqoJx0RXCXLycaAmB+RTdN7DQcvKCpraMZNaVgu
+	fm0lBDT1yaJGZm5EWlAGNHuBIOVh6o0JJY14qxst42nlhHFRjuBKcsUqI/HgJuTTVI/MOAr1x9wdP
+	cJWiZ2rAdrB0xIhxCueVZmwfDJox51/q7NwRIe2JW4EoqLZy978dHznFnNNTJhO8N7UQpiJcRdJPn
+	ja+2AItWAsNTTRcVkNLi/gOpsAh1wJhdP/nzOIoarjiI/AqDQAxyu9p9KaK/K2SyJsOLksas3/ScJ
+	JtSmuhsVQ3xBvvw/cVvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMas1-005NCL-Qr; Mon, 30 Jan 2023 20:35:17 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1pMb9o-005PN1-4S; Mon, 30 Jan 2023 20:53:40 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMarr-005N8A-3K; Mon, 30 Jan 2023 20:35:08 +0000
-Received: by mail-ej1-x635.google.com with SMTP id m2so35002584ejb.8;
-        Mon, 30 Jan 2023 12:35:04 -0800 (PST)
+	id 1pMb9c-005PLb-W3; Mon, 30 Jan 2023 20:53:30 +0000
+Received: by mail-wr1-x433.google.com with SMTP id a3so5680800wrt.6;
+        Mon, 30 Jan 2023 12:53:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Izia26EYeDM525t5D9ySWrr0/qUJNtoiKMM2Ve6HW1s=;
-        b=S1STwkdg3cc0FiYh0eElBnjlY2I5wlJAcJ7cLhnykVBTRhO1ZflIyohVPX1/Re81GN
-         k1zE/NMi1q5NmHqETza9d9ciC2SWJJglkJ6HxmZSLIHhX0QW5pr1YSxGuiAp275CRvF/
-         hNnJkbO/nFBfp7cIhq1Gxsg1iZ8xDLmg2LMhw4growD3Dbi9TGfafKrV+RH9HDCCczIB
-         eL2QB1jMKSeyjBMDgMbcd7M7juZOvd+aRfo8qAV342Zf1Av//8xnxeUY6eHa6Gdazcau
-         Y+muOLRChlq3CWe4dxNCnHBO5nNHpKfOhtHGlsWp0+BXUvOazly/6O/8Kgy2RLH3+DlA
-         /8wQ==
+        bh=eD95aqCdSJEb0Js8Lzd6h0iY+25nulsCznDdKF/J8xQ=;
+        b=KNtZK3HJ9OFwjslk5YOZk6fEaaT5eRnO7wLRMBb9amscg5rLVNCR/YlKionSxYi1ts
+         JG0f3PcoEXTmZVG7hvKQ9A/W0gqpg+FRCrA8/B0ALGAMd8pGMxnTOD4pJ1XN7UspX9LS
+         /9m/i//EtWRY7vQzb0waUtA5O3vHnwjrd//7BZ68VaSz4Jngs8uPjkz6dKMpiaHXa2Bc
+         fa5gQs9N8GM4SBn37OoHBn0Y7xlP70NW3OBmnU7QONV1XUsAUbS4ZjoxL2MGj6mNoTJh
+         7dCtGLfPZ14dxlLbDgdrIAxlrqZ5/129ZFX9RuUFKrpZ5TA/uJSxfQTjw/OW4u1GKjv9
+         pQdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Izia26EYeDM525t5D9ySWrr0/qUJNtoiKMM2Ve6HW1s=;
-        b=yBhVyPQwB9oXwjWGa3/kPPGXqh6nHY8pCIfYQN2YWn3Nz4KwZfz/YUc0l/eUY8ug11
-         Ve924fUvKwzXERLSp9J3ZNu5zUTN/LaUwqz6HoY48xeP2D3pIwMJxmeTHq8sa0KxBthw
-         sbB/3bs36r+gCkHSkK7N7RA1Q2rI9OwCpMxDYN/67j8YbD6493ZlanDny1D9vm+KEK4I
-         uKNv0ve0SzC8w7MSuZJEZA3qV+WGqA7LPORlWXBmWF3x0r3lRwVxskvzT3FVeh/s//6z
-         RlI1be4hYwKFYiAPKPWqsscyLAAHbWFSuwleYpVyptNBwjjEfgzer1kpsTYUVwjae7Ez
-         bFIQ==
-X-Gm-Message-State: AO0yUKXKmMsKOryP2UPix2A/BxlaBQOrRxIBIR+Eu7EL0oWVao0yPLEu
-	IfVlHINn0ULdXfGWEDgJ7NE=
-X-Google-Smtp-Source: AK7set/ZOwIiKJv5E0C3RIcESZk+4wxKOF7QbdrEh7hIpzXZ4AZm671atxgFxLQvTV4ttVjuqOTJFw==
-X-Received: by 2002:a17:906:bcf5:b0:884:ab29:bd0b with SMTP id op21-20020a170906bcf500b00884ab29bd0bmr9190603ejb.69.1675110902831;
-        Mon, 30 Jan 2023 12:35:02 -0800 (PST)
+        bh=eD95aqCdSJEb0Js8Lzd6h0iY+25nulsCznDdKF/J8xQ=;
+        b=0AxzPRxlFnIpQoy27Rf9Zq28434bNe7o41rNHlL7cjiO4eiT/7pk7InECia0DRmXWu
+         PNSF59n7WhOiZKeqL/I4PETeek90anLnC/c1Viq7tWtZofSlhD20Xh4xSHzgeHkRpY1o
+         VcGDjBnIlBjBkGNBpsMxEH3MILT9CEipEBZ8gO0tDHWSAhHsuRa1uWpy6qm1VE6OvqvY
+         +OOlHoV+nxTS4ZceilqRX+oWTHmvWIDuOd6YFIDLYUb6qUaMGOOV+5VnXesIEfZQKFYi
+         1mN106HVe5vmzxqxt7/ZPS6HBHpD5CKV5on9j959YR+vcyZW4VCxj1qQcNIFvzOw9DXh
+         ydKA==
+X-Gm-Message-State: AO0yUKU0iGpnwDo0Hfbm1Pu+FD7GTCEdKp3+Bh/LJq6JWcO1n0fHOclx
+	JbiQfXLiBlUVHQEzv+KxaHM=
+X-Google-Smtp-Source: AK7set8bfU4P4657znncp9j0VJOVmWlSeCiKICa+ROuqXInavn7svHSi+B1+bstl3wZBkKMq43eVtQ==
+X-Received: by 2002:a5d:4283:0:b0:2bf:d428:a768 with SMTP id k3-20020a5d4283000000b002bfd428a768mr10636517wrq.49.1675112006273;
+        Mon, 30 Jan 2023 12:53:26 -0800 (PST)
 Received: from ?IPV6:2a01:c23:c074:7400:d941:3cb5:fa86:8ec8? (dynamic-2a01-0c23-c074-7400-d941-3cb5-fa86-8ec8.c23.pool.telefonica.de. [2a01:c23:c074:7400:d941:3cb5:fa86:8ec8])
-        by smtp.googlemail.com with ESMTPSA id kl13-20020a170907994d00b00882f9130eafsm4270220ejc.26.2023.01.30.12.35.01
+        by smtp.googlemail.com with ESMTPSA id b11-20020adfe30b000000b002bfcc940014sm11600285wrj.82.2023.01.30.12.53.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 12:35:02 -0800 (PST)
-Message-ID: <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
-Date: Mon, 30 Jan 2023 21:34:57 +0100
+        Mon, 30 Jan 2023 12:53:25 -0800 (PST)
+Message-ID: <a1dee1a5-54d4-47ad-c914-8e9a801cd4a0@gmail.com>
+Date: Mon, 30 Jan 2023 21:53:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v3] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Subject: [PATCH v3] dt-bindings: interrupt-controller: Convert Amlogic Meson
+ GPIO interrupt controller binding
 To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
 Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 Content-Language: en-US
 In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_123507_177882_D8F8EF4F 
-X-CRM114-Status: GOOD (  12.44  )
+X-CRM114-CacheID: sfid-20230130_125329_069418_BC706A06 
+X-CRM114-Status: GOOD (  17.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,134 +99,156 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert Amlogic Meson PWM binding to yaml.
+Convert Amlogic Meson GPIO interrupt controller binding to yaml.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
 v2:
-- fix clocks and clock-names
 - consider that more than one compatible may be set
+- remove bus part from example
 v3:
 - remove minItem/maxItem properties for compatible
 ---
- .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 71 +++++++++++++++++++
- .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
- 2 files changed, 71 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+ .../amlogic,meson-gpio-intc.txt               | 38 ---------
+ .../amlogic,meson-gpio-intc.yaml              | 84 +++++++++++++++++++
+ 2 files changed, 84 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+deleted file mode 100644
+index bde63f8f0..000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-Amlogic meson GPIO interrupt controller
+-
+-Meson SoCs contains an interrupt controller which is able to watch the SoC
+-pads and generate an interrupt on edge or level. The controller is essentially
+-a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
+-or level and polarity. It does not expose all 256 mux inputs because the
+-documentation shows that the upper part is not mapped to any pad. The actual
+-number of interrupt exposed depends on the SoC.
+-
+-Required properties:
+-
+-- compatible : must have "amlogic,meson8-gpio-intc" and either
+-    "amlogic,meson8-gpio-intc" for meson8 SoCs (S802) or
+-    "amlogic,meson8b-gpio-intc" for meson8b SoCs (S805) or
+-    "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
+-    "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
+-    "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
+-    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
+-    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
+-    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
+-    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
+-- reg : Specifies base physical address and size of the registers.
+-- interrupt-controller : Identifies the node as an interrupt controller.
+-- #interrupt-cells : Specifies the number of cells needed to encode an
+-   interrupt source. The value must be 2.
+-- meson,channel-interrupts: Array with the 8 upstream hwirq numbers. These
+-   are the hwirqs used on the parent interrupt controller.
+-
+-Example:
+-
+-gpio_interrupt: interrupt-controller@9880 {
+-	compatible = "amlogic,meson-gxbb-gpio-intc",
+-		     "amlogic,meson-gpio-intc";
+-	reg = <0x0 0x9880 0x0 0x10>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-	meson,channel-interrupts = <64 65 66 67 68 69 70 71>;
+-};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
 new file mode 100644
-index 000000000..750642e76
+index 000000000..da55a2d25
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-@@ -0,0 +1,71 @@
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+@@ -0,0 +1,84 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
++$id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic PWM
++title: Amlogic Meson GPIO interrupt controller
 +
 +maintainers:
 +  - Heiner Kallweit <hkallweit1@gmail.com>
 +
++description: |
++  Meson SoCs contains an interrupt controller which is able to watch the SoC
++  pads and generate an interrupt on edge or level. The controller is essentially
++  a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
++  or level and polarity. It does not expose all 256 mux inputs because the
++  documentation shows that the upper part is not mapped to any pad. The actual
++  number of interrupt exposed depends on the SoC.
++
 +allOf:
-+  - $ref: pwm.yaml#
++  - $ref: /schemas/interrupt-controller.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
 +      - items:
 +          - enum:
-+              - amlogic,meson8b-pwm
-+              - amlogic,meson-gxbb-pwm
-+              - amlogic,meson-gxbb-ao-pwm
-+              - amlogic,meson-axg-ee-pwm
-+              - amlogic,meson-axg-ao-pwm
-+              - amlogic,meson-g12a-ee-pwm
-+              - amlogic,meson-g12a-ao-pwm-ab
-+              - amlogic,meson-g12a-ao-pwm-cd
-+              - amlogic,meson-s4-pwm
++              - amlogic,meson-gpio-intc
++              - amlogic,meson8-gpio-intc
++              - amlogic,meson8b-gpio-intc
++              - amlogic,meson-gxbb-gpio-intc
++              - amlogic,meson-gxl-gpio-intc
++              - amlogic,meson-axg-gpio-intc
++              - amlogic,meson-g12a-gpio-intc
++              - amlogic,meson-sm1-gpio-intc
++              - amlogic,meson-a1-gpio-intc
++              - amlogic,meson-s4-gpio-intc
 +      - items:
-+          - const: amlogic,meson-gx-pwm
-+          - const: amlogic,meson-gxbb-pwm
++          - enum:
++              - amlogic,meson8-gpio-intc
++              - amlogic,meson-axg-gpio-intc
++              - amlogic,meson-g12a-gpio-intc
++              - amlogic,meson-sm1-gpio-intc
++              - amlogic,meson-s4-gpio-intc
++          - const: amlogic,meson-gpio-intc
 +      - items:
-+          - const: amlogic,meson-gx-ao-pwm
-+          - const: amlogic,meson-gxbb-ao-pwm
-+      - items:
-+          - const: amlogic,meson8-pwm
-+          - const: amlogic,meson8b-pwm
++          - const: amlogic,meson-gpio-intc
++          - enum:
++              - amlogic,meson8b-gpio-intc
++              - amlogic,meson-gxbb-gpio-intc
++              - amlogic,meson-gxl-gpio-intc
 +
 +  reg:
 +    maxItems: 1
 +
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
++  interrupt-controller: true
 +
-+  clock-names:
-+    oneOf:
-+      - items:
-+          - enum: [clkin0, clkin1]
-+      - items:
-+          - const: clkin0
-+          - const: clkin1
++  "#interrupt-cells":
++    const: 2
 +
-+  "#pwm-cells":
-+    const: 3
++  amlogic,channel-interrupts:
++    description: Array with the upstream hwirq numbers
++    minItems: 8
++    maxItems: 12
++    $ref: /schemas/types.yaml#/definitions/uint32-array
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++  - amlogic,channel-interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    pwm@8550 {
-+      compatible = "amlogic,meson-gxbb-pwm";
-+      reg = <0x08550 0x10>;
-+      clocks = <&xtal>, <&xtal>;
-+      clock-names = "clkin0", "clkin1";
-+      #pwm-cells = <3>;
++    interrupt-controller@9880 {
++      compatible = "amlogic,meson-gxbb-gpio-intc";
++      reg = <0x9880 0x10>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++      amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
 +    };
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-deleted file mode 100644
-index bd02b0a14..000000000
---- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Amlogic Meson PWM Controller
--============================
--
--Required properties:
--- compatible: Shall contain "amlogic,meson8b-pwm"
--                         or "amlogic,meson-gxbb-pwm"
--                         or "amlogic,meson-gxbb-ao-pwm"
--                         or "amlogic,meson-axg-ee-pwm"
--                         or "amlogic,meson-axg-ao-pwm"
--                         or "amlogic,meson-g12a-ee-pwm"
--                         or "amlogic,meson-g12a-ao-pwm-ab"
--                         or "amlogic,meson-g12a-ao-pwm-cd"
--- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
--  the cells format.
--
--Optional properties:
--- clocks: Could contain one or two parents clocks phandle for each of the two
--  PWM channels.
--- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
--
--Example:
--
--	pwm_ab: pwm@8550 {
--		compatible = "amlogic,meson-gxbb-pwm";
--		reg = <0x0 0x08550 0x0 0x10>;
--		#pwm-cells = <3>;
--		clocks = <&xtal>, <&xtal>;
--		clock-names = "clkin0", "clkin1";
--	}
 -- 
 2.39.1
 
