@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F81C61D97
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 08:51:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB4ECC54EED
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 08:52:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4qOXcmX5cDMkLmNJKxb71DsiCvknaYPU+ibffx0pDvw=; b=r6sKVnghZctrBF
-	QjwM6dGtMbmFsBXb8EPbbtk1VbgizcGoBekQ8rG9ZS16/ttvUK8qskXdKAkRoLgpFn7doG3MIWtyU
-	GArJD39wjMvxR/qDv+KrNO8wvtjMUeuywkoJtBGMFkwiHbKC5VZBuwDF9ZPW+ERsyidh6hcWzGflF
-	sSX21s5IrQmsf3IBUxrYEk8qESD/HV/ufgGTSiRatKJMWdFDSQncSfkPxVgao6zsXQsdvJRAkWc5i
-	xEsGAYm4Cvymz5gncT6oFu4diWH3bBIv3BbAzPXCGuCtgswwGx9noHLZVTxl2HXg7NkEeSlfAiQR6
-	tgT/1PHNeZk9DKhHFfWw==;
+	List-Owner; bh=7Vek4dC8d3dN6mn8T5dLgBpk4UNScLmPT3rubMPOjcU=; b=3fPnXunPn/2Xjq
+	ETbwH2m+Ofm5prQ3Gv9lSvMsxqJ3w/0Ml2wNGWD7UvoSAdVsi4lZSwK/QA3EJf20egcDX+Sodr3id
+	uPkmOpGPA1pGBD+6Ufcck8SdN52VzSpaMGn9L5oHokNjl79DFqgCKL+8zE8dAhjQ4dj+a7HpQQq0a
+	gSyAQPVpL/MeiNnu4Tkt7OfIEsr+CazWdHpaTjR/CnO9CojRc82B+acdj5YHyg/lTK/L/ISLr0blC
+	7cUorgGgjC9ohk2CrZwyo9w046aCXgbXIvcGZCLGGsflXog/DJx1rQWltx/5+71xPjqzxlKdgBPQB
+	ONfKdtuebMuxOazu2LMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMPsE-002hpk-HM; Mon, 30 Jan 2023 08:50:46 +0000
-Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
+	id 1pMPt4-002i49-5A; Mon, 30 Jan 2023 08:51:38 +0000
+Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMPpj-002hFe-QV; Mon, 30 Jan 2023 08:48:13 +0000
-Received: by mail-pl1-x633.google.com with SMTP id m2so5855068plg.4;
-        Mon, 30 Jan 2023 00:48:11 -0800 (PST)
+	id 1pMPpq-002hGw-1r; Mon, 30 Jan 2023 08:48:19 +0000
+Received: by mail-pl1-x629.google.com with SMTP id h9so2249997plf.9;
+        Mon, 30 Jan 2023 00:48:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=unCcttXWXEyPBVOHC739lbFOm1ITKrqNz2Z3vNi3kfs=;
-        b=qwNhEVCCmT3XrxwFDJjMtFFSoDFcrvAYPFEqvwk5MgKlAP9PMilB2KgW1wj8Gl7d1x
-         IzuJauKvyAmtgtOtWDqf57HjfOJSK9IqxGfD6mo9pyY2wsd0n+lcq+zOEFwRHlIgBgKO
-         BrY4c3oYmxGbbSK4utppVDEe5NhzetNxJP0bhjqwwGV+Bfol/lWdNmRjUzBmr8YVM7jG
-         0niAJa6HZqhT1yV47y2nyWorFHyICis9xRCZfplEyeigo8SD92NAHLfCCNPoy/4gMPj3
-         iSo57wFeeqapd+97hnUpu44EYAi47GV4NofKVk+nk1Gt0DCnEjlDRImSVt4xR2CDPiwo
-         8i7g==
+        bh=PlNj6nV/dPZIBToTkn+V0Pg8NsW/e1iMo42iih8uevo=;
+        b=ZL2pv4YX+WPOyt5YB+Dz1MDTtwU7sHsdyHVxJKwSD862zGTYLVGEfQpMkCiHoPNznq
+         WpMr3wrJZ9CAve3J05cU0thOcV1ltoFlNyiR9n8KKplh2sF2yDhl1pXUrWVWuaMYEtx1
+         nas71Z+r0GD1vxgO5iCMteAEE1xyRuLk6J4f/dj90YR/3BWRBl6jVjgynavaRGD8u1IH
+         cXEmFDwo4gmYcozeDHRFSTFmQEddQm2IqXog8JOwHgb04O863UEh8/Vfj/GZrWkQNeqI
+         DLrVQPGQ9ufijjduTrDvnDR+t4UxPX64qlkcpSh6tdA5AzOlFUHdaWHQ78Gv9oKEp7If
+         Xuyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=unCcttXWXEyPBVOHC739lbFOm1ITKrqNz2Z3vNi3kfs=;
-        b=r6FtOv2yWtuhsAuQVwXhO3ml2avI/JNnP6pgXmGxhRSDFowIdkouh/lIAsfyJp6Uw/
-         kkRuPneVkzSOKxSjgY939I2eXGRO+L5CNtcimjUxMV1NBxZScX5RY30IRBoB2BgK1HD0
-         1FYSxt6S5ae7eAtD+HIoUNogyqzd/6ah6ta7P8WZIHS+4Xc5Ubr+EuudAAHZBylKqUV7
-         w0OMidmbdHXOMRgU63+f+c8ewhRoQ0B7k64qA4PngTMEM+wJyD1KlVe6nVjXB03XMhZz
-         Ib4jWuHhc8Ql0UzeuSRK0ftjb5zk2mOYpTrLJFHD42/jH03Pdicp8sQ8G/YTFCHThXrs
-         gN3A==
-X-Gm-Message-State: AO0yUKWfPY8kpthy16MVMIYxpwmhyce5iQKCK7WiSOLVvC0Oq1zara46
-	DOgQLyT0+WDy1skyYUTFCPM=
-X-Google-Smtp-Source: AK7set+uLpUD2RiNQ13tofZZTlyItEtiLxY5qwZAWwYSGHsseTy0MdHNDrrht3UCeksMMtrpxBNBKQ==
-X-Received: by 2002:a17:902:e88e:b0:196:3a54:8b23 with SMTP id w14-20020a170902e88e00b001963a548b23mr18673132plg.10.1675068490816;
-        Mon, 30 Jan 2023 00:48:10 -0800 (PST)
+        bh=PlNj6nV/dPZIBToTkn+V0Pg8NsW/e1iMo42iih8uevo=;
+        b=C8cF5uvSQM7xzwq7uFpQclFS6UtbWLcrWDq9KEL0q9QDaJK9blOSxHpzefg+WMJz3t
+         LfTN5lzZFFFiQy6z+bKUSmt8C9cni3oKiIVPPvUvpuE61c2EwoHQdAaPwtoaDE6go0HT
+         UzgjLQ3Oz9o/N5jEdfSN/jbcnKj8VNpC91Bp7B6vQvGxAZDZ891dg4UtK8yHJzdC4st2
+         xfz0ZhQx5aWD0SjFUaX74FZFmu5fBKo9N5McNPAolBEe2RA4QKndZzrZgeXh/SP8bNmN
+         3VUm3D27L3fW3vRGNpwQPyRKfCqx66QXYgTKxvb36R10aUJTLX/w2chU/pJEH6bYJSNe
+         ZuLQ==
+X-Gm-Message-State: AO0yUKWiem4JYvdrgjtZueknaT/EOqUq/wur6nKKKo5ICrcXw0YedAS1
+	L04oPkTeeu2I4EI77qfMJ+g=
+X-Google-Smtp-Source: AK7set8sw+QVFdw1TtJpqaY5CJwLSkyx7g399inzBBxohSwD0omwPF0st0dLS/JFX6cUrHuEDXh2Fw==
+X-Received: by 2002:a17:903:32d2:b0:196:3ecd:c39a with SMTP id i18-20020a17090332d200b001963ecdc39amr18411085plr.43.1675068497047;
+        Mon, 30 Jan 2023 00:48:17 -0800 (PST)
 Received: from localhost.localdomain ([45.112.3.15])
-        by smtp.gmail.com with ESMTPSA id ix1-20020a170902f80100b00192d9258512sm7205284plb.154.2023.01.30.00.48.07
+        by smtp.gmail.com with ESMTPSA id ix1-20020a170902f80100b00192d9258512sm7205284plb.154.2023.01.30.00.48.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 00:48:10 -0800 (PST)
+        Mon, 30 Jan 2023 00:48:16 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -71,16 +71,16 @@ Cc: linux-amlogic@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH linux-next v5 2/4] arm64: dts: amlogic: Drop superfluous dr_mode in usb node on odroid c2
-Date: Mon, 30 Jan 2023 08:47:41 +0000
-Message-Id: <20230130084744.2539-3-linux.amoon@gmail.com>
+Subject: [PATCH linux-next v5 3/4] arm64: dts: meson: move usb-hub node under dwc3 node on Odroid C4
+Date: Mon, 30 Jan 2023 08:47:42 +0000
+Message-Id: <20230130084744.2539-4-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230130084744.2539-1-linux.amoon@gmail.com>
 References: <20230130084744.2539-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_004811_899406_1C15CF39 
-X-CRM114-Status: GOOD (  11.70  )
+X-CRM114-CacheID: sfid-20230130_004818_116647_9E55111C 
+X-CRM114-Status: GOOD (  13.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,29 +97,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Drop superfluous dr_mode="host" as it is the default in meson-gxbb.dtsi
+Move the usb-hub node under dwc3 node and drop superfluous
+dr_mode as it is the default in meson-g12-common.dtsi.
 
-Fixes: f24859bbec8a ("arm64: dts: amlogic: Used onboard usb hub reset on odroid c2")
+Fixes: 71593b2020b3 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid c4")
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
 v5: none
-v4: neww patch
+v4: new patch
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
- 1 file changed, 1 deletion(-)
+ .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 41 +++++++++----------
+ 1 file changed, 20 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 01356437a077..70b10934a811 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -399,7 +399,6 @@ &usb0 {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+index d04768a66bfe..a988015dd2d5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+@@ -26,30 +26,29 @@ led-blue {
+ 	sound {
+ 		model = "ODROID-C4";
+ 	};
++};
+ 
++&dwc3 {
+ 	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
+-	usb-hub {
+-		dr_mode = "host";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		/* 2.0 hub on port 1 */
+-		hub_2_0: hub@1 {
+-			compatible = "usb2109,2817";
+-			reg = <1>;
+-			peer-hub = <&hub_3_0>;
+-			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
+-		};
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	/* 2.0 hub on port 1 */
++	hub_2_0: hub@1 {
++		compatible = "usb2109,2817";
++		reg = <1>;
++		peer-hub = <&hub_3_0>;
++		reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&vcc_5v>;
++	};
+ 
+-		/* 3.1 hub on port 4 */
+-		hub_3_0: hub@2 {
+-			compatible = "usb2109,817";
+-			reg = <2>;
+-			peer-hub = <&hub_2_0>;
+-			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
+-		};
++	/* 3.1 hub on port 4 */
++	hub_3_0: hub@2 {
++		compatible = "usb2109,817";
++		reg = <2>;
++		peer-hub = <&hub_2_0>;
++		reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&vcc_5v>;
+ 	};
  };
  
- &usb1 {
--	dr_mode = "host";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
 -- 
 2.38.1
 
