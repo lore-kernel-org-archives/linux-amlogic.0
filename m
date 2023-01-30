@@ -4,70 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC12C54EAA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:07:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9E7C636CD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hncdPH6xDPKp8k/nlbWVFppwXBQ9SoGfDTeQtg+RNjM=; b=GPHAfYieYs+++Z
-	wk+w9vbX22kQNCeGed6uKH44ppBHL9msi8/ZkTOvjzUlFjGRN5kQCHL1jcnptK7gUWTqDuUVoPOr5
-	Zhurwkf/jLVihgklAdEGKFFS+4CeC+BV+EQV84JZIuivfYled7wYiftrmdxOlQM9bzyojkpgEuK8X
-	gRMvvZdDH+bM2YFYn25kYLRTLTvf0KakG2Kt5xCW3jRV2bRKt9N9uXE4ISmUYw/o+rKTrJq5lmuvf
-	RGrku++acTA3fteCKJ5R+KnFULbQdXaBb/I8ITreulcAUjVmqCGwM6qYXHuBs7katH4bNLYRc7p+g
-	jif6DnLfYRsqcq+VRg2Q==;
+	List-Owner; bh=+D6ClO2VAIbCDxaSKsDy0srIDbYHSjkzDMKhKE49PRA=; b=hBTH55Mbip3lsF
+	O7oX9RBtmL68DbCr10dsU2u7OVOQHq8emOCAAmjxFr/FNi/sIe4VMGAwnZU9QDUBGsOVQD7RDOmtn
+	oZo/jrccNXbh+cEvqtzkFlp6LmTR1qu8BEUhPfatNQLxps0jzf5HCnwbhZKc73ny4FIHtPyzie9vb
+	u4JBzfJjs1aoLzHRfL4EEZmBYWa40ihpVgeh5W0J4X8vpLa+zKD+3d1455h9bDcAQQ+PYM7eru+mz
+	GiuDtEtPwpFCx0ywWUR8aeRnygTpePDqPYqReABO+mYYeInacfevLpkxvMM9tZQ+ogFhMhEDWyuGD
+	80LM1YLBNwT/Mfa5f5fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMaRH-005Irq-8H; Mon, 30 Jan 2023 20:07:39 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1pMaZu-005Kf8-D2; Mon, 30 Jan 2023 20:16:34 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMaR7-005IpG-VW; Mon, 30 Jan 2023 20:07:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=CaFo3H1tDG5YMgySek3qKOsvTMfAin67h2iUOrGlz8g=; b=Ocd0SaNFGsfZGGoHBAo1mdzCav
-	Mxo6YPvr2k/+ppiM5Etm2zCw3OhXgmVDX7QySK8WzYbk/QjslHjzwrT0txwLUCmUJCv7vJHJZQ1LD
-	UsN9Ia9j+uXifwZXt43mE3UNyydOYXgi7hYI3HK8V3KpbmdmVZqLRFwW5ADEEvXkwsCbCZNZwt/dw
-	uSXwZPFOdywGGV7I64hJo0vMhXqvqAQhacNPMtlFGmtqFhdKWfDP1afDQDk4yhchv3+1gm7FAwhvJ
-	xA0j3bV/i/vZ8TRkyTmK1FTpr5v5CIHe2W5P+jvtFDd1el++JHxlsGhNtvYTnT+YegBljX7v5TxCp
-	cLC++AcA==;
-Received: from vps0.lunn.ch ([156.67.10.101])
-	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMaR2-00AeAB-TB; Mon, 30 Jan 2023 20:07:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=CaFo3H1tDG5YMgySek3qKOsvTMfAin67h2iUOrGlz8g=; b=UXuuezEkqZE1PX2b3wGWaWB6dR
-	gFrCYpHGFUAWuB1iqKBbxt4B449orPwnFIpoQ0SymV1bjX1OV5zgMw1B2iUQqmEEbBpcap1E+0UwI
-	Kbl5orR6eLG+Q3zvR7SSxjpV4WfMkJGlEAn962BEtov1wBq08FyjrrWef+iDsAt2Pq9Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1pMFbx-003WTb-Vf; Sun, 29 Jan 2023 22:53:17 +0100
-Date: Sun, 29 Jan 2023 22:53:17 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chris Healy <cphealy@gmail.com>
-Cc: hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	jeremy.wang@amlogic.com, Chris Healy <healych@amazon.com>
-Subject: Re: [PATCH 1/1] net: phy: meson-gxl: Add generic dummy stubs for MMD
- register access
-Message-ID: <Y9bqzZw4z6JWGeI6@lunn.ch>
-References: <20230129022615.379711-1-cphealy@gmail.com>
- <Y9akLWJfigajMuQP@lunn.ch>
- <CAFXsbZppb5tDxR9tO7RN76=rt04MdAUU16HhyNizJBtAXtq+fg@mail.gmail.com>
+	id 1pMaZj-005Kd4-Su; Mon, 30 Jan 2023 20:16:25 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id mc11so12827060ejb.10;
+        Mon, 30 Jan 2023 12:16:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uPkPZ9hXb0YMQ9faHMJ8j8JGYXj5rWLnlmb1qb1codI=;
+        b=WIJw0SxW2vsP9TRRknDb2FY31vDOZgEWggYys5sjxOFiZibWs2TKug6ZNVKVM0ijVi
+         5clmtMicO0cMGzi+QAUZaQC8pFWRB3FfSnvPgOB5hGcWG/1eVvT7TG8RWdG/rLp1maA4
+         2YusTbQ1V3t3AgT/FDNsE6N83zQVqU5x8aOa+uTYs6Mfn5HqUJzNUUByenEZuoKxjK72
+         PUR2KIKcInpU+2koT99kYNC7WjgGh7juflxgHl5ruF2ols1qRD7FTLqhUr/CfWnK5BCN
+         GgIIPsNRntsUWtZVRqHwrzEMpGBlgMdaJE+wZERFwkDktRL9KXvNqoUgeSA5r3dIex8u
+         CEaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uPkPZ9hXb0YMQ9faHMJ8j8JGYXj5rWLnlmb1qb1codI=;
+        b=RmayL8hu+bChYoWgZDXe9Oiaxo8VYyQYwizhsvKviyEweByZTKgSKaav/b0ZiffVQu
+         hZzd18A/RcsYY1BI+pFfMEA51t8f16Q0wdUzCzRI+VkRSWdGlBLM36kVvWAdGLBjqw0Z
+         6jZMybTCXrz7IcIGFKSYEz0A0BkFUKyYORjWs55PHdbVykS7TTJuymV6/TBeYmWHmH/x
+         ykiZ4SSEzjaOxP+F8mxwkVu5lPql9EaAhtVfVWLs4KUYBlwh+KWSPmyqlJ2r9EDB4Ari
+         O1vUgYFqOTarLtp8/eMdBhtIlvKMAh9eTiszOYEMSyxo7BUm6j9lz7dAgLWmw8NgCGiA
+         FRbA==
+X-Gm-Message-State: AO0yUKXRSBFQkAjgTEoI0iNw2fpQIKt5KNFbSDI82vxD2WSEd1JhsZDF
+	GzP2MCikVkI/geyGembTlFg=
+X-Google-Smtp-Source: AK7set/iisSzpF5vyGzXWeKEJ9SOXJV/hMny8Yz/vbZ7Y7oBrWg2V1eTmKTsaWJW0ik2OkN3038pKw==
+X-Received: by 2002:a17:906:8444:b0:879:ab3:2864 with SMTP id e4-20020a170906844400b008790ab32864mr12057736ejy.24.1675109774600;
+        Mon, 30 Jan 2023 12:16:14 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c074:7400:d941:3cb5:fa86:8ec8? (dynamic-2a01-0c23-c074-7400-d941-3cb5-fa86-8ec8.c23.pool.telefonica.de. [2a01:c23:c074:7400:d941:3cb5:fa86:8ec8])
+        by smtp.googlemail.com with ESMTPSA id k16-20020a170906579000b0087bdae33badsm5772981ejq.56.2023.01.30.12.16.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jan 2023 12:16:14 -0800 (PST)
+Message-ID: <0489ac03-ff79-adf1-104d-72523ace9701@gmail.com>
+Date: Mon, 30 Jan 2023 21:16:10 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAFXsbZppb5tDxR9tO7RN76=rt04MdAUU16HhyNizJBtAXtq+fg@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2] net: phy: meson-gxl: Add generic dummy stubs for MMD
+ register access
+Content-Language: en-US
+To: Chris Healy <cphealy@gmail.com>, andrew@lunn.ch, linux@armlinux.org.uk,
+ davem@davemloft.net, neil.armstrong@linaro.org, khilman@baylibre.com,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ jeremy.wang@amlogic.com
+Cc: Chris Healy <healych@amazon.com>
+References: <20230130200352.462548-1-cphealy@gmail.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20230130200352.462548-1-cphealy@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_200725_550101_F14B879D 
-X-CRM114-Status: GOOD (  12.02  )
+X-CRM114-CacheID: sfid-20230130_121623_962679_E1ED285E 
+X-CRM114-Status: UNSURE (   8.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,23 +96,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> > Hi Chris
-> >
-> > This change in itself makes sense. But i wounder if we should also
-> > change phy_init_eee(). It reads the EEE Ability register. The 2018
-> > version of the standard indicates the top two bits are reserved and
-> > should be zero. We also don't have any PHY which supports 100GBase-R
-> > through to 100Base-TX. So a read of 0xffff suggests the PHY does not
-> > support EEE and returning -EPROTONOSUPPORT would be good.
-> >
-> This seems like a good change to make in phy_init_eee().  I should be
-> able to do this.  Can this be done in a subsequent patch or does this
-> need to be present to land this meson specific PHY patch?
+On 30.01.2023 21:03, Chris Healy wrote:
+> From: Chris Healy <healych@amazon.com>
+> 
+> The Meson G12A Internal PHY does not support standard IEEE MMD extended
+> register access, therefore add generic dummy stubs to fail the read and
+> write MMD calls. This is necessary to prevent the core PHY code from
+> erroneously believing that EEE is supported by this PHY even though this
+> PHY does not support EEE, as MMD register access returns all FFFFs.
+> 
+> Fixes: 5c3407abb338 ("net: phy: meson-gxl: add g12a support")
+> Signed-off-by: Chris Healy <healych@amazon.com>
+> ---
+> 
+> Change in v2:
+> * Add fixes tag
+> 
+Reviewed-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-They are independent, submit them in whatever order you want. But
-doing it first will make it easier to test it actually works.
 
-      Andrew
 
 _______________________________________________
 linux-amlogic mailing list
