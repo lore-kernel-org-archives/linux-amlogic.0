@@ -4,84 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE460C54EED
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 15:17:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82377C54EAA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 17:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k/p+JcK8z4G1/kBi/SQ1lWYu9w5jiLvl/LOMGuT1h1k=; b=ZBJlAM2+egjX0t
-	VMTSO0E6zl8ZVywAvUhaGYOuBk3Kq2N3y9NPHlhCsyOxEgRLnpwhT00rU6tYCkJ7TQdauNW0a2Y14
-	Y0HKYVHr9QJNnofjc+1G+8wbxmPV/gi5fSBJLzcs4rG1kEzxK4YD1Es9GddGOAEU/dzztZ+9oTONd
-	3FNgJwZzGW3nKPSkvpR5GnXCDbAcJRXdQrt9SCWJ4TN9csmnBHy8QhY3iN6JaJy5PBQVfFiK5SBN/
-	eD7Leb00YjPaevwaaoYwzgdS/Z64JjONVs7SeZU5MlbAcb9daFZv8wyuJHwkXLbpfym5qA8YaUTp0
-	SaT5S+M2CLAxVqTOlslQ==;
+	List-Owner; bh=TmuAJUBqDx9TYcW44Hch1p3YkNingWTvL2cmEzAIkIw=; b=dawroNT6A3ySnJ
+	SGa5fBDWXxwVlZjhpnQ+Dhi59zE9Iww+Q9R1Cu1lqwJlD4v4Ma3woF55qZDh9HzmEqqsJ7I9ro4gp
+	QJa7MJSqCBJMQ1zPf5PxeEJYdYKitNbTuG06qM2p5t9i6YQfvz7gZpiBnwswJUJcl5WM0t8CG3Y8w
+	eWcNz1wrlJUMsykoBRmpumZhYHX4hutfPmGFmEW3DMLNAHxqDHJcabPjWPncLL8j6PIXFtseO1oPY
+	vGG7rsCh7pkPt0Z1JkX1Kif9NfNiwMHYV/qkgeDmjdwi83Waf6NzZqRnZPS6PYeyM3iyTiR/MLeBg
+	FoSMMq02dKxSMDAXhMCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMVtb-003zFM-QF; Mon, 30 Jan 2023 15:16:35 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1pMXhO-004QxI-0c; Mon, 30 Jan 2023 17:12:06 +0000
+Received: from mail-ot1-f45.google.com ([209.85.210.45])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMVtW-003zDe-Ik
-	for linux-amlogic@lists.infradead.org; Mon, 30 Jan 2023 15:16:32 +0000
-Received: by mail-wm1-x333.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so10277736wmb.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 30 Jan 2023 07:16:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cyC0WPiESVFATZgdkk9pkTr4ui49YzPabZztaAdxpeA=;
-        b=H4mXe/vo/lr7dTr9p6kfKeuOyyEgETFP+/ki0D99l4xb14APKN8+cfkmRyVp20QkvH
-         RAVgEma2eqZp+SGaakRv+DyUYmGASnODJnH0Jfy/62URsADj0mhsKCf5F2SecRpu2l7G
-         NL1zrAP/rCGVnTU2+RceRTOo2yaZHEZsPclFB6HfbNMrCpndXKytwm/Kw977S9ANneCg
-         eHw7sUv5eWbo9u6cjOWkq3koIEnr5HGy1FLvbJSfxC0lkJcxCt37Imb4WgnE6gec0U/I
-         YCT5QkWXnwO8hB49VFIlqaxMjRpVYJhhGxlO3mjGJMgeNc18K+fbntCD+U5y9qsAEtuZ
-         jiMQ==
+	id 1pMXel-004Pe8-Nq; Mon, 30 Jan 2023 17:09:25 +0000
+Received: by mail-ot1-f45.google.com with SMTP id 70-20020a9d084c000000b0068bccf754f1so1206606oty.7;
+        Mon, 30 Jan 2023 09:09:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cyC0WPiESVFATZgdkk9pkTr4ui49YzPabZztaAdxpeA=;
-        b=CyU8pSVtNTmxZG3AcXG10/yWgbSltRv3/QWFkX3faFz6ZCMxXe5UEzS9wZXJSlmNpz
-         t8jehoEzJmYb6Cz0H3keI9pQA3I+aP9NgQUCrpg65qqkooeNr0SsCML2BaKlANQFeH7E
-         g/O3hr2VLQkiQsRiFaPQu60kU+wcXASwsvAJ3kx+T6kYdePv0BlnJrJshKX+w23IDOmD
-         G/Q3uhJ0n2jrqEymHqH7Q5a8H7GWQyKt95U8n3NisT0dKlC+vetzZEg6qZ+8oS3ilrt7
-         P6xgdXZrF9hqXhr29vicqXILN735r2XF8Zo76jtTXTs4qJFoYJnezLyWQg3dSzkZfCza
-         b3EA==
-X-Gm-Message-State: AO0yUKWMVMt4ZwsHty1PcK2Ziz1Op+nvHAaB+gdMZCvu3Z7XCOJiysed
-	kFGrBqXfjUYL2a4Lj49yRpuxhBvVMh2d5CEd
-X-Google-Smtp-Source: AK7set+iSv4SoypTeDtrUTj78tmVgk0ig3A61r9Gs7gXD6xA1NkAgzeiEYDRuZCPpajWX5wOJmcTFg==
-X-Received: by 2002:a05:600c:21d5:b0:3dc:50c2:cc1 with SMTP id x21-20020a05600c21d500b003dc50c20cc1mr7092137wmj.23.1675091786745;
-        Mon, 30 Jan 2023 07:16:26 -0800 (PST)
-Received: from jackdaw.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id u12-20020a05600c19cc00b003db0ee277b2sm18735802wmq.5.2023.01.30.07.16.25
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GLP90Evg68dqE7RCwY4yV3xX4Fwp1YhDcXOoeu59D7A=;
+        b=OVBr0S2HtNmlEFKsTEjgN7weooSkm6od059J3n8BeAJuqGjM9kSclUmw+NP2FyarYY
+         RbOo5yz18HBvd8gUbDycXwXQykRivCMP3fVih1ynm1hHW3t+ZLgmjdLmMeEnb0v2uhYh
+         lD7d78JIx3EbZPAtrwPj3TZIV8HNtbUAuMHOpgS0i6RlYcU49+rBs5MieP+QjuMhDk3f
+         IRhsJLtgMdj3nGXXn8whwAU3I6SEfTa9TQXx8WmYWaBk0k8hLcvWCfv8gcWThsPmsBon
+         1kXw0Vg4rWXEMijtMxOn259P9z8t8dcjdtkq4HqSKQ0gmweSM0475s+0tcXCr+h5khIc
+         xZcw==
+X-Gm-Message-State: AO0yUKW4RMmU8xasaW++7JsFzgDeI166qno5qWlsYcaa/QN9978T5KxB
+	KzhtMqOOMAshkjceFmRkGQ==
+X-Google-Smtp-Source: AK7set9PGL+jEBekhISIqkh5ljEQGgPzFLULCfmKB679JOMJ1IrE1SYdXIg/qMoMZUrgDhmNQ6pcuA==
+X-Received: by 2002:a9d:148:0:b0:68b:bbaf:a299 with SMTP id 66-20020a9d0148000000b0068bbbafa299mr5152465otu.29.1675098561554;
+        Mon, 30 Jan 2023 09:09:21 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j24-20020a9d7698000000b0068bb6043362sm3855938otl.11.2023.01.30.09.09.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 07:16:26 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Da Xue <da@lessconfused.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 2/2] net: mdio: add amlogic gxl mdio mux support
-Date: Mon, 30 Jan 2023 16:16:16 +0100
-Message-Id: <20230130151616.375168-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230130151616.375168-1-jbrunet@baylibre.com>
-References: <20230130151616.375168-1-jbrunet@baylibre.com>
+        Mon, 30 Jan 2023 09:09:21 -0800 (PST)
+Received: (nullmailer pid 2850409 invoked by uid 1000);
+	Mon, 30 Jan 2023 17:09:20 -0000
+Date: Mon, 30 Jan 2023 11:09:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, Alessandro Zummo <a.zummo@towertech.it>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] dt-bindings: rtc: Convert Amlogic Meson vrtc
+ controller binding
+Message-ID: <167509855924.2850119.8228590011406676486.robh@kernel.org>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+ <d820d54b-d082-589a-621f-2795d885696a@gmail.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <d820d54b-d082-589a-621f-2795d885696a@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_071630_640610_3ECBF259 
-X-CRM114-Status: GOOD (  23.65  )
+X-CRM114-CacheID: sfid-20230130_090923_823271_430F2FE9 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,224 +80,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the mdio mux and internal phy glue of the GXL SoC
-family
 
-Reported-by: Da Xue <da@lessconfused.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/mdio/Kconfig              |  11 ++
- drivers/net/mdio/Makefile             |   1 +
- drivers/net/mdio/mdio-mux-meson-gxl.c | 164 ++++++++++++++++++++++++++
- 3 files changed, 176 insertions(+)
- create mode 100644 drivers/net/mdio/mdio-mux-meson-gxl.c
+On Wed, 25 Jan 2023 23:24:24 +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson vrtc controller binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - improve title and commit message
+> - remove bus part from example
+> ---
+>  .../bindings/rtc/amlogic,meson-vrtc.yaml      | 44 +++++++++++++++++++
+>  .../bindings/rtc/rtc-meson-vrtc.txt           | 22 ----------
+>  2 files changed, 44 insertions(+), 22 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt
+> 
 
-diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
-index bfa16826a6e1..90309980686e 100644
---- a/drivers/net/mdio/Kconfig
-+++ b/drivers/net/mdio/Kconfig
-@@ -215,6 +215,17 @@ config MDIO_BUS_MUX_MESON_G12A
- 	  the amlogic g12a SoC. The multiplexers connects either the external
- 	  or the internal MDIO bus to the parent bus.
- 
-+config MDIO_BUS_MUX_MESON_GXL
-+	tristate "Amlogic GXL based MDIO bus multiplexer"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF_MDIO && HAS_IOMEM && COMMON_CLK
-+	select MDIO_BUS_MUX
-+	default m if ARCH_MESON
-+	help
-+	  This module provides a driver for the MDIO multiplexer/glue of
-+	  the amlogic GXL SoC. The multiplexer connects either the external
-+	  or the internal MDIO bus to the parent bus.
-+
- config MDIO_BUS_MUX_BCM6368
- 	tristate "Broadcom BCM6368 MDIO bus multiplexers"
- 	depends on OF && OF_MDIO && (BMIPS_GENERIC || COMPILE_TEST)
-diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
-index 15f8dc4042ce..7d4cb4c11e4e 100644
---- a/drivers/net/mdio/Makefile
-+++ b/drivers/net/mdio/Makefile
-@@ -28,5 +28,6 @@ obj-$(CONFIG_MDIO_BUS_MUX_BCM6368)	+= mdio-mux-bcm6368.o
- obj-$(CONFIG_MDIO_BUS_MUX_BCM_IPROC)	+= mdio-mux-bcm-iproc.o
- obj-$(CONFIG_MDIO_BUS_MUX_GPIO)		+= mdio-mux-gpio.o
- obj-$(CONFIG_MDIO_BUS_MUX_MESON_G12A)	+= mdio-mux-meson-g12a.o
-+obj-$(CONFIG_MDIO_BUS_MUX_MESON_GXL)	+= mdio-mux-meson-gxl.o
- obj-$(CONFIG_MDIO_BUS_MUX_MMIOREG) 	+= mdio-mux-mmioreg.o
- obj-$(CONFIG_MDIO_BUS_MUX_MULTIPLEXER) 	+= mdio-mux-multiplexer.o
-diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
-new file mode 100644
-index 000000000000..76188575ca1f
---- /dev/null
-+++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (c) 2022 Baylibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/mdio-mux.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#define ETH_REG2		0x0
-+#define  REG2_PHYID		GENMASK(21, 0)
-+#define   EPHY_GXL_ID		0x110181
-+#define  REG2_LEDACT		GENMASK(23, 22)
-+#define  REG2_LEDLINK		GENMASK(25, 24)
-+#define  REG2_DIV4SEL		BIT(27)
-+#define  REG2_ADCBYPASS		BIT(30)
-+#define  REG2_CLKINSEL		BIT(31)
-+#define ETH_REG3		0x4
-+#define  REG3_ENH		BIT(3)
-+#define  REG3_CFGMODE		GENMASK(6, 4)
-+#define  REG3_AUTOMDIX		BIT(7)
-+#define  REG3_PHYADDR		GENMASK(12, 8)
-+#define  REG3_PWRUPRST		BIT(21)
-+#define  REG3_PWRDOWN		BIT(22)
-+#define  REG3_LEDPOL		BIT(23)
-+#define  REG3_PHYMDI		BIT(26)
-+#define  REG3_CLKINEN		BIT(29)
-+#define  REG3_PHYIP		BIT(30)
-+#define  REG3_PHYEN		BIT(31)
-+#define ETH_REG4		0x8
-+#define  REG4_PWRUPRSTSIG	BIT(0)
-+
-+#define MESON_GXL_MDIO_EXTERNAL_ID 0
-+#define MESON_GXL_MDIO_INTERNAL_ID 1
-+
-+struct gxl_mdio_mux {
-+	void __iomem *regs;
-+	void *mux_handle;
-+};
-+
-+static void gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
-+{
-+	u32 val;
-+
-+	/* Setup the internal phy */
-+	val = (REG3_ENH |
-+	       FIELD_PREP(REG3_CFGMODE, 0x7) |
-+	       REG3_AUTOMDIX |
-+	       FIELD_PREP(REG3_PHYADDR, 8) |
-+	       REG3_LEDPOL |
-+	       REG3_PHYMDI |
-+	       REG3_CLKINEN |
-+	       REG3_PHYIP);
-+
-+	writel(REG4_PWRUPRSTSIG, priv->regs + ETH_REG4);
-+	writel(val, priv->regs + ETH_REG3);
-+	mdelay(10);
-+
-+	/* NOTE: The HW kept the phy id configurable at runtime.
-+	 * The id below is arbitrary. It is the one used in the vendor code.
-+	 * The only constraint is that it must match the one in
-+	 * drivers/net/phy/meson-gxl.c to properly match the PHY.
-+	 */
-+	writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
-+	       priv->regs + ETH_REG2);
-+
-+	/* Enable the internal phy */
-+	val |= REG3_PHYEN;
-+	writel(val, priv->regs + ETH_REG3);
-+	writel(0, priv->regs + ETH_REG4);
-+
-+	/* The phy needs a bit of time to power up */
-+	mdelay(10);
-+}
-+
-+static void gxl_enable_external_mdio(struct gxl_mdio_mux *priv)
-+{
-+	/* Reset the mdio bus mux to the external phy */
-+	writel(0, priv->regs + ETH_REG3);
-+}
-+
-+static int gxl_mdio_switch_fn(int current_child, int desired_child,
-+			      void *data)
-+{
-+	struct gxl_mdio_mux *priv = dev_get_drvdata(data);
-+
-+	if (current_child == desired_child)
-+		return 0;
-+
-+	switch (desired_child) {
-+	case MESON_GXL_MDIO_EXTERNAL_ID:
-+		gxl_enable_external_mdio(priv);
-+		break;
-+	case MESON_GXL_MDIO_INTERNAL_ID:
-+		gxl_enable_internal_mdio(priv);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id gxl_mdio_mux_match[] = {
-+	{ .compatible = "amlogic,gxl-mdio-mux", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, gxl_mdio_mux_match);
-+
-+static int gxl_mdio_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gxl_mdio_mux *priv;
-+	struct clk *rclk;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->regs))
-+		return PTR_ERR(priv->regs);
-+
-+	rclk = devm_clk_get_enabled(dev, "ref");
-+	if (IS_ERR(rclk))
-+		return dev_err_probe(dev, PTR_ERR(rclk),
-+				     "failed to get reference clock\n");
-+
-+	ret = mdio_mux_init(dev, dev->of_node, gxl_mdio_switch_fn,
-+			    &priv->mux_handle, dev, NULL);
-+	if (ret)
-+		dev_err_probe(dev, ret, "mdio multiplexer init failed\n");
-+
-+	return ret;
-+}
-+
-+static int gxl_mdio_mux_remove(struct platform_device *pdev)
-+{
-+	struct gxl_mdio_mux *priv = platform_get_drvdata(pdev);
-+
-+	mdio_mux_uninit(priv->mux_handle);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver gxl_mdio_mux_driver = {
-+	.probe		= gxl_mdio_mux_probe,
-+	.remove		= gxl_mdio_mux_remove,
-+	.driver		= {
-+		.name	= "gxl-mdio-mux",
-+		.of_match_table = gxl_mdio_mux_match,
-+	},
-+};
-+module_platform_driver(gxl_mdio_mux_driver);
-+
-+MODULE_DESCRIPTION("Amlogic GXL MDIO multiplexer driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.39.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
