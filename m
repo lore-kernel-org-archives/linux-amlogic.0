@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75BC3C54EAA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:53:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C1DC54EAA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 21:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:References:Cc:To:
 	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=67P73lRR0yHK3gf7rW1sMB8ZuDZrUta/QOIzEElwJjA=; b=MnVXOB6ZU//feG
-	SnyBAW/A3zrEbv9QtuQxQzx6kc6aTtI1EjvadhdqoJx0RXCXLycaAmB+RTdN7DQcvKCpraMZNaVgu
-	fm0lBDT1yaJGZm5EWlAGNHuBIOVh6o0JJY14qxst42nlhHFRjuBKcsUqI/HgJuTTVI/MOAr1x9wdP
-	cJWiZ2rAdrB0xIhxCueVZmwfDJox51/q7NwRIe2JW4EoqLZy978dHznFnNNTJhO8N7UQpiJcRdJPn
-	ja+2AItWAsNTTRcVkNLi/gOpsAh1wJhdP/nzOIoarjiI/AqDQAxyu9p9KaK/K2SyJsOLksas3/ScJ
-	JtSmuhsVQ3xBvvw/cVvA==;
+	List-Owner; bh=fArnM4C0CtrWwB2kce9XqBamjKTfykbXQpvSi0Pl/lU=; b=YH3J7kejEinWOH
+	v2FXbWVCUSzUaPuHiIdBVaTrG+BFeIG+eSvT9Cc0xOcm/Bw5y7t2f2PGEkE8TdkfJtJLQsbO3hUSi
+	aAUva51+96upwrMwN2v9khTIJCZFIQ7FHFxxUDTYbOuW8jKTRMFa8SbSFg3QQQI1eRjt3dqMzULtH
+	Hp3AYJBUxLszdqPl3cjuuKf33NYcHG/gvyyd70Y0uOQNWMUg3FqBnUZHqBdiW/F3XXAEgSdyEDkFZ
+	UFVT7Pb+bjnSMixub+0IDAxFBJ7kkzXTqxumKqVn+a7ez284Xv8Rid0A++CSwT/kmETCa1UK4CPwQ
+	LDCJwy1zWDw7SsJ9e0Ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMb9o-005PN1-4S; Mon, 30 Jan 2023 20:53:40 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1pMbGe-005QWS-Vj; Mon, 30 Jan 2023 21:00:45 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMb9c-005PLb-W3; Mon, 30 Jan 2023 20:53:30 +0000
-Received: by mail-wr1-x433.google.com with SMTP id a3so5680800wrt.6;
-        Mon, 30 Jan 2023 12:53:27 -0800 (PST)
+	id 1pMbGR-005QU4-4n; Mon, 30 Jan 2023 21:00:33 +0000
+Received: by mail-wm1-x332.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso9164959wms.3;
+        Mon, 30 Jan 2023 13:00:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eD95aqCdSJEb0Js8Lzd6h0iY+25nulsCznDdKF/J8xQ=;
-        b=KNtZK3HJ9OFwjslk5YOZk6fEaaT5eRnO7wLRMBb9amscg5rLVNCR/YlKionSxYi1ts
-         JG0f3PcoEXTmZVG7hvKQ9A/W0gqpg+FRCrA8/B0ALGAMd8pGMxnTOD4pJ1XN7UspX9LS
-         /9m/i//EtWRY7vQzb0waUtA5O3vHnwjrd//7BZ68VaSz4Jngs8uPjkz6dKMpiaHXa2Bc
-         fa5gQs9N8GM4SBn37OoHBn0Y7xlP70NW3OBmnU7QONV1XUsAUbS4ZjoxL2MGj6mNoTJh
-         7dCtGLfPZ14dxlLbDgdrIAxlrqZ5/129ZFX9RuUFKrpZ5TA/uJSxfQTjw/OW4u1GKjv9
-         pQdQ==
+        h=content-transfer-encoding:in-reply-to:subject:content-language
+         :references:cc:to:from:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=KuSuW06HHF3831P0xJ/zxYyhYTNoVLwB7x4VqcQ3BUY=;
+        b=aw41t3PiCVuliTn7GB71u3ZTHm5yQpZ4AAdgVa8UV92fR0y+n3BLzsnsKTmPpQMH0K
+         DNvmj+ssAHPpX38Fvjmoe5iUzvk2j4k7OB0w66a7e91IUTCOeUcxLcNdLp3HFE/z0Pj/
+         1ztyi0lVlM1Ypo4CZ57a0mj6jYEI2E6LCPY3q9IvOaflvMIH7uVEvvqjwLOi0E88WjOk
+         9awAEh0cPp7qC8XQVoWBSlF285oJ5OjbMr3zMyAIglRMzt8c5r5/LmVrX2N89UOAV3vQ
+         IITrtqrcE/6xaxiFdoDvExIupLvrmW6xHLfKmmKznOPnF2+iJ/wdP4ZoB+v5Q09VA1k9
+         5wgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:subject:content-language
+         :references:cc:to:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eD95aqCdSJEb0Js8Lzd6h0iY+25nulsCznDdKF/J8xQ=;
-        b=0AxzPRxlFnIpQoy27Rf9Zq28434bNe7o41rNHlL7cjiO4eiT/7pk7InECia0DRmXWu
-         PNSF59n7WhOiZKeqL/I4PETeek90anLnC/c1Viq7tWtZofSlhD20Xh4xSHzgeHkRpY1o
-         VcGDjBnIlBjBkGNBpsMxEH3MILT9CEipEBZ8gO0tDHWSAhHsuRa1uWpy6qm1VE6OvqvY
-         +OOlHoV+nxTS4ZceilqRX+oWTHmvWIDuOd6YFIDLYUb6qUaMGOOV+5VnXesIEfZQKFYi
-         1mN106HVe5vmzxqxt7/ZPS6HBHpD5CKV5on9j959YR+vcyZW4VCxj1qQcNIFvzOw9DXh
-         ydKA==
-X-Gm-Message-State: AO0yUKU0iGpnwDo0Hfbm1Pu+FD7GTCEdKp3+Bh/LJq6JWcO1n0fHOclx
-	JbiQfXLiBlUVHQEzv+KxaHM=
-X-Google-Smtp-Source: AK7set8bfU4P4657znncp9j0VJOVmWlSeCiKICa+ROuqXInavn7svHSi+B1+bstl3wZBkKMq43eVtQ==
-X-Received: by 2002:a5d:4283:0:b0:2bf:d428:a768 with SMTP id k3-20020a5d4283000000b002bfd428a768mr10636517wrq.49.1675112006273;
-        Mon, 30 Jan 2023 12:53:26 -0800 (PST)
+        bh=KuSuW06HHF3831P0xJ/zxYyhYTNoVLwB7x4VqcQ3BUY=;
+        b=EvOjf/yfwZ95tHfSMAOiuZFYQCpUHZ/hsxyg+v0LZu9pxd6m6ATvCtvZ1o2+VyUVUe
+         pvNEKYVW77Rz7KQBptOti0YuXXAZ31TsddXzW5CNXBugI7EzDrNXgN6SwN8uXhYpC0m9
+         uL8woXx2dRtYa6BsnIyEF2/bZcIhs3gNFxBKmsrx4DpSABGv6NMwFgl0zXLG3h3tyIO3
+         N6ZBGVxk/kapFaAfrTMp7VUmDXmgTGCJHxZ/TMbauUctqlwZi5orvXIt5QDc8L2M56sp
+         AZL5AhtqMG6bDnh2t60nYtsOAfKFjtUEtlz0bYroV+4pD5cbYa+PmT4qMjuCq8HuOXRF
+         ye0A==
+X-Gm-Message-State: AFqh2kpfbBF3KVEXJYP+6rEYBGHKzWyVIvMS3pVxGSE6QzgJW2iR8ocq
+	m7Hp1WDGod5i1N/Rowhh7+o=
+X-Google-Smtp-Source: AMrXdXtJed6wpGR2cYaoQZUKrCrllboFvOBM2MNrbyMZZ7PyjnFqAhhst3wANkrZshDgdFwY1oiE7Q==
+X-Received: by 2002:a05:600c:4e05:b0:3d3:5a4a:9103 with SMTP id b5-20020a05600c4e0500b003d35a4a9103mr50950062wmq.31.1675112429300;
+        Mon, 30 Jan 2023 13:00:29 -0800 (PST)
 Received: from ?IPV6:2a01:c23:c074:7400:d941:3cb5:fa86:8ec8? (dynamic-2a01-0c23-c074-7400-d941-3cb5-fa86-8ec8.c23.pool.telefonica.de. [2a01:c23:c074:7400:d941:3cb5:fa86:8ec8])
-        by smtp.googlemail.com with ESMTPSA id b11-20020adfe30b000000b002bfcc940014sm11600285wrj.82.2023.01.30.12.53.25
+        by smtp.googlemail.com with ESMTPSA id l21-20020a05600c4f1500b003dc4050c97bsm13993322wmq.3.2023.01.30.13.00.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 12:53:25 -0800 (PST)
-Message-ID: <a1dee1a5-54d4-47ad-c914-8e9a801cd4a0@gmail.com>
-Date: Mon, 30 Jan 2023 21:53:21 +0100
+        Mon, 30 Jan 2023 13:00:28 -0800 (PST)
+Message-ID: <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+Date: Mon, 30 Jan 2023 22:00:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v3] dt-bindings: interrupt-controller: Convert Amlogic Meson
- GPIO interrupt controller binding
 To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
+ Linus Walleij <linus.walleij@linaro.org>
 Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
 References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 Content-Language: en-US
+Subject: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
 In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_125329_069418_BC706A06 
-X-CRM114-Status: GOOD (  17.80  )
+X-CRM114-CacheID: sfid-20230130_130031_238631_3E3A4ABE 
+X-CRM114-Status: GOOD (  17.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,156 +100,250 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+Convert Amlogic Meson pinctrl binding to yaml.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
 v2:
-- consider that more than one compatible may be set
+- consider that more than one compatible can be set
 - remove bus part from example
 v3:
 - remove minItem/maxItem properties for compatible
 ---
- .../amlogic,meson-gpio-intc.txt               | 38 ---------
- .../amlogic,meson-gpio-intc.yaml              | 84 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+ .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
+ .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
+ 2 files changed, 122 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-deleted file mode 100644
-index bde63f8f0..000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Amlogic meson GPIO interrupt controller
--
--Meson SoCs contains an interrupt controller which is able to watch the SoC
--pads and generate an interrupt on edge or level. The controller is essentially
--a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
--or level and polarity. It does not expose all 256 mux inputs because the
--documentation shows that the upper part is not mapped to any pad. The actual
--number of interrupt exposed depends on the SoC.
--
--Required properties:
--
--- compatible : must have "amlogic,meson8-gpio-intc" and either
--    "amlogic,meson8-gpio-intc" for meson8 SoCs (S802) or
--    "amlogic,meson8b-gpio-intc" for meson8b SoCs (S805) or
--    "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
--    "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
--    "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
--    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
--    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
--    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
--    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
--- reg : Specifies base physical address and size of the registers.
--- interrupt-controller : Identifies the node as an interrupt controller.
--- #interrupt-cells : Specifies the number of cells needed to encode an
--   interrupt source. The value must be 2.
--- meson,channel-interrupts: Array with the 8 upstream hwirq numbers. These
--   are the hwirqs used on the parent interrupt controller.
--
--Example:
--
--gpio_interrupt: interrupt-controller@9880 {
--	compatible = "amlogic,meson-gxbb-gpio-intc",
--		     "amlogic,meson-gpio-intc";
--	reg = <0x0 0x9880 0x0 0x10>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--	meson,channel-interrupts = <64 65 66 67 68 69 70 71>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
 new file mode 100644
-index 000000000..da55a2d25
+index 000000000..7aaae606b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-@@ -0,0 +1,84 @@
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+@@ -0,0 +1,122 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml#
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson GPIO interrupt controller
++title: Amlogic Meson pinmux controller
 +
 +maintainers:
-+  - Heiner Kallweit <hkallweit1@gmail.com>
-+
-+description: |
-+  Meson SoCs contains an interrupt controller which is able to watch the SoC
-+  pads and generate an interrupt on edge or level. The controller is essentially
-+  a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
-+  or level and polarity. It does not expose all 256 mux inputs because the
-+  documentation shows that the upper part is not mapped to any pad. The actual
-+  number of interrupt exposed depends on the SoC.
++  - Neil Armstrong <neil.armstrong@linaro.org>
 +
 +allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
++  - $ref: pinctrl.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
 +      - items:
 +          - enum:
-+              - amlogic,meson-gpio-intc
-+              - amlogic,meson8-gpio-intc
-+              - amlogic,meson8b-gpio-intc
-+              - amlogic,meson-gxbb-gpio-intc
-+              - amlogic,meson-gxl-gpio-intc
-+              - amlogic,meson-axg-gpio-intc
-+              - amlogic,meson-g12a-gpio-intc
-+              - amlogic,meson-sm1-gpio-intc
-+              - amlogic,meson-a1-gpio-intc
-+              - amlogic,meson-s4-gpio-intc
++              - amlogic,meson8-cbus-pinctrl
++              - amlogic,meson8b-cbus-pinctrl
++              - amlogic,meson8m2-cbus-pinctrl
++              - amlogic,meson8-aobus-pinctrl
++              - amlogic,meson8b-aobus-pinctrl
++              - amlogic,meson8m2-aobus-pinctrl
++              - amlogic,meson-gxbb-periphs-pinctrl
++              - amlogic,meson-gxbb-aobus-pinctrl
++              - amlogic,meson-gxl-periphs-pinctrl
++              - amlogic,meson-gxl-aobus-pinctrl
++              - amlogic,meson-axg-periphs-pinctrl
++              - amlogic,meson-axg-aobus-pinctrl
++              - amlogic,meson-g12a-periphs-pinctrl
++              - amlogic,meson-g12a-aobus-pinctrl
++              - amlogic,meson-a1-periphs-pinctrl
++              - amlogic,meson-s4-periphs-pinctrl
 +      - items:
-+          - enum:
-+              - amlogic,meson8-gpio-intc
-+              - amlogic,meson-axg-gpio-intc
-+              - amlogic,meson-g12a-gpio-intc
-+              - amlogic,meson-sm1-gpio-intc
-+              - amlogic,meson-s4-gpio-intc
-+          - const: amlogic,meson-gpio-intc
++          - const: amlogic,meson8m2-aobus-pinctrl
++          - const: amlogic,meson8-aobus-pinctrl
 +      - items:
-+          - const: amlogic,meson-gpio-intc
-+          - enum:
-+              - amlogic,meson8b-gpio-intc
-+              - amlogic,meson-gxbb-gpio-intc
-+              - amlogic,meson-gxl-gpio-intc
++          - const: amlogic,meson8m2-cbus-pinctrl
++          - const: amlogic,meson8-cbus-pinctrl
 +
-+  reg:
-+    maxItems: 1
++  ranges: true
 +
-+  interrupt-controller: true
++  "#address-cells":
++    enum: [1, 2]
 +
-+  "#interrupt-cells":
-+    const: 2
-+
-+  amlogic,channel-interrupts:
-+    description: Array with the upstream hwirq numbers
-+    minItems: 8
-+    maxItems: 12
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
++  "#size-cells":
++    enum: [1, 2]
 +
 +required:
 +  - compatible
-+  - reg
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+  - amlogic,channel-interrupts
++  - ranges
++  - "#address-cells"
++  - "#size-cells"
 +
-+additionalProperties: false
++additionalProperties:
++  anyOf:
++    - type: object
++      allOf:
++        - $ref: pincfg-node.yaml#
++        - $ref: pinmux-node.yaml#
++
++patternProperties:
++  "^bank@[0-9]$":
++    type: object
++    properties:
++      reg:
++        minItems: 5
++        maxItems: 5
++
++      reg-names:
++        items:
++          - const: gpio
++          - const: pull
++          - const: pull-enable
++          - const: mux
++          - const: ds
++
++      gpio-controller: true
++
++      "#gpio-cells":
++        const: 2
++
++      gpio-ranges:
++        $ref: /schemas/types.yaml#/definitions/phandle
++
++    required:
++      - reg
++      - reg-names
++      - gpio-controller
++      - "#gpio-cells"
++      - gpio-ranges
 +
 +examples:
 +  - |
-+    interrupt-controller@9880 {
-+      compatible = "amlogic,meson-gxbb-gpio-intc";
-+      reg = <0x9880 0x10>;
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-+      amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
++    pinctrl {
++      compatible = "amlogic,meson-g12a-periphs-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@40 {
++        reg = <0x0 0x40  0x0 0x4c>,
++              <0x0 0xe8  0x0 0x18>,
++              <0x0 0x120 0x0 0x18>,
++              <0x0 0x2c0 0x0 0x40>,
++              <0x0 0x340 0x0 0x1c>;
++        reg-names = "gpio", "pull", "pull-enable", "mux", "ds";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&periphs_pinctrl 0 0 86>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
 +    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+deleted file mode 100644
+index 8146193bd..000000000
+--- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
++++ /dev/null
+@@ -1,94 +0,0 @@
+-== Amlogic Meson pinmux controller ==
+-
+-Required properties for the root node:
+- - compatible: one of "amlogic,meson8-cbus-pinctrl"
+-		      "amlogic,meson8b-cbus-pinctrl"
+-		      "amlogic,meson8m2-cbus-pinctrl"
+-		      "amlogic,meson8-aobus-pinctrl"
+-		      "amlogic,meson8b-aobus-pinctrl"
+-		      "amlogic,meson8m2-aobus-pinctrl"
+-		      "amlogic,meson-gxbb-periphs-pinctrl"
+-		      "amlogic,meson-gxbb-aobus-pinctrl"
+-		      "amlogic,meson-gxl-periphs-pinctrl"
+-		      "amlogic,meson-gxl-aobus-pinctrl"
+-		      "amlogic,meson-axg-periphs-pinctrl"
+-		      "amlogic,meson-axg-aobus-pinctrl"
+-		      "amlogic,meson-g12a-periphs-pinctrl"
+-		      "amlogic,meson-g12a-aobus-pinctrl"
+-		      "amlogic,meson-a1-periphs-pinctrl"
+-		      "amlogic,meson-s4-periphs-pinctrl"
+- - reg: address and size of registers controlling irq functionality
+-
+-=== GPIO sub-nodes ===
+-
+-The GPIO bank for the controller is represented as a sub-node and it acts as a
+-GPIO controller.
+-
+-Required properties for sub-nodes are:
+- - reg: should contain a list of address and size, one tuple for each entry
+-   in reg-names.
+- - reg-names: an array of strings describing the "reg" entries.
+-   Must contain "mux" and "gpio".
+-   May contain "pull", "pull-enable" and "ds" when appropriate.
+- - gpio-controller: identifies the node as a gpio controller
+- - #gpio-cells: must be 2
+-
+-=== Other sub-nodes ===
+-
+-Child nodes without the "gpio-controller" represent some desired
+-configuration for a pin or a group. Those nodes can be pinmux nodes or
+-configuration nodes.
+-
+-Required properties for pinmux nodes are:
+- - groups: a list of pinmux groups. The list of all available groups
+-   depends on the SoC and can be found in driver sources.
+- - function: the name of a function to activate for the specified set
+-   of groups. The list of all available functions depends on the SoC
+-   and can be found in driver sources.
+-
+-Required properties for configuration nodes:
+- - pins: a list of pin names
+-
+-Configuration nodes support the following generic properties, as
+-described in file pinctrl-bindings.txt:
+- - "bias-disable"
+- - "bias-pull-up"
+- - "bias-pull-down"
+- - "output-enable"
+- - "output-disable"
+- - "output-low"
+- - "output-high"
+-
+-Optional properties :
+- - drive-strength-microamp: Drive strength for the specified pins in uA.
+-			    This property is only valid for G12A and newer.
+-
+-=== Example ===
+-
+-	pinctrl: pinctrl@c1109880 {
+-		compatible = "amlogic,meson8-cbus-pinctrl";
+-		reg = <0xc1109880 0x10>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		gpio: banks@c11080b0 {
+-			reg = <0xc11080b0 0x28>,
+-			      <0xc11080e8 0x18>,
+-			      <0xc1108120 0x18>,
+-			      <0xc1108030 0x30>;
+-			reg-names = "mux", "pull", "pull-enable", "gpio";
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-               };
+-
+-		nand {
+-			mux {
+-				groups = "nand_io", "nand_io_ce0", "nand_io_ce1",
+-					 "nand_io_rb0", "nand_ale", "nand_cle",
+-					 "nand_wen_clk", "nand_ren_clk", "nand_dqs",
+-					 "nand_ce2", "nand_ce3";
+-				function = "nand";
+-			};
+-		};
+-	};
 -- 
 2.39.1
 
