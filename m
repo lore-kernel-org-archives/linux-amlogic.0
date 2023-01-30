@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9E7C636CD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44AA1C636CD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jan 2023 20:35:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+D6ClO2VAIbCDxaSKsDy0srIDbYHSjkzDMKhKE49PRA=; b=hBTH55Mbip3lsF
-	O7oX9RBtmL68DbCr10dsU2u7OVOQHq8emOCAAmjxFr/FNi/sIe4VMGAwnZU9QDUBGsOVQD7RDOmtn
-	oZo/jrccNXbh+cEvqtzkFlp6LmTR1qu8BEUhPfatNQLxps0jzf5HCnwbhZKc73ny4FIHtPyzie9vb
-	u4JBzfJjs1aoLzHRfL4EEZmBYWa40ihpVgeh5W0J4X8vpLa+zKD+3d1455h9bDcAQQ+PYM7eru+mz
-	GiuDtEtPwpFCx0ywWUR8aeRnygTpePDqPYqReABO+mYYeInacfevLpkxvMM9tZQ+ogFhMhEDWyuGD
-	80LM1YLBNwT/Mfa5f5fw==;
+	List-Owner; bh=3mkcb4LjtWHz8Ef++QTMxLZhCCn4YmFQ+mSitVA+n6g=; b=0B2NAvBee9sNam
+	jp75V8IvX6/JSbOKaDsu/zysj7VETQwenrKZYBFLdSRj9hu/V+PgBtxLMyVMwHggkb4tAoiRS94v2
+	BvAxWTnhwuKqhf1fqDsE55r5UidOg07V1b+2fVzgRvuQIUSirYy53CY8EqOFftBOuqEOQHAau/CCQ
+	xXAg7r1bIDwiPW2BeaeGp+60wSsycg88EfF5l9mvY36vjNWb+owqTLLi10Z4VO+S9gfr7XCkhiL5U
+	lrRdj1IsD/2FK5aWx1BBCLvXikuds/0Q1DOIXZ+OIDdTv+edCADLGi+BIEpu6c4EB+GZTfdvwicVk
+	+0LN4wKQLMOr1I0WeTig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMaZu-005Kf8-D2; Mon, 30 Jan 2023 20:16:34 +0000
-Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
+	id 1pMas1-005NCL-Qr; Mon, 30 Jan 2023 20:35:17 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMaZj-005Kd4-Su; Mon, 30 Jan 2023 20:16:25 +0000
-Received: by mail-ej1-x62f.google.com with SMTP id mc11so12827060ejb.10;
-        Mon, 30 Jan 2023 12:16:15 -0800 (PST)
+	id 1pMarr-005N8A-3K; Mon, 30 Jan 2023 20:35:08 +0000
+Received: by mail-ej1-x635.google.com with SMTP id m2so35002584ejb.8;
+        Mon, 30 Jan 2023 12:35:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uPkPZ9hXb0YMQ9faHMJ8j8JGYXj5rWLnlmb1qb1codI=;
-        b=WIJw0SxW2vsP9TRRknDb2FY31vDOZgEWggYys5sjxOFiZibWs2TKug6ZNVKVM0ijVi
-         5clmtMicO0cMGzi+QAUZaQC8pFWRB3FfSnvPgOB5hGcWG/1eVvT7TG8RWdG/rLp1maA4
-         2YusTbQ1V3t3AgT/FDNsE6N83zQVqU5x8aOa+uTYs6Mfn5HqUJzNUUByenEZuoKxjK72
-         PUR2KIKcInpU+2koT99kYNC7WjgGh7juflxgHl5ruF2ols1qRD7FTLqhUr/CfWnK5BCN
-         GgIIPsNRntsUWtZVRqHwrzEMpGBlgMdaJE+wZERFwkDktRL9KXvNqoUgeSA5r3dIex8u
-         CEaQ==
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Izia26EYeDM525t5D9ySWrr0/qUJNtoiKMM2Ve6HW1s=;
+        b=S1STwkdg3cc0FiYh0eElBnjlY2I5wlJAcJ7cLhnykVBTRhO1ZflIyohVPX1/Re81GN
+         k1zE/NMi1q5NmHqETza9d9ciC2SWJJglkJ6HxmZSLIHhX0QW5pr1YSxGuiAp275CRvF/
+         hNnJkbO/nFBfp7cIhq1Gxsg1iZ8xDLmg2LMhw4growD3Dbi9TGfafKrV+RH9HDCCczIB
+         eL2QB1jMKSeyjBMDgMbcd7M7juZOvd+aRfo8qAV342Zf1Av//8xnxeUY6eHa6Gdazcau
+         Y+muOLRChlq3CWe4dxNCnHBO5nNHpKfOhtHGlsWp0+BXUvOazly/6O/8Kgy2RLH3+DlA
+         /8wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPkPZ9hXb0YMQ9faHMJ8j8JGYXj5rWLnlmb1qb1codI=;
-        b=RmayL8hu+bChYoWgZDXe9Oiaxo8VYyQYwizhsvKviyEweByZTKgSKaav/b0ZiffVQu
-         hZzd18A/RcsYY1BI+pFfMEA51t8f16Q0wdUzCzRI+VkRSWdGlBLM36kVvWAdGLBjqw0Z
-         6jZMybTCXrz7IcIGFKSYEz0A0BkFUKyYORjWs55PHdbVykS7TTJuymV6/TBeYmWHmH/x
-         ykiZ4SSEzjaOxP+F8mxwkVu5lPql9EaAhtVfVWLs4KUYBlwh+KWSPmyqlJ2r9EDB4Ari
-         O1vUgYFqOTarLtp8/eMdBhtIlvKMAh9eTiszOYEMSyxo7BUm6j9lz7dAgLWmw8NgCGiA
-         FRbA==
-X-Gm-Message-State: AO0yUKXRSBFQkAjgTEoI0iNw2fpQIKt5KNFbSDI82vxD2WSEd1JhsZDF
-	GzP2MCikVkI/geyGembTlFg=
-X-Google-Smtp-Source: AK7set/iisSzpF5vyGzXWeKEJ9SOXJV/hMny8Yz/vbZ7Y7oBrWg2V1eTmKTsaWJW0ik2OkN3038pKw==
-X-Received: by 2002:a17:906:8444:b0:879:ab3:2864 with SMTP id e4-20020a170906844400b008790ab32864mr12057736ejy.24.1675109774600;
-        Mon, 30 Jan 2023 12:16:14 -0800 (PST)
+        bh=Izia26EYeDM525t5D9ySWrr0/qUJNtoiKMM2Ve6HW1s=;
+        b=yBhVyPQwB9oXwjWGa3/kPPGXqh6nHY8pCIfYQN2YWn3Nz4KwZfz/YUc0l/eUY8ug11
+         Ve924fUvKwzXERLSp9J3ZNu5zUTN/LaUwqz6HoY48xeP2D3pIwMJxmeTHq8sa0KxBthw
+         sbB/3bs36r+gCkHSkK7N7RA1Q2rI9OwCpMxDYN/67j8YbD6493ZlanDny1D9vm+KEK4I
+         uKNv0ve0SzC8w7MSuZJEZA3qV+WGqA7LPORlWXBmWF3x0r3lRwVxskvzT3FVeh/s//6z
+         RlI1be4hYwKFYiAPKPWqsscyLAAHbWFSuwleYpVyptNBwjjEfgzer1kpsTYUVwjae7Ez
+         bFIQ==
+X-Gm-Message-State: AO0yUKXKmMsKOryP2UPix2A/BxlaBQOrRxIBIR+Eu7EL0oWVao0yPLEu
+	IfVlHINn0ULdXfGWEDgJ7NE=
+X-Google-Smtp-Source: AK7set/ZOwIiKJv5E0C3RIcESZk+4wxKOF7QbdrEh7hIpzXZ4AZm671atxgFxLQvTV4ttVjuqOTJFw==
+X-Received: by 2002:a17:906:bcf5:b0:884:ab29:bd0b with SMTP id op21-20020a170906bcf500b00884ab29bd0bmr9190603ejb.69.1675110902831;
+        Mon, 30 Jan 2023 12:35:02 -0800 (PST)
 Received: from ?IPV6:2a01:c23:c074:7400:d941:3cb5:fa86:8ec8? (dynamic-2a01-0c23-c074-7400-d941-3cb5-fa86-8ec8.c23.pool.telefonica.de. [2a01:c23:c074:7400:d941:3cb5:fa86:8ec8])
-        by smtp.googlemail.com with ESMTPSA id k16-20020a170906579000b0087bdae33badsm5772981ejq.56.2023.01.30.12.16.13
+        by smtp.googlemail.com with ESMTPSA id kl13-20020a170907994d00b00882f9130eafsm4270220ejc.26.2023.01.30.12.35.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 12:16:14 -0800 (PST)
-Message-ID: <0489ac03-ff79-adf1-104d-72523ace9701@gmail.com>
-Date: Mon, 30 Jan 2023 21:16:10 +0100
+        Mon, 30 Jan 2023 12:35:02 -0800 (PST)
+Message-ID: <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
+Date: Mon, 30 Jan 2023 21:34:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2] net: phy: meson-gxl: Add generic dummy stubs for MMD
- register access
-Content-Language: en-US
-To: Chris Healy <cphealy@gmail.com>, andrew@lunn.ch, linux@armlinux.org.uk,
- davem@davemloft.net, neil.armstrong@linaro.org, khilman@baylibre.com,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- jeremy.wang@amlogic.com
-Cc: Chris Healy <healych@amazon.com>
-References: <20230130200352.462548-1-cphealy@gmail.com>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <20230130200352.462548-1-cphealy@gmail.com>
+Subject: [PATCH v3] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-pwm@vger.kernel.org
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Content-Language: en-US
+In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230130_121623_962679_E1ED285E 
-X-CRM114-Status: UNSURE (   8.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230130_123507_177882_D8F8EF4F 
+X-CRM114-Status: GOOD (  12.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,24 +100,136 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30.01.2023 21:03, Chris Healy wrote:
-> From: Chris Healy <healych@amazon.com>
-> 
-> The Meson G12A Internal PHY does not support standard IEEE MMD extended
-> register access, therefore add generic dummy stubs to fail the read and
-> write MMD calls. This is necessary to prevent the core PHY code from
-> erroneously believing that EEE is supported by this PHY even though this
-> PHY does not support EEE, as MMD register access returns all FFFFs.
-> 
-> Fixes: 5c3407abb338 ("net: phy: meson-gxl: add g12a support")
-> Signed-off-by: Chris Healy <healych@amazon.com>
-> ---
-> 
-> Change in v2:
-> * Add fixes tag
-> 
-Reviewed-by: Heiner Kallweit <hkallweit1@gmail.com>
+Convert Amlogic Meson PWM binding to yaml.
 
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- fix clocks and clock-names
+- consider that more than one compatible may be set
+v3:
+- remove minItem/maxItem properties for compatible
+---
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 71 +++++++++++++++++++
+ .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
+ 2 files changed, 71 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+new file mode 100644
+index 000000000..750642e76
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic PWM
++
++maintainers:
++  - Heiner Kallweit <hkallweit1@gmail.com>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson8b-pwm
++              - amlogic,meson-gxbb-pwm
++              - amlogic,meson-gxbb-ao-pwm
++              - amlogic,meson-axg-ee-pwm
++              - amlogic,meson-axg-ao-pwm
++              - amlogic,meson-g12a-ee-pwm
++              - amlogic,meson-g12a-ao-pwm-ab
++              - amlogic,meson-g12a-ao-pwm-cd
++              - amlogic,meson-s4-pwm
++      - items:
++          - const: amlogic,meson-gx-pwm
++          - const: amlogic,meson-gxbb-pwm
++      - items:
++          - const: amlogic,meson-gx-ao-pwm
++          - const: amlogic,meson-gxbb-ao-pwm
++      - items:
++          - const: amlogic,meson8-pwm
++          - const: amlogic,meson8b-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    oneOf:
++      - items:
++          - enum: [clkin0, clkin1]
++      - items:
++          - const: clkin0
++          - const: clkin1
++
++  "#pwm-cells":
++    const: 3
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    pwm@8550 {
++      compatible = "amlogic,meson-gxbb-pwm";
++      reg = <0x08550 0x10>;
++      clocks = <&xtal>, <&xtal>;
++      clock-names = "clkin0", "clkin1";
++      #pwm-cells = <3>;
++    };
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+deleted file mode 100644
+index bd02b0a14..000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
++++ /dev/null
+@@ -1,29 +0,0 @@
+-Amlogic Meson PWM Controller
+-============================
+-
+-Required properties:
+-- compatible: Shall contain "amlogic,meson8b-pwm"
+-                         or "amlogic,meson-gxbb-pwm"
+-                         or "amlogic,meson-gxbb-ao-pwm"
+-                         or "amlogic,meson-axg-ee-pwm"
+-                         or "amlogic,meson-axg-ao-pwm"
+-                         or "amlogic,meson-g12a-ee-pwm"
+-                         or "amlogic,meson-g12a-ao-pwm-ab"
+-                         or "amlogic,meson-g12a-ao-pwm-cd"
+-- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
+-  the cells format.
+-
+-Optional properties:
+-- clocks: Could contain one or two parents clocks phandle for each of the two
+-  PWM channels.
+-- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
+-
+-Example:
+-
+-	pwm_ab: pwm@8550 {
+-		compatible = "amlogic,meson-gxbb-pwm";
+-		reg = <0x0 0x08550 0x0 0x10>;
+-		#pwm-cells = <3>;
+-		clocks = <&xtal>, <&xtal>;
+-		clock-names = "clkin0", "clkin1";
+-	}
+-- 
+2.39.1
 
 
 _______________________________________________
