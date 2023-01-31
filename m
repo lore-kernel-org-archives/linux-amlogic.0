@@ -4,95 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF02AC636CC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Jan 2023 17:06:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09FADC38142
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Jan 2023 21:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zdgn6GgifgeztObaU+yQdaU5CDC+G6/3NJl2ARRw5ko=; b=QSM7ws9RKPoBD0
-	LaNrzrrDe9s7VpkVgzFJM1YJ5sslJYUL6U3ouLoxEESakG2x+T2dE3O/fD72BHxLpN6jm1RHPPOq7
-	97jD4BQijMfEmP03z0UrmVyBdTYpQD+8SFJD7jlA6dJLJmHIJ0qWBD4nhVf50dn/Ip/bu9uRQlTC9
-	Fia839mACAM3whyuGLB3bEBP56IuStGYLgecW/MJTLdaUBjG+FltCiUvXzk/qUV+JKY+BqC6Cx+pI
-	Q0xMRyP7iE9n0mzsrOi+3eqS3jxqdNqvhazL5wBNxveURZMTl5TOtKCcso5pwSMSCUvbUrS67ZrGZ
-	GPtx/kSs7JduCTbw2xjw==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7NdMQDeKjleMQAYs+7pex3CTCBY41VszoGen6tn73Do=; b=4Z6BxWPsFjtztW
+	GRT+hdrcl2FtMUZyKUEEZBrRKgVWM4EwvW0hIZEqxZ70wykvoZpr+fSCmhtpSYpRyqHCV5RkFfFN1
+	5gY56ODSoGpZIk68CrUG9orXyYKfkGIC/92UhOqvg/9djLWQkgsNgow4BXGE3z+FlYcdBhwhTPU47
+	1HHKW8B6jAOqewUqL+IloJKHdh54m8eaMQxxHjir+hFaXBEG+TCdnFG3JFkagZqhIaiAVMFJL+xc/
+	zORYqgGMO6PlwfAIEklknYLaysWqXzZ1TI1Fv7jGurJ5fD9EwSdab1c4JytB7UsbAcQIqRYh3vTO0
+	x+NKhUSvKkdSlP7BeOBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMu5O-008nho-Qp; Tue, 31 Jan 2023 17:06:22 +0000
-Received: from mail-ot1-x32a.google.com ([2607:f8b0:4864:20::32a])
+	id 1pMxn5-009LID-D0; Tue, 31 Jan 2023 21:03:43 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMu5D-008nei-KM; Tue, 31 Jan 2023 17:06:13 +0000
-Received: by mail-ot1-x32a.google.com with SMTP id n25-20020a9d7119000000b0068bd8c1e836so1396197otj.3;
-        Tue, 31 Jan 2023 09:06:09 -0800 (PST)
+	id 1pMxmv-009LFy-2t; Tue, 31 Jan 2023 21:03:34 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id d14so15444852wrr.9;
+        Tue, 31 Jan 2023 13:03:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n+8rBCXp9QUszN6EtdlrzESk2YRd1LhFxQMBHxqvRZ8=;
-        b=KIotuXGen7IPQ2MM3jARlRJcgpTMmXnjonwSHT+XpZMX1+12fCZD0G96L0aAkPfdMS
-         JAHa/KIhvXy01RkzKieONIFgBovrC4z8J77AAyJPbvvJGJBhYkeZE63h9y9Q+dalddna
-         PRK0CAY2UAlQhTL3jJs0e4S33SYUchhScZ+3cEp1zWv3CrhIaqr1ZwwH9rnrfE5O1uGb
-         8yb79/rJu1S0QRRcyN2iE0OAsr3Yp7k2g9ph4snwSPo9xtOyX3Yjc6HPa4d6SIGZbfnd
-         Tfg87yjJPUuO696M3UjVX7oStAxPrNPOkWDXt/2gqibuMnOUNXmVnRByLYZqWojpaWgB
-         GukQ==
+        h=content-transfer-encoding:subject:cc:to:from:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gRUNXSGS7rlhGuB49SDRG+lrGhsOIKZeHh4eRriR12g=;
+        b=p07YQSj0WLysf5divFMPFqvl4Ttdg6e34EgMI4n7egBIhe6zSSChlrJDxmlCGB4MMz
+         wIhVTceeOD8IEJU+PBOHgC53f4zNBTVYkLZamJCHC3z1d3WYfJ1u/JxPp7SDccQosiU+
+         gux6SXkN1Vc/9XSOdtcrhyZJ/uiW3nLLAplgCYggMTeO6LYUuqssVq2KKxY3JyHU90Ub
+         rgjHUuyEM2+Gsx0AqSgwgdyN9GvfPV4RfpxjzD8Cvg48xwD2CGmCk8ZZR1JMT6aABhfW
+         P2zU1n1qCQbUQVBmH6wHuZSBrmBkBg7TqTlHvIRPK5q4HRFvsIFDJjkn88xxAMV+PkwF
+         f9PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n+8rBCXp9QUszN6EtdlrzESk2YRd1LhFxQMBHxqvRZ8=;
-        b=XZk9/FK+JP7GwerXke8QlIC6XuRTytgEOky4hX3nyvijjo2M7IGgsDeSGO54asLKlr
-         DsUQksSyVfxSkSr356zKJtdhyQGiFCreaRQnuRN23a5EewgnY9TaeoL9gg8Cu0fU08u4
-         rbKduHiUHq40VFX1o04ww9ZQ8F7fRsBQtXHLohfqaK92AKJb0fnwcKu4j39DWOLftcXz
-         HJ0Sp8MVsM/RFeOdG1eFVpOHvY2NrGHqOuRWIzUQ1goa+qqYrJAzfsJdUApJwLAAG+2Z
-         Yfl/TOatjKW4SOy9IFXKzNNj5xVxfsmFtf9fDySSgrHxkvRWeO1frrHILY+mJGICGKvM
-         ulXQ==
-X-Gm-Message-State: AO0yUKVPk+DRLKxnx8MWoZeEADQOVNgMPT4QJ6Shx3I5Hxj623OMpmXt
-	m9dEXM4dO4Z/rE2KnoSDUZs=
-X-Google-Smtp-Source: AK7set/3cx199W6dlm+bCYeBqwh7XTb78l9Pdy4589af0XRP0nPAx1JUE7sHjjl+5ymFcH8PmR8lxQ==
-X-Received: by 2002:a9d:688:0:b0:68d:3e10:2951 with SMTP id 8-20020a9d0688000000b0068d3e102951mr89946otx.3.1675184768344;
-        Tue, 31 Jan 2023 09:06:08 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t14-20020a9d590e000000b006864816ecd9sm6740348oth.59.2023.01.31.09.06.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 09:06:07 -0800 (PST)
-Date: Tue, 31 Jan 2023 09:06:06 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 3/7] dt-bindings: watchdog: convert meson-wdt.txt to
- dt-schema
-Message-ID: <20230131170606.GA3599161@roeck-us.net>
-References: <20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v3-3-e28dd31e3bed@linaro.org>
+        h=content-transfer-encoding:subject:cc:to:from:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gRUNXSGS7rlhGuB49SDRG+lrGhsOIKZeHh4eRriR12g=;
+        b=KqQn+wMrJ9RDIh1LqooyH8OGpAVyWavmTkUaOrYiwF392G4bIw3BunRXYdqE4EcW0V
+         95DUSAGeenXWyMcG61x5N4T8KdaUx0geoiagmV2onAhjWGPaltM8rcJW+eIY2yL257vM
+         mQJORzm8iZm8YmmiFWeJmkMhNoarD3qJgOnsO70JdgY48fKjLPg0684J3iZ3OD/l/u5E
+         f5OVXLXeer/f/8/IVjhvcpekczeD22WEhAyLJHAfXaZXNlHDCOUm5DVXFmwMr0jzP+mW
+         ca+C8jjbkxzwMDlcadP5mgwhku9q4L/a+zcwhQ7mBk5edyTVWs621JtAp8QxowbY132b
+         vFhQ==
+X-Gm-Message-State: AO0yUKXKIGAjzI0nQDS7CF/8xGmdS6qxp4zBW8ypf984erAyRDUEvKqI
+	GlBZJmyrmVbO5BczYvJFNO4=
+X-Google-Smtp-Source: AK7set/F3m+pEBe1tR71tu2oLCZ4P4O2Nf/2y1a4r5IdlUn8aNbFNA8r3ht6SEIaBLCQ0M4jOZEIuA==
+X-Received: by 2002:adf:e111:0:b0:2bf:d3c2:a36a with SMTP id t17-20020adfe111000000b002bfd3c2a36amr341635wrz.25.1675199009570;
+        Tue, 31 Jan 2023 13:03:29 -0800 (PST)
+Received: from ?IPV6:2a01:c23:b8ba:6a00:8d8f:fa1d:c162:c172? (dynamic-2a01-0c23-b8ba-6a00-8d8f-fa1d-c162-c172.c23.pool.telefonica.de. [2a01:c23:b8ba:6a00:8d8f:fa1d:c162:c172])
+        by smtp.googlemail.com with ESMTPSA id m14-20020a5d6a0e000000b002bfd09f2ca6sm13691513wru.3.2023.01.31.13.03.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 13:03:28 -0800 (PST)
+Message-ID: <23ecd290-56fb-699a-8722-f405b723b763@gmail.com>
+Date: Tue, 31 Jan 2023 22:03:21 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v3-3-e28dd31e3bed@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Chris Healy <cphealy@gmail.com>
+Subject: [PATCH net] net: phy: meson-gxl: use MMD access dummy stubs for GXL,
+ internal PHY
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230131_090611_692353_36EBD7D4 
-X-CRM114-Status: GOOD (  20.52  )
+X-CRM114-CacheID: sfid-20230131_130333_158880_E86E0259 
+X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,109 +100,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 23, 2023 at 11:10:00AM +0100, Neil Armstrong wrote:
-> Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
-> 
-> Take in account the used interrupts property.
-> 
-> The "amlogic,meson8-wdt" representation has been simplified
-> since there's no users of this compatible used along the
-> "amlogic,meson6-wdt".
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Jerome provided the information that also the GXL internal PHY doesn't
+support MMD register access and EEE. MMD reads return 0xffff, what
+results in e.g. completely wrong ethtool --show-eee output.
+Therefore use the MMD dummy stubs.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Note: The Fixes tag references the commit that added the MMD dummy
+access stubs.
 
-> ---
->  .../bindings/watchdog/amlogic,meson6-wdt.yaml      | 50 ++++++++++++++++++++++
->  .../devicetree/bindings/watchdog/meson-wdt.txt     | 21 ---------
->  2 files changed, 50 insertions(+), 21 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
-> new file mode 100644
-> index 000000000000..84732cb58ec4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson6-wdt.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/amlogic,meson6-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson6 SoCs Watchdog timer
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson6-wdt
-> +          - amlogic,meson8-wdt
-> +          - amlogic,meson8b-wdt
-> +      - items:
-> +          - const: amlogic,meson8m2-wdt
-> +          - const: amlogic,meson8b-wdt
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    wdt: watchdog@c1109900 {
-> +        compatible = "amlogic,meson6-wdt";
-> +        reg = <0xc1109900 0x8>;
-> +        interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
-> +        timeout-sec = <10>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
-> deleted file mode 100644
-> index 7588cc3971bf..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -Meson SoCs Watchdog timer
-> -
-> -Required properties:
-> -
-> -- compatible : depending on the SoC this should be one of:
-> -	"amlogic,meson6-wdt" on Meson6 SoCs
-> -	"amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
-> -	"amlogic,meson8b-wdt" on Meson8b SoCs
-> -	"amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
-> -- reg : Specifies base physical address and size of the registers.
-> -
-> -Optional properties:
-> -- timeout-sec: contains the watchdog timeout in seconds.
-> -
-> -Example:
-> -
-> -wdt: watchdog@c1109900 {
-> -	compatible = "amlogic,meson6-wdt";
-> -	reg = <0xc1109900 0x8>;
-> -	timeout-sec = <10>;
-> -};
+Fixes: 5df7af85ecd8 ("net: phy: Add general dummy stubs for MMD register access")
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/net/phy/meson-gxl.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index c49062ad7..fbf5f2416 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -261,6 +261,8 @@ static struct phy_driver meson_gxl_phy[] = {
+ 		.handle_interrupt = meson_gxl_handle_interrupt,
+ 		.suspend        = genphy_suspend,
+ 		.resume         = genphy_resume,
++		.read_mmd	= genphy_read_mmd_unsupported,
++		.write_mmd	= genphy_write_mmd_unsupported,
+ 	}, {
+ 		PHY_ID_MATCH_EXACT(0x01803301),
+ 		.name		= "Meson G12A Internal PHY",
+-- 
+2.39.1
+
 
 _______________________________________________
 linux-amlogic mailing list
