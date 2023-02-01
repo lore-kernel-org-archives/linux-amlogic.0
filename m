@@ -4,81 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B7D1C05027
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 17:30:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2453DC38142
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 17:33:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9Q7NPvN7tepPWHNZyJRjrem502k/CpIMI+v0qfkITZQ=; b=EJ7RVUSxYDHXrA
-	OOT3RDxR1JvXcLZKpwA3lXoWLunNtjtD4uo9AlyK9DafTruaYyMvxHmqCjmgmOKcSR4tbjwyMEr5+
-	+a+Zi5cocpLyc3xYALSJr+gS30u+h4D0J8Xtx/pYiQPp6I1iz2XGFqxl8TW6SinOglgEpVCpwTI+J
-	tk1LAVs4OUbyP8tZj7X4HfPDg1qFM2ZefZ9CFDdTWh05sdp5L6aXw/9XlAicP7tNGnYVWDdMIlbU7
-	Z25AwmzNxSNYijydE7vP7wbu2JRcpS+52+qVYtPSntp8sTw8eXDK+Jh3VAI/xK2o2HJNIg6MpvFZY
-	mBRRVmbyxsrTarID7C1w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=vdpaKJsQc2pZrJRUFPZ9vkx6mVXx+mLLOZY5TvruGUM=; b=mmrsezcSYymrX1YE+soZk1SVDQ
+	lJzDB8dFtJvO1x/XoL3vuu6t1fM200cZLGMo+zjsduyPk0PyxQ5UexZa2Ol2E8CjX0DUACo9GZcqf
+	p4hIADPGcfu4I7VE/grsv7g5An4bJI+OtFVcQRRx11k4FH69NhSsqQBvcPvefWcwUoH+ZHHryBy6n
+	tpxaC/2z/ar3sZ1XxdiGnj94v7NKZZZBTrizOCELoNZLQUsh+4HGuLAM6BZcxGScS1ruIJ7uGbnNA
+	tl97WX49I8sDrbD+FQAQFoglZFM9uI46iFyMfaFD4gdK8Hi4Yi67kY8hT8EkUpQItSQZYYmhvvho6
+	C/t8+XTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNGwL-00D1UG-Kq; Wed, 01 Feb 2023 17:30:33 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1pNGyt-00D1xM-Ee; Wed, 01 Feb 2023 17:33:11 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNGw8-00D1OZ-RN; Wed, 01 Feb 2023 17:30:22 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id p26so42371029ejx.13;
-        Wed, 01 Feb 2023 09:30:19 -0800 (PST)
+	id 1pNGyj-00D1uY-LS
+	for linux-amlogic@lists.infradead.org; Wed, 01 Feb 2023 17:33:03 +0000
+Received: by mail-wm1-x330.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so1968459wma.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 01 Feb 2023 09:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KD5M9gxdESVXZNHygJsIRCRG6O5U78kyIhxKOX+bsgs=;
-        b=XDKmpzK3vIb15pZuQ3BFMFlnBksAmdYKSlo7+m/ocAUhGEPTFJXTo4ER12jpVQj5u0
-         FC8hBV+CbBpFEBVnxrBPwZA3I2ujM7pNw3CuYcmYNt/YclFXdII72s/WlirfN1f58/2a
-         WrG87KqF+ZPsWnc30pjA/Lbjow4GM1nx6GUld0c+1n/yb7l1oEJWtesHY1L0wY5en8Zv
-         Ttsubi3MWMtqRzeheywwFDYFIG43AUTD/0A/ezN+tU643eB5VKaIBGZu9Ng4Eq+TFF10
-         Cq4I1OOkYyvY68VlfEGU/KMWYCkUxjRE8DJH/lHN6mEiDCh/45nWNJVYddtk852Az1wv
-         vM2g==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yTNQ69NaFESesDbKqqHzZsJ1GdW9dr4YOTSclaVyT/c=;
+        b=kv1tR49gFxGRDQXeZOsKND0zxUUWwjW9gdj3y9HET/ctPq4Vk6FIivSiQTvDu4UYV8
+         Z7rJlXm6zqzBH8+DbDK3/YCmsJCLHvYu4JuFrPUxNtP5cNh+OzHStuBMWmLwl0NYP/GA
+         a1A138Ibt4yu2i4Pzd6tA1eFc8GgQKYZKe/eAx96mQnravY/9rJhQLSZs+eXs6PrzwcT
+         UfvYYlMxQ7vXXL4K7poqAtROdVO4cclBjH21tUbRJuGW8wRdTGT9BWoBEoO2QBncSpC3
+         YJgGkT2H91Lm0RHWmAZvbQs+7zIhyquK0Xv3hWA76q59qL1HHfHjJcsoCYGY99mX20sP
+         6/lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KD5M9gxdESVXZNHygJsIRCRG6O5U78kyIhxKOX+bsgs=;
-        b=fkVRNwuHduKrlGFpDSXT4pDmsSx6DwLOJr8LFIxOvU4+RT1zi1QLA+hSvHPWYKzPJZ
-         ZR61/uwhif7PoWcsWcjNUJM93uev265qvToiGYav/n6ptmogbHEu5pha4D4DAeR3nIuP
-         YzoRX3e43Y5TKATrN9DNhmL1/4my1xIVyq3X/t6NPDZ8xyz6rwDIT5HqkeXc0x7AMNkJ
-         y3KoOxhHL+GsIiWrXBTR+ss5z2Oz/pqSdn0qWJx2+oDG9JmTwNvS9VbswN4qq1VZevZq
-         1zQd/4pgaPjp00bkjvxAlef+OYKuucQVALl0g7X7nc70IXtedp4+w9eblE7s2cSgPK+I
-         LbfQ==
-X-Gm-Message-State: AO0yUKUxD8AzQdZmAHXsK0Lsr82m43NSi4btyctjMF6fVEH2BuePnfTs
-	DMShumvkm9PgNIYq1FAX99s=
-X-Google-Smtp-Source: AK7set9mvzLzTGxj9MJf4SML7Kc8isI2LQrbbB779YEZqBnwmMUw731G5f3NDBxtmfBILXq47PAcBQ==
-X-Received: by 2002:a17:906:a009:b0:879:9c06:c8bc with SMTP id p9-20020a170906a00900b008799c06c8bcmr6654115ejy.15.1675272618599;
-        Wed, 01 Feb 2023 09:30:18 -0800 (PST)
-Received: from ?IPV6:2a01:c23:b912:d400:3963:7bc4:12b:ddb3? (dynamic-2a01-0c23-b912-d400-3963-7bc4-012b-ddb3.c23.pool.telefonica.de. [2a01:c23:b912:d400:3963:7bc4:12b:ddb3])
-        by smtp.googlemail.com with ESMTPSA id z16-20020a170906435000b007b935641971sm10245083ejm.5.2023.02.01.09.30.17
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yTNQ69NaFESesDbKqqHzZsJ1GdW9dr4YOTSclaVyT/c=;
+        b=0pQShgDbk1douImsQqwP4UEgCuejAzsNhKf8xCsssk9aG3cKrHdAYjMd0rL6Ob9IMU
+         0eon4v1rm8fC2BqxCB6Vyh17YNL8eyiIcHwBddNr4zuddhxL7WX1IPngDH7GP3gFQ+FN
+         LU7kjCeBJHtjFxge8GBs9aw3TvCtcVfmcLHUCtZt39hbaZ1vUCs/Gy+/JMN3g46kURUz
+         Nqt0gjQ4C09UOWJXaIPIp3CGAukljchNTlBxrLhKp1aFieOVMvEnPpiyXsY0iMuxAF8u
+         84xODCXCd6KOsv1RNngVLIzuwLKjIBzxDn+rNhTVafkqnHYnTzpze3cSga4k3/kxtybm
+         pH5g==
+X-Gm-Message-State: AO0yUKXwWe8pS4Ay4ixbNeiQ3iht/lXt2wpI5kPKfX0B4cg+cUjicoD2
+	L66FGqXV2qvEZSN4X/Kkc4VnKg==
+X-Google-Smtp-Source: AK7set+uLoGEVOb+Dqvby0dr6kUPyElhg73To3RP0NFn9EcKfqx/HKG4tTB+yqyrt2Yet6n25v/HDg==
+X-Received: by 2002:a05:600c:3547:b0:3dd:1c45:fe3a with SMTP id i7-20020a05600c354700b003dd1c45fe3amr8090592wmq.16.1675272777906;
+        Wed, 01 Feb 2023 09:32:57 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bad9:621b:618e:38d6? ([2a01:e0a:982:cbb0:bad9:621b:618e:38d6])
+        by smtp.gmail.com with ESMTPSA id r9-20020a05600c158900b003dc4ecfc4d7sm2239253wmf.29.2023.02.01.09.32.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 09:30:18 -0800 (PST)
-Message-ID: <e7b3fd1e-69eb-e66e-8abc-72b7c5fa975d@gmail.com>
-Date: Wed, 1 Feb 2023 18:30:11 +0100
+        Wed, 01 Feb 2023 09:32:57 -0800 (PST)
+Message-ID: <b5a29098-53b2-c940-0b1f-4dff40d97e44@linaro.org>
+Date: Wed, 1 Feb 2023 18:32:56 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] arm(64): dts: meson: adjust order of some compatibles
+To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] arm(64): dts: meson: adjust order of some compatibles
+References: <e7b3fd1e-69eb-e66e-8abc-72b7c5fa975d@gmail.com>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <e7b3fd1e-69eb-e66e-8abc-72b7c5fa975d@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230201_093020_931186_D2FA0C77 
-X-CRM114-Status: GOOD (  10.34  )
+X-CRM114-CacheID: sfid-20230201_093301_743169_FF713219 
+X-CRM114-Status: GOOD (  16.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,71 +94,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-During review of a new yaml binding, affecting these dts, it turned out
-that some compatibles aren't ordered as they should be. Order should be
-most specific to least specific.
+Hi Heiner,
 
-Suggested-by: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm/boot/dts/meson8b.dtsi              | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+On 01/02/2023 18:30, Heiner Kallweit wrote:
+> During review of a new yaml binding, affecting these dts, it turned out
+> that some compatibles aren't ordered as they should be. Order should be
+> most specific to least specific.
+> 
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>   arch/arm/boot/dts/meson8b.dtsi              | 4 ++--
+>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
+>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
+>   3 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index d5a3fe21e..5979209fe 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -580,8 +580,8 @@ &ethmac {
+>   };
+>   
+>   &gpio_intc {
+> -	compatible = "amlogic,meson-gpio-intc",
+> -		     "amlogic,meson8b-gpio-intc";
+> +	compatible = "amlogic,meson8b-gpio-intc",
+> +		     "amlogic,meson-gpio-intc";
+>   	status = "okay";
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> index 923d2d8bb..12ef6e81c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> @@ -300,8 +300,8 @@ &ethmac {
+>   };
+>   
+>   &gpio_intc {
+> -	compatible = "amlogic,meson-gpio-intc",
+> -		     "amlogic,meson-gxbb-gpio-intc";
+> +	compatible = "amlogic,meson-gxbb-gpio-intc",
+> +		     "amlogic,meson-gpio-intc";
+>   	status = "okay";
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> index 04e9d0f1b..af912f698 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> @@ -312,8 +312,8 @@ &clkc_AO {
+>   };
+>   
+>   &gpio_intc {
+> -	compatible = "amlogic,meson-gpio-intc",
+> -		     "amlogic,meson-gxl-gpio-intc";
+> +	compatible = "amlogic,meson-gxl-gpio-intc",
+> +		     "amlogic,meson-gpio-intc";
+>   	status = "okay";
+>   };
+>   
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index d5a3fe21e..5979209fe 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -580,8 +580,8 @@ &ethmac {
- };
- 
- &gpio_intc {
--	compatible = "amlogic,meson-gpio-intc",
--		     "amlogic,meson8b-gpio-intc";
-+	compatible = "amlogic,meson8b-gpio-intc",
-+		     "amlogic,meson-gpio-intc";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 923d2d8bb..12ef6e81c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -300,8 +300,8 @@ &ethmac {
- };
- 
- &gpio_intc {
--	compatible = "amlogic,meson-gpio-intc",
--		     "amlogic,meson-gxbb-gpio-intc";
-+	compatible = "amlogic,meson-gxbb-gpio-intc",
-+		     "amlogic,meson-gpio-intc";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 04e9d0f1b..af912f698 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -312,8 +312,8 @@ &clkc_AO {
- };
- 
- &gpio_intc {
--	compatible = "amlogic,meson-gpio-intc",
--		     "amlogic,meson-gxl-gpio-intc";
-+	compatible = "amlogic,meson-gxl-gpio-intc",
-+		     "amlogic,meson-gpio-intc";
- 	status = "okay";
- };
- 
--- 
-2.39.1
+Please send a new clean patchset with the associated bindings changes then this patch,
+and split ARM and arm64 in 2 patches.
 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
