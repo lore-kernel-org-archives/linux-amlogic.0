@@ -4,89 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B3BFC05027
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 10:57:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 757EDC05027
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 12:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zdNCeHCsduL12AEBlSUeMisIPE3gLZRb+DWeTJkSR40=; b=S+ChcxWHPIoVi7V+J/2fS4N+vB
-	bOGtPnaodTnIRfLL8B++fjQH6gdwZcXQsCgeInA7J8pbW3XqYuKnJKSNbnneaOAAjquyHpUSC1bsl
-	WbUkFdMxnq6IGjqFQteydu3+KchXvvfdDxZpyJoSYIya8rfiFQMI5WBs9OzcZh1gj09NDORgagbw5
-	z5cpaTRu6zwJuK2ID+a8ZvPu57AdZANrLcABszz8VLzMEDJ30EHh7bv9noV3STjYjotzN5I5MWkqJ
-	++qUOjsoiss4mHVLKWX6VhGgKnSN7bM+gcnYShJUTvZdQ2A43bQxzi+Kju98tQuAqwdVdYkitHkXM
-	Z98ODklw==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NOcDfWIoGLlrX/CrAfRSNfB0FCyBJxzcm29w6CWBBfs=; b=OUZj24blkywBlXdUMNtTX9l1Lx
+	6OAAg4G/N+tOTrxIFAWvJYDa58Nulxfsoiy3sv7oTC9lUP4VLDUk8m2uIuBirPc5PL9FGH9g7mSs5
+	tlq4NDLI9Kp8UrBu1TV/i6+k0wsbwvvJJ9Zxc8ngRRVjRhGv/c4aA/+1u42hOBrCBgDohAJ46Ey0m
+	MxENZ3NlTtoDCAqxoiIJFwG/HiPa/6fwiZXpiznrfX2V6moD5zz+Te1tlqk/XYHTHnUwjpRiQf8ld
+	vZKe8mqwtw4SmFSGO/dpkvtQiRQHMCEQXe92A7s/soXSjSS4RYm1dZkImio/Tb9qlj2+d7ezGYG6S
+	5gjy8w2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNAnU-00BMZs-Sx; Wed, 01 Feb 2023 10:57:00 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1pNCVJ-00BlOs-1C; Wed, 01 Feb 2023 12:46:21 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNAnK-00BMUt-Lx
-	for linux-amlogic@lists.infradead.org; Wed, 01 Feb 2023 10:56:52 +0000
-Received: by mail-wr1-x435.google.com with SMTP id t7so8544025wrp.5
-        for <linux-amlogic@lists.infradead.org>; Wed, 01 Feb 2023 02:56:47 -0800 (PST)
+	id 1pNCV8-00BlMZ-Kk; Wed, 01 Feb 2023 12:46:12 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id l4-20020a17090a850400b0023013402671so2040950pjn.5;
+        Wed, 01 Feb 2023 04:46:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
-        b=yMwEZzFJds1B31S8gN6Gtf3DXOsheuyX+qdKKzQ1XkldQSxHFEm+qWlYJCE95L51pm
-         gmFplAF3bDfpnRBjiuWm7sxaIPnZNbkwY4FHvtv4KquGN8IuauXG1mTjvKXslADq7RQw
-         X7EGQSFtfGh2vS9VVUcKMXowGNKmeQbwBymnOoPl0JB7DB/3CVhBYYdJ9KyVIYEjU1yi
-         kW2WXgrylGrw4gWvwTBtJrYMFWa2aW3G9PgeRaIETAbdyNhZNnP2dp0sD158O3ieDN9V
-         ZQV6FMqiMlKV3/IaU1Zms6aVa9y7DPuxEWuOGAiPmsikz3NJhHpZlQAPW6Tbf7WiNYzX
-         nl1g==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fkTFIuSPLKfoCtXCCCEyL+yG+V8An1lDoLyWCS7QCCE=;
+        b=mA4Ut5jbcgfFDPIma8gjZ/ALtxNk0qxYXRSplQ+1PZ27gYHRY8MUQ9yaB1G2bJ9qYy
+         OjlHRtdx6ChK8qhX96A8+RNKb8BQeA7mRIndjrvkzMw1LVuTSXNNTMuopzazWvzQ9TYs
+         RirB4uVo4tRbqoHUJKUsLj/CAs0Np8s2PO/wyV/79UHa1P2KFvehZf8YisTrTwZ41Aan
+         BaKYGT6SyTcdSKyaoR9kEiksSv8YT1MIy0uOF71d1d/8FBEkGckQEg7Xj+K6H/P5jHE/
+         dYgl9QNubSBQ0Ss72V2FOXH7E4hbahlOL2TJgtCo4uXk5t44NCSA+wjSS4+Fk6issw1Z
+         JA/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
-        b=oUSyDq+0INi9X13qpEY3b1A0FImMBDjcA/5CgRDxR7Mave/TE0lBq6K4JgGlOfaLw+
-         30Xj6SdijjtqGZ+ufJRfDqaSxsxcvuX9urNwhIt60eh7i1BCCAGENTRd0SYQsUpLgGse
-         vFHS2nUQWz0k6DnxRgwvphYNOzHiyPj85CBznTbUPWgtA+j8RyAa+TGHboffmJ/ihjzt
-         252mB1YgvyL4cgu5aIodN9MHCZ3nk58WrvZWIR7lz0lDbEQzxgRUnMBbv6o1HpoWKCkG
-         ZWfQdWmnlpdWx29IdFgQMEhjxPedpVoS2gZs6SFcfiRUaklGwPmNdFHxLAfm2EWIyjrx
-         OGdw==
-X-Gm-Message-State: AO0yUKVv4lOv8pUTSgp5tDSl6yISdJHOx/ASER7QZZqIvjxdRjwDPA70
-	Xcp6ZOHx5uWe05QbjBH4CALy8w==
-X-Google-Smtp-Source: AK7set+KPB702v3Zc0QEXCUeeDFVfwvU1Lo9YL4UGHj4SIr90S4Y+aj9ttU3Tq07PI/5GAwPH9ZT0w==
-X-Received: by 2002:adf:fc88:0:b0:2bf:d137:9945 with SMTP id g8-20020adffc88000000b002bfd1379945mr1887395wrr.51.1675249006727;
-        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bad9:621b:618e:38d6? ([2a01:e0a:982:cbb0:bad9:621b:618e:38d6])
-        by smtp.gmail.com with ESMTPSA id v9-20020a056000144900b002c3b2afae00sm1870583wrx.41.2023.02.01.02.56.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
-Message-ID: <604029c8-3286-8514-ec35-6c5cb1b7a38a@linaro.org>
-Date: Wed, 1 Feb 2023 11:56:45 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fkTFIuSPLKfoCtXCCCEyL+yG+V8An1lDoLyWCS7QCCE=;
+        b=j5Sm4cr5FIsoE5LB+H4jMA7EUKTZEdGY2X3TWE3MqK3xDs5eGDCvpJeXCcrgyeZv/q
+         e8bqoRXTvafbZoNOBkaSs4B/+jfKGxXWVOycRpLu9h5M2DbbvxJG6xnzYXuJ+B0H+OJ5
+         ZGU5RrVqI/d4ctn7LhD6lxIOcYYEGj8fGLHnGnDorQ5UXR19yMpx0E4dJiet5EYqpq0u
+         b7P1cylasgdZ6M/ZNnNffVsT+EtTXJcZe6VeBsZbb5HogtDkAs2l5p8+MQ39OYyHD28C
+         z6dElsMD3INMR22wjFMJqlNFTRIWQbCkg7bBKATX6XdbdHmGOelXP5Xb+SB2gL4MEYaJ
+         rTzw==
+X-Gm-Message-State: AO0yUKVSM2/jHJDWjvatmi3rSa+TB48MJM9kSX+IN3DZT/LwMK3alDuz
+	NjoNgTTlgEWxVE//DYZvOUo=
+X-Google-Smtp-Source: AK7set/+oQpZ3sqH5WEgSzWEjuYdwtIXqhHCYm96eYbih6oxEetY39DrwiJaHfMPJWJ5/5eWaj2RpA==
+X-Received: by 2002:a05:6a20:8e22:b0:bc:3290:5759 with SMTP id y34-20020a056a208e2200b000bc32905759mr2910934pzj.34.1675255566873;
+        Wed, 01 Feb 2023 04:46:06 -0800 (PST)
+Received: from pek-khao-d2 (unknown-105-121.windriver.com. [147.11.105.121])
+        by smtp.gmail.com with ESMTPSA id h10-20020a056a001a4a00b0058df440d51esm11315252pfv.193.2023.02.01.04.46.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 04:46:06 -0800 (PST)
+Date: Wed, 1 Feb 2023 20:45:58 +0800
+From: Kevin Hao <haokexin@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Russell King - ARM Linux <linux@armlinux.org.uk>,
+	David Miller <davem@davemloft.net>, Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+	Chris Healy <cphealy@gmail.com>
+Subject: Re: [PATCH net] net: phy: meson-gxl: use MMD access dummy stubs for
+ GXL, internal PHY
+Message-ID: <Y9pfBpoZ4cezf6Bb@pek-khao-d2>
+References: <23ecd290-56fb-699a-8722-f405b723b763@gmail.com>
+ <20230131215528.7a791a54@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+In-Reply-To: <20230131215528.7a791a54@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230201_025650_727655_43A83A19 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20230201_044610_723967_ACA977EA 
+X-CRM114-Status: GOOD (  14.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,48 +94,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============7130642371955005191=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Heiner,
 
-On 30/01/2023 22:00, Heiner Kallweit wrote:
-> Convert Amlogic Meson pinctrl binding to yaml.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - consider that more than one compatible can be set
-> - remove bus part from example
-> v3:
-> - remove minItem/maxItem properties for compatible
-> ---
->   .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
->   .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
->   2 files changed, 122 insertions(+), 94 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->   delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> 
+--===============7130642371955005191==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Mk4AfqfvQZZ1jb0O"
+Content-Disposition: inline
 
-<snip>
 
-Please send new versions as separate threads, or keep the same thread structure othwerwise
-it highly confuses humans & b4 when applying the patches...
+--Mk4AfqfvQZZ1jb0O
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Assuming new revision: v2 ([PATCH v2] dt-bindings: pwm: Convert Amlogic Meson PWM binding)
-Assuming new revision: v4 ([PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
-Assuming new revision: v5 ([PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
-Assuming new revision: v6 ([PATCH v3] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
-Assuming new revision: v7 ([PATCH v2] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
+On Tue, Jan 31, 2023 at 09:55:28PM -0800, Jakub Kicinski wrote:
+> On Tue, 31 Jan 2023 22:03:21 +0100 Heiner Kallweit wrote:
+> > Jerome provided the information that also the GXL internal PHY doesn't
+> > support MMD register access and EEE. MMD reads return 0xffff, what
+> > results in e.g. completely wrong ethtool --show-eee output.
+> > Therefore use the MMD dummy stubs.
+> >=20
+> > Note: The Fixes tag references the commit that added the MMD dummy
+> > access stubs.
+> >=20
+> > Fixes: 5df7af85ecd8 ("net: phy: Add general dummy stubs for MMD registe=
+r access")
+>=20
+> Please make sure to CC the author. Adding Kevin Hao <haokexin@gmail.com>
+
+The changes look fine to me, but the using of the "Fixes" tag seems a bit w=
+eird.
+The "Fixes" tag is used to specify the commit causing regression instead of=
+ patch prerequisite.
 
 Thanks,
-Neil
+Kevin
 
+
+--Mk4AfqfvQZZ1jb0O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAmPaXwYACgkQk1jtMN6u
+sXGSEAf/aq9hSch/hWtBwo81OFaSkRoIMDg4Dc2g5ql9SQMc8Nxvd+o540SbCXuX
+h988OPOrvw7JXUEswqX2GJMIwgJAYpDQsfmzkAkwszgMY4Vh8ZepoUvMQK6fjxUU
+lipFEBekx5ZWL8WPQSbsXjx9TUvi30qTq3KIXc32UyBA/OqQDyrjOEv8LmaLlZj8
+nJFeiF999+tvG7yXAmczxbsfvV2tl29FB/SwyTT2UsYeVuPp5klPkumyzHBmfCXg
+tv7938MAL+5gF80jAUhbj4yaUPXhxGA0/DE4pv+9iV7eHDT2m4fWxrzISprylzzF
+EbExviPu5xzwIzcJd3xdJo11wX60KA==
+=YW6S
+-----END PGP SIGNATURE-----
+
+--Mk4AfqfvQZZ1jb0O--
+
+
+--===============7130642371955005191==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7130642371955005191==--
+
