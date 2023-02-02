@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ADAFC636D3
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Feb 2023 18:37:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F6A3C636D7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Feb 2023 18:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HAEG+kDAyBbRKWKHULrQeHxyG5f+ISMC4IeCIq7ypRM=; b=M7wf17hQujOz1I
-	f3Syl066+3O8j9nTDEZs0Hx4qIlG7wHabSkxeQAIzO0kHRPlba3hccW2CUnimyNvn/97NNrl24Omw
-	wjMeEm0Tc3J/IpdvNVlbbA6lk0ZCEDh7s9hlT6CmeBH74edzJsmZwXs6HrTt19w+YYXWM16NuL3gZ
-	d+fVxOKfb52Q0ZbKKgmko+sN2EoZspAjsIpwv5T2WnJws9hTnqz+fmjPhoeV242DemIT4suWE8rok
-	w5Ft+/+5TRXBQKhlUwpZmhX951duQWH5/rRG+Y69LDLUA4qzJoldUSPU8vXaGOf6roYokH+ikfzgH
-	bmhPCUCpJhoW+9oh3/NA==;
+	List-Owner; bh=OCQspC31ZuaWEOTPJIqLNFUbjDJfV8TMQuoT6kvAGoM=; b=ew/1jzKXhwxzO3
+	jk4TLbgGUst8ogaK0qvvzEOYXoAJmngxYsVET+JlsLXVPHjgppf3XfRgpzQw2JxHc8DbQipvnGxkB
+	M+ZvNf0CWjdiDxq0Z1e9xXqNtkCzg9wWuIph7GKon6CWfjY7tyh5y73pnK8W0h+MOKe0CG3oU5Dqk
+	SR4ad9tI6WE2jODkmoG+CCcWT2SqQQMCe4diR1jyQur3Q/dCwrgknVo9ce8pZ8lCsaV0Jl3j2Ds2F
+	RA/dAjElK1i+aW9cZHOOtH6zcvA8jxWYODbBQOCO30NArTQmCpRvE66FHqND4Oh8gydd1AI3TxU/S
+	x9a6r+HgTA3Xm6lsdyyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNeSj-00Gy2G-4J; Thu, 02 Feb 2023 18:37:33 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1pNeSo-00Gy47-RQ; Thu, 02 Feb 2023 18:37:38 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNeSg-00Gy1O-PE
-	for linux-amlogic@lists.infradead.org; Thu, 02 Feb 2023 18:37:32 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id t18so2577965wro.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Feb 2023 10:37:28 -0800 (PST)
+	id 1pNeSl-00Gy21-NP
+	for linux-amlogic@lists.infradead.org; Thu, 02 Feb 2023 18:37:36 +0000
+Received: by mail-wr1-x430.google.com with SMTP id t18so2578089wro.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 02 Feb 2023 10:37:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=it81YP95JIRPJswh/FgK8dhTohEGTS21tUAjm96BPMQ=;
-        b=T35BJJthNSXWGuipJ/S57/Vin4LoRONI1yOJ2iw8a6ampM/SH/alQlaM3pwJXbfIto
-         rhB/lH9b1SfkOR19HeWTkVB7VSSsTJgHyiavcYsEoM/cXzmWt6zg2rxDTIV6fKG7uY6C
-         R59zbQQItYpdbiiKXP3AQ7Vsyoc4Swh2MVx05ksPml3KYRaXwgZdpVxGAzQzbmS6ZsUk
-         hFKqBE/i/V1NnVVjwq0cZN7FQRbfbNj0VLT9zzJo0vI2vf1zI2ghqgOOttCZZN4+N/qR
-         OJNFfbUx3uQyls1lZ4AVo++FolCmlr1lg3WtFc0TRW0TSRpiuvX8jLi/jVecCpg+wtgK
-         voEA==
+        bh=QeIfWHDa2fvM5jUnMkL8MI7fcZ0bv0i4OOCgMKL446E=;
+        b=l06A1cmXwgKENlFdGLp7sC4/eyJqhQGFvt4WqG9szuR7KAzjP3ilZlD2hOQqUJNRqD
+         y3ckO43HNJ3hiNoIuABaBoCYWYdHAr2oVhJXGyhd0e3wQfZdsBGSaJJleNkYc+7imVdc
+         jQrNTRkmnSzPebl/3WAjEkdFAkMP81O7guCTHQzCMtxl09H0Q2KgM7/MCLQDnpg5DCBj
+         +dGns2SgfBT/jHvrCuq1PRHBINCr7tyy/gk/Erwt2XpcxqtESE3Qz8vzRbe/KQzjqJzF
+         DRUXob7GENdxln0PH2KRCPhBsLN3/lzLRlG9s5jKXszXTeTJY073AMpEBT8ZL6ApjJ8Y
+         xzrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=it81YP95JIRPJswh/FgK8dhTohEGTS21tUAjm96BPMQ=;
-        b=bdGrvii1eomOrmmpRsvukPRl7efhTPr8/GgnphFBJEXxYTIP/QiqYzNkESpLBzBuHh
-         BgG7PEDmebWA9icEJ/LxBFR0hRYOvwighpZefr+mJk8aVJKhsSCiZl3zErRRoqN1sjma
-         6fJVGDhVraPxY1dwpCt09NxSx2yGcmU3B3+KgMU/e84J9hjGWIeUw4iiAwqBEvZ2OniI
-         NeLAvXeJK3FNnGC/1Rk6uHuQelChfeTjv6u2zYv//kGF6TZ9ie45cq2MgikKVVHDSqf4
-         iCBnhRRFBLjEos3nVjM02LmqvaeFlalBx7suOYvfLj+2oLGdZ7hpqxDt2n978ygqOEZt
-         2vPg==
-X-Gm-Message-State: AO0yUKVDPM5DBpVcRV49qpDR78MLg77VUf5m/8C6UNLDmFFSknS0c4in
-	S83QU06MmnlUtyD2olG6tN27uQ==
-X-Google-Smtp-Source: AK7set9UbIruMnv6kKNSa19q5j5yp9TO2ovfLKQ/UNar58Gc9j9V2Mg4N6Ph1JnAFCA//MyCXwBx+Q==
-X-Received: by 2002:a05:6000:1285:b0:2bf:b036:ffe3 with SMTP id f5-20020a056000128500b002bfb036ffe3mr6707490wrx.45.1675363047162;
-        Thu, 02 Feb 2023 10:37:27 -0800 (PST)
+        bh=QeIfWHDa2fvM5jUnMkL8MI7fcZ0bv0i4OOCgMKL446E=;
+        b=pl4gpQ5ys3nJv5EE33kDHFu3fURYaU6kHea5Sl/9/J5LZsna9bxoMqk+eE8j2NDiod
+         PemYIGsBLtomm7aVJwD7xwWPaessSPfu2YY6iM8QxyVkw5biAv+gFjtLZ+Kgi6fKVVhI
+         PQnxHK9QKpCl/6fbd9GIfDQ1PaABIg/e8luNULggLIEGkSU2SXaiqzlHKmdzWmeRLjKr
+         QfdROJ/HmNlXGAso7xRFohbXUnckET+vvv4QyWUAh4hNUjvJfAFaMxS8uKdI3Tk1iF5e
+         Dm7GVnguWlXwH5tdC+MkN/GRNnp1kBYlLd7eD+UsmZ0ZesaDvZ3WRXD4mQrPh3F5etmf
+         G+Yw==
+X-Gm-Message-State: AO0yUKU76fcDMOOdVxR8I5zvnXTkRhzYFvhEKsFNv1AvM+dcXKQm/4Wh
+	IpfRUhIRlUmhsLfQNyiuTFYZjA==
+X-Google-Smtp-Source: AK7set/gl7mkCo0fFqVVU8e+mU0M0fxQBGITq/co13H8UNB+GuXOO3uWbLmrv5x5yRG3W+gngOal/Q==
+X-Received: by 2002:adf:9c8e:0:b0:2c1:28dc:1561 with SMTP id d14-20020adf9c8e000000b002c128dc1561mr6380662wre.44.1675363050459;
+        Thu, 02 Feb 2023 10:37:30 -0800 (PST)
 Received: from localhost.localdomain (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id p12-20020a5d48cc000000b00241fab5a296sm164664wrs.40.2023.02.02.10.37.23
+        by smtp.googlemail.com with ESMTPSA id p12-20020a5d48cc000000b00241fab5a296sm164664wrs.40.2023.02.02.10.37.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 10:37:26 -0800 (PST)
+        Thu, 02 Feb 2023 10:37:30 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	alsa-devel@alsa-project.org,
@@ -71,17 +71,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/9] ASoC: dt-bindings: create component common schema
-Date: Thu,  2 Feb 2023 19:36:45 +0100
-Message-Id: <20230202183653.486216-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/9] ASoC: dt-bindings: meson: fix gx-card codec node regex
+Date: Thu,  2 Feb 2023 19:36:46 +0100
+Message-Id: <20230202183653.486216-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230202183653.486216-1-jbrunet@baylibre.com>
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230202_103730_838028_F8F4D94C 
-X-CRM114-Status: GOOD (  15.56  )
+X-CRM114-CacheID: sfid-20230202_103735_779420_25B2B910 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,67 +98,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-All DAIs are component but not all components are DAI.
-Move the component properties (sound-name-prefix ATM) to a separate schema
-file so it can be used by non-DAI components, such as auxiliary devices.
+'codec' is a valid node name when there is a single codec
+in the link. Fix the node regular expression to apply this.
 
+Fixes: fd00366b8e41 ("ASoC: meson: gx: add sound card dt-binding documentation")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../bindings/sound/component-common.yaml      | 21 +++++++++++++++++++
- .../devicetree/bindings/sound/dai-common.yaml | 11 +++-------
- 2 files changed, 24 insertions(+), 8 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/component-common.yaml
+ .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/component-common.yaml b/Documentation/devicetree/bindings/sound/component-common.yaml
-new file mode 100644
-index 000000000000..37766c5f3974
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/component-common.yaml
-@@ -0,0 +1,21 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/component-common.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Audio Component Common Properties
-+
-+maintainers:
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+
-+properties:
-+  sound-name-prefix:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Card implementing the routing property define the connection between
-+      audio components as list of string pair. Component using the same
-+      sink/source names may use this property to prepend the name of their
-+      sinks/sources with the provided string.
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/sound/dai-common.yaml b/Documentation/devicetree/bindings/sound/dai-common.yaml
-index d858eea73ed7..1aed2f0f1775 100644
---- a/Documentation/devicetree/bindings/sound/dai-common.yaml
-+++ b/Documentation/devicetree/bindings/sound/dai-common.yaml
-@@ -9,15 +9,10 @@ title: Digital Audio Interface Common Properties
- maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+index 5b8d59245f82..b358fd601ed3 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
++++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+@@ -62,7 +62,7 @@ patternProperties:
+         description: phandle of the CPU DAI
  
--properties:
--  sound-name-prefix:
--    $ref: /schemas/types.yaml#/definitions/string
--    description: |
--      Card implementing the routing property define the connection between
--      audio components as list of string pair. Component using the same
--      sink/source names may use this property to prepend the name of their
--      sinks/sources with the provided string.
-+allOf:
-+  - $ref: component-common.yaml#
- 
-+properties:
-   '#sound-dai-cells': true
- 
- additionalProperties: true
+     patternProperties:
+-      "^codec-[0-9]+$":
++      "^codec(-[0-9]+)?$":
+         type: object
+         additionalProperties: false
+         description: |-
 -- 
 2.39.0
 
