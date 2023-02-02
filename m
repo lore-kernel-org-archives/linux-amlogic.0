@@ -4,94 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6C9C61DA4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Feb 2023 12:26:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66078C636D4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Feb 2023 14:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=91fr8vNJPf9mtbpWgwjHYfizfbKHvKNN/kzm3hAetzY=; b=lrz3KTt3XNn+SH
-	R9urC4EHjKek1IukCnkyXsiUAh6kmlqEadvAKgAQ5b4gGb5I+DEfPCYNWg002U/0x3dx6h8GkMkoK
-	7bVi7krapRnu2n0zJIZAbqBsU9uSQpItos+16rwggXCY+XpU7qf5WXLzfF31zPe/Lkbn0wvgzMhNZ
-	DiGK+DQfdR2AUwj3CV3PHZ8diHaYgRy5RZhze5AIWpxDEzuPQ+w9GaIyCgqhQFYjJZGxeDSBd1vSI
-	BydRYrXQMz10TZaUnS3+P+EhnrwoYt2fIDS8drM61dPQaEDFYcJumVCGviAocZuw/8Q3a27DXEE5m
-	QAgfwTmIYT+IDjvmVufA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=gLyfcIKASzC6OJ9O55SkFpX3kERr/wUlsmBtBKDxh7E=; b=YC6+U97jSeibra
+	251HZenyMqIprimxLbp6eGNEFlUJ2sYaBLhhrucqD6de+cPiONSzXqPcNCtqGToZI2TELgmfi//wF
+	DCBiXBBvEWNFRAJlPBwUMhD+G17Q8IEgv7JkvEJdzf9axPwgslwF65TQz8hJj5JlrN/fl0oiv63no
+	NxpzkR7vlSmeLQEGCp3Z9c7NYhwnAholVM5cAWj84JLxuCnmf7azsXornyc0A7oPSspsHlhJnB0As
+	UWnbYiybnxSAAzEPAKXXzh3cx7N1mHCmhzgyVd0A3bVis8pADnD2f987K7WipLl8mv2bJFFetRluC
+	M9Cal+nvEdhsCAHUs97g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNYfv-00FmoD-8r; Thu, 02 Feb 2023 12:26:47 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1pNaNO-00G7Lw-Bt; Thu, 02 Feb 2023 14:15:46 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNYfs-00Fmlo-EU
-	for linux-amlogic@lists.infradead.org; Thu, 02 Feb 2023 12:26:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1675340801;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D+u8VFxD7A4IUSzsKSNfKdOYZFxseMRQ9PUPTVzHGxo=;
-	b=ZihNjJSnprqeVtRsSQnslXL5+snFCek505vmtOwZGmZiSLzOT2DlNS+gEyCC5fVs1fUEQa
-	baz+Kwtz4My1ZqfIpzgQeVkdOsAjl1lEEx9ths2jBFJO7iffzisi6lPz9SU6TdpSjjFnae
-	uy5z1gEPn/zU2OLqpeae/iTNosugVNY=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-591-gN8slsGIOCCa5cL3u_Ntfw-1; Thu, 02 Feb 2023 07:26:40 -0500
-X-MC-Unique: gN8slsGIOCCa5cL3u_Ntfw-1
-Received: by mail-qt1-f197.google.com with SMTP id l3-20020a05622a174300b003b9b6101f65so859547qtk.11
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Feb 2023 04:26:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D+u8VFxD7A4IUSzsKSNfKdOYZFxseMRQ9PUPTVzHGxo=;
-        b=co4V+0hBwX2aSWv3nwFzxPZ4orPLTT58f/U2SzCeEaWkmByilSown8u+E4++pzg6eg
-         TYLbNsmmJj4BAWc1hUhk40+vUrfkqHz7MCuP/viWP4gWysvoVfgRp9rMaFuG/18/Invf
-         zc/WR2ECVE+k7j4MlrMU2pnHISdS+mC23nTxNncScVK+iOMr8hoIzRB8dohz+GMtMEn8
-         G/2IbQoUADYNAHqmfBPAlwcIv/Jj5DEQ0nlnCCfnkC+61R1Nf0YBVEdZ96OfyXix23MO
-         McxQeHvqP5vXoK6M3ynZ7aV5vmuI0d+cRzTDVATiIufZzlDvPqITsFVZcoDHgYZ+FkA3
-         fSyA==
-X-Gm-Message-State: AO0yUKUm8zQdClldCLM0GvlF9S5Cf/EDGMUfciJw44GnnInfEkQ3ijsq
-	fjoqzTHROU1FouOoQCB7kG3XdpZeQ1VhjbTGgAJrVkZUKN2C/VVlxr9WNiR8EYvQfwtQjsSNhV2
-	SXNUp2Rwd/OTG1nN+woAb0IbDcGIrMLQ=
-X-Received: by 2002:ac8:7fc3:0:b0:3b6:35cb:b944 with SMTP id b3-20020ac87fc3000000b003b635cbb944mr10825570qtk.2.1675340799872;
-        Thu, 02 Feb 2023 04:26:39 -0800 (PST)
-X-Google-Smtp-Source: AK7set9bQ7bVnPTqGd+Gqz4c6owsIHZmePFnDh7PI2yagwN/Wh/3IHDjxpyr3/Byx6/CP33Ao4BxLQ==
-X-Received: by 2002:ac8:7fc3:0:b0:3b6:35cb:b944 with SMTP id b3-20020ac87fc3000000b003b635cbb944mr10825435qtk.2.1675340798800;
-        Thu, 02 Feb 2023 04:26:38 -0800 (PST)
-Received: from gerbillo.redhat.com (146-241-113-28.dyn.eolo.it. [146.241.113.28])
-        by smtp.gmail.com with ESMTPSA id b25-20020ac844d9000000b003b82cb8748dsm11178885qto.96.2023.02.02.04.26.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 04:26:38 -0800 (PST)
-Message-ID: <037f01ade9686fc213bbf3b2d04d90bbc786ea08.camel@redhat.com>
-Subject: Re: [PATCH net] net: phy: meson-gxl: use MMD access dummy stubs for
- GXL, internal PHY
-From: Paolo Abeni <pabeni@redhat.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski
- <kuba@kernel.org>,  Kevin Hao <haokexin@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Russell King - ARM Linux
- <linux@armlinux.org.uk>, David Miller <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, "netdev@vger.kernel.org"
- <netdev@vger.kernel.org>,  "ARM/Amlogic Meson..."
- <linux-amlogic@lists.infradead.org>, Chris Healy <cphealy@gmail.com>
-Date: Thu, 02 Feb 2023 13:26:34 +0100
-In-Reply-To: <83e1e852-303b-2460-9034-ce1f91445f47@gmail.com>
-References: <23ecd290-56fb-699a-8722-f405b723b763@gmail.com>
-	 <20230131215528.7a791a54@kernel.org> <Y9pfBpoZ4cezf6Bb@pek-khao-d2>
-	 <20230201210754.143357c5@kernel.org>
-	 <83e1e852-303b-2460-9034-ce1f91445f47@gmail.com>
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37)
+	id 1pNaNJ-00G7JZ-OH; Thu, 02 Feb 2023 14:15:43 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 3A07D5FD02;
+	Thu,  2 Feb 2023 17:15:29 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1675347329;
+	bh=x+mS3XduZ3+b7heAKDTw6F4UI2ioHdw4aSRUeHVmiWA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=bEwIf/urHTx8gra33bGPcLFTDkqa2q49MKxqfvDDN7+xRuSYh8mH2xq57OlWffiv3
+	 qr6+wfGcLWULLuhbAHfW7G5/A3KbgZ3nfz2iEkn1AseOStKl9DrYtIyyKGYqoVHLE7
+	 EF7did1CWKLCvsVvbzsZkuZLZ56ciKlq0fQfTriFVVQLaohxBZ8adV75IIOOIR6ycr
+	 QGm1SKanRrirlH31vQWmC3yyr7FVHzF93g0CmXwsAY4hBj1oaCNjjDJWNS87rItvW0
+	 iRzWTqEKfZXeKhB43BAgjlOn/+oK2hNaXJ13qeh90C1PbAzYMKmu1fjw7ML0d3/CO9
+	 MOtgsOHO+Y6xQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu,  2 Feb 2023 17:15:28 +0300 (MSK)
+From: Alexey Romanov <avromanov@sberdevices.ru>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
+Subject: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Date: Thu, 2 Feb 2023 17:15:20 +0300
+Message-ID: <20230202141520.40003-1-avromanov@sberdevices.ru>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/02 10:55:00 #20831577
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230202_042644_584333_37BF539F 
-X-CRM114-Status: GOOD (  14.04  )
+X-CRM114-CacheID: sfid-20230202_061542_006277_DA944A8E 
+X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,29 +82,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2023-02-02 at 07:30 +0100, Heiner Kallweit wrote:
-> On 02.02.2023 06:07, Jakub Kicinski wrote:
-> > On Wed, 1 Feb 2023 20:45:58 +0800 Kevin Hao wrote:
-> > > The "Fixes" tag is used to specify the commit causing regression
-> > > instead of patch prerequisite.
-> > 
-> > Indeed, what's the tag for the commit where the problem can be first
-> > observed? All the way back to:
-> > 
-> > Fixes: 7334b3e47aee ("net: phy: Add Meson GXL Internal PHY driver")
-> > 
-> > ?
-> 
-> The issue popped up with:
-> d853d145ea3e ("net: phy: add an option to disable EEE advertisement")
-> 
-> This commit added MMD register access to the generic configuration
-> path in phylib.
+Add gpio interrupt controller node.
 
-Please post a v2 with an update Fixes tag, and ev, referencing the pre-
-requisite  in the the commit message itself, thanks!
+Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Paolo
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 6268c323a810..a04ddf0f4cd3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -158,6 +158,16 @@ clkc_pll: pll-clock-controller@7c80 {
+ 					 <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+ 				clock-names = "xtal_fixpll", "xtal_hifipll";
+ 			};
++
++			gpio_intc: interrupt-controller@0440 {
++				compatible = "amlogic,meson-a1-gpio-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x0440 0x0 0x14>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<49 50 51 52 53 54 55 56>;
++			};
+ 		};
+ 
+ 		gic: interrupt-controller@ff901000 {
+-- 
+2.38.1
 
 
 _______________________________________________
