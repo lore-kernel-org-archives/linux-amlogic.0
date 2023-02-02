@@ -4,84 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83B86C05027
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Feb 2023 22:14:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECAD6C05027
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Feb 2023 06:30:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eFIChe49vaPseY+xM3A6n2OPc+Q383Bg1mAwk9YXXqY=; b=Z6v3Mkbk7uFnYn
-	JPyCTw3iBxiCQBpPY08mbfyldUAtg22ANiowK9Ywe1GOlahmQ7wgfxDgKG8WCqnYxkG/M3x4xc4Qa
-	PzppsOytyPTK5IGePKeUNPRgr8dJv4j5DnMOdntaCBdZW6oPDT5yXE9XzpZlBzDR8hU5PBeVupLm2
-	rrdM6bqFU+HC+gxOJTTvVCssdvZ0TzAAlfeBFkTmfQgOeU4MeoM2S0OuNWrDBECg08DwIKrr39jPX
-	p/75LYVq/ugccjr94ow0tWn0HbojlI813pvArGjvBsYN55evC4DEKiDABakkaVZLqYCxvz5gnq8L6
-	AkhALNepDdyQH2CUp4Wg==;
+	List-Owner; bh=32K7gK4E7i8F/iJivvlAWQQjTPTZVJ3FRcTaJDNpmNI=; b=hXc2RM+3DDV1J5
+	6c+YarlfFY8sXdfzwUuIvalhd/DPCLPkI2LW8kX/7KHXqfai+GDDyhNza2/AP8hJ0kXkksCPhUmFG
+	25cpEuzq5PdSlOgJJwj+K6Zck3uPdTCBfOzVSN8+uf5q9ZCosrfHSf1I+tvgJlopEMXBeLo6P0jC1
+	BI9kae89iNVUPewrOLcSFHTjAajsOv2sHJIR4TVS16vUnujE+tfjNslPcKARNw/jG31TDjA5+uuCK
+	W5qdO9z5+rCDWJXao2BXXcdvxujIR2v2LbqTFeR+t5Udn4arDB+C/W65mqy2cKeBkFVXjdtQL034r
+	G7Gct1NRw+JBYS0rYPbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNLMP-00Dl43-VX; Wed, 01 Feb 2023 22:13:45 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1pNT7J-00EY4K-6T; Thu, 02 Feb 2023 06:30:41 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNLMF-00Dl2R-PD; Wed, 01 Feb 2023 22:13:37 +0000
-Received: by mail-wm1-x331.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso7860wms.3;
-        Wed, 01 Feb 2023 14:13:34 -0800 (PST)
+	id 1pNT7G-00EY3L-4D
+	for linux-amlogic@lists.infradead.org; Thu, 02 Feb 2023 06:30:39 +0000
+Received: by mail-ej1-x630.google.com with SMTP id bk15so3056045ejb.9
+        for <linux-amlogic@lists.infradead.org>; Wed, 01 Feb 2023 22:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CNRHDNKDz3PF77hDFv89NP6dgEBns2Rf5wX2Wa7bFI8=;
-        b=h/p2OM4mxGvy1Tl/Mtj7PX3iy1EGHMIuVgAzpipXtMRbXjPzkHXPJvfxa6r0/Ph/Zf
-         8kGgUz62Ubm68nL+6PWXCCKPeeELaoEI/HaTaZeYkaOs7faV++mKUGwgB0cfN19evZaZ
-         r8Nq3cQkYpXmguGZVYFII3o7Xdyr328Ntd11U+Y3Ey1GCiGa/tuz10Ts/HIrcQSPVFeH
-         rhyxlQOdSXepRAjF4OlIKW6BIfMPYuPd44tV8lYAkVHeW5XFe+l6W6+zRlLTC5HPPBOc
-         xSVFkxs8VIs9nl+pImlghdoqBlgiGTKfgmOR7ZAKBcnFBujzcA696eJbN7dQFSq+eFB4
-         AquA==
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u7OUPmdoqA1ASCnvnJ+g3jZcLGp6QAX2wOvHgASoNp8=;
+        b=SJu+4O67I8IzdqGR/k70QEVg1ppY2PLAeCKF1u1QjecAXjO6C1+Edd+7H0ftqH+m3X
+         sM6BxZnsdU/wk5xMIDTGcQQdPxgs/xGJryfZLngglaLcwyMRPc80C2YtBSv8iihRy4E9
+         XRqNV3s+WWzW9JmfyLwMPsrczzJV+BBfkHBD9dBHrVTIvCLzkiVUi9x3NrYYFvliQUMd
+         9e+CcDY9TMjlXLqP8M4ARd3Ii0FUdCfgqCVvaNm0VENndwE1tn3CvYslJbw5Y5Hu6e5e
+         m37Gh1o7iBHMKgEQhglhwv4PU8rymI8PVEQnLcJ0+R/FKiOM6NkNsxNagjq8YDoyiclW
+         kZEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CNRHDNKDz3PF77hDFv89NP6dgEBns2Rf5wX2Wa7bFI8=;
-        b=iHvLmGb6K/rRUBtoSMcd6BPHLcKoxN3qRf2Pa/BYwQAqHs3ipz/54wqgLGpWGC4wwa
-         ptIm19/J0580URCcrKvp4rVdThvy3ww8SNlIpmlwSTNHzRge4kAQmyWZKNKz7WxO7v+0
-         gsQCelI2Z0YcMKSkqunjxpKnIRrYZiej+Mm5O+KxoRVv+TafD37f6Ix/iTzrr/HZZx5I
-         Wnb8iU14Z7+gI1XzVfhWSwIAawJ/qWHizF1COZobgCjomd8GkZmB1gaxJdcFbv+76h2p
-         Pfdh5DbrXsAjbgSGEK96q9M00Jp1UbGpKJWORKFbNC2sJQixc7MgcB7u+LAeeo1cW6nZ
-         J5Xg==
-X-Gm-Message-State: AO0yUKWsjiYNAfjIzTpiqwRGVzuEKu6QOybdifwm+koICmVbgIv24Dia
-	7YGEKBLhhxSUDbOFQqrysG4=
-X-Google-Smtp-Source: AK7set8m1ylKmngS1T2pC+6ncY2Puh9mLc4nJuWQjIDtQIMBCY0jMfdrIrlEl89gFkkPtqnUWZ9vEg==
-X-Received: by 2002:a05:600c:3b16:b0:3d3:4f99:bb32 with SMTP id m22-20020a05600c3b1600b003d34f99bb32mr3488208wms.36.1675289613368;
-        Wed, 01 Feb 2023 14:13:33 -0800 (PST)
-Received: from ?IPV6:2a01:c23:b912:d400:3963:7bc4:12b:ddb3? (dynamic-2a01-0c23-b912-d400-3963-7bc4-012b-ddb3.c23.pool.telefonica.de. [2a01:c23:b912:d400:3963:7bc4:12b:ddb3])
-        by smtp.googlemail.com with ESMTPSA id az24-20020a05600c601800b003dc4baaedd3sm3078760wmb.37.2023.02.01.14.13.32
+        bh=u7OUPmdoqA1ASCnvnJ+g3jZcLGp6QAX2wOvHgASoNp8=;
+        b=BEFbQTN9dE3Q9djlDJVMcOfWv73dFIL/vaRqKCr2IFHE9JMLQCmOXs/ogJMAyj/HMm
+         KDu4Yc5aPOLmI/Jn9Qqcac0C21/pRKoscVU40AdE2aZ4SdHkHh8OlyDqWPodvSyCHfMv
+         o6MejDhhErYJvVbVUCnrpKw7xpbsHhXZQyE28VZ1/7rksS1zRSX5b1iE2p7H0uPZByhQ
+         BHG2Ub5zhiL8OTDHWNpdpVXOH8R4Y7l3LTNNZmWKblGlYw/d12MEVxtj7pqXrYzPnPlL
+         ICzq08z5PTZELs5TXYypoGXlU2crEqxGwrOzcIcaENX5dnY/rajjlZwMej7D9HVPdVzv
+         +ByA==
+X-Gm-Message-State: AO0yUKW7F9FHf5VFPgSTBZviT3LbNLZyW8XeXfyzvNERnE+ASxZjyXom
+	GYsnLIhIdYe1mQFlJNFL/BU=
+X-Google-Smtp-Source: AK7set/MiWq+DtZO9IGSh7aIOfdhElWixdyc3uLY7ShbgoecBI3Youodd+N8teK+EB3axH7Pyj/isQ==
+X-Received: by 2002:a17:906:6d42:b0:887:d2a6:cc54 with SMTP id a2-20020a1709066d4200b00887d2a6cc54mr4844036ejt.30.1675319434194;
+        Wed, 01 Feb 2023 22:30:34 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c579:1b00:2187:237e:ee8:4c17? (dynamic-2a01-0c23-c579-1b00-2187-237e-0ee8-4c17.c23.pool.telefonica.de. [2a01:c23:c579:1b00:2187:237e:ee8:4c17])
+        by smtp.googlemail.com with ESMTPSA id q6-20020a1709064cc600b0084d494b24dcsm11072771ejt.161.2023.02.01.22.30.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 14:13:32 -0800 (PST)
-Message-ID: <b0e502fa-ef11-df82-ad45-9367ff7c75b3@gmail.com>
-Date: Wed, 1 Feb 2023 23:13:31 +0100
+        Wed, 01 Feb 2023 22:30:33 -0800 (PST)
+Message-ID: <83e1e852-303b-2460-9034-ce1f91445f47@gmail.com>
+Date: Thu, 2 Feb 2023 07:30:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
- <20230201020647.GA2318275-robh@kernel.org>
 Content-Language: en-US
+To: Jakub Kicinski <kuba@kernel.org>, Kevin Hao <haokexin@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ David Miller <davem@davemloft.net>, Paolo Abeni <pabeni@redhat.com>,
+ Eric Dumazet <edumazet@google.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Chris Healy <cphealy@gmail.com>
+References: <23ecd290-56fb-699a-8722-f405b723b763@gmail.com>
+ <20230131215528.7a791a54@kernel.org> <Y9pfBpoZ4cezf6Bb@pek-khao-d2>
+ <20230201210754.143357c5@kernel.org>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <20230201020647.GA2318275-robh@kernel.org>
+Subject: Re: [PATCH net] net: phy: meson-gxl: use MMD access dummy stubs for
+ GXL, internal PHY
+In-Reply-To: <20230201210754.143357c5@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230201_141335_867628_7914B088 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20230201_223038_213721_E6CDCFC4 
+X-CRM114-Status: UNSURE (   9.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,80 +104,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01.02.2023 03:06, Rob Herring wrote:
-> On Mon, Jan 30, 2023 at 10:00:24PM +0100, Heiner Kallweit wrote:
->> Convert Amlogic Meson pinctrl binding to yaml.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->> v2:
->> - consider that more than one compatible can be set
->> - remove bus part from example
->> v3:
->> - remove minItem/maxItem properties for compatible
->> ---
->>  .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
->>  .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
->>  2 files changed, 122 insertions(+), 94 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->> new file mode 100644
->> index 000000000..7aaae606b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->> @@ -0,0 +1,122 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic Meson pinmux controller
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +allOf:
->> +  - $ref: pinctrl.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - amlogic,meson8-cbus-pinctrl
->> +              - amlogic,meson8b-cbus-pinctrl
->> +              - amlogic,meson8m2-cbus-pinctrl
->> +              - amlogic,meson8-aobus-pinctrl
->> +              - amlogic,meson8b-aobus-pinctrl
->> +              - amlogic,meson8m2-aobus-pinctrl
->> +              - amlogic,meson-gxbb-periphs-pinctrl
->> +              - amlogic,meson-gxbb-aobus-pinctrl
->> +              - amlogic,meson-gxl-periphs-pinctrl
->> +              - amlogic,meson-gxl-aobus-pinctrl
->> +              - amlogic,meson-axg-periphs-pinctrl
->> +              - amlogic,meson-axg-aobus-pinctrl
->> +              - amlogic,meson-g12a-periphs-pinctrl
->> +              - amlogic,meson-g12a-aobus-pinctrl
->> +              - amlogic,meson-a1-periphs-pinctrl
->> +              - amlogic,meson-s4-periphs-pinctrl
->> +      - items:
->> +          - const: amlogic,meson8m2-aobus-pinctrl
->> +          - const: amlogic,meson8-aobus-pinctrl
->> +      - items:
->> +          - const: amlogic,meson8m2-cbus-pinctrl
->> +          - const: amlogic,meson8-cbus-pinctrl
+On 02.02.2023 06:07, Jakub Kicinski wrote:
+> On Wed, 1 Feb 2023 20:45:58 +0800 Kevin Hao wrote:
+>> The "Fixes" tag is used to specify the commit causing regression
+>> instead of patch prerequisite.
 > 
-> Again, can't have both with and without the fallback allowed.
+> Indeed, what's the tag for the commit where the problem can be first
+> observed? All the way back to:
 > 
-Hi Martin,
+> Fixes: 7334b3e47aee ("net: phy: Add Meson GXL Internal PHY driver")
+> 
+> ?
 
-meson8m2 is the only chip version having a fallback for the
-pinctrl compatible. Is this fallback really needed?
-Looking at the driver it seems that both compatibles
-are handled identically.
+The issue popped up with:
+d853d145ea3e ("net: phy: add an option to disable EEE advertisement")
+
+This commit added MMD register access to the generic configuration
+path in phylib.
 
 
 _______________________________________________
