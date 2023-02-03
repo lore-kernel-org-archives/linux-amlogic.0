@@ -4,63 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E11F3C636D4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 14:56:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41278C61DA4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 17:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ecpjYVx8YFkmzTqQfCeU3Do2jvNFkeglj5RtbFbwldo=; b=hes0AEFAgKlZOc
-	gpDfR8BTtfbXfCBU/wbV24WJZa97nF9JtO+bBrjDcGQRs/lDKvwof6WAuDTN/RBz3e8fNxz+gfgr0
-	ObRqO1IpgshcVlYJaUdvOs0w/SSe7mRx/AnFKQCzaU4IvlySmOrP7Rus7dxxH15k6uRNWKzFwFKCg
-	RZzHqPCFvPsEWvIBheLSDpoSN55rs5t9ae1gbr8pv8C475EXCYpLQNLa9UmAOBpRVx4ydMFzwX5qs
-	tlbvBupdjRUkAJySLqr91mXRbGAfDFGy5YMsJCuoZzVgEx4dQ2M9G+KaT0nmv+9aJj9WB+THRcJkK
-	VD6MuxlyySdl7HQaH1BQ==;
+	List-Owner; bh=SPA1pfsR2+NJa3WnOU682vWwFYg+sUqfoSMyYS+acX0=; b=Ft9AATQ4gqlJjn
+	NzZsD530lmPvAsqJQq/XtIL1+ZIFQL9/M77mJYtXnVhGitmJFUPw8X17nquwYJ3+/9NAUddC8iKs4
+	ZtVUnY0k+mpEOBTCe5I60bSlVV6YfqbmQDm2OhuDYBcjO2t4U+JY8vxwr+jtEVAy5NIN5CGH7Uzrt
+	fDBaDHAS5cK/Ji0xYIb8zHzSJGOV6iq5BngWMJBw3myUTyGqTHK5pFg1NoEsEQWR3k+FZSOJuqq9T
+	hPkYDC8+ZEWVCZ+WbgnGDFTFlWzky2RWEzLOG6GaC/PzJoRSPxDV+Y7BEe80MJaaYBxYnc99moocb
+	3tHuxz/jd1oRC1/YuFEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNxU2-002YhZ-Ud; Fri, 03 Feb 2023 14:56:10 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pO0KL-0039hy-Sn; Fri, 03 Feb 2023 17:58:21 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNxTy-002Ygx-Je
-	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 14:56:10 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id E313AB82ADD;
-	Fri,  3 Feb 2023 14:56:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D1CC4339B;
-	Fri,  3 Feb 2023 14:56:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1675436163;
-	bh=bHTwdQUfTMFSZm5VtpOoEQH5hZ/O5gwP6aGVUcpUMpI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=T2KVSpJUj9K690EgAN5EuTtJGGxDCTHELFkwiKcrgx8WIw8ACPr0OdzILjMcuGVHH
-	 w/nwhMDgvMyG5luAYTt/Atp0Fkwe02Dc2ezLQseA0dVRCUXnlpJ+9ea6glnCUfRbmh
-	 yKKRudgzhFJoKR2Z9gb8CWEql9vGIAS7FC1Z/ViFNF5dkvryXoelnQPi9nP9nc+sUK
-	 VUma/CzQzhj+1cbiU0aTddu23R3ZpzjCOmFiPUlxgrQDbNDzVXXRmic06VuWh7O0i8
-	 ezt45RNs1R4ZaOpniUVkHtYwS4gS/5/+mfY97oIpNvzPGJ8OGED9v6CjOuPbDIlOG1
-	 nARdhXFeG2IwQ==
-From: Mark Brown <broonie@kernel.org>
-To: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20230202183653.486216-1-jbrunet@baylibre.com>
-References: <20230202183653.486216-1-jbrunet@baylibre.com>
-Subject: Re: (subset) [PATCH 0/9] ASoC: dt-bindings: meson: covert axg
- audio to schema
-Message-Id: <167543616131.928818.17902040818579023398.b4-ty@kernel.org>
-Date: Fri, 03 Feb 2023 14:56:01 +0000
+	id 1pO0KI-0039fw-NR
+	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 17:58:20 +0000
+Received: by mail-wm1-x329.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so6573931wmb.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 09:58:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
+        b=S1EjWXdz//eVBIiu80y0i58Nwfp/vPB6JlRYf2vOiL5xiefMP2zINH+qTlJJbRKItY
+         WPrNVD0VpVMglADIzRh8Ojmkhb+O/yZ6DvaCEfVRF7ZEnrTYtwIF13YFx5XNMFgIj8rE
+         uWSA5IlhAOYI0mTPHGzK+xv/oXOiRT/JZGYpW3WMtyFcdn+ofmFkqIFIURJEvwE7FM7Q
+         2TMKBxnxWIbBXDhy/h1s540I8b9ylHqaLRjlafMhockTDHZP+qIiT44NeP9mnh4zsA0s
+         Xclq547eR3BpKU4H5GOz04EFZ1KWSUjYUabfKn1PAQqCB0mIirpl0MmXm/DFU5UC11ms
+         1l5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
+        b=zE2PjCsEi81MpaythnRT9F2jlnVFxxgyyOHy4l5lGYKlESMRBrEAmSkcMhA6EGUKLL
+         ASEahlCP+8S1qjRJ4mcvwgluwNUpTMgYHxV/igitA06OmXRREBGxnE5dYcyx7z+wjhqe
+         ftwH5WLK/liwtTrbf/JkLZzlq5K8/p/DyvW3E/efhkyHcaNUmySZaNNGlv2wKa0PN2Y/
+         2F33tptRShl/iE9VcqTlp6uoYroxJBmAM3y4idMDvuZz/4wxS/m5ij60H2+a//v8T9Is
+         XEKcELH2X6GVI3a3YmxoYNrEj+iZ8nQU//K2CeC3+p3m4QA569s1289S0O3d1sG/Cmnb
+         T7YQ==
+X-Gm-Message-State: AO0yUKWXjqP26aFq5yhYiTWhn/nTpMbA/plvxqKaW9hsYGVQ3/MMp4T1
+	VZcrm6Cdq0DU8jAhGtuKyoFwgg==
+X-Google-Smtp-Source: AK7set/XQawmCDWrVyjPwzNZBBNVKsO+g4KUQAE8B9uS3eeB81KjPN+ttS8KXCXrBfkXJpYejKU66Q==
+X-Received: by 2002:a05:600c:510e:b0:3dc:59e9:9285 with SMTP id o14-20020a05600c510e00b003dc59e99285mr11539024wms.18.1675447094889;
+        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p2-20020a05600c358200b003dc4ecfc4d7sm3609686wmq.29.2023.02.03.09.58.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
+Message-ID: <d72f2c93-934c-67fe-0afd-96bc52b12a9f@linaro.org>
+Date: Fri, 3 Feb 2023 18:58:12 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.12.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 6/9] ASoC: dt-bindings: meson: convert axg fifo to schema
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-7-jbrunet@baylibre.com>
+ <6e6ed493-4748-46ca-7a26-fe9cf6e2377a@linaro.org>
+ <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230203_065606_842260_84E97FBB 
-X-CRM114-Status: GOOD (  11.28  )
+X-CRM114-CacheID: sfid-20230203_095818_809198_82CFBCD8 
+X-CRM114-Status: GOOD (  19.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,51 +98,74 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 02 Feb 2023 19:36:44 +0100, Jerome Brunet wrote:
-> Convert AXG audio dt-binding documentation to schema
+On 03/02/2023 14:27, Jerome Brunet wrote:
 > 
-> Jerome Brunet (9):
->   ASoC: dt-bindings: create component common schema
->   ASoC: dt-bindings: meson: fix gx-card codec node regex
->   ASoC: dt-bindings: meson: convert axg tdm interface to schema
->   ASoC: dt-bindings: meson: convert axg tdm formatters to schema
->   ASoC: dt-bindings: meson: convert axg pdm to schema
->   ASoC: dt-bindings: meson: convert axg fifo to schema
->   ASoC: dt-bindings: meson: convert axg spdif input to schema
->   ASoC: dt-bindings: meson: convert axg spdif output to schema
->   ASoC: dt-bindings: meson: convert axg sound card control to schema
+
+>>> +  resets:
+>>> +    items:
+>>> +      - description: Memory ARB line
+>>> +      - description: Dedicated device reset line
+>>
+>> This won't work without minItems and you should see errors on your DTS
+>> or in dt_binding_check
+>>
 > 
-> [...]
+> The example provided here worked but there is indeed a warning with the
+> axg-frddr variant.
+> 
+> I'm adding a 2nd example so it does not happen again.
 
-Applied to
+If the difference is only in one property, no need. If the difference is
+in more properties - then could be. We do not keep examples for every
+trivial change, because the assumption is that submitter tests DTS as well.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> 
+>>> +
+>>> +  reset-names: true
+>>
+>> minItems
+>> maxItems
+> 
+> Adding this causes troubles with the reset-names definitions in the 'if'
+> clause. If I put min: 1, max: 2 and min: 2 in the 'then' clause I get:
+> 
+>> Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml: allOf:1:then:properties:reset-names: 'oneOf' conditional failed, one must be fixed:
+>>        [{'const': 'arb'}, {'const': 'rst'}] is too long
+>>        [{'const': 'arb'}, {'const': 'rst'}] is too short
+>>        False schema does not allow 2
+>>        1 was expected
+>>        hint: "minItems" is only needed if less than the "items" list length
+>>        from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 
-Thanks!
+Probably because rest of binding does not match. One way is like this:
 
-[1/9] ASoC: dt-bindings: create component common schema
-      commit: e398bbb9834a2f6cbe27cbd72956159ecc92055f
-[2/9] ASoC: dt-bindings: meson: fix gx-card codec node regex
-      commit: 480b26226873c88e482575ceb0d0a38d76e1be57
+https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> 
+> The older devices just have the 'arb' reset.
+> Newer devices have a 2nd reset line (called rst here)
+> 
+> If I just restrict the min and max, it would be valid for the older
+> devices to have 'rst' only - but it is not valid.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+How? Why would you define for old devices "rst" as one name if this is
+not correct?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> 
+> With just 'true', it works as expected (throw errors if an incorrect
+> name or number of names is passed). Min and Max comes from the items list.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Because the rest is not in recommended way. Once you implement it in
+recommended way, there will be no such...
 
-Thanks,
-Mark
+> 
+> Any suggestions ?
+
+Implement rest of comments.
+
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
