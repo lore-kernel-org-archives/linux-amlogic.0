@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94DA3C05027
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 20:21:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B6D3C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 20:28:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7H4/KcL2PNDIL/y7uNkTEN9iMIrxwBqOOk/8ircR/Ic=; b=Xdm+oo73deXZ14
-	8LY3Ym8QAEadp0hPIqFqM7Qxcjc38AoLCer0OtMXqAfhrmJBmoKkgwts3LXWGKC9G5V83MdHJXQQd
-	czKQ8qyj/qhAyviSLWq40M4qxuQ47EJKZSnx/BRqHce2aHZp8l3siRpkH869D3khs5t3GYoazCa6f
-	SzXjmpcTGI4XDP+Ix4RTTVJlLg/0sBeBwoBUNFYVobL2JcgzKb/d26YtH/5oEnhkbGCcSMznRqZz0
-	ZrVUlSpbsFD90OirpeaXWcoM087l3h9TeBkZ9TBooJITo+I6UlaM4CLMN+56l7xFrtGqdI65H5j0f
-	Y4+RLmJP8m8KNd9wa4cQ==;
+	List-Owner; bh=iq3JuqRcx+33qcq0fNsTILA0pUbgEUsmHVmd4muF1sc=; b=iperrWG4ZMs++v
+	obHTpxcd+PACJn92x4gmrpj5rhaSegl8pA2cu1xpkHRFRSL7nmouZfh6Vv6QCy4x6qpUCImFDnjA6
+	3iFzqrZBX6cYV4GE1uT1LC33X7slRfefd4LRNI0FFtfgK3WchzQ/rRIqqRUdxjM+BlJvBgtlltSkr
+	1j8cGFrdUjHe2byCw9w/IWIZG5gCNm+V0U4hvYk7vHTusRjcNk03pNFIl0CVKBooJODjqVeACX+Yi
+	iP6Y5WHPFEbwZKuLlth+DBm881eOAwPT1FwQW0nmVSrS2s5XlkwFgT+yd3MnV8Oyg4odyDDhRgpGB
+	U3q0eq1skg/mOOqOr3tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pO2Yz-003UBM-V5; Fri, 03 Feb 2023 20:21:37 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pO2fG-003VDi-Nn; Fri, 03 Feb 2023 20:28:06 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pO2Yw-003UAm-Rr
-	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 20:21:36 +0000
-Received: by mail-wm1-x332.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso6835296wms.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 12:21:33 -0800 (PST)
+	id 1pO2fD-003VCF-W8
+	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 20:28:05 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id k16so4748299wms.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 12:28:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m5sLjr7aYK315tj89Xz8yTzw8nhiBSznb+bT5o725x0=;
-        b=HLoFOX9M38kF2qyUXFQwXqSnMduKtNxMFBrU5CvSYknJxcduZ84ZUxf/VVFfkk+dwR
-         /WLjnjiBsb1y6V6GqLtfXH8j5KJDNyoWTaR76slT+yDk3LZqAJB1XDDj/ITC4vfTaEDc
-         qFfA1b2qa/H9ba7GlMKHQAetHgjPTM8d4A5x2BWt0AEtogp1MPI5kISnP7fI+Rk6HQNR
-         h71USPCrKliJYX5PoXeGf3p8mOTdD+tGnDRL5uvNeBQpeuYIDUzK7vnKZM0nDi3JChGc
-         rML/UuG3wp30vrDrWJF1gFFn9XzjnHdc5MkgTBcQ5cZL/ZP8JUtO3UVYFG8JILgMYRMf
-         2gQQ==
+        bh=OcaR471TXAjGr31MjNbqXuBFmDxa1S6cNX7l4YGYmRI=;
+        b=SezcXEcWF/dRKemlQQqQWL8NAYRbNZuSckOdAlUWdAlQWpoWXU5+usWAHMA82BZBLg
+         CXMBSlZbEGaxjypt6Nfl0LkI9duN6m5fNPGEgGmIGAZOb5oCE5TO/Od8nQwCnEPL40N0
+         zbUDICs8/GZ8i596nTr05XvUC7rjuRvdgdoAkptotziPI32OLe9w9GB3a75qEeMMne0x
+         UeQMPNIIWo2T08GbT02VdVoXOskEeQOdTZohR5myokK1bR3slxoQ7DzJMiGISiAKXEuk
+         5d6EiVdMUeAWT2NKr/JXCVXQ6bLsF6Hnct6TneOHGvketNvDbD5c9etecDSFFEnA+AJj
+         EcOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m5sLjr7aYK315tj89Xz8yTzw8nhiBSznb+bT5o725x0=;
-        b=fHjXsCqP7NLF5UYZMYY024tijvQ2c3SFGCASdp18m4Kvw0cu/bX3Px0k1u69boSyOi
-         1lgq2+Q3RBrHPCh7OWi0Zc8Tgf9GBaH8xhRmhfbT93wDhidubMgw827FhRW+DNhaxUt4
-         DVN6MrGKcc/haWN6UMirn3n1pFdmvAc8OOiCbV6kdlATVhuh8pllJ2R/z5atAvSjJfRp
-         07sIH6XBl9ak2VvlvVy87NJA8ycla52Jq2xblmtXjBpWF3QGv7IKO87RUUMV179+MgxX
-         I9cjRcW4Ti+H9w3OJyZkleNRDiEZLnAkjf85FPM/GKJegAeeB2WXCcHAmHpynolwwyL+
-         9X8Q==
-X-Gm-Message-State: AO0yUKX2g/niO/awZHLNN5NXCwBx/dAd+KdSqwzrlsumIBB0dQs6qFAG
-	cClmmuIPXDtIB1cZT7tEyqbTdA==
-X-Google-Smtp-Source: AK7set8Gpfp/Oz+hFP5DrhCusCPg/cotAzMpidE7HBO1Avb+cX25jy40Vo3VZeQupr3Q20OM5Hxk4g==
-X-Received: by 2002:a05:600c:444f:b0:3da:c07:c5fe with SMTP id v15-20020a05600c444f00b003da0c07c5femr10596494wmn.5.1675455692569;
-        Fri, 03 Feb 2023 12:21:32 -0800 (PST)
+        bh=OcaR471TXAjGr31MjNbqXuBFmDxa1S6cNX7l4YGYmRI=;
+        b=LNjiwPAo7auvDeWGGNLYCHtofw32pgNUdSfQVtV489Dmnm5OY6rRPSVfwvVgyPMquf
+         IsZKUDCIQ/VRtQI7s9lftkg0W1+dUl8LqsXOJue5hAAFwT/U7cAS51f0uTnjw/mE1euT
+         PTqO/yfBdCue3ulUd3LjgJIo/fmFN3yCKbBANcEtx9Uz8mGjLD3C0yjrl+dfLtMvwMQy
+         Vf/oYgtATN5/cWu2v6mW/3ZlNlHP7O8Jqko7mvHirWD8SzgKjpyMtyeDdCHndUYXZtDg
+         WA5Mlec1v5AdbVfhCAIeLs73DzEsdbwFV2uCKqlI8lz3pao1iwMI7XKXAos9N7+Ye5NF
+         gM7Q==
+X-Gm-Message-State: AO0yUKXulPZW2ysr/og6e9Wdh9y4v7amfWJtBeo3Fmin47t/W3ArhV6s
+	bIrRjp7EP044atCSe9N9SF+VNw==
+X-Google-Smtp-Source: AK7set96RpaTqpX9Bfu005sId7DrlnJXnLTXqwwUkaTAzF2cO0cHdxloiYdhXNMOBbDNxsyHPR3krw==
+X-Received: by 2002:a05:600c:1c06:b0:3d9:fb89:4e3d with SMTP id j6-20020a05600c1c0600b003d9fb894e3dmr11971335wms.28.1675456081778;
+        Fri, 03 Feb 2023 12:28:01 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g10-20020a05600c310a00b003de77597f16sm3803784wmo.21.2023.02.03.12.21.31
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003dc34edacf8sm8466662wmc.31.2023.02.03.12.28.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 12:21:32 -0800 (PST)
-Message-ID: <f9d9bbfc-507d-2092-6ae8-f80ab3d23bd1@linaro.org>
-Date: Fri, 3 Feb 2023 21:21:30 +0100
+        Fri, 03 Feb 2023 12:28:01 -0800 (PST)
+Message-ID: <79474344-0bf1-ba0e-6bae-0ccb4e3a3aee@linaro.org>
+Date: Fri, 3 Feb 2023 21:27:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
@@ -83,8 +83,9 @@ References: <20230202183653.486216-1-jbrunet@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 In-Reply-To: <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230203_122134_970144_7B3DC40D 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20230203_122804_085385_43234C22 
+X-CRM114-Status: UNSURE (   9.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,16 +126,9 @@ On 03/02/2023 20:34, Jerome Brunet wrote:
 >> Then define it as having cells:
 >>
 >> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
->>
-> 
-> The card is provided with the phandle.
-> Whether or not the phandle has cells or not has nothing do with card
-> driver. The card just consums sound-dai. I don't understand this comment.
 
-You said this is only a phandle. Then you have just two options - either
-this is one phandle without arguments (then change it as I asked
-originally) or this is one phandle with arguments (then change it to
-define the arguments like in example I gave you).
+Eh, it is already defined, so my advice is incorrect. Drop the ref and
+define maxItems.
 
 Best regards,
 Krzysztof
