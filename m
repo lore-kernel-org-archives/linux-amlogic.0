@@ -4,76 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8686DC636D6
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 08:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F3ACC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 08:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wButo2FrkZRoWmbFGsBrSRGsdaudUQNy4awJd8Ema1w=; b=xBW9rIy13aE0EG
-	ujCRFv36Pv5KspSoEvzAY/lz2Ibdz5Ky4Vtwe4Z520j4uE+Ic3iC/WFx+LENyqGbv0bdluYspEPn1
-	Qvh71XX6BhMfVend4l/nlR2yp88Bmufi7pfOqSos+T6oYNAwCqAwSthp50EBcb2BfesyIBoVrFjaZ
-	iSjLhUIJHM7JPjlxoaRPd/E2NfJpSo5+rYaArH6GeRFVFod6lFEHnQn5cn8nUBsZkYVliCe7FHXKu
-	eCyXIuldyJw36gGL5L8hJqVSq+aE8oRt2diayejMLh2ObXDbFJfRxx66/06xrl0gQHnw0PyC8bYtc
-	LJt8QGoxBdMN2NpCjWNg==;
+	List-Owner; bh=q5cIeau411utCdlTDZO6uV+AhmAPd+1Bo1mUcS6UlH0=; b=OlvCWE7LLTR/y7
+	gNmnN9Gc+F+TA9hMpTO114OBIhw9/ita2TH1rxy9lJ3Z0yt9yAw4VNVGBi3gG24YmiC8W5NQIH37I
+	fnVgJK8cLURG3EQWpdRNuBEtSYP5F/5uJ+U2YCO4QvdpSrRIvvb+Gv9P/KW6iaef3eDsy7BazgGv7
+	Iw+RG4slAnTDcWoi0h0RSZGvCkRtrNGr6FQvugkcIZqh47wKM4/FoRiCzrIDRcYLeroU7HaFrq4Qy
+	c3y9CMlYg4Xc+0vPSG069vtusli271IQBUugt09g9VXTfUUFrDpoF6+321eqQahQj3I9WW2IQYBYW
+	sVJCXCCNA1YFKA+zmIGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNr32-000vQ3-9B; Fri, 03 Feb 2023 08:03:52 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1pNr3F-000vav-W0; Fri, 03 Feb 2023 08:04:06 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNr2r-000vIT-PV
-	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 08:03:43 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id v17so6662178lfd.7
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 00:03:39 -0800 (PST)
+	id 1pNr3D-000vWM-Bf
+	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 08:04:05 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id o36so3225783wms.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 00:04:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lessconfused.com; s=lessconfused;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZGYEX31cIOUlSxZudKjVopVzn91z3Ew01YpLoqcpKls=;
-        b=S/60yaFdQiaph4QS9kkuj+ea2XwVyrywllXnGIQ+IkTP+ldBv+p6rxiVqeUDCnzyWH
-         LHu9uivsd8Fw/uvmqtQIHvF63F2lo/DeYreDaQUnzGc9jpytJm6bB65qfBvXfdvsGX4Q
-         HdFSE+S/rVYBUN1CVlRW1dCBSYIaGYgdwAI/4=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5n5nzjeWYrzvFdzePtFgwKj0yhRVHY39hpZH36NwKnk=;
+        b=VKuUvjTlX5a1O4eMIYlvvN7JZ19j0qIbN/KBLlJ4miIJCOS10HO5/biPIEzBjlaL8j
+         wJOvFnYXDW/rxLJ/vC2Rh4Bc2rlBVhGOiku0lr+ZhbhOS8GhO3f9cA2XiAx/6XYRgqkg
+         1hIRoiQgIXUBb7+LNc3WmyBNsaY2aS9QxITLZPA//DroZJQRHVZblV0r0NKP4wFGJjC9
+         hEZLRCCW7BSem7OjHHznc7HSP0JqQrilzIwTzuvMQEXzFA5sR+evvkygqIRDw/6lx3CI
+         K+0VwdnsBVuNbJlu7QE1JAGddfd1n4i74dNRpgLBL6cJ+UbGfpFQREllpUEYWxfnFdRY
+         3/uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZGYEX31cIOUlSxZudKjVopVzn91z3Ew01YpLoqcpKls=;
-        b=VFRHyQxIHeotOrB8nbXMOMxshbYhVUzHRed59WYvmsL7UtraM9gwEma2kAHjA9oEcr
-         HNDdkBPRvuUIiVgukyaenHfWQ9nOdzae5GKI7lAl84wRTq1ya1Kpw4tncKA/5gZYfbPr
-         PSgvsulkMoww5pAiaOvSFYGKrMzhNWReAbQ/uAcqi2pKlQCoGTJAu14A7an0ouP6LSM0
-         cxm4CSP5KmydMXN/u2e0kFyf/aVZ1xvSnG9uX9j686OAxZp89Yk7JNUEWBEikjsIhWNP
-         +7FVrTv9T2dhRlo6fNY7qVjOee6XDbD1kL+FNeBBsohpkTWRtW/YpmtVghDgRz+yuzyw
-         l/mw==
-X-Gm-Message-State: AO0yUKUmvlf2rW0FIXWkEReNIDAvqTogxw6futgcjLF1XAm2XgX2+MuG
-	pm7Rz6gGjFioR4CLaux+2m4IAQDZ2mb7h/mZW7jnDQ==
-X-Google-Smtp-Source: AK7set91XwnaYcZbBk/Yz9RWLdFi3h485mqp5EUXwdslWc6MSPZlMY9ANjRIQq6nkxM/JF5EMtZO+TPQ/q336fuis0Y=
-X-Received: by 2002:a05:6512:4005:b0:4b1:7c15:e922 with SMTP id
- br5-20020a056512400500b004b17c15e922mr1719439lfb.214.1675411414892; Fri, 03
- Feb 2023 00:03:34 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5n5nzjeWYrzvFdzePtFgwKj0yhRVHY39hpZH36NwKnk=;
+        b=TekuPXRaC5mYgL5cyLZsvjiCySr5YyKg5leNU9f/kz/6xbVUcNdeckurwJdoNbHKYa
+         +zXYo1Kt5Syvge+KMVHj/srFdpO3runrwe2mSQpKTiMcLUfugWxCbJB6L676zRrbybc4
+         qpB4IxYV9BD8Sm+bdKuUMg3RtRyl/mGBSElrS8KSfL4epw7d5TCKv9G9pV7Jf5v1WG21
+         oVngVMJbH/LEL5+rbwXedEle9gwW8rB19rPuzHDcAat+ZnaJNJQJUlgsnB+5E89e/Tcc
+         y2V+jr/vZI8e6n6gzicMYpkkyj+/GLdYt5VIAmJRmLT15GFRyyGEsorM1NusopXtxa1N
+         ENHA==
+X-Gm-Message-State: AO0yUKW0fBMAcaGUPfX5m0eh/GdlTkdlE0TzidVvRe5sl2kdmghipUup
+	3dP0I+Nn+qY5xaG8xawc52GyAA==
+X-Google-Smtp-Source: AK7set8ndf5+O2ob1W8PMCs/4gc2zLHq73SYbJTh14EOpBU1XesXZgsXJjKB3N2Hs3hq6EQctUIVZw==
+X-Received: by 2002:a05:600c:3d88:b0:3d2:3f55:f757 with SMTP id bi8-20020a05600c3d8800b003d23f55f757mr8759506wmb.20.1675411440191;
+        Fri, 03 Feb 2023 00:04:00 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q10-20020a05600c330a00b003dc3f195abesm1839823wmp.39.2023.02.03.00.03.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 00:03:59 -0800 (PST)
+Message-ID: <3ac4c315-cff1-b313-6936-2fe5ca87c350@linaro.org>
+Date: Fri, 3 Feb 2023 09:03:58 +0100
 MIME-Version: 1.0
-References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
- <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org> <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
- <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
-From: Da Xue <da@lessconfused.com>
-Date: Fri, 3 Feb 2023 03:03:23 -0500
-Message-ID: <CACdvmAhW-uDUK-iL4HT1PgEnRHrBmNr26Q6M=wBYcpZ8=DF4Tg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
- interrupts level-sensitive
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>, neil.armstrong@linaro.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 8/9] ASoC: dt-bindings: meson: convert axg spdif output to
+ schema
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-9-jbrunet@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202183653.486216-9-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230203_000341_836252_5BB3662B 
-X-CRM114-Status: GOOD (  24.29  )
+X-CRM114-CacheID: sfid-20230203_000403_439010_11CD4CC4 
+X-CRM114-Status: GOOD (  19.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,64 +97,142 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jan 27, 2023 at 10:10 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Fri 27 Jan 2023 at 14:02, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> > On 27.01.2023 08:59, Neil Armstrong wrote:
-> >> Hi,
-> >>
-> >> On 26/01/2023 15:03, Heiner Kallweit wrote:
-> >>> The usage of edge-triggered interrupts lead to lost interrupts under load,
-> >>> see [0]. This was confirmed to be fixed by using level-triggered
-> >>> interrupts.
-> >>> The report was about SDIO. However, as the host controller is the same
-> >>> for SD and MMC, apply the change to all mmc controller instances.
-> >>
-> >> Thanks, I applied it in for-next so it runs on the CI tests.
-> >>
-> >>>
-> >>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
-> >>>
-> >>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
-> >>
-> >> I think we should find a better Fixes or perhaps split in 3 so it targets the
-> >> right commit adding the nodes for each family.
-> >>
-> > This would be the cleanest option, right. Practically it shouldn't make
-> > much of a difference. The chosen commit is from 2019, SDIO interrupt
-> > support has been added just recently, and regarding MMC/SD it seems no
-> > problems caused by edge-triggered interrupts are known.
->
-> ... Well, I wonder is this might be linked to instabilities seen with
-> very high speed mode (such as SDR104) and DDR modes. We have seen quite
-> a lot of those over the years. In any case, if it helps stabilize the
-> MMC on amlogic, it would be great if it can be picked up by stable.
+On 02/02/2023 19:36, Jerome Brunet wrote:
+> Convert the DT binding documentation for the Amlogic axg spdif output to
+> schema.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../bindings/sound/amlogic,axg-spdifout.txt   | 25 ------
+>  .../bindings/sound/amlogic,axg-spdifout.yaml  | 83 +++++++++++++++++++
+>  2 files changed, 83 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+> deleted file mode 100644
+> index 28381dd1f633..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -* Amlogic Audio SPDIF Output
+> -
+> -Required properties:
+> -- compatible: 'amlogic,axg-spdifout' or
+> -	      'amlogic,g12a-spdifout' or
+> -	      'amlogic,sm1-spdifout'
+> -- clocks: list of clock phandle, one for each entry clock-names.
+> -- clock-names: should contain the following:
+> -  * "pclk" : peripheral clock.
+> -  * "mclk" : master clock
+> -- #sound-dai-cells: must be 0.
+> -
+> -Optional property:
+> -- resets: phandle to the dedicated reset line of the spdif output.
+> -
+> -Example on the A113 SoC:
+> -
+> -spdifout: audio-controller@480 {
+> -	compatible = "amlogic,axg-spdifout";
+> -	reg = <0x0 0x480 0x0 0x50>;
+> -	#sound-dai-cells = <0>;
+> -	clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+> -		 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+> -	clock-names = "pclk", "mclk";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+> new file mode 100644
+> index 000000000000..c661ce7f8b9d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-spdifout.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Audio AXG SPDIF Output
+> +
+> +maintainers:
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^audio-controller@.*"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const:
+> +              amlogic,axg-spdifout
 
-On S905X, I'm still getting SDR104 failures with this change at both
-208MHz and 150MHz so maybe not completely.
+All usual comments apply.
 
-[    9.071641] mmc1: tuning execution failed: -5
-[    9.579765] mmc1: tuning execution failed: -5
-[    9.761580] mmc1: tuning execution failed: -5
-[    9.871836] mmc1: tuning execution failed: -5
+> +      - items:
+> +          - enum:
+> +              - amlogic,g12a-spdifout
+> +              - amlogic,sm1-spdifout
+> +          - const:
+> +              amlogic,axg-spdifout
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    items:
+> +      - description: Peripheral clock
+> +      - description: SPDIF output master clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: mclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +  - clocks
+> +  - clock-names
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - amlogic,g12a-spdifout
+> +          - amlogic,sm1-spdifout
+> +then:
+> +  properties:
+> +    resets:
+> +      items:
+> +        - description: dedicated device reset line
+> +
+> +  required:
+> +    - resets
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/axg-audio-clkc.h>
+> +
+> +    spdifout: audio-controller@480 {
+> +    	compatible = "amlogic,axg-spdifout";
 
->
-> >
-> >> If the test doesn't report any breakage, I'll probably ask you that.
-> >>
-> > Sure.
-> >
-> >> Neil
-> >>
-> > Heiner
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Indentation.
+
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
