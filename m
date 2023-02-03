@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 165A7C63797
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 07:49:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F9BFC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 08:01:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f3mxhr7FTd94YzfZ+faQwLs3CeHb7qp7ITf/Ka6Ky0c=; b=cQxnmQ3cejmA6N
-	PrcEX030Ae0e2gU3xnIQcS9arKetD6EUmGdmK6Yp8J1sGWoivqssKY86N+EuA/kAc2taKOAjMCvu0
-	dTv3BscOM1N5fQVW91ncWiyf3GETUbwBL5taCs5f2FTMOTh+istRvqqi2CJpZ/AC5f9cC+R27U2nC
-	Z8Pz791Zrlfw+GQ4ji2IQ93t/2dW5uEsUCyoGFHiSAR5mmlI7Jo5NJREdUTcXKWM2p2cLobPEuJ2V
-	pDEY48Es/ZboAfG+ZqA3cx1q4u68HuY6trRfMr5hSLMir+RF+KWR46hMM2VAtAiTbkdP8uSWNWxqe
-	ejCwk7TCUQfTHlU4G7wQ==;
+	List-Owner; bh=G2hFV/WVjPc6EHS7d2hviUaI4v/vwv+CXgFPvLtloUI=; b=gHSVMQO5rHeIJ1
+	/gztJu4EbDFIhXPUdViUOT3twV7ielyqSSNO0qEMvo6dWifHsTgeu02leIUoyJ8xrUUT2UpFmRe3B
+	bumMCBJHe3r0knMYZyZtP1aWR2VmmRmueDRo9ma6JHXp/4Q3YAFPW01OFRD3mWNJH/Hf2Du2WNHVo
+	oFgqm/2sUT+dMh0SoaRtr0puptIHVH3Up2T7HnkybsN0ZuurlXWBFNz2RMHp3wIPdCCeart0PFaZQ
+	hYMyX25TENfTjw78X4HaCyxbBR4bPyQEEGsJ9lUOKbi7XDi/JxI7SGWQZ5fSpX9+Xia5v7OSbQluF
+	H6zaY6U7WkERQpH6101A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNqog-000rWE-4C; Fri, 03 Feb 2023 07:49:02 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pNr0Z-000uXY-2C; Fri, 03 Feb 2023 08:01:19 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNqod-000rVX-AY
-	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 07:49:00 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5402813wmb.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Feb 2023 23:48:56 -0800 (PST)
+	id 1pNr0W-000uVd-5D
+	for linux-amlogic@lists.infradead.org; Fri, 03 Feb 2023 08:01:18 +0000
+Received: by mail-wr1-x431.google.com with SMTP id t7so3881801wrp.5
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Feb 2023 00:01:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v5gfpczBzl62sAvBqjyZghlCn5Q/6Yh+maXELEJGN6Y=;
-        b=HAO2CNODWncVDUlMlFhIV6G/1KE+6/Sw6jH7FCGny1is7RMq7DDZWism/cSfO1QPmY
-         YWpE7obG92rNxg0WDwlz+/itQXkq4uMNl05IuIg+/pAkBmLGzxSGwi5gdT98lReGF6c2
-         OCy8iXA3/12Ozd8KXYIQDIF/TTUXgLnq+3AJzeZhb/6wHRa7CKIo/ZS5MtOTt/uU055F
-         NRHplid1x2R11lA+5CO3Jpjo9z04B70XPxxXHQSs/6Et8FsOkIK3SUEPRvFlBNjnwzst
-         OWF32m2lvF3SPrp18G/+YqmIQFNAgipHr3RGG5TK6SizVkqhhVw0i8U2LJfShkhBH1Hc
-         E70A==
+        bh=7m8f9EyCur2NoecBf9EPSiUVhxuV7BmfZLxYwGH5PkE=;
+        b=guxpr1oTjCCk//LD7tIEzHxIsGt3+k3YvQpKzhFw13be5VyuYmjdsNPg+igN6mJTZP
+         zGlnrReMLxiB3J+1drmNswO3Qb49rGsbvCfnMzZqu0Ie+/XV4N5FbfwjID+ijTM7hPHP
+         GIbxK9BhQLfytmAUWdUM+/gNq+GnZ0OsuywF/SbMQKsr93PH1fIC+vt7Y2Lmueu9gUaM
+         poRSdxMhbnhui64JU/44IJi4GKxbOtspEAv28RD9NbSMDAp4owHo0nUf+D1xZWZBM8Ok
+         gNoOyCoDx9XR7rm687E88E+/uuJISQKkIsyCZtTsNxy7lYuBjzsPX/YK70zuCjgz49r4
+         tpiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v5gfpczBzl62sAvBqjyZghlCn5Q/6Yh+maXELEJGN6Y=;
-        b=QxJD7jegocjEDLzwNckNSWVv680VB4jfds/iiO1puw9kIZ8g70sikWDOI5rHkxwWCY
-         xa+Ex9ShdVvkQfuhoIeevnea1J/Jf3UvF7asvwJOwrIszqgJJ6+MIfIa4/u7dQMpqcDh
-         vP+HX7riHGHXuo8LoO+4ihtUZLg0Uo9+q9eRUxrrSNnNSysgxyrGpRwedAA26oPM8UIf
-         0m9Ao230U+IiKdrfdPg4pgySRNxW4Hmzy6NikS+8kJK03JOc4sG4SYzubBDPIzoOQNL/
-         QY5rsfx6DRPd76wDa4Rrtg6MkTJ7+Qbwc6X8Yi9tvoqTwxUvSk1568TB3+xbZxBkfMvV
-         njIQ==
-X-Gm-Message-State: AO0yUKW8MeTAF9zUVqxMHv3bONZXPb2HVQuNdZ2Gf69U46jyZzqXhfY1
-	bK/MeVEhj1XuqcBlI1lS/JdGRQ==
-X-Google-Smtp-Source: AK7set+oqhPulJShRtcIKzg8mOnQKZu7gCG1/8sG+jlfV7LfKIvKHyV6ok09Mw27P/viyjbWaw/7mQ==
-X-Received: by 2002:a05:600c:1c22:b0:3dc:37d0:e9df with SMTP id j34-20020a05600c1c2200b003dc37d0e9dfmr8634479wms.14.1675410535780;
-        Thu, 02 Feb 2023 23:48:55 -0800 (PST)
+        bh=7m8f9EyCur2NoecBf9EPSiUVhxuV7BmfZLxYwGH5PkE=;
+        b=XIBSGBzB1nwFtdU+NSewx0zA0RT5OEmH/QC/PsdW0SFSX42UcDYNVbL4pCBhJxxoaW
+         BllZ4H5TEXG7NJ1yaZvwzAc0s1kMI/dgV+tt9kzWnkHP5U6s/98KS2QYQBbFUkPzqnBs
+         kt4CSaUC+WAi8tRd2MdunTgXYTypDQaWDw5id5aFvIH5kHVOmqJdG8RWgrF4pZOG0JXF
+         dVuPiHRFymVnUwRUfTmbcwtH4n7bSj5zQY3lIyqHGkAOI/dU8H1ih3snbl97PvbpS70g
+         XxyLA32uBxcsLNgngJkcNmPWyLTtpVx9t6ycPVBlqyzLtJCRjUIYVySPVK8g8RkOHZoa
+         umlQ==
+X-Gm-Message-State: AO0yUKV0MuWVLOi3yu5H+BsdrCu/yppA1uIQmF9Z/muFioFYwtyER051
+	c9VWwXy+BGHW44cNxgJ6T5HeWw==
+X-Google-Smtp-Source: AK7set9OdHSazUeReB4su41/k86JE+27eq8f+sbDll2GVZYYoVPbsF3D45zzdlnihWnmoVcfG3+U3w==
+X-Received: by 2002:a05:6000:144f:b0:2bf:95d6:4789 with SMTP id v15-20020a056000144f00b002bf95d64789mr3757520wrx.2.1675411272156;
+        Fri, 03 Feb 2023 00:01:12 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y6-20020a7bcd86000000b003dc4480df80sm7001220wmj.34.2023.02.02.23.48.54
+        by smtp.gmail.com with ESMTPSA id q6-20020adfab06000000b002bfcc940014sm1393485wrc.82.2023.02.03.00.01.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 23:48:55 -0800 (PST)
-Message-ID: <e2d4c841-b3f9-a23e-6977-4015f8f9de5f@linaro.org>
-Date: Fri, 3 Feb 2023 08:48:53 +0100
+        Fri, 03 Feb 2023 00:01:11 -0800 (PST)
+Message-ID: <512edf50-a74d-815d-1278-39fdeb1c2d35@linaro.org>
+Date: Fri, 3 Feb 2023 09:01:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/9] ASoC: dt-bindings: create component common schema
+Subject: Re: [PATCH 5/9] ASoC: dt-bindings: meson: convert axg pdm to schema
 Content-Language: en-US
 To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
  alsa-devel@alsa-project.org, devicetree@vger.kernel.org
@@ -74,12 +74,12 @@ Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
  <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-2-jbrunet@baylibre.com>
+ <20230202183653.486216-6-jbrunet@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202183653.486216-2-jbrunet@baylibre.com>
+In-Reply-To: <20230202183653.486216-6-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230202_234859_393183_88558306 
-X-CRM114-Status: GOOD (  13.63  )
+X-CRM114-CacheID: sfid-20230203_000116_253795_FABE9E36 
+X-CRM114-Status: GOOD (  20.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,31 +97,152 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 02/02/2023 19:36, Jerome Brunet wrote:
-> All DAIs are component but not all components are DAI.
-> Move the component properties (sound-name-prefix ATM) to a separate schema
-> file so it can be used by non-DAI components, such as auxiliary devices.
+> Convert the DT binding documentation for the Amlogic axg PDM device to
+> schema.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-
-
-> -properties:
-> -  sound-name-prefix:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> -    description: |
-> -      Card implementing the routing property define the connection between
-> -      audio components as list of string pair. Component using the same
-> -      sink/source names may use this property to prepend the name of their
-> -      sinks/sources with the provided string.
+> ---
+>  .../bindings/sound/amlogic,axg-pdm.txt        | 29 -------
+>  .../bindings/sound/amlogic,axg-pdm.yaml       | 86 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 29 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+> deleted file mode 100644
+> index 716878107a24..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -* Amlogic Audio PDM input
+> -
+> -Required properties:
+> -- compatible: 'amlogic,axg-pdm' or
+> -	      'amlogic,g12a-pdm' or
+> -	      'amlogic,sm1-pdm'
+> -- reg: physical base address of the controller and length of memory
+> -       mapped region.
+> -- clocks: list of clock phandle, one for each entry clock-names.
+> -- clock-names: should contain the following:
+> -  * "pclk"   : peripheral clock.
+> -  * "dclk"   : pdm digital clock
+> -  * "sysclk" : dsp system clock
+> -- #sound-dai-cells: must be 0.
+> -
+> -Optional property:
+> -- resets: phandle to the dedicated reset line of the pdm input.
+> -
+> -Example of PDM on the A113 SoC:
+> -
+> -pdm: audio-controller@ff632000 {
+> -	compatible = "amlogic,axg-pdm";
+> -	reg = <0x0 0xff632000 0x0 0x34>;
+> -	#sound-dai-cells = <0>;
+> -	clocks = <&clkc_audio AUD_CLKID_PDM>,
+> -		 <&clkc_audio AUD_CLKID_PDM_DCLK>,
+> -		 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
+> -	clock-names = "pclk", "dclk", "sysclk";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+> new file mode 100644
+> index 000000000000..d3da2f8ba7b1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-pdm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Audio AXG PDM input
+> +
+> +maintainers:
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +
 > +allOf:
-> +  - $ref: component-common.yaml#
->  
+> +  - $ref: dai-common.yaml#
+> +
 > +properties:
->    '#sound-dai-cells': true
->  
+> +  $nodename:
+> +    pattern: "^audio-controller@.*"
 
-Probably we should require sound-dai-cells at some point, but anyway:
+Drop
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,g12a-pdm
+> +              - amlogic,sm1-pdm
+> +          - const:
+> +              amlogic,axg-pdm
+
+One line.
+
+Please use the same coding style as we have in other bindings or
+example-schema.
+
+> +      - items:
+
+Drop items
+
+> +          - const:
+> +              amlogic,axg-pdm
+
+Keep in one line.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    items:
+> +      - description: Peripheral clock
+> +      - description: PDM digital clock
+> +      - description: DSP system clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: dclk
+> +      - const: sysclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +  - clocks
+> +  - clock-names
+> +
+> +if:
+
+Keep in allOf here (need to move ref from top to here)
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - amlogic,g12a-pdm
+> +          - amlogic,sm1-pdm
+> +then:
+> +  properties:
+> +    resets:
+> +      items:
+> +        - description: Dedicated device reset line
+
+Define properties in top level properties.
+
+> +
+> +  required:
+> +    - resets
+> +
+> +unevaluatedProperties: false
+
 
 Best regards,
 Krzysztof
