@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A2BDC05027
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 23:55:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E55CC05027
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Feb 2023 23:55:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MMSpUvq20gMKGLcqA0tCXZ9ta72QelP8yS7tb9nyltw=; b=Ui3bstG5ctVvSj
-	xhYCg0Ic/YJy8nqreCqiY30xThlhq/uV9VCgq1Vhe/hCSM+kHHhWa8uvaq9F4S5PWPITBg8FkVeKc
-	EpqarsYPflchudgFo4COLFz0y0RGAjcHy7l5gA4P1sZIdajHd+XrIB7dsxFVhHmrjRhnzQEOXxH51
-	aDNl0kUqgGO0DwYJ2/BKu4eHKngczmJxJ9ISdUSNWbXpaSQ2IBrRzUc4TeTZJ16j6OzBvT2AIY4td
-	r/CqzUJk+DkEbnvuZLOK6It7WAEozhLgqaoOwUL/SZIUVk17+64faQTjl2xDXfrqiQnkfvQrU7vfG
-	kpBUiln6s+f1CCkit5Mg==;
+	List-Owner; bh=ftljNggkUM5XQEZf+3j+jcb1ZJPCqQEuJVGS5yL8S/s=; b=zVPfIB+XnUdsmQ
+	Ogp3P2J1KUU263QFN1mCKsmSuhQqseNonHO/wPF8n7GsGOBMX23hyvVDlyJ0MmTF0WodCgjHD2Rko
+	ymkuO7z4T/oZwL7L3UU80qNRcTggNm14vlSeAS5n7TjKbXiaYp6tuO5dizAs8qhp4Igl7udRiq0za
+	X6P3/SLnxC+NaWhPLgE2D/7bAcRajkhRUtNS2EqW1XGTP6twU3ddQSjq+pysi1cf1CPlWJevXxulv
+	laZtJIPuIlwDNES4tjK269VVvI2q7zNrY3Sq5vH/q+e4RCfC88/RtJl6RaCMIBIfqQMmaHEqp7z9N
+	jLT1Ys6FSusdmZJybJKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pO5tc-0043rQ-JZ; Fri, 03 Feb 2023 23:55:08 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1pO5tl-0043t6-7y; Fri, 03 Feb 2023 23:55:17 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pO5tZ-0043p2-Gq; Fri, 03 Feb 2023 23:55:06 +0000
-Received: by mail-ed1-x529.google.com with SMTP id x7so6690566edr.0;
-        Fri, 03 Feb 2023 15:55:00 -0800 (PST)
+	id 1pO5ta-0043p5-O2; Fri, 03 Feb 2023 23:55:08 +0000
+Received: by mail-ej1-x635.google.com with SMTP id mc11so19614647ejb.10;
+        Fri, 03 Feb 2023 15:55:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IjF+AyumbkCroYCpRQKcqM9cxRCnUovfKnLOGpRIN+s=;
-        b=FKCCAVUddag1opHQeKvMv4wdWqCwre69SRK8n27XialLZjd8H6hUcOfTvJG1KXcUaA
-         tXR6HisbAoAlPxxz2fS6sm2qwptrTYIzVe4K/PVUBSPFHIkrH2P2ASQvlTDxxE4xM5Uy
-         Qrx1XfN11zQb0leJtFcptPQYZCHVH1FB4Za8si9DZpFu/S7yOfloqRey3MT7FgMMgiQS
-         oci9TUCK2JRiS6IA8gQZDv87KzAhiY7U4kjtAvN4xrkQXybNHqFpWsU/QTPNGwPsgbAd
-         G1xUZyDFlms2Sg1jr01BH18ADmhQ2TPgr/9nKkltCMHUKOk1syS7Z9+Fc+Nl+B8eFIOM
-         2riQ==
+        bh=B5szyujuXXZvpHfx5ixivTtqq4kbda1YQiNvs6P56sM=;
+        b=V/yndW6G5Khi4mY4pY9vfL6FkgwaJ4UMRnSXIJM678O4jSMDXJCLF+txfC3zq0+7ZQ
+         TT8Ujb3OIUTL+G7NHMBDlQ1nkFU6jeGyizeMMxVW5/m7SN8MIrMb4SKsw4gx+Ndhssw6
+         z/EGjjPppap7hj/nKpRCvgd0C28zAAHqKyikh/3w2Bu+6Qc7vZwIfgXI6DCfXzYTH4l2
+         MI0LjYb9WmRy+uvcooR/5ThKtGjX0wnfEjvE1hRxwgefxuMgIGAR5BvoTHmu6kBthmwJ
+         GUea+Ul5gbsnPVzHvMEV/D7EuUP61DQQ8k8M8C7ja8xfuyqUBVc9X0svEWv7eEvxqElK
+         +Oow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IjF+AyumbkCroYCpRQKcqM9cxRCnUovfKnLOGpRIN+s=;
-        b=Uci8roKACfH0B6AOjK7aJ3MQNPh3g2x9xcM/LV1i59E/i9d6wBpTkFIjhEdKdWwbkv
-         Mzod/EQmHPmbkHnBfkfMD31+M5CDHe/+9nQj4vc30oEFay9PBP9V7+TpwTH7KHVzq3bk
-         P9h6AefZ3woigFB56ghcX7FF/T09i1zuMKVFp1vYGutmHuWbo3oCKHOrSZ9O5Hw0FNRV
-         q9lSz5aYOzXD/pwGkugmoL8mxJX4g7Ez19n2W5LiDAlbxyFwNhG/oLXHK0G+ztijuq+n
-         +FLqnszdbthL8pgMnezdTQcOnoQDVHs0X+rLt/jhCRjpsPPsmZj7gw0XDPYGfYeQuO/D
-         PQOg==
-X-Gm-Message-State: AO0yUKUHK3NLNLJ+KvKbGGHxb03xZycNdx8yl4DBEh+5/mYABzli1Yuq
-	GwS9t2Aq/ej2Q67JXgTA490=
-X-Google-Smtp-Source: AK7set/8EtO/rSBe+ssFcgZE1P/ihXSBguQMxtMY5jcbuGFFuR8NJaiNvM//B+KsvSsAkT7LfrU9FA==
-X-Received: by 2002:a50:aacf:0:b0:49c:fdd2:a47d with SMTP id r15-20020a50aacf000000b0049cfdd2a47dmr12624790edc.37.1675468498814;
-        Fri, 03 Feb 2023 15:54:58 -0800 (PST)
+        bh=B5szyujuXXZvpHfx5ixivTtqq4kbda1YQiNvs6P56sM=;
+        b=HrtQkDy8tvIJHZdlRSS0HJ20+CcmS+dCpHrrHW4OPJoZnUDnXH494enIcmNS68RiMz
+         l9HqgmpzM3IeZVGU7oxjwiEJoRypBLmuESZ7P08oIf/ynrqMw68qLUtQG//qEc6wC1nA
+         DADbdGRnEx/ntveCk9iszWymjilQfbc3meFtjAo5HHoBAm6KZb9q5OQTEMoElNEJSRaz
+         nUmWHU7nbw+eHqCfDb9q6jZ23JMCkmKlnwsZQboppn5jQcUC5xvL1+ZhLgfBneBGiy0W
+         Kvz8xaOsKjP/Av39C/bh3au9lbKBl4Us+rX5Cz/c+2PhjZHzidiQDqC+GXfZDyt2j16T
+         k+7g==
+X-Gm-Message-State: AO0yUKUXm7K4UKKoVsmDzYVwDN6f8cLy7dSBjiE5kEBm2bky0lelBvHP
+	JvakO396lNPfqQTYwWxFp2s=
+X-Google-Smtp-Source: AK7set+US4/Wmk03TuWdp+ujn1Hpoc7KrqhYQdTBXn8/qmtcZAFC8XTsWlzfbF8uqODk2+pvjHTZsA==
+X-Received: by 2002:a17:907:c20c:b0:883:3661:97e5 with SMTP id ti12-20020a170907c20c00b00883366197e5mr11825031ejc.50.1675468500022;
+        Fri, 03 Feb 2023 15:55:00 -0800 (PST)
 Received: from ?IPV6:2a01:c23:b81c:5800:95fd:ccbf:6c44:23f7? (dynamic-2a01-0c23-b81c-5800-95fd-ccbf-6c44-23f7.c23.pool.telefonica.de. [2a01:c23:b81c:5800:95fd:ccbf:6c44:23f7])
-        by smtp.googlemail.com with ESMTPSA id r17-20020a05640251d100b0046c7c3755a7sm1792895edd.17.2023.02.03.15.54.58
+        by smtp.googlemail.com with ESMTPSA id v21-20020a509555000000b004a9cb25d1eesm1139909eda.87.2023.02.03.15.54.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 15:54:58 -0800 (PST)
-Message-ID: <6d8f9fdc-7c9e-8e4f-e6ef-5470b971c74e@gmail.com>
-Date: Sat, 4 Feb 2023 00:53:35 +0100
+        Fri, 03 Feb 2023 15:54:59 -0800 (PST)
+Message-ID: <728f159b-885f-c78a-1a3d-f55c245250e1@gmail.com>
+Date: Sat, 4 Feb 2023 00:54:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: [PATCH 1/2] mmc: core: add devm_mmc_alloc_host
+Subject: [PATCH 2/2] mmc: meson-gx: use devm_mmc_alloc_host
 Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>,
@@ -77,8 +77,8 @@ Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
 References: <e7880df5-43ab-d6b5-0ac3-440adfb12808@gmail.com>
 In-Reply-To: <e7880df5-43ab-d6b5-0ac3-440adfb12808@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230203_155505_593563_BDFC8593 
-X-CRM114-Status: GOOD (  11.18  )
+X-CRM114-CacheID: sfid-20230203_155506_818973_DA2B43AB 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,66 +95,121 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a device-managed version of mmc_alloc_host().
-
-The argument order is reversed compared to mmc_alloc_host() because
-device-managed functions typically have the device argument first.
+Use new function devm_mmc_alloc_host() to simplify the code.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/core/host.c  | 26 ++++++++++++++++++++++++++
- include/linux/mmc/host.h |  1 +
- 2 files changed, 27 insertions(+)
+ drivers/mmc/host/meson-gx-mmc.c | 52 +++++++++++----------------------
+ 1 file changed, 17 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-index d17eda753..6a7475ad7 100644
---- a/drivers/mmc/core/host.c
-+++ b/drivers/mmc/core/host.c
-@@ -588,6 +588,32 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index be1a972c2..a2fc25467 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1185,7 +1185,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	struct mmc_host *mmc;
+ 	int ret;
  
- EXPORT_SYMBOL(mmc_alloc_host);
+-	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
++	mmc = devm_mmc_alloc_host(&pdev->dev, sizeof(struct meson_host));
+ 	if (!mmc)
+ 		return -ENOMEM;
+ 	host = mmc_priv(mmc);
+@@ -1201,46 +1201,33 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	host->vqmmc_enabled = false;
+ 	ret = mmc_regulator_get_supply(mmc);
+ 	if (ret)
+-		goto free_host;
++		return ret;
  
-+static void devm_mmc_host_release(struct device *dev, void *res)
-+{
-+	mmc_free_host(*(struct mmc_host **)res);
-+}
-+
-+struct mmc_host *devm_mmc_alloc_host(struct device *dev, int extra)
-+{
-+	struct mmc_host **dr, *host;
-+
-+	dr = devres_alloc(devm_mmc_host_release, sizeof(*dr), GFP_KERNEL);
-+	if (!dr)
-+		return ERR_PTR(-ENOMEM);
-+
-+	host = mmc_alloc_host(extra, dev);
-+	if (IS_ERR(host)) {
-+		devres_free(dr);
-+		return host;
-+	}
-+
-+	*dr = host;
-+	devres_add(dev, dr);
-+
-+	return host;
-+}
-+EXPORT_SYMBOL(devm_mmc_alloc_host);
-+
- static int mmc_validate_host_caps(struct mmc_host *host)
- {
- 	struct device *dev = host->parent;
-diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-index 8fdd3cf97..812e6b583 100644
---- a/include/linux/mmc/host.h
-+++ b/include/linux/mmc/host.h
-@@ -527,6 +527,7 @@ struct mmc_host {
- struct device_node;
+ 	ret = mmc_of_parse(mmc);
+-	if (ret) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_warn(&pdev->dev, "error parsing DT: %d\n", ret);
+-		goto free_host;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "error parsing DT\n");
  
- struct mmc_host *mmc_alloc_host(int extra, struct device *);
-+struct mmc_host *devm_mmc_alloc_host(struct device *dev, int extra);
- int mmc_add_host(struct mmc_host *);
- void mmc_remove_host(struct mmc_host *);
- void mmc_free_host(struct mmc_host *);
+ 	host->data = (struct meson_mmc_data *)
+ 		of_device_get_match_data(&pdev->dev);
+-	if (!host->data) {
+-		ret = -EINVAL;
+-		goto free_host;
+-	}
++	if (!host->data)
++		return -EINVAL;
+ 
+ 	ret = device_reset_optional(&pdev->dev);
+-	if (ret) {
+-		dev_err_probe(&pdev->dev, ret, "device reset failed\n");
+-		goto free_host;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "device reset failed\n");
+ 
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	host->regs = devm_ioremap_resource(&pdev->dev, res);
+-	if (IS_ERR(host->regs)) {
+-		ret = PTR_ERR(host->regs);
+-		goto free_host;
+-	}
++	if (IS_ERR(host->regs))
++		return PTR_ERR(host->regs);
+ 
+ 	host->irq = platform_get_irq(pdev, 0);
+-	if (host->irq <= 0) {
+-		ret = -EINVAL;
+-		goto free_host;
+-	}
++	if (host->irq <= 0)
++		return -EINVAL;
+ 
+ 	host->pinctrl = devm_pinctrl_get(&pdev->dev);
+-	if (IS_ERR(host->pinctrl)) {
+-		ret = PTR_ERR(host->pinctrl);
+-		goto free_host;
+-	}
++	if (IS_ERR(host->pinctrl))
++		return PTR_ERR(host->pinctrl);
+ 
+ 	host->pins_clk_gate = pinctrl_lookup_state(host->pinctrl,
+ 						   "clk-gate");
+@@ -1251,14 +1238,12 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	host->core_clk = devm_clk_get(&pdev->dev, "core");
+-	if (IS_ERR(host->core_clk)) {
+-		ret = PTR_ERR(host->core_clk);
+-		goto free_host;
+-	}
++	if (IS_ERR(host->core_clk))
++		return PTR_ERR(host->core_clk);
+ 
+ 	ret = clk_prepare_enable(host->core_clk);
+ 	if (ret)
+-		goto free_host;
++		return ret;
+ 
+ 	ret = meson_mmc_clk_init(host);
+ 	if (ret)
+@@ -1353,8 +1338,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	clk_disable_unprepare(host->mmc_clk);
+ err_core_clk:
+ 	clk_disable_unprepare(host->core_clk);
+-free_host:
+-	mmc_free_host(mmc);
+ 	return ret;
+ }
+ 
+@@ -1371,7 +1354,6 @@ static int meson_mmc_remove(struct platform_device *pdev)
+ 	clk_disable_unprepare(host->mmc_clk);
+ 	clk_disable_unprepare(host->core_clk);
+ 
+-	mmc_free_host(host->mmc);
+ 	return 0;
+ }
+ 
 -- 
 2.39.1
 
