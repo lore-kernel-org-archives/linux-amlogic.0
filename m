@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 200FDC636CC
-	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Feb 2023 23:07:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F110CC636CC
+	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Feb 2023 23:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/tkUwmP56x3VHC1NxQTijNHKVza7KElGNVgu4v95JpY=; b=FPvRvcaDkHvOg7
-	gQO4VLmW/BGDfbpHe0CcaBta6XDADyMwToXYCMOr4SoV3LCDDJaMCRkoZPkzELL9yugW1LPyQCv+h
-	qELCp2e30oOtWeuxM4hlotFog1oOEUdCA6UaPgqrkxLUgbSnMd+HH8uGdYTN4VmCHvCnnk8jOVnLV
-	4UOIxVL/dyPOzFcgAwFQUGK3Pmi8niNN/JlGu0Zi9WtYC1TqQ5cEWJe5SqAi7Uw2Nt/+7iRY/wQNH
-	eZOEHSPYaVlOs1tOF92jlTcwClDOpk3DMdLLPS8Kj6NmvixsKMdNuP9mz7nWIt6DYwuAFVKh+vS9U
-	k/NK4N/asnecjyk7maLg==;
+	List-Owner; bh=/tkUwmP56x3VHC1NxQTijNHKVza7KElGNVgu4v95JpY=; b=abPojw7+9zRJI+
+	tNzj3zzyaezP9ZB8qVIbl3UtmWkKL4i50VuOHlEMOTQG8699a9bXqAnENhiNVG9zJchOB9LT6jaaS
+	QGvM5xMUZDqBW03HMvCB7BOdlu9W2umS7FSE6wZIIKfLieMUtqhlNm160ca573tGLb7Fq5OWN4lqL
+	tK8LevkYkUSDy7TVfrnXp1M5ORzYD5DShO0QfygLvtSicrbiFRsava6BTHB2BvvtUeglKX3u2bbPh
+	O1mpak62XYGGNrjdv3z0IbnFFlu1FYiEm5aELeGyk9xyo9/w+2jL4JrWBgCCE60y/PuPMsZ4/2z+C
+	jhyqhut/IzrtqKnqWbYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pORch-005fft-18; Sat, 04 Feb 2023 23:07:07 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1pORcw-005fkL-KO; Sat, 04 Feb 2023 23:07:22 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pORce-005fej-8s; Sat, 04 Feb 2023 23:07:05 +0000
-Received: by mail-ej1-x629.google.com with SMTP id p26so24667267ejx.13;
-        Sat, 04 Feb 2023 15:07:03 -0800 (PST)
+	id 1pORct-005fj9-Ux; Sat, 04 Feb 2023 23:07:21 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id bk15so24737923ejb.9;
+        Sat, 04 Feb 2023 15:07:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
         bh=bcb1s9VJkccwiv9hfLYBUmr2IZ71QXiGTqX43dsIWtA=;
-        b=iqKZ7/2QMGcNBHl2zhcSWT0Go4Cnn83/XFH+fJ8f93K67lUCYdXWcSgQOCF43tCbe0
-         Y3CPT9M0KORfH4ZpO5coHLvsitVIPkgC23pzq1MPZQn5muBUIWDKwpP0ztsCs4WWyIAF
-         AGxweuS/dOBKUgWxtLqZbU8VzPt3hEFN6Q3sao4TbKeb8qR8krcFaM4bXSgtc9NP7ViM
-         LTGWij20RPkSMZmb19GRAfrWSgHZQIZGxVN8pJrC25rxRjzxWs2YxCC/tl2C/hpksP1c
-         +TcmDirlh6/7DBswXvv9tOOux7rJHGzpQM+SVj0bdI5zHmdccbsrR1x12ZWbvP7Xjj4L
-         yOFA==
+        b=DnElZdAbz0UA9aV2RnWHh7OySKDvNWkN1m/VIUV+9yTJP6ErTFFBwr8y136ZhwLsUf
+         sC0f9oFAe+T9F0Ov5zJdsSJhvUigwkh9P0dR2CoA7GXOxF0YJhx/UhWTu5ZSGxNwwOjh
+         Esa8KO84U2Qd2B6XsWzhYhK7CnD8g7uGZLuTNlM7mnw50atlm4rFjr+D+OvKST8hRmv9
+         VDllvXpCpkP/RQZnIP+028G5yyZN9MOzimTriJByI9uw8DLirxwDl0KaiS+MX/YrJcNJ
+         ZU4rUVQhB8L7RECOcNHBZhMiNHUftZxiBCpMLP5gQQ4FZJrh/Nx38tpGoICyVLf/2xy0
+         PInQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
         bh=bcb1s9VJkccwiv9hfLYBUmr2IZ71QXiGTqX43dsIWtA=;
-        b=7ddIAIdWb8UExBdC7HVWEbOJUcTpcdOLhVyRJGzTM2RGibwbFYhGtCRmujVlgunIBg
-         btEpmatm06fGoGJDauNGW/qOFwwhu2CY9Lt74ceHqJsY2yqPx4dtcHJ8S7NvayojeSBI
-         ktXpmse120mcqgX7lEoa+5TEmr3cGuUkteTr6V9k8zEzEggW0Q48K35nCD/IVA6vMlKF
-         2ofPHolNjUF+149kgAJgZao2/+yPAb3Np9bmzgFq3AwhLVUMReQkTliZjIVRySRj9Cvw
-         RmCp7X7WpDQGn+WiR0vAfZB+Vb4xhgCb9txt9fzkYkhmGG5R/TdvQjz3/zhBnFqjsUwj
-         VbPg==
-X-Gm-Message-State: AO0yUKVZRwygONtGT3tE3JbYw9+PVJKosDgz8AblORy14Y4dbHh5z7pH
-	oAkT6/PTYVDwcc+OhjcjLUPkhPkp6MPSq2dvn5E=
-X-Google-Smtp-Source: AK7set8dlk/12WJdxLKyI1EkZFKpAReFptsRHZJwEP5g7SdpXMu2cnevSl2MhoMzH8y5Q51SWKBrguS9muf+ZfrC1aE=
+        b=fIpSuUs9ly9Kj3udJB8THoJJSIY0qb5ly0IEU3Xy/Y8CmDdNBBWtYxUxRgEYJuWmMo
+         YZAprMa5y23I7QMpWOubPJcSOvg56SuZCzd4C8/V6HKvKX7WVMDFInfW+U0Opc7eNcde
+         lJx1YPmqeU8aKu+rE/CY9LX03aP4ifCeDelfZF7PltzWbN08qrSDMu6dVBeRg2JIxD+S
+         DhMZ9n0oETM2NoZwZlCFYwCF8ZxmKun98F1i9mR4LASQ4+DUXYlYhD6GcPM2iyWcr/Ri
+         rLQw6pzSbSVjoqMqUtvnUrpQiPxKq2RMx6kktNNs33v9JTjuyJMHhcb76nLLFA3xouNz
+         Oj4A==
+X-Gm-Message-State: AO0yUKUF5Jp7TI9ND3bx9Gw2HT4VowZK02roHwH2Lc6f+XxzsGMzeNcW
+	ikjXlWgkdeQxPI/FaXuDlo3KeZ91m5PYgDRsKXQ=
+X-Google-Smtp-Source: AK7set/ODJy/URBkGr9o1ZrujcLOio1cN277qos2Je4uRqqkh3LXE+/ZO3mxrgcpuWIkys8l/g7l1oOcUMKyfOatV6E=
 X-Received: by 2002:a17:907:9916:b0:886:2823:423e with SMTP id
- ka22-20020a170907991600b008862823423emr4321280ejc.284.1675552021901; Sat, 04
- Feb 2023 15:07:01 -0800 (PST)
+ ka22-20020a170907991600b008862823423emr4321388ejc.284.1675552036974; Sat, 04
+ Feb 2023 15:07:16 -0800 (PST)
 MIME-Version: 1.0
-References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com> <66f77c32-2678-3e31-fb00-1294ccaa6045@gmail.com>
-In-Reply-To: <66f77c32-2678-3e31-fb00-1294ccaa6045@gmail.com>
+References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com> <1ce888df-6096-73de-a98a-354d086428d4@gmail.com>
+In-Reply-To: <1ce888df-6096-73de-a98a-354d086428d4@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 5 Feb 2023 00:06:51 +0100
-Message-ID: <CAFBinCC+4WLgWFn6bPrRVnRwZ46_Fi0gVoh6nHwV2BEwFQgh=A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm: dts: meson: adjust order of some compatibles
+Date: Sun, 5 Feb 2023 00:07:06 +0100
+Message-ID: <CAFBinCDqkz_fXV8JGOn=6Zph_MNU7q_1Qb67Jfd+u4o6Gj_3Jg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: meson: adjust order of some compatibles
 To: Heiner Kallweit <hkallweit1@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
@@ -73,8 +73,8 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, linux-pwm@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230204_150704_327873_CD6B9161 
-X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-CacheID: sfid-20230204_150720_022827_6BBA3DCE 
+X-CRM114-Status: UNSURE (   8.25  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
