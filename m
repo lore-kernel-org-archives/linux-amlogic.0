@@ -4,86 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B6A3C636CC
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Feb 2023 00:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E83EC636CC
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Feb 2023 07:58:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:Cc:References:Message-Id
+	:Date:Subject:Mime-Version:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uT7BGoVNCfSD4h50NytUKS+zZT1ATRWxn/JMIKzR21A=; b=MkQ1hFjQLmjZrv
-	EDjwCOnmoY+aoBUIouU7akB/sM+aKIXK3nBv4aPCeoYKdYiMKL2PppcHcMq/iogtemjO9e3q5tLqA
-	0tNV3n/7ZUMvsLXQcbsIj7ng0wHrJUORuN8wYPMKXRI5vqszduG18zV8uETjLTmhsZMt1lkHoMKeI
-	J0p7NiTEaD4ioJHnZWoY60fakX1P80ct/wFQxrCL5nuOgai8oiU5gZYVRVyVEB0OM7+rqjorZYhhh
-	Ir5vzrCwo32v4rzm6HTXAHUSdASDEaKC+Jt+tR/4wdWb1BVPRmOFNlkAma8HO4VFlwm/hTqtrDU9M
-	Zml85aX1XttCkINu3hSQ==;
+	List-Owner; bh=3rb6U1v9n2JDHIJFjGOWP3rgyS9b3pyjH2lmcniFxPU=; b=co/6UH5MOL1zVw
+	NDlcN/LJJqgmZ6CTWalv5tOaTi8DtaXU/MxoTflw6xFYwBHbT6ZTYUuUeYN6Q8nllNAwyKUeNic/3
+	lz/7TT0UYHz6ufrDZs3MPTQV7uW9TDO1Z4makJzwFIMzl7RNLaliDGlejWBRJOpXWvNGHLbaHJSwl
+	ZustPzoXSvKqWsCmlKtP4vTloNTlk/8SSBvaE752+BXXh5A06NDOIvzsliaLpKgIJjLZdQlx1mf4w
+	twEKIiW0dHPtC7TnTPJNNu7g2DZtYYTAd3Jlp7Ua/ySUvr/ioOBN5BD3D7/Lzlxh1kS/r+FjRxZTw
+	V0eyQ0gM1Ijswo7t9I2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pOSXG-005jR7-5n; Sun, 05 Feb 2023 00:05:34 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1pOZu7-0068Qf-Af; Sun, 05 Feb 2023 07:57:39 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pOSX5-005jPb-4z; Sun, 05 Feb 2023 00:05:24 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id p26so24860081ejx.13;
-        Sat, 04 Feb 2023 16:05:21 -0800 (PST)
+	id 1pOZu3-0068Q7-Ic; Sun, 05 Feb 2023 07:57:36 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id bh13-20020a05600c3d0d00b003dff6cd8b7eso1438389wmb.5;
+        Sat, 04 Feb 2023 23:57:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B6QYB1GxIjCOW+mbyYRI2vElkNJsL0ngRmZW+x6+Des=;
-        b=AeJivRsjQ9zt55JJLi7EIMtRHNWSnZkdUTCOQDnatE7kfqHZO+bJkCwcdOQ1j1/LAD
-         aCuKV447LxpE81qndhmRHfc1lbLaxIn6ku/jCiOrAEZhVN8FOIK7IlL3jjs2YBMNLFoI
-         3ad8/m8ckJF5+NvbJJFDMI9vkR/QTD8/91FT6F5x4gQrmKIvBp8OecfEX6yKoFDljFrM
-         UiV0vJ3BO5zUx6pqBGmj4H5Xz3g4x+4PS50n8iMKMFRKBDI0jGoUgQrA496vxmDnvDo1
-         cTQmMbfpTs8hrrJFVJxGfR9ssRdZsqE5pBxMUUop2UqTLfiHoFnloMzxc0ZF5mfPJedy
-         W0ww==
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2KwxawGhHrGD7Cjciesgq8Dek9FKWiGaG8buzbGZFkk=;
+        b=D8O5qLY/PSR31AbVtCwLDd+4KwQ97JcH9YFQMq9tISaak/KKZ9dIPSdjJZttBsf/Ju
+         TJcLd+aGOngSHFGU09TL7KBb27HVoV3VYsa8prIDpkW8WQybYFToXCGVLq6vMp7hn5es
+         2hyAeQTrhFaevheD6u2wM/j5gqgeNfcvB2VGPLokRfj4LcNaArrL6MzgTWrMTS0fDN5c
+         RrBHmOASz2A5rf/3rwWhAsMmYgDNw5USTY/0P/nNOxFUEVlba7FIwAoMcgcYAEW/FZCR
+         y0v9KavRXgML5t3s9L6kiSe6uZ4w1llAgCp609PEjJl/LvR5if/pRK3bR3Y4ut71KzI8
+         4zQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B6QYB1GxIjCOW+mbyYRI2vElkNJsL0ngRmZW+x6+Des=;
-        b=UXYvCOzjX3JHgnKyOk81nIoTm5jyhXbg8YJUWAZ4iID9BZQycjyhY1orL4gOl3X2IB
-         cYErt/9gn5lHPoP/GBCFN3hLcXhsD9NidhRuo05Y3XLLJwQXVjNYNmYspTAJqjQANumn
-         TRwdEVftXlxo3jbz8jjnXYO0Uye1bxRuIcVLhrQEkHzwFmrNBazgF5gQkSdQ1y/zTCCk
-         +F+B7f/J3lFYSU0lDhhvKhBx0AraD+7P+Ploqptl+Qf5N7+SgllyowQaFt2cy38C0UkP
-         jUxcFz1+/LaL1drgCLxN9IqZczMZJKsLxyUVS4dbYUbetLTH8K4B7fnyzRYVwk6hqnMo
-         OcIA==
-X-Gm-Message-State: AO0yUKW0BKFLLs/pmlylneLllLkUwDvfqMFFsN7CdgV4yL00Lo1+88+m
-	gzkcjsTUgW8IGittNB6nZnA=
-X-Google-Smtp-Source: AK7set9zwKOuDewSoqVnZJcWohgp7ntr54p3bPf3EaoM451F8ymXN9zIoIROUbhbTTwLO3Yu4KUHPQ==
-X-Received: by 2002:a17:907:3e82:b0:84d:47e3:fe49 with SMTP id hs2-20020a1709073e8200b0084d47e3fe49mr20617255ejc.39.1675555519850;
-        Sat, 04 Feb 2023 16:05:19 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7af5:0:2c30:a880:5f2f:348a? (dynamic-2a01-0c22-7af5-0000-2c30-a880-5f2f-348a.c22.pool.telefonica.de. [2a01:c22:7af5:0:2c30:a880:5f2f:348a])
-        by smtp.googlemail.com with ESMTPSA id de48-20020a1709069bf000b0088cf92eb0e1sm3391695ejc.150.2023.02.04.16.05.19
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2KwxawGhHrGD7Cjciesgq8Dek9FKWiGaG8buzbGZFkk=;
+        b=lriiEfdOStlmJCkS/8tZE9rxMdJZ0JcIJfIwkV4dmdpH3lqpzCHuQM4LxEM3RhpG7P
+         wF6izyAnnhV3gfIWhrtCrghgXY9q5IAmc3VbOotTkHkpZzIOl4vna976QG8u/lIFMTqU
+         Y/KfyoF2ZcvJSC15e99mUcwN39US2oSvgRkMYXHJbOixVFwWoVtxfKViCEJix8QVlzFR
+         J1h/PrJlXAudlZdoO2ZQqENuoX1VFVt1wsdQ/7x07sM7YPQigeKTeHVCH9I2/s7gOEZ8
+         BQGRPZLHs0uhmO/FlHLKu9Aktu4KClCgzSH0ubcSXmVddDulS0NnECXqcyMIxgywzsVO
+         RGIw==
+X-Gm-Message-State: AO0yUKXBcGYnpzdVFtgJWNWGKkflIwY2ymCDygjm9Rj0azlG9BhIDeDQ
+	3kZ4sH+1xpJQecCJBqlsEb12Ao7uOWo=
+X-Google-Smtp-Source: AK7set9uhqLS5dyxfl2QAI2MGrrkJQ28Zlj2FHtRgLUQ7ZNTgFqeHMPW97wBgozLNE46beIUv15wFg==
+X-Received: by 2002:a05:600c:3504:b0:3df:30c9:4865 with SMTP id h4-20020a05600c350400b003df30c94865mr14174489wmq.26.1675583852409;
+        Sat, 04 Feb 2023 23:57:32 -0800 (PST)
+Received: from smtpclient.apple ([2a01:e0a:982:cbb0:3cf9:9123:e7f6:d530])
+        by smtp.gmail.com with ESMTPSA id k32-20020a05600c1ca000b003ddf2865aeasm13595438wms.41.2023.02.04.23.57.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Feb 2023 16:05:19 -0800 (PST)
-Message-ID: <6dcf6333-f75a-f7ec-8ce9-fbbfb81d1a60@gmail.com>
-Date: Sun, 5 Feb 2023 01:05:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+        Sat, 04 Feb 2023 23:57:32 -0800 (PST)
+From: Neil Armstrong <narmstrong.kernel@gmail.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding
+Date: Sun, 5 Feb 2023 08:57:21 +0100
+Message-Id: <9DA78049-10C9-47D6-B36B-9B7E1067385A@gmail.com>
+References: <6dcf6333-f75a-f7ec-8ce9-fbbfb81d1a60@gmail.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
- <20230201020647.GA2318275-robh@kernel.org>
- <b0e502fa-ef11-df82-ad45-9367ff7c75b3@gmail.com>
- <CAFBinCDHtX2W=Sh4ffUbugn+XVH2UcXWKH2Q63W9G074x6o7zw@mail.gmail.com>
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-In-Reply-To: <CAFBinCDHtX2W=Sh4ffUbugn+XVH2UcXWKH2Q63W9G074x6o7zw@mail.gmail.com>
+In-Reply-To: <6dcf6333-f75a-f7ec-8ce9-fbbfb81d1a60@gmail.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+X-Mailer: iPhone Mail (20C65)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230204_160523_243249_8B74F35E 
-X-CRM114-Status: GOOD (  17.41  )
+X-CRM114-CacheID: sfid-20230204_235735_678164_1B807005 
+X-CRM114-Status: GOOD (  13.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,62 +87,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04.02.2023 23:56, Martin Blumenstingl wrote:
-> Hi Heiner,
-> 
-> On Wed, Feb 1, 2023 at 11:13 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> [...]
->>>> +      - items:
->>>> +          - const: amlogic,meson8m2-aobus-pinctrl
->>>> +          - const: amlogic,meson8-aobus-pinctrl
->>>> +      - items:
->>>> +          - const: amlogic,meson8m2-cbus-pinctrl
->>>> +          - const: amlogic,meson8-cbus-pinctrl
->>>
->>> Again, can't have both with and without the fallback allowed.
->>>
->> Hi Martin,
->>
->> meson8m2 is the only chip version having a fallback for the
->> pinctrl compatible. Is this fallback really needed?
->> Looking at the driver it seems that both compatibles
->> are handled identically.
-> Back in the day we decided to duplicate the Meson8 driver code just to
-> add four new pin functions that are added by the Meson8m2 SoC
-> generation:
-> "eth_rxd2", "eth_rxd3", "eth_txd2", "eth_txd3"
-> 
-> The compatible string was defined with a similar approach: since
-> Meson8m2 just adds a few bits to the Meson8 pin controller it's
-> backwards compatible.
-> 
-> If the fallback has to be removed then I'm okay with that but I would
-> like to understand it first.
-> So far I thought that Rob basically asked to remove the following two
-> compatible strings from the enum (as they're listed separately with
-> their fallbacks):
-> - amlogic,meson8m2-cbus-pinctrl
-> - amlogic,meson8m2-aobus-pinctrl
-> 
-Right, this should be sufficient. There's no place where the 8m2 pinctrl
-compatibles are used w/o fallback.
-
-Then the hopefully final version of the binding is almost ready.
-I'm just still checking whether there's any way in yaml to specify
-a reg-names list with mandatory and optional names. Doesn't seem so.
-
-> 
-> Best regards,
-> Martin
-
-Heiner
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cj4gTGUgNSBmw6l2ci4gMjAyMyDDoCAwMTowNSwgSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQx
+QGdtYWlsLmNvbT4gYSDDqWNyaXQgOgo+IAo+IO+7v09uIDA0LjAyLjIwMjMgMjM6NTYsIE1hcnRp
+biBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4+IEhpIEhlaW5lciwKPj4gCj4+IE9uIFdlZCwgRmViIDEs
+IDIwMjMgYXQgMTE6MTMgUE0gSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4g
+d3JvdGU6Cj4+IFsuLi5dCj4+Pj4+ICsgICAgICAtIGl0ZW1zOgo+Pj4+PiArICAgICAgICAgIC0g
+Y29uc3Q6IGFtbG9naWMsbWVzb244bTItYW9idXMtcGluY3RybAo+Pj4+PiArICAgICAgICAgIC0g
+Y29uc3Q6IGFtbG9naWMsbWVzb244LWFvYnVzLXBpbmN0cmwKPj4+Pj4gKyAgICAgIC0gaXRlbXM6
+Cj4+Pj4+ICsgICAgICAgICAgLSBjb25zdDogYW1sb2dpYyxtZXNvbjhtMi1jYnVzLXBpbmN0cmwK
+Pj4+Pj4gKyAgICAgICAgICAtIGNvbnN0OiBhbWxvZ2ljLG1lc29uOC1jYnVzLXBpbmN0cmwKPj4+
+PiAKPj4+PiBBZ2FpbiwgY2FuJ3QgaGF2ZSBib3RoIHdpdGggYW5kIHdpdGhvdXQgdGhlIGZhbGxi
+YWNrIGFsbG93ZWQuCj4+Pj4gCj4+PiBIaSBNYXJ0aW4sCj4+PiAKPj4+IG1lc29uOG0yIGlzIHRo
+ZSBvbmx5IGNoaXAgdmVyc2lvbiBoYXZpbmcgYSBmYWxsYmFjayBmb3IgdGhlCj4+PiBwaW5jdHJs
+IGNvbXBhdGlibGUuIElzIHRoaXMgZmFsbGJhY2sgcmVhbGx5IG5lZWRlZD8KPj4+IExvb2tpbmcg
+YXQgdGhlIGRyaXZlciBpdCBzZWVtcyB0aGF0IGJvdGggY29tcGF0aWJsZXMKPj4+IGFyZSBoYW5k
+bGVkIGlkZW50aWNhbGx5Lgo+PiBCYWNrIGluIHRoZSBkYXkgd2UgZGVjaWRlZCB0byBkdXBsaWNh
+dGUgdGhlIE1lc29uOCBkcml2ZXIgY29kZSBqdXN0IHRvCj4+IGFkZCBmb3VyIG5ldyBwaW4gZnVu
+Y3Rpb25zIHRoYXQgYXJlIGFkZGVkIGJ5IHRoZSBNZXNvbjhtMiBTb0MKPj4gZ2VuZXJhdGlvbjoK
+Pj4gImV0aF9yeGQyIiwgImV0aF9yeGQzIiwgImV0aF90eGQyIiwgImV0aF90eGQzIgo+PiAKPj4g
+VGhlIGNvbXBhdGlibGUgc3RyaW5nIHdhcyBkZWZpbmVkIHdpdGggYSBzaW1pbGFyIGFwcHJvYWNo
+OiBzaW5jZQo+PiBNZXNvbjhtMiBqdXN0IGFkZHMgYSBmZXcgYml0cyB0byB0aGUgTWVzb244IHBp
+biBjb250cm9sbGVyIGl0J3MKPj4gYmFja3dhcmRzIGNvbXBhdGlibGUuCj4+IAo+PiBJZiB0aGUg
+ZmFsbGJhY2sgaGFzIHRvIGJlIHJlbW92ZWQgdGhlbiBJJ20gb2theSB3aXRoIHRoYXQgYnV0IEkg
+d291bGQKPj4gbGlrZSB0byB1bmRlcnN0YW5kIGl0IGZpcnN0Lgo+PiBTbyBmYXIgSSB0aG91Z2h0
+IHRoYXQgUm9iIGJhc2ljYWxseSBhc2tlZCB0byByZW1vdmUgdGhlIGZvbGxvd2luZyB0d28KPj4g
+Y29tcGF0aWJsZSBzdHJpbmdzIGZyb20gdGhlIGVudW0gKGFzIHRoZXkncmUgbGlzdGVkIHNlcGFy
+YXRlbHkgd2l0aAo+PiB0aGVpciBmYWxsYmFja3MpOgo+PiAtIGFtbG9naWMsbWVzb244bTItY2J1
+cy1waW5jdHJsCj4+IC0gYW1sb2dpYyxtZXNvbjhtMi1hb2J1cy1waW5jdHJsCj4+IAo+IFJpZ2h0
+LCB0aGlzIHNob3VsZCBiZSBzdWZmaWNpZW50LiBUaGVyZSdzIG5vIHBsYWNlIHdoZXJlIHRoZSA4
+bTIgcGluY3RybAo+IGNvbXBhdGlibGVzIGFyZSB1c2VkIHcvbyBmYWxsYmFjay4KPiAKPiBUaGVu
+IHRoZSBob3BlZnVsbHkgZmluYWwgdmVyc2lvbiBvZiB0aGUgYmluZGluZyBpcyBhbG1vc3QgcmVh
+ZHkuCj4gSSdtIGp1c3Qgc3RpbGwgY2hlY2tpbmcgd2hldGhlciB0aGVyZSdzIGFueSB3YXkgaW4g
+eWFtbCB0byBzcGVjaWZ5Cj4gYSByZWctbmFtZXMgbGlzdCB3aXRoIG1hbmRhdG9yeSBhbmQgb3B0
+aW9uYWwgbmFtZXMuIERvZXNuJ3Qgc2VlbSBzby4KCkl04oCZcyBwb3NzaWJsZSB3aXRoIG1pbkl0
+ZW1zL21heEl0ZW1zIGFuZCBhbGxPZjppZi9lbHNlIHRvIHNwZWNpZnkgZGlmZmVyZW50IG1pbi9t
+YXggZm9yIGVhY2ggY29tcGF0aWJsZQoKTmVpbAoKPiAKPj4gCj4+IEJlc3QgcmVnYXJkcywKPj4g
+TWFydGluCj4gCj4gSGVpbmVyCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
