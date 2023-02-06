@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F3E9C636D3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Feb 2023 19:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6427EC636D3
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Feb 2023 19:16:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dbD3Bcqdy9Ej9CiT4yhpmSZQBAsH7sIy9D/gowsbiUk=; b=mnpIkaOYyXLUgu
-	nc9Ra9dIynUc5yeoc7gwUOHgw9hBgva+fHK5owkUjWfa+2RnXUL3CjK9GLXG//Xq46DzKzKTFoLRR
-	/1b4Ia4GSqyAwEAI+s1ds1uSTYgWuJBHDWgWOpT8cGItIna8Waukajd3bIgG6/rIqQowXyJoQRlj5
-	//tEYf/nRGpCS/Am/GGCH9FjzyFrw4gzu5dF2WVWXSs9X1WYJT5MgrtiSVe34s+J8pptSUZAXKjQY
-	j9KIOAPK1h19jNhjZv5tdeBjeehapBroRhQmHLIHoQScWHcTHLU3ZCXfUtbcMrNDJMH+WV+aTWiPr
-	Y8o02EcRtwnq7YyjE6BQ==;
+	List-Owner; bh=9K6yj21zTBuu8SSYMK/qNizJxMw1Qd20Hc778dr3vKI=; b=dLfSvYd3GqaPHU
+	956hoDtEUbzjgapGBXCCJEqHfG28ykcDKKouGN25l0gq4rAZ/urhVAGpmxzwDjftdok7ZtVHkiQea
+	g1eUdkBH6fwJLq6jE+uFzwJ8L/MCbuChljNz9RBlaNF0q87jpPs6cpiLrLD16CeE++8QqtlQr9s1V
+	8sLg59F7nEkU96CyqC4l2kvoh/BcjdbWe9YIXpPD2m327O3fJO9/8j+aXc2ddfLmA3ImxhGObB00o
+	vElW5Y0dZjymDyppSxK1kdg0xlSM1iOlqhh6ujwx74l8E440EUNs2YKolQC38fqDQsQVy14Mlr4ag
+	xKx4iNEsoZI06bMbziow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pP6xI-009h2a-BD; Mon, 06 Feb 2023 19:15:08 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1pP6y5-009h8u-TY; Mon, 06 Feb 2023 19:15:57 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pP6xF-009h1N-Rl
-	for linux-amlogic@lists.infradead.org; Mon, 06 Feb 2023 19:15:07 +0000
-Received: by mail-wm1-x334.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so8182428wms.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Feb 2023 11:15:01 -0800 (PST)
+	id 1pP6y2-009h8X-TG
+	for linux-amlogic@lists.infradead.org; Mon, 06 Feb 2023 19:15:56 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso9668067wms.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Feb 2023 11:15:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iniev9+D6uZ6XQ9DZUsmrgSWAz/CkGjwKUBOylv7Xs8=;
-        b=R8VnzjK0B/jAiGqqdhjoUnYsKIn08raxB+gye5CjA9WdNYJamW+KnOJze8NWgxUSVJ
-         wZ8BbBFyCPXzjs19eYqKohofsVLZE40Dorf1tMrHzzbvgdLRVl99CnFdYUSo1n8IU4+1
-         t6k+9Q4yc+EQb/cK72RgbqNcAKHI7ocHdXGKbdWDFyJRCiGN8xpIZJU0afJCUi8HQ5Lb
-         nd5ilMooPqj/Grz5siAjCCuE+DTcQg2KcHmThu4HuYluOAMiYRrVO/5fBskro3g0Jeg7
-         Mw1ifVgO+86CStcsYwo5MOPr5Rqdb1leO56SQbtsREyzCVwi2/pHy4RAyxueGTOd5Dws
-         PAkA==
+        bh=ASOZTaYA0fPeH4V0w0/DNjsNUMl04wnF0KiVjBDE8js=;
+        b=FkRZnbBXMV+2QXm2YTQ1vwr+2L5cJrDiMLarDO+RZG5x6kNysr4xYb5uZTTEyvxYBN
+         Z/zIs7S0voagwKnVjSmFMJ3tmYdhsdFIJSwneonn7Sstj/FDhQOkmBzic7wMKIMJDDIx
+         /WlMw01YiHvRrrfO9oSM3UAFyGphvfyDBSk8Z4sK94hz2psrYVJzEnHJGFdV+Cc9tPRz
+         RSuZBBbqxCcMVyj10vrrnO43yK/xD+g6rqlyQ5FlQBRvtrfb8bIMcBkVxpM98CrFBNj2
+         Aei7gpB+5s/jr8mUWpNluRjXpoeu4SUVkvLcVIga80lrSviPcHmNAEND+xjlJi4w+/pb
+         TTlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iniev9+D6uZ6XQ9DZUsmrgSWAz/CkGjwKUBOylv7Xs8=;
-        b=pG+JLbjZblDFDOa0vnNlEONNThhDhOX6ySwlg6MS9RLGNUWTP365deOOwnySWt3yA0
-         9kzFJdQacHa/CNpyo9enFhu+Bau+a5IsD6WzPY6kFlOPQI/9UGsN7aW0WvGxvRDj0/ua
-         FDRmSmGgo7avVaCC1OP47G68yGYR2eqCUpaA9mNkHnpo9XPF8q8EoUAF+QZU0NQdRPXY
-         GrIcZofRYZGcaLAVJYpJUu8umVNP2dsXBmLhmmEGXartJx2kzubgJm1FcWyHBBUs+6C4
-         6KXcSJEHn58V55J+5Otz0pafQyD9ftyNDiLm9053XKvX0j8/7hXpttXFSG32OWIikpX5
-         cN7w==
-X-Gm-Message-State: AO0yUKUmqyNmCJw4ZDJ6JZopp9afZms/AfwFcVpby1gyWm7Zybwq77Ws
-	iv+6Kc0aOwH3fHgI3qkHHjlj1Q==
-X-Google-Smtp-Source: AK7set+rmvAq7Kd2BDYlA+s7058vt+eFcngnsEXUb/HDb4/Z+Y+NjPnMTQe5zWfnu1+fv/8E3WiVjQ==
-X-Received: by 2002:a05:600c:4485:b0:3e0:185:e93a with SMTP id e5-20020a05600c448500b003e00185e93amr725830wmo.25.1675710900467;
-        Mon, 06 Feb 2023 11:15:00 -0800 (PST)
+        bh=ASOZTaYA0fPeH4V0w0/DNjsNUMl04wnF0KiVjBDE8js=;
+        b=Ylxfmbn08YIge4J3YkiCt8+MCdP0zIzPPhI17ek2IUzkT/z5vB1hDFxd2IsoPKtJx6
+         fDkR+9dMA+C+zeoUoqh0Aa1umy6hVoz7hKUxlqMch0wjsas5mY7iBS2yfb5+nRJL5J0W
+         kiPdnKjjT92QvEyDnlpd5jSGU6Rf6ppIjumQ5th9qhRhW1Dz+0iWYwMBSJ50N1o/09FR
+         crIZwE5FgCvHNBFkTepcyqiKeE9217w//3heF3CZr/3KOaWP0z5ESTjZseQNQcgvl0bY
+         xyCGuePJ3TYNyfldqN6Q5d3L4rx9WTyjG3cEBAXowxDxUy8rD0t+rIUoBt6NR2ramdwD
+         U1gQ==
+X-Gm-Message-State: AO0yUKVCypY6QjPP4pzznOcq2CxXaoDJYBIJ9jNpm7zYEQsspqLXjstJ
+	ZfqjicD0mYwBGI70y6Fg9Zbq2w==
+X-Google-Smtp-Source: AK7set97CwxTF4+mcJ4gp9ZLuFRVhrwVBA51yp8Mc0iz4oDZXFiH93F59Or07hUeP2uEl5+p8AFg1Q==
+X-Received: by 2002:a05:600c:13c8:b0:3df:50eb:7cd9 with SMTP id e8-20020a05600c13c800b003df50eb7cd9mr731884wmg.14.1675710952530;
+        Mon, 06 Feb 2023 11:15:52 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l4-20020a05600c16c400b003df245cd853sm11443197wmn.44.2023.02.06.11.14.59
+        by smtp.gmail.com with ESMTPSA id b12-20020a5d4d8c000000b002c3e63c030bsm4224376wru.93.2023.02.06.11.15.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 11:15:00 -0800 (PST)
-Message-ID: <349c949b-bcf4-e31d-b4cf-51953d0e325d@linaro.org>
-Date: Mon, 6 Feb 2023 20:14:58 +0100
+        Mon, 06 Feb 2023 11:15:52 -0800 (PST)
+Message-ID: <364e2bd0-c411-7a71-4005-dd24e8d0f0a6@linaro.org>
+Date: Mon, 6 Feb 2023 20:15:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 4/7] ASoC: dt-bindings: meson: convert axg fifo to
- schema
+Subject: Re: [PATCH v2 5/7] ASoC: dt-bindings: meson: convert axg spdif input
+ to schema
 Content-Language: en-US
 To: Jerome Brunet <jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>,
  alsa-devel@alsa-project.org, devicetree@vger.kernel.org
@@ -75,12 +75,12 @@ Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
  <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org
 References: <20230206153449.596326-1-jbrunet@baylibre.com>
- <20230206153449.596326-5-jbrunet@baylibre.com>
+ <20230206153449.596326-6-jbrunet@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230206153449.596326-5-jbrunet@baylibre.com>
+In-Reply-To: <20230206153449.596326-6-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230206_111505_929584_6A9973A6 
-X-CRM114-Status: UNSURE (   9.61  )
+X-CRM114-CacheID: sfid-20230206_111554_968805_B0C44891 
+X-CRM114-Status: UNSURE (   6.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,17 +99,10 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 06/02/2023 16:34, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg audio FIFOs to
+> Convert the DT binding documentation for the Amlogic axg spdif input to
 > schema.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/sound/amlogic,axg-fifo.txt       |  34 ------
->  .../bindings/sound/amlogic,axg-fifo.yaml      | 112 ++++++++++++++++++
->  2 files changed, 112 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> 
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
