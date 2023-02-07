@@ -4,82 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B062C636CC
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 09:34:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B44FC636CD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 11:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c5vEpqejJL2gmblww537B0MfupdX46p97/3ZTbXsoco=; b=Co+3CpFm+NbG69
-	7q4utz2ZPwVPxOcfnAuYHFo/PPTOfNPwjdQPjKlD3Fz8Jop/4ySDMOkf7igvWepJo2uBHmjIlX1O6
-	158UjY2wUX4v/gaUQs599skPrepan3q0UkXelVS+iP0zqvkW/yacdabLKErCbnnnWvCVp6WUpgXJN
-	NtOWDTdtlHN2IPfx2K2A7YPzsXaBDyJstV6nfWFwckojDk73CNt2Av8AGK1GAtWHROUq43y/auk3Y
-	QQSRw/5QoJhY8egaAG9dZnTlXbG8xrQMCqjtJ/N+xsULyAV1jZYBTiqHYg5uoJBtSHxva61okSBWT
-	Qh+ljg0uJteuySAc+tIQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=dKzsR4aaXbmMkVjyffLrdw6GVvHAoE5hOLudtyhCGW4=; b=LMQXKHsO780UjdEDWl94BVChvU
+	JL8jq8Catz1BJtPJ11G9WxD/1usrkzJSzfqL8/5ORTtFFF92azQgbADN1B0aK/P/Z05WWP5L/zkSg
+	COVW86aXiwBUaUN86ptbSKVSWyi4gFmavTUN42oe9MseJPJLgMtbGfykYNMgjex98VWBwFdsM4Z9y
+	l5FNABPP2XkRW7Gczo9aFV2TRfbAy4m6rIj2XCKUEhWqNngxzLhpVWHlAucpKl1YKQWoOL/XyadcN
+	ZfLe6zKJBLqB7V56dwVEcTLEmbpmJR6s8lrWKUQzNA1aVuF4ZXDuqk0aFskSZbH9a+ZL0D4U6VoNe
+	trVz8CYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPKML-00BVC8-4T; Tue, 07 Feb 2023 09:33:53 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1pPMJR-00C03g-EQ; Tue, 07 Feb 2023 11:39:01 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPKMF-00BVAG-JN
-	for linux-amlogic@lists.infradead.org; Tue, 07 Feb 2023 09:33:51 +0000
-Received: by mail-wm1-x329.google.com with SMTP id f23-20020a05600c491700b003dff4480a17so565493wmp.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Feb 2023 01:33:44 -0800 (PST)
+	id 1pPMJP-00C02Z-H3; Tue, 07 Feb 2023 11:39:00 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id ml19so42576923ejb.0;
+        Tue, 07 Feb 2023 03:38:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=8PxGYDQ7050hUgTLYscGuzXllbJKzPjPKyLOB6Wlrjo=;
-        b=nseoynKl6Jy2ScxAfRj0HrX7qUwIqGb7zjc0T/2N+jzmisGjIBhcZe8qX/r3oVew9m
-         mgJL4de/kMuVjooR8M1HCLyjb/2XN8Q8rSyM5d8ZD/Zd1uBdBDXsdPvhGppXPdc2a9ad
-         QH4TAJDrSM0nmaOc4bDruO2gCEe3gjaJNv/2dOik3H51S9XcFV2w+7gLFrQFpGX9Ypmk
-         ahPzZsZyUToaSmcOF/lIPrU5fYksdDze985GVR4bEw0NVhHgfpr8GSAhqIvXBUWIeEnz
-         ACl01bAYJz5NUWcKdW4XrxzPSkFvr8T8spCFCRcy5LufICxWpWBGq1Husqvlsu9b4TW3
-         D85w==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ypYaAIHbgwskXP956yUIa5G6SVK0QZ0JGeu03YaQuLg=;
+        b=j50wXizpSCgbltXPzxLm6o6EgUCwunOa3gUhOObCfsxS5zVmzaK1bbvvNUqvbd5N59
+         s38vLv0Ysjzb1iVZ1HiJGnplkCzTNqrii67ZhGZXcM6Nm93vBAaQpk0h4FApJ7wqBa7u
+         z1jm04ciGE4gBk8tYyYecFTbO6F4uEiBi5Tw5VGhyW22YPsF64IrPcOj1SWTrQ1HmnaR
+         f1ZNfG5UyLxIsSMw97PSgxOcFcN3yaX6IUcuonLpJGDzhifWcbo3vsJl4sdNKHkP4cqW
+         e+BPGiI5s6QzdCrSLCvvb05XtqKa5znj4Ell/XC4ul+ptUNQ8iQMRC0qxgFDioXRQMOq
+         8B3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8PxGYDQ7050hUgTLYscGuzXllbJKzPjPKyLOB6Wlrjo=;
-        b=2EooGbtMdznCbZf2v6DiESeTevTc2F8tPGWEZOF017NujYSTKH4+GX6ZJhT98XwIGC
-         irf94n4ewZG0SVPFrxUlQyjD6tX8JUzSmdK9vOu8g+jcEkMFuL04g6rSgYp2fYTO5rGo
-         9K3Xr5wVEXqQYtj3HSyEyFAypm2WQIkStE/NpPRF80fr5hB8Y/+BLMLvf7ou8RkkFL8v
-         d4vPIAd/oD4WPniw1NEwsAShFB+0Tp75wkZlR8ltRackI1IQcjLzwu2CP/fg67HLGSJC
-         2mHhxIE6I9gymyHGF2haULy8mGSHKVbiG/hyBDr2oSjRrTl1mOjvNAx5dx75uinuZ+hU
-         IJyQ==
-X-Gm-Message-State: AO0yUKUSzCYLKec3q7HuBd4xtMN52Sf8Gu/Lp9+Yct3+4UuOnkZdrXzP
-	XEhA7ZI1onqNcU915t0RXfzAcw==
-X-Google-Smtp-Source: AK7set9PZDReFALR1aMtqwOzve4hwOZf9PGErxwjDd/BKVseEzEILgyBlESqGUn3B5zmiP3nYCTErA==
-X-Received: by 2002:a05:600c:1817:b0:3df:e54a:4ac5 with SMTP id n23-20020a05600c181700b003dfe54a4ac5mr2468276wmp.27.1675762423657;
-        Tue, 07 Feb 2023 01:33:43 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b003dc433bb5e1sm14240200wmo.9.2023.02.07.01.33.43
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ypYaAIHbgwskXP956yUIa5G6SVK0QZ0JGeu03YaQuLg=;
+        b=oE8Mkt1ijyP+XZm5Ga/yQXPqBadM0fTRdfPXZFDD2AAkI/gF6xCRUh8fJxYYLpKgkZ
+         Tz/MIckvyYGbKYQJEz//ePqtpzn7yCDYnV+gfYwCi4B7ElSUYcnq/Dk+B0mdPG4Ypd6o
+         klvuKKYxv6GsefHl4sj69FnHpn43X30bxs6p7TAbkqE3itlgvbto5fhfzp/Z+BvLhz5k
+         6t8MI2ejGIUhG+hMW0cMfi4t7gBlCcRVHivckHbyAm+2vZemX/Gja1W68c8tOjFBn3ft
+         +wUzpBy7GY8hVXTsE/27wqOAGMsW0RCYKLc2hkKCnldcJBERvj81sM9xSwwy4hV9wRpE
+         R3aA==
+X-Gm-Message-State: AO0yUKXX8si/4S3yTZeHp78UWohzn/UbNwhySLVF3rH7iAGiXmhxXtR8
+	suuaiZUPbaSilArfAWFrVU0=
+X-Google-Smtp-Source: AK7set9xPPTA4AVcwID7+M8jKZFboG1ezV/PnXsBHNVtCAEcRQMGr+q/tXVvH0nFPyJttT+0/8a26A==
+X-Received: by 2002:a17:906:2556:b0:8aa:1eb2:a806 with SMTP id j22-20020a170906255600b008aa1eb2a806mr1043783ejb.74.1675769934798;
+        Tue, 07 Feb 2023 03:38:54 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id m18-20020a056402511200b004a22ed9030csm6293794edd.56.2023.02.07.03.38.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 01:33:43 -0800 (PST)
-References: <20230206153449.596326-1-jbrunet@baylibre.com>
- <20230206153449.596326-3-jbrunet@baylibre.com>
- <167571334291.1212116.1869881432057405431.robh@kernel.org>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: meson: convert axg tdm
- formatters to schema
-Date: Tue, 07 Feb 2023 10:29:51 +0100
-In-reply-to: <167571334291.1212116.1869881432057405431.robh@kernel.org>
-Message-ID: <1j7cwt3jm1.fsf@starbuckisacylon.baylibre.com>
+        Tue, 07 Feb 2023 03:38:54 -0800 (PST)
+Date: Tue, 7 Feb 2023 12:38:51 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: rafael.j.wysocki@intel.com, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Guillaume La Roque <glaroque@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	ye xingchen <ye.xingchen@zte.com.cn>,
+	Ricardo Neri <ricardo.neri-calderon@linux.intel.com>,
+	Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+	Haowen Bai <baihaowen@meizu.com>,
+	Minghao Chi <chi.minghao@zte.com.cn>,
+	"open list:THERMAL DRIVER FOR AMLOGIC SOCS" <linux-amlogic@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+	"open list:RENESAS R-CAR THERMAL DRIVERS" <linux-renesas-soc@vger.kernel.org>,
+	"open list:SAMSUNG THERMAL DRIVER" <linux-samsung-soc@vger.kernel.org>,
+	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>,
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH] thermal: Remove core header inclusion from drivers
+Message-ID: <Y+I4S7Xt4gKDYLkw@orome>
+References: <20230206153432.1017282-1-daniel.lezcano@linaro.org>
 MIME-Version: 1.0
+In-Reply-To: <20230206153432.1017282-1-daniel.lezcano@linaro.org>
+User-Agent: Mutt/2.2.9 (2022-11-12)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_013347_659599_6D887DAE 
-X-CRM114-Status: GOOD (  18.62  )
+X-CRM114-CacheID: sfid-20230207_033859_603645_9D4CB8B8 
+X-CRM114-Status: GOOD (  20.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,70 +121,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4399442834650059444=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon 06 Feb 2023 at 13:59, Rob Herring <robh@kernel.org> wrote:
+--===============4399442834650059444==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6YmCx3uIqlMso1fF"
+Content-Disposition: inline
 
-> On Mon, 06 Feb 2023 16:34:44 +0100, Jerome Brunet wrote:
->> Convert the DT binding documentation for the Amlogic tdm formatters to
->> schema.
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  .../sound/amlogic,axg-tdm-formatters.txt      | 36 --------
->>  .../sound/amlogic,axg-tdm-formatters.yaml     | 88 +++++++++++++++++++
->>  2 files changed, 88 insertions(+), 36 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
->>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
->> 
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml:
-> Unable to find schema file matching $id:
-> http://devicetree.org/schemas/sound/component-common.yaml
 
-This is a false error because the bot does not have the patch applied
-by Mark from v1 here [0]
+--6YmCx3uIqlMso1fF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[0]: https://lore.kernel.org/all/167543616131.928818.17902040818579023398.b4-ty@kernel.org/
+On Mon, Feb 06, 2023 at 04:34:29PM +0100, Daniel Lezcano wrote:
+> As the name states "thermal_core.h" is the header file for the core
+> components of the thermal framework.
+>=20
+> Too many drivers are including it. Hopefully the recent cleanups
+> helped to self encapsulate the code a bit more and prevented the
+> drivers to need this header.
+>=20
+> Remove this inclusion in every place where it is possible.
+>=20
+> Some other drivers did a confusion with the core header and the one
+> exported in linux/thermal.h. They include the former instead of the
+> latter. The changes also fix this.
+>=20
+> The tegra/soctherm driver still remains as it uses an internal
+> function which need to be replaced.
+>=20
+> The Intel HFI driver uses the netlink internal framework core and
+> should be changed to prevent to deal with the internals.
+>=20
+> No functional changes
+>=20
+> [ Applies to thermal/linux-next or linux-pm/linux-next ]
+>=20
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>  drivers/thermal/amlogic_thermal.c           | 1 -
+>  drivers/thermal/armada_thermal.c            | 2 --
+>  drivers/thermal/broadcom/bcm2835_thermal.c  | 1 -
+>  drivers/thermal/hisi_thermal.c              | 3 +--
+>  drivers/thermal/imx8mm_thermal.c            | 1 -
+>  drivers/thermal/imx_sc_thermal.c            | 1 -
+>  drivers/thermal/intel/intel_hfi.c           | 3 ++-
+>  drivers/thermal/qcom/qcom-spmi-temp-alarm.c | 1 -
+>  drivers/thermal/qoriq_thermal.c             | 1 -
+>  drivers/thermal/rcar_gen3_thermal.c         | 1 -
+>  drivers/thermal/samsung/exynos_tmu.c        | 3 +--
+>  drivers/thermal/st/stm_thermal.c            | 1 -
+>  drivers/thermal/tegra/tegra30-tsensor.c     | 1 -
+>  drivers/thermal/uniphier_thermal.c          | 2 --
+>  14 files changed, 4 insertions(+), 18 deletions(-)
 
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.example.dtb:
-> audio-controller@500: False schema does not allow {'compatible':
-> ['amlogic,g12a-tdmout'], 'reg': [[1280, 64]], 'resets': [[4294967295, 12]],
-> 'clocks': [[4294967295, 35], [4294967295, 127], [4294967295, 120],
-> [4294967295, 134], [4294967295, 134]], 'clock-names': ['pclk', 'sclk',
-> 'sclk_sel', 'lrclk', 'lrclk_sel'], '$nodename': ['audio-controller@500']}
-> 	From schema:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230206153449.596326-3-jbrunet@baylibre.com
->
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+Acked-by: Thierry Reding <treding@nvidia.com>
 
+--6YmCx3uIqlMso1fF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPiOEsACgkQ3SOs138+
+s6GcZg//R3MQVqmdDfUAH1wSX/RKBdIAW3IEegenVrucDauuJHfqOD6w9PZ1mhvo
+7sffnxqIcqDT4K1UrFfVoSEsDYYKTB/RbwaiHjr2bGR7DJbLe7diXmw2XZWJZ+gT
+Oyw8I6tyWR9ixwcfP5d03Vgi5h4QHSNvlAagPwCIMoYXlC8yMeK5stM5DR2pZCRJ
+ZtpT71OQa0iUf9/MP61cm1EZco7cUSbPP79b+0gkGCaEM+N9h5VRSK4wZWyDe2ED
+lRwO36ATMnOzHN27cZvYLXEsGiWRLvtSwunIfOkBW2GFf3/t0KJfLNTIIzBYyYv5
+7YWQWv2PWY7A2dx0DDskAmo3n+34qouc7lGd+pCJeoPASpEXbCRK5kXvVEVMcMW/
+fuxqLlsBpZoNLlxmMCL7LaN0xTTK5aAI930kxr1vJXlYfwvHsXN5YUBi9f+nP3lv
+k4LY4P/jgZGDJQMcjL6ysfHJ11S9yc+6mAv9D+Zd6X5sn+DitvYUbq7oH1Vid5oU
+nvu13INcwRMa/Q++f6+DOv//64fPIeZctFcq1oQr8tevgECDeJ7qy4ZTPplIcLnU
+cGEHqcomIPOkFfvAxYETborXcePZSFKpuYOzecg6YEhcZCtkYLcdiFuw9PoM8Kqn
+CYbQQDs1EKfpKznrlpqOIiaZ1PknWjl2zK4ey9b+APu0KE5eghc=
+=Zn7P
+-----END PGP SIGNATURE-----
+
+--6YmCx3uIqlMso1fF--
+
+
+--===============4399442834650059444==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4399442834650059444==--
+
