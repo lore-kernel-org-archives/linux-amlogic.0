@@ -4,85 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1FEC636CD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 15:02:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0E9C636CD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 15:06:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=CTZ5wnP2M8A2jZvU7Kkae8P1MJdW0X89EmAyI9fH5ew=; b=xxfmJ5kvrwMowQ
-	1uah5kjZhYkWuu8sIYBmUbNGgXrzQa+NoF/+aT0/4WwbtFxwtIHP4t9HigalBLKbcKtf73dPwcjxk
-	pAlpQ25xDTMSyXnTWgI5AitHz4AvHuF3bVTWCXOJy5i09GV1o8JJCh5HpphM/WJn8gMLRNuMwK6jl
-	0kaIWEl1r2DD5aewo7ugJXAm1i3yVHHZ6KU0cRm7QVwLsIW3pdgR5Kf1HrvfeRcCV/zr5CZZDC8ty
-	e4Gnr3MfvEroHbM+WO+5rZiED2JPLDeo5mJPLRr1YsO3xhOZO80hBlpX1UJfRv9LXrgi5VC+iyRK4
-	0MvdFlS4Wj8Ota/hEXTA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rmG12qW2K8abo1Q3Wr6nWNFaIzCoUhcWJ8FLFBaNm0E=; b=R31u4DxyLSf1Gr
+	gSr1/vB3qJIDFfovJROmiXTJUlOj0ofA12IUA9MRfl9TWkF1cp6YG2PYfwAW7oRj44xlkJti8VxH+
+	+ptek2SYUo+51N+mjSzgeFLnZ7reeqgbp4tXX1LQ4zswut8fgxRSLCAcQMsDiW644J2R9rLJ/Y4Sx
+	syYfrfhnLuPhrhIv4iNgK4fEnMZNEBUN0BW1TJ8JVb8cNQDnoxE5Ss5HMwp7wixgiz5p1rn7HOzke
+	rI9yazBYiYClKH/jxDLOVOL2QjyNS2mw4gVq/Z/AW1+/0g0UzaILfyaNFZ2iHuJGW/DLiNj9zeYEo
+	nm+BqELbwKl8CKL+lmpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPPU5-00CbkX-1N; Tue, 07 Feb 2023 15:02:13 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1pPPXx-00CcKS-0d; Tue, 07 Feb 2023 15:06:13 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPPU2-00CbjX-PN
-	for linux-amlogic@lists.infradead.org; Tue, 07 Feb 2023 15:02:12 +0000
-Received: by mail-wm1-x329.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso11689868wms.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Feb 2023 07:02:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ReMP1fTRj+2lUjIQIzq9JI1fRxLOQx1rg3anIwo/iw0=;
-        b=sR3NjPoRRzWOQXyUZ0RJ5J0ibpc4nnmKD2/25SisIezzZBC25LC4AmcIRtPy4IQyrh
-         tH4X5Jz6nu1BcEBAdmYu9QrEOYMUUTtO2WvNSf4Cj5Lm3JO9dF/PmD/eHshgltg2facd
-         1znLlaUm1xqJFK7dVN/X+j4b1wvDVGgqfGo/mtabP13naZhkDBaOk3mNrhUDbFlyplWJ
-         5rma2IpkAliJTZGy72WhmOCX8AYG18Rttef4CtKx5W/rBRk7O+E3u6U6JPHPdAA9JNqH
-         0pawOk50lHD3P0jIuaTKJhzp2nt9+I+enDxS+9lCHGP7S6vEbSXHs0NXWpujzxXpxo9j
-         L4XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ReMP1fTRj+2lUjIQIzq9JI1fRxLOQx1rg3anIwo/iw0=;
-        b=n6O819+4NqnxfoPorx8yBrngwwD0uBS4GtOZ3BkHMPWGTdkyCCJH97e2/3V3gWRWoL
-         5Ac+rm/4wThV9y+H/iZQ3xNPQeeTG1BYNGYzR3rtqU80mw10Mocuz+QYtV/+63SXXEG9
-         o1tNEIJZCwniRjYewqTTLm0iqbXQCD20pAVcG3OhYSHpbzm89SYWYFmwEk/xKXNFdafi
-         BYjMee0X8tHHpZPIwa2HA64eXOLHrTzQ2U8s4/9JKOFDII47StO2qv7z5a8CeiDh4Vu1
-         VQmjb1Xl/730UPmcFD2vBMy61NfKTHnLVLW5ujIYLt+sjOPyCCkkSzCRtq5k9QIr5QNv
-         OvSA==
-X-Gm-Message-State: AO0yUKW0wmRgyxAY/rtKb3LGQJ9hZjZI3pRaFNK4kTe/eC86OE8DTxVr
-	cPMWcrTuT8zIxh4XU+SeN2xZsw==
-X-Google-Smtp-Source: AK7set+4Rc6Lc+fXClJniTktYSdYRjfsCxjlMj16mSKHcCU1TSNVVZVGZGFgicaFljxVHNg+9f+BBA==
-X-Received: by 2002:a05:600c:4d92:b0:3df:dea7:8e3 with SMTP id v18-20020a05600c4d9200b003dfdea708e3mr3546852wmp.21.1675782126801;
-        Tue, 07 Feb 2023 07:02:06 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id g24-20020a7bc4d8000000b003df30c94850sm18264340wmk.25.2023.02.07.07.02.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 07:02:06 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 07 Feb 2023 16:02:04 +0100
-Subject: [PATCH] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: make G12A
- usb3-phy0 optional
-MIME-Version: 1.0
-Message-Id: <20230207-b4-amlogic-g12a-usb-ctrl-bindings-fix-v1-1-c310293da7a2@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAOtn4mMC/x2N3QrCMAxGX2X02kB/hKGvIl6kbewCNZPGiTD27
- gYvz+HjfLtTGkzqrtPuBn1YeRWDcJpcWVAaAVdjF31MPvoZ8hnw2dfGBVqICJtmKO/RIbNUlqb
- w4C9gCOFCaa6UirNWRiXIA6UsVpOtd5OvQbb9n9/ux/EDKFP+l4wAAAA=
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	id 1pPPXs-00CcJf-Mw
+	for linux-amlogic@lists.infradead.org; Tue, 07 Feb 2023 15:06:10 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 1DD2BB8198E;
+	Tue,  7 Feb 2023 15:06:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A4AC433EF;
+	Tue,  7 Feb 2023 15:06:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1675782365;
+	bh=YqDF29yTDTzZofC0OrRusN/jw+sSqFWwWjB3YnAN8mA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=asZxJim1OThPT7N/ebQJty/PhYOPN7aFj6sKP/aVDIQUStFsecBWjYU/z1Fwo4eor
+	 6ElGV8nV1q4aW+V2wdnhw7ENQbNQqV5fVShFAZRy5vAFuFaU3miDJKqOQYnAE5mD/P
+	 vCvk5dFDVixQFm4zarCpiEraFsialIIpxdIHrAoBxmldRTYNwRxUNU+jHEQUqV8LBW
+	 MA8X0lf0/kfczCAOln2DWdu4hac1ib2WjoD1HploTeNTz+P8BxL3QqPjjRnjPY1kGN
+	 O06lj23OOqxzUp9BStpP+K+64A38HMwWIhbbrUnlNS938ik+nXlmz9H5vdQKG21cRO
+	 iTTTOoHtOR3nQ==
+From: Mark Brown <broonie@kernel.org>
+To: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
  Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Felipe Balbi <balbi@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20230206153449.596326-1-jbrunet@baylibre.com>
+References: <20230206153449.596326-1-jbrunet@baylibre.com>
+Subject: Re: (subset) [PATCH v2 0/7] ASoC: dt-bindings: meson: covert axg
+ audio to schema
+Message-Id: <167578236315.223502.6627129328138282057.b4-ty@kernel.org>
+Date: Tue, 07 Feb 2023 15:06:03 +0000
+MIME-Version: 1.0
 X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_070210_854962_DD8BBE65 
-X-CRM114-Status: UNSURE (   8.11  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230207_070608_951595_8EDAC539 
+X-CRM114-Status: GOOD (  12.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,36 +77,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On the G12A USB complex, the USB3 PHY is shared with the PCIe controller,
-thus on designs without PCIe enabled the USB3 PHY entry can be ommited from
-the PHY list.
+On Mon, 06 Feb 2023 16:34:42 +0100, Jerome Brunet wrote:
+> Convert AXG audio dt-binding documentation to schema
+> 
+> Changes since v1:
+> * Drop 2 patches applied with v1
+> * Drop node name patterns
+> * Fix examples indentation
+> * Yaml fixups requested by Krzysztof
+> 
+> [...]
 
-Fixes: cdff2c946f06 ("dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic AXG Families USB Glue Bindings")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index daf2a859418d..f38a2be07eda 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -108,6 +108,7 @@ allOf:
-     then:
-       properties:
-         phy-names:
-+          minItems: 2
-           items:
-             - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
-             - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
----
-base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
-change-id: 20230207-b4-amlogic-g12a-usb-ctrl-bindings-fix-a1119e37de3c
+Thanks!
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+[1/7] ASoC: dt-bindings: meson: convert axg tdm interface to schema
+      commit: cdff91122de52f480bea730fee6665a7404d758c
+[2/7] ASoC: dt-bindings: meson: convert axg tdm formatters to schema
+      commit: c5536e7be70cf2ab55c674b3c2120565e9559c50
+[3/7] ASoC: dt-bindings: meson: convert axg pdm to schema
+      commit: 4d37c72ec42374c5ad416f851b572a9fb794e8ef
+[4/7] ASoC: dt-bindings: meson: convert axg fifo to schema
+      commit: 6b6f5ea7ab0062d152a3bc9192cee45c7fc31387
+[5/7] ASoC: dt-bindings: meson: convert axg spdif input to schema
+      commit: ede6aa4087abfac527267c4ac5bb6eebdfe958ba
+[6/7] ASoC: dt-bindings: meson: convert axg spdif output to schema
+      commit: 32f7b9102bfc48a210bf655e049145f6450b03a0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
