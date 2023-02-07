@@ -4,91 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B43C636CC
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 08:08:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD6EC636CC
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Feb 2023 08:17:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0RTOddVguqG32dJHP7XFYgy2qtYUSeVVEZ9ElO1XhS4=; b=yWQ1jJ4we0S6E4kznwNmmYaoYI
-	Ob7Y2L9Vdkf64fKElpazxmlqsfbjLHPAN/L8mu6posjWDvq1tz+/0GXC1GN8RUzMhp9FVuqmcSpwK
-	PbouZcmL95MXzhW8WLHdjcjduVTfFAlI20LerOu+bP+eLKToSrHlmAKIpS3JQ+6HijLRjsyfEMT3A
-	6DIo70yDbf+q72ZLM8S+3sb5eD7E4If4YKzSad6uqQh4G/P19WY4IekmwV7FvuCQpmJRcMCjUL3I9
-	EqEk+QUISL2AAMub77JWttpOPbgxHOOpxGyIngfIYuT9DsGg6yEsCFHdc3YnhI4KwNDXfr+9ZmfYO
-	rPH9k0dQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=p9A+TJADYe3Lc8ZSI1SDpVJfFHfB2eqRck3DsMuuIi4=; b=iSCb+o5Hfsg361
+	hSVG1tIEb5iRd06z/5omz+4TokRQtYL/jZjrxZOr6Ryu1ecEOaKbdegDO4m4F8hDOj/ds5UyU/hrk
+	BPZFf/UqXnIqD8JiKQF2rMDCgyd2rR3NREUzRQCS8BhH/mFCY01e3ZqwSV3/+xxYAYd76yIRynYZL
+	iGhl0lKgQjPEKkX6KkZJ+VF/hyDj4ieIR/KCaIb8cgBNs7xCE0YO74buTWF8UbubI5gNm3JJ8wOlU
+	Jss8aG03ji8iMla6mm0c64A+04FhGljVOOrfvxCS0QBFGyB2XzZQU5JH33nBggy6v/3J/W1+9BRa3
+	MTSX7MZe2lCttbeOx4jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPJ1H-00BFNK-WE; Tue, 07 Feb 2023 08:08:04 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1pPJAV-00BGbb-C3; Tue, 07 Feb 2023 08:17:35 +0000
+Received: from smtpbguseast3.qq.com ([54.243.244.52])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPJ1E-00BFMS-KL
-	for linux-amlogic@lists.infradead.org; Tue, 07 Feb 2023 08:08:01 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id k13so5266989wrh.8
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Feb 2023 00:08:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RQlDidB6Gvvp6ghBrLgv75BvvHu3m4TEuLCw4BC1C/U=;
-        b=sEDJ1fu0JDTI24wHOg1lgL/WoCnjFuVGa7uzyEZNEFTIewsjrxYH8wjB5CfvF6IGwG
-         4mMpnDpzmYZm6v4rR8GObnKIcJhTNFiYp4cchYRfiYLaZEs5//+6a0aEVjLP/mxpC1Rg
-         fGJ/4iUKSs0FMVz+2TpqE4LIMW/ziGHtl0edQd9uNLan3a3bPlcaHeFQjcm3Vj6d/vyb
-         fU4KXb3tFx2z8RVQSQ54lKBvToSP3d0CDjTEe+cmThPSxLpXC8MUS2CBvzVhCnmScFQM
-         TvL+6CtWAHca6ezrDoIMvl26AEXD0SeLcEe1rPCaD8Nc3tOvNjyFJglPvPTPImZKNaML
-         yo/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RQlDidB6Gvvp6ghBrLgv75BvvHu3m4TEuLCw4BC1C/U=;
-        b=GfnpKlIekUK3sH36ksrGEUjeuqmGXI/irvunBr+B2SA1IZuI01jpEyUwmQFNT/KAiD
-         9WB7yzBBOW2Uw38GVRDpNDc3707spk4ncEG5hu5xqbPZlrvELxw5G0fOiRtaPiBLUaN2
-         Be00Uh3LRXjdL1SlaqhgogXYiimqunsS+G3TdcjBcIpXCzFYYT/kO8/llW7RQMCdpnYL
-         54B1+COTL6lBLqcdE6pi6J0Y7DaBIJJLZKvmy+dY9cjF8N1qDU3hTC2tBKlERFNjoqFZ
-         p5SNtJa3SmOv6Fyc2Yef3O8svVt3G7naqMr/UtD6m9l0MvJSeXnydRkYQ8oW2li5yAh3
-         48Dg==
-X-Gm-Message-State: AO0yUKWmxoqR6yDAwxCMfF0Hek5bMTnuLPFnG90sdvqe+2u95i/GRdCp
-	w/BP1k6aXrD5yvtIl/Jld0QBxA==
-X-Google-Smtp-Source: AK7set9MUnU8VvfsvVaIq/Or338muK8PL0UGOugI4JZSjpEDpqiycPmBpgyzKRDbCfFOS2RaJaUHew==
-X-Received: by 2002:a5d:6b4f:0:b0:2bf:b68a:e122 with SMTP id x15-20020a5d6b4f000000b002bfb68ae122mr1898790wrw.33.1675757278977;
-        Tue, 07 Feb 2023 00:07:58 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3? ([2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3])
-        by smtp.gmail.com with ESMTPSA id e6-20020a5d6d06000000b002be099f78c0sm11055130wrq.69.2023.02.07.00.07.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 00:07:58 -0800 (PST)
-Message-ID: <c65e894d-2682-9fc4-1843-1e30b2779d42@linaro.org>
-Date: Tue, 7 Feb 2023 09:07:57 +0100
+	id 1pPJAQ-00BGaA-Oj; Tue, 07 Feb 2023 08:17:33 +0000
+X-QQ-mid: bizesmtp68t1675757791toybj5cr
+Received: from [192.168.30.129] ( [92.202.159.105])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 07 Feb 2023 16:16:29 +0800 (CST)
+X-QQ-SSF: 0110000000200090E000B00A0000000
+X-QQ-FEAT: J5JfekO1WsjmSEsrsZCepIBB4zsEdDzrGA9YsKwGYTzD80WKhYEWxspFA8rKV
+	jsxC/juXwmCEGl/GMcvzUpHEvmRqeyZJrjxtYBIoyT5NVNj63X0r86ETfxaG0SjNhJRGAhZ
+	AByNA9nbaAeIY7p9wv5aMtJHU6b4FF2glU9AxMzg69Djh66ZgHqq/ahKBOKArh+qwFmeeCW
+	9S0bnmEXYUIjDD2Ap3HdGoQqUUKolRRI/ObiZcFjEfHXSDGeQQ6ITeGCVZ9yRbx5Xo5/276
+	HRrtXMc9N9YZo71V4zBqYq9AUhH6blIw6nFoTSXJFxXRLbTzKhyTGdrkLDPvr9N9BFKtCGU
+	1BPG4RFV0zEEqSTqEeYEHVcu47/tFRJcVgJz1zxhuWufhtcjUJPJ/hElDHgsTBbj+LAIsQN
+	tKaO2Vw98up18xn4U1GRzg==
+X-QQ-GoodBg: 0
+Message-ID: <73073D2437C98934+72a611be-d3b4-4db4-9051-12b1623b1e80@radxa.com>
+Date: Tue, 7 Feb 2023 17:16:29 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
+ interrupts level-sensitive
 Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Thierry Reding <thierry.reding@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, linux-pwm@vger.kernel.org
-References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
- <5b83767e-c53d-316f-df10-45a39dbd9c88@gmail.com>
- <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
-Organization: Linaro Developer Services
-In-Reply-To: <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvr:qybglogicsvr5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_000800_707938_18804395 
-X-CRM114-Status: GOOD (  12.49  )
+X-CRM114-CacheID: sfid-20230207_001731_310911_8042D72A 
+X-CRM114-Status: GOOD (  15.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,22 +73,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAwNi8wMi8yMDIzIDA5OjIzLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToKPiBIZWxs
-bywKPiAKPiBPbiBXZWQsIEZlYiAwMSwgMjAyMyBhdCAwOTowMDoyMVBNICswMTAwLCBIZWluZXIg
-S2FsbHdlaXQgd3JvdGU6Cj4+IENvbnZlcnQgQW1sb2dpYyBNZXNvbiBQV00gYmluZGluZyB0byB5
-YW1sLgo+Pgo+PiBSZXZpZXdlZC1ieTogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4K
-Pj4gU2lnbmVkLW9mZi1ieTogSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4K
-PiAKPiBIb3cgaXMgc3VwcG9zZWQgdG8gcGljayB1cCB0aGlzIHBhdGNoPyBEb2VzIGl0IGdvIGlu
-IHRvZ2V0aGVyIHdpdGggdGhlCj4gb3RoZXIgcGF0Y2hlcyBpbiB0aGlzIHNlcmllcyB2aWEgYW1s
-b2dpYy9hcm07IG9yIGlzIHRoZXJlIGFuIGV4cGVjdGF0aW9uCj4gdGhhdCBpdCBlbnRlcnMgdmlh
-IFBXTT8KCkkgZXhwZWN0IFRoaWVycnkgdG8gcGljayBpdCwgaWYgaGUgY2FuJ3QgSSBjYW4gdGFr
-ZSB3aXRoIGhpcyBhY2suCgpOZWlsCgo+IAo+IEJlc3QgcmVnYXJkcwo+IFV3ZQo+IAoKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+hi,
+
+On 1/26/23 23:03, Heiner Kallweit wrote:
+> The usage of edge-triggered interrupts lead to lost interrupts under load,
+> see [0]. This was confirmed to be fixed by using level-triggered
+> interrupts.
+> The report was about SDIO. However, as the host controller is the same
+> for SD and MMC, apply the change to all mmc controller instances.
+> 
+> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+> 
+> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
+> Reported-by: Peter Suti <peter.suti@streamunlimited.com>
+> Tested-by: Peter Suti <peter.suti@streamunlimited.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+
+this fixes wifi issue on Radxa Zero/Zero2. thank you so much!
+
+Tested-by: FUKAUMI Naoki <naoki@radxa.com>
+
+--
+FUKAUMI Naoki
+
+> ---
+> v2:
+> - apply the fix also to meson-axg
+> - apply the fix to all host controller instances
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 +++---
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 +++---
+>   3 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index ed895fb32..a6a3095de 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1886,7 +1886,7 @@ apb: bus@ffe00000 {
+>   			sd_emmc_b: mmc@5000 {
+>   				compatible = "amlogic,meson-axg-mmc";
+>   				reg = <0x0 0x5000 0x0 0x800>;
+> -				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
+>   				status = "disabled";
+>   				clocks = <&clkc CLKID_SD_EMMC_B>,
+>   					<&clkc CLKID_SD_EMMC_B_CLK0>,
+> @@ -1898,7 +1898,7 @@ sd_emmc_b: mmc@5000 {
+>   			sd_emmc_c: mmc@7000 {
+>   				compatible = "amlogic,meson-axg-mmc";
+>   				reg = <0x0 0x7000 0x0 0x800>;
+> -				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
+>   				status = "disabled";
+>   				clocks = <&clkc CLKID_SD_EMMC_C>,
+>   					<&clkc CLKID_SD_EMMC_C_CLK0>,
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 6d7272b2c..13fdaba21 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
+>   		sd_emmc_a: mmc@ffe03000 {
+>   			compatible = "amlogic,meson-axg-mmc";
+>   			reg = <0x0 0xffe03000 0x0 0x800>;
+> -			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+>   			status = "disabled";
+>   			clocks = <&clkc CLKID_SD_EMMC_A>,
+>   				 <&clkc CLKID_SD_EMMC_A_CLK0>,
+> @@ -2336,7 +2336,7 @@ sd_emmc_a: mmc@ffe03000 {
+>   		sd_emmc_b: mmc@ffe05000 {
+>   			compatible = "amlogic,meson-axg-mmc";
+>   			reg = <0x0 0xffe05000 0x0 0x800>;
+> -			interrupts = <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
+>   			status = "disabled";
+>   			clocks = <&clkc CLKID_SD_EMMC_B>,
+>   				 <&clkc CLKID_SD_EMMC_B_CLK0>,
+> @@ -2348,7 +2348,7 @@ sd_emmc_b: mmc@ffe05000 {
+>   		sd_emmc_c: mmc@ffe07000 {
+>   			compatible = "amlogic,meson-axg-mmc";
+>   			reg = <0x0 0xffe07000 0x0 0x800>;
+> -			interrupts = <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
+>   			status = "disabled";
+>   			clocks = <&clkc CLKID_SD_EMMC_C>,
+>   				 <&clkc CLKID_SD_EMMC_C_CLK0>,
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index e3c12e0be..5eed15035 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -603,21 +603,21 @@ apb: apb@d0000000 {
+>   			sd_emmc_a: mmc@70000 {
+>   				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
+>   				reg = <0x0 0x70000 0x0 0x800>;
+> -				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+>   				status = "disabled";
+>   			};
+>   
+>   			sd_emmc_b: mmc@72000 {
+>   				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
+>   				reg = <0x0 0x72000 0x0 0x800>;
+> -				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
+>   				status = "disabled";
+>   			};
+>   
+>   			sd_emmc_c: mmc@74000 {
+>   				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
+>   				reg = <0x0 0x74000 0x0 0x800>;
+> -				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
+>   				status = "disabled";
+>   			};
+>   		};
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
