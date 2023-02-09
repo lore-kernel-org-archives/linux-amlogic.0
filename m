@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF45FC636D6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A09C05027
 	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Feb 2023 13:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,60 +12,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8rAtiKEzJV0ZK2x4LCeOhqEc0//KBiqspovEbryLoiU=; b=4QSKVLn+9Jef5H
-	WRc35h3A+F9Gip8ja2vKOgauka55IOBJHXWN5rDmPn2G6xCgnb+AAkTm+PzhGnfKOV7IAxob4awqa
-	7skgxlUhtZmnqs+yKQWI9ZiKaPPscbNUIgenQ8CkA4v+d0tduwcewyXLJW0JqSrDAoYq8YbqNHLu3
-	CU1+ys1Wtwe7grqZpw0zMTim9YsnSuGc3Ufuf3QJNcqgCS6bd6Ux1uX5gO2DDMvnrT+ESSAfn/+4r
-	OG5I+ZtO9V81i3zv3lCuYQetu1pCilIXY6iJyO+8w2CLvjLOljCBSsbqBthCd4bBds30BH7AbDJzX
-	15ZJiwBAmCNDwZ6KysIQ==;
+	List-Owner; bh=NkmiXTdp3Mw0VoaWyaJSRLW2kwn7zmd4eKFY3fcJwio=; b=RtFsCNAK4/Taty
+	pQhQ4Y5hBouY5ZJfLPUyU6hvrnhZn8OrYzpSK9NIEOV2uYmbKEWmw49+3gAYmVHb8G0dT4YJjLbhN
+	q0v0W52unABnraOB6JcTfOUP8MQhF6nQGYYNdmthFsqZx1YXQ1W06ua41U/aEn7Fp8QoYigXpMRGk
+	Boau3IUi0Fs2M5zgtIL7CSS2cIWb3EQSEiuh2L0cvk848DE0ru0AlyA3o14y6t2Y2yMf7PW+BJ8Iz
+	V9oDTBaAdlcGTTFwZ6z8CrdbYD/RqFFs+LGVsHSg0VPd5uaORzr6FO5wplJ0i6AXvPADP2bLsXFyw
+	LU0lUE7+3ZaSCDNyu8SA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQ7Ea-001o22-UB; Thu, 09 Feb 2023 13:45:08 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pQ7Ec-001o34-Lj; Thu, 09 Feb 2023 13:45:10 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQ7BI-001mL2-NS
-	for linux-amlogic@lists.infradead.org; Thu, 09 Feb 2023 13:41:48 +0000
-Received: by mail-wm1-x332.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so3899652wma.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Feb 2023 05:41:43 -0800 (PST)
+	id 1pQ7BH-001mK7-Jw
+	for linux-amlogic@lists.infradead.org; Thu, 09 Feb 2023 13:41:46 +0000
+Received: by mail-wm1-x335.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so1585370wms.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Feb 2023 05:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DjLQ6k0eKtXjQgrCbXriLkzXKMYzM/hKWrkASWGobfc=;
-        b=mLWrjSKmdpGUaYDAQZICxLSAs7ZKrnHVZVKfVMia/8ggNhMzJKm1PbELGzCVEp4P6P
-         GV5X7yqJYTmZKPs7A1B73sYqHrQtxASN0f4t9HJnf8snZPE52n4bn4AdbaerH68pSmrH
-         4430KlCz4zA/sGWku5Dvsq3e5Yq/b/Wkxe419l/FC6AcWdy1HJ31dCU00yftQLoto8qZ
-         9729k5Draj6qbMyc+XufEqxgtLatzbXK/Mf2+ggx9OisMzo/xoLmVsxGqSnaoogqIrLl
-         pnAGufiAbevEvkTHgCXWgr+pPAjdrO98VbecW+t0wA8kj3rzheusqdkdRI6tkMWHD/zm
-         ABXw==
+        bh=RGW2oT94HK6ngpZmBKHolnNTHtBBlnG2dCVlzG6CWeE=;
+        b=Qledw9xPLq/PvO+4IvdhHggxZshP/QGS+twZn4DOnVjLBXRpws8wY3UzjQhwfiMu79
+         JWq3NT4amqXdro2bvg24B6Cf+b6Iijvzbmdy61S/HZdaYpP/89NIBjQ3bX3A0t0P71Bs
+         MJ2R49zCyJBkDiASjvFg7g4WVnjFqH3VBZ92ljgajD5R4dLyMCL/IfAzBgYD+ycYRxm6
+         exNEAZVJiFPPoylgypSxcFv6sZY2pp+xVqoIFD4G2NFwy9py+nbEaCv6M+YcH0TAAwGF
+         WLRviEUCziru4V1XyMKO13ycJ6cRFj1nyzRlIN/PBD5QGmtofk2kmwIS8PGyJIsebDOr
+         q9Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DjLQ6k0eKtXjQgrCbXriLkzXKMYzM/hKWrkASWGobfc=;
-        b=g0gF2QffX7rCCIybMPV9GRNpJMg8Mm1oso0wjCgnuz/LiQtCWd8wTz1pbKKU4VY2IH
-         NlQDX120wzKmUZvtpZVh9AJOfZTRNIjnjGo94MSPZxPlWFF1woIhVSJs8vp7BqV0fHuz
-         yqZuoO2JX85JKcROlflsZcV/5/peO6OM33RQduoOGe6EqzbH5HpAkN2AXaYGZuOXBuki
-         ahZzAPGFMlOLcc+uEHczv3ledufNSpsbA66Imoet69nE8gw1Wjpz8cFAOe3A6B9RPj9I
-         ZhopmXBvwrkuDhUFZny+4xCrhVj2Dykz5vL676nu0+OmApewKrIDt3moYDby/2kO/VF7
-         AicA==
-X-Gm-Message-State: AO0yUKW2mLtjnO6nnQSrVck2kaQNIlLXkniGLYlOsA6HfGo+MVuraaIF
-	W7d0Atk6oXlfd0oV252XNhnTgvL9dVOuwtg0H9Y=
-X-Google-Smtp-Source: AK7set9vgmNMX33CebLjgnK/NCuxhWo3nDtnIa0yVi6jVPXlG+ofn9yTRMMHHwUsy0duwDeSmANpIQ==
-X-Received: by 2002:a05:600c:511e:b0:3df:9858:c038 with SMTP id o30-20020a05600c511e00b003df9858c038mr6116913wms.13.1675950102431;
-        Thu, 09 Feb 2023 05:41:42 -0800 (PST)
+        bh=RGW2oT94HK6ngpZmBKHolnNTHtBBlnG2dCVlzG6CWeE=;
+        b=KOvwIq2b3Q2lGWMLQVmY9rbqiAKsSIBF2uUDdFphSWH7dPkoJ5kI/9L0sE3ITcG6Ep
+         ebEsbPZMZ+1kdwL882az6hEeHBmUgiztvMa6TmVe/8iceCA3TPcttESZaFJp++v505n/
+         4oineNhwpJbVar0AcTcqEaGMca1ay6WEpbYTpoV9DxWcJw4H917z4sa1K0i0L/LpbEYU
+         LYe4Ph3S3YZRIzPrfjj4tnWsekH6VHHBE9qoQmLOsD0lkxin19UqakodhZP2JFfTMFr6
+         BEFkl4OrvNMuerSKeC66rI6YQdzMV2h3pjoO4xPi+3grLcheA35xFhDh/1vgYHOWmUSC
+         urmw==
+X-Gm-Message-State: AO0yUKVGlX8hxfyeCiAVOl65+8R4IV4aLQ5R2PfD4APuxa16OuVgB4Lr
+	IXltpBeKMBtvn+M6NZ52ImiVjA==
+X-Google-Smtp-Source: AK7set8tF+m+2BDy4Jqj9n4mBkHnqUS7RpYgJU7ApYsJuiqWKroRaqouDy7YBCcw28uEE1HvKDcWAQ==
+X-Received: by 2002:a05:600c:3416:b0:3df:50eb:7ca6 with SMTP id y22-20020a05600c341600b003df50eb7ca6mr10258428wmp.15.1675950101385;
+        Thu, 09 Feb 2023 05:41:41 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k12-20020a7bc40c000000b003dfe549da4fsm4946991wmi.18.2023.02.09.05.41.41
+        by smtp.gmail.com with ESMTPSA id k12-20020a7bc40c000000b003dfe549da4fsm4946991wmi.18.2023.02.09.05.41.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 05:41:42 -0800 (PST)
+        Thu, 09 Feb 2023 05:41:41 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 09 Feb 2023 14:41:39 +0100
-Subject: [PATCH 3/6] dt-bindings: soc: amlogic: document System Control
- registers
+Date: Thu, 09 Feb 2023 14:41:38 +0100
+Subject: [PATCH 2/6] dt-bindings: soc: amlogic: convert clk-measure.txt to
+ dt-schema
 MIME-Version: 1.0
-Message-Id: <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
+Message-Id: <20230209-b4-amlogic-bindings-convert-take2-v1-2-c4fe9049def9@linaro.org>
 References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
 In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
 To: Alessandro Zummo <a.zummo@towertech.it>, 
@@ -82,8 +82,8 @@ Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230209_054144_865868_1B3A00E7 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20230209_054143_696983_094655BF 
+X-CRM114-Status: GOOD (  12.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,135 +100,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Document the System Control registers regions found on all Amlogic
-SoC families and it's clock, power, pinctrl and phy subnodes.
-
-The regions has various independent registers tied to other
-hardware devices, thus the syscon compatible.
-
-Clock controllers and Pinctrl devices are not yet documented, the
-definition of those will be updated in a second time.
+Convert the Amlogic Internal Clock Measurer bindings to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 109 +++++++++++++++++++++
- 1 file changed, 109 insertions(+)
+ .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  | 40 ++++++++++++++++++++++
+ .../bindings/soc/amlogic/clk-measure.txt           | 21 ------------
+ 2 files changed, 40 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
 new file mode 100644
-index 000000000000..672eabd90c09
+index 000000000000..77c281153010
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-@@ -0,0 +1,109 @@
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+@@ -0,0 +1,40 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
++$id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-clk-measure.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson System Control registers
++title: Amlogic Internal Clock Measurer
++
++description:
++  The Amlogic SoCs contains an IP to measure the internal clocks.
++  The precision is multiple of MHz, useful to debug the clock states.
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
 +
 +properties:
 +  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson-gx-hhi-sysctrl
-+          - amlogic,meson-gx-ao-sysctrl
-+          - amlogic,meson-axg-hhi-sysctrl
-+          - amlogic,meson-axg-ao-sysctrl
-+      - const: simple-mfd
-+      - const: syscon
++    enum:
++      - amlogic,meson-gx-clk-measure
++      - amlogic,meson8-clk-measure
++      - amlogic,meson8b-clk-measure
++      - amlogic,meson-axg-clk-measure
++      - amlogic,meson-g12a-clk-measure
++      - amlogic,meson-sm1-clk-measure
 +
 +  reg:
 +    maxItems: 1
 +
-+  clock-controller:
-+    type: object
-+
-+  power-controller:
-+    $ref: /schemas/power/amlogic,meson-ee-pwrc.yaml
-+
-+  pinctrl:
-+    type: object
-+
-+  phy:
-+    type: object
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gx-hhi-sysctrl
-+            - amlogic,meson-axg-hhi-sysctrl
-+    then:
-+      required:
-+        - power-controller
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gx-ao-sysctrl
-+            - amlogic,meson-axg-ao-sysctrl
-+    then:
-+      required:
-+        - pinctrl
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-axg-hhi-sysctrl
-+    then:
-+      properties:
-+        phy:
-+          oneOf:
-+            - $ref: /schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml
-+            - $ref: /schemas/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
-+
 +required:
 +  - compatible
 +  - reg
-+  - clock-controller
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    sysctrl: system-controller@0 {
-+        compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
-+        reg = <0 0x400>;
-+
-+        clock-controller { };
-+
-+        power-controller {
-+            compatible = "amlogic,meson-gxbb-pwrc";
-+            #power-domain-cells = <1>;
-+            amlogic,ao-sysctrl = <&sysctrl_AO>;
-+
-+            resets = <&reset_viu>,
-+                     <&reset_venc>,
-+                     <&reset_vcbus>,
-+                     <&reset_bt656>,
-+                     <&reset_dvin>,
-+                     <&reset_rdma>,
-+                     <&reset_venci>,
-+                     <&reset_vencp>,
-+                     <&reset_vdac>,
-+                     <&reset_vdi6>,
-+                     <&reset_vencl>,
-+                     <&reset_vid_lock>;
-+            reset-names = "viu", "venc", "vcbus", "bt656", "dvin",
-+                          "rdma", "venci", "vencp", "vdac", "vdi6",
-+                          "vencl", "vid_lock";
-+            clocks = <&clk_vpu>, <&clk_vapb>;
-+            clock-names = "vpu", "vapb";
-+        };
++    clock-measure@8758 {
++        compatible = "amlogic,meson-gx-clk-measure";
++        reg = <0x8758 0x10>;
 +    };
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
+deleted file mode 100644
+index 3dd563cec794..000000000000
+--- a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-Amlogic Internal Clock Measurer
+-===============================
+-
+-The Amlogic SoCs contains an IP to measure the internal clocks.
+-The precision is multiple of MHz, useful to debug the clock states.
+-
+-Required properties:
+-- compatible: Shall contain one of the following :
+-			"amlogic,meson-gx-clk-measure" for GX SoCs
+-			"amlogic,meson8-clk-measure" for Meson8 SoCs
+-			"amlogic,meson8b-clk-measure" for Meson8b SoCs
+-			"amlogic,meson-axg-clk-measure" for AXG SoCs
+-			"amlogic,meson-g12a-clk-measure" for G12a SoCs
+-			"amlogic,meson-sm1-clk-measure" for SM1 SoCs
+-- reg: base address and size of the Clock Measurer register space.
+-
+-Example:
+-	clock-measure@8758 {
+-		compatible = "amlogic,meson-gx-clk-measure";
+-		reg = <0x0 0x8758 0x0 0x10>;
+-	};
 
 -- 
 2.34.1
