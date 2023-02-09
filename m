@@ -4,145 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD5CDC636D4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 20:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D416C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 20:15:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KjHSIOk1yoZcRdFjwncQo8Z3/Z8TKYFLRvclzgOOlAI=; b=3y7etYOYkigHa6
-	nG9ZDNFoFNd7s/squPQdFGHM1XCatDf4zrIl1VWLgXWAjrJbR+wd10AGn3FcsvrnsjfnF7HV73wv2
-	CUYgyGPGUWMl19Ullm/ZjO8SveFYUBs8tewm3ddT8ZY1uZkHX6D2Ld4ke8qvKBpOmMOaKkuk1MZN7
-	jOOH98j6Kc8MbVTTL3rLt8/aKakGCpzfvV9Rgc1v9cy5137QqyYWw1s2jXin3BdIddlDuJkEVZwoY
-	8BlD6CC8BY49iboYx3jKp6uZRsjlQN3wx+rBsefAEyXmfZL062ZFTODktmW1EvUTefT/hOS9XJpg0
-	+c4BmvzvE/auwsNf6/uw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=o3l1uzVCSXPZ0GNEe+udG2N9NBqUrqQ5yvBHtTicBKg=; b=ORO1B5k6NiLSJSSbXZgk2RksVL
+	ZAPu4NUZ3zt/ZeX8VH+ShlYAPGj2ZVlETZTyYt/JoRa0D976P5p1YMYFQo7dfTqbNhsO5Wtdz/hMf
+	SOPomhF4pyDmCFLzmmb9X6RW0Hle2EUg+S/VkyhQPnPre9X3qkQFv81Tfmuf2mYimWexHAPkLCtyh
+	9ZijZU6bFKJMCgO685NNP5Nsrrc4dmy42CsuyykDhJ47/TnwaDBXAS2lr9WebG9lSmuksK0OERNoc
+	EGPXvHu143g5TXCPzFm3TKgdhdT760F2Amt4YIwq5pBa93wvUWIorXwZRtv+VS8F/bub61yR0U9FU
+	7B2EVYkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQZnu-007JMs-N5; Fri, 10 Feb 2023 20:15:30 +0000
-Received: from mail-bn1nam02on2061f.outbound.protection.outlook.com ([2a01:111:f400:7eb2::61f] helo=NAM02-BN1-obe.outbound.protection.outlook.com)
+	id 1pQZnw-007JOo-FI; Fri, 10 Feb 2023 20:15:32 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNbVs-00GN8B-7W; Thu, 02 Feb 2023 15:28:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ChyoQqSXhSnI7KoY5biInXOIJANssAPJrEvZH6mPHFvtP0lVOqeQidsJ4Uto1H6iquYZjLAaxDFcNqa2JU7ntt9CIYV0+A+wTqMkMObUCWZpPqoAgx0s52/VKSMFp3aUnply0g7COSTuobhfxGKlQten9DCIbEi3MDXySNM+ori5NHMEIIrY0sbF5aLACqNCumzvZHDbjV8KC+7rnpvEY0wh+StU1nFUAFXjUY9JBSDu4cZkBNeDjEMZV9+nbve1k6du4mK6lOjLD9FeZAjGpfMS0MMcfxtFsyLOcyQbnOMLiqvU/mP47ACKcWYURjbV6fpHAJYYsaJm5Gg5L7gs3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2pEjyARU/iDHF4qEL808MswcLI+5ZEPTvCc976Kw1g4=;
- b=ECbHH6DIKxNnbu7Ao6TpVUFAK+561mk7hftiWheVrhrhcHvlOyaYbUdMikCftUFGbuyuqB27emkT8sbKmuwtd4dLwI6ORXiU97+CT8dKEJZmWoV5yYwiPjYxx8d+3ki/+0ybP3OFT7yxci1eeHlLFbUwnk/b5YkPCx2ZF2Gvagxhjez9G2cgIBWFaje7mnUoyqXiEocllzTJ6K5qiuA93P/A1B36vLBopjSMao5BaLib+Y9aaEKZ4gbL8+C+XyjmXtKJ4fK0d50MqPjrIAg47O2W4oqcC3TsFqKLJrpTUqM28FBL0lPd6QA5/XHMDqlHLdpfIB01oWrMesL3eITibg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2pEjyARU/iDHF4qEL808MswcLI+5ZEPTvCc976Kw1g4=;
- b=HFvChiGMfTn/v0rutEii1Iz7VC8vZawQmS93vvsHzOOwopFciQroMfPUOv/t/y8UKLbhjfwEcqHzPBl5veOm3oduamJB4RksMKOZqhlwKZ29cW6djKM/7hmcrVnp1diDu9CZmx6WffJ3sdGLHjeznv/6hcYB1q5TWbNmsYwkR4E=
-Received: from BLAPR03CA0135.namprd03.prod.outlook.com (2603:10b6:208:32e::20)
- by SA1PR12MB6750.namprd12.prod.outlook.com (2603:10b6:806:257::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Thu, 2 Feb
- 2023 15:28:29 +0000
-Received: from BL02EPF000108E8.namprd05.prod.outlook.com
- (2603:10b6:208:32e:cafe::d1) by BLAPR03CA0135.outlook.office365.com
- (2603:10b6:208:32e::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.24 via Frontend
- Transport; Thu, 2 Feb 2023 15:28:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000108E8.mail.protection.outlook.com (10.167.241.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6064.17 via Frontend Transport; Thu, 2 Feb 2023 15:28:29 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 2 Feb
- 2023 09:28:28 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 2 Feb
- 2023 09:28:28 -0600
-Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Thu, 2 Feb 2023 09:28:05 -0600
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
-	<pratyush@kernel.org>, <sanju.mehta@amd.com>, <chin-ting_kuo@aspeedtech.com>,
-	<clg@kaod.org>, <kdasu.kdev@gmail.com>, <f.fainelli@gmail.com>,
-	<rjui@broadcom.com>, <sbranden@broadcom.com>, <eajames@linux.ibm.com>,
-	<olteanv@gmail.com>, <han.xu@nxp.com>, <john.garry@huawei.com>,
-	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <narmstrong@baylibre.com>,
-	<khilman@baylibre.com>, <matthias.bgg@gmail.com>, <haibo.chen@nxp.com>,
-	<linus.walleij@linaro.org>, <daniel@zonque.org>, <haojian.zhuang@gmail.com>,
-	<robert.jarzmik@free.fr>, <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-	<heiko@sntech.de>, <krzysztof.kozlowski@linaro.org>, <andi@etezian.org>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
-	<jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-	<masahisa.kojima@linaro.org>, <jaswinder.singh@linaro.org>,
-	<rostedt@goodmis.org>, <mingo@redhat.com>, <l.stelmach@samsung.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <alex.aring@gmail.com>, <stefan@datenfreihafen.org>,
-	<kvalo@kernel.org>
-CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-	<radu_nicolae.pirea@upb.ro>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<yogeshgaur.83@gmail.com>, <konrad.dybcio@somainline.org>,
-	<alim.akhtar@samsung.com>, <ldewangan@nvidia.com>,
-	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <michal.simek@amd.com>,
-	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
-	<linux-tegra@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-wpan@vger.kernel.org>, <libertas-dev@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <palmer@dabbelt.com>,
-	<linux-riscv@lists.infradead.org>, <amitrkcian2002@gmail.com>, "Amit Kumar
- Mahapatra" <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH v3 13/13] spi: spi-zynqmp-gqspi: Add parallel memories support in GQSPI driver
-Date: Thu, 2 Feb 2023 20:52:58 +0530
-Message-ID: <20230202152258.512973-14-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230202152258.512973-1-amit.kumar-mahapatra@amd.com>
+	id 1pQ7ws-001z1T-7L; Thu, 09 Feb 2023 14:30:55 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7820061AB9;
+	Thu,  9 Feb 2023 14:30:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C41C433EF;
+	Thu,  9 Feb 2023 14:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1675953052;
+	bh=n5q92jtNB++4BoYIauYygzacB4DdXZvQYlYHsoaQZHo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L4cNRE4MQxZhPNyBF/08CXXf/FWNQlzUwcRLG/0S65J/4ZChTqeAH+gdyIm7+puo/
+	 e1NMfqyqjToGWx/m2stUfU7oe9VJ+8njI+o0jyklZ6aQ10e0wIfN7idp96BYLv9Fv3
+	 QhfxNouUc0qZTgyD3UIjJF1eoI/sa7sYlEflw9jIrrOTdIfoFZo0OmH5vYc0Tjwjlg
+	 7k/6gJhmjkwo6pEOCZrEJ5FmUMlxfm8y1s7LLhR+jeJXraVBKucJ1jUqjs66gKI0qH
+	 XjavWBRymrRU2MvlL95tjkP7Fwb0aTwHP4DAbOFosKC6AT8CudX5DVtLZ+LDNj9wE2
+	 dDufUua3aqd7w==
+Date: Thu, 9 Feb 2023 14:30:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	jic23@kernel.org, tudor.ambarus@microchip.com, pratyush@kernel.org,
+	sanju.mehta@amd.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org,
+	kdasu.kdev@gmail.com, f.fainelli@gmail.com, rjui@broadcom.com,
+	sbranden@broadcom.com, eajames@linux.ibm.com, olteanv@gmail.com,
+	han.xu@nxp.com, john.garry@huawei.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, narmstrong@baylibre.com,
+	khilman@baylibre.com, matthias.bgg@gmail.com, haibo.chen@nxp.com,
+	linus.walleij@linaro.org, daniel@zonque.org,
+	haojian.zhuang@gmail.com, robert.jarzmik@free.fr, agross@kernel.org,
+	bjorn.andersson@linaro.org, heiko@sntech.de,
+	krzysztof.kozlowski@linaro.org, andi@etezian.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+	masahisa.kojima@linaro.org, jaswinder.singh@linaro.org,
+	rostedt@goodmis.org, mingo@redhat.com, l.stelmach@samsung.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, alex.aring@gmail.com, stefan@datenfreihafen.org,
+	kvalo@kernel.org, git@amd.com, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
+	radu_nicolae.pirea@upb.ro, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+	bcm-kernel-feedback-list@broadcom.com, fancer.lancer@gmail.com,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	yogeshgaur.83@gmail.com, konrad.dybcio@somainline.org,
+	alim.akhtar@samsung.com, ldewangan@nvidia.com,
+	thierry.reding@gmail.com, jonathanh@nvidia.com,
+	michal.simek@amd.com, linux-aspeed@lists.ozlabs.org,
+	openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+	netdev@vger.kernel.org, linux-wpan@vger.kernel.org,
+	libertas-dev@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-mtd@lists.infradead.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, linux-iio@vger.kernel.org,
+	michael@walle.cc, palmer@dabbelt.com,
+	linux-riscv@lists.infradead.org, amitrkcian2002@gmail.com,
+	Dhruva Gole <d-gole@ti.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	William Zhang <william.zhang@broadcom.com>
+Subject: Re: [PATCH v3 01/13] spi: Replace all spi->chip_select and
+ spi->cs_gpiod references with function call
+Message-ID: <Y+UDhWK6u9NkMTxv@sirena.org.uk>
 References: <20230202152258.512973-1-amit.kumar-mahapatra@amd.com>
+ <20230202152258.512973-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000108E8:EE_|SA1PR12MB6750:EE_
-X-MS-Office365-Filtering-Correlation-Id: 64e877f6-3653-4e8d-acc9-08db053222c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	xGpiEMVI0Q79Sm8quNRd1PoYqX8Os2QrTQscMq54fZXySLuL5b5pypVhT9FwWTm6A8VP7CFpp1AuC3+JiGjP0zjzIqP0vyeZd9MGpGCFEx3I7SyCK4cKXlZFo8xlaVnLLLbnGg/O5reTo/v7lPPwUGXgHUOyBAJTY66fTr/SsbLyF6YqUa9WsU4KQ6Whksv3JKdG4ACqmx3HZDlmyEQZ9P2vYqIxDSpzgb3yl1Ez1WpYPU7WQoOG20L/F7uSCCjLFQopJUcTBq5f2z0EcONqSRiguyN/6nBIO6VRPo/hdapw90Drrz46kjFOm8phoINDvox4ZKMUCBFUnxN9OMXmMoomB+ybIxKWpHlSpOmxDxcfEVPeZY0dJidUgckyXU3U7RD2/u0yYGL0iCQqZr1SBWHtH4ROpjmX5CYBJJ8qbKlEgdp7It+ar2ldVuZFHg9z1j40dDoFTG2qaY1hPreqKsLZMGKk1/O6M9+qegWyG3UpdchLe6XTdTNSlgfIfkVPCgov0d5Ow1aYqio2RJxk6o9+GNkKF0KOTP7wqL7BtaUWaFwf5NhSOYY2iljvCfrAxFLI4InlWMwSn5+rk7IllvazKGbKsQQJ4MKrmSF+6AYBhNrLJsORzZW4CAhF8UzgWuDkVZTt74VGRwEyi9G+ME/CmSAYufpa8bTDfnFwDPUZK2rMObUCM3mRYj/4Ava/QJVreqb2LNwoLdjCdLU2m632Y2/AUB1UYK7QBgl0zdKBl+BzDHQgwGel0wwk1Na6st0GzkFOSyhMz1lm4HbalJaSFVoTgz7b/afIlLYjP8RzxNiECSTRue2blY1HJnMvlyTSX0s0cLcFXD85nXMJWw==
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(346002)(376002)(396003)(136003)(451199018)(46966006)(36840700001)(40470700004)(356005)(921005)(40480700001)(36756003)(36860700001)(47076005)(82310400005)(81166007)(40460700003)(426003)(82740400003)(8676002)(2906002)(4326008)(54906003)(70586007)(110136005)(7416002)(7406005)(7366002)(316002)(70206006)(6666004)(8936002)(86362001)(41300700001)(5660300002)(7276002)(7336002)(1076003)(478600001)(26005)(186003)(83380400001)(2616005)(336012)(36900700001)(41080700001)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2023 15:28:29.1575
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64e877f6-3653-4e8d-acc9-08db053222c8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	BL02EPF000108E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6750
+In-Reply-To: <20230202152258.512973-2-amit.kumar-mahapatra@amd.com>
+X-Cookie: Androphobia:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230202_072836_351007_D7C4D6D5 
-X-CRM114-Status: GOOD (  18.91  )
+X-CRM114-CacheID: sfid-20230209_063054_362427_0DA3B0CE 
+X-CRM114-Status: GOOD (  12.61  )
 X-Mailman-Approved-At: Fri, 10 Feb 2023 12:15:07 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -155,117 +115,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6993298062872549445=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-During GQSPI driver probe set ctlr->multi-cs-cap for enabling multi CS
-capability of the controller. In parallel mode the controller can either
-split the data between both the flash or can send the same data to both the
-flashes, this is determined by the STRIPE bit. While sending commands to
-the flashes the GQSPI driver send the same command to both the flashes by
-resetting the STRIPE bit, but while writing/reading data to & from the
-flash the GQSPI driver splits the data evenly between both the flashes by
-setting the STRIPE bit.
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/spi/spi-zynqmp-gqspi.c | 39 +++++++++++++++++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+--===============6993298062872549445==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iWU3nY956KPhZko1"
+Content-Disposition: inline
 
-diff --git a/drivers/spi/spi-zynqmp-gqspi.c b/drivers/spi/spi-zynqmp-gqspi.c
-index 4759f704bf5c..9e44371bfda2 100644
---- a/drivers/spi/spi-zynqmp-gqspi.c
-+++ b/drivers/spi/spi-zynqmp-gqspi.c
-@@ -23,6 +23,7 @@
- #include <linux/spinlock.h>
- #include <linux/workqueue.h>
- #include <linux/spi/spi-mem.h>
-+#include <linux/mtd/spi-nor.h>
- 
- /* Generic QSPI register offsets */
- #define GQSPI_CONFIG_OFST		0x00000100
-@@ -192,6 +193,7 @@ struct qspi_platform_data {
-  * @op_lock:		Operational lock
-  * @speed_hz:          Current SPI bus clock speed in hz
-  * @has_tapdelay:	Used for tapdelay register available in qspi
-+ * @is_parallel:		Used for multi CS support
-  */
- struct zynqmp_qspi {
- 	struct spi_controller *ctlr;
-@@ -214,8 +216,33 @@ struct zynqmp_qspi {
- 	struct mutex op_lock;
- 	u32 speed_hz;
- 	bool has_tapdelay;
-+	bool is_parallel;
- };
- 
-+/**
-+ * zynqmp_gqspi_update_stripe - For GQSPI controller data stripe capabilities
-+ * @op:	Pointer to mem ops
-+ * Return:      Status of the data stripe
-+ *
-+ * Returns true if data stripe need to be enabled, else returns false
-+ */
-+bool zynqmp_gqspi_update_stripe(const struct spi_mem_op *op)
-+{
-+	if (op->cmd.opcode ==  SPINOR_OP_BE_4K ||
-+	    op->cmd.opcode ==  SPINOR_OP_BE_32K ||
-+	    op->cmd.opcode ==  SPINOR_OP_CHIP_ERASE ||
-+	    op->cmd.opcode ==  SPINOR_OP_SE ||
-+	    op->cmd.opcode ==  SPINOR_OP_BE_32K_4B ||
-+	    op->cmd.opcode ==  SPINOR_OP_SE_4B ||
-+	    op->cmd.opcode == SPINOR_OP_BE_4K_4B ||
-+	    op->cmd.opcode ==  SPINOR_OP_WRSR ||
-+	    op->cmd.opcode ==  SPINOR_OP_BRWR ||
-+	    (op->cmd.opcode ==  SPINOR_OP_WRSR2 && !op->addr.nbytes))
-+		return false;
-+
-+	return true;
-+}
-+
- /**
-  * zynqmp_gqspi_read - For GQSPI controller read operation
-  * @xqspi:	Pointer to the zynqmp_qspi structure
-@@ -470,7 +497,14 @@ static void zynqmp_qspi_chipselect(struct spi_device *qspi, bool is_high)
- 
- 	genfifoentry |= GQSPI_GENFIFO_MODE_SPI;
- 
--	if (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS) {
-+	if ((qspi->cs_index_mask & GQSPI_SELECT_LOWER_CS) &&
-+	    (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS)) {
-+		zynqmp_gqspi_selectslave(xqspi,
-+					 GQSPI_SELECT_FLASH_CS_BOTH,
-+					 GQSPI_SELECT_FLASH_BUS_BOTH);
-+		if (!xqspi->is_parallel)
-+			xqspi->is_parallel = true;
-+	} else if (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS) {
- 		zynqmp_gqspi_selectslave(xqspi,
- 					 GQSPI_SELECT_FLASH_CS_UPPER,
- 					 GQSPI_SELECT_FLASH_BUS_LOWER);
-@@ -1139,6 +1173,8 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 	}
- 
- 	if (op->data.nbytes) {
-+		if (xqspi->is_parallel && zynqmp_gqspi_update_stripe(op))
-+			genfifoentry |= GQSPI_GENFIFO_STRIPE;
- 		reinit_completion(&xqspi->data_completion);
- 		if (op->data.dir == SPI_MEM_DATA_OUT) {
- 			xqspi->txbuf = (u8 *)op->data.buf.out;
-@@ -1334,6 +1370,7 @@ static int zynqmp_qspi_probe(struct platform_device *pdev)
- 	ctlr->bits_per_word_mask = SPI_BPW_MASK(8);
- 	ctlr->dev.of_node = np;
- 	ctlr->auto_runtime_pm = true;
-+	ctlr->multi_cs_cap = true;
- 
- 	ret = devm_spi_register_controller(&pdev->dev, ctlr);
- 	if (ret) {
--- 
-2.25.1
 
+--iWU3nY956KPhZko1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Feb 02, 2023 at 08:52:46PM +0530, Amit Kumar Mahapatra wrote:
+> Supporting multi-cs in spi drivers would require the chip_select & cs_gpi=
+od
+> members of struct spi_device to be an array. But changing the type of the=
+se
+> members to array would break the spi driver functionality. To make the
+> transition smoother introduced four new APIs to get/set the
+
+This break an arm multi_v7_defconfig build:
+
+/build/stage/linux/drivers/spi/spi-pl022.c: In function =E2=80=98pl022_tran=
+sfer_one_message=E2=80=99:
+/build/stage/linux/drivers/spi/spi-pl022.c:1592:31: error: =E2=80=98struct =
+spi_message=E2=80=99 has no member named =E2=80=98spi_get_csgpiod=E2=80=99
+ 1592 |         pl022->cur_gpiod =3D msg->spi_get_csgpiod(spi, 0);
+      |                               ^~
+/build/stage/linux/drivers/spi/spi-pl022.c:1592:49: error: =E2=80=98spi=E2=
+=80=99 undeclared (first use in this function)
+ 1592 |         pl022->cur_gpiod =3D msg->spi_get_csgpiod(spi, 0);
+      |                                                 ^~~
+/build/stage/linux/drivers/spi/spi-pl022.c:1592:49: note: each undeclared i=
+dentifier is reported only once for each function it appears in
+
+--iWU3nY956KPhZko1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPlA4QACgkQJNaLcl1U
+h9Ai+wf+IWbvrI/uIEjinXzailRkkSP40/uzdnv8AAKF5zA3laimeZYZPCoKfD4X
+GzBSQEjiZOJmPZ0wBaHHFFaxHSBlL6rtUoA6r+EEktjzWc6vOsmoUVRt74R+ZMHw
+1FyvWR07nFAstJD2rPfPhIZ5bt4yiRX/CmA2SxN1qW74IwjKYAy6jLvbpSAZ4byY
+KRnij11f/xqUuiao0L/PTya+dYLUOBEQvXm5JBAIqhZaQVH4G7Ppov0MR15cEMug
+OG9oMzu197RFh7WgO6lj8rI9Cssl4vvj6+3owDZ/nK+LFq62Z6AvBGbaP7SoHOOI
+Xcz8JdTcCAH0XAgza9flmPUQME9cmQ==
+=4wBC
+-----END PGP SIGNATURE-----
+
+--iWU3nY956KPhZko1--
+
+
+--===============6993298062872549445==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6993298062872549445==--
+
