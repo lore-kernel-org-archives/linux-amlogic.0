@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FC59C05027
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 17:08:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C67FDC636CD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 17:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LvPSYiB35EI4Q7M7P+To3BFqYxKxh/5R0gwntOzTqhU=; b=BzBZ1kThP/odf5
-	DAWUcyx4m4d2vQuIh6IF8JPQK0Bt+NS6/AZVHcbn6F2TRzM91izg876AF66o4xRJb7TOHpMjMmvH4
-	waAaF5qEAPdj1c0h6NcNyeNIsVfIyF4LCjc7ft/Cw5E3W6TSVzyTMG/QXjrx3cnmEWhpLFtRud7VJ
-	GDPVoLC3+5mVCzHHwR5q9UggS8hFGEzwvZC3Efo/X+DVgbUS6TY3ygBpEwXDiQi02BmAX/ZQlam49
-	x2o2RN0KhhC6nHIRsinN7qBwN2pio8ufYjXEgOdBs8HbU1+hQ52ZjVC3mGo05gIzbz3BaHeWEr1Pa
-	165R0LvJRntPS2xylkDA==;
+	List-Owner; bh=DWbFEOKdoDxlD/Ce60FoyPfxPssA+L+KpWTY0AiV3lk=; b=umQ+eq7OnQXpi+
+	VmlBRteZs7Yax8fc1zP4Nq+vN/rqlNvNvO57/PDNG5G+jcPOaYfFUzNRnKqnsn3LhsIKSW2JAaREi
+	fi+RBF8teocEio4viUX3VW7yAW1OjvGV0KpzHuqfDhWrq5zQkSgrTqoUh1ePneJOYiJxuluMsMeAE
+	noQK2v6WUrQglN0RaC980pxLYcsUNVyTVP5T2LEUCyh4FUkRwCYjSvjjnBAwh5TO7XmQZTWHK0sgA
+	4aYrShnvF7b947B54CISeYFGwaSSNGTtbQsHQemIgr1s6Vjn7bs2fBta+2PWwnNizwrno/V5vKxCk
+	a482/Um/rR8ftyMOXCxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQWsO-006fqH-PK; Fri, 10 Feb 2023 17:07:56 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1pQWsc-006fyA-Uu; Fri, 10 Feb 2023 17:08:10 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQWs4-006fgG-H2; Fri, 10 Feb 2023 17:07:37 +0000
-Received: by mail-wr1-x430.google.com with SMTP id j25so5713890wrc.4;
-        Fri, 10 Feb 2023 09:07:33 -0800 (PST)
+	id 1pQWsB-006fhX-DC; Fri, 10 Feb 2023 17:07:44 +0000
+Received: by mail-wm1-x332.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so4554815wmb.2;
+        Fri, 10 Feb 2023 09:07:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NShXRZ//vQQKtuVXg+FNEbyRHYKUYaCN+nMk9xF7QT8=;
-        b=JwUX0eWxUb22c/W1Rd79586QKOgA79JbHl85PxJ02XMrWaq8ajpRNZKj34tLSdRpZv
-         hXsDQ7Ulpdr/XpbqCX3XtacFCLPbotVxFiUmFBg2pOihgiEvOkh/u3c7oYfV7kNloIgf
-         eYBW+CqEQ+p7ykFl98rXNTYaJCDpe10b0iFh1/LBGBgQP60EVYIq+DaB9py8uXzAztvl
-         /7aHWnwMcDlV1F/4CYOAzukoYY4JtGObuthixAncdXepCQMqKmf15yl55xi7e/arjPrF
-         s6zc59yqX4EnJgFtYrbWVMutfcG+KNYE4QX+ZrVugh3sBZ9oPPosL10sizWl0nhMJ4Qx
-         6gMw==
+        bh=/+tC+3M79LSCIIw5j8lDKYBrOpewHeq1xIre2CyKVA0=;
+        b=TSvLq/yg83aGHSy29gBUVTTw8fyHTID5dLAVCWzS8+XE1Aheh+pwONXyZjNuVCF0gi
+         +FUJcET3VPMjufgd17yOq1uwwv5tzTefspOSMXEZDWk4HNU5V9FGE5FglYQRzr2HNqU1
+         +k3wUQGH62K+0HW+3Rz1EMlm5T7oZY84J+oW5nqvP07wqnaQMvu9N0kC4x/cf+v4tiJH
+         X04eN40qHjjZ9MNPEBCGKufOQnT2xoU+/a/BUIHUionClPb1Z9kyuC+FZCVp8d435gCz
+         PfJdih+ZYs15D77erJ/AyM7zp0cpLUN/thyjk643G349BnTphFhERpzuY+3TFkW4TuI4
+         ucAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NShXRZ//vQQKtuVXg+FNEbyRHYKUYaCN+nMk9xF7QT8=;
-        b=yNx7Gz6dKaSH6R65yUH9AMFp0hrwiyd5lUJzIbjZkUd1hbtxmdttf7rRxSMug/+bHN
-         h70zFGNHS5umzBQyKN97RDBBS7ouSKqPKyv3ImiJPATwmiyfDrDapv7OW+tIOUQsJzic
-         t/2uYlqz05hEOB3dMiOSiCjhUN2CTckMqN0kAAYt4Gz4G97QyZmguQ3LoX1San6Pao30
-         OfQByLx4MlMU0nuPydYxn3tZVw87/eebXZaH+/OLmy3A88bSzz5n4YwERVKdgXyM4nlE
-         Y1NAmNam+9Y1bun7+QAZIsVofamB+/HXOn7XbwFLj41VrkdoSPWJ8K9+EdkzGM78kxZl
-         ZxoQ==
-X-Gm-Message-State: AO0yUKVb5T9f+Tm0CRXi1j95yVne55mTbTgihd2yMjD6mCuenbp56mr/
-	jAnRMV0GOeG2H12Qokn5SCM=
-X-Google-Smtp-Source: AK7set/zf30D4z7uo6XAFo0iaaixvySpn6xO4O7pHkonAWBs++Ll7qHK6srUdwjQKspCgca9vYhNlg==
-X-Received: by 2002:a5d:508d:0:b0:2bf:d776:1c97 with SMTP id a13-20020a5d508d000000b002bfd7761c97mr14126761wrt.43.1676048851945;
-        Fri, 10 Feb 2023 09:07:31 -0800 (PST)
+        bh=/+tC+3M79LSCIIw5j8lDKYBrOpewHeq1xIre2CyKVA0=;
+        b=qSeZHOsqCMRoTFp89K7h/BbqWNjeKQooUtc6KtsYNupNKk+GgNidMQsn3/vnkDhTpK
+         H4/f2UVg4q7iVS6HRQ1jps+/pWdUu/UjSRXUbx5AmTB5Xb/c7PdW5el/BykZ+KucpJLN
+         DHOOJRvbRef3fZzFcl7Lg3McQUKCt2s13ZKka4fnTMZmOaa3Uf+OPlrlopjOCCv+UIAG
+         XgBNUCBhWbL53dmIKnMj7kvqfMEOYFqiX8emN+NmpHZVzjlDQgF7+UdTIuq2v2m5jOoX
+         90aDizI722E9JscG4cpN6M9HbYczPwvdfuDhGcFONZ04BipYH/F4F1lEMBO+lFOOBMn0
+         xFtw==
+X-Gm-Message-State: AO0yUKWbVq+aTv4+Ul11ojxTxSGINtzObMi+Aj2Lrlv+NzIFt4qMkfih
+	kLX/0AW+QUONvzaUUXcJHex5TxHs79Kf7w==
+X-Google-Smtp-Source: AK7set+xFtoXhPW9GlnW+yzOi2G6h5E1IL8vgMQscZINpwWEiNTlw9KCHDpYZcfVbdLisQesB7NQMw==
+X-Received: by 2002:a05:600c:4496:b0:3dc:de85:5007 with SMTP id e22-20020a05600c449600b003dcde855007mr13352560wmo.21.1676048854683;
+        Fri, 10 Feb 2023 09:07:34 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id x7-20020a05600c188700b003cffd3c3d6csm5351531wmp.12.2023.02.10.09.07.29
+        by smtp.gmail.com with ESMTPSA id x7-20020a05600c188700b003cffd3c3d6csm5351531wmp.12.2023.02.10.09.07.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 09:07:31 -0800 (PST)
+        Fri, 10 Feb 2023 09:07:34 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -70,17 +70,16 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] arm64: dts: meson: gxbb-kii-pro: complete the bluetooth node
-Date: Fri, 10 Feb 2023 17:07:20 +0000
-Message-Id: <20230210170721.1285914-3-christianshewitt@gmail.com>
+Subject: [PATCH v2 3/3] arm64: dts: meson: gxbb-kii-pro: add initial audio support
+Date: Fri, 10 Feb 2023 17:07:21 +0000
+Message-Id: <20230210170721.1285914-4-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230210170721.1285914-1-christianshewitt@gmail.com>
 References: <20230210170721.1285914-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230210_090736_602453_8D213770 
-X-CRM114-Status: UNSURE (   9.11  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230210_090743_470747_D17BCED6 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,31 +97,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add missing content to the bluetooth node to align it with the content
-used in (all) other GXBB dts files.
+Add initial support for HDMI and S/PDIF audio output.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 Tested-by: Ferass El Hafidi <vitali64pmemail@protonmail.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-index 9bfdb54d912a..435ae2aa404e 100644
+index 435ae2aa404e..a09340e9f73a 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-@@ -72,5 +72,10 @@ &uart_A {
+@@ -9,11 +9,19 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/sound/meson-aiu.h>
  
- 	bluetooth {
- 		compatible = "brcm,bcm4335a0";
-+		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio GPIOX_21 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
+ / {
+ 	compatible = "videostrong,kii-pro", "amlogic,meson-gxbb";
+ 	model = "Videostrong KII Pro";
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -35,6 +43,58 @@ button-reset {
+ 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
+ 		};
  	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "KII-PRO";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
++	pinctrl-0 = <&spdif_out_y_pins>;
++	pinctrl-names = "default";
  };
+ 
+ &ethmac {
 -- 
 2.34.1
 
