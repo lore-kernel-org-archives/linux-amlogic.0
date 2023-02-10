@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C1F4C636D4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 20:15:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F1BC636D7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 20:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iMCL0M+tXMRu4WsJMO/DhRlqb6YFJbAGtlk3c71cN5w=; b=uWqEcQtqfhpqdC
-	8Pacg12cqVBiSdJQ4rZ+OeoVQpX/qjUzvWvc+LeIB+E0Ts8i2dneQHXLw/bEXr2DGSfff53Fz9KFQ
-	tXpOdn2uBIvDU7cOMXzcwNA232dguKOtYoGFseh9PDvW5z2DIIDmM5bYXBAasGWa0PaGne0RWoenY
-	0vFfJBeZsvG1QJ4pqhfn/x0anxR6hmRo64Lh4eC5b1nnWW1eCoHuccsTnXupUey8gAsihFhP6PPlz
-	hMn6A6RO786cb/zLpWVCRd3PxSWLqoTnPdV37XgS42vmwuWiASN+VyPHxnTyUhZdFYJ7OVdWOq+v1
-	CAZMP+ssw+iWa02HBpow==;
+	List-Owner; bh=/Shhg/9Zr69tIJzfn2L5tVrrupWXgJVUOw8HprSQLCk=; b=2T3p/hO04EcA60
+	ImZTCa34XI2BznB2Rp/8ZJrnZwc7gcXI3BQ1Of7oTqwoH7pNZ0UCDcm/UQEJ82OQr+QiMDNbCyB2e
+	0eaajylr3ioX04y+Dl25Jfg//m+acSCNDkrAp3zDQ7d0pVKNOoQEHkBhpV/euDBOPU0LBxkQj1lyV
+	cY2P9gmra1LZfcqE1+q7IoqCSeFmn1g59iyrlRUtimARGngR/hC3fAJr5Q41z2Ju22ESTJBaj4uyz
+	p1z6ydPc/cwuDKe0CQOK06yEgcj7pMS/0ZfFPeki2m8mD/svCmPfqWBKsRQgmBiX/hmdEr8n7aAwh
+	0FHnVq0PdE5Wb75Df4RA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQZo6-007JbE-Dh; Fri, 10 Feb 2023 20:15:42 +0000
-Received: from mail-sn1nam02on20614.outbound.protection.outlook.com ([2a01:111:f400:7ea9::614] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+	id 1pQZo8-007JeB-Uj; Fri, 10 Feb 2023 20:15:45 +0000
+Received: from mail-bn8nam12on20603.outbound.protection.outlook.com ([2a01:111:f400:fe5b::603] helo=NAM12-BN8-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQZEJ-0078YD-Jc; Fri, 10 Feb 2023 19:38:45 +0000
+	id 1pQZFB-00791g-Q8; Fri, 10 Feb 2023 19:39:39 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T7A9GBOocMudz/1u+fjQKs0aoWBThpqZul6CJdAVSrAMxVePQWsddDAyIqJrNt3agdPJVTFgS8eUTRkQiCH2tIQcq90nt0I8g8gkEmz9pybE6tWR1+jXGRltM2D3la+XYf6wWVqla5jqsyX/RSNEKXl0DNk8WgVk4JYscJTa2udgEyCKbis5c5mBDeuyQPoErm+XzMgUpNQ0bZs6bsqUlW10GVlkMkSN3n7CNxPdgZxY01f3pY6JlX0IolQfrYhWOI/4s+uXzmDPC/3c+H1kTyXOHfuConPZRXJuNsC2CLVAwUri1weYQnYQTJaN3MY3EeIfOlfEf1z1uB4siLoajA==
+ b=YMlWfvImcIGA2kbuo1qXAZXn/u8QL3KjvC7kYjUUhmwIhcDxd5aYBOIGH2Hp+mx3G98SyLYQM5EdNJbbkk2R57wel/wDP5yaug9BklqnRLtXJjCwEa3ed3X0vGxnhFo+hlqgrzqyAUAnGdVCrEhdZyblVE4IQdqxsJYLDVMIAtIQoN94lmIA8bWzJQGBYZZ1HsG4MGOL8H7Jl3PdbmZ4Ibksw1BrrxAMdKvymdgoBm4U5ucIRV6Ys0U7xK4Ovum/M86OxAPTrQxe1IOWRDk5VL5wggcGiea4GyZ/bltSZQNA5svVxtw7ZFJccTEATz2ptxzrgLPMotng/LCzO3XZ8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PGTDv9j62eqAAUbZYCqOwhh6o6pzCwATcSrO/Vzqvog=;
- b=LUbqSnjj/F7OUBvNJ51k8rLbpXN/1W0t3ruefHFvIqW26l07mdI99klh/Q5JwA1GDOYtP+NjTFeL+NNuryWI3DV+wCfPdwqBV9CuKQkV4OUFFxVJWSVSvEB3iZO4mkp7OXlzcUhyluZH5deF3EWYAnBN91zrJ9paYKuniAIb/o+hZYlt5mx3PynmjiyKnRLWmVxmsZzIIPlRjlFlvJtIn42LHXJtRq2U+jwwuA8PWzctibzpT0Tt7iYpvDc6jYwCBBtTGqE/MxeDd21YVanVeFjmybS/cdZQTlKQKVki3AaWfjnSCvDQMOnXracBWwn0OHJj0adOQPo6dtc8IGUaYQ==
+ bh=JrN+S0no9tJJWOPy0MesAGh9gOiwa6v7pOuBcPHrftY=;
+ b=G4F4fCBPFC37XTdRQO4nGmxF+YQxSLhO+wmqn0cJz4v2pTw2not7Ui+xOZvWexOsx6RmZM5Qa8XD7zOLwBv7mhe3eoU8EHUQdw1S+qPqIwFVHa83a4oyYVmwFr99sXJSGwCmbQZCK+eX+Ds7GPhBD8W4Imp0OmAO9KNP0/cMWE07ph2dZLu8hSJ42kclZxhTXCueZM7CF3qNKs6UN8XUnuQaRIAtLAe2L+XYLqj1pYDjpdiwADjNsaAWr1ALV5MvEJGR/HgDeJsmvBmiRHjb8cdwRgvUmQALyRWmDuzhsnBJPp9A7AabkaCb3UkihCiKigePrir8L95JbauwIWn6tA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PGTDv9j62eqAAUbZYCqOwhh6o6pzCwATcSrO/Vzqvog=;
- b=3gqq/KsoZQpDizQE1oIAqvVi4TR5LUXFqFILRyZPZfYwRLC0dzNfWhVrl82QvNuKX+jABKvZ5dzfyoW7fVdQBSbcTyIgAgovbl9SOk5ecgEnahSPDvZsEQgJRuc/z/gr7Nt+M36Psp9hDPS/z4SjCyYWGwK16TB3dm8ZeVwqTVc=
-Received: from MW4PR04CA0184.namprd04.prod.outlook.com (2603:10b6:303:86::9)
- by IA1PR12MB8537.namprd12.prod.outlook.com (2603:10b6:208:453::16) with
+ bh=JrN+S0no9tJJWOPy0MesAGh9gOiwa6v7pOuBcPHrftY=;
+ b=YJlsLKb7eGG7oSEd4K2q5Cf7eDlW1wCkYKb304Vh+GE/ksg+Up9ezoZNlfKYFKYkbPpwCDRN8ClwympNYPwBv1HfteTJyNT67t7RgTeC/NJD/kZyFU9eqbrTqhLU4ZvKsP8G0BAWBeG5+ow3xqsYI81YPYkNMEqcQXp8UCXTcqM=
+Received: from MW4PR04CA0346.namprd04.prod.outlook.com (2603:10b6:303:8a::21)
+ by SJ0PR12MB6966.namprd12.prod.outlook.com (2603:10b6:a03:449::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.19; Fri, 10 Feb
- 2023 19:38:39 +0000
-Received: from CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:86:cafe::ec) by MW4PR04CA0184.outlook.office365.com
- (2603:10b6:303:86::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.19 via Frontend
- Transport; Fri, 10 Feb 2023 19:38:38 +0000
+ 2023 19:39:31 +0000
+Received: from CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::56) by MW4PR04CA0346.outlook.office365.com
+ (2603:10b6:303:8a::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.21 via Frontend
+ Transport; Fri, 10 Feb 2023 19:39:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,16 +56,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT038.mail.protection.outlook.com (10.13.174.231) with Microsoft SMTP
+ CO1NAM11FT015.mail.protection.outlook.com (10.13.175.130) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.21 via Frontend Transport; Fri, 10 Feb 2023 19:38:38 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ 15.20.6086.21 via Frontend Transport; Fri, 10 Feb 2023 19:39:30 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Feb
- 2023 13:38:36 -0600
+ 2023 13:39:29 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Feb
+ 2023 11:39:29 -0800
 Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 10 Feb 2023 13:38:10 -0600
+ Transport; Fri, 10 Feb 2023 13:39:03 -0600
 From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
 	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
@@ -115,37 +119,37 @@ CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
 	<linux-riscv@lists.infradead.org>, <alsa-devel@alsa-project.org>,
 	<patches@opensource.cirrus.com>, <linuxppc-dev@lists.ozlabs.org>,
 	<amitrkcian2002@gmail.com>, Amit Kumar Mahapatra
-	<amit.kumar-mahapatra@amd.com>, Jonathan Cameron
-	<Jonathan.Cameron@huawei.com>
-Subject: [PATCH v4 03/15] iio: imu: Replace all spi->chip_select and spi->cs_gpiod references with function call
-Date: Sat, 11 Feb 2023 01:06:34 +0530
-Message-ID: <20230210193647.4159467-4-amit.kumar-mahapatra@amd.com>
+	<amit.kumar-mahapatra@amd.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>
+Subject: [PATCH v4 05/15] staging: Replace all spi->chip_select and spi->cs_gpiod references with function call
+Date: Sat, 11 Feb 2023 01:06:36 +0530
+Message-ID: <20230210193647.4159467-6-amit.kumar-mahapatra@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230210193647.4159467-1-amit.kumar-mahapatra@amd.com>
 References: <20230210193647.4159467-1-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT038:EE_|IA1PR12MB8537:EE_
-X-MS-Office365-Filtering-Correlation-Id: 73299ece-7630-442b-f782-08db0b9e6836
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT015:EE_|SJ0PR12MB6966:EE_
+X-MS-Office365-Filtering-Correlation-Id: 722dab13-7337-458a-f83b-08db0b9e8782
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	PHHK3WMrmy+DVD5iL7Seu1BlQJBbX5m32CtO2eBNw33k+TcdAWYQBIsHFphT/YPSXQch3csXjmxWlKNe9riNZ548aAiaIbapH4dau763C2nJX22mDzsKNcA65ShobKhJ4ABV6KiBg+qUmJz2XvhmA/KZsBLL7Tj0faoNaVWXH/lf5ApDUiR/gL5HLpT9QWCR/P+z3V/RFoxVP7ZT4nQN87FQG9jrewXIiPnDzGUBg2CpBJn+xk0vAZehYKsUcutsTAGYroDMk+/tDdiMnRtb5pJV7qc8MUC8hoxkTpFW2pQms9HSJvx6omXTS6ZRp6fkEyaM7EYWqJ/zmSQ/A8jtrnVpdPcWOvj9o0Awj+IWkxqJOTeCdrewh914aE/EPEtC9uhbh2wynEcaXXshr7IWFhWf9IeSAd4M2PGAD1VfJtAaWMWYvqo4pu3JFH8EraUUn64/oUYqBhudoJeJAofxQ+KZ9T5Ds2XMRnmAS7ntVFhjTC9+8o02x6m7AE0RkY5VAEsY0f1SIzbcWUgnEtzFYBoo2WODhjkV23pX6bW1zySOVWEVs4DknXtGzVAXbSRdcNN5xwYvOA8F+/cmHg1DurVJheihDjdWnKezslzhEPLFjADiNd0S0opJGDmRPHe/XhTS+vX5JFcAGlHOPk0oPJ9rFs1xCATBmzAC9MassniW0qOgXp7rOwnNzO7fcZ0a1V6p3MMl9iuF1sThH+aNNgCwBlAnFbTZs2SOWawkoIPHL3QQZuidByKMf9ji6zP3oY5rNagGzGbVO+89cl2CgC1bw3lRKWba3YadgxnYYgiINhWBbYggWS0vW4B9skbVRlPG+GUHWy91Ln1gg2F5e0szdfKtbt6ts9MdeDE41AA=
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199018)(40470700004)(46966006)(36840700001)(2906002)(186003)(7276002)(7416002)(7406005)(336012)(40460700003)(86362001)(426003)(1191002)(47076005)(2616005)(81166007)(8936002)(7336002)(5660300002)(26005)(1076003)(478600001)(6666004)(36756003)(82310400005)(7366002)(83380400001)(316002)(4326008)(356005)(8676002)(82740400003)(70586007)(54906003)(41300700001)(36860700001)(40480700001)(70206006)(110136005)(921005)(83996005)(84006005)(41080700001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: 	zFFwgZ014xQUf2nEmJ0W7s76ApWpw3rm7FHvNt5oSFt0D4ZWWDPd50+zlPrtuyC7/r0NFNI1qbH0oviTdUxW8/4DymRJo+bDz2PXeEYtz02ujmrtM+wBZgpWFpsGhBAHmdCWYJi2S20MH2Liw1IRY7Vd5Ps7FyC1dhe8dkQz43MdhdLQ+B/Crka4G17kc6VPWqmItE0PnJ5qaBue8VZQ86R76q28ttKx3iweZkCjNhhU0l/GiFJjQxEZOErE4NZpOm6CvBW6gW3MsXxxJMNn1kaJokSbb/P2IBgI1vgOfVGAvbuLCFXS2HpdcykBzQf9nJ4O+SXqUVw6ZtTdHYXPezRIufz4zYlV/bbKI+8MtCU3PbkN0FvooGubqxjcBq5hKWfM3HUq7woXHhfVwkrbbZS74k5NAu9tfSmlSc85EWXbBCVGo0SGQ8Lx7n9i+x+1jelvulYW799XHTrAMwz24HkOXi3+9pf3MtUoSfJdxl11QSMBhL0WkYgMMWBPiSSf1z7jo/jBjrgIDF0L5gzfRQ9TnjYg17Iw+jDk6a1pMdNAWpt6kGg6Vx84xmnGpYSQvGpYX0hQbdl+YGFZ+dIKb14YdVTtExV1/mDU7EkOM0hyMEDJ8IUwMDH/j3gpr57raR6cjIusjN3oAfb079oAlC0jOQboJzpXsuKlt19eqz5AQxMPb2wODM7LjFYUts8+lDjny1cYUsRxIbRG7kqwX8vx/vrBM/dQn7g719vM2g7WW8CHGdjZPQoI/Ck6LfZHhh77P6hzceLSnZx4C35hIFVVrFWTg/hX0ck0NEibYTNFzYhqFpHIjfuC7KF2svOhCzC266QJjFbuemh6Paf38pNImyeRt5KWoTagootS6eI=
+X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(376002)(396003)(39860400002)(451199018)(36840700001)(40470700004)(46966006)(7416002)(7406005)(8936002)(7276002)(7336002)(7366002)(2906002)(2616005)(426003)(336012)(186003)(83380400001)(40460700003)(47076005)(1191002)(478600001)(316002)(54906003)(8676002)(4326008)(70206006)(70586007)(26005)(40480700001)(1076003)(6666004)(110136005)(41300700001)(5660300002)(921005)(82740400003)(36756003)(356005)(86362001)(82310400005)(36860700001)(81166007)(41080700001)(36900700001)(84006005)(83996005)(2101003);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2023 19:38:38.2353
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2023 19:39:30.6802
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73299ece-7630-442b-f782-08db0b9e6836
+X-MS-Exchange-CrossTenant-Network-Message-Id: 722dab13-7337-458a-f83b-08db0b9e8782
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: 	CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8537
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6966
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230210_113843_748169_E4A52959 
-X-CRM114-Status: GOOD (  13.06  )
+X-CRM114-CacheID: sfid-20230210_113937_901019_48571FDE 
+X-CRM114-Status: GOOD (  14.03  )
 X-Mailman-Approved-At: Fri, 10 Feb 2023 12:15:07 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -175,25 +179,39 @@ members of the spi_device structure would be converted to arrays & the
 spi->chip_select[idx] & spi->cs_gpiod[idx] respectively.
 
 Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Michal Simek <michal.simek@amd.com>
 ---
- drivers/iio/imu/adis16400.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/staging/fbtft/fbtft-core.c | 2 +-
+ drivers/staging/greybus/spilib.c   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/iio/imu/adis16400.c b/drivers/iio/imu/adis16400.c
-index c02fc35dceb4..3eda32e12a53 100644
---- a/drivers/iio/imu/adis16400.c
-+++ b/drivers/iio/imu/adis16400.c
-@@ -466,7 +466,7 @@ static int adis16400_initial_setup(struct iio_dev *indio_dev)
+diff --git a/drivers/staging/fbtft/fbtft-core.c b/drivers/staging/fbtft/fbtft-core.c
+index afaba94d1d1c..3a4abf3bae40 100644
+--- a/drivers/staging/fbtft/fbtft-core.c
++++ b/drivers/staging/fbtft/fbtft-core.c
+@@ -840,7 +840,7 @@ int fbtft_register_framebuffer(struct fb_info *fb_info)
+ 		sprintf(text1, ", %zu KiB buffer memory", par->txbuf.len >> 10);
+ 	if (spi)
+ 		sprintf(text2, ", spi%d.%d at %d MHz", spi->master->bus_num,
+-			spi->chip_select, spi->max_speed_hz / 1000000);
++			spi_get_chipselect(spi, 0), spi->max_speed_hz / 1000000);
+ 	dev_info(fb_info->dev,
+ 		 "%s frame buffer, %dx%d, %d KiB video memory%s, fps=%lu%s\n",
+ 		 fb_info->fix.id, fb_info->var.xres, fb_info->var.yres,
+diff --git a/drivers/staging/greybus/spilib.c b/drivers/staging/greybus/spilib.c
+index ad0700a0bb81..efb3bec58e15 100644
+--- a/drivers/staging/greybus/spilib.c
++++ b/drivers/staging/greybus/spilib.c
+@@ -237,7 +237,7 @@ static struct gb_operation *gb_spi_operation_create(struct gb_spilib *spi,
+ 	request = operation->request->payload;
+ 	request->count = cpu_to_le16(count);
+ 	request->mode = dev->mode;
+-	request->chip_select = dev->chip_select;
++	request->chip_select = spi_get_chipselect(dev, 0);
  
- 		dev_info(&indio_dev->dev, "%s: prod_id 0x%04x at CS%d (irq %d)\n",
- 			indio_dev->name, prod_id,
--			st->adis.spi->chip_select, st->adis.spi->irq);
-+			spi_get_chipselect(st->adis.spi, 0), st->adis.spi->irq);
- 	}
- 	/* use high spi speed if possible */
- 	if (st->variant->flags & ADIS16400_HAS_SLOW_MODE) {
+ 	gb_xfer = &request->transfers[0];
+ 	tx_data = gb_xfer + count;	/* place tx data after last gb_xfer */
 -- 
 2.25.1
 
