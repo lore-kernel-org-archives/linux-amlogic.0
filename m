@@ -4,78 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A771AC636CD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 10:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68E28C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 10:56:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
 	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zmw6b1alACJCIUfeXGGh4uznyceab1GmDYgmQ1sLILI=; b=RJ/64KRKNbmg2Y
-	LFSqKbcJ0OxVrtE9/HAtYwHSzOBgpGbIFMR1ceqDL5/9qlLu+dJKgZyNF4DEhbO6fe5bkYo3mFDTf
-	yTJojar+JC0BNHfXv+LUAD+K/UjY/zI73E7eyj1tfL0il/5vXjLhHRzXd9QMiI35OxD5mSJ/WJhnF
-	3gRZzIRGahrFemMnsN0aVwgavNY26Ryjj1pn/0l7dM39LAeqnbVoxuzVQ2lSvxAG0uz7BeiBx64ei
-	EursIZeB3+8cL8nnPZaSx6b1JG/Ai0r0buhXZnhUg4qOq+LxbQEf+uU2hHxK0oSTMhYvHZM8pAIx0
-	b1bhzhTecXWHjyj00nUA==;
+	List-Owner; bh=WquOgT2qpiUXX6HCNWSb+FAZTVV+JXnGQ71RSDDBpm8=; b=F/I4YAk3RqLIMi
+	rI7lW3uvRcI4Jd7jbUutlDSzovjBilm4iWVwEhfgZzPgF2AhpvmpezD0+MO90IQaTjwYt6QaLVEA0
+	baKvPGwOsod2uTm3pZDQcui7L5om2MS/lWS8k/PeX8t8DGt4jPCdg+cczFsWmBautT/H6arMS49Kq
+	Sg6a0Z8x5dTwMN4yELJLGHHAmhZTEu72Wi3E34pEPI7pBxRhLfmT+cDkE1a7iUiQIhRPJTs0KZt+e
+	dK8GufH3iPtb6Shl6mlvOVcxaa2lXMs1DuIGsViIMHe7BilwniXxdfcAnHlWqpcuXQxuTcHYOnAUD
+	z+E8Jm7cdbhdlTgRHj+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQQFr-005CU0-Be; Fri, 10 Feb 2023 10:03:43 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pQR4T-005NbV-50; Fri, 10 Feb 2023 10:56:01 +0000
+Received: from mail-il1-x12c.google.com ([2607:f8b0:4864:20::12c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQQFn-005CRu-WF
-	for linux-amlogic@lists.infradead.org; Fri, 10 Feb 2023 10:03:42 +0000
-Received: by mail-wm1-x332.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5874701wmb.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Feb 2023 02:03:38 -0800 (PST)
+	id 1pQR4O-005NZO-TB
+	for linux-amlogic@lists.infradead.org; Fri, 10 Feb 2023 10:55:59 +0000
+Received: by mail-il1-x12c.google.com with SMTP id f10so2005135ilc.7
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Feb 2023 02:55:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CcTE7Ppu1Qxne0SZcZTjlUbPtfCn/g9rR5zUNgG16g4=;
-        b=Hc3fknhUMbVneTKjraZ+g46rUWDHI2lvZjGbZEh1Hy/0LdbNA4LdXr2hZOyoUuzt/9
-         pCY0JpINBJSJL3yiFSEAgmXsJQzOvHF2fFH5PzH5eQ+vUcO0PGw4Y74cJoH9yf6b5YX4
-         6+fP/lUyVKHiLJG3WPf51SBswP+4PsIuV2yteBY0q5ec551+EMvFYEGfew5CzMnaDuo5
-         goxl6WXFpgFOIRv1nacrouhtCo10fEjk5/pEJ9+lCGqVbk229X/I+lCYf6qi1vFq2Uwt
-         SYLn8Ye2h8Ux6z9s20QgHhsPdr37s4Vakrc0ZzLPU1Ci7ZS4oI3VRZ2Ouw0s//YW25Rs
-         7Egg==
+        bh=KlHNZK7Ipphoh6oQQOjJZTI5Uk+UmtoXmM8QD+p6cpA=;
+        b=ZQA3F2f/vvilqXVsTDxG6KAd3wzfYF32eO+a/vCK7tgV0s8PJ8Vi1z1v0r9ctIuP7z
+         L1PiH7Yv29tObke/KqdQ8+TfAXqaJjvT6whosDawT8A/6AmLzsMO1nwKBfJg2hFL0CKj
+         QWQwoiVY7ZZF3dT4+/hDdK1gT3BI0H5MSJMs5P/7OtzlnRVPkN7Wx5tSzBma4n1z46OY
+         KQ3EATyxlv+MYcLiM+23y3PIWcNozGb33TZXnNmWcphE33DfeGWQeEjhQ507br76yLib
+         aNKOFgd103r6+UxMv+Ike+q/49xKjiAmZLJm9V9Ka9Q571yvPEoiwaEPLyk7YbNoRn9V
+         QJZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CcTE7Ppu1Qxne0SZcZTjlUbPtfCn/g9rR5zUNgG16g4=;
-        b=nAx8s61hW6lx1+BARoNslZ0h40OYbOdrE9qNtqsMyVJ1ShL3mGFescNYtOzikSeppK
-         hWGWLk7HBbT9ThrlI8PoP3e33iiczNF2NHyj2Nue4q1A6dSTWjqv48oauMwQvha6XPbH
-         2LPDaXx3QJO3WvNqEVd5pw6Op8prXK8DCf1no9LS6EoY1MFa2eopnV9gcKFOXv82PHEA
-         kwmHjz9xPPBO2seshs5q/pHB60SjakSRQyvQMOXtDkfYJxeKowcqotMKiITbXeerHGYR
-         TXvQ5RxWPWFE1qtk58a3SAsTnAxKZDir01a8BE657BTDH5c1X5Cu2hDQyynkULm3GYfK
-         9LQg==
-X-Gm-Message-State: AO0yUKUHiGSCKbr3zHYk3mBZK6bLt4VJ4loP6HaIY7HwVyHeJa28Nf4x
-	Sg97ocEEMLIKc3JjZI8E63xERw==
-X-Google-Smtp-Source: AK7set8lWTrd03g7f1A8KR3a/AUZcvS8psu+cSQ8ebQhVwLFR1GsKjEPXxYA+ltMpyypbIk+QedBRQ==
-X-Received: by 2002:a05:600c:4d21:b0:3dc:3398:cf87 with SMTP id u33-20020a05600c4d2100b003dc3398cf87mr12411181wmp.11.1676023417579;
-        Fri, 10 Feb 2023 02:03:37 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id c63-20020a1c3542000000b003df14531724sm7959820wma.21.2023.02.10.02.03.36
+        bh=KlHNZK7Ipphoh6oQQOjJZTI5Uk+UmtoXmM8QD+p6cpA=;
+        b=B5zREudOd+w4rfiOA2zUaPOJHVj/w0OFmO7CSlorkeBXSHOwlYWl+5ssNgtv9IK6gG
+         wHaYIlh3Ku06Umy/2ojt8264Z5uooC4YRT+4AwIKqoAooWfRpUREmC9Drd8gfwI+NdWp
+         ocKz5Gg2YBScSV1VcQWOZKem+fdFKDdQt0CGcfoQ5xk4OWSZcEfYrccnqwJDNEhU+E17
+         2ACGXlmD/NZx3aM30bGDcMWWYrUuG0/mg2oPVthgtIrPOopLUlfKBIF7Cv9rvjYYMd4U
+         MIEHPP7+6kfh+Hjp9O44rti6YG5tywePcCYpmEnyef3MV8cMvWu4wfnE2Ce6j1Yaujpf
+         W/pA==
+X-Gm-Message-State: AO0yUKUPJGQD7uRcbrtCKFbTxbMeMHAc60GKe37vWKKISuxohtwNFSLJ
+	U8xMjfBTlTWcHwl2hSTk9o/rHA==
+X-Google-Smtp-Source: AK7set9gKfpf0UYsachTDlYwQ6F574rlSgQhr5a2WcPhuB2hW4zjT0pifMBEvWBvC/hsQsBDlgfG3A==
+X-Received: by 2002:a92:8e4f:0:b0:30f:5f1f:8927 with SMTP id k15-20020a928e4f000000b0030f5f1f8927mr11829892ilh.20.1676026546625;
+        Fri, 10 Feb 2023 02:55:46 -0800 (PST)
+Received: from [127.0.1.1] ([2a0e:41a:894f:0:5982:e253:f3:ec01])
+        by smtp.gmail.com with ESMTPSA id l8-20020a922908000000b003140001a5e6sm258104ilg.83.2023.02.10.02.55.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 02:03:37 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 10 Feb 2023 11:03:36 +0100
-Subject: [PATCH v3] power: reset: add Odroid Go Ultra poweroff driver
+        Fri, 10 Feb 2023 02:55:46 -0800 (PST)
+From: Carlo Caione <ccaione@baylibre.com>
+Date: Fri, 10 Feb 2023 11:55:34 +0100
+Subject: [PATCH] drm/meson/meson_venc: Relax the supported mode checks
 MIME-Version: 1.0
-Message-Id: <20230126-b4-odroid-go-ultra-poweroff-v3-1-0a7fd3d5c4b3@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHcW5mMC/42OTQ6CMBBGr0K6dgy2SNCV9zAs+jOFJk2HTAE1h
- LtbOYHL9xbf+zaRkQNmca82wbiGHCgVUKdK2FGnASG4wkLWUtUX2YJpgBxTcDAQLHFmDRO9kMl
- 7sJ13Vt+UV2hEWTA6IxjWyY5lIy0xFjkx+vA+ks++8BjyTPw5HqzyZ/+LrRIuoDt7rbu29Y22j
- xiSZjoTD6Lf9/0LZsbnltwAAAA=
-To: Sebastian Reichel <sre@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
+Message-Id: <20230210-relax_dmt_limits-v1-0-a1474624d530@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230210_020340_079095_0B264E53 
-X-CRM114-Status: GOOD (  21.02  )
+X-CRM114-CacheID: sfid-20230210_025556_964497_66C834BA 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,274 +89,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
-to its two PMICs in order, this represents the poweroff scheme needed to complete
-a clean poweroff of the system.
+Relax a bit the supported modes list by including also 480x1920. This
+was actually tested on real hardware and it works correctly.
 
-This implement this scheme by implementing a self registering driver to permit
-using probe defer until both pmics are finally probed.
-
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
-Previous submission was at [1], but I converted it to an independent
-platform device with device auto registration to permit waiting for
-both the PMICs drivers to probe.
+drm/meson/meson_venc: Add more supported resolutions.
 
-[1] https://lore.kernel.org/all/20221031-b4-odroid-go-ultra-initial-v1-2-42e3dbea86d5@linaro.org/
+In particular relax the resolution checks to allow more resolutions like
+480x1920.
+
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 ---
-Changes in v3:
-- Removed dependency with rk08
-- Switched to storing struct device of pmics
-- Fixed module init/exit
-- Link to v2: https://lore.kernel.org/r/20230126-b4-odroid-go-ultra-poweroff-v2-1-a8c50866f4ac@linaro.org
+ drivers/gpu/drm/meson/meson_venc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v2:
-- Switched to devm_register_sys_off_handler()
-- Link to v1: https://lore.kernel.org/r/20221031-b4-odroid-go-ultra-initial-v1-2-42e3dbea86d5@linaro.org
----
- drivers/power/reset/Kconfig                    |   7 +
- drivers/power/reset/Makefile                   |   1 +
- drivers/power/reset/odroid-go-ultra-poweroff.c | 193 +++++++++++++++++++++++++
- 3 files changed, 201 insertions(+)
-
-diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index a8c46ba5878f..a47ef7a9fc13 100644
---- a/drivers/power/reset/Kconfig
-+++ b/drivers/power/reset/Kconfig
-@@ -141,6 +141,13 @@ config POWER_RESET_OCELOT_RESET
- 	help
- 	  This driver supports restart for Microsemi Ocelot SoC and similar.
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 3c55ed003359..5b3621589a9f 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -866,10 +866,10 @@ meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
+ 			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC))
+ 		return MODE_BAD;
  
-+config POWER_RESET_ODROID_GO_ULTRA_POWEROFF
-+	bool "Odroid Go Ultra power-off driver"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF
-+	help
-+	  This driver supports Power off for Odroid Go Ultra device.
-+
- config POWER_RESET_OXNAS
- 	bool "OXNAS SoC restart driver"
- 	depends on ARCH_OXNAS
-diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 0a39424fc558..d763e6735ee3 100644
---- a/drivers/power/reset/Makefile
-+++ b/drivers/power/reset/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_POWER_RESET_MT6323) += mt6323-poweroff.o
- obj-$(CONFIG_POWER_RESET_OXNAS) += oxnas-restart.o
- obj-$(CONFIG_POWER_RESET_QCOM_PON) += qcom-pon.o
- obj-$(CONFIG_POWER_RESET_OCELOT_RESET) += ocelot-reset.o
-+obj-$(CONFIG_POWER_RESET_ODROID_GO_ULTRA_POWEROFF) += odroid-go-ultra-poweroff.o
- obj-$(CONFIG_POWER_RESET_PIIX4_POWEROFF) += piix4-poweroff.o
- obj-$(CONFIG_POWER_RESET_LTC2952) += ltc2952-poweroff.o
- obj-$(CONFIG_POWER_RESET_QNAP) += qnap-poweroff.o
-diff --git a/drivers/power/reset/odroid-go-ultra-poweroff.c b/drivers/power/reset/odroid-go-ultra-poweroff.c
-new file mode 100644
-index 000000000000..30a005088fbe
---- /dev/null
-+++ b/drivers/power/reset/odroid-go-ultra-poweroff.c
-@@ -0,0 +1,193 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-+ */
-+#include <linux/kernel.h>
-+#include <linux/init.h>
-+#include <linux/of_platform.h>
-+#include <linux/mfd/rk808.h>
-+#include <linux/regmap.h>
-+#include <linux/module.h>
-+#include <linux/reboot.h>
-+#include <linux/i2c.h>
-+
-+/*
-+ * The Odroid Go Ultra has 2 PMICs:
-+ * - RK818 (manages the battery and USB-C power supply)
-+ * - RK817
-+ * Both PMICs feeds power to the S922X SoC, so they must be powered-off in sequence.
-+ * Vendor does power-off the RK817 first, then the RK818 so here we follow this sequence.
-+ */
-+
-+struct odroid_go_ultra_poweroff_data {
-+	struct device *dev;
-+	struct device *rk817;
-+	struct device *rk818;
-+};
-+
-+static int odroid_go_ultra_poweroff_prepare(struct sys_off_data *data)
-+{
-+	struct odroid_go_ultra_poweroff_data *poweroff_data = data->cb_data;
-+	struct regmap *rk817, *rk818;
-+	int ret;
-+
-+	/* RK817 Regmap */
-+	rk817 = dev_get_regmap(poweroff_data->rk817, NULL);
-+	if (!rk817) {
-+		dev_err(poweroff_data->dev, "failed to get rk817 regmap\n");
-+		return notifier_from_errno(-EINVAL);
-+	}
-+
-+	/* RK818 Regmap */
-+	rk818 = dev_get_regmap(poweroff_data->rk818, NULL);
-+	if (!rk818) {
-+		dev_err(poweroff_data->dev, "failed to get rk818 regmap\n");
-+		return notifier_from_errno(-EINVAL);
-+	}
-+
-+	dev_info(poweroff_data->dev, "Setting PMICs for power off");
-+
-+	/* RK817 */
-+	ret = regmap_update_bits(rk817, RK817_SYS_CFG(3), DEV_OFF, DEV_OFF);
-+	if (ret) {
-+		dev_err(poweroff_data->dev, "failed to poweroff rk817\n");
-+		return notifier_from_errno(ret);
-+	}
-+
-+	/* RK818 */
-+	ret = regmap_update_bits(rk818, RK818_DEVCTRL_REG, DEV_OFF, DEV_OFF);
-+	if (ret) {
-+		dev_err(poweroff_data->dev, "failed to poweroff rk818\n");
-+		return notifier_from_errno(ret);
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static int odroid_go_ultra_poweroff_get_pmic_device(const char *compatible, struct device **pmic)
-+{
-+	struct device_node *pmic_node;
-+	struct i2c_client *pmic_client;
-+
-+	pmic_node = of_find_compatible_node(NULL, NULL, compatible);
-+	if (!pmic_node)
-+		return -ENODEV;
-+
-+	pmic_client = of_find_i2c_device_by_node(pmic_node);
-+	of_node_put(pmic_node);
-+	if (!pmic_client)
-+		return -EPROBE_DEFER;
-+
-+	*pmic = &pmic_client->dev;
-+
-+	return 0;
-+}
-+
-+static int odroid_go_ultra_poweroff_probe(struct platform_device *pdev)
-+{
-+	struct odroid_go_ultra_poweroff_data *poweroff_data;
-+	int ret;
-+
-+	poweroff_data = devm_kzalloc(&pdev->dev, sizeof(*poweroff_data), GFP_KERNEL);
-+	if (!poweroff_data)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(&pdev->dev, poweroff_data);
-+
-+	/* RK818 PMIC Device */
-+	ret = odroid_go_ultra_poweroff_get_pmic_device("rockchip,rk818",
-+						       &poweroff_data->rk818);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "failed to get rk818 mfd data\n");
-+
-+	/* RK817 PMIC Device */
-+	ret = odroid_go_ultra_poweroff_get_pmic_device("rockchip,rk817",
-+						       &poweroff_data->rk817);
-+	if (ret) {
-+		ret  = dev_err_probe(&pdev->dev, ret, "failed to get rk817 mfd data\n");
-+		goto put_rk818_device;
-+	}
-+
-+	/* Register as SYS_OFF_MODE_POWER_OFF_PREPARE because regmap_update_bits may sleep */
-+	ret = devm_register_sys_off_handler(&pdev->dev,
-+					    SYS_OFF_MODE_POWER_OFF_PREPARE,
-+					    SYS_OFF_PRIO_DEFAULT,
-+					    odroid_go_ultra_poweroff_prepare,
-+					    poweroff_data);
-+	if (ret) {
-+		ret = dev_err_probe(&pdev->dev, ret, "failed to register sys-off handler\n");
-+		goto put_rk817_device;
-+	}
-+
-+	dev_info(&pdev->dev, "Registered Power-Off handler\n");
-+
-+	return 0;
-+
-+put_rk817_device:
-+	put_device(poweroff_data->rk817);
-+
-+put_rk818_device:
-+	put_device(poweroff_data->rk818);
-+
-+	return ret;
-+}
-+
-+static int odroid_go_ultra_poweroff_remove(struct platform_device *pdev)
-+{
-+	struct odroid_go_ultra_poweroff_data *poweroff_data = dev_get_drvdata(&pdev->dev);
-+
-+	put_device(poweroff_data->rk818);
-+	put_device(poweroff_data->rk817);
-+
-+	return 0;
-+}
-+
-+static struct platform_device *pdev;
-+
-+static struct platform_driver odroid_go_ultra_poweroff_driver = {
-+	.driver = {
-+		.name	= "odroid-go-ultra-poweroff",
-+	},
-+	.probe = odroid_go_ultra_poweroff_probe,
-+	.remove = odroid_go_ultra_poweroff_remove,
-+};
-+
-+static int __init odroid_go_ultra_poweroff_init(void)
-+{
-+	int ret;
-+
-+	/* Only create when running on the Odroid Go Ultra device */
-+	if (!of_device_is_compatible(of_root, "hardkernel,odroid-go-ultra"))
-+		return -ENODEV;
-+
-+	ret = platform_driver_register(&odroid_go_ultra_poweroff_driver);
-+	if (ret)
-+		return ret;
-+
-+	pdev = platform_device_register_resndata(NULL, "odroid-go-ultra-poweroff", -1,
-+						 NULL, 0, NULL, 0);
-+
-+	if (IS_ERR(pdev)) {
-+		platform_driver_unregister(&odroid_go_ultra_poweroff_driver);
-+		return PTR_ERR(pdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static void __exit odroid_go_ultra_poweroff_exit(void)
-+{
-+	/* Only delete when running on the Odroid Go Ultra device */
-+	if (!of_device_is_compatible(of_root, "hardkernel,odroid-go-ultra"))
-+		return;
-+
-+	platform_device_unregister(pdev);
-+	platform_driver_unregister(&odroid_go_ultra_poweroff_driver);
-+}
-+
-+module_init(odroid_go_ultra_poweroff_init);
-+module_exit(odroid_go_ultra_poweroff_exit);
-+
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-+MODULE_DESCRIPTION("Odroid Go Ultra poweroff driver");
-+MODULE_LICENSE("GPL");
+-	if (mode->hdisplay < 640 || mode->hdisplay > 1920)
++	if (mode->hdisplay < 480 || mode->hdisplay > 1920)
+ 		return MODE_BAD_HVALUE;
+ 
+-	if (mode->vdisplay < 480 || mode->vdisplay > 1200)
++	if (mode->vdisplay < 480 || mode->vdisplay > 1920)
+ 		return MODE_BAD_VVALUE;
+ 
+ 	return MODE_OK;
 
 ---
-base-commit: 38d2b86a665b5e86371a1a30228bce259aa6c101
-change-id: 20230126-b4-odroid-go-ultra-poweroff-c8fdca93f3eb
+base-commit: 38c1e0c65865426676123cc9a127526fa02bcac6
+change-id: 20230210-relax_dmt_limits-355e2a1c7ccf
 
 Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+Carlo Caione
 
 _______________________________________________
 linux-amlogic mailing list
