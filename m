@@ -4,75 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68E28C05027
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 10:56:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5873C636CD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 12:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WquOgT2qpiUXX6HCNWSb+FAZTVV+JXnGQ71RSDDBpm8=; b=F/I4YAk3RqLIMi
-	rI7lW3uvRcI4Jd7jbUutlDSzovjBilm4iWVwEhfgZzPgF2AhpvmpezD0+MO90IQaTjwYt6QaLVEA0
-	baKvPGwOsod2uTm3pZDQcui7L5om2MS/lWS8k/PeX8t8DGt4jPCdg+cczFsWmBautT/H6arMS49Kq
-	Sg6a0Z8x5dTwMN4yELJLGHHAmhZTEu72Wi3E34pEPI7pBxRhLfmT+cDkE1a7iUiQIhRPJTs0KZt+e
-	dK8GufH3iPtb6Shl6mlvOVcxaa2lXMs1DuIGsViIMHe7BilwniXxdfcAnHlWqpcuXQxuTcHYOnAUD
-	z+E8Jm7cdbhdlTgRHj+A==;
+	List-Owner; bh=FCmusLgSbBhvTtKMmo/IHqAOy9wBedPC6F/ZeWpyY00=; b=a0qo3+mWaWVf03
+	VM+uSkvG8e/KBD5jcSBXAeh/qkITi7eDcE3aMBAwsDTwLbvrr2x+oj+08Nws9ZnyEKZ3Bem5Rp1AG
+	0vPPyKMDk4XfsOLD6f4Fm50dEPmlIiIYPIuQi+62/RM2O+eeVDxZ1D8iTGpr1n2Aw4bAFYb2LbF3/
+	qMaoSpO9tFyHe+3xxTDCyttYExwnKVVNqRzCtV9RZI18kHKrVF2Qbh/Rp+2fN0IrcMCxYZnb6nPlz
+	2drvtO8QPq6oEBajzc10Di1PF3PJIyOJpUWGwQz9xOwbiYTgpX3L1WDg8hqodHkM+vMSdlL1KCZ8B
+	C5x64EvKnwO2Vx8cZavg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQR4T-005NbV-50; Fri, 10 Feb 2023 10:56:01 +0000
-Received: from mail-il1-x12c.google.com ([2607:f8b0:4864:20::12c])
+	id 1pQSW4-005gMQ-Ne; Fri, 10 Feb 2023 12:28:36 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQR4O-005NZO-TB
-	for linux-amlogic@lists.infradead.org; Fri, 10 Feb 2023 10:55:59 +0000
-Received: by mail-il1-x12c.google.com with SMTP id f10so2005135ilc.7
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Feb 2023 02:55:47 -0800 (PST)
+	id 1pQSVu-005gH5-21; Fri, 10 Feb 2023 12:28:27 +0000
+Received: by mail-wr1-x430.google.com with SMTP id bu23so4898328wrb.8;
+        Fri, 10 Feb 2023 04:28:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KlHNZK7Ipphoh6oQQOjJZTI5Uk+UmtoXmM8QD+p6cpA=;
-        b=ZQA3F2f/vvilqXVsTDxG6KAd3wzfYF32eO+a/vCK7tgV0s8PJ8Vi1z1v0r9ctIuP7z
-         L1PiH7Yv29tObke/KqdQ8+TfAXqaJjvT6whosDawT8A/6AmLzsMO1nwKBfJg2hFL0CKj
-         QWQwoiVY7ZZF3dT4+/hDdK1gT3BI0H5MSJMs5P/7OtzlnRVPkN7Wx5tSzBma4n1z46OY
-         KQ3EATyxlv+MYcLiM+23y3PIWcNozGb33TZXnNmWcphE33DfeGWQeEjhQ507br76yLib
-         aNKOFgd103r6+UxMv+Ike+q/49xKjiAmZLJm9V9Ka9Q571yvPEoiwaEPLyk7YbNoRn9V
-         QJZA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tsGNvhireWD4mNV5rJb2McKZOxhDc9wHPt6shXZhutQ=;
+        b=jyP4fa8a6rGSNGgFV+LtOyKyJmPJUG2VVJwgFUcKZM33bq15Uvmdq6NcX/JT8AFNWM
+         TvIupQ2MybJrObyL3RBPxufnvMyPZJaAUMIm+wcx14zKW2yvyH1y7hMKjo0sp93nTwbI
+         yPY7ylfPvwdUjOTHNNrVh29F1p8cZuHIpbtRwfqcaQhbR96WTwySf9d9jQi04Z4CWw5U
+         ViFmGX6N0axQHBij9WQ+CZtQHmPc7H2u0n4RWORte1auSkzfnZZOoI5vkJzT1lRkKX16
+         PTCNps92zNQpcLQZNh+Z2uMTNV7RYt0PY5BXIG8URajdBM3sZdpLU5N+zaPzHuR0N9bF
+         hMWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KlHNZK7Ipphoh6oQQOjJZTI5Uk+UmtoXmM8QD+p6cpA=;
-        b=B5zREudOd+w4rfiOA2zUaPOJHVj/w0OFmO7CSlorkeBXSHOwlYWl+5ssNgtv9IK6gG
-         wHaYIlh3Ku06Umy/2ojt8264Z5uooC4YRT+4AwIKqoAooWfRpUREmC9Drd8gfwI+NdWp
-         ocKz5Gg2YBScSV1VcQWOZKem+fdFKDdQt0CGcfoQ5xk4OWSZcEfYrccnqwJDNEhU+E17
-         2ACGXlmD/NZx3aM30bGDcMWWYrUuG0/mg2oPVthgtIrPOopLUlfKBIF7Cv9rvjYYMd4U
-         MIEHPP7+6kfh+Hjp9O44rti6YG5tywePcCYpmEnyef3MV8cMvWu4wfnE2Ce6j1Yaujpf
-         W/pA==
-X-Gm-Message-State: AO0yUKUPJGQD7uRcbrtCKFbTxbMeMHAc60GKe37vWKKISuxohtwNFSLJ
-	U8xMjfBTlTWcHwl2hSTk9o/rHA==
-X-Google-Smtp-Source: AK7set9gKfpf0UYsachTDlYwQ6F574rlSgQhr5a2WcPhuB2hW4zjT0pifMBEvWBvC/hsQsBDlgfG3A==
-X-Received: by 2002:a92:8e4f:0:b0:30f:5f1f:8927 with SMTP id k15-20020a928e4f000000b0030f5f1f8927mr11829892ilh.20.1676026546625;
-        Fri, 10 Feb 2023 02:55:46 -0800 (PST)
-Received: from [127.0.1.1] ([2a0e:41a:894f:0:5982:e253:f3:ec01])
-        by smtp.gmail.com with ESMTPSA id l8-20020a922908000000b003140001a5e6sm258104ilg.83.2023.02.10.02.55.44
+        bh=tsGNvhireWD4mNV5rJb2McKZOxhDc9wHPt6shXZhutQ=;
+        b=EvWQNStDj9QDfXcRmEDjGd+cekX+QCsQj21sLKKaM2HQq5ba1MMYLvd0wNHAb11VN6
+         bVflZvc2KG0e8xbBKfkIZWWaF/7S8NAn/zoqjiTS9iJcOdRdnGz+252LEpz8qrLnUnZK
+         7Ogx1MR1eiarEa2GLtTg0VS1RVJ4KiWPiZ77MszAbBOtLOOvPcPDJTMisWBmx6eq8J68
+         auv7bNCHzwThp2lxV3oS0wlbtDOrAs+Ssx35jYTD0sd1EOJgsCD62f7Tfc3j32kZLt2K
+         wMSQASwWell5NW39MNap2Xg/iQ6M0w2z9HS2puSI007VVSAW+UTw+R7QiNi0Uy+UYik7
+         me+Q==
+X-Gm-Message-State: AO0yUKWzFOKC2qJiBZy8nK3HY8WrUmsXQZL/KArQ/wak/juL7XWB6CSF
+	/13MOIwTbvxQuRItlFLXt+0=
+X-Google-Smtp-Source: AK7set9O+rFcCoO6ppeRXI0IbW8z6ql/sCNVW+HCaPoQq4/g82X9kh32Cs6HGJf8H2VVTg9hL9gPog==
+X-Received: by 2002:a5d:690b:0:b0:2bf:b839:c48b with SMTP id t11-20020a5d690b000000b002bfb839c48bmr15161203wru.51.1676032102792;
+        Fri, 10 Feb 2023 04:28:22 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id i8-20020a5d4388000000b002c5493a17efsm1540989wrq.25.2023.02.10.04.28.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 02:55:46 -0800 (PST)
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Fri, 10 Feb 2023 11:55:34 +0100
-Subject: [PATCH] drm/meson/meson_venc: Relax the supported mode checks
+        Fri, 10 Feb 2023 04:28:21 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: meson: gxbb-kii-pro: device-tree updates
+Date: Fri, 10 Feb 2023 12:28:14 +0000
+Message-Id: <20230210122817.1027765-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Message-Id: <20230210-relax_dmt_limits-v1-0-a1474624d530@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Carlo Caione <ccaione@baylibre.com>
-X-Mailer: b4 0.10.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230210_025556_964497_66C834BA 
-X-CRM114-Status: GOOD (  11.54  )
+X-CRM114-CacheID: sfid-20230210_042826_130944_D00740C4 
+X-CRM114-Status: UNSURE (   7.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,55 +94,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Relax a bit the supported modes list by including also 480x1920. This
-was actually tested on real hardware and it works correctly.
+First we sort nodes in the current dts and remove some blank lines. Then we
+add the remaining bits needed for Bluetooth to work. And finally we add the
+AIU audio card to have HDMI and S/PDIF audio output.
 
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
-drm/meson/meson_venc: Add more supported resolutions.
+Christian Hewitt (3):
+  arm64: dts: meson: gxbb-kii-pro: sort and tidy the dts
+  arm64: dts: meson: gxbb-kii-pro: complete the bluetooth node
+  arm64: dts: meson: gxbb-kii-pro: add initial audio support
 
-In particular relax the resolution checks to allow more resolutions like
-480x1920.
+ .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 84 ++++++++++++++++---
+ 1 file changed, 73 insertions(+), 11 deletions(-)
 
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: David Airlie <airlied@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/gpu/drm/meson/meson_venc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index 3c55ed003359..5b3621589a9f 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -866,10 +866,10 @@ meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
- 			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC))
- 		return MODE_BAD;
- 
--	if (mode->hdisplay < 640 || mode->hdisplay > 1920)
-+	if (mode->hdisplay < 480 || mode->hdisplay > 1920)
- 		return MODE_BAD_HVALUE;
- 
--	if (mode->vdisplay < 480 || mode->vdisplay > 1200)
-+	if (mode->vdisplay < 480 || mode->vdisplay > 1920)
- 		return MODE_BAD_VVALUE;
- 
- 	return MODE_OK;
-
----
-base-commit: 38c1e0c65865426676123cc9a127526fa02bcac6
-change-id: 20230210-relax_dmt_limits-355e2a1c7ccf
-
-Best regards,
 -- 
-Carlo Caione
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
