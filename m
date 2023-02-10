@@ -4,73 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E07C8C05027
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 15:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FF31C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Feb 2023 17:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aJ1aUHB9RX9HBYmbsy5UoTcF4lnnuCqsb/0Ae62hB8I=; b=RWe0lp14/YcbKd
-	wYkVv9dcLrJVbdXVDcyGUxl5MxYFQz/VOmnR4I17/+nvKEuYf4AVpWRFogAl9JfTNU3OLHwNJYtyQ
-	AWHUuvfO03+Dq0FVJRShOaFKgOG8aWdNpF0zNhZBfzx9kY08TNi2htqlRL9DY3uP7KqN30CISwTt6
-	09/xoVugSzhBC3nqVfGlFTx0TRnfJ1QB79kwdoyQVklD9HdrQcwCq2og3K/B/E3Pn8XFwfZTt2Yid
-	Hb3kXowLUFRHY4ahLU/7/NOkHrlqpHTYtBaOEGXWSSmZrajxBeYDCVK4jtjIPVuw4BFcwzkc2wa3B
-	Nr2AXVw8cXmcvlF3tVuA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=+gCYHnTdQMS81nV1GhHgXmKSgYgFzS/oelJDsoVer54=; b=gyqQyMQFzFLih5
+	0/jX+GXNcerkb9tFnnv/lop7dJkCs1d+eKQsNNH3vZIt7SWQ8lLt6JWD0HK5k0cKSRuDvpc1GRZyp
+	6pgSc6vZgsbjw+G4UzuKhsvxs0omq8+smCR0IDJizMIyKxgz9Q3GcEv2kcESsv3lrtqIkDggRM/Rh
+	pJUwchHqSeq0ME8UUJDDnFqwXovIMHY3M/h4NH5acG/bpPR0zJQpG8hZf8g1Ni4pcONa8G9b7qLhd
+	5y/cfyYZ2ppM4N0H+rXKk5JFB9LY+tgsW+oZTz3nTRlAaLKwQizJ33yh3Spzg/qx5O67Iiu0G4dC8
+	T0VzUnvWZm2bNiJt7UWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQVnC-006SDC-3h; Fri, 10 Feb 2023 15:58:30 +0000
-Received: from mail-qt1-x82d.google.com ([2607:f8b0:4864:20::82d])
+	id 1pQWs7-006fiq-5v; Fri, 10 Feb 2023 17:07:39 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQVn9-006SCD-Si; Fri, 10 Feb 2023 15:58:29 +0000
-Received: by mail-qt1-x82d.google.com with SMTP id h24so6295153qtr.0;
-        Fri, 10 Feb 2023 07:58:22 -0800 (PST)
+	id 1pQWrw-006feH-1o; Fri, 10 Feb 2023 17:07:29 +0000
+Received: by mail-wm1-x336.google.com with SMTP id bg26so4339350wmb.0;
+        Fri, 10 Feb 2023 09:07:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8aTFVnOsWYVkAC4sToVkHybmRjgNOkZh2qFCAaG8DlI=;
-        b=Mi1RyD77ugTxCb1ulPTtMBZeqpqGF5Q0mYp6MhS712A084x2kpLFCTpdLya3m1NBUB
-         mvqzm2bWVkLTwhJjn1bLcYzYN72L+p0o9VwQzSEKpmQZ29vbd1X2RN+wKsRq8g8QrUmC
-         /U4nv2mCzDf2SP4GQsoclIJ3AoMg3hpRBUPTDATzHhem9yI+A+SEf7iPp5A6Y7KmgTYt
-         6S28lx6psVQCjX+FNSbb3BlyN3FwZeg4lZuIzPwRdsjRu2WqnmeomMMEqtGF37c6PQk5
-         BCSN9vOA7ovMSr14qKKU6xB/I3KwmWB4D6y4N21aro/kEktfQZXbu2ZERpT2DAO6ql7V
-         B7rg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xN769MyAqG+UwI1gs9zsgn//wHYrKGP6dIPoLYX1lbg=;
+        b=ezlIwstR938P/WBu6L9tWuOgIKYTF++xSj7WmJEq7Cr2Ax6nPTtamhDVttKjR2UR57
+         ZmYV7hdCM5Psuvu2kL/DFo7wl4JDTGY4i6ViW8CIbXZaTjqzKkKkUfa9Mh/TYn46eruN
+         INrTvEKhK2Qzr9WsS3bEl1dFiuopDnF61lk7kFV3thvWxJ+v/P0poyPc9zfckpc/HnCB
+         waQE2BeYrhnI10QZaNE2vqBBp2VFRLEg4IhMauIyLWTbdI3v3C1RngkNsHsXN5QBniej
+         TpYxZXOB4SrUIVjYU1UYLwIMDOO4SirSOblmtBaN1dVfk4a3i+4r47wDBtb0hAK4Zajg
+         o1UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8aTFVnOsWYVkAC4sToVkHybmRjgNOkZh2qFCAaG8DlI=;
-        b=0mSxkQiu8HMtEKrQnmFcklcyXP9K7rOj7FXrTtZuzgyESJUTESE5tK1+L9elDCKT9u
-         2T34X3bDjB3aM3KerYW9VTfzkl5qu6QvRndt4xbRX/eoU4+zNCcMvmRZuS2IfLnc2ACY
-         VTLsPDwiDNpkmzbRRVQlVrJX9B/xEJ2K0Gm9Ldxh8t4gAJOAvchnh1yrqr0xm+dKq3f5
-         YxhVsjnBHhiyLIQ/22Nf7S11l3Uzw6/B+cx2ebXOCaZetRXKplvA1Ec2vaMCupnHlMf9
-         E4Z+Dr5j8r0sakeFSpjedVtLg65SDJ4TsCj77L2B8cvjIUoFbQou7mf68NXShZRJ+aU1
-         w6SQ==
-X-Gm-Message-State: AO0yUKVAX9XPiEvA9UD7yt2VjT/BGnlHiborYFXT3LVhfeuoDKYZ2Z1L
-	RIBS/HaCsnllTnknVCT/blrdFhoGhHvYd4GSYEs=
-X-Google-Smtp-Source: AK7set8CcS3ZeuXDp8HKmLAtd+GYM9oJG6VhEc2IjxJIdB3epTN0zATVW2t3jUy1ugW8dZS1ccszPhq+V6c+iTLYmWg=
-X-Received: by 2002:a05:622a:1001:b0:3b9:a589:e7e7 with SMTP id
- d1-20020a05622a100100b003b9a589e7e7mr3116880qte.228.1676044701339; Fri, 10
- Feb 2023 07:58:21 -0800 (PST)
-MIME-Version: 1.0
-References: <20230209115403.521868-1-jiucheng.xu@amlogic.com> <20230209115403.521868-3-jiucheng.xu@amlogic.com>
-In-Reply-To: <20230209115403.521868-3-jiucheng.xu@amlogic.com>
-From: Chris Healy <cphealy@gmail.com>
-Date: Fri, 10 Feb 2023 07:58:10 -0800
-Message-ID: <CAFXsbZos7GCF2fp73MrWxjMthFFKj8XAc2OJkNvOMEGUw51Jjg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: defconfig: Add Meson DDR PMU as build-in
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Jianxin Pan <jianxin.pan@amlogic.com>, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
-	Chris Healy <healych@amazon.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+        bh=xN769MyAqG+UwI1gs9zsgn//wHYrKGP6dIPoLYX1lbg=;
+        b=WOqwuoCbc/xR19qCpgKylCd1ul40QXKS6TtDdAi6cIGZakimZihIKDvdBVsZfCHlL/
+         5MDXcYqeqcEluhz4SrrpeVPM4vHIKRGrNpJYcu9IH0YoyVibY/FQpn5zI7J5LzzQLa0F
+         h5PP4BhhQeYwnlzW15QuaqolhBZCBzC7zOkDQRIUit00j/dGx6PFLF1VCsTbD3oGRpSW
+         G3KEP8U5EGOsDA8zboDRI0vO8IoO0fU271W5pUA2X+EX91Eu+92VYVmREN0t3u4WG0+e
+         k0I9EGZxBV88FOas1thEDrrg194YnjLRtJo1i+0j9rZcT0dGmnSL+MPEcJ+FOMkfFI54
+         Y0ww==
+X-Gm-Message-State: AO0yUKUorfzDOXZUWlxqZu/2d0jqG/ZZidvhn5b1vOwMBCrflgSvBxT6
+	u3Gr1LzVtuK7GU3QlaBPKMA=
+X-Google-Smtp-Source: AK7set/nC7TK4tPu/NvrJILGJR+kXrudhwCL+65OWuVeFN63PFM2TOZJGa9uWcdc++5EFRn76GQzLQ==
+X-Received: by 2002:a05:600c:43c4:b0:3dc:5302:ad9 with SMTP id f4-20020a05600c43c400b003dc53020ad9mr17283356wmn.27.1676048846445;
+        Fri, 10 Feb 2023 09:07:26 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id x7-20020a05600c188700b003cffd3c3d6csm5351531wmp.12.2023.02.10.09.07.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Feb 2023 09:07:25 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: meson: gxbb-kii-pro: device-tree updates
+Date: Fri, 10 Feb 2023 17:07:18 +0000
+Message-Id: <20230210170721.1285914-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230210_075827_953508_EAF6E938 
-X-CRM114-Status: GOOD (  11.36  )
+X-CRM114-CacheID: sfid-20230210_090728_111777_8FF1F089 
+X-CRM114-Status: UNSURE (   7.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,32 +94,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reviewed-by: Chris Healy <healych@amazon.com>
+First we sort nodes in the current dts and remove some blank lines. Then we
+add the remaining bits needed for Bluetooth to work. And finally we add the
+AIU audio card to have HDMI and S/PDIF audio output.
 
-On Thu, Feb 9, 2023 at 3:54 AM Jiucheng Xu <jiucheng.xu@amlogic.com> wrote:
->
-> Add Meson DDR PMU to defconfig so that build errors are caught.
->
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 851e8f9be06d..9fefe659ade7 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1296,6 +1296,7 @@ CONFIG_ARM_DMC620_PMU=m
->  CONFIG_QCOM_L2_PMU=y
->  CONFIG_QCOM_L3_PMU=y
->  CONFIG_HISI_PMU=y
-> +CONFIG_MESON_DDR_PMU=y
->  CONFIG_NVMEM_IMX_OCOTP=y
->  CONFIG_NVMEM_IMX_OCOTP_SCU=y
->  CONFIG_NVMEM_MTK_EFUSE=y
-> --
-> 2.25.1
->
+Changes since v1:
+
+- Add reviews from Neil
+- Drop unneded 'okay' from audio patch
+
+Christian Hewitt (3):
+  arm64: dts: meson: gxbb-kii-pro: sort and tidy the dts
+  arm64: dts: meson: gxbb-kii-pro: complete the bluetooth node
+  arm64: dts: meson: gxbb-kii-pro: add initial audio support
+
+ .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 83 ++++++++++++++++---
+ 1 file changed, 72 insertions(+), 11 deletions(-)
+
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
