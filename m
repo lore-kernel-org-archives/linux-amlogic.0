@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE4BC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 20:06:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C40E0C636CC
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 20:06:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z9ehOJX4CMK6V5l5OLh9lhGLfvHwh2lYyELMUl+2r5Y=; b=kA0I6ZqZu1N/LZ
-	ti+sZ+nwpXcAkLU2ING9GlpGXJc7zuJWRFLXrhd1q39P7FiQtTQKwkPyub/m7z6r4JWT8iddZ2Und
-	D9nEYF3oJPsI2OsJmD8MEf7oakHiqOgF69L6S4LLTEYSVdyb+vIZQuqldFSWN3sgS9JBp7yc0DS84
-	8Llh6A0JH/kFLS9hLWNYR4wgQaPlRSs0MXuopWPVb30pEmLNHQvqvToAeEMHVAcZZKe3WKVUxMCiU
-	z2JLe8F8T0Mp6C+Gkys56n8QX30igyIU51DXF9xWiCH8P0A3sc8trUS/eVpwO7LAy5CwXeM4ksfOr
-	zvYYzNr9Gux42IwhoMmw==;
+	List-Owner; bh=GYfgi4oTyMkPTnjktEPjBn/kv6wUY03MDVxPqO6P87U=; b=rqETEIQ9AER/pm
+	1n9C4Z3rXu6cXfO6crglbL/aa0ogLBtsd0FPRBcDS2sG5kxqdkL2pfpuQcPpuumy3eB8WQvD8MLiy
+	IIoN6foZ2MK/k3e8fZTXvBcbrfoAfgmN/ycs+/Q1nhml2jvb73v/9W6xiiUnwImCn1fYAmhxh54lx
+	Wfk+9gs+xoCHSHXkyDkmDQgwcyn3sjWeUNFP9eHfSKapUbs6O/FGy01kuBKtgFuVko8dMewFvyHsJ
+	wkCxhpP+tedhS/h78OJmlOTqMd4A67pwyhu1bLBfmGSLsFGU62Sl9r21XADpjErgIEPgaITq4lz4n
+	0T6dgC2DmYd5HhmU/+ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQw8F-00AG2Z-QM; Sat, 11 Feb 2023 20:05:59 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1pQw8h-00AGJF-JS; Sat, 11 Feb 2023 20:06:27 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQw84-00AFpU-Qr; Sat, 11 Feb 2023 20:05:50 +0000
-Received: by mail-ed1-x535.google.com with SMTP id s11so567632edd.10;
-        Sat, 11 Feb 2023 12:05:47 -0800 (PST)
+	id 1pQw8K-00AG3d-97; Sat, 11 Feb 2023 20:06:05 +0000
+Received: by mail-ej1-x634.google.com with SMTP id p26so23276419ejx.13;
+        Sat, 11 Feb 2023 12:06:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KzDSfUuHoNboS5QzLEHJDCgvHam8ZLPZmhS8geBp4Dk=;
-        b=kdX2lmhKxfR/ZMgxVpRW62qTK4BVDwB9SKRoEdGRQ3HzHWex/WAfUuaM0Z8VrWHskM
-         wt0DVN0FTRsYfOr8KA3IqKlWpIpzPx2b+3upOe4/nn5WOfLk32KVVA5Ox6ZLS9EPV5EA
-         W8wuLB8mw9lAqhGSEdE2OZUh3VwmAyEyaN7kPkcs5FQ5F+8CzaHWkrml3Z28FR4fmmvc
-         LIKwdIGRsIMwZKcm6Y7jMWXg2vpb9aNBmkiSuIB/BR9h4QkQG13r66fnsZRTDPM3J1pi
-         sGo1qL9c7wy3xlMNysL80YNUENI/Ix5qry4s3IZ/6TkjuhH5czuWtPUDwUZ40eA/qM01
-         1t9w==
+        bh=vaNbpINT2Xmkn9BcHjtJ02zq/IlpYiq1cxdo5OW1ad4=;
+        b=k6op3JKzRxsftji1LbveTFIAS5CatKMw4aoTuTC+ba/knIJ9Tic2KjwinicvmuLr9j
+         mUFv2/su61jVqGAXHO1iBy28NRoM6m9dOCjbmobZoC+8tgfcTFHaiwSTkOm1HWVfbKNI
+         KQfEU+9LUcCwdL6bXPTRKr71+pCXNt8iMnZ16QtsKR9uIFJCb5lIiKOje0qp8hEWchMj
+         D1xvt/U8RRgyRV+UlnestoFeklytyjJ1VPDakzHR10jeLax1TMaM8KomrsoyP/FdFC/R
+         sPuKSl4fR1WQJvwyLXGfrZFIyBQi1CVIkroUka5s7nzxWZajbkUej7WyYb9kwfYwmypb
+         kohw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KzDSfUuHoNboS5QzLEHJDCgvHam8ZLPZmhS8geBp4Dk=;
-        b=rBn//EOnjSheqz6fDyuq+85EuX3FZY9Ux1tZH5Bsnyfd/Un+i84iEe+FMWI73XUhkv
-         u0iUvWZKG+0jW6iDUm8+18DhtNtYqog2jWyFsCH1ShIDmqj61LseeXhPGjpP6v4VCIOr
-         8RGsrXqHZKLJaW9+Z3ywz5nYJZXmjP7XF1nXUiJjy8o6QgfZIE4WttZWpxWY9/3jTVVQ
-         6mILDHZSidD/6oFSIzFRVJ+HJYCXnBuoADxJtpwNgVafphsEc0K/Bd432Zz4hTJ7BWiZ
-         VsQ6LoT7vVe3INqbk6qy80pKi7LEoVy78rTSXKAmwfIv3QzFXRvK/YWATp9pAKZjqUvn
-         a+xA==
-X-Gm-Message-State: AO0yUKVXY26HlNELn52lNSQAtuc87bCrTYjDYanCj2XVhHDqVoBBIDpT
-	rhxfDYKdRzLXMLSxh6c7Id7VjfQmOTH26eyu8BM=
-X-Google-Smtp-Source: AK7set+TBgxHZk/FJCszd+S4lVDv55G9LzI1GuUXh9/iIBefxgoFcd90YDIzCQJeclA6A6UWN2PrAtDe0oYRV7VvRMY=
-X-Received: by 2002:a50:ce59:0:b0:4ac:b8e1:7410 with SMTP id
- k25-20020a50ce59000000b004acb8e17410mr866928edj.6.1676145946715; Sat, 11 Feb
- 2023 12:05:46 -0800 (PST)
+        bh=vaNbpINT2Xmkn9BcHjtJ02zq/IlpYiq1cxdo5OW1ad4=;
+        b=HEbyQb5BLCFQsnIsmRpWSKRanAz/7mwNv/FgNI0BrUaceobJzL18oKzx9anO9UgAdM
+         VPd1QCfScPaCGN/Neh/LC3BLQXE6CCgfoz5UsrL3wiKCL0e5c4Tmhl8fwBpa6k/td4PA
+         Bv7jfs+T0D8+NQEU4qo3nly4sRvk1zkRhncmvPXSYPShjiqXhpcTThdVookZC+OvOrAg
+         tmw+qfNprqNhurvqXTCBZXFFLiP6oLDcvzlJIqmy7nqf3UU5WaZNAQxBVI/wlp2Y/VqQ
+         OzflAOybOiNxBbNRDEEu0kbEk9iX+d7a9DwbSkJv0gOnfLuJ2SsJeUgrl9DMge6uClR9
+         aPxw==
+X-Gm-Message-State: AO0yUKXgGYZvM3Gl6aHfKbPgyuX5CtWOyhPzrOtEKQaPv8yd9SGZQInO
+	Ew7dF44Ow0Z4tbcWizf56Mle0uFdThJ7UXCAcrg=
+X-Google-Smtp-Source: AK7set+ooeXlh1YIDkOcBMPjkcIHlqurC5sma2WWEDW4q11b1xsSXdCafR8YQhXjeTPZholKQbiqX3EhtEIiF8xmqg8=
+X-Received: by 2002:a17:906:c44e:b0:8af:341c:1f82 with SMTP id
+ ck14-20020a170906c44e00b008af341c1f82mr2608701ejb.4.1676145962006; Sat, 11
+ Feb 2023 12:06:02 -0800 (PST)
 MIME-Version: 1.0
 References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
- <20230207-b4-amlogic-bindings-fixups-v2-v1-7-93b7e50286e7@linaro.org>
-In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-7-93b7e50286e7@linaro.org>
+ <20230207-b4-amlogic-bindings-fixups-v2-v1-8-93b7e50286e7@linaro.org>
+In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-8-93b7e50286e7@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 11 Feb 2023 21:05:35 +0100
-Message-ID: <CAFBinCAJvw=N=KBcmbkLfg10brEwDN1sgSeofqxaDJ0AfydUAg@mail.gmail.com>
-Subject: Re: [PATCH 7/8] arm64: dts: amlogic: meson-sm1: use correct enable-gpios
+Date: Sat, 11 Feb 2023 21:05:51 +0100
+Message-ID: <CAFBinCAJCOU1ihXxGxN3X3UQAMBDFpCkkMewY2z0KT9WnP5c0Q@mail.gmail.com>
+Subject: Re: [PATCH 8/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc:
+ remove unused pinctrl-names from phy node
 To: Neil Armstrong <neil.armstrong@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230211_120548_889724_19D0E74A 
-X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-CacheID: sfid-20230211_120604_353039_95A62A0E 
+X-CRM114-Status: UNSURE (   6.96  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,7 +88,8 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Tue, Feb 7, 2023 at 4:08 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
 >
-> Replace enable-gpio by enable-gpios to match the bindings.
+> Fixes the following bindings check error:
+> phy@78000: 'pinctrl-0' is a dependency of 'pinctrl-names'
 >
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
