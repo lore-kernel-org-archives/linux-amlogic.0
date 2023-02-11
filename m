@@ -4,73 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1D2EC636CC
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 17:49:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42854C636CC
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 19:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=SveppcQfo6oTvQTID2T4i/EkNGggZU7MQr682YDeZtw=; b=BVZ0fVZWXXq6i1
-	GLWjVGVUeDMq+KkfQ5Tf6F8hSd0KWh3+02QqHoogh7YPtozDhqsqc2aYK7uPMmC9q0OmS233dS3yS
-	7WydzSDVgJlKDsYoOffSh7eyxnucXo1Oad6IIrnprm+BywHhW2bka8VlQ9rDXpNeHVIsiuJW+JZh+
-	URXgRpZIBvUUcOnrbqBRtwTwjS3OJTgMH2+Rnsx5yffYuldG+NI40rWv7Ou0IfMvjez77P/VkZTpe
-	XPXVgNl03L60L+iV+0XwLWt+/fNEuqQe13L/uD+GguxU0vXrgZ2XWGDlx5be3Rw7GWPv2H7oj7Izr
-	c3RXI7e18h3LvRga1jWw==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7gTZ/vmWti26F5jKDFa4GOzSMS88UYrRSmFfLqAozjY=; b=QsAH2lS+swLvrY
+	HMjlJ1kie3eRsaKe4VJ7cEwOHoUzMUOFl6A2bFM8BfGMv8JzmV2xV4YnuoAHqekBFgCOIwTGsLgQW
+	HYOEatMXAKqoD/0B/CysDdFvWz1bZc/Sl7iLdHiQgvDgqG3NIZl8uJ4fTToTbI1C6Hlr7NxmIfGMT
+	oth4x3p5+Ebjmw3Pefg8fe4XABXwXnUxIREqxAjIx/tiDkl+HCFqLjBSSbKpp8Ba5jmQOFumvUFCj
+	5iXbUbbKRk7aBKXA/APcjzxGJ5jzXvbfzk3YIEqEKe7s9rOkab50xHJXoXHmmT/FmgKXfKY6q4sbD
+	wzYsERqAmKzNeV/FNKdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQtzS-00A0QN-Tt; Sat, 11 Feb 2023 17:48:46 +0000
-Received: from mail-ot1-x330.google.com ([2607:f8b0:4864:20::330])
+	id 1pQvpc-00ACTu-Hb; Sat, 11 Feb 2023 19:46:44 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQtzQ-00A0PO-61
-	for linux-amlogic@lists.infradead.org; Sat, 11 Feb 2023 17:48:45 +0000
-Received: by mail-ot1-x330.google.com with SMTP id 70-20020a9d084c000000b0068bccf754f1so2531502oty.7
-        for <linux-amlogic@lists.infradead.org>; Sat, 11 Feb 2023 09:48:42 -0800 (PST)
+	id 1pQvpR-00ACQK-3T; Sat, 11 Feb 2023 19:46:34 +0000
+Received: by mail-ej1-x631.google.com with SMTP id qw12so23326632ejc.2;
+        Sat, 11 Feb 2023 11:46:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fCI1/M4yRP8uWC3EPTR0VkOtKzteGJ7qHjHJd1Jdzn4=;
-        b=lfMHH9CyNivN+iLfJ87iqa7FJIoIXuWU2wNROLV+KT9lTdzlS6KOqohwzUy0cmE1k7
-         Yxu3tLPtu+Ts2YsY5CHdiMv2nMbduZ6zLi3xPIH0Dc/fHqhlxPFH9TteAFRh88qlfYjc
-         S0hJf8rr4PVaHYU01iAmbAW23AONxaeR+s59ZbJnPTzsNW2ySSy9RwSlryJhiBSElOBk
-         bDEzB4xaD8E08Tq9XFjvtMcsmmMLwUdnc+QGM0QEaOsL/5oV43cf/Ez1kElWyVyQDUF2
-         LhNsVq1m+lEr7cediR8byj4ETQgkzU62HpjnYV1d2zg4J/HiHXeX3y6TDtbJDt8kEKfx
-         92fw==
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2AhTCgEyNW01Hpz3xoMcaeloiLVbQZG4MDKBPmxYU6s=;
+        b=j0X5ehi1qAfwx88YgGhGEDbyYiu+Rr1ydszKqhaxGYwiDHTtCYroGG0h+JiDG2YKGC
+         RyCQd6DVtp1pPQF1BczXRcDR16kC4ytbs6KFJsIAIgtr2RcEvnwzj0TzfXoBGt4jVyUY
+         iDroILtZ3OzJvKdSgooY6MZBx7pj3QtO4YTRCcw2DptzPLdLZlkVdkL24T5WIsaGQ2kI
+         0/sAhFA3ZiWrsSmitS7vkPR7iEt6AXQ50US98CVAYSd3vcMMGHidTmta/urAFxcraROz
+         CWQaI+PKeWTf7UEjltapF3T/aIwaMtC2PVYr1m3pPRlhTg8IvznjPhMDMlUfqTA9D4Kq
+         s2WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fCI1/M4yRP8uWC3EPTR0VkOtKzteGJ7qHjHJd1Jdzn4=;
-        b=V4G5aY0715K6iUQg3N2vyzb+3FPFrVLk43vxBP4yXmiFrNVJ+qb4qbdnfN3Hm4+qLm
-         7kLoF3dLNkoworCJAYVfD/MptNZVfgXBLe5AG7RxJGamdZspf9teHKyZr731cRtlLiM4
-         bxuQ6ud2FYDcv4Hi7YQzz2lCUvbe64aXFCfc6E599QofM/OVrDQYUpHNI6TfkC2rBzIe
-         UxpXzKpF9/8flkzkxR/v+8SskUEiqhprHL26cotb1+ULRJUPda4SuXCnJXQ3KaL8yHJC
-         I4CI7/zpdWpGblmoA3GwW52DkkPQbfr35Mwljg8qbIVoE7kBcrjNA7jUwI4cEXzN5trm
-         9hkw==
-X-Gm-Message-State: AO0yUKVm2T2Qh77Hm01AsLsel5P/efCthjjBU9ceP5BRi+kr9zZN4qp7
-	u9PzTFNDjdl7/nsTnX8GqvA=
-X-Google-Smtp-Source: AK7set9vt8cw17hU6EGMSObZgAfAlKR8oh2CZ8eXC5UjO2FV+uppIuOdcBX8HYaxDGpNaF07Qz9ueA==
-X-Received: by 2002:a05:6830:1c5:b0:68b:cc5c:184b with SMTP id r5-20020a05683001c500b0068bcc5c184bmr10824752ota.20.1676137721624;
-        Sat, 11 Feb 2023 09:48:41 -0800 (PST)
-Received: from geday ([2804:7f2:8006:c9c:adba:da13:db7a:720f])
-        by smtp.gmail.com with ESMTPSA id m2-20020a9d7ac2000000b0068bcb44e7f5sm3291197otn.68.2023.02.11.09.48.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 09:48:40 -0800 (PST)
-Date: Sat, 11 Feb 2023 14:48:39 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Linux Amlogic <linux-amlogic@lists.infradead.org>
-Subject: Regression caused by 066ecde6d826b443 ("mmc: meson-gx: add SDIO
- interrupt support")
-Message-ID: <Y+fU96RVq4GwKaDH@geday>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2AhTCgEyNW01Hpz3xoMcaeloiLVbQZG4MDKBPmxYU6s=;
+        b=6a2U5mvRSLHqHdBm2sYouSPA/WIigA2Cz1VaYz4UEp2TkcIexq2QMk/WLo+xIAPF3D
+         e2pZWqvCGkC51aDxK9HCv1WefPGRRNZbVmS8fmTfVfy93Jo51Am+deYkM1hak/5zNIie
+         iH4V31udb5Q1KlewhLqLG8Crn8rBu7JJQ26hPbReU+rM4kQ9rbTokRXITxPd8XveFKvF
+         q6ZzJBz5yeX67BHc3QrMxBHLSQmFtzhJ1II2BzTyCeDzWweIxoTZMlot3mNJ7Es17d+g
+         VExEoJ3dK45DlaVWDW03eOhL9PvNDXsNCoRKj7wlo42FjDVMrgIgYKaFZMJhDnyh77ZW
+         BICw==
+X-Gm-Message-State: AO0yUKUU36VcDMpg3YwLlKGeH/vWzd61AJ+LOhfUNe9vQZgnwhLY9KGk
+	bwvdRLxjJKj1d9is2JmkvSftG7RNenV/2Wo7gZ4=
+X-Google-Smtp-Source: AK7set/nJdmi3PMS/VE7RInIufqL6RVJYPN9xEhALHj25oE+x3WlxzfNBMmASPK7wsxXCUM3BmbMcWnYf9nvi9Hrnc0=
+X-Received: by 2002:a17:906:c44e:b0:8af:341c:1f82 with SMTP id
+ ck14-20020a170906c44e00b008af341c1f82mr2595900ejb.4.1676144789870; Sat, 11
+ Feb 2023 11:46:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
+References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+ <20230207-b4-amlogic-bindings-fixups-v2-v1-1-93b7e50286e7@linaro.org>
+In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-1-93b7e50286e7@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 11 Feb 2023 20:46:18 +0100
+Message-ID: <CAFBinCBWkBWkTR6F2+zO5OGh1tmbwh8X8aTLTar=SqSEZ6iMAA@mail.gmail.com>
+Subject: Re: [PATCH 1/8] arm64: dts: amlogic: meson-sm1-bananapi: correct
+ usb-hub hog node name
+To: Neil Armstrong <neil.armstrong@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230211_094844_246517_523A030B 
-X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-CacheID: sfid-20230211_114633_183700_73247567 
+X-CRM114-Status: UNSURE (   6.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,23 +80,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, Yuntian Zhang <yt@radxa.com>, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Heiner and Ulf,
-
-After updating to kernel 6.2.0-rc7 from 5.19.1 my H96 Pro+ TV Box
-(Amlogic S912) failed to provide wifi. The module in question is a
-QCA9377 SDIO driven by ath10k.
-
-Reverting 066ecde6d826b443f492570e080cba3f2212280d
-("mmc: meson-gx: add SDIO interrupt support")
-solves the problem and I have wifi again.
-
-Thanks,
-Geraldo Nascimento
+On Tue, Feb 7, 2023 at 4:08 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> Fixes the following bindings check error:
+> usb-hub: $nodename:0: 'usb-hub' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
