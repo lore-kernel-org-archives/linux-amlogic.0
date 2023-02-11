@@ -4,76 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AEBFC636CC
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 20:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA60FC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Feb 2023 22:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kg85KWwf961QShW2FW4KGgjsyu05PLQewxs0C67PvFk=; b=HNa7WONwXsWH8T
-	fmP1tNp9/mqeC6thTJ0nGdTkQWJvZHm34AdpOUCntX0nrwOT+D8WzJT+IqAgl2NrrJ8R4VcprWqxz
-	LlvbJLmzyNDnzX8USqamBTfjaugOfgh9r/Hr/9LINiupg1mPNU0FerdRKZUSRZTKAFbS1t22fDC+J
-	Ft+HuV7zKWojlpQctjLWaHxrx26Zw9umAeNritsuOESudjYz5ZUnOJOILzQYf1nIheg9hFu4l6KSR
-	drbdiUEqJcVxZp/wFbjhMRXp9eB1ocvDZBQc8UWLGgsfgdwZPMdqc8CHYfwBPlK+ZwLP0KFJacjBh
-	/ScFKscbqHOXwo2WSqog==;
+	List-Owner; bh=F6Zo7+YhZjhmmeeZEJ7kkHzR8mKny035NoqQ0r7fgcc=; b=IDjnnNblu01v5V
+	mkmHVNSkvyiXAdnfM7VG8m4SP8cKwWU6JceEzVh/g2dpoipr1fBTq2KdHmBplbrL9qPXKKgdSYj0x
+	xy1IwYKsmYjkZrB2QeIif3DXTEM89C1skKqH9ixRZQxSo1Xi+VnqQtKRo1n/9Y9ILJDsuh4uK9Ly5
+	cjFIhAVEHZYgMzSfLp+pdxTv1BRYuIsSTHBRozV1LvUL2zc0fjrGQ5rnMbqN4Tc3nlcDbm73MTeNF
+	SX2BsH5jb1+ssqk+IToq664f3c9dby/C5gLUgo0dyGBCzoD22sRFeszzo7mRZI//PNXE3cadic+gO
+	LXZb6RBPVCBGNQTH28JA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQwRX-00AKpd-77; Sat, 11 Feb 2023 20:25:55 +0000
+	id 1pQybj-00AWOI-DR; Sat, 11 Feb 2023 22:44:35 +0000
 Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQwRK-00AKnn-JT; Sat, 11 Feb 2023 20:25:46 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id jg8so23414835ejc.6;
-        Sat, 11 Feb 2023 12:25:42 -0800 (PST)
+	id 1pQybg-00AWNc-GQ
+	for linux-amlogic@lists.infradead.org; Sat, 11 Feb 2023 22:44:33 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id qb15so21801157ejc.1
+        for <linux-amlogic@lists.infradead.org>; Sat, 11 Feb 2023 14:44:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lLacBBRlz93H3GiKKvSQD2qZJYcpqiTjyuyAIXkHfUk=;
-        b=HnvlPd2wCVKP1vEA5oBzN09Hm7YBjsJX5upx2hujewee0OEBtMeFDjUN0pNfY1qNzj
-         /6e+ChM9OpYSHEHTVo/d5JN4LCYMYeMvjzMpTmh5pZ+FbQjTSiarXOl3fsp3LN3r5lrU
-         uVDbJHNlzEbGRXVmnwYdZ+4BdMeKqhSrmF7yAiLEgDHQOfQsGAU1ESNHG4p1GZ/FBk8C
-         PYnUrj+WyW5jtbwdj9wyGMdBbTO10UXCDDg9EzsoEbicsFM6IuGG6OOIQre7nLz3vyNV
-         Rx/nB7kR/S5q71duUSyDIiXocP70Q2eDFgGyiBMVG3XXFeN6BUnMsH1/O0MgRKRhZ9v1
-         peQQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RN8ini4kSIEIe6s16Cv31uI/YUZKNyoMfAWeJEuaPag=;
+        b=krS7efJ8cu+uqnPLAJqTjondbZdr04WZYGqufwpqAXwwS9McrhLa6D8XX5gphmg2Yh
+         cLA+sHRWnIYKesekRyFopg+fqXXPPg94EXiyG4ZfGU9Q2eGDGyLifY6La+9DDEvcpd9f
+         trVQRCnRhoGNxzY8YuNxw6Sa3ckEPcCGditmpK9w4h24I38YNhIFo5HpJT/03aoSX3Tw
+         nlVu2zQJcy0j8Me/tnP5bvCPiSZPTcxRD0k67uXRu+Zt9MlkcQBcXmsy3Inn1lI4rlOp
+         K+RBep0UkgByOT+1pwWI2QNSmGxHGNe7m2e+kKt+BGOv91DfyDW6iigqUum9k0bhfP6B
+         VK0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lLacBBRlz93H3GiKKvSQD2qZJYcpqiTjyuyAIXkHfUk=;
-        b=xPYsgbwZp1OgFN90taj4qShIU4d3L2UChaZOuLsVSHeb4nPdyQhy+joNT5sYnsI0Rd
-         +3NXAPPn3CNUqGNJmNrVyMac5hbybMdfqxdDtnPuHGlpBAMPTvXoiK4RAb1P4mb4gaUg
-         smgtmTsCJyOPZNYu5ANbDL+Sr2bmVwEOkMcBrEgsdt90QtLhHpZRlUldTfG9HTL3n17a
-         f1amm9hb4d/jntKz/PEUY4gqJFQMO8aKt1w4PvF6+31pzt0eLGy7GZIqCoJ3rN+uQbyc
-         I5HMszIyMh5/FTe40WSit9sKsm7ceWncplxY2N+ZgMDBSjMrNlgS/xBHUMWP5nn1+cYM
-         Av2A==
-X-Gm-Message-State: AO0yUKX4padtAYiedS0xT6y06shyojxgBrskvQvWDighOuTWyDSgVubJ
-	vU79UiYbuPKqnaal7mU9WjrfxDJE4ApoLSeyWOY=
-X-Google-Smtp-Source: AK7set+r8/isemvwKFykUdz65hr3VaRSbzbkw3mFuod0hK8/niYyuljq/yGDoa19MVZw3qAcXd7psXWFNbni52Mh3LI=
-X-Received: by 2002:a17:906:c44e:b0:8af:341c:1f82 with SMTP id
- ck14-20020a170906c44e00b008af341c1f82mr2622125ejb.4.1676147141118; Sat, 11
- Feb 2023 12:25:41 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RN8ini4kSIEIe6s16Cv31uI/YUZKNyoMfAWeJEuaPag=;
+        b=5pWTPji8bw7Vpp2B0DEqAHjpMcandqx5piUcIRE0wb0MJ9k1G73cSKf7VUpEtdFp/m
+         mtdu4qk0WWh9XxPPadcjg7GjX1gXMiZfoAaEZ6ma5YQVL97duM6tBrkMUxzOWsToGuiU
+         qnzrBWF7uJMJjdWukfrcgwRHaJCuMiS5JA7R24Hl3za7MR5De9iMSYVs+nYysV3ZsE4E
+         HD1RnevlkvdFddHAO7WVfZR8li+4PXMUEIvW6T00WQ2kLSAUk5e7h5eelk4MXQUKSRFO
+         SP4eMfBfnIr5EGUP0ul5sRydBgeX35tnFJHCdLoXzF1vFSNXxghOu0aMQbhLtIgzvxJL
+         agmg==
+X-Gm-Message-State: AO0yUKXj0X0KBnS9nGyeAcOuvLcllDTJTgofJ7Gk2oPS6ey9Ax3fztR3
+	V9cq/1X4I7wexjspuOCJ6Pvu6hJ9QOM=
+X-Google-Smtp-Source: AK7set87kMIy22VuZxD4WN1wxnIC5j4Gh+mMI+dPUrSqbFGlZOyQseN435IStD+ZAJuaZTjrBBSNxw==
+X-Received: by 2002:a17:907:720b:b0:8b0:26b6:3f2b with SMTP id dr11-20020a170907720b00b008b026b63f2bmr4350660ejc.53.1676155466623;
+        Sat, 11 Feb 2023 14:44:26 -0800 (PST)
+Received: from ?IPV6:2a01:c22:7bbd:ec00:9d3f:853a:b07a:4e8e? (dynamic-2a01-0c22-7bbd-ec00-9d3f-853a-b07a-4e8e.c22.pool.telefonica.de. [2a01:c22:7bbd:ec00:9d3f:853a:b07a:4e8e])
+        by smtp.googlemail.com with ESMTPSA id v23-20020a509557000000b004acba0afaa3sm1264714eda.21.2023.02.11.14.44.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Feb 2023 14:44:26 -0800 (PST)
+Message-ID: <bd2dc69d-f7b0-bc60-782f-34ac497d9507@gmail.com>
+Date: Sat, 11 Feb 2023 23:44:25 +0100
 MIME-Version: 1.0
-References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
- <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
-In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 11 Feb 2023 21:25:30 +0100
-Message-ID: <CAFBinCCACzEDaa2Z+h5JzXRjEcQ9QH0R+=_UXOKHe7zX02im=Q@mail.gmail.com>
-Subject: Re: [PATCH 3/6] dt-bindings: soc: amlogic: document System Control registers
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: Regression caused by 066ecde6d826b443 ("mmc: meson-gx: add SDIO
+ interrupt support")
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Linux Amlogic <linux-amlogic@lists.infradead.org>
+References: <Y+fU96RVq4GwKaDH@geday>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <Y+fU96RVq4GwKaDH@geday>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230211_122545_515017_DDAC7C4E 
-X-CRM114-Status: GOOD (  15.79  )
+X-CRM114-CacheID: sfid-20230211_144432_695441_72792A28 
+X-CRM114-Status: UNSURE (   7.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,49 +94,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+On 11.02.2023 18:48, Geraldo Nascimento wrote:
+> Hi Heiner and Ulf,
+> 
+> After updating to kernel 6.2.0-rc7 from 5.19.1 my H96 Pro+ TV Box
+> (Amlogic S912) failed to provide wifi. The module in question is a
+> QCA9377 SDIO driven by ath10k.
+> 
+> Reverting 066ecde6d826b443f492570e080cba3f2212280d
+> ("mmc: meson-gx: add SDIO interrupt support")
+> solves the problem and I have wifi again.
+> 
+> Thanks,
+> Geraldo Nascimento
 
-On Thu, Feb 9, 2023 at 2:41 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> Document the System Control registers regions found on all Amlogic
-> SoC families and it's clock, power, pinctrl and phy subnodes.
-I understand clock (main clock controller) power (power domain
-controller) and PHY (HDMI and CVBS PHYs). Are you sure about pinctrl?
+Supposedly this patch revealed an issue with incorrect interrupt
+trigger types. A fix is currently in testing:
+87ef638d6557 ("TEST: arm64: dts: amlogic: Make mmc host controller interrupts level-sensitive")
 
-[...]
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - amlogic,meson-gx-hhi-sysctrl
-> +          - amlogic,meson-gx-ao-sysctrl
-> +          - amlogic,meson-axg-hhi-sysctrl
-> +          - amlogic,meson-axg-ao-sysctrl
-If you have to re-send this then it would be great if you could add:
-          - amlogic,meson-hhi-sysctrl
-because we already have that in arch/arm/boot/dts/meson.dtsi for the
-32-bit SoCs.
-
-[...]
-> +        power-controller {
-> +            compatible = "amlogic,meson-gxbb-pwrc";
-> +            #power-domain-cells = <1>;
-> +            amlogic,ao-sysctrl = <&sysctrl_AO>;
-For this node (and similar ones) I have a question to the device-tree
-maintainers:
-The power controller has a dedicated sub-range of registers. This also
-applies to the CVBS and HDMI PHYs.
-But the clock controller does not (it has its registers all over the
-place - unfortunately that's how the hardware is).
-I have been asked to add a "reg" property to child nodes with a
-sub-register space.
-Does this mean we need to add a reg property here as well (regardless
-of whether we're using it in the driver or not)? And what to do in
-case of the clock controller though?
-
-
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
