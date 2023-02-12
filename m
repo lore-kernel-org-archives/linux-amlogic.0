@@ -4,78 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D0B7C05027
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 20:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 265D4C636D3
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 21:38:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:To:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MV/Hz2MeXxbRdaWA3oSWQ7TeQyARdzQPU9chetZgTwU=; b=Jj0XkyfgpUJVir
-	i1AaqpgWRN1x7DrEoGsjJOnOW6vzNyg5XdoNR7pkwcHM+EUCunD3/HTqSBNx9qQO9GSQSALq8BKx4
-	IR7eZtGfUOsERB+xoy+aALebVP4KK/1gGYHqFZ/zTBhdI076s51UZkULiYVr0tArcA0oOvmIrxA8y
-	7VOS1LlQrC8iUTZJDbCdhqIR8OWkNRcJenQ1xk/r52qbMJ2s3chISZN/t45UAW1qEcExHvMKnWj2Y
-	XC5DfWjL38PzV+IRfSnbm9qMmyYphpI0rHyJ4CYKdfGtW7vULwqoNtA0+gVqOnbKgQzWlkJoSz5vK
-	oed0KIohMY7edl8HZ+XA==;
+	List-Owner; bh=Hn+I91v2jp0pMAY6vBENzuXFSPo5KmTca9NDOSTtTBo=; b=OvcYmg7eMGnOl3
+	lxJTaGnhu/v6vq+EQB1EJ91+o/L47yOc2j1M0xrHtRvwWJG+ju2uLI2fEnPCTLd4bysxXrDOB/e8v
+	1uG3WKCtwrj9JmWovE4p4dp+EeO/jHjOuuf2JOZjixh9SBWwoat1BIZFlBRrpp9ONUQCPgLudsAzR
+	+7E6UAC9B7DdKVFeMTIZsAKuhNEwQ0VR5C7Qs85Z+svjdkMqtSIwjZ/dv/MQSnEuzttS2yQOiu3cm
+	mIG39cdRvZKkQ/DxPxBJy9Gf8lr6DrcpuHMe3qGHfyln5/im/TFhJDQZ+7rzNsZyULDQHY/6HWp3N
+	VvM9wDSqgKwW+sHLeXXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRJ1b-00CHa0-H2; Sun, 12 Feb 2023 20:32:39 +0000
-Received: from mail-oi1-x232.google.com ([2607:f8b0:4864:20::232])
+	id 1pRK3A-00COaH-7r; Sun, 12 Feb 2023 21:38:20 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRJ1Z-00CHZ9-1E
-	for linux-amlogic@lists.infradead.org; Sun, 12 Feb 2023 20:32:38 +0000
-Received: by mail-oi1-x232.google.com with SMTP id t5so8710635oiw.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 12 Feb 2023 12:32:32 -0800 (PST)
+	id 1pRK37-00COZR-Ov
+	for linux-amlogic@lists.infradead.org; Sun, 12 Feb 2023 21:38:19 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id n10so616219ejc.4
+        for <linux-amlogic@lists.infradead.org>; Sun, 12 Feb 2023 13:38:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TfuDf1G+7QK5W1Sf7bGvvyvW3sJzP3KdbFvUVDlFUko=;
-        b=g2pW3Ae4MW1Iy0AtgxX9Z9gjPls1szqKd8FYFODeaxBi3AE9XVsBDX09bkTmiGoHVY
-         kiYb5NsitYu7ThQmxjS2VBgSKK6TmkGDz63SRVOHuQzCtKW6RZLlrvnSSPKnmI4/b5EI
-         T2OMD3mEktapxh73S6/YFYU3l4ex7IadPLITGMoS2RKdy9c0fTdqHYvdryvn8BZvAkqh
-         zJqYAoOYR9dU9JGuLegLlc/VlSuDQtpqWH3k+EZMldALD8bS/XOiDV9gzxIk5VqjJrRb
-         Fm0h/6V7H1V4iYOEJ/o7xCh5ty14ctsST7MpJ7sCrQSY+MNJuY09bG1ZGS0yCT8zOVgT
-         IfHQ==
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GjbMJUi347HCxf+hnG8Qc5+j4zvqsCPMZ87JcgW5Skk=;
+        b=II6XAQ6nepw63aUXx4g+F5GwNBMXKfmnAneZVwT89b+NZ7Zh+dPFEp8/C5JcmTMtdV
+         6+AXny/d3aTdIVyqbQYdEVm3MhC1Dik/6DE8o8YueU4lKLhb1/J2knzRq8z97woYiEr4
+         6C6LeWQ4Hc9xzi0VBNILEG+rLypZ2O/D/oeEoidzipyAT4qltPgRd/kUgj6jlP0SU6CC
+         UjzVKWwrNhkcFPVgcruWP7QxvuJhvNXouNreETbshK/lXFH8tyEevAQ8ob9BHkJtfMe9
+         R7/5kiYiVD5jleSJjTUbQpyaX7P1Q3JJ1F9l7tgUimirGgO2gAYDxezlhrvLyeydoMmm
+         ZIQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TfuDf1G+7QK5W1Sf7bGvvyvW3sJzP3KdbFvUVDlFUko=;
-        b=Bs7GSub/tavB89eLauz7B5U6HqXsrFrKzQNE8SLM2Jr6aQIU4hf/PibjmXST7s717l
-         MNV3pgCXAjmt5s9Gv7GR8YI9ObbtjOpfngh/gSeteWsEW42ih/AILLA4UWJ5X27HPOAD
-         VGca9ITZ/y1nM/46RJRGqvCIiJRy4glWXv5OnuPniMccHat/PwyZaf80qYi5/l86hOWl
-         rmOxdAZB9+tB9WVYRdh1oXlVqBm+P3GCtXbzu88ENUTaOk+ao4bMJetFUJ6fQkr3BZdC
-         2zkzxDWEabb3ClYMaCU8SvTzYb/LwWWkNvHKh77T+FTfjVWDd65v2oObZgchwgA1Gk9P
-         ugnQ==
-X-Gm-Message-State: AO0yUKWfjtgWKWTIs21oqkYBr0u/bb0Hp/9ji+Np9XuI95J+fWVDZg1a
-	PqWrWABVdXriHWuCyrgpa5sixodkoYE=
-X-Google-Smtp-Source: AK7set+r1GUURHwoMt9VXPwjUmfPJxIhlE1IZRsrpuLQkPDtCQILAsajIVBcSb/Xl1FCODljNmd5pA==
-X-Received: by 2002:aca:2205:0:b0:35e:acd7:99d6 with SMTP id b5-20020aca2205000000b0035eacd799d6mr9738975oic.9.1676233952026;
-        Sun, 12 Feb 2023 12:32:32 -0800 (PST)
-Received: from geday ([2804:7f2:8006:2be1:80e4:f9a7:d80e:f5ea])
-        by smtp.gmail.com with ESMTPSA id be39-20020a05680821a700b0037d6dd95756sm2531976oib.33.2023.02.12.12.32.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 12:32:31 -0800 (PST)
-Date: Sun, 12 Feb 2023 17:32:27 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GjbMJUi347HCxf+hnG8Qc5+j4zvqsCPMZ87JcgW5Skk=;
+        b=qtsDAtqLpsiyHuQ+g4wtjkVLSt3G2tCYjTc1TccDyGwEjcl0oyYhBvuAqP1lisXUon
+         ufO018uZBYg5oRYU9LItepkbrq5FkwXRecndq9Ve1TSg4FiBcx8MI56QbX2FifqqTHxB
+         RxCbpkMu0lGaFSbq6WTnVuiEW6isU2TzHOTxdRN9D+74kymEZGRG/COMoKVqG5Ye9MbR
+         iNlnvuBFnUswd2nUiws+mdpoTpgA7vccpyXPLYynszFCGMqW8jBzIdwn42MCBkSmi9As
+         6Fs8p5IW3dlMv+xVc2YqvlvNB2oVoO0DU5NRlLu0urtadizqLR5RdxW8NDn+1fCS+D7E
+         mTCA==
+X-Gm-Message-State: AO0yUKXlO3+PaRkP22E3DLvXuChxB+p5WS5v2O1xPO7kES/nQg1YPQaO
+	xhuOzTNbSu15pC0CACHounc=
+X-Google-Smtp-Source: AK7set8viyyvbpsf1ZRnp0DZf3LTkodhzIIq0tkP40zKxPAjo/UGxKJl6CoZJosbyfqURncuAKBkvA==
+X-Received: by 2002:a17:907:985b:b0:8aa:f2f2:7541 with SMTP id jj27-20020a170907985b00b008aaf2f27541mr18522544ejc.77.1676237893267;
+        Sun, 12 Feb 2023 13:38:13 -0800 (PST)
+Received: from ?IPV6:2a01:c23:bdd2:4300:1932:303f:b63a:5a0e? (dynamic-2a01-0c23-bdd2-4300-1932-303f-b63a-5a0e.c23.pool.telefonica.de. [2a01:c23:bdd2:4300:1932:303f:b63a:5a0e])
+        by smtp.googlemail.com with ESMTPSA id v26-20020a170906565a00b00871ac327db6sm5800685ejr.45.2023.02.12.13.38.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 13:38:12 -0800 (PST)
+Message-ID: <d1e91460-1823-813a-82c7-90623829706c@gmail.com>
+Date: Sun, 12 Feb 2023 22:38:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Content-Language: en-US
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+References: <Y+fU96RVq4GwKaDH@geday>
+ <bd2dc69d-f7b0-bc60-782f-34ac497d9507@gmail.com> <Y+g114kasLS6/x12@geday>
+ <2CB0C2EC-B084-4185-843D-3DEADAC5864B@gmail.com>
+ <ccc7ca41-8874-74ca-d647-4eb84cb0f207@gmail.com> <Y+lM20XtiZ7CxftT@geday>
+From: Heiner Kallweit <hkallweit1@gmail.com>
 Subject: Re: Regression caused by 066ecde6d826b443 ("mmc: meson-gx: add SDIO
  interrupt support")
-Message-ID: <Y+lM20XtiZ7CxftT@geday>
-References: <Y+fU96RVq4GwKaDH@geday>
- <bd2dc69d-f7b0-bc60-782f-34ac497d9507@gmail.com>
- <Y+g114kasLS6/x12@geday>
- <2CB0C2EC-B084-4185-843D-3DEADAC5864B@gmail.com>
- <ccc7ca41-8874-74ca-d647-4eb84cb0f207@gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ccc7ca41-8874-74ca-d647-4eb84cb0f207@gmail.com>
+In-Reply-To: <Y+lM20XtiZ7CxftT@geday>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230212_123237_136165_EF977EF1 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20230212_133817_842936_4A8535AF 
+X-CRM114-Status: GOOD (  13.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,23 +95,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Feb 12, 2023 at 12:55:25PM +0100, Heiner Kallweit wrote:
+On 12.02.2023 21:32, Geraldo Nascimento wrote:
+> On Sun, Feb 12, 2023 at 12:55:25PM +0100, Heiner Kallweit wrote:
+>>
+>> Could you please test whether the following fixes the issue for you
+>> if cap-sdio-irq isn't set?
+>>
 > 
-> Could you please test whether the following fixes the issue for you
-> if cap-sdio-irq isn't set?
->
+> Hi Heiner,
+> 
+> With this patch there are no problems even if cap-sdio-irq isn't set.
+> 
+Thanks for testing and the feedback!
 
-Hi Heiner,
+> But shouldn't we set this capability to take advantage of your new
+> codepath? I noticed that on the old Amlogic BSP (downstream kernel) such
+> capability was already being set on the DT, so it's not some sort of
+> hack.
+> 
+Right, next step is to add cap-sdio-irq to the chip family dtsi's.
+My intention was to let users opt-in for SDIO IRQ mode and test,
+before it's rolled out to all users.
 
-With this patch there are no problems even if cap-sdio-irq isn't set.
+> Thank you,
+> Geraldo Nascimento
 
-But shouldn't we set this capability to take advantage of your new
-codepath? I noticed that on the old Amlogic BSP (downstream kernel) such
-capability was already being set on the DT, so it's not some sort of
-hack.
+Heiner
 
-Thank you,
-Geraldo Nascimento
 
 _______________________________________________
 linux-amlogic mailing list
