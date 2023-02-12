@@ -4,79 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BEBC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 02:38:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EA9BC636CC
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 03:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1vInGOlmAQL5wwyfD/HlsQpxzAJzmE3wmkYVfvB8CDQ=; b=CnvwzG8df3YUJL
-	mO7UvUwmYiwvKCf9JtTQzaukx0CvpOeKWCx0x5OCGTO7iPJAoUg02XsKp85Yq85k6/+uy9+fw72NF
-	2ksBvD6V4kptRMfO9JqCUsZoQnMbsPuIoeCWFhziSgz8VHpjvem5PKhtVmMqquH0PuxZc9pzbgQvD
-	bEHBC3c5UQOlsQiivoMRKbEac9FJp2wXGBFX2x+8r9YjKYEbJSSr+p0VGeu1WPgn8CZdfiNHGYHp2
-	JV5QHEsefTvJiNN7uTsJtbdjzFJDSM2xN1RuYGH1kvfRG20wvpUSeBeE6V8+WzSkVQW8149xx0Nop
-	67UDuyPKjYE3cbmv1SkQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1xREiXf50Jm6TuSbJvnqSzVZTLzPmdPrq5nR5kOMk9c=; b=U71Wk7+PZ+ikX6
+	9d3xC+kkKHzuQaQswH3WqeYMkDN33HFNiXi0lGaZcWSeCZa1zg/LhOjdzwdX4V/J4qd35eDnj0Cby
+	OlqHBnnZXLd3ecPG+NLi9CUG/bZk+o6x2Jv9wh51wYRo5+fdMpPopq3coaVxmOOymnKwVMtNr/XEx
+	yc65s4tryCoG3/svCdUqyOFR8c4Tb3E2aunWxfvkydmkVk6obv5XoprpoQjoMmCIuDHXHKY/qr8Xr
+	F7/Ais50xLSkG5Jel+A2wrTmw8ZpnfZ+X6DDeR6ssNEjgjWvsx5wmAhUd208FK9fh517ebTbLZq4Z
+	M+HL6UM+++HTdUcYhYaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pR2Ft-00AloP-0i; Sun, 12 Feb 2023 02:38:17 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1pR2od-00Ao0m-Dn; Sun, 12 Feb 2023 03:14:11 +0000
+Received: from mga03.intel.com ([134.134.136.65])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pR2Fq-00Alnk-NQ
-	for linux-amlogic@lists.infradead.org; Sun, 12 Feb 2023 02:38:16 +0000
-Received: by mail-wr1-x431.google.com with SMTP id k3so1406427wrv.5
-        for <linux-amlogic@lists.infradead.org>; Sat, 11 Feb 2023 18:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c5KtTCkQO962+ofw5JUXqli30tDo3+JwMw5y/z3+uHw=;
-        b=frCznAwvnOhrDtfA+5CFK5aA6YonudQ+5dFTRZqxttHw9+bn+de7BopeGUz+1TT6ZJ
-         agNCoM4hXObL0ws4n36yjbIRU68whP67tiYnHf0FKjMAi7cswq0JnbWmAUt8OCg4Z3mG
-         R+wF3fZzYpk+FRr+WuIfmwdms0+NQkVyy0omAgUWKIicspMPQziyQQ4aK3ckGl0ruOp6
-         CImRfzUXprpUD7qF839xKIuQC4f4ZhfIjiuisDwadr1EP+zA/4h/m53yoAcPk8DUM83T
-         8MLT/Du1ptlLSWdBE9W13D1bjRZcF8NGMnZrsFIyblRrVvW7wUN43X35V7WjfhyajwrS
-         u0fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c5KtTCkQO962+ofw5JUXqli30tDo3+JwMw5y/z3+uHw=;
-        b=x4PUZswqjLX71aJ26WTUDlqLqtqTXl19OLVYJmo3C92aHj0vHQX+P96JzLsnycg0xK
-         6IfWq2l7W3vaXDRD9NJ1/lpdKMQN8oXHMfBC8DNL/gLIf848mRBSUMMsYu1MsYG/wrQ7
-         QhXQX8PK7jOCNOEeU2tZWh/SMcpuZbAuDSumh2lDgz7Q52xiyFmO9Kf0Yz6nBO0TjA24
-         PRbFUouaEfb1UC09nBz1u+sDjfzmnDKfd7XS81c0+9x0t2CAbDF5413VY5ZG4ndlflhp
-         9j7koOevYXy+LiIkBS6KZou8B0XgVbTc2eJ1EabmzyaDx///ZoQcaNKRkl23q4BpdLpm
-         HwYw==
-X-Gm-Message-State: AO0yUKVEN9380fSWrRbK34UQCKeIdGFNXKNl0YhgOitL/uHaQYqUDYHr
-	rLYymQZz45pErC79zWCB0KQ=
-X-Google-Smtp-Source: AK7set+G1qKhsfecv3dWRw8a+VhdjEagMY8oPlccgP7cYZ3k6VKOEx9STIA6Yu35dfp3LgP/Z9bfTA==
-X-Received: by 2002:a5d:4d0d:0:b0:2c5:5382:7f9 with SMTP id z13-20020a5d4d0d000000b002c5538207f9mr826935wrt.30.1676169489481;
-        Sat, 11 Feb 2023 18:38:09 -0800 (PST)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id i14-20020adff30e000000b00241fab5a296sm7255702wro.40.2023.02.11.18.38.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 Feb 2023 18:38:08 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: Regression caused by 066ecde6d826b443 ("mmc: meson-gx: add SDIO
- interrupt support")
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <Y+g114kasLS6/x12@geday>
-Date: Sun, 12 Feb 2023 06:38:05 +0400
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Linux Amlogic <linux-amlogic@lists.infradead.org>
-Message-Id: <2CB0C2EC-B084-4185-843D-3DEADAC5864B@gmail.com>
-References: <Y+fU96RVq4GwKaDH@geday>
- <bd2dc69d-f7b0-bc60-782f-34ac497d9507@gmail.com> <Y+g114kasLS6/x12@geday>
-To: Geraldo Nascimento <geraldogabriel@gmail.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
+	id 1pR2oY-00Ao07-T7; Sun, 12 Feb 2023 03:14:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676171646; x=1707707646;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=8Ee53bw0HTAKCWMxXPAJRBW6Y+YE/qZmXr9sA0iMSzM=;
+  b=UjYKIdYvjPfTo3pCAAgPwVga23NnuuuDryYOmN8uLxqgb1Mw6W1NzZP/
+   5kFIF1qC/fz6ck3RUkfzgozQ42mMy3Nm9vfHMPeEzXS3SnjV7beAdHDEm
+   Kpw8tyjid1cM4tGzCwYDy/fsEf0OdMavfYkzlLzjJYekj3rxGbraVe+t7
+   MpjetjEQO0OLLOBrw1yt7D6ksV8oPoWKWw+ezD0awk/18s7E6CivlKFdf
+   djdJIuR7zkHRiplukwCHQRrkXhHCyV0xLTdXhn2/PB+DJMt0Qv+yIU0vC
+   TTPselLMcee1mIWZmfSIZAX/XJm+DrSlkG24odGwYvYwyDlD5yjoMNrlY
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10618"; a="332824346"
+X-IronPort-AV: E=Sophos;i="5.97,290,1669104000"; 
+   d="scan'208";a="332824346"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2023 19:13:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10618"; a="842406476"
+X-IronPort-AV: E=Sophos;i="5.97,290,1669104000"; 
+   d="scan'208";a="842406476"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by orsmga005.jf.intel.com with ESMTP; 11 Feb 2023 19:13:56 -0800
+Date: Sat, 11 Feb 2023 19:23:45 -0800
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, rafael.j.wysocki@intel.com,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Guillaume La Roque <glaroque@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	ye xingchen <ye.xingchen@zte.com.cn>,
+	Haowen Bai <baihaowen@meizu.com>,
+	Minghao Chi <chi.minghao@zte.com.cn>,
+	"open list:THERMAL DRIVER FOR AMLOGIC SOCS" <linux-amlogic@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+	"open list:RENESAS R-CAR THERMAL DRIVERS" <linux-renesas-soc@vger.kernel.org>,
+	"open list:SAMSUNG THERMAL DRIVER" <linux-samsung-soc@vger.kernel.org>,
+	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>,
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH] thermal: Remove core header inclusion from drivers
+Message-ID: <20230212032345.GA17062@ranerica-svr.sc.intel.com>
+References: <20230206153432.1017282-1-daniel.lezcano@linaro.org>
+ <20230211021023.GA13306@ranerica-svr.sc.intel.com>
+ <9a121d43-b6d9-fe99-1e4c-498dac2e6b17@linaro.org>
+ <258dedb542d4dcb73e9ec903d205ba64639c9f0a.camel@linux.intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <258dedb542d4dcb73e9ec903d205ba64639c9f0a.camel@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230211_183814_823922_E60B9B91 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20230211_191407_073520_1D502D39 
+X-CRM114-Status: GOOD (  28.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,36 +113,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cj4gT24gMTIgRmViIDIwMjMsIGF0IDQ6NDEgYW0sIEdlcmFsZG8gTmFzY2ltZW50byA8Z2VyYWxk
-b2dhYnJpZWxAZ21haWwuY29tPiB3cm90ZToKPiAKPiBPbiBTYXQsIEZlYiAxMSwgMjAyMyBhdCAx
-MTo0NDoyNVBNICswMTAwLCBIZWluZXIgS2FsbHdlaXQgd3JvdGU6Cj4+IE9uIDExLjAyLjIwMjMg
-MTg6NDgsIEdlcmFsZG8gTmFzY2ltZW50byB3cm90ZToKPj4+IEhpIEhlaW5lciBhbmQgVWxmLAo+
-Pj4gCj4+PiBBZnRlciB1cGRhdGluZyB0byBrZXJuZWwgNi4yLjAtcmM3IGZyb20gNS4xOS4xIG15
-IEg5NiBQcm8rIFRWIEJveAo+Pj4gKEFtbG9naWMgUzkxMikgZmFpbGVkIHRvIHByb3ZpZGUgd2lm
-aS4gVGhlIG1vZHVsZSBpbiBxdWVzdGlvbiBpcyBhCj4+PiBRQ0E5Mzc3IFNESU8gZHJpdmVuIGJ5
-IGF0aDEway4KPj4+IAo+Pj4gUmV2ZXJ0aW5nIDA2NmVjZGU2ZDgyNmI0NDNmNDkyNTcwZTA4MGNi
-YTNmMjIxMjI4MGQKPj4+ICgibW1jOiBtZXNvbi1neDogYWRkIFNESU8gaW50ZXJydXB0IHN1cHBv
-cnQiKQo+Pj4gc29sdmVzIHRoZSBwcm9ibGVtIGFuZCBJIGhhdmUgd2lmaSBhZ2Fpbi4KPj4+IAo+
-Pj4gVGhhbmtzLAo+Pj4gR2VyYWxkbyBOYXNjaW1lbnRvCj4+IAo+PiBTdXBwb3NlZGx5IHRoaXMg
-cGF0Y2ggcmV2ZWFsZWQgYW4gaXNzdWUgd2l0aCBpbmNvcnJlY3QgaW50ZXJydXB0Cj4+IHRyaWdn
-ZXIgdHlwZXMuIEEgZml4IGlzIGN1cnJlbnRseSBpbiB0ZXN0aW5nOgo+PiA4N2VmNjM4ZDY1NTcg
-KCJURVNUOiBhcm02NDogZHRzOiBhbWxvZ2ljOiBNYWtlIG1tYyBob3N0IGNvbnRyb2xsZXIgaW50
-ZXJydXB0cyBsZXZlbC1zZW5zaXRpdmUiKQo+PiAKPiAKPiBIaSBIZWluZXIsIGFuZCB0aGFua3Mg
-Zm9yIHRoZSBxdWljayByZXBseS4KPiAKPiBJIHJldmVydGVkIG15IHJldmVydCBhbmQgYWRkZWQg
-dGhlIFRFU1QgcGF0Y2ggYWJvdXQgaW50ZXJydXB0cyBpbiB0aGUgRFQKPiBidXQgc3RpbGwgaGFk
-IG5vIGx1Y2suCj4gCj4gV2hhdCBzb2x2ZWQgbXkgcHJvYmxlbSB3YXMgYWRkaW5nICJjYXAtc2Rp
-by1pcnEiIHRvICJzZF9lbW1jX2EiIERUIG5vZGUuCj4gTm93IGFsbCBpcyB3ZWxsLgoKQ29uZmly
-bWluZyB0aGF0IHNldHRpbmcgY2FwLXNkaW8taXJxIHJlc29sdmVkIHRoZSBjb250aW51aW5nIGlz
-c3VlcyBJ4oCZdmUgc2VlbiB3aXRoIGFuClFDQTkzMzcgbW9kdWxlIGFmdGVyIHJlc3RvcmluZyB0
-aGUgU0RJTyBpcnEgY2hhbmdlcyBhbmQgcGlja2luZyByZWNlbnQgZml4ZXMgdG8gbXkKYnJhbmNo
-LiBUaGFua3MgR2VyYWxkbyEKCknigJl2ZSBub3Qgb2JzZXJ2ZWQgaXNzdWVzIHdpdGggQnJvYWRj
-b20gbW9kdWxlcywgb25seSBRQ0E5Mzc3LCBidXQgaXMgdGhpcyBzb21ldGhpbmcKdGhhdCBzaG91
-bGQgYmUgZGVmaW5lZCBmb3IgYWxsIHNkX2VtbWNfYSBub2Rlcz8KCkNocmlzdGlhbgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
-aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
-LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Sat, Feb 11, 2023 at 08:32:48AM -0800, srinivas pandruvada wrote:
+> On Sat, 2023-02-11 at 08:53 +0100, Daniel Lezcano wrote:
+> > On 11/02/2023 03:10, Ricardo Neri wrote:
+> > > On Mon, Feb 06, 2023 at 04:34:29PM +0100, Daniel Lezcano wrote:
+> > > > As the name states "thermal_core.h" is the header file for the
+> > > > core
+> > > > components of the thermal framework.
+> > > > =
+
+> > > > Too many drivers are including it. Hopefully the recent cleanups
+> > > > helped to self encapsulate the code a bit more and prevented the
+> > > > drivers to need this header.
+> > > > =
+
+> > > > Remove this inclusion in every place where it is possible.
+> > > > =
+
+> > > > Some other drivers did a confusion with the core header and the
+> > > > one
+> > > > exported in linux/thermal.h. They include the former instead of
+> > > > the
+> > > > latter. The changes also fix this.
+> > > > =
+
+> > > > The tegra/soctherm driver still remains as it uses an internal
+> > > > function which need to be replaced.
+> > > > =
+
+> > > > The Intel HFI driver uses the netlink internal framework core and
+> > > > should be changed to prevent to deal with the internals.
+> > > =
+
+> > > I don't see any of the thermal netlink functionality exposed. Is
+> > > there any work in progress?
+> > =
+
+> > commit bd30cdfd9bd73b68e4977ce7c5540aa7b14c25cd
+> > Author: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+> > =
+
+> > =A0=A0=A0=A0 thermal: intel: hfi: Notify user space for HFI events
+> > =
+
+> This is already exposed and we use it in user space.
+> thermal_genl_cpu_capability_event() is called from intel_hfi driver to
+> send the cpu capabilities.
+> =
+
+> Not sure what do you mean by  "don't see netlink functionality
+> exposed"?
+> =
+
+> thermal_genl_cpu_caps struct and thermal_genl_cpu_capability_event()
+> are defined in drivers/thermal/thermal_netlink.h.
+
+Yes, I mean exactly this. The HFI code uses this functionality, but it is
+declared in "../thermal_netlink.h". I just wondered if that is OK or also
+needs to be declared somewhere in include/linux/
+
+Thanks and BR,
+Ricardo
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
