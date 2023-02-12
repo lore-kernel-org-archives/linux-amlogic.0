@@ -4,81 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF30DC05027
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 22:38:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90817C636D3
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Feb 2023 23:32:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y6J8Cb0WLqQyDE5DLqJVVz6964e5x0pu95iOfiYB3bY=; b=p4vsrQ7+rG7nsf
-	ApNdxRP4l1gG/EWimte6KhamqNw06Fd+2eAOGvZK0H/k5bsAse9FPZDtxcIB+XadN6UdRR1DJpPLZ
-	A8jQMBYyqaFrW4iSma7k+s3mkdDtKezbeQBH9DTPd6yL7wsEzM1tT9IWAs3Ji9GvHFru5jAqUzD4y
-	I/vJZ1h8+E3mWc4U9tTwrtmxPxFKUX56YvCDfoGpLJO4ayqKUgoNpMiM5A5/yVJZ2HUJz7f3Ban1S
-	fffebb9GikIYCnpqQUTd2lrGlAnQzKYDx6PB9w7j9h0mwMSlXmXDliZ7WkFXQapEYFTZvH0ThQfNM
-	Qcq1cMIyK1v1AGLP/TQA==;
+	List-Owner; bh=Ol/cEPpr5+p6M0+2ibeK23djQkbhe4ggQX8tRv5C37g=; b=e6pHBFsIK8AKEU
+	aGuxqzyAGSz9HE94fU2mdfTX452e5SOKR05APzNENRz2IX8Y4iiVUzYo6xWNcPZlkJw7g0ecEUvjW
+	lnFuKriCJBIbA+HvSSHg3CDioS5XA4aAoHq6+IU6OQx8GtUBXxCKTFmle9o+90UhalZTIxvEnIPhJ
+	5zzQLW9iNuXz0dZjFplRsra8SlDipEBcMyrVM6peMD5dsGp7Ue25Sk8M6I+Ca/00RTL+JTtoUH+Qt
+	ntSoiDIUqVyca1GxIfst9T5envX22sUF7tke3U4j0GtVGdEHsmdnUOUtkyi4AQzWAmsKbetp0sNie
+	4It6yFaGpX/09ATcTLLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRKzG-00CWpy-GN; Sun, 12 Feb 2023 22:38:22 +0000
-Received: from mail-oi1-x22d.google.com ([2607:f8b0:4864:20::22d])
+	id 1pRLpb-00Cbna-K8; Sun, 12 Feb 2023 23:32:27 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRKz5-00CWnn-Td; Sun, 12 Feb 2023 22:38:13 +0000
-Received: by mail-oi1-x22d.google.com with SMTP id dt8so8892090oib.0;
-        Sun, 12 Feb 2023 14:38:11 -0800 (PST)
+	id 1pRLpR-00CbmC-CW; Sun, 12 Feb 2023 23:32:18 +0000
+Received: by mail-ed1-x535.google.com with SMTP id bt8so4931602edb.12;
+        Sun, 12 Feb 2023 15:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3pF4e+yE1WYMQ/Nq6UrylxVMHOzbrRpD8GFxZ6NraY=;
-        b=CKyKXVVWoHCGRqb4JHNeo/JHJbmvJDR6xIqrXhZU5kKzSewBAV7DAKhI1ISJeI4gGJ
-         i/YhAsri0JcTFKvopelGLVvVd8GvftuZSjXdizrxlL5TnsliiK73V4pNfWs2lumSI+Hp
-         SZ38Mi8WJjLbEBR5n7piGXBL9An20OKpR8oJZbmfDIJ0m5cAiM1tVtLF3FEglUpN06C2
-         Lw4WWEd2/X5zwZyGJcd7vbnp/Z6eA2PprDkPws94TZBTUbV6eZ9c9WwmwE3GS0omrXWI
-         oXkncjR0F3SSIhVO7LbN4Fu0ASFemDdm8QkX9UF6icQtO6T6QPDhHyozX2FJ/IMn7xWA
-         2btA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DVenlwMH7zPhCytzFEgHgQa0+XAKJpBrd43+0QBLARA=;
+        b=Dwxmne8u7AwHO2RTEZtixq0CKD+kAKWqE9guxMYWCJM0MLRCpv3xiOUApFQfxvkDGV
+         X+CD8dJG1nUbUfUbFnBDKIiTVkmrj3PLF6trv4GIXmCoWKrpeA0fjV/jBPs7xDrnhSAD
+         5klMKuUi8AqlHHMLVuR4rNagtXDhTlIPOHrKC6ZqEY5owUFHd5px5RvQgSkXC6UkTHj+
+         foDJls2Ll97v2e8RwapWekpBmiYvnfzR3gcFGnvQzcf8hVjLI6v2RO8TamlMbe1X+Kpu
+         c7Uiw3/vJijz/WYQDokxIDpkWlEQ0hbp6MgCHv92vN7HXlYbibbrngoLNdFfwM/1UxwH
+         yt7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s3pF4e+yE1WYMQ/Nq6UrylxVMHOzbrRpD8GFxZ6NraY=;
-        b=24xwa9+1Hs7iRECSkM3cyvHFheoEWoEgvJmXZkp4wSetDscVtCk1M3S5S3FN/BDLXZ
-         6N8Y8JYtPi2uJN+SJexJo+LpjQlzPcrYUqrdSwFlxznSGKTKhkZkZDMmuGcRdW/iJUyr
-         +DeIevi0GLcqlX7nezP2KoQP3O7pVbiTOO65/RzWlVwecfQHFk2sfHQSTRsvjZZ0UO9H
-         qAwgcAm534JwMNeIvAQlBho6JvRR7uOSdBW+/l8TNDg4hp6nwMwLTFkpG3NmJpCgCh3l
-         qy8JxchnKTVkBuUaaNexbY5UlkUQILzX4bLT0qswivDP7M7ToyhrpvzdIfRJfRdO+ey5
-         5aHw==
-X-Gm-Message-State: AO0yUKVdyiNhn5M5oDZQaI4VDXX6AbjOMGJgBAMf4GjoLy0IxYKKqSq6
-	8+8CUho4VAVKXwQj8u6Y0LA=
-X-Google-Smtp-Source: AK7set8K2xP2e319H6ENNR2E4+vRrcu/Xi5EcOFsEBG3yR/+06GOwJjxQWj1HpLFS5N/r5+8RfqLmw==
-X-Received: by 2002:a05:6808:9bb:b0:37a:2bf0:5026 with SMTP id e27-20020a05680809bb00b0037a2bf05026mr7730019oig.20.1676241490657;
-        Sun, 12 Feb 2023 14:38:10 -0800 (PST)
-Received: from geday ([2804:7f2:8006:2be1:80e4:f9a7:d80e:f5ea])
-        by smtp.gmail.com with ESMTPSA id q187-20020acaf2c4000000b003780e80fad6sm4476952oih.49.2023.02.12.14.38.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 14:38:10 -0800 (PST)
-Date: Sun, 12 Feb 2023 19:38:05 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] mmc: meson-gx: fix SDIO mode if cap_sdio_irq isn't set
-Message-ID: <Y+lqTSqKm4a/qTDN@geday>
-References: <9e296859-0363-ecc4-2d99-fd0239efceff@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DVenlwMH7zPhCytzFEgHgQa0+XAKJpBrd43+0QBLARA=;
+        b=o2TSvg8fx/HcetoM/pwb4ZAMAyMJk4vU0mZcVnQ3bdQh+/XJIBFs9E6/eoFtSSOQ81
+         u9JXkY5gJIkTRTQyjcm3liDcegT47N6e3obtQtUnfqLowpaJSUXb7AOBs4BF/Ix6+6X+
+         cYQ/eDvjd6fL7lA87UXtD1SKdy0k3GqWoX39j7ZEbQU944HH5iCxY6foPImlCUuVmNmv
+         RFOvbgS6L+RYxcZr5dF90SdMLwFkr0Jc3PWtRGScrmdg7BCy6RQrpO4qYOoOJgAwStiZ
+         v/wZ65fw0oKMYrmSuck6XO/AsWkSOEBZVc0bUCsjtLkeeLGs9BEky5i/a+Tf7FaaC1Ii
+         NCmw==
+X-Gm-Message-State: AO0yUKV5W3YAE1qgwWsEspl/aNbcmiz7q4zvPTn1LiXKaLhUVEhtiU3T
+	vE86GVavtXSa4n9w6gBP6NpoIBkezmg=
+X-Google-Smtp-Source: AK7set/hraYgPFTvvdtr1Iza71ciF7HXQj2fByv09IC0lsg94o8OaOD4iQUkhu14r5RiC3iYIg0GVQ==
+X-Received: by 2002:a50:ce06:0:b0:4ac:bda5:5f71 with SMTP id y6-20020a50ce06000000b004acbda55f71mr5713568edi.11.1676244734225;
+        Sun, 12 Feb 2023 15:32:14 -0800 (PST)
+Received: from ?IPV6:2a01:c23:bdd2:4300:1932:303f:b63a:5a0e? (dynamic-2a01-0c23-bdd2-4300-1932-303f-b63a-5a0e.c23.pool.telefonica.de. [2a01:c23:bdd2:4300:1932:303f:b63a:5a0e])
+        by smtp.googlemail.com with ESMTPSA id dk19-20020a0564021d9300b0049e09105705sm5717018edb.62.2023.02.12.15.32.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 15:32:13 -0800 (PST)
+Message-ID: <200a29cb-5b7b-47dd-6bfd-a5855ec7be58@gmail.com>
+Date: Mon, 13 Feb 2023 00:32:09 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9e296859-0363-ecc4-2d99-fd0239efceff@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH] mmc: meson-gx: fix SDIO mode if cap_sdio_irq isn't set
+Content-Language: en-US
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <9e296859-0363-ecc4-2d99-fd0239efceff@gmail.com>
+ <Y+lqTSqKm4a/qTDN@geday>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <Y+lqTSqKm4a/qTDN@geday>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230212_143811_998165_CC170CE0 
-X-CRM114-Status: UNSURE (   8.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230212_153217_491385_14C79EBC 
+X-CRM114-Status: GOOD (  11.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,21 +98,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Feb 12, 2023 at 10:54:25PM +0100, Heiner Kallweit wrote:
-> Some SDIO WiFi modules stopped working after SDIO interrupt mode
-> was added if cap_sdio_irq isn't set in device tree. This patch was
-> confirmed to fix the issue.
+On 12.02.2023 23:38, Geraldo Nascimento wrote:
+> On Sun, Feb 12, 2023 at 10:54:25PM +0100, Heiner Kallweit wrote:
+>> Some SDIO WiFi modules stopped working after SDIO interrupt mode
+>> was added if cap_sdio_irq isn't set in device tree. This patch was
+>> confirmed to fix the issue.
+> 
+> Hi Heiner,
+> 
+> with this patch, with cap-sdio-irq set or unset in the DT, it doesn't
+> matter, I get the following warning on dmesg:
+> 
+> meson-gx-mmc d0070000.mmc: unaligned sg offset 3148, disabling descriptor DMA for transfer
+> 
+> The offset number varies between reboots.
+> 
+> Is that to be expected?
 
-Hi Heiner,
+It's a known issue that ath10k may pass buffers to meson-gx-mmc that don't meet
+the meson alignment requirement. See here:
+https://lore.kernel.org/linux-arm-kernel/CAFBinCCN88nfSnmPoFq4H_ROWFMbq=Kcpr1W6CpNs58XeHtV2w@mail.gmail.com/T/
+This means there's nothing wrong with the SDIO IRQ fix.
 
-with this patch, with cap-sdio-irq set or unset in the DT, it doesn't
-matter, I get the following warning on dmesg:
-
-meson-gx-mmc d0070000.mmc: unaligned sg offset 3148, disabling descriptor DMA for transfer
-
-The offset number varies between reboots.
-
-Is that to be expected?
 
 _______________________________________________
 linux-amlogic mailing list
