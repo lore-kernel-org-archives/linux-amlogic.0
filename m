@@ -4,89 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 305A0C636CC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Feb 2023 09:03:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF290C636D4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Feb 2023 09:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jHK+bxXZN/byLA8+liaXRZPxiCkoSS3MzghZr46ugtw=; b=iWVnVrEC5uVMbpAxUQFEcw8Ym8
-	Xd6GGVS/CLCIcAOgLXtNwbJArMp1aQ5dvYzyNvfdTmSsKitoqQWWtUsasfO8gxSE0jWVyl3zI7xYz
-	PjhWvxWCTVqyvrQU/T7fh8x75yNhqKIqs/J6coKJMppeZ3vn8lt3szrV30Ibu0ZYpdafHk87CLSW/
-	NmkwPsbdH9JIO0rMeUolAB4mCiB9z+nETGdO1GNNIvFO+R83PxQ33bV8zZy7tc/pY2FWPM68ii/43
-	A6z+Fu4wGFtQkRIvPLaytJGVEXrzj+4spAqOTH62qFZ1SSmp9Z9N97myqt2SPtG9otmkFkSA6f6zc
-	DIzltSjg==;
+	bh=XdNweTYm0z/fgO41k/IbF8nI3g4EpcK7d0KSDE/Jovc=; b=g7BY/3RFtXw65Ba3cbkGc2OchC
+	+QuGVVGm+sP51q3AZ7CdLh0FFi5KPoUb6FZFRa0xrZA5nqWg16k31S9cu4A6vQ+QTYTPfeHjUK8w7
+	Gwn34qdDq5rlUcjpFtVWo4wkH14eOHpeMTsxSZlHzyCvOlyJ0qAyMVVGMnaYtVCOM1KY7jmKOag/j
+	Uh8l70WC6no+JtYs8+aceTC5jQm/BsYAYEZUKPG3dgQ+iLewqtMYZSrTiNl5fvAqhdvZUUeJYCHo/
+	S68bMi8mDoOy823/YXAXFcQmYmd6DhVzxq+JWJw790vfquB6WlpP3afOwPsXesU/gWDLe2raC/jZG
+	ZyzWrI8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRUjh-00Did5-J1; Mon, 13 Feb 2023 09:02:57 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1pRUl2-00DjGW-Ho; Mon, 13 Feb 2023 09:04:20 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRUjL-00DiUb-HH
-	for linux-amlogic@lists.infradead.org; Mon, 13 Feb 2023 09:02:40 +0000
-Received: by mail-wr1-x435.google.com with SMTP id bu23so11320558wrb.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Feb 2023 01:02:32 -0800 (PST)
+	id 1pRUkZ-00Dj2f-26
+	for linux-amlogic@lists.infradead.org; Mon, 13 Feb 2023 09:03:56 +0000
+Received: by mail-wm1-x329.google.com with SMTP id he5so366682wmb.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Feb 2023 01:03:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=AK8Y6Fm5XKwk7gPcZzE5f1og+LrHiF4ktNQUsy8l3vE=;
-        b=fqEgCtrWa3hdVfARyzC6f1kDypnxSvn1mbj/H6dz+4XyD5ueEaTZK7Q25R871Ziyf3
-         w9gCzTaCI3g9mV6nIvKeBGZiSr/92TjknD5CrWrGgM1fGKZnjiU/pYBJqpzHOjclTJ5U
-         Vj+kiHJ34fCWCZUIYa8GPXXVl/LshNpDwKaSDkhVAlukB45ZtKefOtVNl6YQT+YMaBlo
-         GHbtrq8MWeG7Cr18XaW/gtcbdZV8gqM3GfU7NBpodpbTlCRBt96doMt25I15BToS1BW2
-         NyCf+UYZnWuKkAGUMR24IYbKK8Wv9Z6hiKcdbfV15RfLTnYandfUKc8qFCGysmhQ+I+g
-         RjPQ==
+        bh=8LLsoA+/jnvLY03SW/3CjxjxLr0O2vRnD+Q4dMXdO08=;
+        b=d9L+fxYR7KB8U8abH0LHizef71A51RSbQtEJmV3+KUUPEEK3LFApM8JEQ6vr36/zz+
+         i0F7jZHmtWnG0hTG53tudXdzCvyPct0YUIPCeBrVM/4KIxsM4bDN/UzlIMUUzOrHtXnc
+         t96FoSEhOdtKoeKRRlAnPFxbhknCTeAjmn4wdxn/OVhroR3REoL+mKO5xSdEUhsQApdo
+         Uw2MmSK2mNr9FrOhtiamQKAyNMG6wvWQPPSHXBAWRucpgw3UJk78rTzNFBnJjoD0V6Vd
+         6OnQ6/8U+etKIZTubFV+z3DTMv8GES8Mwx07LXsgg+Yd/RE/Vi98G8MO2JZmZHaobA9I
+         ok8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AK8Y6Fm5XKwk7gPcZzE5f1og+LrHiF4ktNQUsy8l3vE=;
-        b=3ouJioRq1ECnayQhL5kWa4tMFztyydwg2gr0S4nqm5Ll/R3eRBoDpapWsKsWB4GZRS
-         ixZvQCWwKU6LAJ6NuEmGFgftP8XB8aHKO38lQMuop7z3qcbuz8grRn4iuGh7kPbgVfSJ
-         x5cDqfs5lep7Oyvv2NKyWPZWuZEIxqRIXzonoEas/hZuheUHZL6rDMuWFRJtEyhZtNsG
-         tVMOvhiSX0oH7v0dSMNIGQ3MzGyTw7iz/AxuGw+SirY/dYfqvjTBrb0Tr9k9mskJM5WR
-         XrtGiZPuj5QC0UQBhF4Q5sW5Ulb8BGMSDi0K3DvecNIwZvTFLtzW1smTNZFCFTO6nWZb
-         zD8Q==
-X-Gm-Message-State: AO0yUKUGvSUU03LcvNnIdPQpHlFjJt8pW/Y2XCxP36t/vQZnmoIXjPo9
-	VlaDdYc32s0QpvWNlvpC4SFezg==
-X-Google-Smtp-Source: AK7set9VRpSFPmL3b5CtlTUVK/Lj35F0ylV+/NTbNkwaF+rNoMmrCOKieLBW5bt2W4zDB7U8dqZ8Lw==
-X-Received: by 2002:adf:b64c:0:b0:2c3:be89:7c2b with SMTP id i12-20020adfb64c000000b002c3be897c2bmr12449633wre.14.1676278951403;
-        Mon, 13 Feb 2023 01:02:31 -0800 (PST)
+        bh=8LLsoA+/jnvLY03SW/3CjxjxLr0O2vRnD+Q4dMXdO08=;
+        b=NxrcJnsTwp78Q02e10UWdL8uYUbmfNdlHqaSMf6AVQ7Kw1G/tRHBxM0y8AVHqhHjMd
+         sPKryicQZq8ol0jQz0Rct8HEDGx7toXg1Mcc8jKuwpa3X17E+VdrpY241aUECRKWoF1k
+         MW1ys+ryCRNdXyv8ubpc+2Zl8ukrnr7reMpzrnEMwGE+h/pOYrptV+pTsDiiMF/SjldF
+         TFE9j5sBkkc5dy2i3vHPG2iLriXkW/h3ZLNt5rWEzzYk5lLs59gx/EnRz0PS9LXKRkBi
+         amGQtSsgVb7JKFe/lwvaFqdMjmC3RlE+HheBR4L3YIZEqAxl15yzLmPnE4Os/jLf18KG
+         pZHA==
+X-Gm-Message-State: AO0yUKUjc+LmgJcd4n3GpYkyVrMInee2Ki8Cm+ON3b/ZV4mgwZOSlcrW
+	HW4F+ovSgh4GssiRF549DWdsBw==
+X-Google-Smtp-Source: AK7set+WaRt1w4kdWfiJ5KNpyq0QpLKtRxhAntGuIXlyAGmg0Y62u8QFkuWKubj9B+NUHiK5Pv1CJA==
+X-Received: by 2002:a05:600c:2e95:b0:3da:50b0:e96a with SMTP id p21-20020a05600c2e9500b003da50b0e96amr18319399wmn.29.1676279029525;
+        Mon, 13 Feb 2023 01:03:49 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:6e1e:131f:8bc1:aad8? ([2a01:e0a:982:cbb0:6e1e:131f:8bc1:aad8])
-        by smtp.gmail.com with ESMTPSA id c8-20020adffb08000000b002c406b357cfsm9969937wrr.86.2023.02.13.01.02.30
+        by smtp.gmail.com with ESMTPSA id m23-20020a7bca57000000b003de8a1b06c0sm16306361wml.7.2023.02.13.01.03.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 01:02:30 -0800 (PST)
-Message-ID: <a0e11df2-576c-da61-a583-81528cb77d20@linaro.org>
-Date: Mon, 13 Feb 2023 10:02:31 +0100
+        Mon, 13 Feb 2023 01:03:49 -0800 (PST)
+Message-ID: <e0d71204-87f3-1d07-3927-909d09d39000@linaro.org>
+Date: Mon, 13 Feb 2023 10:03:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] dt-bindings: media: meson-ir: Convert Amlogic Meson IR
- controller binding
+Subject: Re: [PATCH 5/8] arm64: dts: amlogic: meson-g12b-odroid-go-ultra:
+ rename keypad-gpio pinctrl node
 Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <a91e3a8e-7ef1-70bb-f6be-01a9a90c0e05@gmail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+ <20230207-b4-amlogic-bindings-fixups-v2-v1-5-93b7e50286e7@linaro.org>
+ <CAFBinCC1O52eraLJ=GoZVM0fM0zVyqdDrkP3RCjNQ=KaqhByLQ@mail.gmail.com>
 Organization: Linaro Developer Services
-In-Reply-To: <a91e3a8e-7ef1-70bb-f6be-01a9a90c0e05@gmail.com>
+In-Reply-To: <CAFBinCC1O52eraLJ=GoZVM0fM0zVyqdDrkP3RCjNQ=KaqhByLQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230213_010235_591774_C949363D 
-X-CRM114-Status: GOOD (  18.79  )
+X-CRM114-CacheID: sfid-20230213_010351_410609_047694C8 
+X-CRM114-Status: GOOD (  16.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,120 +91,50 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
+Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, Yuntian Zhang <yt@radxa.com>, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Heiner,
-
-On 12/02/2023 17:51, Heiner Kallweit wrote:
-> Convert Amlogic Meson IR controller binding to yaml.
+On 11/02/2023 21:04, Martin Blumenstingl wrote:
+> On Tue, Feb 7, 2023 at 4:08 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> Fixes the following bindings check error:
+>> pinctrl@40: keypad-gpio: {...} is not of type 'array'
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->   .../devicetree/bindings/media/meson-ir.txt    | 20 ---------
->   .../devicetree/bindings/media/meson-ir.yaml   | 45 +++++++++++++++++++
->   2 files changed, 45 insertions(+), 20 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/media/meson-ir.txt
->   create mode 100644 Documentation/devicetree/bindings/media/meson-ir.yaml
+> [...]
+>>   &periphs_pinctrl {
+>> -       keypad_gpio_pins: keypad-gpio {
+>> +       keypad_gpio_pins: keypad-gpio-state {
+>>                  mux {
+>>                          groups = "GPIOX_0", "GPIOX_1", "GPIOX_2", "GPIOX_3",
+>>                                   "GPIOX_4", "GPIOX_5", "GPIOX_6", "GPIOX_7",
+> I'm wondering whether we make the keys work without having to specify
+> a pinmux configuration for them separately.
+> Our pinctrl driver already sets:
+>     pc->chip.set_config = gpiochip_generic_config;
+> So you should be able to use the GPIO_PULL_UP flag for these GPIOs in
+> device-tree instead of specifying bias-pull-up here, for example:
+>     gpios = <&gpio GPIOX_0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> 
+> output-disable is managed by the direction of the GPIO anyways.
+> pinmux_ops.gpio_request_enable is also implemented by our pinctrl driver.
+> 
+> This is not urgent - I am just curious as always :-)
 
-I've already posted a patch for ir which is reviewed and ready to be merged :
-https://lore.kernel.org/all/20221117-b4-amlogic-bindings-convert-v3-4-e28dd31e3bed@linaro.org/
-
-The only remaining bindings that remains to convert/document are:
-  ['amlogic,axg-audio-clkc']
-  ['amlogic,g12a-audio-clkc']
-  ['amlogic,sm1-audio-clkc']
-  ['amlogic,g12a-tohdmitx']
-  ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
-  ['everest,es7154']
-  ['everest,es7241']
-  ['ti,tas5707']
-  ['linux,spdif-dir']
-  ['gpio-fan']
-  ['pwm-fan']
+I didn't know we supported this, this is only a bindings check fix, but yeah at
+some point this should be moved to (GPIO_ACTIVE_LOW | GPIO_PULL_UP).
 
 Neil
 
 > 
-> diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
-> deleted file mode 100644
-> index efd9d29a8..000000000
-> --- a/Documentation/devicetree/bindings/media/meson-ir.txt
-> +++ /dev/null
-> @@ -1,20 +0,0 @@
-> -* Amlogic Meson IR remote control receiver
-> -
-> -Required properties:
-> - - compatible	: depending on the platform this should be one of:
-> -		  - "amlogic,meson6-ir"
-> -		  - "amlogic,meson8b-ir"
-> -		  - "amlogic,meson-gxbb-ir"
-> - - reg		: physical base address and length of the device registers
-> - - interrupts	: a single specifier for the interrupt from the device
-> -
-> -Optional properties:
-> - - linux,rc-map-name:	see rc.txt file in the same directory.
-> -
-> -Example:
-> -
-> -	ir-receiver@c8100480 {
-> -		compatible= "amlogic,meson6-ir";
-> -		reg = <0xc8100480 0x20>;
-> -		interrupts = <0 15 1>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/meson-ir.yaml b/Documentation/devicetree/bindings/media/meson-ir.yaml
-> new file mode 100644
-> index 000000000..8d3c7acfa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/meson-ir.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/meson-ir.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson IR remote control receiver
-> +
-> +maintainers:
-> +  - Heiner Kallweit <hkallweit1@gmail.com>
-> +
-> +allOf:
-> +  - $ref: rc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson6-ir
-> +          - amlogic,meson8b-ir
-> +          - amlogic,meson-gxbb-ir
-> +      - items:
-> +          - const: amlogic,meson-gx-ir
-> +          - const: amlogic,meson-gxbb-ir
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ir-receiver@c8100480 {
-> +      compatible= "amlogic,meson6-ir";
-> +      reg = <0xc8100480 0x20>;
-> +      interrupts = <0 15 1>;
-> +    };
+> 
+> Best regards,
+> Martin
 
 
 _______________________________________________
