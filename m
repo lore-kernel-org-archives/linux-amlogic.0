@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB19DC636D4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Feb 2023 10:59:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF0DBC636CC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Feb 2023 11:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3ft9DDNH3xvd8tkIXo0eVlwrqUdsm02Pn5ObrHeLD8c=; b=v66yE985aHBbpI
-	yQsUoIamm7u7Ouak1858f3QbBQk+V70b3ijNC3qlCu4zKm8N/qaaCS754+t25KwK6ishMVmS2C9kt
-	nFfZUVxZIfgJH73QFLm67un4PURSK8c7seETDQcOj/i5FKxdYp/6JTWUXrUcV16sqczzM4IXC1rvj
-	h+xW8hYRfw66R2zFq+58Ep37R085I7QZQJ5fSzotzxyfYu/SMQrDXpu66mhaEoN3gaYevMtwrTeUV
-	BaGHvtXDZ/4dZEYJthiKSPCraORKCUt5aMwAJc3kFDOwNKiORDBLQzJkC2EipiSzI+56XvLHfdW49
-	x+mcgLIXM9j9Q0Y1+Szg==;
+	List-Owner; bh=iNUSvPaQJiP/urg5zISgBJIao2QlzKNpYQc30Qy/Qig=; b=gxSxWkUWnm8phb
+	8Q6ZgkrnxKq8m+49cnH4NN4DrVpviixICh0bmejozU9411QD2OASgVx9dPeeUwlhGNV1DoCefqBDv
+	D30HswalkMub5pYEfpnPuDd/cJvAU/UkzFERcJyQt2rhP/CKO+zrXPE+Sb33zv7UyaPeFpCyi4iXI
+	221vHyE0vhXiJCZog5YU8/W5vumvzQTlP/XIG5ztdtLzDmVQYGe/Ir4pv/JCm7nHrfInehaMTMy0T
+	WdSo2EjkW3pjQ5g/Ac/R7siD7Q+EBi0AGzylUgrCIPs8LLWdFkIsdO7g9ABegLVqHXxmIexguoSI3
+	ndSB742uLkydbnikERtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRWYY-00EH7j-Sg; Mon, 13 Feb 2023 10:59:35 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1pRWZc-00EHa2-Ad; Mon, 13 Feb 2023 11:00:40 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRWYQ-00EH0w-41
-	for linux-amlogic@lists.infradead.org; Mon, 13 Feb 2023 10:59:29 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id m10so2811213wrn.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Feb 2023 02:59:19 -0800 (PST)
+	id 1pRWZF-00EHNd-1m
+	for linux-amlogic@lists.infradead.org; Mon, 13 Feb 2023 11:00:24 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id bk16so11705797wrb.11
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Feb 2023 03:00:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HNRrH6pVFd2ShQx69BQENhHFCRJ2DJdc/TbT0vWDWBA=;
-        b=jcwCUaS5PsaDXY9H+0qskpy7DXmR3b1cP4nVEKDi4Hp/+xm7GVrQJgygVp5xrSOixW
-         gDtHSPdrQnfqSPGCUs9crDzyA5P77qCi0pYULDwO+4l/UNW6zU6r3yM2amjpPvK2GOiG
-         Gzyq27yRZhOvTd9yRYuyI8lEnkN8Tr0I+ayf2gnp+YBLrLJlFnTApP91LDbhFqjUUet7
-         tiHerycM7g19mzYregs+tnn16eHbVNDrB/9FqoueFKnSoKWBYQRnqHmTaGZuY+L7+0VK
-         Lt9t/ndiAQSeKWfDbNES/FIvG11bgnUPrHKivfZntyOo94HqL8A9Re4ctfsATcKSwDNK
-         MNIw==
+        bh=c2OREUNkDHFo+6N4ZDHlsRxITrcEyLw+kVy88yhDDyg=;
+        b=bLYM6lVB6hoCsp0byzoA0iR72BM+YJVLDs6Nu4sZLAVLA1pPuYwCJV8ecUJQIoR+8P
+         u76I2Z1jSi5uzQIX5yjPAKAGvBql3yAlnYXPbTnWlGMknTpgcSYMs3MR4/v6uOtpCZrm
+         GS9XdUVWWvdzk83i5f3svEgoqndpoVNtVNm7Klf8FcAWt+9ItdaWtQvyHfM2HdRavRr9
+         nCNaByxSrKsHAM770HAQLfAhtooM3/1sQfAUqEqW+UmJXInJvAMNhVXimCyMr1UsSxao
+         NLd/4fHTDEIH3jbvW84cpuFFq3AjiWbJ8frIF4CWHfMRP/ovJQvSmXlMkb8FOK3+eEw7
+         jEYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HNRrH6pVFd2ShQx69BQENhHFCRJ2DJdc/TbT0vWDWBA=;
-        b=qq0upByB/Mx5oex0xjvNWNd9H34x6y1hkloOjBgmP8eThN7hU8hP6wFhIi2vrgOTVG
-         FDWXOD+zwGee33+egFK1P8cCQLWnFhkWNPhX2aY3O3TtJaXfp/aDox2maLrotqGi5exz
-         sAZQBLVfwaOBKu2Iq48B04Xnjfl0FRj67R1oZxTMZ39CRpFwUBaWzv8RYzjJvNtd3mFf
-         Qhhm0F/sJljtl/MrXyBQPj5ePFxrKpYkajLlIYDmw1IDF+L3TwLBOZeAQnpPs4aVnIYd
-         U7lyhV0KNXtmxsA8aPXGykopqlbGk//TaiLyzZMTw2tadxgGZ2+/sMtyJOB6tXrmsK5u
-         Cdxw==
-X-Gm-Message-State: AO0yUKXndlDX7NENoyCOppf9eKmOK0LfSKgJ+fsMFrUsE8CtX7BvIpv3
-	3nDbPYp+Mo3iJuiD6s0bFQru8g==
-X-Google-Smtp-Source: AK7set9EKm+ljNDXO8rry/RYjZUYrLXSN+ZaRUUJFfk9J3sel0OVnXraCoS/B6pbcDZ/GaRn+sG7Tg==
-X-Received: by 2002:adf:fcc1:0:b0:2c3:f78f:518f with SMTP id f1-20020adffcc1000000b002c3f78f518fmr18003290wrs.39.1676285958566;
-        Mon, 13 Feb 2023 02:59:18 -0800 (PST)
+        bh=c2OREUNkDHFo+6N4ZDHlsRxITrcEyLw+kVy88yhDDyg=;
+        b=NZBBph3iVip829eaAIwJxNOcl8OHXYeN9zR6ivPjzZqKdZZTCjpq7T5NqQhHtrWsbM
+         1Hnsbz6SPeyyQTqPYOhvWbEiXsQyD31im13MvcsdxAnLmALOdSFgGdBx6du0jRLYAcK8
+         6N99c0dMKc3XSZZTqj3E72d8GJFMFUJaHSrWiUxCNeEzw+zoSVC+xWjsZp5ItYl37UNa
+         VHaNZwgEdbPO0rEZ9ryPQ4CVkklP3qG2bs0rpHl+qVhuYom5Py2hvIwIuq2D1TLMf+47
+         Jij8o52BZ2QJY5g6kIm0H73LnIT2ffh3GuXFdeBbwrFIhW2e1RvP4FV0038adtUcugxi
+         ouew==
+X-Gm-Message-State: AO0yUKV5lpI6zFWtpCugf6wkTiE8PkLkTrlbwX51ew0DF61wRd69sAw1
+	+yxOuaWX4Gz+LHFHkYNL3P/G9A==
+X-Google-Smtp-Source: AK7set8Az8lflKGGAyVJoMUwWTvPJZXQy3tXG76vQT2n6km1ji7E3RkIzXnJ3v/QjTWCBlEoeoqdzw==
+X-Received: by 2002:a05:6000:1d2:b0:2bf:b661:87d9 with SMTP id t18-20020a05600001d200b002bfb66187d9mr19780548wrx.50.1676286009033;
+        Mon, 13 Feb 2023 03:00:09 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h12-20020adff4cc000000b002be505ab59asm10354062wrp.97.2023.02.13.02.59.17
+        by smtp.gmail.com with ESMTPSA id g17-20020a056000119100b002c54e26bca5sm5790579wrx.49.2023.02.13.03.00.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 02:59:18 -0800 (PST)
-Message-ID: <10ddd574-3ad1-f2e7-e7b4-a6803ee240d6@linaro.org>
-Date: Mon, 13 Feb 2023 11:59:16 +0100
+        Mon, 13 Feb 2023 03:00:08 -0800 (PST)
+Message-ID: <f18230c9-7c9b-9e59-993f-24d40b74ba9d@linaro.org>
+Date: Mon, 13 Feb 2023 12:00:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 3/6] dt-bindings: soc: amlogic: document System Control
- registers
+Subject: Re: [PATCH 6/6] dt-bindings: soc: amlogic: update sysctrl
+ clock-controller subnode type
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>,
  Alessandro Zummo <a.zummo@towertech.it>,
@@ -80,12 +80,12 @@ Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
- <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
+ <20230209-b4-amlogic-bindings-convert-take2-v1-6-c4fe9049def9@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
+In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-6-c4fe9049def9@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230213_025926_213990_6E9192F3 
-X-CRM114-Status: GOOD (  17.55  )
+X-CRM114-CacheID: sfid-20230213_030017_774246_687CF7F3 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,118 +103,54 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 09/02/2023 14:41, Neil Armstrong wrote:
-> Document the System Control registers regions found on all Amlogic
-> SoC families and it's clock, power, pinctrl and phy subnodes.
-> 
-> The regions has various independent registers tied to other
-> hardware devices, thus the syscon compatible.
-> 
-> Clock controllers and Pinctrl devices are not yet documented, the
-> definition of those will be updated in a second time.
+> Since the clock controllers are now documented define the right ref
+> for the clock-controller subnodes and fill up the example node.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 109 +++++++++++++++++++++
->  1 file changed, 109 insertions(+)
+>  .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml         | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-> new file mode 100644
-> index 000000000000..672eabd90c09
-> --- /dev/null
+> index 672eabd90c09..57eae355f1b9 100644
+> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
 > +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson System Control registers
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - amlogic,meson-gx-hhi-sysctrl
-> +          - amlogic,meson-gx-ao-sysctrl
-> +          - amlogic,meson-axg-hhi-sysctrl
-> +          - amlogic,meson-axg-ao-sysctrl
-> +      - const: simple-mfd
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-controller:
-> +    type: object
-> +
-> +  power-controller:
-> +    $ref: /schemas/power/amlogic,meson-ee-pwrc.yaml
-> +
-> +  pinctrl:
-> +    type: object
-> +
-> +  phy:
-> +    type: object
-> +
-> +allOf:
-> +  - if:
+> @@ -43,6 +43,10 @@ allOf:
+>              - amlogic,meson-gx-hhi-sysctrl
+>              - amlogic,meson-axg-hhi-sysctrl
+>      then:
 > +      properties:
-> +        compatible:
-> +          enum:
-> +            - amlogic,meson-gx-hhi-sysctrl
-> +            - amlogic,meson-axg-hhi-sysctrl
-> +    then:
-> +      required:
-> +        - power-controller
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - amlogic,meson-gx-ao-sysctrl
-> +            - amlogic,meson-axg-ao-sysctrl
-> +    then:
-> +      required:
-> +        - pinctrl
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - amlogic,meson-axg-hhi-sysctrl
-> +    then:
-> +      properties:
-> +        phy:
-> +          oneOf:
-> +            - $ref: /schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml
-> +            - $ref: /schemas/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+> +        clock-controller:
+> +          $ref: /schemas/clock/amlogic,gxbb-clkc.yaml#
 
-And all other variants? This allows phy/power/pinctrl/clock in any
-combination, thus maybe the binding should be just split? Hard to say
-without full picture.
+You just added this binding. I don't understand the split.
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clock-controller
+>        required:
+>          - power-controller
+>  
+> @@ -53,6 +57,10 @@ allOf:
+>              - amlogic,meson-gx-ao-sysctrl
+>              - amlogic,meson-axg-ao-sysctrl
+>      then:
+> +      properties:
+> +        clock-controller:
+> +          $ref: /schemas/clock/amlogic,gxbb-aoclkc.yaml#
 > +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sysctrl: system-controller@0 {
-> +        compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
-> +        reg = <0 0x400>;
-> +
-> +        clock-controller { };
+>        required:
+>          - pinctrl
+>  
+> @@ -81,7 +89,12 @@ examples:
+>          compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
+>          reg = <0 0x400>;
+>  
+> -        clock-controller { };
+> +        clock-controller {
+> +            compatible = "amlogic,gxbb-clkc";
+> +            #clock-cells = <1>;
+> +            clocks = <&xtal>;
+> +            clock-names = "xtal";
 
-The example should be complete, so empty node does not look correct. If
-you wait for other bindings, send them as patchset when all are ready.
 
 Best regards,
 Krzysztof
