@@ -4,68 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDE8CC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Feb 2023 06:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85F9DC6379F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Feb 2023 07:45:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LyOFDLxnkSTJ7qBcZp6D8YyBeRqNERChaiKGFd1KEe8=; b=xsEkGGp/bwDVlp
-	sCPUltT8hU1Qr1oRmxIDtXaOR54IeiDG2WTFE3p4RUNAJjpHo5cN8MQ0xJ9LtynxE85XdMNxh1UZ6
-	YJSdYnN/Opkne00giIqzi9v+R7Zt9T7OlSoZR85e6WYfwZKRj3yTlV4Svsr4hUy4e+HB/OFp3IbKu
-	WisY5VJrrTaPgWiibe5200AyAJRXP8Wn8hfZKW1g1IT0NYbjMN+jh6NEa3O8pExt/E3vxywDWPs8t
-	7qpt/lgys2sCdhrI+keOYI8ySgQlmoQx9FjGDKZ9hNskvPSyxtxPqBcDpfQrg1FutpKXSe5vbUxX1
-	j5HdYOnO9ugvPjQvUKgQ==;
+	List-Owner; bh=AOQvTIT7TytUgRwx5v1FDfY+2fuXvau2RpECHLF8W1I=; b=t0Qv/xs1zA1B6C
+	al+12n6gO4PNKqGdSTyA4JwISYUOK1gIsMKHArx3HyMUaCKFxmX8ETRer77aESKFy7B4QYsjSaNem
+	I0vDmT7IWRXnCRzk0VFpOPwedmWohpj27qvkXjeSuGxR9cbrSXugV89ZeTq7BV0M1M4EaHAOAzxP/
+	0EXJni1f8VaajRVBGBxhxN91gbyLyYSPZzwEU1jjgMmmO/46P8BHRlhNRvhP8vwEySW/ZBQNB9bgi
+	wIOJ0GcyqG1xvx4apa8D0s525JD795AS5g2SkrRPnYRuPLuu+MkfoETkcLJcUib6A0LxaNursnpcH
+	qioREKO2qapwL+G6imtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRoyb-00048Y-4i; Tue, 14 Feb 2023 06:39:41 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1pRq0S-000J9W-H8; Tue, 14 Feb 2023 07:45:40 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRoyX-00047e-Lk; Tue, 14 Feb 2023 06:39:38 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id c1so12126060edt.4;
-        Mon, 13 Feb 2023 22:39:35 -0800 (PST)
+	id 1pRq0O-000J8e-Uq; Tue, 14 Feb 2023 07:45:38 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id eq11so16079090edb.6;
+        Mon, 13 Feb 2023 23:45:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1nhKjEH7r7Yngny/ZqXBLs863BYkcnxD7fB2ffD3a7g=;
-        b=KhWzA/nWCJvJ2hbMirUFPhS8xCzZHclfVulD8YuxpThoyqWehSBjvsNhvnOe3VdaDf
-         YPtyvyV0wG+xt3KQtwMxlPBvoSbYADr8Dt4s3x8dVMOVMvKauMYdZm34koT24XSqym4c
-         O9+dUP5UPdv8Xaz5j43Ht8O/P1mC6X8gGKNsz97bra1IxWjYqN2UHEzwmTsswMF3/v1A
-         W68kxqUVGEBTtXr9EMmd7PhIuyK++Rt4/TmI9jOjZ6RGw+2iJdLPjDYnmADMYxdFuQLZ
-         Q7JECb7Kc2EaCbk1JuTCAj4aNKd7GcXW/KO+ODfdlPE22j/a654+OUDJVee/JRnFNXzB
-         1SBA==
+        bh=+bPNOknem0ZLzUy8OCs2/BuycFXjZsobDgAQeOxtxnc=;
+        b=SSF5oYVYkR4KK4QiuKf/KRQMSvcu55fSgO417tePfFaq/CT94TmZeM4eT7LghHWSem
+         oXTuV6+/nJgjFog7PTHeUvju6Wsdqqe17XwyxemuZJeEYSHRPzEviDQCqz1iXHhTTy6m
+         zdhQUoqN3uX9qMjUfspfn4de0oi6Bi+cS/xIrPhXivE1pZg/qb9cKEOxzRV/FzSYAJE5
+         3FwY6vOCJ8c0uUi+XVcmvR1gdgk+9hOW2CUO3mek4geW62DO/S9gDXNES1QDWa+Y2Rnw
+         cWWpvmHtMxbPoj183SscRiGTwBR9DAwCh3yrC6oGG0UjMtA8vfcowi2/iK4kh4Ltv5LN
+         YIpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1nhKjEH7r7Yngny/ZqXBLs863BYkcnxD7fB2ffD3a7g=;
-        b=Vw4P7Nr7Y73j7/Y74d4yq/Eb53DY2Ce2HifKPyMledwfjlNrhhJtODbN/PJPk8NcPA
-         GIuviUq7MJBh5F3twKR5mki0jrCrfvvAKIMn3EIGaty7ksFqvOkuuWnfgYJyVvSefG/o
-         yhjMwRWh37SV+IK/QJCSz4RKU5j0Bzl4s6DtYlO/8rwsuMd988sHdIJ0WEgEvi+E9ICh
-         Gn0m3ANPaHJ+ZrtKPo0M0l42yT0otY/KiPt71C0foNNnjKBpE0FHWNmg71fuh2LzE3Pc
-         a+PZ892YUgxkfBHzLSISXJVaVHc7QbW4uzx/m/MrLtpOjo/2GgXyBbW4kkFKDkPsmao0
-         P4Vw==
-X-Gm-Message-State: AO0yUKVpiYVg1uplD2ybzCT39k4iRhgPQHQ9JI4RoHVI03Pv/ooM36Uu
-	0tN6oxImXuopcs+9S+1i/Qg=
-X-Google-Smtp-Source: AK7set9PbG2cD/G9Z3G++ccd4S18aj36cUCelMQMgZtNzRwkqZcEIIf5LzkYL24nqTWJ9Q7yLQjwGQ==
-X-Received: by 2002:a50:ce1c:0:b0:4ab:4c36:463c with SMTP id y28-20020a50ce1c000000b004ab4c36463cmr1180023edi.16.1676356774649;
-        Mon, 13 Feb 2023 22:39:34 -0800 (PST)
+        bh=+bPNOknem0ZLzUy8OCs2/BuycFXjZsobDgAQeOxtxnc=;
+        b=CVYh0kjQwSZWWSvt3B3na/tAAogv4Qzo2Ljnudz6CgBlo/DV7Q+yVsc1HbJQxlxv3B
+         x4JSS5aUBWwiGFhNAsV0SM3DdaPDmC3RWxbs9M5E7pOOSR8Nt0jVU76QJ3n1vdHCgK2B
+         oiSqjELQs92brHyimz3oSDkqGVIIhOS9oX+aYqMJK8Jdr2XLuoXjU1DJ8sR47h/MbxE2
+         n1FL7x4MpnpxZNXuwMnef0E5ZJ6iyYXacnL+o79vYjIDHqNOQngtB7weCvwtF+j0VLip
+         ibRUu9er1oJbgzgA7yRbDanjyNN2p1dw0lsUZRZtkVrDhqeUXliV7dQGSk462KLZKVRe
+         CS8Q==
+X-Gm-Message-State: AO0yUKUaBaJ9jBhlbhLfASGff9UJIEfc5Fy9Vf/9zoHFAWWewBISBlL8
+	2zX/IkLnau90vVaqbH/FdcI=
+X-Google-Smtp-Source: AK7set9SplxCGgMgXHVIj9c1B4G2H++Vlslx/7yEj7lPfV5BaDl0aqp+0PWTEkXCCnL8lEPSneqdQg==
+X-Received: by 2002:a50:ab4f:0:b0:4aa:dedd:41e0 with SMTP id t15-20020a50ab4f000000b004aadedd41e0mr872266edc.8.1676360732918;
+        Mon, 13 Feb 2023 23:45:32 -0800 (PST)
 Received: from ?IPV6:2a01:c22:7234:f800:3c3d:a22e:c2c4:b19f? (dynamic-2a01-0c22-7234-f800-3c3d-a22e-c2c4-b19f.c22.pool.telefonica.de. [2a01:c22:7234:f800:3c3d:a22e:c2c4:b19f])
-        by smtp.googlemail.com with ESMTPSA id d1-20020aa7d681000000b00499703df898sm7360254edr.69.2023.02.13.22.39.33
+        by smtp.googlemail.com with ESMTPSA id w9-20020a50d789000000b004aacee2728dsm7615579edi.19.2023.02.13.23.45.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 22:39:34 -0800 (PST)
-Message-ID: <ade6669b-9a4b-094c-a485-fdc8c7f5a8c3@gmail.com>
-Date: Tue, 14 Feb 2023 07:39:32 +0100
+        Mon, 13 Feb 2023 23:45:32 -0800 (PST)
+Message-ID: <fc9bc263-5dbb-7db3-cd23-f0351138fc47@gmail.com>
+Date: Tue, 14 Feb 2023 08:45:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [PATCH 2/2] mmc: meson-gx: support platform interrupt as card
- detect interrupt
+Subject: Re: [PATCH 1/2] mmc: core: support platform interrupt as card detect
+ interrupt
+Content-Language: en-US
 To: Ulf Hansson <ulf.hansson@linaro.org>
 Cc: Kevin Hilman <khilman@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
@@ -75,14 +76,13 @@ Cc: Kevin Hilman <khilman@baylibre.com>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 References: <dfb90ca4-1f62-e3ed-2ce4-a7b5f661e36d@gmail.com>
- <9e08411b-20cb-874f-8915-6f8dc32e9fcf@gmail.com>
- <CAPDyKFrsTMpguDp+0ZrKYkH5CYSk_OgKLxuZu4tFoGYaLpbJUQ@mail.gmail.com>
-Content-Language: en-US
+ <a0f895b3-f895-f256-1274-a61571264617@gmail.com>
+ <CAPDyKFoeeof8G=AY4Z_CE4di4xUu8L9JT3UDYtPW6UVyTg1L=g@mail.gmail.com>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <CAPDyKFrsTMpguDp+0ZrKYkH5CYSk_OgKLxuZu4tFoGYaLpbJUQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFoeeof8G=AY4Z_CE4di4xUu8L9JT3UDYtPW6UVyTg1L=g@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230213_223937_764484_D9A503C3 
-X-CRM114-Status: GOOD (  14.15  )
+X-CRM114-CacheID: sfid-20230213_234537_028297_11483C01 
+X-CRM114-Status: GOOD (  21.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,43 +99,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13.02.2023 23:47, Ulf Hansson wrote:
+On 13.02.2023 23:46, Ulf Hansson wrote:
 > On Mon, 30 Jan 2023 at 00:10, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 >>
->> Use a new mmc core feature and support specifying the card detect
->> gpio interrupt in device tree.
-> 
-> Don't we need an update to the DT doc too?
-> 
-Right, the binding still has to be changed to allow more than one interrupt.
-
-> Kind regards
-> Uffe
-> 
+>> On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
+>> due to the design of gpio / interrupt controller. Therefore provide an
+>> option to specify the cd interrupt e.g. by device tree. The host
+>> controller can store the interrupt in cd_irq for use by
+>> mmc_gpiod_request_cd_irq().
 >>
 >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 >> ---
->>  drivers/mmc/host/meson-gx-mmc.c | 3 +++
->>  1 file changed, 3 insertions(+)
+>>  drivers/mmc/core/slot-gpio.c | 2 +-
+>>  include/linux/mmc/host.h     | 1 +
+>>  2 files changed, 2 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->> index be1a972c2..c87bc31d0 100644
->> --- a/drivers/mmc/host/meson-gx-mmc.c
->> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -1236,6 +1236,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
->>                 goto free_host;
->>         }
+>> diff --git a/drivers/mmc/core/slot-gpio.c b/drivers/mmc/core/slot-gpio.c
+>> index dd2a4b6ab..69c22a997 100644
+>> --- a/drivers/mmc/core/slot-gpio.c
+>> +++ b/drivers/mmc/core/slot-gpio.c
+>> @@ -99,7 +99,7 @@ void mmc_gpiod_request_cd_irq(struct mmc_host *host)
+>>          * IRQ number is already used by another unit and cannot be shared.
+>>          */
+>>         if (!(host->caps & MMC_CAP_NEEDS_POLL))
+>> -               irq = gpiod_to_irq(ctx->cd_gpio);
+>> +               irq = host->cd_irq > 0 ? host->cd_irq : gpiod_to_irq(ctx->cd_gpio);
 >>
->> +       /* gpio card detect interrupt */
->> +       mmc->cd_irq = platform_get_irq_optional(pdev, 1);
->> +
->>         host->pinctrl = devm_pinctrl_get(&pdev->dev);
->>         if (IS_ERR(host->pinctrl)) {
->>                 ret = PTR_ERR(host->pinctrl);
->> --
->> 2.39.1
+>>         if (irq >= 0) {
+>>                 if (!ctx->cd_gpio_isr)
+>> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+>> index 8fdd3cf97..e998e919e 100644
+>> --- a/include/linux/mmc/host.h
+>> +++ b/include/linux/mmc/host.h
+>> @@ -470,6 +470,7 @@ struct mmc_host {
 >>
+>>         struct delayed_work     detect;
+>>         int                     detect_change;  /* card detect flag */
+>> +       int                     cd_irq;         /* for use by mmc_gpiod_request_cd_irq */
+> 
+> Rather than putting this in the struct mmc_host, I would prefer to
+> keep it more internal to the mmc core/slot code.
+> 
+> That said, what do you think of moving this into the struct mmc_gpio
+> instead? Of course, that also means that we need to add new slot gpio
+> helper that users can call to set the corresponding value for the
+> cd_irq.
+> 
+> Would that be okay to you?
+> 
+Yes, that's the better approach.
+
+>>         struct mmc_slot         slot;
 >>
+>>         const struct mmc_bus_ops *bus_ops;      /* current bus driver */
+> 
+> Kind regards
+> Uffe
 
 
 _______________________________________________
