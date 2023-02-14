@@ -4,85 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4412C05027
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Feb 2023 21:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E7CC05027
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Feb 2023 22:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2Tli7VnWQkDu8vKdRNr/bMPaIJGegDXx/XJC76Q0vlM=; b=qhRXd1+C6ar7ly
-	ntwHT8DjBYPwB4HfG+wbL6v16y09DUs172Zbbee8h81gXEwxiifAneHkl8giel07cNJKkrS+vowGH
-	Bqm6a4SNFHzK1pKxzkDcfhHs+jHcf1RP8rc7RHSGO3KQRgQnApANa+PiJMsEmk+kYEcwMcSwi28eU
-	4yc7ljKKy2cQBPkceoFiZcNbMOVxrA7hWaiS9ue86oPd1RG81O6WVHAvOBkI1HINsKvlCRlVTmpq4
-	g97mxJ3FceGOd2L157Roj1I18cKgj1Her9Yy4xcH0HEUxmRxdU0zMvmYLxdkzNqlLZkN5+40EFG8T
-	gYdHDNfa7OmZVUFj9ARw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JMhVM6gsCyhubrD4VVZUnC+ZRoPUCbSLXvX/o3P01XQ=; b=M3TWhi1oaufUaTM73YLW3BEA55
+	+uT4i8ecAIv/ziUdOdjGFs8MNU2poj8JlmL3B/ptU1LnAwiD8dDUzsUjIGmGtO6RI1lBsq0KUHNoN
+	WZfJb8+uYoBFxspKimjUaP6GCCNOD7hx1N9gmLSmqqtzUTxHFRoQLROB2kGVbC38VNc+1Srgj2M+5
+	1sT/vI7brypBPUaTlWZdq+qcrTy13TQdcJ35r8+XzQOIjYQVjQAKaSeuq+pwAHY27SK5ptK4LEB35
+	sizPjPANMMXRYe4zzGhTmFJbI5/cD9zMvAWNnkD9Mg5ihLebpWRt7rCJgIpMJLp4/uR5NQB1hjnlk
+	XHZhA6Gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pS38D-003fF3-84; Tue, 14 Feb 2023 21:46:33 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+	id 1pS3UL-003kAe-JM; Tue, 14 Feb 2023 22:09:25 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pS363-003ePO-Hw; Tue, 14 Feb 2023 21:44:20 +0000
-Received: by mail-ej1-x631.google.com with SMTP id ml19so43650387ejb.0;
-        Tue, 14 Feb 2023 13:44:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9LqJXdxxFstKfYubhTeoAWTHHu54RXhCthHqvhTdxVw=;
-        b=qPz+gKBIC/R8A6gtUZ8ceyazI706kmMBJgDlbAJ55QeqC9llqy5M4oPP92aAhOMmdL
-         LWY84jGU18KQFjObsGNOtO9LD3yECwJaNZ9tntFSoQxhfFbKthtGafSoJ8Vc/tRRAuVw
-         C+OnZB1r39zbuG4pRsxyCwgqSqpMe8icb2wC+5xnMYb7fYePk7BmGXqDqPJQ+1CqdVti
-         IcB3RdfDuHOg078AU//wVFbsi6L5L4YJROes2Dpqxn2wB3PK8QE2aZKEUR2/K3QeG6jL
-         /19hR3kD4Ey35+eK9Y+E3iMXIoN1TmWkJ2f8Ukuf8veCGBcwsDD0h6i+zgrobOOPxWIs
-         MX8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9LqJXdxxFstKfYubhTeoAWTHHu54RXhCthHqvhTdxVw=;
-        b=lSVMNJvkng0u7ZOwsZj+vceu7gK+rPmDljpQt1P6ZReiHSZqG9vHtDxtOD9J+puf+e
-         vHm9AqmNTImPTMuS1jpmlTSIyR+QNs08S03FaLMCyhIE7Ei4cbEfQvTJBjllpejSgXqt
-         EPtSuDF/U3X0Vc7mOdJr7fqCNExWdw+PH7LUcrtZ9YWqxS59yXGTxa3dhVAJBkrz1bsk
-         eGXqUPUbGZZpVDSlGT5oljdHMQkGcY+AdHyFtQzs0OAJwkDzumTYsaQpJ+Qj7lDhVFlp
-         hbNnLrMVA39teI50dSYidttOBFdhpHfbHe33xEZhwE9XrWNJTxpXK4v3qF/hQR+CFprf
-         xWGQ==
-X-Gm-Message-State: AO0yUKUU7MtgJsWlP9kuHWv9bk1hzx0b+y0pLSlIS2Fg6rFO5fQjU32h
-	G9bb7b72WOYGJByOdiyXOjM=
-X-Google-Smtp-Source: AK7set/az3JscyAMvJVE9MKuOV/yeIlPmFr6p9Be9W8jefOVLPXcDrovvENpnkqW2DXiWXUtMV9sPA==
-X-Received: by 2002:a17:906:850e:b0:7c1:765:9cfc with SMTP id i14-20020a170906850e00b007c107659cfcmr328840ejx.34.1676411056936;
-        Tue, 14 Feb 2023 13:44:16 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7234:f800:b56b:f43d:948c:eede? (dynamic-2a01-0c22-7234-f800-b56b-f43d-948c-eede.c22.pool.telefonica.de. [2a01:c22:7234:f800:b56b:f43d:948c:eede])
-        by smtp.googlemail.com with ESMTPSA id j9-20020a1709066dc900b008b1294f7f63sm1669820ejt.221.2023.02.14.13.44.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 13:44:16 -0800 (PST)
-Message-ID: <2bb70611-5dea-1144-51bd-93c46b455392@gmail.com>
-Date: Tue, 14 Feb 2023 22:44:03 +0100
+	id 1pS3UI-003k8w-8p
+	for linux-amlogic@lists.infradead.org; Tue, 14 Feb 2023 22:09:23 +0000
+Received: from mercury (unknown [185.209.196.162])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 84B776602173;
+	Tue, 14 Feb 2023 22:09:16 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1676412556;
+	bh=alXr5cFGo6ZX+NcmH0aKeKPUofQn3NagXbNvEpCcFf8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LzHQaH3ubU12gc9D9ci87g24fmc54eqPFhD+EtZwabcZuvw0+vuX1iQl9/tixjQ2D
+	 AKsttnxf+pobj/u8QQlgfdcKRzOYalua5A64v9j5CxhkOHy1BjH/gLZsuenKy/qZfn
+	 LzvwTVTLNyD2Gb3ZS5P5L3Dg946+6K3Em6nfCLNY5aAZCfMaHqs7kPCxvHptV+47Sj
+	 5/bjxp8J/WJnvH++W1kfWwreVk19FRxzZi8x6zVfWUw7KsibIWZ4RPlqA0lTRMv+yU
+	 tFd1d1deoxTCjpZjOvOH8gWsMlWjn2j7w/Ac1OPMXRsCfW0SzIB27Tjyomxq5SohB7
+	 Cpw954tuXwFYA==
+Received: by mercury (Postfix, from userid 1000)
+	id B492310603FE; Tue, 14 Feb 2023 23:09:08 +0100 (CET)
+Date: Tue, 14 Feb 2023 23:09:08 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4] power: reset: add Odroid Go Ultra poweroff driver
+Message-ID: <20230214220908.vpzlduyhfcoqzenb@mercury.elektranox.org>
+References: <20230126-b4-odroid-go-ultra-poweroff-v4-1-979efb6eb3fb@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: [PATCH v2 3/3] mmc: meson-gx: support platform interrupt as card
- detect interrupt
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-In-Reply-To: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+In-Reply-To: <20230126-b4-odroid-go-ultra-poweroff-v4-1-979efb6eb3fb@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230214_134419_646164_B41E8CD9 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20230214_140922_479660_A182659A 
+X-CRM114-Status: GOOD (  12.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,51 +68,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5157265694781423465=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use a new mmc core feature and support specifying the card detect
-gpio interrupt in device tree.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- adopt the changed way to pass the cd interrupt number
----
- drivers/mmc/host/meson-gx-mmc.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index f4b50793e..079c52dbe 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1166,7 +1166,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct meson_host *host;
- 	struct mmc_host *mmc;
--	int ret;
-+	int cd_irq, ret;
- 
- 	mmc = devm_mmc_alloc_host(&pdev->dev, sizeof(struct meson_host));
- 	if (!mmc)
-@@ -1213,6 +1213,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (host->irq <= 0)
- 		return -EINVAL;
- 
-+	cd_irq = platform_get_irq_optional(pdev, 1);
-+	mmc_gpio_set_cd_irq(mmc, cd_irq);
-+
- 	host->pinctrl = devm_pinctrl_get(&pdev->dev);
- 	if (IS_ERR(host->pinctrl))
- 		return PTR_ERR(host->pinctrl);
--- 
-2.39.1
+--===============5157265694781423465==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="t46mdvvr7bb4ua2l"
+Content-Disposition: inline
 
 
+--t46mdvvr7bb4ua2l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Feb 14, 2023 at 05:41:18PM +0100, Neil Armstrong wrote:
+> The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a powe=
+roff
+> to its two PMICs in order, this represents the poweroff scheme needed to =
+complete
+> a clean poweroff of the system.
+>=20
+> This implement this scheme by implementing a self registering driver to p=
+ermit
+> using probe defer until both pmics are finally probed.
+>=20
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Previous submission was at [1], but I converted it to an independent
+> platform device with device auto registration to permit waiting for
+> both the PMICs drivers to probe.
+>=20
+> [1] https://lore.kernel.org/all/20221031-b4-odroid-go-ultra-initial-v1-2-=
+42e3dbea86d5@linaro.org/
+> ---
+
+Thanks, queued.
+
+-- Sebastian
+
+--t46mdvvr7bb4ua2l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPsBoQACgkQ2O7X88g7
++pqYSQ//ZQ7xDk9zbf/G8rWnumQwSRBpGvVYR8J5b4sfxFtcH5CmlDYXAtIrYyq5
+pjcSnkQk6/v3g+hTX9yBcqLKtGUcC7xfk++QujipQKq2JNbVmq+0W3/A4dGlv+u/
+b1fTXfXOfU1PxJ46NwXzj391GEFbsAFljwhpkfIcncU6LJsOknalZ35YXths/Woi
+EDvxSkfbC01PV+JyFqd3lMzj1EPLlMBjHkVeVpQjj0EgGtaLIoi5t5w2w3euPm4C
+6fsniaL7DwunQeqhB7L9bjekD9zyNjHyboB/IJg5YKnLNRj8y1g7DD4nVrhcWqpu
+U6LRa1e5Y4D+Mgi8F4kkaS96A++gtMhWtwsXFzIy5OBP947kM3TQlNbufSMsEVOm
+zTwk+yjohrNKygBrhJazt+tWO9vub1nEs9hEnlpLlOvEVpz4dRqKOUuS9boqbEgG
+rOkxRLOvO0nnBhpKtwqXebJg/AZ7rctuqTnbsQnMtdIxZ0/jbzwObAtDf5C2xsG2
+T6EwKSJrJZ+45i/9k9SrJirbNKgJsVM6I9V0Tr7m30pD7CbGciBvy/STvwb2PRDX
+sjyWRm07aXPvSs+aYCfTr5fD3HPB310mXnYdVGhZ+bwFczOWiPifYnY1AZ4KVfp2
+Yc5yDhollHdA9ptAvhs70YFPMPT7r6kVOT1QjplNcdeeFDduEPk=
+=j0ok
+-----END PGP SIGNATURE-----
+
+--t46mdvvr7bb4ua2l--
+
+
+--===============5157265694781423465==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5157265694781423465==--
+
