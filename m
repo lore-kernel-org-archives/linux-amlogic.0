@@ -4,75 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 099F9C76195
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:02:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FA0C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:Message-ID:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=mCq9v/jbSIuCJPWHRXctzflcAdI9dIM+k8VYVsFfaZE=; b=WdSWT4VEI2w2xy
-	1GimFMxsKEg1iBpKdSBObuUKqU1tjgCncqfHee40IGW9xoBRDozb7sRL6PcamgV8Mype0/K8F5/df
-	lFPTisLUy9sNXU27qEQdbtBor5O6W7nNL9vIiOihrCcV+ugz+SCda/OL2dPiCmrnxdT6cORTpZc9V
-	BedLa5eye8uTrl9S1VBuspYutgdNRvL4Q2ezMPFu/bL7lGswRDXDN7CzZ5TDHSMdbTbPFFTa8cf6H
-	Lvk33UiiHxlOnwal5kjM+JzVJ4jn/AxbvlsATqKfKdlkRb2akuK/vhJRkEI3Mru+LasSZVxQvxUEV
-	lYIfBL3ZGpX+NZgwvs9A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=O7zfegtQYOdRJ5vs0VYDUvFfiw+/ANWRsOXJP4HwLqk=; b=eB+k9Ovx7/0SHKbNKEJ1Ad+U1K
+	XkvEAXtETsI90PeCv83+ZZw68j2cw4ZZ2NKIq8iyIxBDMwNaIA21iMhX26Yt3kuNPbMRkjd+iXyjf
+	PR+6KWZmO/PHhTlbtv2pWAlwmaSp8SycvkYu+MpJ2GL8/n9YdBe3RBjbhnCP5B11+zc4YzDa48rki
+	XCnAgp0YDuqQPbYfGvT60HUp/CTgwVmbmvySIfwozN1c0rAVxWuYmHLo5tYhkgsKmv0i7ofDfQKNl
+	BOJ8VozBLxRa2wK8yR1VBL9X2uYT8JxoyGzYEfyzMNgOJaTFwGM7eYD+zElnGneuQPi2uA++w1aw2
+	Y4985H6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdvUc-006yrT-2G;
-	Sun, 19 Mar 2023 16:02:46 +0000
-Received: from mail.kapsi.fi ([2001:67c:1be8::25])
+	id 1pdvUP-006yiq-1q;
+	Sun, 19 Mar 2023 16:02:33 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZXz7-000eZy-RG; Tue, 07 Mar 2023 14:08:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-	s=20161220; h=Subject:Cc:To:Message-ID:From:Content-Transfer-Encoding:
-	Content-Type:Date:MIME-Version:Sender:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=5DMLJzQKqdF6oeNoZF8t9+eClq9ynzLjSSrN4tmUXPA=; b=BXjkskeT2aCDjWBkFBi1gJSE0o
-	KxttfCw6RT9DA1gOSi4J8shGJu4zeme59ibiNNsvkb2rcdRzl+RzXgjtRJUQHlpW9ES6pOJXlcMkQ
-	1YUunvfpuepMFk47fKFBEH+mHsl/MVkWXlkZMKwvtMZzfk5wOgCVTk5Dy+lPayv9jc9+Cq1I4kveh
-	sRcaJZ6kguPGCQxRbtimP/mOXWCLp6qzl6IBCYsIw0WnrMvQuWcqIHof8zj4Mvy/2HNbKpmJr3vt2
-	GfvjpvMMFUnBZZSI07Rxijc/DJ7u8UP3CCDrVyYwjMBmB67yAbqwP2ef5iI8eloeedS7kNS9dDn/k
-	F60VybOw==;
-Received: from [2001:67c:1be8::200] (helo=rainloop.kapsi.fi)
-	by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sarha@kapsi.fi>)
-	id 1pZXxt-005UaU-Pn; Tue, 07 Mar 2023 16:06:54 +0200
+	id 1pSId0-006BPg-MP; Wed, 15 Feb 2023 14:19:23 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id E942561C32;
+	Wed, 15 Feb 2023 14:19:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E56C4C4339B;
+	Wed, 15 Feb 2023 14:19:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1676470760;
+	bh=gQEel9EdWJL6nindAVV89iHXQOyC9ETUfqvkvbtD2gg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PEGQwrEr7+4WeFzY/RpUMkgnLnkz3fghVF7WJBwbfnBSFv/l/K9ykEmLj7kWn6gss
+	 boN+28fkVXq2qh9YXa3j66y4Hj/kpEL9EYG3AiTTfxOrke1JcvDKQydudVbzQ17IGH
+	 ZL4MG5W5BmvBAd6rx1y4zhrf/hs2iovXQ0Y1T2Z28UEqyKBjNDQkO60YWp04Z15os0
+	 LITBxJhiNSW/UvxDu/uH5bdF9unqvUhGcL4wXv6m2shBXdbZI7J9XcZ3STxeTl72a0
+	 U4bJYIhivyPi3krbtjRY1d/s/g+7MAdiLn1pDItsS9gGz71pmYvlLxV6SmGbJp+ikl
+	 VT4QJaIeWDiZw==
+Date: Wed, 15 Feb 2023 14:19:16 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	jic23@kernel.org, tudor.ambarus@microchip.com, pratyush@kernel.org,
+	sanju.mehta@amd.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org,
+	kdasu.kdev@gmail.com, f.fainelli@gmail.com, rjui@broadcom.com,
+	sbranden@broadcom.com, eajames@linux.ibm.com, olteanv@gmail.com,
+	han.xu@nxp.com, john.garry@huawei.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, narmstrong@baylibre.com,
+	khilman@baylibre.com, matthias.bgg@gmail.com, haibo.chen@nxp.com,
+	linus.walleij@linaro.org, daniel@zonque.org,
+	haojian.zhuang@gmail.com, robert.jarzmik@free.fr, agross@kernel.org,
+	bjorn.andersson@linaro.org, heiko@sntech.de,
+	krzysztof.kozlowski@linaro.org, andi@etezian.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+	masahisa.kojima@linaro.org, jaswinder.singh@linaro.org,
+	rostedt@goodmis.org, mingo@redhat.com, l.stelmach@samsung.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, alex.aring@gmail.com, stefan@datenfreihafen.org,
+	kvalo@kernel.org, james.schulman@cirrus.com,
+	david.rhodes@cirrus.com, tanureal@opensource.cirrus.com,
+	rf@opensource.cirrus.com, perex@perex.cz, tiwai@suse.com,
+	npiggin@gmail.com, christophe.leroy@csgroup.eu, mpe@ellerman.id.au,
+	oss@buserror.net, windhl@126.com, yangyingliang@huawei.com,
+	git@amd.com, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
+	radu_nicolae.pirea@upb.ro, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+	bcm-kernel-feedback-list@broadcom.com, fancer.lancer@gmail.com,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	yogeshgaur.83@gmail.com, konrad.dybcio@somainline.org,
+	alim.akhtar@samsung.com, ldewangan@nvidia.com,
+	thierry.reding@gmail.com, jonathanh@nvidia.com,
+	michal.simek@amd.com, linux-aspeed@lists.ozlabs.org,
+	openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+	netdev@vger.kernel.org, linux-wpan@vger.kernel.org,
+	libertas-dev@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-mtd@lists.infradead.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, linux-iio@vger.kernel.org,
+	michael@walle.cc, palmer@dabbelt.com,
+	linux-riscv@lists.infradead.org, alsa-devel@alsa-project.org,
+	patches@opensource.cirrus.com, linuxppc-dev@lists.ozlabs.org,
+	amitrkcian2002@gmail.com, Dhruva Gole <d-gole@ti.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	William Zhang <william.zhang@broadcom.com>
+Subject: Re: [PATCH v4 01/15] spi: Replace all spi->chip_select and
+ spi->cs_gpiod references with function call
+Message-ID: <Y+zp5F2l8pffEEvN@sirena.org.uk>
+References: <20230210193647.4159467-1-amit.kumar-mahapatra@amd.com>
+ <20230210193647.4159467-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
-Date: Tue, 07 Mar 2023 14:06:52 +0000
-From: sarha@kapsi.fi
-Message-ID: <25a439e6a6d58701e5a73b33ed0d7a4a0d9a68e2@kapsi.fi>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>, javierm@redhat.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch, andrew@aj.id.au, laurentiu.palcu@oss.nxp.com,
- l.stach@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- p.zabel@pengutronix.de, anitha.chrisanthus@intel.com,
- edmund.j.dea@intel.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, alain.volmat@foss.st.com,
- yannick.fertre@foss.st.com, raphael.gallais-pou@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, jernej.skrabec@gmail.com,
- samuel@sholland.org, jyri.sarha@iki.fi, tomba@kernel.org,
- linus.walleij@linaro.org, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com
-Cc: dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
-X-SA-Exim-Connect-IP: 2001:67c:1be8::200
-X-SA-Exim-Mail-From: sarha@kapsi.fi
-Subject: Re: [PATCH 18/22] drm/tilcdc: Use GEM DMA fbdev emulation
-X-SA-Exim-Version: 4.2.1 (built Sat, 13 Feb 2021 17:57:42 +0000)
-X-SA-Exim-Scanned: Yes (on mail.kapsi.fi)
-X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
+In-Reply-To: <20230210193647.4159467-2-amit.kumar-mahapatra@amd.com>
+X-Cookie: Serving suggestion.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230307_060810_291418_716B5880 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230215_061922_847208_C54D5064 
+X-CRM114-Status: GOOD (  13.23  )
 X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:32 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,54 +122,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8988019129234605296=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-March 1, 2023 at 5:30 PM, "Thomas Zimmermann" <tzimmermann@suse.de mailto:tzimmermann@suse.de?to=%22Thomas%20Zimmermann%22%20%3Ctzimmermann%40suse.de%3E > wrote:
 
-> 
-> Use the fbdev emulation that is optimized for DMA helpers. Avoids
-> possible shadow buffering and makes the code simpler.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
+--===============8988019129234605296==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mHMK7QDQWaz9I52Q"
+Content-Disposition: inline
 
-Acked-by: Jyri Sarha <jyri.s
 
-> 
-> ---
-> drivers/gpu/drm/tilcdc/tilcdc_drv.c | 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-> index 4ca426007dc8..fe56beea3e93 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-> @@ -16,7 +16,7 @@
-> #include <drm/drm_atomic_helper.h>
-> #include <drm/drm_debugfs.h>
-> #include <drm/drm_drv.h>
-> -#include <drm/drm_fbdev_generic.h>
-> +#include <drm/drm_fbdev_dma.h>
-> #include <drm/drm_fourcc.h>
-> #include <drm/drm_gem_dma_helper.h>
-> #include <drm/drm_gem_framebuffer_helper.h>
-> @@ -384,7 +384,7 @@ static int tilcdc_init(const struct drm_driver *ddrv, struct device *dev)
-> goto init_failed;
-> priv->is_registered = true;
-> 
-> - drm_fbdev_generic_setup(ddev, bpp);
-> + drm_fbdev_dma_setup(ddev, bpp);
-> return 0;
-> 
-> init_failed:
-> -- 
-> 2.39.2
->
+--mHMK7QDQWaz9I52Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Sat, Feb 11, 2023 at 01:06:32AM +0530, Amit Kumar Mahapatra wrote:
+> Supporting multi-cs in spi drivers would require the chip_select & cs_gpiod
+> members of struct spi_device to be an array. But changing the type of these
+> members to array would break the spi driver functionality. To make the
+> transition smoother introduced four new APIs to get/set the
+> spi->chip_select & spi->cs_gpiod and replaced all spi->chip_select and
+
+This again doesn't apply against my current code - I think the
+best thing to do here is going to be to rebase against -rc1 when
+it comes out and resend then, that will also make the issues
+integrating with other trees easier as then I can make a clean
+branch against -rc1 that other trees will be able to merge as
+needed.
+
+--mHMK7QDQWaz9I52Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPs6eMACgkQJNaLcl1U
+h9DMTQf7BClrpZ6y6mPa14iVbIWKtokY4RW9qSMUPLjIFwC9eRXAa0tO9cEn7yie
+Dhg3Nh0HQil5b3ETrpYSZcezEkC0LjXhOcrQL2AaNPnYqp8rwD3n4tFQXOY7hA9R
+fhdZQcSulOPdvy2GDwF7fvgenpxkVDIZM0OyEYKr5amWKxjhGICMWTBjvHmWJWo5
+Kh34j6KD6URlG9Rlf2b8CSTbJrwj5bREjrjMOvUNQWTt775APe+cKcZF6Jp3IhOC
+q8wYya1VrWoegeXxgG6IJW/I5BYCmloUtbj8BTpW9CIHMuOTdeqMduuExe3cWHOx
+xEsHIS5meBbApEDmthwKyZw5q9xE6w==
+=3UQL
+-----END PGP SIGNATURE-----
+
+--mHMK7QDQWaz9I52Q--
+
+
+--===============8988019129234605296==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8988019129234605296==--
+
