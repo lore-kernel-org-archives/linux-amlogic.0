@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AB4FC636D4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Feb 2023 12:49:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CF9AC636D4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Feb 2023 20:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1D5n8TxIQnaAspY4NS73DcKsga38fmLVAGvNu8tRBQo=; b=ZrjdQ8fGJ0Kl/M
-	qTYvFrFToEpX0cWmCREU6/EU13cQRj8KGHYxnqjF2S4AI++qjJV3X1ykAX5sqXvCQvvBELhAt+gg7
-	gEx2Hjc0lZs1ZHHiSTmUngthgt+D9rTsSKQ/TtLlNFF3ODJQU6OYlJpE6XIH5OQ/X7nMpSEJDf/Xb
-	TnztImJ2Md0g1ZM9wcUBvvobvUsgCq/XuyPapLr5TDwjBgGG0Xc39qg6xu2NJtpE1+6ZuQufaiv6j
-	Tno34LbCFebtITGTqaOOuU9l6Lv2rH4seovKJ4iXKi13DYq2UtVAik8b+rImbo2mHisSoGBoJhv7o
-	r6mf8o/inEeyBesO03LA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0NOPtURmP1FPMYm5/mRE0Uv2cPzTr/ktMWoO6yC0Dfs=; b=pWcL3ZChpRK65H
+	P9qAYpUkBZUjCWb+yn2tCthbnYjAXSsK1OQDLRzpMXTKl1+ckAoojy2UhyP7eL4eYS62XceMBy53x
+	ZbPKalKxOBfDDtgleBpwYRWwpTTGiF1peaow2SLOV/cSN/ZeTTDQTyPhTWxViqjcWc31O2Huao3Kv
+	9wtlZB4nKxkD8KT2kS4Fo4s048f83GWRGx+dx2bU6DSS3M++vAOu9Nb51XtYIY2MPP4ur1M0gCWYW
+	njjEVc1eBCk0MtmGb8eykiL94eCqcTnnDDOC/JDnEpWcgWtdWFoP0vM88YOFT8NQLs8mPLdo4TCUS
+	xlcuUSsC3FjJoYHDgDVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSHDd-005qaM-QT; Wed, 15 Feb 2023 12:49:05 +0000
-Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
+	id 1pSNyf-0072v9-12; Wed, 15 Feb 2023 20:02:05 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSHDb-005qZ8-0O
-	for linux-amlogic@lists.infradead.org; Wed, 15 Feb 2023 12:49:04 +0000
-Received: by mail-pl1-x633.google.com with SMTP id e12so2603185plh.6
-        for <linux-amlogic@lists.infradead.org>; Wed, 15 Feb 2023 04:49:01 -0800 (PST)
+	id 1pSNyb-0072sg-CH; Wed, 15 Feb 2023 20:02:02 +0000
+Received: by mail-wr1-x435.google.com with SMTP id a2so20350382wrd.6;
+        Wed, 15 Feb 2023 12:01:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1676465341;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
-        b=DnpL/OJbs517pIJBv7UZkQPXuJR8Z2nfHPQPSGrgVEB3AgGXe2/9z+9pl6fRYuEKQM
-         WUXCCVLCc7uOKfu6lT8/n27etN4D1EUA1S5awS7D9NnaxpLT3fHsB8AeSUaNPZTJ+rHF
-         3Lq7mJgUAF44j3l1vtS++BCkZTin7RWVvctVr5/ejSMFlBostfi8WmjJFAo8t12fBQvz
-         +1ZR7z5r4yy6pchXbNEZ0jeqZiHTPQNQu3omoRURf0W0Jj2VTXTJptKR6ZQNjR+Rwy+K
-         qGTKHlG5fWbxis6XjSz4CJzknCwL/XpkLOHr6cinqtsRyEotQXxTotW8jO31FcB1DZvk
-         wmFw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4p/93qkHziK9obLRpx7s6x9Dm+hSwWIeNTx1UzQJzP0=;
+        b=AZnqJPqMZOka5cvE6XA1KMdsK6oMOXVdbQ7FjkPlBB1BgHIhEh4r3ogIzFiaG8tsyI
+         tSc8d0bryya78ZfL52bExaEBUbZdwhjYN3FkcuZMSZtajksr1XkwWc4b5osyc4py7D+o
+         D/8x3LnttNM9yH7KypKgxAf8rhXkaIE7Wj1OySrNJ2PC8WnHj/IU9mTVDvKjq6QXV9wl
+         i3daOcyKwwgHJUbd3Cf/fbb+pTPpR7FeW4Ibg4rzijX3ok+6Sk1W043t17vGv5elOK75
+         VaGmlulcXv9+FkP03+9JILQp0adUqbAEH7tC5T+Z6DAz2NPMXo58SR3wA79/gyrcRf84
+         vT7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676465341;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
-        b=7AuxphgQKhP7y/NSSkjCWJDOYloup2FhfvoEfipzVnMWrLiXEHEqbqxyJSi+fRibMY
-         75y3eZd+UTwedcqO+d/eMWZyXEh0W8mbYxvSPj+ng4tOJZPuU504bREo3eIoi5/iLgIQ
-         7xqk8D2q7KO/5mmzqMcroM0C+1C+9qsvHY0WgcXXVOA+br06h3bcuWSdI/K6pHB195Rc
-         7YNrzVeqevVdOVjJT152DiQwh8wvWjxmOA+xz/TZJi5qAmJAYZOTjy0BZfRuUMkdc5xj
-         J1VdRCjTgGskMll8YMi6ksfsrCoISqXG54RsZpK8psof3fAi9yhbtt8NF6M2+isBTJOP
-         t6lg==
-X-Gm-Message-State: AO0yUKVhljtOm4bRgQv+2dX7xYLhxH9a6yExXo1SHmNkW3CLZO/VXgkt
-	n1tEVHOjWEgEyX0AjnpCFc100b9Uk7LHdymjNyqGQg==
-X-Google-Smtp-Source: AK7set+T7NKsh+QRbmcYjfUFAkz8tVhEKaLuhSPZ8VsL0cW+kM2Wy7wlgaC9MgBB5hg5VOCY6Tga4oo3jt03Pl9STMk=
-X-Received: by 2002:a17:903:26d1:b0:199:15c2:99ae with SMTP id
- jg17-20020a17090326d100b0019915c299aemr469271plb.20.1676465341107; Wed, 15
- Feb 2023 04:49:01 -0800 (PST)
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4p/93qkHziK9obLRpx7s6x9Dm+hSwWIeNTx1UzQJzP0=;
+        b=Bd8D/H87yyqce+H4rppCp9dFhvq3dIfdaxEztxAdHwTWx4ibKQl1cIag4K65EsmtmS
+         ATUtgwagNf4Iz+z7HKD6u9R65ycfY9bZo4+ZHqerUhcC328NtR2WMraKckv59mrwDt5y
+         4SXnDPTkCsCtWI3OMTGpoXtXhqAbi7PwBbCVv9m0hucJ9cWvHcapZfIQ1QPptythvNMW
+         r+D6xJIcsBEy1APHoyB3B140hcTeV2TQgGW8XCKS1k0HQUlUni9d1yhw0MWUHPLsvsrq
+         PqxpnM3oJhuQx/k9ZJTIb7jimkHuTLK1GBgGxJ1OIRI4RyTYLNmNXaLmQWxjEAg7RxQI
+         hqKQ==
+X-Gm-Message-State: AO0yUKUdUd/fwh5FfMbBfgj3+MuziNw5XcMv1fsuNq3Z4mtXjzhmFyAQ
+	HBm5JsbneNHYOR1XdKbqO2Y=
+X-Google-Smtp-Source: AK7set80hLi4T7IC40nFTB6niTVhOKpElP4k5KAJuhCtGhUbGJHMSCutnkaAQU/rTCdvZq14QTWSAg==
+X-Received: by 2002:a5d:43c2:0:b0:2c3:e868:cf54 with SMTP id v2-20020a5d43c2000000b002c3e868cf54mr2575042wrr.13.1676491314038;
+        Wed, 15 Feb 2023 12:01:54 -0800 (PST)
+Received: from ?IPV6:2a01:c23:b9d5:9700:ccee:9a0d:2992:c73? (dynamic-2a01-0c23-b9d5-9700-ccee-9a0d-2992-0c73.c23.pool.telefonica.de. [2a01:c23:b9d5:9700:ccee:9a0d:2992:c73])
+        by smtp.googlemail.com with ESMTPSA id w11-20020adff9cb000000b002c54e9f6bc2sm11892065wrr.77.2023.02.15.12.01.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Feb 2023 12:01:53 -0800 (PST)
+Message-ID: <b316c6ba-a373-f1d2-27d2-9add5e25a9d2@gmail.com>
+Date: Wed, 15 Feb 2023 20:58:29 +0100
 MIME-Version: 1.0
-References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-In-Reply-To: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 15 Feb 2023 13:48:24 +0100
-Message-ID: <CAPDyKFroB-TULOeia4OyXBW6rWMs7e3_Fp4Uw878Q8Gt=TDfag@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] mmc: support setting card detect interrupt from
- drivers and use it in meson-gx
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Content-Language: en-US
+To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] mmc: meson-gx: use devm_clk_get_enabled() for core clock
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_044903_071430_209B5ACC 
-X-CRM114-Status: GOOD (  12.78  )
+X-CRM114-CacheID: sfid-20230215_120201_457665_A8F2C435 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,33 +94,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 14 Feb 2023 at 22:39, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
-> due to the design of gpio / interrupt controller. Therefore provide an
-> option for drivers to pass the card detect interrupt number
-> (retrieved e.g. from device tree) to mmc core.
->
-> v2:
-> - use another mechanism for passing and storing the cd interrupt
-> - add patch 2
->
-> Heiner Kallweit (3):
->   mmc: core: support setting card detect interrupt from drivers
->   dt-bindings: mmc: meson-gx: support specifying cd interrupt
->   mmc: meson-gx: support platform interrupt as card detect interrupt
->
->  .../bindings/mmc/amlogic,meson-gx-mmc.yaml      |  2 +-
->  drivers/mmc/core/slot-gpio.c                    | 17 ++++++++++++++++-
->  drivers/mmc/host/meson-gx-mmc.c                 |  5 ++++-
->  include/linux/mmc/slot-gpio.h                   |  1 +
->  4 files changed, 22 insertions(+), 3 deletions(-)
->
+Use devm_clk_get_enabled() to simplify the code.
 
-Applied for next, thanks!
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-Kind regards
-Uffe
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 079c52dbe..6ed95c555 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -155,7 +155,6 @@ struct meson_host {
+ 	struct	mmc_command	*cmd;
+ 
+ 	void __iomem *regs;
+-	struct clk *core_clk;
+ 	struct clk *mux_clk;
+ 	struct clk *mmc_clk;
+ 	unsigned long req_rate;
+@@ -1166,6 +1165,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	struct resource *res;
+ 	struct meson_host *host;
+ 	struct mmc_host *mmc;
++	struct clk *core_clk;
+ 	int cd_irq, ret;
+ 
+ 	mmc = devm_mmc_alloc_host(&pdev->dev, sizeof(struct meson_host));
+@@ -1228,17 +1228,13 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 		host->pins_clk_gate = NULL;
+ 	}
+ 
+-	host->core_clk = devm_clk_get(&pdev->dev, "core");
+-	if (IS_ERR(host->core_clk))
+-		return PTR_ERR(host->core_clk);
+-
+-	ret = clk_prepare_enable(host->core_clk);
+-	if (ret)
+-		return ret;
++	core_clk = devm_clk_get_enabled(&pdev->dev, "core");
++	if (IS_ERR(core_clk))
++		return PTR_ERR(core_clk);
+ 
+ 	ret = meson_mmc_clk_init(host);
+ 	if (ret)
+-		goto err_core_clk;
++		return ret;
+ 
+ 	/* set config to sane default */
+ 	meson_mmc_cfg_init(host);
+@@ -1322,8 +1318,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	free_irq(host->irq, host);
+ err_init_clk:
+ 	clk_disable_unprepare(host->mmc_clk);
+-err_core_clk:
+-	clk_disable_unprepare(host->core_clk);
+ 	return ret;
+ }
+ 
+@@ -1338,7 +1332,6 @@ static int meson_mmc_remove(struct platform_device *pdev)
+ 	free_irq(host->irq, host);
+ 
+ 	clk_disable_unprepare(host->mmc_clk);
+-	clk_disable_unprepare(host->core_clk);
+ 
+ 	return 0;
+ }
+-- 
+2.39.1
+
 
 _______________________________________________
 linux-amlogic mailing list
