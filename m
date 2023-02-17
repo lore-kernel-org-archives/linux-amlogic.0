@@ -4,87 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9046CC05027
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Feb 2023 08:48:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06499C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Feb 2023 10:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dtJ5rVmfWx4uPa9h/u8Mrhp06aCxchrKW66Tyj0/Fn8=; b=qa/JAOhzGgld3y
-	c2d/oVopsznOnwoHAlIlJaxOkvkshZbufUmOnDq7SOgEnwJRsT2cSXA890l5sSEnVWxrLDrZSPbhY
-	HrnINvzICro4PWCuNpA87b9pdsRcQyS+bB9HdBQsqG4xvi1aZ4u9OjcETY7GbQX/Q7DuF5AZP13oF
-	lq9AcIcgkFGlGz4dhJg3Hz3qbx3Lp9Ld7RDkRgAslAdTjq5RsLsjfy87FWh4s/JPeyKedquvPoFfQ
-	m0+eWuaPap8sg3w4VqXh0Sw/RWH7hL/fDrzatImXtavoTZ8y4wCiSU3+/4dxXrY00+oS8SNQla/7I
-	9K/ugu9qSq7N9kf6X1AQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ZLa4ErNj2xrXOE8R0KhRZ5qHcVYlmC4Pop8QIA/tsY0=; b=DfDEr817o/ZsvXYPS0KThN0KT8
+	CLFzOVcCYGgrfmS3fNwpV+lyvRbwMEe+6TqIucGWApI8smEflJz+v9Gm+D7TgA/iobWQAx7ZA9qkl
+	dKvcAizlQNNyint2oypyvPYUza2/llKc1EdlrNpincQ+qUx9h+gsxn1FGn4SABQ0jS5uem6i3bXdJ
+	7N5P6pAHtUPVHnf/fYEDgHez0PQErd8rDW7XV6XtiCZTDi3D5mx2k5YzkKx882iQy5SiFBBJaPAFy
+	7ok3/Ftgb96WzYd7bEa+/X5Gc6KF76ou4qZ7yYI9hnJseU0cDpyaM8OGGsYqf70nM2aiTL61QinSh
+	L1DG8qkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSwPM-00DLvn-IR; Fri, 17 Feb 2023 08:47:56 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1pSxqx-00Deuw-IS; Fri, 17 Feb 2023 10:20:31 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSwPK-00DLpb-00
-	for linux-amlogic@lists.infradead.org; Fri, 17 Feb 2023 08:47:55 +0000
-Received: by mail-ed1-x535.google.com with SMTP id er25so1324555edb.6
-        for <linux-amlogic@lists.infradead.org>; Fri, 17 Feb 2023 00:47:53 -0800 (PST)
+	id 1pSxqk-00DeoA-Ba
+	for linux-amlogic@lists.infradead.org; Fri, 17 Feb 2023 10:20:20 +0000
+Received: by mail-wm1-x334.google.com with SMTP id a11-20020a05600c224b00b003e1f6dff952so518363wmm.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 17 Feb 2023 02:20:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6mCPUncoNNGQDkBH1K4Qwr2txnBpLQ2xqpC1PN44nIo=;
-        b=zMOgIsHj6qxMkglPlIGwHPtY65joY5FCUCHW41i1STnDb9VvgcgzUZZh3zCuj7WAtZ
-         hCP7+xRs0HlbLdfpWze78Iq4IdVNmlM3KLY6QC66gFDQZ/Fx+N57yeDOTHIQJ4uK3q7l
-         R1yG2LZBj0iqb6wVnsQF1yusZT/z8wy1Z2s2+Fb7mnDdSo5NiCn+kAHS6ZHq6BCBFzds
-         3aHQAavQHhPeB2EeMjpIh3J/J4dY4ASe3ZqaaljUn5HDCSqtDcxSMHD9L37ooqzBsBE3
-         AKFreSM6PdOXsILNgz/BjMR9maQiQOVcoN2SjBddVvzXAHnj2IiRxb9g4aU7TOi2UapT
-         JmTQ==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=WBDuZ1YsthJFSmgGckbyCZ1GxJY3h4+AR0nDnSv5p9E=;
+        b=WuRKgVx/abcZcK0HucJ8OjzXyIpHTyHaEz58egQAstY1ADJVR1JsTDjiROMTeDn2Uq
+         UFIxDNUqOqEYb/Yh98Skh8i1EqZD8J5voak28hEzBJTErFxFz5IgwFpGgX2F5MQNSjFe
+         FH6yX2PU0TFCrYpUIpN+7qXCdgFPKkYVbeywTF4aZPBS6awLEgJj+eyHNp3kT3oQgWDx
+         e/+OLuHHd/o/NEBP3PkabCf0j0O2twILyrxffS5tRO4ngZqMN24Bm/svmGh5Wt7JBRj2
+         v0YU+wG5jBK66ZAAGj9BYlTjvdWp5WTmq6SMTfeUTvkr0DYn+iacsV0QtDe6Zj8pkhjP
+         8hBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6mCPUncoNNGQDkBH1K4Qwr2txnBpLQ2xqpC1PN44nIo=;
-        b=zglYNkKdnbQF3rs55yjlK2DvZ7/8zSbHhVqrd4ijQdTFue9JZyYMmW9arg/kM7b1BV
-         +Ww3GYFyvwRGlZShj5VAoFS0acULSkD9kbmWLlTld21PcUqajtU9fDwZ/4eYuck5GVp2
-         M+5/7cDR/7CU4ULCXnHTsbeQk8fD7dlT+98i5ygMtA9Gd6GkOgLs11ayjGNW1YSpHIkR
-         jAFVjqTeIOPpzay573Z6UdOZelmaPU6xmFIRNzkGU4GX7+AGBmVXN8i1+jPgcu/0bR8n
-         tx/xgXx5gAuL4UCvOEZlsN+ZjGCjqEZHL/5llGZGJvcXCB4jc3kvNheEp+ORTA8VBhxI
-         F5Pw==
-X-Gm-Message-State: AO0yUKX3mQC/48g6yL3YI927m7e7SXaz2IDigwYudC0sRF1LT+IoDB+f
-	i9zgcEAIvX0qxLgmyzT6W7T4tg==
-X-Google-Smtp-Source: AK7set+bc046PiYwSDnVyB86S6c9jja8hnHbQX0stMjnEgo8oKt4A8NuJK9HWepfuMYEn0SaZNEmQw==
-X-Received: by 2002:a05:6402:445:b0:4ac:c720:9255 with SMTP id p5-20020a056402044500b004acc7209255mr580406edw.34.1676623673490;
-        Fri, 17 Feb 2023 00:47:53 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f29-20020a50a6dd000000b004ad6e3e4a26sm1532945edc.84.2023.02.17.00.47.51
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WBDuZ1YsthJFSmgGckbyCZ1GxJY3h4+AR0nDnSv5p9E=;
+        b=tJafCo526lIQi+U0DjLrGUpOFBesHLMMNdDZWIek3Qifx8oEgTFWFD5BrXmQMzT2Ye
+         NO+Kk5JtnWXVXn32kCp2+T78sFVW0AoYMNVgZcvdLfBTJAYrb8itu7vMXNXHRQfQv3/7
+         Z6x3J5EQIGCDjk2oTbE+4AwF0603ZNzx0d1SCYin0uBxUzKX+BAlN+j5oVZmEAfdei7b
+         4QrPOCZhQtR84NgCRUKAuiGqsFbo3m/8Bkwz/JjAa+cOw1NZJOILu7kXCmguVxzOmLdk
+         XP36g3dMFFUBLmxnUJm0hrK4kFh+0ifoBzcBay+7TE7Ngxw4+iKNOr7fnay+Xp1BhrEF
+         s7Dg==
+X-Gm-Message-State: AO0yUKUi8OE0P+Uwt+uxdJok0FM5bfGnLozbs61WySensu6PncjSPoMw
+	N+mGfT4e2fIH4jlOE7svkCkLTg==
+X-Google-Smtp-Source: AK7set/NxxmCSIJR7gO1gNoNDErjpfId+Gjra9KrBytdDA56fqSSwlfB1IfuBIhwiAKMe6dJjTWjZA==
+X-Received: by 2002:a05:600c:4d06:b0:3dc:1ad6:55fd with SMTP id u6-20020a05600c4d0600b003dc1ad655fdmr893227wmp.32.1676629214411;
+        Fri, 17 Feb 2023 02:20:14 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f65e:92aa:85d5:15c5? ([2a01:e0a:982:cbb0:f65e:92aa:85d5:15c5])
+        by smtp.gmail.com with ESMTPSA id v5-20020adff685000000b002c559def236sm3028656wrp.57.2023.02.17.02.20.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:47:53 -0800 (PST)
-Message-ID: <86945f01-351b-9843-0ba8-08377f12dd4d@linaro.org>
-Date: Fri, 17 Feb 2023 09:47:51 +0100
+        Fri, 17 Feb 2023 02:20:13 -0800 (PST)
+Message-ID: <86b55b41-3faf-dbb8-a072-9a905d111eaa@linaro.org>
+Date: Fri, 17 Feb 2023 11:20:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2] dt-bindings: mmc: meson-gx: fix interrupt binding
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2] drm/meson/meson_venc: Relax the supported mode checks
 Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
+To: Carlo Caione <ccaione@baylibre.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Da Xue <da@lessconfused.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230210-relax_dmt_limits-v2-1-318913f08121@baylibre.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230210-relax_dmt_limits-v2-1-318913f08121@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230217_004754_064299_027668C8 
-X-CRM114-Status: UNSURE (   7.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230217_022018_409374_E1E8EA3E 
+X-CRM114-Status: GOOD (  14.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,24 +93,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/02/2023 20:50, Heiner Kallweit wrote:
-> Reflect in the binding that the cd interrupt is optional,
-> and add a description of the interrupts.
+On 13/02/2023 10:32, Carlo Caione wrote:
+> Relax a bit the supported modes list by including also 480x1920 and
+> 400x1280. This was actually tested on real hardware and it works
+> correctly.
 > 
-> Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 > ---
+> In particular relax the resolution checks to allow more resolutions like
+> 480x1920 and 400x1280.
+> ---
+> Changes in v2:
+> - Lower the hdisplay limit to support 400x1280 as well.
+> - Link to v1: https://lore.kernel.org/r/20230210-relax_dmt_limits-v1-0-a1474624d530@baylibre.com
+> ---
+>   drivers/gpu/drm/meson/meson_venc.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index 3c55ed003359..fcd532db19c1 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -866,10 +866,10 @@ meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
+>   			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC))
+>   		return MODE_BAD;
+>   
+> -	if (mode->hdisplay < 640 || mode->hdisplay > 1920)
+> +	if (mode->hdisplay < 400 || mode->hdisplay > 1920)
+>   		return MODE_BAD_HVALUE;
+>   
+> -	if (mode->vdisplay < 480 || mode->vdisplay > 1200)
+> +	if (mode->vdisplay < 480 || mode->vdisplay > 1920)
+>   		return MODE_BAD_VVALUE;
+>   
+>   	return MODE_OK;
+> 
+> ---
+> base-commit: 38c1e0c65865426676123cc9a127526fa02bcac6
+> change-id: 20230210-relax_dmt_limits-355e2a1c7ccf
+> 
+> Best regards,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
