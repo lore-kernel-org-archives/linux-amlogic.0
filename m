@@ -4,78 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD292C636D4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Feb 2023 10:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55EF3C05027
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Feb 2023 10:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xIkxqdBnMx7fg0JFZuCIxJ3JnducJ2MrBC9mMNra98A=; b=RG5Tl6GPaekLd6
-	YosiSJxCuctMTt5rUtjK1LTBML+PYXRHyjoAiJ+AWiYLOkY0oLEoCGg3fn+h6t3BBTPlHWTci1SYu
-	Vr23w9U6B+OxilwDAx6v1Jnd3X6nEMUi+OCEAQsQWguWo7PbZFZFudmvMbqNp7/HGiywYmKRYzxaX
-	zGbdCx2uEAzRYCTH1MDv2nXhVSZd3B0usM8R0elGI/CJPWDXXiXgUbNkANOZbmOoJMdgkwVgQtTgD
-	5F32gFgEShczBjnK2yipvio2pgAfdJTYQlpQntHmzZrs3xN9jO/kjxeKey8ylCJKd/BVc7dNVak9i
-	c+Aho2sZZe6g/HtrpJZg==;
+	List-Owner; bh=vhYl4AzosvVVcRzpXej9utAh8uAC4PbhYMu/p34yXFw=; b=DY8QZ6eCl0bmJy
+	0iR+MKrmvA0v30N9cWq6jlq0nkm3x3KRgkNLOsTMq3YiiwGvvENPtuWK3GMbDysqTgyoOuYuq7OQb
+	N+fLE3iyC5+5DVfe7A/7Z4InzocahUAVFgesf/qgKid5wzDBfKNt3ib6+jSXYIFCBO61Rfp1H854j
+	oDiyTkanCiGeT9CD9bGOSyeTzmRor5hessA+wDF1/nfBLhDr+o8sqZVe1yuzQ0eUxvdl7jHGg/NML
+	F7HDiOV4AKDvfHJVfGOTlLbLzfomqgKvcOX2lm3Gx9JlKy7PVOY37B99kBUn4PSD9j4/5nfWVVTEh
+	lOGH22OIEWrlTvJFd6LA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSxxl-00DgrB-EU; Fri, 17 Feb 2023 10:27:33 +0000
-Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
+	id 1pSyIC-00Dk4E-OV; Fri, 17 Feb 2023 10:48:40 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSxxi-00DgpM-VA
-	for linux-amlogic@lists.infradead.org; Fri, 17 Feb 2023 10:27:32 +0000
-Received: by mail-pj1-x102b.google.com with SMTP id o97-20020a17090a0a6a00b0023058bbd7b2so774701pjo.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 17 Feb 2023 02:27:27 -0800 (PST)
+	id 1pSyI9-00Dk35-I7
+	for linux-amlogic@lists.infradead.org; Fri, 17 Feb 2023 10:48:38 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id n24so300664pgl.13
+        for <linux-amlogic@lists.infradead.org>; Fri, 17 Feb 2023 02:48:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1676629647;
+        d=linaro.org; s=google; t=1676630915;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYUz8oisVi2MXZNU739kVbVZfuIh484HESHjTvaz9UM=;
-        b=meORSfrOitZ4zlTOzjjoOw+lVQAZ9cPa9GCbsF5D7r2vSISSZGzNJGvYAoYrHiKEKv
-         D6pebsua3r4XJBH5BiGIQkY8vipuODqMajcUK7EWXtgMLAScFJtklAIJJ0Z4hFgSIXNr
-         y/qUyoGREIkKZKzoA+5sVCkhERCmguZJd6+/PewB/3Eg+irdm5wISjIz0QibvzahWSHI
-         cda4g/Pef9SXm8+7XBMbYEZwkWd4TA06wYEwGRpWqC9QiNY4lpav8XLnqv8PM1qR3BpS
-         9alx2cRI00R44N9Owo8bWeX9A7bKgN0720YIXMWx1jSE3xgHdcARDIxYrKlD999FjCpT
-         YBCA==
+        bh=dF9wSEnG/pmDi0OCoUdB59pDnnwR7ktou0i6CnZGcss=;
+        b=XNcOCdRPlUBDkS9BuZrMFmRNlt0v9NkGEVPQRhipDqIiHiXlav4XsiPkGLkbOg7QNf
+         0ArOCNqExS/98VguhV/rFgZvk1WyhbYtSM1YE7inAjJ29HxT0QCF5R7h5buzZmjXPhk0
+         vcwWf7cGv/NG7fsLTwkSZeCh7sve9+kKmcmLXT2S215PZNzx12cw84+uGhAva7WEKlqo
+         bfmJ1EIFI3xUrsKSRb13AAAuCjnTcpTmq2WsLvsGiFGVoYzyF+qxlQB7OA6wfTbbNFil
+         JcpnjcZJeSo8rWG6a7fAvsyJnTyITKDKiRpc9BTgVMoi30MbPTYczncLyKM9Y5aaaBZs
+         Kz1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676629647;
+        d=1e100.net; s=20210112; t=1676630915;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dYUz8oisVi2MXZNU739kVbVZfuIh484HESHjTvaz9UM=;
-        b=u6XCbzY/BNZhhRDLGShpmhc7p93KNx4fU8/u7qkF9Y9QsZ4WYV9J8Dl7KnJjW+84gf
-         MgDOVVkMzUnNLSPOLV47loO/nnjk7mrAmEUW9Xz024r4KxT155w/xAGDK1qA5zanq9EU
-         3N+qe3j9HED1YyPYjSR575dJI8XEdJ9YJQxXMSU/WuBWY4UKoWtvHTgRuWYJMCaQ7+3B
-         LIzrR+mx77165QCi0z9AMkr3f+KVmdiYaKnR0qfxziT498kxUpm60wnie0rD+2SXvZeC
-         G2eMTYgG8v9F4gfocZw9ZXeUd0a0zwwdbDad1w8sjqivG089VJRT4bu1PspcjKOjGneS
-         5+OA==
-X-Gm-Message-State: AO0yUKXtiI4eT0iKwpn24Ez/upWUFdODEVL49kvYPCEtH9QYWptEg1Pi
-	rhWcDOg/Z1CTN/jrBuw3Ch2YgLJJDkFsFUQvrX9BXg==
-X-Google-Smtp-Source: AK7set8Zqc99tI1n8m5kImc/yYJuO2ErLq/s41RuQOt/YA+reJHb6HINNqc7ZSfnEhsxkCMLALMX2fO1gyvLLpvOClo=
-X-Received: by 2002:a17:902:8d89:b0:199:15c2:99ae with SMTP id
- v9-20020a1709028d8900b0019915c299aemr77197plo.20.1676629647338; Fri, 17 Feb
- 2023 02:27:27 -0800 (PST)
+        bh=dF9wSEnG/pmDi0OCoUdB59pDnnwR7ktou0i6CnZGcss=;
+        b=hwi5mUsxa7Kx+MBsLn+XTFCjhboYVnYXKN2pm/9Lx+7uI5qJiZNW4UkrTulC/vI1JD
+         w/0wOxELAkADOS55vBA6nwmKvom1ul1nnWtZ4qSy/I8yxUQHQIbCiAMcx3laE1lGXOc2
+         btW4dWY0JOeYO9PjOS6GUyALWWkQ9nbfrAjUUNY/UCv5v2AdEW5T8Zdt3231C69lduE6
+         3+MYSRQBxdODaSCfTON4bKQOBFEPQsmxZXZFVeUOtLLaaU5BnPCzALlP39xXjpQ05ymc
+         ZodHkXBqMQbbhGbJK5I8tnO2gGsWhJHgGs1hdgSFbSEAQb7GXfJoUHe/gkOyVSfTlelm
+         x7Lg==
+X-Gm-Message-State: AO0yUKUNtjybhMGWd5ayOy4EsJ/F1bd6kkcqFyoZaS2G7qZlG1BrImfo
+	pxwKaEMdI+oXEb3VXogIj7HZpKxcc+3xdhnXMMJ/YQ==
+X-Google-Smtp-Source: AK7set9FzbxOqH5midfBwv8pE9z9p0qY6hnqhEYjUEOxExFohj/9qD7nGH42u0m45DFwSi3Z2IHgC+QdZ/yUe4clls4=
+X-Received: by 2002:aa7:95a9:0:b0:5a8:ba5b:575 with SMTP id
+ a9-20020aa795a9000000b005a8ba5b0575mr1432692pfk.40.1676630915302; Fri, 17 Feb
+ 2023 02:48:35 -0800 (PST)
 MIME-Version: 1.0
-References: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
-In-Reply-To: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
+References: <02b46550-e0b5-4251-8156-56eb0f690d89@gmail.com> <2553f3bc-b1e6-4af2-fb6c-def486dd99a3@gmail.com>
+In-Reply-To: <2553f3bc-b1e6-4af2-fb6c-def486dd99a3@gmail.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 17 Feb 2023 11:26:50 +0100
-Message-ID: <CAPDyKFp-ASckmet2hA7XuycijRSe64HEkVRzPSBKP4G4NG6v-g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mmc: meson-gx: fix interrupt binding
+Date: Fri, 17 Feb 2023 11:47:45 +0100
+Message-ID: <CAPDyKFpCEzubkJ=roniomXHaWrY5AOqfPZmNLbMbBnubHzZrEg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] mmc: core: add helpers mmc_regulator_set_ocr_vmmc_up/off
 To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
 	Jerome Brunet <jbrunet@baylibre.com>, 
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
 	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230217_022731_027615_9371F9E7 
-X-CRM114-Status: GOOD (  15.33  )
+X-CRM114-CacheID: sfid-20230217_024837_642657_A5B44B38 
+X-CRM114-Status: GOOD (  14.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,45 +89,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 16 Feb 2023 at 20:50, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Wed, 15 Feb 2023 at 21:14, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 >
-> Reflect in the binding that the cd interrupt is optional,
-> and add a description of the interrupts.
+> A lot of drivers use this code, therefore let's factor it out to
+> helpers.
 >
-> Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
 > ---
-> v2:
-> - omit maxItems and use items
-> ---
->  .../devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml        | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  include/linux/mmc/host.h | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> index c8c30300d..bc403ae9e 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -28,7 +28,10 @@ properties:
->      maxItems: 1
+> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> index 812e6b583..f93fb8c7d 100644
+> --- a/include/linux/mmc/host.h
+> +++ b/include/linux/mmc/host.h
+> @@ -597,6 +597,23 @@ static inline int mmc_regulator_set_vqmmc(struct mmc_host *mmc,
+>  }
+>  #endif
 >
->    interrupts:
-> -    maxItems: 2
-> +    minItems: 1
-> +    items:
-> +      - description: mmc controller instance
-> +      - description: card detect
+> +static inline int mmc_regulator_set_ocr_vmmc_up(struct mmc_host *mmc,
+> +                                               struct mmc_ios *ios)
+> +{
+> +       if (IS_ERR(mmc->supply.vmmc))
+> +               return 0;
+
+Rather than adding these two new helper functions, how about adding
+the similar check in mmc_regulator_set_ocr() instead?
+
+That should allow us to simplify some code in the host drivers too, right?
+
+> +
+> +       return mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
+> +}
+> +
+> +static inline int mmc_regulator_set_ocr_vmmc_off(struct mmc_host *mmc)
+> +{
+> +       if (IS_ERR(mmc->supply.vmmc))
+> +               return 0;
+> +
+> +       return mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
+> +}
+> +
+>  int mmc_regulator_get_supply(struct mmc_host *mmc);
 >
->    clocks:
->      maxItems: 3
+>  static inline int mmc_card_is_removable(struct mmc_host *host)
 > --
 > 2.39.1
 >
+>
+
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
