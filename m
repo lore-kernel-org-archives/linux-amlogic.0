@@ -4,107 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53B50C64EC7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Feb 2023 18:23:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9704DC636D7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Feb 2023 21:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LJioMFVFSXEbIGrBNIywAkSorNycz83NZvt5d+XWjgo=; b=OuiMmh24dDQYua
-	f/FhaDiE5Ygf+vOKv79O7oc1l2PgR2etCgmHttvK0AbxFtsCNklvisUmGfx4zrytdn1CjuwerW1qG
-	MpKZdxafnrZdWua96SG3v0Fng2yM5qumCTg1b5ptj2K9qW0yIoRyyaeAHmae9dsQ55kseDpEhHCnD
-	1+xSHBnvrHdsjo0J7X8nau0A239E8Y5Wo3U/QTqklZhgKQkeh54C82rGSXd8dz/14KORIhFjBEIRF
-	uG6ImXhzvWDfZs8YfFXbk1mugU0Lv5Ihg5a9Ue5A1jLRWKU8IOZt0svfEL+utLgQYVnFhG/0O1HIH
-	blTZhPul+DLS5Hqv+CJg==;
+	List-Owner; bh=CYOIn8M6sy+GsHfhBsLYXj8P+2GxpA128jqUufxtsbA=; b=dtFddjffg7yA2o
+	dUK35znFDLosbt3cBwjYmRK2i8dI5H4JNwaczgOX6TFrvMlQtZ7Y1V8QS0+K1XHbOgvNO5p0YPiit
+	x5uhnL30dhkvy9Mu9zi9Nmh/3Y/7suKJvnPwPh3LgoHZiWRpylZl4i6O6t04nfvLuOFjJLvDy4M00
+	Ipvxd8X3raWt/kXe/tSaUmSvWPgP2TEaSufBbs7aRo1wS9APCDgNYmS3s6ccGGIlvIw22nVJNLHSU
+	YN2wGRZgsxql9bvv6WpOJZVbO02/ASBy+G8JIq05JuRoxaTWSleiVCjq3bBKQPz6qmg1ZISejBELw
+	t39encfEyFU03T1ql1ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUXI4-009MJ5-Re; Tue, 21 Feb 2023 18:23:00 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1pUaEv-009pZJ-1K; Tue, 21 Feb 2023 21:31:57 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUXI2-009MI9-4o; Tue, 21 Feb 2023 18:22:59 +0000
-Received: by mail-ed1-x532.google.com with SMTP id ee7so5819588edb.2;
-        Tue, 21 Feb 2023 10:22:57 -0800 (PST)
+	id 1pUaEj-009pWw-Hd; Tue, 21 Feb 2023 21:31:47 +0000
+Received: by mail-ed1-x534.google.com with SMTP id g1so22465105edz.7;
+        Tue, 21 Feb 2023 13:31:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dWBuZuItO82IFqyz0MCKd6UQRtN+LPDLboXi20Lorqc=;
-        b=nHxfMRu41wzUAs9PMVxmCTZM+TTzDTKp6U8xb3FCFk8OCHPjt0O/eHNa+0iXdsMjze
-         fw0AK2OeVI0wt+Wxrk0mLbc+JHeEo0Y9rAMUnzYHJ45WIA7nS5GmcfYlMhPD6eLhzEbs
-         /03ULvS4qjrv80E3qAv72cLm83yyFAV7GckeDgAgU2gOcChGvbgMKYOgJmAtzuMvs8qe
-         1rugqInJKPI2dPHXBOjdHpSf3EnfxiXv6rbaXRYMwvxtemLT9NAOzZLO4CQouNdHO1Ny
-         EFU2g8Qb6p6UWUDeIED19Oqy6Faq2uJZ18mohAJeGIzW60Vl6EiqtTwe102l/joXzyOs
-         w/Tg==
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WokcBLUnLSvFGi3BJyxHBNtjfEojDdGdaUBZIAtdp4s=;
+        b=Z8fWeEjGHvPG6JVdryyxrCdAVI3nC1xgRLImgd5JYTLys0lbg6K9T9/bKIVU2pxAYq
+         buyL+iGVc8ZxTzavZWiNk2peOlZUn+afRv9/LAf7YibQppVfDrabdLNyPLBvNFEel7FG
+         Q6683yfIWP/EAL9pj4GrYv7q5bPSzT7lqTMMafhtQU2MAhzx+xlDm70LbkZOdMmpVm2k
+         63T8vwVi4R9kVuF/gjxJStgsO2uST8/J7saB2E3On0KG21kGz/Td1ul3t4QugFSxJ3O6
+         JUOMS8OtHGg9McIGMJlqhize/zO5ft2pWzH43XJAIYHPYhih0MCPIxu3IMjAu73RSUwI
+         AhNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dWBuZuItO82IFqyz0MCKd6UQRtN+LPDLboXi20Lorqc=;
-        b=Nsg6s6Yk5hu6Fhw7y8M3eTh3nLFI+LnsTQYm4jkEg0WwNNWIdUJB1S2irdXI4P+Wqs
-         g7cbHDMQzxhfoGM3G08cjptx9WCUY6iteOt4BVgwTDO8DId1kWdC7fWmr4bMjWlCj1By
-         10A1fNticwCC6zwd4bYbZHwoI/qaxNznZDIHT1TKBU6icTLMqRJT0BcfhHQ0JyCxURUy
-         V7/y6xxjGKYwF+Hty32/x4K5zpPK/5f/44m0eXyk82pv3XhEsxZZt6uuN1kQniHRiF9G
-         21Yp9xwVTDbDh46Q7tVXk5/+W5ZQbtZXI7OEPmNZ0Z7sFgvsPMEfgEpdkGi1IgT9JT7g
-         otBg==
-X-Gm-Message-State: AO0yUKVIfnxK3730M0Oa3iKB2hZaefxxO3WdDLN2edBBCWnsc1jmDh1U
-	LHrZ645yL3yb92mdCHxTv0c=
-X-Google-Smtp-Source: AK7set9RRyalSHH8Rnrhw+wG3j5tvzZjg2pF8az9E56fflvH6AQziI48YwaJ9r11hqsK2UbALLkZKg==
-X-Received: by 2002:a05:6402:35c1:b0:49e:1f0e:e209 with SMTP id z1-20020a05640235c100b0049e1f0ee209mr5617045edc.10.1677003775806;
-        Tue, 21 Feb 2023 10:22:55 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id i14-20020a50d74e000000b004acbde59e64sm3031509edj.8.2023.02.21.10.22.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 10:22:55 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: rafael@kernel.org, daniel.lezcano@linaro.org,
- Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Guillaume La Roque <glaroque@baylibre.com>, Amit Kucheria <amitk@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Balsam CHIHI <bchihi@baylibre.com>, Daniel Golle <daniel@makrotopia.org>,
- Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- ye xingchen <ye.xingchen@zte.com.cn>, Randy Dunlap <rdunlap@infradead.org>,
- Adam Ward <DLG-Adam.Ward.opensource@dm.renesas.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Mark Brown <broonie@kernel.org>,
- "open list:THERMAL DRIVER FOR AMLOGIC SOCS"
- <linux-amlogic@lists.infradead.org>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
- "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
- "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
- "open list:TI BANDGAP AND THERMAL DRIVER" <linux-omap@vger.kernel.org>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-mediatek@lists.infradead.org>
-Subject:  Re: [PATCH v2 05/16] thermal/hwmon: Use the right device for
- devm_thermal_add_hwmon_sysfs()
-Date: Tue, 21 Feb 2023 19:22:53 +0100
-Message-ID: <4462258.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <20230221180710.2781027-6-daniel.lezcano@linaro.org>
-References:  <20230221180710.2781027-1-daniel.lezcano@linaro.org>
- <20230221180710.2781027-6-daniel.lezcano@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WokcBLUnLSvFGi3BJyxHBNtjfEojDdGdaUBZIAtdp4s=;
+        b=OOirkP5AX9Zuy4LzwV60hCEoKixI0L0vZ5Zy9Ljic+UpFYOgMJZ3HYISarZviCEBSh
+         8sLfh0Pzom/8tOwOpALzdr9wtT1Ka1f6RqWbk7Q4PETviL5df66MbZyTy4kHyugEWd1k
+         fbB81LcUBzWV9g5JUQ1fQhwEDzqYg5V0FYjFFizFvGzRMco9VN9Bw+cYYNasKU5feV6N
+         lZbOMWXW+iXbzdf+8zXrkSB1lYbYTZ/K3w7NTT5qHsMSrvjEhGABak9rkUuxYe9FtQpm
+         modrDTJPjMZjCPBDHypZR+WHhLwy2NovBmu981PmOcOpT7zcdr0rMUjs2eCczpH6tUkN
+         VQpQ==
+X-Gm-Message-State: AO0yUKXu0fCLrRSrEsPWKIFwiDSwEEbR0eIoA5fZQ71Qjrsi8Mepc1Xy
+	LVtk3OP5kMsKtyCNyMd8gOYUTXNkBsQlSSxXK7M=
+X-Google-Smtp-Source: AK7set9vk9Xi3fa2gAaKh/M40NvhtCdUZG0stm4aPGsfWumGGlTYYztJ7TujIRU+FWLYsnYhvWwu8Kb2bpljPLahEZc=
+X-Received: by 2002:a17:906:8144:b0:8e3:da0f:f9b7 with SMTP id
+ z4-20020a170906814400b008e3da0ff9b7mr866379ejw.4.1677015100846; Tue, 21 Feb
+ 2023 13:31:40 -0800 (PST)
 MIME-Version: 1.0
+References: <6474e163-e61a-e04c-590d-60c674dc7ed9@sberdevices.ru>
+In-Reply-To: <6474e163-e61a-e04c-590d-60c674dc7ed9@sberdevices.ru>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 21 Feb 2023 22:31:30 +0100
+Message-ID: <CAFBinCCaQ1fwFmV=CtihP+peFGTiHfVXtdKmQYJnX3a+-wNuzg@mail.gmail.com>
+Subject: Re: [PATCH v2] mtd: rawnand: meson: initialize struct with zeroes
+To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Cc: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	"linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, kernel <kernel@sberdevices.ru>, 
+	Krasnov Arseniy <oxffffaa@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230221_102258_223074_1BA09542 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20230221_133145_622828_9097A76D 
+X-CRM114-Status: GOOD (  10.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,45 +91,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Dne torek, 21. februar 2023 ob 19:06:59 CET je Daniel Lezcano napisal(a):
-> The devres variant of thermal_add_hwmon_sysfs() only takes the thermal
-> zone structure pointer as parameter.
-> 
-> Actually, it uses the tz->device to add it in the devres list.
-> 
-> It is preferable to use the device registering the thermal zone
-> instead of the thermal zone device itself. That prevents the driver
-> accessing the thermal zone structure internals and it is from my POV
-> more correct regarding how devm_ is used.
-> 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> #amlogic_thermal ---
->  drivers/thermal/amlogic_thermal.c                  | 2 +-
->  drivers/thermal/imx8mm_thermal.c                   | 2 +-
->  drivers/thermal/imx_sc_thermal.c                   | 2 +-
->  drivers/thermal/k3_bandgap.c                       | 2 +-
->  drivers/thermal/mediatek/auxadc_thermal.c          | 2 +-
->  drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 2 +-
->  drivers/thermal/qcom/qcom-spmi-temp-alarm.c        | 2 +-
->  drivers/thermal/qcom/tsens.c                       | 2 +-
->  drivers/thermal/qoriq_thermal.c                    | 2 +-
->  drivers/thermal/sun8i_thermal.c                    | 2 +-
+Hello Arseniy,
 
-For sun8i_thermal:
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+On Tue, Feb 21, 2023 at 11:07 AM Arseniy Krasnov
+<AVKrasnov@sberdevices.ru> wrote:
+>
+> This structure must be zeroed, because it's field 'hw->core' is used as
+> 'parent' in 'clk_core_fill_parent_index()', but it will be uninitialized.
+> This happens, because when this struct is not zeroed, pointer 'hw' is
+> "initialized" by garbage, which is valid pointer, but points to some
+> garbage. So 'hw' will be dereferenced, but 'core' contains some random
+> data which will be interpreted as pointer.
+I think this should be written as "interpreted as a pointer". I'm not
+a native English speaker though, so I'm hoping that someone else can
+provide feedback as well.
+
+[...]
+> Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Regardless of my comment above:
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
 
 Best regards,
-Jernej
-
->  drivers/thermal/tegra/tegra30-tsensor.c            | 2 +-
->  drivers/thermal/thermal_hwmon.c                    | 4 ++--
->  drivers/thermal/thermal_hwmon.h                    | 4 ++--
->  drivers/thermal/ti-soc-thermal/ti-thermal-common.c | 2 +-
->  14 files changed, 16 insertions(+), 16 deletions(-)
-
-
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
