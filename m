@@ -4,69 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20537C636D6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Feb 2023 11:51:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82747C636D6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Feb 2023 13:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xpxmk7xvM0mFMECY2P+PsR2ira45x+p7GfVmqnSMKMk=; b=MkKP6bK0plips3
-	uRy8b0ILRvcsLYmmFZiVBadX7GV7Mjn/S6orIdtcTax6dPArdfTErMQyT42saYjsrX04KHDCCrOcs
-	10ETjKsAhOFCFsJWvcyiciNxzuvSJrtzAsMI6LQ4zl/mPDO4S98mYdVl4/bfRHiu2Vkc1h3em2phS
-	QBP4gqK4YoHLqaeiWKdnPtA040G0EnrHG/jMP9MI2rTOWU2C9tYYMzCL78yVwA1fm68Oja7oEXFm6
-	DGbMud6SMpzcuhIrcvzsSEHQdkyJpO8NBnYA7tsxIc07RPHThaQfpdKqkKyCsAGpcdB9JdDxgbJZr
-	4aXGnl4KPvRVx18bkSQQ==;
+	List-Owner; bh=AP0Yc9LGkk2x05QTasEO6SUAFuqfOjS12+PaMTj837o=; b=N1csgOUCINRUqS
+	7gF6hYjV0Tz6BpzGNdtDADtQt2pRfayG1GhfYcZxGBkCrvV3ZWhKBs3aDR4oYdWr1GAuCGOoQHKEW
+	BDXJhJh84V4qvwqGyZgfWKTGwgQW/th+a/TfYRMiSQLJTwDSQ904BqmVLkGBxKDHVnTCkXe91gjUa
+	3hUe8VR/6PF7Qs4ikoPdPwk9RQwJIClIY3BK6mh73yDdbisQ3MbxFTvOXj4a0ksUNbcBvIPN8FHM2
+	pPNBidOv+VCr9CNjYAuYjzJWkIFcQrWi38c3oIqp2qXXEZuKQpWkkq+g4J9l+RVeNVuAhxhjLu/IZ
+	w6NQvyIROZK0927iLhBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUneR-00CDp7-3M; Wed, 22 Feb 2023 11:51:11 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pUpFv-00CXDr-Tz; Wed, 22 Feb 2023 13:33:59 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUne0-00CDcM-ES; Wed, 22 Feb 2023 11:50:47 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 002535FD64;
-	Wed, 22 Feb 2023 14:50:35 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1677066635;
-	bh=Yyq/EadsRRDr4Cn4B6hjT0ghvVGKK0Iz7Oqvfgz081w=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=drPuGdEfS1foAlEwDmZ4JZ/FIZiO/YPWJYfQ5IFyvCIUhIrepI1GdLa3QCHmULr63
-	 2oym3dL0FOxSkQ7ARmTOxjO9b2iJYh0qlPzs7TTp1c4j/RDl/J3vegWBUKQP4TxSNY
-	 xnUiiPLmDNubxa4IdADeTUwwWLNhi7OBoEbMuiwWxVE3gSq7YolPnWIdy2LCgHLCr5
-	 8gL9Vu+kQ4clguQvtC/wTFU/OlMbYXEr2iRyIcD4/oo9WnGML4KegxfdZJwsyYysHq
-	 XO61/OMBWd1tJHBp7Ofgyd8hQiTRgvw7nmcStgDVMJU/mluG4m7GSCe54DdsDTvEgq
-	 EHDV7se7R0u3A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 22 Feb 2023 14:50:34 +0300 (MSK)
-From: Alexey Romanov <avromanov@sberdevices.ru>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <linus.walleij@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
-Date: Wed, 22 Feb 2023 14:50:20 +0300
-Message-ID: <20230222115020.55867-4-avromanov@sberdevices.ru>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230222115020.55867-1-avromanov@sberdevices.ru>
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
+	id 1pUpFr-00CXCn-Kr
+	for linux-amlogic@lists.infradead.org; Wed, 22 Feb 2023 13:33:58 +0000
+Received: by mail-wm1-x334.google.com with SMTP id p3-20020a05600c358300b003e206711347so5400030wmq.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 22 Feb 2023 05:33:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wjy7XTatXC+XxCQYn4bK+GvF+gmfm7vqZf4bRJfFvqE=;
+        b=OQJNAKaUrLdK+1OAcKo/oLi8DsZZpVm2771Uds4bNBfGAsSmbqMZf94TmFIiV0IotM
+         papClaC2/aZffHR+XqgoZo4j2MnFAdL4UGvNpneRD5je8lHmtjkqScC/L/zuGybHYPEX
+         9XfE2eeSSr9yHD97xJvqsXzH9JakL+7B+x5gKH8ta7wc7QNGmfl9TBLu/WKOC/F07m1u
+         rDWh6kt7eu+EL36hbq1rKk190PGiUVOBG/VqqP1funedAiXLumeEhOIEcGSsHShF28IS
+         /eByRUHKu6GOOD/EgDlZXJk32vZsnCuBjMEg90hs2nvCAkDO99yKRgILBxXgRpec7DZg
+         VmGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wjy7XTatXC+XxCQYn4bK+GvF+gmfm7vqZf4bRJfFvqE=;
+        b=3N885u9TEV2YAtVORRfx7JRia+Rrs+s8miConW0rU4Tto53a//zWy0lt5JKayMNq/+
+         3HApKK+bZ8GRftGKCHO704ZnzGHFnlojK4obytr+6BCgx65KBVwbOFV9KtkSgOdzV2OC
+         zhDfID6ZQWrqED95EO1SqVakGHfHaBme8J4Cu8Gia1GocH6oXRUujftUDnDCxXLLbfYx
+         FOLUGe49Hs2xkEf7r7vtDSDdJYiP+NuVVM3WaZFllI/XictwB2oNfuK0tGsfDPjkrDVM
+         wLdB+UVH5TmXUEIgUq1wpeqoPLoHux03/83CeqGsK9p4VCZappsb0vf/qZave8r2fHNl
+         KeOg==
+X-Gm-Message-State: AO0yUKVa81cmzVHobfV72ef09TB+1nha3HS9aqbhSP6hx6fQBbj0AIbp
+	p4TKumBHmwEwGhl7ITtlnsjK1w==
+X-Google-Smtp-Source: AK7set9D2pdjPY2VUsGWgakrRbvVWNA5mmQY2HD7k+FFoINpouHWlS9FQDY1Kw+RslKHuQgrQWkZqw==
+X-Received: by 2002:a05:600c:328a:b0:3dc:50bc:da70 with SMTP id t10-20020a05600c328a00b003dc50bcda70mr5851830wmp.10.1677072832575;
+        Wed, 22 Feb 2023 05:33:52 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id b17-20020a5d6351000000b002c70a68111asm1895156wrw.83.2023.02.22.05.33.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Feb 2023 05:33:52 -0800 (PST)
+References: <0f78b654-86d9-3bbe-9fa5-003479b0cdbe@gmail.com>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
+ <linux-amlogic@lists.infradead.org>, "linux-mmc@vger.kernel.org"
+ <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH RFC] mmc: meson-gx: improve clock privisioning
+Date: Wed, 22 Feb 2023 12:15:08 +0100
+In-reply-to: <0f78b654-86d9-3bbe-9fa5-003479b0cdbe@gmail.com>
+Message-ID: <1j4jrdq0xt.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/22 06:32:00 #20888384
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230222_035044_868838_726CB378 
-X-CRM114-Status: GOOD (  12.56  )
+X-CRM114-CacheID: sfid-20230222_053355_712224_C9744F08 
+X-CRM114-Status: GOOD (  36.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,178 +94,241 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add basic support for the 32-bit Amlogic A1. This device tree
-describes following compontents: CPU, GIC, IRQ, Timer, UART,
-PIN controller. It's capable of booting up into
-the serial console.
 
-This is based on arm64 version of meson-a1.dtsi.
+On Sat 18 Feb 2023 at 21:07, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
----
- arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 arch/arm/boot/dts/meson-a1.dtsi
+> Motivation for dealing with this code is that the driver doesn't work
+> on my SC2-based test system (HK1 RBOX X4S, based on ah212 board).
+>
+> The current code makes the assumption that clkin0 is set to XTAL rate
+> (24MHz) or less, otherwise the initial frequency of 400kHz can't be set,
+> considering that the maximum divider value is 63.
+> Currently there's no code for changing the rate of clkin0.
 
-diff --git a/arch/arm/boot/dts/meson-a1.dtsi b/arch/arm/boot/dts/meson-a1.dtsi
-new file mode 100644
-index 000000000000..1d900fe86f8e
---- /dev/null
-+++ b/arch/arm/boot/dts/meson-a1.dtsi
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 SberDevices.
-+ * Author: Alexey Romanov <avromanov@sberdevices.ru>
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/meson-a1-gpio.h>
-+
-+/ {
-+	compatible = "amlogic,a1";
-+
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x1>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		apb: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0xfe000000 0x1000000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xfe000000 0x1000000>;
-+
-+			reset: reset-controller@0 {
-+				compatible = "amlogic,meson-a1-reset";
-+				reg = <0x0 0x8c>;
-+				#reset-cells = <1>;
-+			};
-+
-+			periphs_pinctrl: pinctrl@400 {
-+				compatible = "amlogic,meson-a1-periphs-pinctrl";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges;
-+
-+				gpio: bank@400 {
-+					reg = <0x0400 0x003c>,
-+					      <0x0480 0x0118>;
-+					reg-names = "mux", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 0 62>;
-+				};
-+
-+			};
-+
-+			uart_AO: serial@1c00 {
-+				compatible = "amlogic,meson-gx-uart",
-+					     "amlogic,meson-ao-uart";
-+				reg = <0x1c00 0x18>;
-+				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_AO_B: serial@2000 {
-+				compatible = "amlogic,meson-gx-uart",
-+					     "amlogic,meson-ao-uart";
-+				reg = <0x2000 0x18>;
-+				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			gpio_intc: interrupt-controller@0440 {
-+				compatible = "amlogic,meson-a1-gpio-intc",
-+					     "amlogic,meson-gpio-intc";
-+				reg = <0x0440 0x14>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				amlogic,channel-interrupts =
-+					<49 50 51 52 53 54 55 56>;
-+			};
-+		};
-+
-+		gic: interrupt-controller@ff901000 {
-+			compatible = "arm,gic-400";
-+			reg = <0xff901000 0x1000>,
-+			      <0xff902000 0x2000>,
-+			      <0xff904000 0x2000>,
-+			      <0xff906000 0x2000>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9
-+				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+};
--- 
-2.38.1
+Because it was expected the bootloader would leave clkin0 (the MMC clk)
+on the XTAL. This has holded true on all the SoC so far. It is a fairly
+weak and unsafe assumption for sure.
+
+>
+> On my system clkin0 is set to 1Ghz (fclkdiv2) when meson-gx mmc driver
+> is loaded. Therefore the driver doesn't work for me as-is.
+>
+> Further facts to consider:
+>
+> The MMC block internal divider isn't strictly needed for clock generation
+> because the clkin0 hierarchy includes a better (wider) divider that
+> we could use. It's primary purpose is supporting resampling. The bigger
+> the divider value the more granularity we have for resampling.
+
+I already tried to get rid of clkin1 in the past.
+You may indeed get fdiv2 and other clocks through the mmc clock of the
+main clock tree. However, getting fdiv2 (or another clock) through this
+path caused problem under various conditions with high speed modes (such
+as HS200 and SDR).
+
+It should have been equivalent, but it was not. Revisiting this is a
+good idea but it will require a *LOT* of tests on all the
+supported HW.
+
+>
+> clkin1 is fclkdiv2, and this clock is one parent of clkin0 anyway.
+> Therefore the MMC block internal mux isn't strictly needed.
+>
+
+In theory, it is not needed - In practice, it is needed.
+
+> What the proposed change does:
+> - Ignore the MMC block internal mux and use clkin0 only.
+> - Before setting rate of mmc_clk, set clkin0 to the rate closest to
+>   63 (max_div) * requested_rate. This allows for maximum divider value
+>   and therefore most granularity for resampling.
+>
+> The changed driver works fine on my system.
+
+Initializing clkin0 to force it back on XTAL after devm_clk_get() would
+solve your problem too. It would be far simpler without any risk for the
+other supported HW in the short term.
+
+>
+> I have limited insight in the other Amlogic families supported by this
+> driver. Therefore patch comes as RFC.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 77 +++++++++++++--------------------
+>  1 file changed, 30 insertions(+), 47 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 2b963a81c..83d849db6 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -32,6 +32,7 @@
+>  
+>  #define SD_EMMC_CLOCK 0x0
+>  #define   CLK_DIV_MASK GENMASK(5, 0)
+> +#define     CLK_DIV_MASK_WIDTH __builtin_popcountl(CLK_DIV_MASK)
+>  #define   CLK_SRC_MASK GENMASK(7, 6)
+>  #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
+>  #define   CLK_TX_PHASE_MASK GENMASK(11, 10)
+> @@ -131,8 +132,6 @@
+>  #define SD_EMMC_PRE_REQ_DONE BIT(0)
+>  #define SD_EMMC_DESC_CHAIN_MODE BIT(1)
+>  
+> -#define MUX_CLK_NUM_PARENTS 2
+> -
+>  struct meson_mmc_data {
+>  	unsigned int tx_delay_mask;
+>  	unsigned int rx_delay_mask;
+> @@ -155,7 +154,7 @@ struct meson_host {
+>  	struct	mmc_command	*cmd;
+>  
+>  	void __iomem *regs;
+> -	struct clk *mux_clk;
+> +	struct clk *clkin;
+>  	struct clk *mmc_clk;
+>  	unsigned long req_rate;
+>  	bool ddr;
+> @@ -203,6 +202,21 @@ struct meson_host {
+>  #define CMD_RESP_MASK GENMASK(31, 1)
+>  #define CMD_RESP_SRAM BIT(0)
+>  
+> +static int meson_mmc_clk_set_rate(struct meson_host *host, unsigned long rate)
+> +{
+> +	unsigned long max_div;
+> +	int ret;
+> +
+> +	/* maximize divider value, this improves resampling granularity */
+> +	max_div = min(ULONG_MAX / rate, (1UL << CLK_DIV_MASK_WIDTH) - 1);
+> +
+> +	ret = clk_set_rate(host->clkin, rate * max_div);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return clk_set_rate(host->mmc_clk, rate);
+> +}
+> +
+>  static unsigned int meson_mmc_get_timeout_msecs(struct mmc_data *data)
+>  {
+>  	unsigned int timeout = data->timeout_ns / NSEC_PER_MSEC;
+> @@ -386,7 +400,7 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long rate,
+>  	writel(cfg, host->regs + SD_EMMC_CFG);
+>  	host->ddr = ddr;
+>  
+> -	ret = clk_set_rate(host->mmc_clk, rate);
+> +	ret = meson_mmc_clk_set_rate(host, rate);
+>  	if (ret) {
+>  		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
+>  			rate, ret);
+> @@ -420,11 +434,9 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long rate,
+>  static int meson_mmc_clk_init(struct meson_host *host)
+>  {
+>  	struct clk_init_data init;
+> -	struct clk_mux *mux;
+>  	struct clk_divider *div;
+>  	char clk_name[32];
+> -	int i, ret = 0;
+> -	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+> +	int ret = 0;
+>  	const char *clk_parent[1];
+>  	u32 clk_reg;
+>  
+> @@ -438,40 +450,10 @@ static int meson_mmc_clk_init(struct meson_host *host)
+>  		clk_reg |= CLK_IRQ_SDIO_SLEEP(host);
+>  	writel(clk_reg, host->regs + SD_EMMC_CLOCK);
+>  
+> -	/* get the mux parents */
+> -	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
+> -		struct clk *clk;
+> -		char name[16];
+> -
+> -		snprintf(name, sizeof(name), "clkin%d", i);
+> -		clk = devm_clk_get(host->dev, name);
+> -		if (IS_ERR(clk))
+> -			return dev_err_probe(host->dev, PTR_ERR(clk),
+> -					     "Missing clock %s\n", name);
+> -
+> -		mux_parent_names[i] = __clk_get_name(clk);
+
+=> Here you could init clkin0
+
+Another solution is use 'assigned-rate' and 'assigned-parent' in DT
+to properly set the MMC clock coming from the main clock tree. Maybe it
+would be better.
+
+> -	}
+> -
+> -	/* create the mux */
+> -	mux = devm_kzalloc(host->dev, sizeof(*mux), GFP_KERNEL);
+> -	if (!mux)
+> -		return -ENOMEM;
+> -
+> -	snprintf(clk_name, sizeof(clk_name), "%s#mux", dev_name(host->dev));
+> -	init.name = clk_name;
+> -	init.ops = &clk_mux_ops;
+> -	init.flags = 0;
+> -	init.parent_names = mux_parent_names;
+> -	init.num_parents = MUX_CLK_NUM_PARENTS;
+> -
+> -	mux->reg = host->regs + SD_EMMC_CLOCK;
+> -	mux->shift = __ffs(CLK_SRC_MASK);
+> -	mux->mask = CLK_SRC_MASK >> mux->shift;
+> -	mux->hw.init = &init;
+> -
+> -	host->mux_clk = devm_clk_register(host->dev, &mux->hw);
+> -	if (WARN_ON(IS_ERR(host->mux_clk)))
+> -		return PTR_ERR(host->mux_clk);
+> +	host->clkin = devm_clk_get(host->dev, "clkin0");
+> +	if (IS_ERR(host->clkin))
+> +		return dev_err_probe(host->dev, PTR_ERR(host->clkin),
+> +				     "Missing clkin0\n");
+>  
+>  	/* create the divider */
+>  	div = devm_kzalloc(host->dev, sizeof(*div), GFP_KERNEL);
+> @@ -481,14 +463,14 @@ static int meson_mmc_clk_init(struct meson_host *host)
+>  	snprintf(clk_name, sizeof(clk_name), "%s#div", dev_name(host->dev));
+>  	init.name = clk_name;
+>  	init.ops = &clk_divider_ops;
+> -	init.flags = CLK_SET_RATE_PARENT;
+> -	clk_parent[0] = __clk_get_name(host->mux_clk);
+> +	init.flags = 0;
+> +	clk_parent[0] = __clk_get_name(host->clkin);
+>  	init.parent_names = clk_parent;
+>  	init.num_parents = 1;
+>  
+>  	div->reg = host->regs + SD_EMMC_CLOCK;
+>  	div->shift = __ffs(CLK_DIV_MASK);
+> -	div->width = __builtin_popcountl(CLK_DIV_MASK);
+> +	div->width = CLK_DIV_MASK_WIDTH;
+>  	div->hw.init = &init;
+>  	div->flags = CLK_DIVIDER_ONE_BASED;
+>  
+> @@ -497,11 +479,12 @@ static int meson_mmc_clk_init(struct meson_host *host)
+>  		return PTR_ERR(host->mmc_clk);
+>  
+>  	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+> -	host->mmc->f_min = clk_round_rate(host->mmc_clk, 400000);
+> -	ret = clk_set_rate(host->mmc_clk, host->mmc->f_min);
+> +	ret = meson_mmc_clk_set_rate(host, 400000);
+>  	if (ret)
+>  		return ret;
+>  
+> +	host->mmc->f_min = clk_get_rate(host->mmc_clk);
+> +
+
+This diff actually changes nothing
+
+>  	return clk_prepare_enable(host->mmc_clk);
+>  }
+>  
+> @@ -531,7 +514,7 @@ static int meson_mmc_resampling_tuning(struct mmc_host *mmc, u32 opcode)
+>  	int ret;
+>  
+>  	/* Resampling is done using the source clock */
+> -	max_dly = DIV_ROUND_UP(clk_get_rate(host->mux_clk),
+> +	max_dly = DIV_ROUND_UP(clk_get_rate(host->clkin),
+>  			       clk_get_rate(host->mmc_clk));
+>  
+>  	val = readl(host->regs + host->data->adjust);
 
 
 _______________________________________________
