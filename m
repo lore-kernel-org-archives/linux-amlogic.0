@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D0CC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Feb 2023 21:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD43C61DA4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Feb 2023 21:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=amxATA4/CU9791h71MYoQ8VRNkhUNevz2LnUNYzQUHY=; b=0sXDwwxhJcyjbu
-	e7tvleefezkbRZVTCT5zNZ5K5irdme4DWDfyApKUOPYFJ7ytqMCM2qhVKzSWlg9QTZATAI+c9r/ly
-	g3hZtdUg8L5z8KgXNkq1CYdpZqZiIoUoDBY5sw05ylVJ5pLFuaPlQBHCrCeDkHcdtjsEB3EiIqw3+
-	w2tMUjtljEmVmLa4ImwJ2Ls/Gpy86vd+CnHVsPR/58WwVBPglkHWp70dsWv/Ii5mcjfqUxuVAsxEB
-	qoJsNAL8gewz1nsGhKRfbCjuL4nZjU+H5WEO8Zf6j3vHnP6DYVAyLWVCueOp4J3GxFV1bfefG7iP1
-	4SvIMtXSRRrT+UfLSnYQ==;
+	List-Owner; bh=WdBQh4m3mwXe9+fk69QHv0k6ToeogyflTvwUn3C+UgI=; b=kqoF24duPfwSVX
+	jlFnWudhiCoSplFlbj5TNi1SBXnesnlHbSiJJkeHBn58e9JN7rBjXafQyFUmLE8gCh+Mjqki+7nyj
+	mxpZ0hQ0ax9QfFVVgLdqiCzDbDio3PM9SVODl4CBtUB22tfwWbsCPxrLI/DexMyCG7GjUddn7wC61
+	Fu3ZiyAG6WYdoMyKXsve3PZQ6GfGBym+dq8xx/EG5bKutSqJBay4opQUtfTs4khMakSe2hDshf5TI
+	4GXk+se2hEoNCas5I/ueoKNuoRvzqzkP+QWJpiMlXtjbQXkSnc4pYwmEaxCaZV/1ax/Nv+K+XXc+O
+	vK2+w0u5DGt8IoQTDP9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUwIB-00E6af-WA; Wed, 22 Feb 2023 21:04:48 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1pUwIT-00E6hp-1B; Wed, 22 Feb 2023 21:05:05 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUwI8-00E6WC-Jk; Wed, 22 Feb 2023 21:04:46 +0000
-Received: by mail-ed1-x535.google.com with SMTP id ck15so37023158edb.0;
-        Wed, 22 Feb 2023 13:04:42 -0800 (PST)
+	id 1pUwIB-00E6Wq-Ox; Wed, 22 Feb 2023 21:04:49 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id ck15so37023447edb.0;
+        Wed, 22 Feb 2023 13:04:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bbt3aJeEOkgWRPa3MfKpp7LuHfzCeFjCJvJNJi9PM8Q=;
-        b=QpTl01PM3tuyIi8wIIDCzQPYzGp1nAZs0O0EnPXT/GiPYtbwLditEfKYj9I0HsqJcl
-         edm5/RfJugSH+PjhnpHHCVpx1idH/Bw9ekKGG07QLwYpzGzEFjNPGxgBhwW2Cpl/+/wo
-         fkPu6sUamnyY1HZsgcs0aE4AILYO1e7Vr6KIbNbPqdL9hNkAGMUu5JhuWrYR69prldVx
-         UPfvGbyx/Dh3Ha6IngzXd/wIm5ABBhV9snWFshC3WKSE7f9gqBPAUIIjcL9avrSLyBvC
-         H5ghH1xAtaONTJCsGIurtakAjTg7oP/fNQBYV5bI9aIFSGOVUlqu4hcIU63OPhtZdEhu
-         dHGA==
+        bh=D4sT1wUlCbHRDpbMzMMTT4BWgWGszScqpQQPPR7Avx8=;
+        b=fV1pXve6qVGgUZzvzS3Cvik+RMpTsqvE0467NRn8Yb6V7KweUNBEWo4/q30yGcFc9w
+         D+rYJdf2EukzBDNH1v7G086P4Dv9oonD3XT2xLE1mdfg9C347zfJ0wMXCy5hhBVc14pH
+         SBV+mro6+fG+QnaFP472RGso/v2hRpfnF2P7WuV8kfWU8Mqe0zirTpHBCeHrXRTAHwWJ
+         RQO/Z478Q5BdO51H3sh6xqDR5tX03sOJMgzlLDVjzSY+1gQ3jogJjmrdqQLm9kBjMb+q
+         SFu0bUnQ2TzX+kKa6RHt1qzdrPhfdrIk/LHxw6OAiSEcMmw0Xg9bjFXjEbqvTChMmY4Y
+         utgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bbt3aJeEOkgWRPa3MfKpp7LuHfzCeFjCJvJNJi9PM8Q=;
-        b=DQuh4QYL03sONty7S3UbghTGN+1flQ0prlZqs7mXsmKI6pCOGUcpz2PWnFH3DM39+0
-         TncQK6SD0fPYjpKVFPiemcvPocuSYCeYJFo1coV0ut721KEb6Q9CCULCcdRmz2kjoXud
-         5/ul5aA1jL/PxH+2YtMxueZPMPs2WdHgGxOV28Kp4zfj2P2+uyKQkbCsm/JLv4YQAQMr
-         djTPoX4ygysoSpWT/nlNe3F6tZEDoM5LbhIoMq6ToLhXB2vszS2pRosv7womNpg/ngl/
-         8TPW1UPNb0GxgW5iz1Yg4+AkWCgqA8d2zOqDAu4I1COt31mlgfqSQvogxFXoQLOQljOZ
-         T6Ng==
-X-Gm-Message-State: AO0yUKUQMnkTd9S9SqWl+vBEwqL+yZJLwktYP7uEP7nq/J9XXdsdZYGg
-	adAcfh232M403sIWc4sPrJ7YK2Wx4JIX0Q==
-X-Google-Smtp-Source: AK7set9KkALgBRDZV1vi9ZyBe4G0fUEyBTMSKdxvwQ0WW8i5WiG/vA6Zu7t5NqcQWHOSyhAAg54Ozg==
-X-Received: by 2002:aa7:c552:0:b0:4a0:e305:a0de with SMTP id s18-20020aa7c552000000b004a0e305a0demr10644977edr.19.1677099880648;
-        Wed, 22 Feb 2023 13:04:40 -0800 (PST)
+        bh=D4sT1wUlCbHRDpbMzMMTT4BWgWGszScqpQQPPR7Avx8=;
+        b=xkLocOH1DiL/o3aZFHBEf+M2ze4OPG98DJRxZGTDtKK24kLcnrY1xSdV/VK/1XGLcu
+         qvePmB12DZctNNWFozJNedzf4nUDhS8XLIBi+QWdJ5ZlAHSf8eGwNRW+rEIreOMEI84d
+         dfijqVlockBqD8sUe1eWYmIdWLBb1/F/RhaM/rpPus3NsyPegRVxHJyJHB0GA65KJkTx
+         jEtU1HyGg82Dol45d/yuayiLzx254qOA9oPSqxxjIyRczAQzMXlvPcpRT74JErmMVTLS
+         Ano6Fwp6IY0ij5tJLorRfMWF2f54yQXKnNmozXSVQZCk4XyFqGZnKiIC3VVtnokTn+mo
+         P4uA==
+X-Gm-Message-State: AO0yUKVD/7hSadMn231oCoa9h8FpBWLZ+8yfRo6NQcSCxG09yjaBwN0f
+	IE6FYGjIPYCzbxBx4Y3YBP60qDQbpwbd+g==
+X-Google-Smtp-Source: AK7set9UsywGgwcaKfpjQbvcN4DriltaAx6XT6S28Ki/RySsfHBlPZPWUAWYQaHmEPazeYrWLX5orw==
+X-Received: by 2002:aa7:db44:0:b0:4ac:b309:3d76 with SMTP id n4-20020aa7db44000000b004acb3093d76mr9530208edt.31.1677099882731;
+        Wed, 22 Feb 2023 13:04:42 -0800 (PST)
 Received: from localhost.localdomain (dynamic-2a01-0c22-76c9-eb00-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:76c9:eb00::e63])
-        by smtp.googlemail.com with ESMTPSA id m17-20020a50c191000000b004af6a840f21sm209208edf.15.2023.02.22.13.04.39
+        by smtp.googlemail.com with ESMTPSA id m17-20020a50c191000000b004af6a840f21sm209208edf.15.2023.02.22.13.04.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 13:04:40 -0800 (PST)
+        Wed, 22 Feb 2023 13:04:42 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v1 RFC 1/3] dt-bindings: serial: amlogic,meson-uart: Add compatible string for G12A
-Date: Wed, 22 Feb 2023 22:04:23 +0100
-Message-Id: <20230222210425.626474-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 RFC 3/3] arm64: dts: meson-g12-common: Use the G12A UART compatible string
+Date: Wed, 22 Feb 2023 22:04:25 +0100
+Message-Id: <20230222210425.626474-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
 References: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230222_130444_711475_D4DE8D30 
-X-CRM114-Status: GOOD (  13.67  )
+X-CRM114-CacheID: sfid-20230222_130447_832632_EE8E6B61 
+X-CRM114-Status: GOOD (  11.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,43 +89,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
-(we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
-Add a new compatible string for this SoC so this new bit can be managed
-accordingly.
+Switch meson-12-common.dtsi to use the Meson G12A specific UART
+compatible string. This enables the "divide XTAL by 2" divider which
+improves support for UART attached Bluetooth modules (for example
+RTL8822CS) running at a baud rate of 1500000. Without dividing XTAL
+(24MHz) by 2 a baud rate of 1500000 cannot be generated cleanly and the
+resulting jitter breaks communication with the module.
 
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
-Why am I sending this as RFC? The last change in this series means
-that the resulting .dtbs are not compatible with old kernels anymore.
-My understanding is that this is fine and only the opposite case (using
-old .dtbs on new kernels) has to be supported (which is still the case
-with this series). I'd like to get some confirmation for this.
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 7822705ad16c..3d9d51389171 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -29,6 +29,7 @@ properties:
-               - amlogic,meson8-uart
-               - amlogic,meson8b-uart
-               - amlogic,meson-gx-uart
-+              - amlogic,meson-g12a-uart
-               - amlogic,meson-s4-uart
-           - const: amlogic,meson-ao-uart
-       - description: Everything-Else power domain UART controller
-@@ -37,6 +38,7 @@ properties:
-           - amlogic,meson8-uart
-           - amlogic,meson8b-uart
-           - amlogic,meson-gx-uart
-+          - amlogic,meson-g12a-uart
-           - amlogic,meson-s4-uart
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 123a56f7f818..3dc06848f3c4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2046,7 +2046,7 @@ pwm_AO_cd: pwm@2000 {
+ 			};
  
-   reg:
+ 			uart_AO: serial@3000 {
+-				compatible = "amlogic,meson-gx-uart",
++				compatible = "amlogic,meson-g12a-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x3000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+@@ -2056,7 +2056,7 @@ uart_AO: serial@3000 {
+ 			};
+ 
+ 			uart_AO_B: serial@4000 {
+-				compatible = "amlogic,meson-gx-uart",
++				compatible = "amlogic,meson-g12a-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x4000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+@@ -2293,7 +2293,7 @@ clk_msr: clock-measure@18000 {
+ 			};
+ 
+ 			uart_C: serial@22000 {
+-				compatible = "amlogic,meson-gx-uart";
++				compatible = "amlogic,meson-g12a-uart";
+ 				reg = <0x0 0x22000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
+@@ -2302,7 +2302,7 @@ uart_C: serial@22000 {
+ 			};
+ 
+ 			uart_B: serial@23000 {
+-				compatible = "amlogic,meson-gx-uart";
++				compatible = "amlogic,meson-g12a-uart";
+ 				reg = <0x0 0x23000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
+@@ -2311,7 +2311,7 @@ uart_B: serial@23000 {
+ 			};
+ 
+ 			uart_A: serial@24000 {
+-				compatible = "amlogic,meson-gx-uart";
++				compatible = "amlogic,meson-g12a-uart";
+ 				reg = <0x0 0x24000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
 -- 
 2.39.2
 
