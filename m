@@ -4,47 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9F99C636D7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Feb 2023 06:31:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC677C636D7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Feb 2023 09:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GT+Z4+zL/2CRcw6Ky0hoyPxf3lOvltqU52eFF/Os8/g=; b=DPUQl8h03oMctD
-	AjTu1jkMfD1L2b4PXNvWy+wxJLrw5PXvqHUKrEq01U1u8l3thgDA61oK2xcoeY6Ps/S40uGBKqPPV
-	cxAMQFVWbdJLowL3ri1b6q/GYU4n6J+n/0PcxGQHkRcUpZ4JCpfDTbozVho25fLAloU3hXhGnowPU
-	UyQ138KXe5KcZPqakIA1NjpyEIkSGd3YHe/SKwZ0BcOnHk8jYJpxvvcChVGAUXUCmn3b549OtJ0tI
-	ZLWH4PW/Rve9KhRcMgLtM9rraEm4Z4KSzRLVvlAebrHisY/sBCV64WPIbWIQlhWmO2LGGi+cHQppO
-	JkBO34T73D+KY39di3Mw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2YYg7Ao6EU/7rB1kWjM7VJGVBRHtcwRfPlx654mtwcE=; b=KoeUM93pRj/Lr9
+	2ILeaDC+DR5A2jQSioebcsLTaM6SUw+ET4ZeLdE+EQHQ5Eqvnm42nO+8pj+szjaCEBWwhZs57ArQ3
+	MuAsjD0/vfzPaR2j+KV7yR7Ohbtlsy8jDXvIp7H8A/FfYtfKdXsJKXXPTh3kewIccgdONin/smOIw
+	Ase9vbKxuTFrVZ6TP43SlaImKWbfiJHjq+sohI4mb51UWSB3vxeYg4D1appLl6JJ+5NdKAcYE67df
+	sspntO6NZ62r9EionlOkIhCXMYPjWpjFc0g7LT47r8R9kEpqwG7zWhY5ycFr/JQudBnf3ZiRV4JaN
+	A+HFnQRUXmURGJHhlD0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pV58L-00FIEm-Ty; Thu, 23 Feb 2023 06:31:13 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1pV7aC-00FdIF-Tm; Thu, 23 Feb 2023 09:08:08 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pV58B-00FICX-Ok; Thu, 23 Feb 2023 06:31:05 +0000
-Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 23 Feb 2023
- 14:30:55 +0800
-From: Yu Tu <yu.tu@amlogic.com>
-To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Neil
- Armstrong" <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Martin
- Blumenstingl" <martin.blumenstingl@googlemail.com>
-CC: <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>, Yu Tu
-	<yu.tu@amlogic.com>
-Subject: [PATCH] clk: meson: vid-pll-div: added meson_vid_pll_div_ops support to enable vid_pll_div to meet clock setting requirements, especially for late chip
-Date: Thu, 23 Feb 2023 14:27:23 +0800
-Message-ID: <20230223062723.4770-1-yu.tu@amlogic.com>
-X-Mailer: git-send-email 2.33.1
+	id 1pV7aA-00FdHW-Hi
+	for linux-amlogic@lists.infradead.org; Thu, 23 Feb 2023 09:08:07 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id i34so14362530eda.7
+        for <linux-amlogic@lists.infradead.org>; Thu, 23 Feb 2023 01:08:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
+        b=yXHwG+9zDhuVZ2TCZZ4Z30RxvwOLheweftDdXO1MbTiq4GvnDaonuOL5PDrPpEMpdk
+         mRiEcZ/44ZPPwvrGQ2FLuwMO4+0KXmQ5KzWof+9uprrkevZkwltts+56/Or9kfsf81iy
+         x/TNi+MZI/eSSvB9TSvpMfRtTEe7K9dCoEC8eeHVMsMWmddeiKOV1po+0vR4/WOwghUm
+         GXvTvMYFT8O3Qv2uOIryrT40DyUDESsePbbCr8K1ALlP4amRrO0gsEFPWT966ebb5PEa
+         mgt4NjoCIXt+2EI4Kj1PB81uk0i5v0b9WsTfsLuJTzcloptM13D1hKzDRGtLC3723ey4
+         vfEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
+        b=ZE2OPsJbLhnf/EtyzDwU9TtlIDmKeMnhQetF7yWIatd4VxPZZoRCdgu0UAZKTgFa3Y
+         tTZFks+Ca/XTPUdziKG1AVbuT9nsHtjhko26NmHs9XT9B9wcu9qyF+QsH1IaZiXLTHH9
+         V3W3o/ob5BqQPSpicS/YAW79iabGMu9cff7+gMlsumCqk+33uSODBGWrM1WalKj3RtgX
+         vgU+/0gUgzY7Zv25cONwJd/aAeeuJWe/rbVm1tB8ayw82OUlk25SMLD0hx0LF/3OFW5/
+         X3y9xfSdmYxr+7Vh092NnivnLAShajcrZFnO9gaZmavloUlqsHGL9zyDh5qeA60Yrt1o
+         bY3w==
+X-Gm-Message-State: AO0yUKWD6x8bULWP07V/+57j86Lc5KO+UuKQeZGNRJV2rF1IXpVUTBcV
+	dtlVZaD0853zKWPt+abqglL2AA==
+X-Google-Smtp-Source: AK7set8FqssPw31ewckoqg56O8trOVzvzax0KiJfiMOPwugY0umCwzbsSexEYjm9Rymh5WfeBMy3Rg==
+X-Received: by 2002:aa7:d351:0:b0:4ac:bb85:c895 with SMTP id m17-20020aa7d351000000b004acbb85c895mr9724924edr.1.1677143285066;
+        Thu, 23 Feb 2023 01:08:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m6-20020a509986000000b004aef147add6sm4252398edb.47.2023.02.23.01.08.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 01:08:02 -0800 (PST)
+Message-ID: <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
+Date: Thu, 23 Feb 2023 10:08:00 +0100
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.248]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
+Content-Language: en-US
+To: Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@sberdevices.ru
+References: <20230222115020.55867-1-avromanov@sberdevices.ru>
+ <20230222115020.55867-4-avromanov@sberdevices.ru>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230222115020.55867-4-avromanov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230222_223103_843451_2FAA42A9 
-X-CRM114-Status: GOOD (  13.65  )
+X-CRM114-CacheID: sfid-20230223_010806_624280_2E9A4410 
+X-CRM114-Status: GOOD (  10.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,101 +97,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The previous chip only provides "ro_ops" for the vid_pll_div clock,
-which is not satisfied with the operation requirements of the later
-chip for this clock, so the ops that can be set for the clock is added.
+On 22/02/2023 12:50, Alexey Romanov wrote:
+> Add basic support for the 32-bit Amlogic A1. This device tree
 
-Signed-off-by: Yu Tu <yu.tu@amlogic.com>
----
- drivers/clk/meson/vid-pll-div.c | 59 +++++++++++++++++++++++++++++++++
- drivers/clk/meson/vid-pll-div.h |  1 +
- 2 files changed, 60 insertions(+)
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
-index daff235bc763..e75fa6f75efe 100644
---- a/drivers/clk/meson/vid-pll-div.c
-+++ b/drivers/clk/meson/vid-pll-div.c
-@@ -89,6 +89,65 @@ static unsigned long meson_vid_pll_div_recalc_rate(struct clk_hw *hw,
- 	return DIV_ROUND_UP_ULL(parent_rate * div->multiplier, div->divider);
- }
- 
-+static int meson_vid_pll_div_determine_rate(struct clk_hw *hw,
-+					    struct clk_rate_request *req)
-+{
-+	unsigned long best = 0, now = 0;
-+	unsigned int i, best_i = 0;
-+
-+	for (i = 0 ; i < ARRAY_SIZE(vid_pll_div_table) ; ++i) {
-+		now = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate *
-+					    vid_pll_div_table[i].multiplier,
-+					    vid_pll_div_table[i].divider);
-+		if (req->rate == now) {
-+			return 0;
-+		} else if (abs(now - req->rate) < abs(best - req->rate)) {
-+			best = now;
-+			best_i = i;
-+		}
-+	}
-+
-+	if (best_i < ARRAY_SIZE(vid_pll_div_table))
-+		req->rate = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate *
-+						  vid_pll_div_table[best_i].multiplier,
-+						  vid_pll_div_table[best_i].divider);
-+	else
-+		req->rate = meson_vid_pll_div_recalc_rate(hw, req->best_parent_rate);
-+
-+	return 0;
-+}
-+
-+static int meson_vid_pll_div_set_rate(struct clk_hw *hw, unsigned long rate,
-+				      unsigned long parent_rate)
-+{
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_vid_pll_div_data *pll_div = meson_vid_pll_div_data(clk);
-+	int i;
-+
-+	for (i = 0 ; i < ARRAY_SIZE(vid_pll_div_table) ; ++i) {
-+		if (DIV_ROUND_CLOSEST_ULL(parent_rate * vid_pll_div_table[i].multiplier,
-+					  vid_pll_div_table[i].divider) == rate) {
-+			meson_parm_write(clk->map, &pll_div->val, vid_pll_div_table[i].shift_val);
-+			meson_parm_write(clk->map, &pll_div->sel, vid_pll_div_table[i].shift_sel);
-+			break;
-+		}
-+	}
-+
-+	if (i >= ARRAY_SIZE(vid_pll_div_table)) {
-+		pr_debug("%s: Invalid rate value for vid_pll_div\n", __func__);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+const struct clk_ops meson_vid_pll_div_ops = {
-+	.recalc_rate	= meson_vid_pll_div_recalc_rate,
-+	.determine_rate	= meson_vid_pll_div_determine_rate,
-+	.set_rate	= meson_vid_pll_div_set_rate,
-+};
-+EXPORT_SYMBOL_GPL(meson_vid_pll_div_ops);
-+
- const struct clk_ops meson_vid_pll_div_ro_ops = {
- 	.recalc_rate	= meson_vid_pll_div_recalc_rate,
- };
-diff --git a/drivers/clk/meson/vid-pll-div.h b/drivers/clk/meson/vid-pll-div.h
-index c0128e33ccf9..3ab729b85fde 100644
---- a/drivers/clk/meson/vid-pll-div.h
-+++ b/drivers/clk/meson/vid-pll-div.h
-@@ -16,5 +16,6 @@ struct meson_vid_pll_div_data {
- };
- 
- extern const struct clk_ops meson_vid_pll_div_ro_ops;
-+extern const struct clk_ops meson_vid_pll_div_ops;
- 
- #endif /* __MESON_VID_PLL_DIV_H */
+> describes following compontents: CPU, GIC, IRQ, Timer, UART,
+> PIN controller. It's capable of booting up into
+> the serial console.
+> 
+> This is based on arm64 version of meson-a1.dtsi.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+>  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
 
-base-commit: 8a9fbf00acfeeeaac8efab8091bb464bd71b70ea
--- 
-2.33.1
+There is such file and there is such DTS/hardware support. I don't see
+any reason why entire DTSI should be duplicated. What's more, your
+commit does not explain it - does not justify duplication.
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
