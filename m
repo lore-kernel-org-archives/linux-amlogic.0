@@ -4,81 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F46AC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Feb 2023 10:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70DF4C61DA4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Feb 2023 20:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8hRj+WinVTZMSYPdPMarHL+rh4mkt2dt/l+UsRi0sxA=; b=e/YPx/FUnEOPwM
-	W8hVcGfv+EaPmYp/as+6f91s8zWlonuc0lFgdw3XTDRJZQOTT5lDWy1c8UKxDMaOXG2iPUbTQ09KB
-	c4FXRyoJGx6iQK1kUw+OoVo+ZLKs6klNIjs2bZ0Z7kwfW/3OW9Ib+FGvu+0HVb037h+dOZXED2nV3
-	EuDgVLVG8qTTrHJ9UB6jmFE09SrasE5J6xLdYDg+lARWK3pHqywNdUzvqnGTcvHQyr33eb4h1hPZZ
-	v1sVI2DZcksWO2W0XGLa0XIsCd0hXl1BCqynRHW8CWtPGCBhzKai1/ib+yXYMGJRydGRVVZ98Y1zs
-	z/JzVwqA5AJfMMpGJSzA==;
+	List-Owner; bh=iG7b7B/XVNo8GdlsWK93T86EULj1N6/m6DK3uJJOIR4=; b=smATNNdO35DtJc
+	EZGAtyMFfLMH9arCAeHaIj96QXld/RZEXkrlLlfRjn39AxxzjiCGPIx20e4+z5BRF4KID9JEM0+j1
+	1LNNqZ41/BJ9XzDL9z0FSFaRK33FsB1MC02Ub+E+BONgTdrfWP/hPrq1rGNwZ7CWdXn7M6i6f6ReP
+	bps4HF8O+OazsYL7XwoHrI6abHVeksjWJd1jCcq/au92osGCXlekTRDYzY/amVD4kLh6eKpKDMg+Y
+	ZaE66SjJBsXClnMbwiXutLj1o+jlSnAos4cVjn9OV6CB/A9hlSB+7SmzhJSVCm/Mx53KLAVLqi/ld
+	dnMzmbT78wpdMl1Z3BWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pV8sA-00FxlV-BV; Thu, 23 Feb 2023 10:30:46 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1pVHz6-000F3O-IN; Thu, 23 Feb 2023 20:14:32 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pV8rv-00FxfS-DZ
-	for linux-amlogic@lists.infradead.org; Thu, 23 Feb 2023 10:30:34 +0000
-Received: by mail-wr1-x435.google.com with SMTP id i11so4113667wrp.5
-        for <linux-amlogic@lists.infradead.org>; Thu, 23 Feb 2023 02:30:28 -0800 (PST)
+	id 1pVHz3-000F1r-5r; Thu, 23 Feb 2023 20:14:30 +0000
+Received: by mail-ed1-x535.google.com with SMTP id ee7so31525664edb.2;
+        Thu, 23 Feb 2023 12:14:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=3/d1V97xfn1urp1yFSAFHB4bA8otMHdcMdq0yddMNFI=;
-        b=hcoIV/z8lyL+ysVNVs6Y6+yJCu00ToOB1RctbNGmzn6TVnVvxY7XobmvDx0cUkA2xQ
-         xfM4zr3AWE+b2Gtowo9aLR8xr2kvlYJfKxP9Itoq39971OTw4jDjtvXuJIaW6qUeofV5
-         EQWm9Hn8VbRrY4wbZjRT+ENuVYy9Veq5SwjN8cFj2tCHTSpNKWogtut2gHDMrwDsU5cZ
-         ZKqDIGyOhckxOd0wsydnj2kidFvup2vNd5mqGZHNZgcLygtgv2+azbCyRnBMohLbAGHA
-         LQxmw22JVxiWV5822JzZZs1rVzyf1J1uIGehZSU3KFmWDRLsvMPcd89e+agLiMmUJ+0h
-         ah3g==
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gXQwgZeL/74hBPgk1C6lmiCQBoirI87Yxu5xfVbpD0E=;
+        b=kp4aGFtBZoyz9uLGKkaytsS+5gzhr8kJblMcm4O8bMhUdVveKduwcGDToWZdCu8C6U
+         oHuVUSL9A3XeOwyooSkxHqEAPbVvTDZrtvm05NO4YYqWxlUeJ/uD44RPCyvOd/xrERnK
+         M4DA2hTux8/h75fhMHSAq11A8Tw5KGpsHZx9dPnBe3rgW/DPuEGCSZZs9179fR+5eZYj
+         k2XlixpKN4cSE0/eyVllpcVap3faX5SV1R+tN89zygSmUYBO+T6RxrnZT0BZwzgGWE2f
+         9eFnYqn4BmHqgyZyFu/PVU2H0XkVAlF9aoUFmg6fE3JT28MBoX09iMoPkVjxyShzJDbb
+         9vyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3/d1V97xfn1urp1yFSAFHB4bA8otMHdcMdq0yddMNFI=;
-        b=sA21AWpoB+J4IXjD+q+TmO7ZwOy0R1fjqIovpiFLo+AF0pSSNErt5ojHDK1q8bglbV
-         4nMNr6s5X8F9J9YXSXx0w+TYW7Ga+K61pzKhD46n8GpoViK8EewOdKffwidJ65Na7qKL
-         deIBcpB6PpSGHUwWM3BG1khP2XsE1R1evq1sZSvoRBjP3IJFJrUcMX3sBO82r/Lz1X/Q
-         bRI6sF4Ymz3FluLEpwD5yeM3iXbQZ4KJxt67vzvG8QcObxK3lqTRJO7tl2p/JYk9Z9YT
-         IijvwMwbtA60YxjZseg60sTTLO0Ms8rpHlNgaQ+QtVZvVxOLHSpZY2rn3OD+u1JMQgNp
-         yuMQ==
-X-Gm-Message-State: AO0yUKXP2iJrGNrTd1tnxCWiwQPSd/4auYV6/TxtKmBrfiIgYLbD4Uqr
-	R947LDtuZk5ZDDw5fgXvfQ1Dtw==
-X-Google-Smtp-Source: AK7set/AJ/sQ293L1C/QDJKZNG/kThSW0HregqvGRPQyAGhtGjSWliE7pQlcCpSYC0riIpZo4sB8jQ==
-X-Received: by 2002:a5d:6190:0:b0:2c7:a0b:e8d2 with SMTP id j16-20020a5d6190000000b002c70a0be8d2mr5185559wru.19.1677148226407;
-        Thu, 23 Feb 2023 02:30:26 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t6-20020a5d4606000000b002c55306f6edsm13119455wrq.54.2023.02.23.02.30.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Feb 2023 02:30:25 -0800 (PST)
-References: <20230223062723.4770-1-yu.tu@amlogic.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Neil  Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Martin
-  Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-Subject: Re: [PATCH] clk: meson: vid-pll-div: added meson_vid_pll_div_ops
- support to enable vid_pll_div to meet clock setting requirements,
- especially for late chip
-Date: Thu, 23 Feb 2023 11:11:29 +0100
-In-reply-to: <20230223062723.4770-1-yu.tu@amlogic.com>
-Message-ID: <1jv8jsoerm.fsf@starbuckisacylon.baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gXQwgZeL/74hBPgk1C6lmiCQBoirI87Yxu5xfVbpD0E=;
+        b=FyWF8d23GXpkWChw10ZdrNqdNEsfLfUr8PhjOdHQOHhs3veYcv/faEoY4uhA2pA/Aq
+         hgqdB4/+H71gsTne3j6mlulZ5lmH52UHPiM6H4f+S4iL94o47Dk4B6ZNw5Y/C+1XR8sT
+         w+srdWy0BJO6jbeNGxnqR6lXeRky7Crj5sxjLM+wasUsIaX+cJzuaPRR27GdV2giv0Al
+         HqZAhfWjbIXs+mITagEPJuHv8bsKPA/R0GayOCGeautYLks27Tobc04e2FYWc/MwmmWG
+         2nUTcmEWJa3hBCOPyy3Aq+QxEWfo4lo7RZDTFCp9RA0fBrhQt1cr4izeL7G1rBeQWLMx
+         ui9w==
+X-Gm-Message-State: AO0yUKXS9rNam/tQDc+QIogykjA+XYwUQCPDTmJKyVPJ54lyxtKfPmm4
+	U1NWtXDT5nPt1rJeAf57IMk5QnDRjiuJfUk/qOo=
+X-Google-Smtp-Source: AK7set+K+d19g2bT7E4AGeiww4cIACa6p2T/f4jZGdZ4GqaW13JJLwZ8A9ecbJyX+VWi4I3RE+Lg+gFmzolWCQyCzss=
+X-Received: by 2002:a50:d544:0:b0:4ad:6e3e:7da6 with SMTP id
+ f4-20020a50d544000000b004ad6e3e7da6mr6163318edj.6.1677183264974; Thu, 23 Feb
+ 2023 12:14:24 -0800 (PST)
 MIME-Version: 1.0
+References: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
+ <20230222210425.626474-2-martin.blumenstingl@googlemail.com> <319cb654-51f6-6241-802b-22ee0d5b0aab@linaro.org>
+In-Reply-To: <319cb654-51f6-6241-802b-22ee0d5b0aab@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 23 Feb 2023 21:14:14 +0100
+Message-ID: <CAFBinCCzXb2Ty3TaZatEKQyxJmYPhHDL7SeLfF5-3PsDKBznWw@mail.gmail.com>
+Subject: Re: [PATCH v1 RFC 1/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for G12A
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230223_023031_666219_7CB7A2C7 
-X-CRM114-Status: GOOD (  25.82  )
+X-CRM114-CacheID: sfid-20230223_121429_255888_7349A80D 
+X-CRM114-Status: GOOD (  21.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,135 +79,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: neil.armstrong@linaro.org, devicetree@vger.kernel.org, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-amlogic@lists.infradead.org, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello Krzysztof,
 
-On Thu 23 Feb 2023 at 14:27, Yu Tu <yu.tu@amlogic.com> wrote:
-
-Title is way too long, 75 char max
-
-> The previous chip only provides "ro_ops" for the vid_pll_div clock,
-
-The driver does. Other chip could use RW ops I suppose.
-
-> which is not satisfied with the operation requirements of the later
-> chip for this clock, so the ops that can be set for the clock is added.
+On Thu, Feb 23, 2023 at 10:12 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-
-What requirements ? What "late" chip ? all this is quite vague.
-
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
->  drivers/clk/meson/vid-pll-div.c | 59 +++++++++++++++++++++++++++++++++
->  drivers/clk/meson/vid-pll-div.h |  1 +
->  2 files changed, 60 insertions(+)
+> On 22/02/2023 22:04, Martin Blumenstingl wrote:
+> > Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
+> > (we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
+> > Add a new compatible string for this SoC so this new bit can be managed
+> > accordingly.
+> >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> > Why am I sending this as RFC? The last change in this series means
+> > that the resulting .dtbs are not compatible with old kernels anymore.
+> > My understanding is that this is fine and only the opposite case (using
+> > old .dtbs on new kernels) has to be supported (which is still the case
+> > with this series). I'd like to get some confirmation for this.
 >
-> diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
-> index daff235bc763..e75fa6f75efe 100644
-> --- a/drivers/clk/meson/vid-pll-div.c
-> +++ b/drivers/clk/meson/vid-pll-div.c
-> @@ -89,6 +89,65 @@ static unsigned long meson_vid_pll_div_recalc_rate(struct clk_hw *hw,
->  	return DIV_ROUND_UP_ULL(parent_rate * div->multiplier, div->divider);
->  }
->  
-> +static int meson_vid_pll_div_determine_rate(struct clk_hw *hw,
-> +					    struct clk_rate_request *req)
-> +{
-> +	unsigned long best = 0, now = 0;
-> +	unsigned int i, best_i = 0;
-> +
-> +	for (i = 0 ; i < ARRAY_SIZE(vid_pll_div_table) ; ++i) {
+> The other way around is also nice to have, because DTS is used in other
+> projects. You fixed here Linux kernel, but what about all other
+> out-of-tree kernels, BSDs, firmwares and bootloaders? Did you fix them
+> as well?
+Indeed, u-boot is of concern here (as mainline u-boot does have Meson
+G12A SoC support).
 
-It would be nice to actually describe how this vid pll work so we can
-stop using precompute "magic" values and actually use the IP to its full
-capacity.
+> The question is whether the devices can be made compatible thus keeping
+> DTS working on older kernel. This commit suggests they are. Your DTS
+> commit is written in different tone - something was broken and is being
+> fixed.
+If we keep "amlogic,meson-gx-uart" as fallback compatible string then
+old kernels (or other .dtb consumers - like u-boot) would still work.
+Without the new "amlogic,meson-g12a-uart" compatible string we're
+unable to make use of a newly added clock divider within the UART IP
+block which allows baud rates such as 1500000 to work without (a lot
+of) jitter. Old kernels - with the new .dtb - would still be able to
+use serial (thanks to the "amlogic,meson-gx-uart" fallback compatible
+string) albeit with limited divider support (so not all baud rates can
+be used).
+Is this a valid plan?
 
-> +		now = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate *
 
-This effectively stops rate propagation. That's not how determine_rate()
-call back should work. Have a look a clk-divider.c and how it calls
-clk_hw_round_rate().
-
-> +					    vid_pll_div_table[i].multiplier,
-> +					    vid_pll_div_table[i].divider);
-> +		if (req->rate == now) {
-> +			return 0;
-> +		} else if (abs(now - req->rate) < abs(best - req->rate)) {
-> +			best = now;
-> +			best_i = i;
-> +		}
-> +	}
-> +
-> +	if (best_i < ARRAY_SIZE(vid_pll_div_table))
-> +		req->rate = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate *
-> +						  vid_pll_div_table[best_i].multiplier,
-> +						  vid_pll_div_table[best_i].divider);
-> +	else
-
-What is the point of this 'if' clause ?
-It looks like the 'else' part is dead code. 
-
-> +		req->rate = meson_vid_pll_div_recalc_rate(hw, req->best_parent_rate);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_vid_pll_div_set_rate(struct clk_hw *hw, unsigned long rate,
-> +				      unsigned long parent_rate)
-> +{
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct meson_vid_pll_div_data *pll_div = meson_vid_pll_div_data(clk);
-> +	int i;
-> +
-> +	for (i = 0 ; i < ARRAY_SIZE(vid_pll_div_table) ; ++i) {
-> +		if (DIV_ROUND_CLOSEST_ULL(parent_rate * vid_pll_div_table[i].multiplier,
-> +					  vid_pll_div_table[i].divider) == rate) {
-
-This assumes the set_rate() is going to have a perfect match and
-otherwise fail. You should not assume that. Have a look at clk-divider.c
-for examples.
-
-> +			meson_parm_write(clk->map, &pll_div->val, vid_pll_div_table[i].shift_val);
-> +			meson_parm_write(clk->map, &pll_div->sel, vid_pll_div_table[i].shift_sel);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (i >= ARRAY_SIZE(vid_pll_div_table)) {
-> +		pr_debug("%s: Invalid rate value for vid_pll_div\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +const struct clk_ops meson_vid_pll_div_ops = {
-> +	.recalc_rate	= meson_vid_pll_div_recalc_rate,
-> +	.determine_rate	= meson_vid_pll_div_determine_rate,
-> +	.set_rate	= meson_vid_pll_div_set_rate,
-> +};
-> +EXPORT_SYMBOL_GPL(meson_vid_pll_div_ops);
-> +
->  const struct clk_ops meson_vid_pll_div_ro_ops = {
->  	.recalc_rate	= meson_vid_pll_div_recalc_rate,
->  };
-> diff --git a/drivers/clk/meson/vid-pll-div.h b/drivers/clk/meson/vid-pll-div.h
-> index c0128e33ccf9..3ab729b85fde 100644
-> --- a/drivers/clk/meson/vid-pll-div.h
-> +++ b/drivers/clk/meson/vid-pll-div.h
-> @@ -16,5 +16,6 @@ struct meson_vid_pll_div_data {
->  };
->  
->  extern const struct clk_ops meson_vid_pll_div_ro_ops;
-> +extern const struct clk_ops meson_vid_pll_div_ops;
->  
->  #endif /* __MESON_VID_PLL_DIV_H */
->
-> base-commit: 8a9fbf00acfeeeaac8efab8091bb464bd71b70ea
-
+Best regards,
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
