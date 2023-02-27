@@ -4,77 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66511C64ED6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 16:14:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F99BC64ED6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 16:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
+	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=niUj7Dm3MdDDXPOKNxR77Kfxity1fmCR6EO09shKYbQ=; b=C8oI/IiCR9EpBJ
-	3zCpzMYtrxjO2ZYL9sLE4hdZOSt+l8t78PGfn7RDs9k324zX8ZLKolHp7Ug6bhErF/MbAt3lHNKXt
-	hNY0A+yIUlI8VbOrlgy3MkGFgMMc0K4UY+GXkFkCeEg8JHXob6xLbMqc5UjznNvryy6BUOxipe1l8
-	nnlz0xFA5k9oT9zPTeGYbCVe4JVd3R6rA8GzHJttGLazcM6fVgpYkPEtwuOAsFRP/n/ymVNO1h7lG
-	2FEeda0WNJVtAoCuV7PTq5zmrKT/WxbcsGhyA7vZfO3j7OREEBBiatWUI5kjeo2g15Gj60dqSfSJn
-	Irq3slUq4oo/qaSriPwQ==;
+	List-Owner; bh=4/5j6X6/ZYr4VYFKpZFrU4Zn+k/rbloPzsutN/KtiaI=; b=FmvSHn5XLo5xuv
+	OpD0gP2gSORgA/0lmEeqWIEwDBAVIr7Ep+ekeBE4XGqK/xmpQlXC7mAzFz+YTJ/wjIxIRii//YaDs
+	VfAuEfwRqSv4Rs1bgkVfOqoOxaBrgE6+IxGtiTgdT3gdijtDLq/PrwnswlxYEi9ohqrjfNPl9oZ2U
+	A1NuqMbpGVqmNvcXXeX6IsZirzkrBEoaeOksKsJZZ4LSjutlfvBHlMMwOOfTMnuv/kS+zx6SKM8e0
+	zAIVWwCfS3N1EW+AuncBEoJuXahFK0LrPspcEZlhk9/YyvuiBTuiVH36tolsl7m+SDQo3J0jP/xoq
+	UaNbnHBYXHmPp/KnPvVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWg8f-00AJWB-T0; Mon, 27 Feb 2023 16:14:09 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1pWgAv-00AJue-Iy; Mon, 27 Feb 2023 16:16:29 +0000
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWg8V-00AJUG-4l
-	for linux-amlogic@lists.infradead.org; Mon, 27 Feb 2023 16:14:00 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id 6-20020a17090a190600b00237c5b6ecd7so6109087pjg.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Feb 2023 08:13:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iU3DIPiFHtyl6MAm66myHOcnybgqDkhP99roOt2WViA=;
-        b=muARfEHVBJSBPQF3V/HIv82zR+6d+0M8snnG/omf3SMTJrZd9yx5aSHSUvTxc5+7fB
-         j9ohcL7w8tctZ+6qDIZFbftTarwx8R7f4InksG7uXbcMOWdvxgSsEucSS/EPOrtEdf5b
-         rigd63046P5nmnNZGlzV7ZJYmX1jv2m6EKpQmPcRQrbBC+wHH7ZD4wDAT88xv8x8Ao21
-         5t8Z463DSiYcPx8WfDP2oatRSTTQ8v4wNd+wJBQgykaqsNC6Zk/owxEFtYFwQ03uAFk2
-         45v6evTTHOdRutMkgBgGeeqPv4/a4Z0N+ySGndPRnSlnv7bv+Q5Jx5sy0FsjbfcN0fVG
-         a8Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iU3DIPiFHtyl6MAm66myHOcnybgqDkhP99roOt2WViA=;
-        b=ZVrMRyyuyI74ztR0vndgA/CY3jv4gvaVZMvyTAMh5h3kwlG0djbZain3l0XgN39N2T
-         xp2wvxnFe30RD+mLQNF+pPXPMxZA34WYjEC5XNXfau6TXHhee0UM/9CL1iKZT65jLPX3
-         KnB4gdg3/21qv7b4WIJsAX2E91SH6pewmAys7H76jqvmxA1Lqeijb2hPYT60ZLR+92Qh
-         +pwQHmAvn4cISRzVkN2VMhJdsTM4UdY9RsqxahbOvxLgLq9/A3pCTQbOe7Ogj7sv2ZCo
-         YUoHJYKY+3s2tNi64BYwHKApi1zEfxB9fhurT3gIA1k7HzZwER130etby0KvnjpIJnVT
-         QAlw==
-X-Gm-Message-State: AO0yUKVJlVGbRtNhpj/Chktc0yEKCk2Lq/bbDcKdxbvUSq21xs9JF0iQ
-	SiYnGuz66Xjrk5sgaN8uh0fBpIHJqqfBhjuVt+NHdA==
-X-Google-Smtp-Source: AK7set+3RvTeQEziGmtk2RuQy5O5q53GPTIM08XtVfn+x2E/MpjnjVsIv7Zlx2KgiyWDdvKW7HlccfQMlHrFw2G7ONA=
-X-Received: by 2002:a17:90a:dc04:b0:233:d131:29be with SMTP id
- i4-20020a17090adc0400b00233d13129bemr5023702pjv.9.1677514435569; Mon, 27 Feb
- 2023 08:13:55 -0800 (PST)
-MIME-Version: 1.0
-References: <02b46550-e0b5-4251-8156-56eb0f690d89@gmail.com>
- <2553f3bc-b1e6-4af2-fb6c-def486dd99a3@gmail.com> <CAPDyKFpCEzubkJ=roniomXHaWrY5AOqfPZmNLbMbBnubHzZrEg@mail.gmail.com>
- <0725e5eb-43fd-65a7-27e8-84bbfe31c798@gmail.com>
-In-Reply-To: <0725e5eb-43fd-65a7-27e8-84bbfe31c798@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 27 Feb 2023 17:13:19 +0100
-Message-ID: <CAPDyKFouH_uxF_p7ke_WAwwuQxp=O3qitC7iXHU7n1MGN1Nhmw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] mmc: core: add helpers mmc_regulator_set_ocr_vmmc_up/off
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+	id 1pWgAs-00AJsl-8P; Mon, 27 Feb 2023 16:16:27 +0000
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailout.west.internal (Postfix) with ESMTP id 3AA09320091D;
+	Mon, 27 Feb 2023 11:16:20 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 27 Feb 2023 11:16:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to; s=fm3; t=1677514579; x=1677600979; bh=gyEHnWGhDf
+	Ft2Gu4gB/Bqdx54bxIG396QI5JbNzq7aU=; b=eRTtkeH3NgJCjy1to2Uusv6Qp/
+	Nygkb915sQzycJJtLrfWs6aOhC3aNr0tQYVmu4VTcEJYz4xTMSEApRwPXmOJ2lzA
+	Sheu2vj4jyFJC/z3vb6aiI1KrLbs0/mJbAZbqmM/UgukR4Yn8OUDIi11yB0Ig7LW
+	HcGL/LG+d5XmfYOnCAA23ZhaLYIbRyVJ/nGFjUcC1912Y7izj1FO1YTxvZ59YAWr
+	TbwfowaTngAr9LHF2qNEAQmvPJpHLILqmo8HNtfbipUSzV2wVvozEiBhIN9Haebo
+	zpbIKm8kvHKF4nYqdNX0KvQzl3xUlMfzyXEm8Djg5WiQTPQkJR3Bksn+dNkQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to
+	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1677514579; x=1677600979; bh=gyEHnWGhDfFt2Gu4gB/Bqdx54bxI
+	G396QI5JbNzq7aU=; b=svhAJi84rKRyvhhozMBsXMvg6qI/GYqiFTpIKRvDAqjw
+	n98CxMFl7OYokOoyd3J6H9j/ZiH2VTbvVAWwPaP60Z+J+Vsq+C3OYp0jGBCUAYdE
+	k4GMSwzvx37hEv7e1kkI/mZXxwMjCbAk/tLowT0QBE3+hCQLImqMTsVT6En+tkyU
+	bt1lMWLKwJ5J0FL5WKQ4cVLfJewGfzhn9B13flGAl2J2A+L2LZgBQcyO1CbjbJaC
+	CCpMiweOeRQjqNEJG+Rvuqb29mAaXx9mZB6Cez4JZToCw+K41uKdDXtURBt3Sygq
+	wrscnQxhqetCXiw14qA9gAsY5GLg4eWWYQu9TaUXBw==
+X-ME-Sender: <xms:Utf8Y-FOyucHm-41KFBp0YzaKK8ynadWnWt4znVCo9OlRDcKwmmgAQ>
+    <xme:Utf8Y_XXY5Hb6Hkp8_pom-ELkmg0XrSJXjuajU4_JKkffD0K81D3BKtieRtgn2Es3
+    3Cc6cYcBN5DgsymRec>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudeltddgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:U9f8Y4JpxR4zmsW0albUDf-0duNZYbOkUWz0jzOtJdwkGSrYZd4p7w>
+    <xmx:U9f8Y4EklLudLiEmcV9xrE9OyR-XD9QMTw1TynXiGsj-YfHPs8v7KA>
+    <xmx:U9f8Y0U1D7jCEdezc7CtK4Kym4v2cMOdFSsXc8U69txsfTN0Yh0Ofg>
+    <xmx:U9f8YzPuLTFjjbJ4FfqrQstIEqYX9-oK28Jxa0mK9rkUXjYxsL1G-Q>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id DC7AAB60086; Mon, 27 Feb 2023 11:16:18 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-183-gbf7d00f500-fm-20230220.001-gbf7d00f5
+Mime-Version: 1.0
+Message-Id: <a5fa8b23-4ec8-475f-be5e-538b53d6f82d@app.fastmail.com>
+In-Reply-To: <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
+References: <20230222115020.55867-1-avromanov@sberdevices.ru>
+ <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
+ <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
+ <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
+ <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
+Date: Mon, 27 Feb 2023 17:15:58 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Dmitry Rokosov" <ddrokosov@sberdevices.ru>
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Alexey Romanov" <avromanov@sberdevices.ru>,
+ "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ "Kevin Hilman" <khilman@baylibre.com>, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com,
+ "Linus Walleij" <linus.walleij@linaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@sberdevices.ru
+Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_081359_196452_D49AB182 
-X-CRM114-Status: GOOD (  28.22  )
+X-CRM114-CacheID: sfid-20230227_081626_348208_4A25E042 
+X-CRM114-Status: GOOD (  16.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,86 +110,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 17 Feb 2023 at 21:09, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Mon, Feb 27, 2023, at 16:51, Dmitry Rokosov wrote:
+> On Mon, Feb 27, 2023 at 03:58:50PM +0100, Arnd Bergmann wrote:
+>> 
+>> I would argue that is a problem with buildroot, and using a 32-bit
+>> kernel is not something we should encourage over fixing buildroot
+>> to do it right, or building the kernel separately from the rootfs.
+>> 
+>> We do allow building support for a couple of ARMv8 SoCs in 32-bit
+>> mode, but that is usually because they ship with a 32-bit bootrom
+>> and cannot actually run a 64-bit kernel.
 >
-> On 17.02.2023 11:47, Ulf Hansson wrote:
-> > On Wed, 15 Feb 2023 at 21:14, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> >>
-> >> A lot of drivers use this code, therefore let's factor it out to
-> >> helpers.
-> >>
-> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >> ---
-> >>  include/linux/mmc/host.h | 17 +++++++++++++++++
-> >>  1 file changed, 17 insertions(+)
-> >>
-> >> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-> >> index 812e6b583..f93fb8c7d 100644
-> >> --- a/include/linux/mmc/host.h
-> >> +++ b/include/linux/mmc/host.h
-> >> @@ -597,6 +597,23 @@ static inline int mmc_regulator_set_vqmmc(struct mmc_host *mmc,
-> >>  }
-> >>  #endif
-> >>
-> >> +static inline int mmc_regulator_set_ocr_vmmc_up(struct mmc_host *mmc,
-> >> +                                               struct mmc_ios *ios)
-> >> +{
-> >> +       if (IS_ERR(mmc->supply.vmmc))
-> >> +               return 0;
-> >
-> > Rather than adding these two new helper functions, how about adding
-> > the similar check in mmc_regulator_set_ocr() instead?
-> >
-> There's a number of drivers having 3 paths here:
-> 1. IS_ERR() is true -> do nothing and go one
-> 2. mmc_regulator_set_ocr() returns 0 -> some action and go on
-> 3. mmc_regulator_set_ocr() returns an error -> bail out
+> To be honest, I didn't know about this principle. It looks like a very
+> rational approach "start from max supported bitness".
+> Based on overall maintainers opinion, we have to prepare a patch for
+> buildroot to support compat mode :)
 
-Right, thanks for pointing this out.
+That would be great, thanks a lot!
 
-The important point I am trying to make is that the mmc core is
-treating "mmc->supply.vmmc" as optional (see
-mmc_regulator_get_supply()). To be consistent with that behaviour, I
-think it would make sense to bail out and return 0, in
-mmc_regulator_set_ocr() "if (IS_ERR(mmc->supply.vmmc))". We don't need
-a new set of helper functions to do that.
+For what it's worth, the main arguments in favor of running a 64-bit
+kernel with compat user space over a 32-bit kernel are support for:
 
->
-> So the question is: what should mmc_regulator_set_ocr_vmmc_up return
-> if IS_ERR() is true:
-> 1. An errno? Then this errno would have to be different from the
->    error codes the function can normally return.
-> 2. A positive value? Seems to be the best option
->
-> Then we could write:
->
-> ret = mmc_regulator_set_ocr()
-> if (ret < 0)
->         return ret;
-> if (!ret) {
->         some_action();
-> }
-> ...
->
-> Works but I'm not sure whether it's very intuitive.
->
-> The other benefit of the proposed helpers is that they hide the
-> complexity of using mmc->supply.vmmc and ios->vdd.
->
-> Mileage may vary here. Do you have any preference?
+- larger RAM sizes without highmem (most 32-bit kernels only
+  support 768MB of lowmem, and highmem sucks)
+- larger virtual address space (4GB vs 3GB or less)
+- CPU specific errata workarounds (arch/arm/ only has those for 32-bit cpus)
+- mitigations for common attacks such as spectre
+- security hardening that depends on larger address space
+  (KASLR, BTI, ptrauth, PAN, ...)
+- emulating instructions that were removed in Armv8 (setend, swp, ...)
 
-Actually, there is no complexity. Drivers should always be able to
-pass 'ios->vdd' to mmc_regulator_set_ocr() (as it holds the correct
-value).
+Most of these don't apply in userspace, so the incentive to
+run smaller 32-bit userland on systems with less than 1GB of
+RAM usually outweighs the benefits of 64-bit userspace.
 
-For some reasons, some driver authors seem to find it clearer (I
-guess) to call mmc_regulator_set_ocr() with an explicit '0' at
-MMC_POWER_OFF, but it isn't needed (see mmc_power_off()).
-
-[...]
-
-Kind regards
-Uffe
+      Arnd
 
 _______________________________________________
 linux-amlogic mailing list
