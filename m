@@ -4,70 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FD6C64ED6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 10:27:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2C5C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 13:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KzjlCHcRLquQ6TwuAED2yCLQQM/bYHk+XSNgPrmTPio=; b=SmxhijAYxKELLA
-	dOjDu7sgk2OrbiC8gveRNG1umRgvA0NmVVQsFMenPAroLNi3dhRqWBKe+3I9egCgJm+CQYs0Wc3dC
-	qF3vUjw3Va11kVxtti07zGJXFf3vUtAaT1BObgqjIbun9pR0gejSJ+KRvhjEM6SF7H7B5TxFJA/4C
-	HqmRTZf8eFhQa2Dp6Bjq/1oZovNe2VVJxtGOUY4AgcvwutwaS/HsQlX5cdl15HyRl1AiKBbPUnNUo
-	A1LOvkFJSzQ5bTJjL5Og1x2XUAXcKP/4PBHP4URSyj4eGWgQhgXwhshSlwrDzuF8EnXONuCxi/BwB
-	JORwIBxy/Kv50g3679Cw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=6EK1p/nlG0/QIPOcmtyiVkhYITFx/2rnQbFKNCvcjug=; b=RCDfMOlXpCmpof3IRuUVFv5NzE
+	MHn+7TapDcbRicV2hnUWV2IFBu9JmUzO5/INREH/OyJhF0iOAYDrrAMSSLZqHTMbr9AQTXZGJ79kR
+	W74a2Mx74I9BItNqGRIk/l52En11mkR2RZQTfTrTPaquzF0l8faSEclMXiYHZQDY7/OnNV/Csxce6
+	JIzWSMmanu/Af9RA10Y48699u6LWYUtOSVryP7gaCQ3Pg63J3Xxf2N5RNSMmtqCfjTc7yq/0YqkvH
+	mWvvZzJBgcvWoFLnuassqZfBvke1n0WX93fobOkqKD4IMv8vu2XI+CWzJz1GLKC7srkUamwAFdWCL
+	Sb/p2WhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWajA-009Di0-0f; Mon, 27 Feb 2023 10:27:28 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pWdD4-009gFF-U8; Mon, 27 Feb 2023 13:06:30 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWaj6-009Dge-66; Mon, 27 Feb 2023 10:27:26 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id B35CD5FD10;
-	Mon, 27 Feb 2023 13:27:21 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1677493641;
-	bh=MppIxpko7T4GyVpYzjU00G1Fh//Y3U4fwtIp1SQRQQs=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=f2zOtEnYwDtmf4p/2hvUN+8nu7fNT4bz4kUP4hesggNnrWUVp+T7FX3kzffzdZgS9
-	 K6bTHUazjr3jxPPjxccAL53iH59c5SaSb6yBLuy2FfBTsZLacytXn/lSd84pJoS7XL
-	 RW15ufVODD+fkzSKh0piYhpwKO6G5+o/TckjovR5SDv1+e4zHDRc4b1t7s83Y/HXuZ
-	 BLUeWtZvsDvKN0HeqEEVk26zcbBzPaSKpZNOTf9xqP06nFZ7mJqYViDiMKUEprh4KV
-	 l2RrfyIGOXIc/y+pLwJ/bBR4q3syVhodpdhimUhpRmgUDVBBevO7EWd09U07hXOWlO
-	 5wsHW5lm4SY+g==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 27 Feb 2023 13:27:20 +0300 (MSK)
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>
-Subject: [PATCH v4] mtd: rawnand: meson: initialize struct with zeroes
-Date: Mon, 27 Feb 2023 13:24:25 +0300
-Message-ID: <20230227102425.793841-1-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
+	id 1pWdCz-009gDF-D1; Mon, 27 Feb 2023 13:06:29 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 344FF60DFB;
+	Mon, 27 Feb 2023 13:06:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5C8FC433D2;
+	Mon, 27 Feb 2023 13:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1677503179;
+	bh=+TZvd92l9qjnJ46cOT5L9UcQe7CKFe0gXGAYlHM+pn4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MBZPUuouC2wHJXTMDns2HmltZ/Am3KtGB6qtPlCrb3/MBdH12QLCyQ124jkJwejTj
+	 /9jv3pfgL9kql6Rp3/Mq2/oP7T0TD+IVY2I/dEo4N2srigsxf9hH5lZRHbih9dWDwj
+	 bKmH5HuGP7y3RcKuUDughHTcAD0HLkjvOCAa0YLQU63I5krx7OlxqjLjJRKRa5iMW1
+	 1WqULk3QoqzkYDvk171oAv6DocJ1wuNnQRljHqnVaZ3QnM0+BZNRt9FqYD6ukaYhF9
+	 4YfWL+ENcpjdEgqhggrilecv9D1A/jzeAWs5nQjTAv+W3u/OFvR0OfJHKMWv/o+m+N
+	 5kgeZLeLoTRXw==
+Date: Mon, 27 Feb 2023 13:06:10 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vivien Didelot <vivien.didelot@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Wei Fang <wei.fang@nxp.com>, Heiner Kallweit <hkallweit1@gmail.com>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, Arun.Ramadoss@microchip.com,
+	intel-wired-lan@lists.osuosl.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Subject: Re: [PATCH net-next v8 5/9] net: phy: add
+ genphy_c45_ethtool_get/set_eee() support
+Message-ID: <Y/yqwifeQBC3sSaD@sirena.org.uk>
+References: <20230211074113.2782508-1-o.rempel@pengutronix.de>
+ <20230211074113.2782508-6-o.rempel@pengutronix.de>
+ <Y/ufuLJdMcxc6f47@sirena.org.uk>
+ <20230227055241.GC8437@pengutronix.de>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/27 08:09:00 #20900247
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20230227055241.GC8437@pengutronix.de>
+X-Cookie: On the eighth day, God created FORTRAN.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_022724_628009_BB19B590 
-X-CRM114-Status: GOOD (  12.16  )
+X-CRM114-CacheID: sfid-20230227_050625_559994_B615CDFE 
+X-CRM114-Status: GOOD (  17.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,68 +85,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6673271184802428518=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This structure must be zeroed, because it's field 'hw->core' is used as
-'parent' in 'clk_core_fill_parent_index()', but it will be uninitialized.
-This happens, because when this struct is not zeroed, pointer 'hw' is
-"initialized" by garbage, which is valid pointer, but points to some
-garbage. So 'hw' will be dereferenced, but 'core' contains some random
-data which will be interpreted as a pointer. The following backtrace is
-result of dereference of such pointer:
 
-[    1.081319]  __clk_register+0x414/0x820
-[    1.085113]  devm_clk_register+0x64/0xd0
-[    1.088995]  meson_nfc_probe+0x258/0x6ec
-[    1.092875]  platform_probe+0x70/0xf0
-[    1.096498]  really_probe+0xc8/0x3e0
-[    1.100034]  __driver_probe_device+0x84/0x190
-[    1.104346]  driver_probe_device+0x44/0x120
-[    1.108487]  __driver_attach+0xb4/0x220
-[    1.112282]  bus_for_each_dev+0x78/0xd0
-[    1.116077]  driver_attach+0x2c/0x40
-[    1.119613]  bus_add_driver+0x184/0x240
-[    1.123408]  driver_register+0x80/0x140
-[    1.127203]  __platform_driver_register+0x30/0x40
-[    1.131860]  meson_nfc_driver_init+0x24/0x30
+--===============6673271184802428518==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="18YmcFoX2FMeA9qB"
+Content-Disposition: inline
 
-Changelog:
-v1 -> v2:
- * More details in the commit message.
-v2 -> v3:
- * Add 'a' article to "interpreted as a pointer".
-v3 -> v4:
- * Add changelog.
 
-Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/mtd/nand/raw/meson_nand.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--18YmcFoX2FMeA9qB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 5ee01231ac4c..30e326adabfc 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -991,7 +991,7 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
- 
- static int meson_nfc_clk_init(struct meson_nfc *nfc)
- {
--	struct clk_parent_data nfc_divider_parent_data[1];
-+	struct clk_parent_data nfc_divider_parent_data[1] = {0};
- 	struct clk_init_data init = {0};
- 	int ret;
- 
--- 
-2.35.0
+On Mon, Feb 27, 2023 at 06:52:41AM +0100, Oleksij Rempel wrote:
+> On Sun, Feb 26, 2023 at 06:06:48PM +0000, Mark Brown wrote:
 
+> > Currently mainline is failing to bring up networking on the Libre
+> > Computer AML-S905X-CC, with a bisect pointing at this commit,
+> > 022c3f87f88 upstream (although I'm not 100% sure I trust the bisect it
+> > seems to be in roughly the right place).  I've not dug into what's going
+> > on more than running the bisect yet.
+
+> Can you please test following fixes:
+> https://lore.kernel.org/all/167715661799.11159.2057121677394149658.git-patchwork-notify@kernel.org/
+> https://lore.kernel.org/all/20230225071644.2754893-1-o.rempel@pengutronix.de/
+
+They seem to work, thanks!  I had found and tried the second patch but
+it doesn't apply without the first series.  Will those patches be going
+to Linus for -rc1?  It's pretty disruptive to a bunch of the test
+infrastructure to not be able to NFS boot.
+
+--18YmcFoX2FMeA9qB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP8qsIACgkQJNaLcl1U
+h9Bl6Qf+Kb7ZKOT7CiUaam7FNIgjrgALxbl+vEoK4Jd449ZZ8D4wKW/ZCeFYsMtX
+jDz4FdBm3yWIycYw0aDgBv+Rx5022ewQlSidOoHLtqJFyn4C8anRLgge2fCwGXRt
+87RUPWhKsqyl7wpZaQirbjkkS5e2eJnXYg7qRUIkNYwjO4IGBxdx4Y05qCGI90vD
+d5orhnfGEb5O5rf9JpGlz6X6FuoTaNF+QE8PJWaYve86GxFeZ45r2LA2mwO5KXK2
+lR9TEJAspu738yEXGCxU4J6pZn/PAH6MdaAL3nz5SonmmQ4xcPZxveXbYEI2amK+
+qUGMfJEdqtVeKb0reNsl0z2pPn1Lwg==
+=p/hg
+-----END PGP SIGNATURE-----
+
+--18YmcFoX2FMeA9qB--
+
+
+--===============6673271184802428518==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6673271184802428518==--
+
