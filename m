@@ -4,87 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E267EC64ED6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 14:41:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F7D3C64ED8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 14:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D44N2K12+hAb+ESrljA3ks8UFEB3KVzbIZwJJ7CMq1s=; b=AmyH9mNwzM7oHp
-	8yn1Brj2VGynAhXFhyuiOyQZQHU2DIwC2RYqYLkDq2v5XqgIAQfZjG4hpJYUEnL2OaO6X4ShfgvvG
-	CziSy0CTGGfORv4ZN/AZ4MC5ZnxKybAJQoXi41YAQri77mK/xeAid0tviOXyOBjemUbtKgE1iGXzd
-	RCb2SjSZ6LYqo/9GhbANOdFxsQJpcCbROH2IM+l2aHm322jKVOH9GKQ3O5633pJLlzMnm8Ne5P8wI
-	LWQ0WfjIVSb2YTm6wyVK7oggAFKXuReLD6C0ps6rZcTUVzAHE7ermP+FQfIGoR7p6UJMsc6co3Z4s
-	xHvJrVrSpFtnfrdWJEWw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=iHNPNpcm2a6mhUd/HeRqoh0Iy5QWWly7JF9yukU940w=; b=ZHWpWoBmhnzPXfnloc78aGAJtG
+	m1kLajVomzonuaUzfe/GZI3KUnZFbHJ29jDUqlNvsLvJOU+dMxHHh19mcPDCcdyGCCYOPdB4/O8IN
+	8XMtxB9M2UXTvO7l7SLPqPnD9PE3366Vx4xVPcZIA1s0xUiVPX+gebiyhpgE8sOErn6Iitw0ywWPG
+	Qo/oDj7C8P+bIKNfLwngHpxGVu2cySWUvKjdLLMlrAGhqvVl1r9I6C0zz201SxOXyoZaihkAnnPHX
+	y1d3ZA8orIR+ZNmB5bSFUyUJ96cttbHXfJupnhdruFvNVWgrWcOtNcFALtGBk7RyqXH1ONVLvX9Fi
+	DNy4854A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWeh3-00A1QY-Iq; Mon, 27 Feb 2023 14:41:33 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pWemH-00A3EU-Fk; Mon, 27 Feb 2023 14:46:57 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWegz-00A1NA-Gy
-	for linux-amlogic@lists.infradead.org; Mon, 27 Feb 2023 14:41:32 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id j3so4397745wms.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Feb 2023 06:41:27 -0800 (PST)
+	id 1pWemE-00A3Cb-AU
+	for linux-amlogic@lists.infradead.org; Mon, 27 Feb 2023 14:46:55 +0000
+Received: by mail-wr1-x432.google.com with SMTP id bt28so6490190wrb.8
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Feb 2023 06:46:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K1ciYzjzBy3gfz4y6Y2JrahH5KBtu69kG00GA/F52AY=;
-        b=galyeW3Y/ZKXfxjNntAQk6EiQUOCJT4CyWMa7zLNmhh+PaDRlUOlTGF0/7YLf/KEOT
-         hCjDk4RMDE3fr5z3FvT+qolNVLqKXIzYk2jfteD4dboVs8vDZsEpYpW2OLZ3bK4KjN3+
-         KX/Z7GrtOFfvmR8JtbRCISD8i2IsYxyXFwP0xcOxQKsSiCjDXnr8czZaqyvZSWe+Zpob
-         cVjKD+4+kkKIkFHp8nPosGGa/JXYM/5haHtGN8UK2PjebfKSB2Z3Alk69TpyF7iudX/L
-         rKWdHm4q6kIG/X2O6V5f+mRWH7V7/Wb68SFEVwPnUZvls7p5mX/sn6Ih7F5qvXYHtUXt
-         Y8dw==
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=p5uPmXHKG/K2eyX0uTKfopGR5q6ewnoODzWdHrgpksY=;
+        b=xsDmR4Do5X7GXRqXrx1sWPPfkkQPSeeWpP2+i4dOxIWxcR7fP6Movgw/jx9+PTcgt7
+         hZJVmOvfvsqEjjlzatHhw1inycwyCGnF5AWqhfEdY8DqC4BB+6YJ8HfIKyumuaLjA4+6
+         8DWMB+gPmdduGXGL0H74VPktXjL82h5h0pmTvXBxiNrZiftH4CdztJlVo01814iYUGpJ
+         ZLIXJh4m2TyOrtln5FH1941ZRWVUy077IrohbwK1dJZBaR5k9BFLu0Y4QYZXkQZm0Bh0
+         XeG4HbNyRQ4pE6zIAYWUiZUqw0AU4Cm5MppLmtKFbDPVVXqXg5hGfBkZrOCekLklyq8S
+         0OFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1ciYzjzBy3gfz4y6Y2JrahH5KBtu69kG00GA/F52AY=;
-        b=UbzhSxkIZJTYW5nHEp333KK5odJLyRuzhE+v/FEA6aTT4C4JRsp/XgAPIgj8Hzcay0
-         Fa1VNViYNrx8t3GieZwMQAkrK8XZV0sAz85JoTCauVXsuXnOB6D6HDc5fiBKEFH17api
-         /Xspm0Ws6gUB01SfoQd9CafFlt0qeT2E763qBaWxcbX9GXp/Pq84zF9nlf1eS3gUN9eN
-         yo72Ff8QW/w21ZtQ9ycF/tzymImVLtnpXVAae6RbWlxz4lhd0FDqpb+RVETFGzZB6S1g
-         URdl+/HOQTefU1WuFjVozJTG3VW/ZrLPxNhLonNv6fkmat6SdybGQDALkNKboRf1mK7z
-         rLxA==
-X-Gm-Message-State: AO0yUKVhXLC5m3sZ3i7PB8Yi2uyUD8CojLpE0K0RrVDbAZsh6JDsY/4+
-	JqW03Qdcr1zbiTDZUCM1StYM1g==
-X-Google-Smtp-Source: AK7set9HRlUGJup0r4UlH2WAr4w4xlP49Ruq+BeYt0uYrYvow/OWiJSmb8hqYYmcCG6hIUXk8Ad0FQ==
-X-Received: by 2002:a05:600c:ccc:b0:3df:db20:b0ae with SMTP id fk12-20020a05600c0ccc00b003dfdb20b0aemr6859368wmb.17.1677508886098;
-        Mon, 27 Feb 2023 06:41:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n5-20020a5d51c5000000b002c70d97af78sm7386052wrv.85.2023.02.27.06.41.24
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p5uPmXHKG/K2eyX0uTKfopGR5q6ewnoODzWdHrgpksY=;
+        b=kmZa0e7RnLuUVlLalDPF+8Xm3ScvffR5dNmmFksVlppS1v08veGuHsb93OK09xrH2Y
+         6K4lMmStfPdYYWQyFbYCVATx1I7J7BkMNuhHCHtlCPwImzSM7dMQUjHUOEvPCnPTJklc
+         NGS6AbZZ5IMqnnQRQqJhbmy1iAtC4AC5oaQE+4vXseUaCs0q64rpJydZ6Kxa1bT1pus/
+         n26Aja9RuVnwc/cWCRXoT/PLwe6eWwqwloaAq6Du0iusGvIJXLTNgfV0Py08fwY0zVfA
+         H3q7X+xuYmIBrL2mLirJjjAbigsHLE8HINeYzPBUh4nqlRagg/RylTsFnaFJvx7xq3Fb
+         2K3A==
+X-Gm-Message-State: AO0yUKXtpjitaQAVd4oHKM72cnHfZwjrAucpxEZMtHIvXRbJwn6rMxT+
+	SHvWTE6F8Imdw4sbeIICXstiNg==
+X-Google-Smtp-Source: AK7set+8chJEYzHKg+uduZ4y4OCNK6TUtWWaAIZZOVMlrI6GcnZITmCye0/0qIuUiQY19BZvAuI4wg==
+X-Received: by 2002:a5d:6187:0:b0:2c8:b9cb:885e with SMTP id j7-20020a5d6187000000b002c8b9cb885emr7599221wru.24.1677509212571;
+        Mon, 27 Feb 2023 06:46:52 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:94c3:7db:6fa6:5605? ([2a01:e0a:982:cbb0:94c3:7db:6fa6:5605])
+        by smtp.gmail.com with ESMTPSA id n4-20020a7bcbc4000000b003dc3f3d77e3sm8873890wmi.7.2023.02.27.06.46.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 06:41:25 -0800 (PST)
-Message-ID: <a652dd51-34c8-f493-1827-710f9b82bf5c@linaro.org>
-Date: Mon, 27 Feb 2023 15:41:23 +0100
+        Mon, 27 Feb 2023 06:46:52 -0800 (PST)
+Message-ID: <13cf3223-d3fb-1a3e-f13a-77db3b6d144c@linaro.org>
+Date: Mon, 27 Feb 2023 15:46:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+ Thunderbird/102.7.2
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, arm@kernel.org, soc@kernel.org
 Cc: Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linus.walleij@linaro.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@sberdevices.ru
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linus.walleij@linaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@sberdevices.ru
 References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <20230222115020.55867-4-avromanov@sberdevices.ru>
- <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
- <d5d9a1fe-2f66-66e3-d88a-76a12f2ec55e@linaro.org>
- <20230227143929.h2lppesdiaj7l3gn@CAB-WSD-L081021>
+ <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
+ <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230227143929.h2lppesdiaj7l3gn@CAB-WSD-L081021>
+Organization: Linaro Developer Services
+In-Reply-To: <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_064130_768046_102EC3D6 
-X-CRM114-Status: GOOD (  17.90  )
+X-CRM114-CacheID: sfid-20230227_064654_407207_8E4C7F82 
+X-CRM114-Status: GOOD (  20.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,53 +95,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/02/2023 15:39, Dmitry Rokosov wrote:
-> Hello Krzysztof!
+On 27/02/2023 15:28, Dmitry Rokosov wrote:
+> Hello Neil!
 > 
-> On Thu, Feb 23, 2023 at 10:09:25AM +0100, Krzysztof Kozlowski wrote:
+> On Mon, Feb 27, 2023 at 09:15:04AM +0100, neil.armstrong@linaro.org wrote:
 > 
 > [...]
 > 
->>>> describes following compontents: CPU, GIC, IRQ, Timer, UART,
->>>> PIN controller. It's capable of booting up into
->>>> the serial console.
->>>>
->>>> This is based on arm64 version of meson-a1.dtsi.
->>>>
->>>> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
->>>> ---
->>>>  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
->>>
->>> There is such file and there is such DTS/hardware support. I don't see
->>> any reason why entire DTSI should be duplicated. What's more, your
->>> commit does not explain it - does not justify duplication.
+>> I'm aware Amlogic also runs their kernel as 32bit to gain a few kbytes
+>> of memory, but those processors are ARMv8 and the arm64 arch code
+>> has been designed for those CPUs.
 >>
->> One more comment - I think you just added dead code. It's
->> uncompilable/untestable. Otherwise, please share how to build this DTSI
->> without DTS.
+>> So far I didn't find a single good reason to add 32bit support for
+>> ARMv8 Amlogic based SoCs, if you have a solid reason please share.
 > 
-> You are right, Alexey doesn't provide any exact *.dts file for any
-> board, and *.dtsi file should be included somewhere, otherwise this is
-> dead code.
-> Unfortunately, our internal board *.dts file is useless for kernel
-> community, cause there is not any chance to burn locally compiled kernel
-> to our product due to secureboot protection.
-> But I think there is one possible option. We have reference Amlogic
-> boards somewhere in the office. So we can test 32-bit configuration on
-> it and prepare proper *.dts file for that. What do you think, it
-> reasanoble?
+> I totally agree with you, but I suppose it's fully related to 'big'
+> Amlogic SoC like S905_ or A311_ series. A113L (aka 'a1') is
+> a cost-efficient dual-core SoC which is used for small, cheap solutions
+> with cheap components. Every cent is important during BoM development.
+> That's why usually ODMs install small ROM and RAM capacity, and each
+> megabyte is important for RAM/ROM kernel and rootfs footprints.
 
-You just need to provide valid board which works in 32-bit mode. Anyway
-duplicating DTSI is a no-go and we do not do it in other platforms.
+Do you have figures ? is 32bit ARM kernel really lighter when ARM64 one is correctly configured ?
 
+> Why am I talking about rootfs? For such small projects a good
+> choice is buildroot rootfs assembling framework. Unfortunatelly,
+> buildroot doesn't support 'compat' mode when kernel and userspace have
+> a different bitness. 
 
-Best regards,
-Krzysztof
+well this is a buildroot problem... the kernel itself is perfectly capable
+of running an AArch32 userspace.
+
+> In the internal project, we save several
+> percents of ROM/RAM free space using 32-bit configuration (mostly rootfs
+> ROM space, to be honest). Therefore, for such 'little' cost-efficient
+> SoCs we can make an exception and support 32-bit configuration, from my
+> point of view.
+
+32bit ARM is now "legacy", I would need to have an advice from the ARM SoC
+maintainers, but AFAIK new ARMv8 SoCs should stay in arm64 arch.
+
+Arnd ? Olof ? do you have an opinion on this ?
+
+> 
+> What do you think about that?
+
+>>
+>> And as Krzysztof stated, the support is incomplete and cannot work
+>> without a dts file.
+> 
+> Agreed, we shouldn't merge dead code. But there are several question to
+> discuss there. Please check my reply to Krzysztof message.
+> 
+> [...]
+> 
 
 
 _______________________________________________
