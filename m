@@ -4,84 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54711C64ED6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 08:15:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2828C64ED8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Feb 2023 10:02:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+QrtQu8646Hc6YOSc8/NWsYfZLGE+lV7Uq4hPpDQVpY=; b=e6cQTklx9aWMe93n0rmPxoqyzs
-	Q7iVJQolM7XD2eDJ2nSf+yT34TDzAP2qPs1rjqlKXq9h9OxV4S0fbYyLh4O0kOttEx5WJtiNQ1Dnd
-	lxluwMor5IgBup18gLpJKWhPHOArmttztIOEDTo0jZ/jLppGjL2V4w00TTxcLHo+rSiX2Hq8imFTH
-	WAzRygHopnhIPL67ZiLhD8ncl84q1TMRIzSb+huA/BIKdmm1hoF+rt0cN3jAXYOXvFGgpZqTZBkAu
-	l635gNOiuSs+/MPDSDBSbNQTo+LCW9/j6xzr6+K6LmLNMt/dVdYbi15XTGncRKGb+lh5A34vTKFxI
-	dqjb1FiQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UakgLU2CZYAOnnLjbklKrwrkV+xjezOM16b7B6A67aQ=; b=CCT9ekt7RES0MR
+	J+ya2PXnMfzmzHJeCXLLY6BRtNnv3j9Bwl/zyKnb5jja09/ByA7UxzZTGBeQJOpLZJxo+s8xVt0KW
+	OuGcuEGI7m7+oRg8ygOvjYNsuqY4JJfmMbjg+1rIPSgvHVCWTIGRdv25RXUzRuzHOhpHwz6R0087S
+	VeLxHo7alxA8wulTk5Rffxf+b4psyyzEv0wjV0YtgTc6U2VmNZP88tnNQNcRP99tqpHynSNgREzek
+	rXzb1WTlKvKaezUrJAxNYGwq6D9HOn0jQQ33Y+TbVugtFNGnAJ3E7R8ksIII29sMn3DCt6g0F9gRU
+	VmX5c+owVSJTqLxhluZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWYfA-008lB7-OV; Mon, 27 Feb 2023 08:15:12 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1pWaKy-0099P9-Uw; Mon, 27 Feb 2023 10:02:29 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWYf6-008l97-7z
-	for linux-amlogic@lists.infradead.org; Mon, 27 Feb 2023 08:15:09 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso3022506wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Feb 2023 00:15:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ykQL+wemGByro2MkMCepozrEmOoZvr3Fpiqikx6KNvU=;
-        b=XTuhesiLkfEkA+SGb398z9A6gEpdRaVwniIjjcWh/5zzOW2M8KIcI39ELkW0U7D98s
-         KW8TofHUTUc76kbKnH7EJK0+qnMQmAF39k2TNmxXnwHYKCowEMvUjcuP8WNuf7mvpQyp
-         /FOvD3kEsBNG7uj95+QCLm0ma5Lb5b/4V/O9/QPZWOsyhHOTF32DsCTCTMj7OOysy1l/
-         t47MJWtPfOpNCZD5B7eA4kkMF76HlQHuKd30bue+N3stNmEPKkMlxGkg1DCboa/Jb7UE
-         n0k1bEjiHz4+QhJEaWArE/pEZzI+PghfZf/wxlkUWimZgHSOM0cTpydArzEA7FyF7sK1
-         puWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ykQL+wemGByro2MkMCepozrEmOoZvr3Fpiqikx6KNvU=;
-        b=D7sBTRQWv/ARSOiIE8MaJujj17viac6P19wWVmO/CB2ooCtxRZsYv/+gKI717ty2fE
-         hQBw8VFJ4ks8zYo22RV6YI73rSIhl1DOuKRznJt4BWNCbzgXqDq2tEUEX8XhoDlt+trc
-         4r9J4wGiV+IG4W/3CZc6CGZ2lzhO+Cg2KtGZyDoXkPHk9zs9R+CU3Z/wN+NJ+guGQNfJ
-         CukpfQjnWVdkfQ3Zv/0t7/F4e2gfnTLpVA87Aty0TrPvp/ZfvPLj291GD0kavKsqqZwh
-         n+aRKR3QSNqV/LDzK/trTqGWC4t2mYaBY817NVUe5e9NjmUyprHOSgxc2xoDNVBUVldn
-         Tf9w==
-X-Gm-Message-State: AO0yUKWxb3v9ZG9UrXNHpyKVnnXt7I32jR3ZmgP3cJLzM9OAtlzRfWph
-	653UcjGsFKCqivzV3rwqjLyXYw==
-X-Google-Smtp-Source: AK7set8ZGX2NnlEpE1CBg+Kmv2R0/WA3VAJQafJbNbYhmP4TslhboAqFxsukDkCv3SNGGwsiGWcIAw==
-X-Received: by 2002:a05:600c:4d21:b0:3ea:e4bb:340c with SMTP id u33-20020a05600c4d2100b003eae4bb340cmr11811958wmp.18.1677485706224;
-        Mon, 27 Feb 2023 00:15:06 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id v16-20020a5d4b10000000b002c56013c07fsm6310120wrq.109.2023.02.27.00.15.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 00:15:05 -0800 (PST)
-Message-ID: <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
-Date: Mon, 27 Feb 2023 09:15:04 +0100
+	id 1pWaKt-0099JM-TE; Mon, 27 Feb 2023 10:02:27 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 188BF5FD0F;
+	Mon, 27 Feb 2023 13:02:11 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1677492131;
+	bh=axrOpWB/kuIlrKTiLcvF3MNd02fLp8Up4hYxSNkDI0c=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=N1RWFGCNLDx3Pox8xSdW2ZjEJ6WpX63vnFyxQQN0e9B/iClmsxXthz+3sr/tsU4e6
+	 q6Vn/5hYxsJqClo4+obCkfLK/CPqNgtswgdOvbnbv/k93O69OmqaJbxKvqxhNJGqd4
+	 g/4R6+98APJgvAWJtH4HWNdICjXdkzcHvLt2lo0ZjLQlyzgy3HkpyAfDjz6A9MagVf
+	 TlsN+0bCNCE0dl3fhU/XaAhyOWn7pNAGEVSufuvn83Mzux6cguJNa4Usgu+38TQycb
+	 v4gWcPY67wRcz+hqB8wwiz315H3A3XgZxKFcAiu2LvRmPhHqoknHoC+hIeZb+gV5K6
+	 gGXUPZBnthJUQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Mon, 27 Feb 2023 13:02:08 +0300 (MSK)
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>
+Subject: [PATCH v3] mtd: rawnand: meson: initialize struct with zeroes
+Date: Mon, 27 Feb 2023 12:59:06 +0300
+Message-ID: <20230227095906.754178-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
-To: Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- linus.walleij@linaro.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@sberdevices.ru
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
-Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <20230222115020.55867-1-avromanov@sberdevices.ru>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/27 03:40:00 #20900191
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_001508_327997_3217E539 
-X-CRM114-Status: GOOD (  14.26  )
+X-CRM114-CacheID: sfid-20230227_020224_327319_9EF1AE8E 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,49 +79,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/02/2023 12:50, Alexey Romanov wrote:
-> Hello!
-> 
-> This patchset adds support for 32-bit Meson A1 board.
+This structure must be zeroed, because it's field 'hw->core' is used as
+'parent' in 'clk_core_fill_parent_index()', but it will be uninitialized.
+This happens, because when this struct is not zeroed, pointer 'hw' is
+"initialized" by garbage, which is valid pointer, but points to some
+garbage. So 'hw' will be dereferenced, but 'core' contains some random
+data which will be interpreted as a pointer. The following backtrace is
+result of dereference of such pointer:
 
-Hi Alexev,
+[    1.081319]  __clk_register+0x414/0x820
+[    1.085113]  devm_clk_register+0x64/0xd0
+[    1.088995]  meson_nfc_probe+0x258/0x6ec
+[    1.092875]  platform_probe+0x70/0xf0
+[    1.096498]  really_probe+0xc8/0x3e0
+[    1.100034]  __driver_probe_device+0x84/0x190
+[    1.104346]  driver_probe_device+0x44/0x120
+[    1.108487]  __driver_attach+0xb4/0x220
+[    1.112282]  bus_for_each_dev+0x78/0xd0
+[    1.116077]  driver_attach+0x2c/0x40
+[    1.119613]  bus_add_driver+0x184/0x240
+[    1.123408]  driver_register+0x80/0x140
+[    1.127203]  __platform_driver_register+0x30/0x40
+[    1.131860]  meson_nfc_driver_init+0x24/0x30
 
-I'm aware Amlogic also runs their kernel as 32bit to gain a few kbytes
-of memory, but those processors are ARMv8 and the arm64 arch code
-has been designed for those CPUs.
+Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-So far I didn't find a single good reason to add 32bit support for
-ARMv8 Amlogic based SoCs, if you have a solid reason please share.
-
-And as Krzysztof stated, the support is incomplete and cannot work
-without a dts file.
-
-Neil
-
-> We describe device tree with following components:
-> CPU, GIC, IRQ, Timer, UART, PIN controller.
-> It's capable of booting up into the serial console.
-> 
-> We have tested this DTS and used drivers at our
-> 32-bit Meson A1 board and it works correctly.
-> 
-> Alexey Romanov (3):
->    meson: pinctrl: use CONFIG_PINCTRL_A1 with CONFIG_ARM
->    firmware: meson: use CONFIG_MESON_SM with CONFIG_ARM
->    arch/arm: dts: introduce meson-a1 device tree
-> 
->   arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
->   drivers/firmware/meson/Kconfig  |   2 +-
->   drivers/pinctrl/meson/Kconfig   |   2 +-
->   3 files changed, 153 insertions(+), 2 deletions(-)
->   create mode 100644 arch/arm/boot/dts/meson-a1.dtsi
-> 
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 5ee01231ac4c..30e326adabfc 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -991,7 +991,7 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+ 
+ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+ {
+-	struct clk_parent_data nfc_divider_parent_data[1];
++	struct clk_parent_data nfc_divider_parent_data[1] = {0};
+ 	struct clk_init_data init = {0};
+ 	int ret;
+ 
+-- 
+2.35.0
 
 
 _______________________________________________
