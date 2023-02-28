@@ -4,114 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05125C64EC7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Feb 2023 11:24:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787C4C64EC7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Feb 2023 16:48:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UOjBpvF8h/RQWKfSUrOR4K+W6QUuMxqXPI0rsojvqbQ=; b=QCfWqq45hEmzzh
-	sHNkC9sGZSBbZMX63Gw/IzkaZqbyITEA222wDtHBVXFC4jND+3QV9fxnzOaNlfUYfrobDI/zZe40F
-	STNcVRUW0vPFCriueAUWe99BJZlg0FVVKgCJOsJgkJ27xyqmt+iU2ZZ4kze7WMkZGinWulDBpSPhr
-	lrhI+i4XcDD9/0KZlVMT9EZmNILKtc4n4XyxTJS+j6prJ7uM7d7T9N6Ju9DP5yFyp/BM+XftYmTV+
-	yabfSI0C2Q7oo7Ga0RqwYsIIXOSk5k4Ysolf4E0P8RRZMgism4yEludPx22LmNcJZv2sqmxV7IyA3
-	pIP28cQHK1tD0zbkXONA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YhpwPTs9qwqagi5uHSNLHiS6txqiSwS/vaE3EKTCmw0=; b=1YX9Zj5RjTQKxM
+	lTlQhZcDbT4j/HahPgASmUDfuv8YPfD16O/xNMeJKhZF0tVyLNJhVQbSmntUa0IA1tH3fc1zKg649
+	QV2DyNpnuhC3aIdzKQGXLqJWTEIeUjCwBVwO9hLymW5g7v5corbOdLOgVP+sXAO4ICnfQUDi6CfWz
+	e0hNXzKAhH9sRYfUtgQGF5lLo3ug8of4NhmSheSNWPz1G0IlNZIKD1ySNqKuuEOvYFhXWRfg2wTKR
+	UEOeeEKDK1tJ/pZWlwKI91fFVoRnsrIjmCVx18m0YOEuOrxz8fw99j/vQ6X8Llcdd0yQ/nSztDB/2
+	nKRXHg18/9fWIQ5K8YKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWy5U-00CxLR-QU; Tue, 28 Feb 2023 11:24:04 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1pX39R-00DnPB-Vi; Tue, 28 Feb 2023 16:48:30 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWy4q-00Cwte-Jm
-	for linux-amlogic@lists.infradead.org; Tue, 28 Feb 2023 11:23:29 +0000
-Received: by mail-wr1-x436.google.com with SMTP id e37so6855567wri.10
-        for <linux-amlogic@lists.infradead.org>; Tue, 28 Feb 2023 03:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677583404;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=noGAcNm9i/TJIg+l6poaaVPqMFcIQlGqlbm0Xx4JGsg=;
-        b=kYRVRekPxRZJ16QGfWmv1vr0J1ER/skpTOxrzhhxuXoGrOxizxbJf40BF1BydnU7Xd
-         qjE6gYyZkgwNphgBThbNGOpfsFYzvxT+cC4H0zt0qGJsS3A7cPC8IyMf0l5kxrc9LTkd
-         y85XoNAwPT/28jVPPdq8nEgpgDQiojj2813jVsd3g1cXg51O3p0Jak2vODGCl0KrXzxa
-         I7p+roWfORMQHoBWlx5HhCeDkZ+chr3RCW8eJtQqaSPPAQPbdhnv/ZpUyicM5qNeNi+Z
-         7JLFTFH02RlrEc5wV/Tc45VTPVX+yL09vNpRUcU0Tj/nc5t3JMXeoVO2kcmt1aEfYwcD
-         y8Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677583404;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=noGAcNm9i/TJIg+l6poaaVPqMFcIQlGqlbm0Xx4JGsg=;
-        b=3+jCRAcI52JLWzDVeDbHiFT2TidfEwpRKFC3X30XRzhNyqRnkhllgtIFNJVCTbd54o
-         Vml+PaqSX+lfmsVIjRI1B1aB/g2axo3+iikcPhyC+OZmBBLUo1h7Nn8LKqvUx4mGDfFj
-         VYdXUS98ODFVzNmsMsPya3S7fFruqQrFHtfwIxY1FaKO8TfZdQBqlPYrDUQEZI562o7B
-         xIiNiE3J24jThjaVy5sQEM9TYZc0T4pcyejg4apJkeJUWZ4FwOUqPHjRDmmgp5YHn19g
-         ifQARqb5lUIMUw2KP+r/kekFam/F82WMEw5mQVLNTdW6qPkJuTIBTWPtUlfct9FQbIlY
-         lDRQ==
-X-Gm-Message-State: AO0yUKU6YVzKfgVbEbymdcKmz4Ud6qh9hYptioTOpM77KVaV7GZCuaEM
-	ZONqEU0/+Q654mmLOP/j8XF9vQ==
-X-Google-Smtp-Source: AK7set+bta9mogT1Y8vnFLbXxYEh+IsRBjLg+GEsCWg60ZKrtsaCBFl2RggxfNTANt1LuNGnUGvqwQ==
-X-Received: by 2002:a05:6000:2ca:b0:2c5:561f:fda with SMTP id o10-20020a05600002ca00b002c5561f0fdamr2235400wry.5.1677583404108;
-        Tue, 28 Feb 2023 03:23:24 -0800 (PST)
-Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:6830:6390:2815:b6a5])
-        by smtp.gmail.com with ESMTPSA id z5-20020a5d6545000000b002c5501a5803sm9598130wrv.65.2023.02.28.03.23.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 03:23:23 -0800 (PST)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: rafael@kernel.org,
-	daniel.lezcano@linaro.org
-Cc: linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Guillaume La Roque <glaroque@baylibre.com>,
-	Amit Kucheria <amitk@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	Vasily Khoruzhick <anarsoul@gmail.com>,
-	Yangtao Li <tiny.windzz@gmail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Eduardo Valentin <edubezval@gmail.com>,
-	Keerthy <j-keerthy@ti.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Balsam CHIHI <bchihi@baylibre.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	ye xingchen <ye.xingchen@zte.com.cn>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	linux-amlogic@lists.infradead.org (open list:THERMAL DRIVER FOR AMLOGIC SOCS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT),
-	linux-sunxi@lists.linux.dev (open list:ARM/Allwinner sunXi SoC support),
-	linux-tegra@vger.kernel.org (open list:TEGRA ARCHITECTURE SUPPORT),
-	linux-omap@vger.kernel.org (open list:TI BANDGAP AND THERMAL DRIVER),
-	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support)
-Subject: [PATCH v4 08/19] thermal/hwmon: Use the right device for devm_thermal_add_hwmon_sysfs()
-Date: Tue, 28 Feb 2023 12:22:27 +0100
-Message-Id: <20230228112238.2312273-9-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230228112238.2312273-1-daniel.lezcano@linaro.org>
-References: <20230228112238.2312273-1-daniel.lezcano@linaro.org>
+	id 1pX39M-00DnMp-Jp; Tue, 28 Feb 2023 16:48:28 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 58CE42003F3;
+	Tue, 28 Feb 2023 17:48:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1677602894;
+	bh=3JArV0HUT7IJjD46+A+es5XJHR5CflUHBr88Pe3TFW8=;
+	h=Date:To:Cc:From:Subject:From;
+	b=bzssfdAVpK1Skxw0AgoaafXZW0UrpTquq6+7zI4zOwLj3JbGqNTVWPlbw1bqCUFUq
+	 Eo4s3b2NwHZ+UclXw8E6gF5a8dIz7cIkxDlSc5cKofXuj3mLnTKR87N9Z4Uht6imMX
+	 TY4GjN7Lq7zoq/pn19jvmB77eNYTh6g7SX8M2ZMO1YeRKVCH5b4KU5AOkZzEiji2hE
+	 q6fi6rpUxZfN1rpDL6yPr+78Tg2ZGvPeRSOuvHOUI4DseqJJMSX3JB6j1YFzNioRLI
+	 CXHUfL55D6HJjZ3AL/JEB7pOPeMHDC4EkHgWrFkPp6R+9i/+MVJA2iHZwvRDNuxzXN
+	 sL94BQ8rdP8gw==
+Message-ID: <cbfd45e3-310b-db40-d52b-daf79ce8743d@free.fr>
+Date: Tue, 28 Feb 2023 17:48:02 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Content-Language: en-US
+To: AML <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+ Chris Healy <healych@amazon.com>, Will Deacon <will@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Pierre-Hugues Husson <phh@phh.me>
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+Subject: Conflict between video-lut and pmu on meson-g12
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230228_032324_712552_23A7ADFD 
-X-CRM114-Status: GOOD (  15.57  )
+X-CRM114-CacheID: sfid-20230228_084825_130767_38FA8F4D 
+X-CRM114-Status: UNSURE (   9.55  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,240 +74,114 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The devres variant of thermal_add_hwmon_sysfs() only takes the thermal
-zone structure pointer as parameter.
+Hello everyone,
 
-Actually, it uses the tz->device to add it in the devres list.
+Running 6.2.0-rc8 on a S905X2 board, I note the following error
+in the kernel log:
 
-It is preferable to use the device registering the thermal zone
-instead of the thermal zone device itself. That prevents the driver
-accessing the thermal zone structure internals and it is from my POV
-more correct regarding how devm_ is used.
+[    1.059175] meson-g12-ddr-pmu ff638000.pmu: can't request region for resource [mem 0xff638000-0xff6380ff]
+[    1.068647] meson-g12-ddr-pmu: probe of ff638000.pmu failed with error -16
 
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #amlogic_thermal
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com> #sun8i_thermal
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> #MediaTek auxadc
----
- drivers/thermal/amlogic_thermal.c                  | 2 +-
- drivers/thermal/imx8mm_thermal.c                   | 2 +-
- drivers/thermal/imx_sc_thermal.c                   | 2 +-
- drivers/thermal/k3_bandgap.c                       | 2 +-
- drivers/thermal/mediatek/auxadc_thermal.c          | 2 +-
- drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 2 +-
- drivers/thermal/qcom/qcom-spmi-temp-alarm.c        | 2 +-
- drivers/thermal/qcom/tsens.c                       | 2 +-
- drivers/thermal/qoriq_thermal.c                    | 2 +-
- drivers/thermal/sun8i_thermal.c                    | 2 +-
- drivers/thermal/tegra/tegra30-tsensor.c            | 2 +-
- drivers/thermal/thermal_hwmon.c                    | 4 ++--
- drivers/thermal/thermal_hwmon.h                    | 4 ++--
- drivers/thermal/ti-soc-thermal/ti-thermal-common.c | 2 +-
- 14 files changed, 16 insertions(+), 16 deletions(-)
+Relevant DT node from decompiled DTB:
+(arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi + arch/arm64/boot/dts/amlogic/meson-g12a.dtsi)
 
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-index dfcc93e45cdd..4bf36386462f 100644
---- a/drivers/thermal/amlogic_thermal.c
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -285,7 +285,7 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	if (devm_thermal_add_hwmon_sysfs(pdata->tzd))
-+	if (devm_thermal_add_hwmon_sysfs(&pdev->dev, pdata->tzd))
- 		dev_warn(&pdev->dev, "Failed to add hwmon sysfs attributes\n");
- 
- 	ret = amlogic_thermal_initialize(pdata);
-diff --git a/drivers/thermal/imx8mm_thermal.c b/drivers/thermal/imx8mm_thermal.c
-index efa1a4ffc368..e0de6ac49469 100644
---- a/drivers/thermal/imx8mm_thermal.c
-+++ b/drivers/thermal/imx8mm_thermal.c
-@@ -343,7 +343,7 @@ static int imx8mm_tmu_probe(struct platform_device *pdev)
- 		}
- 		tmu->sensors[i].hw_id = i;
- 
--		if (devm_thermal_add_hwmon_sysfs(tmu->sensors[i].tzd))
-+		if (devm_thermal_add_hwmon_sysfs(&pdev->dev, tmu->sensors[i].tzd))
- 			dev_warn(&pdev->dev, "failed to add hwmon sysfs attributes\n");
- 	}
- 
-diff --git a/drivers/thermal/imx_sc_thermal.c b/drivers/thermal/imx_sc_thermal.c
-index 2d7a6bd2846b..839bb9958f60 100644
---- a/drivers/thermal/imx_sc_thermal.c
-+++ b/drivers/thermal/imx_sc_thermal.c
-@@ -116,7 +116,7 @@ static int imx_sc_thermal_probe(struct platform_device *pdev)
- 			return ret;
- 		}
- 
--		if (devm_thermal_add_hwmon_sysfs(sensor->tzd))
-+		if (devm_thermal_add_hwmon_sysfs(&pdev->dev, sensor->tzd))
- 			dev_warn(&pdev->dev, "failed to add hwmon sysfs attributes\n");
- 	}
- 
-diff --git a/drivers/thermal/k3_bandgap.c b/drivers/thermal/k3_bandgap.c
-index b5cd2c85e0c3..791210458606 100644
---- a/drivers/thermal/k3_bandgap.c
-+++ b/drivers/thermal/k3_bandgap.c
-@@ -222,7 +222,7 @@ static int k3_bandgap_probe(struct platform_device *pdev)
- 			goto err_alloc;
- 		}
- 
--		if (devm_thermal_add_hwmon_sysfs(data[id].tzd))
-+		if (devm_thermal_add_hwmon_sysfs(dev, data[id].tzd))
- 			dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
- 	}
- 
-diff --git a/drivers/thermal/mediatek/auxadc_thermal.c b/drivers/thermal/mediatek/auxadc_thermal.c
-index 755baa4e5bd2..7b146350050d 100644
---- a/drivers/thermal/mediatek/auxadc_thermal.c
-+++ b/drivers/thermal/mediatek/auxadc_thermal.c
-@@ -1210,7 +1210,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
- 		goto err_disable_clk_peri_therm;
- 	}
- 
--	ret = devm_thermal_add_hwmon_sysfs(tzdev);
-+	ret = devm_thermal_add_hwmon_sysfs(&pdev->dev, tzdev);
- 	if (ret)
- 		dev_warn(&pdev->dev, "error in thermal_add_hwmon_sysfs");
- 
-diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-index ed204489a950..5749149ae2e4 100644
---- a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-+++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-@@ -689,7 +689,7 @@ static int adc_tm5_register_tzd(struct adc_tm5_chip *adc_tm)
- 			return PTR_ERR(tzd);
- 		}
- 		adc_tm->channels[i].tzd = tzd;
--		if (devm_thermal_add_hwmon_sysfs(tzd))
-+		if (devm_thermal_add_hwmon_sysfs(adc_tm->dev, tzd))
- 			dev_warn(adc_tm->dev,
- 				 "Failed to add hwmon sysfs attributes\n");
- 	}
-diff --git a/drivers/thermal/qcom/qcom-spmi-temp-alarm.c b/drivers/thermal/qcom/qcom-spmi-temp-alarm.c
-index b196d8d01726..0f88e98428ac 100644
---- a/drivers/thermal/qcom/qcom-spmi-temp-alarm.c
-+++ b/drivers/thermal/qcom/qcom-spmi-temp-alarm.c
-@@ -459,7 +459,7 @@ static int qpnp_tm_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	if (devm_thermal_add_hwmon_sysfs(chip->tz_dev))
-+	if (devm_thermal_add_hwmon_sysfs(&pdev->dev, chip->tz_dev))
- 		dev_warn(&pdev->dev,
- 			 "Failed to add hwmon sysfs attributes\n");
- 
-diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-index 6cc935379f00..d3218127e617 100644
---- a/drivers/thermal/qcom/tsens.c
-+++ b/drivers/thermal/qcom/tsens.c
-@@ -1189,7 +1189,7 @@ static int tsens_register(struct tsens_priv *priv)
- 		if (priv->ops->enable)
- 			priv->ops->enable(priv, i);
- 
--		if (devm_thermal_add_hwmon_sysfs(tzd))
-+		if (devm_thermal_add_hwmon_sysfs(priv->dev, tzd))
- 			dev_warn(priv->dev,
- 				 "Failed to add hwmon sysfs attributes\n");
- 	}
-diff --git a/drivers/thermal/qoriq_thermal.c b/drivers/thermal/qoriq_thermal.c
-index d2dc99247f61..e58756323457 100644
---- a/drivers/thermal/qoriq_thermal.c
-+++ b/drivers/thermal/qoriq_thermal.c
-@@ -157,7 +157,7 @@ static int qoriq_tmu_register_tmu_zone(struct device *dev,
- 			return ret;
- 		}
- 
--		if (devm_thermal_add_hwmon_sysfs(tzd))
-+		if (devm_thermal_add_hwmon_sysfs(dev, tzd))
- 			dev_warn(dev,
- 				 "Failed to add hwmon sysfs attributes\n");
- 
-diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
-index 6b550f0f90bf..793ddce72132 100644
---- a/drivers/thermal/sun8i_thermal.c
-+++ b/drivers/thermal/sun8i_thermal.c
-@@ -475,7 +475,7 @@ static int sun8i_ths_register(struct ths_device *tmdev)
- 		if (IS_ERR(tmdev->sensor[i].tzd))
- 			return PTR_ERR(tmdev->sensor[i].tzd);
- 
--		if (devm_thermal_add_hwmon_sysfs(tmdev->sensor[i].tzd))
-+		if (devm_thermal_add_hwmon_sysfs(tmdev->dev, tmdev->sensor[i].tzd))
- 			dev_warn(tmdev->dev,
- 				 "Failed to add hwmon sysfs attributes\n");
- 	}
-diff --git a/drivers/thermal/tegra/tegra30-tsensor.c b/drivers/thermal/tegra/tegra30-tsensor.c
-index 42c6fb494dd9..4b2ea17910cd 100644
---- a/drivers/thermal/tegra/tegra30-tsensor.c
-+++ b/drivers/thermal/tegra/tegra30-tsensor.c
-@@ -528,7 +528,7 @@ static int tegra_tsensor_register_channel(struct tegra_tsensor *ts,
- 		return 0;
- 	}
- 
--	if (devm_thermal_add_hwmon_sysfs(tsc->tzd))
-+	if (devm_thermal_add_hwmon_sysfs(ts->dev, tsc->tzd))
- 		dev_warn(ts->dev, "failed to add hwmon sysfs attributes\n");
- 
- 	return 0;
-diff --git a/drivers/thermal/thermal_hwmon.c b/drivers/thermal/thermal_hwmon.c
-index c594c42bea6d..964db7941e31 100644
---- a/drivers/thermal/thermal_hwmon.c
-+++ b/drivers/thermal/thermal_hwmon.c
-@@ -263,7 +263,7 @@ static void devm_thermal_hwmon_release(struct device *dev, void *res)
- 	thermal_remove_hwmon_sysfs(*(struct thermal_zone_device **)res);
- }
- 
--int devm_thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
-+int devm_thermal_add_hwmon_sysfs(struct device *dev, struct thermal_zone_device *tz)
- {
- 	struct thermal_zone_device **ptr;
- 	int ret;
-@@ -280,7 +280,7 @@ int devm_thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
- 	}
- 
- 	*ptr = tz;
--	devres_add(&tz->device, ptr);
-+	devres_add(dev, ptr);
- 
- 	return ret;
- }
-diff --git a/drivers/thermal/thermal_hwmon.h b/drivers/thermal/thermal_hwmon.h
-index 1a9d65f6a6a8..b429f6e7abdb 100644
---- a/drivers/thermal/thermal_hwmon.h
-+++ b/drivers/thermal/thermal_hwmon.h
-@@ -17,7 +17,7 @@
- 
- #ifdef CONFIG_THERMAL_HWMON
- int thermal_add_hwmon_sysfs(struct thermal_zone_device *tz);
--int devm_thermal_add_hwmon_sysfs(struct thermal_zone_device *tz);
-+int devm_thermal_add_hwmon_sysfs(struct device *dev, struct thermal_zone_device *tz);
- void thermal_remove_hwmon_sysfs(struct thermal_zone_device *tz);
- #else
- static inline int
-@@ -27,7 +27,7 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
- }
- 
- static inline int
--devm_thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
-+devm_thermal_add_hwmon_sysfs(struct device *dev, struct thermal_zone_device *tz)
- {
- 	return 0;
- }
-diff --git a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-index 3e998c9799bb..216b29068b08 100644
---- a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-+++ b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-@@ -182,7 +182,7 @@ int ti_thermal_expose_sensor(struct ti_bandgap *bgp, int id,
- 	ti_bandgap_set_sensor_data(bgp, id, data);
- 	ti_bandgap_write_update_interval(bgp, data->sensor_id, interval);
- 
--	if (devm_thermal_add_hwmon_sysfs(data->ti_thermal))
-+	if (devm_thermal_add_hwmon_sysfs(bgp->dev, data->ti_thermal))
- 		dev_warn(bgp->dev, "failed to add hwmon sysfs attributes\n");
- 
- 	return 0;
--- 
-2.34.1
+	pmu@ff638000 {
+		reg = <0x0 0xff638000 0x0 0x100 0x0 0xff638c00 0x0 0x100>;
+		interrupts = <0x0 0x34 0x1>;
+		compatible = "amlogic,g12a-ddr-pmu";
+	};
 
+However, according to /proc/iomem
+ff638048-ff63805b : ff638048.video-lut video-lut@48
+
+Corresponding DT node:
+(arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi)
+
+	video-lut@48 {
+		compatible = "amlogic,canvas";
+		reg = <0x0 0x48 0x0 0x14>;
+		phandle = <0x22>;
+	};
+
+(with a base of 0xff600000 + 0x38000 = 0xff638000)
+
+Unless I'm mistaken, ff638000-0xff6380ff and ff638048-ff63805b
+cannot co-exist?
+
+A simple solution might be to specify the "actual" base of
+the register set, and count from 0 in the driver?
+
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 534178eaaf373..cf37eecfba5b2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1712,7 +1712,7 @@ internal_ephy: ethernet-phy@8 {
+ 		};
+ 
+ 		pmu: pmu@ff638000 {
+-			reg = <0x0 0xff638000 0x0 0x100>,
++			reg = <0x0 0xff638080 0x0 0x40>,
+ 			      <0x0 0xff638c00 0x0 0x100>;
+ 			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+ 		};
+diff --git a/drivers/perf/amlogic/meson_g12_ddr_pmu.c b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
+index a78fdb15e26c2..8b643888d5036 100644
+--- a/drivers/perf/amlogic/meson_g12_ddr_pmu.c
++++ b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
+@@ -21,23 +21,23 @@
+ #define DMC_QOS_IRQ		BIT(30)
+ 
+ /* DMC bandwidth monitor register address offset */
+-#define DMC_MON_G12_CTRL0		(0x20  << 2)
+-#define DMC_MON_G12_CTRL1		(0x21  << 2)
+-#define DMC_MON_G12_CTRL2		(0x22  << 2)
+-#define DMC_MON_G12_CTRL3		(0x23  << 2)
+-#define DMC_MON_G12_CTRL4		(0x24  << 2)
+-#define DMC_MON_G12_CTRL5		(0x25  << 2)
+-#define DMC_MON_G12_CTRL6		(0x26  << 2)
+-#define DMC_MON_G12_CTRL7		(0x27  << 2)
+-#define DMC_MON_G12_CTRL8		(0x28  << 2)
+-
+-#define DMC_MON_G12_ALL_REQ_CNT		(0x29  << 2)
+-#define DMC_MON_G12_ALL_GRANT_CNT	(0x2a  << 2)
+-#define DMC_MON_G12_ONE_GRANT_CNT	(0x2b  << 2)
+-#define DMC_MON_G12_SEC_GRANT_CNT	(0x2c  << 2)
+-#define DMC_MON_G12_THD_GRANT_CNT	(0x2d  << 2)
+-#define DMC_MON_G12_FOR_GRANT_CNT	(0x2e  << 2)
+-#define DMC_MON_G12_TIMER		(0x2f  << 2)
++#define DMC_MON_G12_CTRL0		(0x0  << 2)
++#define DMC_MON_G12_CTRL1		(0x1  << 2)
++#define DMC_MON_G12_CTRL2		(0x2  << 2)
++#define DMC_MON_G12_CTRL3		(0x3  << 2)
++#define DMC_MON_G12_CTRL4		(0x4  << 2)
++#define DMC_MON_G12_CTRL5		(0x5  << 2)
++#define DMC_MON_G12_CTRL6		(0x6  << 2)
++#define DMC_MON_G12_CTRL7		(0x7  << 2)
++#define DMC_MON_G12_CTRL8		(0x8  << 2)
++
++#define DMC_MON_G12_ALL_REQ_CNT		(0x9  << 2)
++#define DMC_MON_G12_ALL_GRANT_CNT	(0xa  << 2)
++#define DMC_MON_G12_ONE_GRANT_CNT	(0xb  << 2)
++#define DMC_MON_G12_SEC_GRANT_CNT	(0xc  << 2)
++#define DMC_MON_G12_THD_GRANT_CNT	(0xd  << 2)
++#define DMC_MON_G12_FOR_GRANT_CNT	(0xe  << 2)
++#define DMC_MON_G12_TIMER		(0xf  << 2)
+ 
+ /* Each bit represent a axi line */
+ PMU_FORMAT_ATTR(event, "config:0-7");
+
+
+With the above patch, /proc/iomem becomes:
+
+ff638048-ff63805b : ff638048.video-lut video-lut@48
+ff638080-ff6380bf : ff638080.pmu pmu@ff638000
+ff638c00-ff638cff : ff638080.pmu pmu@ff638000
+
+(I didn't test that the driver actually works.
+I suppose one needs perf for that?)
+
+Regards.
 
 _______________________________________________
 linux-amlogic mailing list
