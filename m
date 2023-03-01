@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E8BC6FA9D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Mar 2023 15:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C9F8C64ED6
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Mar 2023 15:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m++4of+NNr8YAFLItOx59f+BuckEe+lPpNORUym746E=; b=p7Q2fzKC4AfmBR
-	H0XJ1+SNvvcdSvC1ENbtjV7EOlDI8iEjEOXqBUtt39H3FVgDy2DYChcqNiwqysSCHTenQ62fkieX1
-	CHfKBt0CfUznJh1k3baqlI99nzEuUWWBX4p4WbK9TRNkbIimVvhJJdCbC77Wog16ZX5gTyi0rb6co
-	3D/u3JbZKf1ONlPy/J/mjKN4ND8RFs5/B4A5aUeaPFZlWqDxwvFI/RAqcvTI7o8HGAa4ozFiztb44
-	YbueVvcMmtVWAMIDpavUWANPNFEoV1setudWg5OSxBSpXasXr83jnD2RP75zpB9QU2LnkBE+NSsSf
-	mUZRmg1MsqTOa6+qL4Qw==;
+	List-Owner; bh=2HFB5HgoNyTagGNrDqFOz/w+ymB02eAZV1rlcXYUchY=; b=M5y70O8PeOFkS0
+	WnRRyfAp9BkVgTMaKKDChuUXiGLFgMVfTcsx88mSoH1kwdjA0GrlZeqY8c1Sz9fvJfmF8utaSsu13
+	23Ucbr+4Er9ns5PQvPJ/aGch5EWXIKwOj1OYvWDW/C/jP4YiimwARbayHFOP8dLkBOKOtr6vVP3E2
+	5cVpiWOE46U7bcAhysBnNiceSIes5GEkylxtV2cejUTujjNnLQ2bb4iZN1lPm9aT1bZrdTo2gOyUh
+	ECp38H5CknZOqpfoSIyhe32q+39J9vyv4C5bzmgA1Mtsr/wXoeflkBGYq0pz6TV2Y2sSH4AAPRM3s
+	JRV5GAOZpChJ4L32Wrng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pXOQl-00GZUZ-UC; Wed, 01 Mar 2023 15:31:47 +0000
-Received: from smtp-out2.suse.de ([195.135.220.29])
+	id 1pXOQz-00GZgN-FH; Wed, 01 Mar 2023 15:32:01 +0000
+Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pXOQC-00GZ5S-OM; Wed, 01 Mar 2023 15:31:14 +0000
+	id 1pXOQD-00GZ4q-1j; Wed, 01 Mar 2023 15:31:15 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id C3D071FE1D;
-	Wed,  1 Mar 2023 15:31:09 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 85E6C1FE18;
+	Wed,  1 Mar 2023 15:31:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1677684669; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1677684666; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=IAvT+3jk1v2984n9xMC3K0atfkDhGLIg4BcmTjxSKDg=;
-	b=Bf/VyM34sD1+6BzUk1Uvw1nAi09RXt4rXZzHMsfSE5uRjYBeaKfDDrAtnOkqwrxwHBZ1WA
-	NDQM52P1a+G51RsnoIwUevpyYi8c3RH+w1aXeZZUlazu3NqCVV0TGe+rv836R/rUiQeocf
-	L+wWoFZwRGVjz/E/zy911V3xD5gxi7A=
+	bh=MxpdRpdn9uutNX6FO/yiB32yAysGsGBcGoSWrgRY8Qk=;
+	b=uR2F9f260pYddEF/iXtsTrfuuY3zL+mkf6EXkOx6Gsqbx6QIEFEax35+xp2FaWaDVg6ElY
+	VUYPS8AhjHteNDxsjkWR/aoLP3PKIMG11kOvKQD0RR9xo+zfMHnk+UBIqxHkF4JpzIXqcC
+	FXldoldzkMMXePOngLSShxO2PbYWCu0=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1677684669;
+	s=susede2_ed25519; t=1677684666;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=IAvT+3jk1v2984n9xMC3K0atfkDhGLIg4BcmTjxSKDg=;
-	b=vwRD7VpE6aQB5hfc4rTQCciN+3Oj6QhUWh03H8Fh1mWRB8+jlkWUnud0qbVL/5hjln+IAm
-	GkmUAqyugV9sAYDw==
+	bh=MxpdRpdn9uutNX6FO/yiB32yAysGsGBcGoSWrgRY8Qk=;
+	b=mpGdmWgDtIvk5RWeTwMuBddST/WUFb1DC/L5bisOz49YxXKPzPEJdgVyc80shF1lHoCidr
+	dyI5IrpOG6KqjZAw==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2172F13A64;
-	Wed,  1 Mar 2023 15:31:09 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id EA3AE13A3E;
+	Wed,  1 Mar 2023 15:31:05 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id GFzGBr1v/2OAXgAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Wed, 01 Mar 2023 15:31:09 +0000
+	id iPhpOLlv/2OAXgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Wed, 01 Mar 2023 15:31:05 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: javierm@redhat.com,
 	maarten.lankhorst@linux.intel.com,
@@ -98,16 +98,16 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-sunxi@lists.linux.dev,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 07/22] drm/imx/dcss: Use GEM DMA fbdev emulation
-Date: Wed,  1 Mar 2023 16:30:46 +0100
-Message-Id: <20230301153101.4282-8-tzimmermann@suse.de>
+Subject: [PATCH 02/22] arm/hdlcd: Use GEM DMA fbdev emulation
+Date: Wed,  1 Mar 2023 16:30:41 +0100
+Message-Id: <20230301153101.4282-3-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230301153101.4282-1-tzimmermann@suse.de>
 References: <20230301153101.4282-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230301_073112_971477_7F342CD6 
-X-CRM114-Status: GOOD (  11.52  )
+X-CRM114-CacheID: sfid-20230301_073113_300001_13062255 
+X-CRM114-Status: GOOD (  12.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,30 +129,30 @@ possible shadow buffering and makes the code simpler.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/imx/dcss/dcss-kms.c | 4 ++--
+ drivers/gpu/drm/arm/hdlcd_drv.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/imx/dcss/dcss-kms.c b/drivers/gpu/drm/imx/dcss/dcss-kms.c
-index dab5e664920d..896de946f8df 100644
---- a/drivers/gpu/drm/imx/dcss/dcss-kms.c
-+++ b/drivers/gpu/drm/imx/dcss/dcss-kms.c
-@@ -7,7 +7,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge_connector.h>
+diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
+index e3507dd6f82a..a554c79dcd39 100644
+--- a/drivers/gpu/drm/arm/hdlcd_drv.c
++++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+@@ -26,7 +26,7 @@
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_debugfs.h>
  #include <drm/drm_drv.h>
 -#include <drm/drm_fbdev_generic.h>
 +#include <drm/drm_fbdev_dma.h>
  #include <drm/drm_gem_dma_helper.h>
  #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_of.h>
-@@ -145,7 +145,7 @@ struct dcss_kms_dev *dcss_kms_attach(struct dcss_dev *dcss)
+ #include <drm/drm_modeset_helper.h>
+@@ -301,7 +301,7 @@ static int hdlcd_drm_bind(struct device *dev)
  	if (ret)
- 		goto cleanup_crtc;
+ 		goto err_register;
  
 -	drm_fbdev_generic_setup(drm, 32);
 +	drm_fbdev_dma_setup(drm, 32);
  
- 	return kms;
+ 	return 0;
  
 -- 
 2.39.2
