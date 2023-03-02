@@ -4,85 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C32ACC6FA8E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Mar 2023 09:28:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 002D9C678D4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Mar 2023 10:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WHJ5FLTaXcgSlfoway0/tQ+32PvArWVhaU9hmXMffzs=; b=1kS+m+XsT9AfJZHVAksMs7n13Q
-	qwKyfZgQqW9FGXrCVKjzQHWMvtKFooxBT4YW24nbgAgCQgtjVUm19YDfHItpCb6CP3sLFKlTRArXq
-	89P8vlEWmK6a/U1ic3m4qxFxuDI5rH6wjYQwAoFf1e2hkkiYyXuuAVFAgM17DNhwMdSkod4GRc3oy
-	xStZraGdkBgoT5eRw6Iebs1DkVUW7K1Y6cN3BoXtj20mqufjuij2Wk03S+gvViIU7TorNJGxxeEkM
-	7M07VfGX95A8YMQZmqxgDBcuwG9vwgMP1jI5q5uzqxwsV3LwWZFy5BQe6RvDJit6N1ncQYD/RuY2B
-	OmxmQcyQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lZXod4eCU6LUQgqH+VbW6CGgNqkkMOaxgX5+RpTY9EY=; b=IZBtfrVX+3HiVW
+	7iqdOZHm9jCnVlw7jxh93g5esfFOxHFTolDyVbfBY1WZGYmG60saoMIOc7ci6gYjYlfeYoclG0Gtz
+	IpYgJfHoP+Sk8PjJNHwtXdDd16A+95x+iceq4JV3NmpYjGcrlDf6paMSSCJPgL0dtCYzrGDfx9aAR
+	EQW90TtyEwEPGCLiPZTtbeFW+UOjwo33/qkh+VZigJoTJcuv5DizEJEpJDNSFh+2AbCMw3rOVgLa5
+	0+HLyrnR3MDt2HPQ6nfeHd+MnbsIDPWmpl24lF4nP/r/lKS894kD8uAtFDz4ZeSoqFzimikCAIVZe
+	zsu2jt5+L3FDvmjhJq1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pXfEy-001PTQ-2a; Thu, 02 Mar 2023 09:28:44 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1pXflX-001afT-0Y; Thu, 02 Mar 2023 10:02:23 +0000
+Received: from mga09.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pXfEv-001PSU-Kp
-	for linux-amlogic@lists.infradead.org; Thu, 02 Mar 2023 09:28:42 +0000
-Received: by mail-wr1-x436.google.com with SMTP id h11so4090372wrm.5
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Mar 2023 01:28:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677749318;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pN3D6KI8Uaa46h7G/TJdROkJgq6ZG8djshLY451h4ys=;
-        b=ePgyFdWPqYzP5PsMiB6m/eTIZ/AdDvKD1geltdyzjjo+eHjCktcA4UW9yaInyU22lB
-         qLoNyhRQW4r7akoe0EKzIqBMybTmuIvccUOgNupV9rLMLpH30V8n0VkdPAxvQn0oOX9/
-         sDrZdoJbKfNw9F6Ju8EHhctCdgl8NUu0MYYSXqQVrrg5y8AaX/0Loebr+icGc8vsl0Qo
-         4cCuXD8LRFnccVKoCCAv/oG0fbnKXF+dG0DRz02swexJqakmg8hUO1WrrnsT+vYGuxTH
-         dl6l+KAJtKFZw3rPwVPn7PAL8P7PQPwiIaRkjo3qOHbOR8wruak4wkqNXXrAsV4HYd6J
-         Sghw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677749318;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pN3D6KI8Uaa46h7G/TJdROkJgq6ZG8djshLY451h4ys=;
-        b=sUNCWhJ2yW4wtXBodG0dXK5YvThyo2C5LHRE/5ZOjOzTWG3nEbsMSeaHChr4Rg6pq7
-         3E2gM2EM3ubEHXukBeaQqIRq+WsVSeXXYFgu+JNXGtFtUoP4kDElctI0k1pFwsb/kJgB
-         u6jm4yDL3kFtXsNa1m2rFSpPwrPf3HCZJrVbT66Imed3mEIG8fBF7hivXjHd1ppHq4uH
-         RjlRZTEMSmYoXK7/WyUAIcNsP9eofY5i3jY5ebQq3le20/H+wXWFaac5DrPGAKdtB4rI
-         kB+4XKlvWp2dwaLAHmZVHoJ7AHzdueBh/YCz9ge0AkkUDpA1C9RmQOgYoIXLsoqrT9tH
-         MURQ==
-X-Gm-Message-State: AO0yUKWC8/hFeg2qRr8uUIZc14bah4Ewtok/tbDwNRkPOZoxbpNMxrBd
-	5dyqr1joCx8ICkHqzN0RVHya5A==
-X-Google-Smtp-Source: AK7set9CWhecrLx281ewib0dIvx7MkBYjpt4sHuc9tY87sRrdwUG5w1d7q9EEY+x2f6djdKm6v6IZw==
-X-Received: by 2002:a5d:68cc:0:b0:2c9:850c:6b13 with SMTP id p12-20020a5d68cc000000b002c9850c6b13mr7334493wrw.67.1677749317874;
-        Thu, 02 Mar 2023 01:28:37 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:217a:db24:fe27:6b35? ([2a01:e0a:982:cbb0:217a:db24:fe27:6b35])
-        by smtp.gmail.com with ESMTPSA id d16-20020adff850000000b002c55306f6edsm14632513wrq.54.2023.03.02.01.28.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 01:28:37 -0800 (PST)
-Message-ID: <78b44cd8-adf1-d5fb-b140-6849fb77c679@linaro.org>
-Date: Thu, 2 Mar 2023 10:28:36 +0100
+	id 1pXflT-001abD-G2; Thu, 02 Mar 2023 10:02:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677751339; x=1709287339;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wXJoqjlMwyT50ByTps6K1QT9wCiNFa9WZdbp0ek08mI=;
+  b=LWjhlu0pPkau09Xww4C0DXNWubpW0qBb+ToZz5iQvyHKknrU9KUjVt/R
+   SIw8aN4JOF7J8dvgQ7EM7LzvCaCcC7OWFoHCz9cYOzRjDYs8fv+KexEvK
+   kfnofGqR3pNfRyvIdzFXDsEdGn63QotVwEng+juEvn6u9J0kvVKpVFr6d
+   xGUTsnbMFRn/mPARWGqEe5TangYPCrKFn0MdtoRyOL3HDKW/P1tjIVVuJ
+   u9DzGxYTJSBKSw6DjeleRpIs1XFOBxuAeMaa1zM0sVw3Pfank5YOeX3N6
+   ST44H/PNI6Oy/xAYUIj+dsgVCKCVWXrJxl2KNl5yKWobuYgOasVcyhtSe
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="336178077"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="336178077"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2023 02:02:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="739005512"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="739005512"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 02 Mar 2023 02:02:10 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1pXflK-0000OU-02;
+	Thu, 02 Mar 2023 10:02:10 +0000
+Date: Thu, 2 Mar 2023 18:02:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, neil.armstrong@linaro.org,
+	jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	khilman@baylibre.com, martin.blumenstingl@googlemail.com
+Cc: oe-kbuild-all@lists.linux.dev, jian.hu@amlogic.com,
+	kernel@sberdevices.ru, rockosov@gmail.com,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Message-ID: <202303021725.QbK36cES-lkp@intel.com>
+References: <20230301183759.16163-3-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
-Content-Language: en-US
-To: zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20230302063402.42708-1-zelong.dong@amlogic.com>
- <20230302063402.42708-4-zelong.dong@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230302063402.42708-4-zelong.dong@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20230301183759.16163-3-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230302_012841_731006_474FD541 
-X-CRM114-Status: GOOD (  14.66  )
+X-CRM114-CacheID: sfid-20230302_020219_614415_7B876683 
+X-CRM114-Status: GOOD (  12.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,78 +85,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 02/03/2023 07:34, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add the IR controller device of Meson-S4 SoC family, and enable
-> hardware IR decoder.
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> ---
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts   |  6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi        | 16 ++++++++++++++++
->   2 files changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> index 8ffbcb2b1ac5..4d3a81b3b762 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -28,3 +28,9 @@ memory@0 {
->   &uart_B {
->   	status = "okay";
->   };
-> +
-> +&ir {
-> +	status = "disabled";
+Hi Dmitry,
 
-Why is this disabled ? disabled state is already set in dtsi, it should be "okay".
+I love your patch! Yet something to improve:
 
-Neil
+[auto build test ERROR on clk/clk-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +	pinctrl-0 = <&remote_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index ad50cba42d19..309352a83eda 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -106,6 +106,14 @@ gpio: bank@4000 {
->   					#gpio-cells = <2>;
->   					gpio-ranges = <&periphs_pinctrl 0 0 82>;
->   				};
-> +
-> +				remote_pins: remote_pin {
-> +					mux {
-> +						groups = "remote_in";
-> +						function = "remote_in";
-> +						bias-disable;
-> +					};
-> +				};
->   			};
->   
->   			gpio_intc: interrupt-controller@4080 {
-> @@ -133,6 +141,14 @@ reset: reset-controller@2000 {
->   				reg = <0x0 0x2000 0x0 0x98>;
->   				#reset-cells = <1>;
->   			};
-> +
-> +			ir: ir@84000 {
-> +				compatible = "amlogic,meson-s4-ir";
-> +				reg = <0x0 0x84040 0x0 0x54>;
-> +				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-> +				amlogic,ir-support-hw-decode;
-> +				status = "disabled";
-> +			};
->   		};
->   	};
->   };
+url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Rokosov/clk-meson-add-support-for-A1-PLL-clock-ops/20230302-024110
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230301183759.16163-3-ddrokosov%40sberdevices.ru
+patch subject: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock controller driver
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230302/202303021725.QbK36cES-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/7f065968cd67b07045e9dda1d9b8fabb06f2100d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Dmitry-Rokosov/clk-meson-add-support-for-A1-PLL-clock-ops/20230302-024110
+        git checkout 7f065968cd67b07045e9dda1d9b8fabb06f2100d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303021725.QbK36cES-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/a1-pll.c:13:10: fatal error: meson-a1-clkc.h: No such file or directory
+      13 | #include "meson-a1-clkc.h"
+         |          ^~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +13 drivers/clk/meson/a1-pll.c
+
+  > 13	#include "meson-a1-clkc.h"
+    14	#include "a1-pll.h"
+    15	#include "clk-regmap.h"
+    16	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
 
 _______________________________________________
 linux-amlogic mailing list
