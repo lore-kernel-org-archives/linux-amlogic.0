@@ -4,74 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F972C64EC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 13:38:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2153C7EE2D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 15:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4is9Kb8r8zMr5xQPxzz4eRL/WLxwV45rANeBS/sLFfw=; b=27nHdIKr2UL4Th
-	H8P81J3LGU31ZNC3klXqS9oqinL4422ul3XqGiOXhqnGEog3bxhJgB8It8uwZ+giyDmXVSSvVPnJ3
-	Ae3mOWhfdEesODIrKmrhV2lFqhhDBiZHG34+14jyjT2zOmiSNBkJ8dO7FuIdKDIZDXJxMMPjvdeae
-	Wi+2bzTnTUVlEN4go8qpjxJce0JcnMRSYIm1Bubx/8kkjsMyW6RSzlLPwJ+HwixmfioLUh6fgNP22
-	r2xkCEl09hdpKDrVks/nxOFFWZhhHP2OIqX8UFoMoLljulzx+ugeoZ5urLs9fVoTeQ2xIolq6W+5n
-	baXU+XJgEatsB9W0uftg==;
+	List-Owner; bh=Vb9X06XXpDM6SQNitSgg60wiIbW2uCllARccfU7I7JQ=; b=VhMHlpopap3Pm8
+	YjHnlTwRYwnfkpAd74eBPdrvxF+Za5A2RjotIB1AEk6hRx3kXLhUk8ufPByo7rdO7NfPVg2r+XSOi
+	eEPzQeeMu4vgHzKvtCbbpoPug/ifhnSIZRzSVYMp1Uj+VRBCgHd1+sVNuGwiLdOJop7H21yUEv5If
+	U95OunpALpgC+RksBXdM5+jJaY4oz8bzvrD+Gxka/6j/VS3HlLmTZeh7NSfXq2TmsA4yGU8WOVhEO
+	XDQWHy/XIYxHCWm1au4KLDYJT2Ei18lHNGf48mFgsmns86FmR5WcZqgxgkzgZyyK9qOQK0+M51kNC
+	Qq7sWHdqzFk6cv7MWEEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY5bc-006TTr-14; Fri, 03 Mar 2023 13:37:52 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pY7dt-006jqg-3q; Fri, 03 Mar 2023 15:48:21 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY5bY-006TNU-5a
-	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 13:37:50 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 765345FD18;
-	Fri,  3 Mar 2023 16:37:44 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1677850664;
-	bh=CqMSC40Z3PURd10dg5jU4/U4KMRUcGQu6m5kz6z7Wrc=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=grNROTOFQXTksDTniGbooW7nwgziZM++M5uIVaEu2JG/16wAh0YdEmfhYBeyiYmTt
-	 Ls8iOfVCf7Vz8A2E4LKLZtJ8+ML2ps9EhgEm5BSTTq7PKO3yUEbbQ9TlSDhiiI9PZN
-	 HVuxAj8SRNS8V172jBZYHNnG7JxAFCBuM0rVgWZ0WzWMf++KyPFjScLQtkhSEgLC93
-	 2G4aI+vf/oq+/TyBRFufI5AEX1TGUWO+0p/Nca0cs9xwMOd4OEMIEb5hLZKvGhk9AZ
-	 NcqQkO+T2u5rpif7p1FqayKEz4EfGywvDJZNy3LfaJ+OhgHKa9a761/9LuIBEnrxUj
-	 fBJhE0O9GKqqQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  3 Mar 2023 16:37:44 +0300 (MSK)
-Date: Fri, 3 Mar 2023 16:37:43 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: zelong dong <zelong.dong@amlogic.com>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
- RC_DRIVER_SCANCODE
-Message-ID: <20230303133743.djyp3vj7jdukqfye@CAB-WSD-L081021>
-References: <20230302063402.42708-1-zelong.dong@amlogic.com>
- <20230302063402.42708-2-zelong.dong@amlogic.com>
+	id 1pY7dq-006jpt-MV; Fri, 03 Mar 2023 15:48:19 +0000
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1pY7cn-0005si-GH; Fri, 03 Mar 2023 16:47:13 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: rafael@kernel.org, daniel.lezcano@linaro.org,
+ Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Mark Brown <broonie@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Balsam CHIHI <bchihi@baylibre.com>,
+ Adam Ward <DLG-Adam.Ward.opensource@dm.renesas.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Dhruva Gole <d-gole@ti.com>,
+ Guillaume La Roque <glaroque@baylibre.com>, Amit Kucheria <amitk@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Markus Mayer <mmayer@broadcom.com>,
+ Support Opensource <support.opensource@diasemi.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Talel Shenhar <talel@amazon.com>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Stefan Wahren <stefan.wahren@i2se.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ ye xingchen <ye.xingchen@zte.com.cn>,
+ Zheng Yongjun <zhengyongjun3@huawei.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Sumeet Pawnikar <sumeet.r.pawnikar@intel.com>,
+ "Lee, Chun-Yi" <joeyli.kernel@gmail.com>,
+ Shang XiaoJing <shangxiaojing@huawei.com>, Tim Zimmermann <tim@linux4.de>,
+ Yang Li <yang.lee@linux.alibaba.com>, Jiang Jian <jiangjian@cdjrlc.com>,
+ Daniel Golle <daniel@makrotopia.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Ido Schimmel <idosch@nvidia.com>, Minghao Chi <chi.minghao@zte.com.cn>,
+ Johan Hovold <johan+linaro@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ "open list:THERMAL DRIVER FOR AMLOGIC SOCS"
+ <linux-amlogic@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:QUALCOMM TSENS THERMAL DRIVER" <linux-arm-msm@vger.kernel.org>,
+ "open list:RENESAS R-CAR THERMAL DRIVERS"
+ <linux-renesas-soc@vger.kernel.org>,
+ "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+ "open list:SAMSUNG THERMAL DRIVER" <linux-samsung-soc@vger.kernel.org>,
+ "moderated list:ARM/STM32 ARCHITECTURE"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
+ "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+ "open list:TI BANDGAP AND THERMAL DRIVER" <linux-omap@vger.kernel.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>
+Subject:  Re: [PATCH v5 02/18] thermal/core: Use the thermal zone 'devdata' accessor in
+ thermal located drivers
+Date: Fri, 03 Mar 2023 16:47:15 +0100
+Message-ID: <3152081.5fSG56mABF@diego>
+In-Reply-To: <20230301201446.3713334-3-daniel.lezcano@linaro.org>
+References:  <20230301201446.3713334-1-daniel.lezcano@linaro.org>
+ <20230301201446.3713334-3-daniel.lezcano@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230302063402.42708-2-zelong.dong@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/03 09:42:00 #20911747
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230303_053748_607211_822A0ABB 
-X-CRM114-Status: GOOD (  29.76  )
+X-CRM114-CacheID: sfid-20230303_074818_765396_41E329E9 
+X-CRM114-Status: GOOD (  12.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,217 +123,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Zelong,
+Am Mittwoch, 1. M=E4rz 2023, 21:14:30 CET schrieb Daniel Lezcano:
+> The thermal zone device structure is exposed to the different drivers
+> and obviously they access the internals while that should be
+> restricted to the core thermal code.
+> =
 
-On Thu, Mar 02, 2023 at 02:34:00PM +0800, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Meson IR Controller supports hardware decoder in Meson-8B and later
-> SoC. So far, protocol NEC/RC-6/XMP could be decoded in hardware.
-> DTS property 'amlogic,ir-support-hw-decode' can enable this feature.
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> ---
->  drivers/media/rc/meson-ir.c | 713 ++++++++++++++++++++++++++++++++----
->  1 file changed, 632 insertions(+), 81 deletions(-)
-> 
-> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> index 4b769111f78e..1bfdce1c1864 100644
-> --- a/drivers/media/rc/meson-ir.c
-> +++ b/drivers/media/rc/meson-ir.c
-> @@ -14,6 +14,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/spinlock.h>
->  #include <linux/bitfield.h>
-> +#include <linux/regmap.h>
->  
->  #include <media/rc-core.h>
->  
-> @@ -21,87 +22,598 @@
->  
->  /* valid on all Meson platforms */
->  #define IR_DEC_LDR_ACTIVE	0x00
-> +	#define	IR_DEC_LDR_ACTIVE_MAX		GENMASK(28, 16)
-> +	#define	IR_DEC_LDR_ACTIVE_MIN		GENMASK(12, 0)
+> In order to self-encapsulate the thermal core code, we need to prevent
+> the drivers accessing directly the thermal zone structure and provide
+> accessor functions to deal with.
+> =
 
-Extra tabs before #define statement. The same problem is located in
-the whole patchset.
+> Use the devdata accessor introduced in the previous patch.
+> =
 
-[...]
+> No functional changes intended.
+> =
 
-> +#define MESON_IR_TIMINGS(proto, r_cnt, r_chk, r_comp, b1_e, hc, cnt_tick, ori, \
-> +			 flt, len, f_max, la_max, la_min, li_max, li_min,      \
-> +			 rl_max, rl_min, b0_max, b0_min, b1_max, b1_min,       \
-> +			 d2_max, d2_min, d3_max, d3_min)		\
-> +	{								\
-> +		.hw_protocol =			proto,			\
-> +		.repeat_counter_enable =	r_cnt,			\
-> +		.repeat_check_enable =		r_chk,			\
-> +		.repeat_compare_enable =	r_comp,			\
-> +		.bit1_match_enable =		b1_e,			\
-> +		.hold_code_enable =		hc,			\
-> +		.count_tick_mode =		cnt_tick,		\
-> +		.bit_order =			ori,			\
-> +		.filter_cnt =			flt,			\
-> +		.code_length =			len,			\
-> +		.frame_time_max =		f_max,			\
-> +		.leader_active_max =		la_max,			\
-> +		.leader_active_min =		la_min,			\
-> +		.leader_idle_max =		li_max,			\
-> +		.leader_idle_min =		li_min,			\
-> +		.repeat_leader_max =		rl_max,			\
-> +		.repeat_leader_min =		rl_min,			\
-> +		.bit0_max =			b0_max,			\
-> +		.bit0_min =			b0_min,			\
-> +		.bit1_max =			b1_max,			\
-> +		.bit1_min =			b1_min,			\
-> +		.duration2_max =		d2_max,			\
-> +		.duration2_min =		d2_min,			\
-> +		.duration3_max =		d3_max,			\
-> +		.duration3_min =		d3_min,			\
-> +	}								\
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Reviewed-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se> #=
+R-Car
+> Acked-by: Mark Brown <broonie@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com> #MediaTek auxadc and lvts
+> Reviewed-by: Balsam CHIHI <bchihi@baylibre.com> #Mediatek lvts
+> Reviewed-by: Adam Ward <DLG-Adam.Ward.opensource@dm.renesas.com> #da9062
+> Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>  #spread
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com> #sun8i_thermal
+> Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com> #Broadcom
+> Reviewed-by: Dhruva Gole <d-gole@ti.com> # K3 bandgap
 
-Extra tabs for back slash alignment
+Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
 
-> +
-> +/**
-> + * struct meson_ir_param - describe IR Protocol parameter
-> + * @hw_protocol: select IR Protocol from IR Controller.
-> + * @repeat_counter_enable: enable frame-to-frame time counter, it should work
-> + *	with @repeat_compare_enable to detect the repeat frame.
-> + * @repeat_check_enable: enable repeat time check for repeat detection.
-> + * @repeat_compare_enable: enable to compare frame for repeat frame detection.
-> + *	Some IR Protocol send the same data as repeat frame. In this case,
-> + *	it should work with @repeat_counter_enable to detect the repeat frame.
-> + * @bit_order: bit order, LSB or MSB.
-> + * @bit1_match_enable: enable to check bit 1.
-> + * @hold_code_enable: hold frame code in register IR_DEC_FRAME1, the new one
-> + *	frame code will not be store in IR_DEC_FRAME1. until IR_DEC_FRAME1
-> + *	has been read.
-> + * @count_tick_mode: increasing time unit of frame-to-frame time counter.
-> + *	0 = 100us, 1 = 10us.
-> + * @filter_cnt: input filter, to filter burr
-> + * @code_length: length (N-1) of frame's data part.
-> + * @frame_time_max: max time for whole frame. Unit: MESON_HW_TRATE
-> + * @leader_active_max: max time for NEC/RC6 leader active part. Unit: MESON_HW_TRATE.
-> + * @leader_active_min: min time for NEC/RC6 leader active part. Unit: MESON_HW_TRATE.
-> + * @leader_idle_max: max time for NEC/RC6 leader idle part. Unit: MESON_HW_TRATE.
-> + * @leader_idle_min: min time for NEC/RC6 leader idle part. Unit: MESON_HW_TRATE.
-> + * @repeat_leader_max: max time for NEC repeat leader idle part. Unit: MESON_HW_TRATE.
-> + * @repeat_leader_min: min time for NEC repeat leader idle part. Unit: MESON_HW_TRATE.
-> + * @bit0_max: max time for NEC Logic '0', half of RC6 trailer bit, XMP Logic '00'
-> + * @bit0_min: min time for NEC Logic '0', half of RC6 trailer bit, XMP Logic '00'
-> + * @bit1_max: max time for NEC Logic '1', whole of RC6 trailer bit, XMP Logic '01'
-> + * @bit1_min: min time for NEC Logic '1', whole of RC6 trailer bit, XMP Logic '01'
-> + * @duration2_max: max time for half of RC6 normal bit, XMP Logic '10'.
-> + * @duration2_min: min time for half of RC6 normal bit, XMP Logic '10'.
-> + * @duration3_max: max time for whole of RC6 normal bit, XMP Logic '11'.
-> + * @duration3_min: min time for whole of RC6 normal bit, XMP Logic '11'.
-> + */
->  
 
-Did you run checkpatch and kernel-doc checker for above struct
-documentation?
-
-> -#define REG0_RATE_MASK		GENMASK(11, 0)
-> +struct meson_ir_param {
-> +	u8		hw_protocol;
-> +	bool		repeat_counter_enable;
-> +	bool		repeat_check_enable;
-> +	bool		repeat_compare_enable;
-> +	bool		bit_order;
-> +	bool		bit1_match_enable;
-> +	bool		hold_code_enable;
-> +	bool		count_tick_mode;
-> +	u8		filter_cnt;
-> +	u8		code_length;
-> +	u16		frame_time_max;
-> +	u16		leader_active_max;
-> +	u16		leader_active_min;
-> +	u16		leader_idle_max;
-> +	u16		leader_idle_min;
-> +	u16		repeat_leader_max;
-> +	u16		repeat_leader_min;
-> +	u16		bit0_max;
-> +	u16		bit0_min;
-> +	u16		bit1_max;
-> +	u16		bit1_min;
-> +	u16		duration2_max;
-> +	u16		duration2_min;
-> +	u16		duration3_max;
-> +	u16		duration3_min;
-> +};
-
-Why do you need tab alignment between type and variable?
-
-[...]
-
-> +#ifdef CONFIG_PM
-> +static int meson_ir_resume(struct device *dev)
-> +{
-> +	struct meson_ir *ir = dev_get_drvdata(dev);
-> +
-> +	if (ir->support_hw_dec)
-> +		meson_ir_change_protocol(ir->rc, &ir->rc->enabled_protocols);
-> +	else
-> +		meson_ir_sw_decoder_init(ir->rc);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_ir_suspend(struct device *dev)
-> +{
-> +	struct meson_ir *ir = dev_get_drvdata(dev);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&ir->lock, flags);
-> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
-> +	spin_unlock_irqrestore(&ir->lock, flags);
-> +
-> +	return 0;
-> +}
-> +#endif
-> +
->  static const struct of_device_id meson_ir_match[] = {
->  	{ .compatible = "amlogic,meson6-ir" },
->  	{ .compatible = "amlogic,meson8b-ir" },
->  	{ .compatible = "amlogic,meson-gxbb-ir" },
-> +	{ .compatible = "amlogic,meson-s4-ir" },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, meson_ir_match);
->  
-> +#ifdef CONFIG_PM
-> +static const struct dev_pm_ops meson_ir_pm_ops = {
-> +	.suspend_late = meson_ir_suspend,
-> +	.resume_early = meson_ir_resume,
-> +};
-> +#endif
-> +
->  static struct platform_driver meson_ir_driver = {
->  	.probe		= meson_ir_probe,
->  	.remove		= meson_ir_remove,
-> @@ -231,6 +779,9 @@ static struct platform_driver meson_ir_driver = {
->  	.driver = {
->  		.name		= DRIVER_NAME,
->  		.of_match_table	= meson_ir_match,
-> +#ifdef CONFIG_PM
-> +		.pm = &meson_ir_pm_ops,
-> +#endif
-
-You can use pm_ptr() and DEFINE_SIMPLE_DEV_PM_OPS instead of checking of
-CONFIG_PM definition.
-
-[...]
-
--- 
-Thank you,
-Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
