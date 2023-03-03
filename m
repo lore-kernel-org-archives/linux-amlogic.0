@@ -4,67 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE0CC64EC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 18:19:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32E27C64EC4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 18:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KYf7DwaJ74FnVfkTxwAomdsSOhCig5DfLXN5lOQQTZM=; b=1iQmTdzHC/ebwo
-	mLeoeguciujF3LgSErHEMm9xaOSmFEkyURL3Ki6pgUpqfHbxOJiz+F8cq5faFUdk+nRsRsihOwr6I
-	S+plYsK9X46MGda64cECRKrJaE1Mui62zNq3rqNydNnX2wVi6LxpIz6Bs0tVWyJqKg4vRPTwi/juU
-	60xljf9b0LLJlOgFa7cuZe8C+/ly4BBpwa9t8du/aF6plDA0RnKV0ELB+Q5Wp4k9iemjDSJ7qRjuI
-	+KMsQaED2XYWLlbHp6xJqJjsjwgIOhXUWzEeKoXWBQ4hNOHVf/Yhjvd9jddhyRMXfo7CRMMUpew+O
-	AyLB9t82I9bRJnBh/o3Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gUS8GSfTMTxDMop7IiYlXIrrk7zJD73goSCIiJbTi64=; b=i5cPIjh3kYa59MBTFlXIj+8RGR
+	vQRG23jbYFtoygTURkE0bl1i6v48ANispFNyYF2YCRiLCuKaIOthbDvlK6RYrjZqgMlOq4fIbvorZ
+	5squU1fi2LnjPsl7Bvh3UiJ5mRC4bBu9TSUD7wzTwaPtYQvFzw75hqyuS54Ftj+/edMjsuWgnPaaJ
+	BP6Pwy4ZpD+v5DloECvf1sl2//3tL9iOb+9neN7HSNs/5hOuYRkCdHbHdwBAnVNSlHRGqUKziMww6
+	8jbyEn/ywm8ml4lAklrKzzcjxexsJjpXOkcOZTGqXNPaDuA4l2z3ygHz8Kxy26TuXeueXhrLVzdHk
+	/+lpuU7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pYA0C-0078ql-Ti; Fri, 03 Mar 2023 18:19:32 +0000
-Received: from smtp5-g21.free.fr ([212.27.42.5])
+	id 1pYAKp-007BZt-L5; Fri, 03 Mar 2023 18:40:51 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pYA09-0078oo-07
-	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 18:19:31 +0000
-Received: from [IPV6:2a02:8428:2a4:1a01:f88c:752c:48de:2928] (unknown [IPv6:2a02:8428:2a4:1a01:f88c:752c:48de:2928])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp5-g21.free.fr (Postfix) with ESMTPSA id E91E55FFAF;
-	Fri,  3 Mar 2023 19:19:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1677867562;
-	bh=VIibiph2IAZw8YCCnsAN51osihVhUJ2GrEU2ysg22B8=;
-	h=Date:From:Subject:To:Cc:From;
-	b=YCkYwiro4W8pFN7Mj4VjeohMZ7StZ6xLgPf9K54LZ6SV0v53trSAbWHffLuazXfhU
-	 nprlcBb0eLvFQhcysD1ouRiIWPLyj25h7X4IRpPNaev9MJtw6U4BygK8qbNpNbi9DH
-	 xC9Myay8bBR3Ua4uZAvMSe0zkuRF4s979tA4stfAE1e/RMhdO9EXuzTMkWdegoWgiL
-	 BxIM1mfrA8As8WRmdKMFNU7VY7S0S0YVppk29SW+2YYI8d55Whuta2YpLRXKs9NEaE
-	 MUDOhFrGmpOl+TImT4kRpUktW5NwRjWJkxQuOPeQOeOSSHzoZgF0EGQNcxshwqesCW
-	 20I0TehqRrJPA==
-Message-ID: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
-Date: Fri, 3 Mar 2023 19:19:00 +0100
+	id 1pYAKm-007BYG-SA
+	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 18:40:50 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pYAJT-0004Q1-Rf; Fri, 03 Mar 2023 19:39:27 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pYAJF-001cS4-A2; Fri, 03 Mar 2023 19:39:13 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pYAJE-001ug1-Il; Fri, 03 Mar 2023 19:39:12 +0100
+Date: Fri, 3 Mar 2023 19:39:09 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>,
+	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+	=?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Radu Pirea <radu_nicolae.pirea@upb.ro>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	William Zhang <william.zhang@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Jonas Gorski <jonas.gorski@gmail.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Kamal Dasu <kdasu.kdev@gmail.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>, Han Xu <han.xu@nxp.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jay Fang <f.fangjian@huawei.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andi Shyti <andi@etezian.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Li-hao Kuo <lhjeff911@gmail.com>,
+	Masahisa Kojima <masahisa.kojima@linaro.org>,
+	Jassi Brar <jaswinder.singh@linaro.org>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Michal Simek <michal.simek@xilinx.com>,
+	Max Filippov <jcmvbkbc@gmail.com>
+Cc: linux-aspeed@lists.ozlabs.org, Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	linux-samsung-soc@vger.kernel.org,
+	Benjamin Fair <benjaminfair@google.com>,
+	linux-rockchip@lists.infradead.org, openbmc@lists.ozlabs.org,
+	Nancy Yuen <yuenn@google.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-sunxi@lists.linux.dev,
+	linux-xtensa@linux-xtensa.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Jeffery <andrew@aj.id.au>,
+	Patrick Venture <venture@google.com>, linux-spi@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Yogesh Gaur <yogeshgaur.83@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 00/87] spi: Convert to platform remove callback returning
+ void
+Message-ID: <20230303183909.65uqvaznntwmfwht@pengutronix.de>
+References: <20230303172041.2103336-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-Subject: Unsupported WiFi adapter on S905X2 board
-To: Arend van Spriel <aspriel@gmail.com>, Franky Lin
- <franky.lin@broadcom.com>, Hante Meuleman <hante.meuleman@broadcom.com>,
- Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
- Alexander Prutskov <alep@cypress.com>, Wright Feng
- <wright.feng@cypress.com>, Joseph chuang <jiac@cypress.com>,
- Chi-Hsien Lin <chi-hsien.lin@cypress.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Angus Ainslie <angus@akkea.ca>
-Cc: linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Content-Language: en-US
+In-Reply-To: <20230303172041.2103336-1-u.kleine-koenig@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230303_101929_230998_8D0345D1 
-X-CRM114-Status: UNSURE (   9.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230303_104048_935418_6839DEF4 
+X-CRM114-Status: GOOD (  20.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,136 +144,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8391723966070895746=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+
+--===============8391723966070895746==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="v6z3e2z4afz7ipyr"
+Content-Disposition: inline
+
+
+--v6z3e2z4afz7ipyr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
 Hello,
 
-I think there's an unsupported device in this system:
+On Fri, Mar 03, 2023 at 06:19:14PM +0100, Uwe Kleine-K=F6nig wrote:
+> this patch series adapts the platform drivers below drivers/spi
+> to use the .remove_new() callback. Compared to the traditional .remove()
+> callback .remove_new() returns no value. This is a good thing because
+> the driver core doesn't (and cannot) cope for errors during remove. The
+> only effect of a non-zero return value in .remove() is that the driver
+> core emits a warning. The device is removed anyhow and an early return
+> from .remove() usually yields a resource leak.
+>=20
+> By changing the remove callback to return void driver authors cannot
+> reasonably assume any more that there is some kind of cleanup later.
+>=20
+> All drivers touched here returned zero unconditionally in their remove
+> callback, so they could all be converted trivially to .remove_new().
 
-# cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
-OF_NAME=wifi
-OF_FULLNAME=/soc/sd@ffe03000/wifi@1
-OF_COMPATIBLE_0=brcm,bcm4329-fmac
-OF_COMPATIBLE_N=1
-SDIO_CLASS=00
-SDIO_ID=02D0:AAE7
-SDIO_REVISION=0.0
-MODALIAS=sdio:c00v02D0dAAE7
+One thing I failed to mention here (because my coccinelle patch to
+detect that was suboptimal) is: There are 6 drivers---namely
+atmel-quadspi.c, spi-imx.c, spi-mt65xx.c, spi-qup.c, spi-sprd.c, and
+spi-ti-qspi.c---that might return a non-zero value in their remove
+function. Note that this is exactly the problem that I target to rub out
+with the effort to change .remove() to return void.
 
-0xaae7 = 43751
+I'll address them separately.
 
-Isn't there some overlap between
-include/linux/mmc/sdio_ids.h
-and
-drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-?
+Best regards
+Uwe
 
-(Relevant commit: d2587c57ffd8dc)
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-Looking at all the occurrences of 43752 to insert a 43751,
-could someone comment whether this looks reasonable?
+--v6z3e2z4afz7ipyr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
-index 1967160f211eb..89bbad598782e 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
-@@ -987,6 +987,7 @@ static const struct sdio_device_id brcmf_sdmmc_ids[] = {
-  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373, CYW),
-  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43012, CYW),
-  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439, CYW),
-+	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751, CYW),
-  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752, CYW),
-  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_89359, CYW),
-  	{ /* end: all zeroes */ }
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-index 121893bbaa1d7..cab9257272dd4 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-@@ -731,6 +731,7 @@ static u32 brcmf_chip_tcm_rambase(struct brcmf_chip_priv *ci)
-  	case BRCM_CC_4364_CHIP_ID:
-  	case CY_CC_4373_CHIP_ID:
-  		return 0x160000;
-+	case CY_CC_43751_CHIP_ID:
-  	case CY_CC_43752_CHIP_ID:
-  		return 0x170000;
-  	case BRCM_CC_4378_CHIP_ID:
-@@ -1433,6 +1434,7 @@ bool brcmf_chip_sr_capable(struct brcmf_chip *pub)
-  		reg = chip->ops->read32(chip->ctx, addr);
-  		return (reg & CC_SR_CTL0_ENABLE_MASK) != 0;
-  	case BRCM_CC_4359_CHIP_ID:
-+	case CY_CC_43751_CHIP_ID:
-  	case CY_CC_43752_CHIP_ID:
-  	case CY_CC_43012_CHIP_ID:
-  		addr = CORE_CC_REG(pmu->base, retention_ctl);
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-index 6b38d9de71af6..55cc7b65081fd 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-@@ -624,6 +624,7 @@ BRCMF_FW_CLM_DEF(4356, "brcmfmac4356-sdio");
-  BRCMF_FW_DEF(4359, "brcmfmac4359-sdio");
-  BRCMF_FW_CLM_DEF(4373, "brcmfmac4373-sdio");
-  BRCMF_FW_CLM_DEF(43012, "brcmfmac43012-sdio");
-+BRCMF_FW_CLM_DEF(43751, "brcmfmac43751-sdio");
-  BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-sdio");
-  
-  /* firmware config files */
-@@ -657,6 +658,7 @@ static const struct brcmf_firmware_mapping brcmf_sdio_fwnames[] = {
-  	BRCMF_FW_ENTRY(CY_CC_4373_CHIP_ID, 0xFFFFFFFF, 4373),
-  	BRCMF_FW_ENTRY(CY_CC_43012_CHIP_ID, 0xFFFFFFFF, 43012),
-  	BRCMF_FW_ENTRY(CY_CC_43439_CHIP_ID, 0xFFFFFFFF, 43439),
-+	BRCMF_FW_ENTRY(CY_CC_43751_CHIP_ID, 0xFFFFFFFF, 43751),
-  	BRCMF_FW_ENTRY(CY_CC_43752_CHIP_ID, 0xFFFFFFFF, 43752)
-  };
-  
-@@ -3425,6 +3427,7 @@ static int brcmf_sdio_download_firmware(struct brcmf_sdio *bus,
-  static bool brcmf_sdio_aos_no_decode(struct brcmf_sdio *bus)
-  {
-  	if (bus->ci->chip == CY_CC_43012_CHIP_ID ||
-+	    bus->ci->chip == CY_CC_43751_CHIP_ID ||
-  	    bus->ci->chip == CY_CC_43752_CHIP_ID)
-  		return true;
-  	else
-@@ -4274,6 +4277,7 @@ static void brcmf_sdio_firmware_callback(struct device *dev, int err,
-  
-  		switch (sdiod->func1->device) {
-  		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373:
-+		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751:
-  		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752:
-  			brcmf_dbg(INFO, "set F2 watermark to 0x%x*4 bytes\n",
-  				  CY_4373_F2_WATERMARK);
-diff --git a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-index f4939cf627672..8b21da3e66291 100644
---- a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-+++ b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-@@ -55,6 +55,7 @@
-  #define CY_CC_4373_CHIP_ID		0x4373
-  #define CY_CC_43012_CHIP_ID		43012
-  #define CY_CC_43439_CHIP_ID		43439
-+#define CY_CC_43751_CHIP_ID		43751
-  #define CY_CC_43752_CHIP_ID		43752
-  #define CY_CC_89459_CHIP_ID		0x4355
-  
-diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
-index 74f9d9a6d3307..80e84958e570f 100644
---- a/include/linux/mmc/sdio_ids.h
-+++ b/include/linux/mmc/sdio_ids.h
-@@ -76,6 +76,7 @@
-  #define SDIO_DEVICE_ID_BROADCOM_43430		0xa9a6
-  #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439	0xa9af
-  #define SDIO_DEVICE_ID_BROADCOM_43455		0xa9bf
-+#define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751	0xaae7
-  #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752	0xaae8
-  
-  #define SDIO_VENDOR_ID_MARVELL			0x02df
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQCPsoACgkQwfwUeK3K
+7AnE5wf/f9JfZvlhsMW5lUYY1iF+TtcOqAj1YniGiXQoKsm+C+jWJHYOZHCCzymg
+UQ5G8rDRrzTjzXz8vR2ZoeyNaMKy/WfN5PBBn8qc795Gqt8Z4wr9Fi0hyfto/6Ic
+fpzjUOQGdtgTfm/BiPYD61484JFMRNw7SPzUGCDBsvWNmUQdmLu7jbqtTCLk/DjY
+2VO+r2QB8TYqj/9xZQcl6RJC6c3qj5gHKYZIquIIHc/3Ug4eesZlWHWt2FNVTbX7
+n4hcyTMeV8iCsDN1/FgwNnOJW3UubunsqIIDqyPS7wreu6eK3QeUoR26ZFOKW19L
+9QoJp1TuDkcr0Cccg7l24GxflQoqgA==
+=LoPr
+-----END PGP SIGNATURE-----
+
+--v6z3e2z4afz7ipyr--
 
 
-Regards.
-
+--===============8391723966070895746==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8391723966070895746==--
+
