@@ -4,81 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C78DCC7EE2D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 17:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE0CC64EC4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 18:19:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qZnmnnxuXGrGSEyzTaRAXYfdznCeUp748YO9VJ61bJU=; b=IW1BRzBqLQaV4O
-	IEEFZdf0qo3+4rizd1K40/AESZeond5IM0AKVS/ljtXv84x3GDwpt85I4feuouRTdwQpqqT3JWnyE
-	vcCVwmhdpbHCZrSZ6aJv4Vxh9PHc7eQ+zd0I2LEhGnixftUU/uYTgtEo5ruHeRZuOSzGQmoYqm7pm
-	IBTKMl4WhDTH4ApEepU0cxiMmJyS8G/zxvery4GAd25kFunm9cAXWiEK772j9GP9yPmBq3MA7BqDJ
-	N1ffiW9zI5+CcpBmDfnqDbzZdMiMKBLkVioFjJUcR+a7rlzB/1HavJFtFKieWx6PgyOmrtycvzVoG
-	6d0Mfsha1RC3u9H5bf/w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=KYf7DwaJ74FnVfkTxwAomdsSOhCig5DfLXN5lOQQTZM=; b=1iQmTdzHC/ebwo
+	mLeoeguciujF3LgSErHEMm9xaOSmFEkyURL3Ki6pgUpqfHbxOJiz+F8cq5faFUdk+nRsRsihOwr6I
+	S+plYsK9X46MGda64cECRKrJaE1Mui62zNq3rqNydNnX2wVi6LxpIz6Bs0tVWyJqKg4vRPTwi/juU
+	60xljf9b0LLJlOgFa7cuZe8C+/ly4BBpwa9t8du/aF6plDA0RnKV0ELB+Q5Wp4k9iemjDSJ7qRjuI
+	+KMsQaED2XYWLlbHp6xJqJjsjwgIOhXUWzEeKoXWBQ4hNOHVf/Yhjvd9jddhyRMXfo7CRMMUpew+O
+	AyLB9t82I9bRJnBh/o3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY9Sp-0073pz-CP; Fri, 03 Mar 2023 17:45:03 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1pYA0C-0078ql-Ti; Fri, 03 Mar 2023 18:19:32 +0000
+Received: from smtp5-g21.free.fr ([212.27.42.5])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY9M3-0070xv-Ao
-	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 17:38:04 +0000
-Received: by mail-wm1-x330.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so1728909wmq.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Mar 2023 09:38:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677865080;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XuwYJdAluAVqq0350ZDdjBaUb0ds5oc80wUc9O3dgIc=;
-        b=IEdFjZXlGFiOHSA4JXDNHZx7kwV3q0QQTFC67jh1aPJwQ2OS4IrnaWAL6JlEW7nJNB
-         xsyDJyFt6Rqz2baaYacVM+BX2ae9UyWTVRByhOnCM+w6Z/QvDJfDIcpZrcw1Y0EkT3dt
-         Vo9KrkNRHOvuPFFHd3NTupJLHlHRhY9Oxf4KZC5NLM899BpqJBZyjWwpnwyqqy17KwBH
-         Ta3KoMXT4M0meBUZfWB0BIOSTxI9qKs/MFO/G8UjaIzwzlELMgWK65O3vkL3XcKO+EcZ
-         o6WgBs9eDyf2EZTqnnf140V3U3ujQNNyYi/oExjMGAoi5cUL0O3V6u5a5Zl3GaWzxePO
-         7IXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677865080;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XuwYJdAluAVqq0350ZDdjBaUb0ds5oc80wUc9O3dgIc=;
-        b=EHo87TlKx6NferDeHsuXEZ8MSZKrQLu+HRwDmU7f42yq5DiC0v3Odn8xTy3raSufeg
-         Je6w5SoLq8d6cWRFYjn2tyRmBDlUW7WeMq5DqRnFOkSF+pjkCOP3GPP5sB01a8v+WBxf
-         rfE7U5Ha3XGY/yJhPTllHKi7dgYM0YRNpWTGDdSdV8xp519l1cRDg3j/IOu8YrQxnAD7
-         LaovkLSIRGVIMY0Is6EwKiGh2efN9TyJazx9BUqcoTUnHm3Ru2v37giNk7O4awKjH6TW
-         gl6ZqMUunbk+zIGzeIJlDj/ie4ILYdeTvDl0zibunSeooy2iG3kr5SlUukgPDwZOMOO8
-         t22w==
-X-Gm-Message-State: AO0yUKVRjxhIYKlnFjP1G9cPQAaf+smK2BlFOKCuv5QoD9BJ1zQSlGXH
-	fiH0CY1CBiRdB7NPK7OIzVTO8g==
-X-Google-Smtp-Source: AK7set9f8opmU2oD8npox3kSfd6u28Xe+s4D2TT5yG6JKLEWheOoAxQ+Pw+UHBu0i/zqnfmricm+Hw==
-X-Received: by 2002:a05:600c:34d2:b0:3ea:c100:f5e7 with SMTP id d18-20020a05600c34d200b003eac100f5e7mr2261025wmq.39.1677865080297;
-        Fri, 03 Mar 2023 09:38:00 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m19-20020a05600c161300b003eb5a0873e0sm2990170wmn.39.2023.03.03.09.37.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 09:38:00 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 03 Mar 2023 18:37:57 +0100
-Subject: [PATCH 1/2] dt-bindings: arm: amlogic: Document the boards with
- the BPI-CM4 connected
+	id 1pYA09-0078oo-07
+	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 18:19:31 +0000
+Received: from [IPV6:2a02:8428:2a4:1a01:f88c:752c:48de:2928] (unknown [IPv6:2a02:8428:2a4:1a01:f88c:752c:48de:2928])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp5-g21.free.fr (Postfix) with ESMTPSA id E91E55FFAF;
+	Fri,  3 Mar 2023 19:19:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1677867562;
+	bh=VIibiph2IAZw8YCCnsAN51osihVhUJ2GrEU2ysg22B8=;
+	h=Date:From:Subject:To:Cc:From;
+	b=YCkYwiro4W8pFN7Mj4VjeohMZ7StZ6xLgPf9K54LZ6SV0v53trSAbWHffLuazXfhU
+	 nprlcBb0eLvFQhcysD1ouRiIWPLyj25h7X4IRpPNaev9MJtw6U4BygK8qbNpNbi9DH
+	 xC9Myay8bBR3Ua4uZAvMSe0zkuRF4s979tA4stfAE1e/RMhdO9EXuzTMkWdegoWgiL
+	 BxIM1mfrA8As8WRmdKMFNU7VY7S0S0YVppk29SW+2YYI8d55Whuta2YpLRXKs9NEaE
+	 MUDOhFrGmpOl+TImT4kRpUktW5NwRjWJkxQuOPeQOeOSSHzoZgF0EGQNcxshwqesCW
+	 20I0TehqRrJPA==
+Message-ID: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
+Date: Fri, 3 Mar 2023 19:19:00 +0100
 MIME-Version: 1.0
-Message-Id: <20230303-topic-amlogic-upstream-bpi-cm4-v1-1-5a23a1ade6bd@linaro.org>
-References: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
-In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+Subject: Unsupported WiFi adapter on S905X2 board
+To: Arend van Spriel <aspriel@gmail.com>, Franky Lin
+ <franky.lin@broadcom.com>, Hante Meuleman <hante.meuleman@broadcom.com>,
+ Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+ Alexander Prutskov <alep@cypress.com>, Wright Feng
+ <wright.feng@cypress.com>, Joseph chuang <jiac@cypress.com>,
+ Chi-Hsien Lin <chi-hsien.lin@cypress.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Angus Ainslie <angus@akkea.ca>
+Cc: linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230303_093803_416431_D0393771 
-X-CRM114-Status: UNSURE (   8.80  )
+X-CRM114-CacheID: sfid-20230303_101929_230998_8D0345D1 
+X-CRM114-Status: UNSURE (   9.45  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,39 +81,128 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The BPI-CM4 module with an Amlogic A311D SoC is a module compatible
-with the Raspberry Pi CM4 specifications.
+Hello,
 
-Document the boards using this module, by specifying the BananaPi CM4
-compatible in addition to the baseboard compatible.
+I think there's an unsupported device in this system:
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+# cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
+OF_NAME=wifi
+OF_FULLNAME=/soc/sd@ffe03000/wifi@1
+OF_COMPATIBLE_0=brcm,bcm4329-fmac
+OF_COMPATIBLE_N=1
+SDIO_CLASS=00
+SDIO_ID=02D0:AAE7
+SDIO_REVISION=0.0
+MODALIAS=sdio:c00v02D0dAAE7
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index b634d5b04e15..4e5ae70db4cb 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -158,6 +158,14 @@ properties:
-           - const: amlogic,a311d
-           - const: amlogic,g12b
- 
-+      - description: Boards using the BPI-CM4 module with Amlogic Meson G12B A311D SoC
-+        items:
-+          - enum:
-+              - bananapi,bpi-cm4io
-+          - const: bananapi,bpi-cm4
-+          - const: amlogic,a311d
-+          - const: amlogic,g12b
-+
-       - description: Boards with the Amlogic Meson G12B S922X SoC
-         items:
-           - enum:
+0xaae7 = 43751
 
--- 
-2.34.1
+Isn't there some overlap between
+include/linux/mmc/sdio_ids.h
+and
+drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+?
+
+(Relevant commit: d2587c57ffd8dc)
+
+Looking at all the occurrences of 43752 to insert a 43751,
+could someone comment whether this looks reasonable?
+
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+index 1967160f211eb..89bbad598782e 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+@@ -987,6 +987,7 @@ static const struct sdio_device_id brcmf_sdmmc_ids[] = {
+  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373, CYW),
+  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43012, CYW),
+  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439, CYW),
++	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751, CYW),
+  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752, CYW),
+  	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_89359, CYW),
+  	{ /* end: all zeroes */ }
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
+index 121893bbaa1d7..cab9257272dd4 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
+@@ -731,6 +731,7 @@ static u32 brcmf_chip_tcm_rambase(struct brcmf_chip_priv *ci)
+  	case BRCM_CC_4364_CHIP_ID:
+  	case CY_CC_4373_CHIP_ID:
+  		return 0x160000;
++	case CY_CC_43751_CHIP_ID:
+  	case CY_CC_43752_CHIP_ID:
+  		return 0x170000;
+  	case BRCM_CC_4378_CHIP_ID:
+@@ -1433,6 +1434,7 @@ bool brcmf_chip_sr_capable(struct brcmf_chip *pub)
+  		reg = chip->ops->read32(chip->ctx, addr);
+  		return (reg & CC_SR_CTL0_ENABLE_MASK) != 0;
+  	case BRCM_CC_4359_CHIP_ID:
++	case CY_CC_43751_CHIP_ID:
+  	case CY_CC_43752_CHIP_ID:
+  	case CY_CC_43012_CHIP_ID:
+  		addr = CORE_CC_REG(pmu->base, retention_ctl);
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+index 6b38d9de71af6..55cc7b65081fd 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+@@ -624,6 +624,7 @@ BRCMF_FW_CLM_DEF(4356, "brcmfmac4356-sdio");
+  BRCMF_FW_DEF(4359, "brcmfmac4359-sdio");
+  BRCMF_FW_CLM_DEF(4373, "brcmfmac4373-sdio");
+  BRCMF_FW_CLM_DEF(43012, "brcmfmac43012-sdio");
++BRCMF_FW_CLM_DEF(43751, "brcmfmac43751-sdio");
+  BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-sdio");
+  
+  /* firmware config files */
+@@ -657,6 +658,7 @@ static const struct brcmf_firmware_mapping brcmf_sdio_fwnames[] = {
+  	BRCMF_FW_ENTRY(CY_CC_4373_CHIP_ID, 0xFFFFFFFF, 4373),
+  	BRCMF_FW_ENTRY(CY_CC_43012_CHIP_ID, 0xFFFFFFFF, 43012),
+  	BRCMF_FW_ENTRY(CY_CC_43439_CHIP_ID, 0xFFFFFFFF, 43439),
++	BRCMF_FW_ENTRY(CY_CC_43751_CHIP_ID, 0xFFFFFFFF, 43751),
+  	BRCMF_FW_ENTRY(CY_CC_43752_CHIP_ID, 0xFFFFFFFF, 43752)
+  };
+  
+@@ -3425,6 +3427,7 @@ static int brcmf_sdio_download_firmware(struct brcmf_sdio *bus,
+  static bool brcmf_sdio_aos_no_decode(struct brcmf_sdio *bus)
+  {
+  	if (bus->ci->chip == CY_CC_43012_CHIP_ID ||
++	    bus->ci->chip == CY_CC_43751_CHIP_ID ||
+  	    bus->ci->chip == CY_CC_43752_CHIP_ID)
+  		return true;
+  	else
+@@ -4274,6 +4277,7 @@ static void brcmf_sdio_firmware_callback(struct device *dev, int err,
+  
+  		switch (sdiod->func1->device) {
+  		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373:
++		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751:
+  		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752:
+  			brcmf_dbg(INFO, "set F2 watermark to 0x%x*4 bytes\n",
+  				  CY_4373_F2_WATERMARK);
+diff --git a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+index f4939cf627672..8b21da3e66291 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
++++ b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+@@ -55,6 +55,7 @@
+  #define CY_CC_4373_CHIP_ID		0x4373
+  #define CY_CC_43012_CHIP_ID		43012
+  #define CY_CC_43439_CHIP_ID		43439
++#define CY_CC_43751_CHIP_ID		43751
+  #define CY_CC_43752_CHIP_ID		43752
+  #define CY_CC_89459_CHIP_ID		0x4355
+  
+diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
+index 74f9d9a6d3307..80e84958e570f 100644
+--- a/include/linux/mmc/sdio_ids.h
++++ b/include/linux/mmc/sdio_ids.h
+@@ -76,6 +76,7 @@
+  #define SDIO_DEVICE_ID_BROADCOM_43430		0xa9a6
+  #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439	0xa9af
+  #define SDIO_DEVICE_ID_BROADCOM_43455		0xa9bf
++#define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751	0xaae7
+  #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752	0xaae8
+  
+  #define SDIO_VENDOR_ID_MARVELL			0x02df
+
+
+Regards.
 
 
 _______________________________________________
