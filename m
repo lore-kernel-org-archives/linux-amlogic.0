@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBEAEC64EC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 08:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F4FC7EE2F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Mar 2023 08:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+kTPA743hFejvuYs6QyUM48aYDfHUcAvtLjSXLgIl2Y=; b=FHeQBHg3+WKBCC
-	GncFUrKCthFw0lf48NhZO6wD/2arMpicViTV50PqNqMPoUpmUdUX5Fw1xYUp74E80OJmT2vKjbvx2
-	r/Gspf67ul+vVv0yl+/qaql3AlPK1CZzTTG+Pb/Vo1uEd+AOVZBWzdhneho4xy8tLwYKKLG/JF1ke
-	C2MeWTt2kXIZUTikB8eA4LLZnoydG/jX2LG8EF6iHIKApQoRx2J113SfsfNPaO8wKLPX6dH2DjWdC
-	RRCkb9PFe6BTDePOEJNpusvxoqApQGQEk0WFKoWPWcLZa5JWtVj8KDe4A0TyrMmDBVxD91zoqDmm1
-	j9D+z3fvJVKizQuo9zoA==;
+	List-Owner; bh=vOujTRsyd/MpJKI2CvajFfDGiViObUF01IXMeB4CGm8=; b=rdpdesHm81N9mu
+	KrHD927Lo+cT5U7gXSXuXtBpTJJN2GtmwoRl98BMcDIVviZUBElwAcEIn+mNTLRMaozQ+u8ojdUuM
+	yVHsU/mdDTvTtgrsy2ehZR1IbqVZKsaR0H8tol+LJ8uBNhbcFp95Mx0vE7xsnGWmbA93inj+logWM
+	YsBCyzLorIuICuijuWQcKL9KS9EHOoWV7tAaHGDr1GbAPbEIGKsJaSZo4ZdFmNolGE4XHNfOsc5s5
+	MYbNwW0a+OXOlxfpPd9emTdShbM2GmtO0KNl6Zj3Y+zn+MY7z+O+JJuRpck6GwFv6x4s0U/i+j/bZ
+	TXe+59CDZtdIPhfw3DoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY0mM-005OOF-BF; Fri, 03 Mar 2023 08:28:38 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1pY0nm-005OsO-OT; Fri, 03 Mar 2023 08:30:06 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pY0mB-005OL6-Au
-	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 08:28:29 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id o12so7132577edb.9
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Mar 2023 00:28:26 -0800 (PST)
+	id 1pY0nj-005Oqv-KR
+	for linux-amlogic@lists.infradead.org; Fri, 03 Mar 2023 08:30:05 +0000
+Received: by mail-ed1-x529.google.com with SMTP id g3so7325419eda.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Mar 2023 00:30:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677832105;
+        d=linaro.org; s=google; t=1677832202;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NNoh7Y1eCqw1vILTrX20qgBsgHaoKEZRgMQ7Y2gIJPo=;
-        b=TFZ/47LHMyE5A2PfNGsk2pMHpoLlfD+CLOyn7J57fS5+aqQBd8LdoKsTUkmufj55dZ
-         5JG74u7zawpRBTIXLULjRMfc3ZLmuMtsA3Lu9I+fj5yLdMTt2Dpob2UzqK/vQ4fRF3Be
-         Ohwpi7u2xVkLvopc0D0HwFEuR59z9yfiGUIxD6aNf4XRgOJTWbTRBMOcaM4bWtwP/Fxr
-         IoX9rsGvL9/5IB0EDLyoDYeoAR7Tc/PL2YEVbfJUXOP9yFUIs6iFOANuDWqf6+XCOR/S
-         gT4ggcGE+o+o7gvPLKH5+VXfkJkn+JVc29OEFdhZsVfRbO1//IknXAKmihP+kpjhxEt6
-         /JPA==
+        bh=vyMEf9DcHz7Rey1/n9uL5ThzUAVI9l0JbNqQFMHxvRc=;
+        b=ndiZ3xAyUQhK0y/jMn9s9SmP4K2ugri8iWU6ePoBkWIz/Nr6QLQE4nLVBp6MC976Oc
+         WNtRVeQ6J1awkj1ScoitJkhM8K14Z1/PUTRj5zSZ4j15k7rm/eJ6ZiSCCl/bbUknEmSD
+         9B2DosfSEvYB/KYSW9jOFrKKzEg3axpqHCrV18DX2WhLun9fg+JdmF/avPwtsKke23F4
+         zHktnQSWQkJh8aP8BiSY5xZ3O8OpKuGDa7x3AIBlMGO2IYNEvTcBGQhc4fzG1c3LTIAe
+         /d05wpmQOGVYjZZPA45HFBMymdaKNF+jNGD/dxnsAArwC7oVFAD3ejelrTBcOACqg+hN
+         99TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677832105;
+        d=1e100.net; s=20210112; t=1677832202;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NNoh7Y1eCqw1vILTrX20qgBsgHaoKEZRgMQ7Y2gIJPo=;
-        b=hdhgpoR+VQ1m1IZWbguh80BsMhN3RuSImqjzkChOUDBVrbSsgLAiZ5OP4A8qKpS9fS
-         TtHEAGzEJYK6P0FIXBr2VMpOpO7f5lvVzSnNEA+RwmCvwcvBMbGoNl0uwefvQew8O7n1
-         Lt+7EiYBrBKyRr8QchPET3YsNT5pg3j+nvkYLl6YIbxQ5Qo6pz4ndKOa7jQb3Q8sippP
-         F+37naxVpWSUBAS5xy3N61P9AtvDBrrXCql0758dnKGqJXeSXFCRJeuVT3ghtbacX11z
-         nYuL3GJArnVndPFClchvp2YErv/SphxIFiXoCi/OqyKlpsnIYkJicTKGhbc51ogAcRul
-         gclg==
-X-Gm-Message-State: AO0yUKUQWs3+D++dVTGALExOHjI+X5lPsV+V0wYr1F98smypAzbFk/Hb
-	vdcGsJ5Vk8fpRUBTkOnXgybFzg==
-X-Google-Smtp-Source: AK7set8JDCyuD/jVEdIdZMzgRpBie4AkpO5CKfVjB2ToMCxzT2bGHuZqG7hjF2gthEYJRlfjPM0geg==
-X-Received: by 2002:a17:906:ee8d:b0:86f:d0c9:4bdd with SMTP id wt13-20020a170906ee8d00b0086fd0c94bddmr1115380ejb.27.1677832105526;
-        Fri, 03 Mar 2023 00:28:25 -0800 (PST)
+        bh=vyMEf9DcHz7Rey1/n9uL5ThzUAVI9l0JbNqQFMHxvRc=;
+        b=XaHm4V7yYyFgin0YJ/w5BYesllEVjYqUdHVfRAMNKGrlnQpSCBpCmvf/vCJKk5BAJy
+         MqSg0J22j0eHz1pJxBu6XQcoyuak4vYncLgVvAz9PmrNYlys8+1tl33nmt8zaToZ/o/i
+         QCYsrYWcHtxItSrkPKsxFRFHHH5FN8/aOurdNw0jd//xnV+Fukn5WPEbEgeKwnVJzP2o
+         sMb+pZWYzqRkXuWxV1HR8KzwmnrlljCHBJo1MN5XsPg7KYTX1X8gxCFtf3NUvJN1oYhJ
+         WTr+fufdrw3bYwRHfLe89NTddmobG+NmXAvIEQxfSb/Uu8WFO2ppDAq06NHjgU4p8zpb
+         cZNw==
+X-Gm-Message-State: AO0yUKV26DahNRuBRMlv4MiIWOHE2GkUcjw9e4aTrL5rzMS9QpUyswQG
+	Jq69eFPhQmLbs/gdu7ub0iasJw==
+X-Google-Smtp-Source: AK7set/VLaLjdiP1fyM/FB0SX/nUogRG2TFTaQAtY/Ry8s11/NL7JEOUGMnEWKl8Vq3fHE6fT+KUvQ==
+X-Received: by 2002:a17:907:9b03:b0:8aa:be5c:b7c5 with SMTP id kn3-20020a1709079b0300b008aabe5cb7c5mr798990ejc.41.1677832202361;
+        Fri, 03 Mar 2023 00:30:02 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f21-20020a50d555000000b004c059535b43sm883895edj.31.2023.03.03.00.28.23
+        by smtp.gmail.com with ESMTPSA id f20-20020a1709064dd400b008ec43ae626csm684564ejw.167.2023.03.03.00.30.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Mar 2023 00:28:25 -0800 (PST)
-Message-ID: <6a950a51-fe90-9163-b73d-0a396d7187ee@linaro.org>
-Date: Fri, 3 Mar 2023 09:28:22 +0100
+        Fri, 03 Mar 2023 00:30:02 -0800 (PST)
+Message-ID: <d5c93a9f-4a66-f884-a4d1-68cf47bcd7d4@linaro.org>
+Date: Fri, 3 Mar 2023 09:29:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v9 3/5] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
+Subject: Re: [PATCH v9 5/5] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
 Content-Language: en-US
 To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, neil.armstrong@linaro.org,
  jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
@@ -77,12 +77,12 @@ Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-6-ddrokosov@sberdevices.ru>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230301183759.16163-6-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230303_002827_452333_12755A85 
-X-CRM114-Status: GOOD (  17.16  )
+X-CRM114-CacheID: sfid-20230303_003003_762694_CA2C6DCA 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,33 +100,31 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 01/03/2023 19:37, Dmitry Rokosov wrote:
-> Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
-> clock controller bindings.
-> Also include new A1 clock controller dt bindings to MAINTAINERS.
+> Add the documentation for Amlogic A1 Peripherals clock driver,
+> and A1 Peripherals clock controller bindings.
 > 
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  include/dt-bindings/clock/a1-pll-clkc.h       | 20 +++++++
->  3 files changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>  .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++++
+>  include/dt-bindings/clock/a1-clkc.h           | 102 ++++++++++++++++++
+>  2 files changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
 > new file mode 100644
-> index 000000000000..8bd2c948df86
+> index 000000000000..3dc86e912dea
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -0,0 +1,59 @@
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> @@ -0,0 +1,73 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Amlogic Meson A/C serials PLL Clock Control Unit
+> +title: Amlogic Meson A/C serials Peripheral Clock Control Unit
 > +
 > +maintainers:
 > +  - Neil Armstrong <neil.armstrong@linaro.org>
@@ -136,7 +134,7 @@ On 01/03/2023 19:37, Dmitry Rokosov wrote:
 > +
 > +properties:
 > +  compatible:
-> +    const: amlogic,a1-pll-clkc
+> +    const: amlogic,a1-clkc
 > +
 > +  '#clock-cells':
 > +    const: 1
@@ -146,13 +144,21 @@ On 01/03/2023 19:37, Dmitry Rokosov wrote:
 > +
 > +  clocks:
 > +    items:
-> +      - description: input fixpll_in
-> +      - description: input hifipll_in
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div3
+> +      - description: input fixed pll div5
+> +      - description: input fixed pll div7
+> +      - description: input hifi pll
+> +      - description: input oscillator (usually at 24MHz)
 > +
 > +  clock-names:
 > +    items:
-> +      - const: fixpll_in
-> +      - const: hifipll_in
+> +      - const: fclk_div2
+> +      - const: fclk_div3
+> +      - const: fclk_div5
+> +      - const: fclk_div7
+> +      - const: hifi_pll
+> +      - const: xtal
 > +
 > +required:
 > +  - compatible
@@ -165,57 +171,36 @@ On 01/03/2023 19:37, Dmitry Rokosov wrote:
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/a1-clkc.h>
+> +    #include <dt-bindings/clock/a1-pll-clkc.h>
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Eh, this explains bisectability problem.
+
+Please do not sent patchets which are not bisectable. You can hard-code
+the IDs in the example, they don't really matter.
 
 > +    apb {
 > +        #address-cells = <2>;
 > +        #size-cells = <2>;
 > +
-> +        clock-controller@7c80 {
-> +            compatible = "amlogic,a1-pll-clkc";
-> +            reg = <0 0x7c80 0 0x18c>;
+> +        clock-controller@800 {
+> +            compatible = "amlogic,a1-clkc";
+> +            reg = <0 0x800 0 0x104>;
 > +            #clock-cells = <1>;
-> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
-> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
-> +            clock-names = "fixpll_in", "hifipll_in";
+> +            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+> +                     <&clkc_pll CLKID_FCLK_DIV3>,
+> +                     <&clkc_pll CLKID_FCLK_DIV5>,
+> +                     <&clkc_pll CLKID_FCLK_DIV7>,
+> +                     <&clkc_pll CLKID_HIFI_PLL>,
+> +                     <&xtal>;
+> +            clock-names = "fclk_div2", "fclk_div3",
+> +                          "fclk_div5", "fclk_div7",
+> +                          "hifi_pll", "xtal";
 > +        };
 > +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 39ff1a717625..8438bc9bd636 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1895,6 +1895,7 @@ L:	linux-amlogic@lists.infradead.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/amlogic*
->  F:	drivers/clk/meson/
-> +F:	include/dt-bindings/clock/a1*
->  F:	include/dt-bindings/clock/gxbb*
->  F:	include/dt-bindings/clock/meson*
->  
-> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+> diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
 
-Filename matching bindings, so amlogic,a1-pll-clkc.h
+Same comment for filename as for previous patch.
 
-> new file mode 100644
-> index 000000000000..3a559518c6e6
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-
-Any particular reason for using license other than in binding? Was it
-intentional (e.g. because it is derivative work)?
-
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + * Author: Jian Hu <jian.hu@amlogic.com>
-> + *
-> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
 
 Best regards,
