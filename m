@@ -4,79 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2B6CC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 10:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6D1BC6FD1A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 10:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7vKHwXQRhla/RFDeQee66veLb2j4kYgfEA22PNktyvE=; b=BQorAnS8W7yOGObzNg4nyIYE98
-	VRTRt+1Qedb3fW5XB1LwWM+hcqQCAuzHy4fNNSD5hHzTv8ejGA2Unfu1PQHxMD5S/UBKRAoqYhmWx
-	M9Im5iR4yxCbno2vNSWfhVC1kHCkiqfv5NXDTuld02adfDhbHnHZg2JmUC5gJkj7WWf8CAiNn+uRq
-	qlAaEz4hvBls2g3XVJRpDaYqeUgm5N7guYR5EhgpdadUpex6W0BhKatB7Yz55E274AVEQe4V7Egt6
-	hgJAaxWlyxUHnt/b7uZ9Y0eJ08GnUTx+ahNYpayNLBCU1n3vKAPNU+Pi4HY41yj71VC+d9qxnIwD5
-	vrbdd+Zw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0KjBW3fsPcJDnFE0n8KS+os0FUCkHzvq9baY5JAUhmQ=; b=0Z3E1qE/vG0ubg
+	r4mllVuubY/tN5/BkOby8sSpwnHN8qpkgfS7pGbZO/ZajLrwV1dfu+og/lOWj3iZFWXgsqhRJVXvX
+	6XTDCceDQY2VtLaCTFDbCqmSnlp5OZgFqKLep/PWk8dtepX8GdOnS72TTnr2sePW4z6YAs2Oiom2o
+	LgJgtmW70dAcjUGY8YEobpz98jnP0NXcltNbWvgHKoBfowC3kRZ7diAdjLdU0nhx+kSTI8arJXjcW
+	XiQEVvYLasTyvPma68hdoJkD09cozEAq66aCNJcJsDEQ+Q+OSUAcY/IBjvnw/pHKvbmeRb37ZH8Ln
+	+WzltDj+//FHgICSptgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ7f9-00CCO6-9S; Mon, 06 Mar 2023 10:01:47 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1pZ81j-00CImU-H8; Mon, 06 Mar 2023 10:25:07 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ7f7-00CCN4-1j
-	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 10:01:46 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id h11so8161375wrm.5
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 02:01:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678096901;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DKUhkh79uPZf/c1Q+O8gsggZDnjUJ79Daaxmw6f4uOg=;
-        b=iZe+iOGrrznTOGSyBSvUTc2uF4RD5pQBuPdKGV1LL5ZNC7Zr8IolZzIOB9d7uIudjv
-         NEoiR09QUXkO3xZ5YK8mVFy7qHYKkxxjfGvAg37A/nqf1Cpit4NJEh3E9tNh8ZYbIBtx
-         MM5N/Gq/VsrzGk93XaSxcGFCnM5IXxQuKdsl8Qs/ljKS0bOLoe2p3FknFh26FszhvIfw
-         5J+DjGTgvtjNnGdrTxknZ44CJxGCUap1Uc/np75uIst7MECAYC3gDG4qXPfO66TEgHhF
-         Rh5LDxilkgJmu2AnHaEEbos5GEzBscYgPe6jvTCiHCDKdVhITvoGS0DJLs0EeQyz7N3J
-         WmrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678096901;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DKUhkh79uPZf/c1Q+O8gsggZDnjUJ79Daaxmw6f4uOg=;
-        b=qLNTCI+UMFo79qJw8F2niha/2HSI1C4F5QJekK9zscTZnBhdpj7wAdNk50+3SHNpbO
-         0GinBLO8KdwtngxNiOrFtlR+7Cnxv/aiUiVKptu8YN6O3+UHLyIOLaWeRDpfFijJdFsU
-         tLiLAtlUdgFMnZ7Ejoo7MhmlAuD3V2DfOimvMLecGCtFnZyo+faUWUrdmGjcMPJCwqJc
-         CArLXQMilkC5f1XA0vfJKUiW4o8PyUYiqTgvUHpJroqg5SrVaqY2+GieKUGM+QfzU4gC
-         huw9PVdybh3yhuAY4zCctK3agGDeHj8jbNYNd0gjFlITpn3cYdzW/58IJKVwvu2Og8SB
-         YVeQ==
-X-Gm-Message-State: AO0yUKUyof3jotHD3uoyS2rxkeda9qFCLNN2x/ap5nKGcfqSwEsO2weQ
-	BjqjIsMzIG4E3+4AeteubOaoZ2qA9dO1D6+1sSNYLw==
-X-Google-Smtp-Source: AK7set83MnqsW13MZyd5LcprOdnUUllu++gGT1/mxpzauQO++cD0Ng2NVHGIp+V7c6FJYnSUdbo5TQ==
-X-Received: by 2002:a05:6000:10c9:b0:2c7:1c08:1224 with SMTP id b9-20020a05600010c900b002c71c081224mr6540988wrx.29.1678096901361;
-        Mon, 06 Mar 2023 02:01:41 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id x17-20020adfdcd1000000b002c5804b6afasm9596541wrm.67.2023.03.06.02.01.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 02:01:41 -0800 (PST)
-Message-ID: <ec4932f7-c279-2787-7712-4b7d60a64223@linaro.org>
-Date: Mon, 6 Mar 2023 11:01:40 +0100
+	id 1pZ81f-00CIkx-Fl
+	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 10:25:05 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 46E152003EE;
+	Mon,  6 Mar 2023 11:24:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1678098296;
+	bh=2pOZnv/WFTOnN5TFNeeLucJcsPnA0IT9cDVCS8QhfO0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VjsBrdfnvr2XOguA2XYIMgQcj3jSLnP69IhlnhqtbMOLRZdnzLRBd/xJssaBtxsle
+	 gpX+n8SQ3Z7a5G3gS5lMcVTWEI9HyUfcYbT0kiWDJ6WWpOTzGQw/BnWyDqOgknLOEG
+	 5l+oXEEcG72MGunDaXauB4ldcxLAp6Qpjs4P8ZGJ5rHx6B2p0VBK3CPHpt+qvuFzJ1
+	 Zg3zXiXslS5Z42kTlZhva46R3K32f7qleE8R0+EO4UM10+rth8iNDq4G/jgUGylS8W
+	 TBTaH5FkIyL1KdmWZFGUsE2JcOXgLmdQhycVeKqqhpEIzBMXFu27nmJ94Bnh+/knjV
+	 9YgX75vzUcZfg==
+Message-ID: <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
+Date: Mon, 6 Mar 2023 11:24:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: Mainline kernel 6.0+ hangs on S905D3
+ Thunderbird/102.7.1
+Subject: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
 Content-Language: en-US
-To: Oleksii Fedorov <vsnrain@gmail.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
-References: <3EC0EBE6-208A-424D-98FE-BAC8B8707519@gmail.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <3EC0EBE6-208A-424D-98FE-BAC8B8707519@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
+ Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+ Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Angus Ainslie <angus@akkea.ca>
+Cc: linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
+ <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+In-Reply-To: <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230306_020145_155237_96F6A568 
-X-CRM114-Status: GOOD (  14.01  )
+X-CRM114-CacheID: sfid-20230306_022504_006305_21BB856D 
+X-CRM114-Status: GOOD (  12.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,38 +75,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAwNi8wMy8yMDIzIDEwOjM1LCBPbGVrc2lpIEZlZG9yb3Ygd3JvdGU6Cj4gSGVsbG8u
-Cj4KPiBJIGFtIHNvcnJ5IGZvciBtYXliZSBhIHN0dXBpZCBxdWVzdGlvbiwgYnV0IEkgYW0gaGF2
-aW5nIGlzc3VlcyBydW5uaW5nIG1haW5saW5lIGtlcm5lbCBvbiBBbWxvZ2ljIFM5MDVEMyAoS2hh
-ZGFzIFZJTTNMIGJvYXJkKS4KPiBJdCBjb21wbGV0ZWx5IGhhbmdzIGFyb3VuZAo+Cj4gWyDCoCDC
-oDIuMzc2NzUyXSBtZXNvbi1neC1tbWMgZmZlMDMwMDAuc2Q6IGFsbG9jYXRlZCBtbWMtcHdyc2Vx
-Cj4gWyDCoCDCoDIuMzc4NjQ1XSBtZXNvbi1neC1tbWMgZmZlMDcwMDAubW1jOiBhbGxvY2F0ZWQg
-bW1jLXB3cnNlcQo+IFsgwqAgwqAyLjM4NDEyNV0gc2ltcGxlLWZyYW1lYnVmZmVyIDdmZTViMDAw
-LmZyYW1lYnVmZmVyOiBmcmFtZWJ1ZmZlciBhdCAweDdmZTViMDAwLCAweDE5NTAwMCBieXRlcwo+
-IFsgwqAgwqAyLjM5MTQxN10gc2ltcGxlLWZyYW1lYnVmZmVyIDdmZTViMDAwLmZyYW1lYnVmZmVy
-OiBmb3JtYXQ9eDhyOGc4YjgsIG1vZGU9NzIweDU3NngzMiwgbGluZWxlbmd0aD0yODgwCj4gWyDC
-oCDCoDIuNDAxODkzXSBDb25zb2xlOiBzd2l0Y2hpbmcgdG8gY29sb3VyIGZyYW1lIGJ1ZmZlciBk
-ZXZpY2UgOTB4MzYKPiBbIMKgIMKgMi40MDY3NjNdIHNpbXBsZS1mcmFtZWJ1ZmZlciA3ZmU1YjAw
-MC5mcmFtZWJ1ZmZlcjogZmIwOiBzaW1wbGVmYiByZWdpc3RlcmVkIQo+Cj4gSWYgdGhlcmUgaXMg
-bm8gSERNSSBkaXNwbGF5IGF0dGFjaGVkLCBsYXN0IDQgbGluZXMgZG8gbm90IGFwcGVhciBhbmQg
-aXQgaGFuZ3MgYXQKPgo+IFsgwqAgwqAyLjM3ODY0NV0gbWVzb24tZ3gtbW1jIGZmZTA3MDAwLm1t
-YzogYWxsb2NhdGVkIG1tYy1wd3JzZXEKPgo+IEkgd2lsbCBhbHNvIHB1dCB0aGUgZnVsbCBib290
-IGxvZyB0byBhdHRhY2htZW50Lgo+IEtlcm5lbHMgd2l0aCBhbWxvZ2ljIHNwZWNpZmljIHBhdGNo
-ZXMgc2VlbXMgdG8gd29yayBmaW5lLCBsaWtlIG1hbmphcm8gbGludXgtYW1sWzFdIG9ywqBsaW51
-eC1hYXJjaDY0LWZsaXBweVsyXQo+Cj4gRG8geW91IGtub3cgd2hhdCBtaWdodCBiZSB0aGUgaXNz
-dWUsIG9yIHdoYXQgZXhhY3QgcGF0Y2ggZml4ZXMgaXQ/IElzIHRoZXJlIGFueSBwbGFucyBvZiBt
-b3ZpbmcgaXQgdG8gbWFpbmxpbmU/CgoKSSBkb24ndCBrbm93IHRoaXMgaXNzdWUgYXQgYWxsLCB0
-aGFua3MuCgoKSXMgdGhpcyB0aGUgc2FtZSB3aXRoIHY2LjMtcmMxID8gZG93bmdyYWRpbmcgdS1i
-b290IGNoYW5nZXMgc29tZXRoaW5nID8KCgpOZWlsCgoKPgo+IEJlc3QgcmVnYXJkcywKPgo+IFsx
-XSBodHRwczovL2dpdGxhYi5tYW5qYXJvLm9yZy9tYW5qYXJvLWFybS9wYWNrYWdlcy9jb3JlL2xp
-bnV4LWFtbAo+IFsyXSBodHRwczovL2F1ci5hcmNobGludXgub3JnL3BhY2thZ2VzL2xpbnV4LWFh
-cmNoNjQtZmxpcHB5Cj4KPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+OF_NAME=wifi
+OF_FULLNAME=/soc/sd@ffe03000/wifi@1
+OF_COMPATIBLE_0=brcm,bcm4329-fmac
+OF_COMPATIBLE_N=1
+SDIO_CLASS=00
+SDIO_ID=02D0:AAE7
+SDIO_REVISION=0.0
+MODALIAS=sdio:c00v02D0dAAE7
+
+0xaae7 = 43751
+
+Isn't there some overlap between:
+include/linux/mmc/sdio_ids.h and
+drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h ?
+
+Reference used: commit d2587c57ffd8dc
+"brcmfmac: add 43752 SDIO ids and initialization"
+
+Looking at all the occurrences of 43752 to insert a 43751,
+could someone comment whether this looks reasonable?
+---
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c     | 1 +
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c       | 2 ++
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c       | 4 ++++
+ drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h | 1 +
+ include/linux/mmc/sdio_ids.h                                  | 1 +
+ 5 files changed, 9 insertions(+)
+
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+index 1967160f211eb..89bbad598782e 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+@@ -987,6 +987,7 @@ static const struct sdio_device_id brcmf_sdmmc_ids[] = {
+ 	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373, CYW),
+ 	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43012, CYW),
+ 	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439, CYW),
++	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751, CYW),
+ 	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752, CYW),
+ 	BRCMF_SDIO_DEVICE(SDIO_DEVICE_ID_BROADCOM_CYPRESS_89359, CYW),
+ 	{ /* end: all zeroes */ }
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
+index 121893bbaa1d7..cab9257272dd4 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
+@@ -731,6 +731,7 @@ static u32 brcmf_chip_tcm_rambase(struct brcmf_chip_priv *ci)
+ 	case BRCM_CC_4364_CHIP_ID:
+ 	case CY_CC_4373_CHIP_ID:
+ 		return 0x160000;
++	case CY_CC_43751_CHIP_ID:
+ 	case CY_CC_43752_CHIP_ID:
+ 		return 0x170000;
+ 	case BRCM_CC_4378_CHIP_ID:
+@@ -1433,6 +1434,7 @@ bool brcmf_chip_sr_capable(struct brcmf_chip *pub)
+ 		reg = chip->ops->read32(chip->ctx, addr);
+ 		return (reg & CC_SR_CTL0_ENABLE_MASK) != 0;
+ 	case BRCM_CC_4359_CHIP_ID:
++	case CY_CC_43751_CHIP_ID:
+ 	case CY_CC_43752_CHIP_ID:
+ 	case CY_CC_43012_CHIP_ID:
+ 		addr = CORE_CC_REG(pmu->base, retention_ctl);
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+index 6b38d9de71af6..55cc7b65081fd 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+@@ -624,6 +624,7 @@ BRCMF_FW_CLM_DEF(4356, "brcmfmac4356-sdio");
+ BRCMF_FW_DEF(4359, "brcmfmac4359-sdio");
+ BRCMF_FW_CLM_DEF(4373, "brcmfmac4373-sdio");
+ BRCMF_FW_CLM_DEF(43012, "brcmfmac43012-sdio");
++BRCMF_FW_CLM_DEF(43751, "brcmfmac43751-sdio");
+ BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-sdio");
+ 
+ /* firmware config files */
+@@ -657,6 +658,7 @@ static const struct brcmf_firmware_mapping brcmf_sdio_fwnames[] = {
+ 	BRCMF_FW_ENTRY(CY_CC_4373_CHIP_ID, 0xFFFFFFFF, 4373),
+ 	BRCMF_FW_ENTRY(CY_CC_43012_CHIP_ID, 0xFFFFFFFF, 43012),
+ 	BRCMF_FW_ENTRY(CY_CC_43439_CHIP_ID, 0xFFFFFFFF, 43439),
++	BRCMF_FW_ENTRY(CY_CC_43751_CHIP_ID, 0xFFFFFFFF, 43751),
+ 	BRCMF_FW_ENTRY(CY_CC_43752_CHIP_ID, 0xFFFFFFFF, 43752)
+ };
+ 
+@@ -3425,6 +3427,7 @@ static int brcmf_sdio_download_firmware(struct brcmf_sdio *bus,
+ static bool brcmf_sdio_aos_no_decode(struct brcmf_sdio *bus)
+ {
+ 	if (bus->ci->chip == CY_CC_43012_CHIP_ID ||
++	    bus->ci->chip == CY_CC_43751_CHIP_ID ||
+ 	    bus->ci->chip == CY_CC_43752_CHIP_ID)
+ 		return true;
+ 	else
+@@ -4274,6 +4277,7 @@ static void brcmf_sdio_firmware_callback(struct device *dev, int err,
+ 
+ 		switch (sdiod->func1->device) {
+ 		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_4373:
++		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751:
+ 		case SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752:
+ 			brcmf_dbg(INFO, "set F2 watermark to 0x%x*4 bytes\n",
+ 				  CY_4373_F2_WATERMARK);
+diff --git a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+index f4939cf627672..8b21da3e66291 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
++++ b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+@@ -55,6 +55,7 @@
+ #define CY_CC_4373_CHIP_ID		0x4373
+ #define CY_CC_43012_CHIP_ID		43012
+ #define CY_CC_43439_CHIP_ID		43439
++#define CY_CC_43751_CHIP_ID		43751
+ #define CY_CC_43752_CHIP_ID		43752
+ #define CY_CC_89459_CHIP_ID		0x4355
+ 
+diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
+index 74f9d9a6d3307..80e84958e570f 100644
+--- a/include/linux/mmc/sdio_ids.h
++++ b/include/linux/mmc/sdio_ids.h
+@@ -76,6 +76,7 @@
+ #define SDIO_DEVICE_ID_BROADCOM_43430		0xa9a6
+ #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43439	0xa9af
+ #define SDIO_DEVICE_ID_BROADCOM_43455		0xa9bf
++#define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43751	0xaae7
+ #define SDIO_DEVICE_ID_BROADCOM_CYPRESS_43752	0xaae8
+ 
+ #define SDIO_VENDOR_ID_MARVELL			0x02df
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
