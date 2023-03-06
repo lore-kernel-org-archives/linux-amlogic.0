@@ -4,114 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81090C7619A
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7F4CC761A6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:02:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=y8YoBDc7jsR37DKkvPhpBOCcWzGqI9MTaHobR+Iai3s=; b=ICIoqO34qb5uxvSjBslz4ACvjM
-	M4FsEiEHOd+2tY8UsUqnsUjYLg+uJKDNiIpSTWdu9GHyF3aM/WSWuW4QERpquD040szaU/6ddhITu
-	1HRbSFvZIKQXSjeu0DOFVB7hrK/qduo9BT/LI8KlZr5TN0Vh47h6TxbGtJfKLPIXW0XXN2urXc01n
-	QFrrgej3WzRdRlmOl2vgbQsxx2glXJPjWsWmR0gxM3cLWVMCcM3yg0poSzbej46txSi8Sr+z8WJYg
-	ZreOVZAL+QILh0Df1pv53NcuJGI3+pl2DaQVGKXQ8asfQtVxPE6By886qEVhDopo9Kc9sjE5NUzk3
-	o03nJTXw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=o+VhUJhsOCScbphL+7lyE/6n5M3771WiIcJ7Ti93BJU=; b=USsd8T+cyu6wFA
+	i06B8lzxSbx8Fp4udhK9HqapIORkzs+ocr7qae+QCDiVYhvDM7Xj0Uj7NiFvvaDSYZhV4G7Wbzd5x
+	DG7QMtAKVhakxx4D62gNpo0yJjOtzhuYgwnzUdw5ydaSxhiCCJ/B/NUoiIV6RTCGPsb1JrZTiZh8T
+	UA6sPeE3zw+7MorauXrtU/bdUNifG/ts2i9Yke4m8AFmSg7ncPbwDScRxQQT+8/OwH7XnNJ9sXbvD
+	dDTTSDxERm4p4bbWbQkkrM6vyfxjNERx4q1FqYr+xKqq0AI/tmLI2B9RdS1yiiVxk3AYnRCrFIFmd
+	CuKT2g/IhugBCi0gcJqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdvUZ-006yof-2b;
-	Sun, 19 Mar 2023 16:02:43 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pdvUV-006ylo-1R;
+	Sun, 19 Mar 2023 16:02:39 +0000
+Received: from mail-bn8nam11on20600.outbound.protection.outlook.com ([2a01:111:f400:7eae::600] helo=NAM11-BN8-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZEi7-00EAsB-FZ; Mon, 06 Mar 2023 17:33:22 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 753586104D;
-	Mon,  6 Mar 2023 17:33:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4725C433EF;
-	Mon,  6 Mar 2023 17:32:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1678123997;
-	bh=oCRV/O5q3R94VDA67eta1+j60LSWpLxWhmxqrzbP2FY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tzMRw/rwKmj16OdXkTBYsEPVgFatAfUN3LJ33ZBFVzmWPChI0zegxz8a6lrSnpVNM
-	 a5WWAe2HioVWJtIPc/ttoZWVvhbbsyNHioBhNIQsfUp41fNu7Bsn12CrCVulbshfh3
-	 xaVbonUnnhiN36hPDyYZX/yUWExunxxxGCl97t7m1BbXS8j1Pcd3ba2pmytwNFlcuo
-	 A4JumTBBP3xhvGiEXHq6D5gvgXZpJRCL48CblfxVMHFohHME3UQpdMcaz7KQ0rX6Bi
-	 zb4ahU89uF20dlnC+V+KW34/XFSen5uQSXFbDSnNjd2h/1S6Rp+UFmOkj5NVaXulLq
-	 RxBBn71VZ8v1A==
-Date: Mon, 6 Mar 2023 17:32:49 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	jic23@kernel.org, tudor.ambarus@microchip.com, pratyush@kernel.org,
-	Sanju.Mehta@amd.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org,
-	kdasu.kdev@gmail.com, f.fainelli@gmail.com, rjui@broadcom.com,
-	sbranden@broadcom.com, eajames@linux.ibm.com, olteanv@gmail.com,
-	han.xu@nxp.com, john.garry@huawei.com, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, narmstrong@baylibre.com,
-	khilman@baylibre.com, matthias.bgg@gmail.com, haibo.chen@nxp.com,
-	linus.walleij@linaro.org, daniel@zonque.org,
-	haojian.zhuang@gmail.com, robert.jarzmik@free.fr, agross@kernel.org,
-	bjorn.andersson@linaro.org, heiko@sntech.de,
-	krzysztof.kozlowski@linaro.org, andi@etezian.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
-	masahisa.kojima@linaro.org, jaswinder.singh@linaro.org,
-	rostedt@goodmis.org, mingo@redhat.com, l.stelmach@samsung.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, alex.aring@gmail.com, stefan@datenfreihafen.org,
-	kvalo@kernel.org, james.schulman@cirrus.com,
-	david.rhodes@cirrus.com, tanureal@opensource.cirrus.com,
-	rf@opensource.cirrus.com, perex@perex.cz, tiwai@suse.com,
-	npiggin@gmail.com, christophe.leroy@csgroup.eu, mpe@ellerman.id.au,
-	oss@buserror.net, windhl@126.com, yangyingliang@huawei.com,
-	william.zhang@broadcom.com, kursad.oney@broadcom.com,
-	jonas.gorski@gmail.com, anand.gore@broadcom.com, rafal@milecki.pl,
-	git@amd.com, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
-	radu_nicolae.pirea@upb.ro, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-	bcm-kernel-feedback-list@broadcom.com, fancer.lancer@gmail.com,
-	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-	venture@google.com, yuenn@google.com, benjaminfair@google.com,
-	yogeshgaur.83@gmail.com, konrad.dybcio@somainline.org,
-	alim.akhtar@samsung.com, ldewangan@nvidia.com,
-	thierry.reding@gmail.com, jonathanh@nvidia.com,
-	michal.simek@amd.com, linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	netdev@vger.kernel.org, linux-wpan@vger.kernel.org,
-	libertas-dev@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-mtd@lists.infradead.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, linux-iio@vger.kernel.org,
-	michael@walle.cc, palmer@dabbelt.com,
-	linux-riscv@lists.infradead.org, alsa-devel@alsa-project.org,
-	patches@opensource.cirrus.com, linuxppc-dev@lists.ozlabs.org,
-	amitrkcian2002@gmail.com, Dhruva Gole <d-gole@ti.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH V5 01/15] spi: Replace all spi->chip_select and
- spi->cs_gpiod references with function call
-Message-ID: <479f5b1e-6ac1-47c7-9f5b-4080e0c77c16@sirena.org.uk>
+	id 1pZEcT-00E7xf-K0; Mon, 06 Mar 2023 17:27:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cZg5AT2puwJrpoS2k1CFA7Fof0gXKgyATrEQcuRv2N5b9TX0CvUl16MfuEzEvr5XUTXr/98YZTBFri3oaPs1bVdmFU41s6N3qiKp9SeD8exwy7gFS5kNHGkTtQMI6zceFY/m2rwCtISmsImnD15r1vfHFtCMGsZAtm1GSEO5tWXlGUxXGYQMMJtyY0njO6mvwdZdn7R9j+PRdhIPV8pFk2Uk6ieU2AvbcSZvexyXd/4p+jm/lUcQFdrfpBzqG+8qHXHPL+OwE4fMFRNcJ4qxHEidLhWlm4KjX5w0G1M4naMf9BG0aEu1zXzCHCB+ql1sekS1WXrOiEahJyHNZdLPsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=81s+8TCJ7jCbm+CdMdkkcrMQFPnQni896CqX3sAY8EM=;
+ b=GP+bj0l0i7ptKMwT8OM0vzvTCbQKt0sRPXZqeZcamqsZUjsUzmi6zvs4gbDQlguERV5uaP5/6ttiM6uscAaF80dy4L6wrdgymaSYdeedrDwpNjcyv1SV5XJMfcRcKZHIJ5MbAuCsBoC7+tTmmee0kBcLsu5IfQteAHdhR0q+CKmbKYbzMp5+oa/KA/jGJESmTfqPUiWU8O1tWeZ9Prlgrhr2qHJkoEvja0fCvkuScWqm+vp6qd9t41nhobG+G2E0zfLvWzwT5ghTL3XKqhpUUSZSMngJNAoFE1totcSJQVcNbMVLfBv2FRW0E6hisEW6cr4413GeJ70xRrtD8Q2eGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=81s+8TCJ7jCbm+CdMdkkcrMQFPnQni896CqX3sAY8EM=;
+ b=WGqp0HW8qHtBghSW8V3nIAlRRvNH1SjEUolBjgZa+g5Ea2utzEg0zHFYwflWXzLxNIIMGFmrsoH0YYhvSVVeJmVE/LZTupOUuErUk0N1JCl7pNwJ0L+bJ3tj1xLr82w81PhbkcTJ7SccrdgZiIl0w0x3FFJaIS9YjayQQG2Zd/o=
+Received: from DS7PR03CA0152.namprd03.prod.outlook.com (2603:10b6:5:3b2::7) by
+ SA0PR12MB4445.namprd12.prod.outlook.com (2603:10b6:806:95::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6156.28; Mon, 6 Mar 2023 17:27:24 +0000
+Received: from CY4PEPF0000B8E9.namprd05.prod.outlook.com
+ (2603:10b6:5:3b2:cafe::a7) by DS7PR03CA0152.outlook.office365.com
+ (2603:10b6:5:3b2::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28 via Frontend
+ Transport; Mon, 6 Mar 2023 17:27:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000B8E9.mail.protection.outlook.com (10.167.241.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.4 via Frontend Transport; Mon, 6 Mar 2023 17:27:23 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 6 Mar
+ 2023 11:27:22 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 6 Mar
+ 2023 11:27:20 -0600
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 6 Mar 2023 11:26:53 -0600
+From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
+	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
+	<pratyush@kernel.org>, <Sanju.Mehta@amd.com>, <chin-ting_kuo@aspeedtech.com>,
+	<clg@kaod.org>, <kdasu.kdev@gmail.com>, <f.fainelli@gmail.com>,
+	<rjui@broadcom.com>, <sbranden@broadcom.com>, <eajames@linux.ibm.com>,
+	<olteanv@gmail.com>, <han.xu@nxp.com>, <john.garry@huawei.com>,
+	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <narmstrong@baylibre.com>,
+	<khilman@baylibre.com>, <matthias.bgg@gmail.com>, <haibo.chen@nxp.com>,
+	<linus.walleij@linaro.org>, <daniel@zonque.org>, <haojian.zhuang@gmail.com>,
+	<robert.jarzmik@free.fr>, <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+	<heiko@sntech.de>, <krzysztof.kozlowski@linaro.org>, <andi@etezian.org>,
+	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
+	<jernej.skrabec@gmail.com>, <samuel@sholland.org>,
+	<masahisa.kojima@linaro.org>, <jaswinder.singh@linaro.org>,
+	<rostedt@goodmis.org>, <mingo@redhat.com>, <l.stelmach@samsung.com>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <alex.aring@gmail.com>, <stefan@datenfreihafen.org>,
+	<kvalo@kernel.org>, <james.schulman@cirrus.com>, <david.rhodes@cirrus.com>,
+	<tanureal@opensource.cirrus.com>, <rf@opensource.cirrus.com>,
+	<perex@perex.cz>, <tiwai@suse.com>, <npiggin@gmail.com>,
+	<christophe.leroy@csgroup.eu>, <mpe@ellerman.id.au>, <oss@buserror.net>,
+	<windhl@126.com>, <yangyingliang@huawei.com>, <william.zhang@broadcom.com>,
+	<kursad.oney@broadcom.com>, <jonas.gorski@gmail.com>,
+	<anand.gore@broadcom.com>, <rafal@milecki.pl>
+CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+	<radu_nicolae.pirea@upb.ro>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
+	<kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
+	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
+	<yogeshgaur.83@gmail.com>, <konrad.dybcio@somainline.org>,
+	<alim.akhtar@samsung.com>, <ldewangan@nvidia.com>,
+	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <michal.simek@amd.com>,
+	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+	<linux-rockchip@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
+	<linux-tegra@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-wpan@vger.kernel.org>, <libertas-dev@lists.infradead.org>,
+	<linux-wireless@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+	<lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <palmer@dabbelt.com>,
+	<linux-riscv@lists.infradead.org>, <alsa-devel@alsa-project.org>,
+	<patches@opensource.cirrus.com>, <linuxppc-dev@lists.ozlabs.org>,
+	<amitrkcian2002@gmail.com>, <amit.kumar-mahapatra@amd.com>
+Subject: [PATCH V5 10/15] mtd: spi-nor: Convert macros with inline functions
+Date: Mon, 6 Mar 2023 22:51:04 +0530
+Message-ID: <20230306172109.595464-11-amit.kumar-mahapatra@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230306172109.595464-1-amit.kumar-mahapatra@amd.com>
 References: <20230306172109.595464-1-amit.kumar-mahapatra@amd.com>
- <20230306172109.595464-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20230306172109.595464-2-amit.kumar-mahapatra@amd.com>
-X-Cookie: teamwork, n.:
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8E9:EE_|SA0PR12MB4445:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f0c3563-0db1-4e00-970e-08db1e680cb3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	hETlFU7BbPuy59QUdy4OEMz4eK35Z6y1CnZe66eZ30R79RPx2YJ524efSpUr4NcbyckGiqnMLdYWRsCxpiImYlmCwojrVI5f3oZUhTuogdccWRWLZkxAjYa+HCMTmKx9QgJV8ld2HgPgYENqo1CxlDVV4P8yWnNDihig3C2l1DUkgRDf40UkaiLXwvkVn583Mpo1akvOUxs4+B4zt9InRuepzz4s4/qZmtBvh5Mk7TtQ0T5qd5GZ1mKQsis0eiVzugOHlQCxuiuQDaIPuHV0uotmTK6/LSR7TO7slZ4IzJTapsAn1nFR2BmXRVV7vO6Z2fRbSh+TeJthkzzel0YWWEC/qoTPWw0N9FeWWfGtDw9YxNNPqowAi5kWYttLlO9qd6Ha1Y5LdRzSuLdFMkQ9OZtQISF0eg7zKXeyz5YTUIxXSshzOkS5TpGZu08mhMTi4ZRmSkq7d1/Y6otoTMG6ztBx6mTgcZD+3kayq/2RTVwq6O0PXZFFzpivSSXEs3j7uYeyttLigWIw3FIpbmYRwyYfC8xLPiVmfzSTgjHoDWYtaK6QA2ChUhYK88t60/+uCDOyzFv5nmq+fdf70Ar1I8QC/6j2yeurmCoMjtpvEm4AsADCb753QSGGs2JdUJ6yCqZIODUpjz29PClE4ujKlCuXKn2aexxxJgCm9NGRArlk7tp+sttxYM0plTNgUL/zbMRxyMDjkW9QoZRpOhOtQbwG6w6e4aGXQYlyB+XELcyE8W16OT5yGbm+iu9lR+bRjJvYY/wLq6Xpsvnsnc3U40raxhFRCTL5/bQHFeXSc+uaBQV2937p8z04E2gxg2qwC52/7zF9MX2CV/X0Xl9Tf/lBGJ/4vC85zgDKQI7uiVw=
+X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199018)(36840700001)(46966006)(40470700004)(1076003)(36860700001)(6666004)(36756003)(47076005)(426003)(82310400005)(83380400001)(921005)(356005)(40460700003)(86362001)(1191002)(81166007)(40480700001)(82740400003)(186003)(336012)(26005)(2616005)(41300700001)(70206006)(70586007)(8676002)(4326008)(2906002)(5660300002)(7276002)(7336002)(7366002)(7406005)(7416002)(8936002)(478600001)(316002)(54906003)(110136005)(41080700001)(84006005)(83996005)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 17:27:23.7679
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f0c3563-0db1-4e00-970e-08db1e680cb3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: 	CY4PEPF0000B8E9.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4445
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230306_093319_864359_E8678BD5 
-X-CRM114-Status: GOOD (  12.96  )
-X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:32 -0700
+X-CRM114-CacheID: sfid-20230306_092729_763014_95F3C698 
+X-CRM114-Status: UNSURE (   8.24  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:29 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,64 +163,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3723120372686920446=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+In further patches the nor->params references in
+spi_nor_otp_region_len(nor) & spi_nor_otp_n_regions(nor) macros will be
+replaced with spi_nor_get_params() API. To make the transition smoother,
+first converting the macros into static inline functions.
 
---===============3723120372686920446==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1RpCo94WkIg3XG9u"
-Content-Disposition: inline
+Suggested-by: Michal Simek <michal.simek@amd.com>
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+---
+ drivers/mtd/spi-nor/otp.c | 23 +++++++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/mtd/spi-nor/otp.c b/drivers/mtd/spi-nor/otp.c
+index 00ab0d2d6d2f..3d75899de303 100644
+--- a/drivers/mtd/spi-nor/otp.c
++++ b/drivers/mtd/spi-nor/otp.c
+@@ -11,8 +11,27 @@
+ 
+ #include "core.h"
+ 
+-#define spi_nor_otp_region_len(nor) ((nor)->params->otp.org->len)
+-#define spi_nor_otp_n_regions(nor) ((nor)->params->otp.org->n_regions)
++/**
++ * spi_nor_otp_region_len() - get size of one OTP region in bytes
++ * @nor:        pointer to 'struct spi_nor'
++ *
++ * Return: size of one OTP region in bytes
++ */
++static inline unsigned int spi_nor_otp_region_len(struct spi_nor *nor)
++{
++	return nor->params->otp.org->len;
++}
++
++/**
++ * spi_nor_otp_n_regions() - get number of individual OTP regions
++ * @nor:        pointer to 'struct spi_nor'
++ *
++ * Return: number of individual OTP regions
++ */
++static inline unsigned int spi_nor_otp_n_regions(struct spi_nor *nor)
++{
++	return nor->params->otp.org->n_regions;
++}
+ 
+ /**
+  * spi_nor_otp_read_secr() - read security register
+-- 
+2.25.1
 
---1RpCo94WkIg3XG9u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Mar 06, 2023 at 10:50:55PM +0530, Amit Kumar Mahapatra wrote:
-> Supporting multi-cs in spi drivers would require the chip_select & cs_gpiod
-> members of struct spi_device to be an array. But changing the type of these
-> members to array would break the spi driver functionality. To make the
-> transition smoother introduced four new APIs to get/set the
-> spi->chip_select & spi->cs_gpiod and replaced all spi->chip_select and
-> spi->cs_gpiod references with get or set API calls.
-> While adding multi-cs support in further patches the chip_select & cs_gpiod
-> members of the spi_device structure would be converted to arrays & the
-> "idx" parameter of the APIs would be used as array index i.e.,
-> spi->chip_select[idx] & spi->cs_gpiod[idx] respectively.
-
-This doesn't apply against current code, there was a rework of the
-mpc512x-psc driver.  Please check and resend.
-
---1RpCo94WkIg3XG9u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQGI8AACgkQJNaLcl1U
-h9CIEwf/aZyH3WWgY7CUVh9W2WlSP5NnJGsbwRuFubTTP3ObZz0pCsJEwP8mAwdf
-wpWZ2t/nCcibXSVknqIW+r7FPrfknmY5nJ9jal+WTp/hkYYJeVEebOg9nMUX+Nwh
-fycQjw6AcKBn6mbRNf2c9ZVSKOpTnKNHFCdGSAfVWdMclSNADYerewze+WELEn9D
-6YoQTAPR4B1PBZUkwpAympwP8+SR1wFKzN2dmCVFQSWgYJ834b4wWLD9eZFMrjEN
-gf4+dIPQkjxzNMIErUCqVkaf/wgPkCAIjb2p1cWKU2b3IOG6di49DMsuImObYUAJ
-8cVDQ8KP5PGcINenovKCKWd1awBmtw==
-=ppxH
------END PGP SIGNATURE-----
-
---1RpCo94WkIg3XG9u--
-
-
---===============3723120372686920446==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3723120372686920446==--
-
