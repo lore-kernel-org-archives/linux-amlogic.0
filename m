@@ -4,76 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80580C678D4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 13:52:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2FDFC6FA99
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 15:14:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FRX/AdAHBRR/gmCpJ7MpmjSsd3rgRyxTmjy7nrFhXr4=; b=lnBMU1SNw6I815
-	P4TW76kb6JbjDM6Lq/3zHSG0WpT1aDqJ1+f+zoIIHIpClRvobfwV74lWZq8okVHVZQffYiRmz6OsV
-	yHOxmeshIGypaGRB3vcH6MbfWI8J6HzvnuqAjafvsWx5epJVt9eJ2Ax9ceJhL3vPOHICsEYKGmaEl
-	g9UzYG9GN3lXR9Mj80Ap19TLhcWZDnJhE2gtzHS7oP+JPIX5P2PZCaMWon9zn4y4yD8LVaN/ygSt8
-	DdIq5K9ZnOQNd/pkXWjPAU4WLUOaYxGL2/XHVmdhUHRcTW/UlMhodMbY06fm8o5fyiPb5y8LN+/we
-	7ONY8HcfccZDP1jxZ4EQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9AcSDIVl+LE2a3hWe9kvXpGynu8PWJTwOrBdQOZA0+I=; b=UUqYnr0pw8Glqe
+	/By61t7ZsYoXawAk3Q/zTgYg5nbGMGYTMD3zY6W7YE6Kl1q6Tf70x4DyNdUwy24ThKeJurOYmutZ3
+	AlGxGEyrg8aN4ap0TtUAqAE043qqTyWwNB6BF2+M+HNDyU50r9aKPOt9lsox9B9LhFev+IIHNvOAE
+	7tzPhB6AsGLwxod2bt2Tz8y9J4Mbrwa4WmOkAvYY14Kfp8LjeXLh0uksfDmzXWzCKFZsfh1Nk7rAl
+	Enoz4uW08qnEuJ9LxHGiL3S6wOUW3PWYzEd90z2vgpVvgdkNlbNVFEhfx8P5IzwpdN3FGktPqYTfk
+	UGG3hJ80SWI5nZa4ddQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZBGP-00D00A-IL; Mon, 06 Mar 2023 13:52:29 +0000
-Received: from mail-yb1-xb34.google.com ([2607:f8b0:4864:20::b34])
+	id 1pZCXV-00DY5Z-LL; Mon, 06 Mar 2023 15:14:13 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZBGL-00CzvG-8q
-	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 13:52:26 +0000
-Received: by mail-yb1-xb34.google.com with SMTP id i6so8135397ybu.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 05:52:17 -0800 (PST)
+	id 1pZCXR-00DY4X-U8
+	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 15:14:12 +0000
+Received: by mail-wm1-x330.google.com with SMTP id j19-20020a05600c1c1300b003e9b564fae9so8435948wms.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 07:14:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678110737;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BPh6DRJ9CcazPLZjLGRmwkvYgFkVSdBurUSE2ObxVJ4=;
-        b=qUgJtmNLgHGE4Bp38Mh2sm9vgRq0M8Fva0CT7yqcP+/NVMxBa9kdV7dNoOFdsNgLLJ
-         4/ETkDNKpO6RHGFEj5tPPJVpv4CXd60RgXSW3jmQj6XT6dyZdHHoexc/DhRZ+JM32WBF
-         ab+yE3lrDMwq3b8G2fsQXDSMFtOrv/tcgrEsxI4Rcu+YFqxI5F7ngH5+43cvBoE3AlIW
-         3T7xEDG+clPW0xlirojmcqJ3JM3WYJIVTf9iU9RAcw6UQJXk4R/zeSPKOFvYA+PdMF2c
-         asZ8gOz7L46HA4IfVdtp0midDQL6kiV2ykwA/RDJPQqYweg0CsvIXfW+I9/oNIzWsbxb
-         LuMw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678115645;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vDsVKUJtlRFJ3s7/7Fhta8tnir6GRw1n4iIHe/gNKzU=;
+        b=g6TpI3EaF6Mnq6dVosVQi2ooR09TYPHSfAA7xspAY+SO2DiCQRQnuvLzjy4X7arWDm
+         ssgDWuQLSngJE6j6CHHvB4Qd+XyXRHBNQbpBSpfnooqBOavpGqw6z13dtSW9W/CLeFSS
+         GcPJprT3JEAq4cjsAwxQoV5mlhRe8+jcjRfT9NMlzoaI++FBM2Q97u5pp3F4gmB32/AS
+         HovaV+YmPPOaRho60WlIirttF4g+HX6a0NMiTgsGfifQ15X/wQ4lPLiIzFcHqaJs0AyM
+         cFT8bvXy30vvqJ8ueVP2Fnm1FtlkJv1CqlwHuv67cYzF+53Agrs47sXr3Dpum/GlRLZ6
+         tiCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678110737;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1678115645;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BPh6DRJ9CcazPLZjLGRmwkvYgFkVSdBurUSE2ObxVJ4=;
-        b=WTtwGFs4GVDfSJz/IEmSYdOAmUAFblxcGcCEvqtcExb0CDtZY8UN6T35P7vxm8RjEo
-         Am1YjTUQntc7c9rrg9+qPGkq7p12NYCFa98jrCqgO1xSAHnSPxyru/Q1ZE1q1kuJLV3D
-         RawJgik4oJh+KAOOAwfmI57NrxsDqEHv59MlkgJ408A95218xkYUQWpRawxEF/TmfNhN
-         46yhrvcybGmAUYmDjWREUC0kNfeOkBucPx8DrpCyoYiYTuS/BidwRKVanbna6/iBMBG/
-         Cggv76xLfmwqJwXQ3KWNoXJB/FS/mkt8+VUY+gHY/49kffVi6izI6jwCLnx93EzWfx+6
-         e/ig==
-X-Gm-Message-State: AO0yUKWdLEeGD2wUXtDm3k1CKetJSLaxibopzH2vM0iuHo+FjBViiUHE
-	V/NcR0gw1p7x35zRhl7X4an+pCC0YAqNmIjdAdyd7A==
-X-Google-Smtp-Source: AK7set96XVuLEwBCuezT4MzqONLfE0LMULjfJzchaO7bM4o8d+8Bu9LL/jc3Nw8LQAc2/AdguTvz8jvtK130zakvUqI=
-X-Received: by 2002:a05:6902:c3:b0:9f1:6c48:f95f with SMTP id
- i3-20020a05690200c300b009f16c48f95fmr5065214ybs.5.1678110736893; Mon, 06 Mar
- 2023 05:52:16 -0800 (PST)
+        bh=vDsVKUJtlRFJ3s7/7Fhta8tnir6GRw1n4iIHe/gNKzU=;
+        b=leUcahoHbfyY4MfrlQMe5X+tPJSI0C/PtJGn1XG2FixiDhidmzeRCXndTbDb5pN0ct
+         jhoFj+itdGu5Boj+psDmw26M3KEjWMEzhtajpnBSRUP0GGVSe58O2fTnZeL3ViKzga0D
+         Bd90KI0Hy8Xxmahb8gaxCfJITMv2xoHEUeIFSY47+ooFmiC0s76f2JOknb+/YORE5WWO
+         /Mm7EQh5SYr6VSLqWzWErs5uuyc8dlO19A3EimEV5byfUP3952L0vGrt0UrDHo9NqzSe
+         mL82MQVsyXMXxbWbaakdKeIRH5zFpIxS8NgyUsVIk8KeZJTxSXBgXafHV+p8/68tMAx4
+         YK2g==
+X-Gm-Message-State: AO0yUKW0p4NXwVyThmuOjh+mkEAXuRv9OZAXZjCPIGTh9EQbQMQh+A1d
+	YRQy0JeS6zoyAMOAV+52mZF7cQ==
+X-Google-Smtp-Source: AK7set/P4TgN3KWNiQpuKTiNllOykldbwBd5AH2H1IH7KoOoCIMCopw9mjcunu/lB7pwcErFNQdh/A==
+X-Received: by 2002:a05:600c:a47:b0:3eb:2b88:9adc with SMTP id c7-20020a05600c0a4700b003eb2b889adcmr8826948wmq.25.1678115645173;
+        Mon, 06 Mar 2023 07:14:05 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o2-20020a05600c510200b003e208cec49bsm23156746wms.3.2023.03.06.07.14.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 07:14:04 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: amlogic: gxl: use gxl mdio multiplexer
+Date: Mon,  6 Mar 2023 16:13:54 +0100
+Message-Id: <20230306151354.132973-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <20230222115020.55867-2-avromanov@sberdevices.ru> <CACRpkdbWubk3A3qYuYqDc4OBGP6T7TaKwFeW17CwAzPvttk=WQ@mail.gmail.com>
- <2d9e01df-0047-98bc-f1e7-fa860d92c254@linaro.org>
-In-Reply-To: <2d9e01df-0047-98bc-f1e7-fa860d92c254@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 6 Mar 2023 14:52:05 +0100
-Message-ID: <CACRpkdbDXnzKcrYnjHA3z5tiD9_FHgk5O8PO1esXNNDBVvtT+Q@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] meson: pinctrl: use CONFIG_PINCTRL_A1 with CONFIG_ARM
-To: neil.armstrong@linaro.org
-Cc: Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, kernel@sberdevices.ru
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230306_055225_786103_89147746 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20230306_071409_994017_147A73A5 
+X-CRM114-Status: UNSURE (   9.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,23 +94,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 6, 2023 at 2:49 PM <neil.armstrong@linaro.org> wrote:
-> On 06/03/2023 14:45, Linus Walleij wrote:
-> > On Wed, Feb 22, 2023 at 12:50 PM Alexey Romanov
-> > <avromanov@sberdevices.ru> wrote:
-> >
-> >> Tested A1 pinctrl support for ARM and it works.
-> >>
-> >> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-> >
-> > This patch applied to the pinctrl tree for v6.4.
->
-> Erf, this serie is something we would avoid, so no need to apply it for v6.4
+So the far, GXL SoCs were using the generic mmio register based mdio
+multiplexer. This properly sets one of the glue register but the SoC
+actually has 3 of those registers.
 
-OK I take that as "Neil says NACK" and backed out the patch.
+One of them sets the ID under which the internal phy will advertise
+itself. If nothing sets this register before linux boots (like u-boot), the
+internal phy path is broken.
 
-Yours,
-Linus Walleij
+To address this problem, a dedicated MDIO mux driver has been
+introduced. Switch to this new driver.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 25 +++++++++++-----------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 6f3c2bc36919..17bcfa4702e1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -773,16 +773,23 @@ mux {
+ 		};
+ 	};
+ 
+-	eth-phy-mux@55c {
+-		compatible = "mdio-mux-mmioreg", "mdio-mux";
++	eth_phy_mux: mdio@558 {
++		reg = <0x0 0x558 0x0 0xc>;
++		compatible = "amlogic,gxl-mdio-mux";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		reg = <0x0 0x55c 0x0 0x4>;
+-		mux-mask = <0xffffffff>;
++		clocks = <&clkc CLKID_FCLK_DIV4>;
++		clock-names = "ref";
+ 		mdio-parent-bus = <&mdio0>;
+ 
+-		internal_mdio: mdio@e40908ff {
+-			reg = <0xe40908ff>;
++		external_mdio: mdio@0 {
++			reg = <0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		internal_mdio: mdio@1 {
++			reg = <0x1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+@@ -793,12 +800,6 @@ internal_phy: ethernet-phy@8 {
+ 				max-speed = <100>;
+ 			};
+ 		};
+-
+-		external_mdio: mdio@2009087f {
+-			reg = <0x2009087f>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-		};
+ 	};
+ };
+ 
+-- 
+2.39.2
+
 
 _______________________________________________
 linux-amlogic mailing list
