@@ -4,98 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14987C6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 08:33:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73C84C61DA4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 08:38:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Knzh4wbvBIEhcDLm48sm0j9bw0TEqs0WGBM39IxyCy0=; b=sKkwNwXfMh05yk
-	EKlBK9Wjas+jQZh4cfuUHMa9Wloxi0hvlfo5x/Ncu7mQClVrIJUik00rEHJ6pkbtOKgbTusCCFCuz
-	BcoOUJFzRNqDBQhuGFCiMMjjSZZYrybNDMp64tzxD6vvDrNWtjouOlc9BUbJlEMSlgfnz9CtNRKoC
-	iyC61f8yPUu+53BWhMFfKfOmfMCEfktW7SECVBamUIU0d8m7xLIgQH6YUXiSnzhtLPZQYPSY5xHJn
-	/84pvTD8peM64Qwn6dY5+WDSkIaAKAAWQJmzPlTWwEWk1uisS71jhhKD5I/TGpqTq2xVL5GYCv0DW
-	+75ZU9gPNIUY0UCw/1/w==;
+	List-Owner; bh=YTCNu+ytHP0+Vi75edG5Z2lhCnFJMWrkPzyHkO1l8hI=; b=Pxhhoc+LUiliCW
+	+YGFRkrUWInl8b+DTAq9OJQ9vBbkKsTEi+eI6a6doRVCCgX5hHMlg2UUjvDtIwDX2LA1VkNUt2tMc
+	b4FgI0Z8wMxN9L3qHlTGSleC4Don7fEM8pwC73vpfjdT5AI3kgN/0iFcoMfrnaCUYbdipcKn5yGn/
+	8qmeSJQgFubnMR3tttpe1WrgKmUsZ6kney1mO5cvYcqRvxJ3jT3F0nWv04jRgy2gbfF+ZjMM46gIG
+	Uw2eEU/a2WTlT8TD0bigeHfp/gydaSVRJMIdS+ik/BDXlq+B6cDHshIrm5aoakWNnwzVkszx3+Ofk
+	MAX/DzXEnZiVZysGKCVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ6HN-00Btic-Hy; Mon, 06 Mar 2023 08:33:09 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pZ6ME-00BvFY-P5; Mon, 06 Mar 2023 08:38:10 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ6HK-00Btgw-Et
-	for linux-amlogic@bombadil.infradead.org; Mon, 06 Mar 2023 08:33:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=3MygDlz1DFXRl4wEV4mR7HeCJcg4hVIJJT1T9suDxRE=; b=qijMfCIq9MOXqkQdkUeKAelFQ2
-	L3XkYygeJvzCm386g6LgT/6ku12iIUUBbm9or7W+QpgSfZMBN2yODMtmMpkhsnu8xDuhPPE2tl+6O
-	jkX7H09GtM3n4hrRbHdh9J4A6GWnN4J/7URtDqn4eYvn9n7b0jkBefO45Z2FnN40C0jNQaUuTqKyD
-	FsYH4G2DuDJqZqrAkSzU/zjde/iH9ZO/zF/XxeidPMv4nSXR9cwSQQ342GoAaNl8MnT+cv9HMXUw0
-	l4xeVN1YSCuhrUqSeroRTwY1zutHr5lPmRbBWMIz5CNsabxxEbnUiST88+2CtwOed8QpEpVXAgZEf
-	Px9elXgA==;
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pZ6G4-00GcGB-2Q
-	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Mar 2023 08:33:03 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso7616994wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 00:31:41 -0800 (PST)
+	id 1pZ6M9-00BvD5-JV
+	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 08:38:08 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id g3so7912695wri.6
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 00:38:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678091500;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3MygDlz1DFXRl4wEV4mR7HeCJcg4hVIJJT1T9suDxRE=;
-        b=G9A1SYreNYy4eiByiWuuX5CPdrrN/7Ood1RVhy9g0/BEdPc7Q9IwV18IddlGqylLFN
-         NCRtsTF0OMHf4vZR5HnXCK2ssL5Eus2YeYuZyX0beUoGxBXFhkFzl7Z6En+jVXVTTpwB
-         xeo1YE/vnB3U83T2ZcdPQrMRdqpgW53DWeA8VdgFj8xeiMeEjTH+oNPUgwilOidR0zGm
-         rAmoL2AlXJslBYCND8xjsKuFkuaK1VIeIB2L3JQdtaJxzRIiD2/3YV08I8K+BtTTWgtn
-         r/Nxbfx8yEF9+fkvmT6x63d4I76ffKt0vjbIOav9OkhBWA0dqEhBJ5XLvFcJIkYUrTzq
-         D0Bg==
+        d=linaro.org; s=google; t=1678091884;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yScVezbYDWz1/PWiaNDGxXrxcWymv3H9xhefZxRIETg=;
+        b=rCHD0Qe9siBIsahEHG0UCvqKu6ETf/q9a+33Gnl6jehVinsrovgwnQBADb2uqsDU3f
+         vKKRMkYXe9UarHSQ8MBmd3/MOhhBwnL3d65taEkJAukGSCne2n9DhN+UKhORTbe9qiHJ
+         rhBh88kEHhmg2/g6wjyj51kfc0hq+KZGJH7zvY7VYSJptxYfnq7kVP8/BDd7OO7hmqes
+         ZTp5LMZ5KSN6AdqaOqlEURRV8b17MVPWqHjCqrnYrMI9/y/sX+QALl7uBo/RKCSfdLL5
+         iT71Cm5yC8RH2j6AY+VFvEtwYklgtPJ0xB2M5CSMkTiS6hw+ecKTQ2FgMsciGDqG6ZVF
+         stig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678091500;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1678091884;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3MygDlz1DFXRl4wEV4mR7HeCJcg4hVIJJT1T9suDxRE=;
-        b=PR6uxso7nsSWkMNoyys4lJAAMdag2+hawbuE8jWqdtFZIq/GoOqMbNjcG2+0ff+waa
-         B1Y4nunI+rXjHhHvM3Iu8MZ7X9ixPM2fQKQCL7EoKEkgitX+sQj4f+AUGsHkqD+NtUf3
-         ewNQupVIJEbWt6OOybkNi9W1RKmvoA5Ae2RNbGl6hE5Ss9wnRCHk4xx2oTdYsPTVc7hz
-         9yU+QTAh31rCcj2KJlC4iJQrP4g68eIJBuaK3cCpVj5QLwOV3arLVnFemj2D7gd8rPV4
-         toSJyH+rIs2RwPK4WVp/xq+UjaZ6Jtm2dT1PZpcpJE1xCF+JX+BOH77XdSN6UbnBxM8B
-         nxfg==
-X-Gm-Message-State: AO0yUKVjh03N0CctdbjvdOopEJU4sky+jtuqzsMrcLWvwu0z21xTl/CX
-	WmNgfuQYjZcftgdNBYyNjLMGqQ==
-X-Google-Smtp-Source: AK7set9b27ClSjWfMWvCjFqKOd+RFDZvLySSEwdzTBOZar24zuh/03jmPSbSEIfnwYBs8nuR8qnSGw==
-X-Received: by 2002:a05:600c:5127:b0:3ea:f01d:2346 with SMTP id o39-20020a05600c512700b003eaf01d2346mr8717456wms.15.1678091500348;
-        Mon, 06 Mar 2023 00:31:40 -0800 (PST)
+        bh=yScVezbYDWz1/PWiaNDGxXrxcWymv3H9xhefZxRIETg=;
+        b=pE5K8/SFyVrGvaxARsefehI39/kgPOGkmRnqVASi0XqChcwzLzpTs1ZIcJCQPpAJO8
+         VFByXsz9zwiTYUxuG91oJVnxvoryZ6hDFvlSN7FdtTxY5rEetQpULn/256JaZ/Yq1lvM
+         9aaOGtRnF0udbxNzp+AhdWXl0YgwUoK1oFe/7+cYBBJiou79aA9TC4TBTV/TV5xiV5BY
+         jEa8sWwNT8ut22rGVqRjcViIzEnoj7LVJyHNIoybhwEXoAW/LI02J2w9R5X/6Ax4sH1I
+         5uyarIA3svaUKvrO21h80kM3ROu8+eqk+qCinEffIFWpgUZl6SAf56uBn3oZgSsoCYLS
+         u0xw==
+X-Gm-Message-State: AO0yUKWr1m3UUCt6rNyk9NuSoYxyjvagMK9j5LJc/u6i8EqKiqVwth1s
+	uAcXUNak9vLxVBEMsreDRNiFTQ==
+X-Google-Smtp-Source: AK7set8vfhN1fgMLRWrhruNGd8B/tShsgSyB3bFMD1pOorhvfnF83jaWjT0VckULYL2rLfOEJCE7mw==
+X-Received: by 2002:adf:edc8:0:b0:2c7:adb:db9 with SMTP id v8-20020adfedc8000000b002c70adb0db9mr6221870wro.63.1678091884080;
+        Mon, 06 Mar 2023 00:38:04 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id he11-20020a05600c540b00b003daf7721bb3sm13529724wmb.12.2023.03.06.00.31.39
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003eb0d6f48f3sm14184064wmn.27.2023.03.06.00.38.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 00:31:40 -0800 (PST)
+        Mon, 06 Mar 2023 00:38:03 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 06 Mar 2023 09:31:38 +0100
-Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: Document the boards with
- the BPI-CM4 connected
-MIME-Version: 1.0
-Message-Id: <20230303-topic-amlogic-upstream-bpi-cm4-v2-1-2ecfde76fc4d@linaro.org>
-References: <20230303-topic-amlogic-upstream-bpi-cm4-v2-0-2ecfde76fc4d@linaro.org>
-In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v2-0-2ecfde76fc4d@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>, Yuntian Zhang <yt@radxa.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+Subject: Re: [PATCH 0/8] arm64: meson: bunch of DT fixes, take 2
+Message-Id: <167809188325.8899.9049191801315125808.b4-ty@linaro.org>
+Date: Mon, 06 Mar 2023 09:38:03 +0100
+MIME-Version: 1.0
 X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230306_083150_461277_0580C95F 
-X-CRM114-Status: UNSURE (   8.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230306_003806_327279_A65BD04B 
+X-CRM114-Status: GOOD (  10.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,40 +95,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The BPI-CM4 module with an Amlogic A311D SoC is a module compatible
-with the Raspberry Pi CM4 specifications.
+Hi,
 
-Document the boards using this module, by specifying the BananaPi CM4
-compatible in addition to the baseboard compatible.
+On Tue, 07 Feb 2023 16:07:53 +0100, Neil Armstrong wrote:
+> This is a bunch of fixes against the current applied and reviewed bindings.
+> 
+> More DT fixes will be needed when full dt-schema conversion is done.
+> 
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm64-dt)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index b634d5b04e15..4e5ae70db4cb 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -158,6 +158,14 @@ properties:
-           - const: amlogic,a311d
-           - const: amlogic,g12b
- 
-+      - description: Boards using the BPI-CM4 module with Amlogic Meson G12B A311D SoC
-+        items:
-+          - enum:
-+              - bananapi,bpi-cm4io
-+          - const: bananapi,bpi-cm4
-+          - const: amlogic,a311d
-+          - const: amlogic,g12b
-+
-       - description: Boards with the Amlogic Meson G12B S922X SoC
-         items:
-           - enum:
+[1/8] arm64: dts: amlogic: meson-sm1-bananapi: correct usb-hub hog node name
+      https://git.kernel.org/amlogic/c/f88f3dcbb145a0133292d5c9d8da5935a36c8914
+[2/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc: add simple connector node in fusb302 node
+      https://git.kernel.org/amlogic/c/d7ff22a6ec9dd154d027d6bc6b4f172c22f8c00d
+[3/8] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: remove invalid #gpio-cells in onewire node
+      https://git.kernel.org/amlogic/c/bd47319f999e6055124a2b4d2a0da495d52759c3
+[4/8] arm64: dts: amlogic: meson-g12b-radxa-zero2: fix pwm clock names
+      https://git.kernel.org/amlogic/c/db217e84d0a3f4183ea5b6d5929e55b73128fcb2
+[5/8] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: rename keypad-gpio pinctrl node
+      https://git.kernel.org/amlogic/c/50e7d712144e7246f4ad5ce0f8577aa09cd09bc6
+[6/8] arm64: dts: amlogic: meson-s4: fix apb4 bus node name
+      https://git.kernel.org/amlogic/c/d1e336eef1f4834bae0a54f203e9f74aa040726d
+[7/8] arm64: dts: amlogic: meson-sm1: use correct enable-gpios
+      https://git.kernel.org/amlogic/c/4bddf79acdc7ef15f8b913e8ef7861461b235df2
+[8/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc: remove unused pinctrl-names from phy node
+      https://git.kernel.org/amlogic/c/739e93e254e4797a29bdf397c10111a50a970734
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-2.34.1
+Neil
 
 
 _______________________________________________
