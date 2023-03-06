@@ -4,85 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84C60C6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 08:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4CAFC678D4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Mar 2023 08:44:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7zYfZdKszNlig/H/uQT+u9mUludTYFxHkMhO0bbwp8I=; b=Go9u4+ZlD7MEhBxSh4khP31Jzd
-	TBd5kX0gPnR1bqfO4mBrc1IfmN5xwuEvZI8gIEF3HjDXo9kuWOxMRu3vR0ytjyoZWwvgy+2huO8U3
-	M3sYfxG5zVDHg9g+UAOQ9QEtegXlRXxorG49oNT8JWAYQ5kTWt/Ii0Jb8Ob93IF/GcC95lPR9+gQg
-	G7WFMN5jfuj4bbLv8HH7uq3rGPzfx1QZ8fkcTDheSXJ3dEGn8Ht5syDU6kOZgWjWgcJZ2yWdOSFke
-	vMcNVkPGVTHTLzogrnujhJTE/OjutA8XqnBK6qLtnO0krUfuVpSPix9ZApmUryt3pqyYz9EVqLYz4
-	3GzKZ7ZA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ll3cvkgSGuO4eVw4UxtsrzYlJxOv6K9EmPtn27iHPys=; b=l0LDSaDMPUYVvn
+	Qi9CTs+e4mcKzU+IN154MjhV+JeKoRS1Rc8Rqv0eSINJEiHvlPxwF7PDeLOEdLD7/AT5RIPCwSRmq
+	XtanlcJqamJ/qa+ql6BM/68azUA9sQ2hCz4xbmMHjIvehgbbczMUjLf9mlRYR4fTtp8Oo3bNaj9t5
+	dOu6OmrZDfruhNIc9mV72Wly22zHk662Nh5dkUA0oF4tOHJ83B0rYlc/l56s7wZhXeCGbHkastIyG
+	PNy+JDrvz+u6QL81h8mSYfupSmdkLN851KQorDD8kE84hM122AKhkwPcpWZCdwsNBKOaDxpyilVQa
+	mrIXA2rRWb8SMWIhlb+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ6Oj-00BwFf-UK; Mon, 06 Mar 2023 08:40:46 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1pZ6Rv-00BxUi-Hg; Mon, 06 Mar 2023 08:44:03 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZ6OP-00Bw7D-63
-	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 08:40:30 +0000
-Received: by mail-wm1-x331.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so4681183wmq.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 00:40:23 -0800 (PST)
+	id 1pZ6Rf-00BxOF-CO
+	for linux-amlogic@lists.infradead.org; Mon, 06 Mar 2023 08:43:48 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id q16so7939682wrw.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Mar 2023 00:43:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678092022;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CI8nOCYcir+PVSzh9VSHPuyemxYicoPMWdGxXglPvJE=;
-        b=fcqVpgvcb0JcmdIK+bIh331ssLKohV0jD6Zc63KVmewA51pi857VjnS+H8gKCW6Q0b
-         m+ChcOgmK85mK4HwpOg7rnph2SwjcPjZgq9Paue6xGzR1aAf3zm3uMayYjmfZGL7c75D
-         vBpfS5apHqfDddRQcBofvsL7K1CcISrAcsHKdGBxJQibrOYlsVc+KWF24aipy1eIfEC9
-         UEaDd1f7ru1ZkHunggoN0Ar3VlXUXaqE5fn3zZiY+di9fymkJ0ubkW8K5ASNc0fhq6RI
-         dewwExDuupL6aVwNXe7pRhdxYhn4N8FlMGozm+duNbaIkGTSpVgNEcVEjzPTdtPEB2a9
-         xYOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678092022;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1678092225;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CI8nOCYcir+PVSzh9VSHPuyemxYicoPMWdGxXglPvJE=;
-        b=u8gHiCnPcD+orBuA/zOsJjtBZSkAwV1m9wjLbJUMS7DpkmAlfJ9Y37D9npUYesrRMs
-         48ko/XAvVcUp5lI16w143XhlKawM/YA5Su6bOA75Gs0Wt6qgQJ1zeMMrr/z6BftUeyWL
-         uUS5LkbERmky1xDrlk+cxCeeEpRv3n7hu5Q8+DrTtMGg3n5zCz9ouDm1Br+ILdTXRgFO
-         p61Ni4Y463fPCxAd/n7AC4xIBE419BCOiZT4FUkbB64gCzjUbUMapjMMcDc7oCGbbIJk
-         OCtjaVbMu6pAiJ+3Vt0TECa+hY+HDvaI9i5dNGtSHRiRfSC3m1PBYPOMHVmOywioQICV
-         lndQ==
-X-Gm-Message-State: AO0yUKWreVSWnMHJi3blzHFpb1oZjgfOhDDjICOG9cnJlJZtHBuhL/YE
-	swNDtf/7ccvlcpchXsRrnNJQ8w==
-X-Google-Smtp-Source: AK7set+HiklQ5Pj3Ecu5ls0YxiVIUf5iWSejsV4jU3r9p/lAti/h36lJwAbNeyprI3tPfy7n/lOkag==
-X-Received: by 2002:a05:600c:1914:b0:3db:3e8:feca with SMTP id j20-20020a05600c191400b003db03e8fecamr6270273wmq.15.1678092022624;
-        Mon, 06 Mar 2023 00:40:22 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id e41-20020a05600c4ba900b003e1f2e43a1csm9211195wmp.48.2023.03.06.00.40.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 00:40:22 -0800 (PST)
-Message-ID: <3db5ae6c-a3f1-b64a-b605-4eac32fb4086@linaro.org>
-Date: Mon, 6 Mar 2023 09:40:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
+        bh=QZEJmZby2wtp2N/ubBCyHC+kgDBokSCAHmX4OKZIirk=;
+        b=WPfJV8QUOFJvl3Hc2sJI436+4fZlyELC9lxav4xDCRrzwqw6bJIAy15vEd8ed4aC2g
+         nUkftZtJAYGvoFUjsQlifxarTc06/hapOZIxCM1W+KhjL/hPicRfR94wRzrVKoc8uV6T
+         VCV2v1o+qpckor9f4C4VaqZ2iMtMzCQ2dySiBto2ar7UtpCWThFbc/4E5yna7cfCQGHf
+         /bWa5uvsv5ezSYs6aaThhc45rFz6LA97Oip+Mg+qazwrCvmQG9pawfKmmOF7Az14liJI
+         ErKKYGoaMOvy+Vj7RT13BGVsM/6wrXK+JK4xT7nho8cD86S52MxVFoPXNFjVAV5P+kpl
+         ++wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678092225;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QZEJmZby2wtp2N/ubBCyHC+kgDBokSCAHmX4OKZIirk=;
+        b=GQ1o9xlgVjuUe+qUG5+T4EUuZGwUhtcnXK7+bC7VGZT1hgzxaiDaxzQKHO7u95GPGv
+         0RGUgnssZkiVrz7XevLWw3Yh7l1vaVKVFDAAjUx6g6vf2onPbZhyGV75TFbmsP59CCNX
+         xddMxSSlr1RoQTKW7trnp4hDPGLDcVpMrzOr8UM5Zf8nfJ23wpxluRE9ja7o5v9XoqPB
+         gmBQ+lBB8E4mc3K6jOKvHSrG8PgKBJfdDPVca7v0mnbQjGWq6fkJCYlJ7cJjiZbQkx4/
+         wZ/NjMzz1HZjPT9l2KPVTds2VXGiie3A22lNfRdpKpOBrGKwygXHfQyELqD67u+rCJM/
+         jx1A==
+X-Gm-Message-State: AO0yUKV1YyA4aIkPQ4a46xLlXLouPhKHhDDdJ2v9PP5bUvPdPXg0cwC0
+	7udvSjLo/kKGoTOBYW0PbRuRH8wIIEUjvXKvbXrANg==
+X-Google-Smtp-Source: AK7set/ZxD7wiI2b8xRTQAmyrmK9gEAwsitbyEhRqHPRzYROYUlP0inT+LCKU6Vm2ybtKZPkfTr8yQ==
+X-Received: by 2002:a5d:4452:0:b0:2ca:ab68:eff3 with SMTP id x18-20020a5d4452000000b002caab68eff3mr6081160wrr.67.1678092225447;
+        Mon, 06 Mar 2023 00:43:45 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id s11-20020a5d510b000000b002c55b0e6ef1sm9495632wrt.4.2023.03.06.00.43.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 00:43:45 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 0/3] arm64: dts: meson: gxbb-kii-pro: device-tree
- updates
-Content-Language: en-US
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230210170721.1285914-1-christianshewitt@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230210170721.1285914-1-christianshewitt@gmail.com>
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20230303123312.155164-1-christianshewitt@gmail.com>
+References: <20230303123312.155164-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH v2] drm/meson: fix 1px pink line on GXM when scaling
+ video overlay
+Message-Id: <167809222462.18238.7243626712537618474.b4-ty@linaro.org>
+Date: Mon, 06 Mar 2023 09:43:44 +0100
+MIME-Version: 1.0
+X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230306_004025_277010_AA431249 
-X-CRM114-Status: GOOD (  10.87  )
+X-CRM114-CacheID: sfid-20230306_004347_450319_432B4E09 
+X-CRM114-Status: UNSURE (   7.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,37 +90,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi !
+Hi,
 
-On 10/02/2023 18:07, Christian Hewitt wrote:
-> First we sort nodes in the current dts and remove some blank lines. Then we
-> add the remaining bits needed for Bluetooth to work. And finally we add the
-> AIU audio card to have HDMI and S/PDIF audio output.
+On Fri, 03 Mar 2023 12:33:12 +0000, Christian Hewitt wrote:
+> Playing media with a resolution smaller than the crtc size requires the
+> video overlay to be scaled for output and GXM boards display a 1px pink
+> line on the bottom of the scaled overlay. Comparing with the downstream
+> vendor driver revealed VPP_DUMMY_DATA not being set [0].
 > 
-> Changes since v1:
+> Setting VPP_DUMMY_DATA prevents the 1px pink line from being seen.
 > 
-> - Add reviews from Neil
-> - Drop unneded 'okay' from audio patch
-> 
-> Christian Hewitt (3):
->    arm64: dts: meson: gxbb-kii-pro: sort and tidy the dts
->    arm64: dts: meson: gxbb-kii-pro: complete the bluetooth node
->    arm64: dts: meson: gxbb-kii-pro: add initial audio support
-> 
->   .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 83 ++++++++++++++++---
->   1 file changed, 72 insertions(+), 11 deletions(-)
-> 
+> [...]
 
-This doesn't apply anymore on v6.3-rc1, can you rebase ?
-Thanks!
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
 
+[1/1] drm/meson: fix 1px pink line on GXM when scaling video overlay
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5c8cf1664f288098a971a1d1e65716a2b6a279e1
+
+-- 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
