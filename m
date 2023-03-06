@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FA0C6FD1F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81090C7619A
 	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
@@ -12,42 +12,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=O7zfegtQYOdRJ5vs0VYDUvFfiw+/ANWRsOXJP4HwLqk=; b=eB+k9Ovx7/0SHKbNKEJ1Ad+U1K
-	XkvEAXtETsI90PeCv83+ZZw68j2cw4ZZ2NKIq8iyIxBDMwNaIA21iMhX26Yt3kuNPbMRkjd+iXyjf
-	PR+6KWZmO/PHhTlbtv2pWAlwmaSp8SycvkYu+MpJ2GL8/n9YdBe3RBjbhnCP5B11+zc4YzDa48rki
-	XCnAgp0YDuqQPbYfGvT60HUp/CTgwVmbmvySIfwozN1c0rAVxWuYmHLo5tYhkgsKmv0i7ofDfQKNl
-	BOJ8VozBLxRa2wK8yR1VBL9X2uYT8JxoyGzYEfyzMNgOJaTFwGM7eYD+zElnGneuQPi2uA++w1aw2
-	Y4985H6Q==;
+	bh=y8YoBDc7jsR37DKkvPhpBOCcWzGqI9MTaHobR+Iai3s=; b=ICIoqO34qb5uxvSjBslz4ACvjM
+	M4FsEiEHOd+2tY8UsUqnsUjYLg+uJKDNiIpSTWdu9GHyF3aM/WSWuW4QERpquD040szaU/6ddhITu
+	1HRbSFvZIKQXSjeu0DOFVB7hrK/qduo9BT/LI8KlZr5TN0Vh47h6TxbGtJfKLPIXW0XXN2urXc01n
+	QFrrgej3WzRdRlmOl2vgbQsxx2glXJPjWsWmR0gxM3cLWVMCcM3yg0poSzbej46txSi8Sr+z8WJYg
+	ZreOVZAL+QILh0Df1pv53NcuJGI3+pl2DaQVGKXQ8asfQtVxPE6By886qEVhDopo9Kc9sjE5NUzk3
+	o03nJTXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdvUP-006yiq-1q;
-	Sun, 19 Mar 2023 16:02:33 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pdvUZ-006yof-2b;
+	Sun, 19 Mar 2023 16:02:43 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSId0-006BPg-MP; Wed, 15 Feb 2023 14:19:23 +0000
+	id 1pZEi7-00EAsB-FZ; Mon, 06 Mar 2023 17:33:22 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E942561C32;
-	Wed, 15 Feb 2023 14:19:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E56C4C4339B;
-	Wed, 15 Feb 2023 14:19:18 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 753586104D;
+	Mon,  6 Mar 2023 17:33:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4725C433EF;
+	Mon,  6 Mar 2023 17:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1676470760;
-	bh=gQEel9EdWJL6nindAVV89iHXQOyC9ETUfqvkvbtD2gg=;
+	s=k20201202; t=1678123997;
+	bh=oCRV/O5q3R94VDA67eta1+j60LSWpLxWhmxqrzbP2FY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PEGQwrEr7+4WeFzY/RpUMkgnLnkz3fghVF7WJBwbfnBSFv/l/K9ykEmLj7kWn6gss
-	 boN+28fkVXq2qh9YXa3j66y4Hj/kpEL9EYG3AiTTfxOrke1JcvDKQydudVbzQ17IGH
-	 ZL4MG5W5BmvBAd6rx1y4zhrf/hs2iovXQ0Y1T2Z28UEqyKBjNDQkO60YWp04Z15os0
-	 LITBxJhiNSW/UvxDu/uH5bdF9unqvUhGcL4wXv6m2shBXdbZI7J9XcZ3STxeTl72a0
-	 U4bJYIhivyPi3krbtjRY1d/s/g+7MAdiLn1pDItsS9gGz71pmYvlLxV6SmGbJp+ikl
-	 VT4QJaIeWDiZw==
-Date: Wed, 15 Feb 2023 14:19:16 +0000
+	b=tzMRw/rwKmj16OdXkTBYsEPVgFatAfUN3LJ33ZBFVzmWPChI0zegxz8a6lrSnpVNM
+	 a5WWAe2HioVWJtIPc/ttoZWVvhbbsyNHioBhNIQsfUp41fNu7Bsn12CrCVulbshfh3
+	 xaVbonUnnhiN36hPDyYZX/yUWExunxxxGCl97t7m1BbXS8j1Pcd3ba2pmytwNFlcuo
+	 A4JumTBBP3xhvGiEXHq6D5gvgXZpJRCL48CblfxVMHFohHME3UQpdMcaz7KQ0rX6Bi
+	 zb4ahU89uF20dlnC+V+KW34/XFSen5uQSXFbDSnNjd2h/1S6Rp+UFmOkj5NVaXulLq
+	 RxBBn71VZ8v1A==
+Date: Mon, 6 Mar 2023 17:32:49 +0000
 From: Mark Brown <broonie@kernel.org>
 To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
 	jic23@kernel.org, tudor.ambarus@microchip.com, pratyush@kernel.org,
-	sanju.mehta@amd.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org,
+	Sanju.Mehta@amd.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org,
 	kdasu.kdev@gmail.com, f.fainelli@gmail.com, rjui@broadcom.com,
 	sbranden@broadcom.com, eajames@linux.ibm.com, olteanv@gmail.com,
 	han.xu@nxp.com, john.garry@huawei.com, shawnguo@kernel.org,
@@ -68,6 +68,8 @@ Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
 	rf@opensource.cirrus.com, perex@perex.cz, tiwai@suse.com,
 	npiggin@gmail.com, christophe.leroy@csgroup.eu, mpe@ellerman.id.au,
 	oss@buserror.net, windhl@126.com, yangyingliang@huawei.com,
+	william.zhang@broadcom.com, kursad.oney@broadcom.com,
+	jonas.gorski@gmail.com, anand.gore@broadcom.com, rafal@milecki.pl,
 	git@amd.com, linux-spi@vger.kernel.org,
 	linux-kernel@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
 	radu_nicolae.pirea@upb.ro, nicolas.ferre@microchip.com,
@@ -97,19 +99,18 @@ Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
 	linux-riscv@lists.infradead.org, alsa-devel@alsa-project.org,
 	patches@opensource.cirrus.com, linuxppc-dev@lists.ozlabs.org,
 	amitrkcian2002@gmail.com, Dhruva Gole <d-gole@ti.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	William Zhang <william.zhang@broadcom.com>
-Subject: Re: [PATCH v4 01/15] spi: Replace all spi->chip_select and
+	Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: Re: [PATCH V5 01/15] spi: Replace all spi->chip_select and
  spi->cs_gpiod references with function call
-Message-ID: <Y+zp5F2l8pffEEvN@sirena.org.uk>
-References: <20230210193647.4159467-1-amit.kumar-mahapatra@amd.com>
- <20230210193647.4159467-2-amit.kumar-mahapatra@amd.com>
+Message-ID: <479f5b1e-6ac1-47c7-9f5b-4080e0c77c16@sirena.org.uk>
+References: <20230306172109.595464-1-amit.kumar-mahapatra@amd.com>
+ <20230306172109.595464-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20230210193647.4159467-2-amit.kumar-mahapatra@amd.com>
-X-Cookie: Serving suggestion.
+In-Reply-To: <20230306172109.595464-2-amit.kumar-mahapatra@amd.com>
+X-Cookie: teamwork, n.:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_061922_847208_C54D5064 
-X-CRM114-Status: GOOD (  13.23  )
+X-CRM114-CacheID: sfid-20230306_093319_864359_E8678BD5 
+X-CRM114-Status: GOOD (  12.96  )
 X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:32 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,54 +123,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8988019129234605296=="
+Content-Type: multipart/mixed; boundary="===============3723120372686920446=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============8988019129234605296==
+--===============3723120372686920446==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mHMK7QDQWaz9I52Q"
+	protocol="application/pgp-signature"; boundary="1RpCo94WkIg3XG9u"
 Content-Disposition: inline
 
 
---mHMK7QDQWaz9I52Q
+--1RpCo94WkIg3XG9u
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Sat, Feb 11, 2023 at 01:06:32AM +0530, Amit Kumar Mahapatra wrote:
+On Mon, Mar 06, 2023 at 10:50:55PM +0530, Amit Kumar Mahapatra wrote:
 > Supporting multi-cs in spi drivers would require the chip_select & cs_gpiod
 > members of struct spi_device to be an array. But changing the type of these
 > members to array would break the spi driver functionality. To make the
 > transition smoother introduced four new APIs to get/set the
 > spi->chip_select & spi->cs_gpiod and replaced all spi->chip_select and
+> spi->cs_gpiod references with get or set API calls.
+> While adding multi-cs support in further patches the chip_select & cs_gpiod
+> members of the spi_device structure would be converted to arrays & the
+> "idx" parameter of the APIs would be used as array index i.e.,
+> spi->chip_select[idx] & spi->cs_gpiod[idx] respectively.
 
-This again doesn't apply against my current code - I think the
-best thing to do here is going to be to rebase against -rc1 when
-it comes out and resend then, that will also make the issues
-integrating with other trees easier as then I can make a clean
-branch against -rc1 that other trees will be able to merge as
-needed.
+This doesn't apply against current code, there was a rework of the
+mpc512x-psc driver.  Please check and resend.
 
---mHMK7QDQWaz9I52Q
+--1RpCo94WkIg3XG9u
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPs6eMACgkQJNaLcl1U
-h9DMTQf7BClrpZ6y6mPa14iVbIWKtokY4RW9qSMUPLjIFwC9eRXAa0tO9cEn7yie
-Dhg3Nh0HQil5b3ETrpYSZcezEkC0LjXhOcrQL2AaNPnYqp8rwD3n4tFQXOY7hA9R
-fhdZQcSulOPdvy2GDwF7fvgenpxkVDIZM0OyEYKr5amWKxjhGICMWTBjvHmWJWo5
-Kh34j6KD6URlG9Rlf2b8CSTbJrwj5bREjrjMOvUNQWTt775APe+cKcZF6Jp3IhOC
-q8wYya1VrWoegeXxgG6IJW/I5BYCmloUtbj8BTpW9CIHMuOTdeqMduuExe3cWHOx
-xEsHIS5meBbApEDmthwKyZw5q9xE6w==
-=3UQL
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQGI8AACgkQJNaLcl1U
+h9CIEwf/aZyH3WWgY7CUVh9W2WlSP5NnJGsbwRuFubTTP3ObZz0pCsJEwP8mAwdf
+wpWZ2t/nCcibXSVknqIW+r7FPrfknmY5nJ9jal+WTp/hkYYJeVEebOg9nMUX+Nwh
+fycQjw6AcKBn6mbRNf2c9ZVSKOpTnKNHFCdGSAfVWdMclSNADYerewze+WELEn9D
+6YoQTAPR4B1PBZUkwpAympwP8+SR1wFKzN2dmCVFQSWgYJ834b4wWLD9eZFMrjEN
+gf4+dIPQkjxzNMIErUCqVkaf/wgPkCAIjb2p1cWKU2b3IOG6di49DMsuImObYUAJ
+8cVDQ8KP5PGcINenovKCKWd1awBmtw==
+=ppxH
 -----END PGP SIGNATURE-----
 
---mHMK7QDQWaz9I52Q--
+--1RpCo94WkIg3XG9u--
 
 
---===============8988019129234605296==
+--===============3723120372686920446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -180,5 +182,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============8988019129234605296==--
+--===============3723120372686920446==--
 
