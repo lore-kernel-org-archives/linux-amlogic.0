@@ -4,135 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B37B7C678DB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 17:48:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C4BCC6FD1A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 19:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=W8G96Euv3KuLkxNYQZDaJw1MqCPBKKpyFwGwWZ81Nao=; b=34A4TDDSFqcsV7mCd409y5A6AO
-	tK9omd5ULa77nJEokFif5xCnYOX0Nk4iQ0jt6C7nwNkEOGqUtRYW6fs0UNQs6lqcUZi35BN7c+RKq
-	REkqJvVMyqKSrGRjDR9PeUk671F4hoQNjk4tFidobuFMG02V+zYOUkO2NOPNxI/QhnNjCyPMHan6J
-	JbtHTarVVwoadAvZh9HWTBkBzNPPlmftg6AwgeSx9HSfylMtlDePBsvDPpSwnLaOHbBLUv1VBXg8n
-	UOlQVICykalRKuGmKb4edKEf87FeMjR5vhzhHSdtYkAjHPdFmsch8tVtf0k30ohK3XgV8V58L0vWK
-	TIq7KV1w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sjuoZZqxwD4l9MUSxUOhroBgMpY5zuQbE8BenzbJ5Wc=; b=D0V9kvBoF6na3Q
+	d78gjUjfjE9CSnAheKX/8CXA9Bgj9xyNe56Re8Z4l0pDJv3PvDgymA8C3mHRWcFVd9Y+1f1GqPaRd
+	Vm2bD7kHUyoGxa/zvrercxjZRO/fqIGTwPUuCpPD7W56SzuRhhWhSWEuuITF2wjkKaxPz2UFwTk78
+	XGde4y0BWvNH2YIfjSdd9K0B7ol7Nh9xUAcLyA44eGXsg33QggcIgpu8SbWDWcwkSqHZiCBIGn98p
+	KmkXDMxek3X8MjenRTLre47UiK9rBsP8slPYpWJoFZELuXdYwi275a6L9jsxYvTpUOMJepqsi/Pia
+	7PDZ1/4FgMzLd3e3Fbvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZbPu-001tCO-1x; Tue, 07 Mar 2023 17:48:02 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1pZcsa-002D9Z-FZ; Tue, 07 Mar 2023 19:21:44 +0000
+Received: from relay4-d.mail.gandi.net ([217.70.183.196])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZbPq-001tAE-A3
-	for linux-amlogic@lists.infradead.org; Tue, 07 Mar 2023 17:47:59 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pZbOi-0001A8-23; Tue, 07 Mar 2023 18:46:48 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pZbOJ-002XP1-FG; Tue, 07 Mar 2023 18:46:23 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pZbOI-0034GD-GY; Tue, 07 Mar 2023 18:46:22 +0100
-Date: Tue, 7 Mar 2023 18:46:22 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Mark Brown <broonie@kernel.org>
-Cc: Kursad Oney <kursad.oney@broadcom.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Heiko Stuebner <heiko@sntech.de>, linux-samsung-soc@vger.kernel.org,
-	Samuel Holland <samuel@sholland.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Michal Simek <michal.simek@xilinx.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>, linux-sunxi@lists.linux.dev,
-	Anand Gore <anand.gore@broadcom.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Scott Branden <sbranden@broadcom.com>,
-	Andrew Jeffery <andrew@aj.id.au>, linux-spi@vger.kernel.org,
-	Yogesh Gaur <yogeshgaur.83@gmail.com>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jonas Gorski <jonas.gorski@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	linux-rockchip@lists.infradead.org,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, linux-xtensa@linux-xtensa.org,
-	Andi Shyti <andi@etezian.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-arm-msm@vger.kernel.org,
-	Radu Pirea <radu_nicolae.pirea@upb.ro>,
-	Jay Fang <f.fangjian@huawei.com>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Jassi Brar <jaswinder.singh@linaro.org>,
-	=?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
+	id 1pZcsW-002D7U-J6; Tue, 07 Mar 2023 19:21:42 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id AF33EE0002;
+	Tue,  7 Mar 2023 19:21:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1678216896;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jiRALHWp1e55wkcvOyL9CF4DO76BHMp1mu0i9xqSDT8=;
+	b=LUwmOwDODq5cIiSeh8c/7f3GcXpTtevBpMqwe5mR0kWLi15eHV4KanB+gV5vxGXrAMxxFd
+	ximCxN7g1beDKseM5NdjfeTCvWiJhNp5j1fjjBXnaCXAVXXgt/KFjjKL8fOn0tnb8KO/Qs
+	Iw3omJ8VBkP33XZ25TFrlAEll7JOMqCMOFLwsUhbt0I6fVmHegVc7oTmDy/XaEeumSI0aA
+	mgVffttYfwEKkC2frA/GRLYNSgRlNsuKYEkxHEIOTdi5JhEd7oYrRnVJu7mGUsu5dOmBsw
+	V4CEbvTdQkl3LqKcNBhdLOHHPX6zROxL3GffnpLLJvwYfHPWjDHDaZmlPcGA2g==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+	Liang Yang <liang.yang@amlogic.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-	Masahisa Kojima <masahisa.kojima@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>, linux-aspeed@lists.ozlabs.org,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Benjamin Fair <benjaminfair@google.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Nancy Yuen <yuenn@google.com>, Chen-Yu Tsai <wens@csie.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
-	William Zhang <william.zhang@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Li-hao Kuo <lhjeff911@gmail.com>,
-	Avi Fishman <avifishman70@gmail.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Tali Perry <tali.perry1@gmail.com>, linux-riscv@lists.infradead.org,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Kamal Dasu <kdasu.kdev@gmail.com>,
-	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-	Andy Gross <agross@kernel.org>, linux-mediatek@lists.infradead.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Han Xu <han.xu@nxp.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Patrick Venture <venture@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>, openbmc@lists.ozlabs.org,
-	Daniel Mack <daniel@zonque.org>
-Subject: Re: [PATCH 00/87] spi: Convert to platform remove callback returning
- void
-Message-ID: <20230307174622.vluzrlicw2gdn7hq@pengutronix.de>
-References: <20230303172041.2103336-1-u.kleine-koenig@pengutronix.de>
- <ddcda593-f8e9-43a4-bba6-dae31e8d6b39@sirena.org.uk>
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@sberdevices.ru,
+	oxffffaa@gmail.com
+Subject: Re: [PATCH v4] mtd: rawnand: meson: initialize struct with zeroes
+Date: Tue,  7 Mar 2023 20:21:33 +0100
+Message-Id: <20230307192133.274898-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230227102425.793841-1-AVKrasnov@sberdevices.ru>
+References: 
 MIME-Version: 1.0
-In-Reply-To: <ddcda593-f8e9-43a4-bba6-dae31e8d6b39@sirena.org.uk>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'4ce341de6c02d02aba7c78a6447ccfcaa9eeb328'
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230307_094758_353872_AC9DA52B 
-X-CRM114-Status: GOOD (  17.14  )
+X-CRM114-CacheID: sfid-20230307_112140_780535_85D37B80 
+X-CRM114-Status: UNSURE (   9.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,75 +79,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4087813090745089176=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, 2023-02-27 at 10:24:25 UTC, Arseniy Krasnov wrote:
+> This structure must be zeroed, because it's field 'hw->core' is used as
+> 'parent' in 'clk_core_fill_parent_index()', but it will be uninitialized.
+> This happens, because when this struct is not zeroed, pointer 'hw' is
+> "initialized" by garbage, which is valid pointer, but points to some
+> garbage. So 'hw' will be dereferenced, but 'core' contains some random
+> data which will be interpreted as a pointer. The following backtrace is
+> result of dereference of such pointer:
+> 
+> [    1.081319]  __clk_register+0x414/0x820
+> [    1.085113]  devm_clk_register+0x64/0xd0
+> [    1.088995]  meson_nfc_probe+0x258/0x6ec
+> [    1.092875]  platform_probe+0x70/0xf0
+> [    1.096498]  really_probe+0xc8/0x3e0
+> [    1.100034]  __driver_probe_device+0x84/0x190
+> [    1.104346]  driver_probe_device+0x44/0x120
+> [    1.108487]  __driver_attach+0xb4/0x220
+> [    1.112282]  bus_for_each_dev+0x78/0xd0
+> [    1.116077]  driver_attach+0x2c/0x40
+> [    1.119613]  bus_add_driver+0x184/0x240
+> [    1.123408]  driver_register+0x80/0x140
+> [    1.127203]  __platform_driver_register+0x30/0x40
+> [    1.131860]  meson_nfc_driver_init+0x24/0x30
+> 
+> Changelog:
+> v1 -> v2:
+>  * More details in the commit message.
+> v2 -> v3:
+>  * Add 'a' article to "interpreted as a pointer".
+> v3 -> v4:
+>  * Add changelog.
+> 
+> Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
---===============4087813090745089176==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="subqk3tp4gcmon6z"
-Content-Disposition: inline
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/fixes, thanks.
 
-
---subqk3tp4gcmon6z
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Mark,
-
-On Tue, Mar 07, 2023 at 05:00:47PM +0000, Mark Brown wrote:
-> On Fri, Mar 03, 2023 at 06:19:14PM +0100, Uwe Kleine-K=F6nig wrote:
->=20
-> >   spi: mpc512x-psc: Convert to platform remove callback returning void
-> >   spi: mpc52xx-psc: Convert to platform remove callback returning void
->=20
-> As well as the Raspberry Pi patch dropped due to build failures I also
-> dropped these two as they conflicted with Rob's refactoring of that
-> driver, nothing especially complex but since there's stuff to resend
-> anyway...
-
-Fine for me. Given that my queue of patches to convert the remove
-callbacks is quite big, there is no pressure from my side to get these
-all in. 84 from 87 is great already, I'll care about the remaining 3
-patches (and the few drivers that don't return 0 in .remove()) later.
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---subqk3tp4gcmon6z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQHeGsACgkQwfwUeK3K
-7AmJQAf+OLFnhHHVOJXrgsKSMBVT9Qycgk1Nx3JjIocPvU73GYAc8BXwKRUCjb2G
-yTOGAdCjHSEwQuDZxv2NhBd/vpxLkpD7iy/doYJxHT2UMPWV54rl6CFYJEHlJPqW
-Z/Ml4CO3hzmB4BXtCN8RnFyPLmswQObzaXX8HL2DGHB1XE8S1ih7F9Kal3TQISuT
-hZmmMMLaoUtmq5BdGPNybIlL7hGGrMoH0ej+lkPelgMI+QnFAQ6ge26Uc1x9lkDb
-M9w96TPGO6fCBhTV7g21HUUO1P1MsEqJqTPxwUxg+iatcXPmt/w55d07QZQbST7b
-W1YrIAGbAt6hkfVtrrUIlqw3J57gTA==
-=WgaT
------END PGP SIGNATURE-----
-
---subqk3tp4gcmon6z--
-
-
---===============4087813090745089176==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Miquel
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4087813090745089176==--
-
