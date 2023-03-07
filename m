@@ -4,88 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BB82C678D5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 08:55:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08040C678D4
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 09:31:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BidINugye4USI2zoLJKf/HaKrREUkH55cDKJuoACTLQ=; b=LkM0k6WZOCaQuqg5XC1JCmgeTV
-	LkOT+KF4mRvjKxfIb0QeJI14USIYjJJ/MxhS+xwDewPGMMCYVYcoRIb0X29U9wLzhyQTRosjYbWlG
-	bAEahE2cvELZ5yyo42mKARgC7uQ+ygtylkHryLcWg5GFw7sEohCe0nP55MG8u2Ce7uqucaJIuFw/Y
-	UOEDeerNzgzv0eEPTbiDAVfcnnbaN2frxjCG1HDTIDMCLw6kpa86pU1ThgWNEuo8hZCyszXdB0bxg
-	YnmT6kSGyGNEzZkP0Bq/qRXeub87NLmjjo1Cmy2undg8L5umFh6vB3LshKSD7emxkmzUqXkOr+EyS
-	e+Uo4PcQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OHoJEOR4uTgsgHJfhCmZSQo1X7kKZjsuc7I9TAcSuos=; b=iqhbj1+xEwbLlw
+	mIhJ6uqylQpOGgLOQ9Pj4ZQDo8SFuQu1v5d3kWEACal+SMLu9eML3UvnUDiWo14k4behZtok/+dWQ
+	mFyttWhzhMXGucQsMTeA6EmP/zMzC2DXHRqA0kCZNi3PXOP5ntF5qkj07ptIHxy+g64ZLe6iptFot
+	rq8G+sVbcIiNoS/7gWmvr8aQGqvNS3pPliwlRM45/sFrWoxn8k7A95axUVfuG5SxbceOx8H4lTero
+	xobm03eCCBIVqfYhohrhr4iiAXJs732KEX2+C7/Ont/JEshG6LPNUlZLgAQ30WRE8GpjQNx+JFP8o
+	z0HphjuEVaAXt5uk4ZZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZT6d-00Go2D-30; Tue, 07 Mar 2023 08:55:35 +0000
-Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
+	id 1pZTew-00Guz9-DA; Tue, 07 Mar 2023 09:31:02 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZT6a-00Go1g-8i; Tue, 07 Mar 2023 08:55:33 +0000
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id C1E131FE10;
-	Tue,  7 Mar 2023 08:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1678179330; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jJvuxY7Q7W6lr3F8/22gRy6xoHYvuDzzJyI4xHrBvJ8=;
-	b=aZQXG646NFuCeHIVNdmR0IYLUoqoqogIprpnNa+O+tbbsz3wdnRf+hQ73i32cVtbUXjvfx
-	7mYOpPPi02h9Z+pwpWgzAe2xfFRt9MHZJAk3Lb0TYuiIORnHpKfio1Kt2BkTDe6ZwrrCbm
-	QTBuUuscgkiSMBDgIipq+1c+aP0MPow=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1678179330;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jJvuxY7Q7W6lr3F8/22gRy6xoHYvuDzzJyI4xHrBvJ8=;
-	b=ZuAKNjDQx5UiCYwiTcriSna9rcRvvy1+YnwXmOHQkvzQyiEEPFFiBaaAoV6yzz2b2krWgH
-	6y1OYHiJIBbbADBg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1987013440;
-	Tue,  7 Mar 2023 08:55:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap2.suse-dmz.suse.de with ESMTPSA
-	id hApkBQL8BmRrKAAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Tue, 07 Mar 2023 08:55:30 +0000
-Message-ID: <0e789778-03ca-e3cb-9c94-e8b55573894c@suse.de>
-Date: Tue, 7 Mar 2023 09:55:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 00/22] drm/dma-helper: Add dedicated fbdev emulation
+	id 1pZTeh-00Guov-Rh; Tue, 07 Mar 2023 09:30:49 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id CC1F85FD29;
+	Tue,  7 Mar 2023 12:30:38 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1678181438;
+	bh=6lO2QPTQx3VBJm1+Mk1D4msGumd9zL1FfxW8GKaySUM=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+	b=WHHQ25INA4QvVTURiwMJGV5hMnZftiN63Ifz7A2mfW+NTpI54v8hESwXAXLZqdwlW
+	 MGhxM1iAbBbkzAvjOfAlHx7P4lFY0J707JY0Ucz4s4Y7+r4Lw9LPaYCtWVREMfmGo3
+	 HtADJAVAr/t7moCXoAIwX+2nbKjoRbji3xklYAniIVLjG/XqXfFFvvobXzsWf9K0XL
+	 HrxTsXy5G9T947pYDABhBthcz9XrmqNVTXUzhl+498h2+FkL0T6dchr33hQEwPO8Yo
+	 85OTB9VbLUeq4Qdpfc3ypGS+SS3ndyf6TWZBU1+ZnXkHb+SCk3WHCwTOvF4ieZha2a
+	 iDxUMp/n35vQQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Tue,  7 Mar 2023 12:30:38 +0300 (MSK)
+From: Alexey Romanov <AVRomanov@sberdevices.ru>
+To: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>
+CC: "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com"
+	<jbrunet@baylibre.com>, "martin.blumenstingl@googlemail.com"
+	<martin.blumenstingl@googlemail.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Thread-Topic: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Thread-Index: AQHZNxDMFNGdYZWqIECM18Y2pLjN2K7u9V0AgAAZIwA=
+Date: Tue, 7 Mar 2023 09:30:37 +0000
+Message-ID: <20230307093011.vviyrtygneqy2us3@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20230202141520.40003-1-avromanov@sberdevices.ru>
+ <9623bc3f-760a-e838-c80f-40d2f9b79f35@linaro.org>
+In-Reply-To: <9623bc3f-760a-e838-c80f-40d2f9b79f35@linaro.org>
+Accept-Language: ru-RU, en-US
 Content-Language: en-US
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: javierm@redhat.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch, andrew@aj.id.au,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, p.zabel@pengutronix.de, anitha.chrisanthus@intel.com,
- edmund.j.dea@intel.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, alain.volmat@foss.st.com,
- yannick.fertre@foss.st.com, raphael.gallais-pou@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, jernej.skrabec@gmail.com, samuel@sholland.org,
- jyri.sarha@iki.fi, tomba@kernel.org, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com, dri-devel@lists.freedesktop.org,
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev
-References: <20230301153101.4282-1-tzimmermann@suse.de>
- <CACRpkdawSQsNqKJkSSoSw3HmMHyNXFUywxkdszpTC-a_uZA+tQ@mail.gmail.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <CACRpkdawSQsNqKJkSSoSw3HmMHyNXFUywxkdszpTC-a_uZA+tQ@mail.gmail.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.0.24]
+Content-ID: <1566E12FAC27704AB3308B0CAB3B36E7@sberdevices.ru>
+MIME-Version: 1.0
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/07 06:50:00 #20921514
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230307_005532_500743_FAC53A20 
-X-CRM114-Status: GOOD (  20.31  )
+X-CRM114-CacheID: sfid-20230307_013048_451739_05D7FEBC 
+X-CRM114-Status: UNSURE (   5.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,123 +88,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6425276274416589793=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============6425276274416589793==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------0AKPEWDCojFXq3Qt40ngMipB"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------0AKPEWDCojFXq3Qt40ngMipB
-Content-Type: multipart/mixed; boundary="------------BEwAduE2kZD6RTHO5irLjcAJ";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: javierm@redhat.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch, andrew@aj.id.au,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, p.zabel@pengutronix.de, anitha.chrisanthus@intel.com,
- edmund.j.dea@intel.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, alain.volmat@foss.st.com,
- yannick.fertre@foss.st.com, raphael.gallais-pou@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, jernej.skrabec@gmail.com, samuel@sholland.org,
- jyri.sarha@iki.fi, tomba@kernel.org, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com, dri-devel@lists.freedesktop.org,
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev
-Message-ID: <0e789778-03ca-e3cb-9c94-e8b55573894c@suse.de>
-Subject: Re: [PATCH 00/22] drm/dma-helper: Add dedicated fbdev emulation
-References: <20230301153101.4282-1-tzimmermann@suse.de>
- <CACRpkdawSQsNqKJkSSoSw3HmMHyNXFUywxkdszpTC-a_uZA+tQ@mail.gmail.com>
-In-Reply-To: <CACRpkdawSQsNqKJkSSoSw3HmMHyNXFUywxkdszpTC-a_uZA+tQ@mail.gmail.com>
-
---------------BEwAduE2kZD6RTHO5irLjcAJ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-
-SGkNCg0KQW0gMDYuMDMuMjMgdW0gMjM6MTkgc2NocmllYiBMaW51cyBXYWxsZWlqOg0KPiBP
-biBXZWQsIE1hciAxLCAyMDIzIGF0IDQ6MzHigK9QTSBUaG9tYXMgWmltbWVybWFubiA8dHpp
-bW1lcm1hbm5Ac3VzZS5kZT4gd3JvdGU6DQo+IA0KPj4gQWRkIGZiZGV2IGVtdWxhdGlvbiB0
-aGF0IGlzIG9wdGltaXplZCBmb3IgRE1BIGhlbHBlcnMsIGFzIHVzZWQgYnkgbW9zdA0KPj4g
-ZHJpdmVycy4gSXQgb3BlcmF0ZXMgZGlyZWN0bHkgb24gR0VNIERNQSBidWZmZXJzIGluIHN5
-c3RlbSBtZW1vcnkuDQo+PiBNZW1vcnkgcGFnZXMgYXJlIG1tYXAnZWQgZGlyZWN0bHkgdG8g
-dXNlcnNwYWNlLiBObyBpbXBsaWNpdCBzaGFkb3cNCj4+IGJ1ZmZlcnMgbmVlZCB0byBiZSBh
-bGxvY2F0ZWQ7IGFzIGNhbiBoYXBwZW4gd2l0aCB0aGUgZ2VuZXJpYyBmYmRldg0KPj4gZW11
-bGF0aW9uLiBDb252ZXJ0IGRyaXZlcnMgdGhhdCBmdWxmaWwgdGhlIHJlcXVpcmVtZW50cy4N
-Cj4+DQo+PiBUZXN0ZWQgd2l0aCBmYmNvbiBhbmQgSUdUIG9uIHZjNC4NCj4+DQo+PiBGdXR1
-cmUgZGlyZWN0aW9uOiBwcm92aWRpbmcgYSBkZWRpY2F0ZWQgZmJkZXYgZW11bGF0aW9uIGZv
-ciBHRU0gRE1BDQo+PiBoZWxwZXJzIHdpbGwgYWxsb3cgdXMgdG8gcmVtb3ZlIHRoaXMgY2Fz
-ZSBmcm9tIHRoZSBnZW5lcmljIGZiZGV2IGNvZGUuDQo+PiBUaGUgbGF0dGVyIGNhbiB0aGVu
-IGJlIHNpbXBsaWZpZWQuDQo+IA0KPiAxKSBJIGxvdmUgeW91ciB3b3JrLg0KDQpUaGFuayB5
-b3UuIDopDQoNCj4gDQo+IDIpIFdoeSBpc24ndCB0aGlzIERSTSBkcml2ZXIgY2hhbmdlZD8N
-Cj4gZHJpdmVycy9ncHUvZHJtL21jZGUvbWNkZV9kcnYuYw0KPiBBRkFJQ1QgaXQgYWxzbyB1
-c2VzIEdFTSBidWZmZXJzIGluIHN5c3RlbSBtZW1vcnkuDQoNClRoaXMgZHJpdmVyIHJlcXVp
-cmVzIGRhbWFnZSBoYW5kbGluZw0KDQogDQpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9s
-aW51eC92Ni4yL3NvdXJjZS9kcml2ZXJzL2dwdS9kcm0vbWNkZS9tY2RlX2Rydi5jI0w5Nw0K
-DQpmb3Igd2hpY2ggd2UgaGF2ZSB0byBjYWxsIHRoZSBmcmFtZWJ1ZmZlcidzIGRpcnR5IGNh
-bGxiYWNrDQoNCiANCmh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjIvc291
-cmNlL2RyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX2ZyYW1lYnVmZmVyX2hlbHBlci5jI0wyODUN
-Cg0KYWZ0ZXIgZWFjaCB3cml0ZS4NCg0KRG9pbmcgdGhpcyB3aXRoIGZiZGV2IGVtdWxhdGlv
-biByZXF1aXJlcyB0cmFja2luZyBvZiBtbWFwJ2VkIHBhZ2VzIHZpYSANCmZiZGV2J3MgZGVm
-ZXJyZWQtSS9PIG1lY2hhbmlzbXMuIFRoYXQgbWFrZXMgdGhlIGZiZGV2LWVtdWxhdGlvbiBj
-b2RlIA0KbW9yZSBjb21wbGV4LiBBRkFJQ1QsIHRoZSBleGlzdGluZyBnZW5lcmljIGZiZGV2
-IGVtdWxhdGlvbiBhbHJlYWR5IA0KaW1wbGVtZW50cyB0aGlzIGNhc2UgJ2dvb2QgZW5vdWdo
-LicNCg0KPiANCj4gMykgVGhpcyBvbmU6DQo+IGRyaXZlcnMvZ3B1L2RybS9wbDExMS9wbDEx
-MV9kcnYuYw0KPiBpcyBhbHNvIHZlcnkgc2ltaWxhciwgYnV0IGNhbiBzb21ldGltZXMgdXNl
-IGEgZGVkaWNhdGVkDQo+IFJBTSBtZW1vcnkgZm9yIGFsbG9jYXRpb25zIHVzaW5nIENNQSwg
-ZG9lcyB0aGF0IG1ha2UNCj4gaXQgbm90IGEgY2FuZGlkYXRlPw0KDQpUaGFua3MsIEkgdGhp
-bmsgSSBzaW1wbHkgbWlzc2VkIHBsMTExLg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+
-IA0KPiBUaGV5IGFyZW4ndCBtdWNoIGRpZmZlcmVudCBpbiBob3cgdGhleSB3b3JrIGZyb20g
-dGhlIFRWRTIwMC4NCj4gDQo+IFlvdXJzLA0KPiBMaW51cyBXYWxsZWlqDQoNCi0tIA0KVGhv
-bWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdh
-cmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5i
-ZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8
-aHJlcjogSXZvIFRvdGV2DQo=
-
---------------BEwAduE2kZD6RTHO5irLjcAJ--
-
---------------0AKPEWDCojFXq3Qt40ngMipB
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmQG/AEFAwAAAAAACgkQlh/E3EQov+DZ
-dRAAwJH7RKJhMWo0NmVD3hLGlh9SV/+0Z6rXXWaT119pdC7Qqd4OeVAiYuj4OXzkQBnO1BAE/OCn
-623FCxR3h/X6NHs03QD0Cw9FsUFaw6K44M7a+iJs8C0YWMXlG3uXefcIJYqi3SA7FOd7f8LfriGK
-w1fTag5CpmqLKLBtqFQbTuUgc8UrJRR7bmo8Y+kb7HZhPZEW3UGnn93dK+c5aVEM/W92hMP9T+QY
-F68SJ9+1s6VnX2c4VzSJW4BRi0ujNDw+5njK127CxTfTL++I2hY6ySC7ygOpN3tnOk1Xq9VD890m
-9pNVCGbmpiYWDVGiSZabqLPadf7srknsSYFz2q4Lo/lNNIa9caZ6m2VnUe376US8sipgDvusghPw
-Wjja8mOtgsTxLucjXySQd4z85fITbt5KME5/FtEvS23V/qxsbRyLdjUCLgfwzYZx9Ytn8uXFyMR8
-MlpkR+pSeujgMLrpSI1JQ7/nOPOkaP2jtKmvqDb7n8h7n0r9vzI7hcNjS88IrQxWC2hSzeyMIPJq
-EwwWt4qUA1hGWHyWHN4f4fjyjpAxuJ4sctNiRQ89ZYLG8Z2eEpD9o6h2h35tj+a39UdoNSywO6gM
-sxezN515EZlVaY85IrYAjSzRchAdtL6z+rgL8CTpd6FsCzzcY2I8h+JgS5BNX0KhmTojmMCnK3bw
-CnY=
-=Aoyh
------END PGP SIGNATURE-----
-
---------------0AKPEWDCojFXq3Qt40ngMipB--
+> The [PATCH 1/2] highly confused b4, anyway it's applied on v6.4/arm64-dt.
+> 
+> Thanks,
+> Neil
 
 
---===============6425276274416589793==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Oh, sorry for the noise. 
+Thank you, Neil!
 
+-- 
+Thank you,
+Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6425276274416589793==--
-
