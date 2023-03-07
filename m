@@ -4,70 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C4BCC6FD1A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 19:21:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F49EC6FD1E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 22:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sjuoZZqxwD4l9MUSxUOhroBgMpY5zuQbE8BenzbJ5Wc=; b=D0V9kvBoF6na3Q
-	d78gjUjfjE9CSnAheKX/8CXA9Bgj9xyNe56Re8Z4l0pDJv3PvDgymA8C3mHRWcFVd9Y+1f1GqPaRd
-	Vm2bD7kHUyoGxa/zvrercxjZRO/fqIGTwPUuCpPD7W56SzuRhhWhSWEuuITF2wjkKaxPz2UFwTk78
-	XGde4y0BWvNH2YIfjSdd9K0B7ol7Nh9xUAcLyA44eGXsg33QggcIgpu8SbWDWcwkSqHZiCBIGn98p
-	KmkXDMxek3X8MjenRTLre47UiK9rBsP8slPYpWJoFZELuXdYwi275a6L9jsxYvTpUOMJepqsi/Pia
-	7PDZ1/4FgMzLd3e3Fbvg==;
+	List-Owner; bh=c+fMr7+3MYIQop8zlAgJUAf+aKtA3yo6KgAR5AG/BxE=; b=xGlWQwmGec53XK
+	UT5o6TfMyXxVDSQHtYzbtqXLSzun5fjrJOqLMwhXBYNy2JTr2+2dgY9fuHs2J4X3W65f88eQ8/NNj
+	tmTUMAGAvgCCWA7aZKCSlkKb3oy/DeyhF16RzafSt/+dXnybYDo713sQY8UV80SQ/Jea6wHwGeGkL
+	lPLwK5viju/XTQSAxqXsIvkzeU7PrwYNtgKqMJ9lHdNYWJlHHy1ycXL9o4rrPnk55EXWuKAO0MFzA
+	+ywvYVcrwht0xWiYs82zu33Rkdfts7VYkMvq9Uu8KAqkdBJRVbpwkbDeiEaDSHjZQywv0/yrAhLBv
+	Y3maaQFYSGwDiH+A8J/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZcsa-002D9Z-FZ; Tue, 07 Mar 2023 19:21:44 +0000
-Received: from relay4-d.mail.gandi.net ([217.70.183.196])
+	id 1pZfm0-002f1Y-AW; Tue, 07 Mar 2023 22:27:08 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZcsW-002D7U-J6; Tue, 07 Mar 2023 19:21:42 +0000
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id AF33EE0002;
-	Tue,  7 Mar 2023 19:21:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1678216896;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jiRALHWp1e55wkcvOyL9CF4DO76BHMp1mu0i9xqSDT8=;
-	b=LUwmOwDODq5cIiSeh8c/7f3GcXpTtevBpMqwe5mR0kWLi15eHV4KanB+gV5vxGXrAMxxFd
-	ximCxN7g1beDKseM5NdjfeTCvWiJhNp5j1fjjBXnaCXAVXXgt/KFjjKL8fOn0tnb8KO/Qs
-	Iw3omJ8VBkP33XZ25TFrlAEll7JOMqCMOFLwsUhbt0I6fVmHegVc7oTmDy/XaEeumSI0aA
-	mgVffttYfwEKkC2frA/GRLYNSgRlNsuKYEkxHEIOTdi5JhEd7oYrRnVJu7mGUsu5dOmBsw
-	V4CEbvTdQkl3LqKcNBhdLOHHPX6zROxL3GffnpLLJvwYfHPWjDHDaZmlPcGA2g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-	Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@sberdevices.ru,
-	oxffffaa@gmail.com
-Subject: Re: [PATCH v4] mtd: rawnand: meson: initialize struct with zeroes
-Date: Tue,  7 Mar 2023 20:21:33 +0100
-Message-Id: <20230307192133.274898-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230227102425.793841-1-AVKrasnov@sberdevices.ru>
-References: 
+	id 1pZflx-002f02-6E; Tue, 07 Mar 2023 22:27:06 +0000
+Received: by mail-ed1-x534.google.com with SMTP id s11so58475509edy.8;
+        Tue, 07 Mar 2023 14:27:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112; t=1678228023;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ReUzQTPrVvG5iby/h9m+/R0jY9DDZJr5kroiPbP9VlI=;
+        b=cYU4TMzZdmqPqI5Bu/OyoS+YivWNYKc5Db6vGbYpDkZON/UKHT0kW8l5+M1gJGJSuy
+         ovQ3G+LSB/FefY8jf2s3iqH772fBWzSwZ6lrgOWZmjC3mWXl2KTAUNztegaeSoX8MKV7
+         5bOqpDLr87hhzJ6CdpMGWIfw7OGMBDGLsD5acBrRf2qh5COyMabfMIj2aMLVVE6Bi/LT
+         agzH6dXWnuNk9uYrCo0eOKQtFnGproh76TcOoCj58XGvog5v+nf5ndq668auPAMRfX/k
+         tORQ+QamXruKaVFVg2xLW9k3luspGvEUEBZmH9M7r90658qO4r0YICMo0eK61Mmfyi3d
+         fs+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678228023;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ReUzQTPrVvG5iby/h9m+/R0jY9DDZJr5kroiPbP9VlI=;
+        b=NSL1C3HQmCh4mUs+xb82NAxaT0fG6aJRKolB5mMX1cPzfDa9MwnzA0KYrqrY/ysAqH
+         jx4wdv7ZWMEBBfExFrXiNDZrsqBBcq1XoBDUnSAfd113PjXJnl9KiZ2RFHkiN/qGaVpq
+         EfJElmwucuIVEr7rbOH5o0GWTtsZI9bbmrkDzqRsKJTiKZoBJfI5r3hs8ZL5IpIwamJZ
+         kijZyD0M3FIqrs+e96KHHVtBJ9zdj2Ag00C0EM/aTgJH7toalIho9RVyDul+2jH0D+IN
+         SKf3GSLCiEte8NBLAMgBYUW6KLfmiYHMGD4j9qULmZFW5JIN5dq04qddEh65dK14u6aS
+         ZGgA==
+X-Gm-Message-State: AO0yUKU0EiElnZb8EJa/nrL+HJlA9BX1Hv8bq7tN15nW9q0r41JKGLpc
+	vTAEGSZqMV2pdVr07fFF57OzMqb5On4=
+X-Google-Smtp-Source: AK7set90bv5W4k0vkQtEyMMJeUJVKAtudDQCtnPoIM/WgyMwR4FeOENO0NtjA/+I6emRet/kB7wS8Q==
+X-Received: by 2002:a17:906:4e15:b0:883:3299:91c8 with SMTP id z21-20020a1709064e1500b00883329991c8mr15786241eju.55.1678228022566;
+        Tue, 07 Mar 2023 14:27:02 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c23-c485-ef00-0000-0000-0000-0e63.c23.pool.telefonica.de. [2a01:c23:c485:ef00::e63])
+        by smtp.googlemail.com with ESMTPSA id t19-20020a170906065300b008be996c1630sm6669412ejb.39.2023.03.07.14.27.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 14:27:02 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: serial: amlogic,meson-uart: Add compatible string for G12A
+Date: Tue,  7 Mar 2023 23:26:49 +0100
+Message-Id: <20230307222651.2106615-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
+References: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'4ce341de6c02d02aba7c78a6447ccfcaa9eeb328'
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230307_112140_780535_85D37B80 
-X-CRM114-Status: UNSURE (   9.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230307_142705_266007_E670F8AA 
+X-CRM114-Status: GOOD (  10.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,51 +83,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: neil.armstrong@linaro.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2023-02-27 at 10:24:25 UTC, Arseniy Krasnov wrote:
-> This structure must be zeroed, because it's field 'hw->core' is used as
-> 'parent' in 'clk_core_fill_parent_index()', but it will be uninitialized.
-> This happens, because when this struct is not zeroed, pointer 'hw' is
-> "initialized" by garbage, which is valid pointer, but points to some
-> garbage. So 'hw' will be dereferenced, but 'core' contains some random
-> data which will be interpreted as a pointer. The following backtrace is
-> result of dereference of such pointer:
-> 
-> [    1.081319]  __clk_register+0x414/0x820
-> [    1.085113]  devm_clk_register+0x64/0xd0
-> [    1.088995]  meson_nfc_probe+0x258/0x6ec
-> [    1.092875]  platform_probe+0x70/0xf0
-> [    1.096498]  really_probe+0xc8/0x3e0
-> [    1.100034]  __driver_probe_device+0x84/0x190
-> [    1.104346]  driver_probe_device+0x44/0x120
-> [    1.108487]  __driver_attach+0xb4/0x220
-> [    1.112282]  bus_for_each_dev+0x78/0xd0
-> [    1.116077]  driver_attach+0x2c/0x40
-> [    1.119613]  bus_add_driver+0x184/0x240
-> [    1.123408]  driver_register+0x80/0x140
-> [    1.127203]  __platform_driver_register+0x30/0x40
-> [    1.131860]  meson_nfc_driver_init+0x24/0x30
-> 
-> Changelog:
-> v1 -> v2:
->  * More details in the commit message.
-> v2 -> v3:
->  * Add 'a' article to "interpreted as a pointer".
-> v3 -> v4:
->  * Add changelog.
-> 
-> Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
+(we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
+Add a new compatible string for this SoC so this new bit can be managed
+accordingly while keeping "amlogic,meson-gx-uart" as fallback compatible
+string.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/fixes, thanks.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+Changes from v1 -> v2:
+- make meson-gx-uart a valid compatible string for meson-g12a-uart
 
-Miquel
+Changes from v2 -> v3:
+- don't add extra oneOf as all of the entries are enclosed in oneOf
+  already
+- don't allow amlogic,meson-g12a-uart as standalone compatible string
+  (which slipped through in v2 due to all of the formatting changes
+  that the extra oneOf required)
+
+
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml   | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 3cbdde85ed71..22656efe8ddc 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -34,6 +34,11 @@ properties:
+               - amlogic,meson-gx-uart
+               - amlogic,meson-s4-uart
+           - const: amlogic,meson-ao-uart
++      - description: Always-on power domain UART controller on G12A SoCs
++        items:
++          - const: amlogic,meson-g12a-uart
++          - const: amlogic,meson-gx-uart
++          - const: amlogic,meson-ao-uart
+       - description: Everything-Else power domain UART controller
+         enum:
+           - amlogic,meson6-uart
+@@ -41,6 +46,10 @@ properties:
+           - amlogic,meson8b-uart
+           - amlogic,meson-gx-uart
+           - amlogic,meson-s4-uart
++      - description: Everything-Else power domain UART controller on G12A SoCs
++        items:
++          - const: amlogic,meson-g12a-uart
++          - const: amlogic,meson-gx-uart
+ 
+   reg:
+     maxItems: 1
+-- 
+2.39.2
+
 
 _______________________________________________
 linux-amlogic mailing list
