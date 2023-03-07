@@ -4,136 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A449C678D5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 17:01:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B37B7C678DB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Mar 2023 17:48:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SNlSIkrKXZvQeGrnCGTABkauyBIPvT7/8gVn9GUCUyU=; b=Wny85kixosNqR+nHguR2SEUUsX
-	IDSKmw4BtBGpbfp3OZZZxZaHpjC0cNv/U8czNRYkauvYjGREwo8koPvB3AucoH47E+FtJzzMhh0+O
-	Uagtcbia5UmZurLqdS2THCi8D4ZCUVuceZB3HhrsAwenycts6EKG+uZjuG350SjgwcNUgNxDKOdTF
-	ILbuoFGF0ZiwRVONIAyRh1nF4T5AWdpy4Jd1nekbVp85OPxw3j4Vk5tvzpanHLMMikfPLWLpUnmU/
-	MIawJdJaV6b31hPd+TwTDMJURGt9L4mVRVsKCXqPxu5srtPoIrM7S7XdCwa/L+Q6QjWPePQh2mnZp
-	8AYFzk8w==;
+	bh=W8G96Euv3KuLkxNYQZDaJw1MqCPBKKpyFwGwWZ81Nao=; b=34A4TDDSFqcsV7mCd409y5A6AO
+	tK9omd5ULa77nJEokFif5xCnYOX0Nk4iQ0jt6C7nwNkEOGqUtRYW6fs0UNQs6lqcUZi35BN7c+RKq
+	REkqJvVMyqKSrGRjDR9PeUk671F4hoQNjk4tFidobuFMG02V+zYOUkO2NOPNxI/QhnNjCyPMHan6J
+	JbtHTarVVwoadAvZh9HWTBkBzNPPlmftg6AwgeSx9HSfylMtlDePBsvDPpSwnLaOHbBLUv1VBXg8n
+	UOlQVICykalRKuGmKb4edKEf87FeMjR5vhzhHSdtYkAjHPdFmsch8tVtf0k30ohK3XgV8V58L0vWK
+	TIq7KV1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZagb-001iX8-T2; Tue, 07 Mar 2023 17:01:13 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1pZbPu-001tCO-1x; Tue, 07 Mar 2023 17:48:02 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZagZ-001iVv-2D; Tue, 07 Mar 2023 17:01:12 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 93C0FB81997;
-	Tue,  7 Mar 2023 17:01:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7A4C433B0;
-	Tue,  7 Mar 2023 17:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1678208468;
-	bh=tKFTmiEx5lWVMe9kc/4siOWPAS1vRgintq9BdapPuw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gqt5/BmZ7eO+af/HjVRQiU3sw8JOtHGp6EMO4dWuOwrg2LueVE87FwMwbJmSMbDw3
-	 ws29jqaUjUDjYiikTtt7/iKYg+2yrYf4T2JYLdR/uOCpmU1RmrY5zY6A63gtW5rM+x
-	 DmiW0/1nByleyTnwwYj1Q66go/nxAjY8OGVSo4KWOto0Z75wa5ysvNT77Nh88lPcIm
-	 kdDMXsZCBZ0GbSeik/wu87szoip24bAwSGhB4IwTpJH8yCVAVCuT2KqcDQtesriupl
-	 JAFNPocJHQredNufuxvTfWTr5qcifQwWUjloMf3yohaiWo14eqm5mjyT1XK3IaJ4T9
-	 RGF37doTHhI7Q==
-Date: Tue, 7 Mar 2023 17:00:47 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-	=?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Radu Pirea <radu_nicolae.pirea@upb.ro>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	William Zhang <william.zhang@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Jonas Gorski <jonas.gorski@gmail.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Kamal Dasu <kdasu.kdev@gmail.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Han Xu <han.xu@nxp.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Jay Fang <f.fangjian@huawei.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Avi Fishman <avifishman70@gmail.com>,
+	id 1pZbPq-001tAE-A3
+	for linux-amlogic@lists.infradead.org; Tue, 07 Mar 2023 17:47:59 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pZbOi-0001A8-23; Tue, 07 Mar 2023 18:46:48 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pZbOJ-002XP1-FG; Tue, 07 Mar 2023 18:46:23 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pZbOI-0034GD-GY; Tue, 07 Mar 2023 18:46:22 +0100
+Date: Tue, 7 Mar 2023 18:46:22 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: Kursad Oney <kursad.oney@broadcom.com>,
 	Tomer Maimon <tmaimon77@gmail.com>,
-	Tali Perry <tali.perry1@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
-	Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andi Shyti <andi@etezian.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Li-hao Kuo <lhjeff911@gmail.com>,
-	Masahisa Kojima <masahisa.kojima@linaro.org>,
-	Jassi Brar <jaswinder.singh@linaro.org>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michal Simek <michal.simek@xilinx.com>,
-	Max Filippov <jcmvbkbc@gmail.com>, linux-spi@vger.kernel.org,
-	Andrew Jeffery <andrew@aj.id.au>, linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
-	Benjamin Fair <benjaminfair@google.com>,
-	Yogesh Gaur <yogeshgaur.83@gmail.com>,
-	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
 	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	linux-xtensa@linux-xtensa.org
+	Heiko Stuebner <heiko@sntech.de>, linux-samsung-soc@vger.kernel.org,
+	Samuel Holland <samuel@sholland.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Michal Simek <michal.simek@xilinx.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-sunxi@lists.linux.dev,
+	Anand Gore <anand.gore@broadcom.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Scott Branden <sbranden@broadcom.com>,
+	Andrew Jeffery <andrew@aj.id.au>, linux-spi@vger.kernel.org,
+	Yogesh Gaur <yogeshgaur.83@gmail.com>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jonas Gorski <jonas.gorski@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	linux-rockchip@lists.infradead.org,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, linux-xtensa@linux-xtensa.org,
+	Andi Shyti <andi@etezian.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-arm-msm@vger.kernel.org,
+	Radu Pirea <radu_nicolae.pirea@upb.ro>,
+	Jay Fang <f.fangjian@huawei.com>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Jassi Brar <jaswinder.singh@linaro.org>,
+	=?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	Masahisa Kojima <masahisa.kojima@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>, linux-aspeed@lists.ozlabs.org,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Benjamin Fair <benjaminfair@google.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Nancy Yuen <yuenn@google.com>, Chen-Yu Tsai <wens@csie.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
+	William Zhang <william.zhang@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Li-hao Kuo <lhjeff911@gmail.com>,
+	Avi Fishman <avifishman70@gmail.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Tali Perry <tali.perry1@gmail.com>, linux-riscv@lists.infradead.org,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Kamal Dasu <kdasu.kdev@gmail.com>,
+	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+	Andy Gross <agross@kernel.org>, linux-mediatek@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>, Han Xu <han.xu@nxp.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Patrick Venture <venture@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>, openbmc@lists.ozlabs.org,
+	Daniel Mack <daniel@zonque.org>
 Subject: Re: [PATCH 00/87] spi: Convert to platform remove callback returning
  void
-Message-ID: <ddcda593-f8e9-43a4-bba6-dae31e8d6b39@sirena.org.uk>
+Message-ID: <20230307174622.vluzrlicw2gdn7hq@pengutronix.de>
 References: <20230303172041.2103336-1-u.kleine-koenig@pengutronix.de>
+ <ddcda593-f8e9-43a4-bba6-dae31e8d6b39@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20230303172041.2103336-1-u.kleine-koenig@pengutronix.de>
-X-Cookie: A rolling stone gathers momentum.
+In-Reply-To: <ddcda593-f8e9-43a4-bba6-dae31e8d6b39@sirena.org.uk>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230307_090111_408495_FBF97A2E 
-X-CRM114-Status: GOOD (  13.08  )
+X-CRM114-CacheID: sfid-20230307_094758_353872_AC9DA52B 
+X-CRM114-Status: GOOD (  17.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,51 +144,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7020509122499847298=="
+Content-Type: multipart/mixed; boundary="===============4087813090745089176=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============7020509122499847298==
+--===============4087813090745089176==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Wo9frzy+aFktTPxK"
+	protocol="application/pgp-signature"; boundary="subqk3tp4gcmon6z"
 Content-Disposition: inline
 
 
---Wo9frzy+aFktTPxK
+--subqk3tp4gcmon6z
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 03, 2023 at 06:19:14PM +0100, Uwe Kleine-K=F6nig wrote:
+Hello Mark,
 
->   spi: mpc512x-psc: Convert to platform remove callback returning void
->   spi: mpc52xx-psc: Convert to platform remove callback returning void
+On Tue, Mar 07, 2023 at 05:00:47PM +0000, Mark Brown wrote:
+> On Fri, Mar 03, 2023 at 06:19:14PM +0100, Uwe Kleine-K=F6nig wrote:
+>=20
+> >   spi: mpc512x-psc: Convert to platform remove callback returning void
+> >   spi: mpc52xx-psc: Convert to platform remove callback returning void
+>=20
+> As well as the Raspberry Pi patch dropped due to build failures I also
+> dropped these two as they conflicted with Rob's refactoring of that
+> driver, nothing especially complex but since there's stuff to resend
+> anyway...
 
-As well as the Raspberry Pi patch dropped due to build failures I also
-dropped these two as they conflicted with Rob's refactoring of that
-driver, nothing especially complex but since there's stuff to resend
-anyway...
+Fine for me. Given that my queue of patches to convert the remove
+callbacks is quite big, there is no pressure from my side to get these
+all in. 84 from 87 is great already, I'll care about the remaining 3
+patches (and the few drivers that don't return 0 in .remove()) later.
 
---Wo9frzy+aFktTPxK
+Thanks
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--subqk3tp4gcmon6z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQHbb4ACgkQJNaLcl1U
-h9DDDQf/eo3lXns3dzYdzJYf8MxUxafb8rgDkge5kzhM/iS9lEnDcJX8Vno7IHOa
-iZ7/NuWC1p4ofFyl04/WPa94f4hEYWTNqXgQ4TuEq9SRTyOTwZsqpS33uEc9v0zm
-3/ja2SHHOw97vKeI+1IjK8fycKlOze/YwzP38U0UTECpJou6+41HYgRgx8L+J3Js
-zILjs+qw1DhbaslGny+CEV6juxQO2LcIoNjdQYfWSbN4leZdcg8cW1+Obbr8KLen
-nbcN3szhArY3SvbxgXR5muD5yNFtETWVBmVtjlT0mBXX4Lzgj7Pf0SgN1haH9bq/
-jlQbNnEEvvkvGVicjB7wmDlS6gOoKw==
-=fVjM
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQHeGsACgkQwfwUeK3K
+7AmJQAf+OLFnhHHVOJXrgsKSMBVT9Qycgk1Nx3JjIocPvU73GYAc8BXwKRUCjb2G
+yTOGAdCjHSEwQuDZxv2NhBd/vpxLkpD7iy/doYJxHT2UMPWV54rl6CFYJEHlJPqW
+Z/Ml4CO3hzmB4BXtCN8RnFyPLmswQObzaXX8HL2DGHB1XE8S1ih7F9Kal3TQISuT
+hZmmMMLaoUtmq5BdGPNybIlL7hGGrMoH0ej+lkPelgMI+QnFAQ6ge26Uc1x9lkDb
+M9w96TPGO6fCBhTV7g21HUUO1P1MsEqJqTPxwUxg+iatcXPmt/w55d07QZQbST7b
+W1YrIAGbAt6hkfVtrrUIlqw3J57gTA==
+=WgaT
 -----END PGP SIGNATURE-----
 
---Wo9frzy+aFktTPxK--
+--subqk3tp4gcmon6z--
 
 
---===============7020509122499847298==
+--===============4087813090745089176==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,5 +214,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============7020509122499847298==--
+--===============4087813090745089176==--
 
