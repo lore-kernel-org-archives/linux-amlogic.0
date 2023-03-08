@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB798C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Mar 2023 12:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1873FC64EC4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Mar 2023 12:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ynBvAzF4IaDk2I2ih2oqfKJprl+O2muPDwA8Wtqd2+g=; b=XhwGbjpBf31DuAXWV7kOZ/u7DM
-	44KF4T8UXwJo4+T4EJXR4gPKk3u+S6WW5kAn0rXLwSrdaqB0IuCBjTuytRSYkWNK2nYiQhoB3asp4
-	LL/QuuLsX7o/QXM++Sbi7otBQeKFlDcm47EoYozgSXjcd/kUoeIW3oL9uIrRmSPI/8Ee9R9WigLZk
-	BcdxIig1eQre43Mcpp9nh6EbS/zdbw+SZK4BfGppDv23hj2r+UrDcX/vkcdaFFjxqfAGmU5YPczRq
-	I3GhQ+Cuq4zS+/AcZVj3mq6SIzc87MUuzJIoUQWVs2jQcWtl8nJaXOvL85qwrflvF/U0NamRsAGkT
-	sTrjdQqg==;
+	bh=6+YXT0n7wQpebMFn2nQxvSZSDptL2zRvF10FiWMVov4=; b=dZfAFh3QKPzjezmqSbspqZ6q41
+	PxBOu8weJn1dI+2DMAud3rAd8FvHrdg0n/xULRUrKm4KaBw7oRnRbYBVSdwlb8Q+XFtR0/zzYL7yQ
+	3nvLDLMYjaD54adIAHgbOrNw5/rgj1Onsb//Isdb/FG3cYveHTPxfyGlkYYWK45eUDrbNVromaBde
+	vOrbr/P0MrOeT25SNYf+WvuJt1irZ2KnYllid+pTOvkoEju73Zx+ts5hWORBAvTYZOJT0cUggurtW
+	RFIb7uVq9y1X1B1vg43Vm+Sbqxvo/9ncGsArMgl9UJF9fzL180va9Fl+BED3++3pyWXgRZGgSxr3t
+	ncRv5zGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZslz-004oE0-AA; Wed, 08 Mar 2023 12:19:59 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1pZsna-004oqe-Bw; Wed, 08 Mar 2023 12:21:38 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZslw-004oBt-5D
-	for linux-amlogic@lists.infradead.org; Wed, 08 Mar 2023 12:19:57 +0000
-Received: by mail-wm1-x331.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso1170631wmb.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 08 Mar 2023 04:19:53 -0800 (PST)
+	id 1pZsnM-004olq-V3
+	for linux-amlogic@lists.infradead.org; Wed, 08 Mar 2023 12:21:26 +0000
+Received: by mail-wm1-x330.google.com with SMTP id p16so9672773wmq.5
+        for <linux-amlogic@lists.infradead.org>; Wed, 08 Mar 2023 04:21:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678277993;
+        d=linaro.org; s=google; t=1678278083;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=M0PT41N9/9aKEVWUCfnXqycSPIwscUdDNY/YmWQMOBc=;
-        b=k4wPvfxf2rr+T0Dkk71MslV3OsYWjfXdYEyEikFNcloMvkxqleaMMX4PS1+8Jr17nx
-         tjh3yjudHmxX5Lo4xVahN7eqitEFaADkyAFH/6v8k1f35HFlHeCjdxYpOZG/n4A+BR//
-         F1UEKnuVtRQZ/j0ef38bQPqHZh6BtZX9ui/C5wB914i2/8yrmKl6J/P89j4644c9feZ+
-         DE+HQkYpluF+tT2yQqAkFO6U8GNjtJn7gbqn21Gwat0zH8lZeJqBHP/fcMaWpjJ04qzH
-         9IRRU6QMYfbX8NrthMk9iTS1DpFLQy8ug1deFEWXhD2KT665WxGDiLDG0wB3QMDkWGkF
-         BGjg==
+        bh=DdmHRVA/vk3lRtO265cC0Ziw677vWqjaNx8Bv1rPy7Q=;
+        b=cM+fM6PeOeblfCflPYpRuWpukH3n/XjmUcQtQtvmelnQNcg0ZSBy0THIZM4wN/oZZ9
+         VE0liMcw00FziUaqSLK6TO+6OlgLQppeZwyBWxG+wHPFNi2wqWKe6alh0+doXkX4jqpB
+         1Rzkd+fpsr/Jq7q77voKbU7VTeqfY65m7wQUmpOIUURPP5hx2bvUyHvFAtAGa0vtGWR9
+         I6Y8qUIIzVcCrUQUunvAaI30zsw1b7fdU0YyKNLor0Yf78QVFJmDZSOVVm/CiN284nYu
+         KhyXZOueZBZ1XpoFA0sCxZueNxMlE4/ptJ+xZmEuWW38E1YJbLTrAnlLoJplBXnrWlgq
+         o8bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678277993;
+        d=1e100.net; s=20210112; t=1678278083;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=M0PT41N9/9aKEVWUCfnXqycSPIwscUdDNY/YmWQMOBc=;
-        b=uCD431BM7AbfZiBZW/zsLlx2qyZFodENMT6T0EljpI/lq1aO/S7I5jxok8wt4I2/8/
-         zSMK7dX4sCYeU4JlcTWr9rkh4fnVTMf+BjGxhtvMgHJTItSyUbAg+AaOPOTKY7uctpYu
-         0KLLrEk8Aab0MhjzujPYOj6vX693uWcIzgnbu1SBRG0z1TU0gMm2+Efj8IVL3/ZMJykK
-         r/wR0slbybIbDw0P4S8GUVM2IKK8FsCZdCkkV3LNRDHAdEew6SnQyf/Nvj8ev5OtRtTm
-         4w5tZWNpyFs7idUQBt3hnBwEXVukFx99/UBGu3wA0D1G/KjjKHRTXQrLde0z8kiuYnMq
-         g8eA==
-X-Gm-Message-State: AO0yUKV5afi7Spji21zqQboTPs0v6LY9TTu73s1GoOPOIYa2PR8L8jrq
-	RNzNOZVo92wsLyFdEA5JKXyclg==
-X-Google-Smtp-Source: AK7set/1ESdVmy/r7adhh0sf1VIdxSRaRJPt2FLSS8Mj6zEHB7dr0uJsp1xqOpWMYbJJuMVcjqBPyg==
-X-Received: by 2002:a05:600c:3504:b0:3ea:e677:5017 with SMTP id h4-20020a05600c350400b003eae6775017mr16080220wmq.8.1678277992817;
-        Wed, 08 Mar 2023 04:19:52 -0800 (PST)
+        bh=DdmHRVA/vk3lRtO265cC0Ziw677vWqjaNx8Bv1rPy7Q=;
+        b=mw2luBxNODClXu+JrgstgTjRLKa3qXtFVsy6HNxcgjTFXMpsC/y0bKh++YpVOzmoHu
+         uesiXAYLi9+zUILL+i5/mtiOaZTGl8sQa56S1c8LmcM+iL0LMJO0wgF9nigdkc+jrxDW
+         uOXCWbJlAFE/1s2Fc9WHAWDblCffhBD8mbcrqIppt46RsDA7FWsRkIAVphBfcYbsTFRa
+         LVrgmwTA3/9H83MPGGRreKtdhuPKBh6j/W5FPUqo2H6elaXQXQh+haC7MoQJQRkcHmcj
+         B+zrztDS/Qkdk1Ux/O87JD5fSdk1x63VvnLX+5rCKZ/Zu62gWgdUZcVcCnuSdOfGFesK
+         mLAg==
+X-Gm-Message-State: AO0yUKU9NKBRrUbsXbb2g7J0BOntXLqlIn9oP5g/9j6OnmGSZENVP+3z
+	TGCMjFZ7XPKjTnWfF/7r4tjqww==
+X-Google-Smtp-Source: AK7set/5hxCmMl5VY0/C9jx9+DScKu0vsgidAstlJ0JD4TIm/rxgPcMe+P5nzv+rQWReggKXtZCZ1w==
+X-Received: by 2002:a05:600c:1d24:b0:3da:1f6a:7b36 with SMTP id l36-20020a05600c1d2400b003da1f6a7b36mr15995476wms.0.1678278083146;
+        Wed, 08 Mar 2023 04:21:23 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:b029:83b9:1fb8:7c34? ([2a01:e0a:982:cbb0:b029:83b9:1fb8:7c34])
-        by smtp.gmail.com with ESMTPSA id j17-20020adff011000000b002c5a1bd527dsm14995123wro.96.2023.03.08.04.19.52
+        by smtp.gmail.com with ESMTPSA id m1-20020a05600c4f4100b003e01493b136sm21246036wmq.43.2023.03.08.04.21.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 04:19:52 -0800 (PST)
-Message-ID: <6af5bb93-650e-5ea3-ac14-4e37baf4a902@linaro.org>
-Date: Wed, 8 Mar 2023 13:19:51 +0100
+        Wed, 08 Mar 2023 04:21:22 -0800 (PST)
+Message-ID: <5325f790-50d8-56eb-b8ac-99840d5b3ad2@linaro.org>
+Date: Wed, 8 Mar 2023 13:21:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
@@ -77,8 +77,8 @@ References: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
 Organization: Linaro Developer Services
 In-Reply-To: <20230307222651.2106615-4-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230308_041956_260409_11A70BB7 
-X-CRM114-Status: GOOD (  15.93  )
+X-CRM114-CacheID: sfid-20230308_042125_035034_076E419B 
+X-CRM114-Status: GOOD (  16.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,6 +111,12 @@ On 07/03/2023 23:26, Martin Blumenstingl wrote:
 > Greg, please don't take this through your tree. I included this patch
 > to show the overall goal of this series. If Neil won't take this as
 > part of another series then I'll send it separately.
+
+Actually I'm ok if Greg takes the whole patchset, including this one, via
+the tty tree.
+
+Neil
+
 > 
 > Changes from v1 -> v2:
 > - keep meson-gx-uart as fallback compatible string
@@ -177,7 +183,6 @@ On 07/03/2023 23:26, Martin Blumenstingl wrote:
 >   				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
 >   				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
