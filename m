@@ -4,84 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF80CC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 14:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CC2C742A7
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 14:36:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IFk3vSlysWDQPut3xwi8LUsUob62iJ+j4KOW0d6fmvM=; b=0f3g6vUB63Ws8+
-	+5xgLt0T5YGVfbut6fd1gipKKZDrbNTrAaL2+x12x218P3B8tl3E3MqF5zPLwyLQH9esvuneRE8hA
-	bv6WnSsmRr0lSH4iNs6UXiq5l/oUbxPR1xVxEHPmoLU1hMXDNXKRLwCzq2kMExaMVw1B1AJE5NQ2j
-	YcnzoSWH1UlEc49Wd5tRN1Okty2yvBCHCHYp89WfURquEWfyTYM2Ad8JlW/mYa29gMTa8owTQ69Uk
-	cOo4oxKZ86U+Fl7zGu6GCyYiHMYtQskzCllp1WNtJlrv+3IjMvkGTmT78YgORsheNbk/A5L0NMRE0
-	WszIahBYWJRap6BiV7GQ==;
+	List-Owner; bh=sc0tthXfEq9T6x/cRnSPFUt2AaGm7g98v9v7f+xzGYg=; b=LDMjUqtERTDXLU
+	jd4bfalqxGvGI5AfkNicULtt/Fw8fkKSFYZkhXT/zcoqhM2VyKGELWGAeoiz7McXzfOkoThXfz44v
+	uMHy+69KepL1CbmqeNhwKh/4OF/3FS20DGvKl2eVNvDKoK99sFMzIY16A5FtNi3GiQ5bdA0/vpVDb
+	QprhPrLiYERO9w0Lly9SM8qebpnhKo/OBc65/OatSfgUp+oEOCGjSV8SZfzKNgJc9JnieQUJlXGgu
+	SlFvxVH9o9xQuzQDCkN6yx/aXnC4iJD6gUUJfJ/wm+1Es2gUExO0031xESvFkQd8c3OIqh6VkpCh0
+	vLZcwtsjUpaAPuvvJuUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paHAS-00ATbm-LH; Thu, 09 Mar 2023 14:22:52 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1paHNe-00AZpY-9H; Thu, 09 Mar 2023 14:36:30 +0000
+Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paH9b-00ATCO-ES
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 14:22:09 +0000
-Received: by mail-wr1-x429.google.com with SMTP id l1so2012625wry.12
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 06:21:55 -0800 (PST)
+	id 1paHHF-00AX60-DR
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 14:29:55 +0000
+Received: by mail-pl1-x636.google.com with SMTP id p20so2118050plw.13
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 06:29:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678371714;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=AEHlRMi5Q2I80CZialyymAKTB782rTM8WKCpwZlq1o8=;
-        b=hcpQN/n+icfLdi79023NpowiwPnkzd6YL1WrFNyLc8oYHIQsBuUDpGUAahbYaLviym
-         ln31tKbSw7bs2TH8gTWfF1gchQ4Xd6Jk6XX4AkPt5Qtldrzu5ngCjwdnz1HI9/nhUFrF
-         67kNkh2+wKxd0c/WVsYRqYZWXjDbGgGOlfm1EIDEXrFEf75Z+4Nlq6OzXfWBe29nHii4
-         5wwvA/f7IdBAF5QrXAHxRd/RfXxHfoJ4YG5574mF/x5zFNF/FUVwDrm/kRksBTqTQN2G
-         GSMYCeKWDn5o0fQDC3uZZ0qej9VhA58dHOmWsnc79kGWxYZtoyyWXI++jbR/gv6zO2Ln
-         PWtA==
+        d=linaro.org; s=google; t=1678372189;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bl8Ig/SoPa8kDLYKK3prG31XNLf3b2Jf0y8Fe1Nszhg=;
+        b=KXzftEo97Ncd8U2Nct5HSClvktPm38x7Z0DV+cVzUHNw73Oj/0EOiNr76CnEirvHAg
+         imhztQaPQu2bRpkHVVaHEfkORonqTJNfWRgkRrynJ4zy5RImnqcQ5y/UmUrGvMb9lTWP
+         smiHrjGyyIxXJrWJbhDdJkOMi0CULLVvBvyrObU+Fw10W8HzBZWyhqQfvUAk2EXtLsH3
+         P0LxupICPgo+Neqj0aKO1cG1+hMKptFBMR3EpkTsVlyMzxe1JPlqrsyQsZeD8OZ15K/9
+         g2Aap7dLX1/eVBP8YAR6kAn9NygmzGrV4aeSJXS4UQIgjf2plFmO5wYoHDX8SHwjdfdQ
+         Leww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678371714;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AEHlRMi5Q2I80CZialyymAKTB782rTM8WKCpwZlq1o8=;
-        b=rP29ld+JblScLeFIP+7cfSuKn0oxG38f35HUg+Y9P8IUD6GtKl4i+RtU17clk0TaOY
-         kgTPS2di/sj2QGZ+IFVc8acO/yDy7aGxH9Q1iUTs+E3Dq43ED6XyiwVOao5baePKgvgr
-         XMc2auv6Bw0+D+NxhlOADNW0jakrnGYukuB0juJSjH5dReeEY/J7XQvYElqYq5T0O/E1
-         +SQ1PX0w4GxeaPvznNHK48NWrcgsEw77q4JjVkgDZFJmn4nLC/CK1M8xjJSHFg9IId+R
-         qeAVhg1QGivEUJzwmHbwQ/nKJvGIMIebFEDQnE55TARQtaVAmlj0IB6K2lBANQpdXZ0v
-         OIsw==
-X-Gm-Message-State: AO0yUKUUbPFSibzbXw0tJ1THmCdna19d0QuvT0VoY2BS45VgpH4+c4Ga
-	U5B5GLurjNrNm9x/PNaFYV1Vdw==
-X-Google-Smtp-Source: AK7set+d7SR228BMsoIxKvezFbp4g82LTL4J61pq06eA7vMpP8G1ojBrn/NaLY8jkXnQlPBxLF+OoQ==
-X-Received: by 2002:adf:dd49:0:b0:2c7:1aaa:750 with SMTP id u9-20020adfdd49000000b002c71aaa0750mr14090260wrm.66.1678371714560;
-        Thu, 09 Mar 2023 06:21:54 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a13-20020a5d508d000000b002c54536c662sm18204361wrt.34.2023.03.09.06.21.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 06:21:53 -0800 (PST)
-References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-3-ddrokosov@sberdevices.ru>
- <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
- <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: neil.armstrong@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com,
- jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
- controller driver
-Date: Thu, 09 Mar 2023 15:20:23 +0100
-In-reply-to: <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
-Message-ID: <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20210112; t=1678372189;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Bl8Ig/SoPa8kDLYKK3prG31XNLf3b2Jf0y8Fe1Nszhg=;
+        b=ZwAgzbdcfIXXY7ma3xjG01oUfcTJ9WW4UlivhIczEIn3KdzNreD3dUK14RWKwN84QF
+         n/sF3J05mQyHRFMFHYot1RKYVizQihr8fuhbZZRCWpB6dm+zdOh8w7zFc5hw4roVgJTW
+         1pKkHMrLAkalaI/Q5LU1NFDX5AQNmw/gMN1COY+XPCkO5gMf5nz3b+LlAqAB5/1/oN3c
+         3CHTLjwSzHNEZPGgcZXEfQzSLOhQOT8OsejtkSLKDvx/KdL6mnpVLSbK2S9rydp5fgm6
+         Qz4nBBbQiLcxmvL+OWw1NX6r8bCGuD35bSzItaBAHPmwFFTpTrrxT4y2GBKFVsr+iUmR
+         DAyA==
+X-Gm-Message-State: AO0yUKVkvNWQ+a++KwFw47J1NfEj0mZ52nsN9LOKgumaHmDczYl5tPkU
+	JzE2K0HIVgs7tjCJmYPEQIAT0ii7jg1vwpPraEBEXsfh5OKL1/+Q4EM=
+X-Google-Smtp-Source: AK7set+glvYNvDZxTUBfPhpgrApdWUfFFkXJTzZ2wmNX+EGwaR3PkxDslYM/tT+6TY505jyjk6efgubWdeulOyxI/k0=
+X-Received: by 2002:a17:90a:ab06:b0:230:80d7:2158 with SMTP id
+ m6-20020a17090aab0600b0023080d72158mr8365554pjq.4.1678372189413; Thu, 09 Mar
+ 2023 06:29:49 -0800 (PST)
 MIME-Version: 1.0
+References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr> <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
+ <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr> <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
+ <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
+In-Reply-To: <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 9 Mar 2023 15:29:12 +0100
+Message-ID: <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
+Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
+To: Marc Gonzalez <marc.w.gonzalez@free.fr>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Arend van Spriel <aspriel@gmail.com>, 
+	Franky Lin <franky.lin@broadcom.com>, Hante Meuleman <hante.meuleman@broadcom.com>, 
+	Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+	Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>, Alexander Prutskov <alep@cypress.com>, 
+	Joseph chuang <jiac@cypress.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Angus Ainslie <angus@akkea.ca>, 
+	linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_062159_510894_B1FF8D1A 
-X-CRM114-Status: GOOD (  36.81  )
+X-CRM114-CacheID: sfid-20230309_062953_562011_3D2C7478 
+X-CRM114-Status: GOOD (  30.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,280 +94,173 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Thu, 9 Mar 2023 at 13:13, Marc Gonzalez <marc.w.gonzalez@free.fr> wrote:
+>
+> On 09/03/2023 11:16, Marc Gonzalez wrote:
+>
+> > On 06/03/2023 11:24, Marc Gonzalez wrote:
+> >
+> >> # cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
+> >> OF_NAME=wifi
+> >> OF_FULLNAME=/soc/sd@ffe03000/wifi@1
+> >> OF_COMPATIBLE_0=brcm,bcm4329-fmac
+> >> OF_COMPATIBLE_N=1
+> >> SDIO_CLASS=00
+> >> SDIO_ID=02D0:AAE7
+> >> SDIO_REVISION=0.0
+> >> MODALIAS=sdio:c00v02D0dAAE7
+> >>
+> >> NB: 0xaae7 = 43751
+> >
+> > I have run into another issue.
+> >
+> > The WiFi device (and the mmc2 bus it sits on) don't show up at all
+> > in the kernel log *unless* I add lots of debug output, such as with
+> > #define DEBUG in drivers/base/dd.c
+> >
+> > I think this points to some kind of race condition?
+> >
+> > Neil suggested that maybe the host probes the mmc2 bus "too soon",
+> > when the WiFi device is still powering up, which makes the entire
+> > probe fail.
 
-On Mon 06 Mar 2023 at 23:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+Ideally, the WiFi device/driver should not need to be initialized to
+allow the SDIO card to be detected properly. Looks like there is
+something fishy going on.
 
-> On Mon, Mar 06, 2023 at 12:17:23PM +0100, Jerome Brunet wrote:
->> 
->> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
->> 
->> > Introduce PLL clock controller for Amlogic A1 SoC family.
->> >
->> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->> > ---
->> >  drivers/clk/meson/Kconfig  |  10 +
->> >  drivers/clk/meson/Makefile |   1 +
->> >  drivers/clk/meson/a1-pll.c | 365 +++++++++++++++++++++++++++++++++++++
->> >  drivers/clk/meson/a1-pll.h |  47 +++++
->> >  4 files changed, 423 insertions(+)
->> >  create mode 100644 drivers/clk/meson/a1-pll.c
->> >  create mode 100644 drivers/clk/meson/a1-pll.h
->> >
+> >
+> > This patch appears to solve the symptom:
+> >
+> > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> > index 6e5ea0213b477..999b3843c0d0b 100644
+> > --- a/drivers/mmc/host/meson-gx-mmc.c
+> > +++ b/drivers/mmc/host/meson-gx-mmc.c
+> > @@ -1400,7 +1400,7 @@ static struct platform_driver meson_mmc_driver = {
+> >       .remove         = meson_mmc_remove,
+> >       .driver         = {
+> >               .name = DRIVER_NAME,
+> > -             .probe_type = PROBE_PREFER_ASYNCHRONOUS,
+> > +             .probe_type = PROBE_FORCE_SYNCHRONOUS,
+> >               .of_match_table = meson_mmc_of_match,
+> >       },
+> >  };
+> >
+> > But this might just be delaying the probe enough for the device
+> > to become ready?
 >
-> [...]
+> FWIW, the relevant device tree nodes are:
 >
->> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
->> > new file mode 100644
->> > index 000000000000..c565f9b2a8dd
->> > --- /dev/null
->> > +++ b/drivers/clk/meson/a1-pll.c
->> > @@ -0,0 +1,365 @@
->> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> > +/*
->> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> > + * Author: Jian Hu <jian.hu@amlogic.com>
->> > + *
->> > + * Copyright (c) 2023, SberDevices. All Rights Reserved.
->> > + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->> > + */
->> > +
->> > +#include <linux/clk-provider.h>
->> > +#include <linux/of_device.h>
->> > +#include <linux/platform_device.h>
->> > +#include "meson-a1-clkc.h"
->> 
->> As pointed out by the kernel robot, there is a problem here
->> 
+> /* decompiled DTS */
 >
-> My fault. Really sorry for that.
+>                 sd@ffe03000 {
+>                         compatible = "amlogic,meson-axg-mmc";
+>                         reg = <0x0 0xffe03000 0x0 0x800>;
+>                         interrupts = <0x0 0xbd 0x4>;
+>                         status = "okay";
+>                         clocks = <0x2 0x21 0x2 0x3c 0x2 0x2>;
+>                         clock-names = "core", "clkin0", "clkin1";
+>                         resets = <0x5 0x2c>;
+>                         amlogic,dram-access-quirk;
+>                         pinctrl-0 = <0x2c>;
+>                         pinctrl-1 = <0x2d>;
+>                         pinctrl-names = "default", "clk-gate";
+>                         #address-cells = <0x1>;
+>                         #size-cells = <0x0>;
+>                         bus-width = <0x4>;
+>                         cap-sd-highspeed;
+>                         sd-uhs-sdr50;
+>                         max-frequency = <0x5f5e100>;
+>                         non-removable;
+>                         disable-wp;
+>                         keep-power-in-suspend;
+>                         mmc-pwrseq = <0x2e>;
+>                         vmmc-supply = <0x2b>;
+>                         vqmmc-supply = <0x21>;
 >
-> [...]
+>                         wifi@1 {
+>                                 reg = <0x1>;
+>                                 compatible = "brcm,bcm4329-fmac";
+>                         };
+>                 };
 >
->> > +static struct clk_regmap fixed_pll = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = ANACTRL_FIXPLL_CTRL0,
->> > +		.bit_idx = 20,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data) {
->> > +		.name = "fixed_pll",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&fixed_pll_dco.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * It is enough that the fdiv leaf has critical flag,
->> > +		 * No critical or unused flag here.
->> > +		 */
->> 
->> The comment is not useful
->> 
 >
-> OK
+> /* original DTS */
 >
->> > +	},
->> > +};
->> > +
->> > +static const struct pll_mult_range hifi_pll_mult_range = {
->> > +	.min = 32,
->> > +	.max = 64,
->> > +};
->> > +
->> > +static const struct reg_sequence hifi_init_regs[] = {
->> > +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
->> > +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
->> > +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
->> > +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
->> > +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
->> 
->> This last poke should not bits otherwise handled by parms.
->> This is a rate init in disguise.
->> 
+>                 sd_emmc_a: sd@ffe03000 {
+>                         compatible = "amlogic,meson-axg-mmc";
+>                         reg = <0x0 0xffe03000 0x0 0x800>;
+>                         interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+>                         status = "disabled";
+>                         clocks = <&clkc CLKID_SD_EMMC_A>,
+>                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
+>                                  <&clkc CLKID_FCLK_DIV2>;
+>                         clock-names = "core", "clkin0", "clkin1";
+>                         resets = <&reset RESET_SD_EMMC_A>;
+>                 };
 >
-> I believe, you are talking about hifi_pll clk_regmap conflicts with
-> hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
-> it doesn't touch them (we assume that default bit values are all zero):
+> &sd_emmc_a {
+>         status = "okay";
+>         pinctrl-0 = <&sdio_pins>;
+>         pinctrl-1 = <&sdio_clk_gate_pins>;
+>         pinctrl-names = "default", "clk-gate";
+>         #address-cells = <1>;
+>         #size-cells = <0>;
 >
->     .en = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL0,
->         .shift   = 28,
->         .width   = 1,
->     },
->     // init_value = 0x01f18440
->     // en_mask    = 0x10000000
+>         bus-width = <4>;
+>         cap-sd-highspeed;
+>         sd-uhs-sdr50;
+>         max-frequency = <100000000>;
 >
->     .m = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL0,
->         .shift   = 0,
->         .width   = 8,
->     },
->     // init_value = 0x01f18440
->     // m_mask     = 0x0000000f
+>         non-removable;
+>         disable-wp;
+>
+>         /* WiFi firmware requires power to be kept while in suspend */
+>         keep-power-in-suspend;
+>
+>         mmc-pwrseq = <&sdio_pwrseq>;
 
-mask is 0xff with width 8
-
->
->     .n = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL0,
->         .shift   = 10,
->         .width   = 5,
->     },
->     // init_value = 0x01f18440
->     // n_mask     = 0x00007c00
->                            ^
->                     oops, one overlap
->                     but why we can't set init value for pre_sel?
->
->     .frac = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL1,
->         .shift   = 0,
->         .width   = 19,
->     },
->     // init_value = 0x01800000
->     // frac_mask  = 0x0007ffff
->
->     .current_en = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL0,
->         .shift   = 26,
->         .width   = 1,
->     },
->     // init_value      = 0x01f18440
->     // current_en_mask = 0x04000000
->
->     .l_detect = {
->         .reg_off = ANACTRL_HIFIPLL_CTRL2,
->         .shift   = 6,
->         .width   = 1,
->     },
->     // init_value    = 0x00001100
->     // l_detect_mask = 0x00000040
->
->> > +};
->> > +
->> > +static struct clk_regmap hifi_pll = {
->> > +	.data = &(struct meson_clk_pll_data){
->> > +		.en = {
->> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
->> > +			.shift   = 28,
->> > +			.width   = 1,
->> > +		},
->> > +		.m = {
->> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
->> > +			.shift   = 0,
->> > +			.width   = 8,
->> > +		},
->> > +		.n = {
->> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
->> > +			.shift   = 10,
->> > +			.width   = 5,
->> > +		},
->> > +		.frac = {
->> > +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
->> > +			.shift   = 0,
->> > +			.width   = 19,
->> > +		},
->> > +		.l = {
->> > +			.reg_off = ANACTRL_HIFIPLL_STS,
->> > +			.shift   = 31,
->> > +			.width   = 1,
->> > +		},
->> > +		.current_en = {
->> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
->> > +			.shift   = 26,
->> > +			.width   = 1,
->> > +		},
->> > +		.l_detect = {
->> 
->> What is this ?
->> 
->
-> Lock detection module.
->
-> This is IP module included to new PLL power-on sequence. From clk-pll.c
-> patchset:
->
-> /*
->  * Compared with the previous SoCs, self-adaption current module
->  * is newly added for A1, keep the new power-on sequence to enable the
->  * PLL. The sequence is:
->  * 1. enable the pll, delay for 10us
->  * 2. enable the pll self-adaption current module, delay for 40us
->  * 3. enable the lock detect module
->  */
-
-Ok. I missed this is the PLL driver
+This one is particularly interesting. Can you share the content of the
+sdio_pwrseq node too?
 
 >
-> [...]
+>         vmmc-supply = <&vddao_3v3>;
+>         vqmmc-supply = <&vddio_ao1v8>;
 >
->> > +static struct clk_regmap fclk_div3 = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = ANACTRL_FIXPLL_CTRL0,
->> > +		.bit_idx = 22,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "fclk_div3",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&fclk_div3_div.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * This clock is used by APB bus which is set in boot ROM code
->> > +		 * and is required by the platform to operate correctly.
->> > +		 * About critical, refer to fclk_div2.
->> 
->> This last line is not useful. Same for other occurences
->> 
+>         brcmf: wifi@1 {
+>                 reg = <1>;
+>                 compatible = "brcm,bcm4329-fmac";
+>         };
+> };
 >
-> Good point. Copy-paste detected :-)
+> With an asynchronous probe, meson_mmc_probe() always succeeds,
+> yet the WiFi card is not detected later on, even if I sleep
+> 1-2 seconds in meson_mmc_probe().
 >
-> [...]
->
->> > +static int meson_a1_pll_probe(struct platform_device *pdev)
->> > +{
->> > +	struct device *dev = &pdev->dev;
->> > +	struct clk_hw *hw;
->> > +	void __iomem *base;
->> > +	struct regmap *map;
->> > +	int clkid, i, err;
->> > +
->> > +	base = devm_platform_ioremap_resource(pdev, 0);
->> > +	if (IS_ERR(base))
->> > +		return dev_err_probe(dev, PTR_ERR(base),
->> > +				     "can't ioremap resource\n");
->> > +
->> > +	map = devm_regmap_init_mmio(dev, base, &a1_pll_regmap_cfg);
->> > +	if (IS_ERR(map))
->> > +		return dev_err_probe(dev, PTR_ERR(map),
->> > +				     "can't init regmap mmio region\n");
->> > +
->> > +	/* Populate regmap for the regmap backed clocks */
->> > +	for (i = 0; i < ARRAY_SIZE(a1_pll_regmaps); i++)
->> > +		a1_pll_regmaps[i]->map = map;
->> > +
->> > +	for (clkid = 0; clkid < a1_pll_hw_onecell_data.num; clkid++) {
->> > +		hw = a1_pll_hw_onecell_data.hws[clkid];
->> > +		err = devm_clk_hw_register(dev, hw);
->> > +		if (err)
->> > +			return dev_err_probe(dev, err,
->> > +					     "clock registration failed\n");
->> > +	}
->> > +
->> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
->> > +					   &a1_pll_hw_onecell_data);
->> > +}
->> > +
->> > +#ifdef CONFIG_OF
->> 
->> This config is selected by ARM64 which this driver depends on
->> 
->
-> Make sense, thanks a lot!
->
-> [...]
+> [    0.879756] YO: meson_mmc_probe: ffe03000.sd
+> [    0.914320] YO: meson_mmc_probe: ffe03000.sd ALL OK
+> [    1.199170] YO: meson_mmc_probe: ffe07000.mmc
+> [    1.232734] YO: meson_mmc_probe: ffe07000.mmc ALL OK
 
+To narrow down the problem, I would start by preventing the WiFi
+driver from being insmoded. To make sure it doesn't affect the SDIO
+card detection process.
+
+The point is, the SDIO card should be detected properly, no matter
+whether there is a corresponding SDIO func driver (WiFi driver)
+available for it. For a detected SDIO/eMMC/SD card, mmc_add_card()
+prints a message about the card in the log during initialization. It
+could look like the below print, for example:
+
+"mmc2: new ultra high speed SDR104 SDIO card at address 0001".
+
+>
+> Confused again...
+>
+> Regards
+>
+
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
