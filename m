@@ -4,111 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFC8CC64EC4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 12:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA1B9C6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 12:13:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jRTSaUGTJGr00NumjZH1VrrWeMBSHL48YZsw7T2T9DY=; b=c6hjYRDpBmkS+Z
-	0yBnjm2aj9wrxqKfWVnA4/zalhoEYuVchgffM/wiyV2ZreEy+knfDZeUkpUO3byuWqmY+8Zt8/tPS
-	Bi1G+P51EXSQyXxp/eBuDJKOcqc841hRqaGh5xdQCCyzw/lluCFdN6Ayt8fjJMvNcPi9Zxioa4bIH
-	l08Fyw8Sc9PiYq2g/ybRFk3sxhmfyADeGSenm2eL6nM8c8dZSZw4CvR1deBa/r2n+85JAJuWdgqOx
-	N3ncZumdmsEd7nRb8pbfJnxFGK80BQw/T3yjzZ+j/2wH6mYDR9vUa9otkgG2uCPnS6tqeNdXzhww6
-	oAqsnU2lwSjvWxYeOsVg==;
+	List-Owner; bh=vaaRtPyn+NM/XfrU08CxhpKha60X6fyyBx0htaSuxuU=; b=eG1A/SNLna81sN
+	8DlYBbTmUpQ6LvmSGYbfRC1Mxrn6UQcVcETPAIU0q91MSZHtziAyNbW6cqF6JORS4cZLxptVbnmbz
+	RaRjjAsJtqAEOx0zcUx+59JjxxzGKcbSEfkk8ExVdyhtuXsp5kNxQKmcYW9fXkSA5qJWI7qRBu3ND
+	OhmC4EHBSkEspRS0qwosrn3anbqx9N2kLOZvg07IR27jp13VXCT3H7l7D5KPcsRbxNevhLFA9s5z3
+	lHCfwFDRpXklNuGxes+4RtmrLM0h1IXpw7ZPOckaNP/SaHmJ3n0bX0spCTKIgdP6T1D7csA1+n7EF
+	pTzJ92v0r0KDynV2+iWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paF0b-009m3u-8x; Thu, 09 Mar 2023 12:04:33 +0000
-Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
+	id 1paF9Q-009pDB-58; Thu, 09 Mar 2023 12:13:40 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paExc-009kJZ-3K; Thu, 09 Mar 2023 12:01:29 +0000
-Received: by mail-lj1-x235.google.com with SMTP id by8so1549422ljb.7;
-        Thu, 09 Mar 2023 04:01:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678363283;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J4GSqIKfh+fPPQrFXuCrH3ba1s5AAafXmlJ7Rizwh8Y=;
-        b=PKXkA4WiA8duFtEJwBSGgeMQh5pTE1KoLqyioyMj57ImMT8E5tzaJa8Cezr5Ac+udB
-         dohArEBcvlwsvfpPY/VkRXG5pxCBioA5v30rcjLDCviR5gJkkP+XEeaxVWr0R1GXSFvu
-         mY8AgbmcW96ld6ZTFuaKaIVYvXqY/NhH4+SN/hXF64q2DtSBpOxlBJylrbxJP0DtVtbJ
-         TcNfMSR8WLEoUXOdxw7vbbTtl0ApDDk2b+AAUsrOlX0v292IdbqAfhmHmtHrqnLZPbyl
-         GnohTfVo+Y+Anb2hVBX+PfQYYZpSMgOXg1CmZBureC9Z8PeQccZB2IijuNg/SeGIYztr
-         dS/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678363283;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=J4GSqIKfh+fPPQrFXuCrH3ba1s5AAafXmlJ7Rizwh8Y=;
-        b=5LvfquWEbTQKKsBrP5sSp0xzmLvr8JHlMagWWPT6520el9epeA7Xulj3l373se0S5B
-         5/p4eYLVicRERO+cq/VxCyV/+935T7T558DsibkqdNs9miKVhRWIJX7kx66h4L2fsABE
-         lRldzofBro7vOdtlVFaWWxVzItdbGZ7e5pgGy66PkAO98o0L01TWtjHiYhpx7tK9lWwq
-         EdYXhURDxrfWVxXCoADP+p88QfDCR6v09unKBibunaak95f2m1OcZXbwSumy22MYiERj
-         vJ2aGpkdHySyNmSCvf795k5y41aZbmfmWSZ+fBa/DFSj1SUbdDQyEJQUXMDYVSRw++3d
-         4ulA==
-X-Gm-Message-State: AO0yUKWVp8I4sNy1VGfKX7sqifBhLWQ4kqvDsvPcVZ3+oBlZThfywPle
-	Aha87LfakmL98PmXqJFZg1o=
-X-Google-Smtp-Source: AK7set+NMF/8gy2PgvVPpR4O7pSBLhYbUzPDmj5xP0+SqTAcGzlCByQXPVnKs759lKsD9WYcfwK9nw==
-X-Received: by 2002:a05:651c:b1f:b0:290:4d4b:481f with SMTP id b31-20020a05651c0b1f00b002904d4b481fmr7275446ljr.16.1678363283077;
-        Thu, 09 Mar 2023 04:01:23 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id s2-20020a2e98c2000000b002934fce87bfsm2846420ljj.108.2023.03.09.04.01.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 04:01:22 -0800 (PST)
-Message-ID: <e845b38c-d0eb-716c-dc51-b89582750f07@gmail.com>
-Date: Thu, 9 Mar 2023 13:01:19 +0100
+	id 1paF9M-009pC4-MI
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 12:13:38 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id EDA002003EF;
+	Thu,  9 Mar 2023 13:13:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1678364014;
+	bh=jspTNMqmiAfUcc7bb0/7iQoCw5A51k8LsKeTMnZiFno=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=CT3IxvdEnsUeQ9GIvmFA8GbayIHBlsZGLovYXBd4yECE0ZukuHtlwwTDuItCMlweL
+	 KznLZoBWywgX2L8WD7uDdM1bYiIePR0NMTFGM/zcK19Ao/a0bL5M87JwgkpOIR3XQG
+	 gj4S6bBgWgWJr6bj+RnIIBK5zBv5EgPvmmnCEGNasP+j+qFDhqNx6Xpvq7WwtXxvt7
+	 US4t1SYwHX11tH5blJ+zdbU9p0c7Bzb2714uhBf4GyHEGj8DGOKnD/Gb4cxtKS9c2a
+	 SqOw2i7OpyQsi0DtT0asDPhaQ4DDyueFqS3gfzKjwOiXSCUImUF4Hnba/7AvgynfRK
+	 zg9vENDxijwuQ==
+Message-ID: <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
+Date: Thu, 9 Mar 2023 13:13:16 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V3] nvmem: add explicit config option to read OF fixed
- cells
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
+Content-Language: en-US
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
+ Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+ Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Vincent Shih <vincent.sunplus@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Michal Simek <michal.simek@xilinx.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Evgeniy Polyakov <zbr@ioremap.net>, linux-mtd@lists.infradead.org,
- linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-rtc@vger.kernel.org, Michael Walle <michael@walle.cc>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230309112028.19215-1-zajec5@gmail.com>
- <20230309123513.43b7134f@xps-13>
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20230309123513.43b7134f@xps-13>
+ Angus Ainslie <angus@akkea.ca>
+Cc: linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
+ <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
+ <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
+ <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
+In-Reply-To: <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_040128_237514_B56B45FD 
-X-CRM114-Status: GOOD (  23.93  )
+X-CRM114-CacheID: sfid-20230309_041336_904247_90EDDA27 
+X-CRM114-Status: GOOD (  22.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,52 +77,153 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gOS4wMy4yMDIzIDEyOjM1LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+PiBkaWZmIC0tZ2l0IGEv
-aW5jbHVkZS9saW51eC9udm1lbS1wcm92aWRlci5oIGIvaW5jbHVkZS9saW51eC9udm1lbS1wcm92
-aWRlci5oCj4+IGluZGV4IDAyNjJiODYxOTRlYi4uYjNjMTRjZTg3YTY1IDEwMDY0NAo+PiAtLS0g
-YS9pbmNsdWRlL2xpbnV4L252bWVtLXByb3ZpZGVyLmgKPj4gKysrIGIvaW5jbHVkZS9saW51eC9u
-dm1lbS1wcm92aWRlci5oCj4+IEBAIC03Myw2ICs3Myw3IEBAIHN0cnVjdCBudm1lbV9jZWxsX2lu
-Zm8gewo+PiAgICAqIEBvd25lcjoJUG9pbnRlciB0byBleHBvcnRlciBtb2R1bGUuIFVzZWQgZm9y
-IHJlZmNvdW50aW5nLgo+PiAgICAqIEBjZWxsczoJT3B0aW9uYWwgYXJyYXkgb2YgcHJlLWRlZmlu
-ZWQgTlZNRU0gY2VsbHMuCj4+ICAgICogQG5jZWxsczoJTnVtYmVyIG9mIGVsZW1lbnRzIGluIGNl
-bGxzLgo+PiArICogQHVzZV9maXhlZF9vZl9jZWxsczoJUmVhZCBmaXhlZCBOVk1FTSBjZWxscyBm
-cm9tIE9GLgo+IAo+IEknbSBzdGlsbCB1bmhhcHB5IHdpdGggdGhlIG5hbWluZywgZXNwZWNpYWxs
-eSBzaW5jZSB5b3UgZXhwbGFpbmVkIGluCj4gbW9yZSBkZXRhaWxzIHRoZSB3aG9sZSBwbGFuIHdo
-aWNoIGludm9sdmVzIHVzaW5nIGEgY29udGFpbmVyIHRvIHB1dAo+IHRoZXNlIGZpeGVkIGNlbGxz
-IGZyb20gbm93IG9uLiBJbiBib3RoIGNhc2VzIHlvdSBleHRyYWN0IGNlbGxzIGZyb20KPiBmaXhl
-ZCBPRiBub2RlcyBidXQgdGhpcyBib29sZWFuIG5lZWRzIHRvIGJlIHNldCB0byB0cnVlIGluIG9u
-ZQo+IGNhc2UsIGFuZCBmYWxzZSBpbiB0aGUgb3RoZXIsIHdoaWNoIHdvdWxkIG5vdCBtYWtlIHNl
-bnNlLgo+IAo+IEFsc28sIHJlZ2FyZGluZyB0aGUgYmluZGluZ3MgY2hhbmdlcywgSSdtIGZhaXJs
-eSBoYXBweSB3aXRoIHRoZSBpZGVhLAo+IGJ1dCBpZiB3ZSBnbyB0aGlzIHdheSBJIHdvdWxkIHBy
-ZWZlciBhIGZ1bGwgc2VyaWVzIGluc3RlYWQgb2YKPiBpbmRpdmlkdWFsIGNoYW5nZXMgd2l0aDoK
-PiAKPiAtIHRoZSBib29sZWFuIHlvdSBpbnRyb2R1Y2UgaGVyZSAocmVuYW1lZCwgYXQgdGhlIHZl
-cnkgbGVhc3QpCj4gLSB0aGUgbmV3IGJpbmRpbmdzCgpJIGFzc3VtZSB5b3UgbWVhbiBmaXhlZC1s
-YXlvdXQueWFtbD8KCgo+IC0gdGhlIHVwZGF0ZSBvZiB0aGUgY3VycmVudCBwcm92aWRlciBiaW5k
-aW5ncyB0byB0YWtlIHRoZSBuZXcgYmluZGluZ3MKPiAgICBpbnRvIGFjY291bnQgYW5kIGRlcHJl
-Y2F0ZSB0aGUgb2xkIG9uZXMgb2ZmaWNpYWxseQoKV2hhdCBoYXMgdG8gYmUgdXBkYXRlZCBpbiBj
-dXJyZW50IHByb2NlZHM/IEl0IHNlZW1zIHRvIG1lIHRoYXQ6CjEuIEN1cnJlbnQgTlZNRU0gcHJv
-dmlkZXJzIHJlZmVyZW5jZSBudm1lbS55YW1sCjIuIG52bWVtLnlhbWwgcmVmZXJlbmNlcyBudm1l
-bS1sYXlvdXQueWFtbAozLiBudm1lbS1sYXlvdXQueWFtbCByZWZlcmVuY2VzIGZpeGVkLWxheW91
-dC55YW1sCgp3aGF0IGVsc2UgaXMgbWlzc2luZz8KCgo+IC0gc3VwcG9ydCBmb3IgdGhlIG5ldyBi
-aW5kaW5ncyBpbiB0aGUgY29yZQoKUGxlYXNlLCBkb24ndCBnZXQgbWUgd3JvbmcsIGJ1dCBJJ20g
-bm90IGdvaW5nIHRvIHNwZW5kIG1vcmUgaG91cnMgb24KYWN0dWFsIGNvZGluZyB3aXRob3V0IGFw
-cHJvdmFsIG9mIGNob3NlbiBwYXRoLgoKSSdsbCBuZWVkIHRvIGhhdmUKW1BBVENIIFYyXSBkdC1i
-aW5kaW5nczogbnZtZW06IGxheW91dHM6IGFkZCBmaXhlZC1sYXlvdXQKcmV2aWV3ZWQvYWNrZWQg
-Zmlyc3QuIElmIHlvdSBjYW4gZG8gdGhhdCB0aGF0J3MgZ3JlYXQuCgoKPj4gICAgKiBAa2VlcG91
-dDoJT3B0aW9uYWwgYXJyYXkgb2Yga2VlcG91dCByYW5nZXMgKHNvcnRlZCBhc2NlbmRpbmcgYnkg
-c3RhcnQpLgo+PiAgICAqIEBua2VlcG91dDoJTnVtYmVyIG9mIGVsZW1lbnRzIGluIHRoZSBrZWVw
-b3V0IGFycmF5Lgo+PiAgICAqIEB0eXBlOglUeXBlIG9mIHRoZSBudm1lbSBzdG9yYWdlCj4+IEBA
-IC0xMDMsNiArMTA0LDcgQEAgc3RydWN0IG52bWVtX2NvbmZpZyB7Cj4+ICAgCXN0cnVjdCBtb2R1
-bGUJCSpvd25lcjsKPj4gICAJY29uc3Qgc3RydWN0IG52bWVtX2NlbGxfaW5mbwkqY2VsbHM7Cj4+
-ICAgCWludAkJCW5jZWxsczsKPj4gKwlib29sCQkJdXNlX2ZpeGVkX29mX2NlbGxzOwo+PiAgIAlj
-b25zdCBzdHJ1Y3QgbnZtZW1fa2VlcG91dCAqa2VlcG91dDsKPj4gICAJdW5zaWduZWQgaW50CQlu
-a2VlcG91dDsKPj4gICAJZW51bSBudm1lbV90eXBlCQl0eXBlOwo+IAo+IFRoYW5rcywKPiBNaXF1
-w6hsCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
-Ywo=
+On 09/03/2023 11:16, Marc Gonzalez wrote:
+
+> On 06/03/2023 11:24, Marc Gonzalez wrote:
+> 
+>> # cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
+>> OF_NAME=wifi
+>> OF_FULLNAME=/soc/sd@ffe03000/wifi@1
+>> OF_COMPATIBLE_0=brcm,bcm4329-fmac
+>> OF_COMPATIBLE_N=1
+>> SDIO_CLASS=00
+>> SDIO_ID=02D0:AAE7
+>> SDIO_REVISION=0.0
+>> MODALIAS=sdio:c00v02D0dAAE7
+>>
+>> NB: 0xaae7 = 43751
+> 
+> I have run into another issue.
+> 
+> The WiFi device (and the mmc2 bus it sits on) don't show up at all
+> in the kernel log *unless* I add lots of debug output, such as with
+> #define DEBUG in drivers/base/dd.c
+> 
+> I think this points to some kind of race condition?
+> 
+> Neil suggested that maybe the host probes the mmc2 bus "too soon",
+> when the WiFi device is still powering up, which makes the entire
+> probe fail.
+> 
+> This patch appears to solve the symptom:
+> 
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 6e5ea0213b477..999b3843c0d0b 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -1400,7 +1400,7 @@ static struct platform_driver meson_mmc_driver = {
+>  	.remove		= meson_mmc_remove,
+>  	.driver		= {
+>  		.name = DRIVER_NAME,
+> -		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+> +		.probe_type = PROBE_FORCE_SYNCHRONOUS,
+>  		.of_match_table = meson_mmc_of_match,
+>  	},
+>  };
+> 
+> But this might just be delaying the probe enough for the device
+> to become ready?
+
+FWIW, the relevant device tree nodes are:
+
+/* decompiled DTS */
+
+		sd@ffe03000 {
+			compatible = "amlogic,meson-axg-mmc";
+			reg = <0x0 0xffe03000 0x0 0x800>;
+			interrupts = <0x0 0xbd 0x4>;
+			status = "okay";
+			clocks = <0x2 0x21 0x2 0x3c 0x2 0x2>;
+			clock-names = "core", "clkin0", "clkin1";
+			resets = <0x5 0x2c>;
+			amlogic,dram-access-quirk;
+			pinctrl-0 = <0x2c>;
+			pinctrl-1 = <0x2d>;
+			pinctrl-names = "default", "clk-gate";
+			#address-cells = <0x1>;
+			#size-cells = <0x0>;
+			bus-width = <0x4>;
+			cap-sd-highspeed;
+			sd-uhs-sdr50;
+			max-frequency = <0x5f5e100>;
+			non-removable;
+			disable-wp;
+			keep-power-in-suspend;
+			mmc-pwrseq = <0x2e>;
+			vmmc-supply = <0x2b>;
+			vqmmc-supply = <0x21>;
+
+			wifi@1 {
+				reg = <0x1>;
+				compatible = "brcm,bcm4329-fmac";
+			};
+		};
+
+
+/* original DTS */
+
+		sd_emmc_a: sd@ffe03000 {
+			compatible = "amlogic,meson-axg-mmc";
+			reg = <0x0 0xffe03000 0x0 0x800>;
+			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+			clocks = <&clkc CLKID_SD_EMMC_A>,
+				 <&clkc CLKID_SD_EMMC_A_CLK0>,
+				 <&clkc CLKID_FCLK_DIV2>;
+			clock-names = "core", "clkin0", "clkin1";
+			resets = <&reset RESET_SD_EMMC_A>;
+		};
+
+&sd_emmc_a {
+	status = "okay";
+	pinctrl-0 = <&sdio_pins>;
+	pinctrl-1 = <&sdio_clk_gate_pins>;
+	pinctrl-names = "default", "clk-gate";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	bus-width = <4>;
+	cap-sd-highspeed;
+	sd-uhs-sdr50;
+	max-frequency = <100000000>;
+
+	non-removable;
+	disable-wp;
+
+	/* WiFi firmware requires power to be kept while in suspend */
+	keep-power-in-suspend;
+
+	mmc-pwrseq = <&sdio_pwrseq>;
+
+	vmmc-supply = <&vddao_3v3>;
+	vqmmc-supply = <&vddio_ao1v8>;
+
+	brcmf: wifi@1 {
+		reg = <1>;
+		compatible = "brcm,bcm4329-fmac";
+	};
+};
+
+With an asynchronous probe, meson_mmc_probe() always succeeds,
+yet the WiFi card is not detected later on, even if I sleep
+1-2 seconds in meson_mmc_probe().
+
+[    0.879756] YO: meson_mmc_probe: ffe03000.sd
+[    0.914320] YO: meson_mmc_probe: ffe03000.sd ALL OK
+[    1.199170] YO: meson_mmc_probe: ffe07000.mmc
+[    1.232734] YO: meson_mmc_probe: ffe07000.mmc ALL OK
+
+Confused again...
+
+Regards
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
