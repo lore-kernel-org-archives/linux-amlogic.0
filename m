@@ -4,64 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28627C6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 09:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 676FFC64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 09:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TGG9nto6i6KMK5O//6/GPM2p1XiikKojaz/h67RpPEw=; b=jvYef98Suxmrgy
-	C/Iy6GcM6rd0OGfguiaFafVH3K/BJPvrb96bpTOlkE9WpPom0eQ0Q98Z6gH0WJ1WDf2Fa0z4FU0PK
-	bflJdskDE4s6+jYoKI00z+rncArCEFbLyJvHfTMKS2uSpZ8r4liEwhpe7aJFs7np5w06wOoio7dPO
-	yaQhMxED4h5G6w3vxSD9gYXC9nirwX+/p4Da4i9pPkfPffbF8Zoxj2JqE9OqCMM4D3CxmGbB//buc
-	ohm1BZWNS+aR4WlnfPASPwo2wQ/FZaZ4zlgj3tnyvVtZDXrVU35Nvzsr/fLsUe845GGhpigxFZIfE
-	qfRxVUoZ8gveBZIJRCMg==;
+	List-Owner; bh=saNIq7b4VukBj1Ss8ddhwH8ze4tV5cxMXvbfPO8jZ8k=; b=qCjnnoULLllzfS
+	B7PEtPsTWqNIq13ib5RGNks/CPJmtyIcqUb1cvQScMt/I63ml0UQ6pGxVVK6JZt2SHOlIVXN4Ecqu
+	MckA8+rLROAkLhqw/95VS/XsHSbWUz0qUIp2KEogOZe7EgyEnT+XiG2XxTKlXl9zZI28Pp9CsDqCK
+	oXnqICvHFtIPEQ43Exed7XgrZzvsKxh1EhStCNFFTdYPdYsNy0hix/eGzusq8gMMGfnTUvQw3Wyvb
+	GKDTnXuoJT1mtd5f6+B82l5m2lLx9goQdVjVR2rcCHfMKqvhzsUgz4nbK6Q/ZnIJeuN4vpTlYSo9D
+	xg+ukiIJIRoh/GH0KZtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paCtW-008uYM-Jv; Thu, 09 Mar 2023 09:49:06 +0000
-Received: from smtp2-g21.free.fr ([212.27.42.2])
+	id 1paCwv-008vun-2W; Thu, 09 Mar 2023 09:52:37 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paCtJ-008uOk-1W; Thu, 09 Mar 2023 09:48:55 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 2F26C200414;
-	Thu,  9 Mar 2023 10:48:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678355326;
-	bh=7qSeTwNb4XMqKaaRLW+JUPxqVsL1nQD3RB9Eq4bJ8So=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=K+/42knEv9re8v9ZkwNNEoNJQkFEVBmkfNyrdrKY24AuhD8gJkZN4iohlljW9ePZr
-	 eeKR1Ig8w9ji2o5IoolFYq3TJGYLPwidKNZqwp/lyp3gYgZC76A2GwOrRFgx9RgDPT
-	 G6gpHZwYfFHcBQiGHxQJLWlNEB5VE64XLgbVxwqx3J7HSjhpPH2TaUtfmgdvwAnuIV
-	 S4vgpblMKeIF7vlmW6R78YO9DjGK2HIdKYCrhorK7LNswvjNqJA/z4SKu/op02BZbo
-	 pUGzFbjfgwrv6VIfPTvSH2nVTgZ+lkazF5KOhGbs9dHXMQ6UaI10pifxMGAeMUVdy9
-	 TJIe6L4TWtiHA==
-Message-ID: <471489bc-8683-f1ba-3f5c-5a8bf299446a@free.fr>
-Date: Thu, 9 Mar 2023 10:48:35 +0100
+	id 1paCwr-008vt9-ND
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 09:52:35 +0000
+Received: by mail-wm1-x329.google.com with SMTP id p26so713717wmc.4
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 01:52:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678355552;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U2PxWx2l3PO3++xWaxuvqfNeOVyrzZX507vLWShOZE0=;
+        b=SdN7RVN4foQwINGrl8iWzw82Jlavh0FQwTNIBtowLeasQJ7pruZQRSUYPcdIaVyXli
+         nARnm8wLx8x/QTvsvaAKjE4+2tVtTZXlfT7XSFssKhZIFC8eYzmC+MywEHMGSU8yTU9A
+         wZkZ/C3AKU4nY+7ssDsJpcMw/M4FOr7/y4npl00k4uv54LVSMCmiYcYsbQU5kq1pKo0N
+         hnb5mDyd3U+NjoGn5847Ma2n0EfJOZY42nxdFEgU47qSiYwxiDGtoNxXfayZozo3uzIz
+         aHegfIMJEsKNWG7QYMv2NRKoDzYEiXvSYMAeKPc4wuNALU9Hhwy6R5nfRTeGSJf4tcDJ
+         iPsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678355552;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U2PxWx2l3PO3++xWaxuvqfNeOVyrzZX507vLWShOZE0=;
+        b=zqUXGEjoVEV4h6uyexJ0lAfqkKT6F5yYPPQFfah+ihSPuk9G9tYIQLnWudrAVmvJSG
+         +S+jasi5/ypepFFQgY8uJljRRsnosHBuNjfplzV9ccXsgs5AJnNMUuK/TySybueAfaUN
+         vnC3iCMEZhn7ADq25q/pdRQQZnXrksciKxE9zcoj89CZ+WV6OQneUO0MsuIbrD2MFkIt
+         XY3/qYkNPToYqMZRAn01PMhefd2JRAiBffnyUGVe2X7OkPEOdOMV7P0DCwVNldLXQXqb
+         oyohojV5mnKnD84XmX/UiP7PemwYMzyyDuP67KtCxLUE1VREMy4Wt28knzM3SRybakq9
+         hU1Q==
+X-Gm-Message-State: AO0yUKWdKdSOaZMCgq77KrYeeWmu6cjkwhI9pxu9To1tUGYxnilt80h8
+	NM9ZxHhmOzgDOXDmeFfLWde+gA==
+X-Google-Smtp-Source: AK7set8b6ToNgSi3agHmMbKkOWjUSZzz43GXwOxDp9fiN4alCtNYZvBJ7/hj0A39TytNsidxLpR2sA==
+X-Received: by 2002:a05:600c:4ecb:b0:3e7:b17f:9af1 with SMTP id g11-20020a05600c4ecb00b003e7b17f9af1mr19561052wmq.22.1678355551910;
+        Thu, 09 Mar 2023 01:52:31 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id m8-20020a05600c3b0800b003eae73ee4a1sm2362631wms.17.2023.03.09.01.52.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 01:52:31 -0800 (PST)
+Message-ID: <cab3471d-6d71-2149-d7b5-e9cb3693f328@linaro.org>
+Date: Thu, 9 Mar 2023 09:52:30 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: Conflict between video-lut and pmu on meson-g12
+Subject: Re: [PATCH v4 1/5] dt-bindings: nvmem: convert amlogic-efuse.txt to
+ dt-schema
 Content-Language: en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: AML <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Chris Healy <healych@amazon.com>,
- Will Deacon <will@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Pierre-Hugues Husson <phh@phh.me>
-References: <cbfd45e3-310b-db40-d52b-daf79ce8743d@free.fr>
- <CAFBinCAdTHuN+AZKm0Yt=Gv0KgMtRruAHDgcF0qrLTZpki3JRQ@mail.gmail.com>
- <CAFBinCBb_5KChqD6wqj_MFxEH_hxL_U3nnA=+1AR8dhdQQVCzw@mail.gmail.com>
- <c3b9c231-10ef-ef69-c702-9e1052b8e704@free.fr>
-In-Reply-To: <c3b9c231-10ef-ef69-c702-9e1052b8e704@free.fr>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20221117-b4-amlogic-bindings-convert-v4-0-34e623dbf789@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v4-1-34e623dbf789@linaro.org>
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v4-1-34e623dbf789@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_014853_543258_F3B307D2 
-X-CRM114-Status: GOOD (  22.79  )
+X-CRM114-CacheID: sfid-20230309_015233_801792_DFF1D869 
+X-CRM114-Status: GOOD (  17.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,100 +101,149 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/03/2023 14:28, Marc Gonzalez wrote:
+Neil,
 
-> On 28/02/2023 22:49, Martin Blumenstingl wrote:
+On 08/03/2023 13:27, Neil Armstrong wrote:
+> Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
 > 
->> While thinking more about this - I think the whole .dtsi code should
->> be improved. Both of the PMU IO regions are part of the &dmc region.
->> So I think &pmu should be moved inside &dmc (with the offsets adjusted
->> accordingly of course).
->>
->> Also I think the dt-bindings are incomplete: according to the driver
->> code we're using XTAL as input clock.
->> But this is not described anywhere in the dt-bindings.
->> dt-bindings should always describe the hardware. The driver can decide
->> not to use it but the bindings must always be complete.
->> And with this comes the question: is the DMC PLL specific to the PMU
->> or is it shared with something else (e.g. the actual memory
->> controller)? On the 32-bit SoCs (Meson8b/S805 for example) there's a
->> whole DDR clock controller (used by the DDR memory controller), so I'm
->> wondering if these newer SoCs are still following that approach.
+> Take in account the used variant with amlogic,meson-gx-efuse.
 > 
-> FWIW, the vendor device-tree specifies the following nodes:
-> https://android.googlesource.com/kernel/arm64/+/f5269100977385d1fd4a5ef68e49631892cf4fe4/arch/arm64/boot/dts/amlogic/g12a_s905x2_u215.dts
-> 
-> 	canvas {
-> 		compatible = "amlogic, meson, canvas";
-> 		dev_name = "amlogic-canvas";
-> 		status = "okay";
-> 		reg = <0x0 0xff638000 0x0 0x2000>;
-> 		phandle = <0x111>;
-> 	};
-> 
-> 	codec_io {
-> 		compatible = "amlogic, codec_io";
-> 		status = "okay";
-> 		#address-cells = <0x2>;
-> 		#size-cells = <0x2>;
-> 		ranges;
-> 		phandle = <0x112>;
-> 		[...]
-> 		io_dmc_base {
-> 			reg = <0x0 0xff638000 0x0 0x2000>;
-> 		};
-> 	};
-> 
-> 	ddr_bandwidth {
-> 		compatible = "amlogic, ddr-bandwidth";
-> 		status = "okay";
-> 		reg = <0x0 0xff638000 0x0 0x100 0x0 0xff638c00 0x0 0x100>;
-> 		sec_base = <0xff639000>;
-> 		interrupts = <0x0 0x34 0x1>;
-> 		interrupt-names = "ddr_bandwidth";
-> 	};
-> 
-> 
-> I don't understand how it's possible to have 3 overlapping ranges?
-> Unless the respective drivers know to map only specific ranges?
-> 
-> 
-> Regarding your DMC (DDR memory controller) clock question,
-> clock tree seems to be:
-> 24 MHz XTAL feeds DDR_PLL block,
-> which outputs DDR_CLK pulse for the DMC.
-> 
-> 
-> Something I do not understand is that the datasheet states:
-> DMC unsecure register. Base address 0xFF638000.
-> Offset 0 = AM_DDR_PLL_CNTL0
-> Offset 4 = AM_DDR_PLL_CNTL1
-> ...
-> 
-> And then also states:
-> The following registers' base address is 0xff638000.
-> Offset 0 = DMC_REQ_CTRL
-> Offset 4 = DMC_SOFT_RST
-> ...
-> 
-> And these two register sets have nothing in common
-> (except the SAME base address...)
-> 
-> https://android.googlesource.com/kernel/arm64/+/f5269100977385d1fd4a5ef68e49631892cf4fe4/include/linux/amlogic/media/registers/regs/dmc_regs.h
-> 
-> Is there perhaps a typo in one of the base addresses?
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
+Applied 1/5 and 2/5
 
-Any ideas/suggestions?
-How do we proceed?
+--srini
 
-Regards
-
+>   .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 57 ++++++++++++++++++++++
+>   .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 ------------------
+>   2 files changed, 57 insertions(+), 48 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+> new file mode 100644
+> index 000000000000..e49c2754ff55
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/amlogic,meson-gxbb-efuse.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson GX eFuse
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: amlogic,meson-gxbb-efuse
+> +      - items:
+> +          - const: amlogic,meson-gx-efuse
+> +          - const: amlogic,meson-gxbb-efuse
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  secure-monitor:
+> +    description: phandle to the secure-monitor node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - secure-monitor
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    efuse: efuse {
+> +        compatible = "amlogic,meson-gxbb-efuse";
+> +        clocks = <&clk_efuse>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        secure-monitor = <&sm>;
+> +
+> +        sn: sn@14 {
+> +            reg = <0x14 0x10>;
+> +        };
+> +
+> +        eth_mac: mac@34 {
+> +            reg = <0x34 0x10>;
+> +        };
+> +
+> +        bid: bid@46 {
+> +            reg = <0x46 0x30>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+> deleted file mode 100644
+> index f7b3ed74db54..000000000000
+> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+> +++ /dev/null
+> @@ -1,48 +0,0 @@
+> -= Amlogic Meson GX eFuse device tree bindings =
+> -
+> -Required properties:
+> -- compatible: should be "amlogic,meson-gxbb-efuse"
+> -- clocks: phandle to the efuse peripheral clock provided by the
+> -	  clock controller.
+> -- secure-monitor: phandle to the secure-monitor node
+> -
+> -= Data cells =
+> -Are child nodes of eFuse, bindings of which as described in
+> -bindings/nvmem/nvmem.txt
+> -
+> -Example:
+> -
+> -	efuse: efuse {
+> -		compatible = "amlogic,meson-gxbb-efuse";
+> -		clocks = <&clkc CLKID_EFUSE>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		secure-monitor = <&sm>;
+> -
+> -		sn: sn@14 {
+> -			reg = <0x14 0x10>;
+> -		};
+> -
+> -		eth_mac: eth_mac@34 {
+> -			reg = <0x34 0x10>;
+> -		};
+> -
+> -		bid: bid@46 {
+> -			reg = <0x46 0x30>;
+> -		};
+> -	};
+> -
+> -	sm: secure-monitor {
+> -		compatible = "amlogic,meson-gxbb-sm";
+> -	};
+> -
+> -= Data consumers =
+> -Are device nodes which consume nvmem data cells.
+> -
+> -For example:
+> -
+> -	eth_mac {
+> -		...
+> -		nvmem-cells = <&eth_mac>;
+> -		nvmem-cell-names = "eth_mac";
+> -	};
+> 
 
 _______________________________________________
 linux-amlogic mailing list
