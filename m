@@ -4,80 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CC2C742A7
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 14:36:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0782EC64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 14:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sc0tthXfEq9T6x/cRnSPFUt2AaGm7g98v9v7f+xzGYg=; b=LDMjUqtERTDXLU
-	jd4bfalqxGvGI5AfkNicULtt/Fw8fkKSFYZkhXT/zcoqhM2VyKGELWGAeoiz7McXzfOkoThXfz44v
-	uMHy+69KepL1CbmqeNhwKh/4OF/3FS20DGvKl2eVNvDKoK99sFMzIY16A5FtNi3GiQ5bdA0/vpVDb
-	QprhPrLiYERO9w0Lly9SM8qebpnhKo/OBc65/OatSfgUp+oEOCGjSV8SZfzKNgJc9JnieQUJlXGgu
-	SlFvxVH9o9xQuzQDCkN6yx/aXnC4iJD6gUUJfJ/wm+1Es2gUExO0031xESvFkQd8c3OIqh6VkpCh0
-	vLZcwtsjUpaAPuvvJuUg==;
+	List-Owner; bh=IoXhSZ6ZyW37BfOfCpPebq2/gHw5HiqgtIzzRYHaZ2I=; b=klaUCZX8qdy0rm
+	TP7/0aNhE7sQ4vp+l0kI4zb1qJ+QTqwfbF75eJK4kNuFB59qUOG5FGuXgV9kz6R3aLalmWDXksMzc
+	nytLR2h1v+2mVCFwLxpgrBCrKgxIpt4weYua1+Zsgz8FTzJ1ZHjPz3QbIoIp1VluojlOC5a/ABUUd
+	2uaH4j7sOvnBX+Hwn+s5NCJjR3F3AOQ0Ea956CC8grWvjo8JDzrt/UKD/lq8bhuDMkJmWV9LhYLQd
+	x4zLzCJFCIvY8xZpbsF24Uf1hMHxylwa2I+4ceAsxf5mhy0sZg57dmgAp53dJZJDnZv6qR/c549As
+	d6MRbSSkzjcnsQSG/h6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paHNe-00AZpY-9H; Thu, 09 Mar 2023 14:36:30 +0000
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
+	id 1paHVY-00AdZ0-PE; Thu, 09 Mar 2023 14:44:40 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paHHF-00AX60-DR
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 14:29:55 +0000
-Received: by mail-pl1-x636.google.com with SMTP id p20so2118050plw.13
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 06:29:50 -0800 (PST)
+	id 1paHU7-00AcdH-0k
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 14:43:13 +0000
+Received: by mail-wm1-x329.google.com with SMTP id p26so1306336wmc.4
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 06:43:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678372189;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bl8Ig/SoPa8kDLYKK3prG31XNLf3b2Jf0y8Fe1Nszhg=;
-        b=KXzftEo97Ncd8U2Nct5HSClvktPm38x7Z0DV+cVzUHNw73Oj/0EOiNr76CnEirvHAg
-         imhztQaPQu2bRpkHVVaHEfkORonqTJNfWRgkRrynJ4zy5RImnqcQ5y/UmUrGvMb9lTWP
-         smiHrjGyyIxXJrWJbhDdJkOMi0CULLVvBvyrObU+Fw10W8HzBZWyhqQfvUAk2EXtLsH3
-         P0LxupICPgo+Neqj0aKO1cG1+hMKptFBMR3EpkTsVlyMzxe1JPlqrsyQsZeD8OZ15K/9
-         g2Aap7dLX1/eVBP8YAR6kAn9NygmzGrV4aeSJXS4UQIgjf2plFmO5wYoHDX8SHwjdfdQ
-         Leww==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678372987;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=q0gj1G9cUcUIZ/a+kpKcCgPzLsFmLDLjCJhAsi47XLs=;
+        b=1Fk4F6F3ag7qaE7C4ql023KSpas6Bbillm4A3fFYoeC2LDAhbH1mvC+A0Il9qt+W8J
+         fMfaPt7vIa0hkIwrBufZ2S/9rvV0H/Qanq+g8yDU8ZYJ6KapnNMuz9jP/7efmeTOE+bm
+         KogUqS5ZYnxpRQB2P6Scxcgbf1UfaxzDLGL16ip0URyTdFKdJ4Zg3eTPmlChi/qdB9FG
+         1zXH3/jPKnU4yAkVTIqb4o0/7wAg0ekrl6n+88Zg0Z5K1sD0w1eGlhb7Jf5cO5sDxUfe
+         +ss6tKMXJYuHuTcrpd1AJWCgR/roD5hMjm0MGmtOYqNiq8PGKjmcHPluO6JvddZEcCKp
+         aUAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678372189;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bl8Ig/SoPa8kDLYKK3prG31XNLf3b2Jf0y8Fe1Nszhg=;
-        b=ZwAgzbdcfIXXY7ma3xjG01oUfcTJ9WW4UlivhIczEIn3KdzNreD3dUK14RWKwN84QF
-         n/sF3J05mQyHRFMFHYot1RKYVizQihr8fuhbZZRCWpB6dm+zdOh8w7zFc5hw4roVgJTW
-         1pKkHMrLAkalaI/Q5LU1NFDX5AQNmw/gMN1COY+XPCkO5gMf5nz3b+LlAqAB5/1/oN3c
-         3CHTLjwSzHNEZPGgcZXEfQzSLOhQOT8OsejtkSLKDvx/KdL6mnpVLSbK2S9rydp5fgm6
-         Qz4nBBbQiLcxmvL+OWw1NX6r8bCGuD35bSzItaBAHPmwFFTpTrrxT4y2GBKFVsr+iUmR
-         DAyA==
-X-Gm-Message-State: AO0yUKVkvNWQ+a++KwFw47J1NfEj0mZ52nsN9LOKgumaHmDczYl5tPkU
-	JzE2K0HIVgs7tjCJmYPEQIAT0ii7jg1vwpPraEBEXsfh5OKL1/+Q4EM=
-X-Google-Smtp-Source: AK7set+glvYNvDZxTUBfPhpgrApdWUfFFkXJTzZ2wmNX+EGwaR3PkxDslYM/tT+6TY505jyjk6efgubWdeulOyxI/k0=
-X-Received: by 2002:a17:90a:ab06:b0:230:80d7:2158 with SMTP id
- m6-20020a17090aab0600b0023080d72158mr8365554pjq.4.1678372189413; Thu, 09 Mar
- 2023 06:29:49 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678372987;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q0gj1G9cUcUIZ/a+kpKcCgPzLsFmLDLjCJhAsi47XLs=;
+        b=lLqZtmhxTMTX1eOoIoQtfKOA/H9iapH0c7yQXFTUEz5fxoN4fJJAGgNCokBN2WPb+m
+         GuEeY4rpTWDZU0Y0tfDKclV3w73dBROH0HtqOjafwMLn7YsVKdoMa+Se1PIu273qiZwB
+         ox2KeD8jz12JNEvNlLjXL9tZAmmIrP4lu2xxjgo+qI9SPDuW0HYN2FH7XrMpp7pu906+
+         kjgwymbconL9TBuM3YF+YRsNR0KwHDWFUFUROLLjhJAb0fJVlDDpupM1yZtyYv5gqmX5
+         0C42Jh7q3+GlDIZ+GOX9wwXWWbfCaZ2PxFBTLaQpYB+syuzHT78k2zqreo1vE4h8W5xN
+         qA2Q==
+X-Gm-Message-State: AO0yUKW/A99H03iunR2YBLAjzJ28woSwydkFMnt64aj9wG+2r6ZsRi1D
+	NPXFq+c4r9xqYgGE9S2sQMfEBA==
+X-Google-Smtp-Source: AK7set8ArfCbj6486s273Ry+S4Gc7m3Z1lE13ELk+BWOmqUuT7//+LeeBL/rhwgneoZ9OZZK+JbCMQ==
+X-Received: by 2002:a05:600c:3544:b0:3e8:35a2:6abf with SMTP id i4-20020a05600c354400b003e835a26abfmr19132181wmq.23.1678372987571;
+        Thu, 09 Mar 2023 06:43:07 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id w17-20020adfd4d1000000b002c6d0462163sm18070580wrk.100.2023.03.09.06.43.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 06:43:07 -0800 (PST)
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-5-ddrokosov@sberdevices.ru>
+ <1jilfeaync.fsf@starbuckisacylon.baylibre.com>
+ <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: neil.armstrong@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 4/5] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+Date: Thu, 09 Mar 2023 15:22:08 +0100
+In-reply-to: <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
+Message-ID: <1jedpy0yv9.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr> <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr> <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
- <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
-In-Reply-To: <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 9 Mar 2023 15:29:12 +0100
-Message-ID: <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
-To: Marc Gonzalez <marc.w.gonzalez@free.fr>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Arend van Spriel <aspriel@gmail.com>, 
-	Franky Lin <franky.lin@broadcom.com>, Hante Meuleman <hante.meuleman@broadcom.com>, 
-	Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>, 
-	Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>, Alexander Prutskov <alep@cypress.com>, 
-	Joseph chuang <jiac@cypress.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Angus Ainslie <angus@akkea.ca>, 
-	linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_062953_562011_3D2C7478 
-X-CRM114-Status: GOOD (  30.92  )
+X-CRM114-CacheID: sfid-20230309_064311_088393_0E0E700E 
+X-CRM114-Status: GOOD (  49.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,173 +98,286 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 9 Mar 2023 at 13:13, Marc Gonzalez <marc.w.gonzalez@free.fr> wrote:
->
-> On 09/03/2023 11:16, Marc Gonzalez wrote:
->
-> > On 06/03/2023 11:24, Marc Gonzalez wrote:
-> >
-> >> # cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
-> >> OF_NAME=wifi
-> >> OF_FULLNAME=/soc/sd@ffe03000/wifi@1
-> >> OF_COMPATIBLE_0=brcm,bcm4329-fmac
-> >> OF_COMPATIBLE_N=1
-> >> SDIO_CLASS=00
-> >> SDIO_ID=02D0:AAE7
-> >> SDIO_REVISION=0.0
-> >> MODALIAS=sdio:c00v02D0dAAE7
-> >>
-> >> NB: 0xaae7 = 43751
-> >
-> > I have run into another issue.
-> >
-> > The WiFi device (and the mmc2 bus it sits on) don't show up at all
-> > in the kernel log *unless* I add lots of debug output, such as with
-> > #define DEBUG in drivers/base/dd.c
-> >
-> > I think this points to some kind of race condition?
-> >
-> > Neil suggested that maybe the host probes the mmc2 bus "too soon",
-> > when the WiFi device is still powering up, which makes the entire
-> > probe fail.
 
-Ideally, the WiFi device/driver should not need to be initialized to
-allow the SDIO card to be detected properly. Looks like there is
-something fishy going on.
+On Mon 06 Mar 2023 at 22:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 
-> >
-> > This patch appears to solve the symptom:
-> >
-> > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> > index 6e5ea0213b477..999b3843c0d0b 100644
-> > --- a/drivers/mmc/host/meson-gx-mmc.c
-> > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> > @@ -1400,7 +1400,7 @@ static struct platform_driver meson_mmc_driver = {
-> >       .remove         = meson_mmc_remove,
-> >       .driver         = {
-> >               .name = DRIVER_NAME,
-> > -             .probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> > +             .probe_type = PROBE_FORCE_SYNCHRONOUS,
-> >               .of_match_table = meson_mmc_of_match,
-> >       },
-> >  };
-> >
-> > But this might just be delaying the probe enough for the device
-> > to become ready?
+> Hello Jerome,
 >
-> FWIW, the relevant device tree nodes are:
+> Thanks a lot for such detailed review. Please find my comments and
+> thoughts below.
 >
-> /* decompiled DTS */
+> On Mon, Mar 06, 2023 at 12:38:22PM +0100, Jerome Brunet wrote:
+>> 
+>> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+>> 
+>> > Introduce Peripherals clock controller for Amlogic A1 SoC family.
+>> >
+>> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 >
->                 sd@ffe03000 {
->                         compatible = "amlogic,meson-axg-mmc";
->                         reg = <0x0 0xffe03000 0x0 0x800>;
->                         interrupts = <0x0 0xbd 0x4>;
->                         status = "okay";
->                         clocks = <0x2 0x21 0x2 0x3c 0x2 0x2>;
->                         clock-names = "core", "clkin0", "clkin1";
->                         resets = <0x5 0x2c>;
->                         amlogic,dram-access-quirk;
->                         pinctrl-0 = <0x2c>;
->                         pinctrl-1 = <0x2d>;
->                         pinctrl-names = "default", "clk-gate";
->                         #address-cells = <0x1>;
->                         #size-cells = <0x0>;
->                         bus-width = <0x4>;
->                         cap-sd-highspeed;
->                         sd-uhs-sdr50;
->                         max-frequency = <0x5f5e100>;
->                         non-removable;
->                         disable-wp;
->                         keep-power-in-suspend;
->                         mmc-pwrseq = <0x2e>;
->                         vmmc-supply = <0x2b>;
->                         vqmmc-supply = <0x21>;
+> [...]
 >
->                         wifi@1 {
->                                 reg = <0x1>;
->                                 compatible = "brcm,bcm4329-fmac";
->                         };
->                 };
+>> > +static struct clk_regmap dspa_a_sel = {
+>> > +	.data = &(struct clk_regmap_mux_data){
+>> > +		.offset = DSPA_CLK_CTRL0,
+>> > +		.mask = 0x7,
+>> > +		.shift = 10,
+>> > +		.table = mux_table_dsp_ab,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data){
+>> > +		.name = "dspa_a_sel",
+>> > +		.ops = &clk_regmap_mux_ops,
+>> > +		.parent_data = dsp_ab_parent_data,
+>> > +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
+>> > +		/* DSPA_A clk parent should be set statically from dt */
+>> > +		.flags = CLK_SET_RATE_NO_REPARENT,
+>> > +	},
+>> > +};
+>> > +
+>> > +static struct clk_regmap dspa_a_div = {
+>> > +	.data = &(struct clk_regmap_div_data){
+>> > +		.offset = DSPA_CLK_CTRL0,
+>> > +		.shift = 0,
+>> > +		.width = 10,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data){
+>> > +		.name = "dspa_a_div",
+>> > +		.ops = &clk_regmap_divider_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&dspa_a_sel.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		.flags = CLK_SET_RATE_PARENT,
+>> > +	},
+>> > +};
+>> > +
+>> > +static struct clk_regmap dspa_a = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = DSPA_CLK_CTRL0,
+>> > +		.bit_idx = 13,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data) {
+>> > +		.name = "dspa_a",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&dspa_a_div.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		/*
+>> > +		 * DSPA_A accelerator clk, cannot be disabled by CCF if it
+>> > +		 * has been set by bootloader
+>> 
+>> Then IGNORE_UNUSED is wrong. use RO ops with you must retain the
+>> bootloader config.
 >
->
-> /* original DTS */
->
->                 sd_emmc_a: sd@ffe03000 {
->                         compatible = "amlogic,meson-axg-mmc";
->                         reg = <0x0 0xffe03000 0x0 0x800>;
->                         interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
->                         status = "disabled";
->                         clocks = <&clkc CLKID_SD_EMMC_A>,
->                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
->                                  <&clkc CLKID_FCLK_DIV2>;
->                         clock-names = "core", "clkin0", "clkin1";
->                         resets = <&reset RESET_SD_EMMC_A>;
->                 };
->
-> &sd_emmc_a {
->         status = "okay";
->         pinctrl-0 = <&sdio_pins>;
->         pinctrl-1 = <&sdio_clk_gate_pins>;
->         pinctrl-names = "default", "clk-gate";
->         #address-cells = <1>;
->         #size-cells = <0>;
->
->         bus-width = <4>;
->         cap-sd-highspeed;
->         sd-uhs-sdr50;
->         max-frequency = <100000000>;
->
->         non-removable;
->         disable-wp;
->
->         /* WiFi firmware requires power to be kept while in suspend */
->         keep-power-in-suspend;
->
->         mmc-pwrseq = <&sdio_pwrseq>;
+> I thought UNUSED logic will disable 'unused' clock during
+> initialization. Or do you mean it's not relevant for ro ops clock,
+> because disable() callback is not defined?
 
-This one is particularly interesting. Can you share the content of the
-sdio_pwrseq node too?
+It does. It does no prevent a disable if the clock is enabled then
+disabled. So what is here works as long as no driver touches this
+clock. In such case you are better off with RO ops.
 
 >
->         vmmc-supply = <&vddao_3v3>;
->         vqmmc-supply = <&vddio_ao1v8>;
+>> 
+>> Note that it is usually a bad idea to depend on the bootloader config.
+>> Things tends to go bad when other bootloader version join the fun, like
+>> upstream u-boot
 >
->         brcmf: wifi@1 {
->                 reg = <1>;
->                 compatible = "brcm,bcm4329-fmac";
->         };
-> };
->
-> With an asynchronous probe, meson_mmc_probe() always succeeds,
-> yet the WiFi card is not detected later on, even if I sleep
-> 1-2 seconds in meson_mmc_probe().
->
-> [    0.879756] YO: meson_mmc_probe: ffe03000.sd
-> [    0.914320] YO: meson_mmc_probe: ffe03000.sd ALL OK
-> [    1.199170] YO: meson_mmc_probe: ffe07000.mmc
-> [    1.232734] YO: meson_mmc_probe: ffe07000.mmc ALL OK
+> To be honest, I don't have the ability to test such behavior on our side,
+> because in my hands I have SoC SKUs w/o DSP only.
 
-To narrow down the problem, I would start by preventing the WiFi
-driver from being insmoded. To make sure it doesn't affect the SDIO
-card detection process.
+Then maybe you should leave these clocks out for now.
 
-The point is, the SDIO card should be detected properly, no matter
-whether there is a corresponding SDIO func driver (WiFi driver)
-available for it. For a detected SDIO/eMMC/SD card, mmc_add_card()
-prints a message about the card in the log during initialization. It
-could look like the below print, for example:
+> But theoretically DSP FW can be started already from the bootloader, and
+> then we shouldn't touch this clock.
 
-"mmc2: new ultra high speed SDR104 SDIO card at address 0001".
+In theory the bootloader can do it all, why bother booting linux ... :P
+
+> May be CCF has device tree tricks to solve such situations, don't know
+> actually. On the other hand, appropriate driver logic would be a nice
+> exit here.
+
+If you have a DSP, it is likely to have something to communicate with
+the OS at some point, or at least monitor. Such driver would need to
+handle to clocks properly.
+
+Since you can test this, I strongly suggest to leave this out for now.
 
 >
-> Confused again...
+> [...]
 >
-> Regards
+>> > +static struct clk_regmap dspa_en_nic = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = DSPA_CLK_EN,
+>> > +		.bit_idx = 0,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data) {
+>> > +		.name = "dspa_en_nic",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&dspa_sel.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		/*
+>> > +		 * DSPA_EN_NIC accelerator clk, cannot be disabled by CCF if it
+>> > +		 * has been set by bootloader
+>> > +		 */
+>> > +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> 
+>> All this just highlight the lack of proper drivers to handle the clock,
+>> like remote proc one.
+>> 
 >
+> Okay, let's imagine we have such a driver. If DSP is already running,
+> we can skip the clock setup on this driver side. Hmmm. It looks like
+> a proper solution...
+>
+> I would prefer to tag it with TODO and mark DSP clocks with ro_ops till
+> we don't have such a driver.
+>
+> [...]
+>
+>> > +
+>> > +static struct clk_regmap fclk_div2_divn = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = CLK12_24_CTRL,
+>> > +		.bit_idx = 12,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data){
+>> > +		.name = "fclk_div2_divn",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&fclk_div2_divn_pre.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		.flags = CLK_SET_RATE_PARENT,
+>> > +	},
+>> > +};
+>> > +
+>> > +/*
+>> > + * the index 2 is sys_pll_div16, it will be completed in the CPU clock ctrl,
+>> 
+>> I don't get this, what do you mean ? 
+>> 
+>
+> I mean, it will be implemented in the CPU clock controller driver in the
+> next patch series. Agree, I have to make a rephrase.
+>
+>> > + * the index 4 is the clock measurement source, it relies on
+>> > + * the clock measurement register configuration.
+>> 
+>> Obviously ... What mean here is that clock measurement is a debug
+>> feature and should be considered
+>> 
 
-Kind regards
-Uffe
+Arff sorry, "should *NOT* be considered"
+
+>
+> Should I mark it with TODO tag? I prefer to implement 'must have' logic
+> first. Clock measurement are optional from my point of view.
+>
+> [...]
+>
+>> > +static struct clk_regmap pwm_a = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = PWM_CLK_AB_CTRL,
+>> > +		.bit_idx = 8,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data) {
+>> > +		.name = "pwm_a",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&pwm_a_div.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		/*
+>> > +		 * The CPU working voltage is controlled by pwm_a
+>> > +		 * in BL2 firmware. The clock is required by the platform
+>> > +		 * to operate correctly. Add the CLK_IS_CRITICAL flag to
+>> > +		 * avoid changing at runtime.
+>> > +		 * About critical, refer to sys
+>> > +		 */
+>> 
+>> PWM_A required by the BL2 ... really ? Looks really fishy to me.
+>> 
+>> Is it possible it is used by regulator instead ?
+>> 
+>
+> Honestly, this comment's information was grabbed from Amlogic custom
+> driver. It has such words:
+>
+> /*
+>  * add CLK_IGNORE_UNUSED flag for pwm controller GATE
+>  * clk core will disable unused clock, it may disable
+>  * vddcore voltage which contrlled by one pwm in bl21.
+>  * add the flag to avoid changing cpu voltage.
+>  */
+>
+> We don't have bl21 source code in the hands, so I can't check
+> unfortunately. But I have no reasons to don't trust Amlogic custom
+> clk driver decisions about low level bootloaders roles.
+
+So it is a regulator. Not the BL2(1)
+
+There are several reasons why this is wrong:
+* CLK_IGNORE_UNUSED would be wrong for reasons I already mentionned
+* CLK_SET_RATE_PARENT | CLK_IS_CRITICAL is not great either because
+  nothing prevents the rate to be changed to an absurdly low value, which
+  would not go well with a DVFS PWM.
+* This bakes power contraints specific to your board in the SoC clock
+  controller. Another board, another BL21 could have different
+  contraints. We can't lock all PWM clock sources. This is not
+  appropriate.
+
+You need to properly describe your regualtors in DT.
+
+>
+> [...]
+>
+>> > +static int meson_a1_periphs_probe(struct platform_device *pdev)
+>> > +{
+>> > +	struct device *dev = &pdev->dev;
+>> > +	struct clk_hw *hw;
+>> > +	void __iomem *base;
+>> > +	struct regmap *map;
+>> > +	int clkid, i, err;
+>> > +
+>> > +	base = devm_platform_ioremap_resource(pdev, 0);
+>> > +	if (IS_ERR(base))
+>> > +		return dev_err_probe(dev, PTR_ERR(base),
+>> > +				     "can't ioremap resource\n");
+>> > +
+>> > +	map = devm_regmap_init_mmio(dev, base, &a1_periphs_regmap_cfg);
+>> > +	if (IS_ERR(map))
+>> > +		return dev_err_probe(dev, PTR_ERR(map),
+>> > +				     "can't init regmap mmio region\n");
+>> > +
+>> > +	/* Populate regmap for the regmap backed clocks */
+>> > +	for (i = 0; i < ARRAY_SIZE(a1_periphs_regmaps); i++)
+>> > +		a1_periphs_regmaps[i]->map = map;
+>> > +
+>> > +	for (clkid = 0; clkid < a1_periphs_hw_onecell_data.num; clkid++) {
+>> > +		hw = a1_periphs_hw_onecell_data.hws[clkid];
+>> > +		err = devm_clk_hw_register(dev, hw);
+>> > +		if (err)
+>> > +			return dev_err_probe(dev, err,
+>> > +					     "clock registration failed\n");
+>> > +	}
+>> > +
+>> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>> > +					   &a1_periphs_hw_onecell_data);
+>> > +}
+>> > +
+>> > +#ifdef CONFIG_OF
+>> 
+>> Same as the PLL driver
+>> 
+>
+> Sure, good point.
+>
+> [...]
+
 
 _______________________________________________
 linux-amlogic mailing list
