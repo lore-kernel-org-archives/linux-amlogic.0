@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F22FC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 11:30:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46307C64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 11:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vkosvdfBSvyI2YvJOfl50utXwDuXvD/6U0nhZDaSvaU=; b=VNIaj8f20yGtiI
-	XcVhFT0A5O2ya7Fwe/AqPooEHPZFRXnyq4Lwr+Et/p5BSwbg1GTO2DeXVJaZpAoeIzQ2rMe2Y7leg
-	sCfIekz85BgTxAb2Ic0zmWs+6Mm/7nZA6Eqgv0Lzc405jNmXByPD65FTzVBL9kQT+z6nJMdQjPQaz
-	14nQrgbGxME51/vlEwh9WXYTG40/pDwnDWJCr65bj7Ebx1ljSQQmO4HYxIRUVpmGUFcVNDxtf6QCg
-	ybZ6txtCTjQZWRlV114TvQPvyA0GsCxgbopb62ontqf2yTzhFeQ52gFP931K/KgqMBeF1CQh4l16i
-	vOg6lFZ49tTLlbV4q7cQ==;
+	List-Owner; bh=Po+ZQShSUBvhBgO0Sppi4ix4D9HDRWQMBcE56Piy99g=; b=o4W6U68KCZG78S
+	z3Bdk0JXD7xwsPQ2VzL5EUuepZm+VMXuXEAa0qy1G6G3p9y+MqJu/OetbYHqsLiSupmgTK5kVvmW0
+	hYw7Rlwj+jKLkjIX1S+5QG/Zg0ziskugYC/ADzBiRyPtoG4RI8rRLd1ltKEYBrmDpxzDDG3IEBqbv
+	17d+rZezlKmglH3rk5z9NOyg54F6/s0hJjkqHwnWCnz20+FalqYo/7ZJQNBfSoPpjsEVXWAG0UVJm
+	KRbSNi+WHfXbz4Oj9m/i1zuVqE7lo/q1mDSqA6hZ+1J7DwNshFLFnzco2uHR1pK0ynfZoNhcg/RMy
+	IqjSiG2j3/FlU3oJwSVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paETG-009WAE-Ml; Thu, 09 Mar 2023 11:30:06 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1paETz-009WX9-4O; Thu, 09 Mar 2023 11:30:51 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paEEP-009Ns1-2O
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 11:14:46 +0000
+	id 1paEHl-009PeF-Nz
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 11:18:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1678360483;
+	s=mimecast20190719; t=1678360692;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=fOclMsW6Dcq/qmgrbzDRG9ABG8aYqQLYxxYoBc5QR74=;
-	b=baxC9t6eyk3IKhfv0QWWRuL+z9o1x5ObjJinAnDevrCwiLR4J+EdPGw+aLpSTwUIJeQ33a
-	+nsJObcda/838lrLS4ETkgRyacyS2GmZAX3YSLHS9U+90fpSKDwdueG6/Ynu3eiE55uaL5
-	oGvY9C4cggX3fRonL50zU7kNToYeGyg=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=ZE/7iJwefnAXFkAm0lKDfvx+6HRiN8eOH8p7Wvai0wo=;
+	b=Q1AOpfNjOxvAZETLXJ3cfQNQDRtqZl5XqWjuhR9Ks4YTtlnDz9eoHhtfM3H4QOpF67nuoc
+	ualrTISMJpGPYc4U/J782WtzMxZbPPwiYNgM+hZocunVuj155Gf9QqD/4NuvicVITIJSby
+	rnoH6F1bFB6Z7XOZgYRy2YATEK8wee0=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-59-IbdUNXxlN6KjAYyjD1geoQ-1; Thu, 09 Mar 2023 06:14:42 -0500
-X-MC-Unique: IbdUNXxlN6KjAYyjD1geoQ-1
-Received: by mail-wr1-f72.google.com with SMTP id ba28-20020a0560001c1c00b002cc6d1f0c06so343724wrb.17
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 03:14:41 -0800 (PST)
+ us-mta-618-wW-ymVBXPKqnaF8lfFszKw-1; Thu, 09 Mar 2023 06:18:11 -0500
+X-MC-Unique: wW-ymVBXPKqnaF8lfFszKw-1
+Received: by mail-wr1-f70.google.com with SMTP id a7-20020a056000188700b002cdd0562b11so348395wri.11
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 03:18:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678360481;
+        d=1e100.net; s=20210112; t=1678360690;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fOclMsW6Dcq/qmgrbzDRG9ABG8aYqQLYxxYoBc5QR74=;
-        b=wQT/HUOeL7vawldnjhblGA3/FCyzVEkvy2Zewzwwx8TI+ARjG0TDny4LwcsItavHlJ
-         WgXu1DJ0KkrxWxlGUqqytYQgY5zpAYIZ3wjA/KQKwwoTxqlQ8aBPS3kTqjYhqJDLAKvq
-         voItzqO9nLy2zLU30dJxGAfC9XhQE/QCnL9ljRfvSysvl4tIBUZOY9VwQK4fpOxkeTyf
-         sUrLWkpL0s0oFkoLHdE4HQBCGoPHt0+WeojvFwWymVqAX+Si9nt0AWk4vIzhz/WDmOQ6
-         HubOAGOs8ESUdDYJBK8JG1TbL57y5IjL6Yjn1p/26Tn2w92xGNni9f1QUJSwTa8eL5R+
-         vNsQ==
-X-Gm-Message-State: AO0yUKWQpJRwvN7J2RCLUOAMuNa8uPaFSuikKyy0u2bCnnBh2IQei+O4
-	YvUF8cNJ9vcinawnaQihJQgLjBhvnjPTNxYT7Wcm1JtVTQXcqnQjOEdKpseJOVWVtNBLxSgv7Kr
-	2FwJix6litkcdQ/xeRSDztld29qALvX8=
-X-Received: by 2002:a5d:52c4:0:b0:2c7:390e:163c with SMTP id r4-20020a5d52c4000000b002c7390e163cmr15389433wrv.47.1678360480885;
-        Thu, 09 Mar 2023 03:14:40 -0800 (PST)
-X-Google-Smtp-Source: AK7set915u9SxlnTzfz8tGdDVQASzd1E75MhTfa6AFkSAnvLaeMrUwPtQlpNR4g2GraOjyd7bJsXiA==
-X-Received: by 2002:a5d:52c4:0:b0:2c7:390e:163c with SMTP id r4-20020a5d52c4000000b002c7390e163cmr15389414wrv.47.1678360480580;
-        Thu, 09 Mar 2023 03:14:40 -0800 (PST)
+        bh=ZE/7iJwefnAXFkAm0lKDfvx+6HRiN8eOH8p7Wvai0wo=;
+        b=AcstAKhrVSogyV2jJTzkIz8DnFoKuWiCRBDE8fjXqACMLs/S7Jr8UVH79cJsfIi/7H
+         VKIRwhPqM91Zbwyxc1O3BDAq25w9BuQv5vO/E1/SfYt6HMN14ZJdFYPwKJD4QxgRw9Oa
+         tcstfZSvvQ+zMm3NRpGkF1Z8pIOcqcr2mvFREFcevf+beU7M6zd5Ir9BoH61yekW8IsQ
+         CfFCl33NDhv5vUV99xr7N4mHs3qUEJIZnj/wMPc/YXVc3eGeS2ADbbucHsP5hVqbB0QU
+         zvZffds+Hfz0lfNeg/VGRMKZ3zdwSM4IBJUBtg0vuufma/jSnYyrf+xA8ocXuHazKuCe
+         x3yw==
+X-Gm-Message-State: AO0yUKUuZikCh/cczPssXlcsWDBczFmQVkuyewd99WIKH59UKMRyi7kn
+	MHG/+6cKvDBB0c+2Zyb9MHwWbtBQIYDOoz1IUqa2GCtETS0tYFXleVPdHvGbKlp7XWd3yShpUBk
+	i3ilxrNbAghOmW5ywT5IsyFIioLXiJD8=
+X-Received: by 2002:a05:600c:458b:b0:3ea:d620:570a with SMTP id r11-20020a05600c458b00b003ead620570amr19256925wmo.38.1678360690501;
+        Thu, 09 Mar 2023 03:18:10 -0800 (PST)
+X-Google-Smtp-Source: AK7set8nz/b/mv461MJo6uCh18V+HWYnANd/m5ucTuXO+pUDMtWMOWVVOePuNeDpPXiYp2Mt7j7R+w==
+X-Received: by 2002:a05:600c:458b:b0:3ea:d620:570a with SMTP id r11-20020a05600c458b00b003ead620570amr19256887wmo.38.1678360690262;
+        Thu, 09 Mar 2023 03:18:10 -0800 (PST)
 Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id q1-20020a1ce901000000b003eb5a531232sm2198602wmc.38.2023.03.09.03.14.40
+        by smtp.gmail.com with ESMTPSA id 16-20020a05600c229000b003eb2e33f327sm4775721wmf.2.2023.03.09.03.18.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 03:14:40 -0800 (PST)
+        Thu, 09 Mar 2023 03:18:10 -0800 (PST)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
@@ -83,18 +83,19 @@ Cc: dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH 01/22] drm/fbdev-dma: Implement fbdev emulation for GEM
- DMA helpers
-In-Reply-To: <87o7p2p4n4.fsf@minerva.mail-host-address-is-not-set>
-References: <87o7p2p4n4.fsf@minerva.mail-host-address-is-not-set>
-Date: Thu, 09 Mar 2023 12:14:39 +0100
-Message-ID: <871qlydvmo.fsf@minerva.mail-host-address-is-not-set>
+Subject: Re: [PATCH 03/22] arm/malidp: Use GEM DMA fbdev emulation
+In-Reply-To: <20230301153101.4282-4-tzimmermann@suse.de>
+References: <20230301153101.4282-1-tzimmermann@suse.de>
+ <20230301153101.4282-4-tzimmermann@suse.de>
+Date: Thu, 09 Mar 2023 12:18:09 +0100
+Message-ID: <87v8jacgwe.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_031445_231704_71029C02 
-X-CRM114-Status: GOOD (  11.18  )
+X-CRM114-CacheID: sfid-20230309_031813_916969_027D52F7 
+X-CRM114-Status: UNSURE (   6.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,39 +112,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Javier Martinez Canillas <javierm@redhat.com> writes:
+Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-[...]
-
->> +	drm_fb_helper_prepare(dev, fb_helper, preferred_bpp, &drm_fbdev_dma_helper_funcs);
->> +
->> +	ret = drm_client_init(dev, &fb_helper->client, "fbdev", &drm_fbdev_dma_client_funcs);
->> +	if (ret) {
->> +		drm_err(dev, "Failed to register client: %d\n", ret);
->> +		goto err_drm_client_init;
->> +	}
->> +
->> +	ret = drm_fbdev_dma_client_hotplug(&fb_helper->client);
->> +	if (ret)
->> +		drm_dbg_kms(dev, "client hotplug ret=%d\n", ret);
->> +
->> +	drm_client_register(&fb_helper->client);
->> +
->> +	return;
->> +
->> +err_drm_client_init:
->> +	drm_fb_helper_unprepare(fb_helper);
->> +	kfree(fb_helper);
->> +}
->> +EXPORT_SYMBOL(drm_fbdev_dma_setup);
+> Use the fbdev emulation that is optimized for DMA helpers. Avoids
+> possible shadow buffering and makes the code simpler.
 >
-> And this one could also be shared AFAICT if drm_fbdev_client_hotplug()
-> is used instead.
->
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-Scratch this one, you need the custom setup function to pass the 
-drm_fbdev_dma_helper_funcs to drm_client_init(). But I think the
-other comments this apply.
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
 Best regards,
