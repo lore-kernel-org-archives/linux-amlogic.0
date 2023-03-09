@@ -4,87 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C28C64EC4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 16:09:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C91C64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 16:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MdN7VzWE7qGVQAhajM1ekybHrUmtN06mKFK+zl0BKiY=; b=t1IN0yEM1J15bsF5diJPY6VYMF
-	NnqgaFHb1/Al6512InE0lsq/VdDUhEelaIHpi/mekdFGtGpGIzdbc+2ybjzI9t+jpuNTWHta2gGPC
-	uAzquQ9m6rUfWxpjvHGRjiLH3373UPhtVK6qhj5u2NK0UczSpIkl/eu0kxLls5eBSsmBpRInEV19R
-	KNWKyncsZR2RseU/Twt4h4nhFtBIs8gBgMhQ1ukwY9IJ73xH1Hpai3PnnuNsIIUv7wi/vIgOlSfyq
-	2CBdWvIFBTdbVCmf1zFnDIgTiGkKOEVihrW+qlONiguRnA+4+UDD0yWRJ2/4Zx+IpAIuHdu98B1TI
-	7Vmi/fiw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=h4DHcJ6uIo/9aKVk1Q8K1IPrd7lBhE4p7/Ty09dqawE=; b=Kl+l/N+IEV0bcF
+	GJNRzNvvDGMhufjNmSA72O7UP8YpejYYH1n8oYWc04Je77cBA4aLgGNpPZxoFmUjzaPhWasFA52kQ
+	2WR+SHhSN0W2fCiVAianqTOvqkswVMP82iBlnYl0B+GUWva3Xqmouir1OMAQtD+gUB9C+6oArtrMu
+	pE86cG/DU9ivks+WmdO4fX9wZFIbauJQxV4F8UgBP52iJErnpQ8ey6vpDYovnX02ywKkj5pxNdEIF
+	m8qLRwb+0pq/JGiWU1/G1929y7cxdHmIZNvZOXk+A5lwvEaKUlZA9pMFQkDb5uVoyIHJ7lOeqlhmA
+	P4tGZk+25P+w3UDCLlTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paIpe-00BCbg-UB; Thu, 09 Mar 2023 16:09:30 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1paJOd-00BJd1-Kv; Thu, 09 Mar 2023 16:45:39 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paIpb-00BCZB-G6
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 16:09:28 +0000
-Received: by mail-wm1-x334.google.com with SMTP id p16so1513806wmq.5
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 08:09:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678378166;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=baM3HjE9DHLDRhWVfhwj4CxYGrNduMCVIYgW3lJTrXk=;
-        b=iaa/1vV1rmISH0Ji0xGX1OzifywbERYgyvuDecuzcJOkhUt4LmFcJUpILJWa4bnadW
-         JRkFU61L6fCQU1oia8nnXtry9uhoYL7NCFdXs2CrKDXCvlIgvd8n7Odx8TK87Or57hAQ
-         mKMUVWoMqD8nLBo4LZpAF3AH55oTY8FRfsRMmqsafX5k36uWJIVRRGl8mHez7IiqDe7o
-         vimG3FTnFTJ4sZQHGMsd3i6wYpE2FdkpGLCY/jq6AhyVSTkP1uVatZjoAu5WG5plA9xz
-         LKySpBsMjYqJQ8FXGsLu8A58gVsYy5MAwtUKlZ5v2re5OBisMlx6CFcFjrXu8nU1wzae
-         blKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678378166;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=baM3HjE9DHLDRhWVfhwj4CxYGrNduMCVIYgW3lJTrXk=;
-        b=RafC6Tvpp91fVK41F2s+7SaN4LAr5sY9rOBA7QXWzXuh+PURZTAEvgUvaUeFGkUkic
-         3Yv/Zr2IUrH8wuJCIslAUkxZ7reeEHXokPniIfjXVmTYroEaFT9CDqIiO9O1Q9CbRc6x
-         J1giYYRBLO3drdyjirc+lmo/jMJPQnW1g6pJdJaHdouwnRKnt1qYWWFnRdqWXOJ5Vzq9
-         XFEZq0SDJ6MJ91rJtftc7gvFqsUyU1AhROj84TTywMYtIjKZCFvnOWBD/7tVABStmOFa
-         3SgyqyV1ea1sGOeopcQkfU3i1ZKmOJCcadx5wzUxh3SP0fRmqjyGS9kJ+J+K3Sc6pQMN
-         0PWA==
-X-Gm-Message-State: AO0yUKUKQrdzH2h/5re4nUyfClZIb9bQmC4lQknfTJrytwPUaib2yrDG
-	hViH3CtI9fB2KHNzsdG86VWWfA==
-X-Google-Smtp-Source: AK7set9lWqVBezY8rlJKRdM/6lwliOySmAqXpeWCr+d3/Ss6zcbxSKWYzxPcdKzRhY/uCL02e259/w==
-X-Received: by 2002:a1c:7417:0:b0:3eb:2b69:c3c4 with SMTP id p23-20020a1c7417000000b003eb2b69c3c4mr21108056wmc.36.1678378165794;
-        Thu, 09 Mar 2023 08:09:25 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:9df7:bf3e:9813:995a? ([2a01:e0a:982:cbb0:9df7:bf3e:9813:995a])
-        by smtp.gmail.com with ESMTPSA id p9-20020a05600c468900b003ebf73acf9asm338152wmo.3.2023.03.09.08.09.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 08:09:25 -0800 (PST)
-Message-ID: <c0eecc5e-4ad9-b9ea-137c-903abfad849f@linaro.org>
-Date: Thu, 9 Mar 2023 17:09:24 +0100
+	id 1paJOa-00BJaE-Gn
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 16:45:38 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 47FA32003DC;
+	Thu,  9 Mar 2023 17:45:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1678380330;
+	bh=rsAF33xOWKleODOfDwi0uA2zvM7ioCnYZ04Hs4dAfyM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Mzw++Zfax1adTN3X9aNvqovSpBYyqKxM1F5Tqz00UtkcCQFIF8V2UPW3BxBq+/ob9
+	 U7Fk1dfCUObVXWXx44SMD1ceUv0KIkItm1OuN7kzL5Z9GDQEzniRKm4AO6N3ebtyuB
+	 wApgW4n/wQcemeT7jQ/8PnPmIDWzi/wrM4wDWC7EinV9ky9aQb3Wn+IHYmXFzEV6MS
+	 ApC9q/oBIdc1YXNDlZGSyuW9GS+2DhtETb9pdg3VeYfBr0/JPP7bjXX0Wf1D/VQPGT
+	 o/qcQ7vVn61X4jEiiNXJ2DGVvnqwcsKTaErSC+j0AK16gCNxLgm8YGQwfyIC/ZSbCw
+	 pu/q2Yn7p7MGg==
+Message-ID: <1e75516f-5539-3347-f909-1597f8175ef6@free.fr>
+Date: Thu, 9 Mar 2023 17:45:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*()
- conversion again
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
 Content-Language: en-US
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
+ Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
+ Eric Dumazet <edumazet@google.com>,
+ Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+ Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Mark Brown <broonie@kernel.org>,
- =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
-References: <CGME20230309152453eucas1p28e1870593875304648243c9dead4b256@eucas1p2.samsung.com>
- <20230309152446.104913-1-m.szyprowski@samsung.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230309152446.104913-1-m.szyprowski@samsung.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Angus Ainslie <angus@akkea.ca>, linux-wireless@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org
+References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
+ <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
+ <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
+ <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
+ <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
+ <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+In-Reply-To: <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_080927_574589_7CB4CCC9 
-X-CRM114-Status: GOOD (  15.50  )
+X-CRM114-CacheID: sfid-20230309_084536_887880_54F7E29C 
+X-CRM114-Status: GOOD (  28.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,34 +79,234 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMDkvMDMvMjAyMyAxNjoyNCwgTWFyZWsgU3p5cHJvd3NraSB3cm90ZToKPiBkZXZtX3JlZ3Vs
-YXRvcl9nZXRfZW5hYmxlX29wdGlvbmFsKCkgcmV0dXJucyAtRU5PREVWIGlmIHJlcXVlc3RlZAo+
-IG9wdGlvbmFsIHJlZ3VsYXRvciBpcyBub3QgcHJlc2VudC4gQWRqdXN0IGNvZGUgZm9yIHRoYXQs
-IGJlY2F1c2UgaW4gdGhlCj4gNjdkMGEzMDEyOGM5IEkndmUgaW5jb3JyZWN0bHkgYXNzdW1lZCB0
-aGF0IGl0IGFsc28gcmV0dXJucyAwIHdoZW4KPiByZWd1bGF0b3IgaXMgbm90IHByZXNlbnQuCj4g
-Cj4gUmVwb3J0ZWQtYnk6IFJpY2FyZG8gQ2HDsXVlbG8gPHJpY2FyZG8uY2FudWVsb0Bjb2xsYWJv
-cmEuY29tPgo+IEZpeGVzOiA2N2QwYTMwMTI4YzkgKCJkcm0vbWVzb246IGR3LWhkbWk6IEZpeCBk
-ZXZtX3JlZ3VsYXRvcl8qZ2V0X2VuYWJsZSooKSBjb252ZXJzaW9uIikKPiBTaWduZWQtb2ZmLWJ5
-OiBNYXJlayBTenlwcm93c2tpIDxtLnN6eXByb3dza2lAc2Ftc3VuZy5jb20+Cj4gLS0tCj4gICBk
-cml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jIHwgMiArLQo+ICAgMSBmaWxlIGNo
-YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVz
-b24vbWVzb25fZHdfaGRtaS5jCj4gaW5kZXggNTM0NjIxYTEzYTM0Li4zZDA0Njg3OGNlNmMgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWkuYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMKPiBAQCAtNzE4LDcgKzcxOCw3
-IEBAIHN0YXRpYyBpbnQgbWVzb25fZHdfaGRtaV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3Ry
-dWN0IGRldmljZSAqbWFzdGVyLAo+ICAgCWR3X3BsYXRfZGF0YSA9ICZtZXNvbl9kd19oZG1pLT5k
-d19wbGF0X2RhdGE7Cj4gICAKPiAgIAlyZXQgPSBkZXZtX3JlZ3VsYXRvcl9nZXRfZW5hYmxlX29w
-dGlvbmFsKGRldiwgImhkbWkiKTsKPiAtCWlmIChyZXQgPCAwKQo+ICsJaWYgKHJldCA8IDAgJiYg
-cmV0ICE9IC1FTk9ERVYpCj4gICAJCXJldHVybiByZXQ7Cj4gICAKPiAgIAltZXNvbl9kd19oZG1p
-LT5oZG1pdHhfYXBiID0gZGV2bV9yZXNldF9jb250cm9sX2dldF9leGNsdXNpdmUoZGV2LAoKQWNr
-ZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
-YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
-cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 09/03/2023 15:29, Ulf Hansson wrote:
+
+> On Thu, 9 Mar 2023 at 13:13, Marc Gonzalez wrote:
+>
+>> On 09/03/2023 11:16, Marc Gonzalez wrote:
+>>
+>>> On 06/03/2023 11:24, Marc Gonzalez wrote:
+>>>
+>>>> # cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
+>>>> OF_NAME=wifi
+>>>> OF_FULLNAME=/soc/sd@ffe03000/wifi@1
+>>>> OF_COMPATIBLE_0=brcm,bcm4329-fmac
+>>>> OF_COMPATIBLE_N=1
+>>>> SDIO_CLASS=00
+>>>> SDIO_ID=02D0:AAE7
+>>>> SDIO_REVISION=0.0
+>>>> MODALIAS=sdio:c00v02D0dAAE7
+>>>>
+>>>> NB: 0xaae7 = 43751
+>>>
+>>> I have run into another issue.
+>>>
+>>> The WiFi device (and the mmc2 bus it sits on) don't show up at all
+>>> in the kernel log *unless* I add lots of debug output, such as with
+>>> #define DEBUG in drivers/base/dd.c
+>>>
+>>> I think this points to some kind of race condition?
+>>>
+>>> Neil suggested that maybe the host probes the mmc2 bus "too soon",
+>>> when the WiFi device is still powering up, which makes the entire
+>>> probe fail.
+> 
+> Ideally, the WiFi device/driver should not need to be initialized to
+> allow the SDIO card to be detected properly. Looks like there is
+> something fishy going on.
+
+Something fishy indeed ;)
+
+
+>>> This patch appears to solve the symptom:
+>>>
+>>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>>> index 6e5ea0213b477..999b3843c0d0b 100644
+>>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>>> @@ -1400,7 +1400,7 @@ static struct platform_driver meson_mmc_driver = {
+>>>       .remove         = meson_mmc_remove,
+>>>       .driver         = {
+>>>               .name = DRIVER_NAME,
+>>> -             .probe_type = PROBE_PREFER_ASYNCHRONOUS,
+>>> +             .probe_type = PROBE_FORCE_SYNCHRONOUS,
+>>>               .of_match_table = meson_mmc_of_match,
+>>>       },
+>>>  };
+>>>
+>>> But this might just be delaying the probe enough for the device
+>>> to become ready?
+>>
+>> FWIW, the relevant device tree nodes are:
+>>
+>> /* decompiled DTS */
+>>
+>>                 sd@ffe03000 {
+>>                         compatible = "amlogic,meson-axg-mmc";
+>>                         reg = <0x0 0xffe03000 0x0 0x800>;
+>>                         interrupts = <0x0 0xbd 0x4>;
+>>                         status = "okay";
+>>                         clocks = <0x2 0x21 0x2 0x3c 0x2 0x2>;
+>>                         clock-names = "core", "clkin0", "clkin1";
+>>                         resets = <0x5 0x2c>;
+>>                         amlogic,dram-access-quirk;
+>>                         pinctrl-0 = <0x2c>;
+>>                         pinctrl-1 = <0x2d>;
+>>                         pinctrl-names = "default", "clk-gate";
+>>                         #address-cells = <0x1>;
+>>                         #size-cells = <0x0>;
+>>                         bus-width = <0x4>;
+>>                         cap-sd-highspeed;
+>>                         sd-uhs-sdr50;
+>>                         max-frequency = <0x5f5e100>;
+>>                         non-removable;
+>>                         disable-wp;
+>>                         keep-power-in-suspend;
+>>                         mmc-pwrseq = <0x2e>;
+>>                         vmmc-supply = <0x2b>;
+>>                         vqmmc-supply = <0x21>;
+>>
+>>                         wifi@1 {
+>>                                 reg = <0x1>;
+>>                                 compatible = "brcm,bcm4329-fmac";
+>>                         };
+>>                 };
+>>
+>>
+>> /* original DTS */
+>>
+>>                 sd_emmc_a: sd@ffe03000 {
+>>                         compatible = "amlogic,meson-axg-mmc";
+>>                         reg = <0x0 0xffe03000 0x0 0x800>;
+>>                         interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+>>                         status = "disabled";
+>>                         clocks = <&clkc CLKID_SD_EMMC_A>,
+>>                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
+>>                                  <&clkc CLKID_FCLK_DIV2>;
+>>                         clock-names = "core", "clkin0", "clkin1";
+>>                         resets = <&reset RESET_SD_EMMC_A>;
+>>                 };
+>>
+>> &sd_emmc_a {
+>>         status = "okay";
+>>         pinctrl-0 = <&sdio_pins>;
+>>         pinctrl-1 = <&sdio_clk_gate_pins>;
+>>         pinctrl-names = "default", "clk-gate";
+>>         #address-cells = <1>;
+>>         #size-cells = <0>;
+>>
+>>         bus-width = <4>;
+>>         cap-sd-highspeed;
+>>         sd-uhs-sdr50;
+>>         max-frequency = <100000000>;
+>>
+>>         non-removable;
+>>         disable-wp;
+>>
+>>         /* WiFi firmware requires power to be kept while in suspend */
+>>         keep-power-in-suspend;
+>>
+>>         mmc-pwrseq = <&sdio_pwrseq>;
+> 
+> This one is particularly interesting. Can you share the content of the
+> sdio_pwrseq node too?
+
+
+	sdio_pwrseq: sdio-pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+		clocks = <&wifi32k>;
+		clock-names = "ext_clock";
+	};
+
+	wifi32k: wifi32k {
+		compatible = "pwm-clock";
+		#clock-cells = <0>;
+		clock-frequency = <32768>;
+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+	};
+
+			pwm_ef: pwm@19000 {
+				compatible = "amlogic,meson-g12a-ee-pwm";
+				reg = <0x0 0x19000 0x0 0x20>;
+				#pwm-cells = <3>;
+				status = "disabled";
+			};
+
+&pwm_ef {
+	status = "okay";
+	pinctrl-0 = <&pwm_e_pins>;
+	pinctrl-names = "default";
+	clocks = <&xtal>;
+	clock-names = "clkin0";
+};
+
+					pwm_e_pins: pwm-e {
+						mux {
+							groups = "pwm_e";
+							function = "pwm_e";
+							bias-disable;
+						};
+					};
+
+
+
+>>         vmmc-supply = <&vddao_3v3>;
+>>         vqmmc-supply = <&vddio_ao1v8>;
+>>
+>>         brcmf: wifi@1 {
+>>                 reg = <1>;
+>>                 compatible = "brcm,bcm4329-fmac";
+>>         };
+>> };
+>>
+>> With an asynchronous probe, meson_mmc_probe() always succeeds,
+>> yet the WiFi card is not detected later on, even if I sleep
+>> 1-2 seconds in meson_mmc_probe().
+>>
+>> [    0.879756] YO: meson_mmc_probe: ffe03000.sd
+>> [    0.914320] YO: meson_mmc_probe: ffe03000.sd ALL OK
+>> [    1.199170] YO: meson_mmc_probe: ffe07000.mmc
+>> [    1.232734] YO: meson_mmc_probe: ffe07000.mmc ALL OK
+> 
+> To narrow down the problem, I would start by preventing the WiFi
+> driver from being insmoded. To make sure it doesn't affect the SDIO
+> card detection process.
+
+So far, I always embedded all device drivers in the kernel (=y)
+You are suggesting to build the WiFi driver as a module, correct?
+
+
+> The point is, the SDIO card should be detected properly, no matter
+> whether there is a corresponding SDIO func driver (WiFi driver)
+> available for it. For a detected SDIO/eMMC/SD card, mmc_add_card()
+> prints a message about the card in the log during initialization. It
+> could look like the below print, for example:
+> 
+> "mmc2: new ultra high speed SDR104 SDIO card at address 0001".
+
+When everything works, I get:
+mmc2: new ultra high speed SDR50 SDIO card at address 0001
+
+When it doesn't, I don't get that line.
+
+I'm trying to debug with printk's in
+mmc_rescan_try_freq, mmc_rescan, mmc_attach_sdio, meson_mmc_probe
+
+The problem is that adding "too many" printks makes the
+probe work! (Debugging this issue is nerve-racking.)
+
+Thanks, I will test your suggestions!
+
+Regards
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
