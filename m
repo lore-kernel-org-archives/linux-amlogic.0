@@ -4,68 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA1B9C6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 12:13:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D53A6C64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 13:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vaaRtPyn+NM/XfrU08CxhpKha60X6fyyBx0htaSuxuU=; b=eG1A/SNLna81sN
-	8DlYBbTmUpQ6LvmSGYbfRC1Mxrn6UQcVcETPAIU0q91MSZHtziAyNbW6cqF6JORS4cZLxptVbnmbz
-	RaRjjAsJtqAEOx0zcUx+59JjxxzGKcbSEfkk8ExVdyhtuXsp5kNxQKmcYW9fXkSA5qJWI7qRBu3ND
-	OhmC4EHBSkEspRS0qwosrn3anbqx9N2kLOZvg07IR27jp13VXCT3H7l7D5KPcsRbxNevhLFA9s5z3
-	lHCfwFDRpXklNuGxes+4RtmrLM0h1IXpw7ZPOckaNP/SaHmJ3n0bX0spCTKIgdP6T1D7csA1+n7EF
-	pTzJ92v0r0KDynV2+iWw==;
+	List-Owner; bh=CDEguKENs3mGZrAlAxzVzdf00cOnZpqACQKxWdATGyI=; b=iKSUGTjhK03Nv6
+	rJS8AOejXGa+yVEo7ACsZLLcRF9kGOFBprN8UzOePcZUjr/LV4M0IIZN+dpug6bCYi6HkM85aokRF
+	dumuHR5uJE5MDxcq1v6qQlCj56W1nB0WTeJ4nV2yiNuD2wjOjweegJ2ZlQIkC1cH8lkuJylwvahrX
+	h+yczV8pAUiEBpsNIs6jD3UU3CbGV0lX84xc9jwU8AaT3c579ioALEQDogYbq9m2MkMbcVIvg1VUn
+	TtZnwJqORjqqygQdys7unwArm/Nd0FA7gQXtBMFwjzuLCTcnWyIYOGLwRJJB+yfkwFAJREUfYw4mP
+	NN819cwfbds10Nzb7Anw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paF9Q-009pDB-58; Thu, 09 Mar 2023 12:13:40 +0000
-Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
+	id 1paGBF-00A3ge-9W; Thu, 09 Mar 2023 13:19:37 +0000
+Received: from relay8-d.mail.gandi.net ([2001:4b98:dc4:8::228])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paF9M-009pC4-MI
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 12:13:38 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id EDA002003EF;
-	Thu,  9 Mar 2023 13:13:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678364014;
-	bh=jspTNMqmiAfUcc7bb0/7iQoCw5A51k8LsKeTMnZiFno=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=CT3IxvdEnsUeQ9GIvmFA8GbayIHBlsZGLovYXBd4yECE0ZukuHtlwwTDuItCMlweL
-	 KznLZoBWywgX2L8WD7uDdM1bYiIePR0NMTFGM/zcK19Ao/a0bL5M87JwgkpOIR3XQG
-	 gj4S6bBgWgWJr6bj+RnIIBK5zBv5EgPvmmnCEGNasP+j+qFDhqNx6Xpvq7WwtXxvt7
-	 US4t1SYwHX11tH5blJ+zdbU9p0c7Bzb2714uhBf4GyHEGj8DGOKnD/Gb4cxtKS9c2a
-	 SqOw2i7OpyQsi0DtT0asDPhaQ4DDyueFqS3gfzKjwOiXSCUImUF4Hnba/7AvgynfRK
-	 zg9vENDxijwuQ==
-Message-ID: <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
-Date: Thu, 9 Mar 2023 13:13:16 +0100
+	id 1paGBB-00A3fI-MX; Thu, 09 Mar 2023 13:19:35 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id D29391BF203;
+	Thu,  9 Mar 2023 13:19:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1678367968;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KCS0grjDle8LqIHXYUqxgW9dQGLLuD8q9UNKbRuhYbk=;
+	b=Xwei8LaM7A3PtmP2nNF4x28yyM+iJOS9s9PrMxCrGzZC58KjSVM8cHaBeXrAZI/NtfH/9j
+	r01nhfdqw3Y5E4seWycsQrKTDFGGLW5n7wwD+gr+9XPRGo17l49ulVlJXO+zEXIj6W/wVp
+	xHnGPGBF0BnN6CjB6Mu7s0CWOOvq/3wpWShvMBXpv9A0NVrQOjh4c49bXdwQz2Qj8hWt33
+	zxizmlPdNsdJMSab2n/Xqmakf0DwsfvgnyFw9d/JVszhf957LuH1cfuu0MN5C7gxIvLwp6
+	eigmkj5aTAo76n4kZiDx68XnLa0GLX9JeCOa/Bk5Ds7ImdmzV7EC+0ot+vZz3Q==
+Date: Thu, 9 Mar 2023 14:19:20 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Richard Weinberger
+ <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Hector Martin
+ <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig
+ <alyssa@rosenzweig.io>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Claudiu Beznea
+ <claudiu.beznea@microchip.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy
+ Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad
+ Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>, Orson
+ Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Vincent Shih <vincent.sunplus@gmail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Kunihiko Hayashi
+ <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Michal Simek <michal.simek@xilinx.com>, Alessandro Zummo
+ <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Evgeniy Polyakov <zbr@ioremap.net>, linux-mtd@lists.infradead.org,
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-rtc@vger.kernel.org, Michael Walle <michael@walle.cc>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3] nvmem: add explicit config option to read OF fixed
+ cells
+Message-ID: <20230309141920.1d3f774e@xps-13>
+In-Reply-To: <e845b38c-d0eb-716c-dc51-b89582750f07@gmail.com>
+References: <20230309112028.19215-1-zajec5@gmail.com>
+	<20230309123513.43b7134f@xps-13>
+	<e845b38c-d0eb-716c-dc51-b89582750f07@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
-Content-Language: en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
- Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
- Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Angus Ainslie <angus@akkea.ca>
-Cc: linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
- <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
- <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
-In-Reply-To: <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_041336_904247_90EDDA27 
-X-CRM114-Status: GOOD (  22.76  )
+X-CRM114-CacheID: sfid-20230309_051934_072897_8EB28183 
+X-CRM114-Status: GOOD (  31.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,153 +96,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/03/2023 11:16, Marc Gonzalez wrote:
-
-> On 06/03/2023 11:24, Marc Gonzalez wrote:
-> 
->> # cat /sys/bus/sdio/devices/mmc2:0001:1/uevent
->> OF_NAME=wifi
->> OF_FULLNAME=/soc/sd@ffe03000/wifi@1
->> OF_COMPATIBLE_0=brcm,bcm4329-fmac
->> OF_COMPATIBLE_N=1
->> SDIO_CLASS=00
->> SDIO_ID=02D0:AAE7
->> SDIO_REVISION=0.0
->> MODALIAS=sdio:c00v02D0dAAE7
->>
->> NB: 0xaae7 = 43751
-> 
-> I have run into another issue.
-> 
-> The WiFi device (and the mmc2 bus it sits on) don't show up at all
-> in the kernel log *unless* I add lots of debug output, such as with
-> #define DEBUG in drivers/base/dd.c
-> 
-> I think this points to some kind of race condition?
-> 
-> Neil suggested that maybe the host probes the mmc2 bus "too soon",
-> when the WiFi device is still powering up, which makes the entire
-> probe fail.
-> 
-> This patch appears to solve the symptom:
-> 
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 6e5ea0213b477..999b3843c0d0b 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -1400,7 +1400,7 @@ static struct platform_driver meson_mmc_driver = {
->  	.remove		= meson_mmc_remove,
->  	.driver		= {
->  		.name = DRIVER_NAME,
-> -		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +		.probe_type = PROBE_FORCE_SYNCHRONOUS,
->  		.of_match_table = meson_mmc_of_match,
->  	},
->  };
-> 
-> But this might just be delaying the probe enough for the device
-> to become ready?
-
-FWIW, the relevant device tree nodes are:
-
-/* decompiled DTS */
-
-		sd@ffe03000 {
-			compatible = "amlogic,meson-axg-mmc";
-			reg = <0x0 0xffe03000 0x0 0x800>;
-			interrupts = <0x0 0xbd 0x4>;
-			status = "okay";
-			clocks = <0x2 0x21 0x2 0x3c 0x2 0x2>;
-			clock-names = "core", "clkin0", "clkin1";
-			resets = <0x5 0x2c>;
-			amlogic,dram-access-quirk;
-			pinctrl-0 = <0x2c>;
-			pinctrl-1 = <0x2d>;
-			pinctrl-names = "default", "clk-gate";
-			#address-cells = <0x1>;
-			#size-cells = <0x0>;
-			bus-width = <0x4>;
-			cap-sd-highspeed;
-			sd-uhs-sdr50;
-			max-frequency = <0x5f5e100>;
-			non-removable;
-			disable-wp;
-			keep-power-in-suspend;
-			mmc-pwrseq = <0x2e>;
-			vmmc-supply = <0x2b>;
-			vqmmc-supply = <0x21>;
-
-			wifi@1 {
-				reg = <0x1>;
-				compatible = "brcm,bcm4329-fmac";
-			};
-		};
-
-
-/* original DTS */
-
-		sd_emmc_a: sd@ffe03000 {
-			compatible = "amlogic,meson-axg-mmc";
-			reg = <0x0 0xffe03000 0x0 0x800>;
-			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-			status = "disabled";
-			clocks = <&clkc CLKID_SD_EMMC_A>,
-				 <&clkc CLKID_SD_EMMC_A_CLK0>,
-				 <&clkc CLKID_FCLK_DIV2>;
-			clock-names = "core", "clkin0", "clkin1";
-			resets = <&reset RESET_SD_EMMC_A>;
-		};
-
-&sd_emmc_a {
-	status = "okay";
-	pinctrl-0 = <&sdio_pins>;
-	pinctrl-1 = <&sdio_clk_gate_pins>;
-	pinctrl-names = "default", "clk-gate";
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	bus-width = <4>;
-	cap-sd-highspeed;
-	sd-uhs-sdr50;
-	max-frequency = <100000000>;
-
-	non-removable;
-	disable-wp;
-
-	/* WiFi firmware requires power to be kept while in suspend */
-	keep-power-in-suspend;
-
-	mmc-pwrseq = <&sdio_pwrseq>;
-
-	vmmc-supply = <&vddao_3v3>;
-	vqmmc-supply = <&vddio_ao1v8>;
-
-	brcmf: wifi@1 {
-		reg = <1>;
-		compatible = "brcm,bcm4329-fmac";
-	};
-};
-
-With an asynchronous probe, meson_mmc_probe() always succeeds,
-yet the WiFi card is not detected later on, even if I sleep
-1-2 seconds in meson_mmc_probe().
-
-[    0.879756] YO: meson_mmc_probe: ffe03000.sd
-[    0.914320] YO: meson_mmc_probe: ffe03000.sd ALL OK
-[    1.199170] YO: meson_mmc_probe: ffe07000.mmc
-[    1.232734] YO: meson_mmc_probe: ffe07000.mmc ALL OK
-
-Confused again...
-
-Regards
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgUmFmYcWCLAoKemFqZWM1QGdtYWlsLmNvbSB3cm90ZSBvbiBUaHUsIDkgTWFyIDIwMjMgMTM6
+MDE6MTkgKzAxMDA6Cgo+IE9uIDkuMDMuMjAyMyAxMjozNSwgTWlxdWVsIFJheW5hbCB3cm90ZToK
+PiA+PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9udm1lbS1wcm92aWRlci5oIGIvaW5jbHVk
+ZS9saW51eC9udm1lbS1wcm92aWRlci5oCj4gPj4gaW5kZXggMDI2MmI4NjE5NGViLi5iM2MxNGNl
+ODdhNjUgMTAwNjQ0Cj4gPj4gLS0tIGEvaW5jbHVkZS9saW51eC9udm1lbS1wcm92aWRlci5oCj4g
+Pj4gKysrIGIvaW5jbHVkZS9saW51eC9udm1lbS1wcm92aWRlci5oCj4gPj4gQEAgLTczLDYgKzcz
+LDcgQEAgc3RydWN0IG52bWVtX2NlbGxfaW5mbyB7Cj4gPj4gICAgKiBAb3duZXI6CVBvaW50ZXIg
+dG8gZXhwb3J0ZXIgbW9kdWxlLiBVc2VkIGZvciByZWZjb3VudGluZy4KPiA+PiAgICAqIEBjZWxs
+czoJT3B0aW9uYWwgYXJyYXkgb2YgcHJlLWRlZmluZWQgTlZNRU0gY2VsbHMuCj4gPj4gICAgKiBA
+bmNlbGxzOglOdW1iZXIgb2YgZWxlbWVudHMgaW4gY2VsbHMuCj4gPj4gKyAqIEB1c2VfZml4ZWRf
+b2ZfY2VsbHM6CVJlYWQgZml4ZWQgTlZNRU0gY2VsbHMgZnJvbSBPRi4gIAo+ID4gCj4gPiBJJ20g
+c3RpbGwgdW5oYXBweSB3aXRoIHRoZSBuYW1pbmcsIGVzcGVjaWFsbHkgc2luY2UgeW91IGV4cGxh
+aW5lZCBpbgo+ID4gbW9yZSBkZXRhaWxzIHRoZSB3aG9sZSBwbGFuIHdoaWNoIGludm9sdmVzIHVz
+aW5nIGEgY29udGFpbmVyIHRvIHB1dAo+ID4gdGhlc2UgZml4ZWQgY2VsbHMgZnJvbSBub3cgb24u
+IEluIGJvdGggY2FzZXMgeW91IGV4dHJhY3QgY2VsbHMgZnJvbQo+ID4gZml4ZWQgT0Ygbm9kZXMg
+YnV0IHRoaXMgYm9vbGVhbiBuZWVkcyB0byBiZSBzZXQgdG8gdHJ1ZSBpbiBvbmUKPiA+IGNhc2Us
+IGFuZCBmYWxzZSBpbiB0aGUgb3RoZXIsIHdoaWNoIHdvdWxkIG5vdCBtYWtlIHNlbnNlLgo+ID4g
+Cj4gPiBBbHNvLCByZWdhcmRpbmcgdGhlIGJpbmRpbmdzIGNoYW5nZXMsIEknbSBmYWlybHkgaGFw
+cHkgd2l0aCB0aGUgaWRlYSwKPiA+IGJ1dCBpZiB3ZSBnbyB0aGlzIHdheSBJIHdvdWxkIHByZWZl
+ciBhIGZ1bGwgc2VyaWVzIGluc3RlYWQgb2YKPiA+IGluZGl2aWR1YWwgY2hhbmdlcyB3aXRoOgo+
+ID4gCj4gPiAtIHRoZSBib29sZWFuIHlvdSBpbnRyb2R1Y2UgaGVyZSAocmVuYW1lZCwgYXQgdGhl
+IHZlcnkgbGVhc3QpCj4gPiAtIHRoZSBuZXcgYmluZGluZ3MgIAo+IAo+IEkgYXNzdW1lIHlvdSBt
+ZWFuIGZpeGVkLWxheW91dC55YW1sPwoKWWVzIQoKPiA+IC0gdGhlIHVwZGF0ZSBvZiB0aGUgY3Vy
+cmVudCBwcm92aWRlciBiaW5kaW5ncyB0byB0YWtlIHRoZSBuZXcgYmluZGluZ3MKPiA+ICAgIGlu
+dG8gYWNjb3VudCBhbmQgZGVwcmVjYXRlIHRoZSBvbGQgb25lcyBvZmZpY2lhbGx5ICAKPiAKPiBX
+aGF0IGhhcyB0byBiZSB1cGRhdGVkIGluIGN1cnJlbnQgcHJvY2Vkcz8gSXQgc2VlbXMgdG8gbWUg
+dGhhdDoKPiAxLiBDdXJyZW50IE5WTUVNIHByb3ZpZGVycyByZWZlcmVuY2UgbnZtZW0ueWFtbAo+
+IDIuIG52bWVtLnlhbWwgcmVmZXJlbmNlcyBudm1lbS1sYXlvdXQueWFtbAo+IDMuIG52bWVtLWxh
+eW91dC55YW1sIHJlZmVyZW5jZXMgZml4ZWQtbGF5b3V0LnlhbWwKPiAKPiB3aGF0IGVsc2UgaXMg
+bWlzc2luZz8KClRoYXQncyB0aGUgdGhlb3J5LCBidXQgdGhlbiBwcm92aWRlciBiaW5kaW5ncyBz
+aG91bGQgcmVmbGVjdCB0aGUKY2hhbmdlcyBhcyB3ZWxsIGluIHRoZWlyIG93biBiaW5kaW5nIGRv
+Y3VtZW50cy4KCklPVywgdGhpcyBvbmUgKGFuZCBhbGwgaXRzIGNvdXNpbnMpIGJlY29tZXMgbGVn
+YWN5IGFuZCBtdXN0IGJlIHVwZGF0ZWQ6CgpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51
+eC9sYXRlc3Qvc291cmNlL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9p
+bXgtb2NvdHAueWFtbCNMOTIKCihhbmQgdGhlcmUgYXJlIG1hbnkgZmlsZXMgdG8gdXBkYXRlIHRo
+ZW4pCgo+IAo+IAo+ID4gLSBzdXBwb3J0IGZvciB0aGUgbmV3IGJpbmRpbmdzIGluIHRoZSBjb3Jl
+ICAKPiAKPiBQbGVhc2UsIGRvbid0IGdldCBtZSB3cm9uZywgYnV0IEknbSBub3QgZ29pbmcgdG8g
+c3BlbmQgbW9yZSBob3VycyBvbgo+IGFjdHVhbCBjb2Rpbmcgd2l0aG91dCBhcHByb3ZhbCBvZiBj
+aG9zZW4gcGF0aC4KCldlbGwsIHlvdSB3YW50IHRvIG1ha2UgdGhlIGJpbmRpbmdzIGV2b2x2ZS4g
+SnVzdCB1cGRhdGluZyBhIHNpbmdsZQpiaW5kaW5nIGZpbGUgaXMgbm90IGVub3VnaCwgSSBiZWxp
+ZXZlIHdlIHNob3VsZCBhdCBsZWFzdCBwcm92aWRlIGZ1bGwKc3VwcG9ydCBmb3IgdGhlIG5ldyBk
+ZXNjcmlwdGlvbi4gQnV0IG9mIGNvdXJzZSBJJ20gZmluZSBkaXNjdXNzaW5nIHdoYXQKZGVzY3Jp
+cHRpb24gd2Ugd2FudCBmaXJzdC4KCj4gSSdsbCBuZWVkIHRvIGhhdmUKPiBbUEFUQ0ggVjJdIGR0
+LWJpbmRpbmdzOiBudm1lbTogbGF5b3V0czogYWRkIGZpeGVkLWxheW91dAo+IHJldmlld2VkL2Fj
+a2VkIGZpcnN0LiBJZiB5b3UgY2FuIGRvIHRoYXQgdGhhdCdzIGdyZWF0Lgo+IAo+IAo+ID4+ICAg
+ICogQGtlZXBvdXQ6CU9wdGlvbmFsIGFycmF5IG9mIGtlZXBvdXQgcmFuZ2VzIChzb3J0ZWQgYXNj
+ZW5kaW5nIGJ5IHN0YXJ0KS4KPiA+PiAgICAqIEBua2VlcG91dDoJTnVtYmVyIG9mIGVsZW1lbnRz
+IGluIHRoZSBrZWVwb3V0IGFycmF5Lgo+ID4+ICAgICogQHR5cGU6CVR5cGUgb2YgdGhlIG52bWVt
+IHN0b3JhZ2UKPiA+PiBAQCAtMTAzLDYgKzEwNCw3IEBAIHN0cnVjdCBudm1lbV9jb25maWcgewo+
+ID4+ICAgCXN0cnVjdCBtb2R1bGUJCSpvd25lcjsKPiA+PiAgIAljb25zdCBzdHJ1Y3QgbnZtZW1f
+Y2VsbF9pbmZvCSpjZWxsczsKPiA+PiAgIAlpbnQJCQluY2VsbHM7Cj4gPj4gKwlib29sCQkJdXNl
+X2ZpeGVkX29mX2NlbGxzOwo+ID4+ICAgCWNvbnN0IHN0cnVjdCBudm1lbV9rZWVwb3V0ICprZWVw
+b3V0Owo+ID4+ICAgCXVuc2lnbmVkIGludAkJbmtlZXBvdXQ7Cj4gPj4gICAJZW51bSBudm1lbV90
+eXBlCQl0eXBlOyAgCj4gPiAKPiA+IFRoYW5rcywKPiA+IE1pcXXDqGwgIAo+IAoKClRoYW5rcywK
+TWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
+b2dpYwo=
