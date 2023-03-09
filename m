@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10F5CC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 18:29:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94353C6FD19
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 18:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=czAMwMWe/J15PRuUzNrkltWmeJPGJXpjXi/udw6DJ0I=; b=VFZiS1EtWCZbDV
-	dmE9yw3ujgDp+HS2rhWY30T/n5An1eg6qxtT6OP6dKOOK4YA75cMjizzjAYtyIxiPcrC+fO7vGguK
-	JIcuZwCRkwiPwD+lbJRRki/ibup/DpAQd3+0Hq+TdO5eB0N8zAO3vT2nIhvdwZbsNZxn7gknOh0in
-	d5pvz3lfePMR6ewKGghStsQuSa7H1252mAtMyCtS4yAZ57tLlWts87t9yrD0SXj1PiJtr+D/MPqEG
-	nWqS+TKNsnG+5VY0cjNGm9TGBPTvwoVLmsEFbUfdv24wgYvKsHw7+KhwyGlqw0aa1MQzF5305zxPh
-	79iUTl8kt6OfGlbyGJdw==;
+	List-Owner; bh=nI2AEy4nFzLh/oACxVT7FQVxY4t6Au+IIvFwYEuLHEA=; b=QTtmjpfDGA5P/L
+	5CDJ9htLD9tG8QWrg74tTFxGwuYD9ZpRjOgshQenK9Zz9O1N0r+U6q0DcNYX+Za84WxPDJC3tq3oC
+	X4lxOfWUVC1C/hR0xU5ICuCzAPTixFaA5eqY2ELpzP/CWEgqsOQbPeN96p9Ye45kkRnTjDF35rmhh
+	9eLBuo207lGZ6WvmCvVcepdqRhD8Utqpegv9zlRcMTjFicaN9c16JkOzqK/MTPQtoUJi86nqPznrK
+	Z4I+s0LSE2ATfnSbAU9wy9Hg168lINMrL16wdvC4ydN9GcYo888IgF0v84sjSlHXixf0aT+EpIUR0
+	6tvJ3AjOIxkgMXQkviJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paL0o-00BYde-OX; Thu, 09 Mar 2023 18:29:10 +0000
+	id 1paLTc-00Bc6X-Hk; Thu, 09 Mar 2023 18:58:56 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paL0l-00BYak-Ta; Thu, 09 Mar 2023 18:29:10 +0000
+	id 1paLTY-00Bc4z-QB; Thu, 09 Mar 2023 18:58:55 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id D09415FD16;
-	Thu,  9 Mar 2023 21:28:58 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 318C95FD16;
+	Thu,  9 Mar 2023 21:58:49 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1678386538;
-	bh=CIRQg7hC6CEd/e41iLtiXwUhJirx9xJ3FGxic7KJOuI=;
+	s=mail; t=1678388329;
+	bh=iQKqJC+KWHFowhWmAMuZH51JLu03/9S7uIDEb1nbsBc=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=OX97kEXlp0GYFIRkei7PlgtCLDhBwyCVlnu71ydo/9UiG6hr4ZV4VrB2EE8nHBOoz
-	 4ntpOMH8pIH1WXwvNd1rhQAyI3o6u3j9YPnKPXHN9mjavEFdmgdNKHJcHfwRSskRha
-	 0sTqau4cjSHEm83bL/EaSXv6cgjP0QgiiI6+NFqX2IAVZ8t/sp3uCsVRQdY4220crt
-	 9zKka4KfdYWo2AjXe08FWiS+bfI5igJVLFWZlF2XCO1iWtwi2lcEwwTPNCyJKM3zDR
-	 rAoS5pI+v1bVkBoXSFnOd2/a676aKlHt6ClQCar/5ywF+5qjy7i/tqIkDrVq2lpdgC
-	 wtysz3BymV8mA==
+	b=m3i/BVqqs/jufZuSBQCtN9/7Nn669yDB8KcPN5JbhkHchwBDAXDipSgq18H9VegIr
+	 5Eit8jVWSIwqLE2PTE25cfFRQ7bRi+CcyQzUadWLYEddeCCddaVFyTjeYIgPJtlZ+a
+	 //FiFhQAeMQR0xXKp4faH9n5mhdDDIkNvLo+ixwZTyXreT2bvWtprJfEom3AcFRTck
+	 EoauM5DVCqQ3OP5sLxGyz4Dol5Ah5HuD79PUyef9Dan8XReon0XLZ2SAe1x5wf8oZw
+	 OgH7XcBbrD7ubkB/k87nEUxaiCY5zCzsNUOhAo8WlKaePv/NeO/TDuw2UXQMeCRS4k
+	 uHbePJPXKDqQA==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  9 Mar 2023 21:28:58 +0300 (MSK)
-Date: Thu, 9 Mar 2023 21:28:57 +0300
+	Thu,  9 Mar 2023 21:58:48 +0300 (MSK)
+Date: Thu, 9 Mar 2023 21:58:48 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: Jerome Brunet <jbrunet@baylibre.com>
 CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
@@ -51,20 +51,20 @@ CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+Subject: Re: [PATCH v9 4/5] clk: meson: a1: add Amlogic A1 Peripherals clock
  controller driver
-Message-ID: <20230309182857.a2fzotcejueio23w@CAB-WSD-L081021>
+Message-ID: <20230309185848.t43jdm7aj2jkxlhx@CAB-WSD-L081021>
 References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-3-ddrokosov@sberdevices.ru>
- <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
- <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
- <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+ <20230301183759.16163-5-ddrokosov@sberdevices.ru>
+ <1jilfeaync.fsf@starbuckisacylon.baylibre.com>
+ <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
+ <1jedpy0yv9.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jedpy0yv9.fsf@starbuckisacylon.baylibre.com>
 User-Agent: NeoMutt/20220415
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
@@ -74,8 +74,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/09 14:25:00 #20928723
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_102908_348718_1A950422 
-X-CRM114-Status: GOOD (  23.12  )
+X-CRM114-CacheID: sfid-20230309_105853_221452_732DD308 
+X-CRM114-Status: GOOD (  59.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,160 +92,265 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 09, 2023 at 03:20:23PM +0100, Jerome Brunet wrote:
+On Thu, Mar 09, 2023 at 03:22:08PM +0100, Jerome Brunet wrote:
 > 
-> On Mon 06 Mar 2023 at 23:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> On Mon 06 Mar 2023 at 22:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 > 
-> > On Mon, Mar 06, 2023 at 12:17:23PM +0100, Jerome Brunet wrote:
+> > Hello Jerome,
+> >
+> > Thanks a lot for such detailed review. Please find my comments and
+> > thoughts below.
+> >
+> > On Mon, Mar 06, 2023 at 12:38:22PM +0100, Jerome Brunet wrote:
 > >> 
 > >> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 > >> 
-> >> > Introduce PLL clock controller for Amlogic A1 SoC family.
+> >> > Introduce Peripherals clock controller for Amlogic A1 SoC family.
 > >> >
 > >> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > >> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-
-[...]
-
+> >
+> > [...]
+> >
+> >> > +static struct clk_regmap dspa_a_sel = {
+> >> > +	.data = &(struct clk_regmap_mux_data){
+> >> > +		.offset = DSPA_CLK_CTRL0,
+> >> > +		.mask = 0x7,
+> >> > +		.shift = 10,
+> >> > +		.table = mux_table_dsp_ab,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data){
+> >> > +		.name = "dspa_a_sel",
+> >> > +		.ops = &clk_regmap_mux_ops,
+> >> > +		.parent_data = dsp_ab_parent_data,
+> >> > +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
+> >> > +		/* DSPA_A clk parent should be set statically from dt */
+> >> > +		.flags = CLK_SET_RATE_NO_REPARENT,
 > >> > +	},
 > >> > +};
 > >> > +
-> >> > +static const struct pll_mult_range hifi_pll_mult_range = {
-> >> > +	.min = 32,
-> >> > +	.max = 64,
+> >> > +static struct clk_regmap dspa_a_div = {
+> >> > +	.data = &(struct clk_regmap_div_data){
+> >> > +		.offset = DSPA_CLK_CTRL0,
+> >> > +		.shift = 0,
+> >> > +		.width = 10,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data){
+> >> > +		.name = "dspa_a_div",
+> >> > +		.ops = &clk_regmap_divider_ops,
+> >> > +		.parent_hws = (const struct clk_hw *[]) {
+> >> > +			&dspa_a_sel.hw
+> >> > +		},
+> >> > +		.num_parents = 1,
+> >> > +		.flags = CLK_SET_RATE_PARENT,
+> >> > +	},
 > >> > +};
 > >> > +
-> >> > +static const struct reg_sequence hifi_init_regs[] = {
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+> >> > +static struct clk_regmap dspa_a = {
+> >> > +	.data = &(struct clk_regmap_gate_data){
+> >> > +		.offset = DSPA_CLK_CTRL0,
+> >> > +		.bit_idx = 13,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data) {
+> >> > +		.name = "dspa_a",
+> >> > +		.ops = &clk_regmap_gate_ops,
+> >> > +		.parent_hws = (const struct clk_hw *[]) {
+> >> > +			&dspa_a_div.hw
+> >> > +		},
+> >> > +		.num_parents = 1,
+> >> > +		/*
+> >> > +		 * DSPA_A accelerator clk, cannot be disabled by CCF if it
+> >> > +		 * has been set by bootloader
 > >> 
-> >> This last poke should not bits otherwise handled by parms.
-> >> This is a rate init in disguise.
-> >> 
+> >> Then IGNORE_UNUSED is wrong. use RO ops with you must retain the
+> >> bootloader config.
 > >
-> > I believe, you are talking about hifi_pll clk_regmap conflicts with
-> > hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
-> > it doesn't touch them (we assume that default bit values are all zero):
-> >
-> >     .en = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 28,
-> >         .width   = 1,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // en_mask    = 0x10000000
-> >
-> >     .m = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 0,
-> >         .width   = 8,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // m_mask     = 0x0000000f
+> > I thought UNUSED logic will disable 'unused' clock during
+> > initialization. Or do you mean it's not relevant for ro ops clock,
+> > because disable() callback is not defined?
 > 
-> mask is 0xff with width 8
+> It does. It does no prevent a disable if the clock is enabled then
+> disabled. So what is here works as long as no driver touches this
+> clock. In such case you are better off with RO ops.
 > 
 
-Ah, you're right. Anyway, I think this is just init value and it's okay
-to set it during initialization and rewrite after in parameter
-propagation stage.
+Okay. But for dspX clocks I'm going to listen to your suggestion and
+leave this out with default parameters.
 
 > >
-> >     .n = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 10,
-> >         .width   = 5,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // n_mask     = 0x00007c00
-> >                            ^
-> >                     oops, one overlap
-> >                     but why we can't set init value for pre_sel?
+> >> 
+> >> Note that it is usually a bad idea to depend on the bootloader config.
+> >> Things tends to go bad when other bootloader version join the fun, like
+> >> upstream u-boot
 > >
-> >     .frac = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL1,
-> >         .shift   = 0,
-> >         .width   = 19,
-> >     },
-> >     // init_value = 0x01800000
-> >     // frac_mask  = 0x0007ffff
+> > To be honest, I don't have the ability to test such behavior on our side,
+> > because in my hands I have SoC SKUs w/o DSP only.
+> 
+> Then maybe you should leave these clocks out for now.
+> 
+
+Sure, agree.
+
+> > But theoretically DSP FW can be started already from the bootloader, and
+> > then we shouldn't touch this clock.
+> 
+> In theory the bootloader can do it all, why bother booting linux ... :P
+> 
+
+Exactly! It depends on your goals and motivation :-)
+
+> > May be CCF has device tree tricks to solve such situations, don't know
+> > actually. On the other hand, appropriate driver logic would be a nice
+> > exit here.
+> 
+> If you have a DSP, it is likely to have something to communicate with
+> the OS at some point, or at least monitor. Such driver would need to
+> handle to clocks properly.
+> 
+> Since you can test this, I strongly suggest to leave this out for now.
+> 
+
+Okay, it's the best decision in such situation.
+
 > >
-> >     .current_en = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 26,
-> >         .width   = 1,
-> >     },
-> >     // init_value      = 0x01f18440
-> >     // current_en_mask = 0x04000000
+> > [...]
 > >
-> >     .l_detect = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL2,
-> >         .shift   = 6,
-> >         .width   = 1,
-> >     },
-> >     // init_value    = 0x00001100
-> >     // l_detect_mask = 0x00000040
+> >> > +static struct clk_regmap dspa_en_nic = {
+> >> > +	.data = &(struct clk_regmap_gate_data){
+> >> > +		.offset = DSPA_CLK_EN,
+> >> > +		.bit_idx = 0,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data) {
+> >> > +		.name = "dspa_en_nic",
+> >> > +		.ops = &clk_regmap_gate_ops,
+> >> > +		.parent_hws = (const struct clk_hw *[]) {
+> >> > +			&dspa_sel.hw
+> >> > +		},
+> >> > +		.num_parents = 1,
+> >> > +		/*
+> >> > +		 * DSPA_EN_NIC accelerator clk, cannot be disabled by CCF if it
+> >> > +		 * has been set by bootloader
+> >> > +		 */
+> >> > +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> >> 
+> >> All this just highlight the lack of proper drivers to handle the clock,
+> >> like remote proc one.
+> >> 
 > >
+> > Okay, let's imagine we have such a driver. If DSP is already running,
+> > we can skip the clock setup on this driver side. Hmmm. It looks like
+> > a proper solution...
+> >
+> > I would prefer to tag it with TODO and mark DSP clocks with ro_ops till
+> > we don't have such a driver.
+> >
+> > [...]
+> >
+> >> > +
+> >> > +static struct clk_regmap fclk_div2_divn = {
+> >> > +	.data = &(struct clk_regmap_gate_data){
+> >> > +		.offset = CLK12_24_CTRL,
+> >> > +		.bit_idx = 12,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data){
+> >> > +		.name = "fclk_div2_divn",
+> >> > +		.ops = &clk_regmap_gate_ops,
+> >> > +		.parent_hws = (const struct clk_hw *[]) {
+> >> > +			&fclk_div2_divn_pre.hw
+> >> > +		},
+> >> > +		.num_parents = 1,
+> >> > +		.flags = CLK_SET_RATE_PARENT,
+> >> > +	},
 > >> > +};
 > >> > +
-> >> > +static struct clk_regmap hifi_pll = {
-> >> > +	.data = &(struct meson_clk_pll_data){
-> >> > +		.en = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 28,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.m = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 0,
-> >> > +			.width   = 8,
-> >> > +		},
-> >> > +		.n = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 10,
-> >> > +			.width   = 5,
-> >> > +		},
-> >> > +		.frac = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
-> >> > +			.shift   = 0,
-> >> > +			.width   = 19,
-> >> > +		},
-> >> > +		.l = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_STS,
-> >> > +			.shift   = 31,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.current_en = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 26,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.l_detect = {
+> >> > +/*
+> >> > + * the index 2 is sys_pll_div16, it will be completed in the CPU clock ctrl,
 > >> 
-> >> What is this ?
+> >> I don't get this, what do you mean ? 
 > >> 
 > >
-> > Lock detection module.
+> > I mean, it will be implemented in the CPU clock controller driver in the
+> > next patch series. Agree, I have to make a rephrase.
 > >
-> > This is IP module included to new PLL power-on sequence. From clk-pll.c
-> > patchset:
+> >> > + * the index 4 is the clock measurement source, it relies on
+> >> > + * the clock measurement register configuration.
+> >> 
+> >> Obviously ... What mean here is that clock measurement is a debug
+> >> feature and should be considered
+> >> 
+> 
+> Arff sorry, "should *NOT* be considered"
+> 
+
+Yep, in the current patch (and at all I suppose) it should not be
+considered. But IMHO I need to comment out why index 4 is missing.
+
+> >
+> > Should I mark it with TODO tag? I prefer to implement 'must have' logic
+> > first. Clock measurement are optional from my point of view.
+> >
+> > [...]
+> >
+> >> > +static struct clk_regmap pwm_a = {
+> >> > +	.data = &(struct clk_regmap_gate_data){
+> >> > +		.offset = PWM_CLK_AB_CTRL,
+> >> > +		.bit_idx = 8,
+> >> > +	},
+> >> > +	.hw.init = &(struct clk_init_data) {
+> >> > +		.name = "pwm_a",
+> >> > +		.ops = &clk_regmap_gate_ops,
+> >> > +		.parent_hws = (const struct clk_hw *[]) {
+> >> > +			&pwm_a_div.hw
+> >> > +		},
+> >> > +		.num_parents = 1,
+> >> > +		/*
+> >> > +		 * The CPU working voltage is controlled by pwm_a
+> >> > +		 * in BL2 firmware. The clock is required by the platform
+> >> > +		 * to operate correctly. Add the CLK_IS_CRITICAL flag to
+> >> > +		 * avoid changing at runtime.
+> >> > +		 * About critical, refer to sys
+> >> > +		 */
+> >> 
+> >> PWM_A required by the BL2 ... really ? Looks really fishy to me.
+> >> 
+> >> Is it possible it is used by regulator instead ?
+> >> 
+> >
+> > Honestly, this comment's information was grabbed from Amlogic custom
+> > driver. It has such words:
 > >
 > > /*
-> >  * Compared with the previous SoCs, self-adaption current module
-> >  * is newly added for A1, keep the new power-on sequence to enable the
-> >  * PLL. The sequence is:
-> >  * 1. enable the pll, delay for 10us
-> >  * 2. enable the pll self-adaption current module, delay for 40us
-> >  * 3. enable the lock detect module
+> >  * add CLK_IGNORE_UNUSED flag for pwm controller GATE
+> >  * clk core will disable unused clock, it may disable
+> >  * vddcore voltage which contrlled by one pwm in bl21.
+> >  * add the flag to avoid changing cpu voltage.
 > >  */
+> >
+> > We don't have bl21 source code in the hands, so I can't check
+> > unfortunately. But I have no reasons to don't trust Amlogic custom
+> > clk driver decisions about low level bootloaders roles.
 > 
-> Ok. I missed this is the PLL driver
+> So it is a regulator. Not the BL2(1)
+> 
+> There are several reasons why this is wrong:
+> * CLK_IGNORE_UNUSED would be wrong for reasons I already mentionned
+> * CLK_SET_RATE_PARENT | CLK_IS_CRITICAL is not great either because
+>   nothing prevents the rate to be changed to an absurdly low value, which
+>   would not go well with a DVFS PWM.
+> * This bakes power contraints specific to your board in the SoC clock
+>   controller. Another board, another BL21 could have different
+>   contraints. We can't lock all PWM clock sources. This is not
+>   appropriate.
+> 
+> You need to properly describe your regualtors in DT.
 > 
 
-No problem.
+I've got deeper and checked other board configurations. Now I see what
+you mean. Voltage regulations should happen using vddcpu driver and pwm
+clk is used to control core voltage. Thank you for pointing me to this
+architecture problem.
+In the next patch I will change pwm_a flags to the default value with
+CLK_SET_RATE_PARENT.
 
 [...]
 
