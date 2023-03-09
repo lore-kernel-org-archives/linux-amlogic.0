@@ -4,84 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0782EC64EC4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 14:44:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E27DBC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 15:26:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IoXhSZ6ZyW37BfOfCpPebq2/gHw5HiqgtIzzRYHaZ2I=; b=klaUCZX8qdy0rm
-	TP7/0aNhE7sQ4vp+l0kI4zb1qJ+QTqwfbF75eJK4kNuFB59qUOG5FGuXgV9kz6R3aLalmWDXksMzc
-	nytLR2h1v+2mVCFwLxpgrBCrKgxIpt4weYua1+Zsgz8FTzJ1ZHjPz3QbIoIp1VluojlOC5a/ABUUd
-	2uaH4j7sOvnBX+Hwn+s5NCJjR3F3AOQ0Ea956CC8grWvjo8JDzrt/UKD/lq8bhuDMkJmWV9LhYLQd
-	x4zLzCJFCIvY8xZpbsF24Uf1hMHxylwa2I+4ceAsxf5mhy0sZg57dmgAp53dJZJDnZv6qR/c549As
-	d6MRbSSkzjcnsQSG/h6w==;
+	List-Owner; bh=yjM5+D7kyoE41BLQLPBG0Mrid8+hZn90HfN2HThnetY=; b=OoqRx7VjxaRrET
+	GfHHlXKYCfuUzPLi+GcTQbY1nzYzWxOOQKvr2APkciM01MtuqFX1rJO/3KXn/YjTV2uIhuV+Okd4I
+	FtUcgP0ybjEe0tMSwsVBZd+25Dg2s4+G2VuiYiNrvl+Z22rYPUdekpTrz3E3qUnU7WIIpHKFlBg+u
+	6eNN+AMpFe3UlFb7znXt1vFQLjffwvu0rQborXY9xLPHG3T151sD7hM2HK0iPQVOo/NR29pmeN4ZY
+	TezElalx3d6NzLEok5EpTgarfrKPl9DCmB9W4pPg99IaWtGJLoNf1iBmACNdGpOdip6dP0x5y/q4C
+	e1mqZYGgh/WYF5fWfckQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paHVY-00AdZ0-PE; Thu, 09 Mar 2023 14:44:40 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1paI9f-00At5J-P1; Thu, 09 Mar 2023 15:26:07 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paHU7-00AcdH-0k
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 14:43:13 +0000
-Received: by mail-wm1-x329.google.com with SMTP id p26so1306336wmc.4
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Mar 2023 06:43:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678372987;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0gj1G9cUcUIZ/a+kpKcCgPzLsFmLDLjCJhAsi47XLs=;
-        b=1Fk4F6F3ag7qaE7C4ql023KSpas6Bbillm4A3fFYoeC2LDAhbH1mvC+A0Il9qt+W8J
-         fMfaPt7vIa0hkIwrBufZ2S/9rvV0H/Qanq+g8yDU8ZYJ6KapnNMuz9jP/7efmeTOE+bm
-         KogUqS5ZYnxpRQB2P6Scxcgbf1UfaxzDLGL16ip0URyTdFKdJ4Zg3eTPmlChi/qdB9FG
-         1zXH3/jPKnU4yAkVTIqb4o0/7wAg0ekrl6n+88Zg0Z5K1sD0w1eGlhb7Jf5cO5sDxUfe
-         +ss6tKMXJYuHuTcrpd1AJWCgR/roD5hMjm0MGmtOYqNiq8PGKjmcHPluO6JvddZEcCKp
-         aUAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678372987;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q0gj1G9cUcUIZ/a+kpKcCgPzLsFmLDLjCJhAsi47XLs=;
-        b=lLqZtmhxTMTX1eOoIoQtfKOA/H9iapH0c7yQXFTUEz5fxoN4fJJAGgNCokBN2WPb+m
-         GuEeY4rpTWDZU0Y0tfDKclV3w73dBROH0HtqOjafwMLn7YsVKdoMa+Se1PIu273qiZwB
-         ox2KeD8jz12JNEvNlLjXL9tZAmmIrP4lu2xxjgo+qI9SPDuW0HYN2FH7XrMpp7pu906+
-         kjgwymbconL9TBuM3YF+YRsNR0KwHDWFUFUROLLjhJAb0fJVlDDpupM1yZtyYv5gqmX5
-         0C42Jh7q3+GlDIZ+GOX9wwXWWbfCaZ2PxFBTLaQpYB+syuzHT78k2zqreo1vE4h8W5xN
-         qA2Q==
-X-Gm-Message-State: AO0yUKW/A99H03iunR2YBLAjzJ28woSwydkFMnt64aj9wG+2r6ZsRi1D
-	NPXFq+c4r9xqYgGE9S2sQMfEBA==
-X-Google-Smtp-Source: AK7set8ArfCbj6486s273Ry+S4Gc7m3Z1lE13ELk+BWOmqUuT7//+LeeBL/rhwgneoZ9OZZK+JbCMQ==
-X-Received: by 2002:a05:600c:3544:b0:3e8:35a2:6abf with SMTP id i4-20020a05600c354400b003e835a26abfmr19132181wmq.23.1678372987571;
-        Thu, 09 Mar 2023 06:43:07 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id w17-20020adfd4d1000000b002c6d0462163sm18070580wrk.100.2023.03.09.06.43.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 06:43:07 -0800 (PST)
-References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-5-ddrokosov@sberdevices.ru>
- <1jilfeaync.fsf@starbuckisacylon.baylibre.com>
- <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: neil.armstrong@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com,
- jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 4/5] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-Date: Thu, 09 Mar 2023 15:22:08 +0100
-In-reply-to: <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
-Message-ID: <1jedpy0yv9.fsf@starbuckisacylon.baylibre.com>
+	id 1paHqm-00AmeT-38
+	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 15:06:40 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230309150627euoutp014371df3e2f7730a588ef61595f1a0226~KyJzxs_By0921309213euoutp01k
+	for <linux-amlogic@lists.infradead.org>; Thu,  9 Mar 2023 15:06:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230309150627euoutp014371df3e2f7730a588ef61595f1a0226~KyJzxs_By0921309213euoutp01k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1678374387;
+	bh=w/5ccIvt981fYFEPcr0iYcAkmWG0oM6tbsViHkMWFU0=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=JNNWxbYCYAXC+5WyQ9Dm3BaLAZny54F1j8Gp+GNi3hpV0ESDRRogNe7VY4gR3G2iq
+	 vr1iIOu5cBsDSxVvFeG9e9mQccgPL3ERfUPzPspaK9zS+qx+uw7HitpBHdDDUm69w3
+	 /n/+l63l8NmN011oZ0Xw296KkEp1nSBJRaeyKKBw=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20230309150627eucas1p1ae3ef499dde9be2d1ca8e9af31a8e3ce~KyJzek89w0761107611eucas1p1r;
+	Thu,  9 Mar 2023 15:06:27 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 67.13.09503.3F5F9046; Thu,  9
+	Mar 2023 15:06:27 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20230309150626eucas1p2db5b73ae3f8bb5595d3883818f374dab~KyJzKcChC1110911109eucas1p2w;
+	Thu,  9 Mar 2023 15:06:26 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20230309150626eusmtrp1bdf6347a949f66860b781a53d1ec68ee~KyJzJ2er81444414444eusmtrp1p;
+	Thu,  9 Mar 2023 15:06:26 +0000 (GMT)
+X-AuditID: cbfec7f2-ea5ff7000000251f-9a-6409f5f3f4fc
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id A4.CB.09583.2F5F9046; Thu,  9
+	Mar 2023 15:06:26 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20230309150626eusmtip100e9f38106b65078616812efe521a1ba~KyJygZGaH2475624756eusmtip1h;
+	Thu,  9 Mar 2023 15:06:26 +0000 (GMT)
+Message-ID: <098ef3a5-937c-e094-7aa5-6ed4955e2722@samsung.com>
+Date: Thu, 9 Mar 2023 16:06:25 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
+	Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*()
+ conversion
+Content-Language: en-US
+To: =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+	Matti Vaittinen <mazziesaccount@gmail.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+	<jbrunet@baylibre.com>, Mark Brown <broonie@kernel.org>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20230309085501.et7ngd32u25befqu@rcn-XPS-13-9305>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMKsWRmVeSWpSXmKPExsWy7djPc7qfv3KmGMxZyWlx4voiJoupD5+w
+	WfzfNpHZ4srX92wWbx4dYbb42b6FyWLBbG6LY4tOsljMWXqCxeL9zluMFv+Ofmd24PZ4f6OV
+	3WPH3SWMHnu/LWDx2DnrLrvH0wmT2T02repk87hzbQ+bx/3u40wem5fUB3BGcdmkpOZklqUW
+	6dslcGW0tW9lL5jBV7F01mumBsYX3F2MnBwSAiYSt972sHQxcnEICaxglJja+pAZwvnCKHHw
+	2jJGkCohgc+MEnc/RcF0zN9wjAmiaDmjxLzVFxkhnI+MEv3b1rJ3MXJw8ArYSXyYlgvSwCKg
+	IvF89ipmEJtXQFDi5MwnLCC2qECKxI7zu8HKhQXCJR78DwYJMwuIS9x6Mp8JxBYRcJFY9G0N
+	K8h4ZoGJzBJzF55hA0mwCRhKdL3tArM5gVat7b3ADtEsL9G8dTbYBxICszklFn0+yQJxtYvE
+	ikU3oWxhiVfHt7BD2DISpydD/C8h0M4oseD3fSYIZwKjRMPzW4wQVdYSd879YgM5lVlAU2L9
+	Ln0QU0LAUWLCjEIIk0/ixltBiBv4JCZtm84MEeaV6GgTgpihJjHr+Dq4rQcvXGKewKg0CylU
+	ZiF5fxaSb2YhrF3AyLKKUTy1tDg3PbXYMC+1XK84Mbe4NC9dLzk/dxMjMJ2d/nf80w7Gua8+
+	6h1iZOJgPMQowcGsJML7XYojRYg3JbGyKrUoP76oNCe1+BCjNAeLkjivtu3JZCGB9MSS1OzU
+	1ILUIpgsEwenVAOTGdvXL5Ouvsk79ycq7ExuflOVeJV93q5PHpsmhbFWViys2F/TpKTxrjxw
+	YXmapGAR9yvD9Utjzy0w1Zj69bgxy9GSqbr2c5d+c+DorlupOZtv1wWppZXvLYOPL2/m893z
+	2TRFsHfrYuutrREuT2K3Hz7o1Fx+wn2/wYfd3c01q5x+7da8XFnX9Ijv45ZHWp2iCg9lGPMa
+	T9z+/9R6gsK8L+e8qqU8c7VaVKY4eyz2VJazylm35P/O5lCBs+KecVGrOlrOZuzXCT/XXi9S
+	aaWvlLF3OWu+5tGYmEtpPTsO8DjY9zi9q94jovlDizH89d2a5Bd18rFsl1fVvmY1XKd6Vqdg
+	xqV9jNcWB695tV2JpTgj0VCLuag4EQCEV1vt1gMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsVy+t/xu7qfvnKmGCz5rG9x4voiJoupD5+w
+	WfzfNpHZ4srX92wWbx4dYbb42b6FyWLBbG6LY4tOsljMWXqCxeL9zluMFv+Ofmd24PZ4f6OV
+	3WPH3SWMHnu/LWDx2DnrLrvH0wmT2T02repk87hzbQ+bx/3u40wem5fUB3BG6dkU5ZeWpCpk
+	5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp29mkpOZklqUW6dsl6GW0tW9lL5jBV7F01mum
+	BsYX3F2MnBwSAiYS8zccY+pi5OIQEljKKLHwyhUWiISMxMlpDawQtrDEn2tdbBBF7xkltnZf
+	Y+9i5ODgFbCT+DAtF6SGRUBF4vnsVcwgNq+AoMTJmU9YQEpEBVIkZnfpgJjCAuESD/4Hg1Qw
+	C4hL3HoynwnEFhFwkVj0bQ0ryHRmgcnMEv++n2OHWHWUUaJn+Ts2kCo2AUOJrrddYDYn0Nq1
+	vRfYISaZSXRt7WKEsOUlmrfOZp7AKDQLyRmzkCychaRlFpKWBYwsqxhFUkuLc9Nzi430ihNz
+	i0vz0vWS83M3MQIjeNuxn1t2MK589VHvECMTB+MhRgkOZiUR3u9SHClCvCmJlVWpRfnxRaU5
+	qcWHGE2BYTGRWUo0OR+YQvJK4g3NDEwNTcwsDUwtzYyVxHk9CzoShQTSE0tSs1NTC1KLYPqY
+	ODilGpi8gl7asTYvbzj4+7v6s59rBfosE5wl9kZ9eLRZdGW6ONPhH8FxeksignoOL9p/LnZX
+	u5xkETPnLEVR6xoxvxfGDXt6D+668VGAq+X9JWHeR90hx6QjoqSOrBdqjBf72y4obLUhnpk3
+	py/w9/PfU6fU+IjfKfY4riJ2PjKd/bnOeUXh9lbNJ7WiprfcLt/idX6uzO1QuPs/z7P1UVfa
+	L04MOR0xX36lVMRapWVSr6p0uZLc1ifcXbP8xHvdeSe/vOe9neNowaWw89Lz107nXtjG8z7r
+	Dv4XkjyHcd/0OV7vQ9zvpx7Zf1w+6OJqny0CMep7HwQ3zhVOM4yo8pQPu+0XYrAtQC3a2WDb
+	q/6kTCWW4oxEQy3mouJEAAqTGK5pAwAA
+X-CMS-MailID: 20230309150626eucas1p2db5b73ae3f8bb5595d3883818f374dab
+X-Msg-Generator: CA
+X-RootMTR: 20230109220056eucas1p26418012878272961a3a21a365192ef60
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230109220056eucas1p26418012878272961a3a21a365192ef60
+References: <CGME20230109220056eucas1p26418012878272961a3a21a365192ef60@eucas1p2.samsung.com>
+	<20230109220033.31202-1-m.szyprowski@samsung.com>
+	<20230309085501.et7ngd32u25befqu@rcn-XPS-13-9305>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_064311_088393_0E0E700E 
-X-CRM114-Status: GOOD (  49.66  )
+X-CRM114-CacheID: sfid-20230309_070636_439291_E99E6577 
+X-CRM114-Status: GOOD (  16.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,293 +132,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Mon 06 Mar 2023 at 22:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-
-> Hello Jerome,
->
-> Thanks a lot for such detailed review. Please find my comments and
-> thoughts below.
->
-> On Mon, Mar 06, 2023 at 12:38:22PM +0100, Jerome Brunet wrote:
->> 
->> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
->> 
->> > Introduce Peripherals clock controller for Amlogic A1 SoC family.
->> >
->> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->
-> [...]
->
->> > +static struct clk_regmap dspa_a_sel = {
->> > +	.data = &(struct clk_regmap_mux_data){
->> > +		.offset = DSPA_CLK_CTRL0,
->> > +		.mask = 0x7,
->> > +		.shift = 10,
->> > +		.table = mux_table_dsp_ab,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "dspa_a_sel",
->> > +		.ops = &clk_regmap_mux_ops,
->> > +		.parent_data = dsp_ab_parent_data,
->> > +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
->> > +		/* DSPA_A clk parent should be set statically from dt */
->> > +		.flags = CLK_SET_RATE_NO_REPARENT,
->> > +	},
->> > +};
->> > +
->> > +static struct clk_regmap dspa_a_div = {
->> > +	.data = &(struct clk_regmap_div_data){
->> > +		.offset = DSPA_CLK_CTRL0,
->> > +		.shift = 0,
->> > +		.width = 10,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "dspa_a_div",
->> > +		.ops = &clk_regmap_divider_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&dspa_a_sel.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		.flags = CLK_SET_RATE_PARENT,
->> > +	},
->> > +};
->> > +
->> > +static struct clk_regmap dspa_a = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = DSPA_CLK_CTRL0,
->> > +		.bit_idx = 13,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data) {
->> > +		.name = "dspa_a",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&dspa_a_div.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * DSPA_A accelerator clk, cannot be disabled by CCF if it
->> > +		 * has been set by bootloader
->> 
->> Then IGNORE_UNUSED is wrong. use RO ops with you must retain the
->> bootloader config.
->
-> I thought UNUSED logic will disable 'unused' clock during
-> initialization. Or do you mean it's not relevant for ro ops clock,
-> because disable() callback is not defined?
-
-It does. It does no prevent a disable if the clock is enabled then
-disabled. So what is here works as long as no driver touches this
-clock. In such case you are better off with RO ops.
-
->
->> 
->> Note that it is usually a bad idea to depend on the bootloader config.
->> Things tends to go bad when other bootloader version join the fun, like
->> upstream u-boot
->
-> To be honest, I don't have the ability to test such behavior on our side,
-> because in my hands I have SoC SKUs w/o DSP only.
-
-Then maybe you should leave these clocks out for now.
-
-> But theoretically DSP FW can be started already from the bootloader, and
-> then we shouldn't touch this clock.
-
-In theory the bootloader can do it all, why bother booting linux ... :P
-
-> May be CCF has device tree tricks to solve such situations, don't know
-> actually. On the other hand, appropriate driver logic would be a nice
-> exit here.
-
-If you have a DSP, it is likely to have something to communicate with
-the OS at some point, or at least monitor. Such driver would need to
-handle to clocks properly.
-
-Since you can test this, I strongly suggest to leave this out for now.
-
->
-> [...]
->
->> > +static struct clk_regmap dspa_en_nic = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = DSPA_CLK_EN,
->> > +		.bit_idx = 0,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data) {
->> > +		.name = "dspa_en_nic",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&dspa_sel.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * DSPA_EN_NIC accelerator clk, cannot be disabled by CCF if it
->> > +		 * has been set by bootloader
->> > +		 */
->> > +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> 
->> All this just highlight the lack of proper drivers to handle the clock,
->> like remote proc one.
->> 
->
-> Okay, let's imagine we have such a driver. If DSP is already running,
-> we can skip the clock setup on this driver side. Hmmm. It looks like
-> a proper solution...
->
-> I would prefer to tag it with TODO and mark DSP clocks with ro_ops till
-> we don't have such a driver.
->
-> [...]
->
->> > +
->> > +static struct clk_regmap fclk_div2_divn = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = CLK12_24_CTRL,
->> > +		.bit_idx = 12,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "fclk_div2_divn",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&fclk_div2_divn_pre.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		.flags = CLK_SET_RATE_PARENT,
->> > +	},
->> > +};
->> > +
->> > +/*
->> > + * the index 2 is sys_pll_div16, it will be completed in the CPU clock ctrl,
->> 
->> I don't get this, what do you mean ? 
->> 
->
-> I mean, it will be implemented in the CPU clock controller driver in the
-> next patch series. Agree, I have to make a rephrase.
->
->> > + * the index 4 is the clock measurement source, it relies on
->> > + * the clock measurement register configuration.
->> 
->> Obviously ... What mean here is that clock measurement is a debug
->> feature and should be considered
->> 
-
-Arff sorry, "should *NOT* be considered"
-
->
-> Should I mark it with TODO tag? I prefer to implement 'must have' logic
-> first. Clock measurement are optional from my point of view.
->
-> [...]
->
->> > +static struct clk_regmap pwm_a = {
->> > +	.data = &(struct clk_regmap_gate_data){
->> > +		.offset = PWM_CLK_AB_CTRL,
->> > +		.bit_idx = 8,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data) {
->> > +		.name = "pwm_a",
->> > +		.ops = &clk_regmap_gate_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&pwm_a_div.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * The CPU working voltage is controlled by pwm_a
->> > +		 * in BL2 firmware. The clock is required by the platform
->> > +		 * to operate correctly. Add the CLK_IS_CRITICAL flag to
->> > +		 * avoid changing at runtime.
->> > +		 * About critical, refer to sys
->> > +		 */
->> 
->> PWM_A required by the BL2 ... really ? Looks really fishy to me.
->> 
->> Is it possible it is used by regulator instead ?
->> 
->
-> Honestly, this comment's information was grabbed from Amlogic custom
-> driver. It has such words:
->
-> /*
->  * add CLK_IGNORE_UNUSED flag for pwm controller GATE
->  * clk core will disable unused clock, it may disable
->  * vddcore voltage which contrlled by one pwm in bl21.
->  * add the flag to avoid changing cpu voltage.
->  */
->
-> We don't have bl21 source code in the hands, so I can't check
-> unfortunately. But I have no reasons to don't trust Amlogic custom
-> clk driver decisions about low level bootloaders roles.
-
-So it is a regulator. Not the BL2(1)
-
-There are several reasons why this is wrong:
-* CLK_IGNORE_UNUSED would be wrong for reasons I already mentionned
-* CLK_SET_RATE_PARENT | CLK_IS_CRITICAL is not great either because
-  nothing prevents the rate to be changed to an absurdly low value, which
-  would not go well with a DVFS PWM.
-* This bakes power contraints specific to your board in the SoC clock
-  controller. Another board, another BL21 could have different
-  contraints. We can't lock all PWM clock sources. This is not
-  appropriate.
-
-You need to properly describe your regualtors in DT.
-
->
-> [...]
->
->> > +static int meson_a1_periphs_probe(struct platform_device *pdev)
->> > +{
->> > +	struct device *dev = &pdev->dev;
->> > +	struct clk_hw *hw;
->> > +	void __iomem *base;
->> > +	struct regmap *map;
->> > +	int clkid, i, err;
->> > +
->> > +	base = devm_platform_ioremap_resource(pdev, 0);
->> > +	if (IS_ERR(base))
->> > +		return dev_err_probe(dev, PTR_ERR(base),
->> > +				     "can't ioremap resource\n");
->> > +
->> > +	map = devm_regmap_init_mmio(dev, base, &a1_periphs_regmap_cfg);
->> > +	if (IS_ERR(map))
->> > +		return dev_err_probe(dev, PTR_ERR(map),
->> > +				     "can't init regmap mmio region\n");
->> > +
->> > +	/* Populate regmap for the regmap backed clocks */
->> > +	for (i = 0; i < ARRAY_SIZE(a1_periphs_regmaps); i++)
->> > +		a1_periphs_regmaps[i]->map = map;
->> > +
->> > +	for (clkid = 0; clkid < a1_periphs_hw_onecell_data.num; clkid++) {
->> > +		hw = a1_periphs_hw_onecell_data.hws[clkid];
->> > +		err = devm_clk_hw_register(dev, hw);
->> > +		if (err)
->> > +			return dev_err_probe(dev, err,
->> > +					     "clock registration failed\n");
->> > +	}
->> > +
->> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
->> > +					   &a1_periphs_hw_onecell_data);
->> > +}
->> > +
->> > +#ifdef CONFIG_OF
->> 
->> Same as the PLL driver
->> 
->
-> Sure, good point.
->
-> [...]
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgUmljYXJkbywKCk9uIDA5LjAzLjIwMjMgMDk6NTUsIFJpY2FyZG8gQ2HDsXVlbG8gd3JvdGU6
+Cj4gT24gbHVuIDA5LTAxLTIwMjMgMjM6MDA6MzMsIE1hcmVrIFN6eXByb3dza2kgd3JvdGU6Cj4+
+IGRldm1fcmVndWxhdG9yX2dldF9lbmFibGVfb3B0aW9uYWwoKSBmdW5jdGlvbiByZXR1cm5zIDAg
+b24gc3VjY2Vzcywgc28KPj4gdXNlIGl0IGZvciB0aGUgY2hlY2sgaWYgZnVuY3Rpb24gc3VjY2Vk
+ZWQgaW5zdGVhZCBvZiB0aGUgLUVOT0RFViB2YWx1ZS4KPj4KPj4gRml4ZXM6IDQyOWU4NzA2MzY2
+MSAoImRybS9tZXNvbjogZHctaGRtaTogVXNlIGRldm1fcmVndWxhdG9yXypnZXRfZW5hYmxlKigp
+IikKPj4gU2lnbmVkLW9mZi1ieTogTWFyZWsgU3p5cHJvd3NraSA8bS5zenlwcm93c2tpQHNhbXN1
+bmcuY29tPgo+PiAtLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5j
+IHwgMiArLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
+KQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMKPj4gaW5kZXggNzY0MmY3
+NDAyNzJiLi41MzQ2MjFhMTNhMzQgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNv
+bi9tZXNvbl9kd19oZG1pLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3
+X2hkbWkuYwo+PiBAQCAtNzE4LDcgKzcxOCw3IEBAIHN0YXRpYyBpbnQgbWVzb25fZHdfaGRtaV9i
+aW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLAo+PiAgIAlkd19w
+bGF0X2RhdGEgPSAmbWVzb25fZHdfaGRtaS0+ZHdfcGxhdF9kYXRhOwo+PiAgIAo+PiAgIAlyZXQg
+PSBkZXZtX3JlZ3VsYXRvcl9nZXRfZW5hYmxlX29wdGlvbmFsKGRldiwgImhkbWkiKTsKPj4gLQlp
+ZiAocmV0ICE9IC1FTk9ERVYpCj4+ICsJaWYgKHJldCA8IDApCj4+ICAgCQlyZXR1cm4gcmV0Owo+
+PiAgIAo+PiAgIAltZXNvbl9kd19oZG1pLT5oZG1pdHhfYXBiID0gZGV2bV9yZXNldF9jb250cm9s
+X2dldF9leGNsdXNpdmUoZGV2LAo+PiAtLSAKPj4gMi4zOS4wCj4gVGhpcyBwYXRjaCBzZWVtcyB0
+byBoYXZlIGNhdXNlZCAob3IgdW5jb3ZlcmVkKSBhIHJlZ3Jlc3Npb24gaW4gdGhlCj4gYm9vdHJy
+LmRlZmVycmVkLXByb2JlLWVtcHR5IHRlc3QgZm9yIG1lc29uLWcxMmEtc2VpNTEwLiBBcHBhcmVu
+dGx5LCB0aGlzCj4gY2F1c2VzIGEgZHJpdmVyIHRvIHN0YXkgaW4gdGhlIGRlZmVycmVkIHByb2Jl
+IGxpc3QgYWZ0ZXIgYm9vdC4KCkluZGVlZCBteSBmaXggY2F1c2VzIHJlZ3Jlc3Npb24gb24gdGhl
+IHBsYXRmb3JtLCB3aGljaCBkb2Vzbid0IGhhdmUgCiJoZG1pIiByZWd1bGF0b3IuIFRoYW5rcyBm
+b3IgcG9pbnRpbmcgdGhhdC4gSSB3YXMgcmVhbGx5IGNvbnZpbmNlZCB0aGF0IApkZXZtX3JlZ3Vs
+YXRvcl9nZXRfZW5hYmxlXypvcHRpb25hbCooKSByZXR1cm5zIDAgaWYgcmVxdWVzdGVkIHJlZ3Vs
+YXRvciAKaXMgbm90IHByZXNlbnQgKGFzICJfb3B0aW9uYWwiIHN1ZmZpeCBzdWdnZXN0cykuIFVu
+Zm9ydHVuYXRlbHkgaXQgCnJldHVybnMgLUVOT0RFViwgd2hhdCBicmVha3MgbWVzb25fZHdfaGRt
+aSBkcml2ZXIuIEkgd2lsbCBzZW5kIGEgZml4IGluIAphIGZldyBtaW51dGVzLgoKCkJlc3QgcmVn
+YXJkcwotLSAKTWFyZWsgU3p5cHJvd3NraSwgUGhEClNhbXN1bmcgUiZEIEluc3RpdHV0ZSBQb2xh
+bmQKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
+eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
+Cg==
