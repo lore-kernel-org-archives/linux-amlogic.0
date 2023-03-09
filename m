@@ -4,65 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D12F8C64EC4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 08:55:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38400C64EC4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Mar 2023 08:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9mYPsOn5g7rCYsvDy2ZO14oPPpDOjiNLTlSOsiqgGEo=; b=OreWdF0lRMxpk2
-	UsBlNjWfWfeLKZOQaf1bG2l5ZdEmK8/6I6fEcFj1yeVu3zOiiy5CJcE39vmECEtbeV/KLSfP7AkL4
-	Y4rS5Nt7r2QWshJ1xR5w8Zj1ThJZq0OrWI7Ca+L+1sifKmuiBMQbgTLKy94SZ1ZPBDHgS3j/EHFhU
-	Iyr9fi809wcr/ahaJOfoJPuIW5a6daVgsfzvX3HQuXKoHSy/ocrKZWDpkPXqfKDkKe9gynQrUBg2+
-	OEC0h9zJj4OsoFgOt/ZElf3fhhRaIiz2bREKeSdmF2G0m0omogJmbFBLnp0JtkRGjGPS4+gfiqYYv
-	AxkKIgy9mxizyLeZjXWg==;
+	List-Owner; bh=hD+ngNlgLkXC1RSQrv+fPrCYlNRGjy4ryydEe7kT6TM=; b=hdkzIhNVXlKIhO
+	3k9Pg1kz1lRbDfEajytSy6eAWeqnIkAlt+waGMt8ChKBnLjw6yZVinXjE0TyIcoD8TpQh+5QPwgNX
+	7HH+NJvkRaMFCfWWGCJ6hUJZRjgkBLuUqs/5e4q2dqPHhdr9bBC1zeVUaGxKmjvz/UFO38maxWudP
+	EttPxuGl7PHz/P3klSLviuWtWA7gWLLY+d2htdJxog2KoNy19n5F/GEaa5YQCV03t92wkslStTGFN
+	ta48tuMUx2pL9fsMHlg2r89SrBwCRQ2+ra3ljY5NtjGyx3k/8Krnb+NqRjev1SaeQZVFm5qgl988S
+	Q8AoIwkPuEzIDE11hDHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paC3P-008esf-6m; Thu, 09 Mar 2023 08:55:15 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1paC4w-008fGv-5k; Thu, 09 Mar 2023 08:56:50 +0000
+Received: from relay6-d.mail.gandi.net ([217.70.183.198])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paC3L-008epY-Jb
-	for linux-amlogic@lists.infradead.org; Thu, 09 Mar 2023 08:55:14 +0000
-Received: from localhost (unknown [213.194.153.37])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: rcn)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 98FF76601F5E;
-	Thu,  9 Mar 2023 08:55:05 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1678352105;
-	bh=nYgiFa82gCCufozEGyI2yeBaToeM51OP28Sx8fZOeAE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QV4JHmn5M85iK+ZCjqmuYiiqfnjT6etGBsizyuqaq/30OIxCq8DXBStNapKcthdHy
-	 /aastzkIOi2JuKNRZ2r0Y+PcDUF3JlzAUiBZc3lT+WP3MgqAT0ht8fAJPfQOX1QHEQ
-	 +6kEnEZDz168h8uQN8+wxx5Iyo9o1g9Dxs9MtB6s5Q3wHjo4lNeBLqnPVMBgyh1rfU
-	 CEDkH84ekfmtssYum8UWxY9ot6mlzJRAGB4S36hw+v+hBzcse7RBbfR0cILlQlqv3T
-	 Xsh8FH6cKGQV+5diqMhLdZDM2rcl7JjiOMsIh+eN05UVfO4CadiAUSRWKtKgH++VST
-	 QZ2y45vyLgO7w==
-Date: Thu, 9 Mar 2023 09:55:01 +0100
-From: Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*()
- conversion
-Message-ID: <20230309085501.et7ngd32u25befqu@rcn-XPS-13-9305>
-References: <CGME20230109220056eucas1p26418012878272961a3a21a365192ef60@eucas1p2.samsung.com>
- <20230109220033.31202-1-m.szyprowski@samsung.com>
+	id 1paC4r-008fE8-AW; Thu, 09 Mar 2023 08:56:48 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 0DF70C000C;
+	Thu,  9 Mar 2023 08:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1678352200;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OsU9P3Ur2VchpA2JUh4YcUF6jVWgdCHPblwwuyxuAmM=;
+	b=EW5TlrV4CQ9Mmh3SXctNaJ3E6vLQDFLpT6USUszQ40PiT/G/H4kAE2HOo8ELaXuTkQPE/7
+	PtSBDFGEz5+owBxACqFApT/rEhZ1UxHqNQ0JeqAu7Y49D+uyNiZTkb/3qaS0KlqJ0+rphE
+	qIHERnL/qjJdmjUuJZSbLAMEw5XPfRTXbqn2KpThaanjWeSO5BLuTHqBXNc78c2T3tDPoq
+	gxPCqP0Lav/+NoCIm4vbutUJeL5h6HwWDWnvPFToYQgPMhmyieIQfmBLWAYQ3xf2jWpDDV
+	cBud8//oMxWBO+HUTDJcrxne728LVfY0Y7zyx0qQ98HvdR1wEinFBBmNGtj0Cg==
+Date: Thu, 9 Mar 2023 09:56:31 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Hector Martin <marcan@marcan.st>,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Claudiu Beznea
+ <claudiu.beznea@microchip.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy
+ Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad
+ Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>, Orson
+ Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Vincent Shih <vincent.sunplus@gmail.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Kunihiko Hayashi
+ <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Michal Simek <michal.simek@xilinx.com>, Alessandro Zummo
+ <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Evgeniy Polyakov <zbr@ioremap.net>, linux-mtd@lists.infradead.org,
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-rtc@vger.kernel.org
+Subject: Re: [PATCH V2] nvmem: add explicit config option to read OF fixed
+ cells
+Message-ID: <20230309095631.7b4f610e@xps-13>
+In-Reply-To: <af5dfd4701666d4ea50ec1015b1d2e5c@milecki.pl>
+References: <20230224072903.20945-1-zajec5@gmail.com>
+	<20230308173256.3837b87b@xps-13>
+	<91ff425b4c901648b1faf34c784f20ad@milecki.pl>
+	<20230308190636.7fabab9c@xps-13>
+	<5974d28426057975e701c4a8454b5a13@milecki.pl>
+	<20230308193121.7f5b3d02@xps-13>
+	<930f3549-440d-adac-ae9d-1aa6ef07c44b@gmail.com>
+	<20230309093415.2b1088c8@xps-13>
+	<af5dfd4701666d4ea50ec1015b1d2e5c@milecki.pl>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230109220033.31202-1-m.szyprowski@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_005512_047583_402F2E5F 
-X-CRM114-Status: GOOD (  19.80  )
+X-CRM114-CacheID: sfid-20230309_005645_655607_EB37E43B 
+X-CRM114-Status: GOOD (  50.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,163 +102,181 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Marek,
-
-On lun 09-01-2023 23:00:33, Marek Szyprowski wrote:
-> devm_regulator_get_enable_optional() function returns 0 on success, so
-> use it for the check if function succeded instead of the -ENODEV value.
-> 
-> Fixes: 429e87063661 ("drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()")
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->  drivers/gpu/drm/meson/meson_dw_hdmi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 7642f740272b..534621a13a34 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -718,7 +718,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
->  	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
->  
->  	ret = devm_regulator_get_enable_optional(dev, "hdmi");
-> -	if (ret != -ENODEV)
-> +	if (ret < 0)
->  		return ret;
->  
->  	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
-> -- 
-> 2.39.0
-
-This patch seems to have caused (or uncovered) a regression in the
-bootrr.deferred-probe-empty test for meson-g12a-sei510. Apparently, this
-causes a driver to stay in the deferred probe list after boot.
-
-The bisection was found on mainline/master. Here's the full report:
-
-
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-*                                                               *
-* If you do send a fix, please include this trailer:            *
-*   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
-*                                                               *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-mainline/master bisection: baseline.bootrr.deferred-probe-empty on meson-g12a-sei510
-
-Summary:
-  Start:      fe15c26ee26e Linux 6.3-rc1
-  Plain log:  https://storage.kernelci.org/mainline/master/v6.3-rc1/arm64/defconfig/clang-11/lab-baylibre/baseline-meson-g12a-sei510.txt
-  HTML log:   https://storage.kernelci.org/mainline/master/v6.3-rc1/arm64/defconfig/clang-11/lab-baylibre/baseline-meson-g12a-sei510.html
-  Result:     67d0a30128c9 drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       mainline
-  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-  Branch:     master
-  Target:     meson-g12a-sei510
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   clang-11
-  Config:     defconfig
-  Test case:  baseline.bootrr.deferred-probe-empty
-
-Breaking commit found:
-
--------------------------------------------------------------------------------
-commit 67d0a30128c9f644595dfe67ac0fb941a716a6c9
-Author: Marek Szyprowski <m.szyprowski@samsung.com>
-Date:   Mon Jan 9 23:00:33 2023 +0100
-
-    drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-    
-    devm_regulator_get_enable_optional() function returns 0 on success, so
-    use it for the check if function succeeded instead of the -ENODEV value.
-    
-    Fixes: 429e87063661 ("drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()")
-    Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-    Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-    Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-    [narmstrong: s/succeeded/succeeded/ in commit message]
-    Link: https://patchwork.freedesktop.org/patch/msgid/20230109220033.31202-1-m.szyprowski@samsung.com
-
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 7642f740272b..534621a13a34 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -718,7 +718,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
- 
- 	ret = devm_regulator_get_enable_optional(dev, "hdmi");
--	if (ret != -ENODEV)
-+	if (ret < 0)
- 		return ret;
- 
- 	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
--------------------------------------------------------------------------------
-
-
-Git bisection log:
-
--------------------------------------------------------------------------------
-git bisect start
-# good: [307e14c039063f0c9bd7a18a7add8f940580dcc9] Merge tag '6.3-rc-smb3-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
-git bisect good 307e14c039063f0c9bd7a18a7add8f940580dcc9
-# bad: [fe15c26ee26efa11741a7b632e9f23b01aca4cc6] Linux 6.3-rc1
-git bisect bad fe15c26ee26efa11741a7b632e9f23b01aca4cc6
-# bad: [693fed981eb9bf6e70bfda66bb872e2bb8155671] Merge tag 'char-misc-6.3-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
-git bisect bad 693fed981eb9bf6e70bfda66bb872e2bb8155671
-# bad: [b72b5fecc1b8a2e595bd03d7d257c88ea3f9fd45] Merge tag 'trace-v6.3' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
-git bisect bad b72b5fecc1b8a2e595bd03d7d257c88ea3f9fd45
-# bad: [7dd1be30f02f7115002fe00f1f6802bbcf79f857] Merge tag 'amd-drm-next-6.3-2023-01-20' of https://gitlab.freedesktop.org/agd5f/linux into drm-next
-git bisect bad 7dd1be30f02f7115002fe00f1f6802bbcf79f857
-# bad: [c37ea39c1fa880da0d7fd2c719e5c96be19f0fc5] Merge tag 'drm-misc-next-2023-01-12' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
-git bisect bad c37ea39c1fa880da0d7fd2c719e5c96be19f0fc5
-# good: [fe91e41a6170c9fd73fa0bf9a1a3f3cc6ee5c1d2] drm/format-helper: Remove unnecessary conversion helpers
-git bisect good fe91e41a6170c9fd73fa0bf9a1a3f3cc6ee5c1d2
-# good: [e045aec89d1b6cd677ec3e253d87f85d44b17559] drm/amd: Load GFX11 microcode during early_init
-git bisect good e045aec89d1b6cd677ec3e253d87f85d44b17559
-# bad: [9cce08cadc6ce8670280d0a042cf0b6d2987d9f9] drm/panel-edp: fix name for IVO product id 854b
-git bisect bad 9cce08cadc6ce8670280d0a042cf0b6d2987d9f9
-# good: [977374cf481d3bea916b2775e6ecc682b9689550] drm/vc4: plane: Add 3:3:2 and 4:4:4:4 RGB/RGBX/RGBA formats
-git bisect good 977374cf481d3bea916b2775e6ecc682b9689550
-# bad: [0e4dcffd331fa7d2a6ae628b51a7f418dfa90367] drm/panel: raspberrypi-touchscreen: Convert to i2c's .probe_new()
-git bisect bad 0e4dcffd331fa7d2a6ae628b51a7f418dfa90367
-# bad: [67d0a30128c9f644595dfe67ac0fb941a716a6c9] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
-git bisect bad 67d0a30128c9f644595dfe67ac0fb941a716a6c9
-# good: [771d6539f27bd55f43d8a95d53a7eeaaffa2681c] drm/vc4: hdmi: Correct interlaced timings again
-git bisect good 771d6539f27bd55f43d8a95d53a7eeaaffa2681c
-# good: [ef85db911134d103a7f713eae6689dbb15c3f96a] dt-bindings: display: panel: document the Visionox VTDR6130 AMOLED DSI Panel
-git bisect good ef85db911134d103a7f713eae6689dbb15c3f96a
-# good: [2349183d32d83a7635baa804934813bcad13fd62] drm/panel: add visionox vtdr6130 DSI panel driver
-git bisect good 2349183d32d83a7635baa804934813bcad13fd62
-# first bad commit: [67d0a30128c9f644595dfe67ac0fb941a716a6c9] drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
--------------------------------------------------------------------------------
-
-
--=-=-=-=-=-=-=-=-=-=-=-
-Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#38919): https://groups.io/g/kernelci-results/message/38919
-Mute This Topic: https://groups.io/mt/97420961/7285812
-Group Owner: kernelci-results+owner@groups.io
-Unsubscribe: https://groups.io/g/kernelci-results/unsub [ricardo.canuelo@collabora.com]
--=-=-=-=-=-=-=-=-=-=-=-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgUmFmYcWCLAoKcmFmYWxAbWlsZWNraS5wbCB3cm90ZSBvbiBUaHUsIDA5IE1hciAyMDIzIDA5
+OjM5OjU0ICswMTAwOgoKPiBPbiAyMDIzLTAzLTA5IDA5OjM0LCBNaXF1ZWwgUmF5bmFsIHdyb3Rl
+Ogo+ID4gSGkgUmFmYcWCLAo+ID4gCj4gPiB6YWplYzVAZ21haWwuY29tIHdyb3RlIG9uIFRodSwg
+OSBNYXIgMjAyMyAwNzo1NjowNSArMDEwMDoKPiA+ICAgCj4gPj4gT24gOC4wMy4yMDIzIDE5OjMx
+LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOiAgCj4gPj4gPiBIaSBSYWZhxYIsCj4gPj4gPgo+ID4+ID4g
+cmFmYWxAbWlsZWNraS5wbCB3cm90ZSBvbiBXZWQsIDA4IE1hciAyMDIzIDE5OjEyOjMyICswMTAw
+Ogo+ID4+ID4gIAo+ID4+ID4+IE9uIDIwMjMtMDMtMDggMTk6MDYsIE1pcXVlbCBSYXluYWwgd3Jv
+dGU6ICAKPiA+PiA+Pj4gSGkgUmFmYcWCLAo+ID4+ID4+Pgo+ID4+ID4+PiByYWZhbEBtaWxlY2tp
+LnBsIHdyb3RlIG9uIFdlZCwgMDggTWFyIDIwMjMgMTc6NTU6NDYgKzAxMDA6ICAKPiA+PiA+Pj4g
+ICAgPj4+PiBPbiAyMDIzLTAzLTA4IDE3OjM0LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOiAgCj4gPj4g
+Pj4+Pj4gSGkgUmFmYcWCLAo+ID4+ID4+Pj4+Cj4gPj4gPj4+Pj4gemFqZWM1QGdtYWlsLmNvbSB3
+cm90ZSBvbiBGcmksIDI0IEZlYiAyMDIzIDA4OjI5OjAzICswMTAwOiAgCj4gPj4gPj4+Pj4gICA+
+Pj4+Pj4gRnJvbTogUmFmYcWCIE1pxYJlY2tpIDxyYWZhbEBtaWxlY2tpLnBsPiAgCj4gPj4gPj4+
+Pj4+Pj4gTlZNRU0gc3Vic3lzdGVtIGxvb2tzIGZvciBmaXhlZCBOVk1FTSBjZWxscyAoc3BlY2lm
+aWVkIGluIERUKSBieSAgCj4gPj4gPj4+Pj4+IGRlZmF1bHQuIFRoaXMgYmVoYXZpb3VyIG1hZGUg
+c2Vuc2UgaW4gZWFybHkgZGF5cyBiZWZvcmUgYWRkaW5nIHN1cHBvcnQKPiA+PiA+Pj4+Pj4gZm9y
+IGR5bmFtaWMgY2VsbHMuICAKPiA+PiA+Pj4+Pj4+PiBXaXRoIGV2ZXJ5IG5ldyBzdXBwb3J0ZWQg
+TlZNRU0gZGV2aWNlIHdpdGggZHluYW1pYyBjZWxscyBjdXJyZW50ICAKPiA+PiA+Pj4+Pj4gYmVo
+YXZpb3VyIGJlY29tZXMgbm9uLW9wdGltYWwuIEl0IHJlc3VsdHMgaW4gdW5uZWVkZWQgaXRlcmF0
+aW5nIG92ZXIgPj4gRFQKPiA+PiA+Pj4+Pj4gbm9kZXMgYW5kIG1heSByZXN1bHQgaW4gZmFsc2Ug
+ZGlzY292ZXJ5IG9mIGNlbGxzIChkZXBlbmRpbmcgb24gdXNlZCBEVAo+ID4+ID4+Pj4+PiBwcm9w
+ZXJ0aWVzKS4gIAo+ID4+ID4+Pj4+Pj4+IFRoaXMgYmVoYXZpb3VyIGhhcyBhY3R1YWxseSBjYXVz
+ZWQgYSBwcm9ibGVtIGFscmVhZHkgd2l0aCB0aGUgTVREICAKPiA+PiA+Pj4+Pj4gc3Vic3lzdGVt
+LiBNVEQgc3VicGFydGl0aW9ucyB3ZXJlIGluY29ycmVjdGx5IHRyZWF0ZWQgYXMgTlZNRU0gY2Vs
+bHMuICAKPiA+PiA+Pj4+Pgo+ID4+ID4+Pj4+IFRoYXQncyB0cnVlLCBidXQgSSBleHBlY3QgdGhp
+cyB0byBiZSByZWFsbHkgTVREIHNwZWNpZmljLgo+ID4+ID4+Pj4+Cj4gPj4gPj4+Pj4gQSBjb25j
+cmV0ZSBwcm9wb3NhbCBiZWxvdy4gIAo+ID4+ID4+Pj4+ICAgPj4+Pj4+IEFsc28gd2l0aCB1cGNv
+bWluZyBzdXBwb3J0IGZvciBOVk1FTSBsYXlvdXRzIG5vIG5ldyBiaW5kaW5nIG9yIGRyaXZlciAg
+Cj4gPj4gPj4+Pj4+IHNob3VsZCBzdXBwb3J0IGZpeGVkIGNlbGxzIGRlZmluZWQgaW4gZGV2aWNl
+IG5vZGUuICAKPiA+PiA+Pj4+Pgo+ID4+ID4+Pj4+IEknbSBub3Qgc3VyZSBJIGFncmVlIHdpdGgg
+dGhpcyBzdGF0ZW1lbnQuIFdlIGFyZSBub3QgcHJldmVudGluZyBuZXcKPiA+PiA+Pj4+PiBiaW5k
+aW5nL2RyaXZlciB0byB1c2UgZml4ZWQgY2VsbHMsIG9yLi4uPyBXZSBvZmZlciBhIG5ldyB3YXkg
+dG8gZXhwb3NlCj4gPj4gPj4+Pj4gbnZtZW0gY2VsbHMgd2l0aCBhbm90aGVyIHdheSB0aGFuICJm
+aXhlZC1vZmZzZXQiIGFuZCAiZml4ZWQtc2l6ZSIgT0YKPiA+PiA+Pj4+PiBub2Rlcy4gIAo+ID4+
+ID4+Pj4+PiAgIEZyb20gd2hhdCBJIHVuZGVyc3Rvb2QgYWxsIG5ldyBOVk1FTSBiaW5kaW5ncyBz
+aG91bGQgaGF2ZSBjZWxscyA+PiBkZWZpbmVkICAKPiA+PiA+Pj4+IGluIHRoZSBudm1lbS1sYXlv
+dXQgeyB9IG5vZGUuIFRoYXQncyB3aGF0IEkgbWVhbiBieSBzYXlpbmcgdGhleSBzaG91bGQKPiA+
+PiA+Pj4+IG5vdCBiZSBkZWZpbmVkIGluIGRldmljZSBub2RlIChidXQgaXRzICJudm1lbS1sYXlv
+dXQiIGluc3RlYWQpLiAgCj4gPj4gPj4+Cj4gPj4gPj4+IExheW91dHMgYXJlIGp1c3QgYW5vdGhl
+ciBwb3NzaWJpbGl0eSwgZWl0aGVyIHlvdSB1c2VyIHRoZSBudm1lbS1jZWxscwo+ID4+ID4+PiBj
+b21wYXRpYmxlIGFuZCBwcm9kdWNlIG52bWVtIGNlbGxzIHdpdGggZml4ZWQgT0Ygbm9kZXMsIG9y
+IHlvdSB1c2UgdGhlCj4gPj4gPj4+IG52bWVtLWxheW91dCBjb250YWluZXIuIEkgZG9uJ3QgdGhp
+bmsgYWxsIG5ldyBiaW5kaW5ncyBzaG91bGQgaGF2ZQo+ID4+ID4+PiBjZWxscyBpbiBsYXlvdXRz
+LiBJdCBkZXBlbmRzIGlmIHRoZSBjb250ZW50IGlzIHN0YXRpYyBvciBub3QuICAKPiA+PiA+Pj4g
+ICAgPj4+Pj4+IFNvbHZlIHRoaXMgYnkgbW9kaWZ5aW5nIGRyaXZlcnMgZm9yIGJpbmRpbmdzIHRo
+YXQgc3VwcG9ydCBzcGVjaWZ5aW5nICAKPiA+PiA+Pj4+Pj4gZml4ZWQgTlZNRU0gY2VsbHMgaW4g
+RFQuIE1ha2UgdGhlbSBleHBsaWNpdGx5IHRlbGwgTlZNRU0gc3Vic3lzdGVtIHRvCj4gPj4gPj4+
+Pj4+IHJlYWQgY2VsbHMgZnJvbSBEVC4gIAo+ID4+ID4+Pj4+Pj4+IEl0IHdhc24ndCBjbGVhciAo
+dG8gbWUpIGlmIHJ0YyBhbmQgdzEgY29kZSBhY3R1YWxseSB1c2VzIGZpeGVkIGNlbGxzLiA+PiBJ
+ICAKPiA+PiA+Pj4+Pj4gZW5hYmxlZCB0aGVtIHRvIGRvbid0IHJpc2sgYW55IGJyZWFrYWdlLiAg
+Cj4gPj4gPj4+Pj4+Pj4gU2lnbmVkLW9mZi1ieTogUmFmYcWCIE1pxYJlY2tpIDxyYWZhbEBtaWxl
+Y2tpLnBsPiAgCj4gPj4gPj4+Pj4+IFtmb3IgZHJpdmVycy9udm1lbS9tZXNvbi17ZWZ1c2UsbXgt
+ZWZ1c2V9LmNdCj4gPj4gPj4+Pj4+IEFja2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0
+aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+ID4+ID4+Pj4+PiAtLS0KPiA+PiA+Pj4+
+Pj4gVjI6IEZpeCBzdG0zMi1yb21lbS5jIHR5cG8gYnJlYWtpbmcgaXRzIGNvbXBpbGF0aW9uCj4g
+Pj4gPj4+Pj4+ICAgICAgUGljayBNYXJ0aW4ncyBBY2tlZC1ieQo+ID4+ID4+Pj4+PiAgICAgIEFk
+ZCBwYXJhZ3JhcGggYWJvdXQgbGF5b3V0cyBkZXByZWNhdGluZyB1c2VfZml4ZWRfb2ZfY2VsbHMK
+PiA+PiA+Pj4+Pj4gLS0tCj4gPj4gPj4+Pj4+ICAgZHJpdmVycy9tdGQvbXRkY29yZS5jICAgICAg
+ICAgIHwgMiArKwo+ID4+ID4+Pj4+PiAgIGRyaXZlcnMvbnZtZW0vYXBwbGUtZWZ1c2VzLmMgICB8
+IDEgKwo+ID4+ID4+Pj4+PiAgIGRyaXZlcnMvbnZtZW0vY29yZS5jICAgICAgICAgICB8IDggKysr
+KystLS0KPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL2lteC1vY290cC1zY3UuYyAgfCAxICsK
+PiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL2lteC1vY290cC5jICAgICAgfCAxICsKPiA+PiA+
+Pj4+Pj4gICBkcml2ZXJzL252bWVtL21lc29uLWVmdXNlLmMgICAgfCAxICsKPiA+PiA+Pj4+Pj4g
+ICBkcml2ZXJzL252bWVtL21lc29uLW14LWVmdXNlLmMgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2
+ZXJzL252bWVtL21pY3JvY2hpcC1vdHBjLmMgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252
+bWVtL210ay1lZnVzZS5jICAgICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3Fj
+b20tc3BtaS1zZGFtLmMgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3FmcHJvbS5j
+ICAgICAgICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3JhdmUtc3AtZWVwcm9t
+LmMgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3JvY2tjaGlwLWVmdXNlLmMgfCAx
+ICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3NjMjd4eC1lZnVzZS5jICAgfCAxICsKPiA+
+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3NwcmQtZWZ1c2UuYyAgICAgfCAxICsKPiA+PiA+Pj4+
+Pj4gICBkcml2ZXJzL252bWVtL3N0bTMyLXJvbWVtLmMgICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBk
+cml2ZXJzL252bWVtL3N1bnBsdXMtb2NvdHAuYyAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJz
+L252bWVtL3N1bnhpX3NpZC5jICAgICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVt
+L3VuaXBoaWVyLWVmdXNlLmMgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL252bWVtL3p5bnFt
+cF9udm1lbS5jICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL3J0Yy9udm1lbS5jICAgICAg
+ICAgICAgfCAxICsKPiA+PiA+Pj4+Pj4gICBkcml2ZXJzL3cxL3NsYXZlcy93MV9kczI1MHguYyAg
+fCAxICsKPiA+PiA+Pj4+Pj4gICBpbmNsdWRlL2xpbnV4L252bWVtLXByb3ZpZGVyLmggfCAyICsr
+Cj4gPj4gPj4+Pj4+ICAgMjMgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKSwgMyBkZWxl
+dGlvbnMoLSkgIAo+ID4+ID4+Pj4+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL210ZC9tdGRjb3Jl
+LmMgYi9kcml2ZXJzL210ZC9tdGRjb3JlLmMgIAo+ID4+ID4+Pj4+PiBpbmRleCAwZmVhY2I5ZmJk
+YWMuLjFiYjQ3OWMwZjc1OCAxMDA2NDQKPiA+PiA+Pj4+Pj4gLS0tIGEvZHJpdmVycy9tdGQvbXRk
+Y29yZS5jCj4gPj4gPj4+Pj4+ICsrKyBiL2RyaXZlcnMvbXRkL210ZGNvcmUuYwo+ID4+ID4+Pj4+
+PiBAQCAtNTIzLDYgKzUyMyw3IEBAIHN0YXRpYyBpbnQgbXRkX252bWVtX2FkZChzdHJ1Y3QgbXRk
+X2luZm8gKm10ZCkKPiA+PiA+Pj4+Pj4gICAJY29uZmlnLmRldiA9ICZtdGQtPmRldjsKPiA+PiA+
+Pj4+Pj4gICAJY29uZmlnLm5hbWUgPSBkZXZfbmFtZSgmbXRkLT5kZXYpOwo+ID4+ID4+Pj4+PiAg
+IAljb25maWcub3duZXIgPSBUSElTX01PRFVMRTsKPiA+PiA+Pj4+Pj4gKwljb25maWcudXNlX2Zp
+eGVkX29mX2NlbGxzID0gb2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobm9kZSwgPj4gIm52bWVtLWNl
+bGxzIik7ICAKPiA+PiA+Pj4+Pgo+ID4+ID4+Pj4+IEkgYW0gd29uZGVyaW5nIGhvdyBtdGQgc3Bl
+Y2lmaWMgdGhpcyBpcz8gRm9yIG1lIGFsbCBPRiBub2RlcyBjb250YWluaW5nCj4gPj4gPj4+Pj4g
+dGhlIG52bWVtLWNlbGxzIGNvbXBhdGlibGUgc2hvdWxkIGJlIHRyZWF0ZWQgYXMgY2VsbHMgcHJv
+dmlkZXJzIGFuZAo+ID4+ID4+Pj4+IHBvcHVsYXRlIG52bWVtIGNlbGxzIGFzIGZvciBlYWNoIGNo
+aWxkcmVuLgo+ID4+ID4+Pj4+Cj4gPj4gPj4+Pj4gV2h5IGRvbid0IHdlIGp1c3QgY2hlY2sgZm9y
+IHRoaXMgY29tcGF0aWJsZSB0byBiZSBwcmVzZW50PyBpbgo+ID4+ID4+Pj4+IG52bWVtX2FkZF9j
+ZWxsc19mcm9tX29mKCkgPyBBbmQgaWYgbm90IHdlIGp1c3Qgc2tpcCB0aGUgb3BlcmF0aW9uLgo+
+ID4+ID4+Pj4+Cj4gPj4gPj4+Pj4gVGhpcyB3YXkgd2Ugc3RpbGwgZm9sbG93IHRoZSBiaW5kaW5n
+cyAoZXZlbiB0aG91Z2ggdXNpbmcgbnZtZW0tY2VsbHMgaW4KPiA+PiA+Pj4+PiB0aGUgY29tcGF0
+aWJsZSBwcm9wZXJ0eSB0byByZXF1aXJlIGNlbGxzIHBvcHVsYXRpb24gd2FzIGEgbWlzdGFrZSBp
+bgo+ID4+ID4+Pj4+IHRoZSBmaXJzdCBwbGFjZSwgYXMgZGlzY3Vzc2VkIGluIHRoZSBkZXZsaW5r
+IHRocmVhZCByZWNlbnRseSkgYnV0IHRoZXJlCj4gPj4gPj4+Pj4gaXMgbm8gbmVlZCBmb3IgYSBw
+ZXItZHJpdmVyIGNvbmZpZyBvcHRpb24/ICAKPiA+PiA+Pj4+Pj4gVGhpcyBpc24ndCBtdGQgc3Bl
+Y2lmaWMuIFBsZWFzZSBjaGVjayB0aGlzIHBhdGNoIGZvciBhbGwgb2NjdXJyZW5jZXMgPj4gb2Yg
+IAo+ID4+ID4+Pj4gdGhlOgo+ID4+ID4+Pj4gdXNlX2ZpeGVkX29mX2NlbGxzID0gdHJ1ZSAgCj4g
+Pj4gPj4+Pj4+IFRoZSB2ZXJ5IGZpcnN0IG9uZTogZHJpdmVycy9udm1lbS9hcHBsZS1lZnVzZXMu
+YyBkcml2ZXIgZm9yIHRoZSAgCj4gPj4gPj4+PiAiYXBwbGUsZWZ1c2VzIiBiaW5kaW5nLiBUaGF0
+IGJpbmRpbmcgc3VwcG9ydHMgZml4ZWQgT0YgY2VsbHMsIHNlZToKPiA+PiA+Pj4+IERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9hcHBsZSxlZnVzZXMueWFtbCAgCj4gPj4g
+Pj4+Cj4gPj4gPj4+IEknbSBzYXlpbmc6IGJhc2VkIG9uIHdoYXQgaGFzIGJlZW4gZW5mb3JjZWQg
+c28gZmFyLCBJIHdvdWxkIGV4cGVjdCBhbGwKPiA+PiA+Pj4gZml4ZWQgY2VsbCBwcm92aWRlcnMg
+dG8gY29tZSB3aXRoIG52bWVtLWNlbGxzIGFzIGNvbXBhdGlibGUsIG5vPwo+ID4+ID4+Pgo+ID4+
+ID4+PiBJZiB0aGF0J3MgdGhlIGNhc2Ugd2UgY291bGQgdXNlIHRoYXQgYXMgYSBjb21tb24gZGVu
+b21pbmF0b3I/ICAKPiA+PiA+Pgo+ID4+ID4+IFNvcnJ5LCBJIGRvbid0IGdldCBpdC4gSGF2ZSB5
+b3UgY2hlY2tlZAo+ID4+ID4+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1l
+bS9hcHBsZSxlZnVzZXMueWFtbAo+ID4+ID4+ID8KPiA+PiA+Pgo+ID4+ID4+IEl0J3MgYSBOVk1F
+TSBwcm92aWVkIGJpbmRpbmcgd2l0aCBmaXhlZCBjZWxscyB0aGF0IGRvZXNuJ3QgdXNlCj4gPj4g
+Pj4gbnZtZW0tY2VsbHMgYXMgY29tcGF0aWJsZS4gVGhlcmUgYXJlIG1hbnkgbW9yZS4gIAo+ID4+
+ID4KPiA+PiA+IE9oIHllYWggeW91J3JlIHJpZ2h0LCBJJ20gbWl4aW5nIHRoaW5ncy4gV2VsbCBJ
+IGd1ZXNzIHlvdSdyZSByaWdodAo+ID4+ID4gdGhlbiwgaXQncyBzdWNoIGEgbWVzcywgd2UgaGF2
+ZSB0byB0ZWxsIHRoZSBjb3JlIHRoZSBwYXJzaW5nIG1ldGhvZC4KPiA+PiA+Cj4gPj4gPiBTbyBt
+YXliZSBhbm90aGVyIHF1ZXN0aW9uOiBkbyB3ZSBoYXZlIG90aGVyIHNpdHVhdGlvbnMgdGhhbiBt
+dGQgd2hpY2gKPiA+PiA+IHNvbWV0aW1lcyBleHBlY3QgdGhlIG52bWVtIGNvcmUgdG8gcGFyc2Ug
+dGhlIE9GIG5vZGVzIHRvIHBvcHVsYXRlIGNlbGxzLAo+ID4+ID4gYW5kIHNvbWV0aW1lcyBub3Q/
+ICAKPiA+PiA+PiBJJ20gbm90IGF3YXJlIG9mIHRoYXQuIFBsZWFzZSBhbHNvIGNoZWNrIG15IHBh
+dGNoLiBUaGUgb25seSBjYXNlIEkgc2V0ICAKPiA+PiAidXNlX2ZpeGVkX29mX2NlbGxzIiBjb25k
+aXRpb25hbGx5IGlzIG10ZCBjb2RlLiBJbiBvdGhlciBjYXNlcyBpdCdzCj4gPj4gaGFyZGNvZGVk
+IHRvICJ0cnVlIi4gIAo+ID4+ID4+ID4+ID4gQWxzbywgd2hhdCBhYm91dCAib2ZfY2hpbGRyZW5f
+YXJlX2NlbGxzIiA/IEJlY2F1c2UgYWN0dWFsbHkgaW4gbW9zdCAgCj4gPj4gPiBjYXNlcyBpdCdz
+IGEgImZpeGVkIG9mIGNlbGwiLCBzbyBJIGRvbid0IGZpbmQgdGhlIGN1cnJlbnQgbmFtaW5nCj4g
+Pj4gPiBkZXNjcmlwdGl2ZSBlbm91Z2ggZm9yIHNvbWV0aGluZyBzbyB0b3VjaHkuICAKPiA+PiA+
+PiBUaGF0IHdvdWxkIGJlIGp1c3QgaW5jb3JyZWN0IGJlY2F1c2UgdGhpcyBuZXcgY29uZmlnIHBy
+b3BlcnR5ICAKPiA+PiAoInVzZV9maXhlZF9vZl9jZWxscyIpIGlzIG9ubHkgYWJvdXQgRklYRUQg
+Y2VsbHMuICAKPiA+PiA+PiBUaGVyZSBhcmUgY2FzZXMgb2YgT0YgY2hpbGRyZW4gYmVpbmcgY2Vs
+bHMgYnV0IE5PVCBiZWluZyBmaXhlZCBjZWxscy4gIAo+ID4+IFRoZXkgc2hvdWxkIE5PVCBiZSBw
+YXJzZWQgYnkgdGhlIG52bWVtX2FkZF9jZWxsc19mcm9tX29mKCkuICAKPiA+PiA+PiBFeGFtcGxl
+OiAgCj4gPj4gYTYwN2E4NTBiYTFmICgiZHQtYmluZGluZ3M6IG52bWVtOiB1LWJvb3QsZW52OiBh
+ZGQgYmFzaWMgTlZNRU0gY2VsbHMiKQo+ID4+IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3Nj
+bS9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC9jb21taXQvP2lkPWE2MDdhODUw
+YmExZmE5NjZjYmIwMzU1NDRjMTU4OGUyNGE2MzA3ZGYgIAo+ID4gCj4gPiBUaGlzIGlzIGJhY2t3
+YXJkcy4gVGhhdCdzIHdoeSBsYXlvdXRzIGhhdmUgYmVlbiBwcm9wb3NlZDogaGF2aW5nCj4gPiBh
+IGNsZWFyIGZyYW1ld29yayB3ZXJlIHRoZSBudm1lbSBjb3JlIHNob3VsZCBvciBzaG91bGQgbm90
+IHBsYXkgd2l0aAo+ID4gdGhlIE9GIGNoaWxkcmVuIG5vZGVzLiBJZiBlYWNoIGJpbmRpbmcgaXMg
+ZGlmZmVyZW50LCB5b3UgZW5kIHVwIHdpdGgKPiA+IHRoZSBtZXNzIHdlIGhhdmUgdG9kYXksIHdo
+ZXJlIG5vYm9keSBrbm93cyBob3cgdG8gcHJvcGVybHkKPiA+IHBvcHVsYXRlIHRoZSBjZWxscy4K
+PiA+IAo+ID4gQW55d2F5LCBpdCdzIG5vdCBhIGJpZyBkZWFsIGVpdGhlciwgaWYgdGhlIGNlbGxz
+IGFyZSBlbXB0eSB3ZSBjYW4KPiA+IGVhc2lseSBjaGVjayB0aGF0IGFuZCBoYXZlICp5ZXQgYW5v
+dGhlciogc3BlY2lmaWMgY2FzZSBpbiB0aGUgY29yZS4KPiA+ICAgCj4gPj4gU28gdGhhdCB3b3Vs
+ZCByZXN1bHQgaW4gVS1Cb290IGVudjoKPiA+PiAxLiBIYXZpbmcgT0YgY2hpbGRyZW4gbm9kZXMg
+YmVpbmcgY2VsbHMKPiA+PiAyLiBTZXR0aW5nICJvZl9jaGlsZHJlbl9hcmVfY2VsbHMiIHRvIGZh
+bHNlIChjb3VudGVyLWludHVpdGl2ZSkgdG8gPj4gYXZvaWQgbnZtZW1fYWRkX2NlbGxzX2Zyb21f
+b2YoKSAgCj4gPiAKPiA+IEFncmVlZC4gU28gd2hhdCBhYm91dCBjb25maWcuaWdub3JlX29mX2No
+aWxkcmVuPwo+ID4gLSBtdGQgc2V0cyB0aGlzIHRvICFpc19jb21wYXRpYmxlKG52bWVtLWNlbGxz
+KQo+ID4gLSBub2JvZHkgZWxzZSB0b3VjaGVzIGl0ICh0aGUgY29yZSBkb24ndCB0cnkgdG8gcGFy
+c2UgdGhlIGNlbGwgaWYgaXQncwo+ID4gICBlbXB0eSBzbyBVLUJvb3QgZW52IGRyaXZlciB3b3Jr
+cykgIAo+IAo+ICJpZ25vcmVfb2ZfY2hpbGRyZW4iIHdvdWxkIGhhdmUgb3Bwb3NpdGUgKHJldmVy
+c2VkKSBtZWFuaW5nIHRvIHRoZQo+ICJ1c2VfZml4ZWRfb2ZfY2VsbHMiOgo+IDEuIEJ5IGRlZmF1
+bHQgaXQgd291bGQgYmUgMCAvIGZhbHNlCj4gMi4gQnkgZGVmYXVsdCBOVk1FTSBjb2RlIHdvdWxk
+IE5PVCBpZ25vcmUgT0YgY2hpbGRyZW4gbm9kZXMKPiAKPiBUaGF0IGlzIHdoYXQgSSBhY3R1YWxs
+eSAqZG9uJ3QqIHdhbnQuCj4gCj4gSGF2aW5nIE5WTUVNIGNvcmUgbG9vayBmb3IgZml4ZWQgY2Vs
+bHMgaW4gZGV2aWNlIG5vZGUgaXMgdW5kZXNpcmFibGUuCgpJcyBpdD8KCkkgdGhpbmsgdGhpcyBp
+cyB0aGUgc3RhbmRhcmQgY2FzZS4gTW9zdCBvZiB0aGUgdGltZSBmaXhlZCBjZWxscyBhcmUKdGhl
+IHNpbXBsZXN0IGFuZCBtb3N0IGRpcmVjdCBhcHByb2FjaC4gSSBkb24ndCBnZXQgd2h5IHdlIHdv
+dWxkIGxpa2UKdG8gcHJldmVudCBpdCBhdCBzb21lIHBvaW50PyBPbmx5IHRoZSBtb3JlIGFkdmFu
+Y2VkIHN0dWZmIHRoYXQgZG9lcyBub3QKZml0IHRoZSBwdXJwb3NlIG9mIGZpeGVkIE9GIGNlbGxz
+IHNob3VsZCBnbyB0aHJvdWdoIGxheW91dHMuCgo+IEkgd2FudCB0aGF0IGZlYXR1cmUgdG8gYmUg
+b2ZmIGJ5IGRlZmF1bHQuIEkgd2FudCBkZXZpY2VzIHRvIGhhdmUgdG8KPiBlbmFibGUgaXQgZXhw
+bGljaXRseSBvbmx5IHdoZW4gaXQncyBuZWVkZWQuCgpXZWxsLCB0aGF0J3MgZXhhY3RseSB0aGUg
+b3Bwb3NpdGUgb2Ygd2hhdCBudm1lbSBkb2VzIHJpZ2h0IG5vdywgdGhhdCdzCm1heWJlIHdoeSBy
+ZXZpZXdlcnMgZG9uJ3QgZ2V0IHRoZSBpbnRlcmVzdCBvZiB0aGUgY3VycmVudAppbXBsZW1lbnRh
+dGlvbjogaXQgaGFzIG1hbnkgaW1wYWN0cyBvbiB1c2VycyB3aGljaCBzaG91bGQgbm90IGJlCmlt
+cGFjdGVkIGp1c3QgYmVjYXVzZSB3ZSBtZXNzZWQgd2l0aCBtdGQuCgpUaGFua3MsCk1pcXXDqGwK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
