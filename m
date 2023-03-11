@@ -4,76 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 439DBC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Mar 2023 11:45:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A188C6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Mar 2023 12:57:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4pmoZ9yt1re8UMj5/MluTHp9C0zHYhjei9kwwQCbxZs=; b=u/hKeHaqUm3woO
-	r7yfcdRjJMKlsHTbw5niB1r37ddtpCHMxc8Wy7SYste98eNVAKtNr+gp8Aq77kC6U06+Tl2KrA8Qs
-	3Mu1Pd/pjuBsOYFH5rUh/kJ/eke1PcJ+rEQ5ZY3ZSohwro8Hc3RDxeTzK+3B7qkgOJlDyQgw0/Dpt
-	wE6KKFBiyRnRp60d0lNPeyoIHc3pHzyiBBtqLC7t9ey+3mf50Ujthk4M8Ddu82Qs4o3mH4mDGcmnt
-	phehj9FLMERX7I3JNhz5WlisZctkSCb9UOTjhWR0TWGdKM8uWxmqwaJNc8TWN0KbuKsK/hSEbrXz6
-	kF63tuWV2Piz7OZvQ3rA==;
+	List-Owner; bh=parSw8KWsaYqrXFoW7B2I63fjACIrOrzKpN/2Nz2MrU=; b=RCWvg3RvelOh5/
+	3rGcdQ/3USwK5hPmwxXZQAkaea9PWJPEzlRRJZYSeHSVmy42HTeLna/0etS/8O9MmHs4teUWqt5zU
+	oVhCV29px0Tp0KTy0JbTxehaQuZBcJjwuOWjfISxjezdY3XP3wULTPmUSeBHwCQyxRRHtqTdu/9eY
+	M80RQhQKIgF1rhUL6JkcUeFgMlFiZG5mTNp1WWL3AAlGkSoq3aw/ksRdBc1IPaAgwAy3UdUUxn4w0
+	mrqRyhNuyaqHoQxyf6d7+DP5Ke18UThsAYVJGrvUVRTcvz4qrMLG/CyZE3hAySpm3F2gdKSNc5uCK
+	YA0aTK2vJg6re21Wrqiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paxf4-000OUG-Qi; Sat, 11 Mar 2023 11:45:18 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1paymf-000XrI-CR; Sat, 11 Mar 2023 12:57:13 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paxf1-000OTX-3m; Sat, 11 Mar 2023 11:45:16 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id AC05EB82432;
-	Sat, 11 Mar 2023 11:45:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF883C433EF;
-	Sat, 11 Mar 2023 11:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1678535110;
-	bh=75mbQ2zIUa16Px+XAHlCBKsO8iebtVjeSF8AguylJ8s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vKcuArUhUvEGj+8PjRsrv9iWFy3ybcuDWmCSvAgrw3VQcr0KCqVMB3Yd+hSUl/rWD
-	 LCu8+rzUrXPWC4LCYoUTY2xxqaJI1I1cWg8N8qp1rdNKHSNgDDZgxRZzvPhyoW7LWx
-	 cWPIh8k/c6WorLch500+1DFN9R9uHtSVtIbxVzVhhl/EGrk80HN4VeTWkdSZg7T2cY
-	 I/lsX4kNDEE+9FWmE5/oHplFO/6HBF3GGkSUuRHlhxTakn/zWpKqq6pOYoXGeLuKAP
-	 YqoVWlEGWkGw99B/Rl8mhHUCSuukN6sdHMUKQVz7ZUSBKj+QI18qIPWpeaZMwZ4rSP
-	 O64zmpd8v+XCw==
-Date: Sat, 11 Mar 2023 12:45:07 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, Kamal Dasu <kdasu.kdev@gmail.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi@etezian.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 07/16] spi: s3c64xx: Drop of_match_ptr for ID table
-Message-ID: <20230311114507.axtae3j64fbt64t3@intel.intel>
-References: <20230310222857.315629-1-krzysztof.kozlowski@linaro.org>
- <20230310222857.315629-7-krzysztof.kozlowski@linaro.org>
+	id 1paymV-000Xnd-TM; Sat, 11 Mar 2023 12:57:05 +0000
+Received: from tuc-211-071.hrz.tu-chemnitz.de ([134.109.211.71] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1paym9-0001uK-KX; Sat, 11 Mar 2023 13:56:41 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Mark Brown <broonie@kernel.org>, Kamal Dasu <kdasu.kdev@gmail.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Robert Jarzmik <robert.jarzmik@free.fr>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andi Shyti <andi@etezian.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Stephen Boyd <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-mediatek@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 06/16] spi: rockchip: Drop of_match_ptr for ID table
+Date: Sat, 11 Mar 2023 13:56:40 +0100
+Message-ID: <11086237.nUPlyArG6x@phil>
+In-Reply-To: <20230310222857.315629-6-krzysztof.kozlowski@linaro.org>
+References:  <20230310222857.315629-1-krzysztof.kozlowski@linaro.org>
+ <20230310222857.315629-6-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230310222857.315629-7-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230311_034515_345610_A3257F43 
-X-CRM114-Status: GOOD (  11.58  )
+X-CRM114-CacheID: sfid-20230311_045703_967334_AA9C651C 
+X-CRM114-Status: UNSURE (   9.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,17 +73,16 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgS3J6eXN6dG9mLAoKT24gRnJpLCBNYXIgMTAsIDIwMjMgYXQgMTE6Mjg6NDhQTSArMDEwMCwg
-S3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiBUaGUgZHJpdmVyIGNhbiBtYXRjaCBvbmx5IHZp
-YSB0aGUgRFQgdGFibGUgKGFsbCBwbGF0Zm9ybXMgYXJlIE9GLW9ubHkpCj4gc28gdGhlIHRhYmxl
-IHNob3VsZCBiZSBhbHdheXMgdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5vdCBoYXZl
-Cj4gYW55IHNlbnNlICh0aGlzIGFsc28gYWxsb3dzIEFDUEkgbWF0Y2hpbmcgdmlhIFBSUDAwMDEs
-IGV2ZW4gdGhvdWdoIGl0IGlzCj4gbm90IHJlbGV2YW50IGhlcmUpLgo+IAo+ICAgZHJpdmVycy9z
-cGkvc3BpLXMzYzY0eHguYzoxNDk2OjM0OiBlcnJvcjog4oCYczNjNjR4eF9zcGlfZHRfbWF0Y2ji
-gJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNvbnN0LXZhcmlhYmxlPV0K
-PiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93
-c2tpQGxpbmFyby5vcmc+CgpSZXZpZXdlZC1ieTogQW5kaSBTaHl0aSA8YW5kaS5zaHl0aUBrZXJu
-ZWwub3JnPgoKVGhhbmtzLApBbmRpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+QW0gRnJlaXRhZywgMTAuIE3DpHJ6IDIwMjMsIDIzOjI4OjQ3IENFVCBzY2hyaWViIEtyenlzenRv
+ZiBLb3psb3dza2k6Cj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxl
+IHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0
+ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4gbWF0Y2hp
+bmcgdmlhIFBSUDAwMDEsIGV2ZW4gdGhvdWdoIGl0IGlzIG5vdCByZWxldmFudCBoZXJlKS4KPiAK
+PiAgIGRyaXZlcnMvc3BpL3NwaS1yb2NrY2hpcC5jOjEwNTE6MzQ6IGVycm9yOiDigJhyb2NrY2hp
+cF9zcGlfZHRfbWF0Y2jigJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNv
+bnN0LXZhcmlhYmxlPV0KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+CgpSZXZpZXdlZC1ieTogSGVpa28gU3R1ZWJu
+ZXIgPGhlaWtvQHNudGVjaC5kZT4KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
