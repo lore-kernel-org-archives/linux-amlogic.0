@@ -4,82 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21714C61DA4
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Mar 2023 21:03:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 814B8C74A44
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Mar 2023 21:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+IdOfJ1X+ZE/kh9fv0ronZ/RZthIlVVGwH+UN2jXVJE=; b=3+9pSF02wyXT0x
-	J6Lt7sjopLchIWyEQTrJmtZY2dYYdStF0PG43yJUxmB7tMEEBict/hd+QINnEXOCp9MmIGRlkn8Q4
-	r+WpVErTiYhofjxpTlunjNYcoMUmogB3mIfKEebmsU/N9x3uMtdWwYBtgd3Hp//7RE6j69kflsPMc
-	bQ9Lkvvd1ERchE80OGMbiA8qzjWdDPrC53/I7Ha5jxOtTjZaRv8TMx9zVmiPp1kDCDJTsZeLcEC1k
-	dj2P8w+p5Hj61SfgIL1xELoU//ksMjqEKdGA6x86YKLfhriFJ4240Y5or0BTGsoYS30oyliOF3U/8
-	IeNgqV3DDV78jvW+A7dg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CLkUdKxrALtCM/Y1MVzuj9wHjsFe4xwc+orYpdiY+lI=; b=r81Yo5ZTknS+zEekMLdfQX3jGp
+	07afjMrhr2DJCmsmOpbqoXlCLqomGsO5U7t3ltdy6MtvTXpNIR+ot3zGSVN2jqxur9XL6x2beUCtP
+	UDy5wJ6WnNvMP4+lLigl70DUsRikppTD8ZAg54MaJYGgbnfznefAmt+kXgVNbd7pjebbXBXEetIKW
+	o9nhAFodLVvqP9ggDtRlbKbHOSQxzv04QUGoTkLE9iBEJ2r6yHJEMnbl5dIahDMDBPSIdjWmJwAfu
+	DzvyHtjwBasj4slde8uvhiEAOCPQr7C9KT/fluP7FlkYYV3LtUpNiNiheYQ3uaKbr5cSU1ZvoWGNS
+	HByNNyhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pb6NN-001FQP-Jl; Sat, 11 Mar 2023 21:03:37 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1pb71P-001Ip4-DG; Sat, 11 Mar 2023 21:44:59 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pb6NA-001FJU-5R; Sat, 11 Mar 2023 21:03:25 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id k10so34104982edk.13;
-        Sat, 11 Mar 2023 13:03:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1678568602;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9P7IEAkLy7BcZ65gozk6soUzL4XB53L7ciN8vl0VU/0=;
-        b=Mj3NdSmV6a2J+F31S5HW2+G4vNN8mcI76hOLn6I1zFjdXWXC/WZRnhOdQ1QHDp4//Y
-         tWsqEHcpJ0vL77yH+bJmT9dUvyUbvpvIm2aGBWddYvljUxFx37/4Ir01a2r5j3FG+Bhi
-         wAEft83BiQMHNOJfG/hyrFS3cnfWaJUrYXWxKBWLuIZ+wMhQVdU3dZMEd/Ii2PJ+Bj4v
-         w/qom/IQr+gHPL7notTLZLEK+H/qF1i0KERixOqwYAciKCbfmAwHSId9JhJeXMUMlv9w
-         TAROnkKZlozadKj+LmMDlngzBKq/PLKyjjV1jm7EnL6izYCIHRwb8tXc2U1lCqjM6lhf
-         VMzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678568602;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9P7IEAkLy7BcZ65gozk6soUzL4XB53L7ciN8vl0VU/0=;
-        b=wzBdlscPgA6WSbEGg4mQbgRap2CPxvGpUIXWPVxV9LJ5wA/5IhA2lnojaiOv/Q82BS
-         9er4EfVckXXNs019KdwYzh369gV1l0bJamSzLpCwp4EbqSnbkPu0Cy4bZtL1l4Sh5o1c
-         /ghMwJDhokxMFNwSVh4BfZ7p+ntNlrueiG/kxrz5GbyUBE34zdG17ZAvX16RTWNHZYnZ
-         OeY2yPmq9Q/H8FbT0iZ0abXMq0HXdhrZixFRft1qbt/LhMqebGhU7Ukjf8AXLl/4yRCE
-         /5Z74l17ysPNYJ7ZH8B5z4lppPFTQ6mdrQhEp20cZrBbiZSiyAc5SwNuFuHJiNAlyrmR
-         nv5g==
-X-Gm-Message-State: AO0yUKWYAGPIJRQxCMykUqzV0FIFISvrybto2HP2816KsrLOoI7xtvVB
-	rca+1Ro90bF2XlW/LxIgwcJnX6SLV4mJRDwGhpY=
-X-Google-Smtp-Source: AK7set8br7hTajHtR5jJ8JEX+gep6ksiKRlkfXEKJA4TcVnIPNqBQgZ3QlWHqwp9ET29p8c4umTLPKrNN3dT4z5U9yA=
-X-Received: by 2002:a17:906:f47:b0:87b:db55:4887 with SMTP id
- h7-20020a1709060f4700b0087bdb554887mr14138887ejj.4.1678568601780; Sat, 11 Mar
- 2023 13:03:21 -0800 (PST)
+	id 1pb71F-001Imk-Kk
+	for linux-amlogic@lists.infradead.org; Sat, 11 Mar 2023 21:44:51 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pb719-0003cW-2j; Sat, 11 Mar 2023 22:44:43 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pb717-003U6Q-Sq; Sat, 11 Mar 2023 22:44:41 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pb717-0048R8-8k; Sat, 11 Mar 2023 22:44:41 +0100
+Date: Sat, 11 Mar 2023 22:44:37 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-pwm@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Munehisa Kamata <kamatam@amazon.com>,
+	Thierry Reding <thierry.reding@gmail.com>, kernel@pengutronix.de,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] pwm: meson: Explicitly set .polarity in .get_state()
+Message-ID: <20230311214437.tdv5wl5a6qgsewd4@pengutronix.de>
+References: <20230310191405.2606296-1-u.kleine-koenig@pengutronix.de>
+ <CAFBinCCfqgBkHq2fFy=d+8C6nwq=wehu9nzePfwuY5ndfLMWoQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20230310222857.315629-1-krzysztof.kozlowski@linaro.org> <20230310222857.315629-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230310222857.315629-4-krzysztof.kozlowski@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 11 Mar 2023 22:03:10 +0100
-Message-ID: <CAFBinCBG90jOdKPubEZvOFXf5B=Ra+HxH6JTTdVn-L1cbWjNYA@mail.gmail.com>
-Subject: Re: [PATCH 04/16] spi: meson-spifc: Drop of_match_ptr for ID table
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Daniel Mack <daniel@zonque.org>, 
-	Haojian Zhuang <haojian.zhuang@gmail.com>, Robert Jarzmik <robert.jarzmik@free.fr>, 
-	Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi@etezian.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-spi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <CAFBinCCfqgBkHq2fFy=d+8C6nwq=wehu9nzePfwuY5ndfLMWoQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230311_130324_232666_A01D8400 
-X-CRM114-Status: UNSURE (   9.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230311_134449_706948_3F738347 
+X-CRM114-Status: GOOD (  23.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,22 +71,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4075049753157695585=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBNYXIgMTAsIDIwMjMgYXQgMTE6MjnigK9QTSBLcnp5c3p0b2YgS296bG93c2tpCjxr
-cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+Cj4gVGhlIGRyaXZlciBjYW4g
-bWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxlIHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3YXlz
-Cj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5zZSAodGhp
-cyBhbHNvIGFsbG93cyBBQ1BJCj4gbWF0Y2hpbmcgdmlhIFBSUDAwMDEsIGV2ZW4gdGhvdWdoIGl0
-IGlzIG5vdCByZWxldmFudCBoZXJlKS4KPgo+ICAgZHJpdmVycy9zcGkvc3BpLW1lc29uLXNwaWZj
-LmM6NDM0OjM0OiBlcnJvcjog4oCYbWVzb25fc3BpZmNfZHRfbWF0Y2jigJkgZGVmaW5lZCBidXQg
-bm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNvbnN0LXZhcmlhYmxlPV0KPgo+IFNpZ25lZC1vZmYt
-Ynk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4K
-QWNrZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xl
-bWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+
+--===============4075049753157695585==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4maj6yxo5akufdgw"
+Content-Disposition: inline
+
+
+--4maj6yxo5akufdgw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Mar 11, 2023 at 10:00:50PM +0100, Martin Blumenstingl wrote:
+> Hi Uwe,
+>=20
+> On Fri, Mar 10, 2023 at 8:14=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> [...]
+> > There is a complicating fact, that the .apply() callback fakes support
+> > for inversed polarity. This is not (and cannot) be matched by
+> > .get_state(). As fixing this isn't easy, only point it out in a comment
+> > to prevent authors of other drivers from copying that approach.
+> If you have any suggestions on how to fix this then please let us know.
+> I don't recall any board needing support for inverted PWM - but they
+> may be out there somewhere...
+
+And that's the problem. As the hardware doesn't support inverted
+polarity there is no way to implement it correctly. The only right way
+would be to return -EINVAL in this case, but this might break some
+consumers.
+
+I have an idea how to evolve the PWM API. That's by introducing an
+=2Eoffset parameter to struct pwm_state. This would describe the following
+PWM signal:
+
+
+   ___________/=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF\_____=
+__________/=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF=C2=AF\____
+   ^                         ^                         ^                   =
+      ^                         ^
+   <------ period ---------->
+   <- offset->
+              <--------> duty_cycle
+
+This is more general than polarity: It can describe normal polarity
+(.offset =3D 0) and inversed polarity (.offset =3D .period - .duty_cycle).
+
+Then the policy to implement a pwm_state like that would probably be:
+
+ - Pick the biggest period not bigger than requested
+ - for that period pick the biggest duty cycle not bigger than requested
+ - for that period and duty_cycle pick the biggest offset not bigger
+   than requested.
+
+With these rules in place it would be allowed to configure normal
+polarity for a request with inverted polarity, but not the other way
+around. Then the algorithm currently implemented in the meson driver
+would be allowed.
+
+A consumer that doesn't care about the offset (i.e. most drivers) could
+just pass .offset =3D .period - 1.
+
+To be practical for consumers who care about polarity, we first would
+need a way to test the capabilities of a PWM though. I have an idea for
+that, too, but today this is still vapourware.
+
+> > Fixes: c375bcbaabdb ("pwm: meson: Read the full hardware state in meson=
+_pwm_get_state()")
+> > Reported-by: Munehisa Kamata <kamatam@amazon.com>
+> > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Thanks
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--4maj6yxo5akufdgw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQM9kIACgkQwfwUeK3K
+7AnKNwf5AVcvzbbovW0B1iiKTDldySSke8ms11GNKQux6cCmeUcLwXa7FJ2RfD4P
+c6Wwxsk6/+myN0n0p4+0mwncIq60RIngX7MiB8Ym0oC07Ivlftg+IFfjAA7VSGNK
+daGc0+d0DyHiZ4sCbSzRCLUDyZ+Y0r4i0QYOqTcftnQ0TzgcTs5YXxBKf9DLqHeM
+rRWCmnL7xz88zrqO7gPYM6oFX8EjHm3a9P0aJA8gK6CFMopUaphkeTfkIp3rqeY2
+l5gALAF2lvBPmorufiMPqyBUOe2vLwabnVMt7M1/PNFf5FL5A8Emws92RXhWhotX
++oYNgg3LYHPBJ5wZjhPTcbJQ0xoFOQ==
+=9noi
+-----END PGP SIGNATURE-----
+
+--4maj6yxo5akufdgw--
+
+
+--===============4075049753157695585==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4075049753157695585==--
+
