@@ -4,84 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74CD5C61DA4
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Mar 2023 23:18:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6A3C6FA99
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Mar 2023 13:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=YG9Pf6OoyLpvExJmjVaN0mEwCmneIrT8RMXXSktY8ZY=; b=NvBJ4SNT9K8eDf
-	mDPs03+8KX+EPETrYv3bU63ZmB1S409h20PjWwm/fFoLdgJsma7mu4HZ3FyzB4EMrT8AnX2VrXvMm
-	6zIJ2V7/9LnClLh3QEGcRdcYH9wi+hEOpQCnIdc7kQYvt2uzeymYmHVjZclDpWmVaqUP96nMNbhgf
-	bsrx4+636s49i13cL3pip0YkQOeTmAqqr2vEo7QGXqwoou8bDTFdVCsiZunVRuSZVmHwQ77Gr/vS3
-	vtAwpP+fQ7pq+19FYZRCuWE0M7/4nBu90zF5LPjl6cK0yBXfn0QhKh1x3HJX0nCpfIZxhT4OOXues
-	5OkRxY6Xo+e4+hH4TxSg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7ZWIM1gJexO7GTsCuN+sjWgNtxd+VCu8Xyn2R7/uCyw=; b=ld4+OhGlP6Sfgr
+	oJdw1METUtZeyijntJvm38WumeXoTgAbHahS4+cZDmE5F9kFl0OLbUc91xgpsQrJMOuhlfM2TpB5Q
+	ZaoWVYr/5Ddp8Osuwd/uQ4yHaN41CK0cdcJ8x8GjAhRobB14uz1wp8UOebu8QaidbTyoS8aiahARy
+	5YEQJjcEbnmtAf4pbPTDV2+fGhnWfl61jkBDSg3RbWhcODmpuDr3nWQGQShipdSF5+asFM+8j32CI
+	OpY4wy+MFa2+8Xokq3kTV2Y4yCue7dQnt/1nxv75svAdKca4QW13l6ukJq7CE/QcP4SPjC9DukrXu
+	qI+sooE1ZN5sNNE0xdnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pb8Tg-001SHg-MW; Sat, 11 Mar 2023 23:18:16 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1pbLW1-002IRa-K1; Sun, 12 Mar 2023 13:13:34 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pb8Td-001SH2-FT; Sat, 11 Mar 2023 23:18:15 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so8498250wmb.5;
-        Sat, 11 Mar 2023 15:18:13 -0800 (PST)
+	id 1pbLVx-002IMh-RB
+	for linux-amlogic@lists.infradead.org; Sun, 12 Mar 2023 13:13:31 +0000
+Received: by mail-ed1-x532.google.com with SMTP id cy23so38394852edb.12
+        for <linux-amlogic@lists.infradead.org>; Sun, 12 Mar 2023 06:13:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678576692;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1678626807;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3UnKenye0MlRfUzVaMfEjleTW/ipSCceVIYweRD/BNs=;
-        b=VlqRl/eUVTqX4bTKSUEBr00LvElRkgLVwGs6+BE4YZ0nGbkePNc2QKrWfnYO5xkGx0
-         eMhYEynRzQcKIIRzZLzGe8wMloB/Bq8gm9OW8OX449aA9978+XHGo/oM2j+M/HpU+dUi
-         ZQyGm148bgDRVfWGaWj7m/X/0JnI6xZAUJhs9LpyZ+nfhfQsANlu7YaGTMN2iRPruhfi
-         CO+wZ356WGEtxipBXcXpeIRMusTk02UkqIZ5+8dSNIzXGPnf7Ji1mFOK+ZNBgx/y9Cls
-         yPht04UWX7xFZtBCyRczh/ava3Q34jX3/WADj4rl2hLHXfXxKq5yLfUVP6zXZ2Z+VI6Y
-         8Eig==
+        bh=bkWfjOYJTJDW62JPb9CPt+q+UFtZ1H1u4ouIUZRGvZ4=;
+        b=dufU2ZEVvJS9S3PuzmfWSiaKt/e7oKmEif/HcTwiDm1Y71Lj42dFTktHXvA2w4XjAm
+         z6CgADU73/O+QVxdKfCgfzGdd8q4LJXRA1NAMkyp64omDj5lG0pyjwGLSEUy3YRLQw1F
+         jbhPrxxPiruJ9AwZDeljYbj05SqYwHoEeRai4CpSh/z6WTebeg/5Vrjbf2NIr5CzrKuM
+         9qiaMAOz27bLtb+MQWNr6IPfIJ9u+UOg7hONEIKoQXcti8nfWdHn2vaNqLwCT+mhFL13
+         lxBRmxlvU7xnCcaMng+7C4zdz2s2yxnEIqvlx2C5sHF3menjlKTG6uQs3n0MQ+fjsU1a
+         kNjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678576692;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3UnKenye0MlRfUzVaMfEjleTW/ipSCceVIYweRD/BNs=;
-        b=Xq/vOPb5kGGSr9EtZ0LP+KSBc7zz+c0LU7PPcwiDApEpIpDtwOlBhtxt5y3il9Br0g
-         Q/UgwXEVQXKGKawwYECItu9MXxJax3bsq8LFIPhKhu20hLbK7OKqBIIFD1hkSvKzmkN7
-         PGODuUQZq2cYxWRWLHq1QvPN0bD0fhgIm2iXfBetRbEluuoak0iBcl/p9Fsm1O8xQUH4
-         24rliUqcYnyE0IX7D6eJJbsNV14YJsdr20xhHwHRipyI/EzKWd0QnCaxlkNt0iO9gP2+
-         K5LqAtWxXYFO40bm9p9OOVYp5mD/rT/z6Em+QPkPMz9BNOEbLEfBqFdOFVz4Yuwab7s8
-         4LWw==
-X-Gm-Message-State: AO0yUKWzVYxF2gY9y6yP9LGZHGip4GEW+CIIovQQCxArXs8Wrq+dX0sW
-	KIFxvZ3REi/PR3J7te6R7v0=
-X-Google-Smtp-Source: AK7set8J22Ohd1kzA/9PUi6CQlJKOm3h157iJQsM+34GBmv3lb6AzaWcBS9T2hzcUJX8x3rC5P1+OA==
-X-Received: by 2002:a05:600c:3b99:b0:3dc:5c86:12f3 with SMTP id n25-20020a05600c3b9900b003dc5c8612f3mr6752205wms.1.1678576691745;
-        Sat, 11 Mar 2023 15:18:11 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7697:7600:79dc:4e28:a7d7:a00c? (dynamic-2a01-0c22-7697-7600-79dc-4e28-a7d7-a00c.c22.pool.telefonica.de. [2a01:c22:7697:7600:79dc:4e28:a7d7:a00c])
-        by smtp.googlemail.com with ESMTPSA id 4-20020a05600c024400b003e91b9a92c9sm4013225wmj.24.2023.03.11.15.18.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 15:18:11 -0800 (PST)
-Message-ID: <fe7f06ed-4e74-529c-3cf5-45d635cefcc8@gmail.com>
-Date: Sun, 12 Mar 2023 00:18:05 +0100
+        d=1e100.net; s=20210112; t=1678626807;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bkWfjOYJTJDW62JPb9CPt+q+UFtZ1H1u4ouIUZRGvZ4=;
+        b=nfRReaFVq0fK3AfT+qoj58ZMF4kltpCA7eXchqGNcYV1kquONv8E1bTSSMqlkspU2d
+         OYHEdUjCpn2Npm7ekOVAbesO+2WajPDVaiTBPEPz7Sd03/MUV50/Ed6wBntr1PiOsY5m
+         wLkw05uPo7LwLDAbhXWgKwC7TIXKzrfbRHSlLqDcLKnoH41BcPOIyxtO05CCayNWndK4
+         o8jfV/7Zgwv3HRcXMy6s9gpWm+/AOOpnuvSe4l3rHryQx0+9nfyAmKHFH4j8eORxeWDM
+         akFMLbMvjDBu4my+tx7yf/SXpst4/yJzvpOozfbDdP5gqlM+ofTZ8D+Gqmf9ofrV6B7W
+         NLIA==
+X-Gm-Message-State: AO0yUKWSUx/ph3SGTQS4EOtfWERaJYs/qJ9BDE3G2uRc5LQdp8s2v6AO
+	HKIqqjhJNqy4boAD5EM3+fNlqA==
+X-Google-Smtp-Source: AK7set+ziiDk/Iecc5/4CJWrBGIg9OTBhTAoqLcBDI9ZAK6SPp7SnqnL3CHjfonNxYjxcPQIpQfdww==
+X-Received: by 2002:a17:906:f6cc:b0:925:5705:b5b8 with SMTP id jo12-20020a170906f6cc00b009255705b5b8mr2100962ejb.58.1678626807629;
+        Sun, 12 Mar 2023 06:13:27 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id r19-20020a1709067fd300b008eddbd46d7esm2213279ejs.31.2023.03.12.06.13.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 06:13:27 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Joe Tessler <jrt@google.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Wenyou Yang <wenyou.yang@microchip.com>,
+	Bin Liu <bin.liu@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Yong Deng <yong.deng@magewell.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sean Young <sean@mess.org>,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-rockchip@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 02/28] media: cec: meson: drop of_match_ptr for ID table
+Date: Sun, 12 Mar 2023 14:12:52 +0100
+Message-Id: <20230312131318.351173-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <marc.zyngier@arm.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH RESEND] dt-bindings: interrupt-controller: Convert Amlogic
- Meson GPIO interrupt controller binding
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230311_151813_593414_546645CF 
-X-CRM114-Status: GOOD (  17.12  )
+X-CRM114-CacheID: sfid-20230312_061329_954530_E32937F8 
+X-CRM114-Status: GOOD (  14.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,155 +128,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert Amlogic Meson GPIO interrupt controller binding to yaml.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-- consider that more than one compatible may be set
-- remove bus part from example
-- remove minItem/maxItem properties for compatible
-- reduce compatible fallback complexity
----
- .../amlogic,meson-gpio-intc.txt               | 38 ----------
- .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
- 2 files changed, 72 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-deleted file mode 100644
-index bde63f8f0..000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Amlogic meson GPIO interrupt controller
--
--Meson SoCs contains an interrupt controller which is able to watch the SoC
--pads and generate an interrupt on edge or level. The controller is essentially
--a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
--or level and polarity. It does not expose all 256 mux inputs because the
--documentation shows that the upper part is not mapped to any pad. The actual
--number of interrupt exposed depends on the SoC.
--
--Required properties:
--
--- compatible : must have "amlogic,meson8-gpio-intc" and either
--    "amlogic,meson8-gpio-intc" for meson8 SoCs (S802) or
--    "amlogic,meson8b-gpio-intc" for meson8b SoCs (S805) or
--    "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
--    "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
--    "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
--    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
--    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
--    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
--    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
--- reg : Specifies base physical address and size of the registers.
--- interrupt-controller : Identifies the node as an interrupt controller.
--- #interrupt-cells : Specifies the number of cells needed to encode an
--   interrupt source. The value must be 2.
--- meson,channel-interrupts: Array with the 8 upstream hwirq numbers. These
--   are the hwirqs used on the parent interrupt controller.
--
--Example:
--
--gpio_interrupt: interrupt-controller@9880 {
--	compatible = "amlogic,meson-gxbb-gpio-intc",
--		     "amlogic,meson-gpio-intc";
--	reg = <0x0 0x9880 0x0 0x10>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--	meson,channel-interrupts = <64 65 66 67 68 69 70 71>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-new file mode 100644
-index 000000000..fe7ef1916
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson GPIO interrupt controller
-+
-+maintainers:
-+  - Heiner Kallweit <hkallweit1@gmail.com>
-+
-+description: |
-+  Meson SoCs contains an interrupt controller which is able to watch the SoC
-+  pads and generate an interrupt on edge or level. The controller is essentially
-+  a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
-+  or level and polarity. It does not expose all 256 mux inputs because the
-+  documentation shows that the upper part is not mapped to any pad. The actual
-+  number of interrupt exposed depends on the SoC.
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: amlogic,meson-gpio-intc
-+      - items:
-+          - enum:
-+              - amlogic,meson8-gpio-intc
-+              - amlogic,meson8b-gpio-intc
-+              - amlogic,meson-gxbb-gpio-intc
-+              - amlogic,meson-gxl-gpio-intc
-+              - amlogic,meson-axg-gpio-intc
-+              - amlogic,meson-g12a-gpio-intc
-+              - amlogic,meson-sm1-gpio-intc
-+              - amlogic,meson-a1-gpio-intc
-+              - amlogic,meson-s4-gpio-intc
-+          - const: amlogic,meson-gpio-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  amlogic,channel-interrupts:
-+    description: Array with the upstream hwirq numbers
-+    minItems: 8
-+    maxItems: 12
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+  - amlogic,channel-interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@9880 {
-+      compatible = "amlogic,meson-gxbb-gpio-intc",
-+                   "amlogic,meson-gpio-intc";
-+      reg = <0x9880 0x10>;
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-+      amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
-+    };
--- 
-2.39.1
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxlIHNvIHRoZSB0YWJsZSBz
+aG91bGQgYmUgYWx3YXlzCnVzZWQgYW5kIHRoZSBvZl9tYXRjaF9wdHIgZG9lcyBub3QgaGF2ZSBh
+bnkgc2Vuc2UgKHRoaXMgYWxzbyBhbGxvd3MgQUNQSQptYXRjaGluZyB2aWEgUFJQMDAwMSwgZXZl
+biB0aG91Z2ggaXQgbWlnaHQgbm90IGJlIHJlbGV2YW50IGhlcmUpLgoKICBkcml2ZXJzL21lZGlh
+L2NlYy9wbGF0Zm9ybS9tZXNvbi9hby1jZWMuYzo3MTE6MzQ6IGVycm9yOiDigJhtZXNvbl9hb19j
+ZWNfb2ZfbWF0Y2jigJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNvbnN0
+LXZhcmlhYmxlPV0KClNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRv
+Zi5rb3psb3dza2lAbGluYXJvLm9yZz4KLS0tCiBkcml2ZXJzL21lZGlhL2NlYy9wbGF0Zm9ybS9t
+ZXNvbi9hby1jZWMuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
+ZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvY2VjL3BsYXRmb3JtL21lc29u
+L2FvLWNlYy5jIGIvZHJpdmVycy9tZWRpYS9jZWMvcGxhdGZvcm0vbWVzb24vYW8tY2VjLmMKaW5k
+ZXggNmI0NDBmMDYzNWQ5Li4yMjNjMDkyZGJiNmEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbWVkaWEv
+Y2VjL3BsYXRmb3JtL21lc29uL2FvLWNlYy5jCisrKyBiL2RyaXZlcnMvbWVkaWEvY2VjL3BsYXRm
+b3JtL21lc29uL2FvLWNlYy5jCkBAIC03MTksNyArNzE5LDcgQEAgc3RhdGljIHN0cnVjdCBwbGF0
+Zm9ybV9kcml2ZXIgbWVzb25fYW9fY2VjX2RyaXZlciA9IHsKIAkucmVtb3ZlICA9IG1lc29uX2Fv
+X2NlY19yZW1vdmUsCiAJLmRyaXZlciAgPSB7CiAJCS5uYW1lID0gIm1lc29uLWFvLWNlYyIsCi0J
+CS5vZl9tYXRjaF90YWJsZSA9IG9mX21hdGNoX3B0cihtZXNvbl9hb19jZWNfb2ZfbWF0Y2gpLAor
+CQkub2ZfbWF0Y2hfdGFibGUgPSBtZXNvbl9hb19jZWNfb2ZfbWF0Y2gsCiAJfSwKIH07CiAKLS0g
+CjIuMzQuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
