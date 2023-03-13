@@ -4,73 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2CC4C6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 14:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA00CC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 14:46:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j6oSSrijVtZcJZIxOTx3pI5K3vBve6GuXz+eeutzDuE=; b=lMab6Wyv8rBXAD
-	I6a4nUuhGFHdV/wioEC6qtUWiX4LSV7bJk6Kod+h3MQft4kF9pgCi650o7uNr8cYQ7zq/J4qgJRPm
-	KMPmRXd+k16aRzo7219mABGsl2RCEKNc9jl4a4J3z4XMWz4L0pdYxKSrekU4Q3+Yv+IEpynFUq9iQ
-	7HrGWL8f7lRdcUxXXSaTdSXOd55c5O8h+WLSbAe2wmXfpvKRofYGl0FdPeyYO0boJJvi3YqphDLb1
-	K7JvRQuHxOx1oesN4AcQ4LHBMEDz1ysMSIo2LvC4e3YQTz9rZ/JUngPGPSYDV6JauyFKrcjtJ3Nkb
-	oGRl75KbHUcFireT6qeQ==;
+	List-Owner; bh=JjHQr6Kc45bSRX6/py553pftl6huHT/4gryhqkobv3Y=; b=By6/Iq3RTnx4gy
+	dXI4kn2JttnLDY8kvcUXGrcmqN7towmoArW263KRgj1IzrdFO7ucieJF4oGz+s+xp7NpRGXBSedHh
+	kkzOu5/ykwVGtqObEP4Zh9TMW4BA0FN/HVejbSn9Oeza82zKoM5TfaycFGk0350FDGgxE0hxt91dA
+	gMxmNukjjIV0nRx5afGWPAbLhAbYJOdsWISemp+XC82UAfp46Q9pMRCQYQJUcrzKGgctDkzYQSgHB
+	z1lzBUYv8fiZ8CbKCgd0qxORx4f7z0o6kk1OxA9NFHUyUi2Ot0WW6fpA4WW6Amys8VBcO6BYZihqs
+	EG/q1cdceaMhi4rIDniA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbjMs-006AKP-CT; Mon, 13 Mar 2023 14:41:42 +0000
-Received: from smtp2-g21.free.fr ([212.27.42.2])
+	id 1pbjR6-006C8K-8K; Mon, 13 Mar 2023 14:46:04 +0000
+Received: from gofer.mess.org ([2a02:8011:d000:212::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbjMo-006AIr-Gx
-	for linux-amlogic@lists.infradead.org; Mon, 13 Mar 2023 14:41:40 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 7C99720040F;
-	Mon, 13 Mar 2023 15:41:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678718496;
-	bh=jHWvZ9GrC/ieXg7Cg0vUPFioY8hbPYWnhYGRHJxj67U=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=aAWvVKFgvIG3Y8nOAfipbX9cZT83eQAVcg7wBKUsOZXbaVMTc7RbyVHbt9TXwHYwG
-	 47nxIQHR/I3X6kv3UUYduQne6KpWSfmfkeoQ8NjTID9V2u3AfILGR3LOtH/ASXlZyW
-	 qyEQqbAJyuBGEw0RsW76Pyp+ZjpfuAYRASLvOAqUHYM6vmEKwdWMI0za6Q/+QZ9M+Z
-	 PfKT779FDJt0Q4qDG0A1hq9pUy5p/xi+uQZgsTprhMp010cXZy8IR9I04YUqi1xkJk
-	 051ypzqaO1+OK/x+b5CYY4UfK+mdQEeMO1abAm6+Z3xU3zNXfm5rNIt13fsRrvPl/2
-	 61zeiQrMaBfrg==
-Message-ID: <da979443-7a99-b0c8-911b-c5a0d21d595f@free.fr>
-Date: Mon, 13 Mar 2023 15:41:13 +0100
+	id 1pbjR3-006C20-6u; Mon, 13 Mar 2023 14:46:02 +0000
+Received: by gofer.mess.org (Postfix, from userid 1000)
+	id 0CA6A1000B8; Mon, 13 Mar 2023 14:45:44 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1678718744; bh=MQpbYRSJt2Nky5m/Hb4UlOgCs8k1dpHDoiIla4to54M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VfhWWs0CDcE1gvNX2bXlLWyiGqQNluLYD0O0MSFqBVnkM6DU9I2mGeJ+uh0PUnSB1
+	 qEMx2alInfFAXtyAxi+XiPNFq/nvUtpwZMC/o7yPi1mpdC3r8GhRep1wRVxKv4nniH
+	 neI4CR1YoTW11uB79YwAZsajpesqobvK/q/lo+6qrYsBFdzWx8IVJ9NdUHozUz1xb1
+	 dDzcX/jrJ/vpNyVtCP6kcmm5OvP4zWiNl6esTu34QIANrW2+XE9BebzE23GLOJqLov
+	 0jWohIUUN+7quOtf6VpPlPOXGqXxSZuw5fqzdLHRoz410t4mWFKIjBTWf3+HmNaZuJ
+	 ZxrWX35f85+mA==
+Date: Mon, 13 Mar 2023 14:45:43 +0000
+From: Sean Young <sean@mess.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Wenyou Yang <wenyou.yang@microchip.com>,
+	Bin Liu <bin.liu@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Yong Deng <yong.deng@magewell.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 04/28] media: rc: gpio-ir-recv: drop of_match_ptr for ID
+ table
+Message-ID: <ZA83FwxxePyIXPvL@gofer.mess.org>
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <20230312131318.351173-4-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
-Content-Language: en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
- Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
- Eric Dumazet <edumazet@google.com>,
- Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
- Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Angus Ainslie <angus@akkea.ca>, Pierre-Hugues Husson <phh@phh.me>,
- linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
- <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
- <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
- <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
- <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
- <0450e34e-7190-104c-832a-150f15f7c825@free.fr>
- <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
-In-Reply-To: <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
+Content-Disposition: inline
+In-Reply-To: <20230312131318.351173-4-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_074138_737876_25F281B3 
-X-CRM114-Status: GOOD (  21.98  )
+X-CRM114-CacheID: sfid-20230313_074601_427046_B847A4FD 
+X-CRM114-Status: GOOD (  18.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,165 +99,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/03/2023 14:55, Marc Gonzalez wrote:
-
-> On 09/03/2023 18:51, Marc Gonzalez wrote:
-> 
->> On 09/03/2023 15:29, Ulf Hansson wrote:
->>
->>> To narrow down the problem, I would start by preventing the WiFi
->>> driver from being insmoded. To make sure it doesn't affect the SDIO
->>> card detection process.
->>>
->>> The point is, the SDIO card should be detected properly, no matter
->>> whether there is a corresponding SDIO func driver (WiFi driver)
->>> available for it. For a detected SDIO/eMMC/SD card, mmc_add_card()
->>> prints a message about the card in the log during initialization. It
->>> could look like the below print, for example:
->>>
->>> "mmc2: new ultra high speed SDR104 SDIO card at address 0001".
->>
->> OK, I built the WiFi driver as a module which is NOT loaded at boot time.
-> 
-> Still trying to bisect this heisenbug into submission... :(
-> 
-> So far, I've pared it down to mmc_attach_sdio()
-> 
-> When probe WORKS, mmc_attach_sdio() returns 0.
-> When probe FAILS, mmc_attach_sdio() returns ETIMEDOUT
-> via mmc_send_io_op_cond(host, 0, &ocr);
-> 
-> Wrapping mmc_send_io_op_cond() in a loop
-> makes it work on the second try.
-> 
-> Would appreciate additional guidance. Am mostly stabbing in the dark :)
-
-Caught the race "in the act" (in flagrante delicto)
-
-Using this patch:
-
-diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
-index f64b9ac76a5cd..eb2c95721e32c 100644
---- a/drivers/mmc/core/sdio.c
-+++ b/drivers/mmc/core/sdio.c
-@@ -1204,11 +1204,24 @@ int mmc_attach_sdio(struct mmc_host *host)
- 	struct mmc_card *card;
- 
- 	WARN_ON(!host->claimed);
--
-+	//printk("YO %s: %s", __func__, mmc_hostname(host));
-+	//msleep(500);
-+
-+#if 1
-+	for (i = 0; i < 10; ++i) {
-+		err = mmc_send_io_op_cond(host, 0, &ocr);
-+		printk("YO %s", mmc_hostname(host));
-+		if (!err) goto all_good;
-+	}
-+	printk("%s failed with %d", __func__, err);
-+	return err;
-+#else
- 	err = mmc_send_io_op_cond(host, 0, &ocr);
- 	if (err)
- 		return err;
-+#endif
- 
-+all_good:
- 	mmc_attach_bus(host, &mmc_sdio_ops);
- 	if (host->ocr_avail_sdio)
- 		host->ocr_avail = host->ocr_avail_sdio;
-
-
-
-Two boots of the same kernel:
-
-
-/* THIS RUN PROBES ONCE */
-
-[    0.846591] loop: module loaded
-[    0.848079] g12a-mdio_mux ff64c000.mdio-multiplexer: Driver g12a-mdio_mux requests probe deferral
-[    0.853901] usbcore: registered new interface driver usb-storage
-[    0.859421] input: gpio-keys-polled as /devices/platform/gpio-keys-polled/input/input0
-[    0.867880] meson-vrtc ff8000a8.rtc: registered as rtc0
-[    0.872148] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:00 UTC (0)
-[    0.880251] i2c_dev: i2c /dev entries driver
-[    0.886780] psci-cpuidle: probe of psci-cpuidle rejects match -19
-[    0.891279] ledtrig-cpu: registered to indicate activity on CPUs
-[    0.891505] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    0.896644] meson-sm: secure-monitor enabled
-[    0.906242] hid: raw HID events driver (C) Jiri Kosina
-[    0.911506] usbcore: registered new interface driver usbhid
-[    0.916638] usbhid: USB HID core driver
-[    0.922897] optee: probing for conduit method.
-[    0.924837] optee: revision 2.4
-[    0.925770] optee: initialized driver
-[    0.932832] NET: Registered PF_PACKET protocol family
-[    0.936627] Key type dns_resolver registered
-[    0.941251] YO mmc2
-[    0.945287] registered taskstats version 1
-[    0.946989] Loading compiled-in X.509 certificates
-[    1.074273] sdio_read_cis: vendor=2d0 dev=aae7
-[    1.074824] sdio_read_cis: vendor=2d0 dev=aae7
-[    1.074862] mmc2: new ultra high speed SDR50 SDIO card at address 0001
-
-
-/* THIS RUN REQUIRES TWO PROBES */
-
-[    0.855536] loop: module loaded
-[    0.857064] g12a-mdio_mux ff64c000.mdio-multiplexer: Driver g12a-mdio_mux requests probe deferral
-[    0.862952] usbcore: registered new interface driver usb-storage
-[    0.868480] input: gpio-keys-polled as /devices/platform/gpio-keys-polled/input/input0
-[    0.877000] meson-vrtc ff8000a8.rtc: registered as rtc0
-[    0.881206] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:00 UTC (0)
-[    0.889310] i2c_dev: i2c /dev entries driver
-[    0.895850] psci-cpuidle: probe of psci-cpuidle rejects match -19
-[    0.900536] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    0.905438] ledtrig-cpu: registered to indicate activity on CPUs
-[    0.911212] meson-sm: secure-monitor enabled
-[    0.915235] hid: raw HID events driver (C) Jiri Kosina
-[    0.920576] usbcore: registered new interface driver usbhid
-[    0.925700] usbhid: USB HID core driver
-[    0.931999] optee: probing for conduit method.
-[    0.933912] optee: revision 2.4
-[    0.934875] optee: initialized driver
-[    0.941567] YO mmc2
-[    0.941764] NET: Registered PF_PACKET protocol family
-[    0.942884] YO mmc2
-[    0.947738] Key type dns_resolver registered
-[    0.958079] registered taskstats version 1
-[    0.958190] Loading compiled-in X.509 certificates
-[    1.068023] g12a-mdio_mux ff64c000.mdio-multiplexer: Driver g12a-mdio_mux requests probe deferral
-[    1.072434] g12a-mdio_mux ff64c000.mdio-multiplexer: Driver g12a-mdio_mux requests probe deferral
-[    1.072766] meson-gx-mmc ffe07000.mmc: allocated mmc-pwrseq
-[    1.081297] cfg80211: Loading compiled-in X.509 certificates for regulatory database
-[    1.101201] sdio_read_cis: vendor=2d0 dev=aae7
-[    1.101755] sdio_read_cis: vendor=2d0 dev=aae7
-[    1.101794] mmc2: new ultra high speed SDR50 SDIO card at address 0001
-
-
-
-NOTA BENE: for mmc1, in both runs, kernel probes 10 times and fails with:
-
-[    1.265231] mmc_attach_sdio failed with -110
-[    1.373006] mmc1: new HS200 MMC card at address 0001
-[    1.377242] mmcblk1: mmc1:0001 SCA16G 14.7 GiB 
-[    1.383718] mmcblk1boot0: mmc1:0001 SCA16G 4.00 MiB 
-[    1.387257] mmcblk1boot1: mmc1:0001 SCA16G 4.00 MiB 
-[    1.391912] mmcblk1rpmb: mmc1:0001 SCA16G 4.00 MiB, chardev (246:0)
-
-mmc_attach_sdio() fails but mmc_add_card() succeeds anyway...?
-Confused.
-mmc_attach_sdio() doesn't call mmc_add_card() if it exits prematurely.
-
-Regards
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU3VuLCBNYXIgMTIsIDIwMjMgYXQgMDI6MTI6NTRQTSArMDEwMCwgS3J6eXN6dG9mIEtvemxv
+d3NraSB3cm90ZToKPiBUaGUgZHJpdmVyIGNhbiBtYXRjaCBvbmx5IHZpYSB0aGUgRFQgdGFibGUg
+c28gdGhlIHRhYmxlIHNob3VsZCBiZSBhbHdheXMKPiB1c2VkIGFuZCB0aGUgb2ZfbWF0Y2hfcHRy
+IGRvZXMgbm90IGhhdmUgYW55IHNlbnNlICh0aGlzIGFsc28gYWxsb3dzIEFDUEkKPiBtYXRjaGlu
+ZyB2aWEgUFJQMDAwMSwgZXZlbiB0aG91Z2ggaXQgbWlnaHQgbm90IGJlIHJlbGV2YW50IGhlcmUp
+LiAgVGhpcwo+IGFsc28gZml4ZXMgIUNPTkZJR19PRiBlcnJvcjoKPiAKPiAgIGRyaXZlcnMvbWVk
+aWEvcmMvZ3Bpby1pci1yZWN2LmM6MTk3OjM0OiBlcnJvcjog4oCYZ3Bpb19pcl9yZWN2X29mX21h
+dGNo4oCZIGRlZmluZWQgYnV0IG5vdCB1c2VkIFstV2Vycm9yPXVudXNlZC1jb25zdC12YXJpYWJs
+ZT1dCj4gCj4gU2lnbmVkLW9mZi1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtv
+emxvd3NraUBsaW5hcm8ub3JnPgoKUmV2aWV3ZWQtYnk6IFNlYW4gWW91bmcgPHNlYW5AbWVzcy5v
+cmc+CgpUaGFua3MKU2VhbgoKPiAtLS0KPiAgZHJpdmVycy9tZWRpYS9yYy9ncGlvLWlyLXJlY3Yu
+YyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvcmMvZ3Bpby1pci1yZWN2LmMgYi9kcml2
+ZXJzL21lZGlhL3JjL2dwaW8taXItcmVjdi5jCj4gaW5kZXggOGRiZTc4MGRhZTRlLi5hZTExOTlj
+YzczZmQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9yYy9ncGlvLWlyLXJlY3YuYwo+ICsr
+KyBiL2RyaXZlcnMvbWVkaWEvcmMvZ3Bpby1pci1yZWN2LmMKPiBAQCAtMjA1LDcgKzIwNSw3IEBA
+IHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIGdwaW9faXJfcmVjdl9kcml2ZXIgPSB7Cj4g
+IAkucmVtb3ZlID0gZ3Bpb19pcl9yZWN2X3JlbW92ZSwKPiAgCS5kcml2ZXIgPSB7Cj4gIAkJLm5h
+bWUgICA9IEtCVUlMRF9NT0ROQU1FLAo+IC0JCS5vZl9tYXRjaF90YWJsZSA9IG9mX21hdGNoX3B0
+cihncGlvX2lyX3JlY3Zfb2ZfbWF0Y2gpLAo+ICsJCS5vZl9tYXRjaF90YWJsZSA9IGdwaW9faXJf
+cmVjdl9vZl9tYXRjaCwKPiAgI2lmZGVmIENPTkZJR19QTQo+ICAJCS5wbQk9ICZncGlvX2lyX3Jl
+Y3ZfcG1fb3BzLAo+ICAjZW5kaWYKPiAtLSAKPiAyLjM0LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
