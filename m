@@ -4,112 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD89BC6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 17:17:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0538DC6FD19
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 17:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ov8gQkBVCYUZCCYLMh7MswrgF4HGo912EheRWt7SBgM=; b=wII+WqsfJ8ZMEW+e8sOGyvQ3qp
-	+wroDiRAIbyPAy0V/j+KRn2utI6ozPNqbjj+fQE2TDZax8DPjYnFefcK8VHKmjQUvUbbn5KPBeDtg
-	co198B3IKQiFIuUh8qbT8dPihFk9rfKhCI1XfwOQpDgx6ukGKQVyEXfX+r2ftGlmzGq6Fn8qZV5iM
-	UdxqTC0kxAW2d9wQeial8c6EGiscPjyxIAM00ayV/TxobVI6G7MKgtYxlK5shcZ1mUKA7ccm6e4NE
-	NGZq4ynHn2+tYOsDALCwMEntkahOChBYhfR3zUKpPk09KxGov1ReVCz4eiyqwzPsHXIQkS2GAaezv
-	tUpNUZxw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OZ6ClnMSP+A0fnb8FSCVWakiKFJ8wBa8O3q69gYwnFw=; b=T5+goz3wxOK0gg
+	1Rv4S+Y+ZHDQza3OXb5OxOLOdZECv/wRVWHnY0Oje9angz17uq1I7YLG8jQq3kpoylwxx/CqcVrrY
+	B/DQEFrJ04Mr6FlmTJ/Yb+teF32Pvhq4v/sOX3NhCNR9kN3xFS1TdSDpRzREzHYlVU93tHfVeUNiZ
+	9shd3pRC02RYLd06050FZ9f1ias6Gi+8HMTvp+btnxIR9YA5aLiuCQuIfgw2KIJhG18M69x8y47tP
+	xI7iinjNbxo8+bNjQoppx/AJo6zKyE9eoCJJ96iZB/+jQGi7TIz+BXGaYa2an6SdDcknlpmfTTwSd
+	eLIdghamHo+tiun97Ubw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pblnS-0072Gs-F1; Mon, 13 Mar 2023 17:17:18 +0000
-Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
+	id 1pbloT-0072kG-Pe; Mon, 13 Mar 2023 17:18:22 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pblfF-006yzC-7U; Mon, 13 Mar 2023 17:08:50 +0000
-Received: by mail-lj1-x236.google.com with SMTP id z42so13313430ljq.13;
-        Mon, 13 Mar 2023 10:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678727325; x=1681319325;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nWFcn3N7fdkggfCAU6N3AWS2AJpujTNFZCDcDG29DDU=;
-        b=e6YN891exTz6RBgawDES0963ZDWFQA9+8aQ63Im7BP5Fy9eEvzBxMIuHAuqWbCZeLw
-         xA2sSa6/cZiN6mHF3/+fIb3pnqq2MewlfLzR48koCbD8whXbKfA8Zs0+dFs89Cfy5m36
-         ROVsAU6bQljGOx/ykPtOQO0r6I8XBemOEF326xWZ5gIBuu5RpWt0wZITremU5bdqxJ5e
-         fWUkITbc/MzS3k5YZE74vlNgxyJd3l+n9CkKH1MRvz0jG8OdZSEUnRN+n0e89kMgUyKp
-         rroBKHNdNE45XtTz8XbWd27Z63Nu8HES9mhzKxEJUTEcdgqTB5zYtiSB6fEQbd4byozN
-         7IwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678727325; x=1681319325;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nWFcn3N7fdkggfCAU6N3AWS2AJpujTNFZCDcDG29DDU=;
-        b=1GZIOGPAFPxtmTyFrjZZqcpAma/2GGysZ4DBZnejCrC+QsvaPUidLW5gl/8OwSEbdm
-         cVn27oWWcbfXnHYwhFwlzuo4h+B4Bv82m8ez0m31WLFqeiRC59Qrpi2NjramjBelhWKj
-         CwGoyAcE1i1SkD97L+BfwCJce7g1v3PxTXIdIsAkMEVfRtb4A8G3VBqpxm87GokA75FI
-         fMxlt2T+mBduHmSruAu7XOV1lqcfbzWiYVmdL29HAAYKnOcF1sOPJZEHfW6PFHLm8ipC
-         sMirxgyhUmlinRn0u60sx64BsQOUh6a4vTV3bC91cRyWIBDA826VsJAeMi+gkN4+4hHd
-         BlEA==
-X-Gm-Message-State: AO0yUKXZxnG/a+oH79lvfin2k2sUDY88yQ4bMehC4IyiU0Ays8DW1FXE
-	+wqf/JeL6sftDHOgRCZKDUI=
-X-Google-Smtp-Source: AK7set9A23LXz84FY4nbulp8BmwRuZb6BzjELqJTA00c9/JbdQSh2qRKdHRdbHkxYlALuU7kCLrMgg==
-X-Received: by 2002:a05:651c:222b:b0:294:7422:479e with SMTP id y43-20020a05651c222b00b002947422479emr6188608ljq.1.1678727324631;
-        Mon, 13 Mar 2023 10:08:44 -0700 (PDT)
-Received: from [192.168.0.192] ([194.146.248.75])
-        by smtp.gmail.com with ESMTPSA id e2-20020a2e9302000000b0029571d505a1sm69136ljh.80.2023.03.13.10.08.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 10:08:44 -0700 (PDT)
-Message-ID: <66b78cd3-0d0d-cee8-6a93-996ade3a07a9@gmail.com>
-Date: Mon, 13 Mar 2023 18:08:42 +0100
+	id 1pblfx-006zFf-EI
+	for linux-amlogic@lists.infradead.org; Mon, 13 Mar 2023 17:09:35 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id A1CDA2003EE;
+	Mon, 13 Mar 2023 18:09:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1678727369;
+	bh=smawnl6KcM2cRiLocVN6DhjVtIjFtbYqWrLcYzJtGnY=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=rGU7XyHdxIl9sUZUuyqtRcY3SDNWTmlRUZbYeQpRaENyZXPsv8prhAgvhHgDwAdoU
+	 rY8mt+SjK4B2P2qu52P0wY6E/f3W18+hdpu/MQere84CXku+d0a34d4zy57Z15APy9
+	 +k3xYYOz/+CEnRSciHewGFhpQZHfQxn+CbiI3U710m+ubPKurU7XL3Dp6Ol+y94P+1
+	 dfw15qeXtssuGH9832K3TmlbYKVPe7eYUWTj0XJl17Jozw/86NP+1iy0FV3bzJ9syk
+	 pLDuruTgz+erHNUjNQwQurZvI/tOOvLndaGWZYdpX/F3t84rvAceMs7Fqa0FWAqr0u
+	 bo6WTEq7Ywbcg==
+Message-ID: <eecb86be-81e3-09cd-8ec7-4e77c42f2795@free.fr>
+Date: Mon, 13 Mar 2023 18:09:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 09/28] media: platform: samsung: s5p-jpeg: drop
- of_match_ptr for ID table
+Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
+ Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
+ Eric Dumazet <edumazet@google.com>,
+ Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+ Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
- <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
- Houlong Wei <houlong.wei@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Yong Deng <yong.deng@magewell.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
-References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
- <20230312131318.351173-9-krzysztof.kozlowski@linaro.org>
-From: Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
-In-Reply-To: <20230312131318.351173-9-krzysztof.kozlowski@linaro.org>
+ Angus Ainslie <angus@akkea.ca>, Pierre-Hugues Husson <phh@phh.me>,
+ linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
+ <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
+ <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
+ <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
+ <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
+ <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
+ <0450e34e-7190-104c-832a-150f15f7c825@free.fr>
+ <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
+In-Reply-To: <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_100849_379938_67A35198 
-X-CRM114-Status: GOOD (  19.08  )
+X-CRM114-CacheID: sfid-20230313_100933_697496_C4EAE21B 
+X-CRM114-Status: GOOD (  13.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,35 +82,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgoKVyBkbml1IDEyLjAzLjIwMjMgb8KgMTQ6MTIsIEtyenlzenRvZiBLb3psb3dza2kgcGlz
-emU6Cj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxlIHNvIHRoZSB0
-YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5v
-dCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4gbWF0Y2hpbmcgdmlhIFBS
-UDAwMDEsIGV2ZW4gdGhvdWdoIGl0IG1pZ2h0IG5vdCBiZSByZWxldmFudCBoZXJlKS4gIFRoaXMK
-PiBhbHNvIGZpeGVzICFDT05GSUdfT0YgZXJyb3I6Cj4gCj4gICAgZHJpdmVycy9tZWRpYS9wbGF0
-Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jOjMxMjQ6MzQ6IGVycm9yOiDigJhzYW1z
-dW5nX2pwZWdfbWF0Y2jigJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNv
-bnN0LXZhcmlhYmxlPV0KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxr
-cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+CgpBY2tlZC1ieTogQW5kcnplaiBQaWV0cmFz
-aWV3aWN6IDxhbmRyemVqdHAyMDEwQGdtYWlsLmNvbT4KCj4gLS0tCj4gICBkcml2ZXJzL21lZGlh
-L3BsYXRmb3JtL3NhbXN1bmcvczVwLWpwZWcvanBlZy1jb3JlLmMgfCAyICstCj4gICAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jIGIvZHJp
-dmVycy9tZWRpYS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gaW5kZXgg
-NTU4MTQwNDFiOGQ4Li44YmU4ZTM1OTZlMDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9w
-bGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gKysrIGIvZHJpdmVycy9tZWRp
-YS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gQEAgLTMxNjYsNyArMzE2
-Niw3IEBAIHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIHM1cF9qcGVnX2RyaXZlciA9IHsK
-PiAgIAkucHJvYmUgPSBzNXBfanBlZ19wcm9iZSwKPiAgIAkucmVtb3ZlID0gczVwX2pwZWdfcmVt
-b3ZlLAo+ICAgCS5kcml2ZXIgPSB7Cj4gLQkJLm9mX21hdGNoX3RhYmxlCT0gb2ZfbWF0Y2hfcHRy
-KHNhbXN1bmdfanBlZ19tYXRjaCksCj4gKwkJLm9mX21hdGNoX3RhYmxlCT0gc2Ftc3VuZ19qcGVn
-X21hdGNoLAo+ICAgCQkubmFtZQkJPSBTNVBfSlBFR19NMk1fTkFNRSwKPiAgIAkJLnBtCQk9ICZz
-NXBfanBlZ19wbV9vcHMsCj4gICAJfSwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 13/03/2023 14:55, Marc Gonzalez wrote:
+
+> Still trying to bisect this heisenbug into submission... :(
+> 
+> So far, I've pared it down to mmc_attach_sdio()
+> 
+> When probe WORKS, mmc_attach_sdio() returns 0.
+> When probe FAILS, mmc_attach_sdio() returns ETIMEDOUT
+> via mmc_send_io_op_cond(host, 0, &ocr);
+> 
+> Wrapping mmc_send_io_op_cond() in a loop
+> makes it work on the second try.
+
+Almost there, I think, I hope :)
+
+DT prop "post-power-on-delay-ms" looks like what I needed all along.
+It exists both for host (default 10 ms) and for pwrseq_simple (default 0 apparently).
+
+/*
+ * Apply power to the MMC stack.  This is a two-stage process.
+ * First, we enable power to the card without the clock running.
+ * We then wait a bit for the power to stabilise.  Finally,
+ * enable the bus drivers and clock to the card.
+ *
+ * We must _NOT_ enable the clock prior to power stablising.
+ *
+ * If a host does all the power sequencing itself, ignore the
+ * initial MMC_POWER_UP stage.
+ */
+void mmc_power_up(struct mmc_host *host, u32 ocr)
+
+Calls:
+
+mmc_delay(host->ios.power_delay_ms);
+mmc_pwrseq_post_power_on(host);
+  => msleep(pwrseq->post_power_on_delay_ms);
+...
+mmc_delay(host->ios.power_delay_ms);
+
+
+QUESTION:
+It's not clear to me why we sleep twice for host->ios.power_delay_ms?
+
+
+Looks like all I need is to add post-power-on-delay-ms = <100>; to
+
+	sdio_pwrseq: sdio-pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+		clocks = <&wifi32k>;
+		clock-names = "ext_clock";
+	};
+
+Will revert all my stabs in the dark, and boot the board 100 times
+to check if this does the trick.
+
+Regards
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
