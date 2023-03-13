@@ -4,62 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52D79C6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 07:36:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB71BC6FD19
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 07:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:CC:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9WgtFxrcG8wPLvGaE6zzNMo71TZDZBfc6TGs1g19bqA=; b=ZAFEpCZm8uEOEV
-	BGRqP89xPcnT98p8q/5DF6OTVBAE+I3N3aY9V7dfl1zDY2cTpbkYqtBc4tpXi1/HqD44nSKph6fLO
-	3q8bBo1hiiX6e4fG/lWyO0fbzh17NsdJ+fOHPBsH2lq8XCu7hTP0Xca+VmHgJrUBSP/cd5a2FSaGC
-	bvSLkmWHiAVAkDC7D5gsTQwSv7ktOI5gr235WgCeGs6KpXvjqhzZxGOMpUf/RYFcF1v0eSJnSANu2
-	+MLkblZyYLIJFx4WkDekfGRIQeR4NBlncU9Md5OoVKUSrTmt0JHGBMLjIiFJWZut81WEDTHAB/5O4
-	iK8E+qJsFc9meqKLiHfA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/MNSOU0GWnMkMaoUd1Mcu0gKRhxUctzdT86b9pC4OWc=; b=ilXvCgMA7bwY/U
+	cNqYEPtljxB35kKBpoUsxQHphVvzpEwoSwaUeLVw8aiTYnC0zPoOnGgRUmAIsyxZHdjV10kSCxZHv
+	MHQC6pk4iKt3f5O/wYInrEVzgwJMwbUzKhQcnGBnhgH1tI4075sP6U32WdacxEpw5/Ex4B68JsuW2
+	82n64RPztIVcuh4InR/wkZw065VoKZMMd9yTg+eJVL5rJHvO9hTVKiYfcFP5+ET0yyx/Kn6xxpWey
+	PEvBfbZ7BKhDHDoeEB1mIA7nSAGRrE+/huvBdRahjnkJkqiHXdTcnn3RK9rfyavp1ZMKcZzq6xtK0
+	VfB5oyHwHnzjSL0djmZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcj6-004bp8-Rf; Mon, 13 Mar 2023 07:36:13 +0000
+	id 1pbcmM-004caM-NB; Mon, 13 Mar 2023 07:39:34 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcj2-004bmO-CT; Mon, 13 Mar 2023 07:36:11 +0000
+	id 1pbcm8-004cXa-RG; Mon, 13 Mar 2023 07:39:32 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 2D79C5FD05;
-	Mon, 13 Mar 2023 10:35:54 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 7677B5FD05;
+	Mon, 13 Mar 2023 10:39:18 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1678692954;
-	bh=MjAjGAw6favgxqmSJTuoTBm/E5xM29RbzZXGon97h6w=;
-	h=Message-ID:Date:MIME-Version:To:From:Subject:Content-Type;
-	b=oh9qrTNJ9QMW2wTJ71o5N2i2jED3ZWE+PGaj/AM0A8VuLm7PMBU+uq6iCIF8nmodA
-	 kT02E8P3l8jmy4jD7d4N6i2vDwsp7whiWKPG4dvsiAeMRx4jHQJ5R8NdqJWUumeQVY
-	 xmFmf8FgZ9Qn1GYB/9eR+LprBeZUXX4guRtgmqFH3IeLXaAXlvhbFlvZMf6n2jpod1
-	 v5Vq7xo5/BCbyRPHhNMg1CnbTL4gETVbQu+/sl8FVIs95N492g8jTv+Sx56/0WP0Fj
-	 ytEUaYPy2EHRWvjtVWSq1WCXtajrjP4Q1NU5zSuWtrywkoQfrFCfE2/uYaVk9Alwuu
-	 abK+4fczzRR1A==
+	s=mail; t=1678693158;
+	bh=Pcu7cuLn4R4Of3LuVtm8P3SexQIJRH9aN9HH3u5OFk0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Content-Type;
+	b=fWBMWtOioo+TiLpuqJYfJ/N+fxST+P6JpJDxPcEJipb4Z2a1wp55Pyc4oQ0J/zDWz
+	 /xtxDlMWIVr2S+sS1kh0tKRZedr2vBFraS2u9Od7vtyPKR97zoPKKGjntchoPmJR3U
+	 GJbBPj7xxyXL9ur488jmD3VVYd2rLxMfKeXGzZ2HklGCUkmIE82cYVtptFSxsdZ5tE
+	 /FSk+hporaaT9EekpzaCrhUX76s8qxsCpz/1pRg37nmmleVded4qG3z63FWvDctaHi
+	 0lq155iaczSb3INdRxijtNOI2CwSAfKDoEMH8dzMDpfo9O/CUL3w4vDuoInnzVSwJO
+	 sB1SwGU/0DEaw==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 13 Mar 2023 10:35:51 +0300 (MSK)
-Message-ID: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
-Date: Mon, 13 Mar 2023 10:32:44 +0300
+	Mon, 13 Mar 2023 10:39:18 +0300 (MSK)
+Message-ID: <20f7f1f8-e8f8-b3e1-251e-27db71ab6840@sberdevices.ru>
+Date: Mon, 13 Mar 2023 10:36:11 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
+Subject: Re: [RFC PATCH v1] mtd: rawnand: meson: invalidate cache on polling
+ ECC bit
 Content-Language: en-US
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
  Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>
+	<jianxin.pan@amlogic.com>
 CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Subject: [RFC PATCH v1] mtd: rawnand: meson: invalidate cache on polling ECC
- bit
+References: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
+In-Reply-To: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
@@ -69,8 +71,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/13 03:18:00 #20941028
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_003608_926657_6CED3FD1 
-X-CRM114-Status: GOOD (  11.79  )
+X-CRM114-CacheID: sfid-20230313_003921_889686_DA2981C5 
+X-CRM114-Status: GOOD (  19.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,60 +89,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-'info_buf' memory is cached and driver polls ECC bit in it. This bit
-is set by the NAND controller. If 'usleep_range()' returns before device
-sets this bit, 'info_buf' will be cached and driver won't see update of
-this bit and will loop forever.
+Hello,
 
-Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+we reproduced this problem on one of our boards. It triggers very rare
+when 'usleep_range()' is present, but when sleeping is removed - it fires
+always. I suppose problem is with caching, as 'info_buf' memory is mapped by
+'dma_map_single()'.
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 5ee01231ac4c..2c05c08a0eaf 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -176,6 +176,7 @@ struct meson_nfc {
- 
- 	dma_addr_t daddr;
- 	dma_addr_t iaddr;
-+	u32 info_bytes;
- 
- 	unsigned long assigned_cs;
- };
-@@ -503,6 +504,7 @@ static int meson_nfc_dma_buffer_setup(struct nand_chip *nand, void *databuf,
- 					 nfc->daddr, datalen, dir);
- 			return ret;
- 		}
-+		nfc->info_bytes = infolen;
- 		cmd = GENCMDIADDRL(NFC_CMD_AIL, nfc->iaddr);
- 		writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
-@@ -520,8 +522,10 @@ static void meson_nfc_dma_buffer_release(struct nand_chip *nand,
- 	struct meson_nfc *nfc = nand_get_controller_data(nand);
- 
- 	dma_unmap_single(nfc->dev, nfc->daddr, datalen, dir);
--	if (infolen)
-+	if (infolen) {
- 		dma_unmap_single(nfc->dev, nfc->iaddr, infolen, dir);
-+		nfc->info_bytes = 0;
-+	}
- }
- 
- static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
-@@ -710,6 +714,8 @@ static void meson_nfc_check_ecc_pages_valid(struct meson_nfc *nfc,
- 		usleep_range(10, 15);
- 		/* info is updated by nfc dma engine*/
- 		smp_rmb();
-+		dma_sync_single_for_cpu(nfc->dev, nfc->iaddr, nfc->info_bytes,
-+					DMA_FROM_DEVICE);
- 		ret = *info & ECC_COMPLETE;
- 	} while (!ret);
- }
--- 
-2.35.0
+Thanks, Arseniy
+
+On 13.03.2023 10:32, Arseniy Krasnov wrote:
+> 'info_buf' memory is cached and driver polls ECC bit in it. This bit
+> is set by the NAND controller. If 'usleep_range()' returns before device
+> sets this bit, 'info_buf' will be cached and driver won't see update of
+> this bit and will loop forever.
+> 
+> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> ---
+>  drivers/mtd/nand/raw/meson_nand.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> index 5ee01231ac4c..2c05c08a0eaf 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -176,6 +176,7 @@ struct meson_nfc {
+>  
+>  	dma_addr_t daddr;
+>  	dma_addr_t iaddr;
+> +	u32 info_bytes;
+>  
+>  	unsigned long assigned_cs;
+>  };
+> @@ -503,6 +504,7 @@ static int meson_nfc_dma_buffer_setup(struct nand_chip *nand, void *databuf,
+>  					 nfc->daddr, datalen, dir);
+>  			return ret;
+>  		}
+> +		nfc->info_bytes = infolen;
+>  		cmd = GENCMDIADDRL(NFC_CMD_AIL, nfc->iaddr);
+>  		writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  
+> @@ -520,8 +522,10 @@ static void meson_nfc_dma_buffer_release(struct nand_chip *nand,
+>  	struct meson_nfc *nfc = nand_get_controller_data(nand);
+>  
+>  	dma_unmap_single(nfc->dev, nfc->daddr, datalen, dir);
+> -	if (infolen)
+> +	if (infolen) {
+>  		dma_unmap_single(nfc->dev, nfc->iaddr, infolen, dir);
+> +		nfc->info_bytes = 0;
+> +	}
+>  }
+>  
+>  static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
+> @@ -710,6 +714,8 @@ static void meson_nfc_check_ecc_pages_valid(struct meson_nfc *nfc,
+>  		usleep_range(10, 15);
+>  		/* info is updated by nfc dma engine*/
+>  		smp_rmb();
+> +		dma_sync_single_for_cpu(nfc->dev, nfc->iaddr, nfc->info_bytes,
+> +					DMA_FROM_DEVICE);
+>  		ret = *info & ECC_COMPLETE;
+>  	} while (!ret);
+>  }
 
 _______________________________________________
 linux-amlogic mailing list
