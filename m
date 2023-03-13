@@ -4,83 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54B5DC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 20:04:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 979CFC74A4B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 20:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jO3zY3fScz4PzLGzzowVXKPU1EKTiRLJ9PabdYKOlOE=; b=D5Cp5tzhalW5/H
-	3sD0I69EXHd3Nu2aB9TcfFz298D4Cb5RN2BViMct+vshffJeVKiwczO9P+zc5Q0ArI3umi5VMp9qa
-	oM1fgFMoZ+YLbxrqO7bvwtMizC+jC3rVsUScl1LmBa5yorZtN3aa4CjgsMrslqpHWMhIOya1Z4ops
-	Qcs4blJQFovp04/5GBox3UYdSntY+nGJhXGjuLmHkr9h9T5C5i4/QPcaKtTjs2wgRgNIH/KtkXDd1
-	MGAwIeVpna3yDmlk90nEpVvpxiVVnVr4dZpWTMhhPnKflg/G26R/stVyUbpJCTCvd5fnGF+Q+IXpR
-	Fo/iBP/ItqPx4YuUTj2g==;
+	List-Owner; bh=xxRv3+yScP9T4KeJ327yy02wwlvGXLf1AiHcKCJsPHg=; b=CcV9ZrVS2tP0vP
+	/VWI0CtmNWKWKTVD/61CpIl+aSvc4SFpI+V5uy+nBuHAkjahWfqVRErVuyvx5+930CObTtd6omKss
+	ytz8rdqpCASSkw1kz544QFjNvC/6h0DFkj0C8n+vqFbuelrihU2ydVZi9sUDtYJmOopoI/AqyV2Xe
+	uoIgL7eUUzveUS66m3Zz30nCGNlReerm1uegfd63JLMXu56lWkIIGiS7XduqtxbMdGNu7xFmdotAU
+	Acp30llQLImglz5d7JUgFyRmHzPXSWXJiH9qtRSj4tSN2hEC8iTCRxlumRd+p/oXKz/F+H6eaiEFy
+	qLhxBdDcqbA3bQP4HSww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pboPI-007bRx-3t; Mon, 13 Mar 2023 20:04:32 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1pboXp-007cBv-3Q; Mon, 13 Mar 2023 20:13:21 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pboPF-007bQQ-Mi
-	for linux-amlogic@lists.infradead.org; Mon, 13 Mar 2023 20:04:31 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id da10so53575659edb.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Mar 2023 13:04:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1678737865;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MlsJMKW6fTnSyJwAJ4cqmlm3nWjmDE6jeDNees0hYCg=;
-        b=n9+PUEiEa5PYrJ1/BoBZUrn8uJ9PX4FHL1ZcarM/14nWpoDvRkiHFPoCI7GYf11d/k
-         XMKEWzewKzarPdpkk6l803LIGdy6l9fifXm4mhMfBYaRG36g1qUyg6fqa+kS8fxnhLLM
-         3FV+2tbxvJwh0qY/BhfNaw0aL/+c0KYw4kzbQbzJEqOX7Tw7A8iQtWdOmL6a9lqE2oCY
-         LL2hszEQ5X27jJVE9gqI8EiHzNQurEoiynjojgSUNd2VXO6wCANAVXnykRzzRLgob+M9
-         32rMPxuPP9zqKh+LjmwiKhQxxdM48rHJIGJxD7tSx5Hkxd2NRAysKo2rmRm/R0lrq/hC
-         xxlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678737865;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MlsJMKW6fTnSyJwAJ4cqmlm3nWjmDE6jeDNees0hYCg=;
-        b=2fV0sAMipdeUv43CblszrlEfuYFvqwV/WSwYlYeAjXxDM2GtRYtZo9CKq1dh8012sn
-         rbSsddKe8t/VkhOArMigcXPyEHg9RTyqUAsVFNtKNncyg98GFVuVDDkwwJ3pi6dbopRy
-         hArsCY1VUMeyjUePfa+pSpS0Jq/K6Nqh+h8Xi2gVHxE3ntv6shWQKJZHeMTpuuw/pbNS
-         lSJ0uhYB6R+/UNcqQnLlu7t8etnKyrq6YFwrlP3TtjXTOX8XRvY4fQf5+9VYtvBgdKv7
-         +QI1ChDG8c/FD5G5l7NpdOc/e+OwliaJp8Wo0AluROPXqso1kNprHaim4zIWTjAnY/vm
-         2AYw==
-X-Gm-Message-State: AO0yUKW+H9zy/V8ifnJH6YqsG0DTnu0/9KKOSXmcTVpddGTtWn4mRCn8
-	JZFnzNr8sbJCeyRjJ1PRbLx71+rIVYpj0BLLBQQ=
-X-Google-Smtp-Source: AK7set/oCOy3yOookh9Pv+mYKU9tKB4xqe73VFecMHnsR39xC93Ftkqk+U7IUkmAnouQMWc1/qsU77Gsu/G15zFYjJA=
-X-Received: by 2002:a17:906:6083:b0:919:2e39:95e5 with SMTP id
- t3-20020a170906608300b009192e3995e5mr9803205ejj.6.1678737865203; Mon, 13 Mar
- 2023 13:04:25 -0700 (PDT)
+	id 1pboXk-007c9B-9Z; Mon, 13 Mar 2023 20:13:18 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 196FE5FD14;
+	Mon, 13 Mar 2023 23:13:12 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1678738392;
+	bh=qcIGKcZIb5cUrNAdB7ZZAIiITgzMPRGFSQuzjV413Y4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=aDFbwqf4suEffITUw430m/mQvA2yrKtAOcnjLqfIOgG4dgR4u1WIT14QGp6n0Tqa2
+	 3HIcw4VMFOxXUpGeJKv7knpm5JNRXR1uQNUmAf0wHtMu7jdKhDA7VSkNtHWK/RmAgK
+	 sNjemi/8ANEm9vPFgYb6E1oorrPdxCFTEhBRjYXEtDNxOLVobDudcHOgJTpIwkLZtR
+	 JubmIYBH2BONfdId1JIc/Zz9vxw0NHcXKgz3U95u2w4mm0hiirQwvHYipmZpW8ZEpe
+	 V7rmppVzA20MGBdC3wJK0FWlTiIeZliC3SG+rtzbnspkugR91oeoQDE8b7Db9PQWVL
+	 24mMf7WO1xIzg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Mon, 13 Mar 2023 23:13:12 +0300 (MSK)
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>
+Subject: [PATCH v10 1/5] clk: meson: make pll rst bit as optional
+Date: Mon, 13 Mar 2023 23:12:55 +0300
+Message-ID: <20230313201259.19998-2-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
+References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr> <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr> <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
- <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr> <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
- <0450e34e-7190-104c-832a-150f15f7c825@free.fr> <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
- <eecb86be-81e3-09cd-8ec7-4e77c42f2795@free.fr>
-In-Reply-To: <eecb86be-81e3-09cd-8ec7-4e77c42f2795@free.fr>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 13 Mar 2023 21:04:14 +0100
-Message-ID: <CAFBinCDHRhLSyFsEv7cdhSgZorj-TdR3HhqSBnAQcUtEsecV=Q@mail.gmail.com>
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
-To: Marc Gonzalez <marc.w.gonzalez@free.fr>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>, 
-	Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>, 
-	Eric Dumazet <edumazet@google.com>, 
-	Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>, Alexander Prutskov <alep@cypress.com>, 
-	Joseph chuang <jiac@cypress.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Angus Ainslie <angus@akkea.ca>, Pierre-Hugues Husson <phh@phh.me>, 
-	linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/13 10:14:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_130429_784803_EE0A69DB 
-X-CRM114-Status: GOOD (  16.82  )
+X-CRM114-CacheID: sfid-20230313_131317_061312_BFA6A3B1 
+X-CRM114-Status: GOOD (  12.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,40 +81,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWFyYywKCk9uIE1vbiwgTWFyIDEzLCAyMDIzIGF0IDY6MDnigK9QTSBNYXJjIEdvbnphbGV6
-IDxtYXJjLncuZ29uemFsZXpAZnJlZS5mcj4gd3JvdGU6ClsuLi5dCj4gPiBXcmFwcGluZyBtbWNf
-c2VuZF9pb19vcF9jb25kKCkgaW4gYSBsb29wCj4gPiBtYWtlcyBpdCB3b3JrIG9uIHRoZSBzZWNv
-bmQgdHJ5Lgo+Cj4gQWxtb3N0IHRoZXJlLCBJIHRoaW5rLCBJIGhvcGUgOikKPgo+IERUIHByb3Ag
-InBvc3QtcG93ZXItb24tZGVsYXktbXMiIGxvb2tzIGxpa2Ugd2hhdCBJIG5lZWRlZCBhbGwgYWxv
-bmcuCj4gSXQgZXhpc3RzIGJvdGggZm9yIGhvc3QgKGRlZmF1bHQgMTAgbXMpIGFuZCBmb3IgcHdy
-c2VxX3NpbXBsZSAoZGVmYXVsdCAwIGFwcGFyZW50bHkpLgpJIHRoaW5rIHlvdSdyZSBvbiB0aGUg
-cmlnaHQgdHJhY2sgaGVyZSEKClsuLi5dCj4gUVVFU1RJT046Cj4gSXQncyBub3QgY2xlYXIgdG8g
-bWUgd2h5IHdlIHNsZWVwIHR3aWNlIGZvciBob3N0LT5pb3MucG93ZXJfZGVsYXlfbXM/CkknbSBu
-b3Qgc3VyZSBidXQgSSB0aGluayBob3N0LT5pb3MucG93ZXJfZGVsYXlfbXMgaXMgaW5kZXBlbmRl
-bnQgZnJvbQp0aGUgcG9zdC1wb3dlci1vbi1kZWxheS1tcyBwcm9wZXJ0eSBvZiAibW1jLXB3cnNl
-cS1zaW1wbGUiLgoKPiBMb29rcyBsaWtlIGFsbCBJIG5lZWQgaXMgdG8gYWRkIHBvc3QtcG93ZXIt
-b24tZGVsYXktbXMgPSA8MTAwPjsgdG8KPgo+ICAgICAgICAgc2Rpb19wd3JzZXE6IHNkaW8tcHdy
-c2VxIHsKPiAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtbWMtcHdyc2VxLXNpbXBsZSI7
-Cj4gICAgICAgICAgICAgICAgIHJlc2V0LWdwaW9zID0gPCZncGlvIEdQSU9YXzYgR1BJT19BQ1RJ
-VkVfTE9XPjsKPiAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZ3aWZpMzJrPjsKPiAgICAgICAg
-ICAgICAgICAgY2xvY2stbmFtZXMgPSAiZXh0X2Nsb2NrIjsKPiAgICAgICAgIH07CkkgZm91bmQg
-dGhlIGZvbGxvd2luZyBjb2RlIGluIHRoZSB2ZW5kb3IgUlRMODgyMkNTIGRyaXZlciBbMF0uClNp
-bXBsaWZpZWQgdmVyc2lvbjoKICAgIGZvciAoaSA9IDA7IGkgPD0gNTA7IGkrKykgewogICAgICAg
-bXNsZWVwKDEwKTsKICAgICAgICBpZiAoc2RoY2lfZGV2aWNlX2F0dGFjaGVkKCkpCiAgICAgICAg
-ICAgYnJlYWs7CiAgIH0KKHNvIGEgZGVsYXkgb2YgdXAgdG8gNTAwbXMpCgpBbHNvIEkgZm91bmQg
-dGhpcyBjb2RlIFsxXSBpbiB0aGUgc2FtZSByZXBvOgogICAgbW1jX3BtX2dwaW9fY3RybCgicnRs
-ODE4OWVzX3ZkZF9lbiIsIDEpOwogICAgdWRlbGF5KDEwMCk7CiAgICBtbWNfcG1fZ3Bpb19jdHJs
-KCJydGw4MTg5ZXNfdmNjX2VuIiwgMSk7CiAgICB1ZGVsYXkoNTApOwoKU28gbGlrZSBJIHNhaWQg
-YWJvdmU6IEkgdGhpbmsgeW91J3JlIGdvaW5nIGluIHRoZSByaWdodCBkaXJlY3Rpb24hCgoKQmVz
-dCByZWdhcmRzLApNYXJ0aW4KCgpbMF0gaHR0cHM6Ly9naXRodWIuY29tL2NoZXdpdHQvUlRMODgy
-MkNTL2Jsb2IvbWFpbi9wbGF0Zm9ybS9wbGF0Zm9ybV9zcHJkX3NkaW8uYyNMNTUtTDYyClsxXSBo
-dHRwczovL2dpdGh1Yi5jb20vY2hld2l0dC9SVEw4ODIyQ1MvYmxvYi9tYWluL3BsYXRmb3JtL3Bs
-YXRmb3JtX0FSTV9TVU54SV9zZGlvLmMjTDM1LUw0MwoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Compared with the previous SoCs, self-adaption current module
+is newly added for A1, and there is no reset parameter except the
+fixed pll. Since we use clk-pll generic driver for A1 pll
+implementation, rst bit should be optional to support new behavior.
+
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ drivers/clk/meson/clk-pll.c | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index afefeba6e458..314ca945a4d0 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -295,10 +295,14 @@ static int meson_clk_pll_init(struct clk_hw *hw)
+ 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+ 
+ 	if (pll->init_count) {
+-		meson_parm_write(clk->map, &pll->rst, 1);
++		if (MESON_PARM_APPLICABLE(&pll->rst))
++			meson_parm_write(clk->map, &pll->rst, 1);
++
+ 		regmap_multi_reg_write(clk->map, pll->init_regs,
+ 				       pll->init_count);
+-		meson_parm_write(clk->map, &pll->rst, 0);
++
++		if (MESON_PARM_APPLICABLE(&pll->rst))
++			meson_parm_write(clk->map, &pll->rst, 0);
+ 	}
+ 
+ 	return 0;
+@@ -309,8 +313,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+ 	struct clk_regmap *clk = to_clk_regmap(hw);
+ 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+ 
+-	if (meson_parm_read(clk->map, &pll->rst) ||
+-	    !meson_parm_read(clk->map, &pll->en) ||
++	if (MESON_PARM_APPLICABLE(&pll->rst) &&
++	    meson_parm_read(clk->map, &pll->rst))
++		return 0;
++
++	if (!meson_parm_read(clk->map, &pll->en) ||
+ 	    !meson_parm_read(clk->map, &pll->l))
+ 		return 0;
+ 
+@@ -341,13 +348,15 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 		return 0;
+ 
+ 	/* Make sure the pll is in reset */
+-	meson_parm_write(clk->map, &pll->rst, 1);
++	if (MESON_PARM_APPLICABLE(&pll->rst))
++		meson_parm_write(clk->map, &pll->rst, 1);
+ 
+ 	/* Enable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 1);
+ 
+ 	/* Take the pll out reset */
+-	meson_parm_write(clk->map, &pll->rst, 0);
++	if (MESON_PARM_APPLICABLE(&pll->rst))
++		meson_parm_write(clk->map, &pll->rst, 0);
+ 
+ 	if (meson_clk_pll_wait_lock(hw))
+ 		return -EIO;
+@@ -361,7 +370,8 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
+ 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+ 
+ 	/* Put the pll is in reset */
+-	meson_parm_write(clk->map, &pll->rst, 1);
++	if (MESON_PARM_APPLICABLE(&pll->rst))
++		meson_parm_write(clk->map, &pll->rst, 1);
+ 
+ 	/* Disable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 0);
+-- 
+2.36.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
