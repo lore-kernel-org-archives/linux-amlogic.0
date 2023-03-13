@@ -4,99 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E63C6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 16:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD89BC6FD19
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 17:17:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dJOlUTgrQmf6skjoaK7+XDhklTO02Bx0kCh+4WRkwF8=; b=WpCenKwDMtRWGe
-	n+m5h6GYLFeVyQNU+VWmevY61kjCIT405iZG+70Ee275M0Ft2MkIgRdqpNdw3CLH3pdfMJwWniy/o
-	wL/phBqa/H1Hiu4r8DG3oJqQU2ycMdI3G2756Q8VMWxKhCoJ45pPTq2ra8ynAYpxQihj3gxoHHbAp
-	vPsJhEyUHLQWRIaKbSDr+zhjzvry4WFVtFwrXdm2PGeqFw2xFQMivlLsMSZzT6TzgEAdU6fAiGV36
-	vtF20c059fuS1RsRCc7j6Z/Dvqto+v9Vh9bRcZG738B4wg1PYa3H7F/lm4WjlFshHz9yuNMMNvaSX
-	a4Q2OfFP7VynFpZtiNbg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Ov8gQkBVCYUZCCYLMh7MswrgF4HGo912EheRWt7SBgM=; b=wII+WqsfJ8ZMEW+e8sOGyvQ3qp
+	+wroDiRAIbyPAy0V/j+KRn2utI6ozPNqbjj+fQE2TDZax8DPjYnFefcK8VHKmjQUvUbbn5KPBeDtg
+	co198B3IKQiFIuUh8qbT8dPihFk9rfKhCI1XfwOQpDgx6ukGKQVyEXfX+r2ftGlmzGq6Fn8qZV5iM
+	UdxqTC0kxAW2d9wQeial8c6EGiscPjyxIAM00ayV/TxobVI6G7MKgtYxlK5shcZ1mUKA7ccm6e4NE
+	NGZq4ynHn2+tYOsDALCwMEntkahOChBYhfR3zUKpPk09KxGov1ReVCz4eiyqwzPsHXIQkS2GAaezv
+	tUpNUZxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbkha-006cqy-Rs; Mon, 13 Mar 2023 16:07:10 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pblnS-0072Gs-F1; Mon, 13 Mar 2023 17:17:18 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbkT2-006Vge-Cc; Mon, 13 Mar 2023 15:52:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=Ek06wiRvjrNh7KML5L+9ZhCl1dorqZM+tNafXQU3C+g=; b=btmRp2TH6n39iXlrAWa2IexLFu
-	yYvLDKMaexUHoOZDcxXtXJIA1f5KseHzGfP8S8BUho36IB2JF7epMojgWuqyZQqYl7LK0vxoDxYI0
-	JNtyqEdV+RCc44OCbN1Djuc3FQbp7vHM5SJydBTkeuwiWQzNYHPxMztKy7lT3Jfd0GkcWJVX507Cu
-	vTR4jOzDneJYEYliqi6Q125reZ0tuW/5y9kQs6ZQIvayjCx4nwSIE1yp+WQ6/+Q12QC3Wjcdzk8Wm
-	y5kr+Ch+hH407tvwg0/KdmzOOUFxbFqoKZS4sBY4w3SQxzZB+SJXCdt4n2WR0MrVVUkLDIVqarBgl
-	HcpQkQjA==;
-Received: from smtp-out2.suse.de ([195.135.220.29])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pbkSu-001QSu-1S;
-	Mon, 13 Mar 2023 15:52:05 +0000
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 1F6ED1FE17;
-	Mon, 13 Mar 2023 15:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1678722703; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ek06wiRvjrNh7KML5L+9ZhCl1dorqZM+tNafXQU3C+g=;
-	b=sdnrodf1Q+zO6xRk2m8n75jY/fXu6X1DHqfEpUmN5QMkHae5wzVui+ZfFDY5oZFFVlcbMZ
-	gb/8iUnZqeqV1uatR+2XXWBnzpUPLh+LVz1uz8wNnftw1BzD3mSVoPCZ2OJPyMXS765pr3
-	APRvqksqKNnUFiLGJ8K/NnONvTAzsHU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1678722703;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ek06wiRvjrNh7KML5L+9ZhCl1dorqZM+tNafXQU3C+g=;
-	b=Yyx9O7M7i4T4wVnYwBk22kDwDZtYAiBJIzeYfmb6ksOX+ttJXkzxAqCq6dYiMKG0SllX/i
-	U7brWIWoTTxHdRAg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id D32AE139F9;
-	Mon, 13 Mar 2023 15:51:42 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap2.suse-dmz.suse.de with ESMTPSA
-	id 0DfAMo5GD2RhegAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Mon, 13 Mar 2023 15:51:42 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: javierm@redhat.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	linus.walleij@linaro.org
-Cc: linux-aspeed@lists.ozlabs.org,
-	dri-devel@lists.freedesktop.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-amlogic@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 11/25] drm/meson: Use GEM DMA fbdev emulation
-Date: Mon, 13 Mar 2023 16:51:24 +0100
-Message-Id: <20230313155138.20584-12-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230313155138.20584-1-tzimmermann@suse.de>
-References: <20230313155138.20584-1-tzimmermann@suse.de>
+	id 1pblfF-006yzC-7U; Mon, 13 Mar 2023 17:08:50 +0000
+Received: by mail-lj1-x236.google.com with SMTP id z42so13313430ljq.13;
+        Mon, 13 Mar 2023 10:08:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678727325; x=1681319325;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nWFcn3N7fdkggfCAU6N3AWS2AJpujTNFZCDcDG29DDU=;
+        b=e6YN891exTz6RBgawDES0963ZDWFQA9+8aQ63Im7BP5Fy9eEvzBxMIuHAuqWbCZeLw
+         xA2sSa6/cZiN6mHF3/+fIb3pnqq2MewlfLzR48koCbD8whXbKfA8Zs0+dFs89Cfy5m36
+         ROVsAU6bQljGOx/ykPtOQO0r6I8XBemOEF326xWZ5gIBuu5RpWt0wZITremU5bdqxJ5e
+         fWUkITbc/MzS3k5YZE74vlNgxyJd3l+n9CkKH1MRvz0jG8OdZSEUnRN+n0e89kMgUyKp
+         rroBKHNdNE45XtTz8XbWd27Z63Nu8HES9mhzKxEJUTEcdgqTB5zYtiSB6fEQbd4byozN
+         7IwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678727325; x=1681319325;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWFcn3N7fdkggfCAU6N3AWS2AJpujTNFZCDcDG29DDU=;
+        b=1GZIOGPAFPxtmTyFrjZZqcpAma/2GGysZ4DBZnejCrC+QsvaPUidLW5gl/8OwSEbdm
+         cVn27oWWcbfXnHYwhFwlzuo4h+B4Bv82m8ez0m31WLFqeiRC59Qrpi2NjramjBelhWKj
+         CwGoyAcE1i1SkD97L+BfwCJce7g1v3PxTXIdIsAkMEVfRtb4A8G3VBqpxm87GokA75FI
+         fMxlt2T+mBduHmSruAu7XOV1lqcfbzWiYVmdL29HAAYKnOcF1sOPJZEHfW6PFHLm8ipC
+         sMirxgyhUmlinRn0u60sx64BsQOUh6a4vTV3bC91cRyWIBDA826VsJAeMi+gkN4+4hHd
+         BlEA==
+X-Gm-Message-State: AO0yUKXZxnG/a+oH79lvfin2k2sUDY88yQ4bMehC4IyiU0Ays8DW1FXE
+	+wqf/JeL6sftDHOgRCZKDUI=
+X-Google-Smtp-Source: AK7set9A23LXz84FY4nbulp8BmwRuZb6BzjELqJTA00c9/JbdQSh2qRKdHRdbHkxYlALuU7kCLrMgg==
+X-Received: by 2002:a05:651c:222b:b0:294:7422:479e with SMTP id y43-20020a05651c222b00b002947422479emr6188608ljq.1.1678727324631;
+        Mon, 13 Mar 2023 10:08:44 -0700 (PDT)
+Received: from [192.168.0.192] ([194.146.248.75])
+        by smtp.gmail.com with ESMTPSA id e2-20020a2e9302000000b0029571d505a1sm69136ljh.80.2023.03.13.10.08.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 10:08:44 -0700 (PDT)
+Message-ID: <66b78cd3-0d0d-cee8-6a93-996ade3a07a9@gmail.com>
+Date: Mon, 13 Mar 2023 18:08:42 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 09/28] media: platform: samsung: s5p-jpeg: drop
+ of_match_ptr for ID table
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
+ <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Yong Deng <yong.deng@magewell.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <20230312131318.351173-9-krzysztof.kozlowski@linaro.org>
+From: Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
+In-Reply-To: <20230312131318.351173-9-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_155200_680046_D32710B0 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20230313_100849_379938_67A35198 
+X-CRM114-Status: GOOD (  19.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,48 +121,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use the fbdev emulation that is optimized for DMA helpers. Avoids
-possible shadow buffering and makes the code simpler.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/gpu/drm/meson/meson_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 79bfe3938d3c..6608a251106b 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -18,7 +18,7 @@
- #include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_drv.h>
--#include <drm/drm_fbdev_generic.h>
-+#include <drm/drm_fbdev_dma.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_modeset_helper_vtables.h>
-@@ -353,7 +353,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (ret)
- 		goto uninstall_irq;
- 
--	drm_fbdev_generic_setup(drm, 32);
-+	drm_fbdev_dma_setup(drm, 32);
- 
- 	return 0;
- 
--- 
-2.39.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgoKVyBkbml1IDEyLjAzLjIwMjMgb8KgMTQ6MTIsIEtyenlzenRvZiBLb3psb3dza2kgcGlz
+emU6Cj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxlIHNvIHRoZSB0
+YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5v
+dCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4gbWF0Y2hpbmcgdmlhIFBS
+UDAwMDEsIGV2ZW4gdGhvdWdoIGl0IG1pZ2h0IG5vdCBiZSByZWxldmFudCBoZXJlKS4gIFRoaXMK
+PiBhbHNvIGZpeGVzICFDT05GSUdfT0YgZXJyb3I6Cj4gCj4gICAgZHJpdmVycy9tZWRpYS9wbGF0
+Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jOjMxMjQ6MzQ6IGVycm9yOiDigJhzYW1z
+dW5nX2pwZWdfbWF0Y2jigJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJyb3I9dW51c2VkLWNv
+bnN0LXZhcmlhYmxlPV0KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+CgpBY2tlZC1ieTogQW5kcnplaiBQaWV0cmFz
+aWV3aWN6IDxhbmRyemVqdHAyMDEwQGdtYWlsLmNvbT4KCj4gLS0tCj4gICBkcml2ZXJzL21lZGlh
+L3BsYXRmb3JtL3NhbXN1bmcvczVwLWpwZWcvanBlZy1jb3JlLmMgfCAyICstCj4gICAxIGZpbGUg
+Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jIGIvZHJp
+dmVycy9tZWRpYS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gaW5kZXgg
+NTU4MTQwNDFiOGQ4Li44YmU4ZTM1OTZlMDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9w
+bGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gKysrIGIvZHJpdmVycy9tZWRp
+YS9wbGF0Zm9ybS9zYW1zdW5nL3M1cC1qcGVnL2pwZWctY29yZS5jCj4gQEAgLTMxNjYsNyArMzE2
+Niw3IEBAIHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIHM1cF9qcGVnX2RyaXZlciA9IHsK
+PiAgIAkucHJvYmUgPSBzNXBfanBlZ19wcm9iZSwKPiAgIAkucmVtb3ZlID0gczVwX2pwZWdfcmVt
+b3ZlLAo+ICAgCS5kcml2ZXIgPSB7Cj4gLQkJLm9mX21hdGNoX3RhYmxlCT0gb2ZfbWF0Y2hfcHRy
+KHNhbXN1bmdfanBlZ19tYXRjaCksCj4gKwkJLm9mX21hdGNoX3RhYmxlCT0gc2Ftc3VuZ19qcGVn
+X21hdGNoLAo+ICAgCQkubmFtZQkJPSBTNVBfSlBFR19NMk1fTkFNRSwKPiAgIAkJLnBtCQk9ICZz
+NXBfanBlZ19wbV9vcHMsCj4gICAJfSwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMK
