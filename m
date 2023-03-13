@@ -4,63 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB61AC61DA4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 09:51:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CF02C61DA4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 10:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pg/HYIu5er3z626wR1RrKLFkcdR9sfG2mihMyvE4ovk=; b=iKwYsgc0QyGwq76Mk1gatnDDwF
-	FWM3FXkL75335SHEi40E7r+/k08nJv0ra+BlHMj0qwJpDHBrEJDm62cmGvG+/r6aNKaRb6OE0d97U
-	vscIVstL0kld3k77uj+amJy4E5AR7HRN1dQ02MF/KUgi96DF0bPR+wrwp+mjnrkwVOQga8c1XQlDm
-	yBWiqg86BDQusTzLXV4GgyDmesFuLcpBQRKwWkXRkjAOF6NIGynE+ROY9Fq08IbgL8E5xoUwtgQ6q
-	VCvA9rC6d9PxA/K5eQwrhZ3Z50Shhv7Go6CGQst/NBIUxcK9F/3If6nwpQouIs1Ghg9rx92N2o7dE
-	qwpL6K7g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BiOxwEzAmljGfI4EFuCmA+PcrxtseSRCTRbCRLvwVWE=; b=oFps6+7OrXoxoB
+	Pzmj1O7d/UdfypXkBSmEInURpOQyPoRHV8mFUcPPbWVFOShMpnQ+y8zH6DW741HfrbG009uyu1bdt
+	nvJl/NYPBBGKPvczPIRGNsbwnKAEMHFCalAqzkIKa8J1Aan4deQ/d45dz7Bt2dECSXzZOoqidSC8N
+	J3OQmUMv+BZloO2OqUk3YiEiTH+Z3aakJZetVMFFVbA1heHAa+KTYU8Kg+HZoaA9d43brXAysru8h
+	NKpFv9GDtcGDk45R2rz6Kdp4/91ifBF1k5JGxNEb+6BKXtuicbtd1pDraZG21YnjluPYdumeC43TJ
+	AzzjLk7MH6AidnjDRjMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbeq6-0053Y4-Mg; Mon, 13 Mar 2023 09:51:34 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1pbfPv-005Ahy-Q6; Mon, 13 Mar 2023 10:28:35 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbeq3-0053Wn-G6
-	for linux-amlogic@lists.infradead.org; Mon, 13 Mar 2023 09:51:33 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pbepv-0002sX-Ko; Mon, 13 Mar 2023 10:51:23 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pbepu-003ol7-JR; Mon, 13 Mar 2023 10:51:22 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pbept-004VPx-In; Mon, 13 Mar 2023 10:51:21 +0100
-Date: Mon, 13 Mar 2023 10:51:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+	id 1pbfMx-005AMe-NZ; Mon, 13 Mar 2023 10:25:34 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 204C75FD0B;
+	Mon, 13 Mar 2023 13:25:17 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1678703117;
+	bh=3oXZsLeafS38+qYJFdTL8leUTox2P7WbbzgFUBRnCNg=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=Qv/6hWdUh6jbEDRyIaWb0tKazL9ceDy5A4eBl9oL1x15fhKp0lC3vw3j324sOYQ0v
+	 6xUgWl2C/Qt2YbkdjVoKgbGd8evAqrEUN4qI8MXoluGDowAAJbyREitrFmUd5mtcP1
+	 Vb86myzYsKE7owVQq6dkJXyTvbxG1zJ52VDRSB4VRjGeQ/uqHS/+sQ5ESTa78y7EP5
+	 B/RmhZOkv8c8x5AFQSp2KlHC2db1nH+lwfJQzSwThjC3v79A9Iy1D8skAuOD9cdziT
+	 abV2qOGPZiflje6hBIFK+HijGFq3u1tLoSiv4KrTqWT0dVjrx8rkpIUQEnf47NMx+u
+	 cMvfkYXcMB4wQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Mon, 13 Mar 2023 13:25:16 +0300 (MSK)
+Date: Mon, 13 Mar 2023 13:25:16 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-pwm@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-	Munehisa Kamata <kamatam@amazon.com>,
-	Thierry Reding <thierry.reding@gmail.com>, kernel@pengutronix.de,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] pwm: meson: Explicitly set .polarity in .get_state()
-Message-ID: <20230313095121.fsjw2gk3givwabvj@pengutronix.de>
-References: <20230310191405.2606296-1-u.kleine-koenig@pengutronix.de>
- <CAFBinCCfqgBkHq2fFy=d+8C6nwq=wehu9nzePfwuY5ndfLMWoQ@mail.gmail.com>
- <1ja60h106q.fsf@starbuckisacylon.baylibre.com>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Message-ID: <20230313102516.grkj4jhkke2w7blm@CAB-WSD-L081021>
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+ <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
+ <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
+ <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+ <20230309182857.a2fzotcejueio23w@CAB-WSD-L081021>
+ <1j5yb50zxz.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <1ja60h106q.fsf@starbuckisacylon.baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <1j5yb50zxz.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/13 06:38:00 #20941627
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_025131_556036_96670828 
-X-CRM114-Status: GOOD (  27.60  )
+X-CRM114-CacheID: sfid-20230313_032532_342477_F13ADCAA 
+X-CRM114-Status: GOOD (  18.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,112 +89,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6719532572800529958=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============6719532572800529958==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="j4ba3cki7g4uoqfv"
-Content-Disposition: inline
-
-
---j4ba3cki7g4uoqfv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Mar 13, 2023 at 10:07:48AM +0100, Jerome Brunet wrote:
->=20
-> On Sat 11 Mar 2023 at 22:00, Martin Blumenstingl <martin.blumenstingl@goo=
-glemail.com> wrote:
->=20
-> > Hi Uwe,
+On Mon, Mar 13, 2023 at 10:18:02AM +0100, Jerome Brunet wrote:
+> 
+> On Thu 09 Mar 2023 at 21:28, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> 
+> >> >> 
+> >> >> This last poke should not bits otherwise handled by parms.
+> >> >> This is a rate init in disguise.
+> >> >> 
+> >> >
+> >> > I believe, you are talking about hifi_pll clk_regmap conflicts with
+> >> > hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
+> >> > it doesn't touch them (we assume that default bit values are all zero):
+> >> >
+> >> >     .en = {
+> >> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+> >> >         .shift   = 28,
+> >> >         .width   = 1,
+> >> >     },
+> >> >     // init_value = 0x01f18440
+> >> >     // en_mask    = 0x10000000
+> >> >
+> >> >     .m = {
+> >> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+> >> >         .shift   = 0,
+> >> >         .width   = 8,
+> >> >     },
+> >> >     // init_value = 0x01f18440
+> >> >     // m_mask     = 0x0000000f
+> >> 
+> >> mask is 0xff with width 8
+> >> 
 > >
-> > On Fri, Mar 10, 2023 at 8:14=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> > <u.kleine-koenig@pengutronix.de> wrote:
-> > [...]
-> >> There is a complicating fact, that the .apply() callback fakes support
-> >> for inversed polarity. This is not (and cannot) be matched by
-> >> .get_state(). As fixing this isn't easy, only point it out in a comment
-> >> to prevent authors of other drivers from copying that approach.
-> > If you have any suggestions on how to fix this then please let us know.
-> > I don't recall any board needing support for inverted PWM - but they
-> > may be out there somewhere...
->=20
-> AFAIK, PWM are essentially used for the SDIO 32k clock and voltage
-> regulators. I don't recall seeing anything else.
->=20
-> It should be safe to change polarity if necessary, except for the DVFS
-> PWM regulators maybe ? I fear that if we change the PWM setting it might
-> trigger a glitch on the supply and possibly stall the CPU.
->=20
-> That being said, I don't think there is any particular care regarding
-> that right now, so maybe it is fine.
+> > Ah, you're right. Anyway, I think this is just init value and it's okay
+> > to set it during initialization and rewrite after in parameter
+> > propagation stage.
+> >
+> 
+> ... But the magic pokes are there only to initialize the unmanaged part
+> of the clock regs. I'd like it to be clear and stay that way.
+> 
+> So please, clear the managed fields from the initial poke table.
 
-Another option is to do something like that:
+I've double checked hifi_pll clk. In the my current configuration no any
+clks inherited from it. Therefore its 'enable_count' equals to 0.
+And of course in the such situation the rate must be zeroed as well.
+It means you are right at all. I'll remove pre_sel and fbkdiv hifi_pll
+pre-setup in the next version.
+Thank you for hunted down!
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 16d79ca5d8f5..25a177a3fa00 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -162,8 +162,10 @@ static int meson_pwm_calc(struct meson_pwm *meson, str=
-uct pwm_device *pwm,
- 	duty =3D state->duty_cycle;
- 	period =3D state->period;
-=20
--	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-+	if (state->polarity =3D=3D PWM_POLARITY_INVERSED) {
-+		WARN_ONCE(1, "Wrongly trying to support inversed polarity. Please report=
- to linux-pwm@vger.kernel.org if you rely on this\n");
- 		duty =3D period - duty;
-+	}
-=20
- 	fin_freq =3D clk_get_rate(channel->clk);
- 	if (fin_freq =3D=3D 0) {
-
-and then drop that faked support in a year or so if nobody spoke up.
-
-Disclaimer: I assume Thierry is not a fan of this approach, he opposed
-similar warnings in the past.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---j4ba3cki7g4uoqfv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQO8hYACgkQwfwUeK3K
-7Amt3wgAi8g1pXQC12vtM0ypcynPIXTioc3iWUPlU/r6j3c+/ECmqOQqeUR5+Lbu
-euJo2JHydT1KeVdUw0ohCtTz4DTpsO38IMFTsXW9a7ryLLO3XL97bbSqwGZB93Rq
-6zXDKnCSsI42E5SjilxQWh/MGxd3ZrD2Sy1X+oANujPYdtNwm0PxkYj19ycadz7v
-QRzDtZMrvbtyerSIjI/K/zJdBiq4HNb3xQs84gNBtB3i5gGcDeL3qq8WbMQmSoq+
-JYtW8fArLWZhSWz4joYm2vSCcToi0jYk1bfmAJi8vznlg/XHXZ7c6a4/ia+JRdr/
-B9ziSWsoo2SBA3GAAwT3b4FwMnJsPg==
-=/5Tn
------END PGP SIGNATURE-----
-
---j4ba3cki7g4uoqfv--
-
-
---===============6719532572800529958==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6719532572800529958==--
-
