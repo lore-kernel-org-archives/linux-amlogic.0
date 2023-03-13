@@ -4,60 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0703C61DA4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 16:00:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D04EFC61DA4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 16:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LNtTmRg+C7JNSYjITmzbOb/zUCr6Cf+a/X5+DZb8tIg=; b=ICsZCtsVb6KnqN
-	88xwOnOMeIOnslW5H9hpSLLVa15mNH4oNkR5ARKcjiccNJHJWbIH2TlJXZb4za4NOFaeRthqERUPq
-	bRPNkly8TjCt7Wo6bPpuYg3UCA5tGlPDUpVuGZXPV5+nz9tNUfgI9Y95otk7ZE+E0c61a5pXUoT98
-	Qs9htvLn9lFuQVY0s7CWRXNm15G02g3iehiNC3oQYbRUoN2mH0WE+Ug/IhUmA9Kujs04rGtvhVJjF
-	hGFSA8ovvB7jXvdRf3FMJZYUdtHwCiltg5nvL1EJuamSat+FZ/A2FznBCHWkYMvx8uSRZbw+LchdT
-	XOZiTzM3NMlrlgJjxWSQ==;
+	List-Owner; bh=2x9+frnbFvA0/iwqk7MozGAcPPrd/0V1dBRih3UPzRg=; b=1blMA0+NLmmgvo
+	lVbWNEy2jJyTt+DbnPXxiUakMlU6ldlU3VovHjkZn4ZhqkfTEhFie4EFSdpxiSnOByNzLU2yIK/CJ
+	3J317H/SM080NEATj0XMbMXAZRjlPeJgSJaDABiHHb7256npQ7ZLzmTOj4hSfpMtGWHPUhpbOrgTu
+	ysqo42J9uZCCZbrIvS8HtIxrdauZ8bK2zf7p5PhSw+/tBrNTPpiKnBIZArItz0Gf/mlcVazxVN49B
+	6Q/eUXTwErhcFWa5i1s/MO249IKPoXGFqtw3MSVvDvVmqUAvlrlTzVZWX/Rp2hq6NrcBH+X7vEVeg
+	UcAu752V6/UhtVjTFJFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbkaX-006Zib-2Y; Mon, 13 Mar 2023 15:59:53 +0000
-Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
+	id 1pbkhZ-006cqH-QU; Mon, 13 Mar 2023 16:07:09 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbkSp-006VWf-BK; Mon, 13 Mar 2023 15:51:59 +0000
+	id 1pbkT2-006Vgd-Cg; Mon, 13 Mar 2023 15:52:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=KKEYUxZu+JYHv+sdwTweA2t6Q6UTV9pLk2mYvTgn+cE=; b=KwpWekMkY1wFmMs/V7SuigNrsA
+	HwleyLSZBPv2U+Y/MxbtZhgY3kdsvLxbj+Mqj4mTMk3674iVt3v9AhC+2NNlbCJ/BhOEW14wlctYy
+	tvfbxpVyl1rOgB6RSLwBGYzGPKZfia7q+0c0g1J4bdQoowA3Z6q4sj+l6yNAGDVtXIl9R+1ntQ2tq
+	1ycyr5AwyD15K5bmPonHJApjOSYDhZuUvEVfSG5m8VLXOx/XUKOeGllF5+V6xjYgQFX++GAVitf0Q
+	GWylD9Rx7M39rhw6Rzz9jyvTO4uan2Oaowr5rSm4BczRSgP5fGONAidjMC1HSuGd+kMvLBMiwjFGM
+	3gqkWUQg==;
+Received: from smtp-out2.suse.de ([2001:67c:2178:6::1d])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pbkSu-001QSw-0B;
+	Mon, 13 Mar 2023 15:52:05 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id BF97A1FE1E;
-	Mon, 13 Mar 2023 15:51:45 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id E33B91FE1B;
+	Mon, 13 Mar 2023 15:51:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1678722705; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	t=1678722703; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=iVPD3hmO7oBhoUD8QW0KwzqOFpqLgHoEibuscV/kT6Y=;
-	b=lUaP6DoJE3QYOVpVUjA/uuZ3KhbXwT0vffOZLpK3gHMvdGuGuyZ98ifj43GFz+tkqmKmc9
-	GN1BUduz9KUso0n++u1MTJqvYoiw0LTM5SmaO2bFX4dwLEgpYSVEDGGP6Y/H+7A0cTK0nO
-	OoVPnMxQK7A3DELvOcXA1DEvmkJEmMc=
+	bh=KKEYUxZu+JYHv+sdwTweA2t6Q6UTV9pLk2mYvTgn+cE=;
+	b=giRjr8+QEjl6DFY6HM4RdeF2JGatrPCkRDd0sXJ6W/plQZEOZ102MTHtnlrqwZP1xJ6hvu
+	xY7tkG00MzhOWiCxdl6A1F7UvhTSGOy3rZbPOVoODWQJlvuW0bZr+KL7ZI3tbf2/xeLcBu
+	uvWVqMzEo4yfIWn173CV+ju6GvjuhLc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1678722705;
+	s=susede2_ed25519; t=1678722703;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=iVPD3hmO7oBhoUD8QW0KwzqOFpqLgHoEibuscV/kT6Y=;
-	b=FcIUu7F5RTx4gTbDF9bZviIfY2WWQvmh8yF9kIVIFiePQbGzRovpb4iOnBXMB35W7b+l2P
-	WSfk20VeViZp9dAg==
+	bh=KKEYUxZu+JYHv+sdwTweA2t6Q6UTV9pLk2mYvTgn+cE=;
+	b=qV0ZRxTj2xKTz/9EPBI3fX8zva/Pvp7vklNCGJcDQSMyTQATsoet32cjHfufLWAUDPA/r7
+	rHYJT8gh/JLZk3Bg==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 80214139F9;
-	Mon, 13 Mar 2023 15:51:45 +0000 (UTC)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A713D13517;
+	Mon, 13 Mar 2023 15:51:43 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
 	by imap2.suse-dmz.suse.de with ESMTPSA
-	id eMdgHpFGD2RhegAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Mon, 13 Mar 2023 15:51:45 +0000
+	id WLjbJ49GD2RhegAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Mon, 13 Mar 2023 15:51:43 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: javierm@redhat.com,
 	maarten.lankhorst@linux.intel.com,
@@ -72,16 +86,16 @@ Cc: linux-aspeed@lists.ozlabs.org,
 	linux-sunxi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 21/25] drm/vc4: Use GEM DMA fbdev emulation
-Date: Mon, 13 Mar 2023 16:51:34 +0100
-Message-Id: <20230313155138.20584-22-tzimmermann@suse.de>
+Subject: [PATCH v2 14/25] drm/sti: Use GEM DMA fbdev emulation
+Date: Mon, 13 Mar 2023 16:51:27 +0100
+Message-Id: <20230313155138.20584-15-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230313155138.20584-1-tzimmermann@suse.de>
 References: <20230313155138.20584-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_085155_661670_33F65CC4 
-X-CRM114-Status: GOOD (  11.74  )
+X-CRM114-CacheID: sfid-20230313_155200_587613_ED856B33 
+X-CRM114-Status: GOOD (  11.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,28 +118,28 @@ possible shadow buffering and makes the code simpler.
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/vc4/vc4_drv.c | 4 ++--
+ drivers/gpu/drm/sti/sti_drv.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index 0ccaee57fe9a..c8bf954042e0 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -33,7 +33,7 @@
- #include <drm/drm_aperture.h>
+diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.c
+index ef6a4e63198f..1b87b5899f9e 100644
+--- a/drivers/gpu/drm/sti/sti_drv.c
++++ b/drivers/gpu/drm/sti/sti_drv.c
+@@ -14,7 +14,7 @@
  #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_debugfs.h>
  #include <drm/drm_drv.h>
 -#include <drm/drm_fbdev_generic.h>
 +#include <drm/drm_fbdev_dma.h>
- #include <drm/drm_vblank.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_of.h>
+@@ -199,7 +199,7 @@ static int sti_bind(struct device *dev)
  
- #include <soc/bcm2835/raspberrypi-firmware.h>
-@@ -387,7 +387,7 @@ static int vc4_drm_bind(struct device *dev)
- 	if (ret < 0)
- 		goto unbind_all;
+ 	drm_mode_config_reset(ddev);
  
--	drm_fbdev_generic_setup(drm, 16);
-+	drm_fbdev_dma_setup(drm, 16);
+-	drm_fbdev_generic_setup(ddev, 32);
++	drm_fbdev_dma_setup(ddev, 32);
  
  	return 0;
  
