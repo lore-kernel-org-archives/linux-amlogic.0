@@ -4,75 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB71BC6FD19
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 07:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C273AC6FD19
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Mar 2023 07:49:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/MNSOU0GWnMkMaoUd1Mcu0gKRhxUctzdT86b9pC4OWc=; b=ilXvCgMA7bwY/U
-	cNqYEPtljxB35kKBpoUsxQHphVvzpEwoSwaUeLVw8aiTYnC0zPoOnGgRUmAIsyxZHdjV10kSCxZHv
-	MHQC6pk4iKt3f5O/wYInrEVzgwJMwbUzKhQcnGBnhgH1tI4075sP6U32WdacxEpw5/Ex4B68JsuW2
-	82n64RPztIVcuh4InR/wkZw065VoKZMMd9yTg+eJVL5rJHvO9hTVKiYfcFP5+ET0yyx/Kn6xxpWey
-	PEvBfbZ7BKhDHDoeEB1mIA7nSAGRrE+/huvBdRahjnkJkqiHXdTcnn3RK9rfyavp1ZMKcZzq6xtK0
-	VfB5oyHwHnzjSL0djmZw==;
+	List-Owner; bh=rXvErsUF9+DxURx8scDbuXH2kv9hfMu/DRVdASCq5Jg=; b=rOtM2jYDQp0gUO
+	rDuYrhvbJsoXFdvXYFHSeqUD16SLA/csMoTpEPXtt73XwV5ElZPbfK9CFVkHPm0XzH6CaTB5gWkYV
+	8y0R7hkhb3Le3t4GKSFbnFY1nUebAUU23nQ+HxzXRPLZDMAX6phU58XDUevC5AHZNjgWt+h59FDXg
+	hjC+/uxDDbRCIyVOIa7iXhEZiYoTJKpBBhKHaPe4il1lXMISCO/+hLj7Y7bs+zfNW3q4cCXRLtOGc
+	XZOfs+YPjC7zm6XBHiges6nlvsmuKOCAJaoZ3//VOCK1i1QSiOgBDiEJPyUQbZwmVcNNf2VsZNkTW
+	FzFTEke77VGFYZjkftoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcmM-004caM-NB; Mon, 13 Mar 2023 07:39:34 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pbcw0-004ebH-Qg; Mon, 13 Mar 2023 07:49:32 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcm8-004cXa-RG; Mon, 13 Mar 2023 07:39:32 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 7677B5FD05;
-	Mon, 13 Mar 2023 10:39:18 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1678693158;
-	bh=Pcu7cuLn4R4Of3LuVtm8P3SexQIJRH9aN9HH3u5OFk0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Content-Type;
-	b=fWBMWtOioo+TiLpuqJYfJ/N+fxST+P6JpJDxPcEJipb4Z2a1wp55Pyc4oQ0J/zDWz
-	 /xtxDlMWIVr2S+sS1kh0tKRZedr2vBFraS2u9Od7vtyPKR97zoPKKGjntchoPmJR3U
-	 GJbBPj7xxyXL9ur488jmD3VVYd2rLxMfKeXGzZ2HklGCUkmIE82cYVtptFSxsdZ5tE
-	 /FSk+hporaaT9EekpzaCrhUX76s8qxsCpz/1pRg37nmmleVded4qG3z63FWvDctaHi
-	 0lq155iaczSb3INdRxijtNOI2CwSAfKDoEMH8dzMDpfo9O/CUL3w4vDuoInnzVSwJO
-	 sB1SwGU/0DEaw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 13 Mar 2023 10:39:18 +0300 (MSK)
-Message-ID: <20f7f1f8-e8f8-b3e1-251e-27db71ab6840@sberdevices.ru>
-Date: Mon, 13 Mar 2023 10:36:11 +0300
+	id 1pbcvp-004eYg-Mw
+	for linux-amlogic@lists.infradead.org; Mon, 13 Mar 2023 07:49:23 +0000
+Received: by mail-ed1-x530.google.com with SMTP id g10so15983161eda.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Mar 2023 00:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678693754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5jZ1IbIr7Zjo01eYTloNIdK6OVrxZIVge0vl1sSC9YE=;
+        b=lKQNsIjMsx98tsdY+JngqLf9AyXzUGO8cqatxvtWVsTbR6r5nN6/uDXGfra34R2yPr
+         ExTyaEaXfbiC/Xfp4AiADZzIE93nZC5NDFQOPN0VHCJ3dX/bg5YjXEPps/gybYY2dj8s
+         6OXDVt479ojVZZNpBrWUDG1HZ1I72OyDDaxMLSTFqWuFxs90y2/xhpgFRwq5Xx0heTF9
+         hBAeF3csfwIwOnl8ASiROb758XRrSNEZ9aB7xCmUyZUnbxNat50vBQ5pK6pVOWyTLqVd
+         aVMPazbdovrizIA0nVvpAq/m+GqEEzLU7l/0zpRmcW0mXBH/HWjVZ3nngur8fcNdmiTz
+         Z7gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678693754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5jZ1IbIr7Zjo01eYTloNIdK6OVrxZIVge0vl1sSC9YE=;
+        b=bybXoXz/kop5PBJUubD5HwhRduakph1me7u7OkqwXBUKnvka38hb+OEhMP9h0zx6IB
+         jK87xTvirm2czqzoeb33y5S69i0xwksQTp2/xX+08xnEkuM6AwAtadMHn3W9UEqpkpyO
+         D7h1Erun7A6ujXEw0pxr8F5f6l8YcxxV9f5ErpNgbQ6baEmICh2Vp4rXx0E2Fgk9ooof
+         YxVYspQ8ZoY5oixqtj5CBK7yw4YEc5KsVrmYa4ZElNdqIWDl34X+hTujuauCQWsZWCZE
+         apf1hIj8e3ainyOq+CRSWr4ozhr1v31GYuLuYtR8IBbJCAFAxTSeghMSmNkfcM6xhukS
+         PSYQ==
+X-Gm-Message-State: AO0yUKULw+AP5S29k+Wxv+m/0SK4hLl/jGeCUi4N5NM1nW52YJysL+fh
+	7BCm4n2wrs9Wu+KAlYv7srL8CA==
+X-Google-Smtp-Source: AK7set/tvTnTSzZy6q1lJj4ECVHedAf0H9uyNqrDdZ/WinBo8XXlu77jRfU2myjfTAFP3kuAx13E3w==
+X-Received: by 2002:a17:906:304a:b0:8ab:4c4:d0f6 with SMTP id d10-20020a170906304a00b008ab04c4d0f6mr30733533ejd.56.1678693754381;
+        Mon, 13 Mar 2023 00:49:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:f052:f15:3f90:fcb3? ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
+        by smtp.gmail.com with ESMTPSA id p8-20020a170906140800b008d044ede804sm3083562ejc.163.2023.03.13.00.49.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 00:49:14 -0700 (PDT)
+Message-ID: <ed2dc73d-d4cc-95fc-cd8b-52d37ebf149a@linaro.org>
+Date: Mon, 13 Mar 2023 08:49:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH v1] mtd: rawnand: meson: invalidate cache on polling
- ECC bit
+ Thunderbird/102.8.0
+Subject: Re: [PATCH RESEND v4] dt-bindings: pwm: Convert Amlogic Meson PWM
+ binding
 Content-Language: en-US
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>
-CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>
-References: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
-In-Reply-To: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/13 03:18:00 #20941028
-X-KSMG-AntiVirus-Status: Clean, skipped
+To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ linux-pwm@vger.kernel.org,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
+ <20230310181135.kiajexld3v655tph@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230310181135.kiajexld3v655tph@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_003921_889686_DA2981C5 
-X-CRM114-Status: GOOD (  19.90  )
+X-CRM114-CacheID: sfid-20230313_004921_795995_0C7149D1 
+X-CRM114-Status: GOOD (  17.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,75 +98,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
-
-we reproduced this problem on one of our boards. It triggers very rare
-when 'usleep_range()' is present, but when sleeping is removed - it fires
-always. I suppose problem is with caching, as 'info_buf' memory is mapped by
-'dma_map_single()'.
-
-Thanks, Arseniy
-
-On 13.03.2023 10:32, Arseniy Krasnov wrote:
-> 'info_buf' memory is cached and driver polls ECC bit in it. This bit
-> is set by the NAND controller. If 'usleep_range()' returns before device
-> sets this bit, 'info_buf' will be cached and driver won't see update of
-> this bit and will loop forever.
-> 
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 5ee01231ac4c..2c05c08a0eaf 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -176,6 +176,7 @@ struct meson_nfc {
->  
->  	dma_addr_t daddr;
->  	dma_addr_t iaddr;
-> +	u32 info_bytes;
->  
->  	unsigned long assigned_cs;
->  };
-> @@ -503,6 +504,7 @@ static int meson_nfc_dma_buffer_setup(struct nand_chip *nand, void *databuf,
->  					 nfc->daddr, datalen, dir);
->  			return ret;
->  		}
-> +		nfc->info_bytes = infolen;
->  		cmd = GENCMDIADDRL(NFC_CMD_AIL, nfc->iaddr);
->  		writel(cmd, nfc->reg_base + NFC_REG_CMD);
->  
-> @@ -520,8 +522,10 @@ static void meson_nfc_dma_buffer_release(struct nand_chip *nand,
->  	struct meson_nfc *nfc = nand_get_controller_data(nand);
->  
->  	dma_unmap_single(nfc->dev, nfc->daddr, datalen, dir);
-> -	if (infolen)
-> +	if (infolen) {
->  		dma_unmap_single(nfc->dev, nfc->iaddr, infolen, dir);
-> +		nfc->info_bytes = 0;
-> +	}
->  }
->  
->  static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
-> @@ -710,6 +714,8 @@ static void meson_nfc_check_ecc_pages_valid(struct meson_nfc *nfc,
->  		usleep_range(10, 15);
->  		/* info is updated by nfc dma engine*/
->  		smp_rmb();
-> +		dma_sync_single_for_cpu(nfc->dev, nfc->iaddr, nfc->info_bytes,
-> +					DMA_FROM_DEVICE);
->  		ret = *info & ECC_COMPLETE;
->  	} while (!ret);
->  }
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTAvMDMvMjAyMyAxOToxMSwgVXdlIEtsZWluZS1Lw7ZuaWcgd3JvdGU6Cj4gT24gTW9uLCBG
+ZWIgMjAsIDIwMjMgYXQgMTA6MTk6MzBQTSArMDEwMCwgSGVpbmVyIEthbGx3ZWl0IHdyb3RlOgo+
+PiBDb252ZXJ0IEFtbG9naWMgTWVzb24gUFdNIGJpbmRpbmcgdG8geWFtbC4KPj4KPj4gUmV2aWV3
+ZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+Cj4+IFNpZ25lZC1vZmYtYnk6IEhl
+aW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+Cj4+IC0tLQo+PiBTZWVtcyBwYXRj
+aCBnb3QgbG9zdCBvdmVyIHRoZSBxdWVzdGlvbiB3aG8gdGFrZXMgaXQuCj4+IFBsZWFzZSBhcHBs
+eSB0aHJvdWdoIHRoZSBwd20gdHJlZS4KPiAKPiBIbW0sIEkgZm91bmQKPiBodHRwczovL2xvcmUu
+a2VybmVsLm9yZy9saW51eC1wd20vYWFhNzM5MDMtMTgzNy1kOWM4LThjNDUtNTRiNDQ3M2ZkNTQ4
+QGdtYWlsLmNvbQo+IHdoaWNoIGhhZCBubyBSZXZpZXdlZC1ieSB0YWcgd2hlcmUgS3J6eXN6dG9m
+IEtvemxvd3NraSByZXBsaWVkIHdyaXRpbmc6Cj4gIllvdSBnb3QgaGVyZSBhIHRhZyBhbmQgbXkg
+Y29tbWVudCB3YXMgYWJvdXQgbWlub3IgaXNzdWUsIHNvIHBsZWFzZSBrZWVwCj4gdGhhdCB0YWcu
+IiBJIGRpZG4ndCBmaW5kIGEgdGhyZWFkIHdoZXJlIHN1Y2ggYSB0YWcgd2FzIGdpdmVuLCB0aG91
+Z2guIEkKPiBvbmx5IGZvdW5kIGEgcmV2aWV3IHJlcGx5IG9uIHYzIHdoZXJlIEtyenlzenRvZiBy
+ZXF1ZXN0ZWQgYSBjaGFuZ2UgKGFuZAo+IGRpZG4ndCBwcm92aWRlIGEgdGFnKS4KPiAKPiBUaGUg
+UmV2aWV3ZWQtYnkgdGFnIGZvciBSb2IgcHJvYmFibHkgb3JpZ2luYXRlcyBmcm9tCj4gaHR0cHM6
+Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtcHdtLzIwMjMwMTMwMjEyMTIxLkdBMzQ2ODEwMC1yb2Jo
+QGtlcm5lbC5vcmcvLgoKWWVzLCBSb2IgcHJvdmlkZWQgdGhhdCB0YWcuIFNpbmNlIGl0IGlzIGlu
+Y2x1ZGVkIGhlcmUsIGxvb2tzIGZpbmUuCgo+IAo+IEFuZCB0aGVyZSBpcyBhbm90aGVyIHZhcmlh
+bnQgd2hlcmUgdGhpcyBwYXRjaCB3YXMgcGFydCBvZiBhIHNlcmllcyBhdAo+IGh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2xpbnV4LXB3bS81YjgzNzY3ZS1jNTNkLTMxNmYtZGYxMC00NWEzOWRiZDlj
+ODhAZ21haWwuY29tCj4gd2hlcmUgaXQgZ290IGFuIGFjayBmcm9tIG1lIHdoaWNoIHdhc24ndCBp
+bmNsdWRlZCBoZXJlLgo+IAo+IFRvIGZpeCB0aGlzOgo+IAo+IEFja2VkLWJ5OiBVd2UgS2xlaW5l
+LUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgo+IAo+IGJ1dCBwbGVhc2Ug
+bm90ZSB0aGF0IHlvdSBjYW4gc2F2ZSBzb21lIHNjYXJjZSBtYWludGFpbmVyIHRpbWUgaWYgeW91
+J3JlCj4gbW9yZSBjYXJlZnVsIGhlcmUuCgpCZXN0IHJlZ2FyZHMsCktyenlzenRvZgoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
