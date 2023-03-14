@@ -4,117 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A918CC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 16:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4844BC6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 17:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PT9h7hlxEapjxNpYC95+Q1qLitP5Pk5CZzhninzkYok=; b=qRJ9cwSooE+rXO
-	A+w7+4Jy8TC9Tz+eFwmFc9aMv+J2AzCm7yX05lsQR712tRNm0LgxaFn1Z5JJEtOHsNbQCAAjaOA8j
-	U1W0sm08dsWF2SO2/FRRPs/IZ2k7R/0nWxi7eitkdivwrpcjERbvfg/ZNxZSmlLWaEqnwY5Dve2Dc
-	66T4z7+rPdOZmwCQYXd2CMrHgH9lfw+rYqg/4WAFCmgbZ3wu4sNtXkYgoKGi4HBE8lL7flp4T/eZE
-	z11g5NpihsQQjsXjmOt/n7reR/LMmRX9NNOR18X3IL3xOd9trrCWyMyUOa8doK8Zhe3ji5K8krliZ
-	lnTLNHsDmdDkxfbvefyg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hCYGGzm+8kGJFQe3Hsmj8Hy5tVkm7vewXTrrSeaZ7qQ=; b=zAOIr/cFAVRHT5
+	oe3ThBq57Xh/Shop3m6aTejC272HnnX7xfPjk/yxR71B+zI8NnCtz9IfKE0c/yVL/+Z1eHsq9a97K
+	F/Xy7J7pkhzVTKd9YenuudKCncB377AfMVmIohnCOyQm9+Keov3/LP3c3sEn5q32UOMxcYKFEt7RP
+	NYR467PN7PQS2A8BqllKy6lQp9myZ6sRE+wnyn+gWnhESopnvGpWk77iFp3ESFwJVaGk0i0fzCV4g
+	qKrEAqxoSMWvzmGr2iNoQ++CnZ0rC2r4K4BAKWwmPQzPhhH8BYdLb33yRfHh5/5uLZ9P4/LRh5YR3
+	fvwpMWV2fgETXvBHXOeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc7mY-00AtEI-22;
-	Tue, 14 Mar 2023 16:45:50 +0000
-Received: from mail-il1-x132.google.com ([2607:f8b0:4864:20::132])
+	id 1pc8OS-00B0MA-15;
+	Tue, 14 Mar 2023 17:25:00 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc7mV-00AtBu-1w;
-	Tue, 14 Mar 2023 16:45:49 +0000
-Received: by mail-il1-x132.google.com with SMTP id l9so5839783iln.1;
-        Tue, 14 Mar 2023 09:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678812346;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlTXumnsAyLju3X5wGhezp0gUrPj0Pftji9EY7hYkTE=;
-        b=IMbOhb4nSM3i5CqrZuMYQyk4mi0FlTaUhqJ10ufd3Zycg2LInMrGQEru5ClVhMfZiY
-         MBTA8wkxYs3c2KYTMoxKnrJ5Kdaoet53INo+0KJbWWMYRADfafbmB+FTNxreih/UUxFP
-         sljADlzOvgFOuWq2vKJgWRE6/WfqMDh3/2rgEloxv7hXosmfx0f7oG5pDnBP+HE83aF/
-         7QL1yXV2X8K2JtjI8IdwWJtckGXIUdEMPXKHAnfeJSzVfdVsGJdrKJ3b056R+slPWYAZ
-         ZiycbkXMVD6nIUVxupHIdiUR4K+B4czNcaiRn6zXjSxrW1ZoSF2r8ENe7PRUrZDJB9Ih
-         j9KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678812346;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jlTXumnsAyLju3X5wGhezp0gUrPj0Pftji9EY7hYkTE=;
-        b=ONlgec0Qh6Xueslxy2v7atKDo+MlbqVDBS63GpygZMkTQRCPIypJEzgKhLdzglYtvG
-         JoKWn4arxuJPolJJwWeghSCu/20Hjqk0RYLhdFjk/gBxPZF3wg73Y077/iK5XLoYspfN
-         8Y0Q1ihBtKO7H/EMzGqBRa4IIffxFeXNvs8i4Qucr1S2lq35tVEtIbLn05F7wDUrzkL8
-         l1pegmA8oAophR4fmH2XqMJ+x8JkwkZu3bcy8U6vqlP4zIBpSmu6PNpyplKPakhGWzG9
-         A9mwAAIwUnRD//Nk3NFp7MRAPjtQ0RoRqjqKI72juxawY1XNSYUM5PN2QueEiRmVpMva
-         53wA==
-X-Gm-Message-State: AO0yUKVn06qJ4IeVgYyqIV8TV7YbmynQyBNP6xljUqi91eBSnQUXTiaG
-	3xCsfliu3nlrmA23ijRuIcQ=
-X-Google-Smtp-Source: AK7set9fbVlYa4wCf6eJNIaNXA3YZoUWFsU4AD/JnVhm0i9hauk9yIMD83SJ3S82/ISaFKioIftPGQ==
-X-Received: by 2002:a05:6e02:60e:b0:318:aa8a:6455 with SMTP id t14-20020a056e02060e00b00318aa8a6455mr2655484ils.19.1678812345622;
-        Tue, 14 Mar 2023 09:45:45 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c22-20020a02c9d6000000b0040380d7c768sm903996jap.106.2023.03.14.09.45.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 09:45:45 -0700 (PDT)
-Message-ID: <4a4e0ef5-30f8-39ce-28cf-ade2122e2aa2@roeck-us.net>
-Date: Tue, 14 Mar 2023 09:45:39 -0700
+	id 1pc8OO-00B0LR-2G
+	for linux-amlogic@lists.infradead.org;
+	Tue, 14 Mar 2023 17:24:57 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 0140620048F;
+	Tue, 14 Mar 2023 18:24:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1678814695;
+	bh=2e5jAUF8/ZirLPQZM6YQfIUnTkYXb6j3MWx9iDVhC4Q=;
+	h=Date:To:Cc:From:Subject:From;
+	b=qFak2Zi44M/RwtD/NtNYnTwkFP1fEnUuhHCR3zcHHXd2a46o+i4G5EMxJ+GzDIvYD
+	 d30Qz/k+vij8HxGCxOxRDpnFJuKpXL4LNF441xThOJ0vn6UkoLqM4pCcTnaIMK/M0H
+	 st5Ea+fRrcH1DMrDhwz4KNKpfFbw+dfRBdYBueAVAeymmTCqER2nmDOVXPWzNN9ack
+	 k4OU+bsTHEyNRa0JcdCo5Vuq/67YXZRx7HPZ/nGZ4YFHn/jMhTncKvcMPpqX4tWQwa
+	 wVChT6YXL9SzfdP72R4WjQkyYPrcobMUluHR8MG/KuQAQvmqTihVxifgyWzmO6AsSP
+	 wKsiMzPjEOmAw==
+Message-ID: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
+Date: Tue, 14 Mar 2023 18:24:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: Joe Tessler <jrt@google.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Ulf Hansson <ulf.hansson@linaro.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
- <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
- Houlong Wei <houlong.wei@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Yong Deng <yong.deng@magewell.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
-References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
- <b83d6b81-c4ec-4fb8-b626-84af80d1c4a3@roeck-us.net>
- <74ae8afe-c537-1714-77ec-8a80d8ddad69@xs4all.nl>
- <bafa692c-f3a3-d317-278d-2dd3b5ff8af3@linaro.org>
-From: Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <bafa692c-f3a3-d317-278d-2dd3b5ff8af3@linaro.org>
+ Pierre-Hugues Husson <phh@phh.me>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Rong Chen <rong.chen@amlogic.com>, Yang Yingliang <yangyingliang@huawei.com>
+Cc: MMC <linux-mmc@vger.kernel.org>, AML <linux-amlogic@lists.infradead.org>
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+Subject: [PATCH] mmc: meson-gx: increase power-up delay
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230314_094547_647989_F14548B1 
-X-CRM114-Status: GOOD (  13.26  )
+X-CRM114-CacheID: sfid-20230314_102456_879310_22441193 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,33 +71,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMy8xNC8yMyAwOTozMiwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiBPbiAxNC8wMy8y
-MDIzIDA5OjM0LCBIYW5zIFZlcmt1aWwgd3JvdGU6Cj4+IE9uIDEzLzAzLzIwMjMgMjM6MDEsIEd1
-ZW50ZXIgUm9lY2sgd3JvdGU6Cj4+PiBPbiBTdW4sIE1hciAxMiwgMjAyMyBhdCAwMjoxMjo1MVBN
-ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOgo+Pj4+IFRoZSBkcml2ZXIgY2FuIG1h
-dGNoIG9ubHkgdmlhIHRoZSBEVCB0YWJsZSBzbyB0aGUgdGFibGUgc2hvdWxkIGJlIGFsd2F5cwo+
-Pj4+IHVzZWQgYW5kIHRoZSBvZl9tYXRjaF9wdHIgZG9lcyBub3QgaGF2ZSBhbnkgc2Vuc2UgKHRo
-aXMgYWxzbyBhbGxvd3MgQUNQSQo+Pj4+IG1hdGNoaW5nIHZpYSBQUlAwMDAxLCBldmVuIHRob3Vn
-aCBpdCBtaWdodCBub3QgYmUgcmVsZXZhbnQgaGVyZSkuCj4+Pj4KPj4+PiAgICBkcml2ZXJzL21l
-ZGlhL2NlYy9pMmMvY2g3MzIyLmM6NTgzOjM0OiBlcnJvcjog4oCYY2g3MzIyX29mX21hdGNo4oCZ
-IGRlZmluZWQgYnV0IG5vdCB1c2VkIFstV2Vycm9yPXVudXNlZC1jb25zdC12YXJpYWJsZT1dCj4+
-Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296
-bG93c2tpQGxpbmFyby5vcmc+Cj4+Pgo+Pj4gUmV2aWV3ZWQtYnk6IEd1ZW50ZXIgUm9lY2sgPGxp
-bnV4QHJvZWNrLXVzLm5ldD4KPj4+Cj4+PiBGV0lXOiBUaGVyZSBpcyBhbHNvCj4+PiBodHRwczov
-L3BhdGNoZXMubGluYXJvLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhL3BhdGNoLzIwMjMwMjE1MjE0
-NzI0LjM3OTg5MTctMS1saW51eEByb2Vjay11cy5uZXQvCj4+Cj4+IEkgc3VwZXJzZWRlZCB0aGF0
-IHBhdGNoIGluIHBhdGNod29yayBpbiBmYXZvciBvZiB0aGlzIHBhdGNoIHNpbmNlIHRoaXMgaXMg
-cGFydCBvZgo+PiBhIGxhcmdlciBzZXJpZXMuCj4gCj4gSSBhbSBwZXJzb25hbGx5IGZhbiBvZiBG
-SUZPLCBzbyBHdWVudGVyJ3MgcGF0Y2ggc2hvdWxkIGdvIGluLgo+IAoKRldJVywgSSBkbyBub3Qg
-Y2FyZSBlaXRoZXIgd2F5LCBJIGp1c3Qgd2FudGVkIHRvIHBvaW50IG91dCB0aGF0IHRoaXMgcGF0
-Y2gKX2lzXyBib3RoIHJlbGV2YW50IGFuZCBuZWVkZWQsIGFuZCB0aGF0IGl0IChvciwgcmF0aGVy
-LCB0aGUgb3JpZ2luYWwgdmVyc2lvbikKaGFzIGJlZW4gcmV2aWV3ZWQgYW5kIHRlc3RlZC4KClRo
-YW5rcywKR3VlbnRlcgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+With the default power-up delay, on small kernels, the host probes
+too soon, and mmc_send_io_op_cond() times out.
+
+Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
+---
+Stress-tested with 80 cold boots, checking every time
+mmc2: new ultra high speed SDR50 SDIO card at address 0001
+IIUC, this will also slow down SD & MMC probing,
+but an additional 20 ms seems acceptable?
+---
+ drivers/mmc/host/meson-gx-mmc.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 6e5ea0213b477..73ecbcf588c65 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1182,6 +1182,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
+ 	if (!mmc)
+ 		return -ENOMEM;
++	mmc->ios.power_delay_ms = 20;
+ 	host = mmc_priv(mmc);
+ 	host->mmc = mmc;
+ 	host->dev = &pdev->dev;
+-- 
+2.25.1
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
