@@ -4,85 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87C36C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 19:45:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F07C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 19:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PfYmZ/j8exxYGdqxFcNGc87WKgV1Wgh4/DvEnEHGme0=; b=GiGpneR0Rb3B24
-	Sqytw2aNdMOKZHD9y8upuOLuC4dBbkwiCNWMd4112oV1NG0nAzsYYC9DIa6GTLTrX2joBi6eeOVsj
-	m2UN06MDfM7Ehx7fViTNGO/buj4OtNkz1VlBTqvBSO7NlNFzLpyMJWSx/KocNPjrXHcRPzmpSS7yc
-	LWl2ageKnaMgpSeZ2+82rdKgGJVqn3mAarn4zKD/aZJSEYgRuZDRJPY1OkQCO6tczYNL8AhT0rde3
-	cqBIDdmZR97peNEGRs6wfwEa9y1qJHsBwIzw++tiB8Xz1f9OVQbHr9WxO63bzaxbkxNlNIyFiiZ2X
-	irkbr3Bm8WKGecbvub9w==;
+	List-Owner; bh=WUGpI94A9527Qi/JSK5HYDqUB47/JP/Lh6MKLqnLcek=; b=vEGT04vdDreGVq
+	GxZmR4NboVp1D8RumoLtsVtvnsGvymUGtu0MsdY7HS4kOnamic2JvAbU/SOON+V6YbZl2cN7cJRk2
+	1YwsmqKv2yevfw1YDeJPSmeeTJEuyTMrJAGB/MsR+k8kXUMW5U72yQvtz4t4CARwIK1wOga2ItIGI
+	p53dqN9oNbSK5sq8OlYdtrZhL/gvARGDFU0Atf6r1D/cT7IqJ3mWM4YxP+a63m7vNF4EIy45HsfJN
+	0AXizsOUo3M62QC77c1w1pjyvwTOvtqHjCknV59eUoDZ6d4m5zPc7sEn3pkR0gcksldsvWrQaTsdc
+	ZMWV54VO8q4PbNUbyCeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcAac-00BMy9-08;
-	Tue, 14 Mar 2023 19:45:42 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+	id 1pcAgf-00BNe6-2y;
+	Tue, 14 Mar 2023 19:51:57 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcAaZ-00BMxJ-0p
-	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Mar 2023 19:45:40 +0000
-Received: by mail-ed1-x531.google.com with SMTP id eg48so7412208edb.13
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 Mar 2023 12:45:37 -0700 (PDT)
+	id 1pcAgc-00BNci-34;
+	Tue, 14 Mar 2023 19:51:56 +0000
+Received: by mail-ed1-x535.google.com with SMTP id z21so1414242edb.4;
+        Tue, 14 Mar 2023 12:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678823136;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+dx+upmH7N2zp5Ua2gEK276tD+Y89nrLKL0Tl8k2Wdc=;
-        b=Pt7sBXo66cdFGiG3vWh+CkVp1Bw91P5irWH136K9kdGym+9hymOenz0KmDzLZVIcV8
-         OEKTgypmdaudkq+DxSm2tJLLZopgcaMLWKHlNaxICjUdo/gaSLTSCk+n9fJauJu5RzFg
-         ZOPAF/E46gRArq+R/9dVS+NeOZ8iE6nFxlYBg4trr0py8i0HbMz4QV5OOUFU4jpXgJta
-         uVkNv2fC9p0UCdDlXfhmfLsIsGswBZ3BqKzq04IsnVltdATy6u36w6u/Wdb0wboiuCxw
-         RGV5jfWbK/LcrIpdPhqabhTi5MvDS2VrXmrCn1zJn1cnPx0XVsL+D22k3rBfcuReB1bw
-         u1JA==
+        d=gmail.com; s=20210112; t=1678823510;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8AT8USwG5WyHMLzA6/8T0IUfb3m04Mgmj2Z9mkS5Q9k=;
+        b=VQ1Bxxrd0PI+Y36KGSR9tvLfCRNckswniNWELVaaPvUCxWivB6ajZpVwNfQPWx/bxk
+         wlyb+IDMNnHUcblddMhuEzgUKSHLuI4IYjI16P82uxBFfu+92mr4ylyALdg2BFJvB0AO
+         onmyGCP+1rgPgi7D6BPokZjuqWgag+074+OsP3gh5V8/s6Ajcuo0Ix20CPS0vWa6y38n
+         CxUj1yc60ELISGN+7y9S+Iv2DRIOmu8bGsTq9Aeo9AEahw49g7yGwjhT0f4XFogDgefs
+         /N/wuVy/EJ9AiQTL6+rT/SW6ZaLlic2kpZM0aIBubfPL2LM3uwH4k5DAmUCIPj+m+x3r
+         sfcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678823136;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+dx+upmH7N2zp5Ua2gEK276tD+Y89nrLKL0Tl8k2Wdc=;
-        b=PC5f0oqdZHg0Qn6QeZYXGZuksYmGWqgpQaLw7aooZikXfpEpch9OXFeBCp1E+7F0l7
-         eaVPOvWf/re6Qo+Ob/ieuFdZnXDAvmdqM43xvWypLzvRJ0peaXwoDOX+x66LL/rp21M0
-         eizUJctG45s92KHpcucJOz+o0J9a5PU7EplCeCtOvv/bW3/83izbmfni04hA9QNW1c4b
-         d1kQluHk1pmy2HK4ZpORkaWekrtq1UG5rTwDp9HnMtPHcsZ7e/ntL9fNucUWVr9iKHHx
-         Z83sQgdUnz5N8KSkJP/8gTB86bVV1/5dIOAHmeb1dSLSgdDHDmhBTEou7J0dkmVpPP8T
-         BNlA==
-X-Gm-Message-State: AO0yUKV3TqBxTmt04TbgYnba+/HVgX9QMue6NsPuW8+7s8WAY8J0J7MN
-	XS9enYQvfXDl4tIUPR5axS6/hRcslmc=
-X-Google-Smtp-Source: AK7set/bC6AB9ZG6QuoyPuS0ice1lrRUPEGYyY2vHo9H52eQjXoTVY10NNrAcAgb92Vxbow9Cdbi/w==
-X-Received: by 2002:aa7:d49a:0:b0:4fb:994d:42c9 with SMTP id b26-20020aa7d49a000000b004fb994d42c9mr225680edr.24.1678823136165;
-        Tue, 14 Mar 2023 12:45:36 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:772b:ab00:fde6:8525:8145:a65e? (dynamic-2a01-0c22-772b-ab00-fde6-8525-8145-a65e.c22.pool.telefonica.de. [2a01:c22:772b:ab00:fde6:8525:8145:a65e])
-        by smtp.googlemail.com with ESMTPSA id h1-20020a50c381000000b004c0c5864cc5sm1494480edf.25.2023.03.14.12.45.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 12:45:35 -0700 (PDT)
-Message-ID: <0696106f-8d70-6410-999a-fcda6c5b39c2@gmail.com>
-Date: Tue, 14 Mar 2023 20:45:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Marc Gonzalez <marc.w.gonzalez@free.fr>,
- Ulf Hansson <ulf.hansson@linaro.org>,
+        d=1e100.net; s=20210112; t=1678823510;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8AT8USwG5WyHMLzA6/8T0IUfb3m04Mgmj2Z9mkS5Q9k=;
+        b=DWi0Wl+ABGhHSoPWoDpXrPg6JS7P4JIt3pY1+Zv7G7RNnQmvYH5aC2R2n5f9z7QRAv
+         +YsthzC2idC9dyzlaRD2jC3LZPrOQCERWzM3EacspU5ModkBViKR0ezZP/k+NzdRiDPV
+         n3/XjfCO2s+812uma/Bh8k1/ZT7Q0AcCiZM+p8nm3/pwvJovhjaY07za+/6OS5yq1Dbe
+         i511iglxUPQmi4I/gjuJgwcKf96lBrHa2Hp9mLQJJ07JOtYBmNBH08vH4aMxo+uD9rCN
+         9vYFaEar2hCgLt41qCtQ82wPQQKJ+UfKe1BrR83u11VyqOlBPXGc17XCueV5i+cB8qLZ
+         HLUA==
+X-Gm-Message-State: AO0yUKX1aMaXkH9LB1kJ5jY0LKZAPPaSwQ53vzlqCfUg8UMagKRPMPKK
+	ibGOhZtH+3j7SOAV4MfaLCA=
+X-Google-Smtp-Source: AK7set/tzuvE7xTzdstMMoDin2Jn1A93J29XnBrFLWGatjpCIuLb3twRybszlAVT52/X8b7+AM6KfA==
+X-Received: by 2002:a17:906:a249:b0:92b:b4d9:3f07 with SMTP id bi9-20020a170906a24900b0092bb4d93f07mr3722129ejb.14.1678823509909;
+        Tue, 14 Mar 2023 12:51:49 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id z4-20020a170906714400b008e53874f8d8sm1509261ejj.180.2023.03.14.12.51.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 12:51:49 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Pierre-Hugues Husson <phh@phh.me>, Rong Chen <rong.chen@amlogic.com>,
- Yang Yingliang <yangyingliang@huawei.com>
-Cc: MMC <linux-mmc@vger.kernel.org>, AML <linux-amlogic@lists.infradead.org>
-References: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH] mmc: meson-gx: increase power-up delay
-In-Reply-To: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang <wenyou.yang@microchip.com>,
+ Bin Liu <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Yong Deng <yong.deng@magewell.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject:  Re: [PATCH 16/28] media: platform: sun6i-csi: drop of_match_ptr for ID table
+Date: Tue, 14 Mar 2023 20:51:46 +0100
+Message-ID: <2671303.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20230312131318.351173-16-krzysztof.kozlowski@linaro.org>
+References:  <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <20230312131318.351173-16-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230314_124539_297430_D9171CAB 
-X-CRM114-Status: GOOD (  17.33  )
+X-CRM114-CacheID: sfid-20230314_125154_985258_6437B3E1 
+X-CRM114-Status: GOOD (  15.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,46 +119,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14.03.2023 18:24, Marc Gonzalez wrote:
-> With the default power-up delay, on small kernels, the host probes
-> too soon, and mmc_send_io_op_cond() times out.
-> 
-Looking at mmc_power_up() and how power_delay_ms is used
-I wonder what you mean with "host probes too soon".
-Are you sure that the additional delay is needed for the Amlogic MMC
-block IP in general? Or could it be that your issue is caused by
-a specific regulator and you need to add a delay there?
-
-> Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
-> ---
-> Stress-tested with 80 cold boots, checking every time
-> mmc2: new ultra high speed SDR50 SDIO card at address 0001
-> IIUC, this will also slow down SD & MMC probing,
-> but an additional 20 ms seems acceptable?
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 6e5ea0213b477..73ecbcf588c65 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -1182,6 +1182,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
->  	if (!mmc)
->  		return -ENOMEM;
-> +	mmc->ios.power_delay_ms = 20;
->  	host = mmc_priv(mmc);
->  	host->mmc = mmc;
->  	host->dev = &pdev->dev;
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RG5lIG5lZGVsamEsIDEyLiBtYXJlYyAyMDIzIG9iIDE0OjEzOjA2IENFVCBqZSBLcnp5c3p0b2Yg
+S296bG93c2tpIG5hcGlzYWwoYSk6Cj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEgdGhl
+IERUIHRhYmxlIHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4gdXNlZCBhbmQgdGhlIG9m
+X21hdGNoX3B0ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJ
+Cj4gbWF0Y2hpbmcgdmlhIFBSUDAwMDEsIGV2ZW4gdGhvdWdoIGl0IG1pZ2h0IG5vdCBiZSByZWxl
+dmFudCBoZXJlKS4gIFRoaXMKPiBhbHNvIGZpeGVzICFDT05GSUdfT0YgZXJyb3I6Cj4gCj4gICBk
+cml2ZXJzL21lZGlhL3BsYXRmb3JtL3N1bnhpL3N1bjZpLWNzaS9zdW42aV9jc2kuYzo0MDE6MzQ6
+IGVycm9yOgo+IOKAmHN1bjZpX2NzaV9vZl9tYXRjaOKAmSBkZWZpbmVkIGJ1dCBub3QgdXNlZCBb
+LVdlcnJvcj11bnVzZWQtY29uc3QtdmFyaWFibGU9XQo+IAo+IFNpZ25lZC1vZmYtYnk6IEtyenlz
+enRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KPiAtLS0KCkFj
+a2VkLWJ5OiBKZXJuZWogU2tyYWJlYyA8amVybmVqLnNrcmFiZWNAZ21haWwuY29tPgoKQmVzdCBy
+ZWdhcmRzLApKZXJuZWoKCj4gIGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vc3VueGkvc3VuNmktY3Np
+L3N1bjZpX2NzaS5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
+ZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zdW54
+aS9zdW42aS1jc2kvc3VuNmlfY3NpLmMKPiBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vc3VueGkv
+c3VuNmktY3NpL3N1bjZpX2NzaS5jIGluZGV4Cj4gZTNlNjY1MDE4MWM4Li4xODdhMjQxOWRhOTYg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zdW54aS9zdW42aS1jc2kvc3Vu
+NmlfY3NpLmMKPiArKysgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL3N1bnhpL3N1bjZpLWNzaS9z
+dW42aV9jc2kuYwo+IEBAIC00MjksNyArNDI5LDcgQEAgc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9k
+cml2ZXIgc3VuNmlfY3NpX3BsYXRmb3JtX2RyaXZlcgo+ID0geyAucmVtb3ZlCT0gc3VuNmlfY3Np
+X3JlbW92ZSwKPiAgCS5kcml2ZXIJPSB7Cj4gIAkJLm5hbWUJCT0gU1VONklfQ1NJX05BTUUsCj4g
+LQkJLm9mX21hdGNoX3RhYmxlCT0gCm9mX21hdGNoX3B0cihzdW42aV9jc2lfb2ZfbWF0Y2gpLAo+
+ICsJCS5vZl9tYXRjaF90YWJsZQk9IHN1bjZpX2NzaV9vZl9tYXRjaCwKPiAgCQkucG0JCT0gJnN1
+bjZpX2NzaV9wbV9vcHMsCj4gIAl9LAo+ICB9OwoKCgoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
