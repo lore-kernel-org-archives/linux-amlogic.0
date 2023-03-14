@@ -4,78 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFFA1C74A44
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 11:49:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ED4FC74A5B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 13:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YwRk/ScavlNGtCy5o2NVSa2YA35vMVruNcaNWw3BpFA=; b=MYTTp8otTHRbjG
-	D+K+Ll6X1KqUFVnTscj29R5o+yAz7mvMj3EGYxZR+vPRptcwfEZqNpK5UZJ9ZyPgrix1uiqqwddcz
-	2b5nErtDQeRzq37tGxneXc2mgQbxh1sCVEe4rkekXkX7lCfFzjQzIG+9mAd2WtKeGNrb2z2AZxju2
-	pcJBfXi/emDouctkx+3VYmqY+f3g2+S1rSutPij+zWrBPfHJsGCsxfEVoctokTkOfemlhlYhNRK9O
-	ignLxFnsioDQkZfB2J8mV7tXUJubVo9W4QTBJ7+G0cDjP7uuXpIKTrZqU67mvOAmdoAU5etmvxvmG
-	jRmNjfTkrwtJxOsGJYsg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YuyiBY3CdsgmyxIRetKur/UmyM1CUvbnQK7Td0xpHh0=; b=3S0RcRNA6dNcxP6OVWkX7topnY
+	RZR5xEmvtlYpS9KHZq04QXSljsRFqYOwyCeuIMHChyPTVdSzQg3ivu76P3EtKKNocJOCbHn9JVQiy
+	fh55E/th+smxlKfBc3R65xndmGd6tbSCelqevyUZs4VX9kSUYeaBHby3/Hu8E7+7kPydQxM7dGmod
+	6qo1oLdYWQGN2ZEnalklPw4mz97AM6G1dvcER8FzUUZxF1Yr66REpgZZE3XLSMeJhgjLiPoWztRGV
+	3utONSav0mFKO8s1RDW7v3qecnNDHw96Vae+bVEjhSTsy/YB1zEgazQDcxBoJBXtVoadWa7Sye0vV
+	AlqcMRXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc398-009zU4-0W;
-	Tue, 14 Mar 2023 11:48:50 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pc4fy-00AI8C-0b;
+	Tue, 14 Mar 2023 13:26:50 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc38s-009zAi-3D;
-	Tue, 14 Mar 2023 11:48:46 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 5576E5FD1A;
-	Tue, 14 Mar 2023 14:48:27 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1678794507;
-	bh=marFiN47fr+Q7MFOCmdErjItiqHs7/cgayQIHPn8o7A=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=biN9QXQ+GzSQr7wcFa+QfG5JRntdnWm9/Wu0T6S/6iTOTMHlN0Wy2zlNhadFUno0l
-	 0o0zTqvmMr0fn6Tgzh/gWnrqGT1onen90KfpytT34E7+3ffksNeeQlcSmCNgEwAFIz
-	 G+92O3ABna3Oiu6dQvkfFhXLcvMYWsI2dJaBpkhAZgw2N6NMMvDB5OY/97dAzsHkvg
-	 Qn0n/7J50CbBM801iRfbkkUUXL4voWuGWQWrm3mYpRn0Y8HhSja0vgl3BN6xHKz85l
-	 /y62Sn+MrFT+rULGOzT6gD5FH6yZ9txoP8JOqC1S/UvyJLwjvDTfuwZP4TBsVuqPRO
-	 XpvKzMr2snI5A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 14 Mar 2023 14:48:26 +0300 (MSK)
-Date: Tue, 14 Mar 2023 14:48:25 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+	id 1pc4ft-00AI6C-31;
+	Tue, 14 Mar 2023 13:26:48 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id C3FD6B811F5;
+	Tue, 14 Mar 2023 13:26:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E68B5C433EF;
+	Tue, 14 Mar 2023 13:26:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1678800402;
+	bh=rfEnNx/AtmKQ6+j2cB2Tu1ghvgv+nXYlVjsWMHYFeWs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HQdvzfIbZzXtrHVHeJg8joac91CkFNUhUzka7UIgOQ3I0FVOwkfTcWeroLJ31/N7O
+	 01OIfdO5oayYpm8+UDO0/KWpqhZlwRH++bOxN+0CTXQ6T/vAaAhHIWq3PWORYgNdu+
+	 z8HPP+L3vWZpC3QqInApRRu4W0ND12eVv9xd3zqw9nh3ErFL+dJoUC2MTlBkeIT8mz
+	 yRgg+BoDNQO8M885SHiRpZ4NlCsM74IxZcOG+swSKa0mEd8MzUkgN3Wh2np3OsVUhq
+	 wKWf8t4NW/4d/W9C03p5tiQl8tBdkxFnmud7ENuSVhpviYrfKxe4rpki0XfhGzz31+
+	 O0suXgkmHMBgg==
+Date: Tue, 14 Mar 2023 13:26:34 +0000
+From: Mark Brown <broonie@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
+Cc: Kamal Dasu <kdasu.kdev@gmail.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi@etezian.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 01/16] spi: armada-3700: Drop of_match_ptr for ID table
+Message-ID: <5782b7a2-3942-4bed-9a70-55a43833f69c@sirena.org.uk>
+References: <20230310222857.315629-1-krzysztof.kozlowski@linaro.org>
+ <7a65d775-cf07-4393-8b10-2cef4d5266ab@sirena.org.uk>
+ <08e98d1d-e79b-fe7e-0d59-827f72277fc5@linaro.org>
+ <9bf3dd37-71c2-4118-a8da-40e656b42d10@sirena.org.uk>
+ <ed293caf-e787-a29e-f1c5-bdcaf1aa483a@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <ed293caf-e787-a29e-f1c5-bdcaf1aa483a@linaro.org>
+X-Cookie: For office use only.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230314_044835_422556_8CE6355F 
-X-CRM114-Status: GOOD (  22.43  )
+X-CRM114-CacheID: sfid-20230314_062646_282644_0DBA498E 
+X-CRM114-Status: GOOD (  24.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,92 +90,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8894210974654836389=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2023 21:12, Dmitry Rokosov wrote:
 
-[...]
+--===============8894210974654836389==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="elD8KD6t7+wRv3Op"
+Content-Disposition: inline
 
-> > +#define CLKID_SPIFC		84
-> > +#define CLKID_USB_BUS		85
-> > +#define CLKID_SD_EMMC		86
-> > +#define CLKID_PSRAM		87
-> > +#define CLKID_DMC		88
-> 
-> And what is here? Between 88 and 121?
-> 
 
-Explained below.
+--elD8KD6t7+wRv3Op
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > +#define CLKID_GEN_SEL		121
-> > +
-> > +#endif /* __A1_CLKC_H */
-> > diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > new file mode 100644
-> > index 000000000000..8e97d3fb9d30
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: GPL-2.0+ */
-> 
-> I found in changelog:
-> "fix license issue, it's GPL-2.0+ only in the current version"
-> and I do not understand.
-> 
-> The license is wrong, so what did you fix?
-> 
+On Tue, Mar 14, 2023 at 07:44:04AM +0100, Krzysztof Kozlowski wrote:
+> On 13/03/2023 20:22, Mark Brown wrote:
 
-Sorry don't get you. Why is it wrong?
-I've changed all new source files to GPL-2.0+ except yaml, because yaml
-dt bindings schemas require the following license:
+> > If that's the case then why are you adding maybe unused annotations for
+> > half the drivers rather than removing their of_match_ptr() usages?
+> > There doesn't seem to be any logic here, it's just randomly making
+> > changes as far as I can tell.
 
-    # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> These are not random but depend on whether OF is the only matching
+> method or one of few. Although for IIO all of my patches would be
+> dropping the of_match_ptr... For some cases in other patchsets I added
+> __maybe_unused also because of_match_node(), when the table is not used
+> in driver of_match_table.
 
-I've pointed it in the changelog.
+This logic is both not apparent when looking at the patches and doesn't
+move us in any particular direction - I'd expect this stuff to be
+written the same way for all drivers, there's no reason for it to vary.
+That just adds complication, it's more random obscure rules people have
+to learn.
 
-> > +/*
-> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> > + * Author: Jian Hu <jian.hu@amlogic.com>
-> > + *
-> > + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> > + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > + */
-> > +
-> > +#ifndef __A1_PLL_CLKC_H
-> > +#define __A1_PLL_CLKC_H
-> > +
-> > +#define CLKID_FIXED_PLL		1
-> > +#define CLKID_FCLK_DIV2		6
-> > +#define CLKID_FCLK_DIV3		7
-> > +#define CLKID_FCLK_DIV5		8
-> > +#define CLKID_FCLK_DIV7		9
-> > +#define CLKID_HIFI_PLL		10
-> 
-> 
-> Probably I asked about this... why indices are not continuous? You know
-> that consumers are allowed to use number 2 and it will be your ABI, even
-> though you did not write it in the binding? That's a tricky and
-> confusing pattern for no real gains.
+> > The PRP0001 stuff isn't an issue, of_match_ptr() can just be changed to
+> > do the right thing for CONFIG_ACPI.
 
-Actually, indices are continuou but splitted into two parts: public and
-private. The public part is located in the dt bindings and can be included
-from device tree sources. The private part is in the drivers/clk/meson
-folder, and only clk drivers can use it.
-I know, there is some trick when the user just inserts a digit value and
-doesn't use constants. But I'm starting from the assumption that such
-dts changes will not be approved by maintainers. In other words, the user
-*must* apply defined ABI constants from dt bindings; it's a strong
-restriction.
+> That's actually interesting idea, kind of obvious so I wonder why it
+> wasn't done like this in the first place in 886ca88be6b3 ("ACPI / bus:
+> Respect PRP0001 when retrieving device match data"). Maybe not to
+> populate OF device ID tables for the ACPI systems which do not care
+> about PRP0001?
 
--- 
-Thank you,
-Dmitry
+Or just it didn't occur to anyone at the time.
+
+--elD8KD6t7+wRv3Op
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQQdgoACgkQJNaLcl1U
+h9Anagf/THfRG/RbMsHxaqKJsYsu8z++5R15gbuBbWAl1XHrOE03sdWawbw9nx6/
+7FjyWP0YguU7o9glL92CdGxV9CSl2mMJw06/Mvasde/AqKVs1hIrTEBLc8esfnmK
+y/l3de8OGXwYRz7UontPhCtwqNjdwza95hPCqQNLi1LhQ8DwEK9TIRvpfsD15NfI
+p+M8l80hFu85Hz+2LrWrmgcbQwuvowzOGYminHMypypU2qkEka6P8Avhuz9sB6Jj
+H1qukPGKGE02cXrtNfCG6DPdWzp2vPcIzeyFSendbDtHhlOets4W06I02bN3bFD8
+VlVyWgaICjPC/DjVXOuTe1yovomvig==
+=lrkL
+-----END PGP SIGNATURE-----
+
+--elD8KD6t7+wRv3Op--
+
+
+--===============8894210974654836389==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8894210974654836389==--
+
