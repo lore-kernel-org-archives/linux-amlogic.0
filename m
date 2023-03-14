@@ -4,89 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55ED1C6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 14:06:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E046CC6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 15:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iQMyL7lRbttHxhN1f/tYahmF5CbKTTT8WG55+HOg/wU=; b=M57SJRaYxaAIkz
-	dT0K5+Tn/ulZkPxiLYZIK21G6rxwpARikF0GzwcPRx/RRiEub/QKr5oogdMJxh+IihKcIw/RiYySv
-	2ST44uBzAKVU4clHPQqOh3wADP+bbDhREeA2uCD5dZw6UjRtkiAMSkAwh98wHAeqsgMVkG5oGnyXD
-	uAUUeU91hg1uiYpPS4qONstiYUco1gilvfRCJUtZpxpb8R49emkfxUInY2hkslY2ErawDKVt5qM3G
-	Hx1if31zN4fq2j1eGG96l3MSB/RB268IF6dmvdftYDtBLBAfc32gKiiQBQ2hGJabl9luIC4drk/QD
-	onwq69ga6UdQVsRqCPQg==;
+	List-Owner; bh=1nMlHxZ7DUsCW9ESUA0dnNhaTrDPn8+zFAJ5A+xraQg=; b=epqLVaZZQrAUHt
+	NVxct2jHAqKFWJeQvusubEXPIhBV8q82jIB3dbUQrV3DMq0E6SXUguoLVhzagPveHVVcD5/eCdHpI
+	xZ/X6UBvM2LdR4o2sdAO473bvKwoBVv4RPVvymOwYj203bIilaR2nJOp7Ni0QsCxkOg0d767pKcLL
+	ukLR5J4Z5xXv0PqH6ZZQJ7Yg+wEZTdZEpAy0Yslb04gwxgNT2U29AAAUMqOQ9hvrvsfWOQmFa0+1c
+	72RhBYkgYuh8ote2HEjDLMr62IaUREd6IlNSvlM3psnXXglXKx3RDoJ3cUQDmZh5sUGTiRm0JsAIa
+	kqcgld/Y22gCk02x7YDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc5Hp-00AOna-30;
-	Tue, 14 Mar 2023 14:05:57 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1pc69O-00AXTY-1f;
+	Tue, 14 Mar 2023 15:01:18 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc5Hm-00AOlm-1g
-	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Mar 2023 14:05:56 +0000
-Received: by mail-ed1-x534.google.com with SMTP id fd5so28626006edb.7
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 Mar 2023 07:05:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678802750;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IP0KSz4lT+u+HebFhfe8Z+E9HmxxFebdK40uPcNluho=;
-        b=VMc3dHzCbH8kAJ0met49jqj4q9sBl/CTcqfdk/2nAnFSUiJzxX/Zb/9/l0ZWxk252f
-         37AK1+OPk5JYUlso2MptIakR4qrC0Ss/fr9vkG0FAAfCKf0uUb79OBLLNZt/LLdT2xdA
-         jjIfKv7ccyresFXV4cfJekvDRuZohYfJm4RJx+EAMl4ctNtFdnvOipU5vY/5bpokXBWV
-         NcAjbMeReFutRGDUNC9lQsjRE/7b9SJBV0PonTKxvkmxC7K3FbdnkARKR12hLUl/G/Zr
-         aPnx1vB4nJXckOea2G5aO/v51VApWofZjWiEunv668LELL/MfYnsPejtB1pP0S4CUyir
-         o+rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678802750;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IP0KSz4lT+u+HebFhfe8Z+E9HmxxFebdK40uPcNluho=;
-        b=4mBxpUQ4lVLZVIFFhxSLdC0Dli63Kef4xqoGOQEbFz6p7dxXGfYUu5lOsiRBU00Aas
-         RACokQKjIWrvGdKrjQOg5rYwIKyYLrEEsnPQ8sf9U3Ucbn72Biwr8ldaRQ/Ph6/E2+9s
-         TBQieMYKGhXHXccnAEPLkhcPwJ64mc4+845oIVLAfU80VpZCvdasRBXiL5IP3x5ACAJS
-         32M6DQXCaL5x8wMqrZHcawmLp8wrsBz1i3D+5l12Fh2Cbcudd44OjXuV6aneVSvzum9w
-         W3cLG9J+ka/afoLRQZ9kErsxUMxO5XfN1QBbNJtCLE2KQJRkB43CUH+3BD9nda5xkODo
-         /QxQ==
-X-Gm-Message-State: AO0yUKVjkA8UxGLL44SYAP74/hEcOzbUcuViadJyfaYwri5BRuI1dybq
-	gJa2bmwzrY8TtODfTkSAYpuUCA==
-X-Google-Smtp-Source: AK7set+/9ywuRumyeAN238PsARcUKnYZ2ALTYHhTX6lxmf3l+Q2lmS+pqtOVRHP6a3kcf9WpQQ8jUg==
-X-Received: by 2002:a17:906:13d4:b0:861:4671:a834 with SMTP id g20-20020a17090613d400b008614671a834mr3084596ejc.71.1678802750006;
-        Tue, 14 Mar 2023 07:05:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id ga17-20020a170906b85100b00922e3221c88sm1182419ejb.117.2023.03.14.07.05.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 07:05:49 -0700 (PDT)
-Message-ID: <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
-Date: Tue, 14 Mar 2023 15:05:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+	id 1pc69K-00AXSS-1v;
+	Tue, 14 Mar 2023 15:01:17 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 4F4625FD07;
+	Tue, 14 Mar 2023 18:01:08 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1678806068;
+	bh=VYtZNHbbMXIq+g24HuL1awnMYFh5ypx+E6yBnfNcl6A=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=qsIgGNq9FJ+V3tMbZis0wrWJCHqgOAd4VH5hKqsP84sHMMyQ126g9D4n8CC8NTKJO
+	 Afl9vosImnTrlWVMKzxfDPpOjxrWMdK1sk4SaFNE8dntktMxQRzU2t74V9gSwFXpKp
+	 10uMAGSu1bm8lH97M+c6NOdSUeqcgM5inA2oGwOb/kRDUOG8D8aISg26bYcYDbSheg
+	 kHA8dDLPO0lEC5OkuKUA9Jh2hh+nT9Bry6FSSDspRZHQvpWX4wDWH90tubUGwn4taT
+	 4C/MVlZF48vOsFrnsWz6DcreHu/PcPaTfbDT2szz9BMaB+BV7e/4wxZjxBdtvOzmxu
+	 4tNQ8XpHc70eg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Tue, 14 Mar 2023 18:01:07 +0300 (MSK)
+Date: Tue, 14 Mar 2023 18:01:07 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
 Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
  Peripherals clkcs bindings
-Content-Language: en-US
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, martin.blumenstingl@googlemail.com,
- jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Message-ID: <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
 References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
  <20230313201259.19998-4-ddrokosov@sberdevices.ru>
  <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
  <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
+ <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230314_070554_560182_A4F3C7DD 
-X-CRM114-Status: GOOD (  28.67  )
+X-CRM114-CacheID: sfid-20230314_080114_980943_C388E20F 
+X-CRM114-Status: GOOD (  46.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,115 +94,168 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/03/2023 12:48, Dmitry Rokosov wrote:
-> On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
->> On 13/03/2023 21:12, Dmitry Rokosov wrote:
+On Tue, Mar 14, 2023 at 03:05:48PM +0100, Krzysztof Kozlowski wrote:
+> On 14/03/2023 12:48, Dmitry Rokosov wrote:
+> > On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
+> >> On 13/03/2023 21:12, Dmitry Rokosov wrote:
+> > 
+> > [...]
+> > 
+> >>> +#define CLKID_SPIFC		84
+> >>> +#define CLKID_USB_BUS		85
+> >>> +#define CLKID_SD_EMMC		86
+> >>> +#define CLKID_PSRAM		87
+> >>> +#define CLKID_DMC		88
+> >>
+> >> And what is here? Between 88 and 121?
+> >>
+> > 
+> > Explained below.
+> > 
+> >>> +#define CLKID_GEN_SEL		121
+> >>> +
+> >>> +#endif /* __A1_CLKC_H */
+> >>> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> >>> new file mode 100644
+> >>> index 000000000000..8e97d3fb9d30
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> >>> @@ -0,0 +1,20 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0+ */
+> >>
+> >> I found in changelog:
+> >> "fix license issue, it's GPL-2.0+ only in the current version"
+> >> and I do not understand.
+> >>
+> >> The license is wrong, so what did you fix?
+> >>
+> > 
+> > Sorry don't get you. Why is it wrong?
 > 
-> [...]
+> Run checkpatch - it will tell you why wrong. The license is not correct.
+> This is part of binding and should be the same as binding.
 > 
->>> +#define CLKID_SPIFC		84
->>> +#define CLKID_USB_BUS		85
->>> +#define CLKID_SD_EMMC		86
->>> +#define CLKID_PSRAM		87
->>> +#define CLKID_DMC		88
->>
->> And what is here? Between 88 and 121?
->>
+
+I always run checkpatch before sending the next patch series. Checkpatch
+doesn't highlight this problem:
+
+--------------
+$ rg SPDX a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
+32:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+111:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+188:+/* SPDX-License-Identifier: GPL-2.0+ */
+294:+/* SPDX-License-Identifier: GPL-2.0+ */
+
+$ ./scripts/checkpatch.pl --strict a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
+total: 0 errors, 0 warnings, 0 checks, 259 lines checked
+
+a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch has no obvious style problems and is ready for submission.
+--------------
+
+I've got your point, will fix in the next version.
+
+> > I've changed all new source files to GPL-2.0+ except yaml, because yaml
+> > dt bindings schemas require the following license:
+> > 
+> >     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > 
+> > I've pointed it in the changelog.
 > 
-> Explained below.
+> The only thing I found was:
+> "fix license issue, it's GPL-2.0+ only in the current version"
 > 
->>> +#define CLKID_GEN_SEL		121
->>> +
->>> +#endif /* __A1_CLKC_H */
->>> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
->>> new file mode 100644
->>> index 000000000000..8e97d3fb9d30
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
->>> @@ -0,0 +1,20 @@
->>> +/* SPDX-License-Identifier: GPL-2.0+ */
->>
->> I found in changelog:
->> "fix license issue, it's GPL-2.0+ only in the current version"
->> and I do not understand.
->>
->> The license is wrong, so what did you fix?
->>
+> so what exactly you pointed out in changelog? What was to fix? What was
+> fixed? Correct license into incorrect? But why?
 > 
-> Sorry don't get you. Why is it wrong?
 
-Run checkpatch - it will tell you why wrong. The license is not correct.
-This is part of binding and should be the same as binding.
+By 'license issue' I meant your comment for the previous version at:
+https://lore.kernel.org/all/6a950a51-fe90-9163-b73d-0a396d7187ee@linaro.org/
 
-> I've changed all new source files to GPL-2.0+ except yaml, because yaml
-> dt bindings schemas require the following license:
+I thought you mentioned the problem is in two license usage in the one
+line (GPL + MIT), I've fixed it to GPL2 only, and mentioned it in the
+changelog.
+
+I didn't know about the special requirement for a dt-bindings license, I've
+just checked other clock dt-bindings and found that license is different
+in the many places:
+
+$ grep -r "SPDX" include/dt-bindings/clock | grep -v -e "GPL-2.0.*BSD-2-Clause" | wc -l
+291
+
+And Tegra Car 124 as an example for different license between yaml
+schema and binding header:
+$ grep "SPDX" include/dt-bindings/clock/tegra124-car.h
+/* SPDX-License-Identifier: GPL-2.0 */
+$ grep "SPDX" Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+
+Anyway, it's not a problem to fix the license to the same value between
+header and yaml schema, I'll fix it in the next version.
+But based on the above experiments, other clock bindings should be fixed
+as well, checkpatch behavior should be extended for dt bindings headers
+licence checking.
+
+> > 
+> >>> +/*
+> >>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> >>> + * Author: Jian Hu <jian.hu@amlogic.com>
+> >>> + *
+> >>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> >>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> >>> + */
+> >>> +
+> >>> +#ifndef __A1_PLL_CLKC_H
+> >>> +#define __A1_PLL_CLKC_H
+> >>> +
+> >>> +#define CLKID_FIXED_PLL		1
+> >>> +#define CLKID_FCLK_DIV2		6
+> >>> +#define CLKID_FCLK_DIV3		7
+> >>> +#define CLKID_FCLK_DIV5		8
+> >>> +#define CLKID_FCLK_DIV7		9
+> >>> +#define CLKID_HIFI_PLL		10
+> >>
+> >>
+> >> Probably I asked about this... why indices are not continuous? You know
+> >> that consumers are allowed to use number 2 and it will be your ABI, even
+> >> though you did not write it in the binding? That's a tricky and
+> >> confusing pattern for no real gains.
+> > 
+> > Actually, indices are continuou but splitted into two parts: public and
+> > private. The public part is located in the dt bindings and can be included
+> > from device tree sources. The private part is in the drivers/clk/meson
+> > folder, and only clk drivers can use it.
+> > I know, there is some trick when the user just inserts a digit value and
+> > doesn't use constants.
 > 
->     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> This is not a trick. This is how DTS works. You have only indices/numbers.
 > 
-> I've pointed it in the changelog.
-
-The only thing I found was:
-"fix license issue, it's GPL-2.0+ only in the current version"
-
-so what exactly you pointed out in changelog? What was to fix? What was
-fixed? Correct license into incorrect? But why?
-
+> > But I'm starting from the assumption that such
+> > dts changes will not be approved by maintainers. In other words, the user
+> > *must* apply defined ABI constants from dt bindings; it's a strong
+> > restriction.
 > 
->>> +/*
->>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->>> + * Author: Jian Hu <jian.hu@amlogic.com>
->>> + *
->>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
->>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>> + */
->>> +
->>> +#ifndef __A1_PLL_CLKC_H
->>> +#define __A1_PLL_CLKC_H
->>> +
->>> +#define CLKID_FIXED_PLL		1
->>> +#define CLKID_FCLK_DIV2		6
->>> +#define CLKID_FCLK_DIV3		7
->>> +#define CLKID_FCLK_DIV5		8
->>> +#define CLKID_FCLK_DIV7		9
->>> +#define CLKID_HIFI_PLL		10
->>
->>
->> Probably I asked about this... why indices are not continuous? You know
->> that consumers are allowed to use number 2 and it will be your ABI, even
->> though you did not write it in the binding? That's a tricky and
->> confusing pattern for no real gains.
+> But it is not correct assumption. Defines are very important, but they
+> are just helpers. Otherwise without defines you could not use any clock?
+> We pretty often use IDs - for DTS to allow merging via different trees,
+> for DT binding examples to not rely on headers.
 > 
-> Actually, indices are continuou but splitted into two parts: public and
-> private. The public part is located in the dt bindings and can be included
-> from device tree sources. The private part is in the drivers/clk/meson
-> folder, and only clk drivers can use it.
-> I know, there is some trick when the user just inserts a digit value and
-> doesn't use constants.
+> Your driver implements the ABI and the driver exposes for example clock
+> ID=2, even if it is not in the header.
+> 
+> These IDs are unfortunately undocumented ABI and you if you change them,
+> users are allowed to complain.
+> 
+> Solution: don't do this. Have all exposed clock IDs and clocks in sync
+> (and continuous).
 
-This is not a trick. This is how DTS works. You have only indices/numbers.
+I see. But I don't understand how I can restrict access to private
+clock objects. I don't want to open ability to change system clocks
+parents, for example. Or it's under device tree developer responsibility?
+I would appreciate any assistance in determining the best path.
 
-> But I'm starting from the assumption that such
-> dts changes will not be approved by maintainers. In other words, the user
-> *must* apply defined ABI constants from dt bindings; it's a strong
-> restriction.
-
-But it is not correct assumption. Defines are very important, but they
-are just helpers. Otherwise without defines you could not use any clock?
-We pretty often use IDs - for DTS to allow merging via different trees,
-for DT binding examples to not rely on headers.
-
-Your driver implements the ABI and the driver exposes for example clock
-ID=2, even if it is not in the header.
-
-These IDs are unfortunately undocumented ABI and you if you change them,
-users are allowed to complain.
-
-Solution: don't do this. Have all exposed clock IDs and clocks in sync
-(and continuous).
-
-Best regards,
-Krzysztof
-
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
