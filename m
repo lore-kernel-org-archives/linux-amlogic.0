@@ -4,81 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61D1AC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 16:38:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A918CC6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Mar 2023 16:46:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qdyKPHRpuNeXfbrNWjNxZB9jojgeLOaN05K6OX8kJJk=; b=0HZCKLzAHDkBAS
-	lmjEW7LfR6Zyc9rAPoUszwMmMQYk44+sjGGIQ6p182yR81w2WKqT90RPaNkm2xWjewQogRjjHGQ7a
-	swoxwVE6kWQgMGVj6nqeP7yCZpJq8Ox0ICbaAyPCtjWXug8DVxZR6sK2DWRd6yUFaxVTr16Z1gkVX
-	PDzEwG+SC6Bgu5H0mPji8ErRhTEEasgaGPlBWPSLg+g/1hrXVxo81sJEqIBNGYaD57iZVob7yqTtT
-	MefZBGLKIRkb22XSevXl1O58H2qDYaXW6szHjT+fNG/k3bGSdAas05kHi9HyNB8jPnn9Shj5voH3H
-	pJDW5LS70ObOMHg/zmkw==;
+	List-Owner; bh=PT9h7hlxEapjxNpYC95+Q1qLitP5Pk5CZzhninzkYok=; b=qRJ9cwSooE+rXO
+	A+w7+4Jy8TC9Tz+eFwmFc9aMv+J2AzCm7yX05lsQR712tRNm0LgxaFn1Z5JJEtOHsNbQCAAjaOA8j
+	U1W0sm08dsWF2SO2/FRRPs/IZ2k7R/0nWxi7eitkdivwrpcjERbvfg/ZNxZSmlLWaEqnwY5Dve2Dc
+	66T4z7+rPdOZmwCQYXd2CMrHgH9lfw+rYqg/4WAFCmgbZ3wu4sNtXkYgoKGi4HBE8lL7flp4T/eZE
+	z11g5NpihsQQjsXjmOt/n7reR/LMmRX9NNOR18X3IL3xOd9trrCWyMyUOa8doK8Zhe3ji5K8krliZ
+	lnTLNHsDmdDkxfbvefyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc7fG-00Are9-2P;
-	Tue, 14 Mar 2023 16:38:18 +0000
-Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
+	id 1pc7mY-00AtEI-22;
+	Tue, 14 Mar 2023 16:45:50 +0000
+Received: from mail-il1-x132.google.com ([2607:f8b0:4864:20::132])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pc7f4-00AraI-2f
-	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Mar 2023 16:38:11 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 83A0E2003FF;
-	Tue, 14 Mar 2023 17:37:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678811880;
-	bh=ooLFZIh4ulWCiJYZc6yvrTXCsSwnpVuJlixKNRQY1oE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B9487GuR3j6kDpBB3qOrBYwF6FKn4IOPzAaNUzUdpX3Jsr+JU2tFCsol57Ej3fBfy
-	 emDip74YRxyfzOIwWOcgqcZ2D13VkEkWhLyfTB3kR988vqTK2KIWmr3z2zgooYTP1j
-	 Qww2XjFe4zaP+9/7ddmqUBnG0Adf3MObL06tYNkerN0AlTALt+Ccvy1SOYRjP17r9Q
-	 FVVx52RR69x8RXY7yBkUNzBwCyKPI+s8kyET1WSN4zH80O9WaFNTBrkNbdEzYYCJcj
-	 RQLyjyR4kao5QOey0Eab2H5ijoe4/ay8EgG0JD1kdZZ27n3pNNvgR3RiCSUNJ25TC7
-	 mQRW0ZRkuJYhA==
-Message-ID: <893311e7-6fce-118b-a683-6988de161698@free.fr>
-Date: Tue, 14 Mar 2023 17:37:41 +0100
+	id 1pc7mV-00AtBu-1w;
+	Tue, 14 Mar 2023 16:45:49 +0000
+Received: by mail-il1-x132.google.com with SMTP id l9so5839783iln.1;
+        Tue, 14 Mar 2023 09:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678812346;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=jlTXumnsAyLju3X5wGhezp0gUrPj0Pftji9EY7hYkTE=;
+        b=IMbOhb4nSM3i5CqrZuMYQyk4mi0FlTaUhqJ10ufd3Zycg2LInMrGQEru5ClVhMfZiY
+         MBTA8wkxYs3c2KYTMoxKnrJ5Kdaoet53INo+0KJbWWMYRADfafbmB+FTNxreih/UUxFP
+         sljADlzOvgFOuWq2vKJgWRE6/WfqMDh3/2rgEloxv7hXosmfx0f7oG5pDnBP+HE83aF/
+         7QL1yXV2X8K2JtjI8IdwWJtckGXIUdEMPXKHAnfeJSzVfdVsGJdrKJ3b056R+slPWYAZ
+         ZiycbkXMVD6nIUVxupHIdiUR4K+B4czNcaiRn6zXjSxrW1ZoSF2r8ENe7PRUrZDJB9Ih
+         j9KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678812346;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jlTXumnsAyLju3X5wGhezp0gUrPj0Pftji9EY7hYkTE=;
+        b=ONlgec0Qh6Xueslxy2v7atKDo+MlbqVDBS63GpygZMkTQRCPIypJEzgKhLdzglYtvG
+         JoKWn4arxuJPolJJwWeghSCu/20Hjqk0RYLhdFjk/gBxPZF3wg73Y077/iK5XLoYspfN
+         8Y0Q1ihBtKO7H/EMzGqBRa4IIffxFeXNvs8i4Qucr1S2lq35tVEtIbLn05F7wDUrzkL8
+         l1pegmA8oAophR4fmH2XqMJ+x8JkwkZu3bcy8U6vqlP4zIBpSmu6PNpyplKPakhGWzG9
+         A9mwAAIwUnRD//Nk3NFp7MRAPjtQ0RoRqjqKI72juxawY1XNSYUM5PN2QueEiRmVpMva
+         53wA==
+X-Gm-Message-State: AO0yUKVn06qJ4IeVgYyqIV8TV7YbmynQyBNP6xljUqi91eBSnQUXTiaG
+	3xCsfliu3nlrmA23ijRuIcQ=
+X-Google-Smtp-Source: AK7set9fbVlYa4wCf6eJNIaNXA3YZoUWFsU4AD/JnVhm0i9hauk9yIMD83SJ3S82/ISaFKioIftPGQ==
+X-Received: by 2002:a05:6e02:60e:b0:318:aa8a:6455 with SMTP id t14-20020a056e02060e00b00318aa8a6455mr2655484ils.19.1678812345622;
+        Tue, 14 Mar 2023 09:45:45 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c22-20020a02c9d6000000b0040380d7c768sm903996jap.106.2023.03.14.09.45.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 09:45:45 -0700 (PDT)
+Message-ID: <4a4e0ef5-30f8-39ce-28cf-ade2122e2aa2@roeck-us.net>
+Date: Tue, 14 Mar 2023 09:45:39 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
+Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
 Content-Language: en-US
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: Joe Tessler <jrt@google.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
- Arend van Spriel <aspriel@gmail.com>, Franky Lin <franky.lin@broadcom.com>,
- Hante Meuleman <hante.meuleman@broadcom.com>, Kalle Valo <kvalo@kernel.org>,
- Eric Dumazet <edumazet@google.com>,
- Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
- Alexander Prutskov <alep@cypress.com>, Joseph chuang <jiac@cypress.com>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Angus Ainslie <angus@akkea.ca>, Pierre-Hugues Husson <phh@phh.me>,
- linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr>
- <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr>
- <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
- <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr>
- <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
- <0450e34e-7190-104c-832a-150f15f7c825@free.fr>
- <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
- <eecb86be-81e3-09cd-8ec7-4e77c42f2795@free.fr>
- <CAFBinCDHRhLSyFsEv7cdhSgZorj-TdR3HhqSBnAQcUtEsecV=Q@mail.gmail.com>
- <6ac1ecb1-eba4-b0a3-579c-afcbe532a474@free.fr>
- <CAPDyKFrC3a5-VP2DvCYGYUzKtX4Jc7cvNQOKfutW0sha=szOyg@mail.gmail.com>
- <c7e48c6f-530b-7198-b8bb-fc927a2fdc66@free.fr>
- <CAPDyKFpJR9rgadXEBn+73FKgmLM8sZgzNbKV_x_udwOSRGH44Q@mail.gmail.com>
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-In-Reply-To: <CAPDyKFpJR9rgadXEBn+73FKgmLM8sZgzNbKV_x_udwOSRGH44Q@mail.gmail.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
+ <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Yong Deng <yong.deng@magewell.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <b83d6b81-c4ec-4fb8-b626-84af80d1c4a3@roeck-us.net>
+ <74ae8afe-c537-1714-77ec-8a80d8ddad69@xs4all.nl>
+ <bafa692c-f3a3-d317-278d-2dd3b5ff8af3@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <bafa692c-f3a3-d317-278d-2dd3b5ff8af3@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230314_093807_040754_50A8175E 
-X-CRM114-Status: GOOD (  11.41  )
+X-CRM114-CacheID: sfid-20230314_094547_647989_F14548B1 
+X-CRM114-Status: GOOD (  13.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,45 +126,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/03/2023 12:08, Ulf Hansson wrote:
-
-> If the delay is to manage vmmc and vqmmc, which is somewhat part of
-> the generic specifications (SD/MMC), then it should be described in
-> the host's node.
-> 
-> A pwrseq is something special, which is also platform and device
-> specific (the SDIO device). If the delays correspond to this, it
-> should be part of the pwrseq node.
-
-Uffe,
-
-Wouldn't it make sense to warn, when probing for a non-removable card
-returns nothing?
-
-Something along these lines (which I can spin into a formal patch)
-
---- a/drivers/mmc/core/core.c
-+++ b/drivers/mmc/core/core.c
-@@ -2257,6 +2257,9 @@ void mmc_rescan(struct work_struct *work)
-                        break;
-        }
- 
-+       if (!mmc_card_is_removable(host) && !host->card)
-+               dev_warn(mmc_dev(host), "no device found");
-+
-        /*
-         * Ignore the command timeout errors observed during
-         * the card init as those are excepted.
-
-Regards
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMy8xNC8yMyAwOTozMiwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiBPbiAxNC8wMy8y
+MDIzIDA5OjM0LCBIYW5zIFZlcmt1aWwgd3JvdGU6Cj4+IE9uIDEzLzAzLzIwMjMgMjM6MDEsIEd1
+ZW50ZXIgUm9lY2sgd3JvdGU6Cj4+PiBPbiBTdW4sIE1hciAxMiwgMjAyMyBhdCAwMjoxMjo1MVBN
+ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOgo+Pj4+IFRoZSBkcml2ZXIgY2FuIG1h
+dGNoIG9ubHkgdmlhIHRoZSBEVCB0YWJsZSBzbyB0aGUgdGFibGUgc2hvdWxkIGJlIGFsd2F5cwo+
+Pj4+IHVzZWQgYW5kIHRoZSBvZl9tYXRjaF9wdHIgZG9lcyBub3QgaGF2ZSBhbnkgc2Vuc2UgKHRo
+aXMgYWxzbyBhbGxvd3MgQUNQSQo+Pj4+IG1hdGNoaW5nIHZpYSBQUlAwMDAxLCBldmVuIHRob3Vn
+aCBpdCBtaWdodCBub3QgYmUgcmVsZXZhbnQgaGVyZSkuCj4+Pj4KPj4+PiAgICBkcml2ZXJzL21l
+ZGlhL2NlYy9pMmMvY2g3MzIyLmM6NTgzOjM0OiBlcnJvcjog4oCYY2g3MzIyX29mX21hdGNo4oCZ
+IGRlZmluZWQgYnV0IG5vdCB1c2VkIFstV2Vycm9yPXVudXNlZC1jb25zdC12YXJpYWJsZT1dCj4+
+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296
+bG93c2tpQGxpbmFyby5vcmc+Cj4+Pgo+Pj4gUmV2aWV3ZWQtYnk6IEd1ZW50ZXIgUm9lY2sgPGxp
+bnV4QHJvZWNrLXVzLm5ldD4KPj4+Cj4+PiBGV0lXOiBUaGVyZSBpcyBhbHNvCj4+PiBodHRwczov
+L3BhdGNoZXMubGluYXJvLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhL3BhdGNoLzIwMjMwMjE1MjE0
+NzI0LjM3OTg5MTctMS1saW51eEByb2Vjay11cy5uZXQvCj4+Cj4+IEkgc3VwZXJzZWRlZCB0aGF0
+IHBhdGNoIGluIHBhdGNod29yayBpbiBmYXZvciBvZiB0aGlzIHBhdGNoIHNpbmNlIHRoaXMgaXMg
+cGFydCBvZgo+PiBhIGxhcmdlciBzZXJpZXMuCj4gCj4gSSBhbSBwZXJzb25hbGx5IGZhbiBvZiBG
+SUZPLCBzbyBHdWVudGVyJ3MgcGF0Y2ggc2hvdWxkIGdvIGluLgo+IAoKRldJVywgSSBkbyBub3Qg
+Y2FyZSBlaXRoZXIgd2F5LCBJIGp1c3Qgd2FudGVkIHRvIHBvaW50IG91dCB0aGF0IHRoaXMgcGF0
+Y2gKX2lzXyBib3RoIHJlbGV2YW50IGFuZCBuZWVkZWQsIGFuZCB0aGF0IGl0IChvciwgcmF0aGVy
+LCB0aGUgb3JpZ2luYWwgdmVyc2lvbikKaGFzIGJlZW4gcmV2aWV3ZWQgYW5kIHRlc3RlZC4KClRo
+YW5rcywKR3VlbnRlcgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
