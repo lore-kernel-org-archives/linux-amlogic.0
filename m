@@ -4,154 +4,197 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D978C76195
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:04:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A1CBC6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:04:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LQgR1eJPBlmdR/n00mb2fXGadDfb05ydmbZnDKK8lXQ=; b=cbAISg0tw/JSSb
-	zfKlvGWyhpo/wlNPdpgUg97JpAfUNfwonTUkcq6JcT0tCcPd9j2EG+KQfDs0unuHGho3CDKCvPPaF
-	C03mysxj0vmmTkl5k7yraBM2FXHOTg47zSL/gdEcxrfUNKthCRoCBBuOF6Z2e5HTFzv0MYAhQc81I
-	+/nYKhx+HGooEtQzJtEMcbiFBTjjnSwFmjB6qLywqWn9kt0yhGglF2Kp/r2y8M/KUW01q5Lw/Ngp5
-	2x7lyG9uayvRqKZeNpJ2REj3CX5JHvB7zXE9Ax4iRkJhk/79Nd5B10yOblsdObSOgLJh39JB+Zt+J
-	Zf7dPSVMvNFe33X1ByJA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GN4XsnD/sG+LKREXDgMC/7SlevmIwFfhCo9d4n81KS0=; b=qFVV08OpRbADFp
+	g1zhZNhnyO0mcKtAtKKjJv8utKxvkzfsKDKnFiUfaQpMsgUmo5ae1dagpE2+Nwydky0R8i6ZzWKeL
+	FqvU1c60ht39kPb2fwvs0Yxg4GO3euD6b4eozk33uTMBIbRhCG4jFE8ZIDX2C1bAQsGhMhqF0k8Oy
+	O6jUzUJcfMpuj35WFKLYz5Hg1stg1MG0c07otxsyU6nRtUcoWZITDwIAFddRkasvkiQQwBlaut8LD
+	4k2diIr0AQ43f6xps/d4MXe8SSxQNRFopV2BVsVdpFt7HlbUM023eRkkKx89rFyI63hpCzKwl3EUY
+	oCN7KvEY7oLGpKI8hGig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdvUk-006z1X-2I;
-	Sun, 19 Mar 2023 16:02:54 +0000
-Received: from mail-mw2nam10on20601.outbound.protection.outlook.com ([2a01:111:f400:7e89::601] helo=NAM10-MW2-obe.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paghA-00Fas9-Mc; Fri, 10 Mar 2023 17:38:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dk0HcEswYB+9We/eQ/HVB/vnr74sciBzT+DDJ0Wix06MDKh8LoTdJEB9YparYNbNMrEvOMoyZMZ3Bry0c1RF561qeGiAvyDazH+sy+ObCfDI8gSEO95TkjT/ygUQWsDFpJeVduLGebt+MZqPWj+c26soBIych4e9LLhHucwwVxRkkGvEqazfSZojDC7wUkeYlyJYg50TKooUpq7qZj+0StiIrNLXbvhRQ2/IcQ8ZGb0PbkRIWa/NfJ+5F8IJA7hNlUdokIFcczg4Ay446gT054OCDXkZhbrKXThLvTTXMAhm1jKi9awL3GvAT/DJYoIdH93613k/RIfhTFPFh68nlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ej3Oqt4wSMRivVnbvplCVfSOZCgg8Uz5j9eaTeADlbI=;
- b=fcotui9EIILVtg+RVMxGVJQZsukiwGaFXFDbD1MxTU2GuFQ9eFIRO+rI/Y+B377Pa9rqbJUfj+Ip4Sz1RqujIXiLT1HuI4mOozTC8NP4aVSgnnHjU1NppW+QTZNGQcq6d8ii4HYFIzH4xILSv+GmtZriUwBNAXOTRRtK4673UqlEKOMt8MrGV3efuB0D+um+YSrwq4a92ZzxtItKZeMA1zfjDHDGgbb9B6RvHcPDU1SFAlcF64qvxJBSEokLVMYhiGYWOONs2Ii6tAi+K9E97hqOi4oG2bv+y8Ac0F9Z9Ck7CPnre7uKA0ORWh2ym4GY1TGNBTXZjyT0E49WeBpWow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ej3Oqt4wSMRivVnbvplCVfSOZCgg8Uz5j9eaTeADlbI=;
- b=F86grKOFk092PC91BG2Q20Rn2fgxheUfs49PQViHs7fztGtyT8sFYmLB+vBTBTzE1gUYzfY14BeCb3C6bj/UZZ5mUltq8lBVt+b2fISH0+C+nVEm5BJg3qiZaUIQm/810+OgyVd89x5p0ElJSerjSd0RtnWeu9gBUpk+A592gPs=
-Received: from BN9PR03CA0904.namprd03.prod.outlook.com (2603:10b6:408:107::9)
- by PH7PR12MB8794.namprd12.prod.outlook.com (2603:10b6:510:27d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 17:38:15 +0000
-Received: from BN8NAM11FT099.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:107:cafe::75) by BN9PR03CA0904.outlook.office365.com
- (2603:10b6:408:107::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.18 via Frontend
- Transport; Fri, 10 Mar 2023 17:38:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT099.mail.protection.outlook.com (10.13.177.197) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.19 via Frontend Transport; Fri, 10 Mar 2023 17:38:14 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 11:38:14 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 09:38:13 -0800
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 10 Mar 2023 11:37:46 -0600
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
-	<pratyush@kernel.org>, <Sanju.Mehta@amd.com>, <chin-ting_kuo@aspeedtech.com>,
-	<clg@kaod.org>, <kdasu.kdev@gmail.com>, <f.fainelli@gmail.com>,
-	<rjui@broadcom.com>, <sbranden@broadcom.com>, <eajames@linux.ibm.com>,
-	<olteanv@gmail.com>, <han.xu@nxp.com>, <john.garry@huawei.com>,
-	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <narmstrong@baylibre.com>,
-	<khilman@baylibre.com>, <matthias.bgg@gmail.com>, <haibo.chen@nxp.com>,
-	<linus.walleij@linaro.org>, <daniel@zonque.org>, <haojian.zhuang@gmail.com>,
-	<robert.jarzmik@free.fr>, <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-	<heiko@sntech.de>, <krzysztof.kozlowski@linaro.org>, <andi@etezian.org>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
-	<jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-	<masahisa.kojima@linaro.org>, <jaswinder.singh@linaro.org>,
-	<rostedt@goodmis.org>, <mingo@redhat.com>, <l.stelmach@samsung.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <alex.aring@gmail.com>, <stefan@datenfreihafen.org>,
-	<kvalo@kernel.org>, <james.schulman@cirrus.com>, <david.rhodes@cirrus.com>,
-	<tanureal@opensource.cirrus.com>, <rf@opensource.cirrus.com>,
-	<perex@perex.cz>, <tiwai@suse.com>, <npiggin@gmail.com>,
-	<christophe.leroy@csgroup.eu>, <mpe@ellerman.id.au>, <oss@buserror.net>,
-	<windhl@126.com>, <yangyingliang@huawei.com>, <william.zhang@broadcom.com>,
-	<kursad.oney@broadcom.com>, <jonas.gorski@gmail.com>,
-	<anand.gore@broadcom.com>, <rafal@milecki.pl>
-CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-	<radu_nicolae.pirea@upb.ro>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<yogeshgaur.83@gmail.com>, <konrad.dybcio@somainline.org>,
-	<alim.akhtar@samsung.com>, <ldewangan@nvidia.com>,
-	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <michal.simek@amd.com>,
-	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
-	<linux-tegra@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-wpan@vger.kernel.org>, <libertas-dev@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <palmer@dabbelt.com>,
-	<linux-riscv@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<patches@opensource.cirrus.com>, <linuxppc-dev@lists.ozlabs.org>,
-	<amitrkcian2002@gmail.com>, <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH V6 11/15] mtd: spi-nor: Add APIs to set/get nor->params
-Date: Fri, 10 Mar 2023 23:02:13 +0530
-Message-ID: <20230310173217.3429788-12-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230310173217.3429788-1-amit.kumar-mahapatra@amd.com>
-References: <20230310173217.3429788-1-amit.kumar-mahapatra@amd.com>
+	id 1pdvUs-006zBS-2y;
+	Sun, 19 Mar 2023 16:03:02 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pcSji-00Djm0-1L
+	for linux-amlogic@lists.infradead.org;
+	Wed, 15 Mar 2023 15:08:26 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjP-00075R-T5; Wed, 15 Mar 2023 16:07:59 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjN-004KTT-Nq; Wed, 15 Mar 2023 16:07:57 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjM-0057br-Fi; Wed, 15 Mar 2023 16:07:56 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	V sujith kumar Reddy <Vsujithkumar.Reddy@amd.com>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Gaosheng Cui <cuigaosheng1@huawei.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mohan Kumar <mkumard@nvidia.com>,
+	Geoff Levand <geoff@infradead.org>,
+	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
+	syed saba kareem <syed.sabakareem@amd.com>,
+	Mario Limonciello <mario.limonciello@amd.com>,
+	Meng Tang <tangmeng@uniontech.com>,
+	=?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+	Peter Rosin <peda@axentia.se>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Allison Randal <allison@lohutok.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	James Schulman <james.schulman@cirrus.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Lucas Tanure <tanureal@opensource.cirrus.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Miaoqian Lin <linmq006@gmail.com>,
+	Colin Ian King <colin.i.king@gmail.com>,
+	Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+	Zhang Qilong <zhangqilong3@huawei.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Liang He <windhl@126.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Yang Yingliang <yangyingliang@huawei.com>,
+	Minghao Chi <chi.minghao@zte.com.cn>,
+	Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Cezary Rojewski <cezary.rojewski@intel.com>,
+	Liam Girdwood <liam.r.girdwood@linux.intel.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+	Akihiko Odaki <akihiko.odaki@gmail.com>,
+	=?utf-8?q?Amadeusz_S=C5=82awi=C5=84ski?= <amadeuszx.slawinski@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Moises Cardona <moisesmcardona@gmail.com>,
+	Zhen Ni <nizhen@uniontech.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Andrey Turkin <andrey.turkin@gmail.com>,
+	Muralidhar Reddy <muralidhar.reddy@intel.com>,
+	Zhu Ning <zhuning0077@gmail.com>,
+	Gongjun Song <gongjun.song@intel.com>,
+	Shuming Fan <shumingf@realtek.com>,
+	Yong Zhi <yong.zhi@intel.com>,
+	Lior Amsalem <alior@marvell.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Hezi Shahmoon <hezi@marvell.com>,
+	Neta Zur Hershkovits <neta@marvell.com>,
+	Marcin Wojtas <mw@semihalf.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Trevor Wu <trevor.wu@mediatek.com>,
+	Dan Carpenter <error27@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	Shang XiaoJing <shangxiaojing@huawei.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Li Chen <lchen@ambarella.com>,
+	Ban Tao <fengzheng923@gmail.com>,
+	Sameer Pujar <spujar@nvidia.com>,
+	YueHaibing <yuehaibing@huawei.com>,
+	Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+	Li kunyu <kunyu@nfschina.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Michal Simek <michal.simek@xilinx.com>,
+	Max Filippov <jcmvbkbc@gmail.com>
+Cc: alsa-devel@alsa-project.org,
+	kernel@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linuxppc-dev@lists.ozlabs.org,
+	asahi@lists.linux.dev,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	patches@opensource.cirrus.com,
+	Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	linux-omap@vger.kernel.org,
+	linux-xtensa@linux-xtensa.org
+Subject: [PATCH 000/173] ALSA/ASoC: Convert to platform remove callback returning void
+Date: Wed, 15 Mar 2023 16:04:52 +0100
+Message-Id: <20230315150745.67084-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT099:EE_|PH7PR12MB8794:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43f7ba8c-7342-470c-dd0e-08db218e3a4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	nKZcZVPKJFMdVeZJ+qv/+fKaHtBsgFDb/ADv5GI0QeOPUnBecXVKZHyJLtqHlRxZDmflNzP8IYb7II4CEr2dhZKmEIhwHs5ycsHpkyJ7QTt8KmsqiBIHXhtIAivTpusrONvXmtoC/+XOldIEg5O/QxR6cd07EYTZTAt8wuDcYzPfyG7iHBtI/io5PRpT3n2t0rF2+n1L4FzQ4D1ezIbiCA/DDR0+wrFkGJPfXYW3mccYMVW80xqt9hU4/wWvvBuibzo5rLY5MeuMW3SPVNur1qXOyP45KRHlHoluSSp8YTp2rTAqiHLp1YeBDdVZ2Ks+3sH5+Gr8trO7bQBmNvBvaPIiYz/UUgSJuxHz9zao8SfRuMuUzdP6Y8XTdgA5WX9eq1JLOxxy6toEYJ9BeVuhuDfgATnIdn5h4en5FNjB+qq4JD1kPGMUqu4AsmCbSjshA/doB5w5CbDul9bMlMka8V2wqCAVgdNlTuHC/ngVDWMAf7wo99u/nnqVoLMCf/DTwpNe1Y0vqEvxnc1CIN2KIUip9vx4uubOvvmUbpIySPIZgU4UdUt3S3ugqgVkQ0Q2oZiPqGb9aPi+COC5vWzuFiYuGRgc874jqaEsNW6vgXBvQy5KXND4EidRTAna3GZvKO9+j0q9uAYQGos+n6QJdVsnYerZXV25d8Hs9Y4W1mW1skS/bwLZ9dvCKQ8xoFzDs1cmdJQKulfoinY7omnlzvNRdk/w6xtSSP3v6dSYP5zTjqANwsbh3ns4G2xLO4HsseIb7UBt8laHZjvZNqZvxKHrrQSZQhjgE7ui3uJB0l9JItL3GTmuYyu1kVJqCISqkfMjmCLOYINA/w3xqDY+BafZyvdjnB15lPc7KymAJuDm/vdornZVZbqcxMwsz+lC
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(396003)(39860400002)(136003)(346002)(376002)(451199018)(36840700001)(40470700004)(46966006)(47076005)(336012)(426003)(110136005)(54906003)(40460700003)(36756003)(356005)(40480700001)(921005)(86362001)(82740400003)(186003)(36860700001)(81166007)(1076003)(26005)(83380400001)(82310400005)(6666004)(5660300002)(1191002)(2616005)(7336002)(70586007)(7416002)(7366002)(316002)(7276002)(478600001)(7406005)(41300700001)(4326008)(30864003)(8936002)(2906002)(8676002)(70206006)(41080700001)(84006005)(2101003)(83996005)(36900700001)(579004)(559001)(309714004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:38:14.8879
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43f7ba8c-7342-470c-dd0e-08db218e3a4f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	BN8NAM11FT099.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8794
+X-Developer-Signature: v=1; a=openpgp-sha256; l=25545; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=PMsdLl7+2srBgOkC/kKuNw6JdBSADxMVdeLzTSx01Yk=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBkEd0lGWSf7mBiLMp2KinWd50LDXzl92rLl/GxV 0HA0b56vvCJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCZBHdJQAKCRDB/BR4rcrs CaOTB/9SS0cNqV2Mcl90tkPZq4QGuch48aG/eLkNoTwCLq2HvWxRY6KYZjU/rV7iqunxoFM8z/K GgQi3jXV1zH9yq1qlQk3Y7pXyJm2NLOWDzVJGDCH/MV3xW383oxnWsWEwvPfbvGd+uNeccbeCNv rkPCga6gSPRM8ND5MbNvgWXtICHrrlHWEUxDGAXnSITKZfgroin+/YMW84N0nCDlEhwNjyDgHiX FaF3XBOQbBwjfwg+vcnUlQne7FqMmxX2QgvmDiEPRxsneo7/ToT/nP8VBN7DbaTg8B6yqKbbJW1 Wfho+4oLvjlarb13pJxbYj2ovfqjVXvTSnH279o45HmR+yhs
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230310_093820_979099_4791E216 
-X-CRM114-Status: GOOD (  19.31  )
-X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:31 -0700
+X-CRM114-CacheID: sfid-20230315_080818_840359_72D5EB09 
+X-CRM114-Status: GOOD (  13.92  )
+X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:32 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,1388 +206,451 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Supporting multi-cs in spi-nor would require the *params member of
-struct spi_nor to be an array. To make the transition smoother introduced
-spi_nor_get_params() & spi_nor_set_params() APIs to get & set nor->params,
-added a new local variable (struct spi_nor_flash_parameter *params) to hold
-the return value of the spi_nor_get_params() function call and replaced all
-nor->params references with the "params".
-While adding multi-cs support in further patches the *params member of the
-spi_nor structure would be converted to arrays & the "idx" parameter of
-the APIs would be used as array index i.e., nor->params[idx].
-
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/mtd/spi-nor/atmel.c      |  17 ++--
- drivers/mtd/spi-nor/core.c       | 129 ++++++++++++++++++++-----------
- drivers/mtd/spi-nor/debugfs.c    |   4 +-
- drivers/mtd/spi-nor/gigadevice.c |   4 +-
- drivers/mtd/spi-nor/issi.c       |  11 ++-
- drivers/mtd/spi-nor/macronix.c   |   6 +-
- drivers/mtd/spi-nor/micron-st.c  |  34 +++++---
- drivers/mtd/spi-nor/otp.c        |  29 ++++---
- drivers/mtd/spi-nor/sfdp.c       |  29 ++++---
- drivers/mtd/spi-nor/spansion.c   |  50 +++++++-----
- drivers/mtd/spi-nor/sst.c        |   7 +-
- drivers/mtd/spi-nor/swp.c        |  22 ++++--
- drivers/mtd/spi-nor/winbond.c    |  10 ++-
- drivers/mtd/spi-nor/xilinx.c     |  18 +++--
- include/linux/mtd/spi-nor.h      |  10 +++
- 15 files changed, 254 insertions(+), 126 deletions(-)
-
-diff --git a/drivers/mtd/spi-nor/atmel.c b/drivers/mtd/spi-nor/atmel.c
-index 656dd80a0be7..57ca9f5ee205 100644
---- a/drivers/mtd/spi-nor/atmel.c
-+++ b/drivers/mtd/spi-nor/atmel.c
-@@ -23,10 +23,11 @@ static int at25fs_nor_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- static int at25fs_nor_unlock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
- 	/* We only support unlocking the whole flash array */
--	if (ofs || len != nor->params->size)
-+	if (ofs || len != params->size)
- 		return -EINVAL;
- 
- 	/* Write 0x00 to the status register to disable write protection */
-@@ -50,7 +51,9 @@ static const struct spi_nor_locking_ops at25fs_nor_locking_ops = {
- 
- static void at25fs_nor_late_init(struct spi_nor *nor)
- {
--	nor->params->locking_ops = &at25fs_nor_locking_ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->locking_ops = &at25fs_nor_locking_ops;
- }
- 
- static const struct spi_nor_fixups at25fs_nor_fixups = {
-@@ -69,11 +72,12 @@ static const struct spi_nor_fixups at25fs_nor_fixups = {
- static int atmel_nor_set_global_protection(struct spi_nor *nor, loff_t ofs,
- 					   uint64_t len, bool is_protect)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 	u8 sr;
- 
- 	/* We only support locking the whole flash array */
--	if (ofs || len != nor->params->size)
-+	if (ofs || len != params->size)
- 		return -EINVAL;
- 
- 	ret = spi_nor_read_sr(nor, nor->bouncebuf);
-@@ -131,9 +135,10 @@ static int atmel_nor_global_unprotect(struct spi_nor *nor, loff_t ofs,
- static int atmel_nor_is_global_protected(struct spi_nor *nor, loff_t ofs,
- 					 uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
--	if (ofs >= nor->params->size || (ofs + len) > nor->params->size)
-+	if (ofs >= params->size || (ofs + len) > params->size)
- 		return -EINVAL;
- 
- 	ret = spi_nor_read_sr(nor, nor->bouncebuf);
-@@ -151,7 +156,9 @@ static const struct spi_nor_locking_ops atmel_nor_global_protection_ops = {
- 
- static void atmel_nor_global_protection_late_init(struct spi_nor *nor)
- {
--	nor->params->locking_ops = &atmel_nor_global_protection_ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->locking_ops = &atmel_nor_global_protection_ops;
- }
- 
- static const struct spi_nor_fixups atmel_nor_global_protection_fixups = {
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0a78045ca1d9..66b6934b4465 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -448,14 +448,15 @@ int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
-  */
- int spi_nor_read_sr(struct spi_nor *nor, u8 *sr)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
- 	if (nor->spimem) {
- 		struct spi_mem_op op = SPI_NOR_RDSR_OP(sr);
- 
- 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
--			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
--			op.dummy.nbytes = nor->params->rdsr_dummy;
-+			op.addr.nbytes = params->rdsr_addr_nbytes;
-+			op.dummy.nbytes = params->rdsr_dummy;
- 			/*
- 			 * We don't want to read only one byte in DTR mode. So,
- 			 * read 2 and then discard the second byte.
-@@ -596,9 +597,11 @@ int spi_nor_sr_ready(struct spi_nor *nor)
-  */
- static int spi_nor_ready(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/* Flashes might override the standard routine. */
--	if (nor->params->ready)
--		return nor->params->ready(nor);
-+	if (params->ready)
-+		return params->ready(nor);
- 
- 	return spi_nor_sr_ready(nor);
- }
-@@ -760,6 +763,7 @@ static int spi_nor_write_sr1_and_check(struct spi_nor *nor, u8 sr1)
-  */
- static int spi_nor_write_16bit_sr_and_check(struct spi_nor *nor, u8 sr1)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 	u8 *sr_cr = nor->bouncebuf;
- 	u8 cr_written;
-@@ -769,7 +773,7 @@ static int spi_nor_write_16bit_sr_and_check(struct spi_nor *nor, u8 sr1)
- 		ret = spi_nor_read_cr(nor, &sr_cr[1]);
- 		if (ret)
- 			return ret;
--	} else if (nor->params->quad_enable) {
-+	} else if (params->quad_enable) {
- 		/*
- 		 * If the Status Register 2 Read command (35h) is not
- 		 * supported, we should at least be sure we don't
-@@ -777,7 +781,7 @@ static int spi_nor_write_16bit_sr_and_check(struct spi_nor *nor, u8 sr1)
- 		 *
- 		 * We can safely assume that when the Quad Enable method is
- 		 * set, the value of the QE bit is one, as a consequence of the
--		 * nor->params->quad_enable() call.
-+		 * params->quad_enable() call.
- 		 *
- 		 * We can safely assume that the Quad Enable bit is present in
- 		 * the Status Register 2 at BIT(1). According to the JESD216
-@@ -1048,17 +1052,21 @@ static u8 spi_nor_convert_3to4_erase(u8 opcode)
- 
- static bool spi_nor_has_uniform_erase(const struct spi_nor *nor)
- {
--	return !!nor->params->erase_map.uniform_erase_type;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	return !!params->erase_map.uniform_erase_type;
- }
- 
- static void spi_nor_set_4byte_opcodes(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	nor->read_opcode = spi_nor_convert_3to4_read(nor->read_opcode);
- 	nor->program_opcode = spi_nor_convert_3to4_program(nor->program_opcode);
- 	nor->erase_opcode = spi_nor_convert_3to4_erase(nor->erase_opcode);
- 
- 	if (!spi_nor_has_uniform_erase(nor)) {
--		struct spi_nor_erase_map *map = &nor->params->erase_map;
-+		struct spi_nor_erase_map *map = &params->erase_map;
- 		struct spi_nor_erase_type *erase;
- 		int i;
- 
-@@ -1095,10 +1103,12 @@ void spi_nor_unlock_and_unprep(struct spi_nor *nor)
- 
- static u32 spi_nor_convert_addr(struct spi_nor *nor, loff_t addr)
- {
--	if (!nor->params->convert_addr)
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	if (!params->convert_addr)
- 		return addr;
- 
--	return nor->params->convert_addr(nor, addr);
-+	return params->convert_addr(nor, addr);
- }
- 
- /*
-@@ -1318,7 +1328,8 @@ static int spi_nor_init_erase_cmd_list(struct spi_nor *nor,
- 				       struct list_head *erase_list,
- 				       u64 addr, u32 len)
- {
--	const struct spi_nor_erase_map *map = &nor->params->erase_map;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_erase_map *map = &params->erase_map;
- 	const struct spi_nor_erase_type *erase, *prev_erase = NULL;
- 	struct spi_nor_erase_region *region;
- 	struct spi_nor_erase_command *cmd = NULL;
-@@ -1746,12 +1757,16 @@ static int spi_nor_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	size_t *retlen, const u_char *buf)
- {
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
-+	struct spi_nor_flash_parameter *params;
- 	size_t page_offset, page_remain, i;
- 	ssize_t ret;
--	u32 page_size = nor->params->page_size;
-+	u32 page_size;
- 
- 	dev_dbg(nor->dev, "to 0x%08x, len %zd\n", (u32)to, len);
- 
-+	params = spi_nor_get_params(nor, 0);
-+	page_size = params->page_size;
-+
- 	ret = spi_nor_lock_and_prep(nor);
- 	if (ret)
- 		return ret;
-@@ -1903,6 +1918,8 @@ int spi_nor_hwcaps_pp2cmd(u32 hwcaps)
- static int spi_nor_spimem_check_op(struct spi_nor *nor,
- 				   struct spi_mem_op *op)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * First test with 4 address bytes. The opcode itself might
- 	 * be a 3B addressing opcode but we don't care, because
-@@ -1911,7 +1928,7 @@ static int spi_nor_spimem_check_op(struct spi_nor *nor,
- 	 */
- 	op->addr.nbytes = 4;
- 	if (!spi_mem_supports_op(nor->spimem, op)) {
--		if (nor->params->size > SZ_16M)
-+		if (params->size > SZ_16M)
- 			return -EOPNOTSUPP;
- 
- 		/* If flash size <= 16MB, 3 address bytes are sufficient */
-@@ -1975,7 +1992,7 @@ static int spi_nor_spimem_check_pp(struct spi_nor *nor,
- static void
- spi_nor_spimem_adjust_hwcaps(struct spi_nor *nor, u32 *hwcaps)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	unsigned int cap;
- 
- 	/* X-X-X modes are not supported yet, mask them all. */
-@@ -2076,6 +2093,7 @@ static int spi_nor_select_read(struct spi_nor *nor,
- 			       u32 shared_hwcaps)
- {
- 	int cmd, best_match = fls(shared_hwcaps & SNOR_HWCAPS_READ_MASK) - 1;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	const struct spi_nor_read_command *read;
- 
- 	if (best_match < 0)
-@@ -2085,7 +2103,7 @@ static int spi_nor_select_read(struct spi_nor *nor,
- 	if (cmd < 0)
- 		return -EINVAL;
- 
--	read = &nor->params->reads[cmd];
-+	read = &params->reads[cmd];
- 	nor->read_opcode = read->opcode;
- 	nor->read_proto = read->proto;
- 
-@@ -2106,6 +2124,7 @@ static int spi_nor_select_read(struct spi_nor *nor,
- static int spi_nor_select_pp(struct spi_nor *nor,
- 			     u32 shared_hwcaps)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int cmd, best_match = fls(shared_hwcaps & SNOR_HWCAPS_PP_MASK) - 1;
- 	const struct spi_nor_pp_command *pp;
- 
-@@ -2116,7 +2135,7 @@ static int spi_nor_select_pp(struct spi_nor *nor,
- 	if (cmd < 0)
- 		return -EINVAL;
- 
--	pp = &nor->params->page_programs[cmd];
-+	pp = &params->page_programs[cmd];
- 	nor->program_opcode = pp->opcode;
- 	nor->write_proto = pp->proto;
- 	return 0;
-@@ -2185,7 +2204,8 @@ spi_nor_select_uniform_erase(struct spi_nor_erase_map *map,
- 
- static int spi_nor_select_erase(struct spi_nor *nor)
- {
--	struct spi_nor_erase_map *map = &nor->params->erase_map;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	struct spi_nor_erase_map *map = &params->erase_map;
- 	const struct spi_nor_erase_type *erase = NULL;
- 	struct mtd_info *mtd = &nor->mtd;
- 	u32 wanted_size = nor->info->sector_size;
-@@ -2234,7 +2254,7 @@ static int spi_nor_select_erase(struct spi_nor *nor)
- static int spi_nor_default_setup(struct spi_nor *nor,
- 				 const struct spi_nor_hwcaps *hwcaps)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	u32 ignored_mask, shared_mask;
- 	int err;
- 
-@@ -2294,8 +2314,10 @@ static int spi_nor_default_setup(struct spi_nor *nor,
- 
- static int spi_nor_set_addr_nbytes(struct spi_nor *nor)
- {
--	if (nor->params->addr_nbytes) {
--		nor->addr_nbytes = nor->params->addr_nbytes;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	if (params->addr_nbytes) {
-+		nor->addr_nbytes = params->addr_nbytes;
- 	} else if (nor->read_proto == SNOR_PROTO_8_8_8_DTR) {
- 		/*
- 		 * In 8D-8D-8D mode, one byte takes half a cycle to transfer. So
-@@ -2316,7 +2338,7 @@ static int spi_nor_set_addr_nbytes(struct spi_nor *nor)
- 		nor->addr_nbytes = 3;
- 	}
- 
--	if (nor->addr_nbytes == 3 && nor->params->size > 0x1000000) {
-+	if (nor->addr_nbytes == 3 && params->size > 0x1000000) {
- 		/* enable 4-byte addressing if the device exceeds 16MiB */
- 		nor->addr_nbytes = 4;
- 	}
-@@ -2338,10 +2360,11 @@ static int spi_nor_set_addr_nbytes(struct spi_nor *nor)
- static int spi_nor_setup(struct spi_nor *nor,
- 			 const struct spi_nor_hwcaps *hwcaps)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
--	if (nor->params->setup)
--		ret = nor->params->setup(nor, hwcaps);
-+	if (params->setup)
-+		ret = params->setup(nor, hwcaps);
- 	else
- 		ret = spi_nor_default_setup(nor, hwcaps);
- 	if (ret)
-@@ -2376,7 +2399,7 @@ static void spi_nor_manufacturer_init_params(struct spi_nor *nor)
-  */
- static void spi_nor_no_sfdp_init_params(struct spi_nor *nor)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_erase_map *map = &params->erase_map;
- 	const u8 no_sfdp_flags = nor->info->no_sfdp_flags;
- 	u8 i, erase_mask;
-@@ -2501,6 +2524,8 @@ static void spi_nor_init_fixup_flags(struct spi_nor *nor)
-  */
- static void spi_nor_late_init_params(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	if (nor->manufacturer && nor->manufacturer->fixups &&
- 	    nor->manufacturer->fixups->late_init)
- 		nor->manufacturer->fixups->late_init(nor);
-@@ -2515,7 +2540,7 @@ static void spi_nor_late_init_params(struct spi_nor *nor)
- 	 * NOR protection support. When locking_ops are not provided, we pick
- 	 * the default ones.
- 	 */
--	if (nor->flags & SNOR_F_HAS_LOCK && !nor->params->locking_ops)
-+	if (nor->flags & SNOR_F_HAS_LOCK && !params->locking_ops)
- 		spi_nor_init_default_locking_ops(nor);
- }
- 
-@@ -2529,12 +2554,13 @@ static void spi_nor_late_init_params(struct spi_nor *nor)
-  */
- static void spi_nor_sfdp_init_params_deprecated(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_flash_parameter sfdp_params;
- 
--	memcpy(&sfdp_params, nor->params, sizeof(sfdp_params));
-+	memcpy(&sfdp_params, params, sizeof(sfdp_params));
- 
- 	if (spi_nor_parse_sfdp(nor)) {
--		memcpy(nor->params, &sfdp_params, sizeof(*nor->params));
-+		memcpy(params, &sfdp_params, sizeof(*params));
- 		nor->flags &= ~SNOR_F_4B_OPCODES;
- 	}
- }
-@@ -2569,7 +2595,7 @@ static void spi_nor_init_params_deprecated(struct spi_nor *nor)
-  */
- static void spi_nor_init_default_params(struct spi_nor *nor)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	const struct flash_info *info = nor->info;
- 	struct device_node *np = spi_nor_get_flash_node(nor);
- 
-@@ -2655,12 +2681,15 @@ static void spi_nor_init_default_params(struct spi_nor *nor)
-  */
- static int spi_nor_init_params(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
--	nor->params = devm_kzalloc(nor->dev, sizeof(*nor->params), GFP_KERNEL);
--	if (!nor->params)
-+	params = devm_kzalloc(nor->dev, sizeof(*params), GFP_KERNEL);
-+	if (!params)
- 		return -ENOMEM;
- 
-+	spi_nor_set_params(nor, 0, params);
-+
- 	spi_nor_init_default_params(nor);
- 
- 	if (nor->info->parse_sfdp) {
-@@ -2688,9 +2717,10 @@ static int spi_nor_init_params(struct spi_nor *nor)
-  */
- static int spi_nor_octal_dtr_enable(struct spi_nor *nor, bool enable)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
--	if (!nor->params->octal_dtr_enable)
-+	if (!params->octal_dtr_enable)
- 		return 0;
- 
- 	if (!(nor->read_proto == SNOR_PROTO_8_8_8_DTR &&
-@@ -2700,7 +2730,7 @@ static int spi_nor_octal_dtr_enable(struct spi_nor *nor, bool enable)
- 	if (!(nor->flags & SNOR_F_IO_MODE_EN_VOLATILE))
- 		return 0;
- 
--	ret = nor->params->octal_dtr_enable(nor, enable);
-+	ret = params->octal_dtr_enable(nor, enable);
- 	if (ret)
- 		return ret;
- 
-@@ -2720,18 +2750,21 @@ static int spi_nor_octal_dtr_enable(struct spi_nor *nor, bool enable)
-  */
- static int spi_nor_quad_enable(struct spi_nor *nor)
- {
--	if (!nor->params->quad_enable)
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	if (!params->quad_enable)
- 		return 0;
- 
- 	if (!(spi_nor_get_protocol_width(nor->read_proto) == 4 ||
- 	      spi_nor_get_protocol_width(nor->write_proto) == 4))
- 		return 0;
- 
--	return nor->params->quad_enable(nor);
-+	return params->quad_enable(nor);
- }
- 
- static int spi_nor_init(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int err;
- 
- 	err = spi_nor_octal_dtr_enable(nor, true);
-@@ -2773,7 +2806,7 @@ static int spi_nor_init(struct spi_nor *nor)
- 		 */
- 		WARN_ONCE(nor->flags & SNOR_F_BROKEN_RESET,
- 			  "enabling reset hack; may not recover from unexpected reboots\n");
--		err = nor->params->set_4byte_addr_mode(nor, true);
-+		err = params->set_4byte_addr_mode(nor, true);
- 		if (err && err != -ENOTSUPP)
- 			return err;
- 	}
-@@ -2889,12 +2922,14 @@ static void spi_nor_put_device(struct mtd_info *mtd)
- 
- void spi_nor_restore(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params;
- 	int ret;
- 
- 	/* restore the addressing mode */
- 	if (nor->addr_nbytes == 4 && !(nor->flags & SNOR_F_4B_OPCODES) &&
- 	    nor->flags & SNOR_F_BROKEN_RESET) {
--		ret = nor->params->set_4byte_addr_mode(nor, false);
-+		params = spi_nor_get_params(nor, 0);
-+		ret = params->set_4byte_addr_mode(nor, false);
- 		if (ret)
- 			/*
- 			 * Do not stop the execution in the hope that the flash
-@@ -2966,6 +3001,7 @@ static const struct flash_info *spi_nor_get_flash_info(struct spi_nor *nor,
- 
- static void spi_nor_set_mtd_info(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct mtd_info *mtd = &nor->mtd;
- 	struct device *dev = nor->dev;
- 
-@@ -2981,9 +3017,9 @@ static void spi_nor_set_mtd_info(struct spi_nor *nor)
- 		mtd->flags |= MTD_NO_ERASE;
- 	else
- 		mtd->_erase = spi_nor_erase;
--	mtd->writesize = nor->params->writesize;
--	mtd->writebufsize = nor->params->page_size;
--	mtd->size = nor->params->size;
-+	mtd->writesize = params->writesize;
-+	mtd->writebufsize = params->page_size;
-+	mtd->size = params->size;
- 	mtd->_read = spi_nor_read;
- 	/* Might be already set by some SST flashes. */
- 	if (!mtd->_write)
-@@ -3037,7 +3073,7 @@ int spi_nor_scan(struct spi_nor *nor, const char *name,
- 	 * We need the bounce buffer early to read/write registers when going
- 	 * through the spi-mem layer (buffers have to be DMA-able).
- 	 * For spi-mem drivers, we'll reallocate a new buffer if
--	 * nor->params->page_size turns out to be greater than PAGE_SIZE (which
-+	 * params->page_size turns out to be greater than PAGE_SIZE (which
- 	 * shouldn't happen before long since NOR pages are usually less
- 	 * than 1KB) after spi_nor_scan() returns.
- 	 */
-@@ -3108,13 +3144,14 @@ EXPORT_SYMBOL_GPL(spi_nor_scan);
- 
- static int spi_nor_create_read_dirmap(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_dirmap_info info = {
- 		.op_tmpl = SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
- 				      SPI_MEM_OP_ADDR(nor->addr_nbytes, 0, 0),
- 				      SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
- 				      SPI_MEM_OP_DATA_IN(0, NULL, 0)),
- 		.offset = 0,
--		.length = nor->params->size,
-+		.length = params->size,
- 	};
- 	struct spi_mem_op *op = &info.op_tmpl;
- 
-@@ -3139,13 +3176,14 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
- 
- static int spi_nor_create_write_dirmap(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_dirmap_info info = {
- 		.op_tmpl = SPI_MEM_OP(SPI_MEM_OP_CMD(nor->program_opcode, 0),
- 				      SPI_MEM_OP_ADDR(nor->addr_nbytes, 0, 0),
- 				      SPI_MEM_OP_NO_DUMMY,
- 				      SPI_MEM_OP_DATA_OUT(0, NULL, 0)),
- 		.offset = 0,
--		.length = nor->params->size,
-+		.length = params->size,
- 	};
- 	struct spi_mem_op *op = &info.op_tmpl;
- 
-@@ -3168,6 +3206,7 @@ static int spi_nor_create_write_dirmap(struct spi_nor *nor)
- 
- static int spi_nor_probe(struct spi_mem *spimem)
- {
-+	struct spi_nor_flash_parameter *params;
- 	struct spi_device *spi = spimem->spi;
- 	struct flash_platform_data *data = dev_get_platdata(&spi->dev);
- 	struct spi_nor *nor;
-@@ -3214,13 +3253,15 @@ static int spi_nor_probe(struct spi_mem *spimem)
- 
- 	spi_nor_debugfs_register(nor);
- 
-+	params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * None of the existing parts have > 512B pages, but let's play safe
- 	 * and add this logic so that if anyone ever adds support for such
- 	 * a NOR we don't end up with buffer overflows.
- 	 */
--	if (nor->params->page_size > PAGE_SIZE) {
--		nor->bouncebuf_size = nor->params->page_size;
-+	if (params->page_size > PAGE_SIZE) {
-+		nor->bouncebuf_size = params->page_size;
- 		devm_kfree(nor->dev, nor->bouncebuf);
- 		nor->bouncebuf = devm_kmalloc(nor->dev,
- 					      nor->bouncebuf_size,
-diff --git a/drivers/mtd/spi-nor/debugfs.c b/drivers/mtd/spi-nor/debugfs.c
-index 845b78c7ecc7..1ba86fc6166a 100644
---- a/drivers/mtd/spi-nor/debugfs.c
-+++ b/drivers/mtd/spi-nor/debugfs.c
-@@ -73,7 +73,7 @@ static void spi_nor_print_flags(struct seq_file *s, unsigned long flags,
- static int spi_nor_params_show(struct seq_file *s, void *data)
- {
- 	struct spi_nor *nor = s->private;
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_erase_map *erase_map = &params->erase_map;
- 	struct spi_nor_erase_region *region;
- 	const struct flash_info *info = nor->info;
-@@ -181,7 +181,7 @@ static void spi_nor_print_pp_cmd(struct seq_file *s,
- static int spi_nor_capabilities_show(struct seq_file *s, void *data)
- {
- 	struct spi_nor *nor = s->private;
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	u32 hwcaps = params->hwcaps.mask;
- 	int i, cmd;
- 
-diff --git a/drivers/mtd/spi-nor/gigadevice.c b/drivers/mtd/spi-nor/gigadevice.c
-index d57ddaf1525b..643f131d3916 100644
---- a/drivers/mtd/spi-nor/gigadevice.c
-+++ b/drivers/mtd/spi-nor/gigadevice.c
-@@ -13,6 +13,8 @@ gd25q256_post_bfpt(struct spi_nor *nor,
- 		   const struct sfdp_parameter_header *bfpt_header,
- 		   const struct sfdp_bfpt *bfpt)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * GD25Q256C supports the first version of JESD216 which does not define
- 	 * the Quad Enable methods. Overwrite the default Quad Enable method.
-@@ -24,7 +26,7 @@ gd25q256_post_bfpt(struct spi_nor *nor,
- 	 */
- 	if (bfpt_header->major == SFDP_JESD216_MAJOR &&
- 	    bfpt_header->minor == SFDP_JESD216_MINOR)
--		nor->params->quad_enable = spi_nor_sr1_bit6_quad_enable;
-+		params->quad_enable = spi_nor_sr1_bit6_quad_enable;
- 
- 	return 0;
- }
-diff --git a/drivers/mtd/spi-nor/issi.c b/drivers/mtd/spi-nor/issi.c
-index 400e2b42f45a..7785ba347526 100644
---- a/drivers/mtd/spi-nor/issi.c
-+++ b/drivers/mtd/spi-nor/issi.c
-@@ -13,6 +13,8 @@ is25lp256_post_bfpt_fixups(struct spi_nor *nor,
- 			   const struct sfdp_parameter_header *bfpt_header,
- 			   const struct sfdp_bfpt *bfpt)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * IS25LP256 supports 4B opcodes, but the BFPT advertises
- 	 * BFPT_DWORD1_ADDRESS_BYTES_3_ONLY.
-@@ -20,7 +22,7 @@ is25lp256_post_bfpt_fixups(struct spi_nor *nor,
- 	 */
- 	if ((bfpt->dwords[SFDP_DWORD(1)] & BFPT_DWORD1_ADDRESS_BYTES_MASK) ==
- 		BFPT_DWORD1_ADDRESS_BYTES_3_ONLY)
--		nor->params->addr_nbytes = 4;
-+		params->addr_nbytes = 4;
- 
- 	return 0;
- }
-@@ -31,7 +33,8 @@ static const struct spi_nor_fixups is25lp256_fixups = {
- 
- static void pm25lv_nor_late_init(struct spi_nor *nor)
- {
--	struct spi_nor_erase_map *map = &nor->params->erase_map;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	struct spi_nor_erase_map *map = &params->erase_map;
- 	int i;
- 
- 	/* The PM25LV series has a different 4k sector erase opcode */
-@@ -91,7 +94,9 @@ static const struct flash_info issi_nor_parts[] = {
- 
- static void issi_nor_default_init(struct spi_nor *nor)
- {
--	nor->params->quad_enable = spi_nor_sr1_bit6_quad_enable;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->quad_enable = spi_nor_sr1_bit6_quad_enable;
- }
- 
- static const struct spi_nor_fixups issi_fixups = {
-diff --git a/drivers/mtd/spi-nor/macronix.c b/drivers/mtd/spi-nor/macronix.c
-index 6853ec9ae65d..85d3f5b04f74 100644
---- a/drivers/mtd/spi-nor/macronix.c
-+++ b/drivers/mtd/spi-nor/macronix.c
-@@ -104,8 +104,10 @@ static const struct flash_info macronix_nor_parts[] = {
- 
- static void macronix_nor_default_init(struct spi_nor *nor)
- {
--	nor->params->quad_enable = spi_nor_sr1_bit6_quad_enable;
--	nor->params->set_4byte_addr_mode = spi_nor_set_4byte_addr_mode;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->quad_enable = spi_nor_sr1_bit6_quad_enable;
-+	params->set_4byte_addr_mode = spi_nor_set_4byte_addr_mode;
- }
- 
- static const struct spi_nor_fixups macronix_nor_fixups = {
-diff --git a/drivers/mtd/spi-nor/micron-st.c b/drivers/mtd/spi-nor/micron-st.c
-index 7bb86df52f0b..b93e16094b6c 100644
---- a/drivers/mtd/spi-nor/micron-st.c
-+++ b/drivers/mtd/spi-nor/micron-st.c
-@@ -49,10 +49,11 @@
- 
- static int micron_st_nor_octal_dtr_en(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_op op;
- 	u8 *buf = nor->bouncebuf;
- 	int ret;
--	u8 addr_mode_nbytes = nor->params->addr_mode_nbytes;
-+	u8 addr_mode_nbytes = params->addr_mode_nbytes;
- 
- 	/* Use 20 dummy cycles for memory array reads. */
- 	*buf = 20;
-@@ -128,27 +129,31 @@ static int micron_st_nor_octal_dtr_enable(struct spi_nor *nor, bool enable)
- 
- static void mt35xu512aba_default_init(struct spi_nor *nor)
- {
--	nor->params->octal_dtr_enable = micron_st_nor_octal_dtr_enable;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->octal_dtr_enable = micron_st_nor_octal_dtr_enable;
- }
- 
- static void mt35xu512aba_post_sfdp_fixup(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/* Set the Fast Read settings. */
--	nor->params->hwcaps.mask |= SNOR_HWCAPS_READ_8_8_8_DTR;
--	spi_nor_set_read_settings(&nor->params->reads[SNOR_CMD_READ_8_8_8_DTR],
-+	params->hwcaps.mask |= SNOR_HWCAPS_READ_8_8_8_DTR;
-+	spi_nor_set_read_settings(&params->reads[SNOR_CMD_READ_8_8_8_DTR],
- 				  0, 20, SPINOR_OP_MT_DTR_RD,
- 				  SNOR_PROTO_8_8_8_DTR);
- 
- 	nor->cmd_ext_type = SPI_NOR_EXT_REPEAT;
--	nor->params->rdsr_dummy = 8;
--	nor->params->rdsr_addr_nbytes = 0;
-+	params->rdsr_dummy = 8;
-+	params->rdsr_addr_nbytes = 0;
- 
- 	/*
- 	 * The BFPT quad enable field is set to a reserved value so the quad
- 	 * enable function is ignored by spi_nor_parse_bfpt(). Make sure we
- 	 * disable it.
- 	 */
--	nor->params->quad_enable = NULL;
-+	params->quad_enable = NULL;
- }
- 
- static const struct spi_nor_fixups mt35xu512aba_fixups = {
-@@ -336,14 +341,15 @@ static int micron_st_nor_set_4byte_addr_mode(struct spi_nor *nor, bool enable)
-  */
- static int micron_st_nor_read_fsr(struct spi_nor *nor, u8 *fsr)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
- 	if (nor->spimem) {
- 		struct spi_mem_op op = MICRON_ST_RDFSR_OP(fsr);
- 
- 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
--			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
--			op.dummy.nbytes = nor->params->rdsr_dummy;
-+			op.addr.nbytes = params->rdsr_addr_nbytes;
-+			op.dummy.nbytes = params->rdsr_dummy;
- 			/*
- 			 * We don't want to read only one byte in DTR mode. So,
- 			 * read 2 and then discard the second byte.
-@@ -446,16 +452,20 @@ static int micron_st_nor_ready(struct spi_nor *nor)
- 
- static void micron_st_nor_default_init(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	nor->flags |= SNOR_F_HAS_LOCK;
- 	nor->flags &= ~SNOR_F_HAS_16BIT_SR;
--	nor->params->quad_enable = NULL;
--	nor->params->set_4byte_addr_mode = micron_st_nor_set_4byte_addr_mode;
-+	params->quad_enable = NULL;
-+	params->set_4byte_addr_mode = micron_st_nor_set_4byte_addr_mode;
- }
- 
- static void micron_st_nor_late_init(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	if (nor->info->mfr_flags & USE_FSR)
--		nor->params->ready = micron_st_nor_ready;
-+		params->ready = micron_st_nor_ready;
- }
- 
- static const struct spi_nor_fixups micron_st_nor_fixups = {
-diff --git a/drivers/mtd/spi-nor/otp.c b/drivers/mtd/spi-nor/otp.c
-index 3d75899de303..5b0319ea7f96 100644
---- a/drivers/mtd/spi-nor/otp.c
-+++ b/drivers/mtd/spi-nor/otp.c
-@@ -19,7 +19,9 @@
-  */
- static inline unsigned int spi_nor_otp_region_len(struct spi_nor *nor)
- {
--	return nor->params->otp.org->len;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	return params->otp.org->len;
- }
- 
- /**
-@@ -30,7 +32,9 @@ static inline unsigned int spi_nor_otp_region_len(struct spi_nor *nor)
-  */
- static inline unsigned int spi_nor_otp_n_regions(struct spi_nor *nor)
- {
--	return nor->params->otp.org->n_regions;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	return params->otp.org->n_regions;
- }
- 
- /**
-@@ -241,7 +245,8 @@ int spi_nor_otp_is_locked_sr2(struct spi_nor *nor, unsigned int region)
- 
- static loff_t spi_nor_otp_region_start(const struct spi_nor *nor, unsigned int region)
- {
--	const struct spi_nor_otp_organization *org = nor->params->otp.org;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_organization *org = params->otp.org;
- 
- 	return org->base + region * org->offset;
- }
-@@ -266,7 +271,8 @@ static int spi_nor_mtd_otp_info(struct mtd_info *mtd, size_t len,
- 				size_t *retlen, struct otp_info *buf)
- {
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
--	const struct spi_nor_otp_ops *ops = nor->params->otp.ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_ops *ops = params->otp.ops;
- 	unsigned int n_regions = spi_nor_otp_n_regions(nor);
- 	unsigned int i;
- 	int ret, locked;
-@@ -303,7 +309,8 @@ static int spi_nor_mtd_otp_info(struct mtd_info *mtd, size_t len,
- static int spi_nor_mtd_otp_range_is_locked(struct spi_nor *nor, loff_t ofs,
- 					   size_t len)
- {
--	const struct spi_nor_otp_ops *ops = nor->params->otp.ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_ops *ops = params->otp.ops;
- 	unsigned int region;
- 	int locked;
- 
-@@ -328,7 +335,8 @@ static int spi_nor_mtd_otp_read_write(struct mtd_info *mtd, loff_t ofs,
- 				      const u8 *buf, bool is_write)
- {
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
--	const struct spi_nor_otp_ops *ops = nor->params->otp.ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_ops *ops = params->otp.ops;
- 	const size_t rlen = spi_nor_otp_region_len(nor);
- 	loff_t rstart, rofs;
- 	unsigned int region;
-@@ -414,7 +422,8 @@ static int spi_nor_mtd_otp_write(struct mtd_info *mtd, loff_t to, size_t len,
- static int spi_nor_mtd_otp_erase(struct mtd_info *mtd, loff_t from, size_t len)
- {
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
--	const struct spi_nor_otp_ops *ops = nor->params->otp.ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_ops *ops = params->otp.ops;
- 	const size_t rlen = spi_nor_otp_region_len(nor);
- 	unsigned int region;
- 	loff_t rstart;
-@@ -467,7 +476,8 @@ static int spi_nor_mtd_otp_erase(struct mtd_info *mtd, loff_t from, size_t len)
- static int spi_nor_mtd_otp_lock(struct mtd_info *mtd, loff_t from, size_t len)
- {
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
--	const struct spi_nor_otp_ops *ops = nor->params->otp.ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	const struct spi_nor_otp_ops *ops = params->otp.ops;
- 	const size_t rlen = spi_nor_otp_region_len(nor);
- 	unsigned int region;
- 	int ret;
-@@ -501,9 +511,10 @@ static int spi_nor_mtd_otp_lock(struct mtd_info *mtd, loff_t from, size_t len)
- 
- void spi_nor_set_mtd_otp_ops(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct mtd_info *mtd = &nor->mtd;
- 
--	if (!nor->params->otp.ops)
-+	if (!params->otp.ops)
- 		return;
- 
- 	if (WARN_ON(!is_power_of_2(spi_nor_otp_region_len(nor))))
-diff --git a/drivers/mtd/spi-nor/sfdp.c b/drivers/mtd/spi-nor/sfdp.c
-index 298ab5e53a8c..da96d3d27cb4 100644
---- a/drivers/mtd/spi-nor/sfdp.c
-+++ b/drivers/mtd/spi-nor/sfdp.c
-@@ -431,7 +431,7 @@ static void spi_nor_regions_sort_erase_types(struct spi_nor_erase_map *map)
- static int spi_nor_parse_bfpt(struct spi_nor *nor,
- 			      const struct sfdp_parameter_header *bfpt_header)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_erase_map *map = &params->erase_map;
- 	struct spi_nor_erase_type *erase_type = map->erase_type;
- 	struct sfdp_bfpt bfpt;
-@@ -645,6 +645,8 @@ static int spi_nor_parse_bfpt(struct spi_nor *nor,
-  */
- static u8 spi_nor_smpt_addr_nbytes(const struct spi_nor *nor, const u32 settings)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	switch (settings & SMPT_CMD_ADDRESS_LEN_MASK) {
- 	case SMPT_CMD_ADDRESS_LEN_0:
- 		return 0;
-@@ -654,7 +656,7 @@ static u8 spi_nor_smpt_addr_nbytes(const struct spi_nor *nor, const u32 settings
- 		return 4;
- 	case SMPT_CMD_ADDRESS_LEN_USE_CURRENT:
- 	default:
--		return nor->params->addr_mode_nbytes;
-+		return params->addr_mode_nbytes;
- 	}
- }
- 
-@@ -806,7 +808,8 @@ spi_nor_region_check_overlay(struct spi_nor_erase_region *region,
- static int spi_nor_init_non_uniform_erase_map(struct spi_nor *nor,
- 					      const u32 *smpt)
- {
--	struct spi_nor_erase_map *map = &nor->params->erase_map;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	struct spi_nor_erase_map *map = &params->erase_map;
- 	struct spi_nor_erase_type *erase = map->erase_type;
- 	struct spi_nor_erase_region *region;
- 	u64 offset;
-@@ -894,6 +897,7 @@ static int spi_nor_init_non_uniform_erase_map(struct spi_nor *nor,
- static int spi_nor_parse_smpt(struct spi_nor *nor,
- 			      const struct sfdp_parameter_header *smpt_header)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	const u32 *sector_map;
- 	u32 *smpt;
- 	size_t len;
-@@ -924,7 +928,7 @@ static int spi_nor_parse_smpt(struct spi_nor *nor,
- 	if (ret)
- 		goto out;
- 
--	spi_nor_regions_sort_erase_types(&nor->params->erase_map);
-+	spi_nor_regions_sort_erase_types(&params->erase_map);
- 	/* fall through */
- out:
- 	kfree(smpt);
-@@ -964,7 +968,7 @@ static int spi_nor_parse_4bait(struct spi_nor *nor,
- 		{ 0u /* not used */,		BIT(11) },
- 		{ 0u /* not used */,		BIT(12) },
- 	};
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_pp_command *params_pp = params->page_programs;
- 	struct spi_nor_erase_map *map = &params->erase_map;
- 	struct spi_nor_erase_type *erase_type = map->erase_type;
-@@ -1127,6 +1131,7 @@ static int spi_nor_parse_4bait(struct spi_nor *nor,
- static int spi_nor_parse_profile1(struct spi_nor *nor,
- 				  const struct sfdp_parameter_header *profile1_header)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	u32 *dwords, addr;
- 	size_t len;
- 	int ret;
-@@ -1149,14 +1154,14 @@ static int spi_nor_parse_profile1(struct spi_nor *nor,
- 
- 	 /* Set the Read Status Register dummy cycles and dummy address bytes. */
- 	if (dwords[SFDP_DWORD(1)] & PROFILE1_DWORD1_RDSR_DUMMY)
--		nor->params->rdsr_dummy = 8;
-+		params->rdsr_dummy = 8;
- 	else
--		nor->params->rdsr_dummy = 4;
-+		params->rdsr_dummy = 4;
- 
- 	if (dwords[SFDP_DWORD(1)] & PROFILE1_DWORD1_RDSR_ADDR_BYTES)
--		nor->params->rdsr_addr_nbytes = 4;
-+		params->rdsr_addr_nbytes = 4;
- 	else
--		nor->params->rdsr_addr_nbytes = 0;
-+		params->rdsr_addr_nbytes = 0;
- 
- 	/*
- 	 * We don't know what speed the controller is running at. Find the
-@@ -1185,8 +1190,8 @@ static int spi_nor_parse_profile1(struct spi_nor *nor,
- 	dummy = round_up(dummy, 2);
- 
- 	/* Update the fast read settings. */
--	nor->params->hwcaps.mask |= SNOR_HWCAPS_READ_8_8_8_DTR;
--	spi_nor_set_read_settings(&nor->params->reads[SNOR_CMD_READ_8_8_8_DTR],
-+	params->hwcaps.mask |= SNOR_HWCAPS_READ_8_8_8_DTR;
-+	spi_nor_set_read_settings(&params->reads[SNOR_CMD_READ_8_8_8_DTR],
- 				  0, dummy, opcode,
- 				  SNOR_PROTO_8_8_8_DTR);
- 
-@@ -1194,7 +1199,7 @@ static int spi_nor_parse_profile1(struct spi_nor *nor,
- 	 * Page Program is "Required Command" in the xSPI Profile 1.0. Update
- 	 * the params->hwcaps.mask here.
- 	 */
--	nor->params->hwcaps.mask |= SNOR_HWCAPS_PP_8_8_8_DTR;
-+	params->hwcaps.mask |= SNOR_HWCAPS_PP_8_8_8_DTR;
- 
- out:
- 	kfree(dwords);
-diff --git a/drivers/mtd/spi-nor/spansion.c b/drivers/mtd/spi-nor/spansion.c
-index 12a256c0ef4c..fe3293c597c9 100644
---- a/drivers/mtd/spi-nor/spansion.c
-+++ b/drivers/mtd/spi-nor/spansion.c
-@@ -51,10 +51,11 @@
- 
- static int cypress_nor_octal_dtr_en(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_op op;
- 	u8 *buf = nor->bouncebuf;
- 	int ret;
--	u8 addr_mode_nbytes = nor->params->addr_mode_nbytes;
-+	u8 addr_mode_nbytes = params->addr_mode_nbytes;
- 
- 	/* Use 24 dummy cycles for memory array reads. */
- 	*buf = SPINOR_REG_CYPRESS_CFR2_MEMLAT_11_24;
-@@ -141,8 +142,9 @@ static int cypress_nor_octal_dtr_dis(struct spi_nor *nor)
-  */
- static int cypress_nor_quad_enable_volatile(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_op op;
--	u8 addr_mode_nbytes = nor->params->addr_mode_nbytes;
-+	u8 addr_mode_nbytes = params->addr_mode_nbytes;
- 	u8 cfr1v_written;
- 	int ret;
- 
-@@ -200,8 +202,9 @@ static int cypress_nor_quad_enable_volatile(struct spi_nor *nor)
-  */
- static int cypress_nor_set_page_size(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_mem_op op =
--		CYPRESS_NOR_RD_ANY_REG_OP(nor->params->addr_mode_nbytes,
-+		CYPRESS_NOR_RD_ANY_REG_OP(params->addr_mode_nbytes,
- 					  SPINOR_REG_CYPRESS_CFR3V,
- 					  nor->bouncebuf);
- 	int ret;
-@@ -211,9 +214,9 @@ static int cypress_nor_set_page_size(struct spi_nor *nor)
- 		return ret;
- 
- 	if (nor->bouncebuf[0] & SPINOR_REG_CYPRESS_CFR3_PGSZ)
--		nor->params->page_size = 512;
-+		params->page_size = 512;
- 	else
--		nor->params->page_size = 256;
-+		params->page_size = 256;
- 
- 	return 0;
- }
-@@ -223,16 +226,19 @@ s25hx_t_post_bfpt_fixup(struct spi_nor *nor,
- 			const struct sfdp_parameter_header *bfpt_header,
- 			const struct sfdp_bfpt *bfpt)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/* Replace Quad Enable with volatile version */
--	nor->params->quad_enable = cypress_nor_quad_enable_volatile;
-+	params->quad_enable = cypress_nor_quad_enable_volatile;
- 
- 	return cypress_nor_set_page_size(nor);
- }
- 
- static void s25hx_t_post_sfdp_fixup(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct spi_nor_erase_type *erase_type =
--					nor->params->erase_map.erase_type;
-+					params->erase_map.erase_type;
- 	unsigned int i;
- 
- 	/*
-@@ -255,7 +261,7 @@ static void s25hx_t_post_sfdp_fixup(struct spi_nor *nor)
- 
- static void s25hx_t_late_init(struct spi_nor *nor)
- {
--	struct spi_nor_flash_parameter *params = nor->params;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 
- 	/* Fast Read 4B requires mode cycles */
- 	params->reads[SNOR_CMD_READ_FAST].num_mode_clocks = 8;
-@@ -288,22 +294,24 @@ static int cypress_nor_octal_dtr_enable(struct spi_nor *nor, bool enable)
- 
- static void s28hx_t_post_sfdp_fixup(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * On older versions of the flash the xSPI Profile 1.0 table has the
- 	 * 8D-8D-8D Fast Read opcode as 0x00. But it actually should be 0xEE.
- 	 */
--	if (nor->params->reads[SNOR_CMD_READ_8_8_8_DTR].opcode == 0)
--		nor->params->reads[SNOR_CMD_READ_8_8_8_DTR].opcode =
-+	if (params->reads[SNOR_CMD_READ_8_8_8_DTR].opcode == 0)
-+		params->reads[SNOR_CMD_READ_8_8_8_DTR].opcode =
- 			SPINOR_OP_CYPRESS_RD_FAST;
- 
- 	/* This flash is also missing the 4-byte Page Program opcode bit. */
--	spi_nor_set_pp_settings(&nor->params->page_programs[SNOR_CMD_PP],
-+	spi_nor_set_pp_settings(&params->page_programs[SNOR_CMD_PP],
- 				SPINOR_OP_PP_4B, SNOR_PROTO_1_1_1);
- 	/*
- 	 * Since xSPI Page Program opcode is backward compatible with
- 	 * Legacy SPI, use Legacy SPI opcode there as well.
- 	 */
--	spi_nor_set_pp_settings(&nor->params->page_programs[SNOR_CMD_PP_8_8_8_DTR],
-+	spi_nor_set_pp_settings(&params->page_programs[SNOR_CMD_PP_8_8_8_DTR],
- 				SPINOR_OP_PP_4B, SNOR_PROTO_8_8_8_DTR);
- 
- 	/*
-@@ -311,7 +319,7 @@ static void s28hx_t_post_sfdp_fixup(struct spi_nor *nor)
- 	 * address bytes needed for Read Status Register command as 0 but the
- 	 * actual value for that is 4.
- 	 */
--	nor->params->rdsr_addr_nbytes = 4;
-+	params->rdsr_addr_nbytes = 4;
- }
- 
- static int s28hx_t_post_bfpt_fixup(struct spi_nor *nor,
-@@ -323,8 +331,10 @@ static int s28hx_t_post_bfpt_fixup(struct spi_nor *nor,
- 
- static void s28hx_t_late_init(struct spi_nor *nor)
- {
--	nor->params->octal_dtr_enable = cypress_nor_octal_dtr_enable;
--	nor->params->writesize = 16;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->octal_dtr_enable = cypress_nor_octal_dtr_enable;
-+	params->writesize = 16;
- }
- 
- static const struct spi_nor_fixups s28hx_t_fixups = {
-@@ -338,13 +348,15 @@ s25fs_s_nor_post_bfpt_fixups(struct spi_nor *nor,
- 			     const struct sfdp_parameter_header *bfpt_header,
- 			     const struct sfdp_bfpt *bfpt)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
- 	/*
- 	 * The S25FS-S chip family reports 512-byte pages in BFPT but
- 	 * in reality the write buffer still wraps at the safe default
- 	 * of 256 bytes.  Overwrite the page size advertised by BFPT
- 	 * to get the writes working.
- 	 */
--	nor->params->page_size = 256;
-+	params->page_size = 256;
- 
- 	return 0;
- }
-@@ -546,7 +558,9 @@ static int spansion_nor_sr_ready_and_clear(struct spi_nor *nor)
- 
- static void spansion_nor_late_init(struct spi_nor *nor)
- {
--	if (nor->params->size > SZ_16M) {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	if (params->size > SZ_16M) {
- 		nor->flags |= SNOR_F_4B_OPCODES;
- 		/* No small sector erase for 4-byte command set */
- 		nor->erase_opcode = SPINOR_OP_SE;
-@@ -554,7 +568,7 @@ static void spansion_nor_late_init(struct spi_nor *nor)
- 	}
- 
- 	if (nor->info->mfr_flags & USE_CLSR)
--		nor->params->ready = spansion_nor_sr_ready_and_clear;
-+		params->ready = spansion_nor_sr_ready_and_clear;
- }
- 
- static const struct spi_nor_fixups spansion_nor_fixups = {
-diff --git a/drivers/mtd/spi-nor/sst.c b/drivers/mtd/spi-nor/sst.c
-index 63bcc97bf978..6b91a32804ad 100644
---- a/drivers/mtd/spi-nor/sst.c
-+++ b/drivers/mtd/spi-nor/sst.c
-@@ -20,10 +20,11 @@ static int sst26vf_nor_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- static int sst26vf_nor_unlock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
- 	/* We only support unlocking the entire flash array. */
--	if (ofs != 0 || len != nor->params->size)
-+	if (ofs != 0 || len != params->size)
- 		return -EINVAL;
- 
- 	ret = spi_nor_read_cr(nor, nor->bouncebuf);
-@@ -51,7 +52,9 @@ static const struct spi_nor_locking_ops sst26vf_nor_locking_ops = {
- 
- static void sst26vf_nor_late_init(struct spi_nor *nor)
- {
--	nor->params->locking_ops = &sst26vf_nor_locking_ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->locking_ops = &sst26vf_nor_locking_ops;
- }
- 
- static const struct spi_nor_fixups sst26vf_nor_fixups = {
-diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-index 1f178313ba8f..88eaed2c40fe 100644
---- a/drivers/mtd/spi-nor/swp.c
-+++ b/drivers/mtd/spi-nor/swp.c
-@@ -340,11 +340,14 @@ static const struct spi_nor_locking_ops spi_nor_sr_locking_ops = {
- 
- void spi_nor_init_default_locking_ops(struct spi_nor *nor)
- {
--	nor->params->locking_ops = &spi_nor_sr_locking_ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->locking_ops = &spi_nor_sr_locking_ops;
- }
- 
- static int spi_nor_lock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params;
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
- 	int ret;
- 
-@@ -352,7 +355,8 @@ static int spi_nor_lock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- 	if (ret)
- 		return ret;
- 
--	ret = nor->params->locking_ops->lock(nor, ofs, len);
-+	params = spi_nor_get_params(nor, 0);
-+	ret = params->locking_ops->lock(nor, ofs, len);
- 
- 	spi_nor_unlock_and_unprep(nor);
- 	return ret;
-@@ -360,6 +364,7 @@ static int spi_nor_lock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- 
- static int spi_nor_unlock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params;
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
- 	int ret;
- 
-@@ -367,7 +372,8 @@ static int spi_nor_unlock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- 	if (ret)
- 		return ret;
- 
--	ret = nor->params->locking_ops->unlock(nor, ofs, len);
-+	params = spi_nor_get_params(nor, 0);
-+	ret = params->locking_ops->unlock(nor, ofs, len);
- 
- 	spi_nor_unlock_and_unprep(nor);
- 	return ret;
-@@ -375,6 +381,7 @@ static int spi_nor_unlock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- 
- static int spi_nor_is_locked(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- {
-+	struct spi_nor_flash_parameter *params;
- 	struct spi_nor *nor = mtd_to_spi_nor(mtd);
- 	int ret;
- 
-@@ -382,7 +389,8 @@ static int spi_nor_is_locked(struct mtd_info *mtd, loff_t ofs, uint64_t len)
- 	if (ret)
- 		return ret;
- 
--	ret = nor->params->locking_ops->is_locked(nor, ofs, len);
-+	params = spi_nor_get_params(nor, 0);
-+	ret = params->locking_ops->is_locked(nor, ofs, len);
- 
- 	spi_nor_unlock_and_unprep(nor);
- 	return ret;
-@@ -402,6 +410,7 @@ static int spi_nor_is_locked(struct mtd_info *mtd, loff_t ofs, uint64_t len)
-  */
- void spi_nor_try_unlock_all(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	int ret;
- 
- 	if (!(nor->flags & SNOR_F_HAS_LOCK))
-@@ -409,16 +418,17 @@ void spi_nor_try_unlock_all(struct spi_nor *nor)
- 
- 	dev_dbg(nor->dev, "Unprotecting entire flash array\n");
- 
--	ret = spi_nor_unlock(&nor->mtd, 0, nor->params->size);
-+	ret = spi_nor_unlock(&nor->mtd, 0, params->size);
- 	if (ret)
- 		dev_dbg(nor->dev, "Failed to unlock the entire flash memory array\n");
- }
- 
- void spi_nor_set_mtd_locking_ops(struct spi_nor *nor)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	struct mtd_info *mtd = &nor->mtd;
- 
--	if (!nor->params->locking_ops)
-+	if (!params->locking_ops)
- 		return;
- 
- 	mtd->_lock = spi_nor_lock;
-diff --git a/drivers/mtd/spi-nor/winbond.c b/drivers/mtd/spi-nor/winbond.c
-index ca39acf4112c..ce321e40d2f4 100644
---- a/drivers/mtd/spi-nor/winbond.c
-+++ b/drivers/mtd/spi-nor/winbond.c
-@@ -218,13 +218,17 @@ static const struct spi_nor_otp_ops winbond_nor_otp_ops = {
- 
- static void winbond_nor_default_init(struct spi_nor *nor)
- {
--	nor->params->set_4byte_addr_mode = winbond_nor_set_4byte_addr_mode;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->set_4byte_addr_mode = winbond_nor_set_4byte_addr_mode;
- }
- 
- static void winbond_nor_late_init(struct spi_nor *nor)
- {
--	if (nor->params->otp.org->n_regions)
--		nor->params->otp.ops = &winbond_nor_otp_ops;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	if (params->otp.org->n_regions)
-+		params->otp.ops = &winbond_nor_otp_ops;
- }
- 
- static const struct spi_nor_fixups winbond_nor_fixups = {
-diff --git a/drivers/mtd/spi-nor/xilinx.c b/drivers/mtd/spi-nor/xilinx.c
-index 5723157739fc..6c5da0e0f9a4 100644
---- a/drivers/mtd/spi-nor/xilinx.c
-+++ b/drivers/mtd/spi-nor/xilinx.c
-@@ -55,7 +55,8 @@ static const struct flash_info xilinx_nor_parts[] = {
-  */
- static u32 s3an_nor_convert_addr(struct spi_nor *nor, u32 addr)
- {
--	u32 page_size = nor->params->page_size;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+	u32 page_size = params->page_size;
- 	u32 offset, page;
- 
- 	offset = addr % page_size;
-@@ -115,6 +116,7 @@ static int xilinx_nor_sr_ready(struct spi_nor *nor)
- static int xilinx_nor_setup(struct spi_nor *nor,
- 			    const struct spi_nor_hwcaps *hwcaps)
- {
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
- 	u32 page_size;
- 	int ret;
- 
-@@ -140,14 +142,14 @@ static int xilinx_nor_setup(struct spi_nor *nor,
- 	 */
- 	if (nor->bouncebuf[0] & XSR_PAGESIZE) {
- 		/* Flash in Power of 2 mode */
--		page_size = (nor->params->page_size == 264) ? 256 : 512;
--		nor->params->page_size = page_size;
-+		page_size = (params->page_size == 264) ? 256 : 512;
-+		params->page_size = page_size;
- 		nor->mtd.writebufsize = page_size;
--		nor->params->size = 8 * page_size * nor->info->n_sectors;
-+		params->size = 8 * page_size * nor->info->n_sectors;
- 		nor->mtd.erasesize = 8 * page_size;
- 	} else {
- 		/* Flash in Default addressing mode */
--		nor->params->convert_addr = s3an_nor_convert_addr;
-+		params->convert_addr = s3an_nor_convert_addr;
- 		nor->mtd.erasesize = nor->info->sector_size;
- 	}
- 
-@@ -156,8 +158,10 @@ static int xilinx_nor_setup(struct spi_nor *nor,
- 
- static void xilinx_nor_late_init(struct spi_nor *nor)
- {
--	nor->params->setup = xilinx_nor_setup;
--	nor->params->ready = xilinx_nor_sr_ready;
-+	struct spi_nor_flash_parameter *params = spi_nor_get_params(nor, 0);
-+
-+	params->setup = xilinx_nor_setup;
-+	params->ready = xilinx_nor_sr_ready;
- }
- 
- static const struct spi_nor_fixups xilinx_nor_fixups = {
-diff --git a/include/linux/mtd/spi-nor.h b/include/linux/mtd/spi-nor.h
-index a3f8cdca90c8..338b73125131 100644
---- a/include/linux/mtd/spi-nor.h
-+++ b/include/linux/mtd/spi-nor.h
-@@ -420,6 +420,16 @@ static inline struct device_node *spi_nor_get_flash_node(struct spi_nor *nor)
- 	return mtd_get_of_node(&nor->mtd);
- }
- 
-+static inline struct spi_nor_flash_parameter *spi_nor_get_params(const struct spi_nor *nor, u8 idx)
-+{
-+	return nor->params;
-+}
-+
-+static inline void spi_nor_set_params(struct spi_nor *nor, u8 idx,
-+				      struct spi_nor_flash_parameter *params)
-+{
-+	nor->params = params;
-+}
- /**
-  * spi_nor_scan() - scan the SPI NOR
-  * @nor:	the spi_nor structure
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8sCgp0aGlzIHNlcmllcyBhZGFwdHMgdGhlIHBsYXRmb3JtIGRyaXZlcnMgYmVsb3cgc291
+bmQvIHRvIHVzZSB0aGUgLnJlbW92ZV9uZXcoKQpjYWxsYmFjay4gQ29tcGFyZWQgdG8gdGhlIHRy
+YWRpdGlvbmFsIC5yZW1vdmUoKSBjYWxsYmFjayAucmVtb3ZlX25ldygpIHJldHVybnMKbm8gdmFs
+dWUuIFRoaXMgaXMgYSBnb29kIHRoaW5nIGJlY2F1c2UgdGhlIGRyaXZlciBjb3JlIGRvZXNuJ3Qg
+KGFuZCBjYW5ub3QpCmNvcGUgZm9yIGVycm9ycyBkdXJpbmcgcmVtb3ZlLiBUaGUgb25seSBlZmZl
+Y3Qgb2YgYSBub24temVybyByZXR1cm4gdmFsdWUgaW4KLnJlbW92ZSgpIGlzIHRoYXQgdGhlIGRy
+aXZlciBjb3JlIGVtaXRzIGEgd2FybmluZy4gVGhlIGRldmljZSBpcyByZW1vdmVkIGFueWhvdwph
+bmQgYW4gZWFybHkgcmV0dXJuIGZyb20gLnJlbW92ZSgpIHVzdWFsbHkgeWllbGRzIGEgcmVzb3Vy
+Y2UgbGVhay4KCkJ5IGNoYW5naW5nIHRoZSByZW1vdmUgY2FsbGJhY2sgdG8gcmV0dXJuIHZvaWQg
+ZHJpdmVyIGF1dGhvcnMgY2Fubm90CnJlYXNvbmFibHkgYXNzdW1lIGFueSBtb3JlIHRoYXQgdGhl
+cmUgaXMgc29tZSBraW5kIG9mIGNsZWFudXAgbGF0ZXIuCgpUaGUgZmlyc3QgdHdvIHBhdGNoZXMg
+c2ltcGxpZnkgYSBkcml2ZXIgZWFjaCB0byByZXR1cm4gemVybyB1bmNvbmRpdGlvbmFsbHksCmFu
+ZCB0aGVuIGFsbCBkcml2ZXJzIGFyZSB0cml2aWFsbHkgY29udmVydGVkIHRvIC5yZW1vdmVfbmV3
+KCkuCgpUaGVyZSBhcmUgbmVhcmx5IG5vIGludGVyZGVwZW5kZW5jaWVzIGluIHRoaXMgcGF0Y2gg
+c2V0LS0tb25seSAxIDwtIDExIGFuZAoyIDwtIDE2LiBTbyBldmVuIGlmIHNvbWUgaW5kaXZpZHVh
+bCBwcm9ibGVtcyBhcmUgZm91bmQgKEkgZG9uJ3QgZXhwZWN0IHRoYXQpLAp0aGUgb3RoZXIgcGF0
+Y2hlcyBjYW4gKGFuZCBmcm9tIG15IFBPViBzaG91bGQpIHN0aWxsIGJlIGFwcGxpZWQuCgpCZXN0
+IHJlZ2FyZHMKVXdlCgpVd2UgS2xlaW5lLUvDtm5pZyAoMTczKToKICBBTFNBOiBzaDogYWljYTog
+RHJvcCBpZiBibG9ja3Mgd2l0aCBhbHdheXMgZmFsc2UgY29uZGl0aW9uCiAgQVNvQzogYW1kOiBh
+Y3A6IHJlbWJyYW5kdDogRHJvcCBpZiBibG9ja3Mgd2l0aCBhbHdheXMgZmFsc2UgY29uZGl0aW9u
+CiAgQUxTQTogcHhhMnh4OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1
+cm5pbmcgdm9pZAogIEFMU0E6IGF0bWVsOiBhYzk3OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92
+ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFMU0E6IG10czY0OiBDb252ZXJ0IHRvIHBsYXRm
+b3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFMU0E6IHBvcnRtYW4yeDQ6IENv
+bnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQUxTQTog
+bWlwcy9oYWwyOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcg
+dm9pZAogIEFMU0E6IG1pcHMvc2dpbzJhdWRpbzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUg
+Y2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQUxTQTogaGRhL3RlZ3JhOiBDb252ZXJ0IHRv
+IHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFMU0E6IHBwYy9wb3dl
+cm1hYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQK
+ICBBTFNBOiBzaDogYWljYTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0
+dXJuaW5nIHZvaWQKICBBTFNBOiBzaF9kYWNfYXVkaW86IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVt
+b3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogYWRpOiBheGktaTJzOiBDb252ZXJ0
+IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGFkaTog
+YXhpLXNwZGlmOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcK
+ICAgIHZvaWQKICBBU29DOiBhbWQ6IGFjcC1wY20tZG1hOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
+bW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBhbWQ6IGFjcDogcmVtYnJh
+bmR0OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZv
+aWQKICBBU29DOiBhbWQ6IGFjcDogcmVub2lyOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBj
+YWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBhbWQ6IHBzOiBDb252ZXJ0IHRvIHBs
+YXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGFtZDogcmF2ZW46
+IGFjcDN4LXBjbS1kbWE6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICBy
+ZXR1cm5pbmcgdm9pZAogIEFTb0M6IGFtZDogcmF2ZW46IGFjcDN4LXBkbS1kbWE6IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGFt
+ZDogdmFuZ29naDogYWNwNXgtcGNtLWRtYTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
+bGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogYW1kOiB5YzogYWNwNngtcGRtLWRtYTog
+Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAg
+QVNvQzogYXBwbGU6IG1jYTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0
+dXJuaW5nIHZvaWQKICBBU29DOiBhdG1lbDogYXRtZWwtaTJzOiBDb252ZXJ0IHRvIHBsYXRmb3Jt
+IHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBhdG1lbDogYXRtZWxf
+d204OTA0OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5n
+IHZvaWQKICBBU29DOiBhdG1lbDogbWNocC1pMnMtbWNjOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
+bW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBhdG1lbDogbWNocC1wZG1j
+OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQK
+ICBBU29DOiBhdG1lbDogbWNocC1zcGRpZnJ4OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBj
+YWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBhdG1lbDogbWNocC1zcGRpZnR4OiBD
+b252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBB
+U29DOiBhdG1lbDogbWlrcm9lLXByb3RvOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBhdG1lbDogc2FtOWcyMF93bTg3MzE6IENv
+bnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFT
+b0M6IGF0bWVsOiBzYW05eDVfd204NzMxOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBhdG1lbDogdHNlODUwLXBjbTUxNDI6IENv
+bnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFT
+b0M6IGF1MXg6IGFjOTdjOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1
+cm5pbmcgdm9pZAogIEFTb0M6IGF1MXg6IGkyc2M6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
+IGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogYXUxeDogcHNjLWFjOTc6IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IGF1
+MXg6IHBzYy1pMnM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmlu
+ZwogICAgdm9pZAogIEFTb0M6IGJjbTogYmNtNjN4eC1pMnMtd2hpc3RsZXI6IENvbnZlcnQgdG8g
+cGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGJjbTog
+Y3lnbnVzLXNzcDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5n
+CiAgICB2b2lkCiAgQVNvQzogY2lycnVzOiBlZGI5M3h4OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
+bW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBjaXJydXM6IGVwOTN4eC1p
+MnM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9p
+ZAogIEFTb0M6IGNvZGVjczogY3M0N2wxNTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogY29kZWNzOiBjczQ3bDI0OiBDb252ZXJ0
+IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBj
+b2RlY3M6IGNzNDdsMzU6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVy
+bmluZwogICAgdm9pZAogIEFTb0M6IGNvZGVjczogY3M0N2w4NTogQ29udmVydCB0byBwbGF0Zm9y
+bSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogY29kZWNzOiBjczQ3
+bDkwOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZv
+aWQKICBBU29DOiBjb2RlY3M6IGNzNDdsOTI6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IGNvZGVjczogaW5ub19yazMwMzY6IENv
+bnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFT
+b0M6IGNvZGVjczogbHBhc3MtcngtbWFjcm86IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGNvZGVjczogbHBhc3MtdHgtbWFjcm86
+IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAog
+IEFTb0M6IGNvZGVjczogbHBhc3MtdmEtbWFjcm86IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
+IGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGNvZGVjczogbHBhc3Mtd3NhLW1h
+Y3JvOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZv
+aWQKICBBU29DOiBjb2RlY3M6IG1zbTg5MTYtd2NkLWFuYWxvZzogQ29udmVydCB0byBwbGF0Zm9y
+bSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogY29kZWNzOiBtc204
+OTE2LXdjZC1kaWdpdGFsOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAg
+cmV0dXJuaW5nIHZvaWQKICBBU29DOiBjb2RlY3M6IHJrODE3X2NvZGVjOiBDb252ZXJ0IHRvIHBs
+YXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBjb2RlY3M6
+IHdjZDkzOHg6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwog
+ICAgdm9pZAogIEFTb0M6IGNvZGVjczogd201MTAyOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92
+ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBjb2RlY3M6IHdtNTExMDogQ29u
+dmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNv
+QzogY29kZWNzOiB3bTg5OTQ6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJl
+dHVybmluZwogICAgdm9pZAogIEFTb0M6IGNvZGVjczogd204OTk3OiBDb252ZXJ0IHRvIHBsYXRm
+b3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBjb2RlY3M6IHdt
+ODk5ODogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2
+b2lkCiAgQVNvQzogZHdjOiBkd2MtaTJzOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjayByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGZzbDogZXVrcmVhLXRsdjMyMDogQ29udmVydCB0
+byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogZnNs
+OiBmc2xfYXNyYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5n
+CiAgICB2b2lkCiAgQVNvQzogZnNsOiBmc2xfYXVkMmh0eDogQ29udmVydCB0byBwbGF0Zm9ybSBy
+ZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogZnNsOiBmc2xfYXVkbWl4
+OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQK
+ICBBU29DOiBmc2w6IGZzbF9kbWE6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNr
+IHJldHVybmluZyB2b2lkCiAgQVNvQzogZnNsOiBmc2xfZWFzcmM6IENvbnZlcnQgdG8gcGxhdGZv
+cm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IGZzbDogZnNsX2Vz
+YWk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9p
+ZAogIEFTb0M6IGZzbDogZnNsX21xczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBmc2w6IGZzbF9ycG1zZzogQ29udmVydCB0byBwbGF0
+Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogZnNsOiBmc2xf
+c2FpOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAog
+IEFTb0M6IGZzbDogZnNsX3NwZGlmOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFj
+ayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBmc2w6IGZzbF9zc2k6IENvbnZlcnQgdG8gcGxh
+dGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogZnNsOiBmc2xfeGN2
+cjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lk
+CiAgQVNvQzogZnNsOiBpbXgtYXVkbXV4OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBmc2w6IGlteC1wY20tcnBtc2c6IENvbnZl
+cnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6
+IGZzbDogaW14LXNndGw1MDAwOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayBy
+ZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBmc2w6IG1wYzUyMDBfcHNjX2FjOTc6IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGZz
+bDogbXBjNTIwMF9wc2NfaTJzOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawog
+ICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBmc2w6IG1wYzg2MTBfaHBjZDogQ29udmVydCB0byBw
+bGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogZnNsOiBw
+MTAyMl9kczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAg
+ICB2b2lkCiAgQVNvQzogZnNsOiBwMTAyMl9yZGs6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
+IGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IGZzbDogcGNtMDMwLWF1ZGlvLWZh
+YnJpYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2
+b2lkCiAgQVNvQzogZ2VuZXJpYzogdGVzdC1jb21wb25lbnQ6IENvbnZlcnQgdG8gcGxhdGZvcm0g
+cmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IGltZzogaW1nLWkycy1p
+bjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lk
+CiAgQVNvQzogaW1nOiBpbWctaTJzLW91dDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogaW1nOiBpbWctcGFyYWxsZWwtb3V0OiBD
+b252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBB
+U29DOiBpbWc6IGltZy1zcGRpZi1pbjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogaW1nOiBpbWctc3BkaWYtb3V0OiBDb252ZXJ0
+IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBp
+bWc6IHBpc3RhY2hpby1pbnRlcm5hbC1kYWM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IEludGVsOiBzc3QtbWZsZC1wbGF0Zm9y
+bS1wY206IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlCiAgICBjYWxsYmFjayByZXR1cm5pbmcg
+dm9pZAogIEFTb0M6IEludGVsOiBzc3Q6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxi
+YWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogSW50ZWw6IGJ5dGNodF9lczgzMTY6IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IElu
+dGVsOiBieXRjcl9ydDU2NDA6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAg
+ICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IEludGVsOiBib2FyZHM6IGJ5dGNyX3J0NTY1MTogQ29u
+dmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNv
+QzogSW50ZWw6IGJ5dGNyX3dtNTEwMjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogSW50ZWw6IGNodF9ic3dfbWF4OTgwOTBfdGk6
+IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAog
+IEFTb0M6IEludGVsOiBzb2ZfZXM4MzM2OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBBU29DOiBJbnRlbDogc29mX3BjbTUxMng6IENvbnZl
+cnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6
+IEludGVsOiBzb2Zfc2R3OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1
+cm5pbmcKICAgIHZvaWQKICBBU29DOiBJbnRlbDogc29mX3dtODgwNDogQ29udmVydCB0byBwbGF0
+Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogSW50ZWw6IGNh
+dHB0OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAog
+IEFTb0M6IEludGVsOiBza2wtc3NwLWNsazogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
+bGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzoga2lya3dvb2Q6IGtpcmt3b29kLWkyczog
+Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAg
+QVNvQzogbWVkaWF0ZWs6IG10ay1idGN2c2Q6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IG1lZGlhdGVrOiBtdDI3MDEtYWZlLXBj
+bTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lk
+CiAgQVNvQzogbWVkaWF0ZWs6IG10Njc5Ny1hZmUtcGNtOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
+bW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBtZWRpYXRlazogbXQ4MTcz
+LWFmZS1wY206IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5p
+bmcgdm9pZAogIEFTb0M6IG1lZGlhdGVrOiBtdDgxODMtYWZlLXBjbTogQ29udmVydCB0byBwbGF0
+Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogbWVkaWF0ZWs6
+IG10ODE4OC1hZmUtcGNtOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAg
+cmV0dXJuaW5nIHZvaWQKICBBU29DOiBtZWRpYXRlazogbXQ4MTkyLWFmZS1wY206IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IG1l
+ZGlhdGVrOiBtdDgxOTUtYWZlLXBjbTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogbWVzb246IGFpdTogQ29udmVydCB0byBwbGF0
+Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBteHM6IG14cy1zZ3Rs
+NTAwMDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2
+b2lkCiAgQVNvQzogcHhhOiBtbXAtc3NwYTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogcHhhOiBweGEyeHgtYWM5NzogQ29udmVy
+dCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzog
+cWNvbTogcWRzcDY6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmlu
+ZyB2b2lkCiAgQVNvQzogcm9ja2NoaXA6IHJvY2tjaGlwX2kyczogQ29udmVydCB0byBwbGF0Zm9y
+bSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogcm9ja2NoaXA6IHJv
+Y2tjaGlwX2kyc190ZG06IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICBy
+ZXR1cm5pbmcgdm9pZAogIEFTb0M6IHJvY2tjaGlwOiByb2NrY2hpcF9wZG06IENvbnZlcnQgdG8g
+cGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHJvY2tj
+aGlwOiByb2NrY2hpcF9ydDU2NDU6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNr
+CiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHJvY2tjaGlwOiByb2NrY2hpcF9zcGRpZjogQ29u
+dmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNv
+Qzogc2Ftc3VuZzogYXJuZGFsZTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sg
+cmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogc2Ftc3VuZzogaTJzOiBDb252ZXJ0IHRvIHBsYXRm
+b3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHNhbXN1bmc6IG9kcm9p
+ZDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lk
+CiAgQVNvQzogc2Ftc3VuZzogcGNtOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFj
+ayByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHNhbXN1bmc6IHNub3c6IENvbnZlcnQgdG8gcGxhdGZv
+cm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IHNhbXN1bmc6IHNw
+ZGlmOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZv
+aWQKICBBU29DOiBzaDogZnNpOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayBy
+ZXR1cm5pbmcgdm9pZAogIEFTb0M6IHNoOiBoYWM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
+IGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogc2g6IHJjYXI6IENvbnZlcnQgdG8gcGxh
+dGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgQVNvQzogc2g6IHJ6LXNzaTog
+Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICBBU29D
+OiBzaDogc2l1X2RhaTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJu
+aW5nIHZvaWQKICBBU29DOiBzcHJkOiBzcHJkLW1jZHQ6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVt
+b3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IHN0bTogc3RtMzJfYWRmc2Rt
+OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQK
+ICBBU29DOiBzdG06IHN0bTMyX2kyczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogc3RtOiBzdG0zMl9zYWlfc3ViOiBDb252ZXJ0
+IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBz
+dG06IHN0bTMyX3NwZGlmcng6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAg
+ICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHN1bnhpOiBzdW40aS1jb2RlYzogQ29udmVydCB0byBw
+bGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogc3VueGk6
+IHN1bjRpLWkyczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5n
+CiAgICB2b2lkCiAgQVNvQzogc3VueGk6IHN1bjRpLXNwZGlmOiBDb252ZXJ0IHRvIHBsYXRmb3Jt
+IHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiBzdW54aTogc3VuNTBp
+LWRtaWM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcg
+dm9pZAogIEFTb0M6IHN1bnhpOiBzdW44aS1jb2RlYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1v
+dmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogdGVncmE6IHRlZ3JhMTg2X2Fz
+cmM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9p
+ZAogIEFTb0M6IHRlZ3JhOiB0ZWdyYTE4Nl9kc3BrOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92
+ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0ZWdyYTogdGVncmEyMF9hYzk3
+OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQK
+ICBBU29DOiB0ZWdyYTogdGVncmEyMF9pMnM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHRlZ3JhOiB0ZWdyYTIxMF9hZG1haWY6
+IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAog
+IEFTb0M6IHRlZ3JhOiB0ZWdyYTIxMF9hZHg6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHRlZ3JhOiB0ZWdyYTIxMF9haHViOiBD
+b252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBB
+U29DOiB0ZWdyYTogdGVncmEyMTBfYW14OiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
+YmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0ZWdyYTogdGVncmEyMTBfZG1pYzogQ29u
+dmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNv
+QzogdGVncmE6IHRlZ3JhMjEwX2kyczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
+Y2sKICAgIHJldHVybmluZyB2b2lkCiAgQVNvQzogdGVncmE6IHRlZ3JhMjEwX21peGVyOiBDb252
+ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29D
+OiB0ZWdyYTogdGVncmEyMTBfbXZjOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFj
+awogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0ZWdyYTogdGVncmEyMTBfb3BlOiBDb252ZXJ0
+IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0
+ZWdyYTogdGVncmEyMTBfc2ZjOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawog
+ICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0ZWdyYTogdGVncmEzMF9haHViOiBDb252ZXJ0IHRv
+IHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBBU29DOiB0ZWdy
+YTogdGVncmEzMF9pMnM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICBy
+ZXR1cm5pbmcgdm9pZAogIEFTb0M6IHRpOiBhbXMtZGVsdGE6IENvbnZlcnQgdG8gcGxhdGZvcm0g
+cmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IHRpOiBkYXZpbmNpLWky
+czogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lk
+CiAgQVNvQzogdGk6IGRhdmluY2ktbWNhc3A6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IHRpOiBvbWFwLWhkbWk6IENvbnZlcnQg
+dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIEFTb0M6IHRp
+OiBvbWFwLW1jYnNwOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5p
+bmcKICAgIHZvaWQKICBBU29DOiB1bmlwaGllcjogZXZlYTogQ29udmVydCB0byBwbGF0Zm9ybSBy
+ZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgQVNvQzogdXg1MDA6IG1vcDUwMDog
+Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAg
+QVNvQzogdXg1MDA6IHV4NTAwX21zcF9kYWk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHhpbGlueDogeGxueF9mb3JtYXR0ZXJf
+cGNtOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZv
+aWQKICBBU29DOiB4aWxpbng6IHhsbnhfc3BkaWY6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
+IGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIEFTb0M6IHh0ZW5zYTogeHRmcGdhLWkyczog
+Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAg
+QUxTQTogc3BhcmMvY3M0MjMxOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayBy
+ZXR1cm5pbmcgdm9pZAogIEFMU0E6IHNwYXJjL2Ricmk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVt
+b3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCgogc291bmQvYXJtL3B4YTJ4eC1hYzk3LmMgICAg
+ICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL2F0bWVsL2FjOTdjLmMgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9kcml2ZXJzL210czY0LmMgICAg
+ICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvZHJpdmVycy9wb3J0bWFuMng0
+LmMgICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL21pcHMvaGFsMi5jICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5kL21pcHMvc2dpbzJhdWRpby5j
+ICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5kL3BjaS9oZGEvaGRhX3RlZ3Jh
+LmMgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9wcGMvcG93ZXJtYWMuYyAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICA1ICsrLS0tCiBzb3VuZC9zaC9haWNhLmMgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICA3ICsrLS0tLS0KIHNvdW5kL3NoL3NoX2RhY19hdWRp
+by5jICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5kL3NvYy9hZGkvYXhpLWky
+cy5jICAgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvYWRpL2F4aS1z
+cGRpZi5jICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2FtZC9hY3At
+cGNtLWRtYS5jICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9hbWQvYWNw
+L2FjcC1yZW1icmFuZHQuYyAgICAgICAgICAgIHwgMTMgKysrLS0tLS0tLS0tLQogc291bmQvc29j
+L2FtZC9hY3AvYWNwLXJlbm9pci5jICAgICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FtZC9wcy9wcy1wZG0tZG1hLmMgICAgICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FtZC9yYXZlbi9hY3AzeC1wY20tZG1hLmMgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FtZC9yZW5vaXIvYWNwM3gtcGRtLWRtYS5jICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FtZC92YW5nb2doL2FjcDV4LXBjbS1kbWEuYyAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FtZC95Yy9hY3A2eC1wZG0tZG1hLmMgICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2FwcGxlL21jYS5jICAgICAgICAgICAgICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29j
+L2F0bWVsL2F0bWVsLWkycy5jICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3Nv
+Yy9hdG1lbC9hdG1lbF93bTg5MDQuYyAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9z
+b2MvYXRtZWwvbWNocC1pMnMtbWNjLmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQv
+c29jL2F0bWVsL21jaHAtcGRtYy5jICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5k
+L3NvYy9hdG1lbC9tY2hwLXNwZGlmcnguYyAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3Vu
+ZC9zb2MvYXRtZWwvbWNocC1zcGRpZnR4LmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291
+bmQvc29jL2F0bWVsL21pa3JvZS1wcm90by5jICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNv
+dW5kL3NvYy9hdG1lbC9zYW05ZzIwX3dtODczMS5jICAgICAgICAgICAgIHwgIDYgKystLS0tCiBz
+b3VuZC9zb2MvYXRtZWwvc2FtOXg1X3dtODczMS5jICAgICAgICAgICAgICB8ICA2ICsrLS0tLQog
+c291bmQvc29jL2F0bWVsL3RzZTg1MC1wY201MTQyLmMgICAgICAgICAgICAgfCAgNiArKy0tLS0K
+IHNvdW5kL3NvYy9hdTF4L2FjOTdjLmMgICAgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0t
+CiBzb3VuZC9zb2MvYXUxeC9pMnNjLmMgICAgICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0t
+LQogc291bmQvc29jL2F1MXgvcHNjLWFjOTcuYyAgICAgICAgICAgICAgICAgICAgfCAgNiArKy0t
+LS0KIHNvdW5kL3NvYy9hdTF4L3BzYy1pMnMuYyAgICAgICAgICAgICAgICAgICAgIHwgIDYgKyst
+LS0tCiBzb3VuZC9zb2MvYmNtL2JjbTYzeHgtaTJzLXdoaXN0bGVyLmMgICAgICAgICB8ICA1ICsr
+LS0tCiBzb3VuZC9zb2MvYmNtL2N5Z251cy1zc3AuYyAgICAgICAgICAgICAgICAgICB8ICA2ICsr
+LS0tLQogc291bmQvc29jL2NpcnJ1cy9lZGI5M3h4LmMgICAgICAgICAgICAgICAgICAgfCAgNiAr
+Ky0tLS0KIHNvdW5kL3NvYy9jaXJydXMvZXA5M3h4LWkycy5jICAgICAgICAgICAgICAgIHwgIDUg
+KystLS0KIHNvdW5kL3NvYy9jb2RlY3MvY3M0N2wxNS5jICAgICAgICAgICAgICAgICAgIHwgIDYg
+KystLS0tCiBzb3VuZC9zb2MvY29kZWNzL2NzNDdsMjQuYyAgICAgICAgICAgICAgICAgICB8ICA2
+ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy9jczQ3bDM1LmMgICAgICAgICAgICAgICAgICAgfCAg
+NiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3MvY3M0N2w4NS5jICAgICAgICAgICAgICAgICAgIHwg
+IDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL2NzNDdsOTAuYyAgICAgICAgICAgICAgICAgICB8
+ICA2ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy9jczQ3bDkyLmMgICAgICAgICAgICAgICAgICAg
+fCAgNiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3MvaW5ub19yazMwMzYuYyAgICAgICAgICAgICAg
+IHwgIDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL2xwYXNzLXJ4LW1hY3JvLmMgICAgICAgICAg
+ICB8ICA2ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy9scGFzcy10eC1tYWNyby5jICAgICAgICAg
+ICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3MvbHBhc3MtdmEtbWFjcm8uYyAgICAgICAg
+ICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL2xwYXNzLXdzYS1tYWNyby5jICAgICAg
+ICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy9tc204OTE2LXdjZC1hbmFsb2cuYyAg
+ICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3MvbXNtODkxNi13Y2QtZGlnaXRhbC5j
+ICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL3JrODE3X2NvZGVjLmMgICAgICAg
+ICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy93Y2Q5Mzh4LmMgICAgICAgICAg
+ICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3Mvd201MTAyLmMgICAgICAgICAg
+ICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL3dtNTExMC5jICAgICAgICAg
+ICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2NvZGVjcy93bTg5OTQuYyAgICAgICAg
+ICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9jb2RlY3Mvd204OTk3LmMgICAgICAg
+ICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvY29kZWNzL3dtODk5OC5jICAgICAg
+ICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2R3Yy9kd2MtaTJzLmMgICAgICAg
+ICAgICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29jL2ZzbC9ldWtyZWEtdGx2MzIwLmMg
+ICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wvZnNsX2FzcmMuYyAgICAg
+ICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNsL2ZzbF9hdWQyaHR4LmMg
+ICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2ZzbC9mc2xfYXVkbWl4LmMg
+ICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wvZnNsX2RtYS5jICAg
+ICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNsL2ZzbF9lYXNyYy5j
+ICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2ZzbC9mc2xfZXNhaS5j
+ICAgICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wvZnNsX21xcy5j
+ICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5kL3NvYy9mc2wvZnNsX3JwbXNn
+LmMgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNsL2ZzbF9zYWku
+YyAgICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2ZzbC9mc2xfc3Bk
+aWYuYyAgICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wvZnNsX3Nz
+aS5jICAgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNsL2ZzbF94
+Y3ZyLmMgICAgICAgICAgICAgICAgICAgICB8ICA1ICsrLS0tCiBzb3VuZC9zb2MvZnNsL2lteC1h
+dWRtdXguYyAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2ZzbC9pbXgt
+cGNtLXJwbXNnLmMgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wvaW14
+LXNndGw1MDAwLmMgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNsL21w
+YzUyMDBfcHNjX2FjOTcuYyAgICAgICAgICAgICB8ICA1ICsrLS0tCiBzb3VuZC9zb2MvZnNsL21w
+YzUyMDBfcHNjX2kycy5jICAgICAgICAgICAgICB8ICA1ICsrLS0tCiBzb3VuZC9zb2MvZnNsL21w
+Yzg2MTBfaHBjZC5jICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2ZzbC9w
+MTAyMl9kcy5jICAgICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9mc2wv
+cDEwMjJfcmRrLmMgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvZnNs
+L3BjbTAzMC1hdWRpby1mYWJyaWMuYyAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL2dl
+bmVyaWMvdGVzdC1jb21wb25lbnQuYyAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9p
+bWcvaW1nLWkycy1pbi5jICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mv
+aW1nL2ltZy1pMnMtb3V0LmMgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29j
+L2ltZy9pbWctcGFyYWxsZWwtb3V0LmMgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3Nv
+Yy9pbWcvaW1nLXNwZGlmLWluLmMgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9z
+b2MvaW1nL2ltZy1zcGRpZi1vdXQuYyAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQv
+c29jL2ltZy9waXN0YWNoaW8taW50ZXJuYWwtZGFjLmMgICAgICAgfCAgNiArKy0tLS0KIHNvdW5k
+L3NvYy9pbnRlbC9hdG9tL3NzdC1tZmxkLXBsYXRmb3JtLXBjbS5jIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9hdG9tL3NzdC9zc3RfYWNwaS5jICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9ib2FyZHMvYnl0Y2h0X2VzODMxNi5jICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9ib2FyZHMvYnl0Y3JfcnQ1NjQwLmMgICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9ib2FyZHMvYnl0Y3JfcnQ1NjUxLmMgICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9ib2FyZHMvYnl0Y3Jfd201MTAyLmMgICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy9pbnRlbC9ib2FyZHMvY2h0X2Jzd19tYXg5ODA5MF90aS5jIHwgIDYgKystLS0tCiBzb3Vu
+ZC9zb2MvaW50ZWwvYm9hcmRzL3NvZl9lczgzMzYuYyAgICAgICAgICB8ICA2ICsrLS0tLQogc291
+bmQvc29jL2ludGVsL2JvYXJkcy9zb2ZfcGNtNTEyeC5jICAgICAgICAgfCAgNiArKy0tLS0KIHNv
+dW5kL3NvYy9pbnRlbC9ib2FyZHMvc29mX3Nkdy5jICAgICAgICAgICAgIHwgIDYgKystLS0tCiBz
+b3VuZC9zb2MvaW50ZWwvYm9hcmRzL3NvZl93bTg4MDQuYyAgICAgICAgICB8ICA1ICsrLS0tCiBz
+b3VuZC9zb2MvaW50ZWwvY2F0cHQvZGV2aWNlLmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQog
+c291bmQvc29jL2ludGVsL3NreWxha2Uvc2tsLXNzcC1jbGsuYyAgICAgICAgfCAgNiArKy0tLS0K
+IHNvdW5kL3NvYy9raXJrd29vZC9raXJrd29vZC1pMnMuYyAgICAgICAgICAgIHwgIDYgKystLS0t
+CiBzb3VuZC9zb2MvbWVkaWF0ZWsvY29tbW9uL210ay1idGN2c2QuYyAgICAgICB8ICA1ICsrLS0t
+CiBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQyNzAxL210MjcwMS1hZmUtcGNtLmMgICB8ICA2ICsrLS0t
+LQogc291bmQvc29jL21lZGlhdGVrL210Njc5Ny9tdDY3OTctYWZlLXBjbS5jICAgfCAgNiArKy0t
+LS0KIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxNzMvbXQ4MTczLWFmZS1wY20uYyAgIHwgIDUgKyst
+LS0KIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxODMvbXQ4MTgzLWFmZS1wY20uYyAgIHwgIDYgKyst
+LS0tCiBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTg4L210ODE4OC1hZmUtcGNtLmMgICB8ICA2ICsr
+LS0tLQogc291bmQvc29jL21lZGlhdGVrL210ODE5Mi9tdDgxOTItYWZlLXBjbS5jICAgfCAgNSAr
+Ky0tLQogc291bmQvc29jL21lZGlhdGVrL210ODE5NS9tdDgxOTUtYWZlLXBjbS5jICAgfCAgNSAr
+Ky0tLQogc291bmQvc29jL21lc29uL2FpdS5jICAgICAgICAgICAgICAgICAgICAgICAgfCAgNiAr
+Ky0tLS0KIHNvdW5kL3NvYy9teHMvbXhzLXNndGw1MDAwLmMgICAgICAgICAgICAgICAgIHwgIDYg
+KystLS0tCiBzb3VuZC9zb2MvcHhhL21tcC1zc3BhLmMgICAgICAgICAgICAgICAgICAgICB8ICA3
+ICsrKy0tLS0KIHNvdW5kL3NvYy9weGEvcHhhMnh4LWFjOTcuYyAgICAgICAgICAgICAgICAgIHwg
+IDUgKystLS0KIHNvdW5kL3NvYy9xY29tL3Fkc3A2L3E2cm91dGluZy5jICAgICAgICAgICAgIHwg
+IDYgKystLS0tCiBzb3VuZC9zb2Mvcm9ja2NoaXAvcm9ja2NoaXBfaTJzLmMgICAgICAgICAgICB8
+ICA2ICsrLS0tLQogc291bmQvc29jL3JvY2tjaGlwL3JvY2tjaGlwX2kyc190ZG0uYyAgICAgICAg
+fCAgNiArKy0tLS0KIHNvdW5kL3NvYy9yb2NrY2hpcC9yb2NrY2hpcF9wZG0uYyAgICAgICAgICAg
+IHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvcm9ja2NoaXAvcm9ja2NoaXBfcnQ1NjQ1LmMgICAgICAg
+ICB8ICA2ICsrLS0tLQogc291bmQvc29jL3JvY2tjaGlwL3JvY2tjaGlwX3NwZGlmLmMgICAgICAg
+ICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zYW1zdW5nL2FybmRhbGUuYyAgICAgICAgICAgICAg
+ICAgIHwgIDUgKystLS0KIHNvdW5kL3NvYy9zYW1zdW5nL2kycy5jICAgICAgICAgICAgICAgICAg
+ICAgIHwgIDggKysrLS0tLS0KIHNvdW5kL3NvYy9zYW1zdW5nL29kcm9pZC5jICAgICAgICAgICAg
+ICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc2Ftc3VuZy9wY20uYyAgICAgICAgICAgICAg
+ICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3NhbXN1bmcvc25vdy5jICAgICAgICAgICAg
+ICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zYW1zdW5nL3NwZGlmLmMgICAgICAgICAg
+ICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc2gvZnNpLmMgICAgICAgICAgICAgICAg
+ICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3NoL2hhYy5jICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgNSArKy0tLQogc291bmQvc29jL3NoL3JjYXIvY29yZS5jICAgICAgICAg
+ICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zaC9yei1zc2kuYyAgICAgICAgICAg
+ICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc2gvc2l1X2RhaS5jICAgICAgICAg
+ICAgICAgICAgICAgICB8ICA1ICsrLS0tCiBzb3VuZC9zb2Mvc3ByZC9zcHJkLW1jZHQuYyAgICAg
+ICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3N0bS9zdG0zMl9hZGZzZG0uYyAg
+ICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zdG0vc3RtMzJfaTJzLmMgICAg
+ICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc3RtL3N0bTMyX3NhaV9zdWIu
+YyAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3N0bS9zdG0zMl9zcGRpZnJ4
+LmMgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zdW54aS9zdW40aS1jb2Rl
+Yy5jICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc3VueGkvc3VuNGktaTJz
+LmMgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3N1bnhpL3N1bjRpLXNw
+ZGlmLmMgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy9zdW54aS9zdW41MGkt
+ZG1pYy5jICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mvc3VueGkvc3VuOGkt
+Y29kZWMuYyAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3RlZ3JhL3RlZ3Jh
+MTg2X2FzcmMuYyAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy90ZWdyYS90ZWdy
+YTE4Nl9kc3BrLmMgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvdGVncmEvdGVn
+cmEyMF9hYzk3LmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3RlZ3JhL3Rl
+Z3JhMjBfaTJzLmMgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy90ZWdyYS90
+ZWdyYTIxMF9hZG1haWYuYyAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvdGVncmEv
+dGVncmEyMTBfYWR4LmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3RlZ3Jh
+L3RlZ3JhMjEwX2FodWIuYyAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy90ZWdy
+YS90ZWdyYTIxMF9hbXguYyAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2MvdGVn
+cmEvdGVncmEyMTBfZG1pYy5jICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29jL3Rl
+Z3JhL3RlZ3JhMjEwX2kycy5jICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3NvYy90
+ZWdyYS90ZWdyYTIxMF9taXhlci5jICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9zb2Mv
+dGVncmEvdGVncmEyMTBfbXZjLmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQvc29j
+L3RlZ3JhL3RlZ3JhMjEwX29wZS5jICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5kL3Nv
+Yy90ZWdyYS90ZWdyYTIxMF9zZmMuYyAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3VuZC9z
+b2MvdGVncmEvdGVncmEzMF9haHViLmMgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291bmQv
+c29jL3RlZ3JhL3RlZ3JhMzBfaTJzLmMgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNvdW5k
+L3NvYy90aS9hbXMtZGVsdGEuYyAgICAgICAgICAgICAgICAgICAgIHwgIDUgKystLS0KIHNvdW5k
+L3NvYy90aS9kYXZpbmNpLWkycy5jICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBzb3Vu
+ZC9zb2MvdGkvZGF2aW5jaS1tY2FzcC5jICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQogc291
+bmQvc29jL3RpL29tYXAtaGRtaS5jICAgICAgICAgICAgICAgICAgICAgfCAgNSArKy0tLQogc291
+bmQvc29jL3RpL29tYXAtbWNic3AuYyAgICAgICAgICAgICAgICAgICAgfCAgNiArKy0tLS0KIHNv
+dW5kL3NvYy91bmlwaGllci9ldmVhLmMgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0tCiBz
+b3VuZC9zb2MvdXg1MDAvbW9wNTAwLmMgICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0tLQog
+c291bmQvc29jL3V4NTAwL3V4NTAwX21zcF9kYWkuYyAgICAgICAgICAgICAgfCAgNiArKy0tLS0K
+IHNvdW5kL3NvYy94aWxpbngveGxueF9mb3JtYXR0ZXJfcGNtLmMgICAgICAgIHwgIDUgKystLS0K
+IHNvdW5kL3NvYy94aWxpbngveGxueF9zcGRpZi5jICAgICAgICAgICAgICAgIHwgIDUgKystLS0K
+IHNvdW5kL3NvYy94dGVuc2EveHRmcGdhLWkycy5jICAgICAgICAgICAgICAgIHwgIDUgKystLS0K
+IHNvdW5kL3NwYXJjL2NzNDIzMS5jICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDYgKystLS0t
+CiBzb3VuZC9zcGFyYy9kYnJpLmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICA2ICsrLS0t
+LQogMTcxIGZpbGVzIGNoYW5nZWQsIDM0NSBpbnNlcnRpb25zKCspLCA2NTQgZGVsZXRpb25zKC0p
+CgpiYXNlLWNvbW1pdDogZmUxNWMyNmVlMjZlZmExMTc0MWE3YjYzMmU5ZjIzYjAxYWNhNGNjNgot
+LSAKMi4zOS4yCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
