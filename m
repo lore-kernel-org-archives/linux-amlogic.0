@@ -4,65 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F272C61DA4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Mar 2023 10:20:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6801C7618D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Mar 2023 15:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=68yY3lm6M9yR+ky8I1J1pq+K/T8j0qHKizbETZZjc58=; b=fYif0lYOZI+MTZ
-	pDVDwhU6dh4UyM3tQwSjcHh40VTUDyKg+Ese7mmpUDOp+wG56h9wyVbJlt1yOvsy2QmyJy0uHQs3P
-	ij2XmKht8EC9h5xayciMh2tXGAr3vg9gIjB27fr9Xr7Yjy2uMvcoMdbxrl8oCXuAgVAU02hShCWnm
-	VZyxoitXZsT1fMJCbDzpuUtuYFnHajAZ3pDFBMiIsWd96uTGlKdpgdosqOsQElUDl2S3OY1jMv7AP
-	/ZgN6wnzizQtIqiwFd0Ebk9LobISC2/IiaOOYMIMc96q2BhfV7XByLirDwzXcBNET2oFXXe33WgQt
-	GBbwym3ExRYqvgul2uXQ==;
+	List-Owner; bh=sBZW1eQE3Xtj7G+oA+O+jqQKAIKX4910xy1tDAlGdb4=; b=VulJBViyN/5SWX
+	+d/NJXJnJWgBKV8ZuNNffOf/9w8VbilyzVzLB2TTLfURZdkdMgBG/n04uJOnHR/yyh6/qUUsjJ5OH
+	ZN20hmirciBj7Y5Xo95SDg00AoHrQfDUoV/gzSSJ9FPgV4jdc7M7SkeRaOYRltE58oL2YSy8IZlct
+	v3KG7vZb9VzAIsCsz44V4cMFPHkSBSDLn+t6iXKS3dTGyrViSAFyiAz4JXxEWp4cSNotWaAxQqwre
+	8E3ydj6/aIORTtIwbAAJvwVKscLcC4TQ6mUPdCoc5m1OVoBDX5CbXkE3a0MWipbjIdw3GCzJL4w+o
+	I4o2/7++46dLoPe+Z6rw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcOFH-00D2on-2C;
-	Wed, 15 Mar 2023 10:20:35 +0000
-Received: from smtp4-g21.free.fr ([212.27.42.4])
+	id 1pcSow-00Do2b-28;
+	Wed, 15 Mar 2023 15:13:42 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcOFD-00D2nF-1d
-	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Mar 2023 10:20:34 +0000
-Received: from [IPV6:2a02:8428:2a4:1a01:41fa:9273:29e6:e64f] (unknown [IPv6:2a02:8428:2a4:1a01:41fa:9273:29e6:e64f])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp4-g21.free.fr (Postfix) with ESMTPSA id 8C4F819F59E;
-	Wed, 15 Mar 2023 11:20:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678875627;
-	bh=nWSEty1byYWo8qP4mOf1GIvttLCcvIlo2/PFs/Pp+u4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GVN6b8pYo2aJTLMoR78vO3Rn+3H8rkkay6KXmr7Yl0Xu8kUvtBAWUU4BXyQMqTYHo
-	 OiNhUTrNcXdESVHXgMuDqymD1S3WRe2YoRXxbxjLiUtxtt4jBsLPxYhfMZtzk4TkXY
-	 LvJ8lVTLJGqUuZRT7CBrnZzZFJ8DmkS9Tr7HErcshFZ/LgIPiO9WoQbVp37Zfcp0Zg
-	 CvMz7edKGP24XdlgFeSquvFFc6ocQ66S2f4IR1Ig4ESLEp49KrKceGow/0Kq7hzF0G
-	 4bV54pbhTd8Ib9k6fgblFyI1sQ4KVdKdDoTRT5ZVsfg3AB5DkCF0xremmjMXbSiBHT
-	 I4r64/2i6pFug==
-Message-ID: <b6971cd6-80f2-522a-64fb-82b126500010@free.fr>
-Date: Wed, 15 Mar 2023 11:20:14 +0100
+	id 1pcSkN-00DkB8-2W
+	for linux-amlogic@bombadil.infradead.org;
+	Wed, 15 Mar 2023 15:08:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=zOe4trkYjuSF1ApFJXP8vNz1QKxPE7fRqdv/Z0pszv8=; b=Vyj64IZvGRXbZGneBk4GmD7b6r
+	+uOzfNwsVDH+TZn3ETNHcXAwj/KxbZdSC/6ffl/ZfEbgy4lCJg9+wfRPFjnL1Ab2F2z0qvmvti9Hs
+	VJIjpvWv4tVLT7fNGfDvroGGl2ql09UjjBIKbm52Xy1tfs6Nmkb6xCd342kQSUQDVuw9Fo2LJMrpf
+	7qjdMEYF0t8PWaJGpVyz6uOBXg4sTIySI/rJVmWsA3ZmLYFgZ2M7/AYyWTudX+bURGIrERHCwfbhZ
+	sOGOSFFDtkus4H8XdLCa5JwYF3IPoKt+DNL+jzM/gG73Mzknf/J3Nl9iWZ2reOt+R92pMkBc7BIDo
+	1x8Yg6Qg==;
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1pcSkC-00Dw1K-M9
+	for linux-amlogic@lists.infradead.org; Wed, 15 Mar 2023 15:08:58 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjq-0008Ss-Lv; Wed, 15 Mar 2023 16:08:26 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjm-004KcQ-M1; Wed, 15 Mar 2023 16:08:22 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pcSjm-0057j8-0A; Wed, 15 Mar 2023 16:08:22 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	alsa-devel@alsa-project.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	kernel@pengutronix.de
+Subject: [PATCH 114/173] ASoC: meson: aiu: Convert to platform remove callback returning void
+Date: Wed, 15 Mar 2023 16:06:46 +0100
+Message-Id: <20230315150745.67084-115-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230315150745.67084-1-u.kleine-koenig@pengutronix.de>
+References: <20230315150745.67084-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] mmc: meson-gx: increase power-up delay
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Pierre-Hugues Husson <phh@phh.me>, Rong Chen <rong.chen@amlogic.com>,
- Yang Yingliang <yangyingliang@huawei.com>
-Cc: MMC <linux-mmc@vger.kernel.org>, AML <linux-amlogic@lists.infradead.org>
-References: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
- <0696106f-8d70-6410-999a-fcda6c5b39c2@gmail.com>
-Content-Language: fr, en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-In-Reply-To: <0696106f-8d70-6410-999a-fcda6c5b39c2@gmail.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1491; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=dFzHDZxFY1LnF/vH5qoG7cREA6ZssUK4dysHkK1fy3A=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBkEd6IFDyIZ+oP9ndVzNSV6myRohvWzvUoe1phQ d70M0WZcFGJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCZBHeiAAKCRDB/BR4rcrs CedYCACaTxr2Cr6x7kpn5otGsM2h3AKhrioeNQ8GDsl1gB4YmGd9E1ofZNVLrIZTrNUaWI0Zde7 Y1zXna1xWS3sHW9SJCuBa+HQ/xaETvenpY4Fe+wV304I0Apc9wOMK+cm1L56OfMmTKcFowRQV5w 4ua2v/XE+PN1Z/YYoZk+NXdcmR/MDs2X4Fd/mfYn4QdYpfeOC598kaD2KQow3eBjWAis2TClebj SFO6orzadXQ7yAjJoAt/pOVhjOaDP4/jU10XNl18SKLlFveYaHXQStNg/mhYO6c+o0BjON1RTVK dLpi1gJ8qzhs/LzSOEhsE1ZIUC5GqBxDNsuzwMdOu7E3tOU5
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230315_032031_987735_429A50C5 
-X-CRM114-Status: GOOD (  17.04  )
+X-CRM114-CacheID: sfid-20230315_150849_237690_5E3A0F61 
+X-CRM114-Status: GOOD (  12.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,62 +93,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/03/2023 20:45, Heiner Kallweit wrote:
-
-> On 14.03.2023 18:24, Marc Gonzalez wrote:
-> 
->> With the default power-up delay, on small kernels, the host probes
->> too soon, and mmc_send_io_op_cond() times out.
-> 
-> Looking at mmc_power_up() and how power_delay_ms is used
-> I wonder what you mean with "host probes too soon".
-
-Hello Heiner,
-
-Thanks for your interest in my patch! :)
-
-I should have added a link to the thread that led to the patch.
-https://patchwork.kernel.org/project/linux-wireless/patch/c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr/
-Start at "I have run into another issue."
-
-Basically, I have an S905X2-based board.
-I built a small kernel for it (with only a few drivers), that boots really fast.
-
-mmc2 (SDIO controller hooked to WiFi chip) would not probe at all,
-unless I added lots of printks.
-Basically, calling mmc_send_io_op_cond() too soon after the controller
-has been reset leads to the CMD5 request timing out.
-
-
-> Are you sure that the additional delay is needed for the Amlogic MMC
-> block IP in general? Or could it be that your issue is caused by
-> a specific regulator and you need to add a delay there?
-
-The eternal question...
-
-I have only one type of board. (Actually, I have a reference design
-that is slightly different, so I should test on that one as well.)
-
-In vendor kernels, they add delays to the WiFi drivers.
-Maybe they have run into the issue, and they're just fixing the symptom?
-
-Default value for ios.power_delay_ms is 10 ms.
-msleep(ios.power_delay_ms) is called twice in mmc_power_up().
-So raising the delay from 10 to 20 adds 20 ms
-to the latency of initializing SDIO/SD/MMC controllers.
-
-Would you be willing to test if the problem manifests on your board?
-
-Regards
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
+bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
+c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
+b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyAobW9zdGx5KSBpZ25vcmVkCmFuZCB0aGlzIHR5
+cGljYWxseSByZXN1bHRzIGluIHJlc291cmNlIGxlYWtzLiBUbyBpbXByb3ZlIGhlcmUgdGhlcmUg
+aXMgYQpxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuIHZvaWQuIEluIHRo
+ZSBmaXJzdCBzdGVwIG9mIHRoaXMKcXVlc3QgYWxsIGRyaXZlcnMgYXJlIGNvbnZlcnRlZCB0byAu
+cmVtb3ZlX25ldygpIHdoaWNoIGFscmVhZHkgcmV0dXJucwp2b2lkLgoKVHJpdmlhbGx5IGNvbnZl
+cnQgdGhpcyBkcml2ZXIgZnJvbSBhbHdheXMgcmV0dXJuaW5nIHplcm8gaW4gdGhlIHJlbW92ZQpj
+YWxsYmFjayB0byB0aGUgdm9pZCByZXR1cm5pbmcgdmFyaWFudC4KClNpZ25lZC1vZmYtYnk6IFV3
+ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Ci0tLQogc291
+bmQvc29jL21lc29uL2FpdS5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlv
+bnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc291bmQvc29jL21lc29uL2FpdS5j
+IGIvc291bmQvc29jL21lc29uL2FpdS5jCmluZGV4IDg4ZTYxMWU2NGQxNC4uZGEzNTFhNjBkZjBj
+IDEwMDY0NAotLS0gYS9zb3VuZC9zb2MvbWVzb24vYWl1LmMKKysrIGIvc291bmQvc29jL21lc29u
+L2FpdS5jCkBAIC0zMzEsMTEgKzMzMSw5IEBAIHN0YXRpYyBpbnQgYWl1X3Byb2JlKHN0cnVjdCBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAJcmV0dXJuIHJldDsKIH0KIAotc3RhdGljIGludCBhaXVf
+cmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCitzdGF0aWMgdm9pZCBhaXVfcmVt
+b3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiB7CiAJc25kX3NvY191bnJlZ2lzdGVy
+X2NvbXBvbmVudCgmcGRldi0+ZGV2KTsKLQotCXJldHVybiAwOwogfQogCiBzdGF0aWMgY29uc3Qg
+c3RydWN0IGFpdV9wbGF0Zm9ybV9kYXRhIGFpdV9neGJiX3BkYXRhID0gewpAQCAtMzY0LDcgKzM2
+Miw3IEBAIE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIGFpdV9vZl9tYXRjaCk7CiAKIHN0YXRpYyBz
+dHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIGFpdV9wZHJ2ID0gewogCS5wcm9iZSA9IGFpdV9wcm9iZSwK
+LQkucmVtb3ZlID0gYWl1X3JlbW92ZSwKKwkucmVtb3ZlX25ldyA9IGFpdV9yZW1vdmUsCiAJLmRy
+aXZlciA9IHsKIAkJLm5hbWUgPSAibWVzb24tYWl1IiwKIAkJLm9mX21hdGNoX3RhYmxlID0gYWl1
+X29mX21hdGNoLAotLSAKMi4zOS4yCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
