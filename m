@@ -4,87 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A576C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Mar 2023 20:57:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF67DC6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Mar 2023 21:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=phLeBiKvWeShhN1ptRydP2J+sGzVPoyE9yGetvjd5LM=; b=X6PTokz1p9PPWh
-	ffuKzxlgADcLYg+i/basP2WkCrxMhx819yjTB8f9FDe2+aT0exu0rPGwRtN+KcuHSkQZR6GLqPBWY
-	L2RknTBaocpuIGpqBtl7pzYFRT5CDsmvwc2ah4XmdX1Z8G6+Uc3j3kDLTp52sY5WltPDgWLG7Z7i5
-	Dh4pveWW9uPB7iU+Y14BUQISxvFGpoktsDbKNvZPclfIPpdjluqQElpIHvmiT4doxh+YscQ6sEzqu
-	DsBJ/IRZXTWLCQqWhOkEYRm0fhoxw1t+4mDIQLQHVEEC2l9NZJCLIuJKvJ75dBgn5MfAW0OKG2Dhl
-	UUQVXBFoyOrcmbQPnScw==;
+	List-Owner; bh=T2REes/RO4bV3NeNNAUIt0FicTeBF5LgxIs0cymI38E=; b=mjBmaSexunAGTA
+	kD0qz9B5AQNtro7KXj5bhAJ+wSMSt1FSib1zVd2/TtDv3E2iG9bjgDF3DDPUxw0lEscXrLZQENqrN
+	FnFEFP4Mpx0VWZHHiUd3sN460hlpTLy6LSaJKVglo5KToZ5FOT3GlH0ZbhsKcvhw1p0hWrC0UErAj
+	a0koQkXUJHc1M2XdyWI9EEr8kChZkrUt69xhfgGj6YVyCb+2dQevnJkkGR+dyxfU9jpk5SRDM7ph+
+	04931UGmy3MauFt7DECcrItOzH3j6ydddjbCkjb4u9dLRh/1jBWAQfa91zhjcpmg61XYBEwKmDKBU
+	7TJDuMP4SdlT7x2ocT/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcYAr-00EPmc-0d;
-	Wed, 15 Mar 2023 20:56:41 +0000
-Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
+	id 1pcYRm-00ERVU-2K;
+	Wed, 15 Mar 2023 21:14:10 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcYAo-00EPm4-01
+	id 1pcYRk-00ERUR-0T
 	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Mar 2023 20:56:39 +0000
-Received: by mail-pl1-x634.google.com with SMTP id p20so21406183plw.13
-        for <linux-amlogic@lists.infradead.org>; Wed, 15 Mar 2023 13:56:35 -0700 (PDT)
+	Wed, 15 Mar 2023 21:14:09 +0000
+Received: by mail-wm1-x335.google.com with SMTP id m35so3902086wms.4
+        for <linux-amlogic@lists.infradead.org>; Wed, 15 Mar 2023 14:14:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678913795;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=z84vdnHiRqRhIyxTsu5Pz3PgSNNcE2YtTRegy9XPJ4U=;
-        b=W0vzKfbMSniEwUYBLxk3WHtG0hSZCnLx2K6R6OlCD0LwPHcI0RDH6i5waZnhw9kJzn
-         N3XxS+LMwYpLw3zKzLZPvpq8kQbRpVBxQOd0cp9yJQVqsiq5nRqcaGYfttvvc9jZLvu+
-         2wIFNiJQfVJFYf0U4AHxZloaqEy1T5MoLmCLMGxaAnvp04Ne3OesL8QVJAJ+jx3cBf7m
-         NYYwyY8hVUVn2y3ffHY34baOVwfd/NaDuKLK3XWSjDFD27zMPhmXLoQIm4kLLo51y6Xw
-         6gJqZw2LHxrwGkZhWstqT66lXaSHngVWk76252J05fblP/2/0CGeXg0WtXLs2euihfi4
-         PhTg==
+        d=gmail.com; s=20210112; t=1678914844;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IqbFt/pBqE5TKXfMvdh7DdqHmCUQvpuDlko3Y111n6Q=;
+        b=lHyNA0iN3AhDcoMXRc4Cv+gWXaGMDbun/JVL4l1g4S0/58rP+rSTdzf9e1pdbiFCRm
+         r2TQUH7mWheMx6e/lSR+eJWrVCXgUCaXFNyTzXra5YWHCkFFmT5WyiqPnmrY+tZ4StaT
+         C6WGkRNddO6y+9o+AV1dNbW7uYF6hugngMic37KCCq9oXndkUBb+BD32Kv8RX6TQGJdi
+         zKI8RO1MibqmEFWvFbIQE1FQhAowH+lAS/9TYkYsllS+gChbiTC598aEmM0LhEXZphFp
+         9UFV9rbF+QEFhlccG7eTvxDuqlwAXSZKKYb7JEDqsWtYOzMLxUm02K/4jayP45UcST28
+         l1zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678913795;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z84vdnHiRqRhIyxTsu5Pz3PgSNNcE2YtTRegy9XPJ4U=;
-        b=Us9oUMD/Cpu/2WDeZBBiupAIzwOwj4BODPWFT/OHxWtnYfDR3HMpd4WqaHsdvCfX8V
-         XqwDzwoNr9zPD6BFVE4YC5FtDEiPv4jHnFC+TeDamSdmSrtXqbuTV0BKHtQaYUE3DuCp
-         JY3qt3kensDSQx2eNLt93tMqsNYiAbsB6Q/3ptrgaUbDshrcuwH6SzxnduHb4FaPNJyX
-         L83HxZcawkOltuyg3VdvhzhjkF9Um123dQV+KTGhlIjxUhwrQDyrLfB0Qo0CCRBDdJjP
-         jhn/tAYxwd4rsBkXWVzBemU2opdG3yMj3yN0+WCxY17yEta3ytKWVToXspYJyMqDkDvK
-         jwIg==
-X-Gm-Message-State: AO0yUKWOsUAwkdcDVWVWww1wrPdj+FW3ynK0jgoGmPEdjxlamBurQBz1
-	Y3FaCJdaNKOUnxNtLv+sLK9AKiL4D/Gf4ZJ4AGxlJQ==
-X-Google-Smtp-Source: AK7set9Lqxc9Zjf6HNWj3hSvkV7xlNAl2GlygnkcJoOS+b4e1BHgUEzRwsa+zk5UtznFzSacYBz7tBCLaD6lhJ72m+A=
-X-Received: by 2002:a17:903:25d5:b0:1a0:4847:864c with SMTP id
- jc21-20020a17090325d500b001a04847864cmr377557plb.13.1678913795246; Wed, 15
- Mar 2023 13:56:35 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678914844;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IqbFt/pBqE5TKXfMvdh7DdqHmCUQvpuDlko3Y111n6Q=;
+        b=hlQh8xLXuyiuzes3nony5gyvHwdXQE3nxvyUEW4/AmfnKoInF2ZWWMf2L+OT3kExuR
+         Cle8e0zbFTtegdLEiz0PpHXmgt6sOZRT9xGQ3Qe799W5pBwJyrHd5/bgY/wdvZqRiwC9
+         vt6UJp6aAh/8wxMO+e4H/WARVG5bRoXHKAjpNuJmSLaimV1jgwlCBr0tKLKPzI2FC1ts
+         6INQJoasQ8rRdLn6Ol3O4xjGvOJ3KYSxJ4eSaXU9xiNTMNXS3Gl/ZnOYlumIvLkorLjt
+         lf60jTn92Mk7wr9927Ezaa83IONO7J6z/v97UNqH/bXqzZDEL4gLl8jmeMnAVp1W755E
+         BkJw==
+X-Gm-Message-State: AO0yUKXqaTbHHPXEJywAM5eFYfKNzGk1dw+0jDdzPwErjtjWYKoRAPAd
+	qQsK57fJ0J3E175IIDmR6qjua2GEOpQ=
+X-Google-Smtp-Source: AK7set8dS3PA4TFy/DP8vm97OAHvVKDEGbkpTI/0jnu7LSmYNPyb37++a3xBOqFPl+MnLEgwBhkOiw==
+X-Received: by 2002:a05:600c:45d2:b0:3ed:2a8f:e6dd with SMTP id s18-20020a05600c45d200b003ed2a8fe6ddmr8033503wmo.6.1678914843708;
+        Wed, 15 Mar 2023 14:14:03 -0700 (PDT)
+Received: from ?IPV6:2a01:c23:bcc4:9b00:c423:87da:b23:892a? (dynamic-2a01-0c23-bcc4-9b00-c423-87da-0b23-892a.c23.pool.telefonica.de. [2a01:c23:bcc4:9b00:c423:87da:b23:892a])
+        by smtp.googlemail.com with ESMTPSA id k3-20020a7bc403000000b003ed1f69c967sm3068957wmi.9.2023.03.15.14.14.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 14:14:03 -0700 (PDT)
+Message-ID: <15b12187-abcc-b77f-6538-ffae5988bd2b@gmail.com>
+Date: Wed, 15 Mar 2023 22:14:00 +0100
 MIME-Version: 1.0
-References: <05977cbb-8a8f-0a67-b4bd-b265dbb83280@free.fr> <895a3812-e490-cc40-0f8e-a88e166e8f24@linaro.org>
- <c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr> <13676dcc-944f-cf3d-8adf-ee3d4e8fa699@free.fr>
- <e5baf73b-3b9d-1011-2ed9-4b6fc7ee644f@free.fr> <CAPDyKFoAT-jMkYb7=m--q_eEb2xxH-VPQy5vaHNvw4s=WiAeCg@mail.gmail.com>
- <0450e34e-7190-104c-832a-150f15f7c825@free.fr> <3d91a067-c9c3-6d71-11a7-1289ea67f109@free.fr>
- <eecb86be-81e3-09cd-8ec7-4e77c42f2795@free.fr> <CAFBinCDHRhLSyFsEv7cdhSgZorj-TdR3HhqSBnAQcUtEsecV=Q@mail.gmail.com>
- <6ac1ecb1-eba4-b0a3-579c-afcbe532a474@free.fr> <CAPDyKFrC3a5-VP2DvCYGYUzKtX4Jc7cvNQOKfutW0sha=szOyg@mail.gmail.com>
- <c7e48c6f-530b-7198-b8bb-fc927a2fdc66@free.fr> <CAPDyKFpJR9rgadXEBn+73FKgmLM8sZgzNbKV_x_udwOSRGH44Q@mail.gmail.com>
- <893311e7-6fce-118b-a683-6988de161698@free.fr>
-In-Reply-To: <893311e7-6fce-118b-a683-6988de161698@free.fr>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 15 Mar 2023 21:55:58 +0100
-Message-ID: <CAPDyKFotQ3hVHM379f8yp7LBcyN6zGTz18x3X07_mx4mZsAh+A@mail.gmail.com>
-Subject: Re: [RFC PATCH] brcmfmac: add 43751 SDIO ids and initialization
-To: Marc Gonzalez <marc.w.gonzalez@free.fr>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Arend van Spriel <aspriel@gmail.com>, 
-	Franky Lin <franky.lin@broadcom.com>, Hante Meuleman <hante.meuleman@broadcom.com>, 
-	Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>, 
-	Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>, Alexander Prutskov <alep@cypress.com>, 
-	Joseph chuang <jiac@cypress.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Angus Ainslie <angus@akkea.ca>, Pierre-Hugues Husson <phh@phh.me>, 
-	linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Marc Gonzalez <marc.w.gonzalez@free.fr>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Pierre-Hugues Husson <phh@phh.me>, Rong Chen <rong.chen@amlogic.com>,
+ Yang Yingliang <yangyingliang@huawei.com>
+Cc: MMC <linux-mmc@vger.kernel.org>, AML <linux-amlogic@lists.infradead.org>
+References: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
+ <0696106f-8d70-6410-999a-fcda6c5b39c2@gmail.com>
+ <b6971cd6-80f2-522a-64fb-82b126500010@free.fr>
+ <1jcz5axc8j.fsf@starbuckisacylon.baylibre.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH] mmc: meson-gx: increase power-up delay
+In-Reply-To: <1jcz5axc8j.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230315_135638_085638_E13E4F3E 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20230315_141408_182690_4C291E00 
+X-CRM114-Status: GOOD (  23.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,45 +102,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 14 Mar 2023 at 17:38, Marc Gonzalez <marc.w.gonzalez@free.fr> wrote:
->
-> On 14/03/2023 12:08, Ulf Hansson wrote:
->
-> > If the delay is to manage vmmc and vqmmc, which is somewhat part of
-> > the generic specifications (SD/MMC), then it should be described in
-> > the host's node.
-> >
-> > A pwrseq is something special, which is also platform and device
-> > specific (the SDIO device). If the delays correspond to this, it
-> > should be part of the pwrseq node.
->
-> Uffe,
->
-> Wouldn't it make sense to warn, when probing for a non-removable card
-> returns nothing?
->
-> Something along these lines (which I can spin into a formal patch)
->
-> --- a/drivers/mmc/core/core.c
-> +++ b/drivers/mmc/core/core.c
-> @@ -2257,6 +2257,9 @@ void mmc_rescan(struct work_struct *work)
->                         break;
->         }
->
-> +       if (!mmc_card_is_removable(host) && !host->card)
-> +               dev_warn(mmc_dev(host), "no device found");
-> +
->         /*
->          * Ignore the command timeout errors observed during
->          * the card init as those are excepted.
->
-> Regards
->
+On 15.03.2023 16:27, Jerome Brunet wrote:
+> 
+> On Wed 15 Mar 2023 at 11:20, Marc Gonzalez <marc.w.gonzalez@free.fr> wrote:
+> 
+>> On 14/03/2023 20:45, Heiner Kallweit wrote:
+>>
+>>> On 14.03.2023 18:24, Marc Gonzalez wrote:
+>>>
+>>>> With the default power-up delay, on small kernels, the host probes
+>>>> too soon, and mmc_send_io_op_cond() times out.
+>>>
+>>> Looking at mmc_power_up() and how power_delay_ms is used
+>>> I wonder what you mean with "host probes too soon".
+>>
+>> Hello Heiner,
+>>
+>> Thanks for your interest in my patch! :)
+>>
+>> I should have added a link to the thread that led to the patch.
+>> https://patchwork.kernel.org/project/linux-wireless/patch/c1a215cf-94be-871b-2a8a-3cc381588f83@free.fr/
+>> Start at "I have run into another issue."
+>>
+>> Basically, I have an S905X2-based board.
+>> I built a small kernel for it (with only a few drivers), that boots really fast.
+>>
+>> mmc2 (SDIO controller hooked to WiFi chip) would not probe at all,
+>> unless I added lots of printks.
+>> Basically, calling mmc_send_io_op_cond() too soon after the controller
+>> has been reset leads to the CMD5 request timing out.
+>>
+>>
+> 
+> I tend to agree with Heiner here.
+> This patch is backing a contraint only reported on your design in the
+> driver of every AML SoC supported, for every MMC controller.
+> 
+> I think you should look first in your vmmc and vqmmc regulators and
+> their setup times.
+> 
+> "fixed-regulator" have properties which might be interesting to you,
+> like
+>  * startup-delay-us
+>  * off-on-delay-us
+> 
+>>> Are you sure that the additional delay is needed for the Amlogic MMC
+>>> block IP in general? Or could it be that your issue is caused by
+>>> a specific regulator and you need to add a delay there?
+>>
+>> The eternal question...
+>>
+>> I have only one type of board. (Actually, I have a reference design
+>> that is slightly different, so I should test on that one as well.)
+>>
 
-Seems reasonable to me! Please post a patch.
+Let me ask few more questions:
 
-Kind regards
-Uffe
+You said that the issue is with a SDIO card. How about eMMC and sdcard,
+does the issue occur for them too?
+
+Then you mention "too soon after reset", but add a delay to power-up.
+If the delay would be needed after reset, then shouldn't it be in
+meson_mmc_probe() after the call to device_reset_optional()?
+
+>> In vendor kernels, they add delays to the WiFi drivers.
+>> Maybe they have run into the issue, and they're just fixing the symptom?
+>>
+>> Default value for ios.power_delay_ms is 10 ms.
+>> msleep(ios.power_delay_ms) is called twice in mmc_power_up().
+>> So raising the delay from 10 to 20 adds 20 ms
+>> to the latency of initializing SDIO/SD/MMC controllers.
+>>
+>> Would you be willing to test if the problem manifests on your board?
+>>
+>> Regards
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
