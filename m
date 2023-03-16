@@ -4,68 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1765AC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Mar 2023 13:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6131C74A5B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Mar 2023 13:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e/F84jiscYiBOgm3QG7Ldr9nrjptlXpvWBT33drN0lQ=; b=0dp6FmLL4E+zJ2
-	QqMaK4rCjm0kv330hdnTgBHd1P0YOUG46Ocx734ERroTdHZfkwux3QJJ538lysm8jDNRtzRCKVRpC
-	EQRrVSZE1Mc41Oqrxpg0bJMwYecenzg511ozn8xH9cwzcgsEMJRsPPy17QFw6LZw/ZGMhBGl4wLOe
-	rgyWml1+QrkYKqzoNqPWDHDwB3Fxm+T5/Zdnuq31ecGIQWJFMUPsXbCGR7hOOeLAHgoyGVCsGiVPv
-	/iSelnPlt7cC+rVPRGlk/FCb588FPeiU4BCXuGb8JwWYzSwNB8rk2xm9cyrMyljinlT4w5hj05ILQ
-	ElacVmjENJEaqV2sCoEw==;
+	List-Owner; bh=MA8kZplkvTEWbGccT6JpvaXq6XvYY7MAxY4IxIgHPX4=; b=kZCF+hZWnQddKf
+	zUbrQRgopbKkOoNTuNrIEB+fWF+WWDt/3/DdCWe80cFimTl+iEhbXnWZugjivlkzfSwb4AOa+MEv+
+	n1131la9ErF3eULOzO+vhcrjbv8z5XixRr412V6xTo34HfRXdn6ArXr8pzX7Y4dRd0qEfWyEFBYXd
+	DLAKGYLlaJLxdSbEkajDxwTsUAI2P9tO9FqMUXYNLTNugZ8deROl44PQ42QO3nNQt1ZFssE+SVB3s
+	kDKD3HaW7bMYsJrzFJtYVLcBcTMLIzqzOiAVkpY1muSPfgWtc/KnXqX1vUhDun0rMwY6mqMQD0NjQ
+	iKD/vYmD5wujg9gUjSLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcnvg-00GZwF-2N;
-	Thu, 16 Mar 2023 13:46:04 +0000
-Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
+	id 1pco37-00GbIZ-1k;
+	Thu, 16 Mar 2023 13:53:45 +0000
+Received: from mail-il1-f178.google.com ([209.85.166.178])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcmmM-00GOzI-2z
-	for linux-amlogic@lists.infradead.org;
-	Thu, 16 Mar 2023 12:32:25 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id AF2F32003E0;
-	Thu, 16 Mar 2023 13:32:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1678969936;
-	bh=7sByCZQonxzhEDH1I+lansujnbSB/8bL/D+4bF4ipS0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Mz5OTwzumY8eM0GX0Rr3NJGStsNfL2fIjqZpzD6k6IjaJtslpnswQh+pBfHEAXtuH
-	 ouYMnm7m6nLeNSiXyCxH8pmkcvSFmI7EQZHNDwr1QXqdSb4zZ3fuNV7wCEu8nJ5C5i
-	 GqYiIZbdPSx5tPhWLmOzUdArqRVLk1DRFSAhjFzV+WkS88SerVNU0EhP0z8gJ5TCt5
-	 Ia9lux1JvYaVwEE/VpNAI+R+CWB9WFzVDg9ApBpOn1axojWCmlNPGy/tknAUC5QL0w
-	 0z/7nK3RHoLj06nSqrNDJilUoF5KOfzSehRsJQj/xGNJ3ZoPtI1P2xPXHvjDNA8lHm
-	 lpfa5nkKD8T8A==
-Message-ID: <36feb359-e59b-d28a-8651-3178b37eccf7@free.fr>
-Date: Thu, 16 Mar 2023 13:32:04 +0100
+	id 1pco32-00GbGa-1Q;
+	Thu, 16 Mar 2023 13:53:44 +0000
+Received: by mail-il1-f178.google.com with SMTP id j6so1013847ilr.7;
+        Thu, 16 Mar 2023 06:53:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678974816;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=D2YWliqp5lNeWu2afRd3ESu/UMsrFmX/tSRvg7IvURw=;
+        b=doShDdSDJgR46wzGgA3oObdx5RFUSbNwQoi8ZwfoWV7M+q/vnSZaIcuJcUrui09Dw0
+         kdbP6+8uldVXC/J5/60RndQOuKUkCh2I1xskXZJzNxYSvbEVhmWMxf1T5GgRF9leyhGb
+         2ZUkwKd5YNu5l4r64de2P0CUrVEm5EiZdkNSI+yKgKmRhRjI4mqYr658WIVj4pNuYxIZ
+         f8aDV21tEHy+Nn69gQhPugO88GvX+4FAWOEjsdQIcQB4JMq++LRMrp7X4jIrKcKk7AVK
+         C+bK3wf1DxSxVR/C5/vsfkefnd5CE4YmhhOYIjLcPnNg2wwSwdtmMia7cju0k3Y+Wdlr
+         uEWQ==
+X-Gm-Message-State: AO0yUKVhw7Y+9rDYichptV+Nu/KqBjMJUTgbXupreGQJ0BFO7MC5T9kL
+	VNxzr7s0V9jIqqF/TSZisA==
+X-Google-Smtp-Source: AK7set9+ROvBZ84DStyZ/uJRXWEQwE8vC++tqt8GomgY6VU/ZPg3glzuUD1UFHjHk1y+Mx6YW2MsHA==
+X-Received: by 2002:a05:6e02:1a2f:b0:316:6c68:73df with SMTP id g15-20020a056e021a2f00b003166c6873dfmr9633016ile.31.1678974815995;
+        Thu, 16 Mar 2023 06:53:35 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id k26-20020a02c77a000000b003eb1eee43a7sm2515373jao.112.2023.03.16.06.53.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 06:53:35 -0700 (PDT)
+Received: (nullmailer pid 2744941 invoked by uid 1000);
+	Thu, 16 Mar 2023 13:53:34 -0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] mmc: meson-gx: increase power-up delay
-Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Pierre-Hugues Husson <phh@phh.me>, Rong Chen <rong.chen@amlogic.com>,
- Yang Yingliang <yangyingliang@huawei.com>
-Cc: MMC <linux-mmc@vger.kernel.org>, AML <linux-amlogic@lists.infradead.org>
-References: <11a8a0c8-a5b1-8f38-a139-97172ab7be68@free.fr>
- <0696106f-8d70-6410-999a-fcda6c5b39c2@gmail.com>
- <b6971cd6-80f2-522a-64fb-82b126500010@free.fr>
- <1jcz5axc8j.fsf@starbuckisacylon.baylibre.com>
- <15b12187-abcc-b77f-6538-ffae5988bd2b@gmail.com>
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-In-Reply-To: <15b12187-abcc-b77f-6538-ffae5988bd2b@gmail.com>
+From: Rob Herring <robh@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+In-Reply-To: <2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com>
+References: <2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com>
+Message-Id: <167897435071.2729635.1810239851912837866.robh@kernel.org>
+Subject: Re: [PATCH v5] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
+Date: Thu, 16 Mar 2023 08:53:34 -0500
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230316_053223_415886_5C98090D 
-X-CRM114-Status: GOOD (  11.26  )
+X-CRM114-CacheID: sfid-20230316_065340_478923_02AA6216 
+X-CRM114-Status: GOOD (  14.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,142 +80,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/03/2023 22:14, Heiner Kallweit wrote:
 
-> Let me ask few more questions:
+On Wed, 15 Mar 2023 22:23:57 +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson pin controller binding to yaml.
 > 
-> You said that the issue is with a SDIO card. How about eMMC and sdcard,
-> does the issue occur for them too?
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - consider that more than one compatible can be set
+> - remove bus part from example
+> v3:
+> - remove minItem/maxItem properties for compatible
+> v4:
+> - split patch to be able to deal with the different reg/reg-names
+> v5:
+> - remove compatible definition from common yaml
+> - move pincfg-node and pinmux-node definition to meson-gpio object definition
+> ---
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 63 +++++++++++++
+>  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 52 ++++++++++
+>  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 64 +++++++++++++
+>  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 68 ++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 72 ++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 74 +++++++++++++++
+>  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
+>  7 files changed, 393 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> 
 
-I have never seen an issue with eMMC not probing on this board.
-(I have not tested the SD card slot, as I'm using it for serial.)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I did a (probably silly) test by setting mmc->ios.power_delay_ms = 0
-in the driver, and logging relevant events (for timing).
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: 'unevaluedProperties' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
-Here's a boot log where both mmc1 & mmc2 probe correctly:
+doc reference errors (make refcheckdocs):
 
-[    0.879968] >ffe03000.sd
-[    0.880320] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    0.891604] +mmc2
-[    0.895179] -mmc2
-[    0.896873] +mmc2
-[    0.898829] <ffe03000.sd
-[    0.951755] Q
-[    1.049162] >ffe07000.mmc
-[    1.049602] meson-gx-mmc ffe07000.mmc: allocated mmc-pwrseq
-[    1.061378] +mmc1
-[    1.061666] -mmc1
-[    1.062841] +mmc1
-[    1.063532] <ffe07000.mmc
-[    1.072056] Q
-[    1.079669] R
-[    1.123210] mmc2: new ultra high speed SDR50 SDIO card at address 0001
-[    1.193650] mmc1: new HS200 MMC card at address 0001
-[    1.198553] mmcblk1: mmc1:0001 SCA16G 14.7 GiB 
-[    1.205777] brcmf_sdio_probe_attach:  AFTER
-[    1.209853] mmcblk1boot0: mmc1:0001 SCA16G 4.00 MiB 
-[    1.211218] mmcblk1boot1: mmc1:0001 SCA16G 4.00 MiB 
-[    1.212254] mmcblk1rpmb: mmc1:0001 SCA16G 4.00 MiB, chardev (246:0)
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Analysis for mmc2
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[    0.879968] ENTER meson_mmc_probe()
-[    0.880320] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    0.891604] ENTER mmc_power_up()
-[    0.895179]  EXIT mmc_power_up()
-[    0.896873] ENTER mmc_power_up() => premature exit
-[    0.898829]  EXIT meson_mmc_probe()
-[    0.951755] ENTER mmc_attach_sdio()
-[    1.123210] mmc2: new ultra high speed SDR50 SDIO card at address 0001
+pip3 install dtschema --upgrade
 
-mmc_attach_sdio() is called 60 ms after entering mmc_power_up()
-
-
-Analysis for mmc1
-
-[    1.049162] ENTER meson_mmc_probe()
-[    1.049602] meson-gx-mmc ffe07000.mmc: allocated mmc-pwrseq
-[    1.061378] ENTER mmc_power_up()
-[    1.061666]  EXIT mmc_power_up()
-[    1.062841] ENTER mmc_power_up()
-[    1.063532]  EXIT meson_mmc_probe() => premature exit
-[    1.072056] ENTER mmc_attach_sdio()
-[    1.079669] ENTER mmc_attach_mmc()
-[    1.193650] mmc1: new HS200 MMC card at address 0001
-
-mmc_attach_mmc() is called 18 ms after entering mmc_power_up()
-
-
-
-Here's a boot log where mmc2 *DOES NOT* probe correctly:
-
-[    0.875868] >ffe03000.sd
-[    0.876196] meson-gx-mmc ffe03000.sd: allocated mmc-pwrseq
-[    0.881407] +mmc2
-[    0.886832] -mmc2
-[    0.888544] +mmc2
-[    0.894688] <ffe03000.sd
-[    0.901587] Q
-[    0.908937] R
-[    0.913466] mmc2: YO no device WTF
-[    1.042609] >ffe07000.mmc
-[    1.042910] meson-gx-mmc ffe07000.mmc: allocated mmc-pwrseq
-[    1.053460] +mmc1
-[    1.053694] -mmc1
-[    1.055039] +mmc1
-[    1.056956] <ffe07000.mmc
-[    1.064126] Q
-[    1.075205] R
-[    1.197676] mmc1: new HS200 MMC card at address 0001
-[    1.198337] mmcblk1: mmc1:0001 SCA16G 14.7 GiB 
-[    1.203947] mmcblk1boot0: mmc1:0001 SCA16G 4.00 MiB 
-[    1.207858] mmcblk1boot1: mmc1:0001 SCA16G 4.00 MiB 
-[    1.212593] mmcblk1rpmb: mmc1:0001 SCA16G 4.00 MiB, chardev (246:0)
-
-In this instance, for mmc2, mmc_attach_sdio() is called 20 ms after
-entering mmc_power_up() and CMD5 times out (probe failure).
-
-
-> Then you mention "too soon after reset", but add a delay to power-up.
-> If the delay would be needed after reset, then shouldn't it be in
-> meson_mmc_probe() after the call to device_reset_optional()?
-
-
-The first mmc_power_up() is called from:
-
-[    0.916446]  mmc_power_up+0x2c/0xe4
-[    0.926186]  mmc_start_host+0x94/0xa0
-[    0.926197]  mmc_add_host+0x84/0xf0
-[    0.926205]  meson_mmc_probe+0x374/0x3f4
-[    0.933086]  platform_probe+0x68/0xe0
-[    0.940159]  really_probe+0xbc/0x2f0
-[    0.948008]  __driver_probe_device+0x78/0xe0
-[    0.955080]  driver_probe_device+0xd8/0x160
-[    0.955087]  __driver_attach_async_helper+0x4c/0xc0
-[    0.965689]  async_run_entry_fn+0x34/0xe0
-[    0.965699]  process_one_work+0x1cc/0x320
-[    0.972847]  worker_thread+0x14c/0x450
-[    0.972855]  kthread+0x10c/0x110
-[    1.018906]  ret_from_fork+0x10/0x20
-
-
-The second mmc_power_up() (prematurely exited) is called from:
-
-[    1.061686]  mmc_power_up+0x2c/0xe4
-[    1.065136]  mmc_rescan+0x18c/0x310
-[    1.068586]  process_one_work+0x1cc/0x320
-[    1.072553]  worker_thread+0x14c/0x450
-[    1.076262]  kthread+0x10c/0x110
-[    1.086528]  ret_from_fork+0x10/0x20
-
-
-I'm confused about device_reset_optional() vs mmc_power_up().
-Do they both reset the controller?
-
-Regards
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
 _______________________________________________
