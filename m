@@ -4,149 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93CF1C7618A
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:03:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01F29C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Mar 2023 16:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u2jJfkuL4+l3JD1ERk8cXxnwTZaJoo+R9/BmeWieMpY=; b=blODeETn9WUKpW
-	HzmosjmT8sGzg35eBpXP/BnIsEHcqdRq3BuZhvn9VadoGmgG4dyThO292xUsqoosKTDRMRxdRyvPh
-	YQFZV4LJe23j0s+gLSX3trvgm1L2X4bSTppeQ9aaJLGcF3No3XnLLFxyAvYa5KS7ijrx4hvdcmBOF
-	DCiby+ibN1uJBE0xxz2+ZXkxLg0IK1YORE6JFiRzK0GM2HldZxbx009EN6NhBTNglaG/XMM9rQhbM
-	uhx611CA2RR6hm1hwfH2kdIKlXIBO9qVDgDDV/MmzNo8TAZzufL/7TOnlH+a/Z34rDpFSvdYQATlZ
-	4VjRzYevt8QvLGwXTgDQ==;
+	List-Owner; bh=xcVJ2pN3d3OWtMawfyNbAdpEyHsfGEUBgkyvCO0yYY8=; b=bwTxw9SMlimMHl
+	xLW88RLhrT5JRHRvlLam8rVgZeR85M54ptZHm5LonYloLecAkxrd7fLVAa14lgnK4gQFvDPIFhVYd
+	6SrY8fYY6vCITvQTDrucebNOaGLavHai9h5dtUrxHqm4DIwWBj4ZHxNOe6x56rAbOrAqYMoI/0++X
+	H4aUrN9m9bAuouyc6nXfshS+gpympgJnLDblzapLGUcgoJEBie9K+67k6EF5KaMtWWh3MDvb7Lz+9
+	b7/U4Q3s7NY8vjOb7cpUb7E3nbBzlqd3W8VaYQ85vwu3IBv6NJxDTbPkDd8YHpvm6e1oUTA5j7ab1
+	LosCI00A+JyOWg3NR74g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdvUp-006z7W-27;
-	Sun, 19 Mar 2023 16:02:59 +0000
-Received: from mail-dm6nam12on20616.outbound.protection.outlook.com ([2a01:111:f400:fe59::616] helo=NAM12-DM6-obe.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pagj2-00FbvQ-6c; Fri, 10 Mar 2023 17:40:20 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VvOCvcU1esDFNcdTp9fMTiP9YrJ27WtckgNuuQ/M0J4iK2Q4ijcgzDqYIYSSe165HTS2tNZ2tjYj4aM7kQ0UzA1irErWBB9Dnho707qv5nrGxysvCTC/AQW+yjED8xHWA4JUFunWqNwzFEtfN7znPjemgJAA7dyRJAvUzn550ciyaJZj3O74w+N+xP9EqFlKBcq6Mh+PqpBB8ftWDodVwZiUF+kM43dqXB7sXlV4iDvq8p9djZta/QikpwSomc98+TN61iSeuh3ifW1GmR5Obe7EpjnLlKbetSp9x1H2DNWv+qxf29ljOnl2RtnTRjTA+tQ02uxJozFCjbkujhAIcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KaUhyoeEK1tG4Jq20ydCTjifKBTSA159AvAfZW0MjkQ=;
- b=HTuF/IcpRCGVLCnYF04aGY9I6AvwqUop50bUv2x44FWfCPyqI9NjEIJpuKXJb0RHG8LQCGV1Qi59cW/FnWqj0bXnK6W6kAYA4+WJQMB/WYJC32MlfHc7/BbR5hPdYSMM/NwqkRFTeNtZUDNrJhCwjM0phRE3FWhiDaFwbu2gZCYA0JCjoB/Z7Bx0b7JO8xNeRJ7+aP6bVNN00OOS+ZZOY/Ixb6sB3ZsRp4FNxE/G1KJn9uRbJHhDsP775z49wJTk6rGHg9JNJq7CHCOAkPhNrKiaKrhULHQzFh36IkBH6XK6PQLWS5HVeQWseg/eXEJSkO9vtusEAsi9TQXJRoX5lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KaUhyoeEK1tG4Jq20ydCTjifKBTSA159AvAfZW0MjkQ=;
- b=OdrPcG0RPVLwrF5qKa+S3KNhS0bIJuUtmwjwgs6V1QBAN6Z+xN8kTmhfGO1HGcKpOUTkXCT6rdQGvj/lnh9GUEJcPwzVtwps0DAkHLR7KoLy/K7wVgughFMbxCS9QdM/ZvcljsOGRgmwUNTXysNVbkfzFAe8pgof1SCzoiXE6sQ=
-Received: from MW4PR04CA0200.namprd04.prod.outlook.com (2603:10b6:303:86::25)
- by BN9PR12MB5338.namprd12.prod.outlook.com (2603:10b6:408:103::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.20; Fri, 10 Mar
- 2023 17:40:10 +0000
-Received: from CO1NAM11FT074.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:86:cafe::52) by MW4PR04CA0200.outlook.office365.com
- (2603:10b6:303:86::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29 via Frontend
- Transport; Fri, 10 Mar 2023 17:40:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT074.mail.protection.outlook.com (10.13.174.254) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.19 via Frontend Transport; Fri, 10 Mar 2023 17:40:10 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 11:40:03 -0600
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 10 Mar 2023 11:39:36 -0600
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To: <broonie@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <jic23@kernel.org>, <tudor.ambarus@microchip.com>,
-	<pratyush@kernel.org>, <Sanju.Mehta@amd.com>, <chin-ting_kuo@aspeedtech.com>,
-	<clg@kaod.org>, <kdasu.kdev@gmail.com>, <f.fainelli@gmail.com>,
-	<rjui@broadcom.com>, <sbranden@broadcom.com>, <eajames@linux.ibm.com>,
-	<olteanv@gmail.com>, <han.xu@nxp.com>, <john.garry@huawei.com>,
-	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <narmstrong@baylibre.com>,
-	<khilman@baylibre.com>, <matthias.bgg@gmail.com>, <haibo.chen@nxp.com>,
-	<linus.walleij@linaro.org>, <daniel@zonque.org>, <haojian.zhuang@gmail.com>,
-	<robert.jarzmik@free.fr>, <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-	<heiko@sntech.de>, <krzysztof.kozlowski@linaro.org>, <andi@etezian.org>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
-	<jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-	<masahisa.kojima@linaro.org>, <jaswinder.singh@linaro.org>,
-	<rostedt@goodmis.org>, <mingo@redhat.com>, <l.stelmach@samsung.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <alex.aring@gmail.com>, <stefan@datenfreihafen.org>,
-	<kvalo@kernel.org>, <james.schulman@cirrus.com>, <david.rhodes@cirrus.com>,
-	<tanureal@opensource.cirrus.com>, <rf@opensource.cirrus.com>,
-	<perex@perex.cz>, <tiwai@suse.com>, <npiggin@gmail.com>,
-	<christophe.leroy@csgroup.eu>, <mpe@ellerman.id.au>, <oss@buserror.net>,
-	<windhl@126.com>, <yangyingliang@huawei.com>, <william.zhang@broadcom.com>,
-	<kursad.oney@broadcom.com>, <jonas.gorski@gmail.com>,
-	<anand.gore@broadcom.com>, <rafal@milecki.pl>
-CC: <git@amd.com>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-	<radu_nicolae.pirea@upb.ro>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<yogeshgaur.83@gmail.com>, <konrad.dybcio@somainline.org>,
-	<alim.akhtar@samsung.com>, <ldewangan@nvidia.com>,
-	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <michal.simek@amd.com>,
-	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
-	<linux-tegra@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-wpan@vger.kernel.org>, <libertas-dev@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-	<linux-iio@vger.kernel.org>, <michael@walle.cc>, <palmer@dabbelt.com>,
-	<linux-riscv@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<patches@opensource.cirrus.com>, <linuxppc-dev@lists.ozlabs.org>,
-	<amitrkcian2002@gmail.com>, <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH V6 15/15] spi: spi-zynqmp-gqspi: Add parallel memories support in GQSPI driver
-Date: Fri, 10 Mar 2023 23:02:17 +0530
-Message-ID: <20230310173217.3429788-16-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230310173217.3429788-1-amit.kumar-mahapatra@amd.com>
-References: <20230310173217.3429788-1-amit.kumar-mahapatra@amd.com>
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT074:EE_|BN9PR12MB5338:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82a898d3-01dc-46cf-1621-08db218e7f22
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	Xt7TUEmhxJkG3uhUkGG89AnqA6rHXB2b1oBhbxumHhtWcnd2jUGpN0Q0HWHBfycuejtZ6LXt1TqMJvuYAsrKGP1+WuWryVzQtzdfFYCpEMfAcC0MV5BwoBUD6h4KSv/BDw2UeH/1mb5K2zfHk81eqUKAnb0+ZESBftRz7hxRZNVrze+8TgKYBj16bkdtEPgnf5CuakBOWoScoxkhtWbbEQb3I67slwNJLGIBFzmkdq/lxolX8/CHR3lbR+C32LP6ET5jxOB7c73GCv7YUoERmKCQCx6EUgnLm9ar7tTpfPDQak1vlkLYqPNJT/L9DSaJVnjCpLZUB1joIVtelqkV3FyOjSz+8+ZL+nj/QvH5mbzzWIEzKPC78N43lcgWLogk5OnKPd81ZllRwfOEkmpjsUSo/TU6ZK4zwbC22jfOdPKxmfsfjZMSMzl5BwbqyEkzfkHoG/okqPORgpb/p82BswKWG9hjg/rx87+0mhuVUxUOC7p+iWG8p5T7zXhqD+AoNqQJymlvwK6qONtCbFxqVLrFMGEmP5F0ElvEBvVvYl17GvgekYXP7edQ/+OUXiLug0ZN92dvILCd+OJjq5xWBeALWCHLQBdboneaQj6UzMwJvyjeR70tP1rSOAgb9dRrb/62Rz7hnB5bExgMeQJhvrfj6hCHcF1MBkDm6U08A9j9nVRxw6RRT9Zdbrb6f5hsDcplt4WFgtXxNTa3puNv2gkMhNn4G/f7o7eRv6MFOg6onDbuRNSlKnLucDWdeXca5fpwtyKOE6meHTurpmIGWDHEcSZbYnLIhRoPkXXiQFj/0fCmkRhAsKgxz3TPNsDO1/Yq3idIzNTxcbtQbrZieRm2cQwXMjIsBk0QM6qZkMs=
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199018)(46966006)(40470700004)(36840700001)(6666004)(83380400001)(82740400003)(1191002)(81166007)(478600001)(54906003)(110136005)(82310400005)(36860700001)(8936002)(40480700001)(186003)(5660300002)(40460700003)(316002)(1076003)(26005)(36756003)(7336002)(7416002)(7276002)(7366002)(7406005)(426003)(8676002)(921005)(356005)(47076005)(336012)(70206006)(70586007)(41300700001)(86362001)(2616005)(4326008)(2906002)(41080700001)(84006005)(83996005)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:40:10.3038
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82a898d3-01dc-46cf-1621-08db218e7f22
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	CO1NAM11FT074.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5338
+	id 1pdvUt-006zCI-1w;
+	Sun, 19 Mar 2023 16:03:03 +0000
+Received: from smtp-out1.suse.de ([2001:67c:2178:6::1c])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pcjy2-00FsoL-0Y;
+	Thu, 16 Mar 2023 09:32:15 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id E58EF21852;
+	Thu, 16 Mar 2023 09:32:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1678959130; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LgQ6KC2ybaQuhcxvNbj5yWV84Hdg07Eok3qBPbbxY94=;
+	b=H9aXq6XWzgXy3V6gUMaMgKEQOC4u2wwCwuM31XT6epw3vcSavDTpG7v1DmpLitT3aAzvrb
+	Uij7YtTtCMzKsnoVFyM4P36fE8radT/BVqUmJO5oz33vf5WRPcRwuHN+AiCd+tOxzXuyQp
+	7HO6F55yqLXCARRi8VELwLEQafIfemA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1678959130;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LgQ6KC2ybaQuhcxvNbj5yWV84Hdg07Eok3qBPbbxY94=;
+	b=vrFmJJMHnJyGAG4vQo3kBbAm10wkR+7Kjjsf57BxURiziFHRuM5x12k5OToJ7bvAHK8XWM
+	BGwhhqI50dx0VBCA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id DE806133E0;
+	Thu, 16 Mar 2023 09:32:08 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap2.suse-dmz.suse.de with ESMTPSA
+	id 9o+MNRjiEmRkRAAAMHmgww
+	(envelope-from <tiwai@suse.de>); Thu, 16 Mar 2023 09:32:08 +0000
+Date: Thu, 16 Mar 2023 10:32:08 +0100
+Message-ID: <87ttylhwiv.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Jaroslav Kysela <perex@perex.cz>,	Takashi Iwai <tiwai@suse.com>,	Liam
+ Girdwood <lgirdwood@gmail.com>,	Mark Brown <broonie@kernel.org>,	V sujith
+ kumar Reddy <Vsujithkumar.Reddy@amd.com>,	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,	Robert Jarzmik
+ <robert.jarzmik@free.fr>,	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,	Claudiu Beznea
+ <claudiu.beznea@microchip.com>,	Gaosheng Cui <cuigaosheng1@huawei.com>,
+	Thierry Reding <thierry.reding@gmail.com>,	Jonathan Hunter
+ <jonathanh@nvidia.com>,	Mohan Kumar <mkumard@nvidia.com>,	Geoff Levand
+ <geoff@infradead.org>,	Takashi Sakamoto <o-takashi@sakamocchi.jp>,	Michael
+ Ellerman <mpe@ellerman.id.au>,	Charles Keepax
+ <ckeepax@opensource.cirrus.com>,	Vijendar Mukunda
+ <Vijendar.Mukunda@amd.com>,	syed saba kareem <syed.sabakareem@amd.com>,
+	Mario Limonciello <mario.limonciello@amd.com>,	Meng Tang
+ <tangmeng@uniontech.com>,	Martin =?ISO-8859-2?Q?Povi=B9er?=
+ <povik+lin@cutebit.org>,	Codrin Ciubotariu
+ <codrin.ciubotariu@microchip.com>,	Peter Rosin <peda@axentia.se>,	Ray Jui
+ <rjui@broadcom.com>,	Scott Branden <sbranden@broadcom.com>,	Allison Randal
+ <allison@lohutok.net>,	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thomas Gleixner <tglx@linutronix.de>,	Alexander Sverdlin
+ <alexander.sverdlin@gmail.com>,	Kuninori Morimoto
+ <kuninori.morimoto.gx@renesas.com>,	Richard Fitzgerald
+ <rf@opensource.cirrus.com>,	James Schulman <james.schulman@cirrus.com>,
+	David Rhodes <david.rhodes@cirrus.com>,	Lucas Tanure
+ <tanureal@opensource.cirrus.com>,	Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>,	Banajit Goswami <bgoswami@quicinc.com>,
+	Miaoqian Lin <linmq006@gmail.com>,	Colin Ian King <colin.i.king@gmail.com>,
+	Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,	Zhang Qilong
+ <zhangqilong3@huawei.com>,	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Liang He <windhl@126.com>,	Shengjiu Wang <shengjiu.wang@gmail.com>,	Xiubo
+ Li <Xiubo.Lee@gmail.com>,	Shawn Guo <shawnguo@kernel.org>,	Sascha Hauer
+ <s.hauer@pengutronix.de>,	Yang Yingliang <yangyingliang@huawei.com>,
+	Minghao Chi <chi.minghao@zte.com.cn>,	Kai Vehmanen
+ <kai.vehmanen@linux.intel.com>,	Bard Liao
+ <yung-chuan.liao@linux.intel.com>,	Pierre-Louis Bossart
+ <pierre-louis.bossart@linux.intel.com>,	Cezary Rojewski
+ <cezary.rojewski@intel.com>,	Liam Girdwood
+ <liam.r.girdwood@linux.intel.com>,	Peter Ujfalusi
+ <peter.ujfalusi@linux.intel.com>,	Ranjani Sridharan
+ <ranjani.sridharan@linux.intel.com>,	Akihiko Odaki
+ <akihiko.odaki@gmail.com>,	Amadeusz =?ISO-8859-2?Q?S=B3awi=F1ski?=
+ <amadeuszx.slawinski@linux.intel.com>,	Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>,	Hans de Goede <hdegoede@redhat.com>,
+	Moises Cardona <moisesmcardona@gmail.com>,	Zhen Ni <nizhen@uniontech.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,	Andrey Turkin
+ <andrey.turkin@gmail.com>,	Muralidhar Reddy <muralidhar.reddy@intel.com>,
+	Zhu Ning <zhuning0077@gmail.com>,	Gongjun Song <gongjun.song@intel.com>,
+	Shuming Fan <shumingf@realtek.com>,	Yong Zhi <yong.zhi@intel.com>,	Lior
+ Amsalem <alior@marvell.com>,	Andrew Lunn <andrew@lunn.ch>,	Hezi Shahmoon
+ <hezi@marvell.com>,	Neta Zur Hershkovits <neta@marvell.com>,	Marcin Wojtas
+ <mw@semihalf.com>,	Matthias Brugger <matthias.bgg@gmail.com>,	Jiasheng
+ Jiang <jiasheng@iscas.ac.cn>,	Ricardo Ribalda <ribalda@chromium.org>,
+	Trevor Wu <trevor.wu@mediatek.com>,	Dan Carpenter <error27@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,	Neil Armstrong
+ <neil.armstrong@linaro.org>,	Kevin Hilman <khilman@baylibre.com>,	Heiko
+ Stuebner <heiko@sntech.de>,	Nicolas Frattaroli
+ <frattaroli.nicolas@gmail.com>,	Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,	Sylwester Nawrocki
+ <s.nawrocki@samsung.com>,	Linh Phung <linh.phung.jy@renesas.com>,	Shang
+ XiaoJing <shangxiaojing@huawei.com>,	Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>,	Biju Das
+ <biju.das.jz@bp.renesas.com>,	Orson Zhai <orsonzhai@gmail.com>,	Baolin Wang
+ <baolin.wang@linux.alibaba.com>,	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,	Arnaud Pouliquen
+ <arnaud.pouliquen@foss.st.com>,	Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>,	Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,	Chen-Yu Tsai <wens@csie.org>,	Jernej
+ Skrabec <jernej.skrabec@gmail.com>,	Samuel Holland <samuel@sholland.org>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,	Li Chen <lchen@ambarella.com>,
+	Ban Tao <fengzheng923@gmail.com>,	Sameer Pujar <spujar@nvidia.com>,
+	YueHaibing <yuehaibing@huawei.com>,	Jiapeng Chong
+ <jiapeng.chong@linux.alibaba.com>,	Li kunyu <kunyu@nfschina.com>,	Peter
+ Ujfalusi <peter.ujfalusi@gmail.com>,	Jarkko Nikula
+ <jarkko.nikula@bitmer.com>,	Kunihiko Hayashi
+ <hayashi.kunihiko@socionext.com>,	Masami Hiramatsu <mhiramat@kernel.org>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,	Arnd Bergmann
+ <arnd@arndb.de>,	Linus Walleij <linus.walleij@linaro.org>,	Michal Simek
+ <michal.simek@xilinx.com>,	Max Filippov <jcmvbkbc@gmail.com>,
+	alsa-devel@alsa-project.org,	kernel@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,	linux-tegra@vger.kernel.org,	Nicholas
+ Piggin <npiggin@gmail.com>,	Christophe Leroy
+ <christophe.leroy@csgroup.eu>,	linuxppc-dev@lists.ozlabs.org,
+	asahi@lists.linux.dev,	Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,	patches@opensource.cirrus.com,
+	Fabio Estevam <festevam@gmail.com>,	Nicolin Chen <nicoleotsuka@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,	AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org,	Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,	linux-sunxi@lists.linux.dev,
+	linux-omap@vger.kernel.org,	linux-xtensa@linux-xtensa.org
+Subject: Re: [PATCH 000/173] ALSA/ASoC: Convert to platform remove callback returning void
+In-Reply-To: <20230315150745.67084-1-u.kleine-koenig@pengutronix.de>
+References: <20230315150745.67084-1-u.kleine-koenig@pengutronix.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230310_094016_377741_5BEE9CE8 
-X-CRM114-Status: GOOD (  18.59  )
+X-CRM114-CacheID: sfid-20230316_023214_381539_DEEAB321 
+X-CRM114-Status: GOOD (  20.80  )
 X-Mailman-Approved-At: Sun, 19 Mar 2023 09:02:31 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -159,115 +176,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-During GQSPI driver probe set ctlr->multi-cs-cap for enabling multi CS
-capability of the controller. In parallel mode the controller can either
-split the data between both the flash or can send the same data to both the
-flashes, this is determined by the STRIPE bit. While sending commands to
-the flashes the GQSPI driver send the same command to both the flashes by
-resetting the STRIPE bit, but while writing/reading data to & from the
-flash the GQSPI driver splits the data evenly between both the flashes by
-setting the STRIPE bit.
+On Wed, 15 Mar 2023 16:04:52 +0100,
+Uwe Kleine-K=F6nig wrote:
+> =
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/spi/spi-zynqmp-gqspi.c | 39 +++++++++++++++++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+> Hello,
+> =
 
-diff --git a/drivers/spi/spi-zynqmp-gqspi.c b/drivers/spi/spi-zynqmp-gqspi.c
-index 3d2b92a88e8a..d795d17d2541 100644
---- a/drivers/spi/spi-zynqmp-gqspi.c
-+++ b/drivers/spi/spi-zynqmp-gqspi.c
-@@ -23,6 +23,7 @@
- #include <linux/spinlock.h>
- #include <linux/workqueue.h>
- #include <linux/spi/spi-mem.h>
-+#include <linux/mtd/spi-nor.h>
- 
- /* Generic QSPI register offsets */
- #define GQSPI_CONFIG_OFST		0x00000100
-@@ -192,6 +193,7 @@ struct qspi_platform_data {
-  * @op_lock:		Operational lock
-  * @speed_hz:          Current SPI bus clock speed in hz
-  * @has_tapdelay:	Used for tapdelay register available in qspi
-+ * @is_parallel:		Used for multi CS support
-  */
- struct zynqmp_qspi {
- 	struct spi_controller *ctlr;
-@@ -214,8 +216,33 @@ struct zynqmp_qspi {
- 	struct mutex op_lock;
- 	u32 speed_hz;
- 	bool has_tapdelay;
-+	bool is_parallel;
- };
- 
-+/**
-+ * zynqmp_gqspi_update_stripe - For GQSPI controller data stripe capabilities
-+ * @op:	Pointer to mem ops
-+ * Return:      Status of the data stripe
-+ *
-+ * Returns true if data stripe need to be enabled, else returns false
-+ */
-+bool zynqmp_gqspi_update_stripe(const struct spi_mem_op *op)
-+{
-+	if (op->cmd.opcode ==  SPINOR_OP_BE_4K ||
-+	    op->cmd.opcode ==  SPINOR_OP_BE_32K ||
-+	    op->cmd.opcode ==  SPINOR_OP_CHIP_ERASE ||
-+	    op->cmd.opcode ==  SPINOR_OP_SE ||
-+	    op->cmd.opcode ==  SPINOR_OP_BE_32K_4B ||
-+	    op->cmd.opcode ==  SPINOR_OP_SE_4B ||
-+	    op->cmd.opcode == SPINOR_OP_BE_4K_4B ||
-+	    op->cmd.opcode ==  SPINOR_OP_WRSR ||
-+	    op->cmd.opcode ==  SPINOR_OP_BRWR ||
-+	    (op->cmd.opcode ==  SPINOR_OP_WRSR2 && !op->addr.nbytes))
-+		return false;
-+
-+	return true;
-+}
-+
- /**
-  * zynqmp_gqspi_read - For GQSPI controller read operation
-  * @xqspi:	Pointer to the zynqmp_qspi structure
-@@ -470,7 +497,14 @@ static void zynqmp_qspi_chipselect(struct spi_device *qspi, bool is_high)
- 
- 	genfifoentry |= GQSPI_GENFIFO_MODE_SPI;
- 
--	if (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS) {
-+	if ((qspi->cs_index_mask & GQSPI_SELECT_LOWER_CS) &&
-+	    (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS)) {
-+		zynqmp_gqspi_selectslave(xqspi,
-+					 GQSPI_SELECT_FLASH_CS_BOTH,
-+					 GQSPI_SELECT_FLASH_BUS_BOTH);
-+		if (!xqspi->is_parallel)
-+			xqspi->is_parallel = true;
-+	} else if (qspi->cs_index_mask & GQSPI_SELECT_UPPER_CS) {
- 		zynqmp_gqspi_selectslave(xqspi,
- 					 GQSPI_SELECT_FLASH_CS_UPPER,
- 					 GQSPI_SELECT_FLASH_BUS_LOWER);
-@@ -1139,6 +1173,8 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 	}
- 
- 	if (op->data.nbytes) {
-+		if (xqspi->is_parallel && zynqmp_gqspi_update_stripe(op))
-+			genfifoentry |= GQSPI_GENFIFO_STRIPE;
- 		reinit_completion(&xqspi->data_completion);
- 		if (op->data.dir == SPI_MEM_DATA_OUT) {
- 			xqspi->txbuf = (u8 *)op->data.buf.out;
-@@ -1334,6 +1370,7 @@ static int zynqmp_qspi_probe(struct platform_device *pdev)
- 	ctlr->bits_per_word_mask = SPI_BPW_MASK(8);
- 	ctlr->dev.of_node = np;
- 	ctlr->auto_runtime_pm = true;
-+	ctlr->multi_cs_cap = true;
- 
- 	ret = devm_spi_register_controller(&pdev->dev, ctlr);
- 	if (ret) {
--- 
-2.25.1
+> this series adapts the platform drivers below sound/ to use the .remove_n=
+ew()
+> callback. Compared to the traditional .remove() callback .remove_new() re=
+turns
+> no value. This is a good thing because the driver core doesn't (and canno=
+t)
+> cope for errors during remove. The only effect of a non-zero return value=
+ in
+> .remove() is that the driver core emits a warning. The device is removed =
+anyhow
+> and an early return from .remove() usually yields a resource leak.
+> =
 
+> By changing the remove callback to return void driver authors cannot
+> reasonably assume any more that there is some kind of cleanup later.
+> =
+
+> The first two patches simplify a driver each to return zero unconditional=
+ly,
+> and then all drivers are trivially converted to .remove_new().
+> =
+
+> There are nearly no interdependencies in this patch set---only 1 <- 11 and
+> 2 <- 16. So even if some individual problems are found (I don't expect th=
+at),
+> the other patches can (and from my POV should) still be applied.
+> =
+
+> Best regards
+> Uwe
+> =
+
+> Uwe Kleine-K=F6nig (173):
+(snip)
+
+For the whole series,
+
+Acked-by: Takashi Iwai <tiwai@suse.de>
+
+
+thanks,
+
+Takashi
 
 _______________________________________________
 linux-amlogic mailing list
