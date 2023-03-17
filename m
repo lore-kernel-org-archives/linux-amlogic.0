@@ -4,81 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B45C74A5B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Mar 2023 20:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28AFCC74A5B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Mar 2023 23:11:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OBYYsDbBqisqyNaMT0VNsyS83cm5pnSAMecux8GODHA=; b=yr6FWyGlMj8WV2
-	mwje34dl/FAkPUfE6GUWr5D0vlOKDoT583KSC5l3fYNvwSaBHlhn2N7V20QZ2nlRE7Ko8SxYfHujN
-	5koX99DwboGa28RsLL0DL0cNpEGTGZbfTJEKeGoC16kO9n70W/ludet/PBC2us6+cOLiPrxfqupA8
-	kaDvQeNWyrbcMSPL5G+S1cIus6ldbCwGnwiTCmTzTGkgtb3iFg20zqU8ZYsS7dVI4dJ5xnIgObM4o
-	X9DYeYij4qT4ke8G4cMkxFKJcx1nUrXvlnS8uBRAO9aLo3ej0XKi9sIZA4UTpJdQqmlJOA90nXOSF
-	+Co77jr8qdmMF6JR0DTQ==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8y1CM2ZJnYn2ByQa5Sz2eM5UvFk+3KeYpG8AaOnQJ3U=; b=H9d9nyVfOdFzGf
+	KFqbma21Nr6mazXb1NmXflnC0pNm7nbGx1o3QPzCTt9n10fwSbGeT3JmkFxCT+8bBoRPLdnWCtW3T
+	HFtnlFXT9wYCqyQxJJQopfCbcv5sqTBfFkqObrGdZehiqbSMh8hG1YJy13FtI4lugCsR1SAwkdzdO
+	/c++RExhX/pqNhUZhwLt2pIzfRnb+/jimGg25UJ5S/D/xfu4ru+/VDL8+73pa/zZ5wofXLv5Juk3s
+	shSCzOpQHzGrNgzic/7wcQsvstvOQyeYw3XUv9GoxAgDjrakoKjCcW20+3QrJXrRyfEYq+/abBmY8
+	GaTkQzLFQv+GsddR9Blw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdGgF-003Idj-0D;
-	Fri, 17 Mar 2023 20:28:03 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pdJE7-003e8B-0C;
+	Fri, 17 Mar 2023 23:11:11 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pdGgB-003Ic6-2q;
-	Fri, 17 Mar 2023 20:28:01 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 539265FD4F;
-	Fri, 17 Mar 2023 23:27:52 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679084872;
-	bh=9klZq5XNmdsCI8Jf4BIs+c2sADGKOJ1gBsYtYIHMRbs=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=XZLGSNSDmTYCZb7s7O8f3ZHMIYyHbCaPHo56b39hLpJh8r2PPMyPdt6JZf/f58gS6
-	 348VQBGsQwgKna4KcBjfocVat4Lqe47Se+jPzZVU/R2rBfpLoY1XV5J9SdDnY/MhuD
-	 nEQmoM7C4NtEflIqujh+NYYR6c0/dYiZ2pSZIDpWO/wkYg9ssjJ8UCokIFIKbMHW4O
-	 wrMnu9VEuqIb6kJwYg6uDZFbq4+xVLkxvqCB/1BdyNc2QmNUJgg2jzPqIkAyQSsUIV
-	 4ehY8/Xe9OvmJIHSZFZWjeQXbTyfcDZK5fT93/oA8Zjv4VhwxaKfF9gR7OjPIoDThE
-	 zH5yyfYc2Jekg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri, 17 Mar 2023 23:27:49 +0300 (MSK)
-Date: Fri, 17 Mar 2023 23:27:48 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230317202748.7ctqhswettiemwi7@CAB-WSD-L081021>
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <20230317185317.GA2608140-robh@kernel.org>
+	id 1pdJE1-003e6g-3C;
+	Fri, 17 Mar 2023 23:11:08 +0000
+Received: by mail-ed1-x534.google.com with SMTP id z21so26145345edb.4;
+        Fri, 17 Mar 2023 16:11:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679094662;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q1tTb9ulOXd9Pe9NOz2iHHl15OYkph7VmSSGfkMTGh8=;
+        b=nxgOhlzqvdcrbUnz4Rw9vbYkOGTtpGoSRVI0bq8iCxLtr2mK8QWDsbV+njzjZNnNNw
+         Hu2S13x3pGYUr6fizbuSJlATSRANIjlUNS9CtQikhtXwUJtJe+S0/mf3RjBV98eVYGQO
+         YSBF/A2c1Yb5kh9tPQi1MQYN3oiVaXD2ZX/mGH/aboC4YNuJP7i4TpapeO1ZOXurfiPk
+         w/U0lRivNA2qJISYu1eFhoyAw+dPYeqUZnJnqTbxcQlyhKL3AyJos+U8pDcJmm7k/thl
+         uSK6nQgc8v7VABzSEstw1pnquRvnasVFfAwqmV6pqMsD9PFckYFk0oktkTL0X69E0y+X
+         jCOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679094662;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=q1tTb9ulOXd9Pe9NOz2iHHl15OYkph7VmSSGfkMTGh8=;
+        b=JHm8x73l/d8pNcjZn8OhZjiAOzZesEI90A+VVLmO8VEInW2k/PVT2fu2lYX/hXCI5q
+         oMf/FXMWP3fRSJ/6ZOuVjQczM/JT3Jh+5weax1V87lofmBACrtn2dnX5M+uQj/+sk4lM
+         mG7DFQVf79VzPys32k1ISc2S36YVId3eYuY+8fNZPBBt7TRu0NCh8dwO0wQgUVOypp/G
+         Eak//N0IWkdJ5GyFzHf++Ruf55NOMuPplpHmejH/oSPzCYlUtHZXhsDMOEhKtOyHLX21
+         EgmGhCf2+VxGz2S6PC+Es0bGtDZ31hN8wduyn2t2G3pNC/00jsPIK1ZTdMUjfoXIEsmH
+         XexQ==
+X-Gm-Message-State: AO0yUKW7gwiDtgUkVto4KR7R9KTwSxJ39r+fAut78oTHje8EYWOqMiCg
+	OPiUFeKS7UOHi8AcNSLZt+O7H7H3mm0=
+X-Google-Smtp-Source: AK7set/bkAH9q0rzUKsB11tSHFg0g1i7IcJdfcbLwrP+6xrAJ/13JnVV+f5Od0DuGgz71tpScQ7OyA==
+X-Received: by 2002:aa7:c786:0:b0:4fb:999:e04b with SMTP id n6-20020aa7c786000000b004fb0999e04bmr4201586eds.39.1679094661792;
+        Fri, 17 Mar 2023 16:11:01 -0700 (PDT)
+Received: from ?IPV6:2a01:c23:c5b8:6200:464:40e3:4e4f:fcaf? (dynamic-2a01-0c23-c5b8-6200-0464-40e3-4e4f-fcaf.c23.pool.telefonica.de. [2a01:c23:c5b8:6200:464:40e3:4e4f:fcaf])
+        by smtp.googlemail.com with ESMTPSA id r10-20020a1709063d6a00b00930e95446d0sm1452522ejf.120.2023.03.17.16.11.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 16:11:01 -0700 (PDT)
+Message-ID: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
+Date: Sat, 18 Mar 2023 00:10:59 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230317185317.GA2608140-robh@kernel.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/17 17:26:00 #20964929
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH v6] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230317_132800_298877_40D3AB8E 
-X-CRM114-Status: GOOD (  23.67  )
+X-CRM114-CacheID: sfid-20230317_161106_029436_1703C8D3 
+X-CRM114-Status: GOOD (  13.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,67 +100,587 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 17, 2023 at 01:53:17PM -0500, Rob Herring wrote:
-> On Tue, Mar 14, 2023 at 02:48:25PM +0300, Dmitry Rokosov wrote:
-> > On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
-> > > On 13/03/2023 21:12, Dmitry Rokosov wrote:
-> > 
-> > [...]
-> > 
-> > > > +#define CLKID_SPIFC		84
-> > > > +#define CLKID_USB_BUS		85
-> > > > +#define CLKID_SD_EMMC		86
-> > > > +#define CLKID_PSRAM		87
-> > > > +#define CLKID_DMC		88
-> > > 
-> > > And what is here? Between 88 and 121?
-> > > 
-> > 
-> > Explained below.
-> > 
-> > > > +#define CLKID_GEN_SEL		121
-> > > > +
-> > > > +#endif /* __A1_CLKC_H */
-> > > > diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > > > new file mode 100644
-> > > > index 000000000000..8e97d3fb9d30
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > > > @@ -0,0 +1,20 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > > 
-> > > I found in changelog:
-> > > "fix license issue, it's GPL-2.0+ only in the current version"
-> > > and I do not understand.
-> > > 
-> > > The license is wrong, so what did you fix?
-> > > 
-> > 
-> > Sorry don't get you. Why is it wrong?
-> > I've changed all new source files to GPL-2.0+ except yaml, because yaml
-> > dt bindings schemas require the following license:
-> 
-> Why 2.0+? The kernel's default license is 2.0-only. Are you (and 
-> your lawyer) okay with GPL v4?
-> 
-> But this is still part of the DT binding and has the same license 
-> preference:
->  
-> >     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> 
-> However, the header licenses are complicated due to .dts licenses which 
-> are all over the place. The requirement is dual licensed and matching 
-> what includes it.
+Convert Amlogic Meson pin controller binding to yaml.
 
-Agree with you. As we discussed with Krzysztof, checkpatch must verify
-such wrong license tags. I've introduced the patchset for that, please
-take a look:
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- consider that more than one compatible can be set
+- remove bus part from example
+v3:
+- remove minItem/maxItem properties for compatible
+v4:
+- split patch to be able to deal with the different reg/reg-names
+v5:
+- remove compatible definition from common yaml
+- move pincfg-node and pinmux-node definition to meson-gpio object definition
+v6:
+- add meson-pins definition
+- change usage of unevaluatedProperties
+---
+ .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 65 +++++++++++++
+ .../pinctrl/amlogic,meson-pinctrl-common.yaml | 57 +++++++++++
+ .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 66 +++++++++++++
+ .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 70 ++++++++++++++
+ .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 74 +++++++++++++++
+ .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 76 +++++++++++++++
+ .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
+ 7 files changed, 408 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
 
-https://lore.kernel.org/all/20230317201621.15518-1-ddrokosov@sberdevices.ru/
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+new file mode 100644
+index 000000000..7dccf18c9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-a1.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson A1 pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-a1-periphs-pinctrl
++      - amlogic,meson-s4-periphs-pinctrl
++
++required:
++  - compatible
++
++patternProperties:
++  "^bank@[0-9a-z]+$":
++    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
++
++    properties:
++      reg:
++        maxItems: 2
++
++      reg-names:
++        items:
++          - const: mux
++          - const: gpio
++
++unevaluatedProperties:
++  type: object
++  $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
++
++examples:
++  - |
++    periphs_pinctrl: pinctrl {
++      compatible = "amlogic,meson-a1-periphs-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@400 {
++        reg = <0x0400 0x003c>,
++              <0x0480 0x0118>;
++        reg-names = "mux", "gpio";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&periphs_pinctrl 0 0 62>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+new file mode 100644
+index 000000000..a7b29ef0b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++properties:
++  ranges: true
++
++  "#address-cells":
++    enum: [1, 2]
++
++  "#size-cells":
++    enum: [1, 2]
++
++required:
++  - ranges
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: true
++
++$defs:
++  meson-gpio:
++    type: object
++
++    properties:
++      gpio-controller: true
++
++      "#gpio-cells":
++        const: 2
++
++      gpio-ranges:
++        maxItems: 1
++
++    required:
++      - reg
++      - reg-names
++      - gpio-controller
++      - "#gpio-cells"
++      - gpio-ranges
++
++  meson-pins:
++    type: object
++    additionalProperties:
++      type: object
++      allOf:
++        - $ref: pincfg-node.yaml#
++        - $ref: pinmux-node.yaml#
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+new file mode 100644
+index 000000000..afd4ad5e5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson G12 AOBUS pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-aobus-pinctrl
++
++required:
++  - compatible
++
++patternProperties:
++  "^bank@[0-9a-z]+$":
++    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
++
++    properties:
++      reg:
++        maxItems: 3
++
++      reg-names:
++        items:
++          - const: mux
++          - const: ds
++          - const: gpio
++
++unevaluatedProperties:
++  type: object
++  $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
++
++examples:
++  - |
++    ao_pinctrl: pinctrl {
++      compatible = "amlogic,meson-g12a-aobus-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@14 {
++        reg = <0x14 0x8>,
++              <0x1c 0x8>,
++              <0x24 0x14>;
++        reg-names = "mux", "ds", "gpio";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&ao_pinctrl 0 0 15>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+new file mode 100644
+index 000000000..603053e2c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson G12 PERIPHS pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-periphs-pinctrl
++
++required:
++  - compatible
++
++patternProperties:
++  "^bank@[0-9a-z]+$":
++    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
++
++    properties:
++      reg:
++        maxItems: 5
++
++      reg-names:
++        items:
++          - const: gpio
++          - const: pull
++          - const: pull-enable
++          - const: mux
++          - const: ds
++
++unevaluatedProperties:
++  type: object
++  $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
++
++examples:
++  - |
++    periphs_pinctrl: pinctrl {
++      compatible = "amlogic,meson-g12a-periphs-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@40 {
++        reg = <0x40  0x4c>,
++              <0xe8  0x18>,
++              <0x120 0x18>,
++              <0x2c0 0x40>,
++              <0x340 0x1c>;
++        reg-names = "gpio", "pull", "pull-enable", "mux", "ds";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&periphs_pinctrl 0 0 86>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+new file mode 100644
+index 000000000..0e87d7705
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson8 AOBUS pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - amlogic,meson8-aobus-pinctrl
++          - amlogic,meson8b-aobus-pinctrl
++          - amlogic,meson-gxbb-aobus-pinctrl
++          - amlogic,meson-gxl-aobus-pinctrl
++          - amlogic,meson-axg-aobus-pinctrl
++      - items:
++          - const: amlogic,meson8m2-aobus-pinctrl
++          - const: amlogic,meson8-aobus-pinctrl
++
++required:
++  - compatible
++
++patternProperties:
++  "^bank@[0-9a-z]+$":
++    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
++
++    properties:
++      reg:
++        maxItems: 3
++
++      reg-names:
++        items:
++          - const: mux
++          - const: pull
++          - const: gpio
++
++unevaluatedProperties:
++  type: object
++  $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
++
++examples:
++  - |
++    pinctrl_aobus: pinctrl {
++      compatible = "amlogic,meson8-aobus-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@14 {
++        reg = <0x14 0x4>,
++              <0x2c 0x4>,
++              <0x24 0x8>;
++        reg-names = "mux", "pull", "gpio";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&pinctrl_aobus 0 0 16>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+new file mode 100644
+index 000000000..d07ec89ef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson8 CBUS pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - amlogic,meson8-cbus-pinctrl
++          - amlogic,meson8b-cbus-pinctrl
++          - amlogic,meson-gxbb-periphs-pinctrl
++          - amlogic,meson-gxl-periphs-pinctrl
++          - amlogic,meson-axg-periphs-pinctrl
++      - items:
++          - const: amlogic,meson8m2-cbus-pinctrl
++          - const: amlogic,meson8-cbus-pinctrl
++
++required:
++  - compatible
++
++patternProperties:
++  "^bank@[0-9a-z]+$":
++    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
++
++    properties:
++      reg:
++        maxItems: 4
++
++      reg-names:
++        items:
++          - const: mux
++          - const: pull
++          - const: pull-enable
++          - const: gpio
++
++unevaluatedProperties:
++  type: object
++  $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
++
++examples:
++  - |
++    pinctrl_cbus: pinctrl {
++      compatible = "amlogic,meson8-cbus-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@80b0 {
++        reg = <0x80b0 0x28>,
++              <0x80e8 0x18>,
++              <0x8120 0x18>,
++              <0x8030 0x30>;
++        reg-names = "mux", "pull", "pull-enable", "gpio";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&pinctrl_cbus 0 0 120>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+deleted file mode 100644
+index 8146193bd..000000000
+--- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
++++ /dev/null
+@@ -1,94 +0,0 @@
+-== Amlogic Meson pinmux controller ==
+-
+-Required properties for the root node:
+- - compatible: one of "amlogic,meson8-cbus-pinctrl"
+-		      "amlogic,meson8b-cbus-pinctrl"
+-		      "amlogic,meson8m2-cbus-pinctrl"
+-		      "amlogic,meson8-aobus-pinctrl"
+-		      "amlogic,meson8b-aobus-pinctrl"
+-		      "amlogic,meson8m2-aobus-pinctrl"
+-		      "amlogic,meson-gxbb-periphs-pinctrl"
+-		      "amlogic,meson-gxbb-aobus-pinctrl"
+-		      "amlogic,meson-gxl-periphs-pinctrl"
+-		      "amlogic,meson-gxl-aobus-pinctrl"
+-		      "amlogic,meson-axg-periphs-pinctrl"
+-		      "amlogic,meson-axg-aobus-pinctrl"
+-		      "amlogic,meson-g12a-periphs-pinctrl"
+-		      "amlogic,meson-g12a-aobus-pinctrl"
+-		      "amlogic,meson-a1-periphs-pinctrl"
+-		      "amlogic,meson-s4-periphs-pinctrl"
+- - reg: address and size of registers controlling irq functionality
+-
+-=== GPIO sub-nodes ===
+-
+-The GPIO bank for the controller is represented as a sub-node and it acts as a
+-GPIO controller.
+-
+-Required properties for sub-nodes are:
+- - reg: should contain a list of address and size, one tuple for each entry
+-   in reg-names.
+- - reg-names: an array of strings describing the "reg" entries.
+-   Must contain "mux" and "gpio".
+-   May contain "pull", "pull-enable" and "ds" when appropriate.
+- - gpio-controller: identifies the node as a gpio controller
+- - #gpio-cells: must be 2
+-
+-=== Other sub-nodes ===
+-
+-Child nodes without the "gpio-controller" represent some desired
+-configuration for a pin or a group. Those nodes can be pinmux nodes or
+-configuration nodes.
+-
+-Required properties for pinmux nodes are:
+- - groups: a list of pinmux groups. The list of all available groups
+-   depends on the SoC and can be found in driver sources.
+- - function: the name of a function to activate for the specified set
+-   of groups. The list of all available functions depends on the SoC
+-   and can be found in driver sources.
+-
+-Required properties for configuration nodes:
+- - pins: a list of pin names
+-
+-Configuration nodes support the following generic properties, as
+-described in file pinctrl-bindings.txt:
+- - "bias-disable"
+- - "bias-pull-up"
+- - "bias-pull-down"
+- - "output-enable"
+- - "output-disable"
+- - "output-low"
+- - "output-high"
+-
+-Optional properties :
+- - drive-strength-microamp: Drive strength for the specified pins in uA.
+-			    This property is only valid for G12A and newer.
+-
+-=== Example ===
+-
+-	pinctrl: pinctrl@c1109880 {
+-		compatible = "amlogic,meson8-cbus-pinctrl";
+-		reg = <0xc1109880 0x10>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		gpio: banks@c11080b0 {
+-			reg = <0xc11080b0 0x28>,
+-			      <0xc11080e8 0x18>,
+-			      <0xc1108120 0x18>,
+-			      <0xc1108030 0x30>;
+-			reg-names = "mux", "pull", "pull-enable", "gpio";
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-               };
+-
+-		nand {
+-			mux {
+-				groups = "nand_io", "nand_io_ce0", "nand_io_ce1",
+-					 "nand_io_rb0", "nand_ale", "nand_cle",
+-					 "nand_wen_clk", "nand_ren_clk", "nand_dqs",
+-					 "nand_ce2", "nand_ce3";
+-				function = "nand";
+-			};
+-		};
+-	};
 -- 
-Thank you,
-Dmitry
+2.39.2
+
 
 _______________________________________________
 linux-amlogic mailing list
