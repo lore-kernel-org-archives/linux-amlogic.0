@@ -4,87 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6C97C74A5B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Mar 2023 12:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1A3C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Mar 2023 18:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I3Z0R86U3i1eL0ZAXY7+NKOsGVACCaPVZUrZs+qNcUY=; b=Jd8miMwCz/p427
-	qtALHMR18RJr+lrPfiz4GoYhCrT2CVNHfospsqWoKhFbHCHmXeZTrw7kKTztQxqz2c0EtT1/xqyU5
-	HNDk9N3DCuv+BwNxxcxzq0RBWl9pPRMD+vMusWbXP6a6bNugKuIWZnt09/DkZX5Le6YSc0deu53LD
-	u2dkVu4zI0HQlKTC5r3/9tEe8BEkVROL1weRUWP7mJZqNqbiktc3e2mpJdsSubouKpTUS01f7DyMR
-	n/3919U0NC8MVzTndJDhdnN2BW4WHyNXarp45N/sTzxMebQ14DjQzXGBJpY23Cm5aOscA2cDTacey
-	mQOdU6oI7zO/XLgb69aQ==;
+	List-Owner; bh=d+DAp+u531TslgovTme+zsYkdrCDgGa/ky9XOEuRlMI=; b=axFXpZePOkTFzi
+	C85cOFJFrA/MBd67HDnmhPHyoM6Tqu0VNQ9MyIJjFuvjHVCpJc1rnS9m7yZifaAxGtmDDxQGa4tGd
+	nTR4pY6lzKA0J3k6eQpRL8Xy+vxqANqzAFKSzvzIePPqi/at2+VeU22xiJyn4RMk+pikzmkz4vGsV
+	ACwTT+IlD2PTNAFz15RClA9dRL3t/TVzd5GM0jGPHJit3R05GYXw4gsnF5hCoFsfISeArN1qxHo/P
+	HTdrZx8IJlfoPPEIXY618Rq9q6U2Zqy9h5nDd7NU8J201tPsmdAXk1vgVvm587pYDhPSQ7Nj0LArp
+	aenaWTBrNszqkt78Uf1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pd9Ku-002DzA-0u;
-	Fri, 17 Mar 2023 12:37:32 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1pdFCf-0034Yb-1U;
+	Fri, 17 Mar 2023 18:53:25 +0000
+Received: from mail-il1-f174.google.com ([209.85.166.174])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pd9Kr-002Dvk-03;
-	Fri, 17 Mar 2023 12:37:30 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id h8so19758885ede.8;
-        Fri, 17 Mar 2023 05:37:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679056645;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5ZayqswrbZ5QKKAD9r+P5nbMwyqOYAxRHhSqir5Y47A=;
-        b=HBPD3CnSAB/ZPFiN2l3lS+vD3GXGwIyXa+NJzUy4XLbOBqPoXnalzl0SdCHcM68oSB
-         ugFPC8w4TXBJVN6oBPVA/OHnF1qttx7eZ/2qV0QujCA5bRKqu/Kf7R7ffb39VgKoUSvD
-         vdSntNH+0/E3Yc5TI7++fGS67+j0Hbed0njnveIcwu1rOa+d/ExOcPxl5JupULGwojVW
-         vUZTUQgyQlnJZv2w/GHX9XnbBSuVPHP/sRB95mDlVWdYyjxuBHpt1L3p8TK4FkbL4737
-         wKID/TYOYMlYdY2A8ChY6TZGuWx1LW/38VcV8BzKz3mtpppAM0MeheCJS0RjfR/41eup
-         lXFg==
+	id 1pdFCc-0034Xl-0z;
+	Fri, 17 Mar 2023 18:53:23 +0000
+Received: by mail-il1-f174.google.com with SMTP id l9so3243576iln.1;
+        Fri, 17 Mar 2023 11:53:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679056645;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ZayqswrbZ5QKKAD9r+P5nbMwyqOYAxRHhSqir5Y47A=;
-        b=ZtGZgbfmT4aH0jTTYe/VKW07/p09ot8rS3azZyQzxplW4UbiQaDdGJvXB6xWRT7tJG
-         pH1bMGz+7OW8jZ5p6wU/g7LKgcbia0Rrd93hVPt2Pa6vT6c4RrDUtrRFnNjhYZCyEMPA
-         4TlTeOUlgRxK/F8IU48Z+k8fwGxOKmpJ1rQdj+uKyWja1yUpA8xMcq5Ayl3vnnnDzk/i
-         CUUD30W2wdKEw0xyN6YEYFXH2ACve8Xhmcimtaf0NiWFxsVOdG2FynL27XACzYL+9cUt
-         rBBZA374a/z6Xyp8pcDhnyHZOHljKZ2HXIGPZlvn5TiUdBBboqfIX3lgRj7Wr35JuPV6
-         9EbQ==
-X-Gm-Message-State: AO0yUKWZ6ZdmO13T8qbCZcfHFTf+1zzln45ZGgjx7krAxaz04gTQrixu
-	y6Eo5NmorMqJNpED7Lh6Q7Y=
-X-Google-Smtp-Source: AK7set8SIzE61mtegRU9aGVKdIM5UDvWT/gsPpdG4j/g67fGeWgRuOnADBuRN1Z6LNGXdCN1ZlHcYg==
-X-Received: by 2002:a17:906:3f87:b0:922:446b:105a with SMTP id b7-20020a1709063f8700b00922446b105amr2847350ejj.19.1679056645209;
-        Fri, 17 Mar 2023 05:37:25 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c5b8:6200:dd0b:20c2:4c96:a825? (dynamic-2a01-0c23-c5b8-6200-dd0b-20c2-4c96-a825.c23.pool.telefonica.de. [2a01:c23:c5b8:6200:dd0b:20c2:4c96:a825])
-        by smtp.googlemail.com with ESMTPSA id cd11-20020a170906b34b00b0093009bc5825sm945928ejb.2.2023.03.17.05.37.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 05:37:24 -0700 (PDT)
-Message-ID: <ac3b4356-d4c3-25e4-9bc2-c5b369c676b2@gmail.com>
-Date: Fri, 17 Mar 2023 13:37:05 +0100
+        d=1e100.net; s=20210112; t=1679079200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LhejdJ2QzRiuDi7NcPcw8B7d/cMeKEhfekni41Gxpkk=;
+        b=ueDOSud/MuOqSbsi30Ml8tUja1EwqHTlqg266A8gnD6zKpKfPiEfj6l9qdobWvgYpR
+         GNjR/O2hJ7HpCJ7DcTd1KBkjBAFscSrUI9SN8XQ75jZi85BdTJhdhwrmFPRoEnysH3Id
+         DbZQH42P9k8WKw+7KtqH00Gnd5SvE99HThlmeqH+c/QUXeOlpx/yTSFMWEUJuLt2yEMm
+         z21J/Uzh6EGwUrXZz877tkbDVb6umM5+y2Uqe5gYIno6wae88wzZiUkIsWRUTe5eORdg
+         MCJfV+VVCpIieOKyvw0EUwEYfwqCHub+IX5niJdNRfrssLUk7oz9LPunEMBWRFU/XK9q
+         7VdQ==
+X-Gm-Message-State: AO0yUKU6oNU3srcARu5vfxd5l8tDBM3HuWkR6BRn0p2wHs7SXQrVHYZz
+	kjOnvdbQc9aqbaekoeh/9A==
+X-Google-Smtp-Source: AK7set+MH4oe7paXw4mNYBNwZmQ3XrzicpMki++gWyEP2w53ywhZy/ZcN6LTqzsa+uss+FVSLWKCcQ==
+X-Received: by 2002:a92:dc01:0:b0:317:99d0:8ad6 with SMTP id t1-20020a92dc01000000b0031799d08ad6mr246243iln.16.1679079199880;
+        Fri, 17 Mar 2023 11:53:19 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id n24-20020a02a918000000b004050d92f6d4sm905689jam.50.2023.03.17.11.53.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 11:53:19 -0700 (PDT)
+Received: (nullmailer pid 2616891 invoked by uid 1000);
+	Fri, 17 Mar 2023 18:53:17 -0000
+Date: Fri, 17 Mar 2023 13:53:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com, martin.blumenstingl@googlemail.com, jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
+Message-ID: <20230317185317.GA2608140-robh@kernel.org>
+References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
+ <20230313201259.19998-4-ddrokosov@sberdevices.ru>
+ <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
+ <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: [PATCH 2/2] soc: amlogic: meson-gx-socinfo: use new
- soc_device_register functionality to populate machine name
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <d846047f-b714-3fd1-d8c6-9f774902fb9f@gmail.com>
-In-Reply-To: <d846047f-b714-3fd1-d8c6-9f774902fb9f@gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230317_053729_061326_76849E9D 
-X-CRM114-Status: UNSURE (   9.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230317_115322_342768_D65BFEF6 
+X-CRM114-Status: GOOD (  20.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,35 +84,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-A new fallback mechanism has been added to soc_device_register that
-populates machine with the DT model information if machine isn't set yet.
-This allows to remove this code here.
+On Tue, Mar 14, 2023 at 02:48:25PM +0300, Dmitry Rokosov wrote:
+> On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
+> > On 13/03/2023 21:12, Dmitry Rokosov wrote:
+> 
+> [...]
+> 
+> > > +#define CLKID_SPIFC		84
+> > > +#define CLKID_USB_BUS		85
+> > > +#define CLKID_SD_EMMC		86
+> > > +#define CLKID_PSRAM		87
+> > > +#define CLKID_DMC		88
+> > 
+> > And what is here? Between 88 and 121?
+> > 
+> 
+> Explained below.
+> 
+> > > +#define CLKID_GEN_SEL		121
+> > > +
+> > > +#endif /* __A1_CLKC_H */
+> > > diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> > > new file mode 100644
+> > > index 000000000000..8e97d3fb9d30
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> > > @@ -0,0 +1,20 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > 
+> > I found in changelog:
+> > "fix license issue, it's GPL-2.0+ only in the current version"
+> > and I do not understand.
+> > 
+> > The license is wrong, so what did you fix?
+> > 
+> 
+> Sorry don't get you. Why is it wrong?
+> I've changed all new source files to GPL-2.0+ except yaml, because yaml
+> dt bindings schemas require the following license:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/soc/amlogic/meson-gx-socinfo.c | 5 -----
- 1 file changed, 5 deletions(-)
+Why 2.0+? The kernel's default license is 2.0-only. Are you (and 
+your lawyer) okay with GPL v4?
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 165f75484..6abb73034 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -174,11 +174,6 @@ static int __init meson_gx_socinfo_init(void)
- 		return -ENODEV;
+But this is still part of the DT binding and has the same license 
+preference:
  
- 	soc_dev_attr->family = "Amlogic Meson";
--
--	np = of_find_node_by_path("/");
--	of_property_read_string(np, "model", &soc_dev_attr->machine);
--	of_node_put(np);
--
- 	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
- 					   socinfo_to_major(socinfo),
- 					   socinfo_to_minor(socinfo),
--- 
-2.39.2
+>     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 
+However, the header licenses are complicated due to .dts licenses which 
+are all over the place. The requirement is dual licensed and matching 
+what includes it.
 
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
