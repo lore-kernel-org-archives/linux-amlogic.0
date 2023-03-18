@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B03BC7618E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFDA8C74A5B
 	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Mar 2023 20:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,62 +12,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mvOmgyM4zxMq+x+Z7gRxpJyv9m7IhDfvfHg33+wGU+Q=; b=KNPvJdIhL+SkzJ
-	FwHUANhMbQtpTkfo7mytT86x9NlEMwOMMrzmTas351yLRmD3ZNLuWg7GrbGBIMy3GMiOZFRVMrMIM
-	EIr1+yuYAgVj7IirfYHr3MMbOAizfXv3WNt0l7RqLQ82FAidjliHVFS3B03h1PKdDgg++3UQLyPAp
-	LL7zze7VfrlDk5Pt4dr1GiuhRWvGv+kn61yBa7LWXkn3JefpkygwvrhsQhOuvLxHTytvz4M1+etb+
-	ePCnZ3J167FZUf+RwTJR6a7GdtmGZL6iCmAWkP5jMzYF9UXwCsEkBxYCRz97VSzKFjp9f/Fb4Hl9d
-	k0xDDC29Silzaw2V2qtA==;
+	List-Owner; bh=luzxyk7P6GAeDErmD7jJpELaw452ogahytr9xg7C/vs=; b=nJpddG4HDDi22Q
+	g1DZVBXw0dlqLYs4gWzWW83QtBO3v2IYoMzneNbCceMPRWFKoH4RbIFqx8qh/4W48NfeiT2hJN4LI
+	uUQ4gnvnzLZGdcNVcFOMdhyRJqiQmId2pqz+4hslTRy5Sh5NL5RoW8voQX2hqto8eVnXiQmt1ARwE
+	/AdpJvrfIExpkjL25OLWrTHoTZBG+QSVgXJUZTaxWIPoPKO6vptoJuXo+7VNuPAzTLYVedUU+a4Jm
+	aJ1c8sTzHkzpaVTJC1yUynAtDAwM1JkCloQ4Wg1M4YkgYHvFG1R6Fku+6D6mdwxAQsyV3BuQ1YFAL
+	kgJLC0+yWkqVE/yXpy+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pddHr-005MTp-0k;
-	Sat, 18 Mar 2023 20:36:23 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+	id 1pddHt-005MUZ-16;
+	Sat, 18 Mar 2023 20:36:25 +0000
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pddHo-005MT4-1v;
-	Sat, 18 Mar 2023 20:36:22 +0000
-Received: by mail-ed1-x533.google.com with SMTP id h8so32884041ede.8;
-        Sat, 18 Mar 2023 13:36:19 -0700 (PDT)
+	id 1pddHp-005MT7-2n;
+	Sat, 18 Mar 2023 20:36:23 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id x3so32850704edb.10;
+        Sat, 18 Mar 2023 13:36:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679171778;
+        d=gmail.com; s=20210112; t=1679171780;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aQmVT/xNc3pdCE3gs02NHjq7u+nOxIXdjSvaq4xrKxs=;
-        b=UTo7LbAbMR/ypWg1AZ4tZDqJV903m7B8Fr4EMqrb0QAG0/4EaA/XK0kZJAK7YRC7g4
-         mtDih4zIsqICZfvRR8dfr6bOXXARNF1hUnvllxnk5+jQHoZLL5Ikq/2U4UXp78chCTpj
-         dwgoajxv1Bf1RVc+VqxS57zAZOpstj26GXNF6hNlS1g6eZjoDHw8wrqNWJKC92b1J04x
-         +CJT0SreiNnCEB1aVDu7picqftVfeepenW44V6thhqjns0SdaZ5lVlLcYHUryz02dXSM
-         l8ur5uOsF6KUcGgz4vP0xp4QVwLZksp0ZQh2HrBTGR6LaF8pft4g0SQXuHTVDE7TOFrh
-         02Pw==
+        bh=1EXyUx3O/mJauX2CeNQtRk4By/x4ywiu2x2jMlmuXS0=;
+        b=RqPIRC9fZpFehakpAa+nJTdDpTUyUE04J2HP9PqDFs3UtpJUlN+8NEoggjLf4MyG3u
+         uBsorCPdoAX8Rhw+wXwgLGrDJFk3ck3qcWaEu62/dpJaYsyhZhlD463PQva2orptBIsj
+         HhjWHV1myqn8rcn4z9kVr5X8gjx3GES7+HOUoIw/MOXs8CPE509jWGDw36M0U1wBsML2
+         rwMZsF58i5jcN+ISerFYdHm97+h/y98qlY/Foc4rotmbBPQSYjVOfviK956z5LF9SEMV
+         jbqlv3AI0I78IHRHx+EgZCk9srrWUjONIwjqMehmyQmjjVyU6xCbk2tjA7qoTJ6odCxI
+         VNcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679171778;
+        d=1e100.net; s=20210112; t=1679171780;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aQmVT/xNc3pdCE3gs02NHjq7u+nOxIXdjSvaq4xrKxs=;
-        b=xD9G90ysw28MpzhSmB14nVU7LiY7aoWil/AGevgSvkv78wAssRpym5lfR1Ab7MME17
-         qZDLgc5yidCqh9GsKR3L8/Z/4Gt4jcsBilTmBoaPyz8B8FpzJ2w4uYfVo9BMc82Fjxb+
-         duNQ3vjUn9sDJIP7Z/u6mrCAK+H/YAdb6MwWSAbsCHDbtgOORpy8xRLUMtdvf4hslSh0
-         tukKKdGJDZFGPbLgs2TH+1z4W0XVSKCQk3bpvZBuBWc1OLX+PN+t+DRR193MZ7Rky4wx
-         VtYAxKJN88peYDHDmOf19nYmm+jsgfIKfMoMri4f+pdhu8p7D2n3hqd5fajBCB+ViWZ2
-         Vn9g==
-X-Gm-Message-State: AO0yUKW90D25Xp/s8mt8h3IN4u4VFVErfCg+cGJUrmjKFDSDS3hFhQY2
-	HjgtHvOM9KDOwTlsz9xjmzw=
-X-Google-Smtp-Source: AK7set/hxOo9R4+RbLzF6JiwQmTMIXQ98hXl0eYozZ9N1c6FauyerhrTONCY6l6lWsJO8B5amv0ouA==
-X-Received: by 2002:a17:907:2158:b0:878:7cf3:a9e7 with SMTP id rk24-20020a170907215800b008787cf3a9e7mr3579264ejb.65.1679171778215;
-        Sat, 18 Mar 2023 13:36:18 -0700 (PDT)
+        bh=1EXyUx3O/mJauX2CeNQtRk4By/x4ywiu2x2jMlmuXS0=;
+        b=1zoqr3UNdI9/HlbZDg367upKmtmkaagrzS9KVtOtghTMLUzDuO50c3ykofTuhlhoPy
+         SfCFTS4ZwkysQLEtb23jCjY/8rPDNC7qNCB9Wa3d18CvER+gHflW8cKQ6hptr5NIOD5P
+         DjZWh/ufV7vIsMipGcArLHgKJPyRGs82Z7m2LNDGM0vBtUupu3iKinpucWBuvQpRgVWM
+         OnBKHHvQNm1DhK6wNHLmxRJ3yzVq4gJTGSDPuUeRTxOkqc7PAzOCn/OqIqbTFwBBY8zW
+         tT0RwjkqXfaBUvFOpAZidH5CQvrtCYTOQaLKNF0Awtg2AEWr8yqgdFnvS5ixa4j2FqoY
+         JsdQ==
+X-Gm-Message-State: AO0yUKWYf11yiE7TpRJmRxop5u8cgVc6vTCga9Ivw9R8rww9ZP9tuJr/
+	4h/xm4iCpSLZ4j8NL79hFF8=
+X-Google-Smtp-Source: AK7set/wc1fF6WT1/yz3GlCUPi7tnp0KUmP/cCIpzaDUrc8wqDUh20cnWWEuIEw7DBmiI0q6Do3gew==
+X-Received: by 2002:a17:906:24c8:b0:861:7a02:1046 with SMTP id f8-20020a17090624c800b008617a021046mr3467116ejb.37.1679171779836;
+        Sat, 18 Mar 2023 13:36:19 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:c073:a00:b51a:ddab:12c0:b88a? (dynamic-2a01-0c23-c073-0a00-b51a-ddab-12c0-b88a.c23.pool.telefonica.de. [2a01:c23:c073:a00:b51a:ddab:12c0:b88a])
-        by smtp.googlemail.com with ESMTPSA id k22-20020a170906129600b00931508e55dasm2499501ejb.202.2023.03.18.13.36.17
+        by smtp.googlemail.com with ESMTPSA id j10-20020a170906094a00b008cafeec917dsm2517411ejd.101.2023.03.18.13.36.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Mar 2023 13:36:17 -0700 (PDT)
-Message-ID: <192db694-5bda-513c-31c5-96ec3b2425d9@gmail.com>
-Date: Sat, 18 Mar 2023 21:32:41 +0100
+        Sat, 18 Mar 2023 13:36:19 -0700 (PDT)
+Message-ID: <f5261d9d-773b-63a1-e81a-988769d901ee@gmail.com>
+Date: Sat, 18 Mar 2023 21:36:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: [PATCH net-next 1/2] net: phy: smsc: export functions for use by
- meson-gxl PHY driver
+Subject: [PATCH net-next 2/2] net: phy: meson-gxl: reuse functionality of the
+ SMSC PHY driver
 Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Russell King - ARM Linux <linux@armlinux.org.uk>,
@@ -83,8 +83,8 @@ Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
 References: <683422c6-c1e1-90b9-59ed-75d0f264f354@gmail.com>
 In-Reply-To: <683422c6-c1e1-90b9-59ed-75d0f264f354@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230318_133620_656557_BD33DFF2 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20230318_133621_907723_E0E7AEC5 
+X-CRM114-Status: GOOD (  17.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,121 +105,147 @@ The Amlogic Meson internal PHY's have the same register layout as
 certain SMSC PHY's (also for non-c22-standard registers). This seems
 to be more than just coincidence. Apparently they also need the same
 workaround for EDPD mode (energy detect power down). Therefore let's
-export SMSC PHY driver functionality for use by the meson-gxl PHY
-driver.
+reuse SMSC PHY driver functionality in the meson-gxl PHY driver.
+
+Tested with a G12A internal PHY. I don't have GXL test hw,
+therefore I replace only the callbacks that are identical in
+the SMSC PHY driver.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/net/phy/smsc.c  | 20 +++++++++++++-------
- include/linux/smscphy.h |  6 ++++++
- 2 files changed, 19 insertions(+), 7 deletions(-)
+ drivers/net/phy/Kconfig     |  1 +
+ drivers/net/phy/meson-gxl.c | 77 ++++---------------------------------
+ 2 files changed, 9 insertions(+), 69 deletions(-)
 
-diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
-index 721871184..730964b85 100644
---- a/drivers/net/phy/smsc.c
-+++ b/drivers/net/phy/smsc.c
-@@ -54,7 +54,7 @@ static int smsc_phy_ack_interrupt(struct phy_device *phydev)
- 	return rc < 0 ? rc : 0;
+diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+index 54874555c..6b9525def 100644
+--- a/drivers/net/phy/Kconfig
++++ b/drivers/net/phy/Kconfig
+@@ -70,6 +70,7 @@ config AMD_PHY
+ config MESON_GXL_PHY
+ 	tristate "Amlogic Meson GXL Internal PHY"
+ 	depends on ARCH_MESON || COMPILE_TEST
++	select SMSC_PHY
+ 	help
+ 	  Currently has a driver for the Amlogic Meson GXL Internal PHY
+ 
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index a6015cd03..3dea7c752 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -13,6 +13,7 @@
+ #include <linux/phy.h>
+ #include <linux/netdevice.h>
+ #include <linux/bitfield.h>
++#include <linux/smscphy.h>
+ 
+ #define TSTCNTL		20
+ #define  TSTCNTL_READ		BIT(15)
+@@ -23,18 +24,6 @@
+ #define  TSTCNTL_WRITE_ADDRESS	GENMASK(4, 0)
+ #define TSTREAD1	21
+ #define TSTWRITE	23
+-#define INTSRC_FLAG	29
+-#define  INTSRC_ANEG_PR		BIT(1)
+-#define  INTSRC_PARALLEL_FAULT	BIT(2)
+-#define  INTSRC_ANEG_LP_ACK	BIT(3)
+-#define  INTSRC_LINK_DOWN	BIT(4)
+-#define  INTSRC_REMOTE_FAULT	BIT(5)
+-#define  INTSRC_ANEG_COMPLETE	BIT(6)
+-#define  INTSRC_ENERGY_DETECT	BIT(7)
+-#define INTSRC_MASK	30
+-
+-#define INT_SOURCES (INTSRC_LINK_DOWN | INTSRC_ANEG_COMPLETE | \
+-		     INTSRC_ENERGY_DETECT)
+ 
+ #define BANK_ANALOG_DSP		0
+ #define BANK_WOL		1
+@@ -195,59 +184,6 @@ static int meson_gxl_read_status(struct phy_device *phydev)
+ 	return genphy_read_status(phydev);
  }
  
--static int smsc_phy_config_intr(struct phy_device *phydev)
-+int smsc_phy_config_intr(struct phy_device *phydev)
- {
- 	int rc;
- 
-@@ -75,8 +75,9 @@ static int smsc_phy_config_intr(struct phy_device *phydev)
- 
- 	return rc < 0 ? rc : 0;
- }
-+EXPORT_SYMBOL_GPL(smsc_phy_config_intr);
- 
--static irqreturn_t smsc_phy_handle_interrupt(struct phy_device *phydev)
-+irqreturn_t smsc_phy_handle_interrupt(struct phy_device *phydev)
- {
- 	int irq_status;
- 
-@@ -95,18 +96,20 @@ static irqreturn_t smsc_phy_handle_interrupt(struct phy_device *phydev)
- 
- 	return IRQ_HANDLED;
- }
-+EXPORT_SYMBOL_GPL(smsc_phy_handle_interrupt);
- 
--static int smsc_phy_config_init(struct phy_device *phydev)
-+int smsc_phy_config_init(struct phy_device *phydev)
- {
- 	struct smsc_phy_priv *priv = phydev->priv;
- 
--	if (!priv->energy_enable || phydev->irq != PHY_POLL)
-+	if (!priv || !priv->energy_enable || phydev->irq != PHY_POLL)
- 		return 0;
- 
- 	/* Enable energy detect power down mode */
- 	return phy_set_bits(phydev, MII_LAN83C185_CTRL_STATUS,
- 			    MII_LAN83C185_EDPWRDOWN);
- }
-+EXPORT_SYMBOL_GPL(smsc_phy_config_init);
- 
- static int smsc_phy_reset(struct phy_device *phydev)
- {
-@@ -186,7 +189,7 @@ static int lan95xx_config_aneg_ext(struct phy_device *phydev)
-  * The workaround is only applicable to poll mode. Energy Detect Power-Down may
-  * not be used in interrupt mode lest link change detection becomes unreliable.
-  */
--static int lan87xx_read_status(struct phy_device *phydev)
-+int lan87xx_read_status(struct phy_device *phydev)
- {
- 	struct smsc_phy_priv *priv = phydev->priv;
- 	int err;
-@@ -195,7 +198,8 @@ static int lan87xx_read_status(struct phy_device *phydev)
- 	if (err)
- 		return err;
- 
--	if (!phydev->link && priv->energy_enable && phydev->irq == PHY_POLL) {
-+	if (!phydev->link && priv && priv->energy_enable &&
-+	    phydev->irq == PHY_POLL) {
- 		/* Disable EDPD to wake up PHY */
- 		int rc = phy_read(phydev, MII_LAN83C185_CTRL_STATUS);
- 		if (rc < 0)
-@@ -229,6 +233,7 @@ static int lan87xx_read_status(struct phy_device *phydev)
- 
- 	return err;
- }
-+EXPORT_SYMBOL_GPL(lan87xx_read_status);
- 
- static int smsc_get_sset_count(struct phy_device *phydev)
- {
-@@ -269,7 +274,7 @@ static void smsc_get_stats(struct phy_device *phydev,
- 		data[i] = smsc_get_stat(phydev, i);
- }
- 
--static int smsc_phy_probe(struct phy_device *phydev)
-+int smsc_phy_probe(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
- 	struct smsc_phy_priv *priv;
-@@ -294,6 +299,7 @@ static int smsc_phy_probe(struct phy_device *phydev)
- 
- 	return clk_set_rate(refclk, 50 * 1000 * 1000);
- }
-+EXPORT_SYMBOL_GPL(smsc_phy_probe);
- 
- static struct phy_driver smsc_phy_driver[] = {
- {
-diff --git a/include/linux/smscphy.h b/include/linux/smscphy.h
-index 1a136271b..80f37c1db 100644
---- a/include/linux/smscphy.h
-+++ b/include/linux/smscphy.h
-@@ -28,4 +28,10 @@
- #define MII_LAN83C185_MODE_POWERDOWN 0xC0 /* Power Down mode */
- #define MII_LAN83C185_MODE_ALL       0xE0 /* All capable mode */
- 
-+int smsc_phy_config_intr(struct phy_device *phydev);
-+irqreturn_t smsc_phy_handle_interrupt(struct phy_device *phydev);
-+int smsc_phy_config_init(struct phy_device *phydev);
-+int lan87xx_read_status(struct phy_device *phydev);
-+int smsc_phy_probe(struct phy_device *phydev);
-+
- #endif /* __LINUX_SMSCPHY_H__ */
+-static int meson_gxl_ack_interrupt(struct phy_device *phydev)
+-{
+-	int ret = phy_read(phydev, INTSRC_FLAG);
+-
+-	return ret < 0 ? ret : 0;
+-}
+-
+-static int meson_gxl_config_intr(struct phy_device *phydev)
+-{
+-	int ret;
+-
+-	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
+-		/* Ack any pending IRQ */
+-		ret = meson_gxl_ack_interrupt(phydev);
+-		if (ret)
+-			return ret;
+-
+-		ret = phy_write(phydev, INTSRC_MASK, INT_SOURCES);
+-	} else {
+-		ret = phy_write(phydev, INTSRC_MASK, 0);
+-
+-		/* Ack any pending IRQ */
+-		ret = meson_gxl_ack_interrupt(phydev);
+-	}
+-
+-	return ret;
+-}
+-
+-static irqreturn_t meson_gxl_handle_interrupt(struct phy_device *phydev)
+-{
+-	int irq_status;
+-
+-	irq_status = phy_read(phydev, INTSRC_FLAG);
+-	if (irq_status < 0) {
+-		phy_error(phydev);
+-		return IRQ_NONE;
+-	}
+-
+-	irq_status &= INT_SOURCES;
+-
+-	if (irq_status == 0)
+-		return IRQ_NONE;
+-
+-	/* Aneg-complete interrupt is used for link-up detection */
+-	if (phydev->autoneg == AUTONEG_ENABLE &&
+-	    irq_status == INTSRC_ENERGY_DETECT)
+-		return IRQ_HANDLED;
+-
+-	phy_trigger_machine(phydev);
+-
+-	return IRQ_HANDLED;
+-}
+-
+ static struct phy_driver meson_gxl_phy[] = {
+ 	{
+ 		PHY_ID_MATCH_EXACT(0x01814400),
+@@ -257,8 +193,8 @@ static struct phy_driver meson_gxl_phy[] = {
+ 		.soft_reset     = genphy_soft_reset,
+ 		.config_init	= meson_gxl_config_init,
+ 		.read_status	= meson_gxl_read_status,
+-		.config_intr	= meson_gxl_config_intr,
+-		.handle_interrupt = meson_gxl_handle_interrupt,
++		.config_intr	= smsc_phy_config_intr,
++		.handle_interrupt = smsc_phy_handle_interrupt,
+ 		.suspend        = genphy_suspend,
+ 		.resume         = genphy_resume,
+ 		.read_mmd	= genphy_read_mmd_unsupported,
+@@ -268,9 +204,12 @@ static struct phy_driver meson_gxl_phy[] = {
+ 		.name		= "Meson G12A Internal PHY",
+ 		/* PHY_BASIC_FEATURES */
+ 		.flags		= PHY_IS_INTERNAL,
++		.probe		= smsc_phy_probe,
++		.config_init	= smsc_phy_config_init,
+ 		.soft_reset     = genphy_soft_reset,
+-		.config_intr	= meson_gxl_config_intr,
+-		.handle_interrupt = meson_gxl_handle_interrupt,
++		.read_status	= lan87xx_read_status,
++		.config_intr	= smsc_phy_config_intr,
++		.handle_interrupt = smsc_phy_handle_interrupt,
+ 		.suspend        = genphy_suspend,
+ 		.resume         = genphy_resume,
+ 		.read_mmd	= genphy_read_mmd_unsupported,
 -- 
 2.39.2
 
