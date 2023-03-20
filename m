@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4ACDC7618E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8261AC6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n13PPSKP6MzwRNY8kMeHC3t7QwYHfQOQM1a8XFfw6OY=; b=1N7pl+v6wkTQsM
-	H9xUKk5b6rtLjKiXo/y6P/5J2CqvTtOI/Wl7ECMy14L92IMUFIgRJFmutiWEI+8pY0TPRInofT1lM
-	poYeYaQR7ub4Hu1FvhtQNCsyhWN8M3cd2OzfBseLO5UT8w4YMd5eP2XzT+5dgAXLFUcAjvor0aGqP
-	0jmWw18PJWth//vt9xZmHWFU9WFye/iB1qBHnsBm4WchrSOF2o5o9eruOD7sv3NSP6yjSak/ECQLh
-	joXaYlPimp7+TLVceA4dEW2k8rg5B55SOPCIJipYEwT18JTjgVgO5iRO+WxBZeBUN8hyEGVr1Zraa
-	0i9WXdRpZrjTeQKHuCHw==;
+	List-Owner; bh=1Y507Ow6M1afuD3NVI8NgcK9VnLZNkDD9fTaaZ6FhME=; b=Eoy6CzaZf6Esyr
+	b1ZhaXmWgFNkelwsp/IMo7HsBhkZG2Q4zxR+/Zguco27BspF8WtajR1n5xqsj10lhldb3G/zZkIUi
+	+0IuILEZbmoQJSlFdMx20v90xn/zv0X8EoZMeXrk1jx6SbfDQ+7QGMYSq7WZ0e5jYogxNJTVBeW37
+	I0X/1AUaA+bOxQ1GcADDjBZNoL2EG72JAJG254Eref5W2JDWMqes/9r1TB/kkXjwv+MqiGyRHGfF+
+	Tgy0PIC5sfs5SDKcw6vXn+9N9VV3UN5fPZ/bV6KzUQtD1T5QULi1/bQ6cZC0aYZRyqmEba9N45piF
+	Hmtd2dFRqUCc80NwjisQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDy4-008rpQ-1X;
-	Mon, 20 Mar 2023 11:46:24 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1peDy5-008rqj-2w;
+	Mon, 20 Mar 2023 11:46:25 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDy0-008rmM-2n
+	id 1peDy2-008rnC-32
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:22 +0000
-Received: by mail-wr1-x432.google.com with SMTP id i9so10045494wrp.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:20 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:24 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id y14so10041966wrq.4
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312779;
+        d=gmail.com; s=20210112; t=1679312780;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MGszLQhz+ukONY+m+KL8QiBbUNTXcMZFNhCjnvm98bU=;
-        b=IpSqyp45p4SuKKwfu+deQAjdPLOjQLKpvHwxrRwyXQqYImtcX05eLeHlRkMv4RRnxh
-         8SsyP8f5itE+Q1skxtI2NeGKzuFCkPGx2qYrm0tPdNIul8jeABwcuhJgWFpz6FjbGs8r
-         D+VJEJE0CFOHPrCIJQB8MXP920y7LnZwp2bXNgeL+fAe74bhMZDCXuoaK3QDu8h+grtG
-         BtIj9zXVD9aKL3HZWmSex8mAb7f9lX72uvVWfhHAsBVSMa5P/Ooyu8eAWBUTNlD0K5pG
-         plGSNfV/fb428Tn00e46+1CrsOFyqa2ZxmHZT+y4RKlLLOn6hQT4yEksFfLjjCG/8bmS
-         PONQ==
+        bh=pIelX5cDcYvZ2BR37oAOKw+1iFz4JqaD5QMst5RKypY=;
+        b=csi7G6B4XNOqrJLgNY/qXrq4OJhKM37D1M8nJAtim+1Dvo12kebIqRDbpQ5tTxzHbt
+         NwvT1pB5gIUmEojxd38is+SAetgOtDW/5yH82hwMxeLmfbwbaG5ugR43xtq28rU7vFAu
+         7Dj/9WlpdTK0zXU/J2NHzBicmoGQB56qq1r0QPM7gqS3ZvKrW0LMgL1ZqZ91TZS51lSK
+         ZvsRh0zSGxvIR1k6WsWx2D2rjjqgJLHUOaAU/Rg8DBfZZsqkTfB1DIZ8lFbAO5/IxEAe
+         WUDuiBVSDLAaovprpGlNKXP8rqPgm47YVDDZ+PbJOKkyBdKFvlsVpOzF7mKx1jjusc0V
+         tWdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312779;
+        d=1e100.net; s=20210112; t=1679312780;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MGszLQhz+ukONY+m+KL8QiBbUNTXcMZFNhCjnvm98bU=;
-        b=5iSq9KvRSF9bpopjUtthGWPiyTVYnNzHjLB+DvZixB328/DHIK4oJgKbqcZpQ9iqEz
-         nVKfIuYpYI1QJih5C3/eSm8T9zHdB2ClN8v7oLTsy/qQH5n9G3OIKvkbLDAClUs2OHOi
-         OV5MxuTEAVt3A/9TbHVfAVNocoTzHGwQysdjF3idTyisscRBd3kTkC5f/v/E5WpYL3VY
-         z751Lbsf3CH5mgoaq532fM8+stG4vJarwKVVp3fkaasioh28ZdyKkhLtSkA5MBuZb5Cv
-         yAldAzHhpS8ldcVyA6Do24ZjszAUHFqrkSeCEdO/2N2BqhqpxTU/DIA1D4MhsvBSuDyg
-         EMSg==
-X-Gm-Message-State: AO0yUKUGce7ooYf7/R+cqUiM27sIBZfnxKQ2xNKmbZU4oAjFMVl3Ef4z
-	iUQC/DamEH48n0h+HkfzDvQ=
-X-Google-Smtp-Source: AK7set/Pv/HjZIkjOGA6A5BlLOPsZC3xmAKm0J6uuxgSz5ysSz6QLeLWAGiN4XTV3dbvkWIPKpTsSQ==
-X-Received: by 2002:a5d:4e11:0:b0:2ce:ad17:9242 with SMTP id p17-20020a5d4e11000000b002cead179242mr12157170wrt.7.1679312778992;
-        Mon, 20 Mar 2023 04:46:18 -0700 (PDT)
+        bh=pIelX5cDcYvZ2BR37oAOKw+1iFz4JqaD5QMst5RKypY=;
+        b=cL5CcvSbssZV9Tldf1aTktgIML3F3iowqXJNvLhdtnLbH4qm60c5c8PX2yBQlb9JQM
+         M9Gmjtfn9lqF1+5sXdN8sTZQFY7Q4OMS5j84OQtEW0AMbLwARO1NWTsikj0FtAQGiQm6
+         LppjAziv8Lg6MczoDqGdZb/fUxmiwz/ZoO287LbLHCFj1IHkXFvqKmccDbwOAkmR+0M1
+         wXwKJeiluGQl8tr5xY1PCpplFGh+7SnduZWW80Ih+nnsxw5mJymcCN2K3kRwpRO3jJM8
+         UrzO0vezz99+ZlQ/2vlcBOz4uAhWqmJWPLYlT4QK4er366dLvDJDaY2eODwpqa/nQ3ag
+         A+7A==
+X-Gm-Message-State: AO0yUKWOXCUzLgusVlLYPbT6qHrmKJNBDVcYqmaL/vr/vvt9raZQLsDA
+	X9rJP1lIPib6UltfucL1dCM=
+X-Google-Smtp-Source: AK7set//RQvc4FWDU3FKp/4vjc+w491miWR48rdgjvoZ3MjlRziiN6o7IWSfHuxKW5n7x4A96wF+Lw==
+X-Received: by 2002:a5d:4a4c:0:b0:2d0:cf21:a40e with SMTP id v12-20020a5d4a4c000000b002d0cf21a40emr13143208wrs.30.1679312780612;
+        Mon, 20 Mar 2023 04:46:20 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.17
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:18 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:20 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 04/33] doc: boards: amlogic: update documentation for Beelink GT-King
-Date: Mon, 20 Mar 2023 11:45:40 +0000
-Message-Id: <20230320114609.930145-5-christianshewitt@gmail.com>
+Subject: [PATCH 05/33] doc: boards: amlogic: update documentation for Beelink GT-King Pro
+Date: Mon, 20 Mar 2023 11:45:41 +0000
+Message-Id: <20230320114609.930145-6-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044620_905510_EEEF725B 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20230320_044622_976144_C8B3CAAC 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,35 +96,35 @@ Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/beelink-gtking.rst | 120 +++++++++++++--------------
+ doc/board/amlogic/beelink-gtkingpro.rst | 120 ++++++++++++------------
  1 file changed, 60 insertions(+), 60 deletions(-)
 
-diff --git a/doc/board/amlogic/beelink-gtking.rst b/doc/board/amlogic/beelink-gtking.rst
-index 2fb50c5f7b..342887d584 100644
---- a/doc/board/amlogic/beelink-gtking.rst
-+++ b/doc/board/amlogic/beelink-gtking.rst
+diff --git a/doc/board/amlogic/beelink-gtkingpro.rst b/doc/board/amlogic/beelink-gtkingpro.rst
+index 07bb04bb36..541938b103 100644
+--- a/doc/board/amlogic/beelink-gtkingpro.rst
++++ b/doc/board/amlogic/beelink-gtkingpro.rst
 @@ -1,10 +1,10 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for Beelink GT-King
--==========================
-+U-Boot for Beelink GT-King (S922X)
-+==================================
+-U-Boot for Beelink GT-King Pro
+-==============================
++U-Boot for Beelink GT-King Pro (S922X)
++======================================
  
--The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference
+-The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference
 -board with an S922X-H chip.
-+The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference board with an
-+S922X-H chip and the following specifications:
++The Shenzen AZW (Beelink) GT-King Pro is based on the Amlogic W400 reference board with
++an S922X-H chip and the following specifications:
  
  - 4GB LPDDR4 RAM
  - 64GB eMMC storage
-@@ -18,10 +18,10 @@ board with an S922X-H chip.
- - IR receiver
- - 1x micro SD card slot
+@@ -19,10 +19,10 @@ board with an S922X-H chip.
+ - 1x SD card slot
+ - 1x Power on/off button
  
 -Beelink do not provide public schematics, but have been willing
 -to share them with known distro developers on request.
-+Beelink do not provide public schematics, but have been willing to share them with known
++Beelink do not provide public schematics, but have been willing to share them with known  
 +distro developers to assist with development.
  
 -U-Boot compilation
@@ -132,8 +132,8 @@ index 2fb50c5f7b..342887d584 100644
  ------------------
  
  .. code-block:: bash
-@@ -30,21 +30,21 @@ U-Boot compilation
-     $ make beelink-gtking_defconfig
+@@ -31,21 +31,21 @@ U-Boot compilation
+     $ make beelink-gtkingpro_defconfig
      $ make
  
 -Image creation
@@ -166,7 +166,7 @@ index 2fb50c5f7b..342887d584 100644
  
  .. code-block:: bash
  
-@@ -61,57 +61,57 @@ Go back to the mainline U-Boot source tree then:
+@@ -62,57 +62,57 @@ Go back to the mainline U-Boot source tree then:
      $ cp u-boot.bin fip/bl33.bin
  
      $ sh fip/blx_fix.sh \
