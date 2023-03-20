@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F4B5C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17DB7C7618E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U8Av4rVcURyOHkvp0Oy+itY1AAJ8jJE1rUrXH9nvReo=; b=A1EFgfZLH6EoFA
-	7RGZG3k3jR5ZDByaIdGdpdpmuJ3OXglvfg4/PT4XGIMq7MHIYH/wBATuqMG5oITuplovtXaOXoxF+
-	VphqQY+i0Ny+fe7K9vJtnf3WMFI8cIF0nPLhRlS7vyPdo0B/HyHeWc6zLwLEbTh86xDHxZgpfuFDS
-	c1c6UEktpH8vtmUGhREdLhqY+4b9sj688SPGri+tma3UTi/Xy0ZILsFM+rpSd3u3JuRSZSD4PnUIw
-	flvfFh7JpkdJPLVAjv810BD4nMRp8zH1deQOcyTmPYVMe70jEYnZOxkhpfaJpLdj0jnmwILkJ3+LW
-	UHZv/xMyDbejvjR+eW8Q==;
+	List-Owner; bh=DaIPcQnI3hxnHo3whtm1b28gioi8MKYHnrbymlk0aTE=; b=gR0u2KHL69Zpic
+	3NNApzs2gUam3eLEhhHsn2XlBok4hLiV+wAhgohG6oGsfX+zxnxtfAFT30K4zTocnaYc05ljR7VSE
+	0vaw/nrNv/0sQ7/t3XkN/HaJbnMK+BLhkkcp61U058HI60sdLUZpqZSt1DVew85ulouSGp4ZgrnO7
+	iA8mc8HyB94A8KJFYz0sZsHOx46V97eLpNogma+QiRioaoSahYeiwBWNYCBkjOD3EJdZtg9fcYPeF
+	M0QspGexmvC82BedJZsjotYR9ufgP3DDLRyssi9lBnAjNIx9nAtZ3XxCS9KS+XqMoq/QLAHefbMS9
+	Pq5l70vy6PAn9wWRBklw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDym-008sP8-33;
-	Mon, 20 Mar 2023 11:47:08 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyj-008rqP-2k
-	for linux-amlogic@lists.infradead.org;
+	id 1peDyl-008sOD-1a;
 	Mon, 20 Mar 2023 11:47:07 +0000
-Received: by mail-wr1-x432.google.com with SMTP id l12so10029977wrm.10
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:47:05 -0700 (PDT)
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1peDyi-008rwA-0p
+	for linux-amlogic@lists.infradead.org;
+	Mon, 20 Mar 2023 11:47:06 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id j2so10027349wrh.9
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:47:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312825;
+        d=gmail.com; s=20210112; t=1679312823;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vtzEjnqGRdFn/CH1z8MTrNU5zbERfjr+pOykLChRQ04=;
-        b=BEGLFd/hT4H6FI8+yY2GEvin/zoPNE5H0D0xMvpSN1ChyNZif8tjqHM2mwb2miyIKK
-         AUiszhMnqWoGe8UYXqI1hsbQ/PdqG0Z+UnQHAWg/NdCQOTLgs0lyztcR7cqvI/GozNE+
-         FoSs2M6BThm9EEp0dHOvVaqa3NTnLb9fJseKvr8VQSdK0mVCclV+2sViOxoG38vXn6us
-         +71gUHyL6h32lViRcz4z9BzSXSkuPZS3NoQiM3RN1RBrdQMdt/eyk36rU+sSjzoY/6ly
-         1CqrYHK68OZPgnCXiuRNB+1NRqRe76PyRzY1GJi4dgKFXg7XB++U6leoKXQrx/DuU+BJ
-         92eQ==
+        bh=VcpHorJlJda5nW//a0yVnoGJJXcKO2Y9Lk0g22JcFtE=;
+        b=MQP62o7Uwihx4W/czKQHpX8N4RbqpjB4JI17TRrTXKtwuADXQALHgSKm8MuhN7EsIg
+         z/MahH2YCuUvW2VmQs2anCFBLc+gQJAe8K2JDoHkfCZJe/IqMAwmStcVhKzwTHaiydQu
+         mGe2zX+MOx4zKRSVuJHGGmTFBxZ4wBMSdu5IGqslJPIa6OMyODyIlqjEKOZWpR1oTfSU
+         90F+RfkdHXcYYMt0rzQFrRndLlXA9GVaw0YsQkWPoqdX2tlXgkHW0UdjUXdVAFFwj60d
+         DaMwSQ5SmcWrygOL9Am2vg3oi9Cj5lHvDrIixKl9GYR8ckO6tYHIOTfzckwC38GhtWu+
+         ueiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312825;
+        d=1e100.net; s=20210112; t=1679312823;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vtzEjnqGRdFn/CH1z8MTrNU5zbERfjr+pOykLChRQ04=;
-        b=02PsSBVi4T6Lf11gGCuFk2VtN4rKw4zhXt3W0/rG9kyHrUX9Mq3Bl6meXDF1yHzgdy
-         E+wAscBQi8Cxncj2+fo/852EX+jhp28dAznThliiBF2QqiU7e5+58VkjgJNVk9EqDm20
-         wZndRLfbWZTc1u6uFYKzgz3MOgG/tGrtGkSMD+o/9aVzMd4ulc1hQX+o4biQ90bLInCj
-         9/3bdnou/pciPBX1fTeWaLbvk6w7UarKeqSnRCUNPlnOgM6mguMK2AzzXQywYoiRz5RK
-         JLDcqu4fneeKbAPRNrQKfHrbgsdvP45Fl2zzEnVwIDhAbH4pmheq0uIsNNrX2P6N5CUL
-         g0YQ==
-X-Gm-Message-State: AO0yUKXXOTlx4l1hwyGJHvPliXsWBYDr/u2k4UQ8RogelAf9zdbjFeAE
-	d9iYG5L4qdHfGkzUZMBMozNq4a14rEReglAj
-X-Google-Smtp-Source: AK7set/MtG0PFQr2uuJ1G1iRiJfw0HwuytAwOGW1eBkmcuCr0KbDyaVwr6IwQwOcty1fcbfV9ZlhqA==
-X-Received: by 2002:a5d:66ca:0:b0:2cf:e3d8:5df9 with SMTP id k10-20020a5d66ca000000b002cfe3d85df9mr12814300wrw.58.1679312825401;
-        Mon, 20 Mar 2023 04:47:05 -0700 (PDT)
+        bh=VcpHorJlJda5nW//a0yVnoGJJXcKO2Y9Lk0g22JcFtE=;
+        b=K3LtcA4Y9Ht4PJsaO8eYwbND/sto3riFKlfAKCZXjj1NYOJ8CcDCkJdejhjzdb6yIG
+         f+LSV2eL/GsSAWimFPHPakMQIJlNiBQIPz2NQlZVC0JkWM2UadywIM/vQgCubJwMj2by
+         RRTtAHLqWZLyQIUrIUer2bcfJyF2o0NXscEvTtYIqt6dkZyAHDSu4lY5gyNO7dy1ehzH
+         pS8TKvqlVJiKUEp5EVNtiqkHxeXHoOMjhtmOVD+vnM8OD1jqZMZeHIPn7Fbez0lITfTP
+         DRLuMu+vgNSqUyS2ZG/ZgdKqglfob8LWf0kgEbfjYV0460iodGS61NfK2VbS8eY1WM14
+         S1ZA==
+X-Gm-Message-State: AO0yUKW3I2PaM3TfOMSMD36sYW5eNQTUI5B6BEt6+1fyeJQDFjJMniBD
+	x+/pDk6G7fTX8hzHqBcqIes=
+X-Google-Smtp-Source: AK7set8lKZepeViQWoGUxmwRN5+BQSxhe08rEfy1YR3MKwwIfij038d9m/TG8Z5rc9qNEH/nF6GQoQ==
+X-Received: by 2002:adf:d844:0:b0:2d1:5698:3f70 with SMTP id k4-20020adfd844000000b002d156983f70mr9106101wrl.29.1679312823830;
+        Mon, 20 Mar 2023 04:47:03 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.47.04
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.47.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:47:05 -0700 (PDT)
+        Mon, 20 Mar 2023 04:47:03 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 33/33] doc: boards: amlogic: add documentation for ODROID-HC4
-Date: Mon, 20 Mar 2023 11:46:09 +0000
-Message-Id: <20230320114609.930145-34-christianshewitt@gmail.com>
+Subject: [PATCH 32/33] doc: boards: amlogic: add documentation for GS-King-X
+Date: Mon, 20 Mar 2023 11:46:08 +0000
+Message-Id: <20230320114609.930145-33-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044705_917404_7588C343 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20230320_044704_391239_A0AD53D0 
+X-CRM114-Status: GOOD (  15.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,57 +92,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add separate documentation for the ODROID-HC4 board to ensure
-users build U-Boot using the HC4 defconfig that enables PCIe
-SATA boot. This avoids user frustration trying to boot after
-using the C4 recipe which only works from SD card.
+GS-King-X is also supported with the beelink-s922x FIP sources and can use
+the GT-King defconfig. Add a board document with instructions.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/index.rst      |   1 +
- doc/board/amlogic/odroid-hc4.rst | 141 +++++++++++++++++++++++++++++++
- 2 files changed, 142 insertions(+)
- create mode 100644 doc/board/amlogic/odroid-hc4.rst
+ board/amlogic/beelink-s922x/MAINTAINERS |   3 +-
+ doc/board/amlogic/beelink-gskingx.rst   | 121 ++++++++++++++++++++++++
+ doc/board/amlogic/index.rst             |   1 +
+ 3 files changed, 124 insertions(+), 1 deletion(-)
+ create mode 100644 doc/board/amlogic/beelink-gskingx.rst
 
-diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
-index 7c4c161e0d..9b76bca427 100644
---- a/doc/board/amlogic/index.rst
-+++ b/doc/board/amlogic/index.rst
-@@ -101,6 +101,7 @@ Board Documentation
-    nanopi-k2
-    odroid-c2
-    odroid-c4
-+   odroid-hc4
-    odroid-n2
-    odroid-n2l
-    odroid-go-ultra
-diff --git a/doc/board/amlogic/odroid-hc4.rst b/doc/board/amlogic/odroid-hc4.rst
+diff --git a/board/amlogic/beelink-s922x/MAINTAINERS b/board/amlogic/beelink-s922x/MAINTAINERS
+index 47b622765a..8dddeb91d5 100644
+--- a/board/amlogic/beelink-s922x/MAINTAINERS
++++ b/board/amlogic/beelink-s922x/MAINTAINERS
+@@ -3,8 +3,9 @@ M:	Christian Hewitt <christianshewitt@gmail.com>
+ S:	Maintained
+ L:	u-boot-amlogic@groups.io
+ F:	board/amlogic/beelink-s922x/
++F:	configs/beelink-gsking-x_defconfig
+ F:	configs/beelink-gtking_defconfig
+ F:	configs/beelink-gtkingpro_defconfig
+-F:	configs/beelink-gsking-x_defconfig
++F:	doc/board/amlogic/beelink-gskingx.rst
+ F:	doc/board/amlogic/beelink-gtking.rst
+ F:	doc/board/amlogic/beelink-gtkingpro.rst
+diff --git a/doc/board/amlogic/beelink-gskingx.rst b/doc/board/amlogic/beelink-gskingx.rst
 new file mode 100644
-index 0000000000..94c3312022
+index 0000000000..987d358c77
 --- /dev/null
-+++ b/doc/board/amlogic/odroid-hc4.rst
-@@ -0,0 +1,141 @@
++++ b/doc/board/amlogic/beelink-gskingx.rst
+@@ -0,0 +1,121 @@
 +.. SPDX-License-Identifier: GPL-2.0+
 +
-+U-Boot for ODROID-HC4 (S905X3)
-+==============================
++U-Boot for Beelink GS-King-X (S922X)
++====================================
 +
-+ODROID-HC4 is a variant of the ODROID-C4 single board computer manufactured by Hardkernel
-+with the following specification:
++The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference board with an
++S922X-H chip and the following specifications:
 +
-+ - Amlogic S905X3 Arm Cortex-A55 quad-core SoC
-+ - 4GB DDR4 SDRAM
-+ - 16MB XT25F128B SPI-NOR flash
-+ - Gigabit Ethernet
-+ - HDMI 2.1 display
-+ - 7-pin GPIO header for OLED display and RTC
-+ - 1x USB 2.0 host (micro)
-+ - 2x SATA ports via ASM1061 PCIe to SATA controller
-+ - microSD
-+ - UART serial
-+ - Infrared receiver
++- 4GB LPDDR4 RAM
++- 64GB eMMC storage
++- 10/100/1000 Base-T Ethernet
++- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
++- HDMI 2.1 video
++- S/PDIF optical output
++- 2x ESS9018 audio DACs
++- 4x Ricor RT6862 audio amps
++- Analogue headphone output
++- 1x USB 2.0 OTG port
++- 3x USB 3.0 ports
++- IR receiver
++- 1x micro SD card slot (internal)
++- USB SATA controller with 2x 3.5" drive bays
++- 1x Power on/off button
 +
-+Schematics are available on the manufacturer website.
++Beelink do not provide public schematics, but have been willing to share them with known
++distro developers to assist with development.
 +
 +U-Boot Compilation
 +------------------
@@ -150,7 +157,7 @@ index 0000000000..94c3312022
 +.. code-block:: bash
 +
 +    $ export CROSS_COMPILE=aarch64-none-elf-
-+    $ make odroid-hc4_defconfig
++    $ make beelink-gsking-x_defconfig
 +    $ make
 +
 +U-Boot Signing with Pre-Built FIP repo
@@ -160,51 +167,27 @@ index 0000000000..94c3312022
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh odroid-hc4 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh beelink-s922x /path/to/u-boot/u-boot.bin my-output-dir
 +
 +U-Boot Manual Signing
 +---------------------
 +
-+Amlogic does not provide sources for the firmware and tools needed to create a bootloader
-+image so it is necessary to obtain binaries from sources published by the board vendor:
++Beelink released an Amlogic "SDK" dump in their forums but the U-Boot sources included
++result in 2GB RAM detected. The following FIPs were generated with newer sources and
++detect 4GB RAM: https://github.com/LibreELEC/amlogic-boot-fip/tree/master/beelink-s922x
 +
 +.. code-block:: bash
 +
-+    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+    $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+    $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+    $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++    $ wget https://github.com/LibreELEC/amlogic-boot-fip/archive/master.zip
++    $ unzip master.zip
++    $ export FIPDIR=$PWD/amlogic-boot-fip/beelink-s922x
 +
-+    $ DIR=odroid-hc4
-+    $ git clone --depth 1 https://github.com/hardkernel/u-boot.git -b odroidg12-v2015.01 $DIR
-+
-+    $ cd odroid-hc4
-+    $ make odroidc4_defconfig
-+    $ make
-+    $ export UBOOTDIR=$PWD
-+
-+Go back to mainline U-Boot source tree then:
++Go back to the mainline U-Boot source tree then:
 +
 +.. code-block:: bash
 +
 +    $ mkdir fip
-+
-+    $ wget https://github.com/BayLibre/u-boot/releases/download/v2017.11-libretech-cc/blx_fix_g12a.sh -O fip/blx_fix.sh
-+    $ cp $UBOOTDIR/build/scp_task/bl301.bin fip/
-+    $ cp $UBOOTDIR/build/board/hardkernel/odroidc4/firmware/acs.bin fip/
-+    $ cp $UBOOTDIR/fip/g12a/bl2.bin fip/
-+    $ cp $UBOOTDIR/fip/g12a/bl30.bin fip/
-+    $ cp $UBOOTDIR/fip/g12a/bl31.img fip/
-+    $ cp $UBOOTDIR/fip/g12a/ddr3_1d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/ddr4_1d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/ddr4_2d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/diag_lpddr4.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/lpddr3_1d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/lpddr4_1d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/lpddr4_2d.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/piei.fw fip/
-+    $ cp $UBOOTDIR/fip/g12a/aml_ddr.fw fip/
++    $ cp $FIPDIR/* fip/
 +    $ cp u-boot.bin fip/bl33.bin
 +
 +    $ sh fip/blx_fix.sh \
@@ -225,44 +208,55 @@ index 0000000000..94c3312022
 +         fip/bl2_new.bin \
 +         bl2
 +
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
-+                                                    --output fip/bl30_new.bin.g12a.enc \
-+                                                    --level v3
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
-+                                                   --output fip/bl30_new.bin.enc \
-+                                                   --level v3 --type bl30
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
-+                                                   --output fip/bl31.img.enc \
-+                                                   --level v3 --type bl31
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
-+                                                   --output fip/bl33.bin.enc \
-+                                                   --level v3 --type bl33 --compress lz4
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
-+                                                   --output fip/bl2.n.bin.sig
-+    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
-+                                          --output fip/u-boot.bin \
-+                                          --bl2 fip/bl2.n.bin.sig \
-+                                          --bl30 fip/bl30_new.bin.enc \
-+                                          --bl31 fip/bl31.img.enc \
-+                                          --bl33 fip/bl33.bin.enc \
-+                                          --ddrfw1 fip/ddr4_1d.fw \
-+                                          --ddrfw2 fip/ddr4_2d.fw \
-+                                          --ddrfw3 fip/ddr3_1d.fw \
-+                                          --ddrfw4 fip/piei.fw \
-+                                          --ddrfw5 fip/lpddr4_1d.fw \
-+                                          --ddrfw6 fip/lpddr4_2d.fw \
-+                                          --ddrfw7 fip/diag_lpddr4.fw \
-+                                          --ddrfw8 fip/aml_ddr.fw \
-+                                          --ddrfw9 fip/lpddr3_1d.fw \
-+                                          --level v3
++    $ fip/aml_encrypt_g12b --bl30sig --input fip/bl30_new.bin \
++                           --output fip/bl30_new.bin.g12a.enc \
++                           --level v3
++    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl30_new.bin.g12a.enc \
++                           --output fip/bl30_new.bin.enc \
++                           --level v3 --type bl30
++    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl31.img \
++                           --output fip/bl31.img.enc \
++                           --level v3 --type bl31
++    $ fip/aml_encrypt_g12b --bl3sig --input fip/bl33.bin --compress lz4 \
++                           --output fip/bl33.bin.enc \
++                           --level v3 --type bl33
++    $ fip/aml_encrypt_g12b --bl2sig --input fip/bl2_new.bin \
++                           --output fip/bl2.n.bin.sig
++    $ fip/aml_encrypt_g12b --bootmk \
++                           --output fip/u-boot.bin \
++                           --bl2 fip/bl2.n.bin.sig \
++                           --bl30 fip/bl30_new.bin.enc \
++                           --bl31 fip/bl31.img.enc \
++                           --bl33 fip/bl33.bin.enc \
++                           --ddrfw1 fip/ddr4_1d.fw \
++                           --ddrfw2 fip/ddr4_2d.fw \
++                           --ddrfw3 fip/ddr3_1d.fw \
++                           --ddrfw4 fip/piei.fw \
++                           --ddrfw5 fip/lpddr4_1d.fw \
++                           --ddrfw6 fip/lpddr4_2d.fw \
++                           --ddrfw7 fip/diag_lpddr4.fw \
++                           --ddrfw8 fip/aml_ddr.fw \
++                           --level v3
 +
-+Then write U-Boot to SD or SPI-NOR with:
++Then write U-Boot to SD or eMMC with:
 +
 +.. code-block:: bash
 +
 +    $ DEV=/dev/boot_device
 +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
 +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
+diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
+index 808c857622..7c4c161e0d 100644
+--- a/doc/board/amlogic/index.rst
++++ b/doc/board/amlogic/index.rst
+@@ -87,6 +87,7 @@ Board Documentation
+ 
+    bananapi-cm4io
+    bananapi-m5
++   beelink-gskingx
+    beelink-gtking
+    beelink-gtkingpro
+    jethub-j80
 -- 
 2.34.1
 
