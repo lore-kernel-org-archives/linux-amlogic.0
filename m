@@ -4,75 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A1BC7618A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F6A0C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=udPAYgBvhhFw46NfjVrN4zZmtH7lU87FDtBfshHei3M=; b=eRz9+2UFEWcOFd
-	UHLYq/kjhDqs8lrTRUUBLSRSuMielO/8TaVqOl0pssPPhFHv12ogsYpOe31H1uJJGwNg2uSFckV9F
-	Kmrz2/CxM3LCPmSW0aSGo4+x0Ks9K2ddi+kjZZXq7yw+5aw7gUTk8ONEG6/cxAjkfNYwv9TuBWA5c
-	CSrBNZq/RZER6UvRcK+IxcU3ROcaXROxV3yT34LU7HV7y6IzT5GWrLOx5dn+vrBrbgSvr24RYqIm6
-	Y91fwewH4Bo93ei1i0Uh6JIDC4GnFUou+xUfXkg6TTOHdV2Whj0HR+yniqVnBN9fmLvD/4cguOfIU
-	Qy6IBfx08+YtzBJrI/+Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZVnBhGHP6yKVGaoSb6CM9HyoMC0XoxELRsYEy4tJH2E=; b=ycSwFZ/COSco1m
+	/60MHpWno9nDxU5N9fEv6xP/GVTg2R3pH0NktguGFmAJkiz7MeRjFkkdJru/Q9R7jCwfaEclOQnsD
+	qBe8am9VzqOhJUOePYcFCIdhAknFhsiP9FihfxaVJ9wpRcbIVaf5UPnwTW91kVarCi9ih3hC4z6J5
+	GPWDJ6Au+RIPD80yJWbWe53T09t4H8JwNfhlK88kjOjgb6E52RbbpYf53FXPNG9c4FdZN4Dahrp4s
+	P1MeZVZWx0lcg4YJieOZ0ntPm/8jgMkmTcgW1SnASbWq2CH0V6hFNh//dl8xBLydADm9DjJsk3LKT
+	oIH2xoyQSVqHK6x9NX4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDxx-008rlI-2R;
-	Mon, 20 Mar 2023 11:46:17 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1peDy0-008rmW-0g;
+	Mon, 20 Mar 2023 11:46:20 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDxv-008rjz-10
+	id 1peDxw-008rkK-22
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:16 +0000
-Received: by mail-wr1-x431.google.com with SMTP id j24so1127289wrd.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:13 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:18 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id o32so892059wms.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312772;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ClI8K0bVgHtAV00Y4vIPX36r5/Z7oiWGKTY+DpiCK9M=;
-        b=UnI2Eg1XpCy5nThneE++AFVeVj9ZmeNYWXWe8HwgQRpXa/pZt2A8jwxcpdlL02BS6v
-         HG/undqoNW2mLxmUJ084Ot2af/P9x3SjgJtn1OpG00c6+R9KaAJl4brG9VJX1BeaB+H+
-         pnZAlpaOeDn0QpCuJtHJyaa7w4B1DPn1yz3OqCBSyV2XZiYWWrWlqry7qWaei/L8Fcc0
-         44Ao19En8q6VWFtKnjiw32DIS/ldXYBF3NvuKt19F6IJm6/ZBbmnQIyy7UYiW5EYHrvI
-         6St52Cxdf18mbdrd7sAa6JUfFd5utLAqxGvrxAzI9Cpx1kXwTZSDeb43oVuoTIXfSjmn
-         VRwQ==
+        d=gmail.com; s=20210112; t=1679312774;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vAnpEYXiX4sB0kjK50ard/j1uHGPKqU9tsDeuY5SwEM=;
+        b=bgKC3EdedGWe232tCj+P2FJvLxLlm9F6/WfOXxKTD0tcnxxUiGR0HlAfEbcpPqfq4V
+         yKtVc/D8bxZ1eY9LV6uhxy+F342wJjMfkEJGYn1fitjsqpCZEKL6/DrKqRlWKHWIW7u2
+         JOotTqEZtWnA+XqiwEGFh1czsEbfb/3M5XjQhzJ4+W+ro5xZ2hmKo2rPWd0MNY52DVF5
+         h1SWUtRkBCtq/VgB4ZCVr6iOGgVyv5tpLJnrmi9kW6T0P87NGMBGvyMx28mlzHpl5MMC
+         RTjr+JegC0jRW1kr3akgx8dYH7Ry4EjMzTtMmK+dJ5GG6V43lQ78va2kpr30TxLFrsaa
+         XjJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312772;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ClI8K0bVgHtAV00Y4vIPX36r5/Z7oiWGKTY+DpiCK9M=;
-        b=63DtHNuDGGynXa1dBDufFLI2OqSmog/25cJELQLJr/o/RkZhNSyb8FHE0Yb/OCS04u
-         EMv14hrrd9Mi6ELZzsF428uRrfZgA37Skbgo9aPvDARSZTdfb1QjjsugnsNJcv6VNmZ/
-         oThZDVa3m6mOV4IUAiexotuqZbUP6W6Ws1q0MzUgXCPR2/2YPAFXvi7pnK/T/cHsr652
-         Jplukra+fLMlGbcC6KltedqsRaXYtNNTPgajiIVkJPoGVgB3Lte+28+PHmZBBWh9Gd+C
-         8hX1AtyZVHrvfTAbGz8Xc/EjcGG8F9ot4GN1aand1hKJ3JVmCilqo/fBnH8CckO22F+o
-         fJOA==
-X-Gm-Message-State: AO0yUKWX1oxImMc9JwSIuw9pJ8ZEF6c/+q98aIBEcjWnIKOOLS6Z02lm
-	hNxVK6aHewgdCVgN+kJKgvVcqYmZTmz6+cE0
-X-Google-Smtp-Source: AK7set/DGKPE77oh7V7VFC40ZkXGWSfSuqMVymZwqXdNtN7pg7iDsQbfOjgWu0XJGeu2jYndDfEL8g==
-X-Received: by 2002:a5d:6989:0:b0:2d0:776:b773 with SMTP id g9-20020a5d6989000000b002d00776b773mr14436532wru.35.1679312772481;
-        Mon, 20 Mar 2023 04:46:12 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679312774;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vAnpEYXiX4sB0kjK50ard/j1uHGPKqU9tsDeuY5SwEM=;
+        b=n2IoOg98YQgDX4IYes05hPtrgHoUnJMXElyFCSL5qd11q79Erz+AjAXT/IzQtgsER1
+         ntSr7SslZnAAPSEU+We1Y+/zjQuEsvdkWYj0gST3cS+0UYK1BpqnAi+ebmftB+NbSUil
+         2lI06XuWNiaUnouGWrlSiGQCQiUstW85WuAfxOVsiSR+vTNGVKJChtCQSSIbFA/2d8ZM
+         K8Tz55WcHtEng6O/u/MfuKiXhLX21VpC4sI6IHBUWGhWy9Z7X/rWhFTjUkfQjBtTY1x0
+         GLb4fBMg1rYEVnsvnk2GnPSCb0ormTyuNwSx43VUvMR0BgH8utDHVC2vYWBCg1Gy/MdO
+         zM3w==
+X-Gm-Message-State: AO0yUKUvHA6DBOsPT32aPw0kCBY1R6VIUtwFwxsN9gbmvTNLqk1h4VXv
+	IwXa9HW3UMO+EEdbw3K89KO6GHdn6rlLT+Bx
+X-Google-Smtp-Source: AK7set/7QCSHfNyKSpsm1PL1IeKm621xYam0ijBVFkKVHBH/cHwASB2oh53U4iuFc+vtFk8eQxm4zw==
+X-Received: by 2002:a7b:c5d9:0:b0:3ed:8780:f265 with SMTP id n25-20020a7bc5d9000000b003ed8780f265mr9662392wmk.21.1679312774178;
+        Mon, 20 Mar 2023 04:46:14 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.11
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:12 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:13 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 00/33] doc: board: amlogic: spring clean-up of Amlogic docs
-Date: Mon, 20 Mar 2023 11:45:36 +0000
-Message-Id: <20230320114609.930145-1-christianshewitt@gmail.com>
+Subject: [PATCH 01/33] doc: boards: amlogic: update documentation for index page
+Date: Mon, 20 Mar 2023 11:45:37 +0000
+Message-Id: <20230320114609.930145-2-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
+References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044615_350614_654ECBEB 
-X-CRM114-Status: GOOD (  14.26  )
+X-CRM114-CacheID: sfid-20230320_044616_670346_B1FDEFFC 
+X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,109 +93,192 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic documentation spans U-Boot support from 2015-current resulting
-in older content being harder to follow. And due to many international
-contributors the docs also contain grammar quirks.
+Improve documentation. Notably we remove all the board names from the
+feature matrix to reduce table width. SoC types have been added to the
+titles in individual board documents so readers can still correlate a
+board against the features. This makes it easier to add new boards to
+to the document in the future.
 
-This series reworks all board documents to be more consistent. There is
-deliberate emphasis on using the amlogic-boot-fip repo for signing tasks
-as this is easier for most users to follow. The original/longer signing
-process (described as Manual Signing) has been tidied up.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ doc/board/amlogic/index.rst | 137 +++++++++++++++++-------------------
+ 1 file changed, 64 insertions(+), 73 deletions(-)
 
-In the index.rst file I've dropped board names from the features table
-as this adds considerable width and makes adding new boards a fiddly
-process. I've appended the SoC type to the boader header so it shows in
-the TOC list to retain a reference between boards and the table.
-
-I've added missing board docs for GS-King-X, BPI-M5, BPI-CM4IO, and we
-split ODROID-HC4 into its own document. It originally followed the same
-process as the ODROID0-C4, but now has a separate defconfig to enable
-SPI-NOR and PCIe SATA support. Users occasionally follow the current
-doc and build U-Boot for the C4 which omits this and then struggle to
-figure out why SATA boot doesn't work when wiki/forums say it does.
-
-There are other minor cleanups and tweaks for clarity of simply more
-up-to-date information for a board or process.
-
-Please review and flag any omissions or issues!
-
-Christian Hewitt (33):
-  doc: boards: amlogic: update documentation for index page
-  doc: boards: amlogic: update documentation for boot-flow
-  doc: boards: amlogic: update documentation for pre-generated-fip's
-  doc: boards: amlogic: update documentation for Beelink GT-King
-  doc: boards: amlogic: update documentation for Beelink GT-King Pro
-  doc: boards: amlogic: update documentation for JetHub J100
-  doc: boards: amlogic: update documentation for JetHub J80
-  doc: boards: amlogic: update documentation for Khadas VIM
-  doc: boards: amlogic: update documentation for Khadas VIM2
-  doc: boards: amlogic: update documentation for Khadas VIM3
-  doc: boards: amlogic: update documentation for Khadas VIM3L
-  doc: boards: amlogic: update documentation for LaFrite
-  doc: boards: amlogic: update documentation for LePotato
-  doc: boards: amlogic: update documentation for NanoPi-K2
-  doc: boards: amlogic: update documentation for ODROID-C2
-  doc: boards: amlogic: update documentation for ODROID-C4
-  doc: boards: amlogic: update documentation for ODROID GO ULTRA
-  doc: boards: amlogic: update documentation for ODROID-N2/N2+
-  doc: boards: amlogic: update documentation for ODROID-N2L
-  doc: boards: amlogic: update documentation for P200
-  doc: boards: amlogic: update documentation for P201
-  doc: boards: amlogic: update documentation for Q200
-  doc: boards: amlogic: update documentation for Radxa Zero
-  doc: boards: amlogic: update documentation for S400
-  doc: boards: amlogic: update documentation for SEI510
-  doc: boards: amlogic: update documentation for SEI610
-  doc: boards: amlogic: update documentation for U200
-  doc: boards: amlogic: update documentation for W400
-  doc: boards: amlogic: update documentation for WeTek Core2
-  doc: boards: amlogic: add documentation for BananaPi CM4IO
-  doc: boards: amlogic: add documentation for BananaPi M5
-  doc: boards: amlogic: add documentation for GS-King-X
-  doc: boards: amlogic: add documentation for ODROID-HC4
-
- board/amlogic/beelink-s922x/MAINTAINERS |   3 +-
- board/amlogic/u200/MAINTAINERS          |   1 -
- board/amlogic/w400/MAINTAINERS          |   2 +
- doc/board/amlogic/bananapi-cm4io.rst    | 152 ++++++++++++++++++++
- doc/board/amlogic/bananapi-m5.rst       | 141 +++++++++++++++++++
- doc/board/amlogic/beelink-gskingx.rst   | 121 ++++++++++++++++
- doc/board/amlogic/beelink-gtking.rst    | 120 ++++++++--------
- doc/board/amlogic/beelink-gtkingpro.rst | 120 ++++++++--------
- doc/board/amlogic/boot-flow.rst         | 178 ++++++++++++------------
- doc/board/amlogic/index.rst             | 141 +++++++++----------
- doc/board/amlogic/jethub-j100.rst       |  66 ++++-----
- doc/board/amlogic/jethub-j80.rst        |  46 +++---
- doc/board/amlogic/khadas-vim.rst        |  76 +++++-----
- doc/board/amlogic/khadas-vim2.rst       |  76 +++++-----
- doc/board/amlogic/khadas-vim3.rst       | 137 +++++++++---------
- doc/board/amlogic/khadas-vim3l.rst      | 137 +++++++++---------
- doc/board/amlogic/libretech-ac.rst      |  77 +++++-----
- doc/board/amlogic/libretech-cc.rst      | 109 ++++++---------
- doc/board/amlogic/nanopi-k2.rst         |  93 +++++++------
- doc/board/amlogic/odroid-c2.rst         |  54 +++----
- doc/board/amlogic/odroid-c4.rst         | 117 ++++++++--------
- doc/board/amlogic/odroid-go-ultra.rst   |  25 +++-
- doc/board/amlogic/odroid-hc4.rst        | 141 +++++++++++++++++++
- doc/board/amlogic/odroid-n2.rst         | 122 ++++++++--------
- doc/board/amlogic/odroid-n2l.rst        |  33 +++--
- doc/board/amlogic/p200.rst              |  87 +++++++-----
- doc/board/amlogic/p201.rst              |  87 +++++++-----
- doc/board/amlogic/pre-generated-fip.rst | 138 +++++++++++-------
- doc/board/amlogic/q200.rst              |  76 +++++-----
- doc/board/amlogic/radxa-zero.rst        |  45 +++---
- doc/board/amlogic/s400.rst              |  89 ++++++------
- doc/board/amlogic/sei510.rst            | 113 ++++++++-------
- doc/board/amlogic/sei610.rst            | 118 ++++++++--------
- doc/board/amlogic/u200.rst              | 113 ++++++++-------
- doc/board/amlogic/w400.rst              | 115 ++++++++-------
- doc/board/amlogic/wetek-core2.rst       |  83 ++++++-----
- 36 files changed, 2042 insertions(+), 1310 deletions(-)
- create mode 100644 doc/board/amlogic/bananapi-cm4io.rst
- create mode 100644 doc/board/amlogic/bananapi-m5.rst
- create mode 100644 doc/board/amlogic/beelink-gskingx.rst
- create mode 100644 doc/board/amlogic/odroid-hc4.rst
-
+diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
+index e51b904582..3eb1cf46e0 100644
+--- a/doc/board/amlogic/index.rst
++++ b/doc/board/amlogic/index.rst
+@@ -10,74 +10,65 @@ An up-do-date matrix is also available on: http://linux-meson.com
+ 
+ This matrix concerns the actual source code version.
+ 
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-|                               | S905      | S905X           | S912         | A113X       | S905X2     | S922X       | S905X3       |
+-|                               |           | S805X           | S905D        |             | S905D2     | A311D       | S905D3       |
+-|                               |           | S905W           |              |             | S905Y2     |             |              |
+-+===============================+===========+=================+==============+=============+============+=============+==============+
+-| Boards                        | Odroid-C2 | P212            | Khadas VIM2  | S400        | U200       | Odroid-N2   | SEI610       |
+-|                               | Nanopi-K2 | Khadas-VIM      | Libretech-PC | JetHub J100 | SEI510     | Khadas-VIM3 | Khadas-VIM3L |
+-|                               | P200      | LibreTech-CC v1 | WeTek Core2  |             | Radxa Zero | GT-King/Pro | Odroid-C4    |
+-|                               | P201      | LibreTech-AC v2 |              |             |            | GSKing-X    | Odroid-HC4   |
+-|                               |           | JetHub J80      |              |             |            | Odroid-Go-  | BananaPi-M5  |
+-|                               |           |                 |              |             |            | Ultra       |              |
+-|                               |           |                 |              |             |            | Odroid-N2L  |              |
+-|                               |           |                 |              |             |            | BPI-M4      |              |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| UART                          | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Pinctrl/GPIO                  | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Clock Control                 | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| PWM                           | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Reset Control                 | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Infrared Decoder              | No        | No              | No           | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Ethernet                      | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Multi-core                    | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Fuse access                   | **Yes**   | **Yes**         |**Yes**       |**Yes**      |**Yes**     |**Yes**      | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| SPI (FC)                      | **Yes**   | **Yes**         | **Yes**      | **Yes**     |**Yes**     | **Yes**     | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| SPI (CC)                      | No        | No              | No           | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| I2C                           | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| USB                           | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| USB OTG                       | No        | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| eMMC                          | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| SDCard                        | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| NAND                          | No        | No              | No           | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| ADC                           | **Yes**   | **Yes**         | **Yes**      | **Yes**     | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| CVBS Output                   | **Yes**   | **Yes**         | **Yes**      | *N/A*       | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| HDMI Output                   | **Yes**   | **Yes**         | **Yes**      | *N/A*       | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| CEC                           | No        | No              | No           | *N/A*       | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Thermal Sensor                | No        | No              | No           | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| LCD/LVDS Output               | No        | *N/A*           | No           | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| MIPI DSI Output               | *N/A*     | *N/A*           | *N/A*        | No          | No         | No          | No           |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| SoC (version) information     | **Yes**   | **Yes**         | **Yes**      | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| PCIe (+NVMe)                  | *N/A*     | *N/A*           | *N/A*        | **Yes**     | **Yes**    | **Yes**     | **Yes**      |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+-| Watchdog                      | *N/A*     | **Yes**         | *N/A*        | *N/A*       | *N/A*      | *N/A*       | *N/A*        |
+-+-------------------------------+-----------+-----------------+--------------+-------------+------------+-------------+--------------+
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| SoCs              | S905      | S805X    | S912     | A113X    | S905X2   | S922X    | S905X3   |
++|                   |           | S905X    | S905D    |          | S905D2   | A311D    | S905D3   |
++|                   |           | S905W    |          |          | S905Y2   |          |          |
+++===================+===========+==========+==========+==========+==========+==========+==========+
++| UART              | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Pinctrl/GPIO      | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Clock Control     | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| PWM               | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Reset Control     | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Infrared Decoder  | No        | No       | No       | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Ethernet          | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Multi-core        | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Fuse access       | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| SPI (FC)          | **Yes**   | **Yes**  | **Yes**  | **Yes**  |**Yes**   | **Yes**  | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| SPI (CC)          | No        | No       | No       | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| I2C               | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| USB               | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| USB OTG           | No        | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| eMMC              | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| SDCard            | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| NAND              | No        | No       | No       | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| ADC               | **Yes**   | **Yes**  | **Yes**  | **Yes**  | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| CVBS Output       | **Yes**   | **Yes**  | **Yes**  | *N/A*    | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| HDMI Output       | **Yes**   | **Yes**  | **Yes**  | *N/A*    | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| CEC               | No        | No       | No       | *N/A*    | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Thermal Sensor    | No        | No       | No       | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| LCD/LVDS Output   | No        | *N/A*    | No       | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| MIPI DSI Output   | *N/A*     | *N/A*    | *N/A*    | No       | No       | No       | No       |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| SoC Rev/Info      | **Yes**   | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| PCIe (+NVMe)      | *N/A*     | *N/A*    | *N/A*    | **Yes**  | **Yes**  | **Yes**  | **Yes**  |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
++| Watchdog          | *N/A*     | **Yes**  | *N/A*    | *N/A*    | *N/A*    | *N/A*    | *N/A*    |
+++-------------------+-----------+----------+----------+----------+----------+----------+----------+
+ 
+ Boot Documentation
+ ------------------
+@@ -85,8 +76,8 @@ Boot Documentation
+ .. toctree::
+    :maxdepth: 1
+ 
+-   pre-generated-fip
+    boot-flow
++   pre-generated-fip
+ 
+ Board Documentation
+ -------------------
+@@ -96,12 +87,12 @@ Board Documentation
+ 
+    beelink-gtking
+    beelink-gtkingpro
+-   jethub-j100
+    jethub-j80
++   jethub-j100
++   khadas-vim
+    khadas-vim2
+-   khadas-vim3l
+    khadas-vim3
+-   khadas-vim
++   khadas-vim3l
+    libretech-ac
+    libretech-cc
+    nanopi-k2
+@@ -115,9 +106,9 @@ Board Documentation
+    p212
+    q200
+    radxa-zero
+-   s400
+    sei510
+    sei610
++   s400
+    u200
+    wetek-core2
+    w400
 -- 
 2.34.1
 
