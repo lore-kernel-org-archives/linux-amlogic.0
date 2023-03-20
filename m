@@ -4,82 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 283E1C7618A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:31:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A5F7C7618A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TWNjKvNoK3ve4XVpTV0oSMTMQ/jBWT6WSTSdL6Xjz+Y=; b=mi7OGW8bcCs21c
-	v8HV6gLfiAy/moFzCj9Q9gj+gZK9Kfwk0TgVS+HPqELtUXFr0eNZnjffVTEeok58dZ/Wi6pDnUUdu
-	kXopSMpj+qNy2nbPxyarFK+wHS9eLhRwZKB6BsV7wioVFFLq5kHhzYyDZOAJMhNcO2ibhAURjYr+5
-	4LGkD6wfcpqjDPm8BgDigXHs/ePgLvBQQbMdBxojBu+xi84YHa/PMKiy+h7DbOr3yl0350VIiHSe7
-	vDaBJ9zZWnK195PzeRkehfw271lF9YOW3AjRfD4B2jXjpCNZOm1TYAKvXkEt7WjW1+WpZfJ8wAztE
-	2i5HsjZVW2L6TQrYMqew==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=e8GIml7A9f8GzLtKnKs96AtSb+t5Ml/HuqO/M47BhFY=; b=vhdhwlUdiM/Rxc
+	Peua59YZrzs84K9MRWYs7SNb9wevB7kLAV82nkpuo/NSNKCsaSiXqSf0dzQPNmzcJntCOUqA9OKah
+	D2oez0wb6ZcoMAWvpmEq4rw8xoTVudhzvmEFnRYdYv+Y9OH7rbxhale635T5bJ/EFxVIzUJR8mOuw
+	xUrdYn59QQNOb/27ewtUK3n6mnDROcgQ3+xxJ2ncJOlsYHMmxkfMvvTd6lRbX0yXgcn/xvONzfm3R
+	SFGhJoZ8MbOzmAXfliEvCldU+rOUHNuhtowXoLkoJdohBeEmkWvhrUEcH+MD3S/Hr0MkvvrFxUFtW
+	1MPiXcWwx7U+yhUZbGiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDj8-008pBy-2U;
-	Mon, 20 Mar 2023 11:30:58 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1peDnX-008pgN-2E;
+	Mon, 20 Mar 2023 11:35:31 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDj5-008pBS-0x;
-	Mon, 20 Mar 2023 11:30:57 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id A71C05FD11;
-	Mon, 20 Mar 2023 14:30:51 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679311851;
-	bh=mhNTaHeLzsk1HXgLUGJbb0lrEbiczjFN7BA22rqS9Dk=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=nV4woBe+8aZHrSnq/vzub1yq/dvrl60wWv1cdQO1RWciCybeDaIp2F+EWM2fPb8ND
-	 YCjfyC4Lwt+pM/+mRaKBs51MiMHxkwWssQKZlGJpg36xpFWlGrO5r7b5DNe3BWTmsR
-	 NU9lLuY5hFCQY/mkhjGzJRXjWtBe68DEBJRCfH2Q4HnNxNGyZOXDT/24uphhlwYJ3n
-	 k08z4kOFWidVwvxjpOWUmxZh3DUkuqUXnWOFL3STHh3wKjDbPwsl9YLohPYd5b8vN6
-	 NVS05h6oEGYUKfFLE1Bl2x6aI0ttBrDz79MdDb5TwQE+gfmwdR2IAScXQSwN/0HB0d
-	 51njr403RXOtA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 20 Mar 2023 14:30:49 +0300 (MSK)
-Date: Mon, 20 Mar 2023 14:30:48 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Arseniy Krasnov
-	<avkrasnov@sberdevices.ru>, Liang Yang <liang.yang@amlogic.com>, Richard
- Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, <oxffffaa@gmail.com>
-Subject: Re: [RFC PATCH v1] mtd: rawnand: meson: invalidate cache on polling
- ECC bit
-Message-ID: <20230320113048.3mry647oq33zfmag@CAB-WSD-L081021>
-References: <d4ef0bd6-816e-f6fa-9385-f05f775f0ae2@sberdevices.ru>
- <20f7f1f8-e8f8-b3e1-251e-27db71ab6840@sberdevices.ru>
- <20230313121808.27170d1b@xps-13>
- <dc46c06f-6b36-3c1c-bf96-2ef37e29dfdb@linaro.org>
- <20230320104314.i2stk665xbrleb53@CAB-WSD-L081021>
- <20230320115558.49c5a062@xps-13>
+	id 1peDnT-008pf7-2r;
+	Mon, 20 Mar 2023 11:35:29 +0000
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 20 Mar 2023
+ 19:35:20 +0800
+From: Yu Tu <yu.tu@amlogic.com>
+To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>
+CC: <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>, Yu Tu
+	<yu.tu@amlogic.com>
+Subject: [PATCH V2] clk: meson: vid-pll-div: added meson_vid_pll_div_ops support
+Date: Mon, 20 Mar 2023 19:34:45 +0800
+Message-ID: <20230320113445.17260-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230320115558.49c5a062@xps-13>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/20 09:56:00 #20977321
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_043055_883124_CA06FB52 
-X-CRM114-Status: UNSURE (   8.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230320_043527_950607_91550C67 
+X-CRM114-Status: GOOD (  12.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,19 +58,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gTWlxdcOobCwKCk9uIE1vbiwgTWFyIDIwLCAyMDIzIGF0IDExOjU1OjU4QU0gKzAxMDAs
-IE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gSGkgRG1pdHJ5LAo+IAo+IGRkcm9rb3NvdkBzYmVyZGV2
-aWNlcy5ydSB3cm90ZSBvbiBNb24sIDIwIE1hciAyMDIzIDEzOjQzOjE0ICswMzAwOgo+IAo+ID4g
-SGVsbG8gZ3V5cyEKPiA+IAo+ID4gV2FzIGl0IGFwcGxpZWQgdG8gc29tZSBuYW5kICdwcmVwYXJl
-LWZvci1tZXJnZScgcmVsZWFzZSBicmFuY2g/Cj4gCj4gTm90IHlldCwgSSdsbCBhcHBseSBpdCB0
-aGlzIHdlZWsgaW4gbXRkL2ZpeGVzLCB5b3UnbGwgYmUgbm90aWNlZC4KPiAKPiBUaGFua3MsCj4g
-TWlxdcOobAo+IAoKVGhhbmsgeW91IGZvciBjbGFyaWZpY2F0aW9uIQoKWy4uLl0KCi0tIApUaGFu
-ayB5b3UsCkRtaXRyeQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+Since the previous code only provides "ro_ops" for the vid_pll_div
+clock. In fact, the clock can be set. So add "ops" that can set the
+clock, especially for later chips like S4 SOC and so on.
+
+Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+---
+ drivers/clk/meson/vid-pll-div.c | 67 +++++++++++++++++++++++++++++++++
+ drivers/clk/meson/vid-pll-div.h |  3 ++
+ 2 files changed, 70 insertions(+)
+
+diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
+index daff235bc763..3c9015944f24 100644
+--- a/drivers/clk/meson/vid-pll-div.c
++++ b/drivers/clk/meson/vid-pll-div.c
+@@ -89,6 +89,73 @@ static unsigned long meson_vid_pll_div_recalc_rate(struct clk_hw *hw,
+ 	return DIV_ROUND_UP_ULL(parent_rate * div->multiplier, div->divider);
+ }
+ 
++static int meson_vid_pll_div_determine_rate(struct clk_hw *hw,
++					    struct clk_rate_request *req)
++{
++	unsigned long parent_rate, best = 0, now = 0, rate;
++	unsigned long parent_rate_saved = req->best_parent_rate;
++	unsigned int i, best_i = 0;
++
++	for (i = 0 ; i < VID_PLL_DIV_TABLE_SIZE; ++i) {
++		rate = DIV_ROUND_CLOSEST_ULL(req->rate * vid_pll_div_table[i].divider,
++					     vid_pll_div_table[i].multiplier);
++		if (parent_rate_saved == rate) {
++			req->best_parent_rate = parent_rate_saved;
++			best_i = i;
++			break;
++		}
++
++		parent_rate = clk_hw_round_rate(req->best_parent_hw, rate);
++		now = DIV_ROUND_CLOSEST_ULL(parent_rate *
++					    vid_pll_div_table[i].multiplier,
++					    vid_pll_div_table[i].divider);
++		if (abs(now - req->rate) < abs(best - req->rate)) {
++			best = now;
++			best_i = i;
++			req->best_parent_rate = parent_rate;
++		}
++	}
++
++	req->rate = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate *
++					  vid_pll_div_table[best_i].multiplier,
++					  vid_pll_div_table[best_i].divider);
++
++	return 0;
++}
++
++static int meson_vid_pll_div_set_rate(struct clk_hw *hw, unsigned long rate,
++				      unsigned long parent_rate)
++{
++	struct clk_regmap *clk = to_clk_regmap(hw);
++	struct meson_vid_pll_div_data *pll_div = meson_vid_pll_div_data(clk);
++	unsigned long best = 0, now = 0;
++	unsigned int i, best_i = 0;
++
++	for (i = 0 ; i < VID_PLL_DIV_TABLE_SIZE; ++i) {
++		now = DIV_ROUND_CLOSEST_ULL(parent_rate * vid_pll_div_table[i].multiplier,
++					    vid_pll_div_table[i].divider);
++		if (now == rate) {
++			best_i = i;
++			break;
++		} else if (abs(now - rate) < abs(best - rate)) {
++			best = now;
++			best_i = i;
++		}
++	}
++
++	meson_parm_write(clk->map, &pll_div->val, vid_pll_div_table[best_i].shift_val);
++	meson_parm_write(clk->map, &pll_div->sel, vid_pll_div_table[best_i].shift_sel);
++
++	return 0;
++}
++
++const struct clk_ops meson_vid_pll_div_ops = {
++	.recalc_rate	= meson_vid_pll_div_recalc_rate,
++	.determine_rate	= meson_vid_pll_div_determine_rate,
++	.set_rate	= meson_vid_pll_div_set_rate,
++};
++EXPORT_SYMBOL_GPL(meson_vid_pll_div_ops);
++
+ const struct clk_ops meson_vid_pll_div_ro_ops = {
+ 	.recalc_rate	= meson_vid_pll_div_recalc_rate,
+ };
+diff --git a/drivers/clk/meson/vid-pll-div.h b/drivers/clk/meson/vid-pll-div.h
+index c0128e33ccf9..bbccab340910 100644
+--- a/drivers/clk/meson/vid-pll-div.h
++++ b/drivers/clk/meson/vid-pll-div.h
+@@ -10,11 +10,14 @@
+ #include <linux/clk-provider.h>
+ #include "parm.h"
+ 
++#define VID_PLL_DIV_TABLE_SIZE		14
++
+ struct meson_vid_pll_div_data {
+ 	struct parm val;
+ 	struct parm sel;
+ };
+ 
+ extern const struct clk_ops meson_vid_pll_div_ro_ops;
++extern const struct clk_ops meson_vid_pll_div_ops;
+ 
+ #endif /* __MESON_VID_PLL_DIV_H */
+-- 
+2.33.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
