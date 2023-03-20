@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B326C7618E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8195C7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/UjcvVuei+D1kpGEnnWmnFAvZHn1c97X9SpAsX9UwlM=; b=RK+au1yxZeGqqb
-	U20znqIggZEXwPp9JQqhonRhi00odIUsKixmT4cttGfJ8xYerNL5+k8A/GeH127fuM1/ppD2v0YyA
-	Npo/MQKEdZ2pz9o6YlRmsF2V5PjTbXcSufG3GDWaWmA4O12pS4r5+DN0UGiNtRImHMq16A5XnQn1v
-	P8izOmB4AdtaRNnHVqWbc7SLbvgBNFvi+TT45n4ZTAUKQ5XX3wu/zARAkDYP7lVUEr9+7MyHZstQY
-	Cx6v/bffOspzmzvThyUWJf2zqHVtD/kGKu/v2k/9V2bloHwmyXjifSHj8X5FfJxOhd4/rPqJgcD+/
-	eid9STwkIyIFDU/MKfew==;
+	List-Owner; bh=a2KEka13ZgO9+tBh7nd/SU9SLj1O7GTEfBXHi7w3YiM=; b=jOa7wsncYzv3kQ
+	Gs6qhDnU41+QCATmWR21Jzrd90zYLPf1MMVjYQLB8K51pks4Hz4v/UJrbjEzs2ZKa6El+vik/G4BU
+	oEHaQiZ6cgnONmdZG9J1O8f3V6mzyMqe58tnjJ9i97ZItHJ/zEbms2kHKZggS+94HndB3EQBD0gi2
+	zlHbxonBzb5JnI337RtplSbQJyptwMGB0HtRIxELKvJPF36/SunL8r5gLkVC8tSdREqnw4T5o+08X
+	k2/8mUGrxNmXd8VT6HqtK0iIUSEUuHH8ilKxCOHl9yB1vBQfvcT4/lo9i6IPZjvQUvoCPnZ9RRzKW
+	cZHzybtohQeXkmnhl8vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyb-008sGm-31;
+	id 1peDyb-008sG4-1u;
 	Mon, 20 Mar 2023 11:46:57 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyY-008rnC-2r
+	id 1peDyX-008rkn-1S
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:56 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id y14so10043696wrq.4
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:54 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:55 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id j24so1129401wrd.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312814;
+        d=gmail.com; s=20210112; t=1679312813;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vAtnln5Ywi5ePclZoX20T/TmZufEC2pp0oMOI8VQoEk=;
-        b=bvOd/rEcJjOoDtiEErlMGACkOHq2Qm1X68QqDBX122FBiljfMNsPZAAbL15/ohCnY9
-         0Kegu6JOK2QTtMslncC/L11N7R7DN1hxJ5OXYqMkW27aAiSsvBBqC1MY6mVC1uLoGl27
-         XpLe9JNUyhWAYgHLzVKbXnGGRQuW2YgasQHN7LD4SwR8k/vbZ82H8euMB+usY6LeRhIB
-         eOiWCuckF/bdSAClu+xVXX8t5qRtDLDXdeHBt9Nr/4EUn12UTD8EfmqpX+zJi6OoeH30
-         bWXCYhpsRP28mkJ87KU39REtpwP7pzy2eEBgYrAUwjmEvi3snEV51tM/JxexHD3DSboY
-         LW6Q==
+        bh=94HmntJfhtzEnhOObGr9eOswGC99lf/O0pDaQvj/vrk=;
+        b=HcHc342EA1BiU6J/8nQI7mDcfnEKDgTZtZ+iYawBXpuNxn/6ISKZLGqRsfHXZ6g9Jg
+         4eGeGeVIw6fjDZ0h6ehiBDmSJhBf5x6ZrsiHAIAhEd6oE/Y3rnMS+ck5Mww2+LE3pIdu
+         XENkL1nEscW7ZsiergN8bmfsxm/qumvmwVbpJwxJTWHBCWGenn/O83PKh508n761GPHp
+         LNaPc8dtfn6xvFTmO3aiNysu7Xyuge+2Udjw7knVX74ZSTuNebV/ATfqio8BSrP7I5u3
+         EFwwN4Zs5uGaa5tAxERYeAC7o38BX6o5gVbLuFYqKXHzWlln7xGMVXzh16mrw6j9xS61
+         o+wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312814;
+        d=1e100.net; s=20210112; t=1679312813;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vAtnln5Ywi5ePclZoX20T/TmZufEC2pp0oMOI8VQoEk=;
-        b=rbxlzCahiCIyB9YUGR7AKMcNsm28iATSF8sA5sGdxnoQ5wzIqsA+299AHrqB64Owah
-         DXKIT6lkOzFec/e3xEJ0/gKtFUwFXL7p81EBhTnlwUjh9t2AYZTc9MfY+PY8rTR1Z8C3
-         KtIYg0UqRrTGoM/0BpF+Avw57I5bnU1evLcAHvxbek+ZN7IxrNaLREmshexvCEU+sH4d
-         mDTBMjYYbyCR5LnYgBs6cDX5SVNBt+aDDrbFTvpm7ovBSfs6Ux0K4riBKDHyiSHKdhGu
-         yJ3Uv2T7p3vKG763w7ruNkSPjg4raxBUJqtD2JwtOQh4BFVNeUmJBzW80OeAVPLuL0ZR
-         RBlQ==
-X-Gm-Message-State: AO0yUKUhqWc++hJYffYdZ4kKtG2Cv7x6e607Ukv1E3dpbFiUd2j01W+m
-	GQGej7ItPBvMzdlpRT1E67M=
-X-Google-Smtp-Source: AK7set9rchtCQXyRgPIQFl4jRIWjsYXNwhyqjJnLL+YX6B39rXhRxyhLNLdkgwciNOl5e0mYWjHhhw==
-X-Received: by 2002:adf:ee91:0:b0:2ce:ae7d:f818 with SMTP id b17-20020adfee91000000b002ceae7df818mr14240210wro.23.1679312814462;
-        Mon, 20 Mar 2023 04:46:54 -0700 (PDT)
+        bh=94HmntJfhtzEnhOObGr9eOswGC99lf/O0pDaQvj/vrk=;
+        b=LSN0o9/r0poPY3H6u6lx0sGfm1xetex6sc+ZKHFoNZNb5mMOka718T3MBwZmELGjiw
+         8/iDK7M/hFwEBKeTFWodTisWYO0h+HG0/YtDSe+ldj051mPHHKjDfwkADVqY6AMtek7w
+         HjhcZpP7/JDMlokBzM2PIc7pduTcANVpjoBrYX16P1Jar5aT4UpuhJRXumEYOifhVok6
+         w8Zyym5OMqu7zkqU84FItbh5Y2WPQwNkCBeWm7dVJcqD4Ax+C3ZvpLgUa41q/jFVqY3l
+         zJulfWWfaGWXCusoCSwlsbwBiGps7ZMe8s/Ff51yS1r6yMqDd7ENGXscfGuCM1Oe8c/q
+         99kg==
+X-Gm-Message-State: AO0yUKVSmG7XnigjSsd84VFkQUfz3zbK9oLv3/iSD/MFCBrc09gCWUBs
+	QUjJGROP95JvLBk0nTuJdiA=
+X-Google-Smtp-Source: AK7set9nA7nadx6Ld/U+TL+QFBStuJF/mI8vOLVOD3ifjJ1rCjAA5VbWn3Zrzz30W6jeuP5cQTFt0A==
+X-Received: by 2002:a5d:638b:0:b0:2cf:f312:86dd with SMTP id p11-20020a5d638b000000b002cff31286ddmr12841368wru.18.1679312812924;
+        Mon, 20 Mar 2023 04:46:52 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.53
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:54 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:52 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 26/33] doc: boards: amlogic: update documentation for SEI610
-Date: Mon, 20 Mar 2023 11:46:02 +0000
-Message-Id: <20230320114609.930145-27-christianshewitt@gmail.com>
+Subject: [PATCH 25/33] doc: boards: amlogic: update documentation for SEI510
+Date: Mon, 20 Mar 2023 11:46:01 +0000
+Message-Id: <20230320114609.930145-26-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044654_920675_E88DAAC3 
-X-CRM114-Status: GOOD (  10.40  )
+X-CRM114-CacheID: sfid-20230320_044653_507356_02EFD9BE 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,38 +92,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Improve documentation.
-
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/sei610.rst | 118 ++++++++++++++++++-----------------
- 1 file changed, 61 insertions(+), 57 deletions(-)
+ doc/board/amlogic/sei510.rst | 113 ++++++++++++++++++-----------------
+ 1 file changed, 59 insertions(+), 54 deletions(-)
 
-diff --git a/doc/board/amlogic/sei610.rst b/doc/board/amlogic/sei610.rst
-index 2d754497cc..84aaeff4ed 100644
---- a/doc/board/amlogic/sei610.rst
-+++ b/doc/board/amlogic/sei610.rst
-@@ -1,23 +1,22 @@
+diff --git a/doc/board/amlogic/sei510.rst b/doc/board/amlogic/sei510.rst
+index c55e778494..09b0f53e16 100644
+--- a/doc/board/amlogic/sei510.rst
++++ b/doc/board/amlogic/sei510.rst
+@@ -1,21 +1,20 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for Amlogic SEI610
+-U-Boot for Amlogic SEI510
 -=========================
-+U-Boot for Amlogic SEI610 (S905X3)
++U-Boot for Amlogic SEI510 (S905X2)
 +==================================
  
--SEI610 is a customer board manufactured by SEI Robotics with the following
+-SEI510 is a customer board manufactured by SEI Robotics with the following
 -specifications:
-+SEI610 is a customer board manufactured by SEI Robotics with the following specification:
++SEI510 is a customer board manufactured by SEI Robotics with the following specification:
  
-  - Amlogic S905X3 ARM Cortex-A55 quad-core SoC
+  - Amlogic S905X2 ARM Cortex-A53 quad-core SoC
   - 2GB DDR4 SDRAM
   - 10/100 Ethernet (Internal PHY)
 - - 1 x USB 3.0 Host
-- - 1 x USB Type-C DRD
-- - 1 x FTDI USB Serial Debug Interface
 + - 1x USB 3.0 Host
-+ - 1x USB Type-C DRD
-+ - 1x FTDI USB Serial Debug Interface
   - eMMC
   - SDcard
   - Infrared receiver
@@ -134,8 +128,8 @@ index 2d754497cc..84aaeff4ed 100644
  ------------------
  
  .. code-block:: bash
-@@ -26,14 +25,20 @@ U-Boot compilation
-     $ make sei610_defconfig
+@@ -24,14 +23,20 @@ U-Boot compilation
+     $ make sei510_defconfig
      $ make
  
 -Image creation
@@ -143,12 +137,12 @@ index 2d754497cc..84aaeff4ed 100644
 +U-Boot Signing with Pre-Built FIP repo
 +--------------------------------------
  
--For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `sei610`
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `sei510`
 +.. code-block:: bash
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh sei610 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh sei510 /path/to/u-boot/u-boot.bin my-output-dir
 +
 +U-Boot Manual Signing
 +---------------------
@@ -161,26 +155,25 @@ index 2d754497cc..84aaeff4ed 100644
  
  .. code-block:: bash
  
-@@ -48,7 +53,7 @@ the git tree published by the board vendor:
+@@ -46,7 +51,7 @@ the git tree published by the board vendor:
      $ make
      $ export UBOOTDIR=$PWD
  
 -Download the latest Amlogic Buildroot package, and extract it :
-+Download the latest Amlogic buildroot package and extract it:
++Download the latest Amlogic Buildroot package and extract it:
  
  .. code-block:: bash
  
-@@ -57,8 +62,7 @@ Download the latest Amlogic Buildroot package, and extract it :
-     $ export BRDIR=$PWD/buildroot-openlinux-A113-201901
+@@ -55,7 +60,7 @@ Download the latest Amlogic Buildroot package, and extract it :
+     $ export BRDIR=$PWD/buildroot_openlinux_kernel_4.9_fbdev_20180706
      $ export FIPDIR=$BRDIR/bootloader/uboot-repo/fip
  
 -Go back to mainline U-Boot source tree then :
--
 +Go back to the mainline U-Boot source tree then:
  
  .. code-block:: bash
  
-@@ -80,56 +84,56 @@ Go back to mainline U-Boot source tree then :
+@@ -77,56 +82,56 @@ Go back to mainline U-Boot source tree then :
      $ cp u-boot.bin fip/bl33.bin
  
      $ sh fip/blx_fix.sh \
