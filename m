@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FF6C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D19A8C7618A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:47:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vtynN2VKg+u5R8tk9k6tgBd8OYZR3vsYCHHU6M/MfG0=; b=DhdLhu5mycJt5F
-	amXtf2pFrOAy9d2kbry6XvxyAo+nj3jx7qE70z6OxDXQa0FWjD0VRJgFuyFl1tdJyqh0zK8cnFgVK
-	bX6Wys7OsrZ4A4FkxS69xqk7FatiB8ukQQgyn6rbh9BECcH+qOosn26/lBqXBQLXG32XdaR9css5n
-	4KRBZdGXkzBkCUicGMmj/lh/ZDCKYZHGqNXRm1sSVXeZtdrU+IasT0q+ZT0Qb/oSAF9IrOvxHs17w
-	QkxQPv9vD0jMmARQG1Zcukz+RLxW6g/v2K9MTf1UKWx1SKtL2flTU3onHMEkSkFkm9/7V4dlG1UzI
-	XBNgMdz6kz0B/slHWRLw==;
+	List-Owner; bh=L+onjLHxixmzlks57V9EhpdFL9bj3osTsUCOhOQC058=; b=Tqi8XEOnrQz3+i
+	vItP1IKajB8QRopAPJOEgMWjm9/FUvJUDuHP1tY05Cp0v8Aiw6BI3u0JOc/u/FebPQXlmFzB986Zl
+	zWuMhvjp5RZWi7CmDqyEsIB+tIoTFIW4kPlmYo1c9rJ3OGAlum2JAtRvyIxfcFvA1XqhKv2hriCwi
+	Cppf2BjRjGNWVdhiv2yKr9SZaslML3O1geL/J3rKuntCzJnLnHrlg+JUya4fU217TjtnrNtaOsrHV
+	Ydh3RImJaO8eqmuxz07vmD5m5E8c5/SCHEPcgJy+aT6I4N16dFsT6u4BGbXmLrMTBt9Uxlzbjlr/H
+	CuSvYue37Qu1OGl7M6XQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyo-008sQ9-16;
-	Mon, 20 Mar 2023 11:47:10 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1peDyr-008sRz-2m;
+	Mon, 20 Mar 2023 11:47:13 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyl-008sFI-0h
+	id 1peDyo-008sKf-1D
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:47:09 +0000
-Received: by mail-wr1-x429.google.com with SMTP id h17so10028148wrt.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:57 -0700 (PDT)
+	Mon, 20 Mar 2023 11:47:12 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id v1so3934931wrv.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:47:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312816;
+        d=gmail.com; s=20210112; t=1679312822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZmcVnpXoBYjxiK6PzinhKQ1A5neoyZ/06WqfZdqy/O4=;
-        b=lvCSbjLvNehou79aEj41MlM42kMjhSe+Vx02tFHzWxYyJIi6eg7G7eqqHSwfnjRm9p
-         HnRyuOm3F5kZ1spTthm5LvF9XTZy4QmHbpcTX62VCreJzZQKP24KLDZYHIDqWx32/+73
-         +UmR5mBL1+szcxRJn1W+WaK1CKftlBsUnoQEgzoWdyDln6QTeMNHSHsSD9Ae57kezSgo
-         NE9gU6KCAD5RmBmwIJTDXt8UEqwfG9aVknnv2le6csvQHse3qAV6QTKmIJp6xcr1IBxc
-         Krp14ikh7GU0LioUvoDYGLJ7826qE37y3EsQM6vMBX7+PvjOTpVwReR6D8i/7cHOnj00
-         L2SQ==
+        bh=9xkFOBT9a7E5jsB06XKcP3k1R6qx8QP/tgBp+DQ2wCY=;
+        b=AovXahGYJIa6JZssaQCc+Ac+39TGzHC+KSvJTDsmfMUqaoaHxHoyI8DD2RyrAzCUIq
+         Dx+fEHeGE/1culBSCpHNbIWsdo/Nke4fcfFdoNzgmEOhIiupDOt8cKriwaKEQo8Fsb5o
+         feDii5zPGKO2HCVW5nppbgSLEBNBPjXnsfrWibS2QBlxc4rbAaMivKd3WrB9dNrr1TDL
+         JeV2VkjvXB4i/c35eTgBqdbOqpxmQxyQLJ2kmVsSqCMuYGDBlLF6+7rXM/MTfBKZLQ4A
+         8H+EmnouZEN3FLdul9cSbiwwu8NU0U6KGcxkwUMmzDUaKaRh0dOQEa4/p1gNUXVA6xuY
+         uVrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312816;
+        d=1e100.net; s=20210112; t=1679312822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZmcVnpXoBYjxiK6PzinhKQ1A5neoyZ/06WqfZdqy/O4=;
-        b=X2gqtw+Sb71J1oz76mLgSKRiRm6Omt5keUe7ejkyA7ITIxjcCoFZ7OqOUwZV/SIOQk
-         Gqx6cA8b1Lymlnc6/cvBuiCLl57LzyGc5z6jajlwoKn30pb2UGU0ZBSBBC4r8sojkRyA
-         pmUtS5CgMfRQsX0Wy5lSJBdzykln/9zKZJZ3PRsewOVRc4/o/jTPyOGWDhT/qOtenaU4
-         /92iVW9YPV2qhEdyAaOHLe2dnr6t9LxifdRBoqWCPGLGq3MjPAAYw583q87sz7mU08nv
-         0OYXj2epB8GavVFX2No3soktDNtIpuayf2KjEL1TZGmCePshk15lJ5LydkFulONnwRVZ
-         1LzQ==
-X-Gm-Message-State: AO0yUKVM5Qbw/p7RtqDAwGpWaNoor4CRl/6qrkzEkuDhY94HKLlbkemw
-	8urILM/BT0K/8rSCWow59Uk=
-X-Google-Smtp-Source: AK7set/MNDRNwT+T+Uv7GhUKfTgQaYyz+kimCUgwOmmSiF8QF5kCiQReq/bJu8j06V677NedDY7nNg==
-X-Received: by 2002:adf:dcca:0:b0:2c5:4db8:3dde with SMTP id x10-20020adfdcca000000b002c54db83ddemr13643515wrm.70.1679312815967;
-        Mon, 20 Mar 2023 04:46:55 -0700 (PDT)
+        bh=9xkFOBT9a7E5jsB06XKcP3k1R6qx8QP/tgBp+DQ2wCY=;
+        b=PQbxSFrIsa/z/NoSRrA+4Cqvr9CCVD7FF8s6EH4R65SBIlF0NIC7IhRE4jpeP05f6u
+         DieEtywrDdp1/0PlgaWuQBnuIgyUTFiaXXsJDqigbylsX9GwPpdvXdkDKjY36cpUw1OE
+         MU7XES7v0UtKOt1XsVLYQcAmPzhnitvkTMYnIGOE20l7nVrsXKF2w6cGQNS8d0qs2YKk
+         PVgZGjGq1IlQbapFn+GJu7K8wEh5kYEoNZrBdJpIoFA+NTFugmEPvAd39mD1xvg5EDSw
+         +xvOXq/ldE1HUp20k9iQ8G0DeNtJqRtb6/Z5Id2fENxV4ZBNN1rStQm0UHr4tSoFSxbr
+         tlHg==
+X-Gm-Message-State: AO0yUKVby0CShqv/mQpj82tTiZGlNwCxHNPBFrmdxAFDKFIRCMoH7XK9
+	09B+mM8dSyNoRjXwipQBwJk=
+X-Google-Smtp-Source: AK7set8GSY5+CBW7X5CvlS3W3CafwQlw7wPo0OLwuWzYDY2YS5RKpGxcCxxm0byl5iM+7ryMKuhHpw==
+X-Received: by 2002:adf:e406:0:b0:2d6:405f:8b16 with SMTP id g6-20020adfe406000000b002d6405f8b16mr3937781wrm.66.1679312822237;
+        Mon, 20 Mar 2023 04:47:02 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.54
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.47.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:55 -0700 (PDT)
+        Mon, 20 Mar 2023 04:47:01 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 27/33] doc: boards: amlogic: update documentation for U200
-Date: Mon, 20 Mar 2023 11:46:03 +0000
-Message-Id: <20230320114609.930145-28-christianshewitt@gmail.com>
+Subject: [PATCH 31/33] doc: boards: amlogic: add documentation for BananaPi M5
+Date: Mon, 20 Mar 2023 11:46:07 +0000
+Message-Id: <20230320114609.930145-32-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044707_255244_9B3A42E0 
-X-CRM114-Status: GOOD (  11.02  )
+X-CRM114-CacheID: sfid-20230320_044710_435036_303636A7 
+X-CRM114-Status: GOOD (  13.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,100 +92,107 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add missing build documentation for the BPI-M5 board.
+
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/u200.rst | 113 +++++++++++++++++++------------------
- 1 file changed, 59 insertions(+), 54 deletions(-)
+ doc/board/amlogic/bananapi-m5.rst | 141 ++++++++++++++++++++++++++++++
+ doc/board/amlogic/index.rst       |   1 +
+ 2 files changed, 142 insertions(+)
+ create mode 100644 doc/board/amlogic/bananapi-m5.rst
 
-diff --git a/doc/board/amlogic/u200.rst b/doc/board/amlogic/u200.rst
-index 53213fdb68..6d1d66b4ea 100644
---- a/doc/board/amlogic/u200.rst
-+++ b/doc/board/amlogic/u200.rst
-@@ -1,15 +1,14 @@
- .. SPDX-License-Identifier: GPL-2.0+
- 
--U-Boot for Amlogic U200
--=======================
-+U-Boot for Amlogic U200 (S905X2)
-+================================
- 
--U200 is a reference board manufactured by Amlogic with the following
--specifications:
-+U200 is a reference board manufactured by Amlogic with the following specification:
- 
-  - Amlogic S905D2 ARM Cortex-A53 quad-core SoC
-  - 2GB DDR4 SDRAM
-  - 10/100 Ethernet (Internal PHY)
-- - 1 x USB 3.0 Host
-+ - 1x USB 3.0 Host
-  - eMMC
-  - SDcard
-  - Infrared receiver
-@@ -20,7 +19,7 @@ specifications:
- 
- Schematics are available from Amlogic on demand.
- 
--U-Boot compilation
+diff --git a/doc/board/amlogic/bananapi-m5.rst b/doc/board/amlogic/bananapi-m5.rst
+new file mode 100644
+index 0000000000..ddc14b4eef
+--- /dev/null
++++ b/doc/board/amlogic/bananapi-m5.rst
+@@ -0,0 +1,141 @@
++.. SPDX-License-Identifier: GPL-2.0+
++
++U-Boot for BananaPi BPI-M5 (S905X3)
++===================================
++
++BananaPi BPI-M5 is a Single Board Computer manufactured by Sinovoip with the following
++specification:
++
++ - Amlogic S905X3 Arm Cortex-A55 quad-core SoC
++ - 4GB DDR4 SDRAM
++ - 16GB eMMC
++ - Gigabit Ethernet
++ - HDMI 2.1 display
++ - 40-pin GPIO header
++ - 4x USB 3.0 Host
++ - 1x USB-C (power)
++ - microSD
++ - UART serial
++ - Infrared receiver
++
++Schematics are available from the manufacturer: https://wiki.banana-pi.org/Banana_Pi_BPI-M5
++
 +U-Boot Compilation
- ------------------
- 
- .. code-block:: bash
-@@ -29,14 +28,20 @@ U-Boot compilation
-     $ make u200_defconfig
-     $ make
- 
--Image creation
----------------
++------------------
++
++.. code-block:: bash
++
++    $ export CROSS_COMPILE=aarch64-none-elf-
++    $ make bananapi-m5_defconfig
++    $ make
++
 +U-Boot Signing with Pre-Built FIP repo
 +--------------------------------------
- 
--For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `u200`
++
 +.. code-block:: bash
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh u200 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh bananapi-m5 /path/to/u-boot/u-boot.bin my-output-dir
 +
 +U-Boot Manual Signing
 +---------------------
- 
--Amlogic doesn't provide sources for the firmware and for tools needed
--to create the bootloader image, so it is necessary to obtain them from
--the git tree published by the board vendor:
++
 +Amlogic does not provide sources for the firmware and tools needed to create a bootloader
 +image so it is necessary to obtain binaries from sources published by the board vendor:
- 
- .. code-block:: bash
- 
-@@ -51,7 +56,7 @@ the git tree published by the board vendor:
-     $ make
-     $ export UBOOTDIR=$PWD
- 
--Download the latest Amlogic Buildroot package, and extract it :
-+Download the latest Amlogic buildroot package and extract it:
- 
- .. code-block:: bash
- 
-@@ -60,7 +65,7 @@ Download the latest Amlogic Buildroot package, and extract it :
-     $ export BRDIR=$PWD/buildroot_openlinux_kernel_4.9_fbdev_20180706
-     $ export FIPDIR=$BRDIR/bootloader/uboot-repo/fip
- 
--Go back to mainline U-Boot source tree then :
++
++.. code-block:: bash
++
++    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++    $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++    $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++    $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++
++    $ DIR=bananapi-m5
++    $ git clone --depth 1 https://github.com/Dangku/amlogic-u-boot.git -b odroidg12-v2015.01-c4-m5 $DIR
++
++    $ cd $DIR
++    $ make bananapi_m5_defconfig
++    $ make
++    $ export UBOOTDIR=$PWD
++
 +Go back to the mainline U-Boot source tree then:
- 
- .. code-block:: bash
- 
-@@ -82,56 +87,56 @@ Go back to mainline U-Boot source tree then :
-     $ cp u-boot.bin fip/bl33.bin
- 
-     $ sh fip/blx_fix.sh \
--    	fip/bl30.bin \
--    	fip/zero_tmp \
--    	fip/bl30_zero.bin \
--    	fip/bl301.bin \
--    	fip/bl301_zero.bin \
--    	fip/bl30_new.bin \
--    	bl30
++
++.. code-block:: bash
++
++    $ mkdir fip
++
++    $ wget https://github.com/BayLibre/u-boot/releases/download/v2017.11-libretech-cc/blx_fix_g12a.sh -O fip/blx_fix.sh
++    $ cp $UBOOTDIR/build/scp_task/bl301.bin fip/
++    $ cp $UBOOTDIR/build/board/bananapi/bananpi_m5/firmware/acs.bin fip/
++    $ cp $UBOOTDIR/fip/g12a/bl2.bin fip/
++    $ cp $UBOOTDIR/fip/g12a/bl30.bin fip/
++    $ cp $UBOOTDIR/fip/g12a/bl31.img fip/
++    $ cp $UBOOTDIR/fip/g12a/ddr3_1d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/ddr4_1d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/ddr4_2d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/diag_lpddr4.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/lpddr3_1d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/lpddr4_1d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/lpddr4_2d.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/piei.fw fip/
++    $ cp $UBOOTDIR/fip/g12a/aml_ddr.fw fip/
++    $ cp u-boot.bin fip/bl33.bin
++
++    $ sh fip/blx_fix.sh \
 +         fip/bl30.bin \
 +         fip/zero_tmp \
 +         fip/bl30_zero.bin \
@@ -193,15 +200,8 @@ index 53213fdb68..6d1d66b4ea 100644
 +         fip/bl301_zero.bin \
 +         fip/bl30_new.bin \
 +         bl30
- 
-     $ sh fip/blx_fix.sh \
--    	fip/bl2.bin \
--    	fip/zero_tmp \
--    	fip/bl2_zero.bin \
--    	fip/acs.bin \
--    	fip/bl21_zero.bin \
--    	fip/bl2_new.bin \
--    	bl2
++
++    $ sh fip/blx_fix.sh \
 +         fip/bl2.bin \
 +         fip/zero_tmp \
 +         fip/bl2_zero.bin \
@@ -209,69 +209,57 @@ index 53213fdb68..6d1d66b4ea 100644
 +         fip/bl21_zero.bin \
 +         fip/bl2_new.bin \
 +         bl2
- 
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
--    					--output fip/bl30_new.bin.g12a.enc \
--    					--level v3
-+                                              --output fip/bl30_new.bin.g12a.enc \
-+                                              --level v3
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
--    					--output fip/bl30_new.bin.enc \
--    					--level v3 --type bl30
-+                                             --output fip/bl30_new.bin.enc \
-+                                             --level v3 --type bl30
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
--    					--output fip/bl31.img.enc \
--    					--level v3 --type bl31
-+                                             --output fip/bl31.img.enc \
-+                                             --level v3 --type bl31
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
--    					--output fip/bl33.bin.enc \
--    					--level v3 --type bl33
-+                                             --output fip/bl33.bin.enc \
-+                                             --level v3 --type bl33
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
--    					--output fip/bl2.n.bin.sig
-+                                             --output fip/bl2.n.bin.sig
-     $ $FIPDIR/g12a/aml_encrypt_g12a --bootmk \
--    		--output fip/u-boot.bin \
--    		--bl2 fip/bl2.n.bin.sig \
--    		--bl30 fip/bl30_new.bin.enc \
--    		--bl31 fip/bl31.img.enc \
--    		--bl33 fip/bl33.bin.enc \
--    		--ddrfw1 fip/ddr4_1d.fw \
--    		--ddrfw2 fip/ddr4_2d.fw \
--    		--ddrfw3 fip/ddr3_1d.fw \
--    		--ddrfw4 fip/piei.fw \
--    		--ddrfw5 fip/lpddr4_1d.fw \
--    		--ddrfw6 fip/lpddr4_2d.fw \
--    		--ddrfw7 fip/diag_lpddr4.fw \
--    		--level v3
--
--and then write the image to SD with:
-+                                    --output fip/u-boot.bin \
-+                                    --bl2 fip/bl2.n.bin.sig \
-+                                    --bl30 fip/bl30_new.bin.enc \
-+                                    --bl31 fip/bl31.img.enc \
-+                                    --bl33 fip/bl33.bin.enc \
-+                                    --ddrfw1 fip/ddr4_1d.fw \
-+                                    --ddrfw2 fip/ddr4_2d.fw \
-+                                    --ddrfw3 fip/ddr3_1d.fw \
-+                                    --ddrfw4 fip/piei.fw \
-+                                    --ddrfw5 fip/lpddr4_1d.fw \
-+                                    --ddrfw6 fip/lpddr4_2d.fw \
-+                                    --ddrfw7 fip/diag_lpddr4.fw \
-+                                    --level v3
 +
-+Then write U-Boot to SD or eMMC with:
- 
- .. code-block:: bash
- 
--    $ DEV=/dev/your_sd_device
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
++                                          --output fip/bl30_new.bin.g12a.enc \
++                                          --level v3
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
++                                          --output fip/bl30_new.bin.enc \
++                                          --level v3 --type bl30
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
++                                          --output fip/bl31.img.enc \
++                                          --level v3 --type bl31
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
++                                          --output fip/bl33.bin.enc \
++                                          --level v3 --type bl33 --compress lz4
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
++                                          --output fip/bl2.n.bin.sig
++    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
++                                          --output fip/u-boot.bin \
++                                          --bl2 fip/bl2.n.bin.sig \
++                                          --bl30 fip/bl30_new.bin.enc \
++                                          --bl31 fip/bl31.img.enc \
++                                          --bl33 fip/bl33.bin.enc \
++                                          --ddrfw1 fip/ddr4_1d.fw \
++                                          --ddrfw2 fip/ddr4_2d.fw \
++                                          --ddrfw3 fip/ddr3_1d.fw \
++                                          --ddrfw4 fip/piei.fw \
++                                          --ddrfw5 fip/lpddr4_1d.fw \
++                                          --ddrfw6 fip/lpddr4_2d.fw \
++                                          --ddrfw7 fip/diag_lpddr4.fw \
++                                          --ddrfw8 fip/aml_ddr.fw \
++                                          --ddrfw9 fip/lpddr3_1d.fw \
++                                          --level v3
++
++Then write the image to SD or eMMC with:
++
++.. code-block:: bash
++
 +    $ DEV=/dev/boot_device
-     $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
++    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
 +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
+diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
+index e3ed1158df..808c857622 100644
+--- a/doc/board/amlogic/index.rst
++++ b/doc/board/amlogic/index.rst
+@@ -86,6 +86,7 @@ Board Documentation
+    :maxdepth: 1
+ 
+    bananapi-cm4io
++   bananapi-m5
+    beelink-gtking
+    beelink-gtkingpro
+    jethub-j80
 -- 
 2.34.1
 
