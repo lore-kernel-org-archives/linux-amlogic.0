@@ -4,86 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40DB0C7618D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 12:25:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C090C7618A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ieeSakptfEqBLddRAGT1zooGSxEcjmB9sH4pYpvIKRI=; b=OakiDC9SPEhtwdchMQkju32SX1
-	Ax8Thx0Hsl6hQKVtNjWpi1+Xjcd+px8torkhysh3YeDW7UyOojagT4cD2NV9RkTf/hmlE7gcJH2A8
-	MBXjnPBuIRFX1gcA/+EyfTLSxVPnnhhHdLTjcU2dc+5IlxX5+ENPZY2yrtOlRuA0eJRbjCMrDjiGC
-	hN9w/cv1D00DVNhIM6rY9MUCElqQpl/h3WARV11e6BylwjQtMMOzDYm6WNoLpVOnds8TeQdy9eKJZ
-	coQ7jWqVdP/MIvMWEKIUPy0Y05Pypygg0fCdeT38BGpcnKZ7Kyv3fgHORT3T3eG5uoj4g/x3Adl6l
-	WRqir1hw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5hKpayawMJX5vpMQwmhaI7+vJo9pWF3LscIPEePOkTM=; b=tiUk34ilRNJrNy
+	0nyF3lL4CROGbjEH8yZorZ8ptIkmEKmPxUJGgXzamyjhBt6Yfj9GaGWqttt2PbBMHZXv6qWNFFlU3
+	PRG685REjD4t9cweLveNAnXnYNJK1hgwJuj/fvwzj9yDEowId4MbFceiN4CJohHWhRYIyfysC/AX1
+	6HQZBK+fItZOVzRzhYpu86Gfc8tBjMG3zVmuFtNsZo8VnbG9L3YULptfzR4ws9a77sX7vl2NQ2HGw
+	VR2ZRbDuOf2FGj6fsbPO5kTW0+ZUMDjCQVt4fTEg8Azyk1xlmwogHrrT6qELjR5ZwbQywnMGebfT3
+	NsY1sjFJt2haUJABgqtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peEZd-008xua-24;
-	Mon, 20 Mar 2023 12:25:13 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1peF7b-00928O-0y;
+	Mon, 20 Mar 2023 13:00:19 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peEZa-008xtn-2Q
+	id 1peDyF-008rjz-22
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 12:25:12 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso9061258wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 05:25:10 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:37 +0000
+Received: by mail-wr1-x431.google.com with SMTP id j24so1128529wrd.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679315109;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hbYe87C1ax7n2gUxfYefOp4CtanFQWHmul8SCrZFOBg=;
-        b=Jnuru+ugnRyx+FSA1ergwvCdAydNXxsWVv3Ri6zD2IU2rKfgHJbCGh3M17afwv1oQB
-         Cum6Un6UsIqsOvgxT0ZQ8bpk3qXnSK8nV6J0H4KWm25XaYwR7KDa4ahmn7+UXuoaug0A
-         OH1cb93hharg0gk3KFjPVWbiaCXowamGonQM6uCDE/Kunob9J6P165fE5JyNcX9WZ4np
-         q/jwJEQlrM4zTqlI/R+GBczM8Ceea26CmFpMl7PHn/oA8OA0TDMmFuaI5N/lDLVwdymX
-         aut9ZNKDh4dhxIITz8JeZw2oRJw10/OKGvwdGJeQPYQ2iNffTLNHuMog+JviFvfSIRSS
-         W+Ew==
+        d=gmail.com; s=20210112; t=1679312795;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HxnHVYKNCE/GVy5zjfpoO6N7DVnCQIkYWWe8AnYCmdM=;
+        b=fnSboEXCJulyFxFta06RIg6NksExFjstwLMrC71YYz2tA7+Dona8D09KXndbpVD1r4
+         FjAsw8yarbYPLWYgP88IlB0m15Kpt937eVhQWkSCOONdrb85weV0bc6wzSGxWeVSzkRb
+         dRETCFYClXARixjI32/l5HmIiNiFCHg9fti7i6FeVr0kEUwsblNGhXiIth0h8i7jkesC
+         qNOJihnT4xCAFKChNYvenroosKFPbGr8RZGW9JvBgT8a3M9KDKYi5JLsfQXueFKZKalH
+         bDCiYe7RV8fYXlwWSAAviPV/ljx7v3Vsm3+0Iow/Pvf/zB87IcnQBvruPBc2ignPRofY
+         5CUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679315109;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hbYe87C1ax7n2gUxfYefOp4CtanFQWHmul8SCrZFOBg=;
-        b=u0H8D4iu7OczAZfINyuFdDflKb6GIIRdSuRy+nvGQHsRV7EVRZvIOTUPJ1rq8ssfyG
-         PbwptxT1KcZTaEl2N+Qt3qJmqtuxpRS+ngYmba4ChY4oHPXQ8+bxDlHxPbhq6Akz4mCC
-         KUurqCFsrxdQVZDwlLt8T4F4YoFRNNeWZCb4f3Gd3TmIxKGhcZR1e43xM6eEOB62vzAT
-         zfBQmyOJzs1tjBLQPhX8NuhrOE+L74yg0qAcjCkP3Sdc5a/s/viaiMFlYokv7ih1Rge1
-         A/rFqsC9z37Wgi8rdrPU9J2PjZlsi+Z/+F69k5A9asTAGlehwNYKJQdcpH4k2Ei7qG2p
-         IAxA==
-X-Gm-Message-State: AO0yUKUmZ+0qz+Y1Hf+m8ihVmE9Juc2+L6hvSURBZlMyABX6KBFUU0C7
-	5iLw8/NqbN1xvvCtyOPo+XLe2Q==
-X-Google-Smtp-Source: AK7set89E2abehNN1E9+rbr6OJWVOL1zvSP5b/dkKe1I03NmUyjReU/Ko9yooLErL2dmGoHjNc/cfw==
-X-Received: by 2002:a05:600c:358d:b0:3df:e6bb:768 with SMTP id p13-20020a05600c358d00b003dfe6bb0768mr31491095wmq.24.1679315109219;
-        Mon, 20 Mar 2023 05:25:09 -0700 (PDT)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b003ed1f111fdesm10262676wme.20.2023.03.20.05.25.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 05:25:08 -0700 (PDT)
-Message-ID: <4a49100c-2ab4-09f5-780c-1a734f0bd1f1@linaro.org>
-Date: Mon, 20 Mar 2023 13:25:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH 30/33] doc: boards: amlogic: add documentation for
- BananaPi CM4IO
-Content-Language: en-US
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: u-boot-amlogic@groups.io, u-boot@lists.denx.de,
- linux-amlogic@lists.infradead.org
+        d=1e100.net; s=20210112; t=1679312795;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HxnHVYKNCE/GVy5zjfpoO6N7DVnCQIkYWWe8AnYCmdM=;
+        b=pDFICZ3X/98fz9hYy8ozeC+/RsMesSpn0R5fcNyThJ8FEVrLIcXICA6d2pV/bNF88h
+         fqsuCpys/8TCT8+RndItXPLJ9/1l9Si0nUnx9BmpxoB/7mVvQskCw97FZmKLwcfHLwOY
+         k0e2hp7kZm/GqXgtJipyfrHcKoLZacyYhucO8CUq/RCid2GV6OWTxVMpvQvV/lzuQ2Au
+         iSQM2lP52q1641df8oNdxFudXIrWsVHS2MnPVcNaVyQg51vf87EdgVZ6LScOAFPeXcQV
+         O+7ZhY+bje8p8/VXRtsbipEeiN8J4BwLLtr4qMXWze+hRU+bevgOPiQZSKd2JfxB/Sxx
+         sufA==
+X-Gm-Message-State: AO0yUKXtxoahj8laWdW90qosj0V5muG74xUO9yZQTTsyoQZ2Lsmwf6pP
+	6wG1iJVDboujw7UEKjvtcqA=
+X-Google-Smtp-Source: AK7set/JMo8sS9q2FAdmp66axHFTTwmNmzCaiwiYZl8AzosPf6xvjHn0V+O6lIxFj11SrwIfFyy3IQ==
+X-Received: by 2002:adf:f711:0:b0:2ce:a893:e45f with SMTP id r17-20020adff711000000b002cea893e45fmr13230768wrp.15.1679312795148;
+        Mon, 20 Mar 2023 04:46:35 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 04:46:34 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: u-boot@lists.denx.de,
+	u-boot-amlogic@groups.io,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 14/33] doc: boards: amlogic: update documentation for NanoPi-K2
+Date: Mon, 20 Mar 2023 11:45:50 +0000
+Message-Id: <20230320114609.930145-15-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
- <20230320114609.930145-31-christianshewitt@gmail.com>
- <5e29634d-0751-5b1b-5bfa-4a85f536f672@linaro.org>
- <3CBB7476-13B0-410F-9F19-1323157F1FFC@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <3CBB7476-13B0-410F-9F19-1323157F1FFC@gmail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_052510_818401_5CDC89A2 
-X-CRM114-Status: GOOD (  14.36  )
+X-CRM114-CacheID: sfid-20230320_044635_675938_90E0974F 
+X-CRM114-Status: GOOD (  11.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,40 +87,175 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAvMDMvMjAyMyAxMzoyMywgQ2hyaXN0aWFuIEhld2l0dCB3cm90ZToKPiAKPj4gT24gMjAg
-TWFyIDIwMjMsIGF0IDQ6MTMgcG0sIE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5h
-cm8ub3JnPiB3cm90ZToKPj4KPj4gT24gMjAvMDMvMjAyMyAxMjo0NiwgQ2hyaXN0aWFuIEhld2l0
-dCB3cm90ZToKPj4+IEFkZCBidWlsZCBpbnN0cnVjdGlvbnMgZm9yIHRoZSBCYW5hbmFQaSBCUEkt
-Q000SU8gY2FycmllciBib2FyZCB3aXRoCj4+PiBCUEktQ000IG1vZHVsZS4KPj4+IFNpZ25lZC1v
-ZmYtYnk6IENocmlzdGlhbiBIZXdpdHQgPGNocmlzdGlhbnNoZXdpdHRAZ21haWwuY29tPgo+Pj4g
-LS0tCj4+PiAgIGJvYXJkL2FtbG9naWMvdTIwMC9NQUlOVEFJTkVSUyAgICAgICB8ICAgMSAtCj4+
-PiAgIGJvYXJkL2FtbG9naWMvdzQwMC9NQUlOVEFJTkVSUyAgICAgICB8ICAgMiArCj4+PiAgIGRv
-Yy9ib2FyZC9hbWxvZ2ljL2JhbmFuYXBpLWNtNGlvLnJzdCB8IDE1MiArKysrKysrKysrKysrKysr
-KysrKysrKysrKysKPj4+ICAgZG9jL2JvYXJkL2FtbG9naWMvaW5kZXgucnN0ICAgICAgICAgIHwg
-ICAxICsKPj4+ICAgNCBmaWxlcyBjaGFuZ2VkLCAxNTUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
-bigtKQo+Pj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgZG9jL2JvYXJkL2FtbG9naWMvYmFuYW5hcGkt
-Y200aW8ucnN0Cj4+Cj4+IDxzbmlwPgo+Pgo+Pj4gKwo+Pj4gK1UtQm9vdCBTaWduaW5nIHdpdGgg
-UHJlLUJ1aWx0IEZJUCByZXBvCj4+PiArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0KPj4+ICsKPj4+ICsuLiBjb2RlLWJsb2NrOjogYmFzaAo+Pj4gKyAgICAkIGdpdCBjbG9u
-ZSBodHRwczovL2dpdGh1Yi5jb20vTGlicmVFTEVDL2FtbG9naWMtYm9vdC1maXAgLS1kZXB0aD0x
-Cj4+PiArICAgICQgY2QgYW1sb2dpYy1ib290LWZpcAo+Pj4gKyAgICAkIG1rZGlyIG15LW91dHB1
-dC1kaXIKPj4+ICsgICAgJCAuL2J1aWxkLWZpcC5zaCBiYW5hbmFwaS1jbTRpbyAvcGF0aC90by91
-LWJvb3QvdS1ib290LmJpbiBteS1vdXRwdXQtZGlyCj4+Cj4+Cj4+IFRoaXMgc2hvdWxkIGJlIGJh
-bmFuYXBpLW0ycyBzaW5jZSB0aGUgc2FtZSBpcyB1c2VkLCBvciB3ZSBzaG91bGQgZHVwbGljYXRl
-IGl0IGZvciBjbTRpby9jbTQuCj4gCj4gaHR0cHM6Ly9naXRodWIuY29tL0xpYnJlRUxFQy9hbWxv
-Z2ljLWJvb3QtZmlwL3RyZWUvbWFzdGVyL2JhbmFuYXBpLWNtNGlvCj4gCj4gXiBJdOKAmXMgdGhl
-IHNhbWUgRklQcyB0aGF0IHdlcmUgc3VibWl0dGVkIGZvciBNMlMgYnV0IGZvciBwYWNrYWdpbmcK
-PiByZWFzb25zIEkgY2xvbmVkIHRoZW0gKHVzZXJzIHN0cnVnZ2xlIHRvIGZpbmQgaW1hZ2VzIG5v
-dCBleHBsaWNpdGx5Cj4gbmFtZWQgZm9yIHRoZWlyIGJvYXJkKS4gSeKAmWxsIHN1Ym1pdCBwYXRj
-aGVzIGZvciB0aGUgTTJTIGFuZCBNMi1Qcm8KPiBib2FyZHMgb25jZSB0aGlzIHNlcmllcyBpcyBh
-Y2NlcHRlZCAoaG9wZWZ1bGx5KS4KCkFjaywgc28gbm8gY2hhbmdlcyBuZWVkZWQgdGhlbiAhCgo+
-IAo+IENocmlzdGlhbgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+Improve documentation. Notably we can now support U-Boot install to
+the removable eMMC storage module in addition to SD cards.
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ doc/board/amlogic/nanopi-k2.rst | 93 +++++++++++++++++++--------------
+ 1 file changed, 54 insertions(+), 39 deletions(-)
+
+diff --git a/doc/board/amlogic/nanopi-k2.rst b/doc/board/amlogic/nanopi-k2.rst
+index 76ff874434..2316dae0ec 100644
+--- a/doc/board/amlogic/nanopi-k2.rst
++++ b/doc/board/amlogic/nanopi-k2.rst
+@@ -1,10 +1,10 @@
+ .. SPDX-License-Identifier: GPL-2.0+
+ 
+-U-Boot for NanoPi-K2
+-====================
++U-Boot for NanoPi-K2 (S905)
++===========================
+ 
+-NanoPi-K2 is a single board computer manufactured by FriendlyElec
+-with the following specifications:
++NanoPi-K2 is a single board computer manufactured by FriendlyElec with the following
++specifications:
+ 
+  - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
+  - ARM Mali 450 GPU
+@@ -18,7 +18,7 @@ with the following specifications:
+ 
+ Schematics are available on the manufacturer website.
+ 
+-U-Boot compilation
++U-Boot Compilation
+ ------------------
+ 
+ .. code-block:: bash
+@@ -27,14 +27,20 @@ U-Boot compilation
+     $ make nanopi-k2_defconfig
+     $ make
+ 
+-Image creation
+---------------
++U-Boot Signing with Pre-Built FIP repo
++--------------------------------------
+ 
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `nanopi-k2`
++.. code-block:: bash
++    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
++    $ cd amlogic-boot-fip
++    $ mkdir my-output-dir
++    $ ./build-fip.sh nanopi-k2 /path/to/u-boot/u-boot.bin my-output-dir
++
++U-Boot Manual Signing
++---------------------
+ 
+-Amlogic doesn't provide sources for the firmware and for tools needed
+-to create the bootloader image, so it is necessary to obtain them from
+-the git tree published by the board vendor:
++Amlogic does not provide sources for the firmware and tools needed to create a bootloader
++image so it is necessary to obtain binaries from sources published by the board vendor:
+ 
+ .. code-block:: bash
+ 
+@@ -43,7 +49,6 @@ the git tree published by the board vendor:
+     $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+     $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+     $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
+-    $ git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
+     $ git clone https://github.com/friendlyarm/u-boot.git -b nanopi-k2-v2015.01 amlogic-u-boot
+     $ cd amlogic-u-boot
+     $ sed -i 's/aarch64-linux-gnu-/aarch64-none-elf-/' Makefile
+@@ -52,7 +57,7 @@ the git tree published by the board vendor:
+     $ make
+     $ export FIPDIR=$PWD/fip
+ 
+-Go back to mainline U-Boot source tree then :
++Go back to the mainline U-Boot source tree then:
+ 
+ .. code-block:: bash
+ 
+@@ -65,42 +70,52 @@ Go back to mainline U-Boot source tree then :
+     $ cp $FIPDIR/gxb/bl301.bin fip/
+     $ cp $FIPDIR/gxb/bl31.img fip/
+     $ cp u-boot.bin fip/bl33.bin
++    $ wget https://github.com/LibreELEC/amlogic-boot-fip/raw/master/nanopi-k2/bl1.bin.hardkernel fip/bl1.bin.hardkernel
++    $ chmod +x fip/bl1.bin.hardkernel
++    $ wget https://github.com/LibreELEC/amlogic-boot-fip/raw/master/nanopi-k2/aml_chksum fip/aml_chksum
++    $ chmod +x fip/aml_chksum
+ 
+     $ $FIPDIR/blx_fix.sh \
+-    	fip/bl30.bin \
+-    	fip/zero_tmp \
+-    	fip/bl30_zero.bin \
+-    	fip/bl301.bin \
+-    	fip/bl301_zero.bin \
+-    	fip/bl30_new.bin \
+-    	bl30
+-
+-    $ $FIPDIR/fip_create \
+-    	 --bl30 fip/bl30_new.bin \
+-    	 --bl31 fip/bl31.img \
+-    	 --bl33 fip/bl33.bin \
+-    	 fip/fip.bin
+-
++              fip/bl30.bin \
++              fip/zero_tmp \
++              fip/bl30_zero.bin \
++              fip/bl301.bin \
++              fip/bl301_zero.bin \
++              fip/bl30_new.bin \
++              bl30
++
++    $ $FIPDIR/fip_create --bl30 fip/bl30_new.bin \
++                         --bl31 fip/bl31.img \
++                         --bl33 fip/bl33.bin \
++                         fip/fip.bin
++
++    $ sed -i 's/\x73\x02\x08\x91/\x1F\x20\x03\xD5/' fip/bl2.bin
+     $ python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+ 
+     $ $FIPDIR/blx_fix.sh \
+-    	fip/bl2_acs.bin \
+-    	fip/zero_tmp \
+-    	fip/bl2_zero.bin \
+-    	fip/bl21.bin \
+-    	fip/bl21_zero.bin \
+-    	fip/bl2_new.bin \
+-    	bl2
++              fip/bl2_acs.bin \
++              fip/zero_tmp \
++              fip/bl2_zero.bin \
++              fip/bl21.bin \
++              fip/bl21_zero.bin \
++              fip/bl2_new.bin \
++              bl2
+ 
+     $ cat fip/bl2_new.bin fip/fip.bin > fip/boot_new.bin
+ 
+     $ $FIPDIR/gxb/aml_encrypt_gxb --bootsig \
+-    		--input fip/boot_new.bin
+-    		--output fip/u-boot.bin
++                                  --input fip/boot_new.bin
++                                  --output fip/u-boot.bin
+ 
+-and then write the image to SD with:
++Then write U-Boot to SD or eMMC with:
+ 
+ .. code-block:: bash
+ 
+-    $ DEV=/dev/your_sd_device
+-    $ dd if=fip/u-boot.bin of=$DEV conv=fsync,notrunc bs=512 seek=1
++    $ DEV=/dev/boot_device
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 conv=fsync
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 seek=9 skip=8 count=87 conv=fsync,notrunc
++    $ dd if=/dev/zero of=fip/u-boot.bin.gxbb bs=512 seek=8 count=1 conv=fsync,notrunc
++    $ dd if=bl1.bin.hardkernel of=fip/u-boot.bin.gxbb bs=512 seek=2 skip=2 count=1 conv=fsync,notrunc
++    $ ./aml_chksum fip/u-boot.bin.gxbb
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=1 count=440
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
