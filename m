@@ -4,78 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED28AC6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 445AEC7618D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/WGP39JJHbr60hEL6vyT7Jk1+jnIgdUqLdtfQA6iiko=; b=sz4ItXEPHFJYaV
-	bR4RgX6DDuCtQNGay1Vw42bKYTCbSk94MCkqf4Kpi4al/amtMOFJbnX69ZfkKQ7LQ2H7ZkLYnTyDY
-	scevxFSfNHfYHvfEjClvSY1nJA1z0KyHUbA6jRYP3IF1q0fhv4key1k1yynl92s1rCtebU0U7ldZk
-	OEs0/pWC9NKCtx6IZBZc0I69sda31cX9fIWO45DQ5dmQpVZzRS+/FvD2pV2cMOs98PcMonlYMrgs9
-	XyM3ijbJ7rt4pj4+ib8Sc5OVDH74zh5uA/1W0XRyEaEbVMouCYzy8n+KdqDYQ45xOYUQJFIj7Z/PY
-	IX4H/ZoYtGKwOnzMijXg==;
+	List-Owner; bh=4EHXPQvqrvSs3QAIoixdR+XU0xcYTSDHtSjVSfDsoGE=; b=kq7RvGcREAszbs
+	iXKn8SivPC210ieGkWfuoI4cZtz5ig8pT33WnRWpxAHnQECLpMavcxUFqaxwOtVT0RWtAe0hYvio5
+	djjUtOdZ6yxGkGBrIOHrYPUu9gXlzu5Rr/nhVDsP9tQqQ4MVuchnSdnh0ju4fIRMkrCbQs12eBcVF
+	pFrHpalJItG0kcT2Xq9o0l72ciT+5qcXvwMPomKfVy0sTtcLFfzrDEB1KxJOCD2KSNta3iSpOY1NI
+	oqEP7h0QFHDMFM4QghbaDkycbmXXcT1KRXPFC0gu7Q5aTUQikhSkuDfv/2XYdWPhGLTjR3nrZL5yu
+	1MZmkJ62yx2MuEltXx/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peF7d-00929n-0r;
-	Mon, 20 Mar 2023 13:00:21 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1peF7c-00928q-0s;
+	Mon, 20 Mar 2023 13:00:20 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyd-008rqP-2W
+	id 1peDyT-008sA1-10
+	for linux-amlogic@bombadil.infradead.org;
+	Mon, 20 Mar 2023 11:46:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=; b=A6bcaCqtnO7nWAjyJXOI8Vv3yu
+	koCm5Z/ZlD8uSjhvsoxGTPzsgSc2Cye/LKCEWHHgJRIc4tDPa5tX+eKSRvy+g71oyJemPBdkrBddg
+	VdZHYGtk3ahAMIB9FJCdGguFd/+uWY+rrXC000pmGSP2AIUMHF1+rcb6Q57H1w48GDcVQdJW5Sar9
+	fqz3kWmRQ3mUVRJhAlWCkTuwWj4Z54C3jz/ulrvvzm8v0DD/WWdMDJXcNZuU9vbeSbiOsi0jnvOa1
+	cqc8Il8sFWrmtja1cJKgJujNKhF0hOcEqLNiYgqqT7Jt3PBHh5ZETYj9wmhEVFhkLB9EBG1hfw6T/
+	Szo4FJFw==;
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1peDyO-003uDy-2Z
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:47:01 +0000
-Received: by mail-wr1-x432.google.com with SMTP id l12so10029656wrm.10
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:59 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:47 +0000
+Received: by mail-wm1-x329.google.com with SMTP id iw17so1943416wmb.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312819;
+        d=gmail.com; s=20210112; t=1679312800;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oaJQuomWRLKQE+KLyYWHiJ+/lNL7h9a/2ACaktG++Y8=;
-        b=U/kATEcEU9ZVL6Htx5y1Bq6qyB++v97Z/XpiZttOL92NCul02iCwnqbxzbzxknNiVX
-         YP5spkhamRU+xkGG3RM+dvyrTMB8n0FoL8K3X/GN4UE+16RAe8XFqNaAMhFT672mbvdd
-         ioeprti0chDQP8wpnvijedHaPpbxaZHS2JXC5rpCDndDtVMinvoRXmNtkcRcU+hN/PjA
-         UgcQ05M4CSNjtj0m4bGXSBXKWEIKfVYjWH6nSG17RNRX/9uLFa+2BZB/bwzgHqdvTZXj
-         qXXAYKJtZ4owYuJUDA/tR/MyrgbHZBTkbsRENavE0D9geKNtnofoGKC/v3gsiSEKY9oD
-         F3tQ==
+        bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=;
+        b=VY9XJ+CGZDVB3V3QR7JXxW499vtk1P2wkMT1TLNEvjXV/nHRj6B719no8+r/e1X8zF
+         +1+YgHFn1DGVN8ZEmqv394mO4vjAk3hrGG7ZApaeTFhEIX/VkTcGNpkhVlg+H397Msch
+         n+JOtQNq/8pHOUoW9CP8FZukUSdw7FsYutrNnESNGrNz3CSkZ8TpPBiSkHfNOycJjzbC
+         hNQ6X2TV5DvoEul4O1UmpRFAXr9VwJe/cE57zfZxjgoLIBdDfx11iRinQ/1gTpTtNIyj
+         SaQSAHy81XV6ahfbVlC1Afp7TUvnibggPUTJU8z+azMQoIcJUin84EhxEUbhyOwTdaXw
+         beHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312819;
+        d=1e100.net; s=20210112; t=1679312800;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oaJQuomWRLKQE+KLyYWHiJ+/lNL7h9a/2ACaktG++Y8=;
-        b=bcvlZP7+U0/g3P0Tg1p8I53rorJWtjWa4zUPmeLh8sjFlFoV0Tq2Qmrr5qJnWNsmCE
-         MqwyCsvtKKuk2BbWw9wqPsL9EWXIbtzau75snbRb5rxOxiw+seKpUzN3XmeIgze5D9eS
-         Bqk7n0zR8eAiphrrwl4D4tlLShd7PYlTniqK016liG91cy4Wspyk7u7O4+9qa+HPl5Tn
-         wwPYXB81hV0wbCGQSDLwCxqhmF86X1FeE5KJ9DwedTF8lGGDz6D8ItOZjdsgJdgtkM0a
-         G1QUvud23QM0+UcOitgcpfVY3B96S5XOdtCsvhaTMehpP0C7g3lM+ht+A67/6Acr3FMc
-         7X1g==
-X-Gm-Message-State: AO0yUKX8fMItnppsLIz7SDUauiQSVMayRTEzadNEONYEcg02M7fRtKiq
-	Df8GzruIvCrXvRwk35ZJY9k=
-X-Google-Smtp-Source: AK7set8oeWdVk4E8dYfhqBgKIE44HgvZA1KoLjB1rpzwH3R25ZQz7+mkvzp986SFGQ23fIzDv04MXg==
-X-Received: by 2002:a5d:4ace:0:b0:2cf:f279:378f with SMTP id y14-20020a5d4ace000000b002cff279378fmr13437190wrs.44.1679312819131;
-        Mon, 20 Mar 2023 04:46:59 -0700 (PDT)
+        bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=;
+        b=eAaCy3bPncyh//qLUs6jLSCvAQds0TnKgpOYjUasAt0wb5BRfkd2Dr1ClyE0ahsL0n
+         JResFu2OS02WBleYt9hfKGzYFR66TjC2SbK11dwG34RcHp3nWtwAiccuN8j6p1nL1NT8
+         8WfKIkNokxNjpzFZk9ZkgJZTmE99kY1vKPh+F6m6GOOv+zw2eI64zHnFZD8SJX5aYou1
+         +daAO2fi/rrpPQ7a5NV0Qn7fWHiszNRwfQQx1k3VCI5g+kUvys+g9p3zrMJGthnuRVTa
+         aUQ3sELHobseszyQtlevR4LwTXGgO+oOBfpkJopbUCx+yRhMri1aNwxqvBJ/C1tT71rw
+         1tog==
+X-Gm-Message-State: AO0yUKWECcvzAulx6UEHK0utBQwAV2N7t85xQXfWm8oSRF57dLZwur+P
+	WG19nihzC/D1uwnsVFsQZFQ=
+X-Google-Smtp-Source: AK7set/LcodvJfuvwQe0xgAbjvoh1I2lS79YV4RIfRg+IphvsKGMB9pZsgDCbdd1nBNzWC0kJT+1Jg==
+X-Received: by 2002:a05:600c:d0:b0:3ee:36f:3485 with SMTP id u16-20020a05600c00d000b003ee036f3485mr1631695wmm.8.1679312799936;
+        Mon, 20 Mar 2023 04:46:39 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.57
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:58 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:39 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 29/33] doc: boards: amlogic: update documentation for WeTek Core2
-Date: Mon, 20 Mar 2023 11:46:05 +0000
-Message-Id: <20230320114609.930145-30-christianshewitt@gmail.com>
+Subject: [PATCH 17/33] doc: boards: amlogic: update documentation for ODROID GO ULTRA
+Date: Mon, 20 Mar 2023 11:45:53 +0000
+Message-Id: <20230320114609.930145-18-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044659_821045_58BF90D9 
-X-CRM114-Status: GOOD (  11.47  )
+X-CRM114-CacheID: sfid-20230320_114645_095665_1F99CA3B 
+X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,46 +112,37 @@ Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/wetek-core2.rst | 83 +++++++++++++++++--------------
- 1 file changed, 47 insertions(+), 36 deletions(-)
+ doc/board/amlogic/odroid-go-ultra.rst | 25 ++++++++++++++++++-------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
 
-diff --git a/doc/board/amlogic/wetek-core2.rst b/doc/board/amlogic/wetek-core2.rst
-index 0147d5fbe2..5eba566af4 100644
---- a/doc/board/amlogic/wetek-core2.rst
-+++ b/doc/board/amlogic/wetek-core2.rst
-@@ -1,23 +1,24 @@
+diff --git a/doc/board/amlogic/odroid-go-ultra.rst b/doc/board/amlogic/odroid-go-ultra.rst
+index 8df9e0cb79..50d91394d4 100644
+--- a/doc/board/amlogic/odroid-go-ultra.rst
++++ b/doc/board/amlogic/odroid-go-ultra.rst
+@@ -1,10 +1,9 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for WeTek Core2
--======================
-+U-Boot for WeTek Core2 (S912)
-+=============================
+-U-Boot for ODROID-GO-ULTRA
++U-Boot for ODROID-GO-ULTRA (S922X)
+ ==========================
  
--WeTek Core2 is an Android STB based on the Q200 reference design with
--the following specifications:
-+WeTek Core2 is an Android STB based on the Q200 reference design with the following
-+specifications:
+-The Odroid Go Ultra is a portable gaming device with the following
+-characteristics:
++The ODROID GO ULTRA is a portable gaming device with the following characteristics:
  
-  - Amlogic S912 ARM Cortex-A53 octo-core SoC @ 1.5GHz
-  - ARM Mali T820 GPU
-  - 3GB DDR4 SDRAM
-  - 10/100 Realtek RTL8152 Ethernet (internal USB)
-  - HDMI 2.0 4K/60Hz display
-- - 2x USB 2.0 Host, 1x USB 2.0 OTG (internal)
-+ - 2x USB 2.0 Host
-+ - 1x USB 2.0 OTG (internal)
-  - 32GB eMMC
-  - microSD
-  - SDIO Wifi Module, Bluetooth
-  - Two channel IR receiver
+  - Amlogic S922X SoC
+  - RK817 & RK818 PMICs
+@@ -19,7 +18,7 @@ characteristics:
+  - 2x ADC Analog Joysticks
+  - USB-C Port for USB2 Device and Charging
  
 -U-Boot compilation
 +U-Boot Compilation
  ------------------
  
  .. code-block:: bash
-@@ -26,15 +27,21 @@ U-Boot compilation
-     $ make wetek-core2_defconfig
+@@ -28,7 +27,19 @@ U-Boot compilation
+     $ make odroid-go-ultra_defconfig
      $ make
  
 -Image creation
@@ -143,99 +150,19 @@ index 0147d5fbe2..5eba566af4 100644
 +U-Boot Signing with Pre-Built FIP repo
 +--------------------------------------
  
--For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `wetek-core2`
+-Pleaser refer to :doc:`pre-generated-fip` with codename `odroid-go-ultra`
 +.. code-block:: bash
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh wetek-core2 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh odroid-go-ultra /path/to/u-boot/u-boot.bin my-output-dir
 +
-+U-Boot Manual Signing
-+---------------------
- 
--Amlogic does not provide sources for the firmware or the tools needed
--to create the bootloader image, and WeTek has not publicly shared the
--precompiled FIP binaries. However the public Khadas VIM2 sources also
--work with the Core2 box so we can use the Khadas git tree:
-+Amlogic does not provide firmware sources or tools needed to create the bootloader image
-+and WeTek has not publicly shared the precompiled FIP binaries. However the Khadas VIM2
-+sources also work with the Core2 box so we can use the Khadas git tree:
- 
- .. code-block:: bash
- 
-@@ -49,7 +56,7 @@ work with the Core2 box so we can use the Khadas git tree:
-     $ make
-     $ export FIPDIR=$PWD/fip
- 
--Go back to mainline U-Boot source tree then:
-+Go back to the mainline U-Boot source tree then:
- 
- .. code-block:: bash
- 
-@@ -61,38 +68,42 @@ Go back to mainline U-Boot source tree then:
-     $ cp $FIPDIR/gxl/bl301.bin fip/
-     $ cp $FIPDIR/gxl/bl31.img fip/
-     $ cp u-boot.bin fip/bl33.bin
++Then write the image to SD or eMMC with:
 +
-     $ $FIPDIR/blx_fix.sh \
--        fip/bl30.bin \
--        fip/zero_tmp \
--        fip/bl30_zero.bin \
--        fip/bl301.bin \
--        fip/bl301_zero.bin \
--        fip/bl30_new.bin \
--        bl30
-+              fip/bl30.bin \
-+              fip/zero_tmp \
-+              fip/bl30_zero.bin \
-+              fip/bl301.bin \
-+              fip/bl301_zero.bin \
-+              fip/bl30_new.bin \
-+              bl30
++.. code-block:: bash
 +
-     $ python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
-+
-     $ $FIPDIR/blx_fix.sh \
--        fip/bl2_acs.bin \
--        fip/zero_tmp \
--        fip/bl2_zero.bin \
--        fip/bl21.bin \
--        fip/bl21_zero.bin \
--        fip/bl2_new.bin \
--        bl2
-+              fip/bl2_acs.bin \
-+              fip/zero_tmp \
-+              fip/bl2_zero.bin \
-+              fip/bl21.bin \
-+              fip/bl21_zero.bin \
-+              fip/bl2_new.bin \
-+              bl2
-+
-     $ $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
-     $ $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
-     $ $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
-     $ $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
-     $ $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
--        --output fip/u-boot.bin \
--        --bl2 fip/bl2.n.bin.sig \
--        --bl30 fip/bl30_new.bin.enc \
--        --bl31 fip/bl31.img.enc \
--        --bl33 fip/bl33.bin.enc
-+                                  --output fip/u-boot.bin \
-+                                  --bl2 fip/bl2.n.bin.sig \
-+                                  --bl30 fip/bl30_new.bin.enc \
-+                                  --bl31 fip/bl31.img.enc \
-+                                  --bl33 fip/bl33.bin.enc
- 
--then write the image to SD with:
-+Then write U-Boot to SD or eMMC with:
- 
- .. code-block:: bash
- 
--    $ DEV=/dev/your_sd_device
 +    $ DEV=/dev/boot_device
-     $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
++    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
 +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
 -- 
 2.34.1
