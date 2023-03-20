@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 693DFC77B61
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF5AC76195
 	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,70 +12,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DrRsMo7uuSgSPaPCH3E3kbRpVlfLePGnUtF6lfGY8+c=; b=Sfy/iTCz1dUn8u
-	j0H0R5bBOl4NUkL8M1e8VG3Ccb+iFCz0nuViJ0Ogc+f9lLpwbzWLlP9F39u4n2LDr2URg9ncSVcjd
-	hQWIncsjh0F16/kedxU7VsJSYeDoClw+UjWi6j0mb20mXiUb/FZjAlp+oq+xxQFfzI9edGB2fPpn6
-	q8bafn4dffFSMCJVSuCHVRDB0OqDNMjFXuF2zKNTFlalmPA5XBN8ZAibKwlsq4zR37GVDzSQWOjcU
-	2DSxNGitQNjyLaqcW01ERuWz336BKxwBZXItTr7DAzh0r6+9prhgUgYYlRfJJhJusOe/Pc7DO3a6q
-	q2YpCmZL1sg8oBFsfqXg==;
+	List-Owner; bh=XHNUFeuSjMfLgGgRE3KAsXpAjk7lWpFU3mwCJ4i4qWg=; b=L8vHuSzjsmEaNj
+	t+kY5lFxuFVTx/4l2yifkrEOWMYjR7KXSqDOXH1kX59YaR2VgAZUz2PCa95s+8mkbkPJZFeEHmUh9
+	4Lbdf9T7Lpe+fvofMaboKr4ZztQTR5t5Gdf+xLDO8xygMK5iLmrKO1nRgGLLnw2s65pozD7RignxT
+	ido//tqldL/BPm4ldvm5lFA2EtsN5xkRvof8QXzyrqqUgB87/f8mV2VQkczF9KYxibfqjsJoJlxJC
+	O1+AokEC3lnRWoKWwUc4QlOYAnLSmPj0fNJe78cKnmiMi4TTUnjC6rk9eOId9386H1AKk52AnO26+
+	bwo1vRUlTqZGNzOso5pQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peF7b-00928h-32;
-	Mon, 20 Mar 2023 13:00:19 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1peF7c-00929R-2z;
+	Mon, 20 Mar 2023 13:00:20 +0000
+Received: from mail-wr1-f52.google.com ([209.85.221.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyP-008rp7-18
+	id 1peDyd-008sBt-2H
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:47 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id o7so10043990wrg.5
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:45 -0700 (PDT)
+	Mon, 20 Mar 2023 11:47:01 +0000
+Received: by mail-wr1-f52.google.com with SMTP id r29so10019084wra.13
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312805;
+        d=gmail.com; s=20210112; t=1679312810;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YPxxmWcR46ur14NKsEcVWS/WLKmARgpHeR6EHeDbDc8=;
-        b=Esb4FgqVInGJ1WHHC7+XazAfEC7bAkZoXA2ebFMJwgDYpXSQEPS2jsrRJDphIJgJVx
-         IcZ4sJtjkViShyy+EaPp+BA0auDXOlJ70O8WQ92vDapFU3LA+CGCaPIGbgVjo4hKMNcR
-         F/7w9v0U+538WbZ0m3RaglvvgZF4uAlJLLaylMjrCkrivu7Un3R7nFZKdpZ+ZXMZxU3a
-         lwZJV5effnyeJo4dO5G9CxE3lZy0ouixCJC/M5jdSYXUYThyiLjVZvuxQGE5KFSfQGF3
-         0vjPyFAYIG28rFFx6mYm4GCZA5fhAX8KFX4YOT4DDk+w9Unzyp1zRCZuXFn84Ym7VCdw
-         1QcQ==
+        bh=S7cjgEYI29KMpo57s2rb53lbtSRPUWD30me1nYvBnTc=;
+        b=FnN/BII+srkmdFKf94GZ/ZocC6Tdd5uk6upz+b/KabXgMVGSwGzdAzQISOmTUiB4aT
+         i5WYeSUrHDcE24OJab2R55h3m9xXSpRSegESwQjz+m0LyZsjkCQ4XReoxolwpY49tv5R
+         09Pj0tJ8efu5tOrYLlnQp2g3iqUGy6kH4xhyyoo8jOjJtOSPDdT4Slo/OkhcAgsPpONA
+         5HameRJfIAVVtUNDACCgSnp8MGITp77B1NXVFhZSY0aB+7ukLu63BmaR1aQFQOgkj4+F
+         GMJ3Tthi+tc1i5pVHypcZb5zVI/djWeTNaZKiCgMpMjjju2uO/fcOwnChJ3W7QrwyhlW
+         n6GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312805;
+        d=1e100.net; s=20210112; t=1679312810;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YPxxmWcR46ur14NKsEcVWS/WLKmARgpHeR6EHeDbDc8=;
-        b=dPevyjl7fHcYcdI32Tqh98cZWTyVztZzI2S5jJqCOlnDTWQbxMwt54d2g1Cr8pye/q
-         i6sfUVuMXbXevbL6GqHzq4DXQeXyjmN3fNCl5tyFXGEntR8yerWekr9Rkd5PsIQceUuo
-         Ei2g3m8MJJHTfoSiOtEAoMVDvlFxK9XBvEo0jd2oMz+USM3iLtt5WgBy1TnVPH08DNlZ
-         RnQ7BOIlFlomJfqqWnLM8W08NAYlBkpMfSmp8RxKnSBSAVsS5l1eoJT3rgjimYeSp9xM
-         pFO0dlxsoM6LZKLY/fcm9qs9OqT7SOCKrcxmUiAq+4kv0fFb7gmWXe8bK0cOMLZJWnVq
-         ncPA==
-X-Gm-Message-State: AO0yUKVLeZD/lX7jjDok5gRKsI7yi+pL6klSPCoYc86RZfrDZNJwgCFM
-	DICaDuJ/0OKCpPAf2XDuU7E29wH5LgQMrAPL
-X-Google-Smtp-Source: AK7set+dql9H+EmVTWMGUlRDkv5qcNsGyIYqCqr/mDO6F6MGgLraew+VSkJr2HyhNp3NcS+D+qyOQA==
-X-Received: by 2002:adf:ee4f:0:b0:2cf:ef5d:4ee7 with SMTP id w15-20020adfee4f000000b002cfef5d4ee7mr13294187wro.69.1679312804846;
-        Mon, 20 Mar 2023 04:46:44 -0700 (PDT)
+        bh=S7cjgEYI29KMpo57s2rb53lbtSRPUWD30me1nYvBnTc=;
+        b=4krGiO5tcfSbcJuaIrg9FfNg7yZ8hgpeBB39dPAlqNL7YRlw7gbFwncVm6OMP8b5tV
+         47QV+00qTHUZWbhIRex4vQRWd0iesuLpKWF++N3diSf9AhFAhuU56cshVWmMcHHK3FFU
+         P8ZpXitPF1l+V2PDjlW4VL2ULBEJgk+8bBRpRcDDDBEA6CZ1L1Yn/quJXO4jlT0sB1yV
+         W4S7Thet93ttifomUIsav/Cz9KNkssGFOmigdghLZteK7iNb0Pu67OYnJ6AjD9lFJU5d
+         XxNhe1KFit7kI40pYk9hUwXsWLrEQN1u46vbRaBKZL6yrG9by99pKvVAlfkhZgMR9Bxr
+         k9rA==
+X-Gm-Message-State: AO0yUKUNPvnN0pj4CW6fLaCVZYcPiRnVFDc2AWFGpO1oRFdQvdBLN080
+	z6H2Heu5xsn8pEpRbSxnnsM=
+X-Google-Smtp-Source: AK7set8UPFMlWkGrlRcOaDbSIR9mfI60G8U7O+O4rpZH4BbkKphUPIPpyuiwBTfc2nw9T1AQCb0wog==
+X-Received: by 2002:adf:f3c9:0:b0:2cf:9889:8428 with SMTP id g9-20020adff3c9000000b002cf98898428mr14357338wrp.35.1679312809848;
+        Mon, 20 Mar 2023 04:46:49 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.43
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:44 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:49 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 20/33] doc: boards: amlogic: update documentation for P200
-Date: Mon, 20 Mar 2023 11:45:56 +0000
-Message-Id: <20230320114609.930145-21-christianshewitt@gmail.com>
+Subject: [PATCH 23/33] doc: boards: amlogic: update documentation for Radxa Zero
+Date: Mon, 20 Mar 2023 11:45:59 +0000
+Message-Id: <20230320114609.930145-24-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044645_440798_7EC8169A 
-X-CRM114-Status: GOOD (  11.23  )
+X-CRM114-CacheID: sfid-20230320_044659_767326_B1B31EBA 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,158 +93,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Improve documentation. Notably we can now support U-Boot install to
-the internal eMMC storage in addition to SD cards.
+Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/p200.rst | 87 +++++++++++++++++++++++---------------
- 1 file changed, 53 insertions(+), 34 deletions(-)
+ doc/board/amlogic/radxa-zero.rst | 45 +++++++++++++++++---------------
+ 1 file changed, 24 insertions(+), 21 deletions(-)
 
-diff --git a/doc/board/amlogic/p200.rst b/doc/board/amlogic/p200.rst
-index 5e7c6b0276..b5c6ad096e 100644
---- a/doc/board/amlogic/p200.rst
-+++ b/doc/board/amlogic/p200.rst
-@@ -1,25 +1,24 @@
+diff --git a/doc/board/amlogic/radxa-zero.rst b/doc/board/amlogic/radxa-zero.rst
+index f5611f52ec..e8a8d87320 100644
+--- a/doc/board/amlogic/radxa-zero.rst
++++ b/doc/board/amlogic/radxa-zero.rst
+@@ -1,14 +1,13 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for Amlogic P200
--=======================
-+U-Boot for Amlogic P200 (S905)
+-U-Boot for Radxa Zero
+-=====================
++U-Boot for Radxa Zero (S905Y2)
 +==============================
  
--P200 is a reference board manufactured by Amlogic with the following
--specifications:
-+P200 is a reference board manufactured by Amlogic with the following specification:
+-Radxa Zero is a small form factor SBC based on the Amlogic S905Y2
+-chipset that ships in a number of RAM/eMMC configurations:
++Radxa Zero is a small form factor SBC based on the Amlogic S905Y2 chipset that ships in
++a number of RAM/eMMC configurations:
  
-  - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
-  - ARM Mali 450 GPU
-  - 2GB DDR3 SDRAM
-  - Gigabit Ethernet
-  - HDMI 2.0 4K/60Hz display
-- - 2 x USB 2.0 Host
-+ - 2x USB 2.0 Host
-  - eMMC, microSD
-  - Infrared receiver
-  - SDIO WiFi Module
-- - CVBS+Stereo Audio Jack
-+ - CVBS + Stereo Audio Jack
+-Boards with 512MB/1GB LPDDR4 RAM have no eMMC storage and BCM43436
+-wireless (2.4GHz b/g/n) while 2GB/4GB boards have 8/16/32/64/128GB
+-eMMC storage and BCM4345 wireless (2.4/5GHz a/b/g/n/ac).
++512MB/1GB LPDDR4 RAM boards have no eMMC and BCM43436 wireless (2.4GHz b/g/n) while the
++2GB/4GB boards have 8/16/32/64/128GB eMMC and BCM4345 wireless (2.4/5GHz a/b/g/n/ac).
  
- Schematics are available from Amlogic on demand.
+ - Amlogic S905Y2 quad-core Cortex-A53
+ - Mali G31-MP2 GPU
+@@ -18,11 +17,9 @@ eMMC storage and BCM4345 wireless (2.4/5GHz a/b/g/n/ac).
+ - 1x micro SD Card slot
+ - 40 Pin GPIO header
  
+-Schematics are available on the manufacturer website:
++Schematics are available on the manufacturer website: https://dl.radxa.com/zero/docs/hw
+ 
+-https://dl.radxa.com/zero/docs/hw/RADAX_ZERO_V13_SCH_20210309.pdf
+-
 -U-Boot compilation
 +U-Boot Compilation
  ------------------
  
  .. code-block:: bash
-@@ -28,14 +27,20 @@ U-Boot compilation
-     $ make p200_defconfig
+@@ -31,14 +28,20 @@ U-Boot compilation
+     $ make radxa-zero_defconfig
      $ make
  
 -Image creation
 ---------------
 +U-Boot Signing with Pre-Built FIP repo
 +--------------------------------------
- 
--For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `p200`
++
 +.. code-block:: bash
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh p200 /path/to/u-boot/u-boot.bin my-output-dir
-+
++    $ ./build-fip.sh radxa-zero /path/to/u-boot/u-boot.bin my-output-dir
+ 
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `radxa-zero`
 +U-Boot Manual Signing
 +---------------------
  
--Amlogic doesn't provide sources for the firmware and for tools needed
+-Amlogic does not provide sources for the firmware and for tools needed
 -to create the bootloader image, so it is necessary to obtain them from
--the git tree published by the board vendor:
+-git trees published by the board vendor:
 +Amlogic does not provide sources for the firmware and tools needed to create a bootloader
-+image but sources have been shared by Linux development contractor, Baylibre:
++image so it is necessary to obtain binaries from sources published by the board vendor:
  
  .. code-block:: bash
  
-@@ -50,7 +55,7 @@ the git tree published by the board vendor:
+@@ -61,16 +64,16 @@ git trees published by the board vendor:
+     $ cd ../fip/radxa-zero
      $ make
-     $ export FIPDIR=$PWD/fip
  
--Go back to mainline U-boot source tree then :
-+Go back to the mainline U-Boot source tree then:
+-This will generate:
++This will generate the signed U-Boot binaries:
  
  .. code-block:: bash
  
-@@ -63,37 +68,51 @@ Go back to mainline U-boot source tree then :
-     $ cp $FIPDIR/gxb/bl301.bin fip/
-     $ cp $FIPDIR/gxb/bl31.img fip/
-     $ cp u-boot.bin fip/bl33.bin
-+    $ wget https://github.com/LibreELEC/amlogic-boot-fip/raw/master/nanopi-k2/bl1.bin.hardkernel fip/bl1.bin.hardkernel
-+    $ chmod +x fip/bl1.bin.hardkernel
-+    $ wget https://github.com/LibreELEC/amlogic-boot-fip/raw/master/nanopi-k2/aml_chksum fip/aml_chksum
-+    $ chmod +x fip/aml_chksum
+     $ u-boot.bin u-boot.bin.sd.bin u-boot.bin.usb.bl2 u-boot.bin.usb.tpl
  
-     $ $FIPDIR/blx_fix.sh \
--    	fip/bl30.bin \
--        fip/zero_tmp \
--        fip/bl30_zero.bin \
--        fip/bl301.bin \
--        fip/bl301_zero.bin \
--        fip/bl30_new.bin \
--        bl30
-+              fip/bl30.bin \
-+              fip/zero_tmp \
-+              fip/bl30_zero.bin \
-+              fip/bl301.bin \
-+              fip/bl301_zero.bin \
-+              fip/bl30_new.bin \
-+              bl30
- 
-     $ python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
- 
-     $ $FIPDIR/blx_fix.sh \
--        fip/bl2_acs.bin \
--        fip/zero_tmp \
--        fip/bl2_zero.bin \
--        fip/bl21.bin \
--        fip/bl21_zero.bin \
--        fip/bl2_new.bin \
--        bl2
--
--    $ $FIPDIR/fip_create --bl30 fip/bl30_new.bin --bl31 fip/bl31.img --bl33 fip/bl33.bin fip/fip.bin
-+              fip/bl2_acs.bin \
-+              fip/zero_tmp \
-+              fip/bl2_zero.bin \
-+              fip/bl21.bin \
-+              fip/bl21_zero.bin \
-+              fip/bl2_new.bin \
-+              bl2
-+
-+    $ $FIPDIR/fip_create --bl30 fip/bl30_new.bin \
-+                         --bl31 fip/bl31.img \
-+                         --bl33 fip/bl33.bin \
-+                         fip/fip.bin
- 
-     $ cat fip/bl2_new.bin fip/fip.bin >fip/boot_new.bin
- 
--    $ $FIPDIR/gxb/aml_encrypt_gxb --bootsig --input fip/boot_new.bin --output fip/u-boot.bin
-+    $ $FIPDIR/gxb/aml_encrypt_gxb --bootsig \
-+                                  --input fip/boot_new.bin \
-+                                  --output fip/u-boot.bin
- 
- and then write the image to SD with:
+-Then write the image to SD with:
++Then write U-Boot to SD or eMMC with:
  
  .. code-block:: bash
  
 -    $ DEV=/dev/your_sd_device
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
 +    $ DEV=/dev/boot_device
-+    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 conv=fsync
-+    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 seek=9 skip=8 count=87 conv=fsync,notrunc
-+    $ dd if=/dev/zero of=fip/u-boot.bin.gxbb bs=512 seek=8 count=1 conv=fsync,notrunc
-+    $ dd if=bl1.bin.hardkernel of=fip/u-boot.bin.gxbb bs=512 seek=2 skip=2 count=1 conv=fsync,notrunc
-+    $ ./aml_chksum fip/u-boot.bin.gxbb
-+    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
-+    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=1 count=440
+     $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+-    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
++    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
 -- 
 2.34.1
 
