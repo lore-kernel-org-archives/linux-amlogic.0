@@ -4,93 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 445AEC7618D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E4B7C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 13:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4EHXPQvqrvSs3QAIoixdR+XU0xcYTSDHtSjVSfDsoGE=; b=kq7RvGcREAszbs
-	iXKn8SivPC210ieGkWfuoI4cZtz5ig8pT33WnRWpxAHnQECLpMavcxUFqaxwOtVT0RWtAe0hYvio5
-	djjUtOdZ6yxGkGBrIOHrYPUu9gXlzu5Rr/nhVDsP9tQqQ4MVuchnSdnh0ju4fIRMkrCbQs12eBcVF
-	pFrHpalJItG0kcT2Xq9o0l72ciT+5qcXvwMPomKfVy0sTtcLFfzrDEB1KxJOCD2KSNta3iSpOY1NI
-	oqEP7h0QFHDMFM4QghbaDkycbmXXcT1KRXPFC0gu7Q5aTUQikhSkuDfv/2XYdWPhGLTjR3nrZL5yu
-	1MZmkJ62yx2MuEltXx/g==;
+	List-Owner; bh=vbOE/885c1qra67vu9i49exZuN6N1E3eiR8FNU2Pjng=; b=Z6jwH8JT7xw/Iu
+	CvXFo7Sle1CkTJGzIvy6BmakZkoFZdJhx4CaJ3tsdPQaZp4oTGqxRxrTqEQaNlCpYLVww1r073G43
+	lzB6yTbFi5B5EU44DWpXTJ/8EjSohOVXkKvQJ8N/3WA99skhtru/p8+rUeBZH0rzEwU20Zhv96zVd
+	0B1N/qa/5LmA2Bc+jjusMz7zqQy/R5Fd/ybL1eLH8PeR8n8UfVfTsLroQ5RykYgyRghgHxYXigFUj
+	ZajYKRtaqGVTdu4RsvMfPavwMl6+Jnd/8TmuAAjYMXvR0esVRe1b2reeB0kZaX6GOVHCi4l0+mJf/
+	c6OUpEw63djtkOQyh3RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peF7c-00928q-0s;
-	Mon, 20 Mar 2023 13:00:20 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1peF7b-00928V-20;
+	Mon, 20 Mar 2023 13:00:19 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyT-008sA1-10
-	for linux-amlogic@bombadil.infradead.org;
-	Mon, 20 Mar 2023 11:46:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=; b=A6bcaCqtnO7nWAjyJXOI8Vv3yu
-	koCm5Z/ZlD8uSjhvsoxGTPzsgSc2Cye/LKCEWHHgJRIc4tDPa5tX+eKSRvy+g71oyJemPBdkrBddg
-	VdZHYGtk3ahAMIB9FJCdGguFd/+uWY+rrXC000pmGSP2AIUMHF1+rcb6Q57H1w48GDcVQdJW5Sar9
-	fqz3kWmRQ3mUVRJhAlWCkTuwWj4Z54C3jz/ulrvvzm8v0DD/WWdMDJXcNZuU9vbeSbiOsi0jnvOa1
-	cqc8Il8sFWrmtja1cJKgJujNKhF0hOcEqLNiYgqqT7Jt3PBHh5ZETYj9wmhEVFhkLB9EBG1hfw6T/
-	Szo4FJFw==;
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyO-003uDy-2Z
+	id 1peDyN-008rqP-2L
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:47 +0000
-Received: by mail-wm1-x329.google.com with SMTP id iw17so1943416wmb.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:42 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:45 +0000
+Received: by mail-wr1-x432.google.com with SMTP id l12so10028815wrm.10
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312800;
+        d=gmail.com; s=20210112; t=1679312803;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=;
-        b=VY9XJ+CGZDVB3V3QR7JXxW499vtk1P2wkMT1TLNEvjXV/nHRj6B719no8+r/e1X8zF
-         +1+YgHFn1DGVN8ZEmqv394mO4vjAk3hrGG7ZApaeTFhEIX/VkTcGNpkhVlg+H397Msch
-         n+JOtQNq/8pHOUoW9CP8FZukUSdw7FsYutrNnESNGrNz3CSkZ8TpPBiSkHfNOycJjzbC
-         hNQ6X2TV5DvoEul4O1UmpRFAXr9VwJe/cE57zfZxjgoLIBdDfx11iRinQ/1gTpTtNIyj
-         SaQSAHy81XV6ahfbVlC1Afp7TUvnibggPUTJU8z+azMQoIcJUin84EhxEUbhyOwTdaXw
-         beHA==
+        bh=cCUlzkd+ZiUVoODVUj+CDP7kcBJvcDYrO0Lw0y8ZFBw=;
+        b=k7ltuPeuVkrAen+lIpq9si4Pj3SgyStetVbU0fJ6sFbf5kGvyjEqI7cAzCtXTAKpdb
+         YE6s7rtq1EV5LZf2wzrcKJFhjXY/mJBjfpsCQwnwnylgoJjx7RKKB0Y3D9H/4AaymKIx
+         jTk2S4FbC8H+UF0CfSpw06mbaAmb2ig3WnNUJA//8CM+TuIcFdcuNQul2RRsts/d4KJF
+         /SqmnSbyrsWxFfzrGWtI61W8JfjAtZW5Pa1mZAVPyGoCW8mDUbJhtL9CoBhnvQWGp8Ms
+         Uxbr/qARsA4gnMneMpVgRhclQN+UgcaCg2eyj44GVCS/cOFNF1MgeGEivujzw4YRcezy
+         o6wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312800;
+        d=1e100.net; s=20210112; t=1679312803;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K8RZphyBX8i1O0montdtL5/Jas1xXVgSIZdOxXX4/e0=;
-        b=eAaCy3bPncyh//qLUs6jLSCvAQds0TnKgpOYjUasAt0wb5BRfkd2Dr1ClyE0ahsL0n
-         JResFu2OS02WBleYt9hfKGzYFR66TjC2SbK11dwG34RcHp3nWtwAiccuN8j6p1nL1NT8
-         8WfKIkNokxNjpzFZk9ZkgJZTmE99kY1vKPh+F6m6GOOv+zw2eI64zHnFZD8SJX5aYou1
-         +daAO2fi/rrpPQ7a5NV0Qn7fWHiszNRwfQQx1k3VCI5g+kUvys+g9p3zrMJGthnuRVTa
-         aUQ3sELHobseszyQtlevR4LwTXGgO+oOBfpkJopbUCx+yRhMri1aNwxqvBJ/C1tT71rw
-         1tog==
-X-Gm-Message-State: AO0yUKWECcvzAulx6UEHK0utBQwAV2N7t85xQXfWm8oSRF57dLZwur+P
-	WG19nihzC/D1uwnsVFsQZFQ=
-X-Google-Smtp-Source: AK7set/LcodvJfuvwQe0xgAbjvoh1I2lS79YV4RIfRg+IphvsKGMB9pZsgDCbdd1nBNzWC0kJT+1Jg==
-X-Received: by 2002:a05:600c:d0:b0:3ee:36f:3485 with SMTP id u16-20020a05600c00d000b003ee036f3485mr1631695wmm.8.1679312799936;
-        Mon, 20 Mar 2023 04:46:39 -0700 (PDT)
+        bh=cCUlzkd+ZiUVoODVUj+CDP7kcBJvcDYrO0Lw0y8ZFBw=;
+        b=KAO/7iV3y89dNy3YNEq4wjLxHjnIbME9NAg0B42jPRmZDsRi4b4mwY/CYKj6gyrsRE
+         WGR7Sc4oWbkbKjxs7+EsiBQiS2eGjJO6yoD8oLohF8OfVT6OnbuMHjkOPxx0JNOpk078
+         hUNExrjGOFWnPjLE4yfcdRg/tfw4bRTsvi7OGN3osTacJyjZ6hhWiYionI2Sjwlfgaus
+         RjWypjTCr6/PIxIP5F9JmAbq001ssSBUQ5toqnHmcpy/jOF0JS6uvhUMSfFisv37kAwd
+         Isq82kEKWJatHw6hCoJsMn4k1wq1eVmb2jkP9yiQGLQJBPZaYxbZEgcD/qqDvuf52pcs
+         krFg==
+X-Gm-Message-State: AO0yUKXDoXg6RwKYTd7PwqPBaIolXitzlGcLROmJXqvILktlXpRd1Xdf
+	rGorFrbmtT6hB423GN/PuhM=
+X-Google-Smtp-Source: AK7set+cu8/Sooexo1ycGHzJnbhIdwi1lW/fxCkwMOT2WzK3wIS42mkuYW4STAI8Bm8KEpuDJUP/3A==
+X-Received: by 2002:adf:f947:0:b0:2d2:f3e3:115d with SMTP id q7-20020adff947000000b002d2f3e3115dmr9372020wrr.59.1679312803300;
+        Mon, 20 Mar 2023 04:46:43 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.38
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:39 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:42 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 17/33] doc: boards: amlogic: update documentation for ODROID GO ULTRA
-Date: Mon, 20 Mar 2023 11:45:53 +0000
-Message-Id: <20230320114609.930145-18-christianshewitt@gmail.com>
+Subject: [PATCH 19/33] doc: boards: amlogic: update documentation for ODROID-N2L
+Date: Mon, 20 Mar 2023 11:45:55 +0000
+Message-Id: <20230320114609.930145-20-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_114645_095665_1F99CA3B 
-X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-CacheID: sfid-20230320_044643_764003_BEBB2534 
+X-CRM114-Status: UNSURE (   7.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,37 +97,46 @@ Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/odroid-go-ultra.rst | 25 ++++++++++++++++++-------
- 1 file changed, 18 insertions(+), 7 deletions(-)
+ doc/board/amlogic/odroid-n2l.rst | 33 ++++++++++++++++++++++----------
+ 1 file changed, 23 insertions(+), 10 deletions(-)
 
-diff --git a/doc/board/amlogic/odroid-go-ultra.rst b/doc/board/amlogic/odroid-go-ultra.rst
-index 8df9e0cb79..50d91394d4 100644
---- a/doc/board/amlogic/odroid-go-ultra.rst
-+++ b/doc/board/amlogic/odroid-go-ultra.rst
-@@ -1,10 +1,9 @@
+diff --git a/doc/board/amlogic/odroid-n2l.rst b/doc/board/amlogic/odroid-n2l.rst
+index afd4409d1b..b264ace7f5 100644
+--- a/doc/board/amlogic/odroid-n2l.rst
++++ b/doc/board/amlogic/odroid-n2l.rst
+@@ -1,22 +1,23 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for ODROID-GO-ULTRA
-+U-Boot for ODROID-GO-ULTRA (S922X)
- ==========================
+-U-Boot for ODROID-N2L
+-=====================
++U-Boot for ODROID-N2L (S922X)
++=============================
  
--The Odroid Go Ultra is a portable gaming device with the following
--characteristics:
-+The ODROID GO ULTRA is a portable gaming device with the following characteristics:
+-ODROID-N2L is a single board computer manufactured by Hardkernel
+-Co. Ltd with the following specifications:
++ODROID-N2L is a Single Board Computer manufactured by Hardkernel with the following
++specifications:
  
-  - Amlogic S922X SoC
-  - RK817 & RK818 PMICs
-@@ -19,7 +18,7 @@ characteristics:
-  - 2x ADC Analog Joysticks
-  - USB-C Port for USB2 Device and Charging
+  - Amlogic S922X ARM Cortex-A53 dual-core + Cortex-A73 quad-core SoC
+  - 4GB DDR4 SDRAM
+  - HDMI 2.1 4K/60Hz display
+  - 40-pin GPIO header
+- - 1 x USB 3.0 Host, 1 x USB USB 2.0 Host
++ - 1x USB 3.0 Host
++ - 1x USB 2.0 Host
+  - eMMC, microSD
+  - MIPI DSI Port
+ 
+-Schematics are available on the manufacturer website.
++Schematics are available on the manufacturer website: https://wiki.odroid.com
  
 -U-Boot compilation
 +U-Boot Compilation
  ------------------
  
  .. code-block:: bash
-@@ -28,7 +27,19 @@ U-Boot compilation
-     $ make odroid-go-ultra_defconfig
+@@ -25,7 +26,19 @@ U-Boot compilation
+     $ make odroid-n2l_defconfig
      $ make
  
 -Image creation
@@ -150,14 +144,14 @@ index 8df9e0cb79..50d91394d4 100644
 +U-Boot Signing with Pre-Built FIP repo
 +--------------------------------------
  
--Pleaser refer to :doc:`pre-generated-fip` with codename `odroid-go-ultra`
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `odroid-n2l`
 +.. code-block:: bash
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh odroid-go-ultra /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh odroid-n2l /path/to/u-boot/u-boot.bin my-output-dir
 +
-+Then write the image to SD or eMMC with:
++Then write U-Boot to SD or eMMC with:
 +
 +.. code-block:: bash
 +
