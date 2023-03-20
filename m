@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 773C5C7618A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4ACDC7618E
 	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,70 +12,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lFGNoJnK8xVAMsIJ9Kipj3FAc8X7k2NmDJnuRiDVGzo=; b=gmH7U9oDyPvZXj
-	djq07YqTeQil89JyTovfDZs/rgNDRgtQmrfcz8R4cxIPfTfhCMzd4FzxFfKX9f4QQwHdywlV3IgVD
-	fYQARmxnGQQ42fDSRoDN6RmxzemyZ1yeOwU8K8xfE2x+jUnvlLo3hmKdrv4feL6maSff3DAOvvlsW
-	juw7OLE504vcSOYlZjToB0eNxRnKPuid8A6czWsyQzAGnt8u1hkP5u3/HFyojGwJdma533QNj2Sjm
-	EKzjXlFm0j8GoCvsk/zTwuXVM+47CGKlOzgdxVQo6AkHcHtoFpAT2jGmCFRuD9skwAag1z3Jynry7
-	4k9iPo18bbBwNQN2R5ng==;
+	List-Owner; bh=n13PPSKP6MzwRNY8kMeHC3t7QwYHfQOQM1a8XFfw6OY=; b=1N7pl+v6wkTQsM
+	H9xUKk5b6rtLjKiXo/y6P/5J2CqvTtOI/Wl7ECMy14L92IMUFIgRJFmutiWEI+8pY0TPRInofT1lM
+	poYeYaQR7ub4Hu1FvhtQNCsyhWN8M3cd2OzfBseLO5UT8w4YMd5eP2XzT+5dgAXLFUcAjvor0aGqP
+	0jmWw18PJWth//vt9xZmHWFU9WFye/iB1qBHnsBm4WchrSOF2o5o9eruOD7sv3NSP6yjSak/ECQLh
+	joXaYlPimp7+TLVceA4dEW2k8rg5B55SOPCIJipYEwT18JTjgVgO5iRO+WxBZeBUN8hyEGVr1Zraa
+	0i9WXdRpZrjTeQKHuCHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDy4-008rp5-0G;
+	id 1peDy4-008rpQ-1X;
 	Mon, 20 Mar 2023 11:46:24 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDxy-008rkn-0Z
+	id 1peDy0-008rmM-2n
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:21 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id j24so1127465wrd.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:17 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:22 +0000
+Received: by mail-wr1-x432.google.com with SMTP id i9so10045494wrp.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312776;
+        d=gmail.com; s=20210112; t=1679312779;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nPc4uGn1eC+DLrvkciSKBLSftxTo1x7LcT00DweY+Rk=;
-        b=LOKHoAN+7jADfDSFnUivXX51V9iDLc/kYrGJ/niZ521QkHBYQR8f0hf8p9jyo/wNgD
-         FhKfORuo3HN0oXrUVYqcfPg+0eGaMVig1YS6goRph8/uk8m5/75CzS9uc/pwdjccDoHZ
-         61CT/oncEINfI8zMVntrddqBz4U+DwY6GuliQ2NPwI66RNHTkUe7iBnFes2Y+J9C5qLg
-         XjNRXJyii2EC3OHPF+tyT6DDA7/2OP7lHhl/4eG0eLe38H9pYHFplvMr02zuXfaXspQb
-         aIzp+W3bMEd0REgxmRw/4NAJo84mh/+275OEPcsBJj5eYrAo70YHq+nz5M1uDbvcDwUL
-         esQQ==
+        bh=MGszLQhz+ukONY+m+KL8QiBbUNTXcMZFNhCjnvm98bU=;
+        b=IpSqyp45p4SuKKwfu+deQAjdPLOjQLKpvHwxrRwyXQqYImtcX05eLeHlRkMv4RRnxh
+         8SsyP8f5itE+Q1skxtI2NeGKzuFCkPGx2qYrm0tPdNIul8jeABwcuhJgWFpz6FjbGs8r
+         D+VJEJE0CFOHPrCIJQB8MXP920y7LnZwp2bXNgeL+fAe74bhMZDCXuoaK3QDu8h+grtG
+         BtIj9zXVD9aKL3HZWmSex8mAb7f9lX72uvVWfhHAsBVSMa5P/Ooyu8eAWBUTNlD0K5pG
+         plGSNfV/fb428Tn00e46+1CrsOFyqa2ZxmHZT+y4RKlLLOn6hQT4yEksFfLjjCG/8bmS
+         PONQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312776;
+        d=1e100.net; s=20210112; t=1679312779;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nPc4uGn1eC+DLrvkciSKBLSftxTo1x7LcT00DweY+Rk=;
-        b=cKWO7QK5mLULlNUAa9g9XpgNn5Op4iKqODvoL9ELfASg3a4JmIbP848rK4mGEkzUYr
-         xO8z1u8usLU/xstVmN5fGfe1uD0AECJ10E51ZEU2Ew3lzQFNsQN8jyxLqkmeTcJyHyi8
-         LaNb1tynEfFI8bkzFExrVSUJz/4GVFqqUbM/cldh3RCyf1oCRfeWq6KFXu+GZt44t2Ji
-         o5MZcgIIlxXpoqAJH7oCXI5Hlsv6DRf998YbzVZMcNPLfnxqQ6S6Nvw7uj0P+ksLD/ld
-         HJEQHTDWicQtyG+c3q1OSK3oR4cQnQIbtoKqw6elUMd/j9FRo8Pou9zDnSmiLwlk/jON
-         Xucg==
-X-Gm-Message-State: AO0yUKUZooR5CoaK2LIfnP4Qw2CM78AotT8daHBkb775nIAAwHKGjB3v
-	z3Jj1gWAa8Bfgs76DZPaBDT3PmuFot2KO/oq
-X-Google-Smtp-Source: AK7set/JBgF54+wzF1FVL7XZ5EK3oQtTlEFg97L4kT0gzBFceQskhiJRfN4ziTe48SIsOWmqGlZxYA==
-X-Received: by 2002:adf:e4c5:0:b0:2cf:ea38:973 with SMTP id v5-20020adfe4c5000000b002cfea380973mr13505002wrm.43.1679312775754;
-        Mon, 20 Mar 2023 04:46:15 -0700 (PDT)
+        bh=MGszLQhz+ukONY+m+KL8QiBbUNTXcMZFNhCjnvm98bU=;
+        b=5iSq9KvRSF9bpopjUtthGWPiyTVYnNzHjLB+DvZixB328/DHIK4oJgKbqcZpQ9iqEz
+         nVKfIuYpYI1QJih5C3/eSm8T9zHdB2ClN8v7oLTsy/qQH5n9G3OIKvkbLDAClUs2OHOi
+         OV5MxuTEAVt3A/9TbHVfAVNocoTzHGwQysdjF3idTyisscRBd3kTkC5f/v/E5WpYL3VY
+         z751Lbsf3CH5mgoaq532fM8+stG4vJarwKVVp3fkaasioh28ZdyKkhLtSkA5MBuZb5Cv
+         yAldAzHhpS8ldcVyA6Do24ZjszAUHFqrkSeCEdO/2N2BqhqpxTU/DIA1D4MhsvBSuDyg
+         EMSg==
+X-Gm-Message-State: AO0yUKUGce7ooYf7/R+cqUiM27sIBZfnxKQ2xNKmbZU4oAjFMVl3Ef4z
+	iUQC/DamEH48n0h+HkfzDvQ=
+X-Google-Smtp-Source: AK7set/Pv/HjZIkjOGA6A5BlLOPsZC3xmAKm0J6uuxgSz5ysSz6QLeLWAGiN4XTV3dbvkWIPKpTsSQ==
+X-Received: by 2002:a5d:4e11:0:b0:2ce:ad17:9242 with SMTP id p17-20020a5d4e11000000b002cead179242mr12157170wrt.7.1679312778992;
+        Mon, 20 Mar 2023 04:46:18 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.14
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:15 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:18 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 02/33] doc: boards: amlogic: update documentation for boot-flow
-Date: Mon, 20 Mar 2023 11:45:38 +0000
-Message-Id: <20230320114609.930145-3-christianshewitt@gmail.com>
+Subject: [PATCH 04/33] doc: boards: amlogic: update documentation for Beelink GT-King
+Date: Mon, 20 Mar 2023 11:45:40 +0000
+Message-Id: <20230320114609.930145-5-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044618_218480_5EB37DCA 
-X-CRM114-Status: GOOD (  21.62  )
+X-CRM114-CacheID: sfid-20230320_044620_905510_EEEF725B 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,236 +96,175 @@ Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/boot-flow.rst | 178 ++++++++++++++++----------------
- 1 file changed, 90 insertions(+), 88 deletions(-)
+ doc/board/amlogic/beelink-gtking.rst | 120 +++++++++++++--------------
+ 1 file changed, 60 insertions(+), 60 deletions(-)
 
-diff --git a/doc/board/amlogic/boot-flow.rst b/doc/board/amlogic/boot-flow.rst
-index 2049672b1b..041297c512 100644
---- a/doc/board/amlogic/boot-flow.rst
-+++ b/doc/board/amlogic/boot-flow.rst
-@@ -3,132 +3,134 @@
- Amlogic SoC Boot Flow
- =====================
+diff --git a/doc/board/amlogic/beelink-gtking.rst b/doc/board/amlogic/beelink-gtking.rst
+index 2fb50c5f7b..342887d584 100644
+--- a/doc/board/amlogic/beelink-gtking.rst
++++ b/doc/board/amlogic/beelink-gtking.rst
+@@ -1,10 +1,10 @@
+ .. SPDX-License-Identifier: GPL-2.0+
  
--The Amlogic SoCs have a pre-defined boot sequence in the SoC ROM code. Here are
--the possible boot sources of different SoC families supported by U-Boot:
-+Amlogic SoCs follow a pre-defined boot sequence stored in SoC ROM code. The possible boot
-+sequences of the different SoC families are:
+-U-Boot for Beelink GT-King
+-==========================
++U-Boot for Beelink GT-King (S922X)
++==================================
  
--GX* & AXG family
-+GX* & AXG Family
- ----------------
+-The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference
+-board with an S922X-H chip.
++The Shenzen AZW (Beelink) GT-King is based on the Amlogic W400 reference board with an
++S922X-H chip and the following specifications:
  
--+----------+--------------------+-------+-------+---------------+---------------+
--|          |   1                | 2     | 3     |    4          |     5         |
--+==========+====================+=======+=======+===============+===============+
--| S905     | POC=0: SPI NOR     | eMMC  | NAND  | SD Card       | USB Device    |
--| S905X    |                    |       |       |               |               |
--| S905L    |                    |       |       |               |               |
--| S905W    |                    |       |       |               |               |
--| S912     |                    |       |       |               |               |
--+----------+--------------------+-------+-------+---------------+---------------+
--| S805X    | POC=0: SPI NOR     | eMMC  | NAND  | USB Device    | -             |
--| A113D    |                    |       |       |               |               |
--| A113X    |                    |       |       |               |               |
--+----------+--------------------+-------+-------+---------------+---------------+
-++----------+-------------------+---------+---------+---------+---------+
-+|          |   1               | 2       | 3       | 4       | 5       |
-++==========+===================+=========+=========+=========+=========+
-+| S905     | POC=0: SPI NOR    | eMMC    | NAND    | SD      | USB     |
-+| S905D    |                   |         |         |         |         |
-+| S905L    |                   |         |         |         |         |
-+| S905W    |                   |         |         |         |         |
-+| S905X    |                   |         |         |         |         |
-+| S905Y    |                   |         |         |         |         |
-+| S912     |                   |         |         |         |         |
-++----------+-------------------+---------+---------+---------+---------+
-+| S805X    | POC=0: SPI NOR    | eMMC    | NAND    | USB     | -       |
-+| A113D    |                   |         |         |         |         |
-+| A113X    |                   |         |         |         |         |
-++----------+-------------------+---------+---------+---------+---------+
+ - 4GB LPDDR4 RAM
+ - 64GB eMMC storage
+@@ -18,10 +18,10 @@ board with an S922X-H chip.
+ - IR receiver
+ - 1x micro SD card slot
  
- POC pin: `NAND_CLE`
+-Beelink do not provide public schematics, but have been willing
+-to share them with known distro developers on request.
++Beelink do not provide public schematics, but have been willing to share them with known
++distro developers to assist with development.
  
--Some boards provide a button to force USB BOOT which disables the eMMC clock signal
--to bypass the eMMC stage. Others have removable eMMC modules; removing the eMMC and
--SDCard will allow boot from USB.
-+Some boards provide a button to force USB boot by disabling the eMMC clock signal and
-+allowing the eMMC step to be bypassed. Others have removable eMMC modules; removing an
-+eMMC module and SD card will allow boot from USB.
+-U-Boot compilation
++U-Boot Compilation
+ ------------------
  
--An exception is the lafrite board (aml-s805x-xx) which has no SDCard slot and boots
--from SPI. The only ways to boot the lafrite board from USB are:
-+An exception is the Libre Computer AML-S805X-XX (LaFrite) board which has no SD card
-+slot and boots from SPI. Booting a LaFrite board from USB requires either:
+ .. code-block:: bash
+@@ -30,21 +30,21 @@ U-Boot compilation
+     $ make beelink-gtking_defconfig
+     $ make
  
-- - Erase the first sectors of SPI NOR flash
-- - Insert an HDMI boot plug forcing boot over USB
-+ - Erasing the first sectors of SPI NOR flash
-+ - Inserting an HDMI boot plug forcing boot over USB
+-Image creation
+---------------
++U-Boot Signing with Pre-Built FIP repo
++--------------------------------------
  
--The VIM1 and initial VIM2 boards provide a test point on the eMMC signals to block
--the storage from answering and continue to the next boot step.
-+The VIM1 and initial VIM2 boards provide a test point on the eMMC signals to block the
-+storage from answering, allowing boot to continue with the next boot step.
- 
--The USB Device boot uses the first USB interface. On some boards this port is only
--available on an USB-A type connector and needs an special Type-A to Type-A cable to
--communicate with the BootROM.
-+USB boot uses the first USB interface. On some boards this port is only available on a
-+USB-A type connector and requires a special Type-A to Type-A cable to communicate with
-+the BootROM.
- 
--G12* & SM1 family
-+G12* & SM1 Family
- -----------------
- 
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| POC0  | POC1  | POC2  | 1             | 2             | 3             | 4             |
--+=======+=======+=======+===============+===============+===============+===============+
--| 0     | 0     | 0     | USB Device    | SPI NOR       | NAND/eMMC     | SDCard        |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 0     | 0     | 1     | USB Device    | NAND/eMMC     | SDCard        | -             |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 0     | 1     | 0     | SPI NOR       | NAND/eMMC     | SDCard        | USB Device    |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 0     | 1     | 1     | SPI NAND      | NAND/eMMC     | USB Device    | -             |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 1     | 0     | 0     | USB Device    | SPI NOR       | NAND/eMMC     | SDCard        |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 1     | 0     | 1     | USB Device    | NAND/eMMC     | SDCard        | -             |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 1     | 1     | 0     | SPI NOR       | NAND/eMMC     | SDCard        | USB Device    |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
--| 1     | 1     | 1     | NAND/eMMC     | SDCard        | USB Device    | -             |
--+-------+-------+-------+---------------+---------------+---------------+---------------+
+-Amlogic does not provide sources for the firmware and for tools needed
+-to create the bootloader image. Beelink have provided the Amlogic "SDK"
+-in their forums, but the u-boot sources included result in 2GB RAM being
+-detected. The following FIPs were generated with newer private sources
+-and give correct (4GB) RAM detection:
 -
--The last option (1/1/1) is the normal default seen on production devices.
-++-------+-------+-------+------------+------------+------------+-----------+
-+| POC0  | POC1  | POC2  | 1          | 2          | 3          | 4         |
-++=======+=======+=======+============+============+============+===========+
-+| 0     | 0     | 0     | USB        | SPI-NOR    | NAND/eMMC  | SD        |
-++-------+-------+-------+------------+------------+-------------+----------+
-+| 0     | 0     | 1     | USB        | NAND/eMMC  | SD         | -         |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 0     | 1     | 0     | SPI-NOR    | NAND/eMMC  | SD         | USB       |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 0     | 1     | 1     | SPI-NAND   | NAND/eMMC  | USB        | -         |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 1     | 0     | 0     | USB        | SPI-NOR    | NAND/eMMC  | SD        |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 1     | 0     | 1     | USB        | NAND/eMMC  | SD         | -         |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 1     | 1     | 0     | SPI-NOR    | NAND/eMMC  | SD         | USB       |
-++-------+-------+-------+------------+------------+------------+-----------+
-+| 1     | 1     | 1     | NAND/eMMC  | SD         | USB        | -         |
-++-------+-------+-------+------------+------------+------------+-----------+
+-https://github.com/LibreELEC/amlogic-boot-fip/tree/master/beelink-s922x
++.. code-block:: bash
++    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
++    $ cd amlogic-boot-fip
++    $ mkdir my-output-dir
++    $ ./build-fip.sh beelink-s922x /path/to/u-boot/u-boot.bin my-output-dir
+ 
+-NB: Beelink use a common board config for GT-King, GT-King Pro and the
+-GS-King-X model, hence the "beelink-s922x" name.
++U-Boot Manual Signing
++---------------------
+ 
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `beelink-s922x`
++Beelink released an Amlogic "SDK" dump in their forums, but the U-Boot sources included
++result in 2GB RAM detected. The following FIPs were generated with newer sources and
++detect 4GB RAM: https://github.com/LibreELEC/amlogic-boot-fip/tree/master/beelink-s922x
+ 
+ .. code-block:: bash
+ 
+@@ -61,57 +61,57 @@ Go back to the mainline U-Boot source tree then:
+     $ cp u-boot.bin fip/bl33.bin
+ 
+     $ sh fip/blx_fix.sh \
+-    	fip/bl30.bin \
+-    	fip/zero_tmp \
+-    	fip/bl30_zero.bin \
+-    	fip/bl301.bin \
+-    	fip/bl301_zero.bin \
+-    	fip/bl30_new.bin \
+-    	bl30
++         fip/bl30.bin \
++         fip/zero_tmp \
++         fip/bl30_zero.bin \
++         fip/bl301.bin \
++         fip/bl301_zero.bin \
++         fip/bl30_new.bin \
++         bl30
+ 
+     $ sh fip/blx_fix.sh \
+-    	fip/bl2.bin \
+-    	fip/zero_tmp \
+-    	fip/bl2_zero.bin \
+-    	fip/acs.bin \
+-    	fip/bl21_zero.bin \
+-    	fip/bl2_new.bin \
+-    	bl2
++         fip/bl2.bin \
++         fip/zero_tmp \
++         fip/bl2_zero.bin \
++         fip/acs.bin \
++         fip/bl21_zero.bin \
++         fip/bl2_new.bin \
++         bl2
+ 
+     $ fip/aml_encrypt_g12b --bl30sig --input fip/bl30_new.bin \
+-    				--output fip/bl30_new.bin.g12a.enc \
+-    				--level v3
++                           --output fip/bl30_new.bin.g12a.enc \
++                           --level v3
+     $ fip/aml_encrypt_g12b --bl3sig --input fip/bl30_new.bin.g12a.enc \
+-    				--output fip/bl30_new.bin.enc \
+-    				--level v3 --type bl30
++                           --output fip/bl30_new.bin.enc \
++                           --level v3 --type bl30
+     $ fip/aml_encrypt_g12b --bl3sig --input fip/bl31.img \
+-    				--output fip/bl31.img.enc \
+-    				--level v3 --type bl31
++                           --output fip/bl31.img.enc \
++                           --level v3 --type bl31
+     $ fip/aml_encrypt_g12b --bl3sig --input fip/bl33.bin --compress lz4 \
+-    				--output fip/bl33.bin.enc \
+-    				--level v3 --type bl33
++                           --output fip/bl33.bin.enc \
++                           --level v3 --type bl33
+     $ fip/aml_encrypt_g12b --bl2sig --input fip/bl2_new.bin \
+-    				--output fip/bl2.n.bin.sig
++                           --output fip/bl2.n.bin.sig
+     $ fip/aml_encrypt_g12b --bootmk \
+-    		--output fip/u-boot.bin \
+-    		--bl2 fip/bl2.n.bin.sig \
+-    		--bl30 fip/bl30_new.bin.enc \
+-    		--bl31 fip/bl31.img.enc \
+-    		--bl33 fip/bl33.bin.enc \
+-    		--ddrfw1 fip/ddr4_1d.fw \
+-    		--ddrfw2 fip/ddr4_2d.fw \
+-    		--ddrfw3 fip/ddr3_1d.fw \
+-    		--ddrfw4 fip/piei.fw \
+-    		--ddrfw5 fip/lpddr4_1d.fw \
+-    		--ddrfw6 fip/lpddr4_2d.fw \
+-    		--ddrfw7 fip/diag_lpddr4.fw \
+-    		--ddrfw8 fip/aml_ddr.fw \
+-    		--level v3
+-
+-and then write the image to SD with:
++                           --output fip/u-boot.bin \
++                           --bl2 fip/bl2.n.bin.sig \
++                           --bl30 fip/bl30_new.bin.enc \
++                           --bl31 fip/bl31.img.enc \
++                           --bl33 fip/bl33.bin.enc \
++                           --ddrfw1 fip/ddr4_1d.fw \
++                           --ddrfw2 fip/ddr4_2d.fw \
++                           --ddrfw3 fip/ddr3_1d.fw \
++                           --ddrfw4 fip/piei.fw \
++                           --ddrfw5 fip/lpddr4_1d.fw \
++                           --ddrfw6 fip/lpddr4_2d.fw \
++                           --ddrfw7 fip/diag_lpddr4.fw \
++                           --ddrfw8 fip/aml_ddr.fw \
++                           --level v3
 +
-+The last option (1/1/1) is the normal default seen on production devices:
++Then write U-Boot to SD or eMMC with:
  
-  * POC0 pin: `BOOT_4` (0 and all other 1 means SPI NAND boot first)
-  * POC1 pin: `BOOT_5` (0 and all other 1 means USB Device boot first
-  * POC2 pin: `BOOT_6` (0 and all other 1 means SPI NOR boot first)
+ .. code-block:: bash
  
- Most boards provide a button to force USB BOOT which lowers `BOOT_5` to 0. Some boards
--provide a test point on the eMMC or SPI NOR clock signals to block the storage from
--answering and continue to the next boot step.
-+provide a test point on eMMC or SPI NOR clock signals to block storage from answering
-+and allowing boot to continue from the next boot step.
- 
--The Khadas VIM3/3L boards embed a microcontroller which sets POC signals according
--to its configuration or a specific key press sequence to either boot from SPI NOR
--or eMMC then SDCard, or boot as an USB Device.
-+The Khadas VIM3/3L boards embed a microcontroller which sets POC signals according to
-+its configuration or a specific key press sequence to either boot from SPI NOR or eMMC
-+then SD card, or boot as a USB device.
- 
--The Odroid N2/N2+ has a hardware switch to select between SPI NOR or eMMC boot.
-+The Odroid N2/N2+ has a hardware switch to select between SPI NOR or eMMC boot. The
-+Odroid HC4 has a button to disable SPI-NOR allowing boot from SD card.
- 
- Boot Modes
- ----------
- 
-- * SDCard
-+ * SD
- 
--The BootROM fetches the first SDCard sectors in one sequence, then checks the content
--of the data. The BootROM expects to find the FIP binary in sector 1, 512 bytes offset
--from the start.
-+The BootROM fetches the first SD card sectors in one sequence then checks the content of
-+the data. It expects to find the FIP binary in sector 1, 512 bytes offset from the start.
- 
-  * eMMC
- 
--The BootROM fetches the first sectors in one sequence, first on the main partition,
--and then on the Boot0 followed by Boot1 HW partitions. After each read, the BootROM
--checks the data and looks to the next partition if it fails. The BootROM expects to
--find the FIP binary in sector 1, 512 bytes offset from the start.
-+The BootROM fetches the first sectors of the main partition in one sequence then checks
-+the content of the data. On GXL and newer boards it expects to find the FIP binary in
-+sector 1, 512 bytes offset from the start. If not found it checks the boot0 partition,
-+then the boot1 partition. On GXBB it expects to find the FIP binary at an offset that
-+conflicts with MBR partition tables, but this has been worked around (thus avoiding the
-+need for a partition scheme that relocates the MBR). For a more detailed explanation
-+please see: https://github.com/LibreELEC/amlogic-boot-fip/pull/8
- 
-- * SPI NOR
-+ * SPI-NOR
- 
--The BootROM fetches the first SPI NOR sectors in one sequence, then checks the content
--of the data. The BootROM expects to find the FIP binary in sector 1, 512 bytes offset
--from the start.
-+The BootROM fetches the first SPI NOR sectors in one sequence then checks the content of
-+the data. It expects to find the FIP binary in sector 1, 512 bytes offset from the start.
- 
-- * NAND & SPI NAND
-+ * NAND & SPI-NAND
- 
- These modes are rarely used in open platforms and no details are available.
- 
-- * USB Device
-+ * USB
- 
--The BootROM sets the USB Gadget interface to serve a custom USB protocol with the
--USB ID 1b8e:c003. The Amlogic `update` utility is designed to use this protocol. It
--is also implemented in the Amlogic Vendor U-Boot.
-+The BootROM supports a custom USB protocol and sets the USB Gadget interface to use the
-+USB ID 1b8e:c003. The Amlogic `update` utility uses this protocol. It is also supported
-+in the Amlogic vendor U-Boot sources.
- 
--The open-source `pyamlboot` utility https://github.com/superna9999/pyamlboot also
--implements this protocol and can load U-Boot in memory in order to start the SoC
--without any attached storage or to recover from a failed/incorrect image flash.
-+The `pyamlboot` utility https://github.com/superna9999/pyamlboot is open-source and also
-+implements the USB protocol. It can load U-Boot into memory to start the SoC without the
-+storage being attached, or to recover the device from a failed/incorrect image flash.
- 
--HDMI Recovery
---------------
-+HDMI Recovery Dongle
-+--------------------
- 
--The BootROM also briefly reads 8 bytes at address I2C 0x52 offset 0xf8 (248) on the
--HDMI DDC bus. If the content is `boot@USB` it will force USB boot mode. If the content
--is `boot@SDC` it will force SDCard boot mode.
-+The BootROM also reads 8 bytes at address I2C 0x52 offset 0xf8 (248) on the HDMI DDC bus
-+during startup. The content `boot@USB` forces USB boot. The content `boot@SDC` forces SD
-+card boot. The content `boot@SPI` forces SPI-NOT boot. If an SD card or USB device does
-+not enumerate the BootROM continues with the normal boot sequence.
- 
--If USB Device doesn't enumerate or SD Card boot step doesn't work, the BootROM will
--continue with the normal boot sequence.
-+HDMI boot dongles can be created by connecting a 256bytes EEPROM set to answer on address
-+0x52, with `boot@USB` or `boot@SDC` or `boot@SPI` programmed at offset 0xf8 (248).
- 
--Special boot dongles can be built by connecting a 256bytes EEPROM set to answer on
--address 0x52, and program `boot@USB` or `boot@SDC` at offset 0xf8 (248).
--
--Note: If the SoC is booted with USB Device forced at first step, it will keep the boot
--order on warm reboot. Only cold reboot (power removed) will reset the boot order.
-+If the SoC is booted with USB Device forced at first step, it will retain the forced boot
-+order on warm reboot. Only cold reboot (removing power) will reset the boot order.
+-    $ DEV=/dev/your_sd_device
++    $ DEV=/dev/boot_device
+     $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+-    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
++    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
 -- 
 2.34.1
 
