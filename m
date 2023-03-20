@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121A3C7618E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13A10C761AF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Mar 2023 11:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AceUbMsK0jiMEO6mW9+BHzSZu908fC5+NqekfFdNMNA=; b=y3q9/IFJWB2J6q
-	7+fbuXzpiQUu9RfuzSsQuK78CkLs68mfS2szp/a0g30rZwX74bQAXGEmDzcWxI059nvZKmufSytfq
-	rMdGA/J/Pw/QQx1Zq4mVsEw0nR2ZjcPJoRVKluYcqFpH2CTNrqx3YMtdMUoWffmYy0BlZ9dY8szFZ
-	2g+2C2lLdqQAEK+/LrviRoxVArlxY/xGZyH8pauAaTKWd1eY6+2qW9/Q8fj+0G30LJbUa/8PkqMhE
-	7oEUh7T5bHfkA9xEqa40hrYqh2xjzFrCVC/933TPQJ+LImqa6n2JuhthvScy8V439ohqyPmnECq0I
-	iC025J/vUY1oz9Jx1Xug==;
+	List-Owner; bh=58Oa8wxW96auyVyH+Xls4GQqTAaSiGdwHzdR8gmr2WE=; b=VDUZkt7mHfcrZL
+	bOnxNRiKXFujV3Swj0CTAlb5do4btqkww4L7pcvAvMAti8qoYKP90pXruvSu1S25Q+4XYhGq/WYwV
+	7Pknd6tO+gLBBaJDjzNCfZDx3+ma6fC3SkHY5flNLXEAV1tiErtVSZfHzeYo9IVvpRAXkyTwRpAir
+	2a8SCFRiJredAQtyWqq5VQjENhBpEhCuuh3XwNVLfqnRXXIp0HFWu7DTZIA/jMA0a/rcghhjj2r0/
+	N8ZqIB1rBtL2kmudoSQa/3JtC5Qnz3dwJY7C55Z0bmOvXo8xlM08xzPv/157ZsAZf31Isbfmgp3eQ
+	3hX04AHDoGvb6krpGlbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDyD-008rwq-07;
-	Mon, 20 Mar 2023 11:46:33 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1peDyE-008rxx-2Q;
+	Mon, 20 Mar 2023 11:46:34 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDy8-008rqP-3C
+	id 1peDyC-008rv3-02
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Mar 2023 11:46:30 +0000
-Received: by mail-wr1-x432.google.com with SMTP id l12so10028012wrm.10
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:28 -0700 (PDT)
+	Mon, 20 Mar 2023 11:46:33 +0000
+Received: by mail-wm1-x329.google.com with SMTP id p16so7274674wmq.5
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 04:46:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679312788;
+        d=gmail.com; s=20210112; t=1679312790;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tsncpsLbv6Sdy2201gEVqEmK6Z5ULiz02P3xkFi5QSI=;
-        b=SKmNseR7A3WoUf51Rxt7ISgUi4LE52+OM0M0yWCvNALl9QyT2e2OK5XOfrn8EpswOd
-         KGekvTkZs/FTaca4J0V4esMu4akjRWRtMGM2B1uAlsMbrlb0BwcgZN4ITINUDjN5ZO86
-         g+j79zt9WFME6eYa9ri4Kt2rqy+o4Pl46+9vRqH0rf0mgX6mKyPQp2Rn0mdGO6Qn4SKk
-         zVnCAAFC1Wfq4wI6yw5knkzpM77gtw7UsFFWMMzqYzAxh1OYyO+6ioV/P+6rDyUAdfw+
-         MfU2Zmv5UF8Bo6OE+iHpHhZ9Cd72hwT8c8F6x+PJCmhPQsjamBuyBbLUHCUIkOOvy0mN
-         kwrA==
+        bh=UXxkF+XbVbc4FJBnwx+bZ4z+3Rqpu6bv55HLEWO0AlI=;
+        b=gZfN6ARN5/zMky3GK8v7su3CaiqX8Pf/cUtrb1nHIn3i9OULU9rda+X62KjmPdG3O9
+         /arAdmhO3WJxCBuFw7g3dpOEAd+tUAvPdE2s2LKR7QZl43RdB6N60RzeGUnqRLJXHGv/
+         GQwJT18gbFpd7N/sxNVoqBTGAeeHQdE1veA8SbWeW8ZNoVKQ+fyorVoiF+bVcvKPA7Ca
+         ViOXvMAQAt5BIMhuRKGb8uDCDjROb6ZewvwOEZXX3QUDjioFj4ZrlZnSyUexEAoeD56I
+         H2HZRl//Tu0Z+fYje7Ua4n7S440Qfe9xZKkoAA0ZAiPur805SMfXZn2NnQAiHb94C7oo
+         Xk1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679312788;
+        d=1e100.net; s=20210112; t=1679312790;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tsncpsLbv6Sdy2201gEVqEmK6Z5ULiz02P3xkFi5QSI=;
-        b=B90Ob2uAtiF7X+wQlfEcKbD1MQKy+jwdwvgx72bglPUjePv39wkmL4x7R0AAlEqbrc
-         b9hLvkDS5HcKz6NVZlFBIBOi+3nL1+RnOEKuuJVKYpeNOUqFB1rCfhDIqGSH2g4V6vzx
-         5P5Xf63n+PL8eDYuA0EnKI407R4dOSyp2PKGv6/HOZivC22aAuE98MIKBElOBLolzSIE
-         2P637Jigno26JHCG10Y88+EoRgqkhCgJ7OAD3e8fpvC9g6kGqWaGTvreuLs2VlwEH18u
-         xW/FgzYxVfES/gdOe8nkVM0mQ/7LKdyCv302Dq4FpgifBvGBoOnD0ZaboQ1DiWNTgHYQ
-         q4HQ==
-X-Gm-Message-State: AO0yUKWUl9ICqctQW+GIGL4zHqJfxKAqPBQUy/AxCfGEpz4d0+Xs5ien
-	AkJxR+Kupu2iNp1lA8uL6Nc=
-X-Google-Smtp-Source: AK7set/K+u8uwOn01vM4wyVwem1g/I0oD9ZvwbY87NeLevhBa+drDS5MNlyqmDUS260fatLX7qygLA==
-X-Received: by 2002:a5d:4c81:0:b0:2c5:67e3:808d with SMTP id z1-20020a5d4c81000000b002c567e3808dmr8715552wrs.35.1679312788587;
-        Mon, 20 Mar 2023 04:46:28 -0700 (PDT)
+        bh=UXxkF+XbVbc4FJBnwx+bZ4z+3Rqpu6bv55HLEWO0AlI=;
+        b=OtsltXasv6iHL5PjK8tooPWHrgFW5z010g4KWuyRCESd15moXyQOoElI5BL224gTg5
+         j/IH0ZOvwlIKxyljolwIBUb9gtOxp1k37m+JPOKzAZF9pqM1mkAQxKZvRu3KBTXYKN1U
+         loF3kXGLE7Gjsl3xia1EkbOqu7uJ1wy5je7NBsFbagPAtQQgaTjy8hXxJn7v3BtzLj0D
+         7jjFeC7y7DHYUGaWKGF4VNiTLrzOG9kQHRE6cG3Upd4si8t/xgdfIUZcogUlrfdkGeUd
+         SSVBOd8k8+o396yom/yHJAaa6YrumtdOJFRC2GrqUHT9qKCPMlH0MJKygihBfenOLhv9
+         X5AA==
+X-Gm-Message-State: AO0yUKVQwabZq9o0qjqJoGU++EmaVtz8+j/iIgNuK0lyPo2XfqwAiQqJ
+	s7t1uOCX/tT7fSRj2VAXxew=
+X-Google-Smtp-Source: AK7set8jdLrJIbmP0AeM27peovxv/uOECV5j81qTYMrvU630U3PBy2+XvOgoXinMNQQA6dAzI709ew==
+X-Received: by 2002:a05:600c:3b8e:b0:3ed:290b:dc68 with SMTP id n14-20020a05600c3b8e00b003ed290bdc68mr24009919wms.12.1679312790135;
+        Mon, 20 Mar 2023 04:46:30 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.27
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm8669836wru.67.2023.03.20.04.46.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 04:46:28 -0700 (PDT)
+        Mon, 20 Mar 2023 04:46:29 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 10/33] doc: boards: amlogic: update documentation for Khadas VIM3
-Date: Mon, 20 Mar 2023 11:45:46 +0000
-Message-Id: <20230320114609.930145-11-christianshewitt@gmail.com>
+Subject: [PATCH 11/33] doc: boards: amlogic: update documentation for Khadas VIM3L
+Date: Mon, 20 Mar 2023 11:45:47 +0000
+Message-Id: <20230320114609.930145-12-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
 References: <20230320114609.930145-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_044629_067955_7A6CEBE2 
-X-CRM114-Status: GOOD (  12.51  )
+X-CRM114-CacheID: sfid-20230320_044632_053031_5F3826DC 
+X-CRM114-Status: GOOD (  12.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,28 +96,28 @@ Improve documentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- doc/board/amlogic/khadas-vim3.rst | 137 +++++++++++++++---------------
+ doc/board/amlogic/khadas-vim3l.rst | 137 ++++++++++++++---------------
  1 file changed, 68 insertions(+), 69 deletions(-)
 
-diff --git a/doc/board/amlogic/khadas-vim3.rst b/doc/board/amlogic/khadas-vim3.rst
-index 73dc32b79b..88f2e0ebbe 100644
---- a/doc/board/amlogic/khadas-vim3.rst
-+++ b/doc/board/amlogic/khadas-vim3.rst
+diff --git a/doc/board/amlogic/khadas-vim3l.rst b/doc/board/amlogic/khadas-vim3l.rst
+index 692ab3d21d..935f43c725 100644
+--- a/doc/board/amlogic/khadas-vim3l.rst
++++ b/doc/board/amlogic/khadas-vim3l.rst
 @@ -1,10 +1,10 @@
  .. SPDX-License-Identifier: GPL-2.0+
  
--U-Boot for Khadas VIM3
--======================
-+U-Boot for Khadas VIM3 (A311D)
-+==============================
+-U-Boot for Khadas VIM3L
+-=======================
++U-Boot for Khadas VIM3L (S905D3)
++================================
  
--Khadas VIM3 is a single board computer manufactured by Shenzhen Wesion
+-Khadas VIM3L is a single board computer manufactured by Shenzhen Wesion
 -Technology Co., Ltd. with the following specifications:
-+Khadas VIM3 is a Single Board Computer manufactured by Shenzhen Wesion Technology Co. Ltd
++Khadas VIM3L is a Single Board Computer manufactured by Shenzhen Wesion Technology Co. Ltd
 +with the following specifications:
  
-  - Amlogic A311D Arm Cortex-A53 dual-core + Cortex-A73 quad-core SoC
-  - 4GB LPDDR4 SDRAM
+  - Amlogic S905D3 Arm Cortex-A55 quad-core SoC
+  - 2GB LPDDR4 SDRAM
 @@ -20,32 +20,27 @@ Schematics are available on the manufacturer website.
  
  PCIe Setup
@@ -131,7 +131,7 @@ index 73dc32b79b..88f2e0ebbe 100644
  
 -To setup for PCIe, run the following commands from U-Boot:
 +The on-board MCU can mux the PCIe/USB3.0 shared differential lines using a FUSB340TMX USB
-+3.1 SuperSpeed Data Switch between a USB3.0 Type-A connector and an M.2 Key M slot. The
++3.1 SuperSpeed Data Switch between a USB3.0 Type-A connector and an M.2 Key-M slot. The
 +PHY driving these differential lines is shared between the USB3.0 controller and the PCIe
 +Controller, thus only a single controller can use it.
 +
@@ -160,7 +160,7 @@ index 73dc32b79b..88f2e0ebbe 100644
  
  .. code-block:: bash
 @@ -54,14 +49,20 @@ U-Boot compilation
-     $ make khadas-vim3_defconfig
+     $ make khadas-vim3l_defconfig
      $ make
  
 -Image creation
@@ -172,9 +172,9 @@ index 73dc32b79b..88f2e0ebbe 100644
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh khadas-vim3 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh khadas-vim3l /path/to/u-boot/u-boot.bin my-output-dir
  
--For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `khadas-vim3`
+-For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `khadas-vim3l`
 +U-Boot Manual Signing
 +---------------------
  
@@ -189,14 +189,14 @@ index 73dc32b79b..88f2e0ebbe 100644
 @@ -72,16 +73,14 @@ the git tree published by the board vendor:
      $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
  
-     $ DIR=vim3-u-boot
+     $ DIR=vim3l-u-boot
 -    $ git clone --depth 1 \
 -       https://github.com/khadas/u-boot.git -b khadas-vims-v2015.01 \
 -       $DIR
 +    $ git clone --depth 1 https://github.com/khadas/u-boot.git -b khadas-vims-v2015.01 $DIR
  
-     $ cd vim3-u-boot
-     $ make kvim3_defconfig
+     $ cd vim3l-u-boot
+     $ make kvim3l_defconfig
      $ make CROSS_COMPILE=aarch64-none-elf-
      $ export UBOOTDIR=$PWD
  
@@ -240,30 +240,30 @@ index 73dc32b79b..88f2e0ebbe 100644
 +           fip/bl2_new.bin \
 +           bl2
  
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bl30sig --input fip/bl30_new.bin \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
 -    					--output fip/bl30_new.bin.g12a.enc \
 -    					--level v3
 +                                          --output fip/bl30_new.bin.g12a.enc \
 +                                          --level v3
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bl3sig --input fip/bl30_new.bin.g12a.enc \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
 -    					--output fip/bl30_new.bin.enc \
 -    					--level v3 --type bl30
 +                                          --output fip/bl30_new.bin.enc \
 +                                          --level v3 --type bl30
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bl3sig --input fip/bl31.img \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
 -    					--output fip/bl31.img.enc \
 -    					--level v3 --type bl31
 +                                          --output fip/bl31.img.enc \
 +                                          --level v3 --type bl31
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bl3sig --input fip/bl33.bin --compress lz4 \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
 -    					--output fip/bl33.bin.enc \
 -    					--level v3 --type bl33 --compress lz4
 +                                          --output fip/bl33.bin.enc \
 +                                          --level v3 --type bl33 --compress lz4
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bl2sig --input fip/bl2_new.bin \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
 -    					--output fip/bl2.n.bin.sig
 +                                          --output fip/bl2.n.bin.sig
-     $ $UBOOTDIR/fip/g12b/aml_encrypt_g12b --bootmk \
+     $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
 -    		--output fip/u-boot.bin \
 -    		--bl2 fip/bl2.n.bin.sig \
 -    		--bl30 fip/bl30_new.bin.enc \
