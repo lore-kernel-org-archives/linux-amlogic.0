@@ -4,108 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA6EC6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 06:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802F0C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 06:48:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uYURbIgAJnWy3yW/JIE7uWOioNeFG9OmqtvKWMFGZpE=; b=TL0l9QNdvjcT4l
-	fQ8dmFV/B7CIobKxKkYuGiEDtjD/gavLWjWntlFbwsRRhOBjeICVJLQVTH1HoCYYGnRxCAgfDXUbs
-	VqdTZ0QVbBhXQOojpL4HYpeP7Po1PDvv9a6AIWA+xs81Wqlk2uL5POXLx8rOlh+UMPwF2UpQMSB8g
-	RszAx9uXI4XhT6tsL2Z3vs0VLDGJCbupAmqCOqDeVT5z9wS1i5oxw+ziGqMjIpC/f4kurPByS4tZ+
-	UlMssgyYWe4Sk4pHeeTxLZAMmjoQnVC2LrizxNlsZfSvKAwcB19Ds87qAwF4EAa9xIMJNYDpwkLxM
-	yuwYQ820W+hAAJFbKZWw==;
+	List-Owner; bh=kyfYpYeXIVGgLaGwOiOPU/tbDpC04kufdDovfmKnpKg=; b=ipVRgXhsDp7QX+
+	Dlhrj+DABdbewbOjA1ykg2VbPi8wgT49Pdr02rdSHROy3f2hfcblNaAJCFGw0Sf1oR6Pqw0V+GHs0
+	1tb7tjjF6ZlGtJ9Co4Jm4owiNW97AZ4VIVV+6fBZtufzCuAb+vUQQAiIOG1fxsGncfmMOLmlyny2y
+	aSPSDmA+RkCfB7jrlliqU1AV04AOxGHFUxYnxYAnqBCnNoluHdfqb+ijmOEz0pUqDtJkugBQGcJH4
+	X1LWHv7gVCtPB8fVAcmDKAtVnUHNXXN3h4i19dcfHMySUvyUaL4ggHPLRNJFzoRuPJmYUVnCNYJm9
+	py5ifMESEWUIFEbpeTJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peVVr-00BNbY-2g;
-	Tue, 21 Mar 2023 06:30:27 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1peVn3-00BQKi-2R;
+	Tue, 21 Mar 2023 06:48:13 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peVVn-00BNZI-30
-	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Mar 2023 06:30:26 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id h8so55576927ede.8
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 23:30:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679380220;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
-        b=mr0vXSG40cowcVbTWCszpsULDay3AkUTvIQNoxE/6Cjdl1xcl62ZeQlMkGQvvXsDrk
-         s4fxDaxslwg5/yMeL9Ig8LjT0F7SmaOuNm65fwSM2bZe5ypr3cel0Ym+RHZioMD/nru5
-         mMy6+NbhCnExJz0K0P+hxhwIn0NkAa4h4MZxQgBzN6hTWdEbIq57nKVhxXhzIB42Oay3
-         Gx67k8oY5N18LvZkJWFuaADFe/nYmF39zpxfXmBPtyLWan8sSBohpvoxtAOGBJVJH9CZ
-         2v+cmkV/91ZdgOLSTGAfnMkrBAWuXHXaYvxR640AZPv1BnGpo6zztRbBxugYNMnk9t0j
-         FvzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679380220;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
-        b=KIsfUmUwt7kd0Hhzy4uspQEWI0cL5iyI9jloyQuW09KxqmtOf0n5irG6WGK+qxTHLV
-         hG2In4KEgFNEDI18/J0bYDeX4SAVQ+PoX+tFKb7JXmRiKqwBKZX73eo5PUrU9aI/2hWv
-         iVgTUmaax9yeuUuX5DqjnhZ20WjNmbrf3PwKK0btekRfxNu0xDPpOQbuk+ralT6msVPP
-         ZN3EZ1VCxGMlGiIw+fTCFviOFeptBo4kQ9+f6HVLCYqtR7OJd2UUjLNaExN+O9wIKpQD
-         S1c0OECueUzcRZC1coy7HeHkTmMdj+FhIZOdYoFNy0B3uhF2bc5lY3CpBBnOPseFBhxl
-         LljA==
-X-Gm-Message-State: AO0yUKWaZ2IJJpOVO948yx14fR0coeeZSL/hwwS7vzSF3r9ZRGPvsfeP
-	IvbsCZjieyEGq0t8VPtK0cMwzQ==
-X-Google-Smtp-Source: AK7set/mnHhzkLfQ6NWBr4tgSxgW7U8c3Ph5LCp/K+YZdlpgbxJUDmtb0MS2Ksnkrt0SN/5/D3IQvQ==
-X-Received: by 2002:a17:906:391b:b0:92b:eca6:43fc with SMTP id f27-20020a170906391b00b0092beca643fcmr1611701eje.64.1679380220208;
-        Mon, 20 Mar 2023 23:30:20 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id hy14-20020a1709068a6e00b009351546fb54sm1717874ejc.28.2023.03.20.23.30.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 23:30:19 -0700 (PDT)
-Message-ID: <35359dee-5803-0cbb-b3d2-89aa6461f6a5@linaro.org>
-Date: Tue, 21 Mar 2023 07:30:17 +0100
+	id 1peVn1-00BQJD-1U;
+	Tue, 21 Mar 2023 06:48:12 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id E3445B80A25;
+	Tue, 21 Mar 2023 06:48:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ADE5C4339B;
+	Tue, 21 Mar 2023 06:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1679381288;
+	bh=zAhzNf2FVAMCkoGYjb8wdeS65X5jjVy8UxYtpveB0zE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sOw/Uepo1U1ivrWB97hISCKv3yY9dsEm8dxwFQrKZ3GldmWCG0BhJ/BoAfKnvWtlF
+	 aArOfVhruKPz6PWvBdiVHs5cpBWhACYEAgPhnzJ6SqID2x+VyV2GKgdK94hY4f5I4Q
+	 95m9GRi8KSNsLWVMssBMAso2VNKNNjrye6HHqdfI=
+Date: Tue, 21 Mar 2023 07:48:05 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Justin Chen <justinpopo6@gmail.com>,
+	Al Cooper <alcooperx@gmail.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: Drop unneeded quotes
+Message-ID: <ZBlTJbdAmh5H3PD0@kroah.com>
+References: <20230320233904.2920197-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: phy: Drop unneeded quotes
-To: Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Yu Chen <chenyu56@huawei.com>, Binghui Wang <wangbinghui@hisilicon.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Sergio Paracuellos <sergio.paracuellos@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Robert Marko <robert.marko@sartura.hr>, Luka Perkov
- <luka.perkov@sartura.hr>, Alim Akhtar <alim.akhtar@samsung.com>,
- Vincent Shih <vincent.sunplus@gmail.com>,
- Wolfgang Grandegger <wg@grandegger.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-usb@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-can@vger.kernel.org
-References: <20230320233955.2921179-1-robh@kernel.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320233955.2921179-1-robh@kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20230320233904.2920197-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_233023_981924_85372BE1 
-X-CRM114-Status: UNSURE (   8.46  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230320_234811_644200_2D0CF821 
+X-CRM114-Status: GOOD (  10.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,17 +84,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/03/2023 00:39, Rob Herring wrote:
+On Mon, Mar 20, 2023 at 06:39:02PM -0500, Rob Herring wrote:
 > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
 > checking for this can be enabled in yamllint.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-Best regards,
-Krzysztof
+Or do you want me to take this through the USB tree?  if so, just let me
+know.
 
+thanks,
+
+greg k-h
 
 _______________________________________________
 linux-amlogic mailing list
