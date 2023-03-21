@@ -4,117 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10125C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 08:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4225C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 09:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m8wpYaLaSF+u2sOVczCo3ZD07ndsuxOlROQJX0zifIw=; b=Br9PTgURCeW6zn
-	m2s1hCd96DizrWU/QO5F8fUf3gPLGwJfnKhNzBRYcIUb4xHIJRKs2bg7XlDcD73jDAKauqm6yIMp+
-	bdF6w2LQFcJBxHNufRL30p9UcscAmYWx3CAD9nK2BsAUuA2oEnjQMiI/d6z7SjseN/3ndMdcu9p8D
-	G4luHIaL6XHK4oG/2yJa4GfJ9qPKnEc6EOytJarc1AXZ1zRvbIZVXFcs9tuNZxMC/udL7PGZ0n78X
-	GoegMOYihCwchwi2+Al0zHiVKWYDJpnPRhKVh5IF4R46z9q86qS1oyG09TgnQmp9xK62rwPX+JeUA
-	tV63yt+xzHHzknLfLS/A==;
+	List-Owner; bh=GcoL8JrjBY7+Yk83qRXQN293J/DP5IPw/FC46bN6CqE=; b=iF4LBDbJAzcA1e
+	nOctk9r8lLCtHJTAgg7hCKtH/Pa6uMuknck5bAy8S+wg3HtB/r06RLTWObzjbKlXuXToPMgFZvL3K
+	lWZgG83dia5ZoIid1BtYCF0Q4w2/D6yJtrrce/6c0UShIbMwvt8x6KY0XJasgZdaWBmKnuSNFBGs8
+	vYwFUG3/vZgSUs2yXbOlwKUPQ1ANphK2qP7tbEuTddpfyufmicCNniBzPn0jIlT6ZjTcikxfjsWjp
+	EKQQcj3BbcZFspHy2Fob4b9tlNWkXiDDAIjhNs9n+S2/aQSCwfYpAMljiACrtxk/rG5n0H8HPcGb1
+	XPwCd99Zl5iLW5XnyI3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peXKI-00BfgU-1k;
-	Tue, 21 Mar 2023 08:26:38 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1peYfX-00BwKC-0d;
+	Tue, 21 Mar 2023 09:52:39 +0000
+Received: from mail-pg1-x52b.google.com ([2607:f8b0:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peXKG-00Bff8-0I
+	id 1peYfU-00BwJ3-0A
 	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Mar 2023 08:26:37 +0000
-Received: by mail-ed1-x535.google.com with SMTP id b20so23519829edd.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 21 Mar 2023 01:26:33 -0700 (PDT)
+	Tue, 21 Mar 2023 09:52:38 +0000
+Received: by mail-pg1-x52b.google.com with SMTP id z10so8194297pgr.8
+        for <linux-amlogic@lists.infradead.org>; Tue, 21 Mar 2023 02:52:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679387192;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0mTzuTr7Qws+cUrzbSI+C/8BpG+BCY4L1yCujqjQO80=;
-        b=F0XMce0naaobBfyCQtabTxdjFlSDXtRsY59OVOruFSmpR9cvkfZ293h2nrTG5pheLb
-         mjov15+plh04xZriyDiET4af/BfKT329TO0zZ4SaJ9WBsM6RqZczGF3VhRHnd+ZuO+oy
-         gd0q56A62UfbLkchrVvemzOWkVE79g4EMJ5NoAUG4563Dcu4jB3ugwP5iSmX3KGkI9//
-         NuEjyIQsXFxucDiGuD3faRv179z5sC1fFVnTfzU+HONr1V72R8uDwRyGkG4UuOYj9UZc
-         WfHNAFeRmrZ/wnzOsH1VoKwOlBJAkNTN9ajSkqA/1FiYiAd2rYYHPPS9CqsbeXGUIpV5
-         kFhQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679392352;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z3kX+a3qX70gDW/sRmJECpI+SbkCmpJ7AHS+lpfkXrc=;
+        b=MwZfTXpLvQD/0H2VRFADWwvrOgGNjNRSUsGK/xJzzEwaWqDK25VFlf9iOR0/JG4esq
+         lv3Xgd8Mtri+UWS4zzCljcizT7gkCEzbPK/Oi7BqUzSngbZ1yiQfl31fxM/xPo8jGx1J
+         valLYDqhnXHH4OrAlj+X8pZTlYJRSSKoxUfnXPz8ARrRpmoik6JRSDHKGZjrmUl0e43E
+         YjpP0PZpEjm7lNj1iqRaSjeujZvPD3kTPWqurYgYqMnEZDbGcpkXqGt7EhkAtPZF9TON
+         h/JKnlkka6BtEYgpXOjpeg2OsaheJZ4QDxL7NwTbTFh6Si0AfYevAAYSStVKwGIpxgHx
+         tnUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679387192;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0mTzuTr7Qws+cUrzbSI+C/8BpG+BCY4L1yCujqjQO80=;
-        b=oUEDUvzgFASdbmoOcGjDsUaw78MoPqrVEceP8xGI8Y5v0oQ+N3qzGzf3Mloj9r2M3s
-         GgvcUt0i7Eopr5XPCUDKOKPgUwLqEDCJ2cW1zLCfM9Bb8NsJ4D4vZF+TGApxyXYysMzD
-         ah2M3HbIy7SUJLcC9KLkRs0QhdEixuMQpW/9Ln95D0VwN0Jsq8FRBel1Do/0qzU7uFZy
-         o8crM0j3aGZq49XWyAXvxnAb0pdfqUsbXy9xTYSdzNcoIanbURa7rWnk5oxmC7EJMJW7
-         76d9eGhMlbY+2Y+5jdhxev6N4IdWBrlti5lb2+CHwn41Wi3iP9Jt4vSZ4ui9B+/GthVU
-         hOCQ==
-X-Gm-Message-State: AO0yUKVysTsPjvKGMWkn7PKm9jNK0EKCgw9GW/5KBUc1JXNrK5rlqe1o
-	eu1KDIh23giOPyKqUIUKUPDqjA==
-X-Google-Smtp-Source: AK7set+Yo3j0orRg0yJ8E1/dJwlIJ3rt2gBjk8VtlpRwTZcxqtlBtQSIoTar3pcg+04BUhx1cgL4AA==
-X-Received: by 2002:aa7:d315:0:b0:4ad:738b:6706 with SMTP id p21-20020aa7d315000000b004ad738b6706mr2495618edq.2.1679387192285;
-        Tue, 21 Mar 2023 01:26:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id z67-20020a509e49000000b00501dac14d7asm534626ede.3.2023.03.21.01.26.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 01:26:31 -0700 (PDT)
-Message-ID: <676cb6ac-84a3-025f-bb05-55dd27c365fe@linaro.org>
-Date: Tue, 21 Mar 2023 09:26:29 +0100
+        d=1e100.net; s=20210112; t=1679392352;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z3kX+a3qX70gDW/sRmJECpI+SbkCmpJ7AHS+lpfkXrc=;
+        b=W39Ew4Fq7MrtzTWqnGDYXE6SvXxwsNA2v4fnr3yKkklVdEy+hvfabWfo+eYB6sUgRO
+         KkBAEzpU/6Y8wAkMcQXmqAVvVsQtADUnKahl9kB68wQqD0zbzDjW1oT+4i1VWLhPy7J9
+         5800VGM0FLrJmlHVVlT9eJstoRcNMeQ+uJZnZsL/mB0ULlwIoVhPvzpTEiGX/M/Voe+u
+         ffZx77xED0/k8rzS4DgS9f8ltg24bGFZE6smh4koAR+AYOW/aoc7NcqV97lBIA3utQVJ
+         ZjJqfyQz7DLpvGsPRwH4RWFq8ALbaePn/ZKBsVxY03/ODb2wSPnPMDNPHWqyOHDcVwfp
+         0AHw==
+X-Gm-Message-State: AO0yUKVZSwWCeUzYQNQsZiclVErK0csJHOHdSK/ZmvopdnKIpucItyvl
+	a4shkVlWxudFfiWiliMRVsAUHw==
+X-Google-Smtp-Source: AK7set8l8FeYzQFjltUm3v4e/D0eeBLpFn2IDwYmXFiw33WAeQ3He5HzXT9vccYmxhfHduptUCglAg==
+X-Received: by 2002:aa7:98db:0:b0:624:9205:977d with SMTP id e27-20020aa798db000000b006249205977dmr1464992pfm.27.1679392352621;
+        Tue, 21 Mar 2023 02:52:32 -0700 (PDT)
+Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
+        by smtp.gmail.com with ESMTPSA id b5-20020aa78705000000b005a852450b14sm7801451pfo.183.2023.03.21.02.52.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 02:52:32 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-rtc@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v1 RFC] rtc: meson-vrtc: Use ktime_get_real_ts64() to
+ get the current time
+In-Reply-To: <20230320212142.2355062-1-martin.blumenstingl@googlemail.com>
+References: <20230320212142.2355062-1-martin.blumenstingl@googlemail.com>
+Date: Tue, 21 Mar 2023 02:52:31 -0700
+Message-ID: <7hbkkmwhwg.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 20/28] media: platform: jpeg: always reference OF data
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>, Joe Tessler <jrt@google.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thierry Reding <thierry.reding@gmail.com>, Jon Hunter
- <jonathanh@nvidia.com>, Manivannan Sadhasivam <mani@kernel.org>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
- <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
- Houlong Wei <houlong.wei@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Yong Deng <yong.deng@magewell.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Prabhakar
- <prabhakar.csengg@gmail.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>,
- Sean Young <sean@mess.org>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-rockchip@lists.infradead.org, oushixiong <oushixiong@kylinos.cn>
-References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
- <20230312131318.351173-20-krzysztof.kozlowski@linaro.org>
- <86431868-488b-4a72-944b-231b6d0382b0@app.fastmail.com>
- <8b7816b0-1daa-1c49-6f9d-40769d228a39@linaro.org>
- <b9342459-efec-4e17-aee6-332ee17f44d2@app.fastmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b9342459-efec-4e17-aee6-332ee17f44d2@app.fastmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230321_012636_139837_080BD5D6 
-X-CRM114-Status: GOOD (  13.79  )
+X-CRM114-CacheID: sfid-20230321_025236_106456_26C0A651 
+X-CRM114-Status: GOOD (  13.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,33 +89,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjEvMDMvMjAyMyAwOToyNCwgQXJuZCBCZXJnbWFubiB3cm90ZToKPiBPbiBUdWUsIE1hciAy
-MSwgMjAyMywgYXQgMDk6MjEsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4+IE9uIDIxLzAz
-LzIwMjMgMDk6MTEsIEFybmQgQmVyZ21hbm4gd3JvdGU6Cj4+PiBPbiBTdW4sIE1hciAxMiwgMjAy
-MywgYXQgMTQ6MTMsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4+Pj4gVGhlIGRyaXZlciBj
-YW4gbWF0Y2ggb25seSB2aWEgdGhlIERUIHRhYmxlIHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3
-YXlzCj4+Pj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5z
-ZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4+Pj4gbWF0Y2hpbmcgdmlhIFBSUDAwMDEsIGV2ZW4g
-dGhvdWdoIGl0IG1pZ2h0IG5vdCBiZSByZWxldmFudCBoZXJlKS4gIFRoaXMKPj4+PiBhbHNvIGZp
-eGVzICFDT05GSUdfT0YgZXJyb3I6Cj4+Pj4KPj4+PiAgIGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0v
-bWVkaWF0ZWsvanBlZy9tdGtfanBlZ19jb3JlLmM6MTg5MDozODogZXJyb3I6IAo+Pj4+IOKAmG10
-azgxOTVfanBlZ2RlY19kcnZkYXRh4oCZIGRlZmluZWQgYnV0IG5vdCB1c2VkIAo+Pj4+IFstV2Vy
-cm9yPXVudXNlZC1jb25zdC12YXJpYWJsZT1dCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBLcnp5
-c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4+Pgo+Pj4g
-SSBzZWUgbm93IHRoYXQgd2UgYm90aCBzdWJtaXR0ZWQgdGhlIHNhbWUgcGF0Y2gsIGJ1dCBub3cg
-SGFucwo+Pgo+PiBXZSBhcyB5b3UgYW5kIG1lPyBJIGNhbm5vdCBmaW5kIHlvdXIgcGF0Y2ggb24g
-bG9yZToKPj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLz9xPWYlM0Fhcm5kJTQwYXJuZGIu
-ZGUKPiAKPiBUaGlzIGlzIHRoZSBvbmUgdGhhdCBJIHNlbnQgYmFjayBpbiBKYW51YXJ5Ogo+IAo+
-IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDIzMDExNzE3MjY0NC4zMDQ0MjY1LTEtYXJu
-ZEBrZXJuZWwub3JnCgpVaCwgdGhhdCdzIGZyb20gSmFudWFyeSEgSXQncyBzdGlsbCB3YWl0aW5n
-IGluIFBhdGNod29yazoKaHR0cHM6Ly9wYXRjaHdvcmsubGludXh0di5vcmcvcHJvamVjdC9saW51
-eC1tZWRpYS9wYXRjaC8yMDIzMDExNzE3MjY0NC4zMDQ0MjY1LTEtYXJuZEBrZXJuZWwub3JnLwoK
-CkJlc3QgcmVnYXJkcywKS3J6eXN6dG9mCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+
+> The VRTC alarm register can be programmed with an amount of seconds
+> after which the SoC will be woken up by the VRTC timer again. We are
+> already converting the alarm time from meson_vrtc_set_alarm() to
+> "seconds since 1970". This means we also need to use "seconds since
+> 1970" for the current time.
+>
+> This fixes a problem where setting the alarm to one minute in the future
+> results in the firmware (which handles wakeup) to output (on the serial
+> console) that the system will be woken up in billions of seconds.
+> ktime_get_raw_ts64() returns the time since boot, not since 1970. Switch
+> to ktime_get_real_ts64() to fix the calculation of the alarm time and to
+> make the SoC wake up at the specified date/time. Also the firmware
+> (which manages suspend) now prints either 59 or 60 seconds until wakeup
+> (depending on how long it takes for the system to enter suspend).
+>
+> Fixes: 6ef35398e827 ("rtc: Add Amlogic Virtual Wake RTC")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
