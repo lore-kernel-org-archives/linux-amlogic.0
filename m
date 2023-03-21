@@ -4,93 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B525FC74A5B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 05:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA6EC6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 06:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=muokG6OS53NZwBDPAzp720zAc9tKoZsdnofyARhz4ig=; b=Lj0J0znt7+xwtl
-	RERWfL0yBqyTXf4pQYy4OGfOEVluV9qDZkUtuSruMYGg3zKsMbt7Rng6ofm4OmzUjw/r/4ohx/nGs
-	axy2wbv9q5s+wVBBabEY+ISNKejhdlJ3HoML8wDTi1xP/vtg4OzLkWxqY30oaZjKZ0PJND93Fj2qM
-	OJHVlqcth8tdwDcv4Gif6Y2NfkzMvHfcudn+0OhqwDhWj+UhWWk4nrDLX+u2MXSlZbkiyOXTy0HYM
-	kVFvIuiWcEgrL/LvNGrNc1d6i2PYcJvV50mlPoyAbs96ktDa2gAfP7SsG5krxT278Wez1Bx9NS7zM
-	PZYwEXhWUXwqSBUnJgjA==;
+	List-Owner; bh=uYURbIgAJnWy3yW/JIE7uWOioNeFG9OmqtvKWMFGZpE=; b=TL0l9QNdvjcT4l
+	fQ8dmFV/B7CIobKxKkYuGiEDtjD/gavLWjWntlFbwsRRhOBjeICVJLQVTH1HoCYYGnRxCAgfDXUbs
+	VqdTZ0QVbBhXQOojpL4HYpeP7Po1PDvv9a6AIWA+xs81Wqlk2uL5POXLx8rOlh+UMPwF2UpQMSB8g
+	RszAx9uXI4XhT6tsL2Z3vs0VLDGJCbupAmqCOqDeVT5z9wS1i5oxw+ziGqMjIpC/f4kurPByS4tZ+
+	UlMssgyYWe4Sk4pHeeTxLZAMmjoQnVC2LrizxNlsZfSvKAwcB19Ds87qAwF4EAa9xIMJNYDpwkLxM
+	yuwYQ820W+hAAJFbKZWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peUst-00BIJy-2B;
-	Tue, 21 Mar 2023 05:50:11 +0000
-Received: from mail-ot1-x332.google.com ([2607:f8b0:4864:20::332])
+	id 1peVVr-00BNbY-2g;
+	Tue, 21 Mar 2023 06:30:27 +0000
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peUsp-00BIIO-24;
-	Tue, 21 Mar 2023 05:50:08 +0000
-Received: by mail-ot1-x332.google.com with SMTP id 14-20020a9d010e000000b0069f1287f557so3597439otu.0;
-        Mon, 20 Mar 2023 22:50:05 -0700 (PDT)
+	id 1peVVn-00BNZI-30
+	for linux-amlogic@lists.infradead.org;
+	Tue, 21 Mar 2023 06:30:26 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id h8so55576927ede.8
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Mar 2023 23:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679377804;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PQRYTyJUcXjGIlb32K69CN7N/CfuacDHmOLvuVVkIeU=;
-        b=dvXZYzN833ztFsoJznnGxdR0/0KDzNzHYXwzXQT9/sNO5xkoJ+lNZq/os3qZoAT1wT
-         4ltJ90CCuSJ8X42Ogt8uA+Q3s2aGHigv7h+tgQul/G5CQe7uuJFxX1L6ZKKmpWzd7MRY
-         SVgWyoSI7Z077Drc4TD3uQOQGSMSM9xVxURJ7FsCVG0kK4KjVvfpKgb86P01KVQOTA95
-         4qwUwGifTLRgcCe+8BC77XrGhglPT8wIuoFHPpYmB7khakZnKYzlFm8PF7vrexs+9OtW
-         y7RErnsp1t30CYFI6Y7rbth9RiDeTgYGQHYsEoDtycNWHGdrLF/Nkwc+K/9YmFAq3SkK
-         lj/Q==
+        d=linaro.org; s=google; t=1679380220;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
+        b=mr0vXSG40cowcVbTWCszpsULDay3AkUTvIQNoxE/6Cjdl1xcl62ZeQlMkGQvvXsDrk
+         s4fxDaxslwg5/yMeL9Ig8LjT0F7SmaOuNm65fwSM2bZe5ypr3cel0Ym+RHZioMD/nru5
+         mMy6+NbhCnExJz0K0P+hxhwIn0NkAa4h4MZxQgBzN6hTWdEbIq57nKVhxXhzIB42Oay3
+         Gx67k8oY5N18LvZkJWFuaADFe/nYmF39zpxfXmBPtyLWan8sSBohpvoxtAOGBJVJH9CZ
+         2v+cmkV/91ZdgOLSTGAfnMkrBAWuXHXaYvxR640AZPv1BnGpo6zztRbBxugYNMnk9t0j
+         FvzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679377804;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PQRYTyJUcXjGIlb32K69CN7N/CfuacDHmOLvuVVkIeU=;
-        b=Ihheq+KgMrEdOMYg3Pa55mkI6s7i136Z81XbWoiZAiHEqJ2dr34xFPx9QtqD2owKT5
-         ikJ7mE938k46eT724KwkMHnv0c4CjC/EZuq1v6gvq0tqyNZM8rCKoOUUQwWsLNn7PLrH
-         g9ashzs/iEgiqXJgo7vRZOud/lok57yoCZ6+85pyalKQOjXBtJy0y59qL8jTP3eolHxA
-         IY4ijUzHZPSiDF1ZTCBUmMKJtJPeCHKWZ0bbg8XnmCi86LrGuxTarzW/MO+gLLpILI0M
-         KGo0hjijvtunsOPqmu8cCw0WFoKyjQi+tiLG89ECLjexBbcTsftts1O98le7qie0AXcV
-         n78g==
-X-Gm-Message-State: AO0yUKWLIjkGsmV6v9bRtJZ7BpPfrhyoFTjckvIdtsazZF5DCi1ZrLK+
-	ZyUHxk7yJNm9oH6GM6ak4Q9j77UQS+SmtEynhJ8=
-X-Google-Smtp-Source: AK7set9hGdm8jb3Zms52xIkHW02ezlDplA4s1W/5C+8w1fxRVUiCGMOX1ghjWbWe1rulG24xEDF5Rs78eQG2Vsd6oW8=
-X-Received: by 2002:a05:6830:13d3:b0:69e:24a7:e042 with SMTP id
- e19-20020a05683013d300b0069e24a7e042mr409968otq.3.1679377801763; Mon, 20 Mar
- 2023 22:50:01 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679380220;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
+        b=KIsfUmUwt7kd0Hhzy4uspQEWI0cL5iyI9jloyQuW09KxqmtOf0n5irG6WGK+qxTHLV
+         hG2In4KEgFNEDI18/J0bYDeX4SAVQ+PoX+tFKb7JXmRiKqwBKZX73eo5PUrU9aI/2hWv
+         iVgTUmaax9yeuUuX5DqjnhZ20WjNmbrf3PwKK0btekRfxNu0xDPpOQbuk+ralT6msVPP
+         ZN3EZ1VCxGMlGiIw+fTCFviOFeptBo4kQ9+f6HVLCYqtR7OJd2UUjLNaExN+O9wIKpQD
+         S1c0OECueUzcRZC1coy7HeHkTmMdj+FhIZOdYoFNy0B3uhF2bc5lY3CpBBnOPseFBhxl
+         LljA==
+X-Gm-Message-State: AO0yUKWaZ2IJJpOVO948yx14fR0coeeZSL/hwwS7vzSF3r9ZRGPvsfeP
+	IvbsCZjieyEGq0t8VPtK0cMwzQ==
+X-Google-Smtp-Source: AK7set/mnHhzkLfQ6NWBr4tgSxgW7U8c3Ph5LCp/K+YZdlpgbxJUDmtb0MS2Ksnkrt0SN/5/D3IQvQ==
+X-Received: by 2002:a17:906:391b:b0:92b:eca6:43fc with SMTP id f27-20020a170906391b00b0092beca643fcmr1611701eje.64.1679380220208;
+        Mon, 20 Mar 2023 23:30:20 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id hy14-20020a1709068a6e00b009351546fb54sm1717874ejc.28.2023.03.20.23.30.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Mar 2023 23:30:19 -0700 (PDT)
+Message-ID: <35359dee-5803-0cbb-b3d2-89aa6461f6a5@linaro.org>
+Date: Tue, 21 Mar 2023 07:30:17 +0100
 MIME-Version: 1.0
-References: <20230320233955.2921179-1-robh@kernel.org>
-In-Reply-To: <20230320233955.2921179-1-robh@kernel.org>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Tue, 21 Mar 2023 06:49:49 +0100
-Message-ID: <CAMhs-H829e-QSwMXAVN6b4pYTB+_d-PLJxbEqdhd9oOrYnY-aQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
 Subject: Re: [PATCH] dt-bindings: phy: Drop unneeded quotes
-To: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Yu Chen <chenyu56@huawei.com>, 
-	Binghui Wang <wangbinghui@hisilicon.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Marko <robert.marko@sartura.hr>, 
-	Luka Perkov <luka.perkov@sartura.hr>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Vincent Shih <vincent.sunplus@gmail.com>, Wolfgang Grandegger <wg@grandegger.com>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-can@vger.kernel.org
+To: Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Yu Chen <chenyu56@huawei.com>, Binghui Wang <wangbinghui@hisilicon.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Robert Marko <robert.marko@sartura.hr>, Luka Perkov
+ <luka.perkov@sartura.hr>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Vincent Shih <vincent.sunplus@gmail.com>,
+ Wolfgang Grandegger <wg@grandegger.com>,
+ Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-usb@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-can@vger.kernel.org
+References: <20230320233955.2921179-1-robh@kernel.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230320233955.2921179-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_225007_693735_77432D3D 
-X-CRM114-Status: UNSURE (   8.30  )
+X-CRM114-CacheID: sfid-20230320_233023_981924_85372BE1 
+X-CRM114-Status: UNSURE (   8.46  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,18 +117,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBNYXIgMjEsIDIwMjMgYXQgMTI6NDDigK9BTSBSb2IgSGVycmluZyA8cm9iaEBrZXJu
-ZWwub3JnPiB3cm90ZToKPgo+IENsZWFudXAgYmluZGluZ3MgZHJvcHBpbmcgdW5uZWVkZWQgcXVv
-dGVzLiBPbmNlIGFsbCB0aGVzZSBhcmUgZml4ZWQsCj4gY2hlY2tpbmcgZm9yIHRoaXMgY2FuIGJl
-IGVuYWJsZWQgaW4geWFtbGxpbnQuCj4KPiBTaWduZWQtb2ZmLWJ5OiBSb2IgSGVycmluZyA8cm9i
-aEBrZXJuZWwub3JnPgoKPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLG10
-NzYyMS1wY2ktcGh5LnlhbWwgICAgfCA0ICsrLS0KCkFja2VkLWJ5OiBTZXJnaW8gUGFyYWN1ZWxs
-b3MgPHNlcmdpby5wYXJhY3VlbGxvc0BnbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 21/03/2023 00:39, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
