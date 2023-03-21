@@ -4,58 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61196C74A5B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 18:01:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B5AFC6FD20
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Mar 2023 19:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Ktug3Fvoy7kFNm+LmDhLwjXPBOyrVuwb/S4EHV2Z6pM=; b=dS+nBQL3knksAo
-	WKNzcGaKuYqqwEmEOoSJ/0iEv9Zw+TJIz76ptIYZyWuG+d0aXeFe4C33P6Pqc1vduvXyXXJFU/fQc
-	/WnkZ4VHCdszcbjuUlmR362JWYYpAN7agrhF2rlzPoSkOibmsnPhSQbk6S+iZA4LFsj+aAuH5SimW
-	s6y9Kc71zNgTWRci6/vF72uXUkvu0Aqf6o2Any73mNhSf6X4BQoSDUTGz3ML1Gji4KtfjFCGLbt7f
-	PX4BF1swMtIIqPJ20Lp7jEvEA0FladZ2hFY6oahoCRyYGrTpkZEQnmRdNOeHFuffnOm0MBE/nyE66
-	UfAfeRnJaYnPckuPV8gw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3woxTpJWHCZMKRfjSM7Sw7mD3QT5dVFFgnB2PUNViZ8=; b=SsGWLVqixudrhp
+	+a1i5Tucxa6PsiiqX5kveBHfHIoxZZXicAHYpHpUH+oEZmyavBg8nHD8blMPEgZ1KeMF9kuVb3Uzl
+	e/AsOdutchOnd7s6vB9Juyvr48x2RTOSQ9e6SMuFAms/5YS7DbhEn5w+iM7NRTmdqERoT/5XJR364
+	shucdAlM1YobPT5mgbGs2xfvhm/h8rmeAHt/7sveD5Hwi4sUd4pvjljEZssgHWAtPHMbJtRbIU3MB
+	VFYFwa4owO4cy7n5auGhOyTy8/o1U1I0Mn0kbQbu0zBCJNYRGk4Hbg0NT51Gjlb/2z0QdtsoAGyhM
+	7ITcchNYdrr67QWCkf7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pegIK-00DIpt-2J;
-	Tue, 21 Mar 2023 18:01:12 +0000
-Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
+	id 1pehgx-00DTtt-1B;
+	Tue, 21 Mar 2023 19:30:43 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pegIG-00DInu-03
-	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Mar 2023 18:01:11 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 3F7B22003E0;
-	Tue, 21 Mar 2023 19:01:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1679421665;
-	bh=7jcxLZYZVIxLt/99tnslGBZy06mzJRUXDK5eV7UVG4w=;
-	h=Date:To:Cc:From:Subject:From;
-	b=uTSUPt+5ngY/UMwWdzRhQE3aZwt94Z3VI6MZ8bcJkSmM25FQRiERdzhVoVbYceTll
-	 T8wk5ONZvPzU35S4CZDuOJa+ReSHEGpla/O6ZhZDOA0R0hrx/9GyUGKAI1DazHVVX1
-	 GEQaNLzS0mVl4f0Xg0xk7nspVladvYcE1Uj9QxLCjkEgd885S8SgJUKewirGZO0piu
-	 hUfNwiovel1nUI4o4yVOguxGchC163ToJNmoCHNUkFB7gRLAAgNMu96ZQ0R/UNAixy
-	 CG0yF7DIkXKlXZ6cRAIcX4RKdPr5H4RgAKAvUYfnInmbF1Rl1Aqs8HWBhxyKer2zFN
-	 yvLcVK9JBjBGA==
-Message-ID: <d2444591-c91b-a94d-71e2-9dedc3b6c514@free.fr>
-Date: Tue, 21 Mar 2023 19:01:01 +0100
+	id 1pehgp-00DTmv-2G;
+	Tue, 21 Mar 2023 19:30:40 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 9F2925FD3E;
+	Tue, 21 Mar 2023 22:30:26 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1679427026;
+	bh=QACcL2z5H0WiVPZBqWtG1qVoEZA/+FwC6rxiZKbXGhQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=CTLOxJuC8Yau5Z11slIJzxqXQWaTpmHOkOt4TioK5IiwabCP3L5tAjZDPRaquJ8ZH
+	 9Wtx7kes49GgdlL6lmB714erbnOy8b974TXLVylqSRYxpgAnpaxtybqwO7gLfejzNs
+	 8mWqYdPpW/ymoCUaQsea8GT2xub5jNL8bDPgqLmjXGp8cEkM+nt2t/YljSPRdIUqG+
+	 UcAhLzbR04e/hmmqXpaVU4vRvzaPhaquSTKaUKqwsGWgcNo3e+JSI1hHjNP5uD7k7S
+	 iFjDy3zLsAi7oawy5b6MqkM0b7thXhWBn3ixpuIx9Q0tzhYhNTho0HeVTT/HcFGVId
+	 Z8JCEaaqYn36g==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Tue, 21 Mar 2023 22:30:26 +0300 (MSK)
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>
+Subject: [PATCH v11 2/5] clk: meson: introduce new pll power-on sequence for A1 SoC family
+Date: Tue, 21 Mar 2023 22:30:11 +0300
+Message-ID: <20230321193014.26349-3-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Pierre-Hugues Husson <phh@phh.me>, MMC <linux-mmc@vger.kernel.org>,
- AML <linux-amlogic@lists.infradead.org>
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-Subject: [PATCH] mmc: core: log empty non-removable slots
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/21 14:08:00 #20985970
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230321_110110_013657_3B83897D 
-X-CRM114-Status: UNSURE (   8.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230321_123036_395857_6C5F8385 
+X-CRM114-Status: GOOD (  14.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,30 +88,81 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-An empty non-removable slot might be the symptom of probing too early.
+Modern meson PLL IPs are a little bit different from early known PLLs.
+The main difference is located in the init/enable/disable sequences; the
+rate logic is the same.
 
-Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
+In A1 PLL, the PLL enable sequence is different, so add new optional pll
+reg bits and use the new power-on sequence to enable the PLL:
+    1. enable the pll, delay for 10us
+    2. enable the pll self-adaption current module, delay for 40us
+    3. enable the lock detect module
+
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 ---
- drivers/mmc/core/core.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/clk/meson/clk-pll.c | 23 +++++++++++++++++++++++
+ drivers/clk/meson/clk-pll.h |  2 ++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
-index 426c7f66b3492..b8137baecee7c 100644
---- a/drivers/mmc/core/core.c
-+++ b/drivers/mmc/core/core.c
-@@ -2257,6 +2257,10 @@ void mmc_rescan(struct work_struct *work)
- 			break;
- 	}
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 314ca945a4d0..56ec2210f1ad 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -358,6 +358,25 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 	if (MESON_PARM_APPLICABLE(&pll->rst))
+ 		meson_parm_write(clk->map, &pll->rst, 0);
  
-+	if (!mmc_card_is_removable(host) && !host->card)
-+		pr_info("%s: no card detected, check post-power-on-delay-ms",
-+			mmc_hostname(host));
++	/*
++	 * Compared with the previous SoCs, self-adaption current module
++	 * is newly added for A1, keep the new power-on sequence to enable the
++	 * PLL. The sequence is:
++	 * 1. enable the pll, delay for 10us
++	 * 2. enable the pll self-adaption current module, delay for 40us
++	 * 3. enable the lock detect module
++	 */
++	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
++		usleep_range(10, 20);
++		meson_parm_write(clk->map, &pll->current_en, 1);
++		usleep_range(40, 50);
++	};
 +
- 	/*
- 	 * Ignore the command timeout errors observed during
- 	 * the card init as those are excepted.
++	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
++		meson_parm_write(clk->map, &pll->l_detect, 1);
++		meson_parm_write(clk->map, &pll->l_detect, 0);
++	}
++
+ 	if (meson_clk_pll_wait_lock(hw))
+ 		return -EIO;
+ 
+@@ -375,6 +394,10 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
+ 
+ 	/* Disable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 0);
++
++	/* Disable PLL internal self-adaption current module */
++	if (MESON_PARM_APPLICABLE(&pll->current_en))
++		meson_parm_write(clk->map, &pll->current_en, 0);
+ }
+ 
+ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 367efd0f6410..a2228c0fdce5 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -36,6 +36,8 @@ struct meson_clk_pll_data {
+ 	struct parm frac;
+ 	struct parm l;
+ 	struct parm rst;
++	struct parm current_en;
++	struct parm l_detect;
+ 	const struct reg_sequence *init_regs;
+ 	unsigned int init_count;
+ 	const struct pll_params_table *table;
 -- 
-2.25.1
+2.36.0
+
 
 _______________________________________________
 linux-amlogic mailing list
