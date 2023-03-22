@@ -4,80 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19A4CC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 14:26:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8350C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 15:06:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SXa0nbw3cHUBVyM2vIZ+wLJ6pWz5HZoVrhbcrIWFWnc=; b=NfZrRx7mNkc3Af
-	fOw4bssO+boHrhTBCGlM8s/GsKV4kqShOfRVjBHRkW00fzjkXNyR7mBBIgiC37EzfSLRNA5CQmsBA
-	sOFOhdxCHXeyY7drNn1SAUKCYbP4NsWh/mXYUIXgg5Lkwz1mRmwe1kASoTKYLQsAkVZcdavmdg+ZI
-	fs39Q1Uix9w5iS8/cj5vQZhfxTqpFmb5dVA9SjH/YdphiiVe3MdcjkKk/6igYwRWTTpNaWKHkmY6f
-	/7ZeVLLaAAug5+LhnhwA0O3VqIpfgTPAOK7GnADvFeTHPFEu9ZShJFopMgDiLQYzhX9qI4yXHHxEU
-	a3vWX7aE+X9crbGkCCIA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6hrLUwbbdkIlbd7F5T2t9NzMMyh++vEn7LOgSkF6zJY=; b=VJJL21AciYUOXp
+	nle2JSi4ca6Qt/I2f9o1eKFiX3uuoV/jcmjKj9Yj9bLzf6aFXhYuQNqAIoURIWDebUvQmgNZoqFHB
+	872j2rnNiTf26LNAQIcAbLD1C0jjbLXPEGDrtdg5YDIOzDIyT2FtJuP8pn+rAI5dS9gcSpBux4XKd
+	0c8/FrDpGXdR5mSHYKVpmZtkt+TMyrVMnPvVVdDHDpLoTPsH3TlWXEjzlNOLTRanVOqiZ/KCKwrET
+	g6dkcRHC+j7/8C9y/duaL0w/ZBJHaDdOdyELdqgZ4V1sK0mXuAdrueIq/snoq1s6N09kdhvu/ie+2
+	utWe1/QoUtR7ff7iFHvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pezQB-00GHor-27;
-	Wed, 22 Mar 2023 14:26:35 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1pf02f-00GQna-0c;
+	Wed, 22 Mar 2023 15:06:21 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pezQ7-00GHmn-1D
-	for linux-amlogic@lists.infradead.org;
-	Wed, 22 Mar 2023 14:26:34 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id y14so17283667wrq.4
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Mar 2023 07:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679495189;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lMsP7k9u0BifOXxPgTrdy3eTcp51uWjvZjThoXo5Bbo=;
-        b=WOZpWwvwsncE6OiyRAL3GqaNkRtRMtQsxim4So61KFWo98VcxLqwVeXla3p/2RaBD2
-         yNCgkIuetkdRRSOgRhYTTNKOwkKFS7zndjEwdiVg20xoCNrOhScArpCKdBIP0hsGawmn
-         Lu0LFwYU+6L5ym0KMDu3ZjN/AUGNdNJpqJ+PyZoFVzh9CuwfswKZtfuaVJok8NJsD9cl
-         BfpJr27VEB9zGWXn8z6fAwsHp0UjQNO0RtoLRhaJuBhiHO1a3azej/cK1q/crCfgdZ2m
-         yVPx++Wnb+FlmlV0SJncg9eo0tCAEukLccmKOgkWscjZbEnD3hzKe0ToGoTmuXNRV02C
-         7l/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679495189;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lMsP7k9u0BifOXxPgTrdy3eTcp51uWjvZjThoXo5Bbo=;
-        b=OxIM23YHXcXdXZpz8QDvfJNUv/RBmp1keLY+Y88kzmcVUSA0vojjpC1h/klw54mq8U
-         rLwS/iO33XV8iCNr8pQKYPlEpyJ0OzXUZVJ5Knn9Fp4hBx9nkp0yQPUM8adznW0khoh6
-         l2I1KblA4TKlnu1Vapa2YbSOuGMsPJ0yZSSi2FhaT0HEbj+RIxluif/UmXwI/7t6l6HM
-         tCja3ps4uqgv8s+NrWB/kbZQDLTCkJJruF3JeM1kU6E2MpdAs/OwSlhpZiu1L7L65EeW
-         j67sHNcJtMt/FdFhD1Yb47wi77qT0VNh/kOYWLKPhuZWE/+3H05cuSURII860ZPXW+0/
-         SFvA==
-X-Gm-Message-State: AO0yUKXPHbJCXVf41h6HVMoP3tGLGc/dOJ91fThAvAOF3ooKj6i1+nlj
-	nvWf9L4ZX5Wv95PUvVDkEzKhXOJoR5wqqH3I2mOf8Q==
-X-Google-Smtp-Source: AK7set+ow+FliNXfMf12/JjReLwH7rMG2V2TwwsvPdjoU2PKtClvEyB4pcrkPqRdOTGFFPblsCecvw==
-X-Received: by 2002:a5d:624a:0:b0:2d2:62b3:87e9 with SMTP id m10-20020a5d624a000000b002d262b387e9mr4963900wrv.45.1679495189451;
-        Wed, 22 Mar 2023 07:26:29 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j10-20020a5d464a000000b002cea8f07813sm14053202wrs.81.2023.03.22.07.26.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 07:26:29 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: u-boot@lists.denx.de, u-boot-amlogic@groups.io, 
- linux-amlogic@lists.infradead.org, 
- Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230320114609.930145-1-christianshewitt@gmail.com>
-References: <20230320114609.930145-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH 00/33] doc: board: amlogic: spring clean-up of Amlogic
- docs
-Message-Id: <167949518881.2761490.386711054164333230.b4-ty@linaro.org>
-Date: Wed, 22 Mar 2023 15:26:28 +0100
+	id 1pf02a-00GQhz-06;
+	Wed, 22 Mar 2023 15:06:18 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id E565F5FD41;
+	Wed, 22 Mar 2023 18:06:02 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1679497562;
+	bh=eTQd2Y4ovzRd2JsVVJJ6xL7i63yb2NKMkofOC1iY5UQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=kjuu67TLLhokyUl0zqlRRkAEQm8sl9wwsLAdlKeQfw2SUtfkK5YalzTxGlkP1Vrqd
+	 tbKANfCR4jqjPhDMBSU5WQr2hmB+GpS1eNEbxPiBMERXY8rIyuDeh3K7EGjY9yhDDj
+	 X9+YgeH3XRmdMEGIn+KN0I3X3rk5fN+8iq90A8w9/KFoosiXcBATOqv3mjBXCQr3ZO
+	 /fj10e1wszNPQunskDzM8efw61e5A+PBuYqHKay78c03MnF4+BMN7o0ePYE4oyujmT
+	 Z++NYCFZb7qmZeolobG42evY1MEMS5aMlayUoI4aaPnK8DLBESHmoc7NO8yqFBoxn6
+	 vmlOKhOYz0e6A==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Wed, 22 Mar 2023 18:06:02 +0300 (MSK)
+From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
+	<mmkurbanov@sberdevices.ru>
+Subject: [PATCH v1 0/2] add support for Meson A1 SPI Flash Controller
+Date: Wed, 22 Mar 2023 18:04:56 +0300
+Message-ID: <20230322150458.783901-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-X-Mailer: b4 0.12.1
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/22 10:34:00 #20990985
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_072631_436951_B6FAE483 
-X-CRM114-Status: UNSURE (   6.34  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230322_080616_264893_8934A76A 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,91 +86,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+This patchset introduces DT bindings and driver for the Amlogic Meson A1
+SPI flash controller (A113L family).
 
-On Mon, 20 Mar 2023 11:45:36 +0000, Christian Hewitt wrote:
-> Amlogic documentation spans U-Boot support from 2015-current resulting
-> in older content being harder to follow. And due to many international
-> contributors the docs also contain grammar quirks.
-> 
-> This series reworks all board documents to be more consistent. There is
-> deliberate emphasis on using the amlogic-boot-fip repo for signing tasks
-> as this is easier for most users to follow. The original/longer signing
-> process (described as Manual Signing) has been tidied up.
-> 
-> [...]
+The existing spi-meson-spifc driver is incompatible with the A1 SPIFC
+at all.
 
-Thanks, Applied to https://source.denx.de/u-boot/custodians/u-boot-amlogic (u-boot-amlogic-test)
+The implementation has been tested on the Amlogic A113L SoC based device
+connected with ESMT F50L1G41LB spinand flash.
 
-[01/33] doc: boards: amlogic: update documentation for index page
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/862b7c1fcc5e94c7d91cc9caf22c7b6205b7fffd
-[02/33] doc: boards: amlogic: update documentation for boot-flow
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/4ce746b8cf07ed4c532a36fda587104d667bf54a
-[03/33] doc: boards: amlogic: update documentation for pre-generated-fip's
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/3d1744b392ae57adfa1c068acb9f94a44cc82070
-[04/33] doc: boards: amlogic: update documentation for Beelink GT-King
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/d0d4a85d14b18dda87ef0111a03644a9886aebd4
-[05/33] doc: boards: amlogic: update documentation for Beelink GT-King Pro
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/c03d19d5dc0e20dde9c4b34feb0f47c59a82a640
-[06/33] doc: boards: amlogic: update documentation for JetHub J100
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/cf43c9f7d3c7b4b83a94a9ff961b0807f4f92c47
-[07/33] doc: boards: amlogic: update documentation for JetHub J80
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/47ab069e9a9dd047dcad3c984d8e6cbcb6e26a04
-[08/33] doc: boards: amlogic: update documentation for Khadas VIM
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/329794577adf7e53ba1e0c3a86686e21655965c1
-[09/33] doc: boards: amlogic: update documentation for Khadas VIM2
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/e3de21c60685d15fd5746b23a7d72545889580cd
-[10/33] doc: boards: amlogic: update documentation for Khadas VIM3
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/de54d4cc16b9d4bfdda196dac5bdbd0d8128cd02
-[11/33] doc: boards: amlogic: update documentation for Khadas VIM3L
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/3240318b212d46e1e5ea4af92eec6b26b67f5ad4
-[12/33] doc: boards: amlogic: update documentation for LaFrite
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/cb197ca63debc82d23a8ca419623278839b6ff48
-[13/33] doc: boards: amlogic: update documentation for LePotato
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/ba07d965dd5ee74e66c32bc5a3fce5c69ed4b2d2
-[14/33] doc: boards: amlogic: update documentation for NanoPi-K2
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/7c7ecc84f1c1edb79e7e2b1e0070b288cf1e22fc
-[15/33] doc: boards: amlogic: update documentation for ODROID-C2
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/665633ec055d15989e187861ea419518bf517017
-[16/33] doc: boards: amlogic: update documentation for ODROID-C4
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/4760b2e8e2e46ad61ab7ed91733786d9a9e4696c
-[17/33] doc: boards: amlogic: update documentation for ODROID GO ULTRA
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/144ffe96aa1638028593afa2b669bcf08ac0ad38
-[18/33] doc: boards: amlogic: update documentation for ODROID-N2/N2+
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/11a1fc1d305e773f27135adad56cbcc5e1c2bd6a
-[19/33] doc: boards: amlogic: update documentation for ODROID-N2L
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/6ba5d42c42752829b22f80748972716d5bb27c59
-[20/33] doc: boards: amlogic: update documentation for P200
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/f0b8c1f6a54b8ef45972a18e969250d859c9a866
-[21/33] doc: boards: amlogic: update documentation for P201
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/db6b333e37c2a98e2bcc09a5545635aaeb2c1301
-[22/33] doc: boards: amlogic: update documentation for Q200
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/3ce3109c3783c27aa18b0a17eb6d8ead23f92d85
-[23/33] doc: boards: amlogic: update documentation for Radxa Zero
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/1b23862b4177151b477d740e8760d45978549926
-[24/33] doc: boards: amlogic: update documentation for S400
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/aabf0dcb31dce2443975ab21871fa32077a89e1f
-[25/33] doc: boards: amlogic: update documentation for SEI510
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/d784394073bcb1884628621899d41a6b82c626e8
-[26/33] doc: boards: amlogic: update documentation for SEI610
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/02b7453f2b573ca9fba83cc671a7732e090df020
-[27/33] doc: boards: amlogic: update documentation for U200
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/d7a3034b40894c7d065de1b4070da7cef8574150
-[28/33] doc: boards: amlogic: update documentation for W400
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/d00df62bdafd7ac570a08f7f812f547155a394f8
-[29/33] doc: boards: amlogic: update documentation for WeTek Core2
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/433ed65e21eb3778b460d550a0d5af3cb4e5d7ca
-[30/33] doc: boards: amlogic: add documentation for BananaPi CM4IO
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/4f94b51561ea2e6b9e5b12ca7b2dbedf96ca81ab
-[31/33] doc: boards: amlogic: add documentation for BananaPi M5
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/e2b60c150c3b6a418e286945cc337d6efffa1f11
-[32/33] doc: boards: amlogic: add documentation for GS-King-X
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/d0072d1bd98477ae3ab701633db9630c242846d8
-[33/33] doc: boards: amlogic: add documentation for ODROID-HC4
-        https://source.denx.de/u-boot/custodians/u-boot-amlogic/-/commit/f288eeb66306187d97cc45a2781e0804cc840093
+This patchset has dependencies on the A1 clock series which is still
+under review [1].
 
--- 
-Neil
+Links:
+  [1] https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
+
+Martin Kurbanov (2):
+  dt-bindings: spi: add binding for meson-spifc-a1
+  spi: add support for Meson A1 SPI Flash Controller
+
+ .../bindings/spi/amlogic,meson-a1-spifc.yaml  |  42 ++
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-meson-spifc-a1.c              | 444 ++++++++++++++++++
+ 4 files changed, 494 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+ create mode 100644 drivers/spi/spi-meson-spifc-a1.c
+
+--
+2.40.0
 
 
 _______________________________________________
