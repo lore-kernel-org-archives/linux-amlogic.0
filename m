@@ -4,88 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ACEBC6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 16:25:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FB64C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 16:59:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v8+3siC2sh3wF1uW+KVz8c5HYNVTzYtX5gyP8bZ3awE=; b=B1B/vwY/ajAmWf
-	8oKGE4oIcJUtCVrkcZ/vho7WXpehsCl9Fa9gjWRh49QyymxcTuFp37wXnltOL4vgHBu9hWkvOU2GW
-	GSCbbvqzbG0TdB2AGz3ax2nOWErzRx2WDKwAlait7Ksvmo/Gdf1ZnDmf7J0gOux2R36NYt2T7D/IJ
-	faiTXWNKcxmWcoKlMLV6jwvW4CF50fFTV+xom8BrHjx8gQNndJsKkytz6MgpUlPEr60X3TpGYqr4e
-	1knWgWHYDM39SLmkoJC+k/s4Lnr06whHzl2ar9FfRtx5DnyuFkNlOxl+g7+h88kxQlrkRwsREiE5j
-	qHliA1tq5hq9oNamedJg==;
+	List-Owner; bh=wjJYinhBSccWuyQof4dPw5fbq//lSIRpUzEPMfLJgkE=; b=SLo4j4ziNPxTGS
+	UqheuhB3UM9JiPT/7q0VxZOUpXtW8xTMZLFmxEuyq6mtINDUlIkBNMWrfHMSWCadDvkrWuj6qVBLV
+	aFdO+pz83eOl40vMyqISzXZbSAT9tN+M5SzmDhE8LJrNB9+ySANib5GUkyOlFlW65uXqjmy/pwGgS
+	oiNZEmt1xbi8C5FB/KHTWhPJuFJl5z8S1GpdrxXTjsRfMbjSZ5pkoDX35tO0wlur594Hav5Irg13j
+	MNC8kuO7JyPvmw0HW8XNjGxa2AHbAr2eFKQarnHa8w2icPGhVk2bT6ZIy8QYaDWPeEdMZHEH1/cpm
+	j8HJRZROWu9iV9iXVX2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf1HR-00GfH1-1r;
-	Wed, 22 Mar 2023 16:25:41 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1pf1oB-00Gka3-0O;
+	Wed, 22 Mar 2023 16:59:31 +0000
+Received: from mail-ot1-f46.google.com ([209.85.210.46])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf1HN-00GfFk-2y
-	for linux-amlogic@lists.infradead.org;
-	Wed, 22 Mar 2023 16:25:39 +0000
-Received: by mail-ed1-x535.google.com with SMTP id eg48so75169712edb.13
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Mar 2023 09:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679502334;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sr/j+3cgxhM/KwgZTgpDYZTgFfI9GXlmQ/zkQE90CIw=;
-        b=DnfWqPzonQ3weXJMufSIJ/VihFVfOy9/L/LsGefrAXYKMpiQSxjIcg3WNspyJtCx5g
-         qOB3MX03pwwXyIorvs6eQ2NUPntoug7U5TqkYrbXLu8vYdp1uw4cCo/vLufkoGb6+UDr
-         qt4AWE33l5Axb5tiRamp1bOexP4LJ057foVO13gQcQnEYOepeusmY+YRktiCTJ+UvMWT
-         iFFmrsabL5S6QtQi6Ng/8kgCzV3FmkvjkmnO81TtzyjbhzbKGikGaKqyr6yUOC388PKy
-         GKWRCABXhpl0rUA2BLzBua147+Vys8ZepByB1w40o37GlR60Q5m/VkKNCgHaAmA3SjJk
-         FHqg==
+	id 1pf1o7-00GkZ4-1U;
+	Wed, 22 Mar 2023 16:59:29 +0000
+Received: by mail-ot1-f46.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso10708467oti.8;
+        Wed, 22 Mar 2023 09:59:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679502334;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sr/j+3cgxhM/KwgZTgpDYZTgFfI9GXlmQ/zkQE90CIw=;
-        b=EVyVW7/QN4myULi/Dg+b703rdrC2sXxkyOq5svhi+PaPYEnIKs7cxi0W1eyL2rpDa0
-         ZK/yEU7XxjRpC/2+vkPM7ye31L5XLiokP5vAjxWbcss+CXvOgvlet0me59fUWu7U2ZOf
-         +MuyfNsMHWsVCPLOBu6SL35GhVmWuondLRhTuOLX5FsF2DVQzfbydPty2EV9KQQ5osri
-         VpaQ7egmpSp9IsHixDArlu11J3GjB/tBYj6ygfXiYze3FL4vyKcEu4yAimOX2lMbdG6g
-         3hwyff1tYcrOetUQfv9LRLoH3YSZdDUe8IL/FXL9waaINtUs4o3cYWTksaB5cdz3vdnM
-         rIbA==
-X-Gm-Message-State: AO0yUKXxailb0PiX/bCLDydjROVnC+UtzmN90EY9+R68Nh6wjtz30Qqy
-	uewECvpxOYgEBivMSx8NojTrcg==
-X-Google-Smtp-Source: AK7set9wGnyFe5XaKDU4cr/JttOVQwkZpPZ2A7mTqYQgkHG7Gr2iKP4b2JK7K+TnSFBBJB3q9BxgKg==
-X-Received: by 2002:a05:6402:1762:b0:4af:70a5:560b with SMTP id da2-20020a056402176200b004af70a5560bmr3025768edb.9.1679502334017;
-        Wed, 22 Mar 2023 09:25:34 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id k24-20020a50ce58000000b004fc9e462743sm7924722edj.91.2023.03.22.09.25.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 09:25:33 -0700 (PDT)
-Message-ID: <21bc1f94-35f8-42b1-f04b-86a5b4c03675@linaro.org>
-Date: Wed, 22 Mar 2023 17:25:32 +0100
+        d=1e100.net; s=20210112; t=1679504366;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NWqyrfUQQCISr39NkQZ5Ma1o6AYL1xyxzggPNypbXQk=;
+        b=KoEsZOW1dbE69VDOiCAWPrG17Lx+Or/7xBKp8sGhvG+sKh0DlTdoGdZtHBx5kSMeO/
+         w9HaNjwPo6jJn/y61SSADpjWuyPbp6bm9AjyES2jVFa8a3CImoom93iRNkShjWlIH6tf
+         bdCZZcRgucD7o+K+TQEMD3cmtbO2jo7/INciUmGKKKg7rAw/tH2THjkMnZTLY6LLnwqL
+         AxB5NRWVhjqbW8O8qGJ5d4mzB9n0NJg636tL3adVDp5akXBxTNJnQkZb3xdwSJy8CxyE
+         eRjT7INovJPgt4rwuFo9uL8v6Za06IgqmldLCyyoQlTnqvCru0C0dhdC0Ez/9V43+hrt
+         lzEg==
+X-Gm-Message-State: AO0yUKXwrtWAHT1c3MOcrNr2yhxhqkgscHMgj48dyhkZZ95qbw2XQEkI
+	Fw8s8ju+8FYiN5RqsPa7fw==
+X-Google-Smtp-Source: AK7set9pHTty/88AsdcNbe/96VYXZqDeFXpGdlF3m0B/sOmCD6PE7StmwAMdHsnvOsbVvW2GQIarqg==
+X-Received: by 2002:a9d:7544:0:b0:699:896e:c9e1 with SMTP id b4-20020a9d7544000000b00699896ec9e1mr1605607otl.34.1679504365842;
+        Wed, 22 Mar 2023 09:59:25 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a7-20020a056830008700b0069417e65acasm6669680oto.45.2023.03.22.09.59.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 09:59:25 -0700 (PDT)
+Received: (nullmailer pid 3916336 invoked by uid 1000);
+	Wed, 22 Mar 2023 16:59:24 -0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add binding for meson-spifc-a1
-Content-Language: en-US
-To: Martin Kurbanov <mmkurbanov@sberdevices.ru>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@sberdevices.ru
+From: Rob Herring <robh@kernel.org>
+To: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Cc: Mark Brown <broonie@kernel.org>, kernel@sberdevices.ru, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
+In-Reply-To: <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
 References: <20230322150458.783901-1-mmkurbanov@sberdevices.ru>
  <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
+Message-Id: <167950430158.3915000.3991863797525882649.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add binding for
+ meson-spifc-a1
+Date: Wed, 22 Mar 2023 11:59:24 -0500
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_092537_968744_521B26FC 
-X-CRM114-Status: UNSURE (   8.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230322_095927_500264_DE459E26 
+X-CRM114-Status: GOOD (  12.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,23 +81,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/03/2023 16:04, Martin Kurbanov wrote:
+
+On Wed, 22 Mar 2023 18:04:57 +0300, Martin Kurbanov wrote:
 > Add YAML devicetree binding for Amlogic Meson A113L (A1 family)
 > SPIFC Driver.
+> 
+> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+> ---
+>  .../bindings/spi/amlogic,meson-a1-spifc.yaml  | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+> 
 
-Subject: drop second/last, redundant "binding for". The "dt-bindings"
-prefix is already stating that these are bindings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,a1-clkc.h>
-> +    spi@fd000400 {
-> +          compatible = "amlogic,meson-a1-spifc";
+yamllint warnings/errors:
 
-Use 4 spaces for example indentation.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.example.dts:18:18: fatal error: dt-bindings/clock/amlogic,a1-clkc.h: No such file or directory
+   18 |         #include <dt-bindings/clock/amlogic,a1-clkc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
-Best regards,
-Krzysztof
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230322150458.783901-2-mmkurbanov@sberdevices.ru
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
 _______________________________________________
