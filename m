@@ -4,75 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AB5DC76195
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 18:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14F85C76196
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 19:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:CC:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=gRr/ueasxt7psH/JjGpPslrkxnbJA/WELtcypDXKfFQ=; b=CGussMLUnY+O/y
-	umsC1maBUgoaY6KxZSFOECRU48fAtZ1v64hjc/wHhpfcAbUqMdX/Weeuln31CjERdIIx1s7J7DAs+
-	CrVFpY+R/kfiDCVbs1p5ItgWpLvPC/3g8QlpyMNGQUKrVL03TYLeKUiCoP3YINc7N2E0iYlYoaw9A
-	Qh7QsBai3L5hfzw8SAbsfTWJ7lMgqf7YPQ8JEhUmitT6k2K74WvXJy7EmkF/eAlSW8CYiNUp/2kuZ
-	1u2xe0Xmyl4bvynLp7gQw9UDstPjw0NeZTFmI8xxeaIaJ97wjPjqbxDrKGLutyZ1DdcAGtFvhnHJk
-	xj7lKkHTESiaYqR7QEmg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=uxOQGRR8bKevLfiITp0idT/qVF1tRbFECVF65lK+Xjw=; b=uOk2y3o0PrbJMw
+	JB473Pp1qTKCWk3voP7imHvKIYKPaw9BwW7I/eg9YnXJT14khgpVZjX12mxWOljL8YR9ljA/f4pfn
+	J+Wv8fhJ3QRWA1Ja1Z29oG3uFTqiPwkHMyrwFZYZyzMAtZ34Mezg8HUdyLITM7nGMxHfkiQ8CfOlv
+	Er5vZO+xvLHSmZyLSNV+/IVE3ntMi1scpoxIVOuNzVDrEQiaHaziVmWIHfHICtuXvhkQmM+w9SCtY
+	fxINdJs9i61kXp1QL8uo+LrYCy+dKtIvUMdLw4rYl1k80+ZhuPe7BcWT5+sfGM/eWA9MJpeUyBMZt
+	A1RmpJe/B+U+Bp2hSAWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf3TT-00H3pn-1J;
-	Wed, 22 Mar 2023 18:46:15 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pf3tw-00H8TD-39;
+	Wed, 22 Mar 2023 19:13:36 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf3TQ-00H3mV-0O;
-	Wed, 22 Mar 2023 18:46:14 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 6EBAB5FD3E;
-	Wed, 22 Mar 2023 21:45:58 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679510758;
-	bh=rVtVHS3YbcTr4exAe5aUDPpvfNLxMi2NgaBzD0hJtkI=;
-	h=Message-ID:Date:MIME-Version:To:From:Subject:Content-Type;
-	b=cmNVA/O5C1NVFgyexdnp+OOdABIBGzbys02plXb0EjUgKtFozxdkfVzG9zLs16WR5
-	 BsDm1Ai5iKya/Py+xGP0fiefb0ajDtIqzMdjE/cbJQUeuzWFFcbZajrGe7vfPt/u4j
-	 Ze0/KQll445prTsaFh0JAdlUD3KFYhCh3wc+OuS86VMVRL5FIM/KIJNUIliCeWqPhU
-	 TG2rfabA/1YuF3Fbrw4wxLfszRw0vUTL5hIvi6FBs/i7sQNU6Tcw5LbQ8US5iZ13nb
-	 KmIEmJqmGwZSSGPhF5H71bWPsXokRiWewwBpjLJBbEDDUn69QTgYk/WCU0Ybf5ps9N
-	 gjeqj6iSL2mMg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 22 Mar 2023 21:45:56 +0300 (MSK)
-Message-ID: <d4338bd5-125c-a9e7-cb46-6f5e1da05cfa@sberdevices.ru>
-Date: Wed, 22 Mar 2023 21:42:46 +0300
+	id 1pf3tt-00H8RH-1Y;
+	Wed, 22 Mar 2023 19:13:34 +0000
+Received: from p5b12767e.dip0.t-ipconnect.de ([91.18.118.126] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1pf3t6-0003qa-2J; Wed, 22 Mar 2023 20:12:44 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Joe Tessler <jrt@google.com>, Dongchun Zhu <dongchun.zhu@mediatek.com>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Tiffany Lin <tiffany.lin@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>, Benoit Parrot <bparrot@ti.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
+Date: Wed, 22 Mar 2023 20:12:42 +0100
+Message-ID: <7127751.DvuYhMxLoT@phil>
+In-Reply-To: <20230320233944.2920964-1-robh@kernel.org>
+References: <20230320233944.2920964-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>
-CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Subject: [PATCH v1] mtd: rawnand: meson: fix bitmask for length in command
- word
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/22 14:20:00 #20991698
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_114612_537856_05739EE4 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20230322_121333_534157_907A2135 
+X-CRM114-Status: UNSURE (   9.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,59 +86,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Valid mask is 0x3FFF, without this patch the following problems were
-found:
+Am Dienstag, 21. M=E4rz 2023, 00:39:42 CET schrieb Rob Herring:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> =
 
-1) [    0.938914] Could not find a valid ONFI parameter page, trying
-                  bit-wise majority to recover it
-   [    0.947384] ONFI parameter recovery failed, aborting
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/media/rockchip,rk3568-vepu.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 ++--
 
-2) Read with disabled ECC mode was broken.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de> #rockchip
 
-Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index a28574c00900..074e14225c06 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -280,7 +280,7 @@ static void meson_nfc_cmd_access(struct nand_chip *nand, int raw, bool dir,
- 
- 	if (raw) {
- 		len = mtd->writesize + mtd->oobsize;
--		cmd = (len & GENMASK(5, 0)) | scrambler | DMA_DIR(dir);
-+		cmd = (len & GENMASK(13, 0)) | scrambler | DMA_DIR(dir);
- 		writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 		return;
- 	}
-@@ -544,7 +544,7 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
- 	if (ret)
- 		goto out;
- 
--	cmd = NFC_CMD_N2M | (len & GENMASK(5, 0));
-+	cmd = NFC_CMD_N2M | (len & GENMASK(13, 0));
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
- 	meson_nfc_drain_cmd(nfc);
-@@ -568,7 +568,7 @@ static int meson_nfc_write_buf(struct nand_chip *nand, u8 *buf, int len)
- 	if (ret)
- 		return ret;
- 
--	cmd = NFC_CMD_M2N | (len & GENMASK(5, 0));
-+	cmd = NFC_CMD_M2N | (len & GENMASK(13, 0));
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
- 	meson_nfc_drain_cmd(nfc);
--- 
-2.35.0
 
 _______________________________________________
 linux-amlogic mailing list
