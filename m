@@ -4,82 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAD9C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 17:03:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0843EC76196
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Mar 2023 17:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B9Dt4MZOgrv1WgZhhlqFinKPWuKgA7of5N7/OT6mZHk=; b=x+lOnOhVSPuoq7
-	7/RoFhlLMy37Np9CbfV4Q65H/z+QLgS8S8W76kGFWiAh0yi6ZK93CdtWdXH90ZAMgmqst8cmP2yO8
-	t1QTeA8AZKwjBhbSvb2YEhUgf+n+TteZyWFN4sI/bl2rrbz7I/O0cGWmOy3ZySEMYPgywFagUxT6d
-	23QHbk+zb61ScmJqw807CMoRWg6I+bd2rHfUO0J+/zgvs4RDd4J5rYRojHRlaOjiJ8h3xLRjTDfgq
-	DYJ+jL/Wf1vNEad6nsJm9ZQzopxrIed5sJLTGJZ4N6NTS241rTvkv3C27hRUpFHhr8WYvBpvVbz27
-	eFt+gl4wjl80pfeakEpg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ijuzXSZJDJ86hlJcG3SQJxlMUoIaXPhWGToaN1TV3r0=; b=kRPamI/U0circI
+	hsDFBDFeXcaI4TA8Hbd/Bi0AOmO266OwTNFcEfJgn28IapIN29EXSnL9wcWmAPerBQn4zdPSlFeUE
+	mRPABkwUpRs3zEahcO8/EaBBPll57zKSkxLkPnvwkx5crQY8jKyeM3R6DrfSpMCeXVPV/RhaSjfko
+	3bY4LYNAwDlPuL/yKl6SjC3BTlf1Hs2qp9DtQZA2QDpHVFepssNX53NZKex9PxrLTWANSz1gRdWNw
+	J+hgU+7TBY9i3I/VItukpYVP+lHL2ktiwCiizjO+RiE7v22r+2EQJTECF5OQdBxmS0w0Pa04atvWG
+	JW6XUVldoPR9+Wi1kN0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf1s4-00Gm2F-29;
-	Wed, 22 Mar 2023 17:03:32 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1pf2Mg-00GrAw-1W;
+	Wed, 22 Mar 2023 17:35:10 +0000
+Received: from mail-ot1-f47.google.com ([209.85.210.47])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pf1rt-00Glp8-0j
-	for linux-amlogic@lists.infradead.org;
-	Wed, 22 Mar 2023 17:03:26 +0000
-Received: by mail-wm1-x332.google.com with SMTP id p13-20020a05600c358d00b003ed346d4522so11952085wmq.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Mar 2023 10:03:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679504595;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fF0kXha0iC7DXFpAivYe8iA4rI1+YTj1bu366LSCxxk=;
-        b=CODHf0ARi+ZAQwKJquFfTZVE8GcbNBB35tiLrdZgRYIyaxVhmUezxMFGMCvTfztcTb
-         zBY391pL+wcccrmfHqacIkJ0YwfRwFpDfuCK+Q9mDDiiYUqxSVdqaFsm4UhJtdgAcOk/
-         F6LAVGKFmL2U0VXmZXkuJANw/xDh74CEr1oqlpBHvEkF7uwCOz8mHJqBtcndkweTZu84
-         EWxQDoQICuRUaPaLZel4wmpg8X6v3kZxBzpnge4qiQbhvPObr36dnM6Ec00/y5F17gEs
-         WA6uVF72nkfgiZpQBflwbEFO/Re4i7Fk8rbofwYctPmB9ebZDYXgHUX0vTBFV7d3NVPO
-         81zQ==
+	id 1pf2Mb-00Gr96-0Z;
+	Wed, 22 Mar 2023 17:35:07 +0000
+Received: by mail-ot1-f47.google.com with SMTP id x22-20020a056830409600b0069b30fb38f7so10785714ott.5;
+        Wed, 22 Mar 2023 10:35:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679504595;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fF0kXha0iC7DXFpAivYe8iA4rI1+YTj1bu366LSCxxk=;
-        b=1qNoxCN8XbeO4oXZ4+Il97xS2HBak8CdectAMRAT2jfWdS4IG3u2CqnCQH8O1Hc4i3
-         Yf7iz9fzeFsPNGPxJ1mneMuXPJ72npKoiA9ysjO81z46+w3/IKD6EWz8Hg5obPowveWt
-         8jkl9HpjR78iqMJOBC9V7MS9w4UCzrlo7wZQUFC9BCcI+LMTgZ07b7zmaVmJhFDTO2Mw
-         Ifpq/vPuosq3JoGYQS/nyRllDA0u9RamrTK7uxgDOwYKFwZD4ot879+g08d0uQ++Fy5E
-         nm2Kypvh4Cn1JjAyS8JL/Ps5MEEFwbRVqG3wRnneQ9OGseUo/xkznw4lRveWSTRdjZzI
-         IF8Q==
-X-Gm-Message-State: AO0yUKXST5exr7W1QbO9gK+9n8q69Mwak5UBvBb664LpvUKJ76fiEYW0
-	IzYeaM9hSU8onAaXJ7I1snEUig==
-X-Google-Smtp-Source: AK7set+XVsENvidhTYRl8NHap3p+RLXPJj7q9BKTdTDgxFMbLPVmRCtz/DO/KEbqCzBtozbr/f27Rw==
-X-Received: by 2002:a05:600c:2c48:b0:3eb:39e0:3530 with SMTP id r8-20020a05600c2c4800b003eb39e03530mr125002wmg.41.1679504595001;
-        Wed, 22 Mar 2023 10:03:15 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n1-20020a7bc5c1000000b003db03725e86sm17553580wmk.8.2023.03.22.10.03.14
+        d=1e100.net; s=20210112; t=1679506503;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4iBFMrGCXs7aCaesF7jmbgEDqOsWeQiS1SA88xm+gP4=;
+        b=FIJ+e4YJFs6FdyD/av9Q7k4YG4wrr0om2eYCQNWH9QXsGS4a7kKJN+9j1T1Aywieqk
+         5CIdbZsICi2SjiIImuRRXr1tf5eY9/+cMAK67ewGpwvZIDINcY3DkmaZ791qMI6dp+sj
+         SPkMMO3Afgf0IhSDj8EDi4ihpLTwwLMKy6+5PnfbxWfeTQdX5Oz0G7ondycS6sO/9Jcl
+         PYgXNQ/GISeoJ4XfIzrh7FdXhh/GGCYqHqv8HJpIsm5M+VlVdSkpRBV4WtVpdJi1hZpV
+         y/M+wcUJ7T30RTIJRDZqwHe3oTFu433Lh0yEME3DI7q6O+EZ/n1WBwA0AqazT4RABTEs
+         PEng==
+X-Gm-Message-State: AO0yUKUngmsNVySYBkswQaCJvw2n0wAsVCO3l+D66jRPMf3ji2QSjuK5
+	dXBaQOexG3ipMgBX2VB/+7gYHJNlHg==
+X-Google-Smtp-Source: AK7set8m4syrOCyuvx0eJfcZmRDih7NX1pwJMSBfADgJk63vKLPYr43ZCbmjV3U24/oNGz5bTTge9g==
+X-Received: by 2002:a05:6830:129a:b0:69f:289:1fe9 with SMTP id z26-20020a056830129a00b0069f02891fe9mr2058230otp.17.1679506502895;
+        Wed, 22 Mar 2023 10:35:02 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l26-20020a0568301d7a00b0069fa776d3c2sm162320oti.18.2023.03.22.10.34.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 10:03:14 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org
-In-Reply-To: <20230306103533.4915-1-johan+linaro@kernel.org>
-References: <20230306103533.4915-1-johan+linaro@kernel.org>
-Subject: Re: [PATCH] drm/meson: fix missing component unbind on bind errors
-Message-Id: <167950459423.530086.3154658002025345243.b4-ty@linaro.org>
-Date: Wed, 22 Mar 2023 18:03:14 +0100
+        Wed, 22 Mar 2023 10:34:58 -0700 (PDT)
+Received: (nullmailer pid 3970918 invoked by uid 1000);
+	Wed, 22 Mar 2023 17:34:56 -0000
+From: Rob Herring <robh@kernel.org>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Michal Simek <michal.simek@xilinx.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: mailbox: Drop unneeded quotes
+Date: Wed, 22 Mar 2023 12:34:48 -0500
+Message-Id: <20230322173449.3970718-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_100321_288586_878D1F49 
-X-CRM114-Status: UNSURE (   6.00  )
+X-CRM114-CacheID: sfid-20230322_103505_239005_630097AD 
+X-CRM114-Status: UNSURE (   8.31  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,21 +79,111 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+checking for this can be enabled in yamllint.
 
-On Mon, 06 Mar 2023 11:35:33 +0100, Johan Hovold wrote:
-> Make sure to unbind all subcomponents when binding the aggregate device
-> fails.
-> 
-> 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml   | 4 ++--
+ .../devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml   | 4 ++--
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml    | 4 ++--
+ Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml   | 4 ++--
+ Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml  | 4 ++--
+ .../devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml  | 4 ++--
+ 6 files changed, 12 insertions(+), 12 deletions(-)
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
-
-[1/1] drm/meson: fix missing component unbind on bind errors
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ba98413bf45edbf33672e2539e321b851b2cfbd1
-
+diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+index dfd26b998189..385809ed1569 100644
+--- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 BayLibre, SAS
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Amlogic Meson Message-Handling-Unit Controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+index 935937c67133..404477910f02 100644
+--- a/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/microchip,mpfs-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/microchip,mpfs-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Microchip PolarFire SoC (MPFS) MSS (microprocessor subsystem) mailbox controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index d888ead09282..7f18fb10435d 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/qcom,apcs-kpss-global.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/qcom,apcs-kpss-global.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm APCS global block
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
+index bdfb4a8220c5..b526f9c0c272 100644
+--- a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/sprd-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/sprd-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Spreadtrum mailbox controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
+index 0dfe05a04dd0..134fd223a02b 100644
+--- a/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
++++ b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/st,stm32-ipcc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/st,stm32-ipcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 IPC controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+index 2193141dd7fd..45df46343f6a 100644
+--- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
+ 
 -- 
-Neil
+2.39.2
 
 
 _______________________________________________
