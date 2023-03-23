@@ -4,69 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8627AC74A5B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 16:24:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 504FCC74A5B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 18:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bI1bYWAyrnDQtD1rPWWIBZDs5VSbqQ0Fgo7O1JIyitM=; b=dgBC6avKqH7bxZ
-	kGOABWByPSMaE4l+75Hvo6efbsy+/EY34lR/eWnRAL74HjOvgOgerSYQF/KPsK+BYocZK17/wFIPx
-	CiWxkKOzPFy+CDrKWd3m26dIX+KVAe7x/MMl1rabiMqwb5LgnZOzoz2EKynkZ0q1GouoeHt/8/hVj
-	BS+chk+4mda0UFzgK6zCI+8Cmj+GazMDBBYbyPqG3OKJBkoaLESNbXezJM2KRGMSJYdYyZvkudCf6
-	U+J3U5U4DzpCcM/UeXjbN6jyCmohdTsjVsxzkVCCgZ9L9Pl/sH9gB+zwSwMu4haHL5Ew2kXKfwFMv
-	ksnctIcRXOeIp7RF2teQ==;
+	List-Owner; bh=bGaesz2NAOvZKkwPaHV6B8JZFGGLxsYHnQCRLp0nsvQ=; b=QkNwGw+maSIaYv
+	ZD9qt5YVxTsoF9Q4yfPFwW5UWcp0RLxyIx1OYngIhDItiZTmiqnEcjesblp+vN2aLTt4VVIuYjxZw
+	Z0sk2g04ltBEmLxcNIriowwXveZNaa9GZgUH/jsb9Yh+djX6hnq20g/PqWVYU0rpByMfSW13+niXC
+	j0IdZdNFl60aBHsx+8z71srA6j/FUDqdjtEVFAQMDTqPVjlefeaJeSVG0JUO126bZZlEvaI89bLPS
+	V1tYukfhEpBS4mCtDVUYudxTqdFsVUmlCB1jXE5ojZloBw+txQMbKjxAuihfx0ruym+xtxJqVoL3z
+	bMmWW51emm4P7534pyNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfNjb-002Sdb-14;
-	Thu, 23 Mar 2023 16:24:15 +0000
-Received: from smtp2-g21.free.fr ([212.27.42.2])
+	id 1pfPzw-002kwR-1Q;
+	Thu, 23 Mar 2023 18:49:16 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfNjY-002Sci-20
-	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Mar 2023 16:24:14 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 1D9012003C1;
-	Thu, 23 Mar 2023 17:23:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1679588649;
-	bh=6mXGzygDBqKuGJYsASMicZwqodF1kiYi0RZKwbblDqs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=Sy71snXjjo3wNCqjs+rse95Rokcqy4NdE94KSmMlYRORepoSZeZADy3bNUtAGF+uV
-	 1pgMvt4dJsiBtmoAfDWAUa2M6OuehxZ32IGxRX1QKnZiwRF/EeY7lE3+kRtHHTri/P
-	 J+DGP6WQnhDr4MH81kIjkSwxgxxUYCXXRcwb7VdG10Bj6DEwjNN9V/+bMX5TfHLzc3
-	 AqqLD14DGbm32dM9OM8meNfzQK3+gO2ADcWE8wLXEiw8myblbnhhg12UdNovOmHKRD
-	 opztyoILnW0m0Djk+EWx8h7ns7i0urP0i7f5GYYbiFSyEXKCxwwdDZ6BNg6aFRKdtD
-	 KKzazsBD3SXBQ==
-Message-ID: <a81a1ebd-2621-ded1-855d-bd91d923436b@free.fr>
-Date: Thu, 23 Mar 2023 17:23:57 +0100
+	id 1pfPzs-002kul-31;
+	Thu, 23 Mar 2023 18:49:14 +0000
+Received: by mail-wm1-x334.google.com with SMTP id l15-20020a05600c4f0f00b003ed58a9a15eso1724687wmq.5;
+        Thu, 23 Mar 2023 11:49:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679597348;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UaAtIRtOu++U0RXXy05q7KocYfCm4/E/CZEqe2Ect2k=;
+        b=h2ivD7hcvtWe9brHOPv+jqBpm0raSc80vwDnXEhu5IdMrXiSPdjv0esN1GT7ewwyYG
+         H2y8Eqn4Mo60ywPRXJTn8XgB+fMxZVA7Ct7E9JHORCpJmeCIzHvdrGjUdnE+vxLGYPiz
+         VllmEBVE8pnA4884rTJfjjv+EJ0V+uVKTLuKCdadwNglfs7N/eccLAUNRpSrEf1I0/Hg
+         dxzYcGpTFKNcuWyNeoJKlNn2EdqUnIIf8IbDhN28vDqEqCqgpCdS+JbajSk8ldfUqupS
+         L6eoIE7x1bDdqffvBZdtYyGHZKEJjlBUFneI5JFhM147Bl5C24i2CFWn5q43MEwWX9Re
+         KG+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679597348;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UaAtIRtOu++U0RXXy05q7KocYfCm4/E/CZEqe2Ect2k=;
+        b=xYgQMOkN2xDt5qRmdnekuBzw+j4N8P1VRd1njREZPCj3v0YbH7VKhiGnhcTC0yNnnD
+         dLeOI2uOihTN6aIfonJ8PeR96CSMpm4BryAGHeryrYLbfofitOFR7V5ns6QTNzOD7lzt
+         SKpLU0/3pIlD384gsJJD4iG9uUHiDftWN5HlitiH2C77VlZR9ZGI2ovQP2axO+lgcMwa
+         SnTfT7dNaBFo+b4Lf7a/PpSHzT/r3PgFIzOjctk/JnFjpO6BCIJhFwPTYG6VkiuqScLJ
+         AaqIK1TBg83bqXC0XFRDxtxmGSB1Mx0dHmxucKf6seZmesYvQsRQI2HgyvfEfXZ5iHhc
+         nimQ==
+X-Gm-Message-State: AO0yUKUlHOxF8zs4c/SJx3sp1ATGat4rzlb9Y1nfIJ3i/MQKtkWCe0Tf
+	mES7gvE1Dz8d0MrE5dki8uA=
+X-Google-Smtp-Source: AK7set8iPShWRfidqt9I4Gp4+eMynjPzq6WpxgPllmii/Bx8E6MpO7U6wLeZYbAleSLfDLFNMZa2Gg==
+X-Received: by 2002:a7b:cd88:0:b0:3ee:7061:1bdd with SMTP id y8-20020a7bcd88000000b003ee70611bddmr481614wmj.4.1679597348358;
+        Thu, 23 Mar 2023 11:49:08 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id n17-20020a1c7211000000b003edf2dc7ca3sm2621024wmc.34.2023.03.23.11.49.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Mar 2023 11:49:07 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Joe Tessler <jrt@google.com>, Dongchun Zhu <dongchun.zhu@mediatek.com>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Tiffany Lin <tiffany.lin@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>, Heiko Stuebner <heiko@sntech.de>,
+ Benoit Parrot <bparrot@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
+Date: Thu, 23 Mar 2023 19:49:05 +0100
+Message-ID: <5657054.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <20230320233944.2920964-1-robh@kernel.org>
+References: <20230320233944.2920964-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: [PATCH] perf/amlogic: resolve conflict between canvas & pmu
-Content-Language: en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jiucheng Xu <jiucheng.xu@amlogic.com>,
- AML <linux-amlogic@lists.infradead.org>
-Cc: Chris Healy <healych@amazon.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Pierre-Hugues Husson <phh@phh.me>
-References: <cbfd45e3-310b-db40-d52b-daf79ce8743d@free.fr>
- <CAFBinCAdTHuN+AZKm0Yt=Gv0KgMtRruAHDgcF0qrLTZpki3JRQ@mail.gmail.com>
- <CAFBinCBb_5KChqD6wqj_MFxEH_hxL_U3nnA=+1AR8dhdQQVCzw@mail.gmail.com>
- <c3b9c231-10ef-ef69-c702-9e1052b8e704@free.fr>
- <471489bc-8683-f1ba-3f5c-5a8bf299446a@free.fr>
- <CAFBinCBD38gcR+foUUm6JBOfdpzW1Q3g3nFowxoWG1LGSc31kQ@mail.gmail.com>
- <3f4a7735-5327-df75-79ac-66209dbffa37@free.fr>
-In-Reply-To: <3f4a7735-5327-df75-79ac-66209dbffa37@free.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_092412_795975_6D9393AE 
-X-CRM114-Status: UNSURE (   8.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230323_114912_973008_A9940DE9 
+X-CRM114-Status: GOOD (  10.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,97 +119,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-According to S905X2 Datasheet - Revision 07:
+Dne torek, 21. marec 2023 ob 00:39:42 CET je Rob Herring napisal(a):
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/media/allwinner,sun4i-a10-ir.yaml | 2 +-
+>  .../bindings/media/allwinner,sun50i-h6-vpu-g2.yaml        | 4 ++--
 
-DMC_MON area spans 0xff638080-0xff6380c0
-DDR_PLL area spans 0xff638c00-0xff638c34
+For Allwinner:
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Round DDR_PLL area size up to 0x40
+Best regards,
+Jernej
 
-Fixes: 90cf8e21016f ("arm64: dts: meson: Add DDR PMU node")
-Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 12 ++++++------
- drivers/perf/amlogic/meson_g12_ddr_pmu.c          | 34 +++++++++++++++++-----------------
- 2 files changed, 23 insertions(+), 23 deletions(-)
+>  .../devicetree/bindings/media/amlogic,axg-ge2d.yaml       | 4 ++--
+>  .../devicetree/bindings/media/amlogic,gx-vdec.yaml        | 4 ++--
+>  .../devicetree/bindings/media/amlogic,meson-ir-tx.yaml    | 4 ++--
+>  .../devicetree/bindings/media/i2c/chrontel,ch7322.yaml    | 4 ++--
+>  .../devicetree/bindings/media/i2c/dongwoon,dw9768.yaml    | 6 +++---
+>  .../devicetree/bindings/media/i2c/maxim,max9286.yaml      | 2 +-
+>  .../devicetree/bindings/media/i2c/ovti,ov02a10.yaml       | 2 +-
+>  .../devicetree/bindings/media/mediatek,mdp3-rdma.yaml     | 2 +-
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 4 ++--
+>  .../devicetree/bindings/media/microchip,sama5d4-vdec.yaml | 4 ++--
+>  .../devicetree/bindings/media/nxp,imx8mq-vpu.yaml         | 4 ++--
+>  .../devicetree/bindings/media/qcom,msm8916-camss.yaml     | 4 ++--
+>  .../devicetree/bindings/media/qcom,msm8916-venus.yaml     | 8 ++++----
+>  .../devicetree/bindings/media/qcom,msm8996-camss.yaml     | 4 ++--
+>  .../devicetree/bindings/media/qcom,msm8996-venus.yaml     | 4 ++--
+>  .../devicetree/bindings/media/qcom,sc7180-venus.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sc7280-venus.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sdm660-camss.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sdm660-venus.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sdm845-camss.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml   | 4 ++--
+>  .../devicetree/bindings/media/qcom,sdm845-venus.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sm8250-camss.yaml      | 4 ++--
+>  .../devicetree/bindings/media/qcom,sm8250-venus.yaml      | 4 ++--
+>  Documentation/devicetree/bindings/media/rc.yaml           | 2 +-
+>  .../devicetree/bindings/media/rockchip,rk3568-vepu.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 ++--
+>  Documentation/devicetree/bindings/media/ti,cal.yaml       | 2 +-
+>  30 files changed, 57 insertions(+), 57 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index a5653ab1f0b43..1aab65bb5f578 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1585,6 +1585,12 @@ canvas: video-lut@48 {
- 					compatible = "amlogic,canvas";
- 					reg = <0x0 0x48 0x0 0x14>;
- 				};
-+
-+				pmu: pmu@80 {
-+					reg = <0x0 0x80 0x0 0x40>,
-+					      <0x0 0xc00 0x0 0x40>;
-+					interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+				};
- 			};
- 
- 			usb2_phy1: phy@3a000 {
-@@ -1710,12 +1716,6 @@ internal_ephy: ethernet-phy@8 {
- 			};
- 		};
- 
--		pmu: pmu@ff638000 {
--			reg = <0x0 0xff638000 0x0 0x100>,
--			      <0x0 0xff638c00 0x0 0x100>;
--			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
--		};
--
- 		aobus: bus@ff800000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xff800000 0x0 0x100000>;
-diff --git a/drivers/perf/amlogic/meson_g12_ddr_pmu.c b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-index a78fdb15e26c2..8b643888d5036 100644
---- a/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-+++ b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-@@ -21,23 +21,23 @@
- #define DMC_QOS_IRQ		BIT(30)
- 
- /* DMC bandwidth monitor register address offset */
--#define DMC_MON_G12_CTRL0		(0x20  << 2)
--#define DMC_MON_G12_CTRL1		(0x21  << 2)
--#define DMC_MON_G12_CTRL2		(0x22  << 2)
--#define DMC_MON_G12_CTRL3		(0x23  << 2)
--#define DMC_MON_G12_CTRL4		(0x24  << 2)
--#define DMC_MON_G12_CTRL5		(0x25  << 2)
--#define DMC_MON_G12_CTRL6		(0x26  << 2)
--#define DMC_MON_G12_CTRL7		(0x27  << 2)
--#define DMC_MON_G12_CTRL8		(0x28  << 2)
--
--#define DMC_MON_G12_ALL_REQ_CNT		(0x29  << 2)
--#define DMC_MON_G12_ALL_GRANT_CNT	(0x2a  << 2)
--#define DMC_MON_G12_ONE_GRANT_CNT	(0x2b  << 2)
--#define DMC_MON_G12_SEC_GRANT_CNT	(0x2c  << 2)
--#define DMC_MON_G12_THD_GRANT_CNT	(0x2d  << 2)
--#define DMC_MON_G12_FOR_GRANT_CNT	(0x2e  << 2)
--#define DMC_MON_G12_TIMER		(0x2f  << 2)
-+#define DMC_MON_G12_CTRL0		(0x0  << 2)
-+#define DMC_MON_G12_CTRL1		(0x1  << 2)
-+#define DMC_MON_G12_CTRL2		(0x2  << 2)
-+#define DMC_MON_G12_CTRL3		(0x3  << 2)
-+#define DMC_MON_G12_CTRL4		(0x4  << 2)
-+#define DMC_MON_G12_CTRL5		(0x5  << 2)
-+#define DMC_MON_G12_CTRL6		(0x6  << 2)
-+#define DMC_MON_G12_CTRL7		(0x7  << 2)
-+#define DMC_MON_G12_CTRL8		(0x8  << 2)
-+
-+#define DMC_MON_G12_ALL_REQ_CNT		(0x9  << 2)
-+#define DMC_MON_G12_ALL_GRANT_CNT	(0xa  << 2)
-+#define DMC_MON_G12_ONE_GRANT_CNT	(0xb  << 2)
-+#define DMC_MON_G12_SEC_GRANT_CNT	(0xc  << 2)
-+#define DMC_MON_G12_THD_GRANT_CNT	(0xd  << 2)
-+#define DMC_MON_G12_FOR_GRANT_CNT	(0xe  << 2)
-+#define DMC_MON_G12_TIMER		(0xf  << 2)
- 
- /* Each bit represent a axi line */
- PMU_FORMAT_ATTR(event, "config:0-7");
--- 
-2.25.1
+
 
 
 _______________________________________________
