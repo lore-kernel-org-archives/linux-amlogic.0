@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1732EC76195
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA9AFC761AF
 	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 14:32:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,70 +12,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7FqrJBVCUSy9Dy7EJXrsIQSiMevjAvPEFlX3kDmrVaQ=; b=GYOAfKYZh7S5k/
-	Aw7lvOhuZJlVg1Me1AbbMv2olA/jMax5lakTjw3aUWD5twReSMJaR0WUDrrQ3PwlAva8ZtsNtFrFJ
-	n6PxrydLkin8QsyMdjyqGTwpplj1/RB1/GAUABlmWu9QtadtNeUW0jEHH74vywgcwThr8TzOAQGBV
-	aUWf43vUTJSuU2Fw6L2ekSRbQLG1sEf1mv0VU29TuBF6RxntWbaI8AzF6Os+fxy88n42xOnlyNAwe
-	2zruHq34BFrxCs0OedXff0lzQ6gEumm/VhBDhg+gUwdLHymkkBbg3w76343SuYlZKjAvcPaP9avfG
-	PQzAXSqKNxU8IqsDsobQ==;
+	List-Owner; bh=fUfkKQ0K8Es+aTg91KElpYIhFdV/KYFOUqswcSBVPtE=; b=SoaDerHW8vGhvZ
+	sumcW9IX+bsPAEK17Eyh4bHh5rJeH995mvfyL6Hke+43+gIYnMAyTcw0hS1nBjA4tr0YdCRoYuqH1
+	sFREf8ZUcH+zLiPgTCJRZV6QrUwlCk9o4+llIzq5AwNfksOCJkee7euly7IDIJrV89L8I9f6KKGEY
+	T6p6ekd3P6hG+8St4zqYYzJJ/jolwkWQcpwiUd/jA1ugs1Wm3oSzFEpFRBkEgKqg1HLNmtadxt1LY
+	BM/JWJkdeX+/8KzRI8mBksUKmcB8vncFaoL9U+aOHYqsw/xdKh/V/EmG7Zx1m0MUa1+xHFu2ChUjL
+	HgwYVDS3WlE9IdN6WgaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfLzA-002Boe-26;
-	Thu, 23 Mar 2023 14:32:12 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pfLzD-002BrK-1W;
+	Thu, 23 Mar 2023 14:32:15 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfLz7-002Bif-0P
+	id 1pfLz9-002Bak-0T
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Mar 2023 14:32:10 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id o40-20020a05600c512800b003eddedc47aeso1325220wms.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 23 Mar 2023 07:32:06 -0700 (PDT)
+	Thu, 23 Mar 2023 14:32:13 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id r29so20707073wra.13
+        for <linux-amlogic@lists.infradead.org>; Thu, 23 Mar 2023 07:32:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679581925;
+        d=gmail.com; s=20210112; t=1679581930;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mI8vr3/36JLF0airk6gRoq/8WvqXSJmOsue8+mcEZp4=;
-        b=Ya09rERr9Wequlfelrx+8X+DvhdYFF5CE5oR/pJDtd32pknUMUH1wYowoBr3uCuHYy
-         Fsr+xZt/b58WExiIeX8FJnMqTyZ5m9sGcjpiDEVi5KVzrL9Xp7dOFo5/NBnZVteeVrl9
-         0A78pCUdnf8MzXMNlrj2HynD1czgK6EucL08+UQ+pnudYIAuGCvHc0c9h06mUu3Y87tl
-         B8/pALR/CO9i9I9wIRbeInCxMZdy64xDgbrHvEnfFpxP6hJHYqkVw7sfFDrS0hjiFrJE
-         uXa8xodzMmlzzan5Xw0RxMUlZl/AJ6azcMS9RElEfgSo8dd6sRHzhwFq2nLpkb7InYDW
-         gxwA==
+        bh=JKPveE/R+u89wooiOLpTVkAXFjt3TzcF6joeR6Z4QQM=;
+        b=dXf2OwG43jMBLUPdbyyQL3scJGVHtg9lm82eURlMv3vry7ZnT2uED2n1dDhPnokA2Q
+         RvLEoi+TgCgAncAiMsh4hkzMLRr/vYsz32JiOctxdJEhPr0Ik++abXJkI8zGZ7CPECRV
+         933AJDpPCdEqSCz0V41NkLt+XLB0SAAK9JPRjrnSfOZYpkf2xezPY5IrGXKOEJNwgCCB
+         tTdW4gx3T1V9wQeFyg8KDV4A5SP44iEPsclfzgWy8TtnGuyBv24cCHKqdQmQZxaO2lwc
+         h+nX0SN+i/5vDn2a96/c46MJTHCrzBMYHyfFOY4wkZ3PCLVjFepmEfjmo7KekLlIRV3B
+         +ywA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679581925;
+        d=1e100.net; s=20210112; t=1679581930;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mI8vr3/36JLF0airk6gRoq/8WvqXSJmOsue8+mcEZp4=;
-        b=aX/7kGge8IRiqW40GuknYQO7QtWZL2zvsA8jQsqex/l/HfR7fQcrtZvz+m1V8QMFB1
-         GwF6iJzo+eVjSbHxP7ZbArVHI5fgybA41ML1EmscPqjGLkTsmjZwwKhhqOT4kl6WYC+C
-         mN6HDZ+/KpPDrJiKiehREUqdRLKL4WnYOL+FWR+mhyY/9AQorw4N4vabP0dEAM9F9/ys
-         Q3ndYKTL9+WyiuV+ohm0CBpxQxGz4ORfnsoolywi6hGduKOMYkCPTr62BRtNx9+SUsaW
-         ah2J6jyXsevF/wM7y4WzICOWH4vja/yhO88kidIqEcrhpgt8GOZ217lMAYXKokpLUtb8
-         rcRw==
-X-Gm-Message-State: AO0yUKX/EHzG8s+JxKSgs4ltwFFjSjX/jqIWSfGJZTrC2C1SydiVQSp0
-	sepVqGFb9vlrr0d465g+9zs=
-X-Google-Smtp-Source: AK7set9pBsmqq7cg6s/xIpI2sXIgqdoFLBczBnQy7aSNo/CbWXdIX983/iQVC0OMiqJoyL7oOPs3rw==
-X-Received: by 2002:a1c:7711:0:b0:3ed:316d:668d with SMTP id t17-20020a1c7711000000b003ed316d668dmr2524964wmi.5.1679581925317;
-        Thu, 23 Mar 2023 07:32:05 -0700 (PDT)
+        bh=JKPveE/R+u89wooiOLpTVkAXFjt3TzcF6joeR6Z4QQM=;
+        b=f59d8PWD/FItelFUZ+8YFKV5DzL85RLH+cUTbLsaheK9qXgS4rDlmN3qUMSFJHUXFP
+         C2iXKGZFSiCfvMKrA0APEGwpt7UcUWwtB8QWu0L4f1ADGEOz/NMLmznd+u4dv8gjxYSJ
+         Cnttub6BofE5Ps1YN/83KGoh1nz2mG2uLYGuXWPRu9Rn+FisXymMEHNo4RWbNYa++gR7
+         pzh4KHSO1IgneWO7O2Apn9aHh8tlUT+MsF3kL3yezKJ25DPrb6sTTrxonwKdYgjb69qI
+         9BgIFslomnO5NOdzK7YsjW28jcvI47sv7TbgLMcaYnA/H8MEeXG8ksYqNHTo0MsyBJG5
+         su9g==
+X-Gm-Message-State: AAQBX9f/xLHkC5zTnUwugR+iuQGS88+tMwbSrljeNtTFt3qh3yMsbUzu
+	KDMgP6G5VS75l24gmQWNZf8+yGgfbmCdJVKj
+X-Google-Smtp-Source: AKy350aFLDU0ZbIgl5K9Z1pAp5n3jYdCIHUciGtXAWY0au7hmYedH27McTt7ufa8/c1CzPMHf0vYBg==
+X-Received: by 2002:adf:fb52:0:b0:2d8:47c7:7b50 with SMTP id c18-20020adffb52000000b002d847c77b50mr2894842wrs.1.1679581930498;
+        Thu, 23 Mar 2023 07:32:10 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a6-20020a056000100600b002c8ed82c56csm16311242wrx.116.2023.03.23.07.32.03
+        by smtp.gmail.com with ESMTPSA id a6-20020a056000100600b002c8ed82c56csm16311242wrx.116.2023.03.23.07.32.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 07:32:04 -0700 (PDT)
+        Thu, 23 Mar 2023 07:32:10 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: u-boot@lists.denx.de,
 	u-boot-amlogic@groups.io,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 11/14] doc: boards: amlogic: add documentation for Radxa Zero2
-Date: Thu, 23 Mar 2023 14:31:39 +0000
-Message-Id: <20230323143142.780306-12-christianshewitt@gmail.com>
+Subject: [PATCH v2 14/14] doc: boards: amlogic: add documentation for WeTek Hub and WeTek Play2
+Date: Thu, 23 Mar 2023 14:31:42 +0000
+Message-Id: <20230323143142.780306-15-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230323143142.780306-1-christianshewitt@gmail.com>
 References: <20230323143142.780306-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_073209_176443_C9243B61 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20230323_073211_188447_5F957D02 
+X-CRM114-Status: GOOD (  16.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,67 +92,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add build docs for the Radxa Zero2 board.
+Add build instructions for the WeTek Hub and WeTek Play2 boards.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- board/amlogic/w400/MAINTAINERS    |  2 +
- doc/board/amlogic/index.rst       |  1 +
- doc/board/amlogic/radxa-zero2.rst | 80 +++++++++++++++++++++++++++++++
- 3 files changed, 83 insertions(+)
- create mode 100644 doc/board/amlogic/radxa-zero2.rst
+ board/amlogic/p200/MAINTAINERS    |   2 +
+ doc/board/amlogic/index.rst       |   2 +
+ doc/board/amlogic/wetek-hub.rst   | 110 ++++++++++++++++++++++++++++
+ doc/board/amlogic/wetek-play2.rst | 115 ++++++++++++++++++++++++++++++
+ 4 files changed, 229 insertions(+)
+ create mode 100644 doc/board/amlogic/wetek-hub.rst
+ create mode 100644 doc/board/amlogic/wetek-play2.rst
 
-diff --git a/board/amlogic/w400/MAINTAINERS b/board/amlogic/w400/MAINTAINERS
-index 042b523056..117f79ea04 100644
---- a/board/amlogic/w400/MAINTAINERS
-+++ b/board/amlogic/w400/MAINTAINERS
-@@ -5,6 +5,8 @@ L:	u-boot-amlogic@groups.io
- F:	board/amlogic/w400/
- F:	configs/bananapi-cm4-cm4io_defconfig
- F:	configs/bananapi-m2s_defconfig
-+F:	configs/radxa-zero2_defconfig
- F:	doc/board/amlogic/w400.rst
- F:	doc/board/amlogic/bananapi-cm4io.rst
- F:	doc/board/amlogic/bananapi-m2s.rst
-+F:	doc/board/amlogic/radxa-zero2.rst
+diff --git a/board/amlogic/p200/MAINTAINERS b/board/amlogic/p200/MAINTAINERS
+index 264218e3be..fe451dd7db 100644
+--- a/board/amlogic/p200/MAINTAINERS
++++ b/board/amlogic/p200/MAINTAINERS
+@@ -12,3 +12,5 @@ F:	configs/wetek-play2_defconfig
+ F:	doc/board/amlogic/p200.rst
+ F:	doc/board/amlogic/nanopi-k2.rst
+ F:	doc/board/amlogic/odroid-c2.rst
++F:      doc/board/amlogic/wetek-hub.rst
++F:      doc/board/amlogic/wetek-play2.rst
 diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
-index fa1b362731..71b7e1f3ed 100644
+index 71b7e1f3ed..deb7976436 100644
 --- a/doc/board/amlogic/index.rst
 +++ b/doc/board/amlogic/index.rst
-@@ -112,6 +112,7 @@ Board Documentation
-    p212
-    q200
-    radxa-zero
-+   radxa-zero2
-    sei510
-    sei610
+@@ -118,4 +118,6 @@ Board Documentation
     s400
-diff --git a/doc/board/amlogic/radxa-zero2.rst b/doc/board/amlogic/radxa-zero2.rst
+    u200
+    wetek-core2
++   wetek-hub
++   wetek-play2
+    w400
+diff --git a/doc/board/amlogic/wetek-hub.rst b/doc/board/amlogic/wetek-hub.rst
 new file mode 100644
-index 0000000000..dccf592459
+index 0000000000..378c6a6497
 --- /dev/null
-+++ b/doc/board/amlogic/radxa-zero2.rst
-@@ -0,0 +1,80 @@
++++ b/doc/board/amlogic/wetek-hub.rst
+@@ -0,0 +1,110 @@
 +.. SPDX-License-Identifier: GPL-2.0+
 +
-+U-Boot for Radxa Zero2 (A311D)
-+==============================
++U-Boot for WeTek Hub (S905)
++===========================
 +
-+Radxa Zero2 is a small form factor SBC based on the Amlogic A311D chipset with the
-+following specification:
++WeTek Hub is a small form-factor Android STB manufactured by WeTek with the following
++specification:
 +
-+- Amlogic A311D (Quad A73 + Dual A53) CPU
-+- 4GB LPDDR4 RAM
-+- 32/64/128GB eMMC
-+- Mali G52-MP4 GPU
-+- HDMI 2.1 output (micro)
-+- BCM4345 WiFi (2.4/5GHz a/b/g/n/ac) and BT 5.0
-+- 1x USB 2.0 port - Type C (OTG)
-+- 1x USB 3.0 port - Type C (Host)
-+- 1x micro SD Card slot
-+- 40 Pin GPIO header
++ - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 1GB DDR3 SDRAM
++ - 8GB eMMC
++ - Gigabit Ethernet
++ - HDMI 2.0 4K/60Hz display
++ - 1x USB otg
++ - microSD
++ - UART jack
++ - Infrared receiver
 +
-+Schematics are available on request from Radxa.
++Schematics are not publicly available but have been shared privately to maintainers.
 +
 +U-Boot Compilation
 +------------------
@@ -160,7 +158,7 @@ index 0000000000..dccf592459
 +.. code-block:: bash
 +
 +    $ export CROSS_COMPILE=aarch64-none-elf-
-+    $ make radxa-zero2_defconfig
++    $ make wetek-hub_defconfig
 +    $ make
 +
 +U-Boot Signing with Pre-Built FIP repo
@@ -171,48 +169,199 @@ index 0000000000..dccf592459
 +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
 +    $ cd amlogic-boot-fip
 +    $ mkdir my-output-dir
-+    $ ./build-fip.sh radxa-zero2 /path/to/u-boot/u-boot.bin my-output-dir
++    $ ./build-fip.sh wetek-hub /path/to/u-boot/u-boot.bin my-output-dir
 +
 +U-Boot Manual Signing
 +---------------------
 +
 +Amlogic does not provide sources for the firmware and tools needed to create a bootloader
-+image so it is necessary to obtain binaries from sources published by the board vendor:
++image and WeTek has not publicly shared the U-Boot sources needed to build FIP binaries
++for signing. However you can download them from the amlogic-fip-repo.
++
++.. code-block:: bash
++    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
++    $ cd amlogic-boot-fip/wetek-hub
++    $ export FIPDIR=$PWD
++
++Go back to the mainline U-Boot source tree then:
 +
 +.. code-block:: bash
 +
-+    $ git clone -b radxa-zero-v2021.07 https://github.com/radxa/u-boot.git
-+    $ git clone https://github.com/radxa/fip.git
++    $ mkdir fip
 +
-+    $ sudo apt-get install -y gcc-aarch64-linux-gnu device-tree-compiler libncurses5 libncurses5-dev
-+    $ sudo apt-get install -y bc python dosfstools flex build-essential libssl-dev mtools
++    $ cp $FIPDIR/bl2.bin fip/
++    $ cp $FIPDIR/acs.bin fip/
++    $ cp $FIPDIR/bl21.bin fip/
++    $ cp $FIPDIR/bl30.bin fip/
++    $ cp $FIPDIR/bl301.bin fip/
++    $ cp $FIPDIR/bl31.img fip/
++    $ cp u-boot.bin fip/bl33.bin
 +
-+    $ wget https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf.tar.xz
-+    $ sudo tar xvf gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf.tar.xz -C /opt
++    $ $FIPDIR/blx_fix.sh \
++              fip/bl30.bin \
++              fip/zero_tmp \
++              fip/bl30_zero.bin \
++              fip/bl301.bin \
++              fip/bl301_zero.bin \
++              fip/bl30_new.bin \
++              bl30
 +
-+    $ export CROSS_COMPILE=/opt/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf/bin/aarch64-none-elf-
-+    $ export ARCH=arm
-+    $ cd u-boot
-+    $ make radxa-zero2_defconfig
-+    $ make
++    $ $FIPDIR/fip_create --bl30 fip/bl30_new.bin \
++                         --bl31 fip/bl31.img \
++                         --bl33 fip/bl33.bin \
++                         fip/fip.bin
 +
-+    $ cp u-boot.bin ../fip/radxa-zero2/bl33.bin
-+    $ cd ../fip/radxa-zero2
-+    $ make
++    $ sed -i 's/\x73\x02\x08\x91/\x1F\x20\x03\xD5/' fip/bl2.bin
++    $ python3 $FIPDIR/acs_tool.py fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
 +
-+This will generate the signed U-Boot binaries:
++    $ $FIPDIR/blx_fix.sh \
++              fip/bl2_acs.bin \
++              fip/zero_tmp \
++              fip/bl2_zero.bin \
++              fip/bl21.bin \
++              fip/bl21_zero.bin \
++              fip/bl2_new.bin \
++              bl2
 +
-+.. code-block:: bash
++    $ cat fip/bl2_new.bin fip/fip.bin > fip/boot_new.bin
 +
-+    $ u-boot.bin u-boot.bin.sd.bin u-boot.bin.usb.bl2 u-boot.bin.usb.tpl
++    $ $FIPDIR/aml_encrypt_gxb --bootsig \
++                              --input fip/boot_new.bin
++                              --output fip/u-boot.bin
 +
 +Then write U-Boot to SD or eMMC with:
 +
 +.. code-block:: bash
 +
 +    $ DEV=/dev/boot_device
-+    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
-+    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 conv=fsync
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 seek=9 skip=8 count=87 conv=fsync,notrunc
++    $ dd if=/dev/zero of=fip/u-boot.bin.gxbb bs=512 seek=8 count=1 conv=fsync,notrunc
++    $ dd if=bl1.bin.hardkernel of=fip/u-boot.bin.gxbb bs=512 seek=2 skip=2 count=1 conv=fsync,notrunc
++    $ ./aml_chksum fip/u-boot.bin.gxbb
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=1 count=440
+diff --git a/doc/board/amlogic/wetek-play2.rst b/doc/board/amlogic/wetek-play2.rst
+new file mode 100644
+index 0000000000..cd7759f7f4
+--- /dev/null
++++ b/doc/board/amlogic/wetek-play2.rst
+@@ -0,0 +1,115 @@
++.. SPDX-License-Identifier: GPL-2.0+
++
++U-Boot for WeTek Play2 (S905)
++=============================
++
++WeTek Play2 is an Android STB manufactured by WeTek with the following specification:
++
++ - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 2GB DDR3 SDRAM
++ - 8GB eMMC
++ - Gigabit Ethernet
++ - AP6335 (v1) or AP6255 (v2) WiFi (b/g/n) and BT 4.0
++ - HDMI 2.0 4K/60Hz display
++ - 2x USB 2.0 host
++ - 1x USB 2.0 otg
++ - microSD
++ - UART jack
++ - Infrared receiver
++ - Power LED (blue)
++ - Power button (case, front)
++ - Reset button (underside)
++ - DVB Card: DVB-S or DVB-T/C or ATSC
++
++Schematics are not publicly available but have been shared privately to maintainers.
++
++U-Boot Compilation
++------------------
++
++.. code-block:: bash
++
++    $ export CROSS_COMPILE=aarch64-none-elf-
++    $ make wetek-play2_defconfig
++    $ make
++
++U-Boot Signing with Pre-Built FIP repo
++--------------------------------------
++
++.. code-block:: bash
++
++    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
++    $ cd amlogic-boot-fip
++    $ mkdir my-output-dir
++    $ ./build-fip.sh wetek-play2 /path/to/u-boot/u-boot.bin my-output-dir
++
++U-Boot Manual Signing
++---------------------
++
++Amlogic does not provide sources for the firmware and tools needed to create a bootloader
++image and WeTek has not publicly shared the U-Boot sources needed to build FIP binaries
++for signing. However you can download them from the amlogic-fip-repo.
++
++.. code-block:: bash
++    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
++    $ cd amlogic-boot-fip/wetek-play2
++    $ export FIPDIR=$PWD
++
++Go back to the mainline U-Boot source tree then:
++
++.. code-block:: bash
++
++    $ mkdir fip
++
++    $ cp $FIPDIR/bl2.bin fip/
++    $ cp $FIPDIR/acs.bin fip/
++    $ cp $FIPDIR/bl21.bin fip/
++    $ cp $FIPDIR/bl30.bin fip/
++    $ cp $FIPDIR/bl301.bin fip/
++    $ cp $FIPDIR/bl31.img fip/
++    $ cp u-boot.bin fip/bl33.bin
++
++    $ $FIPDIR/blx_fix.sh \
++              fip/bl30.bin \
++              fip/zero_tmp \
++              fip/bl30_zero.bin \
++              fip/bl301.bin \
++              fip/bl301_zero.bin \
++              fip/bl30_new.bin \
++              bl30
++
++    $ $FIPDIR/fip_create --bl30 fip/bl30_new.bin \
++                         --bl31 fip/bl31.img \
++                         --bl33 fip/bl33.bin \
++                         fip/fip.bin
++
++    $ sed -i 's/\x73\x02\x08\x91/\x1F\x20\x03\xD5/' fip/bl2.bin
++    $ python3 $FIPDIR/acs_tool.py fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++    $ $FIPDIR/blx_fix.sh \
++              fip/bl2_acs.bin \
++              fip/zero_tmp \
++              fip/bl2_zero.bin \
++              fip/bl21.bin \
++              fip/bl21_zero.bin \
++              fip/bl2_new.bin \
++              bl2
++
++    $ cat fip/bl2_new.bin fip/fip.bin > fip/boot_new.bin
++
++    $ $FIPDIR/aml_encrypt_gxb --bootsig \
++                              --input fip/boot_new.bin
++                              --output fip/u-boot.bin
++
++Then write U-Boot to SD or eMMC with:
++
++.. code-block:: bash
++
++    $ DEV=/dev/boot_device
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 conv=fsync
++    $ dd if=fip/u-boot.bin of=fip/u-boot.bin.gxbb bs=512 seek=9 skip=8 count=87 conv=fsync,notrunc
++    $ dd if=/dev/zero of=fip/u-boot.bin.gxbb bs=512 seek=8 count=1 conv=fsync,notrunc
++    $ dd if=bl1.bin.hardkernel of=fip/u-boot.bin.gxbb bs=512 seek=2 skip=2 count=1 conv=fsync,notrunc
++    $ ./aml_chksum fip/u-boot.bin.gxbb
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++    $ dd if=fip/u-boot.gxbb of=$DEV conv=fsync,notrunc bs=1 count=440
 -- 
 2.34.1
 
