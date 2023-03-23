@@ -4,78 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C14C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 08:01:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4551FC6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 08:48:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hPCQtgr9AoiMwQ4Ie6C7Wnw3S7PtxCVY2isnwUG2rU4=; b=VlOinz7MeRDM0v
-	dVajkZL6qdkrFUNNi9/jMjb2ibO/VbBPWZ/f8PTGgiNYv6iFMReWJBLN/SxsRfp8BoPMe4O7UuDN8
-	jQQya5M38poXZMc1vNTMAT2olPaKJI0fBsSGGj5ZXiIGxlkpXfynf1LsORIC6QN7fKxPAAX+oyrv7
-	3VnYPbcWDuoYRWggQORKfmQPD6fGzxx5PixVctChjVJtjmPnSUA+qIn/KJHdXEWgAiAICPnM+f1Bc
-	J+ibdfqdWAQrK90m6B2SdACI4/2rtSVrqoFoUdfIVuDFCnGV3YL3g5WZfmMEZjDSqhrfWfDV+Wz08
-	2bYh1VhG3emRmx9IscDg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VUoi6LvoSj6LDmAnF6S8+kLPJeZMj3+aYz3d2iYAXs4=; b=goEvB7OdhntMaLC1J2KA/loEDn
+	qUZeSW7CPWT6piG+qLXLcgqjmSQlzI705Z7JupWH6XIHQ4klrVWuLS/cuAZP/7JF10zgosE8HUfoK
+	23icWFokN7vfKlpV/lYrVpwxHcz5EB0pjoTmbcCRUnWmMPQN5DDF7VEGBtwlLGpQdvKdkH83S598j
+	CsR/L1PE6FHcfS6ftOTPbhvUQv/bG8d2SgmAGbUxUvPPen5PstFWCSt5L7iUMJpYlDEc3/OsOEWlv
+	jd+pIc9j8Ag2Fs9z956qyixTqBn1wiPI7VJDnvMkzt7j2RMTgzpLbMjF7EyltLSC03UC9qcfiqW2a
+	rGp61i2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfFsr-001CDC-0z;
-	Thu, 23 Mar 2023 08:01:17 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pfGcP-001JzI-35;
+	Thu, 23 Mar 2023 08:48:21 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfFso-001CC4-0D;
-	Thu, 23 Mar 2023 08:01:16 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 5F4285FD45;
-	Thu, 23 Mar 2023 11:01:09 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679558469;
-	bh=O7oYKc3LTw4AoaR0hMXQ+c+BRl+QFQbOY09tziUSnEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=c7xOLGbe7skXPzXF2yS/VEyLxNWBFVB7DBrvBlW/G6yZyEa/uAm8o/w1BTPJiEOEL
-	 zxN2FAOEBTwz09bwFsZ3jlNS4TCQBf8phoB7T8hyCsluBT4PfEALHWOvJsL4Xq0PXA
-	 xDkDpnfisQGv1mKmkU/gfIEgFg+z+VtzmEst051CZILhU+qRgyjI4pucTzN71U2PLJ
-	 EWYY3JLzx8yU1QNa3TlqMm5g4EdNwrmICq1GMYnjXYi0eYbXn9C3CgnG0d7sD3p/6I
-	 TQtuR6/7pFKyGyfcrzBRn+nk8XgrYF5CarIyMpDXYbztexd2KwmRx+OEmHhlLjp3br
-	 yX60YAxpgfCJw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 23 Mar 2023 11:01:07 +0300 (MSK)
-Message-ID: <fe2ed378-cdac-dbb3-acd2-ff542bd7e887@sberdevices.ru>
-Date: Thu, 23 Mar 2023 10:57:56 +0300
+	id 1pfGcO-001Jym-03
+	for linux-amlogic@lists.infradead.org;
+	Thu, 23 Mar 2023 08:48:21 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id o32so6571569wms.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 23 Mar 2023 01:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679561297;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :to:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GurEupKGuxcCAmolW+mWL7L/rx0OvQUf+1Zcf2lb9gA=;
+        b=cAAHK7+la370gDR1wly25ZP/ODtunZsfjwgxXZ8YkJ9bVj0CFwn1mYxb72gKth6mF5
+         DuY2f4nsAmHJvJC1NSgILSb9Awm6XucB3eXlfU47Q9OcMzJVLxws1PkSDgvewNTtmUzz
+         2oN4tmwu0aysKGmw74uTHwsc0bdDaZn9gSj4byNwJ7/U+JqqkXT+rvYBtRPkGeLWvEgm
+         mK3AHxcBw/sBygNdXhXkg2Ck5a3P3UeOlIuM9NLHsFaBqJN4c2L5Ru77DxfKzayVyQ6I
+         USRMPtF9JR4FMO0Ssh/9NkB6vgMiU9WKFqSeVYny/J+35w/xKXhTs2X7ZDkUHqY4CTdS
+         K39Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679561297;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :to:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GurEupKGuxcCAmolW+mWL7L/rx0OvQUf+1Zcf2lb9gA=;
+        b=0Z2OKhSuUevZrzg/5GoVebrvceYmQ1CiPgc3xLfKWmlpiw8g14VHvS4lgV0XKY9eGu
+         bp89N96ZlPa/nOIjsyv1rWjMdDhoZ9zIGw/OmL+rgRq+M0s0QisshhFXKHAuNwdWXCiN
+         78dFVPi9H12kCQimgUHnTnyuJb6aS6wypG7hVuS3Yr/ctZGyhZDv8pGmUIJ7Sw+kMqX9
+         YBp3DUWU1bR1zLS7wNVr/nrgsIN0gY+g5HPOW45PqSwnAPIqrIq1H4+X9AKmK8NXu4de
+         rZjB5Bq5hyDou5PgtLOOKDsI75c7xPGoD/nBNyFdx4PkCNsP6DY6AKTlSg2b3YIeNHSP
+         vw1A==
+X-Gm-Message-State: AO0yUKWHARs3glojwe9ktmqOsuod9Ck8Ls3b/4/RVM2szC75TB0WK3LP
+	qrv3e1Nrmx+ujX+JluqqR5h/SA==
+X-Google-Smtp-Source: AK7set+miH4i9hVKNVenbCTBskt8sRSGI2nee3Y+4K/pRd4KYHEYv6RiCtum0BpWT+e1UHRcbNSziw==
+X-Received: by 2002:a05:600c:2214:b0:3ed:2b49:1571 with SMTP id z20-20020a05600c221400b003ed2b491571mr1553533wml.20.1679561297599;
+        Thu, 23 Mar 2023 01:48:17 -0700 (PDT)
+Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id iv13-20020a05600c548d00b003ee1acdaf95sm1207717wmb.36.2023.03.23.01.48.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 01:48:17 -0700 (PDT)
+Message-ID: <ff2177db-db80-4f85-ef00-1335c3d60316@linaro.org>
+Date: Thu, 23 Mar 2023 09:48:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1] mtd: rawnand: meson: fix bitmask for length in command
- word
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 01/13] docs: boards: amlogic: add bananapi-m5 to u200
+ maintainer file
 Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>
-References: <d4338bd5-125c-a9e7-cb46-6f5e1da05cfa@sberdevices.ru>
- <CAFBinCB3yuyNJD=7UJ7jzf45Masms_PD4sm42YNjO8M4cr+4wg@mail.gmail.com>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <CAFBinCB3yuyNJD=7UJ7jzf45Masms_PD4sm42YNjO8M4cr+4wg@mail.gmail.com>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/23 05:59:00 #20997558
-X-KSMG-AntiVirus-Status: Clean, skipped
+To: u-boot-amlogic@groups.io, christianshewitt@gmail.com,
+ u-boot@lists.denx.de, linux-amlogic@lists.infradead.org
+References: <20230323065458.776029-1-christianshewitt@gmail.com>
+ <20230323065458.776029-2-christianshewitt@gmail.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230323065458.776029-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_010114_815005_6CD4F8F9 
-X-CRM114-Status: GOOD (  17.89  )
+X-CRM114-CacheID: sfid-20230323_014820_063498_265E140F 
+X-CRM114-Status: GOOD (  11.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,39 +92,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAyMi4wMy4yMDIzIDIzOjEwLCBNYXJ0aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+IEhlbGxv
-IEFyc2VuaXksCj4gCj4gdGhhbmsgeW91IGZvciBzdWJtaXR0aW5nIHRoaXMgZml4IQpUaGFua3Mh
-Cj4gCj4gT24gV2VkLCBNYXIgMjIsIDIwMjMgYXQgNzo0NeKAr1BNIEFyc2VuaXkgS3Jhc25vdgo+
-IDxhdmtyYXNub3ZAc2JlcmRldmljZXMucnU+IHdyb3RlOgo+Pgo+PiBWYWxpZCBtYXNrIGlzIDB4
-M0ZGRiwgd2l0aG91dCB0aGlzIHBhdGNoIHRoZSBmb2xsb3dpbmcgcHJvYmxlbXMgd2VyZQo+PiBm
-b3VuZDoKPj4KPj4gMSkgWyAgICAwLjkzODkxNF0gQ291bGQgbm90IGZpbmQgYSB2YWxpZCBPTkZJ
-IHBhcmFtZXRlciBwYWdlLCB0cnlpbmcKPj4gICAgICAgICAgICAgICAgICAgYml0LXdpc2UgbWFq
-b3JpdHkgdG8gcmVjb3ZlciBpdAo+PiAgICBbICAgIDAuOTQ3Mzg0XSBPTkZJIHBhcmFtZXRlciBy
-ZWNvdmVyeSBmYWlsZWQsIGFib3J0aW5nCj4+Cj4+IDIpIFJlYWQgd2l0aCBkaXNhYmxlZCBFQ0Mg
-bW9kZSB3YXMgYnJva2VuLgo+Pgo+PiBGaXhlczogOGZhZTg1NmM1MzUwICgibXRkOiByYXduYW5k
-OiBtZXNvbjogYWRkIHN1cHBvcnQgZm9yIEFtbG9naWMgTkFORCBmbGFzaCBjb250cm9sbGVyIikK
-Pj4gU2lnbmVkLW9mZi1ieTogQXJzZW5peSBLcmFzbm92IDxBVktyYXNub3ZAc2JlcmRldmljZXMu
-cnU+Cj4gVGhpcyBtYXRjaGVzIHdoYXQgSSBjYW4gc2VlIGluIHRoZSBvbGQgdmVuZG9yIGRyaXZl
-ciwgc286Ck1vcmVvdmVyIGl0IHdhcyBjbGVhciB0aGF0IG1hc2sgb2YgMHgzZiBpcyB0b28gc21h
-bGwgZm9yIGxlbmd0aCBvZiBkYXRhIGluCmJ5dGVzLCBmb3IgZXhhbXBsZSBmb3IgMjA0OCArIE9P
-QiBzaXplLgo+IEFja2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rp
-bmdsQGdvb2dsZW1haWwuY29tPgo+IAo+IFsuLi5dCj4+IC0gICAgICAgICAgICAgICBjbWQgPSAo
-bGVuICYgR0VOTUFTSyg1LCAwKSkgfCBzY3JhbWJsZXIgfCBETUFfRElSKGRpcik7Cj4+ICsgICAg
-ICAgICAgICAgICBjbWQgPSAobGVuICYgR0VOTUFTSygxMywgMCkpIHwgc2NyYW1ibGVyIHwgRE1B
-X0RJUihkaXIpOwo+IE15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHZlbmRvciBkcml2ZXIgaXMgdGhh
-dCB0aGlzICJsZW4iIGlzIG9ubHkgdXNlZAo+IGZvciAicmF3IiBhY2Nlc3MgKG15IG93biB3b3Jk
-czogYW55IGFjY2VzcyB0aGF0IGRvZXNuJ3QgdXNlIHRoZSBIVyBFQ0MKPiBlbmdpbmUpLgpFeGFj
-dGx5LCAnbGVuJyBpcyBvbmx5IGZvciByYXcgYWNjZXNzLgo+IEFzIGEgZnV0dXJlIGltcHJvdmVt
-ZW50IChubyBuZWVkIHRvIHVwZGF0ZSByZS1zZW5kIHRoaXMgcGF0Y2gpIGl0Cj4gd291bGQgYmUg
-Z3JlYXQgdG8gaGF2ZSBhICNkZWZpbmUgd2l0aCBhIG1lYW5pbmdmdWwgbmFtZSBmb3IKPiAiR0VO
-TUFTSygxMywgMCkiIChtYXliZSBzb21ldGhpbmcgbGlrZSBORkNfQ01EX1JBV19MRU5HVEgpIGFz
-IGl0J3MKPiB1c2VkIGluIG11bHRpcGxlIHBsYWNlcyBub3cKQWNrCgpUaGFua3MsIEFyc2VuaXkK
-PiAKPiAKPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 23/03/2023 07:54, Christian Hewitt wrote:
+> The bananapi-m5 docs are missing from the file, so add them.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   board/amlogic/u200/MAINTAINERS | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/board/amlogic/u200/MAINTAINERS b/board/amlogic/u200/MAINTAINERS
+> index 47cec234a1..919e349922 100644
+> --- a/board/amlogic/u200/MAINTAINERS
+> +++ b/board/amlogic/u200/MAINTAINERS
+> @@ -7,4 +7,5 @@ F:	configs/u200_defconfig
+>   F:	configs/bananapi-m5_defconfig
+>   F:	configs/radxa-zero_defconfig
+>   F:	doc/board/amlogic/u200.rst
+> +F:	doc/board/amlogic/bananapi-m5.rst
+>   F:	doc/board/amlogic/radxa-zero.rst
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
