@@ -4,77 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99F86C74A5B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 08:55:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 411BEC6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 08:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3+9AxRW9zXsL1rXvRwasK8aE1zL/9boxzULejrf6agE=; b=rh9cdh4SOHe1OX
-	pf4z90ofCDuJqWvoeKzv6cdFp43SId3EWkPYc0r5+ZhSSBI8gLpkDaBJyOD9arov9unPjyKZOMGr6
-	NKT8VqjqwzkQGWc75+/h+yllxJN26IzV8GIazXb3hQTBzgMa9J8kumnxBtZ9squeHGyfJAXQjmnHn
-	GpBPGs4/taPpqd3n4jGtkb9tyMNKrF/li1SUAmgqWIp7aWe7VGoNaNNyKqNFKxEMSkKFMATSeVVZf
-	vnzJUP1KYrfytWRqFLDn3i8ksjoHDfmecN8INF8P/J79yHtc5CId8B/RUa0esVmKuJemlkBF4V6f+
-	HwL2L8abrHKSBmFb49/g==;
+	List-Owner; bh=dW4j+fT2Qpf2liS94AVHqTHNXVOZXs9pyTxJe76KmF4=; b=kew5X0SMiI8nGr
+	FSbmoCODi0tyJ/tNxpC4356SwRdAZmUaWVSWWVt17w57pDNn8kBkiW1YjN7xbfDCx3Th2gThWD827
+	3o6ytiyxHjhvgSZkfMwkCRT67DOPMDNdbQv/vE19TcF5AKE5x68XimTiYF9AZGZdcBDrk6qVKK17l
+	i6UQ2g/nB3gubwM5zp17neM8fXEtKvUmjdRY9ME+bR6cJxR38/AUrM0UWYY2suPCmQ0syhYFDbcbi
+	ZuEl/6FfJnkmg2LMWrXZwE5c7NpzRwVVjLcQRp/EMFgXIEweCzOxtfUKKB+CCC8dPirNBeHDIFkfW
+	egVnW7KrX+WfHO1CXyFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfGih-001Kuk-1H;
-	Thu, 23 Mar 2023 08:54:51 +0000
+	id 1pfGjS-001L5u-1w;
+	Thu, 23 Mar 2023 08:55:38 +0000
 Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfGie-001Kt4-0H
+	id 1pfGjP-001L4q-2A
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Mar 2023 08:54:49 +0000
+	Thu, 23 Mar 2023 08:55:36 +0000
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1pfGh0-0006FY-NJ; Thu, 23 Mar 2023 09:53:06 +0100
+	id 1pfGjI-0006t7-PW; Thu, 23 Mar 2023 09:55:28 +0100
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1pfGgr-0066mb-Rs; Thu, 23 Mar 2023 09:52:57 +0100
+	id 1pfGjE-0066nD-Uw; Thu, 23 Mar 2023 09:55:24 +0100
 Received: from pza by lupine with local (Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1pfGgq-0001AB-Lo; Thu, 23 Mar 2023 09:52:56 +0100
-Message-ID: <12f3f106791ad390aa1b4c850c7665467ba5d2d2.camel@pengutronix.de>
-Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
+	id 1pfGjE-0001Di-Db; Thu, 23 Mar 2023 09:55:24 +0100
+Message-ID: <20aeff9a860b2bc01a0dd31687c2116860be6294.camel@pengutronix.de>
+Subject: Re: [PATCH] dt-bindings: reset: Drop unneeded quotes
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Joe Tessler
- <jrt@google.com>, Dongchun Zhu <dongchun.zhu@mediatek.com>, Jacopo Mondi
- <jacopo+renesas@jmondi.org>, Kieran Bingham
- <kieran.bingham+renesas@ideasonboard.com>, Laurent Pinchart
- <laurent.pinchart+renesas@ideasonboard.com>, Niklas
- =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
- <andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>,  Fabio Estevam <festevam@gmail.com>,
- NXP Linux Team <linux-imx@nxp.com>, Robert Foss <rfoss@kernel.org>,  Todor
- Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>, Bjorn
- Andersson <andersson@kernel.org>,  Konrad Dybcio
- <konrad.dybcio@linaro.org>, Stanimir Varbanov
- <stanimir.k.varbanov@gmail.com>, Vikash Garodia
- <quic_vgarodia@quicinc.com>, Heiko Stuebner <heiko@sntech.de>, Benoit
- Parrot <bparrot@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Date: Thu, 23 Mar 2023 09:52:56 +0100
-In-Reply-To: <20230320233944.2920964-1-robh@kernel.org>
-References: <20230320233944.2920964-1-robh@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Florian Fainelli
+ <f.fainelli@gmail.com>,  Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Qin Jian <qinjian@cqplus1.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Thu, 23 Mar 2023 09:55:24 +0100
+In-Reply-To: <20230322173508.3971182-1-robh@kernel.org>
+References: <20230322173508.3971182-1-robh@kernel.org>
 User-Agent: Evolution 3.38.3-1+deb11u1 
 MIME-Version: 1.0
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -82,8 +61,8 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_015448_120258_6BA2981E 
-X-CRM114-Status: UNSURE (   7.82  )
+X-CRM114-CacheID: sfid-20230323_015535_705893_EDE36986 
+X-CRM114-Status: UNSURE (   6.84  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,7 +80,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mo, 2023-03-20 at 18:39 -0500, Rob Herring wrote:
+On Mi, 2023-03-22 at 12:35 -0500, Rob Herring wrote:
 > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
 > checking for this can be enabled in yamllint.
 > 
