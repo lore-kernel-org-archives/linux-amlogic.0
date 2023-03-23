@@ -4,53 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2CAC6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 07:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C14C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 08:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Ue9KdsWqLkE6sJSbO6G5EU7P9nK3lSCdR0MJV5KZIzE=; b=JbV/ZdkCtO2Hz+
-	1emYZbekX2QgWCi6XvksvlFBCHEWmO/ZkW8NJ6OEGEsW/fJUi2GU594hpybzRDg2PlR282Aen+Wtv
-	+Z/mbArrDaupbuU1sVZdMLEq6NcI+k45m069x7yaQoLk7PzgOUGhpybSGiMdcUOKlQXlkNBQshgUn
-	Atr9AGPXVQtb/hDfC9eh5zwIPWzK97Fm+IPqo6Y8XNKaXcz0Pys8F/whh977Fct9ZxVdp+opZWmal
-	6tpzzGWphFUlwPHiwXVeVjx6hF7sKyzG1SyTSN48XQRVErsvJslFglSnqnqAuVi0gCcsNh5tufMHh
-	CWE+2YS6QOcbB316omkg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hPCQtgr9AoiMwQ4Ie6C7Wnw3S7PtxCVY2isnwUG2rU4=; b=VlOinz7MeRDM0v
+	dVajkZL6qdkrFUNNi9/jMjb2ibO/VbBPWZ/f8PTGgiNYv6iFMReWJBLN/SxsRfp8BoPMe4O7UuDN8
+	jQQya5M38poXZMc1vNTMAT2olPaKJI0fBsSGGj5ZXiIGxlkpXfynf1LsORIC6QN7fKxPAAX+oyrv7
+	3VnYPbcWDuoYRWggQORKfmQPD6fGzxx5PixVctChjVJtjmPnSUA+qIn/KJHdXEWgAiAICPnM+f1Bc
+	J+ibdfqdWAQrK90m6B2SdACI4/2rtSVrqoFoUdfIVuDFCnGV3YL3g5WZfmMEZjDSqhrfWfDV+Wz08
+	2bYh1VhG3emRmx9IscDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfFUH-0017Fz-1p;
-	Thu, 23 Mar 2023 07:35:53 +0000
-Received: from out30-130.freemail.mail.aliyun.com ([115.124.30.130])
+	id 1pfFsr-001CDC-0z;
+	Thu, 23 Mar 2023 08:01:17 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfFUD-0017Dd-39;
-	Thu, 23 Mar 2023 07:35:52 +0000
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R151e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=ay29a033018045192;MF=yang.lee@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0VeTb.bu_1679556935;
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com fp:SMTPD_---0VeTb.bu_1679556935)
-          by smtp.aliyun-inc.com;
-          Thu, 23 Mar 2023 15:35:36 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: neil.armstrong@linaro.org
-Cc: khilman@baylibre.com,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Yang Li <yang.lee@linux.alibaba.com>
-Subject: [PATCH -next] phy: dphy: Use devm_platform_ioremap_resource()
-Date: Thu, 23 Mar 2023 15:35:34 +0800
-Message-Id: <20230323073534.75037-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+	id 1pfFso-001CC4-0D;
+	Thu, 23 Mar 2023 08:01:16 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 5F4285FD45;
+	Thu, 23 Mar 2023 11:01:09 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1679558469;
+	bh=O7oYKc3LTw4AoaR0hMXQ+c+BRl+QFQbOY09tziUSnEs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=c7xOLGbe7skXPzXF2yS/VEyLxNWBFVB7DBrvBlW/G6yZyEa/uAm8o/w1BTPJiEOEL
+	 zxN2FAOEBTwz09bwFsZ3jlNS4TCQBf8phoB7T8hyCsluBT4PfEALHWOvJsL4Xq0PXA
+	 xDkDpnfisQGv1mKmkU/gfIEgFg+z+VtzmEst051CZILhU+qRgyjI4pucTzN71U2PLJ
+	 EWYY3JLzx8yU1QNa3TlqMm5g4EdNwrmICq1GMYnjXYi0eYbXn9C3CgnG0d7sD3p/6I
+	 TQtuR6/7pFKyGyfcrzBRn+nk8XgrYF5CarIyMpDXYbztexd2KwmRx+OEmHhlLjp3br
+	 yX60YAxpgfCJw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 23 Mar 2023 11:01:07 +0300 (MSK)
+Message-ID: <fe2ed378-cdac-dbb3-acd2-ff542bd7e887@sberdevices.ru>
+Date: Thu, 23 Mar 2023 10:57:56 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] mtd: rawnand: meson: fix bitmask for length in command
+ word
+Content-Language: en-US
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Jianxin Pan <jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@sberdevices.ru>, <oxffffaa@gmail.com>
+References: <d4338bd5-125c-a9e7-cb46-6f5e1da05cfa@sberdevices.ru>
+ <CAFBinCB3yuyNJD=7UJ7jzf45Masms_PD4sm42YNjO8M4cr+4wg@mail.gmail.com>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <CAFBinCB3yuyNJD=7UJ7jzf45Masms_PD4sm42YNjO8M4cr+4wg@mail.gmail.com>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/23 05:59:00 #20997558
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_003550_206907_2780A056 
-X-CRM114-Status: UNSURE (   8.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230323_010114_815005_6CD4F8F9 
+X-CRM114-Status: GOOD (  17.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,49 +87,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-According to commit 7945f929f1a7 ("drivers: provide
-devm_platform_ioremap_resource()"), convert platform_get_resource(),
-devm_ioremap_resource() to a single call to use
-devm_platform_ioremap_resource(), as this is exactly what this function
-does.
-
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
----
- drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-index 32d1ff09befb..6e9af79e152c 100644
---- a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-+++ b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-@@ -335,7 +335,6 @@ static int phy_meson_axg_mipi_dphy_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct phy_provider *phy_provider;
--	struct resource *res;
- 	struct phy_meson_axg_mipi_dphy_priv *priv;
- 	struct phy *phy;
- 	void __iomem *base;
-@@ -348,8 +347,7 @@ static int phy_meson_axg_mipi_dphy_probe(struct platform_device *pdev)
- 	priv->dev = dev;
- 	platform_set_drvdata(pdev, priv);
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
--- 
-2.20.1.7.g153144c
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMi4wMy4yMDIzIDIzOjEwLCBNYXJ0aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+IEhlbGxv
+IEFyc2VuaXksCj4gCj4gdGhhbmsgeW91IGZvciBzdWJtaXR0aW5nIHRoaXMgZml4IQpUaGFua3Mh
+Cj4gCj4gT24gV2VkLCBNYXIgMjIsIDIwMjMgYXQgNzo0NeKAr1BNIEFyc2VuaXkgS3Jhc25vdgo+
+IDxhdmtyYXNub3ZAc2JlcmRldmljZXMucnU+IHdyb3RlOgo+Pgo+PiBWYWxpZCBtYXNrIGlzIDB4
+M0ZGRiwgd2l0aG91dCB0aGlzIHBhdGNoIHRoZSBmb2xsb3dpbmcgcHJvYmxlbXMgd2VyZQo+PiBm
+b3VuZDoKPj4KPj4gMSkgWyAgICAwLjkzODkxNF0gQ291bGQgbm90IGZpbmQgYSB2YWxpZCBPTkZJ
+IHBhcmFtZXRlciBwYWdlLCB0cnlpbmcKPj4gICAgICAgICAgICAgICAgICAgYml0LXdpc2UgbWFq
+b3JpdHkgdG8gcmVjb3ZlciBpdAo+PiAgICBbICAgIDAuOTQ3Mzg0XSBPTkZJIHBhcmFtZXRlciBy
+ZWNvdmVyeSBmYWlsZWQsIGFib3J0aW5nCj4+Cj4+IDIpIFJlYWQgd2l0aCBkaXNhYmxlZCBFQ0Mg
+bW9kZSB3YXMgYnJva2VuLgo+Pgo+PiBGaXhlczogOGZhZTg1NmM1MzUwICgibXRkOiByYXduYW5k
+OiBtZXNvbjogYWRkIHN1cHBvcnQgZm9yIEFtbG9naWMgTkFORCBmbGFzaCBjb250cm9sbGVyIikK
+Pj4gU2lnbmVkLW9mZi1ieTogQXJzZW5peSBLcmFzbm92IDxBVktyYXNub3ZAc2JlcmRldmljZXMu
+cnU+Cj4gVGhpcyBtYXRjaGVzIHdoYXQgSSBjYW4gc2VlIGluIHRoZSBvbGQgdmVuZG9yIGRyaXZl
+ciwgc286Ck1vcmVvdmVyIGl0IHdhcyBjbGVhciB0aGF0IG1hc2sgb2YgMHgzZiBpcyB0b28gc21h
+bGwgZm9yIGxlbmd0aCBvZiBkYXRhIGluCmJ5dGVzLCBmb3IgZXhhbXBsZSBmb3IgMjA0OCArIE9P
+QiBzaXplLgo+IEFja2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rp
+bmdsQGdvb2dsZW1haWwuY29tPgo+IAo+IFsuLi5dCj4+IC0gICAgICAgICAgICAgICBjbWQgPSAo
+bGVuICYgR0VOTUFTSyg1LCAwKSkgfCBzY3JhbWJsZXIgfCBETUFfRElSKGRpcik7Cj4+ICsgICAg
+ICAgICAgICAgICBjbWQgPSAobGVuICYgR0VOTUFTSygxMywgMCkpIHwgc2NyYW1ibGVyIHwgRE1B
+X0RJUihkaXIpOwo+IE15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHZlbmRvciBkcml2ZXIgaXMgdGhh
+dCB0aGlzICJsZW4iIGlzIG9ubHkgdXNlZAo+IGZvciAicmF3IiBhY2Nlc3MgKG15IG93biB3b3Jk
+czogYW55IGFjY2VzcyB0aGF0IGRvZXNuJ3QgdXNlIHRoZSBIVyBFQ0MKPiBlbmdpbmUpLgpFeGFj
+dGx5LCAnbGVuJyBpcyBvbmx5IGZvciByYXcgYWNjZXNzLgo+IEFzIGEgZnV0dXJlIGltcHJvdmVt
+ZW50IChubyBuZWVkIHRvIHVwZGF0ZSByZS1zZW5kIHRoaXMgcGF0Y2gpIGl0Cj4gd291bGQgYmUg
+Z3JlYXQgdG8gaGF2ZSBhICNkZWZpbmUgd2l0aCBhIG1lYW5pbmdmdWwgbmFtZSBmb3IKPiAiR0VO
+TUFTSygxMywgMCkiIChtYXliZSBzb21ldGhpbmcgbGlrZSBORkNfQ01EX1JBV19MRU5HVEgpIGFz
+IGl0J3MKPiB1c2VkIGluIG11bHRpcGxlIHBsYWNlcyBub3cKQWNrCgpUaGFua3MsIEFyc2VuaXkK
+PiAKPiAKPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
