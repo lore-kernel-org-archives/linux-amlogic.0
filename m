@@ -4,84 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E407C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 09:13:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29453C6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 09:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DKlYlt89P0oxfDNnXOKbIFeIRItW18SX4rVcyL7nVCU=; b=JrxDxO6mCShZs5pewx81hkcLon
-	VgiwFAurZkZ9sV/uItRmI2WUeKUzxFk7g25VE7+JftlnN7FlCLPflzuopR8w2BxFoyspcCItUc0j5
-	XOYG4L964Qc1xak02eRpwGD4XayOuM4m+z0r2BmCoVe8PF9Le8QHmRvkQc8bs7+bMPFa3oSZpTf6g
-	YIvY57J3M8+jc/Adi/NQSBKoEnfj9ytPTlKqwzATI3xSoffsGj8WXYddTI+kkW1sTwaWtUa2ch1oY
-	9qj6p7tS5eAY2bc3YnBz/DJvDpYGDgDzRuGHJh7i+e/TjCMVXiEVsJagx+HQ2tJL04TuVLitfeg5g
-	C+plr5dA==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RXZVKYD5U3yLozCvReWzEtGjhW8cCbLAW/6I8I94KgY=; b=s+Ixyd19PjDMwG
+	gLcqAo6pIf9DfY9rhMseREmc3VS6MFioTzI1SBwWTou7eReHnxmMxfB//XGRXq1RjbNo0RT6Xhljm
+	NHFYN2yWnNVyJVvt57GBiQPfRJjAxp+MgxNCzs9cIPERHruXIkjBJqIcchoccnwzFy/g0WmRfc9hH
+	0A9DietJNopJ7j7Q0p6sOPNqq1cIBR1kpAYtXf7doZd1rQ57IgNBCGOq442+CCvH5BVZ8bi4pebL4
+	YjGktf4/t5RJeaMW7KNivM6nE3I6q9FuNUU0vKwuotrA89M0ENHU1/bMF28jG7l4lSXTHeMY4lKck
+	gXobB4Cq9Bp2hNHrKvHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfH0B-001ODH-20;
-	Thu, 23 Mar 2023 09:12:55 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1pfHc6-001Vj7-1U;
+	Thu, 23 Mar 2023 09:52:06 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfH08-001OB0-31
-	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Mar 2023 09:12:54 +0000
-Received: by mail-wm1-x336.google.com with SMTP id l37so22181wms.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 23 Mar 2023 02:12:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679562771;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pcJdmtSJI8n1Nq4yaF0gcqHdFoOGhaeQhrSp6datg7Q=;
-        b=tezoRFywjrJYM2cPo82G+050C9EqrtNYasjj5H1ILpRj5RBay2nsOggrjKWGe4qLj8
-         lIgP+6tc/tjRto2YBQA7h0jgpS45PvUqdAwymVi+STSGo4kXR6KH9yc7ksik6lxNsHh6
-         tCLHi+TcF4zPCwUv6nabo08VTbBxbc5ZFx62ZnnJ2ywW5X4LAClQVPutjWPNXZw45KPi
-         Cqb8PJYuZULxR7ybkuPi63oRqbNubnOZ18U8agVCoNDsO8gcG2Ffq2tFtTzLXM0SYgfU
-         MfI+rqF7pUpmdyczAq8YmFBKAsP1w7y+IjM1qUu/zPxSe6o84oAgyRpOwjTL4aTHDoHI
-         yt/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679562771;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pcJdmtSJI8n1Nq4yaF0gcqHdFoOGhaeQhrSp6datg7Q=;
-        b=yCkvVcmhIXcVcHE4y9hEVp265+7mtr422Vy6mw5OT9pntJvhFgwfhTuq09EP532rxd
-         ab32Jvc19k4PaYnCJYqRqwIJ8y6q61xTOibRKXPbZjHfA8Q45g7vzf9s6+JicAs6yjFv
-         wgb/X5krxugufuwL9gRyG2S2F5K84gfDAU8DUyIqxJMB37RFxQNlqnXy+Dz0LxcHcfG/
-         N1kiQ08H1nhqVH/8tTayZzA/PRCTsgfSOgRO4Ajmy/Ux3RXpV5C8uFt6H+/aVRBsl7rM
-         dHiffdn5QOaZwm0BM5xz3vici91pSWb37/++eTz5nv0qTjxEB5370vcP6FiZPuqCH9zv
-         qVsw==
-X-Gm-Message-State: AO0yUKVQniOHy2xJ9Y9mMeN1+/5CcMAiuIF1oe4GYcLTHJURen38dPWa
-	IixuZQe+0VWP44T0TLes3zp7pw==
-X-Google-Smtp-Source: AK7set+qyjI4dIR56davAs0GyezEM9aqtToFTFnrHhfYp3ZawBnpARGrcbNhyJtgjLQ9swrPeOYQ9A==
-X-Received: by 2002:a7b:c4d1:0:b0:3e2:662:ade6 with SMTP id g17-20020a7bc4d1000000b003e20662ade6mr1757659wmk.26.1679562771430;
-        Thu, 23 Mar 2023 02:12:51 -0700 (PDT)
-Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id t8-20020a05600c198800b003ede03e4369sm1264366wmq.33.2023.03.23.02.12.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Mar 2023 02:12:51 -0700 (PDT)
-Message-ID: <f4a85c43-a4d3-c1b4-de12-76e7781d8d76@linaro.org>
-Date: Thu, 23 Mar 2023 10:12:50 +0100
+	id 1pfHc0-001Vhu-0b;
+	Thu, 23 Mar 2023 09:52:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1679565121; x=1711101121;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=c5AVjfNTyn5jyoWxBV5nksKULO7WagsKTvP/gGAu+pY=;
+  b=agE+WBpW56k8TdbPrYLLdqpTOtkEJfBw8IzFQ//Fxr5gUDiXrwhPl5U9
+   8+rKqXoaV5SPbWt5Uw+HANBbNq911il4eW0XUI1Qt/tWfesz8Y8Qf97cK
+   1pvTVDDqCSW2+j423+NwHE773t+7/vTxghfYqh5xMP74r1QP9XLXnb9e9
+   zRVplx0/spRCJn4MBFvSEJn12irC9FtUP1G+pwCZ4Y25fcFpQ9HoyLQPL
+   XAtnd7ab3Q5nX8ZroQ+I7b83athVmirik7eRC/jpZ5MPyteJGCw2hppPc
+   hNaIbjPNV4BavN625axbpNBaD/NOjUO2yPMe6fHpP9eCC6pGQKZKHS0fa
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,283,1673938800"; 
+   d="scan'208";a="203041791"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Mar 2023 02:51:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 23 Mar 2023 02:51:37 -0700
+Received: from [10.12.67.87] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Thu, 23 Mar 2023 02:51:33 -0700
+Message-ID: <429849c0-1be3-2fc9-185c-9b5630304b13@microchip.com>
+Date: Thu, 23 Mar 2023 10:51:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH -next] phy: dphy: Use devm_platform_ioremap_resource()
+Subject: Re: [PATCH] dt-bindings: i2c: Drop unneeded quotes
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Jerome
+ Brunet" <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Hector Martin <marcan@marcan.st>, "Sven
+ Peter" <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@microchip.com>, Michal Simek <michal.simek@xilinx.com>,
+	"Peter Rosin" <peda@axentia.se>, Andy Gross <agross@kernel.org>, Bjorn
+ Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"Maxime Coquelin" <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <asahi@lists.linux.dev>,
+	<linux-arm-msm@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230322173530.3971676-1-robh@kernel.org>
 Content-Language: en-US
-To: Yang Li <yang.lee@linux.alibaba.com>
-Cc: khilman@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230323073534.75037-1-yang.lee@linux.alibaba.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230323073534.75037-1-yang.lee@linux.alibaba.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230322173530.3971676-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_021252_973718_40C85D65 
-X-CRM114-Status: GOOD (  16.15  )
+X-CRM114-CacheID: sfid-20230323_025200_306323_3AA75EFA 
+X-CRM114-Status: UNSURE (   6.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,48 +92,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/03/2023 08:35, Yang Li wrote:
-> According to commit 7945f929f1a7 ("drivers: provide
-> devm_platform_ioremap_resource()"), convert platform_get_resource(),
-> devm_ioremap_resource() to a single call to use
-> devm_platform_ioremap_resource(), as this is exactly what this function
-> does.
+On 22/03/2023 at 18:35, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+> Signed-off-by: Rob Herring<robh@kernel.org>
 > ---
->   drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> index 32d1ff09befb..6e9af79e152c 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
-> @@ -335,7 +335,6 @@ static int phy_meson_axg_mipi_dphy_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct phy_provider *phy_provider;
-> -	struct resource *res;
->   	struct phy_meson_axg_mipi_dphy_priv *priv;
->   	struct phy *phy;
->   	void __iomem *base;
-> @@ -348,8 +347,7 @@ static int phy_meson_axg_mipi_dphy_probe(struct platform_device *pdev)
->   	priv->dev = dev;
->   	platform_set_drvdata(pdev, priv);
->   
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	base = devm_ioremap_resource(dev, res);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(base))
->   		return PTR_ERR(base);
->   
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+[..]
+
+>   Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml  | 2 +-
+
+for Microchip:
+Reviewed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks Rob, best regards,
+   Nicolas
+
+-- 
+Nicolas Ferre
+
 
 _______________________________________________
 linux-amlogic mailing list
