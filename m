@@ -4,105 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 504FCC74A5B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 18:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B805C74A5B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 18:56:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bGaesz2NAOvZKkwPaHV6B8JZFGGLxsYHnQCRLp0nsvQ=; b=QkNwGw+maSIaYv
-	ZD9qt5YVxTsoF9Q4yfPFwW5UWcp0RLxyIx1OYngIhDItiZTmiqnEcjesblp+vN2aLTt4VVIuYjxZw
-	Z0sk2g04ltBEmLxcNIriowwXveZNaa9GZgUH/jsb9Yh+djX6hnq20g/PqWVYU0rpByMfSW13+niXC
-	j0IdZdNFl60aBHsx+8z71srA6j/FUDqdjtEVFAQMDTqPVjlefeaJeSVG0JUO126bZZlEvaI89bLPS
-	V1tYukfhEpBS4mCtDVUYudxTqdFsVUmlCB1jXE5ojZloBw+txQMbKjxAuihfx0ruym+xtxJqVoL3z
-	bMmWW51emm4P7534pyNg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vW4PzpjVgVZeXuh8onWFdblwHVLH3CrQhEJ6sKEnWbI=; b=DW8UAZSf3vc0WX
+	DJRAFsUta1BNh+yjReIutxxQFyMKC5cuVtlC2FUiAWIiO28NNkVylH6uOKIGmB0jfRImoK5C/UvQP
+	ekN4Rgke0vBZmfJbwpC3rQg3YiRJwKHVgL8+Cvbm4roJn7Q18H0Rp0E2vChOSW6wQ+s/jS07e15Ot
+	jiqiM/peWQAf+tMEEYWxEi/SEueeLzjthuEgcGPefqsBXYhvD04L9UMDtSv6zwZDgXl0/N+Mz9ye/
+	3Dq5WrtI8aYS4igz8yd1+iYYAAyvWJYlbvENh77t5PQn2xg4TMdN4DYP+fIiOYiKnnswXpjvwx/Q5
+	5mvgVeLsCNFgvkNAgMAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfPzw-002kwR-1Q;
-	Thu, 23 Mar 2023 18:49:16 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1pfQ6j-002mFI-2Z;
+	Thu, 23 Mar 2023 18:56:17 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfPzs-002kul-31;
-	Thu, 23 Mar 2023 18:49:14 +0000
-Received: by mail-wm1-x334.google.com with SMTP id l15-20020a05600c4f0f00b003ed58a9a15eso1724687wmq.5;
-        Thu, 23 Mar 2023 11:49:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679597348;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UaAtIRtOu++U0RXXy05q7KocYfCm4/E/CZEqe2Ect2k=;
-        b=h2ivD7hcvtWe9brHOPv+jqBpm0raSc80vwDnXEhu5IdMrXiSPdjv0esN1GT7ewwyYG
-         H2y8Eqn4Mo60ywPRXJTn8XgB+fMxZVA7Ct7E9JHORCpJmeCIzHvdrGjUdnE+vxLGYPiz
-         VllmEBVE8pnA4884rTJfjjv+EJ0V+uVKTLuKCdadwNglfs7N/eccLAUNRpSrEf1I0/Hg
-         dxzYcGpTFKNcuWyNeoJKlNn2EdqUnIIf8IbDhN28vDqEqCqgpCdS+JbajSk8ldfUqupS
-         L6eoIE7x1bDdqffvBZdtYyGHZKEJjlBUFneI5JFhM147Bl5C24i2CFWn5q43MEwWX9Re
-         KG+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679597348;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UaAtIRtOu++U0RXXy05q7KocYfCm4/E/CZEqe2Ect2k=;
-        b=xYgQMOkN2xDt5qRmdnekuBzw+j4N8P1VRd1njREZPCj3v0YbH7VKhiGnhcTC0yNnnD
-         dLeOI2uOihTN6aIfonJ8PeR96CSMpm4BryAGHeryrYLbfofitOFR7V5ns6QTNzOD7lzt
-         SKpLU0/3pIlD384gsJJD4iG9uUHiDftWN5HlitiH2C77VlZR9ZGI2ovQP2axO+lgcMwa
-         SnTfT7dNaBFo+b4Lf7a/PpSHzT/r3PgFIzOjctk/JnFjpO6BCIJhFwPTYG6VkiuqScLJ
-         AaqIK1TBg83bqXC0XFRDxtxmGSB1Mx0dHmxucKf6seZmesYvQsRQI2HgyvfEfXZ5iHhc
-         nimQ==
-X-Gm-Message-State: AO0yUKUlHOxF8zs4c/SJx3sp1ATGat4rzlb9Y1nfIJ3i/MQKtkWCe0Tf
-	mES7gvE1Dz8d0MrE5dki8uA=
-X-Google-Smtp-Source: AK7set8iPShWRfidqt9I4Gp4+eMynjPzq6WpxgPllmii/Bx8E6MpO7U6wLeZYbAleSLfDLFNMZa2Gg==
-X-Received: by 2002:a7b:cd88:0:b0:3ee:7061:1bdd with SMTP id y8-20020a7bcd88000000b003ee70611bddmr481614wmj.4.1679597348358;
-        Thu, 23 Mar 2023 11:49:08 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id n17-20020a1c7211000000b003edf2dc7ca3sm2621024wmc.34.2023.03.23.11.49.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 11:49:07 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Joe Tessler <jrt@google.com>, Dongchun Zhu <dongchun.zhu@mediatek.com>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Tiffany Lin <tiffany.lin@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>, Heiko Stuebner <heiko@sntech.de>,
- Benoit Parrot <bparrot@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] media: dt-bindings: Drop unneeded quotes
-Date: Thu, 23 Mar 2023 19:49:05 +0100
-Message-ID: <5657054.DvuYhMxLoT@jernej-laptop>
-In-Reply-To: <20230320233944.2920964-1-robh@kernel.org>
-References: <20230320233944.2920964-1-robh@kernel.org>
+	id 1pfQ6g-002mD8-14;
+	Thu, 23 Mar 2023 18:56:16 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 9C1825FD09;
+	Thu, 23 Mar 2023 21:55:59 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1679597759;
+	bh=ed9AeSLzPB6ZrfljopDiIm60hYwrFfEp8kaOKxNGdNU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=rgtT4PGb3ikHO1fOwokuFMAglPXKKSFeslNFC54blWwHc2meiZCC7EOwOyR85R1/1
+	 OnJSfffzOA3lze++dGtwxh/3CWDHqKqB2kyJOnCJe2bxupQmn/fSJTqSd3UE0o4681
+	 mlCqC6ZcAa3nLrE819pVerDJfe03YsWl4g3TQVc+B2zYhVKcwK3U6nHjIFEdlPAoZG
+	 YBRrDbNlnq2kG7ARS4boObxNsiWd/keQWmbv0QS9T9122Xj5HpHKB+joiQ+ktQsRuJ
+	 rdDGl2oYoZXn3YjgG2RsiqRMM1DoCRbEhbB+WRfczmiPa7/vqI4flQSkzmTMWH2pCo
+	 xHmnZLJLLfLow==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 23 Mar 2023 21:55:58 +0300 (MSK)
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jianxin.pan@amlogic.com>
+CC: <kernel@sberdevices.ru>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <rockosov@gmail.com>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>
+Subject: [PATCH v1] arm64: dts: meson: a1: place pwrc and secure-monitor under /firmware
+Date: Thu, 23 Mar 2023 21:55:48 +0300
+Message-ID: <20230323185548.13731-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/23 12:44:00 #20998559
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_114912_973008_A9940DE9 
-X-CRM114-Status: GOOD (  10.85  )
+X-CRM114-CacheID: sfid-20230323_115614_565922_F1357F9E 
+X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,52 +85,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Dne torek, 21. marec 2023 ob 00:39:42 CET je Rob Herring napisal(a):
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/media/allwinner,sun4i-a10-ir.yaml | 2 +-
->  .../bindings/media/allwinner,sun50i-h6-vpu-g2.yaml        | 4 ++--
+Before, meson power secure controller was a child of secure monitor node.
+But secure monitor isn't the bus in terms of device tree subsystem, so
+of_platform initialization code doesn't populate its children
+(of_platform_default_populate() API).
 
-For Allwinner:
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Therefore in the current device tree meson power secure controller isn't
+probed at all.
 
-Best regards,
-Jernej
+If we place meson power secure controller and secure monitor nodes under
+'/firmware', they will be populated automatically from of_platform
+initialization.
 
->  .../devicetree/bindings/media/amlogic,axg-ge2d.yaml       | 4 ++--
->  .../devicetree/bindings/media/amlogic,gx-vdec.yaml        | 4 ++--
->  .../devicetree/bindings/media/amlogic,meson-ir-tx.yaml    | 4 ++--
->  .../devicetree/bindings/media/i2c/chrontel,ch7322.yaml    | 4 ++--
->  .../devicetree/bindings/media/i2c/dongwoon,dw9768.yaml    | 6 +++---
->  .../devicetree/bindings/media/i2c/maxim,max9286.yaml      | 2 +-
->  .../devicetree/bindings/media/i2c/ovti,ov02a10.yaml       | 2 +-
->  .../devicetree/bindings/media/mediatek,mdp3-rdma.yaml     | 2 +-
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 4 ++--
->  .../devicetree/bindings/media/microchip,sama5d4-vdec.yaml | 4 ++--
->  .../devicetree/bindings/media/nxp,imx8mq-vpu.yaml         | 4 ++--
->  .../devicetree/bindings/media/qcom,msm8916-camss.yaml     | 4 ++--
->  .../devicetree/bindings/media/qcom,msm8916-venus.yaml     | 8 ++++----
->  .../devicetree/bindings/media/qcom,msm8996-camss.yaml     | 4 ++--
->  .../devicetree/bindings/media/qcom,msm8996-venus.yaml     | 4 ++--
->  .../devicetree/bindings/media/qcom,sc7180-venus.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sc7280-venus.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sdm660-camss.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sdm660-venus.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sdm845-camss.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml   | 4 ++--
->  .../devicetree/bindings/media/qcom,sdm845-venus.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sm8250-camss.yaml      | 4 ++--
->  .../devicetree/bindings/media/qcom,sm8250-venus.yaml      | 4 ++--
->  Documentation/devicetree/bindings/media/rc.yaml           | 2 +-
->  .../devicetree/bindings/media/rockchip,rk3568-vepu.yaml   | 4 ++--
->  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 ++--
->  Documentation/devicetree/bindings/media/ti,cal.yaml       | 2 +-
->  30 files changed, 57 insertions(+), 57 deletions(-)
+Fixes: 04dd0b6584cd ("arm64: dts: meson: a1: add secure power domain controller")
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 77023a29b6e7..44c651254dc5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -72,8 +72,10 @@ linux,cma {
+ 		};
+ 	};
+ 
+-	sm: secure-monitor {
+-		compatible = "amlogic,meson-gxbb-sm";
++	firmware {
++		sm: secure-monitor {
++			compatible = "amlogic,meson-gxbb-sm";
++		};
+ 
+ 		pwrc: power-controller {
+ 			compatible = "amlogic,meson-a1-pwrc";
+-- 
+2.36.0
 
 
 _______________________________________________
