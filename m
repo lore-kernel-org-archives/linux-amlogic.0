@@ -4,78 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7B53C6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 06:55:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC75C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Mar 2023 07:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lFr09R3rS/nuMt5uSjY7b+FsW149SQziIDgRW12y6Fo=; b=j8OmFIjaPxSLoO
-	gj0CifTA3nTv+iBb/zoNNEKXQ/S1sbvaeA3WX/+WG45cPqPMG9ebOn2+LzXLiqZf/M6vTg+94884/
-	vJms+ZqfXnRmk30LvxUYxqWBk+oLx92GX5ubzmS34abb9lHG5kSEAkJIP3NXYG7TT3+RAhYrfM92v
-	9FGx15YxO4uizbGPwOHqzl/K6IpfWwgwn0jPpZYhHAno3ClKudna7HfVSYAOOr0vZtahbL63fcOuD
-	OO23z/AHOsKfDwt9MUrEiY+PlUJ1+0fuX7aBKCuBbPmOLNDHrPjPu3qTlMZV7b3vYX6MTinl0vVew
-	gsMSzBE2xPapUOho0LCA==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wCoDOelyRn9S5wcUGx2AQyMZYDP3yrjrHPAdVriTcI8=; b=MgPcKm/2QcE2t6
+	qmVTAWPZJW1/MrS9YGeP2Kqywk9FjUFagFjfXWuwNongtfJUZbKF+xjQL4rAbjUvjrUqLtvB8BpBx
+	KH1nG1t059IW7VwvFYSzvLMK1v+WN85npq3N0grrEBlXRRQktuFtTk26ReJfkIFt1RnaTbS1/RkN7
+	/nCNvKgUZkkCrtJ7gaJ4fWOXZ3ptjYeIgwePRYWse+KeGxjxtcp8xOREugIWqAha5Mf+55zDhGPzP
+	NYH4p4Bjk/2XevQ9zQXlL/FnU7/VIHrkT7f5g0ARCtcFwfActa5tJGtHIVX0U3eEqEmDxO09vEncd
+	Ur7Zsz6FbwaPkF6+dmwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfErA-0012ni-0R;
-	Thu, 23 Mar 2023 06:55:28 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1pfEzs-0013z7-1Q;
+	Thu, 23 Mar 2023 07:04:28 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfEr3-0012hu-2A
+	id 1pfEzn-0013y9-1J
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Mar 2023 06:55:23 +0000
-Received: by mail-wr1-x436.google.com with SMTP id d17so10890343wrb.11
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Mar 2023 23:55:21 -0700 (PDT)
+	Thu, 23 Mar 2023 07:04:27 +0000
+Received: by mail-wr1-x431.google.com with SMTP id o7so19359220wrg.5
+        for <linux-amlogic@lists.infradead.org>; Thu, 23 Mar 2023 00:04:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679554520;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112; t=1679555062;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=o7QTlql6gHJ/9dufI5rRY7wtq8yqE56iTyJomQVRJVc=;
-        b=Vy4I8CnJy4IL8TZ12Cu3GSzW0ln7RJzyT6mRRYDc0j4n0UoJLBjN1/d060OMh/XS6f
-         MLDQma2CmaSmAimPiWEy6qixITn6xMpS8yZJTPwLPqrpEzDXWYIyCxGnGQLBqtYL+IQn
-         XzJMTMqDWJIM9o65rJohXJ8kI/ViGGDj07RkUPLMoNpMVc7cT6Pu+f8Z3CXdSPoUs3tw
-         LUxIpssW+IAbzBZlWCoRxrst5ASqSksOk0BWZpycdICBJG5j0bwQ3N8tOP+1ZsEBZUML
-         n+2FgVTPbFHGFFy2noJOml/1qh2rfp37XJ+ATzWKlArNeEN3C3TDOHM/sWJIzDT4jkZF
-         Ir8Q==
+        bh=ElkB90fxduV7LU53xTO7ih5CA9DN7CXC/xHmCsQ75jE=;
+        b=YmVXGtyHJrezqJTkEq7GiBl8yIZhAg2d27mWu3yr+PGCBduEuEqLgDchCWA19u5z6C
+         fmtgv0EmARBr7/Xvq9fJT1ylwNb9rsZTdOHRWug3nEcw0gY/lzbcj29EvzUN/aGET0EI
+         uEZW9it79MdwPkHIA5M6ea6/jFU8764jOr+jqdRVL1x+TBkc6CkgEBIaj/s46VNngZr6
+         jmDQThj6GSf43NAo2WYpBL/xRJsJ0LvFrF1kGkJzG51fYYgSVx/RsMYX01MI4qRPGqMf
+         nW/io5zT2fVc7lcOEI6tMEik5DbS5m3fYfiwoxnkOhNgDsrKR4K2D3ijyVvnrTJBD0a3
+         KOcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679554520;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679555062;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=o7QTlql6gHJ/9dufI5rRY7wtq8yqE56iTyJomQVRJVc=;
-        b=B/6JyAAdaNiaQZQ/S9cxiQVQoQAZjTYY7u2gwS2ceRqL4FxSnHtytbuQrfwGtPeRqc
-         uy2bOcyO7TuHawngNObGlXfhDyTNT8xZ5RKgmlw6GfXL0PMooE+DuLgdD8Qnj4IuzQ0Y
-         tPsC5g1raIbhvLvaCi5hFLtGAzR/6UGYQCPucXjlMdMawVJTNb7cWyPiUZ5cEgoZJqvb
-         SBAwUTacMgyBrJYDV9Cvu6pcGSIBzcc9y6zZpQo8m2UbDr0xrcOonUDEpaLAsjI9vK55
-         dGk+QzlH+uEbkf0x2H5VqYgJnIojg2MT/oHPXM48NqsJQOU7L7GLyD+U1T02gH8WD4jF
-         0gGw==
-X-Gm-Message-State: AAQBX9eQEELGE+mYoo9Q3pJEAmjGHOjhZ1GM072LjYmDgZLDyvSJQB6d
-	bOraesb3I0FsnI+AVQQGXu8Ll10kWy7HUopD
-X-Google-Smtp-Source: AKy350Z9s6dMeMmu/TtB25zgLsZOzhTPNU61WxG+fjIqJb+UJjJYKxq+XrEfwf4kyVh0wJ1gTDpXEA==
-X-Received: by 2002:a5d:4c8b:0:b0:2ce:ae4c:c42d with SMTP id z11-20020a5d4c8b000000b002ceae4cc42dmr1842572wrs.1.1679554520288;
-        Wed, 22 Mar 2023 23:55:20 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id z15-20020a5d44cf000000b002ce9f0e4a8fsm15520831wrr.84.2023.03.22.23.55.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 23:55:20 -0700 (PDT)
+        bh=ElkB90fxduV7LU53xTO7ih5CA9DN7CXC/xHmCsQ75jE=;
+        b=R+lC6GG6l+NX2uDMWZm294PsAgxssxffZf9Ik5U8skxUDqlx/WWmZetOwJ2BYvEeiA
+         Mb3F8V7Jm83F1NxCR/uyfZEzw5n7PEczu0g/xF0uETeOok99MMkjLNucp8Fg1YEdzkr+
+         J5yb8hda3JDsTgZyTzDtHyxwmt1Gy/Y+0tYuw4++Qc1aoZL7Ir8njM7iKNVol+8YD3cF
+         nFyKWmtn8wsqusxTVxzqy26aHvrW8/HWa5gvJ5cW6mL21LGHaDNvEoOnRLx1P9QAsPpd
+         C0bofJ9dnoOktQt5n6cbLukXzRJWjIh6aG3qHGGjEuYf4Ndpaen4Q2oVgUh+MImi+UhS
+         ej3Q==
+X-Gm-Message-State: AAQBX9cY7RNg8VQ8HRdvgBnt4AkfKOfoGKj1RwZyWBYjtKRGg5LstGdq
+	stuFj7xnrJL56pWXg/ncaaU=
+X-Google-Smtp-Source: AKy350Z8Pr35HN4lABZcoNvzvmM6h/O3L99Suf0RaAmX2MeLpWdU+0zEHmJrwnBQtFyx3u5YdeAOMg==
+X-Received: by 2002:adf:fbd1:0:b0:2bf:f735:1310 with SMTP id d17-20020adffbd1000000b002bff7351310mr1551325wrs.2.1679555061723;
+        Thu, 23 Mar 2023 00:04:21 -0700 (PDT)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id c8-20020adfe708000000b002cde626cd96sm15352538wrm.65.2023.03.23.00.04.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Mar 2023 00:04:21 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.2\))
+Subject: Re: [PATCH 12/13] boards: amlogic: add WeTek Hub and WeTek Play2
+ defconfig
 From: Christian Hewitt <christianshewitt@gmail.com>
-To: u-boot@lists.denx.de,
-	u-boot-amlogic@groups.io,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH 12/13] boards: amlogic: add WeTek Hub and WeTek Play2 defconfig
-Date: Thu, 23 Mar 2023 06:54:57 +0000
-Message-Id: <20230323065458.776029-13-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230323065458.776029-1-christianshewitt@gmail.com>
+In-Reply-To: <174EF9F0421CB2CD.22739@groups.io>
+Date: Thu, 23 Mar 2023 11:04:18 +0400
+Cc: u-boot@lists.denx.de,
+ linux-amlogic@lists.infradead.org
+Message-Id: <61A15528-D55A-413A-ACCC-CFCE6422DFCA@gmail.com>
 References: <20230323065458.776029-1-christianshewitt@gmail.com>
-MIME-Version: 1.0
+ <174EF9F0421CB2CD.22739@groups.io>
+To: u-boot-amlogic@groups.io,
+ Christian Hewitt <christianshewitt@gmail.com>
+X-Mailer: Apple Mail (2.3696.120.41.1.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_235521_721540_55181337 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20230323_000423_483501_8EE7AECC 
+X-CRM114-Status: GOOD (  15.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,195 +90,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add configurations for the WeTek Hub and WeTek Play2 boards along
-with files for the wetek-gxbb board family to ensure the ethernet
-MAC is correctly discovered. Set myself as the maintainer for the
-board family.
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- board/amlogic/p200/MAINTAINERS |  2 +
- configs/wetek-hub_defconfig    | 70 ++++++++++++++++++++++++++++++++++
- configs/wetek-play2_defconfig  | 70 ++++++++++++++++++++++++++++++++++
- 3 files changed, 142 insertions(+)
- create mode 100644 configs/wetek-hub_defconfig
- create mode 100644 configs/wetek-play2_defconfig
-
-diff --git a/board/amlogic/p200/MAINTAINERS b/board/amlogic/p200/MAINTAINERS
-index 33ca3df5c6..264218e3be 100644
---- a/board/amlogic/p200/MAINTAINERS
-+++ b/board/amlogic/p200/MAINTAINERS
-@@ -7,6 +7,8 @@ F:	board/amlogic/p200/
- F:	configs/nanopi-k2_defconfig
- F:	configs/odroid-c2_defconfig
- F:	configs/p200_defconfig
-+F:	configs/wetek-hub_defconfig
-+F:	configs/wetek-play2_defconfig
- F:	doc/board/amlogic/p200.rst
- F:	doc/board/amlogic/nanopi-k2.rst
- F:	doc/board/amlogic/odroid-c2.rst
-diff --git a/configs/wetek-hub_defconfig b/configs/wetek-hub_defconfig
-new file mode 100644
-index 0000000000..634833f7fe
---- /dev/null
-+++ b/configs/wetek-hub_defconfig
-@@ -0,0 +1,70 @@
-+CONFIG_ARM=y
-+CONFIG_ARCH_MESON=y
-+CONFIG_TEXT_BASE=0x01000000
-+CONFIG_SYS_LOAD_ADDR=0x1000000
-+CONFIG_NR_DRAM_BANKS=1
-+CONFIG_ENV_SIZE=0x2000
-+CONFIG_DM_GPIO=y
-+CONFIG_DEBUG_UART_BASE=0xc81004c0
-+CONFIG_DEBUG_UART_CLOCK=24000000
-+CONFIG_IDENT_STRING=" wetek-hub"
-+CONFIG_DEFAULT_DEVICE_TREE="meson-gxbb-wetek-hub"
-+CONFIG_DEBUG_UART=y
-+CONFIG_HAS_CUSTOM_SYS_INIT_SP_ADDR=y
-+CONFIG_CUSTOM_SYS_INIT_SP_ADDR=0x20000000
-+CONFIG_OF_BOARD_SETUP=y
-+# CONFIG_DISPLAY_CPUINFO is not set
-+CONFIG_MISC_INIT_R=y
-+# CONFIG_CMD_BDI is not set
-+# CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
-+CONFIG_CMD_GPIO=y
-+CONFIG_CMD_I2C=y
-+# CONFIG_CMD_LOADS is not set
-+CONFIG_CMD_MMC=y
-+CONFIG_CMD_USB=y
-+# CONFIG_CMD_SETEXPR is not set
-+CONFIG_CMD_REGULATOR=y
-+CONFIG_OF_CONTROL=y
-+CONFIG_SYS_RELOC_GD_ENV_ADDR=y
-+CONFIG_NET_RANDOM_ETHADDR=y
-+CONFIG_SARADC_MESON=y
-+CONFIG_DM_I2C=y
-+CONFIG_SYS_I2C_MESON=y
-+CONFIG_DM_MMC=y
-+CONFIG_MMC_MESON_GX=y
-+CONFIG_PHY_REALTEK=y
-+CONFIG_DM_ETH=y
-+CONFIG_ETH_DESIGNWARE_MESON8B=y
-+CONFIG_PHY=y
-+CONFIG_MESON_GXBB_USB_PHY=y
-+CONFIG_PINCTRL=y
-+CONFIG_PINCTRL_MESON_GXBB=y
-+CONFIG_POWER_DOMAIN=y
-+CONFIG_MESON_EE_POWER_DOMAIN=y
-+CONFIG_DM_REGULATOR=y
-+CONFIG_DM_REGULATOR_FIXED=y
-+CONFIG_DM_REGULATOR_GPIO=y
-+CONFIG_DM_RESET=y
-+CONFIG_DEBUG_UART_ANNOUNCE=y
-+CONFIG_DEBUG_UART_SKIP_INIT=y
-+CONFIG_MESON_SERIAL=y
-+CONFIG_SYSINFO=y
-+CONFIG_SYSINFO_SMBIOS=y
-+CONFIG_USB=y
-+CONFIG_DM_USB=y
-+CONFIG_USB_DWC2=y
-+CONFIG_USB_KEYBOARD=y
-+CONFIG_VIDEO=y
-+# CONFIG_VIDEO_BPP8 is not set
-+# CONFIG_VIDEO_BPP16 is not set
-+CONFIG_SYS_WHITE_ON_BLACK=y
-+CONFIG_VIDEO_MESON=y
-+CONFIG_VIDEO_DT_SIMPLEFB=y
-+CONFIG_SPLASH_SCREEN=y
-+CONFIG_SPLASH_SCREEN_ALIGN=y
-+CONFIG_VIDEO_BMP_RLE8=y
-+CONFIG_BMP_16BPP=y
-+CONFIG_BMP_24BPP=y
-+CONFIG_BMP_32BPP=y
-+CONFIG_OF_LIBFDT_OVERLAY=y
-diff --git a/configs/wetek-play2_defconfig b/configs/wetek-play2_defconfig
-new file mode 100644
-index 0000000000..6d33b09a94
---- /dev/null
-+++ b/configs/wetek-play2_defconfig
-@@ -0,0 +1,70 @@
-+CONFIG_ARM=y
-+CONFIG_ARCH_MESON=y
-+CONFIG_TEXT_BASE=0x01000000
-+CONFIG_SYS_LOAD_ADDR=0x1000000
-+CONFIG_NR_DRAM_BANKS=1
-+CONFIG_ENV_SIZE=0x2000
-+CONFIG_DM_GPIO=y
-+CONFIG_DEBUG_UART_BASE=0xc81004c0
-+CONFIG_DEBUG_UART_CLOCK=24000000
-+CONFIG_IDENT_STRING=" wetek-play2"
-+CONFIG_DEFAULT_DEVICE_TREE="meson-gxbb-wetek-play2"
-+CONFIG_DEBUG_UART=y
-+CONFIG_HAS_CUSTOM_SYS_INIT_SP_ADDR=y
-+CONFIG_CUSTOM_SYS_INIT_SP_ADDR=0x20000000
-+CONFIG_OF_BOARD_SETUP=y
-+# CONFIG_DISPLAY_CPUINFO is not set
-+CONFIG_MISC_INIT_R=y
-+# CONFIG_CMD_BDI is not set
-+# CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
-+CONFIG_CMD_GPIO=y
-+CONFIG_CMD_I2C=y
-+# CONFIG_CMD_LOADS is not set
-+CONFIG_CMD_MMC=y
-+CONFIG_CMD_USB=y
-+# CONFIG_CMD_SETEXPR is not set
-+CONFIG_CMD_REGULATOR=y
-+CONFIG_OF_CONTROL=y
-+CONFIG_SYS_RELOC_GD_ENV_ADDR=y
-+CONFIG_NET_RANDOM_ETHADDR=y
-+CONFIG_SARADC_MESON=y
-+CONFIG_DM_I2C=y
-+CONFIG_SYS_I2C_MESON=y
-+CONFIG_DM_MMC=y
-+CONFIG_MMC_MESON_GX=y
-+CONFIG_PHY_REALTEK=y
-+CONFIG_DM_ETH=y
-+CONFIG_ETH_DESIGNWARE_MESON8B=y
-+CONFIG_PHY=y
-+CONFIG_MESON_GXBB_USB_PHY=y
-+CONFIG_PINCTRL=y
-+CONFIG_PINCTRL_MESON_GXBB=y
-+CONFIG_POWER_DOMAIN=y
-+CONFIG_MESON_EE_POWER_DOMAIN=y
-+CONFIG_DM_REGULATOR=y
-+CONFIG_DM_REGULATOR_FIXED=y
-+CONFIG_DM_REGULATOR_GPIO=y
-+CONFIG_DM_RESET=y
-+CONFIG_DEBUG_UART_ANNOUNCE=y
-+CONFIG_DEBUG_UART_SKIP_INIT=y
-+CONFIG_MESON_SERIAL=y
-+CONFIG_SYSINFO=y
-+CONFIG_SYSINFO_SMBIOS=y
-+CONFIG_USB=y
-+CONFIG_DM_USB=y
-+CONFIG_USB_DWC2=y
-+CONFIG_USB_KEYBOARD=y
-+CONFIG_VIDEO=y
-+# CONFIG_VIDEO_BPP8 is not set
-+# CONFIG_VIDEO_BPP16 is not set
-+CONFIG_SYS_WHITE_ON_BLACK=y
-+CONFIG_VIDEO_MESON=y
-+CONFIG_VIDEO_DT_SIMPLEFB=y
-+CONFIG_SPLASH_SCREEN=y
-+CONFIG_SPLASH_SCREEN_ALIGN=y
-+CONFIG_VIDEO_BMP_RLE8=y
-+CONFIG_BMP_16BPP=y
-+CONFIG_BMP_24BPP=y
-+CONFIG_BMP_32BPP=y
-+CONFIG_OF_LIBFDT_OVERLAY=y
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cgo+IE9uIDIzIE1hciAyMDIzLCBhdCAxMDo1NCBhbSwgQ2hyaXN0aWFuIEhld2l0dCB2aWEgZ3Jv
+dXBzLmlvIDxjaHJpc3RpYW5zaGV3aXR0PWdtYWlsLmNvbUBncm91cHMuaW8+IHdyb3RlOgo+IAo+
+IEFkZCBjb25maWd1cmF0aW9ucyBmb3IgdGhlIFdlVGVrIEh1YiBhbmQgV2VUZWsgUGxheTIgYm9h
+cmRzIGFsb25nCj4gd2l0aCBmaWxlcyBmb3IgdGhlIHdldGVrLWd4YmIgYm9hcmQgZmFtaWx5IHRv
+IGVuc3VyZSB0aGUgZXRoZXJuZXQKPiBNQUMgaXMgY29ycmVjdGx5IGRpc2NvdmVyZWQuIFNldCBt
+eXNlbGYgYXMgdGhlIG1haW50YWluZXIgZm9yIHRoZQo+IGJvYXJkIGZhbWlseS4KCl4gc2hvdWxk
+IHJlYWQganVzdCAiQWRkIGNvbmZpZ3VyYXRpb25zIGZvciB0aGUgV2VUZWsgSHViIGFuZCBXZVRl
+ayBQbGF5Mgpib2FyZHPigJ0gYXMgdGhlIGJvYXJkLWZhbWlseSBjaGFuZ2VzIHdlcmUgZHJvcHBl
+ZCAobm90IG5lZWRlZCkuIEkgY2FuCnNlbmQgYSB2MiBmb3IgdGhpcyBwYXRjaCBhbG9uZSAob3Ig
+d291bGQgeW91IHByZWZlciB0aGUgc2VyaWVzPykKCkNocmlzdGlhbgoKPiAKPiBTaWduZWQtb2Zm
+LWJ5OiBDaHJpc3RpYW4gSGV3aXR0IDxjaHJpc3RpYW5zaGV3aXR0QGdtYWlsLmNvbT4KPiAtLS0K
+PiBib2FyZC9hbWxvZ2ljL3AyMDAvTUFJTlRBSU5FUlMgfCAgMiArCj4gY29uZmlncy93ZXRlay1o
+dWJfZGVmY29uZmlnICAgIHwgNzAgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+
+IGNvbmZpZ3Mvd2V0ZWstcGxheTJfZGVmY29uZmlnICB8IDcwICsrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysKPiAzIGZpbGVzIGNoYW5nZWQsIDE0MiBpbnNlcnRpb25zKCspCj4gY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGNvbmZpZ3Mvd2V0ZWstaHViX2RlZmNvbmZpZwo+IGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBjb25maWdzL3dldGVrLXBsYXkyX2RlZmNvbmZpZwo+IAo+IGRpZmYgLS1naXQgYS9i
+b2FyZC9hbWxvZ2ljL3AyMDAvTUFJTlRBSU5FUlMgYi9ib2FyZC9hbWxvZ2ljL3AyMDAvTUFJTlRB
+SU5FUlMKPiBpbmRleCAzM2NhM2RmNWM2Li4yNjQyMThlM2JlIDEwMDY0NAo+IC0tLSBhL2JvYXJk
+L2FtbG9naWMvcDIwMC9NQUlOVEFJTkVSUwo+ICsrKyBiL2JvYXJkL2FtbG9naWMvcDIwMC9NQUlO
+VEFJTkVSUwo+IEBAIC03LDYgKzcsOCBAQCBGOglib2FyZC9hbWxvZ2ljL3AyMDAvCj4gRjoJY29u
+Zmlncy9uYW5vcGktazJfZGVmY29uZmlnCj4gRjoJY29uZmlncy9vZHJvaWQtYzJfZGVmY29uZmln
+Cj4gRjoJY29uZmlncy9wMjAwX2RlZmNvbmZpZwo+ICtGOgljb25maWdzL3dldGVrLWh1Yl9kZWZj
+b25maWcKPiArRjoJY29uZmlncy93ZXRlay1wbGF5Ml9kZWZjb25maWcKPiBGOglkb2MvYm9hcmQv
+YW1sb2dpYy9wMjAwLnJzdAo+IEY6CWRvYy9ib2FyZC9hbWxvZ2ljL25hbm9waS1rMi5yc3QKPiBG
+Oglkb2MvYm9hcmQvYW1sb2dpYy9vZHJvaWQtYzIucnN0Cj4gZGlmZiAtLWdpdCBhL2NvbmZpZ3Mv
+d2V0ZWstaHViX2RlZmNvbmZpZyBiL2NvbmZpZ3Mvd2V0ZWstaHViX2RlZmNvbmZpZwo+IG5ldyBm
+aWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMC4uNjM0ODMzZjdmZQo+IC0tLSAvZGV2
+L251bGwKPiArKysgYi9jb25maWdzL3dldGVrLWh1Yl9kZWZjb25maWcKPiBAQCAtMCwwICsxLDcw
+IEBACj4gK0NPTkZJR19BUk09eQo+ICtDT05GSUdfQVJDSF9NRVNPTj15Cj4gK0NPTkZJR19URVhU
+X0JBU0U9MHgwMTAwMDAwMAo+ICtDT05GSUdfU1lTX0xPQURfQUREUj0weDEwMDAwMDAKPiArQ09O
+RklHX05SX0RSQU1fQkFOS1M9MQo+ICtDT05GSUdfRU5WX1NJWkU9MHgyMDAwCj4gK0NPTkZJR19E
+TV9HUElPPXkKPiArQ09ORklHX0RFQlVHX1VBUlRfQkFTRT0weGM4MTAwNGMwCj4gK0NPTkZJR19E
+RUJVR19VQVJUX0NMT0NLPTI0MDAwMDAwCj4gK0NPTkZJR19JREVOVF9TVFJJTkc9IiB3ZXRlay1o
+dWIiCj4gK0NPTkZJR19ERUZBVUxUX0RFVklDRV9UUkVFPSJtZXNvbi1neGJiLXdldGVrLWh1YiIK
+PiArQ09ORklHX0RFQlVHX1VBUlQ9eQo+ICtDT05GSUdfSEFTX0NVU1RPTV9TWVNfSU5JVF9TUF9B
+RERSPXkKPiArQ09ORklHX0NVU1RPTV9TWVNfSU5JVF9TUF9BRERSPTB4MjAwMDAwMDAKPiArQ09O
+RklHX09GX0JPQVJEX1NFVFVQPXkKPiArIyBDT05GSUdfRElTUExBWV9DUFVJTkZPIGlzIG5vdCBz
+ZXQKPiArQ09ORklHX01JU0NfSU5JVF9SPXkKPiArIyBDT05GSUdfQ01EX0JESSBpcyBub3Qgc2V0
+Cj4gKyMgQ09ORklHX0NNRF9JTUkgaXMgbm90IHNldAo+ICtDT05GSUdfQ01EX0FEQz15Cj4gK0NP
+TkZJR19DTURfR1BJTz15Cj4gK0NPTkZJR19DTURfSTJDPXkKPiArIyBDT05GSUdfQ01EX0xPQURT
+IGlzIG5vdCBzZXQKPiArQ09ORklHX0NNRF9NTUM9eQo+ICtDT05GSUdfQ01EX1VTQj15Cj4gKyMg
+Q09ORklHX0NNRF9TRVRFWFBSIGlzIG5vdCBzZXQKPiArQ09ORklHX0NNRF9SRUdVTEFUT1I9eQo+
+ICtDT05GSUdfT0ZfQ09OVFJPTD15Cj4gK0NPTkZJR19TWVNfUkVMT0NfR0RfRU5WX0FERFI9eQo+
+ICtDT05GSUdfTkVUX1JBTkRPTV9FVEhBRERSPXkKPiArQ09ORklHX1NBUkFEQ19NRVNPTj15Cj4g
+K0NPTkZJR19ETV9JMkM9eQo+ICtDT05GSUdfU1lTX0kyQ19NRVNPTj15Cj4gK0NPTkZJR19ETV9N
+TUM9eQo+ICtDT05GSUdfTU1DX01FU09OX0dYPXkKPiArQ09ORklHX1BIWV9SRUFMVEVLPXkKPiAr
+Q09ORklHX0RNX0VUSD15Cj4gK0NPTkZJR19FVEhfREVTSUdOV0FSRV9NRVNPTjhCPXkKPiArQ09O
+RklHX1BIWT15Cj4gK0NPTkZJR19NRVNPTl9HWEJCX1VTQl9QSFk9eQo+ICtDT05GSUdfUElOQ1RS
+TD15Cj4gK0NPTkZJR19QSU5DVFJMX01FU09OX0dYQkI9eQo+ICtDT05GSUdfUE9XRVJfRE9NQUlO
+PXkKPiArQ09ORklHX01FU09OX0VFX1BPV0VSX0RPTUFJTj15Cj4gK0NPTkZJR19ETV9SRUdVTEFU
+T1I9eQo+ICtDT05GSUdfRE1fUkVHVUxBVE9SX0ZJWEVEPXkKPiArQ09ORklHX0RNX1JFR1VMQVRP
+Ul9HUElPPXkKPiArQ09ORklHX0RNX1JFU0VUPXkKPiArQ09ORklHX0RFQlVHX1VBUlRfQU5OT1VO
+Q0U9eQo+ICtDT05GSUdfREVCVUdfVUFSVF9TS0lQX0lOSVQ9eQo+ICtDT05GSUdfTUVTT05fU0VS
+SUFMPXkKPiArQ09ORklHX1NZU0lORk89eQo+ICtDT05GSUdfU1lTSU5GT19TTUJJT1M9eQo+ICtD
+T05GSUdfVVNCPXkKPiArQ09ORklHX0RNX1VTQj15Cj4gK0NPTkZJR19VU0JfRFdDMj15Cj4gK0NP
+TkZJR19VU0JfS0VZQk9BUkQ9eQo+ICtDT05GSUdfVklERU89eQo+ICsjIENPTkZJR19WSURFT19C
+UFA4IGlzIG5vdCBzZXQKPiArIyBDT05GSUdfVklERU9fQlBQMTYgaXMgbm90IHNldAo+ICtDT05G
+SUdfU1lTX1dISVRFX09OX0JMQUNLPXkKPiArQ09ORklHX1ZJREVPX01FU09OPXkKPiArQ09ORklH
+X1ZJREVPX0RUX1NJTVBMRUZCPXkKPiArQ09ORklHX1NQTEFTSF9TQ1JFRU49eQo+ICtDT05GSUdf
+U1BMQVNIX1NDUkVFTl9BTElHTj15Cj4gK0NPTkZJR19WSURFT19CTVBfUkxFOD15Cj4gK0NPTkZJ
+R19CTVBfMTZCUFA9eQo+ICtDT05GSUdfQk1QXzI0QlBQPXkKPiArQ09ORklHX0JNUF8zMkJQUD15
+Cj4gK0NPTkZJR19PRl9MSUJGRFRfT1ZFUkxBWT15Cj4gZGlmZiAtLWdpdCBhL2NvbmZpZ3Mvd2V0
+ZWstcGxheTJfZGVmY29uZmlnIGIvY29uZmlncy93ZXRlay1wbGF5Ml9kZWZjb25maWcKPiBuZXcg
+ZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAuLjZkMzNiMDlhOTQKPiAtLS0gL2Rl
+di9udWxsCj4gKysrIGIvY29uZmlncy93ZXRlay1wbGF5Ml9kZWZjb25maWcKPiBAQCAtMCwwICsx
+LDcwIEBACj4gK0NPTkZJR19BUk09eQo+ICtDT05GSUdfQVJDSF9NRVNPTj15Cj4gK0NPTkZJR19U
+RVhUX0JBU0U9MHgwMTAwMDAwMAo+ICtDT05GSUdfU1lTX0xPQURfQUREUj0weDEwMDAwMDAKPiAr
+Q09ORklHX05SX0RSQU1fQkFOS1M9MQo+ICtDT05GSUdfRU5WX1NJWkU9MHgyMDAwCj4gK0NPTkZJ
+R19ETV9HUElPPXkKPiArQ09ORklHX0RFQlVHX1VBUlRfQkFTRT0weGM4MTAwNGMwCj4gK0NPTkZJ
+R19ERUJVR19VQVJUX0NMT0NLPTI0MDAwMDAwCj4gK0NPTkZJR19JREVOVF9TVFJJTkc9IiB3ZXRl
+ay1wbGF5MiIKPiArQ09ORklHX0RFRkFVTFRfREVWSUNFX1RSRUU9Im1lc29uLWd4YmItd2V0ZWst
+cGxheTIiCj4gK0NPTkZJR19ERUJVR19VQVJUPXkKPiArQ09ORklHX0hBU19DVVNUT01fU1lTX0lO
+SVRfU1BfQUREUj15Cj4gK0NPTkZJR19DVVNUT01fU1lTX0lOSVRfU1BfQUREUj0weDIwMDAwMDAw
+Cj4gK0NPTkZJR19PRl9CT0FSRF9TRVRVUD15Cj4gKyMgQ09ORklHX0RJU1BMQVlfQ1BVSU5GTyBp
+cyBub3Qgc2V0Cj4gK0NPTkZJR19NSVNDX0lOSVRfUj15Cj4gKyMgQ09ORklHX0NNRF9CREkgaXMg
+bm90IHNldAo+ICsjIENPTkZJR19DTURfSU1JIGlzIG5vdCBzZXQKPiArQ09ORklHX0NNRF9BREM9
+eQo+ICtDT05GSUdfQ01EX0dQSU89eQo+ICtDT05GSUdfQ01EX0kyQz15Cj4gKyMgQ09ORklHX0NN
+RF9MT0FEUyBpcyBub3Qgc2V0Cj4gK0NPTkZJR19DTURfTU1DPXkKPiArQ09ORklHX0NNRF9VU0I9
+eQo+ICsjIENPTkZJR19DTURfU0VURVhQUiBpcyBub3Qgc2V0Cj4gK0NPTkZJR19DTURfUkVHVUxB
+VE9SPXkKPiArQ09ORklHX09GX0NPTlRST0w9eQo+ICtDT05GSUdfU1lTX1JFTE9DX0dEX0VOVl9B
+RERSPXkKPiArQ09ORklHX05FVF9SQU5ET01fRVRIQUREUj15Cj4gK0NPTkZJR19TQVJBRENfTUVT
+T049eQo+ICtDT05GSUdfRE1fSTJDPXkKPiArQ09ORklHX1NZU19JMkNfTUVTT049eQo+ICtDT05G
+SUdfRE1fTU1DPXkKPiArQ09ORklHX01NQ19NRVNPTl9HWD15Cj4gK0NPTkZJR19QSFlfUkVBTFRF
+Sz15Cj4gK0NPTkZJR19ETV9FVEg9eQo+ICtDT05GSUdfRVRIX0RFU0lHTldBUkVfTUVTT044Qj15
+Cj4gK0NPTkZJR19QSFk9eQo+ICtDT05GSUdfTUVTT05fR1hCQl9VU0JfUEhZPXkKPiArQ09ORklH
+X1BJTkNUUkw9eQo+ICtDT05GSUdfUElOQ1RSTF9NRVNPTl9HWEJCPXkKPiArQ09ORklHX1BPV0VS
+X0RPTUFJTj15Cj4gK0NPTkZJR19NRVNPTl9FRV9QT1dFUl9ET01BSU49eQo+ICtDT05GSUdfRE1f
+UkVHVUxBVE9SPXkKPiArQ09ORklHX0RNX1JFR1VMQVRPUl9GSVhFRD15Cj4gK0NPTkZJR19ETV9S
+RUdVTEFUT1JfR1BJTz15Cj4gK0NPTkZJR19ETV9SRVNFVD15Cj4gK0NPTkZJR19ERUJVR19VQVJU
+X0FOTk9VTkNFPXkKPiArQ09ORklHX0RFQlVHX1VBUlRfU0tJUF9JTklUPXkKPiArQ09ORklHX01F
+U09OX1NFUklBTD15Cj4gK0NPTkZJR19TWVNJTkZPPXkKPiArQ09ORklHX1NZU0lORk9fU01CSU9T
+PXkKPiArQ09ORklHX1VTQj15Cj4gK0NPTkZJR19ETV9VU0I9eQo+ICtDT05GSUdfVVNCX0RXQzI9
+eQo+ICtDT05GSUdfVVNCX0tFWUJPQVJEPXkKPiArQ09ORklHX1ZJREVPPXkKPiArIyBDT05GSUdf
+VklERU9fQlBQOCBpcyBub3Qgc2V0Cj4gKyMgQ09ORklHX1ZJREVPX0JQUDE2IGlzIG5vdCBzZXQK
+PiArQ09ORklHX1NZU19XSElURV9PTl9CTEFDSz15Cj4gK0NPTkZJR19WSURFT19NRVNPTj15Cj4g
+K0NPTkZJR19WSURFT19EVF9TSU1QTEVGQj15Cj4gK0NPTkZJR19TUExBU0hfU0NSRUVOPXkKPiAr
+Q09ORklHX1NQTEFTSF9TQ1JFRU5fQUxJR049eQo+ICtDT05GSUdfVklERU9fQk1QX1JMRTg9eQo+
+ICtDT05GSUdfQk1QXzE2QlBQPXkKPiArQ09ORklHX0JNUF8yNEJQUD15Cj4gK0NPTkZJR19CTVBf
+MzJCUFA9eQo+ICtDT05GSUdfT0ZfTElCRkRUX09WRVJMQVk9eQo+IC0tIAo+IDIuMzQuMQo+IAo+
+IAo+IAo+IC09LT0tPS09LT0tPS09LT0tPS09LT0tCj4gR3JvdXBzLmlvIExpbmtzOiBZb3UgcmVj
+ZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLgo+IFZpZXcvUmVwbHkgT25saW5l
+ICgjMTU0OSk6IGh0dHBzOi8vZ3JvdXBzLmlvL2cvdS1ib290LWFtbG9naWMvbWVzc2FnZS8xNTQ5
+Cj4gTXV0ZSBUaGlzIFRvcGljOiBodHRwczovL2dyb3Vwcy5pby9tdC85Nzc5NTk4NS82NDA3MzIz
+Cj4gR3JvdXAgT3duZXI6IHUtYm9vdC1hbWxvZ2ljK293bmVyQGdyb3Vwcy5pbwo+IFVuc3Vic2Ny
+aWJlOiBodHRwczovL2dyb3Vwcy5pby9nL3UtYm9vdC1hbWxvZ2ljL3Vuc3ViIFtjaHJpc3RpYW5z
+aGV3aXR0QGdtYWlsLmNvbV0KPiAtPS09LT0tPS09LT0tPS09LT0tPS09LQo+IAo+IAoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
