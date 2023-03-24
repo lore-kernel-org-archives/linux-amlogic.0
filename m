@@ -4,70 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA01FC6FD1C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Mar 2023 14:56:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6DD6C6FD20
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Mar 2023 21:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uHyDphn05YwaEgolPvXE3NecOsi539aOuOrfVCqEMcU=; b=rcSh0uxlwCT3eI
-	XlOz++3kihnMxHcHAQRzqq8lV8wSOTMhn00qVA/wLQT7QEXeBkGgmK04L28bBv9gL8b+Kayr1q6jS
-	AsDkjlpUJlnDVtuqv6tyuDvSiPeOXRQn3yWBWeuEgE3+kNKj/8o2CTUyG3RNMMYW1XYWcZkOKqxuN
-	N9wjfDll2RQk6LwFEYv+mz8V66sNPkcV5FSdqFINpD4H/hFpSdvUXAZJ7ckYPY+/IcRKK+qPFbsv/
-	2fNswigvEGj1ujg5EA7iLs9Dcp9eeLuBJtmD3WSnD44VyZJ8FyEA/2/8g9ylOY0v/W1oK/895xqx+
-	fzCN82p7aXo1fV52zHUg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sEX3fHFJul3wtAuKQzrsaPgFtYhXeMMJVyGbg1e+11E=; b=00nITtCiNCA4Qk
+	wPUX4n/1txWKSgMYkz/2LtUShe2ZnhRtms6JlYdJJPs4qJOzNaveX9UmzNdrKOT/raF+lFUCQTBgw
+	63KiNq96hFN8UJQa7Mwp11c43yYPW0nR6GmIwJx5zdkO9aKWT6GxYjglVnDwUaMniJipCHsag5Zhb
+	NV9sfl2bjLi6Jq5NXG5Yt6hKUmIIocsTDN6gjMaO+mXqoK5RAQAlo0FLAARTyi7q8W64uGclMnaj/
+	iznAYWwHeyBiPXKmIiH3y25tJnUGXv2XKcZ4sRAfEbAywerkk9xO2rsU3iIhkZkMXyP+tniWs7wN2
+	a6Q8ra/m3/GI1CxmLqDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfipy-004jHo-1q;
-	Fri, 24 Mar 2023 14:56:14 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pfpNi-005gdo-1A;
+	Fri, 24 Mar 2023 21:55:30 +0000
+Received: from mail-ot1-f51.google.com ([209.85.210.51])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfipw-004jGZ-0w;
-	Fri, 24 Mar 2023 14:56:13 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 23C035FD35;
-	Fri, 24 Mar 2023 17:56:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679669768;
-	bh=jKGFF0Da4+1cXaHKpDC/eneHomsmAiAzeGToPU73Ezw=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=n9hzZenddFoehGW/bLJK8iYJ1+F+cmLzgGNjzI05HGrl0Dbm9UYRrZOoPP09iAy7W
-	 gKUbM5uO2+5SDZWi16LZdE7mRi2Xxhg+Am1QSs0i3jd7ylClla2wTVMZjGex/WgZPY
-	 6i4FOs0642yY94YTdoRTfq3LP7K3OmxroX4Auqy3TuNUwVZ7U7yvgzgt6H5PVaE6HJ
-	 hNf4Ehyy4P+32/cAZbdTXsJ/0vKUC18x3q5i8tRtA6fGnNKJS5dfr+6YcoJLzBeego
-	 XK2DWZGWgq7HkrcpsCyBvyjfuAeSM0N9gbR4gt6wOBYwxHe8yl9hCLa25DwLpUnnb5
-	 o2xr2q6GEBeVA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri, 24 Mar 2023 17:56:07 +0300 (MSK)
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jianxin.pan@amlogic.com>
-CC: <kernel@sberdevices.ru>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <rockosov@gmail.com>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v3] firmware: meson_sm: populate platform devices from sm device tree data
-Date: Fri, 24 Mar 2023 17:55:57 +0300
-Message-ID: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
+	id 1pfpNd-005gcm-1W;
+	Fri, 24 Mar 2023 21:55:27 +0000
+Received: by mail-ot1-f51.google.com with SMTP id k14-20020a9d700e000000b0069faa923e7eso1607753otj.10;
+        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679694922;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cg1iyMYEgtsbLeRCpRhPaB9K329aNM5LHp0JzHXTovw=;
+        b=3GA4YnU49SvJVQaTj9NQMSEuSmfTEgJ94tR+W2hUSTZTiMDtx/UhADJBU1zBfB2IkC
+         KGHwTxoL6VX/NMQtToYG/w26KH4ck8VpLEMlBPL4con5rkdStWpShN2hxoELlP4Tlj6H
+         DkiBl+PXiB7wAXXPVk3zQJInnjoDOcQ2lF0LUsgkpLf/3ZWYf0+lYkMVIZ5Tw5NK6By7
+         fw8CzoxizvT74CrxJeOebqQGEiyYNINDOnedT28mOuE6EojfL7iTHyq0EyXa/RpXU62I
+         FP/87oNoqE/qlCJA3AAV+m14IXcT7zC1IIoTD4Eu+TuJ0rLjBKPvGFUn9u8YuCALAWNp
+         siDw==
+X-Gm-Message-State: AO0yUKVbSmRax8HHUmj+GTqVVOk0U+Cjc1l1UL9+1alvOOz+7e+HosGj
+	hlv22jKIKZKPpqXJWH0xDg==
+X-Google-Smtp-Source: AK7set9dYHYAM+jGb64LFJy7wftyFTrHGyla2bUb6XZxeJK54Y5Ubcj6Z23GeROLf7WDxg8xYzahkQ==
+X-Received: by 2002:a05:6830:148d:b0:69f:93bc:26be with SMTP id s13-20020a056830148d00b0069f93bc26bemr2504070otq.21.1679694922173;
+        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+Received: from robh_at_kernel.org ([2605:ef80:80f9:92f0:b372:78c0:69c1:66d6])
+        by smtp.gmail.com with ESMTPSA id b12-20020a9d6b8c000000b0069fa7b738b3sm2800448otq.27.2023.03.24.14.55.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 14:55:21 -0700 (PDT)
+Received: (nullmailer pid 49167 invoked by uid 1000);
+	Fri, 24 Mar 2023 21:55:19 -0000
+Date: Fri, 24 Mar 2023 16:55:19 -0500
+From: Rob Herring <robh@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Linus Walleij <linus.walleij@linaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v6] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
+Message-ID: <20230324215519.GA41513-robh@kernel.org>
+References: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/24 06:52:00 #21002836
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230324_075612_500048_FF057AF5 
-X-CRM114-Status: GOOD (  12.78  )
+X-CRM114-CacheID: sfid-20230324_145525_535717_072E91B8 
+X-CRM114-Status: GOOD (  17.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,55 +81,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In some meson boards, secure monitor device has children, for example,
-power secure controller. By default, secure monitor isn't the bus in terms
-of device tree subsystem, so the of_platform initialization code doesn't
-populate its device tree data. As a result, secure monitor's children
-aren't probed at all.
+On Sat, Mar 18, 2023 at 12:10:59AM +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson pin controller binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - consider that more than one compatible can be set
+> - remove bus part from example
+> v3:
+> - remove minItem/maxItem properties for compatible
+> v4:
+> - split patch to be able to deal with the different reg/reg-names
+> v5:
+> - remove compatible definition from common yaml
+> - move pincfg-node and pinmux-node definition to meson-gpio object definition
+> v6:
+> - add meson-pins definition
+> - change usage of unevaluatedProperties
+> ---
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 65 +++++++++++++
+>  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 57 +++++++++++
+>  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 66 +++++++++++++
+>  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 70 ++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 74 +++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 76 +++++++++++++++
+>  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
+>  7 files changed, 408 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> new file mode 100644
+> index 000000000..7dccf18c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-a1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A1 pinmux controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: amlogic,meson-pinctrl-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-periphs-pinctrl
+> +      - amlogic,meson-s4-periphs-pinctrl
+> +
+> +required:
+> +  - compatible
+> +
+> +patternProperties:
+> +  "^bank@[0-9a-z]+$":
+> +    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
 
-Run the 'of_platform_populate()' routine manually to resolve such issues.
+       unevaluatedProperties: false
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
-Changes v3 since v2 at [2]:
-    - unmap meson sm shmem region if devm_of_platform_populate() failed
-    - move pr_info() log about successfully enabled secure-monitor to
-      the end of probe() routine
+And other meson-gpio references. With that,
 
-Changes v2 since v1 at [1]:
-    - decline the device tree /firmware based solution
-    - introduce devm_of_platform_populate() solution in the meson sm driver
-
-Links:
-    [1] https://lore.kernel.org/all/20230323185548.13731-1-ddrokosov@sberdevices.ru/
-    [2] https://lore.kernel.org/linux-amlogic/20230324140141.6743-1-ddrokosov@sberdevices.ru/
----
- drivers/firmware/meson/meson_sm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 77aa5c6398aa..1a99dbc274fa 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -311,11 +311,14 @@ static int __init meson_sm_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, fw);
- 
--	pr_info("secure-monitor enabled\n");
-+	if (devm_of_platform_populate(dev))
-+		goto out_in_base;
- 
- 	if (sysfs_create_group(&pdev->dev.kobj, &meson_sm_sysfs_attr_group))
- 		goto out_in_base;
- 
-+	pr_info("secure-monitor enabled\n");
-+
- 	return 0;
- 
- out_in_base:
--- 
-2.36.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
