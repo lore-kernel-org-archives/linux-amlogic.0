@@ -4,82 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C970C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Mar 2023 13:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C073DC6FD1C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Mar 2023 20:35:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I5cZ85gYFgCZL5oPqOoqL9BeqfD+kvbx9MewtFKgjy4=; b=m+qBtFPID9SF67
-	fibKrIZMHtxfpt5bHuwMM8mY+Gp1trFxVeDxtOwibenIDRcfHIbDP9cdnZzDLU1Rq9P/b6+tqS6V8
-	uponQV+LUO3ZLei73LPt4NnPmy6ZI9Y1LikJy9moWExMo4mlzRgxfRLxZCPENoYl1knCs++NQd5Q+
-	UnMWX/L6pYgKECLI/6ceuDZTz2VUNZDDVWG1TW3tlTUju4xPV2N/A44SfjmL6GMfi8iPHdFQnj1+d
-	Q3CmEa2nLBy++kPkIslQf2+4NA12VHHG35jnRsCIQMo2PJ1s76uslYC8+Tz/hf52MoTv6Jihs6srq
-	ymv5/zeetEtbt5FQi9AQ==;
+	List-Owner; bh=N5hmo4XCdHWJkcQcKS/j5bi/ZaoBISy0m7ALaIlDonU=; b=ih2wPKg9jQVfAx
+	ernXcxeWSj1S7HIU9lAmtdghCaTghx91nUxaYRuKr4mRIxoNRb/XgA6Zw1kaAoETRygHbsfY2NI5q
+	16RDvWqLzQAV2p+Gc2JWGE5Ie9nBd0gNPdhZie81MtwO9A3MM6IZOKNiHTs3ZxP0NdcV+s6QPY3iN
+	OOwEty+PAMpMBNm6CZHSvRbPNp5ry4n4PAufhu6k58fCBFXHaX/Zk/t7bd6TFGIR8L7oPGJmnrzjX
+	S20TctEzj3SyreQLmtNlxZDZdoXSd7KJPVv3xFJBD7yGj3OStRVIufXf0pjL3OeOhFy0JTzEzB0pT
+	/VxznM6fIPrlJ8gTqz9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pg3z4-006lCV-1G;
-	Sat, 25 Mar 2023 13:31:02 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pgAbd-007LIE-0X;
+	Sat, 25 Mar 2023 20:35:17 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pg3yz-006lBV-2R
-	for linux-amlogic@lists.infradead.org;
-	Sat, 25 Mar 2023 13:31:00 +0000
-Received: by mail-wm1-x335.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso4658667wms.1
-        for <linux-amlogic@lists.infradead.org>; Sat, 25 Mar 2023 06:30:54 -0700 (PDT)
+	id 1pgAba-007LGW-0C;
+	Sat, 25 Mar 2023 20:35:15 +0000
+Received: by mail-ed1-x533.google.com with SMTP id er18so9771557edb.9;
+        Sat, 25 Mar 2023 13:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679751053;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yx6IA/cmvYhhy0iahaNyV7Iyadx9sMo1vUgqiMwnkCM=;
-        b=L8pjIGb3uR/EQhuCArVEYqyTUL+7t4rDeMCkuZKmnglqDztVOeuYQDuVM4yh33thgb
-         itHK12MU3jrglIXaMYBx2O5kosrrYXv2Zjh3i+OoS7IfkI9Uyl7H0X/TtNmkIyEJ0emk
-         rboBtR5Lr03ORSE7i7NypTlGXHRLT0slvJX8CZql9fyLfw+euoQgh94uvnEdvTmBmJaT
-         aIg3FDmp3NEI7P2DTr2SDb4+gK3g0eNxdpbf1GYjcsF68cV6It2f6c6n79ZiXe/afobo
-         vuIorKO1hUpOskWh/tWn+CABtSfhqm4vvzbpOrRLNdoqE4yiMVKiITyJsbPzjWgf1JQJ
-         m4Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679751053;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+        d=googlemail.com; s=20210112; t=1679776506;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Yx6IA/cmvYhhy0iahaNyV7Iyadx9sMo1vUgqiMwnkCM=;
-        b=pgk07dKPOFo6UO/jL0DqQ/1fa6wQbr8YGYMPy7G8Y5a/9O0zHvlee1ckovlKHK2tH1
-         S4DV+JvaWOPBcS4NV+IFGNzBLqecvUCK1OTlrvpJBDMgnDySbt+fw3Gt/NgFMrp47SeC
-         tMNkyDKlPmxGoGNtMzKr6OwSGNhtmMPqAzhJJQ8Hz/CfKVTz3nH2z88rVqYTf6OLFE9s
-         5dYxYAFaGb4zVGtSq89sZRXj3qd5etZ/0GLYsG/dEWbKygJaMnYyl+CLnrbNFx1PACV5
-         ryGWtjHL7OeB8TMlLxZAlaYVuGU3gQrgYTLuIECPgOCMs/7Ayrsu2rJFeXAMYv+3iat8
-         lf7A==
-X-Gm-Message-State: AO0yUKUqY3PzsOf0w7ORPhE32CgC62nnkWDvKkFtsi+EN0GVuEdjuWcr
-	Nen6c0vGgt8C5w9d+gU8MCnvdA==
-X-Google-Smtp-Source: AK7set/YjWDzwJZpZKsP8OfuUmUh0g3kz11oM8Uia+ycgl/OXq9wDaH9k4+VTfHWlDX2MJDoC8jzyg==
-X-Received: by 2002:a05:600c:224c:b0:3df:eecc:de2b with SMTP id a12-20020a05600c224c00b003dfeeccde2bmr5152550wmm.11.1679751053077;
-        Sat, 25 Mar 2023 06:30:53 -0700 (PDT)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id x4-20020a1c7c04000000b003ee0d191539sm7914108wmc.10.2023.03.25.06.30.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Mar 2023 06:30:52 -0700 (PDT)
-References: <fad131e9-265f-6c4d-3223-932f69c9a927@gmail.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>, "thierry.reding@gmail.com"
- <thierry.reding@gmail.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pwm@vger.kernel.org, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] pwm: meson: add support for S4 chip family
-Date: Sat, 25 Mar 2023 14:24:01 +0100
-In-reply-to: <fad131e9-265f-6c4d-3223-932f69c9a927@gmail.com>
-Message-ID: <1j5yapot4j.fsf@starbuckisacylon.baylibre.com>
+        bh=J1ARdn1PQDKxucq06/tFLuIDSeh/ZkFUkEYqpy9v+YI=;
+        b=pH8AJSa2OZdjUECVUw7QIahO0jCHHDPB/6B7XWY9Rk7I5ODhbjpOsLdNsC10g8TRn/
+         7zhSm0eaTrLBmu4u/sTCXWMMqCFDGafwWrtKFXc93T0BGc0FPVEi7HpHpGUQ1IGq1TG2
+         pZVMFpZFgjYT/COoHwcNvSx8H9Z2HPZf81qDyS24jF2zqiBphLpJ7wGkfgHzZOKb4o2F
+         jQlEbalNZKJped9i4Oh9BwKW7yHt1u42odViX5zeZOWNPBc6zWKSqTVq1aZavSFGSxtJ
+         Ho2gIYf/Ba+qoPD1TqZI+tBRiduHR5ya3CB/ZCsewNd6r4+O20+OhufgOfAxjnhZvAkX
+         0fIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679776506;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J1ARdn1PQDKxucq06/tFLuIDSeh/ZkFUkEYqpy9v+YI=;
+        b=wBDOzmxYOlm6u7StCddRCDEhlKPGzoH5Ki3NL0omSP4phfdp/R/wy/9G50o0QfPE9q
+         0xjhxnrtIEh9iez/3parUtJRyN7E9XCbGhmawx8g7zmsej0Vohmp8mg6eZNu25qRiC4a
+         fFRNomAyUDxvT7NPbli+g/SzL8h6pX4XJC2pYXCaZINL6M/aty8kjp9SvJpqNChZfQ4H
+         k3QnJj3LjEoJcTWvHzs+UFSGtKv42BUov/dd3ZdJXergVAzajVNUWBOamph5yBY7DAvP
+         NWWKPSZn17LOXRXp5qn/gVLkVwcLP+5HXdhauHX2i9NhaehEEoCyPjmEudRQAjCjkYs+
+         RgfA==
+X-Gm-Message-State: AAQBX9efuv3gIYbWOB9lZCvQ5JZ5ugfAE4acdo8pwF2LfsqB/2Key4uG
+	CCJhawcs/SzcQuo+uXVA6eZCQg6B9KO0531sU8Y=
+X-Google-Smtp-Source: AKy350bYbpD7c2ADb4vQaKPIrSV+zp0QcmQXRPw8bGyWYE7vqIOhP36g4ZLROnxjRchNnfxAz3HVFeGxziYjGJkNjRE=
+X-Received: by 2002:a17:907:a46:b0:920:3bf5:7347 with SMTP id
+ be6-20020a1709070a4600b009203bf57347mr4301292ejc.0.1679776505699; Sat, 25 Mar
+ 2023 13:35:05 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 25 Mar 2023 21:34:54 +0100
+Message-ID: <CAFBinCDgMazKVC0psk9DLL2=XTV-GgYEocp9VuKiTnN2hxer2A@mail.gmail.com>
+Subject: Re: [PATCH v3] firmware: meson_sm: populate platform devices from sm
+ device tree data
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: krzysztof.kozlowski@linaro.org, robh@kernel.org, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, jianxin.pan@amlogic.com, 
+	kernel@sberdevices.ru, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	devicetree@vger.kernel.org, rockosov@gmail.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230325_063058_006032_97F645F2 
-X-CRM114-Status: GOOD (  26.20  )
+X-CRM114-CacheID: sfid-20230325_133514_102408_1D817B61 
+X-CRM114-Status: UNSURE (   8.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,139 +87,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Fri 24 Mar 2023 at 23:23, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-
-> This adds pwm support for (at least) the s4 chip family. The extension
-> is based on the vendor driver that can be found at [0]. There the
-> version with the new clock handling is called meson-v2-pwm.
-> Central change is that the clock is now fully provided by the SoC clock
-> core. The multiplexer isn't any longer part of the pwm block.
-
-As far as the documentation is concerned this is not true.
-There is a input multiplexer with the xtal, vid_pll, fdiv3 and fdiv4
-
-I'm not sure the differences mentionned here actually exists.
-
->
-> This was tested on a sc2-based system that uses the same pwm block.
->
-> [0] https://github.com/khadas/linux/blob/khadas-vims-5.4.y/drivers/pwm/pwm-meson.c
-
-AFAICT, this looks more like a choice in vendor SDK to not use the input
-mux. IOW, just SW decision.
-
-I don't think such change makes sense in mainline if the HW has not
-actually changed.
-
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> Adding the amlogic,meson-s4-pwm compatible to the documentation was part
-> of the yaml conversion already.
-> ---
->  drivers/pwm/pwm-meson.c | 38 ++++++++++++++++++++++++++++++++++----
->  1 file changed, 34 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 16d79ca5d..7a93fdada 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -98,6 +98,7 @@ struct meson_pwm_channel {
->  struct meson_pwm_data {
->  	const char * const *parent_names;
->  	unsigned int num_parents;
-> +	unsigned int ext_clk:1;
->  };
->  
->  struct meson_pwm {
-> @@ -158,6 +159,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->  	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
->  	unsigned int duty, period, pre_div, cnt, duty_cnt;
->  	unsigned long fin_freq;
-> +	int err;
->  
->  	duty = state->duty_cycle;
->  	period = state->period;
-> @@ -165,6 +167,14 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->  	if (state->polarity == PWM_POLARITY_INVERSED)
->  		duty = period - duty;
->  
-> +	if (meson->data->ext_clk) {
-> +		err = clk_set_rate(channel->clk, 0xffffUL * NSEC_PER_SEC / period);
-> +		if (err) {
-> +			dev_err(meson->chip.dev, "failed to set pwm clock rate\n");
-> +			return err;
-> +		}
-> +	}
-> +
->  	fin_freq = clk_get_rate(channel->clk);
->  	if (fin_freq == 0) {
->  		dev_err(meson->chip.dev, "invalid source clock frequency\n");
-> @@ -173,10 +183,14 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->  
->  	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
->  
-> -	pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
-> -	if (pre_div > MISC_CLK_DIV_MASK) {
-> -		dev_err(meson->chip.dev, "unable to get period pre_div\n");
-> -		return -EINVAL;
-> +	if (meson->data->ext_clk) {
-> +		pre_div = 0;
-> +	} else {
-> +		pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
-> +		if (pre_div > MISC_CLK_DIV_MASK) {
-> +			dev_err(meson->chip.dev, "unable to get period pre_div\n");
-> +			return -EINVAL;
-> +		}
->  	}
->  
->  	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * (pre_div + 1));
-> @@ -445,6 +459,10 @@ static const struct meson_pwm_data pwm_g12a_ee_data = {
->  	.num_parents = ARRAY_SIZE(pwm_g12a_ee_parent_names),
->  };
->  
-> +static const struct meson_pwm_data pwm_s4_data = {
-> +	.ext_clk = 1,
-> +};
-> +
->  static const struct of_device_id meson_pwm_matches[] = {
->  	{
->  		.compatible = "amlogic,meson8b-pwm",
-> @@ -478,6 +496,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->  		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->  		.data = &pwm_g12a_ao_cd_data
->  	},
-> +	{
-> +		.compatible = "amlogic,meson-s4-pwm",
-> +		.data = &pwm_s4_data
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> @@ -493,6 +515,14 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
->  	for (i = 0; i < meson->chip.npwm; i++) {
->  		struct meson_pwm_channel *channel = &meson->channels[i];
->  
-> +		if (meson->data->ext_clk) {
-> +			snprintf(name, sizeof(name), "clkin%u", i);
-> +			channel->clk = devm_clk_get(dev, name);
-> +			if (IS_ERR(channel->clk))
-> +				return PTR_ERR(channel->clk);
-> +			continue;
-> +		}
-> +
->  		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
->  
->  		init.name = name;
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBNYXIgMjQsIDIwMjMgYXQgMzo1NuKAr1BNIERtaXRyeSBSb2tvc292IDxkZHJva29z
+b3ZAc2JlcmRldmljZXMucnU+IHdyb3RlOgo+Cj4gSW4gc29tZSBtZXNvbiBib2FyZHMsIHNlY3Vy
+ZSBtb25pdG9yIGRldmljZSBoYXMgY2hpbGRyZW4sIGZvciBleGFtcGxlLAo+IHBvd2VyIHNlY3Vy
+ZSBjb250cm9sbGVyLiBCeSBkZWZhdWx0LCBzZWN1cmUgbW9uaXRvciBpc24ndCB0aGUgYnVzIGlu
+IHRlcm1zCj4gb2YgZGV2aWNlIHRyZWUgc3Vic3lzdGVtLCBzbyB0aGUgb2ZfcGxhdGZvcm0gaW5p
+dGlhbGl6YXRpb24gY29kZSBkb2Vzbid0Cj4gcG9wdWxhdGUgaXRzIGRldmljZSB0cmVlIGRhdGEu
+IEFzIGEgcmVzdWx0LCBzZWN1cmUgbW9uaXRvcidzIGNoaWxkcmVuCj4gYXJlbid0IHByb2JlZCBh
+dCBhbGwuCj4KPiBSdW4gdGhlICdvZl9wbGF0Zm9ybV9wb3B1bGF0ZSgpJyByb3V0aW5lIG1hbnVh
+bGx5IHRvIHJlc29sdmUgc3VjaCBpc3N1ZXMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBEbWl0cnkgUm9r
+b3NvdiA8ZGRyb2tvc292QHNiZXJkZXZpY2VzLnJ1PgpBY2tlZC1ieTogTWFydGluIEJsdW1lbnN0
+aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
