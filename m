@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E47EC76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF464C76195
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=vzyd65mFdjLaL1TV+yYlR75vrFOyfSHevqAxCTdCUA4=; b=tEZrX1ik3F4wJ+
-	rUEfsSzQcmPBoeJVe8ehFIZvI+YX9lfWhSAZQUf5xBK6SRBCjg6iwADp5bzqGH2OkcDHWq0xWntVL
-	vGx27udOEENHxh3ag/jWB3mkbtIu9d/xfxIQuw+JfHhGIXRQklkazL5HuN+ZwQVY4hsOKKBxpJZyg
-	W+AwxxzYAfdQlSQ9Sl7RW3SylZ5GO4LcO5pEX5yLDrjvzaX9D5GIN6evVL8NaQSvRLq/nANwdMTne
-	So0Wq8F5q8SgTjmGcoqLu4OVgTY89R9lKAMX0pIdASEQMedAWn/E6eqXQ6+bso8+Us8SBeKcsU1zy
-	Bmm7pvM4T/+/U3tiuvHg==;
+	List-Owner; bh=Q/cZel33+LqFXzYyyGADymTcB1i95V5KGVfHjon8W+k=; b=r9UdjC1NTgnyJJ
+	Yi+eISnCRnhwrxbyE2G7HBDwvzOdE8mMd+Xanu0EiQ2GeVCbBnk+xhMRMEjBjC7brv3PDpJVsFt2A
+	RSLWF8wCKdcleZsa4RRItB+tomSxIpAa52qviZ5tcevCcscPsG+Mg/Ab4TTyu9twz1fcloVwaJLYF
+	cbzu4MUCwmJmJGTLA1Gwso3sOkqhNXRQab2mLVh3n4m/rwB4+erY0FwM8xy57UINLJ3H/Tn97kMNQ
+	lTxOw0LSP1K7rBp3hCCk2vYvgnayo3CEdTznOZ27jSpTvOSNWL57GuFcNs4pgwiIa9v/D45TJZzpY
+	ITCgm+cgobfO9RgA2gPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqEB-00BoHj-33;
-	Mon, 27 Mar 2023 17:01:51 +0000
+	id 1pgqEW-00BoRf-2Q;
+	Mon, 27 Mar 2023 17:02:12 +0000
 Received: from mail-oa1-f45.google.com ([209.85.160.45])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqE5-00BoDO-1m;
-	Mon, 27 Mar 2023 17:01:47 +0000
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-17997ccf711so9993900fac.0;
-        Mon, 27 Mar 2023 10:01:44 -0700 (PDT)
+	id 1pgqEN-00BoDO-10;
+	Mon, 27 Mar 2023 17:02:04 +0000
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-17997ccf711so9995099fac.0;
+        Mon, 27 Mar 2023 10:02:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679936503;
+        d=1e100.net; s=20210112; t=1679936523;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vsiiS+cg9ETxQ7qmK+ws7pFEXw6XBClGT7/dY2V6YIU=;
-        b=ZCkE00cYXeaC4zqEXVJ4+Z8EpF+sGAjI9mj5Yd/vYLXD+CPLOSpwodKvmf2QF/3WPk
-         +I7V7uGNdAA6c0ZiH233yLWzGZBS8HOrzzdenYFSsbZ9NGfvLAYKkJiNpwaO2d0HxA0i
-         mGkML0y1pmo2Gtk0kGOVq+JmsXoRYrm5qs1OyoEnckWfzcjxcHWmuCmh9pBE1AqGP3Yt
-         2f4Ge3sz+QCTeC4tCdkhmWFJdIffXlH43IFc4zyEQt3JAkWzWe0B1k0gr+oFBppiiQUG
-         u91h+e93E2N6gOZgyJjwKsTaLPOhNtJtEBH783ZnjwCvBGiqlwNWOlqKEpzGmC7S4UEu
-         Fy3g==
-X-Gm-Message-State: AAQBX9c/5t/jYH6op4O1B9KZMOzDXEH4FRup1kw9jrtTyflX95zAGPSz
-	wfwwLif2x5RdllTeCmODvA==
-X-Google-Smtp-Source: AKy350Y8FlKQ/y1NaNuo1nCVn3oPUauVYD2sc8z7OjA3kA1wH7XZPPgYFn9GWGfUSER2YH3YSr7JQg==
-X-Received: by 2002:a05:6870:9711:b0:177:b6ce:1e76 with SMTP id n17-20020a056870971100b00177b6ce1e76mr8661847oaq.55.1679936503338;
-        Mon, 27 Mar 2023 10:01:43 -0700 (PDT)
+        bh=g36LB56fmScqFYQLMR1QrBmpqkKWb5a6f9AKykOj3Bw=;
+        b=GlWXj48M51e3G1znSB5znLyxlnx8whqqufRdESn5BskGtJYAxznjqBZ0lSm7Uhz9li
+         4+kFxXLnBi9XWS66RFyD9lg97tSjr3zcW6gyCRlzk5AWG5udmq04FPnUpsuwPXgdcVaC
+         oAoAnWrptP2I5HIyzSczJkxBvN5bvvyHMlHiI8OebiiNK4mrSjukkbhF4prAphuvdZwN
+         97G/Y4qfDPChR92J+moZ7AtcJe+QMeZZz6nEPauIg4FYXTNVg+nDpB/G6xHW6ko9eU/R
+         zStKafPI5W2qCSD7TCxgRYv8Alw+nDqdbgBeypzknnQCOyEYCXNa/l1z/vJ/g/xexazF
+         w5SQ==
+X-Gm-Message-State: AAQBX9cSL8P6bSrLe30zDXJuy9fZgbCab1MCiVgmjkpUJGDpesJyBsvx
+	lMOLnP6TDCAv1fySk1/O1g==
+X-Google-Smtp-Source: AKy350YnHstOEw1avVxSXYtmJmZlzDSW/DDiq3a65+LUgrmEvX2Gwz7648gA6HnLvYFD+vanJTRbEQ==
+X-Received: by 2002:a05:6870:e255:b0:17a:a7af:6ce7 with SMTP id d21-20020a056870e25500b0017aa7af6ce7mr8867996oac.39.1679936522863;
+        Mon, 27 Mar 2023 10:02:02 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zq35-20020a0568718ea300b0017f647294f5sm503569oab.16.2023.03.27.10.01.41
+        by smtp.gmail.com with ESMTPSA id bf9-20020a0568700a0900b0017264f96879sm640694oac.17.2023.03.27.10.02.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 10:01:42 -0700 (PDT)
-Received: (nullmailer pid 4104460 invoked by uid 1000);
-	Mon, 27 Mar 2023 17:01:41 -0000
+        Mon, 27 Mar 2023 10:02:02 -0700 (PDT)
+Received: (nullmailer pid 4106102 invoked by uid 1000);
+	Mon, 27 Mar 2023 17:02:01 -0000
 From: Rob Herring <robh@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Hammer Hsieh <hammerh0314@gmail.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: Drop unneeded quotes
-Date: Mon, 27 Mar 2023 12:01:36 -0500
-Message-Id: <20230327170137.4104272-1-robh@kernel.org>
+To: Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: rng: Drop unneeded quotes
+Date: Mon, 27 Mar 2023 12:01:53 -0500
+Message-Id: <20230327170153.4105594-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_100145_585295_4F92859B 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230327_100203_347432_FDC63FA4 
+X-CRM114-Status: GOOD (  10.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,184 +83,70 @@ checking for this can be enabled in yamllint.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++--
- .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml     | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,em-uart.yaml | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,hscif.yaml   | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,sci.yaml     | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,scif.yaml    | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,scifa.yaml   | 4 ++--
- Documentation/devicetree/bindings/serial/renesas,scifb.yaml   | 4 ++--
- Documentation/devicetree/bindings/serial/serial.yaml          | 4 ++--
- Documentation/devicetree/bindings/serial/sprd-uart.yaml       | 4 ++--
- .../devicetree/bindings/serial/sunplus,sp7021-uart.yaml       | 4 ++--
- 11 files changed, 22 insertions(+), 22 deletions(-)
+ Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 4 ++--
+ Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml | 4 ++--
+ Documentation/devicetree/bindings/rng/mtk-rng.yaml           | 4 ++--
+ Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml   | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 3cbdde85ed71..ad13df48a590 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+index 09c6c906b1f9..457a6e43d810 100644
+--- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
 @@ -2,8 +2,8 @@
  # Copyright 2019 BayLibre, SAS
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/serial/amlogic,meson-uart.yaml#"
+-$id: "http://devicetree.org/schemas/rng/amlogic,meson-rng.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/amlogic,meson-uart.yaml#
++$id: http://devicetree.org/schemas/rng/amlogic,meson-rng.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Amlogic Meson SoC UART Serial Interface
+ title: Amlogic Meson Random number generator
  
-diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-index 05a6999808d1..dd33794b3534 100644
---- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-+++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+diff --git a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml
+index a00e9bc8b609..827983008ecf 100644
+--- a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml
++++ b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/serial/qcom,serial-geni-qcom.yaml#"
+-$id: "http://devicetree.org/schemas/rng/brcm,iproc-rng200.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/qcom,serial-geni-qcom.yaml#
++$id: http://devicetree.org/schemas/rng/brcm,iproc-rng200.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Qualcomm Geni based QUP UART interface
+ title: HWRNG support for the iproc-rng200 driver
  
-diff --git a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-index 12d0fa34f9f9..3fc2601f1338 100644
---- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
+index bb32491ee8ae..7e8dc62e5d3a 100644
+--- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/serial/renesas,em-uart.yaml#"
+-$id: "http://devicetree.org/schemas/rng/mtk-rng.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,em-uart.yaml#
++$id: http://devicetree.org/schemas/rng/mtk-rng.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Renesas EMMA Mobile UART Interface
+ title: MediaTek Random number generator
  
-diff --git a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
-index afedb6edfc34..1c7f1276aed6 100644
---- a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/renesas,hscif.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml b/Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml
+index e749818fc193..06a6791b3356 100644
+--- a/Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml
+@@ -25,7 +25,7 @@ properties:
+     maxItems: 1
  
- title: Renesas High Speed Serial Communication Interface with FIFO (HSCIF)
- 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,sci.yaml b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-index dc445b327e0b..9f7305200c47 100644
---- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/renesas,sci.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,sci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas Serial Communication Interface
- 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-index 1989bd67d04e..f26bea2d7398 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/renesas,scif.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas Serial Communication Interface with FIFO (SCIF)
- 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-index 4c3b5e7270da..499507678cdf 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/renesas,scifa.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,scifa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas Serial Communications Interface with FIFO A (SCIFA)
- 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
-index 2f7cbbb48960..810d8a991fdd 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/renesas,scifb.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/renesas,scifb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas Serial Communications Interface with FIFO B (SCIFB)
- 
-diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
-index c9231e501f1f..ea277560a596 100644
---- a/Documentation/devicetree/bindings/serial/serial.yaml
-+++ b/Documentation/devicetree/bindings/serial/serial.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/serial.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/serial.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Serial Interface Generic
- 
-diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-index da0e2745b5fc..28ff77aa86c8 100644
---- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-@@ -2,8 +2,8 @@
- # Copyright 2019 Unisoc Inc.
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/sprd-uart.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/sprd-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Spreadtrum serial UART
- 
-diff --git a/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
-index ea1e637661c7..7d0a4bcb88e9 100644
---- a/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
-@@ -2,8 +2,8 @@
- # Copyright (C) Sunplus Co., Ltd. 2021
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Sunplus SoC SP7021 UART Controller
- 
+   ti,syscon-sa-cfg:
+-    $ref: "/schemas/types.yaml#/definitions/phandle"
++    $ref: /schemas/types.yaml#/definitions/phandle
+     description: |
+       Phandle to syscon node of the SA configuration registers.  These
+       registers are shared between HWRNG and crypto drivers.
 -- 
 2.39.2
 
