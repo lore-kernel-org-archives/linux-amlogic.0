@@ -4,93 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6186FC77B62
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 12:03:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADB6C7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 12:18:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q5rSlV/rRK25wQuW3APoEZBxSilydRZO5KGgsf8N9C8=; b=NhPk8Qn+5tDU2cvSRlnvm5yhZ5
-	HFNUNNOt+is0XEF0BqbITnXkyd08OKWwDC1VpTlvNHWQBMQkiOgtnAsev18NVrjM+Y5EoP+cCsI8v
-	wrMcWf3pQV22+gEGlHgPsrMa4UgFSgIWHBITfh3jq24LTQSUf9aTNFr8WYucLUf3vYddg6z79c/xm
-	iRrdJkrrsStFlblg3ejXYWkY+Yx5pJlo6ek6psi1N7jkKbRzA78Q7Mc1FepgBEIOk8G7s8MZvls6U
-	jDMEBKvPWBdqKwWIksZbwK6lKzU5S73rFfSeFq00PHqkx2/G+r3POmdGJWWU+jNSPsCdKkAsqsgNC
-	TK7QPLtQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oxwViNDunf4BDGU1zjaBdnsmwvLrC68NAvAFCXftQMQ=; b=f06Z78rX+g/HiD
+	l4IkfPMulEMYAKEKO5WIqOM1Ou6D7sR04DsV4ST+su76l/cJvhOzr5j5InVJCL3Td/oVb8XbiGfvd
+	g2kmM8WMkBOvarOVQnlcZ78vr43c99R5Pn+i8PPxLuZ5GwvZJydRb5WRiQmCnLNw7g8yNTd9L8IZp
+	qKy/oU/fgUeZUE8NUB8gJKMjW+h6H5ixqw2Sx64Oc+GQ+DUI7uLTrbKzBH79i00EjHO/SfM5BwR3Z
+	Op2wbMDJE7VtEn6MPDwSIDditZyVmYxURKO8MVrlDB4d2LWsj+M+B04t9tN7ZC7OMPiI5T09L0YJV
+	O5inNZWCWjqzg2WI2lrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pglZV-00ApL9-0n;
-	Mon, 27 Mar 2023 12:03:33 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1pglnm-00AttJ-02;
+	Mon, 27 Mar 2023 12:18:18 +0000
+Received: from ns.iliad.fr ([212.27.33.1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pglZQ-00ApIm-1H
-	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Mar 2023 12:03:31 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id o24-20020a05600c511800b003ef59905f26so5086195wms.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 05:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679918606;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qC6Cdiwyx5IUGMeSRigxkikRr2tKlEbnukwzFV4MABo=;
-        b=HTirVm9trBcI4IQoIFhd1cLyNJplr7h6o9Q+iviuPCpzFARIJW4i/eJdBDyCfD2QxA
-         xt2Tp2AXXcjJz1bZf/wktyP5wEdlnLZhgez2yYo8TJkaUGcXakd741j8pEHdF/uNAZiw
-         FoAfzcwCzWwxKmXUbZSu1s4kWjPUYVXM6UKU5fKLku/dboucY/jg3PERjw8JjLjrylLc
-         0LrhMQwZzXHn+serjUmX2FuaL8PXcSYU7Hd9gYx/cLzw9Fo660K2l14cE+BKNffs/Lsh
-         GVfz527l0/slUc4SDpCfQPOvwQJ+dySF+xQQvBpfBTF889hE/wRsV2dvfUeb2uQl5eU6
-         gj9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679918607;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qC6Cdiwyx5IUGMeSRigxkikRr2tKlEbnukwzFV4MABo=;
-        b=S5x0t9NpcabW59/rucHWGbYABYH64ES9ES6KSeWX+2NAK+gwW2if2kce1//FNPpZpH
-         4cjs77h/STRocWXOsYpkWjIeEMllDHQceZZIqy2RybPCEQhpNT6GbCc71AVUYPOd13d+
-         s5vSA/9b/mVDpnf1sENmNvZezJ+UIc6Ii9XmHdRbnIPv0Sbkjx92jogunV/INBCeUy19
-         3exz1RmtXUD6pT2brFuKGm0Xi74IJ8Z+jPBs1+/QooKuEUMl3vYrK9Pyclr7X7oPPTV/
-         sdCwIFf5DPCJWPTdMIyAmlphXX9etrhg957QzFd6Ou2XniV2QMSIVj0hDK/m8bd/plLU
-         wWIA==
-X-Gm-Message-State: AO0yUKVUBe1Ov6HmLbkdietni2Wz8DHcuSxe3Qfjnvbec0e8IGB1k2rp
-	Y1yAE2EBB97PxCgx9G9Sv9BFFA==
-X-Google-Smtp-Source: AK7set+YcR5VcbS0uQiRRfxmJ6YPNHRdteYvc88YtaUJP1HRw08g+3dLBNFkoRtK7JPz8Clzo7S3+w==
-X-Received: by 2002:a7b:c7ce:0:b0:3ed:8360:e54 with SMTP id z14-20020a7bc7ce000000b003ed83600e54mr9496831wmk.8.1679918606687;
-        Mon, 27 Mar 2023 05:03:26 -0700 (PDT)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id j36-20020a05600c1c2400b003ebf73acf9asm22363368wms.3.2023.03.27.05.03.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 05:03:26 -0700 (PDT)
-Message-ID: <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
-Date: Mon, 27 Mar 2023 14:03:25 +0200
+	id 1pglmS-00AsqK-0k;
+	Mon, 27 Mar 2023 12:17:00 +0000
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id 5ED3421074;
+	Mon, 27 Mar 2023 14:10:35 +0200 (CEST)
+Received: from venus.iliad.local (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id 424E72106F;
+	Mon, 27 Mar 2023 14:10:35 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Marc Gonzalez <marc.w.gonzalez@free.fr>,
+	Pierre-Hugues Husson <phh@phh.me>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: meson-g12-common: specify full DMC range
+Date: Mon, 27 Mar 2023 14:09:30 +0200
+Message-Id: <20230327120932.2158389-2-mgonzalez@freebox.fr>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230327120932.2158389-1-mgonzalez@freebox.fr>
+References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
- kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
- <20230321193014.26349-4-ddrokosov@sberdevices.ru>
- <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
- <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
- <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_050328_445613_2FB7994C 
-X-CRM114-Status: GOOD (  23.03  )
+X-CRM114-CacheID: sfid-20230327_051656_439315_4DA3B05C 
+X-CRM114-Status: UNSURE (   8.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,394 +67,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/03/2023 13:39, Jerome Brunet wrote:
-> 
-> On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> 
->> On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
->>>
->>> On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
->>>
->>>> Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
->>>> clock drivers.
->>>> Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
->>>> bindings and include them to MAINTAINERS.
->>>>
->>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>>> ---
->>>>   .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
->>>>   .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
->>>>   MAINTAINERS                                   |   1 +
->>>>   include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
->>>>   .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
->>>>   5 files changed, 267 insertions(+)
->>>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->>>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->>>
->>> There is two drivers (and 2 independent patches). There should be 2
->>> bindings patches as well.
->>>
->>
->> Before, in previous versions I had two versions, but it wasn't bisectable
->> approach.
-> 
-> You are confusing bisectable and Rob's robot. Splitting patches is more
-> that likely to help bisect (and patches backport) - not the other way around.
-> 
->> a1-clkc schema depends on a1-pll-clkc headers and vice versa.
->> It means dt schemas checkers will show us failure if we split them into two
->> patchsets.
-> 
-> Only because you are patches are not upstream yet ...
-> 
->> I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
->> look like production schema and it requires one more patchset above the
->> series with proper CLKID definitons usage and proper header including.
->>
->> BTW, there is an example of Rob's test bot failure found in the previous
->> v10 patch series due to chicken or the egg problem.
->> https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
->>
->> Please advise what's the best practice to resolve that..
-> 
-> Don't use the header in your example would solve the problem and
-> still be correct DT wise.
-> 
-> The examples are just examples, they are not required to actually
-> matches a real HW, as far as I know.
+According to S905X2 Datasheet - Revision 07:
+DRAM Memory Controller (DMC) register area spans ff638000-ff63a000.
 
-Exact, you can use fake lables instead of defined:
+According to DeviceTree Specification - Release v0.4-rc1:
+simple-bus nodes do not require reg property.
 
-<&clkc_pll CLKID_FCLK_DIV2>,
+Fixes: 1499218c80c99a ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
+Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-=>
-remove "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
-
-<&clkc_pll_fclk_div2>,
-
-is perfectly ok and will permit have 2 separate patches.
-
-The dependency is only if you have a common yaml file for
-both bindings files, but this is not the case here.
-
-Neil
-
-> 
->>
->>>>   create mode 100644 include/dt-bindings/clock/amlogic,a1-clkc.h
->>>>   create mode 100644 include/dt-bindings/clock/amlogic,a1-pll-clkc.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..cb6d8f4eb959
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->>>> @@ -0,0 +1,73 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic Meson A/C serials Peripheral Clock Control Unit
->>>> +
->>>> +maintainers:
->>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>> +  - Jian Hu <jian.hu@jian.hu.com>
->>>> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: amlogic,a1-clkc
->>>> +
->>>> +  '#clock-cells':
->>>> +    const: 1
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: input fixed pll div2
->>>> +      - description: input fixed pll div3
->>>> +      - description: input fixed pll div5
->>>> +      - description: input fixed pll div7
->>>> +      - description: input hifi pll
->>>> +      - description: input oscillator (usually at 24MHz)
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: fclk_div2
->>>> +      - const: fclk_div3
->>>> +      - const: fclk_div5
->>>> +      - const: fclk_div7
->>>> +      - const: hifi_pll
->>>> +      - const: xtal
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - '#clock-cells'
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
->>>> +    apb {
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        clock-controller@800 {
->>>> +            compatible = "amlogic,a1-clkc";
->>>> +            reg = <0 0x800 0 0x104>;
->>>> +            #clock-cells = <1>;
->>>> +            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
->>>> +                     <&clkc_pll CLKID_FCLK_DIV3>,
->>>> +                     <&clkc_pll CLKID_FCLK_DIV5>,
->>>> +                     <&clkc_pll CLKID_FCLK_DIV7>,
->>>> +                     <&clkc_pll CLKID_HIFI_PLL>,
->>>> +                     <&xtal>;
->>>> +            clock-names = "fclk_div2", "fclk_div3",
->>>> +                          "fclk_div5", "fclk_div7",
->>>> +                          "hifi_pll", "xtal";
->>>> +        };
->>>> +    };
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..77a13b1f9d5a
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->>>> @@ -0,0 +1,59 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic Meson A/C serials PLL Clock Control Unit
->>>> +
->>>> +maintainers:
->>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>> +  - Jian Hu <jian.hu@jian.hu.com>
->>>> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: amlogic,a1-pll-clkc
->>>> +
->>>> +  '#clock-cells':
->>>> +    const: 1
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: input fixpll_in
->>>> +      - description: input hifipll_in
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: fixpll_in
->>>> +      - const: hifipll_in
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - '#clock-cells'
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/clock/amlogic,a1-clkc.h>
->>>> +    apb {
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        clock-controller@7c80 {
->>>> +            compatible = "amlogic,a1-pll-clkc";
->>>> +            reg = <0 0x7c80 0 0x18c>;
->>>> +            #clock-cells = <1>;
->>>> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
->>>> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
->>>> +            clock-names = "fixpll_in", "hifipll_in";
->>>> +        };
->>>> +    };
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 39ff1a717625..8438bc9bd636 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -1895,6 +1895,7 @@ L:	linux-amlogic@lists.infradead.org
->>>>   S:	Maintained
->>>>   F:	Documentation/devicetree/bindings/clock/amlogic*
->>>>   F:	drivers/clk/meson/
->>>> +F:	include/dt-bindings/clock/a1*
->>>>   F:	include/dt-bindings/clock/gxbb*
->>>>   F:	include/dt-bindings/clock/meson*
->>>>   
->>>> diff --git a/include/dt-bindings/clock/amlogic,a1-clkc.h b/include/dt-bindings/clock/amlogic,a1-clkc.h
->>>> new file mode 100644
->>>> index 000000000000..95131779982c
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/amlogic,a1-clkc.h
->>>> @@ -0,0 +1,113 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
->>>> +/*
->>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->>>> + * Author: Jian Hu <jian.hu@amlogic.com>
->>>> + *
->>>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
->>>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>>> + */
->>>> +
->>>> +#ifndef __A1_CLKC_H
->>>> +#define __A1_CLKC_H
->>>> +
->>>> +#define CLKID_FIXPLL_IN		0
->>>> +#define CLKID_USB_PHY_IN	1
->>>> +#define CLKID_USB_CTRL_IN	2
->>>> +#define CLKID_HIFIPLL_IN	3
->>>> +#define CLKID_SYSPLL_IN		4
->>>> +#define CLKID_DDS_IN		5
->>>> +#define CLKID_SYS		6
->>>> +#define CLKID_CLKTREE		7
->>>> +#define CLKID_RESET_CTRL	8
->>>> +#define CLKID_ANALOG_CTRL	9
->>>> +#define CLKID_PWR_CTRL		10
->>>> +#define CLKID_PAD_CTRL		11
->>>> +#define CLKID_SYS_CTRL		12
->>>> +#define CLKID_TEMP_SENSOR	13
->>>> +#define CLKID_AM2AXI_DIV	14
->>>> +#define CLKID_SPICC_B		15
->>>> +#define CLKID_SPICC_A		16
->>>> +#define CLKID_MSR		17
->>>> +#define CLKID_AUDIO		18
->>>> +#define CLKID_JTAG_CTRL		19
->>>> +#define CLKID_SARADC_EN		20
->>>> +#define CLKID_PWM_EF		21
->>>> +#define CLKID_PWM_CD		22
->>>> +#define CLKID_PWM_AB		23
->>>> +#define CLKID_CEC		24
->>>> +#define CLKID_I2C_S		25
->>>> +#define CLKID_IR_CTRL		26
->>>> +#define CLKID_I2C_M_D		27
->>>> +#define CLKID_I2C_M_C		28
->>>> +#define CLKID_I2C_M_B		29
->>>> +#define CLKID_I2C_M_A		30
->>>> +#define CLKID_ACODEC		31
->>>> +#define CLKID_OTP		32
->>>> +#define CLKID_SD_EMMC_A		33
->>>> +#define CLKID_USB_PHY		34
->>>> +#define CLKID_USB_CTRL		35
->>>> +#define CLKID_SYS_DSPB		36
->>>> +#define CLKID_SYS_DSPA		37
->>>> +#define CLKID_DMA		38
->>>> +#define CLKID_IRQ_CTRL		39
->>>> +#define CLKID_NIC		40
->>>> +#define CLKID_GIC		41
->>>> +#define CLKID_UART_C		42
->>>> +#define CLKID_UART_B		43
->>>> +#define CLKID_UART_A		44
->>>> +#define CLKID_SYS_PSRAM		45
->>>> +#define CLKID_RSA		46
->>>> +#define CLKID_CORESIGHT		47
->>>> +#define CLKID_AM2AXI_VAD	48
->>>> +#define CLKID_AUDIO_VAD		49
->>>> +#define CLKID_AXI_DMC		50
->>>> +#define CLKID_AXI_PSRAM		51
->>>> +#define CLKID_RAMB		52
->>>> +#define CLKID_RAMA		53
->>>> +#define CLKID_AXI_SPIFC		54
->>>> +#define CLKID_AXI_NIC		55
->>>> +#define CLKID_AXI_DMA		56
->>>> +#define CLKID_CPU_CTRL		57
->>>> +#define CLKID_ROM		58
->>>> +#define CLKID_PROC_I2C		59
->>>> +#define CLKID_DSPA_EN		60
->>>> +#define CLKID_DSPA_EN_NIC	61
->>>> +#define CLKID_DSPB_EN		62
->>>> +#define CLKID_DSPB_EN_NIC	63
->>>> +#define CLKID_RTC		64
->>>> +#define CLKID_CECA_32K		65
->>>> +#define CLKID_CECB_32K		66
->>>> +#define CLKID_24M		67
->>>> +#define CLKID_12M		68
->>>> +#define CLKID_FCLK_DIV2_DIVN	69
->>>> +#define CLKID_GEN		70
->>>> +#define CLKID_SARADC		71
->>>> +#define CLKID_PWM_A		72
->>>> +#define CLKID_PWM_B		73
->>>> +#define CLKID_PWM_C		74
->>>> +#define CLKID_PWM_D		75
->>>> +#define CLKID_PWM_E		76
->>>> +#define CLKID_PWM_F		77
->>>> +#define CLKID_SPICC		78
->>>> +#define CLKID_TS		79
->>>> +#define CLKID_SPIFC		80
->>>> +#define CLKID_USB_BUS		81
->>>> +#define CLKID_SD_EMMC		82
->>>> +#define CLKID_PSRAM		83
->>>> +#define CLKID_DMC		84
->>>> +#define CLKID_GEN_SEL		85
->>>> +#define CLKID_PWM_A_SEL		86
->>>> +#define CLKID_PWM_B_SEL		87
->>>> +#define CLKID_PWM_C_SEL		88
->>>> +#define CLKID_PWM_D_SEL		89
->>>> +#define CLKID_PWM_E_SEL		90
->>>> +#define CLKID_PWM_F_SEL		91
->>>> +#define CLKID_DSPA_A_SEL	92
->>>> +#define CLKID_DSPA_B_SEL	93
->>>> +#define CLKID_DSPB_A_SEL	94
->>>> +#define CLKID_DSPB_B_SEL	95
->>>> +#define CLKID_CECA_32K_SEL	96
->>>> +#define CLKID_CECB_32K_SEL	97
->>>> +#define NR_CLKS			98
->>>> +
->>>> +#endif /* __A1_CLKC_H */
->>>> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
->>>> new file mode 100644
->>>> index 000000000000..740fe8c4db5d
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
->>>> @@ -0,0 +1,21 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
->>>> +/*
->>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->>>> + * Author: Jian Hu <jian.hu@amlogic.com>
->>>> + *
->>>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
->>>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->>>> + */
->>>> +
->>>> +#ifndef __A1_PLL_CLKC_H
->>>> +#define __A1_PLL_CLKC_H
->>>> +
->>>> +#define CLKID_FIXED_PLL		0
->>>> +#define CLKID_FCLK_DIV2		1
->>>> +#define CLKID_FCLK_DIV3		2
->>>> +#define CLKID_FCLK_DIV5		3
->>>> +#define CLKID_FCLK_DIV7		4
->>>> +#define CLKID_HIFI_PLL		5
->>>> +#define NR_PLL_CLKS		6
->>>> +
->>>> +#endif /* __A1_PLL_CLKC_H */
->>>
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 534178eaaf373..a5653ab1f0b43 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1577,10 +1577,9 @@ usb2_phy0: phy@36000 {
+ 
+ 			dmc: bus@38000 {
+ 				compatible = "simple-bus";
+-				reg = <0x0 0x38000 0x0 0x400>;
+ 				#address-cells = <2>;
+ 				#size-cells = <2>;
+-				ranges = <0x0 0x0 0x0 0x38000 0x0 0x400>;
++				ranges = <0x0 0x0 0x0 0x38000 0x0 0x2000>;
+ 
+ 				canvas: video-lut@48 {
+ 					compatible = "amlogic,canvas";
+-- 
+2.25.1
 
 
 _______________________________________________
