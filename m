@@ -4,63 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E332C76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 15:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B2F9C76195
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2g33cdj86TmaI7G3tdzBKdjnYs88BmyAurr+ZTkqZRw=; b=xmv+CWckAl2BYd
-	7KWIs1rdHnoZ1WZ/iI5yKngB7uoRj7O03JVrytrTZ6C7VBWwahNesLYfr4TqLTDN5Nbn2FL4/6LPC
-	jONy4v1oZAMzSXcHzYE9T+eTretwgHxaZnKgN1Q9g7/0yx962e2cMLKRNfxW4+rZN349RJiWoJ+gF
-	vZjv/fMbVkGgJv3Pl+Iz3eGaETj+8bZTg1Llf1uvSVbjNFwHEJK2UqOM3zqPakunuQ5VTgaCtikKv
-	UPMArkEhlzy/RhM2ACD7R3odPAEc3GpZDIc9ImSZPbgDhqipLzQq5uCWCrsjnuPScnWwanfyY+oCy
-	jHd+5Fo9Ia2a7BGtzLNA==;
+	List-Owner; bh=kAQu9R1ONEigUmycyd2csJiLN1bvajQmxSEtixF2EKc=; b=umvKGYFS6a9i3D
+	C4l5Hba2nMvbT7Aa7LiZzvcCFU4shWc+0QH8SakN4Btsig8pJB5WCVwxjHSv0jsEOBAc89bsqeK5G
+	ShRbko4vavhdMw3tRDttL63p/gv/ySIQf0kmRhF62Vdn08iVlf+18/pMmUX7jqGhevdl3BIp0ntPw
+	DaS6PqCylopm/kfUPoQlMwxjzp+G4XenKylvVLkgAAaQAYLiucE7c4e/18+EDFoz6/HKiz9+W/W3s
+	3eFCn1LJFZJLfsw3fipR7tqxVWeXcXMLPuD/sJ3FG64HQgswpnVmh97Echo8HXWysuMKLsGsI9f0J
+	Nz6zldHqD0Flv4FbEtxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgp9g-00Bcpy-1C;
-	Mon, 27 Mar 2023 15:53:08 +0000
-Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
+	id 1pgqD8-00Bny5-2h;
+	Mon, 27 Mar 2023 17:00:46 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgp9c-00BcpE-1Y;
-	Mon, 27 Mar 2023 15:53:06 +0000
-Received: from [192.168.108.81] (unknown [213.36.7.13])
-	(Authenticated sender: marc.w.gonzalez@free.fr)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 79C192003EE;
-	Mon, 27 Mar 2023 17:52:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1679932382;
-	bh=iKskNekkozye0iS/kXq7UsfAD5TWOw36/uBiqfaVyBs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=paI75qH6a7/0EjdcANP4XgqmCIktPVDMUPjq4+gW5g/Z8JdvkpkEIcqzRxF6XAs2K
-	 Up/CduaKIihnqJish9jpGsC/pDbxr9boYDOY1+CJnRRYbB88pYN+/jutD9pbcwyXcJ
-	 0sGBtpk/3/mfUz0Zxiwv5CHgCKZo9BzQYDLxG0Y7GSoSS1cidbSnqh4ZzJG1QRBMrb
-	 PKSDKxCDO/71F0UfoO0nmXgb1YXn9CIElyZlq7UYSAau2NBQnt32HKzRjtL6IJGz0X
-	 gCA/HjcVFxuDd4gP8Y63zKvl0IrstLbpbD+NGzQy8a7+Pg0J2DPCBL8rfZgNAfmL5A
-	 /BvmBmtgtpT8w==
-Message-ID: <529600f6-ea25-c507-5758-56658c137306@free.fr>
-Date: Mon, 27 Mar 2023 17:52:52 +0200
+	id 1pgqD4-00BnxJ-2I;
+	Mon, 27 Mar 2023 17:00:44 +0000
+Received: by mail-ed1-x533.google.com with SMTP id ew6so38920912edb.7;
+        Mon, 27 Mar 2023 10:00:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679936441;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sPebmcGvKPuiIF1WigjecPK4Lynxv5uNfa44AS9EEuI=;
+        b=Jg8AalIJn5rXKUDX5zwt+3bVouPsFckGcO+hxwbeXCqYTnlIXYre29u0UG6NXcMNea
+         6YbbPiv48FTGByPKduZ3y6BxTwn9oHOLNi5Dlgs8wzQrieKkXz0X7rqR6dhK/5LS0tyl
+         IX6gEd95zh4Zv2SbtlKdM9UK5UI7RCGWMz4Hl32btFZwOvOhNWVBs6eO3Z3x52jHQBQ8
+         cwlhTqi/BrN4OnjTflZ1ZOxS/Ggv+JYYfbPiIXu08aEwEvwbad9AvSJNoNiDbCK+TmXy
+         e11HJlTkZFk7NzWs2xZLNu2rCwNDBjujBxLvxdTp1m9PO+FrJV6CPpHLe/u7cmdSs/9q
+         cpsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679936441;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sPebmcGvKPuiIF1WigjecPK4Lynxv5uNfa44AS9EEuI=;
+        b=rdHc0xLN3LW5wYvYaA+rhiv8h4Nw8ejQfJyedm63Ab3p6v8QtBSo7v3gztsKirYPGo
+         lZ/qTDd08vrdYxY3XVeGnAGGW3BHXqhMpKLz0X0e7oEbc0JNBXxxR5/utSNzguLOHGUz
+         m4tp0PBjQrcnw8oXcsjEBeUXnn2AVjNKjkzH/AcE/kVmthEiGAOBqcvYynwSVxTgd0M0
+         EIZZz3Z2vd/XTZG6BhtXLxLEGnpYCZQsQuCb2eVw3Ccy+f1SBlh/eTFxkRG2vHbot/BA
+         pqnPgF/8eTLTqUtk4PQCIXZ34Dm8MxfyHnp8rdh6L0Q0OIVlhzpNRkRNHsvCkucUIQia
+         c+ag==
+X-Gm-Message-State: AAQBX9dd/98pBLJUp6OHztuTWbgBqUgBt5hpC2CSjO9ZuCLsHy1kONhF
+	iJpm78ggHc6LGDURaCrZbIU0P8bEfZg=
+X-Google-Smtp-Source: AKy350aYlCm+pZrAYFjmv/DHFHxv9TEvq+ezeh0Z7s6CilpjJ/IyOtB/DMAoIxvTtDhf34zNaPWbGg==
+X-Received: by 2002:a17:906:e8c:b0:8b2:7564:dfd5 with SMTP id p12-20020a1709060e8c00b008b27564dfd5mr12765360ejf.60.1679936440657;
+        Mon, 27 Mar 2023 10:00:40 -0700 (PDT)
+Received: from ?IPV6:2a02:3100:91f1:2a00:c022:d3da:60a9:9c00? (dynamic-2a02-3100-91f1-2a00-c022-d3da-60a9-9c00.310.pool.telefonica.de. [2a02:3100:91f1:2a00:c022:d3da:60a9:9c00])
+        by smtp.googlemail.com with ESMTPSA id h25-20020a1709063c1900b008e8e975e185sm14192054ejg.32.2023.03.27.10.00.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 10:00:40 -0700 (PDT)
+Message-ID: <45dbd1d4-a2b8-af33-beec-64906c0e98da@gmail.com>
+Date: Mon, 27 Mar 2023 19:00:35 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 0/3] Fix G12 PMU conflict
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
 Content-Language: en-US
-From: Marc Gonzalez <marc.w.gonzalez@free.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jiucheng Xu <jiucheng.xu@amlogic.com>, Will Deacon <will@kernel.org>
-Cc: Pierre-Hugues Husson <phh@phh.me>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
- <e2026259-3372-d1ee-d0aa-1376361a71cb@free.fr>
- <688713c0-c855-030e-50d4-d4ac4f1c5104@free.fr>
-In-Reply-To: <688713c0-c855-030e-50d4-d4ac4f1c5104@free.fr>
+To: neil.armstrong@linaro.org,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pwm@vger.kernel.org,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <fad131e9-265f-6c4d-3223-932f69c9a927@gmail.com>
+ <3492657f-6cc2-5828-b153-30c609a92783@linaro.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH] pwm: meson: add support for S4 chip family
+In-Reply-To: <3492657f-6cc2-5828-b153-30c609a92783@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_085304_684551_E46FF3E5 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230327_100042_750344_B7B4CB68 
+X-CRM114-Status: GOOD (  36.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,222 +96,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/03/2023 17:36, Marc Gonzalez wrote:
-
-> On 27/03/2023 17:25, Marc Gonzalez wrote:
-> 
->> Hmmm... the perf driver doesn't like my setup... :(
->>
->> # perf record -a -F 1009 --call-graph fp -B curl -o /dev/null http://192.168.1.254:8095/fixed/1G
->>   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
->>                                  Dload  Upload   Total   Spent    Left  Speed
->>   0 1024M    0 8342k    0     0  7564k      0  0:02:18  0:00:01  0:02:17 7563k
->>
->> [ 1036.936099] SError Interrupt on CPU1, code 0x00000000bf000000 -- SError
->> [ 1036.936116] CPU: 1 PID: 61 Comm: kworker/u9:0 Not tainted 6.2.0 #449
->> [ 1036.936122] Hardware name: SEI Robotics SEI510 (DT)
->> [ 1036.936126] Workqueue: brcmf_wq/mmc2:0001:1 brcmf_sdio_dataworker
->> [ 1036.936144] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->> [ 1036.936150] pc : brcmf_sdiod_skbuff_read+0x28/0xa0
->> [ 1036.936159] lr : brcmf_sdiod_recv_chain+0xe4/0x160
->> [ 1036.936166] sp : ffff80000a18bc00
->> [ 1036.936169] x29: ffff80000a18bc00 x28: ffff8000087d31a0 x27: ffff8000087d2e60
->> [ 1036.936177] x26: ffff000004990b00 x25: 0000000000000009 x24: ffff8000087d31a0
->> [ 1036.936184] x23: ffff000004998500 x22: 0000000000008000 x21: ffff000000873278
->> [ 1036.936192] x20: 000000000000c100 x19: ffff000000872800 x18: 0000000000000000
->> [ 1036.936199] x17: ffff80005df77000 x16: ffff80000800c000 x15: 0000000000000000
->> [ 1036.936205] x14: 0000000000000002 x13: 0000000000077f7a x12: 0000000000000068
->> [ 1036.936213] x11: 00000000000000c0 x10: 0000000000000068 x9 : fffffc0000150800
->> [ 1036.936220] x8 : fffffc0000150801 x7 : ffff80005df77000 x6 : ffff000004998500
->> [ 1036.936227] x5 : ffff0000008bc000 x4 : 000000000000c103 x3 : ffff000004998500
->> [ 1036.936233] x2 : 0000000000008000 x1 : 0000000000000002 x0 : ffff000000872800
->> [ 1036.936243] Kernel panic - not syncing: Asynchronous SError Interrupt
->> [ 1036.936247] CPU: 1 PID: 61 Comm: kworker/u9:0 Not tainted 6.2.0 #449
->> [ 1036.936252] Hardware name: SEI Robotics SEI510 (DT)
->> [ 1036.936255] Workqueue: brcmf_wq/mmc2:0001:1 brcmf_sdio_dataworker
->> [ 1036.936262] Call trace:
->> [ 1036.936264]  dump_backtrace.part.0+0xe0/0xf0
->> [ 1036.936273]  show_stack+0x18/0x30
->> [ 1036.936280]  dump_stack_lvl+0x68/0x84
->> [ 1036.936288]  dump_stack+0x18/0x34
->> [ 1036.936294]  panic+0x184/0x344
->> [ 1036.936301]  nmi_panic+0xac/0xb0
->> [ 1036.936308]  arm64_serror_panic+0x6c/0x80
->> [ 1036.936314]  do_serror+0x58/0x60
->> [ 1036.936318]  el1h_64_error_handler+0x30/0x50
->> [ 1036.936324]  el1h_64_error+0x64/0x68
->> [ 1036.936330]  brcmf_sdiod_skbuff_read+0x28/0xa0
->> [ 1036.936336]  brcmf_sdiod_recv_chain+0xe4/0x160
->> [ 1036.936343]  brcmf_sdio_dataworker+0x898/0x23d0
->> [ 1036.936348]  process_one_work+0x1cc/0x320
->> [ 1036.936354]  worker_thread+0x14c/0x450
->> [ 1036.936359]  kthread+0xfc/0x100
->> [ 1036.936364]  ret_from_fork+0x10/0x20
->> [ 1036.936371] SMP: stopping secondary CPUs
->> [ 1036.936378] Kernel Offset: disabled
->> [ 1036.936379] CPU features: 0x00000,01000100,0000420b
->> [ 1036.936384] Memory Limit: none
->> [ 1037.149180] ---[ end Kernel panic - not syncing: Asynchronous SError Interrupt ]---
-> 
-> 
-> Different crash signature:
-> 
-> # ./wifi.sh 
-> Successfully initialized wpa_supplicant
-> [   40.127823] ieee80211 phy0: brcmf_dongle_roam: WLC_SET_ROAM_TRIGGER error (-52)
-> udhcpc: started, v1.35.0
-> udhcpc: broadcasting discover
-> udhcpc: broadcasting discover
-> udhcpc: broadcasting select for 192.168.1.67, server 192.168.1.254
-> udhcpc: lease of 192.168.1.67 obtained from 192.168.1.254, lease time 43200
-> deleting routers
-> adding dns 192.168.1.254
-> # 
-> # perf record -a -F 1009 --call-graph fp -B curl -o /dev/null http://192.168.1.254:8095/fixed/1G
->   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
->                                  Dload  Upload   Total   Spent    Left  Speed
->  15 1024M   15  156M    0     0  8079k      0  0:02:09  0:00:19  0:01:50 8051k
-> 
-> [  132.334655] SError Interrupt on CPU2, code 0x00000000bf000000 -- SError
-> [  132.334678] CPU: 2 PID: 158 Comm: perf Not tainted 6.2.0 #449
-> [  132.334686] Hardware name: SEI Robotics SEI510 (DT)
-> [  132.334690] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> [  132.334697] pc : __arch_copy_from_user+0x1c8/0x230
-> [  132.334714] lr : copy_page_from_iter_atomic+0x1d4/0x5d0
-> [  132.334723] sp : ffff80000a42bb50
-> [  132.334725] x29: ffff80000a42bb50 x28: 0000000000000000 x27: 0000000000000800
-> [  132.334737] x26: ffff80000877da80 x25: ffff000000eb3a00 x24: 0000000000016498
-> [  132.334745] x23: ffff000000000000 x22: 0000040000000000 x21: ffff80000a42bd50
-> [  132.334752] x20: ffff000005400000 x19: 0000000000000800 x18: 0000000000000000
-> [  132.334759] x17: 0000000000000000 x16: 0000000000000000 x15: 0000ffff84a73ff0
-> [  132.334766] x14: 0000000000000007 x13: 00000000000f1f68 x12: 0000000000000001
-> [  132.334774] x11: 0000001ecf0a934d x10: 0000000000000000 x9 : ffff80000875c020
-> [  132.334781] x8 : ffff800008753188 x7 : ffffffffffffff80 x6 : ffff0000054001a0
-> [  132.334788] x5 : ffff000005400800 x4 : 0000000000000000 x3 : 0000000000000800
-> [  132.334796] x2 : 0000000000000600 x1 : 0000ffff84a741c0 x0 : ffff000005400000
-> [  132.334807] Kernel panic - not syncing: Asynchronous SError Interrupt
-> [  132.334811] CPU: 2 PID: 158 Comm: perf Not tainted 6.2.0 #449
-> [  132.334817] Hardware name: SEI Robotics SEI510 (DT)
-> [  132.334822] Call trace:
-> [  132.334824]  dump_backtrace.part.0+0xe0/0xf0
-> [  132.334836]  show_stack+0x18/0x30
-> [  132.334843]  dump_stack_lvl+0x68/0x84
-> [  132.334851]  dump_stack+0x18/0x34
-> [  132.334857]  panic+0x184/0x344
-> [  132.334865]  nmi_panic+0xac/0xb0
-> [  132.334870]  arm64_serror_panic+0x6c/0x80
-> [  132.334875]  do_serror+0x58/0x60
-> [  132.334879]  el1h_64_error_handler+0x30/0x50
-> [  132.334885]  el1h_64_error+0x64/0x68
-> [  132.334891]  __arch_copy_from_user+0x1c8/0x230
-> [  132.334897]  generic_perform_write+0xe8/0x1e0
-> [  132.334905]  __generic_file_write_iter+0x11c/0x1b0
-> [  132.334911]  generic_file_write_iter+0x78/0x110
-> [  132.334915]  vfs_write+0x2b0/0x390
-> [  132.334923]  ksys_write+0x68/0x100
-> [  132.334928]  __arm64_sys_write+0x1c/0x30
-> [  132.334934]  invoke_syscall+0x48/0x120
-> [  132.334943]  el0_svc_common.constprop.0+0x44/0xf0
-> [  132.334950]  do_el0_svc+0x38/0xc0
-> [  132.334956]  el0_svc+0x2c/0x90
-> [  132.334960]  el0t_64_sync_handler+0xb8/0xc0
-> [  132.334964]  el0t_64_sync+0x190/0x194
-> [  132.334970] SMP: stopping secondary CPUs
-> [  132.334977] Kernel Offset: disabled
-> [  132.334978] CPU features: 0x00000,01000100,0000420b
-> [  132.334982] Memory Limit: none
-> 
-> 
-> Will check this patch:
-> https://lore.kernel.org/all/20230209115403.521868-1-jiucheng.xu@amlogic.com/
-
-Panics also with the above patch applied :(
-
-The problem seems to be with perf, since normal downloads
-complete successfully:
-
-
-# ./wifi.sh 
-Successfully initialized wpa_supplicant
-[   12.029572] ieee80211 phy0: brcmf_dongle_roam: WLC_SET_ROAM_TRIGGER error (-52)
-udhcpc: started, v1.35.0
-udhcpc: broadcasting discover
-udhcpc: broadcasting discover
-udhcpc: broadcasting select for 192.168.1.67, server 192.168.1.254
-udhcpc: lease of 192.168.1.67 obtained from 192.168.1.254, lease time 43200
-deleting routers
-adding dns 192.168.1.254
-# 
-# curl -o /dev/null http://192.168.1.254:8095/fixed/1G
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 1024M  100 1024M    0     0  7927k      0  0:02:12  0:02:12 --:--:-- 8023k
-# 
-# perf record -a -F 1009 --call-graph fp -B curl -o /dev/null http://192.168.1.254:8095/fixed/1G
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  8 1024M    8 85.7M    0     0  8009k      0  0:02:10  0:00:10  0:02:00 8101k
-
-[  222.699138] SError Interrupt on CPU2, code 0x00000000bf000000 -- SError
-[  222.699155] CPU: 2 PID: 159 Comm: perf Not tainted 6.2.0 #451
-[  222.699162] Hardware name: SEI Robotics SEI510 (DT)
-[  222.699165] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[  222.699170] pc : __arch_copy_from_user+0x1c8/0x230
-[  222.699184] lr : copy_page_from_iter_atomic+0x1d4/0x5d0
-[  222.699192] sp : ffff80000a313b50
-[  222.699195] x29: ffff80000a313b50 x28: 0000000000000000 x27: 0000000000001000
-[  222.699205] x26: ffff80000877da80 x25: ffff000000b27d00 x24: 0000000000001f90
-[  222.699213] x23: ffff000000000000 x22: 0000040000000000 x21: ffff80000a313d50
-[  222.699220] x20: ffff000005400000 x19: 0000000000001000 x18: 0000000000000000
-[  222.699227] x17: 0000000000000000 x16: 0000000000000000 x15: 0000ffffa4b73f28
-[  222.699234] x14: 0000000000000000 x13: ffff80000875f3ac x12: ffff800008025714
-[  222.699241] x11: ffff800008085888 x10: ffff8000080855f4 x9 : ffff800008753188
-[  222.699247] x8 : 000000000000000f x7 : 0080000100000009 x6 : ffff0000054001a8
-[  222.699253] x5 : ffff000005401000 x4 : 0000000000000008 x3 : ffffffffffffff80
-[  222.699260] x2 : 0000000000000df8 x1 : 0000ffffa4b74100 x0 : ffff000005400000
-[  222.699270] Kernel panic - not syncing: Asynchronous SError Interrupt
-[  222.699274] CPU: 2 PID: 159 Comm: perf Not tainted 6.2.0 #451
-[  222.699279] Hardware name: SEI Robotics SEI510 (DT)
-[  222.699284] Call trace:
-[  222.699286]  dump_backtrace.part.0+0xe0/0xf0
-[  222.699298]  show_stack+0x18/0x30
-[  222.699303]  dump_stack_lvl+0x68/0x84
-[  222.699314]  dump_stack+0x18/0x34
-[  222.699319]  panic+0x184/0x344
-[  222.699327]  nmi_panic+0xac/0xb0
-[  222.699334]  arm64_serror_panic+0x6c/0x80
-[  222.699339]  do_serror+0x58/0x60
-[  222.699343]  el1h_64_error_handler+0x30/0x50
-[  222.699347]  el1h_64_error+0x64/0x68
-[  222.699351]  __arch_copy_from_user+0x1c8/0x230
-[  222.699357]  generic_perform_write+0xe8/0x1e0
-[  222.699366]  __generic_file_write_iter+0x11c/0x1b0
-[  222.699374]  generic_file_write_iter+0x78/0x110
-[  222.699380]  vfs_write+0x2b0/0x390
-[  222.699388]  ksys_write+0x68/0x100
-[  222.699394]  __arm64_sys_write+0x1c/0x30
-[  222.699400]  invoke_syscall+0x48/0x120
-[  222.699408]  el0_svc_common.constprop.0+0x44/0xf0
-[  222.699414]  do_el0_svc+0x38/0xc0
-[  222.699420]  el0_svc+0x2c/0x90
-[  222.699425]  el0t_64_sync_handler+0xb8/0xc0
-[  222.699430]  el0t_64_sync+0x190/0x194
-[  222.699437] SMP: stopping secondary CPUs
-[  222.699444] Kernel Offset: disabled
-[  222.699445] CPU features: 0x00000,01000100,0000420b
-[  222.699449] Memory Limit: none
-
-
-Has anyone ever experienced something similar?
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjcuMDMuMjAyMyAwOTozMywgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gT24gMjQvMDMvMjAy
+MyAyMzoyMywgSGVpbmVyIEthbGx3ZWl0IHdyb3RlOgo+PiBUaGlzIGFkZHMgcHdtIHN1cHBvcnQg
+Zm9yIChhdCBsZWFzdCkgdGhlIHM0IGNoaXAgZmFtaWx5LiBUaGUgZXh0ZW5zaW9uCj4+IGlzIGJh
+c2VkIG9uIHRoZSB2ZW5kb3IgZHJpdmVyIHRoYXQgY2FuIGJlIGZvdW5kIGF0IFswXS4gVGhlcmUg
+dGhlCj4+IHZlcnNpb24gd2l0aCB0aGUgbmV3IGNsb2NrIGhhbmRsaW5nIGlzIGNhbGxlZCBtZXNv
+bi12Mi1wd20uCj4+IENlbnRyYWwgY2hhbmdlIGlzIHRoYXQgdGhlIGNsb2NrIGlzIG5vdyBmdWxs
+eSBwcm92aWRlZCBieSB0aGUgU29DIGNsb2NrCj4+IGNvcmUuIFRoZSBtdWx0aXBsZXhlciBpc24n
+dCBhbnkgbG9uZ2VyIHBhcnQgb2YgdGhlIHB3bSBibG9jay4KPj4KPj4gVGhpcyB3YXMgdGVzdGVk
+IG9uIGEgc2MyLWJhc2VkIHN5c3RlbSB0aGF0IHVzZXMgdGhlIHNhbWUgcHdtIGJsb2NrLgo+Pgo+
+PiBbMF0gaHR0cHM6Ly9naXRodWIuY29tL2toYWRhcy9saW51eC9ibG9iL2toYWRhcy12aW1zLTUu
+NC55L2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEhlaW5lciBL
+YWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+Cj4+IC0tLQo+PiBBZGRpbmcgdGhlIGFtbG9n
+aWMsbWVzb24tczQtcHdtIGNvbXBhdGlibGUgdG8gdGhlIGRvY3VtZW50YXRpb24gd2FzIHBhcnQK
+Pj4gb2YgdGhlIHlhbWwgY29udmVyc2lvbiBhbHJlYWR5Lgo+PiAtLS0KPj4gwqAgZHJpdmVycy9w
+d20vcHdtLW1lc29uLmMgfCAzOCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0t
+LQo+PiDCoCAxIGZpbGUgY2hhbmdlZCwgMzQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkK
+Pj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20v
+cHdtLW1lc29uLmMKPj4gaW5kZXggMTZkNzljYTVkLi43YTkzZmRhZGEgMTAwNjQ0Cj4+IC0tLSBh
+L2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4+ICsrKyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5j
+Cj4+IEBAIC05OCw2ICs5OCw3IEBAIHN0cnVjdCBtZXNvbl9wd21fY2hhbm5lbCB7Cj4+IMKgIHN0
+cnVjdCBtZXNvbl9wd21fZGF0YSB7Cj4+IMKgwqDCoMKgwqAgY29uc3QgY2hhciAqIGNvbnN0ICpw
+YXJlbnRfbmFtZXM7Cj4+IMKgwqDCoMKgwqAgdW5zaWduZWQgaW50IG51bV9wYXJlbnRzOwo+PiAr
+wqDCoMKgIHVuc2lnbmVkIGludCBleHRfY2xrOjE7Cj4gCj4gRHJvcCB0aGUgOjEsIHRoZSBjb21w
+aWxlciB3aWxsIGFsaWduIHRoZSBzdHJ1Y3Qgc2l6ZSB0byB0aGUgcmVnaXN0ZXIgc2l6ZSwgc28g
+c2ltcGx5IHVzZSB1bnNpZ25lZCBpbnQgb3IgYm9vbC4KPiAKSGF2aW5nIG9uZSBmbGFnIG9ubHkg
+aXQgZG9lc24ndCByZWFsbHkgbWFrZSBhIGRpZmZlcmVuY2UsIHJpZ2h0LgpJIGNob3NlIHRoaXMg
+c2luZ2xlIGJpdCBiZWNhdXNlIGluIGZ1dHVyZSB0aGVyZSBtYXkgY29tZSBhbm90aGVyIGZsYWcs
+CnRoZW4gaGF2aW5nIHRoZW0gaW4gb25lIGJpdGZpZWxkIHdvdWxkIGJlIGFkdmFudGFnZW91cy4K
+CkFsc28gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi9wcm9jZXNzL2Nv
+ZGluZy1zdHlsZS5yc3QKUGFydCAiMTcpIFVzaW5nIGJvb2wiIHByZWZlcnMgYml0cyBmb3IgYm9v
+bCB2YWx1ZXMgaW4gc3RydWN0cywgZXZlbiB0aG91Z2gKdGhlIG1lbnRpb25lZCB1c2UgY2FzZXMg
+bGlrZSBtdWx0aXBsZSBmbGFncyBkb24ndCBhcHBseSBoZXJlLgoKPiBJJ2QgdXNlIGEgYmV0dGVy
+IG5hbWUgZm9yIHRoYXQsIGxpa2U6IG5vX211eF9ibGssIHB3bV9jbGtfaW5wdXQuLi4uCj4gCk9L
+Cgo+PiDCoCB9Owo+PiDCoCDCoCBzdHJ1Y3QgbWVzb25fcHdtIHsKPj4gQEAgLTE1OCw2ICsxNTks
+NyBAQCBzdGF0aWMgaW50IG1lc29uX3B3bV9jYWxjKHN0cnVjdCBtZXNvbl9wd20gKm1lc29uLCBz
+dHJ1Y3QgcHdtX2RldmljZSAqcHdtLAo+PiDCoMKgwqDCoMKgIHN0cnVjdCBtZXNvbl9wd21fY2hh
+bm5lbCAqY2hhbm5lbCA9ICZtZXNvbi0+Y2hhbm5lbHNbcHdtLT5od3B3bV07Cj4+IMKgwqDCoMKg
+wqAgdW5zaWduZWQgaW50IGR1dHksIHBlcmlvZCwgcHJlX2RpdiwgY250LCBkdXR5X2NudDsKPj4g
+wqDCoMKgwqDCoCB1bnNpZ25lZCBsb25nIGZpbl9mcmVxOwo+PiArwqDCoMKgIGludCBlcnI7Cj4+
+IMKgIMKgwqDCoMKgwqAgZHV0eSA9IHN0YXRlLT5kdXR5X2N5Y2xlOwo+PiDCoMKgwqDCoMKgIHBl
+cmlvZCA9IHN0YXRlLT5wZXJpb2Q7Cj4+IEBAIC0xNjUsNiArMTY3LDE0IEBAIHN0YXRpYyBpbnQg
+bWVzb25fcHdtX2NhbGMoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sIHN0cnVjdCBwd21fZGV2aWNl
+ICpwd20sCj4+IMKgwqDCoMKgwqAgaWYgKHN0YXRlLT5wb2xhcml0eSA9PSBQV01fUE9MQVJJVFlf
+SU5WRVJTRUQpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBkdXR5ID0gcGVyaW9kIC0gZHV0eTsKPj4g
+wqAgK8KgwqDCoCBpZiAobWVzb24tPmRhdGEtPmV4dF9jbGspIHsKPj4gK8KgwqDCoMKgwqDCoMKg
+IGVyciA9IGNsa19zZXRfcmF0ZShjaGFubmVsLT5jbGssIDB4ZmZmZlVMICogTlNFQ19QRVJfU0VD
+IC8gcGVyaW9kKTsKPj4gK8KgwqDCoMKgwqDCoMKgIGlmIChlcnIpIHsKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgZGV2X2VycihtZXNvbi0+Y2hpcC5kZXYsICJmYWlsZWQgdG8gc2V0IHB3bSBj
+bG9jayByYXRlXG4iKTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGVycjsKPj4g
+K8KgwqDCoMKgwqDCoMKgIH0KPiAKPiBJZiB0aGUgc2FtZSBNVVggYXJjaGl0ZWN0dXJlIGhhcyBi
+ZWVuIG1vdmVkIG91dCBvZiB0aGUgUFdNIHJlZ2lzdGVycywgdGhlbiB3aHkgd291bGQgeW91IGNh
+bGwKPiBzZXRfcmF0ZSA/IHdlIGRvbid0IGNhbGwgc2V0X3JhdGUgdG9kYXksIHNvIHdoeSBzaG91
+bGQgd2UgPwo+IAo+IFRvZGF5IHRoZSBNVVggc2VsZWN0aW9uIGlzIHN0YXRpYyBkZXBlbmRpbmcg
+b24gdGhlIGNsayBuYW1lcyBzcGVjaWZpZWQgaW4gdGhlIGJpbmRpbmdzICh5ZXMgaXQncwo+IHJl
+YWxseSBub3QgdGhlIGdvb2Qgd2F5IHRvIGRvIHRoYXQsLi4uLikgYnV0IG5vdyB0aGUgTVVYIGlz
+IG91dHNpZGUgdGhlIFBXTSByZWdpc3RlcnMgYmxvY2sKPiB3ZSBzaG91bGQgc3RpY2sgdG8gdGhl
+IHNhbWUgYXJjaGl0ZWN0dXJlIGFuZCBtYXJrIHRoZSBNVVggYXMgTk9fUkVQQVJFTlQgYW5kIGlu
+c3RlYWQgb2YgdXNpbmcKPiBhIGJhZCBiaW5kaW5ncyBzcGVjaWZ5IHRoZSBNVVggcGFyZW50ICYg
+cmF0ZSBpbiBkdCB1c2luZyBhc3NpZ25lZC1jbGstcGFyZW50L3JhdGUuCj4gCj4gU28gcGxlYXNl
+IGRyb3AgdGhpcyBzZXRfcmF0ZSgpLgo+IApJbXBsaWNpdGx5IHRoZXJlJ3MgYSBzZXRfcmF0ZSgp
+IGFsc28gdG9kYXksIGJ5IHNldHRpbmcgdGhlIHByZV9kaXYgZGl2aWRlciB2YWx1ZS4KQnkgdGhl
+IHdheTogTm90IHN1cmUgd2h5IHRoZSBkaXZpZGVyIGlzbid0IGhhbmRsZWQgdmlhIENDRiwgbGlr
+ZSBlLmcuIGluIG1lc29uLWd4LW1tYy4KClRoZSBiZXN0IChmb3IgYWNoaWV2aW5nIGJlc3QgcHJl
+Y2lzaW9uKSBpbnB1dCBmcmVxdWVuY3kgaXMgMHhmZmZmIC8gcGVyaW9kLgpTbyB3ZSBzaG91bGQg
+ZG8gb3VyIGJlc3QgdG8gY29tZSBhcyBjbG9zZSBhcyBwb3NzaWJsZSB0byB0aGlzIGZyZXF1ZW5j
+eS4KQnkgdXNpbmcgc2V0X3JhdGUoKSBDQ0Ygd2lsbCBjaG9vc2UgdGhlIG9wdGltYWwgbXV4IGlu
+cHV0IGFuZCBkaXZpZGVyIHZhbHVlLgpOb3Qgc3VyZSB3aHkgd2Ugc2hvdWxkIHJlc3RyaWN0IG91
+cnNlbHZlcyB0byBvbmUgbXV4IHBhcmVudCBvbmx5LgpFLmcuIGZvciBhIHZlcnkgbG93IGR1dHkg
+Y3ljbGUgYSBoaWdoZXIgaW5wdXQgZnJlcXVlbmN5IHRoYW4gdGhlIHh0YWwgMjRNSHogbWF5IGJl
+IHByZWZlcmFibGUuCgpOb3Qgb25seSB0aGUgbXV4IGlzIG91dHNpZGUgdGhlIFBXTSBibG9jayBu
+b3csIGFsc28gdGhlIGRpdmlkZXIgKDggYml0IHdpZGUgaW5zdGVhZCBvZiA3IGJpdAphcyBvZiB0
+b2RheSkuIFNvIHdlIG5lZWQgYSBzZXRfcmF0ZSgpIGFueXdheSB0byBzZXQgdGhlIGRpdmlkZXIg
+dmFsdWUuCldoYXQgSSBjYW4ndCBzYXkgaXMgd2hldGhlciB0aGUgaW50ZXJuYWwgZGl2aWRlciBz
+dGlsbCBleGlzdHMgKHRoZW4gZXh0ZXJuYWwgYW5kIGludGVybmFsCmRpdmlkZXIgd291bGQgYmUg
+Y2FzY2FkZWQpIG9yIGlzIHJlbW92ZWQgb3IgYnlwYXNzZWQuCkl0IHNlZW1zIGxpa2Ugd2hlbiBh
+ZGRpbmcgdGhlIGV4dGVybmFsIFBXTSBjbG9jayBmZWF0dXJlIEFtbG9naWMgZm9yZ290IHRvIHVw
+ZGF0ZQp0aGUgUFdNIGJsb2NrIGRvY3VtZW50YXRpb24sIGFzIHRoZXJlJ3Mgbm8gcmVmZXJlbmNl
+IGF0IGFsbCB0byB0aGUgbm93IGV4dGVybmFsIGlucHV0IGNsb2NrCihleGNlcHQgaW4gdGhlIGNs
+b2NrcyBzZWN0aW9uKS4KCj4+ICvCoMKgwqAgfQo+PiArCj4+IMKgwqDCoMKgwqAgZmluX2ZyZXEg
+PSBjbGtfZ2V0X3JhdGUoY2hhbm5lbC0+Y2xrKTsKPj4gwqDCoMKgwqDCoCBpZiAoZmluX2ZyZXEg
+PT0gMCkgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2X2VycihtZXNvbi0+Y2hpcC5kZXYsICJp
+bnZhbGlkIHNvdXJjZSBjbG9jayBmcmVxdWVuY3lcbiIpOwo+PiBAQCAtMTczLDEwICsxODMsMTQg
+QEAgc3RhdGljIGludCBtZXNvbl9wd21fY2FsYyhzdHJ1Y3QgbWVzb25fcHdtICptZXNvbiwgc3Ry
+dWN0IHB3bV9kZXZpY2UgKnB3bSwKPj4gwqAgwqDCoMKgwqDCoCBkZXZfZGJnKG1lc29uLT5jaGlw
+LmRldiwgImZpbl9mcmVxOiAlbHUgSHpcbiIsIGZpbl9mcmVxKTsKPj4gwqAgLcKgwqDCoCBwcmVf
+ZGl2ID0gZGl2NjRfdTY0KGZpbl9mcmVxICogKHU2NClwZXJpb2QsIE5TRUNfUEVSX1NFQyAqIDB4
+ZmZmZkxMKTsKPj4gLcKgwqDCoCBpZiAocHJlX2RpdiA+IE1JU0NfQ0xLX0RJVl9NQVNLKSB7Cj4+
+IC3CoMKgwqDCoMKgwqDCoCBkZXZfZXJyKG1lc29uLT5jaGlwLmRldiwgInVuYWJsZSB0byBnZXQg
+cGVyaW9kIHByZV9kaXZcbiIpOwo+PiAtwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FSU5WQUw7Cj4+
+ICvCoMKgwqAgaWYgKG1lc29uLT5kYXRhLT5leHRfY2xrKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBw
+cmVfZGl2ID0gMDsKPj4gK8KgwqDCoCB9IGVsc2Ugewo+PiArwqDCoMKgwqDCoMKgwqAgcHJlX2Rp
+diA9IGRpdjY0X3U2NChmaW5fZnJlcSAqICh1NjQpcGVyaW9kLCBOU0VDX1BFUl9TRUMgKiAweGZm
+ZmZMTCk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAocHJlX2RpdiA+IE1JU0NfQ0xLX0RJVl9NQVNL
+KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldl9lcnIobWVzb24tPmNoaXAuZGV2LCAi
+dW5hYmxlIHRvIGdldCBwZXJpb2QgcHJlX2RpdlxuIik7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHJldHVybiAtRUlOVkFMOwo+PiArwqDCoMKgwqDCoMKgwqAgfQo+PiDCoMKgwqDCoMKgIH0K
+Pj4gwqAgwqDCoMKgwqDCoCBjbnQgPSBkaXY2NF91NjQoZmluX2ZyZXEgKiAodTY0KXBlcmlvZCwg
+TlNFQ19QRVJfU0VDICogKHByZV9kaXYgKyAxKSk7Cj4+IEBAIC00NDUsNiArNDU5LDEwIEBAIHN0
+YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25fcHdtX2RhdGEgcHdtX2cxMmFfZWVfZGF0YSA9IHsKPj4g
+wqDCoMKgwqDCoCAubnVtX3BhcmVudHMgPSBBUlJBWV9TSVpFKHB3bV9nMTJhX2VlX3BhcmVudF9u
+YW1lcyksCj4+IMKgIH07Cj4+IMKgICtzdGF0aWMgY29uc3Qgc3RydWN0IG1lc29uX3B3bV9kYXRh
+IHB3bV9zNF9kYXRhID0gewo+PiArwqDCoMKgIC5leHRfY2xrID0gMSwKPj4gK307Cj4+ICsKPj4g
+wqAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbWVzb25fcHdtX21hdGNoZXNbXSA9
+IHsKPj4gwqDCoMKgwqDCoCB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoCAuY29tcGF0aWJsZSA9ICJh
+bWxvZ2ljLG1lc29uOGItcHdtIiwKPj4gQEAgLTQ3OCw2ICs0OTYsMTAgQEAgc3RhdGljIGNvbnN0
+IHN0cnVjdCBvZl9kZXZpY2VfaWQgbWVzb25fcHdtX21hdGNoZXNbXSA9IHsKPj4gwqDCoMKgwqDC
+oMKgwqDCoMKgIC5jb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tZzEyYS1hby1wd20tY2QiLAo+
+PiDCoMKgwqDCoMKgwqDCoMKgwqAgLmRhdGEgPSAmcHdtX2cxMmFfYW9fY2RfZGF0YQo+PiDCoMKg
+wqDCoMKgIH0sCj4+ICvCoMKgwqAgewo+PiArwqDCoMKgwqDCoMKgwqAgLmNvbXBhdGlibGUgPSAi
+YW1sb2dpYyxtZXNvbi1zNC1wd20iLAo+IAo+IFRoaXMgZGVzZXJ2ZWQgYSBiaW5kaW5ncyB1cGRh
+dGUsIGFuZCB3ZSBzaG91bGQgcGVyaGFwcyBzdGFydCBhIG5ldyBiaW5kaW5ncyBieSB1c2luZwo+
+IG5ldyBjbG9jay1uYW1lcyAoIT0gY2xraW4wLzEpIHRvIGRpZmZlcmVudGlhdGUgZnJvbSB0aGUg
+b2xkIGJ1Z2d5IGJpbmRpbmdzLgo+IApXZSBjb3VsZCBzaW1wbHkgbmFtZSB0aGUgY2xvY2tzIHB3
+bV9hLCBwd21fYi4gSWYgeW91IHRoaW5rIHRoaXMgY291bGQgYmUgY29uZnVzaW5nCmZvciBwd20g
+UFdNX0MvUFdNX0QsIHRoZW4gd2UgbWF5IHVzZSBwd20wIGFuZCBwd20xLgoKVGhlIGNoYW5nZWQg
+YmluZGluZyB3b3VsZCBoYXZlIHRvIHJlZmxlY3QgdGhhdCBub3cgYm90aCBpbnB1dCBjbG9ja3Mg
+Zm9yIGEgcHdtCmFyZSByZXF1aXJlZC4KCj4gTmVpbAo+IAo+PiArwqDCoMKgwqDCoMKgwqAgLmRh
+dGEgPSAmcHdtX3M0X2RhdGEKPj4gK8KgwqDCoCB9LAo+PiDCoMKgwqDCoMKgIHt9LAo+PiDCoCB9
+Owo+PiDCoCBNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBtZXNvbl9wd21fbWF0Y2hlcyk7Cj4+IEBA
+IC00OTMsNiArNTE1LDE0IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2luaXRfY2hhbm5lbHMoc3Ry
+dWN0IG1lc29uX3B3bSAqbWVzb24pCj4+IMKgwqDCoMKgwqAgZm9yIChpID0gMDsgaSA8IG1lc29u
+LT5jaGlwLm5wd207IGkrKykgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IG1lc29uX3B3
+bV9jaGFubmVsICpjaGFubmVsID0gJm1lc29uLT5jaGFubmVsc1tpXTsKPj4gwqAgK8KgwqDCoMKg
+wqDCoMKgIGlmIChtZXNvbi0+ZGF0YS0+ZXh0X2Nsaykgewo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBzbnByaW50ZihuYW1lLCBzaXplb2YobmFtZSksICJjbGtpbiV1IiwgaSk7Cj4+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGNoYW5uZWwtPmNsayA9IGRldm1fY2xrX2dldChkZXYsIG5hbWUp
+Owo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoSVNfRVJSKGNoYW5uZWwtPmNsaykpCj4+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIoY2hhbm5lbC0+
+Y2xrKTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29udGludWU7Cj4+ICvCoMKgwqDCoMKg
+wqDCoCB9Cj4+ICsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHNucHJpbnRmKG5hbWUsIHNpemVvZihu
+YW1lKSwgIiVzI211eCV1IiwgZGV2X25hbWUoZGV2KSwgaSk7Cj4+IMKgIMKgwqDCoMKgwqDCoMKg
+wqDCoCBpbml0Lm5hbWUgPSBuYW1lOwo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
