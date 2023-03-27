@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD0F8C76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 08:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E8BAC7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 10:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PUweNSFR2cdmHe6xwuohDZEUPSTS2SQx3Dr94KeXKQw=; b=XgJTVCELKUFuaD
-	fIHKsoSt0DeS2vuO/MbQqg+rUjHuBqEY3zkpYnpmiN5FU+NkPwMUaNkZyoP4vqT8XDmN+6L3DL28L
-	TcKTq/IOsbjXUOcTmUlcplIHGFBAgQc9wltGHB2uHSoxSennsJTnYlOSkUslpia6gtCohryRl7EjW
-	G806T9H4POSjICol+9Moi1fbeARgRBQIx7IGpcWnMCJqEdrhN8m5wBYEXAC8psgLXZgJM/xRj8zS7
-	gGX3jYGgRfA3JAG4uMExlHXsaNKLbFU2oMJpQebBywOysjAuuLPwjgVDQzqat64c7ILEJhw4duTV8
-	bh7Nc6SO+eKByRx8Jw3w==;
+	List-Owner; bh=OwiprwDh4uhNv+ipbvoCCZLjsm9rUWUseUj1N9AVllg=; b=sYIJfSAJNji63G
+	4A9ZbeF6U2YpgvpfyZoBe8Zrlf9y6/w/o0ZVndwqL/Qn9BGDGYkQyHUWkon8BORxlzo1iwEuOYwLo
+	fnuoXEW2BtoWofvGwCGyonqfPZ7xHy6jHWWa5Jtsl9Rg/KgSk8EnOWzUNxvwhupfj2nx+7NhiNkOU
+	BDiR6erszckl8ifCEogBtdrGDHIdrNRbHWkeTFyOR8Tln5RO/KMJSQ6W0DMgC03q6GVHZbj/rxFUQ
+	hxWGF1EHaxdJH//UGoR1Dlt7YSN9yhHVI5FUEmiywn6JGNtq8s9/Ubm21t2Z74GjF7kqk/3NY7gR/
+	1xsAB1DENdTBxm3VboTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgiXd-00ALmn-36;
-	Mon, 27 Mar 2023 08:49:25 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1pgjmB-00AaQG-1J;
+	Mon, 27 Mar 2023 10:08:31 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgiXa-00ALld-1p
+	id 1pgjm8-00AaOv-0H
 	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Mar 2023 08:49:24 +0000
-Received: by mail-wm1-x331.google.com with SMTP id l37so4564734wms.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 01:49:21 -0700 (PDT)
+	Mon, 27 Mar 2023 10:08:29 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so6626004wmq.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 03:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679906960;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=UDSqP7fpfKlKQVx/rVKsTS5+4DHlxYXGctzY/lz+9Ho=;
-        b=5UJ/GXirQ7wgMEFINuifffVu8CODx5qLiO9QZwxXCtKEKM+75oZAu25XvAjTf3Mukd
-         lVDHLQTo0AOOQcN5NlWIUSvcKvN32YA5hJUWuvNjyFXAByF1uiR2VcvlikFKLYKEBmOn
-         eDx+RS9fSjaPFpSvMY1eVdj5AlrPgGKU31/9RH/tg2j1jU4AbH43wXOmYH7I2SbnW74s
-         7py0fyyDHwvalOsnobnGpmz4MyKAxZWgrhDqMGcGyEgoifsfAdrikkoSAaPvNKx7TImx
-         qNZcc3t1JrP9dMg1sXC70lpblPv+C9p97e4IDNGsXPmZvdqFu1e0O8EuVXhAqEIk+Pst
-         rXEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679906960;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1679911705;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UDSqP7fpfKlKQVx/rVKsTS5+4DHlxYXGctzY/lz+9Ho=;
-        b=W10Uf3QudwruuH6IMb8LNH/KnlfoNW8lzbyXfHDU6VvzcEDvnsEDmnhQ/ey93bSzrJ
-         nOeLTzA8IS2JpgMcP5Mbo1Or2TNO0JeGWuuqgoZeIc6CeZFQlS5EA00X9C5lbEeG+dXr
-         XatUvO/jOu2+iOFyzwjGmfWNBOP/Ll8rb16NJYQddDjtvFWu1wqvNUnZXITs6rnpm54J
-         +m3KYOcUWAyqqN99rtCHiK9QNeuOYQC/g2PHShi1eYZCE2Yw1YfkSBqPEflQDqE4JbLk
-         qDlMFa2nzU5b5Eh7/Uc7mmtQNrm7s2ISvjfBq0Rt8TchwWKYc2fQ8s2Gj2VXbIbtf1pn
-         BYPQ==
-X-Gm-Message-State: AAQBX9fePGIw/PKS0kw+wcksaojI6PXmJ/k+Y21JASGE6H+12DataT6Z
-	H/L1utmCU3U/E0PEG7TuVSDbyw==
-X-Google-Smtp-Source: AKy350a1+/eDpxejUWxQfz4ZUV5XMrdV2fNL9j9I2+FCSXACd1jk3wa03RjMGPX4FF4onxWuoaOJcA==
-X-Received: by 2002:a7b:c852:0:b0:3ef:64b4:b081 with SMTP id c18-20020a7bc852000000b003ef64b4b081mr4840082wml.39.1679906960535;
-        Mon, 27 Mar 2023 01:49:20 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id v9-20020a05600c444900b003ef5deb4188sm8001026wmn.17.2023.03.27.01.49.19
+        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
+        b=syqWTErWORaOaEkKGE/WcSpMeaCjSH+kWTHXltMv3KacuoG1iBMJjyyI3Ypgi7VVKM
+         IbhfWcST7FfiXNazxPT/YvX3zxOy2cOeWQVrPykLdYfRBUi1XNSHD/zx+OHmDSixjtNQ
+         R6pqNc9Y0OhUc8j/4jPZY3QT/mfxgyCst7FYxHm/mZ445Gti7eA4lksC4qowfX9Qb2Gt
+         shnL4UuD9LMgbeFQwgTadf15bkqQAsB76+Yjd/n0YQ0EowXaFTAKPzpUWrVTxf3DWsLB
+         egmG8uVz3EAfN0mw82ZUhaowpyC/ZgJ8eP9sVbc0X2Nn/yyKo/7R2X7Zt78Nd9LFhxfN
+         IMWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679911705;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
+        b=ew4PnfEmIRcxJAYYqawpenCkP2B3PK4MbwIrkOjhYRejbd70drKYuQHqXONaMP9V8Y
+         zSl0/JU358DIVlYwiaEKvOkIFUqeVUeBuCir07M7fUXM/czl1b741BLZE63fybx5Vg5g
+         nxOM7/KulJfz0+/9jjMkooSr8qajdkZF5RLxPZGH/VVmDHPIOmhc/H2+PPdj+Ei4Px2R
+         dLDFy6d7LFktagNYeuSQlxc6qp7/2E6ThgB4EDox5ZT5z7KUKZ3XA1o5R32wBg/Oa6ZZ
+         aJDGSb6p4jJCaOYo8cEnAY8e64mCWFPthlDRdpHTAc2fhE41ZdHI8pThNBiw2kOTBvVI
+         GENA==
+X-Gm-Message-State: AO0yUKUU7omyx75IUgpM0ztQdV+DwN55U5uVkfCqyolQgfUAgfI9kZ+x
+	szqstiWq05Lm9lmj9PtHZRumPA==
+X-Google-Smtp-Source: AK7set8wE+/BnkmdZ5WYVo08VavTEhx5WcZTtPZM/fOa76aeYHFRLlZQ9S5YiCxFmmadow+sa0nakQ==
+X-Received: by 2002:a05:600c:21c1:b0:3ed:8c60:c512 with SMTP id x1-20020a05600c21c100b003ed8c60c512mr9202174wmj.17.1679911705511;
+        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m21-20020a7bcb95000000b003eeb1d6a470sm11182003wmi.13.2023.03.27.03.08.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 01:49:20 -0700 (PDT)
-References: <8dab942d6ce47657a9c038295959be80bb2ee09e.1679834598.git.christophe.jaillet@wanadoo.fr>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH] ASoC: meson: Use the devm_clk_get_optional() helper
-Date: Mon, 27 Mar 2023 10:45:44 +0200
-In-reply-to: <8dab942d6ce47657a9c038295959be80bb2ee09e.1679834598.git.christophe.jaillet@wanadoo.fr>
-Message-ID: <1jy1nio9yo.fsf@starbuckisacylon.baylibre.com>
+        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: krzysztof.kozlowski@linaro.org, robh@kernel.org, khilman@baylibre.com, 
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
+ jianxin.pan@amlogic.com, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: kernel@sberdevices.ru, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, rockosov@gmail.com
+In-Reply-To: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+References: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+Subject: Re: [PATCH v3] firmware: meson_sm: populate platform devices from
+ sm device tree data
+Message-Id: <167991170468.420117.8412879129199021084.b4-ty@linaro.org>
+Date: Mon, 27 Mar 2023 12:08:24 +0200
 MIME-Version: 1.0
+X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_014922_607182_FD88EF7B 
-X-CRM114-Status: GOOD (  17.44  )
+X-CRM114-CacheID: sfid-20230327_030828_154373_E7277348 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,54 +96,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
-On Sun 26 Mar 2023 at 14:43, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+On Fri, 24 Mar 2023 17:55:57 +0300, Dmitry Rokosov wrote:
+> In some meson boards, secure monitor device has children, for example,
+> power secure controller. By default, secure monitor isn't the bus in terms
+> of device tree subsystem, so the of_platform initialization code doesn't
+> populate its device tree data. As a result, secure monitor's children
+> aren't probed at all.
+> 
+> Run the 'of_platform_populate()' routine manually to resolve such issues.
+> 
+> [...]
 
-> Use devm_clk_get_optional() instead of hand writing it.
-> This saves some loC and improves the semantic.
->
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
 
-Thx.
+[1/1] firmware: meson_sm: populate platform devices from sm device tree data
+      https://git.kernel.org/amlogic/c/e45f243409db98d610248c843b25435e7fb0baf3
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+These changes has been applied on the intermediate git tree [1].
 
+The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-> ---
->  sound/soc/meson/axg-tdm-interface.c | 13 ++++---------
->  1 file changed, 4 insertions(+), 9 deletions(-)
->
-> diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
-> index 7624aafe9009..5e5e4c56d505 100644
-> --- a/sound/soc/meson/axg-tdm-interface.c
-> +++ b/sound/soc/meson/axg-tdm-interface.c
-> @@ -496,7 +496,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct snd_soc_dai_driver *dai_drv;
->  	struct axg_tdm_iface *iface;
-> -	int ret, i;
-> +	int i;
->  
->  	iface = devm_kzalloc(dev, sizeof(*iface), GFP_KERNEL);
->  	if (!iface)
-> @@ -533,14 +533,9 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
->  	 * At this point, ignore the error if mclk is missing. We'll
->  	 * throw an error if the cpu dai is master and mclk is missing
->  	 */
-> -	iface->mclk = devm_clk_get(dev, "mclk");
-> -	if (IS_ERR(iface->mclk)) {
-> -		ret = PTR_ERR(iface->mclk);
-> -		if (ret == -ENOENT)
-> -			iface->mclk = NULL;
-> -		else
-> -			return dev_err_probe(dev, ret, "failed to get mclk\n");
-> -	}
-> +	iface->mclk = devm_clk_get_optional(dev, "mclk");
-> +	if (IS_ERR(iface->mclk))
-> +		return dev_err_probe(dev, PTR_ERR(iface->mclk), "failed to get mclk\n");
->  
->  	return devm_snd_soc_register_component(dev,
->  					&axg_tdm_iface_component_drv, dai_drv,
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 
 _______________________________________________
