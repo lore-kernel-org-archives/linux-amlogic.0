@@ -4,64 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30BDAC76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:02:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47956C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=RypvUGJOk+sSD86UpeXShsc6KzLoQvSXQOT6KkZWbA4=; b=HSGbjfjajUwVaA
-	GAAs8XFRkmJI0uD+4avwyjrXbwh5FHTXYTvuhJ+vrq4K5sX4h5H37A7erV4uZ8q4ECqWsYNMbc7D3
-	b2RfhnPCNFDBeiPIz+xun5y7bHKqTac+slREbLlKesbL4gaHoyadKiB+c1UsBw+3JF0+etaqsuduu
-	CFuJQNJSCxKtJSbEfr3pm7DT7MZK/1exRN4RqETILN83ZFSd+4GMFNw4UjXQymRzD9qm13vrsB/Y9
-	iLikN7k4Q/ef6zWoT7JGQFf35TnYXe2DfdqfRGs1XusuhmZAJOfmbmgxV+mvsW3ut30sCYtA7F5di
-	HCsVylsUFmyjXhYIB8fw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=C77Qd0l0iSlMxKtxMAF8EVBiswWKQ6Y1QWER16d5TRM=; b=LSeaMTz0XzlwMF
+	RTVEhfLjmsQqAsNirarS6Auefd7pf4z+vJcxy3d0nbJZjTKlJOAn7FFk+8ltgKkm494EtaDsif2Y4
+	Hlt0UufT6zbeKUbq4xYUj/fk/h+WBWzjCsuuyKsMtPqt3vgCqDE5ncInqh2jk9EVvgGsfVpHs8XoK
+	9Y4SnkKF9qDsbImmIHOB5qynCUxwyZsUbWkCwuFv+N/p9z5+7maiLYgXUACccQmVEZaRtJxCKv0AU
+	8ab9AM1FLz5AFnmoE8UYlYGAOcvzvEGyTuK0qS3yiWw4lJkX30adFJDK5mwgfKULkf4giZPYliqmw
+	HQdzT6Y/mzByWhg6rNJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqF3-00Bojk-1q;
-	Mon, 27 Mar 2023 17:02:45 +0000
-Received: from mail-oa1-f54.google.com ([209.85.160.54])
+	id 1pgqJj-00BqCW-19;
+	Mon, 27 Mar 2023 17:07:35 +0000
+Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqEy-00BogF-24;
-	Mon, 27 Mar 2023 17:02:42 +0000
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-17997ccf711so9997307fac.0;
-        Mon, 27 Mar 2023 10:02:40 -0700 (PDT)
+	id 1pgqJd-00BqA0-0w;
+	Mon, 27 Mar 2023 17:07:32 +0000
+Received: by mail-pl1-x62b.google.com with SMTP id o11so9074988ple.1;
+        Mon, 27 Mar 2023 10:07:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679936848;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4xly0GzQvPfILGOWv1mMDVBgOAznYSMXIGKYil5doN4=;
+        b=kPECvF8v9MrjYejXS1kTs26xLMq5QuebytHoSLEu0lLafedcZeLRjO0XvDiqPNdle1
+         lspbWT4KByO1YXO7YRzn//6xQ2RgqpIC2cwzF8bixBiaIF00oIRsxoBhe0zk/6gsj1ou
+         Fz3d1iMe7CWqep+NZc88OZ+8SG43swPScXCnV3D4E0tcy7EsJ2wnyZGk2DQhDmdkK5B7
+         TvyHN9bD0R5/3QtsEyul54sIXQgnh4F+yl31jcgrCsHzGiXls/U7PzZ44k6a9omyVeRn
+         WxQwzsw868WsC5X2scMvf/kdbzIoTreQUJaWmBPVjKACN6fIDO3c40dvmwPFnraoLzfF
+         dUTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679936559;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BIK1w+CXfgSPJmxTqeF0/WQOBbahQffqFqpwRnNFhjs=;
-        b=ezMN/FVjQNfVExTXLPCXm19D6NH5e6npQ3T8ppMISTDK+VxPDMe/G2/nUvbqni8yEp
-         f1jryggodY77esbz8UkZ60dIMV13qDVMYQiyARMbnsJ845hUQED44k16QoeincEUEtjL
-         BQ95aj4VEGEVnMzeMntujYFOk4WfKbj66TzWlpplGbmmZ8xug8EBfn1y7B4V/UqPBAvM
-         vKQJQDKOSYMaCai/2rXXG6jtQfN8Xx8o7B50+2us6Jee6P+JFbDJ8CPywLuTV2jFVHbj
-         gLpXSIx2fcDdWlcvKhCvCHhHUT7alkXiVvXne354OFre6i/FWMCaAkafodPD6PgAe4ol
-         cwpw==
-X-Gm-Message-State: AAQBX9fkm7IBlAonkZzc7JM8bo6ZoFJ4yoki5AnjV36JzHo75G+pDGHk
-	VIiur499bjYzZ1WVMUkZSw==
-X-Google-Smtp-Source: AK7set+MgI/6QDWdbY7OBxPG8ErWpLlNItv/Ke5WnutBBXElg5yFH9Vd1Qk0S5csPH3n3Vjv/B4wYA==
-X-Received: by 2002:a05:6870:8289:b0:177:ab68:aa9e with SMTP id q9-20020a056870828900b00177ab68aa9emr7503297oae.21.1679936559347;
-        Mon, 27 Mar 2023 10:02:39 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id vd21-20020a0568708f9500b0017ae1aede32sm9799431oab.46.2023.03.27.10.02.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 10:02:38 -0700 (PDT)
-Received: (nullmailer pid 4109396 invoked by uid 1000);
-	Mon, 27 Mar 2023 17:02:37 -0000
-From: Rob Herring <robh@kernel.org>
-To: Guillaume La Roque <glaroque@baylibre.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: thermal: Drop unneeded quotes
-Date: Mon, 27 Mar 2023 12:02:33 -0500
-Message-Id: <20230327170233.4109156-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20210112; t=1679936848;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4xly0GzQvPfILGOWv1mMDVBgOAznYSMXIGKYil5doN4=;
+        b=RRXu0ns5ZKtdjffoIqSb7CkIFXw1s2sTIhIMR/LYNUTVAsWbb2s1o8eZ1VFi+SyrR2
+         4cLX4R02oFh6Ms+Tp5OxspZqMYop81JkDq9sG0jUD8KIKXQGIP6nuPLn2LG0kUnn98eL
+         MS9Ti+bsIOrnopT+vBDbjXca0u6diLbvcuy90ZnTFYdhIIdH24HtOsO3zGmFMv/kzsmK
+         /4PMldfJZOB0VdMewbZC7/wj9x1Vf+cGdpTRPDrovCIOWSAFzSImE/3dFXVF3nKPVxtb
+         sthkmYocjrnjFTdl29Sp+J6qzku0/e90QzJxB8W5WzRR2JLiy9L29l3qA4CtO2Vt28ip
+         m76A==
+X-Gm-Message-State: AAQBX9dupRGs2pTKSwx/giICHBustv43qMOdqu179Ul/mKjPHPXhNRgi
+	TZiYErmsvivMdCuh0CHVB+8=
+X-Google-Smtp-Source: AKy350b5i1zL+7Kc62BGEJOvl18jMSAOVQSlGlHcYfpt3b3Kh4/hMZv0Lolgjp0OESx8lwvFOgkRww==
+X-Received: by 2002:a17:902:d492:b0:1a0:57df:861c with SMTP id c18-20020a170902d49200b001a057df861cmr20430671plg.1.1679936847754;
+        Mon, 27 Mar 2023 10:07:27 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id u23-20020a170902a61700b00192fe452e17sm4979449plq.162.2023.03.27.10.07.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 10:07:25 -0700 (PDT)
+Message-ID: <cbb30ff5-d247-e545-23df-ff9d393ba57c@gmail.com>
+Date: Mon, 27 Mar 2023 10:07:16 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] dt-bindings: rng: Drop unneeded quotes
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230327170153.4105594-1-robh@kernel.org>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230327170153.4105594-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_100240_695811_9B105941 
-X-CRM114-Status: GOOD (  12.13  )
+X-CRM114-CacheID: sfid-20230327_100729_339016_63394849 
+X-CRM114-Status: UNSURE (   8.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,75 +100,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-checking for this can be enabled in yamllint.
+On 3/27/23 10:01, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 4 ++--
+>   Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml | 4 ++--
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/thermal/amlogic,thermal.yaml          | 2 +-
- Documentation/devicetree/bindings/thermal/imx-thermal.yaml    | 4 ++--
- Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml  | 4 ++--
- 3 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-index 999c6b365f1d..20f8f9b3b971 100644
---- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-@@ -30,7 +30,7 @@ properties:
- 
-   amlogic,ao-secure:
-     description: phandle to the ao-secure syscon
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
- 
-   '#thermal-sensor-cells':
-     const: 0
-diff --git a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-index b22c8b59d5c7..fe599e443eaf 100644
---- a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-@@ -40,11 +40,11 @@ properties:
-       - const: temp_grade
- 
-   fsl,tempmon:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description: Phandle to anatop system controller node.
- 
-   fsl,tempmon-data:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description: |
-       Deprecated property, phandle pointer to fuse controller that contains
-       TEMPMON calibration data, e.g. OCOTP on imx6q. The details about
-diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-index f09e8723ca2b..145744027234 100644
---- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-@@ -29,14 +29,14 @@ properties:
-     maxItems: 1
- 
-   fsl,tmu-range:
--    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-     description: |
-       The values to be programmed into TTRnCR, as specified by the SoC
-       reference manual. The first cell is TTR0CR, the second is TTR1CR, etc.
-     maxItems: 4
- 
-   fsl,tmu-calibration:
--    $ref: '/schemas/types.yaml#/definitions/uint32-matrix'
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-     description: |
-       A list of cell pairs containing temperature calibration data, as
-       specified by the SoC reference manual. The first cell of each pair
+Acked-by: Florian Fainelli <f.fainelli@gmail.com> #brcm,iproc-rng200
 -- 
-2.39.2
+Florian
 
 
 _______________________________________________
