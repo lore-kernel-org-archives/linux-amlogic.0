@@ -4,58 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78FE1C7619A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 12:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3863C761A6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 12:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3I9CMWFDH4qcWCEk2JKsNhq1h2/cZTKBZvhR7+WljqY=; b=MT3kx/FWlOStD4
-	zbHBTuGFr+ypldEjO3fpZUlzl5AEXaRiW/mUQHpdhauWnQ+/qhIXWG1Qs6jc/mV7rphr+9/1Jg9qO
-	/jXMU/RjITsHKWMiMXejmwsdMXrIaSZrRXLwKZRX25veIUpRRWJoHjR7TKY18PpqdXNSGDlcGum8A
-	dGa5KlliPxv3ukK5uCOU9WGJLH2GhahJXhvd8lDVxOWyq+fA306JvdKOP8jIXEL80PHyVDxn1WwOY
-	MZZ5KLh/HFxDljp+lqFCx/peSCaLh62t8zn0u6ASRKP4z9KNBNKwZxbW++MKaJwpMyW39kCZJogf/
-	dyFnfhTJVeDc6B4EtlkA==;
+	List-Owner; bh=XDzVb3yXOVoUtrpKu85iKYw3VKgtINHHjCIMF+WgmnU=; b=U/5GB1mI6Jb5wM
+	hjO72mi/EfgQrJlVZTmRDxCkXCk4nZFyAmoJcHwuYIun3IiftNsknMVFj+VhrckJkSkbQBrif32S1
+	sqc+8eit8JBGEMEVlbZ2KV7T948D2npmDEeWes6x1wkzSH2PmntSZflmdNtrmCQR6d1e8OnrC50fs
+	WQ3h15bO9j+oiJg8YasmybmirhICtlD2/cToEVYKC+BI2MFk4//lzGlgKzoFeQZKdDUbZ4f2Z3P+A
+	0e1vxecV2uDuzgvEefQpdP/+l+Il2+jOhIJQ0iiiAtu8b2YvO/VYbzjw6XCZblwz5oXOE/ORS5T8a
+	8q39CrKepUzhgPqVV5sA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pglnu-00AtzF-1t;
-	Mon, 27 Mar 2023 12:18:26 +0000
-Received: from ns.iliad.fr ([212.27.33.1])
+	id 1pgmDa-00AzZt-0o;
+	Mon, 27 Mar 2023 12:44:58 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pglmS-00AsqP-0y;
-	Mon, 27 Mar 2023 12:17:01 +0000
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id 46B1821093;
-	Mon, 27 Mar 2023 14:11:16 +0200 (CEST)
-Received: from venus.iliad.local (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id 346B621081;
-	Mon, 27 Mar 2023 14:11:16 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Marc Gonzalez <marc.w.gonzalez@free.fr>,
-	Pierre-Hugues Husson <phh@phh.me>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] perf/amlogic: adjust register offsets
-Date: Mon, 27 Mar 2023 14:09:32 +0200
-Message-Id: <20230327120932.2158389-4-mgonzalez@freebox.fr>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230327120932.2158389-1-mgonzalez@freebox.fr>
-References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
+	id 1pgmDX-00AzYA-0p
+	for linux-amlogic@lists.infradead.org;
+	Mon, 27 Mar 2023 12:44:57 +0000
+Received: from [192.168.108.81] (unknown [213.36.7.13])
+	(Authenticated sender: marc.w.gonzalez@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 2A3772003C1;
+	Mon, 27 Mar 2023 14:44:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1679921088;
+	bh=v7pcs8LXutW1j04pLxqMujM71BjU3pgL8w+MHQBQnGw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uqGfHSE271am0CHoa+CBB/L7Q0bNf9n9fkxuJMdIuiWlozT2LTz+Th8jQ50fMhkbN
+	 50Uf3+NnPOb/Ab553pGYIwT2mAsUJ77CBTn+QcsF4Nv1EaIQ4VBvkkYzfjHr1+s42G
+	 gAlKlcRq6Ror6dShFfjzAVrPS3rhr6Qnkr2Te1CNaJeqMygtHki6BknR6Pn/MTpsPd
+	 oBgabM+5f6JHxfNSm/2x1mF7LZNNFxP18A+YvlsC8G7iqN7xab0X/ov3AK6Ju7tPXT
+	 3tmeIhOdXprlGMjZOwRwTPvqtTFMzh5khf6lI84f042GFEBAX/KAZV4qY1PAT/xnF8
+	 oLSBw/gWNlRTw==
+Message-ID: <2887b454-ecc2-0fea-1a3f-7493d78c7580@free.fr>
+Date: Mon, 27 Mar 2023 14:44:38 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 2/3] perf/amlogic: resolve conflict between canvas &
+ pmu
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Pierre-Hugues Husson <phh@phh.me>, linux-amlogic@lists.infradead.org
+References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
+ <20230327120932.2158389-3-mgonzalez@freebox.fr>
+From: Marc Gonzalez <marc.w.gonzalez@free.fr>
+In-Reply-To: <20230327120932.2158389-3-mgonzalez@freebox.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_051656_522283_BD549604 
-X-CRM114-Status: UNSURE (   8.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230327_054455_738472_A82DE713 
+X-CRM114-Status: GOOD (  11.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,62 +76,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit "perf/amlogic: resolve conflict between canvas & pmu"
-changed the base address.
+In the patch Subject,
 
-Fixes: 2016e2113d35 ("perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver")
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- drivers/perf/amlogic/meson_g12_ddr_pmu.c | 34 +++++++++++++++++-----------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+s,perf/amlogic,arm64: dts: meson-g12-common,
 
-diff --git a/drivers/perf/amlogic/meson_g12_ddr_pmu.c b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-index a78fdb15e26c2..8b643888d5036 100644
---- a/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-+++ b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
-@@ -21,23 +21,23 @@
- #define DMC_QOS_IRQ		BIT(30)
- 
- /* DMC bandwidth monitor register address offset */
--#define DMC_MON_G12_CTRL0		(0x20  << 2)
--#define DMC_MON_G12_CTRL1		(0x21  << 2)
--#define DMC_MON_G12_CTRL2		(0x22  << 2)
--#define DMC_MON_G12_CTRL3		(0x23  << 2)
--#define DMC_MON_G12_CTRL4		(0x24  << 2)
--#define DMC_MON_G12_CTRL5		(0x25  << 2)
--#define DMC_MON_G12_CTRL6		(0x26  << 2)
--#define DMC_MON_G12_CTRL7		(0x27  << 2)
--#define DMC_MON_G12_CTRL8		(0x28  << 2)
--
--#define DMC_MON_G12_ALL_REQ_CNT		(0x29  << 2)
--#define DMC_MON_G12_ALL_GRANT_CNT	(0x2a  << 2)
--#define DMC_MON_G12_ONE_GRANT_CNT	(0x2b  << 2)
--#define DMC_MON_G12_SEC_GRANT_CNT	(0x2c  << 2)
--#define DMC_MON_G12_THD_GRANT_CNT	(0x2d  << 2)
--#define DMC_MON_G12_FOR_GRANT_CNT	(0x2e  << 2)
--#define DMC_MON_G12_TIMER		(0x2f  << 2)
-+#define DMC_MON_G12_CTRL0		(0x0  << 2)
-+#define DMC_MON_G12_CTRL1		(0x1  << 2)
-+#define DMC_MON_G12_CTRL2		(0x2  << 2)
-+#define DMC_MON_G12_CTRL3		(0x3  << 2)
-+#define DMC_MON_G12_CTRL4		(0x4  << 2)
-+#define DMC_MON_G12_CTRL5		(0x5  << 2)
-+#define DMC_MON_G12_CTRL6		(0x6  << 2)
-+#define DMC_MON_G12_CTRL7		(0x7  << 2)
-+#define DMC_MON_G12_CTRL8		(0x8  << 2)
-+
-+#define DMC_MON_G12_ALL_REQ_CNT		(0x9  << 2)
-+#define DMC_MON_G12_ALL_GRANT_CNT	(0xa  << 2)
-+#define DMC_MON_G12_ONE_GRANT_CNT	(0xb  << 2)
-+#define DMC_MON_G12_SEC_GRANT_CNT	(0xc  << 2)
-+#define DMC_MON_G12_THD_GRANT_CNT	(0xd  << 2)
-+#define DMC_MON_G12_FOR_GRANT_CNT	(0xe  << 2)
-+#define DMC_MON_G12_TIMER		(0xf  << 2)
- 
- /* Each bit represent a axi line */
- PMU_FORMAT_ATTR(event, "config:0-7");
--- 
-2.25.1
+Regards
+
+On 27/03/2023 14:09, Marc Gonzalez wrote:
+
+> According to S905X2 Datasheet - Revision 07:
+> 
+> DMC_MON area spans 0xff638080-0xff6380c0
+> DDR_PLL area spans 0xff638c00-0xff638c34
+> 
+> Round DDR_PLL area size up to 0x40
+> 
+> Fixes: 90cf8e21016fa3 ("arm64: dts: meson: Add DDR PMU node")
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index a5653ab1f0b43..1aab65bb5f578 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1585,6 +1585,12 @@ canvas: video-lut@48 {
+>  					compatible = "amlogic,canvas";
+>  					reg = <0x0 0x48 0x0 0x14>;
+>  				};
+> +
+> +				pmu: pmu@80 {
+> +					reg = <0x0 0x80 0x0 0x40>,
+> +					      <0x0 0xc00 0x0 0x40>;
+> +					interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+> +				};
+>  			};
+>  
+>  			usb2_phy1: phy@3a000 {
+> @@ -1710,12 +1716,6 @@ internal_ephy: ethernet-phy@8 {
+>  			};
+>  		};
+>  
+> -		pmu: pmu@ff638000 {
+> -			reg = <0x0 0xff638000 0x0 0x100>,
+> -			      <0x0 0xff638c00 0x0 0x100>;
+> -			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+> -		};
+> -
+>  		aobus: bus@ff800000 {
+>  			compatible = "simple-bus";
+>  			reg = <0x0 0xff800000 0x0 0x100000>;
 
 
 _______________________________________________
