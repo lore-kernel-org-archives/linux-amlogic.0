@@ -4,67 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CB7C76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 13:22:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 463DAC7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 13:28:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CvVtoXXWu9VBFlysxLPQ1mnMYZ2ucElt8vdG5+6C1Kw=; b=vFV8s1EGFqJNBB
-	cGlIb7duQd7rBB5eOdtXhv26B3UIc+LVn+dQsUHAXPv5yCk06tr/CyiF13oyYqisylTykyUKs5B3f
-	06/BL2n+Yw3/Or5d6w1ngLjUJ6vy4JXm0HJ04+uTflzydFVTeVZOjsCokUXCiiW9Tn5i8Ht9MM0yM
-	PkqCsM9ahwmQyy7IJjKF4p1R+GkovAoa9ck6itqSh2vpclmqipPAWuZfj078p44d+oBtMB6I2fHDv
-	SFaQrxNbEyTnAOCxR2IGIUADLMa1FQCv70m1OG0fOkLivTH63E4sSfoTt+riNrj3jXnOKyuxQHZL6
-	+Y2OC+chnNeJLRAtstaQ==;
+	List-Owner; bh=makwXy+dGcfXYlhM0J7Kj9vlg3xKDUO8uexN5EZF2Is=; b=n1hsLWIh76Y68t
+	lFB8tz5ZqhuXXsFaskV9yNP/ZmbSWPsoc6h4Qi7CNzrCx0BVt02c4toKBtr9Qr0tUwk7GDJTIYbjE
+	D/iaBmqRcjqF1QDpp2S94nwXAyOBugMFG48Qf1NaCn1nyQQTnDrQQLx8L2DYEigarbyUAooCX9e3y
+	WsRe1Joda+rzunvfq7o0c/MfErCxC0SH6LPIFgJbDX6VYAKoVrd4jYWelBJ+bD9AlCbFVR0OjV8nh
+	H8bRJHUBzBwKbp+40K6Kc8QQ6Y30XrMsIQS37K0sRu36JBEtOWgxl90GmSqbS7dEjE5Cw5OeEC82c
+	akkhZYTn8s9/Qq8DUP4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgmng-00B65t-2O;
-	Mon, 27 Mar 2023 13:22:16 +0000
+	id 1pgmtB-00B7MT-0X;
+	Mon, 27 Mar 2023 13:27:57 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgmnd-00B64r-0a;
-	Mon, 27 Mar 2023 13:22:15 +0000
+	id 1pgmt8-00B7LH-0b;
+	Mon, 27 Mar 2023 13:27:56 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id C2C485FD0E;
-	Mon, 27 Mar 2023 16:22:10 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id A602B5FD0E;
+	Mon, 27 Mar 2023 16:27:51 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1679923330;
-	bh=uWyMD5If887JpUXUAf2FQIqs4GKKl1iQKzSB5o9q4ok=;
+	s=mail; t=1679923671;
+	bh=0YUCwwr3FkfqiCryYd0cXJ9WkdrM/lnNsAXWs5dkDmY=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=DYabJhqEltilnGOBhjRmouVD5C4M9W0f4cyZHlPQhITMB7/HfcfuvWx6rPmxTG+gR
-	 RHwsHcZHgoPaXWIB5mv5dxE2nCVNaq2x/hFEWeYYOWazPmwWfHdnUfeT5gvWMVdzTB
-	 areAkdxHes7nXA/K4FeH4F2D3upvsrrNF6Q3iMYLPtdyLAmUrOUJyNfL3569322u1h
-	 v59z3duYEuj7kc9R8KnfY8cjRJ2+cM6uoZLx02pe1tITThaH/nJUrbRGuwow2sNlOV
-	 VPfA7w9C0MfGuQ568p1ndUl4IZSrd9NNONnTkNMxwgO0InXYyyfai+3IAmYSF2euzJ
-	 AxEw7OR5o93+w==
+	b=PiIIdlWyfXI2YxfuVPMiERyUtS3e8apzsM0jw8aWpq7UM21heILNGgtUKsImAyvvL
+	 fRKo6cr4JvAZ/FuUdfCeC+124LPi0DnRDf89y91DfYUrT7cJsbMhabscgA6+fd9LqU
+	 DsBtoKouTA9kMPpc4atAN9fueKNM9qyPZLYSViLl7ptJpiwlrxTmy63hrYt15QEaOu
+	 zScE0x+rQYGgaFGzlwJ3dthhuSWZ5r5GcMyWx13I3iLq/+pSJg3/AQMdZ72aLFQ3qO
+	 076PL8UYUfdrqiljM3ocAVjeRlIfZj+zB/NkgUCOlPL38tgnIljPIgWLsJcNvrneQP
+	 Gz1zhQgd+F+5A==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 27 Mar 2023 16:22:10 +0300 (MSK)
-Date: Mon, 27 Mar 2023 16:22:09 +0300
+	Mon, 27 Mar 2023 16:27:51 +0300 (MSK)
+Date: Mon, 27 Mar 2023 16:27:50 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>
-CC: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
 	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
 	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230327132209.c64ye4ou22cq7wm6@CAB-WSD-L081021>
+Subject: Re: [PATCH v11 5/5] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+Message-ID: <20230327132750.pnao5t3mbm3pmzbe@CAB-WSD-L081021>
 References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
- <20230321193014.26349-4-ddrokosov@sberdevices.ru>
- <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
- <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
- <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
- <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
- <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+ <20230321193014.26349-6-ddrokosov@sberdevices.ru>
+ <1jtty6o5so.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+In-Reply-To: <1jtty6o5so.fsf@starbuckisacylon.baylibre.com>
 User-Agent: NeoMutt/20220415
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
@@ -77,8 +74,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/27 05:49:00 #21016052
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_062213_573779_18B81F27 
-X-CRM114-Status: GOOD (  32.14  )
+X-CRM114-CacheID: sfid-20230327_062754_567365_DA48EE25 
+X-CRM114-Status: GOOD (  27.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,195 +92,109 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Don't know why, but my client deleted Jerome from To:. Sorry, added him
-back.
-
-On Mon, Mar 27, 2023 at 02:03:25PM +0200, neil.armstrong@linaro.org wrote:
-> On 27/03/2023 13:39, Jerome Brunet wrote:
-> > 
-> > On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> > 
-> > > On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
-> > > > 
-> > > > On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> > > > 
-> > > > > Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
-> > > > > clock drivers.
-> > > > > Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
-> > > > > bindings and include them to MAINTAINERS.
-> > > > > 
-> > > > > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> > > > > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > > > > ---
-> > > > >   .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
-> > > > >   .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
-> > > > >   MAINTAINERS                                   |   1 +
-> > > > >   include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
-> > > > >   .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
-> > > > >   5 files changed, 267 insertions(+)
-> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > > > 
-> > > > There is two drivers (and 2 independent patches). There should be 2
-> > > > bindings patches as well.
-> > > > 
-> > > 
-> > > Before, in previous versions I had two versions, but it wasn't bisectable
-> > > approach.
-> > 
-> > You are confusing bisectable and Rob's robot. Splitting patches is more
-> > that likely to help bisect (and patches backport) - not the other way around.
-> > 
-> > > a1-clkc schema depends on a1-pll-clkc headers and vice versa.
-> > > It means dt schemas checkers will show us failure if we split them into two
-> > > patchsets.
-> > 
-> > Only because you are patches are not upstream yet ...
-> > 
-> > > I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
-> > > look like production schema and it requires one more patchset above the
-> > > series with proper CLKID definitons usage and proper header including.
-> > > 
-> > > BTW, there is an example of Rob's test bot failure found in the previous
-> > > v10 patch series due to chicken or the egg problem.
-> > > https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
-> > > 
-> > > Please advise what's the best practice to resolve that..
-> > 
-> > Don't use the header in your example would solve the problem and
-> > still be correct DT wise.
-> > 
-> > The examples are just examples, they are not required to actually
-> > matches a real HW, as far as I know.
+On Mon, Mar 27, 2023 at 11:58:30AM +0200, Jerome Brunet wrote:
 > 
-> Exact, you can use fake lables instead of defined:
+> On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 > 
-> <&clkc_pll CLKID_FCLK_DIV2>,
+> > Introduce Peripherals clock controller for Amlogic A1 SoC family.
+> >
+> > A1 SoC has four clock controllers on the board: PLL, Peripherals, CPU,
+> > and Audio.
+> > This patchset adds support for Amlogic A1 Peripherals clock driver and
+> > allows to generate clocks for all A1 SoC peripheral IPs.
+> >
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >  drivers/clk/meson/Kconfig  |   10 +
+> >  drivers/clk/meson/Makefile |    1 +
+> >  drivers/clk/meson/a1.c     | 2344 ++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/meson/a1.h     |   49 +
+> >  4 files changed, 2404 insertions(+)
+> >  create mode 100644 drivers/clk/meson/a1.c
+> >  create mode 100644 drivers/clk/meson/a1.h
+> >
 > 
-> =>
-> remove "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+> [...]
 > 
-> <&clkc_pll_fclk_div2>,
+> > +static struct clk_regmap dspa_b_sel = {
+> > +	.data = &(struct clk_regmap_mux_data){
+> > +		.offset = DSPA_CLK_CTRL0,
+> > +		.mask = 0x7,
+> > +		.shift = 26,
+> > +		.table = mux_table_dsp_ab,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "dspa_b_sel",
+> > +		.ops = &clk_regmap_mux_ops,
+> > +		.parent_data = dsp_ab_parent_data,
+> > +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
+> > +		/*
+> > +		 * DSPA_B clk can be inherited from more accurate RTC clock,
+> > +		 * so in some situations we may want to freeze its parent.
+> > +		 * Therefore force dsp parent setup on device tree side
+> > +		 */
 > 
-> is perfectly ok and will permit have 2 separate patches.
+> This gets copy-pasted A LOT.
+> Please comment this once and for all ... then reference the comment if
+> you need to.
 > 
-> The dependency is only if you have a common yaml file for
-> both bindings files, but this is not the case here.
 
-Simple removal of "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
-header doesn't work, dt_binding_check make rule is failed:
+Agree. No problem. I'll collapse them in the next version.
 
-Error: Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:28.37-38 syntax error
-FATAL ERROR: Unable to parse input tree
+> > +		.flags = CLK_SET_RATE_NO_REPARENT,
+> > +	},
+> > +};
+> 
+> [...]
+> 
+> > +static struct clk_regmap cecb_32k_sel = {
+> > +	.data = &(struct clk_regmap_mux_data) {
+> > +		.offset = CECB_CLK_CTRL1,
+> > +		.mask = 0x1,
+> > +		.shift = 31,
+> > +		.flags = CLK_MUX_ROUND_CLOSEST,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "cecb_32k_sel",
+> > +		.ops = &clk_regmap_mux_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&cecb_32k_sel_pre.hw,
+> > +			&rtc.hw,
+> > +		},
+> > +		.num_parents = 2,
+> > +		/*
+> > +		 * CECB_32K clk can be inherited from more accurate RTC clock,
+> > +		 * so in some situations we may want to freeze its parent.
+> > +		 * Therefore force cecb_32k parent setup on device tree side
+> > +		 */
+> 
+> How do you plan on doing that ?
+> 
+> You've made the parent "private" and it is not even available to be
+> referenced in DT.
+> 
+> This whole concept of public and private to seems broken to me.
+> I would much prefer you keep the existing model, with one big table and
+> possibly some IDs not exposed in the bindings.
+> 
+> This gives an hint about the clocks we think consummers should use while
+> allowing us to change things if we got it wrong, and keep the IDs stable
+> for DT. This has been working so far. I don't see the benefit of
+> changing that right now.
+> 
 
-It happens, because 'dt_binding_check' generates simple dts example and
-tries to compile it:
+As we disccused in the IRC, there is two approaches:
 
-cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
-===
+1) public/private clock bindings based on splitting bindings headers
+2) public/private clock objects based on limited clock hw provider
+   registration
 
-/dts-v1/;
-/plugin/; // silence any missing phandle references
-
-
-/{
-    compatible = "foo";
-    model = "foo";
-    #address-cells = <1>;
-    #size-cells = <1>;
-
-
-
-    example-0 {
-        #address-cells = <1>;
-        #size-cells = <1>;
-
-        
-
-        apb {
-            #address-cells = <2>;
-            #size-cells = <2>;
-        
-            clock-controller@800 {
-                compatible = "amlogic,a1-clkc";
-                reg = <0 0x800 0 0x104>;
-                #clock-cells = <1>;
-                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-                         <&clkc_pll CLKID_FCLK_DIV3>,
-                         <&clkc_pll CLKID_FCLK_DIV5>,
-                         <&clkc_pll CLKID_FCLK_DIV7>,
-                         <&clkc_pll CLKID_HIFI_PLL>,
-                         <&xtal>;
-                clock-names = "fclk_div2", "fclk_div3",
-                              "fclk_div5", "fclk_div7",
-                              "hifi_pll", "xtal";
-            };
-        };
-
-    };
-};
-===
-
-As you can see, header is required.
-
-But looks like, dt binding checker is happy with the fake references hack :)
-Below there is generated example dts:
-
-cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
-===
-
-/dts-v1/;
-/plugin/; // silence any missing phandle references
-
-
-/{
-    compatible = "foo";
-    model = "foo";
-    #address-cells = <1>;
-    #size-cells = <1>;
-
-
-
-    example-0 {
-        #address-cells = <1>;
-        #size-cells = <1>;
-
-        
-
-        apb {
-            #address-cells = <2>;
-            #size-cells = <2>;
-        
-            clock-controller@800 {
-                compatible = "amlogic,a1-clkc";
-                reg = <0 0x800 0 0x104>;
-                #clock-cells = <1>;
-                clocks = <&clkc_pll_fclk_div2>,
-                         <&clkc_pll_fclk_div3>,
-                         <&clkc_pll_fclk_div5>,
-                         <&clkc_pll_fclk_div7>,
-                         <&clkc_pll_hifi_pll>,
-                         <&xtal>;
-                clock-names = "fclk_div2", "fclk_div3",
-                              "fclk_div5", "fclk_div7",
-                              "hifi_pll", "xtal";
-            };
-        };
-
-    };
-};
-===
-
-Yep, we are able to cheat dt checkers, but we don't help dt developers
-with such example.
-May be, it's better to prepare two patches in such hierarchy:
-
-1) A1 PLL clkc bindings with fake references without clkc headers
-2) A1 clkc bindings with real CLKID bindings + A1 PLL clkc bindings fix
-with real CLKID A1 clkc bindings + header.
-
-The such approach resolves DT checkers failures and split DT bindings
-into two patchsets.
+I'll redesign the whole patch series to the 1st approach with keeping the
+following strict rules in the mind:
+"There is no option to chage public or private CLKID list numbers.
+"Never said you were allowed to change the meaning of the ID, you are just
+allowed to have them declared in the bindings (or not)"
 
 [...]
 
