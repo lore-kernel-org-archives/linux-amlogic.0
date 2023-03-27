@@ -4,84 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D327FC7619A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 12:51:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C88EFC7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 13:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d72Uky4eQA3zhLh6KbqFWcwubcI6XSTjeR7lfrUwMhk=; b=1v7j5KTxYS8Cz3
-	5kKPwZ7W4J8wZiCz1eQas3v7s7yPlPcoRfaDdk1y7GeaL/oz7hajgvEdOO2ey3csEvZVXY0kliLbi
-	yCQGhT8jiBpMF7cDiG9ksx5P6nNUkKsG192tZrijP0UWJRoNyliZ+LFpa7saOsHWvMGS149pDYZRq
-	add0GXOSxnGwTzda5/j5b/o1VB1RxfZCcZNYKdrWQxX2E2cQHvuH0nHHRcsHhWw4uYln9eROHmuIf
-	mKO7EraEtNuFWwoClZ36JkjMp3BlS/MlP/hhpdy48sB7OS7wvjQTzeJdEYsfg0IUHp8hOosW9fB99
-	GkymCekqpMcaAZQEFB8Q==;
+	List-Owner; bh=FFTGU4MrT92d4/Wtxno7oRipXNBqZbKDeiLCeJTPfzY=; b=aAdeSUFnS+yAqy
+	Oasj3WRUEVnXxd34IK7S151IyEd9A/Na1RtfDd9NCltrajkHbTp9JXBc1aK3LEKct6sMg9C5PJHIq
+	BzjWEVtzQW+CDxDJN7NIgam9jclfpR+CxBkh1icMEVGW0pj8eON5DAeJjeZzC8YqUzjjl5hJRdsTF
+	bsyI4Ok3Q5AItJWqRr8dGTIrpoLHwUITE9gi456f+8Ne6eXDeLqS7fgOWzqQ4Cy3dT/ro9Y4dTTR7
+	QAAk9IrMHajyWVuqJacxOuH5ipgqY6EfbSmCD6sYxS3SGpy8E9MX3paA4hfcrGUoDef3K1x7S8Qgg
+	/nc5SqkwizxBTewfGrjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgmJO-00B0HE-2G;
-	Mon, 27 Mar 2023 12:50:58 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1pgml8-00B5aF-0g;
+	Mon, 27 Mar 2023 13:19:38 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgmJK-00B0FK-35
-	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Mar 2023 12:50:57 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id l12so8651889wrm.10
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 05:50:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679921450;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=T37WvrK7gDgqaEqWmPcTVPmlzV4CvonsfwxEYNlwENk=;
-        b=viBEClOZI5g4+bZRdZVYllM5wFrQ8mY8u1EPpWeY79F+3B61vjsMM6ZzJnkEJOBEMi
-         2RbqS9lYDcyP+OdcXC4NqwlSi3wtD4bHgS5hrL4Dryq3HFsMYptmD3fUSJtChoLiYGF8
-         rmyNPVAU7fVfaXptIPxPM2Pu2wY5MN7hecQ4+aPw4DeWIcbIfYtfd4uf6C3Wrr3WyKPN
-         1o6xBvKWS1VmPDMuouC6Gci+vx0UUclULiTCnfrAHWEEN0zlnntGnGau/KnQXfR+ki+o
-         knOc/UcXrANjHPmS6S71upOgy+utTN7KOaHPNp1UPjm0KG5M+HqT+Wd/fYxA+g3yK/FZ
-         IbmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679921450;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T37WvrK7gDgqaEqWmPcTVPmlzV4CvonsfwxEYNlwENk=;
-        b=r3i8EOlj2Klapa+jusMSx8c+DLcUZGuGDscpir15nZDTaaXlAvw4WGetnnvxTKg3Vy
-         39MnZwNMJiQa7cg1IEy8scrjTuDS7dGeI8by+LsfCngbIgu6rQHD0oO4BhPGLmw7TiOz
-         wcC9Jw3XZ5zG0Dls2yDo47lLRIzhcw5knNrMZ7InJwp+GAJ+hCXYCxWzaNg5CyyXJinn
-         RaqsatSDlwgLwx0Bl/7jxotSknuR/ePZ6EubHbDbZS8qLiGhpoIbCYfJY8/VD/KO6mi0
-         I10eBjv2FvcshiNx1CLduHKE0QmDSAyK2yZkgrVH5GlbyppIldx0zUrI2C2uD6UkmbcC
-         5OfA==
-X-Gm-Message-State: AAQBX9fuTt5X3hs78GcAOC74ltX03Y71CzalLdcxltXCZNlGJdNIFNXm
-	XTqR3BxWKc+Q4IaIs/WtL0TCnw==
-X-Google-Smtp-Source: AKy350brhUDJrcLAM1cHvnz/Xsrzr06tXoFTSsQXVigOh12vuehFkA1Ljkls0ww0F1JXKEWQeZMH1Q==
-X-Received: by 2002:adf:e9d1:0:b0:2d6:6af:4891 with SMTP id l17-20020adfe9d1000000b002d606af4891mr8305953wrn.3.1679921450158;
-        Mon, 27 Mar 2023 05:50:50 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002cfe685bfd6sm25060991wrw.108.2023.03.27.05.50.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 05:50:49 -0700 (PDT)
-References: <fad131e9-265f-6c4d-3223-932f69c9a927@gmail.com>
- <1j5yapot4j.fsf@starbuckisacylon.baylibre.com>
- <dc311f8c-a394-40fe-a4ca-6ef331d2b56b@gmail.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>, "thierry.reding@gmail.com"
- <thierry.reding@gmail.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Neil Armstrong
- <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pwm@vger.kernel.org, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] pwm: meson: add support for S4 chip family
-Date: Mon, 27 Mar 2023 14:13:50 +0200
-In-reply-to: <dc311f8c-a394-40fe-a4ca-6ef331d2b56b@gmail.com>
-Message-ID: <1jedpanys6.fsf@starbuckisacylon.baylibre.com>
+	id 1pgml3-00B5ZA-26;
+	Mon, 27 Mar 2023 13:19:36 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id E3E965FD0E;
+	Mon, 27 Mar 2023 16:19:28 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1679923168;
+	bh=r/g6+1aexCmhn5DuTBkJmHKaVN7SrHEXHCMTnOGbfJA=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=UG02xd1YhnsoOGv+yDroIOFfRc0vXcEdUtR+Wfc8JyP8Tpky/BHcm7CV7WBFbKP4Q
+	 LN3mWA+KlG1ni8SHmlHSiye63+akHBCbBEEK/h+y6NeEslobTAnuKDmQFxWBYOv8Q+
+	 sFZzw42jkdVFkYPP0NAJg0DRPt1uw36Tn/DwixzYLVokkTNP0ifh1IF6uaw1iEjdNw
+	 Xmr7AoDkYQc1/lDxaQgUi3Qijkcaezd3b+c0qN52V+E2m7S2sMXc84PgX1xtATFtyn
+	 Rvem93hXYk8d6fFJHjJ0BeqP7jx3FXj+Ybt3I3Yr96Cb1/VQu9BNbqZ8yuXlfpxJu9
+	 L9fn3s23yujEQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Mon, 27 Mar 2023 16:19:28 +0300 (MSK)
+Date: Mon, 27 Mar 2023 16:19:27 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>
+CC: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
+Message-ID: <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+ <20230321193014.26349-4-ddrokosov@sberdevices.ru>
+ <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
+ <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
+ <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
+ <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/27 05:49:00 #21016052
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_055055_188546_04A9913E 
-X-CRM114-Status: GOOD (  33.97  )
+X-CRM114-CacheID: sfid-20230327_061934_387249_C8C87906 
+X-CRM114-Status: GOOD (  31.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,169 +94,198 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, Mar 27, 2023 at 02:03:25PM +0200, neil.armstrong@linaro.org wrote:
+> On 27/03/2023 13:39, Jerome Brunet wrote:
+> > 
+> > On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> > 
+> > > On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
+> > > > 
+> > > > On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> > > > 
+> > > > > Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
+> > > > > clock drivers.
+> > > > > Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
+> > > > > bindings and include them to MAINTAINERS.
+> > > > > 
+> > > > > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > > > > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > > > > ---
+> > > > >   .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
+> > > > >   .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
+> > > > >   MAINTAINERS                                   |   1 +
+> > > > >   include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
+> > > > >   .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
+> > > > >   5 files changed, 267 insertions(+)
+> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > > > 
+> > > > There is two drivers (and 2 independent patches). There should be 2
+> > > > bindings patches as well.
+> > > > 
+> > > 
+> > > Before, in previous versions I had two versions, but it wasn't bisectable
+> > > approach.
+> > 
+> > You are confusing bisectable and Rob's robot. Splitting patches is more
+> > that likely to help bisect (and patches backport) - not the other way around.
+> > 
+> > > a1-clkc schema depends on a1-pll-clkc headers and vice versa.
+> > > It means dt schemas checkers will show us failure if we split them into two
+> > > patchsets.
+> > 
+> > Only because you are patches are not upstream yet ...
+> > 
+> > > I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
+> > > look like production schema and it requires one more patchset above the
+> > > series with proper CLKID definitons usage and proper header including.
+> > > 
+> > > BTW, there is an example of Rob's test bot failure found in the previous
+> > > v10 patch series due to chicken or the egg problem.
+> > > https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
+> > > 
+> > > Please advise what's the best practice to resolve that..
+> > 
+> > Don't use the header in your example would solve the problem and
+> > still be correct DT wise.
+> > 
+> > The examples are just examples, they are not required to actually
+> > matches a real HW, as far as I know.
+> 
+> Exact, you can use fake lables instead of defined:
+> 
+> <&clkc_pll CLKID_FCLK_DIV2>,
+> 
+> =>
+> remove "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+> 
+> <&clkc_pll_fclk_div2>,
+> 
+> is perfectly ok and will permit have 2 separate patches.
+> 
+> The dependency is only if you have a common yaml file for
+> both bindings files, but this is not the case here.
 
-On Sat 25 Mar 2023 at 23:58, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+Simple removal of "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+header doesn't work, dt_binding_check make rule is failed:
 
-> On 25.03.2023 14:24, Jerome Brunet wrote:
->> 
->> On Fri 24 Mar 2023 at 23:23, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->> 
->>> This adds pwm support for (at least) the s4 chip family. The extension
->>> is based on the vendor driver that can be found at [0]. There the
->>> version with the new clock handling is called meson-v2-pwm.
->>> Central change is that the clock is now fully provided by the SoC clock
->>> core. The multiplexer isn't any longer part of the pwm block.
->> 
->> As far as the documentation is concerned this is not true.
->> There is a input multiplexer with the xtal, vid_pll, fdiv3 and fdiv4
->> 
->> I'm not sure the differences mentionned here actually exists.
->> 
->
-> I don't have access to a S905X4 datasheet, just to the one for S905X3.
-> What makes me think that the hw is different:
->
-> - In the clock drivers for families before s4 I see no hint that
->   dedicated pwm clocks exist. From s4 there are CLKID_PWM_... clocks.
+Error: Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:28.37-38 syntax error
+FATAL ERROR: Unable to parse input tree
 
-That the clock driver concern, not the PWM one.
+It happens, because 'dt_binding_check' generates simple dts example and
+tries to compile it:
 
-The fact is the whole PWM clock block is still there.
-It still has 4 inputs, which may be improperly documented AFAICT.
+cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+===
 
-As previously stated, the doc says: xtal, vid_pll, fdiv3 and fdiv4
+/dts-v1/;
+/plugin/; // silence any missing phandle references
 
-Since Amlogic does not bother to intialize the "SEL" value anymore, you
-may assume the PWM clock is connected to the input number maching the
-register field value. (most likely 0 - so replacing the XTAL)
 
-Since you have been able to test this - change this SEL field, you'll see
-what it does and should be able to determine which clock is behind each
-of the mux inputs.
+/{
+    compatible = "foo";
+    model = "foo";
+    #address-cells = <1>;
+    #size-cells = <1>;
 
->
-> - In the S905X3 datasheet I see no hint that the pwm block can be fed
->   from an external clock (except the standard 4 mux parents).
->
->>>
->>> This was tested on a sc2-based system that uses the same pwm block.
->>>
->>> [0] https://github.com/khadas/linux/blob/khadas-vims-5.4.y/drivers/pwm/pwm-meson.c
->> 
->> AFAICT, this looks more like a choice in vendor SDK to not use the input
->> mux. IOW, just SW decision.
->> 
->
-> - If it would be a sw decision to use internal mux/div or an external
->   clock, then there should be a way to configure whether to use option a or b.
->   I see no such switch in the vendor driver code. Maybe you can check in the
->   datasheet whether there's such a switch.
->
->> I don't think such change makes sense in mainline if the HW has not
->> actually changed.
->> 
->>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>> Adding the amlogic,meson-s4-pwm compatible to the documentation was part
->>> of the yaml conversion already.
->>> ---
->>>  drivers/pwm/pwm-meson.c | 38 ++++++++++++++++++++++++++++++++++----
->>>  1 file changed, 34 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->>> index 16d79ca5d..7a93fdada 100644
->>> --- a/drivers/pwm/pwm-meson.c
->>> +++ b/drivers/pwm/pwm-meson.c
->>> @@ -98,6 +98,7 @@ struct meson_pwm_channel {
->>>  struct meson_pwm_data {
->>>  	const char * const *parent_names;
->>>  	unsigned int num_parents;
->>> +	unsigned int ext_clk:1;
->>>  };
->>>  
->>>  struct meson_pwm {
->>> @@ -158,6 +159,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->>>  	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
->>>  	unsigned int duty, period, pre_div, cnt, duty_cnt;
->>>  	unsigned long fin_freq;
->>> +	int err;
->>>  
->>>  	duty = state->duty_cycle;
->>>  	period = state->period;
->>> @@ -165,6 +167,14 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->>>  	if (state->polarity == PWM_POLARITY_INVERSED)
->>>  		duty = period - duty;
->>>  
->>> +	if (meson->data->ext_clk) {
->>> +		err = clk_set_rate(channel->clk, 0xffffUL * NSEC_PER_SEC / period);
->>> +		if (err) {
->>> +			dev_err(meson->chip.dev, "failed to set pwm clock rate\n");
->>> +			return err;
->>> +		}
->>> +	}
->>> +
->>>  	fin_freq = clk_get_rate(channel->clk);
->>>  	if (fin_freq == 0) {
->>>  		dev_err(meson->chip.dev, "invalid source clock frequency\n");
->>> @@ -173,10 +183,14 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->>>  
->>>  	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
->>>  
->>> -	pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
->>> -	if (pre_div > MISC_CLK_DIV_MASK) {
->>> -		dev_err(meson->chip.dev, "unable to get period pre_div\n");
->>> -		return -EINVAL;
->>> +	if (meson->data->ext_clk) {
->>> +		pre_div = 0;
->>> +	} else {
->>> +		pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
->>> +		if (pre_div > MISC_CLK_DIV_MASK) {
->>> +			dev_err(meson->chip.dev, "unable to get period pre_div\n");
->>> +			return -EINVAL;
->>> +		}
->>>  	}
->>>  
->>>  	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * (pre_div + 1));
->>> @@ -445,6 +459,10 @@ static const struct meson_pwm_data pwm_g12a_ee_data = {
->>>  	.num_parents = ARRAY_SIZE(pwm_g12a_ee_parent_names),
->>>  };
->>>  
->>> +static const struct meson_pwm_data pwm_s4_data = {
->>> +	.ext_clk = 1,
->>> +};
->>> +
->>>  static const struct of_device_id meson_pwm_matches[] = {
->>>  	{
->>>  		.compatible = "amlogic,meson8b-pwm",
->>> @@ -478,6 +496,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->>>  		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->>>  		.data = &pwm_g12a_ao_cd_data
->>>  	},
->>> +	{
->>> +		.compatible = "amlogic,meson-s4-pwm",
->>> +		.data = &pwm_s4_data
->>> +	},
->>>  	{},
->>>  };
->>>  MODULE_DEVICE_TABLE(of, meson_pwm_matches);
->>> @@ -493,6 +515,14 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
->>>  	for (i = 0; i < meson->chip.npwm; i++) {
->>>  		struct meson_pwm_channel *channel = &meson->channels[i];
->>>  
->>> +		if (meson->data->ext_clk) {
->>> +			snprintf(name, sizeof(name), "clkin%u", i);
->>> +			channel->clk = devm_clk_get(dev, name);
->>> +			if (IS_ERR(channel->clk))
->>> +				return PTR_ERR(channel->clk);
->>> +			continue;
->>> +		}
->>> +
->>>  		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
->>>  
->>>  		init.name = name;
->> 
 
+
+    example-0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        
+
+        apb {
+            #address-cells = <2>;
+            #size-cells = <2>;
+        
+            clock-controller@800 {
+                compatible = "amlogic,a1-clkc";
+                reg = <0 0x800 0 0x104>;
+                #clock-cells = <1>;
+                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+                         <&clkc_pll CLKID_FCLK_DIV3>,
+                         <&clkc_pll CLKID_FCLK_DIV5>,
+                         <&clkc_pll CLKID_FCLK_DIV7>,
+                         <&clkc_pll CLKID_HIFI_PLL>,
+                         <&xtal>;
+                clock-names = "fclk_div2", "fclk_div3",
+                              "fclk_div5", "fclk_div7",
+                              "hifi_pll", "xtal";
+            };
+        };
+
+    };
+};
+===
+
+As you can see, header is required.
+
+But looks like, dt binding checker is happy with the fake references hack :)
+Below there is generated example dts:
+
+cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+===
+
+/dts-v1/;
+/plugin/; // silence any missing phandle references
+
+
+/{
+    compatible = "foo";
+    model = "foo";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+
+
+    example-0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        
+
+        apb {
+            #address-cells = <2>;
+            #size-cells = <2>;
+        
+            clock-controller@800 {
+                compatible = "amlogic,a1-clkc";
+                reg = <0 0x800 0 0x104>;
+                #clock-cells = <1>;
+                clocks = <&clkc_pll_fclk_div2>,
+                         <&clkc_pll_fclk_div3>,
+                         <&clkc_pll_fclk_div5>,
+                         <&clkc_pll_fclk_div7>,
+                         <&clkc_pll_hifi_pll>,
+                         <&xtal>;
+                clock-names = "fclk_div2", "fclk_div3",
+                              "fclk_div5", "fclk_div7",
+                              "hifi_pll", "xtal";
+            };
+        };
+
+    };
+};
+===
+
+Yep, we are able to cheat dt checkers, but we don't help dt developers
+with such example.
+May be, it's better to prepare two patches in such hierarchy:
+
+1) A1 PLL clkc bindings with fake references without clkc headers
+2) A1 clkc bindings with real CLKID bindings + A1 PLL clkc bindings fix
+with real CLKID A1 clkc bindings + header.
+
+The such approach resolves DT checkers failures and split DT bindings
+into two patchsets.
+
+[...]
+
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
