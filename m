@@ -4,80 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D228C761AF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 07:50:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD0F8C76195
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 08:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ov5q+Sn0Y6jdUsFSxLB5jeF2n5EYwmbYjn06B1uS45M=; b=zjLLnM/go1G1PH
-	KLQtTpBqNpyJP04d2CcOq52GGAhBkIfPXzln9ODUoPEWIGNLD1N2JuvWaTt125V9i6cQkCFIpt7ZQ
-	98UEMtRzC/UbeCKMuqwGLLRJ3Fj4M2j1oiH9i+HuqRFZ103UGaIDGpsljsD6hk2aVcxCHN1WaGoe7
-	JiAoROtxNmC1EUYIXOSGWphAkDQjP898g00RyPcnJTfpGyT5tMCs7JLf+ZTtY57qfuxbNHulNpQ0a
-	I0TAMjgLb2mMZEJzlXFoR43q2cLBWQZtK4hgUYnf8rIjWYl3PsJAP3bLUPz9NkR1M2phyEtezjtvo
-	p75T4g5c+jnWO85olfAQ==;
+	List-Owner; bh=PUweNSFR2cdmHe6xwuohDZEUPSTS2SQx3Dr94KeXKQw=; b=XgJTVCELKUFuaD
+	fIHKsoSt0DeS2vuO/MbQqg+rUjHuBqEY3zkpYnpmiN5FU+NkPwMUaNkZyoP4vqT8XDmN+6L3DL28L
+	TcKTq/IOsbjXUOcTmUlcplIHGFBAgQc9wltGHB2uHSoxSennsJTnYlOSkUslpia6gtCohryRl7EjW
+	G806T9H4POSjICol+9Moi1fbeARgRBQIx7IGpcWnMCJqEdrhN8m5wBYEXAC8psgLXZgJM/xRj8zS7
+	gGX3jYGgRfA3JAG4uMExlHXsaNKLbFU2oMJpQebBywOysjAuuLPwjgVDQzqat64c7ILEJhw4duTV8
+	bh7Nc6SO+eKByRx8Jw3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pghcY-00A6yC-2o;
-	Mon, 27 Mar 2023 07:50:26 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pgiXd-00ALmn-36;
+	Mon, 27 Mar 2023 08:49:25 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pghcV-00A6wn-0T
+	id 1pgiXa-00ALld-1p
 	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Mar 2023 07:50:25 +0000
-Received: by mail-wm1-x335.google.com with SMTP id u11-20020a05600c19cb00b003edcc414997so4533234wmq.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 00:50:22 -0700 (PDT)
+	Mon, 27 Mar 2023 08:49:24 +0000
+Received: by mail-wm1-x331.google.com with SMTP id l37so4564734wms.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 01:49:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679903421;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H2/+o3CjS5oOZ++bbODl8k+jnt9IdZ9tkak/3JMK7t0=;
-        b=kET1HgTtkyGztmzPv5rYte5NwafcMxGi9Gi1UhkEZ5F2Q2AGcxrq9LIvKKfnOmgCAs
-         mxq/Sh4eHz2GT+4mm2xZ2BgRgzVmQOxccxBwCK8g1qhfC6Aqpsd6QFXVvIxOFFanJCMO
-         V7Pdj1wyTmsUjpEkN/uTuOte6P6OITJhvKLE8rAFNp7T+9NGW4/Ko6bsqSgEpgIr5wwc
-         o2TQpMZUGC3/iY5N7cQwrX2iDmQ6e4x1L1KGv4qbJve8U29mwy4FchCjESwboVrfO+IS
-         4cj8QQ8Uzl/mefqvYwCgMAnF2HKgfOykF1tH115foqpkhpu+Jr1R+QonghVB1h6tR9AF
-         nswA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679906960;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=UDSqP7fpfKlKQVx/rVKsTS5+4DHlxYXGctzY/lz+9Ho=;
+        b=5UJ/GXirQ7wgMEFINuifffVu8CODx5qLiO9QZwxXCtKEKM+75oZAu25XvAjTf3Mukd
+         lVDHLQTo0AOOQcN5NlWIUSvcKvN32YA5hJUWuvNjyFXAByF1uiR2VcvlikFKLYKEBmOn
+         eDx+RS9fSjaPFpSvMY1eVdj5AlrPgGKU31/9RH/tg2j1jU4AbH43wXOmYH7I2SbnW74s
+         7py0fyyDHwvalOsnobnGpmz4MyKAxZWgrhDqMGcGyEgoifsfAdrikkoSAaPvNKx7TImx
+         qNZcc3t1JrP9dMg1sXC70lpblPv+C9p97e4IDNGsXPmZvdqFu1e0O8EuVXhAqEIk+Pst
+         rXEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679903421;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H2/+o3CjS5oOZ++bbODl8k+jnt9IdZ9tkak/3JMK7t0=;
-        b=NpqCyp3PaEqL0Jx3gdZn+10Xv4nzWjj4RCCebGJDnaDOCROoQ/WLPOh3V43dbirvgK
-         FVmyiV2B+P5eaAWRg34gsJjJNw/NOZ/23JbsKzv6zttqe8/U3Ahc8Q//QOnrBHuCK+up
-         77miAHaPAj4eHCkTT81aMA5CcfPYXSd9GZMFQ7MLR8XaMZpzF9ckfZJMgT0bRKQ95L2j
-         wP1pDzZKt3+5fSu2+bu9LCsbXBJRZWSxDz6CN/NpWkGbNtreSoHEeJhR6okF3G61HsR6
-         s5RJb0WG+AmJAXjqufaKVLTFCVXQzPLLUiOVaFEDVAlSuFanGVXNFMjIbbaZuJjGkkI3
-         kAsA==
-X-Gm-Message-State: AO0yUKVgvMAKfnyHg/Ya1+ofuHLlrwTWVSQjyIElW7NRx3yp8bwSiaRv
-	wxvkOF2JcdXSuWsLmrqpANiovg==
-X-Google-Smtp-Source: AK7set/H65ARWER2L8lAV5SPxt5sN6JG7yyU9dVo+BNava17+gn6Bz3R62wLpTmeq239RuFisYQNTA==
-X-Received: by 2002:a7b:c448:0:b0:3ef:294c:de50 with SMTP id l8-20020a7bc448000000b003ef294cde50mr8538861wmi.29.1679903421304;
-        Mon, 27 Mar 2023 00:50:21 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id p5-20020a05600c358500b003ef6f87118dsm1673614wmq.42.2023.03.27.00.50.20
+        d=1e100.net; s=20210112; t=1679906960;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UDSqP7fpfKlKQVx/rVKsTS5+4DHlxYXGctzY/lz+9Ho=;
+        b=W10Uf3QudwruuH6IMb8LNH/KnlfoNW8lzbyXfHDU6VvzcEDvnsEDmnhQ/ey93bSzrJ
+         nOeLTzA8IS2JpgMcP5Mbo1Or2TNO0JeGWuuqgoZeIc6CeZFQlS5EA00X9C5lbEeG+dXr
+         XatUvO/jOu2+iOFyzwjGmfWNBOP/Ll8rb16NJYQddDjtvFWu1wqvNUnZXITs6rnpm54J
+         +m3KYOcUWAyqqN99rtCHiK9QNeuOYQC/g2PHShi1eYZCE2Yw1YfkSBqPEflQDqE4JbLk
+         qDlMFa2nzU5b5Eh7/Uc7mmtQNrm7s2ISvjfBq0Rt8TchwWKYc2fQ8s2Gj2VXbIbtf1pn
+         BYPQ==
+X-Gm-Message-State: AAQBX9fePGIw/PKS0kw+wcksaojI6PXmJ/k+Y21JASGE6H+12DataT6Z
+	H/L1utmCU3U/E0PEG7TuVSDbyw==
+X-Google-Smtp-Source: AKy350a1+/eDpxejUWxQfz4ZUV5XMrdV2fNL9j9I2+FCSXACd1jk3wa03RjMGPX4FF4onxWuoaOJcA==
+X-Received: by 2002:a7b:c852:0:b0:3ef:64b4:b081 with SMTP id c18-20020a7bc852000000b003ef64b4b081mr4840082wml.39.1679906960535;
+        Mon, 27 Mar 2023 01:49:20 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id v9-20020a05600c444900b003ef5deb4188sm8001026wmn.17.2023.03.27.01.49.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 00:50:21 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: ye.xingchen@zte.com.cn
-Cc: khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <202303241016261854322@zte.com.cn>
-References: <202303241016261854322@zte.com.cn>
-Subject: Re: [PATCH] soc: amlogic: meson-pwrc: Use dev_err_probe()
-Message-Id: <167990342066.283186.4060194256735806968.b4-ty@linaro.org>
-Date: Mon, 27 Mar 2023 09:50:20 +0200
+        Mon, 27 Mar 2023 01:49:20 -0700 (PDT)
+References: <8dab942d6ce47657a9c038295959be80bb2ee09e.1679834598.git.christophe.jaillet@wanadoo.fr>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH] ASoC: meson: Use the devm_clk_get_optional() helper
+Date: Mon, 27 Mar 2023 10:45:44 +0200
+In-reply-to: <8dab942d6ce47657a9c038295959be80bb2ee09e.1679834598.git.christophe.jaillet@wanadoo.fr>
+Message-ID: <1jy1nio9yo.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_005023_185838_93FE99FE 
-X-CRM114-Status: UNSURE (   9.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230327_014922_607182_FD88EF7B 
+X-CRM114-Status: GOOD (  17.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,41 +96,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Fri, 24 Mar 2023 10:16:26 +0800, ye.xingchen@zte.com.cn wrote:
-> Replace the open-code with dev_err_probe() to simplify the code.
-> 
-> 
+On Sun 26 Mar 2023 at 14:43, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
+> Use devm_clk_get_optional() instead of hand writing it.
+> This saves some loC and improves the semantic.
+>
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
-[1/1] soc: amlogic: meson-pwrc: Use dev_err_probe()
-      https://git.kernel.org/amlogic/c/78e812f0406c765fc5623b1d68e3c6e86cb32e5a
+Thx.
 
-These changes has been applied on the intermediate git tree [1].
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+> ---
+>  sound/soc/meson/axg-tdm-interface.c | 13 ++++---------
+>  1 file changed, 4 insertions(+), 9 deletions(-)
+>
+> diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
+> index 7624aafe9009..5e5e4c56d505 100644
+> --- a/sound/soc/meson/axg-tdm-interface.c
+> +++ b/sound/soc/meson/axg-tdm-interface.c
+> @@ -496,7 +496,7 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct snd_soc_dai_driver *dai_drv;
+>  	struct axg_tdm_iface *iface;
+> -	int ret, i;
+> +	int i;
+>  
+>  	iface = devm_kzalloc(dev, sizeof(*iface), GFP_KERNEL);
+>  	if (!iface)
+> @@ -533,14 +533,9 @@ static int axg_tdm_iface_probe(struct platform_device *pdev)
+>  	 * At this point, ignore the error if mclk is missing. We'll
+>  	 * throw an error if the cpu dai is master and mclk is missing
+>  	 */
+> -	iface->mclk = devm_clk_get(dev, "mclk");
+> -	if (IS_ERR(iface->mclk)) {
+> -		ret = PTR_ERR(iface->mclk);
+> -		if (ret == -ENOENT)
+> -			iface->mclk = NULL;
+> -		else
+> -			return dev_err_probe(dev, ret, "failed to get mclk\n");
+> -	}
+> +	iface->mclk = devm_clk_get_optional(dev, "mclk");
+> +	if (IS_ERR(iface->mclk))
+> +		return dev_err_probe(dev, PTR_ERR(iface->mclk), "failed to get mclk\n");
+>  
+>  	return devm_snd_soc_register_component(dev,
+>  					&axg_tdm_iface_component_drv, dai_drv,
 
 
 _______________________________________________
