@@ -4,82 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E8BAC7619A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 10:08:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63720C7619A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 10:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OwiprwDh4uhNv+ipbvoCCZLjsm9rUWUseUj1N9AVllg=; b=sYIJfSAJNji63G
-	4A9ZbeF6U2YpgvpfyZoBe8Zrlf9y6/w/o0ZVndwqL/Qn9BGDGYkQyHUWkon8BORxlzo1iwEuOYwLo
-	fnuoXEW2BtoWofvGwCGyonqfPZ7xHy6jHWWa5Jtsl9Rg/KgSk8EnOWzUNxvwhupfj2nx+7NhiNkOU
-	BDiR6erszckl8ifCEogBtdrGDHIdrNRbHWkeTFyOR8Tln5RO/KMJSQ6W0DMgC03q6GVHZbj/rxFUQ
-	hxWGF1EHaxdJH//UGoR1Dlt7YSN9yhHVI5FUEmiywn6JGNtq8s9/Ubm21t2Z74GjF7kqk/3NY7gR/
-	1xsAB1DENdTBxm3VboTQ==;
+	List-Owner; bh=u8AVyMa/+3fq1rDTDfHc3ROeJDLsbVv257auZqRKbGM=; b=LBMFe0IgTnfFTQ
+	dQ1u6SYPkt5OIRT8PiAJHd1X8apD4JWr5eJqI80BgUPv03QRcS9oymyJn+EqT1ZRR/aeTEtehpB46
+	LKVb6HT2NClwxd5iEvzV9YntYEpZ86hji2WLG1gtvHqVynlKxPN0tN7Ygcwex5dJb3I/sBRvhIpU3
+	Ykq0m+XvuPwixow+s2vKmZjO+TAxQXA5fcrraSV+ZCA1mbCNM7hzrWiqG4g/fBbmdvqq/RD6eVail
+	MYCHVSE2LAtUMASXjsBZCNtqcTlR/SXNU/Cf3wMGSLj6hvfbiiHjkzmOgiX2fGTC/pktIJUB3sHIl
+	KX91WE7dgyA97TxNopyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgjmB-00AaQG-1J;
-	Mon, 27 Mar 2023 10:08:31 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1pgjwn-00AcM8-0V;
+	Mon, 27 Mar 2023 10:19:29 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgjm8-00AaOv-0H
+	id 1pgjwi-00AcKD-1v
 	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Mar 2023 10:08:29 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so6626004wmq.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 03:08:26 -0700 (PDT)
+	Mon, 27 Mar 2023 10:19:27 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id n19so4741967wms.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 03:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679911705;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
-        b=syqWTErWORaOaEkKGE/WcSpMeaCjSH+kWTHXltMv3KacuoG1iBMJjyyI3Ypgi7VVKM
-         IbhfWcST7FfiXNazxPT/YvX3zxOy2cOeWQVrPykLdYfRBUi1XNSHD/zx+OHmDSixjtNQ
-         R6pqNc9Y0OhUc8j/4jPZY3QT/mfxgyCst7FYxHm/mZ445Gti7eA4lksC4qowfX9Qb2Gt
-         shnL4UuD9LMgbeFQwgTadf15bkqQAsB76+Yjd/n0YQ0EowXaFTAKPzpUWrVTxf3DWsLB
-         egmG8uVz3EAfN0mw82ZUhaowpyC/ZgJ8eP9sVbc0X2Nn/yyKo/7R2X7Zt78Nd9LFhxfN
-         IMWQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679912361;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q193+qQbGmL9z6G4FxC+zWcxN9diay8DaaL43/+W/u8=;
+        b=XcTpQMkfVUrA+Pi1esztDk96t1qs73ePIdcTmUSlkhjfToIrSRJNQYHHYGLWY0TqzM
+         nVFuyk05pZlv5lPbwO9zK0WzgVFl7KjKn4DGov6+qMOoWvnmNGbbQsaObhU/FwaRm5pB
+         JUQhAiGECwtW5fg6sswxeiXoanseG4chLs0e1pI6JdCNTTY0jeEeEWSFKg1SREcwH5JD
+         22kxoYKdL91ApJtxNcGrw6yzZ2ZOLpbzr6tztM0RVaQhs62iApGGVTRJIusyoo+MDwo1
+         gTKHmJye7be5sgiYM+zcPPM9QLdWeXHxJeVJmFMZqJlVRPHV9ENSiwraTZxfLrqsPAA8
+         bx4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679911705;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
-        b=ew4PnfEmIRcxJAYYqawpenCkP2B3PK4MbwIrkOjhYRejbd70drKYuQHqXONaMP9V8Y
-         zSl0/JU358DIVlYwiaEKvOkIFUqeVUeBuCir07M7fUXM/czl1b741BLZE63fybx5Vg5g
-         nxOM7/KulJfz0+/9jjMkooSr8qajdkZF5RLxPZGH/VVmDHPIOmhc/H2+PPdj+Ei4Px2R
-         dLDFy6d7LFktagNYeuSQlxc6qp7/2E6ThgB4EDox5ZT5z7KUKZ3XA1o5R32wBg/Oa6ZZ
-         aJDGSb6p4jJCaOYo8cEnAY8e64mCWFPthlDRdpHTAc2fhE41ZdHI8pThNBiw2kOTBvVI
-         GENA==
-X-Gm-Message-State: AO0yUKUU7omyx75IUgpM0ztQdV+DwN55U5uVkfCqyolQgfUAgfI9kZ+x
-	szqstiWq05Lm9lmj9PtHZRumPA==
-X-Google-Smtp-Source: AK7set8wE+/BnkmdZ5WYVo08VavTEhx5WcZTtPZM/fOa76aeYHFRLlZQ9S5YiCxFmmadow+sa0nakQ==
-X-Received: by 2002:a05:600c:21c1:b0:3ed:8c60:c512 with SMTP id x1-20020a05600c21c100b003ed8c60c512mr9202174wmj.17.1679911705511;
-        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m21-20020a7bcb95000000b003eeb1d6a470sm11182003wmi.13.2023.03.27.03.08.24
+        d=1e100.net; s=20210112; t=1679912361;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q193+qQbGmL9z6G4FxC+zWcxN9diay8DaaL43/+W/u8=;
+        b=2U/e/+VJx3QcPzB6tPHFfSRFaJS73ESYLW3wh/q+pMeCJCcm4HHs9FXN4xRlYCeNNk
+         RGMuTHhy+MgM4xH2kVe3w57GAPzOU18WlPzwf1XsvqUCwzjYngXCytcfvEVKtZP9CZrb
+         78XElUNRsozYM+YAGE48Wz4LpVfumWdDubIPcimpqYHZ6pDWD/3I0JqX45nPAgcW797M
+         pjWvjjpaZrmY1/AQgQHuviwkPcSrBxXFMKpyjyfjX/qC+vLPQQ3S5JnWHlmD6RetRJ0p
+         G7/SLnJTP/RX/kwDUa7EwRj48C05W0mRSQjddThTimrPaLJ0YZq5V1prmTi5xtaWx1qI
+         0W0A==
+X-Gm-Message-State: AO0yUKVzoJpBTuPueuGLN4MozcBwUW2D1u7pX+qLSuG2BeYg3jK1KBgt
+	w++UJiXauaxZF4zTbEOh4hIeFA==
+X-Google-Smtp-Source: AK7set8FsG4tKWlAe1g+Z9lv7YuWI5lmdwWsaz4HZxhpVMHIcDwHlEbjUtUIaWotZWfhaYxhl3r5eQ==
+X-Received: by 2002:a1c:4b02:0:b0:3ee:4481:5415 with SMTP id y2-20020a1c4b02000000b003ee44815415mr9184360wma.26.1679912361658;
+        Mon, 27 Mar 2023 03:19:21 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id p5-20020a5d4e05000000b002d75909c76esm17848785wrt.73.2023.03.27.03.19.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: krzysztof.kozlowski@linaro.org, robh@kernel.org, khilman@baylibre.com, 
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
- jianxin.pan@amlogic.com, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: kernel@sberdevices.ru, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, rockosov@gmail.com
-In-Reply-To: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
-References: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
-Subject: Re: [PATCH v3] firmware: meson_sm: populate platform devices from
- sm device tree data
-Message-Id: <167991170468.420117.8412879129199021084.b4-ty@linaro.org>
-Date: Mon, 27 Mar 2023 12:08:24 +0200
+        Mon, 27 Mar 2023 03:19:21 -0700 (PDT)
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+ <20230321193014.26349-6-ddrokosov@sberdevices.ru>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, neil.armstrong@linaro.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v11 5/5] clk: meson: a1: add Amlogic A1 Peripherals
+ clock controller driver
+Date: Mon, 27 Mar 2023 11:58:30 +0200
+In-reply-to: <20230321193014.26349-6-ddrokosov@sberdevices.ru>
+Message-ID: <1jtty6o5so.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_030828_154373_E7277348 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20230327_031924_636326_4AE80E05 
+X-CRM114-Status: GOOD (  23.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,48 +98,142 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Fri, 24 Mar 2023 17:55:57 +0300, Dmitry Rokosov wrote:
-> In some meson boards, secure monitor device has children, for example,
-> power secure controller. By default, secure monitor isn't the bus in terms
-> of device tree subsystem, so the of_platform initialization code doesn't
-> populate its device tree data. As a result, secure monitor's children
-> aren't probed at all.
-> 
-> Run the 'of_platform_populate()' routine manually to resolve such issues.
-> 
-> [...]
+On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
+> Introduce Peripherals clock controller for Amlogic A1 SoC family.
+>
+> A1 SoC has four clock controllers on the board: PLL, Peripherals, CPU,
+> and Audio.
+> This patchset adds support for Amlogic A1 Peripherals clock driver and
+> allows to generate clocks for all A1 SoC peripheral IPs.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  drivers/clk/meson/Kconfig  |   10 +
+>  drivers/clk/meson/Makefile |    1 +
+>  drivers/clk/meson/a1.c     | 2344 ++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1.h     |   49 +
+>  4 files changed, 2404 insertions(+)
+>  create mode 100644 drivers/clk/meson/a1.c
+>  create mode 100644 drivers/clk/meson/a1.h
+>
 
-[1/1] firmware: meson_sm: populate platform devices from sm device tree data
-      https://git.kernel.org/amlogic/c/e45f243409db98d610248c843b25435e7fb0baf3
+[...]
 
-These changes has been applied on the intermediate git tree [1].
+> +static struct clk_regmap dspa_b_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = DSPA_CLK_CTRL0,
+> +		.mask = 0x7,
+> +		.shift = 26,
+> +		.table = mux_table_dsp_ab,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "dspa_b_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = dsp_ab_parent_data,
+> +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
+> +		/*
+> +		 * DSPA_B clk can be inherited from more accurate RTC clock,
+> +		 * so in some situations we may want to freeze its parent.
+> +		 * Therefore force dsp parent setup on device tree side
+> +		 */
 
-The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+This gets copy-pasted A LOT.
+Please comment this once and for all ... then reference the comment if
+you need to.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+> +		.flags = CLK_SET_RATE_NO_REPARENT,
+> +	},
+> +};
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+[...]
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+> +static struct clk_regmap cecb_32k_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CECB_CLK_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 31,
+> +		.flags = CLK_MUX_ROUND_CLOSEST,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cecb_32k_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cecb_32k_sel_pre.hw,
+> +			&rtc.hw,
+> +		},
+> +		.num_parents = 2,
+> +		/*
+> +		 * CECB_32K clk can be inherited from more accurate RTC clock,
+> +		 * so in some situations we may want to freeze its parent.
+> +		 * Therefore force cecb_32k parent setup on device tree side
+> +		 */
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+How do you plan on doing that ?
 
--- 
-Neil
+You've made the parent "private" and it is not even available to be
+referenced in DT.
 
+This whole concept of public and private to seems broken to me.
+I would much prefer you keep the existing model, with one big table and
+possibly some IDs not exposed in the bindings.
+
+This gives an hint about the clocks we think consummers should use while
+allowing us to change things if we got it wrong, and keep the IDs stable
+for DT. This has been working so far. I don't see the benefit of
+changing that right now.
+
+> +		.flags = CLK_SET_RATE_NO_REPARENT,
+> +	},
+> +};
+> +
+
+[...]
+
+> +
+> +static int meson_a1_periphs_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +	int i, err;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return dev_err_probe(dev, PTR_ERR(base),
+> +				     "can't ioremap resource\n");
+> +
+> +	map = devm_regmap_init_mmio(dev, base, &a1_periphs_regmap_cfg);
+> +	if (IS_ERR(map))
+> +		return dev_err_probe(dev, PTR_ERR(map),
+> +				     "can't init regmap mmio region\n");
+> +
+> +	/* Populate regmap for the regmap backed clocks */
+> +	for (i = 0; i < ARRAY_SIZE(a1_periphs_regmaps); i++)
+> +		a1_periphs_regmaps[i]->map = map;
+> +
+> +	/* DT clocks registration */
+> +	err = meson_a1_periphs_clks_register(dev, &a1_periphs_public_clks);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "public clks registration failed\n");
+> +
+> +	/* Internal clocks registration */
+> +	err = meson_a1_periphs_clks_register(dev, &a1_periphs_private_clks);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "private clks registration failed\n");
+
+I defenitely don't like this public/private concept.
+Please remove it
+
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   &a1_periphs_public_clks);
+> +}
+> +
 
 _______________________________________________
 linux-amlogic mailing list
