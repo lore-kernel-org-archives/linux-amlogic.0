@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1DC8C76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 21:14:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D44F9C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 21:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GHjOxzn7qrqom+cIkrck9Hpiu2ULo47NGfMevUv3bog=; b=GjpZoFcweuIfw/
-	UvuBJXOMW9LMo6G0aDHMIvxQXdngmuORE5B4JmhVh98Cuwxg1dz/ua1acBNcqW2TIGjGDuaeG0yQQ
-	3Y3nRYcwxo+4LAtJ0qaH3dOjt+vRPNT+0CguHKT3xlpk4N/+a77y2cYAg5Yuf1B7PvczFzO6ZdJdD
-	WEL28l46ASqkZuVJe/8mc6C1K0HW1n3b5XcKEp74NjxLADMOTi4MkcwkdjhNRXMOlHa9vHjfY38pS
-	9UqtC1Rk9iZPET912F6rgRUX6IiMQga6O2V0LeTU9B/yJ39Ap7kcUzPuoBAOPSD5ZFd5eIZyUsmuP
-	Biwpq8Zk9ehIXivGZG5A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tNfiQL8oUVFagtazrqJ56msodS+G+VQEG4aL4I6nlVk=; b=ewkHInM7yr+oyz
+	ippBDctKdG+9xBrxaZ/cusji1uHqmH0s7b3fCOHN6WpW5J6FolT/ySshtlqke8J45MGvGOrmoLiAO
+	aeQHzIWCaYl7wESZPqkX0JBBraHCSooBaC4WzFge/eGKI/fI4dXeTfmBdSpLrG6UZmLdkRlWh7VsU
+	7uuQK4Bqoq6GyzhX73K1QpLJIKes2meFaV+8lHQBo93k0EO3d7YK6jT8KoSaJ+QwvNcoJIRbr7S5b
+	Pjtyu8FCCRLnmspJ3w2iV1UJZXbzU9oDII66p5UiNVn528+NwZ6jTqPqwHK/p0Ca3/yklCFcM5wPO
+	dv1C4E7kIY3Lo/d0QT5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pguB2-00CO57-2o;
-	Mon, 27 Mar 2023 21:14:52 +0000
+	id 1pguB3-00CO5G-0o;
+	Mon, 27 Mar 2023 21:14:53 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pguAz-00CO1R-2e;
+	id 1pguAz-00CO1S-2i;
 	Mon, 27 Mar 2023 21:14:51 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 010175FD07;
+	by mx.sberdevices.ru (Postfix) with ESMTP id 2AD935FD0E;
 	Tue, 28 Mar 2023 00:14:37 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
 	s=mail; t=1679951677;
-	bh=9ycbOjNYWPGPuemVUaFLexVP6yqoiw6Ms1b3Do67mQ0=;
+	bh=9QXWZXXnPKyi89P2UFi4LA2NOPDGvd/gPBu3Hi86flo=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=XkFSNLxAWgQqGYBJ7Mu52Y2xhMANMpt/ZCoW6X3J2mfoB2wcx/Ij1ZSvdo/tXOKcA
-	 zZtEmisEr2qhIkNyTYLPtmuKuZ4Fxj3Q/YQoacdFu7Y1cj0EIv+GTef92M+0590/N6
-	 Wlyjj9VKd2L4144Qiwi8KoGw4KJaaGoUp2BI+2YqO1XEynS6goKuMhRec3bF/u3GRt
-	 EgiRywFDIHpLLbsaKtuhXrFvaBHH6NuLteYAKlhLOHHLKfylFBNb8IwXzt2GNkAcvA
-	 bCeGR683yVEEu5PDpW93b6aYB0iwMPY/CMAzqchLd9nuCEeOr18GNWkhFbtUXM5Mji
-	 9ROO5beEKSl2Q==
+	b=a1W4v1rpgbR45hzPx1oeMVnatKjfjSk9OzA1GGK3oXN4wo4yZ7yowUpjhcEtaWSWR
+	 YPuZRxWbsI69Cu2punVFEb6ByUF5O1ilCFe+Ex0WCy236BqHDXTBVF2hlbRZy4f0im
+	 zpkJD0uSJdJQFOrREXGFPLbzRneER6mOJibJY9f6zTSQ0MAoZu+q1kQLWbY9f3X/pc
+	 Sqh/+7fBTP1iX8evPDMC0SDATt5tnkdehK7tjVPALJ28T/bZbPZqDvgrVuxwmOyN26
+	 WcK7osoMnpNOP2X6lqXTjRVqyfnAkrdgwciP5yZSDZOirPn/any85yV5xCqAn+cgqR
+	 LbIKVb9LsEb6A==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 28 Mar 2023 00:14:36 +0300 (MSK)
+	Tue, 28 Mar 2023 00:14:37 +0300 (MSK)
 From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
@@ -52,10 +52,12 @@ CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
 	<mmkurbanov@sberdevices.ru>
-Subject: [PATCH v2 0/2] add support for Meson A1 SPI Flash Controller
-Date: Tue, 28 Mar 2023 00:13:49 +0300
-Message-ID: <20230327211351.686831-1-mmkurbanov@sberdevices.ru>
+Subject: [PATCH v2 1/2] dt-bindings: spi: add Amlogic Meson A1 SPI controller
+Date: Tue, 28 Mar 2023 00:13:50 +0300
+Message-ID: <20230327211351.686831-2-mmkurbanov@sberdevices.ru>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230327211351.686831-1-mmkurbanov@sberdevices.ru>
+References: <20230327211351.686831-1-mmkurbanov@sberdevices.ru>
 MIME-Version: 1.0
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
@@ -68,8 +70,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/27 19:06:00 #21018749
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_141450_038865_928F5B94 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20230327_141450_235444_DB7F2AC8 
+X-CRM114-Status: GOOD (  12.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,39 +88,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset introduces DT bindings and driver for the Amlogic Meson A1
-SPI flash controller (A113L SoC).
+Add YAML devicetree Amlogic Meson A113L (A1 family) SPIFC Driver.
 
-The existing spi-meson-spifc driver is incompatible with the A1 SPIFC
-at all.
+This patch has dependencies on the A1 clock series which is still under
+review - https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
 
-The implementation has been tested on the Amlogic A113L SoC based device
-connected with ESMT F50L1G41LB spinand flash.
-
-This patchset has dependencies on the A1 clock series which is still
-under review [1].
-
-Changelog:
-  v2 since v1 at [2]:
-    - Make cosmetic changes
-
-Links:
-  [1] https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
-  [2] https://lore.kernel.org/all/20230322150458.783901-1-mmkurbanov@sberdevices.ru/
-
-Martin Kurbanov (2):
-  dt-bindings: spi: add Amlogic Meson A1 SPI controller
-  spi: add support for Meson A1 SPI Flash Controller
-
- .../bindings/spi/amlogic,meson-a1-spifc.yaml  |  42 ++
- drivers/spi/Kconfig                           |   7 +
- drivers/spi/Makefile                          |   1 +
- drivers/spi/spi-meson-spifc-a1.c              | 453 ++++++++++++++++++
- 4 files changed, 503 insertions(+)
+Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+---
+ .../bindings/spi/amlogic,meson-a1-spifc.yaml  | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
- create mode 100644 drivers/spi/spi-meson-spifc-a1.c
 
---
+diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+new file mode 100644
+index 000000000000..d2b1c754a6e1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/amlogic,meson-a1-spifc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson A1 SPI Flash Controller
++
++maintainers:
++  - Martin Kurbanov <mmkurbanov@sberdevices.ru>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-a1-spifc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/amlogic,a1-clkc.h>
++    spi@fd000400 {
++        compatible = "amlogic,meson-a1-spifc";
++        reg = <0xfd000400 0x290>;
++        clocks = <&clkc_periphs CLKID_SPIFC>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
+-- 
 2.40.0
 
 
