@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72784C77B61
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:01:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E47EC76195
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Mar 2023 17:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DUxuS1DR9IQWQsGm/lflV2qoVhgduo0GYfb7Hj/wGMg=; b=RNu097Sic7GWAM
-	Yh68F1PyEfnfoj726VLesWbIllytnDNar+ekB0WotvFSqeY09ot9AJwHKT1AIl1EN/RXwilzBO7mq
-	cWbLm4gO2oFKouA4FbHPbEvbFVsTAE1I+2RYz4FxbmQKPrbH0pwF5OAEK3bTuRx73Pjl+HFZf0iKO
-	PgerIH0tezDRr6YiVLijAjsIb+7sF3ohjVMtMzNRBFjpUDKdKQi5kMGFhcoIaIU9FNDW7tkSOq3fO
-	bD/9E0YDy5xToyPHP5uCo2Ndacd2m9gSr526zqmKKWox9TDiCtLD/oVyiNCzQMi4qDPrM70F/hVo3
-	AKC+fEnH3KhZAmaAOsRQ==;
+	List-Owner; bh=vzyd65mFdjLaL1TV+yYlR75vrFOyfSHevqAxCTdCUA4=; b=tEZrX1ik3F4wJ+
+	rUEfsSzQcmPBoeJVe8ehFIZvI+YX9lfWhSAZQUf5xBK6SRBCjg6iwADp5bzqGH2OkcDHWq0xWntVL
+	vGx27udOEENHxh3ag/jWB3mkbtIu9d/xfxIQuw+JfHhGIXRQklkazL5HuN+ZwQVY4hsOKKBxpJZyg
+	W+AwxxzYAfdQlSQ9Sl7RW3SylZ5GO4LcO5pEX5yLDrjvzaX9D5GIN6evVL8NaQSvRLq/nANwdMTne
+	So0Wq8F5q8SgTjmGcoqLu4OVgTY89R9lKAMX0pIdASEQMedAWn/E6eqXQ6+bso8+Us8SBeKcsU1zy
+	Bmm7pvM4T/+/U3tiuvHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqDp-00Bo7a-04;
-	Mon, 27 Mar 2023 17:01:29 +0000
-Received: from mail-oa1-f43.google.com ([209.85.160.43])
+	id 1pgqEB-00BoHj-33;
+	Mon, 27 Mar 2023 17:01:51 +0000
+Received: from mail-oa1-f45.google.com ([209.85.160.45])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgqDk-00Bo6M-34;
-	Mon, 27 Mar 2023 17:01:26 +0000
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-17786581fe1so9937299fac.10;
-        Mon, 27 Mar 2023 10:01:23 -0700 (PDT)
+	id 1pgqE5-00BoDO-1m;
+	Mon, 27 Mar 2023 17:01:47 +0000
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-17997ccf711so9993900fac.0;
+        Mon, 27 Mar 2023 10:01:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679936483;
+        d=1e100.net; s=20210112; t=1679936503;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OiTyBpredZ9G3c2Qr8ZySRrki6vsviNzT8Ei0s2GCWs=;
-        b=0a9t/8rZdY8gaElHc1pS6lbIkfIbi7GqLonWdLE3HTPabLmFHdIeIqhu6WQkindPx9
-         dHXT8OBwwkkb3dOH+PuMy6cxf+DNyujrIw6AvBkFYjNqkxj9O4GnGch478mjEzCjHFUy
-         R9LZxaFezZfpHZZNumxNlLGs6yWr4Us5FGy1X4hKHoCEmBDWxDp85ayW0zW53pJsGSu4
-         KNPdeiWX5jSPml2V28Ps9OBE5IWKVTR/RNPhHuRINi51B8//83B4DB+ikaIfX8++GTsq
-         DoNhvv0z5d2ffkzCZO8xSVfVAVF3zGCJsyfuOZmQalF9h6Jx3spFE2KDSdt0WwaKySDd
-         xFAA==
-X-Gm-Message-State: AO0yUKXj7MB2u+ibxWk/8Js+NHYRhVp5CX/PolDcS4BzgKd4y682EMXi
-	w0RlLa/3ferunm76OhSzVA==
-X-Google-Smtp-Source: AKy350apFLu0p89aoZfe3hbeUVq/LGMiZBqIYewYKZlim7HEkNZnKA09d3D1uR6qEYhHiwbYrEbXIQ==
-X-Received: by 2002:a05:6870:c5a5:b0:17a:d08c:c8a8 with SMTP id ba37-20020a056870c5a500b0017ad08cc8a8mr7880979oab.44.1679936482131;
-        Mon, 27 Mar 2023 10:01:22 -0700 (PDT)
+        bh=vsiiS+cg9ETxQ7qmK+ws7pFEXw6XBClGT7/dY2V6YIU=;
+        b=ZCkE00cYXeaC4zqEXVJ4+Z8EpF+sGAjI9mj5Yd/vYLXD+CPLOSpwodKvmf2QF/3WPk
+         +I7V7uGNdAA6c0ZiH233yLWzGZBS8HOrzzdenYFSsbZ9NGfvLAYKkJiNpwaO2d0HxA0i
+         mGkML0y1pmo2Gtk0kGOVq+JmsXoRYrm5qs1OyoEnckWfzcjxcHWmuCmh9pBE1AqGP3Yt
+         2f4Ge3sz+QCTeC4tCdkhmWFJdIffXlH43IFc4zyEQt3JAkWzWe0B1k0gr+oFBppiiQUG
+         u91h+e93E2N6gOZgyJjwKsTaLPOhNtJtEBH783ZnjwCvBGiqlwNWOlqKEpzGmC7S4UEu
+         Fy3g==
+X-Gm-Message-State: AAQBX9c/5t/jYH6op4O1B9KZMOzDXEH4FRup1kw9jrtTyflX95zAGPSz
+	wfwwLif2x5RdllTeCmODvA==
+X-Google-Smtp-Source: AKy350Y8FlKQ/y1NaNuo1nCVn3oPUauVYD2sc8z7OjA3kA1wH7XZPPgYFn9GWGfUSER2YH3YSr7JQg==
+X-Received: by 2002:a05:6870:9711:b0:177:b6ce:1e76 with SMTP id n17-20020a056870971100b00177b6ce1e76mr8661847oaq.55.1679936503338;
+        Mon, 27 Mar 2023 10:01:43 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b1-20020a4a98c1000000b00524f47b4682sm11527277ooj.10.2023.03.27.10.01.20
+        by smtp.gmail.com with ESMTPSA id zq35-20020a0568718ea300b0017f647294f5sm503569oab.16.2023.03.27.10.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 10:01:21 -0700 (PDT)
-Received: (nullmailer pid 4103173 invoked by uid 1000);
-	Mon, 27 Mar 2023 17:01:20 -0000
+        Mon, 27 Mar 2023 10:01:42 -0700 (PDT)
+Received: (nullmailer pid 4104460 invoked by uid 1000);
+	Mon, 27 Mar 2023 17:01:41 -0000
 From: Rob Herring <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] dt-bindings: remoteproc: Drop unneeded quotes
-Date: Mon, 27 Mar 2023 12:01:13 -0500
-Message-Id: <20230327170114.4102315-1-robh@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Hammer Hsieh <hammerh0314@gmail.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH] dt-bindings: serial: Drop unneeded quotes
+Date: Mon, 27 Mar 2023 12:01:36 -0500
+Message-Id: <20230327170137.4104272-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_100124_994518_E2FCE67A 
-X-CRM114-Status: GOOD (  10.23  )
+X-CRM114-CacheID: sfid-20230327_100145_585295_4F92859B 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,161 +84,184 @@ checking for this can be enabled in yamllint.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../remoteproc/amlogic,meson-mx-ao-arc.yaml        |  4 ++--
- .../bindings/remoteproc/fsl,imx-rproc.yaml         |  4 ++--
- .../bindings/remoteproc/ingenic,vpu.yaml           |  4 ++--
- .../bindings/remoteproc/qcom,glink-edge.yaml       |  2 +-
- .../bindings/remoteproc/qcom,smd-edge.yaml         |  2 +-
- .../bindings/remoteproc/renesas,rcar-rproc.yaml    |  4 ++--
- .../bindings/remoteproc/st,stm32-rproc.yaml        | 14 +++++++-------
- 7 files changed, 17 insertions(+), 17 deletions(-)
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++--
+ .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml     | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,em-uart.yaml | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,hscif.yaml   | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,sci.yaml     | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,scif.yaml    | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,scifa.yaml   | 4 ++--
+ Documentation/devicetree/bindings/serial/renesas,scifb.yaml   | 4 ++--
+ Documentation/devicetree/bindings/serial/serial.yaml          | 4 ++--
+ Documentation/devicetree/bindings/serial/sprd-uart.yaml       | 4 ++--
+ .../devicetree/bindings/serial/sunplus,sp7021-uart.yaml       | 4 ++--
+ 11 files changed, 22 insertions(+), 22 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-index 11cb42a3fdd1..3100cb870170 100644
---- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 3cbdde85ed71..ad13df48a590 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 BayLibre, SAS
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/amlogic,meson-uart.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/amlogic,meson-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Amlogic Meson SoC UART Serial Interface
+ 
+diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+index 05a6999808d1..dd33794b3534 100644
+--- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
++++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
 @@ -1,8 +1,8 @@
  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#"
+-$id: "http://devicetree.org/schemas/serial/qcom,serial-geni-qcom.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#
++$id: http://devicetree.org/schemas/serial/qcom,serial-geni-qcom.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Amlogic Meson AO ARC Remote Processor
+ title: Qualcomm Geni based QUP UART interface
  
-diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-index ae2eab4452dd..0c3910f152d1 100644
---- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+diff --git a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+index 12d0fa34f9f9..3fc2601f1338 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
+-$id: "http://devicetree.org/schemas/serial/renesas,em-uart.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#
++$id: http://devicetree.org/schemas/serial/renesas,em-uart.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: NXP i.MX Co-Processor
+ title: Renesas EMMA Mobile UART Interface
  
-diff --git a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
-index 85b1e43cab08..8b55dbd909b0 100644
---- a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+diff --git a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
+index afedb6edfc34..1c7f1276aed6 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#"
+-$id: "http://devicetree.org/schemas/serial/renesas,hscif.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#
++$id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Ingenic Video Processing Unit
+ title: Renesas High Speed Serial Communication Interface with FIFO (HSCIF)
  
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-index 15e6851e1ff8..7b43ad3daa56 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-@@ -15,7 +15,7 @@ description:
- 
- properties:
-   $nodename:
--    const: "glink-edge"
-+    const: glink-edge
- 
-   apr:
-     $ref: /schemas/soc/qcom/qcom,apr.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-index 7ec8a6b6682c..02c85b420c1a 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-@@ -21,7 +21,7 @@ description:
- 
- properties:
-   $nodename:
--    const: "smd-edge"
-+    const: smd-edge
- 
-   apr:
-     $ref: /schemas/soc/qcom/qcom,apr.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
-index 7e0275d31a3c..4bea679a0f61 100644
---- a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+diff --git a/Documentation/devicetree/bindings/serial/renesas,sci.yaml b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
+index dc445b327e0b..9f7305200c47 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#"
+-$id: "http://devicetree.org/schemas/serial/renesas,sci.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#
++$id: http://devicetree.org/schemas/serial/renesas,sci.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: Renesas R-Car remote processor controller
+ title: Renesas Serial Communication Interface
  
-diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-index 66b1e3efdaa3..37c0d7b4ceef 100644
---- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+index 1989bd67d04e..f26bea2d7398 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
 @@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
  %YAML 1.2
  ---
--$id: "http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#"
+-$id: "http://devicetree.org/schemas/serial/renesas,scif.yaml#"
 -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#
++$id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
  
- title: STMicroelectronics STM32 remote processor controller
+ title: Renesas Serial Communication Interface with FIFO (SCIF)
  
-@@ -29,7 +29,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
+index 4c3b5e7270da..499507678cdf 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/renesas,scifa.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/renesas,scifa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
  
-   st,syscfg-holdboot:
-     description: remote processor reset hold boot
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
-       - items:
-           - description: Phandle of syscon block
-@@ -39,7 +39,7 @@ properties:
-   st,syscfg-tz:
-     description:
-       Reference to the system configuration which holds the RCC trust zone mode
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
-       - items:
-           - description: Phandle of syscon block
-@@ -95,7 +95,7 @@ properties:
-       (see ../reserved-memory/reserved-memory.txt)
+ title: Renesas Serial Communications Interface with FIFO A (SCIFA)
  
-   st,syscfg-pdds:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-     description: |
-       Reference to the system configuration which holds the remote
-     items:
-@@ -105,7 +105,7 @@ properties:
-           - description: The field mask of the PDDS selection
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
+index 2f7cbbb48960..810d8a991fdd 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/renesas,scifb.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/renesas,scifb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
  
-   st,syscfg-m4-state:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-     description: |
-       Reference to the tamp register which exposes the Cortex-M4 state.
-     items:
-@@ -115,7 +115,7 @@ properties:
-           - description: The field mask of the Cortex-M4 state
+ title: Renesas Serial Communications Interface with FIFO B (SCIFB)
  
-   st,syscfg-rsc-tbl:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-     description: |
-       Reference to the tamp register which references the Cortex-M4
-       resource table address.
+diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
+index c9231e501f1f..ea277560a596 100644
+--- a/Documentation/devicetree/bindings/serial/serial.yaml
++++ b/Documentation/devicetree/bindings/serial/serial.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/serial.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/serial.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Serial Interface Generic
+ 
+diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+index da0e2745b5fc..28ff77aa86c8 100644
+--- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 Unisoc Inc.
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/sprd-uart.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/sprd-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Spreadtrum serial UART
+ 
+diff --git a/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+index ea1e637661c7..7d0a4bcb88e9 100644
+--- a/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+@@ -2,8 +2,8 @@
+ # Copyright (C) Sunplus Co., Ltd. 2021
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Sunplus SoC SP7021 UART Controller
+ 
 -- 
 2.39.2
 
