@@ -4,68 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA00C76195
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Mar 2023 02:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEC31C76195
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Mar 2023 06:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KZ/voaPNQmW59fczdRWJ+VogafpxDf/mwaTE94nEn8g=; b=FBOuUd1nd+OCoq
-	21bPWYIjEEEGj6i7XC/6q0mX4nV/onEG0DjTOvWymjB+FwBAVHTea6GAryQfeZooO0ZLLjAriH94v
-	onnENvs7fnMzF4tuZmgspV/TRJpv2kTbhvXopSzTA0VfUrLWZ9bgUWJ3xYf0killYEa+dp9ZlVVX1
-	HG5BZ5M6jwWvezW45WvfhvexOVNMldz88eGDI0C+7/ks5hFsfU1jgMef7O7LJZxAe0F9OvDuTvbPA
-	/m4Zl3gzVZGnqHMPVwzOWmQB/t1ezp71Vv22lhmwKGkyt1+IngUGQ4JKPgF9ym58T3IafA/jCQCXD
-	Gih9ewH0xp0HSbhDh00A==;
+	List-Owner; bh=gndaR39b6WP8qGKh7ZEeAdbUoefYjfXaEaF2TcXAFi4=; b=04DleQs9OGSqB/
+	gV4NI8LIUbd0VSpf8xGHQndgDDybtwHA9TV/bRxZEz0VpOxMgMrHLfP93KlXui7Uu/xUG03L0QB1A
+	j3g+u+nM/DsAUhG+EWeM97/Qh3FSSnvcGu0LhTX790rFyiS3vD44oMmisAPA86Qv9Se9VSUjCpngO
+	rwE7PailM1tdY0Qq45cKiw5Td5zCf8gwtWIeWUejwBSnd0MgC5rpt6pNct9vsoeqNI0KRRxCU4j4x
+	C8wttQW2ya3pXG8wtK/F5hmp4eydsYLdFfXqjhzjyIKUvB9m+wm+iEroQF7O443B7gRExK4SCjNnS
+	ysCYMrbfFdQWzp7UkPcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgz7P-00Cuf6-1s;
-	Tue, 28 Mar 2023 02:31:27 +0000
-Received: from m12.mail.163.com ([220.181.12.217])
-	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgz7M-00Cue1-2P;
-	Tue, 28 Mar 2023 02:31:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
-	Content-Type; bh=tA0fWIdSREazRi2gsLXlzBOKFVkGlLcy9hDX6nupWJw=;
-	b=dTgF/Uti4piGybbbfm/Ad3OY7td8IalSUzmPmCJ32ywJSDRRG4fo1e53h31xMo
-	TeMjEeO3NZXKy5CB2n2NH9bSBV5t2ng96SpCsL58XiUk83VAx3lYDlhq4jpOILd4
-	PUPIcNqY1VCnIJh3e97oeB+lGp8MbRtwEgfWsWgAJ7HpI=
-Received: from [10.88.19.164] (unknown [61.150.11.36])
-	by zwqz-smtp-mta-g2-0 (Coremail) with SMTP id _____wA3vVXwUCJkCStCAg--.9235S2;
-	Tue, 28 Mar 2023 10:29:06 +0800 (CST)
-Message-ID: <79968005-28f3-d890-dfea-faca2e7d7947@163.com>
-Date: Tue, 28 Mar 2023 10:29:04 +0800
+	id 1ph325-00DLFg-2E;
+	Tue, 28 Mar 2023 06:42:13 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1ph323-00DLDh-1Z
+	for linux-amlogic@lists.infradead.org;
+	Tue, 28 Mar 2023 06:42:12 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id ek18so45355715edb.6
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Mar 2023 23:42:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679985728;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=451j44+6MRrjjocPev25db4ORq+gaZ4ABjFTXWHPHzM=;
+        b=Qe8/nJ97su7uPLmdIjcVPCheqGdN7PQfAi4CTS73IRaZ0u66bA0GBLRqfvZky48jcR
+         DqvGguKXS5TUPzEmjpceIrMqMgqalZ45c3gG0ji4aYvZghRtrkiTDKHmt6Qwyzi6vRVt
+         BHVbWc3BARQZM2ciJBh5+7S5w2Yf4/efHb/5Z9qjP87Hh5kiH/5Qz28Pcy661mzeaL2H
+         LnH01tuYR8Lp6tcdJiyD+4SSXQveH6YTiZpmhCErptaMJeXmTVTM0LHwpwqjL/alt11G
+         d5n2HW5FSRp+0RPS1a2oxGNS4skGS2ObBRIww+Ho96KRn+GOgiViEFtQbmlvmqY6BVkL
+         wW4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679985728;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=451j44+6MRrjjocPev25db4ORq+gaZ4ABjFTXWHPHzM=;
+        b=GjHSXKmcLj7vkeKU+Gdcj6UuT4sHFcb7IuWJ6i2MwAqE6sAQCMtOFvbeMajqSRqXIs
+         0/Fb1UnzNhKn89rVqHDG3SBg95+tnKb8t7fcpOJk35c/hHf+tK92ePqatFbj8x/qn38R
+         oAiEkg804k6G0ryyDDIVbxiwLR0Xxk/QX4oJtztaFpRQ+9db8SoNH8dQ6EO0PAqfO1F0
+         oVNPeS87I0iRAeSfTDLkf1GduIGzAp8KA/nvHd2ch1VK/iGi4MLINl5dqTcWTyALc4Dk
+         t2lp1x7cwrCN1xVz5JYTVESxH23HUkwjAPBqHcrVhJ9qcuvZ5Pn5kE/DVT244k4acZ+n
+         LiaQ==
+X-Gm-Message-State: AAQBX9div7x/9T6SduVMXUYY2Ws2ktxTOvaMc/7/nX39FwmLE1LhkpZp
+	r1iSdADlBTRMxn6oGwd3cxrKNA==
+X-Google-Smtp-Source: AKy350bPobP7mxNYomM7mTnUP+KR0VKgYBLm04hWoARq4akmXfxUlUHc7yIwq5WmnLYkEcUIdmxlTg==
+X-Received: by 2002:aa7:c90d:0:b0:4fd:1ff0:2291 with SMTP id b13-20020aa7c90d000000b004fd1ff02291mr13811380edt.18.1679985727914;
+        Mon, 27 Mar 2023 23:42:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
+        by smtp.gmail.com with ESMTPSA id s30-20020a50ab1e000000b004c5d1a15bd5sm15403339edc.69.2023.03.27.23.42.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 23:42:07 -0700 (PDT)
+Message-ID: <acb67dc8-0186-695b-5986-6f1d91a0108c@linaro.org>
+Date: Tue, 28 Mar 2023 08:42:06 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 2/3] perf/amlogic: Fix large number of counter issue
-To: Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: rng: Drop unneeded quotes
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Kelvin Zhang <kelvin.zhang@amlogic.com>, Chris Healy <cphealy@gmail.com>,
- Chris Healy <healych@amazon.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230209115403.521868-1-jiucheng.xu@amlogic.com>
- <20230209115403.521868-2-jiucheng.xu@amlogic.com>
- <20230327141054.GC31752@willie-the-truck>
-Content-Language: en-US
-From: Jiucheng Xu <jiuchengxu@163.com>
-In-Reply-To: <20230327141054.GC31752@willie-the-truck>
-X-CM-TRANSID: _____wA3vVXwUCJkCStCAg--.9235S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7trykurW7Xr1kJw4fGrW3ZFb_yoW8ur43pF
-	WkCFyFkrs8Jr1qgw17Z3Wa9a18Xw47Ar9agrW2gw1YvF12qF9xWasrW39I9r1DJrs2kF4I
-	qFyYg3y5uFyrZr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jfqXdUUUUU=
-X-Originating-IP: [61.150.11.36]
-X-CM-SenderInfo: pmlxuxxhqj53i6rwjhhfrp/xtbB0xhA4lXlyiHoCgAAsQ
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230327170153.4105594-1-robh@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327170153.4105594-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_193125_186285_ABFD3F4D 
-X-CRM114-Status: GOOD (  13.72  )
+X-CRM114-CacheID: sfid-20230327_234211_526457_B71ABA0F 
+X-CRM114-Status: UNSURE (   8.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,70 +101,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 27/03/2023 19:01, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-My Amlogic email box has some issues. Use my personal email 
-<jiucheng.xu@163.com> to reply.
 
-On 2023/3/27 22:10, Will Deacon wrote:
-> [ EXTERNAL EMAIL ]
->
-> On Thu, Feb 09, 2023 at 07:54:02PM +0800, Jiucheng Xu wrote:
->> When use 1ms interval, very large number of counter happens
->> once in a while as below:
->>
->> 25.968654513 281474976710655.84 MB meson_ddr_bw/chan_1_rw_bytes,arm=1/
->> 26.118657346 281474976710655.88 MB meson_ddr_bw/chan_1_rw_bytes,arm=1/
->> 26.180137180 281474976710655.66 MB meson_ddr_bw/chan_1_rw_bytes,arm=1/
->>
->> Root cause is the race between irq handler
->> and pmu.read callback. Use spin lock to protect the sw&hw
->> counters.
->>
->> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
->> ---
->>   drivers/perf/amlogic/meson_ddr_pmu_core.c | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/perf/amlogic/meson_ddr_pmu_core.c b/drivers/perf/amlogic/meson_ddr_pmu_core.c
->> index 0b24dee1ed3c..9b2e5d5c0626 100644
->> --- a/drivers/perf/amlogic/meson_ddr_pmu_core.c
->> +++ b/drivers/perf/amlogic/meson_ddr_pmu_core.c
->> @@ -14,6 +14,7 @@
->>   #include <linux/perf_event.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/printk.h>
->> +#include <linux/spinlock.h>
->>   #include <linux/sysfs.h>
->>   #include <linux/types.h>
->>   
->> @@ -23,6 +24,7 @@ struct ddr_pmu {
->>   	struct pmu pmu;
->>   	struct dmc_info info;
->>   	struct dmc_counter counters;	/* save counters from hw */
->> +	spinlock_t lock;		/* protect hw/sw counter */
->>   	bool pmu_enabled;
->>   	struct device *dev;
->>   	char *name;
->> @@ -92,10 +94,12 @@ static void meson_ddr_perf_event_update(struct perf_event *event)
->>   	int idx;
->>   	int chann_nr = pmu->info.hw_info->chann_nr;
->>   
->> +	spin_lock(&pmu->lock);
-> Why doesn't this need the _irqsave() variant if we're racing with the irq
-> handler?
->
-> Will
-I think meson_ddr_perf_event_update function is called with hard irq off.
-So update function couldn't be interrupted by irq handler. Right?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Jiucheng
->
+Best regards,
+Krzysztof
 
 
 _______________________________________________
