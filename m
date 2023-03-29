@@ -4,79 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60F1C6FD18
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Mar 2023 12:23:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B468C74A5B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Mar 2023 17:21:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=dLs5yzynJc16vnZi2xC/GBT+cwnEZ3Ov+x/s0OeeCFo=; b=kNZEPrO0c67LdZ
-	GWZM/ZIX0pVRksYaCo2rgmVmy0c/wxv9bhR7KKh5+71l3z+K1n/eTHSbXqMbE53Fyavoj6LiMaMwc
-	C6sVJqfi1ICO6QO3NiKfMKlagdx4m4Aeqpxm47pxGjhlOdD+3G5B9Cuncg7I2yDyzitOeCy1sMwls
-	cmLsNXextH3KwbN3/9VK+TurIV+F7hrco6alLVNCkUsWdkZbCkU1+rYAMFUozqv26gaNtasSUsDjd
-	6NSrsdU2aAZBwQ0bQnjgusQgvc4IDe8vzrGvN5hmlT260nJ2nLnzJSQTHJWxXm/qzUrjEyOulf2r8
-	OXfZ9pyzHpohushGUe2w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=X69XIgFOBLWZTwh+9/o9Pla9u27yBMss+I3Hut5ZI/s=; b=BGjE6fBfA7QGNR
+	HC0F1okBnuZ5Ad4p/sKmlewnfBYapjKV58jQwgKQTcxCqMMF1ff3flzGjg9lUEkjEQBiQeX5PPKKu
+	Xm+Ka+fdT6MVugEV+GyrKmBfwHSUdW3+SF4bD17QKH9/KtSBo7PgFseW6K4T2KqR6n8I46SvQI0r2
+	INPYCvKg/OPzZjUzB0y6Pjv5xJxktJ/BrKxhnwwlzeMqZ6UZxNtVshs0Ggl/yhqDRPhpdEpR8viTC
+	r3n3wRnpee4FUpNUCrHmvrEKpVEOW5XkU9kD2S370pYRkbAP5sFVevKjTVUhc8lDyi5HsGcIkr580
+	9UADYmqrFt81+jYLEyRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1phUpZ-000B4T-0Z;
-	Wed, 29 Mar 2023 12:23:09 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1phZU3-001HNZ-37;
+	Wed, 29 Mar 2023 17:21:15 +0000
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1phUpU-000B2i-27
+	id 1phZU0-001HMa-1R
 	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Mar 2023 12:23:06 +0000
-Received: by mail-wm1-x332.google.com with SMTP id u1so8770121wmn.5
-        for <linux-amlogic@lists.infradead.org>; Wed, 29 Mar 2023 05:23:01 -0700 (PDT)
+	Wed, 29 Mar 2023 17:21:14 +0000
+Received: by mail-pf1-x433.google.com with SMTP id l14so10753207pfc.11
+        for <linux-amlogic@lists.infradead.org>; Wed, 29 Mar 2023 10:21:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680092580;
-        h=content-transfer-encoding:organization:content-language:cc:to
-         :reply-to:subject:from:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZHfKG+E4efNoQwXPSxPG/5jUC3noBlzcf9wCRGCH2gM=;
-        b=bp1MUtMwcoBxDMNX8aLUxJJngqz5fWMuKR3N3V2MLtL8Of6MRaDnd3+sq1Mhbazok6
-         FurA6nZm1pcDNi5INwJYkAmzlwJp/0eArNBpHBHecpdD0c322miaa+e6fXEruc0QgSUf
-         OmsP3w35b/u8c0tdmGPkSk05G5sAnk8uEZ3LDN6RI+a8k3RKfgr71/CCKhQ35oplFM3+
-         SPDIhaFLOpkfuW07cjJ8DBtXWLRLBEahmP+g1JQ4Omn78mU9u8Qqssr+lcRwZOTNK1XW
-         ExI2rM/cRy8M1nouV37DWDQd4BPkwJCpnAspaG0eNuQ0Q58JZf8irlMjU09wd4XmKfPC
-         7QDw==
+        d=linaro.org; s=google; t=1680110470;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gutUdfZnZGJz80FqANIFD9947ke4IDEKtmrilCP9Asg=;
+        b=uoDbG/Rpr227AQzHfgKoRhIFdGyFDgE38i3QuNOHy1nfld7wbGPfRr9WuTb7JUFFRv
+         5S6IUx5xo+jHf4HvuW37VUeU6CjeSxv7fJ3Xu1nDh3LyiSPOzXMvxx0JIjwsnbFpR5AC
+         h/Z91+pEymRNAWpDcf4quLxfLPS/ZppPxHBsPd6hfixrDpFQxADA7OvslGVMam2HYR1T
+         0nFVVFHIHCF83Qv5QPd7b/P0qCSfQK+pmpvJ/1puEeX934QmJKrQHP2Z5Zao9n2DUn2L
+         gkMFCIk+VFJN3pd6/P7u1g6lhw+g3t5dv0cnLwPs3L7zuHEKDj2kEBENZazXqqiHwvYq
+         f/Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680092580;
-        h=content-transfer-encoding:organization:content-language:cc:to
-         :reply-to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZHfKG+E4efNoQwXPSxPG/5jUC3noBlzcf9wCRGCH2gM=;
-        b=NUSIH6U9e+saATOW3iiJr0lTKC6qvAVxIwaLK9R/g/8+gFbWOGDtdfHBLlS/PNBWla
-         PB9L+agyyW+nQGrN08NFRKWp+nfWXYVjygUCQWBNj3Us3bzjOGWY8GamGqfGlAqhF2bi
-         GCCi0ILkKHUWItlplEV5Ww0F9s8jT66rHo1Y3te660Npm2R+zMj7rCJEdXtbrEdygia9
-         +n6W6ELhWbJLpR/8h4z+5XczGSme6SqZaWjoEMFrzXwB0QUsLzBCmUwXoDbtF5dxwO0w
-         S3OXhuPl7KwQj87WZl+q9e1wdaZGaVP/lAgoQsMPbo1s4hieMOchimldtEsN5cIYYpPT
-         +4sQ==
-X-Gm-Message-State: AAQBX9dmMao+kJ9WMwybr3jsqiUgDYXdIOqmDj/wJy9D3c7h7+9CJkvC
-	aV1xRszK06qiEmJPf0e3kJuyswPZVz/tyvhGNEQpRg==
-X-Google-Smtp-Source: AKy350Zf3iXeyV8HWlp0DqmYv47pev44UJE5kdHcyWJcctFoflQHm2VPhrLHRasu7gsCmvQXXwpf4g==
-X-Received: by 2002:a05:600c:204f:b0:3ee:6d88:774a with SMTP id p15-20020a05600c204f00b003ee6d88774amr1400047wmg.14.1680092579919;
-        Wed, 29 Mar 2023 05:22:59 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:72a8:b5f3:7fb:fd29? ([2a01:e0a:982:cbb0:72a8:b5f3:7fb:fd29])
-        by smtp.gmail.com with ESMTPSA id iw13-20020a05600c54cd00b003ef6988e54csm2149166wmb.15.2023.03.29.05.22.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 05:22:59 -0700 (PDT)
-Message-ID: <db5fcdb4-60e8-95e6-06b5-1ac474ecabe3@linaro.org>
-Date: Wed, 29 Mar 2023 14:22:58 +0200
+        d=1e100.net; s=20210112; t=1680110470;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gutUdfZnZGJz80FqANIFD9947ke4IDEKtmrilCP9Asg=;
+        b=XL4uNHafIl5cvgLsXSfyfyRPywxv0g48aCBKjfvrQ30u4bs+msXl0i9hEt2WKq68Fm
+         AuITJUUzcgDHRcCt5MKnZ3Il6m+FP65RCpXWhgBCL5hEAgAT4tklQx83wNbXo2ZSW/pl
+         BKmn5veqOxj3fL4EEuseYqNM7HqQw+iAOAxoXUE2EHKSlFMs/AVAq/QyEjq14YOooin4
+         544BHybIkjXJBhwc9xIjLj6AJZDzQHyyJCpdH6bgCgNpQIqUADJV9aLrvBtGPDWMzP2w
+         uMODHrCS7e5u3qilFUgBariuU6rk8u0qXzzWiVTIf9ldqtXWbv7ZNoDQcfDQnAjUCBc6
+         m+ug==
+X-Gm-Message-State: AAQBX9dSsHgJsHi+MRW4fW9D/x/TbIyIMd/ae2v4nBdJZBhsVsT2E614
+	bjWKZg7fH5nfVXITiPKz2L/Dmw==
+X-Google-Smtp-Source: AKy350Y9SAYyqMx62p9jKSnHqyG110Q69ooC4fMXn9Wpn/gCEjRcEAoPcOxIkdsN6Ap4ln7XX1StRw==
+X-Received: by 2002:aa7:99d2:0:b0:626:7c43:7cb8 with SMTP id v18-20020aa799d2000000b006267c437cb8mr19386468pfi.20.1680110470163;
+        Wed, 29 Mar 2023 10:21:10 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:6b79:83ab:5e33:50a5])
+        by smtp.gmail.com with ESMTPSA id v3-20020a632f03000000b00502e6bfedc0sm21950243pgv.0.2023.03.29.10.21.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 10:21:09 -0700 (PDT)
+Date: Wed, 29 Mar 2023 11:21:06 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] dt-bindings: remoteproc: Drop unneeded quotes
+Message-ID: <20230329172106.GA3374270@p14s>
+References: <20230327170114.4102315-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic fixes for v6.3-rc
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Language: en-US
-Organization: Linaro Developer Services
+Content-Disposition: inline
+In-Reply-To: <20230327170114.4102315-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230329_052304_691074_BA274BA8 
-X-CRM114-Status: UNSURE (   9.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230329_102112_510417_1BC04912 
+X-CRM114-Status: GOOD (  16.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,49 +103,178 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Mon, Mar 27, 2023 at 12:01:13PM -0500, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../remoteproc/amlogic,meson-mx-ao-arc.yaml        |  4 ++--
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml         |  4 ++--
+>  .../bindings/remoteproc/ingenic,vpu.yaml           |  4 ++--
+>  .../bindings/remoteproc/qcom,glink-edge.yaml       |  2 +-
+>  .../bindings/remoteproc/qcom,smd-edge.yaml         |  2 +-
+>  .../bindings/remoteproc/renesas,rcar-rproc.yaml    |  4 ++--
+>  .../bindings/remoteproc/st,stm32-rproc.yaml        | 14 +++++++-------
+>  7 files changed, 17 insertions(+), 17 deletions(-)
+>
 
-Here's a set of changes to solve a conflict between the DMC memory space already
-filled with a node and the Amlogic memory bandwidth perf HW that was using the whole
-DMC memory space. The patches fixes the DMC nodes definition and changes the base
-offset in the perf driver.
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-Will acked me to take the perf driver fix through my tree.
-
-Thanks.
-Neil
-
-The following changes since commit fe15c26ee26efa11741a7b632e9f23b01aca4cc6:
-
-   Linux 6.3-rc1 (2023-03-05 14:52:03 -0800)
-
-are available in the Git repository at:
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-fixes-v6.3-rc
-
-for you to fetch changes up to f9d323e7c1724270d747657051099826744e91e7:
-
-   perf/amlogic: adjust register offsets (2023-03-27 17:31:22 +0200)
-
-----------------------------------------------------------------
-Amlogic fixes for v6.3-rc:
-- fix conflicts between DMC memory space and Amlogic perf driver
-
-----------------------------------------------------------------
-Marc Gonzalez (3):
-       arm64: dts: meson-g12-common: specify full DMC range
-       arm64: dts: meson-g12-common: resolve conflict between canvas & pmu
-       perf/amlogic: adjust register offsets
-
-  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 15 +++++-----
-  drivers/perf/amlogic/meson_g12_ddr_pmu.c          | 34 +++++++++++------------
-  2 files changed, 24 insertions(+), 25 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> index 11cb42a3fdd1..3100cb870170 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Amlogic Meson AO ARC Remote Processor
+>  
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index ae2eab4452dd..0c3910f152d1 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: NXP i.MX Co-Processor
+>  
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+> index 85b1e43cab08..8b55dbd909b0 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Ingenic Video Processing Unit
+>  
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+> index 15e6851e1ff8..7b43ad3daa56 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+> @@ -15,7 +15,7 @@ description:
+>  
+>  properties:
+>    $nodename:
+> -    const: "glink-edge"
+> +    const: glink-edge
+>  
+>    apr:
+>      $ref: /schemas/soc/qcom/qcom,apr.yaml#
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+> index 7ec8a6b6682c..02c85b420c1a 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+> @@ -21,7 +21,7 @@ description:
+>  
+>  properties:
+>    $nodename:
+> -    const: "smd-edge"
+> +    const: smd-edge
+>  
+>    apr:
+>      $ref: /schemas/soc/qcom/qcom,apr.yaml#
+> diff --git a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> index 7e0275d31a3c..4bea679a0f61 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Renesas R-Car remote processor controller
+>  
+> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> index 66b1e3efdaa3..37c0d7b4ceef 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: STMicroelectronics STM32 remote processor controller
+>  
+> @@ -29,7 +29,7 @@ properties:
+>  
+>    st,syscfg-holdboot:
+>      description: remote processor reset hold boot
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      items:
+>        - items:
+>            - description: Phandle of syscon block
+> @@ -39,7 +39,7 @@ properties:
+>    st,syscfg-tz:
+>      description:
+>        Reference to the system configuration which holds the RCC trust zone mode
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      items:
+>        - items:
+>            - description: Phandle of syscon block
+> @@ -95,7 +95,7 @@ properties:
+>        (see ../reserved-memory/reserved-memory.txt)
+>  
+>    st,syscfg-pdds:
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: |
+>        Reference to the system configuration which holds the remote
+>      items:
+> @@ -105,7 +105,7 @@ properties:
+>            - description: The field mask of the PDDS selection
+>  
+>    st,syscfg-m4-state:
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: |
+>        Reference to the tamp register which exposes the Cortex-M4 state.
+>      items:
+> @@ -115,7 +115,7 @@ properties:
+>            - description: The field mask of the Cortex-M4 state
+>  
+>    st,syscfg-rsc-tbl:
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: |
+>        Reference to the tamp register which references the Cortex-M4
+>        resource table address.
+> -- 
+> 2.39.2
+> 
 
 _______________________________________________
 linux-amlogic mailing list
