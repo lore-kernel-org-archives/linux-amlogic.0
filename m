@@ -4,53 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37B79C6FD18
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Mar 2023 07:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC0EBC6FD18
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Mar 2023 07:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=36gRQaY3Qfta6Bv2C9Pzv3z1xvH4C6jCaX/b1QXlriM=; b=UMBAZfjmvoZfDn
-	YjaGVoV+lTo0pQ3FaXOtQYlMUdZO5zFfKygXGAze6layT/mbR5o7tWemhwCdk3v/pZdYnW1siuli9
-	4XI1I8A1SUnDnnBFkWRXZVFsCmkzPK2E6IL3OSMnjcc9ehEg/MP6lP+cyfdOBsglPqMV8PMPRNUEr
-	Hc1xwH6RE5xv+i/yP4clYEX7tWuxf736MptemT1rRuhCTQNbGmc9pdIFxf+70n3sfyDUaVlEiKGHY
-	KM5JexvKjxFwHkLI2MyQR1R0aCcv7WzVq2FQtlL5IUBEG1jQqJle3Jsw7Z6ET9dgw5BQSizKYXH7u
-	d6vz/6c6R7vQgC7GXOGQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Wx9FpshU5PqnDIGa/GQ5SvEppafa8GOkXct3ZsrYaOk=; b=0iLFE2ycvMW/lm
+	m/5d/Bo0ov10Jz9Yg3vxKL1D8pG8szC34LcNOnqOzMLzMG6elhJ0IyDtu75MGEiv6tW3n9qugF/jw
+	iZ1oTGGu+h+eiv6Qcp26VhFs42a6EzVeh73a/D9RDKxEqzMFNJKJeXGDGy67RnfSH44AXFcZXR00V
+	nVXHwY74xHuOEgjAx8hC3FxiLhxsbOIkaWbkywOFFy409iyrFhmueHSSz6XTF+yvIjfg0pRSU6aB/
+	cbiCrXxR8O2aiIkV8eoexT1NnImcxJ5j9VpT3WaH//eP+y2+AQ5Vca8dRCyQH7eY0KHZk7I8T5wiz
+	Pfz0viDp+FJp+Sy2Axuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1phQGq-00GvHg-02;
-	Wed, 29 Mar 2023 07:31:00 +0000
-Received: from mail.craftsplex.pl ([162.19.155.126])
+	id 1phQHn-00GvPz-2E;
+	Wed, 29 Mar 2023 07:31:59 +0000
+Received: from relay7-d.mail.gandi.net ([2001:4b98:dc4:8::227])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1phQGn-00GvHE-2T
-	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Mar 2023 07:30:59 +0000
-Received: by mail.craftsplex.pl (Postfix, from userid 1002)
-	id 1C9E1229C7; Wed, 29 Mar 2023 07:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=craftsplex.pl;
-	s=mail; t=1680075056;
-	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
-	h=Date:From:To:Subject:From;
-	b=pz0BnpqlPt6nrRShFPzGewLMQok8SvBRR6oosiMC0uqtHH1Y5NpDkSssX3hzyFrEO
-	 rVRJg3w2kOp+HPsoUmKQ3AMRR6FKp5Lpxjda+dd8MeUQZbI2zRvH8nFH9VoqKWUmLV
-	 IDyp1zd1cFg8N7VW0xcX+O5Sqq2JMK4UIqLvFky5Saei9YJ9i8mmp/jkB6N3g/grAn
-	 OpGPJ0ZZQ0zE4JWxmWUd+CC2OQ1M+Wzmbo6Zz5FtvHjExLQtk2ODB66g2CoXExCWXw
-	 FcOPCwU8XYrNgppu6RuI77qBbrbaqlRCB/nxP7TXiql2pvFpIaWe9LHgBH04pRIlMS
-	 gxBue04cBVLjA==
-Received: by mail.craftsplex.pl for <linux-amlogic@lists.infradead.org>; Wed, 29 Mar 2023 07:29:54 GMT
-Message-ID: <20230329072937-0.1.58.krgs.0.ce4oxemalq@craftsplex.pl>
-Date: Wed, 29 Mar 2023 07:29:54 GMT
-From: "Kamil Tralewski" <kamil.tralewski@craftsplex.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.craftsplex.pl
+	id 1phQHk-00GvOB-10;
+	Wed, 29 Mar 2023 07:31:58 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 99F6320008;
+	Wed, 29 Mar 2023 07:31:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1680075110;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=y5Tz+W9L5sIsVCnWkSfJ3WHW6H3+KUzYvv4GXzZD7MA=;
+	b=AqBaobXJksPG1S257DuMCuggbk3BSsTl842Ld5g4y3m4Qx3qZVsb4EwOdr0NHIioQwW4lk
+	lrQWv35/JL7ihJLLf6xXaVbdunE3un7PGWueSNJ1zpd2HcqtQQlK+0MWlcbOVU7aCh8fv2
+	DeCL+/b13ZV3O79ygOjLUr0hJI0nMqwTC52mJbBypIS6Q30CV5LKWbL+o0SjfwOA44SrFP
+	ZamVMaCVq0gMaGXfmPLSuxQ79n1gK1ChR3NkpzrjLVaeP/k7tY9AjJRgWVKoiUSK4qmFYW
+	LGmSnbovVrimfYUCheZggtBxKHD+F2KEiSpBAKAIMQw9RlU0bqoZQ9o2CUgYFA==
+Date: Wed, 29 Mar 2023 09:31:45 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liang Yang
+ <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <kernel@sberdevices.ru>, <oxffffaa@gmail.com>
+Subject: Re: [PATCH v1] mtd: rawnand: meson: fix bitmask for length in
+ command word
+Message-ID: <20230329093145.52790647@xps-13>
+In-Reply-To: <2fed42ad-11cb-6199-6adb-d9272209f5e2@sberdevices.ru>
+References: <d4338bd5-125c-a9e7-cb46-6f5e1da05cfa@sberdevices.ru>
+	<CAFBinCB3yuyNJD=7UJ7jzf45Masms_PD4sm42YNjO8M4cr+4wg@mail.gmail.com>
+	<fe2ed378-cdac-dbb3-acd2-ff542bd7e887@sberdevices.ru>
+	<81632eee-533e-5e44-1520-5321a06c6797@sberdevices.ru>
+	<20230328185001.5661132b@xps-13>
+	<e8edcbc8-5c72-b29e-21d7-6f4438391924@sberdevices.ru>
+	<CAFBinCCCNYJV4RBbM78r3yGPnY4oNKySEFRkzBgUD3xYJGkJmw@mail.gmail.com>
+	<2fed42ad-11cb-6199-6adb-d9272209f5e2@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230329_003057_978908_7576DB25 
-X-CRM114-Status: UNSURE (   1.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230329_003156_677386_86E10506 
+X-CRM114-Status: GOOD (  26.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,14 +86,41 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
-enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
-YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
-bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
-IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
-xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
-ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKUG96ZHJh
-d2lhbQpLYW1pbCBUcmFsZXdza2kKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+SGVsbG8sCgphdmtyYXNub3ZAc2JlcmRldmljZXMucnUgd3JvdGUgb24gV2VkLCAyOSBNYXIgMjAy
+MyAxMDoxMjoxMCArMDMwMDoKCj4gT24gMjguMDMuMjAyMyAyMzoyNSwgTWFydGluIEJsdW1lbnN0
+aW5nbCB3cm90ZToKPiA+IEhpIEFyc2VuaXksCj4gPiAKPiA+IE9uIFR1ZSwgTWFyIDI4LCAyMDIz
+IGF0IDg6MznigK9QTSBBcnNlbml5IEtyYXNub3YKPiA+IDxhdmtyYXNub3ZAc2JlcmRldmljZXMu
+cnU+IHdyb3RlOgo+ID4gWy4uLl0gIAo+ID4+Pgo+ID4+PiBCeSB0aGUgd2F5IGFueSByZWFzb24g
+bm90IHRvIGhhdmUgQ2MnZWQgc3RhYmxlPyAgCj4gPj4KPiA+PiBTb3JyeSwgd2hhdCBkbyBZb3Ug
+bWVhbj8gSSd2ZSBpbmNsdWRlZCBsaW51eC1tdGQgbWFpbGluZyBsaXN0cywgdGhlcmUgaXMKPiA+
+PiBvbmUgbW9yZSBsaXN0IGZvciBtdGQgcmV2aWV3cz8gSSB3aWxsIGFwcHJlY2lhdGUgaWYgWW91
+IGNhbiBwb2ludCBtZSAgCj4gPiAic3RhYmxlIiB0eXBpY2FsbHkgcmVmZXJzIHRvIHRoZSBzdGFi
+bGUgdHJlZSB3aGVyZSBmaXhlcyBmb3IgYWxyZWFkeQo+ID4gcmVsZWFzZWQga2VybmVsIHZlcnNp
+b25zIGFyZSBtYWludGFpbmVkLgo+ID4gV2hlbiBNaXF1ZWwgYXBwbGllcyB0aGUgcGF0Y2ggaXQg
+d2lsbCBlaXRoZXIgbGFuZCBpbiB0aGUgbmV4dCAtcmMgb2YKPiA+IHRoZSBjdXJyZW50IGRldmVs
+b3BtZW50IGN5Y2xlICh0eXBpY2FsbHkgYXBwbGllcyB0byBmaXhlcyAtIGN1cnJlbnRseQo+ID4g
+Ni4zLXJjNSkgb3IgLXJjMSBvZiB0aGUgbmV4dCBrZXJuZWwgdmVyc2lvbiAodHlwaWNhbGx5IGFw
+cGxpZXMgdG8gbmV3Cj4gPiBmZWF0dXJlcywgY2xlYW51cHMsIGV0Yy4gLSBjdXJyZW50bHkgNi40
+LXJjMSkuCj4gPiAKPiA+IExldCdzIHNheSB5b3UgYXJlIGZpeGluZyBhIGJ1ZyBub3cgYnV0IHdh
+bnQgdGhlIGZpeCB0byBiZSBpbmNsdWRlZCBpbgo+ID4gNi4xIExUUyAobG9uZyB0ZXJtIHN0YWJs
+ZSkgb3Igb3RoZXIgc3RhYmxlIHJlbGVhc2UuCj4gPiBJbiB0aGlzIGNhc2UgaXQncyByZWNvbW1l
+bmRlZCB0byBDYyB0aGUgbWFpbnRhaW5lcnMgb2YgdGhlIHN0YWJsZQo+ID4gdHJlZXMgYXMgcGFy
+dCBvZiB5b3VyIHBhdGNoLCBzZWUgWzBdLgo+ID4gVGhhdCB3YXkgb25jZSB0aGUgY29tbWl0IHdp
+dGggeW91ciBmaXggaGl0cyBMaW51cyBUb3J2YWxkcyBsaW51eCB0cmVlCj4gPiBpdCB3aWxsIGJl
+IGJhY2twb3J0ZWQgYnkgdGhlIHN0YWJsZSB0ZWFtIHdpdGhpbiBhIGZldyBkYXlzIChhc3N1bWlu
+Zwo+ID4gb2YgY291cnNlIHRoYXQgdGhlIHBhdGNoIGFwcGxpZXMgY2xlYW5seSB0byBvbGRlciB2
+ZXJzaW9ucywgaWYgbm90Cj4gPiB0aGV5J3JlIG5vdGlmeWluZyB5b3UpLgo+ID4gTm90ZTogZXZl
+biB3aXRob3V0IENjJ2luZyB0aGUgc3RhYmxlIG1haW50YWluZXJzIHlvdXIgY29tbWl0IG1heSBi
+ZQo+ID4gYmFja3BvcnRlZCAoc2VtaS1hdXRvbWF0aWNhbGx5KSBpZiBpdCBoYXMgYSBGaXhlcyB0
+YWcgYW5kIHRoZSBzdGFibGUKPiA+IG1haW50YWluZXJzIGZpbmQgeW91ciBjb21taXQuIEJ1dCBt
+eSB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgaXQncwo+ID4gZWFzaWVzdCBmb3IgdGhlbSBpZiB0aGV5
+J3JlIGV4cGxpY2l0bHkgQ2MnZWQgb24gdGhlIHBhdGNoLgo+ID4gCj4gPiBJIGhvcGUgdGhpcyBt
+YWtlcyBzZW5zZS4gSWYgbm90OiBkb24ndCBoZXNpdGF0ZSB0byBhc2suICAKClRoYXQgaXMgYW4g
+ZXhjZWxsZW50IHN1bW1hcnksIEkgc2hvdWxkIGNvcHkvcGFzdGUgaXQgc29tZXRpbWVzIDopCgo+
+IAo+IEhlbGxvISBUaGFua3MgZm9yIHRoaXMgZGV0YWlsZWQgZXhwbGFuYXRpb24sIHRoYXQgcmVh
+bGx5IGhlbHBzIQoKU28gSU9XLCBJIGFtIGFza2luZyB5b3UgdG8gc2VuZCBhIHYyIHdpdGggYW4g
+YWRkaXRpb25hbCBsaW5lIGluIHRoZQpjb21taXQsIHJpZ2h0IG5leHQgIkZpeGVzIjoKCkNjOiBz
+dGFibGVAdmdlci5rZXJuZWwub3JnCgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
