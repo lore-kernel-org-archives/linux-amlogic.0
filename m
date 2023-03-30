@@ -4,88 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0E2EC6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Mar 2023 05:53:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FBFAC761AF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Mar 2023 07:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k+sX9AtFnXVFazXxDj/BuC90asl7Mn/KJTrdkKwxJTM=; b=RiEsupNWE1+G4A
-	1CsMlv0/MemYWNYEiItB5QQXq4egcbOxJUJKHmKcpbofNrL5ZxQTc9VWoLEuo93MK8WVho62P3bv1
-	39tRHabXfs7OZtn7kkzaNn74MJeuho8ShEqFVi8dmyXSGRpO7wo3uvTKaDfGTyj5S5jNGbPC3LOGI
-	Yo05JHG13lDS3imUTnRXxINfmoVIlTMGldcGKEVm5cGGpFKQJIZPfPj1XpnRRNpV98n3DHb2REH2y
-	QgAMCcwP3J8/9S/wsctC+8+63LGZ9EqWdr1qe2BXpH+FxgwEIFDawgoosYsZJTKv5D/kzhJzIg13A
-	qC535edvhprh0HkJmbcQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jjpTKfjzehy+KQPQhBCk23p1f9iXbtzx8ZdmPN9vReE=; b=H8qT1ZG65UtC1NyDll3ZIUNkuA
+	ZsHi9W26BwGH6RQK0GLoBdaa7vWDP/CF9b0ivExpiSNOwrr6GYSyiZlcVNMf0tyZAktxFFGW6K1eF
+	uZlKqTqq8EYZdWHoxNqJrntrbFBmbz4d5WpvpYDr8Vl0/ya/nYMlYADXKEQ7JUwQQp4Jd5Sm0O5Wi
+	PmA4j4ObJdRp02VAzhgt3vNq8H8ovRSykwApGTG/n3zD7qSLLxuEH7LQmba8L25o2mbAMgRJGFWrc
+	tOa518825jxgnplvgEi+9HG0866dDgVsDPZabCJ4EYgd6kYwmH/y3N3kkRY7XP1nbiNj2YFFwy3El
+	KjshWCJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1phlE7-002gkq-1J;
-	Thu, 30 Mar 2023 05:53:35 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1phmjz-002tjk-1F;
+	Thu, 30 Mar 2023 07:30:35 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1phlE3-002gjZ-2j;
-	Thu, 30 Mar 2023 05:53:33 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id b20so72116667edd.1;
-        Wed, 29 Mar 2023 22:53:28 -0700 (PDT)
+	id 1phmjw-002tj2-2l
+	for linux-amlogic@lists.infradead.org;
+	Thu, 30 Mar 2023 07:30:34 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id l15-20020a05600c4f0f00b003ef6d684102so7525006wmq.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 30 Mar 2023 00:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680155607;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=M40+CQTvWF9fErLwHCr08yZ52iq/ZqLbTfoV/Qx2dd4=;
-        b=D01RUuuQjRPATkfIKAocgR6R3xldMyl8bXv/+Anm/4uiaamYH76ymNJfsFHZ2KtQXm
-         jtGx90FJjL8/Cqy1iy1+g12kvTqIMFr4iYZy53eHB9Vb4+ko+alfD32/dYdm1jE3Gpdx
-         J9tStYbR3yvqtKxD/nnM0IRoJmYuXrvkbHlgdJxOEcxWed+9G90r0nNpmcxPt3ddnn6+
-         HqqbKjTtM0RPpeekuLaea9+ke3JpVErCjBmN7R+A1erQb8L/Je0v43E/zZVl7Z32P94b
-         pOYhxeq6bMiX6IkS3yB5MJXhLjrEcscFc2QR+szN02bOSPLX3g3zsM3+641lce3Q54FP
-         jv0g==
+        d=linaro.org; s=google; t=1680161429;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=R9Sq3GghZPSalrYUSlYEg5rtJO5siyHm45G17IspFvU=;
+        b=W8hTUnm3FJqGZsNDUkrS7U0/MDDiEvivsCWPAiKAiGV6gTQygCCgMMJLJBLIxNu/72
+         mTWPrPQ0wSDPuqljkL60qnzNbV5cQI3W+uAaNjGeB58RVX1W+dyedU45zyjhDkxZK2Em
+         357vQSWIr0qJJaK3kSgE4akGJozICx3gYJTYrcoRlzBXsTrKP/3HsTOpoCjxzbxsBiam
+         pqTDwlWbQ17o1Xr/xaNJnFpImqaW3wRTz50MvER4tnEkH/mlu8FSo0LuhLDgRA2FBPiA
+         7X5sr37GoSALrAtRLsWzv7GYCeNqzNmF8vPkYq3zuhM4KxbUjUpFAN0OHXZdSBJEg/Ro
+         jZlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680155607;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M40+CQTvWF9fErLwHCr08yZ52iq/ZqLbTfoV/Qx2dd4=;
-        b=oThhBTTvj05iTwm71q5kd/HS6fnImfeYOLEJl4D88rv9G0AT7wWo0HaNQhWcDZ2HsL
-         wi/CEHCO0Um9b4EoIfMfJwXRgEFLZmVH27NwN9+6gyhdTvDpUNr2c6uaybDN6gkxNkiN
-         6L+5Zeeu2r9GGOEAvMGvT58PUMGtb4rrI1RhSJlu9uqD4avrm2bbVvaXbyumJTfxRe8J
-         pv3GxUhFVn/w43cRstbW/sf6K8IZexKQMJPDgwcy81rmLrZh6kwCX8V8DlTf6yYKk1yn
-         Zt53Wks7wPrmCwWm3GTfmqaHFZSyo5HGhGP8/IQjH//dDLF1c3WWn2+1bZByxp02mAy9
-         DAoA==
-X-Gm-Message-State: AAQBX9dlUT6SytdXuC/ASqZ0QQuEefXqnnWeeIlhYwl5EMfIa966BcTC
-	4qiH64gjDNy9MEo6t4N9GKc=
-X-Google-Smtp-Source: AKy350Z1pVKoRz/cFqJEtiZq4H+sbM1zlzzYTemQe7vW390iBptjAGSrvWclpJLNIaFDhH/55J3oiQ==
-X-Received: by 2002:aa7:c609:0:b0:4fc:61a5:b9c8 with SMTP id h9-20020aa7c609000000b004fc61a5b9c8mr22058783edq.11.1680155607242;
-        Wed, 29 Mar 2023 22:53:27 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c5e9:c400:dc70:f2b9:c0ea:5b79? (dynamic-2a01-0c23-c5e9-c400-dc70-f2b9-c0ea-5b79.c23.pool.telefonica.de. [2a01:c23:c5e9:c400:dc70:f2b9:c0ea:5b79])
-        by smtp.googlemail.com with ESMTPSA id q27-20020a50aa9b000000b004af73333d6esm17688872edc.53.2023.03.29.22.53.26
+        d=1e100.net; s=20210112; t=1680161429;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R9Sq3GghZPSalrYUSlYEg5rtJO5siyHm45G17IspFvU=;
+        b=S9S+LB/toc8OECal92H5E3uSerMQIHtOnaLXPpxwrX8WgyaKzAtLKyMmsAB/a68Q/7
+         K1AU5cgxxoYGsqY2TPLmi4k5NKZ6yGHADGkNMUu7+adlKVqz6yeMCl/ztjtmmqd0DQdk
+         8kJTk5rKGL7Dzntd9N5FJ6boP+7z0K/Q7cMDqNRC3rNp8dviQ2GiX8PTH8oZwt5AXZSz
+         p8+wkREbrYk0uqpKZqDTYqvAYl4lC2rg+505z8G0o8atPrFxhhc5+WpYo+2k5vnJwl5m
+         F6CHSEOoOmrASNwJWgCz2K19zPBygL/yTuw1VEnJoxjycJnSfQTx2nCeOueO4i6gBcY/
+         q/Gg==
+X-Gm-Message-State: AO0yUKVjf9C8lflCIBS+Ca6OshXXf4gEvUGL012kvbNvQXm0Rtue6Eai
+	nRG2gLZFg3YvZe9YxGmNSCQ3cQ==
+X-Google-Smtp-Source: AK7set/990zYxsUocwt1yD0MUSMosyecq1clA1R/FSRQa9PAXq4liR6KvZqs+/7FvnAVteYWRkrvFA==
+X-Received: by 2002:a1c:7406:0:b0:3ed:320a:3721 with SMTP id p6-20020a1c7406000000b003ed320a3721mr17989911wmc.22.1680161428900;
+        Thu, 30 Mar 2023 00:30:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f? ([2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f])
+        by smtp.gmail.com with ESMTPSA id n2-20020a05600c4f8200b003ef5e5f93f5sm5068457wmq.19.2023.03.30.00.30.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 22:53:26 -0700 (PDT)
-Message-ID: <10f2a9d2-3c80-ec9c-2ea9-3701737c7818@gmail.com>
-Date: Thu, 30 Mar 2023 07:53:21 +0200
+        Thu, 30 Mar 2023 00:30:28 -0700 (PDT)
+Message-ID: <45c5597b-628e-f1ee-cd48-9ce5291765ee@linaro.org>
+Date: Thu, 30 Mar 2023 09:30:27 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic
- Meson GPIO interrupt controller binding
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <marc.zyngier@arm.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] dt-bindings: serial: Drop unneeded quotes
 Content-Language: en-US
-In-Reply-To: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Hammer Hsieh <hammerh0314@gmail.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230327170137.4104272-1-robh@kernel.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230327170137.4104272-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230329_225331_880155_70A8A107 
-X-CRM114-Status: GOOD (  10.78  )
+X-CRM114-CacheID: sfid-20230330_003032_899849_8CAF7C80 
+X-CRM114-Status: UNSURE (   8.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,32 +101,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12.03.2023 22:29, Heiner Kallweit wrote:
-> Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+On 27/03/2023 19:01, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> - consider that more than one compatible may be set
-> - remove bus part from example
-> - remove minItem/maxItem properties for compatible
-> - reduce compatible fallback complexity
-> - add that 8 or 12 GIC interrupts can be used
-> - fix typo
-> ---
->  .../amlogic,meson-gpio-intc.txt               | 38 ----------
->  .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
->  2 files changed, 72 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++--
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+>   .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml     | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,em-uart.yaml | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,hscif.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,sci.yaml     | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,scif.yaml    | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,scifa.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/serial/renesas,scifb.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/serial/serial.yaml          | 4 ++--
+>   Documentation/devicetree/bindings/serial/sprd-uart.yaml       | 4 ++--
+>   .../devicetree/bindings/serial/sunplus,sp7021-uart.yaml       | 4 ++--
+>   11 files changed, 22 insertions(+), 22 deletions(-)
 > 
-Who's going to take this patch?
+
+<snip>
 
 
 _______________________________________________
