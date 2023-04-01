@@ -4,84 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A38C77B62
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Apr 2023 16:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52198C76196
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Apr 2023 18:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=twIxhr69QXe5JRg99pVlnNtPoY8sSBud21dbji3+ufI=; b=J1A2u8brMM/bZj
-	MGtj14QevwPekRb/57LOWEOrPJhzqwGQbpMxzmhqi1R7yLWk+o1a3EVi4C8aJ1NXXb5+k0waZ85DA
-	xQHA2i1CHV5XZCndTfacj6SSdq6qZ7dsM9nGskwDN0ld1ZfhXu6ycemsue7jcbvYSPV6NpFLbZWsO
-	i/N9RxdfzVglXgj+6nfqBGYYFRJ+iRBmeL3j2Oki4rd6ErmiPu30k36Y8+8yReCJfO4GU+QpCvI4R
-	PABgXvsNfm8oyceffLJ9RkfWyPh1wqDCQYjCdbkr9sK2bJTSLEcq59WjghZBC3SUlFqBNdCE5dH0K
-	sMNRgBp1SkGAVzsJ+QvQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=EdrEKDsOcE1iJod1YzhCtMybVX1ahS/a0yIhohUjLqE=; b=l2uVL4xE2qdgb0
+	sBgx9BORnxvyuKfp/xl/tsPxyabUENHM46TihCMMzs4sQbhvwU0UPCjMz+pU5yJ2yICnwYAiY9B2f
+	RJKs96VKSeMmn65xs1TFUEcSI/uisKFTgsHUSNP4AbI6xd1nJPRqONris49r9rFyndoBhhKOYhLVK
+	Lb5SjVqgQNYsEGqZDp9i+3i3aVay54sOgKJt0qH4oaanyiWYLWOpKaK4xLyQ3OEpj9UGzUL8f44Bz
+	884qySju3qMorYggDWdqdXZHYIBRbseo2jZl2vdISdjzvWieOT9OQyR6mRhS2W/BGoTpsu+Wrzfbr
+	o8DlSalphGNhzdcXF6zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pieEI-00AwTE-1A;
-	Sat, 01 Apr 2023 16:37:26 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1pigNl-00B9SE-1r;
+	Sat, 01 Apr 2023 18:55:21 +0000
+Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pieEG-00AwRk-1r
-	for linux-amlogic@bombadil.infradead.org;
-	Sat, 01 Apr 2023 16:37:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=DLAmKykExcbO0JzUBYJlHYgvFIZhTW7HXMdbM8jxP00=; b=Je30Q56fqMRzqYrd5PuIFvvddW
-	wdxyg2sLfJCxIlIqHnKs4npUACVWulzqcOI+f1erxQVm2Yj4DOykugWVWLWcYsenP0Z/C2iKTdz5H
-	cuxAbaDO0LkcSFkCljWcYdTIvJjqR43oJUNFQ4OUBiSu4Faes+oDeY2pwk4uE9o0SaBqTyDJz1dei
-	xUNrMQazQFW+Du8pAyPBZ8eNf3lO75e5JjmtcFoThmZC6odFFw2x+f5HdlPPujVJAxnwIJbf7laZB
-	EIay6ZPXyEzvk1OZTuWn/Gp26jY65F4jnfAaG5wlC5w7Q1aB3bJhVKqTMWjxCV7jmUCnEUbqjKIO4
-	ZpSfUvQA==;
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
-	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pidxZ-00CYOW-F6
-	for linux-amlogic@lists.infradead.org; Sat, 01 Apr 2023 16:20:15 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pidxJ-0008N9-PW; Sat, 01 Apr 2023 18:19:53 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pidxI-008GRc-La; Sat, 01 Apr 2023 18:19:52 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pidxH-009kgc-G9; Sat, 01 Apr 2023 18:19:51 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Richard Weinberger <richard@nod.at>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	kernel@pengutronix.de
-Subject: [PATCH 25/49] mtd: rawnand: meson: Convert to platform remove callback returning void
-Date: Sat,  1 Apr 2023 18:19:14 +0200
-Message-Id: <20230401161938.2503204-26-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230401161938.2503204-1-u.kleine-koenig@pengutronix.de>
-References: <20230401161938.2503204-1-u.kleine-koenig@pengutronix.de>
+	id 1pigNj-00B9RQ-0g
+	for linux-amlogic@lists.infradead.org;
+	Sat, 01 Apr 2023 18:55:20 +0000
+Received: by mail-pj1-x102d.google.com with SMTP id l7so23745493pjg.5
+        for <linux-amlogic@lists.infradead.org>; Sat, 01 Apr 2023 11:55:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680375317;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dy4uihH0Ii9kxE/wqC2siqyFYkxDWx2ySEfeIvi6Y10=;
+        b=ZLLUXtaX4xyQvrrSrue6XyAS7chLzHapEBJLwachkkkE8Rcev/1e9eHkXioMAnUdR3
+         E3AjBhu6C3Ep24vxzUWjj12P1++LJbzn9kUm0IEwPhJmVHNa33DkDvPAqhtzNzcUYaTH
+         avZfp994ZzEeEZrOrZsUn52y7s8VbiCjmRr0k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680375317;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Dy4uihH0Ii9kxE/wqC2siqyFYkxDWx2ySEfeIvi6Y10=;
+        b=UJC3D0UaG5fQqkjrAON/WbWwB2o59knbKLfIAgK0y+Lck/W3yVVUaDKEzwn0FF3mj9
+         WkLPSTmzhu9vSuARQhM0i9E6z0FXTemW2tN2Wr43hwUn2D981DTJZEYlXmkorxmhYyVj
+         0rJzFDNzrGYbh8p42yyqgW7ZBaX1t8h7Ag+ZEi74MmWD+Hv09YG8+kO9IZoLbQ1aN+p1
+         jMStCUS9r38WdXUJIf15IDrdeR00v58MqDoOPr4423RKDKmnUjM9VW79ElL29vwTjLN5
+         BEQdgcEAOenXFykjHFiYOnvSFO3JlzbEnD8GclvzCklvUiBY0uOb/cx1PuhZQTAe41Vh
+         dWlQ==
+X-Gm-Message-State: AAQBX9cfjxipgyFpc/6jvqSmD0Zw7lqztJQlg6Ol6cGbXhjigB2Xeq1s
+	INizaHGkL/75hXRRKyHIaGHgwA==
+X-Google-Smtp-Source: AKy350bG8I0eTExU9qM8aw6V44tO2SPFqSmtn7C16yYngeScuZ3Y7/ArYT8lNK2IRmAMEzc3So7K8Q==
+X-Received: by 2002:a17:902:cecc:b0:1a1:7b8d:6719 with SMTP id d12-20020a170902cecc00b001a17b8d6719mr15569216plg.27.1680375316905;
+        Sat, 01 Apr 2023 11:55:16 -0700 (PDT)
+Received: from localhost.localdomain ([27.110.126.54])
+        by smtp.gmail.com with ESMTPSA id g3-20020a170902740300b001a19f2f81a3sm3664873pll.175.2023.04.01.11.55.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Apr 2023 11:55:16 -0700 (PDT)
+From: Simon Glass <sjg@chromium.org>
+To: U-Boot Mailing List <u-boot@lists.denx.de>
+Subject: [PATCH v2 0/1] meson: Demonstration of using binman to produce the image
+Date: Sun,  2 Apr 2023 06:54:57 +1200
+Message-Id: <20230401185458.2280200-1-sjg@chromium.org>
+X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1569; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=1PHui4ayscbjWOMu4Uq3reeTu+VKa/h2YMHVa3mMo4E=; b=owGbwMvMwMXY3/A7olbonx/jabUkhhSNSNUOl7hP66SrrV2+lljt0Hb/xmVvatC+pN1NjO/oN tNZatqdjMYsDIxcDLJiiiz2jWsyrarkIjvX/rsMM4iVCWQKAxenAEykNYODoX17UEXF9pg3/Xa7 L92WelVlb8fmtq7FvPwTT3hqtXx2nHjAUu81ve3b7l4WzJt0xSRgUeTN/5vZeC4s2PmiMHWV0fb Q185bPpiJpbPWveUL8Qk2fryksHr/wV6tuBqt2WfktWPUdxXUtZ1W6TfaK5F3umXWzNlHX5wteb m8o6AgjH/Ru4Uuc4zsKmNTTVdv2SnxNu5W7NyXJ7eWtU+f+eaWdPpJ1efH5GUOzJE8njfxfUd85 5SC6gmbWzrK8nfrlNipGYequ6yUTdw5e/aG/PAol3V2Rd8Kqk5xrRDLt9qk9zVTPf+i1SaHMu9l z3o/O63+/SnGIj+bNfrunmSu1rl3N8cHn1xT9EZC518vAA==
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230401_172009_531363_32B6CF36 
-X-CRM114-Status: GOOD (  12.23  )
+X-CRM114-CacheID: sfid-20230401_115519_323619_9E2CAE0B 
+X-CRM114-Status: UNSURE (   8.24  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,38 +80,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Simon Glass <sjg@chromium.org>, u-boot-amlogic@groups.io, Alper Nebi Yasak <alpernebiyasak@gmail.com>, linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
-bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
-c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
-b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyAobW9zdGx5KSBpZ25vcmVkCmFuZCB0aGlzIHR5
-cGljYWxseSByZXN1bHRzIGluIHJlc291cmNlIGxlYWtzLiBUbyBpbXByb3ZlIGhlcmUgdGhlcmUg
-aXMgYQpxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuIHZvaWQuIEluIHRo
-ZSBmaXJzdCBzdGVwIG9mIHRoaXMKcXVlc3QgYWxsIGRyaXZlcnMgYXJlIGNvbnZlcnRlZCB0byAu
-cmVtb3ZlX25ldygpIHdoaWNoIGFscmVhZHkgcmV0dXJucwp2b2lkLgoKVHJpdmlhbGx5IGNvbnZl
-cnQgdGhpcyBkcml2ZXIgZnJvbSBhbHdheXMgcmV0dXJuaW5nIHplcm8gaW4gdGhlIHJlbW92ZQpj
-YWxsYmFjayB0byB0aGUgdm9pZCByZXR1cm5pbmcgdmFyaWFudC4KClNpZ25lZC1vZmYtYnk6IFV3
-ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Ci0tLQogZHJp
-dmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9t
-dGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFu
-ZC5jCmluZGV4IDVlZTAxMjMxYWM0Yy4uMjRmMWFkMDI1Y2RhIDEwMDY0NAotLS0gYS9kcml2ZXJz
-L210ZC9uYW5kL3Jhdy9tZXNvbl9uYW5kLmMKKysrIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVz
-b25fbmFuZC5jCkBAIC0xNDM0LDIwICsxNDM0LDE4IEBAIHN0YXRpYyBpbnQgbWVzb25fbmZjX3By
-b2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAJcmV0dXJuIHJldDsKIH0KIAotc3Rh
-dGljIGludCBtZXNvbl9uZmNfcmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCitz
-dGF0aWMgdm9pZCBtZXNvbl9uZmNfcmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYp
-CiB7CiAJc3RydWN0IG1lc29uX25mYyAqbmZjID0gcGxhdGZvcm1fZ2V0X2RydmRhdGEocGRldik7
-CiAKIAltZXNvbl9uZmNfbmFuZF9jaGlwX2NsZWFudXAobmZjKTsKIAogCW1lc29uX25mY19kaXNh
-YmxlX2NsayhuZmMpOwotCi0JcmV0dXJuIDA7CiB9CiAKIHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1f
-ZHJpdmVyIG1lc29uX25mY19kcml2ZXIgPSB7CiAJLnByb2JlICA9IG1lc29uX25mY19wcm9iZSwK
-LQkucmVtb3ZlID0gbWVzb25fbmZjX3JlbW92ZSwKKwkucmVtb3ZlX25ldyA9IG1lc29uX25mY19y
-ZW1vdmUsCiAJLmRyaXZlciA9IHsKIAkJLm5hbWUgID0gIm1lc29uLW5hbmQiLAogCQkub2ZfbWF0
-Y2hfdGFibGUgPSBtZXNvbl9uZmNfaWRfdGFibGUsCi0tIAoyLjM5LjIKCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
-bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+The Odroid-C2 is quite a complicated image with many steps. It is an ideal
+example for how Binman can be used.
+
+Add a binman description and update the instructions accordingly.
+
+Changes in v2:
+- Rebase to -next
+
+Simon Glass (1):
+  RFC: Move Odroid-C2 to use binman to produce the image
+
+ arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi | 107 ++++++++++++++++
+ arch/arm/mach-meson/Kconfig                  |   1 +
+ doc/board/amlogic/odroid-c4.rst              | 127 +++++--------------
+ tools/binman/etype/aml_encrypt.py            | 124 ++++++++++++++++++
+ tools/binman/ftest.py                        |   3 +
+ tools/binman/missing-blob-help               |   6 +
+ tools/binman/test/213_aml_encrypt.dts        |  38 ++++++
+ tools/binman/test/214_list_no_dtb.dts        |  23 ++++
+ 8 files changed, 337 insertions(+), 92 deletions(-)
+ create mode 100644 tools/binman/etype/aml_encrypt.py
+ create mode 100644 tools/binman/test/213_aml_encrypt.dts
+ create mode 100644 tools/binman/test/214_list_no_dtb.dts
+
+-- 
+2.40.0.348.gf938b09366-goog
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
