@@ -4,73 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DB71C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Apr 2023 18:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9198C6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Apr 2023 19:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OYJ67OzkrlBBVRo6PnRgzTtgTTaHljGGqXvbHuOcYes=; b=vaNvmOFgVpk4dw
-	JKXiVarYh6TddLtLJxMEqmTbVt/fiD/spz3AuZLZMHrM0HwjiHICnsQ+HcDaVv/QlJUFj9k6L+Z3/
-	k1uqNEBRFFnHhLSZrRaRZFvcp44oOSRAyb7jE5sJPdMnZ8iXB7j8xWoc9j7kplGmANj/UrPKi9RXC
-	OqTbrJ+1+BZCb7nU1mt5/TS3JRI7kFeAqM+n4eB8Z9Iq3nQLTI4uYo6tILnhvsRw+r5ENG6GSeqpC
-	/tVFu2YeBP9FPK0IbVO+HIF3+2dR2plclM2RLPXtGZAl5/10NJJewprgCZlDSpzcDHcxaIm/rtgp5
-	G/FPOJa3hqnQhkS0ORsQ==;
+	List-Owner; bh=MFtbTgGSg2DNAgK+jr9LG6naQlNh9QVWSQ0jDaev/0k=; b=urn2ue6f+DQLIh
+	eyjpYh/wzcFb+LL25+tkL9R8opJYeLl2Jmo/QKYCVsIu7g9Vu9rJHsS67pCqcGPWkVN8NXP6YvXHN
+	3oopIkp6RI6kSnYLXVfeMRhD5SMkfL9vaVkrv9A+bj6oQby9aIKSRalkIb3UzReMa/asREbaAQxzG
+	aG0J/iwzKT1ryF/fwqGO5ZzvEGz6e9/zSttbK3uNwS1osxwH5sporxmclpAbPFWMnYvvtmiMP/Dqa
+	we/oU1BMmG/am7qaSMXfip1HfVCaQ5RW5rNS9bbfADqqTQoig8uG+uiUs0hZkFrIW4ivboOssVA9c
+	NRDpXeRI/4NZS5Uld2jQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pigNw-00B9To-0z;
-	Sat, 01 Apr 2023 18:55:32 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1pigme-00BC24-0p;
+	Sat, 01 Apr 2023 19:21:04 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pigNs-00B9Su-1T
+	id 1pigmY-00BC11-1D
 	for linux-amlogic@lists.infradead.org;
-	Sat, 01 Apr 2023 18:55:31 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id r7-20020a17090b050700b002404be7920aso24803281pjz.5
-        for <linux-amlogic@lists.infradead.org>; Sat, 01 Apr 2023 11:55:26 -0700 (PDT)
+	Sat, 01 Apr 2023 19:21:02 +0000
+Received: by mail-wm1-x334.google.com with SMTP id d11-20020a05600c3acb00b003ef6e6754c5so11962766wms.5
+        for <linux-amlogic@lists.infradead.org>; Sat, 01 Apr 2023 12:20:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680375326;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jJSr0moH/w4bZugBSpokPTaWR+Vg/z9kkvkSp9VXE7M=;
-        b=WOUhfkbIijdOdkOveKsletlZwwcmkPh8c7S/sY2iggZVtDVsypFEsAbNWu/pYNyRH5
-         X/s5jphA4XWJAF2LGF4WxG50mIDXftoMqfVuwyEvVp4G0XeiSi57uZh7eK5si85dTvi3
-         98FjLjcUcHLBiMr916gVtwxCRYatcK7EECT/k=
+        d=linaro.org; s=google; t=1680376856;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=plPDlN2Tr0cMrBksYqPMB4W1dFCVJlxtuYiCKzlM2kA=;
+        b=N6vvvwWG1mKczUs527uyzx4sS1mfCeYM7WzUfumJeD4XxvsGUBAlw/aW7w2wfmjJ4S
+         OGyk2kQDXfknoqu5Npe33VVhLFJGkMMKEEXg1nQ+PO02bWVIOUrmm6+I4iukkyT5auA2
+         +fnCAM3UqLXnD2ukmZzHgnwbfIHtgCw6xgeli9RNXvQ2jl9ScXknb62I6Kp3nc0yY/m/
+         2fN2jVISUssF8xCTn6uNSFhwFCe3IfJQ/PwbigyRHfaGmYQAxbwAGEIl/73VNLMLS6ug
+         moACy/9G5Ai7hHnuYmcyfyi+0Y7odBtPz7HG4Hurlc4zfHlTIjUZ1r/YwJOiy+FuFRkf
+         LqJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680375326;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jJSr0moH/w4bZugBSpokPTaWR+Vg/z9kkvkSp9VXE7M=;
-        b=LqNbuvFgc7e4dHrAX0uE9f4gHF2YVnb5PUnlKn5UizuGDUCENP3Iqr78dWOkw1FgX0
-         K0XrudCRNK1w13w8ncqMDLmsjPGRVM/ExSH+OxyhI+3iXfhGjcMaV1JlITFYdyA5dUGs
-         QQrYJ+xS9fCjTubu3gIRrEbXcQuUFZHbCDAIS5A5CUwJ95qThukzcfiaN0wxRYGWZfx9
-         rPUsbxgww8QKqAC4vPyG4FjEiESpL3d1wepd1GSLbs94LdwqP1wKohtGLIILAz3vRMW9
-         Gs4i3i2fe91QBmYh0fiqUr0fzolvqjLcCHYCFfsLw6laN8oVFt2t0JhkLG24b/1xGot2
-         I19w==
-X-Gm-Message-State: AAQBX9ciwJw1fFF5qHkb4GMwJX8WHL13W5MzN6NQqaPho7+W0gSCypHv
-	eDiQeI97kVljqMaww0N4S4rTkw==
-X-Google-Smtp-Source: AKy350Z8RMJ42IeEqaibL4n/9GZxVekcjqhlETSdb0SYcaBBI6F0mchZDYBgQ6zD+8Ibb7T6uWf7Og==
-X-Received: by 2002:a17:902:c401:b0:1a1:b9e6:2896 with SMTP id k1-20020a170902c40100b001a1b9e62896mr43488059plk.45.1680375326380;
-        Sat, 01 Apr 2023 11:55:26 -0700 (PDT)
-Received: from localhost.localdomain ([27.110.126.54])
-        by smtp.gmail.com with ESMTPSA id g3-20020a170902740300b001a19f2f81a3sm3664873pll.175.2023.04.01.11.55.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Apr 2023 11:55:25 -0700 (PDT)
-From: Simon Glass <sjg@chromium.org>
-To: U-Boot Mailing List <u-boot@lists.denx.de>
-Subject: [PATCH v2 1/1] RFC: Move Odroid-C2 to use binman to produce the image
-Date: Sun,  2 Apr 2023 06:54:58 +1200
-Message-Id: <20230402065454.v2.1.I2d7f563b6a82f32478a7874e36672622aebb7893@changeid>
-X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
-In-Reply-To: <20230401185458.2280200-1-sjg@chromium.org>
-References: <20230401185458.2280200-1-sjg@chromium.org>
+        d=1e100.net; s=20210112; t=1680376856;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=plPDlN2Tr0cMrBksYqPMB4W1dFCVJlxtuYiCKzlM2kA=;
+        b=uuR/nc1joSOXW53ljVDwA1LpRemvzLgd3Os374lvCTUzVg9Oqdx0UAD92VqSU+3HBt
+         hJthnRNWwUJtQmBKniu1mj1Zzi8jr8mu7MOeYrqcD+Fv+kCPs/jAPPCBjt5LBall4c+7
+         WOgFgKR1POgx6P1beDyaS6tJ50y2ufU68F5OeVD8YhSB7ECPwYB96VLasO4CDK/tbWvD
+         QmU1Ne+qR5aeyjU+94zbk4fSDlOYmVnyMIe3ag8DHzItNzEbFIOb16kT4+9qD74wPscG
+         XgJTY40WO+plbk9DlDLkQuK5i8Op+jp35w1lhAi9j7rmCOKBZ5V42zt8VdYZFtNfUG59
+         t4jg==
+X-Gm-Message-State: AO0yUKWxDmmunoqDwtNAUhSV6JS/zLAOre8lVG8/E/TyHODpOhzZATzc
+	rA2pWlDxlrPNVxHv9Mcmav/bgg==
+X-Google-Smtp-Source: AK7set9n2bp1LQ5Oq1vYpwvsVHtNuSCeA80cHG3EPpiiO1khSV8FamfPvw/Dae78HiIAdi5xZH4U3A==
+X-Received: by 2002:a05:600c:b55:b0:3ee:6d55:8b73 with SMTP id k21-20020a05600c0b5500b003ee6d558b73mr23092656wmr.29.1680376855933;
+        Sat, 01 Apr 2023 12:20:55 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:b36a:1186:309c:1f9a? ([2a05:6e02:1041:c10:b36a:1186:309c:1f9a])
+        by smtp.googlemail.com with ESMTPSA id n2-20020a05600c4f8200b003ef5e5f93f5sm14113747wmq.19.2023.04.01.12.20.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Apr 2023 12:20:55 -0700 (PDT)
+Message-ID: <0c26074c-a0dc-e0e4-899d-c3f4f10922af@linaro.org>
+Date: Sat, 1 Apr 2023 21:20:54 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: thermal: Drop unneeded quotes
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Guillaume La Roque
+ <glaroque@baylibre.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230327170233.4109156-1-robh@kernel.org>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230327170233.4109156-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230401_115528_499668_6A2DF38D 
-X-CRM114-Status: GOOD (  23.55  )
+X-CRM114-CacheID: sfid-20230401_122058_430776_9952EEE3 
+X-CRM114-Status: UNSURE (   7.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,559 +97,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Simon Glass <sjg@chromium.org>, u-boot-amlogic@groups.io, Alper Nebi Yasak <alpernebiyasak@gmail.com>, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This shows how binman can be used to replace the long and complicated
-instructions with an automated build. It is still complicated to read
-but users don't have to worry about the details.
-
-It needs some tidying up and only supports Odroid-C2 at present.
-
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
-
-Changes in v2:
-- Rebase to -next
-
- arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi | 107 ++++++++++++++++
- arch/arm/mach-meson/Kconfig                  |   1 +
- doc/board/amlogic/odroid-c4.rst              | 127 +++++--------------
- tools/binman/etype/aml_encrypt.py            | 124 ++++++++++++++++++
- tools/binman/ftest.py                        |   3 +
- tools/binman/missing-blob-help               |   6 +
- tools/binman/test/213_aml_encrypt.dts        |  38 ++++++
- tools/binman/test/214_list_no_dtb.dts        |  23 ++++
- 8 files changed, 337 insertions(+), 92 deletions(-)
- create mode 100644 tools/binman/etype/aml_encrypt.py
- create mode 100644 tools/binman/test/213_aml_encrypt.dts
- create mode 100644 tools/binman/test/214_list_no_dtb.dts
-
-diff --git a/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi b/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-index 963bf96b2567..b221ce6920b0 100644
---- a/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-+++ b/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-@@ -6,6 +6,113 @@
- 
- #include "meson-sm1-u-boot.dtsi"
- 
-+/{
-+	binman {
-+		/* run --bootmk on all the included inputs */
-+		aml-encrypt {
-+			missing-msg = "aml-encrypt";
-+			aml-algo = "g12a";
-+			aml-op = "bootmk";
-+			aml-level = "v3";
-+
-+			/* produce a bl2, containing signed bl2 binaries */
-+			bl2 {
-+				type = "aml-encrypt";
-+				aml-algo = "g12a";
-+				aml-op = "bl2sig";
-+
-+				/* sign the binary contaiing bl2 and acs */
-+				aml-input {
-+					type = "section";
-+					bl2 {
-+						type = "blob-ext";
-+						size = <0xe000>;
-+						filename = "bl2.bin";
-+					};
-+					acs {
-+						type = "blob-ext";
-+						size = <0x1000>;
-+						filename = "acs.bin";
-+					};
-+				};
-+			};
-+
-+			/* produce a bl30, containing signed bl30 binaries */
-+			bl30 {
-+				type = "aml-encrypt";
-+				aml-algo = "g12a";
-+				aml-op = "bl3sig";
-+				aml-level = "v3";
-+				aml-type = "bl30";
-+
-+				/* sign the binary contaiing bl30 and bl301 */
-+				aml-input {
-+					type = "aml-encrypt";
-+					aml-algo = "g12a";
-+					aml-op = "bl30sig";
-+					aml-level = "v3";
-+
-+					/*
-+					 * put bl30 and bl301 together, with
-+					 * the necessary paddiung
-+					 */
-+					aml-input {
-+						type = "section";
-+						bl30 {
-+							type = "blob-ext";
-+							size = <0xa000>;
-+							filename = "bl30.bin";
-+						};
-+						bl301 {
-+							type = "blob-ext";
-+							size = <0x3400>;
-+							filename = "bl301.bin";
-+						};
-+					};
-+				};
-+			};
-+
-+			/* sign the bl31 binary */
-+			bl31 {
-+				type = "aml-encrypt";
-+				aml-algo = "g12a";
-+				aml-op = "bl3sig";
-+				aml-input = "bl31.img";
-+				aml-level = "v3";
-+				aml-type = "bl31";
-+			};
-+
-+			/* sign the bl33 binary (which is U-Boot) */
-+			bl33 {
-+				type = "aml-encrypt";
-+				aml-algo = "g12a";
-+				aml-op = "bl3sig";
-+				aml-compress = "lz4";
-+				aml-level = "v3";
-+				aml-type = "bl33";
-+
-+				aml-input {
-+					type = "u-boot";
-+				};
-+			};
-+
-+			/* add the various DDR blobs */
-+			aml-ddrfw {
-+				missing-msg = "aml-ddrfw";
-+				type = "blob-ext-list";
-+				filenames = "ddr4_1d.fw", "ddr4_2d.fw",
-+					"ddr3_1d.fw", "piei.fw",
-+					"lpddr4_1d.fw", "lpddr4_2d.fw",
-+					"diag_lpddr4.fw", "aml_ddr.fw",
-+					"lpddr3_1d.fw";
-+			};
-+		};
-+
-+		fdtmap {
-+		};
-+	};
-+};
-+
- &ethmac {
- 	snps,reset-gpio = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
- 	snps,reset-delays-us = <0 10000 1000000>;
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index 6cba2c40ddaa..bcb87ea243c2 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -48,6 +48,7 @@ config MESON_AXG
- config MESON_G12A
- 	bool "G12A"
- 	select MESON64_COMMON
-+	select BINMAN
- 	help
- 	  Select this if your SoC is an S905X/D2
- 
-diff --git a/doc/board/amlogic/odroid-c4.rst b/doc/board/amlogic/odroid-c4.rst
-index b512c6a3d83d..9b9ea05a6212 100644
---- a/doc/board/amlogic/odroid-c4.rst
-+++ b/doc/board/amlogic/odroid-c4.rst
-@@ -22,17 +22,8 @@ applies for HC4.
- 
- Schematics are available on the manufacturer website.
- 
--U-Boot compilation
--------------------
--
--.. code-block:: bash
--
--    $ export CROSS_COMPILE=aarch64-none-elf-
--    $ make odroid-c4_defconfig
--    $ make
--
--Image creation
----------------
-+Setting up binary blobs
-+-----------------------
- 
- For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `odroid-c4` or `odroid-hc4`
- 
-@@ -42,98 +33,50 @@ the git tree published by the board vendor:
- 
- .. code-block:: bash
- 
--    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
--    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
--    $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
--    $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
--    $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-+    # This may be needed with this older U-Boot release
-+    apt remove libfdt-dev
- 
--    $ DIR=odroid-c4
--    $ git clone --depth 1 \
-+    wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+    wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+    tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+    tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+    export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-+
-+    DIR=odroid-c4
-+    git clone --depth 1 \
-        https://github.com/hardkernel/u-boot.git -b odroidg12-v2015.01 \
-        $DIR
- 
--    $ cd odroid-c4
--    $ make odroidc4_defconfig
--    $ make
--    $ export UBOOTDIR=$PWD
-+    cd odroid-c4
-+    make odroidc4_defconfig
-+    make
-+    export UBOOTDIR=$PWD
-+
-+U-Boot compilation
-+------------------
- 
- Go back to mainline U-Boot source tree then :
- 
- .. code-block:: bash
- 
--    $ mkdir fip
--
--    $ wget https://github.com/BayLibre/u-boot/releases/download/v2017.11-libretech-cc/blx_fix_g12a.sh -O fip/blx_fix.sh
--    $ cp $UBOOTDIR/build/scp_task/bl301.bin fip/
--    $ cp $UBOOTDIR/build/board/hardkernel/odroidc4/firmware/acs.bin fip/
--    $ cp $UBOOTDIR/fip/g12a/bl2.bin fip/
--    $ cp $UBOOTDIR/fip/g12a/bl30.bin fip/
--    $ cp $UBOOTDIR/fip/g12a/bl31.img fip/
--    $ cp $UBOOTDIR/fip/g12a/ddr3_1d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/ddr4_1d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/ddr4_2d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/diag_lpddr4.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/lpddr3_1d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/lpddr4_1d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/lpddr4_2d.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/piei.fw fip/
--    $ cp $UBOOTDIR/fip/g12a/aml_ddr.fw fip/
--    $ cp u-boot.bin fip/bl33.bin
--
--    $ sh fip/blx_fix.sh \
--    	fip/bl30.bin \
--    	fip/zero_tmp \
--    	fip/bl30_zero.bin \
--    	fip/bl301.bin \
--    	fip/bl301_zero.bin \
--    	fip/bl30_new.bin \
--    	bl30
--
--    $ sh fip/blx_fix.sh \
--    	fip/bl2.bin \
--    	fip/zero_tmp \
--    	fip/bl2_zero.bin \
--    	fip/acs.bin \
--    	fip/bl21_zero.bin \
--    	fip/bl2_new.bin \
--    	bl2
--
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
--    					--output fip/bl30_new.bin.g12a.enc \
--    					--level v3
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
--    					--output fip/bl30_new.bin.enc \
--    					--level v3 --type bl30
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
--    					--output fip/bl31.img.enc \
--    					--level v3 --type bl31
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
--    					--output fip/bl33.bin.enc \
--    					--level v3 --type bl33 --compress lz4
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
--    					--output fip/bl2.n.bin.sig
--    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
--    		--output fip/u-boot.bin \
--    		--bl2 fip/bl2.n.bin.sig \
--    		--bl30 fip/bl30_new.bin.enc \
--    		--bl31 fip/bl31.img.enc \
--    		--bl33 fip/bl33.bin.enc \
--    		--ddrfw1 fip/ddr4_1d.fw \
--    		--ddrfw2 fip/ddr4_2d.fw \
--    		--ddrfw3 fip/ddr3_1d.fw \
--    		--ddrfw4 fip/piei.fw \
--    		--ddrfw5 fip/lpddr4_1d.fw \
--    		--ddrfw6 fip/lpddr4_2d.fw \
--    		--ddrfw7 fip/diag_lpddr4.fw \
--    		--ddrfw8 fip/aml_ddr.fw \
--    		--ddrfw9 fip/lpddr3_1d.fw \
--    		--level v3
-+    $ export CROSS_COMPILE=aarch64-none-elf-
-+    $ make odroid-c4_defconfig
-+    $ BINMAN_TOOLPATHS=$UBOOTDIR/odroid-c4/fip/g12a \
-+      BINMAN_INDIRS="$UBOOTDIR/fip/g12a \
-+      $UBOOTDIR/build/board/hardkernel/odroidc4/firmware \
-+      $UBOOTDIR/build/scp_task" make
- 
- and then write the image to SD with:
- 
- .. code-block:: bash
- 
--    $ DEV=/dev/your_sd_device
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
--    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
-+    DEV=/dev/your_sd_device
-+    dd if=image.bin of=$DEV conv=fsync,notrunc
-+
-+If you copy the `$UBOOTDIR/odroid-c4/fip/g12a/aml_encrypt_g12a` tool somewhere
-+in your path, you can omit the `BINMAN_TOOLPATHS` option. The `BINMAN_INDIRS`
-+variable provides a space-seperated list of directories containing the various
-+binary blobs needed by the build.
-+
-+To see these, look at the Binman image description in
-+`arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi`.
-diff --git a/tools/binman/etype/aml_encrypt.py b/tools/binman/etype/aml_encrypt.py
-new file mode 100644
-index 000000000000..3f570702dc58
---- /dev/null
-+++ b/tools/binman/etype/aml_encrypt.py
-@@ -0,0 +1,124 @@
-+# SPDX-License-Identifier: GPL-2.0+
-+# Copyright (c) 2016 Google, Inc
-+# Written by Simon Glass <sjg@chromium.org>
-+#
-+# Entry-type module for producing an image using aml-encrypt-g12a
-+#
-+
-+from collections import OrderedDict
-+
-+from binman.entry import Entry
-+from binman.etype.section import Entry_section
-+from binman.etype.blob_ext import Entry_blob_ext
-+from binman.etype.blob_ext_list import Entry_blob_ext_list
-+from dtoc import fdt_util
-+from patman import tools
-+from patman import tout
-+
-+DDR_FW_COUNT = 9
-+
-+class Entry_aml_encrypt(Entry_section):
-+    def __init__(self, section, etype, node):
-+        super().__init__(section, etype, node)
-+        self._entries = OrderedDict()
-+        self.align_default = None
-+        self._aml_algo = None
-+        self._aml_op = None
-+        self._aml_level = None
-+
-+    def ReadNode(self):
-+        super().ReadNode()
-+        self._aml_algo = fdt_util.GetString(self._node, 'aml-algo')
-+        self._aml_op = fdt_util.GetString(self._node, 'aml-op')
-+        self._aml_level = fdt_util.GetString(self._node, 'aml-level')
-+        self._aml_input = fdt_util.GetString(self._node, 'aml-input')
-+        self._aml_compress = fdt_util.GetString(self._node, 'aml-compress')
-+        self._aml_type = fdt_util.GetString(self._node, 'aml-type')
-+        #self._aml_ddrfw = {}
-+        #for i in range(1, DDR_FW_COUNT + 1):
-+            #self._aml_ddrfw[i] = fdt_util.GetString(self._node, f'aml-ddrfw{i}')
-+        self.ReadEntries()
-+
-+    def ReadEntries(self):
-+        """Read the subnodes to find out what should go in this image"""
-+        for node in self._node.subnodes:
-+            etype = None
-+            if node.name.startswith('aml-') and 'type' not in node.props:
-+                etype = 'blob-ext'
-+            entry = Entry.Create(self, node, etype)
-+            entry.ReadNode()
-+            self._entries[entry.name] = entry
-+
-+    def BuildSectionData(self, required):
-+        uniq = self.GetUniqueName()
-+        output_fname = tools.GetOutputFilename('aml-out.%s' % uniq)
-+        args = [f'aml_encrypt_{self._aml_algo}',
-+            f'--{self._aml_op}',
-+            '--output', output_fname
-+            ]
-+        if self._aml_level:
-+            args += ['--level', f'{self._aml_level}']
-+        if self._aml_compress:
-+            args += ['--compress', f'{self._aml_compress}']
-+        if self._aml_type:
-+            args += ['--type', f'{self._aml_type}']
-+        if self._aml_input:
-+            input_pathname = tools.GetInputFilename(
-+                self._aml_input,
-+                self.external and self.section.GetAllowMissing())
-+            if not input_pathname:
-+                missing = True
-+            args += ['--input', f'{input_pathname}']
-+
-+        missing = False
-+        for entry in self._entries.values():
-+            # First get the input data and put it in a file. If not available,
-+            # try later.
-+            entry_data = entry.GetData(required)
-+            if not required and entry_data is None:
-+                return None
-+            flag_name = entry.name.replace('aml-', '')  # Drop the aml- prefix
-+            if isinstance(entry, Entry_blob_ext_list):
-+                for i, pathname in enumerate(entry._pathnames):
-+                    args += [f'--{flag_name}{i + 1}', pathname]
-+            elif isinstance(entry, Entry_blob_ext):
-+                pathname = entry._pathname
-+                args += [f'--{flag_name}', pathname]
-+            else:
-+                data = self.GetPaddedDataForEntry(entry, entry_data)
-+                fname = tools.GetOutputFilename('aml-in.%s' %
-+                                                entry.GetUniqueName())
-+                tools.WriteFile(fname, data)
-+                args += [f'--{flag_name}', fname]
-+            if entry.missing:
-+                missing = True
-+
-+        if missing:
-+            self.missing = True
-+            return b''
-+
-+        tout.Debug(f"Node '{self._node.path}': running: %s" % ' '.join(args))
-+        tools.Run(*args)
-+
-+        # If an input file (or subnode!) is providing the input, the tools
-+        # writes to the requested output file. Otherwise it uses the output file
-+        # as a template for three files that it writes, ending in '.sd.bin',
-+        # 'usb.bl2' and 'usb.tpl'. We use the first one as the image output
-+        if self._aml_input or self._node.FindNode('aml-input'):
-+            real_outfile = output_fname
-+        else:
-+            real_outfile = f'{output_fname}.sd.bin'
-+        data = tools.ReadFile(real_outfile)
-+        return data
-+
-+    def SetAllowMissing(self, allow_missing):
-+        self.allow_missing = allow_missing
-+
-+    def SetImagePos(self, image_pos):
-+        Entry.SetImagePos(self, image_pos)
-+
-+    def SetCalculatedProperties(self):
-+        Entry.SetCalculatedProperties(self)
-+
-+    def CheckEntries(self):
-+        Entry.CheckEntries(self)
-diff --git a/tools/binman/ftest.py b/tools/binman/ftest.py
-index 43b4f850a691..10297d87f3e9 100644
---- a/tools/binman/ftest.py
-+++ b/tools/binman/ftest.py
-@@ -6676,6 +6676,9 @@ fdt         fdtmap                Extract the devicetree blob from the fdtmap
-                                 ['fit'])
-         self.assertIn("Node '/fit': Missing tool: 'mkimage'", str(e.exception))
- 
-+    def testAmlEncrypt(self):
-+        self._DoTestFile('213_aml_encrypt.dts', allow_missing=True)
-+
- 
- if __name__ == "__main__":
-     unittest.main()
-diff --git a/tools/binman/missing-blob-help b/tools/binman/missing-blob-help
-index f013367ac36b..37264274c901 100644
---- a/tools/binman/missing-blob-help
-+++ b/tools/binman/missing-blob-help
-@@ -50,3 +50,9 @@ See the documentation for your board. The OpenSBI git repo is at
- https://github.com/riscv/opensbi.git
- You may need to build fw_dynamic.bin first and re-build u-boot with
- OPENSBI=/path/to/fw_dynamic.bin
-+
-+aml-encrypt:
-+Some AML messages
-+
-+aml-ddrfw
-+Amlogic DDR firmware files are missing
-diff --git a/tools/binman/test/213_aml_encrypt.dts b/tools/binman/test/213_aml_encrypt.dts
-new file mode 100644
-index 000000000000..513da65d500a
---- /dev/null
-+++ b/tools/binman/test/213_aml_encrypt.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	binman {
-+		aml-encrypt {
-+			missing-msg = "aml-encrypt";
-+			aml-algo = "g12a";
-+			aml-op = "bootmk";
-+			aml-level = "v3";
-+
-+			aml-bl2 {
-+				filename = "bl2.n.bin.sig";
-+			};
-+			aml-bl30 {
-+				filename = "bl30_new.bin.enc";
-+			};
-+			aml-bl31 {
-+				filename = "bl31.img.enc";
-+			};
-+			aml-bl33 {
-+				filename = "bl33.bin.enc";
-+			};
-+			aml-ddrfw {
-+				missing-msg = "aml-ddrfw";
-+				type = "blob-ext-list";
-+				filenames = "ddr4_1d.fw", "ddr4_2d.fw",
-+					"ddr3_1d.fw", "piei.fw",
-+					"lpddr4_1d.fw", "lpddr4_2d.fw",
-+					"diag_lpddr4.fw", "aml_ddr.fw",
-+					"lpddr3_1d.fw";
-+			};
-+		};
-+	};
-+};
-diff --git a/tools/binman/test/214_list_no_dtb.dts b/tools/binman/test/214_list_no_dtb.dts
-new file mode 100644
-index 000000000000..47ecd0586447
---- /dev/null
-+++ b/tools/binman/test/214_list_no_dtb.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+/dts-v1/;
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	binman {
-+		size = <0x300>;
-+		atf-bl31 {
-+			filename = "bl31.bin";
-+		};
-+		scp {
-+			filename = "scp.bin";
-+		};
-+		fdtmap {
-+		};
-+		image-header {
-+			location = "end";
-+		};
-+	};
-+};
--- 
-2.40.0.348.gf938b09366-goog
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjcvMDMvMjAyMyAxOTowMiwgUm9iIEhlcnJpbmcgd3JvdGU6Cj4gQ2xlYW51cCBiaW5kaW5n
+cyBkcm9wcGluZyB1bm5lZWRlZCBxdW90ZXMuIE9uY2UgYWxsIHRoZXNlIGFyZSBmaXhlZCwKPiBj
+aGVja2luZyBmb3IgdGhpcyBjYW4gYmUgZW5hYmxlZCBpbiB5YW1sbGludC4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPgo+IC0tLQoKQXBwbGllZCwgdGhh
+bmtzCgotLSAKPGh0dHA6Ly93d3cubGluYXJvLm9yZy8+IExpbmFyby5vcmcg4pSCIE9wZW4gc291
+cmNlIHNvZnR3YXJlIGZvciBBUk0gU29DcwoKRm9sbG93IExpbmFybzogIDxodHRwOi8vd3d3LmZh
+Y2Vib29rLmNvbS9wYWdlcy9MaW5hcm8+IEZhY2Vib29rIHwKPGh0dHA6Ly90d2l0dGVyLmNvbS8j
+IS9saW5hcm9vcmc+IFR3aXR0ZXIgfAo8aHR0cDovL3d3dy5saW5hcm8ub3JnL2xpbmFyby1ibG9n
+Lz4gQmxvZwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
