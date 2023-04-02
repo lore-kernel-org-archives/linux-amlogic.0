@@ -4,78 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CD2AC6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Apr 2023 21:31:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA8EBC7619A
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Apr 2023 08:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kMaTVNCyMMidlFOhJW9/VnFlG38eQ1RCG0p80ognd54=; b=4tmFmnf2TVadzc
-	mZBoU7EAr8wGWUFgCP5OwxePprJij+DPEspKlfiDLrSWa60qFUwA5A+iky0EEQa5kcQ/oqD5W8TKd
-	UFs+lfIfI1yCeahcpkIBHhFZVeqi0pjejPak+vKFFqAdsIko8pCBSta4/sLHibSPnaze4pj3VCphF
-	QSMGrf10Sw1HHd4yyozC5LTwEWMklazDAmZG9w5fdQ9Mb0D3Co4VuxcxTHSMzBpH+QGXCnIVYDymA
-	1aOR80MxO5c4TO35pzJ2fCGFy3/PQqYdzKHI+YQbCB671Q7bCgU8IJgIjt4sBMDB0oE2pZUajiN46
-	b6b2R0v8VAk3X2xmFFvg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:
+	From:MIME-Version:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UI1HumEMovqwAxOwEfi4jR8TUeO9vJp7oDDTN+gkoSQ=; b=kbGBsGGKAsZHZ9
+	SsoloXnhlbyCU4udNFRr8Q7Mb4SFE41RyQpsmky50EpaozTeoHWhQbwuDRWvnPKQ92sjV/QivpCIY
+	82484fqTtQ7Rj652Pv+ytiZlWEhxH6DivudxVvzAE0N8mh/G0BmwL30/udNe8Ors/y3LfeHaraEru
+	Iw8/wLcp5feDclFYP0MHGLc//LFj1OsO5pHzSvK4PHPOFHwETwpRipRUNTepoo/hcBBkIXQlCAhSy
+	vNzpJIXk5cwxLi/UwPBW8uplofzz56rQEjTzDQP7B2Xa699YNmWPvjyjgQagau9k1F4FJsnVHg1BV
+	f8H6jj/GKCVU//uECwQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1piiox-00BL3U-0m;
-	Sat, 01 Apr 2023 21:31:35 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1pisnb-00C1L2-3D;
+	Sun, 02 Apr 2023 08:10:52 +0000
+Received: from mail-ot1-f54.google.com ([209.85.210.54])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1piios-00BL2S-0L;
-	Sat, 01 Apr 2023 21:31:31 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id r11so103203177edd.5;
-        Sat, 01 Apr 2023 14:31:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1680384688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dt5ngga/lv9sqqVvq2wzQnqY8glMlw+sCOIGV96ACzk=;
-        b=m/TZgiBLUsKpYohthUQ4aegzSVWjkZkzZ4mAS5L6oB4U2BsAAR+zCXqUdngWCrmPrV
-         N/lq+E+ijV4ZOid0UIjyTRI1iTpPEdK/VP+TZcnbbySpkyxXG+wo25x387SyPx4hM6Uz
-         qj3eAOLUE6Mx+M7+ghwuitCrN0J9F/h7GXPBXRyCzYB3MxDJKeDpfUsHawADKxy6DSuc
-         256ISU3fYlrEUGWq5nStPtb5Zk/UmT0UFqA38gGjdNoEHoeQAKVnM+KM+fEx2mmM6uy4
-         1z6wQ3iQXQrhXlHPNiqjGOseDVekFfvXjXJiGYvEPEU8j2yTPAMZcjqYF2949nPbQ9o0
-         r0kg==
+	id 1pisnZ-00C1Kb-1T
+	for linux-amlogic@lists.infradead.org;
+	Sun, 02 Apr 2023 08:10:50 +0000
+Received: by mail-ot1-f54.google.com with SMTP id a30-20020a9d3e1e000000b006a13f728172so10958065otd.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 02 Apr 2023 01:10:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680384688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dt5ngga/lv9sqqVvq2wzQnqY8glMlw+sCOIGV96ACzk=;
-        b=L+VmFmGD/Tj8sOpuOluol2pAZsUhvmvjjUPiVLdpGuh5Rh/zb7w0Xwj6FmZkyZxXYX
-         nzMJusZor/QeMPZuRR/fSw+3dPdleRpLhdIYC7tGef/voOc+2cF6iG449ITOm8/LbfkU
-         4Nbi722EYk85eC2PJ9Xro/h00Lq5voNf8hg5SGCGPyuATifSX7iHTUt156d8Lx4c3EWl
-         SO0/QHPP1EtGrrX5gV3wNRKHs9n96bgOQO1xi0i1ohL6Ss7c4aO9HjvKD9s3cxLqTXz/
-         TM9k5m17ukYFg6GlQwicOw4p8KXlsAEh4yVgkPiMtitt1ysyxMgDZM72V9TqpaqzLl82
-         mThg==
-X-Gm-Message-State: AAQBX9cfzc0v1Tvzakc276Z/ReF1VVakAMhTP3ejF16zJnPY0MX8qC2j
-	JhR8lhg5NHeF505aUDEVSTvOscu6j37fqQSLoBs=
-X-Google-Smtp-Source: AKy350aP8rnVsT/fHzmre+ExQt6kcQ5QGNY4yvEG20mUHHz1MphFj30Cd4/hyr8FheYGVTvAlfeUnQLNGGljN08COKw=
-X-Received: by 2002:a17:906:e08c:b0:920:da8c:f7b0 with SMTP id
- gh12-20020a170906e08c00b00920da8cf7b0mr16163779ejb.6.1680384687960; Sat, 01
- Apr 2023 14:31:27 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680423048;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=29YYJrYDhT+9UyWZEkCjUn9HsfHoLWU9D1aux/U2VU4=;
+        b=Tb9rn0pewnbf75JttW71ME8fFog/YQCP4sPHfNaSLaBsxOxvhW5CsGRLhYonWVwkP1
+         iqcH8eEVk9n10HQFCBVJdB8nSvUpF6chOAp94TCNaG60xKZ+/ENKbs1GbywRo5XPlUDg
+         JZBx8kB8+5S8s5OqEDKi3DxmsVN4CEnXqJf05BabI0a8xUVt6SajAB0lggQ6hN81MWYQ
+         EgpwYriqroceMYlLn8es7+ZqGaoX8tevJT1OEJ3HlBUVqY0Rh6cYe078P1R5uEiv6sv5
+         AylIYPvF3qWI8jlJiEqebSxUILpQyfNTCFgjJQnnC1HSK2qKDwwpthuOMStoxkLhQPwv
+         kboQ==
+X-Gm-Message-State: AO0yUKWQB54Vh4t7XZYrjGUI76UaBlztenB94BkzpCz+OpyI/DHl75kC
+	rhrXdy81/09kzTR/l1qbpv8/XCivDgEpXA==
+X-Google-Smtp-Source: AK7set8+6ZjV/toJH15q0+ReaZANOtVbPO+sOBI6fq5hnpxmNdzOgR/xheB/tcDMG3LYlLxWN/lJwA==
+X-Received: by 2002:a9d:6b07:0:b0:69f:8859:9fd3 with SMTP id g7-20020a9d6b07000000b0069f88599fd3mr16187767otp.14.1680423047731;
+        Sun, 02 Apr 2023 01:10:47 -0700 (PDT)
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com. [209.85.160.46])
+        by smtp.gmail.com with ESMTPSA id e193-20020a4a55ca000000b005255e556399sm2730288oob.43.2023.04.02.01.10.47
+        for <linux-amlogic@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Apr 2023 01:10:47 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-17aaa51a911so27670920fac.5
+        for <linux-amlogic@lists.infradead.org>; Sun, 02 Apr 2023 01:10:47 -0700 (PDT)
+X-Received: by 2002:a05:687c:19c:b0:17b:5f31:7ae3 with SMTP id
+ yo28-20020a05687c019c00b0017b5f317ae3mr7868128oab.5.1680423046878; Sun, 02
+ Apr 2023 01:10:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230401161938.2503204-1-u.kleine-koenig@pengutronix.de> <20230401161938.2503204-26-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20230401161938.2503204-26-u.kleine-koenig@pengutronix.de>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 1 Apr 2023 23:31:17 +0200
-Message-ID: <CAFBinCA4A+reBNE0beub62ffOysSGHK6PhS-e+LB90pJ2thnkQ@mail.gmail.com>
-Subject: Re: [PATCH 25/49] mtd: rawnand: meson: Convert to platform remove
- callback returning void
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Richard Weinberger <richard@nod.at>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-mtd@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	kernel@pengutronix.de
+From: Lucas Tanure <tanure@linux.com>
+Date: Sun, 2 Apr 2023 09:10:36 +0100
+X-Gmail-Original-Message-ID: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+Message-ID: <CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com>
+Subject: Kernel Panic - V6.2 - Reseved memory issue
+To: kernelnewbies <kernelnewbies@kernelnewbies.org>, Rob Herring <robh+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230401_143130_148772_5078D3E0 
-X-CRM114-Status: GOOD (  11.51  )
+X-CRM114-CacheID: sfid-20230402_011049_520061_289A1882 
+X-CRM114-Status: GOOD (  15.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,26 +78,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: tanure@linux.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU2F0LCBBcHIgMSwgMjAyMyBhdCA2OjE54oCvUE0gVXdlIEtsZWluZS1Lw7ZuaWcKPHUua2xl
-aW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JvdGU6Cj4KPiBUaGUgLnJlbW92ZSgpIGNhbGxi
-YWNrIGZvciBhIHBsYXRmb3JtIGRyaXZlciByZXR1cm5zIGFuIGludCB3aGljaCBtYWtlcwo+IG1h
-bnkgZHJpdmVyIGF1dGhvcnMgd3JvbmdseSBhc3N1bWUgaXQncyBwb3NzaWJsZSB0byBkbyBlcnJv
-ciBoYW5kbGluZyBieQo+IHJldHVybmluZyBhbiBlcnJvciBjb2RlLiBIb3dldmVyIHRoZSB2YWx1
-ZSByZXR1cm5lZCBpcyAobW9zdGx5KSBpZ25vcmVkCj4gYW5kIHRoaXMgdHlwaWNhbGx5IHJlc3Vs
-dHMgaW4gcmVzb3VyY2UgbGVha3MuIFRvIGltcHJvdmUgaGVyZSB0aGVyZSBpcyBhCj4gcXVlc3Qg
-dG8gbWFrZSB0aGUgcmVtb3ZlIGNhbGxiYWNrIHJldHVybiB2b2lkLiBJbiB0aGUgZmlyc3Qgc3Rl
-cCBvZiB0aGlzCj4gcXVlc3QgYWxsIGRyaXZlcnMgYXJlIGNvbnZlcnRlZCB0byAucmVtb3ZlX25l
-dygpIHdoaWNoIGFscmVhZHkgcmV0dXJucwo+IHZvaWQuCj4KPiBUcml2aWFsbHkgY29udmVydCB0
-aGlzIGRyaXZlciBmcm9tIGFsd2F5cyByZXR1cm5pbmcgemVybyBpbiB0aGUgcmVtb3ZlCj4gY2Fs
-bGJhY2sgdG8gdGhlIHZvaWQgcmV0dXJuaW5nIHZhcmlhbnQuCj4KPiBTaWduZWQtb2ZmLWJ5OiBV
-d2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgpSZXZpZXdl
-ZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWls
-LmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+Hi,
+
+I am trying to fix a kernel panic I am seeing on my vim3 board (Amlogic A311D).
+I don't have enough knowledge about this area, but my current guess is
+the kernel is using a piece of memory belonging to ARM-trusted
+firmware that I shouldn't.
+Log:
+
+[ 9.792966] SError Interrupt on CPU3, code 0x00000000bf000000 -- SError
+[ 9.792980] CPU: 3 PID: 3471 Comm: kded5 Tainted: G C 6.2.0 #1
+[ 9.792985] Hardware name: Khadas VIM3 (DT)
+[ 9.792987] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[ 9.792991] pc : kmem_cache_free_bulk.part.98+0x1f0/0x528
+[ 9.793004] lr : kmem_cache_free_bulk.part.98+0x2f8/0x528
+[ 9.793008] sp : ffff80000a2eb7f0
+[ 9.793009] x29: ffff80000a2eb7f0 x28: ffff00001f358518 x27: ffff000000008800
+[ 9.793016] x26: ffff00000262b300 x25: ffff00000262b300 x24: 0000000000000001
+[ 9.793019] x23: ffff00000262b000 x22: 0000000000000000 x21: ffff00001f358538
+[ 9.793022] x20: fffffc0000098ac0 x19: 0000000000000004 x18: 0000000000000040
+[ 9.793025] x17: 0000000000000018 x16: 00000000000007f8 x15: 0000000000000003
+[ 9.793028] x14: 0000000000000006 x13: ffff800008e48550 x12: 0000ffff9dc91fff
+[ 9.793031] x11: 0000000000000004 x10: 0000000000000001 x9 : ffff000007e93680
+[ 9.793035] x8 : 0000000000000020 x7 : ffff000001d2b100 x6 : 0000000000000007
+[ 9.793037] x5 : 0000000000000020 x4 : ffff000000008800 x3 : 0000000000000001
+[ 9.793040] x2 : 0000000000000007 x1 : 0000000000000000 x0 : ffff00001f358540
+[ 9.793045] Kernel panic - not syncing: Asynchronous SError Interrupt
+
+This doesn't happen with downstream Khadas 6.2 kernel, and that's
+because the downstream kernel removed this from
+early_init_dt_reserve_memory (drivers/of/fdt.c):
+
+/*
+* If the memory is already reserved (by another region), we
+* should not allow it to be marked nomap, but don't worry
+* if the region isn't memory as it won't be mapped.
+*/
+if (memblock_overlaps_region(&memblock.memory, base, size) &&
+    memblock_is_region_reserved(base, size))
+          return -EBUSY;
+
+
+And this causes 3 MiB of memory belonging to ARM Trusted firmware to
+be reserved.
+
+arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi :
+/* 3 MiB reserved for ARM Trusted Firmware (BL31) */
+secmon_reserved: secmon@5000000 {
+        reg = <0x0 0x05000000 0x0 0x300000>;
+        no-map;
+};
+
+And the mainline kernel fails to reserve that memory:
+[    0.000000] OF: fdt: Reserved memory: failed to reserve memory for
+node 'secmon@5000000': base 0x0000000005000000, size 3 MiB
+
+It fails to reserve because memblock_overlaps_region and
+memblock_is_region_reserved return one.
+I think memblock_is_region_reserved is saying the memory is already
+reserved by uboot and shouldn't be nomap, but it should.
+
+Is there a bug here?
+Why the kernel is failing to reserve this memory?
+Is this an u-boot issue?
+
+I would appreciate any help. The current mainline kernel fails 90% of
+the time to boot into the Vim3 board.
+
+Best Regards
+Lucas Tanure
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
