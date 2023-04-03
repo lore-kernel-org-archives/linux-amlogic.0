@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70988C761A6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 07:31:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4007BC76196
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 07:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RJWF7JzQqVSS7jPgAqa2+1iQEtK52pjKjNx5Qvepxhk=; b=oT8IZ9IU0OjqpScgPDm3z/dVkY
-	G/pEwaJZ+HbH2jihSy7ZPpCfVhK+YtVIz3Me0vtNviPTKiU9njBLCwZJ+1e2niwLZeGdP+TDKueUO
-	1M6X+qKfmRzBrjkD4+b8MxxaIpG2ca5744LZ+0u9jk8fnB9eQs2JlHVm4Q9i4oLSZT+62kRhS8NjQ
-	2nsVZlVuHxfF5/Yoba9pQJDknvrvcXUWGw5b5iasV8Z/PxRuMaOTMQ/0bGgGqAehV3iRwzTsU3lXp
-	4guPRebm0+2sIC6yAnSL8brZe0TGm8lr2wgVOy4awVq38p/up3k7tuRcm2SZivY5HNf7SkW+e5z8w
-	ZYt+Ukow==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:References:Subject:To:From:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Owner;
+	bh=RDiE2Bcpx9P7Rj49keYQeloSEYLF3sKB4EcRKc5KpPU=; b=U1WBFVRLkC9gOdh4Xja3fDKF/b
+	F6hx3XNhX8jQ8CQL+XtqzBYILu/xsddfWInJqKzgC7foud7SvQNX7IdqhVCqLCXsdanqrGTzxxY8B
+	MAW7SV9HdPfNwNa9XyAX6m8RNraeYtHFz8JSwSGdrheRPEjkRip/eKdfGWb/hsRntJdQkfmbYLHP8
+	4pN42vm0HRPy8Y+UVu6JlfZyrYMXScToBwyubjJ5CpPbRqvYtwji9NZZ9+f5SFmR+c01uyCPMGWPR
+	aAQMefc21CHrt/OX32JudqTT23sTP+g+qCkd4a1KuJbf+7vadVxBLY0RbLJFFsKhsmK8jm0qjgaIv
+	sNuHt4qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjEfM-00EP2F-2M;
-	Mon, 03 Apr 2023 07:31:48 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1pjEuv-00EQwJ-0G;
+	Mon, 03 Apr 2023 07:47:53 +0000
+Received: from sonic301-19.consmr.mail.sg3.yahoo.com ([106.10.242.82])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjEfI-00EP1P-1l
+	id 1pjEur-00EQuQ-3D
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Apr 2023 07:31:47 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id o32so16469187wms.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 03 Apr 2023 00:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680507097;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hF/HBH90e248Vk6fn2JWyJqlmDGagbf+inipzYd1lLo=;
-        b=EacfELlNnqOC7JSFvi2e0Erf6AcM5/cS76FRYK4XuXJvaRodtz14mNRdUk17wHFcs3
-         QEhYZTyR+PG0IcR4LMQMe8z3VozGy1nZWQ9BHwxJvTo/pAEcPtZ7oswJ3ttYT0SYUGgy
-         CwCr0rNqnAielYBfFwGAAwqc3214ZkvM/mL6VP1ZVg5ZqkfGHxzXseF02Zxh11BoDdSn
-         ziuhqlLhgX5FmWb0Rxx+U7du1MR4kmZCu7249zziV+TmxXXdVWMqiTER8zblhchoCWX5
-         DKkNE64IA9Zm15nv39o1mUfJsmW89Oh46IzSpp7ANBioBxqWRjGHPfkIOqKbMl9s5aaU
-         vRYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680507097;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hF/HBH90e248Vk6fn2JWyJqlmDGagbf+inipzYd1lLo=;
-        b=jQKICOLNhho1XlWzBKLRc+yWO76YOyMji3N8Vvdd5EAo1SYQM590tu1Y/eeEaNWEvv
-         cX4kWl5djtTQuFZXfSYxUlXPauXpm611sfIAQzzwnh7JpxSKM7dAnizfxzcKYwEUNA6M
-         by73vY8wN5Gt5e53sqVNm0rOku9fStUHDIHJIOVtyFGyIQS6DB8dIU9mEQe7TqXQ3t7x
-         x51q81/s3sl2DzWVq6rcOH9OUE4JdroCoC1n5YGwHOFWYgGSH+DXvn+5aK3KGT9QtROl
-         55ogxW18FW9ipwcxx9SAdChTDXPR7f5DXJGH6x+PTnAGydoNoNexEsxcCsBphYhPYcQS
-         Kpfg==
-X-Gm-Message-State: AO0yUKULN5Y5UAR5VhrMIJoXRdr6ebQvERe7PW6cKn3fUbtqvp/zK8gP
-	qzhPatieslmWZ2eCTP5L7YXPsg==
-X-Google-Smtp-Source: AK7set8KALlalEWojmLNhUb4Ji9Y61K2C6iQkcoEJv+0LaHsNJkNVWeEPga6byQ+QJq8lZKaNOufoA==
-X-Received: by 2002:a05:600c:22c4:b0:3ee:67ff:4aad with SMTP id 4-20020a05600c22c400b003ee67ff4aadmr25912352wmg.26.1680507097416;
-        Mon, 03 Apr 2023 00:31:37 -0700 (PDT)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id o39-20020a05600c512700b003edddae1068sm18631012wms.9.2023.04.03.00.31.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 00:31:37 -0700 (PDT)
-Message-ID: <d3308f32-275d-7b37-8c03-76984a2b9ddf@linaro.org>
-Date: Mon, 3 Apr 2023 09:31:36 +0200
+	Mon, 03 Apr 2023 07:47:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1680508065; bh=OXQRK5bXKybeS9vHwKKUXze9ExGIFLhZQemsiYB+nDA=; h=Date:From:To:Subject:References:From:Subject:Reply-To; b=AdkINoDGg+uBdXp73xatFod24n3HjSOtXlh/ToPCysg9KSaxa0qERefCtriynir792Y3E4U3iImsb5nHZx4LOoHqQKI6ZdSyO+UsPWpgxvYojoGJE3JW7pW0nVd9aujkkQR/zFJOzoYr69Jm0lB0u7Pcf1FU5zB+ctFMd9huTZFZh54240MQg+l3vdjoXThIbl1KrlK1TfyBoEYOji/4113LlR80m+Ovuz+QG6RkhG8BIyjjWu05Ikc06kSskhlwcvQ2US8GQMwAX7ZHgiAxUQ+uglKSbODEh7gYX2CkMGPPMSU+gF00JBvVYxFZ/Xv6yP3GE2b/WdsXYjMqKfZVYA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1680508065; bh=3VPdRbUSyd4wklvMRQOMxytyEbsRaDi2cpCc/RCljtj=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=UCjQ1KguR95HaeTayr5yLuQgWAkoHuk6urVlZLaVIkTfaCtwAVO+/LKPftnnIo5L3BgmjK/3aRrJFnzq8IZt6yNm833fh1F/OuWmAuLxeiGWEl1fIWByII1eXDwDst2vJXTT8pFaYuurV6tLgiwSc/JwdCSZODp7o9kizo2SJHJibOQFsK0eGEmJxTnFxkYEQ7KScqY+RSQMRK/1aDE/95s7CtJLnmvcX8717kTz9ybXcC6uyEa7LGOk5IJvRPjxy/XY+gYZrvg3ot6bodtVkbfGwzEygGWpRoAVSONCpbxctH+t9zrT+oRIrH9HYe6IlNCTGAkqHYgsdPY27lufbA==
+X-YMail-OSG: Uz8OBXEVM1lcoP.KXlup4W0SI8CWgg2PANKjZ9A3CGRKXb28wJ7kcZKFNIyw7I2
+ acK0MZ6GRWHe8cWk_arHKz8WKBQZQkRe7KccZROcD4hXKu8.YKooyf0Wac1l3L0O1uo9k2i52w4C
+ yrT1UWN9ATJVIodGc4qFRnwJVLEWHlHndLuz_9oqM_uYuIUDQZhDnWko5AGQwuxRs.q9o3Pl30dW
+ 2ULnQMON93l.OCTisvPxWmZHwCkuGmqmYkKiy8n93oZ8_tVWKo8_UOms3awK78YJIYb.OVkHDU5E
+ Hd_wCTGaPTNX3DthKd2cDU9o8ZCSM_n5Ez1eHYjJeceW6iUCmXXf1BUTqv.JrjvF5gDsiYDcR1yV
+ IEwpalrVSsChURkFrRtgyxrA_UCXfRlbT4pWeTqWzZVUYMOcVoUhoqx94vPRqXvBOTZpCquSeGeh
+ 7080zv8g1dtMkkl0huYxOFx1VGCsKEmz7JX3wTes3fGEJplHkgFRn0XvwSj7L5J1rQjKW6eyOr2T
+ NLMT_tgUvDWQ2ioktIk9T_iRkGt0nDwSVRzlmMO2Rr8XIxN0TvEIHQ4JYEZTKfwTU12kx9Xz4XXu
+ Y94INHyvvSibYUQaXv4FOD5aEhysXIPPkf6LzGKNpOs05eeEzU0tV2Lw0Vot3iUiwjz6DuJRlNdW
+ 4fpTqlGKaVdIOIwCBtGcyyIKv34e51_B05jaI_X7lqMDimSwxKLTYlDjZfFz3Fs7O_WuTHOUBXLA
+ aT.EQ.qV8ZqMBvI7dkMg2oF4vKSY1zSLIPAsqqzPnCGBu3noSuJZwYtbyoxPJ23en83au_2rfFd0
+ PdktYwQ62MlCCzAi8DRYeGvBa8D7xBrpu9MPdaycqGyqzikjrErcloVmQGM4RRcya3piA_cr_s9R
+ 0UyXUDAOe1PdFDNBd3dFcw0hjtWASaSD3PAkQiqQBb.aWVuBPdUaRNyKxk7tX8w1qCDGa0pj8jAa
+ 3i3TLeqq6hG61J_tegBgeiHFP8iYsc4CHj5b_s0O5mdgq1vMpTz_x5N5w6LxUPIL5pkjBLUr3VxT
+ 9pF2RFz9X.oCXTBbQuXs.inLxL7z_PWkibXjt_DiZ4IbgAjS6I.S2LxMhOAXBuEMhqO2_ZYSOyeh
+ 5hhITYGzywenV5Rgfn1RmzTMisX5QqEINUs1S.0iXC_TV19t_oMvb493VaeLlUAY3TrbBHOR7Jg5
+ M6gfGsM0T3HDU1QNu3qJnaA.DRUDcLb6S5UOpm2uwSmch2jwFoq8420CzDCVGFpcXWpC7PR4KLHW
+ rd5uxZrFJL5r9PAIGDYZA8b1P.2FtAKo05bFiNj.o6ktSa1LaIVKpHtkMAIJ3XM6cNVnB1FPTO0R
+ OX24hHxe9cRDadTinLMe1uM4_lGzKzkh7XN.SW_Z4DBsSxCsg55p49EI2r7nLvrGR4xyAbDJvVsz
+ 8Xi4oNADD74fzbfXRkXFUtcA3T8Gjw0oUPTDV0MLwQyViaDfrDYkFYLG.GO.44lfjdM0g95X7QdI
+ E2aQ79qwxfzmPbmf3dIP_B.TD.CSk0WmawS4r5W3s4G95N53yYDKoIKLQVSRPIFt29OOstASx1GW
+ y6jwSRkHqGDr_X3gAwMzysC1y.NxfZkG2J.oQW3703qeS9M1738mWTh10iaC6XNEjclCG1PlWSsO
+ Mh6qEuiSPv1tLhI92qeVC9WLbTmRXDUfrD27gXZxUAOhzt7cqLkL44ympuNxGXSiWsEsyyGsdXXc
+ a0K9JqBKi75v7qVw2oUuYCgCnqT5Qsw39U7oHwGKxQ2spb52xU3ioMdnoyc77z.ad9Bjp8jA41zr
+ yHU2fDSJdeDIkcwfzQEeXb1xRO5tlAwR14d2Re3uoavoFLKtwjnnMpeNimbSjB5CTdTHDgT3DTH6
+ x_TMUnr2fbwm66k5kZIdNjzamAMxuG4l8sPMbpOWu0z6563ScM8AL3y2JnrSdVkVoVfF6eGv7wbX
+ xR2577ulIYl7puza0a74juLPLJmb0gzEY92MtsENB4WF5ZKovAhW4mHDP8MlzKIZF5ojXYOZM2b4
+ auteB4NfFfx4a1dCBzPdiK_NJQL4HfjRyIZhAjeeNkvZnJjvs98u6HJXE.3c4ZXuj7QWNMGQ16P7
+ ubjNYFMJyEFyA4wuHXlS_jaA_w6oP3dvuPbTkAbtohgHJlFI0qd5UPrEDqo_n7CJ9eBa7i6_RNUc
+ Vbg--
+X-Sonic-MF: <exkcmailist@yahoo.com>
+X-Sonic-ID: d48fbe53-39d5-49f6-bae6-4baf0993d8cb
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.sg3.yahoo.com with HTTP; Mon, 3 Apr 2023 07:47:45 +0000
+Received: by hermes--production-sg3-6d6fb994f6-94jgf (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID d77c3ae78abed58efc2b721c4fff4f18;
+          Mon, 03 Apr 2023 07:47:41 +0000 (UTC)
+Message-ID: <a36dd7f2-52fc-4623-e503-a2aeeb04f6ac@yahoo.com>
+Date: Mon, 3 Apr 2023 15:47:43 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/1] RFC: Move Odroid-C2 to use binman to produce the
- image
 Content-Language: en-US
-To: Simon Glass <sjg@chromium.org>, U-Boot Mailing List <u-boot@lists.denx.de>
-References: <20230401185458.2280200-1-sjg@chromium.org>
- <20230402065454.v2.1.I2d7f563b6a82f32478a7874e36672622aebb7893@changeid>
-Organization: Linaro Developer Services
-In-Reply-To: <20230402065454.v2.1.I2d7f563b6a82f32478a7874e36672622aebb7893@changeid>
+From: Karl Chan <exkcmailist@yahoo.com>
+To: linux-amlogic@lists.infradead.org
+Subject: [PATCH] ARM64: dts: meson-gxl: add support for the Xiaomi Mi Box 3
+References: <a36dd7f2-52fc-4623-e503-a2aeeb04f6ac.ref@yahoo.com>
+X-Mailer: WebService/1.1.21284 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_003144_589773_88265F53 
-X-CRM114-Status: GOOD (  33.13  )
+X-CRM114-CacheID: sfid-20230403_004750_210564_5734B046 
+X-CRM114-Status: GOOD (  11.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,576 +89,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Cc: linux-amlogic@lists.infradead.org, Alper Nebi Yasak <alpernebiyasak@gmail.com>, u-boot-amlogic@groups.io
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Simon !
-
-On 01/04/2023 20:54, Simon Glass wrote:
-> This shows how binman can be used to replace the long and complicated
-> instructions with an automated build. It is still complicated to read
-> but users don't have to worry about the details.
-> 
-> It needs some tidying up and only supports Odroid-C2 at present.
-
-Like the v1, the work is really nice, but the dependency on vendor binary-only
-tools doesn't make feel confident about merging this.
-
-We have open source implementation for all boards, but still dependeing on
-tools we must manually build isn't optimal.
-
-What would be optimal would be to re-implement those tools into python
-libraries and merge them into the u-boot tree then use them from binman.
-
-But this could be merged as first step, them the python libaray could be
-modified to support the binary tools & a probable python re-implementation.
-
-Neil
-
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
-> Changes in v2:
-> - Rebase to -next
-> 
->   arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi | 107 ++++++++++++++++
->   arch/arm/mach-meson/Kconfig                  |   1 +
->   doc/board/amlogic/odroid-c4.rst              | 127 +++++--------------
->   tools/binman/etype/aml_encrypt.py            | 124 ++++++++++++++++++
->   tools/binman/ftest.py                        |   3 +
->   tools/binman/missing-blob-help               |   6 +
->   tools/binman/test/213_aml_encrypt.dts        |  38 ++++++
->   tools/binman/test/214_list_no_dtb.dts        |  23 ++++
->   8 files changed, 337 insertions(+), 92 deletions(-)
->   create mode 100644 tools/binman/etype/aml_encrypt.py
->   create mode 100644 tools/binman/test/213_aml_encrypt.dts
->   create mode 100644 tools/binman/test/214_list_no_dtb.dts
-> 
-> diff --git a/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi b/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-> index 963bf96b2567..b221ce6920b0 100644
-> --- a/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-> +++ b/arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi
-> @@ -6,6 +6,113 @@
->   
->   #include "meson-sm1-u-boot.dtsi"
->   
-> +/{
-> +	binman {
-> +		/* run --bootmk on all the included inputs */
-> +		aml-encrypt {
-> +			missing-msg = "aml-encrypt";
-> +			aml-algo = "g12a";
-> +			aml-op = "bootmk";
-> +			aml-level = "v3";
-> +
-> +			/* produce a bl2, containing signed bl2 binaries */
-> +			bl2 {
-> +				type = "aml-encrypt";
-> +				aml-algo = "g12a";
-> +				aml-op = "bl2sig";
-> +
-> +				/* sign the binary contaiing bl2 and acs */
-> +				aml-input {
-> +					type = "section";
-> +					bl2 {
-> +						type = "blob-ext";
-> +						size = <0xe000>;
-> +						filename = "bl2.bin";
-> +					};
-> +					acs {
-> +						type = "blob-ext";
-> +						size = <0x1000>;
-> +						filename = "acs.bin";
-> +					};
-> +				};
-> +			};
-> +
-> +			/* produce a bl30, containing signed bl30 binaries */
-> +			bl30 {
-> +				type = "aml-encrypt";
-> +				aml-algo = "g12a";
-> +				aml-op = "bl3sig";
-> +				aml-level = "v3";
-> +				aml-type = "bl30";
-> +
-> +				/* sign the binary contaiing bl30 and bl301 */
-> +				aml-input {
-> +					type = "aml-encrypt";
-> +					aml-algo = "g12a";
-> +					aml-op = "bl30sig";
-> +					aml-level = "v3";
-> +
-> +					/*
-> +					 * put bl30 and bl301 together, with
-> +					 * the necessary paddiung
-> +					 */
-> +					aml-input {
-> +						type = "section";
-> +						bl30 {
-> +							type = "blob-ext";
-> +							size = <0xa000>;
-> +							filename = "bl30.bin";
-> +						};
-> +						bl301 {
-> +							type = "blob-ext";
-> +							size = <0x3400>;
-> +							filename = "bl301.bin";
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			/* sign the bl31 binary */
-> +			bl31 {
-> +				type = "aml-encrypt";
-> +				aml-algo = "g12a";
-> +				aml-op = "bl3sig";
-> +				aml-input = "bl31.img";
-> +				aml-level = "v3";
-> +				aml-type = "bl31";
-> +			};
-> +
-> +			/* sign the bl33 binary (which is U-Boot) */
-> +			bl33 {
-> +				type = "aml-encrypt";
-> +				aml-algo = "g12a";
-> +				aml-op = "bl3sig";
-> +				aml-compress = "lz4";
-> +				aml-level = "v3";
-> +				aml-type = "bl33";
-> +
-> +				aml-input {
-> +					type = "u-boot";
-> +				};
-> +			};
-> +
-> +			/* add the various DDR blobs */
-> +			aml-ddrfw {
-> +				missing-msg = "aml-ddrfw";
-> +				type = "blob-ext-list";
-> +				filenames = "ddr4_1d.fw", "ddr4_2d.fw",
-> +					"ddr3_1d.fw", "piei.fw",
-> +					"lpddr4_1d.fw", "lpddr4_2d.fw",
-> +					"diag_lpddr4.fw", "aml_ddr.fw",
-> +					"lpddr3_1d.fw";
-> +			};
-> +		};
-> +
-> +		fdtmap {
-> +		};
-> +	};
-> +};
-> +
->   &ethmac {
->   	snps,reset-gpio = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
->   	snps,reset-delays-us = <0 10000 1000000>;
-> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-> index 6cba2c40ddaa..bcb87ea243c2 100644
-> --- a/arch/arm/mach-meson/Kconfig
-> +++ b/arch/arm/mach-meson/Kconfig
-> @@ -48,6 +48,7 @@ config MESON_AXG
->   config MESON_G12A
->   	bool "G12A"
->   	select MESON64_COMMON
-> +	select BINMAN
->   	help
->   	  Select this if your SoC is an S905X/D2
->   
-> diff --git a/doc/board/amlogic/odroid-c4.rst b/doc/board/amlogic/odroid-c4.rst
-> index b512c6a3d83d..9b9ea05a6212 100644
-> --- a/doc/board/amlogic/odroid-c4.rst
-> +++ b/doc/board/amlogic/odroid-c4.rst
-> @@ -22,17 +22,8 @@ applies for HC4.
->   
->   Schematics are available on the manufacturer website.
->   
-> -U-Boot compilation
-> -------------------
-> -
-> -.. code-block:: bash
-> -
-> -    $ export CROSS_COMPILE=aarch64-none-elf-
-> -    $ make odroid-c4_defconfig
-> -    $ make
-> -
-> -Image creation
-> ---------------
-> +Setting up binary blobs
-> +-----------------------
->   
->   For simplified usage, pleaser refer to :doc:`pre-generated-fip` with codename `odroid-c4` or `odroid-hc4`
->   
-> @@ -42,98 +33,50 @@ the git tree published by the board vendor:
->   
->   .. code-block:: bash
->   
-> -    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> -    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> -    $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> -    $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> -    $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-> +    # This may be needed with this older U-Boot release
-> +    apt remove libfdt-dev
->   
-> -    $ DIR=odroid-c4
-> -    $ git clone --depth 1 \
-> +    wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> +    wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> +    tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> +    tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> +    export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-> +
-> +    DIR=odroid-c4
-> +    git clone --depth 1 \
->          https://github.com/hardkernel/u-boot.git -b odroidg12-v2015.01 \
->          $DIR
->   
-> -    $ cd odroid-c4
-> -    $ make odroidc4_defconfig
-> -    $ make
-> -    $ export UBOOTDIR=$PWD
-> +    cd odroid-c4
-> +    make odroidc4_defconfig
-> +    make
-> +    export UBOOTDIR=$PWD
-> +
-> +U-Boot compilation
-> +------------------
->   
->   Go back to mainline U-Boot source tree then :
->   
->   .. code-block:: bash
->   
-> -    $ mkdir fip
-> -
-> -    $ wget https://github.com/BayLibre/u-boot/releases/download/v2017.11-libretech-cc/blx_fix_g12a.sh -O fip/blx_fix.sh
-> -    $ cp $UBOOTDIR/build/scp_task/bl301.bin fip/
-> -    $ cp $UBOOTDIR/build/board/hardkernel/odroidc4/firmware/acs.bin fip/
-> -    $ cp $UBOOTDIR/fip/g12a/bl2.bin fip/
-> -    $ cp $UBOOTDIR/fip/g12a/bl30.bin fip/
-> -    $ cp $UBOOTDIR/fip/g12a/bl31.img fip/
-> -    $ cp $UBOOTDIR/fip/g12a/ddr3_1d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/ddr4_1d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/ddr4_2d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/diag_lpddr4.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/lpddr3_1d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/lpddr4_1d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/lpddr4_2d.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/piei.fw fip/
-> -    $ cp $UBOOTDIR/fip/g12a/aml_ddr.fw fip/
-> -    $ cp u-boot.bin fip/bl33.bin
-> -
-> -    $ sh fip/blx_fix.sh \
-> -    	fip/bl30.bin \
-> -    	fip/zero_tmp \
-> -    	fip/bl30_zero.bin \
-> -    	fip/bl301.bin \
-> -    	fip/bl301_zero.bin \
-> -    	fip/bl30_new.bin \
-> -    	bl30
-> -
-> -    $ sh fip/blx_fix.sh \
-> -    	fip/bl2.bin \
-> -    	fip/zero_tmp \
-> -    	fip/bl2_zero.bin \
-> -    	fip/acs.bin \
-> -    	fip/bl21_zero.bin \
-> -    	fip/bl2_new.bin \
-> -    	bl2
-> -
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
-> -    					--output fip/bl30_new.bin.g12a.enc \
-> -    					--level v3
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
-> -    					--output fip/bl30_new.bin.enc \
-> -    					--level v3 --type bl30
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
-> -    					--output fip/bl31.img.enc \
-> -    					--level v3 --type bl31
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
-> -    					--output fip/bl33.bin.enc \
-> -    					--level v3 --type bl33 --compress lz4
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
-> -    					--output fip/bl2.n.bin.sig
-> -    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
-> -    		--output fip/u-boot.bin \
-> -    		--bl2 fip/bl2.n.bin.sig \
-> -    		--bl30 fip/bl30_new.bin.enc \
-> -    		--bl31 fip/bl31.img.enc \
-> -    		--bl33 fip/bl33.bin.enc \
-> -    		--ddrfw1 fip/ddr4_1d.fw \
-> -    		--ddrfw2 fip/ddr4_2d.fw \
-> -    		--ddrfw3 fip/ddr3_1d.fw \
-> -    		--ddrfw4 fip/piei.fw \
-> -    		--ddrfw5 fip/lpddr4_1d.fw \
-> -    		--ddrfw6 fip/lpddr4_2d.fw \
-> -    		--ddrfw7 fip/diag_lpddr4.fw \
-> -    		--ddrfw8 fip/aml_ddr.fw \
-> -    		--ddrfw9 fip/lpddr3_1d.fw \
-> -    		--level v3
-> +    $ export CROSS_COMPILE=aarch64-none-elf-
-> +    $ make odroid-c4_defconfig
-> +    $ BINMAN_TOOLPATHS=$UBOOTDIR/odroid-c4/fip/g12a \
-> +      BINMAN_INDIRS="$UBOOTDIR/fip/g12a \
-> +      $UBOOTDIR/build/board/hardkernel/odroidc4/firmware \
-> +      $UBOOTDIR/build/scp_task" make
->   
->   and then write the image to SD with:
->   
->   .. code-block:: bash
->   
-> -    $ DEV=/dev/your_sd_device
-> -    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
-> -    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
-> +    DEV=/dev/your_sd_device
-> +    dd if=image.bin of=$DEV conv=fsync,notrunc
-> +
-> +If you copy the `$UBOOTDIR/odroid-c4/fip/g12a/aml_encrypt_g12a` tool somewhere
-> +in your path, you can omit the `BINMAN_TOOLPATHS` option. The `BINMAN_INDIRS`
-> +variable provides a space-seperated list of directories containing the various
-> +binary blobs needed by the build.
-> +
-> +To see these, look at the Binman image description in
-> +`arch/arm/dts/meson-sm1-odroid-c4-u-boot.dtsi`.
-> diff --git a/tools/binman/etype/aml_encrypt.py b/tools/binman/etype/aml_encrypt.py
-> new file mode 100644
-> index 000000000000..3f570702dc58
-> --- /dev/null
-> +++ b/tools/binman/etype/aml_encrypt.py
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: GPL-2.0+
-> +# Copyright (c) 2016 Google, Inc
-> +# Written by Simon Glass <sjg@chromium.org>
-> +#
-> +# Entry-type module for producing an image using aml-encrypt-g12a
-> +#
-> +
-> +from collections import OrderedDict
-> +
-> +from binman.entry import Entry
-> +from binman.etype.section import Entry_section
-> +from binman.etype.blob_ext import Entry_blob_ext
-> +from binman.etype.blob_ext_list import Entry_blob_ext_list
-> +from dtoc import fdt_util
-> +from patman import tools
-> +from patman import tout
-> +
-> +DDR_FW_COUNT = 9
-> +
-> +class Entry_aml_encrypt(Entry_section):
-> +    def __init__(self, section, etype, node):
-> +        super().__init__(section, etype, node)
-> +        self._entries = OrderedDict()
-> +        self.align_default = None
-> +        self._aml_algo = None
-> +        self._aml_op = None
-> +        self._aml_level = None
-> +
-> +    def ReadNode(self):
-> +        super().ReadNode()
-> +        self._aml_algo = fdt_util.GetString(self._node, 'aml-algo')
-> +        self._aml_op = fdt_util.GetString(self._node, 'aml-op')
-> +        self._aml_level = fdt_util.GetString(self._node, 'aml-level')
-> +        self._aml_input = fdt_util.GetString(self._node, 'aml-input')
-> +        self._aml_compress = fdt_util.GetString(self._node, 'aml-compress')
-> +        self._aml_type = fdt_util.GetString(self._node, 'aml-type')
-> +        #self._aml_ddrfw = {}
-> +        #for i in range(1, DDR_FW_COUNT + 1):
-> +            #self._aml_ddrfw[i] = fdt_util.GetString(self._node, f'aml-ddrfw{i}')
-> +        self.ReadEntries()
-> +
-> +    def ReadEntries(self):
-> +        """Read the subnodes to find out what should go in this image"""
-> +        for node in self._node.subnodes:
-> +            etype = None
-> +            if node.name.startswith('aml-') and 'type' not in node.props:
-> +                etype = 'blob-ext'
-> +            entry = Entry.Create(self, node, etype)
-> +            entry.ReadNode()
-> +            self._entries[entry.name] = entry
-> +
-> +    def BuildSectionData(self, required):
-> +        uniq = self.GetUniqueName()
-> +        output_fname = tools.GetOutputFilename('aml-out.%s' % uniq)
-> +        args = [f'aml_encrypt_{self._aml_algo}',
-> +            f'--{self._aml_op}',
-> +            '--output', output_fname
-> +            ]
-> +        if self._aml_level:
-> +            args += ['--level', f'{self._aml_level}']
-> +        if self._aml_compress:
-> +            args += ['--compress', f'{self._aml_compress}']
-> +        if self._aml_type:
-> +            args += ['--type', f'{self._aml_type}']
-> +        if self._aml_input:
-> +            input_pathname = tools.GetInputFilename(
-> +                self._aml_input,
-> +                self.external and self.section.GetAllowMissing())
-> +            if not input_pathname:
-> +                missing = True
-> +            args += ['--input', f'{input_pathname}']
-> +
-> +        missing = False
-> +        for entry in self._entries.values():
-> +            # First get the input data and put it in a file. If not available,
-> +            # try later.
-> +            entry_data = entry.GetData(required)
-> +            if not required and entry_data is None:
-> +                return None
-> +            flag_name = entry.name.replace('aml-', '')  # Drop the aml- prefix
-> +            if isinstance(entry, Entry_blob_ext_list):
-> +                for i, pathname in enumerate(entry._pathnames):
-> +                    args += [f'--{flag_name}{i + 1}', pathname]
-> +            elif isinstance(entry, Entry_blob_ext):
-> +                pathname = entry._pathname
-> +                args += [f'--{flag_name}', pathname]
-> +            else:
-> +                data = self.GetPaddedDataForEntry(entry, entry_data)
-> +                fname = tools.GetOutputFilename('aml-in.%s' %
-> +                                                entry.GetUniqueName())
-> +                tools.WriteFile(fname, data)
-> +                args += [f'--{flag_name}', fname]
-> +            if entry.missing:
-> +                missing = True
-> +
-> +        if missing:
-> +            self.missing = True
-> +            return b''
-> +
-> +        tout.Debug(f"Node '{self._node.path}': running: %s" % ' '.join(args))
-> +        tools.Run(*args)
-> +
-> +        # If an input file (or subnode!) is providing the input, the tools
-> +        # writes to the requested output file. Otherwise it uses the output file
-> +        # as a template for three files that it writes, ending in '.sd.bin',
-> +        # 'usb.bl2' and 'usb.tpl'. We use the first one as the image output
-> +        if self._aml_input or self._node.FindNode('aml-input'):
-> +            real_outfile = output_fname
-> +        else:
-> +            real_outfile = f'{output_fname}.sd.bin'
-> +        data = tools.ReadFile(real_outfile)
-> +        return data
-> +
-> +    def SetAllowMissing(self, allow_missing):
-> +        self.allow_missing = allow_missing
-> +
-> +    def SetImagePos(self, image_pos):
-> +        Entry.SetImagePos(self, image_pos)
-> +
-> +    def SetCalculatedProperties(self):
-> +        Entry.SetCalculatedProperties(self)
-> +
-> +    def CheckEntries(self):
-> +        Entry.CheckEntries(self)
-> diff --git a/tools/binman/ftest.py b/tools/binman/ftest.py
-> index 43b4f850a691..10297d87f3e9 100644
-> --- a/tools/binman/ftest.py
-> +++ b/tools/binman/ftest.py
-> @@ -6676,6 +6676,9 @@ fdt         fdtmap                Extract the devicetree blob from the fdtmap
->                                   ['fit'])
->           self.assertIn("Node '/fit': Missing tool: 'mkimage'", str(e.exception))
->   
-> +    def testAmlEncrypt(self):
-> +        self._DoTestFile('213_aml_encrypt.dts', allow_missing=True)
-> +
->   
->   if __name__ == "__main__":
->       unittest.main()
-> diff --git a/tools/binman/missing-blob-help b/tools/binman/missing-blob-help
-> index f013367ac36b..37264274c901 100644
-> --- a/tools/binman/missing-blob-help
-> +++ b/tools/binman/missing-blob-help
-> @@ -50,3 +50,9 @@ See the documentation for your board. The OpenSBI git repo is at
->   https://github.com/riscv/opensbi.git
->   You may need to build fw_dynamic.bin first and re-build u-boot with
->   OPENSBI=/path/to/fw_dynamic.bin
-> +
-> +aml-encrypt:
-> +Some AML messages
-> +
-> +aml-ddrfw
-> +Amlogic DDR firmware files are missing
-> diff --git a/tools/binman/test/213_aml_encrypt.dts b/tools/binman/test/213_aml_encrypt.dts
-> new file mode 100644
-> index 000000000000..513da65d500a
-> --- /dev/null
-> +++ b/tools/binman/test/213_aml_encrypt.dts
-> @@ -0,0 +1,38 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/dts-v1/;
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	binman {
-> +		aml-encrypt {
-> +			missing-msg = "aml-encrypt";
-> +			aml-algo = "g12a";
-> +			aml-op = "bootmk";
-> +			aml-level = "v3";
-> +
-> +			aml-bl2 {
-> +				filename = "bl2.n.bin.sig";
-> +			};
-> +			aml-bl30 {
-> +				filename = "bl30_new.bin.enc";
-> +			};
-> +			aml-bl31 {
-> +				filename = "bl31.img.enc";
-> +			};
-> +			aml-bl33 {
-> +				filename = "bl33.bin.enc";
-> +			};
-> +			aml-ddrfw {
-> +				missing-msg = "aml-ddrfw";
-> +				type = "blob-ext-list";
-> +				filenames = "ddr4_1d.fw", "ddr4_2d.fw",
-> +					"ddr3_1d.fw", "piei.fw",
-> +					"lpddr4_1d.fw", "lpddr4_2d.fw",
-> +					"diag_lpddr4.fw", "aml_ddr.fw",
-> +					"lpddr3_1d.fw";
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/tools/binman/test/214_list_no_dtb.dts b/tools/binman/test/214_list_no_dtb.dts
-> new file mode 100644
-> index 000000000000..47ecd0586447
-> --- /dev/null
-> +++ b/tools/binman/test/214_list_no_dtb.dts
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	binman {
-> +		size = <0x300>;
-> +		atf-bl31 {
-> +			filename = "bl31.bin";
-> +		};
-> +		scp {
-> +			filename = "scp.bin";
-> +		};
-> +		fdtmap {
-> +		};
-> +		image-header {
-> +			location = "end";
-> +		};
-> +	};
-> +};
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIFhpYW9taSBNaSBCb3ggMyBpcyBhIFRWIGJveCBiYXNlZCBvbiB0aGUgQW1sb2dpYyBTOTA1
+WCBjaGlwc2V0LgpUaGVyZSBhcmUgdHdvIHZhcmlhbnRzOgotIDIgR2lCLzE2R0lCCi0gMSBHaUIv
+OEdJQgoKQm90aCB2YXJpYW50cyBjb21lIHdpdGg6Ci0gODAyLjExYS9iL2cvbi9hYyB3aWZpIChC
+Q000MzQ1KQotIEhETUkgLCBBViAoQ1ZCUykgYW5kIHNwZGlmIG9wdGljYWwgb3V0cHV0Ci0gMXgg
+VVNCICh1dGlsaXppbmcgYm90aCBVU0IgcG9ydHMgcHJvdmlkZWQgYnkgdGhlIFNvQykKClRoZSBi
+b2FyZCBzZWVtcyB0byBiZSB2ZXJ5IHNpbWlsYXIgdG8gdGhlIFAyMTIgcmVmZXJlbmNlCmJvYXJk
+cywgd2hpY2ggaXMgd2h5IGl0IGluY2x1ZGVzIG1lc29uLWd4bC1zOTA1eC1wMjEyLmR0c2k6ClNp
+Z25lZC1vZmYtYnk6IEthcmwgQ2hhbiA8ZXh4eHhrY0BnZXRnb29nbGVvZmYubWU+ClRlc3RlZC1i
+eTogS2FybCBDaGFuIDxleHh4eGtjQGdldGdvb2dsZW9mZi5tZT4KLS0tCiDCoGFyY2gvYXJtNjQv
+Ym9vdC9kdHMvYW1sb2dpYy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsKIMKg
+Li4uL2FtbG9naWMvbWVzb24tZ3hsLXM5MDV4LXhpYW9taS1vbmNlLmR0c8KgwqAgfCAxNDIgKysr
+KysrKysrKysrKysrKysrCiDCoDIgZmlsZXMgY2hhbmdlZCwgMTQzIGluc2VydGlvbnMoKykKIMKg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IAphcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZ3hs
+LXM5MDV4LXhpYW9taS1vbmNlLmR0cwoKZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+YW1sb2dpYy9NYWtlZmlsZSAKYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFrZWZpbGUK
+aW5kZXggZTIxM2FlZWJiLi45MDRiYjFlMTkgMTAwNjQ0Ci0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvYW1sb2dpYy9NYWtlZmlsZQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFr
+ZWZpbGUKQEAgLTQ1LDYgKzQ1LDcgQEAgZHRiLSQoQ09ORklHX0FSQ0hfTUVTT04pICs9IAptZXNv
+bi1neGwtczkwNXgtbGlicmV0ZWNoLWNjLXYyLmR0YgogwqBkdGItJChDT05GSUdfQVJDSF9NRVNP
+TikgKz0gbWVzb24tZ3hsLXM5MDV4LWxpYnJldGVjaC1jYy5kdGIKIMKgZHRiLSQoQ09ORklHX0FS
+Q0hfTUVTT04pICs9IG1lc29uLWd4bC1zOTA1eC1uZXhib3gtYTk1eC5kdGIKIMKgZHRiLSQoQ09O
+RklHX0FSQ0hfTUVTT04pICs9IG1lc29uLWd4bC1zOTA1eC1wMjEyLmR0YgorZHRiLSQoQ09ORklH
+X0FSQ0hfTUVTT04pICs9IG1lc29uLWd4bC1zOTA1eC14aWFvbWktb25jZS5kdGIKIMKgZHRiLSQo
+Q09ORklHX0FSQ0hfTUVTT04pICs9IG1lc29uLWd4bS1ndDEtdWx0aW1hdGUuZHRiCiDCoGR0Yi0k
+KENPTkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1neG0ta2hhZGFzLXZpbTIuZHRiCiDCoGR0Yi0k
+KENPTkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1neG0tbWVjb29sLWtpaWktcHJvLmR0YgpkaWZm
+IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWd4bC1zOTA1eC14aWFv
+bWktb25jZS5kdHMgCmIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWd4bC1zOTA1
+eC14aWFvbWktb25jZS5kdHMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwLi42
+MTY5YzBkYzAKLS0tIC9kZXYvbnVsbAorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMv
+bWVzb24tZ3hsLXM5MDV4LXhpYW9taS1vbmNlLmR0cwpAQCAtMCwwICsxLDE0MiBAQAorLy8gU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wKyBPUiBNSVQpCisvKgorICogQ29weXJpZ2h0
+IChjKSAyMDIzIGV4a2MgPGV4eHh4a2NAZ2V0Z29vZ2xlb2ZmLm1lPgorICogQmFzZWQgb24gbWVz
+b24tZ3hsLXM5MDV4LXAyMTIuZHRzCisgKgorICovCisKKy9kdHMtdjEvOworCisjaW5jbHVkZSAi
+bWVzb24tZ3hsLXM5MDV4LXAyMTIuZHRzaSIKKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9zb3VuZC9t
+ZXNvbi1haXUuaD4KKworLyB7CivCoMKgIMKgY29tcGF0aWJsZSA9ICJ4aWFvbWksb25jZSIsICJh
+bWxvZ2ljLHM5MDV4IiwgImFtbG9naWMsbWVzb24tZ3hsIjsKK8KgwqAgwqBtb2RlbCA9ICJYaWFv
+bWkgTWkgQm94IDMiOworCivCoMKgIMKgZGlvMjEzMzogYW5hbG9nLWFtcGxpZmllciB7CivCoMKg
+IMKgwqDCoCDCoGNvbXBhdGlibGUgPSAic2ltcGxlLWF1ZGlvLWFtcGxpZmllciI7CivCoMKgIMKg
+wqDCoCDCoHNvdW5kLW5hbWUtcHJlZml4ID0gIkFVMiI7CivCoMKgIMKgwqDCoCDCoFZDQy1zdXBw
+bHkgPSA8JmhkbWlfNXY+OworwqDCoCDCoMKgwqAgwqBlbmFibGUtZ3Bpb3MgPSA8JmdwaW8gR1BJ
+T0hfNSBHUElPX0FDVElWRV9ISUdIPjsKK8KgwqAgwqB9OworCivCoMKgIMKgY3Zicy1jb25uZWN0
+b3IgeworwqDCoCDCoMKgwqAgwqBjb21wYXRpYmxlID0gImNvbXBvc2l0ZS12aWRlby1jb25uZWN0
+b3IiOworCivCoMKgIMKgwqDCoCDCoHBvcnQgeworwqDCoCDCoMKgwqAgwqDCoMKgIMKgY3Zic19j
+b25uZWN0b3JfaW46IGVuZHBvaW50IHsKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoMKgwqAgwqByZW1v
+dGUtZW5kcG9pbnQgPSA8JmN2YnNfdmRhY19vdXQ+OworwqDCoCDCoMKgwqAgwqDCoMKgIMKgfTsK
+K8KgwqAgwqDCoMKgIMKgfTsKK8KgwqAgwqB9OworCivCoMKgIMKgaGRtaS1jb25uZWN0b3Igewor
+wqDCoCDCoMKgwqAgwqBjb21wYXRpYmxlID0gImhkbWktY29ubmVjdG9yIjsKK8KgwqAgwqDCoMKg
+IMKgdHlwZSA9ICJhIjsKKworwqDCoCDCoMKgwqAgwqBwb3J0IHsKK8KgwqAgwqDCoMKgIMKgwqDC
+oCDCoGhkbWlfY29ubmVjdG9yX2luOiBlbmRwb2ludCB7CivCoMKgIMKgwqDCoCDCoMKgwqAgwqDC
+oMKgIMKgcmVtb3RlLWVuZHBvaW50ID0gPCZoZG1pX3R4X3RtZHNfb3V0PjsKK8KgwqAgwqDCoMKg
+IMKgwqDCoCDCoH07CivCoMKgIMKgwqDCoCDCoH07CivCoMKgIMKgfTsKKworwqDCoCDCoHNvdW5k
+IHsKK8KgwqAgwqDCoMKgIMKgY29tcGF0aWJsZSA9ICJhbWxvZ2ljLGd4LXNvdW5kLWNhcmQiOwor
+wqDCoCDCoMKgwqAgwqBtb2RlbCA9ICJYSUFPTUktT05DRSI7CivCoMKgIMKgwqDCoCDCoGF1ZGlv
+LWF1eC1kZXZzID0gPCZkaW8yMTMzPjsKK8KgwqAgwqDCoMKgIMKgYXVkaW8td2lkZ2V0cyA9ICJM
+aW5lIiwgIkxpbmVvdXQiOworwqDCoCDCoMKgwqAgwqBhdWRpby1yb3V0aW5nID0gIkxpbmVvdXQi
+LCAiQVUyIE9VVEwiLAorwqDCoCDCoMKgwqAgwqDCoMKgIMKgwqDCoCDCoCJMaW5lb3V0IiwgIkFV
+MiBPVVRSIjsKK8KgwqAgwqDCoMKgIMKgYXNzaWduZWQtY2xvY2tzID0gPCZjbGtjIENMS0lEX01Q
+TEwwPiwKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoMKgwqAgwqDCoCA8JmNsa2MgQ0xLSURfTVBMTDE+
+LAorwqDCoCDCoMKgwqAgwqDCoMKgIMKgwqDCoCDCoMKgIDwmY2xrYyBDTEtJRF9NUExMMj47CivC
+oMKgIMKgwqDCoCDCoGFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8MD4sIDwwPiwgPDA+OworwqDC
+oCDCoMKgwqAgwqBhc3NpZ25lZC1jbG9jay1yYXRlcyA9IDwyOTQ5MTIwMDA+LAorwqDCoCDCoMKg
+wqAgwqDCoMKgIMKgwqDCoCDCoMKgwqDCoMKgwqDCoCA8MjcwOTUwNDAwPiwKK8KgwqAgwqDCoMKg
+IMKgwqDCoCDCoMKgwqAgwqDCoMKgwqDCoMKgwqAgPDM5MzIxNjAwMD47CivCoMKgIMKgwqDCoCDC
+oGRhaS1saW5rLTAgeworwqDCoCDCoMKgwqAgwqDCoMKgIMKgc291bmQtZGFpID0gPCZhaXUgQUlV
+X0NQVSBDUFVfSTJTX0ZJRk8+OworwqDCoCDCoMKgwqAgwqB9OworCivCoMKgIMKgwqDCoCDCoGRh
+aS1saW5rLTEgeworwqDCoCDCoMKgwqAgwqDCoMKgIMKgc291bmQtZGFpID0gPCZhaXUgQUlVX0NQ
+VSBDUFVfSTJTX0VOQ09ERVI+OworwqDCoCDCoMKgwqAgwqDCoMKgIMKgZGFpLWZvcm1hdCA9ICJp
+MnMiOworwqDCoCDCoMKgwqAgwqDCoMKgIMKgbWNsay1mcyA9IDwyNTY+OworCivCoMKgIMKgwqDC
+oCDCoMKgwqAgwqBjb2RlYy0wIHsKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoMKgwqAgwqBzb3VuZC1k
+YWkgPSA8JmFpdSBBSVVfSERNSSBDVFJMX0kyUz47CivCoMKgIMKgwqDCoCDCoMKgwqAgwqB9Owor
+CivCoMKgIMKgwqDCoCDCoMKgwqAgwqBjb2RlYy0xIHsKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoMKg
+wqAgwqBzb3VuZC1kYWkgPSA8JmFpdSBBSVVfQUNPREVDIENUUkxfSTJTPjsKK8KgwqAgwqDCoMKg
+IMKgwqDCoCDCoH07CivCoMKgIMKgwqDCoCDCoH07CisKK8KgwqAgwqDCoMKgIMKgZGFpLWxpbmst
+MiB7CivCoMKgIMKgwqDCoCDCoMKgwqAgwqBzb3VuZC1kYWkgPSA8JmFpdSBBSVVfSERNSSBDVFJM
+X09VVD47CisKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoGNvZGVjLTAgeworwqDCoCDCoMKgwqAgwqDC
+oMKgIMKgwqDCoCDCoHNvdW5kLWRhaSA9IDwmaGRtaV90eD47CivCoMKgIMKgwqDCoCDCoMKgwqAg
+wqB9OworwqDCoCDCoMKgwqAgwqB9OworCivCoMKgIMKgwqDCoCDCoGRhaS1saW5rLTMgeworwqDC
+oCDCoMKgwqAgwqDCoMKgIMKgc291bmQtZGFpID0gPCZhaXUgQUlVX0FDT0RFQyBDVFJMX09VVD47
+CisKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoGNvZGVjLTAgeworwqDCoCDCoMKgwqAgwqDCoMKgIMKg
+wqDCoCDCoHNvdW5kLWRhaSA9IDwmYWNvZGVjPjsKK8KgwqAgwqDCoMKgIMKgwqDCoCDCoH07CivC
+oMKgIMKgwqDCoCDCoH07CivCoMKgIMKgfTsKK307CisKKyZhY29kZWMgeworwqDCoCDCoEFWREQt
+c3VwcGx5ID0gPCZ2ZGRpb19hbzE4PjsKK8KgwqAgwqBzdGF0dXMgPSAib2theSI7Cit9OworCism
+YWl1IHsKK8KgwqAgwqBzdGF0dXMgPSAib2theSI7Cit9OworCismY2VjX0FPIHsKK8KgwqAgwqBz
+dGF0dXMgPSAib2theSI7CivCoMKgIMKgcGluY3RybC0wID0gPCZhb19jZWNfcGlucz47CivCoMKg
+IMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKK8KgwqAgwqBoZG1pLXBoYW5kbGUgPSA8Jmhk
+bWlfdHg+OworfTsKKworJmN2YnNfdmRhY19wb3J0IHsKK8KgwqAgwqBjdmJzX3ZkYWNfb3V0OiBl
+bmRwb2ludCB7CivCoMKgIMKgwqDCoCDCoHJlbW90ZS1lbmRwb2ludCA9IDwmY3Zic19jb25uZWN0
+b3JfaW4+OworwqDCoCDCoH07Cit9OworCismaGRtaV90eCB7CivCoMKgIMKgc3RhdHVzID0gIm9r
+YXkiOworwqDCoCDCoHBpbmN0cmwtMCA9IDwmaGRtaV9ocGRfcGlucz4sIDwmaGRtaV9pMmNfcGlu
+cz47CivCoMKgIMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKK8KgwqAgwqBoZG1pLXN1cHBs
+eSA9IDwmaGRtaV81dj47Cit9OworCismaGRtaV90eF90bWRzX3BvcnQgeworwqDCoCDCoGhkbWlf
+dHhfdG1kc19vdXQ6IGVuZHBvaW50IHsKK8KgwqAgwqDCoMKgIMKgcmVtb3RlLWVuZHBvaW50ID0g
+PCZoZG1pX2Nvbm5lY3Rvcl9pbj47CivCoMKgIMKgfTsKK307CisKKyZldGhtYWMgeworwqDCoCDC
+oHN0YXR1cyA9ICJkaXNhYmxlZCI7Cit9OworCismdXNiIHsKK8KgwqAgwqBzdGF0dXMgPSAib2th
+eSI7CivCoMKgIMKgZHJfbW9kZSA9ICJob3N0IjsKK307CisKKy8qIFRoaXMgVUFSVCBpcyBicm91
+Z2h0IG91dCB0byB0aGUgdWFybCBwYWQgb24gdGhlIHBjYiovCismdWFydF9BTyB7CivCoMKgIMKg
+c3RhdHVzID0gIm9rYXkiOworfTsKLS0gCjIuMzkuMgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
