@@ -4,76 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C2D9C76196
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 20:40:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D02C6C76196
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 20:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aCnVuy74vo4hXFAsyeYKkI20xUxiB5McJ8553/09O+s=; b=yf7KhsOn2gd28m
-	GFao9wOaSy4UlwjKbY4kY24VNHoeQWMvSwZboXunSIb8d25WeT0FAIH4pkDX0Zfeb4CM2561ekZN3
-	itCA0zD/v3ACi5bMS7wXFld4xzhCzrz2TGI98SB2uyYmrKh3DODZyxlVLe0feOyneuJlnZ2CnEZgk
-	In1HJ+MdkD5plJB9tfOheq/pMTdjap+zlNWfNh9Ry1rRybpXxS+bBmYWuueATw6MCbqa4llLsn059
-	6Aa6IKq55FqU3lkweVHa2+OFoVeFjBwkKxbnPwwVWeF3NSlvvYB70aZ/cbLL3gotQICue5swZVoWw
-	HgA6/I4T00bXf3vfxdzQ==;
+	List-Owner; bh=aCnVuy74vo4hXFAsyeYKkI20xUxiB5McJ8553/09O+s=; b=ZIzmlPIms/pAJB
+	3Iu3hOJqG9RNWYxW844VkBmEZp5FuGuVE3JIyZAxE+EzWr37LGqefPD2I3E7D5r3Pgkkp3aybL1XF
+	3pW0fbchHQcaf1g6oM47DM0zSEJhKkA2Qh0ga913NE3x81XLi4ea3eoF84GGWtJt8NsI4L1Jo+XDC
+	zxSi+AS7q6lT9xii2Dr+81gCspxeD6Cek8SeA+GSlFMqb2iEQADstpbEoATOFFX08EuKHUaJCkSNi
+	JeO5FCFD5kBBzVmv/ea/hccWS3S68qco3D49hPMP01ctnAVX2yK+PJWWxNH1V8p6iFHQyW+Qpt0AH
+	aBtMNCe0H3SvmOrm1vuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjQyW-00Ggq4-1f;
-	Mon, 03 Apr 2023 20:40:24 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1pjQyg-00Ggwi-1E;
+	Mon, 03 Apr 2023 20:40:34 +0000
+Received: from mail-ed1-f50.google.com ([209.85.208.50])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjQyT-00GgmV-1l;
-	Mon, 03 Apr 2023 20:40:23 +0000
-Received: by mail-ed1-x530.google.com with SMTP id y4so122401006edo.2;
-        Mon, 03 Apr 2023 13:40:18 -0700 (PDT)
+	id 1pjQyd-00GgtZ-30;
+	Mon, 03 Apr 2023 20:40:33 +0000
+Received: by mail-ed1-f50.google.com with SMTP id er13so81350180edb.9;
+        Mon, 03 Apr 2023 13:40:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1680554418;
+        d=googlemail.com; s=20210112; t=1680554429;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
         bh=ZlKcaKh18h+QBmr9urMB1rRvxToOGdnmDwwJL+gmwVk=;
-        b=BMZvPQArT6h6XAkPe0OPKQrQ55fdDpO/cH35li3iHsHBaTSnwYmx1aFRxaHK3KDHUL
-         o7yD07+StCRHQn0A0Cww0DhLYho5DhzMB4kSkCE9qjS1ODIQsGB5t/AA8GEs6Qw/QqRk
-         ZOulcEdAtTTB2qoZFw9PoJOviXQJ9f+5V7k5DoHoPXyS5rux2EAHa+Zng7t3NTWPqSDX
-         Z3euIwde/GKvVd4HnCnmF8z99zQA3s7ZIxKdM7C3bNAohCh3G7SeNCS+HWkkKOICClgs
-         02jvCKhaFLXIwWDzhoRKn/+FFYmZ1GEz2YOAa+d9U9Xxh7r2Yji2n2VeWi8GKUxUcd45
-         w60w==
+        b=IsXIM1GsDA9wnYRjhr485gupyXU0DyOlKFkT+qT8S7KijVz7vbLI9Ow6STXhwDHY5k
+         QtTg+uw6CmOdcL2Dj2e8AxdMM/gpdWZbHpnruzTzX+XkwwWHZtxLPM6Y0dL2WbCjOrh8
+         80vX+xm4WeRF/t2cBhUUkoEJpQZzwSwagHGCElS0/fBZc76G4XhFq6fm2o/e1RXmD67a
+         s3j30YoLCDxM+/jXlWu2AcbJ3H4TnIpnVA4zbMh37/vW9hx81x02qyYiN+tnbpZ82B9j
+         Wv1wLcnuv+p/kAiAMc40Xbec46U9RBBs8NuGtFk6Y8OgrJSthP9gIK6YpGWYVeMWjHzB
+         W3Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680554418;
+        d=1e100.net; s=20210112; t=1680554429;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
         bh=ZlKcaKh18h+QBmr9urMB1rRvxToOGdnmDwwJL+gmwVk=;
-        b=PxUF0oCzntEyJ/wAFP2BLnrbQG/PAplNBj5vp0FK0ubQPJr3C9UPPKGB6zM8Ajr+D1
-         6QmQokaMbakOH6PcpS6YhtSQOdJPr1iX+suZfXwmz/kuLpWuNORudlyU9UlRQvREk2Bb
-         /J3bH0dC1L41n5xu9Byv+p89wbvucQDw0MVgMBMEd/NiH0s3MCjNY2VIG7ir050/9D7S
-         pquZRg8VeMyUlKqYVz70gtYhT/N9tjWEW7D7Oc7py9OvR4PGLGvrjvk61J59JJBukpGC
-         uNSay+mbEh0VSzwCWRt5w1nyFhP6BFFcD+UcyQvBVoYKDz+qavb4bZXZBEDpPFTGagqx
-         zSCg==
-X-Gm-Message-State: AAQBX9dzBKl0WC9UyY6uf1/e+SCJU5VAyf94QLx5B6N4AVyIxLTuNVZJ
-	faSfhofy5dSbDyMxjI8OFQrR/154Aas7yBUZ8yU=
-X-Google-Smtp-Source: AKy350byv7mgJhm8ZtaUlXtjWxuFXmilHBYn3b+1HsF9CF5BT0PhB4h6mOSxbN3cLf7k3KyBR1bX2lw22Yrpb/PcA+s=
-X-Received: by 2002:a17:906:4ac5:b0:92f:cbfe:1635 with SMTP id
- u5-20020a1709064ac500b0092fcbfe1635mr19738927ejt.6.1680554417483; Mon, 03 Apr
- 2023 13:40:17 -0700 (PDT)
+        b=pCfM162hIXhabCRcGVluyQpVOvQJJjcZgrggink5CS/sUDRe9WYMKDgFXdWKnZNlVE
+         O0ZolCwB94oQtM75zKrGH0QmpEKh9+Nclbd6JEPWuIq1WoDIlAmL6cKRIIKbqv14IUX+
+         5LhPtA6sb9+LbckPUrdB6JMVHslPQ3wfnsyQh5Wh7UrAY33AdQCbDZYVWSH0Zhc+B4Nv
+         LDtsE1LreEX+laTAYBPi5H6XxDGMK3FrsYw7q8xPcsQP1UnCnTmpHbbBDVqONwO5C/+Z
+         LPKuvoyxZitS2lHlHRWSauNyb/GW6QZ9NnYVZjGtfA2iQPTJcRq50xnBM+6oUjE0BeGT
+         VGmQ==
+X-Gm-Message-State: AAQBX9fAkrSV5QtTyj02qzjZCpK7dyOvK8S2QRelQUr+q5hXVfmrksD9
+	WeMopgBZsHdczkqzBGinyQSKGbQskzv6Slm085EwtjDeahc=
+X-Google-Smtp-Source: AKy350Z+IfNXRLwqJq0hdKDfoeCZcaaS62XaGg2SrsfxMV/1nFOZuoUyblX7Or0x/driV8kJIMoxyivJFVTzi7CRSUU=
+X-Received: by 2002:a17:906:6a03:b0:930:90ce:a1a6 with SMTP id
+ qw3-20020a1709066a0300b0093090cea1a6mr18597940ejc.6.1680554428972; Mon, 03
+ Apr 2023 13:40:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230326143224.572654-1-u.kleine-koenig@pengutronix.de> <20230326143224.572654-17-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20230326143224.572654-17-u.kleine-koenig@pengutronix.de>
+References: <20230326143224.572654-1-u.kleine-koenig@pengutronix.de> <20230326143224.572654-109-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230326143224.572654-109-u.kleine-koenig@pengutronix.de>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 3 Apr 2023 22:40:06 +0200
-Message-ID: <CAFBinCDwrqd5zGWZVfrn3bebpMSrDwaY7dpR_Y+i-oEXiv088A@mail.gmail.com>
-Subject: Re: [PATCH 014/117] media: ge2d: Convert to platform remove callback
- returning void
+Date: Mon, 3 Apr 2023 22:40:18 +0200
+Message-ID: <CAFBinCACdhrRiDUYycVM5m6B0dDUw=fyFdTo_QFQfqcVTpt-Uw@mail.gmail.com>
+Subject: Re: [PATCH 106/117] media: meson-ir-tx: Convert to platform remove
+ callback returning void
 To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-media@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+Cc: Sean Young <sean@mess.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-media@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	kernel@pengutronix.de
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_134021_596423_6F757235 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20230403_134031_969272_453FDFE8 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
