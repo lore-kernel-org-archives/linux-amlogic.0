@@ -4,95 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46E8AC7619A
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Apr 2023 17:58:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CBA4C77B60
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 07:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:CC:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=fQax7y+6uxFYMXrDIq2e8ZOVq5g+CpFBBTA5yepEbAg=; b=DL2It7sd4HS8JvkG5zQQtlWLJm
-	CmCFdbrQop4/V2jCfONWnaFM9z7yccgezh4JvGsGKKxzZGKjCMXB4Wu4vMgYXKCNq+u1GUlIYNAg9
-	N+GF3ggypBLaMKwHKBlWg128h7zHdyHdeSGH2R6Em2leReugrAMForEF6pCMABUoUGIlBaYEXjx1z
-	GM6sWHyoQ4x9yYGm3tsdH81BltHnbGILirzl4/v2aF35dJstTPEXoem7ZPeS/rf4O6xorktzH/NFg
-	uygo8Nc1fag2ECpkWRThGOJXqCN2vF6b0Zrv4gF4UCKofy9kibByboXyObtJOjvNXQYvhnZFV3rgn
-	NKXYdeBQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ODw+j5Qm04Bo36j03ok1Kw86lBPtgw2iG9buV+ECGEA=; b=LuyF82n600mhHm
+	TsWMbnuk5nuiWNw0o2nbj8NrurSFic0dPkFKMM9uKwwpsL12yB6PEAVs9ZM//NCIpwhLOBpYNgXeL
+	7kEQmkvf4SNLX29rPdoaJEnB3u8++V3/sUOyNVSSLGhzD9Kq/hx6IdKz69p9BObaa/Avc0oOiFdqk
+	yEUeZd+6vOD3EPmPR54AgcxfvfiRzyf+EsU6LN119Uc7KXnh10ruPaqOnNNng9mcHGmt3Pmn0T3TT
+	2cF5TjrDQHfsqydUwMYqa9EyMKoguwU9fBSmuIK501/6S4aD73144W0r0dxM9F+oMysTInKCdezw2
+	pxwIiOjwW0+oEH2VzgMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pj1yR-00CyyA-1C;
-	Sun, 02 Apr 2023 17:58:39 +0000
-Received: from mx01.omp.ru ([90.154.21.10])
+	id 1pjEY4-00ENMZ-2T;
+	Mon, 03 Apr 2023 07:24:16 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pj1yN-00CyvT-0B;
-	Sun, 02 Apr 2023 17:58:37 +0000
-Received: from [192.168.1.103] (31.173.81.234) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Sun, 2 Apr 2023
- 20:58:18 +0300
-Subject: Re: [PATCH RFC 02/13] mmc: meson-gx: fix deferred probing
-To: Christian Hewitt <christianshewitt@gmail.com>
-CC: Ulf Hansson <ulf.hansson@linaro.org>, MMC <linux-mmc@vger.kernel.org>,
-	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, AML
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20211223171202.8224-1-s.shtylyov@omp.ru>
- <20211223171202.8224-3-s.shtylyov@omp.ru>
- <2E930ABF-DA2A-4BB0-A2A2-56495305118D@gmail.com>
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <cc2f4e45-497b-7c2c-3fdd-1591903813cf@omp.ru>
-Date: Sun, 2 Apr 2023 20:58:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	id 1pjEY0-00ENJq-2Z
+	for linux-amlogic@lists.infradead.org;
+	Mon, 03 Apr 2023 07:24:14 +0000
+Received: by mail-wm1-x329.google.com with SMTP id u11-20020a05600c19cb00b003edcc414997so17449987wmq.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 03 Apr 2023 00:24:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680506650;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cqv8fHO79cYN9L6AkrGBwrIzzL+Ob2lOIioUI32ePkI=;
+        b=IZ3RH95ho42hwFdt/izaXV19i2aULaPQwEDLl1+Rm8ZVGD16j8HdsjRmrK0Tg1gQSj
+         IBtp2SrVfsqhiD9KL5aEHt2+2pubAGTxE+pawHNCrzjhjKqnCb3J27OIjOvmYonld8pP
+         uFxgTE1di/ozV0NTpvxum4pKUo5HwB78+reltWOdzA8GhCaC1efEIK5mRHTVTRW/ihB7
+         U1j6hrG4rgC7LG7naTWIEb/B2Jtl1kvWNtYZAC7SBPyzNPWQpJa+XP9fwyOoISvCTmYv
+         eXhJW2jGcg4QElG8a39uismiF+WbQh4MvN8rrjNArjmE2366B1FV9MUF8flWmT/wXLKJ
+         KqOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680506650;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cqv8fHO79cYN9L6AkrGBwrIzzL+Ob2lOIioUI32ePkI=;
+        b=TjTkc27saT4+JizcJLmLzV145G1BYqkReYKwSQ1tknGkYIy7JRGVJ+zl8PQ4gSS5T+
+         XLmvVyYgQY2uk+Okm+7xQiOgbPu8tbNxYM+FbtFc0RT0cp4hAC6MLNSLX8ProVrDpvGX
+         wBauArU1542VmmlwfJ8JjoEkNloTkrkYxrJMZ1+D8NB1l0IbqEzZ4yKRvUJVemGMg/l9
+         W8Rf+GXvO6zPioYsVVsN5ajb3TZybWmbP9QWtZmnb5ABUoJbkg386943N5vF26sLH4Wf
+         JP/TSWsbmg/zJvjj5WBTOBPth1UXlLWLuWY0I/HYfNKgr7OBCtf84t9SNcqdDnS5R4qx
+         3KiA==
+X-Gm-Message-State: AO0yUKX+HkTWw+SRwHtUtjSeiknaidZx4dFkSXzdXa/93pXhsJYRk8PI
+	YS8O1VkELKagAF+XfY8eeoVfww==
+X-Google-Smtp-Source: AK7set/eGkelnnC04eonkO/10whS6reZjPlKLJ01b1s8HH53ykIQ9QOYwf3f6lUGFM+CPoOIEoiU0g==
+X-Received: by 2002:a7b:cb86:0:b0:3dc:433a:e952 with SMTP id m6-20020a7bcb86000000b003dc433ae952mr24300740wmi.33.1680506650279;
+        Mon, 03 Apr 2023 00:24:10 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id g20-20020a05600c4ed400b003ee8a1bc220sm18844372wmq.1.2023.04.03.00.24.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 00:24:09 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Mon, 03 Apr 2023 09:24:06 +0200
+Subject: [PATCH v5] dt-bindings: timer: convert
+ timer/amlogic,meson6-timer.txt to dt-schema
 MIME-Version: 1.0
-In-Reply-To: <2E930ABF-DA2A-4BB0-A2A2-56495305118D@gmail.com>
-Content-Language: en-US
-X-Originating-IP: [31.173.81.234]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 04/02/2023 17:39:47
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 176439 [Apr 02 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 507 507 08d345461d9bcca7095738422a5279ab257bb65a
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_uf_ne_domains}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.81.234 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.81.234 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info: 	d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;marc.info:7.1.1;www.spinics.net:7.1.1;31.173.81.234:7.1.2,7.7.3,7.4.1;omp.ru:7.1.1
-X-KSE-AntiSpam-Info: {iprep_blacklist}
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.81.234
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 04/02/2023 17:42:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 4/2/2023 2:00:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Message-Id: <20221117-b4-amlogic-bindings-convert-v5-1-63781bed4452@linaro.org>
+X-B4-Tracking: v=1; b=H4sIABV/KmQC/5XOPWrEMBAF4KssqqMgjX5sb5V7hBSSZ2wPOBJIG
+ 0FYfPdo04Vt4mp4r/je3EWlwlTF9XIXhRpXzqkH93IR8xbSSpKxZwEKQGs9yGhl+NzzyrOMnJD
+ TWuWcU6NykyMtGgeHFjyKLsRQScYS0rx1I33tey83rrdcvn8Xm+7n/X9401JJsyhwbpri5Me3n
+ VMo+TWXVXx0uMEJDB6YD6icitGDe8LMCcx0jGBENJpMJHzC7AnMPj6z5MFgXIZx+oMdx/EDLmL
+ nDLMBAAA=
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230402_105835_114786_8EA5348E 
-X-CRM114-Status: GOOD (  23.51  )
+X-CRM114-CacheID: sfid-20230403_002412_835284_A385302D 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,55 +96,186 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8hCgpPbiA0LzEvMjMgOTozOCBBTSwgQ2hyaXN0aWFuIEhld2l0dCB3cm90ZToKWy4uLl0K
-Cj4+IFRoZSBkcml2ZXIgb3ZlcnJpZGVzIHRoZSBlcnJvciBjb2RlcyBhbmQgSVJRMCByZXR1cm5l
-ZCBieSBwbGF0Zm9ybV9nZXRfaXJxKCkKPj4gdG8gLUVJTlZBTCwgc28gaWYgaXQgcmV0dXJucyAt
-RVBST0JFX0RFRkVSLCB0aGUgZHJpdmVyIHdpbGwgZmFpbCB0aGUgcHJvYmUKPj4gcGVybWFuZW50
-bHkgaW5zdGVhZCBvZiB0aGUgZGVmZXJyZWQgcHJvYmluZy4gU3dpdGNoIHRvIHByb3BhZ2F0aW5n
-IHRoZSBlcnJvcgo+PiBjb2RlcyB1cHN0cmVhbS4gSVJRMCBpcyBubyBsb25nZXIgcmV0dXJuZWQg
-YnkgcGxhdGZvcm1fZ2V0X2lycSgpLCBzbyB3ZSBub3cKPj4gY2FuIHNhZmVseSBpZ25vcmUgaXQu
-Li4KPj4KPj4gRml4ZXM6IGNiY2FhYzZkN2RkMiAoIm1tYzogbWVzb24tZ3gtbW1jOiBGaXggcGxh
-dGZvcm1fZ2V0X2lycSdzIGVycm9yIGNoZWNraW5nCj4+ICIpCj4+IFNpZ25lZC1vZmYtYnk6IFNl
-cmdleSBTaHR5bHlvdiA8cy5zaHR5bHlvdkBvbXAucnU+Cj4+IFJldmlld2VkLWJ5OiBNYXJ0aW4g
-Qmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+PiAtLS0K
-Pj4gZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyB8IDQgKystLQo+PiAxIGZpbGUgY2hh
-bmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24t
-Z3gtbW1jLmMKPj4gaW5kZXggOGYzNjUzNmNiMWI2Li5jNzY1NjUzZWU0ZDAgMTAwNjQ0Cj4+IC0t
-LSBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPj4gKysrIGIvZHJpdmVycy9tbWMv
-aG9zdC9tZXNvbi1neC1tbWMuYwo+PiBAQCAtMTE4Miw4ICsxMTgyLDggQEAgc3RhdGljIGludCBt
-ZXNvbl9tbWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPj4gCX0KPj4KPj4g
-CWhvc3QtPmlycSA9IHBsYXRmb3JtX2dldF9pcnEocGRldiwgMCk7Cj4+IC0JaWYgKGhvc3QtPmly
-cSA8PSAwKSB7Cj4+IC0JCXJldCA9IC1FSU5WQUw7Cj4+ICsJaWYgKGhvc3QtPmlycSA8IDApIHsK
-Pj4gKwkJcmV0ID0gaG9zdC0+aXJxOwo+PiAJCWdvdG8gZnJlZV9ob3N0Owo+PiAJfQo+IAo+IENh
-biBJIGFzayBpZiB0aGlzIHBhdGNoL3NlcmllcyBbMF0gaGFzIGJlZW4gc3VwZXJzZWRlZCBvciBm
-b3Jnb3R0ZW4gb3IgPz8KCiAgIEknbSBzb3JyeSwgSSBhY3R1YWxseSBkaWQgZm9yZ2V0IHRvIHJl
-LXBvc3QgdGhpcyBzZXJpZXMsIGFzIGFza2VkIGJ5IFVsZi4KUGFydGx5IGJlY2F1c2UgdGhlIHBh
-dGNoIHRoYXQgdGhpcyBzZXJpZXMgZGVwZW5kZWQgb24gdG9vayBhYm91dCA0IG1vbnRocyB0bwpo
-aXQgdGhlIGtlcm5lbCBhbmQgcGFydGx5IGJlY2F1c2UgSSBzdXNwZW5kZWQgbXkgcGxhdGZvcm1f
-Z2V0X2lycSgpIHJlbGF0ZWQKd29yayBhcyBJIGdvdCBpbnRvIFBBVEEgZGV2ZWxvcG1lbnQgYW5k
-IHN0cnVnZ2xpbmcgd2l0aCBhIHN0YXRpYyBhbmFseXplcidzCnJlcG9ydHMuLi4KICAgQWxzbywg
-dGhlIHNlcmllcyBkb2Vzbid0IHNlZW0gc3VwZXJzZWRlZCBhcyBhbGwgdGhlIHBhdGNoZXMgc3Rp
-bGwgYXBwbHksCnNvbWV0aW1lcyB3aXRoIHNtYWxsIG9mZnNldHMuLi4KCj4gVGhlIHNlcmllcyBp
-dCBkZXBlbmRlZCB1cG9uIFsxXQoKICAgVGhhdCB3YXMgYSBzaW5nbGUgcGF0Y2guIDotKQoKPiBh
-cHBlYXJzIHRvIGhhdmUgYmVlbiBtZXJnZWQgYSB5ZWFyIGFnbyBhcyBJCj4gY2FuIHNlZSBjZTc1
-M2FkMTU0OWMgKCJwbGF0Zm9ybTogZmluYWxseSBkaXNhbGxvdyBJUlEwIGluIHBsYXRmb3JtX2dl
-dF9pcnEoKQo+IGFuZCBpdHMgaWxr4oCdKSBpbiB1cHN0cmVhbSBjb2RlLgoKICAgTm90IGEgd2hv
-bGUgeWVhciB5ZXQgYnV0IDExIG1vbnRocyBzdXJlbHkuLi4gOi0vCgo+IEnigJl2ZSBoYWQgdGhp
-cyBwYXRjaCBpbiBteSB0ZXN0aW5nIGtlcm5lbCBmb3IKPiAxMisgbW9udGhzIG5vdyB3aXRoIG5v
-IG9ic2VydmFibGUgbmVnYXRpdmUgaW1wYWN0cyBzbyBhbSB3b25kZXJpbmcgaWYgaXQgY2FuCj4g
-YmUgcmVzZW50IGFuZCBtZXJnZWQgb3IgSSBzaG91bGQgZHJvcCB0aGUgcGF0Y2ggZnJvbSBteSB0
-cmVlPwoKICAgSXQ/IFlvdSBtZWFuIG15IGZpeCBwYXRjaGVzLCBzdXJlbHk/IE9yIHlvdSBtZWFu
-IHlvdSBjYXJlIGFib3V0IHBhdGNoICMyCm9ubHk/IEFueXdheSwgSSBuZWVkIHRvIGZpbmQgdGhl
-IHRpbWUgdG8gcmVmcmVzaC9yZXBvc3QgaXQuLi4KCj4gVGh4LiBDaHJpc3RpYW4KPiAKPiBbMF0g
-aHR0cHM6Ly93d3cuc3Bpbmljcy5uZXQvbGlzdHMvbGludXgtbW1jL21zZzY4MTAyLmh0bWwKPiBb
-MV0gaHR0cHM6Ly9tYXJjLmluZm8vP2w9bGludXgta2VybmVsJm09MTYzNjIzMDQxOTAyMjg1CgpN
-QlIsIFNlcmdleQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+Convert the Amlogic Meson6 SoCs Timer Controller bindings to dt-schema.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Batch conversion of the following bindings:
+- amlogic-efuse.txt
+- amlogic-meson-mx-efuse.txt
+- meson-wdt.txt
+- meson-ir.txt
+- rtc-meson.txt
+- amlogic,meson6-timer.txt
+- amlogic,meson-pcie.txt
+
+Martin Blumenstingl was also added as bindings maintainer for Meson6/8/8b
+related bindings.
+
+Remaining conversions:
+- meson,pinctrl.txt
+- pwm-meson.txt
+- amlogic,meson-gpio-intc.txt
+- amlogic,meson-mx-sdio.txt
+- rtc-meson-vrtc.txt
+- amlogic,axg-sound-card.txt
+- amlogic,axg-fifo.txt
+- amlogic,axg-pdm.txt
+- amlogic,axg-spdifout.txt
+- amlogic,axg-tdm-formatters.txt
+- amlogic,axg-spdifin.txt
+- amlogic,axg-tdm-iface.txt
+- amlogic,g12a-tohdmitx.txt
+- amlogic,axg-audio-clkc.txt
+- amlogic,gxbb-clkc.txt
+- amlogic,gxbb-aoclkc.txt
+- amlogic,meson8b-clkc.txt
+---
+Changes in v5:
+- Removed applied patches
+- Link to v4: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v4-0-34e623dbf789@linaro.org
+
+Changes in v4:
+- Rebased on v6.3-rc1
+- Added Reviewed-by
+- Removed applied patch
+- Link to v3: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org
+
+Changes in v3:
+- Dropped applied patches
+- Added acked/reviewed-by tags
+- patch 3: removed invalid secure-monitor property
+- patch 4: added a note on the commit message about the meson8 compatible
+- patch 9: fixed mmc compatible bindings
+- patch 1-: unified PCIe instead on PCIE + PCIe
+- Link to v2: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org
+
+Changes in v2:
+- rebased on v6.2-rc1
+- patch 1: fixed power-controller, added const: amlogic,meson-gx-sm
+- patch 2: added const: amlogic,meson-gx-efuse, fixed secure-monitor type
+- patch 3: updated example subnodes to match reality
+- patch 4: added reviewed-by, added interrupts, added const: amlogic,meson8m2-wdt
+- patch 5: added reviewed-by, added const: amlogic,meson-gx-ir
+- patch 6: dropped applied
+- patch 7: dropped patch, replaced with deprecated in the title of the TXt bindings
+- patch 8: fixed title, added reviewed-by, added interrupt description
+- patch 9: fixed example indent, added reviewed-by
+- patch 10: fixed const: amlogic,meson-gx-mmc case, fixed indentation
+- patch 11: added reviewed-by, fixed title, fixed bindings after rebase, added clocks/clock-names as required
+- patch 12: added reviewed-by
+- Link to v1: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org
+---
+ .../bindings/timer/amlogic,meson6-timer.txt        | 22 ---------
+ .../bindings/timer/amlogic,meson6-timer.yaml       | 54 ++++++++++++++++++++++
+ 2 files changed, 54 insertions(+), 22 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt b/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt
+deleted file mode 100644
+index a9da22bda912..000000000000
+--- a/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Amlogic Meson6 SoCs Timer Controller
+-
+-Required properties:
+-
+-- compatible : should be "amlogic,meson6-timer"
+-- reg : Specifies base physical address and size of the registers.
+-- interrupts : The four interrupts, one for each timer event
+-- clocks : phandles to the pclk (system clock) and XTAL clocks
+-- clock-names : must contain "pclk" and "xtal"
+-
+-Example:
+-
+-timer@c1109940 {
+-	compatible = "amlogic,meson6-timer";
+-	reg = <0xc1109940 0x14>;
+-	interrupts = <GIC_SPI 10 IRQ_TYPE_EDGE_RISING>,
+-		     <GIC_SPI 11 IRQ_TYPE_EDGE_RISING>,
+-		     <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>,
+-		     <GIC_SPI 29 IRQ_TYPE_EDGE_RISING>;
+-	clocks = <&xtal>, <&clk81>;
+-	clock-names = "xtal", "pclk";
+-};
+diff --git a/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.yaml b/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.yaml
+new file mode 100644
+index 000000000000..8381a5404ef7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/amlogic,meson6-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson6 SoCs Timer Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++
++properties:
++  compatible:
++    const: amlogic,meson6-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 4
++    description: per-timer event interrupts
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: xtal
++      - const: pclk
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    timer@c1109940 {
++        compatible = "amlogic,meson6-timer";
++        reg = <0xc1109940 0x14>;
++        interrupts = <GIC_SPI 10 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 11 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 29 IRQ_TYPE_EDGE_RISING>;
++        clocks = <&xtal>, <&clk81>;
++        clock-names = "xtal", "pclk";
++    };
+
+---
+base-commit: 4b0f4525dc4fe8af17b3daefe585f0c2eb0fe0a5
+change-id: 20221117-b4-amlogic-bindings-convert-8ef1d75d426d
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
