@@ -4,74 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB25DC761A6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 18:32:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32C4AC77B6E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 18:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F2Uyfd0wSSw5PRtQG5qTMLVdC9mTGXFPtVwaW3rWSro=; b=RBwiocscKWO/xX
-	0ZIkkq0P3PMFsd427Zjc4xIVeqwQFcHQ8Y2s2Xsxq3VOgrXMCsFCvGWkzoWcpHse+k8zJ45arwW9D
-	kLevN78CRhgjNOIqO6Z4OZrSWiSMev+0YMDtYZM/movYP4ZeFW98BuE9r27fSg8MBy2wgE/J/qRVI
-	/+xZ2aPkpUGakT8WWst9UtqAq9Ix7PowcE5uH94cZLgFIPGGjq0MZALY5/8wu5MZkdLpF8Kk/KuN+
-	PL1ijh1zVwH5rAknfgExd4XF8fDGPyk+l2PF4y0WwjqZ6lidDOaBhUNjiKJrfvxHWxLOsZjW8WZmT
-	QMVJX4xEN15QU6RRmC3g==;
+	List-Owner; bh=8ptkD2gqheUsucYCBgUoCyO/zKJahmU+lQeoNdqVATA=; b=mjzonrpa2rD4Sl
+	UOUu+3hdEc7GF9R9CTlKb/vsGp4pexaTuxFEqjPfigEv53TNqjdq7DZQ5nloNsQklsnabka5rqsNj
+	Z4ilsUNDeYtUks+zZCAu3Cu/5a76XNCCJTwNxXcnK5+WgEv5nXd4+pF0X46oNsI78hP2mCIQ9RNIU
+	ofycpGx5HUXCUBrxIoBOSUR6DIOPDgSPDq8aoSa6qf0ZRmA5eTy+KXKLnJgunuyAZuUHm+j6dyyUs
+	TIk+GGG7C61urcvKGfdGpkzSId70ZuZdGvojvSHHdH7YEhldXiKxAmpfu1pmF2h/aV66YNVUHM4+G
+	n2btOlVrmXQUtLN1daZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjOyz-00GDss-1V;
-	Mon, 03 Apr 2023 18:32:45 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pjOzC-00GE1D-2v;
+	Mon, 03 Apr 2023 18:32:58 +0000
+Received: from mail-oa1-f48.google.com ([209.85.160.48])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjOyu-00GDpe-1I;
-	Mon, 03 Apr 2023 18:32:43 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id E0DF15FD37;
-	Mon,  3 Apr 2023 21:32:38 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1680546758;
-	bh=vmGG2F2/QTVxy+diZMGZErl455O451usfd+JHxdiNKE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=L6itgg3hkRn2Rlz4OCr1snNXre+ew6mZxtEcOhiu0+AHqbs9XyuGc5GsIwgoM1Lbt
-	 IKZT40Tul26wgG1H6FN7A4jxHvGLqmDI0QBZXyu16IWEpUDa2gHb3gJ+hJA936uF/e
-	 qeyWEYC55j8I6uCoXHqOTTWIzkSWNCdvqF5fMifBDccebMfFipRBGLmbvjK9q5RJDC
-	 S+gXPWRDCSKjQLtIRKjazdo0CSjT65B+Q+GmXkHoxO8OwntEz5KowhXT6RXCx2sYCt
-	 5h1vgSJtqpvqjT7wvHfTD/7doEzgR995tnb1S9hEbOQHjT3/lCdxHV/OTydLytBAkJ
-	 zDy4bkrMUushA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon,  3 Apr 2023 21:32:38 +0300 (MSK)
-From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
-	<mmkurbanov@sberdevices.ru>
-Subject: [PATCH v3 2/2] spi: add support for Amlogic A1 SPI Flash Controller
-Date: Mon, 3 Apr 2023 21:32:17 +0300
-Message-ID: <20230403183217.13280-3-mmkurbanov@sberdevices.ru>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230403183217.13280-1-mmkurbanov@sberdevices.ru>
-References: <20230403183217.13280-1-mmkurbanov@sberdevices.ru>
+	id 1pjOz9-00GDwm-1g;
+	Mon, 03 Apr 2023 18:32:58 +0000
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-17ebba88c60so31803135fac.3;
+        Mon, 03 Apr 2023 11:32:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680546771;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FYyVy/snGJqjQZr7MOg2KuFtqjR1UL00/hKQM++ILHc=;
+        b=w6dZhp05lLxsJHppvXjczU2qF0e0oc0/WTxhUHPri+ESZfiicGnV1axZg/8w4tfzNt
+         3qP3ftDFI9UBkFIsa8mKu3GZtQxQVogTecUEPktUeIDAMrQVEJEhV3wf2cEVUzm7Uxm0
+         t3TQFeO4eyhMSd3WkDUjJ0PL7rnVnJebzFquuddUUviBhkFpct7k8YSOttu/z7+WSVje
+         R89kLbinC+TMrrt21qLleeLZHnzHCUcxe4i+mqtl5dny+ANu3/wmPu4AfrmlOszKpCuk
+         Ku4rXiwawxaN2MaRjvDp2BVqnbvFn09rzlb4TOgEh671km+vcc33tXktpz+BrHtVMcEu
+         oddQ==
+X-Gm-Message-State: AAQBX9e0LWmBMiPGzi9gtUhVvCS0++O/kiAigV4o+sAx0TB//EKefKQ8
+	eqYzyexNGmXvQALQ+CcaMQ==
+X-Google-Smtp-Source: AKy350blJmcdZF5R/4BqOsx8DNqeMLH92xBA8mK6SNqOrYr7M9L0L5nMoc8O2STh58ZO+5pukMg3Tg==
+X-Received: by 2002:a05:6870:a40f:b0:177:a3dd:a92d with SMTP id m15-20020a056870a40f00b00177a3dda92dmr150224oal.7.1680546771133;
+        Mon, 03 Apr 2023 11:32:51 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id uq11-20020a056870df0b00b00176d49bb898sm3770737oab.44.2023.04.03.11.32.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 11:32:50 -0700 (PDT)
+Received: (nullmailer pid 1335330 invoked by uid 1000);
+	Mon, 03 Apr 2023 18:32:49 -0000
+Date: Mon, 3 Apr 2023 13:32:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-amlogic@lists.infradead.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v5] dt-bindings: timer: convert
+ timer/amlogic,meson6-timer.txt to dt-schema
+Message-ID: <168054670780.1333984.6325350392024796667.robh@kernel.org>
+References: <20221117-b4-amlogic-bindings-convert-v5-1-63781bed4452@linaro.org>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/03 14:17:00 #21028104
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v5-1-63781bed4452@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_113240_797910_915BF065 
-X-CRM114-Status: GOOD (  22.53  )
+X-CRM114-CacheID: sfid-20230403_113255_563475_38307CE1 
+X-CRM114-Status: GOOD (  15.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,511 +81,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is a driver for the Amlogic SPI flash controller support
-on A113L SoC.
 
-Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
----
- drivers/spi/Kconfig                |   7 +
- drivers/spi/Makefile               |   1 +
- drivers/spi/spi-amlogic-spifc-a1.c | 456 +++++++++++++++++++++++++++++
- 3 files changed, 464 insertions(+)
- create mode 100644 drivers/spi/spi-amlogic-spifc-a1.c
+On Mon, 03 Apr 2023 09:24:06 +0200, Neil Armstrong wrote:
+> Convert the Amlogic Meson6 SoCs Timer Controller bindings to dt-schema.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Batch conversion of the following bindings:
+> - amlogic-efuse.txt
+> - amlogic-meson-mx-efuse.txt
+> - meson-wdt.txt
+> - meson-ir.txt
+> - rtc-meson.txt
+> - amlogic,meson6-timer.txt
+> - amlogic,meson-pcie.txt
+> 
+> Martin Blumenstingl was also added as bindings maintainer for Meson6/8/8b
+> related bindings.
+> 
+> Remaining conversions:
+> - meson,pinctrl.txt
+> - pwm-meson.txt
+> - amlogic,meson-gpio-intc.txt
+> - amlogic,meson-mx-sdio.txt
+> - rtc-meson-vrtc.txt
+> - amlogic,axg-sound-card.txt
+> - amlogic,axg-fifo.txt
+> - amlogic,axg-pdm.txt
+> - amlogic,axg-spdifout.txt
+> - amlogic,axg-tdm-formatters.txt
+> - amlogic,axg-spdifin.txt
+> - amlogic,axg-tdm-iface.txt
+> - amlogic,g12a-tohdmitx.txt
+> - amlogic,axg-audio-clkc.txt
+> - amlogic,gxbb-clkc.txt
+> - amlogic,gxbb-aoclkc.txt
+> - amlogic,meson8b-clkc.txt
+> ---
+> Changes in v5:
+> - Removed applied patches
+> - Link to v4: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v4-0-34e623dbf789@linaro.org
+> 
+> Changes in v4:
+> - Rebased on v6.3-rc1
+> - Added Reviewed-by
+> - Removed applied patch
+> - Link to v3: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org
+> 
+> Changes in v3:
+> - Dropped applied patches
+> - Added acked/reviewed-by tags
+> - patch 3: removed invalid secure-monitor property
+> - patch 4: added a note on the commit message about the meson8 compatible
+> - patch 9: fixed mmc compatible bindings
+> - patch 1-: unified PCIe instead on PCIE + PCIe
+> - Link to v2: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org
+> 
+> Changes in v2:
+> - rebased on v6.2-rc1
+> - patch 1: fixed power-controller, added const: amlogic,meson-gx-sm
+> - patch 2: added const: amlogic,meson-gx-efuse, fixed secure-monitor type
+> - patch 3: updated example subnodes to match reality
+> - patch 4: added reviewed-by, added interrupts, added const: amlogic,meson8m2-wdt
+> - patch 5: added reviewed-by, added const: amlogic,meson-gx-ir
+> - patch 6: dropped applied
+> - patch 7: dropped patch, replaced with deprecated in the title of the TXt bindings
+> - patch 8: fixed title, added reviewed-by, added interrupt description
+> - patch 9: fixed example indent, added reviewed-by
+> - patch 10: fixed const: amlogic,meson-gx-mmc case, fixed indentation
+> - patch 11: added reviewed-by, fixed title, fixed bindings after rebase, added clocks/clock-names as required
+> - patch 12: added reviewed-by
+> - Link to v1: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org
+> ---
+>  .../bindings/timer/amlogic,meson6-timer.txt        | 22 ---------
+>  .../bindings/timer/amlogic,meson6-timer.yaml       | 54 ++++++++++++++++++++++
+>  2 files changed, 54 insertions(+), 22 deletions(-)
+> 
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3b1c0878bb85..af507887fdaf 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -79,6 +79,13 @@ config SPI_ALTERA_DFL
- 	  Altera SPI master controller.  The SPI master is connected
- 	  to a SPI slave to Avalon bridge in a Intel MAX BMC.
-
-+config SPI_AMLOGIC_SPIFC_A1
-+	tristate "Amlogic A1 SPIFC controller"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	help
-+	  This enables master mode support for the SPIFC (SPI flash
-+	  controller) available in Amlogic A1 (A113L SoC).
-+
- config SPI_AR934X
- 	tristate "Qualcomm Atheros AR934X/QCA95XX SPI controller driver"
- 	depends on ATH79 || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index be9ba40ef8d0..f61670ed1fc7 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_SPI_LOOPBACK_TEST)		+= spi-loopback-test.o
- obj-$(CONFIG_SPI_ALTERA)		+= spi-altera-platform.o
- obj-$(CONFIG_SPI_ALTERA_CORE)		+= spi-altera-core.o
- obj-$(CONFIG_SPI_ALTERA_DFL)		+= spi-altera-dfl.o
-+obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A1)	+= spi-amlogic-spifc-a1.o
- obj-$(CONFIG_SPI_AR934X)		+= spi-ar934x.o
- obj-$(CONFIG_SPI_ARMADA_3700)		+= spi-armada-3700.o
- obj-$(CONFIG_SPI_ASPEED_SMC)		+= spi-aspeed-smc.o
-diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
-new file mode 100644
-index 000000000000..3c4224c38399
---- /dev/null
-+++ b/drivers/spi/spi-amlogic-spifc-a1.c
-@@ -0,0 +1,456 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for Amlogic A1 SPI flash controller (SPIFC)
-+ *
-+ * Copyright (c) 2023, SberDevices. All Rights Reserved.
-+ *
-+ * Author: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/spi/spi.h>
-+#include <linux/spi/spi-mem.h>
-+#include <linux/types.h>
-+
-+#define SPIFC_A1_AHB_CTRL_REG		0x0
-+#define SPIFC_A1_AHB_BUS_EN		BIT(31)
-+
-+#define SPIFC_A1_USER_CTRL0_REG		0x200
-+#define SPIFC_A1_USER_REQUEST_ENABLE	BIT(31)
-+#define SPIFC_A1_USER_REQUEST_FINISH	BIT(30)
-+#define SPIFC_A1_USER_DATA_UPDATED	BIT(0)
-+
-+#define SPIFC_A1_USER_CTRL1_REG		0x204
-+#define SPIFC_A1_USER_CMD_ENABLE	BIT(30)
-+#define SPIFC_A1_USER_CMD_MODE		GENMASK(29, 28)
-+#define SPIFC_A1_USER_CMD_CODE		GENMASK(27, 20)
-+#define SPIFC_A1_USER_ADDR_ENABLE	BIT(19)
-+#define SPIFC_A1_USER_ADDR_MODE		GENMASK(18, 17)
-+#define SPIFC_A1_USER_ADDR_BYTES	GENMASK(16, 15)
-+#define SPIFC_A1_USER_DOUT_ENABLE	BIT(14)
-+#define SPIFC_A1_USER_DOUT_MODE		GENMASK(11, 10)
-+#define SPIFC_A1_USER_DOUT_BYTES	GENMASK(9, 0)
-+
-+#define SPIFC_A1_USER_CTRL2_REG		0x208
-+#define SPIFC_A1_USER_DUMMY_ENABLE	BIT(31)
-+#define SPIFC_A1_USER_DUMMY_MODE	GENMASK(30, 29)
-+#define SPIFC_A1_USER_DUMMY_CLK_SYCLES	GENMASK(28, 23)
-+
-+#define SPIFC_A1_USER_CTRL3_REG		0x20c
-+#define SPIFC_A1_USER_DIN_ENABLE	BIT(31)
-+#define SPIFC_A1_USER_DIN_MODE		GENMASK(28, 27)
-+#define SPIFC_A1_USER_DIN_BYTES		GENMASK(25, 16)
-+
-+#define SPIFC_A1_USER_ADDR_REG		0x210
-+
-+#define SPIFC_A1_AHB_REQ_CTRL_REG	0x214
-+#define SPIFC_A1_AHB_REQ_ENABLE		BIT(31)
-+
-+#define SPIFC_A1_ACTIMING0_REG		(0x0088 << 2)
-+#define SPIFC_A1_TSLCH			GENMASK(31, 30)
-+#define SPIFC_A1_TCLSH			GENMASK(29, 28)
-+#define SPIFC_A1_TSHWL			GENMASK(20, 16)
-+#define SPIFC_A1_TSHSL2			GENMASK(15, 12)
-+#define SPIFC_A1_TSHSL1			GENMASK(11, 8)
-+#define SPIFC_A1_TWHSL			GENMASK(7, 0)
-+
-+#define SPIFC_A1_DBUF_CTRL_REG		0x240
-+#define SPIFC_A1_DBUF_DIR		BIT(31)
-+#define SPIFC_A1_DBUF_AUTO_UPDATE_ADDR	BIT(30)
-+#define SPIFC_A1_DBUF_ADDR		GENMASK(7, 0)
-+
-+#define SPIFC_A1_DBUF_DATA_REG		0x244
-+
-+#define SPIFC_A1_USER_DBUF_ADDR_REG	0x248
-+
-+#define SPIFC_A1_BUFFER_SIZE		512
-+
-+#define SPIFC_A1_MAX_HZ			200000000
-+#define SPIFC_A1_MIN_HZ			1000000
-+
-+#define SPIFC_A1_USER_CMD(op) ( \
-+	SPIFC_A1_USER_CMD_ENABLE | \
-+	FIELD_PREP(SPIFC_A1_USER_CMD_CODE, (op)->cmd.opcode) | \
-+	FIELD_PREP(SPIFC_A1_USER_CMD_MODE, ilog2((op)->cmd.buswidth)))
-+
-+#define SPIFC_A1_USER_ADDR(op) ( \
-+	SPIFC_A1_USER_ADDR_ENABLE | \
-+	FIELD_PREP(SPIFC_A1_USER_ADDR_MODE, ilog2((op)->addr.buswidth)) | \
-+	FIELD_PREP(SPIFC_A1_USER_ADDR_BYTES, (op)->addr.nbytes - 1))
-+
-+#define SPIFC_A1_USER_DUMMY(op) ( \
-+	SPIFC_A1_USER_DUMMY_ENABLE | \
-+	FIELD_PREP(SPIFC_A1_USER_DUMMY_MODE, ilog2((op)->dummy.buswidth)) | \
-+	FIELD_PREP(SPIFC_A1_USER_DUMMY_CLK_SYCLES, (op)->dummy.nbytes << 3))
-+
-+#define SPIFC_A1_TSLCH_VAL	FIELD_PREP(SPIFC_A1_TSLCH, 1)
-+#define SPIFC_A1_TCLSH_VAL	FIELD_PREP(SPIFC_A1_TCLSH, 1)
-+#define SPIFC_A1_TSHWL_VAL	FIELD_PREP(SPIFC_A1_TSHWL, 7)
-+#define SPIFC_A1_TSHSL2_VAL	FIELD_PREP(SPIFC_A1_TSHSL2, 7)
-+#define SPIFC_A1_TSHSL1_VAL	FIELD_PREP(SPIFC_A1_TSHSL1, 7)
-+#define SPIFC_A1_TWHSL_VAL	FIELD_PREP(SPIFC_A1_TWHSL, 2)
-+#define SPIFC_A1_ACTIMING0_VAL	(SPIFC_A1_TSLCH_VAL | SPIFC_A1_TCLSH_VAL | \
-+				 SPIFC_A1_TSHWL_VAL | SPIFC_A1_TSHSL2_VAL | \
-+				 SPIFC_A1_TSHSL1_VAL | SPIFC_A1_TWHSL_VAL)
-+
-+struct amlogic_spifc_a1 {
-+	struct spi_controller *ctrl;
-+	struct clk *clk;
-+	struct device *dev;
-+	void __iomem *base;
-+};
-+
-+static int amlogic_spifc_a1_request(struct amlogic_spifc_a1 *spifc, bool read)
-+{
-+	u32 mask = SPIFC_A1_USER_REQUEST_FINISH |
-+		   (read ? SPIFC_A1_USER_DATA_UPDATED : 0);
-+	u32 val;
-+
-+	writel(SPIFC_A1_USER_REQUEST_ENABLE,
-+	       spifc->base + SPIFC_A1_USER_CTRL0_REG);
-+
-+	return readl_poll_timeout(spifc->base + SPIFC_A1_USER_CTRL0_REG,
-+				  val, (val & mask) == mask, 0,
-+				  200 * USEC_PER_MSEC);
-+}
-+
-+static void amlogic_spifc_a1_drain_buffer(struct amlogic_spifc_a1 *spifc,
-+					  char *buf, u32 len)
-+{
-+	u32 data;
-+	const u32 count = len / sizeof(data);
-+	const u32 pad = len % sizeof(data);
-+
-+	writel(SPIFC_A1_DBUF_AUTO_UPDATE_ADDR,
-+	       spifc->base + SPIFC_A1_DBUF_CTRL_REG);
-+	ioread32_rep(spifc->base + SPIFC_A1_DBUF_DATA_REG, buf, count);
-+
-+	if (pad) {
-+		data = readl(spifc->base + SPIFC_A1_DBUF_DATA_REG);
-+		memcpy(buf + len - pad, &data, pad);
-+	}
-+}
-+
-+static void amlogic_spifc_a1_fill_buffer(struct amlogic_spifc_a1 *spifc,
-+					 const char *buf, u32 len)
-+{
-+	u32 data;
-+	const u32 count = len / sizeof(data);
-+	const u32 pad = len % sizeof(data);
-+
-+	writel(SPIFC_A1_DBUF_DIR | SPIFC_A1_DBUF_AUTO_UPDATE_ADDR,
-+	       spifc->base + SPIFC_A1_DBUF_CTRL_REG);
-+	iowrite32_rep(spifc->base + SPIFC_A1_DBUF_DATA_REG, buf, count);
-+
-+	if (pad) {
-+		memcpy(&data, buf + len - pad, pad);
-+		writel(data, spifc->base + SPIFC_A1_DBUF_DATA_REG);
-+	}
-+}
-+
-+static void amlogic_spifc_a1_user_init(struct amlogic_spifc_a1 *spifc)
-+{
-+	writel(0, spifc->base + SPIFC_A1_USER_CTRL0_REG);
-+	writel(0, spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+	writel(0, spifc->base + SPIFC_A1_USER_CTRL2_REG);
-+	writel(0, spifc->base + SPIFC_A1_USER_CTRL3_REG);
-+}
-+
-+static void amlogic_spifc_a1_set_cmd(struct amlogic_spifc_a1 *spifc,
-+				     u32 cmd_cfg)
-+{
-+	u32 val;
-+
-+	val = readl(spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+	val &= ~(SPIFC_A1_USER_CMD_MODE | SPIFC_A1_USER_CMD_CODE);
-+	val |= cmd_cfg;
-+	writel(val, spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+}
-+
-+static void amlogic_spifc_a1_set_addr(struct amlogic_spifc_a1 *spifc, u32 addr,
-+				      u32 addr_cfg)
-+{
-+	u32 val;
-+
-+	writel(addr, spifc->base + SPIFC_A1_USER_ADDR_REG);
-+
-+	val = readl(spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+	val &= ~(SPIFC_A1_USER_ADDR_MODE | SPIFC_A1_USER_ADDR_BYTES);
-+	val |= addr_cfg;
-+	writel(val, spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+}
-+
-+static void amlogic_spifc_a1_set_dummy(struct amlogic_spifc_a1 *spifc,
-+				       u32 dummy_cfg)
-+{
-+	u32 val = readl(spifc->base + SPIFC_A1_USER_CTRL2_REG);
-+
-+	val &= ~(SPIFC_A1_USER_DUMMY_MODE | SPIFC_A1_USER_DUMMY_CLK_SYCLES);
-+	val |= dummy_cfg;
-+	writel(val, spifc->base + SPIFC_A1_USER_CTRL2_REG);
-+}
-+
-+static int amlogic_spifc_a1_read(struct amlogic_spifc_a1 *spifc, void *buf,
-+				 u32 size, u32 mode)
-+{
-+	u32 val = readl(spifc->base + SPIFC_A1_USER_CTRL3_REG);
-+	int ret;
-+
-+	val &= ~(SPIFC_A1_USER_DIN_MODE | SPIFC_A1_USER_DIN_BYTES);
-+	val |= SPIFC_A1_USER_DIN_ENABLE;
-+	val |= FIELD_PREP(SPIFC_A1_USER_DIN_MODE, mode);
-+	val |= FIELD_PREP(SPIFC_A1_USER_DIN_BYTES, size);
-+	writel(val, spifc->base + SPIFC_A1_USER_CTRL3_REG);
-+
-+	ret = amlogic_spifc_a1_request(spifc, true);
-+	if (!ret)
-+		amlogic_spifc_a1_drain_buffer(spifc, buf, size);
-+
-+	return ret;
-+}
-+
-+static int amlogic_spifc_a1_write(struct amlogic_spifc_a1 *spifc,
-+				  const void *buf, u32 size, u32 mode)
-+{
-+	u32 val;
-+
-+	amlogic_spifc_a1_fill_buffer(spifc, buf, size);
-+
-+	val = readl(spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+	val &= ~(SPIFC_A1_USER_DOUT_MODE | SPIFC_A1_USER_DOUT_BYTES);
-+	val |= FIELD_PREP(SPIFC_A1_USER_DOUT_MODE, mode);
-+	val |= FIELD_PREP(SPIFC_A1_USER_DOUT_BYTES, size);
-+	val |= SPIFC_A1_USER_DOUT_ENABLE;
-+	writel(val, spifc->base + SPIFC_A1_USER_CTRL1_REG);
-+
-+	return amlogic_spifc_a1_request(spifc, false);
-+}
-+
-+static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
-+				    const struct spi_mem_op *op)
-+{
-+	struct amlogic_spifc_a1 *spifc =
-+		spi_controller_get_devdata(mem->spi->controller);
-+	size_t off, nbytes = op->data.nbytes;
-+	u32 cmd_cfg, addr_cfg, dummy_cfg, dmode;
-+	int ret;
-+
-+	amlogic_spifc_a1_user_init(spifc);
-+
-+	cmd_cfg = SPIFC_A1_USER_CMD(op);
-+	amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-+
-+	if (op->addr.nbytes) {
-+		addr_cfg = SPIFC_A1_USER_ADDR(op);
-+		amlogic_spifc_a1_set_addr(spifc, op->addr.val, addr_cfg);
-+	}
-+
-+	if (op->dummy.nbytes) {
-+		dummy_cfg = SPIFC_A1_USER_DUMMY(op);
-+		amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
-+	}
-+
-+	if (!op->data.nbytes)
-+		return amlogic_spifc_a1_request(spifc, false);
-+
-+	dmode = ilog2(op->data.buswidth);
-+	off = 0;
-+
-+	do {
-+		size_t block_size = min_t(size_t, nbytes, SPIFC_A1_BUFFER_SIZE);
-+
-+		amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-+
-+		if (op->addr.nbytes)
-+			amlogic_spifc_a1_set_addr(spifc, op->addr.val + off,
-+						  addr_cfg);
-+
-+		if (op->dummy.nbytes)
-+			amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
-+
-+		writel(0, spifc->base + SPIFC_A1_USER_DBUF_ADDR_REG);
-+
-+		if (op->data.dir == SPI_MEM_DATA_IN)
-+			ret = amlogic_spifc_a1_read(spifc,
-+						    op->data.buf.in + off,
-+						    block_size, dmode);
-+		else
-+			ret = amlogic_spifc_a1_write(spifc,
-+						     op->data.buf.out + off,
-+						     block_size, dmode);
-+
-+		nbytes -= block_size;
-+		off += block_size;
-+	} while (nbytes != 0 && !ret);
-+
-+	return ret;
-+}
-+
-+static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
-+{
-+	u32 regv;
-+
-+	regv = readl(spifc->base + SPIFC_A1_AHB_REQ_CTRL_REG);
-+	regv &= ~(SPIFC_A1_AHB_REQ_ENABLE);
-+	writel(regv, spifc->base + SPIFC_A1_AHB_REQ_CTRL_REG);
-+
-+	regv = readl(spifc->base + SPIFC_A1_AHB_CTRL_REG);
-+	regv &= ~(SPIFC_A1_AHB_BUS_EN);
-+	writel(regv, spifc->base + SPIFC_A1_AHB_CTRL_REG);
-+
-+	writel(SPIFC_A1_ACTIMING0_VAL, spifc->base + SPIFC_A1_ACTIMING0_REG);
-+
-+	writel(0, spifc->base + SPIFC_A1_USER_DBUF_ADDR_REG);
-+}
-+
-+static const struct spi_controller_mem_ops amlogic_spifc_a1_mem_ops = {
-+	.exec_op = amlogic_spifc_a1_exec_op,
-+};
-+
-+static int amlogic_spifc_a1_probe(struct platform_device *pdev)
-+{
-+	struct spi_controller *ctrl;
-+	struct amlogic_spifc_a1 *spifc;
-+	int ret;
-+
-+	ctrl = devm_spi_alloc_master(&pdev->dev, sizeof(*spifc));
-+	if (!ctrl)
-+		return -ENOMEM;
-+
-+	spifc = spi_controller_get_devdata(ctrl);
-+	platform_set_drvdata(pdev, spifc);
-+
-+	spifc->dev = &pdev->dev;
-+	spifc->ctrl = ctrl;
-+
-+	spifc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(spifc->base))
-+		return PTR_ERR(spifc->base);
-+
-+	spifc->clk = devm_clk_get_enabled(spifc->dev, NULL);
-+	if (IS_ERR(spifc->clk))
-+		return dev_err_probe(spifc->dev, PTR_ERR(spifc->clk),
-+				     "unable to get clock\n");
-+
-+	amlogic_spifc_a1_hw_init(spifc);
-+
-+	pm_runtime_set_autosuspend_delay(spifc->dev, 500);
-+	pm_runtime_use_autosuspend(spifc->dev);
-+	devm_pm_runtime_enable(spifc->dev);
-+
-+	ctrl->num_chipselect = 1;
-+	ctrl->dev.of_node = pdev->dev.of_node;
-+	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
-+	ctrl->auto_runtime_pm = true;
-+	ctrl->mem_ops = &amlogic_spifc_a1_mem_ops;
-+	ctrl->min_speed_hz = SPIFC_A1_MIN_HZ;
-+	ctrl->max_speed_hz = SPIFC_A1_MAX_HZ;
-+	ctrl->mode_bits = (SPI_RX_DUAL | SPI_TX_DUAL |
-+			   SPI_RX_QUAD | SPI_TX_QUAD);
-+
-+	ret = devm_spi_register_controller(spifc->dev, ctrl);
-+	if (ret)
-+		return dev_err_probe(spifc->dev, ret,
-+				     "failed to register spi controller\n");
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int amlogic_spifc_a1_suspend(struct device *dev)
-+{
-+	struct amlogic_spifc_a1 *spifc = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = spi_controller_suspend(spifc->ctrl);
-+	if (ret)
-+		return ret;
-+
-+	if (!pm_runtime_suspended(dev))
-+		clk_disable_unprepare(spifc->clk);
-+
-+	return 0;
-+}
-+
-+static int amlogic_spifc_a1_resume(struct device *dev)
-+{
-+	struct amlogic_spifc_a1 *spifc = dev_get_drvdata(dev);
-+	int ret = 0;
-+
-+	if (!pm_runtime_suspended(dev)) {
-+		ret = clk_prepare_enable(spifc->clk);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	amlogic_spifc_a1_hw_init(spifc);
-+
-+	ret = spi_controller_resume(spifc->ctrl);
-+	if (ret)
-+		clk_disable_unprepare(spifc->clk);
-+
-+	return ret;
-+}
-+#endif /* CONFIG_PM_SLEEP */
-+
-+#ifdef CONFIG_PM
-+static int amlogic_spifc_a1_runtime_suspend(struct device *dev)
-+{
-+	struct amlogic_spifc_a1 *spifc = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(spifc->clk);
-+
-+	return 0;
-+}
-+
-+static int amlogic_spifc_a1_runtime_resume(struct device *dev)
-+{
-+	struct amlogic_spifc_a1 *spifc = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = clk_prepare_enable(spifc->clk);
-+	if (!ret)
-+		amlogic_spifc_a1_hw_init(spifc);
-+
-+	return ret;
-+}
-+#endif /* CONFIG_PM */
-+
-+static const struct dev_pm_ops amlogic_spifc_a1_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(amlogic_spifc_a1_suspend,
-+				amlogic_spifc_a1_resume)
-+	SET_RUNTIME_PM_OPS(amlogic_spifc_a1_runtime_suspend,
-+			   amlogic_spifc_a1_runtime_resume,
-+			   NULL)
-+};
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id amlogic_spifc_a1_dt_match[] = {
-+	{ .compatible = "amlogic,a1-spifc", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, amlogic_spifc_a1_dt_match);
-+#endif /* CONFIG_OF */
-+
-+static struct platform_driver amlogic_spifc_a1_driver = {
-+	.probe	= amlogic_spifc_a1_probe,
-+	.driver	= {
-+		.name		= "amlogic-spifc-a1",
-+		.of_match_table	= of_match_ptr(amlogic_spifc_a1_dt_match),
-+		.pm		= &amlogic_spifc_a1_pm_ops,
-+	},
-+};
-+module_platform_driver(amlogic_spifc_a1_driver);
-+
-+MODULE_AUTHOR("Martin Kurbanov <mmkurbanov@sberdevices.ru>");
-+MODULE_DESCRIPTION("Amlogic A1 SPIFC driver");
-+MODULE_LICENSE("GPL");
---
-2.37.2
+Applied, thanks!
 
 
 _______________________________________________
