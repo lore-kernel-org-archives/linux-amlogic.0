@@ -4,74 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C34E8C76196
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 15:59:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 550AEC761A6
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Apr 2023 18:32:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=W9bST3MgafM1l/se6sn7KsEs9J+bgKYLZO4eJ4I6/2U=; b=e+FOZWNIv90wiG
-	b9Rx4Keb/rYflNq1HxlxB2bXp59M31fjfB8dynG5gGD1DnZMPlZggH+Hry/efUxgTpBelLlefOaFl
-	cP9jR9emZhqQQ4hYRnM95hE6naufgDfcUwhujJCVnnWuO5s7StdC9l9zRqZ/DSeC2IMO1p7rD5YwT
-	hiXJSCknf/roNk4bRd7+8mz0ZKQ1X1ce7FCEtzGtRyzXywTbp8py/crCAOXKCacBqvGZ47tJ8ACX8
-	0hwLvi27oSxmWD1rCIBxF6zUugg0jHToc0A08mWSXT5ahpTOzupLTxd//BXfTm23IcOrS56sjWwhq
-	qfKUh0CMUdTJNOTYBKJg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ITEI19/HvuAU2u8KcMVnoX76QQYChTuPpmCrn6JuIEE=; b=dkSTtDppUi7eK/
+	TcfAWm8SEWLwrvx29NRaEt8lVDcdLqkfCu/R/eU4/tXTCx9BG+CrCyZa9xG5/GIicD2m8e+Le28Zu
+	U5bZViUYe+6jUvTVgh1utabeqxElfw1+MveAowCnIm+cruHCXEuWx+rtxWgSqd+OkGF/TAa3U/tp+
+	1fE0JbmD8AlgLxqJF4bCPB6GAlesZzbcfSbvBdR+lxuJ9rAU0I9A/kl3y6mW/dYdvY9MwjuM7vVAl
+	vcGSmV7ry31EKYis0yocPJhNYOFjD2NlBXzIlD9WtEVAS5K36QOVOOmfPhFeO9cYJadKJRIUWiYGa
+	l4kXIyusZ0oYcX9w7QeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjMaZ-00FtgV-38;
-	Mon, 03 Apr 2023 15:59:23 +0000
-Received: from relay11.mail.gandi.net ([2001:4b98:dc4:8::231])
+	id 1pjOyw-00GDrR-2Q;
+	Mon, 03 Apr 2023 18:32:42 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjMaV-00FteV-1O;
-	Mon, 03 Apr 2023 15:59:21 +0000
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 08001100005;
-	Mon,  3 Apr 2023 15:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1680537553;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dp03hIsI/cteiZu/GdKKxTFMnCgcRr2K9r6OCmhzmao=;
-	b=RkfJH0jxjTJbojxm6hZEW6QIsItd/M0lbu7oquAWovMfXF9HWSz/5twP19Fqk7EjCBQ4ex
-	ppeyUMt7OQYwMYGw2k/vXXASwwhJnarKdxskLhF52jJI+SIbfzCsT5UfNkeOot9CckPMgB
-	mRo7UC81lpN01Qm/PiNwGZOkGWzvEGGXtHItWWZRNPLqz1Ftinkj+euD1TGXzpEALwdmwZ
-	KP9hb2nWnneCreUVmeGwcrZ6E6mtx80rlmUL5ktn4AKjXD8YlpcCTDe14ip10pEa3zCIUS
-	iiFdnId9tEyAcW3dGgWiK2lVIF4extNt8sxnzhstwEiFCUzLVf3WekTfABZqXQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@sberdevices.ru>,
-	Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>,
-	Yixun Lan <yixun.lan@amlogic.com>
-Cc: linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@sberdevices.ru,
-	oxffffaa@gmail.com
-Subject: Re: [PATCH v2] mtd: rawnand: meson: fix bitmask for length in command word
-Date: Mon,  3 Apr 2023 17:59:08 +0200
-Message-Id: <20230403155908.137562-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <3794ffbf-dfea-e96f-1f97-fe235b005e19@sberdevices.ru>
-References: 
+	id 1pjOys-00GDo1-32;
+	Mon, 03 Apr 2023 18:32:41 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 9EFA35FD33;
+	Mon,  3 Apr 2023 21:32:31 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1680546751;
+	bh=skrvDahl5pDvwUwgatlspWiBA9wa5+vS0uE3UumKX9A=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=cqI6aPrNn5mtnhaVCbAtirVNzjeBzR1SEKqrbWHxEFvqNdiy5uS2bl+mGyCMo1kpC
+	 qbic7dxZuXwZvNtjHjr7xmZAUB1qWUesntKZoLItRDdwnsx8qyGc6JQnEzxrRXX8ye
+	 VJsYZWa6yQSM/eg+SuIgdfOESl0RFqLAJhcVVlfS3czuZp/rK51VZOwy9oi8fMOuvW
+	 AnjaCxGZECwoCgwAkevP0F+K6F+Cc+ZoEOi5pdxOpMyUwF1ckHsop5lafBMhOPPCkQ
+	 kng+5hNd3d/IJ7GR/VDPXokSM4AlD75/wqXsaZJb9QGfDMYOfKiPLBkHsxLXaUpNej
+	 OUCtHv7kdPsag==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Mon,  3 Apr 2023 21:32:30 +0300 (MSK)
+From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
+	<mmkurbanov@sberdevices.ru>
+Subject: [PATCH v3 0/2] add support for Amlogic A1 SPI Flash Controller
+Date: Mon, 3 Apr 2023 21:32:15 +0300
+Message-ID: <20230403183217.13280-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'93942b70461574ca7fc3d91494ca89b16a4c64c7'
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/03 14:17:00 #21028104
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_085919_760627_8FA3A144 
-X-CRM114-Status: UNSURE (   7.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230403_113239_519488_811B885D 
+X-CRM114-Status: GOOD (  11.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,23 +86,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2023-03-29 at 07:47:26 UTC, Arseniy Krasnov wrote:
-> Valid mask is 0x3FFF, without this patch the following problems were
-> found:
-> 
-> 1) [    0.938914] Could not find a valid ONFI parameter page, trying
->                   bit-wise majority to recover it
->    [    0.947384] ONFI parameter recovery failed, aborting
-> 
-> 2) Read with disabled ECC mode was broken.
-> 
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Cc: <Stable@vger.kernel.org>
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+This patchset introduces DT bindings and driver for the Amlogic A1 SPI
+flash controller (A113L SoC).
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/fixes, thanks.
+The existing spi-meson-spifc driver is incompatible with the A1 SPIFC
+at all.
 
-Miquel
+The implementation has been tested on the Amlogic A113L SoC based device
+connected with ESMT F50L1G41LB spinand flash.
+
+This patchset has dependencies on the A1 clock series which is still
+under review [1].
+
+Changelog:
+  v3 since v2 at [2]:
+    - Drop the 'meson' name as Neil suggested
+    - Make cosmetic changes
+
+  v2 since v1 at [3]:
+    - Make cosmetic changes
+
+Links:
+  [1] https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
+  [2] https://lore.kernel.org/all/20230327211351.686831-1-mmkurbanov@sberdevices.ru/
+  [2] https://lore.kernel.org/all/20230322150458.783901-1-mmkurbanov@sberdevices.ru/
+
+Martin Kurbanov (2):
+  dt-bindings: spi: add Amlogic A1 SPI controller
+  spi: add support for Amlogic A1 SPI Flash Controller
+
+ .../bindings/spi/amlogic,a1-spifc.yaml        |  41 ++
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-amlogic-spifc-a1.c            | 456 ++++++++++++++++++
+ 4 files changed, 505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,a1-spifc.yaml
+ create mode 100644 drivers/spi/spi-amlogic-spifc-a1.c
+
+--
+2.37.2
+
 
 _______________________________________________
 linux-amlogic mailing list
