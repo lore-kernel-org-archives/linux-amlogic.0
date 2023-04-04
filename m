@@ -4,66 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAB0AC6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Apr 2023 17:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF84DC761A6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Apr 2023 17:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S2V7zyCn6py1AffPtz9s/rJZsLrmcZzoR1ORC7uH0os=; b=GZtRirWNUYRyqE
-	rIkgvzzgr6xIyKNLkx/VVHVG6BmJzJu/UtoaZ3m79JQTJoqNolmZnPbnTpKyvc6dwc2EQ9NbQktdU
-	32NmndK8wFVmkYRciUB0MNmu/0J/QAEJ6mK+SdrU6bJjZ4GgxdrxzodnNb9ZlWz4nw3h6BUe0PxEY
-	B7/De5eI6uxewKdW1VG+tzrxPrbbD6Q+rRStmIGHvG5npVZWxVzNplLSiGnL+RqWnFykEgoOiZ38H
-	zEJ6GAJBdB+BHfKBN6TskKd9B4PBDDCTd78aPwMcCjFNqeNeiQlhOpJrO/LofHqjeNQw1ggOYQc3m
-	reRWDgIEc6+3LiwUVCcA==;
+	List-Owner; bh=xF5HORszcsbhZImezcXVcD6q8iTg8pj7FDIQPO6WjY8=; b=XBG951qngISJlX
+	b7uMVtWq02iboH5Csv7SpDBkDpWF+lIJHZE9/UFGPZPRwkTlpLPxyxgvMDHvatkZlw8THLepYazk4
+	iG5zZuV8TaD71UPtZ4fM3Ndtct9Ab3+4KgzDj6AuXsA+CcKbTJoIXvZ2TdwUhNTP2ccgay9xGYhSQ
+	mcLhAaFVtp13OCG1JMzejUYTi/NYzXWibLxntlH9WjKndUOG+qfETJ+hMnAnI/6k3Na2P8gSRfWY2
+	g2XDJxf7b5pUKQj2qZdKOW8PUXtR+XZ9mtpZkJUsyprSwvuBQxTf23r5RY09NWaPw5Oo5xDIR5xal
+	k8375W012Uy4BlrpCZLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjk8p-002Kcv-2r;
-	Tue, 04 Apr 2023 17:08:19 +0000
-Received: from mail-ot1-f45.google.com ([209.85.210.45])
+	id 1pjk9I-002Kl6-3C;
+	Tue, 04 Apr 2023 17:08:49 +0000
+Received: from mail-oi1-f173.google.com ([209.85.167.173])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjk8m-002KbT-19;
-	Tue, 04 Apr 2023 17:08:17 +0000
-Received: by mail-ot1-f45.google.com with SMTP id x8-20020a9d3788000000b0069f922cd5ceso17692718otb.12;
-        Tue, 04 Apr 2023 10:08:15 -0700 (PDT)
+	id 1pjk9F-002Kjb-0i;
+	Tue, 04 Apr 2023 17:08:46 +0000
+Received: by mail-oi1-f173.google.com with SMTP id bi31so24702656oib.9;
+        Tue, 04 Apr 2023 10:08:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680628095;
+        d=1e100.net; s=20210112; t=1680628124;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5kyfGfHQKgkYy16DyfpdvEbx6sQQJifapGZEB9kHD60=;
-        b=gvw0UkiAcnM2y8dr69B6TvAYi5W9vwwOdhleORY6W+2wlGpCcXkH4T+OZA892Lu73C
-         9ZwzkStIqVC0hfYv2y4Mc7j2UygjapBzabdt+ZO5UTinSuPiIbTvbtJZUYWTlwqjYIye
-         V52qwccv6tNyN3sufgmOX2HvTXi/pF1wfI3+CW0yf/AmmZkV4eRWbjWEOdYhWX/vO01G
-         wPcx9GdzMmu9TdgE2gVg6WykzHsUWSNGGgw9p5ro0qmh5v6cI1vClktZmOcRwloS3qSv
-         kBs7Mhczb1ZX7Z88u9dHGnRoM9K3WyGEywXIcr0Frtgj2otK6q5+igM/s+ni+hs83J7V
-         cSOw==
-X-Gm-Message-State: AAQBX9fKqCsgNfBJkIOhq6ZTHMJXa/2w++kxDBJ4jo44nv8ZmnQjGhWf
-	YGSoBx/yCRY7W3AXf0aqZQ==
-X-Google-Smtp-Source: AKy350bmJMrR1r7FrJGxefej2KGuvmYkx3SzlJzTOaJo3fly2J6n9OiGiUI/5C16CZmpe5LaLx5AEg==
-X-Received: by 2002:a9d:7b4e:0:b0:69f:2774:b60 with SMTP id f14-20020a9d7b4e000000b0069f27740b60mr1694681oto.8.1680628095187;
-        Tue, 04 Apr 2023 10:08:15 -0700 (PDT)
+        bh=OaNiABUcvVtmqheZOblHu0qpT7KFyONMzcxJR5viS78=;
+        b=bf+3FH99zqZpSUf7pYtmGiXIoida6xcEfA9CYyT6EZD/ZKWSnHyoeK9lrvsFOScosb
+         Vq3rTY3ii0Hro+aKJqhUKPH2RiwhMP0NWQVIsWKvUepsMewi3RXl4pDXziCamYqd4pve
+         xPWlE3qsuMB3XGn6hpglCkdfOowPjy/pFS0Q8jsV5o1Y8Bw+OLTHVxEuDHAV8kwoHL42
+         lzncHhogq0ynpVWANucoQyCLETBBWUpHtd7j4vmxAEsnKtAicw8oePANmC7ijZZC0rx6
+         7Zk03jsuIeiUWnON8PT5xGTgL3e4gKi2cJILG/6VeM7mvkXsGLyrLxt5kdTaR8FR6t6T
+         WGmA==
+X-Gm-Message-State: AAQBX9dBCMTEnrhw1jMbr2+4Uk6rPRbbUB4xfNW8QFPtoaxBckTrLkJQ
+	my8AT8GGAJlDN+CfFOjTqQ==
+X-Google-Smtp-Source: AKy350YfBZrfqcW8PEMfVNBBRRfK7rLxbfeh5SefSwbtVkxAw/f8hlOJB1kpUb6wE9T+az73emC35w==
+X-Received: by 2002:a05:6808:c8:b0:384:1e0c:fbbf with SMTP id t8-20020a05680800c800b003841e0cfbbfmr1455403oic.40.1680628124037;
+        Tue, 04 Apr 2023 10:08:44 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x9-20020a05683000c900b006a30260ccfdsm4494944oto.11.2023.04.04.10.08.14
+        by smtp.gmail.com with ESMTPSA id z127-20020aca3385000000b00383cc29d6b2sm5358287oiz.51.2023.04.04.10.08.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Apr 2023 10:08:14 -0700 (PDT)
-Received: (nullmailer pid 115563 invoked by uid 1000);
-	Tue, 04 Apr 2023 17:08:14 -0000
-Date: Tue, 4 Apr 2023 12:08:14 -0500
+        Tue, 04 Apr 2023 10:08:43 -0700 (PDT)
+Received: (nullmailer pid 121579 invoked by uid 1000);
+	Tue, 04 Apr 2023 17:08:42 -0000
+Date: Tue, 4 Apr 2023 12:08:42 -0500
 From: Rob Herring <robh@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Florian Fainelli <f.fainelli@gmail.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Qin Jian <qinjian@cqplus1.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: reset: Drop unneeded quotes
-Message-ID: <20230404170814.GC49361-robh@kernel.org>
-References: <20230322173508.3971182-1-robh@kernel.org>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Michal Simek <michal.simek@xilinx.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] dt-bindings: mailbox: Drop unneeded quotes
+Message-ID: <20230404170842.GD49361-robh@kernel.org>
+References: <20230322173449.3970718-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230322173508.3971182-1-robh@kernel.org>
+In-Reply-To: <20230322173449.3970718-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230404_100816_393574_4F2DC27D 
-X-CRM114-Status: GOOD (  10.12  )
+X-CRM114-CacheID: sfid-20230404_100845_261130_1E24FC96 
+X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,23 +81,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 22, 2023 at 12:35:07PM -0500, Rob Herring wrote:
+On Wed, Mar 22, 2023 at 12:34:48PM -0500, Rob Herring wrote:
 > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
 > checking for this can be enabled in yamllint.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/reset/amlogic,meson-axg-audio-arb.yaml         | 4 ++--
->  .../devicetree/bindings/reset/amlogic,meson-reset.yaml      | 4 ++--
->  .../devicetree/bindings/reset/bitmain,bm1880-reset.yaml     | 4 ++--
->  .../devicetree/bindings/reset/brcm,bcm6345-reset.yaml       | 4 ++--
->  .../devicetree/bindings/reset/brcm,brcmstb-reset.yaml       | 4 ++--
->  .../devicetree/bindings/reset/marvell,berlin2-reset.yaml    | 4 ++--
->  Documentation/devicetree/bindings/reset/microchip,rst.yaml  | 6 +++---
->  .../devicetree/bindings/reset/qca,ar7100-reset.yaml         | 4 ++--
->  Documentation/devicetree/bindings/reset/renesas,rst.yaml    | 4 ++--
->  Documentation/devicetree/bindings/reset/sunplus,reset.yaml  | 4 ++--
->  10 files changed, 21 insertions(+), 21 deletions(-)
+>  .../devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml   | 4 ++--
+>  .../devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml   | 4 ++--
+>  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml  | 4 ++--
+>  .../devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml  | 4 ++--
+>  6 files changed, 12 insertions(+), 12 deletions(-)
 
 Applied, thanks.
 
