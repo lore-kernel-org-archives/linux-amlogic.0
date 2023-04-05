@@ -4,78 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC1FC76188
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Apr 2023 14:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5AE8C76188
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Apr 2023 17:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m8BDMiPE3RdeREJklslKu8ij3XVZGmKDUsUfZzq5no4=; b=h8m/kbTMGF7HGN
-	d8QZL3s68LtxXQW+Aa6opPx0EqLQO3oSVOOM4JCdVApwjx+SLPXaX8Rm975W94GILh7OShCHJ8cyi
-	SZrffVIsVGWqBM/zed3ECHCzFQIPxP9+67lacjdbHhEUdOkvoWpjmn3uLSNSz9YOCr5flKeQeMQ7u
-	lYH2vzsBufXzKusuiKnWF6LFbRnt27Y+QQwvj+pRbmhcfGyhHvG9LtrNQFgDnDKrz0GClH6HfEcgd
-	WTPE23EWEzACj3wtwWDhem9qwz/r6AwHBXuxbTbj7PsO1dhJYW/fR2qu5rJEFcavGeN8JZfjxRPyx
-	G4OpzqrJyanEOnyzVYTw==;
+	List-Owner; bh=7ox6grjNQFako7qC6MGf6wAj80pA+qoFz37TKFMyHTA=; b=VhKlx20d7kasmz
+	NBtFl7+U7/xwwFbKv27fFbMY6eoHRiSFmVu7p2q5YjvO/bKgBBZmvusyPzto+is9CzjunKSEJ+3M8
+	v/elxL9ec8qLjo1GArv02JnrLsAtuPcvsNxBeA90KVdBi7WyDX/dWd6vkgMjvF2h7fdYtk6h0MTel
+	CGgHYRagfc2K7gfSaq8+lkPEnrGK3Ip4clQKKv3a9OFQc7TseTNpDnrd+U/3dx2xO9wojhNNNWiLy
+	fz1YzxxQuw9m7mP971m5rpm8ljqMIs42xZYzrzQBZhG8qMJyOPhoVTD8D1HP41x/Y8+U3DCu9GKYz
+	sWCaJ4N/wQRgkw7ldC6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pk4Xm-004jlo-2C;
-	Wed, 05 Apr 2023 14:55:26 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pk6iH-005EZE-0d;
+	Wed, 05 Apr 2023 17:14:25 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pk4Xi-004jjL-16;
-	Wed, 05 Apr 2023 14:55:24 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 083C35FD4D;
-	Wed,  5 Apr 2023 17:55:16 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1680706516;
-	bh=hKfUpf84flMFfqleKpLn2CrUkFCf0clQCz7y1DNPFOs=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=gMXlyEsqy5IKGxfV6RQCIhZal211f3DyxweRp2WoXjmYQO/PDTZYyNVrQ6nRLpul7
-	 9uQKtUZIXm1RpFC/vPaBzug9Q7iw5jDzQQ8bf+NSPirb/ajWyha7m41mJhMXya9ObB
-	 Y1txlttJ4FPqR7ersjET8jglEB+iaF7Jl237ymhih1RCzG1wbhahjouGHWULOutjLz
-	 k2G86Zy+a0tlAouX3K0+GFJGwMvsgjEB35CVwejn4ujYc22uUyCsYszSOzEl/t7C7J
-	 99aGzRsyCcRsdh09BcJCQpjtqgHK+eVymNfII1zT84wMuguuW4iHjg2zbUcBmhtlyC
-	 s6+HDKmpeq12g==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed,  5 Apr 2023 17:55:15 +0300 (MSK)
-Date: Wed, 5 Apr 2023 17:55:15 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v12 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-Message-ID: <20230405145515.66uuxpbyie2a4ho5@CAB-WSD-L081021>
-References: <20230404155332.9571-1-ddrokosov@sberdevices.ru>
- <20230404155332.9571-7-ddrokosov@sberdevices.ru>
- <1j8rf6flk5.fsf@starbuckisacylon.baylibre.com>
+	id 1pk6iD-005EYQ-2g;
+	Wed, 05 Apr 2023 17:14:23 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1pk6i9-0003OV-71; Wed, 05 Apr 2023 19:14:17 +0200
+Message-ID: <fdffc009-47cf-e88d-5b9e-d6301f7f73f2@leemhuis.info>
+Date: Wed, 5 Apr 2023 19:14:16 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1j8rf6flk5.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/05 06:12:00 #21033328
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/3] ARM: dts: meson: Fix the UART compatible strings
+Content-Language: en-US, de-DE
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
+References: <20211227180026.4068352-1-martin.blumenstingl@googlemail.com>
+ <20211227180026.4068352-2-martin.blumenstingl@googlemail.com>
+ <20230405132900.ci35xji3xbb3igar@rcn-XPS-13-9305>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <20230405132900.ci35xji3xbb3igar@rcn-XPS-13-9305>
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1680714861;a2fb1c42;
+X-HE-SMSGID: 1pk6i9-0003OV-71
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230405_075523_062836_67A3BBC5 
-X-CRM114-Status: GOOD (  20.56  )
+X-CRM114-CacheID: sfid-20230405_101422_022690_CB5F1E5A 
+X-CRM114-Status: GOOD (  16.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,208 +61,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 05, 2023 at 04:13:44PM +0200, Jerome Brunet wrote:
-> 
-> On Tue 04 Apr 2023 at 18:53, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> 
-> > +/* Array of all clocks registered by this provider */
-> > +static struct clk_hw_onecell_data a1_periphs_clks = {
-> > +	.hws = {
-> > +		/* DT exposed clocks */
-> > +		[CLKID_FIXPLL_IN]		= &fixpll_in.hw,
-> > +		[CLKID_USB_PHY_IN]		= &usb_phy_in.hw,
-> > +		[CLKID_USB_CTRL_IN]		= &usb_ctrl_in.hw,
-> > +		[CLKID_HIFIPLL_IN]		= &hifipll_in.hw,
-> > +		[CLKID_SYSPLL_IN]		= &syspll_in.hw,
-> > +		[CLKID_DDS_IN]			= &dds_in.hw,
-> > +		[CLKID_SYS]			= &sys.hw,
-> > +		[CLKID_CLKTREE]			= &clktree.hw,
-> > +		[CLKID_RESET_CTRL]		= &reset_ctrl.hw,
-> > +		[CLKID_ANALOG_CTRL]		= &analog_ctrl.hw,
-> > +		[CLKID_PWR_CTRL]		= &pwr_ctrl.hw,
-> > +		[CLKID_PAD_CTRL]		= &pad_ctrl.hw,
-> > +		[CLKID_SYS_CTRL]		= &sys_ctrl.hw,
-> > +		[CLKID_TEMP_SENSOR]		= &temp_sensor.hw,
-> > +		[CLKID_AM2AXI_DIV]		= &am2axi_dev.hw,
-> > +		[CLKID_SPICC_B]			= &spicc_b.hw,
-> > +		[CLKID_SPICC_A]			= &spicc_a.hw,
-> > +		[CLKID_MSR]			= &msr.hw,
-> > +		[CLKID_AUDIO]			= &audio.hw,
-> > +		[CLKID_JTAG_CTRL]		= &jtag_ctrl.hw,
-> > +		[CLKID_SARADC_EN]		= &saradc_en.hw,
-> > +		[CLKID_PWM_EF]			= &pwm_ef.hw,
-> > +		[CLKID_PWM_CD]			= &pwm_cd.hw,
-> > +		[CLKID_PWM_AB]			= &pwm_ab.hw,
-> > +		[CLKID_CEC]			= &cec.hw,
-> > +		[CLKID_I2C_S]			= &i2c_s.hw,
-> > +		[CLKID_IR_CTRL]			= &ir_ctrl.hw,
-> > +		[CLKID_I2C_M_D]			= &i2c_m_d.hw,
-> > +		[CLKID_I2C_M_C]			= &i2c_m_c.hw,
-> > +		[CLKID_I2C_M_B]			= &i2c_m_b.hw,
-> > +		[CLKID_I2C_M_A]			= &i2c_m_a.hw,
-> > +		[CLKID_ACODEC]			= &acodec.hw,
-> > +		[CLKID_OTP]			= &otp.hw,
-> > +		[CLKID_SD_EMMC_A]		= &sd_emmc_a.hw,
-> > +		[CLKID_USB_PHY]			= &usb_phy.hw,
-> > +		[CLKID_USB_CTRL]		= &usb_ctrl.hw,
-> > +		[CLKID_SYS_DSPB]		= &sys_dspb.hw,
-> > +		[CLKID_SYS_DSPA]		= &sys_dspa.hw,
-> > +		[CLKID_DMA]			= &dma.hw,
-> > +		[CLKID_IRQ_CTRL]		= &irq_ctrl.hw,
-> > +		[CLKID_NIC]			= &nic.hw,
-> > +		[CLKID_GIC]			= &gic.hw,
-> > +		[CLKID_UART_C]			= &uart_c.hw,
-> > +		[CLKID_UART_B]			= &uart_b.hw,
-> > +		[CLKID_UART_A]			= &uart_a.hw,
-> > +		[CLKID_SYS_PSRAM]		= &sys_psram.hw,
-> > +		[CLKID_RSA]			= &rsa.hw,
-> > +		[CLKID_CORESIGHT]		= &coresight.hw,
-> > +		[CLKID_AM2AXI_VAD]		= &am2axi_vad.hw,
-> > +		[CLKID_AUDIO_VAD]		= &audio_vad.hw,
-> > +		[CLKID_AXI_DMC]			= &axi_dmc.hw,
-> > +		[CLKID_AXI_PSRAM]		= &axi_psram.hw,
-> > +		[CLKID_RAMB]			= &ramb.hw,
-> > +		[CLKID_RAMA]			= &rama.hw,
-> > +		[CLKID_AXI_SPIFC]		= &axi_spifc.hw,
-> > +		[CLKID_AXI_NIC]			= &axi_nic.hw,
-> > +		[CLKID_AXI_DMA]			= &axi_dma.hw,
-> > +		[CLKID_CPU_CTRL]		= &cpu_ctrl.hw,
-> > +		[CLKID_ROM]			= &rom.hw,
-> > +		[CLKID_PROC_I2C]		= &prod_i2c.hw,
-> > +		[CLKID_DSPA_EN]			= &dspa_en.hw,
-> > +		[CLKID_DSPA_EN_NIC]		= &dspa_en_nic.hw,
-> > +		[CLKID_DSPB_EN]			= &dspb_en.hw,
-> > +		[CLKID_DSPB_EN_NIC]		= &dspb_en_nic.hw,
-> > +		[CLKID_RTC]			= &rtc.hw,
-> > +		[CLKID_CECA_32K]		= &ceca_32k_out.hw,
-> > +		[CLKID_CECB_32K]		= &cecb_32k_out.hw,
-> > +		[CLKID_24M]			= &clk_24m.hw,
-> > +		[CLKID_12M]			= &clk_12m.hw,
-> > +		[CLKID_FCLK_DIV2_DIVN]		= &fclk_div2_divn.hw,
-> > +		[CLKID_GEN]			= &gen.hw,
-> > +		[CLKID_SARADC]			= &saradc.hw,
-> > +		[CLKID_PWM_A]			= &pwm_a.hw,
-> > +		[CLKID_PWM_B]			= &pwm_b.hw,
-> > +		[CLKID_PWM_C]			= &pwm_c.hw,
-> > +		[CLKID_PWM_D]			= &pwm_d.hw,
-> > +		[CLKID_PWM_E]			= &pwm_e.hw,
-> > +		[CLKID_PWM_F]			= &pwm_f.hw,
-> > +		[CLKID_SPICC]			= &spicc.hw,
-> > +		[CLKID_TS]			= &ts.hw,
-> > +		[CLKID_SPIFC]			= &spifc.hw,
-> > +		[CLKID_USB_BUS]			= &usb_bus.hw,
-> > +		[CLKID_SD_EMMC]			= &sd_emmc.hw,
-> > +		[CLKID_PSRAM]			= &psram.hw,
-> > +		[CLKID_DMC]			= &dmc.hw,
-> > +		[CLKID_GEN_SEL]			= &gen_sel.hw,
-> > +		[CLKID_PWM_A_SEL]		= &pwm_a_sel.hw,
-> > +		[CLKID_PWM_B_SEL]		= &pwm_b_sel.hw,
-> > +		[CLKID_PWM_C_SEL]		= &pwm_c_sel.hw,
-> > +		[CLKID_PWM_D_SEL]		= &pwm_d_sel.hw,
-> > +		[CLKID_PWM_E_SEL]		= &pwm_e_sel.hw,
-> > +		[CLKID_PWM_F_SEL]		= &pwm_f_sel.hw,
-> > +		[CLKID_DSPA_A_SEL]		= &dspa_a_sel.hw,
-> > +		[CLKID_DSPA_B_SEL]		= &dspa_b_sel.hw,
-> > +		[CLKID_DSPB_A_SEL]		= &dspb_a_sel.hw,
-> > +		[CLKID_DSPB_B_SEL]		= &dspb_b_sel.hw,
-> > +		[CLKID_CECA_32K_SEL]		= &ceca_32k_sel.hw,
-> > +		[CLKID_CECA_32K_SEL_PRE]	= &ceca_32k_sel_pre.hw,
-> > +		[CLKID_CECB_32K_SEL]		= &cecb_32k_sel.hw,
-> > +		[CLKID_CECB_32K_SEL_PRE]	= &cecb_32k_sel_pre.hw,
-> > +
-> > +		/* Internal clocks */
-> 
-> There is no need to make such groups within the table.
-> I don't think such change was requested in the previous reviews.
-> 
-> Also grouping the IDs the way you did is a bad idea.
-> 
-> 1) Since the clocks are registered in the order of the table, this will
-> make a lot of orphans during the registration of the controller. It does
-> work but it is not ideal performance wise. Whenever possible, it is
-> better to register the clocks from the roots to the leafs.
-> 
-> 2) These 2 nice groups are going away the minute you add another clock which
-> was not part of the original submission. This is why IDs have no meaning,
-> no even groups.
-> 
-
-In my opinion, it would be clearer to have two separate lists for 'exposed'
-and 'internal' clocks. Krzysztof has previously mentioned that non-linear
-IDs in the bindings are not a good solution, but I understand the argument
-for improved performance. Therefore, I will change the ID order from root to
-leaf nodes.
-
-> > +		[CLKID_XTAL_IN]			= &xtal_in.hw,
-> > +		[CLKID_DSPA_SEL]		= &dspa_sel.hw,
-> > +		[CLKID_DSPB_SEL]		= &dspb_sel.hw,
-> > +		[CLKID_SARADC_SEL]		= &saradc_sel.hw,
-> > +		[CLKID_SYS_A_SEL]		= &sys_a_sel.hw,
-> > +		[CLKID_SYS_A_DIV]		= &sys_a_div.hw,
-> > +		[CLKID_SYS_A]			= &sys_a.hw,
-> > +		[CLKID_SYS_B_SEL]		= &sys_b_sel.hw,
-> > +		[CLKID_SYS_B_DIV]		= &sys_b_div.hw,
-> > +		[CLKID_SYS_B]			= &sys_b.hw,
-> > +		[CLKID_DSPA_A_DIV]		= &dspa_a_div.hw,
-> > +		[CLKID_DSPA_A]			= &dspa_a.hw,
-> > +		[CLKID_DSPA_B_DIV]		= &dspa_b_div.hw,
-> > +		[CLKID_DSPA_B]			= &dspa_b.hw,
-> > +		[CLKID_DSPB_A_DIV]		= &dspb_a_div.hw,
-> > +		[CLKID_DSPB_A]			= &dspb_a.hw,
-> > +		[CLKID_DSPB_B_DIV]		= &dspb_b_div.hw,
-> > +		[CLKID_DSPB_B]			= &dspb_b.hw,
-> > +		[CLKID_RTC_32K_IN]		= &rtc_32k_in.hw,
-> > +		[CLKID_RTC_32K_DIV]		= &rtc_32k_div.hw,
-> > +		[CLKID_RTC_32K_XTAL]		= &rtc_32k_xtal.hw,
-> > +		[CLKID_RTC_32K_SEL]		= &rtc_32k_sel.hw,
-> > +		[CLKID_CECB_32K_IN]		= &cecb_32k_in.hw,
-> > +		[CLKID_CECB_32K_DIV]		= &cecb_32k_div.hw,
-> > +		[CLKID_CECA_32K_IN]		= &ceca_32k_in.hw,
-> > +		[CLKID_CECA_32K_DIV]		= &ceca_32k_div.hw,
-> > +		[CLKID_DIV2_PRE]		= &fclk_div2_divn_pre.hw,
-> > +		[CLKID_24M_DIV2]		= &clk_24m_div2.hw,
-> > +		[CLKID_GEN_DIV]			= &gen_div.hw,
-> > +		[CLKID_SARADC_DIV]		= &saradc_div.hw,
-> > +		[CLKID_PWM_A_DIV]		= &pwm_a_div.hw,
-> > +		[CLKID_PWM_B_DIV]		= &pwm_b_div.hw,
-> > +		[CLKID_PWM_C_DIV]		= &pwm_c_div.hw,
-> > +		[CLKID_PWM_D_DIV]		= &pwm_d_div.hw,
-> > +		[CLKID_PWM_E_DIV]		= &pwm_e_div.hw,
-> > +		[CLKID_PWM_F_DIV]		= &pwm_f_div.hw,
-> > +		[CLKID_SPICC_SEL]		= &spicc_sel.hw,
-> > +		[CLKID_SPICC_DIV]		= &spicc_div.hw,
-> > +		[CLKID_SPICC_SEL2]		= &spicc_sel2.hw,
-> > +		[CLKID_TS_DIV]			= &ts_div.hw,
-> > +		[CLKID_SPIFC_SEL]		= &spifc_sel.hw,
-> > +		[CLKID_SPIFC_DIV]		= &spifc_div.hw,
-> > +		[CLKID_SPIFC_SEL2]		= &spifc_sel2.hw,
-> > +		[CLKID_USB_BUS_SEL]		= &usb_bus_sel.hw,
-> > +		[CLKID_USB_BUS_DIV]		= &usb_bus_div.hw,
-> > +		[CLKID_SD_EMMC_SEL]		= &sd_emmc_sel.hw,
-> > +		[CLKID_SD_EMMC_DIV]		= &sd_emmc_div.hw,
-> > +		[CLKID_SD_EMMC_SEL2]		= &sd_emmc_sel2.hw,
-> > +		[CLKID_PSRAM_SEL]		= &psram_sel.hw,
-> > +		[CLKID_PSRAM_DIV]		= &psram_div.hw,
-> > +		[CLKID_PSRAM_SEL2]		= &psram_sel2.hw,
-> > +		[CLKID_DMC_SEL]			= &dmc_sel.hw,
-> > +		[CLKID_DMC_DIV]			= &dmc_div.hw,
-> > +		[CLKID_DMC_SEL2]		= &dmc_sel2.hw,
-> > +
-> > +		[NR_CLKS]			= NULL,
-> > +	},
-> > +	.num = NR_CLKS,
-> > +};
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAwNS4wNC4yMyAxNToyOSwgUmljYXJkbyBDYcOxdWVsbyB3cm90ZToKPiBIaSBNYXJ0aW4s
+Cj4gCj4gT24gbHVuIDI3LTEyLTIwMjEgMTk6MDA6MjQsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3Jv
+dGU6Cj4+IFRoZSBkdC1iaW5kaW5ncyBmb3IgdGhlIFVBUlQgY29udHJvbGxlciBvbmx5IGFsbG93
+IHRoZSBmb2xsb3dpbmcgdmFsdWVzCj4+IGZvciBNZXNvbjYgU29DczoKPj4gLSAiYW1sb2dpYyxt
+ZXNvbjYtdWFydCIsICJhbWxvZ2ljLG1lc29uLWFvLXVhcnQiCj4+IC0gImFtbG9naWMsbWVzb242
+LXVhcnQiCj4+Cj4+IFVzZSB0aGUgY29ycmVjdCBmYWxsYmFjayBjb21wYXRpYmxlIHN0cmluZyAi
+YW1sb2dpYyxtZXNvbi1hby11YXJ0IiBmb3IKPj4gQU8gVUFSVC4gRHJvcCB0aGUgImFtbG9naWMs
+bWVzb24tdWFydCIgY29tcGF0aWJsZSBzdHJpbmcgZnJvbSB0aGUgRUUKPj4gZG9tYWluIFVBUlQg
+Y29udHJvbGxlcnMuCj4gCj4gS2VybmVsQ0kgZGV0ZWN0ZWQgdGhhdCB0aGlzIHBhdGNoIGludHJv
+ZHVjZWQgYSByZWdyZXNzaW9uIGluCj4gc3RhYmxlLXJjL2xpbnV4LTQuMTQueSBvbiBhIG1lc29u
+OGItb2Ryb2lkYzEuCj4gQWZ0ZXIgdGhpcyBwYXRjaCB3YXMgYXBwbGllZCB0aGUgdGVzdHMgcnVu
+bmluZyBvbiB0aGlzIHBsYXRmb3JtIGRvbid0Cj4gc2hvdyBhbnkgc2VyaWFsIG91dHB1dC4KPiAK
+PiBUaGlzIGRvZXNuJ3QgaGFwcGVuIGluIG90aGVyIHN0YWJsZSBicmFuY2hlcyBub3IgaW4gbWFp
+bmxpbmUsIGJ1dCA0LjE0Cj4gaGFzbid0IHN0aWxsIHJlYWNoZWQgRU9MIGFuZCBpdCdkIGJlIGdv
+b2QgdG8gZmluZCBhIGZpeC4KPiAKPiBIZXJlJ3MgdGhlIGJpc2VjdGlvbiByZXBvcnQ6Cj4gaHR0
+cHM6Ly9ncm91cHMuaW8vZy9rZXJuZWxjaS1yZXN1bHRzL21lc3NhZ2UvNDAxNDcKPiAKPiBLZXJu
+ZWxDSSBpbmZvOgo+IGh0dHBzOi8vbGludXgua2VybmVsY2kub3JnL3Rlc3QvY2FzZS9pZC82NDIz
+NGY3NzYxMDIxYTMwYjI2MmY3NzYvCgpXYWl0LCB3aGF0PyBBIHBhdGNoICg1MjI1ZTFiODc0MzIg
+KCJBUk06IGR0czogbWVzb246IEZpeCB0aGUgVUFSVApjb21wYXRpYmxlIHN0cmluZ3MiKSkgdGhh
+dCB3YXMgbWVyZ2VkIGZvciB2NS4xNy1yYzQgYW5kIGlzIG5vdCBpbiB0aGUKbGlzdCBvZiBwYXRj
+aGVzIHRoYXQgd2VyZSBpbiA0LjE0LjMxMi1yYzEKKGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDIzMDQwMzE0MDM1MS42MzY0NzE4NjdAbGludXhmb3VuZGF0aW9uLm9yZy8KKSBpcyBtZWFu
+dCB0byBzdWRkZW5seSBjYXVzZSB0aGlzPyBIb3cgaXMgdGhpcyBwb3NzaWJsZT8gQW0gSSB0b3Rh
+bGx5IG9uCnRoZSB3cm9uZyB0cmFjayBoZXJlIGFuZCBtaXN1bmRlcnN0YW5kaW5nIHNvbWV0aGlu
+Zywgb3IgaXMgdGhpcyBhCmJpc2VjdGlvbiB0aGF0IHdlbnQgaG9ycmlibHkgc2lkZXdheXM/CgpD
+aWFvLCBUaG9yc3RlbgoKPiBUZXN0IGxvZzoKPiBodHRwczovL3N0b3JhZ2Uua2VybmVsY2kub3Jn
+L3N0YWJsZS1yYy9saW51eC00LjE0LnkvdjQuMTQuMzExLTQzLWc4OGU0ODFkNjA0ZTkvYXJtL211
+bHRpX3Y3X2RlZmNvbmZpZy9nY2MtMTAvbGFiLWJheWxpYnJlL2Jhc2VsaW5lLW1lc29uOGItb2Ry
+b2lkYzEuaHRtbAo+IAo+IFRoYW5rcywKPiBSaWNhcmRvCj4gCj4gI3JlZ3pib3QgaW50cm9kdWNl
+ZDogNTIyNWUxYjg3NDMyZGNmMGQwZmMzNDQwODI0YjkxZDA0YzFkNmNjMQo+ICNyZWd6Ym90IHRp
+dGxlOiBubyBzZXJpYWwgb3V0cHV0IGluIEtlcm5lbENJIHRlc3RzIG9uIG1lc29uOGItb2Ryb2lk
+YzEKPiBmb3Igc3RhYmxlLTQuMTQKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IGxpbnV4LWFybS1rZXJuZWwgbWFpbGluZyBsaXN0Cj4gbGludXgt
+YXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnCj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
