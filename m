@@ -4,83 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2236C76188
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Apr 2023 21:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD7DEC6FD1D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Apr 2023 02:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A/6b/sSDtijtKSZ2NnSIsshMNwmY5JdL0DWkafDNcsg=; b=W6PaC6EhWaYIu7
-	soF74LZBh5z+yWfT3YgOdP/wg0/mqWB1QT99oBiPF3h3U/BwPBfmvhzp/LIeOlPAWOPQ0F8uf2gVm
-	422iCC2vVx3ltkyhgY87JBBHb2DqJsNgb3x6ZbtVW9/3xOECmdKS20ou54SGzEq7X9XAUdm02btYd
-	GBGoi3LTm2cdhlhyVI07JHtKovxTXtYWP5w+QLne6O8EGozf36xWVsBCmqyGSSeksC2Fd4cLdqRDR
-	JOK6o1uUnmCLFdmU0yf2uJ6NPI2sOWC/o2dOuMS9KGIMVyEFEl7lXhBewclNwRrWMLBjDwPaB1dHv
-	/6HGAP9SvmRiHKastsKA==;
+	List-Owner; bh=EcI95mShMIopV4NdhiHsbzZlYjOrJczeaXK5ntDj6lM=; b=qqmfLNoeWYdMfy
+	ekja0JdHasSBaidTYxjcc9Dl6JWJJaOXNEB4rVh9dI8gP/S3Vpe80Xrp96cjrlq3ANbTwP9ug1QV2
+	uvW/tQWG7bARmVTSAdmkQWWpK3bq4r2TarBldhOp5AXMbdcCkw7usquJJPT2TpuErvLbY0wyMEw2s
+	Nm6R549OG9X9T0jVAvI5YVXQEjYjoKC57ZKb67mbWx0K5zLqml2BximqvT/i9v/jcFPjlvLAjraqM
+	FEv19hNvkp9eHVOm5CwHbWW6ansM9IG44I7VLk/wDKU636rZOU0WsduIWfnQWj1mYwMq4rmzTK1bM
+	eacWGv6aKzuNjs0lZYQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjo4y-002tAG-0H;
-	Tue, 04 Apr 2023 21:20:36 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1pjsRk-0038YQ-1V;
+	Wed, 05 Apr 2023 02:00:24 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjo4v-002t9V-0Y;
-	Tue, 04 Apr 2023 21:20:34 +0000
-Received: by mail-ed1-x534.google.com with SMTP id t10so135932706edd.12;
-        Tue, 04 Apr 2023 14:20:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1680643230;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q5+FAUacxS+s9wS9+WZNPmawepdrV15aiNOEp44JCVM=;
-        b=La2q1cdEt1u8ad1MBI9z/YWXhjb1ddmFhaPLuOFZUYuelVrfE8HIhxNPyvFClV0P7g
-         svtJ9lEKx+c3VSuhd0Oz8p5I/gXLjPr7+DglxX6aD7V5k0vz++j4xeNMqMgquRg3AEv3
-         4y4BFu26N3/RiY4pKwASDwLAlCj7SrYCR+5KaJHbmQQzEQUeT2zoiOUeE0TkZcOSvoLC
-         Z38gr3u/CJgZr4/T46A4/jqp+5gxiDeMV+GgKpmdtndU+NCKQVBh1OgsPzu2NOAn8FYW
-         Bej2iZ9mMb+l4XonfKUVNMU/JWDiqiU4JrOABkvWWYqw8U+GKBEdUHA0SZjHpeTvE4Kn
-         ffXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680643230;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q5+FAUacxS+s9wS9+WZNPmawepdrV15aiNOEp44JCVM=;
-        b=525ggfBrInwR+6KEkPYFe5hd/ljRyUSY4rRU/Rqgbf3ujSswNnsxnGImYu4IXBOIyD
-         H4qFKoDl8B8lQCGEQoBsgSc1DKruHVkRnGVeTzRfe/0W5n20aV7y3ddUneD92BAxGimd
-         +jDBKvch8Pf8Lx2+LvQ484ceXK6cU3P1ddC5SkQeYHc3vPRbyPXnMT5vO7TpI2TQMujd
-         tFU+3jR6heU5NBareGf7xw/HbAw0L+MIZdZaie7Vwg362xDuIxA7EL8l/pKvmMfrcojM
-         LAzQ27rydr3El1CRecRWBkY2PBBomy1/pz0vSUl9PoaDqN2lCAIQ2uXQbPEiVm8z9cWM
-         w6qA==
-X-Gm-Message-State: AAQBX9dI6YHuwOmGFb33CEqKmnkG9erRS2umqgzq4yBs8pxQ4F5ULg5I
-	9iAxzjKvmWdoo7Sbcz55YQSPM5e+08jwOFWCfUI=
-X-Google-Smtp-Source: AKy350YQ8eox73r1Pc5Z61GA80cewysG9JVXMIiHYkLb+7yCzu/Auu3EHBU62rmW7kSappwZiTuB5zbuMVnl6rg80/s=
-X-Received: by 2002:a17:907:c80b:b0:8f5:2e0e:6def with SMTP id
- ub11-20020a170907c80b00b008f52e0e6defmr565741ejc.0.1680643230540; Tue, 04 Apr
- 2023 14:20:30 -0700 (PDT)
+	id 1pjsRh-0038Y0-36;
+	Wed, 05 Apr 2023 02:00:23 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B6E9663AE8;
+	Wed,  5 Apr 2023 02:00:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 926A1C433AC;
+	Wed,  5 Apr 2023 02:00:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1680660019;
+	bh=RK9bt7Z5bMks1Ua7ZnIYZG6hlsr1VoZDBPGx7qNfVO8=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=usX8yZddPiDACzpGQuAt74Zpa2bO10kZk+Ix9cdcnt+QVXVocQG8fu34Qg+b/M3Dv
+	 Irj35zXk78Jm7Ne7D/oOv31wVpfBF7mtfTOMi6wDMgBQkz2WHXFi34m8vIiFRitsBp
+	 gdE9g7QRtwUrKiDNYMRj4W52uNnQR+TbDoT4GCpJ9t3VsZRUVOxQdT+rJhWUwDwUwL
+	 zNzSamTwDxvG5nx1pfy5WAsPlwHOd6XTdNrfRYpKIMZe1aK0fgzU+kG8hihbNrxm4T
+	 mx0jmTqCCrJtZCIqsuT+oWHxvLxUcuyS6gLfz9Or6AqANdNYo+eOk4rWExII33mjN0
+	 Mc3yEeI8Eu6tA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6F883E524E4;
+	Wed,  5 Apr 2023 02:00:19 +0000 (UTC)
 MIME-Version: 1.0
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch> <20230404201842.567344-3-daniel.vetter@ffwll.ch>
-In-Reply-To: <20230404201842.567344-3-daniel.vetter@ffwll.ch>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 4 Apr 2023 23:20:19 +0200
-Message-ID: <CAFBinCCQ+DRZ-T8rBO=fpP8s47X11iM4oZ5=LEjp_HqjAFSivg@mail.gmail.com>
-Subject: Re: [PATCH 3/8] drm/aperture: Remove primary argument
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>, 
-	Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Javier Martinez Canillas <javierm@redhat.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Deepak Rawat <drawat.floss@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Emma Anholt <emma@anholt.net>, Helge Deller <deller@gmx.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, linux-hyperv@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-tegra@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH net-next] net: phy: meson-gxl: enable edpd tunable support for
+ G12A internal PHY
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id:  <168066001945.10193.5507736918462128877.git-patchwork-notify@kernel.org>
+Date: Wed, 05 Apr 2023 02:00:19 +0000
+References: <8d309575-067c-7321-33cf-6ffac11f7c8d@gmail.com>
+In-Reply-To: <8d309575-067c-7321-33cf-6ffac11f7c8d@gmail.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: kuba@kernel.org, davem@davemloft.net, pabeni@redhat.com,
+ edumazet@google.com, andrew@lunn.ch, linux@armlinux.org.uk,
+ martin.blumenstingl@googlemail.com, khilman@baylibre.com,
+ jbrunet@baylibre.com, neil.armstrong@linaro.org, cphealy@gmail.com,
+ netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230404_142033_211895_D96A8678 
-X-CRM114-Status: UNSURE (   9.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230404_190022_042343_3C5ED7AE 
+X-CRM114-Status: GOOD (  10.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,20 +75,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBcHIgNCwgMjAyMyBhdCAxMDoxOOKAr1BNIERhbmllbCBWZXR0ZXIgPGRhbmllbC52
-ZXR0ZXJAZmZ3bGwuY2g+IHdyb3RlOgo+Cj4gT25seSByZWFsbHkgcGNpIGRldmljZXMgaGF2ZSBh
-IGJ1c2luZXNzIHNldHRpbmcgdGhpcyAtIGl0J3MgZm9yCj4gZmlndXJpbmcgb3V0IHdoZXRoZXIg
-dGhlIGxlZ2FjeSB2Z2Egc3R1ZmYgc2hvdWxkIGJlIG51a2VkIHRvby4gQW5kCj4gd2l0aCB0aGUg
-cHJlY2VlZGluZyB0d28gcGF0Y2hlcyB0aG9zZSBhcmUgYWxsIHVzaW5nIHRoZSBwY2kgdmVyc2lv
-biBvZgpJIHRoaW5rIGl0J3Mgc3BlbGxlZCAicHJlY2VkaW5nIgoKWy4uLl0KPiAgZHJpdmVycy9n
-cHUvZHJtL21lc29uL21lc29uX2Rydi5jICAgICAgICAgICB8ICAyICstCmZvciB0aGUgbWVzb24g
-ZHJpdmVyOgpBY2tlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5n
-bEBnb29nbGVtYWlsLmNvbT4KCgpUaGFuayB5b3UgYW5kIGJlc3QgcmVnYXJkcywKTWFydGluCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hello:
+
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 3 Apr 2023 21:35:46 +0200 you wrote:
+> Enable EDPD PHY tunable support for the G12A internal PHY, reusing the
+> recently added tunable support in the smsc driver.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/net/phy/meson-gxl.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+
+Here is the summary with links:
+  - [net-next] net: phy: meson-gxl: enable edpd tunable support for G12A internal PHY
+    https://git.kernel.org/netdev/net-next/c/992e76908e92
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
