@@ -4,87 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9BCBC7618D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Apr 2023 13:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D757C76196
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Apr 2023 15:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+lwD3w9zs1Pge5NAmVG/tQk9glkti3IlzKNTNB+hlnE=; b=SAlKJB7hPnySnt
-	adEJ62j69ojG0oq0oaUzp48oUbhU+YN83ucLqmBJHNfHCQfiJM112BWP7n0UwMdCu1Clu2agK4F2J
-	ZRF1EMFBtVFMGUz3xDd+eA+IV/iYbWewIhPgMa9FSsOa4S4JujmCpwoNTM236KWVY6W187x2uWyr2
-	2VsCiwdpipLogqDOFY41fyNPxjKE4eZJcSzMWDFPSyx73iw008PXz13e31+sIWK19K7MDcBItAnAu
-	p2yvTfOGd+CqC32S0fMqdIQOTv9YxJoqj6HO6EU/tfKUaBNAhQxW3/CDQYCmdkAm9SCa+D7xeunx0
-	ODok1y8DlUuhmlnc6Hqw==;
+	List-Owner; bh=GIGLry+hn8l4vgniZRpywo5vCRSdyj29DJ6H0w8gPRU=; b=v7IathynRqM8eo
+	ozPeBgnNhi6m9iQ0WdgPnuWIanaZkvagEAO/mA5kq20JjtThnjfLBEAr7YzSl1NTuhn46YgpO+cMx
+	DFlhGJFZ3Z2R8BPDlnFb5BcFvVdXvXsefzubWoajDBuEzUCqqdSBZ6QCyisYdBpR0nY6d7aDrjT45
+	lLE7Vlc0Fs7g7SBpfQ4TlFx55pGek7qBJNexegj3thwHsWe/eApZs9VCmeE8bAdK/r3AR/oq06JNB
+	7LADys7DdH/1B3mxhw1Fvcc9zsueWuoaL/5d8kAZqhsxyfgI/JpqAInQ5DixL1arB8XTXsu38iHEA
+	YNy36kEUFjiEDUGLLQ1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkPwF-007RuY-2I;
-	Thu, 06 Apr 2023 13:46:07 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1pkRKD-007lzW-03;
+	Thu, 06 Apr 2023 15:14:57 +0000
+Received: from mail-wm1-f42.google.com ([209.85.128.42])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkPwC-007Rse-2P;
-	Thu, 06 Apr 2023 13:46:06 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9338d479a21so128721166b.1;
-        Thu, 06 Apr 2023 06:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680788760;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
-        b=lKMqG7lIc47IvaYySaSBUJFH/hA+mln853cL8/jfrpRJEPRmwW4vpmxSTWBVyKIk18
-         HReWO6yNVMsO8DPtbjjD0PjwHr5xKWAv3p0ciM7B1PSuvZbhJ80gT48ce5t2ve6posfM
-         8hp9pp1wToANmgTh5LIwI6suCjGhAZbFfn8TETLcUpXPnseDFgkUzhl2RG+z5kgEBaJN
-         rYnoAs3keLhepHWdqGD5Y50Sbv1R799at6hBKuSNACGwxqiHVOqc+tHpL4fsRIqm5Kfr
-         SkD8e1NgX2/yzMkqHX4+EKa+0c6DEK/HBMIXvny7nkWaOrMZA/ROssHZBeHAIhooC9aZ
-         kOpQ==
+	id 1pkRKA-007lwv-0Y;
+	Thu, 06 Apr 2023 15:14:55 +0000
+Received: by mail-wm1-f42.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso25722723wms.1;
+        Thu, 06 Apr 2023 08:14:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680788760;
+        d=1e100.net; s=20210112; t=1680794086; x=1683386086;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PkHFpCD/XQeLxofMjQT3jwfPpJhgnEHgCex2rD4ksk8=;
-        b=eums/+kmLYDFGACFGljNwoqK04K/oeZu3afoIE0820fg1/Hqaa7blddyZjFbStyvoH
-         f9AYw0svIdVN1BqV1xEn3oDzzj2PGepttLZJxLe5BqfGvDntVYZqn2muVQWybRm6kTmA
-         3jbO3n3hg01U7F1PAM8h+TviZIMnKh7VZOeiGL6dfVwJi3ig+8AQN//8aLwGu0JJFdu5
-         FR2HIGuvoKWQYwf2TwYsWqCvPtEbQQ3s+GK6vo/C70oDJnymJE2kk8755KRelIGTQmJk
-         w7jrDFh476+bjTC7gtnym0FX4LK42XwitEEIOHlAW+ZKqmCBdcN96QXTDPpn/ckUiYMv
-         PD+A==
-X-Gm-Message-State: AAQBX9cflKrz2YyfMqPj1pd9iy0krvIVU4pXzoQPLoenbwaF4nH28uVf
-	CEftcstxN7d9+CoiV33qn9s=
-X-Google-Smtp-Source: AKy350ZFYf29eCxG6wCnL3JIuIp+ieQKorpdGdk2B232Ai9lNGOwLmUA+hdGHUvuhBjF8/BVi+o5Yw==
-X-Received: by 2002:a05:6402:1804:b0:502:6726:89c3 with SMTP id g4-20020a056402180400b00502672689c3mr5410333edy.23.1680788760431;
-        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k6-20020a50cb86000000b00501d73cfc86sm773352edi.9.2023.04.06.06.45.59
+        bh=VKATmeJF+Xd6RfEgdIKd/kdycc50pAq48rMDI6zu3z4=;
+        b=49URMzK7zp9+rqDqOF2Aei/pUyMS5XfIdsbvq8/N8O2MzTlDjWhwHtx9H+XrVMVVvI
+         rJLeBnZJ/P+M+IblisObl3mEF2QmNTqIDsYAaEeJlGR/H4V1WKcJpU49RgUU3curxuCN
+         6wgnhYbfh8lqPDlpc4TP5d1jNVCdWy+i8T90Pvs/eytYso+3QQF9GXpnb69UMWSyZWaA
+         zQvroVuyIS3a1X+zkq8WQCLzk/zvw5VYVA6H3FeADvQ4QhiBvvGzD4ZHpZIm4ti6+dT0
+         i2XgX8tADBsiouu03TQkkBW6qKaepvL1ttmkgxitMNBqA78T+50YMCydr+pNs+mHMj+v
+         9uNQ==
+X-Gm-Message-State: AAQBX9fZYO6vn9WNNNqEqPnrYXifSXfEvr03qmTqJDk77bBxvApDQyLk
+	04d0femVov8msC7WwlOW2Vo=
+X-Google-Smtp-Source: AKy350YOU24o0+DjVUVccG/oqlcWRmAeru9w+HwMxOWGCplLCkcR3X6veQF5xP1/2B5vxx8vQzUciA==
+X-Received: by 2002:a7b:c850:0:b0:3ef:6ea4:a675 with SMTP id c16-20020a7bc850000000b003ef6ea4a675mr7787556wml.36.1680794086552;
+        Thu, 06 Apr 2023 08:14:46 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id fj12-20020a05600c0c8c00b003ef67848a21sm5560213wmb.13.2023.04.06.08.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 06:46:00 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	devicetree@vger.kernel.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND v4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-Date: Thu,  6 Apr 2023 15:45:59 +0200
-Message-Id: <168078873512.1715717.5725405826072466849.b4-ty@gmail.com>
+        Thu, 06 Apr 2023 08:14:46 -0700 (PDT)
+From: Lucas Tanure <tanure@linux.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org,
+	jbrunet@baylibre.com,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	martin.blumenstingl@googlemail.com,
+	narmstrong@baylibre.com,
+	stefan@agner.ch,
+	Lucas Tanure <tanure@linux.com>
+Subject: [PATCH 2/2] of: fdt: Allow the kernel to mark nomap regions received from fdt
+Date: Thu,  6 Apr 2023 16:14:29 +0100
+Message-Id: <20230406151429.524591-3-tanure@linux.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
-References: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
+In-Reply-To: <20230406151429.524591-1-tanure@linux.com>
+References: <20230406151429.524591-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230406_064604_788087_53CEDCD9 
-X-CRM114-Status: UNSURE (   6.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230406_081454_209573_3B01D921 
+X-CRM114-Status: GOOD (  16.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,19 +90,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 20 Feb 2023 22:19:30 +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson PWM binding to yaml.
-> 
-> 
+Reserved regions can be described in FDT and device trees, but FDT doesn't
+provide the related flags, like nomap.
+So allow the kernel to mark regions where the base and size received from
+the device tree are the same as the base and region on FDT.
+Here we trust that the device tree has a more updated description of the
+region than the one received from FDT.
 
-Applied, thanks!
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ drivers/of/fdt.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-[1/1] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-      commit: 43a1c4ff3977f0ccd1d99e36d74e525aced5bb3a
-
-Best regards,
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index d1a68b6d03b3..754a7ea4f45c 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -482,11 +482,13 @@ static int __init early_init_dt_reserve_memory(phys_addr_t base,
+ 	if (nomap) {
+ 		/*
+ 		 * If the memory is already reserved (by another region), we
+-		 * should not allow it to be marked nomap, but don't worry
+-		 * if the region isn't memory as it won't be mapped.
++		 * should not allow it to be marked nomap, unless is the exact same region
++		 * (same base and size), which the kernel knows better and should be allowed to mark
++		 *  it as nomap.
++		 * But don't worry if the region isn't memory as it won't be mapped.
+ 		 */
+-		if (memblock_overlaps_region(&memblock.memory, base, size) &&
+-		    memblock_is_region_reserved(base, size))
++		if (memblock_overlaps_region(&memblock.memory, base, size) == MEMBLOCK_OVERLAPS &&
++		    memblock_is_region_reserved(base, size) == MEMBLOCK_OVERLAPS)
+ 			return -EBUSY;
+ 
+ 		return memblock_mark_nomap(base, size);
 -- 
-Thierry Reding <thierry.reding@gmail.com>
+2.40.0
+
 
 _______________________________________________
 linux-amlogic mailing list
