@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D69C7618D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BFE7C77B70
 	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Apr 2023 15:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lQcCidl6xv+YoefpGQiIJ7dufvw+0eex7J9pthaQMd0=; b=GSiiqcSmQtgUdC
-	GaQ+BKdEZ/wXgj/GqJwYvxHcqZQdZNXffmQ82ltRJJnsVXU26cbDK/YY4ti8rM+9oCTG4v3hvcIWb
-	UcQ156UbS57xf3Au1LKOT46UeX+JKIUYjWm0B/4G/0Ww595pMkRwQutMgbJly63fXTTxV/3XRCJx0
-	rCa53d6GQ6TZwdRvTovx89B7MzulZ/7YJzXlMRvlS0jqMaBrvVZgzBkpE+EQewuI/rFZAETlU+XsI
-	edIlbqbMM7aE2LElXB5jPLPaWG5HYaWdOIZMUWxBe9IwdnLWAoW0V3H62xEQ2mxkUTu3UzQFlxe8t
-	NfYJSV4pYKQSWOpbXOKg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zB38JeA0Qr5XHwdqm68iTh+u4Q5kO7MUlU0OxtWFbB4=; b=JBiBupBoC6mLAm
+	RAmAEJF/pOFvmQpDsv52rhZGCFULT1QyKa6RbaMN/F6lYzmlMQGhR06UOJ57AF8dxzYPo0FTJ7v36
+	YfhlApwxi6N34yI+VWDi4yIrTyrnODGaRzIBJTulGJ6fuQCABkDQD4HGF1UR2ygUirXUjvHfk4WR3
+	qZ+gK2K3ZY/POFPpz/SGiWslW1cCCx+DW2bsj2Cbgo6RwPgYxhkbpzllXUK9Dv69LrtsqphXk6S6G
+	pdpR+zifIaztKfs+G0fiWnCcPFeZg7r1RBWc+pPNdFfM15tdYiU84eGCOmcIukcqgh8DvjRf6P85u
+	/048zn4Udd2ii7e3BqAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkRKE-007m0V-2Z;
+	id 1pkRKE-007m0C-1L;
 	Thu, 06 Apr 2023 15:14:58 +0000
 Received: from mail-wm1-f44.google.com ([209.85.128.44])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkRKA-007lwr-0u;
+	id 1pkRKA-007lwn-0Z;
 	Thu, 06 Apr 2023 15:14:56 +0000
-Received: by mail-wm1-f44.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so25390590wmq.2;
-        Thu, 06 Apr 2023 08:14:46 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so25390566wmq.2;
+        Thu, 06 Apr 2023 08:14:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680794086; x=1683386086;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KTGfYrqfzS07zpfH0JC+lthwHQN3E94OuA9UZu3JUac=;
-        b=NwKQEeohXLc1GP7ovyTzEjPtnnps2+dhM9TjeZxDWI8Rv4Vdd24/jFuo5t72kogXOI
-         +yZCP73fSswO8RqqAXhLjAYVMJ7O1vCnSDGrf9bO0CZyiPdqRxF5t1xdhuxP9EitNkYM
-         Q8cO9yMpLK2Evux3lWcWQZJzNn+qdAcuV0hmvJUXsLoA7+EWGsW5bZ9jKeyr5MGnEXyF
-         VhNkC8j4GbTVFLI+1nwqkiaUv2IRGymuIJKX1yZq1ss9XppGmsGw58CcLIZiM2WsOugM
-         sm3s2kUkMc4lmJOLdXD7u0a+4hqKocjq4vFXDawXWH2j3DvagEO1SNzTZNfd2sjx2aiX
-         UH9g==
-X-Gm-Message-State: AAQBX9fxfifl3N//oxGpkQnPeZsSel4kB/vFu8hMd0b77tCS4NwlMTdg
-	Dy9ph0rjrFilf3ECxUbgXxM=
-X-Google-Smtp-Source: AKy350bioooJgfp2IytRIDWd0TtyTY5KBmKx4pJ+VtEwGO+IsLJWXioFGYateblkCLF62e/3sqxzDw==
-X-Received: by 2002:a7b:c38a:0:b0:3ed:e715:1784 with SMTP id s10-20020a7bc38a000000b003ede7151784mr8689914wmj.15.1680794085640;
-        Thu, 06 Apr 2023 08:14:45 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680794084; x=1683386084;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MH9oWkxfP8GAyXFIF9/QFL+IZc89otUoWrSEvAQa11k=;
+        b=AZV6q/Lj9IufbTuOi0qaX70otxs3oEGXR4w1n4T2jDmSJCY9odZ//6+hCUiLSSRo8V
+         nqwxJ2KnGkSBcPwcSm5ySzr0lI7MIYxoq7sVswQ3N/y9fEuu89Z4sfrIzBAxFVcF9ril
+         5lmOgzkczj3gC85HHaq+JttZyNq2Wc4E+YJpiK3Qy9eMhYJYQZ78bqiQXHZKLtEAw3ql
+         sbjulVDJOpp5SdFRo79faLAgznY2sWzseVopEQJS7J1JdcO1FbhVRXPmEqe9PE0Lr1Ne
+         plxfGScBAA/RgwtoHvQ51Bgj9YxmToRmuwJRd0eGs015XrCO0V4amv9mMZ1e9LoQR5/4
+         4n6A==
+X-Gm-Message-State: AAQBX9dgiriQb2GnFVZnx8bgGUZZhzdRTp5Dg1QsOJ9uQwpJFZUQBbGq
+	oNn45XGE8daFNvqj82A6GTw=
+X-Google-Smtp-Source: AKy350YgRUPGytR5NW4IoBgt4yI4NZ227JtpkW/Y7mwBewRsPkwEuCA7waIjVK/gM2Q+9su0MqWk+A==
+X-Received: by 2002:a05:600c:24c:b0:3eb:2da4:f304 with SMTP id 12-20020a05600c024c00b003eb2da4f304mr7209338wmj.17.1680794084541;
+        Thu, 06 Apr 2023 08:14:44 -0700 (PDT)
 Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id fj12-20020a05600c0c8c00b003ef67848a21sm5560213wmb.13.2023.04.06.08.14.44
+        by smtp.gmail.com with ESMTPSA id fj12-20020a05600c0c8c00b003ef67848a21sm5560213wmb.13.2023.04.06.08.14.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Apr 2023 08:14:45 -0700 (PDT)
+        Thu, 06 Apr 2023 08:14:44 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Frank Rowand <frowand.list@gmail.com>,
@@ -64,16 +64,14 @@ Cc: devicetree@vger.kernel.org,
 	narmstrong@baylibre.com,
 	stefan@agner.ch,
 	Lucas Tanure <tanure@linux.com>
-Subject: [PATCH 1/2] memblock: Differentiate regions overlap from both regions being the same
-Date: Thu,  6 Apr 2023 16:14:28 +0100
-Message-Id: <20230406151429.524591-2-tanure@linux.com>
+Subject: [PATCH 0/2] Fix Random Kernel panic from when fail to reserve memory
+Date: Thu,  6 Apr 2023 16:14:27 +0100
+Message-Id: <20230406151429.524591-1-tanure@linux.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230406151429.524591-1-tanure@linux.com>
-References: <20230406151429.524591-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230406_081454_319802_EEBB34AF 
-X-CRM114-Status: GOOD (  17.45  )
+X-CRM114-CacheID: sfid-20230406_081454_215721_FF2C91C3 
+X-CRM114-Status: GOOD (  12.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,122 +88,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for memblock_addrs_overlap to return a different value when
-both regions are exactly the same region, where base and size are equal
-between the regions.
+I am trying to fix an issue where the kernel panics randomly on my Vim3 board.
+The issue happens when the ARM Trusted Firmware memory is not removed from the
+available ram.
 
-Signed-off-by: Lucas Tanure <tanure@linux.com>
----
+This happens because my u-boot provides this region as a /memreserve/, but it
+doesn't flag it as nomap. And the kernel can't map as nomap as the region is
+already reserved.
+My proposal here is to allow the kernel to mark as nomap if the region from
+the device tree and FDT have the same base and size.
+
+arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:
+	/* 3 MiB reserved for ARM Trusted Firmware (BL31) */
+	secmon_reserved: secmon@5000000 {
+		reg = <0x0 0x05000000 0x0 0x300000>;
+		no-map;
+	};
+
+Previos Threads:
+#regzbot link: https://lore.kernel.org/linux-arm-kernel/40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch/#regzbot
+#regzbot link: https://lore.kernel.org/all/CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com/
+
+Lucas Tanure (2):
+  memblock: Differentiate regions overlap from both regions being the
+    same
+  of: fdt: Allow the kernel to mark nomap regions received from fdt
+
+ drivers/of/fdt.c         | 10 ++++++----
  include/linux/memblock.h | 18 +++++++++++++++---
  mm/memblock.c            | 37 ++++++++++++++++++++++++-------------
- 2 files changed, 39 insertions(+), 16 deletions(-)
+ 3 files changed, 45 insertions(+), 20 deletions(-)
 
-diff --git a/include/linux/memblock.h b/include/linux/memblock.h
-index 50ad19662a32..c7ba8b01a637 100644
---- a/include/linux/memblock.h
-+++ b/include/linux/memblock.h
-@@ -49,6 +49,18 @@ enum memblock_flags {
- 	MEMBLOCK_DRIVER_MANAGED = 0x8,	/* always detected via a driver */
- };
- 
-+/**
-+ * enum memblock_overlap_type - result of comparison between two memory regions
-+ * @MEMBLOCK_NO_OVERLAPS: there is no overlap between the two regions
-+ * @MEMBLOCK_OVERLAPS: the two regions overlap each other, but are not the same
-+ * @MEMBLOCK_EQUAL: both bases and sizes are equal, so the two regions are exactly the same
-+ */
-+enum memblock_overlap_type {
-+	MEMBLOCK_NO_OVERLAPS,
-+	MEMBLOCK_OVERLAPS,
-+	MEMBLOCK_EQUAL,
-+};
-+
- /**
-  * struct memblock_region - represents a memory region
-  * @base: base address of the region
-@@ -118,8 +130,8 @@ int memblock_reserve(phys_addr_t base, phys_addr_t size);
- int memblock_physmem_add(phys_addr_t base, phys_addr_t size);
- #endif
- void memblock_trim_memory(phys_addr_t align);
--bool memblock_overlaps_region(struct memblock_type *type,
--			      phys_addr_t base, phys_addr_t size);
-+unsigned int memblock_overlaps_region(struct memblock_type *type,
-+				      phys_addr_t base, phys_addr_t size);
- int memblock_mark_hotplug(phys_addr_t base, phys_addr_t size);
- int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
- int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
-@@ -486,7 +498,7 @@ bool memblock_is_memory(phys_addr_t addr);
- bool memblock_is_map_memory(phys_addr_t addr);
- bool memblock_is_region_memory(phys_addr_t base, phys_addr_t size);
- bool memblock_is_reserved(phys_addr_t addr);
--bool memblock_is_region_reserved(phys_addr_t base, phys_addr_t size);
-+unsigned int memblock_is_region_reserved(phys_addr_t base, phys_addr_t size);
- 
- void memblock_dump_all(void);
- 
-diff --git a/mm/memblock.c b/mm/memblock.c
-index 25fd0626a9e7..948cc1bc3edf 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -175,24 +175,33 @@ static inline phys_addr_t memblock_cap_size(phys_addr_t base, phys_addr_t *size)
- /*
-  * Address comparison utilities
-  */
--static unsigned long __init_memblock memblock_addrs_overlap(phys_addr_t base1, phys_addr_t size1,
--				       phys_addr_t base2, phys_addr_t size2)
-+static unsigned int __init_memblock memblock_addrs_overlap(phys_addr_t base1, phys_addr_t size1,
-+							   phys_addr_t base2, phys_addr_t size2)
- {
--	return ((base1 < (base2 + size2)) && (base2 < (base1 + size1)));
-+	if (base1 == base2 && size1 == size2)
-+		return MEMBLOCK_EQUAL;
-+
-+	if ((base1 < (base2 + size2)) && (base2 < (base1 + size1)))
-+		return MEMBLOCK_OVERLAPS;
-+
-+	return MEMBLOCK_NO_OVERLAPS;
- }
- 
--bool __init_memblock memblock_overlaps_region(struct memblock_type *type,
--					phys_addr_t base, phys_addr_t size)
-+unsigned int __init_memblock memblock_overlaps_region(struct memblock_type *type,
-+						      phys_addr_t base, phys_addr_t size)
- {
--	unsigned long i;
-+	unsigned long i, ret;
- 
- 	memblock_cap_size(base, &size);
- 
--	for (i = 0; i < type->cnt; i++)
--		if (memblock_addrs_overlap(base, size, type->regions[i].base,
--					   type->regions[i].size))
--			break;
--	return i < type->cnt;
-+	for (i = 0; i < type->cnt; i++) {
-+		ret = memblock_addrs_overlap(base, size, type->regions[i].base,
-+					     type->regions[i].size);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return MEMBLOCK_NO_OVERLAPS;
- }
- 
- /**
-@@ -1857,9 +1866,11 @@ bool __init_memblock memblock_is_region_memory(phys_addr_t base, phys_addr_t siz
-  * memory block.
-  *
-  * Return:
-- * True if they intersect, false if not.
-+ * MEMBLOCK_NO_OVERLAPS if there is no intersection,
-+ * MEMBLOCK_OVERLAPS if they only intersect,
-+ * MEMBLOCK_EQUAL if the region matches base and size to an reserved memory.
-  */
--bool __init_memblock memblock_is_region_reserved(phys_addr_t base, phys_addr_t size)
-+unsigned int __init_memblock memblock_is_region_reserved(phys_addr_t base, phys_addr_t size)
- {
- 	return memblock_overlaps_region(&memblock.reserved, base, size);
- }
 -- 
 2.40.0
 
