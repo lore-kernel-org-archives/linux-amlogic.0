@@ -4,67 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F0BEC77B6C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Apr 2023 22:06:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5130C76196
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Apr 2023 07:44:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Subject:
-	In-Reply-To:To:From:Message-Id:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Np/6rckpweKxJVt4F4yRqZ7/J/iXBxoPk5RCOLbYFeY=; b=tnBPz+gPmRDWDz
-	f3nlHaCHJ+MGvy0JrDcrxDvTLYD0Sh6lkA2QzeH94FWqIzUf44+jiIJw1df85C5Tl62kHh7LOl6S+
-	9P+mwn7riT4PY+gh9P57N4JG7SrJZ6FNCZ/CxZFmyc6Klue2gbL5rziLI/+Ewvq4P9e23swo1dahY
-	7Ne1oe3i1A8AuIUmq2R65xNXzsuPpj9NrVlxl5DeJcOgHuaQ1Db8nWtdCx1Nd2gvdGklV2UIIh1eH
-	5YyZ8bpAs21bM458eJQCBqE3CLrTIplU63jdxKvuFYHXuISaKpYNO1PLN9rwbzp7RgcENJKvOQlff
-	FFs0+l49ZqaBERqR8GTQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=5uvV4JKktVE44mE5NWA6kKOEcUoWtC8vfqH/Leu6NRI=; b=HmEMuYttYilBwNKew4x1L53g9R
+	HQTz1YY3I9jrjcpKuMgGILX+OIV9/t6K6+W8fOjhItc0GXdtFG+Jloc0+7uVsxJXkZDghCfuDv/3s
+	Fv0dkjyvCRFtPTylZ3BAUfp9bLr5MsM/0COwdpT9OgPwUgIAnY5zIy3JzUFY0lzUR2lXqlJ/0OdG3
+	dGJwWJdmdWI8roFNnJEEJlA7+EgtJ3eDKjn+Zp/ZdYzCgHlSqvGBih7S/cgemUeoUE1jB68+X7gde
+	vqrVcMrRbskP8QXmswYFOm0qwm/hHnf1dtwXjMxOuj3/8lQ7ijPGx1/sjNRrMNzkocswQil9HikY5
+	p9kTxbsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBH4-005p3C-2T;
-	Wed, 05 Apr 2023 22:06:38 +0000
-Received: from ewsoutbound.kpnmail.nl ([195.121.94.183])
+	id 1pkKIY-006fIo-1Y;
+	Thu, 06 Apr 2023 07:44:46 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBH1-005p2C-0u
+	id 1pkKIV-006fI8-0l
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Apr 2023 22:06:37 +0000
-X-KPN-MessageId: 140384bb-d3fe-11ed-93ea-005056992ed3
-Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
-	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id 140384bb-d3fe-11ed-93ea-005056992ed3;
-	Thu, 06 Apr 2023 00:06:12 +0200 (CEST)
+	Thu, 06 Apr 2023 07:44:44 +0000
+Received: by mail-wr1-x431.google.com with SMTP id h17so38540356wrt.8
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Apr 2023 00:44:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xs4all.nl; s=xs4all01;
-	h=subject:to:from:message-id:date;
-	bh=f5EXuxEx+k4RZenwIaQK/guv07Xz9T3xUEt76X3neWo=;
-	b=vQ4b4UBJSYJvGjWdfFSgRbNNXrvd5/5NRZZO7OGuPyfKUUYIUuz5fwo9J4vkA1IyhZPuZXpu3sHBS
-	 KBC4p4MhUR2t+K43mmWcAiaegOKU4HBlXjlel3XOkAugUO7a2UHgT+lrm6aR2npAPoT0v1RnaJdZGN
-	 NnWHdg3c4jUf5URtTd9U/pzXzIxVu3S8GXQWHyJ3GuPI8stnZKUT1w0ewUawRDUgt22zByYPafnJz/
-	 nMbCbhvBm0J41Z2M8s6AGcUV5Qq2YKFRKjdIfhI9fpVuX5rQAP4u/udlIBaS2W97gIKNtGySC1SLiD
-	 6sFyvG155ie6Fezh/tS0Z7JX/2TUmuw==
-X-KPN-MID: 33|Nx0uMzf+BTwU6jqZTHGXCtzN3AfgnyZ43HrndHNXBHnFJE4mp9DrQvANn6kIX87
- LfC5n36Jl+fkqN6LP/Z9iehs/QfweJCstWFpEdoIRt20=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|T6Utx3OkSk32Pp+e0p8j33ayubux208fHjhT3+9MdTdYpxf4QZABgVx5ivr+4em
- nqjPbotp9NAYkm6EThyTaXw==
-X-Originating-IP: 80.61.163.207
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id 1c1ac16d-d3fe-11ed-9d31-00505699d6e5;
-	Thu, 06 Apr 2023 00:06:27 +0200 (CEST)
-Date: Thu, 06 Apr 2023 00:06:26 +0200
-Message-Id: <871qkyasrh.fsf@bloch.sibelius.xs4all.nl>
-From: Mark Kettenis <mark.kettenis@xs4all.nl>
-To: Simon Glass <sjg@chromium.org>
-In-Reply-To: 	<CAPnjgZ2TNR2R+20WH_iaz0S-k8kwOSZcxFU_0_NnCfmFJo_rcA@mail.gmail.com>
-	(message from Simon Glass on Thu, 6 Apr 2023 06:38:19 +1200)
+        d=linaro.org; s=google; t=1680767080; x=1683359080;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=6745kLuVSpXwXjkp4dv1wcRzqjtE8S+hW1F6IW6ZwIo=;
+        b=ZrHD5kYuZjuZG8pC+XskvMBicsqQEXSgOSiOdfKiNrVdwqQwY9JnIoqCstuD6mnxKv
+         sdWqU8CgVJevfuquIesQYZDV6NWAvm5CHmnu2G8ob1iTU7q0Ua49T1lbnWotyP203jq6
+         GIPAjhtKywW6t8v5BqlA4ByFr5XCYl5+S1vH04B9n5yEo465XZ1sB3mg3HaSM1udI1bH
+         Sbe+jieJUi41yoja7QBAN7qCWYcFsbGQhe9qNey/A1rBWsdo3k72qlwoGAdk35eVNYDL
+         H9w94Hl4v4IhYU9ciIXut0iBiy9akuDIce7mA6gXm6dobORktnqQIn9O2c+iLz3BlgMR
+         D1YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680767080; x=1683359080;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6745kLuVSpXwXjkp4dv1wcRzqjtE8S+hW1F6IW6ZwIo=;
+        b=Q/4AcpU/ptNKATRdb9Z0hBaTTgXaRNcu2gr7kq8aOeergte3NoY4M7UnB7QixWpQvH
+         MJTj0egxppe686taDtKqfTqm3/niUW2B8Shk6bo/eLgYowqDyS3iIY0wS+DZqJPpL50t
+         EUM+TAPa12pDZcAc0QYI8YL9a7gVNryO2BIlitRw1vawuDMDVuU4lW8H1hdzDQ/2X5UD
+         bt2kMSGYvfbcjc9VVB6oa3k/qbNUatM4w2o+LPw1i1dmx8IPFfh5FS+QwH4xAXX1xMeU
+         z1Gy34pyXgefx2v/j+AqUOe90XmN+yMw/lXvyZt9dahZLFquBEMRMo4CxILI2IVBZlWc
+         b4Bw==
+X-Gm-Message-State: AAQBX9cO8chSwDCI8UD/eArsoCeLu6RkocuPqgFPBgqrIZVP8w6h6YLx
+	OJ4glT6jgn0A+JwxmBGHKqH09Q==
+X-Google-Smtp-Source: AKy350bU6gImUxEQXTWdoQaahemNVMMtZpbWXS/Lww++imBisgkkKa24WsPpgztHy4WS4IEc/eitqA==
+X-Received: by 2002:a5d:63c9:0:b0:2da:9606:65f7 with SMTP id c9-20020a5d63c9000000b002da960665f7mr6173038wrw.52.1680767079897;
+        Thu, 06 Apr 2023 00:44:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8569:a62a:11bd:c344? ([2a01:e0a:982:cbb0:8569:a62a:11bd:c344])
+        by smtp.gmail.com with ESMTPSA id t3-20020a0560001a4300b002e62384d17dsm989379wry.21.2023.04.06.00.44.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Apr 2023 00:44:39 -0700 (PDT)
+Message-ID: <453b14dc-88c1-cb58-7eb7-d2d1c9cf36c9@linaro.org>
+Date: Thu, 6 Apr 2023 09:44:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+From: neil.armstrong@linaro.org
 Subject: Re: [PATCH v2 1/1] RFC: Move Odroid-C2 to use binman to produce the
  image
+Content-Language: en-US
+To: Simon Glass <sjg@chromium.org>
 References: <20230401185458.2280200-1-sjg@chromium.org>
  <20230402065454.v2.1.I2d7f563b6a82f32478a7874e36672622aebb7893@changeid>
- <d3308f32-275d-7b37-8c03-76984a2b9ddf@linaro.org> <CAPnjgZ2TNR2R+20WH_iaz0S-k8kwOSZcxFU_0_NnCfmFJo_rcA@mail.gmail.com>
+ <d3308f32-275d-7b37-8c03-76984a2b9ddf@linaro.org>
+ <CAPnjgZ2TNR2R+20WH_iaz0S-k8kwOSZcxFU_0_NnCfmFJo_rcA@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAPnjgZ2TNR2R+20WH_iaz0S-k8kwOSZcxFU_0_NnCfmFJo_rcA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230405_150635_475705_985BD6A7 
-X-CRM114-Status: GOOD (  22.94  )
+X-CRM114-CacheID: sfid-20230406_004443_277249_CACA87AE 
+X-CRM114-Status: GOOD (  23.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,57 +93,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: neil.armstrong@linaro.org, u-boot-amlogic@groups.io, u-boot@lists.denx.de, alpernebiyasak@gmail.com, linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
+Cc: U-Boot Mailing List <u-boot@lists.denx.de>, linux-amlogic@lists.infradead.org, Alper Nebi Yasak <alpernebiyasak@gmail.com>, u-boot-amlogic@groups.io
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> From: Simon Glass <sjg@chromium.org>
-> Date: Thu, 6 Apr 2023 06:38:19 +1200
-> 
+On 05/04/2023 20:38, Simon Glass wrote:
 > Hi Neil,
 > 
 > On Mon, 3 Apr 2023 at 19:31, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> >
-> > Hi Simon !
-> >
-> > On 01/04/2023 20:54, Simon Glass wrote:
-> > > This shows how binman can be used to replace the long and complicated
-> > > instructions with an automated build. It is still complicated to read
-> > > but users don't have to worry about the details.
-> > >
-> > > It needs some tidying up and only supports Odroid-C2 at present.
-> >
-> > Like the v1, the work is really nice, but the dependency on vendor
-> > binary-only tools doesn't make feel confident about merging this.
+>>
+>> Hi Simon !
+>>
+>> On 01/04/2023 20:54, Simon Glass wrote:
+>>> This shows how binman can be used to replace the long and complicated
+>>> instructions with an automated build. It is still complicated to read
+>>> but users don't have to worry about the details.
+>>>
+>>> It needs some tidying up and only supports Odroid-C2 at present.
+>>
+>> Like the v1, the work is really nice, but the dependency on vendor binary-only
+>> tools doesn't make feel confident about merging this.
 > 
 > So long as we can download it from somewhere, that is OK, or at least
 > better than nothing. Is there a standard download location for the
 > tools?
 
-The tools are Linux x86-64 only, so...
+There's no "official" location, historically the tools was shipped with the
+buildroot fork in the u-boot sources, but it has been moved into different
+repos now they do not ship buildroot anymore, and we can only find those tools
+on the SBC vendor u-boot sources.
 
-> > We have open source implementation for all boards, but still dependeing on
-> > tools we must manually build isn't optimal.
-> >
-> > What would be optimal would be to re-implement those tools into python
-> > libraries and merge them into the u-boot tree then use them from binman.
+And the tools have the same name but only support different SoCs, there's no
+versioning, licence nor documentation... so relying on those tools is a nightmare.
+
+This is why we made a central repository with the tools + binaries for
+each board with an easy script to generate the bootable binary:
+https://github.com/LibreELEC/amlogic-boot-fip
+and documented at:
+https://u-boot.readthedocs.io/en/latest/board/amlogic/pre-generated-fip.html
+
+> 
+>>
+>> We have open source implementation for all boards, but still dependeing on
+>> tools we must manually build isn't optimal.
+>>
+>> What would be optimal would be to re-implement those tools into python
+>> libraries and merge them into the u-boot tree then use them from binman.
 > 
 > Or C, perhaps? Then binman can call the tools.
 
-...this would be preferable.
+Yes, but the open source tools aren't heavily maintained, have different ABIs...
 
-> > But this could be merged as first step, them the python libaray could be
-> > modified to support the binary tools & a probable python re-implementation.
+Supporting GXBB and GXL/G12A is impossible, the binary format is totally different
+for example so we should import 2 different tools.
+
+> 
+>>
+>> But this could be merged as first step, them the python libaray could be
+>> modified to support the binary tools & a probable python re-implementation.
 > 
 > Yes I think it would good to get this in, even if it only supports a
 > few boards. It is easy to add more, when possible.
+
+If this can rely on the amlogic-boot-fip repo, then why not, then we can find
+a native solution to replace calling those tools.
+
+Thanks,
+Neil
+
 > 
 > Regards,
 > SImon
-> 
+
 
 _______________________________________________
 linux-amlogic mailing list
