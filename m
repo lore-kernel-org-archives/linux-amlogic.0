@@ -4,84 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 564F6C6FD1D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Apr 2023 13:49:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BF5DC77B61
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Apr 2023 14:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YB3qFoCy/byb18VjQjOm3m2jVHnA6mHz4DRIRTVdFPM=; b=YU1Gff0WQ8wTov
-	EgqmPj60JPcJf7jpYhQKO/N1WXYBUWNeOPAl5UkBIQDa8qthgow+gE9J1EzBXqbtqLjUE/rzdmBOB
-	RVqafav5PtLbNtxylY6JI+GbF+FKL5lPdk6IIzqVSEY78a7/xfr+JgiIuUeDtvXiEpjeRhZDL3oZe
-	VINxLjERmIYeE0N1ba1I/ROiUUaoRvNb8LLZnJw8iAlmlLLY05SbyncYrwEQ+txNu2kYDfmZkToKn
-	bIIVccS18Wi6hf/ZmgjKrzB2OZvn+RNvnztPOotk9nZZ/NuMVB13gYd6+5nPp60FOHoh/D2zpA5pe
-	bHZoYcdAeHOt+8qOSbeA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Cc:To:From:Message-ID:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=K/CPsHYs6a2PgiMz2B+2yb6BJG3rkeQSSuVD6P+f1ZE=; b=Ry4uki3BTd9LP9
+	aJ28KDZaVWrpszdo1whS+DGYKoFsTL4g5DCcE3JoDd58x61QWY7vt+HyzVLCKV89miRvKtSh6HJdO
+	Rcvli4CpTslleAe49iYKdy5xTbXzZS53Evk5DK5v3SEZkeq9pdtERkofK37OQ9HFM0rJDH6Ps24tB
+	x933LsLb/injvqxKSyhjoJXyiqJb6tsPpDUvzrEdIrMLqDONcLSZKu8goEk+K7OYVGVF7yXY08uI1
+	tXrZMRGAVGJd3NtC0qjkdp4OHFGWrk6a/7mblZbRnMUwSEXrrEYFwC0jWxLz27QBUgVVbtTI3QTqy
+	JLwzBMmBk6UEmJKlVxcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkmT9-00APXl-2L;
-	Fri, 07 Apr 2023 13:49:35 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1pknCc-00AVmq-0T;
+	Fri, 07 Apr 2023 14:36:34 +0000
+Received: from mout.gmx.net ([212.227.17.20])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkmT1-00APRH-2B
-	for linux-amlogic@lists.infradead.org;
-	Fri, 07 Apr 2023 13:49:31 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id 18so8537587ejo.13
-        for <linux-amlogic@lists.infradead.org>; Fri, 07 Apr 2023 06:49:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680875364;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bzY0VrOQTdhqb0xLz66yvPJl/GNdYUn650SOB4Bm09E=;
-        b=cOGiYYGRbtQnZeCD9QAclfQHyNRlDqZeUSuPCh4/DPCGm+6i5ASUZFEjO9l3nyDeoa
-         XkmIRhNgo+pcN9x653lqzGw/M3/5QwxdKu/ZMmRBlNKOSBjppYXDlKLY78rDUxER3m8e
-         mMkrhEY43wWKGpIhXiANbwLJKNMH4HHDoywdrjO2Qyk8mqfqLAAsiB625woAheq7WXCz
-         xT2KhVP2TAB4PlC/oZn81zwh1YsUvFucFmx+Lbx88AcUXcw3mcy2cWE06QnCWOb81rLo
-         CfMCkUPhcHPuEOk0KaXFFyQxGob2ac7IVuHZOYSuHAcDNYAaJkIF6SDUSgKP6xBafTm7
-         afhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680875364;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bzY0VrOQTdhqb0xLz66yvPJl/GNdYUn650SOB4Bm09E=;
-        b=Xlf9J+CEHgMi7nppLLUQI11P+4JBb/DuuTL+kqgcdyoXXd0M6VFeRglax6dbe3EKNq
-         AELwRBKlCMd99sl8id9FW7e8E0uLzfC86gX6F5Ku3eUQXWQBImmA1oYLWpkpGMFme75d
-         wrE0s3Mn+mKLTBwZoJgee8xeeBaoPyD7ZiUlc43uuJNXHbrr48+x4pGSSAlyDzYcQakA
-         5oo5rw0XromKGAXbSCbJyu3x+apNR5um8wgf3ZcdL+SeQ0zXVridEBhkmes/rFmpfDfc
-         5sO+wzFA/UYErpnwjQKhb7vOEBSRNHPpb8ff1joJKOPFYftudDqWX4U14mmfQb9mqORt
-         E0jw==
-X-Gm-Message-State: AAQBX9cowdLnhXXSpBE4+oO34OJKhD7H8YcQWV3IzIS9TtJqIi935cs6
-	Y5AZZ21xpfCvBrBUA7DaVBqTAw==
-X-Google-Smtp-Source: AKy350YwpUdmG0KaCQJJF4r+lCKOc6QEvs5tkq4aYNG2bKi1iKT+qj+Y9CzWolMLeqEkPQOItaOBlw==
-X-Received: by 2002:a17:906:5945:b0:8c3:3439:24d9 with SMTP id g5-20020a170906594500b008c3343924d9mr2393601ejr.24.1680875364729;
-        Fri, 07 Apr 2023 06:49:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:b20f:8824:c926:8299? ([2a02:810d:15c0:828:b20f:8824:c926:8299])
-        by smtp.gmail.com with ESMTPSA id x9-20020a50d609000000b004fce9ff4830sm1907574edi.88.2023.04.07.06.49.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 06:49:24 -0700 (PDT)
-Message-ID: <0f1c0267-da04-8ddc-0703-1f51b53f542f@linaro.org>
-Date: Fri, 7 Apr 2023 15:49:23 +0200
+	id 1pknCY-00AVmH-2U;
+	Fri, 07 Apr 2023 14:36:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+	t=1680878185; i=hfdevel@gmx.net;
+	bh=XJ0Yc4cr0JnDef9Jw24TvKlWj64iwV/S922I5QT4uoY=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=rs8NppMMZWYrmjQSdvRBwBZj5M4YGBcXXaAnwFHdSulaEqq4LsEVPx0phkBBoKjqY
+	 105Vak7bST17BsoywdH3G3UEGfjRckP3kLCFlQhyqAGqk1Ez937C5JNk6NWRFndiUE
+	 pfYl5EZRLCUl6GvSnh1TFIznr4upDQZa6hfCvm+KA3BMHFwhirUeNou9x1tr7p7VW1
+	 R86BkYbASp1+NpbV+lLuL+4v5XA6eX3FWq2hXioYUJObJsf9qtGkC0iJt3usOOIRuD
+	 TZRgSMWq+jWc7OCWOXgS/cIClG7HUcRlvqjMtATOJsRLfNfZSkbUzxvFs2sL+YqmvI
+	 xpZbx50ybThPg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [77.33.175.73] ([77.33.175.73]) by web-mail.gmx.net
+ (3c-app-gmx-bap55.server.lan [172.19.172.125]) (via HTTP); Fri, 7 Apr 2023
+ 16:36:25 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: arm: amlogic: add C3 bindings
-Content-Language: en-US
-To: Kelvin Zhang <kelvin.zhang@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230407102704.1055152-1-kelvin.zhang@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230407102704.1055152-1-kelvin.zhang@amlogic.com>
+Message-ID: <trinity-bf20bcb9-790b-4ab9-99e3-0831ef8257f4-1680878185420@3c-app-gmx-bap55>
+From: hfdevel@gmx.net
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: meson8b: correct uart_B and uart_C clock
+ references
+Date: Fri, 7 Apr 2023 16:36:25 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:zyvGPj6hqLDunDW98Qsb8UOVKhijpOy22cS5iLkrBlCZFle/h5hyf7T6xFmm6uJ+/CHQc
+ hIV2yxHj1PQKJ4enNouXhSLdBH/x2M1jy4srq+POvRP6HhzUiPLxQ8h0JMqQ3Kf9QgGqhEKWNoJP
+ eJfe8idCDGeTM2e3zk2SrhjvFIvGvTkfpceWy/xEUJuahkM5h2OEkXIbwVJYtkxGZbTQ0iBqj1s/
+ WPcYq933K3VfXckkK5Tv77Z1KKYnXEcDl804ismx78ue9yLX+o0e5syy8ZIUGx3ezlU1lhy5BB3X
+ oY=
+UI-OutboundReport: notjunk:1;M01:P0:25iDbh0m2mo=;pmEOWd/uz3CFqVgh6DJH4C0YOB5
+ 9OFw2C85CfDcB9beW7ALHLVfH/9PJN12EaDSIATpIJhjxMPVDF43khA2FJX6GXCe7IaH687EX
+ o3YCOOtOkwPydfP27Sm6TTsTf+XL6v4yGNWyeNfRE3QiKepBEq4SyLQBIZEJfDDwjDC90q8Jb
+ fJtnDn1zQW/R6LQDxxmrMooIyV3XNgwlYMt/rECnwLRz8cQ2slcvSPl3fmUGS7bMiWxNwCGvS
+ RObhE1hDOC0NJGMd6gY2pU+TqfSksH9tgtzUQZ+SfqPvhnCsgdwc1ka7fFwWp/hBhXXIhV93l
+ IZWaVyG+CPIeF5QWZvs/TbRRsC8AGzz42BzFobtU0G60mA7UZ/miPE7ltuImqzOW+uUB6xAI/
+ f2dqEdMkjAw7y4y5aw1hWnvVmoXBu9lWLPxufzqpuhKXTEhOIb2CBG7Qx7TSTQbSLOUGR6baa
+ iQa4qGg5eXiE6hJ8jOgCx1a6bHW8M7Vo49QJd4b2htsPsMRsWwlfNJDVLHm5qc0VVg3n2niPE
+ nzhaXw8hCEiKvQgNcA50t2pYuYXtjmv8vsAxA9YCAk1Wmp7Ks/vfGBKPldEltye4SkNVyjIsS
+ iDh0gckJJfy5BByKZB09SfI+OqGglmWwNLuTbyJ8hQgXl1/lJEMHhyYxUW6ahAH0CeHjikFkw
+ NHbps0jh6Q4M0gsWTZyTA2RNX3jjthZbQNla5ORlLnxFAZuWaiQKDOFhZNpqPiWRxWImvCXyz
+ AqWyvvZtnHyhvk31qg+2bguEtNUAE0Ta4ptTgMPOX9eA8k6Wr9EdAVqKN1ssLcLUkRPRw/sGm
+ 0QXV4vfm4MwgunnXurKsbb9Q==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230407_064927_750498_1D011AAB 
-X-CRM114-Status: UNSURE (   7.47  )
+X-CRM114-CacheID: sfid-20230407_073631_259651_78FACCCF 
+X-CRM114-Status: UNSURE (   8.65  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,18 +92,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/04/2023 12:27, Kelvin Zhang wrote:
-> Document the new C3 SoC/board device tree bindings.
-> 
-> C3 is an advanced edge AI processor designed for smart IP camera
-> applications, which does not belong to Meson series.
-> 
-> Therefore, modify the title field accordingly.
+With the current device tree for meson8b, uarts B (e.g. available on pins
+8/10 on Odroid-C1) and C (pins 3/5 on Odroid-C1) do not work, because they
+are relying on incorrect clocks. Change the references of pclk to the
+correct CLKID, to allow use of the two uarts.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: 3375aa77135f ("ARM: dts: meson8b: Fix the UART device-tree schema validation")
+Signed-off-by: Hans-Frieder Vogt <hfdevel@gmx.net>
+---
+v1->v2: Addressed review comments with respect to patch style.
 
-Best regards,
-Krzysztof
+ meson8b.dtsi |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index d5a3fe21e8e7..25f7c985f9ea 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -740,13 +740,13 @@ &uart_A {
+
+ &uart_B {
+ 	compatible = "amlogic,meson8b-uart";
+-	clocks = <&xtal>, <&clkc CLKID_UART0>, <&clkc CLKID_CLK81>;
++	clocks = <&xtal>, <&clkc CLKID_UART1>, <&clkc CLKID_CLK81>;
+ 	clock-names = "xtal", "pclk", "baud";
+ };
+
+ &uart_C {
+ 	compatible = "amlogic,meson8b-uart";
+-	clocks = <&xtal>, <&clkc CLKID_UART0>, <&clkc CLKID_CLK81>;
++	clocks = <&xtal>, <&clkc CLKID_UART2>, <&clkc CLKID_CLK81>;
+ 	clock-names = "xtal", "pclk", "baud";
+ };
 
 
 _______________________________________________
