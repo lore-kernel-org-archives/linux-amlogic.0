@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1799C7619A
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Apr 2023 22:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0905DC77B70
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Apr 2023 15:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2yeLtxbS7Ltlj89GvEowLU+BKdw9SNAUeNgf/7yMnIA=; b=QyWNo+v8Wynzxz
-	oSa33vWlGCJDY/t1+L785bNSin9CublyK3oz70+AbujqubrdpIzWUP68p1bGUn48qflMmRFZRgupc
-	+c+EIsPFjJmEgyVvG3F4YhK9pOBgBv07RTwRcVBFs9sQMraq9P+NVcyR3nqvmQ97XIonpvzDWy3Tc
-	jV86aVWnmHNMeEAcMsju29DvyCOBZKnXROvV6ZVrxNFJewpkaSJZwCodaM4Nr4Xpe3g1zIM44wf40
-	cT1wfODGHpL1Qy6Bz2AvKA1OnI/wcqioILj4qu3QLC76/0hWsVzwaEUqV3N4wGWfj5idOaJwEymf+
-	ogAArowEZEV+OQbIP6qg==;
+	List-Owner; bh=rIKUC4qohi4q5Bhd5Z4DUCYESduAV3VaRBnin9wxlhQ=; b=ins/pvHdWG5IB1
+	FZkVREYCvmFPyPVfu68vpEW4yJ1n+fOk+RLqRLL+tb3JMcDfwQ9DqPzuJkuxaULJ9Ouh2svJbw6yA
+	Y/GYLjoCek28nm2MmNlilf8iWS0If6GpfvhSNHLRudJmcdSeXeGOMPKGp5NRnkDY7DqDX8YL3oERx
+	jKpF/i8UGEdT+VcCbtUA55i0UP8VxJCTBC1NMCnfvUBbeu3cetH37A2ayHdyPMN15SxEYpcceHMOt
+	D7Mv049yEKNPwr/tTZSpMrstvXnpBwnjpDIBJDJci0/LZQ1W2VJcy7piJa5pdxwREiagsNELpcKzd
+	z4HMVKjLuO6RxEp8J/wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1plHO0-00Ctr6-0l;
-	Sat, 08 Apr 2023 22:50:20 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1plWlw-00DtdV-1z;
+	Sun, 09 Apr 2023 15:16:04 +0000
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1plHNv-00CtqV-15;
-	Sat, 08 Apr 2023 22:50:16 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94771f05e20so237482366b.1;
-        Sat, 08 Apr 2023 15:50:12 -0700 (PDT)
+	id 1plWlq-00Dtcj-2x;
+	Sun, 09 Apr 2023 15:16:00 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5049a1085c8so342141a12.1;
+        Sun, 09 Apr 2023 08:15:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680994211; x=1683586211;
+        d=gmail.com; s=20210112; t=1681053356; x=1683645356;
         h=content-transfer-encoding:subject:from:cc:to:content-language
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VgROFqHHrF+sHdSvsr6ZitI9bmKISd+icEs8t3mjLho=;
-        b=gQ1FPxQLSoDt2Fg4pUNjPfNb5O6Zc5rkK3vwWPZln/FD7B0qZUoN4rNjgaX02hkYkR
-         N/QnNPWxX3C5I8hLSgUfZm0nnEljoJkAwObftbjZuz14nI7FS/tZkykBU30ImA2O7UO0
-         FTDaOiEn9Vnp2xjPkSEoe2cIrHEyXix/qfDXxBr2ez91O2GxqWoooFmvI7h8iWXx97bh
-         L0nm2fS3gdFku/57aWUUVQK5rlXkP4mjg/jHcBeTbbUhYgFHsC629Vif12zuSRnuMAot
-         ydQOnjZj1Ro3vje2KCXmzHNwmLbogVPsWIJlmQ8qOCc6aoab2uQ5/mMNE/jRNm44NJW6
-         TKYw==
+        bh=5Al1LHFrT9+plpcBLVRezELznyWJyVoaJnaezPUgcF4=;
+        b=WZTnRVtyyCX3XAI/9IXuHB3b6RrNv/SsBkmFPmc68C/MltXlia1eje7s30qBBY9oHF
+         su40ISV+YoCe66oWNBpN+v4LMYFz9lcMinZaofFaHmazM4RRgLFicNGjlhTMeD8XmST2
+         cGQY65wOGOzpcs2qQSQ1aTpqWWQCP6xDODafMAx8DDWSkDQ7NydbfyIhhlrU+V9zzLHp
+         5j/FdwFCeE2AZR1i9LzmTMTgZkTSORCw5spZxcizhxfQIboiqxCU4r0M7erSwL/hRfZQ
+         v5ddtTUKO63fhTB3cI1SuqIl/Hvj5KicbnOS5WLNjh8KQcpyJsdtllAXFpDuwJayGx6G
+         qRVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680994211; x=1683586211;
+        d=1e100.net; s=20210112; t=1681053356; x=1683645356;
         h=content-transfer-encoding:subject:from:cc:to:content-language
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=VgROFqHHrF+sHdSvsr6ZitI9bmKISd+icEs8t3mjLho=;
-        b=kSYL9WPv//tokM0AMKk4zW0xm67hSW6nb+45IHGWEzseAfqOpeaN7KwyR0ssAF1a1h
-         pdc8BvQcXGAk4RnB0ciO8ox+TSV0Ghd33gZAaJReJsIDT/5XGaD82fASCWzlcvIvkjIA
-         eLYBWVzYcw540gF48kUT2KZzVCaqcJ9AWcTDiaU6ndIfSoYExpV/fLomIPGTJ3+U1oPP
-         axflaNSp74cXRAjvjankwik61vCpZ2B41jxedGE+FIJjsw5v2pIn6vsszu1WPX9hj6db
-         9rz4/XpDDpUio9lT6uEW+7AR0XzicA3nLjNda+2bAsdakpXwWFAO2qtPRZeLXfoTMkDj
-         mHPg==
-X-Gm-Message-State: AAQBX9fZEH3Tleuyj/NB5EpfUxfwrnpGnj3N0ITWicYGm6zc899Wd+CQ
-	9RkIEv8DKLPOX7cq3IPSpYc=
-X-Google-Smtp-Source: AKy350Z4S9+mVq2oQP+4xl2jZQEsurFq1RLGvU8tVfU6QJIIYh3e93XfNjIINDJTBzhYnij2GukRMA==
-X-Received: by 2002:a05:6402:b09:b0:501:cde5:4cc9 with SMTP id bm9-20020a0564020b0900b00501cde54cc9mr5298550edb.39.1680994210766;
-        Sat, 08 Apr 2023 15:50:10 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c57c:9500:b062:7c54:caa1:b5c1? (dynamic-2a01-0c23-c57c-9500-b062-7c54-caa1-b5c1.c23.pool.telefonica.de. [2a01:c23:c57c:9500:b062:7c54:caa1:b5c1])
-        by smtp.googlemail.com with ESMTPSA id u6-20020a50d506000000b004c13fe8fabfsm3317332edi.84.2023.04.08.15.50.09
+        bh=5Al1LHFrT9+plpcBLVRezELznyWJyVoaJnaezPUgcF4=;
+        b=BfdsV6kyVcGzi9uAnVeE62UFXIfNNoZiLwXGQ8HkjAfmqQ/wgbHorbBzmwizJfyRbQ
+         pRC0zvje6naFhwz44rnTrcefnMT9mfrTfrIdnYDglqinGkilIhTvcK4VAvYCn9rMqsLb
+         568boHYUJxengI09BMC+Xn0TnFFCvyfBwqekuh3nPf1zAujUjaZxZxZIwMsXxGil6BJf
+         Vv4nqZ+Rx2Q0jqTj0DufGx+n+tdJrO5PU96EiqYWaRFbtd5Ni452AGhvpls5LircdLWc
+         dU+zau4Hvi4ni5NVwfCNnCdP9rB/eqrUpmg04BR/roD2GSitRGgpQJWc4jaU7TFCbV6V
+         dVgg==
+X-Gm-Message-State: AAQBX9f++pbqLU0NiLwyuCIUBgvSYtsGrkyR7kklKBlsscW96heWiXHv
+	v9+LVnYBr0oPsXiOnylsZ0k=
+X-Google-Smtp-Source: AKy350b4nVjPPZSIcozRDhxLFOvnIY8jbn9Nshb1z6he5aS2hFU/rxY9WWwskx+5UiANKmuW/wsEcA==
+X-Received: by 2002:a05:6402:746:b0:4fd:2b13:b20e with SMTP id p6-20020a056402074600b004fd2b13b20emr3592714edy.30.1681053356184;
+        Sun, 09 Apr 2023 08:15:56 -0700 (PDT)
+Received: from ?IPV6:2a01:c22:7ab2:4700:19e6:ecdf:3dcc:c731? (dynamic-2a01-0c22-7ab2-4700-19e6-ecdf-3dcc-c731.c22.pool.telefonica.de. [2a01:c22:7ab2:4700:19e6:ecdf:3dcc:c731])
+        by smtp.googlemail.com with ESMTPSA id i13-20020a50c3cd000000b004fa012332ecsm2583301edf.1.2023.04.09.08.15.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Apr 2023 15:50:10 -0700 (PDT)
-Message-ID: <e7a95baf-5f9d-be56-93dc-82ca83b69c7a@gmail.com>
-Date: Sun, 9 Apr 2023 00:50:05 +0200
+        Sun, 09 Apr 2023 08:15:54 -0700 (PDT)
+Message-ID: <ffc3e4e7-b2ea-1a56-4fff-6554ad3775c0@gmail.com>
+Date: Sun, 9 Apr 2023 17:15:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
@@ -78,11 +78,10 @@ Cc: "linux-arm-kernel@lists.infradead.org"
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  linux-pwm@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] pwm: meson: fix axg ao mux parent order
+Subject: [PATCH v2] pwm: meson: fix axg ao mux parents
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230408_155015_418262_8C300739 
-X-CRM114-Status: UNSURE (   9.52  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230409_081558_961731_87D9D809 
+X-CRM114-Status: GOOD (  10.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,18 +100,20 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 This fix is basically the same as 9bce02ef0dfa ("pwm: meson: Fix the
 G12A AO clock parents order"). Vendor driver referenced there has
-xtal as first parent also for axg ao. Mux parents for g12_ao_ab
-are now the same as for axg ao, so we can remove the entry.
+xtal as first parent also for axg ao. In addition fix the name
+of the aoclk81 clock. Apparently name aoclk81 as used by the vendor
+driver was changed when mainlining the axg clock driver.
 
 Fixes: bccaa3f917c9 ("pwm: meson: Add clock source configuration for Meson-AXG")
 Cc: stable@vger.kernel.org
+
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/pwm/pwm-meson.c | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
+ drivers/pwm/pwm-meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index b5c746fab..2cafec827 100644
+index b5c746fab..0fe0400c2 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
 @@ -381,7 +381,7 @@ static const struct meson_pwm_data pwm_axg_ee_data = {
@@ -120,35 +121,10 @@ index b5c746fab..2cafec827 100644
  
  static const char * const pwm_axg_ao_parent_names[] = {
 -	"aoclk81", "xtal", "fclk_div4", "fclk_div5"
-+	"xtal", "aoclk81", "fclk_div4", "fclk_div5"
++	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
  };
  
  static const struct meson_pwm_data pwm_axg_ao_data = {
-@@ -389,15 +389,6 @@ static const struct meson_pwm_data pwm_axg_ao_data = {
- 	.num_parents = ARRAY_SIZE(pwm_axg_ao_parent_names),
- };
- 
--static const char * const pwm_g12a_ao_ab_parent_names[] = {
--	"xtal", "aoclk81", "fclk_div4", "fclk_div5"
--};
--
--static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
--	.parent_names = pwm_g12a_ao_ab_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_ab_parent_names),
--};
--
- static const char * const pwm_g12a_ao_cd_parent_names[] = {
- 	"xtal", "aoclk81",
- };
-@@ -434,7 +425,7 @@ static const struct of_device_id meson_pwm_matches[] = {
- 	},
- 	{
- 		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
--		.data = &pwm_g12a_ao_ab_data
-+		.data = &pwm_axg_ao_data
- 	},
- 	{
- 		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
 -- 
 2.40.0
 
