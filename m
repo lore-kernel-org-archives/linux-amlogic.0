@@ -4,72 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B68C76196
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Apr 2023 23:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F7B0C76196
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Apr 2023 23:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0c/C+gK3HKIOflU2zgBGeY/eUWRKF6dZ2eenFlvEsXM=; b=VArj0ILoqG/aaw
-	WVV5hsnAv9OAfHVukFBHWPx3j/jzcytKNEB7hrhbVVLDWiGRMmIv5hVNNOKof9/9ghyvaHUTshaTf
-	nKuEs48t9z+RUBGEWjb/JloVOHqnQ1fOutbw0m3/riFv0lw74rFovwCNbIjXB9exwQiCKFqXPwxeH
-	eSrq65R89Kw5XPDpBDI0ub1cYrSFn6pJE2Txmn+Xs3B2oByG6cAV0EXQMeXVG4RFgyOAHL/vI5SRA
-	haqCDiCXXBFXM5wSzKGSpVYQRDtdAhW4uKJS7li3MeYzd8/DulVCgVbqNV4YpHxFxxwSa5urgehO/
-	JrX1LsitbI7JeypBUnXw==;
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6yJi8Z0UtOJ7Hnh/xRSiYyaBJwi7SPMedqXqagDPQPo=; b=LakIxRutLxVv5m
+	DV4JKQlVEVz2dC9+YquoVB4BwDyRdMmZ+qDklv7WxjIMu2JmH08+HbUhl9YNYffQl/0pCt8LB7tQu
+	kT/Vn0o7+F0I3aF0bIC34CiQbKbgMGFUnyKEdSIz4hnO04laI9+GP2gBeeXKvh13Ayzz6CaWOMo/L
+	S1rVcmVNsIROQwbk9dA0XJsYLq+rEphvLCG7WqgKJI5jhFy9NlJJqyGY4lW6Bb/q48rYNdzvsY6Rx
+	dw/ldMjjlBNGm0gSZ/E1GH8vz4b0rmllMdWKtZjWy6yJhtr/VGZ+bqyt1LGIIPX9ma4kh3bZkCvgB
+	QS4FxN6xh2anYj7q1WZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pm0hn-00G3Ay-1z;
-	Mon, 10 Apr 2023 23:13:47 +0000
-Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
+	id 1pm0vd-00G4OA-13;
+	Mon, 10 Apr 2023 23:28:05 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pm0hj-00G3Ad-2r
-	for linux-amlogic@lists.infradead.org;
-	Mon, 10 Apr 2023 23:13:45 +0000
-Received: by mail-ej1-x62f.google.com with SMTP id ud9so15772587ejc.7
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Apr 2023 16:13:43 -0700 (PDT)
+	id 1pm0vX-00G4K2-1O;
+	Mon, 10 Apr 2023 23:28:03 +0000
+Received: by mail-ej1-x631.google.com with SMTP id q23so6574334ejz.3;
+        Mon, 10 Apr 2023 16:27:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1681168422;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vYCRP+KrlDlbA1Ibo/A0cTBAFRfyjiKjYzNUeLYUHNM=;
-        b=b86yQvYJywZnlnP3IrOiP8D5lc4U68ihljTY6XuXNu5BEGdmV9H49PEZJu0SII5Zuk
-         4Awb0S3s1pWnT55GpB3eRthVZFJ4YSncT2lEcI3bWpnyMvcsYvI6GY2I5TebQgVos/KS
-         P5W83VKOPEZwbFl9qUhJ+RYD0eAFLSdFVCsHgFnLTCnWV+oE6dJNHB+4rOHMOcixc7BX
-         Mqby4BuC3EKAgy3RixF6tHr7inI0rgnun9ArzY78ocNznoureBLo28s3ZKu9Y+HY0pe9
-         7bNt/m6Ppn3YqBzLpE3LFiDH7UQOf3N87+H/PjTiXAj70+0W1oizd57DU/uG+d2EV9PL
-         WH8Q==
+        d=googlemail.com; s=20210112; t=1681169274;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=52mSxp3d2SGZP6hWb61sFRa1KWoxrjnPGG+f5rToeBI=;
+        b=n4W2GGXp5Tyq3bUY6CKzmVrqBW2JbGeAJh1kbAfEKfXvSJFgokbmZ0UliPgnGlar/b
+         BdQbxF79jzKBpbCu2J/tRK0+ChvtZjC833b9/EGeMEgBGdfwFN+xr6/Ya8b3ezMMZeFC
+         G+Z2bJwVUTmLKbVXjol5mCFuUzfRQ+f+jHIFPg/tUc0qfY+E5Mf0oPruxfevngKaZtXF
+         0hxVHIcFJPPEMfgOH6CJTEU1Cb8+M/pMyXAGn+6A1uoK/Ibgc+HpdqWjkIQXAcSNw5pu
+         FW4krzr17cQZSf3/uh7ERhoNcdrMM/F+Q0VxJy17EdtkDrgtwPNUkqBZxfmAm46mBbbG
+         5+1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681168422;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vYCRP+KrlDlbA1Ibo/A0cTBAFRfyjiKjYzNUeLYUHNM=;
-        b=kahri+ETMwPpeY760dKjAIh2vDueVIvBtLiU9M3U2Q3HJdVSsmLRHNId5S/+5og1Ro
-         4wp41sOTWbuVvuYnXW00Y2+nLqfjrLTjWzOxlhXsCsmY8RAUhcMhM7mjq/xD2BKZ9bOY
-         eTULRfyJOnd3Ss0VZ7oenHpFBm3auTpTj6YW9z26uV4XySpmLCFXwqEv4hyKmM5wZZ30
-         tfvkReeyFhacdDK/jJOb2EtqnOr4ekF4C8NfHrTMRKP9laheityNzpECLxQ1GQbU5v5E
-         c8lzhnv6ENxP/v4P0PuGcXpIQSbsonewgmsj6qDuZDkc1yA5gQAk3sNBmyVqpNxdQTiu
-         RLEQ==
-X-Gm-Message-State: AAQBX9engY2CWFVrrBlhSslD1dnTNxoHDLI9chllFfi25v6UxBqeO0mZ
-	v1D8nIGOlZ+xZUxWA9UveWmRfWjySLDVYlocrOs=
-X-Google-Smtp-Source: AKy350ZSOn5vAFET2Urc7I8f2l8+gbmJ4gCwaITbvhLfKwc+0P9A260bj1k0r/tHrE5oGSFnAdT0hp3ato9ui9VMDok=
-X-Received: by 2002:a17:907:6f07:b0:878:4a24:1a5c with SMTP id
- sy7-20020a1709076f0700b008784a241a5cmr3599198ejc.6.1681168421730; Mon, 10 Apr
- 2023 16:13:41 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1681169274;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=52mSxp3d2SGZP6hWb61sFRa1KWoxrjnPGG+f5rToeBI=;
+        b=d9obLly+7uf19bpKW9Chv3xS/vgeO9Ci0ao0uqPzN6iiY3B5VHQ/y04Qw8IteXVFvM
+         /spsanoGWAnfMDKJuVJQm+Rc7wk5QDIL9xUK2klFXU6b1XlPka+dsOAegLAoLOhI9qws
+         MqeFKdLi1PCZYIZKf/2w4dIfml30hOkOgfQAfTtCQxGietjY352VfTpMM52oLsgfcOK3
+         06DNUKGJTJaPdRwikp0Nz+GG/RNEZZT5vW24jBsFXDwVWSBSIPHPxkIKUlwoxjLZmP3E
+         dt6aOjTaUCBQsQ5HnbUnWvRkJ5r2KY3/5ta8HrmD09xj7sWDghF0axhNmv5QCE2j6Ud3
+         DMQA==
+X-Gm-Message-State: AAQBX9fxQGFP90nmK42J2XGFoW74/599PACsQ8Zg+8Fobb3rs+Aw9R6j
+	leaGcHHhrBRj/5llasZPLLVmQrBQUEYl8jfDsnY=
+X-Google-Smtp-Source: AKy350aTwPPRdnWCaxTzXduln+So6jSYYFDnuI5ZZZ7DxSB/ilfqNWJIVuSDWLVDZ0+uEZtC7/SxJR1ts8OysYy1NfA=
+X-Received: by 2002:a17:907:8a0a:b0:949:d4ef:f6ff with SMTP id
+ sc10-20020a1709078a0a00b00949d4eff6ffmr4785012ejc.0.1681169274267; Mon, 10
+ Apr 2023 16:27:54 -0700 (PDT)
 MIME-Version: 1.0
+References: <275c72a8-b9cb-e675-f1c0-4da658c3f98e@gmail.com> <08085ec6-0450-2477-e35f-5af19c1de857@gmail.com>
+In-Reply-To: <08085ec6-0450-2477-e35f-5af19c1de857@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 11 Apr 2023 01:13:30 +0200
-Message-ID: <CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com>
-Subject: Odroid-C1 regression with commit 4bc31edebde5 ("mmc: core: Set HS
- clock speed before sending HS CMD13")
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org, 
-	Brian Norris <briannorris@chromium.org>
+Date: Tue, 11 Apr 2023 01:27:43 +0200
+Message-ID: <CAFBinCCaca-VKmxv_SaPxOzBrix98Nj+VDaD1bfqSwvDBg+eKQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pwm: meson: make full use of common clock framework
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, linux-pwm@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230410_161343_947136_62027A1B 
-X-CRM114-Status: UNSURE (   9.58  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230410_162759_488547_81535D34 
+X-CRM114-Status: GOOD (  10.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,142 +85,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Ulf,
-
-today I found that upstream commit 4bc31edebde5 ("mmc: core: Set HS
-clock speed before sending HS CMD13") breaks eMMC support on my
-Odroid-C1.
-(yes, I know that I am very late to the party...)
-
-The .dts for this board is upstream using
-arch/arm/boot/dts/meson8b-odroidc1.dts (&sdhc node)
-The MMC host driver used is drivers/mmc/host/meson-mx-sdhc*.
-
-The problem I'm seeing is that the eMMC module is simply not detected.
-There are no errors in the kernel log (note that mmc1 is the eMMC
-while mmc0 is the SD card which is attached to another controller on
-that SoC):
-# dmesg | grep mmc
-[    2.742136] meson-mx-sdhc c1108e00.mmc: allocated mmc-pwrseq
-[    4.315905] platform c1108c20.mmc:slot@1: Got CD GPIO
-[    4.450921] mmc0: new high speed SDHC card at address 0001
-[    4.456985] mmcblk0: mmc0:0001 EB1QT 29.8 GiB
-[    4.466108]  mmcblk0: p1
-
-In this state I get:
-# cat /sys/kernel/debug/mmc1/ios
-clock:          52000000 Hz
-actual clock:   51000000 Hz
-vdd:            21 (3.3 ~ 3.4 V)
-bus mode:       2 (push-pull)
-chip select:    0 (don't care)
-power mode:     2 (on)
-bus width:      3 (8 bits)
-timing spec:    9 (mmc HS200)
-signal voltage: 1 (1.80 V)
-driver type:    0 (driver type B)
-
-After reverting the mentioned commit I get:
-# dmesg | grep mmc
-[    2.744226] meson-mx-sdhc c1108e00.mmc: allocated mmc-pwrseq
-[    2.970944] mmc1: new HS200 MMC card at address 0001
-[    2.974492] mmcblk1: mmc1:0001 8GND3R 7.28 GiB
-[    2.985126]  mmcblk1: p1
-[    2.987810] mmcblk1boot0: mmc1:0001 8GND3R 4.00 MiB
-[    3.003007] mmcblk1boot1: mmc1:0001 8GND3R 4.00 MiB
-[    4.311754] platform c1108c20.mmc:slot@1: Got CD GPIO
-[    4.374732] mmc0: new high speed SDHC card at address 0001
-[    4.377228] mmcblk0: mmc0:0001 EB1QT 29.8 GiB
-[    4.399152]  mmcblk0: p1
-# cat /sys/kernel/debug/mmc1/ios
-clock:          100000000 Hz
-actual clock:   94444445 Hz
-vdd:            21 (3.3 ~ 3.4 V)
-bus mode:       2 (push-pull)
-chip select:    0 (don't care)
-power mode:     2 (on)
-bus width:      3 (8 bits)
-timing spec:    9 (mmc HS200)
-signal voltage: 1 (1.80 V)
-driver type:    0 (driver type B)
-
-Please let me know which additional information would be helpful for
-debugging this further.
-Also I'd like to highlight that I'm not blaming the above commit
-(unless I know better). It's entirely possible that the meson-mx-sdhc
-driver (which I wrote) can be at fault and that I was previously just
-lucky.
-
-My git bisect log is:
-$ git bisect log
-git bisect start
-# status: waiting for both good and bad commits
-# good: [f443e374ae131c168a065ea1748feac6b2e76613] Linux 5.17
-git bisect good f443e374ae131c168a065ea1748feac6b2e76613
-# status: waiting for bad commit, 1 good commit known
-# bad: [4b0986a3613c92f4ec1bdc7f60ec66fea135991f] Linux 5.18
-git bisect bad 4b0986a3613c92f4ec1bdc7f60ec66fea135991f
-# good: [25fd2d41b505d0640bdfe67aa77c549de2d3c18a] selftests:
-kselftest framework: provide "finished" helper
-git bisect good 25fd2d41b505d0640bdfe67aa77c549de2d3c18a
-# good: [02e2af20f4f9f2aa0c84e9a30a35c02f0fbb7daa] Merge tag
-'char-misc-5.18-rc1' of
-git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
-git bisect good 02e2af20f4f9f2aa0c84e9a30a35c02f0fbb7daa
-# good: [887f75cfd0da44c19dda93b2ff9e70ca8792cdc1] drm/amdgpu: Ensure
-HDA function is suspended before ASIC reset
-git bisect good 887f75cfd0da44c19dda93b2ff9e70ca8792cdc1
-# good: [cf424ef014ac30b0da27125dd1fbdf10b0d3a520] Merge tag
-'for-5.18/fbdev-2' of
-git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
-git bisect good cf424ef014ac30b0da27125dd1fbdf10b0d3a520
-# good: [4e707344e18525b4edf5c2bc2e3eb60692e8c92e] MAINTAINERS: add
-missing files for bonding definition
-git bisect good 4e707344e18525b4edf5c2bc2e3eb60692e8c92e
-# bad: [680b892685ea7043addb5819ddec9147d4263195] Merge branch
-'100GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
-git bisect bad 680b892685ea7043addb5819ddec9147d4263195
-# bad: [e3de3a1cda5fdc3ac42cb0d45321fb254500595f] Merge tag
-'powerpc-5.18-4' of
-git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
-git bisect bad e3de3a1cda5fdc3ac42cb0d45321fb254500595f
-# bad: [4b97bac0756a81cda5afd45417a99b5bccdcff67] Merge tag
-'for-5.18-rc5-tag' of
-git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
-git bisect bad 4b97bac0756a81cda5afd45417a99b5bccdcff67
-# bad: [64267926e01b06f43e26232722fb3dc3f4819823] Merge tag
-'mmc-v5.18-rc4' of
-git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc
-git bisect bad 64267926e01b06f43e26232722fb3dc3f4819823
-# good: [fe27d189e3f42e31d3c8223d5daed7285e334c5e] Merge tag
-'folio-5.18f' of git://git.infradead.org/users/willy/pagecache
-git bisect good fe27d189e3f42e31d3c8223d5daed7285e334c5e
-# good: [ca5e2f4d6b677efa3f43a6790777e46dcf806e4d] Merge tag
-'drm-misc-fixes-2022-05-05' of
-git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
-git bisect good ca5e2f4d6b677efa3f43a6790777e46dcf806e4d
-# bad: [3e5a8e8494a8122fe4eb3f167662f406cab753b9] mmc: sdhci-msm:
-Reset GCC_SDCC_BCR register for SDHC
-git bisect bad 3e5a8e8494a8122fe4eb3f167662f406cab753b9
-# bad: [e9f3fb523dbf476dc86beea23f5b5ca8f9687c93] mmc: sunxi-mmc: Fix
-DMA descriptors allocated above 32 bits
-git bisect bad e9f3fb523dbf476dc86beea23f5b5ca8f9687c93
-# bad: [4bc31edebde51fcf8ad0794763b8679a7ecb5ec0] mmc: core: Set HS
-clock speed before sending HS CMD13
-git bisect bad 4bc31edebde51fcf8ad0794763b8679a7ecb5ec0
-# first bad commit: [4bc31edebde51fcf8ad0794763b8679a7ecb5ec0] mmc:
-core: Set HS clock speed before sending HS CMD13
-
-
-Thank you and best regards,
-Martin
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSGVpbmVyLAoKT24gU2F0LCBBcHIgOCwgMjAyMyBhdCAxMDo0M+KAr1BNIEhlaW5lciBLYWxs
+d2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+IHdyb3RlOgpbLi4uXQo+ICsgICAgICAgICAgICAg
+ICBpbml0Lm5hbWUgPSBuYW1lOwo+ICsgICAgICAgICAgICAgICBpbml0Lm9wcyA9ICZjbGtfZGl2
+aWRlcl9vcHM7Cj4gKyAgICAgICAgICAgICAgIGluaXQuZmxhZ3MgPSBDTEtfU0VUX1JBVEVfUEFS
+RU5UOwo+ICsgICAgICAgICAgICAgICBwYXJlbnRfaHdzWzBdID0gJmNoYW5uZWwtPm11eC5odzsK
+PiArICAgICAgICAgICAgICAgaW5pdC5wYXJlbnRfaHdzID0gcGFyZW50X2h3czsKPiArICAgICAg
+ICAgICAgICAgaW5pdC5udW1fcGFyZW50cyA9IDE7ClRoZXJlJ3MgYSB2ZXJ5IHN1YnRsZSBidWcg
+aW4gdGhpcyBjb2RlOgpZb3UncmUgcmUtdXNpbmcgdGhlIHNhbWUgc3RydWN0IGNsa19pbml0X2Rh
+dGEgZm9yIGFsbCBjbG9ja3MuClRoZSBtdXggYWJvdmUgc2V0cwotIGluaXQucGFyZW50X25hbWVz
+Ci0gaW5pdC5udW1fcGFyZW50cwotIChhbW9uZ3N0IG90aGVycykKCmJ1dCBmb3IgdGhlIGRpdmlk
+ZXIgYW5kIGdhdGUgeW91J3JlIG9ubHkgb3ZlcndyaXRpbmcgaW5pdC5udW1fcGFyZW50cywKd2hp
+Y2ggaXMgd2h5IEkgZW5kIHVwIHdpdGg6CiB4dGFsICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgOCAgICAgICAgOCAgICAgICAgMSAgICAyNDAwMDAwMAogICAgICAgIDAgICAgIDAgIDUw
+MDAwICAgICAgICAgWQogICBbLi4uXQogICBjMTEwODY1MC5wd20jZ2F0ZTEgICAgICAgICAgICAg
+ICAgMSAgICAgICAgMSAgICAgICAgMCAgICAyNDAwMDAwMAogICAgICAgMCAgICAgMCAgNTAwMDAg
+ICAgICAgICBZCiAgIGMxMTA4NjUwLnB3bSNkaXYxICAgICAgICAgICAgICAgICAwICAgICAgICAw
+ICAgICAgICAwICAgIDI0MDAwMDAwCiAgICAgICAwICAgICAwICA1MDAwMCAgICAgICAgIFkKICAg
+YzExMDg2NTAucHdtI211eDEgICAgICAgICAgICAgICAgIDAgICAgICAgIDAgICAgICAgIDAgICAg
+MjQwMDAwMDAKICAgICAgIDAgICAgIDAgIDUwMDAwICAgICAgICAgWQogICBjMTEwODY1MC5wd20j
+Z2F0ZTAgICAgICAgICAgICAgICAgMSAgICAgICAgMSAgICAgICAgMCAgICAyNDAwMDAwMAogICAg
+ICAgMCAgICAgMCAgNTAwMDAgICAgICAgICBZCiAgIGMxMTA4NjUwLnB3bSNkaXYwICAgICAgICAg
+ICAgICAgICAwICAgICAgICAwICAgICAgICAwICAgIDI0MDAwMDAwCiAgICAgICAwICAgICAwICA1
+MDAwMCAgICAgICAgIFkKICAgYzExMDg2NTAucHdtI211eDAgICAgICAgICAgICAgICAgIDAgICAg
+ICAgIDAgICAgICAgIDAgICAgMjQwMDAwMDAKICAgICAgIDAgICAgIDAgIDUwMDAwICAgICAgICAg
+WQoKTXkgc3VnZ2VzdGlvbiBpcyB0byBzd2l0Y2ggdG8gc3RydWN0IGNsa19wYXJlbnRfZGF0YSBl
+bnRpcmVseSAoZm9yIHRoZQptdXggdGhpcyBjb3VsZCBiZSBkb25lIHdpdGggYSBzZXBhcmF0ZSBj
+b21taXQgYmVmb3JlIHRoaXMgb25lKS4KVGhlbiBrZWVwIGl0IGNvbnNpc3RlbnQgYW5kIGRvbid0
+IG1peCBwYXJlbnRfbmFtZXMvcGFyZW50X2h3cyBhbmQKcGFyZW50X2RhdGEgKGp1c3Qgc3RpY2sg
+dG8gcGFyZW50X2RhdGEsIHdoaWNoIGNhbiBtYW5hZ2UgdGhlIHByZXZpb3VzCnR3byBhbmQgbW9y
+ZSkuCkkgKnRoaW5rKiBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIGNhbiBldmVuIGJlIHVzZWQgdG8g
+c2ltcGxpZnkgdGhlCnNlY29uZCBwYXRjaCAoYnkganVzdCBoYXZpbmcgYW4gImVtcHR5IiBlbnRy
+eSAtIHdpdGggaW5kZXggPSAtMSAtIGluCnRoZSBhcnJheSkuCgpbLi4uXQo+ICsgICAgICAgICAg
+ICAgICBjaGFubmVsLT5nYXRlLmJpdF9pZHggPSBfX2ZmcyhtZXNvbl9wd21fcGVyX2NoYW5uZWxf
+ZGF0YVtpXS5jbGtfZW5fbWFzayk7CkkncyB0aGUgb25seSBwbGFjZSB3aGVyZSBjbGtfZW5fbWFz
+ayBpcyBub3cgdXNlZC4gU28gSSB0aGluayBpdCdzCnZhbGlkIHRvIGp1c3QgcmVuYW1lIGNsa19l
+bl9tYXNrIHRvIGNsa19lbl9pZHggYW5kIHBhc3MgdGhlIHZhbHVlCndpdGhvdXQgdGhlIEJJVCBt
+YWNybyBkdXJpbmcgaW5pdGlhbGl6YXRpb24uCgoKQmVzdCByZWdhcmRzLApNYXJ0aW4KCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
