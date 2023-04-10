@@ -4,66 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09FF5C77B61
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Apr 2023 16:41:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 585F6C77B61
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Apr 2023 18:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qDfYtE2mytpV2Pl3eAh8qo/RpAtlDlYl0ruN9Uxs+Do=; b=wl4PeVPZqXvWmf
-	VcPUtZjGcQJwRYxhRsQ476+ZsjqVvLyk5o2WdfipN0APvkGa6FseSaLl2q/4ZFK2hkLbohEN2hvDX
-	/LEhfszgZfcDD9Zw9N1ECEzGNaW/4oHGpvA5xL7hersJhqVTwmFXWDWViA//feuuXuS7grJ38daGS
-	qYH7ZcCImxJAuezsJkRVxe74lCglZar08Y+IrnXogYIvjEVTgWcJpxqYxOHZqp1R7L/8cG/FNNKVa
-	okbUw+zKasXBvjMawomS+C7aThbXcmyQSJrEmXNKueoU8qBWWEZchzBkhiIAc4EYF5O7ZhT7465TS
-	+3wvn3vnIXmYPSxquiVQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hht/BmsWUFiH3K6N5HiQi+tw3FRl2aBlREmewCOPLyY=; b=hhyRKCZnSm8fki
+	3jUoi0cueKwTqJ3kSasYgg7Yx7p9PFINqvjbj3YPQmrpJoKQsLiuea5QfJZF5NI8OHjrjONhJoIFL
+	YfNQAOGExVveFgLHgHq8JRXHxvPvttV/4VriQIiYKpxkbx4nkqq5E8yUdGLhV1uu4yzDy3JWgkITu
+	AXx1BVO3hZh8SLQYQ4sjWcOC4aS/zTtxzC8DPm6mQHZ8YPvN8GDS4t9hkFAVXkShpzkKha9mDsW2Y
+	c2yngrT3uBt+aVdk7iqZlgbUwAZzeRVPtr7Y0nRaIbZw2oRgDOCEGBvcgPXyZbj/kG6axKuAuXVB0
+	7kOmkN4isuzjYWepauIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pluZv-00FZXa-0l;
-	Mon, 10 Apr 2023 16:41:15 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1plvvi-00FgPD-3A;
+	Mon, 10 Apr 2023 18:07:50 +0000
+Received: from new-shark9.inbox.lv ([194.152.32.89])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pluZr-00FZWp-08;
-	Mon, 10 Apr 2023 16:41:12 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id D148D61CC6;
-	Mon, 10 Apr 2023 16:41:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EB39C433D2;
-	Mon, 10 Apr 2023 16:41:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681144869;
-	bh=zz8rVoloOKCPdCyFenJt8RAA9ls+uQJna7oAZHgsD9Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQRgGe/HZZXRBjj3tFQYBBklu/9e3YmhJ1Pt1l/aornMes8Hx8Y11OfM6V6V6M6r/
-	 drh+NIPlojIbSsPm7Sht1YpA22EF62hchPoGv6PJnmjyrruFwiT4KeSl7cIULX7MxS
-	 30PuglPFIEacD4MIthT4vM5mZS2LAdvXdqMEOd4JH1o81eBCr57VWj7tiLGwd0vPA7
-	 9YP+gWi90lW19MvExGBfE+I1sBz/rwVlfvHAeGCvlm5UBbUqrmP09OtPgoR2NW8ITi
-	 Ij3TDHVUbSdPCI8r0XxZ5DpuuckwxglXmol4JBUdrxW48cVL1KYEpnZIfSY0BFZ9nY
-	 RUIC98mkikC4Q==
-Date: Mon, 10 Apr 2023 19:40:54 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org, jbrunet@baylibre.com,
-	linux-amlogic@lists.infradead.org,
+	id 1plvvf-00FgNu-2G;
+	Mon, 10 Apr 2023 18:07:49 +0000
+Received: from shark1.inbox.lv (shark1 [10.0.1.81])
+	by new-shark9.inbox.lv (Postfix) with ESMTP id 8B2C3480813;
+	Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
+Received: from shark1.inbox.lv (localhost [127.0.0.1])
+	by shark1-out.inbox.lv (Postfix) with ESMTP id 7AD4B11180E5;
+	Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
+	s=p20220324; t=1681150058; x=1681151858;
+	bh=y1ChjUCMzQii6EhLRKMmO6a7digcuovwd1kw7u2N5go=;
+	h=From:To:Cc:Subject:Date:Message-Id:X-ESPOL:From:Date:To:Cc:
+	 Message-ID:Subject:Reply-To;
+	b=vb5mdnl4+jFXMtD2syWXhid9OerURW9+OTxEiG46GWdvu41h4BFJg/3wmxu52azlo
+	 fAJE4FNri0TYa2bD8MaE1TT6fgTI5FU2ZFWuYl3tc6HZ3djX/NlyWCEc3Z24B8H1Kf
+	 76ifSzUT4RgEL2pX961SJaJfYhSMEfkrnx9oPe5g=
+Received: from localhost (localhost [127.0.0.1])
+	by shark1-in.inbox.lv (Postfix) with ESMTP id 736F211180B3;
+	Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
+Received: from shark1.inbox.lv ([127.0.0.1])
+	by localhost (shark1.inbox.lv [127.0.0.1]) (spamfilter, port 35)
+	with ESMTP id PONECAxGTz8l; Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
+Received: from mail.inbox.lv (pop1 [127.0.0.1])
+	by shark1-in.inbox.lv (Postfix) with ESMTP id 3517B111809A;
+	Mon, 10 Apr 2023 21:07:38 +0300 (EEST)
+From: Karl Chan <exkcmailist@inbox.lv>
+To: linux-amlogic@lists.infradead.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	martin.blumenstingl@googlemail.com, narmstrong@baylibre.com,
-	stefan@agner.ch
-Subject: Re: [PATCH v2 1/1] of: fdt: Scan /memreserve/ last
-Message-ID: <ZDQ8FpOtO7UINuFn@kernel.org>
-References: <20230410120017.41664-1-tanure@linux.com>
- <20230410120017.41664-2-tanure@linux.com>
+	linux-kernel@vger.kernel.org,
+	"Karl Chan" <exkcmailist@inbox.lv>
+Subject: [PATCH v3 0/2] arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
+Date: Tue, 11 Apr 2023 02:07:26 +0800
+Message-Id: <20230410180728.30332-1-exkcmailist@inbox.lv>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230410120017.41664-2-tanure@linux.com>
+X-Virus-Scanned: OK
+X-ESPOL: AJqEQ3gB6gpLwLuiSfBh5uXsxt+2VFkkvDuJsLBwtjJYqsqhvt90eXGXGIPxEAGnemLD
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230410_094111_134043_4A5679D3 
-X-CRM114-Status: GOOD (  21.33  )
+X-CRM114-CacheID: sfid-20230410_110748_209358_EDFE99D7 
+X-CRM114-Status: UNSURE (   6.15  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,59 +88,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 10, 2023 at 08:00:17AM -0400, Lucas Tanure wrote:
-> Change the order of scanning /memreserve/ and /reserved-memory node.
-> /reserved-memory node should go first, as it has a more updated
-> description of the memory regions and it can apply flags, like nomap.
-> Also, /memreserve/ should avoid reserving regions described in
-> /reserved-memory node.
-> 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  drivers/of/fdt.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index d1a68b6d03b3..26e608d8025d 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -635,16 +635,21 @@ void __init early_init_fdt_scan_reserved_mem(void)
->  	if (!initial_boot_params)
->  		return;
->  
-> +	fdt_scan_reserved_mem();
-> +	fdt_reserve_elfcorehdr();
-> +
->  	/* Process header /memreserve/ fields */
->  	for (n = 0; ; n++) {
->  		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
->  		if (!size)
->  			break;
-> +		if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> +		    memblock_is_region_reserved(base, size))
-> +			break;
+From: "Karl Chan"  <exkcmailist@inbox.lv>
 
-I don't think this is really needed, it's ok to reserve the same ranges
-multiple times.
-Both checks are not cheap, so it'll be better to just reserve everything
-both from performance and simplicity points of view.
+The Xiaomi Mibox 3 is a TV box based on the Amlogic S905X chipset.
+There are two variants:
+- 2 GiB/8GIB
+- 1 GiB/4GIB
 
-> +
->  		memblock_reserve(base, size);
->  	}
->  
-> -	fdt_scan_reserved_mem();
-> -	fdt_reserve_elfcorehdr();
->  	fdt_init_reserved_mem();
->  }
->  
-> -- 
-> 2.40.0
-> 
+Both variants come with:
+- 802.11a/b/g/n/ac wifi (BCM4345)
+- HDMI , AV (CVBS) and S/PDIF optical output
+- 1x USB (utilizing both USB ports provided by the SoC)
+
+Karl Chan (2):
+  dt-bindings: arm: amlogic: add Xiaomi Mibox 3 binding
+  arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 142 ++++++++++++++++++
+ 3 files changed, 144 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
 
 -- 
-Sincerely yours,
-Mike.
+2.40.0
 
 _______________________________________________
 linux-amlogic mailing list
