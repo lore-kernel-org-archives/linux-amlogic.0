@@ -4,70 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90BD2C76196
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Apr 2023 19:21:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 736EDC7619A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Apr 2023 19:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QghfGkWsZChKTcZ4YsUo5Ar+2QMBobCywJtu+0nGQ8U=; b=v6Ns9tuCCGYVpq
-	jok49rckZyBd3puvQuzxKj4W3zuUEs0+4NE+n1g+SmNCvc0XkI/DEPxGme8wuKJ/V94TbnjC3Oe/P
-	cClqnxJHK2Ipb+SkhYf8rSK/GZbihLHL/RJtSJBibItewXZvF9bu2vIp3s9IDH78Nx86jBSJ+sy6w
-	PdrVLdHO8oT9En6Z4a91IIrGkuP1OUbEbI4k20vG6ixVxN43d8YSMPsBaqiUrnPmvIoAu8Bf5k/aD
-	hfi4ZclDI8VKPOABI0Qfqyrchby3K5HHayMvs8+UzGp/QyuSkgRu8ooC7ulRyZql9fEzmr+72jo1r
-	Qi3e3gUdBGvTSg9Is1dw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kg156SE6a+g423dxM7twzzehnsrSdnyXesy25FaLauI=; b=AmZETTAEL7ryO5
+	23SPV2Xzq6acEqlgC8aW4j+oRLW4jQRIxkLQFQ9212rcwJcsDISYpKS7NhYut6U/r7fnRvdTyrE9X
+	grv0TODTpQZkam+KxO381p5OuJDVwS0lfGw60y2x/HMDEmXrgrRAi4fjC1gg9kFSd1sdzCoFqVVj9
+	jUSIPdveDoxjzKt/Q3vyF0e7bojxfVC1tlPmZ2X+i2sHSCqIJfx8bAihfj23eFBMdPZ9Sw1eLsjbD
+	3CltKtpzRix5x4TQN6JDxHjaGy8qbbosWvNKKr7PL6KxbZwsCWEbWpP4zhQGj7KvHWGSj3/5lTc98
+	j4C7rn0tgUS7zpPX6fIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmJYV-000vhK-2q;
-	Tue, 11 Apr 2023 19:21:27 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1pmJdW-000wRI-0o;
+	Tue, 11 Apr 2023 19:26:38 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmJYR-000vgn-3D;
-	Tue, 11 Apr 2023 19:21:25 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id e22so8555291wra.6;
-        Tue, 11 Apr 2023 12:21:21 -0700 (PDT)
+	id 1pmJdS-000wPu-1w;
+	Tue, 11 Apr 2023 19:26:35 +0000
+Received: by mail-wr1-x436.google.com with SMTP id v29so8671432wra.13;
+        Tue, 11 Apr 2023 12:26:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681240880; x=1683832880;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6WsD3ulAldrPfl4jq7HzDtaOpVHHFfOPvMBT4AIJDvI=;
-        b=q/C67sxnz6klbc/YjWmAgCrDV+pCyZSUsDjbbYPcC2gjrlQddiAPKpqQO7dGM0jeuX
-         LYUXQ7tfcVL/x2A3N4o92v0oWn937zYcqDt7jdzqBOF032FuB0Qcb7mgkbuY+H4aH5XQ
-         dG85J8Cqf47Uo8U0fJxhAIp+Q4njGXRsY2zftUNklFIkZWXfv+QQ92iv1YbHQXOFRLKo
-         JaREsPsF/KmU6UyURrb82rYNCvFYICOELosv3Z2D4cqUTZdfmDxPOf7iQugsVpxJkqYO
-         rYNENj7nnuAmovASNSyFaL2mxZJV+UPk0b27asFTuVt5vMqYITLoGK/QPisaddcpM6YH
-         uqIQ==
+        d=gmail.com; s=20210112; t=1681241192; x=1683833192;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OxWZ3lc7cHgbqUIVxG2SqSCxtmOZkFcO8gtsNb4LbME=;
+        b=kkHeH97+ArBF9/0zQysc+2G8LTCn28AvF+hDw4OwXHmtvpeaM4fTSo8zxfu95O/lCy
+         dWrQE6QLdS+mnXvTlIy4dtXd9d3BWY9NxW5vnUxbjrKDhuna9QoiwfqbUQQU+nkNo3fo
+         bJGFKe3cPzhtPR5YyNTQ41H9G/IuJZ1TNyDRRnT7DucdPVA+lsKBhzSjcrpfCLF056Q9
+         oz3CzwUmV/FOxNc8bYKDx3XBF7EZvIvwRBCoYtnhFOOVEikmKIxpDs/l2TIfOks/dPkS
+         Sqt+77if3p4ms5pO8SGVAPMm3sU0ixv1mLeOG3A8YCZLPLpGfbcO0+qZB0uChJV93aV7
+         ytWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681240880; x=1683832880;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6WsD3ulAldrPfl4jq7HzDtaOpVHHFfOPvMBT4AIJDvI=;
-        b=L/qxjHreZirFT0T+R2ocMoI6eWDqNzT/GNdwjN8x4u9gVgrvzdiHqKGhyJ/ShkiZ/w
-         7bEGVXA/ZpUE0cEeQyrlJwPVeDQk3GiIPkg85+of05VbRGVtU2tMQoPi6k3MGQjC+2b/
-         3Plkc8Qs6jSqkzDjzolPYFp+t5JdVVygza7TAbcybFhLs2i0Q7olnhbfkUTta32zVQGS
-         OlcVuHbIF2yz3do1PRPyPK+qW5YG7Wnbyfa07IpzTYlKwt8Ay5MB4zOPVNJrpaP8d4so
-         bSVnzYhK8vNWmNXpIC+1YBE0ydZYeFYZgLrNKe6tdgJzzvJ6jReqRNnLqSAg+8i0NKv1
-         TtpQ==
-X-Gm-Message-State: AAQBX9fmesV/OYuDX8oIyJ57g0/G34Am938wYf6ZjmaeU+XryguNg/dB
-	x/7q/Vtl3Djg2YCiYI1DzX0=
-X-Google-Smtp-Source: AKy350aNZsG65tT5LwNBQ3xRfgNbyGtgCVak19iUXnnhOUDj+Gj5w/NbPmbs3LiWJPjPl7MhCuBlBQ==
-X-Received: by 2002:a05:6000:1a47:b0:2f1:dae:100c with SMTP id t7-20020a0560001a4700b002f10dae100cmr145987wry.5.1681240879859;
-        Tue, 11 Apr 2023 12:21:19 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1681241192; x=1683833192;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OxWZ3lc7cHgbqUIVxG2SqSCxtmOZkFcO8gtsNb4LbME=;
+        b=GDlRv37QMEs0BgygC4zQ3iwdqEmnPxns58aK5tm8oMoqxx1Kz1CS5Q6b332jPvki/y
+         dclOXqyzx7u0pAfzrKREfnk2ANLP9+aJFS7dJcRi1n1BjQpEA7EGGtARjhAMbwOQmABz
+         k+wrELfLB78IMBB2oc9ePgykEW3iBEZaQ30CzwduAA0FQQBBNJA/frhdOGyQCmSrwwIR
+         bwnTbapCtFSUqZiVSKDd4Lt4c6m9WIvQ7mQu3G6cApgmVL1BsXvwYG2tfJEqtefAs/L0
+         bTI4o3rQrZAnNSV0YYlWab7Ee9Ok3U4O4uuaELmzorNgJHgXpUOOTZGZIa92YzaPaafJ
+         c72Q==
+X-Gm-Message-State: AAQBX9cpONbdKh03enfOTdzeF1I/om9Zba0GY81QNG9I5JHdBoUDiP9O
+	eP8Bic4e5wD5odFo9kI9Qq8=
+X-Google-Smtp-Source: AKy350Y8UGQNTb1QdJvRPlNvRx/fVmbzC3WA4YTp6Q2H2MzZRPxG1pqPqaNj8p9w7JNf4wE3vQJh3Q==
+X-Received: by 2002:adf:e4c1:0:b0:2f4:fcd:98d2 with SMTP id v1-20020adfe4c1000000b002f40fcd98d2mr585544wrm.31.1681241191637;
+        Tue, 11 Apr 2023 12:26:31 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:c4bb:c200:90e3:4731:63e4:d333? (dynamic-2a01-0c23-c4bb-c200-90e3-4731-63e4-d333.c23.pool.telefonica.de. [2a01:c23:c4bb:c200:90e3:4731:63e4:d333])
-        by smtp.googlemail.com with ESMTPSA id fm7-20020a05600c0c0700b003f063a709dbsm3886004wmb.2.2023.04.11.12.21.18
+        by smtp.googlemail.com with ESMTPSA id h7-20020a05600c314700b003f07ef4e3e0sm4158098wmo.0.2023.04.11.12.26.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 12:21:19 -0700 (PDT)
-Message-ID: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
-Date: Tue, 11 Apr 2023 21:21:14 +0200
+        Tue, 11 Apr 2023 12:26:31 -0700 (PDT)
+Message-ID: <2760498e-23a6-f787-bac2-0460566a995d@gmail.com>
+Date: Tue, 11 Apr 2023 21:22:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
+Subject: [PATCH v2 1/4] pwm: meson: switch to using struct clk_parent_data for
+ mux parents
+Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2 0/4] pwm: meson: make full use of common clock framework
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
@@ -78,10 +80,11 @@ Cc: "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
  linux-pwm@vger.kernel.org
-Content-Language: en-US
+References: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
+In-Reply-To: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230411_122124_053761_31F4A686 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20230411_122634_643847_FEAF7AAE 
+X-CRM114-Status: GOOD (  11.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,59 +101,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Newer versions of the PWM block use a core clock with external mux,
-divider, and gate. These components either don't exist any longer in
-the PWM block, or they are bypassed.
-To minimize needed changes for supporting the new version, the internal
-divider and gate should be handled by CCF too.
+We'll use struct clk_parent_data for mux/div/gate initialization in the
+follow-up patches. As a first step switch the mux from using
+parent_names to clk_parent_data.
 
-I didn't see a good way to split the patch, therefore it's somewhat
-bigger. What it does:
+Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/pwm/pwm-meson.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-- The internal mux is handled by CCF already. Register also internal
-  divider and gate with CCF, so that we have one representation of the
-  input clock: [mux] parent of [divider] parent of [gate]
-  
-- Now that CCF selects an appropriate mux parent, we don't need the
-  DT-provided default parent any longer. Accordingly we can also omit
-  setting the mux parent directly in the driver.
-  
-- Instead of manually handling the pre-div divider value, let CCF
-  set the input clock. Targeted input clock frequency is
-  0xffff * 1/period for best precision.
-  
-- For the "inverted pwm disabled" scenario target an input clock
-  frequency of 1GHz. This ensures that the remaining low pulses
-  have minimum length.
-
-I don't have hw with the old PWM block, therefore I couldn't test this
-patch. With the not yet included extension for the new PWM block
-(channel->clock directly coming from get_clk(external_clk)) I didn't
-notice any problem. My system uses PWM for the CPU voltage regulator
-and for the SDIO 32kHz clock.
-
-Note: The clock gate in the old PWM block is permanently disabled.
-This seems to indicate that it's not used by the new PWM block.
-
-Changes to RFT/RFC version:
-- use parent_hws instead of parent_names for div/gate clock
-- use devm_clk_hw_register where the struct clk * returned by
-  devm_clk_register isn't needed
-
-v2:
-- add patch 1
-- add patch 3
-- switch to using clk_parent_data in all relevant places
-
-Heiner Kallweit (4):
-  pwm: meson: switch to using struct clk_parent_data for mux parents
-  pwm: meson: don't use hdmi/video clock as mux parent
-  pwm: meson: change clk/pwm gate from mask to bit
-  pwm: meson: make full use of common clock framework
-
- drivers/pwm/pwm-meson.c | 194 +++++++++++++++++++++-------------------
- 1 file changed, 101 insertions(+), 93 deletions(-)
-
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 4e5605c9d..52a2104f0 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -61,6 +61,7 @@
+ #define MISC_A_EN		BIT(0)
+ 
+ #define MESON_NUM_PWMS		2
++#define MESON_MAX_MUX_PARENTS	4
+ 
+ static struct meson_pwm_channel_data {
+ 	u8		reg_offset;
+@@ -485,20 +486,27 @@ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+ static int meson_pwm_init_channels(struct meson_pwm *meson)
+ {
+ 	struct device *dev = meson->chip.dev;
+-	struct clk_init_data init;
+ 	unsigned int i;
+ 	char name[255];
+ 	int err;
+ 
+ 	for (i = 0; i < meson->chip.npwm; i++) {
+ 		struct meson_pwm_channel *channel = &meson->channels[i];
++		struct clk_parent_data mux_parent_data[MESON_MAX_MUX_PARENTS] = {};
++		struct clk_init_data init = {};
++		int j;
+ 
+ 		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
+ 
++		for (j = 0; j < meson->data->num_parents; j++) {
++			mux_parent_data[j].index = -1;
++			mux_parent_data[j].name = meson->data->parent_names[j];
++		}
++
+ 		init.name = name;
+ 		init.ops = &clk_mux_ops;
+ 		init.flags = 0;
+-		init.parent_names = meson->data->parent_names;
++		init.parent_data = mux_parent_data;
+ 		init.num_parents = meson->data->num_parents;
+ 
+ 		channel->mux.reg = meson->base + REG_MISC_AB;
 -- 
 2.40.0
 
