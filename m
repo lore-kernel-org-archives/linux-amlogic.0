@@ -4,86 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50180C7619A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Apr 2023 19:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B8DDC76196
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Apr 2023 19:30:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0MEP7yjBHlcmkXSOpZvawZwQEMYWgTZ7ot33pBXO8HU=; b=Ujj3GPyMXL4Qfr
-	rlKGy0Lsd7Qtl3S0s6kUZc1QKMd0mP7dNZVMJZGcxLsEpQE0PpPczf/n5P9dvltMcCeN8U1hWWLq8
-	7CrEp2/9vBernzfgwEMG1Y4l/uCwHc8apo2wzTbLhGF49OmyZ30eVtlaLNnV+vhlFb5YcG1cYD82+
-	HJqti9ffgonjCGinhvKPYbhbayweip8DiOIOnCWMrb3JqBNmnQEilcweKzDz1jNTtZvYDykt8yOsk
-	v48RPeTV7cGNbNRqVlDNBTY6/ZeInwAYc0TsoDQwiHDBYNDjCT09Wa3+fBmbSism1rQLOfaHbHDet
-	XQ8syoK8jb9y7eNERlRA==;
+	List-Owner; bh=dsh1PLSxOuUroZyFNhg9Mdwf3MKJYiJVq8XYK3ar99U=; b=WADv1o3Bq+qfvO
+	qsd3GN6ENNE5q2vE/g+MeC1v1tMjMRTpDBOuf/7fnS9xzppbGdgxt/becpkAXw8qXucyjtG86kShS
+	xMvNT1sLdGhHchkT3fjYu3mpexbRnLSevbzb8v1RW/rm2rHx9Xet8iRX4WRNFSgOb0P4G5OfDTXa8
+	e+XdHd9WhAJC/oGyX3B9FTSIHTFIDlOFuGhkKzdLgJaQ2sQYN7JYrQ29XgXWecAwNBttwO5wS6r0u
+	/KdoQBGti7SxZtuKb3yAJGMnbD95cnmzn/+64s6zAGUfy12xJOuq0Y1PYMku4gn0dezGilj4N+OFn
+	JkuwkWESIU4SjSrEMP5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmJdg-000wWG-1X;
-	Tue, 11 Apr 2023 19:26:48 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1pmJhM-000xMU-2h;
+	Tue, 11 Apr 2023 19:30:36 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmJdX-000wQg-1X;
-	Tue, 11 Apr 2023 19:26:41 +0000
-Received: by mail-wr1-x435.google.com with SMTP id e22so8567849wra.6;
-        Tue, 11 Apr 2023 12:26:37 -0700 (PDT)
+	id 1pmJhJ-000xLa-2U;
+	Tue, 11 Apr 2023 19:30:35 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id ga37so23489214ejc.0;
+        Tue, 11 Apr 2023 12:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681241196; x=1683833196;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jjTcv9ISBL6Oz86Z5Q8IZbwq6mT5uF1034ER6v+8wcw=;
-        b=m9BGxS/YDtb/FnmThK/9ZqChjjc2a9+h9YYyTZ44iz+tMec+IA+EiIIJlT/QhyDHQ+
-         2Ywx6MzCG+o/+y5951RRgMPD69IEC5xx5Wnz9sz39k2w9Zp7kuDbN+fV3HiSAYrNlZ53
-         Bn3RggjCEnlt1An/CVi5/uuuunGpSgWsg6PFQs5VEvCaKbNkZBq2bjskADJ4k7tQKLgp
-         O3SLFBKwG322xZCThPphSHGIUs+o7jQDA5Q8Y8rTXpSueV2k/sMW/PeIxZmhUCcgAza3
-         khZsxPl5wbgHGh8HJXsDqDMW6JsVOW0O7xbgh4DpPTdiSykiIvenwHYcq+DjU0vPZKdv
-         cMHQ==
+        d=googlemail.com; s=20210112; t=1681241430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/djvqI9JsJGvDn3SeW6vm5P6m42AvZNBj0jcHhZnRM4=;
+        b=AqRqt8mlFu1EZUsVr+zspOkJ4uOQ+yIr1IjZ1zhhq31AVvWsJDwCtAt3Zht1izog4M
+         JkAS3c3Dz882M05M0FLebvBd8mkPB2iX7vvxpWFUGyO03ytitNYxL8S1iEQoY2bj0ZDa
+         +T4YaBqXthOb6pr4NxBHo+qgGvGOWorR03SZYGEyN1T/qoHK/W5BJ4hY0OTAuGJ/HmSN
+         HqFG1yhc3jSWKxjZoVRVdB32QjkSHh7FhEbk042cb+w3iJEkjA938iglZ9DU3e0jrlRd
+         YPvE8VzoQZ0c0wj+7houxZYFRbJfVP/4b3uZ+8JbwAk6hWkGdhSrglTw1ggb6WmcG8LY
+         iqEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681241196; x=1683833196;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jjTcv9ISBL6Oz86Z5Q8IZbwq6mT5uF1034ER6v+8wcw=;
-        b=XmI9OGHYvxq4tdM4vZolcVQsnLb8ze7wNaCqGkRRABSQ5PnGl+T6r4NuNFKyLFLkXv
-         /9Eb5WY5p1E8gruf62cK0R7fDEYJ34XYyD8a4gWfTlk9yzWE7e9WLZ2p+GUXM138aIFd
-         drlde8epwkg3bvuBBJ2v/nJfZPzv+//M58hbp//RXOXMETvuvu6pTbvprSf2LcuTMX24
-         NqLZ0MAFbtX9Ly1AUjku6JD0Vs+gBAzOsp+/6WFM1EnPxc9JtvZcj6mDl0ujhOD3Og19
-         y08W6PwRFGCwzVBCPZi6VOQgBI1AcRXQIv8QcWzp3a5f2fareILQ6hwAr4t+uDniSkb7
-         WQGQ==
-X-Gm-Message-State: AAQBX9deCTGs5EYFkpjAwAkzUH22sb6HE5vsozrWI6pWRi4cP3tjdks8
-	IHf+hb3Bh9V/fN8TnA04NZI=
-X-Google-Smtp-Source: AKy350YuZ8cLZf4VKnQpd/KyyFO/R+p01/xclXqXeiQ96OgqauxuC30NN55OTjySPKJUigd8eHsL9g==
-X-Received: by 2002:a5d:464b:0:b0:2f2:4790:fccc with SMTP id j11-20020a5d464b000000b002f24790fcccmr4236838wrs.46.1681241195862;
-        Tue, 11 Apr 2023 12:26:35 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c4bb:c200:90e3:4731:63e4:d333? (dynamic-2a01-0c23-c4bb-c200-90e3-4731-63e4-d333.c23.pool.telefonica.de. [2a01:c23:c4bb:c200:90e3:4731:63e4:d333])
-        by smtp.googlemail.com with ESMTPSA id r5-20020adfce85000000b002c54c9bd71fsm15236003wrn.93.2023.04.11.12.26.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Apr 2023 12:26:35 -0700 (PDT)
-Message-ID: <05e3b9de-ee38-97b6-7f39-5b6f7de1674f@gmail.com>
-Date: Tue, 11 Apr 2023 21:26:08 +0200
+        d=1e100.net; s=20210112; t=1681241430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/djvqI9JsJGvDn3SeW6vm5P6m42AvZNBj0jcHhZnRM4=;
+        b=HjFWzNnRXwaxPppbRqayiTRk2O6iB982N4gfAkJHzoYVz8D0e2Gu+WIs3jsvXQMllS
+         Wc6JZCfNfP9lHp1xprgbm2m68K1XDnxnlU4fSxIIOGq9P1uhySXRvqvqmfJ6oml86pqf
+         YoJsgyuciveNUYSzVYMVooB5mzzhFOKB14129YSXfWKESfKH+weCqv3NAnrmQRM9zkZt
+         MIxAXviUIrmKKDFLtZ03jzWYS6pov6zuOUman49K1MjT1VgBtpbBWsBQc8LZtf6I8LLT
+         8R0A6F/cvEq9oAIhMqDsQiriJDcOIrQQfy3wN1Caj1de1SQSwbznZ/xIf593sbr5QgOP
+         Tn8Q==
+X-Gm-Message-State: AAQBX9fSeZ7gUt9IuT3MhtfoT0Nv3HY0oZjlhV1nq2fKnsIjfEQnja28
+	JDOKUQ5bNao/9lOPjfl8kaRcSS9yBNkmXT3Qzek=
+X-Google-Smtp-Source: AKy350Z8La4docT1vMFuoXxvI/XsDKC+Hy4e6yD7JK7aCMklvTxvE8XQXPb50PEcBK/AIQfgVHJcGowSXtJlkVPio84=
+X-Received: by 2002:a17:907:ea5:b0:94a:972c:c28d with SMTP id
+ ho37-20020a1709070ea500b0094a972cc28dmr3782765ejc.6.1681241429546; Tue, 11
+ Apr 2023 12:30:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: [PATCH v2 4/4] pwm: meson: make full use of common clock framework
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
- <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org
-References: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
-In-Reply-To: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
+References: <20230410193048.31084-1-exkcmailist@inbox.lv> <20230410193048.31084-3-exkcmailist@inbox.lv>
+In-Reply-To: <20230410193048.31084-3-exkcmailist@inbox.lv>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 11 Apr 2023 21:30:18 +0200
+Message-ID: <CAFBinCCXYnChN8MfOxGEDSTm4HftpzuwwHwtqm7b1dPH6EdUsQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: meson-gxl: add support for Xiaomi
+ Mibox 3
+To: Karl Chan <exkcmailist@inbox.lv>
+Cc: linux-amlogic@lists.infradead.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Karl Chan <exxxxkc@getgoogleoff.me>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230411_122639_516664_D645560E 
-X-CRM114-Status: GOOD (  31.28  )
+X-CRM114-CacheID: sfid-20230411_123033_832060_E399B096 
+X-CRM114-Status: GOOD (  13.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,338 +86,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Newer versions of the PWM block use a core clock with external mux,
-divider, and gate. These components either don't exist any longer in
-the PWM block, or they are bypassed.
-To minimize needed changes for supporting the new version, the internal
-divider and gate should be handled by CCF too.
-
-I didn't see a good way to split the patch, therefore it's somewhat
-bigger. What it does:
-
-- The internal mux is handled by CCF already. Register also internal
-  divider and gate with CCF, so that we have one representation of the
-  input clock: [mux] parent of [divider] parent of [gate]
-  
-- Now that CCF selects an appropriate mux parent, we don't need the
-  DT-provided default parent any longer. Accordingly we can also omit
-  setting the mux parent directly in the driver.
-  
-- Instead of manually handling the pre-div divider value, let CCF
-  set the input clock. Targeted input clock frequency is
-  0xffff * 1/period for best precision.
-  
-- For the "inverted pwm disabled" scenario target an input clock
-  frequency of 1GHz. This ensures that the remaining low pulses
-  have minimum length.
-
-I don't have hw with the old PWM block, therefore I couldn't test this
-patch. With the not yet included extension for the new PWM block
-(channel->clock directly coming from get_clk(external_clk)) I didn't
-notice any problem. My system uses PWM for the CPU voltage regulator
-and for the SDIO 32kHz clock.
-
-Note: The clock gate in the old PWM block is permanently disabled.
-This seems to indicate that it's not used by the new PWM block.
-
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-Changes to RFT/RFC version:
-- use parent_hws instead of parent_names for div/gate clock
-- use devm_clk_hw_register where the struct clk * returned by
-  devm_clk_register isn't needed
-
-v2:
-- add patch 1
-- add patch 3
-- switch to using clk_parent_data in all relevant places
----
- drivers/pwm/pwm-meson.c | 134 +++++++++++++++++++++++-----------------
- 1 file changed, 76 insertions(+), 58 deletions(-)
-
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index f7595f81c..ec9c82e48 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -51,7 +51,7 @@
- #define REG_MISC_AB		0x8
- #define MISC_B_CLK_EN		23
- #define MISC_A_CLK_EN		15
--#define MISC_CLK_DIV_MASK	0x7f
-+#define MISC_CLK_DIV_WIDTH	7
- #define MISC_B_CLK_DIV_SHIFT	16
- #define MISC_A_CLK_DIV_SHIFT	8
- #define MISC_B_CLK_SEL_SHIFT	6
-@@ -87,12 +87,13 @@ static struct meson_pwm_channel_data {
- };
- 
- struct meson_pwm_channel {
-+	unsigned long rate;
- 	unsigned int hi;
- 	unsigned int lo;
--	u8 pre_div;
- 
--	struct clk *clk_parent;
- 	struct clk_mux mux;
-+	struct clk_divider div;
-+	struct clk_gate gate;
- 	struct clk *clk;
- };
- 
-@@ -125,16 +126,6 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
- 	struct device *dev = chip->dev;
- 	int err;
- 
--	if (channel->clk_parent) {
--		err = clk_set_parent(channel->clk, channel->clk_parent);
--		if (err < 0) {
--			dev_err(dev, "failed to set parent %s for %s: %d\n",
--				__clk_get_name(channel->clk_parent),
--				__clk_get_name(channel->clk), err);
--			return err;
--		}
--	}
--
- 	err = clk_prepare_enable(channel->clk);
- 	if (err < 0) {
- 		dev_err(dev, "failed to enable clock %s: %d\n",
-@@ -157,8 +148,9 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 			  const struct pwm_state *state)
- {
- 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
--	unsigned int duty, period, pre_div, cnt, duty_cnt;
-+	unsigned int duty, period, cnt, duty_cnt;
- 	unsigned long fin_freq;
-+	u64 freq;
- 
- 	duty = state->duty_cycle;
- 	period = state->period;
-@@ -166,7 +158,11 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 	if (state->polarity == PWM_POLARITY_INVERSED)
- 		duty = period - duty;
- 
--	fin_freq = clk_get_rate(channel->clk);
-+	freq = div64_u64(NSEC_PER_SEC * (u64)0xffff, period);
-+	if (freq > ULONG_MAX)
-+		freq = ULONG_MAX;
-+
-+	fin_freq = clk_round_rate(channel->clk, freq);
- 	if (fin_freq == 0) {
- 		dev_err(meson->chip.dev, "invalid source clock frequency\n");
- 		return -EINVAL;
-@@ -174,46 +170,35 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 
- 	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
- 
--	pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
--	if (pre_div > MISC_CLK_DIV_MASK) {
--		dev_err(meson->chip.dev, "unable to get period pre_div\n");
--		return -EINVAL;
--	}
--
--	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * (pre_div + 1));
-+	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC);
- 	if (cnt > 0xffff) {
- 		dev_err(meson->chip.dev, "unable to get period cnt\n");
- 		return -EINVAL;
- 	}
- 
--	dev_dbg(meson->chip.dev, "period=%u pre_div=%u cnt=%u\n", period,
--		pre_div, cnt);
-+	dev_dbg(meson->chip.dev, "period=%u cnt=%u\n", period, cnt);
- 
- 	if (duty == period) {
--		channel->pre_div = pre_div;
- 		channel->hi = cnt;
- 		channel->lo = 0;
- 	} else if (duty == 0) {
--		channel->pre_div = pre_div;
- 		channel->hi = 0;
- 		channel->lo = cnt;
- 	} else {
--		/* Then check is we can have the duty with the same pre_div */
--		duty_cnt = div64_u64(fin_freq * (u64)duty,
--				     NSEC_PER_SEC * (pre_div + 1));
-+		duty_cnt = div64_u64(fin_freq * (u64)duty, NSEC_PER_SEC);
- 		if (duty_cnt > 0xffff) {
- 			dev_err(meson->chip.dev, "unable to get duty cycle\n");
- 			return -EINVAL;
- 		}
- 
--		dev_dbg(meson->chip.dev, "duty=%u pre_div=%u duty_cnt=%u\n",
--			duty, pre_div, duty_cnt);
-+		dev_dbg(meson->chip.dev, "duty=%u duty_cnt=%u\n", duty, duty_cnt);
- 
--		channel->pre_div = pre_div;
- 		channel->hi = duty_cnt;
- 		channel->lo = cnt - duty_cnt;
- 	}
- 
-+	channel->rate = fin_freq;
-+
- 	return 0;
- }
- 
-@@ -223,16 +208,15 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
- 	struct meson_pwm_channel_data *channel_data;
- 	unsigned long flags;
- 	u32 value;
-+	int err;
- 
- 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
- 
--	spin_lock_irqsave(&meson->lock, flags);
-+	err = clk_set_rate(channel->clk, channel->rate);
-+	if (err)
-+		dev_err(meson->chip.dev, "setting clock rate failed\n");
- 
--	value = readl(meson->base + REG_MISC_AB);
--	value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
--	value |= channel->pre_div << channel_data->clk_div_shift;
--	value |= BIT(channel_data->clk_en_bit);
--	writel(value, meson->base + REG_MISC_AB);
-+	spin_lock_irqsave(&meson->lock, flags);
- 
- 	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
- 		FIELD_PREP(PWM_LOW_MASK, channel->lo);
-@@ -271,16 +255,16 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 			/*
- 			 * This IP block revision doesn't have an "always high"
- 			 * setting which we can use for "inverted disabled".
--			 * Instead we achieve this using the same settings
--			 * that we use a pre_div of 0 (to get the shortest
--			 * possible duration for one "count") and
-+			 * Instead we achieve this by setting an arbitrary,
-+			 * very high frequency, resulting in the shortest
-+			 * possible duration for one "count" and
- 			 * "period == duty_cycle". This results in a signal
- 			 * which is LOW for one "count", while being HIGH for
- 			 * the rest of the (so the signal is HIGH for slightly
- 			 * less than 100% of the period, but this is the best
- 			 * we can achieve).
- 			 */
--			channel->pre_div = 0;
-+			channel->rate = 1000000000;
- 			channel->hi = ~0;
- 			channel->lo = 0;
- 
-@@ -305,7 +289,6 @@ static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
- 	struct meson_pwm *meson = to_meson_pwm(chip);
- 	struct meson_pwm_channel *channel;
- 	unsigned long fin_freq;
--	u32 fin_ns;
- 
- 	/* to_meson_pwm() can only be used after .get_state() is called */
- 	channel = &meson->channels[pwm->hwpwm];
-@@ -314,9 +297,7 @@ static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
- 	if (fin_freq == 0)
- 		return 0;
- 
--	fin_ns = div_u64(NSEC_PER_SEC, fin_freq);
--
--	return cnt * fin_ns * (channel->pre_div + 1);
-+	return div_u64(NSEC_PER_SEC * (u64)cnt, fin_freq);
- }
- 
- static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-@@ -335,11 +316,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	value = readl(meson->base + REG_MISC_AB);
- 
--	tmp = BIT(channel_data->pwm_en_bit) | BIT(channel_data->clk_en_bit);
--	state->enabled = (value & tmp) == tmp;
--
--	tmp = value >> channel_data->clk_div_shift;
--	channel->pre_div = FIELD_GET(MISC_CLK_DIV_MASK, tmp);
-+	tmp = BIT(channel_data->pwm_en_bit);
-+	state->enabled = __clk_is_enabled(channel->clk) && (value & tmp) == tmp;
- 
- 	value = readl(meson->base + channel_data->reg_offset);
- 
-@@ -475,6 +453,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 	for (i = 0; i < meson->chip.npwm; i++) {
- 		struct meson_pwm_channel *channel = &meson->channels[i];
- 		struct clk_parent_data mux_parent_data[MESON_MAX_MUX_PARENTS] = {};
-+		struct clk_parent_data div_parent = {}, gate_parent = {};
- 		struct clk_init_data init = {};
- 		int j;
- 
-@@ -500,18 +479,57 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 		channel->mux.table = NULL;
- 		channel->mux.hw.init = &init;
- 
--		channel->clk = devm_clk_register(dev, &channel->mux.hw);
--		if (IS_ERR(channel->clk)) {
--			err = PTR_ERR(channel->clk);
-+		err = devm_clk_hw_register(dev, &channel->mux.hw);
-+		if (err) {
- 			dev_err(dev, "failed to register %s: %d\n", name, err);
- 			return err;
- 		}
- 
--		snprintf(name, sizeof(name), "clkin%u", i);
-+		snprintf(name, sizeof(name), "%s#div%u", dev_name(dev), i);
-+
-+		init.name = name;
-+		init.ops = &clk_divider_ops;
-+		init.flags = CLK_SET_RATE_PARENT;
-+		div_parent.index = -1;
-+		div_parent.hw = &channel->mux.hw;
-+		init.parent_data = &div_parent;
-+		init.num_parents = 1;
-+
-+		channel->div.reg = meson->base + REG_MISC_AB;
-+		channel->div.shift = meson_pwm_per_channel_data[i].clk_div_shift;
-+		channel->div.width = MISC_CLK_DIV_WIDTH;
-+		channel->div.hw.init = &init;
-+		channel->div.flags = 0;
-+		channel->div.lock = &meson->lock;
-+
-+		err = devm_clk_hw_register(dev, &channel->div.hw);
-+		if (err) {
-+			dev_err(dev, "failed to register %s: %d\n", name, err);
-+			return err;
-+		}
- 
--		channel->clk_parent = devm_clk_get_optional(dev, name);
--		if (IS_ERR(channel->clk_parent))
--			return PTR_ERR(channel->clk_parent);
-+		snprintf(name, sizeof(name), "%s#gate%u", dev_name(dev), i);
-+
-+		init.name = name;
-+		init.ops = &clk_gate_ops;
-+		init.flags = CLK_SET_RATE_PARENT;
-+		gate_parent.index = -1;
-+		gate_parent.hw = &channel->div.hw;
-+		init.parent_data = &gate_parent;
-+		init.num_parents = 1;
-+
-+		channel->gate.reg = meson->base + REG_MISC_AB;
-+		channel->gate.bit_idx = meson_pwm_per_channel_data[i].clk_en_bit;
-+		channel->gate.hw.init = &init;
-+		channel->gate.flags = 0;
-+		channel->gate.lock = &meson->lock;
-+
-+		channel->clk = devm_clk_register(dev, &channel->gate.hw);
-+		if (IS_ERR(channel->clk)) {
-+			err = PTR_ERR(channel->clk);
-+			dev_err(dev, "failed to register %s: %d\n", name, err);
-+			return err;
-+		}
- 	}
- 
- 	return 0;
--- 
-2.40.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gS2FybCwKCk9uIE1vbiwgQXByIDEwLCAyMDIzIGF0IDk6MzHigK9QTSBLYXJsIENoYW4g
+PGV4a2NtYWlsaXN0QGluYm94Lmx2PiB3cm90ZToKPgo+IEZyb206ICJLYXJsIENoYW4iICA8ZXhr
+Y21haWxpc3RAaW5ib3gubHY+Cj4KPiBUaGUgWGlhb21pIE1pYm94IDMgaXMgYSBUViBib3ggYmFz
+ZWQgb24gdGhlIEFtbG9naWMgUzkwNVggY2hpcHNldC4KSSBmb3VuZCB2YXJpb3VzIHdlYnNpdGVz
+IHJlZmVycmluZyB0byB0aGlzIGRldmljZSBhcyAiTWkgQm94IDMiIChzbwpzcGFjZSBiZXR3ZWVu
+IE1pIGFuZCBCb3gpLgpEbyB5b3Uga25vdyB0aGUgb2ZmaWNpYWwgbmFtZSB0aGF0IFhpYW9taSB1
+c2VkPwoKPiBUaGVyZSBhcmUgdHdvIHZhcmlhbnRzOgo+IC0gMiBHaUIvOEdJQgo+IC0gMSBHaUIv
+NEdJQgo+Cj4gQm90aCB2YXJpYW50cyBjb21lIHdpdGg6Cj4gLSA4MDIuMTFhL2IvZy9uL2FjIHdp
+ZmkgKEJDTTQzNDUpCj4gLSBIRE1JICwgQVYgKENWQlMpIGFuZCBTL1BESUYgb3B0aWNhbCBvdXRw
+dXQKbml0LXBpY2s6IG5vIHNwYWNlIGJlZm9yZSB0aGUgY29tbWEKCj4gLSAxeCBVU0IgKHV0aWxp
+emluZyBib3RoIFVTQiBwb3J0cyBwcm92aWRlZCBieSB0aGUgU29DKQpDYW4geW91IHBsZWFzZSBl
+eHBsYWluIHRoaXMgaW4gYSBiaXQgbW9yZSBkZXRhaWw/Ck15IHVuZGVyc3RhbmRpbmcgaXMgdGhh
+dCB0aGlzIGJvYXJkIGhhcyBvbmUgVVNCIDIuMCB0eXBlIEEgcG9ydC4gV2hhdApkbyB5b3UgbWVh
+biBieSAidXRpbGl6aW5nIGJvdGggVVNCIHBvcnRzIj8KCkFsc28gSSdtIGN1cmlvdXM6IGRvZXMg
+dGhlIGJvYXJkIGNvbWUgd2l0aCBlTU1DIG9yIChyYXcvcGFyYWxsZWwpIE5BTkQKZmxhc2g/IFAy
+MTIgdHlwaWNhbGx5IG1lYW5zIGVNTUMuCgpbLi4uXQo+ICsvKiBUaGlzIFVBUlQgaXMgYnJvdWdo
+dCBvdXQgdG8gdGhlIHVhcnQgcGFkIG9uIHRoZSBwY2IqLwpuaXQtcGljazogbWlzc2luZyBzcGFj
+ZSBhZnRlciAicGNiIgpBcmUgdGhlIFVBUlQgcGFkcyBvYnZpb3VzIG9uIHRoZSBib2FyZCAoZm9y
+IGV4YW1wbGUgc2luY2UgdGhleSBhcmUKbGFiZWxsZWQpPyBJZiBub3Q6IG1heWJlIGFkZCBhIGhp
+bnQgd2hlcmUgdG8gZmluZCBpdAoKWy4uLl0KPiArJnVzYiB7Cj4gKyAgICAgICBzdGF0dXMgPSAi
+b2theSI7Cj4gKyAgICAgICBkcl9tb2RlID0gImhvc3QiOwo+ICt9OwpUaGlzIGlzIGFscmVhZHkg
+aW5oZXJpdGVkIGZyb20gbWVzb24tZ3hsLXM5MDV4LXAyMTIuZHRzaSBzbyByZW1vdmluZwppdCBz
+aG91bGQgcmVzdWx0IGluIHRoZSBzYW1lIC5kdGIKCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
+YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
