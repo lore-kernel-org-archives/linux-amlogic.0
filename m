@@ -4,54 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B53BC77B61
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 14:01:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2621AC77B6E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 14:03:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
-	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yFse7SyHCLDDhQGyin1B5Sc/ISfcqbdDVZ71vg6sGCw=; b=2PgN1MBboVJvxJ
-	F96WlV9vdm3HWSTt/uc65NJs9MCrNhvXBlLuw7GENuZ8rPuZYaFBFXJ6gx5+O+gvdZg0McPzkeh0M
-	p0uP8gL0AeNRQqkzHJUxTNuwEz/jXuSUfhAAfweQo/ynDZEfNAHeU5bkU6Ts7AXOSOmAZFe7swZ/V
-	Kqd/xpujCHFK9RbiJDfTXF9IaBKe6F2qWLzyV5EexGSeuEH9os9NKUXfyKMraskampPDTgiMNzU/6
-	JH3RTkKHO+eMMTR47EI09fIeBoKynlt1dw+LY0QBTG5aGC0MuUQCBzZHtAgKsQzQzXgyWrfPtV7rI
-	+aBEeMBSmHJRwpJnanGg==;
+	List-Owner; bh=yT3oIvQY1G+Gh9GtVg8Dld75YGIuc5op8YdkobYodz4=; b=K4MoV9Czohffhv
+	bnAQ5dEoBmFIssDCgREQTQEUYA7DL9F3ivAfX5NxMss/rRJzPPjegU6toGFm89VxqSt1NhbVDNPpv
+	i6QjEnMQH5KclsW9qAjZU+nyaSt5ScBll/m+4b5k4GXcAvia46UQTJbuFp90bZsKWu1LoJZccwZgh
+	HChAKhutMDSiCCCC2d/ghdR6rJlAZTCh0Jx5wTyw2/1i/5zruwDZKeq/nWhRbjP+dPHzlvuuBYChL
+	aw0eVftNLfHrtKDylP9GLuNUjH0VCuNgyraf4Graszn/jZ5EGtR4vIqaolTZ13KBQQ9etGQMenYC4
+	nMj84DlFODNnzKvhb5tA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmxVc-006Kq4-1K;
-	Thu, 13 Apr 2023 14:01:08 +0000
-Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
+	id 1pmxXq-006LEj-2p;
+	Thu, 13 Apr 2023 14:03:26 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmxVY-006Knh-0U
-	for linux-amlogic@lists.infradead.org;
-	Thu, 13 Apr 2023 14:01:06 +0000
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1pmxVR-0000jX-MA; Thu, 13 Apr 2023 16:00:57 +0200
-Message-ID: <2e4521c5-b291-e228-c926-525e9a50a023@leemhuis.info>
-Date: Thu, 13 Apr 2023 16:00:57 +0200
+	id 1pmxXn-006LCL-0u;
+	Thu, 13 Apr 2023 14:03:26 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id D451B5FD06;
+	Thu, 13 Apr 2023 17:03:15 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1681394595;
+	bh=JyPFmAWsU5fcaW4SOSM2aGm8oGz8c50g/Tz9uqmbquM=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=ijhyK1ujBg3i/wvTteHNPPdNP2MvyeK4UFEMteCNpAySMrQmaPBRQbDOkcWxuy+P/
+	 ldCO0TcLVFVdvl9keZGWMsLcYAGl8zIFZ9eso50zOg0vHCSbWzB2YpvDMyoG8Dx5ov
+	 APv4L5HJcZ1dEGBYuYY9XtvXex3vQjAtkk7EA8fdY2gt2AZYZ3fa/8/Pod7mm4NET4
+	 OG9xksnVNWdCujOeTsAqpS8PgLyfhVQBR8lQGOKRq+P8g4nf5SCFLx63oyTSCe9pmL
+	 j0uowC2C8G4W8M9Rpka5QVSeFMTH3EHO6CtYtZANiXHRZf6aKpjryKaNhKMs60hayM
+	 hS+5UViqPHg6w==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 13 Apr 2023 17:03:14 +0300 (MSK)
+Date: Thu, 13 Apr 2023 17:03:14 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Arseniy Krasnov
+	<avkrasnov@sberdevices.ru>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
+	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 4/5] mtd: rawnand: meson: clear OOB buffer before read
+Message-ID: <20230413140314.qioyvmzvmcv43kzk@CAB-WSD-L081021>
+References: <20230412113654.183350d0@xps-13>
+ <4eace0a0-f6af-7d99-a52f-7913a2139330@sberdevices.ru>
+ <20230412141824.755b2bca@xps-13>
+ <eedaaed9-0a41-2c18-9eb2-792613566986@sberdevices.ru>
+ <20230412145715.58c2be4a@xps-13>
+ <7c996832-258f-001c-56bd-87bbdf23eeaa@amlogic.com>
+ <20230412191548.ov5fufxkwqvdgrz2@CAB-WSD-L081021>
+ <20230412225603.5fba1a9e@xps-13>
+ <20230413092706.mzopdszyirnwnjnl@CAB-WSD-L081021>
+ <20230413122916.365269f0@xps-13>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: Odroid-C1 regression with commit 4bc31edebde5 ("mmc: core: Set HS
- clock speed before sending HS CMD13")
-Content-Language: en-US, de-DE
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
- Brian Norris <briannorris@chromium.org>,
- Linux kernel regressions list <regressions@lists.linux.dev>
-References: <CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-In-Reply-To: <CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com>
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1681394464;10230900;
-X-HE-SMSGID: 1pmxVR-0000jX-MA
+Content-Disposition: inline
+In-Reply-To: <20230413122916.365269f0@xps-13>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/12 22:40:00 #21096401
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230413_070104_349990_DE7CC572 
-X-CRM114-Status: GOOD (  23.80  )
+X-CRM114-CacheID: sfid-20230413_070324_025263_3B1B5B13 
+X-CRM114-Status: GOOD (  58.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,114 +94,178 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-[TLDR: I'm adding this report to the list of tracked Linux kernel
-regressions; the text you find below is based on a few templates
-paragraphs you might have encountered already in similar form.
-See link in footer if these mails annoy you.]
-
-[CCing the regression list, as it should be in the loop for regressions:
-https://docs.kernel.org/admin-guide/reporting-regressions.html]
-
-On 11.04.23 01:13, Martin Blumenstingl wrote:
+On Thu, Apr 13, 2023 at 12:29:16PM +0200, Miquel Raynal wrote:
+> Hi Dmitry,
 > 
-> today I found that upstream commit 4bc31edebde5 ("mmc: core: Set HS
-> clock speed before sending HS CMD13") breaks eMMC support on my
-> Odroid-C1.
-> (yes, I know that I am very late to the party...)
+> ddrokosov@sberdevices.ru wrote on Thu, 13 Apr 2023 12:27:06 +0300:
 > 
-> The .dts for this board is upstream using
-> arch/arm/boot/dts/meson8b-odroidc1.dts (&sdhc node)
-> The MMC host driver used is drivers/mmc/host/meson-mx-sdhc*.
+> > On Wed, Apr 12, 2023 at 10:56:03PM +0200, Miquel Raynal wrote:
+> > > Hi Dmitry,
+> > > 
+> > > ddrokosov@sberdevices.ru wrote on Wed, 12 Apr 2023 22:15:48 +0300:
+> > >   
+> > > > On Wed, Apr 12, 2023 at 10:04:28PM +0800, Liang Yang wrote:  
+> > > > > Hi Miquel and Arseniy,
+> > > > > 
+> > > > > On 2023/4/12 20:57, Miquel Raynal wrote:    
+> > > > > > [ EXTERNAL EMAIL ]
+> > > > > > 
+> > > > > > Hi Arseniy,
+> > > > > > 
+> > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 15:22:26 +0300:
+> > > > > >     
+> > > > > > > On 12.04.2023 15:18, Miquel Raynal wrote:    
+> > > > > > > > Hi Arseniy,
+> > > > > > > > 
+> > > > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 13:14:52 +0300:    
+> > > > > > > > > On 12.04.2023 12:36, Miquel Raynal wrote:    
+> > > > > > > > > > Hi Arseniy,
+> > > > > > > > > > 
+> > > > > > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 12:20:55 +0300:    
+> > > > > > > > > > > On 12.04.2023 10:44, Miquel Raynal wrote:    
+> > > > > > > > > > > > Hi Arseniy,
+> > > > > > > > > > > > 
+> > > > > > > > > > > > AVKrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 09:16:58 +0300:    
+> > > > > > > > > > > > > This NAND reads only few user's bytes in ECC mode (not full OOB), so    
+> > > > > > > > > > > > 
+> > > > > > > > > > > > "This NAND reads" does not look right, do you mean "Subpage reads do
+> > > > > > > > > > > > not retrieve all the OOB bytes,"?    
+> > > > > > > > > > > > > fill OOB buffer with zeroes to not return garbage from previous reads
+> > > > > > > > > > > > > to user.
+> > > > > > > > > > > > > Otherwise 'nanddump' utility prints something like this for just erased
+> > > > > > > > > > > > > page:
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > ...
+> > > > > > > > > > > > > 0x000007f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+> > > > > > > > > > > > >    OOB Data: ff ff ff ff 00 00 ff ff 80 cf 22 99 cb ad d3 be
+> > > > > > > > > > > > >    OOB Data: 63 27 ae 06 16 0a 2f eb bb dd 46 74 41 8e 88 6e
+> > > > > > > > > > > > >    OOB Data: 38 a1 2d e6 77 d4 05 06 f2 a5 7e 25 eb 34 7c ff
+> > > > > > > > > > > > >    OOB Data: 38 ea de 14 10 de 9b 40 33 16 6a cc 9d aa 2f 5e
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> > > > > > > > > > > > > ---
+> > > > > > > > > > > > >   drivers/mtd/nand/raw/meson_nand.c | 5 +++++
+> > > > > > > > > > > > >   1 file changed, 5 insertions(+)
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > > > index f84a10238e4d..f2f2472cb511 100644
+> > > > > > > > > > > > > --- a/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > > > +++ b/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > > > @@ -858,9 +858,12 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
+> > > > > > > > > > > > >   static int meson_nfc_read_page_raw(struct nand_chip *nand, u8 *buf,
+> > > > > > > > > > > > >   				   int oob_required, int page)
+> > > > > > > > > > > > >   {
+> > > > > > > > > > > > > +	struct mtd_info *mtd = nand_to_mtd(nand);
+> > > > > > > > > > > > >   	u8 *oob_buf = nand->oob_poi;
+> > > > > > > > > > > > >   	int ret;
+> > > > > > > > > > > > > +	memset(oob_buf, 0, mtd->oobsize);    
+> > > > > > > > > > > > 
+> > > > > > > > > > > > I'm surprised raw reads do not read the entire OOB?    
+> > > > > > > > > > > 
+> > > > > > > > > > > Yes! Seems in case of raw access (what i see in this driver) number of OOB bytes read
+> > > > > > > > > > > still depends on ECC parameters: for each portion of data covered with ECC code we can
+> > > > > > > > > > > read it's ECC code and "user bytes" from OOB - it is what i see by dumping DMA buffer by
+> > > > > > > > > > > printk(). For example I'm working with 2K NAND pages, each page has 2 x 1K ECC blocks.
+> > > > > > > > > > > For each ECC block I have 16 OOB bytes which I can access by read/write. Each 16 bytes
+> > > > > > > > > > > contains 2 bytes of user's data and 14 bytes ECC codes. So when I read page in raw mode
+> > > > > > > > > > > controller returns 32 bytes (2 x (2 + 14)) of OOB. While OOB is reported as 64 bytes.    
+> > > > > > > > > > 
+> > > > > > > > > > In all modes, when you read OOB, you should get the full OOB. The fact
+> > > > > > > > > > that ECC correction is enabled or disabled does not matter. If the NAND
+> > > > > > > > > > features OOB sections of 64 bytes, you should get the 64 bytes.
+> > > > > > > > > > 
+> > > > > > > > > > What happens sometimes, is that some of the bytes are not protected
+> > > > > > > > > > against bitflips, but the policy is to return the full buffer.    
+> > > > > > > > > 
+> > > > > > > > > Ok, so to clarify case for this NAND controller:
+> > > > > > > > > 1) In both ECC and raw modes i need to return the same raw OOB data (e.g. user bytes
+> > > > > > > > >     + ECC codes)?    
+> > > > > > > > 
+> > > > > > > > Well, you need to cover the same amount of data, yes. But in the ECC
+> > > > > > > > case the data won't be raw (at least not all of it).    
+> > > > > > > 
+> > > > > > > So "same amount of data", in ECC mode current implementation returns only user OOB bytes (e.g.
+> > > > > > > OOB data excluding ECC codes), in raw it returns user bytes + ECC codes. IIUC correct
+> > > > > > > behaviour is to always return user bytes + ECC codes as OOB data even in ECC mode ?    
+> > > > > > 
+> > > > > > If the page are 2k+64B you should read 2k+64B when OOB are requested.
+> > > > > > 
+> > > > > > If the controller only returns 2k+32B, then perform a random read to
+> > > > > > just move the read pointer to mtd->size + mtd->oobsize - 32 and
+> > > > > > retrieve the missing 32 bytes?    
+> > > > > 
+> > > > > 1) raw read can read out the whole page data 2k+64B, decided by the len in
+> > > > > the controller raw read command:
+> > > > > 	cmd = (len & GENMASK(5, 0)) | scrambler | DMA_DIR(dir);
+> > > > > after that, the missing oob bytes(not used) can be copied from
+> > > > > meson_chip->data_buf. so the implementation of meson_nfc_read_page_raw() is
+> > > > > like this if need.
+> > > > > 	{
+> > > > > 		......
+> > > > > 		meson_nfc_read_page_sub(nand, page, 1);
+> > > > > 		meson_nfc_get_data_oob(nand, buf, oob_buf);
+> > > > > 		oob_len = (nand->ecc.bytes + 2) * nand->ecc.steps;
+> > > > > 		memcpy(oob_buf + oob_len, meson_chip->data_buf + oob_len, mtd->oobsize -
+> > > > > oob_len);
+> > > > > 
+> > > > > 	}
+> > > > > 2) In ECC mode, the controller can't bring back the missing OOB bytes. it
+> > > > > can read out the user bytes and ecc bytes per meson_ooblayout_ops define.
+> > > > >     
+> > > > 
+> > > > How does the Meson controller know the actual NAND flash layout when the
+> > > > OOB is split into protected and unprotected areas, such as Free and ECC
+> > > > areas? If the controller has a static OOB layout, where is the mapping
+> > > > located?  
+> > > 
+> > > It's usually a set of values hardcoded in the driver. It's a per
+> > > geometry set.
+> > >   
+> > 
+> > Sorry, I'm still confused. Before I developed spinand drivers, the OOB layout
+> > was located on the flash driver side.
 > 
-> The problem I'm seeing is that the eMMC module is simply not detected.
-> There are no errors in the kernel log (note that mmc1 is the eMMC
-> while mmc0 is the SD card which is attached to another controller on
-> that SoC):
-> # dmesg | grep mmc
-> [    2.742136] meson-mx-sdhc c1108e00.mmc: allocated mmc-pwrseq
-> [    4.315905] platform c1108c20.mmc:slot@1: Got CD GPIO
-> [    4.450921] mmc0: new high speed SDHC card at address 0001
-> [    4.456985] mmcblk0: mmc0:0001 EB1QT 29.8 GiB
-> [    4.466108]  mmcblk0: p1
+> The spinand subsystem is different, most of the chips have on-die ECC,
+> which means the ECC layout is most of the time per-chip.
 > 
-> In this state I get:
-> # cat /sys/kernel/debug/mmc1/ios
-> clock:          52000000 Hz
-> actual clock:   51000000 Hz
-> vdd:            21 (3.3 ~ 3.4 V)
-> bus mode:       2 (push-pull)
-> chip select:    0 (don't care)
-> power mode:     2 (on)
-> bus width:      3 (8 bits)
-> timing spec:    9 (mmc HS200)
-> signal voltage: 1 (1.80 V)
-> driver type:    0 (driver type B)
+> In the raw NAND layer, most of the time the ECC engine is merged with
+> the NAND controller and thus the list of available layouts depend on
+> the controller. But these layouts often adapt to the NAND chip
+> geometry, so you can only now which layout to use after identifying the
+> chip (there is an ->attach_chip() hook to handle things related to
+> geometry after controller base initialization.
 > 
-> After reverting the mentioned commit I get:
-> # dmesg | grep mmc
-> [    2.744226] meson-mx-sdhc c1108e00.mmc: allocated mmc-pwrseq
-> [    2.970944] mmc1: new HS200 MMC card at address 0001
-> [    2.974492] mmcblk1: mmc1:0001 8GND3R 7.28 GiB
-> [    2.985126]  mmcblk1: p1
-> [    2.987810] mmcblk1boot0: mmc1:0001 8GND3R 4.00 MiB
-> [    3.003007] mmcblk1boot1: mmc1:0001 8GND3R 4.00 MiB
-> [    4.311754] platform c1108c20.mmc:slot@1: Got CD GPIO
-> [    4.374732] mmc0: new high speed SDHC card at address 0001
-> [    4.377228] mmcblk0: mmc0:0001 EB1QT 29.8 GiB
-> [    4.399152]  mmcblk0: p1
-> # cat /sys/kernel/debug/mmc1/ios
-> clock:          100000000 Hz
-> actual clock:   94444445 Hz
-> vdd:            21 (3.3 ~ 3.4 V)
-> bus mode:       2 (push-pull)
-> chip select:    0 (don't care)
-> power mode:     2 (on)
-> bus width:      3 (8 bits)
-> timing spec:    9 (mmc HS200)
-> signal voltage: 1 (1.80 V)
-> driver type:    0 (driver type B)
+> > Do you mean if the OOB geometry in the rawnand subsystem is under the
+> > responsibility of the controller driver?
 > 
-> Please let me know which additional information would be helpful for
-> debugging this further.
-> Also I'd like to highlight that I'm not blaming the above commit
-> (unless I know better). It's entirely possible that the meson-mx-sdhc
-> driver (which I wrote) can be at fault and that I was previously just
-> lucky.
+> The geometry is NAND chip specific.
+> The OOB layout depends on the chip geometry, the ECC engine
+> capabilities and configuration (like the strength).
+> The discovery of the geometry is performed by the core (using raw NAND
+> controller driver callbacks of course).
+> If on-host ECC engine is picked (the default in the raw NAND
+> subsystem), then the controller driver picks the correct OOB layout and
+> refuses to probe otherwise.
 > 
-> [...]
-> # first bad commit: [4bc31edebde51fcf8ad0794763b8679a7ecb5ec0] mmc:
-> core: Set HS clock speed before sending HS CMD13
+> Hope its clearer now :)
 
-Thanks for the report. To be sure the issue doesn't fall through the
-cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
-tracking bot:
+Yeah, pretty clear!
 
-#regzbot ^introduced 4bc31edebde51fcf8ad079
-#regzbot title mmc: core: eMMC support broken on Odroid-C1
-#regzbot ignore-activity
+I wanted to express my special thanks to you for sharing such detailed
+information about the raw NAND layer! Your insights will be incredibly
+helpful for me and will provide valuable context that I would not have
+otherwise had.
 
-This isn't a regression? This issue or a fix for it are already
-discussed somewhere else? It was fixed already? You want to clarify when
-the regression started to happen? Or point out I got the title or
-something else totally wrong? Then just reply and tell me -- ideally
-while also telling regzbot about it, as explained by the page listed in
-the footer of this mail.
+Thank you so much for taking the time to share your expertise with me!
 
-Developers: When fixing the issue, remember to add 'Link:' tags pointing
-to the report (the parent of this mail). See page linked in footer for
-details.
-
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-That page also explains what to do if mails like this annoy you.
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
