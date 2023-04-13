@@ -4,86 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B42FC77B61
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 09:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA310C77B6C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 09:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=r5GTGMCyUJE3j4pHANZIJEhAK+oYl1E2GHB2ukbxRXk=; b=L8cLGHmUQOWeUB4qeZVypJXUNZ
-	99xUjeC39/z9oYZ2gvbxohQDHa5jJgAPoxjlysphOTHutgzhsbZ7Rim1h/nbrF22ViOP9+XoJkV/W
-	McPqfh4YylC5PJo4RHVnEVJpb7qTZx/1TqZ42OltHqi1wnQbkW20cuNwjBZFf+DfWsLKZATHm9TAN
-	PUr+6ZGmuMQrDMdC8rQD5kEP1UHC9DGtJkcN/4R3pq3Fyjs/KAyDoGGVAEFNkCIe5HUKkkxaq6e71
-	0LpTc6dOeuQNSvIUJerxXFEphiboY8tmWoigOTPuz0wtZEddDFK8OdWUxHFjMfIGmsIh859jE7SLc
-	wj1rAQZQ==;
+	bh=ZKghocQnjh4RTVu1uhkKfujH46Echp4kc6nCoOObakY=; b=G35WR58tr1mAQ6S+YKXEPBCNeK
+	SCfcocZ4rfQ5fynPtq8wn4qdBvCfu4oj0HgKrbiP/LY0nhzsEgaMfmrjKDIEyVJEYZXCPI9F7aPfa
+	zU7sPIIbQzbgB/wzSYKtRifKkEV8O0WjXW2X9hSDWC0VNvf6i6OcQEFpVGcljAxQucE6Wc1+Xh886
+	q6EHOOkpCas5HMdZdjZ2s7Ltaf02BFYkfm7Ez1AK43rgmlvyob+h4XupLjUOKHb6vV+4OkLqeAcen
+	SvJzFMthkmxM5mtxRqvMCmf4ytXjmMkOXlZo6IyTavnU5GeWqEqg3Ro9GrFRMR50tqFrfhqiXULgS
+	iDDTzMSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmt1M-005Y8U-0l;
-	Thu, 13 Apr 2023 09:13:36 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1pmtAn-005bCe-1b;
+	Thu, 13 Apr 2023 09:23:21 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmt1G-005Y72-1Y;
-	Thu, 13 Apr 2023 09:13:33 +0000
-Received: by mail-wm1-x335.google.com with SMTP id d8-20020a05600c3ac800b003ee6e324b19so7623687wms.1;
-        Thu, 13 Apr 2023 02:13:29 -0700 (PDT)
+	id 1pmtAi-005bAJ-2N;
+	Thu, 13 Apr 2023 09:23:18 +0000
+Received: by mail-ej1-x631.google.com with SMTP id ud9so35574579ejc.7;
+        Thu, 13 Apr 2023 02:23:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681377208; x=1683969208;
+        d=gmail.com; s=20221208; t=1681377792; x=1683969792;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3PE5vTEL7E8P1zVsVjnu4l049FaIVCSgsce7iMS5wYo=;
-        b=aluH8fC3W9eGsPUYb2LM4wkwmi98R96J31nWixQzfv8t0WQFyfXNO3vnupmmW6Uhig
-         AKei/SmgO/tZolkFxv8MY6QVNTHXKcVQQDael3AcM//2KsMLVSHZt2aYWvxfh+QF9NWH
-         A7U1B8vHiwAYw+KwEUM15VdgU54t+mz9E8KoxcoOwgnEdHmBZBCkL/Iz0cr7L7u1T6HE
-         +4CLAGqgxH3ES21VG6SDYb2/EQDOpdjII6sSmSbbkKpSXZTVfzKdWwayKR/pLOgS2YZS
-         sAfj+P1PpTacuxGTePgB2arqjECwMCoZGYsKrgZwnjdePLyFhioNfedEOhD+YA3QFu2Q
-         aOGg==
+        bh=nzTTbhfFcZTGMDra4ZzytX8FtG7O0yt+/KOC/gcA42g=;
+        b=MS5UrRavGhMkko2goaKDguazFwRR3eHaZscHm70DVgnFWrOb8bfdgVf0MIds2d/dZE
+         qyUxWMIqH9YyS22gzZzAgkUi2x+PJGE0yCgItRVu8RcNNK1mJFI3X9pHS2TeifrzdNVZ
+         TQ31qi7Y/bvfeIuEJs9YfFIrp1dYcROE879fnXc0E4gIF0FZy0PTnHAIc43+g4x3mFn3
+         Kr9RLYpCS0B/JtOb142LmmkhsJtqFJYODtKHzSfd29GrjFjNuwFZISNp1GqhWIsdalub
+         q9h9YYWo/20k4jFN58lJDyOO7kD2a15MqagzCEkzdtGjWaySjyfud3HcQVKWCdd7dDph
+         fhNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681377208; x=1683969208;
+        d=1e100.net; s=20221208; t=1681377792; x=1683969792;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3PE5vTEL7E8P1zVsVjnu4l049FaIVCSgsce7iMS5wYo=;
-        b=Iu1bR5qQ8SJNdHfGW59zbOjdXUKwA9bDtzmBL0ZylXAlSV/NFpBTfV9OcNnEWm6Q2H
-         msiNFxVKjLNumejtSv9FWcEjbdgYQTjmTgNW9P58B/Zhye9HKRdaWY9yFm4hZ8Brg9iH
-         kcQ0wzdUj6kPYVBhR/HXPqvC3UwKKtDJcIzgJyN2Bia+siviPvq2cU7o7KuOoTWR7ol7
-         2nmKBWaOGCCGHylRl2PRpj6D7IQRb1fAFoatkQcy4A6soDBVJZXzrPeXgulwlA0ewdik
-         9y1PHUzM3h8E34yShxZ57bMk1CumVFdDApmOqJyNR+fJ86odO4MXcnlimVhLuwvtAryv
-         WSFA==
-X-Gm-Message-State: AAQBX9cq+F5yMHqyj1xo8zYKDPsM4EPGqjyKxenXMQDPYznGWfCe9Xo6
-	eX7KV9E3LupE+nXUg6NtXh0=
-X-Google-Smtp-Source: AKy350b/VHvKiJPvaShg0z14CliEy1L2m0k16FmmSbuZvbcffbhf/gBX/6b4Pyl2LWtpasJ5krIkNw==
-X-Received: by 2002:a1c:7c15:0:b0:3ee:1acd:b039 with SMTP id x21-20020a1c7c15000000b003ee1acdb039mr1282321wmc.34.1681377208102;
-        Thu, 13 Apr 2023 02:13:28 -0700 (PDT)
+        bh=nzTTbhfFcZTGMDra4ZzytX8FtG7O0yt+/KOC/gcA42g=;
+        b=QwiwaZ1Ta622FjTrsqZREWsvCv18HzF+N44e+YV4PA3Qomlu3/F9rK42R49+uNr3LX
+         A+CFX2BJIzTeP/UKV2u7K2KV1TnEsNvQwKj0G5SBPcSMoGZpQhQBVHCsMWw5VgamO2+A
+         xvwJz4iFUI/2N1G3JUTj/LzH5KuLV1lRsce0UfFU1sJGCLQFFoMP/KfiSPKkIKe/CwNR
+         kID0x6AEuSm0pSuars8/qGuJQJ/TxXHIK9WocaiWcysW8Bz3cQ01Ndv0VsGByLqILMoz
+         hxys9n4LnfXhT/dhRbLsmeqNUsANg0T6hiBaUxTkNaf7bV5/ZNl3Ej8c8NaWZTqXjNvN
+         h+1w==
+X-Gm-Message-State: AAQBX9dW1/IR8Lv1+9tyQ5engdgiXdtdYFvnr5aZAFn+4p09fQADDaJB
+	n7Bk8bn4LsmsV1nIoXarPNs=
+X-Google-Smtp-Source: AKy350b+0wfw7dVL91U9xvbCROvtI06Ebusi+QNQCVM6y3b7U26QgoeOhAtqd/T8n8CMpiwbMTy4DA==
+X-Received: by 2002:a17:906:a841:b0:94a:4499:ec30 with SMTP id dx1-20020a170906a84100b0094a4499ec30mr1944498ejb.15.1681377792565;
+        Thu, 13 Apr 2023 02:23:12 -0700 (PDT)
 Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id q23-20020a7bce97000000b003e203681b26sm1258853wmj.29.2023.04.13.02.13.27
+        by smtp.gmail.com with ESMTPSA id b11-20020a17090636cb00b00930aa50372csm703184ejc.43.2023.04.13.02.23.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 02:13:27 -0700 (PDT)
-Date: Thu, 13 Apr 2023 11:13:26 +0200
+        Thu, 13 Apr 2023 02:23:12 -0700 (PDT)
+Date: Thu, 13 Apr 2023 11:23:10 +0200
 From: Thierry Reding <thierry.reding@gmail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Neil Armstrong <narmstrong@baylibre.com>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] pwm: meson: make full use of common clock
- framework
-Message-ID: <ZDfHtvZawSWWGTRP@orome>
-References: <0f087629-810d-f0e0-bf0b-05ca5defc16d@gmail.com>
- <05e3b9de-ee38-97b6-7f39-5b6f7de1674f@gmail.com>
- <CAFBinCAdXE+3VrPJAoik_0TFW6TsB0033s+fTYUTNehPrn=PZg@mail.gmail.com>
+	linux-pwm@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>
+Subject: Re: [PATCH v2] pwm: meson: fix axg ao mux parents
+Message-ID: <ZDfJ_iaRXlXzd0PL@orome>
+References: <ffc3e4e7-b2ea-1a56-4fff-6554ad3775c0@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAdXE+3VrPJAoik_0TFW6TsB0033s+fTYUTNehPrn=PZg@mail.gmail.com>
+In-Reply-To: <ffc3e4e7-b2ea-1a56-4fff-6554ad3775c0@gmail.com>
 User-Agent: Mutt/2.2.10 (2023-03-25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230413_021330_518982_F0231FC7 
-X-CRM114-Status: GOOD (  14.94  )
+X-CRM114-CacheID: sfid-20230413_022316_772967_7ABE8376 
+X-CRM114-Status: GOOD (  22.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,73 +92,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2666567944480590348=="
+Content-Type: multipart/mixed; boundary="===============3443320170113350744=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============2666567944480590348==
+--===============3443320170113350744==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AfN6U5Lk+axIGN3J"
+	protocol="application/pgp-signature"; boundary="JY0L2Q8GjmC/YsxM"
 Content-Disposition: inline
 
 
---AfN6U5Lk+axIGN3J
-Content-Type: text/plain; charset=utf-8
+--JY0L2Q8GjmC/YsxM
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 11, 2023 at 09:48:46PM +0200, Martin Blumenstingl wrote:
-> On Tue, Apr 11, 2023 at 9:26=E2=80=AFPM Heiner Kallweit <hkallweit1@gmail=
-=2Ecom> wrote:
-> [...]
-> > +               init.name =3D name;
-> > +               init.ops =3D &clk_gate_ops;
-> > +               init.flags =3D CLK_SET_RATE_PARENT;
-> As much as I don't want it: I think we need CLK_IGNORE_UNUSED here as wel=
-l :-(
-> On GXBB, GXL and GXM SoCs the board design typically uses PWM
-> regulators (like the boards using 32-bit SoCs as well as newer boards
-> using G12A or later SoCs).
-> This means: if we enable that PWM controller and one of the channels
-> is firmware managed and the other isn't then we can end up disabling
-> the clock - taking away VCCK (which supplies the CPU) or VDDEE (which
-> supplies GPU and various other components).
-> I'd be happy if there are other suggestions around this though.
+On Sun, Apr 09, 2023 at 05:15:52PM +0200, Heiner Kallweit wrote:
+> This fix is basically the same as 9bce02ef0dfa ("pwm: meson: Fix the
+> G12A AO clock parents order"). Vendor driver referenced there has
+> xtal as first parent also for axg ao. In addition fix the name
+> of the aoclk81 clock. Apparently name aoclk81 as used by the vendor
+> driver was changed when mainlining the axg clock driver.
+>=20
+> Fixes: bccaa3f917c9 ("pwm: meson: Add clock source configuration for Meso=
+n-AXG")
+> Cc: stable@vger.kernel.org
+>=20
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/pwm/pwm-meson.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-What exactly does "firmware managed" mean? Typically we describe all
-supplies in DT to avoid these kinds of workarounds. If VCCK and/or VDDEE
-are PWM-controlled regulators that should never be turned off, can they
-not simply be added to device tree and marked as "always-on"? That would
-propagate to the PWM and make sure the corresponding clock remains
-enabled.
+This looks like it supersedes this one:
+
+	https://patchwork.ozlabs.org/project/linux-pwm/patch/e7a95baf-5f9d-be56-93=
+dc-82ca83b69c7a@gmail.com/
+
+I don't see any discussion on on that one, nor does v2 here have a
+changelog and the commit subject is slightly changed, so you're making
+it more difficult than necessary to correlate the two.
+
+Anyway, since both patches conflict, I've picked up v2. Let me know if
+that's not what you intended.
 
 Thierry
 
---AfN6U5Lk+axIGN3J
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index b5c746fab..0fe0400c2 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -381,7 +381,7 @@ static const struct meson_pwm_data pwm_axg_ee_data =
+=3D {
+>  };
+> =20
+>  static const char * const pwm_axg_ao_parent_names[] =3D {
+> -	"aoclk81", "xtal", "fclk_div4", "fclk_div5"
+> +	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
+>  };
+> =20
+>  static const struct meson_pwm_data pwm_axg_ao_data =3D {
+> --=20
+> 2.40.0
+>=20
+
+--JY0L2Q8GjmC/YsxM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQ3x7UACgkQ3SOs138+
-s6EBdhAAljp7Lr0PxfWyQ82h5k8GfQ/FKW8dR8JGyDEf6YXn4iIV/ewq/8o9WzjE
-M8tmZnekwmw2pZ0Lw7zOk+sX1N2RBovBd4NxnFNHSfKw8v1Iw/vj3SVZC2aD+a1I
-sAKLOvIrMNJvQSWwz2U6TcLYSKud5T42eN8Pw1QZu3kXr24tXhFWp7hpQ0YvuQCq
-oSFb6u4bta924aE16ziVZRA68edFA6K+DTDnstKh1Vrgs/KIGgPstBzScQ3uMTjg
-jTKMgaaHNp0T0WXuWEITZoH1pweJ5/sXvIRCC9TDZ1ZGIHniV2KcU3st163h5qLO
-TwrkkXSYz0DzBQRmP4YJgSR5gUXZ1jeHgka0LNSTLy+NVhm5mfwzN4lV9J8TOxTx
-N5EVrgqjDzx1wCwjb3Dj9tfm9LJBQI7YfFo1SNoM1jyBVrviVO5hikxwdWxfCgtW
-eo/CjUmRxOaZBSEFOM3OKkOBiizCaexo7rGIdi3pgk12vPVgQSaKrMackJHMZYSd
-u1N9Wfc3/vddOKzErQ5JDCGLgupYiZa0aSxz0DHVGIKFjKFuq/hoUi0ty6mnOuuH
-HTdGhtWmS/s5AjBxXQyVf0wUNjbU8J1fxNPajOjJDdgCmHgc9LPIl25BDOiUg9PX
-/ji55f15wMB4KzXDBPbD24tbGbRaBJK7wxCXuopMum4TBCAniAw=
-=FwfH
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQ3yf4ACgkQ3SOs138+
+s6HqNw//YI7ly5943Ef3PUyEnJsR3phdH4mHTCJ/u908QspsLWp9d3rwJR6bln95
+PA5S8hbymwO2EbLEW9C4XtX3SelSQqy1+DOJeDN5YuRpFRRdrlErbch1lPSNIMTm
+SK99Saho5jZe4VYZhNtMUD7vvGhcLGtgn54cBoU45dTTWJuVqLPZOPLIfvUo/jm7
+cU9fR49DhmlOSTTJrrmapKKD5Fz8ciYkHq734fQYL6KtPJjKk8fMjvDMPDDVx69F
+BOBqczdoIvKoh2u26kg6X0l9/yjrQdscaNsn5nJg4C0bydgmpuE9hideGDyIbmkS
+7/2l8gEWxznWC2hAasfVz0mCd1prH/7yJ75cbtJLjmEIQI1McUq5tu1MWg7bjink
+9PZBaOCw1nZTBCYLtDVxJN4ANQGOO+fDEW3c95vYFrIwuC+ER4EhafyOt0Mr0FX1
+jkNbIyPhvCxtq+J1RFA7ScES+HhVYyE6OHhlfCdHNSL34YGJigIEuJSbtRI4S7X6
++UrtTK3VAPkWZIjU/l1oEt7KFwzerg8S4Q6Bae80RxWpVHaP1G+2JSbnh11GXZjY
+qFHzvOan+374UyQ4xJIfZOuKivtb1v2SqQ3mRVrhkLzZkbf7oktVsUUdP3BW9vip
+zN/g2SaY8PWGWFWGzYmp/8lp8/SD2b4xeZLm1sGLzifAbr7z5sY=
+=I0Iv
 -----END PGP SIGNATURE-----
 
---AfN6U5Lk+axIGN3J--
+--JY0L2Q8GjmC/YsxM--
 
 
---===============2666567944480590348==
+--===============3443320170113350744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -172,5 +191,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============2666567944480590348==--
+--===============3443320170113350744==--
 
