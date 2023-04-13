@@ -4,85 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2621AC77B6E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 14:03:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90469C77B6E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 21:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yT3oIvQY1G+Gh9GtVg8Dld75YGIuc5op8YdkobYodz4=; b=K4MoV9Czohffhv
-	bnAQ5dEoBmFIssDCgREQTQEUYA7DL9F3ivAfX5NxMss/rRJzPPjegU6toGFm89VxqSt1NhbVDNPpv
-	i6QjEnMQH5KclsW9qAjZU+nyaSt5ScBll/m+4b5k4GXcAvia46UQTJbuFp90bZsKWu1LoJZccwZgh
-	HChAKhutMDSiCCCC2d/ghdR6rJlAZTCh0Jx5wTyw2/1i/5zruwDZKeq/nWhRbjP+dPHzlvuuBYChL
-	aw0eVftNLfHrtKDylP9GLuNUjH0VCuNgyraf4Graszn/jZ5EGtR4vIqaolTZ13KBQQ9etGQMenYC4
-	nMj84DlFODNnzKvhb5tA==;
+	List-Owner; bh=0R5mHLE/wHAMkKmT/dUmy1gXybTXMZDbp62FZvcqVrQ=; b=Em4uc/xKNooasg
+	7Qo49SZw5lN8Jd1ZIIuxeQyLmQUhIGvi+hxGPUe8vl9bhNVLJ8dJHuY9xjHsL72jHaSO5NNT6NR8J
+	ZcuZAcGte4FhtuSGgOOItgXLVpf50OjBvl+I80mASR8hXOEHb+xLpuwDfkcmSNtqS8oY2iotiAyCe
+	QMBlWF8zP0ed7wrgbksSJSQKXRoK3h2StCU6QBiCK13JkLRKJ1MBydOtgFIp6J3AB+AcvgeFh5Ugd
+	Fn+jZZYjjv7RHL/C51K2UpB0iPzaOGXfuVJEwKZ0drZkRV3/o0/JFnMc/qGcQ+Gcojt6jyQijmhqx
+	Cq7aToxR68myI5WtmSqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmxXq-006LEj-2p;
-	Thu, 13 Apr 2023 14:03:26 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pn4KW-007AzZ-2R;
+	Thu, 13 Apr 2023 21:18:08 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmxXn-006LCL-0u;
-	Thu, 13 Apr 2023 14:03:26 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id D451B5FD06;
-	Thu, 13 Apr 2023 17:03:15 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1681394595;
-	bh=JyPFmAWsU5fcaW4SOSM2aGm8oGz8c50g/Tz9uqmbquM=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=ijhyK1ujBg3i/wvTteHNPPdNP2MvyeK4UFEMteCNpAySMrQmaPBRQbDOkcWxuy+P/
-	 ldCO0TcLVFVdvl9keZGWMsLcYAGl8zIFZ9eso50zOg0vHCSbWzB2YpvDMyoG8Dx5ov
-	 APv4L5HJcZ1dEGBYuYY9XtvXex3vQjAtkk7EA8fdY2gt2AZYZ3fa/8/Pod7mm4NET4
-	 OG9xksnVNWdCujOeTsAqpS8PgLyfhVQBR8lQGOKRq+P8g4nf5SCFLx63oyTSCe9pmL
-	 j0uowC2C8G4W8M9Rpka5QVSeFMTH3EHO6CtYtZANiXHRZf6aKpjryKaNhKMs60hayM
-	 hS+5UViqPHg6w==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 13 Apr 2023 17:03:14 +0300 (MSK)
-Date: Thu, 13 Apr 2023 17:03:14 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Arseniy Krasnov
-	<avkrasnov@sberdevices.ru>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
-	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
-	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 4/5] mtd: rawnand: meson: clear OOB buffer before read
-Message-ID: <20230413140314.qioyvmzvmcv43kzk@CAB-WSD-L081021>
-References: <20230412113654.183350d0@xps-13>
- <4eace0a0-f6af-7d99-a52f-7913a2139330@sberdevices.ru>
- <20230412141824.755b2bca@xps-13>
- <eedaaed9-0a41-2c18-9eb2-792613566986@sberdevices.ru>
- <20230412145715.58c2be4a@xps-13>
- <7c996832-258f-001c-56bd-87bbdf23eeaa@amlogic.com>
- <20230412191548.ov5fufxkwqvdgrz2@CAB-WSD-L081021>
- <20230412225603.5fba1a9e@xps-13>
- <20230413092706.mzopdszyirnwnjnl@CAB-WSD-L081021>
- <20230413122916.365269f0@xps-13>
+	id 1pn4KR-007AyY-2U;
+	Thu, 13 Apr 2023 21:18:05 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id l10-20020a05600c1d0a00b003f04bd3691eso19811995wms.5;
+        Thu, 13 Apr 2023 14:18:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681420681; x=1684012681;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DvgvENO7OsEfYlpi3gro7VWSzf69fgGUrOZS9U5Yybg=;
+        b=bywSUA59UtCpqINbFrwRKWQFGwdz582hwMpd7vmBWBhXvHaPuePnAvx2oOd+evSK2I
+         y/0Sss9v77EeEGp3lwV6wJu1IWiEW+vcqFKiG7GcpI43YffN1h/4XJqzFaBnXivEqcP0
+         oAe9UV/PSCdK8AbWcnAR3rer+ifFZw4ZxnKkIBOEpyQjrA72a9tkzYIikMgHZKyCV6Hb
+         FxtxePLtZuvvf7mbkG9egGVIqasvzUD37aXJZoz03Mh/xtElda59S+6XitMM+w8l9fhQ
+         C3iMctBlSLz6raKKoVbCI4Aibm5UcYEARt39zIhrTSpxj4bhK+zR6s3mRpvDtgH+mogy
+         hcpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681420681; x=1684012681;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DvgvENO7OsEfYlpi3gro7VWSzf69fgGUrOZS9U5Yybg=;
+        b=aiHDNptsjrw3NHeONrERxD/eAajgl+hHFC8K1ONu6uQ/x9hyZyd/lYyzY7hXlKh/ig
+         XwhUBezBkMxNHtaq0YtqrZrGLfTtD4Q9lH1R6Ld5CFksz7HW8kIVWOk6Q9SqXtfn9+8+
+         xw6l13AbCg85k/Of931XtxYt+j5f2CYnFuu+yxzoSNsDZomFTnAsC4TRYEwihgg2e/MX
+         DV4mXFraCJmmws4v8DAJxdqwW8QofQWrXUNZi0rKYRUTB745cPj8PTW4KRvWJQYJz4g2
+         jm6ALNPfLV+W7YTA9PwpO25v/WdbNyd37Ygw5M01iEn9O8XlH6gm+6cQoxdJWnuPXaCN
+         QtZQ==
+X-Gm-Message-State: AAQBX9fFSCR/I0xCaK1LYXrFboFYQnK0d/NuHhjs4EoBP9AvKURny4Le
+	GDdiW9U9BgOyeumD2QEXaGU=
+X-Google-Smtp-Source: AKy350YZ2DOjKsCluMWuSo39HVU0l8eCuZ/vjttpc3RrNgfx8YujWylw5m4NYGCPIzZSFPo32lg4wA==
+X-Received: by 2002:a7b:cd9a:0:b0:3ee:526f:b15e with SMTP id y26-20020a7bcd9a000000b003ee526fb15emr2598277wmj.23.1681420680413;
+        Thu, 13 Apr 2023 14:18:00 -0700 (PDT)
+Received: from ?IPV6:2a01:c22:738e:4400:f580:be04:1a64:fc5e? (dynamic-2a01-0c22-738e-4400-f580-be04-1a64-fc5e.c22.pool.telefonica.de. [2a01:c22:738e:4400:f580:be04:1a64:fc5e])
+        by smtp.googlemail.com with ESMTPSA id f10-20020a7bc8ca000000b003f09f44c7bcsm2719313wml.33.2023.04.13.14.17.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 14:18:00 -0700 (PDT)
+Message-ID: <61c1266c-407f-6d26-d9aa-1f9a0fc02e12@gmail.com>
+Date: Thu, 13 Apr 2023 23:17:59 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230413122916.365269f0@xps-13>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/12 22:40:00 #21096401
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Thierry Reding <thierry.reding@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
+ <u.kleine-koenig@pengutronix.de>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-pwm@vger.kernel.org
+References: <29973c8a-2b14-3d0c-bee8-8aff36c265e3@gmail.com>
+ <f7291bab-eb51-3f2d-4eb4-78f6330242ef@gmail.com>
+ <CAFBinCDs=EQo8-HSSbaprfJB+93sz+Ng1H=MX3hBG_00PTko3g@mail.gmail.com>
+ <ZDfGJM24xZbfSur5@orome>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v3 3/4] pwm: meson: change clk/pwm gate from mask to bit
+In-Reply-To: <ZDfGJM24xZbfSur5@orome>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230413_070324_025263_3B1B5B13 
-X-CRM114-Status: GOOD (  58.86  )
+X-CRM114-CacheID: sfid-20230413_141804_683136_3C2C999E 
+X-CRM114-Status: GOOD (  14.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,180 +98,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 13, 2023 at 12:29:16PM +0200, Miquel Raynal wrote:
-> Hi Dmitry,
-> 
-> ddrokosov@sberdevices.ru wrote on Thu, 13 Apr 2023 12:27:06 +0300:
-> 
-> > On Wed, Apr 12, 2023 at 10:56:03PM +0200, Miquel Raynal wrote:
-> > > Hi Dmitry,
-> > > 
-> > > ddrokosov@sberdevices.ru wrote on Wed, 12 Apr 2023 22:15:48 +0300:
-> > >   
-> > > > On Wed, Apr 12, 2023 at 10:04:28PM +0800, Liang Yang wrote:  
-> > > > > Hi Miquel and Arseniy,
-> > > > > 
-> > > > > On 2023/4/12 20:57, Miquel Raynal wrote:    
-> > > > > > [ EXTERNAL EMAIL ]
-> > > > > > 
-> > > > > > Hi Arseniy,
-> > > > > > 
-> > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 15:22:26 +0300:
-> > > > > >     
-> > > > > > > On 12.04.2023 15:18, Miquel Raynal wrote:    
-> > > > > > > > Hi Arseniy,
-> > > > > > > > 
-> > > > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 13:14:52 +0300:    
-> > > > > > > > > On 12.04.2023 12:36, Miquel Raynal wrote:    
-> > > > > > > > > > Hi Arseniy,
-> > > > > > > > > > 
-> > > > > > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 12:20:55 +0300:    
-> > > > > > > > > > > On 12.04.2023 10:44, Miquel Raynal wrote:    
-> > > > > > > > > > > > Hi Arseniy,
-> > > > > > > > > > > > 
-> > > > > > > > > > > > AVKrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 09:16:58 +0300:    
-> > > > > > > > > > > > > This NAND reads only few user's bytes in ECC mode (not full OOB), so    
-> > > > > > > > > > > > 
-> > > > > > > > > > > > "This NAND reads" does not look right, do you mean "Subpage reads do
-> > > > > > > > > > > > not retrieve all the OOB bytes,"?    
-> > > > > > > > > > > > > fill OOB buffer with zeroes to not return garbage from previous reads
-> > > > > > > > > > > > > to user.
-> > > > > > > > > > > > > Otherwise 'nanddump' utility prints something like this for just erased
-> > > > > > > > > > > > > page:
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > > ...
-> > > > > > > > > > > > > 0x000007f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-> > > > > > > > > > > > >    OOB Data: ff ff ff ff 00 00 ff ff 80 cf 22 99 cb ad d3 be
-> > > > > > > > > > > > >    OOB Data: 63 27 ae 06 16 0a 2f eb bb dd 46 74 41 8e 88 6e
-> > > > > > > > > > > > >    OOB Data: 38 a1 2d e6 77 d4 05 06 f2 a5 7e 25 eb 34 7c ff
-> > > > > > > > > > > > >    OOB Data: 38 ea de 14 10 de 9b 40 33 16 6a cc 9d aa 2f 5e
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > > Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> > > > > > > > > > > > > ---
-> > > > > > > > > > > > >   drivers/mtd/nand/raw/meson_nand.c | 5 +++++
-> > > > > > > > > > > > >   1 file changed, 5 insertions(+)
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> > > > > > > > > > > > > index f84a10238e4d..f2f2472cb511 100644
-> > > > > > > > > > > > > --- a/drivers/mtd/nand/raw/meson_nand.c
-> > > > > > > > > > > > > +++ b/drivers/mtd/nand/raw/meson_nand.c
-> > > > > > > > > > > > > @@ -858,9 +858,12 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
-> > > > > > > > > > > > >   static int meson_nfc_read_page_raw(struct nand_chip *nand, u8 *buf,
-> > > > > > > > > > > > >   				   int oob_required, int page)
-> > > > > > > > > > > > >   {
-> > > > > > > > > > > > > +	struct mtd_info *mtd = nand_to_mtd(nand);
-> > > > > > > > > > > > >   	u8 *oob_buf = nand->oob_poi;
-> > > > > > > > > > > > >   	int ret;
-> > > > > > > > > > > > > +	memset(oob_buf, 0, mtd->oobsize);    
-> > > > > > > > > > > > 
-> > > > > > > > > > > > I'm surprised raw reads do not read the entire OOB?    
-> > > > > > > > > > > 
-> > > > > > > > > > > Yes! Seems in case of raw access (what i see in this driver) number of OOB bytes read
-> > > > > > > > > > > still depends on ECC parameters: for each portion of data covered with ECC code we can
-> > > > > > > > > > > read it's ECC code and "user bytes" from OOB - it is what i see by dumping DMA buffer by
-> > > > > > > > > > > printk(). For example I'm working with 2K NAND pages, each page has 2 x 1K ECC blocks.
-> > > > > > > > > > > For each ECC block I have 16 OOB bytes which I can access by read/write. Each 16 bytes
-> > > > > > > > > > > contains 2 bytes of user's data and 14 bytes ECC codes. So when I read page in raw mode
-> > > > > > > > > > > controller returns 32 bytes (2 x (2 + 14)) of OOB. While OOB is reported as 64 bytes.    
-> > > > > > > > > > 
-> > > > > > > > > > In all modes, when you read OOB, you should get the full OOB. The fact
-> > > > > > > > > > that ECC correction is enabled or disabled does not matter. If the NAND
-> > > > > > > > > > features OOB sections of 64 bytes, you should get the 64 bytes.
-> > > > > > > > > > 
-> > > > > > > > > > What happens sometimes, is that some of the bytes are not protected
-> > > > > > > > > > against bitflips, but the policy is to return the full buffer.    
-> > > > > > > > > 
-> > > > > > > > > Ok, so to clarify case for this NAND controller:
-> > > > > > > > > 1) In both ECC and raw modes i need to return the same raw OOB data (e.g. user bytes
-> > > > > > > > >     + ECC codes)?    
-> > > > > > > > 
-> > > > > > > > Well, you need to cover the same amount of data, yes. But in the ECC
-> > > > > > > > case the data won't be raw (at least not all of it).    
-> > > > > > > 
-> > > > > > > So "same amount of data", in ECC mode current implementation returns only user OOB bytes (e.g.
-> > > > > > > OOB data excluding ECC codes), in raw it returns user bytes + ECC codes. IIUC correct
-> > > > > > > behaviour is to always return user bytes + ECC codes as OOB data even in ECC mode ?    
-> > > > > > 
-> > > > > > If the page are 2k+64B you should read 2k+64B when OOB are requested.
-> > > > > > 
-> > > > > > If the controller only returns 2k+32B, then perform a random read to
-> > > > > > just move the read pointer to mtd->size + mtd->oobsize - 32 and
-> > > > > > retrieve the missing 32 bytes?    
-> > > > > 
-> > > > > 1) raw read can read out the whole page data 2k+64B, decided by the len in
-> > > > > the controller raw read command:
-> > > > > 	cmd = (len & GENMASK(5, 0)) | scrambler | DMA_DIR(dir);
-> > > > > after that, the missing oob bytes(not used) can be copied from
-> > > > > meson_chip->data_buf. so the implementation of meson_nfc_read_page_raw() is
-> > > > > like this if need.
-> > > > > 	{
-> > > > > 		......
-> > > > > 		meson_nfc_read_page_sub(nand, page, 1);
-> > > > > 		meson_nfc_get_data_oob(nand, buf, oob_buf);
-> > > > > 		oob_len = (nand->ecc.bytes + 2) * nand->ecc.steps;
-> > > > > 		memcpy(oob_buf + oob_len, meson_chip->data_buf + oob_len, mtd->oobsize -
-> > > > > oob_len);
-> > > > > 
-> > > > > 	}
-> > > > > 2) In ECC mode, the controller can't bring back the missing OOB bytes. it
-> > > > > can read out the user bytes and ecc bytes per meson_ooblayout_ops define.
-> > > > >     
-> > > > 
-> > > > How does the Meson controller know the actual NAND flash layout when the
-> > > > OOB is split into protected and unprotected areas, such as Free and ECC
-> > > > areas? If the controller has a static OOB layout, where is the mapping
-> > > > located?  
-> > > 
-> > > It's usually a set of values hardcoded in the driver. It's a per
-> > > geometry set.
-> > >   
-> > 
-> > Sorry, I'm still confused. Before I developed spinand drivers, the OOB layout
-> > was located on the flash driver side.
-> 
-> The spinand subsystem is different, most of the chips have on-die ECC,
-> which means the ECC layout is most of the time per-chip.
-> 
-> In the raw NAND layer, most of the time the ECC engine is merged with
-> the NAND controller and thus the list of available layouts depend on
-> the controller. But these layouts often adapt to the NAND chip
-> geometry, so you can only now which layout to use after identifying the
-> chip (there is an ->attach_chip() hook to handle things related to
-> geometry after controller base initialization.
-> 
-> > Do you mean if the OOB geometry in the rawnand subsystem is under the
-> > responsibility of the controller driver?
-> 
-> The geometry is NAND chip specific.
-> The OOB layout depends on the chip geometry, the ECC engine
-> capabilities and configuration (like the strength).
-> The discovery of the geometry is performed by the core (using raw NAND
-> controller driver callbacks of course).
-> If on-host ECC engine is picked (the default in the raw NAND
-> subsystem), then the controller driver picks the correct OOB layout and
-> refuses to probe otherwise.
-> 
-> Hope its clearer now :)
-
-Yeah, pretty clear!
-
-I wanted to express my special thanks to you for sharing such detailed
-information about the raw NAND layer! Your insights will be incredibly
-helpful for me and will provide valuable context that I would not have
-otherwise had.
-
-Thank you so much for taking the time to share your expertise with me!
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTMuMDQuMjAyMyAxMTowNiwgVGhpZXJyeSBSZWRpbmcgd3JvdGU6Cj4gT24gV2VkLCBBcHIg
+MTIsIDIwMjMgYXQgMTA6NDc6MDVQTSArMDIwMCwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToK
+Pj4gSGkgSGVpbmVyLAo+Pgo+PiBPbiBXZWQsIEFwciAxMiwgMjAyMyBhdCA5OjIz4oCvUE0gSGVp
+bmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pgo+Pj4gQ2hhbmdl
+IHNpbmdsZS1iaXQgdmFsdWVzIGZyb20gbWFzayB0byBiaXQuIFRoaXMgZmFjaWxpdGF0ZXMKPj4+
+IENDRiBpbml0aWFsaXphdGlvbiBmb3IgdGhlIGNsb2NrIGdhdGUgaW4gYSBmb2xsb3ctdXAgcGF0
+Y2guCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdt
+YWlsLmNvbT4KPj4gVGVzdGVkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVu
+c3RpbmdsQGdvb2dsZW1haWwuY29tPiAjCj4+IG1lc29uOGItb2Ryb2lkYzEsIHNtMS14OTYtYWly
+Cj4+Cj4+IFsuLi5dCj4+PiAgI2RlZmluZSBSRUdfTUlTQ19BQiAgICAgICAgICAgIDB4OAo+Pj4g
+LSNkZWZpbmUgTUlTQ19CX0NMS19FTiAgICAgICAgICBCSVQoMjMpCj4+PiAtI2RlZmluZSBNSVND
+X0FfQ0xLX0VOICAgICAgICAgIEJJVCgxNSkKPj4+ICsjZGVmaW5lIE1JU0NfQl9DTEtfRU4gICAg
+ICAgICAgMjMKPj4+ICsjZGVmaW5lIE1JU0NfQV9DTEtfRU4gICAgICAgICAgMTUKPj4+ICAjZGVm
+aW5lIE1JU0NfQ0xLX0RJVl9NQVNLICAgICAgMHg3Zgo+Pj4gICNkZWZpbmUgTUlTQ19CX0NMS19E
+SVZfU0hJRlQgICAxNgo+Pj4gICNkZWZpbmUgTUlTQ19BX0NMS19ESVZfU0hJRlQgICA4Cj4+PiAg
+I2RlZmluZSBNSVNDX0JfQ0xLX1NFTF9TSElGVCAgIDYKPj4+ICAjZGVmaW5lIE1JU0NfQV9DTEtf
+U0VMX1NISUZUICAgNAo+Pj4gICNkZWZpbmUgTUlTQ19DTEtfU0VMX01BU0sgICAgICAweDMKPj4+
+IC0jZGVmaW5lIE1JU0NfQl9FTiAgICAgICAgICAgICAgQklUKDEpCj4+PiAtI2RlZmluZSBNSVND
+X0FfRU4gICAgICAgICAgICAgIEJJVCgwKQo+Pj4gKyNkZWZpbmUgTUlTQ19CX0VOICAgICAgICAg
+ICAgICAxCj4+PiArI2RlZmluZSBNSVNDX0FfRU4gICAgICAgICAgICAgIDAKPj4gUGVyc29uYWxs
+eSBJJ20gZmluZSB3aXRoIHRoaXMgY2hhbmdlIGJ1dCBpdCdzIG5vdCBob3cgSSB3b3VsZCBoYXZl
+IGRvbmUgaXQ6Cj4+IC0gSSB3b3VsZCBoYXZlIGtlcHQgdGhlIEJJVCgpIG1hY3JvIGZvciBNSVND
+X3tBLEJ9X0VOCj4+IC0gdGhlbiBJIHdvdWxkIGhhdmUgcmVuYW1lZCBNSVNDX3tBLH1fQ0xLX0VO
+IHRvCj4+IE1JU0Nfe0EsQn1fQ0xLX0VOX1NISUZUICh0byBiZSBjb25zaXN0ZW50IHdpdGggX1NI
+SUZUIG9mIHRoZSBtdXggYW5kCj4+IGRpdmlkZXIpIGFuZCBkcm9wIHRoZSBCSVQoKSBtYWNybyB0
+aGVyZSAobGlrZSB5b3UgZGlkKQo+Pgo+PiBUaGlzIGlzIHBvc3NpYmx5L2xpa2VseSBwZXJzb25h
+bCBwcmVmZXJlbmNlLCBzbyBteSBzdWdnZXN0aW9uIGlzIHRvCj4+IHdhaXQgZm9yIHNvbWUgbW9y
+ZSBmZWVkYmFjay4KPiAKPiBJdCBsb29rcyBsaWtlIHRoZXNlIGFyZW4ndCB1c2VkIG91dHNpZGUg
+dGhlIG1lc29uX3B3bV9wZXJfY2hhbm5lbF9kYXRhCj4gYXJyYXksIHNvIHdoeSBib3RoZXIgd2l0
+aCBhICNkZWZpbmUgKGFuZCBhbnkgcG90ZW50aWFsIGluY29uc2lzdGVuY2llcykKPiBpbiB0aGUg
+Zmlyc3QgcGxhY2U/Cj4gCkkgdGhpbmsgd2UgZm9sbG93IGEgY29tbW9uIHBhdHRlcm4gaGVyZSBh
+bmQgZmlyc3QgZGVmaW5lIGNvbnN0YW50cyBmb3IgYWxsCnJlZ2lzdGVycyBhbmQgYml0cy9maWVs
+ZHMuIEhhdmluZyB0aGUgcmVnaXN0ZXIgbGF5b3V0IGRlZmluZWQgaW4gb25lIHBsYWNlCm1ha2Vz
+IGl0IGVhc2llciB0byBjaGVjayBpdCBhZ2FpbnN0IHRoZSBjaGlwIGRhdGFzaGVldC4KSG93ZXZl
+ciBJJ20gbm90IHN1cmUgd2hldGhlciB0aGlzIGlzIHdoYXQgeW91IHdlcmUgcmVmZXJyaW5nIHRv
+LgoKPiBUaGllcnJ5CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
