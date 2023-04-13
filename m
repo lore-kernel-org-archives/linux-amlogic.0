@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C11AAC77B61
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 09:25:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF07AC77B61
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 09:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a5MhENKcm1QymVGgbVmM9C3hCBDZy3BFNoh+EXY5jBs=; b=u6M8IqChlk+sTT
-	5yfzknLH6KsL/WWs7/h4T5BOJd1E5JrmBk5LJNHNnmHITSan6TnazH36ucDmK7V9OQWN1w0NgQExp
-	SWoY7fE9tt9ld0uF3QAOPSZGLk+lS/wTcW5QRe1IwTQRyZ4EHRbd8lKD/jwcAZ4XkwqIfooen2RYC
-	ACcUE3eg+4RPXFf09QoGAAL0f4PTv9SzOdDXzVoHoc9883m4mTj6Dfno9bccJkt2kQFcKDRU/YoOi
-	Rx6ZbMV+xYbY8axlS38tBzWU4JIPwI3tUMOCeBjWaBWK3OAGEx/UBK5B0aLuqRTF/K/y6NY10NpTt
-	AdZWoV3KutDl3jBwWdvg==;
+	List-Owner; bh=99j7z8RXCLKg3ypWxJFlhm8Fz+IxK8r2YExuw1XpoeY=; b=FYz06et4T6DCcD
+	//k4PrtFcv13O6El599VT72I+oFjVZtyLe93i249FSvxQptEp6Msy4kNM+CGLRFoq8CN5aF6EsT4q
+	UBKt2JrfpNuC9B46MA79IsqMeP3xTFETj1tCk5Xzd0iQ7hHckYtqTJTrWipM0NjTA8HqyhsnvrIa/
+	SzKc7lIOlrfYtyajO6hQVxVTI6LYcrX/QR3T+ta9N7wgo3eLKwKv5fbC+1PAs8OyqQNG3GZaEF4vp
+	V1QyIz0+4tI05ibri1FdaSSJqCId2pksuWusC6joRw0v2keREX/8g0L8AWPg+8Bx2qcjI1/ycSHqZ
+	SVsxFs9IxqaidUyDbGcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmtCz-005c4Q-3D;
-	Thu, 13 Apr 2023 09:25:38 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1pmtEd-005cRw-04;
+	Thu, 13 Apr 2023 09:27:19 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmtCx-005c2m-2C;
-	Thu, 13 Apr 2023 09:25:36 +0000
-Received: by mail-wm1-x329.google.com with SMTP id v14-20020a05600c470e00b003f06520825fso13160518wmo.0;
-        Thu, 13 Apr 2023 02:25:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681377931; x=1683969931;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SmM2Iumz0wCty9ffU6sJazDTRuVNx11Hj/8rUPFg/VM=;
-        b=rvDLnCyCtCM69vYo9/NJ+axluCUjrwXbd0x6w6yn8+QSHhoQdODZ8V55IcC3u7KqM7
-         bxoHBwhI+/DHEjf6SLKDvCCKZSiTdc2VJHo5zBl4krXuoMLRVFtG2y/4MyYXVhKu/i74
-         oL+6JnQyDrqG2TUHoFPsHPsUcYbFEdFnSfU5yNguULo1zCqfvp1Fa3nN+SsE6/MxvtDu
-         0FuV48NWdUnyYaXjYRL88MNiEhAdPzFMIgOFK0tNY+9O0Ou6vMhKYGmhglAzMSmFeRFK
-         6aZICtK9gQ8j8ibaBaPu5B011aKR1mFhFVjrWO5q3KV6raX1ux4oi1yDxRyqm8wsECla
-         0pBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681377931; x=1683969931;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SmM2Iumz0wCty9ffU6sJazDTRuVNx11Hj/8rUPFg/VM=;
-        b=ImSnWZWPCF31yOACZJ/Bm+mTgawYOR5aBe0tHUsbK/MaiE1C/VT6cgNpkBLE7gmRDN
-         kW9krW7yteJeP6TI50OF9OMpKySRqKClEVMvzLrE/8r/lDDx5xFVz7K8sm6smnzusRg0
-         /XrDzgfNSQurbXAYTX9idnlBJOP0H46bXqIK8Xuun0n9h4ep/4eooboHUpLwEtPsmAKr
-         gGsnQc6nsAQr8NRjDxyEnJmDg+VqbLlKfyrFs1BUAIO9MNJvJlAIAIhoDhX3xmJO8U5J
-         /ngvQUKCNLtsX69g4A9pEtlZAEcSlRt9BBXQdxE8bvGiyy59f2YNROmI258gKmcxdbbY
-         4Quw==
-X-Gm-Message-State: AAQBX9ccLx+c7tWuN9H8/JHh3CU1JZra8Ba6tS16SPw6D5hE6Wr7zLI5
-	h3deSwE0IKf2y7NOl0ndVcY=
-X-Google-Smtp-Source: AKy350bSedNi5QuhggJdNoxRcLrb4wiyesVKP7d3sWXVkEafZm+s5Ri0+xIF7kqYbPQb81iiI3rxEw==
-X-Received: by 2002:a05:600c:d9:b0:3ee:6d88:774a with SMTP id u25-20020a05600c00d900b003ee6d88774amr841701wmm.14.1681377931180;
-        Thu, 13 Apr 2023 02:25:31 -0700 (PDT)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id u7-20020a7bcb07000000b003ee70225ed2sm1316522wmj.15.2023.04.13.02.25.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Apr 2023 02:25:30 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: linux-pwm@vger.kernel.org,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Jian Hu <jian.hu@amlogic.com>
-Subject: Re: [PATCH] pwm: meson: fix g12a ao clk81 name
-Date: Thu, 13 Apr 2023 11:25:30 +0200
-Message-Id: <168137792161.301968.13202173892797133220.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <b53af028-28df-105a-eb50-21a1ed4e15b5@gmail.com>
-References: <b53af028-28df-105a-eb50-21a1ed4e15b5@gmail.com>
+	id 1pmtEZ-005cPd-1r;
+	Thu, 13 Apr 2023 09:27:17 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 29ED85FD08;
+	Thu, 13 Apr 2023 12:27:07 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1681378027;
+	bh=UPszp2OFslVfFwAvzppwKty8Ue+mKSOF7e8ZAshB5Po=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=sHqHMmIj7lSBOCLj5u2JmiqPTfQ5hL8vVVjVkoEp+f2+Viw46+yc0CWLoFnZKho+v
+	 ToB8ZA8kNgJjATvS6gbe2JZQ2xnmd6s099W7B9PN+GN3FncW+q1pQTuqwDsQtO+T+Y
+	 6Jyho/giCySUB7XfF4PyEwxeMVeKgB5a4aCGm2zKtUKjI5YacQmKJvrFN4DFtrqwIL
+	 +uUk4ptfMNDfuQO/q6jyzMkVt4p6/d6Z+valLgjLi8gInqzHVzGc1VYcjVrsxYcOY5
+	 nMsJMjQ1ad3CQlAUWaDIJ9oehI+biHYHIjipfmTjrMJBOq/WbEGmMWaEh8NwdL3rAv
+	 VHgjuacUe0tPQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 13 Apr 2023 12:27:06 +0300 (MSK)
+Date: Thu, 13 Apr 2023 12:27:06 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Arseniy Krasnov
+	<avkrasnov@sberdevices.ru>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
+	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 4/5] mtd: rawnand: meson: clear OOB buffer before read
+Message-ID: <20230413092706.mzopdszyirnwnjnl@CAB-WSD-L081021>
+References: <20230412094400.3c82f631@xps-13>
+ <ac4b66da-6a76-c2ec-7e21-31632f3448d5@sberdevices.ru>
+ <20230412113654.183350d0@xps-13>
+ <4eace0a0-f6af-7d99-a52f-7913a2139330@sberdevices.ru>
+ <20230412141824.755b2bca@xps-13>
+ <eedaaed9-0a41-2c18-9eb2-792613566986@sberdevices.ru>
+ <20230412145715.58c2be4a@xps-13>
+ <7c996832-258f-001c-56bd-87bbdf23eeaa@amlogic.com>
+ <20230412191548.ov5fufxkwqvdgrz2@CAB-WSD-L081021>
+ <20230412225603.5fba1a9e@xps-13>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230412225603.5fba1a9e@xps-13>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/12 22:40:00 #21096401
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230413_022535_727770_2624AB31 
-X-CRM114-Status: UNSURE (   7.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230413_022715_963876_6A361F6A 
+X-CRM114-Status: GOOD (  53.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,20 +99,151 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 11 Apr 2023 07:34:11 +0200, Heiner Kallweit wrote:
-> Fix the name of the aoclk81 clock. Apparently name aoclk81 as used by
-> the vendor driver was changed when mainlining the g12a clock driver.
+On Wed, Apr 12, 2023 at 10:56:03PM +0200, Miquel Raynal wrote:
+> Hi Dmitry,
 > 
+> ddrokosov@sberdevices.ru wrote on Wed, 12 Apr 2023 22:15:48 +0300:
+> 
+> > On Wed, Apr 12, 2023 at 10:04:28PM +0800, Liang Yang wrote:
+> > > Hi Miquel and Arseniy,
+> > > 
+> > > On 2023/4/12 20:57, Miquel Raynal wrote:  
+> > > > [ EXTERNAL EMAIL ]
+> > > > 
+> > > > Hi Arseniy,
+> > > > 
+> > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 15:22:26 +0300:
+> > > >   
+> > > > > On 12.04.2023 15:18, Miquel Raynal wrote:  
+> > > > > > Hi Arseniy,
+> > > > > > 
+> > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 13:14:52 +0300:  
+> > > > > > > On 12.04.2023 12:36, Miquel Raynal wrote:  
+> > > > > > > > Hi Arseniy,
+> > > > > > > > 
+> > > > > > > > avkrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 12:20:55 +0300:  
+> > > > > > > > > On 12.04.2023 10:44, Miquel Raynal wrote:  
+> > > > > > > > > > Hi Arseniy,
+> > > > > > > > > > 
+> > > > > > > > > > AVKrasnov@sberdevices.ru wrote on Wed, 12 Apr 2023 09:16:58 +0300:  
+> > > > > > > > > > > This NAND reads only few user's bytes in ECC mode (not full OOB), so  
+> > > > > > > > > > 
+> > > > > > > > > > "This NAND reads" does not look right, do you mean "Subpage reads do
+> > > > > > > > > > not retrieve all the OOB bytes,"?  
+> > > > > > > > > > > fill OOB buffer with zeroes to not return garbage from previous reads
+> > > > > > > > > > > to user.
+> > > > > > > > > > > Otherwise 'nanddump' utility prints something like this for just erased
+> > > > > > > > > > > page:
+> > > > > > > > > > > 
+> > > > > > > > > > > ...
+> > > > > > > > > > > 0x000007f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+> > > > > > > > > > >    OOB Data: ff ff ff ff 00 00 ff ff 80 cf 22 99 cb ad d3 be
+> > > > > > > > > > >    OOB Data: 63 27 ae 06 16 0a 2f eb bb dd 46 74 41 8e 88 6e
+> > > > > > > > > > >    OOB Data: 38 a1 2d e6 77 d4 05 06 f2 a5 7e 25 eb 34 7c ff
+> > > > > > > > > > >    OOB Data: 38 ea de 14 10 de 9b 40 33 16 6a cc 9d aa 2f 5e
+> > > > > > > > > > > 
+> > > > > > > > > > > Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> > > > > > > > > > > ---
+> > > > > > > > > > >   drivers/mtd/nand/raw/meson_nand.c | 5 +++++
+> > > > > > > > > > >   1 file changed, 5 insertions(+)
+> > > > > > > > > > > 
+> > > > > > > > > > > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > index f84a10238e4d..f2f2472cb511 100644
+> > > > > > > > > > > --- a/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > +++ b/drivers/mtd/nand/raw/meson_nand.c
+> > > > > > > > > > > @@ -858,9 +858,12 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
+> > > > > > > > > > >   static int meson_nfc_read_page_raw(struct nand_chip *nand, u8 *buf,
+> > > > > > > > > > >   				   int oob_required, int page)
+> > > > > > > > > > >   {
+> > > > > > > > > > > +	struct mtd_info *mtd = nand_to_mtd(nand);
+> > > > > > > > > > >   	u8 *oob_buf = nand->oob_poi;
+> > > > > > > > > > >   	int ret;
+> > > > > > > > > > > +	memset(oob_buf, 0, mtd->oobsize);  
+> > > > > > > > > > 
+> > > > > > > > > > I'm surprised raw reads do not read the entire OOB?  
+> > > > > > > > > 
+> > > > > > > > > Yes! Seems in case of raw access (what i see in this driver) number of OOB bytes read
+> > > > > > > > > still depends on ECC parameters: for each portion of data covered with ECC code we can
+> > > > > > > > > read it's ECC code and "user bytes" from OOB - it is what i see by dumping DMA buffer by
+> > > > > > > > > printk(). For example I'm working with 2K NAND pages, each page has 2 x 1K ECC blocks.
+> > > > > > > > > For each ECC block I have 16 OOB bytes which I can access by read/write. Each 16 bytes
+> > > > > > > > > contains 2 bytes of user's data and 14 bytes ECC codes. So when I read page in raw mode
+> > > > > > > > > controller returns 32 bytes (2 x (2 + 14)) of OOB. While OOB is reported as 64 bytes.  
+> > > > > > > > 
+> > > > > > > > In all modes, when you read OOB, you should get the full OOB. The fact
+> > > > > > > > that ECC correction is enabled or disabled does not matter. If the NAND
+> > > > > > > > features OOB sections of 64 bytes, you should get the 64 bytes.
+> > > > > > > > 
+> > > > > > > > What happens sometimes, is that some of the bytes are not protected
+> > > > > > > > against bitflips, but the policy is to return the full buffer.  
+> > > > > > > 
+> > > > > > > Ok, so to clarify case for this NAND controller:
+> > > > > > > 1) In both ECC and raw modes i need to return the same raw OOB data (e.g. user bytes
+> > > > > > >     + ECC codes)?  
+> > > > > > 
+> > > > > > Well, you need to cover the same amount of data, yes. But in the ECC
+> > > > > > case the data won't be raw (at least not all of it).  
+> > > > > 
+> > > > > So "same amount of data", in ECC mode current implementation returns only user OOB bytes (e.g.
+> > > > > OOB data excluding ECC codes), in raw it returns user bytes + ECC codes. IIUC correct
+> > > > > behaviour is to always return user bytes + ECC codes as OOB data even in ECC mode ?  
+> > > > 
+> > > > If the page are 2k+64B you should read 2k+64B when OOB are requested.
+> > > > 
+> > > > If the controller only returns 2k+32B, then perform a random read to
+> > > > just move the read pointer to mtd->size + mtd->oobsize - 32 and
+> > > > retrieve the missing 32 bytes?  
+> > > 
+> > > 1) raw read can read out the whole page data 2k+64B, decided by the len in
+> > > the controller raw read command:
+> > > 	cmd = (len & GENMASK(5, 0)) | scrambler | DMA_DIR(dir);
+> > > after that, the missing oob bytes(not used) can be copied from
+> > > meson_chip->data_buf. so the implementation of meson_nfc_read_page_raw() is
+> > > like this if need.
+> > > 	{
+> > > 		......
+> > > 		meson_nfc_read_page_sub(nand, page, 1);
+> > > 		meson_nfc_get_data_oob(nand, buf, oob_buf);
+> > > 		oob_len = (nand->ecc.bytes + 2) * nand->ecc.steps;
+> > > 		memcpy(oob_buf + oob_len, meson_chip->data_buf + oob_len, mtd->oobsize -
+> > > oob_len);
+> > > 
+> > > 	}
+> > > 2) In ECC mode, the controller can't bring back the missing OOB bytes. it
+> > > can read out the user bytes and ecc bytes per meson_ooblayout_ops define.
+> > >   
+> > 
+> > How does the Meson controller know the actual NAND flash layout when the
+> > OOB is split into protected and unprotected areas, such as Free and ECC
+> > areas? If the controller has a static OOB layout, where is the mapping
+> > located?
+> 
+> It's usually a set of values hardcoded in the driver. It's a per
+> geometry set.
 > 
 
-Applied, thanks!
+Sorry, I'm still confused. Before I developed spinand drivers, the OOB layout
+was located on the flash driver side.
+Do you mean if the OOB geometry in the rawnand subsystem is under the
+responsibility of the controller driver?
 
-[1/1] pwm: meson: fix g12a ao clk81 name
-      commit: d02037e2297dcb0e705bfbd6c11278b48e330f97
+> > 
+> > > > 
+> > > > This applies to the two modes, the only difference is:
+> > > > - with correction (commonly named "ECC mode"): the user bytes and ECC
+> > > >    bytes should be fixed if there are any bitflips
+> > > > - without correction (commonly referred as "raw mode"): no correction
+> > > >    applies, if there are bitflips, give them
+> > > > 
+> > > > Please mind the raw mode can be slow, it's meant for debugging and
+> > > > testing, mainly. Page reads however should be fast, so if just moving
+> > > > the column pointer works, then do it, otherwise we'll consider
+> > > > returning FFs.  
+> > 
 
-Best regards,
 -- 
-Thierry Reding <thierry.reding@gmail.com>
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
