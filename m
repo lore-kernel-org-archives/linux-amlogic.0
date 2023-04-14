@@ -4,89 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90469C77B6E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Apr 2023 21:18:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F23C77B6E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Apr 2023 15:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0R5mHLE/wHAMkKmT/dUmy1gXybTXMZDbp62FZvcqVrQ=; b=Em4uc/xKNooasg
-	7Qo49SZw5lN8Jd1ZIIuxeQyLmQUhIGvi+hxGPUe8vl9bhNVLJ8dJHuY9xjHsL72jHaSO5NNT6NR8J
-	ZcuZAcGte4FhtuSGgOOItgXLVpf50OjBvl+I80mASR8hXOEHb+xLpuwDfkcmSNtqS8oY2iotiAyCe
-	QMBlWF8zP0ed7wrgbksSJSQKXRoK3h2StCU6QBiCK13JkLRKJ1MBydOtgFIp6J3AB+AcvgeFh5Ugd
-	Fn+jZZYjjv7RHL/C51K2UpB0iPzaOGXfuVJEwKZ0drZkRV3/o0/JFnMc/qGcQ+Gcojt6jyQijmhqx
-	Cq7aToxR68myI5WtmSqg==;
+	List-Owner; bh=jXzdkQn6QqxOdJ+RcScC/PIgI0drirNV/NkHt3+mxzg=; b=dsIyeg6RorGN/4
+	hYJpYWfGUDx+wsph8NlcT+3L/sLWjzSicYv00fS8Hz2VgvpezGwAyr/C45Jk6su3fg7OlhhwqAq6R
+	4RkA6SmS98/8OqNaV9DQkwLxQGuPQVYTQdHh1rB8eHm2aNsWowK61aQVKQ4IFo6qvKsgdjhyam+GL
+	1zmOzBgATx13CSNTp/rrGnXag40d+1ycxbV5rdgN++HWthiZgolgO+JOSZsuKatn9B3Mgy2G9Gn6U
+	T0tkpVMRlsrJSyoOvTIE3XnIMtPkiE83752Q20ROBFK/Ca1rJ2jVbaCh2swltlWovcabfWFXQAuMe
+	2o4xOsE5p7eElu6kFhOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pn4KW-007AzZ-2R;
-	Thu, 13 Apr 2023 21:18:08 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1pnLI2-009wjd-34;
+	Fri, 14 Apr 2023 15:24:42 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pn4KR-007AyY-2U;
-	Thu, 13 Apr 2023 21:18:05 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id l10-20020a05600c1d0a00b003f04bd3691eso19811995wms.5;
-        Thu, 13 Apr 2023 14:18:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681420681; x=1684012681;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DvgvENO7OsEfYlpi3gro7VWSzf69fgGUrOZS9U5Yybg=;
-        b=bywSUA59UtCpqINbFrwRKWQFGwdz582hwMpd7vmBWBhXvHaPuePnAvx2oOd+evSK2I
-         y/0Sss9v77EeEGp3lwV6wJu1IWiEW+vcqFKiG7GcpI43YffN1h/4XJqzFaBnXivEqcP0
-         oAe9UV/PSCdK8AbWcnAR3rer+ifFZw4ZxnKkIBOEpyQjrA72a9tkzYIikMgHZKyCV6Hb
-         FxtxePLtZuvvf7mbkG9egGVIqasvzUD37aXJZoz03Mh/xtElda59S+6XitMM+w8l9fhQ
-         C3iMctBlSLz6raKKoVbCI4Aibm5UcYEARt39zIhrTSpxj4bhK+zR6s3mRpvDtgH+mogy
-         hcpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681420681; x=1684012681;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DvgvENO7OsEfYlpi3gro7VWSzf69fgGUrOZS9U5Yybg=;
-        b=aiHDNptsjrw3NHeONrERxD/eAajgl+hHFC8K1ONu6uQ/x9hyZyd/lYyzY7hXlKh/ig
-         XwhUBezBkMxNHtaq0YtqrZrGLfTtD4Q9lH1R6Ld5CFksz7HW8kIVWOk6Q9SqXtfn9+8+
-         xw6l13AbCg85k/Of931XtxYt+j5f2CYnFuu+yxzoSNsDZomFTnAsC4TRYEwihgg2e/MX
-         DV4mXFraCJmmws4v8DAJxdqwW8QofQWrXUNZi0rKYRUTB745cPj8PTW4KRvWJQYJz4g2
-         jm6ALNPfLV+W7YTA9PwpO25v/WdbNyd37Ygw5M01iEn9O8XlH6gm+6cQoxdJWnuPXaCN
-         QtZQ==
-X-Gm-Message-State: AAQBX9fFSCR/I0xCaK1LYXrFboFYQnK0d/NuHhjs4EoBP9AvKURny4Le
-	GDdiW9U9BgOyeumD2QEXaGU=
-X-Google-Smtp-Source: AKy350YZ2DOjKsCluMWuSo39HVU0l8eCuZ/vjttpc3RrNgfx8YujWylw5m4NYGCPIzZSFPo32lg4wA==
-X-Received: by 2002:a7b:cd9a:0:b0:3ee:526f:b15e with SMTP id y26-20020a7bcd9a000000b003ee526fb15emr2598277wmj.23.1681420680413;
-        Thu, 13 Apr 2023 14:18:00 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:738e:4400:f580:be04:1a64:fc5e? (dynamic-2a01-0c22-738e-4400-f580-be04-1a64-fc5e.c22.pool.telefonica.de. [2a01:c22:738e:4400:f580:be04:1a64:fc5e])
-        by smtp.googlemail.com with ESMTPSA id f10-20020a7bc8ca000000b003f09f44c7bcsm2719313wml.33.2023.04.13.14.17.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 14:18:00 -0700 (PDT)
-Message-ID: <61c1266c-407f-6d26-d9aa-1f9a0fc02e12@gmail.com>
-Date: Thu, 13 Apr 2023 23:17:59 +0200
+	id 1pnLHz-009weC-2e;
+	Fri, 14 Apr 2023 15:24:41 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id ECF2C5FD27;
+	Fri, 14 Apr 2023 18:24:34 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1681485875;
+	bh=LsFSCOE/U7ctFiRSO+kttWX/RvhA2tL+4PMkcrQ5e54=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=DCPYUaMz60Nl/RmT7yM88Yzy3adQ6G3ZPztlvKLMMHmWigHQ74VVmrsOIRibpLc2m
+	 cCwojrhnuzPzkEay4O5INDE2OsrP+FNrLfxgBV+GDOfP9YpUYQSuyX2p5yMux2crDp
+	 8srpJotp+JwjAzegvx1/WjvvuR/MlcKPrgfEZZ04+XLMSuCRHiENWA9jIfWIrOAa9m
+	 eQJ/Mho4V+V6Hk4yCrseev6BCxZyc0+0vwTxFX2mJLXmGUnw9NZ8aOGK4xByKUNVnI
+	 M2uVFDtZkSCjSzLx4V2L9OoWsk7v9ogaueGA+/bEeK4rF/W7tTGLfnJBSRu0g6UX8T
+	 tfik05VQ2pe1A==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Fri, 14 Apr 2023 18:24:34 +0300 (MSK)
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <mturquette@baylibre.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <hminas@synopsys.com>,
+	<Thinh.Nguyen@synopsys.com>
+CC: <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>, <kernel@sberdevices.ru>,
+	<rockosov@gmail.com>, <linux-usb@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-phy@lists.infradead.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 4/5] usb: dwc3-meson-g12a: support OTG switch
+Date: Fri, 14 Apr 2023 18:24:22 +0300
+Message-ID: <20230414152423.19842-5-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20230414152423.19842-1-ddrokosov@sberdevices.ru>
+References: <20230414152423.19842-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Thierry Reding <thierry.reding@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
- <u.kleine-koenig@pengutronix.de>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org
-References: <29973c8a-2b14-3d0c-bee8-8aff36c265e3@gmail.com>
- <f7291bab-eb51-3f2d-4eb4-78f6330242ef@gmail.com>
- <CAFBinCDs=EQo8-HSSbaprfJB+93sz+Ng1H=MX3hBG_00PTko3g@mail.gmail.com>
- <ZDfGJM24xZbfSur5@orome>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v3 3/4] pwm: meson: change clk/pwm gate from mask to bit
-In-Reply-To: <ZDfGJM24xZbfSur5@orome>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/14 08:08:00 #21104846
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230413_141804_683136_3C2C999E 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20230414_082440_035424_3C63B8AC 
+X-CRM114-Status: GOOD (  10.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,47 +85,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTMuMDQuMjAyMyAxMTowNiwgVGhpZXJyeSBSZWRpbmcgd3JvdGU6Cj4gT24gV2VkLCBBcHIg
-MTIsIDIwMjMgYXQgMTA6NDc6MDVQTSArMDIwMCwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToK
-Pj4gSGkgSGVpbmVyLAo+Pgo+PiBPbiBXZWQsIEFwciAxMiwgMjAyMyBhdCA5OjIz4oCvUE0gSGVp
-bmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pgo+Pj4gQ2hhbmdl
-IHNpbmdsZS1iaXQgdmFsdWVzIGZyb20gbWFzayB0byBiaXQuIFRoaXMgZmFjaWxpdGF0ZXMKPj4+
-IENDRiBpbml0aWFsaXphdGlvbiBmb3IgdGhlIGNsb2NrIGdhdGUgaW4gYSBmb2xsb3ctdXAgcGF0
-Y2guCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogSGVpbmVyIEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdt
-YWlsLmNvbT4KPj4gVGVzdGVkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVu
-c3RpbmdsQGdvb2dsZW1haWwuY29tPiAjCj4+IG1lc29uOGItb2Ryb2lkYzEsIHNtMS14OTYtYWly
-Cj4+Cj4+IFsuLi5dCj4+PiAgI2RlZmluZSBSRUdfTUlTQ19BQiAgICAgICAgICAgIDB4OAo+Pj4g
-LSNkZWZpbmUgTUlTQ19CX0NMS19FTiAgICAgICAgICBCSVQoMjMpCj4+PiAtI2RlZmluZSBNSVND
-X0FfQ0xLX0VOICAgICAgICAgIEJJVCgxNSkKPj4+ICsjZGVmaW5lIE1JU0NfQl9DTEtfRU4gICAg
-ICAgICAgMjMKPj4+ICsjZGVmaW5lIE1JU0NfQV9DTEtfRU4gICAgICAgICAgMTUKPj4+ICAjZGVm
-aW5lIE1JU0NfQ0xLX0RJVl9NQVNLICAgICAgMHg3Zgo+Pj4gICNkZWZpbmUgTUlTQ19CX0NMS19E
-SVZfU0hJRlQgICAxNgo+Pj4gICNkZWZpbmUgTUlTQ19BX0NMS19ESVZfU0hJRlQgICA4Cj4+PiAg
-I2RlZmluZSBNSVNDX0JfQ0xLX1NFTF9TSElGVCAgIDYKPj4+ICAjZGVmaW5lIE1JU0NfQV9DTEtf
-U0VMX1NISUZUICAgNAo+Pj4gICNkZWZpbmUgTUlTQ19DTEtfU0VMX01BU0sgICAgICAweDMKPj4+
-IC0jZGVmaW5lIE1JU0NfQl9FTiAgICAgICAgICAgICAgQklUKDEpCj4+PiAtI2RlZmluZSBNSVND
-X0FfRU4gICAgICAgICAgICAgIEJJVCgwKQo+Pj4gKyNkZWZpbmUgTUlTQ19CX0VOICAgICAgICAg
-ICAgICAxCj4+PiArI2RlZmluZSBNSVNDX0FfRU4gICAgICAgICAgICAgIDAKPj4gUGVyc29uYWxs
-eSBJJ20gZmluZSB3aXRoIHRoaXMgY2hhbmdlIGJ1dCBpdCdzIG5vdCBob3cgSSB3b3VsZCBoYXZl
-IGRvbmUgaXQ6Cj4+IC0gSSB3b3VsZCBoYXZlIGtlcHQgdGhlIEJJVCgpIG1hY3JvIGZvciBNSVND
-X3tBLEJ9X0VOCj4+IC0gdGhlbiBJIHdvdWxkIGhhdmUgcmVuYW1lZCBNSVNDX3tBLH1fQ0xLX0VO
-IHRvCj4+IE1JU0Nfe0EsQn1fQ0xLX0VOX1NISUZUICh0byBiZSBjb25zaXN0ZW50IHdpdGggX1NI
-SUZUIG9mIHRoZSBtdXggYW5kCj4+IGRpdmlkZXIpIGFuZCBkcm9wIHRoZSBCSVQoKSBtYWNybyB0
-aGVyZSAobGlrZSB5b3UgZGlkKQo+Pgo+PiBUaGlzIGlzIHBvc3NpYmx5L2xpa2VseSBwZXJzb25h
-bCBwcmVmZXJlbmNlLCBzbyBteSBzdWdnZXN0aW9uIGlzIHRvCj4+IHdhaXQgZm9yIHNvbWUgbW9y
-ZSBmZWVkYmFjay4KPiAKPiBJdCBsb29rcyBsaWtlIHRoZXNlIGFyZW4ndCB1c2VkIG91dHNpZGUg
-dGhlIG1lc29uX3B3bV9wZXJfY2hhbm5lbF9kYXRhCj4gYXJyYXksIHNvIHdoeSBib3RoZXIgd2l0
-aCBhICNkZWZpbmUgKGFuZCBhbnkgcG90ZW50aWFsIGluY29uc2lzdGVuY2llcykKPiBpbiB0aGUg
-Zmlyc3QgcGxhY2U/Cj4gCkkgdGhpbmsgd2UgZm9sbG93IGEgY29tbW9uIHBhdHRlcm4gaGVyZSBh
-bmQgZmlyc3QgZGVmaW5lIGNvbnN0YW50cyBmb3IgYWxsCnJlZ2lzdGVycyBhbmQgYml0cy9maWVs
-ZHMuIEhhdmluZyB0aGUgcmVnaXN0ZXIgbGF5b3V0IGRlZmluZWQgaW4gb25lIHBsYWNlCm1ha2Vz
-IGl0IGVhc2llciB0byBjaGVjayBpdCBhZ2FpbnN0IHRoZSBjaGlwIGRhdGFzaGVldC4KSG93ZXZl
-ciBJJ20gbm90IHN1cmUgd2hldGhlciB0aGlzIGlzIHdoYXQgeW91IHdlcmUgcmVmZXJyaW5nIHRv
-LgoKPiBUaGllcnJ5CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+From now, the Amlogic A1 USB controller is capable of switching between
+host and gadget modes, based on the status of the OTG_ID signal or
+by manual usb role changing.
+
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index b282ad0e69c6..10469b95deb9 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -242,7 +242,7 @@ static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+ };
+ 
+ static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
+-	.otg_switch_supported = false,
++	.otg_switch_supported = true,
+ 	.clks = meson_a1_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_a1_clocks),
+ 	.phy_names = meson_a1_phy_names,
+-- 
+2.36.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
