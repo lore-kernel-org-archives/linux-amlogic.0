@@ -4,133 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90B30C77B73
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 09:58:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89256C77B76
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 12:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cxKy9ABYHKZK/8Mu9lzQhfTDZPzlh2rWjWeStE52AMA=; b=oAjCyGewVFrHe0
-	90m5lVhdleCyzhaacUg/kD52iqdCr+TRTidBNH8w6xyHbFPkNpLLhRmKi9GAEaj1+ayfzTS8Takng
-	YwN8rXjDgEbD2qk9u3B5G6vajuRodjCqStV0uNC1yQQsc6Um50KrRAjAGMJSdaZDZXFisHU+7dwY3
-	AO9wxNO7z9deZCzCo40B32S/wqEWsTEhQTcohWYwJTj28/KTwcvpo6VGKgiD04HdL4E0N6PLCHoSE
-	3Vlnrt4JtakZR22LqQUIYHg696+Vg5kusn14FsnN3KzPKuusdUnwyqPSLRGLT7xWHHbXHVxWrWm/G
-	3+zIN6Vj2WVY/1AK9jYA==;
+	List-Owner; bh=dWs0et4+uM8WP8p04p+S5L5haUX1XXWVJ07YuKl/WKE=; b=Vm6RE0h7Pdc3No
+	yZHG+29IVyJNP3h/llgFYE8qujUldHe7MGu6DXOuf0E/CifBtWSDuLMUv02jIphR7b3ulk3kMsRhh
+	5iHCFUTnACQd+jxxozTzxXxbFEpFXcsl2wh1Kv2vhvRsVfztSWV9x+p/Wb5G89pkrr2y5JsbgdTUv
+	YDE+9OUvBvNxGYBwTPq7fhNkvzr24dODNN+jXmr/MbpsFvOCjfp/MZCLg37GI7y1gt2qeO/tT+tjp
+	X/RUKmqWEeTtXXcjf4h0JCGUR1WwAgshJuNSrlrUpHeH3JLPQfGg25KXrHJhezgKv86NgIolifn6q
+	kjSpBA/jr5rFLTEWGhww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfu-00BmAs-2x;
-	Sat, 15 Apr 2023 09:58:30 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1pnfLH-00CCFX-0v;
+	Sat, 15 Apr 2023 12:49:23 +0000
+Received: from mail-oo1-xc2d.google.com ([2607:f8b0:4864:20::c2d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfp-00Bm46-1r
-	for linux-amlogic@lists.infradead.org;
-	Sat, 15 Apr 2023 09:58:26 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id si1so21546032ejb.10
-        for <linux-amlogic@lists.infradead.org>; Sat, 15 Apr 2023 02:58:24 -0700 (PDT)
+	id 1pnfLD-00CCEB-1e;
+	Sat, 15 Apr 2023 12:49:20 +0000
+Received: by mail-oo1-xc2d.google.com with SMTP id w22-20020a4ad036000000b00541e4028218so2333873oor.4;
+        Sat, 15 Apr 2023 05:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681552703; x=1684144703;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1681562957; x=1684154957;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mICjLWmF/LNoSL6NvsOb+8lhWw0UJh5jOmm9qwOxptg=;
-        b=F+IR/off6Tme4IZyE6DN1+wfs9kbpla6jlIL3VVwih9UcpOCWzUJ71w7RdKLDqiLoQ
-         2kGpTLz3bjJtdYCshc4S/lDbmWsST2QG/9tjtRhQGt/Om7N3ANXxHCn+JpA6njFeqswV
-         ZoJjNJktUl6tcrtSFp/+9Cp1jM0AJW73F/y9ecu8nljzuHhEqC5t/MRjOCXv8ISYWK0B
-         THmdrRsv8fLjkOn+vhU+597RuD21pqBJUgn9aXHwOIavjJdzf6TD+iDJJN2DmtQsEm4u
-         3f2eRGld4bEiRAsq4kqLoMy1WMV1vpixqzacgCMOsrAJCL0QOGMRibGUQQAqrXhA5Ydf
-         YFgg==
+        bh=TqQ3SiHws9LUFOFeaTF92+MKSqS3DlyruqkxUBl1iVE=;
+        b=sAInW4jdFWd18P0SfBBU1170JUXE7LLFld6YAm6j4OxSekPTZLOY5WVbySpiaUlsDL
+         cpJMSyT+1ai6GPaZ+GaWtYkHgOJajm9XTRgsMpGNHdNJpFSdVJ8eIclf7bq9/lqZwTjy
+         bYCndd0i63bDCsn6dTfSGaZPEXeKUTgVW8kEdsGMEbT0z3VpD/9H/GWrqqlAGE4Lefvt
+         8vN3ZbLwGvCs+1TSnnJ1en9utPQWCqfFfzI10I/VkrMacWt/iSTGLzvHIyVo4jDYeh3D
+         +Ov80e54jVnDI/UWw16z7QxZWBr9RpuXpXEUdPm8cjZeoDBTgzQd8mvnIFazu15hpi/D
+         Heqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681552703; x=1684144703;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681562957; x=1684154957;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mICjLWmF/LNoSL6NvsOb+8lhWw0UJh5jOmm9qwOxptg=;
-        b=aJFlcP//4XzFTK3/sv0H2Gs9FGgzGGyUu9km/qgYrvOHHVw1ucxzP6tbMxJl49ngF5
-         aACICq1Y+Pq3aO/G/DFxBFGAaEBPELI1hjxhnEnvi6XKpb3TRuxcWGJ0bv41L7Uaq5IF
-         QL3xagGmwj3SZpfVJU7SKHQZpqzBRubd1XbHywFPYapX6EoJoNxBBPea0HbZoYJoaSAq
-         pLdWaf+gv0DbPh46aUKAr9bEm3hpB68EmWiEAXNGr8YVzhMugO8aWQKRsbCZRKUelIa1
-         dk+Aj3b0M/pygHCU4FpkDnfbm/GPYaIJq+5JMK42YwvDC7KJhhUfI8CYKkRK2/Tam4/5
-         nEhQ==
-X-Gm-Message-State: AAQBX9fIdymU1kjbs0yaecfHLNOBJtrIXLB6hO9NWmeP4DChrVhRRy99
-	ZMNEzg3ukKk8PyRozX+HuHfYug==
-X-Google-Smtp-Source: AKy350Yl7r7VuDqDzLWQRNAgcjR0HSlTkvOCXUrie3RgrYqoOlXErvIpYyC3N6eYoIbrvn50xJkc1Q==
-X-Received: by 2002:a17:906:824e:b0:94f:31da:8c38 with SMTP id f14-20020a170906824e00b0094f31da8c38mr195996ejx.24.1681552703329;
-        Sat, 15 Apr 2023 02:58:23 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
-        by smtp.gmail.com with ESMTPSA id gn23-20020a1709070d1700b009373f1b5c4esm3594248ejc.161.2023.04.15.02.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Apr 2023 02:58:22 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Julius Werner <jwerner@chromium.org>,
-	Evan Benn <evanbenn@chromium.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Sander Vanheule <sander@svanheule.net>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fu Wei <fu.wei@linaro.org>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Eugen Hristev <eugen.hristev@collabora.com>,
-	Justin Chen <justinpopo6@gmail.com>,
-	=?UTF-8?q?=82ecki?= <rafal@milecki.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Corentin Labbe <clabbe@baylibre.com>,
-	Anson Huang <Anson.Huang@nxp.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-	Srinivas Neeli <srinivas.neeli@xilinx.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-renesas-soc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/6] dt-bindings: watchdog: toshiba,visconti-wdt: simplify with unevaluatedProperties
-Date: Sat, 15 Apr 2023 11:51:11 +0200
-Message-Id: <20230415095112.51257-5-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
-References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
+        bh=TqQ3SiHws9LUFOFeaTF92+MKSqS3DlyruqkxUBl1iVE=;
+        b=akMtsSqp5YOFsT7BInRk7nZw3saCndsGPxi8liSTep0kszUJbQpfMa1otHn4CyuBZR
+         AwY6RENcMwfHyh8d8pj7J/6AvTwFQGLEIs6d3eFHXj18WRanc7SWv6sxsgmR4HgWcqOA
+         9WieftgmyXLnV8RnVqoGttscMPwvSjRw96q1KUusWOTVHMU5WQvCi7KvghXyxpJcnwDi
+         8CTkWZtyKOc5QWE6N7AtE7LIw2ig3mvOelWJEzVIHxxb0t76eCjvGBvmWh/uJZM1yvMM
+         ZAT/hlAyCA6pEYa9JKp4ONaIoEoB8uWwi8tE5riUWcFmLYxG7JcYvC2bFbXiRrFaeQ85
+         AWKg==
+X-Gm-Message-State: AAQBX9eR9mNEUAuHqYrexBhkmQwsLzv1hxFJ5lMZLp7f4kauzq9yCFwf
+	lG1JI+iI9jhDMhO7T78KqzJZIsjrDTcJ46/spXM=
+X-Google-Smtp-Source: AKy350aw1sitUTkN1aRNjH+bN0r38acxG6oBYdh1kAmyzRFvhhgzUT2uye2u9KKaOPwVKPk8KV+BJZuBzcqgjqA4HF4=
+X-Received: by 2002:a4a:d50d:0:b0:53b:7a81:fe64 with SMTP id
+ m13-20020a4ad50d000000b0053b7a81fe64mr2496510oos.0.1681562956798; Sat, 15 Apr
+ 2023 05:49:16 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org> <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date: Sat, 15 Apr 2023 14:49:04 +0200
+Message-ID: <CAMhs-H8e_e29=DVU0vc42gp0EiB_zkQLcNw_rH5Om21Xbm=Fpg@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
+ white-space cleanup
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Julius Werner <jwerner@chromium.org>, 
+	Evan Benn <evanbenn@chromium.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Sander Vanheule <sander@svanheule.net>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
+	Eugen Hristev <eugen.hristev@collabora.com>, Justin Chen <justinpopo6@gmail.com>, 
+	=?UTF-8?B?4oCaZWNraQ==?= <rafal@milecki.pl>, 
+	Linus Walleij <linus.walleij@linaro.org>, Corentin Labbe <clabbe@baylibre.com>, 
+	Anson Huang <Anson.Huang@nxp.com>, Robert Marko <robert.marko@sartura.hr>, 
+	Sai Prakash Ranjan <quic_saipraka@quicinc.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Jamie Iles <jamie@jamieiles.com>, Yannick Fertre <yannick.fertre@foss.st.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, 
+	Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>, Srinivas Neeli <srinivas.neeli@xilinx.com>, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-renesas-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230415_025825_615257_6DB2587C 
-X-CRM114-Status: UNSURE (   9.25  )
+X-CRM114-CacheID: sfid-20230415_054919_556153_E9F3436B 
+X-CRM114-Status: UNSURE (   8.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -143,43 +115,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Allow generic watchdog properties by using unevaluatedProperties: false.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml    | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-index eba083822d1f..51d03d5b08ad 100644
---- a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-@@ -24,14 +24,12 @@ properties:
-   clocks:
-     maxItems: 1
- 
--  timeout-sec: true
--
- required:
-   - compatible
-   - reg
-   - clocks
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU2F0LCBBcHIgMTUsIDIwMjMgYXQgMTE6NTjigK9BTSBLcnp5c3p0b2YgS296bG93c2tpCjxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+Cj4gTWlub3IgY2xlYW51cCB3
+aXRob3V0IGZ1bmN0aW9uYWwgaW1wYWN0Ogo+IDEuIEluZGVudCBEVFMgZXhhbXBsZXMgdG8gcHJl
+ZmVycmVkIGZvdXItc3BhY2VzIChtb3JlIHJlYWRhYmxlIGZvciBEVFMpLAo+IDIuIERyb3AgdW5u
+ZWVkZWQgcXVvdGVzLAo+IDMuIEFkZC9kcm9wIGJsYW5rIGxpbmVzIHRvIG1ha2UgdGhlIGNvZGUg
+cmVhZGFibGUuCj4KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0
+b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4gLS0tCj4gIC4uLi93YXRjaGRvZy9tZWRpYXRlayxt
+dDc2MjEtd2R0LnlhbWwgICAgICAgICB8ICA2ICsrLS0KCkFja2VkLWJ5OiBTZXJnaW8gUGFyYWN1
+ZWxsb3MgPHNlcmdpby5wYXJhY3VlbGxvc0BnbWFpbC5jb20+CgpUaGFua3MsCiAgICBTZXJnaW8g
+UGFyYWN1ZWxsb3MKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
