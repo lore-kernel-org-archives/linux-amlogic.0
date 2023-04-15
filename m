@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2C4C77B71
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 09:58:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90B30C77B73
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 09:58:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OwuFxZKOjNs7u5T1w7kP2BCCd85ShOgzKHMtbFZ8NOw=; b=xAl0l/hk6E/nJp
-	n1djyyIieHx0ZDME77OAxKid8mV9zoY9EOX4WcM3+hze5F6DeUysQfgeupvZr3/vIVUsu56PjJhcZ
-	vamUF73n/ASDppVLWqRJMIweEDay7DgwAM54Hy1GCG/dzFBwxU8KLKNFQCZDxUUTnse9IKqeqtIIr
-	yI43dxPOu2f/4OBWMf1aFXHtcqmQWdHxgDsBy0zNiOwf4l7M/Ab5MrBcw+AgmLWH+vnDIFgcDP4I5
-	+LfcJkxJVxuPqu2jIK2Fn68QQzErG6fYMF/ed+GT/ivh2T2b80mcV517vHouO/oo3c7dTSwjw5MEx
-	a1RFH2LlT6642rPYBgiw==;
+	List-Owner; bh=cxKy9ABYHKZK/8Mu9lzQhfTDZPzlh2rWjWeStE52AMA=; b=oAjCyGewVFrHe0
+	90m5lVhdleCyzhaacUg/kD52iqdCr+TRTidBNH8w6xyHbFPkNpLLhRmKi9GAEaj1+ayfzTS8Takng
+	YwN8rXjDgEbD2qk9u3B5G6vajuRodjCqStV0uNC1yQQsc6Um50KrRAjAGMJSdaZDZXFisHU+7dwY3
+	AO9wxNO7z9deZCzCo40B32S/wqEWsTEhQTcohWYwJTj28/KTwcvpo6VGKgiD04HdL4E0N6PLCHoSE
+	3Vlnrt4JtakZR22LqQUIYHg696+Vg5kusn14FsnN3KzPKuusdUnwyqPSLRGLT7xWHHbXHVxWrWm/G
+	3+zIN6Vj2WVY/1AK9jYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfx-00BmDI-32;
-	Sat, 15 Apr 2023 09:58:33 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1pncfu-00BmAs-2x;
+	Sat, 15 Apr 2023 09:58:30 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfq-00BlzX-1u
+	id 1pncfp-00Bm46-1r
 	for linux-amlogic@lists.infradead.org;
-	Sat, 15 Apr 2023 09:58:28 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id xd13so17785604ejb.4
-        for <linux-amlogic@lists.infradead.org>; Sat, 15 Apr 2023 02:58:26 -0700 (PDT)
+	Sat, 15 Apr 2023 09:58:26 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id si1so21546032ejb.10
+        for <linux-amlogic@lists.infradead.org>; Sat, 15 Apr 2023 02:58:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681552706; x=1684144706;
+        d=linaro.org; s=google; t=1681552703; x=1684144703;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Fr2pBCD6umNhczQxq97ewzN+14iVAoxszUR3df4m1JI=;
-        b=KBrssLMtLKmsLeebg43o7A5lMW1PVjr0FL9EGnzfptlfeJU2+O2WNhBQ0HFo977Iua
-         rcld+cXUs9Y3HxWGpMiWcxuAfuHnC6x2cl+2qmiauB6x3msu3sypy5NK/yx27mTj9y9H
-         Ewx0zS9sHKphX1IM5mkG+xkB6sHk7sfp4o4noyPWiYZEJSHxddoi/P8z/eEN6vWGUkfS
-         YvSlcUyBbUSaYJGQsDy8QWLzuLGdkAmSAIUuNvqPRl4XN5crob1qw9uZzXUe5YMUnJhX
-         g80zIJJQURIGeGysIlmkHk5jlgHtryhPW/OjPjPmOckvxXqsnLQS//OqqROjirbCPdRq
-         tmLw==
+        bh=mICjLWmF/LNoSL6NvsOb+8lhWw0UJh5jOmm9qwOxptg=;
+        b=F+IR/off6Tme4IZyE6DN1+wfs9kbpla6jlIL3VVwih9UcpOCWzUJ71w7RdKLDqiLoQ
+         2kGpTLz3bjJtdYCshc4S/lDbmWsST2QG/9tjtRhQGt/Om7N3ANXxHCn+JpA6njFeqswV
+         ZoJjNJktUl6tcrtSFp/+9Cp1jM0AJW73F/y9ecu8nljzuHhEqC5t/MRjOCXv8ISYWK0B
+         THmdrRsv8fLjkOn+vhU+597RuD21pqBJUgn9aXHwOIavjJdzf6TD+iDJJN2DmtQsEm4u
+         3f2eRGld4bEiRAsq4kqLoMy1WMV1vpixqzacgCMOsrAJCL0QOGMRibGUQQAqrXhA5Ydf
+         YFgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681552706; x=1684144706;
+        d=1e100.net; s=20221208; t=1681552703; x=1684144703;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Fr2pBCD6umNhczQxq97ewzN+14iVAoxszUR3df4m1JI=;
-        b=YH8Wh7Bi/z/YOsPyCtWCu9S6JeClXbUnhBoPiPT+wTDdthRrSJf8iMvnNrFAbPMY2c
-         VHU21Hv5NFQBCF+OyUV6FrA37cz3ihPdInvxSdRb1m7tG7Sxj60HGqakAvAkjAuNQBQG
-         RJsfPOAIYbIhRMKG4xl3KuKzwNBppm90cMQIZsaXMfAsffMBTJcx2HFvOY0ul0mKfqPg
-         msjX6zQ/IGGZYblY5GNY84bytbNaqS2YiOLav9Olcw6LaSdWTcCgf8GcmA9feJupTX2W
-         UrClVuGwZYJ1y9AOy0cxp1g9oPE9/gU0TWN2Xi6cebzP2Spp/cSCCoYxz5et57/32H/r
-         e3+w==
-X-Gm-Message-State: AAQBX9fvYglFSVItRGMiCxztNgh0yEVW9fZh3m+YeHFeysYouZVpyYBl
-	zVgqmRun3me0tDGuOPZk3wjJLw==
-X-Google-Smtp-Source: AKy350bZWvNaGJptFPLSmIHH7cRbLl7V6f22Bt1WbL4mPTQOR4EbC2AYcFac6G7sc67vcTz0OtrFlQ==
-X-Received: by 2002:a17:906:b788:b0:94c:548f:f81d with SMTP id dt8-20020a170906b78800b0094c548ff81dmr1404066ejb.71.1681552705946;
-        Sat, 15 Apr 2023 02:58:25 -0700 (PDT)
+        bh=mICjLWmF/LNoSL6NvsOb+8lhWw0UJh5jOmm9qwOxptg=;
+        b=aJFlcP//4XzFTK3/sv0H2Gs9FGgzGGyUu9km/qgYrvOHHVw1ucxzP6tbMxJl49ngF5
+         aACICq1Y+Pq3aO/G/DFxBFGAaEBPELI1hjxhnEnvi6XKpb3TRuxcWGJ0bv41L7Uaq5IF
+         QL3xagGmwj3SZpfVJU7SKHQZpqzBRubd1XbHywFPYapX6EoJoNxBBPea0HbZoYJoaSAq
+         pLdWaf+gv0DbPh46aUKAr9bEm3hpB68EmWiEAXNGr8YVzhMugO8aWQKRsbCZRKUelIa1
+         dk+Aj3b0M/pygHCU4FpkDnfbm/GPYaIJq+5JMK42YwvDC7KJhhUfI8CYKkRK2/Tam4/5
+         nEhQ==
+X-Gm-Message-State: AAQBX9fIdymU1kjbs0yaecfHLNOBJtrIXLB6hO9NWmeP4DChrVhRRy99
+	ZMNEzg3ukKk8PyRozX+HuHfYug==
+X-Google-Smtp-Source: AKy350Yl7r7VuDqDzLWQRNAgcjR0HSlTkvOCXUrie3RgrYqoOlXErvIpYyC3N6eYoIbrvn50xJkc1Q==
+X-Received: by 2002:a17:906:824e:b0:94f:31da:8c38 with SMTP id f14-20020a170906824e00b0094f31da8c38mr195996ejx.24.1681552703329;
+        Sat, 15 Apr 2023 02:58:23 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
-        by smtp.gmail.com with ESMTPSA id gn23-20020a1709070d1700b009373f1b5c4esm3594248ejc.161.2023.04.15.02.58.23
+        by smtp.gmail.com with ESMTPSA id gn23-20020a1709070d1700b009373f1b5c4esm3594248ejc.161.2023.04.15.02.58.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Apr 2023 02:58:25 -0700 (PDT)
+        Sat, 15 Apr 2023 02:58:22 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Wim Van Sebroeck <wim@linux-watchdog.org>,
 	Guenter Roeck <linux@roeck-us.net>,
@@ -121,16 +121,17 @@ To: Wim Van Sebroeck <wim@linux-watchdog.org>,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-renesas-soc@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/6] dt-bindings: watchdog: realtek,otto-wdt: simplify requiring interrupt-names
-Date: Sat, 15 Apr 2023 11:51:12 +0200
-Message-Id: <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/6] dt-bindings: watchdog: toshiba,visconti-wdt: simplify with unevaluatedProperties
+Date: Sat, 15 Apr 2023 11:51:11 +0200
+Message-Id: <20230415095112.51257-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230415_025826_673341_B7B26A15 
-X-CRM114-Status: GOOD (  10.00  )
+X-CRM114-CacheID: sfid-20230415_025825_615257_6DB2587C 
+X-CRM114-Status: UNSURE (   9.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,33 +148,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Required properties should be listed in "required:" block.  Since
-interrupts are already there, the dependency of interrupt-names on the
-interrupts can be simplified.
+Allow generic watchdog properties by using unevaluatedProperties: false.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/watchdog/realtek,otto-wdt.yaml        | 4 +---
+ .../devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml    | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml b/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
-index 099245fe7b10..1f5390a67cdb 100644
---- a/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
-@@ -67,12 +67,10 @@ required:
+diff --git a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+index eba083822d1f..51d03d5b08ad 100644
+--- a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+@@ -24,14 +24,12 @@ properties:
+   clocks:
+     maxItems: 1
+ 
+-  timeout-sec: true
+-
+ required:
+   - compatible
    - reg
    - clocks
-   - interrupts
-+  - interrupt-names
  
- unevaluatedProperties: false
+-additionalProperties: false
++unevaluatedProperties: false
  
--dependencies:
--  interrupts: [ interrupt-names ]
--
  examples:
    - |
-     watchdog: watchdog@3150 {
 -- 
 2.34.1
 
