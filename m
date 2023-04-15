@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 035F1C77B71
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53476C7619A
 	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 09:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,56 +12,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jUyqbsvLgBzJJF5Pi1CQqLDByPzsvpuUqTIMRdPYe5s=; b=YMdjeZDeYokbKc
-	ueWRLQ1GFwVrWhNGLzVeQjROOnl82EUWvgb4isCKxByrN4D2Gih/xTagWhSEln3YshlYZNd6jHbaf
-	CbSVdp2swQqgkU7yYAiXUX8NIfhrL3YgS7d8//j4owFBC5NwDG7InFuws+l/8avC8dbu0mOgQm44j
-	qurHo4vpwtAOezIBYi7rOU2dD9bwTyflJF8vEAQ/2XfyPgrpC9qqHJuW191Bzvn7dJ0yop1oPddge
-	JhrbW5UeCxT95YcJWE1V7MxfOiXCwkBg2m1iMn4587HQuTzJrnZnxRDaOzYcAJrDNQ/tzegxL0dvH
-	1WqxwINuctFkSd59Qzeg==;
+	List-Owner; bh=4HeKZXi+NUs98n9pqIv+i9WrsLGet/7i5WYXE4qOAaQ=; b=cPZGfCjOMWaUQ3
+	AHnF7u72ohLSuX/HYz2OF+GM86Chtnmk1um+ZOTH11jgHF7BxHf5Afu8oDsidSPaV9YwdBtCj6mk6
+	7vOHN0kexTMYLZm2fWSjVrKP2+nNFPIMfzkhx5GmilRjeYmZA19GHeOGgORnmJTk5XVq0WlQhTXJF
+	P3EtUhmr1wm8eOVhi3UftzkIKij0Uq9k0uaoMb2HKVb4DQdfDLELDXxVDltbio9zgm4taWsWISGNx
+	WnfC/iHH6apQSjSuhaIKzefnUcXfb1lG0rt8Kdxb8T76bC9VWogX6A9ps5xEl9NX/AeJucoRV3AJ7
+	lRXsmn8JCz2kqDcKpdZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfr-00Bm82-34;
-	Sat, 15 Apr 2023 09:58:27 +0000
+	id 1pncft-00Bm9L-0W;
+	Sat, 15 Apr 2023 09:58:29 +0000
 Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pncfk-00Bm1A-2c
+	id 1pncfm-00Bm2S-0R
 	for linux-amlogic@lists.infradead.org;
-	Sat, 15 Apr 2023 09:58:22 +0000
-Received: by mail-ej1-x631.google.com with SMTP id dx24so7653162ejb.11
-        for <linux-amlogic@lists.infradead.org>; Sat, 15 Apr 2023 02:58:19 -0700 (PDT)
+	Sat, 15 Apr 2023 09:58:23 +0000
+Received: by mail-ej1-x631.google.com with SMTP id xd13so17785305ejb.4
+        for <linux-amlogic@lists.infradead.org>; Sat, 15 Apr 2023 02:58:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681552698; x=1684144698;
+        d=linaro.org; s=google; t=1681552701; x=1684144701;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hT0dzvsXvb7f698PuX8ThKiPZDrN3+S4Z3pmgV6QSpo=;
-        b=bTJHqYbGlp4UGrO9oKw8Bghu6wDHkK/qnJECB0OENhFCw2eZ/EZszvWSjj70/YPJYt
-         e+SbWG3F0D4EqrDyxt6GxI8XihIfzTdjOTHapVRqqT6cKzhUCJtTQ3r0G4h44nzNLWWQ
-         ux2Kjc8ytqLSZQAEKogyli0FMWqt/vZNMr9SEyUA2YTNUpD7/nItuVCDjwdg+MiJuJW1
-         vANBOgpdSnvkdN9ZVr1N13DrgR+Gp4mx0gNHxIXIeJLfdX7IeqmgcSTF9N/UZTh/L0Ry
-         wxJlWA70/mXfUjCxjF7exBcKLFTWKawIgeepbswAsogQGBefk2Bd6BbI99WZQHoonpcn
-         J1uw==
+        bh=X++FhK1t/fMQBncyu3FeTc1IPRncKd5sGne3lbXD1HA=;
+        b=ElHS0DixfV4Wx0/NRCOiZ3tsYfPcSyO/g1j7g/FJw5/YfXipUfJBvmFPzXl13E2Tvf
+         SlSdK+EcP2/VLC4TtP1izTSZh2TYXhQwqrEHTP4zmLknPDHuF6W0Ez3oOwri2AO4Ln8J
+         DKM/IsZIxge+Q36axXN56jyjNpGR6y1DekpVmrGRzkbCcPf8lzZTffR5fyyV3yf3kqgU
+         XY3Jr5gNhHwtScMoax+woXvPJV+LbcS1d3mQ8aHbvrtS9cqK7eNuaskGH+C3p4x28hPk
+         gE0r2qXpKKwQao2swDA6m552WDpf1EkvhZhgjtn7/+5P2CZIcSXmPfyymhrvI2osVwKR
+         mSyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681552698; x=1684144698;
+        d=1e100.net; s=20221208; t=1681552701; x=1684144701;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hT0dzvsXvb7f698PuX8ThKiPZDrN3+S4Z3pmgV6QSpo=;
-        b=HIW3P8hldTCNfQM1CdSSHCjHF2Kc7Kd0+KEVyYIMkZiFMyhcjxDmgODxTZDWMYYWMX
-         LKqfXFbqcWy1ZDOJcBhpxduUZa7nBGnn11zfptudPOLK4K+oM81UYDES4jBGDCbFJvFP
-         zKn6v61LhZcdhj7c2i70ZKUcIv9HsGv39dnrs3yKWrSwkCdevyDvFMuu3LLXVbXGSTju
-         uAwEjK8IxlqZddde+m27uuqPicGEfQPx1z+Mic8J/g+/Xsa2NXT4mdAHII7Hpd7PwzjY
-         R2xYvyQxJkRAh1wGoW4pgzQog8qbEBq0XY0sSQH6Lm3HiLk95FSGg3ON5cSwuSn7ZatV
-         76CQ==
-X-Gm-Message-State: AAQBX9dhjrZ6MSJX//jHGjDKNbumUWstxJ4BimYOZbiKHznkB5HIXZYp
-	0POcnzb7XyQIu/YGiaoX1P2omQ==
-X-Google-Smtp-Source: AKy350aa/SbsRtF67gLeFejSr20s5v+RMrFrIbspoXpE7GmfmW1U/LDuriV5iYIvkKV83gJzv44SFQ==
-X-Received: by 2002:a17:907:77cc:b0:94e:e30e:7245 with SMTP id kz12-20020a17090777cc00b0094ee30e7245mr1380769ejc.8.1681552698443;
-        Sat, 15 Apr 2023 02:58:18 -0700 (PDT)
+        bh=X++FhK1t/fMQBncyu3FeTc1IPRncKd5sGne3lbXD1HA=;
+        b=j5ZepJAe/PsqVQebQS+Y9AYN701V2q04abrwBDZD3RxFDu6WAKei8Lgwkw58rRIIjC
+         xKjZ0Q8dcHwyhADhEzIsbvIwwG8XLHjFyvg2CYIyclLRCwqvMVfry2hAHkA2A1U3Jcju
+         ca/eLdNvMksQk5+shW6P8YnVHmbD5/dRhzFF9aZ7DwenWQB8AneXQEvhXrhFRbp5raPv
+         ZGcaWS6Fp4TONYYU1gmBi+tY+PHCRW3ONRGeULK7uiCH85DiegOXLJtlT96x0fQwuHqq
+         G6/+6kSwdQ24st3wiWjKwjYJd3aKt+8mL6uNbbPhWaGFHQJ2l3OoYviw1Be2rjKpQJGP
+         COKw==
+X-Gm-Message-State: AAQBX9c5Gjl62yL6kNS2GB4St5GZH9pSTjYwvbjIVsYLDf7d2xpAHoKQ
+	+DSXBBKEBt19B0rlQ+In1oDy9g==
+X-Google-Smtp-Source: AKy350Yav0SQe0tEvR6ZtIMRzAj9K6H8406yqb7Hzclv9sLARZM1w9Vr1g/iMuC5RnPGGtv3bjO69Q==
+X-Received: by 2002:a17:906:149b:b0:948:b9ea:3302 with SMTP id x27-20020a170906149b00b00948b9ea3302mr1901974ejc.1.1681552700850;
+        Sat, 15 Apr 2023 02:58:20 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:a3bf:4ed:6c53:2a36])
-        by smtp.gmail.com with ESMTPSA id gn23-20020a1709070d1700b009373f1b5c4esm3594248ejc.161.2023.04.15.02.58.15
+        by smtp.gmail.com with ESMTPSA id gn23-20020a1709070d1700b009373f1b5c4esm3594248ejc.161.2023.04.15.02.58.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Apr 2023 02:58:17 -0700 (PDT)
+        Sat, 15 Apr 2023 02:58:20 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Wim Van Sebroeck <wim@linux-watchdog.org>,
 	Guenter Roeck <linux@roeck-us.net>,
@@ -121,16 +121,17 @@ To: Wim Van Sebroeck <wim@linux-watchdog.org>,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-renesas-soc@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/6] dt-bindings: watchdog: arm,sp805: drop unneeded minItems
-Date: Sat, 15 Apr 2023 11:51:09 +0200
-Message-Id: <20230415095112.51257-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/6] dt-bindings: watchdog: fsl-imx7ulp-wdt: simplify with unevaluatedProperties
+Date: Sat, 15 Apr 2023 11:51:10 +0200
+Message-Id: <20230415095112.51257-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230415_025820_869374_EAA16478 
-X-CRM114-Status: GOOD (  10.99  )
+X-CRM114-CacheID: sfid-20230415_025822_263381_2D8D2BBB 
+X-CRM114-Status: UNSURE (   9.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,26 +148,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is no need to specify minItems when they are equal to maxItems,
-because it is implied by maxItems.
+Allow generic watchdog properties by using unevaluatedProperties: false.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/watchdog/arm,sp805.yaml | 1 -
- 1 file changed, 1 deletion(-)
+ .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml         | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-index a69cac8ec208..7aea255b301b 100644
---- a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-@@ -43,7 +43,6 @@ properties:
-       Clocks driving the watchdog timer hardware. The first clock is used
-       for the actual watchdog counter. The second clock drives the register
-       interface.
--    minItems: 2
-     maxItems: 2
+diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
+index d3790f1a96a2..4b7ed1355701 100644
+--- a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
+@@ -30,15 +30,13 @@ properties:
+   clocks:
+     maxItems: 1
  
-   clock-names:
+-  timeout-sec: true
+-
+ required:
+   - compatible
+   - interrupts
+   - reg
+   - clocks
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.34.1
 
