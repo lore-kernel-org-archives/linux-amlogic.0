@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C32D6C7619A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Apr 2023 16:48:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A623BC77B73
+	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Apr 2023 16:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
 	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zd7gmBX1e/JUx9Fpr2YQ6rh2V/6cgX+eBJpAQiP9x4o=; b=tXzJ/q8cI0TOvM+DZZzr8CHZt2
-	xDu+Ad9eBDt8wGR3NTm2DGtSHjQlXVyZGOsmWBCpI6Vpd38bMmFlsBIY5WOP5OANtNukTTYjLdEu6
-	ucNzlgcRkF7ejPg4pw+DsTpgtXEr6AJGoV8ycfetDvvQHteaKZZXYWcKx3N8xtLgtp9qwMiBrEofq
-	fWh19IrYtqeJ+y4Yef0Lj08OneijMORKrQn8xrip2Mrf5kRjpyjxHLImsDQv21+32D399W+Vimeg0
-	SRlLPPr7ToUjQaHqgjkd26FnIUZULy6xoHduEZ6lfbODfLVD4ALwJItcIzzJ5JnwFMODl39Ftnt8/
-	erFh6P7w==;
+	bh=+LQTy/hg13/8/L8/QuBh5TInhFGMTXzpRHcStYxrw7k=; b=PivR8fXL+yoTVuMNY7EFwpyqfa
+	n0HHxdFPZIDx5Apt87diqPSZaj2AwxgFe9fVBZOYDkNrW53WVTocSDVqnLIQFz0pyVpjShmdNGiAi
+	4nUT6J3BKVwS6gmf12GmWsGiYV7BJ6XbFowg3RCYkX2Me/x4yvVzbuQgjscLt0QeV1EJzhA8oaPBk
+	1282gdWg+IOwhd4VxSJ5T9uPFXkAiwMSMYMpsWioFC+fYcOnccPYBlzf0ETj8nwYwdtD4E2okED9w
+	WNniTxwzNzujHmDvJHyt1u0x0tjeDhst4wlZ5ZAQvDlafbMDVn+oMLRzMQwNYjA0aFDHoIMCqnq8k
+	UZsCaKXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pnj4O-00CUEd-23;
-	Sat, 15 Apr 2023 16:48:12 +0000
-Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
+	id 1po4ro-00E4SM-1Z;
+	Sun, 16 Apr 2023 16:04:40 +0000
+Received: from mail-io1-xd2e.google.com ([2607:f8b0:4864:20::d2e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pnj4K-00CUDM-3B;
-	Sat, 15 Apr 2023 16:48:10 +0000
-Received: by mail-pl1-x632.google.com with SMTP id kc3so4380249plb.6;
-        Sat, 15 Apr 2023 09:48:07 -0700 (PDT)
+	id 1po4rk-00E4Ri-05;
+	Sun, 16 Apr 2023 16:04:37 +0000
+Received: by mail-io1-xd2e.google.com with SMTP id ca18e2360f4ac-760ecf3424bso10200939f.2;
+        Sun, 16 Apr 2023 09:04:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681577287; x=1684169287;
+        d=gmail.com; s=20221208; t=1681661074; x=1684253074;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c07ixhDHpQnBulkQZ2Nw0JwAr36rnVLPuwgUhNxAuT8=;
-        b=VAm7lLW2qbtDmFHkaygXoNVicYRA7IQ6GgoHgPsyCQNfa+OPX88B/mb3fyqCdcZYlB
-         Qb6vBWg9yf0V1FZ1UQn8AGxwQkqUXoHNh66IZq4PycRZbyKno5D9WgQs5jpy9jFw2OXy
-         ce4dYeMqFtLPPcZeThBJekZ6hAAsuKU1TctgtzHrqbIhKsI2kAQJ4q4Gs3G6ONvGbrWK
-         Ne6ZQXeA5MJrTDw9XVhAgoii6otPIhbaurxAW8ahIEkNhLiakjovuK/CPOrgqQXhSbEn
-         qRGynIgdugnm3uE6whko3Q6+snSfYAMf2eC7Dp6jXGfBroLZjjfXXrZ1Yl9zLi2CHTyD
-         LS1g==
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=DvyJQrP9UkgoEpM6LF6RSI8qFgLSE064i5p1rN/mkpE=;
+        b=Rjsd/vPUp+rVHOA9ZNdASN/VeVhhpBT8mHqDUVjdzxLmV/a1BWixL2FLTm6oojhRCI
+         XPAGEfkBWiUacifIUGd3enaORGfFOkM+2MyxLQJUulLnLXvQf5LYMGHm3GsqG64S0vHL
+         4DssqHiN4f1xshttWtVgzgqRRVtsFWvvPbHtkxbDFAug4XF+PNq3zKFgSfFEzowJR+Ev
+         7ohaeeKrHIb1h7YeE5L7rX6pcZYf6GKdwiMTgfc1bnvl4ObqUTrKPet9NQOT4ZVc+JGF
+         pFKm0EI+AX8fBQTommDAyGn52ZZk3DnXSX1/Hyz83svG6/GcwKZv11IWw6O/xsvZate9
+         VcCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681577287; x=1684169287;
+        d=1e100.net; s=20221208; t=1681661074; x=1684253074;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c07ixhDHpQnBulkQZ2Nw0JwAr36rnVLPuwgUhNxAuT8=;
-        b=aWdMZJy+bmEtNXttRi6zQxi7goiQAC7Fw4jlJ6ZD5Vwf7ppCmqHobBfkaAkq5DtrH4
-         l9uqeyyLcavbh80aCj/WRuef9Z0bNHeSamPEmC/07m+MHc3PmfjbyXfXmFQey7Y7kj1r
-         rGcIB4Kb2JsJ1NLxqsABt6jSf2SualMC/rtlLvueB7DsupVR57ofyyFVBzBcv8KDLa8g
-         ktjhnMxevWfDYSP3hQfi0b1nQviBP04j3bPx+6BAoajZ4B1IGHLCujYigwFftQF3Kmeu
-         fcU8bNtQ5ufMVD8djx9cC3UNN6xA1808zu+2IdVKGkctXDN41+IoMKXETcwkraGGddga
-         d0/g==
-X-Gm-Message-State: AAQBX9dyiYNcYn9uCYuRPxu2OLtQsk0GxyZGVfKDVvWPJ13rR+YqCbFx
-	WIiU2ZhHlEAOYHCJ3jTgwMI=
-X-Google-Smtp-Source: AKy350asRVcaBN4vEj52+Al3i6LdhYun2dQh4zNs0zIu8tfWua87lcM2Lbo7pD9ZdRNAVxvnTiBCow==
-X-Received: by 2002:a17:90a:f409:b0:247:900:12db with SMTP id ch9-20020a17090af40900b00247090012dbmr9261041pjb.24.1681577286671;
-        Sat, 15 Apr 2023 09:48:06 -0700 (PDT)
-Received: from [192.168.86.135] ([136.52.74.64])
-        by smtp.gmail.com with ESMTPSA id r11-20020a65498b000000b004e28be19d1csm4492195pgs.32.2023.04.15.09.48.03
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DvyJQrP9UkgoEpM6LF6RSI8qFgLSE064i5p1rN/mkpE=;
+        b=lvyxtsQncjNPYKhvKuuMD3oV9ss9cYOBylyfdFuZ74pmPqjCbbEp3iER3INUb2gUC1
+         uM6+QlYrOitcwr23imUlAwdU9T9ZV511u6OjbqKhs1VGPkY2fqqVUjx6fpAUkBkzee8i
+         ZNL2MNvf6ze+PBA5l6W884b/1rKY1d+OSnRgCq2IQbKjQ57drJAPWB58381o+QeQLbag
+         BD1Az+Zzm+kLRHajz4L/+sHnLjqWK64NmtR8ppbnNXRKB7UDfUgEY35NHn3lUzr2M4Ir
+         5EstMnOg8eXGjuyU+XM8LE6W+m1IZb+yNPg5KzzmzjGwZ92xM9pArxKTaj8reC0XAISH
+         WBPg==
+X-Gm-Message-State: AAQBX9dpYtihUjtdMLLM4Res7QCf+9po7CzxVDFZLXNov2w7vW53prvR
+	/Qq5Xy/AGWPD6fX5nw0OEc8=
+X-Google-Smtp-Source: AKy350b8nOHI+C0ZJQewf0qqo1qiG0HMZyX0zk7KgmvMTGs+cXzuzrPwrUaFbu2uXf1mrD3iW4LNgw==
+X-Received: by 2002:a92:90b:0:b0:328:52d1:6415 with SMTP id y11-20020a92090b000000b0032852d16415mr8855471ilg.15.1681661074352;
+        Sun, 16 Apr 2023 09:04:34 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h9-20020a056638338900b003c4f35c21absm2603277jav.137.2023.04.16.09.04.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Apr 2023 09:48:06 -0700 (PDT)
-Message-ID: <f059c09d-b9a4-d86b-e4bb-1aea096263f2@gmail.com>
-Date: Sat, 15 Apr 2023 09:48:03 -0700
+        Sun, 16 Apr 2023 09:04:33 -0700 (PDT)
+Message-ID: <16d3bb91-af02-2504-1a8b-7805a2d30bb4@roeck-us.net>
+Date: Sun, 16 Apr 2023 09:04:28 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
- white-space cleanup
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/6] dt-bindings: watchdog: drop duplicated GPIO watchdog
+ bindings
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
@@ -97,7 +97,8 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
  Magnus Damm <magnus.damm@gmail.com>, Fu Wei <fu.wei@linaro.org>,
  Viresh Kumar <vireshk@kernel.org>,
- Eugen Hristev <eugen.hristev@collabora.com>, =?UTF-8?B?77+9ZWNraQ==?=
+ Eugen Hristev <eugen.hristev@collabora.com>,
+ Justin Chen <justinpopo6@gmail.com>, =?UTF-8?B?77+9ZWNraQ==?=
  <rafal@milecki.pl>, Linus Walleij <linus.walleij@linaro.org>,
  Corentin Labbe <clabbe@baylibre.com>, Anson Huang <Anson.Huang@nxp.com>,
  Robert Marko <robert.marko@sartura.hr>,
@@ -114,13 +115,11 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-renesas-soc@vger.kernel.org
 References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
- <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
-From: Justin Chen <justinpopo6@gmail.com>
-In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230415_094809_049334_60FF3649 
-X-CRM114-Status: UNSURE (   7.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230416_090436_071596_9AE4A040 
+X-CRM114-Status: GOOD (  25.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,19 +136,151 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/15/2023 2:51 AM, Krzysztof Kozlowski wrote:
-> Minor cleanup without functional impact:
-> 1. Indent DTS examples to preferred four-spaces (more readable for DTS),
-> 2. Drop unneeded quotes,
-> 3. Add/drop blank lines to make the code readable.
+On 4/15/23 02:51, Krzysztof Kozlowski wrote:
+> Two conversions to DT schema of GPIO watchdog binding happened and came
+> through different trees.  Merge them into one:
+> 1. Combine maintainers,
+> 2. Use more descriptive property descriptions and constraints from
+>     gpio-wdt.yaml,
+> 3. Switch to unevaluatedProperties:false, to allow generic watchdog
+>     properties.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+For the series:
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
+On a side note, the e-mail addresses in patchwork are messed up for
+patches sent by you. As result, I can not reply to your e-mails after
+pulling a patch from patchwork. This means that some replies get lost
+if I did not keep the original e-mail.
+
+That is how it looks like after I pull one of your patches from patchwork:
+
+To:
++=?unknown-8bit?q?Wim_Van_Sebroeck_=3Cwim=40linux-watchdog=2Eorg=3E=2C_Gu?==?unknown-8bit?q?enter_Roeck_=3Clinux=40roeck-us=2Enet=3E=2C_Rob_Herring_?==?unknown-8bit?q?=3Crobh+dt=40kernel=2Eorg=3E=2C_Krzysztof_Kozlowski_=3Ckrz?==?unknown-8bit?q?yszt
++of=2Ekozlowski+dt=40linaro=2Eorg=3E=2C_Neil_Armstrong_?==?unknown-8bit?q?=3Cneil=2Earmstrong=40linaro=2Eorg=3E=2C_Kevin_Hilman_=3Ck?==?unknown-8bit?q?hilman=40baylibre=2Ecom=3E=2C_Jerome_Brunet_=3Cjbrunet=40b?==?unknown-8bit?q?aylibre=2Ecom=3E=2C_
++Martin_Blumenstingl_=3Cmartin=2Eblumen?==?unknown-8bit?q?stingl=40googlemail=2Ecom=3E=2C_Julius_Werner_=3Cjwerner?==?unknown-8bit?q?=40chromium=2Eorg=3E=2C_Evan_Benn_=3Cevanbenn=40chromium?==?unknown-8bit?q?=2Eorg=3E=2C_Nicolas_Ferre_=3Cnicolas=2E
++ferre=40microchip?==?unknown-8bit?q?=2Ecom=3E=2C_Alexandre_Belloni_=3Calexandre=2Ebelloni=40bo?==?unknown-8bit?q?otlin=2Ecom=3E=2C_Claudiu_Beznea_=3Cclaudiu=2Ebeznea=40mic?==?unknown-8bit?q?rochip=2Ecom=3E=2C_Florian_Fainelli_=3Cf=2Efainelli=40gma
++i?==?unknown-8bit?q?l=
+
+Guenter
+
 > ---
->   .../bindings/watchdog/brcm,bcm7038-wdt.yaml   |  6 ++--
-
-Acked-by: Justin Chen <justinpopo6@gmail.com>
-
-Justin
+>   .../bindings/watchdog/gpio-wdt.yaml           | 55 -------------------
+>   .../bindings/watchdog/linux,wdt-gpio.yaml     | 17 +++++-
+>   2 files changed, 15 insertions(+), 57 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml b/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+> deleted file mode 100644
+> index 155dc7965e9b..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+> +++ /dev/null
+> @@ -1,55 +0,0 @@
+> -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/watchdog/gpio-wdt.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: GPIO controlled watchdog
+> -
+> -maintainers:
+> -  - Robert Marko <robert.marko@sartura.hr>
+> -
+> -properties:
+> -  compatible:
+> -    const: linux,wdt-gpio
+> -
+> -  gpios:
+> -    maxItems: 1
+> -    description: GPIO connected to the WDT reset pin
+> -
+> -  hw_algo:
+> -    $ref: /schemas/types.yaml#/definitions/string
+> -    description: Algorithm used by the driver
+> -    oneOf:
+> -      - description:
+> -          Either a high-to-low or a low-to-high transition clears the WDT counter.
+> -          The watchdog timer is disabled when GPIO is left floating or connected
+> -          to a three-state buffer.
+> -        const: toggle
+> -      - description:
+> -          Low or high level starts counting WDT timeout, the opposite level
+> -          disables the WDT.
+> -          Active level is determined by the GPIO flags.
+> -        const: level
+> -
+> -  hw_margin_ms:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    description: Maximum time to reset watchdog circuit (in milliseconds)
+> -    minimum: 2
+> -    maximum: 65535
+> -
+> -  always-running:
+> -    type: boolean
+> -    description:
+> -      If the watchdog timer cannot be disabled, add this flag to have the driver
+> -      keep toggling the signal without a client.
+> -      It will only cease to toggle the signal when the device is open and the
+> -      timeout elapsed.
+> -
+> -required:
+> -  - compatible
+> -  - gpios
+> -  - hw_algo
+> -  - hw_margin_ms
+> -
+> -unevaluatedProperties: false
+> diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> index 50af79af6416..499f1b7e03f9 100644
+> --- a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> @@ -8,6 +8,7 @@ title: GPIO-controlled Watchdog
+>   
+>   maintainers:
+>     - Guenter Roeck <linux@roeck-us.net>
+> +  - Robert Marko <robert.marko@sartura.hr>
+>   
+>   properties:
+>     compatible:
+> @@ -19,11 +20,23 @@ properties:
+>   
+>     hw_algo:
+>       description: The algorithm used by the driver.
+> -    enum: [ level, toggle ]
+> +    oneOf:
+> +      - description:
+> +          Either a high-to-low or a low-to-high transition clears the WDT counter.
+> +          The watchdog timer is disabled when GPIO is left floating or connected
+> +          to a three-state buffer.
+> +        const: toggle
+> +      - description:
+> +          Low or high level starts counting WDT timeout, the opposite level
+> +          disables the WDT.
+> +          Active level is determined by the GPIO flags.
+> +        const: level
+>   
+>     hw_margin_ms:
+>       description: Maximum time to reset watchdog circuit (milliseconds).
+>       $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 65535
+>   
+>     always-running:
+>       type: boolean
+> @@ -42,7 +55,7 @@ required:
+>   allOf:
+>     - $ref: watchdog.yaml#
+>   
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>   
+>   examples:
+>     - |
 
 
 _______________________________________________
