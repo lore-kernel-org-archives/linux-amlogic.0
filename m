@@ -4,87 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA10AC77B73
-	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Apr 2023 17:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A0FC77B61
+	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Apr 2023 19:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G9de6cERJRBl/kllifEecn2Pe4EsABmsKEvOpx3Pf3w=; b=Z0s8il9El97lHL
-	qiBwEZElMCwQqvYpix6zXvAyCdg5WdV+R+mTR6K/X768Yh7IKh+Ea1ujiq7kBpR+r5QOcPN0/13NF
-	I98g3mJwdSFd9ZW2ipW5moBSBFJl+OHgSclBTfIprsBf2HSmkIfGQCR9/G0JTMNclBznGKX7tNDTi
-	jXRu+BfK/9diG6p+925NDSunhrk/BW8ZSDws4kZwoMw9c69XAuaciXSuiwZlPrdA/jxICDfGkbTJd
-	HLXHW6qvQXciFUQeYiWvzEoLoRFC+00ZCTshKFioGMbAAeEoY+lOdUYCA520nUu3+NEnA/BY7IK/f
-	fTxvy49FChWLNFKnW86Q==;
+	List-Owner; bh=x0ufDdo4nnuqlv8ng4DXKV13AyFhV8UgPRNB0Kz/5x8=; b=t6AFzzgwkxepml
+	LAjARQgjfUYdLuqT2c4aQ8T+cYwyo/JkfNI6FFy2aL2SgWhqfrSiqz/vPlAtzXs+2/vNNMOs+pMiH
+	2PgSgL8Bx5gI9YBiLsbEVK5xZsuatXX9Bnhk1eVpWtmNXWoj/10tnsji5nXC8rNcxKnx9Mz4KOymM
+	K2pl8deF6jBHEQHx1ODIuB1UHp135dLjMYXLFXGAnhqCRTZrd2B/Bqf0yVj6D6/OVgTO/S5p0A8yU
+	R/cOKI3hJ0LI+gzJaWBvI69J9StNne3P7SGCUq5Qtwxp2JjFFqYVFolKs7yfsIFPewNgqPzDj38Vh
+	YoQ9vR8IaS2X/jedpsWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1po694-00EBDi-3A;
-	Sun, 16 Apr 2023 17:26:35 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+	id 1po7c2-00EK1u-15;
+	Sun, 16 Apr 2023 19:00:34 +0000
+Received: from polaris.svanheule.net ([84.16.241.116])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1po691-00EBC6-1I
+	id 1po7bv-00EJzF-1n
 	for linux-amlogic@lists.infradead.org;
-	Sun, 16 Apr 2023 17:26:33 +0000
-Received: by mail-ej1-x631.google.com with SMTP id c9so19517589ejz.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 16 Apr 2023 10:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681665989; x=1684257989;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VmJlKr7h7wrZk7+EWt+2i+sGb391Uksv0LFb5B7lgMY=;
-        b=oSbPgpXvDFIZlnRCzfUa+M5xXfSTYT/azB5s8gUdOo8H7YPyoJxMsDJT/9FBXKTGN5
-         4lvzDMaeho6hryYvHayGj5p4pR8yL4fYaCl+B3wYNiOj1/EaWh+ux0AJGarPrF4Vt9Gv
-         /3BmMfURGNS220VFcST7FcLxTbUecKCbOwAX5ViP++6MdLThh1P0mZoAglk4vFvnZoQD
-         ndmxTSgez/HJGCLoU2eIVo5HgvasKe7jC7bmpNZ0JUqHyIsWNoRGdMUHa2Qfs67FTjqI
-         FMTRzwNUpvV/LDs9tXszqgAmdVrbkZRgooxxL32xLFBfc51bHXowTfkmNsNdRbeQSnOL
-         i8xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681665989; x=1684257989;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VmJlKr7h7wrZk7+EWt+2i+sGb391Uksv0LFb5B7lgMY=;
-        b=eDefsmMLmbAW6tyzWPbwSKk56W0gwwgBvXKP1Mjfoy6vLvxE/vBSKXGZaz/QgMzKEJ
-         aGs2N45/ikVsP+pUDX6m8fSzBRqWnmHnbmfaN3SkUU7ZOTLmmIlCAPPPPXvpnuXoOmAu
-         15k+LXzSbNW1w9/CQ9rDMPxf240QH53LfWYrFTTU9rG5sxcnwF+x4xYaJuSI61nKQp1o
-         6kRh+uKsfPhnkpVZ76hPTfhgn1LqqnwJZNXVPNFdNC7fBzpyoun9RLqHZtpP/EPfBS6H
-         nKSxPCZ8sK/X87etveosB2do8Pcyc3FmnO+hJRSAlzL3/Pmx/rfeLED3qfaus23OfS82
-         jXfg==
-X-Gm-Message-State: AAQBX9clTyiCNEPUMducFrsfNwDa2jeCbekez+FwecEgDx8iO7Oe5QCM
-	chDm9uqs7dpAqFPt4EdrIqhb9w==
-X-Google-Smtp-Source: AKy350ZdSBYoLUiMvinEM1HVcDg1eOINAy32L8MsvIrHeB/CrkvnDl+z8dFUS9Lgv7qkJxYcSWJNCg==
-X-Received: by 2002:a17:907:985b:b0:94f:3ce3:7cd9 with SMTP id jj27-20020a170907985b00b0094f3ce37cd9mr3330134ejc.10.1681665988967;
-        Sun, 16 Apr 2023 10:26:28 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:f9e3:1d38:66a7:ae92? ([2a02:810d:15c0:828:f9e3:1d38:66a7:ae92])
-        by smtp.gmail.com with ESMTPSA id v8-20020a1709060b4800b0094f3cb173c7sm1550313ejg.63.2023.04.16.10.26.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Apr 2023 10:26:28 -0700 (PDT)
-Message-ID: <abefdf2e-076c-6f0e-46e3-74dae3d068c1@linaro.org>
-Date: Sun, 16 Apr 2023 19:26:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/6] dt-bindings: watchdog: drop duplicated GPIO watchdog
- bindings
-To: Guenter Roeck <linux@roeck-us.net>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-renesas-soc@vger.kernel.org
+	Sun, 16 Apr 2023 19:00:31 +0000
+Received: from [192.168.100.237] (cust-58-62-110-94.dyn.as47377.net [94.110.62.58])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 31B6A3A3B6B;
+	Sun, 16 Apr 2023 21:00:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1681671620;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KbiAlrrOOyRd9nSswntO2EM/kuhEbC2Dui2D0jg8mhE=;
+	b=yJTuA2IM1/ouSfmFU4g81QYz/Qs036N+Xgao0Ath/i9vW1OlzLPaQPSs5Z/cwJgY+mB5Yt
+	9frXAammof4cYeKT3YVKBBWuJmf5TlBYeZdPZpxvHm/UkuLToAfxBulAuQ/nfQnJU4gl/N
+	knaWX+2Bmwu0hShO8EBylOfwdt4HsidJ6JVG8BFAGRPK8fnJHUS7eltyRhN2MTg3ab2WE1
+	UgpwApF4MwfWTnKCtGazcW0/+MWrMm5ofGGKOhMMnVk7OADQ+R6e9jhHvt6dGh4OC2H0oK
+	b9tPCUEGwBSgAzSOzEjLJfpJWZ4oWq8P1U6FwFMzQAju74a9ESqS7tOiZHvUhQ==
+Message-ID: <75148300a158ceb0f86043535b089838e1d1bb61.camel@svanheule.net>
+Subject: Re: [PATCH 6/6] dt-bindings: watchdog: realtek,otto-wdt: simplify
+ requiring interrupt-names
+From: Sander Vanheule <sander@svanheule.net>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Wim Van Sebroeck
+ <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Julius Werner
+ <jwerner@chromium.org>, Evan Benn <evanbenn@chromium.org>, Nicolas Ferre
+ <nicolas.ferre@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>,  Claudiu Beznea
+ <claudiu.beznea@microchip.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>,  Fabio Estevam <festevam@gmail.com>, NXP Linux
+ Team <linux-imx@nxp.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy
+ Gross <agross@kernel.org>,  Bjorn Andersson <andersson@kernel.org>, Konrad
+ Dybcio <konrad.dybcio@linaro.org>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,  Nobuhiro Iwamatsu
+ <nobuhiro1.iwamatsu@toshiba.co.jp>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Fu Wei
+ <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>, Eugen Hristev
+ <eugen.hristev@collabora.com>, Justin Chen <justinpopo6@gmail.com>, ?ecki
+ <rafal@milecki.pl>, Linus Walleij <linus.walleij@linaro.org>, Corentin
+ Labbe <clabbe@baylibre.com>, Anson Huang <Anson.Huang@nxp.com>, Robert
+ Marko <robert.marko@sartura.hr>, Sergio Paracuellos
+ <sergio.paracuellos@gmail.com>, Sai Prakash Ranjan
+ <quic_saipraka@quicinc.com>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Jamie Iles <jamie@jamieiles.com>, 
+ Yannick Fertre <yannick.fertre@foss.st.com>, Christophe Roullier
+ <christophe.roullier@foss.st.com>,  Shubhrajyoti Datta
+ <shubhrajyoti.datta@xilinx.com>, Srinivas Neeli
+ <srinivas.neeli@xilinx.com>,  linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org,  linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,  linux-renesas-soc@vger.kernel.org
+Date: Sun, 16 Apr 2023 21:00:17 +0200
+In-Reply-To: <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
 References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
- <16d3bb91-af02-2504-1a8b-7805a2d30bb4@roeck-us.net>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <16d3bb91-af02-2504-1a8b-7805a2d30bb4@roeck-us.net>
+	 <20230415095112.51257-6-krzysztof.kozlowski@linaro.org>
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230416_102631_534694_7C2DDCAD 
-X-CRM114-Status: GOOD (  13.74  )
+X-CRM114-CacheID: sfid-20230416_120027_739917_8E66075F 
+X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,60 +110,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/04/2023 18:04, Guenter Roeck wrote:
-> On 4/15/23 02:51, Krzysztof Kozlowski wrote:
->> Two conversions to DT schema of GPIO watchdog binding happened and came
->> through different trees.  Merge them into one:
->> 1. Combine maintainers,
->> 2. Use more descriptive property descriptions and constraints from
->>     gpio-wdt.yaml,
->> 3. Switch to unevaluatedProperties:false, to allow generic watchdog
->>     properties.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> 
-> For the series:
-> 
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> 
-> On a side note, the e-mail addresses in patchwork are messed up for
-> patches sent by you. As result, I can not reply to your e-mails after
-> pulling a patch from patchwork. This means that some replies get lost
-> if I did not keep the original e-mail.
-> 
-> That is how it looks like after I pull one of your patches from patchwork:
-> 
-> To:
-> +=?unknown-8bit?q?Wim_Van_Sebroeck_=3Cwim=40linux-watchdog=2Eorg=3E=2C_Gu?==?unknown-8bit?q?enter_Roeck_=3Clinux=40roeck-us=2Enet=3E=2C_Rob_Herring_?==?unknown-8bit?q?=3Crobh+dt=40kernel=2Eorg=3E=2C_Krzysztof_Kozlowski_=3Ckrz?==?unknown-8bit?q?yszt
-
-(Trimmed cc list)
-
-Thanks for letting me know, I wonder what's the problem. I am sending
-with send-email exactly the same way every day, but somehow this series
-have such header in Patchwork:
-https://patchwork.kernel.org/project/linux-watchdog/patch/20230415095112.51257-1-krzysztof.kozlowski@linaro.org/
-
-Which I do not see in:
-1. lore:
-https://lore.kernel.org/all/20230415095112.51257-1-krzysztof.kozlowski@linaro.org/
-
-2. Previous patches on Patchwork:
-https://patchwork.kernel.org/project/linux-watchdog/patch/20230310223012.315897-1-krzysztof.kozlowski@linaro.org/
-
-Lore (1 above) points to possible unescaped UTF character for
-rafal@milecki.pl, but I wonder why send-email did not handle it.
-
-Best regards,
-Krzysztof
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgS3J6eXN6dG9mLAoKT24gU2F0LCAyMDIzLTA0LTE1IGF0IDExOjUxICswMjAwLCBLcnp5c3p0
+b2YgS296bG93c2tpIHdyb3RlOgo+IFJlcXVpcmVkIHByb3BlcnRpZXMgc2hvdWxkIGJlIGxpc3Rl
+ZCBpbiAicmVxdWlyZWQ6IiBibG9jay7CoCBTaW5jZQo+IGludGVycnVwdHMgYXJlIGFscmVhZHkg
+dGhlcmUsIHRoZSBkZXBlbmRlbmN5IG9mIGludGVycnVwdC1uYW1lcyBvbiB0aGUKPiBpbnRlcnJ1
+cHRzIGNhbiBiZSBzaW1wbGlmaWVkLgoKTWF5YmUgSSdtIG5vdCByZWFkaW5nIHRoaXMgcmlnaHQs
+IGJ1dCBpc24ndCB0aGUgZGVwZW5kZW5jeSBzdGF0ZWQgaW4gdGhlIGJpbmRpbmcKImludGVycnVw
+dHMgcmVxdWlyZXMgaW50ZXJydXB0LW5hbWVzIHRvIGJlIHByZXNlbnQiPyByZXNvdXJjZS1uYW1l
+cy50eHQKZGVzY3JpYmVzIHRoZSByZXZlcnNlIGRlcGVuZGVuY3kgKCJpbnRlcnJ1cHQtbmFtZXMg
+aXMgb25seSBtZWFuaW5nZnVsIHdpdGggYW4KYXNzb2NpYXRlZCBpbnRlcnJ1cHRzIikuCgo+IAo+
+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lA
+bGluYXJvLm9yZz4KPiAtLS0KCkluIGFueSBjYXNlLCBJJ20gT0sgd2l0aCBhIGZsYXR0ZW5lZCBy
+ZXF1aXJlbWVudHMgbGlzdDoKCkFja2VkLWJ5OiBTYW5kZXIgVmFuaGV1bGUgPHNhbmRlckBzdmFu
+aGV1bGUubmV0PgoKCkJlc3QsClNhbmRlcgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
+Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
