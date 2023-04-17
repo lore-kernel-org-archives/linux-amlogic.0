@@ -4,82 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BF7FC77B70
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Apr 2023 07:19:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2872FC77B70
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Apr 2023 07:23:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=31STcPQXNh2yO63BQdU3XEiuIUmIKTYBfS4BO6mhvgE=; b=Rrcb3Ypl0CJBkPW9jep+AHsqib
-	hrD5K5rpJAITN6QXdurslCzdHp7rA1auFAW6b6Pxcp4LtZ8rAbQrKFOqGyHZacgk2PpMNp71ZtLU2
-	ZPIpRuEtrBLZEOt+drqtuyRs1c7JOKClZA8ZB3ctpU3iJJ38HNk5Frbwn1MhsadHEv6+31SIB5jM8
-	NssdfgD8PKAGrL2lTx/HUQBqXEGMmxhV7SwtoxSUfKyScKRiTz2KMURS34bBip7bfW94LPfpV7gKc
-	s5UhBcYlrg1nO+GKA5nLEN5IWopkLeG/bfsLbh4++Drp5S8b6rx5NW12pLt105eIHzyIJ+9QJtABv
-	fchNwW7A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Are68C6ezaiSBIYuGR83fBw+QgJ7cp3aG6cRUVvvCC4=; b=EUXdGawJqradmu
+	mUhE+BTO2kH7lWNaKEUU3UpB93LZBo0HdRaZ10Q2MBBrRiP604ghSF6YmnqHtwJNOHz/d+1TiprYa
+	vvGS35xVz03J2gGLmNg4gIbJksK+mobf2fpkfNubUd7HkI2Fq9NaBG45wWOssz9zgsjY8dUZDehUk
+	qy6kApAk9o0gTYFvN4ZXtP7BQMTKXO5XvKT+U9N8vTrIa1oulREsjlRMe5exsiPQU6M42/s5PDbrN
+	L813X5fFPY5YiUGn/T1RkoXB5Zby7WmaMK24HrPomZq1OPMEBuK44XFuBYLcwpKzZKQ0HULu5LlE/
+	IqrmpS7aQIXEgltGqDdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poJ97-00F9eS-1l;
-	Mon, 17 Apr 2023 07:19:29 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1poJDC-00FALr-1P;
+	Mon, 17 Apr 2023 07:23:42 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poJ94-00F9dv-12
+	id 1poJD8-00FAKP-2g
 	for linux-amlogic@lists.infradead.org;
-	Mon, 17 Apr 2023 07:19:27 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id l31-20020a05600c1d1f00b003f1718d89b2so1474828wms.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 17 Apr 2023 00:19:25 -0700 (PDT)
+	Mon, 17 Apr 2023 07:23:41 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-2f4c431f69cso734729f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 17 Apr 2023 00:23:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681715964; x=1684307964;
+        d=linaro.org; s=google; t=1681716216; x=1684308216;
         h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=O33Vy5QjAgffRGvOHAZRE9siWde3BOHSjGvCujdG+Nk=;
-        b=ZDZ4TMQI6GveiBA2ARDzGsxvPSbbotMpouIk/vFYlECPNOd6z/566TQhXtT7y4UdlN
-         B7yqm4Pnxjd1LsmI/cb8J1DNh8VyMXMu1rUKgpMQ/JWKywVLraaBRx7fDjL0tzCxQhkV
-         U/l27FFFy6eyiexF7DKf8OvYLC0nu/un+zGUPl0LoP1a1oT9XLjnQg1rhp5JJnnos0lm
-         Gh8n3NqtwrWcpzN7RsqE2qFJQ5SulpNvH6zqqHi3d84VGX5tl4hiLPYjWSV5/OZyUWcU
-         m/nPHYF03e0yV64Cp/NpqJW5Jqetrwyxdg/LToP7rg6HHElN0hl2ruhqm/EjX1LG+0ce
-         hViQ==
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=U4bj2H9qmeVSso11SML7BIrdtQZppfzayCc2jlV8HSA=;
+        b=Q2DSizZMUn8VJnRy7rHbmzMtasXXXxVoZBGXJC4yGiV9tabUw8E7dDSenuk+PTFlnR
+         N26pwNntWAk7KVsDzsjmiITsplldcOklQ6iXqvOyHkPSudVIID0N8y3McU8b/Whki/w1
+         xQx468MKmsjpbEihR5MHQbCPdpiSTS56QmvdZZ8VhdGZUcruUbiYh+f+KmB7PRinETvg
+         Cxcg4b1i84uFPUZLPVJkRnl5qZPGyO/mY45CUXwMIVUgBsTupznFbytbIF2JAyZ4cVhy
+         wYIVnX00ilhaW2zoIhwD/SgMCknRdkYzvlZx/wraTaash0nNeWerauK58FpghdDiB466
+         U9lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681715964; x=1684307964;
+        d=1e100.net; s=20221208; t=1681716216; x=1684308216;
         h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O33Vy5QjAgffRGvOHAZRE9siWde3BOHSjGvCujdG+Nk=;
-        b=Dz5+J7jZsGv4uMfX8b+KshSOPmrkAJEUuqzDBChkTgOGfLXyfTxb6wy54YOI76lK/3
-         QdcT5tgCERvDrjVFOgSPgM43yIeprm/NlJgMdSdL3RkWtaRm0Nhtq/RfGBUGYUc9lKJD
-         eUsDt1ocL3suZagTQigNZF7Rc5oEoEPLJ0wTqiA+KO1XqonjDPobv9kWMRih6o1fzL+w
-         xdxDAnFP/hE3v8o94COEnSnd22by91uq3Tu76TPA7kQwUi+Qq1T/gK+DX4s7ZR2p0oWP
-         tv26Fq8FiWI0kwDu7jWdfYzfqaqs2LlPOs29mlXVLhJvNK3x9t5rNZ0m+khBgyewsNAO
-         kEGg==
-X-Gm-Message-State: AAQBX9f81akRmQtGdPLWAvWpFCqWxtY+PA1XxhBN7UTiUr6Wpfn65/tw
-	SWHK/4jXJ6IST50tIoXUN//wa2h8hDKVeX6BcCYbPw==
-X-Google-Smtp-Source: AKy350af8X3M+NtMCs6aC7xfZ3fovHhLF0zJl5lyNcpQyCs4U9HEhCThmcddltEog8QoWgdL1dku1g==
-X-Received: by 2002:a05:600c:470f:b0:3f1:754e:69e6 with SMTP id v15-20020a05600c470f00b003f1754e69e6mr469397wmo.17.1681715963957;
-        Mon, 17 Apr 2023 00:19:23 -0700 (PDT)
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U4bj2H9qmeVSso11SML7BIrdtQZppfzayCc2jlV8HSA=;
+        b=dMsQHGbptvM9FGfKLKc3qX85xrM5+5Vs0RJj3zLScvwXg5JxPk1aFtfG/8rF5CIdF5
+         RLiQ7ks0XtMfWJHMH89cxXpLWMt/vLagyvappQ7mn8WHKCYtep4LcfcsnhSxrqM372Ia
+         rbUQrr+89Q17NmYsrM25PTyaXOriH9Ia6xUWxphmyZ/Uf1iuSyHKRcCoZ47iXGMiR7jD
+         xSgrNMBLjED2zJF6eA2cPb+D/aPLUN4T1/dcv8gUmvqowbKWduaGgGDYT3+wmL5K9BQj
+         KPBGL9Y78AoCRKSPl/Np0dPIxmgbre8pS+C6YDdf7YXZHwHpQpZcqN65yZ+k23X+QVoR
+         mJzA==
+X-Gm-Message-State: AAQBX9dKtFKGzcKLf5B0t2LLU1PrzEsWbsckQT8liQXJABUycGnaUv2y
+	QRwPS7aps27wiw92EFJ20dzocg==
+X-Google-Smtp-Source: AKy350aA9XNG4LmNRdZi0YP7UNqmvXbzNkiIAU7N6IRbZEuVy28KvvZKl/jTW71vAjv6ZX3wJuaDBw==
+X-Received: by 2002:a5d:6e86:0:b0:2e5:56f8:61fc with SMTP id k6-20020a5d6e86000000b002e556f861fcmr4118050wrz.15.1681716215886;
+        Mon, 17 Apr 2023 00:23:35 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91? ([2a01:e0a:982:cbb0:a1e1:81a8:1acc:2b91])
-        by smtp.gmail.com with ESMTPSA id l15-20020a7bc44f000000b003f17661bc0csm43942wmi.7.2023.04.17.00.19.23
-        for <linux-amlogic@lists.infradead.org>
+        by smtp.gmail.com with ESMTPSA id x15-20020a5d6b4f000000b002c8476dde7asm9775536wrw.114.2023.04.17.00.23.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 00:19:23 -0700 (PDT)
-Message-ID: <9a384508-4645-6cfc-3e27-8a896b73a26b@linaro.org>
-Date: Mon, 17 Apr 2023 09:19:24 +0200
+        Mon, 17 Apr 2023 00:23:35 -0700 (PDT)
+Message-ID: <ca531c1a-3c62-5fb1-6765-68ec1e541483@linaro.org>
+Date: Mon, 17 Apr 2023 09:23:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v4 0/4] pwm: meson: make full use of common clock
+Subject: Re: [PATCH v4 4/4] pwm: meson: make full use of common clock
  framework
 Content-Language: en-US
-To: linux-amlogic@lists.infradead.org
+To: Heiner Kallweit <hkallweit1@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
+ <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
+ <u.kleine-koenig@pengutronix.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-pwm@vger.kernel.org
 References: <9faca2e6-b7a1-4748-7eb0-48f8064e323e@gmail.com>
+ <cb79d313-c7a2-42e9-639a-63cb5366521a@gmail.com>
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <9faca2e6-b7a1-4748-7eb0-48f8064e323e@gmail.com>
+In-Reply-To: <cb79d313-c7a2-42e9-639a-63cb5366521a@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_001926_359390_D4092C3C 
-X-CRM114-Status: GOOD (  27.27  )
+X-CRM114-CacheID: sfid-20230417_002338_910506_3FEE543D 
+X-CRM114-Status: GOOD (  45.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,9 +107,7 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Heiner,
-
-On 13/04/2023 07:48, Heiner Kallweit wrote:
+On 13/04/2023 07:54, Heiner Kallweit wrote:
 > Newer versions of the PWM block use a core clock with external mux,
 > divider, and gate. These components either don't exist any longer in
 > the PWM block, or they are bypassed.
@@ -127,20 +135,16 @@ On 13/04/2023 07:48, Heiner Kallweit wrote:
 > 
 > I don't have hw with the old PWM block, therefore I couldn't test this
 > patch. With the not yet included extension for the new PWM block
-> (channel->clock directly coming from get_clk(external_clk)) I didn't
+> (channel->clk coming directly from get_clk(external_clk)) I didn't
 > notice any problem. My system uses PWM for the CPU voltage regulator
 > and for the SDIO 32kHz clock.
-
-Don't you have any GXBB, GXL, GXM, G12A, SM1 or G12B boards to test on ?
-
-Anyway, I'd like to see a complete test on those SoCs on the actually
-used function (mainly 32k output clock for wifi) before seeing this merges
-since it's a big change.
-
 > 
 > Note: The clock gate in the old PWM block is permanently disabled.
 > This seems to indicate that it's not used by the new PWM block.
 > 
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
 > Changes to RFT/RFC version:
 > - use parent_hws instead of parent_names for div/gate clock
 > - use devm_clk_hw_register where the struct clk * returned by
@@ -150,25 +154,308 @@ since it's a big change.
 > - add patch 1
 > - add patch 3
 > - switch to using clk_parent_data in all relevant places
-> 
 > v3:
-> - patch 1: move setting mux parent data out of the loop
-> - patch 4: add flag CLK_IGNORE_UNUSED
-> 
+> - add flag CLK_IGNORE_UNUSED
 > v4:
-> - patch 2: improve commit message
-> - patch 4: remove variable tmp in meson_pwm_get_state
-> - patch 4: don't use deprecated function devm_clk_register
+> - remove variable tmp in meson_pwm_get_state
+> - don't use deprecated function devm_clk_register
+> ---
+>   drivers/pwm/pwm-meson.c | 142 +++++++++++++++++++++++-----------------
+>   1 file changed, 83 insertions(+), 59 deletions(-)
 > 
-> Heiner Kallweit (4):
->    pwm: meson: switch to using struct clk_parent_data for mux parents
->    pwm: meson: don't use hdmi/video clock as mux parent
->    pwm: meson: change clk/pwm gate from mask to bit
->    pwm: meson: make full use of common clock framework
-> 
->   drivers/pwm/pwm-meson.c | 201 +++++++++++++++++++++-------------------
->   1 file changed, 107 insertions(+), 94 deletions(-)
-> 
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index 40a8709ff..80ac71cbc 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -51,7 +51,7 @@
+>   #define REG_MISC_AB		0x8
+>   #define MISC_B_CLK_EN		23
+>   #define MISC_A_CLK_EN		15
+> -#define MISC_CLK_DIV_MASK	0x7f
+> +#define MISC_CLK_DIV_WIDTH	7
+>   #define MISC_B_CLK_DIV_SHIFT	16
+>   #define MISC_A_CLK_DIV_SHIFT	8
+>   #define MISC_B_CLK_SEL_SHIFT	6
+> @@ -87,12 +87,13 @@ static struct meson_pwm_channel_data {
+>   };
+>   
+>   struct meson_pwm_channel {
+> +	unsigned long rate;
+>   	unsigned int hi;
+>   	unsigned int lo;
+> -	u8 pre_div;
+>   
+> -	struct clk *clk_parent;
+>   	struct clk_mux mux;
+> +	struct clk_divider div;
+> +	struct clk_gate gate;
+>   	struct clk *clk;
+>   };
+>   
+> @@ -125,16 +126,6 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+>   	struct device *dev = chip->dev;
+>   	int err;
+>   
+> -	if (channel->clk_parent) {
+> -		err = clk_set_parent(channel->clk, channel->clk_parent);
+> -		if (err < 0) {
+> -			dev_err(dev, "failed to set parent %s for %s: %d\n",
+> -				__clk_get_name(channel->clk_parent),
+> -				__clk_get_name(channel->clk), err);
+> -			return err;
+> -		}
+> -	}
+> -
+>   	err = clk_prepare_enable(channel->clk);
+>   	if (err < 0) {
+>   		dev_err(dev, "failed to enable clock %s: %d\n",
+> @@ -157,8 +148,9 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+>   			  const struct pwm_state *state)
+>   {
+>   	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+> -	unsigned int duty, period, pre_div, cnt, duty_cnt;
+> +	unsigned int duty, period, cnt, duty_cnt;
+>   	unsigned long fin_freq;
+> +	u64 freq;
+>   
+>   	duty = state->duty_cycle;
+>   	period = state->period;
+> @@ -166,7 +158,11 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+>   	if (state->polarity == PWM_POLARITY_INVERSED)
+>   		duty = period - duty;
+>   
+> -	fin_freq = clk_get_rate(channel->clk);
+> +	freq = div64_u64(NSEC_PER_SEC * (u64)0xffff, period);
+> +	if (freq > ULONG_MAX)
+> +		freq = ULONG_MAX;
+> +
+> +	fin_freq = clk_round_rate(channel->clk, freq);
+>   	if (fin_freq == 0) {
+>   		dev_err(meson->chip.dev, "invalid source clock frequency\n");
+>   		return -EINVAL;
+> @@ -174,46 +170,35 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+>   
+>   	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
+>   
+> -	pre_div = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * 0xffffLL);
+> -	if (pre_div > MISC_CLK_DIV_MASK) {
+> -		dev_err(meson->chip.dev, "unable to get period pre_div\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC * (pre_div + 1));
+> +	cnt = div64_u64(fin_freq * (u64)period, NSEC_PER_SEC);
+>   	if (cnt > 0xffff) {
+>   		dev_err(meson->chip.dev, "unable to get period cnt\n");
+>   		return -EINVAL;
+>   	}
+>   
+> -	dev_dbg(meson->chip.dev, "period=%u pre_div=%u cnt=%u\n", period,
+> -		pre_div, cnt);
+> +	dev_dbg(meson->chip.dev, "period=%u cnt=%u\n", period, cnt);
+>   
+>   	if (duty == period) {
+> -		channel->pre_div = pre_div;
+>   		channel->hi = cnt;
+>   		channel->lo = 0;
+>   	} else if (duty == 0) {
+> -		channel->pre_div = pre_div;
+>   		channel->hi = 0;
+>   		channel->lo = cnt;
+>   	} else {
+> -		/* Then check is we can have the duty with the same pre_div */
+> -		duty_cnt = div64_u64(fin_freq * (u64)duty,
+> -				     NSEC_PER_SEC * (pre_div + 1));
+> +		duty_cnt = div64_u64(fin_freq * (u64)duty, NSEC_PER_SEC);
+>   		if (duty_cnt > 0xffff) {
+>   			dev_err(meson->chip.dev, "unable to get duty cycle\n");
+>   			return -EINVAL;
+>   		}
+>   
+> -		dev_dbg(meson->chip.dev, "duty=%u pre_div=%u duty_cnt=%u\n",
+> -			duty, pre_div, duty_cnt);
+> +		dev_dbg(meson->chip.dev, "duty=%u duty_cnt=%u\n", duty, duty_cnt);
+>   
+> -		channel->pre_div = pre_div;
+>   		channel->hi = duty_cnt;
+>   		channel->lo = cnt - duty_cnt;
+>   	}
+>   
+> +	channel->rate = fin_freq;
+> +
+>   	return 0;
+>   }
+>   
+> @@ -223,16 +208,15 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
+>   	struct meson_pwm_channel_data *channel_data;
+>   	unsigned long flags;
+>   	u32 value;
+> +	int err;
+>   
+>   	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+>   
+> -	spin_lock_irqsave(&meson->lock, flags);
+> +	err = clk_set_rate(channel->clk, channel->rate);
+> +	if (err)
+> +		dev_err(meson->chip.dev, "setting clock rate failed\n");
+>   
+> -	value = readl(meson->base + REG_MISC_AB);
+> -	value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
+> -	value |= channel->pre_div << channel_data->clk_div_shift;
+> -	value |= BIT(channel_data->clk_en_bit);
+> -	writel(value, meson->base + REG_MISC_AB);
+> +	spin_lock_irqsave(&meson->lock, flags);
+>   
+>   	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
+>   		FIELD_PREP(PWM_LOW_MASK, channel->lo);
+> @@ -271,16 +255,16 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>   			/*
+>   			 * This IP block revision doesn't have an "always high"
+>   			 * setting which we can use for "inverted disabled".
+> -			 * Instead we achieve this using the same settings
+> -			 * that we use a pre_div of 0 (to get the shortest
+> -			 * possible duration for one "count") and
+> +			 * Instead we achieve this by setting an arbitrary,
+> +			 * very high frequency, resulting in the shortest
+> +			 * possible duration for one "count" and
+>   			 * "period == duty_cycle". This results in a signal
+>   			 * which is LOW for one "count", while being HIGH for
+>   			 * the rest of the (so the signal is HIGH for slightly
+>   			 * less than 100% of the period, but this is the best
+>   			 * we can achieve).
+>   			 */
+> -			channel->pre_div = 0;
+> +			channel->rate = 1000000000;
+>   			channel->hi = ~0;
+>   			channel->lo = 0;
+
+This looks like a really bad idea... please don't do that and instead introduce
+some pinctrl states where we set the PWM pin as GPIO mode high/low state like we
+did for SPI:
+https://lore.kernel.org/r/20221004-up-aml-fix-spi-v4-2-0342d8e10c49@baylibre.com
+
+>   
+> @@ -305,7 +289,6 @@ static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
+>   	struct meson_pwm *meson = to_meson_pwm(chip);
+>   	struct meson_pwm_channel *channel;
+>   	unsigned long fin_freq;
+> -	u32 fin_ns;
+>   
+>   	/* to_meson_pwm() can only be used after .get_state() is called */
+>   	channel = &meson->channels[pwm->hwpwm];
+> @@ -314,9 +297,7 @@ static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
+>   	if (fin_freq == 0)
+>   		return 0;
+>   
+> -	fin_ns = div_u64(NSEC_PER_SEC, fin_freq);
+> -
+> -	return cnt * fin_ns * (channel->pre_div + 1);
+> +	return div_u64(NSEC_PER_SEC * (u64)cnt, fin_freq);
+>   }
+>   
+>   static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> @@ -325,7 +306,7 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+>   	struct meson_pwm *meson = to_meson_pwm(chip);
+>   	struct meson_pwm_channel_data *channel_data;
+>   	struct meson_pwm_channel *channel;
+> -	u32 value, tmp;
+> +	u32 value;
+>   
+>   	if (!state)
+>   		return 0;
+> @@ -335,11 +316,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+>   
+>   	value = readl(meson->base + REG_MISC_AB);
+>   
+> -	tmp = BIT(channel_data->pwm_en_bit) | BIT(channel_data->clk_en_bit);
+> -	state->enabled = (value & tmp) == tmp;
+> -
+> -	tmp = value >> channel_data->clk_div_shift;
+> -	channel->pre_div = FIELD_GET(MISC_CLK_DIV_MASK, tmp);
+> +	state->enabled = __clk_is_enabled(channel->clk) &&
+> +			 value & BIT(channel_data->pwm_en_bit);
+>   
+>   	value = readl(meson->base + channel_data->reg_offset);
+>   
+> @@ -480,6 +458,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+>   
+>   	for (i = 0; i < meson->chip.npwm; i++) {
+>   		struct meson_pwm_channel *channel = &meson->channels[i];
+> +		struct clk_parent_data div_parent = {}, gate_parent = {};
+>   		struct clk_init_data init = {};
+>   
+>   		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
+> @@ -499,18 +478,63 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+>   		channel->mux.table = NULL;
+>   		channel->mux.hw.init = &init;
+>   
+> -		channel->clk = devm_clk_register(dev, &channel->mux.hw);
+> -		if (IS_ERR(channel->clk)) {
+> -			err = PTR_ERR(channel->clk);
+> +		err = devm_clk_hw_register(dev, &channel->mux.hw);
+> +		if (err) {
+>   			dev_err(dev, "failed to register %s: %d\n", name, err);
+>   			return err;
+>   		}
+>   
+> -		snprintf(name, sizeof(name), "clkin%u", i);
+> +		snprintf(name, sizeof(name), "%s#div%u", dev_name(dev), i);
+> +
+> +		init.name = name;
+> +		init.ops = &clk_divider_ops;
+> +		init.flags = CLK_SET_RATE_PARENT;
+> +		div_parent.index = -1;
+> +		div_parent.hw = &channel->mux.hw;
+> +		init.parent_data = &div_parent;
+> +		init.num_parents = 1;
+> +
+> +		channel->div.reg = meson->base + REG_MISC_AB;
+> +		channel->div.shift = meson_pwm_per_channel_data[i].clk_div_shift;
+> +		channel->div.width = MISC_CLK_DIV_WIDTH;
+> +		channel->div.hw.init = &init;
+> +		channel->div.flags = 0;
+> +		channel->div.lock = &meson->lock;
+> +
+> +		err = devm_clk_hw_register(dev, &channel->div.hw);
+> +		if (err) {
+> +			dev_err(dev, "failed to register %s: %d\n", name, err);
+> +			return err;
+> +		}
+> +
+> +		snprintf(name, sizeof(name), "%s#gate%u", dev_name(dev), i);
+> +
+> +		init.name = name;
+> +		init.ops = &clk_gate_ops;
+> +		init.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED;
+> +		gate_parent.index = -1;
+> +		gate_parent.hw = &channel->div.hw;
+> +		init.parent_data = &gate_parent;
+> +		init.num_parents = 1;
+> +
+> +		channel->gate.reg = meson->base + REG_MISC_AB;
+> +		channel->gate.bit_idx = meson_pwm_per_channel_data[i].clk_en_bit;
+> +		channel->gate.hw.init = &init;
+> +		channel->gate.flags = 0;
+> +		channel->gate.lock = &meson->lock;
+> +
+> +		err = devm_clk_hw_register(dev, &channel->gate.hw);
+> +		if (err) {
+> +			dev_err(dev, "failed to register %s: %d\n", name, err);
+> +			return err;
+> +		}
+>   
+> -		channel->clk_parent = devm_clk_get_optional(dev, name);
+> -		if (IS_ERR(channel->clk_parent))
+> -			return PTR_ERR(channel->clk_parent);
+> +		channel->clk = devm_clk_hw_get_clk(dev, &channel->gate.hw, NULL);
+> +		if (IS_ERR(channel->clk)) {
+> +			err = PTR_ERR(channel->clk);
+> +			dev_err(dev, "failed to register %s: %d\n", name, err);
+> +			return err;
+> +		}
+>   	}
+>   
+>   	return 0;
 
 
 _______________________________________________
