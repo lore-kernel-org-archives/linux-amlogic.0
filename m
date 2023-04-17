@@ -4,103 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23D8BC77B70
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Apr 2023 09:13:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 233C9C77B70
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Apr 2023 09:18:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rSRFClxWQSEhPNFVnFHfgOV5uxthMcc/tiIu2WzWA6o=; b=vd7XvCXmNoQOeb
-	84EiJXVkAc0AVYksk2hMRpnfxhjXSAC0l0/rdd8JXxcMZ28+WKa2EcCf11lEjlvRDB0KkYoBg/vvJ
-	sP1gqWCbaikHizfKrTMTkTB0o1xxwrgS1T1OKu8T9pu1mi5FrPx75Ahf3HZbhOXhN/Kzs+UhYst/K
-	HWvGf7A1TCHZ2OT2Qr6SHWMQ/dgecJ9uCWUWCiAFzCYkiOcdo4BJDL3vmbNcyJMJoXorPC9L3MFDR
-	00wt02VsJZV/xfIDryInpzz27CE2Nw/h9Uy1kl/EGVJ3MXmtsLCXqAg+7ScHr7Uo9d2Ag6RHdlDzT
-	lEdn5k1Y0EmR4oqtdgxQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=bnZgvw5TUJwAhjjTD3kbskPssU4lVzJDLcS2UhHQ3bw=; b=ZY+okMhyddyttNwkK+QZsvSjNF
+	UOaCZHgUw17NI+a8zV/mgSJjgvmRvFl7BZAtyhwQhSExZcTHUgo1zvrl42M/hSk7LoqwOrEmUD7mt
+	Kvew4pNAkyAyq+bIkFV0Ze9Q+zurTB2mXGjDEZk3ezyXV8ZQnOkRN5+oifTIyhaM2EMn0p/k+Aycz
+	qcojjU3UYF+sNUjbyXUoJib5xlPZIozUgdVvVcll7qzf5zPZ1fZ6ZMNyJJeru96BoStX3LGfwppcI
+	0H5130ed1uGQ68nRSAVkIQ4DZjdVxNHYI9/haVNetFqthybum834E6upZVknM4YF9fIH019l6SCJS
+	PHuzOANw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poKv6-00FU8Y-1H;
-	Mon, 17 Apr 2023 09:13:08 +0000
-Received: from mail-oa1-f44.google.com ([209.85.160.44])
+	id 1poKzv-00FUxI-1D;
+	Mon, 17 Apr 2023 09:18:07 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poKv2-00FU7G-34;
-	Mon, 17 Apr 2023 09:13:06 +0000
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-187bee46f9dso8149553fac.11;
-        Mon, 17 Apr 2023 02:13:02 -0700 (PDT)
+	id 1poKzs-00FUwJ-0A;
+	Mon, 17 Apr 2023 09:18:05 +0000
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-94f3df30043so71813266b.2;
+        Mon, 17 Apr 2023 02:18:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681723080; x=1684315080;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QnOiUrSlOjkwJ/PCdyt/fDYs9vgdZj5CIL2URkjgkis=;
+        b=ZXy6nZiCQkkHAdkmK+QTIKd8euTv+OnwRIQa5CxswFKlrzAe3UB0TXFSdbDkOxQJJJ
+         8ppPAc7vQ8xJw4KS1Ih7mT4mapWbhaqGEguSTPsR5Pj/aRQq7O9yYmF56a21LimyER9V
+         f1oi1MKleg3kaQX+NbQ+jGN74S+gRTXhV7Qkzf8TInbOU9kt8dfjEqCdBc8uNWbS+FUi
+         zlcUJGs/6bjUBDCHzrndjAgQ5V1wSxsLwokRyEg2FuOe3e4lvx6WOWCh+6E5ea6L6aAU
+         2n0MRy/hMXnAli3nJWWigw9ZSiWvTmmtVDh0R3pEIKO3tusrYtqEzitl+0y3b0o8+k8N
+         HTwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681722782; x=1684314782;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1681723080; x=1684315080;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ugn0tF7BDKzSh48Bi2FzY0cxR1IhIvrfHVPHfcTin10=;
-        b=gZ3Z+olH7XVbjvcpFO70J8Rz2KDzfJrJKP3OxkDjpuXw4vjLqYZ1BA4C07IUjludjL
-         fxqZUkL5h5u8wha1gh4XNj6zj3+z9zPOYjIxXFWqLe75gxd1VrJSvyTiUEuyCit6MVjt
-         x/+czm2EIT4BZguGDdK9Ajw9UBy5jOqz2yxbaaYqOXG+kh89oYhfDTxofKjRs7JFWc2F
-         8I2ofHh34TQzv3X4fF0tQRYBVkvocVGCi9ngoglUuRMLMG2rBX80ndT6hW1tLDITBdai
-         bBbSOMmgzQwFqqrNikv47WHsEFDaAfO351ADR5KTrwUDH87HIZS5QCk0q8wHoNE8SJ6+
-         ZG2A==
-X-Gm-Message-State: AAQBX9eTvY/mgc3rp6ruM/CCactDwCGziR9JKH5QOg+jmnQLU7LkvpHm
-	Uhry8o1D1Z/GENWYqPvmKmwTCmsnMR1lkQ==
-X-Google-Smtp-Source: AKy350beZQdOIZLn5yDA2L1VEHzuBpfNxmgXQkQfO43MN5PCLs3BIUAi24OuBW3kUeHqEfV/M9ktGA==
-X-Received: by 2002:a05:6870:658f:b0:187:c066:a39a with SMTP id fp15-20020a056870658f00b00187c066a39amr4666123oab.16.1681722781819;
-        Mon, 17 Apr 2023 02:13:01 -0700 (PDT)
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com. [209.85.167.177])
-        by smtp.gmail.com with ESMTPSA id o1-20020a05687072c100b0018456166c7asm4318117oak.39.2023.04.17.02.13.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 02:13:01 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id p133so6407957oih.2;
-        Mon, 17 Apr 2023 02:13:01 -0700 (PDT)
-X-Received: by 2002:a25:d057:0:b0:b8f:5c64:cc2e with SMTP id
- h84-20020a25d057000000b00b8f5c64cc2emr6890649ybg.12.1681722760298; Mon, 17
- Apr 2023 02:12:40 -0700 (PDT)
+        bh=QnOiUrSlOjkwJ/PCdyt/fDYs9vgdZj5CIL2URkjgkis=;
+        b=EEF0FZ+o5SmAsTCbEB2yVEXaeuzcJhy57y8qw3IlBk3tOcSODutw7Kh7Gkbqd0P9WC
+         mWEJO+YGz6HE6dd8BOLqlx/8uH7LNE0xTnHrMFY8k3wJ5yn4W8MMmKsVHJTqFKwPVNQ4
+         J6ttnnQSHYWVYP301axV3HF6DAmDR7bz9aCgw/V3qeI4gfK4zuxytrn9cYJLu7CZzEOF
+         u23oDI+GRZCeB3zIJhRGYmOI2kWq/NSMsUuXbGCdA6RwUESlZiINd54ej0ZCTPK6OSUD
+         xY8kTt2vbQEhIM34Psxs2oa3+K74xa/CuWA3TjsekfZbDRcTFpxTtSpQ4gtBCy6hKBpQ
+         JSrg==
+X-Gm-Message-State: AAQBX9ePQRsO2GGLllUQTI3c9gNg/83YCMMnZssrsr9k954VyGeeND+3
+	O6pgMFptJcNCsm+qWtfeHpc=
+X-Google-Smtp-Source: AKy350bLypDyZYiwmOfVMXJ/w1f11DKhG+GkKEVp8W0HDqIqtvntxyHcXVWSBmmFnEtVjG60t3/N+w==
+X-Received: by 2002:a05:6402:219:b0:506:8632:6696 with SMTP id t25-20020a056402021900b0050686326696mr8900555edv.16.1681723079483;
+        Mon, 17 Apr 2023 02:17:59 -0700 (PDT)
+Received: from orome (p200300e41f053a00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f05:3a00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id p24-20020a170906615800b00923f05b2931sm6335951ejl.118.2023.04.17.02.17.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 02:17:59 -0700 (PDT)
+Date: Mon, 17 Apr 2023 11:17:57 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] pwm: meson: make full use of common clock
+ framework
+Message-ID: <ZD0OxV_VOWcS7URd@orome>
+References: <9faca2e6-b7a1-4748-7eb0-48f8064e323e@gmail.com>
+ <cb79d313-c7a2-42e9-639a-63cb5366521a@gmail.com>
+ <ca531c1a-3c62-5fb1-6765-68ec1e541483@linaro.org>
 MIME-Version: 1.0
-References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org> <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230415095112.51257-2-krzysztof.kozlowski@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 17 Apr 2023 11:12:28 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX=H_ypo82C4G8e_ytS9R6GNwnvVD_0L2GzPQdyaUHhdw@mail.gmail.com>
-Message-ID: <CAMuHMdX=H_ypo82C4G8e_ytS9R6GNwnvVD_0L2GzPQdyaUHhdw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: watchdog: indentation, quotes and
- white-space cleanup
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Julius Werner <jwerner@chromium.org>, 
-	Evan Benn <evanbenn@chromium.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Sander Vanheule <sander@svanheule.net>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Fu Wei <fu.wei@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
-	Eugen Hristev <eugen.hristev@collabora.com>, Justin Chen <justinpopo6@gmail.com>, 
-	=?UTF-8?B?4oCaZWNraQ==?= <rafal@milecki.pl>, 
-	Linus Walleij <linus.walleij@linaro.org>, Corentin Labbe <clabbe@baylibre.com>, 
-	Anson Huang <Anson.Huang@nxp.com>, Robert Marko <robert.marko@sartura.hr>, 
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>, 
-	Sai Prakash Ranjan <quic_saipraka@quicinc.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Jamie Iles <jamie@jamieiles.com>, Yannick Fertre <yannick.fertre@foss.st.com>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, 
-	Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>, Srinivas Neeli <srinivas.neeli@xilinx.com>, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-renesas-soc@vger.kernel.org
+In-Reply-To: <ca531c1a-3c62-5fb1-6765-68ec1e541483@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_021304_988443_BFB8BA67 
-X-CRM114-Status: GOOD (  14.70  )
+X-CRM114-CacheID: sfid-20230417_021804_089111_0094C444 
+X-CRM114-Status: GOOD (  20.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,26 +96,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4279383798203772607=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU2F0LCBBcHIgMTUsIDIwMjMgYXQgMTE6NTjigK9BTSBLcnp5c3p0b2YgS296bG93c2tpCjxr
-cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+IE1pbm9yIGNsZWFudXAgd2l0
-aG91dCBmdW5jdGlvbmFsIGltcGFjdDoKPiAxLiBJbmRlbnQgRFRTIGV4YW1wbGVzIHRvIHByZWZl
-cnJlZCBmb3VyLXNwYWNlcyAobW9yZSByZWFkYWJsZSBmb3IgRFRTKSwKPiAyLiBEcm9wIHVubmVl
-ZGVkIHF1b3RlcywKPiAzLiBBZGQvZHJvcCBibGFuayBsaW5lcyB0byBtYWtlIHRoZSBjb2RlIHJl
-YWRhYmxlLgo+Cj4gU2lnbmVkLW9mZi1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9m
-Lmtvemxvd3NraUBsaW5hcm8ub3JnPgoKPiAgLi4uL2JpbmRpbmdzL3dhdGNoZG9nL3JlbmVzYXMs
-d2R0LnlhbWwgICAgICAgIHwgMTQgKysrKy0tLS0KClJldmlld2VkLWJ5OiBHZWVydCBVeXR0ZXJo
-b2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPgoKR3J7b2V0amUsZWV0aW5nfXMsCgogICAg
-ICAgICAgICAgICAgICAgICAgICBHZWVydAoKLS0gCkdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVy
-ZSdzIGxvdHMgb2YgTGludXggYmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcKCklu
-IHBlcnNvbmFsIGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlz
-ZWxmIGEgaGFja2VyLiBCdXQKd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qg
-c2F5ICJwcm9ncmFtbWVyIiBvciBzb21ldGhpbmcgbGlrZSB0aGF0LgogICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+--===============4279383798203772607==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="viCwK5jD5+sqkLig"
+Content-Disposition: inline
+
+
+--viCwK5jD5+sqkLig
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Apr 17, 2023 at 09:23:35AM +0200, Neil Armstrong wrote:
+> On 13/04/2023 07:54, Heiner Kallweit wrote:
+[...]
+> > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+[...]
+> > @@ -271,16 +255,16 @@ static int meson_pwm_apply(struct pwm_chip *chip,=
+ struct pwm_device *pwm,
+> >   			/*
+> >   			 * This IP block revision doesn't have an "always high"
+> >   			 * setting which we can use for "inverted disabled".
+> > -			 * Instead we achieve this using the same settings
+> > -			 * that we use a pre_div of 0 (to get the shortest
+> > -			 * possible duration for one "count") and
+> > +			 * Instead we achieve this by setting an arbitrary,
+> > +			 * very high frequency, resulting in the shortest
+> > +			 * possible duration for one "count" and
+> >   			 * "period =3D=3D duty_cycle". This results in a signal
+> >   			 * which is LOW for one "count", while being HIGH for
+> >   			 * the rest of the (so the signal is HIGH for slightly
+> >   			 * less than 100% of the period, but this is the best
+> >   			 * we can achieve).
+> >   			 */
+> > -			channel->pre_div =3D 0;
+> > +			channel->rate =3D 1000000000;
+> >   			channel->hi =3D ~0;
+> >   			channel->lo =3D 0;
+>=20
+> This looks like a really bad idea... please don't do that and instead int=
+roduce
+> some pinctrl states where we set the PWM pin as GPIO mode high/low state =
+like we
+> did for SPI:
+> https://lore.kernel.org/r/20221004-up-aml-fix-spi-v4-2-0342d8e10c49@bayli=
+bre.com
+
+Yeah, absolutely. If the pin controller can do that, that's the right
+way to implement the desired behavior.
+
+Thierry
+
+--viCwK5jD5+sqkLig
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQ9DsIACgkQ3SOs138+
+s6Hu9A//Y6qDIc+qtZCTOD6QrHlTZwNP4jZgVS/PunIv30X2bFreKZ8zMLX+ALYR
+rpIyQqBxAt/W6PyIqRKr8sqkj7/qC32j4wziGuBLzclSFUsPCjHtbmwDhrRYVmbi
+BFMqMtp7D0LiMBN9XSwVd1dgzSqSo7Fwip1PzH4++IKHFf8b8Jt3FiJrwmOgnncB
+LsVTJJW3y7FlznWd0kWsnUjlkjPeP+5uNPTSRQm4OfkU8OdFmzIF8/JZHkSHwBQ2
+31UAjJT14/KmNmVlHadU+T5433KN8AdDur/ZH3SJ4DinVYnH3lHTP/G8Bb8wHJUZ
+Jf3r8S4M0RKtNS2HFpYwoy7JWknQAbpQOFupG6ZLKPyIdTQk2ee7h7QNNYFuq/9L
+kHvd+32O/YejAf1Y0V8bbcCPgeaiT4gKYSXMKQXQ6cVN1Lrl1ExatJsHZ7fYJ0g3
+OO9QeRw6Q5wCH534iZSDEzsqebyxPwLkYwHhtnLLPZElyT37puD9/m6L3/Xmo+W7
+iOfT1duLDjlfJHJRY4M6PgQ29HvtpqEfA8Sxmg1OAkVSc4w94aZe2dEwGxcnD4p1
+sXXbS/RAEqOoaG2MaRw0BcW1dmvw+Hc1EUXDEewIQC0nDxSlx0sYyKaLow30Wrp5
+sVar/7H7Q7zsKTD2jrBUzrRdMBckab2jmOqoPyENCm4qT0X4JJQ=
+=EYGJ
+-----END PGP SIGNATURE-----
+
+--viCwK5jD5+sqkLig--
+
+
+--===============4279383798203772607==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4279383798203772607==--
+
