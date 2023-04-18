@@ -4,84 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C183C6FD18
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Apr 2023 18:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4559C6FD18
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Apr 2023 21:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xsej40hE7MSJcSMY2RymbBXozObR3dAUqVdrS7E5Mao=; b=gUWLSTgBLZx3/p
-	d11PtEPTVypFxrjG1S1nzw8UcRpi9PVrRFUVPT8O4XwwdOcZIBusGNMk9ee19VhtDsUCH97XVOih2
-	HQ2ZdAR9Iu+s8Bg2Af2dteQHdeUfa3bX86ZQZ2vXtgX7OEl8GHmHyzUWlPpYz7gqpKHOStLUpWDHJ
-	WfDceoDm1RnYmWmlm3X6wtwSTpQjbtwuvf7rGogLQH1nlKSQHDXVmZzQUQqvfBoC6eXhaBIaAeXX1
-	eZErNV+ApkIbkH6IK5R7W1VTm1bXFY2XBkRxqZnzKtZ/NCZDdsvTzxWKeLor9T6UPF+sGUB4vEht+
-	vXQNWyY42Vh5fWh21MLw==;
+	List-Owner; bh=uXzTc/WfANlrzVLXqMqY0U9ACHr6GfWp9/P8lzyOe94=; b=Drz4u9VK2d4pjm
+	edDpvGqtPdP11po3v5Ns/RmtkAU4Mij0bUYGcwgZpqGpOixCODDzIraQjcT5KOH5dDi9K+acQCo3b
+	QGPucOxYgvfT1xcnLzbim5oYKPGsbYj53V8hJlT1P6s4VMGn+w+uVYNZpdnnwAnzifvN+DJOOqn2b
+	YFM3VyFOu7hpMZAfxvm5fslbm7F8rDAun7Q/5EYA56I/InTlS2IKTqNXTiyscp/nwnY1Y21lWAWLK
+	36LbMEdGC8AhDoi60IgundlZbywQ93zbIW5qPcQwWJXB63eDtn69gQJL2RWowKVQwO8BY8CqoJzHR
+	69MkBwtF0yvZL3tlVnYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poqBw-0035IF-0v;
-	Tue, 18 Apr 2023 18:36:36 +0000
-Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
+	id 1posnG-003NEJ-1k;
+	Tue, 18 Apr 2023 21:23:18 +0000
+Received: from mail-oa1-f42.google.com ([209.85.160.42])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poqBt-0035GA-0y
-	for linux-amlogic@lists.infradead.org;
-	Tue, 18 Apr 2023 18:36:34 +0000
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-24796e21f99so1061005a91.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 18 Apr 2023 11:36:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1681842988; x=1684434988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ApsPN1GAt+bKSjbs42LxkANlc6ClVgqELeBRCapEZOY=;
-        b=fcvQ6uiiAwbiDHp9ofdozAuOiqo8sbjEaS1wJfZPJdR7ku/k91ggC43xkhzyyW+7nI
-         yL05D8fKTVowBu7cH7oGSbwvorwMmpZfZp+be71T12rL9TRGAsRKhgX9BtbLc+iyZwgq
-         Qb48G1rKzQZjLEUD5f92333ozX9LrkHTarpi26AV6WxfUdF8E317PyK+GRvYlhJDse5Z
-         MEZRohJ9XuAxL4kVb0Aft7cnNRU1ffRIyB+Hpuwglq4gprdj5r075/QYekStmw9Zcc7e
-         uJaoVEg0RaJ6z9kkri0qCgyEJPxz6DZVa/1Zx09Yl/HmHiUZVgIL62G/nueZQ1DngeXx
-         2F5A==
+	id 1posnC-003NDU-1D;
+	Tue, 18 Apr 2023 21:23:15 +0000
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-18777914805so6246615fac.1;
+        Tue, 18 Apr 2023 14:23:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681842988; x=1684434988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ApsPN1GAt+bKSjbs42LxkANlc6ClVgqELeBRCapEZOY=;
-        b=dLUQW3ZbwKwLOd3GKQ5GNisb458681BvqQ12PFwWSoLllkAq6ZvG5i7kcGt7PzOLYk
-         ltcgrLEmP0H/hkswpSQi1nV+wcVwfttAekoLPsjf1fRz+XTYxTG5Yo5OIY/o4EUt7g1g
-         9HwRMfcyR9iC7pTaAI4gfsv4cZGMB4GBsCxmerRKMjbTbM6bw05h0BKeMuVUSqzkPV3r
-         f+SVJxNPL9yTM3UXV56TUHx2w2IhcpJV4cfT1a9+lpkOSZ1vGdK+SZJyJcFyxJxEnLF4
-         /GTX1Idxf4NZFoNQt+V2CAcaoYszMbjuyOxZ/BZNqf5EbhZzj3f+7sG3jpNkHXesaS4O
-         GRig==
-X-Gm-Message-State: AAQBX9cPVOmqTXBXMVC3KveCcINfaiYjRTQs4UxY72dEL1vIqaOzU6Br
-	eH1yRZJ6MhJYT1nxh7KCVyfnSptPbXVT2c9dhEiUgg==
-X-Google-Smtp-Source: AKy350ZShnO2tG7T/57z/jUzMW01PDWOatg+RwsX6uSLq6+zwhs8lAyWd6JaHE6qNghBF+/vCyIJp0/ga1bkMCOPgjE=
-X-Received: by 2002:a17:90a:d70b:b0:246:ba3f:4f3e with SMTP id
- y11-20020a17090ad70b00b00246ba3f4f3emr605102pju.6.1681842988421; Tue, 18 Apr
- 2023 11:36:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681852993; x=1684444993;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RKdLQJ2WfynsAnQi4i43G4jU69vCcdQQMLvbvIaqAHQ=;
+        b=FK47f4qr2QnnRYOEfURJq09Hv86QfXF8OR7oIaas5SOADarqm3a+D4pRSlxiz3nlQj
+         hweoW3PmyOA5NQh/+3SCgN9AV7fSl29CQx3+n2dw1Un6IWiZK8ctdRt9fKtVYiE0k0At
+         bawqt7ivEBoZu0O004poYpCNN0UkmQWp1BQn8GDEFcw2pFOXYHf8Dn1d89RHyHIPFnN4
+         CI5w1RFL3n4ZyXFJ0B8HjYQGufar7489y78kyHWXpMhKixh3TsUFJFlah3i5FVWy+Hy2
+         Bwf+af0K6nSMp6KJ0VpkLbE4OstFF9DHWZWFnbH1bU0e18RPKk525BvsQgORl2a23WVG
+         ysBQ==
+X-Gm-Message-State: AAQBX9egG/YlUZT8fk4eW/Uy+ep1Y0pa3ycAV+8ahLyEuD3IpOfhPJ4s
+	NxCBWBBvU59oZbEIRdwHHA==
+X-Google-Smtp-Source: AKy350bdmvWWvs8e3IniLnnX6QWq/ARMeVjy2OYmobsGssJEfW0Lm1T3KwueQwpXlw4Lj4ZiKOdsBA==
+X-Received: by 2002:aca:c256:0:b0:38e:3d5a:abb5 with SMTP id s83-20020acac256000000b0038e3d5aabb5mr114233oif.9.1681852991281;
+        Tue, 18 Apr 2023 14:23:11 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e190-20020a4a55c7000000b0054542d3219asm3883392oob.11.2023.04.18.14.23.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Apr 2023 14:23:10 -0700 (PDT)
+Received: (nullmailer pid 2358722 invoked by uid 1000);
+	Tue, 18 Apr 2023 21:23:08 -0000
+Date: Tue, 18 Apr 2023 16:23:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Eugen Hristev <eugen.hristev@collabora.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Sai Prakash Ranjan <quic_saipraka@quicinc.com>, 
+	Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Robert Marko <robert.marko@sartura.hr>, 
+	linux-renesas-soc@vger.kernel.org, 
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>, linux-mediatek@lists.infradead.org, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, 
+	Yannick Fertre <yannick.fertre@foss.st.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Julius Werner <jwerner@chromium.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Anson Huang <Anson.Huang@nxp.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Corentin Labbe <clabbe@baylibre.com>, Jamie Iles <jamie@jamieiles.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Evan Benn <evanbenn@chromium.org>, 
+	Andy Gross <agross@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-amlogic@lists.infradead.org, Sander Vanheule <sander@svanheule.net>, 
+	Justin Chen <justinpopo6@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
+	Srinivas Neeli <srinivas.neeli@xilinx.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Fu Wei <fu.wei@linaro.org>, linux-watchdog@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 1/6] dt-bindings: watchdog: drop duplicated GPIO watchdog
+ bindings
+Message-ID: <168185298846.2358657.13423905325582795303.robh@kernel.org>
+References: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
-In-Reply-To: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Tue, 18 Apr 2023 11:36:17 -0700
-Message-ID: <CAKwvOd=DeCNoQYuTJVfbd0tSddJpGVaKBTEfC-+XUN4OJ4hRRw@mail.gmail.com>
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-meson8b: Avoid cast to
- incompatible function type
-To: Simon Horman <horms@kernel.org>
-Cc: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Nathan Chancellor <nathan@kernel.org>, Tom Rix <trix@redhat.com>, 
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	llvm@lists.linux.dev, Sami Tolvanen <samitolvanen@google.com>, 
-	Nathan Huckleberry <nhuck@google.com>
+Content-Disposition: inline
+In-Reply-To: <20230415095112.51257-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230418_113633_338422_B1377E5A 
-X-CRM114-Status: GOOD (  16.40  )
+X-CRM114-CacheID: sfid-20230418_142314_417647_78E80029 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,48 +107,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBcHIgMTgsIDIwMjMgYXQgNDowN+KAr0FNIFNpbW9uIEhvcm1hbiA8aG9ybXNAa2Vy
-bmVsLm9yZz4gd3JvdGU6Cj4KPiBSYXRoZXIgdGhhbiBjYXN0aW5nIGNsa19kaXNhYmxlX3VucHJl
-cGFyZSB0byBhbiBpbmNvbXBhdGlibGUgZnVuY3Rpb24KPiB0eXBlIHByb3ZpZGUgYSB0cml2aWFs
-IHdyYXBwZXIgd2l0aCB0aGUgY29ycmVjdCBzaWduYXR1cmUgZm9yIHRoZQo+IHVzZS1jYXNlLgo+
-Cj4gUmVwb3J0ZWQgYnkgY2xhbmctMTYgd2l0aCBXPTE6Cj4KPiAgZHJpdmVycy9uZXQvZXRoZXJu
-ZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtbWVzb244Yi5jOjI3Njo2OiBlcnJvcjogY2FzdCBmcm9t
-ICd2b2lkICgqKShzdHJ1Y3QgY2xrICopJyB0byAndm9pZCAoKikodm9pZCAqKScgY29udmVydHMg
-dG8gaW5jb21wYXRpYmxlIGZ1bmN0aW9uIHR5cGUgWy1XZXJyb3IsLVdjYXN0LWZ1bmN0aW9uLXR5
-cGUtc3RyaWN0XQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAodm9p
-ZCgqKSh2b2lkICopKWNsa19kaXNhYmxlX3VucHJlcGFyZSwKPiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn4KPiBObyBmdW5jdGlvbmFsIGNoYW5nZSBpbnRlbmRlZC4KPiBDb21waWxlIHRlc3RlZCBvbmx5
-Lgo+Cj4gU2lnbmVkLW9mZi1ieTogU2ltb24gSG9ybWFuIDxob3Jtc0BrZXJuZWwub3JnPgoKVGhh
-bmtzIGZvciB0aGUgcGF0Y2ghClJldmlld2VkLWJ5OiBOaWNrIERlc2F1bG5pZXJzIDxuZGVzYXVs
-bmllcnNAZ29vZ2xlLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8v
-c3RtbWFjL2R3bWFjLW1lc29uOGIuYyB8IDggKysrKysrLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDYg
-aW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25l
-dC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1tZXNvbjhiLmMgYi9kcml2ZXJzL25ldC9l
-dGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1tZXNvbjhiLmMKPiBpbmRleCBlOGI1MDdmODhm
-YmMuLmY2NzU0ZTM2NDNmMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1p
-Y3JvL3N0bW1hYy9kd21hYy1tZXNvbjhiLmMKPiArKysgYi9kcml2ZXJzL25ldC9ldGhlcm5ldC9z
-dG1pY3JvL3N0bW1hYy9kd21hYy1tZXNvbjhiLmMKPiBAQCAtMjYzLDYgKzI2MywxMSBAQCBzdGF0
-aWMgaW50IG1lc29uX2F4Z19zZXRfcGh5X21vZGUoc3RydWN0IG1lc29uOGJfZHdtYWMgKmR3bWFj
-KQo+ICAgICAgICAgcmV0dXJuIDA7Cj4gIH0KPgo+ICtzdGF0aWMgdm9pZCBtZXNvbjhiX2Nsa19k
-aXNhYmxlX3VucHJlcGFyZSh2b2lkICpkYXRhKQo+ICt7Cj4gKyAgICAgICBjbGtfZGlzYWJsZV91
-bnByZXBhcmUoZGF0YSk7Cj4gK30KPiArCj4gIHN0YXRpYyBpbnQgbWVzb244Yl9kZXZtX2Nsa19w
-cmVwYXJlX2VuYWJsZShzdHJ1Y3QgbWVzb244Yl9kd21hYyAqZHdtYWMsCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBjbGsgKmNsaykKPiAgewo+IEBA
-IC0yNzMsOCArMjc4LDcgQEAgc3RhdGljIGludCBtZXNvbjhiX2Rldm1fY2xrX3ByZXBhcmVfZW5h
-YmxlKHN0cnVjdCBtZXNvbjhiX2R3bWFjICpkd21hYywKPiAgICAgICAgICAgICAgICAgcmV0dXJu
-IHJldDsKPgo+ICAgICAgICAgcmV0dXJuIGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkd21hYy0+
-ZGV2LAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAodm9pZCgqKSh2
-b2lkICopKWNsa19kaXNhYmxlX3VucHJlcGFyZSwKPiAtICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgY2xrKTsKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgbWVzb244Yl9jbGtfZGlzYWJsZV91bnByZXBhcmUsIGNsayk7Cj4gIH0KPgo+ICBzdGF0
-aWMgaW50IG1lc29uOGJfaW5pdF9yZ21paV9kZWxheXMoc3RydWN0IG1lc29uOGJfZHdtYWMgKmR3
-bWFjKQo+CgoKLS0gClRoYW5rcywKfk5pY2sgRGVzYXVsbmllcnMKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+On Sat, 15 Apr 2023 11:51:07 +0200, Krzysztof Kozlowski wrote:
+> Two conversions to DT schema of GPIO watchdog binding happened and came
+> through different trees.  Merge them into one:
+> 1. Combine maintainers,
+> 2. Use more descriptive property descriptions and constraints from
+>    gpio-wdt.yaml,
+> 3. Switch to unevaluatedProperties:false, to allow generic watchdog
+>    properties.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/watchdog/gpio-wdt.yaml           | 55 -------------------
+>  .../bindings/watchdog/linux,wdt-gpio.yaml     | 17 +++++-
+>  2 files changed, 15 insertions(+), 57 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
