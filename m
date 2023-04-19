@@ -4,86 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ECB0C6FD18
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Apr 2023 07:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C535C77B73
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Apr 2023 08:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SBM00+WVWAgn55H7/9b3+JX9khfpwwZZjgls111fzs0=; b=zUWjd9+7vSooxB
-	Dmrs83ohlGa0ptkCQmycTdYtIX4SrVzphthsHWE9kg5kipp9lVRR2w5y2CWMHS5NFfSM+bjiDj4u5
-	D4gTUI3Kyb9Pc/JrndxNpz7h+b3MUctWWZ5cujYsulGzWuAHXRN2sCNrOBZUlX3GVFFLaiBPQh63Q
-	M0BxwFHQB83dD7C2yvEWODEMZkwfwmWo64E1yR3BkXSIWoI0xhAsPMawyY0GaT2ERs+yD99sLfkwI
-	d4c4RY0O25+Ngcm7o2kPhlDlAXy3OU/DU8zsm6r+/vpKzg1WyErKQJh3fRqhDO2ID6onMXp6yktcr
-	4HBL6i0PrieV7XeeNcGw==;
+	List-Owner; bh=gGNNn6YQkjAlvJyJWPn3/IlSLgbDQB4EAe8D+IJd2yk=; b=izJg2xF7eUGL14
+	EyBCLVz8I8BdKGabTpfMq2BFd98/mzKSz0wLJrarOZ4iwPKQmVh5YAr2sfgFscNXjxK49mze76mIY
+	D+igq9LuFpRPcP+XHjwXfr2DppahnCSvea7Ms9yXJdZzAT5jg80j1/ov0CdZG996ClAYr/WnRDNvr
+	AXS6rvXfNNNkOCrMiBacNwxPe3ImF57xaHFDaq5FvjvVLou6r6y6LwOanM455JKgEIKuo7aUZ7vYf
+	DlNulV1az2pGADQL02DllPmX80i/A3wtr2k8lGLRHN61I1ubpNrqMYKo0tygAWNMvZM2aC6z9gWfQ
+	trwdfL7wnaImOFVEhvqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pp2YT-004T06-1O;
-	Wed, 19 Apr 2023 07:48:41 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1pp3Kt-004cV8-2D;
+	Wed, 19 Apr 2023 08:38:43 +0000
+Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net ([167.179.156.38])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pp2YQ-004Syg-0Y
+	id 1pp3Kp-004cS2-2n
 	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Apr 2023 07:48:39 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id fy21so36344840ejb.9
-        for <linux-amlogic@lists.infradead.org>; Wed, 19 Apr 2023 00:48:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681890515; x=1684482515;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=agSZbKqp8B+BLFTMYJTpSAUFC27L20Z+bg36x+eCgwQ=;
-        b=G+EZMie2NNYAU/ddcmxIwr8z1uFQzA3jx34H/gQIR4jO7rIgvTZi/vMd7RkwCTtRBw
-         eMggNJlkhwDQiCl+e95aCGkz3rjxIM5YBMRL0PMi0nsb00RT3SPOm1s7EqdQddEsGxpF
-         H9V/kuPDXjyC398XCBOrt95Tmi/X+6Xow3o7UFwXCjkS4erxa9uqFsCFvQ77xxHBCCbj
-         DHRByiGyo9ZtHft2Z48OK4YbRnQvfr+D0NuOHmLIzv1rh4ERu1tISpceOErdRzBGoRMF
-         o6GZ4hPhSnmOOOPrVOvPlH5HF2RL8ZfQ1Z8NOrs38YDwepbOaBtDtKItLF1eyP9/go0d
-         F8uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681890515; x=1684482515;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=agSZbKqp8B+BLFTMYJTpSAUFC27L20Z+bg36x+eCgwQ=;
-        b=Q5TWIJb3Vo7xGeIkJ089d0ELaOz/cxYjzJ0pKIag6lL6i/2PkTXLvvb1mabHCFjtmj
-         2XGiMoJ4appMOAoo8BL3FdRRtjWW8EOZcWHa+hcGCb9h2TIfc1g35yMSDIcmykNu+ndT
-         YSWyHgDK8sU0b1MzhtS7gnSuABGrEIlk6IWePUyPzHNpllR/OQXcPgnLicUbe4xD/BE6
-         wsjTlYv+Qe3SiKY+9VVEzEB6rH2aAse+q0Da1sywQmqVCS9ESuLAQ135txgWAtv5740h
-         XUlKnqXzXygJzEY801vXnu1Wz8LJjveJhMrb3Eto9jLuNtJ3AkRZvMu2WLRZNWRIhwmw
-         uBNA==
-X-Gm-Message-State: AAQBX9cQ6OPDPYu/e/oNtNjNubNObGCePnsRoFvgXTgLAJb5AR0ISoDN
-	w7LlPjOdb10C8DzJpCfSrR8ncw==
-X-Google-Smtp-Source: AKy350ZXpeN4XhVY2vpzb2GTlhGSPH9uDAoRBoJib+e+SROd6TY8qrjX4AFHaCSKMNi/VyrTJZS9KA==
-X-Received: by 2002:a17:906:2c14:b0:91f:b13f:a028 with SMTP id e20-20020a1709062c1400b0091fb13fa028mr13114900ejh.34.1681890515615;
-        Wed, 19 Apr 2023 00:48:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:62f5:eb43:f726:5fee? ([2a02:810d:15c0:828:62f5:eb43:f726:5fee])
-        by smtp.gmail.com with ESMTPSA id q17-20020a1709066ad100b0094f6f45b2c1sm4240673ejs.156.2023.04.19.00.48.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 00:48:35 -0700 (PDT)
-Message-ID: <4e6469e5-0f6c-4150-4709-7459597f06cc@linaro.org>
-Date: Wed, 19 Apr 2023 09:48:34 +0200
+	Wed, 19 Apr 2023 08:38:42 +0000
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+	id 1pp3KA-00089X-Gl; Wed, 19 Apr 2023 16:38:00 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Wed, 19 Apr 2023 16:37:59 +0800
+Date: Wed, 19 Apr 2023 16:37:59 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: kernel test robot <lkp@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+	=?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>,
+	linux-samsung-soc@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	Sean Wang <sean.wang@mediatek.com>,
+	Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+	Benjamin Fair <benjaminfair@google.com>
+Subject: [PATCH] hwrng: Kconfig - Add HAS_IOMEM dependencies for
+ exynos/meson/mtk/npcm
+Message-ID: <ZD+oZ9DWiTxeo3RY@gondor.apana.org.au>
+References: <202304191106.swKbBeDh-lkp@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 2/2] arm64: dts: add support for C3 based Amlogic
- AW409
-Content-Language: en-US
-To: =Xianwei Zhao <xianwei.zhao@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
- <20230419073834.972273-3-xianwei.zhao@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230419073834.972273-3-xianwei.zhao@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <202304191106.swKbBeDh-lkp@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230419_004838_214395_4608DCE2 
-X-CRM114-Status: GOOD (  20.40  )
+X-CRM114-CacheID: sfid-20230419_013839_902235_22109A3F 
+X-CRM114-Status: GOOD (  10.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,178 +75,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/04/2023 09:38, =Xianwei Zhao wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-> applications.
-> 
-> Add basic support for the C3 based Amlogic AW409 board, which describes
-> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-> booting up into the serial console.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->  .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 30 +++++++
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 87 +++++++++++++++++++
->  3 files changed, 118 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index cd1c5b04890a..d2b5d0d750bc 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-> +dtb-$(CONFIG_ARCH_AMLIPC) += amlogic-c3-c302x-aw409-256m.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
-> new file mode 100644
-> index 000000000000..38ca98a32181
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "amlogic-c3.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic C302 aw409 Development Board";
-> +	compatible = "amlogic,aw409", "amlogic,c3";
+On Wed, Apr 19, 2023 at 11:43:42AM +0800, kernel test robot wrote:
+>
+>    s390-linux-ld: drivers/char/hw_random/exynos-trng.o: in function `exynos_trng_probe':
+>    exynos-trng.c:(.text+0x39e): undefined reference to `devm_platform_ioremap_resource'
+>    s390-linux-ld: drivers/char/hw_random/meson-rng.o: in function `meson_rng_probe':
+>    meson-rng.c:(.text+0x10a): undefined reference to `devm_platform_ioremap_resource'
+>    s390-linux-ld: drivers/char/hw_random/mtk-rng.o: in function `mtk_rng_probe':
+>    mtk-rng.c:(.text+0x40e): undefined reference to `devm_platform_ioremap_resource'
+>    s390-linux-ld: drivers/char/hw_random/npcm-rng.o: in function `npcm_rng_probe':
+>    npcm-rng.c:(.text+0x2ca): undefined reference to `devm_platform_ioremap_resource'
 
-Undocumented compatibles. Run checkpatch and fix all warnings. Anyway, I
-am not sure this warrants separate architecture. Isn't C3 standard Meson
-SoC?
+OK, this patch should fix these ones at least:
 
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_B;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x10000000>;
-> +	};
-> +
+---8<---
+Add missing dependencies on HAS_IOMEM as otherwise they will trigger
+failed builds with COMPILE_TEST enabled.
 
-Drop stray blank lines.
+Also add dependencies on OF where appropriate.
 
-> +};
-> +
-> +&uart_B {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> new file mode 100644
-> index 000000000000..c69072ac57f5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -0,0 +1,87 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +		};
-> +
+Change the default so that these drivers are not enabled just because
+COMPILE_TEST is turned on.
 
-Everywhere...
+Reported-by: kernel test robot <lkp@intel.com>
+Link: https://lore.kernel.org/oe-kbuild-all/202304191106.swKbBeDh-lkp@intel.com/
+Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
 
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@fff01000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0xfff01000 0 0x1000>,
-> +			      <0x0 0xfff02000 0 0x2000>,
-> +			      <0x0 0xfff04000 0 0x2000>,
-> +			      <0x0 0xfff06000 0 0x2000>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		};
-> +
-> +		apb4: apb4@fe000000 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x480000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> +
-> +			uart_B: serial@7a000 {
-
-lowercase for labels
-
-> +				compatible = "amlogic,meson-g12a-uart";
-
-So this is just meson? Drop new ARCH, no need for it. Anyway, you need
-SoC specific compatible.
-
-Best regards,
-Krzysztof
-
+diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+index ae508e96cfc2..f3146470ce88 100644
+--- a/drivers/char/hw_random/Kconfig
++++ b/drivers/char/hw_random/Kconfig
+@@ -400,9 +400,9 @@ config HW_RANDOM_POLARFIRE_SOC
+ 
+ config HW_RANDOM_MESON
+ 	tristate "Amlogic Meson Random Number Generator support"
+-	depends on HW_RANDOM
+ 	depends on ARCH_MESON || COMPILE_TEST
+-	default y
++	depends on HAS_IOMEM && OF
++	default HW_RANDOM if ARCH_MESON
+ 	help
+ 	  This driver provides kernel-side support for the Random Number
+ 	  Generator hardware found on Amlogic Meson SoCs.
+@@ -427,9 +427,9 @@ config HW_RANDOM_CAVIUM
+ 
+ config HW_RANDOM_MTK
+ 	tristate "Mediatek Random Number Generator support"
+-	depends on HW_RANDOM
+ 	depends on ARCH_MEDIATEK || COMPILE_TEST
+-	default y
++	depends on HAS_IOMEM && OF
++	default HW_RANDOM if ARCH_MEDIATEK
+ 	help
+ 	  This driver provides kernel-side support for the Random Number
+ 	  Generator hardware found on Mediatek SoCs.
+@@ -456,7 +456,8 @@ config HW_RANDOM_S390
+ config HW_RANDOM_EXYNOS
+ 	tristate "Samsung Exynos True Random Number Generator support"
+ 	depends on ARCH_EXYNOS || COMPILE_TEST
+-	default HW_RANDOM
++	depends on HAS_IOMEM
++	default HW_RANDOM if ARCH_EXYNOS
+ 	help
+ 	  This driver provides support for the True Random Number
+ 	  Generator available in Exynos SoCs.
+@@ -483,7 +484,8 @@ config HW_RANDOM_OPTEE
+ config HW_RANDOM_NPCM
+ 	tristate "NPCM Random Number Generator support"
+ 	depends on ARCH_NPCM || COMPILE_TEST
+-	default HW_RANDOM
++	depends on HAS_IOMEM
++	default HW_RANDOM if ARCH_NPCM
+ 	help
+ 	  This driver provides support for the Random Number
+ 	  Generator hardware available in Nuvoton NPCM SoCs.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
 _______________________________________________
 linux-amlogic mailing list
