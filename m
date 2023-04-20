@@ -4,84 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D629DC6FD18
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Apr 2023 21:31:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 613BAC6FD18
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Apr 2023 01:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=yoKDwnoahN+aqcWWBeUwGpRMTyELi1w993HydhPhfcg=; b=1zo8wC32GBI3gS
-	ribOlWJe9iO1jfj0iQa/BZBK2KT+++jNFT9xugxdcmNOC35BqUaueLk7Vfzm+DVTNv3e3fFJPxUPd
-	de6NrUw2bm4M00bwb1162w9gebEuv2qkIuZocm/QJCzuQ/mrbvLNB1tciJocw/uvYEKOS9olVXcYS
-	W0k1msNnEFY3eFb6g1N+O232t/5YFEQTM1/ZeDl90hcI70bCGqPyELA7MWJURlv/3Z/L4HftF5ers
-	9MtPL8Tq57XqUH1gaKd5eJ8araatvDnvk4hmSLM4SAB5WEwcjW/6GyWbc+CQQslwONfoHi8jW//Os
-	7NVmwlmAaSq6GDiCpGMg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RXi6HU4+itye+tHAJBzdH9OvWP9xtMRLspgSoUSozVI=; b=ZB3AhEQEKJFMey
+	c5h04c0XE2j7PTwCwvl71jh7vtztEP41wmf5ReF8XupI8HJXXCRtcFPyxXG3kobAt9pXmIQDCYjZz
+	7zJMRBMhdpB+6W+9v15xTYCVgKQXusMrqmicRRZfj+z3Vkn0pF9Cxjdo9pW0t+4keK0pvSzrZcANl
+	lj11MqbgCpHcqfpFimjGe9SuM9t0qltfEqN2dJRitmq/mwQ538NTtz+7peMEdWI7FGAXc/Lt7PElG
+	8K9rgbptr8NdzB9umOlZq6MolnLkcJy5oP3cy1EkoJX6kO25PWVqZC2pVvPTh+ZyLc+gdYRyhpSus
+	b5gc0jUtvdEwBtd+yFxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppFOS-006Pph-1a;
-	Wed, 19 Apr 2023 21:31:12 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1ppJRH-006qQp-0I;
+	Thu, 20 Apr 2023 01:50:23 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppFOO-006PoY-0Z;
-	Wed, 19 Apr 2023 21:31:09 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id xd13so1770083ejb.4;
-        Wed, 19 Apr 2023 14:31:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681939862; x=1684531862;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MdlVVXg/ZDVV5S2Y7DqG2qcaIisv4Xg/5TG8KpoazMI=;
-        b=Mksh8Hgb6Cu6CSOGNzvfNY33gkMQvzctZxYJ+oI0EmzpEOiH61SRTQbI6b+y8um2tE
-         a6F0mCIaqrOT/o/q40jLcjvbAaJaSyihDMx/2nyAdcF9yI87Yu8gBWUu1d45ZGbRz4lO
-         VuXdPxzCeKjQCpE5TPhpLR5J9G6Aj77H4T3pfgQE8pwO1rxFlWVREvX731MPHVOcDoCN
-         TXvfgFNvX52/60wfiHd8XeB8ndEZd4UBZaQqNH61oP/ZbQfCSJJBaP7uLe4dUrudt2wc
-         RY5xsgevQtwSRhdp8Iaw/Xn0hQRGVYrcqUwvzGi1n9ELtlxvdAmLp79518L1y5GKsqz/
-         vt1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681939862; x=1684531862;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MdlVVXg/ZDVV5S2Y7DqG2qcaIisv4Xg/5TG8KpoazMI=;
-        b=hm5rjFZ/6V4TQPKzeHEHzYIGrTV/xJF6bJVxxTZOWfOn/KYLLFLI85S8nhoK54mShf
-         /eLC9eAdV0r+bWhT9ocPsIJ12CVQcSxMlhNFCm1qgaCa+mhtZn/OflXmhVFZD7VUu6Km
-         Z3AC+B1tBFz9AutSU023r6pa1XtXaRXL6mHCTp7QPgIajHS7Y/udA9TlHTFMaGN2ea8n
-         ZtHAcCIWXrGW67kFg7yMvoLqDu4LjWx5Hy7atiXFbWo/vAYjM8YkPDElBOZrxyDSPm+R
-         FhW1dh6qBXfEuuUIx3Mu6PXrAsdEVrnodNAJLXX/Ap/n2xfyCY+pEFzMLipyflMOE5JN
-         dkSw==
-X-Gm-Message-State: AAQBX9eItw+hXwlEjN2WeauDKZHG3aubpgmR8uc9sfXgufN+RrilnwPf
-	ghuj8LsHkLGiSjN9DRWuMTI=
-X-Google-Smtp-Source: AKy350ZleavQgkE/Gu30oz7ELytf+JQ1woNamGjopo1D5tmuCezKZMrWw904ZpcaQrn3VlUlejRPPw==
-X-Received: by 2002:a17:906:4e55:b0:921:7e42:2777 with SMTP id g21-20020a1709064e5500b009217e422777mr18918154ejw.69.1681939861834;
-        Wed, 19 Apr 2023 14:31:01 -0700 (PDT)
-Received: from ?IPV6:2a02:3100:9499:ff00:939:7c23:9a91:9bcd? (dynamic-2a02-3100-9499-ff00-0939-7c23-9a91-9bcd.310.pool.telefonica.de. [2a02:3100:9499:ff00:939:7c23:9a91:9bcd])
-        by smtp.googlemail.com with ESMTPSA id bf18-20020a0564021a5200b00506b88e4f17sm11009edb.68.2023.04.19.14.31.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 14:31:01 -0700 (PDT)
-Message-ID: <5a5920db-4c32-25e8-d1e3-bd2f724dd242@gmail.com>
-Date: Wed, 19 Apr 2023 23:30:55 +0200
+	id 1ppJRE-006qQG-1d;
+	Thu, 20 Apr 2023 01:50:21 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 14F3564457;
+	Thu, 20 Apr 2023 01:50:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F449C433EF;
+	Thu, 20 Apr 2023 01:50:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1681955419;
+	bh=Cu26XDuyq5lcZoz0ShVQmRachFypR8wCCTGfVCRr0kc=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=AeNMQfvQL0xUGhQZuwBID+Vfg1KL01GzIazg36wgQpBQjLeyr+EbHsqyuEsqCwNvB
+	 wlp97j9vNEzaL7Qn2704lFswH4gETlVdMKGuHbSetDGAK0f1P9BYp6+/0UDr0uLLBe
+	 ua6FVCIWByeAwuQApHRNpRtnsgtjVr7FFXNa24+SHe7QzRUpt4yTanuc/NHODMWw5O
+	 aAD17rUpoJm5XVDvWLsge1PAa9mCObK91qvVPBTB9RlgVxuzP8+kR263Tuyluuc7dC
+	 K1q/MYWu0E0vPLRCP874RTsEMCBYEK1sC57HRDuv5qfrBIh2Kmp+jIeHokZZ/dzXY+
+	 HI7qyXJrRmvOg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4D301E4D033;
+	Thu, 20 Apr 2023 01:50:19 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
- <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] pwm: meson: simplify calculation in meson_pwm_get_state
+Subject: Re: [PATCH net-next] net: stmmac: dwmac-meson8b: Avoid cast to
+ incompatible function type
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id:  <168195541930.13596.18249490996446633117.git-patchwork-notify@kernel.org>
+Date: Thu, 20 Apr 2023 01:50:19 +0000
+References: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
+In-Reply-To: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: kuba@kernel.org, davem@davemloft.net, edumazet@google.com,
+ pabeni@redhat.com, peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+ joabreu@synopsys.com, neil.armstrong@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ mcoquelin.stm32@gmail.com, nathan@kernel.org, ndesaulniers@google.com,
+ trix@redhat.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, llvm@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230419_143108_217660_787418A4 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20230419_185020_607513_B7EBB6A9 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,43 +82,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I don't see a reason why we should treat the case lo < hi that
-different and return 0 as period and duty_cycle. Let's handle it as
-normal use case and also remove the optimization for lo == 0.
-I think the improved readability is worth it.
+Hello:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/pwm/pwm-meson.c | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 5732300eb..3865538dd 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -351,18 +351,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	channel->lo = FIELD_GET(PWM_LOW_MASK, value);
- 	channel->hi = FIELD_GET(PWM_HIGH_MASK, value);
- 
--	if (channel->lo == 0) {
--		state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
--		state->duty_cycle = state->period;
--	} else if (channel->lo >= channel->hi) {
--		state->period = meson_pwm_cnt_to_ns(chip, pwm,
--						    channel->lo + channel->hi);
--		state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm,
--							channel->hi);
--	} else {
--		state->period = 0;
--		state->duty_cycle = 0;
--	}
-+	state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->lo + channel->hi);
-+	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
- 
- 	state->polarity = PWM_POLARITY_NORMAL;
- 
+On Tue, 18 Apr 2023 13:07:33 +0200 you wrote:
+> Rather than casting clk_disable_unprepare to an incompatible function
+> type provide a trivial wrapper with the correct signature for the
+> use-case.
+> 
+> Reported by clang-16 with W=1:
+> 
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:276:6: error: cast from 'void (*)(struct clk *)' to 'void (*)(void *)' converts to incompatible function type [-Werror,-Wcast-function-type-strict]
+>                                         (void(*)(void *))clk_disable_unprepare,
+>                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> No functional change intended.
+> Compile tested only.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next] net: stmmac: dwmac-meson8b: Avoid cast to incompatible function type
+    https://git.kernel.org/netdev/net-next/c/43bb6100d8d5
+
+You are awesome, thank you!
 -- 
-2.40.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
