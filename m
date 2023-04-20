@@ -4,68 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 613BAC6FD18
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Apr 2023 01:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83928C77B72
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Apr 2023 08:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RXi6HU4+itye+tHAJBzdH9OvWP9xtMRLspgSoUSozVI=; b=ZB3AhEQEKJFMey
-	c5h04c0XE2j7PTwCwvl71jh7vtztEP41wmf5ReF8XupI8HJXXCRtcFPyxXG3kobAt9pXmIQDCYjZz
-	7zJMRBMhdpB+6W+9v15xTYCVgKQXusMrqmicRRZfj+z3Vkn0pF9Cxjdo9pW0t+4keK0pvSzrZcANl
-	lj11MqbgCpHcqfpFimjGe9SuM9t0qltfEqN2dJRitmq/mwQ538NTtz+7peMEdWI7FGAXc/Lt7PElG
-	8K9rgbptr8NdzB9umOlZq6MolnLkcJy5oP3cy1EkoJX6kO25PWVqZC2pVvPTh+ZyLc+gdYRyhpSus
-	b5gc0jUtvdEwBtd+yFxQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=36gRQaY3Qfta6Bv2C9Pzv3z1xvH4C6jCaX/b1QXlriM=; b=XCkwbfWwCAdI8y
+	L2+F4VYByKYIAHTObn3mdRXNmdbyDfs9913YQeP698fFr/RqhbMfw4OjDfEcNjoKX44CF8r4HJWik
+	gdVObi1IlI6PWMyWJuOeB74fDYu08T9qsw4fu8wBQatnDb49KJdqw6nnHRAaDB7/NmdDnDJe1OCSO
+	ignd8hYzv/jEAf/3VuMsEDGQfyxxMbSemsnx4ycBt2rAQT9sWTo/61ASmX6w39gOPs7zTxP0RWnh5
+	W63HtxZo2AzD1lwTFBJk/pHWvrc/DWL9pnTdxzECDcb4verMwXk23vrCvwd6RRhgR57plp4q2jjUQ
+	y2kgtk43NpiZbdy9D7Xg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppJRH-006qQp-0I;
-	Thu, 20 Apr 2023 01:50:23 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1ppPIx-007Lgj-0J;
+	Thu, 20 Apr 2023 08:06:11 +0000
+Received: from mail.craftsplex.pl ([162.19.155.126])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppJRE-006qQG-1d;
-	Thu, 20 Apr 2023 01:50:21 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 14F3564457;
-	Thu, 20 Apr 2023 01:50:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F449C433EF;
-	Thu, 20 Apr 2023 01:50:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681955419;
-	bh=Cu26XDuyq5lcZoz0ShVQmRachFypR8wCCTGfVCRr0kc=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=AeNMQfvQL0xUGhQZuwBID+Vfg1KL01GzIazg36wgQpBQjLeyr+EbHsqyuEsqCwNvB
-	 wlp97j9vNEzaL7Qn2704lFswH4gETlVdMKGuHbSetDGAK0f1P9BYp6+/0UDr0uLLBe
-	 ua6FVCIWByeAwuQApHRNpRtnsgtjVr7FFXNa24+SHe7QzRUpt4yTanuc/NHODMWw5O
-	 aAD17rUpoJm5XVDvWLsge1PAa9mCObK91qvVPBTB9RlgVxuzP8+kR263Tuyluuc7dC
-	 K1q/MYWu0E0vPLRCP874RTsEMCBYEK1sC57HRDuv5qfrBIh2Kmp+jIeHokZZ/dzXY+
-	 HI7qyXJrRmvOg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4D301E4D033;
-	Thu, 20 Apr 2023 01:50:19 +0000 (UTC)
+	id 1ppPIv-007LgF-0d
+	for linux-amlogic@lists.infradead.org;
+	Thu, 20 Apr 2023 08:06:10 +0000
+Received: by mail.craftsplex.pl (Postfix, from userid 1002)
+	id C6CC924123; Thu, 20 Apr 2023 08:05:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=craftsplex.pl;
+	s=mail; t=1681977967;
+	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+	h=Date:From:To:Subject:From;
+	b=rMchEbC3na/LFFsaGri/PCoLtEXyCZqC61ES231o7aIA05OqR6ZJ+xrX9JXBW99Qr
+	 C2FUTpU4kWFyu0IGTev8yU0GF6uoqDXrENJRawb0cOPZSL2oYCq3XaA3jyLx4T14kn
+	 QR9SrL9uFHp9SuKu+rxt0Wyg6p4njnKIEyHj5gq/fVSD37l1pcfM1C373GMPjYKe6S
+	 53aqzDGR2CsHOD2asWLdmmW7mABILvh7BjgHLG9OcT2gV7Ba/2ruBA/geN/KiwDeXa
+	 nbW1ZzSaSSbv3bkK4A7NUHBLx6IxxdP2Vq62mLbBByvyGSq+WnBy+2PrGiYUJ1yd17
+	 J/f8GVuCIuAsA==
+Received: by mail.craftsplex.pl for <linux-amlogic@lists.infradead.org>; Thu, 20 Apr 2023 08:05:42 GMT
+Message-ID: <20230420064500-0.1.5o.q9f6.0.t0v9e4alod@craftsplex.pl>
+Date: Thu, 20 Apr 2023 08:05:42 GMT
+From: "Kamil Tralewski" <kamil.tralewski@craftsplex.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.craftsplex.pl
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-meson8b: Avoid cast to
- incompatible function type
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id:  <168195541930.13596.18249490996446633117.git-patchwork-notify@kernel.org>
-Date: Thu, 20 Apr 2023 01:50:19 +0000
-References: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
-In-Reply-To: <20230418-dwmac-meson8b-clk-cb-cast-v1-1-e892b670cbbb@kernel.org>
-To: Simon Horman <horms@kernel.org>
-Cc: kuba@kernel.org, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
- joabreu@synopsys.com, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- mcoquelin.stm32@gmail.com, nathan@kernel.org, ndesaulniers@google.com,
- trix@redhat.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, llvm@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230419_185020_607513_B7EBB6A9 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20230420_010609_388398_9BED5163 
+X-CRM114-Status: UNSURE (   0.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,43 +62,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Tue, 18 Apr 2023 13:07:33 +0200 you wrote:
-> Rather than casting clk_disable_unprepare to an incompatible function
-> type provide a trivial wrapper with the correct signature for the
-> use-case.
-> 
-> Reported by clang-16 with W=1:
-> 
->  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:276:6: error: cast from 'void (*)(struct clk *)' to 'void (*)(void *)' converts to incompatible function type [-Werror,-Wcast-function-type-strict]
->                                         (void(*)(void *))clk_disable_unprepare,
->                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> No functional change intended.
-> Compile tested only.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next] net: stmmac: dwmac-meson8b: Avoid cast to incompatible function type
-    https://git.kernel.org/netdev/net-next/c/43bb6100d8d5
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
+enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
+YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
+bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
+IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
+xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
+ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKUG96ZHJh
+d2lhbQpLYW1pbCBUcmFsZXdza2kKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
