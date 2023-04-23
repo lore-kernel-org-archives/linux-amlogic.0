@@ -4,83 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD50C77B76
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Apr 2023 22:32:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7798FC6FD18
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Apr 2023 14:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=d00rOmk0bwC9NpzI+pwiMAGwtByynde3Pwu70nZ/3YY=; b=ligbC7qa+DgBZ2
-	pCLX3bMh61eQAmg/6Ow2WOZqCA3Dz+iPnKtnCq30yIu9N2khhaDdc5ZumADetnsPjojcbmHgocVxE
-	+YVxYewnuRMuH3K78eK3usg6rzhz8jwvnOvlxM96u2luKDotlJ1IxH/7abCyl2HZIkhLVez0PjCgd
-	Wp+pziaaN1+BxUAy9XbZfkqLx49pz3JI85TGHYxYn9/CCHyZj5KEImyisiL8PE0fQJFPV2p0A+v6d
-	86+aezF0cC4Z3PU6JW1has8BX4j5BHh+j8TC/zGJgB3yo202MgCMZJrGn1zfX+37pPwNuCq/YLwuk
-	+SSS3IbEiTF4fJwWVt0g==;
+	List-Owner; bh=VAZrow3KR4BWkCLoWUwt/aGdn11847x2h8cvQY0gTgE=; b=MVGShT9F0h9wO+
+	J5S3PnsIueQIMbdKTtlY8Iq3y7k6QVWGEKrzAbgbU94U8pRx60ufZPxrabltO43u22+9/Vo6B5LOU
+	hq5K02/3S4BZnsqTFVLYAPP886BplJlmu/3vpDsQvd1cnC+33xyztj/8PtxiPlcYM4XZOZY69KrnP
+	EbC4CbTPntr0yVcjHT72lcEaTI1Fb3G1hDTF8iRRHT8FK8tyd0FkD/SGXH6QOkDmVHStg52yoRa6V
+	4ExogiNXzy3WSMHSP7RgCZuUfiFrEAbheEFlsr2N3clttqcO/sXDhHPdKIjnRmlvRdZOpKzWoXiSW
+	XAiHaLlHIjwZMXhoJ9DA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppzIg-00Bxal-1U;
-	Fri, 21 Apr 2023 22:32:18 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1pqb5Z-00EQzq-2O;
+	Sun, 23 Apr 2023 14:53:17 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppzIc-00BxWO-2l
+	id 1pqb5V-00EQy3-29
 	for linux-amlogic@lists.infradead.org;
-	Fri, 21 Apr 2023 22:32:16 +0000
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so16150247a12.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Apr 2023 15:32:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682116332; x=1684708332;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=w+asJO3lKNpyKewDhntjul2HKZTaQG/ZxnJvEiKtxXc=;
-        b=iUypOhzpIKSooSHJrdZ7+29N5xuSi8jpGDsf0mh4IKHSxy9dcHWof8tlwE2rFcTI+D
-         DFpns5hbgPcEMJSrAei8O9/hwss05UPguicMCLtAQvMLjJ7y4+ZasYd2JffBbbrNocvy
-         ooIdbgk2iS/xI2QczoLoONNdV/gNSQVGqqXQlramZ4X3Q5Ys/llcuePYU4Eoskq0C/8U
-         nFt1ir2a/dIvn3BHe257L7JppKYdD2ERkf1SLFqaiet229FAdyEwjGArr+fL+NxkZn9/
-         1L3YTPasbI3ztaUt1jR+K5OYlnAJ2FFyblLv7zGm1oOlBqSCpgomp3L3iwua+8fSAAHD
-         WZ0Q==
+	Sun, 23 Apr 2023 14:53:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1682261588;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=brUP6Y4+fxRUO3RjcIxh9okEQNw9LLitzlIw6oM9sjU=;
+	b=TJyCLN96bhb7oELolk/NjHIb/8yUcBKCIaNL633t6vL4XkDNHxgyT2HRolK+oAjZX4B1Dz
+	B64teMPZsvrJEUrkMPDp61Ig03Q3VRZgQFKDwsU0D/mXbOXBK0ClZDfNAHpyI2YUEWy66f
+	ZXs3gY3wABrBAg8x3z8ob78PS4AbWms=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-664-hBum4TvGODOoQD4cCfIeCw-1; Sun, 23 Apr 2023 10:53:05 -0400
+X-MC-Unique: hBum4TvGODOoQD4cCfIeCw-1
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-3ef3323e320so42705831cf.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 23 Apr 2023 07:53:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682116332; x=1684708332;
+        d=1e100.net; s=20221208; t=1682261585; x=1684853585;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w+asJO3lKNpyKewDhntjul2HKZTaQG/ZxnJvEiKtxXc=;
-        b=WbxmwcF6b1Lor9rQMpQKrAnU6F9QJaOs0WEWp4O+HqeRSQcVgmnxWALf/uF4wFHCtE
-         A8wTxRKtVgsDf9S3t1Ul5dApu7dikg93JTtg70Sxy0pKqqhQlBB8cMUoyLf1HUSNPzr7
-         9OAmrsMmROpdQY3TZPxG3IQB94UPt1/SdjI38zwih8/JIpjVR42GLriQTOb3ZFG0TNrd
-         +bXBajbk7Bv9p3QvIcKkzZsLChB91/F0EJShc/YldnfpOYxMsnk4HAim767ZbqtJBckH
-         Nlt7yiuBs5dnW6b6spHwMLD2r++8EhlSzOCPca7YKb3GukU4hiamDgJDTew3L7afEFKd
-         zy6A==
-X-Gm-Message-State: AAQBX9d8j4gIgBAveGpd+tbifXv/NvDVQlMYUC9BHrOBTG3g/ov7rub0
-	74pF8SuyN/7GRsldjD8yFcGeog==
-X-Google-Smtp-Source: AKy350bgR3ssd8qcJxiCwGuNeiC4063YsIgtI9oaMySRyGQu9S/ZxI+sVcBFW63gvJ012X1SwdtH0g==
-X-Received: by 2002:a05:6402:711:b0:4fb:5fe1:bc3b with SMTP id w17-20020a056402071100b004fb5fe1bc3bmr6313735edx.0.1682116332767;
-        Fri, 21 Apr 2023 15:32:12 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id g7-20020aa7d1c7000000b005068fe6f3d8sm2233947edp.87.2023.04.21.15.32.11
+        bh=brUP6Y4+fxRUO3RjcIxh9okEQNw9LLitzlIw6oM9sjU=;
+        b=da+eguKvTFEXI/Vvjl1wE1ROrYEmJfsVZk4yeP3YDRkSEzBfQ61dkrMkn51aFm2ciJ
+         Wx3rw0tbx0LnToM8SrH/bbCljmhB8Y9mQxeJiJrPAu1gPN30y8K1dxkx1BtAQX61xUUx
+         xRhcDb8Gacij9JvoGsZoHJxIzy3cgh5mqATEN0NrgY+zLXjPKXgNJ0VGDetRfOd0ok/+
+         g1xZMyCGQvcL9DV1dwOW1tYJcoAnHGKDvdIFXSuvxkaqgiWWAb92F05iEktl79XT3QD1
+         FvA0Css9WU426qw112kqJ9aUcbh4hcyRZ1LDfp13t/oq7/J10gR9uxtZH26UPdbmiiCv
+         GCbA==
+X-Gm-Message-State: AAQBX9fdSECNE5SEKYqTc1VUC/BbvLvYzDGfUubm3dPtiEYUqXWU+Kf1
+	1WEmyvvLzAeY/rFQsMMwMfyMgXvlOKts0NK+52hPRGRXV1uyNoK2FS/FZtdT/5AQTbBRYwq7ONq
+	BvgaUeOfsyrcKhh2RFsKnpp03VEoVA7g=
+X-Received: by 2002:ac8:5892:0:b0:3e3:9117:66e8 with SMTP id t18-20020ac85892000000b003e3911766e8mr19520243qta.35.1682261584965;
+        Sun, 23 Apr 2023 07:53:04 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bmzZ2YfZA9i7Lvmo/Y61N2NeOxSpRotijBmk2JHeQ07QlcP3dqMW3ponYcBCaTHnGgvtlrcg==
+X-Received: by 2002:ac8:5892:0:b0:3e3:9117:66e8 with SMTP id t18-20020ac85892000000b003e3911766e8mr19520221qta.35.1682261584717;
+        Sun, 23 Apr 2023 07:53:04 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com (nat-pool-bos-t.redhat.com. [66.187.233.206])
+        by smtp.gmail.com with ESMTPSA id w24-20020a05622a191800b003ef59e2b9a6sm2358221qtc.78.2023.04.23.07.53.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 15:32:12 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+        Sun, 23 Apr 2023 07:53:04 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: neil.armstrong@linaro.org,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com
+Cc: dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: add missing cache properties
-Date: Sat, 22 Apr 2023 00:32:10 +0200
-Message-Id: <20230421223211.115612-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Tom Rix <trix@redhat.com>
+Subject: [PATCH] drm/meson: set variables meson_hdmi_* storage-class-specifier to static
+Date: Sun, 23 Apr 2023 10:53:00 -0400
+Message-Id: <20230423145300.3937831-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230421_153214_938352_51DD4E22 
-X-CRM114-Status: UNSURE (   8.77  )
+X-CRM114-CacheID: sfid-20230423_075313_898021_13D65B03 
+X-CRM114-Status: UNSURE (   7.86  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,99 +106,167 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-As all level 2 and level 3 caches are unified, add required
-cache-unified properties to fix warnings like:
+smatch has several simailar warnings to
+drivers/gpu/drm/meson/meson_venc.c:189:28: warning: symbol
+  'meson_hdmi_enci_mode_480i' was not declared. Should it be static?
 
-  meson-a1-ad401.dtb: l2-cache0: 'cache-unified' is a required property
+These variables are only used in their defining file so should be static
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
+ drivers/gpu/drm/meson/meson_venc.c | 32 +++++++++++++++---------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-Please take the patch via sub-arch SoC tree.
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi   | 1 +
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 1 +
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi  | 1 +
- 6 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index eed96f262844..c8f344596285 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -37,6 +37,7 @@ cpu1: cpu@1 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index b984950591e2..768d0ed78dbe 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -106,6 +106,7 @@ cpu3: cpu@3 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index f58fd2a6fe61..543e70669df5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -51,6 +51,7 @@ cpu3: cpu@3 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-index 431572b384db..86e6ceb31d5e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -106,6 +106,7 @@ cpu103: cpu@103 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index fcd532db19c1..27ef9f88e4ff 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -186,7 +186,7 @@ union meson_hdmi_venc_mode {
+ 	} encp;
  };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 11f89bfecb56..2673f0dbafe7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -133,6 +133,7 @@ cpu3: cpu@3 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
  
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 617d322af0df..643f94d9d08e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -89,6 +89,7 @@ cpu3: cpu@3 {
- 		l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
+-union meson_hdmi_venc_mode meson_hdmi_enci_mode_480i = {
++static union meson_hdmi_venc_mode meson_hdmi_enci_mode_480i = {
+ 	.enci = {
+ 		.hso_begin = 5,
+ 		.hso_end = 129,
+@@ -206,7 +206,7 @@ union meson_hdmi_venc_mode meson_hdmi_enci_mode_480i = {
+ 	},
+ };
  
+-union meson_hdmi_venc_mode meson_hdmi_enci_mode_576i = {
++static union meson_hdmi_venc_mode meson_hdmi_enci_mode_576i = {
+ 	.enci = {
+ 		.hso_begin = 3,
+ 		.hso_end = 129,
+@@ -226,7 +226,7 @@ union meson_hdmi_venc_mode meson_hdmi_enci_mode_576i = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_480p = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_480p = {
+ 	.encp = {
+ 		.dvi_settings = 0x21,
+ 		.video_mode = 0x4000,
+@@ -272,7 +272,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_480p = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_576p = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_576p = {
+ 	.encp = {
+ 		.dvi_settings = 0x21,
+ 		.video_mode = 0x4000,
+@@ -318,7 +318,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_576p = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p60 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p60 = {
+ 	.encp = {
+ 		.dvi_settings = 0x2029,
+ 		.video_mode = 0x4040,
+@@ -360,7 +360,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p60 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p50 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p50 = {
+ 	.encp = {
+ 		.dvi_settings = 0x202d,
+ 		.video_mode = 0x4040,
+@@ -405,7 +405,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_720p50 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i60 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i60 = {
+ 	.encp = {
+ 		.dvi_settings = 0x2029,
+ 		.video_mode = 0x5ffc,
+@@ -454,7 +454,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i60 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i50 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i50 = {
+ 	.encp = {
+ 		.dvi_settings = 0x202d,
+ 		.video_mode = 0x5ffc,
+@@ -503,7 +503,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080i50 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p24 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p24 = {
+ 	.encp = {
+ 		.dvi_settings = 0xd,
+ 		.video_mode = 0x4040,
+@@ -552,7 +552,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p24 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p30 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p30 = {
+ 	.encp = {
+ 		.dvi_settings = 0x1,
+ 		.video_mode = 0x4040,
+@@ -596,7 +596,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p30 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p50 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p50 = {
+ 	.encp = {
+ 		.dvi_settings = 0xd,
+ 		.video_mode = 0x4040,
+@@ -644,7 +644,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p50 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p60 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p60 = {
+ 	.encp = {
+ 		.dvi_settings = 0x1,
+ 		.video_mode = 0x4040,
+@@ -688,7 +688,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p60 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p24 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p24 = {
+ 	.encp = {
+ 		.dvi_settings = 0x1,
+ 		.video_mode = 0x4040,
+@@ -730,7 +730,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p24 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p25 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p25 = {
+ 	.encp = {
+ 		.dvi_settings = 0x1,
+ 		.video_mode = 0x4040,
+@@ -772,7 +772,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p25 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p30 = {
++static union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p30 = {
+ 	.encp = {
+ 		.dvi_settings = 0x1,
+ 		.video_mode = 0x4040,
+@@ -814,7 +814,7 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_2160p30 = {
+ 	},
+ };
+ 
+-struct meson_hdmi_venc_vic_mode {
++static struct meson_hdmi_venc_vic_mode {
+ 	unsigned int vic;
+ 	union meson_hdmi_venc_mode *mode;
+ } meson_hdmi_venc_vic_modes[] = {
 -- 
-2.34.1
+2.27.0
 
 
 _______________________________________________
