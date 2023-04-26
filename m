@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B96C77B60
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 10:30:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25168C77B78
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 10:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pRzyEfgNZ/5wb3/dXpsdk/UXYSXMr9grYqr8KRAEqD8=; b=YBtH/v3XBgyr09
-	JuPZa2CcMUaUxdWJ9wuz4Kf+WvkFpBkQlWjH2UpaRmf2Z8RnE6CCO9TWvkcQrE4Otz33jxm7qMc5e
-	Q6qLyP8G0WzUsc41jctP3v0yvwxRFK+RoGiYbWpWjox/BcaEgxx+1PDtvIh3zzMNxe805PIjw2nL3
-	bRP9cTK9Wpgfx4Jmeev6Yqk2ymY9LXlTAEoDDr7h619ixq3OiAe2B1AiLGxXTxuIK99SMd1Nd9qvd
-	GIEimNmabCvD2JXYmJYwLFKfwFdEEHbvJdu0yYcopaBrl/GO8ugn7Q2Rm2pLt+rdACKfOsAYxi7j3
-	MpKV2IKJ2fmtL5rtXuqg==;
+	List-Owner; bh=JAgVcF/OzR8UFAVe4ODUM6VwHKVcCYnAVnXVrmn+gv0=; b=rGBGBVOoTDSx3C
+	cE7vPyh+dMRj3VteN1ZYT7lhCbA+zt1FuqcMlh5yoqmbHI4K+CWzYKdMm3OZDZAFG8YLmudJd+XJR
+	ijCQE0ZG822eoOf5nDy3AGj0A6Jp9w5jhBDqPGXs6+rwdgMX0C+vfaofzuK1xFhSWq7tw3jmsircj
+	Klw+ygYPyanVktBlkWmz4IzGKTZkOO5H0j9QWfirbhFF9J35vk6d1fdLg6fX8v91Ksy7FXwJptnV3
+	Vz1RT4b4DvB1hqVEcRJ+HlzlkzPoLP8KHZb/jCj5WCzOhFNeggii55sp3j7QNiLVOeJtwryXCuPWQ
+	o5+iMOgAI7nyQSb3Secg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1prcPT-003SK4-0Z;
+	id 1prcPT-003SKe-1y;
 	Wed, 26 Apr 2023 10:30:03 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prcP8-003Rxp-3C;
-	Wed, 26 Apr 2023 10:29:45 +0000
+	id 1prcP8-003RyQ-2z;
+	Wed, 26 Apr 2023 10:29:46 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id C65D65FD7B;
-	Wed, 26 Apr 2023 13:29:37 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id BEC9B5FD7E;
+	Wed, 26 Apr 2023 13:29:38 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1682504977;
-	bh=2iTDEsndR82cnln9Q9SqkIaok7IFFDU8o3YeSEDTGF4=;
+	s=mail; t=1682504978;
+	bh=izMKXdTFH1h2UBa+MY3F3v9dqaNkzDFsQICpQYJio5U=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=UWTpX6duaX2IAVpAWjNY+DnGpWEl9biaL1HpLEZLhnPWQd/jmgFvtA3iUtcTECWhL
-	 jnvnlvuNHprUDG+ktoCUwdHZb13SylUlo9lKBdudwwuXH1Pe4slJqyZLo703hNW55g
-	 wXN5GtR7mKp5t7x2P4JhAKLRSNfa5ru9NSCj2csc86NG67suAlfUEuEhI4lTCM7r5z
-	 wUykuePqRAg2KKNoE5B8YbhGgvAhzn9+jdU6LIOQ7KnebKcDf26DQTkv6QDWmL35V/
-	 3kIS1G1C/lSsnHrIUsmOUGEtw1lJLjfiwMtJiO8cuY/tzdTbRMVKEbm6KbvDQhTI/r
-	 nSjkT05vE1vRA==
+	b=O0GnZZ9zfwX59nJxxCv6oiFrRX+yUPYkRcF03tMGorJ/agCjGbT1WAMK0D7Hbdw9V
+	 Gnc26l7ni5vSAj5ae+TFoNLs+++IBTF/oBbsJWN2sdePqoga2QBK9axNMiuq4cx2k6
+	 bsySY6ooGYCbT0OxkOfAEFtGno+u1hTtOCnnnx3/DsLKOIpH66pFNCSxjyIa79nBsF
+	 ZrtnKx1VV+w5T3kKsdxu6C2nAXeg1+XmDLvt828UU3JYITw21g1akd2f/zHB2nESqA
+	 7rG7crU1zx47UYad1CUNITlfJ2pqtvie5GtJhgqgobQZtdIaeuiZrF8y7DichHMx1s
+	 yTKmz/QGlSUHQ==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 26 Apr 2023 13:29:37 +0300 (MSK)
+	Wed, 26 Apr 2023 13:29:38 +0300 (MSK)
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
@@ -54,9 +54,9 @@ CC: <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>, <kernel@sberdevices.ru>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-phy@lists.infradead.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v3 1/5] phy: amlogic: enable/disable clkin during Amlogic USB PHY init/exit
-Date: Wed, 26 Apr 2023 13:29:18 +0300
-Message-ID: <20230426102922.19705-2-ddrokosov@sberdevices.ru>
+Subject: [PATCH v3 4/5] usb: dwc3-meson-g12a: support OTG switch for all IP versions
+Date: Wed, 26 Apr 2023 13:29:21 +0300
+Message-ID: <20230426102922.19705-5-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
 References: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
@@ -72,8 +72,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/26 04:45:00 #21166225
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230426_032943_407033_F3BC3CD3 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20230426_032943_345172_5425E8CF 
+X-CRM114-Status: GOOD (  14.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,55 +90,111 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Previously, all Amlogic boards used the XTAL clock as the default board
-clock for the USB PHY input, so there was no need to enable it.
-However, with the introduction of new Amlogic SoCs like the A1 family,
-the USB PHY now uses a gated clock. Hence, it is necessary to enable
-this gated clock during the PHY initialization sequence, or disable it
-during the PHY exit, as appropriate.
+From now, the Amlogic A1 USB controller is capable of switching between
+host and gadget modes based on the status of the OTG_ID signal or via
+manual USB role change.
+Previously, only the Amlogic A1 IP version did not use OTG support for
+host only mode, but this is no longer applicable.
+Therefore, the 'otg_switch_supported' option can now be removed as
+it is no longer required.
 
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/phy/amlogic/phy-meson-g12a-usb2.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-index 9d1efa0d9394..ec2555bb83d5 100644
---- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-@@ -172,10 +172,16 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
- 	int ret;
- 	unsigned int value;
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index b282ad0e69c6..a13afdb219e8 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -140,7 +140,6 @@ static const char * const meson_a1_phy_names[] = {
+ struct dwc3_meson_g12a;
  
--	ret = reset_control_reset(priv->reset);
-+	ret = clk_prepare_enable(priv->clk);
- 	if (ret)
- 		return ret;
+ struct dwc3_meson_g12a_drvdata {
+-	bool otg_switch_supported;
+ 	bool otg_phy_host_port_disable;
+ 	struct clk_bulk_data *clks;
+ 	int num_clks;
+@@ -189,7 +188,6 @@ static int dwc3_meson_gxl_usb_post_init(struct dwc3_meson_g12a *priv);
+  */
  
-+	ret = reset_control_reset(priv->reset);
-+	if (ret) {
-+		clk_disable_unprepare(priv->clk);
-+		return ret;
-+	}
-+
- 	udelay(RESET_COMPLETE_TIME);
+ static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
+-	.otg_switch_supported = true,
+ 	.otg_phy_host_port_disable = true,
+ 	.clks = meson_gxl_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
+@@ -203,7 +201,6 @@ static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
+ };
  
- 	/* usb2_otg_aca_en == 0 */
-@@ -277,8 +283,13 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
- static int phy_meson_g12a_usb2_exit(struct phy *phy)
+ static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
+-	.otg_switch_supported = true,
+ 	.otg_phy_host_port_disable = true,
+ 	.clks = meson_gxl_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
+@@ -217,7 +214,6 @@ static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
+ };
+ 
+ static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
+-	.otg_switch_supported = true,
+ 	.clks = meson_gxl_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_gxl_clocks),
+ 	.phy_names = meson_a1_phy_names,
+@@ -230,7 +226,6 @@ static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
+ };
+ 
+ static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+-	.otg_switch_supported = true,
+ 	.clks = meson_g12a_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
+ 	.phy_names = meson_g12a_phy_names,
+@@ -242,7 +237,6 @@ static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
+ };
+ 
+ static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
+-	.otg_switch_supported = false,
+ 	.clks = meson_a1_clocks,
+ 	.num_clks = ARRAY_SIZE(meson_a1_clocks),
+ 	.phy_names = meson_a1_phy_names,
+@@ -307,7 +301,7 @@ static int dwc3_meson_g12a_usb2_init_phy(struct dwc3_meson_g12a *priv, int i,
+ 			U2P_R0_POWER_ON_RESET,
+ 			U2P_R0_POWER_ON_RESET);
+ 
+-	if (priv->drvdata->otg_switch_supported && i == USB2_OTG_PHY) {
++	if (i == USB2_OTG_PHY) {
+ 		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
+ 				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
+ 				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS);
+@@ -490,7 +484,7 @@ static int dwc3_meson_g12a_otg_mode_set(struct dwc3_meson_g12a *priv,
  {
- 	struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = reset_control_reset(priv->reset);
-+	if (!ret)
-+		clk_disable_unprepare(priv->clk);
+ 	int ret;
  
--	return reset_control_reset(priv->reset);
-+	return ret;
- }
+-	if (!priv->drvdata->otg_switch_supported || !priv->phys[USB2_OTG_PHY])
++	if (!priv->phys[USB2_OTG_PHY])
+ 		return -EINVAL;
  
- /* set_mode is not needed, mode setting is handled via the UTMI bus */
+ 	if (mode == PHY_MODE_USB_HOST)
+@@ -589,9 +583,6 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
+ 	int ret, irq;
+ 	struct device *dev = &pdev->dev;
+ 
+-	if (!priv->drvdata->otg_switch_supported)
+-		return 0;
+-
+ 	if (priv->otg_mode == USB_DR_MODE_OTG) {
+ 		/* Ack irq before registering */
+ 		regmap_update_bits(priv->usb_glue_regmap, USB_R5,
+@@ -841,8 +832,7 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	int i;
+ 
+-	if (priv->drvdata->otg_switch_supported)
+-		usb_role_switch_unregister(priv->role_switch);
++	usb_role_switch_unregister(priv->role_switch);
+ 
+ 	of_platform_depopulate(dev);
+ 
 -- 
 2.36.0
 
