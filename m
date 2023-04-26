@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9161C7618E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20CFFC77B7F
 	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 09:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,36 +12,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xxRv3+yScP9T4KeJ327yy02wwlvGXLf1AiHcKCJsPHg=; b=e36mbv4ucSWdD2
-	xQ28+eiBos4w1jAso+VEoLSdMTkXlO4/XDTGCaDBS65+YlkUkq+ChJp9OAFW98eEtdrgYoP8eS2ml
-	h4oLnIbBPCSXRH5i3i/+GVp2aFjPetniRBAVHobVRxighthiGnXuK3CmEDUNJT2C+vFU03mWbNmf0
-	kUqEVmdIdA9T9Ha5lLgnEkSCqC7sTu0Usx02eiaQPelngdKn+GaiJJExh7R3qllxYyyz07sA2m5lK
-	VJTC2WntzNdZYhgvWNSkA4mDPg/0atIJ/89fTdmPQV6VT1hDCVywz7DkonwAgP/TLvCptci6khrKH
-	EBU0Kyw3IWdnBhdR209Q==;
+	List-Owner; bh=z3oipo52LOcAtTpAj0/n09sNYdd4IiaLHlQdtylActQ=; b=5DVsy+G6f5icCA
+	iK1mKnIJk8s7v5Moi52ZdEqjz+lUa7Qh9bSrCF7OZqvytcaWbSbN/E7eInnEDKpcv0TTaTrYzTr86
+	HZxX4aj/SX1qjNtEiGZqEftDIbIffkRRqGv9fqAEzkidftfwbXrcfnzrGK+MhXQuBww69vbElgPqi
+	GsI/vcVrpvf+Zyo79rj1OueGY44RDQfQ/kXlek7VVAiNY4rEwvprZcyiLQBSVue820ULLqFhpWnWr
+	TWQaL4G7KGYyNIiRsbMhod6zGWJvX/zF26+slxtigJvSb3fdo2qqAwAEYaCHbM8qltMKpWilJfCZ/
+	booVGve4xBGkhpCxicqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1prbur-003NDS-02;
-	Wed, 26 Apr 2023 09:58:25 +0000
+	id 1prbuu-003NFS-2x;
+	Wed, 26 Apr 2023 09:58:28 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prbum-003NAf-0S;
-	Wed, 26 Apr 2023 09:58:23 +0000
+	id 1prbum-003NAn-0T;
+	Wed, 26 Apr 2023 09:58:24 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 16EF45FD77;
-	Wed, 26 Apr 2023 12:58:14 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id B12485FD73;
+	Wed, 26 Apr 2023 12:58:15 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1682503094;
-	bh=qcIGKcZIb5cUrNAdB7ZZAIiITgzMPRGFSQuzjV413Y4=;
+	s=mail; t=1682503095;
+	bh=TkDAnzczYgbodA/LVmHctQeUasZ25riO/dHPMe+iGt4=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=aXXG1eyXPb7xQslBoCKpWpcqLUhB7w34c0+MiM4G8tldrPyl4gCqvAZpDm2u/SStV
-	 AIMPGuUxoppYnDGspWFuL/mS2AKP+2x3vx4Khi56TwaSqaz/nng+0g79SGr6tfEdk7
-	 FTXPXoDqegZQqH77EjVyA9gU7H6itme18oKjV3EHByRDbmIFBR9RurT0TXKJSNcJHT
-	 1lODbFBDLU2eiRyZZfJvAWAZt8FKP7CY/iqgTtkXnnMLPrr415L9hoS2FyMYsN9rSJ
-	 BbDg7OuqFKUbJh3Mo0gWeA/LzwF/3NQQ0rxWO+8R3EEN+CHP88yQNJVOSxUJqb6HBN
-	 gdePMcXUgPzXQ==
+	b=jcGcF/fUDRM+u8Z6fJpgmtIXyGVUVPGZXI7CpG63Ld3OcUiB0X2SYpquNLbab5yBv
+	 Iqy152GCgTitbiyqcCNFHxICN9bbIcNiOTz++HAQ3+rvdAMWlmACM7EpWZu9thdx/R
+	 5qDAIBwhLWPNPn8o0AY5A8iHInpLuOB+4jOYa7wW0rlAMTHLvFc7shmNGpnX9KR1fp
+	 +seIUVsTszluBvmporJZ0wCoVeaNJ14lWeUYpwPyUuRuQnis4dbExleRD8Tck3odZH
+	 6cvgIthb4NPfWvjQX71rGbsChsA7Fz29a21NJ9aD3YelUJH2RZcpozzJZYktDtstYx
+	 LSWWehTKK9c6Q==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 26 Apr 2023 12:58:14 +0300 (MSK)
+	Wed, 26 Apr 2023 12:58:15 +0300 (MSK)
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -51,10 +51,10 @@ CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v14 1/6] clk: meson: make pll rst bit as optional
-Date: Wed, 26 Apr 2023 12:58:00 +0300
-Message-ID: <20230426095805.15338-2-ddrokosov@sberdevices.ru>
+	<ddrokosov@sberdevices.ru>, Rob Herring <robh@kernel.org>
+Subject: [PATCH v14 3/6] dt-bindings: clock: meson: add A1 PLL clock controller bindings
+Date: Wed, 26 Apr 2023 12:58:02 +0300
+Message-ID: <20230426095805.15338-4-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
 References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
@@ -70,8 +70,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/26 04:45:00 #21166225
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230426_025820_912116_AF2177F1 
-X-CRM114-Status: GOOD (  13.33  )
+X-CRM114-CacheID: sfid-20230426_025820_901356_59913375 
+X-CRM114-Status: GOOD (  15.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,81 +88,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Compared with the previous SoCs, self-adaption current module
-is newly added for A1, and there is no reset parameter except the
-fixed pll. Since we use clk-pll generic driver for A1 pll
-implementation, rst bit should be optional to support new behavior.
+Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
+clock controller bindings.
+Also include new A1 clock controller dt bindings to MAINTAINERS.
 
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/clk/meson/clk-pll.c | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
+ .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 58 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ .../dt-bindings/clock/amlogic,a1-pll-clkc.h   | 20 +++++++
+ 3 files changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+ create mode 100644 include/dt-bindings/clock/amlogic,a1-pll-clkc.h
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index afefeba6e458..314ca945a4d0 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -295,10 +295,14 @@ static int meson_clk_pll_init(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	if (pll->init_count) {
--		meson_parm_write(clk->map, &pll->rst, 1);
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 1);
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+new file mode 100644
+index 000000000000..5c6fa620a63c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 		regmap_multi_reg_write(clk->map, pll->init_regs,
- 				       pll->init_count);
--		meson_parm_write(clk->map, &pll->rst, 0);
++title: Amlogic A1 PLL Clock Control Unit
 +
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 0);
- 	}
- 
- 	return 0;
-@@ -309,8 +313,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
--	if (meson_parm_read(clk->map, &pll->rst) ||
--	    !meson_parm_read(clk->map, &pll->en) ||
-+	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-+	    meson_parm_read(clk->map, &pll->rst))
-+		return 0;
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Jian Hu <jian.hu@jian.hu.com>
++  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
 +
-+	if (!meson_parm_read(clk->map, &pll->en) ||
- 	    !meson_parm_read(clk->map, &pll->l))
- 		return 0;
++properties:
++  compatible:
++    const: amlogic,a1-pll-clkc
++
++  '#clock-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: input fixpll_in
++      - description: input hifipll_in
++
++  clock-names:
++    items:
++      - const: fixpll_in
++      - const: hifipll_in
++
++required:
++  - compatible
++  - '#clock-cells'
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@7c80 {
++            compatible = "amlogic,a1-pll-clkc";
++            reg = <0 0x7c80 0 0x18c>;
++            #clock-cells = <1>;
++            clocks = <&clkc_periphs_fixpll_in>,
++                     <&clkc_periphs_hifipll_in>;
++            clock-names = "fixpll_in", "hifipll_in";
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 39ff1a717625..8438bc9bd636 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1895,6 +1895,7 @@ L:	linux-amlogic@lists.infradead.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/clock/amlogic*
+ F:	drivers/clk/meson/
++F:	include/dt-bindings/clock/a1*
+ F:	include/dt-bindings/clock/gxbb*
+ F:	include/dt-bindings/clock/meson*
  
-@@ -341,13 +348,15 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 		return 0;
- 
- 	/* Make sure the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Enable the pll */
- 	meson_parm_write(clk->map, &pll->en, 1);
- 
- 	/* Take the pll out reset */
--	meson_parm_write(clk->map, &pll->rst, 0);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 0);
- 
- 	if (meson_clk_pll_wait_lock(hw))
- 		return -EIO;
-@@ -361,7 +370,8 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	/* Put the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Disable the pll */
- 	meson_parm_write(clk->map, &pll->en, 0);
+diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+new file mode 100644
+index 000000000000..01fb8164ac29
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
++ * Author: Jian Hu <jian.hu@amlogic.com>
++ *
++ * Copyright (c) 2023, SberDevices. All Rights Reserved.
++ * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
++ */
++
++#ifndef __A1_PLL_CLKC_H
++#define __A1_PLL_CLKC_H
++
++#define CLKID_FIXED_PLL		1
++#define CLKID_FCLK_DIV2		6
++#define CLKID_FCLK_DIV3		7
++#define CLKID_FCLK_DIV5		8
++#define CLKID_FCLK_DIV7		9
++#define CLKID_HIFI_PLL		10
++
++#endif /* __A1_PLL_CLKC_H */
 -- 
 2.36.0
 
