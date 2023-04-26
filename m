@@ -4,148 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20DD0C7618E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 12:18:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36DD7C7618E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 13:52:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
 	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RZxMtGQNW3xbTPvWsGd1oZl8h5xtqK6EoLO/gpTMJwE=; b=myUGzwVLu9fx9XGiUlOWhNA4mM
-	Lmh05kpjngLZLngo7UIRxKNJ0663D/9YkXYxk8n8xeChEyjwCTMGEa9uBayMEquoaA0JxAJ7rXjKd
-	QPnIjRrqZfo1i/u13gbda4G2z5O5BhqQKCbT4btQpa+wGRIWDRBlVFPfWQk9L/z8T5hlWwtud73mp
-	B3odcQdulry4yILY8eV8Yg+r5PFwimm3BqJcikM9WXu4Nka+TtaixeOpkCRBqX7w3l+hcFTFXoJFj
-	CbHsW9OrT2E7Q2PlpUOUKHB5QJYRL9pPmhoyEi/1T0vPBtmukJ22dUFBGbein+MtN3Z0Le6CBkNbs
-	QWubNjsA==;
+	bh=WchQntmC7xtkw8RiqlKMNkHgqG75zmXMvaDcs+0HfQA=; b=yL0dWbFm6f3bw7OYNpar4qQb4d
+	i82ZNKu8gjUwpo3+knSJSbNNXhgnDBqSF6qHXKpCcE/hNnwS2aNgeWx7y//oErZXGcLDeBFkKVr4e
+	jHNfz89mCpen/n2cKm5Fv9r2Wl7Qi5KYfurKn9AAt0zhkY8qURGT0G5Z9exXbA0fJizPKoD41MWez
+	Ij6y0Hf7KQz1Wvvd38+0dhuck0ktpi5Wcke1zRYTVlz0naBPz3IGkBPF71ojMmjT7zP89/U8lQcJ9
+	wIBI7atWZzK/viJ8oZuvNL4Y/XJtml+oDxohuQVEO1NOOtRT5vAOY7LN3iE/jASKvDC/iWjEl4MdS
+	U7dKD4sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pre6I-003t8p-1g;
-	Wed, 26 Apr 2023 12:18:22 +0000
-Received: from mail-tyzapc01on2072b.outbound.protection.outlook.com ([2a01:111:f403:704b::72b] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
+	id 1prfZR-00481u-1C;
+	Wed, 26 Apr 2023 13:52:33 +0000
+Received: from mail-psaapc01on20702.outbound.protection.outlook.com ([2a01:111:f400:feae::702] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pre6B-003t7S-0N;
-	Wed, 26 Apr 2023 12:18:17 +0000
+	id 1prfZL-00480x-2l;
+	Wed, 26 Apr 2023 13:52:30 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KcB796A60YtmZDg2gOHGm1eMxxigvTg4nTBDMpFK2DRxhVDi3pBW5v9FjCbbUIu/9T+tW06/SAbbvczFrsavFaD8frhCa2sT0wsGiERLuNRBvsrhIqiaCGCVcNDYZpIxzTzjNWLbqbH4HPoirG5+rRQ1LubeYP/cLVyXKV/VPvSJzgxah6zk7nwD/GRsG3J9w6QYupd6/YpkpKDIRtqaza0+UcHFkjQXiKR7ep7Jihnuu5ciCryPgtKKDmAz0F160xkFqBkklCcImZ3OenlgxJvErjaEyletoQ5+odojn8ic68nsr++nTOEQRKFXV2v6thOGUyX2qzzN+7E6gviOLA==
+ b=ipkFZyqdG3+Xn+Fk3Pj/E6430In5yjR3pFEWxXte/C3FO43GGfiGcNs0FuceN2OgbIw7EqK19lx7JMiU1DaljLA9evgMjD1KC5nSlpxq83aNYgZQSPWqlrJPCu0UqWcD8tAjX7SvknvQbHawKtFjDy24C/RgrMOwWTjvKjpv/Gzhxvg6g4tU1K1Pqt3mzTC0aM/w1JFilS5nVy9voZz/ranjG+m5TWoejkBIeJC/TNDmjuNyWvJXHLbuip08nuWvpTa4XDKPAcvU9EAXVANeQEyu3MySl9VRKic0yyKHkkSCS7Ku0Z2sPO82/3BNshdzP6VPhsa7EmP4fW0rDXcn6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sfzvh1j4dDrXAnmINyFKWDRBU4btnEp+HWtq5Z5a8RI=;
- b=jiCECTddKbwJHmPGuGaU9+DNIUeRiwvMcnpnawin5X8I7N7ZM/h8nEDmIvDXCAjTAfzA9Km4/gYPmyxv9IZAx71bM1GRvh0RXO5FkNJsRycrsYdaFRhaztCzwBnqd4NHbxpIpC7vFkGOffhbDI/+7QmETsF8RS35unS107WMvUg19eibmaRCwBRyIdP2PlZmktHlFy6iYgq+2wAlmnxKktf4RegqVdYCTLtjVWQrj4CwoJGG868/ZdP/++O77zX4cvTQV7x4SdP4QNAIPuHddQgqm1//0F7CIJrwZgOjnrHLH9EyjtRRaX5mshZUERZ+13J5sv/BBN1srYBnYMQRmw==
+ bh=BKRUORcCeOrcq9FVguYifAmOfZTC9j3nK2srGeQHp14=;
+ b=M5FSlQp4P5//WcGnIjo2hGYy0no+3va3tm3272AjYrixk2hFgi5AtfFx9EduIXXcx/VFbjkOdZsVjzzv4D/I35xKy0N9ku20MthDTT9csvM2w2Gxf7QgtHqhOprA8lR0AYywIV84TMxJC3CAZhGlHhZDfxVnxN34C6Y+1vRlW2cmasd00va6XVZKQ5xXPjKdWzYaBABe0qITNqtLT4U9o9MsVbWgMFn5xrDiLsVZJE3mnlRvAX2E7NaIA0VmIMifBRDLL4E39C9prhxgKXO5PsoFcm6ZXse7qWqH2IUtcEdZv/3GgoGNAsD81fYQrwMevUDd4HiNbcEztWPy2Pz+Qw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
  dkim=pass header.d=amlogic.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sfzvh1j4dDrXAnmINyFKWDRBU4btnEp+HWtq5Z5a8RI=;
- b=zzaQEi1N4l7PqoBTo0lohcd/hM6AQlKIkysWldKAXkvpRY803NeZ6G9+jb1QL2MjqArnr0dc3rQgR8vuywCnOurwx07p3+I3z4T0ltCJKwFLidMzYcoLEAkvrLAoO988HCdp0D2XqO8k9YObMYc/3va7Q5BIaxZHewV/emxYrkldwL5Gh2YsVJn32AmOoV/fF4q/6xYof5QIRold0CXkFR9k9xEZKM2d6MId1cE1ofgt6q54zOkni/Su/hBtv+oAL1qtc9AUU6nG0MzkFliOG2Lc3Wd3ZUns9zrn3SMl70+HFbkDzfnK1eKj+0S9DcG6Da0ekLzzICxcoKYcrVTSKA==
+ bh=BKRUORcCeOrcq9FVguYifAmOfZTC9j3nK2srGeQHp14=;
+ b=qLa1G1tb9O40YkTF0Xx7p1uigD+R3QZmA42B6+LjUYRbxROwUQ5hfTP40+W9+rXJdvdIuJfdarmZ9+glpx3VTT0duUbVSha31uIO2nJxZdQiq7Ah7DiUXAqLZesrUQeSF3aOomb9mNU5mqMqF+dBvROQ2/jTM/vxGfdmr7AcL5IjLmMD5hyA47hQgEKqKBYo7US6qVMf5POg4BIC9Ea6ZHjScDKo3BS4M6rYVPdcRAcAsdVOXSnqcfQJkOP0kEpt6p3SmrRohZsr+nFgcIPAnoKFKSmUE3aNlukjMtI04o7ovvYTTrCeflXmfQCWoDCnPxFcrabU4D7EMikNV/ejcg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from PS1PR03MB5034.apcprd03.prod.outlook.com (2603:1096:300:7b::17)
- by KL1PR0302MB5220.apcprd03.prod.outlook.com (2603:1096:820:45::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.20; Wed, 26 Apr
- 2023 12:18:03 +0000
-Received: from PS1PR03MB5034.apcprd03.prod.outlook.com
- ([fe80::c56f:c862:ff8e:909]) by PS1PR03MB5034.apcprd03.prod.outlook.com
- ([fe80::c56f:c862:ff8e:909%4]) with mapi id 15.20.6319.035; Wed, 26 Apr 2023
- 12:18:03 +0000
-Message-ID: <1f32ad9e-fe2f-1248-164f-a5d328b22942@amlogic.com>
-Date: Wed, 26 Apr 2023 20:17:55 +0800
+Received: from SG2PR03MB5040.apcprd03.prod.outlook.com (2603:1096:4:d5::21) by
+ TYSPR03MB7581.apcprd03.prod.outlook.com (2603:1096:400:40e::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6319.33; Wed, 26 Apr 2023 13:52:17 +0000
+Received: from SG2PR03MB5040.apcprd03.prod.outlook.com
+ ([fe80::c90d:11f9:daff:dd4c]) by SG2PR03MB5040.apcprd03.prod.outlook.com
+ ([fe80::c90d:11f9:daff:dd4c%7]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
+ 13:52:14 +0000
+Message-ID: <a5010dcf-a8ce-f144-949c-687548cefce7@amlogic.com>
+Date: Wed, 26 Apr 2023 21:51:33 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v1 1/5] mtd: rawnand: meson: fix NAND access for
- read/write
+Subject: Re: [PATCH v1 4/5] mtd: rawnand: meson: clear OOB buffer before read
 To: Arseniy Krasnov <avkrasnov@sberdevices.ru>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- "Aml_yonghui.yu" <yonghui.yu@amlogic.com>
-Cc: oxffffaa@gmail.com, kernel@sberdevices.ru, linux-mtd@lists.infradead.org,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ oxffffaa@gmail.com, kernel@sberdevices.ru, linux-mtd@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, "yonghui.yu" <yonghui.yu@amlogic.com>
 References: <20230412061700.1492474-1-AVKrasnov@sberdevices.ru>
- <20230412061700.1492474-2-AVKrasnov@sberdevices.ru>
- <889cf54e-584c-9bee-2106-633155897324@amlogic.com>
- <3f247cbe-2798-4871-82a5-5124142fdcc5@sberdevices.ru>
- <4f552f57-c31e-985c-82be-081dff38d377@sberdevices.ru>
- <dc690524-51d5-7bb9-a106-fa153c4e6250@amlogic.com>
- <68f3bea8-4b79-db48-172f-712dcabce65b@sberdevices.ru>
- <d3d5cf52-cf1e-31d1-46c5-d1df06c61fb3@amlogic.com>
- <ac6d67ce-54e3-83f4-fef4-fb93bdef2515@sberdevices.ru>
- <6c573ffd-55a1-6a39-1ca1-c2681e0e960d@amlogic.com>
- <44dd5bcc-2b98-d402-7e8f-5e2d4babf898@sberdevices.ru>
- <ed74240c-5028-c151-7904-c437b87c5f2a@sberdevices.ru>
+ <eedaaed9-0a41-2c18-9eb2-792613566986@sberdevices.ru>
+ <20230412145715.58c2be4a@xps-13>
+ <7c996832-258f-001c-56bd-87bbdf23eeaa@amlogic.com>
+ <20230412163214.0c764bb3@xps-13>
+ <0c61eaae-053e-5768-a533-70b2ff0cc95d@amlogic.com>
+ <fbb8cb2b-0996-3029-b368-f67087d73487@amlogic.com>
+ <7520e512-8a19-ff04-364c-b5be0a579ef0@sberdevices.ru>
+ <20230413102200.309fbe9c@xps-13>
+ <b3279de4-e89d-db03-a515-a6aa52ab90d3@sberdevices.ru>
+ <20230413122252.0a8efcd8@xps-13>
+ <569a948e-654a-b21f-8a4f-55dc4b295387@sberdevices.ru>
+ <60fa656e-bda1-1de6-a79e-3e3041cd69a8@sberdevices.ru>
+ <780c0cae-18b6-2652-1c2c-6d398ea60451@amlogic.com>
+ <e7c49f2d-b3c1-8d9b-76fe-c8759b37c7c7@sberdevices.ru>
+ <20230418152505.72fc16da@xps-13>
+ <15a6e415-1489-a81f-fc8f-2372678ad2cb@sberdevices.ru>
+ <ee10bdeb-416c-70f0-d323-7107fe0746e8@amlogic.com>
+ <5e4b395e-bf9d-0123-a0f2-2b378d950b29@sberdevices.ru>
+ <fda1ae91-4bf8-6945-bd0d-b6dabc9cb4bd@sberdevices.ru>
 From: Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <ed74240c-5028-c151-7904-c437b87c5f2a@sberdevices.ru>
-X-ClientProxiedBy: TYCP301CA0012.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:386::10) To PS1PR03MB5034.apcprd03.prod.outlook.com
- (2603:1096:300:7b::17)
+In-Reply-To: <fda1ae91-4bf8-6945-bd0d-b6dabc9cb4bd@sberdevices.ru>
+X-ClientProxiedBy: TYCP286CA0154.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:383::19) To SG2PR03MB5040.apcprd03.prod.outlook.com
+ (2603:1096:4:d5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PS1PR03MB5034:EE_|KL1PR0302MB5220:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd9af14f-1508-47c0-6a86-08db4650485d
+X-MS-TrafficTypeDiagnostic: SG2PR03MB5040:EE_|TYSPR03MB7581:EE_
+X-MS-Office365-Filtering-Correlation-Id: 234555fb-878f-4ba7-a80a-08db465d5df8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	uuKqY+Vh9WFDTSDG7dRD65ir490P4eT10ILbM2Gagvr2cWCZZW3Ukbxi3os5f2Nmz7kztNoy+IcQxtq8pq2DBZbIe/GZT/A5YTGkvfdfLqAMJXKKM+udTCBDDBpEcNGrjaUJAF/XIyfI28OfkrWNwZFyDN8e0dmKgzraW/90EY4msfTB8qxmAYa/fRpwk7gqT8dfjI7oo9HVGvprpm8738ujUIEJq9tDtgPMMYYF4tZf4EAywjFWg1geQ1NnGCx3M1XWdiWFXpVtoLNc2MdD96aNyuKpdoJHxv0ZnI7USfPHFxt0toj3HKbxsjfqKOObMURw2xjSBjkz5xr4DpsURdyY02xpMnpXgMkCHOOCT0aUpOJ1wOCiV09u+EU+bch9QllisWaur4hSPMreiasdtuI04kwM9+5nYPtAXMSpUh5pneGmiy/QYtXOdJ9REet1/LKZF5o0ni+zqmgeaS3LWh7G4NTNHLQmkyJuNaH/MLWA3Gzi1XCWXTd4kGVZxstfDacQ8cgFMLyEV6Ma1DcbWQtskW0n1yl8jBAAdDOSN/UvH6Bg8ubPL0mMHsdLu1vHieUmxDcIJyoVvP3XoAKd+AChbq/LqO12uJzd60X8kG+/sZNonYY7M8dYHupr/ClYkh2SF5zfceH2fsanJXGdY0I+DaZ9FB49parIh08iG6mrMxj/1rZYhdH7ML5ImmR0B5OmEkxN38SUtqccJEPcfw==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PR03MB5034.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(366004)(346002)(376002)(136003)(39850400004)(451199021)(66946007)(478600001)(66556008)(110136005)(41300700001)(8676002)(38100700002)(38350700002)(8936002)(66476007)(7416002)(6636002)(6512007)(6486002)(4326008)(316002)(921005)(186003)(53546011)(83380400001)(6666004)(2616005)(52116002)(26005)(6506007)(86362001)(31696002)(30864003)(36756003)(2906002)(44832011)(5660300002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: 	OSMlJdq7GIR0uDD6q3XA2K+vrIsp/CZSoNucncZyZ5IlXVqDhulppvrnJ5RA095CpXL8qtmmuhMYt6P1MH86OC/71DTOCZh4x/IfV91ZVdua3aCaD7sFr4jx1nFTtyTxsoH7GY7nE729eJU5FLEqq0GoensMYLLna6jFiLwXak5cA1+fA1sq92VcMeal5mLe0UT6kZ6Y9UhVX25BA0HuzmTZa12fcfKqCdM5Bhd4yJ9imb2l+XeEa0ocoBLUWcGtJYWK8ze4nL2gzHxtxJ+tDLEdSuVp3RlrszWeAef7Td9xlz2DZMqeWkw1KKCz6GdZgMgZMg1xyqgrxLaOZBCdLb2E01OBwAVqeBzIpxh1/J6dA9XvK/zaflBNpK2u4Zqd04T290YPBvnkUBeWonzEw4A1n2rHhUMwsTCuwKnT7bxU1odPo6pfPgVzinSQlSxJHR+KhzC+sb+pwjFcV8Zq+UTGJ9jY1K8fYMUqLwuqFjtPfB0pj5UjBbMBUEtbgZUkz+NmUGEwsFd8qgmNYNaM4LiekJvL4hAdkrBU0c8mAIekyi2MSQN1j4VAlePwORyxnlcGuzFLxWdOEASh5pOQ7XxdWb45xtQimLdpcw0uIGv9IAT2fZautfDOwRHnc8asfVB4NV040e5WHZdQVRF4BeTlsSWIZjJ2WGP+h9tcnvY=
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB5040.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(376002)(346002)(396003)(136003)(39850400004)(366004)(451199021)(2906002)(107886003)(53546011)(6506007)(6486002)(31696002)(86362001)(7416002)(52116002)(44832011)(966005)(2616005)(83380400001)(66574015)(38100700002)(38350700002)(26005)(6512007)(186003)(6666004)(4326008)(66946007)(110136005)(66556008)(66476007)(54906003)(31686004)(8936002)(478600001)(36756003)(5660300002)(8676002)(41300700001)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?aDdpd1RodVRYaTMxaTVvRUlvWU1lc2NrNVIwNU9MU3BBbjVNTnJzams1MEFV?=
- =?utf-8?B?TGxOWkpLYThPU0JtSDMvWVpITXZGQVEvRkM3UlBtVEk1YUVlcXNYMFp0QzJN?=
- =?utf-8?B?bnFWczhKUUVyNmRRTW9yREZXblFGM0xmRzYwcUtXTGpZRmp3RitNdDVOMGV0?=
- =?utf-8?B?TGVUZWhZTUxZeUFRWHR3cmFOYmllNUw3R3Zmc09lTDNCMmtpbU44UHJaeW0r?=
- =?utf-8?B?VDNUNkhJY29CcXVGVkZjbUZDcDB4enR3S2tZYjdmYlU3VzFJbHJXdjNVbGJa?=
- =?utf-8?B?dGdiNXMwT1BLUmRoT2QzdnpXU1J5cFFqVEJqVms0aVBySENXOHVLZ0dPNzNV?=
- =?utf-8?B?VEZHMDU4OGRLMVdGSnpUNkZMMnd0elZvSHVDL0JmMmY0Tm5MSGVUbkNIaGVW?=
- =?utf-8?B?R1N6OUlBek9TdG5BK0tkRmZSNDdUSzRNS3o5dXJwZlZmTFhIY2FTZmVnNENC?=
- =?utf-8?B?TFhuRlBkc2NaMFlzTkFWYXFOakFTNXRNWG45ZDNHSWdFbzFLekFlaThnS096?=
- =?utf-8?B?MHRZNVRqT0p6RzVDZ29tQTNxWS9LU2M1dlpXL282TUhNT2FidXMybXFFc1Iy?=
- =?utf-8?B?Mk0yMDRBdXczSGwra3crd3Jvak0zcmVTUU4zMzdMckVQaXl3L0Vuemo5c1I2?=
- =?utf-8?B?cjEwVzVzOGpENEI4SWw2R21OWVQxQldlTnZML01WL0orRWpDRDU1WW9Oall0?=
- =?utf-8?B?ZExwWjEwYXJZbEQzczI2MXl6Q1N5RHpPeVZEeHY4V1owQnA0UFFMSzF5bnFH?=
- =?utf-8?B?akEybWJBNDVBc0gwOWgwSGZvSFllTjR4Z3JWRXEwR0tsaCtJcXk4aTF0Vm9K?=
- =?utf-8?B?RWlVYmdIcmtYamdyWTRRNUFyMDFkSVFYeGVyZHIvMFRINitmOEcyVjhPY1RM?=
- =?utf-8?B?MCtZN2duL0N5VmNaTmhIbmI0aU9zb0FLR3lTbk9EMEl3K3RoQmRSTGMzWkhE?=
- =?utf-8?B?UGx4RVJhS0NjYlprRGlCbGpIb2taZkFvWHV1a0U1ZlJQMWFvZzNjZnB0SG1o?=
- =?utf-8?B?MG5RMmhXRjlGTzNZSE0wRmtUeDAxcFJGcjl2d0FURmlOaytjdVh5V3pScnc5?=
- =?utf-8?B?aktHMmEybFl1ZXFRSkdUa0l0ZlRBbXRzalFHTFY4eGxEOFVyL2RvZXloQ1lp?=
- =?utf-8?B?VGoraFdBcmc5cEE1aG9haWVtRzlQVGE3Zy9rT0R0RTNZb3UrbSs4UXduNkM4?=
- =?utf-8?B?bERqanZhSzQ0aitnTjQrZWQ4UGZiQTF5aktIc2Q5WjlzTWppdHlmdXRQTXB4?=
- =?utf-8?B?N1dNVVNXL01BczNQMTJ6dWlUYndrYkY5eG5yQWJZclRRaXIxSEEvYlVlc2hz?=
- =?utf-8?B?Z1h6Y001czV3YXpBajNYVzM3eFJObkVtQnBib2Nxd3czaUs0K2U3RDF5SWpD?=
- =?utf-8?B?TGVGeWk5SjVtNm90bXNEeGxKN2c2ZXV3TWF2Q0o1Q1p5R3NwMXJSc2t5VmI1?=
- =?utf-8?B?T0VweU83cTA3ajUrbnJjOG5UMkxuWElDODBoSUtLc1A0TVlUVzYxTFRjR3Q4?=
- =?utf-8?B?eDExMHljcmg0Vjc2akVvb0FxeWNMNEh0ZWFwTUFGYnNDaWZvL08xdTNTYVRv?=
- =?utf-8?B?WjR5SndWU2JGdjZXcHYrSmxmWDJ6SHI3YVdPK2JkSGIrc0t3U0Rtbm5qN3N2?=
- =?utf-8?B?THhxSGU5S0o5QVc5MEptMFJkdU1xb0RRN2FFVXNsaU1aQjVIQWRqVHUyUG9B?=
- =?utf-8?B?WW1TSGxVWi9IOVYwL3IvUzJYb3d4cGlCQTFPMllDcVlsM2xtZUxUcGJwdDBo?=
- =?utf-8?B?a1MwK0VQWVZsVSs5ZmowRDUrN0VCVzFZL1RMZUdrVWpUYzFQQUNoQXVLQXB6?=
- =?utf-8?B?SWF6R2d2Y1RsNm5veDVWWWc5elhEZHorRE9PcmxRaHVlb3ZkNmRiUnVNL1VM?=
- =?utf-8?B?VlBGUnNIUyswTDlTUDBRUzhFSVJ0Yy9KY28vWHRGV3hmVUszdVRKcU1COGtP?=
- =?utf-8?B?bU0zdXY0VVV4dUQxUGZGTzhaWXhyTkFMWGozaEM0QmpiSTR4RDNDeFJzWlhY?=
- =?utf-8?B?VktnL0NWeVQvcHloc3p0Mnc5SmxlcEdadERuU20wT3BGYmhIQ0NGMk02dU5a?=
- =?utf-8?B?VGlsQ0Z0eEFGMFdlQTFxR2RzTFlPaHFIaGYxMmZpbUhSenc1UzBSNkdqcWY2?=
- =?utf-8?Q?oZrGCHEbUQuwW05PfL3NxG4F1?=
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?QnBERldnWi9SL0VqSmJwUUd1bUJFMHpwNStLRHZZWFJYUC9SZ29TeUhUNEM4?=
+ =?utf-8?B?a1ZPa3c4TXhuWXRaa0JnOGwrMzRXbmxjamtib1FkN3FBRXFnMElCWVBIcjgr?=
+ =?utf-8?B?MzBoNWtEbm5LNGFpVkpMdWlXS01ZVXZOMm9ucmxsb0pkUG96ckxQcWlrNXA4?=
+ =?utf-8?B?UXo1cGpha3AzR2RqaWsrMjhvNFhPSW1QRG56L045VUxCblVuUkYvK0tMd21X?=
+ =?utf-8?B?Zk5HN0xjRzNPRnV4ak5oVEtVdU9MVWhDZVREOEpmVkx1ZlVNME5kd3lreGRO?=
+ =?utf-8?B?dzg5MU51TFF1aHVUbEh1SFpMb2F0Rk81VzRRVjRSbnhGQTdQd3J2VjhCT0hR?=
+ =?utf-8?B?Lys1SU5KTU8ybDUrclZETy81YVN0eE9MQVdDNnNJOURnV0VqWllXb3JqMEpF?=
+ =?utf-8?B?TjVQd2lkTitXV3NpOTIvTys5Rnp2V3h6L3dKOWk5NFhhOHlGUVJSWmJPMVh6?=
+ =?utf-8?B?ZVVsbXpHL3c3cml4WEswU3kwZHJYV3k5TjltcHdJVDhuVENEd0g1d2RlUG9U?=
+ =?utf-8?B?RUl6cmQvdGdNZ0xKb2dIWDQ4amRnanNCeW8vU05JQmdBZVBPWjJNZHlaRGlX?=
+ =?utf-8?B?Rnl5UGhqMDJrcitpVVQyU0U0K3RWQ3VQWWZxLzkvK3lObmt4L3NZMmo1WFRZ?=
+ =?utf-8?B?QkR2MExwMGhGdGRHSytUTkxuZHFUcGtjTTNJNXllQ2NlcjR4WnJCcC90bE90?=
+ =?utf-8?B?eGF0QXpJdTZ4R3JWMFVHQlZIa1g5M0JjSHRhVWY3RVdBZDlidDJYeTJNYzMx?=
+ =?utf-8?B?NStzTVpsMXRSQkdQamhqK0luUW5EM1ZONjVkbFczNE9nQUFFWllXRTQ0Q1JB?=
+ =?utf-8?B?K1lLRUZWenNnbzYvL0ZYV21RYWdHclY2M0hBbWtSR1JoWk5kWFhMSDdoN291?=
+ =?utf-8?B?YXNxWWIvSXYxTjh2VGtmeW1oalFzTm9qK0hvUHVDOXIxNEZMSDYwalB0MEl1?=
+ =?utf-8?B?cDM0OU9aaWR1SHoxU1hmY2trY3labk8vUnFja2xYcHhjMDQ5NzZVV3A3MFhy?=
+ =?utf-8?B?eFRUOTBGbklFVy9VemdvMjhzSEVBUENUS1g4ZGhoZHg4RFkza00reW9nbnBl?=
+ =?utf-8?B?ME04Vm1hSG0veWxwdmUrWGtKb3htcjVDdWtKcFFNRlhEbkVmNGprRlVNeGRC?=
+ =?utf-8?B?eUtiQ1d1TTgxVlhNZXdHMlJad1JrWEVXMEpKSnFpMzFnZ3BZbXRaLzd5bk1I?=
+ =?utf-8?B?YlAxS25EVW02V1VidWJOSXJKMU9jQzlFbnNLbjRoSXdzenFuajFyajRoRFl6?=
+ =?utf-8?B?blk5OVIybE9YUHhlaExwQTZOdEhURVhGSVV3ajY5QTRiYnN6VnB3aU9ReGIv?=
+ =?utf-8?B?bTNWR2pFY1RRaFVaVmp6RG1PeTROYS9LdEx5T1g5aFhENlFIRHE2Vkp4R3Zi?=
+ =?utf-8?B?WlVpZFZlZnBrYnlHWlJQSXRkT2NpMDVaaE1MQlVQUFlOeldtUE1rY1UzNSts?=
+ =?utf-8?B?cCsrVXV4SEY4a2JxR0NHb1I5bENjSVNSeGlnenZ1ODVUbGVwaG9JOU1uZXBN?=
+ =?utf-8?B?cytXNVFSekxiYXh0NytNcXJZQk9TKzlMckk2WFNxSlk5S2pNZXI5N1ljRmw0?=
+ =?utf-8?B?a2RqdU8zZ1pyVitNS1N3cndsUlVYUWwrWVkvdWFVTkZKS2lYYUZ6QWJvUHhM?=
+ =?utf-8?B?WDFqQU95aUdKeUNFK04zcWVCcWhXWjk5WGNZVXhKSzhXdGJTZC80UGM4Ry92?=
+ =?utf-8?B?bDhRdG5rVnpXZC9yTGZCeXhEOGRnVE1HZ2M2a0RITlR2bzVtS2IwT3JjaGRY?=
+ =?utf-8?B?NjdiRHVaZVoyVHRvUi9jVVIwWWFHOW9TNGYrSFR1UDZoLzRMVE9DbmQwdWYx?=
+ =?utf-8?B?akNxMHUvVFpmcEJWQnBEVExsd050QjR2T2orN0RhUXI4cE1QY083UjdDb0JD?=
+ =?utf-8?B?czIzMHJsZklMRjFkZW9DNjRMVXlvdHVrRE1Ec0t0amRvQzdnaUpMMnVMQW9a?=
+ =?utf-8?B?bkYyRXFaNmg3SnJMRmpQeXB6SlU0TGV6OThMeW5ORUdteUI4QmVsZC9QcDVx?=
+ =?utf-8?B?aTk2WUMwL3NXQUcvb3pPWXpvSkxvMzBKQ1VIKzh6RXBvZ3NrdW92WjRmU0hK?=
+ =?utf-8?B?enBQS1RqVUpucktjL3Ftbm5XTDh0V3AvM0pqYnFyY0twZURodnNudTZiWnNq?=
+ =?utf-8?Q?E+3+Mfv1O1KJ8ufPxk8Tw6Xia?=
 X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd9af14f-1508-47c0-6a86-08db4650485d
-X-MS-Exchange-CrossTenant-AuthSource: PS1PR03MB5034.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 234555fb-878f-4ba7-a80a-08db465d5df8
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB5040.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 12:18:03.3601
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 13:52:14.0624
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zhbpx0K/Fl52E20sOTUyNPSkuhkM+5f2F/ym1taCUB3oR8HJzSP8pHEmPAkNtYazOxfCCZmgy2j2fNHIPOVWvw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5220
+X-MS-Exchange-CrossTenant-UserPrincipalName: h6oxGNGkpnrjygbsUul8kwOpUD7SMMxDI3twOwUIMBJ+4kMPS0I8JVKvMCyfsjzsfKwjiNkEX5c9U4lz+6gdog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7581
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230426_051815_339287_84DCAB82 
-X-CRM114-Status: GOOD (  13.53  )
+X-CRM114-CacheID: sfid-20230426_065228_049085_7F30D20C 
+X-CRM114-Status: GOOD (  24.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,530 +162,159 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Arseniy,
-
-On 2023/4/20 3:43, Arseniy Krasnov wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 17.04.2023 17:10, Arseniy Krasnov wrote:
->>
->>
->> On 17.04.2023 16:54, Liang Yang wrote:
->>> Hi Arseniy,
->>>
->>> On 2023/4/17 14:47, Arseniy Krasnov wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>>
->>>>
->>>> On 13.04.2023 08:57, Liang Yang wrote:
->>>>> Hi Arseniy,
->>>>>
->>>>> On 2023/4/13 13:10, Arseniy Krasnov wrote:
->>>>>> [ EXTERNAL EMAIL ]
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 12.04.2023 16:30, Liang Yang wrote:
->>>>>>> Hi,
->>>>>>>
->>>>>>> On 2023/4/12 20:03, Arseniy Krasnov wrote:
->>>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> On 12.04.2023 13:24, Arseniy Krasnov wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On 12.04.2023 12:37, Liang Yang wrote:
->>>>>>>>>> Hi Arseniy,
->>>>>>>>>>
->>>>>>>>>> Thanks for pointing out this problem. also comment inline.
->>>>>>>>>>
->>>>>>>>>> On 2023/4/12 14:16, Arseniy Krasnov wrote:
->>>>>>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>>>>>
->>>>>>>>>>> This fixes read/write functionality. New command sequences were ported
->>>>>>>>>>> from old vendor's driver. Without this patch driver works unstable. This
->>>>>>>>>>> change is tested with 'nanddump'/'nandwrite' utilities and mounting
->>>>>>>>>>> JFFS2 filesystem on AXG family (A113X SoC).
->>>>>>>>>>>
->>>>>>>>>>> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
->>>>>>>>>>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
->>>>>>>>>>> ---
->>>>>>>>>>>       drivers/mtd/nand/raw/meson_nand.c | 116 ++++++++++++++++++++++++++----
->>>>>>>>>>>       1 file changed, 101 insertions(+), 15 deletions(-)
->>>>>>>>>>>
->>>>>>>>>>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
->>>>>>>>>>> index 074e14225c06..256c37c76526 100644
->>>>>>>>>>> --- a/drivers/mtd/nand/raw/meson_nand.c
->>>>>>>>>>> +++ b/drivers/mtd/nand/raw/meson_nand.c
->>>>>>>>>>> @@ -26,6 +26,7 @@
->>>>>>>>>>>       #define NFC_CMD_IDLE        (0xc << 14)
->>>>>>>>>>>       #define NFC_CMD_CLE        (0x5 << 14)
->>>>>>>>>>>       #define NFC_CMD_ALE        (0x6 << 14)
->>>>>>>>>>> +#define NFC_CMD_DRD        (0x8 << 14)
->>>>>>>>>>>       #define NFC_CMD_ADL        ((0 << 16) | (3 << 20))
->>>>>>>>>>>       #define NFC_CMD_ADH        ((1 << 16) | (3 << 20))
->>>>>>>>>>>       #define NFC_CMD_AIL        ((2 << 16) | (3 << 20))
->>>>>>>>>>> @@ -84,6 +85,7 @@
->>>>>>>>>>>         #define DMA_BUSY_TIMEOUT    0x100000
->>>>>>>>>>>       #define CMD_FIFO_EMPTY_TIMEOUT    1000
->>>>>>>>>>> +#define DEVICE_READY_TIMEOUT    1000
->>>>>>>>>>>         #define MAX_CE_NUM        2
->>>>>>>>>>>       @@ -255,8 +257,26 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
->>>>>>>>>>>           }
->>>>>>>>>>>       }
->>>>>>>>>>>       +static int meson_nfc_wait_cmd_finish(struct meson_nfc *nfc,
->>>>>>>>>>> +                     unsigned int timeout_ms)
->>>>>>>>>>> +{
->>>>>>>>>>> +    u32 cmd_size = 0;
->>>>>>>>>>> +    int ret;
->>>>>>>>>>> +
->>>>>>>>>>> +    /* wait cmd fifo is empty */
->>>>>>>>>>> +    ret = readl_relaxed_poll_timeout(nfc->reg_base + NFC_REG_CMD, cmd_size,
->>>>>>>>>>> +                     !NFC_CMD_GET_SIZE(cmd_size),
->>>>>>>>>>> +                     10, timeout_ms * 1000);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        dev_err(nfc->dev, "wait for empty CMD FIFO timed out\n");
->>>>>>>>>>> +
->>>>>>>>>>> +    return ret;
->>>>>>>>>>> +}
->>>>>>>>>>> +
->>>>>>>>>>>       static void meson_nfc_cmd_idle(struct meson_nfc *nfc, u32 time)
->>>>>>>>>>>       {
->>>>>>>>>>> +    meson_nfc_wait_cmd_finish(nfc, 0);
->>>>>>>>>>> +
->>>>>>>>>>>           writel(nfc->param.chip_select | NFC_CMD_IDLE | (time & 0x3ff),
->>>>>>>>>>>                  nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>>       }
->>>>>>>>>>> @@ -308,23 +328,9 @@ static void meson_nfc_drain_cmd(struct meson_nfc *nfc)
->>>>>>>>>>>            */
->>>>>>>>>>>           meson_nfc_cmd_idle(nfc, 0);
->>>>>>>>>>>           meson_nfc_cmd_idle(nfc, 0);
->>>>>>>>>>> +    meson_nfc_wait_cmd_finish(nfc, 1000);
->>>>>>>>>>>       }
->>>>>>>>>>>       -static int meson_nfc_wait_cmd_finish(struct meson_nfc *nfc,
->>>>>>>>>>> -                     unsigned int timeout_ms)
->>>>>>>>>>> -{
->>>>>>>>>>> -    u32 cmd_size = 0;
->>>>>>>>>>> -    int ret;
->>>>>>>>>>> -
->>>>>>>>>>> -    /* wait cmd fifo is empty */
->>>>>>>>>>> -    ret = readl_relaxed_poll_timeout(nfc->reg_base + NFC_REG_CMD, cmd_size,
->>>>>>>>>>> -                     !NFC_CMD_GET_SIZE(cmd_size),
->>>>>>>>>>> -                     10, timeout_ms * 1000);
->>>>>>>>>>> -    if (ret)
->>>>>>>>>>> -        dev_err(nfc->dev, "wait for empty CMD FIFO time out\n");
->>>>>>>>>>> -
->>>>>>>>>>> -    return ret;
->>>>>>>>>>> -}
->>>>>>>>>>>         static int meson_nfc_wait_dma_finish(struct meson_nfc *nfc)
->>>>>>>>>>>       {
->>>>>>>>>>> @@ -631,6 +637,48 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
->>>>>>>>>>>           return 0;
->>>>>>>>>>>       }
->>>>>>>>>>>       +static uint8_t meson_nfc_read_byte(struct nand_chip *nand)
->>>>>>>>>>> +{
->>>>>>>>>>> +    struct meson_nfc *nfc = nand_get_controller_data(nand);
->>>>>>>>>>> +
->>>>>>>>>>> +    writel(NFC_CMD_DRD, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>> +    meson_nfc_cmd_idle(nfc, nfc->timing.twb);
->>>>>>>>>>> +    meson_nfc_drain_cmd(nfc);
->>>>>>>>>>> +
->>>>>>>>>>> +    return readl(nfc->reg_base + NFC_REG_BUF);
->>>>>>>>>>> +}
->>>>>>>>>>> +
->>>>>>>>>>> +static int meson_nfc_wait_dev_ready(struct nand_chip *nand)
->>>>>>>>>>> +{
->>>>>>>>>>> +    struct meson_nfc *nfc = nand_get_controller_data(nand);
->>>>>>>>>>> +    u32 cs = nfc->param.chip_select;
->>>>>>>>>>> +    unsigned long cnt = 0;
->>>>>>>>>>> +
->>>>>>>>>>> +    meson_nfc_drain_cmd(nfc);
->>>>>>>>>>> +
->>>>>>>>>>> +    writel(cs | NFC_CMD_CLE | NAND_CMD_STATUS, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>> +
->>>>>>>>>>> +    /* 10 ms. */
->>>>>>>>>>> +    while (cnt < DEVICE_READY_TIMEOUT) {
->>>>>>>>>>> +        uint8_t status;
->>>>>>>>>>> +
->>>>>>>>>>> +        status = meson_nfc_read_byte(nand);
->>>>>>>>>>> +
->>>>>>>>>>> +        if (status & NAND_STATUS_READY)
->>>>>>>>>>> +            break;
->>>>>>>>>>> +
->>>>>>>>>>> +        usleep_range(10, 11);
->>>>>>>>>>> +        cnt++;
->>>>>>>>>>> +    }
->>>>>>>>>>> +
->>>>>>>>>>> +    if (cnt == DEVICE_READY_TIMEOUT) {
->>>>>>>>>>> +        dev_err(nfc->dev, "device ready timeout\n");
->>>>>>>>>>> +        return -ETIMEDOUT;
->>>>>>>>>>> +    }
->>>>>>>>>>> +
->>>>>>>>>>> +    return 0;
->>>>>>>>>>> +}
->>>>>>>>>>> +
->>>>>>>>>>>       static int meson_nfc_write_page_sub(struct nand_chip *nand,
->>>>>>>>>>>                           int page, int raw)
->>>>>>>>>>>       {
->>>>>>>>>>> @@ -643,6 +691,10 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
->>>>>>>>>>>           u32 cmd;
->>>>>>>>>>>           int ret;
->>>>>>>>>>>       +    ret = meson_nfc_wait_dev_ready(nand);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           meson_nfc_select_chip(nand, nand->cur_cs);
->>>>>>>>>>>             data_len =  mtd->writesize + mtd->oobsize;
->>>>>>>>>>> @@ -667,12 +719,20 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
->>>>>>>>>>>                            NFC_CMD_SCRAMBLER_DISABLE);
->>>>>>>>>>>           }
->>>>>>>>>>>       +    ret = meson_nfc_wait_dma_finish(nfc);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
->>>>>>>>>>>           writel(cmd, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>>           meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
->>>>>>>>>>>             meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
->>>>>>>>>>>       +    ret = meson_nfc_wait_dev_ready(nand);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           return ret;
->>>>>>>>>>>       }
->>>>>>>>>>>       @@ -720,6 +780,21 @@ static void meson_nfc_check_ecc_pages_valid(struct meson_nfc *nfc,
->>>>>>>>>>>           } while (!ret);
->>>>>>>>>>>       }
->>>>>>>>>>>       +static inline int meson_nfc_send_read(struct nand_chip *nand)
->>>>>>>>>>> +{
->>>>>>>>>>> +    struct meson_nfc *nfc = nand_get_controller_data(nand);
->>>>>>>>>>> +    u32 cs = nfc->param.chip_select;
->>>>>>>>>>> +    int ret;
->>>>>>>>>>> +
->>>>>>>>>>> +    ret = meson_nfc_wait_dev_ready(nand);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>> +    writel(cs | NFC_CMD_CLE | NAND_CMD_READ0, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>> +
->>>>>>>>>>> +    return 0;
->>>>>>>>>>> +}
->>>>>>>>>>> +
->>>>>>>>>>
->>>>>>>>>> it already calls meson_nfc_queue_rb() in meson_nfc_rw_cmd_prepare_and_execute(). Could you implements this in meson_nfc_queue_rb()? and we can use the irq method.
->>>>>>>>>> also without Ready/Busy pin, the meson_nfc_queue_rb() should change like below:
->>>>>>>>>>         ......
->>>>>>>>>>         #define NFC_CMD_RB_INT    ((0xb << 10) | BIT(18))
->>>>>>>>
->>>>>>>> Sorry, I can see this define as (and it is used in the driver):
->>>>>>>> #define NFC_CMD_RB_INT          BIT(14)
->>>>>>>>
->>>>>>>> in drivers/mtd/nand/raw/meson_nand.c
->>>>>>>>
->>>>>>>> Which one is correct ?
->>>>>>>
->>>>>>> we need to modify the define 'NFC_CMD_RB_INT' as ((0xb << 10) | BIT(18)).
->>>>>>>
->>>>>>
->>>>>> Ok, NFC_CMD_RB_INT - it is "Ready/Busy_Interrupt" ? You suppose that currently it is
->>>>>> defined incorrectly, so irq waiting does not work?
->>>>>
->>>>> Previous defined BIT(14) is for having the external Ready/Busy pin of the NAND device connected to the controller. the new define is for reading status by sending read status(70H) command and read status from the data bus(checking the IO6). the both can work on AXG soc.
->>>>> when the controller RB command is sent, the controller automatically checks the level of external Ready/Busy pin or the data bus(IO6) periodicity. and generate the irq signal if status is ready.
->>>>>
->>>>>>
->>>>>> Thanks, Arseniy
->>>>>>
->>>>>>>>
->>>>>>>> Thanks, Arseniy
->>>>>>>>
->>>>>>>>>>
->>>>>>>>>>         meson_nfc_cmd_idle(nfc, 0);
->>>>>>>>>>         cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
->>>>>>>>>>         writel(cmd, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>         meson_nfc_cmd_idle(nfc, 5);
->>>>>>>>>>         cmd = NFC_CMD_RB | NFC_CMD_RB_INT | nfc->timing.tbers_max;
->>>>>>>>>>         writel(cmd, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>
->>>>>>>>>>         ret = wait_for_completion_timeout(&nfc->completion,
->>>>>>>>>>                           msecs_to_jiffies(timeout_ms));
->>>>>>>>>>         if (ret == 0)
->>>>>>>>>>             ret = -1;
->>>>>>>>>>
->>>>>>>>>>         writel(cs | NFC_CMD_CLE | NAND_CMD_READ0, nfc->reg_base + NFC_REG_CMD);
->>>>>>>>>>         ......
->>>>>>>>>>
->>>>
->>>> Hello Liang!
->>>>
->>>> I've got small questions to clarify Your comment. You suggest two thing IIUC:
->>>>
->>>> 1) Send NAND_CMD_READ0 from 'meson_nfc_queue_rb()'. This means that extra argument is needed to
->>>> 'meson_nfc_queue_rb()' which shows that read operation is going to be performed. We can't send
->>>> NAND_CMD_READ0 for write operation?
->>>
->>> it is ok to me. but does NAND_CMD_READ0 really need to send in the controller driver? i don't find the other controller drivers have to send it for the old vendor NAND device.
->>
->> Hm, I found this command in the old driver. For example without it I get the following error:
->>
->> # nanddump -c -s 0 -l 2048 /dev/mtd0 --oob
->> ECC failed: 3975
->> ECC corrected: 47
->> Number of bad blocks: 10
->> Number of bbt blocks: 0
->> Block size 131072, page size 2048, OOB size 64
->> Dumping data starting at 0x00000000 and ending at 0x00000800...
->>
->> But data is not corrupted and seems ok. With this extra NAND_CMD_READ0 everything is ok - data is still valid and
->> there are no ECC errors.
-
-After sending NAND_CMD_READ0, address, NAND_CMD_READSTART and read 
-status(NAND_CMD_STATUS = 0x70) commands, it should send NAND_CMD_READ0 
-command for exiting the read status mode from the datasheet from NAND 
-device. but previous meson_nfc_queue_rb() only checks the Ready/Busy pin 
-and it doesn't send read status(NAND_CMD_STATUS = 0x70) command.
-i think there is something wrong with the Ready/Busy pin(please check 
-the hardware whether this Ready/Busy pin is connected with SOC) or the 
-source code. i have the board without Ready/Busy pin and prefer to use 
-the nfc command called RB_IO6. it sends NAND_CMD_STATUS command and 
-checks bit6 of the status register of NAND device from the data bus and 
-generate IRQ if ready.
-
->>
->>>
->>>>
->>>> 2) About code and define above, I tried to replace current body of 'meson_nfc_queue_rb()', but it
->>>> didn't work. May be I did it wrong, because what to do with 'meson_nfc_wait_dev_ready()' and it's
->>>> call sites? It must be removed? Could You please explain Your idea in more details? I'm asking You
->>>> because I don't have doc for this NAND controller, so it is very difficult to me to add valid
->>>> logic to this driver without any references
->>>
->>> Could you please try the following? i have tested it on another SOC (not axg).
->>>
->>> static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
->>> {
->>>      u32 cmd, cfg;
->>>      int ret = 0;
->>>
->>>      meson_nfc_cmd_idle(nfc, nfc->timing.twb);
->>>      meson_nfc_drain_cmd(nfc);
->>>      meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
->>>
->>>      cfg = readl(nfc->reg_base + NFC_REG_CFG);
->>>      cfg |= NFC_RB_IRQ_EN;
->>>      writel(cfg, nfc->reg_base + NFC_REG_CFG);
->>>
->>>      reinit_completion(&nfc->completion);
->>>
->>>      meson_nfc_cmd_idle(nfc, 0);
->>>      cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
->>>      writel(cmd, nfc->reg_base + NFC_REG_CMD);
->>>      meson_nfc_cmd_idle(nfc, 5);
->>>      cmd = NFC_CMD_RB | NFC_CMD_RB_INT
->>>          | nfc->param.chip_select | nfc->timing.tbers_max;
->>>      writel(cmd, nfc->reg_base + NFC_REG_CMD);
->>>      meson_nfc_drain_cmd(nfc);
->>>
->>>      ret = wait_for_completion_timeout(&nfc->completion,
->>>                        msecs_to_jiffies(timeout_ms));
->>>      if (ret == 0)
->>>          ret = -1;
->>>
->>>      writel(1 << 31, nfc->reg_base + NFC_REG_CMD);
->>>
->>>      return ret;
->>> }
->>
->> Ok! Thanks, I'll try it!
->>
->> Thanks, Arseniy
-> 
-> Hello @Liang, I tried this code, seems with this implementation NAND driver works very slow,
-> here is for example output buring bad blocks lookup:
-> 
-> [    2.060835] Scanning device for bad blocks
-> [    3.350085] Bad eraseblock 20 at 0x000000280000
-> [    3.536389] Freeing initrd memory: 11808K
-> [   39.133952] Bad eraseblock 581 at 0x0000048a0000
-> [   44.837917] Bad eraseblock 671 at 0x0000053e0000
-> [   45.677964] Bad eraseblock 685 at 0x0000055a0000
-> [   83.637917] Bad eraseblock 1279 at 0x000009fe0000
-> [  132.833318] modprobe (56) used greatest stack depth: 12672 bytes left
-> 
-> 
-> Take a look at timeouts. I used Your variant of 'meson_nfc_queue_rb()' from above,
-> #define NFC_CMD_RB_INT is ((0xb << 10) | BIT(18)). I tested it with my ports of
-> of dev ready calls from the old vendor's driver.
-> 
-> Thanks, Arseniy
-
-Yes, there is something wrong. i make a patch and it works on AXG 
-platfrom. please try it. Thanks.
-
-diff --git a/drivers/mtd/nand/raw/meson_nand.c 
-b/drivers/mtd/nand/raw/meson_nand.c
-old mode 100644
-new mode 100755
-index 074e14225c06..529d1a41a4a4
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -37,7 +37,7 @@
-  #define NFC_CMD_SCRAMBLER_ENABLE       BIT(19)
-  #define NFC_CMD_SCRAMBLER_DISABLE      0
-  #define NFC_CMD_SHORTMODE_DISABLE      0
--#define NFC_CMD_RB_INT         BIT(14)
-+#define NFC_CMD_RB_INT ((0xb << 10) | BIT(18) | BIT(16))
-
-  #define NFC_CMD_GET_SIZE(x)    (((x) >> 22) & GENMASK(4, 0))
-
-@@ -392,7 +392,7 @@ static void meson_nfc_set_data_oob(struct nand_chip 
-*nand,
-         }
-  }
-
--static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
-+static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms, 
-int cmd_read0)
-  {
-         u32 cmd, cfg;
-         int ret = 0;
-@@ -407,17 +407,29 @@ static int meson_nfc_queue_rb(struct meson_nfc 
-*nfc, int timeout_ms)
-
-         reinit_completion(&nfc->completion);
-
-+       cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
-+       writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+       meson_nfc_cmd_idle(nfc, 5);
-+
-         /* use the max erase time as the maximum clock for waiting R/B */
--       cmd = NFC_CMD_RB | NFC_CMD_RB_INT
--               | nfc->param.chip_select | nfc->timing.tbers_max;
-+       cmd = NFC_CMD_RB | NFC_CMD_RB_INT | nfc->timing.tbers_max;
-         writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+       meson_nfc_cmd_idle(nfc, 2);
-
-         ret = wait_for_completion_timeout(&nfc->completion,
-                                           msecs_to_jiffies(timeout_ms));
-         if (ret == 0)
--               ret = -1;
-+               return -1;
-
--       return ret;
-+       if (!cmd_read0)
-+               return 0;
-+
-+       cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
-+       writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+       meson_nfc_drain_cmd(nfc);
-+       meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-+
-+       return 0;
-  }
-
-  static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
-@@ -623,7 +635,7 @@ static int 
-meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
-         if (in) {
-                 nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | 
-NAND_CMD_READSTART;
-                 writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
--               meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
-+               meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), 1);
-         } else {
-                 meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
-         }
-@@ -669,7 +681,7 @@ static int meson_nfc_write_page_sub(struct nand_chip 
-*nand,
-
-         cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
-         writel(cmd, nfc->reg_base + NFC_REG_CMD);
--       meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
-+       meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), 0);
-
-         meson_nfc_dma_buffer_release(nand, data_len, info_len, 
-DMA_TO_DEVICE);
-
-@@ -952,7 +964,7 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
-                         break;
-
-                 case NAND_OP_WAITRDY_INSTR:
--                       meson_nfc_queue_rb(nfc, 
-instr->ctx.waitrdy.timeout_ms);
-+                       meson_nfc_queue_rb(nfc, 
-instr->ctx.waitrdy.timeout_ms, 0);
-                         if (instr->delay_ns)
-                                 meson_nfc_cmd_idle(nfc, delay_idle);
-                         break;
-> 
->>
->>>
->>> also we need to check and return the return value for meson_nfc_queue_rb() in meson_nfc_rw_cmd_prepare_and_execute() and meson_nfc_write_page_sub().
->>>
->>>>
->>>> May be I can send v2 patchset for review without this change, as v2 already includes udpate for OOB
->>>> handling which is I think more critical?
->>>>
->>>
->>> sure, it is up to you. it is more important, thanks again.
->>>
->>>> Thanks, Arseniy
->>>>
->>>>>>>>>
->>>>>>>>>         Thanks for reply! I'll try this code! One more question about OOB processing in this
->>>>>>>>> driver (as You are author of it):
->>>>>>>>>
->>>>>>>>>        OOB size is 64 bytes, but for example if I have 1K ECC, 2 bytes user bytes and 14
->>>>>>>>>        bytes for ECC code for each 1K. In this case I have access to only 32 bytes of OOB:
->>>>>>>>>        2 x (2 user bytes + 14 ECC bytes). Correct me if i'm wrong, but rest of OOB (next
->>>>>>>>>        32 bytes) become unavailable (in both raw and ECC modes) ?
->>>>>>>>>
->>>>>>>>> Thanks, Arseniy
->>>>>>>>>
->>>>>>>>>>>       static int meson_nfc_read_page_sub(struct nand_chip *nand,
->>>>>>>>>>>                          int page, int raw)
->>>>>>>>>>>       {
->>>>>>>>>>> @@ -734,10 +809,18 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
->>>>>>>>>>>           data_len =  mtd->writesize + mtd->oobsize;
->>>>>>>>>>>           info_len = nand->ecc.steps * PER_INFO_BYTE;
->>>>>>>>>>>       +    ret = meson_nfc_wait_dev_ready(nand);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           ret = meson_nfc_rw_cmd_prepare_and_execute(nand, page, DIRREAD);
->>>>>>>>>>>           if (ret)
->>>>>>>>>>>               return ret;
->>>>>>>>>>>       +    ret = meson_nfc_send_read(nand);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           ret = meson_nfc_dma_buffer_setup(nand, meson_chip->data_buf,
->>>>>>>>>>>                            data_len, meson_chip->info_buf,
->>>>>>>>>>>                            info_len, DMA_FROM_DEVICE);
->>>>>>>>>>> @@ -754,6 +837,9 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
->>>>>>>>>>>           }
->>>>>>>>>>>             ret = meson_nfc_wait_dma_finish(nfc);
->>>>>>>>>>> +    if (ret)
->>>>>>>>>>> +        return ret;
->>>>>>>>>>> +
->>>>>>>>>>>           meson_nfc_check_ecc_pages_valid(nfc, nand, raw);
->>>>>>>>>>>             meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_FROM_DEVICE);
->>>>>>>>>>
->>>>>>>>
->>>>>>>
->>>>>>
->>>>>
->>>>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQXJzZW5peSwKCk9uIDIwMjMvNC8yMCAxNzozNywgQXJzZW5peSBLcmFzbm92IHdyb3RlOgo+
+IFsgRVhURVJOQUwgRU1BSUwgXQo+IAo+IE9uIDE5LjA0LjIwMjMgMDk6NDEsIEFyc2VuaXkgS3Jh
+c25vdiB3cm90ZToKPj4KPj4KPj4gT24gMTkuMDQuMjAyMyAwNjowNSwgTGlhbmcgWWFuZyB3cm90
+ZToKPj4+IEhpIEFyc2VuaXksCj4+Pgo+Pj4gT24gMjAyMy80LzE4IDIyOjU3LCBBcnNlbml5IEty
+YXNub3Ygd3JvdGU6Cj4+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Pj4KPj4+Pgo+Pj4+Cj4+Pj4g
+T24gMTguMDQuMjAyMyAxNjoyNSwgTWlxdWVsIFJheW5hbCB3cm90ZToKPj4+Pj4gSGkgQXJzZW5p
+eSwKPj4+Pj4KPj4+Pj4+Pj4gSGVsbG8gYWdhaW4gQExpYW5nIEBNaXF1ZWwhCj4+Pj4+Pj4+Cj4+
+Pj4+Pj4+IE9uZSBtb3JlIHF1ZXN0aW9uIGFib3V0IE9PQiBhY2Nlc3MsIGFzIEkgY2FuIHNlZSBj
+dXJyZW50IGRyaXZlciB1c2VzIHRoZSBmb2xsb3dpbmcKPj4+Pj4+Pj4gY2FsbGJhY2tzOgo+Pj4+
+Pj4+Pgo+Pj4+Pj4+PiAgICAgICBuYW5kLT5lY2Mud3JpdGVfb29iX3JhdyA9IG5hbmRfd3JpdGVf
+b29iX3N0ZDsKPj4+Pj4+Pj4gICAgICAgbmFuZC0+ZWNjLndyaXRlX29vYiA9IG5hbmRfd3JpdGVf
+b29iX3N0ZDsKPj4+Pj4+Pj4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gRnVuY3Rpb24gJ25hbmRfd3JpdGVf
+b29iX3N0ZCgpJyB3cml0ZXMgZGF0YSB0byB0aGUgZW5kIG9mIHRoZSBwYWdlLiBCdXQgYXMgSQo+
+Pj4+Pj4+PiBjYW4gc2VlIGJ5IGR1bXBpbmcgJ2RhdGFfYnVmJyBkdXJpbmcgcmVhZCwgcGh5c2lj
+YWwgbGF5b3V0IG9mIGVhY2ggcGFnZSBpcyB0aGUKPj4+Pj4+Pj4gZm9sbG93aW5nICgxS0IgRUND
+KToKPj4+Pj4+Pj4KPj4+Pj4+Pj4gMHgwMDA6IFvCoMKgwqDCoMKgwqDCoMKgIDEgS0Igb2YgZGF0
+YSAgICAgICAgXQo+Pj4+Pj4+PiAweDQwMDogWyAyQiB1c2VyIGRhdGFdIFsgMTRCIEVDQyBjb2Rl
+XQo+Pj4+Pj4+PiAweDQxMDogW8KgwqDCoMKgwqDCoMKgwqAgMSBLQiBvZiBkYXRhICAgICAgICBd
+wqDCoMKgIChBKQo+Pj4+Pj4+PiAweDgxMDogWyAyQiB1c2VyIGRhdGFdIFsgMTRCIEVDQyBjb2Rl
+XQo+Pj4+Pj4+PiAweDgyMDogW8KgwqDCoMKgwqDCoMKgIDMyQiB1bnVzZWQgICAgICAgICAgIF0K
+Pj4+Pj4+Pj4KPj4+Pj4+Pj4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gU28sIGFmdGVyICduYW5kX3dyaXRl
+X29vYl9zdGQoKScgKGxldCBkYXRhIGJlIHNlcXVlbmNlIGZyb20gWzB4MCAuLi4gMHgzZl0pLAo+
+Pj4+Pj4+PiBwYWdlIHdpbGwgbG9vayBsaWtlIHRoaXM6Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IDB4MDAw
+OiBbwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4RkYgICAgICAgICAgICBdCj4+Pj4+Pj4+IDB4
+NDAwOiBbwqDCoMKgwqDCoMKgwqDCoMKgwqAgLi4uLi4uLi4gICAgICAgICAgXQo+Pj4+Pj4+PiAw
+eDdmMDogW8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweEZGICAgICAgICAgICAgXQo+Pj4+Pj4+
+PiAweDgwMDogWyAwMCAuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLiAgXQo+Pj4+Pj4+PiAweDgzMDog
+WyAuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4gM2YgXQo+Pj4+Pj4+Pgo+Pj4+Pj4+PiBIZXJlIHdl
+IGhhdmUgdHdvIHByb2JsZW1zOgo+Pj4+Pj4+PiAxKSBBdHRlbXB0IHRvIGRpc3BsYXkgcmF3IGRh
+dGEgYnkgJ25hbmRkdW1wJyB1dGlsaXR5IHByb2R1Y2VzIGEgbGl0dGxlIGJpdAo+Pj4+Pj4+PiAg
+ICAgICBpbnZhbGlkIG91dHB1dCwgYXMgZHJpdmVyIHJlbGllcyBvbiBsYXlvdXQgKEEpIGZyb20g
+YWJvdmUuIEUuZy4gT09CIGRhdGEKPj4+Pj4+Pj4gICAgICAgaXMgYXQgMHg0MDAgYW5kIDB4ODEw
+LiBIZXJlIGlzIGFuIGV4YW1wbGUgKGF0dGVtcHQgdG8gd3JpdGUgMHgxMSAweDIyIDB4MzMgMHg0
+NCk6Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IDB4MDAwMDA3ZjA6IDExIDIyIGZmIGZmIGZmIGZmIGZmIGZm
+IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmICB8LiIuLi4uLi4uLi4uLi4uLnwKPj4+Pj4+Pj4gICAg
+ICBPT0IgRGF0YTogZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYg
+ZmYgIHwuLi4uLi4uLi4uLi4uLi4ufAo+Pj4+Pj4+PiAgICAgIE9PQiBEYXRhOiAzMyA0NCBmZiBm
+ZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiAgfDNELi4uLi4uLi4uLi4uLi58
+Cj4+Pj4+Pj4+ICAgICAgT09CIERhdGE6IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
+IGZmIGZmIGZmIGZmIGZmICB8Li4uLi4uLi4uLi4uLi4uLnwKPj4+Pj4+Pj4gICAgICBPT0IgRGF0
+YTogZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgIHwuLi4u
+Li4uLi4uLi4uLi4ufAo+Pj4+Pj4+Pgo+Pj4+Pj4+IEhpIEFyc2VuaXksCj4+Pj4+Pj4KPj4+Pj4+
+PiBJIHJlYWxpemVkIHRoZSB3cml0ZV9vb2JfcmF3KCkgYW5kIHdyaXRlX29vYigpIGFyZSB3cm9u
+ZyBpbiBtZXNvbl9uYW5kLmMuIEkgc3VnZ2VzdCBib3RoIG9mIHRoZW0gc2hvdWxkIGJlIHJld29y
+a2VkIGFuZCBmb2xsb3cgdGhlIGZvcm1hdCBvZiBtZXNvbiBuYW5kIGNvbnRyb2xsZXIuIGkuZS4g
+Zmlyc3RseSBmb3JtYXQgdGhlIGRhdGEgaW4gTGF5b3V0IChBKSBhbmQgdGhlbiB3cml0ZS4gcmVh
+ZGluZyBpcyBmaXJzdGx5IHJlYWRpbmcgdGhlIGRhdGEgb2YgbGF5b3V0IChBKSBhbmQgdGhlbiBj
+b21wb3N0IHRoZSBsYXlvdXQgKEIpLgo+Pj4+Pj4KPj4+Pj4+IElJVUMgYWZ0ZXIgc3VjaCB3cml0
+aW5nIG9ubHkgT09CIChlLmcuIHVzZXIgYnl0ZXMpIGFjY29yZGluZyBsYXlvdXQgKEEpLCBodyB3
+aWxsIGFsc28gd3JpdGUgRUNDIGNvZGVzLCBzbwo+Pj4+Pj4gaXQgd2lsbCBiZSBpbXBvc3NpYmxl
+IHRvIHdyaXRlIGRhdGEgdG8gdGhpcyBwYWdlIGxhdGVyLCBiZWNhdXNlIHdlIGNhbm5vdCB1cGRh
+dGUgRUNDIGNvZGVzIHByb3Blcmx5IGZvciB0aGUgbmV3bHkKPj4+Pj4+IHdyaXR0ZW4gZGF0YSAo
+d2UgY2FuJ3QgdXBkYXRlIGJpdHMgZnJvbSAwIHRvIDEpLgo+Pj4+Pj4KPj4+Pj4+Pgo+Pj4+Pj4+
+Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IDIpIEF0dGVtcHQgdG8gcmVhZCBkYXRhIGluIEVDQyBtb2RlIHdp
+bGwgZmFpbCwgYmVjYXVzZSBJSVVDIHBhZ2UgaXMgaW4gZGlydHkKPj4+Pj4+Pj4gICAgICAgc3Rh
+dGUgKEkgbWVhbiB3YXMgd3JpdHRlbiBhdCBsZWFzdCBvbmNlKSBhbmQgTkFORCBjb250cm9sbGVy
+IHRyaWVzIHRvIHVzZQo+Pj4+Pj4+PiAgICAgICBFQ0MgY29kZXMgYXQgMHg0MDAgYW5kIDB4ODEw
+LCB3aGljaCBhcmUgb2J2aW91c2x5IGJyb2tlbiBpbiB0aGlzIGNhc2UuIFRodXMKPj4+Pj4+Pgo+
+Pj4+Pj4+IEFzIGkgc2FpZCBhYm92ZSwgd3JpdGVfb29iX3JhdygpIGFuZCB3cml0ZV9vb2IoKSBz
+aG91bGQgYmUgcmV3b3JrZWQuCj4+Pj4+Pj4gaSBkb24ndCBrbm93IHdoYXQgZG8geW91IG1lYW4g
+cGFnZSB3YXMgd3JpdHRlbiBhdCBsZWFzdCBvbmNlLiBhbnl3YXkgdGhlIHBhZ2Ugc2hvdWxkIGJl
+IHdyaXR0ZW4gb25jZSwgZXZlbiBqdXN0IHdyaXRlX29vYl9yYXcoKS4KPj4+Pj4+Cj4+Pj4+PiBT
+b3JyeSwgWW91IG1lYW4gdGhhdCBhZnRlciBPT0Igd3JpdGUsIHdlIGNhbm5vdCB3cml0ZSB0byB0
+aGUgZGF0YSBhcmVhIChlLmcuIDB4MCAuLiAweDgxMCkgdW50aWwgcGFnZSB3aWxsIGJlIGVyYXNl
+ZD8gRm9yIGV4YW1wbGUKPj4+Pj4+IEpGRlMyIHdyaXRlcyB0byBPT0Igb3duIG1hcmtlcnMsIHRo
+ZW4gaXQgdHJpZXMgdG8gd3JpdGUgdG8gdGhlIGRhdGEgYXJlYSBvZiBzdWNoIHBhZ2UuCj4+Pj4K
+Pj4+PiBATGlhbmcsIEknbGwgZGVzY3JpYmUgY3VycmVudCB0ZXN0IGNhc2UgaW4gZGV0YWlsczoK
+Pj4+PiAxKSBJIGhhdmUgZXJhc2VkIHBhZ2UsIEkgY2FuIHJlYWQgaXQgaW4gIGJvdGggcmF3IGFu
+ZCBlY2MgbW9kZXMgLSBubyBwcm9ibGVtIChpdCBpcyBmdWxsIG9mIDB4RkYpLgo+Pj4+IDIpIEkg
+KEpGRlMyIGZvciBleGFtcGxlKSB3YW50IHRvIHdyaXRlIG9ubHkgT09CIC0gbGV0IGl0IGJlIGNs
+ZWFuIG1hcmtlcnMuCj4+Pj4gMykgSSB1c2UgcmF3IHdyaXRlIHRvIHRoZSBuZWVkZWQgcGFnZSAo
+cGxlYXNlIGNvcnJlY3QgbWUgaWYgaSdtIHdyb25nKS4gRm91ciBieXRlcwo+Pj4+ICAgICAgYXQg
+MHg0MDAgYW5kIDB4ODEwIGFyZSB1cGRhdGVkLiBBbGwgb3RoZXIgYnl0ZXMgc3RpbGwgMHhmZi4K
+Pj4+PiA0KSBOb3csIHdoZW4gaSdtIHRyeWluZyB0byByZWFkIHRoaXMgcGFnZSBpbiBFQ0MgbW9k
+ZSwgSSBnZXQgRUNDIGVycm9yczogSUlVQyB0aGlzCj4+Pj4gICAgICBoYXBwZW5zIGJlY2F1c2Ug
+ZnJvbSBjb250cm9sbGVyIHBvaW50IG9mIHZpZXcgRUNDIGNvZGVzIGFyZSBpbnZhbGlkIGZvciBj
+dXJyZW50Cj4+Pj4gICAgICBkYXRhIChhbGwgRUNDcyBhcmUgMHhmZikuIElzIHRoaXMgYmVoYXZp
+b3VyIGlzIG9rPwo+Pj4KPj4+IFllcywgaXQgaXMgZXhhY3RseSByZXBvcnRlZCBFQ0MgZXJyb3Jz
+Lgo+Pgo+PiBJIHNlZSwgc28gaWYgd2Ugd3JpdGUgT09CIChlLmcuIHVzaW5nIHJhdyBtb2RlKSwg
+dGhlcmUgaXMgbm8gd2F5IHRvIHJlYWQgdGhpcyBwYWdlIGluIEVDQyBtb2RlIGxhdGVyPyBBbmQg
+dGhlCgpPZiBjb3Vyc2UsIHRoZXJlIGlzIG5vIEVDQyBwYXJpdHkgYnl0ZXMgaW4gaXQ7IG9yIHJh
+dyB3cml0ZSB0aGUgZGF0YSAKd2l0aCB0aGUgRUNDIHBhcml0eSBieXRlcyBwZXIgdGhlIGxheW91
+dCAoQSkgeW91IGRlc2NyaWJlIGFib3ZlLgoKPj4gb25seSB3YXkgdG8gbWFrZSBpdCByZWFkYWJs
+ZSBpcyB0byB3cml0ZSBpdCBpbiBFQ0MgbW9kZSwgYnV0IGJlZm9yZSB0aGlzIHdyaXRlLCB3ZSBu
+ZWVkIHRvIHJlYWQgaXQncwo+PiB1c2VyJ3MgYnl0ZSAoZnJvbSBwcmV2aW91cyBPT0Igd3JpdGUp
+IGluIHJhdyBtb2RlLCBwdXQgaXQgdG8gaW5mbyBidWYgKGFzIHVzZXIncyBieXRlcykgYW5kIHdy
+aXRlIHRoaXMgcGFnZS4gSW4gdGhpcwo+PiBjYXNlIE5BTkQgY29udHJvbGxlciB3aWxsIGdlbmVy
+YXRlIEVDQyBjb2RlcyBpbmNsdWRpbmcgdXNlcidzIGJ5dGUgYW5kIHBhZ2UgYmVjb21lIHJlYWRh
+YmxlIGluIEVDQyBtb2RlCj4+IGFnYWluLgoKeWVzLCB5b3UgYXJlIHJpZ2h0LgoKPj4KPj4+Cj4+
+Pj4gNSkgT2ssIGRvbid0IGNhcmUgb24gdGhlc2UgRUNDIGVycm9ycywgbGV0J3MgZ28gZnVydGhl
+ci4KPj4+PiA2KSBJJ20gZ29pbmcgdG8gd3JpdGUgc2FtZSBwYWdlIGluIEVDQyBtb2RlIC0gaG93
+IHRvIGRvIGl0IGNvcnJlY3RseT8gVGhlcmUgaXMgYWxyZWFkeQo+Pj4+ICAgICAgNCBPT0IgYnl0
+ZXMsIGNvbnNpZGVyZWQgdG8gYmUgY292ZXJlZCBieSBFQ0MgKGJ1dCBpbiBmYWN0IG5vdyAtIEVD
+QyBhcmVhIGlzIEZGZWQpLgo+Pj4KPj4+IElmIHN0ZXAgNCBoYXMgZXhjdXRlZCAicHJvZ3JhbSIg
+Y29tbWFuZCBhdCB0aGUgcGFnZSAobmFuZF93cml0ZV9vb2Jfc3RkKCkgZG9lcyksIGl0IGNhbid0
+IGJlIHdyaXR0ZW4gYWdhaW4gYmVmb3JlIGVyYXNpbmcgdGhlIHBhZ2UoYmxvY2spLiBzbyB3ZSBo
+YXZlIHRvIHJlYWQgdGhlIHdob2xlIHBhZ2UgaW4gdGhlIGRkciBhbmQgY2hhbmdlIHRoZSBjb250
+ZW50LCBlcmFzZSBibG9jaywgd3JpdGUgaXQgYWdhaW4uCj4+Pgo+Pj4gSSBkb24ndCB0aGluayBK
+ZmZzMiBoYXMgdGhlIHNhbWUgc3RlcHMgKDEtNikgYXMgeW91IHNhaWQgYWJvdmUuIGFyZSB5b3Ug
+c3VyZSB0aGF0IGhhcHBlcyBvbiBKZmZzMiBvciBqdXN0IGFuIGV4YW1wbGU/Cj4gCj4gCj4+Cj4+
+IEkganVzdCBjaGVja2VkIEpGRlMyIG1vdW50L3Vtb3VudCBhZ2FpbiwgaGVyZSBpcyB3aGF0IGkg
+c2VlOgo+PiAwKSBGaXJzdCBhdHRlbXB0IHRvIG1vdW50IEpGRlMyLgo+PiAxKSBJdCB3cml0ZXMg
+T09CIHRvIHBhZ2UgTiAoaSdtIHVzaW5nIHJhdyB3cml0ZSkuIEl0IGlzIGNsZWFubWFya2VyIHZh
+bHVlIDB4ODUgMHgxOSAweDAzIDB4MjAuIE1vdW50IGlzIGRvbmUuCj4+IDIpIFVtb3VudCBKRkZT
+Mi4gRG9uZS4KPj4gMykgU2Vjb25kIGF0dGVtcHQgdG8gbW91bnQgSkZGUzIuCj4+IDQpIEl0IHJl
+YWRzIE9PQiBmcm9tIHBhZ2UgTiAoaSdtIHVzaW5nIHJhdyByZWFkKS4gVmFsdWUgaXMgMHg4NSAw
+eDE5IDB4MDMgMHgyMC4gRG9uZS4KPj4gNSkgSXQgcmVhZHMgcGFnZSBOIGluIEVDQyBtb2RlLCBh
+bmQgaSBnZXQ6Cj4+ICAgICAgamZmczI6IG10ZC0+cmVhZCgweDEwMCBieXRlcyBmcm9tIE4pIHJl
+dHVybmVkIEVDQyBlcnJvcgo+PiA2KSBNb3VudCBmYWlsZWQuCj4+Cj4+IFdlIGFscmVhZHkgaGFk
+IHByb2JsZW0gd2hpY2ggbG9va3MgbGlrZSB0aGlzIG9uIGFub3RoZXIgZGV2aWNlLiBTb2x1dGlv
+biB3YXMgdG8gdXNlIE9PQiBhcmVhIHdoaWNoIGlzCj4+IG5vdCBjb3ZlcmVkIGJ5IEVDQyBmb3Ig
+SkZGUzIgY2xlYW5tYXJrZXJzLgoKb2ssIHNvIHRoZXJlIGlzIG5vdCBFQ0MgcGFyaXR5IGJ5dGVz
+IGFuZCBtdGQtPnJlYWQoKSByZXR1cm5zIEVDQyBlcnJvci4KZG9lcyBpdCBoYXZlIHRvIHVzZSBy
+YXcgd3JpdGUvcmVhZCBvbiBzdGVwIDEpIGFuZCA0KT8KCj4+Cj4+IFRoYW5rcywgQXJzZW5peQo+
+Pgo+IAo+IEBMaWFuZywKPiAKPiBTbWFsbCBhZGRpdGlvbiwgaWYgaSdtIHRyeWluZyB0byBpbXBs
+ZW1lbnQgT09CIHJlYWQvd3JpdGUgaW4gRUNDIG1vZGUsIHRoZW4gc3RlcCA1KSB3aWxsIHN1Y2Nl
+c3MsCj4gYnV0IGxhdGVyLCBKRkZTMiB0cmllcyB0byB3cml0ZSB0aGlzIHBhZ2UgKGluIEVDQyBt
+b2RlIG9mIGNvdXJzZSksIGFuZCBpbiB0aGlzIGNhc2UgRUNDIGNvZGVzIHdpbGwKPiBiZSBicm9r
+ZW4sIGJlY2F1c2Ugd2UgY2FuJ3QgdXBkYXRlIHRoZW0gcHJvcGVybHkgd2l0aG91dCBlcmFzaW5n
+IHdob2xlIHBhZ2UuCj4gCj4gUGxlYXNlIHRha2UgYSBsb29rIGF0IHRoaXMgcGF0Y2ggZnJvbSBt
+eSBjb2xsZWFndWVzOgo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDIzMDMyOTExNDI0
+MC4zNzg3MjItMS1tbWt1cmJhbm92QHNiZXJkZXZpY2VzLnJ1Cj4gSXQgaXMgcmVsYXRlZCB3aXRo
+ICJXZSBhbHJlYWR5IGhhZCBwcm9ibGVtIHdoaWNoIGxvb2tzIGxpa2UgdGhpcyBvbiBhbm90aGVy
+IGRldmljZSIgZnJvbSBhYm92ZToKPiBpbiAnZjUwbDFnNDFsYl9vb2JsYXlvdXRfZnJlZSgpJyB3
+ZSByZXNlcnZlIDIgYnl0ZXMgaW4gbm9uLUVDQyBhcmVhIGZvciBiYWQgYmxvY2sgbWFya2Vycy4K
+Ckl0IGlzIGFib3V0IHRoZSBTUEkgTkFORCBhbmQgdXNlIGFub3RoZXIgY29udHJvbGxlciBjYWxs
+ZWQgc3BpZmMuCmJ1dCBpbiBtZXNvbiBuZmMsIGl0IGlzIGhlYXZpbHkgZGVwZW5kZWQgb24gdGhl
+IHByZS1jcmVhdGVkIEJCVCBpbiBOQU5EIApkZXZpY2UuCgoKPiAKPiBUaGFua3MsIEFyc2VuaXkK
+PiAKPiAKPj4+Cj4+Pj4KPj4+PiBUaGF0J3Mgd2h5IEkgYXNrZWQgWW91ciBvcGluaW9uIGFib3V0
+IG1vdmluZyBPT0IgZGF0YSB0byBub25wcm90ZWN0ZWQgYnkgRUNDIGFyZWEgKGFuZAo+Pj4+IGxl
+YXZlIHVzZXIncyBieXRlcyB1bnRvdWNoZWQpLiBJbiB0aGlzIGNhc2UgT09CIGFjY2VzcyBpcyBm
+cmVlIGFuZCBub3QgbGlua2VkIHdpdGggRUNDCj4+Pj4gY29kZXMgd2hpY2ggYWxzbyBjb3ZlcnMg
+ZGF0YS4KPj4+Pgo+Pj4+IFRoYW5rcywgQXJzZW5peQo+Pj4+Cj4+Pj4+Cj4+Pj4+IEEgcGFnZSBp
+cyB3cml0dGVuIGFmdGVyIHR3byBzdGVwczoKPj4+Pj4gLSBsb2FkaW5nIHRoZSBkYXRhIGludG8g
+dGhlIE5BTkQgY2hpcCBjYWNoZSAodGhhdCdzIHdoZW4geW91IHVzZSB0aGUKPj4+Pj4gICAgIGJ1
+cykKPj4+Pj4gLSBwcm9ncmFtbWluZyB0aGUgTkFORCBhcnJheSB3aXRoIHRoZSBkYXRhIGxvYWRl
+ZCBpbiBjYWNoZSAodGhhdCdzIHdoZW4KPj4+Pj4gICAgIHlvdSB3YWl0KQo+Pj4+Pgo+Pj4+PiBJ
+biB0aGVvcnkgaXQgZG9lcyBub3QgbWF0dGVyIHdoZXJlIHlvdSB3cml0ZSBpbiB0aGUgY2FjaGUs
+IGl0J3MgcmVndWxhcgo+Pj4+PiBEUkFNLCB5b3UgY2FuIG1ha2UgcmFuZG9tIHdyaXRlcyB0aGVy
+ZSB3aXRoIHRoZSBhcHByb3ByaWF0ZSBOQU5ECj4+Pj4+IGNvbW1hbmRzLiBPZiBjb3Vyc2Ugd2hl
+biB1c2luZyBlbWJlZGRlZCBoYXJkd2FyZSBFQ0MgZW5naW5lcywgdGhlCj4+Pj4+IGNvbnRyb2xs
+ZXJzIHVzdWFsbHkgZXhwZWN0IHRvIGJlIGZlZCBpbiBhIGNlcnRhaW4gd2F5IGluIG9yZGVyIHRv
+Cj4+Pj4+IHByb2R1Y2UgdGhlIEVDQyBieXRlcyBhbmQgcHV0IHRoZW0gYXQgdGhlIHJpZ2h0IGxv
+Y2F0aW9uIGluIGNhY2hlLgo+Pj4+Pgo+Pj4+PiBBbmQgdGhlbiwgd2hlbiB5b3UgYWN0dWFsbHkg
+c2VuZCB0aGUgInByb2dyYW0iIGNvbW1hbmQsIHRoZSBOQU5EIGNlbGxzCj4+Pj4+IGFjdHVhbGx5
+IGdldCBwcm9ncmFtbWVkIGJhc2VkIG9uIHdoYXQgaGFzIGJlZW4gbG9hZGVkIGluIGNhY2hlLgo+
+Pj4+Cj4+Pj4gVGhhbmtzIGZvciB0aGlzIGRldGFpbHMhIFZlcnkgaW50ZXJlc3RpbmchCj4+Pj4K
+Pj4+Pgo+Pj4+Pgo+Pj4+PiBUaGFua3MsCj4+Pj4+IE1pcXXDqGwKPj4+PgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
