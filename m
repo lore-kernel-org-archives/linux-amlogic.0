@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0C39C77B60
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 05:29:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58DC5C77B78
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Apr 2023 07:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZsJeVnyj5ZOlUIIe/QqGtmvuDYZgBYB1WNE1dVhiz2o=; b=gXhOz6G+2gYhfW
-	lNb8Xjemx+Cy3ZnUicUuQJxCtqtZQqlFLHWx28iB0NIpXK3xjdXZjZ1IdYac2Ox/j8bOsRa4JmRhv
-	DDvppd1z4QoHLwYAdnZwXcfQZFrwbqHchH6V+UZX669Wv+9Vmgyp7KOkiX8vG2bjx1TWLOEk9wUvp
-	1PMnKkxwepiJoOyCVxETWsr8IEs+vKcds2u6vnD4+PTx3ALX1SGrUXXNAMr8zjHX2bu6MbYtGVg3d
-	zVm1HuqEYs9Ogs6MApQ285maEdw7l+2xuo7xvsN6IkZg8/j2dDIbH1qwn4JCSVYdn4fzr2XQQdyDx
-	0Uw+vgDuGuxT6K6ZQBVA==;
+	List-Owner; bh=nF6k55MhqpTnqknSX7T+q62CwW5c1FgQ7do+dTJDMgo=; b=ZUdMjtjZbu8P13
+	uye3b8r/4z9K8ACu5MX+iHtBQip1JiZZPEhaZIWBH1rKnKy1tYZskRyB2QyE4c7rAhcmnDLitFIL9
+	rrsUX9mHGLUTdWHQTxFZbGo9x/SkRZ6QgNjz50yAeNynXM5jTK5T4VsafhiTWhfhPh/O6M/MlYjLq
+	rETgHPQt2XCcmNjNfZ01NhgHqyR6aBqX706DoBmlkSZtwbtxA7BIsbjkCI5XXqcQpn0gfxpZGvf+Y
+	U7YYL5hhorB3ygWHRTe3KXsFJMLC4Qk4ctjBGDYeu7Npb4lX3BZIMi0woQhs6w3sbRPWVKa1TFIqH
+	0nySd1xgDlutl1JJl9yQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1prXhv-002pTX-2t;
-	Wed, 26 Apr 2023 05:28:47 +0000
-Received: from mail-ej1-f41.google.com ([209.85.218.41])
+	id 1prZm6-0033lO-2I;
+	Wed, 26 Apr 2023 07:41:14 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prXhs-002pSq-01;
-	Wed, 26 Apr 2023 05:28:45 +0000
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-94f0dd117dcso970847666b.3;
-        Tue, 25 Apr 2023 22:28:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682486922; x=1685078922;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6sKTnga5osoBChiq0wC1tiBZnMTBNSiyIak8o4AC7LI=;
-        b=R9UbgCzgCnQxviWRbc9WXPLniRsygJOZUrf6/K1fyQPf2qUwwGYOR/NNsROiJQlZPa
-         BjjsUPYdUE33hTDwI8yJP8Wxz9/dCYh4nhIP2Kpu15h/w+SUIbE8zlxP+5Y0Zmwfta2n
-         nDXYC9BO3fb6/QwXqm/UpYP6Gs65HNo/vYQ/SSOELta5E/JnWjRKEZ0E3dqAarM8hbOB
-         1ev1oepwSQLt9z0xMM6AOUgRSAWi93X2V3Z1cLYeMcvd8YXhlBZ7ZiCo1H4dp15Rcisj
-         Qv2PgkQnMN5Ishvlr1ieL9TV84U1B9R0FaAqgmYMxHtdfEJeF7aWm1TgcmkAWucwpfoh
-         7kdg==
-X-Gm-Message-State: AAQBX9cNocrPtDgbGV+bWvqfNMjOIme0sWWaW7d6BB4WK43Qji/LH42K
-	/so3TkSRPEfIlNrDKFAT13dtH7K1uwc=
-X-Google-Smtp-Source: AKy350afIwgIUzk7/1vNhIB1UUFEJtteADzFrDD5QGP+/lq4u5bIcqIkZK/MyC4E+wHZ/4sZ2kJT5g==
-X-Received: by 2002:a17:907:7e94:b0:94e:d75b:5998 with SMTP id qb20-20020a1709077e9400b0094ed75b5998mr18238906ejc.5.1682486921617;
-        Tue, 25 Apr 2023 22:28:41 -0700 (PDT)
-Received: from cizrna.home (cst-prg-36-136.cust.vodafone.cz. [46.135.36.136])
-        by smtp.gmail.com with ESMTPSA id i21-20020a05640200d500b00501d73cfc86sm6598206edu.9.2023.04.25.22.28.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Apr 2023 22:28:40 -0700 (PDT)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-To: linux-kernel@vger.kernel.org
-Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support)
-Subject: [PATCH] arm64: dts: VIM3: Set the rates of the clocks for the NPU
-Date: Wed, 26 Apr 2023 07:28:31 +0200
-Message-Id: <20230426052831.59391-1-tomeu@tomeuvizoso.net>
-X-Mailer: git-send-email 2.38.1
+	id 1prZm3-0033js-2P;
+	Wed, 26 Apr 2023 07:41:13 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id D3ADB5FD6E;
+	Wed, 26 Apr 2023 10:41:08 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1682494868;
+	bh=kH/83HIe7gsu4U9b3IuFMWDR2wI8ee/0EC6PkeDFzmU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=SUngLhDqkuszemhCr2x9A+KNk8qzjMksyz4wnTJcvasJ0eJyXTyERFugEJOKXvECM
+	 cpBJEZ4mvjO5vk9A41bVxBD9sDPaDBeiR9TY4xDFUQp5jkdTiKY07+wopi/Xh+v3AS
+	 EAoCWRZEL09NC36XGx7DQjq7/uPdgfUqzELyX/pz+68nvONqgBthCDn2+Ko0u42QhP
+	 9NLfUHCW17wFGaZ2fnIjeA0DcyUAmP1iKttZah9f2pvtsx+j7I1gNdVzNtVH/kw1sS
+	 fEF7Wml4jSk1JvOVaxjoJ4YkKu1GEhS9dRt3KBZUui51kaawg5JfnhBYUU+9MqtoF4
+	 9cAdd3hDDyCaA==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Wed, 26 Apr 2023 10:41:07 +0300 (MSK)
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
+	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/5] refactoring and fix for Meson NAND
+Date: Wed, 26 Apr 2023 10:36:26 +0300
+Message-ID: <20230426073632.3905682-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/26 04:45:00 #21166225
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230425_222844_044100_1D732D43 
-X-CRM114-Status: UNSURE (   8.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230426_004112_133977_3DED1C9B 
+X-CRM114-Status: GOOD (  13.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,30 +87,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Otherwise they are left at 24MHz and the NPU runs very slowly.
+Hello,
 
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Suggested-by: Lucas Stach <l.stach@pengutronix.de>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts | 3 +++
- 1 file changed, 3 insertions(+)
+this patchset does several things:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 4e8266056bca..3a14b21998c4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -52,6 +52,9 @@ galcore {
- 
- &npu {
- 	status = "okay";
-+	assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
-+			  <&clkc CLKID_NNA_AXI_CLK>;
-+	assigned-clock-rates = <800000000>, <800000000>;
- };
- 
- /*
+1) It fixes unstable behaviour of Meson driver, for example random ECC
+   errors during reads. It is done by changing command sequence to access
+   NAND controller. Source of this update is old vendor's driver.
+
+2) It changes OOB layout by moving it out of ECC area. Current OOB data
+   is 4 bytes (2 x 2 user bytes) under ECC engine. Here is how OOB looks
+   in the current implementation:
+
+   [ 2B user bytes ][     14B ECC codes    ]
+   [ 2B user bytes ][     14B ECC codes    ]
+   [ 16B unused area, not protected by ECC ]
+   [ 16B unused area, not protected by ECC ]
+
+   All 4 user bytes are protected by ECC. This patch changes OOB layout
+   in this way:
+
+   [ 2B unused area ][    14B ECC codes    ]
+   [ 2B unused area ][    14B ECC codes    ]
+   [  16B OOB area, not protected by ECC   ]
+   [  16B OOB area, not protected by ECC   ]
+
+   Now OOB is 32 bytes instead of 4 bytes and not protected by ECC.
+   Origin of this layout comes from problem with JFFS2. It uses OOB for
+   cleanmarkers. Each cleanmarker is 4 bytes and written by JFFS2 driver.
+   We have two ways to write this data to OOB (e.g. user bytes):
+
+   1) ECC mode. In this case it will be ECC covered user bytes, e.g.
+      writing this bytes will update ECC codes. Problem fires, when
+      JFFS2 tries to write this page later - this write makes controller
+      to update ECC codes again, but it is impossible to do it correctly,
+      because we can't update bits from 0 to 1 (only from 1 to 0).
+
+   2) Raw mode. In this case ECC codes won't be updated. But later, it
+      will be impossible to read this page in ECC mode, because we have
+      some user bytes, but ECC codes are missed.
+
+   So let's move OOB out of ECC area. In this case we can read/write OOB
+   separately in raw mode and at the same time work with data in ECC
+   mode. JFFS2 is happy now. User bytes are untouched - all of them
+   are ignored during non-OOB access.
+
+   Also this patch changes size of OOB data during read. Now whole OOB
+   is read (including unused user bytes, ECC codes and OOB data itself).
+
+   I've tested this with mount/unmount/read/write cases for JFFS2 and
+   nanddump/nandwrite utlities on AXG family (A113X SoC).
+
+3) Renames device tree node's name for chip selection from "reg" to
+   "cs". See commit message.
+
+4) Checks buffer length on accesses to NAND controller.
+
+5) Removes useless bitwise OR with zeroes.
+
+Link to v1:
+https://lore.kernel.org/linux-mtd/20230412061700.1492474-1-AVKrasnov@sberdevices.ru/
+
+Arseniy Krasnov (5):
+  mtd: rawnand: meson: fix NAND access for read/write
+  mtd: rawnand: meson: move OOB to non-protected ECC area
+  mtd: rawnand: meson: check buffer length
+  mtd: rawnand: meson: remove unneeded bitwise OR with zeroes
+  mtd: rawnand: meson: rename node for chip select
+
+ drivers/mtd/nand/raw/meson_nand.c | 406 +++++++++++++++++++++++++-----
+ 1 file changed, 347 insertions(+), 59 deletions(-)
+
 -- 
-2.38.1
+2.35.0
 
 
 _______________________________________________
