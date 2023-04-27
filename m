@@ -4,94 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F1BDC77B73
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Apr 2023 09:12:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44247C77B73
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Apr 2023 09:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=adRYWmHW1ZS3XqaJ9drk8MA5Yv1BREFgEEFQB6M4OZw=; b=h4CGE+G8/OygnT
-	r5pGT5xxAV63GM+ZEPFHS2bMZ0Gz+SycJbb7zLNhGxosxbZDXdnpB30tJB4+f+hrRCvwB4Wx3warx
-	SzEWlxA2Wzf3iolK778+T/Ei48dNmazxRJR7Z7aON8CoVLTJFNCsH9ag7/DBMYQ/qLctj3UO60omW
-	qxSNGOQLV0w5hopWVL0ldHSqpgg+QOpTva7hs6+eB8w6RNsJBHVj+gRd4onkzWkQs+PiOEFWMc3bf
-	raBJ81skZsbVR5bzm4bEggEdCUtd0Tn/SC8d9Yx3+IL7MRy2SklKZIhtOAqdLwRFReybTkg2cUAgY
-	A/rkuGQdmxZ7ILlLNiXA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JVEZy+w2k1fL6kpbkbWjaL3+QYXF1ofwiunNeOPv2Zg=; b=wMBEhUZKB5U3kuAnhUCXr6wJhJ
+	b+0jSFvMmzATmcS2UvHm+Y/Z9k7+D31sGsK8phh9dKqATRdTtMW1nACUzXBvbIbrdoD9DzAJ2lkyl
+	ZQ4Bp6a6hNesvteSlD9dMdwkOdz2Ub89J9ghGrq+Ttzg8LX+4X0byHZzwEmxKvjkUZro0+cZDlm3V
+	6648dPLMrEtTFPGaT1siYgTeieotMnYc6cdcYcV+wxtweYRJ7tuwLCQUqhpjO2RGHqUtQr438TtRX
+	JZMl70OiswgDV+aExBTkk+VRE3puSLuiPrbJusHEPMwglSGb2B4F559CI13Y+AIHU+9oBuaPrzCkD
+	GR6qAiHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1prxfO-005wG4-04;
-	Thu, 27 Apr 2023 09:11:54 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1prxnn-005xqm-35;
+	Thu, 27 Apr 2023 09:20:35 +0000
+Received: from mail-tyzapc01on20728.outbound.protection.outlook.com ([2a01:111:f403:704b::728] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prxfM-005wFg-0n;
-	Thu, 27 Apr 2023 09:11:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=i8FGLnAKrdz6rTfVtekEGXQZragW7XhoCO1AcVIACxY=; b=gG3R57dnTLcgKWRAPM2PZiyXHd
-	jGZ9CEfnWU7P1XoeG9ekbD5d1upL4hMymJ6V2wx9P4D1RM/xesZUGDY7TLlDfWpkGAmg89c+EOhzt
-	dNc7KfIsNUIyi87DJNeFAZtXGQG2s4PPuGZbjB0Ualn+nkcCn0JVBk7ozgopY/E3FoVaj0ZeCtBJk
-	DbleYO0br1Cx7g42p1DY+W7/bwbfFweAkepXkxN82dX2znYSM+q+R10oPh8/oC4AvvZ2gkLbOMrXc
-	S9enEOpGpr2TlyUVhfwtstg1ex8Vhctn0e+BfHcFbIaULZiWDfjUt40mqCBzxBn6Sb/hUHjllkCmm
-	ZrZfD9Eg==;
-Received: from mx.sberdevices.ru ([45.89.227.171])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prxfG-00CIvr-2x;
-	Thu, 27 Apr 2023 09:11:50 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 919BE5FD10;
-	Thu, 27 Apr 2023 12:11:42 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1682586702;
-	bh=i8FGLnAKrdz6rTfVtekEGXQZragW7XhoCO1AcVIACxY=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=G/HxEd3euRdvpAbx8Kn1eM+RgaNfucWCf5EsCCZpQpj7eZZZzzHK2xHzp6VuyLL1z
-	 R+lalU8dhzSm63C03aWy0B94t0+PcZVx013UyrEwGiSBxu6hxZyiKD9auta4l0yQB4
-	 rGGHICFi46W/sMF26phdLtxhvrsBDmfnWXadrk62kEhFwLIwpY4yfOgmOrI01KPAR/
-	 qzbpamom+wUzIWQY8QBXs4rf+yHqWrzRfXXI+l20Z3ze5KTJ2+RBRcEql1MjB8YlgZ
-	 mURQ+B5BG1SzBz0JFRd40mVERQV9jAgaY4V/HphVvxd7Upd+aUlOSduCBYr1R/nYYE
-	 UrFefmito+vBA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 27 Apr 2023 12:11:42 +0300 (MSK)
-Date: Thu, 27 Apr 2023 12:11:41 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Yu Tu <yu.tu@amlogic.com>
-CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <kelvin.zhang@amlogic.com>,
-	<qi.duan@amlogic.com>
-Subject: Re: [PATCH V7 3/4] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Message-ID: <20230427091141.q3fky7ywnu4lsddk@CAB-WSD-L081021>
-References: <20230417065005.24967-1-yu.tu@amlogic.com>
- <20230417065005.24967-4-yu.tu@amlogic.com>
- <20230426111358.xh3gbhlvxj46ggi5@CAB-WSD-L081021>
- <3be758e3-aa41-0003-fd1a-324b8dd4267a@amlogic.com>
+	id 1prxnk-005xpJ-07;
+	Thu, 27 Apr 2023 09:20:34 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oIhJSU8nBnwbgJauLAfwnoYv19LGI5Bvxx4NxYqR0/0xkKtLX6PFtATdWP4odgTOoNhllulHBf+jFZZjGVesSAGG9AOp8azXjErHvO8LBZoqKi7xFPTIIh1Z798Pd985pxkHbDYGGXWzvOOwpaxqNvSrATNQWz9OeYzbWpgPeCj4Yqhawz/ZPRd44RbvuRiNuzeH+Ugptk2aI1HGjdbtS1B8S38TS6/XkWA59uOJzhGlfbUhUGfltUQrXNqxm6q7oD0poQklg2AtYzzA28GraPRt9NtCWjPYi5NNy6UKeG2wj5KlopBbR7howWIttpPRE3CNiyWcguP05bTyXSK+CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8exmd1+omkDoErTskZyQXrcxPmfsDZT/+2gSDP+y2mQ=;
+ b=TvBIALwN6BW5TYcEyIl4KkY8zan1pBx2/4lF5Ady7LGbmoXKCftwEStS1q7RMy5QjJrFfPkixPDvYqTtvVARx2CGCwQpAeSCaC3HD7xTXqt8HEGgItnbGrDo2KbNYeEQUaabhDXWnf5kuUzqPmf5JKxXKod1S2TxxThjEb6Nj9htPutuKAtR56sl75+xnrFBHTWhlZ2HWVmS7skYq1r+2CRmX8YnXCNVnJvWtePOnW5u0jv3ZeVfhNYAqMVElQpGTPKnIgbYhMCo/Waz4w97XFuZrtxbS2UnlVUhT2LXbl837K9ELCWbrvJWliR2YQ7vLOIVbcS2IXgZiEqleY4JOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8exmd1+omkDoErTskZyQXrcxPmfsDZT/+2gSDP+y2mQ=;
+ b=mzMj0FZoXp12yZt5khyCXCW1E4NumkIWx5wE9W00masuykSkvh/43r/Nl3WCdunHkozYb3jz+G+PPPt0D3NCMopfwb7uFyLVNnzx2C5y0rN+mSJaLDVPiKoMbt1tD6zzRpCFxP+pZgDEWApgwBsRhPCyqyR1pS2/ksvwRXdxG0Svnp6VOUsGBM5vGfTJGVIpT8vlluhJSQSa8QdSZo3+UmXGHAhJ/Wv/mtKDEbpEt7Gv3IA11PWztONjyep6/i3wdimT3Nzg/julwrOwcvJN9fYGEC3GQ2Da9dcZ6Jamy30vTSMPZv34LsbNOv6+kAFTOkwgpatqz82eXo5wmriiCg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SEZPR03MB7033.apcprd03.prod.outlook.com (2603:1096:101:e2::14)
+ by TYZPR03MB5648.apcprd03.prod.outlook.com (2603:1096:400:56::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Thu, 27 Apr
+ 2023 09:20:25 +0000
+Received: from SEZPR03MB7033.apcprd03.prod.outlook.com
+ ([fe80::9d77:7adc:25da:b086]) by SEZPR03MB7033.apcprd03.prod.outlook.com
+ ([fe80::9d77:7adc:25da:b086%3]) with mapi id 15.20.6340.020; Thu, 27 Apr 2023
+ 09:20:25 +0000
+Message-ID: <74973567-dd00-1480-288c-3fa3a567df3f@amlogic.com>
+Date: Thu, 27 Apr 2023 17:20:15 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
+Content-Language: en-US
+To: neil.armstrong@linaro.org, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
+ <20230419073834.972273-2-xianwei.zhao@amlogic.com>
+ <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
+ <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
+ <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
+ <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+ <20230419170043.auzfa32weevmrt4e@CAB-WSD-L081021>
+ <1c7322c9-8d2d-1cd1-95dc-dd9ec861981f@amlogic.com>
+ <9037aa40-c441-b610-ed7b-2c9840dff751@linaro.org>
+From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+In-Reply-To: <9037aa40-c441-b610-ed7b-2c9840dff751@linaro.org>
+X-ClientProxiedBy: SI1PR02CA0008.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::14) To SEZPR03MB7033.apcprd03.prod.outlook.com
+ (2603:1096:101:e2::14)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3be758e3-aa41-0003-fd1a-324b8dd4267a@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/27 05:34:00 #21173123
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR03MB7033:EE_|TYZPR03MB5648:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ce69f11-9c4a-42f8-0b07-08db4700a21b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	OD4TdhYXFCYdLVG2MUmFutnMqmIIijr3+Woxm3xly1Iy3XTzatQQBUuDfjhSduK7RUrGZPl2lZOnYAxXQRcCTioUcLzihdlhsHSaWUaLPcbp/2c/LFg6t1QeQzDuFoKl7L1td4+TtgbdbskUT4Cxx8usmM9hgH8KuQRXxWLrbaMf8SIEUaSGjk0ygrErzBgnNWw9lmfg/JwHrnWicI8SLNHv6YV6JIgHFwmaYuSvjKyhiNLqcFfBrgBRIrRkuBCchscaT4r9Iikzi+jwX3JgSVIv++pLUMqqB9CgYP1/VrurujSu0Cp54Chqht438/Ssiv9/S39Vmo/x9xuWRdqdAZTgvfM+vjXGglHIxK/6FGBMMyO0JJYDPGOHArVkXP0f/YUD4lWDvhYOGvcrXKY5VLvZfBqPm+iXLUibbwTUkP7d8Bbk1WsyPG4E+2fFnX2z5wEFzDGrXQnDm2FXNqPuT9HJf9AlicSW8tF/DMoVFdFNkRbpDY5wq9bqkbyKc5sU2+6I4X2ey2XP8abzXsMG1aF2YRfwrM2buMqZVpbUVvGO3Pxe7g/9A5FhsHOBK6SmtxRGt1jzf47lHue1RI3MrYy4m0wYmnGc1//oeqNSc+PFWDQ4R8eKXwoFYIyyR5gVDiPZb67WQYzdFsXdcqMpkQ==
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7033.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(39850400004)(376002)(366004)(136003)(396003)(451199021)(44832011)(38100700002)(7416002)(5660300002)(2906002)(8936002)(8676002)(36756003)(86362001)(31696002)(6486002)(6666004)(966005)(26005)(6512007)(6506007)(54906003)(478600001)(2616005)(186003)(31686004)(66946007)(66556008)(53546011)(66476007)(316002)(41300700001)(4326008)(6916009)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?Q3ZKZ3I0M3ppTmZoTkJpcm1TVWVReW45dFl5bmo3eVBrbFpmTDE4MmtBT2kx?=
+ =?utf-8?B?WTQ4MVRLRlZHQWZmR1dYMVd4Wlgvc0pNL21WUXJQWU5wUHdLd2FwUkZGZEZJ?=
+ =?utf-8?B?aFUxRXdZLzZ6ZGVOZlBnaVQ5RUFneWlYM29nOFQ3VEJSZ3J4NGhNN1NOdTJw?=
+ =?utf-8?B?Y2N2YzI4cHFPbnFFNDlQcWpDY1l4NVhuYjJDaXNSQTlLMFROMjMrYk0wcjRi?=
+ =?utf-8?B?bTZZMDg1MlMxYjFJVlc1U0QxTHBNSUh6MG1zZ2VxVThwdzJYbUFBV2dJWVhX?=
+ =?utf-8?B?NnpzcEU0RTBSbTc1eWlYc0xrY1l6N3A1Ym9TM0xXbS9UOWMzYjZORUxpZlVP?=
+ =?utf-8?B?eGFubnh6YWpWMkg4aUZHY3BFQkxYdFFJVFRCUkplUlZ5MHYrdGZWQ0dqMWcx?=
+ =?utf-8?B?Snc5SHAzQlNLSnQ5clVZT0ZvWTNHZVlldUhGU1BEc3RGQUh0MUVENXBsY2VP?=
+ =?utf-8?B?aDliL0F6UUhkNXNJOVN2WERKMU56S2RxeVlZZEErQVVjcVo2SjhyekVjYXhV?=
+ =?utf-8?B?QWZNRkhRL0dqM3VlUXd6UlpydGtUZTJSS0lYc21mV0w1SUtaUy9LcmlYMmg0?=
+ =?utf-8?B?dVBtUVV0QmVaaDFnUnA4bUVJV1MzYzZEdmhMZi9mZExLaG11dW10TXM5QVNn?=
+ =?utf-8?B?VTBLWkl1d004bzgyQXdnY3AyNkpxaDJRKzNrMHNmS0srVEt0Y0dtdDNCcGYx?=
+ =?utf-8?B?WWp6eTdiTHJoZEVsWUVSOVcvMWNvR1ZQazBTVTRLWmJGTDByWkFJMWwyRzZv?=
+ =?utf-8?B?cUJFelh2Yzg2Mzd6MHgrWDNxMTJtalRkM0QvV1hZQkF6MXVLeklWUFZKa3M1?=
+ =?utf-8?B?Zi85dFBWRGN6M1ozcFZnYmswQ282WE11eUdOMDFLcVlLMHF2elNRK3dDRTl3?=
+ =?utf-8?B?SXczbjRUcDJscUFtOWVBbk1LV3B0eStzRzNxR1NYOUcyZDZPWVY1dm5iYjJa?=
+ =?utf-8?B?cmEwZWx1Ky80S3lHdStYUTlkMzVXNWFYSkd1Sk5GMFVIYzhMWmxVSkQ3Tkoz?=
+ =?utf-8?B?cFdPZ2hZN2x3MzMzc3JidzNraHhZTVhjQ2ZYTjFORjZaK01LV2xxeGwrcW54?=
+ =?utf-8?B?dTQwb05zUDFlZi9LRjFCdVJ0YzdwK251VWRCSVB1Yytnd2huY1c0WnFPWnFu?=
+ =?utf-8?B?WkN6MGltWUpOWWJ1eUFzN2Z0VGVqU01jblBpZHIxeDQ0aFJxQWRvcllBbDcx?=
+ =?utf-8?B?SExzTG5oZ1l5S2RzZ1RIM1hxMXpiYUNVREYyTGhQVEg0NUFNakc4Unpzb0d3?=
+ =?utf-8?B?QkdIbU5mZHJlZVc3RUY0NG1JUXdkTWZvT3FMNFFSeFhiNnpQTDU3bW15NmFT?=
+ =?utf-8?B?RklpTUMvVHJNN0hVdFo0V0szQ0VPZzl5aktFVzR3SDA5dXhUaXN3UEN6ZjRt?=
+ =?utf-8?B?c0NYZVZGeHJaZkNsQWw0MFhGNzdobFVBQzBkQlVXd21kWnlKSFJUUlRtSUxy?=
+ =?utf-8?B?RGJKdjE5QldyZ2JOT21ZdFVZcWpGTHRjSDhPMG1XNXowYUtRVFhsbXk3TFhY?=
+ =?utf-8?B?YnlLTnR0aFFyaGlrQkxqL1daaXo1U1VYODVteFUyQUhuVXlTTTAveXFHMDlX?=
+ =?utf-8?B?aUpzbW1NRFVPOERkbU45WGRoRlNlVGpqTmIzaEprazJOaHZiWHNXSTBpTTdD?=
+ =?utf-8?B?b0pDTm56UEY5Q0F2Mkg3NllxbTNLRk8zekE2RjZMZ2RyN2FlODRZdDMxakVU?=
+ =?utf-8?B?VGlMclNLQmc2ZGpzd2tDNHV5UEQrVXN2S3FYTHRmbTFvLzg1bHh0VnhBVnVV?=
+ =?utf-8?B?K0FRZE9nNVEyMGk5UjZqV0F4cTFwTFBRMjR0NHVyeko2RkQ4dzNCTldqVWJV?=
+ =?utf-8?B?eUxpNlpzOTZSOU5DaXhvTGNWUnVXVmtnSXd5ejQ2eDhGSUhISXFTM1dVVzZV?=
+ =?utf-8?B?K0t4TkVPRUNpa2I0NHVibTZLYzRiN1czOENnUXluOE9lWi80YTBYQ0wwZ0tn?=
+ =?utf-8?B?VXN5Mnl0UEVrZDdDQVhRQ0xvbVlMSERCL3FGRGxBQnZGZitOSFcvY2FoR01S?=
+ =?utf-8?B?M1ArLzBhWU5HUXFvTUtjSGJzR2ExNTJJOHFKWFJOVWJWMXdXQ2JRZ2NKV3A3?=
+ =?utf-8?B?N21ZOTRKc09PZmdDcDRxWUd3WGpZQ1dWVFQ2U0RkWGJxTlhRNitsdjJiZ290?=
+ =?utf-8?B?WVFIMlBaMWcwUzN6dmNaV1BVRGlqZmpHcm5DMG9hTUxDN0pFeUZFRlc4dWtH?=
+ =?utf-8?B?M2c9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ce69f11-9c4a-42f8-0b07-08db4700a21b
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7033.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 09:20:25.1029
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UyEf1onJHL41JqV8GorGmCz/zbWpQKObWHBX/FGn6rAJdmf7AfJp6HL3sK10VvWgH4FjOdCh6nUKiwyNqur5woq6e64Z0F+/dqcRaHiH5gw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5648
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230427_101147_401497_18CEF784 
-X-CRM114-Status: GOOD (  32.85  )
+X-CRM114-CacheID: sfid-20230427_022032_235396_585A7E61 
+X-CRM114-Status: GOOD (  35.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,729 +151,139 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 27, 2023 at 04:38:20PM +0800, Yu Tu wrote:
-> 
-> 
-> On 2023/4/26 19:13, Dmitry Rokosov wrote:
-> > [Some people who received this message don't often get email from ddrokosov@sberdevices.ru. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > [ EXTERNAL EMAIL ]
-> > 
-> > On Mon, Apr 17, 2023 at 02:50:04PM +0800, Yu Tu wrote:
-> > > Add the S4 PLL clock controller driver in the s4 SoC family.
-> > > 
-> > > Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> > > ---
-> > >   drivers/clk/meson/Kconfig  |  13 +
-> > >   drivers/clk/meson/Makefile |   1 +
-> > >   drivers/clk/meson/s4-pll.c | 902 +++++++++++++++++++++++++++++++++++++
-> > >   drivers/clk/meson/s4-pll.h |  87 ++++
-> > >   4 files changed, 1003 insertions(+)
-> > >   create mode 100644 drivers/clk/meson/s4-pll.c
-> > >   create mode 100644 drivers/clk/meson/s4-pll.h
-> > > 
-> > > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> > > index fc002c155bc3..a663c90a3f3b 100644
-> > > --- a/drivers/clk/meson/Kconfig
-> > > +++ b/drivers/clk/meson/Kconfig
-> > > @@ -115,4 +115,17 @@ config COMMON_CLK_G12A
-> > >        help
-> > >          Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
-> > >          devices, aka g12a. Say Y if you want peripherals to work.
-> > > +
-> > > +config COMMON_CLK_S4_PLL
-> > > +     tristate "S4 SoC PLL clock controllers support"
-> > > +     depends on ARM64
-> > > +     default y
-> > > +     select COMMON_CLK_MESON_MPLL
-> > > +     select COMMON_CLK_MESON_PLL
-> > > +     select COMMON_CLK_MESON_REGMAP
-> > > +     help
-> > > +       Support for the pll clock controller on Amlogic S805X2 and S905Y4 devices,
-> > > +       aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
-> > > +       Say Y if you want the board to work, because plls are the parent of most
-> > > +       peripherals.
-> > >   endmenu
-> > > diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> > > index 6eca2a406ee3..376f49cc13f1 100644
-> > > --- a/drivers/clk/meson/Makefile
-> > > +++ b/drivers/clk/meson/Makefile
-> > > @@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
-> > >   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-> > >   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
-> > >   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
-> > > +obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
-> > > diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
-> > > new file mode 100644
-> > > index 000000000000..5a34d304adf7
-> > > --- /dev/null
-> > > +++ b/drivers/clk/meson/s4-pll.c
-> > > @@ -0,0 +1,902 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Amlogic Meson-S4 PLL Clock Controller Driver
-> > > + *
-> > > + * Copyright (c) 2021 Amlogic, inc.
-> > > + * Author: Yu Tu <yu.tu@amlogic.com>
-> > > + */
-> > > +
-> > > +#include <linux/clk-provider.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#include "clk-mpll.h"
-> > > +#include "clk-pll.h"
-> > > +#include "clk-regmap.h"
-> > > +#include "s4-pll.h"
-> > > +
-> > > +static DEFINE_SPINLOCK(meson_clk_lock);
-> > > +
-> > > +static struct clk_regmap s4_fixed_pll_dco = {
-> > > +     .data = &(struct meson_clk_pll_data){
-> > > +             .en = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL0,
-> > > +                     .shift   = 28,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .m = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL0,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 8,
-> > > +             },
-> > > +             .n = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL0,
-> > > +                     .shift   = 10,
-> > > +                     .width   = 5,
-> > > +             },
-> > > +             .frac = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL1,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 17,
-> > > +             },
-> > > +             .l = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL0,
-> > > +                     .shift   = 31,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .rst = {
-> > > +                     .reg_off = ANACTRL_FIXPLL_CTRL0,
-> > > +                     .shift   = 29,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fixed_pll_dco",
-> > > +             /*
-> > > +              * This clock is a fixed value (4GHz) that is initialized by ROMcode.
-> > > +              * This clock won't ever change at runtime.
-> > > +              * The chip design determines that this clock cannot be changed after
-> > > +              * initialization. To prevent system crash caused by changing
-> > > +              * fixed related register in kernel phase. This register is not
-> > > +              * writable in the kernel phase.
-> > > +              * So we use ro_ops.
-> > > +              */
-> > > +             .ops = &meson_clk_pll_ro_ops,
-> > > +             .parent_data = (const struct clk_parent_data []) {
-> > > +                     { .fw_name = "xtal", }
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fixed_pll = {
-> > > +     .data = &(struct clk_regmap_div_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL0,
-> > > +             .shift = 16,
-> > > +             .width = 2,
-> > > +             .flags = CLK_DIVIDER_POWER_OF_TWO,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fixed_pll",
-> > > +             /*
-> > > +              * This clock is a fixed value (2GHz) that is initialized by ROMcode.
-> > > +              * This clock won't ever change at runtime.
-> > > +              * The chip design determines that this clock cannot be changed after
-> > > +              * initialization. To prevent system crash caused by changing
-> > > +              * fixed related register in kernel phase. This register is not
-> > > +              * writable in the kernel phase.
-> > > +              * So we use ro_ops.
-> > > +              */
-> > > +             .ops = &clk_regmap_divider_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fixed_pll_dco.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +             /*
-> > > +              * This clock won't ever change at runtime so
-> > > +              * CLK_SET_RATE_PARENT is not required
-> > > +              */
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div2_div = {
-> > > +     .mult = 1,
-> > > +     .div = 2,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div2_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div2 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 24,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div2",
-> > > +             /*
-> > > +              * This clock is a fixed value (1GHz) that is initialized by ROMcode.
-> > > +              * This clock won't ever ungate at runtime.
-> > > +              * The chip design determines that this clock cannot be changed after
-> > > +              * initialization. To prevent system crash caused by changing
-> > > +              * fixed related register in kernel phase. This register is not
-> > > +              * writable in the kernel phase.
-> > > +              * So we use ro_ops.
-> > > +              */
-> > 
-> > The above comment has been copied and pasted many times.
-> > Please collapse it and refer to it from specific locations.
-> 
-> Just three times. The goal is to make it clear to the viewer.
-> 
-
-I think, reference to one time mentioned comment is clear for viewer too.
-Also Jerome has pointed to this problem for the A1 driver as well:
-
-https://lore.kernel.org/all/1jtty6o5so.fsf@starbuckisacylon.baylibre.com/
-
-> > 
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div2_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div3_div = {
-> > > +     .mult = 1,
-> > > +     .div = 3,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div3_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div3 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 20,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div3",
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div3_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div4_div = {
-> > > +     .mult = 1,
-> > > +     .div = 4,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div4_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div4 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 21,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div4",
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div4_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div5_div = {
-> > > +     .mult = 1,
-> > > +     .div = 5,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div5_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div5 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 22,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div5",
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div5_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div7_div = {
-> > > +     .mult = 1,
-> > > +     .div = 7,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div7_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div7 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 23,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div7",
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div7_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s4_fclk_div2p5_div = {
-> > > +     .mult = 2,
-> > > +     .div = 5,
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div2p5_div",
-> > > +             .ops = &clk_fixed_factor_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fixed_pll.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_fclk_div2p5 = {
-> > > +     .data = &(struct clk_regmap_gate_data){
-> > > +             .offset = ANACTRL_FIXPLL_CTRL1,
-> > > +             .bit_idx = 25,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "fclk_div2p5",
-> > > +             .ops = &clk_regmap_gate_ro_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_fclk_div2p5_div.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static const struct pll_mult_range s4_gp0_pll_mult_range = {
-> > > +     .min = 125,
-> > > +     .max = 250,
-> > > +};
-> > > +
-> > > +/*
-> > > + * Internal gp0 pll emulation configuration parameters
-> > > + */
-> > > +static const struct reg_sequence s4_gp0_init_regs[] = {
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL1,  .def = 0x00000000 },
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL2,  .def = 0x00000000 },
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL3,  .def = 0x48681c00 },
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL4,  .def = 0x88770290 },
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL5,  .def = 0x39272000 },
-> > > +     { .reg = ANACTRL_GP0PLL_CTRL6,  .def = 0x56540000 }
-> > 
-> > Please ensure that the initialization sequence values do not overlap
-> > with the below pll_data bits that are managed during runtime.
-> > 
-> 
-> That's right. There is a timing requirement for PLL initialization.
-> 
-
-Okay, we have already discussed this in another patch series for A1 clock
-drivers, and some overlaps were found.
-I just want to help you find potential problems.
-
-You can find the discussion here:
-
-https://lore.kernel.org/linux-amlogic/1jr0u2azfi.fsf@starbuckisacylon.baylibre.com/
-
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_gp0_pll_dco = {
-> > > +     .data = &(struct meson_clk_pll_data){
-> > > +             .en = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
-> > > +                     .shift   = 28,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .m = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 8,
-> > > +             },
-> > > +             .n = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
-> > > +                     .shift   = 10,
-> > > +                     .width   = 5,
-> > > +             },
-> > > +             .frac = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL1,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 17,
-> > > +             },
-> > > +             .l = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
-> > > +                     .shift   = 31,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .rst = {
-> > > +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
-> > > +                     .shift   = 29,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .range = &s4_gp0_pll_mult_range,
-> > > +             .init_regs = s4_gp0_init_regs,
-> > > +             .init_count = ARRAY_SIZE(s4_gp0_init_regs),
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "gp0_pll_dco",
-> > > +             .ops = &meson_clk_pll_ops,
-> > > +             .parent_data = (const struct clk_parent_data []) {
-> > > +                     { .fw_name = "xtal", }
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_gp0_pll = {
-> > > +     .data = &(struct clk_regmap_div_data){
-> > > +             .offset = ANACTRL_GP0PLL_CTRL0,
-> > > +             .shift = 16,
-> > > +             .width = 3,
-> > > +             .flags = (CLK_DIVIDER_POWER_OF_TWO |
-> > > +                       CLK_DIVIDER_ROUND_CLOSEST),
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "gp0_pll",
-> > > +             .ops = &clk_regmap_divider_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_gp0_pll_dco.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +             .flags = CLK_SET_RATE_PARENT,
-> > > +     },
-> > > +};
-> > > +
-> > > +/*
-> > > + * Internal hifi pll emulation configuration parameters
-> > > + */
-> > > +static const struct reg_sequence s4_hifi_init_regs[] = {
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x00010e56 },
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00000000 },
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x6a285c00 },
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x65771290 },
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL5, .def = 0x39272000 },
-> > > +     { .reg = ANACTRL_HIFIPLL_CTRL6, .def = 0x56540000 }
-> > > +};
-> > 
-> > Please ensure that the initialization sequence values do not overlap
-> > with the below pll_data bits that are managed during runtime.
-> 
-> [...]
-> 
-> > 
-> > > +
-> > > +static struct clk_regmap s4_hifi_pll_dco = {
-> > > +     .data = &(struct meson_clk_pll_data){
-> > > +             .en = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> > > +                     .shift   = 28,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .m = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 8,
-> > > +             },
-> > > +             .n = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> > > +                     .shift   = 10,
-> > > +                     .width   = 5,
-> > > +             },
-> > > +             .frac = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL1,
-> > > +                     .shift   = 0,
-> > > +                     .width   = 17,
-> > > +             },
-> > > +             .l = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> > > +                     .shift   = 31,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .rst = {
-> > > +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> > > +                     .shift   = 29,
-> > > +                     .width   = 1,
-> > > +             },
-> > > +             .range = &s4_gp0_pll_mult_range,
-> > > +             .init_regs = s4_hifi_init_regs,
-> > > +             .init_count = ARRAY_SIZE(s4_hifi_init_regs),
-> > > +             .flags = CLK_MESON_PLL_ROUND_CLOSEST,
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "hifi_pll_dco",
-> > > +             .ops = &meson_clk_pll_ops,
-> > > +             .parent_data = (const struct clk_parent_data []) {
-> > > +                     { .fw_name = "xtal", }
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +     },
-> > > +};
-> > > +
-> > > +static struct clk_regmap s4_hifi_pll = {
-> > > +     .data = &(struct clk_regmap_div_data){
-> > > +             .offset = ANACTRL_HIFIPLL_CTRL0,
-> > > +             .shift = 16,
-> > > +             .width = 2,
-> > > +             .flags = (CLK_DIVIDER_POWER_OF_TWO |
-> > > +                       CLK_DIVIDER_ROUND_CLOSEST),
-> > > +     },
-> > > +     .hw.init = &(struct clk_init_data){
-> > > +             .name = "hifi_pll",
-> > > +             .ops = &clk_regmap_divider_ops,
-> > > +             .parent_hws = (const struct clk_hw *[]) {
-> > > +                     &s4_hifi_pll_dco.hw
-> > > +             },
-> > > +             .num_parents = 1,
-> > > +             .flags = CLK_SET_RATE_PARENT,
-> > > +     },
-> > > +};
-> > > +
-> > 
-> > [...]
-> > 
-> > > +static int meson_s4_pll_probe(struct platform_device *pdev)
-> > > +{
-> > > +     struct device *dev = &pdev->dev;
-> > > +     struct regmap *regmap;
-> > > +     void __iomem *base;
-> > > +     int ret, i;
-> > > +
-> > > +     base = devm_platform_ioremap_resource(pdev, 0);
-> > > +     if (IS_ERR(base))
-> > > +             return PTR_ERR(base);
-> > > +
-> > > +     regmap = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
-> > > +     if (IS_ERR(regmap))
-> > > +             return PTR_ERR(regmap);
-> > > +
-> > > +     ret = regmap_multi_reg_write(regmap, s4_init_regs, ARRAY_SIZE(s4_init_regs));
-> > > +     if (ret) {
-> > > +             dev_err(dev, "Failed to init registers\n");
-> > 
-> > dev_err_probe()
-> 
-> Clock drivers are the foundation on which other drivers run. There is no
-> need to EPROBE_DEFER. Also use EPROBE_DEFER as long as it is better to use
-> when getting the resource.
-> 
-
-At least you are requesting the ioremap resource, right? :-)
-And clock driver has tristate config, so can be built as module.
-
-> > 
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     /* Populate regmap for the regmap backed clocks */
-> > > +     for (i = 0; i < ARRAY_SIZE(s4_pll_clk_regmaps); i++)
-> > > +             s4_pll_clk_regmaps[i]->map = regmap;
-> > > +
-> > > +     for (i = 0; i < s4_pll_hw_onecell_data.num; i++) {
-> > > +             /* array might be sparse */
-> > > +             if (!s4_pll_hw_onecell_data.hws[i])
-> > > +                     continue;
-> > > +
-> > > +             ret = devm_clk_hw_register(dev, s4_pll_hw_onecell_data.hws[i]);
-> > > +             if (ret) {
-> > > +                     dev_err(dev, "Clock registration failed\n");
-> > 
-> > dev_err_probe()
-> 
-> [...]
-> 
-> > 
-> > > +                     return ret;
-> > > +             }
-> > > +     }
-> > > +
-> > > +     return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> > > +                                        &s4_pll_hw_onecell_data);
-> > > +}
-> > > +
-> > > +static const struct of_device_id clkc_match_table[] = {
-> > > +     {
-> > > +             .compatible = "amlogic,s4-pll-clkc",
-> > > +     },
-> > > +     {}
-> > > +};
-> > > +
-> > > +static struct platform_driver s4_driver = {
-> > > +     .probe          = meson_s4_pll_probe,
-> > > +     .driver         = {
-> > > +             .name   = "s4-pll-clkc",
-> > > +             .of_match_table = clkc_match_table,
-> > > +     },
-> > > +};
-> > > +
-> > > +module_platform_driver(s4_driver);
-> > > +MODULE_LICENSE("GPL");
-> > > diff --git a/drivers/clk/meson/s4-pll.h b/drivers/clk/meson/s4-pll.h
-> > > new file mode 100644
-> > > index 000000000000..1fb5bececf5f
-> > > --- /dev/null
-> > > +++ b/drivers/clk/meson/s4-pll.h
-> > > @@ -0,0 +1,87 @@
-> > > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> > > +/*
-> > > + * Copyright (c) 2021 Amlogic, inc.
-> > > + * Author: Yu Tu <yu.tu@amlogic.com>
-> > > + */
-> > > +
-> > > +#ifndef __MESON_S4_PLL_H__
-> > > +#define __MESON_S4_PLL_H__
-> > > +
-> > > +/* ANA_CTRL - Registers */
-> > > +
-> > > +#define ANACTRL_FIXPLL_CTRL0                       0x040
-> > > +#define ANACTRL_FIXPLL_CTRL1                       0x044
-> > > +#define ANACTRL_FIXPLL_CTRL2                       0x048
-> > > +#define ANACTRL_FIXPLL_CTRL3                       0x04c
-> > > +#define ANACTRL_FIXPLL_CTRL4                       0x050
-> > > +#define ANACTRL_FIXPLL_CTRL5                       0x054
-> > > +#define ANACTRL_FIXPLL_CTRL6                       0x058
-> > > +#define ANACTRL_FIXPLL_STS                         0x05c
-> > > +#define ANACTRL_GP0PLL_CTRL0                       0x080
-> > > +#define ANACTRL_GP0PLL_CTRL1                       0x084
-> > > +#define ANACTRL_GP0PLL_CTRL2                       0x088
-> > > +#define ANACTRL_GP0PLL_CTRL3                       0x08c
-> > > +#define ANACTRL_GP0PLL_CTRL4                       0x090
-> > > +#define ANACTRL_GP0PLL_CTRL5                       0x094
-> > > +#define ANACTRL_GP0PLL_CTRL6                       0x098
-> > > +#define ANACTRL_GP0PLL_STS                         0x09c
-> > > +#define ANACTRL_HIFIPLL_CTRL0                      0x100
-> > > +#define ANACTRL_HIFIPLL_CTRL1                      0x104
-> > > +#define ANACTRL_HIFIPLL_CTRL2                      0x108
-> > > +#define ANACTRL_HIFIPLL_CTRL3                      0x10c
-> > > +#define ANACTRL_HIFIPLL_CTRL4                      0x110
-> > > +#define ANACTRL_HIFIPLL_CTRL5                      0x114
-> > > +#define ANACTRL_HIFIPLL_CTRL6                      0x118
-> > > +#define ANACTRL_HIFIPLL_STS                        0x11c
-> > > +#define ANACTRL_MPLL_CTRL0                         0x180
-> > > +#define ANACTRL_MPLL_CTRL1                         0x184
-> > > +#define ANACTRL_MPLL_CTRL2                         0x188
-> > > +#define ANACTRL_MPLL_CTRL3                         0x18c
-> > > +#define ANACTRL_MPLL_CTRL4                         0x190
-> > > +#define ANACTRL_MPLL_CTRL5                         0x194
-> > > +#define ANACTRL_MPLL_CTRL6                         0x198
-> > > +#define ANACTRL_MPLL_CTRL7                         0x19c
-> > > +#define ANACTRL_MPLL_CTRL8                         0x1a0
-> > > +#define ANACTRL_MPLL_STS                           0x1a4
-> > > +#define ANACTRL_HDMIPLL_CTRL0                      0x1c0
-> > > +#define ANACTRL_HDMIPLL_CTRL1                      0x1c4
-> > > +#define ANACTRL_HDMIPLL_CTRL2                      0x1c8
-> > > +#define ANACTRL_HDMIPLL_CTRL3                      0x1cc
-> > > +#define ANACTRL_HDMIPLL_CTRL4                      0x1d0
-> > > +#define ANACTRL_HDMIPLL_CTRL5                      0x1d4
-> > > +#define ANACTRL_HDMIPLL_CTRL6                      0x1d8
-> > > +#define ANACTRL_HDMIPLL_STS                        0x1dc
-> > > +#define ANACTRL_HDMIPLL_VLOCK                      0x1e4
-> > > +
-> > > +/*
-> > > + * CLKID index values
-> > > + *
-> > > + * These indices are entirely contrived and do not map onto the hardware.
-> > > + * It has now been decided to expose everything by default in the DT header:
-> > > + * include/dt-bindings/clock/axg-clkc.h. Only the clocks ids we don't want
-> > 
-> > axg-clkc.h?
-> 
-> I will correct.
-> 
-> > 
-> > > + * to expose, such as the internal muxes and dividers of composite clocks,
-> > > + * will remain defined here.
-> > > + */
-> > > +#define CLKID_FIXED_PLL_DCO          0
-> > > +#define CLKID_FCLK_DIV2_DIV          2
-> > > +#define CLKID_FCLK_DIV3_DIV          4
-> > > +#define CLKID_FCLK_DIV4_DIV          6
-> > > +#define CLKID_FCLK_DIV5_DIV          8
-> > > +#define CLKID_FCLK_DIV7_DIV          10
-> > > +#define CLKID_FCLK_DIV2P5_DIV                12
-> > > +#define CLKID_GP0_PLL_DCO            14
-> > > +#define CLKID_HIFI_PLL_DCO           16
-> > > +#define CLKID_HDMI_PLL_DCO           18
-> > > +#define CLKID_HDMI_PLL_OD            19
-> > > +#define CLKID_MPLL_50M_DIV           21
-> > > +#define CLKID_MPLL_PREDIV            23
-> > > +#define CLKID_MPLL0_DIV                      24
-> > > +#define CLKID_MPLL1_DIV                      26
-> > > +#define CLKID_MPLL2_DIV                      28
-> > > +#define CLKID_MPLL3_DIV                      30
-> > > +
-> > > +#define NR_PLL_CLKS                  32
-> > > +/* include the CLKIDs that have been made part of the DT binding */
-> > > +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
-> > > +
-> > > +#endif /* __MESON_S4_PLL_H__ */
-> > > --
-> > > 2.33.1
-> > > 
-> > > 
-> > > _______________________________________________
-> > > linux-amlogic mailing list
-> > > linux-amlogic@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> > 
-> > --
-> > Thank you,
-> > Dmitry
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMDIzLzQvMjAgMjA6MTgsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IFsgRVhURVJOQUwg
+RU1BSUwgXQo+IAo+IEhpIEtlbHZpbiwKPiAKPiBPbiAyMC8wNC8yMDIzIDEwOjQzLCBLZWx2aW4g
+Wmhhbmcgd3JvdGU6Cj4+IE9uIDIwMjMvNC8yMCAwMTowMCwgRG1pdHJ5IFJva29zb3Ygd3JvdGU6
+Cj4+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4+Cj4+PiBPbiBXZWQsIEFwciAxOSwgMjAyMyBhdCAw
+NjoyNTowN1BNICswMjAwLCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4+PiBPbiAxOS8wNC8yMDIz
+IDE4OjA0LCBEbWl0cnkgUm9rb3NvdiB3cm90ZToKPj4+Pj4gT24gV2VkLCBBcHIgMTksIDIwMjMg
+YXQgMDM6NDM6MTJQTSArMDIwMCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+Pj4+PiBPbiAxOS8w
+NC8yMDIzIDE1OjE0LCBEbWl0cnkgUm9rb3NvdiB3cm90ZToKPj4+Pj4+PiBPbiBXZWQsIEFwciAx
+OSwgMjAyMyBhdCAwMzozODozM1BNICswODAwLCA9WGlhbndlaSBaaGFvIHdyb3RlOgo+Pj4+Pj4+
+PiBGcm9tOiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+Pj4+Pj4K
+Pj4+Pj4+Pj4gVGhlIEMgc2VyaWVzIFNvQ3MgYXJlIGRlc2lnbmVkIGZvciBzbWFydCBJUCBjYW1l
+cmEKPj4+Pj4+Pj4gYXBwbGljYXRpb25zLCB3aGljaCBkb2VzIG5vdCBiZWxvbmcgdG8gTWVzb24g
+c2VyaWVzLgo+Pj4+Pj4+PiBTbywgQWRkIEFSQ0hfQU1MSVBDIGZvciB0aGUgbmV3IHNlcmllcy4K
+Pj4+Pj4+Pj4KPj4+Pj4+Pj4gVGhlcmUgYXJlIG5vdyBtdWx0aXBsZSBhbWxvZ2ljIFNvQyBzZWll
+cyBzdXBwb3J0ZWQsIHNvIGdyb3VwIAo+Pj4+Pj4+PiB0aGVtIHVuZGVyCj4+Pj4+Pj4+IHRoZWly
+IG93biBtZW51LiB3ZSBjYW4gZWFzaWx5IGFkZCBuZXcgcGxhdGZvcm1zIHRoZXJlIGluIHRoZSAK
+Pj4+Pj4+Pj4gZnV0dXJlLgo+Pj4+Pj4+PiBJbnRyb2R1Y2UgQVJDSF9BTUxPR0lDIHRvIGNvdmVy
+IGFsbCBBbWxvZ2ljIFNvQyBzZXJpZXMuCj4+Pj4+Pj4+Cj4+Pj4+Pj4+IE5vIGZ1bmN0aW9uYWwg
+Y2hhbmdlcyBpbnRyb2R1Y2VkLgo+Pj4+Pj4+Pgo+Pj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBYaWFu
+d2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+Pj4+Pj4gLS0tCj4+Pj4+Pj4+
+IMKgwqDCoCBhcmNoL2FybTY0L0tjb25maWcucGxhdGZvcm1zIHwgMTIgKysrKysrKysrKysrCj4+
+Pj4+Pj4+IMKgwqDCoCBhcmNoL2FybTY0L2NvbmZpZ3MvZGVmY29uZmlnIHzCoCAyICsrCj4+Pj4+
+Pj4+IMKgwqDCoCAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKykKPj4+Pj4+Pj4KPj4+
+Pj4+Pj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvS2NvbmZpZy5wbGF0Zm9ybXMgCj4+Pj4+Pj4+
+IGIvYXJjaC9hcm02NC9LY29uZmlnLnBsYXRmb3Jtcwo+Pj4+Pj4+PiBpbmRleCA4OWEwYjEzYjA1
+OGQuLmJmYmM4MTdlZWY4ZiAxMDA2NDQKPj4+Pj4+Pj4gLS0tIGEvYXJjaC9hcm02NC9LY29uZmln
+LnBsYXRmb3Jtcwo+Pj4+Pj4+PiArKysgYi9hcmNoL2FybTY0L0tjb25maWcucGxhdGZvcm1zCj4+
+Pj4+Pj4+IEBAIC0xNjIsMTIgKzE2MiwyNCBAQCBjb25maWcgQVJDSF9NRURJQVRFSwo+Pj4+Pj4+
+PiDCoMKgwqDCoMKgwqDCoMKgIFRoaXMgZW5hYmxlcyBzdXBwb3J0IGZvciBNZWRpYVRlayBNVDI3
+eHgsIE1UNjV4eCwgTVQ3Nnh4Cj4+Pj4+Pj4+IMKgwqDCoMKgwqDCoMKgwqAgJiBNVDgxeHggQVJN
+djggU29Dcwo+Pj4+Pj4+PiArbWVudWNvbmZpZyBBUkNIX0FNTE9HSUMKPj4+Pj4+Pj4gK8KgwqDC
+oMKgIGJvb2wgIk5YUCBTb0Mgc3VwcG9ydCIKPj4+Pj4+PiBOWFA/IERpZCB5b3UgbWVhbiAiQW1s
+b2dpYyI/Cj4+Pj4+Pj4KPj4+Pj4+Pj4gKwo+Pj4+Pj4+PiAraWYgQVJDSF9BTUxPR0lDCj4+Pj4+
+Pj4+ICsKPj4+Pj4+Pj4gwqDCoMKgIGNvbmZpZyBBUkNIX01FU09OCj4+Pj4+Pj4+IMKgwqDCoMKg
+wqDCoCBib29sICJBbWxvZ2ljIFBsYXRmb3JtcyIKPj4+Pj4+Pj4gwqDCoMKgwqDCoMKgIGhlbHAK
+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoCBUaGlzIGVuYWJsZXMgc3VwcG9ydCBmb3IgdGhlIGFy
+bTY0IGJhc2VkIEFtbG9naWMgU29Dcwo+Pj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgIHN1Y2ggYXMg
+dGhlIHM5MDUsIFM5MDVYL0QsIFM5MTIsIEExMTNYL0Qgb3IgUzkwNVgvRDIKPj4+Pj4+Pj4gK2Nv
+bmZpZyBBUkNIX0FNTElQQwo+Pj4+Pj4+IERvIHdlIHJlYWxseSBuZWVkIGEgZGlmZmVyZW50IEFS
+Q0ggZm9yIEFtbG9naWMgSVBDPwo+Pj4+Pj4+IEkgY2FuIGltYWdpbmUgdGhhdCBpdCdzIG5vdCB0
+aGUgTWVzb24gYXJjaGl0ZWN0dXJlIGF0IGFsbC4KPj4+Pj4+PiBCdXQgbWF5YmUgYSBiZXR0ZXIg
+c29sdXRpb24gaXMganVzdCB0byByZW5hbWUgQVJDSF9NRVNPTiB0byAKPj4+Pj4+PiBBUkNIX0FN
+TE9HSUM/Cj4+Pj4+PiBJdCBzaG91bGQgYmUgY2hhbmdlZCB0cmVld2lkZSwgYW5kIGlzIGl0IHdv
+cnRoIGl0ID8KPj4+Pj4gQXMgZmFyIGFzIEkgdW5kZXJzdGFuZCwgdGhlIEExIGFuZCBTNCBmYW1p
+bGllcyBhcmUgbm90IGZ1bGx5IAo+Pj4+PiBjb21wYXRpYmxlCj4+Pj4+IHdpdGggdGhlIE1lc29u
+IGFyY2hpdGVjdHVyZSwgYW5kIHdlIGhhdmVuJ3QgcHJvdmlkZWQgYWRkaXRpb25hbCBBUkNIXyoK
+Pj4+Pj4gZm9yIHRoZW0uCj4+Pj4gVGhlIEdYQkIsIEdYTC9HWE0sIEcxMkEsIEcxMkIgJiBTTTEg
+YXJlIGFsc28gbm90IGZ1bGx5IGNvbXBhdGlibGUsCj4+Pj4gYnV0IHRoZXkgbGllIHVuZGVyIHRo
+ZSAiTUVTT04iIHVtYnJlbGxhIHdoaWNoIGNvdmVycyBTb0Mgc2luY2UgdGhlCj4+Pj4gTWVzb242
+IGFyY2hpdGVjdHVyZS4gSXQncyBhIGZhY2lsaXR5IHRvIGluY2x1ZGUvZXhjbHVkZSBBbWxvZ2lj
+Cj4+Pj4gZHJpdmVycy9EVCwgbm90aGluZyBlbHNlLgo+PiBHWEJCLCBHWEwvR1hNLCBHMTJBLCBH
+MTJCICwgU00xIGFuZCBTNCBiZWxvbmcgdG8gbWVkaWEgYm94Lgo+PiBTbywgIk1FU09OIiByZXBy
+ZXNlbnRzIHRoZSBtZWRpYSBib3ggc2VyaWVzLgo+PiBVcCB0byBub3csICJNRVNPTiIgd29ya3Mg
+d2VsbCBmb3IgYWxsIGV4aXN0aW5nIGNoaXBzIGV4Y2VwdCBBMSBhbmQgQVhHLgo+Pj4+IElmIHlv
+dSBjb21wYXJlIGl0IHRvIEJDTSBvciBOWFAsIGl0J3MgZGlmZmVyZW50IHNpdHVhdGlvbiwgdGhl
+Cj4+Pj4gZGlmZmVyZW50IEFSQ0hfKiBhY3R1YWxseSB0YXJnZXRzIHRvdGFsbHkgZGlmZmVyZW50
+IFNvQ3MgZnJvbQo+Pj4+IGNvbXBsZXRlbHkgZGlmZmVyZW50IEJ1c2luZXNzIFVuaXRzIG9yIGZy
+b20gY29tcGFuaWVzIGFjcXVpc2l0aW9ucy4KPj4gRmlyc3RseSwgdGhlIG5ldyBDIHNlcmllcyBp
+cyB0b3RhbGx5IGRpZmZlcmVudCBmcm9tIHByZXZpb3VzIE1FU09OIAo+PiBzZXJpZXMuCj4+IMKg
+RnJvbSB0aGUgcGVyc3BlY3RpdmUgb2YgYXBwbGljYXRpb24sIHRoZSBuZXcgQyBzZXJpZXMgaXMg
+ZGVzaWduZWQgZm9yIAo+PiBzbWFydCBJUCBjYW1lcmEgYXBwbGljYXRpb25zLAo+PiB3aGlsZSBN
+RVNPTiBzZXJpZXMgaXMgZGVzaWduZWQgZm9yIGh5YnJpZCBPVFQvIElQIFNldCBUb3AgQm94wqAg
+YW5kIAo+PiBoaWdoLWVuZCBtZWRpYSBib3ggYXBwbGljYXRpb25zLgo+PiDCoEZyb20gdGhlIHBl
+cnNwZWN0aXZlIG9mIGFyY2hpdGVjdHVyZSwgdGhlIG5ldyBDIHNlcmllcyBpbnRlZ3JhdGVzIHRo
+ZSAKPj4gc2Vuc29yIGludGVyZmFjZSwgaW1hZ2Ugc2lnbmFsIHByb2Nlc3NpbmcgdW5pdCwgRGV3
+YXJwLCB2aWRlbyBlbmNvZGVyLCAKPj4gbmV1cmFsIG5ldHdvcmtpbmcgcHJvY2Vzc2luZyB1bml0
+LAo+PiB3aGljaCBNRVNPTiBzZXJpZXMgZG9lcyBub3QgYW5kIHdpbGwgbmV2ZXIgaGF2ZS4KPj4g
+U2Vjb25kbHksIHRoZXJlIGFyZSBDMSBhbmQgQzIgYmVzaWRlcyBDMy4KPj4gTW9yZW92ZXIsIG1v
+cmUgb3RoZXIgc2VyaWVzIGFyZSBvbiB0aGUgd2F5LCBzdWNoIGFzIFQgc2VyaWVzLgo+PiBJZiB3
+ZSBhbHdheXMgc3RpY2sgdG8gIk1FU09OIiwgcGVvcGxlIHdpbGwgZ2V0IG1vcmUgYW5kIG1vcmUg
+Y29uZnVzZWQuCj4+IFRoZXJlZm9yZSwgSSB0aGluayBpdCBpcyB0aGUgcmlnaHQgdGltZSB0byBh
+ZGQgQVJDSF9BTUxJUEMuCj4gCj4gVGhhbmtzIGZvciBzaGFyaW5nIHN1Y2ggZGV0YWlscywgd2Ug
+YXJlIGFsbCBoYXBweSB0byBzZWUgQW1sb2dpYydzCj4gY29tbWl0bWVudCB0byB1cHN0cmVhbSBv
+ZiB0aGVzZSBTb0MgZmFtaWxpZXMuCj4gCj4gQnV0IGFzIEkgZXhwbGFpbmVkLCB0aGlzIEFSQ0hf
+TUVTT04gZG9lc24ndCBkZWZpbmUgdGhlIFNvQyB0eXBlCj4gYnV0IGJhZGx5IGRlZmluZXMgdGhl
+IEFtbG9naWMgU29DcyBzdXBwb3J0Lgo+IAo+Pj4+IFdlIHNob3VsZCBoYXZlIG5hbWVkIGl0IEFS
+Q0hfQU1MT0dJQyBzaW5jZSB0aGUgYmVnaW5uaW5nLCBidXQgd2UKPj4+PiBjYW4ndCBjaGFuZ2Ug
+aGlzdG9yeS4KPj4gU2hvdWxkbid0IHdlIGRlc2VydmUgYSBjaGFuY2UgdG8gbWFrZSBpdCByaWdo
+dD8KPiAKPiBZZXMsIHNvIHRoZSByaWdodCB0aGluZyB0byBkbyBpcyB0byBtb3ZlIHRvIEFSQ0hf
+QU1MT0dJQwo+IAo+Pj4+PiBJbiBteSBvcGluaW9uLCBpdCdzIGEgZ29vZCB0aW1lIHRvIHNwbGl0
+IHRoZSBNZXNvbiBhcmNoaXRlY3R1cmUgaW50bwo+Pj4+PiBwcm9wZXIgc3Vic2V0cywgb3IgcmVu
+YW1lIGl0IHRyZWV3aWRlIChtYXliZSBvbmx5IGNvbmZpZyBvcHRpb24KPj4+Pj4gQVJDSF9NRVNP
+TiA9PiBBUkNIX0FNTE9HSUMpLgo+Pj4+IE1FU09OIGlzIG9ubHkgYSBjb2RlbmFtZSB0byBkaWZm
+ZXJlbnRpYXRlIGZyb20gb3RoZXIgU29DIHZlbmRvcnMKPj4+PiBiZWNhdXNlIEFtbG9naWMgdXNl
+ZCBpdCBhcyBhIGNvZGVuYW1lIGZvciBhIGxvbmcgdGltZS4KPj4+PiBDb21wYXJlIHRoaXMgdG8g
+QWxsd2lubmVyJ3MgInN1bnhpIiBvciBRdWFsY29tbSdzICJtc20iLgo+Pj4+Cj4+Pj4gVGhpcyBj
+b25maWcgaGFzIG5vIGZ1bmN0aW9uYWwgbWVhbiwgaXQncyBvbmx5IGEgY29uZmlnIG5hbWVzcGFj
+ZS4KPj4+Pgo+Pj4+IFJlbmFtaW5nIGl0IHdvdWxkIG5lZWQgcmVuYW1pbmcgaXQgaW4gYWxsIHN1
+YnN5c3RlbXMgS2NvbmZpZy9NYWtlZmlsZXMKPj4+PiBhbmQgd2lsbCBjZXJ0YWlubHkgYnJlYWsg
+YnVpbGRzIHdpdGggY3VzdG9tIGtlcm5lbCBjb25maWdzCj4+Pj4gaW4gdmFyaW91cyBwdWJsaWNs
+eSB1c2VkIGJ1aWxkcyBsaWtlIEFybWJpYW4sIG1ldGEtbWVzb24sIExpYnJlRUxFQywKPj4+PiBE
+ZWJpYW4sIFN1c2UsIC4uLgo+PiBMZXQncyBnZXQgYmFjayB0byBBUkNIX0FNTElQQy4KPj4gV2Ug
+anVzdCBuZWVkIHRvIGFkZCBBUkNIX0FNTElQQyBpbiB0aGUgbmVjZXNzYXJ5IHN1YnN5c3RlbXMg
+Cj4+IEtjb25maWcvTWFrZWZpbGUuCj4+IFRoaXMgY2hhbmdlIHdpbGwga2VlcCB0aGUgZXhpc3Rp
+bmcgTUVTT04gcmVsYXRlZCBjb2RlLMKgIGFuZCB3aWxsIAo+PiBuZWl0aGVyIGludm9sdmUgcmVu
+YW1pbmcgbm9yIGJyZWFrIGFueSBidWlsZHMuCj4gCj4gVGhlIGdvYWwgb2YgbWFpbmxpbmUgTGlu
+dXggaXMgdG8gYnVpbGQgYXMgbXVjaCBhcyBwb3NzaWJsZSBhbmQKPiBiZSBtb2R1bGFyIGF0IHJ1
+bnRpbWUsIHRoZSBvbmx5IHN1cHBvcnRlZCBjb25maWd1cmF0aW9uIGlzIAo+IGFyY2gvYXJtNjQv
+Y29uZmlncy9kZWZjb25maWcKPiBhbmQgYWRkaW5nIGEgbmV3IGNvbmZpZyB0byBkaWZmZXJlbnRp
+YXRlIGFuIEFwcGxpY2F0aW9uIHR5cGUKPiBkb2Vzbid0IG1ha2Ugc2Vuc2UuCj4gCj4+Pj4gU28g
+aXQncyBwb2ludGxlc3MgdG8gY2hhbmdlLCBhbmQgZXZlbiBhZGQgYSBkaWZmZXJlbnQgb25lIHNp
+bmNlCj4+Pj4gaXQncyBub3QgYSBmYW1pbHkgZGlmZmVyZW50aWF0b3Igc2luY2UgdGhlIEtlcm5l
+bCBpcyBtb2R1bGFyCj4+Pj4gYW5kIHdvcmtzIGFyb3VuZCBEVCB0byBkZXRlcm1pbmUgd2hpY2gg
+ZHJpdmVycyB0byBwcm9iZS4KPj4gUHJvcGVyIG5hbWVzIHBsYXkgYW4gaW1wb3J0YW50IHJvbGUg
+aW4gdW5kZXJzdGFuZGluZyB0aGUgY29kZSwgcmlnaHQ/Cj4gCj4gWWVzLCBidXQgc3RhYmxlIGNv
+bmZpZyBuYW1lcyBhbHNvIHBsYXkgYW4gaW1wb3J0YW50IHJvbGUgZm9yIHRoZQo+IHVzZXJzIGZv
+ciBtYWlubGluZSwgYW5kIHRoZXJlJ3MgYSBiaWcgbnVtYmVyIG9mIHVzZXJzIHJlbHlpbmcKPiBv
+biB0aGUgc3RhYmxlIG5hbWluZyBmb3IgYWxsIFNvQ3Mgc3RhcnRpbmcgZnJvbSBNZXNvbjYuCj4g
+Cj4gU28gaWYgeW91IHJlYWxseSB3YW50IHRvIGdldCByaWQgb2YgdGhlIEFSQ0hfTUVTT04sIG1p
+Z3JhdGluZyB0bwo+IEFSQ0hfQU1MT0dJQyBpcyB0aGUgcmlnaHQgdGhpbmcgdG8gZG8sIGJ1dCBp
+dCBpbnZvbHZlcyBkb2luZwo+IGEgdHJlZXdpZGUgbWlncmF0aW9uIGFuZCB0aGVyZSdzIG5vIGVh
+c3kgd2F5IHRvIGRvIHRoaXMgYW5kIG1ha2UKPiBzdXJlIHRoZSB1c2VycyBzdGlsbCBtYW5hZ2Vz
+IHRvIGJ1aWxkIGZvciBvdGhlciBBbWxvZ2ljIHBsYXRmb3Jtcy4KPiAKPiBTbyBhcyB0aGUgQW1s
+b2dpYyBBUk0vQVJNNjQgU29DIHN1cHBvcnQgbWFpbnRhaW5lciBJIG11c3QgbWFrZSBzdXJlCj4g
+YnJlYWthZ2UgZG9uJ3QgaGFwcGVucywgYW5kIHNvIGZhciBJIGRvbid0IHNlZSBob3cgYWNoaWV2
+ZSB0aGF0Lgo+IAo+IE5vdywgeW91IGNhbiBwb3N0IGEgUkZDIHNvIHdlIGNhbiBkaXNjdXNzIG9u
+IHNvbWV0aGluZy4KCk9LLiBMZXQncyBjb250aW51ZSB3aXRoIEFSQ0hfTUVTT04uCgo+IAo+IE5l
+aWwKPiAKPj4+PiBOZWlsCj4+Pj4KPj4+IFRoYW5rIHlvdSBmb3IgdGhlIGRldGFpbGVkIGV4cGxh
+bmF0aW9uOyBpdCBtYWtlcyBzZW5zZSEKPj4+IEFjdHVhbGx5LCBJIGRpc2FncmVlIHdpdGggY3Jl
+YXRpbmcgYSBzZXBhcmF0ZSBBUkNIIHdpdGhvdXQgZmlyc3QgCj4+PiByZXdvcmtpbmcKPj4+IGFs
+bCBvZiBpdHMgc3Vic2V0cyAtIHRoYXQncyB3aHkgSSBzdGFydGVkIHRoaXMgZGlzY3Vzc2lvbi4K
+Pj4+IE5vdywgSSBzZWUgdGhhdCB5b3Ugc2hhcmUgbXkgcGVyc3BlY3RpdmUgYW5kIGJlbGlldmUg
+dGhhdCBDMwo+Pj4gc2hvdWxkIGJlIGFkZGVkIHRvIHRoZSBBUkNIX01FU09OIHN1YnNldCwgc28g
+SSBoYXZlIG5vIG9iamVjdGlvbnMuCj4+Pgo+Pj4gWy4uLl0KPj4+Cj4+PiAtLSAKPj4+IFRoYW5r
+IHlvdSwKPj4+IERtaXRyeQo+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+Pj4gbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4+PiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMKPiAKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
